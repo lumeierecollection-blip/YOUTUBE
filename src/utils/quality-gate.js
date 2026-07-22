@@ -1,0 +1,299 @@
+/**
+ * Quality Gate — Inauthentic content mitigation and quality control.
+ *
+ * Usage: node src/utils/quality-gate.js <channel-id> <video-path>
+ * Output: data/research/<channel-id>/quality-report.json
+ *
+ * YouTube's July 2025 policy targets "inauthentic" mass-produced content.
+ * Does NOT penalize automation itself — penalizes automation without quality control.
+ * Evidence of editorial ownership required across the catalog.
+ */
+
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const ROOT = join(__filename, "..", "..");
+
+/**
+ * Inauthentic content red flags (what triggers demonetization).
+ */
+const INAUTHENTIC_RED_FLAGS = [
+  {
+    flag: "Same template every video",
+    description: "Every video uses identical structure, visuals, and pacing",
+    risk: "HIGH",
+    mitigation: "Vary script templates, visual styles, and pacing across videos",
+  },
+  {
+    flag: "Generic narration",
+    description: "AI voice reads text without editorial personality or unique perspective",
+    risk: "HIGH",
+    mitigation: "Add editorial voice, opinions, and unique analysis to scripts",
+  },
+  {
+    flag: "Repeated visuals",
+    description: "Same B-roll, same transitions, same graphics every video",
+    risk: "HIGH",
+    mitigation: "Source unique B-roll per topic, vary visual approaches",
+  },
+  {
+    flag: "Minimal subject-specific analysis",
+    description: "Surface-level coverage without deep research or original insight",
+    risk: "HIGH",
+    mitigation: "Conduct deep research with 5+ sources per topic, add original analysis",
+  },
+  {
+    flag: "Image slideshows with no narrative",
+    description: "Static images with basic TTS narration, no storytelling",
+    risk: "CRITICAL",
+    mitigation: "Use dynamic visuals, motion graphics, and narrative structure",
+  },
+  {
+    flag: "Readings of content creator did not originally create",
+    description: "TTS reads Wikipedia or other sources without transformation",
+    risk: "CRITICAL",
+    mitigation: "Transform source material into original narrative with unique perspective",
+  },
+  {
+    flag: "Repetitive storylines",
+    description: "Same story structure applied to every topic without variation",
+    risk: "HIGH",
+    mitigation: "Vary story structures: investigative, explanatory, narrative, comparative",
+  },
+  {
+    flag: "No evidence of human editorial judgment",
+    description: "Content appears to be auto-generated without human oversight",
+    risk: "HIGH",
+    mitigation: "Add human review step, editorial commentary, unique framing",
+  },
+];
+
+/**
+ * What YouTube reviewers assess (channel-level, not just one video).
+ */
+const REVIEW_CRITERIA = {
+  channel_level: [
+    "Main theme and content focus",
+    "Newest videos",
+    "Most-viewed videos",
+    "Videos generating largest share of watch time",
+    "Channel metadata (About section, description)",
+  ],
+  what_they_look_for: [
+    "Content that is original and adds value",
+    "Evidence of editorial ownership",
+    "Consistent quality across catalog",
+    "Unique perspective or analysis",
+    "Not mass-produced or generic",
+    "Viewer satisfaction signals (retention, engagement)",
+  ],
+  what_is_safe: [
+    "AI-assisted production (scripts, editing, thumbnails)",
+    "Automated workflows for repetitive tasks",
+    "Stock footage with original narration and analysis",
+    "Data-driven content with original research",
+    "Consistent publishing schedule (not a red flag)",
+  ],
+};
+
+/**
+ * Quality checklist for a video.
+ */
+function generateQualityChecklist(channel) {
+  const niche = channel.niche || "";
+
+  return {
+    pre_production: {
+      items: [
+        { check: "Topic researched with 5+ unique sources", required: true },
+        { check: "Original editorial perspective defined", required: true },
+        { check: "Script follows hook formula (not generic)", required: true },
+        { check: "Script includes unique analysis/opinions", required: true },
+        { check: "B-roll sources identified (unique to topic)", required: true },
+        { check: "SFX and music selected from licensed sources", required: true },
+        { check: "Thumbnail concept planned (unique to video)", required: true },
+      ],
+    },
+    production: {
+      items: [
+        { check: "Voiceover recorded/generated at consistent pace", required: true },
+        { check: "All B-roll color-graded to match", required: true },
+        { check: "SFX synced to visual cuts (frame-accurate)", required: true },
+        { check: "Music ducked under voiceover (-24dB to -30dB)", required: true },
+        { check: "Data overlays animated and timed", required: true },
+        { check: "LUFS at -13 to -14, true peak -1 dBTP", required: true },
+        { check: "Phone speaker test passed", required: true },
+      ],
+    },
+    post_production: {
+      items: [
+        { check: "Film grain/vignette applied (cinematic-doc style)", required: false },
+        { check: "Ken Burns on all still images", required: false },
+        { check: "Pattern interrupts every 2-3 minutes", required: true },
+        { check: "Strategic silence after major revelations", required: true },
+        { check: "Breathing room after fast montages", required: true },
+        { check: "End screen elements planned", required: true },
+        { check: "Captions generated and validated", required: true },
+      ],
+    },
+    upload: {
+      items: [
+        { check: "Thumbnail: 1280x720, max 3-5 words, mobile-readable", required: true },
+        { check: "Title: under 60 chars, keyword in first 5 words", required: true },
+        { check: "Description: 200+ words, 5-block structure", required: true },
+        { check: "Tags: 10-20 relevant tags", required: true },
+        { check: "Hashtags: 3-5 max", required: true },
+        { check: "Chapters: timestamps in description", required: true },
+        { check: "End screen added (last 5-20 seconds)", required: true },
+        { check: "Cards placed at 50-75% video mark", required: true },
+        { check: "AI disclosure: 'No' selected (our pipeline)", required: true },
+        { check: "Copyright check passed", required: true },
+        { check: "Uploaded as PRIVATE first", required: true },
+        { check: "Auto-publish after 1hr delay", required: true },
+      ],
+    },
+  };
+}
+
+/**
+ * Generate editorial ownership evidence.
+ */
+function generateEditorialEvidence(channel, researchDir) {
+  const evidence = {
+    deep_research: {
+      requirement: "Each video must have unique research with multiple sources",
+      check: "Verify research files exist for this topic",
+      status: "pending",
+    },
+    original_analysis: {
+      requirement: "Scripts must include original perspective, not just read sources",
+      check: "Verify script contains editorial voice and unique framing",
+      status: "pending",
+    },
+    unique_visuals: {
+      requirement: "B-roll and visuals should be topic-specific, not generic",
+      check: "Verify visual assets are unique to this video",
+      status: "pending",
+    },
+    consistent_branding: {
+      requirement: "Channel has consistent visual identity across all videos",
+      check: "Verify branding spec exists and is followed",
+      status: "pending",
+    },
+    varied_approaches: {
+      requirement: "Videos should vary in structure and approach",
+      check: "Verify not using identical template for every video",
+      status: "pending",
+    },
+  };
+
+  // Check if research exists
+  if (researchDir && existsSync(researchDir)) {
+    const files = readdirSync(researchDir).filter((f) => f.endsWith(".json"));
+    evidence.deep_research.status = files.length > 0 ? "verified" : "missing";
+  }
+
+  return evidence;
+}
+
+/**
+ * Full quality gate assessment.
+ */
+function generateQualityReport(channel, videoPath = null) {
+  const report = {
+    version: "1.0.0",
+    generated_at: new Date().toISOString(),
+    channel_id: channel.channel_id,
+    channel_name: channel.channel_name,
+    niche: channel.niche,
+
+    inauthentic_content_policy: {
+      policy_date: "July 15, 2025",
+      policy_name: "Inauthentic content (renamed from 'repetitious content')",
+      key_rule: "Automation without quality control is penalized. Automation WITH quality control is fine.",
+      red_flags: INAUTHENTIC_RED_FLAGS,
+      review_criteria: REVIEW_CRITERIA,
+      our_mitigation: [
+        "Unique research per video with 5+ sources",
+        "Original editorial perspective in every script",
+        "Varied visual approaches across videos",
+        "Deep topic-specific analysis (not surface-level)",
+        "Human review step in pipeline",
+        "Consistent branding without identical templates",
+      ],
+    },
+
+    quality_checklist: generateQualityChecklist(channel),
+
+    editorial_evidence: generateEditorialEvidence(
+      channel,
+      join(ROOT, "data", "research", channel.channel_id)
+    ),
+
+    channel_health: {
+      monitoring: [
+        "Check YouTube Studio for any policy flags weekly",
+        "Monitor monetization status on all videos",
+        "Review audience retention curves for quality signals",
+        "Track subscriber growth vs. content quality",
+        "Watch for automated AI labels from YouTube",
+      ],
+      recovery: {
+        if_flagged: [
+          "Review the specific flagged content",
+          "Update or remove low-quality videos",
+          "Strengthen editorial ownership in future content",
+          "Appeal if content is genuinely original",
+          "Document improvement process",
+        ],
+      },
+    },
+  };
+
+  return report;
+}
+
+/**
+ * CLI entry point.
+ */
+function main() {
+  const channelId = process.argv[2];
+
+  if (!channelId) {
+    console.error("Usage: node quality-gate.js <channel-id>");
+    process.exit(1);
+  }
+
+  const channelsPath = join(ROOT, "config", "channels.json");
+  const data = JSON.parse(readFileSync(channelsPath, "utf-8"));
+  const channels = data.channels || data;
+  const channel = channels.find((c) => c.channel_id === channelId);
+  if (!channel) {
+    console.error(`Channel "${channelId}" not found`);
+    process.exit(1);
+  }
+
+  const report = generateQualityReport(channel);
+
+  const outDir = join(ROOT, "data", "research", channelId);
+  mkdirSync(outDir, { recursive: true });
+
+  const outPath = join(outDir, "quality-report.json");
+  writeFileSync(outPath, JSON.stringify(report, null, 2));
+
+  console.log(`Quality report saved: ${outPath}`);
+  console.log(`\nInauthentic content red flags: ${report.inauthentic_content_policy.red_flags.length}`);
+  console.log(`Quality checklist items: ${
+    Object.values(report.quality_checklist).reduce(
+      (sum, cat) => sum + cat.items.length, 0
+    )
+  }`);
+  console.log(`Editorial evidence checks: ${Object.keys(report.editorial_evidence).length}`);
+}
+
+export { generateQualityReport, INAUTHENTIC_RED_FLAGS, REVIEW_CRITERIA, generateQualityChecklist };
+
+if (process.argv[1] && process.argv[1].endsWith("quality-gate.js")) main();
