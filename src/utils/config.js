@@ -1,0 +1,31 @@
+import { readFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = join(__dirname, '..', '..');
+
+export function loadChannels() {
+  const raw = readFileSync(join(ROOT, 'config', 'channels.json'), 'utf8');
+  return JSON.parse(raw);
+}
+
+export function loadChannel(channelId) {
+  const channels = loadChannels();
+  const ch = channels.find(c => c.channel_id === channelId);
+  if (!ch) throw new Error(`Channel not found: ${channelId}`);
+  return ch;
+}
+
+export function loadSchema() {
+  const raw = readFileSync(join(ROOT, 'config', 'channel-schema.json'), 'utf8');
+  return JSON.parse(raw);
+}
+
+export function getResearchDir(channelId) {
+  return join(ROOT, 'data', 'research', channelId);
+}
+
+export function getRunLogDir(channelId) {
+  return join(ROOT, 'data', 'run-logs', channelId);
+}

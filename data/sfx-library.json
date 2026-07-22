@@ -1,0 +1,196 @@
+{
+  "version": "2.0.0",
+  "updated": "2026-07-22",
+  "research_sources": [
+    "Kurzgesagt production breakdowns",
+    "MrBallen sound design analysis",
+    "LEMMiNO music and SFX patterns",
+    "Mark Wiens food SFX techniques",
+    "Johnny Harris visual storytelling",
+    "Epidemic Sound documentary library",
+    "Freesound.org community SFX"
+  ],
+  "styles": {
+    "cinematic-documentary": {
+      "description": "Dramatic, atmospheric, tension-building sound design",
+      "layers": {
+        "ambient_bed": {
+          "purpose": "Emotional foundation, sustained mood",
+          "volume_speaking": "-30dB to -35dB",
+          "volume_silent": "-25dB to -30dB",
+          "examples": ["deep-drone-40hz", "room-tone", "environmental-foley", "wind-ambient"]
+        },
+        "music_bed": {
+          "purpose": "Narrative arc, emotional journey",
+          "volume_speaking": "-18dB to -25dB",
+          "volume_silent": "-12dB to -15dB",
+          "examples": ["ambient-electronic", "low-strings", "sparse-piano", "epic-orchestral"]
+        },
+        "spot_sfx": {
+          "purpose": "Punctual sounds timed to visuals",
+          "volume_speaking": "-20dB to -15dB",
+          "volume_silent": "-12dB to -10dB",
+          "examples": ["whoosh", "impact-hit", "riser", "revelation-sting"]
+        },
+        "voiceover": {
+          "purpose": "Primary element, always clear",
+          "volume": "-6dB to -12dB"
+        }
+      },
+      "sfx_by_niche": {
+        "science_nature": {
+          "primary": ["deep-drone", "cosmic-ambience", "water-flow", "wind-gust", "bird-ambient"],
+          "transitions": ["whoosh-fast", "riser-2s", "impact-deep"],
+          "revelation": ["revelation-sting", "silence-1s", "orchestral-swell"],
+          "music": "ambient-electronic-with-synth-pads",
+          "bpm": "60-90",
+          "silence_after_reveal": "1000-1500ms"
+        },
+        "true_crime": {
+          "primary": ["dark-drone", "clock-ticking", "heartbeat", "room-tone-eerie", "industrial-hum"],
+          "transitions": ["whoosh-dark", "impact-sub-boom", "reversed-cymbal"],
+          "revelation": ["silence-2s", "single-piano-note", "heartbeat-accelerate"],
+          "music": "dark-ambient-sparse-piano",
+          "bpm": "60-80",
+          "silence_after_reveal": "1500-2500ms"
+        },
+        "food_travel": {
+          "primary": ["sizzle-pan", "chopping-rhythmic", "crowd-market", "pour-drizzle", "crunch-bite"],
+          "transitions": ["whoosh-light", "pop-bubble", "slide-friction"],
+          "revelation": ["music-drop", "silence-0.5s", "sizzle-peak"],
+          "music": "upbeat-acoustic-world-music",
+          "bpm": "100-120",
+          "silence_after_reveal": "500ms"
+        },
+        "history": {
+          "primary": ["orchestral-build", "period-instrument", "distant-drum", "page-flip", "quill-scratch"],
+          "transitions": ["whoosh-epic", "timpani-roll", "brass-stab"],
+          "revelation": ["orchestral-crescendo", "silence-1s", "epic-impact"],
+          "music": "full-orchestral-period-instruments",
+          "bpm": "70-100",
+          "silence_after_reveal": "1000ms"
+        },
+        "lifestyle_craft": {
+          "primary": ["tool-on-material", "fire-crackling", "water-flowing", "wind-soft", "birds-morning"],
+          "transitions": ["whoosh-gentle", "pop-soft", "chime-subtle"],
+          "revelation": ["music-resolve", "silence-0.5s", "satisfaction-chime"],
+          "music": "lo-fi-acoustic-minimal-electronic",
+          "bpm": "70-100",
+          "silence_after_reveal": "500ms"
+        },
+        "engineering": {
+          "primary": ["construction-ambient", "metal-clank", "concrete-pour", "machinery-hum", "wind-high"],
+          "transitions": ["whoosh-heavy", "impact-mechanical", "riser-3s"],
+          "revelation": ["silence-1s", "epic-orchestral-hit", "scale-reveal-boom"],
+          "music": "ambient-electronic-low-strings",
+          "bpm": "70-90",
+          "silence_after_reveal": "1000ms"
+        },
+        "education": {
+          "primary": ["typing-soft", "notification-blip", "page-flip", "click-ui", "bell-subtle"],
+          "transitions": ["whoosh-clean", "pop-soft", "slide-digital"],
+          "revelation": ["chime-complete", "silence-0.5s", "data-reveal"],
+          "music": "clean-electronic-light-piano",
+          "bpm": "80-110",
+          "silence_after_reveal": "750ms"
+        }
+      }
+    },
+    "minimal": {
+      "description": "Clean, text-driven, kinetic typography sound design",
+      "layers": {
+        "ambient_bed": {
+          "purpose": "Subtle foundation, barely perceptible",
+          "volume_speaking": "-35dB to -40dB",
+          "volume_silent": "-30dB to -35dB"
+        },
+        "music_bed": {
+          "purpose": "Minimal electronic, text rhythm support",
+          "volume_speaking": "-20dB to -28dB",
+          "volume_silent": "-15dB to -20dB"
+        },
+        "spot_sfx": {
+          "purpose": "Text animation punctuation",
+          "volume_speaking": "-18dB to -12dB",
+          "volume_silent": "-10dB to -8dB"
+        }
+      },
+      "sfx_core": {
+        "text_impact": ["sub-boom", "click-snap", "glass-hit"],
+        "text_appear": ["typewriter", "glitch-stutter", "text-whoosh"],
+        "data_reveal": ["digital-beep", "counter-tick", "swoosh-hit"],
+        "emphasis": ["reversed-reverb", "hard-silence-0.5s", "isolated-voiceover"],
+        "transitions": ["clean-whoosh", "digital-glitch", "pop-bubble"]
+      },
+      "music_styles": {
+        "tech_focused": "minimal-electronic-clean-sine",
+        "education_focused": "lo-fi-hip-hop-vinyl-crackle",
+        "science_focused": "ambient-pad-evolving-synth",
+        "business_focused": "downtempo-atmospheric"
+      }
+    },
+    "motion-graphics": {
+      "description": "Animated, data-driven, icon-based sound design",
+      "layers": {
+        "ambient_bed": {
+          "purpose": "Clean background, no distraction",
+          "volume_speaking": "-32dB to -38dB",
+          "volume_silent": "-28dB to -32dB"
+        },
+        "music_bed": {
+          "purpose": "Upbeat, energetic, supports animation",
+          "volume_speaking": "-18dB to -24dB",
+          "volume_silent": "-12dB to -16dB"
+        },
+        "spot_sfx": {
+          "purpose": "Animation timing, data emphasis",
+          "volume_speaking": "-16dB to -12dB",
+          "volume_silent": "-10dB to -8dB"
+        }
+      },
+      "sfx_core": {
+        "data_viz": ["ui-click", "notification-blip", "counter-tick", "graph-swoosh"],
+        "icon_reveal": ["glass-crystal-hit", "soft-chime", "spring-bounce", "paper-flip"],
+        "text_animation": ["typewriter", "glitch-stutter", "text-whoosh", "pop-splat"],
+        "transitions": ["clean-whoosh-short", "digital-glitch", "color-wipe-swoosh"],
+        "character_anim": ["footstep-soft", "voice-alter", "reaction-sound", "speech-blip"]
+      }
+    }
+  },
+  "mixing_rules": {
+    "ducking": "Automatically lower music -6dB when voiceover plays",
+    "eq_carving": "Cut 300Hz-3kHz in music track by 2-5dB for voice room",
+    "compression": "Apply to voiceover for consistent levels",
+    "high_pass_music": "Cut below 40Hz",
+    "high_pass_voice": "Cut below 80Hz",
+    "low_pass_music": "Cut above 10kHz to reduce hiss",
+    "test_devices": ["headphones", "phone speaker", "laptop speaker"]
+  },
+  "silence_techniques": {
+    "before_reveal": "0.5-1 second of complete silence builds anticipation",
+    "after_shocking": "Let words hang in silence for 1-2 seconds",
+    "scene_transition": "Brief silence (3-5 frames) between tonal shifts",
+    "emotional_peak": "Remove all music when voiceover delivers emotional core",
+    "opening_closing": "Start/end with 2-3 seconds of silence before audio enters",
+    "rhythm_break": "Interrupt established audio pattern with sudden silence"
+  },
+  "free_sources": {
+    "no_attribution": [
+      {"name": "YouTube Audio Library", "music": true, "sfx": true, "license": "Free for YouTube"},
+      {"name": "Pixabay Audio", "music": true, "sfx": true, "license": "CC0"},
+      {"name": "Mixkit", "music": true, "sfx": true, "license": "Free, no attribution"},
+      {"name": "NCS", "music": true, "sfx": false, "license": "Free with credit"}
+    ],
+    "attribution_required": [
+      {"name": "Freesound.org", "sfx": true, "library_size": "500K+", "license": "CC varies"},
+      {"name": "ZapSplat", "sfx": true, "library_size": "160K+", "license": "Free with attribution"},
+      {"name": "Free Music Archive", "music": true, "license": "CC varies"}
+    ],
+    "premium": [
+      {"name": "Epidemic Sound", "price": "$15/mo", "music": "55K", "sfx": "250K"},
+      {"name": "Artlist", "price": "$9.99/mo", "universal_license": true},
+      {"name": "Soundstripe", "price": "$9.99/mo", "music_sfx_templates": true},
+      {"name": "Envato Elements", "price": "$16.50/mo", "assets": "27M+"}
+    ]
+  }
+}

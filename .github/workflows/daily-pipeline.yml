@@ -1,0 +1,276 @@
+# YouTube Automation — Fully Autonomous Daily Pipeline
+# Runs daily, picks fresh topics, researches, scripts, renders, publishes
+# No manual intervention required after initial setup
+
+name: Daily Pipeline — Autonomous
+
+on:
+  schedule:
+    # Run at 6:00 AM UTC daily
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (no publish)"
+        type: boolean
+        default: false
+      channel_override:
+        description: "Process specific channel only (leave empty for all)"
+        required: false
+
+env:
+  NODE_VERSION: "20"
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  # ============================================================
+  # PHOR 1: Pick topics for each channel
+  # ============================================================
+  pick-topics:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.topics.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Pick fresh topics for all channels
+        id: topics
+        run: |
+          CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
+          DRY_RUN="${{ github.event.inputs.dry_run || 'false' }}"
+          
+          # Get all channel IDs
+          if [ -n "$CHANNEL_OVERRIDE" ]; then
+            CHANNELS="[\"$CHANNEL_OVERRIDE\"]"
+          else
+            CHANNELS=$(node -e "
+              const fs = require('fs');
+              const data = JSON.parse(fs.readFileSync('config/channels.json'));
+              console.log(JSON.stringify(data.channels.map(c => c.channel_id)));
+            ")
+          fi
+          
+          echo "Channels to process: $CHANNELS"
+          
+          # For each channel, run topic engine
+          TASKS="[]"
+          for CH in $(echo $CHANNELS | jq -r '.[]'); do
+            echo "--- Topic selection: $CH ---"
+            RESULT=$(node src/utils/topic-engine.js "$CH" 2>/dev/null | tail -1)
+            
+            # Add to task list
+            TASKS=$(echo $TASKS | jq --arg ch "$CH" --argjson r "$RESULT" '. + [{channel_id: $ch, topic_info: $r}]')
+          done
+          
+          echo "matrix={\"include\":$(echo $TASKS | jq -c .)}" >> $GITHUB_OUTPUT
+          echo "Total channels: $(echo $TASKS | jq length)"
+
+  # ============================================================
+  # PHASE 2: Research + Script (per channel, parallel)
+  # ============================================================
+  research-and-script:
+    needs: pick-topics
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.pick-topics.outputs.matrix) }}
+      max-parallel: 5
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install EdgeTTS
+        run: pip install edge-tts
+
+      - name: Deep Research
+        run: |
+          CH="${{ matrix.channel_id }}"
+          echo "=== DEEP RESEARCH: $CH ==="
+          node src/skills/deep-research/run.js "$CH"
+
+      - name: Script Writer — Shorts
+        run: |
+          CH="${{ matrix.channel_id }}"
+          echo "=== SCRIPT: Shorts for $CH ==="
+          node src/skills/script-writer/run.js "$CH" shorts
+
+      - name: Script Writer — Long-form
+        run: |
+          CH="${{ matrix.channel_id }}"
+          echo "=== SCRIPT: Long-form for $CH ==="
+          node src/skills/script-writer/run.js "$CH" longform
+
+      - name: TTS — Voiceover
+        run: |
+          CH="${{ matrix.channel_id }}"
+          echo "=== TTS: $CH ==="
+          node src/utils/tts.js "$CH"
+
+      - name: Upload research artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-${{ matrix.channel_id }}-${{ github.run_id }}
+          path: |
+            data/research/${{ matrix.channel_id }}/
+            data/tts/${{ matrix.channel_id }}/
+          retention-days: 7
+
+  # ============================================================
+  # PHASE 3: Render videos
+  # ============================================================
+  render:
+    needs: research-and-script
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Remotion dependencies
+        working-directory: src/skills/remotion-render
+        run: npm ci
+
+      - name: Download all research artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: data/
+          pattern: research-*
+
+      - name: Render all videos
+        run: |
+          CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
+          
+          if [ -n "$CHANNEL_OVERRIDE" ]; then
+            CHANNELS="[\"$CHANNEL_OVERRIDE\"]"
+          else
+            CHANNELS=$(node -e "
+              const fs = require('fs');
+              const data = JSON.parse(fs.readFileSync('config/channels.json'));
+              console.log(JSON.stringify(data.channels.map(c => c.channel_id)));
+            ")
+          fi
+          
+          for CH in $(echo $CHANNELS | jq -r '.[]'); do
+            echo "=== RENDER: $CH ==="
+            
+            # Render Shorts
+            SCRIPTS=$(ls data/research/$CH/*-shorts-script.txt 2>/dev/null || true)
+            for SCRIPT in $SCRIPTS; do
+              echo "Rendering short: $SCRIPT"
+              node src/skills/remotion-render/render.js shorts "$CH" "$SCRIPT" || echo "WARN: render failed"
+            done
+            
+            # Render Long-form
+            SCRIPTS=$(ls data/research/$CH/*-longform-script.txt 2>/dev/null || true)
+            for SCRIPT in $SCRIPTS; do
+              echo "Rendering long-form: $SCRIPT"
+              node src/skills/remotion-render/render.js longform "$CH" "$SCRIPT" || echo "WARN: render failed"
+            done
+          done
+
+      - name: Upload render artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: renders-${{ github.run_id }}
+          path: data/renders/
+          retention-days: 7
+
+  # ============================================================
+  # PHASE 4: Publish to YouTube
+  # ============================================================
+  publish:
+    needs: render
+    if: ${{ github.event.inputs.dry_run != 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download all render artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: data/
+          pattern: renders-*
+
+      - name: Publish to YouTube
+        run: |
+          CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
+          
+          if [ -n "$CHANNEL_OVERRIDE" ]; then
+            CHANNELS="[\"$CHANNEL_OVERRIDE\"]"
+          else
+            CHANNELS=$(node -e "
+              const fs = require('fs');
+              const data = JSON.parse(fs.readFileSync('config/channels.json'));
+              console.log(JSON.stringify(data.channels.map(c => c.channel_id)));
+            ")
+          fi
+          
+          for CH in $(echo $CHANNELS | jq -r '.[]'); do
+            echo "=== PUBLISH: $CH ==="
+            node src/skills/youtube-publish/run.js "$CH" || echo "WARN: publish failed (API creds needed)"
+          done
+
+      - name: Update topic log
+        if: always()
+        run: |
+          # Record which topics were used today
+          node src/utils/topic-engine.js --log-run || true
+
+      - name: Upload run logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-${{ github.run_id }}
+          path: data/run-logs/
+          retention-days: 30
+
+  # ============================================================
+  # PHASE 5: Log results
+  # ============================================================
+  log-results:
+    needs: [pick-topics, research-and-script, render, publish]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate run report
+        run: |
+          echo "=== PIPELINE RUN REPORT ==="
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Triggered: ${{ github.event_name }}"
+          echo "Dry Run: ${{ github.event.inputs.dry_run || 'false' }}"
+          echo "Channels: ${{ github.event.inputs.channel_override || 'ALL' }}"
+          echo "Date: $(date -u)"
+          echo ""
+          echo "=== STATUS ==="
+          echo "Pick Topics: ${{ needs.pick-topics.result }}"
+          echo "Research+Script: ${{ needs.research-and-script.result }}"
+          echo "Render: ${{ needs.render.result }}"
+          echo "Publish: ${{ needs.publish.result }}"
+          echo ""
+          echo "=== TOPICS USED ==="
+          cat data/topic-log.json 2>/dev/null | jq '.channel_history | to_entries[] | "\(.key): \(.value[-1].topic)"' 2>/dev/null || echo "No topic log found"

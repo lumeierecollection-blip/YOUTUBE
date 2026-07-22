@@ -1,0 +1,14 @@
+node_modules/
+src/skills/remotion-render/node_modules/
+*.log
+.DS_Store
+Thumbs.db
+data/tts/**/*.mp3
+data/tts/**/*.wav
+data/renders/**/*.mp4
+data/renders/**/*.webm
+data/research/**/topic-log.json
+*.tmp
+*.bak
+.env
+.env.local

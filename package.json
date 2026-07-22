@@ -1,0 +1,22 @@
+{
+  "name": "youtube-automation",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deep-research": "node src/skills/deep-research/run.js",
+    "trend-research": "node src/skills/trend-research/run.js",
+    "script-writer": "node src/skills/script-writer/run.js",
+    "thumbnail": "node src/skills/thumbnail-maker/generate.js",
+    "vfx-audit": "node src/skills/vfx-audit/run.js",
+    "sfx": "node src/skills/sfx-sourcing/build-library.js",
+    "tts": "node src/utils/tts.js",
+    "render": "node src/skills/remotion-render/render.js",
+    "publish": "node src/skills/youtube-publish/run.js",
+    "pipeline": "node src/utils/pipeline.js",
+    "test-config": "node src/utils/test-config.js"
+  },
+  "dependencies": {
+    "edge-tts": "^1.0.0"
+  }
+}

@@ -1,0 +1,128 @@
+/**
+ * Cinematic Documentary Script Template
+ *
+ * Visual style: Slow pans, archival footage, dramatic reveals
+ * Voiceover pacing: 130–140 WPM
+ * Mood: Immersive, atmospheric, emotionally resonant
+ */
+
+export default function cinematicDocumentary({ topic, keyFacts, strongestAngle, tone, niche, channelName, colors, font }) {
+
+  const hookFact = keyFacts[0]?.fact || topic;
+  const secondFact = keyFacts[1]?.fact || '';
+  const thirdFact = keyFacts[2]?.fact || '';
+
+  const sections = [
+    // ── HOOK ──────────────────────────────────────────────
+    {
+      id: 'hook',
+      timing: '0:00–0:30',
+      word_count: 55,
+      voiceover: `${strongestAngle}. What happened next changed everything.`,
+      visual_cue: `Slow zoom on a key archival image or location. Muted color grade (${colors.primary}). Let the image breathe for 3 seconds before voiceover begins.`,
+      sfx_cue: 'Low sub-bass drone fading in. Distant ambient texture (wind, machinery, or silence depending on subject).',
+      b_roll: [
+        'Hero shot of the subject — building, artifact, landscape, or person',
+        'Close-up detail shot (texture, wear, age)',
+        'Wide establishing shot showing scale or isolation',
+      ],
+      text_overlay: null,
+      transition_out: 'Slow fade to black (1.5 sec), then fade in to Section 1',
+      pacing_notes: 'First word lands at 0:03. Pause 1.5 sec after final hook sentence. No music swell yet — keep it restrained.',
+    },
+
+    // ── SECTION 1: THE SETUP ─────────────────────────────
+    {
+      id: 'section_1',
+      timing: '0:30–3:00',
+      word_count: 340,
+      voiceover: `To understand what happened, you need to know where it started.\n\n${hookFact}\n\n${secondFact ? `But that wasn't the full story. ${secondFact}` : ''}\n\nThe question nobody was asking was simple: why did this matter?`,
+      visual_cue: `Archival footage or atmospheric B-roll. Slow horizontal pans. No text on screen. Camera movement should feel like discovery — reveal, don't announce.`,
+      sfx_cue: 'Ambient bed continues. Subtle tonal shift at section transition. Add environmental SFX matching footage (footsteps, water, wind).',
+      b_roll: [
+        'Archival photographs or footage (if available)',
+        'Location footage — exterior wide, then interior detail',
+        'Maps, documents, or artifacts (slow pan across)',
+        'People in context (historical or modern)',
+        'Environmental detail shots (weather, time of day, decay)',
+      ],
+      text_overlay: null,
+      transition_out: '2-second visual-only pause. Black screen or static image. Voiceover stops.',
+      pacing_notes: 'Deliver first sentence slower than the rest. Let the setup feel weighty. Speed up slightly through middle facts. Slow down on the final question.',
+    },
+
+    // ── SECTION 2: THE TENSION ───────────────────────────
+    {
+      id: 'section_2',
+      timing: '3:00–5:30',
+      word_count: 350,
+      voiceover: `This is where things went wrong.\n\n${thirdFact || keyFacts[2]?.fact || 'The evidence was there all along.'}\n\nNobody wanted to see it. The people involved had every reason to look away. And for a while, they could.`,
+      visual_cue: `Shift to darker color grade. Tighter framing. More close-ups. Visual tension through composition — off-center subjects, deep shadows, restricted depth of field.`,
+      sfx_cue: 'Low tension drone. Add subtle heartbeat-like pulse if appropriate. Environmental SFX should feel closer, more claustrophobic.',
+      b_roll: [
+        'Close-up faces or hands (showing human element)',
+        'Documents, headlines, or evidence (slow reveals)',
+        'Environment shots showing consequence or damage',
+        'Transition shots (day to night, before to after)',
+        'Detail shots that imply scale of the problem',
+      ],
+      text_overlay: null,
+      transition_out: 'Hard cut to black. 1 second silence. Then fade in to Section 3.',
+      pacing_notes: 'This is the emotional center. Slow down for the key revelation. Let silence do work. Do not rush through the consequences.',
+    },
+
+    // ── SECTION 3: THE AFTERMATH ─────────────────────────
+    {
+      id: 'section_3',
+      timing: '5:30–7:30',
+      word_count: 280,
+      voiceover: `By the time anyone acted, the damage was done.\n\nThe legacy of this isn't just what happened — it's what it proved about the people and systems involved.\n\nAnd that pattern hasn't changed.`,
+      visual_cue: `Wider shots return. Color grade shifts toward neutral or slightly desaturated. Camera pulls back — literally and figuratively. Let the viewer process.`,
+      sfx_cue: 'Drone fades to near-silence. Ambient environmental sound returns. End on a single sustained note.',
+      b_roll: [
+        'Wide landscape or architectural shots (returning to scale)',
+        'Modern-day footage of the subject (if still exists)',
+        'People in present day interacting with the legacy',
+        'Final atmospheric shot — golden hour, fog, or emptiness',
+      ],
+      text_overlay: null,
+      transition_out: 'Slow dissolve to final close shot. 2 seconds of pure visual.',
+      pacing_notes: 'Deliver the last line with full weight. Do not add filler. The silence after the final sentence is part of the script.',
+    },
+  ];
+
+  // ── CLOSE ──────────────────────────────────────────────
+  const close = {
+    id: 'close',
+    timing: '7:30–8:30',
+    word_count: 80,
+    voiceover: `${strongestAngle}. That's the story.\n\nMore stories like this — you know what to do.`,
+    visual_cue: `Callback to hook visual. Same shot, different angle or time of day. Hold for 5 seconds after voiceover ends.`,
+    sfx_cue: 'Return of opening drone. Swell slightly, then fade to silence over final visual.',
+    b_roll: [
+      'Return to hero shot from hook',
+      'Slow fade to black',
+    ],
+    text_overlay: null,
+    transition_out: 'Fade to black. End screen elements appear.',
+    pacing_notes: 'First sentence mirrors hook. Final CTA is understated — one sentence, no repetition. Let the story land.',
+  };
+
+  sections.push(close);
+
+  return {
+    channel_id: '',
+    topic,
+    topic_slug: '',
+    sections,
+    cta_primary: {
+      placement: 'section_2_start',
+      text: 'If this kind of deep dive is your thing, you know what to do.',
+    },
+    cta_secondary: {
+      placement: 'close',
+      text: 'More stories like this — you know what to do.',
+    },
+    production_notes: `Visual style: Cinematic documentary. Colors: ${colors.primary} primary, ${colors.accent} accent. Font for any minimal text: ${font}. Total B-roll clips needed: ~25. Recommend 4K archival footage sourcing. Voiceover tone: ${tone}.`,
+  };
+}
