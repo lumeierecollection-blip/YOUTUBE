@@ -178,51 +178,91 @@ Every video follows this skeleton, adapted per niche:
 
 ### Layered Audio Architecture
 
-Every video uses this 3-layer minimum:
+Every video uses this 3-layer minimum. **Voice is king — everything is mixed relative to voice, never the other way around.**
 
 | Layer | Purpose | Volume (speaking) | Volume (silent) |
 |-------|---------|-------------------|-----------------|
-| **Ambient bed** | Emotional foundation, sustained mood | -30dB to -35dB | -25dB to -30dB |
-| **Music bed** | Narrative arc, emotional journey | -18dB to -25dB | -12dB to -15dB |
-| **Spot SFX** | Punctual sounds timed to visuals | -20dB to -15dB | -12dB to -10dB |
-| **Voiceover** | Primary element, always clear | -6dB to -12dB | N/A |
+| **Ambient bed** | Emotional foundation, sustained mood | -20dB to -25dB | -15dB to -20dB |
+| **Music bed** | Narrative arc, emotional journey | -24dB to -30dB | -12dB to -6dB |
+| **Spot SFX** | Punctual sounds timed to visuals | -18dB to -24dB | -12dB to -18dB |
+| **Voiceover** | Primary element, always clear | -12dB to -18dB (peak -6dB) | N/A |
+
+**Mixing rules:**
+- **Ducking**: Music ducks 6-12dB during dialogue, attack 50-100ms, release 500-1000ms
+- **EQ carving**: Cut music at 800Hz-3kHz by 3-6dB. Boost voice at 2-6kHz by 2-4dB.
+- **High-pass**: Voice male 80Hz, female 100Hz. Music 40Hz. All 10kHz low-pass.
+- **LUFS target**: -13 to -14 LUFS. True peak: -1 dBTP.
+- **Phone speaker test**: Export and play on phone at medium volume. If any SFX makes you think "that's a sound effect," it's too loud. This is how 80%+ of people watch.
+
+### SFX Density by Niche (2026 Research)
+
+**Critical**: Top channels (Kurzgesagt, Lemmino, MrBallen) use deliberately **minimal** SFX. Restraint is the signature. Voice and story carry.
+
+| Niche | SFX per minute | Max per 5-min window | Notes |
+|-------|---------------|---------------------|-------|
+| Documentary/true crime | 1-2 | 4 | Most restrained. Atmosphere does the work. |
+| Science/history | 1-1.5 | 5 | Supportive, not distracting. |
+| Food/travel | 2-3 | 8 | Kitchen sounds are primary SFX. |
+| Tech reviews | 1-2 | 5 | Felt more than heard. |
+| Lifestyle/craft | 1-2 | 5 | Location sound does most work. |
+| Finance/business | 4-6 | 15 | Most SFX-heavy niche. |
+| **Shorts (all niches)** | 0.5-1/sec | N/A | Maximum density. Zero silence tolerance in first 3 seconds. |
+
+### SFX Timing Rules (Frame-Accurate)
+
+**Whooshes**: Start 2-4 frames **BEFORE** the cut. Peak and tail hits the edit point. Never on the cut.
+**Impact hits**: Land **EXACTLY** on the visual moment. Frame-accurate. Even 2 frames late feels loose.
+**Risers**: Start 1-3 seconds before reveal. End riser on cut, follow with impact hit.
+**Strategic silence**: 0.5-1 second before reveals. 3-5 second windows where editing slows, music drops. For a high to feel high, you need a low.
 
 ### SFX Library by Style
 
-**Cinematic Documentary SFX**:
-| SFX | Use Case | Timing |
-|-----|----------|--------|
-| Suspense drone (40-80Hz) | Tension sections | Continuous |
-| Revelation sting | Key fact revealed | Synced to cut |
-| Heartbeat | Emotional peaks, fear moments | 2-4 seconds |
-| Ticking clock | Countdown, deadlines | Accelerating |
-| Impact hit/sub-boom | Chapter breaks, reveals | On cut frame |
-| Whoosh (fast air sweep) | Scene transitions | Pre-lap 2-6 frames |
-| Risers (upward sweep) | Before reveals | 2-10 seconds |
-| Environmental foley | Scene-setting | Continuous under narration |
-| Strategic silence | After major revelations | 0.5-2.5 seconds |
+**Cinematic Documentary SFX** (MrBallen/Lemmino/Nexpo style — minimal and atmospheric):
+| SFX | Use Case | Timing | Volume |
+|-----|----------|--------|--------|
+| Dark drone/low strings | Tension sections | Continuous | -24dB to -30dB |
+| Revelation sting | Key fact revealed | Synced to cut | -12dB to -18dB |
+| Heartbeat | Emotional peaks | 2-4 seconds | -20dB to -25dB |
+| Ticking clock | Countdown, deadlines | Accelerating | -20dB to -25dB |
+| Impact hit/sub-boom | Chapter breaks, reveals | Frame-accurate on visual | -12dB to -18dB |
+| Whoosh (fast air sweep) | Scene transitions | 2-4 frames BEFORE cut | -18dB to -24dB |
+| Risers (upward sweep) | Before reveals | 1-3 sec before, end on cut | -24dB to -30dB |
+| Environmental foley | Scene-setting | Continuous under narration | -20dB to -25dB |
+| Strategic silence | After major revelations | 0.5-2.5 seconds | Complete removal |
 
-**Motion Graphics SFX**:
-| SFX | Use Case | Timing |
-|-----|----------|--------|
-| UI click/pop | Data points appear | Synced to animation |
-| Typing/keystroke | Text input animations | Character-by-character |
-| Notification blip | New data appears | On reveal |
-| Counter ticking | Numbers animate up | During number animation |
-| Clean whoosh | Element transitions | On cut |
-| Digital glitch | Tech transitions | 0.2-0.5 seconds |
-| Glass/crystal hit | Icon appearances | On icon appear |
-| Soft chime | Infographic complete | On completion |
+**Motion Graphics SFX** (Kurzgesagt/Infographics Show style):
+| SFX | Use Case | Timing | Volume |
+|-----|----------|--------|--------|
+| UI click/pop | Data points appear | Synced to animation | -18dB to -22dB |
+| Typing/keystroke | Text input animations | Character-by-character | -18dB to -22dB |
+| Notification blip | New data appears | On reveal | -18dB to -22dB |
+| Counter ticking | Numbers animate up | During number animation | -18dB to -22dB |
+| Clean whoosh | Element transitions | 2-4 frames before cut | -18dB to -24dB |
+| Digital glitch | Tech transitions | 0.2-0.5 seconds | -18dB to -22dB |
+| Glass/crystal hit | Icon appearances | On icon appear | -12dB to -18dB |
+| Soft chime | Infographic complete | On completion | -18dB to -22dB |
 
-**Minimal/Kinetic Typography SFX**:
-| SFX | Use Case | Timing |
-|-----|----------|--------|
-| Sub-boom | Text slamming into frame | On text appear |
-| Click/snap | Quick text appearances | On text appear |
-| Glass hit | Sharp text reveals | On text appear |
-| Typewriter | Character-by-character text | Per character |
-| Reversed reverb | Emphasizes what follows | Before key statement |
-| Hard silence | Before major reveals | 0.5-1 second |
+**Minimal/Kinetic Typography SFX** (Vox/TED-Ed style — text IS the visual):
+| SFX | Use Case | Timing | Volume |
+|-----|----------|--------|--------|
+| Sub-boom | Text slamming into frame | Frame-accurate | -12dB to -18dB |
+| Click/snap | Quick text appearances | On text appear | -18dB to -22dB |
+| Glass hit | Sharp text reveals | On text appear | -12dB to -18dB |
+| Typewriter | Character-by-character text | Per character | -18dB to -22dB |
+| Reversed reverb | Emphasizes what follows | Before key statement | -20dB to -25dB |
+| Hard silence | Before major reveals | 0.5-1 second | Complete removal |
+
+### Pattern Interrupt Timing (2026 Pacing Shift)
+
+MrBeast's 2026 update: **Add breathing room between effects.** Diminishing returns after 4th interrupt in any 5-minute window.
+
+| Video Section | Interrupt Frequency |
+|--------------|-------------------|
+| First 30 seconds | Every 10-20 seconds |
+| Minutes 1-3 | Every 15-25 seconds |
+| Minutes 3-6 | Every 75-90 seconds |
+| Minutes 6+ | Every 60-90 seconds |
+| Sweet spot between interrupts | 60-75 seconds |
 
 ### Music Patterns by Niche
 
@@ -236,23 +276,32 @@ Every video uses this 3-layer minimum:
 | Engineering | Ambient electronic, low strings | 70-90 | Minor | Scale → Complexity → Achievement |
 | Education | Clean electronic, light piano | 80-110 | Major | Curiosity → Understanding → Insight |
 
-### Music Sourcing (Priority Order)
+### Music Sourcing (Priority Order — What Real Creators Use)
 
-1. **YouTube Audio Library** — Free, Content ID safe, built into Studio
+1. **YouTube Audio Library** — Free, Content ID safe, built into Studio. Safest option.
 2. **Pixabay Music** — CC0, no attribution, commercial OK
 3. **Mixkit** — Free, no attribution, high quality
-4. **Epidemic Sound** ($15/mo) — 55K music + 250K SFX, YouTube safe
-5. **Artlist** ($9.99/mo) — Cinematic quality, universal license
-6. **NCS (NoCopyrightSounds)** — Free with channel credit
+4. **NCS (NoCopyrightSounds)** — Free with channel credit
+5. **Epidemic Sound** ($7.99-19.99/mo) — Music primarily, not SFX
+6. **Artlist** ($9.99/mo) — Cinematic quality, universal license
 
-### SFX Sourcing (Priority Order)
+**What top channels actually do:**
+- Kurzgesagt: Original scores by Epic Mountain (their in-house music team)
+- Lemmino: Composes own music in FL Studio/Ableton (dark ambient, synth-driven)
+- MrBallen: Deliberately minimal — voice and story carry. Music is background only.
+- Johnny Harris: Mix of licensed and original. Music supports narrative, never dominates.
+- Wendover: Measured, atmospheric music. Low-key electronic/ambient.
 
-1. **Pixabay Audio** — CC0, no attribution, 100K+ SFX
-2. **Mixkit** — 3000+ SFX, free, no attribution
-3. **Freesound.org** — 500K+ SFX, check individual CC licenses
-4. **ZapSplat** — 160K+ SFX, free with attribution
-5. **YouTube Audio Library** — Built-in, Content ID safe
-6. **Epidemic Sound** ($15/mo) — 250K SFX, professional quality
+### SFX Sourcing (Priority Order — What Real Creators Use)
+
+1. **YouTube Audio Library** — Built-in, Content ID safe. Start here.
+2. **YouTubeSFX** — 40 free starter sounds (12 whooshes, 10 hits, 6 camera, 5 glitch, 4 computer, 3 risers). Commercial, no credit.
+3. **Freesound.org** — 500K+ SFX. Filter for CC0 licenses. Search specific sounds, not concepts.
+4. **Mixkit** — 3000+ SFX, free, no attribution
+5. **ZapSplat** — 160K+ SFX, free with account. YouTube-specific sound pack available.
+6. **Pixabay Sound Effects** — 965+ YouTube-related, royalty-free
+7. **Uppbeat** — Curated packs matching MKBHD, Gadzhi styles. Free tier + premium.
+8. **Epidemic Sound** ($15/mo) — 250K SFX, professional quality
 
 ---
 
@@ -331,17 +380,73 @@ Every video uses this 3-layer minimum:
 
 ## PART 5: THUMBNAIL SYSTEM
 
+### Exact Specs
+
+| Spec | Value | Notes |
+|------|-------|-------|
+| Resolution | 1280 x 720 px | Recommended minimum |
+| Aspect ratio | 16:9 | Hard requirement |
+| File format | JPG (photos) or PNG (text/graphics) | WebP NOT accepted |
+| File size | Under 2 MB | Sweet spot: 200 KB - 1 MB |
+| Color profile | sRGB | Adobe RGB looks washed out on YouTube |
+| JPEG quality | 85-90% | Best size/quality tradeoff |
+| Mobile rendering | ~120 px wide | How most people see your thumbnail |
+
+### Display Sizes by Context
+
+| Context | Size |
+|---------|------|
+| Search (mobile) | 168 x 94 px |
+| Search (desktop) | 360 x 202 px |
+| Home page | 320 x 180 px |
+| Suggested videos | 168 x 94 px |
+
+### Safe Zones
+
+- Keep critical elements inside center 90% of frame
+- Bottom 12.5% is video duration overlay zone — never place text there
+- Keep elements at least 50 px from edges on 1280x720 canvas
+- Left 2/3 of frame is safest (right edge gets UI overlays)
+
 ### Universal Thumbnail Rules
 
-1. **1280x720 pixels** (16:9 aspect ratio)
-2. **One clear subject with emotion** — cannot point at a single subject = too busy
-3. **Max 5 words of text** — reducing from 7→4 words averages +34% CTR
-4. **Bold sans-serif font** — Montserrat Extra Bold or similar
-5. **Mobile-first**: must read at ~168x94 pixels
-6. **Subject 30%+ brighter or darker** than background
-7. **Warm subject, cool background** (orange/red against blue/teal)
-8. **Keep bottom-right clear** (video duration timestamp covers this)
-9. **Curiosity gap between title and thumbnail** — never repeat same words
+1. **One clear subject with emotion** — cannot point at a single subject = too busy
+2. **Max 3-5 words of text** — reducing from 7→4 words averages +34% CTR
+3. **Bold sans-serif font** — Montserrat Black/Bold, Bebas Neue, or Impact
+4. **Mobile-first**: must read at ~120px wide
+5. **Subject 30%+ brighter or darker** than background
+6. **Warm subject, cool background** (orange/red against blue/teal)
+7. **Keep bottom-right clear** (video duration timestamp covers this)
+8. **Curiosity gap between title and thumbnail** — never repeat same words
+9. **Minimum contrast**: 4.5:1 ratio between text and background
+10. **Design BEFORE or alongside script** — not after
+
+### Free Creation Tools
+
+| Tool | Cost | Notes |
+|------|------|-------|
+| **Canva Free** | Free | 250+ YouTube thumbnail templates. Sufficient for high-performing thumbnails. |
+| **Photopea** | Free (ad-supported) | Browser-based, PSD support, Photoshop-level control. No download. |
+| **GIMP** | Free (open source) | Desktop, Photoshop-level control. No ads. |
+| **Ideogram 3** | Free 10/day | Best for text-in-image (renders text correctly). |
+| **Leonardo AI** | Free daily tokens | Good for dark/cinematic documentary aesthetics. |
+| **Pixotter** | Free | Browser-based. Drop, resize to 1280x720, compress under 2 MB. |
+
+### 3-Element Branding System (Critical for Faceless)
+
+Pick three and use on EVERY single thumbnail:
+1. **Color palette** — 2-3 signature colors per channel
+2. **Font** — One distinctive font across all videos
+3. **Layout structure** — Text always in same position, focal element in same area
+
+### Faceless Thumbnail Archetypes (Ranked by CTR)
+
+1. **Bold Text + Single Object** (Highest CTR for faceless) — Text fills 40-60%, object fills 30-40%, clean background
+2. **Dramatic Scene** — High-impact photograph, CTR benchmark 7-10%
+3. **Data/Number Focus** — Large bold number as 60%+ of thumbnail
+4. **Before/After Split** — Vertical 50/50 or diagonal
+5. **Mystery Framing** — Silhouette with face obscured + evidence
+6. **Illustration/Character** — Custom 2D illustration, consistent style = brand identity
 
 ### Thumbnail Patterns by Niche
 
@@ -364,10 +469,36 @@ Every video uses this 3-layer minimum:
 - 10%+: Exceptional
 
 ### A/B Testing Protocol
-- Use YouTube Studio's native A/B test
-- Run for 7 days minimum before deciding
-- If CTR is already 6%+, don't touch it
+
+**YouTube Studio Test and Compare** (native, free):
+- Up to 3 variants per test
+- Winning metric: Watch time per impression (NOT raw CTR)
+- Duration: Minimum 2 weeks (first 3 days routinely reverse)
+- Target: 1,000-5,000 impressions per variant for statistical significance
+- Results: "Winner" (auto-applied), "Performed the same", or "Inconclusive"
+
+**Testing Rules:**
+- One variable per test. Testing multiple = learning nothing.
+- Wait 24-48 hours after upload before starting test
+- Never check results before 2 weeks
+- If CTR goes up but retention drops, it's NOT a winner
+- Results within 0.3-0.5 percentage points = inconclusive
 - As impressions expand, CTR naturally drops (12% at 1K → 5-6% at 100K)
+
+### Common Thumbnail Mistakes
+
+1. Too many words — 6+ words unreadable at 120px mobile
+2. Repeating the video title — Don't waste visual space
+3. Generic stock photos — Viewers detect stock instantly
+4. No consistent branding — Without a face, colors/font/layout ARE your brand
+5. Ignoring mobile — 70% of watch time is mobile
+6. Text in bottom-right corner — Duration badge covers it
+7. Thin/decorative fonts — Unreadable at thumbnail size
+8. Busy backgrounds — Clean backgrounds beat busy 60% of the time
+9. Wide shots over close-ups — Close-ups beat wide shots 75% of the time
+10. AI-generated faces — Algorithmically demoted in 2026. Hybrid real+AI wins 18-22% more
+11. Tilted text, starbursts, clickbait styling — Algorithm suppresses these
+12. Designing thumbnail AFTER the video — Design BEFORE or alongside script
 
 ---
 
@@ -391,13 +522,22 @@ FAST (hook) → SLOW (context) → BUILD (investigation) → FAST (revelation) �
 ```
 
 ### Retention Optimization
-- **First 30 seconds**: Must include the hook — best visual from the video
+- **First 30 seconds**: Must include the hook — best visual from the video. Shorts: max 0.2s silence in first 3s.
 - **2:00 mark**: Audience most engaged → sponsor sweet spot
 - **7-9 minute mark**: Second engagement peak → key reveal
 - **Minutes 2-7**: "Danger zone" — pacing must stay tight
 - **Final 2 minutes**: Resolution, beauty shots, CTA
+- **2026 shift**: Add breathing room between effects. Diminishing returns after 4th interrupt per 5-min window. Sweet spot: 60-75 seconds between interrupts.
 
-### Pattern Interrupts (Every 2-3 Minutes)
+### Pattern Interrupts (Updated for 2026)
+
+| Video Section | Frequency |
+|--------------|-----------|
+| First 30 seconds | Every 10-20 seconds |
+| Minutes 1-3 | Every 15-25 seconds |
+| Minutes 3-6 | Every 75-90 seconds |
+| Minutes 6+ | Every 60-90 seconds |
+
 - New visual approach
 - Surprising fact or statistic
 - Demonstration or visual reveal
@@ -418,21 +558,24 @@ FAST (hook) → SLOW (context) → BUILD (investigation) → FAST (revelation) �
 ### Production
 - [ ] Voiceover recorded at consistent pace
 - [ ] All B-roll color-graded to match
-- [ ] SFX synced to visual cuts
-- [ ] Music ducked under voiceover (-18dB to -25dB)
+- [ ] SFX synced to visual cuts (whooshes 2-4 frames BEFORE cut, impacts frame-accurate)
+- [ ] Music ducked under voiceover (-24dB to -30dB during speech)
 - [ ] Data overlays animated and timed
+- [ ] LUFS at -13 to -14, true peak -1 dBTP
 
 ### Post-Production
 - [ ] Film grain/vignette applied (cinematic-doc style)
 - [ ] Ken Burns on all still images
-- [ ] Pattern interrupts every 2-3 minutes
-- [ ] Strategic silence after major revelations
+- [ ] Pattern interrupts every 2-3 minutes (but max 4 per 5-min window)
+- [ ] Strategic silence after major revelations (0.5-2.5 seconds)
 - [ ] 3-5 second "breathing room" after fast montages
+- [ ] Phone speaker test — play on phone, if any SFX is noticeable, reduce
 
 ### Upload
-- [ ] Thumbnail: 1280x720, max 5 words, mobile-readable
+- [ ] Thumbnail: 1280x720, max 3-5 words, mobile-readable at 120px, sRGB, under 2 MB
 - [ ] Title: under 60 characters, curiosity gap
 - [ ] Description: first 2 lines hook + keywords
 - [ ] Tags: niche-specific + broad category
 - [ ] Chapters: timestamped sections
 - [ ] End screen: suggested videos for binge behavior
+- [ ] Thumbnail uploaded to YouTube Studio for A/B testing setup

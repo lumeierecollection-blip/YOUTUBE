@@ -1,126 +1,224 @@
 {
-  "version": "2.0.0",
+  "version": "3.0.0",
   "updated": "2026-07-22",
   "research_sources": [
-    "Kurzgesagt production breakdowns",
-    "MrBallen sound design analysis",
-    "LEMMiNO music and SFX patterns",
-    "Mark Wiens food SFX techniques",
-    "Johnny Harris visual storytelling",
-    "Epidemic Sound documentary library",
-    "Freesound.org community SFX"
+    "Kurzgesagt production breakdowns (Epic Mountain original scores)",
+    "LEMMiNO FL Studio composition patterns",
+    "MrBallen minimal sound design philosophy",
+    "Johnny Harris narrative music approach",
+    "Wendover Productions measured pacing",
+    "YouTubeSFX 3M+ creator download data",
+    "Uppbeat creator SFX usage statistics",
+    "MrBeast 2026 breathing room pacing shift"
   ],
+  "non_negotiable_rules": {
+    "voice_is_king": "Everything mixed relative to voice, never the other way around",
+    "sfx_density_long_form": "1-2 SFX per minute for documentary, 2-4 for educational, 4-6 for finance/business",
+    "whoosh_timing": "Start 2-4 frames BEFORE the cut, not on it. Peak and tail hits the edit point.",
+    "impact_timing": "Land EXACTLY on the visual moment. Frame-accurate. Even 2 frames late feels loose.",
+    "riser_timing": "Start 1-3 seconds before reveal. End riser on cut, follow with impact hit.",
+    "music_under_speech": "Music at -24dB to -30dB below voice. Felt, not heard.",
+    "phone_speaker_test": "If any SFX makes you think 'that's a sound effect', it's too loud or poorly timed",
+    "strategic_silence": "3-5 second windows where editing slows, music drops, ambient takes over. For a high to feel high, you need a low.",
+    "consistent_branding": "Use same whoosh style, same impact type across all videos on a channel",
+    "max_sfx_per_window": "4 SFX per 5-minute window before diminishing returns"
+  },
+  "volume_levels": {
+    "dialogue_voiceover": {
+      "target": "-12dB to -18dB",
+      "peak": "-6dB",
+      "notes": "Normalize first; this is the anchor"
+    },
+    "whoosh_transition": {
+      "target": "-18dB to -24dB",
+      "notes": "Enhance, don't overpower voice"
+    },
+    "impact_hit": {
+      "target": "-12dB to -18dB",
+      "notes": "Can be louder for emphatic moments"
+    },
+    "riser_buildup": {
+      "target": "-24dB to -30dB",
+      "notes": "Felt more than heard"
+    },
+    "background_music_speech": {
+      "target": "-24dB to -30dB",
+      "notes": "Barely audible during dialogue"
+    },
+    "background_music_no_speech": {
+      "target": "-12dB to -6dB",
+      "notes": "Can rise during B-roll and transitions"
+    },
+    "ambient_background": {
+      "target": "-20dB to -25dB",
+      "notes": "Barely audible, felt not heard"
+    },
+    "ui_micro_sounds": {
+      "target": "-18dB to -22dB",
+      "notes": "Subtle clicks and pops on text"
+    },
+    "lufs_target": "-13 to -14 LUFS",
+    "true_peak": "-1 dBTP"
+  },
+  "ducking": {
+    "reduction": "6-12dB during dialogue",
+    "attack": "50-100ms",
+    "release": "500-1000ms",
+    "notes": "Music rises back during pauses creating dynamic breathing mix"
+  },
+  "eq_carving": {
+    "music_voice_pocket": "Cut music at 800Hz-3kHz by 3-6dB",
+    "voice_clarity": "Boost voice at 2-6kHz by 2-4dB",
+    "voice_high_pass_male": "80Hz",
+    "voice_high_pass_female": "100Hz",
+    "music_high_pass": "40Hz",
+    "music_low_pass": "10kHz"
+  },
+  "sfx_density": {
+    "documentary_long_form": {
+      "per_minute": "1-2",
+      "total_10min": "10-20",
+      "notes": "Most restrained. Atmosphere does the work."
+    },
+    "educational": {
+      "per_minute": "1-1.5",
+      "total_10min": "10-15",
+      "notes": "Supportive, not distracting."
+    },
+    "finance_business": {
+      "per_minute": "4-6",
+      "total_10min": "40-60",
+      "notes": "Most SFX-heavy niche."
+    },
+    "food_cooking": {
+      "per_minute": "2-3",
+      "total_10min": "20-30",
+      "notes": "Kitchen sounds are primary SFX."
+    },
+    "tech_reviews": {
+      "per_minute": "1-2",
+      "total_10min": "10-20",
+      "notes": "Felt more than heard."
+    },
+    "vlog_documentary": {
+      "per_minute": "1-2",
+      "total_10min": "10-20",
+      "notes": "Location sound does most work."
+    },
+    "shorts": {
+      "per_second": "0.5-1",
+      "total_30sec": "10-20+",
+      "notes": "Maximum density. Zero silence tolerance in first 3 seconds."
+    }
+  },
+  "pattern_interrupt_timing": {
+    "first_30_seconds": "Every 10-20 seconds",
+    "minutes_1_3": "Every 15-25 seconds",
+    "minutes_3_6": "Every 75-90 seconds",
+    "minutes_6_plus": "Every 60-90 seconds",
+    "sweet_spot_between_interrupts": "60-75 seconds",
+    "diminishing_returns": "After 4th interrupt in any 5-minute window"
+  },
+  "shorts_specific": {
+    "max_silence_gap_first_3s": "0.2 seconds",
+    "max_silence_gap_after_3s": "0.3-0.4 seconds",
+    "audio_layers_minimum": 3,
+    "layers": ["voice", "rhythm_bed", "punctuation_sounds"],
+    "punctuation_frequency": "Every ~2.1 seconds",
+    "music_bpm_info_talking": "95-110",
+    "music_bpm_entertainment": "120-130",
+    "opening_sfx": "Start with punchy SFX synced to first word. Eliminate silent intro.",
+    "winning_sounds": ["Vine Boom", "Metal Pipe Clang", "Discord Notification", "whoosh", "impact hit"]
+  },
   "styles": {
     "cinematic-documentary": {
-      "description": "Dramatic, atmospheric, tension-building sound design",
-      "layers": {
-        "ambient_bed": {
-          "purpose": "Emotional foundation, sustained mood",
-          "volume_speaking": "-30dB to -35dB",
-          "volume_silent": "-25dB to -30dB",
-          "examples": ["deep-drone-40hz", "room-tone", "environmental-foley", "wind-ambient"]
-        },
-        "music_bed": {
-          "purpose": "Narrative arc, emotional journey",
-          "volume_speaking": "-18dB to -25dB",
-          "volume_silent": "-12dB to -15dB",
-          "examples": ["ambient-electronic", "low-strings", "sparse-piano", "epic-orchestral"]
-        },
-        "spot_sfx": {
-          "purpose": "Punctual sounds timed to visuals",
-          "volume_speaking": "-20dB to -15dB",
-          "volume_silent": "-12dB to -10dB",
-          "examples": ["whoosh", "impact-hit", "riser", "revelation-sting"]
-        },
-        "voiceover": {
-          "purpose": "Primary element, always clear",
-          "volume": "-6dB to -12dB"
-        }
-      },
-      "sfx_by_niche": {
-        "science_nature": {
-          "primary": ["deep-drone", "cosmic-ambience", "water-flow", "wind-gust", "bird-ambient"],
-          "transitions": ["whoosh-fast", "riser-2s", "impact-deep"],
-          "revelation": ["revelation-sting", "silence-1s", "orchestral-swell"],
-          "music": "ambient-electronic-with-synth-pads",
-          "bpm": "60-90",
-          "silence_after_reveal": "1000-1500ms"
-        },
+      "description": "Dramatic, atmospheric, tension-building. MrBallen/Lemmino/Nexpo style.",
+      "philosophy": "SFX are minimal and atmospheric. Music does the heavy lifting. Restraint maintains immersion.",
+      "sfx_density": "1-2 per minute",
+      "key_principle": "Never adopt a dark and scary voice. Build tension through pacing and restraint.",
+      "ambient_layers": {
         "true_crime": {
-          "primary": ["dark-drone", "clock-ticking", "heartbeat", "room-tone-eerie", "industrial-hum"],
-          "transitions": ["whoosh-dark", "impact-sub-boom", "reversed-cymbal"],
-          "revelation": ["silence-2s", "single-piano-note", "heartbeat-accelerate"],
-          "music": "dark-ambient-sparse-piano",
-          "bpm": "60-80",
-          "silence_after_reveal": "1500-2500ms"
+          "primary": ["dark-drone-low-strings", "minimal-piano", "ambient-drones", "distant-sirens"],
+          "volume_under_speech": "-24dB to -30dB",
+          "volume_no_speech": "-12dB to -6dB",
+          "notes": "Remove music completely for shocking reveals"
         },
-        "food_travel": {
-          "primary": ["sizzle-pan", "chopping-rhythmic", "crowd-market", "pour-drizzle", "crunch-bite"],
-          "transitions": ["whoosh-light", "pop-bubble", "slide-friction"],
-          "revelation": ["music-drop", "silence-0.5s", "sizzle-peak"],
-          "music": "upbeat-acoustic-world-music",
-          "bpm": "100-120",
-          "silence_after_reveal": "500ms"
+        "science_nature": {
+          "primary": ["electronic-hum", "space-textures", "laboratory-sounds", "wind-ambient"],
+          "volume_under_speech": "-24dB to -30dB",
+          "notes": "Subtle. Information is the product."
         },
         "history": {
-          "primary": ["orchestral-build", "period-instrument", "distant-drum", "page-flip", "quill-scratch"],
-          "transitions": ["whoosh-epic", "timpani-roll", "brass-stab"],
-          "revelation": ["orchestral-crescendo", "silence-1s", "epic-impact"],
-          "music": "full-orchestral-period-instruments",
-          "bpm": "70-100",
-          "silence_after_reveal": "1000ms"
+          "primary": ["period-machinery", "hammer-strikes", "crowd-murmur", "distant-drums"],
+          "volume_under_speech": "-24dB to -30dB",
+          "notes": "Match era. Hammer strikes for medieval, tractor engines for industrial."
         },
-        "lifestyle_craft": {
-          "primary": ["tool-on-material", "fire-crackling", "water-flowing", "wind-soft", "birds-morning"],
-          "transitions": ["whoosh-gentle", "pop-soft", "chime-subtle"],
-          "revelation": ["music-resolve", "silence-0.5s", "satisfaction-chime"],
-          "music": "lo-fi-acoustic-minimal-electronic",
-          "bpm": "70-100",
-          "silence_after_reveal": "500ms"
+        "food_travel": {
+          "primary": ["kitchen-sizzle", "chopping-rhythmic", "crowd-market", "pour-drizzle"],
+          "volume_under_speech": "-20dB to -25dB",
+          "notes": "Camera shutters on dish reveals. Bell dings on tips."
         },
-        "engineering": {
-          "primary": ["construction-ambient", "metal-clank", "concrete-pour", "machinery-hum", "wind-high"],
-          "transitions": ["whoosh-heavy", "impact-mechanical", "riser-3s"],
-          "revelation": ["silence-1s", "epic-orchestral-hit", "scale-reveal-boom"],
-          "music": "ambient-electronic-low-strings",
-          "bpm": "70-90",
-          "silence_after_reveal": "1000ms"
+        "nature_space": {
+          "primary": ["wind-field", "water-flow", "cosmic-textures", "birdsong-layered"],
+          "volume_under_speech": "-24dB to -30dB",
+          "notes": "Layer field recordings over melodic base for thick sonic environment."
         },
-        "education": {
-          "primary": ["typing-soft", "notification-blip", "page-flip", "click-ui", "bell-subtle"],
-          "transitions": ["whoosh-clean", "pop-soft", "slide-digital"],
-          "revelation": ["chime-complete", "silence-0.5s", "data-reveal"],
-          "music": "clean-electronic-light-piano",
-          "bpm": "80-110",
-          "silence_after_reveal": "750ms"
+        "military_abandoned": {
+          "primary": ["wind-through-structure", "distant-metal-groan", "footstep-reverb", "door-creak"],
+          "volume_under_speech": "-24dB to -30dB",
+          "notes": "Environmental sound does the work."
+        }
+      },
+      "transitions": {
+        "whoosh": {
+          "timing": "Start 2-4 frames BEFORE the cut",
+          "peak": "Hits exactly at edit point",
+          "volume": "-18dB to -24dB",
+          "variations": "Maintain multiple whoosh variations. Never use same sound every 10 seconds."
+        },
+        "impact_hit": {
+          "timing": "Land EXACTLY on visual moment. Frame-accurate.",
+          "volume": "-12dB to -18dB",
+          "notes": "Use for statistics appearing, key claims, hard cuts."
+        },
+        "riser": {
+          "timing": "Start 1-3 seconds before reveal. End on cut.",
+          "follow_with": "Impact hit immediately after riser ends",
+          "volume": "-24dB to -30dB"
+        },
+        "silence": {
+          "before_reveal": "0.5-1 second of complete silence",
+          "after_shocking": "Let words hang 1-2 seconds",
+          "scene_transition": "3-5 frames between tonal shifts",
+          "emotional_peak": "Remove all music for voiceover delivery"
         }
       }
     },
     "minimal": {
-      "description": "Clean, text-driven, kinetic typography sound design",
-      "layers": {
-        "ambient_bed": {
-          "purpose": "Subtle foundation, barely perceptible",
-          "volume_speaking": "-35dB to -40dB",
-          "volume_silent": "-30dB to -35dB"
-        },
-        "music_bed": {
-          "purpose": "Minimal electronic, text rhythm support",
-          "volume_speaking": "-20dB to -28dB",
-          "volume_silent": "-15dB to -20dB"
-        },
-        "spot_sfx": {
-          "purpose": "Text animation punctuation",
-          "volume_speaking": "-18dB to -12dB",
-          "volume_silent": "-10dB to -8dB"
-        }
-      },
+      "description": "Clean, text-driven, kinetic typography. Vox/TED-Ed style.",
+      "philosophy": "Text IS the visual. Sound supports text animation.",
+      "sfx_density": "1-1.5 per minute",
       "sfx_core": {
-        "text_impact": ["sub-boom", "click-snap", "glass-hit"],
-        "text_appear": ["typewriter", "glitch-stutter", "text-whoosh"],
-        "data_reveal": ["digital-beep", "counter-tick", "swoosh-hit"],
-        "emphasis": ["reversed-reverb", "hard-silence-0.5s", "isolated-voiceover"],
-        "transitions": ["clean-whoosh", "digital-glitch", "pop-bubble"]
+        "text_impact": {
+          "sounds": ["sub-boom", "click-snap", "glass-hit"],
+          "timing": "On text appear. Frame-accurate."
+        },
+        "text_appear": {
+          "sounds": ["typewriter", "glitch-stutter", "text-whoosh"],
+          "timing": "Synced to animation"
+        },
+        "data_reveal": {
+          "sounds": ["digital-beep", "counter-tick", "swoosh-hit"],
+          "timing": "On number appear"
+        },
+        "emphasis": {
+          "sounds": ["reversed-reverb", "hard-silence-0.5s"],
+          "timing": "Before key statement"
+        },
+        "transitions": {
+          "sounds": ["clean-whoosh", "digital-glitch", "pop-bubble"],
+          "timing": "2-4 frames before cut"
+        }
       },
       "music_styles": {
         "tech_focused": "minimal-electronic-clean-sine",
@@ -130,67 +228,60 @@
       }
     },
     "motion-graphics": {
-      "description": "Animated, data-driven, icon-based sound design",
-      "layers": {
-        "ambient_bed": {
-          "purpose": "Clean background, no distraction",
-          "volume_speaking": "-32dB to -38dB",
-          "volume_silent": "-28dB to -32dB"
-        },
-        "music_bed": {
-          "purpose": "Upbeat, energetic, supports animation",
-          "volume_speaking": "-18dB to -24dB",
-          "volume_silent": "-12dB to -16dB"
-        },
-        "spot_sfx": {
-          "purpose": "Animation timing, data emphasis",
-          "volume_speaking": "-16dB to -12dB",
-          "volume_silent": "-10dB to -8dB"
-        }
-      },
+      "description": "Animated, data-driven, icon-based. Kurzgesagt/Infographics Show style.",
+      "philosophy": "SFX add depth without being consciously noticed. Subliminal immersion.",
+      "sfx_density": "2-3 per minute",
       "sfx_core": {
-        "data_viz": ["ui-click", "notification-blip", "counter-tick", "graph-swoosh"],
-        "icon_reveal": ["glass-crystal-hit", "soft-chime", "spring-bounce", "paper-flip"],
-        "text_animation": ["typewriter", "glitch-stutter", "text-whoosh", "pop-splat"],
-        "transitions": ["clean-whoosh-short", "digital-glitch", "color-wipe-swoosh"],
-        "character_anim": ["footstep-soft", "voice-alter", "reaction-sound", "speech-blip"]
+        "data_viz": {
+          "sounds": ["ui-click", "notification-blip", "counter-tick", "graph-swoosh"],
+          "timing": "Synced to data animation"
+        },
+        "icon_reveal": {
+          "sounds": ["glass-crystal-hit", "soft-chime", "spring-bounce", "paper-flip"],
+          "timing": "On icon appear"
+        },
+        "text_animation": {
+          "sounds": ["typewriter", "glitch-stutter", "text-whoosh", "pop-splat"],
+          "timing": "Synced to text animation"
+        },
+        "transitions": {
+          "sounds": ["clean-whoosh-short", "digital-glitch", "color-wipe-swoosh"],
+          "timing": "2-4 frames before cut"
+        }
       }
     }
   },
-  "mixing_rules": {
-    "ducking": "Automatically lower music -6dB when voiceover plays",
-    "eq_carving": "Cut 300Hz-3kHz in music track by 2-5dB for voice room",
-    "compression": "Apply to voiceover for consistent levels",
-    "high_pass_music": "Cut below 40Hz",
-    "high_pass_voice": "Cut below 80Hz",
-    "low_pass_music": "Cut above 10kHz to reduce hiss",
-    "test_devices": ["headphones", "phone speaker", "laptop speaker"]
-  },
-  "silence_techniques": {
-    "before_reveal": "0.5-1 second of complete silence builds anticipation",
-    "after_shocking": "Let words hang in silence for 1-2 seconds",
-    "scene_transition": "Brief silence (3-5 frames) between tonal shifts",
-    "emotional_peak": "Remove all music when voiceover delivers emotional core",
-    "opening_closing": "Start/end with 2-3 seconds of silence before audio enters",
-    "rhythm_break": "Interrupt established audio pattern with sudden silence"
+  "common_mistakes": {
+    "sfx_too_loud": "Viewer flinches then exits. Test on phone speaker.",
+    "inconsistent_volume": "Forces constant volume adjustment. Normalize to -14 LUFS.",
+    "music_competing_voice": "Cognitive fatigue. Music 20-25dB below narration.",
+    "generic_stock_sfx": "Feels cheap and recycled. Customize, layer, pitch-shift.",
+    "overusing_sfx": "Brain habituates. Max 4 per 5-minute window.",
+    "timing_misalignment": "Brain detects AV misalignment. Frame-accurate placement.",
+    "no_ambient_room_tone": "Audio cuts feel jarring. Always have ambient bed.",
+    "no_audio_transitions": "Hard cuts create audible clicks. Short fades 2-5 frames.",
+    "testing_only_headphones": "Mix sounds great on headphones, terrible on phone. Test on phone speaker.",
+    "same_whoosh_every_time": "Creates pattern habituation. Maintain multiple variations."
   },
   "free_sources": {
-    "no_attribution": [
-      {"name": "YouTube Audio Library", "music": true, "sfx": true, "license": "Free for YouTube"},
-      {"name": "Pixabay Audio", "music": true, "sfx": true, "license": "CC0"},
-      {"name": "Mixkit", "music": true, "sfx": true, "license": "Free, no attribution"},
-      {"name": "NCS", "music": true, "sfx": false, "license": "Free with credit"}
-    ],
-    "attribution_required": [
-      {"name": "Freesound.org", "sfx": true, "library_size": "500K+", "license": "CC varies"},
-      {"name": "ZapSplat", "sfx": true, "library_size": "160K+", "license": "Free with attribution"},
-      {"name": "Free Music Archive", "music": true, "license": "CC varies"}
+    "actually_used_by_creators": [
+      {"name": "YouTube Audio Library", "url": "studio.youtube.com", "music": true, "sfx": true, "license": "Free, Content ID safe", "notes": "Safest option. Built into Studio."},
+      {"name": "Freesound.org", "url": "freesound.org", "sfx": true, "library_size": "500K+", "license": "CC0 available (filter for this)", "notes": "Search for specific sounds, not concepts."},
+      {"name": "YouTubeSFX", "url": "youtubesfx.com", "sfx": true, "library_size": "40 free starter sounds", "license": "Commercial, no credit", "notes": "12 whooshes, 10 hits, 6 camera, 5 glitch, 4 computer, 3 risers."},
+      {"name": "Uppbeat", "url": "uppbeat.io", "sfx": true, "license": "Free tier + premium", "notes": "Curated packs matching MKBHD, Gadzhi styles."},
+      {"name": "Mixkit", "url": "mixkit.co", "sfx": true, "license": "Free, no attribution", "notes": "WAV and MP3, solid selection."},
+      {"name": "ZapSplat", "url": "zapsplat.com", "sfx": true, "library_size": "160K+", "license": "Free with account", "notes": "YouTube-specific sound pack available."},
+      {"name": "Pixabay Sound Effects", "url": "pixabay.com/sound-effects", "sfx": true, "library_size": "965+ YouTube-related", "license": "Royalty-free", "notes": "Good starting point."}
     ],
     "premium": [
-      {"name": "Epidemic Sound", "price": "$15/mo", "music": "55K", "sfx": "250K"},
-      {"name": "Artlist", "price": "$9.99/mo", "universal_license": true},
-      {"name": "Soundstripe", "price": "$9.99/mo", "music_sfx_templates": true},
-      {"name": "Envato Elements", "price": "$16.50/mo", "assets": "27M+"}
+      {"name": "Epidemic Sound", "price": "$7.99-19.99/mo", "notes": "Music primarily, not SFX."},
+      {"name": "Artlist", "price": "Subscription", "notes": "Music + some SFX."},
+      {"name": "Soundly", "notes": "Used by HBO documentary teams. Free tier + paid."}
     ]
+  },
+  "testing_protocol": {
+    "phone_speaker_test": "Export and play on phone speaker at medium volume. If any SFX makes you think 'that's a sound effect', it's too loud.",
+    "test_devices": ["studio monitors", "headphones", "phone speaker", "laptop speakers"],
+    "golden_rule": "This is how 80%+ of people actually watch."
   }
 }
