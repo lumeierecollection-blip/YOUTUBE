@@ -1,0 +1,67 @@
+{
+  "channel_id": "2",
+  "started_at": "2026-07-27T18:55:03.555Z",
+  "steps": {
+    "1": {
+      "status": "ok",
+      "topic": "What to Say During a Traffic Stop to Protect Your Rights"
+    },
+    "2": {
+      "status": "skipped",
+      "reason": "no API"
+    },
+    "3": {
+      "status": "ok",
+      "count": 1
+    },
+    "4": {
+      "status": "ok",
+      "audio": 1,
+      "srt": 0
+    },
+    "5": {
+      "status": "ok",
+      "title": "The What to Say During a Traffic Stop to Protect Your Rights Nobody Talks About"
+    },
+    "6": {
+      "status": "ok"
+    },
+    "7": {
+      "status": "ok"
+    },
+    "8": {
+      "status": "ok"
+    },
+    "9": {
+      "status": "pending"
+    },
+    "10": {
+      "status": "ok",
+      "count": 1
+    },
+    "11": {
+      "status": "ok"
+    },
+    "12": {
+      "status": "ok"
+    },
+    "13": {
+      "status": "ok",
+      "requires": false
+    },
+    "14": {
+      "status": "ok",
+      "evidence_checks": 5
+    },
+    "15": {
+      "status": "ok"
+    },
+    "16": {
+      "status": "skipped",
+      "reason": "no API"
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "completed_at": "2026-07-27T18:55:03.672Z"
+}

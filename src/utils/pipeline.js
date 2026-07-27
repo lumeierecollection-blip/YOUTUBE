@@ -75,7 +75,8 @@ function main() {
   const channelsPath = join(ROOT, "config", "channels.json");
   const data = JSON.parse(readFileSync(channelsPath, "utf-8"));
   const channels = data.channels || data;
-  const channel = channels.find((c) => c.channel_id === channelId);
+  const numId = parseInt(channelId, 10);
+  const channel = channels.find((c) => c.id === numId || c.channel_id === channelId);
   if (!channel) {
     console.error(`Channel "${channelId}" not found`);
     process.exit(1);
@@ -167,7 +168,7 @@ function main() {
     const scriptsDir = join(ROOT, "data", "research", channelId);
     if (existsSync(scriptsDir)) {
       const scripts = readdirSync(scriptsDir).filter(
-        (f) => f.includes("script") && (f.endsWith(".txt") || f.endsWith(".md"))
+        (f) => f.includes("script") && (f.endsWith(".txt") || f.endsWith(".md") || f.endsWith(".json"))
       );
       if (scripts.length > 0) {
         log("3", `Found ${scripts.length} script(s)`, "ok");
@@ -391,7 +392,7 @@ function main() {
   // ═══════════════════════════════════════════════════════
   if (shouldRun(12)) {
     log("12", "SFX Library", "info");
-    const sfxDir = join(ROOT, "data", "audio", "sfx");
+    const sfxDir = join(ROOT, "src", "audio");
     if (existsSync(sfxDir)) {
       log("12", "SFX directory exists", "ok");
       report.steps[12] = { status: "ok" };

@@ -17,6 +17,7 @@
     "test-config": "node src/utils/test-config.js"
   },
   "dependencies": {
-    "edge-tts": "^1.0.0"
+    "edge-tts": "^1.0.0",
+    "sharp": "^0.35.3"
   }
 }

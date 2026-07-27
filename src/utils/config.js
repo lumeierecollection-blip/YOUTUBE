@@ -12,7 +12,8 @@ export function loadChannels() {
 
 export function loadChannel(channelId) {
   const channels = loadChannels();
-  const ch = channels.find(c => c.channel_id === channelId);
+  const numId = parseInt(channelId, 10);
+  const ch = channels.find(c => c.id === numId || c.channel_id === channelId);
   if (!ch) throw new Error(`Channel not found: ${channelId}`);
   return ch;
 }

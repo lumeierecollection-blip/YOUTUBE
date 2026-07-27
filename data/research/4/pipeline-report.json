@@ -1,0 +1,67 @@
+{
+  "channel_id": "4",
+  "started_at": "2026-07-27T18:55:25.249Z",
+  "steps": {
+    "1": {
+      "status": "ok",
+      "topic": "The Great Fire of London: What Really Happened"
+    },
+    "2": {
+      "status": "skipped",
+      "reason": "no API"
+    },
+    "3": {
+      "status": "ok",
+      "count": 1
+    },
+    "4": {
+      "status": "pending",
+      "audio": 0,
+      "srt": 0
+    },
+    "5": {
+      "status": "ok",
+      "title": "The The Great Fire of London: What Really Happened Nobody Talks About"
+    },
+    "6": {
+      "status": "ok"
+    },
+    "7": {
+      "status": "ok"
+    },
+    "8": {
+      "status": "ok"
+    },
+    "9": {
+      "status": "pending"
+    },
+    "10": {
+      "status": "ok",
+      "count": 1
+    },
+    "11": {
+      "status": "ok"
+    },
+    "12": {
+      "status": "ok"
+    },
+    "13": {
+      "status": "ok",
+      "requires": false
+    },
+    "14": {
+      "status": "ok",
+      "evidence_checks": 5
+    },
+    "15": {
+      "status": "ok"
+    },
+    "16": {
+      "status": "skipped",
+      "reason": "no API"
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "completed_at": "2026-07-27T18:55:25.290Z"
+}
