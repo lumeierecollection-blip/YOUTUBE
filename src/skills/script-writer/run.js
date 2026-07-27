@@ -152,7 +152,8 @@ async function main() {
   const specificSlug = args[1] || null;
 
   const config = loadChannelsConfig();
-  const channel = findChannel(config.channels, channelId);
+  const channels = config.channels || config;
+  const channel = findChannel(channels, channelId);
 
   console.log(`Channel: ${channel.channel_name} (${channel.channel_id})`);
   console.log(`Style: ${channel.style}`);

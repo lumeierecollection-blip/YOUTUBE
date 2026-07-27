@@ -14,7 +14,7 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const ROOT = join(__filename, "..", "..");
+const ROOT = join(__dirname, "..", "..");
 
 /**
  * Community post types and their purposes.
@@ -213,7 +213,8 @@ function main() {
   const channelsPath = join(ROOT, "config", "channels.json");
   const data = JSON.parse(readFileSync(channelsPath, "utf-8"));
   const channels = data.channels || data;
-  const channel = channels.find((c) => c.channel_id === channelId);
+  const numId = parseInt(channelId, 10);
+  const channel = channels.find((c) => c.id === numId || c.channel_id === channelId);
   if (!channel) {
     console.error(`Channel "${channelId}" not found`);
     process.exit(1);
