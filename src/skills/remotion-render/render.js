@@ -81,6 +81,9 @@ function getCompositionForStyle(style, format) {
 function renderVideo(composition, outputPath, props) {
   const propsJson = JSON.stringify(props).replace(/"/g, '\\"');
 
+  // Chrome path for Windows
+  const chromePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+
   const cmd = [
     "npx",
     "remotion",
@@ -90,6 +93,7 @@ function renderVideo(composition, outputPath, props) {
     `--props="${propsJson}"`,
     "--codec=h264",
     "--concurrency=2",
+    `--browser-executable="${chromePath}"`,
   ].join(" ");
 
   console.log(`Rendering: ${composition}`);
