@@ -148,7 +148,7 @@ function main() {
 
   // If script path provided, generate TTS for that script
   if (scriptPath) {
-    const fullPath = join(ROOT, scriptPath.replace(/\//g, "\\"));
+    const fullPath = join(ROOT, ...scriptPath.split(/[\/\\]/));
     const scriptContent = readFileSync(fullPath, "utf-8");
     const isJson = scriptPath.endsWith(".json");
     const segments = parseScriptForTTS(scriptContent, isJson);

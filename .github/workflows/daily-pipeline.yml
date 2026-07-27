@@ -208,6 +208,10 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
       - name: Install root dependencies
         run: npm ci
 
@@ -309,6 +313,16 @@ jobs:
             log.last_run = new Date().toISOString();
             fs.writeFileSync(logPath, JSON.stringify(log, null, 2));
           " || true
+
+      - name: Persist topic log
+        if: always()
+        run: |
+          git config user.name "pipeline-bot"
+          git config user.email "pipeline@youtube-automation.local"
+          git add data/topic-log.json
+          git diff --staged --quiet || git commit -m "Update topic log [skip ci]" && git push || echo "WARN: topic log push failed"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload run logs
         if: always()

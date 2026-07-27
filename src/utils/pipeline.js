@@ -94,7 +94,7 @@ function main() {
 
   console.log(`\n═══════════════════════════════════════════`);
   console.log(`  PIPELINE: ${channel.channel_name} (#${channel.id})`);
-  console.log(`  Niche: ${channel.niche} / ${channel.niche_sub}`);
+  console.log(`  Niche: ${channel.niche}`);
   console.log(`  Style: ${channel.style}`);
   console.log(`  Tone: ${channel.tone}`);
   console.log(`  Voice: ${channel.voice || "en-US-GuyNeural"}`);
@@ -205,7 +205,29 @@ function main() {
   // ═══════════════════════════════════════════════════════
   if (shouldRun(5)) {
     log("5", "SEO Metadata", "info");
-    const topicSlug = report.steps[1]?.topic?.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "latest";
+
+    // Find topic: use step 1 result, or fall back to latest research file
+    let topicSlug = report.steps[1]?.topic?.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    let topic = report.steps[1]?.topic;
+    if (!topicSlug && existsSync(dirs.research)) {
+      const researchFiles = readdirSync(dirs.research).filter(
+        f => f.endsWith(".json") && !f.includes("seo") && !f.includes("endscreen") &&
+             !f.includes("branding") && !f.includes("disclosure") && !f.includes("quality") &&
+             !f.includes("render-settings") && !f.includes("pipeline-report") &&
+             !f.includes("copyright") && !f.includes("shorts") && !f.includes("community") &&
+             !f.includes("tts-manifest")
+      );
+      if (researchFiles.length > 0) {
+        try {
+          const latest = JSON.parse(readFileSync(join(dirs.research, researchFiles[researchFiles.length - 1]), "utf-8"));
+          topic = latest.topic || latest.title || "Unknown Topic";
+          topicSlug = topic.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        } catch (e) {}
+      }
+    }
+    topicSlug = topicSlug || "latest";
+    topic = topic || "Unknown Topic";
+
     const seoPath = join(dirs.research, `${topicSlug}-seo.json`);
 
     if (existsSync(seoPath)) {
@@ -213,7 +235,6 @@ function main() {
       report.steps[5] = { status: "ok", cached: true };
     } else if (!dryRun) {
       try {
-        const topic = report.steps[1]?.topic || "Unknown Topic";
         const seoData = generateSEO(topic, channel);
         writeFileSync(seoPath, JSON.stringify(seoData, null, 2));
         log("5", `Generated: title="${seoData.title}"`, "ok");
@@ -235,16 +256,34 @@ function main() {
   // ═══════════════════════════════════════════════════════
   if (shouldRun(6)) {
     log("6", "End Screen & Cards", "info");
-    const topicSlug = report.steps[1]?.topic?.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "latest";
-    const endscreenPath = join(dirs.research, `${topicSlug}-endscreen.json`);
+    let topicSlug6 = report.steps[1]?.topic?.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    let topic6 = report.steps[1]?.topic;
+    if (!topicSlug6 && existsSync(dirs.research)) {
+      const rf6 = readdirSync(dirs.research).filter(
+        f => f.endsWith(".json") && !f.includes("seo") && !f.includes("endscreen") &&
+             !f.includes("branding") && !f.includes("disclosure") && !f.includes("quality") &&
+             !f.includes("render-settings") && !f.includes("pipeline-report") &&
+             !f.includes("copyright") && !f.includes("shorts") && !f.includes("community") &&
+             !f.includes("tts-manifest")
+      );
+      if (rf6.length > 0) {
+        try {
+          const latest6 = JSON.parse(readFileSync(join(dirs.research, rf6[rf6.length - 1]), "utf-8"));
+          topic6 = latest6.topic || latest6.title || "Unknown Topic";
+          topicSlug6 = topic6.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        } catch (e) {}
+      }
+    }
+    topicSlug6 = topicSlug6 || "latest";
+    topic6 = topic6 || "Unknown Topic";
+    const endscreenPath = join(dirs.research, `${topicSlug6}-endscreen.json`);
 
     if (existsSync(endscreenPath)) {
       log("6", "End screen config already exists", "ok");
       report.steps[6] = { status: "ok", cached: true };
     } else if (!dryRun) {
       try {
-        const topic = report.steps[1]?.topic || "Unknown Topic";
-        const endscreenData = generateEndScreen(topic, channel);
+        const endscreenData = generateEndScreen(topic6, channel);
         writeFileSync(endscreenPath, JSON.stringify(endscreenData, null, 2));
         log("6", `Generated end screen: ${endscreenData.end_screen?.elements?.length || 0} elements`, "ok");
         log("6", `Verbal CTA: "${endscreenData.verbal_cta?.substring(0, 50)}..."`, "info");

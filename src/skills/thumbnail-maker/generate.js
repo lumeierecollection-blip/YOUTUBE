@@ -190,7 +190,7 @@ function main() {
 
   // Read script
   const scriptContent = readFileSync(
-    join(ROOT, scriptPath.replace(/\//g, "\\")),
+    join(ROOT, ...scriptPath.split(/[\/\\]/)),
     "utf-8"
   );
 

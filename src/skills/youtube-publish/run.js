@@ -48,7 +48,7 @@ function main() {
   }
 
   // Check for API credentials
-  const hasApiCreds = channel.youtube_channel_id !== "SET_ME";
+  const hasApiCreds = channel.youtube_channel_id && channel.youtube_channel_id !== "" && channel.youtube_channel_id !== "SET_ME";
 
   if (!hasApiCreds) {
     console.log(`\n[YOUTUBE-PUBLISH] Channel: ${channelId}`);
