@@ -1,0 +1,143 @@
+{
+  "channel_id": "1",
+  "topic": "How Often You Should Get Paid (And Why It Matters More Than You Think)",
+  "topic_slug": "",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00–0:30",
+      "word_count": 55,
+      "voiceover": "You and your coworker earn the exact same salary. But he gets paid $2,500 twice a month, and you get paid $2,307 every two weeks. Same money. Different rhythm. And that difference is why one of you is stressed about bills and the other isn't.",
+      "visual_cue": "Black screen (#0A1020). Single number or keyword from hook fact appears in large Inter type, centered. Text animates on word-by-word with slight scale-up. No background imagery.",
+      "sfx_cue": "Sharp click or tick on each word appear. Low hum underneath. Hard cut to silence at end of hook.",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "Biweekly pay means every",
+        "font": "Inter",
+        "size": "96px",
+        "color": "#22C55E",
+        "bg": "#0A1020",
+        "animation": "word-by-word fade-in, 0.2s per word"
+      },
+      "transition_out": "Hard cut to black. 0.5 sec. No fade.",
+      "pacing_notes": "Start at 0:01. Each word syncs to text animation. Final sentence delivered deadpan. No inflection upward."
+    },
+    {
+      "id": "section_1",
+      "timing": "0:30–3:00",
+      "word_count": 380,
+      "voiceover": "Here's what you're not being told.\n\nBiweekly pay means every 2 weeks (26 paychecks/year). Semi-monthly means twice a month on fixed dates (24 paychecks/year). They sound identical but the math is completely different.\n\nOn a $60,000 salary: biweekly paycheck = $2,307.69. Semi-monthly paycheck = $2,500. Same annual total, but the cash flow rhythm is totally different.\n\nThis isn't opinion. This is documented. And most people have never seen it.",
+      "visual_cue": "Background color shifts to #1E293B. Text appears in clean blocks — 3 to 6 words per line, centered. Key terms highlight in #22C55E. No imagery. Text IS the visual.",
+      "sfx_cue": "Subtle keyboard typing sound as text blocks appear. Low ambient pad. Hard percussive hit on key stat reveal.",
+      "b_roll": [],
+      "text_overlay": [
+        {
+          "text": "On a $60,000 salary: biweekly paycheck = $2,307",
+          "font": "Inter",
+          "size": "64px",
+          "color": "#22C55E",
+          "bg": "#1E293B",
+          "animation": "slide-up from bottom, 0.3s"
+        },
+        {
+          "text": "THIS IS DOCUMENTED",
+          "font": "Inter",
+          "size": "48px",
+          "color": "#FFFFFF",
+          "bg": "#1E293B",
+          "animation": "scale-up from center, 0.2s"
+        }
+      ],
+      "transition_out": "Text holds for 1 sec, then wipes left. 0.3 sec black.",
+      "pacing_notes": "Fast and direct. No pauses longer than 0.5 sec. Every sentence is a punch. Energy stays high."
+    },
+    {
+      "id": "section_2",
+      "timing": "3:00–5:30",
+      "word_count": 380,
+      "voiceover": "Biweekly pay creates two 'magic third paycheck' months per year. Most people budget for 2 checks/month, so that third check feels like free money — and most people waste it.\n\n2026 is a potential 27-paycheck year for companies whose biweekly cycle starts January 2. That means an extra check worth $2,307.69 on a $60K salary.\n\nThree sources. All independent. All saying the same thing.",
+      "visual_cue": "Background shifts to #0F172A. Evidence appears as numbered list items, each fading in sequentially. Final item highlights with accent color. Minimal but structured.",
+      "sfx_cue": "Rising tone as evidence builds. Subtle bass drop on final item. Brief silence before transition.",
+      "b_roll": [],
+      "text_overlay": [
+        {
+          "text": "1",
+          "font": "Inter",
+          "size": "120px",
+          "color": "#22C55E",
+          "bg": "#0F172A",
+          "animation": "count-up from 0, 0.5s"
+        },
+        {
+          "text": "2",
+          "font": "Inter",
+          "size": "120px",
+          "color": "#22C55E",
+          "bg": "#0F172A",
+          "animation": "count-up from 0, 0.5s"
+        },
+        {
+          "text": "3",
+          "font": "Inter",
+          "size": "120px",
+          "color": "#22C55E",
+          "bg": "#0F172A",
+          "animation": "count-up from 0, 0.5s"
+        }
+      ],
+      "transition_out": "Number holds 1 sec, then hard cut to black.",
+      "pacing_notes": "Build momentum through the evidence list. Each point slightly faster than the last. Pause 1 sec after \"all saying the same thing\" for impact."
+    },
+    {
+      "id": "section_3",
+      "timing": "5:30–7:30",
+      "word_count": 280,
+      "voiceover": "So what does this actually mean?\n\nIt means the story you've been told is incomplete. The real version is more complicated, more interesting, and more uncomfortable.\n\nAnd nobody's talking about it.",
+      "visual_cue": "Background returns to #0A1020. Single keyword in oversized type fills screen: \"COMPLICATED\" or \"UNCOMFORTABLE\". Hold for 3 seconds. Then fade to new text.",
+      "sfx_cue": "Silence for 2 seconds at section open. Ambient pad returns softly. Final sentence lands on silence.",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "UNCOMFORTABLE",
+        "font": "Inter",
+        "size": "144px",
+        "color": "#22C55E",
+        "bg": "#0A1020",
+        "animation": "slow fade-in over 1s, hold 3s"
+      },
+      "transition_out": "Text fades out. 1 second black.",
+      "pacing_notes": "Slowest section. Deliver the question first, then let it breathe. The answer builds. Final sentence is quiet and direct."
+    },
+    {
+      "id": "close",
+      "timing": "7:30–8:30",
+      "word_count": 50,
+      "voiceover": "The full story. Linked below. Start from the beginning.",
+      "visual_cue": "Channel logo or name in Inter, centered on #0A1020. Below it: end screen video links. Hold for 8 seconds.",
+      "sfx_cue": "Single sustained tone fading to silence.",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "MONEY MIND",
+        "font": "Inter",
+        "size": "72px",
+        "color": "#FFFFFF",
+        "bg": "#0A1020",
+        "animation": "fade-in, hold"
+      },
+      "transition_out": "Hard cut to black at 8:30.",
+      "pacing_notes": "Three short sentences. No filler. No \"thanks for watching.\" Deliver and end."
+    }
+  ],
+  "cta_primary": {
+    "placement": "section_2_start",
+    "text": "Subscribe if you want the rest of the story."
+  },
+  "cta_secondary": {
+    "placement": "close",
+    "text": "Full playlist on screen now."
+  },
+  "production_notes": "Visual style: Minimal / kinetic typography. Colors: #0F172A primary, #1E293B secondary, #22C55E accent. Font: Inter throughout. No B-roll footage needed — all visuals are text animations on solid backgrounds. Total text animation keyframes: ~15. Voiceover tone: friendly-encouraging. Text animations must sync precisely to voiceover — timing is critical.",
+  "total_words": 1135,
+  "estimated_duration_seconds": 439,
+  "style": "minimal",
+  "tone": "friendly-encouraging"
+}
