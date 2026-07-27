@@ -30,7 +30,8 @@ function loadChannelsConfig() {
 }
 
 function findChannel(channels, channelId) {
-  const ch = channels.find(c => c.channel_id === channelId);
+  const numId = parseInt(channelId, 10);
+  const ch = channels.find(c => c.id === numId || c.channel_id === channelId);
   if (!ch) {
     console.error(`Channel "${channelId}" not found in channels.json`);
     process.exit(1);
@@ -104,7 +105,7 @@ function addProductionMetadata(script, channel) {
   script.estimated_duration_seconds = calculateDuration(totalWords, channel.style);
   script.style = channel.style;
   script.tone = channel.tone;
-  script.channel_id = channel.channel_id;
+  script.channel_id = String(channel.id);
   return script;
 }
 

@@ -9,7 +9,7 @@
  * Output: Uploads video, logs to data/run-logs/
  */
 
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -26,8 +26,9 @@ function main() {
 
   // Load channel config
   const channelsPath = join(ROOT, "config", "channels.json");
-  const channels = JSON.parse(readFileSync(channelsPath, "utf-8"));
-  const channel = channels.find((c) => c.channel_id === channelId);
+  const channelsData = JSON.parse(readFileSync(channelsPath, "utf-8"));
+  const channels = channelsData.channels || channelsData;
+  const channel = channels.find((c) => String(c.id) === channelId || c.channel_id === channelId);
   if (!channel) {
     console.error(`Channel "${channelId}" not found`);
     process.exit(1);
@@ -74,15 +75,6 @@ function main() {
 
   console.log(`\n[YOUTUBE-PUBLISH] API available for ${channelId} — implementation pending.`);
   console.log(`Videos ready: ${renders.join(", ")}`);
-}
-
-function existsSync(path) {
-  try {
-    require("fs").accessSync(path);
-    return true;
-  } catch {
-    return false;
-  }
 }
 
 main();

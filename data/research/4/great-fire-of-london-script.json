@@ -1,0 +1,75 @@
+{
+  "channel_id": "4",
+  "topic": "The Great Fire of London: What Really Happened",
+  "topic_slug": "great-fire-of-london",
+  "style": "cinematic-documentary",
+  "tone": "investigative-revelatory",
+  "total_words": 1150,
+  "estimated_duration_seconds": 493,
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00–0:30",
+      "word_count": 45,
+      "voiceover": "In 1666, a single spark in a bakery destroyed 13,000 homes, 87 churches, and most of London. But the real story isn't about fire. It's about human failure.",
+      "visual_cue": "Slow zoom on Thomas Farriner's bakery location on Pudding Lane. Dawn light, smoke beginning.",
+      "sfx_cue": "Low drone, subtle wind, distant crackling",
+      "b_roll": ["Pudding Lane historical illustration", "Medieval London timber buildings", "Bakery oven close-up"],
+      "text_overlay": null,
+      "transition_out": "Fade to black, 2 sec"
+    },
+    {
+      "id": "section_1",
+      "timing": "0:30–3:00",
+      "word_count": 380,
+      "voiceover": "London in 1666 was a city waiting to burn. Timber-framed buildings pressed shoulder to shoulder along medieval streets. The summer had been scorching and bone-dry. The wood was seasoned to perfection for burning.\n\nThomas Farriner's bakery on Pudding Lane was the epicenter. His oven was allegedly left unattended on Saturday night. By dawn on Sunday, September 2nd, flames had already taken hold.\n\nBut here's what most people don't know: the fire could have been stopped. The Lord Mayor of London, Sir Thomas Bloodworth, was woken with the news. His response? 'A woman could piss it out.' He refused to demolish surrounding buildings to create firebreaks.\n\nBy the time he changed his mind, it was too late. The fire had grown beyond control.",
+      "visual_cue": "Slow pan across medieval London map. Transition to Lord Mayor's portrait. Dramatic pause.",
+      "sfx_cue": "Crackling fire sounds, distant shouts, church bells",
+      "b_roll": ["Medieval London street illustration", "Lord Mayor portrait", "Fire spreading across map animation", "Timber buildings burning"],
+      "text_overlay": null,
+      "transition_out": "Slow dissolve, 2.5 sec"
+    },
+    {
+      "id": "section_2",
+      "timing": "3:00–5:30",
+      "word_count": 370,
+      "voiceover": "Samuel Pepys, a diarist and naval administrator, watched the destruction unfold. His account is one of the most vivid we have.\n\n'I saw a fire as one entire arch of fire above a mile long: it made me weep to see it. The churches, houses are all on fire and flaming at once, and a horrid noise the flames made and the cracking of the houses.'\n\nPepys made a decision that sounds bizarre today: he buried his Parmesan cheese and wine in his garden. But in 1666, this was practical crisis management. Hard cheese was imported, expensive, and remarkably durable. With London descending into chaos, Pepys was safeguarding a compact store of wealth and calories.\n\nThe fire raged for four days. It consumed everything in its path: 13,200 houses, 87 churches, most of the City of London. Only six deaths were officially recorded. But historians believe the true number was much higher. The poor, the homeless, the undocumented—they simply vanished.",
+      "visual_cue": "Samuel Pepys portrait, diary pages. Slow zoom on Parmesan cheese burial recreation.",
+      "sfx_cue": "Intense fire sounds, creaking wood, distant screams",
+      "b_roll": ["Samuel Pepys portrait", "Diary pages illustration", "Fire consuming buildings", "Thames River with refugees", "Buried cheese recreation"],
+      "text_overlay": null,
+      "transition_out": "Fade to black, 2 sec"
+    },
+    {
+      "id": "section_3",
+      "timing": "5:30–7:30",
+      "word_count": 280,
+      "voiceover": "The fire reached the Thames and stopped there. Water on one side, open ground on the other. The city was saved from complete annihilation.\n\nIn the aftermath, three plans were presented to King Charles II for rebuilding the city. Christopher Wren, John Evelyn, and Robert Hooke each had a vision. None of their plans were fully adopted. The old street lines were retained.\n\nBut Wren's masterpiece survived: St. Paul's Cathedral, rebuilt from the ashes, still stands today. The fire had swept away the medieval city—with all its inefficiency, its fire hazard, its disease-prone density—and created space for something new.\n\nThe London that emerged was more orderly, more regulated, more ambitious. The fire didn't destroy London. It transformed it.",
+      "visual_cue": "Thames River at dawn, smoke clearing. Transition to St. Paul's Cathedral construction.",
+      "sfx_cue": "Gentle water sounds, construction hammering, birds returning",
+      "b_roll": ["Thames River historical illustration", "Christopher Wren portrait", "St. Paul's Cathedral construction", "New London streetscape", "Modern London skyline"],
+      "text_overlay": null,
+      "transition_out": "Slow dissolve to close, 2 sec"
+    },
+    {
+      "id": "close",
+      "timing": "7:30–8:13",
+      "word_count": 75,
+      "voiceover": "When you walk through London today, you're walking through a city that rose from ashes. Every brick tells that story. The Great Fire of London wasn't just a disaster. It was the moment a city learned to rebuild.",
+      "visual_cue": "Slow zoom out from modern London street to wide cityscape. Golden hour light.",
+      "sfx_cue": "Low drone, city sounds fading in, subtle wind",
+      "b_roll": ["Modern London street level", "Wide London skyline", "St. Paul's Cathedral at sunset"],
+      "text_overlay": null,
+      "transition_out": "Fade to black, 3 sec"
+    }
+  ],
+  "cta_primary": {
+    "placement": "section_3_end",
+    "text": "If this kind of deep dive is your thing, you know what to do."
+  },
+  "cta_secondary": {
+    "placement": "close",
+    "text": "The full playlist is on screen now. Start from the beginning."
+  },
+  "production_notes": "Total B-roll clips needed: ~20. Recommend 4K archival footage sourcing. The Parmesan cheese burial detail is a strong hook for social media clips. Consider creating a short-form version focusing on this anecdote."
+}

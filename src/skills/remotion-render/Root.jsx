@@ -1,5 +1,7 @@
 import { registerRoot } from "remotion";
-import { compositions } from "./compositions/cinematic-documentary.jsx";
+import { compositions as cinematicDocumentary } from "./compositions/cinematic-documentary.jsx";
+import { compositions as minimal } from "./compositions/minimal.jsx";
+import { compositions as motionGraphics } from "./compositions/motion-graphics.jsx";
 
 /**
  * Remotion entry point.
@@ -7,7 +9,11 @@ import { compositions } from "./compositions/cinematic-documentary.jsx";
  */
 
 function RemotionRoot() {
-  return compositions;
+  return [
+    ...cinematicDocumentary,
+    ...minimal,
+    ...motionGraphics,
+  ];
 }
 
 registerRoot(RemotionRoot);
