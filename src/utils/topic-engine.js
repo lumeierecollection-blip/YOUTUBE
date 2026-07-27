@@ -21,7 +21,7 @@ function loadTopicLog() {
   if (existsSync(TOPIC_LOG)) {
     return JSON.parse(readFileSync(TOPIC_LOG, "utf-8"));
   }
-  return { used_topics: {}, channel_history: {} };
+  return { channels: {} };
 }
 
 function saveTopicLog(log) {
@@ -30,10 +30,12 @@ function saveTopicLog(log) {
 }
 
 function loadChannel(channelId) {
-  const channels = JSON.parse(
+  const data = JSON.parse(
     readFileSync(join(ROOT, "config", "channels.json"), "utf-8")
   );
-  return channels.channels.find((c) => c.channel_id === channelId);
+  const channels = data.channels || data;
+  const numId = parseInt(channelId, 10);
+  return channels.find((c) => c.id === numId || c.channel_id === channelId);
 }
 
 function getExistingResearch(channelId) {
@@ -46,8 +48,10 @@ function getExistingResearch(channelId) {
 
 function pickFreshTopic(channel, topicLog) {
   const pillars = channel.content_pillars || [];
-  const usedForChannel = topicLog.channel_history[channel.channel_id] || [];
-  const allUsed = new Set(Object.values(topicLog.used_topics).flat());
+  const usedForChannel = topicLog.channels?.[String(channel.id)]?.used_topics || [];
+  const allUsed = new Set(
+    Object.values(topicLog.channels || {}).flatMap(ch => ch.used_topics || [])
+  );
 
   // Try pillars that haven't been used much
   const pillarPriority = [...pillars].sort((a, b) => {
@@ -91,18 +95,12 @@ function pickFreshTopic(channel, topicLog) {
 }
 
 function recordTopic(channelId, topic, topicLog) {
-  if (!topicLog.channel_history[channelId]) {
-    topicLog.channel_history[channelId] = [];
+  if (!topicLog.channels) topicLog.channels = {};
+  if (!topicLog.channels[channelId]) {
+    topicLog.channels[channelId] = { used_topics: [], last_generated: null };
   }
-  topicLog.channel_history[channelId].push({
-    topic,
-    used_at: new Date().toISOString(),
-  });
-
-  if (!topicLog.used_topics[channelId]) {
-    topicLog.used_topics[channelId] = [];
-  }
-  topicLog.used_topics[channelId].push(topic);
+  topicLog.channels[channelId].used_topics.push(topic);
+  topicLog.channels[channelId].last_generated = new Date().toISOString();
 
   saveTopicLog(topicLog);
 }
@@ -127,7 +125,7 @@ function main() {
   console.log(`Niche: ${channel.niche}`);
   console.log(`Style: ${channel.style}`);
   console.log(`Existing research files: ${existingResearch.length}`);
-  console.log(`Topics used for this channel: ${(topicLog.channel_history[channelId] || []).length}`);
+  console.log(`Topics used for this channel: ${(topicLog.channels?.[String(channel.id)]?.used_topics || []).length}`);
 
   const selection = pickFreshTopic(channel, topicLog);
 

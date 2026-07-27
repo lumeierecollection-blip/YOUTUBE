@@ -70,7 +70,7 @@ jobs:
               if (!ch) { console.log(JSON.stringify({topic: 'unknown', slug: 'unknown'})); process.exit(); }
 
               const topicLog = JSON.parse(fs.readFileSync('data/topic-log.json', 'utf8'));
-              const used = (topicLog.channel_history?.['$CH'] || []).map(t => t.topic);
+              const used = (topicLog.channels?.['$CH']?.used_topics || []);
               const pillars = ch.content_pillars || [];
               const available = pillars.filter(p => !used.includes(p));
               const topic = available.length > 0 ? available[0] : pillars[0] || 'General topic';
@@ -218,7 +218,7 @@ jobs:
       - name: Download all research artifacts
         uses: actions/download-artifact@v4
         with:
-          path: data/
+          path: data/research/
           pattern: research-*
 
       - name: Render all videos
@@ -315,7 +315,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: logs-${{ github.run_id }}
-          path: data/run-logs/
+          path: data/research/*/pipeline-report.json
           retention-days: 30
 
   # ============================================================

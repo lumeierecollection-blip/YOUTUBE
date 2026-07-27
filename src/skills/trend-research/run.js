@@ -26,8 +26,10 @@ function main() {
 
   // Load channel config
   const channelsPath = join(ROOT, "config", "channels.json");
-  const channels = JSON.parse(readFileSync(channelsPath, "utf-8"));
-  const channel = channels.find((c) => c.channel_id === channelId);
+  const data = JSON.parse(readFileSync(channelsPath, "utf-8"));
+  const channels = data.channels || data;
+  const numId = parseInt(channelId, 10);
+  const channel = channels.find((c) => c.id === numId || c.channel_id === channelId);
   if (!channel) {
     console.error(`Channel "${channelId}" not found`);
     process.exit(1);

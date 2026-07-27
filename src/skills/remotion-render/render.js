@@ -33,7 +33,22 @@ function loadScript(scriptPath) {
   return readFileSync(fullPath, "utf-8");
 }
 
-function parseScriptSections(scriptContent) {
+function parseScriptSections(scriptContent, scriptPath) {
+  // Try JSON script first
+  if (scriptPath && scriptPath.endsWith(".json")) {
+    try {
+      const script = JSON.parse(scriptContent);
+      if (script.sections) {
+        return script.sections.map((s, i) => ({
+          name: s.title || s.heading || `Section ${i + 1}`,
+          timing: s.timing || `${i * 120}-${(i + 1) * 120}s`,
+          content: s.body ? s.body.split("\n").filter(l => l.trim()) : s.voiceover ? s.voiceover.split("\n").filter(l => l.trim()) : [],
+        }));
+      }
+    } catch (e) { /* fall through to markdown parsing */ }
+  }
+
+  // Markdown/text parsing
   const sections = [];
   const lines = scriptContent.split("\n");
   let currentSection = null;
@@ -125,7 +140,7 @@ function main() {
 
   const channel = loadChannel(channelId);
   const scriptContent = loadScript(scriptPath);
-  const sections = parseScriptSections(scriptContent);
+  const sections = parseScriptSections(scriptContent, scriptPath);
 
   const composition = getCompositionForStyle(channel.style, format);
 
@@ -140,7 +155,7 @@ function main() {
   mkdirSync(outputDir, { recursive: true });
 
   const timestamp = new Date().toISOString().slice(0, 10);
-  const topic = scriptPath.split("/").pop()?.replace(/\.(md|txt)$/, "") || "video";
+  const topic = scriptPath.split(/[\/\\]/).pop()?.replace(/\.(json|md|txt)$/, "") || "video";
   const outputPath = join(outputDir, `${topic}-${timestamp}.mp4`);
 
   const props = {

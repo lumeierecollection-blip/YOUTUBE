@@ -1,10 +1,9 @@
 {
   "channel_id": "1",
-  "started_at": "2026-07-27T18:55:25.226Z",
+  "started_at": "2026-07-27T20:23:48.851Z",
   "steps": {
     "1": {
-      "status": "ok",
-      "topic": "How Often You Should Get Paid (And Why It Matters More Than You Think)"
+      "status": "pending"
     },
     "2": {
       "status": "skipped",
@@ -15,22 +14,23 @@
       "count": 1
     },
     "4": {
-      "status": "pending",
-      "audio": 0,
+      "status": "ok",
+      "audio": 1,
       "srt": 0
     },
     "5": {
-      "status": "ok",
-      "title": "Everything You Know About How Often You Should Get Paid (And Why It Matters More Than You Think) Is Wrong"
+      "status": "skipped"
     },
     "6": {
-      "status": "ok"
+      "status": "skipped"
     },
     "7": {
-      "status": "ok"
+      "status": "ok",
+      "cached": true
     },
     "8": {
-      "status": "ok"
+      "status": "ok",
+      "cached": true
     },
     "9": {
       "status": "pending"
@@ -47,21 +47,21 @@
     },
     "13": {
       "status": "ok",
-      "requires": false
+      "cached": true
     },
     "14": {
       "status": "ok",
-      "evidence_checks": 5
+      "cached": true
     },
     "15": {
-      "status": "ok"
+      "status": "ok",
+      "cached": true
     },
     "16": {
-      "status": "skipped",
-      "reason": "no API"
+      "status": "skipped"
     }
   },
   "errors": [],
   "warnings": [],
-  "completed_at": "2026-07-27T18:55:25.265Z"
+  "completed_at": "2026-07-27T20:23:49.773Z"
 }

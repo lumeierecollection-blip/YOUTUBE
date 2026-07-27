@@ -11,7 +11,8 @@ export function loadChannels() {
 }
 
 export function loadChannel(channelId) {
-  const channels = loadChannels();
+  const data = loadChannels();
+  const channels = data.channels || data;
   const numId = parseInt(channelId, 10);
   const ch = channels.find(c => c.id === numId || c.channel_id === channelId);
   if (!ch) throw new Error(`Channel not found: ${channelId}`);
@@ -19,8 +20,12 @@ export function loadChannel(channelId) {
 }
 
 export function loadSchema() {
-  const raw = readFileSync(join(ROOT, 'config', 'channel-schema.json'), 'utf8');
-  return JSON.parse(raw);
+  try {
+    const raw = readFileSync(join(ROOT, 'config', 'channel-schema.json'), 'utf8');
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
 }
 
 export function getResearchDir(channelId) {

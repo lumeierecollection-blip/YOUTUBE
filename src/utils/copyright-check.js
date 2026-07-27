@@ -16,7 +16,7 @@ import { execSync } from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const ROOT = join(__filename, "..", "..", "..");
+const ROOT = join(__dirname, "..", "..");
 
 /**
  * License registry — tracks all licensed assets.

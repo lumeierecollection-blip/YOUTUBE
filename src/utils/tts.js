@@ -152,12 +152,14 @@ function main() {
     const scriptContent = readFileSync(fullPath, "utf-8");
     const isJson = scriptPath.endsWith(".json");
     const segments = parseScriptForTTS(scriptContent, isJson);
-    const topic = scriptPath.split("/").pop()?.replace(/\.(json|md|txt)$/, "") || "video";
+    const topic = scriptPath.split(/[\/\\]/).pop()?.replace(/\.(json|md|txt)$/, "") || "video";
 
     const outDir = join(ROOT, "data", "tts", channelId);
     mkdirSync(outDir, { recursive: true });
 
-    generateTTS(segments, voice, outDir, topic);
+    generateTTS(segments, voice, outDir, topic).catch(err => {
+      console.error(`TTS failed: ${err.message}`);
+    });
     return;
   }
 

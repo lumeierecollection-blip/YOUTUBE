@@ -93,7 +93,7 @@ function main() {
   Object.values(dirs).forEach(ensureDir);
 
   console.log(`\n═══════════════════════════════════════════`);
-  console.log(`  PIPELINE: ${channel.channel_id}`);
+  console.log(`  PIPELINE: ${channel.channel_name} (#${channel.id})`);
   console.log(`  Niche: ${channel.niche} / ${channel.niche_sub}`);
   console.log(`  Style: ${channel.style}`);
   console.log(`  Tone: ${channel.tone}`);
