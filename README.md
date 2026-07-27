@@ -75,6 +75,94 @@ click per channel, then pushes any further branding updates automatically.
 11. Only once 1-10 work end-to-end: run `niche-discovery` to find and
     confirm the remaining channel niches, then scale config to all of them
 
+## GitHub Secrets (required for automation)
+
+Each channel needs 3 OAuth credentials stored as GitHub secrets. For 50 channels, that's **150 secrets**.
+
+### Secret naming format
+
+```
+CHANNEL_{2-digit-ID}_CLIENT_ID
+CHANNEL_{2-digit-ID}_CLIENT_SECRET
+CHANNEL_{2-digit-ID}_REFRESH_TOKEN
+```
+
+### Full list
+
+| Channel | Name | CLIENT_ID | CLIENT_SECRET | REFRESH_TOKEN |
+|---------|------|-----------|---------------|---------------|
+| 01 | Money Mind | `CHANNEL_01_CLIENT_ID` | `CHANNEL_01_CLIENT_SECRET` | `CHANNEL_01_REFRESH_TOKEN` |
+| 02 | Legal Brief | `CHANNEL_02_CLIENT_ID` | `CHANNEL_02_CLIENT_SECRET` | `CHANNEL_02_REFRESH_TOKEN` |
+| 03 | ToolTok | `CHANNEL_03_CLIENT_ID` | `CHANNEL_03_CLIENT_SECRET` | `CHANNEL_03_REFRESH_TOKEN` |
+| 04 | History Untold | `CHANNEL_04_CLIENT_ID` | `CHANNEL_04_CLIENT_SECRET` | `CHANNEL_04_REFRESH_TOKEN` |
+| 05 | Eruption | `CHANNEL_05_CLIENT_ID` | `CHANNEL_05_CLIENT_SECRET` | `CHANNEL_05_REFRESH_TOKEN` |
+| 06 | Warfront | `CHANNEL_06_CLIENT_ID` | `CHANNEL_06_CLIENT_SECRET` | `CHANNEL_06_REFRESH_TOKEN` |
+| 07 | Dead Company | `CHANNEL_07_CLIENT_ID` | `CHANNEL_07_CLIENT_SECRET` | `CHANNEL_07_REFRESH_TOKEN` |
+| 08 | Brain Drop | `CHANNEL_08_CLIENT_ID` | `CHANNEL_08_CLIENT_SECRET` | `CHANNEL_08_REFRESH_TOKEN` |
+| 09 | Border Lines | `CHANNEL_09_CLIENT_ID` | `CHANNEL_09_CLIENT_SECRET` | `CHANNEL_09_REFRESH_TOKEN` |
+| 10 | Betrayed | `CHANNEL_10_CLIENT_ID` | `CHANNEL_10_CLIENT_SECRET` | `CHANNEL_10_REFRESH_TOKEN` |
+| 11 | Debt Decoder | `CHANNEL_11_CLIENT_ID` | `CHANNEL_11_CLIENT_SECRET` | `CHANNEL_11_REFRESH_TOKEN` |
+| 12 | Courtroom Tea | `CHANNEL_12_CLIENT_ID` | `CHANNEL_12_CLIENT_SECRET` | `CHANNEL_12_REFRESH_TOKEN` |
+| 13 | Pixel Lab | `CHANNEL_13_CLIENT_ID` | `CHANNEL_13_CLIENT_SECRET` | `CHANNEL_13_REFRESH_TOKEN` |
+| 14 | Quantum Canvas | `CHANNEL_14_CLIENT_ID` | `CHANNEL_14_CLIENT_SECRET` | `CHANNEL_14_REFRESH_TOKEN` |
+| 15 | Earth Signal | `CHANNEL_15_CLIENT_ID` | `CHANNEL_15_CLIENT_SECRET` | `CHANNEL_15_REFRESH_TOKEN` |
+| 16 | Timeline X | `CHANNEL_16_CLIENT_ID` | `CHANNEL_16_CLIENT_SECRET` | `CHANNEL_16_REFRESH_TOKEN` |
+| 17 | Forge & Fall | `CHANNEL_17_CLIENT_ID` | `CHANNEL_17_CLIENT_SECRET` | `CHANNEL_17_REFRESH_TOKEN` |
+| 18 | Brief History | `CHANNEL_18_CLIENT_ID` | `CHANNEL_18_CLIENT_SECRET` | `CHANNEL_18_REFRESH_TOKEN` |
+| 19 | Case Closed | `CHANNEL_19_CLIENT_ID` | `CHANNEL_19_CLIENT_SECRET` | `CHANNEL_19_REFRESH_TOKEN` |
+| 20 | Rewired | `CHANNEL_20_CLIENT_ID` | `CHANNEL_20_CLIENT_SECRET` | `CHANNEL_20_REFRESH_TOKEN` |
+| 21 | Empire Fall | `CHANNEL_21_CLIENT_ID` | `CHANNEL_21_CLIENT_SECRET` | `CHANNEL_21_REFRESH_TOKEN` |
+| 22 | Panel Pulse | `CHANNEL_22_CLIENT_ID` | `CHANNEL_22_CLIENT_SECRET` | `CHANNEL_22_REFRESH_TOKEN` |
+| 23 | Dark Atlas | `CHANNEL_23_CLIENT_ID` | `CHANNEL_23_CLIENT_SECRET` | `CHANNEL_23_REFRESH_TOKEN` |
+| 24 | Mind Forge | `CHANNEL_24_CLIENT_ID` | `CHANNEL_24_CLIENT_SECRET` | `CHANNEL_24_REFRESH_TOKEN` |
+| 25 | Silicon autopsy | `CHANNEL_25_CLIENT_ID` | `CHANNEL_25_CLIENT_SECRET` | `CHANNEL_25_REFRESH_TOKEN` |
+| 26 | The Unit | `CHANNEL_26_CLIENT_ID` | `CHANNEL_26_CLIENT_SECRET` | `CHANNEL_26_REFRESH_TOKEN` |
+| 27 | Paper Trail | `CHANNEL_27_CLIENT_ID` | `CHANNEL_27_CLIENT_SECRET` | `CHANNEL_27_REFRESH_TOKEN` |
+| 28 | Red Line | `CHANNEL_28_CLIENT_ID` | `CHANNEL_28_CLIENT_SECRET` | `CHANNEL_28_REFRESH_TOKEN` |
+| 29 | Signal Lost | `CHANNEL_29_CLIENT_ID` | `CHANNEL_29_CLIENT_SECRET` | `CHANNEL_29_REFRESH_TOKEN` |
+| 30 | Pitch Deck | `CHANNEL_30_CLIENT_ID` | `CHANNEL_30_CLIENT_SECRET` | `CHANNEL_30_REFRESH_TOKEN` |
+| 31 | Fracture | `CHANNEL_31_CLIENT_ID` | `CHANNEL_31_CLIENT_SECRET` | `CHANNEL_31_REFRESH_TOKEN` |
+| 32 | Cold Vault | `CHANNEL_32_CLIENT_ID` | `CHANNEL_32_CLIENT_SECRET` | `CHANNEL_32_REFRESH_TOKEN` |
+| 33 | War Machine | `CHANNEL_33_CLIENT_ID` | `CHANNEL_33_CLIENT_SECRET` | `CHANNEL_33_REFRESH_TOKEN` |
+| 34 | Unravel | `CHANNEL_34_CLIENT_ID` | `CHANNEL_34_CLIENT_SECRET` | `CHANNEL_34_REFRESH_TOKEN` |
+| 35 | Collateral | `CHANNEL_35_CLIENT_ID` | `CHANNEL_35_CLIENT_SECRET` | `CHANNEL_35_REFRESH_TOKEN` |
+| 36 | The Dig | `CHANNEL_36_CLIENT_ID` | `CHANNEL_36_CLIENT_SECRET` | `CHANNEL_36_REFRESH_TOKEN` |
+| 37 | Protocol | `CHANNEL_37_CLIENT_ID` | `CHANNEL_37_CLIENT_SECRET` | `CHANNEL_37_REFRESH_TOKEN` |
+| 38 | Fault Line | `CHANNEL_38_CLIENT_ID` | `CHANNEL_38_CLIENT_SECRET` | `CHANNEL_38_REFRESH_TOKEN` |
+| 39 | Black Ledger | `CHANNEL_39_CLIENT_ID` | `CHANNEL_39_CLIENT_SECRET` | `CHANNEL_39_REFRESH_TOKEN` |
+| 40 | Aftermath | `CHANNEL_40_CLIENT_ID` | `CHANNEL_40_CLIENT_SECRET` | `CHANNEL_40_REFRESH_TOKEN` |
+| 41 | Mind & Body Files | `CHANNEL_41_CLIENT_ID` | `CHANNEL_41_CLIENT_SECRET` | `CHANNEL_41_REFRESH_TOKEN` |
+| 42 | The Fix | `CHANNEL_42_CLIENT_ID` | `CHANNEL_42_CLIENT_SECRET` | `CHANNEL_42_REFRESH_TOKEN` |
+| 43 | Blueprint | `CHANNEL_43_CLIENT_ID` | `CHANNEL_43_CLIENT_SECRET` | `CHANNEL_43_REFRESH_TOKEN` |
+| 44 | Skill Stack | `CHANNEL_44_CLIENT_ID` | `CHANNEL_44_CLIENT_SECRET` | `CHANNEL_44_REFRESH_TOKEN` |
+| 45 | Vendetta | `CHANNEL_45_CLIENT_ID` | `CHANNEL_45_CLIENT_SECRET` | `CHANNEL_45_REFRESH_TOKEN` |
+| 46 | Origin Story | `CHANNEL_46_CLIENT_ID` | `CHANNEL_46_CLIENT_SECRET` | `CHANNEL_46_REFRESH_TOKEN` |
+| 47 | The Drop | `CHANNEL_47_CLIENT_ID` | `CHANNEL_47_CLIENT_SECRET` | `CHANNEL_47_REFRESH_TOKEN` |
+| 48 | Smoke Signal | `CHANNEL_48_CLIENT_ID` | `CHANNEL_48_CLIENT_SECRET` | `CHANNEL_48_REFRESH_TOKEN` |
+| 49 | Catalyst | `CHANNEL_49_CLIENT_ID` | `CHANNEL_49_CLIENT_SECRET` | `CHANNEL_49_REFRESH_TOKEN` |
+| 50 | Paradox | `CHANNEL_50_CLIENT_ID` | `CHANNEL_50_CLIENT_SECRET` | `CHANNEL_50_REFRESH_TOKEN` |
+
+### How to get credentials
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com)
+2. Create a project (or use existing)
+3. Enable **YouTube Data API v3** and **YouTube Analytics API**
+4. Create **OAuth 2.0 Client ID** (Desktop app type)
+5. Download the JSON — extract `client_id`, `client_secret`
+6. Use a refresh token generator (or run the OAuth flow once) to get `refresh_token`
+7. Add all 3 as GitHub secrets per channel
+
+### Quick setup (copy-paste all 150 at once)
+
+```bash
+# Example for channel 01:
+gh secret set CHANNEL_01_CLIENT_ID --body="your-client-id"
+gh secret set CHANNEL_01_CLIENT_SECRET --body="your-client-secret"
+gh secret set CHANNEL_01_REFRESH_TOKEN --body="your-refresh-token"
+
+# Repeat for channels 02-50
+```
+
 ## What's in here
 - `PROMPT_FOR_OPENCODE.md` — master kickoff prompt
 - `.opencode/skills/` — every skill OpenCode needs, auto-discovered:
