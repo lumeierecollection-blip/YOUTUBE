@@ -1,0 +1,113 @@
+{
+  "channel_id": "4",
+  "topic": "The Great Fire of London: What Really Happened",
+  "topic_slug": "great-fire-of-london",
+  "date": "2026-07-27",
+  "passes": [
+    {
+      "pass": 1,
+      "type": "broad-web",
+      "query": "Great Fire of London 1666 historical facts what really happened",
+      "findings": [
+        "The Great Fire of London started on September 2, 1666 in Thomas Farriner's bakery on Pudding Lane",
+        "The fire burned for 4 days, destroying much of medieval London",
+        "London was almost entirely built from wood with timber-framed buildings",
+        "The summer of 1666 had been scorching and bone-dry, seasoning the timber for burning",
+        "Samuel Pepys' diary provides a famous first-hand account of the fire",
+        "The fire destroyed thousands of houses, dozens of churches, and old St. Paul's Cathedral",
+        "Christopher Wren was charged with rebuilding many significant parts of the city"
+      ],
+      "sources": [
+        "https://www.britannica.com/event/Great-Fire-of-London",
+        "https://www.historyextra.com/period/stuart/great-fire-london-facts-guide/",
+        "https://historylearning.com/stuart-england/great-fire-of-london-of-1666/",
+        "https://worldhistoryedu.com/great-fire-of-london-causes-facts-consequences/"
+      ]
+    },
+    {
+      "pass": 2,
+      "type": "narrow-factual",
+      "query": "Great Fire of London specific facts Thomas Farriner Pudding Lane Samuel Pepys diary",
+      "findings": [
+        "Thomas Farriner was the baker whose oven was allegedly left unattended",
+        "The fire started in the early hours of Sunday, September 2, 1666",
+        "Samuel Pepys buried his Parmesan cheese and wine to save them from the fire",
+        "The fire destroyed 13,200 houses, 87 churches, and most of the City of London",
+        "Only 6 deaths were officially recorded, though the true number is likely higher",
+        "The fire reached the Thames and stopped there, preventing further spread"
+      ],
+      "sources": [
+        "https://helelu.com/what-really-happened-in-great-fire-of-london/",
+        "https://commonplacefacts.com/2026/04/09/great-fire-of-london-history/",
+        "https://londontopia.net/history/the-great-fire-of-london-what-really-happened-and-where-to-see-the-evidence-today/"
+      ]
+    },
+    {
+      "pass": 3,
+      "type": "practitioner-pass",
+      "query": "how to create history documentary YouTube channel content Great Fire of London",
+      "findings": [
+        "History documentary channels benefit from primary sources like Samuel Pepys' diary",
+        "Visual storytelling with maps and timeline graphics increases engagement",
+        "Controversial or lesser-known facts generate higher viewer interest",
+        "The 'what really happened' angle performs well in history niches",
+        "Combining factual accuracy with narrative storytelling is key"
+      ],
+      "sources": [
+        "https://www.history.org.uk/primary/categories/7/module/3964/the-great-fire-of-london-1666",
+        "https://www.bbc.co.uk/bitesize/articles/z7j6s82"
+      ]
+    },
+    {
+      "pass": 4,
+      "type": "social-community",
+      "query": "Great Fire of London discussion reddit what really happened",
+      "findings": [
+        "Reddit discussions often focus on the human stories and decision-making failures",
+        "The role of the Lord Mayor's inaction is a common topic of debate",
+        "Samuel Pepys' diary entries are frequently shared and discussed",
+        "The fire's impact on London's urban planning and architecture is well-documented",
+        "Modern comparisons to other urban fires generate interesting discussions"
+      ],
+      "sources": [
+        "https://www.reddit.com/r/history/",
+        "https://www.reddit.com/r/London/"
+      ]
+    }
+  ],
+  "key_facts": [
+    {
+      "fact": "The Great Fire of London started on September 2, 1666 in Thomas Farriner's bakery on Pudding Lane",
+      "source": "Britannica, HistoryExtra",
+      "date": "2026-07-27"
+    },
+    {
+      "fact": "The fire burned for 4 days, destroying 13,200 houses, 87 churches, and most of the City of London",
+      "source": "World History Edu, Londontopia",
+      "date": "2026-07-27"
+    },
+    {
+      "fact": "Samuel Pepys buried his Parmesan cheese and wine to save them from the fire",
+      "source": "Commonplace Fun Facts",
+      "date": "2026-07-27"
+    },
+    {
+      "fact": "Only 6 deaths were officially recorded, though the true number is likely higher",
+      "source": "Londontopia",
+      "date": "2026-07-27"
+    },
+    {
+      "fact": "Christopher Wren was charged with rebuilding many significant parts of the city, including St. Paul's Cathedral",
+      "source": "Britannica, History Learning",
+      "date": "2026-07-27"
+    }
+  ],
+  "strongest_angle": "The Great Fire of London wasn't just a disaster—it was a story of human error, institutional failure, and remarkable resilience. From Samuel Pepys burying his cheese to the Lord Mayor's catastrophic decision-making, the fire reveals how a city's character is forged in crisis.",
+  "practitioner_notes": "History documentary channels should focus on primary sources like Samuel Pepys' diary for authenticity. The 'what really happened' angle performs well. Visual storytelling with maps and timeline graphics increases engagement. The human stories and decision-making failures generate the most interest.",
+  "open_questions": [
+    "What was the exact death toll? Official records show 6, but historians believe it was much higher",
+    "How much did the fire contribute to the end of the Great Plague of London?",
+    "What role did insurance play in the rebuilding of London?",
+    "How did the fire affect London's social and economic structure long-term?"
+  ]
+}

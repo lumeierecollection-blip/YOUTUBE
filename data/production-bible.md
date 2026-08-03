@@ -579,3 +579,29 @@ FAST (hook) → SLOW (context) → BUILD (investigation) → FAST (revelation) �
 - [ ] Chapters: timestamped sections
 - [ ] End screen: suggested videos for binge behavior
 - [ ] Thumbnail uploaded to YouTube Studio for A/B testing setup
+
+---
+
+## PART 8: VISUAL EDITING GUIDE (Detailed)
+
+For comprehensive per-channel editing rules, visual storytelling principles, compositing, color grading, motion design, and visual metaphors, see:
+
+**`data/visual-editing-guide.md`**
+
+This guide covers:
+- Visual hook techniques (first 3 seconds)
+- Pattern interrupt rotation (never repeat within 3 min)
+- Section transition types by style
+- Emotional pacing through visuals
+- Reveal moment protocol (55-70% mark)
+- Compositing layer stack (6 layers)
+- Text hierarchy & animation timing
+- Channel-specific color grading specs
+- Film grain & texture application
+- Visual metaphor system (15+ concepts)
+- Per-channel editing rules (all 50 channels)
+- Editing quality checklist
+
+---
+
+*Last updated: 2026-07-27. Update after each channel's first 3 videos to refine based on real performance data.*

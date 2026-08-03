@@ -70,18 +70,25 @@ const COMPONENT_FILES = {
 
 function loadChannel(channelId) {
   const channelsPath = join(ROOT, "config", "channels.json");
-  const channels = JSON.parse(readFileSync(channelsPath, "utf-8"));
-  const channel = (channels.channels || channels).find((c) => c.channel_id === channelId);
+  const data = JSON.parse(readFileSync(channelsPath, "utf-8"));
+  const channels = data.channels || data;
+  const numId = parseInt(channelId, 10);
+  const channel = channels.find((c) => c.id === numId || c.channel_id === channelId);
   if (!channel) throw new Error(`Channel "${channelId}" not found`);
   return channel;
 }
 
 function loadScript(scriptPath) {
-  const fullPath = join(ROOT, scriptPath.replace(/\//g, "\\"));
-  if (extname(fullPath).toLowerCase() === ".json") {
-    return JSON.parse(readFileSync(fullPath, "utf-8"));
+  const fullPath = join(ROOT, ...scriptPath.split(/[\/\\]/));
+  const content = readFileSync(fullPath, "utf-8");
+  if (scriptPath.endsWith(".json")) {
+    try {
+      return JSON.parse(content);
+    } catch {
+      return parseMarkdown(content);
+    }
   }
-  return parseMarkdown(readFileSync(fullPath, "utf-8"));
+  return parseMarkdown(content);
 }
 
 function parseMarkdown(content) {

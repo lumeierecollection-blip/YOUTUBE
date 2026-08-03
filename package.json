@@ -4,11 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "deep-research": "node src/skills/deep-research/run.js",
     "trend-research": "node src/skills/trend-research/run.js",
     "script-writer": "node src/skills/script-writer/run.js",
     "thumbnail": "node src/skills/thumbnail-maker/generate.js",
-    "vfx-audit": "node src/skills/vfx-audit/run.js",
     "sfx": "node src/skills/sfx-sourcing/build-library.js",
     "tts": "node src/utils/tts.js",
     "render": "node src/skills/remotion-render/render.js",
@@ -24,6 +22,7 @@
     "edge-tts": "^1.0.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "remotion": "^4.0.503"
+    "remotion": "^4.0.503",
+    "sharp": "^0.35.3"
   }
 }

@@ -1,0 +1,37 @@
+{
+  "overall_disclosure_required": false,
+  "recommendation": "Self-disclosure not required, but can enable if desired",
+  "pipeline_assessment": [
+    {
+      "component": "EdgeTTS voiceover",
+      "disclosure_required": false,
+      "reason": "Generic neural voice, not cloning a specific real person",
+      "policy": "Non-impersonation AI voices generally do not require disclosure"
+    },
+    {
+      "component": "AI-generated scripts",
+      "disclosure_required": false,
+      "reason": "Production assistance, not content generation",
+      "policy": "AI script generation does not require disclosure"
+    },
+    {
+      "component": "AI-assisted thumbnails",
+      "disclosure_required": false,
+      "reason": "Visual design, not realistic content",
+      "policy": "AI thumbnails do not require disclosure"
+    },
+    {
+      "component": "Stock B-roll footage",
+      "disclosure_required": false,
+      "reason": "Licensed stock footage from Pexels/Pixabay",
+      "policy": "Stock footage does not require disclosure"
+    },
+    {
+      "component": "Remotion video rendering",
+      "disclosure_required": false,
+      "reason": "Programmatic video assembly, not AI-generated realistic content",
+      "policy": "Video rendering tools do not require disclosure"
+    }
+  ],
+  "auto_detection_note": "YouTube now auto-detects AI content. If you don't disclose, they'll label it for you. Labels can't be removed once applied."
+}

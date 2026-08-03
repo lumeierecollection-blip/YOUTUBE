@@ -15,7 +15,7 @@ on:
         type: boolean
         default: false
       channel_override:
-        description: "Process specific channel only (leave empty for all)"
+        description: "Process specific channel ID only (leave empty for all)"
         required: false
 
 env:
@@ -24,7 +24,7 @@ env:
 
 jobs:
   # ============================================================
-  # PHOR 1: Pick topics for each channel
+  # PHASE 1: Pick topics for each channel
   # ============================================================
   pick-topics:
     runs-on: ubuntu-latest
@@ -41,36 +41,51 @@ jobs:
         id: topics
         run: |
           CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
-          DRY_RUN="${{ github.event.inputs.dry_run || 'false' }}"
-          
-          # Get all channel IDs
+
+          # Get channel IDs (using numeric "id" field, not "channel_id")
           if [ -n "$CHANNEL_OVERRIDE" ]; then
             CHANNELS="[\"$CHANNEL_OVERRIDE\"]"
           else
             CHANNELS=$(node -e "
               const fs = require('fs');
               const data = JSON.parse(fs.readFileSync('config/channels.json'));
-              console.log(JSON.stringify(data.channels.map(c => c.channel_id)));
+              const channels = data.channels || data;
+              console.log(JSON.stringify(channels.map(c => String(c.id))));
             ")
           fi
-          
+
           echo "Channels to process: $CHANNELS"
-          
-          # For each channel, run topic engine
+
+          # Build task list — each channel gets a topic from content pillars
           TASKS="[]"
           for CH in $(echo $CHANNELS | jq -r '.[]'); do
             echo "--- Topic selection: $CH ---"
-            RESULT=$(node src/utils/topic-engine.js "$CH" 2>/dev/null | tail -1)
-            
-            # Add to task list
+
+            # Pick first unused topic from channel's content_pillars
+            RESULT=$(node -e "
+              const fs = require('fs');
+              const data = JSON.parse(fs.readFileSync('config/channels.json'));
+              const channels = data.channels || data;
+              const ch = channels.find(c => String(c.id) === '$CH');
+              if (!ch) { console.log(JSON.stringify({topic: 'unknown', slug: 'unknown'})); process.exit(); }
+
+              const topicLog = JSON.parse(fs.readFileSync('data/topic-log.json', 'utf8'));
+              const used = (topicLog.channels?.['$CH']?.used_topics || []);
+              const pillars = ch.content_pillars || [];
+              const available = pillars.filter(p => !used.includes(p));
+              const topic = available.length > 0 ? available[0] : pillars[0] || 'General topic';
+              const slug = topic.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 60);
+              console.log(JSON.stringify({topic, slug}));
+            " 2>/dev/null || echo '{"topic":"general","slug":"general"}')
+
             TASKS=$(echo $TASKS | jq --arg ch "$CH" --argjson r "$RESULT" '. + [{channel_id: $ch, topic_info: $r}]')
           done
-          
+
           echo "matrix={\"include\":$(echo $TASKS | jq -c .)}" >> $GITHUB_OUTPUT
           echo "Total channels: $(echo $TASKS | jq length)"
 
   # ============================================================
-  # PHASE 2: Research + Script (per channel, parallel)
+  # PHASE 2: Research + Script + TTS (per channel, parallel)
   # ============================================================
   research-and-script:
     needs: pick-topics
@@ -86,35 +101,87 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
       - name: Install dependencies
         run: npm ci
 
       - name: Install EdgeTTS
         run: pip install edge-tts
 
-      - name: Deep Research
+      - name: Ensure output directories
         run: |
           CH="${{ matrix.channel_id }}"
-          echo "=== DEEP RESEARCH: $CH ==="
-          node src/skills/deep-research/run.js "$CH"
+          mkdir -p data/research/$CH data/tts/$CH data/thumbnails/$CH
 
-      - name: Script Writer — Shorts
+      - name: Generate script
         run: |
           CH="${{ matrix.channel_id }}"
-          echo "=== SCRIPT: Shorts for $CH ==="
-          node src/skills/script-writer/run.js "$CH" shorts
+          SLUG="${{ matrix.topic_info.slug }}"
+          echo "=== SCRIPT: $CH — $SLUG ==="
 
-      - name: Script Writer — Long-form
-        run: |
-          CH="${{ matrix.channel_id }}"
-          echo "=== SCRIPT: Long-form for $CH ==="
-          node src/skills/script-writer/run.js "$CH" longform
+          # Script-writer reads existing research from data/research/<ch>/
+          # If no research exists yet, create a minimal research file first
+          if [ ! -f "data/research/$CH/$SLUG.json" ]; then
+            echo "No research file found — creating placeholder"
+            node -e "
+              const fs = require('fs');
+              const data = JSON.parse(fs.readFileSync('config/channels.json','utf8'));
+              const ch = (data.channels||data).find(c => String(c.id)==='$CH');
+              const topic = '${SLUG}'.split('-').map(w=>w[0].toUpperCase()+w.slice(1)).join(' ');
+              const research = {
+                topic: topic,
+                topic_slug: '$SLUG',
+                channel_id: '$CH',
+                strongest_angle: topic + ' — what most people get wrong',
+                key_facts: [{fact: topic + ' is commonly misunderstood. Here is what actually matters.', source: 'General knowledge'}],
+                sources: []
+              };
+              fs.writeFileSync('data/research/$CH/$SLUG.json', JSON.stringify(research, null, 2));
+            "
+          fi
 
-      - name: TTS — Voiceover
+          # Run script-writer
+          node src/skills/script-writer/run.js "$CH" "$SLUG"
+
+      - name: Generate TTS voiceover
         run: |
           CH="${{ matrix.channel_id }}"
-          echo "=== TTS: $CH ==="
-          node src/utils/tts.js "$CH"
+          SLUG="${{ matrix.topic_info.slug }}"
+          echo "=== TTS: $CH — $SLUG ==="
+
+          # Find the script file
+          SCRIPT="data/research/$CH/${SLUG}-script.json"
+          if [ -f "$SCRIPT" ]; then
+            node src/utils/tts.js "$CH" "$SCRIPT"
+          else
+            echo "WARN: Script not found at $SCRIPT — skipping TTS"
+          fi
+
+      - name: Generate thumbnail
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG="${{ matrix.topic_info.slug }}"
+          echo "=== THUMBNAIL: $CH — $SLUG ==="
+
+          SCRIPT="data/research/$CH/${SLUG}-script.json"
+          if [ -f "$SCRIPT" ]; then
+            node src/skills/thumbnail-maker/generate.js "$CH" "$SCRIPT" || echo "WARN: thumbnail spec failed"
+            node src/skills/thumbnail-maker/render-thumb.js "$CH" || echo "WARN: thumbnail render failed"
+          else
+            echo "WARN: Script not found — skipping thumbnail"
+          fi
+
+      - name: Generate SEO + metadata
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG="${{ matrix.topic_info.slug }}"
+          echo "=== METADATA: $CH — $SLUG ==="
+
+          # Run pipeline steps 5-15 (SEO through render settings) for this channel
+          node src/utils/pipeline.js "$CH" --step 5 || echo "WARN: metadata generation had issues"
 
       - name: Upload research artifacts
         if: always()
@@ -124,6 +191,7 @@ jobs:
           path: |
             data/research/${{ matrix.channel_id }}/
             data/tts/${{ matrix.channel_id }}/
+            data/thumbnails/${{ matrix.channel_id }}/
           retention-days: 7
 
   # ============================================================
@@ -140,6 +208,13 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Install root dependencies
+        run: npm ci
+
       - name: Install Remotion dependencies
         working-directory: src/skills/remotion-render
         run: npm ci
@@ -147,38 +222,32 @@ jobs:
       - name: Download all research artifacts
         uses: actions/download-artifact@v4
         with:
-          path: data/
+          path: data/research/
           pattern: research-*
 
       - name: Render all videos
         run: |
           CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
-          
+
           if [ -n "$CHANNEL_OVERRIDE" ]; then
             CHANNELS="[\"$CHANNEL_OVERRIDE\"]"
           else
             CHANNELS=$(node -e "
               const fs = require('fs');
               const data = JSON.parse(fs.readFileSync('config/channels.json'));
-              console.log(JSON.stringify(data.channels.map(c => c.channel_id)));
+              const channels = data.channels || data;
+              console.log(JSON.stringify(channels.map(c => String(c.id))));
             ")
           fi
-          
+
           for CH in $(echo $CHANNELS | jq -r '.[]'); do
             echo "=== RENDER: $CH ==="
-            
-            # Render Shorts
-            SCRIPTS=$(ls data/research/$CH/*-shorts-script.txt 2>/dev/null || true)
+
+            # Find all script files (JSON format)
+            SCRIPTS=$(ls data/research/$CH/*-script.json 2>/dev/null || true)
             for SCRIPT in $SCRIPTS; do
-              echo "Rendering short: $SCRIPT"
-              node src/skills/remotion-render/render.js shorts "$CH" "$SCRIPT" || echo "WARN: render failed"
-            done
-            
-            # Render Long-form
-            SCRIPTS=$(ls data/research/$CH/*-longform-script.txt 2>/dev/null || true)
-            for SCRIPT in $SCRIPTS; do
-              echo "Rendering long-form: $SCRIPT"
-              node src/skills/remotion-render/render.js longform "$CH" "$SCRIPT" || echo "WARN: render failed"
+              echo "Rendering: $SCRIPT"
+              node src/skills/remotion-render/render.js longform "$CH" "$SCRIPT" || echo "WARN: render failed for $SCRIPT"
             done
           done
 
@@ -217,17 +286,18 @@ jobs:
       - name: Publish to YouTube
         run: |
           CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
-          
+
           if [ -n "$CHANNEL_OVERRIDE" ]; then
             CHANNELS="[\"$CHANNEL_OVERRIDE\"]"
           else
             CHANNELS=$(node -e "
               const fs = require('fs');
               const data = JSON.parse(fs.readFileSync('config/channels.json'));
-              console.log(JSON.stringify(data.channels.map(c => c.channel_id)));
+              const channels = data.channels || data;
+              console.log(JSON.stringify(channels.map(c => String(c.id))));
             ")
           fi
-          
+
           for CH in $(echo $CHANNELS | jq -r '.[]'); do
             echo "=== PUBLISH: $CH ==="
             node src/skills/youtube-publish/run.js "$CH" || echo "WARN: publish failed (API creds needed)"
@@ -236,15 +306,30 @@ jobs:
       - name: Update topic log
         if: always()
         run: |
-          # Record which topics were used today
-          node src/utils/topic-engine.js --log-run || true
+          node -e "
+            const fs = require('fs');
+            const logPath = 'data/topic-log.json';
+            const log = JSON.parse(fs.readFileSync(logPath, 'utf8'));
+            log.last_run = new Date().toISOString();
+            fs.writeFileSync(logPath, JSON.stringify(log, null, 2));
+          " || true
+
+      - name: Persist topic log
+        if: always()
+        run: |
+          git config user.name "pipeline-bot"
+          git config user.email "pipeline@youtube-automation.local"
+          git add data/topic-log.json
+          git diff --staged --quiet || git commit -m "Update topic log [skip ci]" && git push || echo "WARN: topic log push failed"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload run logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: logs-${{ github.run_id }}
-          path: data/run-logs/
+          path: data/research/*/pipeline-report.json
           retention-days: 30
 
   # ============================================================
@@ -271,6 +356,3 @@ jobs:
           echo "Research+Script: ${{ needs.research-and-script.result }}"
           echo "Render: ${{ needs.render.result }}"
           echo "Publish: ${{ needs.publish.result }}"
-          echo ""
-          echo "=== TOPICS USED ==="
-          cat data/topic-log.json 2>/dev/null | jq '.channel_history | to_entries[] | "\(.key): \(.value[-1].topic)"' 2>/dev/null || echo "No topic log found"

@@ -23,31 +23,50 @@ const ROOT = join(__dirname, "..", "..");
 
 /**
  * Parse script into segments for TTS.
- * Extracts spoken content only (no stage directions, no brackets).
+ * Handles both JSON scripts (from script-writer) and plain text/markdown.
  */
-function parseScriptForTTS(scriptContent) {
+function parseScriptForTTS(scriptContent, isJson = false) {
+  if (isJson) {
+    try {
+      const script = JSON.parse(scriptContent);
+      const segments = [];
+      if (script.sections) {
+        for (const section of script.sections) {
+          if (section.voiceover) {
+            // Split voiceover into paragraphs
+            const paragraphs = section.voiceover.split(/\n\n+/).filter(p => p.trim());
+            for (const para of paragraphs) {
+              segments.push({ section: section.id, text: para.trim() });
+            }
+          }
+        }
+      }
+      return segments;
+    } catch (e) {
+      // Fall through to text parsing
+    }
+  }
+
+  // Plain text / markdown parsing
   const lines = scriptContent.split("\n");
   const segments = [];
   let currentSection = "intro";
 
   for (const line of lines) {
     const trimmed = line.trim();
-
-    // Skip empty lines, comments, separators, stage directions
     if (!trimmed) continue;
     if (trimmed.startsWith("#")) continue;
     if (trimmed.startsWith("---")) continue;
-    if (trimmed.startsWith("[")) continue; // stage directions
+    if (trimmed.startsWith("[")) continue;
     if (trimmed.startsWith("SOURCE:")) continue;
     if (trimmed.startsWith("NOTES:")) continue;
-    if (trimmed.startsWith("|")) continue; // table rows
+    if (trimmed.startsWith("|")) continue;
     if (trimmed.startsWith("##")) {
       const sectionMatch = trimmed.match(/##\s+(.+)/);
       if (sectionMatch) currentSection = sectionMatch[1];
       continue;
     }
 
-    // Extract spoken text (remove surrounding quotes if present)
     let text = trimmed;
     if (text.startsWith('"') && text.endsWith('"')) {
       text = text.slice(1, -1);
@@ -162,8 +181,10 @@ function main() {
 
   // Load channel config
   const channelsPath = join(ROOT, "config", "channels.json");
-  const channelsData = JSON.parse(readFileSync(channelsPath, "utf-8"));
-  const channel = (channelsData.channels || channelsData).find((c) => c.channel_id === channelId);
+  const data = JSON.parse(readFileSync(channelsPath, "utf-8"));
+  const channels = data.channels || data;
+  const numId = parseInt(channelId, 10);
+  const channel = channels.find((c) => c.id === numId || c.channel_id === channelId);
   if (!channel) {
     console.error(`Channel "${channelId}" not found`);
     process.exit(1);
@@ -173,11 +194,11 @@ function main() {
 
   // If script path provided, generate TTS for that script
   if (scriptPath) {
-    const fullPath = join(ROOT, scriptPath.replace(/\//g, "\\"));
+    const fullPath = join(ROOT, ...scriptPath.split(/[\/\\]/));
     const scriptContent = readFileSync(fullPath, "utf-8");
-    const isJson = fullPath.toLowerCase().endsWith(".json");
-    const segments = isJson ? parseJsonScript(JSON.parse(scriptContent)) : parseScriptForTTS(scriptContent);
-    const topic = scriptPath.split("/").pop()?.replace(/\.(md|txt|json)$/, "") || "video";
+    const isJson = scriptPath.endsWith(".json");
+    const segments = parseScriptForTTS(scriptContent, isJson);
+    const topic = scriptPath.split(/[\/\\]/).pop()?.replace(/\.(json|md|txt)$/, "") || "video";
 
     const outDir = join(ROOT, "data", "tts", channelId);
     mkdirSync(outDir, { recursive: true });
@@ -185,6 +206,8 @@ function main() {
     generateTTS(segments, voice, outDir, topic, {
       rate: channel.tts_rate,
       pitch: channel.tts_pitch,
+    }).catch(err => {
+      console.error(`TTS failed: ${err.message}`);
     });
     return;
   }

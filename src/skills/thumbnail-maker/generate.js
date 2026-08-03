@@ -180,8 +180,9 @@ function main() {
 
   // Load channel config
   const channelsPath = join(ROOT, "config", "channels.json");
-  const channels = (JSON.parse(readFileSync(channelsPath, "utf-8")).channels || []);
-  const channel = channels.find((c) => c.channel_id === channelId);
+  const channelsData = JSON.parse(readFileSync(channelsPath, "utf-8"));
+  const channels = channelsData.channels || channelsData;
+  const channel = channels.find((c) => String(c.id) === channelId || c.channel_id === channelId);
   if (!channel) {
     console.error(`Channel "${channelId}" not found in config.`);
     process.exit(1);
@@ -189,7 +190,7 @@ function main() {
 
   // Read script
   const scriptContent = readFileSync(
-    join(ROOT, scriptPath.replace(/\//g, "\\")),
+    join(ROOT, ...scriptPath.split(/[\/\\]/)),
     "utf-8"
   );
 

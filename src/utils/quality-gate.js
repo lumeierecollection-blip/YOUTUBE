@@ -15,7 +15,7 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const ROOT = join(__filename, "..", "..");
+const ROOT = join(__dirname, "..", "..");
 
 /**
  * Inauthentic content red flags (what triggers demonetization).
@@ -230,7 +230,7 @@ function generateQualityReport(channel, videoPath = null) {
 
     editorial_evidence: generateEditorialEvidence(
       channel,
-      join(ROOT, "data", "research", channel.channel_id)
+      join(ROOT, "data", "research", String(channel.id))
     ),
 
     channel_health: {
@@ -270,7 +270,8 @@ function main() {
   const channelsPath = join(ROOT, "config", "channels.json");
   const data = JSON.parse(readFileSync(channelsPath, "utf-8"));
   const channels = data.channels || data;
-  const channel = channels.find((c) => c.channel_id === channelId);
+  const numId = parseInt(channelId, 10);
+  const channel = channels.find((c) => c.id === numId || c.channel_id === channelId);
   if (!channel) {
     console.error(`Channel "${channelId}" not found`);
     process.exit(1);

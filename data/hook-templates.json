@@ -1,0 +1,254 @@
+{
+  "version": "1.0.0",
+  "description": "Hook formulas ranked by 30-second retention. Use these as templates — always customize with specific facts from research.",
+
+  "hook_rankings": [
+    {
+      "rank": 1,
+      "type": "specific-result",
+      "avg_retention_30sec": 71,
+      "formula": "In [year/timeframe], [specific person/thing] [dramatic specific action/outcome].",
+      "examples": [
+        "A man lived 438 days without a heartbeat.",
+        "In 1986, a single decision buried 350,000 people alive.",
+        "This company lost $47 billion in six months."
+      ],
+      "best_for": ["cinematic-documentary", "minimal", "motion-graphics"],
+      "best_niches": ["true-crime", "history", "business", "medical", "science"]
+    },
+    {
+      "rank": 2,
+      "type": "contrarian",
+      "avg_retention_30sec": 65,
+      "formula": "[Common belief] is completely wrong. [Shocking counter-truth].",
+      "examples": [
+        "Your front door lock is completely useless.",
+        "90% of what you know about nutrition is backwards.",
+        "The Titanic sinking was entirely preventable."
+      ],
+      "best_for": ["minimal", "motion-graphics"],
+      "best_niches": ["tech", "education", "psychology", "finance", "legal"]
+    },
+    {
+      "rank": 3,
+      "type": "direct-promise",
+      "avg_retention_30sec": 62,
+      "formula": "By the end of this, you'll [specific transformation/realization].",
+      "examples": [
+        "By the end of this, you'll never look at bread the same way.",
+        "In the next 10 minutes, you'll understand why every diet fails.",
+        "After this, you'll know exactly what to say in any interview."
+      ],
+      "best_for": ["minimal", "motion-graphics"],
+      "best_niches": ["education", "health", "career", "skills", "food"]
+    },
+    {
+      "rank": 4,
+      "type": "scale-wonder",
+      "avg_retention_30sec": 58,
+      "formula": "[Shocking scale comparison] — [emotional/contextual punchline].",
+      "examples": [
+        "There are more bacteria in your mouth than people on Earth.",
+        "The Mariana Trench is deeper than Mount Everest is tall.",
+        "This machine processes 2 million items per hour."
+      ],
+      "best_for": ["cinematic-documentary", "motion-graphics"],
+      "best_niches": ["science", "engineering", "space", "nature", "manufacturing"]
+    },
+    {
+      "rank": 5,
+      "type": "curiosity-gap",
+      "avg_retention_30sec": 55,
+      "formula": "[Intriguing observation] — [why it matters or what's hidden].",
+      "examples": [
+        "Why is there a massive black ball floating in this reservoir?",
+        "This building has been empty for 40 years. The reason is disturbing.",
+        "She disappeared in 2019. The police still have no answers."
+      ],
+      "best_for": ["cinematic-documentary"],
+      "best_niches": ["history", "mystery", "geography", "travel", "abandoned"]
+    },
+    {
+      "rank": 6,
+      "type": "emotional",
+      "avg_retention_30sec": 54,
+      "formula": "[Emotional scene-setting] — [human stakes].",
+      "examples": [
+        "When this veteran came home, he didn't expect what happened next.",
+        "A mother walked into family court expecting to keep her children.",
+        "She trusted him for 20 years. Then she found the second family."
+      ],
+      "best_for": ["cinematic-documentary"],
+      "best_niches": ["true-crime", "betrayal", "veterans", "family-court", "human-interest"]
+    },
+    {
+      "rank": 7,
+      "type": "time-passage",
+      "avg_retention_30sec": 52,
+      "formula": "For [duration], [dramatic situation]. Then [turning point].",
+      "examples": [
+        "For 40 years, no one knew who killed her. Then a $5,000 DNA test changed everything.",
+        "After 23 years in prison for a crime he didn't commit, the jury finally said the words.",
+        "Three months after opening, the restaurant was already dead."
+      ],
+      "best_for": ["cinematic-documentary"],
+      "best_niches": ["cold-cases", "wrongful-conviction", "business-failure", "history"]
+    },
+    {
+      "rank": 8,
+      "type": "fear-appeal",
+      "avg_retention_30sec": 50,
+      "formula": "[Scary/urgent situation] — [how it affects YOU].",
+      "examples": [
+        "Medicare won't pay for these 6 things. Most seniors don't find out until it's too late.",
+        "If you're driving a car made after 2015, someone can hijack it in 30 seconds.",
+        "The algorithm just killed your channel. Here's how to fix it."
+      ],
+      "best_for": ["minimal", "motion-graphics"],
+      "best_niches": ["legal", "finance", "tech-security", "medicare", "health"]
+    },
+    {
+      "rank": 9,
+      "type": "you-dont-know",
+      "avg_retention_30sec": 48,
+      "formula": "You think you know [topic]. You don't.",
+      "examples": [
+        "You think you know how memory works. You don't.",
+        "You think your phone is secure. It's not.",
+        "You think this is just a cake. It's actually a $50,000 diamond."
+      ],
+      "best_for": ["minimal", "motion-graphics"],
+      "best_niches": ["psychology", "tech", "food", "education", "health"]
+    },
+    {
+      "rank": 10,
+      "type": "question",
+      "avg_retention_30sec": 45,
+      "formula": "[Provocative question] — [implied stakes].",
+      "examples": [
+        "What happens if the sun just... disappears?",
+        "Why do 90% of startups fail in their first year?",
+        "How did a high school dropout build a $10 billion company?"
+      ],
+      "best_for": ["motion-graphics", "cinematic-documentary"],
+      "best_niches": ["science", "business", "education", "space", "physics"]
+    }
+  ],
+
+  "retention_techniques": {
+    "micro_loops": {
+      "description": "At the end of each section, tease the next section to prevent drop-off.",
+      "formulas": [
+        "But that's just the beginning...",
+        "And that's when things got dangerous.",
+        "What happened next changed everything.",
+        "But here's what nobody talks about...",
+        "And that's just the first problem."
+      ],
+      "placement": "Last 5-10 seconds of each section"
+    },
+    "pattern_interrupts": {
+      "description": "Visual or auditory changes every 60-90 seconds to reset attention.",
+      "frequency": "Every 60-90 seconds",
+      "types": [
+        "New visual approach (different B-roll style)",
+        "Surprising fact or statistic",
+        "Perspective shift (zoom in/out, angle change)",
+        "Music change or silence",
+        "Text overlay with key number"
+      ]
+    },
+    "strategic_silence": {
+      "description": "Brief silence after major revelations to let them land.",
+      "duration_ms": "750-1500ms",
+      "placement": "After major reveals, shocking facts, or emotional moments"
+    },
+    "callback_close": {
+      "description": "Repeat or reference the hook phrase in the final line to create satisfaction.",
+      "example": "Hook: 'A man lived 438 days without a heartbeat.' Close: '438 days. No heartbeat. And somehow... he survived.'"
+    },
+    "statistics_with_context": {
+      "description": "Never state a number without making it feel real.",
+      "formula": "State the number → pause → contextualize with comparison or emotional weight.",
+      "example": "47 billion dollars. That's more than the GDP of half the countries on Earth. Gone in six months."
+    }
+  },
+
+  "section_transition_formulas": [
+    "Meanwhile...",
+    "What they didn't know yet was...",
+    "But here's where it gets interesting...",
+    "Three months later, everything changed.",
+    "And that's when the real investigation began.",
+    "The numbers told a different story.",
+    "What happened next would take 14 years to uncover.",
+    "But the evidence had already been destroyed.",
+    "The truth was far worse than anyone imagined.",
+    "And nobody saw it coming."
+  ],
+
+  "closing_formulas": {
+    "reflection": "Broader implications, philosophical closing. Best for: science, history, psychology.",
+    "bookend": "Repeat hook phrase with new context. Best for: cinematic-documentary, true-crime.",
+    "justice": "Outcome resolution (guilty/innocent, reform). Best for: true-crime, legal.",
+    "lesson": "What we learned, takeaway. Best for: business, education, skills.",
+    "wonder": "Open-ended mystery, curiosity. Best for: science, nature, space.",
+    "call-to-action": "Direct CTA to next video/subscribe. Best for: tech, education, minimal.",
+    "tribute": "Honor/respect closing. Best for: veteran, humanitarian content.",
+    "philosophical": "Existential/cosmic perspective. Best for: space, physics, psychology.",
+    "cliffhanger": "Tease next episode. Best for: series content, recaps."
+  },
+
+  "niche_hook_mapping": {
+    "1": { "primary": ["fear-appeal", "specific-result"], "secondary": ["direct-promise", "question"] },
+    "2": { "primary": ["fear-appeal", "specific-result"], "secondary": ["contrarian", "direct-promise"] },
+    "3": { "primary": ["specific-result", "contrarian"], "secondary": ["direct-promise", "scale-wonder"] },
+    "4": { "primary": ["specific-result", "curiosity-gap"], "secondary": ["time-passage", "emotional"] },
+    "5": { "primary": ["scale-wonder", "specific-result"], "secondary": ["curiosity-gap", "time-passage"] },
+    "6": { "primary": ["specific-result", "scale-wonder"], "secondary": ["time-passage", "curiosity-gap"] },
+    "7": { "primary": ["specific-result", "time-passage"], "secondary": ["contrarian", "emotional"] },
+    "8": { "primary": ["you-dont-know", "contrarian"], "secondary": ["specific-result", "question"] },
+    "9": { "primary": ["question", "curiosity-gap"], "secondary": ["scale-wonder", "contrarian"] },
+    "10": { "primary": ["emotional", "specific-result"], "secondary": ["time-passage", "curiosity-gap"] },
+    "11": { "primary": ["scale-wonder", "question"], "secondary": ["curiosity-gap", "specific-result"] },
+    "12": { "primary": ["curiosity-gap", "scale-wonder"], "secondary": ["specific-result", "question"] },
+    "13": { "primary": ["specific-result", "curiosity-gap"], "secondary": ["scale-wonder", "time-passage"] },
+    "14": { "primary": ["question", "scale-wonder"], "secondary": ["contrarian", "specific-result"] },
+    "15": { "primary": ["specific-result", "fear-appeal"], "secondary": ["scale-wonder", "direct-promise"] },
+    "16": { "primary": ["specific-result", "time-passage"], "secondary": ["scale-wonder", "curiosity-gap"] },
+    "17": { "primary": ["specific-result", "time-passage"], "secondary": ["curiosity-gap", "emotional"] },
+    "18": { "primary": ["contrarian", "specific-result"], "secondary": ["you-dont-know", "question"] },
+    "19": { "primary": ["specific-result", "time-passage"], "secondary": ["scale-wonder", "curiosity-gap"] },
+    "20": { "primary": ["direct-promise", "question"], "secondary": ["contrarian", "specific-result"] },
+    "21": { "primary": ["none-verbal"], "secondary": [] },
+    "22": { "primary": ["specific-result", "emotional"], "secondary": ["curiosity-gap", "time-passage"] },
+    "23": { "primary": ["scale-wonder", "emotional"], "secondary": ["specific-result", "curiosity-gap"] },
+    "24": { "primary": ["emotional", "specific-result"], "secondary": ["time-passage", "direct-promise"] },
+    "25": { "primary": ["emotional", "specific-result"], "secondary": ["time-passage", "curiosity-gap"] },
+    "26": { "primary": ["specific-result", "scale-wonder"], "secondary": ["curiosity-gap", "time-passage"] },
+    "27": { "primary": ["specific-result", "curiosity-gap"], "secondary": ["emotional", "time-passage"] },
+    "28": { "primary": ["emotional", "curiosity-gap"], "secondary": ["specific-result", "time-passage"] },
+    "29": { "primary": ["curiosity-gap", "specific-result"], "secondary": ["time-passage", "emotional"] },
+    "30": { "primary": ["time-passage", "specific-result"], "secondary": ["emotional", "curiosity-gap"] },
+    "31": { "primary": ["emotional", "time-passage"], "secondary": ["specific-result", "justice"] },
+    "32": { "primary": ["scale-wonder", "curiosity-gap"], "secondary": ["specific-result", "question"] },
+    "33": { "primary": ["scale-wonder", "specific-result"], "secondary": ["curiosity-gap", "time-passage"] },
+    "34": { "primary": ["question", "scale-wonder"], "secondary": ["specific-result", "direct-promise"] },
+    "35": { "primary": ["question", "scale-wonder"], "secondary": ["specific-result", "contrarian"] },
+    "36": { "primary": ["direct-promise", "specific-result"], "secondary": ["contrarian", "you-dont-know"] },
+    "37": { "primary": ["contrarian", "specific-result"], "secondary": ["you-dont-know", "question"] },
+    "38": { "primary": ["specific-result", "direct-promise"], "secondary": ["contrarian", "question"] },
+    "39": { "primary": ["specific-result", "emotional"], "secondary": ["curiosity-gap", "time-passage"] },
+    "40": { "primary": ["question", "direct-promise"], "secondary": ["specific-result", "contrarian"] },
+    "41": { "primary": ["question", "you-dont-know"], "secondary": ["specific-result", "contrarian"] },
+    "42": { "primary": ["contrarian", "question"], "secondary": ["direct-promise", "specific-result"] },
+    "43": { "primary": ["contrarian", "direct-promise"], "secondary": ["specific-result", "question"] },
+    "44": { "primary": ["specific-result", "direct-promise"], "secondary": ["contrarian", "question"] },
+    "45": { "primary": ["specific-result", "contrarian"], "secondary": ["direct-promise", "question"] },
+    "46": { "primary": ["direct-promise", "specific-result"], "secondary": ["fear-appeal", "contrarian"] },
+    "47": { "primary": ["fear-appeal", "direct-promise"], "secondary": ["specific-result", "time-passage"] },
+    "48": { "primary": ["scale-wonder", "curiosity-gap"], "secondary": ["specific-result", "question"] },
+    "49": { "primary": ["specific-result", "scale-wonder"], "secondary": ["direct-promise", "curiosity-gap"] },
+    "50": { "primary": ["specific-result", "contrarian"], "secondary": ["direct-promise", "scale-wonder"] }
+  }
+}

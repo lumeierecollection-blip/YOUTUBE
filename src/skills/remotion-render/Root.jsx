@@ -1,5 +1,5 @@
 import { registerRoot, Composition } from "remotion";
-import { compositions as cinematic } from "./compositions/cinematic-documentary.jsx";
+import { compositions as cinematicDocumentary } from "./compositions/cinematic-documentary.jsx";
 import { compositions as minimal } from "./compositions/minimal.jsx";
 import { compositions as motionGraphics } from "./compositions/motion-graphics.jsx";
 
@@ -9,18 +9,13 @@ import { compositions as motionGraphics } from "./compositions/motion-graphics.j
  */
 
 function RemotionRoot() {
-  const all = [...cinematic, ...minimal, ...motionGraphics];
-  return all.map((c) => (
-    <Composition
-      key={c.id}
-      id={c.id}
-      component={c.component}
-      durationInFrames={c.durationInFrames}
-      fps={c.fps}
-      width={c.width}
-      height={c.height}
-    />
-  ));
+  return (
+    <>
+      {cinematicDocumentary.map(c => <Composition key={c.id} {...c} />)}
+      {minimal.map(c => <Composition key={c.id} {...c} />)}
+      {motionGraphics.map(c => <Composition key={c.id} {...c} />)}
+    </>
+  );
 }
 
 registerRoot(RemotionRoot);
