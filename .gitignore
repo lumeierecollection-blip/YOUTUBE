@@ -1,8 +1,11 @@
 node_modules/
 src/skills/remotion-render/node_modules/
 *.log
+*.err
+data/run-logs/
 .DS_Store
 Thumbs.db
+data/research/**/pipeline-report.json
 data/tts/**/*.mp3
 data/tts/**/*.wav
 data/renders/**/*.mp4
@@ -12,3 +15,7 @@ data/research/**/topic-log.json
 *.bak
 .env
 .env.local
+config/creds/
+youtubetokens.txt
+src/skills/remotion-render/vo.mp3
+src/skills/remotion-render/render-entry.jsx

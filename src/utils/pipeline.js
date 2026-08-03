@@ -93,10 +93,10 @@ function main() {
 
   console.log(`\n═══════════════════════════════════════════`);
   console.log(`  PIPELINE: ${channel.channel_id}`);
-  console.log(`  Niche: ${channel.niche} / ${channel.niche_sub}`);
+  console.log(`  Niche: ${channel.niche}${channel.niche_sub ? ` / ${channel.niche_sub}` : ""}`);
   console.log(`  Style: ${channel.style}`);
   console.log(`  Tone: ${channel.tone}`);
-  console.log(`  Voice: ${channel.voice || "en-US-GuyNeural"}`);
+  console.log(`  Voice: ${channel.tts_voice || "en-US-GuyNeural"}`);
   console.log(`  Dry Run: ${dryRun}`);
   if (stepFilter) console.log(`  Starting at Step: ${stepFilter}`);
   console.log(`═══════════════════════════════════════════\n`);

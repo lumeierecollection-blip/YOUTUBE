@@ -14,9 +14,16 @@
     "render": "node src/skills/remotion-render/render.js",
     "publish": "node src/skills/youtube-publish/run.js",
     "pipeline": "node src/utils/pipeline.js",
+    "engage": "node src/utils/youtube-engage.js",
     "test-config": "node src/utils/test-config.js"
   },
   "dependencies": {
-    "edge-tts": "^1.0.0"
+    "@remotion/bundler": "^4.0.503",
+    "@remotion/cli": "^4.0.503",
+    "@remotion/renderer": "^4.0.503",
+    "edge-tts": "^1.0.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "remotion": "^4.0.503"
   }
 }

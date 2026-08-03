@@ -49,6 +49,9 @@
                    },
         "target_audience":  "Science-curious adults 18-50",
         "channel_id":  "ch-01",
+        "google_account":  "CH1",
+        "youtube_channel_id":  "UCHU7TgrQH22EXxJWaynHYig",
+        "youtube_credentials_path":  "config/creds/ch-01.json",
         "sfx_profile":  {
                             "silence_technique":  "1-2 second silence after major creature/formation reveals",
                             "music_style":  "ambient electronic with deep drones, occasional orchestral swells",
@@ -134,6 +137,9 @@
                    },
         "target_audience":  "Lifestyle enthusiasts 25-55",
         "channel_id":  "ch-02",
+        "google_account":  "CH2",
+        "youtube_channel_id":  "UC2Uu9MImISmRM0idjD7uuog",
+        "youtube_credentials_path":  "config/creds/ch-02.json",
         "sfx_profile":  {
                             "silence_technique":  "3-4 second ambient-only passages during scenic transitions",
                             "music_style":  "acoustic folk with fingerpicked guitar, ambient environmental textures",
@@ -218,6 +224,9 @@
                    },
         "target_audience":  "History buffs 25-60",
         "channel_id":  "ch-03",
+        "google_account":  "CH3",
+        "youtube_channel_id":  "UCLKIE3UsFSmyfxEH6R9rkAw",
+        "youtube_credentials_path":  "config/creds/ch-03.json",
         "sfx_profile":  {
                             "silence_technique":  "2-3 second silence before keeper story climaxes",
                             "music_style":  "orchestral with solo cello, building tension with storm-themed percussion",
@@ -303,6 +312,9 @@
                    },
         "target_audience":  "Foodies 18-45, travel enthusiasts",
         "channel_id":  "ch-04",
+        "google_account":  "CH4",
+        "youtube_channel_id":  "UCTUvox63wWPYClFTtq0gUkw",
+        "youtube_credentials_path":  "config/creds/ch-04.json",
         "sfx_profile":  {
                             "silence_technique":  "silence during first bite reaction moments",
                             "music_style":  "upbeat world music fusion, region-specific instrumentation per video",
@@ -389,6 +401,9 @@
                    },
         "target_audience":  "Tech enthusiasts 18-35",
         "channel_id":  "ch-05",
+        "google_account":  "CH5",
+        "youtube_channel_id":  "UCZY_vlCgnK839ZJjhCCWuyg",
+        "youtube_credentials_path":  "config/creds/ch-05.json",
         "sfx_profile":  {
                             "silence_technique":  "brief silence before revealing exploit impact or breach scope",
                             "music_style":  "synthwave with industrial textures, dark electronic undertones",
