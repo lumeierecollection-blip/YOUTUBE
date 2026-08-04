@@ -3,6 +3,10 @@
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const topicLog = require('../../utils/topic-log.cjs');
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..', '..');
@@ -217,6 +221,12 @@ async function main() {
     console.log(`  Written: ${outputPath}`);
     console.log(`  Words: ${script.total_words}`);
     console.log(`  Est. duration: ${Math.floor(script.estimated_duration_seconds / 60)}:${String(script.estimated_duration_seconds % 60).padStart(2, '0')}`);
+    try {
+      topicLog.reserveTopic(channelId, research.topic, { channel_name: channel.channel_name, niche: channel.niche });
+      console.log(`  Logged topic in data/topic-log.json (dedup)`);
+    } catch (err) {
+      console.warn(`  Topic log update skipped: ${err.message}`);
+    }
   }
 
   console.log('\nDone.');

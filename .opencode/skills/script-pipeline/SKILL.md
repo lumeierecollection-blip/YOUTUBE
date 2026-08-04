@@ -37,9 +37,12 @@ End-to-end script generation that ensures every video has:
 
 ### Phase 2: Topic Selection & Deduplication
 1. From researched topics, select the top candidate
-2. Check against `topic-log.json` for semantic duplicates (not just exact matches)
+2. Check against `data/topic-log.json` for semantic duplicates (not just exact matches) — use the code-level check:
+   - `node src/utils/topic-log.cjs <channel-id> list` — show every already-used topic
+   - `node src/utils/topic-log.cjs <channel-id> pick "<candidate>"` — exits non-zero if the candidate is a duplicate
+   - Also honor `data/research/<channel-id>/next-topic.json` if it exists (the pipeline already reserved that topic as the next one)
 3. If topic is too similar to an existing one, reject and try next candidate
-4. Once confirmed unique, log it to `topic-log.json`
+4. Once confirmed unique, reserve it: `node src/utils/topic-log.cjs <channel-id> reserve "<topic>"`. `script-writer/run.js` does this automatically every time it writes a script — never skip that step.
 
 ### Phase 3: Hook Optimization
 1. Read `data/hook-templates.json` → `niche_hook_mapping` for this channel ID
@@ -75,7 +78,8 @@ End-to-end script generation that ensures every video has:
 - Summary to user with: topic, hook, word count, estimated duration, sections
 
 ## Rules
-- Never generate a topic that's already in the channel's `used_topics` list
+- Never generate a topic that's already in the channel's `used_topics` list (check via `node src/utils/topic-log.cjs <channel-id> list`)
+- Every script written must be registered in `data/topic-log.json` (script-writer does this; verify with `node src/utils/topic-log.cjs <channel-id> list`)
 - Every fact in the script must come from actual web research (not general knowledge)
 - Hook must be from the ranked formulas — don't invent new hook styles
 - Follow the channel's style template exactly (pacing, transitions, SFX)

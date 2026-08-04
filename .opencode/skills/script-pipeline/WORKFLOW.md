@@ -29,6 +29,12 @@ Read `data/topic-log.json` and extract:
   "last_generated": "2026-07-27T12:00:00Z"
 }
 ```
+`used_topics` entries are objects: `{ "topic": "...", "slug": "...", "reserved_at": "..." }`.
+Fastest way to see the real list:
+```
+node src/utils/topic-log.cjs <channel-id> list
+```
+If `data/research/<channel-id>/next-topic.json` exists, its `topic` is the one the pipeline already reserved — research THAT topic first.
 
 ### Step 1.3 — Research Passes (minimum 3)
 
@@ -77,13 +83,20 @@ Generate a URL-safe slug for the topic:
 - Example: `"how-toys-r-us-failed"` or `"titanic-sinking-preventable"`
 
 ### Step 2.4 — Log the Topic
-Update `data/topic-log.json`:
+`script-writer/run.js` writes to `data/topic-log.json` automatically via `src/utils/topic-log.cjs` (reserveTopic). If you are doing research without script-writer, reserve explicitly:
+```
+node src/utils/topic-log.cjs <channel-id> reserve "<topic>"
+```
+The log stores objects, not bare strings:
 ```json
 {
-  "used_topics": ["existing-topic", "new-topic-slug"],
+  "used_topics": [
+    { "topic": "How Toys R Us Failed", "slug": "how-toys-r-us-failed", "reserved_at": "2026-07-27T14:30:00Z" }
+  ],
   "last_generated": "2026-07-27T14:30:00Z"
 }
 ```
+Verify after writing: `node src/utils/topic-log.cjs <channel-id> list`.
 
 ---
 
@@ -276,13 +289,15 @@ Save to `data/scripts/{channel_id}/{topic-slug}.json`:
 ```
 
 ### Step 5.2 — Update Topic Log
-Add to `data/topic-log.json`:
-```json
-{
-  "used_topics": ["existing-topic", "new-topic-slug"],
-  "last_generated": "2026-07-27T14:30:00Z"
-}
+`script-writer/run.js` already did this automatically. Verify:
 ```
+node src/utils/topic-log.cjs <channel-id> list
+```
+Expected: the new topic appears in `used_topics`. If it does NOT, run:
+```
+node src/utils/topic-log.cjs <channel-id> reserve "<topic>"
+```
+Never proceed to render/publish while the topic is missing from the log — that is what causes repeats.
 
 ### Step 5.3 — Report to User
 Return summary:

@@ -1,10 +1,12 @@
 {
   "channel_id": "2",
-  "started_at": "2026-07-27T18:55:03.555Z",
+  "started_at": "2026-08-03T18:56:49.911Z",
   "steps": {
     "1": {
       "status": "ok",
-      "topic": "What to Say During a Traffic Stop to Protect Your Rights"
+      "topic": "constitutional rights explained",
+      "source": "content-pillar",
+      "reserved": false
     },
     "2": {
       "status": "skipped",
@@ -17,23 +19,25 @@
     "4": {
       "status": "ok",
       "audio": 1,
-      "srt": 0
+      "srt": 1
     },
     "5": {
-      "status": "ok",
-      "title": "The What to Say During a Traffic Stop to Protect Your Rights Nobody Talks About"
+      "status": "skipped"
     },
     "6": {
-      "status": "ok"
+      "status": "skipped"
     },
     "7": {
-      "status": "ok"
+      "status": "ok",
+      "cached": true
     },
     "8": {
-      "status": "ok"
+      "status": "ok",
+      "cached": true
     },
     "9": {
-      "status": "pending"
+      "status": "warnings",
+      "srt_count": 1
     },
     "10": {
       "status": "ok",
@@ -47,21 +51,21 @@
     },
     "13": {
       "status": "ok",
-      "requires": false
+      "cached": true
     },
     "14": {
       "status": "ok",
-      "evidence_checks": 5
+      "cached": true
     },
     "15": {
-      "status": "ok"
+      "status": "ok",
+      "cached": true
     },
     "16": {
-      "status": "skipped",
-      "reason": "no API"
+      "status": "skipped"
     }
   },
   "errors": [],
   "warnings": [],
-  "completed_at": "2026-07-27T18:55:03.672Z"
+  "completed_at": "2026-08-03T18:56:49.964Z"
 }

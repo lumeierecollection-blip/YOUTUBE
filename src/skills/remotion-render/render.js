@@ -133,6 +133,7 @@ function toContentSections(script) {
       sfxCue: s.sfx_cue || null,
       bRoll: Array.isArray(s.b_roll) ? s.b_roll : null,
       textOverlay: s.text_overlay || null,
+      animationCue: s.animation_cue || null,
       transitionOut: s.transition_out || null,
     }));
 }
@@ -307,6 +308,7 @@ async function main() {
     thumbnailStyle: channel.thumbnail_spec?.style || "dramatic-visual",
     tone: channel.tone,
     font: channel.font || "Inter",
+    channelName: channel.channel_name || "",
     palette: channel.thumbnail_spec?.color_palette || null,
   };
 

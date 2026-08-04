@@ -26,10 +26,14 @@ import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from 
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
+import { createRequire } from "module";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..", "..");
+
+const require = createRequire(import.meta.url);
+const topicLog = require("./topic-log.cjs");
 
 // ─── Imports ───
 import { generateSEO } from "./seo.js";
@@ -57,6 +61,45 @@ function run(cmd, cwd) {
 
 function ensureDir(dir) {
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+}
+
+const TOPIC_LOG_SKIP = /(seo|endscreen|branding|disclosure|quality|render-settings|pipeline-report|copyright|next-topic|tts-manifest|community|-script\.json$)/i;
+
+// Collects real research topics (not derived files like seo/scripts) from a channel's research dir.
+function collectResearchTopics(researchDir) {
+  if (!existsSync(researchDir)) return [];
+  const topics = [];
+  const files = readdirSync(researchDir).filter((f) => f.endsWith(".json") && !TOPIC_LOG_SKIP.test(f));
+  for (const f of files) {
+    try {
+      const j = JSON.parse(readFileSync(join(researchDir, f), "utf-8"));
+      const t = (j.topic || j.title || "").trim();
+      if (t) topics.push(t);
+    } catch (e) {}
+  }
+  return topics;
+}
+
+// Resolves the topic the metadata steps (5/6) should target: preferred (step 1),
+// then next-topic.json, then the latest research file.
+function resolveCurrentTopic(researchDir, preferred) {
+  if (preferred) {
+    const slug = preferred.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    return { topic: preferred, slug };
+  }
+  const ntPath = join(researchDir, "next-topic.json");
+  if (existsSync(ntPath)) {
+    try {
+      const nt = JSON.parse(readFileSync(ntPath, "utf-8"));
+      if (nt.topic) return { topic: nt.topic, slug: nt.slug };
+    } catch (e) {}
+  }
+  const topics = collectResearchTopics(researchDir);
+  if (topics.length > 0) {
+    const last = topics[topics.length - 1];
+    return { topic: last, slug: last.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") };
+  }
+  return null;
 }
 
 function main() {
@@ -120,27 +163,66 @@ function main() {
   if (shouldRun(1)) {
     log("1", "Deep Research", "info");
     const researchDir = join(ROOT, "data", "research", channelId);
-    let topic = null;
+    const topics = collectResearchTopics(researchDir);
 
-    if (existsSync(researchDir)) {
-      const researchFiles = readdirSync(researchDir).filter((f) => f.endsWith(".json") && !f.includes("seo") && !f.includes("endscreen") && !f.includes("branding") && !f.includes("disclosure") && !f.includes("quality") && !f.includes("render-settings"));
-      if (researchFiles.length > 0) {
-        log("1", `Found ${researchFiles.length} existing research file(s)`, "ok");
-        const latest = researchFiles[researchFiles.length - 1];
-        log("1", `Latest: ${latest}`, "info");
-        try {
-          const research = JSON.parse(readFileSync(join(researchDir, latest), "utf-8"));
-          topic = research.topic || research.title;
-        } catch (e) {}
-      } else {
-        log("1", "No research files yet — run deep-research first", "warn");
-        report.warnings.push("Step 1: No research data available");
-      }
-    } else {
-      log("1", "No research directory — run deep-research first", "warn");
-      report.warnings.push("Step 1: No research directory");
+    let selected = null;
+    let source = null;
+    let skipCount = 0;
+
+    // Prefer an existing research topic that has not been used yet.
+    const candidates = topics.filter((t) => {
+      const dup = topicLog.isDuplicate(channelId, t);
+      if (dup) skipCount++;
+      return !dup;
+    });
+    const researchPick = topicLog.pickNextTopic(channelId, candidates);
+    if (researchPick) {
+      selected = researchPick;
+      source = "research";
     }
-    report.steps[1] = { status: topic ? "ok" : "pending", topic };
+
+    // Otherwise rotate to the next unused content pillar (agent researches it fresh).
+    if (!selected) {
+      const pillars = (channel.content_pillars || []).map((p) => p.replace(/^(the|a|an)\s+/i, ""));
+      const pillarPick = topicLog.pickNextTopic(channelId, pillars);
+      if (pillarPick) {
+        selected = pillarPick;
+        source = "content-pillar";
+      }
+    }
+
+    if (selected) {
+      const slug = topicLog.slugify(selected);
+      const ntPath = join(researchDir, "next-topic.json");
+      if (!dryRun) {
+        topicLog.reserveTopic(channelId, selected, { channel_name: channel.channel_name, niche: channel.niche });
+        writeFileSync(
+          ntPath,
+          JSON.stringify(
+            {
+              channel_id: channelId,
+              selected_at: new Date().toISOString(),
+              topic: selected,
+              slug,
+              source,
+              status: "next-up",
+              note: "Reserved in data/topic-log.json. Run deep-research on THIS topic, then script-writer.",
+            },
+            null,
+            2
+          )
+        );
+      }
+      log("1", `Next topic: "${selected}"`, "ok");
+      log("1", `Source: ${source}${skipCount > 0 ? ` — ${skipCount} duplicate(s) skipped` : ""}`, "info");
+      if (!dryRun) log("1", `Reserved in topic-log; saved ${ntPath}`, "info");
+      else log("1", "Dry run — topic selected but not reserved", "info");
+    } else {
+      log("1", "No unused topics available — expand content_pillars in channels.json", "warn");
+      report.warnings.push("Step 1: all content pillars exhausted");
+    }
+
+    report.steps[1] = { status: selected ? "ok" : "pending", topic: selected, source, reserved: !dryRun && !!selected };
   }
 
   // ═══════════════════════════════════════════════════════
@@ -206,27 +288,10 @@ function main() {
   if (shouldRun(5)) {
     log("5", "SEO Metadata", "info");
 
-    // Find topic: use step 1 result, or fall back to latest research file
-    let topicSlug = report.steps[1]?.topic?.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    let topic = report.steps[1]?.topic;
-    if (!topicSlug && existsSync(dirs.research)) {
-      const researchFiles = readdirSync(dirs.research).filter(
-        f => f.endsWith(".json") && !f.includes("seo") && !f.includes("endscreen") &&
-             !f.includes("branding") && !f.includes("disclosure") && !f.includes("quality") &&
-             !f.includes("render-settings") && !f.includes("pipeline-report") &&
-             !f.includes("copyright") && !f.includes("shorts") && !f.includes("community") &&
-             !f.includes("tts-manifest")
-      );
-      if (researchFiles.length > 0) {
-        try {
-          const latest = JSON.parse(readFileSync(join(dirs.research, researchFiles[researchFiles.length - 1]), "utf-8"));
-          topic = latest.topic || latest.title || "Unknown Topic";
-          topicSlug = topic.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-        } catch (e) {}
-      }
-    }
-    topicSlug = topicSlug || "latest";
-    topic = topic || "Unknown Topic";
+    // Find topic: use step 1's selected topic, then next-topic.json, then latest research file
+    const current = resolveCurrentTopic(dirs.research, report.steps[1]?.topic);
+    const topic = current?.topic || "Unknown Topic";
+    const topicSlug = current?.slug || topic.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
     const seoPath = join(dirs.research, `${topicSlug}-seo.json`);
 
@@ -256,26 +321,9 @@ function main() {
   // ═══════════════════════════════════════════════════════
   if (shouldRun(6)) {
     log("6", "End Screen & Cards", "info");
-    let topicSlug6 = report.steps[1]?.topic?.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    let topic6 = report.steps[1]?.topic;
-    if (!topicSlug6 && existsSync(dirs.research)) {
-      const rf6 = readdirSync(dirs.research).filter(
-        f => f.endsWith(".json") && !f.includes("seo") && !f.includes("endscreen") &&
-             !f.includes("branding") && !f.includes("disclosure") && !f.includes("quality") &&
-             !f.includes("render-settings") && !f.includes("pipeline-report") &&
-             !f.includes("copyright") && !f.includes("shorts") && !f.includes("community") &&
-             !f.includes("tts-manifest")
-      );
-      if (rf6.length > 0) {
-        try {
-          const latest6 = JSON.parse(readFileSync(join(dirs.research, rf6[rf6.length - 1]), "utf-8"));
-          topic6 = latest6.topic || latest6.title || "Unknown Topic";
-          topicSlug6 = topic6.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-        } catch (e) {}
-      }
-    }
-    topicSlug6 = topicSlug6 || "latest";
-    topic6 = topic6 || "Unknown Topic";
+    const current6 = resolveCurrentTopic(dirs.research, report.steps[1]?.topic);
+    const topic6 = current6?.topic || "Unknown Topic";
+    const topicSlug6 = current6?.slug || topic6.toLowerCase().replace(/[^a-z0-9]+/g, "-");
     const endscreenPath = join(dirs.research, `${topicSlug6}-endscreen.json`);
 
     if (existsSync(endscreenPath)) {

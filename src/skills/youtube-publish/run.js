@@ -37,7 +37,7 @@ const THUMB_EXTENSIONS = [".jpg", ".jpeg", ".png"];
 
 function loadChannel(channelId) {
   const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-  const channel = (data.channels || data).find((c) => c.channel_id === channelId);
+  const channel = (data.channels || data).find((c) => String(c.id) === channelId || c.channel_id === channelId);
   if (!channel) throw new Error(`Channel "${channelId}" not found`);
   return channel;
 }
@@ -194,6 +194,7 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
   }
 
   const delayHours = channel.publish_delay_hours ?? 1;
+  const stayPrivate = channel.stay_private === true;
   const goPublicAt = new Date(Date.now() + delayHours * 3600 * 1000).toISOString();
   const entry = {
     video_id: videoId,
@@ -204,14 +205,18 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
     publish_delay_hours: delayHours,
     go_public_at: goPublicAt,
     privacy_status: "private",
-    cancelled: false,
+    cancelled: stayPrivate,
   };
   const queue = readQueue(channelId);
   queue.push(entry);
   writeQueue(channelId, queue);
 
   console.log(`\n  Private link: https://youtu.be/${videoId}`);
-  console.log(`  Goes public: ${goPublicAt} (in ${delayHours} hour(s))`);
+  if (stayPrivate) {
+    console.log(`  STAYS PRIVATE: stay_private=true — this video will never auto-go-public.`);
+  } else {
+    console.log(`  Goes public: ${goPublicAt} (in ${delayHours} hour(s))`);
+  }
   console.log(`  Queued: ${queuePath(channelId)}`);
   console.log(`  To cancel: node run.js cancel ${channelId} ${videoId}`);
 }

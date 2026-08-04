@@ -110,8 +110,10 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
       `--write-media "${audioPath}" ` +
       `--write-subtitles "${srtPath}"`;
 
-    // Prefer `edge-tts` CLI; fall back to `python -m edge_tts` (CLI may be off PATH).
-    const cmds = [`edge-tts ${args}`, `python -m edge_tts ${args}`];
+    // Prefer `edge-tts` CLI; fall back to `python -m edge_tts` (CLI may be off
+    // PATH). A real interpreter can be pinned per channel via channel.tts_python.
+    const python = settings.python || "python";
+    const cmds = [`edge-tts ${args}`, `${python} -m edge_tts ${args}`];
     let lastErr = null;
     for (const cmd of cmds) {
       try {
@@ -206,6 +208,7 @@ function main() {
     generateTTS(segments, voice, outDir, topic, {
       rate: channel.tts_rate,
       pitch: channel.tts_pitch,
+      python: channel.tts_python,
     }).catch(err => {
       console.error(`TTS failed: ${err.message}`);
     });

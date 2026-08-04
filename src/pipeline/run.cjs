@@ -24,6 +24,8 @@ const TOPIC_LOG_PATH = path.join(ROOT, 'data', 'topic-log.json');
 const HOOK_TEMPLATES_PATH = path.join(ROOT, 'data', 'hook-templates.json');
 const SCRIPTS_DIR = path.join(ROOT, 'data', 'scripts');
 
+const topicLogUtil = require('../utils/topic-log.cjs');
+
 // --- Helpers ---
 
 function loadJSON(filePath) {
@@ -180,7 +182,7 @@ function generateForChannel(channel, topicLog, hookTemplates, config) {
     console.log('  No previous topics. All topics available.');
   } else {
     console.log(`  Used topics (${logEntry.used_topics.length}):`);
-    logEntry.used_topics.forEach(t => console.log(`    - ${t}`));
+    logEntry.used_topics.forEach(t => console.log(`    - ${typeof t === 'string' ? t : t.topic}`));
   }
 
   // Hook templates
@@ -214,7 +216,7 @@ function generateForChannel(channel, topicLog, hookTemplates, config) {
   console.log(`\n--- AGENT INSTRUCTIONS ---`);
   console.log(`To generate a script for this channel:`);
   console.log(`1. Run 3-4 research passes on the niche (deep-research skill)`);
-  console.log(`2. Filter out used topics: [${logEntry.used_topics.join(', ')}]`);
+  console.log(`2. Filter out used topics: [${logEntry.used_topics.map(t => typeof t === 'string' ? t : t.topic).join(', ')}]`);
   console.log(`3. Select topic with highest hook potential`);
   console.log(`4. Generate 3 hook variations using "${primaryHookType}" formula`);
   console.log(`5. Write full script following script-pipeline WORKFLOW.md`);
@@ -222,6 +224,41 @@ function generateForChannel(channel, topicLog, hookTemplates, config) {
   console.log(`7. Update topic-log.json with new topic`);
   console.log(`\n  Script structure: hook (0:00-0:30) → section_1 → section_2 → section_3 → close`);
   console.log(`  Target: 1,000-1,700 words, 8-12 minutes`);
+
+  // Recommend the next topic that has NOT been used yet (single source of truth: data/topic-log.json)
+  const researchDir = path.join(ROOT, 'data', 'research', chId);
+  const candidates = [];
+  if (fs.existsSync(researchDir)) {
+    const skip = /(seo|endscreen|branding|disclosure|quality|render-settings|pipeline-report|copyright|next-topic|tts-manifest|community|-script\.json$)/i;
+    fs.readdirSync(researchDir)
+      .filter(f => f.endsWith('.json') && !skip.test(f))
+      .forEach(f => {
+        try {
+          const j = JSON.parse(fs.readFileSync(path.join(researchDir, f), 'utf8'));
+          if (j.topic) candidates.push(j.topic);
+        } catch (e) {}
+      });
+  }
+  candidates.push(...(channel.content_pillars || []));
+
+  console.log(`\n--- NEXT TOPIC ---`);
+  let next = null;
+  const ntPath = path.join(researchDir, 'next-topic.json');
+  if (fs.existsSync(ntPath)) {
+    try {
+      const nt = JSON.parse(fs.readFileSync(ntPath, 'utf8'));
+      if (nt.topic) next = nt.topic;
+    } catch (e) {}
+  }
+  if (!next) next = topicLogUtil.pickNextTopic(chId, candidates);
+  if (next) {
+    console.log(`  Recommended: "${next}"`);
+    console.log(`  Used topics:  node src/utils/topic-log.cjs ${chId} list`);
+    console.log(`  Reserve:      node src/utils/topic-log.cjs ${chId} reserve "${next}"`);
+    console.log(`  Note: script-writer auto-reserves each topic it writes. Never reuse a listed topic.`);
+  } else {
+    console.log('  None available — all research topics and content pillars are used. Add more pillars.');
+  }
 }
 
 main();

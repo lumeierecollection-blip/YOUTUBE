@@ -13,6 +13,20 @@ clarification.
 
 ## Process (minimum 3-4 distinct search passes per topic)
 
+0. **Pick a topic that has not been used before.** Before searching, check
+   the channel's dedup log:
+   ```
+   node src/utils/topic-log.cjs <channel-id> list
+   node src/utils/topic-log.cjs <channel-id> pick "<candidate topic>"
+   ```
+   If `data/research/<channel-id>/next-topic.json` exists, that topic was
+   already reserved by the pipeline — research THAT one. Never research or
+   recommend a topic already in `used_topics` (the pick command exits
+   non-zero for duplicates). After the topic is confirmed, reserve it:
+   ```
+   node src/utils/topic-log.cjs <channel-id> reserve "<topic>"
+   ```
+
 1. **Pass 1 — broad web pass.** General search on the topic/niche to
    understand the current landscape and any recent news.
 2. **Pass 2 — narrow/factual pass.** Re-search with more specific terms
