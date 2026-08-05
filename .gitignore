@@ -19,3 +19,5 @@ config/creds/
 youtubetokens.txt
 src/skills/remotion-render/vo.mp3
 src/skills/remotion-render/render-entry.jsx
+src/skills/remotion-render/verify-entry.jsx
+src/skills/remotion-render/verify-out/

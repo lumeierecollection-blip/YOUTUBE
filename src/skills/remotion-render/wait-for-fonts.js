@@ -7,13 +7,23 @@ if (typeof document !== "undefined") {
   style.innerHTML = FONT_FACES;
   document.head.appendChild(style);
 
-  const handle = delayRender("Waiting for channel fonts to load");
-  Promise.all(
-    FONT_FAMILIES.flatMap((fam) => [
-      document.fonts.load(`400 40px "${fam}"`),
-      document.fonts.load(`700 40px "${fam}"`),
-    ])
-  )
+  // delayRender's own timeout is set astronomically high: if the bundle is
+  // evaluated twice in one page (Remotion re-evaluates the entry), the first
+  // evaluation's handle is dropped from `remotion_delayRenderHandles`, so its
+  // `continueRender` cannot cancel the page-side timer — and an orphaned timer
+  // aborts the whole render at timeout-2000ms even though rendering is fine.
+  const handle = delayRender("Waiting for channel fonts to load", {
+    timeoutInMilliseconds: 24 * 60 * 60 * 1000,
+  });
+  const loads = FONT_FAMILIES.flatMap((fam) => [
+    document.fonts.load(`400 40px "${fam}"`),
+    document.fonts.load(`700 40px "${fam}"`),
+  ]);
+  // A single hung font fetch must never stall the whole render: race the full
+  // load against a cap so delayRender always clears. Fonts that arrive late
+  // are swapped in via font-display: swap.
+  const cap = new Promise((resolve) => setTimeout(resolve, 10000));
+  Promise.race([Promise.all(loads), cap])
     .catch(() => {})
     .finally(() => continueRender(handle));
 }

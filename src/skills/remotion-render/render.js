@@ -16,9 +16,13 @@
  * Duration is derived from the measured voiceover length (ffprobe) when the
  * audio file is available, falling back to a word-count estimate otherwise,
  * then clamped to the Short (15–180s) or longform range.
+ *
+ * For motion-graphics channels the SRT next to the voiceover is the timing
+ * source of truth: buildMgPackage() bakes beats/pages/scenes into the `mg`
+ * prop and the duration comes from the package (never from the mp3 length).
  */
 
-import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync } from "fs";
+import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
@@ -26,6 +30,7 @@ import { createRequire } from "module";
 import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
 import { resolveBrollFiles } from "./broll.js";
+import { buildMgPackage } from "./compositions/mg-package.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -216,6 +221,25 @@ function stageAudio(ttsAudioPath) {
   return true;
 }
 
+/**
+ * Motion-graphics — the caption stream is the timing source of truth, so the
+ * SRT is found next to the voiceover audio (same dir, same base name, `.srt`).
+ * Falls back to the first `.srt` in that directory.
+ */
+function findSrtPath(ttsAudioPath) {
+  if (!ttsAudioPath) return null;
+  const dir = dirname(join(ROOT, ttsAudioPath.replace(/\//g, "\\")));
+  const base = basename(ttsAudioPath).replace(/\.[^.]+$/, "");
+  const exact = join(dir, `${base}.srt`);
+  if (existsSync(exact)) return exact;
+  try {
+    const srt = readdirSync(dir).find((f) => f.toLowerCase().endsWith(".srt"));
+    return srt ? join(dir, srt) : null;
+  } catch {
+    return null;
+  }
+}
+
 function writeRenderEntry(componentId, componentFile, props, frames, format) {
   const isShorts = format === "shorts";
   const entryPath = join(__dirname, "render-entry.jsx");
@@ -260,6 +284,9 @@ async function renderVideo(entryPath, outputPath, frames) {
     outputLocation: outputPath,
     browserExecutable: CHROME,
     concurrency: 2,
+    // Cold-start font fetch (21 families / 42 woff2 over the local static
+    // server) can exceed the 28s default delayRender timeout.
+    timeoutInMilliseconds: 120000,
   });
   console.log("Rendered:", outputPath);
 }
@@ -290,7 +317,36 @@ async function main() {
   const componentId = getCompositionForStyle(channel.style, format);
   const componentFile = COMPONENT_FILES[channel.style] || "minimal.jsx";
   const staged = stageAudio(ttsAudioPath);
-  const frames = computeDurationFrames(script, channel.style, format, ttsAudioPath);
+
+  let mg = null;
+  let frames;
+  if (channel.style === "motion-graphics") {
+    // Timing comes from the SRT caption stream, never from the mp3 duration.
+    const srtPath = findSrtPath(ttsAudioPath);
+    const srtText = srtPath ? readFileSync(srtPath, "utf-8") : "";
+    if (srtPath) console.log("MG SRT:", srtPath);
+    else console.warn("MG: no SRT next to voiceover — synthesizing caption stream from sections.");
+    const audioSecs = getAudioDurationSeconds(ttsAudioPath);
+    mg = buildMgPackage(srtText, {
+      sections,
+      iconMap: channel.icon_map || null,
+      bRollFiles: sections.flatMap((s) => s.bRollFiles || []),
+      imageForSection: (idx) => (sections[idx] && sections[idx].bRollFiles && sections[idx].bRollFiles[0]) || null,
+      totalMs: audioSecs ? audioSecs * 1000 : undefined,
+    });
+    frames = mg.totalFrames;
+    console.log(
+      `MG package: ${mg.beats.length} beats, ${mg.pages.length} pages, ${mg.totalFrames}f (audio ${mg.audioFrames}f, synthesized=${mg.synthesized})`
+    );
+    // Only the platform ceiling is enforced — the package never cuts audio.
+    const ceiling = (format === "shorts" ? SHORTS_CLAMP : LONGFORM_CLAMP)[1];
+    if (frames > ceiling) {
+      console.warn(`WARNING: mg video clamped from ${(frames / 30).toFixed(1)}s to ${(ceiling / 30).toFixed(1)}s — script too long for ${format}.`);
+      frames = ceiling;
+    }
+  } else {
+    frames = computeDurationFrames(script, channel.style, format, ttsAudioPath);
+  }
 
   const outputDir = join(ROOT, "data", "renders", channelId);
   mkdirSync(outputDir, { recursive: true });
@@ -304,6 +360,7 @@ async function main() {
     style: channel.style,
     format: format,
     sections,
+    mg,
     ttsAudioPath: staged,
     thumbnailStyle: channel.thumbnail_spec?.style || "dramatic-visual",
     tone: channel.tone,

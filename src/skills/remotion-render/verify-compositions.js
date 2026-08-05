@@ -5,6 +5,10 @@ import { createHash } from "crypto";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { resolveBrollFiles } from "./broll.js";
+import { buildMgPackage, gateMgHeadlineOverlap, gateIconNames, gateChartData } from "./compositions/mg-package.js";
+import { gateBeats, gateCaptions } from "./compositions/beats.js";
+import { ICON_INNER } from "./compositions/icons-data.js";
+import { verifyPalette } from "./compositions/mg-style.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CHROME = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
@@ -62,6 +66,53 @@ for (const section of sections) {
   console.log(`b-roll [${section.id}]:`, JSON.stringify(section.bRollFiles));
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Motion-graphics package + static gates (H3, H5–H8, H9, H11, H12, H14).
+// Fixture: ch-01 SRT (real caption stream) + a real mg channel's icon map and
+// palette (Legal Brief, id 2) so icon resolution and contrast are genuine.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const channelsJson = JSON.parse(
+  readFileSync(join(dirname(__dirname), "..", "..", "config", "channels.json"), "utf-8")
+);
+const mgChannel = (channelsJson.channels || channelsJson).find((c) => c.style === "motion-graphics");
+if (!mgChannel) throw new Error("no motion-graphics channel in config/channels.json");
+
+const mgSrtPath = join(dirname(__dirname), "..", "..", "data", "tts", "ch-01", "movile-cave-shorts-script-vo.srt");
+const mgPackage = buildMgPackage(readFileSync(mgSrtPath, "utf-8"), {
+  sections,
+  iconMap: mgChannel.icon_map || null,
+  bRollFiles: sections.flatMap((s) => s.bRollFiles || []),
+  imageForSection: (idx) => (sections[idx] && sections[idx].bRollFiles && sections[idx].bRollFiles[0]) || null,
+});
+
+const mgGates = {
+  beats: gateBeats(mgPackage.beats, { audioFrames: mgPackage.audioFrames, requireAnchorTokens: true }),
+  captions: gateCaptions(mgPackage.pages),
+  headlineOverlap: gateMgHeadlineOverlap(mgPackage.beats),
+  iconNames: gateIconNames(mgPackage.beats, ICON_INNER),
+  chartData: gateChartData(mgPackage.beats),
+  palette: verifyPalette(mgChannel.thumbnail_spec?.color_palette || null),
+};
+for (const [name, g] of Object.entries(mgGates)) {
+  const status = g.pass ? "PASS" : "FAIL";
+  console.log(`[mg-gate] ${name}: ${status}`);
+  for (const f of g.failures || []) console.log(`  - ${f}`);
+}
+const mgHardFailures = Object.entries(mgGates)
+  .filter(([, g]) => !g.pass)
+  .map(([name]) => name);
+if (mgHardFailures.length) {
+  console.error(`MG GATES FAILED: ${mgHardFailures.join(", ")}`);
+  process.exitCode = 1;
+}
+console.log(
+  `MG package: ${mgPackage.beats.length} beats, ${mgPackage.pages.length} pages, ${mgPackage.totalFrames}f (audio ${mgPackage.audioFrames}f)`
+);
+
+const mgFont = mgChannel.font || "DM Sans";
+const mgPalette = mgChannel.thumbnail_spec?.color_palette || ["#1A1A2E", "#F5536B", "#FFFFFF"];
+
 const DEFAULTS = {
   channelId: "ch-verify",
   style: "verify",
@@ -79,13 +130,14 @@ import { MinimalShorts } from "./compositions/minimal.jsx";
 import { MotionGraphicsShorts } from "./compositions/motion-graphics.jsx";
 
 const SECTIONS = ${JSON.stringify(sections)};
+const MG = ${JSON.stringify(mgPackage)};
 
 const Root = () => (
   <>
     <Composition id="V-Cinematic" component={CinematicDocumentaryShorts} durationInFrames={1800} fps={30} width={1080} height={1920} defaultProps={{ ...${JSON.stringify(DEFAULTS)}, sections: SECTIONS, font: "Space Grotesk", palette: ["#0A0A1A", "#6366F1", "#FFFFFF"] }} />
     <Composition id="V-CinematicAlt" component={CinematicDocumentaryShorts} durationInFrames={1800} fps={30} width={1080} height={1920} defaultProps={{ ...${JSON.stringify(DEFAULTS)}, sections: SECTIONS, font: "Space Grotesk", palette: ["#0D1117", "#C9A227", "#FFFFFF"] }} />
     <Composition id="V-Minimal" component={MinimalShorts} durationInFrames={1800} fps={30} width={1080} height={1920} defaultProps={{ ...${JSON.stringify(DEFAULTS)}, sections: SECTIONS, font: "Inter", palette: ["#0F172A", "#38BDF8", "#F5F5DC"] }} />
-    <Composition id="V-Motion" component={MotionGraphicsShorts} durationInFrames={1800} fps={30} width={1080} height={1920} defaultProps={{ ...${JSON.stringify(DEFAULTS)}, sections: SECTIONS, font: "Oswald", palette: ["#0A1020", "#22D3EE", "#F8FAFC"] }} />
+    <Composition id="V-Motion" component={MotionGraphicsShorts} durationInFrames={${mgPackage.totalFrames}} fps={30} width={1080} height={1920} defaultProps={{ ...${JSON.stringify(DEFAULTS)}, sections: SECTIONS, mg: MG, font: "${mgFont}", palette: ${JSON.stringify(mgPalette)}, channelName: "${mgChannel.channel_name || "Legal Brief"}" }} />
   </>
 );
 
@@ -120,6 +172,15 @@ for (const [name, id, frame] of [
   console.log("rendered:", join(OUT_DIR, `${name}-f${frame}.png`));
 }
 
+// H18 — motion-graphics stills across the whole timeline (beat stages, list
+// runs, section kickers, image beats). Frames land inside HERO_NUMBER (5, 60,
+// 600, 1200, 1800), LIST_ITEM runs (300, 700, 1790), IMAGE_BEAT (505, 1210,
+// 1565), CONTRAST (900), RELATION (1500) and STATEMENT (2050).
+for (const frame of [5, 60, 300, 505, 600, 700, 900, 1210, 1500, 1565, 1800, 2050]) {
+  await renderStillSafe("V-Motion", join(OUT_DIR, `mg-f${frame}.png`), frame);
+  console.log("rendered:", join(OUT_DIR, `mg-f${frame}.png`));
+}
+
 const { decodePNG, meanColor } = await import("./decode-png.js");
 const hash = (p) => createHash("sha256").update(readFileSync(p)).digest("hex");
 
@@ -152,7 +213,75 @@ console.log("cinematic f1790 (fade-to-black): corner", sampleAtRaw(cin1790, 40, 
 
 const leak = decodePNG(join(OUT_DIR, "cinematic-leak-f415.png"));
 console.log("cinematic leak f415 region (78%,18%):", sampleAtRaw(leak, Math.round(leak.width * 0.78), Math.round(leak.height * 0.18)).join(","));
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Motion-graphics PNG probes — the stills must be alive: frames differ, the
+// background is the channel bg, and the accent colour actually renders.
+// ─────────────────────────────────────────────────────────────────────────────
+const mg60 = decodePNG(join(OUT_DIR, "mg-f60.png"));
+const mg1500 = decodePNG(join(OUT_DIR, "mg-f1500.png"));
+console.log("mg f60 vs f1500:", hash(join(OUT_DIR, "mg-f60.png")) === hash(join(OUT_DIR, "mg-f1500.png")) ? "IDENTICAL -> no motion" : "DIFFERENT -> alive");
+
+const corner = sampleAtRaw(mg60, 20, 20);
+const near = (a, b, tol) => a.every((v, i) => Math.abs(v - b[i]) <= tol);
+console.log(`mg f60 corner (bg ${mgPalette[0]}):`, corner.join(","), near(corner, hex(mgPalette[0]), 26) ? "bg OK" : "bg MISMATCH");
+
+const accentCount = countNear(mg900(), hex(mgPalette[1]), 48);
+console.log("mg f900 pixels near accent:", accentCount, accentCount > 0 ? "accent OK" : "accent MISSING");
+
+const capMean = meanColor(mg60, 300, 1150, 780, 1230);
+const capBg = meanColor(mg60, 200, 1400, 880, 1500);
+console.log("mg f60 caption zone mean:", capMean.join(","), "lower-zone mean:", capBg.join(","), capMean[0] + capMean[1] + capMean[2] > capBg[0] + capBg[1] + capBg[2] + 30 ? "caption OK" : "caption zone too dark");
+
+// IMAGE_BEAT frames must show real photo content — high pixel variance in the
+// stage region (flat bg + grid would be near-zero variance).
+for (const f of [505, 1210, 1565]) {
+  const png = decodePNG(join(OUT_DIR, `mg-f${f}.png`));
+  const sd = stdDev(png, 48, 392, 888, 940);
+  console.log(`mg f${f} IMAGE_BEAT stage stddev:`, sd.toFixed(1), sd > 18 ? "photo OK" : "STAGE FLAT -> image NOT rendering");
+}
+
+// Every mg still must contain real content (no all-flat frame).
+for (const f of [5, 60, 300, 505, 600, 700, 900, 1210, 1500, 1565, 1800, 2050]) {
+  const png = decodePNG(join(OUT_DIR, `mg-f${f}.png`));
+  const sd = stdDev(png, 0, 0, png.width - 1, png.height - 1);
+  if (sd < 3) console.log(`mg f${f}: WHOLE FRAME FLAT (stddev ${sd.toFixed(1)})`);
+}
 console.log("ALL STYLES OK");
+
+function stdDev(png, x0, y0, x1, y1) {
+  const samples = [];
+  for (let y = y0; y < y1; y += 4) {
+    for (let x = x0; x < x1; x += 4) {
+      const [r, g, b] = sampleAtRaw(png, x, y);
+      samples.push(r + g + b);
+    }
+  }
+  const mean = samples.reduce((a, b) => a + b, 0) / samples.length;
+  const varr = samples.reduce((a, s) => a + (s - mean) * (s - mean), 0) / samples.length;
+  return Math.sqrt(varr);
+}
+
+function mg900() {
+  return decodePNG(join(OUT_DIR, "mg-f900.png"));
+}
+
+function countNear(png, rgb, tol) {
+  let n = 0;
+  for (let y = 0; y < png.height; y += 4) {
+    for (let x = 0; x < png.width; x += 4) {
+      const p = sampleAtRaw(png, x, y);
+      if (near(p, rgb, tol)) n++;
+    }
+  }
+  return n;
+}
+
+function hex(hexStr) {
+  const m = /^#?([0-9a-f]{6})$/i.exec(String(hexStr).trim());
+  const n = parseInt(m[1], 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
 
 function sampleAtRaw(png, x, y) {
   const i = (y * png.width + x) * png.channels;

@@ -7,17 +7,22 @@
     "start": "remotion studio",
     "render:shorts": "node render.js shorts",
     "render:longform": "node render.js longform",
-    "render:all": "node render.js all"
+    "render:all": "node render.js all",
+    "verify": "node verify-compositions.js"
   },
   "dependencies": {
-    "@remotion/cli": "4.0.0",
-    "@remotion/player": "4.0.0",
-    "remotion": "4.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@remotion/bundler": "^4.0.503",
+    "@remotion/captions": "^4.0.503",
+    "@remotion/cli": "^4.0.503",
+    "@remotion/player": "^4.0.503",
+    "@remotion/rough-notation": "^4.0.503",
+    "@remotion/transitions": "^4.0.503",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "remotion": "^4.0.503"
   },
   "devDependencies": {
     "typescript": "^5.3.0",
-    "@types/react": "^18.2.0"
+    "@types/react": "^19.2.0"
   }
 }
