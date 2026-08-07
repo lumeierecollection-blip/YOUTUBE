@@ -283,7 +283,7 @@ path-animated.
 |---|---|---|
 | Rule | dividers, underlines, axes | 4 px, `stroke`, radius 2 |
 | Chip | list items, labels, nodes | `surface` fill, 2 px `stroke` border, radius 16, padding 16×24 |
-| Node | flow/relation points | circle, r 44, `surface` fill, 3 px `accent` border |
+| Node | flow/relation points | circle, r 44, `surface` fill, 3 px `stroke` border, `accent` when highlighted |
 | Bar | data | radius 8 top corners only, min height 6 px |
 | Connector | relations | 4 px `stroke`, drawn via `evolvePath()` |
 | Panel | grouped content | `surface`, radius 24, 32 px padding, no shadow |
@@ -730,7 +730,7 @@ Only these five exist. A beat picks one per element.
 
 | Property | Frames | From → To | Easing |
 |---|---|---|---|
-| `scale` | 0 → 5 → 9 | 0 → 1.15 → 1.00 | `[E.out, E.settle]` |
+| `scale` | 0 → 5 → 9 | 0 → 1.15 → 1.00 | `E.out` |
 | `opacity` | 0 → 3 | 0 → 1 | `E.out` |
 
 The 0 → 115% → 100% curve over 8–12 frames is taken directly from the

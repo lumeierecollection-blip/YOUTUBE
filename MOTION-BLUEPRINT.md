@@ -166,8 +166,12 @@ Remotion's own guidance is explicit and should be followed literally:
 `output: 'perceptual-scale'`.**
 
 **Rule 1.6 — One primary mover per beat.** The hero element animates first,
-largest, and alone. Secondary elements stagger `D.micro` (4f) behind it.
-Never three elements moving the same way at the same time.
+largest, and unopposed — no element animates with the same motion at the same
+time. Secondary elements stagger `D.micro` (4f) behind it and may overlap the
+primary’s animation (offsets shorter than the animation duration; `D.micro` = 133 ms
+sits inside equal.design’s 80–150 ms related-items bracket, while per-item sequences
+use tighter ranges — Material ≤20 ms per item, designsystems.one 40–80 ms, UI Craft
+30–80 ms). Never three elements moving the same way at the same time.
 
 ---
 
@@ -241,7 +245,7 @@ mid-phrase.
 
 ### 3.3 Minimum on-screen time
 
-<cite index="39-1">Comfortable reading is roughly 180–220 words per minute (about 3–4 words per second); a seven-word line typically needs 1.8–2.5 seconds on screen, and a practical display-time formula is seconds = (characters ÷ 12) + 0.5, rounded up to the nearest 0.25 s to align with beats.</cite>
+<cite index="39-1">Comfortable reading is roughly 180–220 words per minute (about 3–4 words per second); a seven-word line typically needs 1.8–2.5 seconds on screen, and a practical display-time formula is seconds = (characters ÷ 12) + 0.5, rounded up to the nearest 0.25 s to align with beats. Broadcast subtitle standards are tighter: Ofcom and BBC publish 160–180 wpm (Ofcom: pre-recorded "should not normally exceed 160 to 180 words per minute"; above 200 "difficult for many viewers"), ITC caps at ≤140 wpm (180 exceptional), and DCMP’s caps are content-tiered (120–160 wpm standard, 225–235 wpm adult theatrical) — so D.hold is a conservative minimum floor, not a reading duration.</cite>
 
 **Rule 3.2 — Implement that formula directly:**
 
@@ -604,7 +608,7 @@ Remotion (first-party):
   `Easing.bezier(0.16,1,0.3,1)`, safe margins, minimum type sizes, scene-per-file
 
 Motion timing:
-- `material-components-android/docs/theming/Motion.md` — duration slot values (50–500 ms)
+- `material-components-android/docs/theming/Motion.md` — duration slot values (50–1000 ms; the 16 slots: short1 50ms, short2 100ms, short3 150ms, short4 200ms, medium1 250ms, medium2 300ms, medium3 350ms, medium4 400ms, long1 450ms, long2 500ms, long3 550ms, long4 600ms, extraLong1 700ms, extraLong2 800ms, extraLong3 900ms, extraLong4 1000ms)
 - `m1.material.io/motion/duration-easing.html` — duration scales with distance and surface change
 - `equal.design/blog/5-rules-for-motion-in-ui-transitions` — Material 150–200 ms small / 400 ms large; Fluent 2 100–500 ms
 
