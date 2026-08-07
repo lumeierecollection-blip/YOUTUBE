@@ -15,7 +15,7 @@ import { dotGrid } from "@remotion/effects/dot-grid";
 import { noise } from "@remotion/effects/noise";
 import { evolvePath, getSubpaths } from "@remotion/paths";
 import { makeCircle, makeRect } from "@remotion/shapes";
-import { measureText, fitTextOnNLines } from "@remotion/layout-utils";
+import { measureText, fitTextOnNLines, HEADLINE_FONT, fontStyleFor } from "../layout/measure.js";
 import { currentAudio } from "../audio.js";
 import "../wait-for-fonts.js";
 import { resolveFontFamily } from "./visual.js";
@@ -486,22 +486,25 @@ function HeadlineBox({ beat, colors, fontFamily }) {
   const delay = HEADLINE_DELAY[beat.archetype] ?? 0;
   const start = tA + delay;
 
+  const fontStyle = useMemo(
+    () => fontStyleFor(fontFamily, HEADLINE_FONT),
+    [fontFamily]
+  );
   const fit = useMemo(
     () =>
       fitTextOnNLines({
         text: scene.headline,
         maxLines: 2,
         maxBoxWidth: 780,
-        fontFamily,
-        fontWeight: 800,
+        ...fontStyle,
         maxFontSize: TYPE.headline,
       }),
-    [scene.headline, fontFamily]
+    [scene.headline, fontStyle]
   );
   const fontSize = Math.max(fit.fontSize, TYPE.support);
   const ruleWidth = useMemo(
-    () => measureText({ text: scene.headline, fontFamily, fontSize, fontWeight: 800 }).width,
-    [scene.headline, fontFamily, fontSize]
+    () => measureText({ text: scene.headline, ...fontStyle, fontSize }).width,
+    [scene.headline, fontStyle, fontSize]
   );
 
   const rise = riseStyle(frame, start);
@@ -509,7 +512,7 @@ function HeadlineBox({ beat, colors, fontFamily }) {
 
   return (
     <div style={{ position: "absolute", top: 1008, left: 468, translate: "-50% 0px", width: "max-content", maxWidth: 780, ...rise }}>
-      <div style={{ textAlign: "center", fontFamily, fontWeight: 800, fontSize, color: colors.textPrimary, whiteSpace: "nowrap" }}>
+      <div style={{ textAlign: "center", ...fontStyle, fontSize, color: colors.textPrimary, whiteSpace: "nowrap" }}>
         {fit.lines.join(" ")}
       </div>
       {beat.archetype === "TERM_DEFINE" && ruleProg > 0 ? (
