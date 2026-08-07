@@ -1,6 +1,6 @@
 import { bundle } from "@remotion/bundler";
-import { selectComposition, renderStill } from "@remotion/renderer";
-import { writeFileSync, readFileSync, mkdirSync } from "fs";
+import { selectComposition, renderStill, openBrowser } from "@remotion/renderer";
+import { readFileSync, mkdirSync } from "fs";
 import { createHash } from "crypto";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -9,31 +9,11 @@ import { buildMgPackage, gateMgHeadlineOverlap, gateIconNames, gateChartData } f
 import { gateBeats, gateCaptions } from "./compositions/beats.js";
 import { ICON_INNER } from "./compositions/icons-data.js";
 import { verifyPalette } from "./compositions/mg-style.js";
+import { paletteFromHues, deriveHuesFromHexes } from "./styles/tokens.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CHROME = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 const OUT_DIR = join(__dirname, "verify-out");
-
-const styles = {
-  "cinematic-documentary": {
-    comp: "CinematicDocumentaryShorts",
-    file: "cinematic-documentary.jsx",
-    font: "Space Grotesk",
-    palette: ["#0A0A1A", "#6366F1", "#FFFFFF"],
-  },
-  minimal: {
-    comp: "MinimalShorts",
-    file: "minimal.jsx",
-    font: "Inter",
-    palette: ["#0F172A", "#38BDF8", "#F5F5DC"],
-  },
-  "motion-graphics": {
-    comp: "MotionGraphicsShorts",
-    file: "motion-graphics.jsx",
-    font: "Oswald",
-    palette: ["#0A1020", "#22D3EE", "#F8FAFC"],
-  },
-};
 
 function chunkVoiceover(text, maxWords = 7) {
   const words = text.split(/\s+/).filter(Boolean);
@@ -92,7 +72,12 @@ const mgGates = {
   headlineOverlap: gateMgHeadlineOverlap(mgPackage.beats),
   iconNames: gateIconNames(mgPackage.beats, ICON_INNER),
   chartData: gateChartData(mgPackage.beats),
-  palette: verifyPalette(mgChannel.thumbnail_spec?.color_palette || null),
+  palette: verifyPalette(
+    typeof mgChannel.thumbnail_spec?.baseHue === "number" &&
+    typeof mgChannel.thumbnail_spec?.accentHue === "number"
+      ? { baseHue: mgChannel.thumbnail_spec.baseHue, accentHue: mgChannel.thumbnail_spec.accentHue }
+      : null
+  ),
 };
 for (const [name, g] of Object.entries(mgGates)) {
   const status = g.pass ? "PASS" : "FAIL";
@@ -111,7 +96,14 @@ console.log(
 );
 
 const mgFont = mgChannel.font || "DM Sans";
-const mgPalette = mgChannel.thumbnail_spec?.color_palette || ["#1A1A2E", "#F5536B", "#FFFFFF"];
+const mgPalette =
+  typeof mgChannel.thumbnail_spec?.baseHue === "number" &&
+  typeof mgChannel.thumbnail_spec?.accentHue === "number"
+    ? paletteFromHues({
+        baseHue: mgChannel.thumbnail_spec.baseHue,
+        accentHue: mgChannel.thumbnail_spec.accentHue,
+      })
+    : paletteFromHues(deriveHuesFromHexes(["#1A1A2E", "#F5536B", "#FFFFFF"]));
 
 const DEFAULTS = {
   channelId: "ch-verify",
@@ -123,52 +115,53 @@ const DEFAULTS = {
   tone: "investigative-dramatic",
 };
 
-const entry = `import React from "react";
-import { Composition, registerRoot } from "remotion";
-import { CinematicDocumentaryShorts } from "./compositions/cinematic-documentary.jsx";
-import { MinimalShorts } from "./compositions/minimal.jsx";
-import { MotionGraphicsShorts } from "./compositions/motion-graphics.jsx";
+const cinProps = { ...DEFAULTS, sections, font: "Space Grotesk", palette: ["#0A0A1A", "#6366F1", "#FFFFFF"] };
+const cinAltProps = { ...DEFAULTS, sections, font: "Space Grotesk", palette: ["#0D1117", "#C9A227", "#FFFFFF"] };
+const minProps = { ...DEFAULTS, sections, font: "Inter", palette: ["#0F172A", "#38BDF8", "#F5F5DC"] };
+const mgProps = { ...DEFAULTS, sections, mg: mgPackage, font: mgFont, palette: mgPalette, channelName: mgChannel.channel_name || "Legal Brief" };
 
-const SECTIONS = ${JSON.stringify(sections)};
-const MG = ${JSON.stringify(mgPackage)};
-
-const Root = () => (
-  <>
-    <Composition id="V-Cinematic" component={CinematicDocumentaryShorts} durationInFrames={1800} fps={30} width={1080} height={1920} defaultProps={{ ...${JSON.stringify(DEFAULTS)}, sections: SECTIONS, font: "Space Grotesk", palette: ["#0A0A1A", "#6366F1", "#FFFFFF"] }} />
-    <Composition id="V-CinematicAlt" component={CinematicDocumentaryShorts} durationInFrames={1800} fps={30} width={1080} height={1920} defaultProps={{ ...${JSON.stringify(DEFAULTS)}, sections: SECTIONS, font: "Space Grotesk", palette: ["#0D1117", "#C9A227", "#FFFFFF"] }} />
-    <Composition id="V-Minimal" component={MinimalShorts} durationInFrames={1800} fps={30} width={1080} height={1920} defaultProps={{ ...${JSON.stringify(DEFAULTS)}, sections: SECTIONS, font: "Inter", palette: ["#0F172A", "#38BDF8", "#F5F5DC"] }} />
-    <Composition id="V-Motion" component={MotionGraphicsShorts} durationInFrames={${mgPackage.totalFrames}} fps={30} width={1080} height={1920} defaultProps={{ ...${JSON.stringify(DEFAULTS)}, sections: SECTIONS, mg: MG, font: "${mgFont}", palette: ${JSON.stringify(mgPalette)}, channelName: "${mgChannel.channel_name || "Legal Brief"}" }} />
-  </>
-);
-
-registerRoot(Root);
-`;
-
-const entryPath = join(__dirname, "verify-entry.jsx");
-writeFileSync(entryPath, entry, "utf-8");
 mkdirSync(OUT_DIR, { recursive: true });
 
-const serveUrl = await bundle({ entryPoint: entryPath, onProgress: () => {} });
+const serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgress: () => {} });
 
-const renderStillSafe = async (id, out, frame) => {
-  const composition = await selectComposition({ serveUrl, id, browserExecutable: CHROME });
-  await renderStill({ composition, serveUrl, output: out, frame, browserExecutable: CHROME });
+// One browser for all stills: each cold launch can exceed Chrome's 25s
+// connect timeout on this machine, so reuse a single instance.
+const browserInstance = await openBrowser({ browserExecutable: CHROME, chromiumOptions: { gl: "angle" } });
+
+const renderStillSafe = async (compId, inputProps, out, frame, durationOverride = null) => {
+  const composition = await selectComposition({ serveUrl, id: compId, browserExecutable: CHROME, puppeteerInstance: browserInstance, inputProps });
+  await renderStill({
+    composition: durationOverride ? { ...composition, durationInFrames: durationOverride } : composition,
+    serveUrl,
+    output: out,
+    frame,
+    browserExecutable: CHROME,
+    puppeteerInstance: browserInstance,
+    inputProps,
+  });
+};
+
+const stillProps = {
+  "cinematic-documentary": cinProps,
+  "cinematic-leak": cinProps,
+  "cinematic-alt": cinAltProps,
+  minimal: minProps,
 };
 
 for (const [name, id, frame] of [
-  ["cinematic-documentary", "V-Cinematic", 60],
-  ["cinematic-documentary", "V-Cinematic", 90],
-  ["cinematic-documentary", "V-Cinematic", 200],
-  ["cinematic-documentary", "V-Cinematic", 600],
-  ["cinematic-documentary", "V-Cinematic", 900],
-  ["cinematic-documentary", "V-Cinematic", 1200],
-  ["cinematic-documentary", "V-Cinematic", 1500],
-  ["cinematic-documentary", "V-Cinematic", 1790],
-  ["cinematic-leak", "V-Cinematic", 415],
-  ["cinematic-alt", "V-CinematicAlt", 60],
-  ["minimal", "V-Minimal", 60],
+  ["cinematic-documentary", "CinematicDocumentaryShorts", 60],
+  ["cinematic-documentary", "CinematicDocumentaryShorts", 90],
+  ["cinematic-documentary", "CinematicDocumentaryShorts", 200],
+  ["cinematic-documentary", "CinematicDocumentaryShorts", 600],
+  ["cinematic-documentary", "CinematicDocumentaryShorts", 900],
+  ["cinematic-documentary", "CinematicDocumentaryShorts", 1200],
+  ["cinematic-documentary", "CinematicDocumentaryShorts", 1500],
+  ["cinematic-documentary", "CinematicDocumentaryShorts", 1790],
+  ["cinematic-leak", "CinematicDocumentaryShorts", 415],
+  ["cinematic-alt", "CinematicDocumentaryShorts", 60],
+  ["minimal", "MinimalShorts", 60],
 ]) {
-  await renderStillSafe(id, join(OUT_DIR, `${name}-f${frame}.png`), frame);
+  await renderStillSafe(id, stillProps[name], join(OUT_DIR, `${name}-f${frame}.png`), frame);
   console.log("rendered:", join(OUT_DIR, `${name}-f${frame}.png`));
 }
 
@@ -177,9 +170,11 @@ for (const [name, id, frame] of [
 // 600, 1200, 1800), LIST_ITEM runs (300, 700, 1790), IMAGE_BEAT (505, 1210,
 // 1565), CONTRAST (900), RELATION (1500) and STATEMENT (2050).
 for (const frame of [5, 60, 300, 505, 600, 700, 900, 1210, 1500, 1565, 1800, 2050]) {
-  await renderStillSafe("V-Motion", join(OUT_DIR, `mg-f${frame}.png`), frame);
+  await renderStillSafe("MotionGraphicsShorts", mgProps, join(OUT_DIR, `mg-f${frame}.png`), frame, mgPackage.totalFrames);
   console.log("rendered:", join(OUT_DIR, `mg-f${frame}.png`));
 }
+
+await browserInstance.close({ silent: true });
 
 const { decodePNG, meanColor } = await import("./decode-png.js");
 const hash = (p) => createHash("sha256").update(readFileSync(p)).digest("hex");
@@ -224,9 +219,9 @@ console.log("mg f60 vs f1500:", hash(join(OUT_DIR, "mg-f60.png")) === hash(join(
 
 const corner = sampleAtRaw(mg60, 20, 20);
 const near = (a, b, tol) => a.every((v, i) => Math.abs(v - b[i]) <= tol);
-console.log(`mg f60 corner (bg ${mgPalette[0]}):`, corner.join(","), near(corner, hex(mgPalette[0]), 26) ? "bg OK" : "bg MISMATCH");
+console.log(`mg f60 corner (bg ${mgPalette.bg}):`, corner.join(","), near(corner, hex(mgPalette.bg), 26) ? "bg OK" : "bg MISMATCH");
 
-const accentCount = countNear(mg900(), hex(mgPalette[1]), 48);
+const accentCount = countNear(mg900(), hex(mgPalette.accent), 48);
 console.log("mg f900 pixels near accent:", accentCount, accentCount > 0 ? "accent OK" : "accent MISSING");
 
 const capMean = meanColor(mg60, 300, 1150, 780, 1230);

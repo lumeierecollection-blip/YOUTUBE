@@ -18,6 +18,30 @@ export function resolveFontFamily(font) {
  * channel has no palette.
  */
 export function resolveColors(palette, fallback) {
+  if (
+    palette &&
+    typeof palette === "object" &&
+    !Array.isArray(palette) &&
+    typeof palette.bg === "string" &&
+    typeof palette.accent === "string"
+  ) {
+    // Stage-3 derived roles object (styles/tokens.js paletteFromHues).
+    return {
+      ...fallback,
+      bgDark: palette.bg,
+      bgMid: palette.bg,
+      bg: palette.bg,
+      accent: palette.accent,
+      accent2: palette.accent,
+      textAccent: palette.accent,
+      textPrimary: palette.textPrimary,
+      text: palette.textPrimary,
+      textDim: palette.textDim ?? fallback.textDim,
+      stroke: palette.stroke ?? fallback.stroke,
+      surface: palette.surface ?? fallback.surface,
+      raised: palette.raised ?? fallback.raised,
+    };
+  }
   if (Array.isArray(palette) && palette.length >= 3) {
     return {
       ...fallback,

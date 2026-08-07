@@ -23,10 +23,10 @@ export const D = {
   hold: 45, // 1.5s  — minimum on-screen time for readable text (§3.3)
 };
 
-/** Hard safe rect — §2.1. Design to the Google numbers. */
-export const SAFE = { top: 288, bottom: 1248, left: 48, right: 888 };
-/** Optical centre for a Short — §2.3. Right margin is 4× the left. */
-export const OPTICAL_CENTER_X = 468;
+import { SAFE_SHORTS, SLOTS_SHORTS } from "../layout/slots.js";
+
+/** Hard safe rect — §2.1. Design to the Google numbers. Single source: layout/slots.js. */
+export const SAFE = SAFE_SHORTS;
 
 /** Minimum type sizes — §3.1, scaled by u = min(w,h)/1080. */
 export const TYPE = {
@@ -47,15 +47,15 @@ export const CANVAS = {
   shorts: { w: 1080, h: 1920, fps: 30 },
   longform: { w: 1920, h: 1080, fps: 30 },
 };
-export const OPTICAL_CENTRE_X = 468; // NOT 540 — right margin is 4x the left
-export const OPTICAL_CENTRE_Y = 768; // (288 + 1248) / 2
+export const OPTICAL_CENTRE_X = SAFE.left + (SAFE.right - SAFE.left) / 2; // 48 + 840/2 = 468 — NOT 540
+export const OPTICAL_CENTRE_Y = (SAFE.top + SAFE.bottom) / 2; // (288 + 1248) / 2 = 768
 
 // MOTION-GRAPHICS-MANUAL.md B2 — caption geometry.
 export const CAPTION = {
-  zoneTop: 1148,
-  zoneBottom: 1248,
+  zoneTop: SLOTS_SHORTS.caption.y, // 1152 (corrected from 1148 — off-grid)
+  zoneBottom: SLOTS_SHORTS.caption.y + SLOTS_SHORTS.caption.h, // 1248 == SAFE.bottom
   anchor: "bottom",
-  maxWidth: 780,
+  maxWidth: SLOTS_SHORTS.caption.w, // 760 (corrected from 780 — 780 centred on 468 crossed slot right edge 848)
   maxLines: 2,
   lineHeight: 1.12,
   align: "center",

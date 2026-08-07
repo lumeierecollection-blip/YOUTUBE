@@ -9,9 +9,10 @@
  * script (## Section (timing) + lines). The voiceover audio is copied to
  * ./vo.mp3 and pulled in via a static import so Remotion bundles it.
  *
- * Props (sections, style flags) are baked into the generated entry file as
- * Composition `defaultProps` because passing input props via --props /
- * inputProps does not reach the component in the installed Remotion 4.0.0.
+ * Props are passed via `inputProps` to both `selectComposition()` and
+ * `renderMedia()` (verified on Remotion 4.0.505). The exact frame count is
+ * applied by overriding `durationInFrames` on the selected composition object,
+ * so the fixed caps in Root.jsx are never rendered as dead tail.
  *
  * Duration is derived from the measured voiceover length (ffprobe) when the
  * audio file is available, falling back to a word-count estimate otherwise,
@@ -22,7 +23,7 @@
  * prop and the duration comes from the package (never from the mp3 length).
  */
 
-import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync, readdirSync } from "fs";
+import { readFileSync, mkdirSync, existsSync, copyFileSync, readdirSync } from "fs";
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
@@ -31,6 +32,7 @@ import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
 import { resolveBrollFiles } from "./broll.js";
 import { buildMgPackage } from "./compositions/mg-package.js";
+import { paletteFromHues } from "./styles/tokens.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -66,12 +68,6 @@ const LONGFORM_CLAMP = [2 * 30 * 60, 12 * 30 * 60];
 
 // Tail padding added after the voiceover so the final word is never cut.
 const AUDIO_TAIL_FRAMES = 12; // 0.4s at 30fps
-
-const COMPONENT_FILES = {
-  "cinematic-documentary": "cinematic-documentary.jsx",
-  minimal: "minimal.jsx",
-  "motion-graphics": "motion-graphics.jsx",
-};
 
 function loadChannel(channelId) {
   const channelsPath = join(ROOT, "config", "channels.json");
@@ -240,49 +236,29 @@ function findSrtPath(ttsAudioPath) {
   }
 }
 
-function writeRenderEntry(componentId, componentFile, props, frames, format) {
-  const isShorts = format === "shorts";
-  const entryPath = join(__dirname, "render-entry.jsx");
-  const defaults = JSON.stringify(props, null, 2).replace(/</g, "\\u003c");
-  const entry = `import React from "react";
-import { Composition, registerRoot } from "remotion";
-import { ${componentId} } from "./compositions/${componentFile}";
-
-const DEFAULTS = ${defaults};
-
-const Root = () => (
-  <Composition
-    id="RenderComp"
-    component={${componentId}}
-    durationInFrames={${frames}}
-    fps={30}
-    width={${isShorts ? 1080 : 1920}}
-    height={${isShorts ? 1920 : 1080}}
-    defaultProps={DEFAULTS}
-  />
-);
-
-registerRoot(Root);
-`;
-  writeFileSync(entryPath, entry, "utf-8");
-  return entryPath;
-}
-
-async function renderVideo(entryPath, outputPath, frames) {
-  const serveUrl = await bundle({ entryPoint: entryPath, onProgress: () => {} });
+async function renderVideo(componentId, outputPath, frames, props) {
+  const serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgress: () => {} });
   const composition = await selectComposition({
     serveUrl,
-    id: "RenderComp",
+    id: componentId,
     browserExecutable: CHROME,
+    inputProps: props,
   });
   await renderMedia({
-    composition,
+    composition: { ...composition, durationInFrames: frames },
     serveUrl,
     codec: "h264",
     audioCodec: "aac",
     enforceAudioTrack: true,
+    inputProps: props,
     outputLocation: outputPath,
     browserExecutable: CHROME,
+    // §5.6 — explicit encoder settings: remotion.config.js is inert on the
+    // SSR path, so every quality option must be passed here.
+    imageFormat: "png",                 // lossless intermediates
+    crf: 16,                            // below the h264 default
+    pixelFormat: "yuv420p",             // required for wide playback
+    chromiumOptions: { gl: "angle" },   // NOT via the config file
     concurrency: 2,
     // Cold-start font fetch (21 families / 42 woff2 over the local static
     // server) can exceed the 28s default delayRender timeout.
@@ -315,7 +291,6 @@ async function main() {
   console.log(`B-roll: ${withBroll}/${sections.length} sections have real imagery`);
 
   const componentId = getCompositionForStyle(channel.style, format);
-  const componentFile = COMPONENT_FILES[channel.style] || "minimal.jsx";
   const staged = stageAudio(ttsAudioPath);
 
   let mg = null;
@@ -366,14 +341,20 @@ async function main() {
     tone: channel.tone,
     font: channel.font || "Inter",
     channelName: channel.channel_name || "",
-    palette: channel.thumbnail_spec?.color_palette || null,
+    palette:
+      typeof channel.thumbnail_spec?.baseHue === "number" &&
+      typeof channel.thumbnail_spec?.accentHue === "number"
+        ? paletteFromHues({
+            baseHue: channel.thumbnail_spec.baseHue,
+            accentHue: channel.thumbnail_spec.accentHue,
+          })
+        : null,
   };
 
   console.log(`Rendering: ${componentId} (${frames} frames)`);
   console.log(`Output: ${outputPath}`);
 
-  const entryPath = writeRenderEntry(componentId, componentFile, props, frames, format);
-  await renderVideo(entryPath, outputPath, frames);
+  await renderVideo(componentId, outputPath, frames, props);
   process.exit(0);
 }
 

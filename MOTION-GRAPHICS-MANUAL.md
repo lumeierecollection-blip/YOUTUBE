@@ -51,7 +51,7 @@ side = 840). All horizontal placement snaps to column edges.
 | Kicker | 288 – 360 | section rule + number + label | yes, per section |
 | Stage | 392 – 940 | the beat's primary graphic | no |
 | Headline | 964 – 1140 | headline / value / term | no |
-| Caption | 1148 – 1248 | VO caption block, bottom-anchored | yes |
+| Caption | 1152 – 1248 | VO caption block, bottom-anchored | yes |
 | Rail | x 48, y 288–1248 | 4 px progress rule | yes |
 
 **A1.4** — The Stage is the only zone where a beat may place freeform
@@ -60,9 +60,12 @@ reading as an unstructured pile of elements.
 
 ## A2. Colour
 
-Each channel supplies three colours via `thumbnail_spec.color_palette` in
-`config/channels.json` — e.g. Legal Brief is `['#1A1A2E', '#E94560', '#FFFFFF']`.
-`resolveColors()` in `compositions/visual.js` already maps these.
+Each channel supplies two hues — `baseHue` and `accentHue` (OKLCH hue degrees)
+in `config/channels.json` — e.g. Legal Brief is `{ baseHue: 283.8, accentHue: 15.7 }`.
+All role colours (bg/accent/textPrimary/textDim/stroke/surface/raised) are derived
+from those two hues in `styles/tokens.js` (`paletteFromHues`), with the role map
+below; `resolveColors()` in `compositions/visual.js` maps the derived roles onto
+each style's semantic colour roles.
 
 **A2.1 — The role map is fixed and identical for all 12 channels:**
 
@@ -354,10 +357,10 @@ which this manual forbids in B7 — not to the transcript line.
 
 ```js
 export const CAPTION = {
-  zoneTop:     1148,
+  zoneTop:     1152,
   zoneBottom:  1248,        // == SAFE.bottom. Nothing goes below.
   anchor:      'bottom',    // block grows upward from zoneBottom
-  maxWidth:    780,         // centred on OPTICAL_CENTRE_X = 468
+  maxWidth:    760,         // centred on OPTICAL_CENTRE_X = 468
   maxLines:    2,
   lineHeight:  1.12,
   align:       'center',
@@ -369,7 +372,7 @@ page share the same bottom edge, so the caption never jumps vertically
 between pages. This is non-obvious and matters: a vertically jumping caption
 block is read as a glitch.
 
-**B2.2** — Two lines at 64 px × 1.12 = 143 px, which overflows the 100 px
+**B2.2** — Two lines at 64 px × 1.12 = 143 px, which overflows the 96 px
 zone upward into the Headline zone. **This is permitted and is the one
 zone-crossing exception in the manual** — but only upward, only for the
 caption, and the Headline zone must therefore be kept clear of content in its
@@ -1114,7 +1117,7 @@ SFX map, licence handling.
 
 | Field | Constraint |
 |---|---|
-| `thumbnail_spec.color_palette` | 3 colours, must pass A2.4 |
+| `thumbnail_spec.baseHue` / `accentHue` | 2 hues, derived roles must pass A2.4 and COL-01..06 |
 | `font` | one of the vendored families; 2 weights |
 | `icon_map` | keyword → Lucide name, names must exist in the vendored set |
 | `tone` | affects script wording only, never motion |

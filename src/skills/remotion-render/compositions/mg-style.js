@@ -21,12 +21,16 @@ import {
 export { D, CANVAS, SAFE, OPTICAL_CENTRE_X, OPTICAL_CENTRE_Y, TYPE, CAPTION, CAPTION_LIMITS };
 
 /** Vertical zones — A1.3. Fixed for every beat. */
+import { SLOTS_SHORTS } from "../layout/slots.js";
+
+/** Vertical zones — A1.3. Fixed for every beat. Derived from the slot table
+ * (layout/slots.js) so the composition can never drift from the spec again. */
 export const ZONES = {
-  kicker: { top: 288, bottom: 360 },
-  stage: { top: 392, bottom: 940 },
-  headline: { top: 964, bottom: 1140 },
-  caption: { top: 1148, bottom: 1248 },
-  rail: { x: 48, top: 288, bottom: 1248 },
+  kicker: { top: SLOTS_SHORTS.kicker.y, bottom: SLOTS_SHORTS.kicker.y + SLOTS_SHORTS.kicker.h },
+  stage: { top: SLOTS_SHORTS.stage.y, bottom: SLOTS_SHORTS.stage.y + SLOTS_SHORTS.stage.h },
+  headline: { top: SLOTS_SHORTS.headline.y, bottom: SLOTS_SHORTS.headline.y + SLOTS_SHORTS.headline.h },
+  caption: { top: SLOTS_SHORTS.caption.y, bottom: SLOTS_SHORTS.caption.y + SLOTS_SHORTS.caption.h },
+  rail: { x: SLOTS_SHORTS.rail.x, top: SLOTS_SHORTS.rail.y, bottom: SLOTS_SHORTS.rail.y + SLOTS_SHORTS.rail.h },
 };
 
 /** 8px base grid + 12-column grid — A1.1 / A1.2. */
@@ -73,23 +77,35 @@ export function contrastRatio(fg, bg) {
   return (hi + 0.05) / (lo + 0.05);
 }
 
+import { paletteFromHues, deriveHuesFromHexes } from "../styles/tokens.js";
+
 /**
- * A2.1 — map a channel palette [bg, accent, textPrimary] onto the fixed role
- * map. textDim / stroke / surface are derived by the manual's mix formulas.
+ * A2.1 — map a channel's hue pair (or legacy 3-hex palette) onto the fixed
+ * role map. Stage 3 moved role derivation into styles/tokens.js
+ * (paletteFromHues); the A2.1 mix formulas for textDim/stroke/surface are
+ * superseded by OKLCH-derived roles (see audit-color ledger A-2). The legacy
+ * hex-array form is still accepted so existing verify fixtures and fallback
+ * palettes keep working: it is converted via deriveHuesFromHexes.
  */
 export function rolesFromPalette(palette) {
-  const bg = palette[0];
-  const accent = palette[1];
-  const textPrimary = palette[2];
-  return {
-    bg,
-    accent,
-    textPrimary,
-    textDim: mixColor(textPrimary, bg, 0.45),
-    stroke: mixColor(textPrimary, bg, 0.22),
-    surface: mixColor(bg, textPrimary, 0.06),
-  };
+  if (palette && typeof palette === "object" && !Array.isArray(palette)) {
+    if (typeof palette.baseHue === "number" && typeof palette.accentHue === "number") {
+      return paletteFromHues({ baseHue: palette.baseHue, accentHue: palette.accentHue });
+    }
+    if (typeof palette.bg === "string" && typeof palette.accent === "string") {
+      return palette; // already derived roles
+    }
+  }
+  if (Array.isArray(palette) && palette.length >= 3) {
+    return paletteFromHues(deriveHuesFromHexes(palette));
+  }
+  // No palette / invalid shape: neutral dark default through the same token
+  // path, so verifyPalette(null) reports rather than throwing.
+  return paletteFromHues(deriveHuesFromHexes(FALLBACK_HEXES));
 }
+
+// Fallback 3-hex palette for null/malformed input (motion-graphics FALLBACK_PALETTE).
+const FALLBACK_HEXES = ["#0F0F1A", "#E94560", "#F8FAFC"];
 
 // A2.4 — contrast floor (AAA large text, see manual table).
 export const CONTRAST_FLOOR = {

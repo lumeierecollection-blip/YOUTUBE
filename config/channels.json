@@ -9,7 +9,7 @@
     {
       "id": 1,
       "niche": "Personal Finance (Budgeting for Beginners)",
-      "style": "minimal",
+      "style": "motion-graphics",
       "channel_name": "Money Mind",
       "handle": "@moneymind",
       "tts_voice": "en-US-JennyNeural",
@@ -46,11 +46,8 @@
       "thumbnail_spec": {
         "style": "clean-infographic",
         "text_max_words": 4,
-        "color_palette": [
-          "#0F172A",
-          "#22C55E",
-          "#FFFFFF"
-        ],
+        "baseHue": 265.8,
+        "accentHue": 149.6,
         "text_font": "Inter Bold"
       },
       "sfx_profile": {
@@ -94,6 +91,20 @@
           "infographic-build",
           "fade-gentle"
         ]
+      },
+      "icon_map": {
+        "default": "banknote",
+        "terms": {
+          "money|dollar|dollars|pounds|cash|paid|paying|payment|payments|income|salary|budget|budgeting|afford|cost|costs|expensive|price|bills|bill|rent": "banknote",
+          "debt|debts|loan|loans|owe|owing|minimums|minimum|payoff|paying": "chart-column",
+          "interest|rate|apr|math|percent": "gauge",
+          "snowball|avalanche|plan|strategy|method|approach": "target",
+          "month|months|monthly|year|years|time|week|weeks|day": "clock",
+          "save|saving|saved|savings|fund|funds|stash": "coins",
+          "risk|warning|danger|trap|wrong": "triangle-alert",
+          "discipline|trust|quit|gave|habit|habits|motivation": "flame",
+          "number|numbers|value|amount|total|realistic": "scale"
+        }
       }
     },
     {
@@ -134,11 +145,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A1A2E",
-          "#F5536B",
-          "#FFFFFF"
-        ],
+        "baseHue": 282.9,
+        "accentHue": 15.7,
         "text_font": "DM Sans Bold"
       },
       "sfx_profile": {
@@ -240,11 +248,8 @@
       "thumbnail_spec": {
         "style": "before-after",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0A1A",
-          "#8B5CF6",
-          "#FFFFFF"
-        ],
+        "baseHue": 232.7,
+        "accentHue": 292.7,
         "text_font": "Space Grotesk Bold"
       },
       "sfx_profile": {
@@ -328,11 +333,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A100A",
-          "#D4A574",
-          "#FFFFFF"
-        ],
+        "baseHue": 7.1,
+        "accentHue": 67.1,
         "text_font": "Cormorant Garamond Bold"
       },
       "sfx_profile": {
@@ -417,11 +419,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A0A05",
-          "#F97316",
-          "#FFFFFF"
-        ],
+        "baseHue": 347.6,
+        "accentHue": 47.6,
         "text_font": "Oswald Bold"
       },
       "sfx_profile": {
@@ -506,11 +505,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A1A0A",
-          "#4ADE80",
-          "#FFFFFF"
-        ],
+        "baseHue": 91.7,
+        "accentHue": 151.7,
         "text_font": "Bebas Neue Bold"
       },
       "sfx_profile": {
@@ -595,11 +591,8 @@
       "thumbnail_spec": {
         "style": "before-after",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A0A1A",
-          "#EF4444",
-          "#FFFFFF"
-        ],
+        "baseHue": 325.3,
+        "accentHue": 25.3,
         "text_font": "DM Sans Bold"
       },
       "sfx_profile": {
@@ -684,11 +677,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A1A2E",
-          "#A855F7",
-          "#FFFFFF"
-        ],
+        "baseHue": 243.9,
+        "accentHue": 303.9,
         "text_font": "Nunito Bold"
       },
       "sfx_profile": {
@@ -773,11 +763,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A1A2E",
-          "#3B82F6",
-          "#FFFFFF"
-        ],
+        "baseHue": 199.8,
+        "accentHue": 259.8,
         "text_font": "Roboto Condensed Bold"
       },
       "sfx_profile": {
@@ -879,11 +866,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A0A15",
-          "#DC2626",
-          "#FFFFFF"
-        ],
+        "baseHue": 327.3,
+        "accentHue": 27.3,
         "text_font": "Playfair Display Bold"
       },
       "sfx_profile": {
@@ -969,11 +953,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 3,
-        "color_palette": [
-          "#05051A",
-          "#818CF8",
-          "#FFFFFF"
-        ],
+        "baseHue": 336.9,
+        "accentHue": 276.9,
         "text_font": "Space Grotesk Bold"
       },
       "sfx_profile": {
@@ -1058,11 +1039,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#050A1A",
-          "#06B6D4",
-          "#FFFFFF"
-        ],
+        "baseHue": 275.2,
+        "accentHue": 215.2,
         "text_font": "Inter Bold"
       },
       "sfx_profile": {
@@ -1147,11 +1125,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A1510",
-          "#D97706",
-          "#FFFFFF"
-        ],
+        "baseHue": 118.3,
+        "accentHue": 58.3,
         "text_font": "Playfair Display Bold"
       },
       "sfx_profile": {
@@ -1236,11 +1211,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0A2E",
-          "#60A5FA",
-          "#FFFFFF"
-        ],
+        "baseHue": 314.6,
+        "accentHue": 254.6,
         "text_font": "Fira Sans Bold"
       },
       "sfx_profile": {
@@ -1342,11 +1314,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A1A15",
-          "#10B981",
-          "#FFFFFF"
-        ],
+        "baseHue": 222.5,
+        "accentHue": 162.5,
         "text_font": "DM Sans Bold"
       },
       "sfx_profile": {
@@ -1449,11 +1418,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A1A0A",
-          "#EAB308",
-          "#FFFFFF"
-        ],
+        "baseHue": 146,
+        "accentHue": 86,
         "text_font": "Oswald Bold"
       },
       "sfx_profile": {
@@ -1538,11 +1504,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A1510",
-          "#B45309",
-          "#FFFFFF"
-        ],
+        "baseHue": 109,
+        "accentHue": 49,
         "text_font": "Cormorant Garamond Bold"
       },
       "sfx_profile": {
@@ -1627,11 +1590,8 @@
       "thumbnail_spec": {
         "style": "clean-minimal",
         "text_max_words": 5,
-        "color_palette": [
-          "#FFFFFF",
-          "#3B82F6",
-          "#1F2937"
-        ],
+        "baseHue": 199.8,
+        "accentHue": 261.3,
         "text_font": "Comic Neue Bold"
       },
       "sfx_profile": {
@@ -1717,11 +1677,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0F0A",
-          "#4ADE80",
-          "#FFFFFF"
-        ],
+        "baseHue": 91.7,
+        "accentHue": 153.2,
         "text_font": "Bebas Neue Bold"
       },
       "sfx_profile": {
@@ -1807,11 +1764,8 @@
       "thumbnail_spec": {
         "style": "clean-infographic",
         "text_max_words": 5,
-        "color_palette": [
-          "#1A1A2E",
-          "#22D3EE",
-          "#FFFFFF"
-        ],
+        "baseHue": 282.9,
+        "accentHue": 211.5,
         "text_font": "Nunito Bold"
       },
       "sfx_profile": {
@@ -1897,11 +1851,8 @@
       "thumbnail_spec": {
         "style": "minimal-gradient",
         "text_max_words": 3,
-        "color_palette": [
-          "#0A0A2E",
-          "#818CF8",
-          "#C4B5FD"
-        ],
+        "baseHue": 216.9,
+        "accentHue": 276.9,
         "text_font": "Inter Light"
       },
       "sfx_profile": {
@@ -1985,11 +1936,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 5,
-        "color_palette": [
-          "#0A0A1A",
-          "#F43F5E",
-          "#FFFFFF"
-        ],
+        "baseHue": 281.7,
+        "accentHue": 16.4,
         "text_font": "Roboto Condensed Bold"
       },
       "sfx_profile": {
@@ -2075,11 +2023,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 5,
-        "color_palette": [
-          "#1A0505",
-          "#DC2626",
-          "#FBBF24"
-        ],
+        "baseHue": 327.3,
+        "accentHue": 28.8,
         "text_font": "Noto Serif Bold"
       },
       "sfx_profile": {
@@ -2164,11 +2109,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A1005",
-          "#F59E0B",
-          "#FFFFFF"
-        ],
+        "baseHue": 10.1,
+        "accentHue": 70.1,
         "text_font": "Oswald Bold"
       },
       "sfx_profile": {
@@ -2253,11 +2195,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0A15",
-          "#F59E0B",
-          "#FFFFFF"
-        ],
+        "baseHue": 283.2,
+        "accentHue": 70.1,
         "text_font": "DM Sans Bold"
       },
       "sfx_profile": {
@@ -2343,11 +2282,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0A1A",
-          "#22C55E",
-          "#FFFFFF"
-        ],
+        "baseHue": 281.7,
+        "accentHue": 149.6,
         "text_font": "JetBrains Mono Bold"
       },
       "sfx_profile": {
@@ -2449,11 +2385,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0A15",
-          "#60A5FA",
-          "#FFFFFF"
-        ],
+        "baseHue": 314.6,
+        "accentHue": 253.1,
         "text_font": "Roboto Condensed Bold"
       },
       "sfx_profile": {
@@ -2537,11 +2470,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0A15",
-          "#A855F7",
-          "#FFFFFF"
-        ],
+        "baseHue": 243.9,
+        "accentHue": 305.4,
         "text_font": "Cormorant Garamond Bold"
       },
       "sfx_profile": {
@@ -2626,11 +2556,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0F1A",
-          "#F97316",
-          "#FFFFFF"
-        ],
+        "baseHue": 265.2,
+        "accentHue": 47.6,
         "text_font": "DM Sans Bold"
       },
       "sfx_profile": {
@@ -2715,11 +2642,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0A1A",
-          "#06B6D4",
-          "#FFFFFF"
-        ],
+        "baseHue": 281.7,
+        "accentHue": 215.2,
         "text_font": "Space Grotesk Bold"
       },
       "sfx_profile": {
@@ -2804,11 +2728,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0A1A",
-          "#FBBF24",
-          "#FFFFFF"
-        ],
+        "baseHue": 281.7,
+        "accentHue": 84.4,
         "text_font": "Playfair Display Bold"
       },
       "sfx_profile": {
@@ -2893,11 +2814,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0F1A",
-          "#F97316",
-          "#FFFFFF"
-        ],
+        "baseHue": 265.2,
+        "accentHue": 49.1,
         "text_font": "Fira Sans Bold"
       },
       "sfx_profile": {
@@ -2999,11 +2917,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A1510",
-          "#3B82F6",
-          "#FFFFFF"
-        ],
+        "baseHue": 67,
+        "accentHue": 259.8,
         "text_font": "Oswald Bold"
       },
       "sfx_profile": {
@@ -3088,11 +3003,8 @@
       "thumbnail_spec": {
         "style": "before-after",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A1A15",
-          "#10B981",
-          "#FFFFFF"
-        ],
+        "baseHue": 222.5,
+        "accentHue": 161,
         "text_font": "DM Sans Bold"
       },
       "sfx_profile": {
@@ -3194,11 +3106,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#05051A",
-          "#60A5FA",
-          "#FFFFFF"
-        ],
+        "baseHue": 314.6,
+        "accentHue": 251.6,
         "text_font": "Space Grotesk Bold"
       },
       "sfx_profile": {
@@ -3284,11 +3193,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0A1A",
-          "#22C55E",
-          "#FFFFFF"
-        ],
+        "baseHue": 281.7,
+        "accentHue": 148.1,
         "text_font": "JetBrains Mono Bold"
       },
       "sfx_profile": {
@@ -3373,11 +3279,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 5,
-        "color_palette": [
-          "#0A0A1A",
-          "#F43F5E",
-          "#FFFFFF"
-        ],
+        "baseHue": 281.7,
+        "accentHue": 17.9,
         "text_font": "Space Grotesk Bold"
       },
       "sfx_profile": {
@@ -3462,11 +3365,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 5,
-        "color_palette": [
-          "#0F172A",
-          "#38BDF8",
-          "#FFFFFF"
-        ],
+        "baseHue": 292.7,
+        "accentHue": 232.7,
         "text_font": "Inter Bold"
       },
       "sfx_profile": {
@@ -3551,11 +3451,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0A1A",
-          "#EF4444",
-          "#FFFFFF"
-        ],
+        "baseHue": 281.7,
+        "accentHue": 25.3,
         "text_font": "Roboto Condensed Bold"
       },
       "sfx_profile": {
@@ -3640,11 +3537,8 @@
       "thumbnail_spec": {
         "style": "clean-infographic",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0F1A",
-          "#60A5FA",
-          "#FFFFFF"
-        ],
+        "baseHue": 314.6,
+        "accentHue": 250.1,
         "text_font": "Nunito Bold"
       },
       "sfx_profile": {
@@ -3747,11 +3641,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0A2E",
-          "#A855F7",
-          "#FFFFFF"
-        ],
+        "baseHue": 243.9,
+        "accentHue": 306.9,
         "text_font": "Fira Sans Bold"
       },
       "sfx_profile": {
@@ -3856,11 +3747,8 @@
       "thumbnail_spec": {
         "style": "before-after",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A1A10",
-          "#22C55E",
-          "#FFFFFF"
-        ],
+        "baseHue": 209.6,
+        "accentHue": 149.6,
         "text_font": "DM Sans Bold"
       },
       "sfx_profile": {
@@ -3962,11 +3850,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A0A0A",
-          "#EF4444",
-          "#FFFFFF"
-        ],
+        "baseHue": 325.3,
+        "accentHue": 26.8,
         "text_font": "Bebas Neue Bold"
       },
       "sfx_profile": {
@@ -4051,11 +3936,8 @@
       "thumbnail_spec": {
         "style": "clean-infographic",
         "text_max_words": 4,
-        "color_palette": [
-          "#0F172A",
-          "#A78BFA",
-          "#FFFFFF"
-        ],
+        "baseHue": 233.5,
+        "accentHue": 293.5,
         "text_font": "Inter Bold"
       },
       "sfx_profile": {
@@ -4158,11 +4040,8 @@
       "thumbnail_spec": {
         "style": "before-after",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0A1A",
-          "#F97316",
-          "#FFFFFF"
-        ],
+        "baseHue": 281.7,
+        "accentHue": 47.6,
         "text_font": "Space Grotesk Bold"
       },
       "sfx_profile": {
@@ -4247,11 +4126,8 @@
       "thumbnail_spec": {
         "style": "clean-infographic",
         "text_max_words": 4,
-        "color_palette": [
-          "#0F172A",
-          "#22C55E",
-          "#EF4444"
-        ],
+        "baseHue": 265.8,
+        "accentHue": 148.1,
         "text_font": "DM Sans Bold"
       },
       "sfx_profile": {
@@ -4336,11 +4212,8 @@
       "thumbnail_spec": {
         "style": "clean-infographic",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A1A2E",
-          "#3B82F6",
-          "#FFFFFF"
-        ],
+        "baseHue": 199.8,
+        "accentHue": 262.8,
         "text_font": "Nunito Bold"
       },
       "sfx_profile": {
@@ -4425,11 +4298,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#0A0F1A",
-          "#F97316",
-          "#FFFFFF"
-        ],
+        "baseHue": 265.2,
+        "accentHue": 50.6,
         "text_font": "Fira Sans Bold"
       },
       "sfx_profile": {
@@ -4531,11 +4401,8 @@
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A1005",
-          "#F59E0B",
-          "#FFFFFF"
-        ],
+        "baseHue": 10.1,
+        "accentHue": 71.6,
         "text_font": "DM Sans Bold"
       },
       "sfx_profile": {
@@ -4620,11 +4487,8 @@
       "thumbnail_spec": {
         "style": "before-after",
         "text_max_words": 4,
-        "color_palette": [
-          "#1A0F05",
-          "#EF4444",
-          "#FFFFFF"
-        ],
+        "baseHue": 85.3,
+        "accentHue": 25.3,
         "text_font": "Inter Bold"
       },
       "sfx_profile": {

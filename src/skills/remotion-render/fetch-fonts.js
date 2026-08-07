@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Font fetcher — downloads the woff2 files for every font referenced in
  * config/channels.json so Remotion can render the channels' actual fonts
  * (Google Fonts are not installed locally and the renderer cannot rely on
@@ -27,6 +27,13 @@ const UA =
 const WEIGHTS = [400, 700];
 const FONT_LIMIT = 30;
 
+// Latin block (unicode-range U+0000-00FF) is the LAST @font-face block per
+// weight in the Google Fonts CSS2 response; the first block is cyrillic-ext.
+// Selecting the first matching block shipped 0-digit subsets (audit-assets
+// claim 001, SFR-002). Request one weight per CSS2 call and select by
+// unicode-range.
+const LATIN_RANGE = "U+0000-00FF";
+
 function slug(name) {
   return name.replace(/\s+/g, "");
 }
@@ -38,19 +45,23 @@ function collectFonts() {
   return fonts.slice(0, FONT_LIMIT);
 }
 
-function cssUrl(font) {
+function cssUrl(font, weight) {
   const fam = font.replace(/ /g, "+");
-  const weights = WEIGHTS.join(";");
-  return `https://fonts.googleapis.com/css2?family=${fam}:wght@${weights}&display=swap`;
+  return `https://fonts.googleapis.com/css2?family=${fam}:wght@${weight}&display=swap`;
 }
 
 async function getWoff2Url(font, weight) {
-  const res = await fetch(cssUrl(font), { headers: { "User-Agent": UA } });
+  const res = await fetch(cssUrl(font, weight), { headers: { "User-Agent": UA } });
   if (!res.ok) throw new Error(`${font}: CSS request failed (${res.status})`);
   const css = await res.text();
   const blocks = css.split("@font-face");
   for (const block of blocks) {
     if (!block.includes(`font-weight: ${weight};`)) continue;
+    // Skip if the block's unicode-range does not cover latin (U+0020-U+007E
+    // sits inside U+0000-00FF). A block with no unicode-range at all is the
+    // static single-file case and is acceptable.
+    const ur = block.match(/unicode-range:\s*([^;}]+)/);
+    if (ur && !ur[1].includes(LATIN_RANGE)) continue;
     const m = block.match(/url\((https:\/\/[^)]+\.woff2)\)/);
     if (m) return m[1];
   }

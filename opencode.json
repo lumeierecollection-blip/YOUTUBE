@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "mg-orchestrator",
+  "subagent_depth": 2,
+  "permission": {
+    "websearch": "allow",
+    "webfetch": "allow",
+    "external_directory": "deny",
+    "doom_loop": "deny"
+  }
+}

@@ -1215,7 +1215,13 @@ function MotionGraphicsShorts({
   palette = null,
   channelName = "",
 }) {
-  const colors = rolesFromPalette(Array.isArray(palette) && palette.length >= 3 ? palette : FALLBACK_PALETTE);
+  const colors = rolesFromPalette(
+    palette && typeof palette === "object" && !Array.isArray(palette)
+      ? palette
+      : Array.isArray(palette) && palette.length >= 3
+        ? palette
+        : FALLBACK_PALETTE
+  );
   const fontFamily = resolveFontFamily(font);
   return (
     <AbsoluteFill style={{ backgroundColor: colors.bg }}>
