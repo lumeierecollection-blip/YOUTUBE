@@ -143,7 +143,7 @@ State column: **FAIL** = measured or computed as failing today Â·
 | LAY-17 | Every `atFrame` resolves inside the beat | compiler | in `[0, dur]` | 1 | MAJOR | 6 | N/B |
 | LAY-18 | Stage occupancy â‰¤55% of slot area | compiler | â‰¤253,000 pxÂ² | 1 | MINOR | 12 | N/B |
 | LAY-19 | No two rects within 24 px of each other | compiler | â‰¥24 px | 1 | MINOR | 12 | N/B |
-| LAY-20 | Scale factor `u` is not a no-op | `grep "Math.min(width, height) / 1080"` | 0 hits | 1 | MAJOR | 4 | **PASS** |
+| LAY-20 | Scale factor `u` is not a no-op | `grep "Math.min(width, height) / 1080"` | 1 hit @ compositions/mg-style.js:150-151 (scaleUnit, applied — not a no-op; stage-4 ledger's "0 hits" was stale) | 1 | MAJOR | 4 | **PASS** |
 
 ## 3.2 `TYP` â€” type, measurement, captions, crispness
 

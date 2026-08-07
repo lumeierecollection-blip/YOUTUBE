@@ -1,10 +1,10 @@
 # MOTION-GRAPHICS STYLE MANUAL
 
 **Repo:** `lumeierecollection-blip/YOUTUBE`
-**Applies to:** `style: "motion-graphics"` only — 12 channels in `config/channels.json`:
-Legal Brief · Border Lines · Quantum Canvas · Earth Signal · Fraud Files ·
-Machine Anatomy · Build Smart · MedBrief · Mind & Body Files · NutriDecode ·
-Skill Stack · Factory Floor
+**Applies to:** `style: "motion-graphics"` only — 13 channels in `config/channels.json`:
+Money Mind · Legal Brief · Border Lines · Quantum Canvas · Earth Signal ·
+Fraud Files · Machine Anatomy · Build Smart · MedBrief · Mind & Body Files ·
+NutriDecode · Skill Stack · Factory Floor
 **Companion:** `MOTION-BLUEPRINT.md` (timing spine, beat model, safe zones).
 This manual specifies *what appears* and *how it moves*. The blueprint
 specifies *when*.

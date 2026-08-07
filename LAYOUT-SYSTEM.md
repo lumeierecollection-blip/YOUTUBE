@@ -388,8 +388,13 @@ it is not full-safe-height.
 
 # PART 4 — THE COMPILER
 
-`compositions/layout/compile.js` — pure, synchronous, runs in Node **before**
-any browser starts.
+`compositions/layout/compile.js` — pure layout math, synchronous, runs in Node.
+Text measurement is NOT performed inside compile.js: the @remotion/layout-utils
+measurement functions throw outside a browser (machine-verified on the installed
+4.0.506, and documented: “Only works in the browser, not in Node.js or Bun.”,
+ESCLAY-5-1, resolved 2026-08-07, option 1). Measurement runs in the browser once,
+before render, through layout/measure.js (font gate armed); its results are passed
+into compile() as input, and compile resolves geometry from them.
 
 ```
 ShotSpec[] ──compile()──▶ ResolvedFrame[]
@@ -426,10 +431,12 @@ above its axis if the axis is at y = 876 and the bar's rect is
 resolve their **bottom** edge first and extend upward. The current code
 resolves tops and lets flex push things around.
 
-**R3 — Measure before place.** Any rect whose size depends on text calls
-`measureText()` at compile time with the *exact* font properties that will be
-used at render time, and stores the result in the rect. Nothing is measured in
-the browser during a render.
+**R3 — Measure before place (browser-time).** Any rect whose size depends on
+text is measured in the browser through layout/measure.js — the gated wrappers,
+so an unloaded font throws — *before* compile() runs, and the measured widths
+and line counts are passed into compile() as input. Nothing is measured inside
+compile.js (the library throws in Node), and nothing is measured *during* a
+render frame.
 
 **R4 — Round then assert.** Snap to 8 px, assert displacement ≤ 4 px, assert
 the rect is inside its slot, assert the slot is inside the safe rect. Any
@@ -666,7 +673,7 @@ now. Nothing in a composition parses a sentence or divides a timeline.
 src/skills/remotion-render/
 ├── layout/
 │   ├── slots.js            # Part 3 tables. Pure data.
-│   ├── compile.js          # Part 4. Pure. No React, no browser.
+│   ├── compile.js          # Part 4. Pure layout math, Node. No measurement (browser-fed).
 │   ├── measure.js          # measureText/fitText/fillTextBox wrappers + font gate
 │   └── lint.js             # Tier 1 checks L1–L12
 ├── spec/
@@ -724,9 +731,10 @@ but frame counts.
 | 11 | `minimal` + `cinematic-documentary` on the same spine | Tier 3 per style |
 | 12 | Matrix rollout | — |
 
-**8.5** — Steps 1–4 require no browser and no render. Roughly half the work
-here is verifiable in milliseconds, which is the whole point of moving layout
-out of the DOM.
+**8.5** — Steps 1–2 require no browser and no render (compile.js itself
+stays Node-pure; its measurement input comes from the browser step 3). Roughly
+half the work here is verifiable in milliseconds, which is the whole point of
+moving layout out of the DOM.
 
 ---
 
