@@ -1,0 +1,43 @@
+﻿compile.js    6: * @remotion/layout-utils functions throw outside a browser (machine-verified
+compile.js   29: *                fit?, enter, exit }] }
+compile.js   37: *                      motion-graphics.jsx tA).
+compile.js   78: /** Â§2.1.3 â€” resolve one enter/exit bound to a beat-relative frame. */
+compile.js   79: function rangeBound(motion, dur, anchorFrame, which, id, role) {
+compile.js   80: if (!motion || isNone(motion.pattern)) return which === "enter" ? 0 : dur;
+compile.js   81: const { frame, error } = resolveAtFrame(motion.atFrame, { anchorFrame, durationInFrames: dur });
+compile.js   92: throw new Error(`${id} ${role}: enter resolves to ${from}, outside [0, ${dur}] (R4/L12)`);
+compile.js   95: throw new Error(`${id} ${role}: exit resolves to ${to}, outside [0, ${dur}] (R4/L12)`);
+compile.js   98: throw new Error(`${id} ${role}: enter ${from} after exit ${to} (R4)`);
+compile.js  137: const role = layer.role;
+compile.js  138: const text = renderedTextForContent(layer.content);
+compile.js  166: const align = layer.align || DEFAULT_ALIGN[role] || "top-left";
+compile.js  170: slot: layer.slot,
+compile.js  192: const content = layer.content || {};
+compile.js  224: slot: layer.slot,
+compile.js  255: const role = layer.role;
+compile.js  256: const slot = slots[layer.slot];
+compile.js  257: if (!slot) throw new Error(`${spec.id} ${role}: slot "${layer.slot}" does not exist in the table (R4)`);
+compile.js  264: if (!safeOk) throw new Error(`${spec.id} ${role}: slot ${layer.slot} is outside the safe rect (R4)`);
+compile.js  266: const from = rangeBound(layer.enter, dur, anchorFrame, "enter", spec.id, role);
+compile.js  267: const to = rangeBound(layer.exit, dur, anchorFrame, "exit", spec.id, role);
+compile.js  276: slot: layer.slot,
+compile.js  303: if (a.layer.slot !== headline.slot) {
+compile.js  305: `${spec.id} accent: declared slot "${a.layer.slot}" differs from the headline's "${headline.slot}" â€” ` +
+compile.js  311: slot: a.layer.slot,
+compile-lint.js   17: export const LINE_HEIGHT = 1.12;
+compile-lint.js   20: export const ROLE_FLOORS = { headline: 84, caption: 64, support: 44 };
+compile-lint.js   23: export const TEXT_ROLES = ["kicker", "headline", "caption", "support"];
+compile-lint.js   26: export const ACCENT_ROLE = "accent";
+compile-lint.js   29: export const PERSISTENT_ROLES = ["kicker", "caption", "rail"];
+compile-lint.js   37: export const STRUCTURAL_ROLES = ["rail", "accent"];
+compile-lint.js   42: export function headlineContentBox(slot) {
+compile-lint.js   50: export function effectiveSlotFor(rect, slot) {
+compile-lint.js   59: export function anchoredRect(slot, anchor, w, h) {
+compile-lint.js   70: case "center":
+compile-lint.js   88: export function textBlockHeight(fontSize, lines) {
+compile-lint.js   97: export function renderedTextForContent(content) {
+compile-lint.js  114: export function measuredKey(text, fontSize, fontFamily) {
+compile-lint.js  122: export function resolveAtFrame(atFrame, { anchorFrame = 0, durationInFrames }) {
+compile-lint.js  134: export function rectsOverlap(a, b) {
+compile-lint.js  144: *  on-screen frames â€” an element is still visible during its exit window). */
+compile-lint.js  145: export function rangesOverlap(a, b) {

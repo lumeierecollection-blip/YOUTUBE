@@ -1,0 +1,130 @@
+﻿341:       highlight: p.highlight === true, // straight from data (ENC-13)
+342:     })),
+343:   };
+344: }
+345: 
+346: // â”€â”€ Layer recipes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+347: 
+348: /** Section for the kicker label: the caller's section table when provided
+349:  *  (stage 9 passes it), else the beat's own sectionIndex. */
+350: function sectionFor(beat, opts) {
+351:   const table = opts && Array.isArray(opts.sections) ? opts.sections : null;
+352:   const idx = beat.sectionIndex ?? 0;
+353:   if (table) return table[idx] || table[0];
+354:   return { index: idx, id: `section_${idx + 1}` };
+355: }
+356: 
+357: function kickerLayer(section) {
+358:   return {
+359:     role: "kicker",
+360:     slot: "kicker",
+361:     content: { index: section.index + 1, label: section.id },
+362:     enter: { pattern: "RISE", atFrame: 0 },
+363:     exit: { pattern: "NONE" },
+364:   };
+365: }
+366: 
+367: function railLayer() {
+368:   return { role: "rail", slot: "rail", content: {}, enter: { pattern: "NONE" }, exit: { pattern: "NONE" } };
+369: }
+370: 
+371: function captionLayer(beat) {
+372:   return {
+373:     role: "caption",
+374:     slot: "caption",
+375:     content: { text: beat.text },
+376:     fit: { maxSize: MG_TYPE.caption, minSize: MG_TYPE.caption, maxLines: 2 },
+377:     enter: { pattern: "RISE", atFrame: 0 },
+378:     exit: { pattern: "NONE" },
+379:   };
+380: }
+381: 
+382: function headlineLayer(beat, dur, anchorFrame, text, archetype) {
+383:   return {
+384:     role: "headline",
+385:     slot: "headline",
+386:     align: "left",
+387:     content: { text },
+388:     fit: { maxSize: MG_TYPE.headline, minSize: MG_TYPE.headline, maxLines: 1 },
+389:     enter: { pattern: "RISE", atFrame: headlineEnterAt(anchorFrame, dur, HEADLINE_DELAY[archetype] ?? 8) },
+390:     exit: { pattern: "FADE", atFrame: "end-6" },
+391:   };
+392: }
+393: 
+394: /** The 4 px accent rule â€” TERM_DEFINE only (F2: "the rule is the accent
+395:  *  element for this beat", MANUAL:1006; CLAIM-ENC-9-02). */
+396: function accentLayer(dur, anchorFrame) {
+397:   return {
+398:     role: "accent",
+399:     slot: "headline",
+400:     content: {},
+401:     enter: { pattern: "DRAW", atFrame: anchorFrame + 6 <= dur - 6 ? "anchor+6" : "end-6" },
+402:     exit: { pattern: "FADE", atFrame: "end-6" },
+403:   };
+404: }
+405: 
+406: /** The chart layer â€” role "chart" in the stage slot. The compiler resolves
+407:  *  all interior geometry from `content.series` (compile.js chartRect); the
+408:  *  primitive renders the compiled `chart` object only. */
+409: function chartLayer(content) {
+410:   return {
+411:     role: "chart",
+412:     slot: "stage",
+413:     align: "bottom-left",
+414:     content,
+415:     enter: { pattern: "CHART_BUILD", atFrame: 0 },
+416:     exit: { pattern: "NONE" },
+417:   };
+418: }
+419: 
+420: /** One beat â†’ one ShotSpec. */
+421: export function beatToShotSpec(beat, beatIndex, opts = {}) {
+422:   const id = `s${sectionFor(beat, opts).index}b${beatIndex}`;
+423:   const dur = beat.durationInFrames;
+424:   const aDelta = beat.anchorFrame - beat.startFrame;
+425:   const anchorFrame = aDelta >= 0 ? aDelta : 0;
+426:   assertAnchor(beat, id); // ENC-03/04 â€” every beat, before any layer decision
+427:   const base = [kickerLayer(sectionFor(beat, opts)), railLayer(), captionLayer(beat)];
+428: 
+429:   if (beat.archetype === "PROGRESS") {
+430:     // Data gates run BEFORE any layer decision â€” a data error is a build error.
+431:     const { series, unit } = validateSeriesData(beat, id); // ENC-08/09/24/10/21/20
+432:     if (series.length === 1) {
+433:       // ENC-22 / H8 â€” single-point data renders as HERO_NUMBER, never a
+434:       // one-bar chart (mirrors mg-package.js:419-421's downgrade family).
+435:       const text = heroNumberHeadline(beat);
+436:       const layers = text ? [...base, headlineLayer(beat, dur, anchorFrame, text, "HERO_NUMBER")] : base;
+437:       assertStageLayerCount(layers, id); // ENC-16
+438:       return {
+439:         id,
+440:         archetype: "HERO_NUMBER",
+441:         startFrame: beat.startFrame,
+442:         durationInFrames: dur,
+443:         anchorTokenIndex: beat.anchorTokenIndex,
+444:         layers,
+445:       };
+446:     }
+447:     const content = chartContentFor(beat, id); // ENC-13/23 (highlight + intervals)
+448:     const text = headlineTextFor(beat);
+449:     const layers = [
+450:       ...base,
+451:       ...(text ? [headlineLayer(beat, dur, anchorFrame, text, "PROGRESS")] : []),
+452:       chartLayer({ unit, series: content.series }),
+453:     ];
+454:     assertStageLayerCount(layers, id); // ENC-16
+455:     return {
+456:       id,
+457:       archetype: "PROGRESS",
+458:       startFrame: beat.startFrame,
+459:       durationInFrames: dur,
+460:       anchorTokenIndex: beat.anchorTokenIndex,
+461:       layers,
+462:     };
+463:   }
+464: 
+465:   // Every other archetype: kicker + rail + caption, headline when the
+466:   // archetype has an honest source, and the F2 accent rule for TERM_DEFINE.
+467:   const text = headlineTextFor(beat);
+468:   const layers = [...base];
+469:   if (text) layers.push(headlineLayer(beat, dur, anchorFrame, text, beat.archetype));
+470:   if (beat.archetype === "TERM_DEFINE") layers.push(accentLayer(dur, anchorFrame));

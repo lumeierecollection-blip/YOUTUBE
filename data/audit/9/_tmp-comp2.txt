@@ -1,0 +1,36 @@
+﻿331:       `${spec.id}: headline rect collides with the caption rect (Â§3.7/Â§5.3) â€” use a 1-line headline or a 1-line caption`
+332:     );
+333:   }
+334: 
+335:   // R4 â€” final assertions on every emitted rect.
+336:   for (const rect of rects) {
+337:     assertInsideSlot(spec.id, rect, slots[rect.slot]);
+338:     assertGrid(spec.id, rect);
+339:   }
+340: 
+341:   return { beatId: spec.id, startFrame: spec.startFrame, durationInFrames: dur, rects };
+342: }
+343: 
+344: /**
+345:  * ShotSpec[] â†’ ResolvedFrame[]. Throws on the first R4 violation (a layout
+346:  * error becomes a build error). The returned frames are the exact input
+347:  * lintAll() verifies â€” compile guarantees R1â€“R4, lint verifies L1â€“L12 on any
+348:  * ResolvedFrame[] including hand-written ones.
+349:  */
+350: export function compile(specs, opts = {}) {
+351:   const slots = opts.slots || SLOTS_SHORTS;
+352:   const safe = opts.safe || SAFE_SHORTS;
+353:   const measured = opts.measured || {};
+354:   const fonts = opts.fonts || {};
+355:   const anchorFrames = opts.anchorFrame || {};
+356:   if (!Array.isArray(specs)) throw new Error("compile: specs must be an array (R4)");
+357:   return specs.map((spec) =>
+358:     compileBeat(spec, {
+359:       slots,
+360:       safe,
+361:       measured,
+362:       fonts,
+363:       anchorFrame: anchorFrames[spec.id] ?? 0,
+364:     })
+365:   );
+366: }

@@ -1,0 +1,58 @@
+﻿Icon.jsx   10: * at 1080-wide: `strokeWidth = strokeAttr(size)` (mg-style.js, A4.3).
+Icon.jsx   30: import { strokeAttr } from "../compositions/mg-style.js";
+Icon.jsx   45: export function Icon({ name, size, color, sw, ...rest }) {
+Icon.jsx   56: strokeWidth={sw ?? strokeAttr(size)}
+Icon.jsx   67: * beat-relative frame the draw begins on; `frame` defaults to
+Icon.jsx   70: export function TraceIcon({ name, size, color, sw, start, frame: frameProp, ...rest }) {
+Icon.jsx   86: strokeWidth={sw ?? strokeAttr(size)}
+Icon.jsx  110: export default Icon;
+Node.jsx    2: * primitives/Node.jsx â€” MANUAL A5.1 "Node": flow/relation points.
+Node.jsx    4: *   <Layer rect={â€¦}> <Node colors={colors} active={â€¦} /> </Layer>
+Node.jsx    6: * A5.1 table: circle, r 44, `surface` fill, 3 px `accent` border. Live
+Node.jsx    7: * renderer (RelationScene, motion-graphics.jsx:844-868): makeCircle({radius:
+Node.jsx    8: * 44}) â†’ 88Ã—88 path, surface fill, 3 px stroke border, flipped to accent when
+Node.jsx   11: * Contract: NEVER positions itself â€” the wrapping Layer owns position. Node
+Node.jsx   12: * fills the Layer box (the box is the 88Ã—88 circle's bounding square; the
+Node.jsx   13: * Layer rect is positioned so the circle lands on its anchor point). The
+Node.jsx   14: * circle is centered in the box, so `rect.x/y` place the circle's top-left â€”
+Node.jsx   15: * callers that need centre-anchored placement set the rect from
+Node.jsx   16: * anchorPoint() (layout/slots.js) or use a centred slot anchor.
+Node.jsx   18: * No shadows (A5.2); a circle is excepted from A5.3's radius list.
+Node.jsx   21: import React from "react";
+Node.jsx   22: import { makeCircle } from "@remotion/shapes";
+Node.jsx   24: const NODE_RADIUS = 44; // A5.1: r 44
+Node.jsx   25: const NODE_STROKE = 3; // A5.1: 3 px accent border
+Node.jsx   27: const circlePath = makeCircle({ radius: NODE_RADIUS }).path; // static, 88Ã—88
+Node.jsx   30: * @param {object} props
+Node.jsx   31: * @param {object} props.colors         derived roles (paletteFromHues keys)
+Node.jsx   32: * @param {boolean} [props.active=false] accent border (live bAccent highlight)
+Node.jsx   33: * @param {string} [props.fill]          override fill (default colors.surface)
+Node.jsx   34: * @param {string} [props.stroke]        override stroke (default: accent if
+Node.jsx   35: *   active else colors.stroke â€” live mg.jsx:855/866)
+Node.jsx   37: export function Node({ colors, active = false, fill, stroke, ...rest }) {
+Node.jsx   38: const strokeColor = stroke ?? (active ? colors.accent : colors.stroke);
+Node.jsx   39: return (
+Node.jsx   40: <svg {...rest} width="100%" height="100%" viewBox="0 0 88 88" fill="none">
+Node.jsx   41: <path d={circlePath} fill={fill ?? colors.surface} stroke={strokeColor} strokeWidth={NODE_STROKE} />
+Node.jsx   46: export default Node;
+slots.js    9: /** 8 px base grid + 12-column stage grid â€” Â§3.5 / Â§3.6, A1.1 / A1.2. */
+slots.js   10: export const GRID = { base: 8, cols: 12, col: 56, gutter: 8, pad: 40 };
+slots.js   14: * 12 Ã— 56 + 11 Ã— 8 + 2 Ã— 40 = 840, so the safe width is exactly one stage.
+slots.js   16: export const SAFE_SHORTS = { top: 288, bottom: 1248, left: 48, right: 888 };
+slots.js   22: export const SAFE_LONGFORM = { top: 100, bottom: 980, left: 160, right: 1760 };
+slots.js   37: export const SLOTS_SHORTS = {
+slots.js   39: stage: { x: 48, y: 392, w: 840, h: 548 },
+slots.js   46: export const SLOTS_LONGFORM = {
+slots.js   48: stage: { x: 160, y: 196, w: 1600, h: 560 },
+slots.js   55: export const ANCHORS = [
+slots.js   68: export function snapToGrid(value, grid = GRID.base) {
+slots.js   74: * Â§3.6 â€” the stage is subdivided by the 12-column grid. Column i (0..11)
+slots.js   78: export function columnX(index, table = SLOTS_SHORTS) {
+slots.js   79: return table.stage.x + GRID.pad + index * (GRID.col + GRID.gutter);
+slots.js   83: export function slotBounds(slot) {
+slots.js   91: export function anchorPoint(slot, anchor) {
+mg-style.js   23: /** Vertical zones â€” A1.3. Fixed for every beat. */
+mg-style.js   26: /** Vertical zones â€” A1.3. Fixed for every beat. Derived from the slot table
+mg-style.js   28: export const ZONES = {
+mg-style.js   30: stage: { top: SLOTS_SHORTS.stage.y, bottom: SLOTS_SHORTS.stage.y + SLOTS_SHORTS.stage.h },
+mg-style.js   84: * role map. Stage 3 moved role derivation into styles/tokens.js

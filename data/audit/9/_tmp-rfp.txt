@@ -1,0 +1,34 @@
+﻿  89:  */
+  90: export function rolesFromPalette(palette) {
+  91:   if (palette && typeof palette === "object" && !Array.isArray(palette)) {
+  92:     if (typeof palette.baseHue === "number" && typeof palette.accentHue === "number") {
+  93:       return paletteFromHues({ baseHue: palette.baseHue, accentHue: palette.accentHue });
+  94:     }
+  95:     if (typeof palette.bg === "string" && typeof palette.accent === "string") {
+  96:       return palette; // already derived roles
+  97:     }
+  98:   }
+  99:   if (Array.isArray(palette) && palette.length >= 3) {
+ 100:     return paletteFromHues(deriveHuesFromHexes(palette));
+ 101:   }
+ 102:   // No palette / invalid shape: neutral dark default through the same token
+ 103:   // path, so verifyPalette(null) reports rather than throwing.
+ 104:   return paletteFromHues(deriveHuesFromHexes(FALLBACK_HEXES));
+ 105: }
+ 106: 
+ 107: // Fallback 3-hex palette for null/malformed input (motion-graphics FALLBACK_PALETTE).
+ 108: const FALLBACK_HEXES = ["#0F0F1A", "#E94560", "#F8FAFC"];
+ 109: 
+ 110: // A2.4 â€” contrast floor (AAA large text, see manual table).
+ 111: export const CONTRAST_FLOOR = {
+ 112:   textPrimary: 7,
+ 113:   accent: 4.5,
+ 114:   textDim: 4.5,
+ 115:   stroke: 3,
+ 116: };
+ 117: 
+ 118: /**
+ 119:  * A2.4 gate (manual Â§9 H14) â€” run once per config change. Returns
+ 120:  * { pass, results } where results maps pair â†’ { ratio, min, pass }.
+ 121:  */
+ 122: export function verifyPalette(palette) {

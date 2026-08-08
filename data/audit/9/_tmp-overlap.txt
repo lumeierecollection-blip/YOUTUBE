@@ -1,0 +1,15 @@
+﻿131: }
+132: 
+133: /** Rect-vs-rect geometric overlap. Touching edges do not overlap. */
+134: export function rectsOverlap(a, b) {
+135:   return (
+136:     a.x < b.x + b.w &&
+137:     b.x < a.x + a.w &&
+138:     a.y < b.y + b.h &&
+139:     b.y < a.y + a.h
+140:   );
+141: }
+142: 
+143: /** Frame-range overlap, inclusive endpoints ([from, to] both count as
+144:  *  on-screen frames â€” an element is still visible during its exit window). */
+145: export function rangesOverlap(a, b) {

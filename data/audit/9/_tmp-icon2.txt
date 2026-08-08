@@ -1,0 +1,4 @@
+﻿7: * A4.2/A4.3: inner geometry comes from the vendored ICON_INNER table
+29: import { ICON_INNER } from "../compositions/icons-data.js";
+46: const inner = ICON_INNER[name];
+72: const inner = ICON_INNER[name];

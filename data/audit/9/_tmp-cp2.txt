@@ -1,0 +1,42 @@
+﻿30:   const perLine = Math.max(Math.floor(slotW / charW), 1);
+31:   const lines = Math.min(Math.ceil(chars / perLine), 2);
+32:   return { width: Math.min(chars * charW, slotW), lines };
+33: }
+34: 
+35: const fontFamily = "Inter";
+36: const fonts = {};
+37: const measured = {};
+38: const anchorFrame = {};
+39: for (const spec of specs) {
+40:   const beat = FIX.find((b) => b.id === spec.id);
+41:   anchorFrame[spec.id] = beat ? Math.max(beat.anchorFrame - beat.startFrame, 0) : 0;
+42:   spec.layers.forEach((layer, i) => {
+43:     const key = `${spec.id}:${i}`;
+44:     if (["kicker", "headline", "caption", "support"].includes(layer.role)) {
+45:       const fontSize = MG_TYPE[layer.role] || 44;
+46:       const text = layer.role === "kicker"
+47:         ? `${String(layer.content.index).padStart(2, "0")} ${layer.content.label}`
+48:         : (layer.content.text ?? "");
+49:       const slotW = layer.role === "caption" ? SLOTS_SHORTS.caption.w : SLOTS_SHORTS.headline.w;
+50:       fonts[key] = { fontSize, fontFamily };
+51:       measured[measuredKey(text, fontSize, fontFamily)] = fixtureMetrics(text, fontSize, slotW);
+52:     }
+53:   });
+54: }
+55: 
+56: for (const spec of specs) {
+57:   console.log("SPEC " + spec.id + " " + spec.archetype);
+58:   for (const l of spec.layers) {
+59:     console.log("  L " + l.role + " slot=" + l.slot + " align=" + (l.align || "-") +
+60:       " enter=" + l.enter.pattern + "@" + JSON.stringify(l.enter.atFrame) +
+61:       " exit=" + l.exit.pattern + "@" + JSON.stringify(l.exit.atFrame) +
+62:       " content=" + JSON.stringify(l.content).slice(0, 140));
+63:   }
+64: }
+65: 
+66: let frames;
+67: try {
+68:   frames = compile(specs, { slots: SLOTS_SHORTS, safe: SAFE_SHORTS, fonts, measured, anchorFrame });
+69:   console.log("COMPILE ok â€” frames:", frames.length);
+70:   for (const f of frames) {
+71:     console.log("FRAME " + f.beatId + " dur=" + f.durationInFrames);
