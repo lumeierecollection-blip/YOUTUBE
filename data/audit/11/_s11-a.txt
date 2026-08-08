@@ -1,0 +1,179 @@
+1: /**
+2:  * data/audit/11/motion-probe.mjs — stage-11 motion audit probe (D6 + D7).
+3:  *
+4:  * Renders the 8 beats/** components (HeroNumber, TermDefine, ListItem,
+5:  * Contrast, Relation, ImageBeat, Statement, Progress) as standalone Remotion
+6:  * compositions — shorts + longform — through the same fromBeats → compile
+7:  * pipeline the renderer uses, then verifies the stage-11 claim-card gates:
+8:  *
+9:  *   C17  pixel-identity (stage+headline region) of (hold−1, hold) for every
+10:  *        archetype — hold = the declared A4.1 "hold begins" frame (§0.3 of
+11:  *        audit-motion.ledger.md, comment-declared in each component):
+12:  *          hero (65,66)  term (29,30)  list (40,41)  contrast (22,23)
+13:  *          relation (36,37)  image (65,66)  statement (18,19)
+14:  *          progress (37,38)  —  progress's pair sits AFTER the discrete
+15:  *          accent switch at 37 (accentOn = frame >= hl+24).
+16:  *   G1   settled headline: DOM rect == compiled rect (±0.5), opacity 1,
+17:  *        scale 1, translate none — at the hold frame, all archetypes
+18:  *   HOLD  at the hold frame every archetype-animated role is at rest
+19:  *        (opacity 1, scale 1±1e-4, no px translate) — nothing moves after
+20:  *        the declared hold
+21:  *   G2a  HERO numeral counter reads "47" at hold (A2 raised floor)
+22:  *   G5   TERM rule mid-draw at tA+9 (scaleX ∈ (0,1)), icon settled
+23:  *   G6a/G6c/G6b LIST run mid-flight/drop/settled (stage-9 carried)
+24:  *   mid-rise RELATION headline in flight at f32/f33 — the OLD declared
+25:  *        hold tA+23 is provably wrong (headline still moving)
+26:  *   image-push IMAGE scale > 1.0 at f30 (push mid-run)
+27:  *   D6   source scan of beats/*.jsx: exactly two spring sites — Progress
+28:  *        ζ = 0.518 ∈ [0.46, 1.0] ✓ and ImageBeat's push ζ = 10 (the
+29:  *        sanctioned A3.3 / MANUAL D1 E.push exception)
+30:  *
+31:  * Gate frames are composition-relative (beat starts at 0; tA = 10 =
+32:  * anchorFrame 310 − startFrame 300, matching compile's anchorFrame map).
+33:  *
+34:  * The entry lives INSIDE data/audit/11 (my ownership) — the tracked
+35:  * src/skills/remotion-render/_motion-entry.jsx is left untouched.
+36:  *
+37:  * Exit 0 = all gates green, 1 = any failure. Report → motion-report.json.
+38:  */
+39: import { bundle } from "@remotion/bundler";
+40: import { openBrowser, renderStill, selectComposition } from "@remotion/renderer";
+41: import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+42: import { resolve } from "node:path";
+43: import { pathToFileURL } from "node:url";
+44: import { fromBeats } from "../../../src/skills/remotion-render/spec/fromBeats.js";
+45: import { validateShotSpecs } from "../../../src/skills/remotion-render/spec/schema.js";
+46: import { compile } from "../../../src/skills/remotion-render/layout/compile.js";
+47: import { measuredKey } from "../../../src/skills/remotion-render/layout/compile-lint.js";
+48: import { MG_TYPE } from "../../../src/skills/remotion-render/compositions/beats.js";
+49: import {
+50:   SAFE_LONGFORM,
+51:   SAFE_SHORTS,
+52:   SLOTS_LONGFORM,
+53:   SLOTS_SHORTS,
+54: } from "../../../src/skills/remotion-render/layout/slots.js";
+55: import { pngRegionDiff } from "../9/png-identity.mjs";
+56: 
+57: // ── CONFIG ────────────────────────────────────────────────────────────────
+58: 
+59: const CHROME = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+60: const PUBLIC_DIR = "src/skills/remotion-render/public";
+61: const ENTRY = "data/audit/11/_motion-entry.jsx"; // inside my ownership (the tracked _motion-entry.jsx is untouched)
+62: const OUT_DIR = "data/audit/11/out/";
+63: const REPORT = "data/audit/11/motion-report.json";
+64: const BEATS_DIR = "src/skills/remotion-render/beats";
+65: const DUR = 90;
+66: const FPS = 30;
+67: const START = 300; // wallclock beat start (stage-8/9 convention)
+68: const ANCHOR = 310; // wallclock anchor
+69: const tA = ANCHOR - START; // beat-relative anchor = 10
+70: 
+71: const COLORS = {
+72:   bg: "#0B0F19",
+73:   surface: "#141A26",
+74:   accent: "#22D3EE",
+75:   textPrimary: "#F1F5F9",
+76:   textDim: "#94A3B8",
+77:   stroke: "#334155",
+78: };
+79: 
+80: const LIST_ITEMS = [
+81:   { text: "Alpha", anchor: 10 },
+82:   { text: "Beta", anchor: 15 },
+83:   { text: "Gamma", anchor: 20 },
+84:   { text: "Delta", anchor: 25 },
+85:   { text: "Epsilon", anchor: 30 },
+86: ];
+87: 
+88: // PROGRESS fixture — the stage-8 2-bar chart (highlight = the LAST bar, so
+89: // the accent switch hl+24 is the final event and the hold sits after it).
+90: const PROGRESS_SERIES = [
+91:   { label: "2019", value: 12 },
+92:   { label: "2024", value: 47, highlight: true },
+93: ];
+94: 
+95: const RUN_SLUG = {
+96:   h: "hero",
+97:   t: "term",
+98:   l: "list",
+99:   c: "contrast",
+100:   r: "relation",
+101:   i: "image",
+102:   s: "statement",
+103:   p: "progress",
+104: };
+105: 
+106: const SCENE = {
+107:   h: { headline: "47%", unit: "%" },
+108:   t: { headline: "Inflation", term: "inflation" },
+109:   l: { headline: null, items: LIST_ITEMS },
+110:   c: { headline: "47%" },
+111:   r: { headline: "DRIVES INFLATION" },
+112:   i: { headline: "ALAMEDA COURT" },
+113:   s: { headline: "Views are earned" }, // ≤16 chars → 1 line at fs 84 in the 840px shorts slot
+114:   p: { headline: "47%" }, // ≤16 chars → 1 line at fs 84 (the chart's highlight value — same family as hero/contrast)
+115: };
+116: 
+117: // ── FIXTURES (one beat per owned archetype; LIST carries 5 items) ──────────
+118: 
+119: const FIX = [
+120:   {
+121:     id: "h",
+122:     archetype: "HERO_NUMBER",
+123:     anchorTokenIndex: 3,
+124:     text: "Rates grew from 12% to 47%",
+125:     wordTokens: ["Rates", "grew", "from", "12%", "to", "47%"].map((text) => ({ text })),
+126:     data: { value: 47, unit: "%" },
+127:     scene: SCENE.h,
+128:     kicker: "01 FIXTURE",
+129:     startFrame: START,
+130:     durationInFrames: DUR,
+131:     anchorFrame: ANCHOR,
+132:     sectionIndex: 0,
+133:   },
+134:   {
+135:     id: "t",
+136:     archetype: "TERM_DEFINE",
+137:     anchorTokenIndex: 0,
+138:     text: "Inflation: prices rise",
+139:     wordTokens: ["Inflation:", "prices", "rise"].map((text) => ({ text })),
+140:     data: { term: "inflation", definition: "a general increase in prices", phrase: "is" },
+141:     scene: SCENE.t,
+142:     kicker: "02 FIXTURE",
+143:     startFrame: START,
+144:     durationInFrames: DUR,
+145:     anchorFrame: ANCHOR,
+146:     sectionIndex: 0,
+147:   },
+148:   {
+149:     id: "l",
+150:     archetype: "LIST_ITEM",
+151:     anchorTokenIndex: 0,
+152:     text: "Alpha",
+153:     wordTokens: [{ text: "Alpha" }],
+154:     data: { items: LIST_ITEMS },
+155:     scene: SCENE.l,
+156:     kicker: "03 FIXTURE",
+157:     startFrame: START,
+158:     durationInFrames: DUR,
+159:     anchorFrame: ANCHOR,
+160:     sectionIndex: 0,
+161:   },
+162:   {
+163:     id: "c",
+164:     archetype: "CONTRAST",
+165:     anchorTokenIndex: 1,
+166:     text: "12 percent vs 47 percent",
+167:     wordTokens: ["12", "percent", "vs", "47", "percent"].map((text) => ({ text })),
+168:     data: { before: "12 percent", after: "47 percent" },
+169:     scene: SCENE.c,
+170:     kicker: "04 FIXTURE",
+171:     startFrame: START,
+172:     durationInFrames: DUR,
+173:     anchorFrame: ANCHOR,
+174:     sectionIndex: 0,
+175:   },
+176:   {
+177:     id: "r",
+178:     archetype: "RELATION",
+179:     anchorTokenIndex: 1,

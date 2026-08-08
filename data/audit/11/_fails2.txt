@@ -1,0 +1,4 @@
+FAIL G1 progress-shorts@f38: headline missing (dom=false, compiled=true)
+FAIL hold-static progress-shorts@f38: in flight: gridline op=0.3 sc=none tr=none
+FAIL G1 progress-longform@f38: headline missing (dom=false, compiled=true)
+FAIL hold-static progress-longform@f38: in flight: gridline op=0.3 sc=none tr=none

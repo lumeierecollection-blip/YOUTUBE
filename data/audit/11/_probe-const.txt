@@ -1,0 +1,15 @@
+50: const CHROME = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+51: const PUBLIC_DIR = "src/skills/remotion-render/public";
+52: const ENTRY = "src/skills/remotion-render/_motion-entry.jsx";
+53: const OUT_DIR = "data/audit/9/out/";
+54: const REPORT = "data/audit/9/motion-report.json";
+55: const DUR = 90;
+56: const FPS = 30;
+57: const START = 300; // wallclock beat start (stage-8 convention)
+58: const ANCHOR = 310; // wallclock anchor
+59: const tA = ANCHOR - START; // beat-relative anchor = 10 (compile anchorFrame map)
+62: const COLORS = {
+71: const LIST_ITEMS = [
+81: const RUN_SLUG = { h: "hero", t: "term", l: "list", c: "contrast", r: "relation", i: "image", s: "statement" };
+86: const SCENE = {
+98: const FIX = [

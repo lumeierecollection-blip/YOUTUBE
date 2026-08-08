@@ -1,0 +1,13 @@
+ImageBeat.jsx:40: * 1.05 → 1.00 over D.push via Easing.spring({damping: 200}) (legacy: scale
+ImageBeat.jsx:47: * the subject headline tA+15). C17 pair (tA+55, tA+56). D6: Easing.spring
+ImageBeat.jsx:48: * ({damping: 200}) → ζ = 10 ∉ [0.46, 1.0] — the sanctioned A3.3 / MANUAL D1
+ImageBeat.jsx:65: const push = Easing.spring({ damping: 200 })(ease(frame - start, [0, D.push], [0, 1], E_OUT));
+Progress.jsx:28: *   tA−4+7·i bar i GROW — spring {damping:13.9, stiffness:180} (A3.1:
+Progress.jsx:33: *   bar+0    the value counter runs WITH the bar — the SAME spring scalar p
+Progress.jsx:66: * (SPRING_CONFIG, DECADE, DRAW_END, CLICK_DB). Typography values (weights,
+Progress.jsx:76: spring,
+Progress.jsx:112: // ── A3.1 chart-grow spring — ζ = 13.9/(2·√180) = 0.518, ≈15 % overshoot.
+Progress.jsx:115: const SPRING_CONFIG = { damping: 13.9, stiffness: 180 };
+Progress.jsx:145: *   A2.1  same spring scalar p as the bar height (the caller passes it);
+Progress.jsx:279: SAME spring scalar p (A2.1), and its label RISEs at bar+12. The
+Progress.jsx:284: const p = spring({ frame: frame - start, fps, config: SPRING_CONFIG });

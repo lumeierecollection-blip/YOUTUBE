@@ -106,3 +106,60 @@ export function fillTextBox(boxOpts) {
     add: (wordOpts) => box.add({ ...wordOpts, ...FONT_GATE }),
   };
 }
+
+/**
+ * Stage-11 counter construction — DETAIL-REFERENCE A1.1/A1.3.
+ *
+ * A1.3 (machine-readable flag): the two motion-graphics families that are
+ * binary-verified to LACK the `tnum` OpenType feature in the vendored
+ * subsets (data/audit/2/tnum-features.txt) AND are proportional — so their
+ * digit advances differ and a content-sized counter JITTERS as the count
+ * passes through 1/8/9-heavy strings (rendered proof: data/audit/11/
+ * type-d14-report.json — DM Sans offsetWidth swings 449→646 on "1,000"→
+ * "2,000", while Inter stays byte-identical at 770). JetBrains Mono is
+ * deliberately NOT flagged: monospace digits are equal-width by
+ * construction, tnum is irrelevant there. All other vendored families
+ * (Inter, Fira Sans, Roboto Condensed, …) carry tnum and are safe.
+ *
+ * Stage-2 dependency claim-type-003 (audit/2/audit-type.ledger.md:88-124)
+ * recorded the need for "a machine-readable flag (candidate: …computed
+ * constant in the counter/measure module — layout/measure.js when it
+ * exists)". This is that computed constant.
+ */
+export const FIXED_SLOT_FAMILIES = new Set(["DM Sans", "Nunito"]);
+
+/**
+ * A1.3 machine-readable flag. True when the channel's font cannot do
+ * equal-width digits (no tnum AND not monospace), so the counter must
+ * render per-digit fixed slots (each digit in its own width: 0.62em
+ * centred box) to keep the bounding box byte-identical across the count.
+ * Consumption lives in the beats (SHARED-FILE REQUEST SFR-T-11-1) and the
+ * legacy scene (SFR-T-11-2); this module only publishes the flag.
+ */
+export function needsFixedSlots(fontFamily) {
+  return FIXED_SLOT_FAMILIES.has(fontFamily);
+}
+
+/** Round up to the next 8px (the render grid step, A1.1:88). */
+export function ceil8(n) {
+  return Math.ceil(n / 8) * 8;
+}
+
+/**
+ * A1.1 reserved-width measurement: measure the FINAL formatted counter
+ * string (the widest the count will ever need) with the shared fontStyle,
+ * the counter's RENDER fontSize (fit-computed at the call site — this
+ * module's convention, see header: "fontSize is fit-computed once and
+ * passed to both sites from the same variable") and this module's Rule 5.1-
+ * gated measureText, then round up to the grid. A fixed-slot counter
+ * reserves this width from frame 0 so the numeral box never moves.
+ * Browser-only like every other measurement in this module.
+ *
+ *   const fontStyle = fontStyleFor(fontFamily, HEADLINE_FONT);
+ *   const slot = reserveCounterWidth("13,600", fontStyle, fontSize); // fontSize = the numeral's render size
+ *   rect.w = slot; // reserved, never changes
+ */
+export function reserveCounterWidth(finalStr, fontStyle, fontSize) {
+  const slot = measureText({ text: finalStr, ...fontStyle, fontSize });
+  return ceil8(slot.width);
+}

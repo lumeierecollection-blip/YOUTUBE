@@ -71,6 +71,9 @@ function evolvePath(progress, path) {
  * (14 frames), and underlines beneath each node that fade in with the
  * headline's RISE window (tA+18..tA+26, D.large+6). Headline layer rides the
  * compiled rect (RISE@anchor+18 → settles tA+27).
+ * HOLD (A4.1): nothing moves after the headline settles tA+27 (connector
+ * DRAW completes tA+17; node pops settle tA+5; underlines ride the same
+ * window). C17 pair (tA+26, tA+27).
  */
 export function Relation({
   rects = {},

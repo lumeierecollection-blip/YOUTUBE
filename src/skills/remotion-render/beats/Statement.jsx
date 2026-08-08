@@ -43,6 +43,13 @@ function popStyle(frame, start) {
  * stage's optical centre; the compiled headline layer (RISE@anchor+0,
  * rect.from = tA) fades/rises beneath the stage. Peer-lane geometry is
  * derived from the `stage` prop rect only (LAY-10: no raw pixel literals).
+ * HOLD (A4.1): nothing moves after the headline RISE settles tA+9 (icon POP
+ * settles tA+5). C17 pair (tA+8, tA+9). Trace mode (TraceIcon, D2.5 — hook
+ * beat only, mg-package.js:438-440; dormant in the current wiring: the
+ * archetypeProps handshake carries icon only, trace defaults false, and
+ * `<circle>`-only icons have zero subpaths → static Icon): subpath k−1
+ * completes start+(k−1)·(10+D.micro)+10 — if the future wiring ever passes
+ * trace, the hold must extend to that frame per icon.
  */
 export function Statement({
   rects = {},

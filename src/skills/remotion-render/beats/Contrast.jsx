@@ -80,6 +80,9 @@ const panelValueStyle = (colors, panel, pop) => ({
  * after its panel (D2.1). Labels sit top (fs 24 label) and bottom
  * (fs 24 body); values render the numeric prefix + unit. Headline rides
  * the compiled rect (RISE@anchor+0).
+ * HOLD (A4.1): nothing moves after the after-value POP settles tA+13
+ * (before panel tA+5, after panel + before value tA+9, headline RISE
+ * settles tA+9). C17 pair (tA+12, tA+13).
  */
 export function Contrast({
   rects = {},

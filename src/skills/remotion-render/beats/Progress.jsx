@@ -44,9 +44,15 @@
  *            click ui/click_004.ogg at −22 dB fires on that same frame (E4.2,
  *            E4.3 — the frame the visual lands, never on the word)
  *
- * Nothing moves after the accent lands (A4.1 hold; A5 — no perpetual sine on
- * the focal bar, no axis/gridline re-animation, no letter-spacing/weight/
- * radius animation). DOM order below IS the E3.4 construction order and the
+ * HOLD (A4.1): nothing moves after max(last label settle tA+17+7·(N−1),
+ * highlight accent switch hl+24) — the A4 "last label +9" row holds when
+ * the highlight is NOT the last bar (hl < N−1); when the highlight IS the
+ * last bar (hl = N−1) the accent switch lands 3 f later, and because it is
+ * a discrete 1-frame switch (frame ≥ hl+24) the hold is one frame AFTER it.
+ * For the 2-bar hl=1 fixture: accent switch tA+27 → hold begins tA+28
+ * (C17 (tA+27, tA+28)). A5 — no perpetual sine on the focal bar, no
+ * axis/gridline re-animation, no letter-spacing/weight/radius animation.
+ * DOM order below IS the E3.4 construction order and the
  * tree is identical to Chart.jsx's at rest; the `data-*` attributes are
  * measurement hooks for the Tier-2 probe (data/audit/8) with zero layout
  * effect.

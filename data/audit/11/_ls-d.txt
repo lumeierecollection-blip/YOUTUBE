@@ -1,0 +1,12 @@
+155: - **~~The Part 7 D6 entry-file workaround~~ — CLEARED.** `render.js` and
+647: **Updated 2026-08-06 to match the current source.** Items D1–D7 and D10 from
+656: | D4 | Radial gradients and vignette overlay used as the main background | `minimal.jsx:57-71`, `cinematic-documentary.jsx` (`Vignette`, `SectionBackground`) | decoration spending the accent budget; rebuild on the slot model |
+657: | D5 | `minimal.jsx` `MinimalSections` in full | `minimal.jsx:73` | text on a gradient; rebuild on the slot model |
+658: | D6 | ~~The generated-entry-file `inputProps` workaround~~ — **CLEARED 2026-08-06** | ~~`render.js:243-269`, `verify-compositions.js:126-148`~~ | verified on 4.0.505: `inputProps` reaches the component and `durationInFrames` override works; entry files and `writeRenderEntry()` deleted |
+659: | D7 | `sectionDuration = durationInFrames / sections.length` time-slicing | `minimal.jsx:75` | ignores audio; replaced by SRT-derived timing |
+661: **7.1** — D1, D2, D4, D5, D7 are all the same species as before: *inferring
+662: structure at render time*. D2 infers phrasing by word count, D7 infers timing
+720: | 0 | ~~Version fix: align render subpackage to `remotion@^4.0.503` + React 19; add `@remotion/captions`, `transitions`, `paths`, `shapes`, `layout-utils`, `effects`; delete the entry-file workaround (Part 7 D6)~~ — **DONE 2026-08-06** | `inputProps` reaches the component (green probe) + duration override renders 30 f / 1.0 s |
+730: | 10 | Apply the delete list in full | grep confirms Part 7 D1–D7 gone |
+746: Practitioners are consistent that <cite index="132-1">a consistent colour palette and grid across every scene is one of the handful of habits separating good motion graphics from great, and that great motion graphics is not about flashy effects but about clarity, timing, and a story that holds together, built by editors who plan before they animate</cite>. The failure mode is equally consistently described: <cite index="127-1">inconsistently applied visual elements — colour schemes, typography, graphic styles — make motion graphics look unprofessional, disjointed, or confusing, and the remedy is a style guide that is actually adhered to</cite>, using <cite index="127-1">contrast, hierarchy, and alignment to create visual order</cite>.
+760: | Nonsense on-screen words | regex/proportional inference at render time | Part 7 D2, D7 |

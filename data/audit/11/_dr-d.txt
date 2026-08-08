@@ -1,0 +1,16 @@
+22: `config/channels.json` assigns fonts by name; `public/fonts/` holds the
+219: | tA+67 | **all motion complete** — hold begins | — | — |
+233: | last label +9 | **hold begins** | — | — |
+248: | tA+7 | **hold begins** | — |
+260: | tA+20 | **hold begins** | — |
+270: | tA+23 | **hold begins** | — |
+272: **A4.1 — Every archetype declares a "hold begins" frame.** That is the frame
+276: **A4.2 — No archetype has any event after "hold begins" except the caption
+371: threshold where a dot survives H.264 quantisation at all.
+578: | D4 | Every numeric rect reserves the width of its final formatted string |
+579: | D5 | Every counter's start value has the same digit count as its target |
+580: | D6 | Every spring config's ζ falls in [0.46, 1.0] |
+581: | D7 | Every archetype declares a "hold begins" frame, and no event follows it except caption and rail |
+582: | D8 | Stage occupancy ≤55% of the slot area |
+593: | D14 | Counter region's bounding box is byte-identical across every frame of the count (catches tabular-figure failure directly) |
+594: | D15 | Ground plane luminance is constant across the video except at the end card |

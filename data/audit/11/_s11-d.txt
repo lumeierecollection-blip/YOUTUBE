@@ -1,0 +1,96 @@
+465:       />
+466:     ))}
+467:   </>
+468: );
+469: 
+470: registerRoot(RemotionRoot);
+471: `;
+472:   return entry.replace("__WIRED__", JSON.stringify(wired));
+473: }
+474: 
+475: // ── GATE ASSERTIONS ────────────────────────────────────────────────────────
+476: 
+477: // "Settled" = at rest: opacity 1, scale 1 (±1e-4 — E_OUT's near-1 saturation
+478: // leaves sub-pixel residues like scale "1.00000005" at hold−1... but at the
+479: // HOLD frame the residue must be ~0; the 1e-4 tolerance absorbs style-string
+480: // rounding), no px translate. Percentage translates (-50% -50%) are the
+481: // primitives' permanent centering offset — settled too.
+482: const settled = (m) =>
+483:   m &&
+484:   m.opacity >= 0.999 &&
+485:   (m.scale === "none" ||
+486:     m.scale === null ||
+487:     m.scale === "1" ||
+488:     (m.scale !== undefined && Math.abs(parseFloat(m.scale) - 1) <= 1e-4)) &&
+489:   (m.translate === "none" ||
+490:     m.translate === undefined ||
+491:     m.translate === "0px" ||
+492:     m.translate === "0px 0px" ||
+493:     /^-?\d+(\.\d+)?%\s?(-?\d+(\.\d+)?%)?$/.test(m.translate || ""));
+494: 
+495: const inFlight = (m) => m && !settled(m);
+496: 
+497: const byRole = (rows, role) => rows.find((r) => r.role === role);
+498: const byRoleIdx = (rows, role, index) => rows.find((r) => r.role === role && r.index === index);
+499: const chips = (rows) => rows.filter((r) => r.role === "chip").sort((a, b) => a.index - b.index);
+500: 
+501: function gateG1(rows, w) {
+502:   const h = byRole(rows, "headline");
+503:   const c = w.compiled.headline;
+504:   if (!h || !c) return { pass: false, note: `headline missing (dom=${!!h}, compiled=${!!c})` };
+505:   const close =
+506:     Math.abs(h.x - c.x) <= 0.5 &&
+507:     Math.abs(h.y - c.y) <= 0.5 &&
+508:     Math.abs(h.w - c.w) <= 0.5 &&
+509:     Math.abs(h.h - c.h) <= 0.5;
+510:   return {
+511:     pass: close && settled(h),
+512:     note: `dom ${h.x.toFixed(1)},${h.y.toFixed(1)} ${h.w.toFixed(1)}x${h.h.toFixed(1)} op=${h.opacity} sc=${h.scale} tr=${h.translate} vs compiled ${c.x},${c.y} ${c.w}x${c.h}`,
+513:   };
+514: }
+515: 
+516: // HOLD — at the declared hold frame, every measured archetype role is at
+517: // rest. The "numeral-style" extra log row has no style fields — excluded.
+518: function gateHoldStatic(rows) {
+519:   const anim = rows.filter((r) => r.role !== "numeral-style");
+520:   if (anim.length === 0) return { pass: false, note: "no measured rows" };
+521:   const bad = anim.filter((r) => !settled(r));
+522:   return {
+523:     pass: bad.length === 0,
+524:     note: bad.length
+525:       ? "in flight: " + bad.map((r) => `${r.role}${r.index ?? ""} op=${r.opacity} sc=${r.scale} tr=${r.translate}`).join(" | ")
+526:       : `${anim.length} roles at rest`,
+527:   };
+528: }
+529: 
+530: function gateG2a(rows) {
+531:   const n = byRole(rows, "numeral");
+532:   return { pass: !!n && n.text === "47" && n.opacity >= 0.999, note: n ? `numeral text "${n.text}" op=${n.opacity}` : "no numeral" };
+533: }
+534: 
+535: function gateG2b(rows, w) {
+536:   const h = byRole(rows, "headline");
+537:   const want = w.compiled.headlineText;
+538:   return { pass: !!h && h.text === want, note: h ? `headline text "${h.text}" want "${want}"` : "no headline" };
+539: }
+540: 
+541: function gateG5(rows) {
+542:   const rule = byRole(rows, "rule");
+543:   const icon = byRole(rows, "icon");
+544:   if (!rule || !icon) return { pass: false, note: `rule=${!!rule} icon=${!!icon}` };
+545:   const sx = parseFloat(rule.scale);
+546:   return {
+547:     pass: sx > 0 && sx < 1 && settled(icon),
+548:     note: `rule scaleX=${rule.scale} (${sx}) icon op=${icon.opacity} sc=${icon.scale} tr=${icon.translate}`,
+549:   };
+550: }
+551: 
+552: function gateG6a(rows) {
+553:   const cs = chips(rows);
+554:   if (cs.length !== 3) return { pass: false, note: `chip count ${cs.length}` };
+555:   const allInFlight = cs.every(inFlight);
+556:   return {
+557:     pass: allInFlight,
+558:     note: `inFlight=${allInFlight} ` + cs.map((c, i) => `c${i} op=${c.opacity} sc=${c.scale} tr=${c.translate}`).join(" "),
+559:   };
+560: }

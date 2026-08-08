@@ -56,6 +56,10 @@ export function formatCounter(value, progress) {
  * ui/click_004.ogg at dbToVolume(−22) fires on the settle frame tA+56
  * (start + D.push — F1 E4.2: SFX lands on the visual settle, never on the
  * word).
+ * HOLD (A4.1): nothing moves after the count reaches the value on tA+56
+ * (start + D.push) — the numeral opacity/scale settle tA+5 and the unit
+ * headline (RISE@anchor+8) settles tA+17; the tA+56 click is audio, not a
+ * visual event. C17 pair (tA+55, tA+56).
  */
 export function HeroNumber({
   rects = {},

@@ -71,6 +71,13 @@ const CLICK_AT = 2; // A4/F3 "tA+2"
  * over 3 f; one ui/click_001.ogg (−24 dB) fires at tA+2 per chip; max 4
  * visible — a 5th chip drops the oldest with a 6 f E_IN fade + translateY
  * −12 (stageExitStyle).
+ * HOLD (A4.1): the last visual event is the lowest surviving chip's final
+ * shift — the newcomer's badge return completes tA+9, the highest chip's
+ * shift completes tA−2+2·(N−2)+9, and a dropped chip is frozen and gone by
+ * entrance+6. For the 5-item run fixture (anchors 10/15/20/25/30) chip 1's
+ * shift completes frame 41 → hold begins 41 (C17 41/42). Single-chip beats:
+ * hold begins tA+9 (the badge return). The tA+2 click is audio, not a
+ * visual event.
  */
 export function ListItem({
   rects = {},

@@ -42,6 +42,11 @@ const PUSH_ENTRY = 1.05; // F7/legacy — entry scale, pushed to 1.00
  * left corner with riseStyle at start+D.short; the subject headline rides the
  * compiled rect via Layer (RISE@"anchor+6"); NO accent element (F7 "none" —
  * the tint overlay is a style, not an accent element).
+ * HOLD (A4.1): nothing moves after the push settles tA+56 (start + D.push —
+ * imageScale reaches 1.00; the fade settles tA+5, the credit rise tA+11,
+ * the subject headline tA+15). C17 pair (tA+56, tA+57). D6: Easing.spring
+ * ({damping: 200}) → ζ = 10 ∉ [0.46, 1.0] — the sanctioned A3.3 / MANUAL D1
+ * E.push exception (overdamped settle, zero bounce).
  */
 export function ImageBeat({
   rects = {},
