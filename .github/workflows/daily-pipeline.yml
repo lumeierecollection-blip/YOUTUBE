@@ -222,8 +222,9 @@ jobs:
       - name: Download all research artifacts
         uses: actions/download-artifact@v4
         with:
-          path: data/research/
+          path: .
           pattern: research-*
+          merge-multiple: true
 
       - name: Render all videos
         run: |
@@ -247,7 +248,14 @@ jobs:
             SCRIPTS=$(ls data/research/$CH/*-script.json 2>/dev/null || true)
             for SCRIPT in $SCRIPTS; do
               echo "Rendering: $SCRIPT"
-              node src/skills/remotion-render/render.js longform "$CH" "$SCRIPT" || echo "WARN: render failed for $SCRIPT"
+              # tts.js names audio "<script-basename>-vo.mp3" next to the script's slug.
+              BASE=$(basename "$SCRIPT" .json)
+              AUDIO="data/tts/$CH/${BASE}-vo.mp3"
+              if [ ! -f "$AUDIO" ]; then
+                echo "WARN: no voiceover audio at $AUDIO — skipping render for $SCRIPT"
+                continue
+              fi
+              node src/skills/remotion-render/render.js longform "$CH" "$SCRIPT" "$AUDIO" || echo "WARN: render failed for $SCRIPT"
             done
           done
 
@@ -280,8 +288,9 @@ jobs:
       - name: Download all render artifacts
         uses: actions/download-artifact@v4
         with:
-          path: data/
+          path: .
           pattern: renders-*
+          merge-multiple: true
 
       - name: Publish to YouTube
         run: |

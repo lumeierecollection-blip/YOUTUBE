@@ -38,22 +38,68 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..", "..", "..");
 
-const CHROME = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
-
 const require = createRequire(import.meta.url);
-const compositorPkg = require.resolve("@remotion/compositor-win32-x64-msvc/package.json");
-const FFPROBE = findFFprobe();
+
+// Resolves a ROOT-relative path regardless of whether it was written with
+// "/" or "\\" separators (scripts/CI on Linux vs. local dev on Windows).
+function resolveRelative(relPath) {
+  return join(ROOT, ...relPath.split(/[\/\\]/));
+}
+
+function compositorPackageName() {
+  if (process.platform === "win32") return "@remotion/compositor-win32-x64-msvc";
+  if (process.platform === "darwin") return process.arch === "arm64" ? "@remotion/compositor-darwin-arm64" : "@remotion/compositor-darwin-x64";
+  return process.arch === "arm64" ? "@remotion/compositor-linux-arm64-gnu" : "@remotion/compositor-linux-x64-gnu";
+}
 
 function findFFprobe() {
-  const candidates = [
-    join(dirname(compositorPkg), "ffprobe.exe"),
-    join(ROOT, "node_modules", "@remotion", "compositor-win32-x64-msvc", "ffprobe.exe"),
-  ];
-  for (const candidate of candidates) {
+  const binName = process.platform === "win32" ? "ffprobe.exe" : "ffprobe";
+  try {
+    const compositorPkg = require.resolve(`${compositorPackageName()}/package.json`);
+    const candidate = join(dirname(compositorPkg), binName);
     if (existsSync(candidate)) return candidate;
-  }
+  } catch {}
   return "ffprobe";
 }
+
+// Finds a usable Chrome/Chromium binary. Explicit env override first, then
+// platform-typical install locations, then the sandboxed Playwright cache
+// this environment pre-installs Chromium into. Returns undefined (rather
+// than a bad path) when nothing is found, so Remotion falls back to
+// downloading/managing its own Chrome Headless Shell.
+function findChrome() {
+  if (process.env.REMOTION_CHROME_PATH && existsSync(process.env.REMOTION_CHROME_PATH)) {
+    return process.env.REMOTION_CHROME_PATH;
+  }
+  if (process.platform === "win32") {
+    const p = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+    return existsSync(p) ? p : undefined;
+  }
+  if (process.platform === "darwin") {
+    const p = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+    return existsSync(p) ? p : undefined;
+  }
+  const candidates = ["/usr/bin/google-chrome", "/usr/bin/chromium", "/usr/bin/chromium-browser"];
+  const pwBase = process.env.PLAYWRIGHT_BROWSERS_PATH;
+  if (pwBase && existsSync(pwBase)) {
+    for (const entry of readdirSync(pwBase)) {
+      // Prefer chromium_headless_shell: modern Chrome removed "old headless"
+      // mode, which is what Remotion's renderer launches with.
+      if (entry.startsWith("chromium_headless_shell-")) {
+        const p = join(pwBase, entry, "chrome-linux", "headless_shell");
+        if (existsSync(p)) candidates.unshift(p);
+      }
+      if (entry.startsWith("chromium-")) {
+        const p = join(pwBase, entry, "chrome-linux", "chrome");
+        if (existsSync(p)) candidates.push(p);
+      }
+    }
+  }
+  return candidates.find((p) => existsSync(p));
+}
+
+const CHROME = findChrome();
+const FFPROBE = findFFprobe();
 
 const WPM = {
   "cinematic-documentary": 135,
@@ -144,7 +190,7 @@ function wordCount(text) {
 }
 
 function getAudioDurationSeconds(audioPath) {
-  const fullPath = join(ROOT, audioPath.replace(/\//g, "\\"));
+  const fullPath = resolveRelative(audioPath);
   if (!existsSync(fullPath)) return null;
   try {
     const out = execSync(
@@ -207,7 +253,7 @@ function stageAudio(ttsAudioPath) {
         "run `node src/utils/tts.js <channel-id> <script>` first."
     );
   }
-  const src = join(ROOT, ttsAudioPath.replace(/\//g, "\\"));
+  const src = resolveRelative(ttsAudioPath);
   if (!existsSync(src)) {
     throw new Error(
       `Voiceover audio not found: ${ttsAudioPath}. Refusing to render a silent video.`
@@ -224,25 +270,25 @@ function stageAudio(ttsAudioPath) {
  */
 function findSrtPath(ttsAudioPath) {
   if (!ttsAudioPath) return null;
-  const dir = dirname(join(ROOT, ttsAudioPath.replace(/\//g, "\\")));
+  const dir = dirname(resolveRelative(ttsAudioPath));
   const base = basename(ttsAudioPath).replace(/\.[^.]+$/, "");
   const exact = join(dir, `${base}.srt`);
-  if (existsSync(exact)) return exact;
-  try {
-    const srt = readdirSync(dir).find((f) => f.toLowerCase().endsWith(".srt"));
-    return srt ? join(dir, srt) : null;
-  } catch {
-    return null;
-  }
+  // Only ever return the exact match for this audio file. A channel's TTS
+  // directory holds SRTs for every topic it has ever narrated — grabbing
+  // "any .srt in the folder" would silently attach a different video's
+  // captions to this narration. No exact match means no SRT: the caller
+  // falls back to synthesizing captions from the script sections instead.
+  return existsSync(exact) ? exact : null;
 }
 
 async function renderVideo(componentId, outputPath, frames, props) {
+  const browserOpts = CHROME ? { browserExecutable: CHROME } : {};
   const serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgress: () => {} });
   const composition = await selectComposition({
     serveUrl,
     id: componentId,
-    browserExecutable: CHROME,
     inputProps: props,
+    ...browserOpts,
   });
   await renderMedia({
     composition: { ...composition, durationInFrames: frames },
@@ -252,7 +298,7 @@ async function renderVideo(componentId, outputPath, frames, props) {
     enforceAudioTrack: true,
     inputProps: props,
     outputLocation: outputPath,
-    browserExecutable: CHROME,
+    ...browserOpts,
     // §5.6 — explicit encoder settings: remotion.config.js is inert on the
     // SSR path, so every quality option must be passed here.
     imageFormat: "png",                 // lossless intermediates

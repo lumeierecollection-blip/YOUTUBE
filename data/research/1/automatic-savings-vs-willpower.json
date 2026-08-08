@@ -1,0 +1,47 @@
+{
+  "channel_id": "1",
+  "channel_name": "Money Mind",
+  "topic": "The Behavioral Economics Study That Proves Willpower Doesn't Save Money",
+  "topic_slug": "automatic-savings-vs-willpower",
+  "format": "longform",
+  "researched_at": "2026-08-08T00:00:00.000Z",
+  "source": "deep-research",
+  "strongest_angle": "A real 1998 field experiment (Save More Tomorrow / 'SMarT') at a midwestern manufacturer proved that pre-committing future raises to savings beats asking people to save more today by a massive margin: only 28% accepted an immediate savings increase, but 78% agreed to a future, automatic one — and those who joined nearly quadrupled their savings rate from 3.5% to 13.6% of income within 40 months, with 78% still enrolled after four pay raises. The lesson for viewers: savings challenges and willpower-based budgeting fail for the same reason immediate raises failed — automate the decision once instead of re-deciding every week.",
+  "hook_candidates": [
+    "Only 28% of people said yes to saving more money today. 78% said yes to saving more money... in the future. That gap built a $180 billion mistake in how we think about willpower.",
+    "Researchers found a way to nearly 4x how much money people save — without asking them to feel any poorer. Here's the study.",
+    "The 52-week savings challenge relies on willpower. This 1998 experiment proved willpower isn't the variable that matters."
+  ],
+  "key_facts": [
+    {
+      "fact": "Save More Tomorrow (SMarT) was designed by Richard Thaler and Shlomo Benartzi and field-tested in 1998 at a midwestern manufacturing company. Employees were offered a plan that increased their 401(k) contribution by 3 percentage points automatically at every future pay raise, capped at 14%.",
+      "source": "Thaler, R. & Benartzi, S., 'Save More Tomorrow: Using Behavioral Economics to Increase Employee Saving', Journal of Political Economy, 2004 (besci.org/papers/benartzi-thaler-2004)",
+      "year": "2004"
+    },
+    {
+      "fact": "When offered an immediate increase to their savings rate, only 28% of employees accepted. When offered the same eventual increase but tied to future raises instead, 78% of the employees who had declined the immediate offer agreed to join.",
+      "source": "Thaler & Benartzi, Journal of Political Economy, 2004; summarized at kitces.com/blog/why-planning-to-save-more-tomorrow-and-not-today-may-be-a-better-approach",
+      "year": "2004"
+    },
+    {
+      "fact": "Employees who joined the SMarT plan raised their average savings rate from 3.5% of income to 13.6% of income over roughly 40 months (four pay raises), and 78% of participants were still enrolled at that point rather than opting out.",
+      "source": "Thaler & Benartzi, Journal of Political Economy, 2004; decodethefuture.org/en/save-more-tomorrow-explained",
+      "year": "2004"
+    },
+    {
+      "fact": "Automatic enrollment in 401(k) plans separately raises participation from roughly 60% (opt-in, voluntary) to roughly 90% (opt-out, automatic) — the same 'change the default, not the willpower' pattern shows up any time saving is made automatic instead of decided repeatedly.",
+      "source": "Chicago Booth Review, 'Behavioral Economics and the Retirement Savings Crisis', chicagobooth.edu/review/behavioral-economics-retirement-savings-crisis",
+      "year": "2026"
+    },
+    {
+      "fact": "A Case Western Reserve University study of automated round-up/micro-savings apps found the tools do measurably boost account balances for many users, but the researchers found the benefit is not universal: users without an existing budgeting mindset see meaningfully smaller gains, meaning automation amplifies intent rather than replacing it entirely.",
+      "source": "Case Western Reserve University Newsroom, 'Automated savings tools boost bank accounts for some, but the benefits are limited, study shows', case.edu/news",
+      "year": "2026"
+    }
+  ],
+  "practitioner_notes": "Savings-challenge content (52-week challenge, no-spend months) is a recurring evergreen format, but almost none of it cites the actual behavioral-economics research on why manual, willpower-based saving underperforms automated saving. Grounding the video in the real SMarT study gives it a distinct, credible angle versus generic challenge-tracker content, while still landing on an actionable takeaway (automate a savings transfer tied to your next raise/paycheck instead of relying on a weekly challenge).",
+  "open_questions": [
+    "SMarT is a workplace 401(k) study; the video should be explicit that the same mechanism (automate now, tied to a future trigger) is what to replicate for a personal savings account — not claim the study was about consumer savings apps directly.",
+    "CWRU study limitation (automation helps less without existing budgeting intent) should be included so the takeaway isn't oversold as a silver bullet."
+  ]
+}

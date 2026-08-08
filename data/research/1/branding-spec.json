@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-07-27T18:55:25.239Z",
-  "channel_id": "",
+  "generated_at": "2026-08-08T18:30:01.323Z",
+  "channel_id": "ch-01",
   "channel_name": "Money Mind",
   "niche": "Personal Finance (Budgeting for Beginners)",
   "profile_picture": {
@@ -168,7 +168,7 @@
     "notes": "Viewers who discover you elsewhere should recognize the brand instantly on YouTube."
   },
   "brand_guidelines": {
-    "filename": "data/research//brand-guidelines.md",
+    "filename": "data/research/1/brand-guidelines.md",
     "contents": [
       "Color palette with hex codes",
       "Typography specifications",

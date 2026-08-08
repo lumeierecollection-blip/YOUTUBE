@@ -101,11 +101,14 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   const pitch = settings.pitch || "+2Hz"; // slight warmth
 
   try {
-    // edge-tts --voice en-US-GuyNeural --rate -8% --pitch +2Hz --text "..." --write-media output.mp3
+    // edge-tts --voice en-US-GuyNeural --rate=-8% --pitch=+2Hz --text "..." --write-media output.mp3
+    // Rate/pitch MUST use --flag=value (not "--flag value"): argparse treats a
+    // leading "-" value like "-8%" as an unrecognized option unless it's glued
+    // on with "=", since "-8%" isn't a pure negative number token.
     const escapedText = fullText.replace(/"/g, '\\"').replace(/\n/g, " ");
     const args =
       `--voice "${voice}" ` +
-      `--rate "${rate}" --pitch "${pitch}" ` +
+      `--rate="${rate}" --pitch="${pitch}" ` +
       `--text "${escapedText}" ` +
       `--write-media "${audioPath}" ` +
       `--write-subtitles "${srtPath}"`;

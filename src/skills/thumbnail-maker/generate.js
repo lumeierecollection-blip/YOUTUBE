@@ -16,10 +16,28 @@ const ROOT = join(__dirname, "..", "..", "..");
 
 /**
  * Extract the hook line from a script file.
- * Looks for lines starting with "HOOK" or the first quoted string.
- * Handles both straight quotes (") and curly/smart quotes (\u201C \u201D).
+ *
+ * script-writer's real output is JSON (sections[] with an "id":"hook"
+ * entry) \u2014 that's tried first. The regex-based markdown parsing below is
+ * kept only as a fallback for legacy markdown-format scripts; running it
+ * directly against JSON text previously matched whichever quoted field
+ * happened to come first (often "visual_cue"), not the actual hook.
  */
 function extractHook(scriptContent) {
+  try {
+    const script = JSON.parse(scriptContent);
+    const sections = script.sections || [];
+    const hookSection =
+      sections.find((s) => (s.id || "").toLowerCase() === "hook") || sections[0];
+    const voiceover = hookSection?.voiceover?.trim();
+    if (voiceover) {
+      const sentenceEnd = voiceover.search(/[.!?]/);
+      return sentenceEnd > 0 ? voiceover.slice(0, sentenceEnd + 1) : voiceover.slice(0, 150);
+    }
+  } catch {
+    // Not JSON \u2014 fall through to markdown parsing below.
+  }
+
   // Normalize smart/curly quotes to straight quotes
   const normalized = scriptContent
     .replace(/[\u201C\u201D]/g, '"')
@@ -201,10 +219,14 @@ function main() {
   // Generate spec
   const spec = generateThumbnailSpec(channel, hook, thumbnailText, format);
 
-  // Save spec
+  // Save spec — namespaced by topic slug (derived from the script filename)
+  // so a new video's thumbnail never clobbers a previous one for the same
+  // channel; render-thumb.js already expects and globs "<slug>-thumb-spec.json".
+  const scriptBase = scriptPath.split(/[\/\\]/).pop().replace(/\.(json|md|txt)$/, "");
+  const topicSlug = scriptBase.replace(/-script$/, "");
   const outDir = join(ROOT, "data", "thumbnails", channelId);
   mkdirSync(outDir, { recursive: true });
-  const specFile = join(outDir, `${channelId}-thumb-spec.json`);
+  const specFile = join(outDir, `${topicSlug}-thumb-spec.json`);
   writeFileSync(specFile, JSON.stringify(spec, null, 2));
 
   console.log(`Thumbnail spec saved: ${specFile}`);
