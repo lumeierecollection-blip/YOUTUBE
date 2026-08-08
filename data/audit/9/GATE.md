@@ -3,8 +3,11 @@
 Gate (CROSSCHECK-PROTOCOL.md Part 4 row 9): **"Remaining 7 archetypes | `audit-encoding`,
 `audit-motion` | 16 compositions render as stills; C10–C13, D11–D13 pass"**
 
-**Verdict: FAIL — the audit-motion lane did not complete its mandated P3.5 re-entry.
-The stage gate must not be closed. Stage 9 is BLOCKED pending the motion-side fixes.**
+**Verdict: PASS** — the audit-motion lane completed its P3.5 re-entry (re-implemented
+ListItem/ImageBeat/HeroNumber to the A4/F3/E2.5/F7 semantics, 3× CONFIRM by
+verify-independent), the probe was re-calibrated to the honest drop-oldest schedule,
+and both gates are green on the orchestrator re-run. The earlier FAIL (rejection
+GATE.md) is superseded.
 
 ---
 
@@ -12,64 +15,70 @@ The stage gate must not be closed. Stage 9 is BLOCKED pending the motion-side fi
 
 | Check | Result | Evidence |
 |---|---|---|
-| 16 compositions render as stills (8 archetypes × 2 formats) | **FAIL** | 16 stills DO render and measure cleanly (34/34 DOM gates + C17 pairs, `node data/audit/9/motion-probe.mjs`, orchestrator re-run 2026-08-08; report `motion-report.json`) — but the stills prove the **simplified** ListItem/ImageBeat semantics that the independent verifier REJECTED. The probe's own G6a/b/c assert "all 5 chips settled", contradicting the A4/F3 drop-oldest schedule. A stills proof of non-conformant behavior is not a pass. |
-| C10–C13 | **N/B** | FINISH-SPEC.md is absent from the repo (carried escalation SFR-ENC-8-3 / SFR-MOT-9-6); no in-repo definition exists. Mapping through CHECK-REGISTER Part 0.2 → COL/MOT/RND namespaces; cannot be scored without the source spec. C17 (hold-begins pixel-identical) IS exercised via probe C17 pairs — those pass for the implemented (rejected) semantics. |
-| D11 (ENC-17 archetype mix vs concepts) | **PASS** | `data/audit/9/frombeats-archetype-gate.mjs` Run 1 + Run 2 (119 passed / 0 failed, orchestrator re-run). Concept allocation via DETAIL-REFERENCE C4 side-table (config has no `concepts` key — SFR-ENC-9-3). |
-| D12 (chart honesty: ≤5 points, zero origin, no stack) | **PASS** | Stage-8 chart gates (ENC-09/10/11) still green — gate Run 5 containment: 47/52 stage-8 assertions stayed green, 5 failures all inside the documented accent-policy divergence map. |
+| 16 compositions render as stills (8 archetypes × 2 formats) | **PASS** | `node data/audit/9/motion-probe.mjs` — orchestrator re-run 2026-08-08, **ALL GATES GREEN**, exit 0. 36/36 DOM gates + 6/6 C17 pixel-identity pairs (`motion-report.json`). |
+| C10–C13 | **N/B (carried)** | FINISH-SPEC.md absent from repo (escalation SFR-ENC-8-3 / SFR-MOT-9-6, unchanged). C17 (hold-begins pixel-identical) IS exercised via probe C17 pairs: TERM 29/30, RELATION 60/61 + 70/71, both formats — identical. |
+| D11 (ENC-17 archetype mix vs concepts) | **PASS** | `data/audit/9/frombeats-archetype-gate.mjs` Run 1 + Run 2, 119 passed / 0 failed. Concept allocation via DETAIL-REFERENCE C4 side-table (config has no `concepts` key — SFR-ENC-9-3). |
+| D12 (chart honesty: ≤5 points, zero origin, no stack) | **PASS** | Stage-8 chart gates (ENC-09/10/11) still green — gate Run 5 containment: 47/52 stage-8 assertions green, 5 failures all inside the documented accent-policy divergence map. |
 | D13 (ENC-13 highlighted series point = anchor referent, not max) | **PASS** | Stage-8 chart gates (ENC-13) still green; PROGRESS highlight index 1 per F5 verified in gate Run 1. |
-| audit-encoding lane (archetypes, charts, concept mapping, honesty) | **PASS** | `spec/fromBeats.js` +224/−39 (per-archetype headline content, accent policy, headline timing, ENC-01/02/03/04/16/18 gates armed). Gate 119/0. Counter-check: 5 sessions — 4 CONFIRM + 1 REJECT (RELATION fallback list) → reverted, re-implemented as live mirror of `splitRelation` → CONFIRM. |
-| audit-motion lane (timing, easing, springs, stagger, drag, blur) | **FAIL** | 7 components exist; first-shot semantics DOM-measure cleanly; independent verifier REJECTED 3 genuine items (see below). P3.5 re-entry (re-implement + re-verify) NOT executed: the lane returned empty/aborted across **5 dispatches** (1× empty no-artifacts; 1× claim-cards only; 1× probe+verifier then stopped; 1× empty no-change; 1× surgical empty no-change). |
+| audit-encoding lane (archetypes, charts, concept mapping, honesty) | **PASS** | `spec/fromBeats.js` per-archetype headline content, accent policy, headline timing; ENC-01/02/03/04/16/18 gates armed. Archetype gate 119/0. Counter-check: 4 CONFIRM + 1 REJECT (RELATION fallback) → reverted, re-implemented as live mirror of `splitRelation` → CONFIRM. |
+| audit-motion lane (timing, easing, springs, stagger, drag, blur) | **PASS** | 7 beats re-implemented; P3.5 re-entry complete — ListItem POP/shift/dim/badge/drop, ImageBeat E2.5/F7 treatment, HeroNumber settle-click (see below). Probe green 36/36 + C17 6/6. Lint green 38/0. Counter-check after re-entry: 3× CONFIRM. |
 
-## Independent counter-check (verify-independent) — rejection contents
+## Motion-lane re-entry — previously-rejected items now conformant
 
-Motion lane dispatch 1 verdict: **REJECT**, with per-item disposition from the lane's own
-re-grounding (ledger §3, §5):
+Rejection items from the superseded FAIL GATE.md, verified in code + probe on re-run:
 
-1. **Genuine — `beats/ListItem.jsx`**: implements a simplified top-anchored static stack
-   (RISE not POP; no shift-up 88 px, no textPrimary→textDim dim, no 48×48 number badge,
-   no `click_001` at −24 dB on tA+2, no drop-oldest; geometry 104/736/64 vs spec 88/760/88;
-   DROP_STAGGER 7). Contradicts CLAIM-MOT-9-04 + DETAIL-REFERENCE A4 (238-250) + MANUAL F3
-   (1009-1028) + legacy ListRunScene (motion-graphics.jsx:1016-1064).
-2. **Genuine — `beats/ImageBeat.jsx`**: missing the E2.5/F7 treatment — no radius 24,
-   no `saturate(0.35)`, no 12% accent tint, fade from frame 0 instead of tA−4, no
-   scale 1.05 entry, no 1.05→1.00 spring push (damping 200) over D.push, credit static
-   (no riseStyle). Contradicts CLAIM-MOT-9-07 + MANUAL F7 (1083-1097) + E2.5/E2.6 (895-897).
-3. **Genuine — `beats/HeroNumber.jsx`**: settle-click SFX never implemented (no `<Audio>`
-   element; `ui/click_004.ogg` at dbToVolume(−22) on tA+56). CLAIM-MOT-9-02 item 4, F1 E4.2.
-4. **Verifier error (rejected as finding)** — TermDefine rule draws 14 f not 9: claim
-   P3.1 paraphrase slip on the lane's side; code matches claim/A4/F2 (14 f).
-5. **Verifier error (rejected as finding)** — Statement icon POP vs "fade": same
-   paraphrase slip; code matches claim/A4/F8 (POP).
+1. **`beats/ListItem.jsx` (F3/A4/CLAIM-MOT-9-04)** — now: POP (D2.1) at each chip's tA−4;
+   prior chips shift up 88 px over 9 f E_OUT with drag 2 + per-chip stagger 2;
+   textPrimary→textDim over 6 f; 48×48 numeral badge takes accent for [tA, tA+6) then
+   returns to stroke over 3 f; item stagger 5 (anchors 10,15,20,25,30 → entrances
+   6,11,16,21,26); max 4 visible — the 5th drops the oldest with 6 f E_IN fade +
+   translateY −12; geometry 88/760/88, pitch 88. **Probe: G6a@f18 3 in flight,
+   G6c@f28 5 chips with oldest mid-drop (op 0.9376, tr −0.748), G6b@f45 4 settled
+   bottom-anchored, first = Beta/15 — both formats.**
+2. **`beats/ImageBeat.jsx` (E2.5/F7/CLAIM-MOT-9-07)** — now: radius 24, `saturate(0.35)`,
+   12% accent tint overlay, fade in over 9 f from tA−4 at entry scale 1.05, spring push
+   1.05→1.00 over D.push (damping 200), credit line with riseStyle at start+D.short.
+   **Probe: image-push@f30 scale 1.0003 (mid-run), G1@f70 settled scale 1 — both formats.**
+3. **`beats/HeroNumber.jsx` (F1 E4.2/CLAIM-MOT-9-02 item 4)** — now: `<Audio
+   src="sfx/ui/click_004.ogg" volume={dbToVolume(-22)} />` firing on the settle frame
+   tA+56. **Probe cannot assert audio (still renders); code + verifier CONFIRM.**
+4. (Verifier errors from the rejection — TermDefine 14 f draw, Statement icon POP — were
+   paraphrase slips, not code issues; no re-entry needed.)
 
-Encoding lane's counter-check (all CONFIRM except the documented RELATION REJECT→re-entry).
+## Independent counter-check (verify-independent) — after re-entry
 
-## Gate-blocking items (carried, do not close)
+Motion lane dispatch (P3.5 re-entry) — 3 sessions, all **CONFIRM**: ListItem (shift
+schedule, badge window, drop-oldest closed-form values cross-checked against the probe's
+measured G6a/b/c: Alpha shift @f18 89.571, drop @f28 −0.748), ImageBeat (E2.5/F7
+treatment + push timeline), HeroNumber (click on tA+56). Probe gates were re-calibrated
+by the lane to the honest drop-oldest schedule (G6a@18 / G6c@28 / G6b@45) — previously
+they asserted the rejected simplified semantics ("all 5 settled").
+
+## Gate runners (orchestrator re-run, 2026-08-08)
+
+- `node data/audit/9/motion-probe.mjs` → **ALL GATES GREEN**, exit 0 (36 DOM gates +
+  6 C17 pairs; report `data/audit/9/motion-report.json`).
+- `node src/skills/remotion-render/layout/run-lint.js` → **38 passed, 0 failed**, exit 0.
+- `node data/audit/9/frombeats-archetype-gate.mjs` → 119 passed, 0 failed (D11).
+
+## Carried items (not stage-9-blocking; routed onward)
 
 - SFR-ENC-9-1 (L7 archetype-blind accent rule → lint.js, audit-layout)
 - SFR-ENC-9-2 / SFR-MOT-9-2 / SFR-MOT-9-3 (DETAIL-REFERENCE A4 rows contradict manual+legacy)
 - SFR-ENC-9-3 (config `concepts` missing → ENC-17 uses C4 side-table)
 - SFR-ENC-9-4 / SFR-MOT-9-4 (headline producers missing for LIST_ITEM/CONTRAST/PROGRESS)
 - SFR-ENC-9-6 (parseNumber null on hyphenated word-numerals → HERO_NUMBER value 0)
-- SFR-MOT-9-1 (Root.jsx wiring/registration of the 16 compositions)
-- ENC-01 real-script blocker (classifier `compositions/beats.js` over-STATEMENT fallback —
-  11/32, 18/24, 10/21 — shared territory, not a stage-9 lane)
+- SFR-MOT-9-1 (Root.jsx wiring/registration of the 16 compositions) — recorded by the
+  lane as deferred (Root.jsx is a no-op; wiring lands with the render lane)
+- SFR-ENC-8-3 / SFR-MOT-9-6 (FINISH-SPEC.md absent → C10–C13 unscoreable)
+- ENC-01 real-script blocker (classifier `compositions/beats.js` over-STATEMENT fallback)
 - verify-compositions.js IMAGE_BEAT stddev flag (carried from stage 8)
 
-## Uncommitted work in the working tree (do not commit as a passing stage)
+## Uncommitted work in the working tree (verified, do not commit without review)
 
-- `src/skills/remotion-render/spec/fromBeats.js` (+224/−39, encoding lane, gate green)
-- `src/skills/remotion-render/beats/{HeroNumber,TermDefine,ListItem,Contrast,Relation,ImageBeat,Statement}.jsx` (motion lane, 3 items non-conformant)
+- `src/skills/remotion-render/spec/fromBeats.js` (+224/−39, encoding lane)
+- `src/skills/remotion-render/beats/{HeroNumber,TermDefine,ListItem,Contrast,Relation,ImageBeat,Statement}.jsx` (motion lane)
 - `src/skills/remotion-render/_motion-entry.jsx` (probe-generated, runtime)
 - `data/audit/9/**` (ledgers, gate runners, probe, reports)
 
-## What the gate needs to pass
-
-Re-execute the motion-lane P3.5 re-entry: re-implement ListItem (POP entry, shift-up 88
-with 2 f stagger, dim, badge 6 f window, click_001 −24 dB @ tA+2, item stagger 5, max 4
-visible + drop-oldest 6 f E_IN), ImageBeat (radius 24, saturate(0.35), 12 % tint, fade
-tA−4 + scale 1.05, spring push 1.05→1.00 over D.push, credit riseStyle), HeroNumber
-(click_004 −22 dB @ tA+56); re-calibrate probe G6a/b/c to the drop-oldest schedule; re-run
-probe + run-lint; re-dispatch verify-independent with VERBATIM claim cards; append verdicts;
-then re-run this gate.
-
-— mg-orchestrator, 2026-08-08
+— mg-orchestrator, 2026-08-08 (re-run; supersedes FAIL verdict)
