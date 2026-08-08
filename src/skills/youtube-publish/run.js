@@ -23,7 +23,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from "fs";
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
-import { getAccessToken, loadCredentials } from "../../utils/youtube-auth.js";
+import { getAccessToken, loadCredentials, hasCredentials } from "../../utils/youtube-auth.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -162,6 +162,17 @@ async function setThumbnail(token, videoId, thumbPath) {
 
 async function uploadChannel(channelId, explicitVideo, dryRun) {
   const channel = loadChannel(channelId);
+
+  if (!hasCredentials(channel)) {
+    const credPath = channel.youtube_credentials_path || `config/creds/${channel.channel_id}.json`;
+    console.log(`\n[YOUTUBE-PUBLISH] Channel: ${channelId} (${channel.channel_name})`);
+    console.log(`\n⚠️  BLOCKED: YouTube OAuth credentials not configured.`);
+    console.log(`\nExpected credentials file: ${credPath}`);
+    console.log(`Format: {"client_id": "...", "client_secret": "...", "refresh_token": "..."}`);
+    console.log(`See README.md "How to get credentials" for how to obtain these.`);
+    return;
+  }
+
   const creds = loadCredentials(channel);
   const videoPath = findVideo(channelId, explicitVideo);
   const topicHint = basename(videoPath, extname(videoPath));

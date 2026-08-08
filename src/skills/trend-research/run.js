@@ -36,11 +36,12 @@ function main() {
   }
 
   // Check for API credentials
-  const hasApiCreds = process.env.YOUTUBE_API_KEY || channel.youtube_channel_id !== "SET_ME";
+  const hasApiCreds = Boolean(process.env.YOUTUBE_API_KEY) ||
+    (channel.youtube_channel_id && channel.youtube_channel_id !== "SET_ME");
 
   if (!hasApiCreds) {
     console.log(`\n[TREND-RESEARCH] Channel: ${channelId}`);
-    console.log(`Niche: ${channel.niche} / ${channel.niche_sub}`);
+    console.log(`Niche: ${channel.niche}${channel.niche_sub ? ` / ${channel.niche_sub}` : ""}`);
     console.log(`\n⚠️  BLOCKED: YouTube Data API credentials not configured.`);
     console.log(`\nTo enable trend research:`);
     console.log(`1. Create a GCP project at https://console.cloud.google.com`);

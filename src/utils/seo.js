@@ -29,11 +29,13 @@ const MAX_TAGS = 20;
 function generateTitle(topic, channel) {
   const niche = channel.niche || "";
   const hookType = channel.script_template?.hook_type || "curiosity-gap";
+  // Avoid "The The X ..." when the topic itself already starts with "The".
+  const topicNoLeadingThe = topic.replace(/^the\s+/i, "");
 
   // Build title patterns based on hook type
   const patterns = {
     "curiosity-gap": [
-      `The ${topic} Nobody Talks About`,
+      `The ${topicNoLeadingThe} Nobody Talks About`,
       `Why ${topic} Changes Everything`,
       `What Happens When ${topic}`,
       `${topic}: The Truth Revealed`,

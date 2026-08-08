@@ -11,6 +11,8 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { hasCredentials } from "./youtube-auth.js";
+import { pushChannelBranding } from "./youtube-branding.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -261,12 +263,18 @@ function generateBrandGuidelines(spec) {
 
 /**
  * CLI entry point.
+ *
+ * Usage:
+ *   node branding.js <channel-id>          # generate spec + guidelines (local, no API)
+ *   node branding.js <channel-id> --push   # also push title/description/keywords
+ *                                          # to the live channel via YouTube API
  */
-function main() {
+async function main() {
   const channelId = process.argv[2];
+  const push = process.argv.includes("--push");
 
   if (!channelId) {
-    console.error("Usage: node branding.js <channel-id>");
+    console.error("Usage: node branding.js <channel-id> [--push]");
     process.exit(1);
   }
 
@@ -297,6 +305,24 @@ function main() {
   console.log(`Brand guidelines saved: ${mdPath}`);
   console.log(`\nKey colors: ${spec.color_system.primary} / ${spec.color_system.secondary} / ${spec.color_system.accent}`);
   console.log(`Fonts: ${spec.typography.title_font.name} + ${spec.typography.body_font.name}`);
+
+  if (!push) return;
+
+  if (!hasCredentials(channel)) {
+    const credPath = channel.youtube_credentials_path || `config/creds/${channel.channel_id}.json`;
+    console.log(`\n⚠️  BLOCKED: not pushed — YouTube OAuth credentials not configured.`);
+    console.log(`Expected credentials file: ${credPath}`);
+    console.log(`Format: {"client_id": "...", "client_secret": "...", "refresh_token": "..."}`);
+    return;
+  }
+
+  try {
+    const channelResourceId = await pushChannelBranding(channel);
+    console.log(`\nPushed branding to live channel: ${channelResourceId}`);
+  } catch (err) {
+    console.error(`\n[BRANDING-PUSH] ERROR: ${err.message}`);
+    process.exit(1);
+  }
 }
 
 export { generateBrandingSpec, generateBrandGuidelines };

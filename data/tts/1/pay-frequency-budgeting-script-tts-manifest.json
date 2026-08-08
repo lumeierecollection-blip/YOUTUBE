@@ -1,0 +1,9 @@
+{
+  "voice": "en-US-JennyNeural",
+  "segments": 12,
+  "total_words": 205,
+  "text_file": "/home/user/YOUTUBE/data/tts/1/pay-frequency-budgeting-script-vo-text.txt",
+  "audio_output": "/home/user/YOUTUBE/data/tts/1/pay-frequency-budgeting-script-vo.mp3",
+  "generated_at": "2026-08-08T18:27:29.729Z",
+  "status": "pending_tts"
+}
