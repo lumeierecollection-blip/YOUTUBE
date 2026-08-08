@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Stage B (research) output — a frozen, sourced research artifact. Stage C writes a script from this and only from this.",
+  "type": "object",
+  "properties": {
+    "topic_slug":      { "type": "string" },
+    "strongest_angle": { "type": "string", "minLength": 20 },
+    "key_facts": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "properties": {
+          "fact":        { "type": "string", "minLength": 20 },
+          "source_url":  { "type": "string" },
+          "source_name": { "type": "string" },
+          "confidence":  { "type": "string", "enum": ["high", "medium"] }
+        },
+        "required": ["fact", "source_url", "source_name", "confidence"]
+      }
+    },
+    "numbers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label":      { "type": "string" },
+          "value":      { "type": "number" },
+          "unit":       { "type": "string" },
+          "source_url": { "type": "string" }
+        },
+        "required": ["label", "value", "unit", "source_url"]
+      }
+    },
+    "named_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "kind": { "type": "string", "enum": ["person", "place", "organization", "object"] }
+        },
+        "required": ["name", "kind"]
+      }
+    }
+  },
+  "required": ["topic_slug", "strongest_angle", "key_facts", "numbers", "named_entities"]
+}

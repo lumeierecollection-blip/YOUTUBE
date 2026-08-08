@@ -19,17 +19,32 @@ on:
         required: false
 
 env:
-  NODE_VERSION: "20"
+  NODE_VERSION: "22"
   PYTHON_VERSION: "3.11"
+  # See PLAN.md / the script-pipeline rebuild notes for why this must be a
+  # real, current model id and not guessed — verify against your account's
+  # available models before changing.
+  CLAUDE_MODEL: "claude-sonnet-5"
 
 jobs:
   # ============================================================
-  # PHASE 1: Pick topics for each channel
+  # PHASE 1: Discover topics — one Claude call, all channels, once/day
   # ============================================================
-  pick-topics:
+  # Replaces the old pillar-cycling logic, which had two fatal problems:
+  # (1) its `used.includes(p)` compared a string against topic-log's object
+  #     entries and was always false, so every run picked pillars[0] forever;
+  # (2) even fixed, 5 pillars x 50 channels is only 250 topics total — the
+  # whole network would exhaust its supply in ~2.5 days. Pillars are now a
+  # *scope constraint* passed to the model, not a queue to cycle through.
+  discover-topics:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: topic-log
+      cancel-in-progress: false
     outputs:
-      matrix: ${{ steps.topics.outputs.matrix }}
+      matrix: ${{ steps.emit.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
 
@@ -37,62 +52,65 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Pick fresh topics for all channels
-        id: topics
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Build discovery context
         run: |
           CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
-
-          # Get channel IDs (using numeric "id" field, not "channel_id")
           if [ -n "$CHANNEL_OVERRIDE" ]; then
-            CHANNELS="[\"$CHANNEL_OVERRIDE\"]"
+            node scripts/build-discovery-context.js --channel "$CHANNEL_OVERRIDE" > /tmp/context.json
           else
-            CHANNELS=$(node -e "
-              const fs = require('fs');
-              const data = JSON.parse(fs.readFileSync('config/channels.json'));
-              const channels = data.channels || data;
-              console.log(JSON.stringify(channels.map(c => String(c.id))));
-            ")
+            node scripts/build-discovery-context.js > /tmp/context.json
           fi
 
-          echo "Channels to process: $CHANNELS"
+      - name: Discover topics
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          cat /tmp/context.json | claude -p "$(cat prompts/discover-topics.md)" \
+            --model "$CLAUDE_MODEL" \
+            --allowedTools "WebSearch,WebFetch,Read" \
+            --permission-mode dontAsk \
+            --output-format json \
+            --json-schema "$(cat schemas/topics.json)" \
+            > /tmp/topics-raw.json
+          jq -e '.structured_output.topics | length > 0' /tmp/topics-raw.json
+          jq '.structured_output' /tmp/topics-raw.json > /tmp/topics.json
+          echo "cost_usd=$(jq -r '.total_cost_usd' /tmp/topics-raw.json)" >> "$GITHUB_STEP_SUMMARY"
 
-          # Build task list — each channel gets a topic from content pillars
-          TASKS="[]"
-          for CH in $(echo $CHANNELS | jq -r '.[]'); do
-            echo "--- Topic selection: $CH ---"
+      - name: Reserve topics and commit the log
+        run: |
+          node scripts/reserve-topics.js /tmp/topics.json
+          git config user.name "pipeline-bot"
+          git config user.email "pipeline@youtube-automation.local"
+          git add data/topic-log.json
+          git diff --staged --quiet || git commit -m "topics: $(date -u +%F)"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            # Pick first unused topic from channel's content_pillars
-            RESULT=$(node -e "
-              const fs = require('fs');
-              const data = JSON.parse(fs.readFileSync('config/channels.json'));
-              const channels = data.channels || data;
-              const ch = channels.find(c => String(c.id) === '$CH');
-              if (!ch) { console.log(JSON.stringify({topic: 'unknown', slug: 'unknown'})); process.exit(); }
-
-              const topicLog = JSON.parse(fs.readFileSync('data/topic-log.json', 'utf8'));
-              const used = (topicLog.channels?.['$CH']?.used_topics || []);
-              const pillars = ch.content_pillars || [];
-              const available = pillars.filter(p => !used.includes(p));
-              const topic = available.length > 0 ? available[0] : pillars[0] || 'General topic';
-              const slug = topic.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 60);
-              console.log(JSON.stringify({topic, slug}));
-            " 2>/dev/null || echo '{"topic":"general","slug":"general"}')
-
-            TASKS=$(echo $TASKS | jq --arg ch "$CH" --argjson r "$RESULT" '. + [{channel_id: $ch, topic_info: $r}]')
-          done
-
-          echo "matrix={\"include\":$(echo $TASKS | jq -c .)}" >> $GITHUB_OUTPUT
-          echo "Total channels: $(echo $TASKS | jq length)"
+      - id: emit
+        run: |
+          echo "matrix={\"include\":$(jq -c '.topics' /tmp/topics.json)}" >> "$GITHUB_OUTPUT"
+          echo "Total topics: $(jq '.topics | length' /tmp/topics.json)"
 
   # ============================================================
   # PHASE 2: Research + Script + TTS (per channel, parallel)
   # ============================================================
+  # Stage B (research) and Stage C (script) are separate Claude calls: Stage
+  # C has no web access and writes only from Stage B's frozen, sourced
+  # research artifact — that's what guarantees every claim in a script
+  # traces to a fetched source, instead of the model filling gaps with
+  # uncited general knowledge at write time.
   research-and-script:
-    needs: pick-topics
+    needs: discover-topics
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJson(needs.pick-topics.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.discover-topics.outputs.matrix) }}
       max-parallel: 5
+      fail-fast: false
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
@@ -111,45 +129,68 @@ jobs:
       - name: Install EdgeTTS
         run: pip install edge-tts
 
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
       - name: Ensure output directories
         run: |
           CH="${{ matrix.channel_id }}"
           mkdir -p data/research/$CH data/tts/$CH data/thumbnails/$CH
 
-      - name: Generate script
+      - name: Stage B — research
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          CH="${{ matrix.channel_id }}"
-          SLUG="${{ matrix.topic_info.slug }}"
+          set -euo pipefail
+          CH="${{ matrix.channel_id }}"; SLUG="${{ matrix.slug }}"
+          echo "=== RESEARCH: $CH — $SLUG ==="
+          jq -n --arg t "${{ matrix.topic }}" --arg a "${{ matrix.angle }}" \
+                --arg s "$SLUG" --arg c "$CH" \
+                '{topic:$t, angle:$a, slug:$s, channel_id:$c}' \
+            | claude -p "$(cat prompts/research.md)" \
+                --model "$CLAUDE_MODEL" \
+                --allowedTools "WebSearch,WebFetch,Read" \
+                --permission-mode dontAsk \
+                --output-format json \
+                --json-schema "$(cat schemas/research.json)" \
+                > /tmp/research-raw.json
+          jq -e '.structured_output.key_facts | length >= 5' /tmp/research-raw.json
+          jq '.structured_output' /tmp/research-raw.json > "data/research/$CH/$SLUG.json"
+
+      - name: Gate — research quality
+        run: node scripts/gate-research.js "${{ matrix.channel_id }}" "${{ matrix.slug }}"
+
+      - name: Stage C — script
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          CH="${{ matrix.channel_id }}"; SLUG="${{ matrix.slug }}"
           echo "=== SCRIPT: $CH — $SLUG ==="
-
-          # Script-writer reads existing research from data/research/<ch>/
-          # If no research exists yet, create a minimal research file first
-          if [ ! -f "data/research/$CH/$SLUG.json" ]; then
-            echo "No research file found — creating placeholder"
-            node -e "
-              const fs = require('fs');
-              const data = JSON.parse(fs.readFileSync('config/channels.json','utf8'));
-              const ch = (data.channels||data).find(c => String(c.id)==='$CH');
-              const topic = '${SLUG}'.split('-').map(w=>w[0].toUpperCase()+w.slice(1)).join(' ');
-              const research = {
-                topic: topic,
-                topic_slug: '$SLUG',
-                channel_id: '$CH',
-                strongest_angle: topic + ' — what most people get wrong',
-                key_facts: [{fact: topic + ' is commonly misunderstood. Here is what actually matters.', source: 'General knowledge'}],
-                sources: []
-              };
-              fs.writeFileSync('data/research/$CH/$SLUG.json', JSON.stringify(research, null, 2));
-            "
+          STYLE=$(node scripts/channel-style.js "$CH")
+          if [ "$STYLE" = "motion-graphics" ]; then
+            SCHEMA="schemas/script.mg.json"
+          else
+            SCHEMA="schemas/script.section.json"
           fi
+          node scripts/build-script-context.js "$CH" "$SLUG" --format longform \
+            | claude --bare -p "$(cat prompts/write-script.md)" \
+                --model "$CLAUDE_MODEL" \
+                --append-system-prompt "$(cat prompts/style-contract.md)" \
+                --allowedTools "Read" \
+                --output-format json \
+                --json-schema "$(cat "$SCHEMA")" \
+                > /tmp/script-raw.json
+          jq '.structured_output' /tmp/script-raw.json \
+            > "data/research/$CH/${SLUG}-script.json"
 
-          # Run script-writer
-          node src/skills/script-writer/run.js "$CH" "$SLUG"
+      - name: Gate — script quality
+        run: node scripts/gate-script.js "${{ matrix.channel_id }}" "${{ matrix.slug }}"
 
       - name: Generate TTS voiceover
         run: |
           CH="${{ matrix.channel_id }}"
-          SLUG="${{ matrix.topic_info.slug }}"
+          SLUG="${{ matrix.slug }}"
           echo "=== TTS: $CH — $SLUG ==="
 
           # Find the script file
@@ -163,13 +204,13 @@ jobs:
       - name: Generate thumbnail
         run: |
           CH="${{ matrix.channel_id }}"
-          SLUG="${{ matrix.topic_info.slug }}"
+          SLUG="${{ matrix.slug }}"
           echo "=== THUMBNAIL: $CH — $SLUG ==="
 
           SCRIPT="data/research/$CH/${SLUG}-script.json"
           if [ -f "$SCRIPT" ]; then
             node src/skills/thumbnail-maker/generate.js "$CH" "$SCRIPT" || echo "WARN: thumbnail spec failed"
-            node src/skills/thumbnail-maker/render-thumb.js "$CH" || echo "WARN: thumbnail render failed"
+            node src/skills/thumbnail-maker/render-thumb.js "$CH" "$SLUG" || echo "WARN: thumbnail render failed"
           else
             echo "WARN: Script not found — skipping thumbnail"
           fi
@@ -177,7 +218,7 @@ jobs:
       - name: Generate SEO + metadata
         run: |
           CH="${{ matrix.channel_id }}"
-          SLUG="${{ matrix.topic_info.slug }}"
+          SLUG="${{ matrix.slug }}"
           echo "=== METADATA: $CH — $SLUG ==="
 
           # Run pipeline steps 5-15 (SEO through render settings) for this channel
@@ -312,26 +353,11 @@ jobs:
             node src/skills/youtube-publish/run.js "$CH" || echo "WARN: publish failed (API creds needed)"
           done
 
-      - name: Update topic log
-        if: always()
-        run: |
-          node -e "
-            const fs = require('fs');
-            const logPath = 'data/topic-log.json';
-            const log = JSON.parse(fs.readFileSync(logPath, 'utf8'));
-            log.last_run = new Date().toISOString();
-            fs.writeFileSync(logPath, JSON.stringify(log, null, 2));
-          " || true
-
-      - name: Persist topic log
-        if: always()
-        run: |
-          git config user.name "pipeline-bot"
-          git config user.email "pipeline@youtube-automation.local"
-          git add data/topic-log.json
-          git diff --staged --quiet || git commit -m "Update topic log [skip ci]" && git push || echo "WARN: topic log push failed"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # No topic-log write here: discover-topics is topic-log.json's single
+      # writer now (one commit, before the matrix fans out). This job's
+      # checkout is pinned to the commit that triggered the workflow, which
+      # predates discover-topics' mid-run commit — writing here risked
+      # either a rejected push or, worse, a stale overwrite.
 
       - name: Upload run logs
         if: always()
@@ -345,7 +371,7 @@ jobs:
   # PHASE 5: Log results
   # ============================================================
   log-results:
-    needs: [pick-topics, research-and-script, render, publish]
+    needs: [discover-topics, research-and-script, render, publish]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -361,7 +387,7 @@ jobs:
           echo "Date: $(date -u)"
           echo ""
           echo "=== STATUS ==="
-          echo "Pick Topics: ${{ needs.pick-topics.result }}"
+          echo "Discover Topics: ${{ needs.discover-topics.result }}"
           echo "Research+Script: ${{ needs.research-and-script.result }}"
           echo "Render: ${{ needs.render.result }}"
           echo "Publish: ${{ needs.publish.result }}"

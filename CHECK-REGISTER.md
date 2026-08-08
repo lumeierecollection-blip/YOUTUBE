@@ -67,6 +67,7 @@ never `L7` or `Â§3.1`.
 | `AST` | fonts, icons, images, licences | `audit-assets` |
 | `DEL` | absence â€” things that must no longer exist | the owning lane |
 | `FRM` | whole-frame visual QA | orchestrator |
+| `SCR` | daily-pipeline script generation â€” grounding, archetype/anchor sync, pacing | `discover-topics` / `research-and-script` workflow jobs (not a CROSSCHECK lane â€” see Â§3.10) |
 
 ---
 
@@ -323,6 +324,48 @@ State column: **FAIL** = measured or computed as failing today Â·
 **FRM-05 is the only genuinely subjective check in the register**, and it is
 deliberately last. It is not a substitute for the 130 above it; it is the
 sanity check that they were the right 130.
+
+## 3.10 `SCR` â€” daily-pipeline script generation
+
+**These gate a different process than everything above them.** `LAY` through
+`FRM` gate the CROSSCHECK-PROTOCOL render-audit (`.github`/local, run once as
+an engineering pass on the Remotion renderer itself). `SCR` gates the
+*daily* `discover-topics` â†’ `research-and-script` workflow â€” the Claude-Code-
+in-CI pipeline that replaced the pillar-cycling bug and the placeholder
+research writer (see the script-pipeline rebuild notes). Every `SCR` check
+runs per-video, before TTS, implemented in `scripts/gate-research.js` and
+`scripts/gate-script.js`.
+
+| ID | Check | Method | Threshold | T | Sev | Stage | State |
+|---|---|---|---|---|---|---|---|
+| SCR-01 | Every `key_fact.source_url` is well-formed (full "was actually fetched" verification needs the Stage B tool-call transcript, not implemented) | `gate-research.js` | 100% well-formed | 1 | BLOCKER | pre-TTS | **NEW** â€” not yet run against a live workflow (no `ANTHROPIC_API_KEY` configured) |
+| SCR-02 | >=5 key facts, >=3 distinct source domains | `gate-research.js` | >=5 / >=3 | 1 | BLOCKER | pre-TTS | **NEW** |
+| SCR-03 | Every `beat.anchor_token` appears verbatim in its section's `voiceover` | `gate-script.js` | 100% | 1 | BLOCKER | pre-TTS | **NEW** |
+| SCR-04 | Every `PROGRESS` beat has `data.series` with >=2 points | `gate-script.js` | >=2 | 1 | BLOCKER | pre-TTS | **NEW** |
+| SCR-05 | No `data.series` value is absent from the research `numbers[]` | `gate-script.js` | 100% | 1 | BLOCKER | pre-TTS | **NEW** |
+| SCR-06 | Archetype mix matches the channel's `concepts` allocation (soft â€” only checked when `channels.json` declares `concepts` for that channel; none do yet) | `gate-script.js` | >=50% / <=35% / 0% | 1 | MAJOR | pre-TTS | **NEW**, and effectively N/A until `concepts` is added per DETAIL-REFERENCE Â§C4 |
+| SCR-07 | `STATEMENT` <=30% of beats | `gate-script.js` | <=30% | 1 | MAJOR | pre-TTS | **NEW** |
+| SCR-08 | Voiceover word count implies a plausible WPM for the channel's style at the format's midpoint duration (soft sanity check â€” real duration is decided later from actual audio length) | `gate-script.js` | within 0.5x-1.5x of style target | 1 | MAJOR | pre-TTS | **NEW** |
+| SCR-09 | Slug not present in `topic-log.json` for that channel | `reserve-topics.js` | 0 collisions | 1 | BLOCKER | pre-research | **NEW** |
+| SCR-10 | Topic is not a near-duplicate of the last 90 days (token overlap <0.6) | `topic-log.cjs isDuplicate()` (reused, not reimplemented) | <0.6 | 1 | MAJOR | pre-research | **NEW** |
+| SCR-11 | No two channels received the same slug this run | `reserve-topics.js` | 0 collisions | 1 | BLOCKER | pre-research | **NEW** |
+| SCR-12 | `text_overlay` is an object or null, never a string | `--json-schema` at the CLI boundary, re-checked in `gate-script.js` | 100% | 1 | BLOCKER | pre-TTS | **NEW** |
+| SCR-13 | No hex colour value anywhere in the script JSON | `gate-script.js` regex | 0 hits | 1 | MAJOR | pre-TTS | **NEW** â€” a real hex literal (`#0A1020`) already exists in `data/research/1/pay-frequency-budgeting-script.json`'s `visual_cue`, predating this gate |
+| SCR-14 | `sources_used` >=3 and every URL appears in the research file | `gate-script.js` | 100% | 1 | BLOCKER | pre-TTS | **NEW** |
+
+**3.10.1 â€” SCR-05 is the enforcement point for `ENC-06`/`ENC-08`.** A number
+only reaches a chart if the research pass logged it with a source, closing
+the loop that otherwise ends in `extractStats()` regexing a value out of
+prose at render time (still the render-time behavior today â€” `SCR-05`
+constrains what the *script* is allowed to contain, it does not yet change
+what `mg-package.js` does with it; see `schemas/script.mg.json`'s header
+note on that gap).
+
+**3.10.2 â€” SCR-01 and SCR-10 are honest approximations, not full
+implementations.** Read the check's Method column before trusting its
+State â€” `gate-research.js` and `gate-script.js` both document, inline, the
+gap between what they claim to check and what would be needed to check it
+fully.
 
 ---
 
