@@ -209,7 +209,12 @@ jobs:
           done
 
       - name: Generate TTS voiceover (one per today's format)
+        # set -e so a failure on an earlier format in the loop isn't masked
+        # by a later format's success (a bare loop's exit code is only its
+        # last command's) — tts.js now fails loudly (T1.6) and this step
+        # must actually surface that instead of swallowing it.
         run: |
+          set -euo pipefail
           CH="${{ matrix.channel_id }}"
           SLUG="${{ matrix.slug }}"
           for FORMAT in $FORMATS; do

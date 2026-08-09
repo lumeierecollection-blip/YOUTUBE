@@ -12,7 +12,7 @@
  * Default voice: en-US-GuyNeural
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
@@ -133,15 +133,24 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
     console.log(`Delivery: voice=${voice} rate=${rate} pitch=${pitch}`);
     return audioPath;
   } catch (err) {
-    console.log(`\n⚠️  edge-tts CLI not available or failed.`);
-    console.log(`Install: pip install edge-tts`);
-    console.log(`\nText saved to: ${textPath}`);
-    console.log(`Voice: ${voice}`);
-    console.log(`Rate: ${rate}, Pitch: ${pitch}`);
-    console.log(`Segments: ${segments.length}`);
-    console.log(`Total words: ${fullText.split(/\s+/).length}`);
-
-    // Save a manifest for manual TTS generation
+    // Remove whatever the failed attempt left behind — a partial or
+    // zero-length mp3/srt is exactly the kind of artifact that looks real
+    // and isn't (T1.6). Never leave one sitting next to the topic's other
+    // files where a later step might mistake it for real output.
+    for (const partial of [audioPath, srtPath]) {
+      if (existsSync(partial)) {
+        try {
+          unlinkSync(partial);
+        } catch {}
+      }
+    }
+    // PROMPT-SELF-HEALING-RUN.md T1.6 — fail loudly, never silently. edge-tts
+    // is confirmed working on real GitHub Actions runners (a real mp3, real
+    // duration, verified via the tts-probe.yml diagnostic), so a failure here
+    // is a real problem — bad voice name, rate limit, transient network
+    // error — not an expected/tolerable state. The manifest below is a
+    // diagnostic artifact for whoever investigates, not a substitute for
+    // failing: this function still throws, and main() still exits non-zero.
     const manifest = {
       voice,
       segments: segments.length,
@@ -149,13 +158,15 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
       text_file: textPath,
       audio_output: audioPath,
       generated_at: new Date().toISOString(),
-      status: "pending_tts",
+      status: "FAILED",
+      error: err.message,
     };
     writeFileSync(
-      join(outputDir, `${topic}-tts-manifest.json`),
+      join(outputDir, `${topic}-tts-manifest.FAILED.json`),
       JSON.stringify(manifest, null, 2)
     );
-    return null;
+    console.error(`::warning::TTS synthesis failed for "${topic}" (voice=${voice}): ${err.message}`);
+    throw new Error(`TTS synthesis failed for "${topic}" (voice=${voice}): ${err.message}`);
   }
 }
 
@@ -175,7 +186,7 @@ function parseJsonScript(script) {
   return segments;
 }
 
-function main() {
+async function main() {
   const channelId = process.argv[2];
   const scriptPath = process.argv[3];
 
@@ -208,13 +219,16 @@ function main() {
     const outDir = join(ROOT, "data", "tts", channelId);
     mkdirSync(outDir, { recursive: true });
 
-    generateTTS(segments, voice, outDir, topic, {
-      rate: channel.tts_rate,
-      pitch: channel.tts_pitch,
-      python: channel.tts_python,
-    }).catch(err => {
+    try {
+      await generateTTS(segments, voice, outDir, topic, {
+        rate: channel.tts_rate,
+        pitch: channel.tts_pitch,
+        python: channel.tts_python,
+      });
+    } catch (err) {
       console.error(`TTS failed: ${err.message}`);
-    });
+      process.exit(1);
+    }
     return;
   }
 
@@ -229,4 +243,7 @@ function main() {
   console.log(`Voice: ${voice}`);
 }
 
-main();
+main().catch((err) => {
+  console.error(`TTS failed: ${err.message}`);
+  process.exit(1);
+});

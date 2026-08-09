@@ -13,7 +13,6 @@
       "channel_name": "Money Mind",
       "handle": "@moneymind",
       "tts_voice": "en-US-JennyNeural",
-      "tts_python": "C:/Python314/python.exe",
       "font": "Inter",
       "estimated_rpm": "8-15",
       "google_account": "CH1",
