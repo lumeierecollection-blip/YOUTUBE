@@ -24,6 +24,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSy
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { getAccessToken, loadCredentials, hasCredentials } from "../../utils/youtube-auth.js";
+import { unresolvedPlaceholdersForChannel } from "../../utils/placeholders.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -173,11 +174,43 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
     return;
   }
 
+  // Placeholder Doctrine Requirement 4 (PROMPT-SELF-HEALING-RUN.md Part 1):
+  // un-publishable is a hard gate, not a warning. Checked before anything
+  // else — a placeholder anywhere in this channel's dependency chain means
+  // nothing gets uploaded, dry-run or real.
+  const openPlaceholders = unresolvedPlaceholdersForChannel(channelId);
+  if (openPlaceholders.length > 0) {
+    console.log(`\n[YOUTUBE-PUBLISH] Channel: ${channelId} (${channel.channel_name})`);
+    console.log(`\n⚠️  BLOCKED: ${openPlaceholders.length} unresolved placeholder(s) in this channel's chain.`);
+    for (const p of openPlaceholders) {
+      console.log(`  - ${p.stands_in_for} (${p.artifact_path}): ${p.reason}`);
+      console.log(`    Would be replaced by: ${p.would_be_replaced_by}`);
+    }
+    console.log(`\nResolve every placeholder (src/utils/placeholders.js resolvePlaceholder) before publishing.`);
+    return;
+  }
+
   const creds = loadCredentials(channel);
   const videoPath = findVideo(channelId, explicitVideo);
   const topicHint = basename(videoPath, extname(videoPath));
   const seo = loadSeoMetadata(channelId, topicHint);
   const thumb = findThumbnail(channelId, topicHint);
+
+  // NICHE-AUDIT.md §3.3 — Medicare Navigator's condition for existing at
+  // all is human review before every single upload. Enforced as a file a
+  // human creates, not a config flag anything automated could flip.
+  if (channel.requires_human_review) {
+    const approvalPath = join(ROOT, "data", "approvals", String(channelId), `${topicHint}.approved`);
+    if (!existsSync(approvalPath)) {
+      console.log(`\n[YOUTUBE-PUBLISH] Channel: ${channelId} (${channel.channel_name})`);
+      console.log(`\n⚠️  BLOCKED: this channel requires human review before every upload.`);
+      console.log(`${channel.human_review_notes || ""}`);
+      console.log(`\nA human must review "${videoPath}" and create: ${approvalPath}`);
+      console.log(`(e.g. mkdir -p "$(dirname ${approvalPath})" && echo "approved by <name>, $(date -u +%F)" > ${approvalPath})`);
+      return;
+    }
+    console.log(`  Human review: approved (${approvalPath})`);
+  }
 
   console.log(`[YOUTUBE-PUBLISH] Channel: ${channelId} (${channel.channel_name})`);
   console.log(`  Account: ${creds.google_account || "?"} | Channel ID: ${channel.youtube_channel_id || "SET_ME"}`);

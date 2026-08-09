@@ -6,7 +6,7 @@
  * BLOCKER checks fail the process (exit 1). MAJOR checks print a warning
  * and exit 0, unless --strict is passed.
  *
- * Usage: node scripts/gate-script.js <channel-id> <slug> [--strict]
+ * Usage: node scripts/gate-script.js <channel-id> <script-slug> [research-slug] [--strict]
  */
 
 import { readFileSync, existsSync } from "fs";
@@ -33,10 +33,15 @@ function wordCount(text) {
 }
 
 function main() {
-  const [channelId, slug] = process.argv.slice(2);
+  const args = process.argv.slice(2).filter((a) => a !== "--strict");
+  const [channelId, scriptSlug, researchSlugArg] = args;
+  // researchSlug defaults to scriptSlug for the single-format case; pass it
+  // explicitly when one research artifact backs multiple script files
+  // (e.g. "<slug>-shorts" and "<slug>-longform" both trace back to "<slug>").
+  const researchSlug = researchSlugArg || scriptSlug;
   const strict = process.argv.includes("--strict");
-  if (!channelId || !slug) {
-    console.error("Usage: node scripts/gate-script.js <channel-id> <slug> [--strict]");
+  if (!channelId || !scriptSlug) {
+    console.error("Usage: node scripts/gate-script.js <channel-id> <script-slug> [research-slug] [--strict]");
     process.exit(1);
   }
 
@@ -46,8 +51,8 @@ function main() {
     process.exit(1);
   }
 
-  const scriptPath = join(ROOT, "data", "research", String(channelId), `${slug}-script.json`);
-  const researchPath = join(ROOT, "data", "research", String(channelId), `${slug}.json`);
+  const scriptPath = join(ROOT, "data", "research", String(channelId), `${scriptSlug}-script.json`);
+  const researchPath = join(ROOT, "data", "research", String(channelId), `${researchSlug}.json`);
   if (!existsSync(scriptPath)) {
     console.error(`Script not found: ${scriptPath}`);
     process.exit(1);
@@ -156,20 +161,20 @@ function main() {
   }
 
   if (majors.length > 0) {
-    console.warn(`Script gate — ${majors.length} MAJOR warning(s) for ${channelId}/${slug}:`);
+    console.warn(`Script gate — ${majors.length} MAJOR warning(s) for ${channelId}/${scriptSlug}:`);
     majors.forEach((m) => console.warn(`  - ${m}`));
   }
   if (blockers.length > 0) {
-    console.error(`Script gate FAILED (BLOCKER) for ${channelId}/${slug}:`);
+    console.error(`Script gate FAILED (BLOCKER) for ${channelId}/${scriptSlug}:`);
     blockers.forEach((b) => console.error(`  - ${b}`));
     process.exit(1);
   }
   if (strict && majors.length > 0) {
-    console.error(`Script gate FAILED (--strict, MAJOR warnings present) for ${channelId}/${slug}.`);
+    console.error(`Script gate FAILED (--strict, MAJOR warnings present) for ${channelId}/${scriptSlug}.`);
     process.exit(1);
   }
 
-  console.log(`Script gate PASSED for ${channelId}/${slug}${majors.length ? ` (${majors.length} warning(s))` : ""}.`);
+  console.log(`Script gate PASSED for ${channelId}/${scriptSlug}${majors.length ? ` (${majors.length} warning(s))` : ""}.`);
 }
 
 main();

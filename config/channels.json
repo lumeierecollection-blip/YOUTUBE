@@ -1,7 +1,7 @@
 {
-  "version": "5.0.0",
-  "system": "50-Channel YouTube Automation",
-  "rule": "Each channel has a UNIQUE niche. Every topic is unique across ALL channels. No repeats.",
+  "version": "6.0.0",
+  "system": "17-Channel YouTube Automation (cut from 50 per NICHE-AUDIT.md)",
+  "rule": "Each channel has a UNIQUE niche and a genuinely distinct format, not just a distinct palette (NICHE-AUDIT.md Part 0.3). Every topic is unique across ALL channels. No repeats.",
   "auto_publish": true,
   "publish_delay_hours": 1,
   "tts_engine": "edge-tts",
@@ -105,6 +105,20 @@
           "discipline|trust|quit|gave|habit|habits|motivation": "flame",
           "number|numbers|value|amount|total|realistic": "scale"
         }
+      },
+      "creds_secret_prefix": "CHANNEL_01",
+      "concepts": {
+        "primary": [
+          "PROGRESS",
+          "HERO_NUMBER"
+        ],
+        "secondary": [
+          "LIST_ITEM",
+          "TERM_DEFINE"
+        ],
+        "excluded": [
+          "IMAGE_BEAT"
+        ]
       }
     },
     {
@@ -208,6 +222,18 @@
           "evidence|proof|probable cause": "search",
           "attorney|lawyer|counsel|law": "scale"
         }
+      },
+      "creds_secret_prefix": "CHANNEL_02",
+      "concepts": {
+        "primary": [
+          "CONTRAST",
+          "TERM_DEFINE",
+          "LIST_ITEM"
+        ],
+        "secondary": [
+          "HERO_NUMBER"
+        ],
+        "excluded": []
       }
     },
     {
@@ -219,9 +245,9 @@
       "tts_voice": "en-US-TonyNeural",
       "font": "Space Grotesk",
       "estimated_rpm": "8-14",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-3",
+      "channel_id": "ch-03",
+      "youtube_credentials_path": "config/creds/ch-03.json",
       "description": "We test AI tools with real projects so you don't waste money. Honest reviews with actual outputs shown.",
       "content_pillars": [
         "AI tool head-to-head tests",
@@ -293,7 +319,8 @@
           "split-reveal",
           "glitch-cut"
         ]
-      }
+      },
+      "creds_secret_prefix": "CHANNEL_03"
     },
     {
       "id": 4,
@@ -379,179 +406,8 @@
           "document-slide",
           "impact-sting"
         ]
-      }
-    },
-    {
-      "id": 5,
-      "niche": "Natural Disaster / Volcano Stories",
-      "style": "cinematic-documentary",
-      "channel_name": "Force of Nature",
-      "handle": "@forceofnature",
-      "tts_voice": "en-US-DavisNeural",
-      "font": "Oswald",
-      "estimated_rpm": "5-9",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "The most powerful forces on Earth captured in devastating detail. Volcanic eruptions, tsunamis, earthquakes, and the science behind them.",
-      "content_pillars": [
-        "volcanic eruption breakdowns",
-        "tsunami cause-effect stories",
-        "earthquake engineering failures",
-        "hurricane tracking deep dives",
-        "disaster preparedness science"
-      ],
-      "tags": [
-        "natural disaster",
-        "volcano",
-        "tsunami",
-        "earthquake",
-        "disaster documentary"
-      ],
-      "colors": {
-        "primary": "#1A0A05",
-        "secondary": "#2D1508",
-        "accent": "#F97316",
-        "bg": "#0F0503"
       },
-      "target_audience": "Science/nature enthusiasts 18-50",
-      "tone": "awe-inspiring-dramatic",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 347.6,
-        "accentHue": 47.6,
-        "text_font": "Oswald Bold"
-      },
-      "sfx_profile": {
-        "music_style": "epic cinematic with deep bass rumble, tension-building orchestral",
-        "primary_sfx": [
-          "rumble-earthquake",
-          "explosion-boom",
-          "wind-hurricane",
-          "water-crash",
-          "rock-fall"
-        ],
-        "music_bpm": "60-80",
-        "silence_technique": "2-3 second silence before eruption/disaster moment"
-      },
-      "script_template": {
-        "hook_type": "scale-wonder",
-        "section_count": 5,
-        "reveal_placement": "55-65% through video",
-        "closing_type": "reflection",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "warm orange-red disaster tones with dark dramatic contrast",
-        "b_roll_sources": [
-          "news footage of disasters",
-          "USGS volcanic footage",
-          "satellite imagery",
-          "drone aerial disaster aftermath",
-          "seismograph animations"
-        ],
-        "camera_angles": [
-          "aerial disaster establishing",
-          "volcanic eruption wide",
-          "satellite top-down",
-          "seismograph animation",
-          "aftermath ground-level"
-        ],
-        "pacing": "slow-build to explosive climax",
-        "transitions": [
-          "rumble-shake",
-          "ash-cloud",
-          "impact-boom",
-          "fade-ash"
-        ]
-      }
-    },
-    {
-      "id": 6,
-      "niche": "Military History & Strategy",
-      "style": "cinematic-documentary",
-      "channel_name": "The War Room",
-      "handle": "@thewarroom",
-      "tts_voice": "en-US-ChristopherNeural",
-      "font": "Bebas Neue",
-      "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Battle strategies, military campaigns, and the decisions that changed the course of wars. From ancient tactics to modern warfare.",
-      "content_pillars": [
-        "battle strategy breakdowns",
-        "military campaign documentaries",
-        "weapon technology explainers",
-        "commander profile series",
-        "war outcome analysis"
-      ],
-      "tags": [
-        "military history",
-        "war strategy",
-        "battle analysis",
-        "military documentary",
-        "war tactics"
-      ],
-      "colors": {
-        "primary": "#0A1A0A",
-        "secondary": "#1A2D1A",
-        "accent": "#4ADE80",
-        "bg": "#050F05"
-      },
-      "target_audience": "Military/history buffs 18-55",
-      "tone": "authoritative-strategic",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 91.7,
-        "accentHue": 151.7,
-        "text_font": "Bebas Neue Bold"
-      },
-      "sfx_profile": {
-        "music_style": "epic orchestral with military percussion, brass fanfares",
-        "primary_sfx": [
-          "cannon-fire",
-          "marching-boots",
-          "rifle-volley",
-          "tank-rumble",
-          "radio-static"
-        ],
-        "music_bpm": "80-110",
-        "silence_technique": "2 second silence before tactical reveal"
-      },
-      "script_template": {
-        "hook_type": "what-if",
-        "section_count": 5,
-        "reveal_placement": "50-60% through video",
-        "closing_type": "legacy",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "desaturated military green with warm amber highlights",
-        "b_roll_sources": [
-          "archival war footage",
-          "military maps",
-          "Google Earth terrain",
-          "period artwork",
-          "weapon footage"
-        ],
-        "camera_angles": [
-          "battlefield aerial",
-          "tactical map overlay",
-          "weapon detail close-up",
-          "troop movement animation",
-          "commander portrait"
-        ],
-        "pacing": "measured with tactical animation sequences",
-        "transitions": [
-          "map-zoom",
-          "tactical-overlay",
-          "era-dissolve",
-          "impact-cut"
-        ]
-      }
+      "creds_secret_prefix": "CHANNEL_04"
     },
     {
       "id": 7,
@@ -562,9 +418,9 @@
       "tts_voice": "en-US-AndrewNeural",
       "font": "DM Sans",
       "estimated_rpm": "8-15",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-7",
+      "channel_id": "ch-07",
+      "youtube_credentials_path": "config/creds/ch-07.json",
       "description": "The rise and catastrophic fall of once-great companies. What went wrong, who's to blame, and the lessons left behind.",
       "content_pillars": [
         "company collapse case studies",
@@ -637,93 +493,8 @@
           "corporate-slide",
           "dramatic-zoom"
         ]
-      }
-    },
-    {
-      "id": 8,
-      "niche": "Psychology (Why We Do What We Do)",
-      "style": "minimal",
-      "channel_name": "Mind Decoded",
-      "handle": "@minddecoded",
-      "tts_voice": "en-US-MichelleNeural",
-      "font": "Nunito",
-      "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "The hidden psychological forces behind your decisions. Cognitive biases, social experiments, and the science of human behavior.",
-      "content_pillars": [
-        "cognitive bias explainers",
-        "famous psychology experiments",
-        "behavioral economics",
-        "social psychology deep dives",
-        "mental model profiles"
-      ],
-      "tags": [
-        "psychology",
-        "cognitive bias",
-        "human behavior",
-        "mental models",
-        "behavioral science"
-      ],
-      "colors": {
-        "primary": "#1A1A2E",
-        "secondary": "#16213E",
-        "accent": "#A855F7",
-        "bg": "#0F0F1A"
       },
-      "target_audience": "Curious adults 18-45",
-      "tone": "fascinated-explanatory",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 243.9,
-        "accentHue": 303.9,
-        "text_font": "Nunito Bold"
-      },
-      "sfx_profile": {
-        "music_style": "ambient electronic with mysterious undertones, subtle and cerebral",
-        "primary_sfx": [
-          "thought-echo",
-          "clock-tick",
-          "page-turn",
-          "light-bulb",
-          "whoosh-soft"
-        ],
-        "music_bpm": "80-100",
-        "silence_technique": "1-2 second pause before bias reveal"
-      },
-      "script_template": {
-        "hook_type": "you-dont-know",
-        "section_count": 4,
-        "reveal_placement": "55-65% through video",
-        "closing_type": "self-reflection",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "cool purple tones with warm highlights, clean and cerebral",
-        "b_roll_sources": [
-          "stock people/crowd footage",
-          "experiment reenactments",
-          "brain scan imagery",
-          "infographic animations",
-          "historical experiment footage"
-        ],
-        "camera_angles": [
-          "crowd observation wide",
-          "brain scan close-up",
-          "experiment setup",
-          "infographic build",
-          "individual reaction medium"
-        ],
-        "pacing": "steady with revelatory pauses",
-        "transitions": [
-          "brain-scan",
-          "thought-bubble",
-          "infographic-reveal",
-          "gentle-zoom"
-        ]
-      }
+      "creds_secret_prefix": "CHANNEL_07"
     },
     {
       "id": 9,
@@ -734,9 +505,9 @@
       "tts_voice": "en-US-EricNeural",
       "font": "Roboto Condensed",
       "estimated_rpm": "8-14",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-9",
+      "channel_id": "ch-09",
+      "youtube_credentials_path": "config/creds/ch-09.json",
       "description": "How borders shape power, conflict, and wealth. Geographic explanations of the world's most complex geopolitical situations.",
       "content_pillars": [
         "border conflict explainers",
@@ -826,92 +597,18 @@
           "river|waterway|coast": "waves",
           "treaty|alliance|pact|agreement": "scroll-text"
         }
-      }
-    },
-    {
-      "id": 10,
-      "niche": "Betrayal/Revenge Stories",
-      "style": "cinematic-documentary",
-      "channel_name": "Double Cross",
-      "handle": "@doublecross",
-      "tts_voice": "en-US-RogerNeural",
-      "font": "Playfair Display",
-      "estimated_rpm": "5-9",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "True stories of betrayal, deception, and the pursuit of justice. When trust is broken and revenge is served cold.",
-      "content_pillars": [
-        "betrayal case studies",
-        "revenge operation breakdowns",
-        "con artist profiles",
-        "scandal deep dives",
-        "justice served stories"
-      ],
-      "tags": [
-        "betrayal",
-        "revenge story",
-        "true crime",
-        "deception",
-        "justice served"
-      ],
-      "colors": {
-        "primary": "#1A0A15",
-        "secondary": "#2D1520",
-        "accent": "#DC2626",
-        "bg": "#0F050A"
       },
-      "target_audience": "True crime fans 18-50",
-      "tone": "dramatic-storytelling",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 327.3,
-        "accentHue": 27.3,
-        "text_font": "Playfair Display Bold"
-      },
-      "sfx_profile": {
-        "music_style": "dark cinematic with emotional swells, tension-building strings",
-        "primary_sfx": [
-          "heartbeat",
-          "door-slam",
-          "glass-break",
-          "knife-draw",
-          "phone-ring-dramatic"
+      "creds_secret_prefix": "CHANNEL_09",
+      "concepts": {
+        "primary": [
+          "RELATION",
+          "CONTRAST"
         ],
-        "music_bpm": "70-90",
-        "silence_technique": "3 second silence before betrayal reveal"
-      },
-      "script_template": {
-        "hook_type": "emotional",
-        "section_count": 5,
-        "reveal_placement": "60-70% through video",
-        "closing_type": "justice",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "dark moody with red accent highlights, noir drama feel",
-        "b_roll_sources": [
-          "dramatic reenactment stock",
-          "court footage",
-          "news broadcasts",
-          "photo evidence",
-          "social media screenshots"
+        "secondary": [
+          "HERO_NUMBER",
+          "IMAGE_BEAT"
         ],
-        "camera_angles": [
-          "dramatic close-up",
-          "courtroom establishing",
-          "evidence table detail",
-          "photo reveal",
-          "split-screen before/after"
-        ],
-        "pacing": "slow-build with dramatic climax",
-        "transitions": [
-          "dramatic-zoom",
-          "photo-reveal",
-          "evidence-slide",
-          "fade-black"
-        ]
+        "excluded": []
       }
     },
     {
@@ -923,9 +620,9 @@
       "tts_voice": "en-GB-SoniaNeural",
       "font": "Space Grotesk",
       "estimated_rpm": "8-11",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-11",
+      "channel_id": "ch-11",
+      "youtube_credentials_path": "config/creds/ch-11.json",
       "description": "Journey through the cosmos. Black holes, distant galaxies, and the biggest questions about our universe. Powered by NASA public domain footage.",
       "content_pillars": [
         "black hole deep dives",
@@ -999,472 +696,8 @@
           "cross-dissolve-cosmic",
           "light-leak"
         ]
-      }
-    },
-    {
-      "id": 12,
-      "niche": "Marine Biology & Deep Ocean Science",
-      "style": "cinematic-documentary",
-      "channel_name": "Abyssal Archive",
-      "handle": "@abyssalarchive",
-      "tts_voice": "en-AU-NatashaNeural",
-      "font": "Inter",
-      "estimated_rpm": "5-8",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "The alien world beneath the waves. Deep-sea creatures, hydrothermal vents, and the ocean's greatest mysteries. MBARI/NOAA public domain footage.",
-      "content_pillars": [
-        "deep-sea creature profiles",
-        "ocean zone explorations",
-        "bioluminescence explainers",
-        "marine ecosystem breakdowns",
-        "ocean discovery news"
-      ],
-      "tags": [
-        "marine biology",
-        "deep ocean",
-        "ocean creatures",
-        "bioluminescence",
-        "sea life"
-      ],
-      "colors": {
-        "primary": "#050A1A",
-        "secondary": "#0A1530",
-        "accent": "#06B6D4",
-        "bg": "#020510"
       },
-      "target_audience": "Nature/science enthusiasts 18-45",
-      "tone": "curious-contemplative",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 275.2,
-        "accentHue": 215.2,
-        "text_font": "Inter Bold"
-      },
-      "sfx_profile": {
-        "music_style": "ambient underwater atmospheres, ethereal pads, mysterious tension",
-        "primary_sfx": [
-          "whale-song",
-          "sonar-ping",
-          "bubble-ascent",
-          "deep-rumble",
-          "water-pressure"
-        ],
-        "music_bpm": "50-70",
-        "silence_technique": "3-4 second ambient-only during creature reveals"
-      },
-      "script_template": {
-        "hook_type": "curiosity-gap",
-        "section_count": 5,
-        "reveal_placement": "60-70% through video",
-        "closing_type": "wonder",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "deep ocean blue-black with bioluminescent cyan highlights",
-        "b_roll_sources": [
-          "MBARI ROV footage (public domain)",
-          "NOAA Ocean Exploration",
-          "Schmidt Ocean Institute",
-          "Pexels/Pixabay ocean clips",
-          "BBC Blue Planet (licensed)"
-        ],
-        "camera_angles": [
-          "ROV first-person",
-          "creature macro",
-          "ocean floor wide",
-          "depth zone transition",
-          "bioluminescence glow"
-        ],
-        "pacing": "slow meditative with creature behavior holds",
-        "transitions": [
-          "fade-to-depth",
-          "water-ripple",
-          "depth-zone",
-          "bioluminescent-glow"
-        ]
-      }
-    },
-    {
-      "id": 13,
-      "niche": "Prehistory & Ancient Life / Paleontology",
-      "style": "cinematic-documentary",
-      "channel_name": "Fossil Frontier",
-      "handle": "@fossilfrontier",
-      "tts_voice": "en-US-EmmaNeural",
-      "font": "Playfair Display",
-      "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "The creatures that ruled Earth before us. Dinosaur discoveries, extinction events, and the deep time that shaped life on Earth.",
-      "content_pillars": [
-        "dinosaur profile series",
-        "extinction event breakdowns",
-        "fossil discovery stories",
-        "paleoart reconstruction process",
-        "ancient ecosystem explainers"
-      ],
-      "tags": [
-        "paleontology",
-        "dinosaurs",
-        "fossils",
-        "prehistoric life",
-        "extinction"
-      ],
-      "colors": {
-        "primary": "#1A1510",
-        "secondary": "#2D2218",
-        "accent": "#D97706",
-        "bg": "#0F0C08"
-      },
-      "target_audience": "Science/history enthusiasts 15-50",
-      "tone": "enthusiastic-educational",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 118.3,
-        "accentHue": 58.3,
-        "text_font": "Playfair Display Bold"
-      },
-      "sfx_profile": {
-        "music_style": "orchestral adventure, Jurassic Park feel, atmospheric for extinction",
-        "primary_sfx": [
-          "dinosaur-roar",
-          "footstep-heavy",
-          "extinction-boom",
-          "fossil-hammer",
-          "wind-primal"
-        ],
-        "music_bpm": "70-100",
-        "silence_technique": "2 second silence before creature reveal"
-      },
-      "script_template": {
-        "hook_type": "contrarian",
-        "section_count": 5,
-        "reveal_placement": "50-60% through video",
-        "closing_type": "wonder",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "warm earth tones (amber, brown, deep green) with cool aquatic blues",
-        "b_roll_sources": [
-          "museum footage",
-          "paleoart (Creative Commons)",
-          "fossil excavation",
-          "nature footage of modern analogs",
-          "geological formations"
-        ],
-        "camera_angles": [
-          "fossil close-up",
-          "paleoart pan",
-          "museum display",
-          "landscape geological",
-          "reconstruction animation"
-        ],
-        "pacing": "moderate with dramatic extinction peaks",
-        "transitions": [
-          "time-lapse-era",
-          "fossil-reveal",
-          "art-dissolve",
-          "extinction-impact"
-        ]
-      }
-    },
-    {
-      "id": 14,
-      "niche": "Physics & Cosmology Explainers",
-      "style": "motion-graphics",
-      "channel_name": "Quantum Canvas",
-      "handle": "@quantumcanvas",
-      "tts_voice": "en-US-JasonNeural",
-      "font": "Fira Sans",
-      "estimated_rpm": "8-12",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "The fundamental forces of nature explained through animation. Quantum mechanics, relativity, and the fabric of reality made visual.",
-      "content_pillars": [
-        "quantum mechanics explainers",
-        "relativity deep dives",
-        "particle physics animations",
-        "thermodynamics breakdowns",
-        "string theory visualizations"
-      ],
-      "tags": [
-        "physics",
-        "quantum mechanics",
-        "cosmology",
-        "relativity",
-        "science animation"
-      ],
-      "colors": {
-        "primary": "#0A0A2E",
-        "secondary": "#151545",
-        "accent": "#60A5FA",
-        "bg": "#050518"
-      },
-      "target_audience": "STEM-curious adults 18-45",
-      "tone": "warm-philosophical",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 314.6,
-        "accentHue": 254.6,
-        "text_font": "Fira Sans Bold"
-      },
-      "sfx_profile": {
-        "music_style": "ambient electronic with cosmic wonder, subtle orchestral builds",
-        "primary_sfx": [
-          "particle-accelerate",
-          "quantum-flip",
-          "deep-resonance",
-          "whoosh-ethereal",
-          "click-satisfying"
-        ],
-        "music_bpm": "70-90",
-        "silence_technique": "2 second silence before mind-blowing concept"
-      },
-      "script_template": {
-        "hook_type": "what-if",
-        "section_count": 6,
-        "reveal_placement": "40-50% insight, 70-80% mind-blowing",
-        "closing_type": "philosophical",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "bright Kurzgesagt-style flat vector with cosmic blue/purple accents, birb-style characters",
-        "b_roll_sources": [
-          "custom After Effects vector animations",
-          "Blender 3D renders",
-          "particle accelerator footage",
-          "space telescope imagery",
-          "equation visualizations"
-        ],
-        "camera_angles": [
-          "particle zoom-in",
-          "equation build",
-          "cosmic scale zoom",
-          "quantum realm abstract",
-          "spacetime curvature"
-        ],
-        "pacing": "smooth flowing with constant visual motion, seamless camera through illustrated scenes",
-        "transitions": [
-          "vector-morph",
-          "scale-zoom",
-          "quantum-flip",
-          "equation-reveal",
-          "layer-reveal"
-        ]
-      },
-      "icon_map": {
-        "default": "atom",
-        "terms": {
-          "quantum|particle|quark|electron": "atom",
-          "relativity|space-time|gravity": "orbit",
-          "energy|force|power": "zap",
-          "entropy|heat|thermodynamic": "flame",
-          "field|wave|frequency": "activity",
-          "light|photon|speed": "sun",
-          "string|dimension|brane|extra": "spline",
-          "collision|collider|experiment": "crosshair",
-          "measure|observe|uncertain": "gauge",
-          "cosmos|universe|dark matter": "telescope",
-          "mass|matter": "weight"
-        }
-      }
-    },
-    {
-      "id": 15,
-      "niche": "Climate Science & Earth Systems",
-      "style": "motion-graphics",
-      "channel_name": "Earth Signal",
-      "handle": "@earthsignal",
-      "tts_voice": "en-US-NancyNeural",
-      "font": "DM Sans",
-      "estimated_rpm": "6-9",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "The science of our changing planet. Climate data visualized, earth systems explained, and the future of our environment.",
-      "content_pillars": [
-        "climate data visualizations",
-        "earth system explainers",
-        "renewable energy deep dives",
-        "extreme weather science",
-        "environmental solutions"
-      ],
-      "tags": [
-        "climate science",
-        "environment",
-        "earth systems",
-        "renewable energy",
-        "climate change"
-      ],
-      "colors": {
-        "primary": "#0A1A15",
-        "secondary": "#152D22",
-        "accent": "#10B981",
-        "bg": "#050F0A"
-      },
-      "target_audience": "Environmentally-aware adults 18-50",
-      "tone": "critical-analytical",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 222.5,
-        "accentHue": 162.5,
-        "text_font": "DM Sans Bold"
-      },
-      "sfx_profile": {
-        "music_style": "somber-to-hopeful orchestral arc, ambient nature textures",
-        "primary_sfx": [
-          "wind-storm",
-          "ocean-crash",
-          "ice-crack",
-          "leaf-rustle",
-          "solar-chime"
-        ],
-        "music_bpm": "70-90",
-        "silence_technique": "1-2 second pause before key data reveal"
-      },
-      "script_template": {
-        "hook_type": "bold-claim",
-        "section_count": 5,
-        "reveal_placement": "45-55% through video",
-        "closing_type": "hope",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "greens (hope/nature) + reds/oranges (destruction/warning), data-heavy infographic aesthetic",
-        "b_roll_sources": [
-          "NASA Earth observation",
-          "satellite time-lapse",
-          "industrial footage",
-          "wildfire/flood news clips",
-          "IPCC report graphics"
-        ],
-        "camera_angles": [
-          "satellite top-down",
-          "data visualization build",
-          "industrial establishing",
-          "nature beauty wide",
-          "before/after comparison"
-        ],
-        "pacing": "hard cuts for urgency, smooth dissolves for nature, 3-5 sec visual changes",
-        "transitions": [
-          "data-morph",
-          "satellite-zoom",
-          "before-after",
-          "map-spread",
-          "graphic-wipe"
-        ]
-      },
-      "icon_map": {
-        "default": "thermometer-sun",
-        "terms": {
-          "climate|warming|temperature": "thermometer-sun",
-          "weather|storm|extreme": "tornado",
-          "sea|ocean|level": "waves",
-          "ice|glacier|snow": "snowflake",
-          "carbon|co2|emission|fossil": "factory",
-          "renewable|solar": "solar-panel",
-          "wind|turbine": "wind",
-          "drought|water|rain|flood": "droplet",
-          "forest|tree|ecosystem": "tree-deciduous",
-          "energy|grid|power": "zap",
-          "planet|earth|global|atmosphere": "globe",
-          "research|data|model|predict": "chart-column"
-        }
-      }
-    },
-    {
-      "id": 16,
-      "niche": "Kings & Generals Style — Military History",
-      "style": "cinematic-documentary",
-      "channel_name": "Battle Cartography",
-      "handle": "@battlecartography",
-      "tts_voice": "en-IE-ConnorNeural",
-      "font": "Oswald",
-      "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Animated battle maps and tactical breakdowns of history's greatest military campaigns. Strategy visualized in 3D.",
-      "content_pillars": [
-        "3D battle map animations",
-        "tactical campaign breakdowns",
-        "military commander profiles",
-        "siege warfare explainers",
-        "ancient battle reconstructions"
-      ],
-      "tags": [
-        "military history",
-        "battle maps",
-        "strategy",
-        "tactics",
-        "war documentary"
-      ],
-      "colors": {
-        "primary": "#1A1A0A",
-        "secondary": "#2D2D15",
-        "accent": "#EAB308",
-        "bg": "#0F0F05"
-      },
-      "target_audience": "Military/history enthusiasts 18-55",
-      "tone": "scholarly-dramatic",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 146,
-        "accentHue": 86,
-        "text_font": "Oswald Bold"
-      },
-      "sfx_profile": {
-        "music_style": "epic orchestral with military drums, brass fanfares",
-        "primary_sfx": [
-          "sword-clash",
-          "cannon-boom",
-          "marching-rhythm",
-          "arrow-volley",
-          "horse-charge"
-        ],
-        "music_bpm": "80-110",
-        "silence_technique": "2 second silence before tactical reveal"
-      },
-      "script_template": {
-        "hook_type": "what-if",
-        "section_count": 5,
-        "reveal_placement": "50-60% through video",
-        "closing_type": "legacy",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "warm earth-toned military palette, tactical map aesthetic",
-        "b_roll_sources": [
-          "custom 3D battle animations (Blender)",
-          "period artwork",
-          "Google Earth terrain",
-          "military maps",
-          "archival footage"
-        ],
-        "camera_angles": [
-          "3D battlefield orbit",
-          "tactical top-down",
-          "troop movement animation",
-          "terrain cross-section",
-          "commander portrait"
-        ],
-        "pacing": "measured with tactical animation sequences",
-        "transitions": [
-          "map-morph",
-          "troop-sweep",
-          "era-dissolve",
-          "tactical-zoom"
-        ]
-      }
+      "creds_secret_prefix": "CHANNEL_11"
     },
     {
       "id": 17,
@@ -1475,9 +708,9 @@
       "tts_voice": "en-US-SaraNeural",
       "font": "Cormorant Garamond",
       "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-17",
+      "channel_id": "ch-17",
+      "youtube_credentials_path": "config/creds/ch-17.json",
       "description": "The pivotal moments that changed civilization. Rise and fall of empires, revolutions, and the turning points of human history.",
       "content_pillars": [
         "empire rise and fall",
@@ -1550,698 +783,8 @@
           "map-morph",
           "era-fade"
         ]
-      }
-    },
-    {
-      "id": 18,
-      "niche": "OverSimplified Style — History",
-      "style": "minimal",
-      "channel_name": "Brief History",
-      "handle": "@brifhistory",
-      "tts_voice": "en-US-NathanNeural",
-      "font": "Comic Neue",
-      "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Complex historical events made simple and funny. Wars, revolutions, and empires explained with humor and stick figures.",
-      "content_pillars": [
-        "war summaries with humor",
-        "revolution explainers",
-        "empire collapses",
-        "political satire history",
-        "absurd historical facts"
-      ],
-      "tags": [
-        "history explained",
-        "funny history",
-        "simplified history",
-        "history animation",
-        "educational comedy"
-      ],
-      "colors": {
-        "primary": "#FFFFFF",
-        "secondary": "#F3F4F6",
-        "accent": "#3B82F6",
-        "bg": "#F9FAFB"
       },
-      "target_audience": "Students/casual learners 14-35",
-      "tone": "humorous-deadpan",
-      "thumbnail_spec": {
-        "style": "clean-minimal",
-        "text_max_words": 5,
-        "baseHue": 199.8,
-        "accentHue": 261.3,
-        "text_font": "Comic Neue Bold"
-      },
-      "sfx_profile": {
-        "music_style": "light comedic background, era-appropriate used for irony",
-        "primary_sfx": [
-          "meme-sound",
-          "notification-ping",
-          "comedic-bonk",
-          "crowd-ohh",
-          "record-scratch"
-        ],
-        "music_bpm": "110-130",
-        "silence_technique": "beat of silence for comedic timing"
-      },
-      "script_template": {
-        "hook_type": "humor",
-        "section_count": 4,
-        "reveal_placement": "50-60% through video",
-        "closing_type": "callback",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "bright clean white backgrounds with simple stick-figure cartoon aesthetic, MS Paint signature style",
-        "b_roll_sources": [
-          "simple stick-figure cartoon animations",
-          "stock images used ironically",
-          "meme inserts",
-          "map animations",
-          "text overlays"
-        ],
-        "camera_angles": [
-          "flat stick-figure illustration",
-          "simple character animation",
-          "map zoom",
-          "text emphasis",
-          "meme frame"
-        ],
-        "pacing": "fast with jokes every 15-20 seconds, 2-3 sec average cuts",
-        "transitions": [
-          "quick-cut",
-          "meme-insert",
-          "text-pop",
-          "character-slide",
-          "visual-gag"
-        ]
-      }
-    },
-    {
-      "id": 19,
-      "niche": "HistoryMarche Style — Military History",
-      "style": "cinematic-documentary",
-      "channel_name": "Frontline Archives",
-      "handle": "@frontlinearchives",
-      "tts_voice": "en-US-BrianNeural",
-      "font": "Bebas Neue",
-      "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Detailed tactical analysis of historical military operations. Unit movements, battlefield decisions, and the fog of war.",
-      "content_pillars": [
-        "tactical operation breakdowns",
-        "battleground analysis",
-        "military doctrine explainers",
-        "campaign logistics",
-        "battle aftermath studies"
-      ],
-      "tags": [
-        "military tactics",
-        "battle analysis",
-        "war documentary",
-        "military operations",
-        "tactical breakdown"
-      ],
-      "colors": {
-        "primary": "#0A0F0A",
-        "secondary": "#152015",
-        "accent": "#4ADE80",
-        "bg": "#050A05"
-      },
-      "target_audience": "Military enthusiasts 18-55",
-      "tone": "analytical-authoritative",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 91.7,
-        "accentHue": 153.2,
-        "text_font": "Bebas Neue Bold"
-      },
-      "sfx_profile": {
-        "music_style": "dramatic orchestral with military percussion, tension crescendos",
-        "primary_sfx": [
-          "artillery-fire",
-          "radio-static",
-          "marching-boots",
-          "explosion-distant",
-          "jet-flyover"
-        ],
-        "music_bpm": "70-100",
-        "silence_technique": "2 second silence before tactical turning point"
-      },
-      "script_template": {
-        "hook_type": "curiosity-gap",
-        "section_count": 5,
-        "reveal_placement": "50-60% through video",
-        "closing_type": "analysis",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "desaturated military palette with terrain map tones",
-        "b_roll_sources": [
-          "tactical map animations",
-          "archival footage",
-          "Google Earth terrain",
-          "military diagrams",
-          "aftermath photography"
-        ],
-        "camera_angles": [
-          "tactical top-down",
-          "terrain aerial",
-          "unit movement animation",
-          "battlefield wide",
-          "commander decision point"
-        ],
-        "pacing": "measured with tactical animation sequences",
-        "transitions": [
-          "map-zoom",
-          "tactical-overlay",
-          "era-dissolve",
-          "unit-sweep"
-        ]
-      }
-    },
-    {
-      "id": 20,
-      "niche": "CrashCourse Style — Education",
-      "style": "minimal",
-      "channel_name": "QuickLearn",
-      "handle": "@quicklearn",
-      "tts_voice": "en-US-AvaNeural",
-      "font": "Nunito",
-      "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Complex topics explained in 10 minutes or less. Science, history, philosophy, and culture made accessible for everyone.",
-      "content_pillars": [
-        "science explainers",
-        "philosophy introductions",
-        "history summaries",
-        "cultural analysis",
-        "concept breakdowns"
-      ],
-      "tags": [
-        "education",
-        "explained",
-        "learning",
-        "science",
-        "philosophy",
-        "history"
-      ],
-      "colors": {
-        "primary": "#1A1A2E",
-        "secondary": "#16213E",
-        "accent": "#22D3EE",
-        "bg": "#0F0F1A"
-      },
-      "target_audience": "Students/curious adults 14-40",
-      "tone": "energetic-educational",
-      "thumbnail_spec": {
-        "style": "clean-infographic",
-        "text_max_words": 5,
-        "baseHue": 282.9,
-        "accentHue": 211.5,
-        "text_font": "Nunito Bold"
-      },
-      "sfx_profile": {
-        "music_style": "upbeat educational background, positive energy",
-        "primary_sfx": [
-          "pop-achievement",
-          "whoosh-educational",
-          "page-turn",
-          "light-bulb",
-          "ding-correct"
-        ],
-        "music_bpm": "110-130",
-        "silence_technique": "1 second pause before key concept"
-      },
-      "script_template": {
-        "hook_type": "question",
-        "section_count": 5,
-        "reveal_placement": "40-50% through video",
-        "closing_type": "summary",
-        "avg_section_length": "1-2 min"
-      },
-      "visual_spec": {
-        "color_grade": "bright clean educational with accent color highlights",
-        "b_roll_sources": [
-          "infographic animations",
-          "stock footage",
-          "simple character animations",
-          "diagram builds",
-          "text overlays"
-        ],
-        "camera_angles": [
-          "infographic build",
-          "concept animation",
-          "diagram overlay",
-          "stock footage cutaway",
-          "text emphasis"
-        ],
-        "pacing": "fast info-dense with visual variety",
-        "transitions": [
-          "infographic-build",
-          "concept-slide",
-          "text-pop",
-          "quick-cut"
-        ]
-      }
-    },
-    {
-      "id": 21,
-      "niche": "Soundscapes for Sleep & Healing",
-      "style": "minimal",
-      "channel_name": "Lunar Frequencies",
-      "handle": "@lunarfrequencies",
-      "tts_voice": "en-US-AriaNeural",
-      "font": "Inter",
-      "estimated_rpm": "5-16",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Original ambient compositions for sleep, meditation, and healing. Binaural beats, nature sounds, and piano for deep rest.",
-      "content_pillars": [
-        "sleep music compilations",
-        "binaural beat sessions",
-        "nature sound mixes",
-        "guided meditation tracks",
-        "healing frequency videos"
-      ],
-      "tags": [
-        "sleep music",
-        "meditation",
-        "ambient",
-        "binaural beats",
-        "relaxation",
-        "healing"
-      ],
-      "colors": {
-        "primary": "#0A0A2E",
-        "secondary": "#151545",
-        "accent": "#818CF8",
-        "bg": "#050520"
-      },
-      "target_audience": "Adults seeking sleep/relaxation 25-65",
-      "tone": "soothing-calm",
-      "thumbnail_spec": {
-        "style": "minimal-gradient",
-        "text_max_words": 3,
-        "baseHue": 216.9,
-        "accentHue": 276.9,
-        "text_font": "Inter Light"
-      },
-      "sfx_profile": {
-        "music_style": "ambient pads, original piano, binaural beats (528Hz/432Hz), nature layers",
-        "primary_sfx": [
-          "rain-gentle",
-          "ocean-waves",
-          "wind-soft",
-          "birds-distant",
-          "thunder-far"
-        ],
-        "music_bpm": "30-60",
-        "silence_technique": "Never full silence — ambient noise floor maintained throughout"
-      },
-      "script_template": {
-        "hook_type": "none-verbal",
-        "section_count": 1,
-        "reveal_placement": "N/A — music only",
-        "closing_type": "fade-out",
-        "avg_section_length": "60-480 min"
-      },
-      "visual_spec": {
-        "color_grade": "cool dreamy pastels, low saturation, soft glow effects",
-        "b_roll_sources": [
-          "nature loops (ocean, rain, forest, aurora)",
-          "abstract particle animations",
-          "slowly moving gradients",
-          "cosmic space loops"
-        ],
-        "camera_angles": [
-          "static landscape",
-          "extremely slow pan",
-          "abstract floating",
-          "nature loop",
-          "gradient morph"
-        ],
-        "pacing": "extremely slow, 30-60 BPM visual transitions",
-        "transitions": [
-          "crossfade-only",
-          "gentle-dissolve",
-          "gradient-morph"
-        ]
-      }
-    },
-    {
-      "id": 22,
-      "niche": "Manhwa/Webtoon Recaps",
-      "style": "cinematic-documentary",
-      "channel_name": "Panel Pulse",
-      "handle": "@panelpulse",
-      "tts_voice": "en-US-AndrewNeural",
-      "font": "Roboto Condensed",
-      "estimated_rpm": "2-5",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Chapter-by-chapter recaps of the best manhwa and webtoons. Solo Leveling, Omniscient Reader, and more — drama delivered panel by panel.",
-      "content_pillars": [
-        "Solo Leveling recaps",
-        "webtoon chapter breakdowns",
-        "manhwa power scaling",
-        "new series recommendations",
-        "plot twist analysis"
-      ],
-      "tags": [
-        "manhwa",
-        "webtoon",
-        "Solo Leveling",
-        "recap",
-        "anime",
-        "manga"
-      ],
-      "colors": {
-        "primary": "#0A0A1A",
-        "secondary": "#151530",
-        "accent": "#F43F5E",
-        "bg": "#050510"
-      },
-      "target_audience": "Manhwa/anime fans 14-30",
-      "tone": "dramatic-enthusiastic",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 5,
-        "baseHue": 281.7,
-        "accentHue": 16.4,
-        "text_font": "Roboto Condensed Bold"
-      },
-      "sfx_profile": {
-        "music_style": "dramatic orchestral, lo-fi hip-hop background, anime-style OST",
-        "primary_sfx": [
-          "sword-clash",
-          "energy-burst",
-          "whoosh-dramatic",
-          "impact-hit",
-          "power-up-charge"
-        ],
-        "music_bpm": "100-130",
-        "silence_technique": "1 second pause before power reveal"
-      },
-      "script_template": {
-        "hook_type": "specific-result",
-        "section_count": 5,
-        "reveal_placement": "60% through video",
-        "closing_type": "cliffhanger",
-        "avg_section_length": "1-2 min"
-      },
-      "visual_spec": {
-        "color_grade": "high saturation anime-bright palette with cinematic dark for drama, kinetic typography overlays",
-        "b_roll_sources": [
-          "manhwa panel screenshots (fair use)",
-          "After Effects panel animations",
-          "KOMA Animator plugin for pan/zoom",
-          "AI-generated anime visuals for copyright safety",
-          "stock backgrounds"
-        ],
-        "camera_angles": [
-          "panel Ken Burns zoom",
-          "parallax depth on panels",
-          "character close-up",
-          "action scene dynamic",
-          "chapter title card"
-        ],
-        "pacing": "moderate with climactic peaks, 3-5 sec visual changes",
-        "transitions": [
-          "panel-crossfade",
-          "whoosh-scene",
-          "zoom-dramatic",
-          "chapter-wipe",
-          "kinetic-text"
-        ]
-      }
-    },
-    {
-      "id": 23,
-      "niche": "English-dubbed Chinese Dramas",
-      "style": "cinematic-documentary",
-      "channel_name": "C-Drama Decoded",
-      "handle": "@cdramadecoded",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Noto Serif",
-      "estimated_rpm": "3-6",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Complete stories of the most popular Chinese dramas in 15 minutes. Plot breakdowns, character guides, and where to watch.",
-      "content_pillars": [
-        "C-drama full story recaps",
-        "character relationship guides",
-        "ending explanations",
-        "best C-drama rankings",
-        "streaming platform guides"
-      ],
-      "tags": [
-        "Chinese drama",
-        "C-drama",
-        "drama recap",
-        "Asian drama",
-        "drama explained"
-      ],
-      "colors": {
-        "primary": "#1A0505",
-        "secondary": "#2D0A0A",
-        "accent": "#DC2626",
-        "bg": "#0F0303"
-      },
-      "target_audience": "Asian drama fans 18-40",
-      "tone": "enthusiastic-storytelling",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 5,
-        "baseHue": 327.3,
-        "accentHue": 28.8,
-        "text_font": "Noto Serif Bold"
-      },
-      "sfx_profile": {
-        "music_style": "Chinese instrumental (erhu, guzheng, pipa) blended with cinematic orchestral",
-        "primary_sfx": [
-          "sword-clang",
-          "horse-gallop",
-          "crowd-reaction",
-          "dramatic-impact",
-          "guzheng-pluck"
-        ],
-        "music_bpm": "80-110",
-        "silence_technique": "2 second silence before plot twist"
-      },
-      "script_template": {
-        "hook_type": "scale-wonder",
-        "section_count": 5,
-        "reveal_placement": "65% through video",
-        "closing_type": "recommendation",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "warm gold/amber for historical, cool blue for modern, cinematic contrast",
-        "b_roll_sources": [
-          "drama promotional stills",
-          "trailer clips (fair use)",
-          "Viki/iQIYI screenshots",
-          "promotional posters",
-          "behind-the-scenes photos"
-        ],
-        "camera_angles": [
-          "drama still Ken Burns",
-          "character portrait",
-          "action scene",
-          "landscape establishing",
-          "relationship map"
-        ],
-        "pacing": "moderate-fast with dramatic reveals",
-        "transitions": [
-          "crossfade-scene",
-          "dramatic-zoom",
-          "character-reveal",
-          "timeline-slide"
-        ]
-      }
-    },
-    {
-      "id": 24,
-      "niche": "Veteran Kindness & Inspiration Stories",
-      "style": "cinematic-documentary",
-      "channel_name": "Hearts of Honor",
-      "handle": "@heartsofhonor",
-      "tts_voice": "en-US-DavisNeural",
-      "font": "Oswald",
-      "estimated_rpm": "3-8",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "True stories of veterans who found kindness, community, and purpose after service. When strangers step up for heroes.",
-      "content_pillars": [
-        "veteran kindness stories",
-        "community support narratives",
-        "service-to-civilian transitions",
-        "military family stories",
-        "random acts for veterans"
-      ],
-      "tags": [
-        "veterans",
-        "kindness",
-        "inspiration",
-        "military stories",
-        "hero stories"
-      ],
-      "colors": {
-        "primary": "#1A1005",
-        "secondary": "#2D1A08",
-        "accent": "#F59E0B",
-        "bg": "#0F0A03"
-      },
-      "target_audience": "Patriotic/adults 25-65",
-      "tone": "warm-reverent",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 10.1,
-        "accentHue": 70.1,
-        "text_font": "Oswald Bold"
-      },
-      "sfx_profile": {
-        "music_style": "patriotic orchestral, cinematic ambient piano, emotional strings",
-        "primary_sfx": [
-          "patriotic-fanfare",
-          "crowd-applause",
-          "flag-wave",
-          "helicopter-far",
-          "emotional-swell"
-        ],
-        "music_bpm": "60-80",
-        "silence_technique": "3 second silence before emotional climax"
-      },
-      "script_template": {
-        "hook_type": "emotional",
-        "section_count": 5,
-        "reveal_placement": "55-65% through video",
-        "closing_type": "tribute",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "warm golden-hour tones, patriotic palette, documentary film look",
-        "b_roll_sources": [
-          "military stock footage (Pexels)",
-          "Veterans Museum archives",
-          "Library of Congress Veterans History",
-          "patriotic imagery",
-          "American landscapes"
-        ],
-        "camera_angles": [
-          "veteran portrait medium",
-          "military footage archival",
-          "landscape patriotic wide",
-          "reunion emotional close",
-          "medal detail"
-        ],
-        "pacing": "slow-to-moderate with emotional peaks",
-        "transitions": [
-          "slow-dissolve",
-          "fade-black-chapter",
-          "photo-ken-burns",
-          "patriotic-wipe"
-        ]
-      }
-    },
-    {
-      "id": 25,
-      "niche": "Real-life Family Court Content",
-      "style": "cinematic-documentary",
-      "channel_name": "On The Record",
-      "handle": "@ontherecord",
-      "tts_voice": "en-GB-RyanNeural",
-      "font": "DM Sans",
-      "estimated_rpm": "8-14",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Real family court cases broken down. Custody battles, divorce proceedings, and the judge's final ruling. Legal drama meets real life.",
-      "content_pillars": [
-        "custody battle breakdowns",
-        "divorce case analysis",
-        "judge ruling explanations",
-        "family law precedents",
-        "courtroom drama recaps"
-      ],
-      "tags": [
-        "family court",
-        "custody battle",
-        "divorce",
-        "courtroom",
-        "legal drama"
-      ],
-      "colors": {
-        "primary": "#0A0A15",
-        "secondary": "#151525",
-        "accent": "#F59E0B",
-        "bg": "#05050A"
-      },
-      "target_audience": "True crime/legal enthusiasts 25-55",
-      "tone": "authoritative-measured",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 283.2,
-        "accentHue": 70.1,
-        "text_font": "DM Sans Bold"
-      },
-      "sfx_profile": {
-        "music_style": "dark ambient, tension-building orchestral, ticking clock",
-        "primary_sfx": [
-          "gavel-strike",
-          "courtroom-murmur",
-          "pen-scratch",
-          "door-open",
-          "dramatic-sting"
-        ],
-        "music_bpm": "70-90",
-        "silence_technique": "3 second silence before verdict reveal"
-      },
-      "script_template": {
-        "hook_type": "emotional",
-        "section_count": 6,
-        "reveal_placement": "75% through video (verdict)",
-        "closing_type": "reflection",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "dark dramatic documentary, blue courtroom tint, warm amber for emotion",
-        "b_roll_sources": [
-          "courtroom stock footage",
-          "legal imagery (gavels, scales)",
-          "redacted legal documents",
-          "news footage",
-          "courthouse exteriors"
-        ],
-        "camera_angles": [
-          "courtroom wide",
-          "judge bench",
-          "witness stand",
-          "courthouse exterior aerial",
-          "document close-up"
-        ],
-        "pacing": "slow build to verdict climax",
-        "transitions": [
-          "courtroom-cut",
-          "document-reveal",
-          "fade-black-phase",
-          "verdict-zoom"
-        ]
-      }
+      "creds_secret_prefix": "CHANNEL_17"
     },
     {
       "id": 26,
@@ -2252,9 +795,9 @@
       "tts_voice": "en-US-ChristopherNeural",
       "font": "JetBrains Mono",
       "estimated_rpm": "8-15",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-26",
+      "channel_id": "ch-26",
+      "youtube_credentials_path": "config/creds/ch-26.json",
       "description": "Inside the biggest financial frauds, heists, and scams in history. Money trails animated, Ponzi schemes decoded, and criminals exposed.",
       "content_pillars": [
         "Ponzi scheme breakdowns",
@@ -2345,263 +888,18 @@
           "jail|prison|sentence": "lock",
           "victim|investor|investigate": "fingerprint"
         }
-      }
-    },
-    {
-      "id": 27,
-      "niche": "Courtroom Analysis & Trial Breakdowns",
-      "style": "cinematic-documentary",
-      "channel_name": "Trial Files",
-      "handle": "@trialfiles",
-      "tts_voice": "en-US-EricNeural",
-      "font": "Roboto Condensed",
-      "estimated_rpm": "7-15",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Real courtroom footage analyzed. Interrogation tactics, witness psychology, and the moments that decided guilty or innocent.",
-      "content_pillars": [
-        "interrogation analysis",
-        "trial strategy breakdowns",
-        "witness psychology",
-        "closing argument analysis",
-        "verdict predictions"
-      ],
-      "tags": [
-        "courtroom",
-        "trial analysis",
-        "interrogation",
-        "criminal psychology",
-        "legal analysis"
-      ],
-      "colors": {
-        "primary": "#0A0A15",
-        "secondary": "#151525",
-        "accent": "#60A5FA",
-        "bg": "#05050A"
       },
-      "target_audience": "True crime/legal enthusiasts 18-50",
-      "tone": "analytical-clinical",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 314.6,
-        "accentHue": 253.1,
-        "text_font": "Roboto Condensed Bold"
-      },
-      "sfx_profile": {
-        "music_style": "minimal ambient, tense drones, orchestral swells for testimony",
-        "primary_sfx": [
-          "courtroom-ambience",
-          "tape-hiss",
-          "gavel-strike",
-          "tension-riser",
-          "door-close"
+      "creds_secret_prefix": "CHANNEL_26",
+      "concepts": {
+        "primary": [
+          "PROGRESS",
+          "HERO_NUMBER",
+          "LIST_ITEM"
         ],
-        "music_bpm": "60-80",
-        "silence_technique": "No music during actual testimony — let footage speak"
-      },
-      "script_template": {
-        "hook_type": "specific-result",
-        "section_count": 6,
-        "reveal_placement": "30/55/80% layered",
-        "closing_type": "analysis",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "cool blue-grey clinical, desaturated with warm testimony highlights",
-        "b_roll_sources": [
-          "actual courtroom footage (gavel-to-gavel)",
-          "bodycam footage",
-          "interrogation recordings",
-          "police reports",
-          "crime scene photos"
+        "secondary": [
+          "RELATION"
         ],
-        "camera_angles": [
-          "courtroom fixed camera",
-          "interrogation split-screen",
-          "bodycam POV",
-          "evidence exhibit",
-          "witness close-up"
-        ],
-        "pacing": "slow during testimony, faster during analysis",
-        "transitions": [
-          "hard-cut-analysis",
-          "jump-cut-testimony",
-          "cross-dissolve-timeline"
-        ]
-      }
-    },
-    {
-      "id": 28,
-      "niche": "Cults & Coercive Control",
-      "style": "cinematic-documentary",
-      "channel_name": "The Control Room",
-      "handle": "@thecontrolroom",
-      "tts_voice": "en-GB-SoniaNeural",
-      "font": "Cormorant Garamond",
-      "estimated_rpm": "5-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "How cults recruit, control, and destroy lives. BITE Model analysis, survivor stories, and the psychology of coercive control.",
-      "content_pillars": [
-        "cult BITE Model breakdowns",
-        "survivor story compilations",
-        "leader psychology profiles",
-        "cult exit narratives",
-        "coercive control explainers"
-      ],
-      "tags": [
-        "cults",
-        "coercive control",
-        "BITE model",
-        "survivor stories",
-        "cult psychology"
-      ],
-      "colors": {
-        "primary": "#0A0A15",
-        "secondary": "#151525",
-        "accent": "#A855F7",
-        "bg": "#05050A"
-      },
-      "target_audience": "True crime/psychology enthusiasts 20-50",
-      "tone": "empathetic-grave",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 243.9,
-        "accentHue": 305.4,
-        "text_font": "Cormorant Garamond Bold"
-      },
-      "sfx_profile": {
-        "music_style": "dark ambient, drone, sparse piano, horror-adjacent atmospheric",
-        "primary_sfx": [
-          "door-close",
-          "static-radio",
-          "whisper-effect",
-          "heartbeat",
-          "hymn-ironic"
-        ],
-        "music_bpm": "50-70",
-        "silence_technique": "4 second silence during survivor testimony"
-      },
-      "script_template": {
-        "hook_type": "emotional",
-        "section_count": 7,
-        "reveal_placement": "40-60% layered escalation",
-        "closing_type": "resources",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "desaturated cold blues/greys, warm sepia for before, high contrast",
-        "b_roll_sources": [
-          "archival cult compound footage",
-          "documentary clips (fair use)",
-          "court documents",
-          "FBI raid footage",
-          "Google Earth flyovers"
-        ],
-        "camera_angles": [
-          "compound exterior wide",
-          "survivor interview medium",
-          "archival news",
-          "Google Earth flyover",
-          "member photo before/after"
-        ],
-        "pacing": "slow deliberate with emotional weight",
-        "transitions": [
-          "slow-dissolve-era",
-          "timeline-wipe",
-          "chapter-title",
-          "photo-ken-burns"
-        ]
-      }
-    },
-    {
-      "id": 29,
-      "niche": "International & Unreported Crime",
-      "style": "cinematic-documentary",
-      "channel_name": "Global Crime Files",
-      "handle": "@globalcrimefiles",
-      "tts_voice": "en-AU-WilliamNeural",
-      "font": "DM Sans",
-      "estimated_rpm": "5-9",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Crimes from around the world that never made international news. Cartel operations, cold cases from foreign countries, and global corruption.",
-      "content_pillars": [
-        "international crime deep dives",
-        "cartel operation analysis",
-        "foreign corruption cases",
-        "cross-border investigations",
-        "underreported criminal networks"
-      ],
-      "tags": [
-        "international crime",
-        "global crime",
-        "cartel",
-        "corruption",
-        "world crime"
-      ],
-      "colors": {
-        "primary": "#0A0F1A",
-        "secondary": "#152030",
-        "accent": "#F97316",
-        "bg": "#050A10"
-      },
-      "target_audience": "True crime enthusiasts 20-50",
-      "tone": "documentary-gravitas",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 265.2,
-        "accentHue": 47.6,
-        "text_font": "DM Sans Bold"
-      },
-      "sfx_profile": {
-        "music_style": "world music elements + dark ambient, regional instrumentation",
-        "primary_sfx": [
-          "foreign-radio",
-          "market-ambience",
-          "gunshot",
-          "siren-international",
-          "impact-sting"
-        ],
-        "music_bpm": "70-90",
-        "silence_technique": "2 second silence before crime detail reveal"
-      },
-      "script_template": {
-        "hook_type": "curiosity-gap",
-        "section_count": 6,
-        "reveal_placement": "25/50/70% layered",
-        "closing_type": "implications",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "film-like desaturated with location-specific color pops",
-        "b_roll_sources": [
-          "Google Earth/Street View (international)",
-          "foreign news broadcasts",
-          "international police press conferences",
-          "stock international locations",
-          "social media from regions"
-        ],
-        "camera_angles": [
-          "Google Earth zoom",
-          "international establishing wide",
-          "street-level POV",
-          "news broadcast frame",
-          "map crime location"
-        ],
-        "pacing": "medium-slow with cultural context space",
-        "transitions": [
-          "map-zoom",
-          "cultural-dissolve",
-          "language-card",
-          "location-jump"
-        ]
+        "excluded": []
       }
     },
     {
@@ -2613,9 +911,9 @@
       "tts_voice": "en-US-SaraNeural",
       "font": "Space Grotesk",
       "estimated_rpm": "5.80-8",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-30",
+      "channel_id": "ch-30",
+      "youtube_credentials_path": "config/creds/ch-30.json",
       "description": "How DNA genealogy is solving decades-old cold cases. From unidentified victims to killer family trees — science delivers justice.",
       "content_pillars": [
         "DNA genealogy case breakdowns",
@@ -2688,7 +986,8 @@
           "photo-dissolve",
           "year-stamp"
         ]
-      }
+      },
+      "creds_secret_prefix": "CHANNEL_30"
     },
     {
       "id": 31,
@@ -2699,9 +998,9 @@
       "tts_voice": "en-US-BrianNeural",
       "font": "Playfair Display",
       "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-31",
+      "channel_id": "ch-31",
+      "youtube_credentials_path": "config/creds/ch-31.json",
       "description": "Innocent people imprisoned for decades. How the system fails, how innocence projects fight back, and the moment freedom finally comes.",
       "content_pillars": [
         "wrongful conviction case studies",
@@ -2774,299 +1073,8 @@
           "before-after",
           "chapter-card"
         ]
-      }
-    },
-    {
-      "id": 32,
-      "niche": "3D Industrial Animation Explainers",
-      "style": "motion-graphics",
-      "channel_name": "Machine Anatomy",
-      "handle": "@machineanatomy",
-      "tts_voice": "en-US-TonyNeural",
-      "font": "Fira Sans",
-      "estimated_rpm": "8-15",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "How industrial machines work — explained through 3D animation. Cross-section reveals of engines, turbines, and manufacturing processes.",
-      "content_pillars": [
-        "engine cross-section animations",
-        "turbine mechanics explainers",
-        "manufacturing process 3D",
-        "hydraulic system breakdowns",
-        "industrial equipment profiles"
-      ],
-      "tags": [
-        "industrial",
-        "3D animation",
-        "engineering",
-        "machinery",
-        "how it works"
-      ],
-      "colors": {
-        "primary": "#0A0F1A",
-        "secondary": "#152030",
-        "accent": "#F97316",
-        "bg": "#050A10"
       },
-      "target_audience": "Engineering/mechanical enthusiasts 18-55",
-      "tone": "technical-authoritative",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 265.2,
-        "accentHue": 49.1,
-        "text_font": "Fira Sans Bold"
-      },
-      "sfx_profile": {
-        "music_style": "industrial/technical background, electronic ambient, corporate feel",
-        "primary_sfx": [
-          "gear-turn",
-          "piston-fire",
-          "valve-open",
-          "water-flow",
-          "steam-release"
-        ],
-        "music_bpm": "80-100",
-        "silence_technique": "1-2 second pause before cross-section reveal"
-      },
-      "script_template": {
-        "hook_type": "curiosity-gap",
-        "section_count": 5,
-        "reveal_placement": "40-60% core mechanism",
-        "closing_type": "summary",
-        "avg_section_length": "1-2 min"
-      },
-      "visual_spec": {
-        "color_grade": "clean industrial blue/gray with orange active component highlights",
-        "b_roll_sources": [
-          "custom 3D animations from CAD",
-          "factory drone footage",
-          "machine close-ups",
-          "component photography",
-          "process flow diagrams"
-        ],
-        "camera_angles": [
-          "3D camera orbit",
-          "cross-section reveal",
-          "exploded view",
-          "process flow overhead",
-          "component macro"
-        ],
-        "pacing": "deliberate for engineering comprehension",
-        "transitions": [
-          "3d-orbit",
-          "cross-section-reveal",
-          "exploded-view",
-          "process-flow"
-        ]
-      },
-      "icon_map": {
-        "default": "cog",
-        "terms": {
-          "engine|motor": "cog",
-          "turbine|rotor|blade": "fan",
-          "hydraulic|pressure|piston": "droplet",
-          "gear|drivetrain|transmission": "settings",
-          "combustion|fuel|exhaust": "flame",
-          "coolant|heat|cooling": "thermometer",
-          "valve|pump|flow": "gauge",
-          "assembly|manufactur|process": "factory",
-          "electric|power|voltage": "zap",
-          "steel|metal|casting|alloy": "magnet",
-          "dimension|spec|tolerance": "ruler",
-          "safety|guard|hazard": "triangle-alert"
-        }
-      }
-    },
-    {
-      "id": 33,
-      "niche": "Engineering Case Studies — Infrastructure",
-      "style": "cinematic-documentary",
-      "channel_name": "Built to Last",
-      "handle": "@builttolast",
-      "tts_voice": "en-US-NathanNeural",
-      "font": "Oswald",
-      "estimated_rpm": "8-12",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "The engineering marvels and failures that shaped our world. Bridges, tunnels, skyscrapers — how they were built and why some collapsed.",
-      "content_pillars": [
-        "bridge engineering deep dives",
-        "tunnel construction stories",
-        "skyscraper design explainers",
-        "engineering failure analysis",
-        "infrastructure marvels"
-      ],
-      "tags": [
-        "engineering",
-        "infrastructure",
-        "bridge",
-        "skyscraper",
-        "construction"
-      ],
-      "colors": {
-        "primary": "#1A1510",
-        "secondary": "#2D2218",
-        "accent": "#3B82F6",
-        "bg": "#0F0C08"
-      },
-      "target_audience": "Engineering/curiosity enthusiasts 18-50",
-      "tone": "enthusiastic-technical",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 67,
-        "accentHue": 259.8,
-        "text_font": "Oswald Bold"
-      },
-      "sfx_profile": {
-        "music_style": "cinematic ambient, building momentum for engineering achievements",
-        "primary_sfx": [
-          "construction-ambience",
-          "metal-stress",
-          "concrete-pour",
-          "crane-operate",
-          "wind-structural"
-        ],
-        "music_bpm": "80-100",
-        "silence_technique": "2 second silence before engineering reveal"
-      },
-      "script_template": {
-        "hook_type": "scale-wonder",
-        "section_count": 5,
-        "reveal_placement": "45-55% engineering marvel",
-        "closing_type": "legacy",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "warm documentary tones with cool structural highlights",
-        "b_roll_sources": [
-          "real engineering projects",
-          "construction sites",
-          "infrastructure footage",
-          "technical diagrams",
-          "drone aerials"
-        ],
-        "camera_angles": [
-          "infrastructure establishing wide",
-          "construction progress",
-          "technical diagram overlay",
-          "failure point detail",
-          "scale comparison"
-        ],
-        "pacing": "measured with build crescendos",
-        "transitions": [
-          "dissolve-progress",
-          "diagram-overlay",
-          "construction-time",
-          "scale-zoom"
-        ]
-      }
-    },
-    {
-      "id": 34,
-      "niche": "Practical Engineering — Science Demonstrations",
-      "style": "motion-graphics",
-      "channel_name": "Build Smart",
-      "handle": "@buildsmart",
-      "tts_voice": "en-US-JasonNeural",
-      "font": "DM Sans",
-      "estimated_rpm": "8-12",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Engineering principles demonstrated through real experiments. Why structures fail, how materials behave, and the physics of everyday things.",
-      "content_pillars": [
-        "structural failure demos",
-        "material science explainers",
-        "fluid dynamics demonstrations",
-        "thermal engineering tests",
-        "everyday physics"
-      ],
-      "tags": [
-        "engineering",
-        "science",
-        "demonstration",
-        "physics",
-        "materials"
-      ],
-      "colors": {
-        "primary": "#0A1A15",
-        "secondary": "#152D22",
-        "accent": "#10B981",
-        "bg": "#050F0A"
-      },
-      "target_audience": "STEM enthusiasts 16-45",
-      "tone": "warm-accessible-enthusiastic",
-      "thumbnail_spec": {
-        "style": "before-after",
-        "text_max_words": 4,
-        "baseHue": 222.5,
-        "accentHue": 161,
-        "text_font": "DM Sans Bold"
-      },
-      "sfx_profile": {
-        "music_style": "light technical background, upbeat educational",
-        "primary_sfx": [
-          "water-flow",
-          "structural-crack",
-          "wind-tunnel",
-          "impact-test",
-          "timer-beep"
-        ],
-        "music_bpm": "90-110",
-        "silence_technique": "1 second pause before experiment result"
-      },
-      "script_template": {
-        "hook_type": "question",
-        "section_count": 4,
-        "reveal_placement": "50-60% experiment result",
-        "closing_type": "principle",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "clean bright with green accent, educational palette",
-        "b_roll_sources": [
-          "real demonstrations",
-          "CAD models",
-          "whiteboard animations",
-          "stock infrastructure",
-          "experiment footage"
-        ],
-        "camera_angles": [
-          "experiment setup wide",
-          "material stress close",
-          "diagram build",
-          "failure point macro",
-          "result data overlay"
-        ],
-        "pacing": "steady with experiment crescendos",
-        "transitions": [
-          "experiment-cut",
-          "diagram-build",
-          "result-reveal",
-          "concept-slide"
-        ]
-      },
-      "icon_map": {
-        "default": "hammer",
-        "terms": {
-          "structure|beam|truss": "building-2",
-          "failure|collapse|break": "triangle-alert",
-          "material|concrete|steel": "layers",
-          "load|force|stress": "weight",
-          "fluid|water|flow": "droplet",
-          "heat|thermal|expansion": "flame",
-          "bridge|tower|frame": "construction",
-          "experiment|test|demo": "flask-conical",
-          "physics|motion|energy": "zap",
-          "design|blueprint|engineer": "ruler",
-          "crack|fracture|fatigue": "spline",
-          "tool|wrench|drill": "wrench"
-        }
-      }
+      "creds_secret_prefix": "CHANNEL_31"
     },
     {
       "id": 35,
@@ -3077,9 +1085,9 @@
       "tts_voice": "en-IE-ConnorNeural",
       "font": "Space Grotesk",
       "estimated_rpm": "8-12",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-35",
+      "channel_id": "ch-35",
+      "youtube_credentials_path": "config/creds/ch-35.json",
       "description": "How complex technology actually works. Electric aircraft, fusion reactors, hyperloops — the engineering behind tomorrow's world.",
       "content_pillars": [
         "future tech engineering",
@@ -3152,266 +1160,8 @@
           "cross-dissolve-tech",
           "concept-reveal"
         ]
-      }
-    },
-    {
-      "id": 36,
-      "niche": "NetworkChuck Style — Tech Tutorials",
-      "style": "minimal",
-      "channel_name": "Terminal Tactics",
-      "handle": "@terminaltactics",
-      "tts_voice": "en-US-AndrewNeural",
-      "font": "JetBrains Mono",
-      "estimated_rpm": "8-12",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Learn tech by doing. Linux, networking, coding, and cybersecurity — hands-on tutorials that actually work.",
-      "content_pillars": [
-        "Linux tutorial series",
-        "networking fundamentals",
-        "coding projects",
-        "cybersecurity labs",
-        "home server setup"
-      ],
-      "tags": [
-        "tech tutorial",
-        "Linux",
-        "networking",
-        "coding",
-        "cybersecurity",
-        "hands-on"
-      ],
-      "colors": {
-        "primary": "#0A0A1A",
-        "secondary": "#151530",
-        "accent": "#22C55E",
-        "bg": "#050510"
       },
-      "target_audience": "Tech learners 16-35",
-      "tone": "energetic-encouraging",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 281.7,
-        "accentHue": 148.1,
-        "text_font": "JetBrains Mono Bold"
-      },
-      "sfx_profile": {
-        "music_style": "upbeat electronic background, lo-fi for coding sessions",
-        "primary_sfx": [
-          "terminal-type",
-          "notification-ping",
-          "achievement-ding",
-          "whoosh-fast",
-          "success-chime"
-        ],
-        "music_bpm": "110-130",
-        "silence_technique": "1 second pause before result reveal"
-      },
-      "script_template": {
-        "hook_type": "you-need-this",
-        "section_count": 4,
-        "reveal_placement": "60% hands-on result",
-        "closing_type": "next-steps",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "dark mode with green terminal accents, hacker aesthetic",
-        "b_roll_sources": [
-          "screen recordings (primary)",
-          "terminal sessions",
-          "hardware demos",
-          "simple motion graphics",
-          "code editor footage"
-        ],
-        "camera_angles": [
-          "screen capture primary",
-          "terminal close-up",
-          "code scrolling",
-          "hardware demo",
-          "workflow diagram"
-        ],
-        "pacing": "fast-paced with clear steps",
-        "transitions": [
-          "screen-switch",
-          "terminal-type",
-          "code-reveal",
-          "zoom-terminal"
-        ]
-      }
-    },
-    {
-      "id": 37,
-      "niche": "Fireship Style — Tech News & Explainers",
-      "style": "minimal",
-      "channel_name": "Byte Brief",
-      "handle": "@bytebrief",
-      "tts_voice": "en-US-NathanNeural",
-      "font": "Space Grotesk",
-      "estimated_rpm": "8-12",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Tech news and programming concepts in 100 seconds. Fast, opinionated, and actually useful for developers.",
-      "content_pillars": [
-        "tech news rapid-fire",
-        "programming concept explainers",
-        "framework comparisons",
-        "developer hot takes",
-        "coding trends"
-      ],
-      "tags": [
-        "tech news",
-        "programming",
-        "developer",
-        "coding",
-        "100 seconds"
-      ],
-      "colors": {
-        "primary": "#0A0A1A",
-        "secondary": "#151530",
-        "accent": "#F43F5E",
-        "bg": "#050510"
-      },
-      "target_audience": "Developers/tech enthusiasts 18-35",
-      "tone": "fast-witty-sarcastic",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 5,
-        "baseHue": 281.7,
-        "accentHue": 17.9,
-        "text_font": "Space Grotesk Bold"
-      },
-      "sfx_profile": {
-        "music_style": "high-energy electronic, meme-influenced, comedic timing",
-        "primary_sfx": [
-          "meme-sound",
-          "notification-ping",
-          "ding-emphasis",
-          "whoosh-fast",
-          "record-scratch"
-        ],
-        "music_bpm": "120-140",
-        "silence_technique": "beat pause for comedic/opinion emphasis"
-      },
-      "script_template": {
-        "hook_type": "contrarian",
-        "section_count": 3,
-        "reveal_placement": "40% hot take",
-        "closing_type": "opinion",
-        "avg_section_length": "1-2 min"
-      },
-      "visual_spec": {
-        "color_grade": "dark mode with bright meme accents, fast-paced visual",
-        "b_roll_sources": [
-          "screen recordings",
-          "code snippets",
-          "meme images",
-          "stock tech footage",
-          "terminal sessions"
-        ],
-        "camera_angles": [
-          "screen capture",
-          "code snippet",
-          "meme frame",
-          "terminal close-up",
-          "comparison split"
-        ],
-        "pacing": "extremely fast (1-2 sec cuts), pattern interrupt every 30 sec",
-        "transitions": [
-          "quick-cut",
-          "meme-insert",
-          "text-pop",
-          "glitch-cut"
-        ]
-      }
-    },
-    {
-      "id": 38,
-      "niche": "TechLinked Style — Tech News",
-      "style": "minimal",
-      "channel_name": "Tech Pulse",
-      "handle": "@techpulse",
-      "tts_voice": "en-US-MichelleNeural",
-      "font": "Inter",
-      "estimated_rpm": "8-12",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "This week in tech — products, releases, and hot takes delivered with comedic flair. Your weekly tech news digest.",
-      "content_pillars": [
-        "weekly tech news roundups",
-        "product review reactions",
-        "tech industry analysis",
-        "gadget comparisons",
-        "viral tech moments"
-      ],
-      "tags": [
-        "tech news",
-        "gadgets",
-        "product reviews",
-        "tech industry",
-        "weekly digest"
-      ],
-      "colors": {
-        "primary": "#0F172A",
-        "secondary": "#1E293B",
-        "accent": "#38BDF8",
-        "bg": "#0A1020"
-      },
-      "target_audience": "Tech enthusiasts 18-40",
-      "tone": "news-anchor-comedic",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 5,
-        "baseHue": 292.7,
-        "accentHue": 232.7,
-        "text_font": "Inter Bold"
-      },
-      "sfx_profile": {
-        "music_style": "upbeat electronic, news-style background, comedic timing",
-        "primary_sfx": [
-          "news-intro",
-          "notification-ping",
-          "comedic-sting",
-          "whoosh-transition",
-          "success-chime"
-        ],
-        "music_bpm": "110-130",
-        "silence_technique": "beat pause for punchline"
-      },
-      "script_template": {
-        "hook_type": "news-hook",
-        "section_count": 4,
-        "reveal_placement": "30% first story peak",
-        "closing_type": "wrap-up",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "clean bright studio look with blue tech accents",
-        "b_roll_sources": [
-          "product B-roll (primary)",
-          "studio shots",
-          "screen recordings",
-          "stock tech footage",
-          "news clips"
-        ],
-        "camera_angles": [
-          "product glamour shot",
-          "screen capture",
-          "studio wide",
-          "skit frame",
-          "comparison split"
-        ],
-        "pacing": "fast with skit inserts",
-        "transitions": [
-          "product-cut",
-          "skit-insert",
-          "news-transition",
-          "quick-zoom"
-        ]
-      }
+      "creds_secret_prefix": "CHANNEL_35"
     },
     {
       "id": 39,
@@ -3422,9 +1172,9 @@
       "tts_voice": "en-US-EmmaNeural",
       "font": "Roboto Condensed",
       "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-39",
+      "channel_id": "ch-39",
+      "youtube_credentials_path": "config/creds/ch-39.json",
       "description": "A patient walks into the ER with mysterious symptoms. Diagnostic puzzles, rare diseases, and the medicine that saved them.",
       "content_pillars": [
         "mystery diagnosis stories",
@@ -3497,406 +1247,8 @@
           "medical-reveal",
           "dramatic-cut"
         ]
-      }
-    },
-    {
-      "id": 40,
-      "niche": "Medical Education — Visual Explainers",
-      "style": "motion-graphics",
-      "channel_name": "MedBrief",
-      "handle": "@medbrief",
-      "tts_voice": "en-US-NancyNeural",
-      "font": "Nunito",
-      "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Diseases, treatments, and human anatomy explained through clean medical animation. For students, professionals, and the curious.",
-      "content_pillars": [
-        "disease mechanism animations",
-        "treatment explainers",
-        "anatomy visual guides",
-        "pharmacology breakdowns",
-        "clinical correlation series"
-      ],
-      "tags": [
-        "medical education",
-        "anatomy",
-        "disease",
-        "treatment",
-        "medical animation"
-      ],
-      "colors": {
-        "primary": "#0A0F1A",
-        "secondary": "#152030",
-        "accent": "#60A5FA",
-        "bg": "#050A10"
       },
-      "target_audience": "Medical students/health-curious 18-40",
-      "tone": "calm-clear-educational",
-      "thumbnail_spec": {
-        "style": "clean-infographic",
-        "text_max_words": 4,
-        "baseHue": 314.6,
-        "accentHue": 250.1,
-        "text_font": "Nunito Bold"
-      },
-      "sfx_profile": {
-        "music_style": "calm educational background, ambient pads, subtle and cerebral",
-        "primary_sfx": [
-          "heartbeat-soft",
-          "blood-flow",
-          "cell-division",
-          "medical-beep",
-          "whoosh-organic"
-        ],
-        "music_bpm": "70-90",
-        "silence_technique": "1 second pause before mechanism reveal"
-      },
-      "script_template": {
-        "hook_type": "question",
-        "section_count": 5,
-        "reveal_placement": "45-55% mechanism",
-        "closing_type": "clinical-correlation",
-        "avg_section_length": "1-2 min"
-      },
-      "visual_spec": {
-        "color_grade": "clean medical blue/white with organ-specific color coding",
-        "b_roll_sources": [
-          "custom medical illustrations",
-          "whiteboard animations",
-          "medical diagrams",
-          "stock lab footage",
-          "anatomy 3D renders"
-        ],
-        "camera_angles": [
-          "anatomy zoom-in",
-          "pathway animation",
-          "cellular level",
-          "organ system overview",
-          "clinical correlation overlay"
-        ],
-        "pacing": "steady educational with animation crescendos",
-        "transitions": [
-          "anatomy-build",
-          "pathway-follow",
-          "scale-zoom",
-          "diagram-reveal"
-        ]
-      },
-      "icon_map": {
-        "default": "stethoscope",
-        "terms": {
-          "disease|infection|virus|sick": "activity",
-          "treatment|therapy|cure": "pill",
-          "heart|cardiac|circulat": "heart-pulse",
-          "brain|neurology|nerve": "brain",
-          "drug|pharmacology|dose": "flask-conical",
-          "anatomy|organ|tissue": "dna",
-          "cancer|tumor|cell": "microscope",
-          "blood|immune|defense": "shield",
-          "surgery|procedure|operat": "syringe",
-          "diagnos|test|symptom": "clipboard-check",
-          "patient|clinical|hospital": "cross",
-          "pulmonary|lung|respir": "wind"
-        }
-      }
-    },
-    {
-      "id": 41,
-      "niche": "Health & Psychology — Kurzgesagt Style",
-      "style": "motion-graphics",
-      "channel_name": "Mind & Body Files",
-      "handle": "@mindbodyfiles",
-      "tts_voice": "en-US-SaraNeural",
-      "font": "Fira Sans",
-      "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Why your brain does what it does. Sleep science, stress biology, habit formation, and mental health — explained through animation.",
-      "content_pillars": [
-        "sleep science explainers",
-        "stress biology breakdowns",
-        "habit formation animations",
-        "mental health myth-busting",
-        "brain function visualizations"
-      ],
-      "tags": [
-        "health",
-        "psychology",
-        "brain",
-        "sleep",
-        "mental health",
-        "habits"
-      ],
-      "colors": {
-        "primary": "#0A0A2E",
-        "secondary": "#151545",
-        "accent": "#A855F7",
-        "bg": "#050518"
-      },
-      "target_audience": "Health/curiosity enthusiasts 18-45",
-      "tone": "warm-philosophical",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 243.9,
-        "accentHue": 306.9,
-        "text_font": "Fira Sans Bold"
-      },
-      "sfx_profile": {
-        "music_style": "Kurzgesagt-style epic orchestral/electronic compositions, upbeat educational, constant visual motion feedback",
-        "primary_sfx": [
-          "neuron-fire",
-          "thought-echo",
-          "heartbeat-soft",
-          "light-bulb",
-          "calm-pulse",
-          "satisfying-pop",
-          "whoosh-smooth"
-        ],
-        "music_bpm": "70-90",
-        "silence_technique": "2 second silence before mind-blowing fact"
-      },
-      "script_template": {
-        "hook_type": "what-if",
-        "section_count": 5,
-        "reveal_placement": "55-65% insight",
-        "closing_type": "philosophical",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "bright Kurzgesagt-style flat vector geometric with warm biological highlights, character-driven illustrations, constant animation",
-        "b_roll_sources": [
-          "custom vector illustrations (Kurzgesagt style)",
-          "After Effects animations",
-          "brain scan imagery",
-          "stock science footage",
-          "concept visualizations"
-        ],
-        "camera_angles": [
-          "brain zoom-in",
-          "neural pathway",
-          "organ system",
-          "cellular level",
-          "concept abstract"
-        ],
-        "pacing": "smooth flowing with constant visual motion, seamless camera through illustrated scenes, 3-5 sec cuts",
-        "transitions": [
-          "morph-organ",
-          "scale-zoom",
-          "pathway-follow",
-          "concept-reveal",
-          "vector-morph"
-        ]
-      },
-      "icon_map": {
-        "default": "brain",
-        "terms": {
-          "sleep|insomnia|rest": "moon-star",
-          "stress|anxiety|cortisol": "gauge",
-          "habit|routine|loop": "repeat",
-          "memory|learning|neuroplast": "brain-circuit",
-          "neuron|synapse|brain": "brain",
-          "mood|emotion|feel": "heart",
-          "focus|attention|concentrat": "crosshair",
-          "exercise|physical|body": "activity",
-          "mental|therapy|wellbeing": "sparkles",
-          "decision|impulse|choice": "scale",
-          "dopamine|reward|motivat": "zap",
-          "trauma|ptsd|adversity": "shield-alert"
-        }
-      }
-    },
-    {
-      "id": 42,
-      "niche": "Nutrition & Diet Science",
-      "style": "motion-graphics",
-      "channel_name": "NutriDecode",
-      "handle": "@nutridecode",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "DM Sans",
-      "estimated_rpm": "6-10",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "What the science actually says about food. No fads, no fear — just evidence-based nutrition explained clearly.",
-      "content_pillars": [
-        "nutrition myth-busting",
-        "diet comparison science",
-        "nutrient deep dives",
-        "food processing explainers",
-        "metabolic health"
-      ],
-      "tags": [
-        "nutrition",
-        "diet",
-        "food science",
-        "healthy eating",
-        "metabolism"
-      ],
-      "colors": {
-        "primary": "#0A1A10",
-        "secondary": "#152D1A",
-        "accent": "#22C55E",
-        "bg": "#050F08"
-      },
-      "target_audience": "Health-conscious adults 20-50",
-      "tone": "friendly-evidence-based",
-      "thumbnail_spec": {
-        "style": "before-after",
-        "text_max_words": 4,
-        "baseHue": 209.6,
-        "accentHue": 149.6,
-        "text_font": "DM Sans Bold"
-      },
-      "sfx_profile": {
-        "music_style": "light positive background, health-focused upbeat",
-        "primary_sfx": [
-          "pop-achievement",
-          "whoosh-soft",
-          "crunch-fresh",
-          "ding-correct",
-          "page-turn"
-        ],
-        "music_bpm": "100-120",
-        "silence_technique": "1 second pause before study reveal"
-      },
-      "script_template": {
-        "hook_type": "question",
-        "section_count": 4,
-        "reveal_placement": "50-60% evidence reveal",
-        "closing_type": "practical-takeaway",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "fresh green with warm food tones, clean and inviting",
-        "b_roll_sources": [
-          "food stock footage",
-          "lab/science footage",
-          "infographic animations",
-          "grocery/kitchen B-roll",
-          "study citation overlays"
-        ],
-        "camera_angles": [
-          "food close-up",
-          "infographic build",
-          "study data visualization",
-          "kitchen wide",
-          "nutrient breakdown"
-        ],
-        "pacing": "steady with data-dense segments",
-        "transitions": [
-          "infographic-build",
-          "food-cutaway",
-          "study-reveal",
-          "concept-slide"
-        ]
-      },
-      "icon_map": {
-        "default": "apple",
-        "terms": {
-          "nutrition|diet|food|eat": "apple",
-          "protein|meat|fish": "beef",
-          "carb|sugar|glucose": "wheat",
-          "fat|oil|calorie": "flame",
-          "vitamin|mineral|nutrient": "pill",
-          "water|hydrat": "droplet",
-          "label|ingredient|packag": "barcode",
-          "metabolism|energy|burn": "activity",
-          "myth|fad|false|debunk": "triangle-alert",
-          "fiber|gut|digestion": "salad",
-          "study|evidence|research": "flask-conical",
-          "weight|obesity|bmi": "scale"
-        }
-      }
-    },
-    {
-      "id": 43,
-      "niche": "Home Fitness & Recovery Science",
-      "style": "minimal",
-      "channel_name": "Fit Science Lab",
-      "handle": "@fitsciencelab",
-      "tts_voice": "en-US-TonyNeural",
-      "font": "Bebas Neue",
-      "estimated_rpm": "4-8",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Exercise science applied to real workouts. Muscle anatomy, recovery protocols, and evidence-based training — no bro science.",
-      "content_pillars": [
-        "exercise science breakdowns",
-        "recovery protocol explainers",
-        "form analysis",
-        "workout programming",
-        "muscle anatomy animations"
-      ],
-      "tags": [
-        "fitness",
-        "exercise science",
-        "workout",
-        "recovery",
-        "muscle anatomy"
-      ],
-      "colors": {
-        "primary": "#1A0A0A",
-        "secondary": "#2D1515",
-        "accent": "#EF4444",
-        "bg": "#0F0505"
-      },
-      "target_audience": "Fitness enthusiasts 18-40",
-      "tone": "energetic-scientific",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 325.3,
-        "accentHue": 26.8,
-        "text_font": "Bebas Neue Bold"
-      },
-      "sfx_profile": {
-        "music_style": "upbeat motivational, electronic background, gym energy",
-        "primary_sfx": [
-          "weight-plate",
-          "timer-beep",
-          "achievement-ding",
-          "gym-ambience",
-          "heavy-breath"
-        ],
-        "music_bpm": "120-140",
-        "silence_technique": "1 second pause before form correction"
-      },
-      "script_template": {
-        "hook_type": "stop-doing-this",
-        "section_count": 4,
-        "reveal_placement": "50% science explanation",
-        "closing_type": "routine",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "high contrast gym lighting with red accent energy",
-        "b_roll_sources": [
-          "exercise demonstrations (primary)",
-          "gym footage",
-          "anatomical animations",
-          "stock fitness footage",
-          "form comparison shots"
-        ],
-        "camera_angles": [
-          "exercise demo wide",
-          "muscle activation overlay",
-          "form comparison split",
-          "anatomy zoom-in",
-          "workout data"
-        ],
-        "pacing": "fast cuts during exercises, slow during science",
-        "transitions": [
-          "exercise-cut",
-          "anatomy-overlay",
-          "form-compare",
-          "data-reveal"
-        ]
-      }
+      "creds_secret_prefix": "CHANNEL_39"
     },
     {
       "id": 44,
@@ -3907,9 +1259,9 @@
       "tts_voice": "en-US-EmmaNeural",
       "font": "Inter",
       "estimated_rpm": "12-25",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-44",
+      "channel_id": "ch-44",
+      "youtube_credentials_path": "config/creds/ch-44.json",
       "description": "High-value professional skills explained through animation. Communication, leadership, productivity, and career strategy.",
       "content_pillars": [
         "communication skill breakdowns",
@@ -4000,92 +1352,17 @@
           "strategy|plan|roadmap": "route",
           "feedback|review|critique": "clipboard-check"
         }
-      }
-    },
-    {
-      "id": 45,
-      "niche": "Marketing Strategy & Channel Breakdowns",
-      "style": "minimal",
-      "channel_name": "Channel Decoded",
-      "handle": "@channeldecoded",
-      "tts_voice": "en-US-DavisNeural",
-      "font": "Space Grotesk",
-      "estimated_rpm": "15-30",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "How top creators and brands grow. YouTube strategy, content marketing, and channel growth tactics — backed by data, not opinions.",
-      "content_pillars": [
-        "YouTube growth breakdowns",
-        "creator strategy analysis",
-        "content marketing tactics",
-        "algorithm explainers",
-        "monetization deep dives"
-      ],
-      "tags": [
-        "YouTube growth",
-        "marketing",
-        "content strategy",
-        "creator economy",
-        "algorithm"
-      ],
-      "colors": {
-        "primary": "#0A0A1A",
-        "secondary": "#151530",
-        "accent": "#F97316",
-        "bg": "#050510"
       },
-      "target_audience": "Creators/marketers 18-45",
-      "tone": "analytical-insider",
-      "thumbnail_spec": {
-        "style": "before-after",
-        "text_max_words": 4,
-        "baseHue": 281.7,
-        "accentHue": 47.6,
-        "text_font": "Space Grotesk Bold"
-      },
-      "sfx_profile": {
-        "music_style": "light electronic/corporate background, upbeat but not distracting",
-        "primary_sfx": [
-          "notification-ding",
-          "analytics-whoosh",
-          "growth-chart",
-          "click-pop",
-          "success-chime"
+      "creds_secret_prefix": "CHANNEL_44",
+      "concepts": {
+        "primary": [
+          "LIST_ITEM",
+          "RELATION"
         ],
-        "music_bpm": "100-120",
-        "silence_technique": "1 second pause before data reveal"
-      },
-      "script_template": {
-        "hook_type": "specific-result",
-        "section_count": 4,
-        "reveal_placement": "40-50% key insight",
-        "closing_type": "action-step",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "clean professional with orange data highlights",
-        "b_roll_sources": [
-          "screen recordings (primary)",
-          "analytics dashboards",
-          "stock office footage",
-          "simple animated graphics",
-          "YouTube screenshots"
+        "secondary": [
+          "TERM_DEFINE"
         ],
-        "camera_angles": [
-          "screen capture analytics",
-          "chart animation",
-          "stock cutaway",
-          "comparison split",
-          "data visualization"
-        ],
-        "pacing": "fast cuts during data, slower during insights",
-        "transitions": [
-          "screen-switch",
-          "chart-build",
-          "zoom-metric",
-          "data-reveal"
-        ]
+        "excluded": []
       }
     },
     {
@@ -4097,9 +1374,9 @@
       "tts_voice": "en-US-NancyNeural",
       "font": "DM Sans",
       "estimated_rpm": "8-18",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-46",
+      "channel_id": "ch-46",
+      "youtube_credentials_path": "config/creds/ch-46.json",
       "description": "Ace your next interview. Real questions, real answers, and the psychology behind what hiring managers actually want to hear.",
       "content_pillars": [
         "interview question breakdowns",
@@ -4172,7 +1449,8 @@
           "text-card",
           "number-reveal"
         ]
-      }
+      },
+      "creds_secret_prefix": "CHANNEL_46"
     },
     {
       "id": 47,
@@ -4183,9 +1461,9 @@
       "tts_voice": "en-US-NathanNeural",
       "font": "Nunito",
       "estimated_rpm": "52-68",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-47",
+      "channel_id": "ch-47",
+      "youtube_credentials_path": "config/creds/ch-47.json",
       "description": "Medicare explained simply for seniors and their families. Plan comparisons, enrollment deadlines, and money-saving strategies.",
       "content_pillars": [
         "Medicare Part A vs B explainers",
@@ -4258,7 +1536,10 @@
           "document-reveal",
           "number-card"
         ]
-      }
+      },
+      "creds_secret_prefix": "CHANNEL_47",
+      "requires_human_review": true,
+      "human_review_notes": "NICHE-AUDIT.md §3.3 — US Medicare marketing is federally regulated (CMS rules), operated from outside the US, via an automated pipeline. Keep condition: human approval required before every upload, strictly educational framing, no plan comparisons, no enrollment guidance. youtube-publish/run.js enforces this as a hard gate."
     },
     {
       "id": 48,
@@ -4269,9 +1550,9 @@
       "tts_voice": "en-US-ChristopherNeural",
       "font": "Fira Sans",
       "estimated_rpm": "15-35",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
+      "google_account": "UNASSIGNED-48",
+      "channel_id": "ch-48",
+      "youtube_credentials_path": "config/creds/ch-48.json",
       "description": "How things are actually made. Factory processes, manufacturing technology, and industrial supply chains — 3D animated explainers.",
       "content_pillars": [
         "factory process animations",
@@ -4361,178 +1642,17 @@
           "sensor|data|monitor": "gauge",
           "waste|scrap|defect": "triangle-alert"
         }
-      }
-    },
-    {
-      "id": 49,
-      "niche": "Budget Adventure Travel",
-      "style": "cinematic-documentary",
-      "channel_name": "Wander Budget",
-      "handle": "@wanderbudget",
-      "tts_voice": "en-US-AvaNeural",
-      "font": "DM Sans",
-      "estimated_rpm": "6-15",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Epic travel on real budgets. Country-by-country cost breakdowns, budget itineraries, and the truth about how cheap travel can be.",
-      "content_pillars": [
-        "country cost breakdowns",
-        "budget itinerary guides",
-        "cheap flight strategies",
-        "accommodation comparisons",
-        "travel hacking tips"
-      ],
-      "tags": [
-        "budget travel",
-        "travel tips",
-        "cheap travel",
-        "travel budget",
-        "backpacking"
-      ],
-      "colors": {
-        "primary": "#1A1005",
-        "secondary": "#2D1A08",
-        "accent": "#F59E0B",
-        "bg": "#0F0A03"
       },
-      "target_audience": "Travel enthusiasts 18-40",
-      "tone": "enthusiastic-practical",
-      "thumbnail_spec": {
-        "style": "dramatic-visual",
-        "text_max_words": 4,
-        "baseHue": 10.1,
-        "accentHue": 71.6,
-        "text_font": "DM Sans Bold"
-      },
-      "sfx_profile": {
-        "music_style": "cinematic orchestral/electronic hybrid, emotional swells, travel-adventure feel",
-        "primary_sfx": [
-          "airplane-takeoff",
-          "crowd-market",
-          "nature-ambient",
-          "camera-shutter",
-          "cash-count"
+      "creds_secret_prefix": "CHANNEL_48",
+      "concepts": {
+        "primary": [
+          "RELATION",
+          "PROGRESS"
         ],
-        "music_bpm": "90-110",
-        "silence_technique": "2 second silence before cost reveal"
-      },
-      "script_template": {
-        "hook_type": "specific-result",
-        "section_count": 6,
-        "reveal_placement": "55-65% best deal",
-        "closing_type": "verdict",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "warm golden-hour tones, vibrant saturated travel palette",
-        "b_roll_sources": [
-          "drone footage (4K DJI)",
-          "gimbal walking shots",
-          "landscape time-lapses",
-          "food close-ups",
-          "accommodation interiors"
+        "secondary": [
+          "LIST_ITEM"
         ],
-        "camera_angles": [
-          "drone aerial establishing",
-          "gimbal tracking",
-          "food close-up macro",
-          "landscape wide",
-          "cost breakdown overlay"
-        ],
-        "pacing": "dynamic — fast montage, slow cinematic holds",
-        "transitions": [
-          "drone-reveal",
-          "location-jump",
-          "time-lapse",
-          "cost-reveal"
-        ]
-      }
-    },
-    {
-      "id": 50,
-      "niche": "Air Fryer & Kitchen Gadget Reviews",
-      "style": "minimal",
-      "channel_name": "Gadget Kitchen",
-      "handle": "@gadgetkitchen",
-      "tts_voice": "en-US-JasonNeural",
-      "font": "Inter",
-      "estimated_rpm": "4-14",
-      "google_account": "",
-      "channel_id": "",
-      "youtube_credentials_path": "",
-      "description": "Kitchen gadgets tested with data. Air fryers, instant pots, and more — temperature accuracy, cooking results, and real value rankings.",
-      "content_pillars": [
-        "air fryer rankings",
-        "gadget head-to-head tests",
-        "cooking comparison data",
-        "kitchen tool reviews",
-        "best-of roundups"
-      ],
-      "tags": [
-        "air fryer",
-        "kitchen gadgets",
-        "product review",
-        "cooking",
-        "kitchen tools"
-      ],
-      "colors": {
-        "primary": "#1A0F05",
-        "secondary": "#2D1A08",
-        "accent": "#EF4444",
-        "bg": "#0F0803"
-      },
-      "target_audience": "Home cooks/foodies 25-55",
-      "tone": "enthusiastic-data-driven",
-      "thumbnail_spec": {
-        "style": "before-after",
-        "text_max_words": 4,
-        "baseHue": 85.3,
-        "accentHue": 25.3,
-        "text_font": "Inter Bold"
-      },
-      "sfx_profile": {
-        "music_style": "upbeat light background during cooking, minimal during verdicts",
-        "primary_sfx": [
-          "sizzle-pan",
-          "timer-ding",
-          "crunch-bite",
-          "whoosh-reveal",
-          "comparison-sting"
-        ],
-        "music_bpm": "100-120",
-        "silence_technique": "1 second pause before verdict"
-      },
-      "script_template": {
-        "hook_type": "strong-claim",
-        "section_count": 6,
-        "reveal_placement": "70-80% best product",
-        "closing_type": "ranking-summary",
-        "avg_section_length": "1-2 min"
-      },
-      "visual_spec": {
-        "color_grade": "clean bright kitchen lighting, warm food tones",
-        "b_roll_sources": [
-          "original testing footage (primary)",
-          "product B-roll",
-          "cooking process shots",
-          "side-by-side comparison",
-          "slow-motion food"
-        ],
-        "camera_angles": [
-          "overhead food prep",
-          "product close-up",
-          "side-by-side comparison",
-          "temperature reading",
-          "food result glamour"
-        ],
-        "pacing": "fast during rankings, slower during testing",
-        "transitions": [
-          "product-cut",
-          "split-compare",
-          "food-reveal",
-          "ranking-number"
-        ]
+        "excluded": []
       }
     }
   ]

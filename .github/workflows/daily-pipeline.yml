@@ -137,6 +137,20 @@ jobs:
           CH="${{ matrix.channel_id }}"
           mkdir -p data/research/$CH data/tts/$CH data/thumbnails/$CH
 
+      - name: Determine today's formats
+        # NICHE-AUDIT.md Part 0.1/0.2: long-form is the qualifying and
+        # earning format (8-min mid-roll threshold, 4000-watch-hour path to
+        # monetization), Shorts are the funnel. Shorts run every day;
+        # long-form runs Mon/Wed/Fri (ISO weekday 1/3/5) on top of that
+        # day's Short, from the same researched topic.
+        run: |
+          WEEKDAY=$(date -u +%u)
+          if [ "$WEEKDAY" = "1" ] || [ "$WEEKDAY" = "3" ] || [ "$WEEKDAY" = "5" ]; then
+            echo "FORMATS=shorts longform" >> "$GITHUB_ENV"
+          else
+            echo "FORMATS=shorts" >> "$GITHUB_ENV"
+          fi
+
       - name: Stage B — research
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -160,60 +174,70 @@ jobs:
       - name: Gate — research quality
         run: node scripts/gate-research.js "${{ matrix.channel_id }}" "${{ matrix.slug }}"
 
-      - name: Stage C — script
+      - name: Stage C — script (one per today's format)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           set -euo pipefail
           CH="${{ matrix.channel_id }}"; SLUG="${{ matrix.slug }}"
-          echo "=== SCRIPT: $CH — $SLUG ==="
           STYLE=$(node scripts/channel-style.js "$CH")
           if [ "$STYLE" = "motion-graphics" ]; then
             SCHEMA="schemas/script.mg.json"
           else
             SCHEMA="schemas/script.section.json"
           fi
-          node scripts/build-script-context.js "$CH" "$SLUG" --format longform \
-            | claude --bare -p "$(cat prompts/write-script.md)" \
-                --model "$CLAUDE_MODEL" \
-                --append-system-prompt "$(cat prompts/style-contract.md)" \
-                --allowedTools "Read" \
-                --output-format json \
-                --json-schema "$(cat "$SCHEMA")" \
-                > /tmp/script-raw.json
-          jq '.structured_output' /tmp/script-raw.json \
-            > "data/research/$CH/${SLUG}-script.json"
+          for FORMAT in $FORMATS; do
+            SCRIPT_SLUG="${SLUG}-${FORMAT}"
+            echo "=== SCRIPT: $CH — $SCRIPT_SLUG ==="
+            node scripts/build-script-context.js "$CH" "$SLUG" --format "$FORMAT" \
+              | claude --bare -p "$(cat prompts/write-script.md)" \
+                  --model "$CLAUDE_MODEL" \
+                  --append-system-prompt "$(cat prompts/style-contract.md)" \
+                  --allowedTools "Read" \
+                  --output-format json \
+                  --json-schema "$(cat "$SCHEMA")" \
+                  > /tmp/script-raw-$FORMAT.json
+            jq '.structured_output' /tmp/script-raw-$FORMAT.json \
+              > "data/research/$CH/${SCRIPT_SLUG}-script.json"
+          done
 
-      - name: Gate — script quality
-        run: node scripts/gate-script.js "${{ matrix.channel_id }}" "${{ matrix.slug }}"
+      - name: Gate — script quality (one per today's format)
+        run: |
+          set -euo pipefail
+          for FORMAT in $FORMATS; do
+            node scripts/gate-script.js "${{ matrix.channel_id }}" "${{ matrix.slug }}-$FORMAT" "${{ matrix.slug }}"
+          done
 
-      - name: Generate TTS voiceover
+      - name: Generate TTS voiceover (one per today's format)
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG="${{ matrix.slug }}"
-          echo "=== TTS: $CH — $SLUG ==="
+          for FORMAT in $FORMATS; do
+            SCRIPT_SLUG="${SLUG}-${FORMAT}"
+            echo "=== TTS: $CH — $SCRIPT_SLUG ==="
+            SCRIPT="data/research/$CH/${SCRIPT_SLUG}-script.json"
+            if [ -f "$SCRIPT" ]; then
+              node src/utils/tts.js "$CH" "$SCRIPT"
+            else
+              echo "WARN: Script not found at $SCRIPT — skipping TTS"
+            fi
+          done
 
-          # Find the script file
-          SCRIPT="data/research/$CH/${SLUG}-script.json"
-          if [ -f "$SCRIPT" ]; then
-            node src/utils/tts.js "$CH" "$SCRIPT"
-          else
-            echo "WARN: Script not found at $SCRIPT — skipping TTS"
-          fi
-
-      - name: Generate thumbnail
+      - name: Generate thumbnail (one per today's format)
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG="${{ matrix.slug }}"
-          echo "=== THUMBNAIL: $CH — $SLUG ==="
-
-          SCRIPT="data/research/$CH/${SLUG}-script.json"
-          if [ -f "$SCRIPT" ]; then
-            node src/skills/thumbnail-maker/generate.js "$CH" "$SCRIPT" || echo "WARN: thumbnail spec failed"
-            node src/skills/thumbnail-maker/render-thumb.js "$CH" "$SLUG" || echo "WARN: thumbnail render failed"
-          else
-            echo "WARN: Script not found — skipping thumbnail"
-          fi
+          for FORMAT in $FORMATS; do
+            SCRIPT_SLUG="${SLUG}-${FORMAT}"
+            echo "=== THUMBNAIL: $CH — $SCRIPT_SLUG ==="
+            SCRIPT="data/research/$CH/${SCRIPT_SLUG}-script.json"
+            if [ -f "$SCRIPT" ]; then
+              node src/skills/thumbnail-maker/generate.js "$CH" "$SCRIPT" || echo "WARN: thumbnail spec failed"
+              node src/skills/thumbnail-maker/render-thumb.js "$CH" "$SCRIPT_SLUG" || echo "WARN: thumbnail render failed"
+            else
+              echo "WARN: Script not found — skipping thumbnail"
+            fi
+          done
 
       - name: Generate SEO + metadata
         run: |
@@ -296,7 +320,14 @@ jobs:
                 echo "WARN: no voiceover audio at $AUDIO — skipping render for $SCRIPT"
                 continue
               fi
-              node src/skills/remotion-render/render.js longform "$CH" "$SCRIPT" "$AUDIO" || echo "WARN: render failed for $SCRIPT"
+              # Stage C names scripts "<slug>-shorts-script.json" / "<slug>-longform-script.json" —
+              # read the format back out of the filename instead of assuming longform.
+              case "$SCRIPT" in
+                *-shorts-script.json) FORMAT="shorts" ;;
+                *-longform-script.json) FORMAT="longform" ;;
+                *) echo "WARN: can't tell shorts/longform from $SCRIPT — defaulting to longform"; FORMAT="longform" ;;
+              esac
+              node src/skills/remotion-render/render.js "$FORMAT" "$CH" "$SCRIPT" "$AUDIO" || echo "WARN: render failed for $SCRIPT"
             done
           done
 
