@@ -126,17 +126,24 @@ jobs:
   # ============================================================
   # PHASE 2: Research + Script + TTS (per channel, parallel)
   # ============================================================
-  # Stage B (research) and Stage C (script) are separate Claude calls: Stage
+  # Stage B (research) and Stage C (script) are separate model calls: Stage
   # C has no web access and writes only from Stage B's frozen, sourced
   # research artifact — that's what guarantees every claim in a script
-  # traces to a fetched source, instead of the model filling gaps with
+  # traces to a searched source, instead of the model filling gaps with
   # uncited general knowledge at write time.
   research-and-script:
     needs: discover-topics
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{ fromJson(needs.discover-topics.outputs.matrix) }}
-      max-parallel: 5
+      # Lowered 5 -> 2 deliberately. Cerebras's free tier rate-limits on
+      # tokens-per-minute ACCOUNT-WIDE (observed: both models returning the
+      # identical quota error at the same instant), so parallel channels
+      # compete for one budget rather than getting one each. At 5-wide a
+      # full 17-channel run would spend most of its attempts colliding with
+      # its own siblings and burning the retry budget on 65s backoffs. Raise
+      # this only alongside a paid tier.
+      max-parallel: 2
       fail-fast: false
     timeout-minutes: 60
     steps:

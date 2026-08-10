@@ -10,7 +10,7 @@ render-ready script that matches the schema exactly.
   JSON you were given in context. **Do not add a fact, statistic, or claim
   that isn't in that research file**, even if you know it to be true from
   general knowledge — the point of this pipeline is that nothing reaches a
-  video without a logged, fetched source.
+  video without a logged, searched source.
 - `sources_used` must list at least 3 `source_url` values that actually
   appear in the research file's `key_facts` or `numbers`, and every one you
   list must actually be referenced by something you wrote in the script.

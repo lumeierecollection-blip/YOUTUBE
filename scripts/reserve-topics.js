@@ -81,6 +81,9 @@ function main() {
     const res = topicLog.reserveTopic(t.channel_id, t.topic, {
       channel_name: channel?.channel_name,
       niche: channel?.niche,
+      // Store the slug the matrix actually uses for this topic's artifact
+      // filenames, not slugify(topic) — see reserveTopic's header note.
+      slug: t.slug,
     });
     if (res.added) reserved++;
     console.log(`channel ${t.channel_id}: reserved "${t.topic}" (slug "${t.slug}")`);

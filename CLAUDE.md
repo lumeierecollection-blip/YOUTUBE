@@ -1,12 +1,18 @@
 # CLAUDE.md
 
-Automated multi-channel YouTube system. Read this before touching anything —
-headless runs (`claude -p` in `.github/workflows/daily-pipeline.yml`) load
-this file automatically unless invoked with `--bare`.
+Automated multi-channel YouTube system. Read this before touching anything.
+
+Note on who actually reads this file: the daily pipeline's own model calls
+do **not**. They run through the OpenCode CLI as scoped agents
+(`.opencode/agents/pipeline-*.md`) with `read` denied, so they never load
+this file — everything they need is put in their prompt by
+`scripts/opencode-agent.js`. That denial is deliberate: a pipeline agent
+that could read repo docs started confusing itself about which stage it was
+in. This file is for humans and for interactive agents working on the repo.
 
 ## What this repo is
 
-50 YouTube channels, each with its own niche, visual style
+17 YouTube channels, each with its own niche, visual style
 (`minimal` / `motion-graphics` / `cinematic-documentary`), and config in
 `config/channels.json`. A daily GitHub Actions workflow researches a topic,
 writes a script, generates a voiceover, renders a video, and publishes it —
@@ -51,10 +57,12 @@ per channel, mostly unattended. See `README.md` for the full system and
 
 | What | Where |
 |---|---|
-| Channel config (50 channels) | `config/channels.json` |
+| Channel config (17 channels) | `config/channels.json` |
 | Per-channel topic history (dedup) | `data/topic-log.json`, via `src/utils/topic-log.cjs` |
 | Daily pipeline (GitHub Actions) | `.github/workflows/daily-pipeline.yml` |
-| Structured-output schemas for the `claude -p` pipeline stages | `schemas/` |
+| Model runner for all 3 stages (provider, failover, schema validation) | `scripts/opencode-agent.js` |
+| Per-stage agent tool scoping | `.opencode/agents/pipeline-research.md`, `.opencode/agents/pipeline-script.md` |
+| Structured-output schemas for the pipeline stages | `schemas/` |
 | Prompts for those stages | `prompts/` |
 | Stage input builders / gates | `scripts/build-*.js`, `scripts/gate-*.js` |
 | Render engine (Remotion) | `src/skills/remotion-render/` |
@@ -62,12 +70,29 @@ per channel, mostly unattended. See `README.md` for the full system and
 | Motion-graphics render contract | `MOTION-GRAPHICS-MANUAL.md`, `DETAIL-REFERENCE.md`, `LAYOUT-SYSTEM.md` |
 | Every check that gates this pipeline, in one place | `CHECK-REGISTER.md` — the single source of truth for check IDs; do not invent a new ID scheme, extend the existing namespace table in §0.3 |
 
-## The `claude -p` pipeline stages
+## The pipeline stages
 
-`discover-topics` (Stage A, one call for all 50 channels) →
-`research` (Stage B, per channel, has `WebSearch`/`WebFetch`) →
-`write-script` (Stage C, per channel, `--bare`, no web — writes only from
-Stage B's frozen research). Each stage's output is schema-enforced
-(`--json-schema`) and gated (`scripts/gate-*.js`) before the next stage or
-TTS runs. Don't loosen a schema or skip a gate to make a run pass — fix
-what's producing bad output.
+`discover-topics` (Stage A, one call for all channels) →
+`research` (Stage B, per channel, websearch only) →
+`write-script` (Stage C, per channel, no tools at all — writes only from
+Stage B's frozen research).
+
+All three run through `scripts/opencode-agent.js`, which drives the OpenCode
+CLI (`opencode run`) against Cerebras models listed in `OPENCODE_MODELS`
+(comma-separated = primary,failover). Each stage's output is validated
+against its `schemas/*.json` with ajv — with a corrective retry, then a
+failover to the next model — and then gated (`scripts/gate-*.js`) before the
+next stage or TTS runs. Don't loosen a schema or skip a gate to make a run
+pass — fix what's producing bad output.
+
+Two provider facts that shape the whole design, both learned from real runs:
+
+- **The tools come from OpenCode, not the model provider.** Cerebras's API
+  has no built-in search; OpenCode supplies a real Exa-backed `websearch`
+  (enabled by `OPENCODE_ENABLE_EXA=1`). That's what keeps the "every fact
+  traces to a real source" rule true after the provider switch.
+- **The free tier rate-limits tokens-per-minute account-wide.** Both models
+  return the same quota error simultaneously, so failover does not escape
+  it. This is why searches are capped (1–2 calls, `numResults: 6`,
+  `contextMaxCharacters: 1200`), page fetching is denied outright, and
+  `max-parallel` is 2. Loosening any of those brings the limit back.

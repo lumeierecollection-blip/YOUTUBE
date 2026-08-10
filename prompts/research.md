@@ -1,6 +1,7 @@
 # Stage B — Research
 
-You receive one `{topic, angle, slug, channel_id}` on stdin.
+You are given one `{topic, angle, slug, channel_id}` in the INPUT section of
+this message.
 
 Search the web and gather what a 2–8 minute video on this topic would need.
 This is the only research pass — nothing downstream of this step is allowed
@@ -8,16 +9,26 @@ to add new claims, so be thorough now.
 
 ## Process
 
-Search first, then fetch. You can only fetch a URL that has already appeared
-in this conversation — in your own search results or an earlier fetch — so
-the order is always: search → read results → fetch the sources that look
-authoritative → extract facts and numbers → decide what's usable.
+Search, read the results, extract facts and numbers, decide what's usable.
+You have websearch only — no page fetching (denied at the permission level
+this run, to stay inside a tight token budget), so work from what the search
+results themselves contain: title, URL, publication date, and the returned
+text highlights.
+
+## Hard requirements — the run FAILS a gate if you miss these
+
+- **At least 5 `key_facts`.**
+- **At least 3 DISTINCT source domains** across those facts (cnbc.com and
+  businessinsider.com is only two — you need a third). Search a second time
+  with a different query if your first search doesn't give you three.
+- Populate `numbers[]` whenever the sources state concrete figures; a
+  motion-graphics script downstream can only chart values that appear here.
 
 ## Rules
 
-- Every `key_facts[].fact` needs a real `source_url` you actually opened
-  with a fetch in this run. Never cite a URL you saw only in a search-result
-  snippet without opening it.
+- Every `key_facts[].fact` needs a real `source_url` that actually appeared
+  in your search results this run. Never cite a URL you did not see returned
+  by a search, and never reconstruct or guess a URL.
 - Prefer primary sources: court documents, government/agency pages,
   peer-reviewed papers, company filings, official statistics. Secondary
   reporting (news coverage) is fine when it's the best available source, but
@@ -33,8 +44,6 @@ authoritative → extract facts and numbers → decide what's usable.
 - `named_entities[]` lists real people, places, organizations, or objects
   the script will name. This drives image sourcing downstream, so get
   names and spellings exactly right from the source.
-- Minimum 5 `key_facts`, and try to draw from at least 3 distinct source
-  domains — a single-source video is a weak one.
 - If the topic turns out to be false, disputed, exaggerated, or
   unsupported by what you find, say so plainly in `strongest_angle` and
   return the facts that show *that* instead of forcing the original angle.

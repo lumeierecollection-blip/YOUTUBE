@@ -84,11 +84,15 @@ function extractTextAndCost(stdout) {
     } catch {
       continue;
     }
-    // AssistantMessage-shaped event: has role/cost directly.
-    if (evt?.role === "assistant" && typeof evt.cost === "number") {
+    // Cost. A real run reports this per step, as
+    // {"type":"step_finish","part":{...,"cost":0.017}} — the earlier
+    // assistant-message shapes below never actually matched a live stream,
+    // which is why every previous run logged cost_usd=0. Sum the steps.
+    if (evt?.type === "step_finish" && typeof evt.part?.cost === "number") {
+      cost += evt.part.cost;
+    } else if (evt?.role === "assistant" && typeof evt.cost === "number") {
       cost = evt.cost;
-    }
-    if (evt?.info?.role === "assistant" && typeof evt.info.cost === "number") {
+    } else if (evt?.info?.role === "assistant" && typeof evt.info.cost === "number") {
       cost = evt.info.cost;
     }
     // TextPart-shaped event.
@@ -99,13 +103,11 @@ function extractTextAndCost(stdout) {
       text += evt.part.text;
     }
   }
-  if (!text) {
-    // Fallback: some builds may emit a single final result object, or the
-    // whole thing might not match the shapes above at all. Grab the last
-    // top-level JSON object in the raw output as a last resort.
-    const matches = stdout.match(/\{[\s\S]*\}/g);
-    if (matches && matches.length > 0) text = matches[matches.length - 1];
-  }
+  // No usable fallback here on purpose: a previous attempt at one globbed
+  // "first { to last }" across the entire event stream, which just returns
+  // the whole transcript and can never parse. If the text parts above
+  // matched nothing, the caller's error path (which dumps real output) is
+  // more useful than a guess.
   return { text, cost };
 }
 
@@ -146,20 +148,48 @@ function lengthReminders(schema, seen = new Set()) {
   return lines;
 }
 
-function extractJson(text) {
-  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
-  const candidate = fenced ? fenced[1] : text;
-  const start = candidate.indexOf("{");
-  const end = candidate.lastIndexOf("}");
-  if (start === -1 || end === -1 || end < start) return null;
+function tryParse(s) {
   try {
-    return JSON.parse(candidate.slice(start, end + 1));
+    const v = JSON.parse(s);
+    return v && typeof v === "object" ? v : null;
   } catch {
     return null;
   }
 }
 
-function runOnce({ model, agent, promptText, systemPromptFile }) {
+// Ordered fallbacks, cheapest and most-likely-correct first. Every failure
+// here costs a full retry against a rate-limited account, so it's worth
+// being generous about how the model wrapped its JSON.
+function extractJson(text) {
+  const trimmed = String(text || "").trim();
+  if (!trimmed) return null;
+
+  // 1. The model complied exactly: the whole response is the object.
+  const whole = tryParse(trimmed);
+  if (whole) return whole;
+
+  // 2. Fenced block(s). Prefer the LAST one — when a model narrates first
+  // and answers second, the answer is the later block.
+  const fences = [...trimmed.matchAll(/```(?:json)?\s*([\s\S]*?)```/g)];
+  for (let i = fences.length - 1; i >= 0; i--) {
+    const parsed = tryParse(fences[i][1].trim());
+    if (parsed) return parsed;
+  }
+
+  // 3. Widest brace span, then progressively earlier openings — handles
+  // prose that happens to contain a "{" before the real object starts.
+  const end = trimmed.lastIndexOf("}");
+  if (end === -1) return null;
+  let start = trimmed.indexOf("{");
+  while (start !== -1 && start < end) {
+    const parsed = tryParse(trimmed.slice(start, end + 1));
+    if (parsed) return parsed;
+    start = trimmed.indexOf("{", start + 1);
+  }
+  return null;
+}
+
+function runOnce({ model, agent, promptText }) {
   const args = [
     "run",
     "--model", model,
@@ -247,16 +277,28 @@ async function main() {
     ? `\n\nFIELD LENGTH LIMITS — a near-miss on this cost an entire extra (rate-limited) attempt last run, stay comfortably under every one:\n${lengthLines.join("\n")}`
     : "";
 
-  const schemaInstruction = `\n\nSTRICT TOKEN BUDGET — this account is on a tight per-minute quota and a single verbose tool call can exhaust it:
-- Call websearch AT MOST ONCE. Do not search again to double-check or broaden — one well-chosen query per channel is enough.
-- Every websearch call MUST include numResults: 2 and contextMaxCharacters: 800.
+  const schemaInstruction = `\n\nTOKEN BUDGET — this account is on a tight per-minute quota, so keep tool use lean, but not so lean that you can't meet the sourcing requirements above:
+- Call websearch AT MOST TWICE. Use the second call only if the first didn't give you enough DISTINCT source domains.
+- Every websearch call MUST include numResults: 6 and contextMaxCharacters: 1200.
 - type must be "fast". Never use "deep". Never set livecrawl to "preferred" — omit livecrawl entirely (default "fallback" only).
-- Do not fetch full web pages or read local files — work only from websearch snippets (or the message content itself, for stages with no web access at all). Some of these tools are denied at the permission level for this run, not just discouraged, so attempting them wastes a turn.
+- Do not fetch full web pages or read local files — work only from websearch results (or the INPUT section itself, for stages with no web access at all). Some of these tools are denied at the permission level for this run, not just discouraged, so attempting them wastes a turn and fails.
 Do your research and reasoning silently — do not quote, paste, or summarize search results in your response. Your entire response must be ONLY a single JSON object — no markdown code fences, no explanation before or after, no restated sources — that validates against this JSON Schema:\n${JSON.stringify(schema)}${lengthBlock}`;
+
+  // The context arrives on THIS process's stdin, but the model never sees a
+  // stdin — it only sees prompt text. A bare, unlabelled JSON blob pasted
+  // ahead of the instructions caused a real failure: a model announced "I
+  // cannot read from /dev/stdin due to permission rules" and asked the user
+  // to paste the data, because the prompts (written for `claude -p`, which
+  // really did pipe stdin) still said "you receive JSON on stdin". Label the
+  // block explicitly and state that it's already here, so the model stops
+  // looking for it elsewhere.
+  const inputBlock = stdinContext
+    ? `\n\n## INPUT\n\nThis is the input data for this run. It is already provided here in full — there is no stdin to read, no file to open, and nothing to ask the user for.\n\n\`\`\`json\n${stdinContext.trim()}\n\`\`\``
+    : "";
 
   let lastError = null;
   for (const model of models) {
-    let promptText = `${stdinContext ? stdinContext + "\n\n" : ""}${basePrompt}${schemaInstruction}`;
+    let promptText = `${basePrompt}${inputBlock}${schemaInstruction}`;
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       const result = runOnce({ model, agent, promptText });
       if (!result.ok) {
@@ -277,7 +319,10 @@ Do your research and reasoning silently — do not quote, paste, or summarize se
       if (!valid) {
         lastError = `[${model}] attempt ${attempt}/${maxRetries}: schema validation failed: ${ajv.errorsText(validate.errors)}`;
         console.error(lastError);
-        promptText = `${stdinContext ? stdinContext + "\n\n" : ""}${basePrompt}${schemaInstruction}\n\nYour previous response failed schema validation with these errors: ${ajv.errorsText(validate.errors)}. Fix it and respond again with ONLY the corrected JSON object.`;
+        // Retry without re-searching: the model already has what it needs,
+        // and a second research pass would spend quota re-fetching the same
+        // ground just to fix a formatting/validation problem.
+        promptText = `${basePrompt}${inputBlock}${schemaInstruction}\n\nYour previous response failed schema validation with these errors: ${ajv.errorsText(validate.errors)}. Fix ONLY those problems and respond again with the corrected JSON object. Do not run any new searches — reuse what you already found.`;
         continue;
       }
       console.log(JSON.stringify({

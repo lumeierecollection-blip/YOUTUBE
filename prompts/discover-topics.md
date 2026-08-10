@@ -1,16 +1,17 @@
 # Stage A — Discover Topics
 
-You receive JSON on stdin: every channel's `id`, `niche`, `content_pillars`,
-`tone`, and the topics/slugs it has used in the last 90 days.
+You are given JSON in the INPUT section of this message: every channel's
+`id`, `niche`, `content_pillars`, `tone`, and the topics/slugs it has used in
+the last 90 days.
 
 For EACH channel in the input, find ONE specific, dated video topic.
 
 ## Process
 
-Search first, then fetch. You can only fetch a URL that has already appeared
-in this conversation — in your own search results or an earlier fetch — so
-the order is always: search → read results → fetch the most promising ones →
-decide.
+Search, read the results, decide. You have websearch only — no page fetching
+(denied at the permission level this run, to stay inside a tight token
+budget), so ground your choice in what the search results themselves
+contain: title, URL, publication date, and the returned text highlights.
 
 ## Rules
 

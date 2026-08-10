@@ -1,8 +1,10 @@
 # Stage C — Write Script
 
-You receive JSON on stdin: the frozen research artifact, the channel's
-style/tone/format/`script_template`, and (for motion-graphics channels) its
-`concepts` archetype allocation.
+You are given JSON in the INPUT section of this message: the frozen research
+artifact, the channel's style/tone/format/`script_template`, and (for
+motion-graphics channels) its `concepts` archetype allocation. Everything you
+need is in that section — you have no web access, no file access, and nothing
+to ask the user for.
 
 Follow the style contract in your system prompt exactly — it covers
 grounding (cite only from the research you were given), pacing, hook
