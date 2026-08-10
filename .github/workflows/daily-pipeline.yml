@@ -250,6 +250,16 @@ jobs:
           SLUG="${{ matrix.slug }}"
           echo "=== METADATA: $CH — $SLUG ==="
 
+          # pipeline.js --step 5 skips step 1, so it never learns today's
+          # topic on its own — the new research.json schema has no topic/
+          # title field (only topic_slug) for pipeline.js's old
+          # collectResearchTopics() to find. Write next-topic.json (the
+          # fallback pipeline.js already checks) from the matrix's real
+          # topic/slug so SEO and end-screen generation target the actual
+          # script files instead of falling through to "Unknown Topic".
+          jq -n --arg t "${{ matrix.topic }}" --arg s "$SLUG" '{topic:$t, slug:$s}' \
+            > "data/research/$CH/next-topic.json"
+
           # Run pipeline steps 5-15 (SEO through render settings) for this channel
           node src/utils/pipeline.js "$CH" --step 5 || echo "WARN: metadata generation had issues"
 

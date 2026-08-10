@@ -1,31 +1,13 @@
 {
   "channel_id": "2",
-  "started_at": "2026-08-03T18:56:49.911Z",
+  "started_at": "2026-08-10T08:02:00.595Z",
   "steps": {
-    "1": {
-      "status": "ok",
-      "topic": "constitutional rights explained",
-      "source": "content-pillar",
-      "reserved": false
-    },
-    "2": {
-      "status": "skipped",
-      "reason": "no API"
-    },
-    "3": {
-      "status": "ok",
-      "count": 1
-    },
-    "4": {
-      "status": "ok",
-      "audio": 1,
-      "srt": 1
-    },
     "5": {
-      "status": "skipped"
+      "status": "ok",
+      "title": "What Your Landlord Can Legally Keep From Your Security…"
     },
     "6": {
-      "status": "skipped"
+      "status": "ok"
     },
     "7": {
       "status": "ok",
@@ -41,7 +23,7 @@
     },
     "10": {
       "status": "ok",
-      "count": 1
+      "count": 2
     },
     "11": {
       "status": "ok"
@@ -62,10 +44,11 @@
       "cached": true
     },
     "16": {
-      "status": "skipped"
+      "status": "skipped",
+      "reason": "no API"
     }
   },
   "errors": [],
   "warnings": [],
-  "completed_at": "2026-08-03T18:56:49.964Z"
+  "completed_at": "2026-08-10T08:02:00.598Z"
 }

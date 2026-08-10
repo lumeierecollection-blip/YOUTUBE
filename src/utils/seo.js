@@ -22,6 +22,27 @@ const MIN_DESCRIPTION_WORDS = 200;
 const MAX_HASHTAGS = 5;
 const MAX_TAGS = 20;
 
+// discover-topics (schemas/topics.json) produces full natural-language
+// titles ("What Your Landlord Can Legally Keep From Your Security
+// Deposit"), not short keywords — these are filtered out of tags/hashtags
+// so real topics don't degrade into tags like "what"/"your"/"from" or a
+// hashtag like "#whatyour".
+const STOPWORDS = new Set([
+  "the", "a", "an", "and", "or", "but", "for", "of", "to", "in", "on", "with",
+  "your", "you", "how", "why", "what", "who", "when", "where", "do", "does",
+  "is", "are", "was", "were", "it", "its", "this", "that", "these", "those",
+  "vs", "versus", "really", "actually", "so", "their", "they", "we", "our",
+  "can", "will", "from", "about", "into", "than", "then",
+]);
+
+function significantWords(topic) {
+  return topic
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .split(/\s+/)
+    .filter((w) => w.length > 2 && !STOPWORDS.has(w));
+}
+
 /**
  * Generate a SEO-optimized title.
  * Rules: primary keyword in first 5 words, under 60 chars, curiosity gap.
@@ -31,6 +52,17 @@ function generateTitle(topic, channel) {
   const hookType = channel.script_template?.hook_type || "curiosity-gap";
   // Avoid "The The X ..." when the topic itself already starts with "The".
   const topicNoLeadingThe = topic.replace(/^the\s+/i, "");
+
+  // discover-topics already hands us a full, click-worthy title (see
+  // schemas/topics.json / prompts/discover-topics.md) — wrapping it in a
+  // curiosity-gap template on top only inflates it past the 60-char limit.
+  // Use it directly once it's long enough to already read as a title.
+  if (topic.trim().length > 40) {
+    const t = topic.trim();
+    if (t.length <= MAX_TITLE_LENGTH) return t;
+    const truncated = t.slice(0, MAX_TITLE_LENGTH - 1).replace(/\s+\S*$/, "");
+    return `${truncated}…`;
+  }
 
   // Build title patterns based on hook type
   const patterns = {
@@ -223,12 +255,7 @@ function generateChapters(sections, totalDurationSeconds) {
  */
 function generateHashtags(topic, channel) {
   const niche = channel.niche || "";
-  const topicSlug = topic
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, "")
-    .split(/\s+/)
-    .slice(0, 2)
-    .join("");
+  const topicSlug = significantWords(topic).slice(0, 2).join("");
 
   const nicheSlug = niche
     .toLowerCase()
@@ -256,17 +283,14 @@ function generateTags(topic, channel) {
   // Add channel's base tags
   (channel.tags || []).forEach((t) => tags.add(t.toLowerCase()));
 
-  // Add topic-derived tags
-  const topicWords = topic
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, "")
-    .split(/\s+/)
-    .filter((w) => w.length > 3);
+  // Add topic-derived tags (stopwords stripped so a full-sentence topic
+  // doesn't turn into tags like "what"/"your"/"from").
+  const topicWords = significantWords(topic);
   topicWords.forEach((w) => tags.add(w));
 
   // Add compound tags
   if (topicWords.length >= 2) {
-    tags.add(topicWords.join(" "));
+    tags.add(topicWords.slice(0, 4).join(" "));
     tags.add(`${topicWords[0]} ${topicWords[1]} explained`);
   }
 
