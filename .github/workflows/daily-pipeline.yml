@@ -181,6 +181,16 @@ jobs:
       - name: Stage B — research
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          # A real topic ("YNAB raises annual subscription price by $10 in
+          # 2024") broke this the direct-interpolation way: GitHub Actions
+          # pastes ${{ matrix.topic }}'s literal text into the run: script,
+          # and bash then reads "$10" inside it as ${1}0 (a positional
+          # parameter), not literal text — "$1: unbound variable" under
+          # set -u. Passing through env: instead means bash only ever sees
+          # "$MATRIX_TOPIC" in the script text; the value itself, once
+          # assigned, is inert and never re-parsed for $-expansion.
+          MATRIX_TOPIC: ${{ matrix.topic }}
+          MATRIX_ANGLE: ${{ matrix.angle }}
         run: |
           set -u
           CH="${{ matrix.channel_id }}"; SLUG="${{ matrix.slug }}"
@@ -190,7 +200,7 @@ jobs:
           # blocks, so without this the pipe failing would skip AGENT_EXIT
           # and every diagnostic below it.
           set +e
-          jq -n --arg t "${{ matrix.topic }}" --arg a "${{ matrix.angle }}" \
+          jq -n --arg t "$MATRIX_TOPIC" --arg a "$MATRIX_ANGLE" \
                 --arg s "$SLUG" --arg c "$CH" \
                 '{topic:$t, angle:$a, slug:$s, channel_id:$c}' \
             | node scripts/opencode-agent.js \
@@ -297,6 +307,11 @@ jobs:
           done
 
       - name: Generate SEO + metadata
+        env:
+          # Same $-expansion risk as Stage B (see its comment) — a topic
+          # containing e.g. "$10" would otherwise be misread as a
+          # positional parameter when pasted directly into this script.
+          MATRIX_TOPIC: ${{ matrix.topic }}
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG="${{ matrix.slug }}"
@@ -309,7 +324,7 @@ jobs:
           # fallback pipeline.js already checks) from the matrix's real
           # topic/slug so SEO and end-screen generation target the actual
           # script files instead of falling through to "Unknown Topic".
-          jq -n --arg t "${{ matrix.topic }}" --arg s "$SLUG" '{topic:$t, slug:$s}' \
+          jq -n --arg t "$MATRIX_TOPIC" --arg s "$SLUG" '{topic:$t, slug:$s}' \
             > "data/research/$CH/next-topic.json"
 
           # Run pipeline steps 5-15 (SEO through render settings) for this channel
