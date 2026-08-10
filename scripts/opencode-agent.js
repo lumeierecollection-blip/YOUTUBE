@@ -247,11 +247,11 @@ async function main() {
     ? `\n\nFIELD LENGTH LIMITS — a near-miss on this cost an entire extra (rate-limited) attempt last run, stay comfortably under every one:\n${lengthLines.join("\n")}`
     : "";
 
-  const schemaInstruction = `\n\nSTRICT TOKEN BUDGET — this account is on a tight per-minute quota and a single verbose search can exhaust it:
+  const schemaInstruction = `\n\nSTRICT TOKEN BUDGET — this account is on a tight per-minute quota and a single verbose tool call can exhaust it:
 - Call websearch AT MOST ONCE. Do not search again to double-check or broaden — one well-chosen query per channel is enough.
 - Every websearch call MUST include numResults: 2 and contextMaxCharacters: 800.
 - type must be "fast". Never use "deep". Never set livecrawl to "preferred" — omit livecrawl entirely (default "fallback" only).
-- Do not call webfetch at all unless websearch alone is truly insufficient.
+- Do not fetch full web pages or read local files — work only from websearch snippets (or the message content itself, for stages with no web access at all). Some of these tools are denied at the permission level for this run, not just discouraged, so attempting them wastes a turn.
 Do your research and reasoning silently — do not quote, paste, or summarize search results in your response. Your entire response must be ONLY a single JSON object — no markdown code fences, no explanation before or after, no restated sources — that validates against this JSON Schema:\n${JSON.stringify(schema)}${lengthBlock}`;
 
   let lastError = null;
