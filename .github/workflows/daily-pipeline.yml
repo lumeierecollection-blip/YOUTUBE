@@ -72,6 +72,22 @@ jobs:
             node scripts/build-discovery-context.js > /tmp/context.json
           fi
 
+          # Stage A grounds EVERY channel in one call, so its search budget
+          # has to scale with how many channels are actually in this run —
+          # a flat "at most 2 searches" is right for a 1-channel override and
+          # impossible for a 17-channel daily run.
+          N=$(jq '.channels | length' /tmp/context.json)
+          # Floor of 2 so even a single-channel override gets one retry when
+          # its first query comes back with nothing groundable.
+          # Written as if/fi, not `[ ] && x` — under the `bash -e {0}` these
+          # run: blocks use, a false test in an AND-OR list is an easy way to
+          # kill the step by accident.
+          BUDGET=$N
+          if [ "$BUDGET" -lt 2 ]; then BUDGET=2; fi
+          echo "DISCOVERY_CHANNELS=$N" >> "$GITHUB_ENV"
+          echo "DISCOVERY_SEARCH_BUDGET=$BUDGET" >> "$GITHUB_ENV"
+          echo "Discovery covers $N channel(s); search budget $BUDGET."
+
       - name: Discover topics
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
@@ -88,6 +104,7 @@ jobs:
           cat /tmp/context.json | node scripts/opencode-agent.js \
             --prompt-file prompts/discover-topics.md \
             --schema-file schemas/topics.json \
+            --search-budget "$DISCOVERY_SEARCH_BUDGET" \
             --agent pipeline-research \
             --model "$OPENCODE_MODELS" \
             > /tmp/topics-raw.json 2> /tmp/topics-err.log

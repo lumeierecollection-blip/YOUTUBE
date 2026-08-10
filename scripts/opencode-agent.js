@@ -242,9 +242,16 @@ async function main() {
   // success — the real fix is the per-request token cap above, not
   // throwing more retries at it.
   const maxRetries = parseInt(args["max-retries"] || "2", 10);
+  // How many websearch calls this ONE request may make in total. A flat cap
+  // is wrong when a single call has to ground several topics at once:
+  // Stage A (discover-topics) covers every channel in the run, so two
+  // searches for seventeen channels is not "lean", it's impossible. Callers
+  // that fan out over N items should scale this; per-topic stages leave it
+  // at the default.
+  const searchBudget = parseInt(args["search-budget"] || "2", 10);
 
   if (!promptFile || !schemaFile || !modelArg) {
-    console.error("Usage: node scripts/opencode-agent.js --prompt-file <path> --schema-file <path> --model <provider/model[,provider/model...]> [--agent <name>] [--append-system-prompt-file <path>] [--max-retries N]");
+    console.error("Usage: node scripts/opencode-agent.js --prompt-file <path> --schema-file <path> --model <provider/model[,provider/model...]> [--agent <name>] [--append-system-prompt-file <path>] [--max-retries N] [--search-budget N]");
     process.exit(1);
   }
 
@@ -278,7 +285,7 @@ async function main() {
     : "";
 
   const schemaInstruction = `\n\nTOKEN BUDGET — this account is on a tight per-minute quota, so keep tool use lean, but not so lean that you can't meet the sourcing requirements above:
-- Call websearch AT MOST TWICE. Use the second call only if the first didn't give you enough DISTINCT source domains.
+- Call websearch AT MOST ${searchBudget} time(s) IN TOTAL for this entire request. Use extra calls only when you still lack DISTINCT source domains.
 - Every websearch call MUST include numResults: 6 and contextMaxCharacters: 1200.
 - type must be "fast". Never use "deep". Never set livecrawl to "preferred" — omit livecrawl entirely (default "fallback" only).
 - Do not fetch full web pages or read local files — work only from websearch results (or the INPUT section itself, for stages with no web access at all). Some of these tools are denied at the permission level for this run, not just discouraged, so attempting them wastes a turn and fails.
