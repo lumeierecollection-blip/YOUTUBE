@@ -16,6 +16,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync } from "
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
+import { narrationSections } from "./script-narration.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -30,8 +31,12 @@ function parseScriptForTTS(scriptContent, isJson = false) {
     try {
       const script = JSON.parse(scriptContent);
       const segments = [];
-      if (script.sections) {
-        for (const section of script.sections) {
+      // narrationSections() folds the top-level `hook` into section one —
+      // without it the hook (the first thing that's supposed to be spoken)
+      // is never narrated at all. See src/utils/script-narration.js.
+      const sections = narrationSections(script);
+      if (sections.length > 0) {
+        for (const section of sections) {
           if (section.voiceover) {
             // Split voiceover into paragraphs
             const paragraphs = section.voiceover.split(/\n\n+/).filter(p => p.trim());

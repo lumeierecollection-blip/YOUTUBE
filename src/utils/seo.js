@@ -11,6 +11,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { narrationSections } from "./script-narration.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -382,7 +383,9 @@ function main() {
   }
 
   const script = JSON.parse(readFileSync(join(ROOT, ...scriptPath.split(/[\/\\]/)), "utf-8"));
-  const sections = script.sections || [];
+  // Fold the hook in, same as TTS/render do — chapters must line up with the
+  // real video, which opens with the hook. See src/utils/script-narration.js.
+  const sections = narrationSections(script);
   const totalWords = sections.reduce((sum, s) => sum + String(s.voiceover || "").split(/\s+/).filter(Boolean).length, 0);
   const wpm = WPM_TARGET[channel.style] || 150;
   const totalDuration = (totalWords / wpm) * 60;

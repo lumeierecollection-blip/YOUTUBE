@@ -33,6 +33,7 @@ import { selectComposition, renderMedia } from "@remotion/renderer";
 import { resolveBrollFiles } from "./broll.js";
 import { buildMgPackage } from "./compositions/mg-package.js";
 import { paletteFromHues } from "./styles/tokens.js";
+import { narrationSections } from "../../utils/script-narration.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -167,7 +168,13 @@ function chunkVoiceover(text, maxWords = 7) {
 }
 
 function toContentSections(script) {
-  const sections = script.sections || [];
+  // narrationSections() folds the top-level `hook` into section one, matching
+  // what tts.js actually narrates. This has to happen here, not just in TTS:
+  // motion-graphics section windows are proportional to section word counts
+  // (proportionalWindows in compositions/mg-package.js) against the measured
+  // audio length, so hook audio that no section accounts for would drift
+  // every section's visuals behind its narration for the whole video.
+  const sections = narrationSections(script);
   if (sections.length === 0) return [];
   return sections
     .filter((s) => s.voiceover && s.voiceover.trim())

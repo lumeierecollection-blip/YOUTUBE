@@ -37,6 +37,7 @@ const topicLog = require("./topic-log.cjs");
 
 // ─── Imports ───
 import { generateSEO } from "./seo.js";
+import { narrationSections } from "./script-narration.js";
 import { generateEndScreen } from "./endscreen.js";
 import { generateBrandingSpec } from "./branding.js";
 import { preUploadChecklist } from "./copyright-check.js";
@@ -330,7 +331,10 @@ function main() {
       report.warnings.push("Step 5: no script available to derive chapters from");
     } else if (!dryRun) {
       try {
-        const sections = scriptForSeo.sections || [];
+        // Chapters map to real timestamps in the finished video, whose audio
+        // opens with the hook — so the hook has to be folded in here too, or
+        // every chapter marker lands early by the hook's duration.
+        const sections = narrationSections(scriptForSeo);
         const totalWords = sections.reduce((sum, s) => sum + String(s.voiceover || "").split(/\s+/).filter(Boolean).length, 0);
         const wpm = { "cinematic-documentary": 135, "motion-graphics": 155, minimal: 165 }[channel.style] || 150;
         const totalDuration = (totalWords / wpm) * 60;
