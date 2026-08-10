@@ -68,15 +68,27 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          set -euo pipefail
+          set -uo pipefail
           cat /tmp/context.json | claude -p "$(cat prompts/discover-topics.md)" \
             --model "$CLAUDE_MODEL" \
             --allowedTools "WebSearch,WebFetch,Read" \
             --permission-mode dontAsk \
             --output-format json \
             --json-schema "$(cat schemas/topics.json)" \
-            > /tmp/topics-raw.json
-          jq -e '.structured_output.topics | length > 0' /tmp/topics-raw.json
+            > /tmp/topics-raw.json 2> /tmp/topics-err.log
+          CLAUDE_EXIT=$?
+          if [ "$CLAUDE_EXIT" -ne 0 ]; then
+            echo "::error::claude -p exited with code $CLAUDE_EXIT"
+            echo "--- stdout (/tmp/topics-raw.json) ---"; cat /tmp/topics-raw.json 2>/dev/null || echo "(empty)"
+            echo "--- stderr ---"; cat /tmp/topics-err.log 2>/dev/null || echo "(empty)"
+            exit 1
+          fi
+          set -e
+          if ! jq -e '.structured_output.topics | length > 0' /tmp/topics-raw.json > /dev/null; then
+            echo "::error::claude succeeded but produced no usable topics — dumping raw output"
+            cat /tmp/topics-raw.json
+            exit 1
+          fi
           jq '.structured_output' /tmp/topics-raw.json > /tmp/topics.json
           echo "cost_usd=$(jq -r '.total_cost_usd' /tmp/topics-raw.json)" >> "$GITHUB_STEP_SUMMARY"
 
@@ -155,7 +167,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          set -euo pipefail
+          set -uo pipefail
           CH="${{ matrix.channel_id }}"; SLUG="${{ matrix.slug }}"
           echo "=== RESEARCH: $CH — $SLUG ==="
           jq -n --arg t "${{ matrix.topic }}" --arg a "${{ matrix.angle }}" \
@@ -167,8 +179,20 @@ jobs:
                 --permission-mode dontAsk \
                 --output-format json \
                 --json-schema "$(cat schemas/research.json)" \
-                > /tmp/research-raw.json
-          jq -e '.structured_output.key_facts | length >= 5' /tmp/research-raw.json
+                > /tmp/research-raw.json 2> /tmp/research-err.log
+          CLAUDE_EXIT=$?
+          if [ "$CLAUDE_EXIT" -ne 0 ]; then
+            echo "::error::claude -p exited with code $CLAUDE_EXIT"
+            echo "--- stdout (/tmp/research-raw.json) ---"; cat /tmp/research-raw.json 2>/dev/null || echo "(empty)"
+            echo "--- stderr ---"; cat /tmp/research-err.log 2>/dev/null || echo "(empty)"
+            exit 1
+          fi
+          set -e
+          if ! jq -e '.structured_output.key_facts | length >= 5' /tmp/research-raw.json > /dev/null; then
+            echo "::error::claude succeeded but research didn't meet the quality bar — dumping raw output"
+            cat /tmp/research-raw.json
+            exit 1
+          fi
           jq '.structured_output' /tmp/research-raw.json > "data/research/$CH/$SLUG.json"
 
       - name: Gate — research quality
@@ -189,6 +213,7 @@ jobs:
           for FORMAT in $FORMATS; do
             SCRIPT_SLUG="${SLUG}-${FORMAT}"
             echo "=== SCRIPT: $CH — $SCRIPT_SLUG ==="
+            set +e
             node scripts/build-script-context.js "$CH" "$SLUG" --format "$FORMAT" \
               | claude --bare -p "$(cat prompts/write-script.md)" \
                   --model "$CLAUDE_MODEL" \
@@ -196,7 +221,15 @@ jobs:
                   --allowedTools "Read" \
                   --output-format json \
                   --json-schema "$(cat "$SCHEMA")" \
-                  > /tmp/script-raw-$FORMAT.json
+                  > /tmp/script-raw-$FORMAT.json 2> /tmp/script-err-$FORMAT.log
+            CLAUDE_EXIT=$?
+            set -e
+            if [ "$CLAUDE_EXIT" -ne 0 ]; then
+              echo "::error::claude --bare -p exited with code $CLAUDE_EXIT for format $FORMAT"
+              echo "--- stdout (/tmp/script-raw-$FORMAT.json) ---"; cat /tmp/script-raw-$FORMAT.json 2>/dev/null || echo "(empty)"
+              echo "--- stderr ---"; cat /tmp/script-err-$FORMAT.log 2>/dev/null || echo "(empty)"
+              exit 1
+            fi
             jq '.structured_output' /tmp/script-raw-$FORMAT.json \
               > "data/research/$CH/${SCRIPT_SLUG}-script.json"
           done
