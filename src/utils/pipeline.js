@@ -63,6 +63,24 @@ function ensureDir(dir) {
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
 }
 
+// b-roll-manifest-<channel_id>.json is keyed by channel slot, not by topic —
+// channels get reused across topics over time (and b-roll-manifest-ch-01.json
+// is in fact stale leftover from a topic this channel no longer covers).
+// Only trust it when its own topic_slug matches the video actually being
+// checked, otherwise a copyright/disclosure/quality gate would silently
+// attach a completely unrelated video's assets.
+function loadTopicBrollManifest(channel, topicSlug) {
+  if (!topicSlug) return null;
+  const manifestPath = join(ROOT, "src", "skills", "remotion-render", `b-roll-manifest-${channel.channel_id}.json`);
+  if (!existsSync(manifestPath)) return null;
+  try {
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+    return manifest.topic_slug === topicSlug ? manifest : null;
+  } catch (e) {
+    return null;
+  }
+}
+
 const TOPIC_LOG_SKIP = /(seo|endscreen|branding|disclosure|quality|render-settings|pipeline-report|copyright|next-topic|tts-manifest|community|-script\.json$)/i;
 
 // Collects real research topics (not derived files like seo/scripts) from a channel's research dir.
@@ -423,26 +441,21 @@ function main() {
               : "Unknown — no TTS output found",
         });
 
-        // Real per-file b-roll provenance, when this channel has a sourced
-        // manifest (see src/skills/remotion-render/b-roll-manifest-*.json —
-        // currently only ch-01; most channels use no photographic b-roll yet).
-        const brollManifestPath = join(
-          ROOT, "src", "skills", "remotion-render", `b-roll-manifest-${channel.channel_id}.json`
-        );
-        if (existsSync(brollManifestPath)) {
-          try {
-            const manifest = JSON.parse(readFileSync(brollManifestPath, "utf-8"));
-            for (const f of manifest.files || []) {
-              // assessSource() matches against known platform/brand names
-              // (manifest.source, e.g. "Wikimedia Commons ...") — a per-file
-              // license string like "CC BY-SA 3.0" wouldn't match anything
-              // and would wrongly fall through to UNKNOWN.
-              videoAssets.push({
-                name: `b-roll: ${(f.local || "unknown").split("/").pop()} (${f.license || "license unspecified"})`,
-                source: manifest.source || "Unknown",
-              });
-            }
-          } catch (e) {}
+        // Real per-file b-roll provenance, only when this channel's manifest
+        // is actually for the topic being checked right now (see
+        // loadTopicBrollManifest's note — manifests are stale-prone).
+        const brollManifest8 = loadTopicBrollManifest(channel, topicSlug8);
+        if (brollManifest8) {
+          for (const f of brollManifest8.files || []) {
+            // assessSource() matches against known platform/brand names
+            // (manifest.source, e.g. "Wikimedia Commons ...") — a per-file
+            // license string like "CC BY-SA 3.0" wouldn't match anything
+            // and would wrongly fall through to UNKNOWN.
+            videoAssets.push({
+              name: `b-roll: ${(f.local || "unknown").split("/").pop()} (${f.license || "license unspecified"})`,
+              source: brollManifest8.source || "Unknown",
+            });
+          }
         }
 
         // Only the motion-graphics template currently has baked-in UI/SFX
@@ -576,15 +589,7 @@ function main() {
         const ttsFiles13 = existsSync(dirs.tts) ? readdirSync(dirs.tts) : [];
         const topicTtsFiles13 = topicSlug13 ? ttsFiles13.filter((f) => f.startsWith(topicSlug13)) : ttsFiles13;
         const ttsSource13 = topicTtsFiles13.some((f) => f.endsWith(".PLACEHOLDER.mp3")) ? "placeholder" : "edge-tts";
-        const brollManifestPath13 = join(
-          ROOT, "src", "skills", "remotion-render", `b-roll-manifest-${channel.channel_id}.json`
-        );
-        let brollManifest13 = null;
-        if (existsSync(brollManifestPath13)) {
-          try {
-            brollManifest13 = JSON.parse(readFileSync(brollManifestPath13, "utf-8"));
-          } catch (e) {}
-        }
+        const brollManifest13 = loadTopicBrollManifest(channel, topicSlug13);
 
         const disclosureData = assessDisclosureNeeds(channel, { ttsSource: ttsSource13, brollManifest: brollManifest13 });
         writeFileSync(disclosurePath, JSON.stringify(disclosureData, null, 2));
@@ -624,15 +629,7 @@ function main() {
           .filter(existsSync);
         const script14 = scriptCandidates14[0] ? JSON.parse(readFileSync(scriptCandidates14[0], "utf-8")) : null;
 
-        const brollManifestPath14 = join(
-          ROOT, "src", "skills", "remotion-render", `b-roll-manifest-${channel.channel_id}.json`
-        );
-        let brollManifest14 = null;
-        if (existsSync(brollManifestPath14)) {
-          try {
-            brollManifest14 = JSON.parse(readFileSync(brollManifestPath14, "utf-8"));
-          } catch (e) {}
-        }
+        const brollManifest14 = loadTopicBrollManifest(channel, topicSlug14);
 
         const renderFiles14 = existsSync(dirs.renders) ? readdirSync(dirs.renders) : [];
         const renderExists14 = topicSlug14 ? renderFiles14.some((f) => f.startsWith(topicSlug14) && f.endsWith(".mp4")) : false;

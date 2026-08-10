@@ -1,30 +1,30 @@
 {
   "overall_disclosure_required": false,
-  "recommendation": "Self-disclosure not required, but can enable if desired",
+  "recommendation": "Self-disclosure not required for the automatically-checked components below",
   "pipeline_assessment": [
     {
-      "component": "EdgeTTS voiceover",
+      "component": "TTS voiceover",
       "disclosure_required": false,
-      "reason": "Generic neural voice, not cloning a specific real person",
+      "reason": "Generic neural voice (EdgeTTS), not cloning a specific real person",
       "policy": "Non-impersonation AI voices generally do not require disclosure"
     },
     {
       "component": "AI-generated scripts",
       "disclosure_required": false,
-      "reason": "Production assistance, not content generation",
+      "reason": "Production assistance (text only), not realistic visual/audio content",
       "policy": "AI script generation does not require disclosure"
     },
     {
       "component": "AI-assisted thumbnails",
       "disclosure_required": false,
-      "reason": "Visual design, not realistic content",
+      "reason": "Locally composited from gradient/color + text (sharp/canvas) — not photorealistic content",
       "policy": "AI thumbnails do not require disclosure"
     },
     {
-      "component": "Stock B-roll footage",
+      "component": "B-roll footage",
       "disclosure_required": false,
-      "reason": "Licensed stock footage from Pexels/Pixabay",
-      "policy": "Stock footage does not require disclosure"
+      "reason": "No b-roll used in this video",
+      "policy": "N/A — no visual asset to assess"
     },
     {
       "component": "Remotion video rendering",
@@ -33,5 +33,6 @@
       "policy": "Video rendering tools do not require disclosure"
     }
   ],
+  "manual_review_still_required": "Whether the script itself accurately represents a real person/event is not automatically checkable here — see upload_checklist.pre_upload.",
   "auto_detection_note": "YouTube now auto-detects AI content. If you don't disclose, they'll label it for you. Labels can't be removed once applied."
 }
