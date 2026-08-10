@@ -113,11 +113,12 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Real failures seen on the first live run against Cerebras: its free tier
-// hit "Tokens per minute limit exceeded" almost immediately on back-to-back
-// retries, and Exa's websearch tool separately 429'd under the same rapid
-// retry pattern. A fixed short pause isn't enough for a per-minute quota —
-// rate-limit errors get a real wait, everything else gets a quick nudge.
+// Real failures seen on live runs against Cerebras: its free tier hit
+// "Tokens per minute limit exceeded" on nearly every attempt — a SINGLE
+// websearch result (one article's full text) was enough on its own to
+// trip it on the very next call. This is a per-minute account-wide quota,
+// not a per-request one — a 30s wait doesn't reliably clear a 60s window,
+// so this waits out the full window.
 function isRateLimitError(errorText) {
   return /token_quota_exceeded|tokens per minute|rate.?limit|429|ContextOverflowError/i.test(errorText || "");
 }
@@ -183,7 +184,11 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const { "prompt-file": promptFile, "schema-file": schemaFile, agent, model: modelArg } = args;
   const systemPromptFile = args["append-system-prompt-file"];
-  const maxRetries = parseInt(args["max-retries"] || "3", 10);
+  // Default lowered from 3 to 2: more attempts means more cumulative
+  // token spend against the same tight quota, not a better chance of
+  // success — the real fix is the per-request token cap above, not
+  // throwing more retries at it.
+  const maxRetries = parseInt(args["max-retries"] || "2", 10);
 
   if (!promptFile || !schemaFile || !modelArg) {
     console.error("Usage: node scripts/opencode-agent.js --prompt-file <path> --schema-file <path> --model <provider/model[,provider/model...]> [--agent <name>] [--append-system-prompt-file <path>] [--max-retries N]");
@@ -214,7 +219,12 @@ async function main() {
   //     individual attempt's own token footprint is close to the ceiling.
   // Claude Code CLI's models didn't need either constraint said explicitly;
   // these ones do.
-  const schemaInstruction = `\n\nYou have a tight per-minute token budget. Search efficiently: at most 1-2 websearch calls, numResults 3 or fewer each, and prefer type "fast" over "deep" — do not livecrawl unless the cached result is truly insufficient. Do your research and reasoning silently — do not quote, paste, or summarize search results in your response. Your entire response must be ONLY a single JSON object — no markdown code fences, no explanation before or after, no restated sources — that validates against this JSON Schema:\n${JSON.stringify(schema)}`;
+  const schemaInstruction = `\n\nSTRICT TOKEN BUDGET — this account is on a tight per-minute quota and a single verbose search can exhaust it:
+- Call websearch AT MOST ONCE. Do not search again to double-check or broaden — one well-chosen query per channel is enough.
+- Every websearch call MUST include numResults: 2 and contextMaxCharacters: 800.
+- type must be "fast". Never use "deep". Never set livecrawl to "preferred" — omit livecrawl entirely (default "fallback" only).
+- Do not call webfetch at all unless websearch alone is truly insufficient.
+Do your research and reasoning silently — do not quote, paste, or summarize search results in your response. Your entire response must be ONLY a single JSON object — no markdown code fences, no explanation before or after, no restated sources — that validates against this JSON Schema:\n${JSON.stringify(schema)}`;
 
   let lastError = null;
   for (const model of models) {
@@ -225,7 +235,11 @@ async function main() {
         lastError = `[${model}] attempt ${attempt}/${maxRetries}: ${result.error}`;
         console.error(lastError);
         if (attempt < maxRetries) {
-          const waitMs = isRateLimitError(result.error) ? 30000 : 3000;
+          // Cerebras rate limits appear to be account-wide (both models hit
+          // the identical error at the same time), so this is a per-minute
+          // window to wait out, not something a shorter pause or a
+          // different model escapes. 65s to clear a 60s window with margin.
+          const waitMs = isRateLimitError(result.error) ? 65000 : 3000;
           console.error(`Waiting ${waitMs / 1000}s before retrying...`);
           await sleep(waitMs);
         }
