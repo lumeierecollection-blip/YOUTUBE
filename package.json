@@ -16,6 +16,7 @@
     "test-config": "node src/utils/test-config.js"
   },
   "dependencies": {
+    "ajv": "^8.20.0",
     "@remotion/bundler": "^4.0.503",
     "@remotion/captions": "^4.0.503",
     "@remotion/cli": "^4.0.503",

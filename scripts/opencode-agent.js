@@ -1,0 +1,225 @@
+#!/usr/bin/env node
+/**
+ * Headless OpenCode runner — replaces `claude -p ... --json-schema ...` for
+ * the 3-stage pipeline, now that the provider is Cerebras instead of
+ * Anthropic.
+ *
+ * Why this exists instead of driving OpenCode's SDK directly: OpenCode's own
+ * schema-constrained output (`session.prompt` with `format: {type:
+ * "json_schema"}`) is a real, documented feature, but as of opencode-ai
+ * 1.18.16 it 500s server-side on every attempt (confirmed against both a
+ * manually-started server and the SDK's own bundled createOpencode() helper,
+ * so it isn't a version-mismatch issue on this end). Until that's fixed
+ * upstream, this drives the plain `opencode run --format json` CLI path
+ * (verified to build correct real requests) and enforces the JSON schema
+ * itself with ajv, retrying with a corrective prompt on failure — the same
+ * validation guarantee `--json-schema` gave, just applied client-side
+ * instead of server-side.
+ *
+ * Usage:
+ *   node scripts/opencode-agent.js \
+ *     --prompt-file <path> --schema-file <path> --agent <opencode-agent-name> \
+ *     --model cerebras/gpt-oss-120b[,cerebras/gemma-4-31b,...] \
+ *     [--append-system-prompt-file <path>] [--max-retries 3]
+ *   (context piped via stdin is prepended to the prompt, same convention as
+ *   the old `cat context.json | claude -p ...` invocations)
+ *
+ * --model accepts a comma-separated list — tried in order, failing over to
+ * the next on any error (network, rate-limit, invalid output that still
+ * fails validation after retries). This is the primary+failover mechanism.
+ *
+ * Output on stdout: {"structured_output": <schema-valid object>,
+ * "total_cost_usd": <number>, "model_used": "<provider/model>"} — same shape
+ * the workflow's `jq '.structured_output'` / `jq -r '.total_cost_usd'` calls
+ * already expect from claude -p's --output-format json, so the surrounding
+ * workflow jq logic didn't need to change.
+ */
+
+import { spawnSync } from "child_process";
+import { readFileSync, mkdtempSync, rmSync } from "fs";
+import { tmpdir } from "os";
+import { join } from "path";
+import Ajv from "ajv";
+
+function parseArgs(argv) {
+  const args = {};
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i].startsWith("--")) {
+      const key = argv[i].slice(2);
+      const next = argv[i + 1];
+      if (next && !next.startsWith("--")) {
+        args[key] = next;
+        i++;
+      } else {
+        args[key] = true;
+      }
+    }
+  }
+  return args;
+}
+
+function readStdin() {
+  try {
+    if (process.stdin.isTTY) return "";
+    return readFileSync(0, "utf-8");
+  } catch {
+    return "";
+  }
+}
+
+// opencode run --format json streams newline-delimited event objects (the
+// same Message/Part shapes the server API uses). Parsing is defensive on
+// purpose: this couldn't be verified against a live response in the
+// environment this was built in (egress to every model host was blocked
+// there), so if the real event shape differs, the broad-fallback regex
+// extraction below is the safety net rather than a hard failure.
+function extractTextAndCost(stdout) {
+  let text = "";
+  let cost = 0;
+  const lines = stdout.split("\n").filter((l) => l.trim());
+  for (const line of lines) {
+    let evt;
+    try {
+      evt = JSON.parse(line);
+    } catch {
+      continue;
+    }
+    // AssistantMessage-shaped event: has role/cost directly.
+    if (evt?.role === "assistant" && typeof evt.cost === "number") {
+      cost = evt.cost;
+    }
+    if (evt?.info?.role === "assistant" && typeof evt.info.cost === "number") {
+      cost = evt.info.cost;
+    }
+    // TextPart-shaped event.
+    if (evt?.type === "text" && typeof evt.text === "string") {
+      text += evt.text;
+    }
+    if (evt?.part?.type === "text" && typeof evt.part.text === "string") {
+      text += evt.part.text;
+    }
+  }
+  if (!text) {
+    // Fallback: some builds may emit a single final result object, or the
+    // whole thing might not match the shapes above at all. Grab the last
+    // top-level JSON object in the raw output as a last resort.
+    const matches = stdout.match(/\{[\s\S]*\}/g);
+    if (matches && matches.length > 0) text = matches[matches.length - 1];
+  }
+  return { text, cost };
+}
+
+function extractJson(text) {
+  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
+  const candidate = fenced ? fenced[1] : text;
+  const start = candidate.indexOf("{");
+  const end = candidate.lastIndexOf("}");
+  if (start === -1 || end === -1 || end < start) return null;
+  try {
+    return JSON.parse(candidate.slice(start, end + 1));
+  } catch {
+    return null;
+  }
+}
+
+function runOnce({ model, agent, promptText, systemPromptFile }) {
+  const args = [
+    "run",
+    "--model", model,
+    "--format", "json",
+    "--auto",
+  ];
+  if (agent) args.push("--agent", agent);
+  args.push(promptText);
+
+  const env = { ...process.env, OPENCODE_ENABLE_EXA: process.env.OPENCODE_ENABLE_EXA || "1" };
+  const result = spawnSync("opencode", args, {
+    encoding: "utf-8",
+    env,
+    maxBuffer: 64 * 1024 * 1024,
+    timeout: 15 * 60 * 1000,
+  });
+
+  if (result.error) {
+    return { ok: false, error: `spawn failed: ${result.error.message}` };
+  }
+  if (result.status !== 0) {
+    // opencode reports API/provider errors as a {"type":"error",...} event
+    // on stdout with exit code 1 and an empty stderr — surface both so the
+    // real cause (auth, rate limit, blocked host, etc.) is actually visible.
+    const detail = [result.stderr, result.stdout].filter(Boolean).join(" | ").slice(0, 2000);
+    return { ok: false, error: `opencode exited ${result.status}: ${detail || "(no output on stdout or stderr)"}` };
+  }
+
+  const { text, cost } = extractTextAndCost(result.stdout);
+  if (!text) {
+    return { ok: false, error: `no text content extracted from opencode output (first 500 chars): ${result.stdout.slice(0, 500)}` };
+  }
+  const parsed = extractJson(text);
+  if (!parsed) {
+    return { ok: false, error: `could not extract valid JSON from model output: ${text.slice(0, 500)}` };
+  }
+  return { ok: true, data: parsed, cost };
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  const { "prompt-file": promptFile, "schema-file": schemaFile, agent, model: modelArg } = args;
+  const systemPromptFile = args["append-system-prompt-file"];
+  const maxRetries = parseInt(args["max-retries"] || "3", 10);
+
+  if (!promptFile || !schemaFile || !modelArg) {
+    console.error("Usage: node scripts/opencode-agent.js --prompt-file <path> --schema-file <path> --model <provider/model[,provider/model...]> [--agent <name>] [--append-system-prompt-file <path>] [--max-retries N]");
+    process.exit(1);
+  }
+
+  // opencode run's CLI has no distinct --system flag (unlike claude -p
+  // --append-system-prompt) — folding it into the same prompt text is
+  // functionally equivalent here since it all becomes the model's context
+  // either way.
+  const systemPrompt = systemPromptFile ? readFileSync(systemPromptFile, "utf-8") + "\n\n" : "";
+  const basePrompt = systemPrompt + readFileSync(promptFile, "utf-8");
+  const schema = JSON.parse(readFileSync(schemaFile, "utf-8"));
+  const stdinContext = readStdin();
+  const models = String(modelArg).split(",").map((m) => m.trim()).filter(Boolean);
+
+  const ajv = new Ajv({ allErrors: true, strict: false });
+  const validate = ajv.compile(schema);
+
+  const schemaInstruction = `\n\nRespond with ONLY a single JSON object — no markdown code fences, no explanation before or after — that validates against this JSON Schema:\n${JSON.stringify(schema)}`;
+
+  let lastError = null;
+  for (const model of models) {
+    let promptText = `${stdinContext ? stdinContext + "\n\n" : ""}${basePrompt}${schemaInstruction}`;
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      const result = runOnce({ model, agent, promptText });
+      if (!result.ok) {
+        lastError = `[${model}] attempt ${attempt}/${maxRetries}: ${result.error}`;
+        console.error(lastError);
+        continue;
+      }
+      const valid = validate(result.data);
+      if (!valid) {
+        lastError = `[${model}] attempt ${attempt}/${maxRetries}: schema validation failed: ${ajv.errorsText(validate.errors)}`;
+        console.error(lastError);
+        promptText = `${stdinContext ? stdinContext + "\n\n" : ""}${basePrompt}${schemaInstruction}\n\nYour previous response failed schema validation with these errors: ${ajv.errorsText(validate.errors)}. Fix it and respond again with ONLY the corrected JSON object.`;
+        continue;
+      }
+      console.log(JSON.stringify({
+        structured_output: result.data,
+        total_cost_usd: result.cost || 0,
+        model_used: model,
+      }));
+      return;
+    }
+    console.error(`Model ${model} exhausted ${maxRetries} attempts, failing over to next model if any...`);
+  }
+
+  console.error(`All models failed. Last error: ${lastError}`);
+  process.exit(1);
+}
+
+main().catch((err) => {
+  console.error("Fatal:", err);
+  process.exit(1);
+});

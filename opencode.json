@@ -7,5 +7,13 @@
     "webfetch": "allow",
     "external_directory": "deny",
     "doom_loop": "deny"
+  },
+  "provider": {
+    "cerebras": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Cerebras",
+      "options": { "baseURL": "https://api.cerebras.ai/v1" },
+      "env": ["CEREBRAS_API_KEY"]
+    }
   }
 }
