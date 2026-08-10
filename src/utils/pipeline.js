@@ -295,12 +295,28 @@ function main() {
 
     const seoPath = join(dirs.research, `${topicSlug}-seo.json`);
 
+    // Chapters are derived from the script's real sections (LONGFORM-SPEC.md
+    // Rule 1.5) — find whichever format was generated for this topic today,
+    // preferring longform (Mon/Wed/Fri) since it's the one that ships chapters.
+    const scriptCandidates = [`${topicSlug}-longform-script.json`, `${topicSlug}-shorts-script.json`, `${topicSlug}-script.json`]
+      .map((f) => join(dirs.research, f))
+      .filter(existsSync);
+    const scriptForSeo = scriptCandidates[0] ? JSON.parse(readFileSync(scriptCandidates[0], "utf-8")) : null;
+
     if (existsSync(seoPath)) {
       log("5", "SEO metadata already exists", "ok");
       report.steps[5] = { status: "ok", cached: true };
+    } else if (!scriptForSeo) {
+      log("5", "No script found for this topic yet — SEO needs real sections, run Stage C first", "warn");
+      report.steps[5] = { status: "pending" };
+      report.warnings.push("Step 5: no script available to derive chapters from");
     } else if (!dryRun) {
       try {
-        const seoData = generateSEO(topic, channel);
+        const sections = scriptForSeo.sections || [];
+        const totalWords = sections.reduce((sum, s) => sum + String(s.voiceover || "").split(/\s+/).filter(Boolean).length, 0);
+        const wpm = { "cinematic-documentary": 135, "motion-graphics": 155, minimal: 165 }[channel.style] || 150;
+        const totalDuration = (totalWords / wpm) * 60;
+        const seoData = generateSEO(topic, channel, sections, totalDuration);
         writeFileSync(seoPath, JSON.stringify(seoData, null, 2));
         log("5", `Generated: title="${seoData.title}"`, "ok");
         log("5", `Tags: ${seoData.tags?.length || 0}, Chapters: ${seoData.chapters?.length || 0}`, "info");
