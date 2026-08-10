@@ -160,7 +160,11 @@ function runOnce({ model, agent, promptText, systemPromptFile }) {
     // opencode reports API/provider errors as a {"type":"error",...} event
     // on stdout with exit code 1 and an empty stderr — surface both so the
     // real cause (auth, rate limit, blocked host, etc.) is actually visible.
-    const detail = [result.stderr, result.stdout].filter(Boolean).join(" | ").slice(0, 2000);
+    // Take the TAIL, not the head: the terminal error/state is the last
+    // event in the stream, and a real run's stdout is dominated by verbose
+    // tool_use output (full search results) that pushes the actual error
+    // past a head-slice entirely — confirmed missing from a live run's logs.
+    const detail = [result.stderr, result.stdout].filter(Boolean).join(" | ").slice(-2000);
     return { ok: false, error: `opencode exited ${result.status}: ${detail || "(no output on stdout or stderr)"}` };
   }
 
@@ -199,13 +203,18 @@ async function main() {
   const ajv = new Ajv({ allErrors: true, strict: false });
   const validate = ajv.compile(schema);
 
-  // The first live run against Cerebras showed the model quoting entire
-  // fetched search-result blocks into its response before ever reaching the
-  // JSON — enough to hit the model's own output-length limit and get cut
-  // off mid-generation (step_finish reason: "length") with no JSON at all.
-  // Claude Code CLI's models didn't need this warned against explicitly;
+  // The first live runs against Cerebras showed two real problems, both
+  // token-budget related on a free tier that's tighter than expected:
+  // (1) the model quoted entire fetched search-result blocks into its
+  //     response before ever reaching the JSON, hit its own output-length
+  //     limit, and got cut off mid-generation with no JSON at all;
+  // (2) a SINGLE websearch call's result (one article's full text) was
+  //     enough on its own to trip "Tokens per minute limit exceeded" on
+  //     the very next model call — this isn't a retry-pacing problem, each
+  //     individual attempt's own token footprint is close to the ceiling.
+  // Claude Code CLI's models didn't need either constraint said explicitly;
   // these ones do.
-  const schemaInstruction = `\n\nDo your research and reasoning silently — do not quote, paste, or summarize search results in your response. Your entire response must be ONLY a single JSON object — no markdown code fences, no explanation before or after, no restated sources — that validates against this JSON Schema:\n${JSON.stringify(schema)}`;
+  const schemaInstruction = `\n\nYou have a tight per-minute token budget. Search efficiently: at most 1-2 websearch calls, numResults 3 or fewer each, and prefer type "fast" over "deep" — do not livecrawl unless the cached result is truly insufficient. Do your research and reasoning silently — do not quote, paste, or summarize search results in your response. Your entire response must be ONLY a single JSON object — no markdown code fences, no explanation before or after, no restated sources — that validates against this JSON Schema:\n${JSON.stringify(schema)}`;
 
   let lastError = null;
   for (const model of models) {
