@@ -28,7 +28,13 @@ env:
   # in order, each with its own retry budget, before moving to the next.
   # Verify current Cerebras model IDs with `opencode models | grep cerebras`
   # before changing; this list isn't guaranteed stable long-term.
-  OPENCODE_MODELS: "cerebras/gpt-oss-120b,cerebras/zai-glm-4.7"
+  # ONLY gemma-4-31b here, on purpose: gpt-oss-120b and zai-glm-4.7 are
+  # reasoning models - the openai-compatible adapter replays their
+  # `reasoning_content` in assistant history and the Cerebras API rejects
+  # that field (HTTP 400 wrong_api_format) on every multi-turn call
+  # (verified on live runs; see vercel/ai#15042). gemma-4-31b has
+  # reasoning disabled by default, so it never emits the field.
+  OPENCODE_MODELS: "cerebras/gemma-4-31b"
   OPENCODE_ENABLE_EXA: "1"
 
 jobs:
