@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "channel_id": "2",
+  "placeholders": [
+    {
+      "id": "2-1786336222539",
+      "channel_id": "2",
+      "artifact_path": "data/tts/2/landlord-security-deposit-rights-longform-script-vo.PLACEHOLDER.mp3",
+      "stands_in_for": "real edge-tts narration audio",
+      "reason": "This sandbox's egress proxy blocks the WebSocket connection edge-tts needs (confirmed SSL/socket failure). edge-tts itself is confirmed WORKING on real GitHub Actions runners (tts-probe.yml run 31333456299, 2026-08-09) -- this is a sandbox-only limitation, not a production one.",
+      "would_be_replaced_by": "running the daily-pipeline.yml research-and-script job for real on a GitHub Actions runner, where edge-tts has normal network access",
+      "created_at": "2026-08-10T04:30:22.539Z",
+      "resolved_at": null
+    }
+  ]
+}
