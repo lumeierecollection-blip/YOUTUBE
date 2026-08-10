@@ -109,6 +109,19 @@ function extractTextAndCost(stdout) {
   return { text, cost };
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// Real failures seen on the first live run against Cerebras: its free tier
+// hit "Tokens per minute limit exceeded" almost immediately on back-to-back
+// retries, and Exa's websearch tool separately 429'd under the same rapid
+// retry pattern. A fixed short pause isn't enough for a per-minute quota —
+// rate-limit errors get a real wait, everything else gets a quick nudge.
+function isRateLimitError(errorText) {
+  return /token_quota_exceeded|tokens per minute|rate.?limit|429|ContextOverflowError/i.test(errorText || "");
+}
+
 function extractJson(text) {
   const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
   const candidate = fenced ? fenced[1] : text;
@@ -186,7 +199,13 @@ async function main() {
   const ajv = new Ajv({ allErrors: true, strict: false });
   const validate = ajv.compile(schema);
 
-  const schemaInstruction = `\n\nRespond with ONLY a single JSON object — no markdown code fences, no explanation before or after — that validates against this JSON Schema:\n${JSON.stringify(schema)}`;
+  // The first live run against Cerebras showed the model quoting entire
+  // fetched search-result blocks into its response before ever reaching the
+  // JSON — enough to hit the model's own output-length limit and get cut
+  // off mid-generation (step_finish reason: "length") with no JSON at all.
+  // Claude Code CLI's models didn't need this warned against explicitly;
+  // these ones do.
+  const schemaInstruction = `\n\nDo your research and reasoning silently — do not quote, paste, or summarize search results in your response. Your entire response must be ONLY a single JSON object — no markdown code fences, no explanation before or after, no restated sources — that validates against this JSON Schema:\n${JSON.stringify(schema)}`;
 
   let lastError = null;
   for (const model of models) {
@@ -196,6 +215,11 @@ async function main() {
       if (!result.ok) {
         lastError = `[${model}] attempt ${attempt}/${maxRetries}: ${result.error}`;
         console.error(lastError);
+        if (attempt < maxRetries) {
+          const waitMs = isRateLimitError(result.error) ? 30000 : 3000;
+          console.error(`Waiting ${waitMs / 1000}s before retrying...`);
+          await sleep(waitMs);
+        }
         continue;
       }
       const valid = validate(result.data);
