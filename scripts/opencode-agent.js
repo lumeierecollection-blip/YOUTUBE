@@ -123,6 +123,29 @@ function isRateLimitError(errorText) {
   return /token_quota_exceeded|tokens per minute|rate.?limit|429|ContextOverflowError/i.test(errorText || "");
 }
 
+// Real failure: gpt-oss-120b produced otherwise-valid JSON but overshot a
+// maxLength constraint by a few characters, forcing a retry that then hit
+// the rate limit and failed the whole run. Models count characters
+// imprecisely, so give them margin below the hard cap rather than the
+// exact number, for every maxLength in the schema (not just this one
+// field — research/script schemas have the same shape of constraint).
+function lengthReminders(schema, seen = new Set()) {
+  const lines = [];
+  if (!schema || typeof schema !== "object" || seen.has(schema)) return lines;
+  seen.add(schema);
+  if (schema.properties) {
+    for (const [key, def] of Object.entries(schema.properties)) {
+      if (typeof def?.maxLength === "number") {
+        const margin = Math.max(1, Math.floor(def.maxLength * 0.15));
+        lines.push(`- "${key}": stay under ${def.maxLength - margin} characters (hard max is ${def.maxLength} — leave margin, you count characters imprecisely).`);
+      }
+      lines.push(...lengthReminders(def, seen));
+    }
+  }
+  if (schema.items) lines.push(...lengthReminders(schema.items, seen));
+  return lines;
+}
+
 function extractJson(text) {
   const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
   const candidate = fenced ? fenced[1] : text;
@@ -219,12 +242,17 @@ async function main() {
   //     individual attempt's own token footprint is close to the ceiling.
   // Claude Code CLI's models didn't need either constraint said explicitly;
   // these ones do.
+  const lengthLines = lengthReminders(schema);
+  const lengthBlock = lengthLines.length
+    ? `\n\nFIELD LENGTH LIMITS — a near-miss on this cost an entire extra (rate-limited) attempt last run, stay comfortably under every one:\n${lengthLines.join("\n")}`
+    : "";
+
   const schemaInstruction = `\n\nSTRICT TOKEN BUDGET — this account is on a tight per-minute quota and a single verbose search can exhaust it:
 - Call websearch AT MOST ONCE. Do not search again to double-check or broaden — one well-chosen query per channel is enough.
 - Every websearch call MUST include numResults: 2 and contextMaxCharacters: 800.
 - type must be "fast". Never use "deep". Never set livecrawl to "preferred" — omit livecrawl entirely (default "fallback" only).
 - Do not call webfetch at all unless websearch alone is truly insufficient.
-Do your research and reasoning silently — do not quote, paste, or summarize search results in your response. Your entire response must be ONLY a single JSON object — no markdown code fences, no explanation before or after, no restated sources — that validates against this JSON Schema:\n${JSON.stringify(schema)}`;
+Do your research and reasoning silently — do not quote, paste, or summarize search results in your response. Your entire response must be ONLY a single JSON object — no markdown code fences, no explanation before or after, no restated sources — that validates against this JSON Schema:\n${JSON.stringify(schema)}${lengthBlock}`;
 
   let lastError = null;
   for (const model of models) {
