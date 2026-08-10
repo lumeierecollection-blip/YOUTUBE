@@ -1,13 +1,13 @@
 import React from "react";
 import {
   AbsoluteFill,
-  Audio,
   Sequence,
   useCurrentFrame,
   useVideoConfig,
   spring,
   interpolate,
 } from "remotion";
+import { Audio } from "@remotion/media";
 import { currentAudio } from "../audio.js";
 import "../wait-for-fonts.js";
 import { resolveColors, resolveFontFamily } from "./visual.js";

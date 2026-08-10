@@ -69,7 +69,6 @@
 
 import React from "react";
 import {
-  Audio,
   Easing,
   Sequence,
   interpolate,
@@ -78,6 +77,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { Audio } from "@remotion/media";
 import { D, MG_TYPE } from "../compositions/beats.js";
 
 // ── Mirrored from the static primitive (Chart.jsx:48-67) — verbatim values,

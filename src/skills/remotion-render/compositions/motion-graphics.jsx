@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import {
   AbsoluteFill,
-  Audio,
   Sequence,
   useCurrentFrame,
   useVideoConfig,
@@ -11,6 +10,7 @@ import {
   staticFile,
   Solid,
 } from "remotion";
+import { Audio } from "@remotion/media";
 import { dotGrid } from "@remotion/effects/dot-grid";
 import { noise } from "@remotion/effects/noise";
 import { evolvePath, getSubpaths } from "@remotion/paths";

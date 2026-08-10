@@ -1,7 +1,6 @@
 import React from "react";
 import {
   AbsoluteFill,
-  Audio,
   Sequence,
   useCurrentFrame,
   useVideoConfig,
@@ -10,6 +9,7 @@ import {
   Img,
   staticFile,
 } from "remotion";
+import { Audio } from "@remotion/media";
 import { currentAudio } from "../audio.js";
 import "../wait-for-fonts.js";
 import { resolveColors, resolveFontFamily, moodFromVisualCue, moodFromContent, EndFadeToBlack } from "./visual.js";

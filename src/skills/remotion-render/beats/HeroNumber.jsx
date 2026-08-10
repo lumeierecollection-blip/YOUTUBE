@@ -1,5 +1,6 @@
 import React from "react";
-import { Audio, Easing, interpolate, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { Easing, interpolate, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { Audio } from "@remotion/media";
 import { D, MG_TYPE } from "../compositions/beats.js";
 import Layer from "../layers/Layer.jsx";
 
