@@ -1,21 +1,9 @@
 {
   "channel_id": "2",
-  "started_at": "2026-08-10T08:02:00.595Z",
+  "started_at": "2026-08-10T08:13:09.624Z",
   "steps": {
-    "5": {
-      "status": "ok",
-      "title": "What Your Landlord Can Legally Keep From Your Security…"
-    },
-    "6": {
-      "status": "ok"
-    },
-    "7": {
-      "status": "ok",
-      "cached": true
-    },
     "8": {
-      "status": "ok",
-      "cached": true
+      "status": "ok"
     },
     "9": {
       "status": "warnings",
@@ -33,11 +21,11 @@
     },
     "13": {
       "status": "ok",
-      "cached": true
+      "requires": false
     },
     "14": {
       "status": "ok",
-      "cached": true
+      "evidence_checks": 5
     },
     "15": {
       "status": "ok",
@@ -50,5 +38,5 @@
   },
   "errors": [],
   "warnings": [],
-  "completed_at": "2026-08-10T08:02:00.598Z"
+  "completed_at": "2026-08-10T08:13:09.631Z"
 }

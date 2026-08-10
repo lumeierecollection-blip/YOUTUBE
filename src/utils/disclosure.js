@@ -81,41 +81,66 @@ const DISCLOSURE_RULES = {
 
 /**
  * Determine disclosure requirements for our pipeline.
+ *
+ * `videoContext` carries the real, per-video signals this function can
+ * actually check mechanically — without them this degrades to a channel-level
+ * structural assessment (still honest, just less specific). The one
+ * component with genuine legal-risk substance is b-roll: CLAUDE.md requires
+ * "real, verified photos only for named people/places", and YouTube's
+ * disclosure policy specifically targets photorealistic AI visuals /
+ * altered footage of real events — so a b-roll asset without a documented
+ * license and source_url can't be assumed safe just because past assets
+ * in this manifest were.
+ *
+ * What this does NOT do: verify whether the *script* itself accurately
+ * represents a real person/event. That requires actual content
+ * understanding, not a mechanical check, and is left as an explicit manual
+ * step in generateUploadChecklist() rather than faked here.
  */
-function assessDisclosureNeeds(channel) {
-  // Our pipeline uses:
-  // - EdgeTTS (generic neural voices, NOT cloned) → NO disclosure needed
-  // - AI-generated scripts → NO disclosure needed
-  // - AI-assisted thumbnails → NO disclosure needed
-  // - Stock B-roll from Pexels/Pixabay → NO disclosure needed
-  // - Remotion rendering → NO disclosure needed
-  // - AI color grading → NO disclosure needed
+function assessDisclosureNeeds(channel, videoContext = {}) {
+  const { ttsSource = null, brollManifest = null } = videoContext;
 
   const pipeline_components = [
     {
-      component: "EdgeTTS voiceover",
+      component: "TTS voiceover",
       disclosure_required: false,
-      reason: "Generic neural voice, not cloning a specific real person",
+      reason: ttsSource === "placeholder"
+        ? "Placeholder (espeak) audio, not yet resolved to production EdgeTTS — either way, a generic synthetic voice, not cloning a specific real person"
+        : "Generic neural voice (EdgeTTS), not cloning a specific real person",
       policy: "Non-impersonation AI voices generally do not require disclosure",
     },
     {
       component: "AI-generated scripts",
       disclosure_required: false,
-      reason: "Production assistance, not content generation",
+      reason: "Production assistance (text only), not realistic visual/audio content",
       policy: "AI script generation does not require disclosure",
     },
     {
       component: "AI-assisted thumbnails",
       disclosure_required: false,
-      reason: "Visual design, not realistic content",
+      reason: "Locally composited from gradient/color + text (sharp/canvas) — not photorealistic content",
       policy: "AI thumbnails do not require disclosure",
     },
-    {
-      component: "Stock B-roll footage",
-      disclosure_required: false,
-      reason: "Licensed stock footage from Pexels/Pixabay",
-      policy: "Stock footage does not require disclosure",
-    },
+    (() => {
+      if (!brollManifest || !Array.isArray(brollManifest.files) || brollManifest.files.length === 0) {
+        return {
+          component: "B-roll footage",
+          disclosure_required: false,
+          reason: "No b-roll used in this video",
+          policy: "N/A — no visual asset to assess",
+        };
+      }
+      const unverified = brollManifest.files.filter((f) => !f.license || !f.source_url);
+      const flagged = unverified.length > 0;
+      return {
+        component: "B-roll footage",
+        disclosure_required: flagged,
+        reason: flagged
+          ? `${unverified.length} of ${brollManifest.files.length} b-roll file(s) are missing a documented license and/or source_url — cannot verify they're real, licensed photos rather than fabricated imagery`
+          : `All ${brollManifest.files.length} b-roll file(s) have a documented license and source_url (${brollManifest.source || "see manifest"})`,
+        policy: "Real, licensed photos of real people/places do not require disclosure; unverifiable or fabricated imagery depicting real subjects would",
+      };
+    })(),
     {
       component: "Remotion video rendering",
       disclosure_required: false,
@@ -133,8 +158,9 @@ function assessDisclosureNeeds(channel) {
     overall_disclosure_required: requiresAnyDisclosure,
     recommendation: requiresAnyDisclosure
       ? "Enable 'Altered or synthetic content' toggle during upload"
-      : "Self-disclosure not required, but can enable if desired",
+      : "Self-disclosure not required for the automatically-checked components below",
     pipeline_assessment: pipeline_components,
+    manual_review_still_required: "Whether the script itself accurately represents a real person/event is not automatically checkable here — see upload_checklist.pre_upload.",
     auto_detection_note: "YouTube now auto-detects AI content. If you don't disclose, they'll label it for you. Labels can't be removed once applied.",
   };
 }
@@ -175,14 +201,14 @@ function generateUploadChecklist(channel) {
 /**
  * Full disclosure spec generation.
  */
-function generateDisclosureSpec(channel) {
+function generateDisclosureSpec(channel, videoContext = {}) {
   return {
     version: "1.0.0",
     generated_at: new Date().toISOString(),
     channel_id: channel.channel_id,
     channel_name: channel.channel_name,
     rules: DISCLOSURE_RULES,
-    assessment: assessDisclosureNeeds(channel),
+    assessment: assessDisclosureNeeds(channel, videoContext),
     upload_checklist: generateUploadChecklist(channel),
     policy_reference: {
       youtube_policy_url: "https://support.google.com/youtube/answer/14328491",

@@ -403,14 +403,60 @@ function main() {
       report.steps[8] = { status: "ok", cached: true };
     } else if (!dryRun) {
       try {
-        // Pre-upload checklist expects array of video assets
-        const videoAssets = [
-          { name: "voiceover", source: "EdgeTTS" },
-          { name: "b-roll", source: "Pexels" },
-          { name: "sfx", source: "YouTube Audio Library" },
-          { name: "music", source: "YouTube Audio Library" },
-          { name: "thumbnail", source: "AI-generated" },
-        ];
+        // Build the real per-video asset list instead of a fixed stand-in —
+        // a copyright gate that checks the same 4 pre-known-safe strings on
+        // every run can never actually flag a real problem asset.
+        const current8 = resolveCurrentTopic(dirs.research, report.steps[1]?.topic);
+        const topicSlug8 = current8?.slug || "";
+        const videoAssets = [];
+
+        const ttsFiles = existsSync(dirs.tts) ? readdirSync(dirs.tts) : [];
+        const topicTtsFiles = topicSlug8 ? ttsFiles.filter((f) => f.startsWith(topicSlug8)) : ttsFiles;
+        const hasRealAudio = topicTtsFiles.some((f) => f.endsWith(".mp3") && !f.includes("PLACEHOLDER"));
+        const hasPlaceholderAudio = topicTtsFiles.some((f) => f.endsWith(".PLACEHOLDER.mp3"));
+        videoAssets.push({
+          name: "voiceover",
+          source: hasRealAudio
+            ? "EdgeTTS"
+            : hasPlaceholderAudio
+              ? "Local placeholder TTS (espeak substitute) — not cleared for upload, see Placeholder Doctrine gate"
+              : "Unknown — no TTS output found",
+        });
+
+        // Real per-file b-roll provenance, when this channel has a sourced
+        // manifest (see src/skills/remotion-render/b-roll-manifest-*.json —
+        // currently only ch-01; most channels use no photographic b-roll yet).
+        const brollManifestPath = join(
+          ROOT, "src", "skills", "remotion-render", `b-roll-manifest-${channel.channel_id}.json`
+        );
+        if (existsSync(brollManifestPath)) {
+          try {
+            const manifest = JSON.parse(readFileSync(brollManifestPath, "utf-8"));
+            for (const f of manifest.files || []) {
+              // assessSource() matches against known platform/brand names
+              // (manifest.source, e.g. "Wikimedia Commons ...") — a per-file
+              // license string like "CC BY-SA 3.0" wouldn't match anything
+              // and would wrongly fall through to UNKNOWN.
+              videoAssets.push({
+                name: `b-roll: ${(f.local || "unknown").split("/").pop()} (${f.license || "license unspecified"})`,
+                source: manifest.source || "Unknown",
+              });
+            }
+          } catch (e) {}
+        }
+
+        // Only the motion-graphics template currently has baked-in UI/SFX
+        // (Kenney CC0 packs — see compositions/motion-graphics.jsx and
+        // data/sfx-sources.md); other styles mix no SFX or music today.
+        if (channel.style === "motion-graphics") {
+          videoAssets.push({ name: "ui-sfx", source: "Kenney Audio Packs (CC0)" });
+        }
+
+        videoAssets.push({
+          name: "thumbnail",
+          source: "Local composite (gradient/text via sharp/canvas) — no external asset",
+        });
+
         const checklist = preUploadChecklist(videoAssets);
         writeFileSync(checklistPath, JSON.stringify(checklist, null, 2));
         log("8", `Generated checklist: ${checklist.checks?.length || 0} checks, risk: ${checklist.overall_risk}`, "ok");
@@ -447,7 +493,10 @@ function main() {
               log("9", `  ${srt}: ${validation.issues.length} issue(s)`, "warn");
               allValid = false;
             }
-          } catch (e) {}
+          } catch (e) {
+            log("9", `  ${srt}: failed to parse — ${e.message}`, "err");
+            allValid = false;
+          }
         }
         report.steps[9] = { status: allValid ? "ok" : "warnings", srt_count: srtFiles.length };
       } else {
@@ -518,7 +567,26 @@ function main() {
       report.steps[13] = { status: "ok", cached: true };
     } else if (!dryRun) {
       try {
-        const disclosureData = assessDisclosureNeeds(channel);
+        // Real per-video signals, same provenance data Step 8's copyright
+        // check reads — a b-roll asset with no documented license/source_url
+        // can't be assumed to be a real, verified photo (CLAUDE.md's rule
+        // for named people/places) just because the manifest exists.
+        const current13 = resolveCurrentTopic(dirs.research, report.steps[1]?.topic);
+        const topicSlug13 = current13?.slug || "";
+        const ttsFiles13 = existsSync(dirs.tts) ? readdirSync(dirs.tts) : [];
+        const topicTtsFiles13 = topicSlug13 ? ttsFiles13.filter((f) => f.startsWith(topicSlug13)) : ttsFiles13;
+        const ttsSource13 = topicTtsFiles13.some((f) => f.endsWith(".PLACEHOLDER.mp3")) ? "placeholder" : "edge-tts";
+        const brollManifestPath13 = join(
+          ROOT, "src", "skills", "remotion-render", `b-roll-manifest-${channel.channel_id}.json`
+        );
+        let brollManifest13 = null;
+        if (existsSync(brollManifestPath13)) {
+          try {
+            brollManifest13 = JSON.parse(readFileSync(brollManifestPath13, "utf-8"));
+          } catch (e) {}
+        }
+
+        const disclosureData = assessDisclosureNeeds(channel, { ttsSource: ttsSource13, brollManifest: brollManifest13 });
         writeFileSync(disclosurePath, JSON.stringify(disclosureData, null, 2));
         log("13", `Disclosure: ${disclosureData.overall_disclosure_required ? "REQUIRED" : "NOT REQUIRED"}`,
           disclosureData.overall_disclosure_required ? "warn" : "ok");
@@ -549,7 +617,32 @@ function main() {
       report.steps[14] = { status: "ok", cached: true };
     } else if (!dryRun) {
       try {
-        const qualityData = generateQualityReport(channel);
+        const current14 = resolveCurrentTopic(dirs.research, report.steps[1]?.topic);
+        const topicSlug14 = current14?.slug || "";
+        const scriptCandidates14 = [`${topicSlug14}-longform-script.json`, `${topicSlug14}-shorts-script.json`, `${topicSlug14}-script.json`]
+          .map((f) => join(dirs.research, f))
+          .filter(existsSync);
+        const script14 = scriptCandidates14[0] ? JSON.parse(readFileSync(scriptCandidates14[0], "utf-8")) : null;
+
+        const brollManifestPath14 = join(
+          ROOT, "src", "skills", "remotion-render", `b-roll-manifest-${channel.channel_id}.json`
+        );
+        let brollManifest14 = null;
+        if (existsSync(brollManifestPath14)) {
+          try {
+            brollManifest14 = JSON.parse(readFileSync(brollManifestPath14, "utf-8"));
+          } catch (e) {}
+        }
+
+        const renderFiles14 = existsSync(dirs.renders) ? readdirSync(dirs.renders) : [];
+        const renderExists14 = topicSlug14 ? renderFiles14.some((f) => f.startsWith(topicSlug14) && f.endsWith(".mp4")) : false;
+
+        const qualityData = generateQualityReport(channel, {
+          topicSlug: topicSlug14,
+          script: script14,
+          brollManifest: brollManifest14,
+          renderExists: renderExists14,
+        });
         writeFileSync(qualityPath, JSON.stringify(qualityData, null, 2));
         const evidenceCount = Object.keys(qualityData.editorial_evidence || {}).length;
         log("14", `Quality report generated: ${evidenceCount} evidence checks`, "ok");

@@ -52,6 +52,9 @@ const SAFE_SOURCES = [
   "archive.org",
   "Wikimedia Commons",
   "commons.wikimedia.org",
+  "Kenney",
+  "kenney.nl",
+  "Local composite", // self-authored (e.g. text/gradient thumbnails) — no third-party asset involved
 ];
 
 /**
