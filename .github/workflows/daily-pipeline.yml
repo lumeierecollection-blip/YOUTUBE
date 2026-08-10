@@ -76,7 +76,15 @@ jobs:
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
         run: |
-          set -uo pipefail
+          set -u
+          # GitHub Actions invokes `run:` blocks as `bash -e {0}` — -e is
+          # already on before this script starts, so `set -uo pipefail`
+          # alone does NOT disable it. Without an explicit `set +e` here,
+          # the pipe failing kills the script immediately, before AGENT_EXIT
+          # is even assigned, and every diagnostic below is silently
+          # skipped. (Confirmed the hard way: this exact bug ate the real
+          # error from the first live Cerebras test run.)
+          set +e
           cat /tmp/context.json | node scripts/opencode-agent.js \
             --prompt-file prompts/discover-topics.md \
             --schema-file schemas/topics.json \
@@ -84,13 +92,13 @@ jobs:
             --model "$OPENCODE_MODELS" \
             > /tmp/topics-raw.json 2> /tmp/topics-err.log
           AGENT_EXIT=$?
+          set -e
           if [ "$AGENT_EXIT" -ne 0 ]; then
             echo "::error::opencode-agent.js exited with code $AGENT_EXIT"
             echo "--- stdout (/tmp/topics-raw.json) ---"; cat /tmp/topics-raw.json 2>/dev/null || echo "(empty)"
             echo "--- stderr ---"; cat /tmp/topics-err.log 2>/dev/null || echo "(empty)"
             exit 1
           fi
-          set -e
           if ! jq -e '.structured_output.topics | length > 0' /tmp/topics-raw.json > /dev/null; then
             echo "::error::opencode-agent.js succeeded but produced no usable topics — dumping raw output"
             cat /tmp/topics-raw.json
@@ -174,9 +182,14 @@ jobs:
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
         run: |
-          set -uo pipefail
+          set -u
           CH="${{ matrix.channel_id }}"; SLUG="${{ matrix.slug }}"
           echo "=== RESEARCH: $CH — $SLUG ==="
+          # See the "Discover topics" step for why set +e is required here:
+          # bash -e {0} is already active from how Actions invokes run:
+          # blocks, so without this the pipe failing would skip AGENT_EXIT
+          # and every diagnostic below it.
+          set +e
           jq -n --arg t "${{ matrix.topic }}" --arg a "${{ matrix.angle }}" \
                 --arg s "$SLUG" --arg c "$CH" \
                 '{topic:$t, angle:$a, slug:$s, channel_id:$c}' \
@@ -187,13 +200,13 @@ jobs:
                 --model "$OPENCODE_MODELS" \
                 > /tmp/research-raw.json 2> /tmp/research-err.log
           AGENT_EXIT=$?
+          set -e
           if [ "$AGENT_EXIT" -ne 0 ]; then
             echo "::error::opencode-agent.js exited with code $AGENT_EXIT"
             echo "--- stdout (/tmp/research-raw.json) ---"; cat /tmp/research-raw.json 2>/dev/null || echo "(empty)"
             echo "--- stderr ---"; cat /tmp/research-err.log 2>/dev/null || echo "(empty)"
             exit 1
           fi
-          set -e
           if ! jq -e '.structured_output.key_facts | length >= 5' /tmp/research-raw.json > /dev/null; then
             echo "::error::research didn't meet the quality bar — dumping raw output"
             cat /tmp/research-raw.json
