@@ -350,7 +350,8 @@ function main() {
         const endscreenData = generateEndScreen(topic6, channel);
         writeFileSync(endscreenPath, JSON.stringify(endscreenData, null, 2));
         log("6", `Generated end screen: ${endscreenData.end_screen?.elements?.length || 0} elements`, "ok");
-        log("6", `Verbal CTA: "${endscreenData.verbal_cta?.substring(0, 50)}..."`, "info");
+        const ctaSample = endscreenData.end_screen?.verbal_cta?.script_patterns?.[0] || "";
+        log("6", `Verbal CTA: "${ctaSample.substring(0, 50)}..."`, "info");
         report.steps[6] = { status: "ok" };
       } catch (err) {
         log("6", `End screen generation failed: ${err.message}`, "err");
