@@ -395,6 +395,13 @@ jobs:
             ")
           fi
 
+          # Attempt every channel, then fail the step if ANY render failed.
+          # Previously each failure was swallowed by `|| echo WARN`, so a run
+          # where every single render died still reported success — the worst
+          # possible outcome for an unattended daily pipeline, because publish
+          # then runs against nothing and nobody is alerted.
+          FAILED=0
+          RENDERED=0
           for CH in $(echo $CHANNELS | jq -r '.[]'); do
             echo "=== RENDER: $CH ==="
 
@@ -416,9 +423,20 @@ jobs:
                 *-longform-script.json) FORMAT="longform" ;;
                 *) echo "WARN: can't tell shorts/longform from $SCRIPT — defaulting to longform"; FORMAT="longform" ;;
               esac
-              node src/skills/remotion-render/render.js "$FORMAT" "$CH" "$SCRIPT" "$AUDIO" || echo "WARN: render failed for $SCRIPT"
+              if node src/skills/remotion-render/render.js "$FORMAT" "$CH" "$SCRIPT" "$AUDIO"; then
+                RENDERED=$((RENDERED + 1))
+              else
+                echo "::error::render failed for $SCRIPT"
+                FAILED=$((FAILED + 1))
+              fi
             done
           done
+
+          echo "Rendered $RENDERED video(s), $FAILED failure(s)."
+          if [ "$FAILED" -gt 0 ]; then
+            echo "::error::$FAILED render(s) failed — see the errors above."
+            exit 1
+          fi
 
       - name: Upload render artifacts
         if: always()
@@ -552,10 +570,26 @@ jobs:
             ")
           fi
 
+          # As with render: try every channel, then fail if any genuinely
+          # errored. Safe to treat non-zero as a real failure here because
+          # uploadChannel() returns cleanly (exit 0) for the EXPECTED skip
+          # states — no credentials configured, unresolved placeholder
+          # artifacts, or a pending human-review gate. A non-zero exit means
+          # an actual upload error (bad/expired token, API rejection), which
+          # must not be reported as a successful publish run.
+          FAILED=0
           for CH in $(echo $CHANNELS | jq -r '.[]'); do
             echo "=== PUBLISH: $CH ==="
-            node src/skills/youtube-publish/run.js "$CH" || echo "WARN: publish failed (API creds needed)"
+            if ! node src/skills/youtube-publish/run.js "$CH"; then
+              echo "::error::publish failed for channel $CH"
+              FAILED=$((FAILED + 1))
+            fi
           done
+
+          if [ "$FAILED" -gt 0 ]; then
+            echo "::error::$FAILED channel(s) failed to publish — see the errors above."
+            exit 1
+          fi
 
       # No topic-log write here: discover-topics is topic-log.json's single
       # writer now (one commit, before the matrix fans out). This job's
