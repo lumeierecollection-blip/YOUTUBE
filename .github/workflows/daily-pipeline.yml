@@ -379,6 +379,90 @@ jobs:
           pattern: renders-*
           merge-multiple: true
 
+      # src/utils/youtube-auth.js reads OAuth credentials from a local file,
+      # config/creds/<channel_id>.json — it does NOT read GitHub secrets
+      # directly. GitHub Actions can't dynamically index secrets by a
+      # runtime-constructed name (`secrets.CHANNEL_${id}_...` isn't valid),
+      # so every channel's 3 secrets must be named explicitly here, then
+      # bash indirect expansion below picks the right one per channel id.
+      # A channel with no secrets configured yet just gets skipped — publish
+      # falls through to its existing "API creds needed" warning, unchanged.
+      - name: Materialize per-channel OAuth credentials from secrets
+        env:
+          CH01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CH01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CH01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CH02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CH02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CH02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+          CH03_CLIENT_ID: ${{ secrets.CHANNEL_03_CLIENT_ID }}
+          CH03_CLIENT_SECRET: ${{ secrets.CHANNEL_03_CLIENT_SECRET }}
+          CH03_REFRESH_TOKEN: ${{ secrets.CHANNEL_03_REFRESH_TOKEN }}
+          CH04_CLIENT_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+          CH04_CLIENT_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+          CH04_REFRESH_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+          CH07_CLIENT_ID: ${{ secrets.CHANNEL_07_CLIENT_ID }}
+          CH07_CLIENT_SECRET: ${{ secrets.CHANNEL_07_CLIENT_SECRET }}
+          CH07_REFRESH_TOKEN: ${{ secrets.CHANNEL_07_REFRESH_TOKEN }}
+          CH09_CLIENT_ID: ${{ secrets.CHANNEL_09_CLIENT_ID }}
+          CH09_CLIENT_SECRET: ${{ secrets.CHANNEL_09_CLIENT_SECRET }}
+          CH09_REFRESH_TOKEN: ${{ secrets.CHANNEL_09_REFRESH_TOKEN }}
+          CH11_CLIENT_ID: ${{ secrets.CHANNEL_11_CLIENT_ID }}
+          CH11_CLIENT_SECRET: ${{ secrets.CHANNEL_11_CLIENT_SECRET }}
+          CH11_REFRESH_TOKEN: ${{ secrets.CHANNEL_11_REFRESH_TOKEN }}
+          CH17_CLIENT_ID: ${{ secrets.CHANNEL_17_CLIENT_ID }}
+          CH17_CLIENT_SECRET: ${{ secrets.CHANNEL_17_CLIENT_SECRET }}
+          CH17_REFRESH_TOKEN: ${{ secrets.CHANNEL_17_REFRESH_TOKEN }}
+          CH26_CLIENT_ID: ${{ secrets.CHANNEL_26_CLIENT_ID }}
+          CH26_CLIENT_SECRET: ${{ secrets.CHANNEL_26_CLIENT_SECRET }}
+          CH26_REFRESH_TOKEN: ${{ secrets.CHANNEL_26_REFRESH_TOKEN }}
+          CH30_CLIENT_ID: ${{ secrets.CHANNEL_30_CLIENT_ID }}
+          CH30_CLIENT_SECRET: ${{ secrets.CHANNEL_30_CLIENT_SECRET }}
+          CH30_REFRESH_TOKEN: ${{ secrets.CHANNEL_30_REFRESH_TOKEN }}
+          CH31_CLIENT_ID: ${{ secrets.CHANNEL_31_CLIENT_ID }}
+          CH31_CLIENT_SECRET: ${{ secrets.CHANNEL_31_CLIENT_SECRET }}
+          CH31_REFRESH_TOKEN: ${{ secrets.CHANNEL_31_REFRESH_TOKEN }}
+          CH35_CLIENT_ID: ${{ secrets.CHANNEL_35_CLIENT_ID }}
+          CH35_CLIENT_SECRET: ${{ secrets.CHANNEL_35_CLIENT_SECRET }}
+          CH35_REFRESH_TOKEN: ${{ secrets.CHANNEL_35_REFRESH_TOKEN }}
+          CH39_CLIENT_ID: ${{ secrets.CHANNEL_39_CLIENT_ID }}
+          CH39_CLIENT_SECRET: ${{ secrets.CHANNEL_39_CLIENT_SECRET }}
+          CH39_REFRESH_TOKEN: ${{ secrets.CHANNEL_39_REFRESH_TOKEN }}
+          CH44_CLIENT_ID: ${{ secrets.CHANNEL_44_CLIENT_ID }}
+          CH44_CLIENT_SECRET: ${{ secrets.CHANNEL_44_CLIENT_SECRET }}
+          CH44_REFRESH_TOKEN: ${{ secrets.CHANNEL_44_REFRESH_TOKEN }}
+          CH46_CLIENT_ID: ${{ secrets.CHANNEL_46_CLIENT_ID }}
+          CH46_CLIENT_SECRET: ${{ secrets.CHANNEL_46_CLIENT_SECRET }}
+          CH46_REFRESH_TOKEN: ${{ secrets.CHANNEL_46_REFRESH_TOKEN }}
+          CH47_CLIENT_ID: ${{ secrets.CHANNEL_47_CLIENT_ID }}
+          CH47_CLIENT_SECRET: ${{ secrets.CHANNEL_47_CLIENT_SECRET }}
+          CH47_REFRESH_TOKEN: ${{ secrets.CHANNEL_47_REFRESH_TOKEN }}
+          CH48_CLIENT_ID: ${{ secrets.CHANNEL_48_CLIENT_ID }}
+          CH48_CLIENT_SECRET: ${{ secrets.CHANNEL_48_CLIENT_SECRET }}
+          CH48_REFRESH_TOKEN: ${{ secrets.CHANNEL_48_REFRESH_TOKEN }}
+        run: |
+          mkdir -p config/creds
+          node -e "
+            const fs = require('fs');
+            const data = JSON.parse(fs.readFileSync('config/channels.json'));
+            const channels = data.channels || data;
+            let written = 0;
+            for (const c of channels) {
+              const p = String(c.id).padStart(2, '0');
+              const clientId = process.env[\`CH\${p}_CLIENT_ID\`];
+              const clientSecret = process.env[\`CH\${p}_CLIENT_SECRET\`];
+              const refreshToken = process.env[\`CH\${p}_REFRESH_TOKEN\`];
+              if (clientId && clientSecret && refreshToken) {
+                fs.writeFileSync(
+                  \`config/creds/\${c.channel_id}.json\`,
+                  JSON.stringify({ client_id: clientId, client_secret: clientSecret, refresh_token: refreshToken }, null, 2)
+                );
+                written++;
+              }
+            }
+            console.log(\`Materialized credentials for \${written}/\${channels.length} channel(s).\`);
+          "
+
       - name: Publish to YouTube
         run: |
           CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
