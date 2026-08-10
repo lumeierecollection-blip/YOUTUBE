@@ -41,6 +41,7 @@ text highlights.
   figures a chart or a big-number beat would show. Every entry needs `unit`
   and `source_url`. **Do not derive, estimate, round beyond what the source
   states, or convert units** — copy the number as reported.
+- A figure that appears in any `key_fact` must ALSO appear in `numbers[]` — including compound figures: a "6-3 ruling" is two entries (`value: 6` and `value: 3`, both `unit: "votes"`, same `source_url`), a "150-meter radius" is one entry (`value: 150`, `unit: "meters"`). The script gate can only chart values that appear in `numbers[]`, so a figure you omit silently caps what the video can show.
 - `named_entities[]` lists real people, places, organizations, or objects
   the script will name. This drives image sourcing downstream, so get
   names and spellings exactly right from the source.

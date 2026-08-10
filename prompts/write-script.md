@@ -15,3 +15,13 @@ archetype table and the `anchor_token` verbatim rule).
 Write the full script now: `channel_id`, `topic_slug`, `format`, `hook`,
 `sections[]`, and `sources_used`. Return `structured_output` matching the
 provided JSON Schema exactly — nothing outside it.
+
+## Before you finish
+
+- Every value in any beat's `data.series` exists exactly in the research's
+  `numbers[].value` — if it isn't there, it must not be charted.
+- Voiceover word count is inside the format range in the style contract.
+- For motion-graphics: primary archetypes 50% or more of beats, secondary
+  35% or less, excluded 0%.
+- `sources_used` has 3 or more URLs that actually appear in the research's
+  `key_facts`/`numbers`, and every one is used by something you wrote.

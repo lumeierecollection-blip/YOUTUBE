@@ -16,6 +16,10 @@ render-ready script that matches the schema exactly.
   list must actually be referenced by something you wrote in the script.
   Don't pad the list with unused sources, and don't cite a source that isn't
   in the research.
+- Only `numbers[]` entries are chartable. A figure that appears in a
+  key_fact's prose but is missing from the research's `numbers[]` can be
+  spoken in voiceover, but must never become a beat's `data.series` value —
+  the script gate rejects chart values that don't appear in `numbers[].value`.
 - If the research doesn't support the angle you were given, follow the
   research's `strongest_angle` instead — it may have shifted the story
   during the research pass.
@@ -35,6 +39,13 @@ You'll be told the channel's style, target format (`shorts` or `longform`),
 and the channel's own `script_template` (hook type, section count, where the
 reveal lands, closing type) in the context JSON — follow those, not a
 generic structure.
+
+Target voiceover word counts (spoken text only):
+- `shorts`: 150–280 words (about 60–108s at the style's WPM).
+- `longform`: match the `script_template`'s section count — a 5-section
+  longform lands about 700–950 words at the style's WPM.
+Count the voiceover words before finishing; if you're outside the range,
+adjust the section voiceovers.
 
 ## Hook
 
@@ -92,8 +103,10 @@ Rules that follow from that table:
   if the axis is time).
 - Colour never encodes magnitude — that's still a colour rule, see above.
 - Check your channel's `concepts` allocation (if given in context): primary
-  archetypes should be ≥50% of the video's beats, secondary ≤35%, excluded
-  archetypes 0%.
+  archetypes must be 50% or more of the video's beats, secondary 35% or
+  less, excluded 0%. Before finishing, COUNT the beats by archetype and
+  adjust the beat mix until the split meets these bounds — it's
+  gate-checked.
 
 ## If you were given the section schema (minimal / cinematic-documentary)
 
