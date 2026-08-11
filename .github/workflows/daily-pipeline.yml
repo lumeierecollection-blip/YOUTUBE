@@ -396,10 +396,18 @@ jobs:
         working-directory: src/skills/remotion-render
         run: npm ci
 
+      # upload-artifact@v4 strips the least common ancestor of multi-path
+      # uploads: the research job uploads data/research/<ch>/, data/tts/<ch>/
+      # and data/thumbnails/<ch>/, so the artifact root is "data" and the
+      # archive holds research/<ch>/..., tts/<ch>/..., thumbnails/<ch>/...
+      # Downloading to path: data (not .) restores the data/ prefix the render
+      # loop expects. With path: . the files landed at ./research/<ch>/, the
+      # loop only ever saw git-tracked scripts with no audio, and the run
+      # reported success with 0 renders rendered.
       - name: Download all research artifacts
         uses: actions/download-artifact@v4
         with:
-          path: .
+          path: data
           pattern: research-*
           merge-multiple: true
 
@@ -456,6 +464,10 @@ jobs:
           done
 
           echo "Rendered $RENDERED video(s), $FAILED failure(s)."
+          if [ "$RENDERED" -eq 0 ]; then
+            echo "::error::0 videos rendered - nothing for publish to upload. This is a pipeline bug, not a quiet success."
+            exit 1
+          fi
           if [ "$FAILED" -gt 0 ]; then
             echo "::error::$FAILED render(s) failed — see the errors above."
             exit 1
@@ -487,11 +499,28 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Same upload-artifact@v4 LCA rule, other direction: the render job
+      # uploads a SINGLE path (data/renders/), so the artifact root is
+      # data/renders/ and it holds 2/xxx.mp4 (channel dir at top level), not
+      # data/renders/2/xxx.mp4. Downloading to path: data/renders restores
+      # the data/renders/ prefix that youtube-publish/run.js reads.
       - name: Download all render artifacts
         uses: actions/download-artifact@v4
         with:
-          path: .
+          path: data/renders
           pattern: renders-*
+          merge-multiple: true
+
+      # Publish also needs the research artifacts: run.js reads SEO metadata
+      # from data/research/<ch>/*-seo.json and the thumbnail from
+      # data/thumbnails/<ch>/ - without them every upload silently falls back
+      # to default title/description and no thumbnail. Same path: data
+      # convention as the render job's download.
+      - name: Download all research artifacts (SEO + thumbnails)
+        uses: actions/download-artifact@v4
+        with:
+          path: data
+          pattern: research-*
           merge-multiple: true
 
       # src/utils/youtube-auth.js reads OAuth credentials from a local file,
