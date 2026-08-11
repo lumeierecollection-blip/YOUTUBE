@@ -320,7 +320,7 @@ async function processQueue() {
   let flipped = 0;
 
   for (const channel of channels) {
-    const queue = readQueue(channel.channel_id);
+    const queue = readQueue(String(channel.id)); // pipeline id ("2"), not channel_id ("ch-02") - uploads write under the CLI arg
     if (queue.length === 0) continue;
     let changed = false;
 
@@ -341,12 +341,12 @@ async function processQueue() {
         entry.published_at = new Date().toISOString();
         changed = true;
         flipped++;
-        console.log(`  ${channel.channel_id} ${entry.video_id} -> PUBLIC`);
+        console.log(`  ${String(channel.id)} ${entry.video_id} -> PUBLIC`);
       } catch (err) {
-        console.log(`  ${channel.channel_id} ${entry.video_id} FAILED: ${err.message}`);
+        console.log(`  ${String(channel.id)} ${entry.video_id} FAILED: ${err.message}`);
       }
     }
-    if (changed) writeQueue(channel.channel_id, queue);
+    if (changed) writeQueue(String(channel.id), queue);
   }
 
   if (flipped === 0) console.log("No due entries to publish.");
