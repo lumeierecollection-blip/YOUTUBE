@@ -712,6 +712,11 @@ jobs:
           else
             git commit -m "publish-queue: $(date -u +%F) [run ${{ github.run_id }}]"
             git fetch origin "${{ github.ref_name }}"
+            # Artifact downloads above restore tracked research/tts/thumbnail
+            # files to run-specific content, so the worktree is dirty; discard
+            # them so the rebase sees a clean tree. The queue file was already
+            # committed above and is unaffected.
+            git checkout -- . 2>/dev/null || true
             git rebase "origin/${{ github.ref_name }}"
             git push origin "${{ github.ref_name }}"
           fi
