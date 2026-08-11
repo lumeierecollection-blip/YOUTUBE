@@ -95,10 +95,15 @@ Rules that follow from that table:
   that section's `voiceover`.** This is what synchronizes the visual beat to
   the spoken word at render time — an anchor token that isn't in the
   voiceover breaks sync.
-- **A `PROGRESS` beat's `data.series` values must come from the research
-  file's `numbers[]` — never invented, estimated, or derived.** If the
-  research doesn't have a number for what you want to chart, don't chart it;
-  write a `STATEMENT` or `HERO_NUMBER` beat instead, or omit the beat.
+- **A beat's `data.series` values must come from the research file's
+  `numbers[]` — never invented, estimated, derived, or encoded.** Any beat
+  may carry a chart, but every point is a real researched value with its
+  real unit. Never encode a conceptual contrast as a binary series
+  (`[{label:"A", value:0},{label:"B", value:1}]` is an invented 0/1 flag —
+  the gate rejects it): a contrast between two things is a `CONTRAST` beat
+  with no chart, or a chart of two real researched values. If the research
+  doesn't have a number for what you want to chart, don't chart it; write a
+  `STATEMENT` or `HERO_NUMBER` beat instead, or omit the beat.
 - Maximum 5 `data.series` points per chart, sorted by value (chronological
   if the axis is time).
 - Colour never encodes magnitude — that's still a colour rule, see above.

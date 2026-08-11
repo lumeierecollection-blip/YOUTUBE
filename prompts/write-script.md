@@ -18,8 +18,10 @@ provided JSON Schema exactly — nothing outside it.
 
 ## Before you finish
 
-- Every value in any beat's `data.series` exists exactly in the research's
-  `numbers[].value` — if it isn't there, it must not be charted.
+- Every value in any beat's `data.series` is one of the research's real
+  `numbers[].value` entries (copied exactly, with its real unit) — never
+  invented, derived, or a binary 0/1 encoding of a contrast. If it isn't
+  in `numbers[]`, it must not be charted.
 - Voiceover word count is inside the format range in the style contract.
 - For motion-graphics: primary archetypes 50% or more of beats, secondary
   35% or less, excluded 0%.
