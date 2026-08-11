@@ -19,8 +19,14 @@ text highlights.
 
 - **At least 5 `key_facts`.**
 - **At least 3 DISTINCT source domains** across those facts (cnbc.com and
-  businessinsider.com is only two — you need a third). Search a second time
-  with a different query if your first search doesn't give you three.
+  businessinsider.com is only two — you need a third). The run FAILS its
+  research gate if your key_facts don't span three different hostnames, so
+  if your first search only returns sources from one or two domains — common
+  for niche topics where everything comes back from .gov sites — spend your
+  second search specifically on secondary coverage of the topic (law-firm
+  alerts, news reporting, industry/HR commentary) and base at least one
+  key_fact on a source from that third domain. Secondary sources are fine
+  for this purpose; say so via source_name.
 - Populate `numbers[]` whenever the sources state concrete figures; a
   motion-graphics script downstream can only chart values that appear here.
 
