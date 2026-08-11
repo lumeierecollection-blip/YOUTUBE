@@ -21,12 +21,16 @@ text highlights.
 - **At least 3 DISTINCT source domains** across those facts (cnbc.com and
   businessinsider.com is only two — you need a third). The run FAILS its
   research gate if your key_facts don't span three different hostnames, so
-  if your first search only returns sources from one or two domains — common
-  for niche topics where everything comes back from .gov sites — spend your
-  second search specifically on secondary coverage of the topic (law-firm
-  alerts, news reporting, industry/HR commentary) and base at least one
-  key_fact on a source from that third domain. Secondary sources are fine
-  for this purpose; say so via source_name.
+  DO NOT finalize your output until you have counted the distinct hostnames
+  across your key_facts and confirmed three. If your first search only
+  returns sources from one or two domains — common for niche topics where
+  everything comes back from .gov sites — run the second search specifically
+  for a different KIND of source (law-firm alerts, news reporting, legal
+  commentary, industry/HR guides, court-records mirrors) and BASE at least
+  one key_fact on a source from that third domain. A well-sourced fact
+  with confidence: medium on a third domain beats failing the gate. Never
+  finalize a response whose key_facts span fewer than three distinct
+  hostnames.
 - Populate `numbers[]` whenever the sources state concrete figures; a
   motion-graphics script downstream can only chart values that appear here.
 
