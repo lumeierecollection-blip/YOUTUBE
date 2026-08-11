@@ -266,7 +266,7 @@ jobs:
       - name: Gate — research quality
         run: node scripts/gate-research.js "${{ matrix.channel_id }}" "${{ matrix.slug }}"
 
-      - name: Stage C — script (one per today's format)
+      - name: Stage C — script (one per today's format, gate-feedback retry)
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
         run: |
@@ -280,26 +280,57 @@ jobs:
           fi
           for FORMAT in $FORMATS; do
             SCRIPT_SLUG="${SLUG}-${FORMAT}"
-            echo "=== SCRIPT: $CH — $SCRIPT_SLUG ==="
-            set +e
-            node scripts/build-script-context.js "$CH" "$SLUG" --format "$FORMAT" \
-              | node scripts/opencode-agent.js \
-                  --prompt-file prompts/write-script.md \
-                  --append-system-prompt-file prompts/style-contract.md \
-                  --schema-file "$SCHEMA" \
-                  --agent pipeline-script \
-                  --model "$OPENCODE_MODELS" \
-                  > /tmp/script-raw-$FORMAT.json 2> /tmp/script-err-$FORMAT.log
-            AGENT_EXIT=$?
-            set -e
-            if [ "$AGENT_EXIT" -ne 0 ]; then
-              echo "::error::opencode-agent.js exited with code $AGENT_EXIT for format $FORMAT"
-              echo "--- stdout (/tmp/script-raw-$FORMAT.json) ---"; cat /tmp/script-raw-$FORMAT.json 2>/dev/null || echo "(empty)"
-              echo "--- stderr ---"; cat /tmp/script-err-$FORMAT.log 2>/dev/null || echo "(empty)"
+            FEEDBACK=""
+            PASSED=0
+            # Up to 3 attempts: a script gate rejection (invented chart
+            # values, anchor_token not verbatim, ...) is fed back to the
+            # model so the retry fixes exactly those problems against the
+            # SAME frozen research. Observed failures (SCR-05 binary chart,
+            # SCR-03 anchor token) were one-off model mistakes that a plain
+            # re-run with the gate's own lines routinely fixes.
+            for ATTEMPT in 1 2 3; do
+              echo "=== SCRIPT: $CH — $SCRIPT_SLUG (attempt $ATTEMPT/3) ==="
+              PROMPT_FILE=prompts/write-script.md
+              if [ -n "$FEEDBACK" ]; then
+                cp prompts/write-script.md /tmp/write-script-feedback.md
+                printf '\n\n## Quality gate rejected your previous script\n\n%s\n\nRewrite the FULL script JSON now, fixing exactly the problems above. Keep everything the gate did not flag identical — same research grounding, same sources_used, same structure. Return only the JSON object.\n' "$FEEDBACK" >> /tmp/write-script-feedback.md
+                PROMPT_FILE=/tmp/write-script-feedback.md
+              fi
+              set +e
+              node scripts/build-script-context.js "$CH" "$SLUG" --format "$FORMAT" \
+                | node scripts/opencode-agent.js \
+                    --prompt-file "$PROMPT_FILE" \
+                    --append-system-prompt-file prompts/style-contract.md \
+                    --schema-file "$SCHEMA" \
+                    --agent pipeline-script \
+                    --model "$OPENCODE_MODELS" \
+                    > /tmp/script-raw-$FORMAT.json 2> /tmp/script-err-$FORMAT.log
+              AGENT_EXIT=$?
+              set -e
+              if [ "$AGENT_EXIT" -ne 0 ]; then
+                # Hard failure (quota/provider/model), not a gate rejection —
+                # retrying the same broken call is pointless.
+                echo "::error::opencode-agent.js exited with code $AGENT_EXIT for format $FORMAT"
+                echo "--- stdout (/tmp/script-raw-$FORMAT.json) ---"; cat /tmp/script-raw-$FORMAT.json 2>/dev/null || echo "(empty)"
+                echo "--- stderr ---"; cat /tmp/script-err-$FORMAT.log 2>/dev/null || echo "(empty)"
+                exit 1
+              fi
+              jq '.structured_output' /tmp/script-raw-$FORMAT.json \
+                > "data/research/$CH/${SCRIPT_SLUG}-script.json"
+              # gate-script.js writes warnings+blockers to stderr and exits
+              # 1 on blockers — capture both streams for the feedback.
+              if node scripts/gate-script.js "${{ matrix.channel_id }}" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then
+                PASSED=1
+                break
+              fi
+              echo "::warning::script gate rejected attempt $ATTEMPT/3 for $SCRIPT_SLUG — retrying with gate feedback"
+              cat /tmp/gate-out-$FORMAT.log
+              FEEDBACK=$(grep -E '^  - ' /tmp/gate-out-$FORMAT.log || true)
+            done
+            if [ "$PASSED" -ne 1 ]; then
+              echo "::error::script gate still failing for $SCRIPT_SLUG after 3 attempts"
               exit 1
             fi
-            jq '.structured_output' /tmp/script-raw-$FORMAT.json \
-              > "data/research/$CH/${SCRIPT_SLUG}-script.json"
           done
 
       - name: Gate — script quality (one per today's format)
