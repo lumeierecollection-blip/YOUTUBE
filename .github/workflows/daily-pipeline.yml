@@ -513,6 +513,31 @@ jobs:
             exit 1
           fi
 
+      - name: Review renders (frames + pixel audit)
+        if: always()
+        run: |
+          REVIEW_DIR="data/audit/render-review/${{ github.run_id }}"
+          MP4S=$(find data/renders -name "*.mp4" | sort)
+          if [ -z "$MP4S" ]; then
+            echo "::warning::no mp4s under data/renders/ - nothing to review"
+            exit 0
+          fi
+          for MP4 in $MP4S; do
+            SUB="$REVIEW_DIR/$(basename "$MP4" .mp4)"
+            mkdir -p "$SUB"
+            echo "== Reviewing: $MP4"
+            node scripts/video-review.js "$MP4" --frames 10 --out "$SUB" || exit 1
+            node scripts/frame-audit.js "$SUB" || exit 1
+          done
+
+      - name: Upload review frames
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-frames-${{ github.run_id }}
+          path: data/audit/render-review/
+          retention-days: 7
+
       - name: Upload render artifacts
         if: always()
         uses: actions/upload-artifact@v4
