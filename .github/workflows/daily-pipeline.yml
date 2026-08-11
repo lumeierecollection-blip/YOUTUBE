@@ -254,6 +254,15 @@ jobs:
           fi
           jq '.structured_output' /tmp/research-raw.json > "data/research/$CH/$SLUG.json"
 
+          # Keep the raw agent output (schema + websearch-call telemetry)
+          # next to the artifact: gate-research.js reads .agent-raw.json to
+          # say HOW MANY searches a failed run actually made, which is the
+          # difference between "the model searched twice and still found 2
+          # domains" and "the model stopped after one search". The dotfile is
+          # invisible to every downstream consumer (script/TTS/render globs
+          # only match *-script.json).
+          cp /tmp/research-raw.json "data/research/$CH/.agent-raw.json"
+
       - name: Gate — research quality
         run: node scripts/gate-research.js "${{ matrix.channel_id }}" "${{ matrix.slug }}"
 

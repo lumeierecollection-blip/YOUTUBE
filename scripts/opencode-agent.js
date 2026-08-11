@@ -76,6 +76,7 @@ function readStdin() {
 function extractTextAndCost(stdout) {
   let text = "";
   let cost = 0;
+  const searches = [];
   const lines = stdout.split("\n").filter((l) => l.trim());
   for (const line of lines) {
     let evt;
@@ -102,13 +103,28 @@ function extractTextAndCost(stdout) {
     if (evt?.part?.type === "text" && typeof evt.part.text === "string") {
       text += evt.part.text;
     }
+    // Tool-call telemetry. `opencode run --format json` emits one
+    // {"type":"tool_use","part":{...}} event per completed/errored tool call
+    // (opencode cli/cmd/run.ts: emit("tool_use", { part })). Stage B keeps
+    // failing SCR-02 with exactly 2 source domains, and whether the model is
+    // making its second allowed search is invisible in the structured output
+    // alone - so count and surface the websearch calls here. Defensive on
+    // shape like the rest of this function: if the event shape differs, this
+    // records nothing rather than failing.
+    if (evt?.type === "tool_use" && evt.part?.tool === "websearch") {
+      const input = evt.part?.state?.input;
+      searches.push({
+        status: evt.part?.state?.status || "unknown",
+        query: typeof input?.query === "string" ? input.query : (typeof input === "string" ? input.slice(0, 200) : null),
+      });
+    }
   }
   // No usable fallback here on purpose: a previous attempt at one globbed
   // "first { to last }" across the entire event stream, which just returns
   // the whole transcript and can never parse. If the text parts above
   // matched nothing, the caller's error path (which dumps real output) is
   // more useful than a guess.
-  return { text, cost };
+  return { text, cost, searches };
 }
 
 function sleep(ms) {
@@ -222,7 +238,7 @@ function runOnce({ model, agent, promptText }) {
     return { ok: false, error: `opencode exited ${result.status}: ${detail || "(no output on stdout or stderr)"}` };
   }
 
-  const { text, cost } = extractTextAndCost(result.stdout);
+  const { text, cost, searches } = extractTextAndCost(result.stdout);
   if (!text) {
     return { ok: false, error: `no text content extracted from opencode output (first 500 chars): ${result.stdout.slice(0, 500)}` };
   }
@@ -230,7 +246,7 @@ function runOnce({ model, agent, promptText }) {
   if (!parsed) {
     return { ok: false, error: `could not extract valid JSON from model output: ${text.slice(0, 500)}` };
   }
-  return { ok: true, data: parsed, cost };
+  return { ok: true, data: parsed, cost, searches };
 }
 
 async function main() {
@@ -285,7 +301,7 @@ async function main() {
     : "";
 
   const schemaInstruction = `\n\nTOKEN BUDGET — this account is on a tight per-minute quota, so keep tool use lean, but not so lean that you can't meet the sourcing requirements above:
-- Call websearch AT MOST ${searchBudget} time(s) IN TOTAL for this entire request. Use extra calls only when you still lack DISTINCT source domains.
+- Call websearch AT MOST ${searchBudget} time(s) IN TOTAL for this entire request - and USE them: keep searching while any sourcing requirement in the prompt above is unmet. If the prompt requires at least 3 DISTINCT source domains, two domains means you are NOT done; finalizing early fails the run gate. Do not finalize until every stated requirement is met or the budget is exhausted.
 - Every websearch call MUST include numResults: 6 and contextMaxCharacters: 1200.
 - type must be "fast". Never use "deep". Never set livecrawl to "preferred" — omit livecrawl entirely (default "fallback" only).
 - Do not fetch full web pages or read local files — work only from websearch results (or the INPUT section itself, for stages with no web access at all). Some of these tools are denied at the permission level for this run, not just discouraged, so attempting them wastes a turn and fails.
@@ -336,6 +352,8 @@ Do your research and reasoning silently — do not quote, paste, or summarize se
         structured_output: result.data,
         total_cost_usd: result.cost || 0,
         model_used: model,
+        websearch_calls: (result.searches || []).length,
+        search_queries: (result.searches || []).map((s) => s.query).filter(Boolean),
       }));
       return;
     }

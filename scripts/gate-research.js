@@ -42,6 +42,13 @@ function domainOf(u) {
   }
 }
 
+// Read a JSON file, tolerating a UTF-8 BOM if one snuck in (PowerShell's
+// Out-File adds one; jq and bash redirects on the runner do not).
+function readJsonBomSafe(p) {
+  const s = readFileSync(p, "utf-8");
+  return JSON.parse(s.charCodeAt(0) === 0xFEFF ? s.slice(1) : s);
+}
+
 function main() {
   const [channelId, slug] = process.argv.slice(2);
   if (!channelId || !slug) {
@@ -50,7 +57,25 @@ function main() {
   }
 
   const path = join(ROOT, "data", "research", String(channelId), `${slug}.json`);
-  const research = JSON.parse(readFileSync(path, "utf-8"));
+  const research = readJsonBomSafe(path);
+
+  // Search telemetry from the raw agent output (the workflow copies
+  // /tmp/research-raw.json to .agent-raw.json alongside the artifact).
+  // Stage B's SCR-02 failures have been exactly-2-domain with the search
+  // count invisible in the structured output, so this distinguishes "the
+  // model searched twice and still found 2 domains" from "the model stopped
+  // after one search" - and tells the next fix which end to attack.
+  let searchTelemetry = "";
+  try {
+    const raw = readJsonBomSafe(join(ROOT, "data", "research", String(channelId), ".agent-raw.json"));
+    const calls = raw.websearch_calls;
+    const queries = Array.isArray(raw.search_queries) ? raw.search_queries : [];
+    if (typeof calls === "number") {
+      searchTelemetry = ` (websearch calls: ${calls}${queries.length ? `, queries: ${queries.join(" | ")}` : ""})`;
+    }
+  } catch {
+    // No raw output preserved for this run - failure message stands alone.
+  }
 
   const failures = [];
 
@@ -67,7 +92,7 @@ function main() {
   }
   const domains = new Set((research.key_facts || []).map((f) => domainOf(f.source_url)).filter(Boolean));
   if (domains.size < 3) {
-    failures.push(`SCR-02: only ${domains.size} distinct source domain(s) (need >=3): ${[...domains].join(", ")}`);
+    failures.push(`SCR-02: only ${domains.size} distinct source domain(s) (need >=3): ${[...domains].join(", ")}${searchTelemetry}`);
   }
 
   if (failures.length > 0) {
