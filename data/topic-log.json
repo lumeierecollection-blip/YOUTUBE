@@ -92,9 +92,14 @@
           "topic": "Can Your Landlord Evict You for Calling the Police?",
           "slug": "eviction-protection-calling-police-vawa",
           "reserved_at": "2026-08-11T15:41:34.719Z"
+        },
+        {
+          "topic": "Rear Wristlocks and Excessive Force: The Zorn v. Linton Ruling",
+          "slug": "zorn-linton-rear-wristlock-excessive-force",
+          "reserved_at": "2026-08-11T16:11:58.919Z"
         }
       ],
-      "last_generated": "2026-08-11T15:41:34.719Z"
+      "last_generated": "2026-08-11T16:11:58.919Z"
     },
     "3": {
       "channel_name": "AI Tested",
