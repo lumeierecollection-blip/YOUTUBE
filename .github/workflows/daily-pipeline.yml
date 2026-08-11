@@ -497,6 +497,11 @@ jobs:
     needs: render
     if: ${{ github.event.inputs.dry_run != 'true' }}
     runs-on: ubuntu-latest
+    # contents: write so the publish queue (data/publish-queue/) can be
+    # committed back — the queue must persist across runs for process-queue
+    # to flip videos public on later cron cycles.
+    permissions:
+      contents: write
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
@@ -650,6 +655,34 @@ jobs:
           if [ "$FAILED" -gt 0 ]; then
             echo "::error::$FAILED channel(s) failed to publish — see the errors above."
             exit 1
+          fi
+
+      # Flip any publish-queue entries past their go_public_at to public.
+      # Without this step nothing ever calls process-queue, so every video
+      # would stay private forever. Credentials are already materialized
+      # above; process-queue is best-effort per entry (a failed flip is
+      # logged, not fatal).
+      - name: Process publish queue
+        run: node src/skills/youtube-publish/run.js process-queue
+
+      # The queue file must survive between runs: data/run-logs/ is
+      # gitignored and the runner is ephemeral, so the queue lives in
+      # git-tracked data/publish-queue/ and is committed back here. This
+      # job's checkout is pinned to the triggering commit, which predates
+      # discover-topics' mid-run commit — fetch + rebase before pushing
+      # avoids a stale overwrite or rejected push.
+      - name: Commit publish queue
+        run: |
+          git config user.name "lumeierecollection-blip"
+          git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          git add data/publish-queue
+          if git diff --cached --quiet; then
+            echo "Publish queue unchanged - nothing to commit."
+          else
+            git commit -m "publish-queue: $(date -u +%F) [run ${{ github.run_id }}]"
+            git fetch origin "${{ github.ref_name }}"
+            git rebase "origin/${{ github.ref_name }}"
+            git push origin "${{ github.ref_name }}"
           fi
 
       # No topic-log write here: discover-topics is topic-log.json's single

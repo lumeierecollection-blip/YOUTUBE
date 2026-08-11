@@ -43,17 +43,52 @@ function loadChannel(channelId) {
   return channel;
 }
 
-function loadSeoMetadata(channelId, topicHint) {
+function topicSlugFromVideo(videoBasename) {
+  // Video files are named <scriptSlug>-<format>-<YYYY-MM-DD>.mp4
+  // (render.js: slug = script basename minus "-script"; output =
+  // `${slug}-${format}-${timestamp}`). Strip the trailing -<format>-<date>
+  // to recover the script slug. Handles both new-pipeline names
+  // (…-shorts-shorts-2026-08-11) and old ones (…-shorts-2026-08-11).
+  const m = videoBasename.match(/-(shorts|longform)-\d{4}-\d{2}-\d{2}$/);
+  return m ? videoBasename.slice(0, m.index) : videoBasename;
+}
+
+function loadSeoMetadata(channelId, scriptSlug) {
   const researchDir = join(ROOT, "data", "research", channelId);
   if (!existsSync(researchDir)) return null;
   const files = readdirSync(researchDir)
     .filter((f) => f.endsWith("-seo.json"))
     .sort();
   if (files.length === 0) return null;
-  if (topicHint) {
-    const slug = topicHint.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-    const match = files.find((f) => f === `${slug}-seo.json`);
-    if (match) return JSON.parse(readFileSync(join(researchDir, match), "utf-8"));
+  if (scriptSlug) {
+    // SEO files are named <topic_slug>-seo.json, and the script carries the
+    // authoritative topic_slug. Older runs' script filenames don't follow
+    // the <topic_slug>-<format> convention, so route through the script
+    // file rather than guessing from the video basename.
+    const slugs = [scriptSlug];
+    const scriptPath = join(researchDir, `${scriptSlug}-script.json`);
+    if (existsSync(scriptPath)) {
+      try {
+        const script = JSON.parse(readFileSync(scriptPath, "utf-8"));
+        // New pipeline: script carries the authoritative topic_slug
+        // (landlord-security-deposit-rights-longform-script.json ->
+        // topic_slug "landlord-security-deposit-rights"). Older pipeline
+        // scripts leave topic_slug empty but carry a human `topic` title
+        // whose slugified form matches the SEO filename.
+        if (script.topic_slug) slugs.push(script.topic_slug);
+        if (script.topic) {
+          slugs.push(String(script.topic).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""));
+        }
+      } catch { /* unreadable script: fall through with scriptSlug only */ }
+    }
+    for (const slug of slugs) {
+      const match = files.find((f) => f === `${slug}-seo.json`);
+      if (match) return JSON.parse(readFileSync(join(researchDir, match), "utf-8"));
+    }
+    // No arbitrary alphabetical fallback: attaching another topic's SEO
+    // metadata to this video would put wrong title/description/tags on a
+    // real upload. Callers log a warning and use channel defaults instead.
+    return null;
   }
   return JSON.parse(readFileSync(join(researchDir, files[files.length - 1]), "utf-8"));
 }
@@ -74,21 +109,31 @@ function findVideo(channelId, explicit) {
   return join(rendersDir, newest);
 }
 
-function findThumbnail(channelId, topicHint) {
+function findThumbnail(channelId, scriptSlug) {
   const thumbDir = join(ROOT, "data", "thumbnails", channelId);
   if (!existsSync(thumbDir)) return null;
   const files = readdirSync(thumbDir).filter((f) => THUMB_EXTENSIONS.includes(extname(f).toLowerCase()));
   if (files.length === 0) return null;
-  if (topicHint) {
-    const slug = topicHint.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-    const match = files.find((f) => f.startsWith(slug));
+  if (scriptSlug) {
+    // Per-video thumbnails are named <scriptSlug>-thumb.png (e.g.
+    // warrantless-home-entry-emergency-aid-ruling-shorts-thumb.png).
+    const match = files.find((f) => f === `${scriptSlug}-thumb.png`);
     if (match) return join(thumbDir, match);
   }
-  return join(thumbDir, files[files.length - 1]);
+  // Fall back to the channel's generic branded thumbnail
+  // (<channel_id>-thumb.png) — never another video's thumbnail.
+  const generic = files.find((f) => f === `${channelId}-thumb.png`);
+  if (generic) return join(thumbDir, generic);
+  return null;
 }
 
 function queuePath(channelId) {
-  return join(ROOT, "data", "run-logs", channelId, "publish-queue.json");
+  // The queue must survive between runs and across runners: the daily
+  // workflow's process-queue step reads it on later runs to flip due
+  // videos public. data/run-logs/ is gitignored and lives only on the
+  // ephemeral runner, so the queue lives in git-tracked data/publish-queue/
+  // (the publish job commits it back after each run).
+  return join(ROOT, "data", "publish-queue", channelId, "publish-queue.json");
 }
 
 function readQueue(channelId) {
@@ -193,8 +238,11 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
   const creds = loadCredentials(channel);
   const videoPath = findVideo(channelId, explicitVideo);
   const topicHint = basename(videoPath, extname(videoPath));
-  const seo = loadSeoMetadata(channelId, topicHint);
-  const thumb = findThumbnail(channelId, topicHint);
+  const scriptSlug = topicSlugFromVideo(topicHint);
+  const seo = loadSeoMetadata(channelId, scriptSlug);
+  const thumb = findThumbnail(channelId, scriptSlug);
+  if (!seo) console.log(`  WARNING: no SEO metadata for "${scriptSlug}" - using fallback title/description.`);
+  if (!thumb) console.log(`  WARNING: no thumbnail for "${scriptSlug}" - YouTube will pick a frame.`);
 
   // NICHE-AUDIT.md §3.3 — Medicare Navigator's condition for existing at
   // all is human review before every single upload. Enforced as a file a
@@ -220,7 +268,7 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
   const token = await getAccessToken(channel);
   console.log(`  OAuth: access token OK`);
 
-  const metadata = await buildMetadata(channel, videoPath, seo, topicHint);
+  const metadata = await buildMetadata(channel, videoPath, seo, scriptSlug);
   console.log(`  Title: ${metadata.snippet.title}`);
   console.log(`  Tags: ${metadata.snippet.tags.length} | Privacy: private`);
 
