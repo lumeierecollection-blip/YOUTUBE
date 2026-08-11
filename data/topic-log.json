@@ -107,9 +107,14 @@
           "topic": "NYC's FARE Act: Is Your Broker's Fee Now Illegal?",
           "slug": "nyc-fare-act-illegal-broker-fees",
           "reserved_at": "2026-08-11T17:30:48.306Z"
+        },
+        {
+          "topic": "Illinois' New Civil Rights Safeguard Act: What Workers Need to Know",
+          "slug": "illinois-civil-rights-safeguard-act-employment",
+          "reserved_at": "2026-08-11T17:46:16.315Z"
         }
       ],
-      "last_generated": "2026-08-11T17:30:48.306Z"
+      "last_generated": "2026-08-11T17:46:16.315Z"
     },
     "3": {
       "channel_name": "AI Tested",
