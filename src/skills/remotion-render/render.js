@@ -307,11 +307,16 @@ async function renderVideo(componentId, outputPath, frames, props) {
     outputLocation: outputPath,
     ...browserOpts,
     // §5.6 — explicit encoder settings: remotion.config.js is inert on the
-    // SSR path, so every quality option must be passed here.
+    // SSR path, so every quality option must be passed here. gl: "swangle"
+    // (--use-gl=angle --use-angle=swiftshader) is the software WebGL2
+    // backend Remotion docs prescribe for GPU-less machines - GitHub
+    // Actions runners have no GPU, and plain "angle" (hardware) fails there
+    // with "Failed to acquire WebGL2 context" on canvas effects, even
+    // though it works on local dev machines with a real GPU.
     imageFormat: "png",                 // lossless intermediates
     crf: 16,                            // below the h264 default
     pixelFormat: "yuv420p",             // required for wide playback
-    chromiumOptions: { gl: "angle" },   // NOT via the config file
+    chromiumOptions: { gl: "swangle" }, // software WebGL2 - NOT via the config file
     concurrency: 2,
     // Cold-start font fetch (21 families / 42 woff2 over the local static
     // server) can exceed the 28s default delayRender timeout.
