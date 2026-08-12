@@ -187,16 +187,7 @@
         },
         {
           "frame": 66,
-          "text": "13,600",
-          "predicted": "13,600",
-          "x": 82.890625,
-          "y": 556,
-          "w": 770.21875,
-          "h": 220,
-          "ow": 770,
-          "oh": 220,
-          "reserved": 776,
-          "reserveFits": true
+          "error": "Cannot read properties of undefined (reading '_currentValue')"
         }
       ],
       "result": {
@@ -275,11 +266,6 @@
           },
           {
             "frame": 60,
-            "str": "13,600",
-            "reserved": 776
-          },
-          {
-            "frame": 66,
             "str": "13,600",
             "reserved": 776
           }
@@ -472,16 +458,7 @@
         },
         {
           "frame": 66,
-          "text": "1,986",
-          "predicted": "1,986",
-          "x": 154,
-          "y": 556,
-          "w": 628,
-          "h": 220,
-          "ow": 628,
-          "oh": 220,
-          "reserved": 632,
-          "reserveFits": true
+          "error": "Cannot read properties of undefined (reading '_currentValue')"
         }
       ],
       "result": {
@@ -560,11 +537,6 @@
           },
           {
             "frame": 60,
-            "str": "1,986",
-            "reserved": 632
-          },
-          {
-            "frame": 66,
             "str": "1,986",
             "reserved": 632
           }
@@ -743,16 +715,7 @@
         },
         {
           "frame": 66,
-          "text": "2,000",
-          "predicted": "2,000",
-          "x": 145.1484375,
-          "y": 556,
-          "w": 645.703125,
-          "h": 220,
-          "ow": 646,
-          "oh": 220,
-          "reserved": 648,
-          "reserveFits": true
+          "error": "Cannot read properties of undefined (reading '_currentValue')"
         }
       ],
       "result": {
@@ -826,11 +789,6 @@
           },
           {
             "frame": 60,
-            "str": "2,000",
-            "reserved": 648
-          },
-          {
-            "frame": 66,
             "str": "2,000",
             "reserved": 648
           }
@@ -1023,16 +981,7 @@
         },
         {
           "frame": 66,
-          "text": "800",
-          "predicted": "800",
-          "x": 243.484375,
-          "y": 556,
-          "w": 449.03125,
-          "h": 220,
-          "ow": 449,
-          "oh": 220,
-          "reserved": 456,
-          "reserveFits": true
+          "error": "Cannot read properties of undefined (reading '_currentValue')"
         }
       ],
       "result": {
@@ -1111,11 +1060,6 @@
           },
           {
             "frame": 60,
-            "str": "800",
-            "reserved": 456
-          },
-          {
-            "frame": 66,
             "str": "800",
             "reserved": 456
           }

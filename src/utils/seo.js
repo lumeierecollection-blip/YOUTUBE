@@ -11,6 +11,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { narrationSections } from "./script-narration.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -22,6 +23,27 @@ const MIN_DESCRIPTION_WORDS = 200;
 const MAX_HASHTAGS = 5;
 const MAX_TAGS = 20;
 
+// discover-topics (schemas/topics.json) produces full natural-language
+// titles ("What Your Landlord Can Legally Keep From Your Security
+// Deposit"), not short keywords — these are filtered out of tags/hashtags
+// so real topics don't degrade into tags like "what"/"your"/"from" or a
+// hashtag like "#whatyour".
+const STOPWORDS = new Set([
+  "the", "a", "an", "and", "or", "but", "for", "of", "to", "in", "on", "with",
+  "your", "you", "how", "why", "what", "who", "when", "where", "do", "does",
+  "is", "are", "was", "were", "it", "its", "this", "that", "these", "those",
+  "vs", "versus", "really", "actually", "so", "their", "they", "we", "our",
+  "can", "will", "from", "about", "into", "than", "then",
+]);
+
+function significantWords(topic) {
+  return topic
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .split(/\s+/)
+    .filter((w) => w.length > 2 && !STOPWORDS.has(w));
+}
+
 /**
  * Generate a SEO-optimized title.
  * Rules: primary keyword in first 5 words, under 60 chars, curiosity gap.
@@ -31,6 +53,17 @@ function generateTitle(topic, channel) {
   const hookType = channel.script_template?.hook_type || "curiosity-gap";
   // Avoid "The The X ..." when the topic itself already starts with "The".
   const topicNoLeadingThe = topic.replace(/^the\s+/i, "");
+
+  // discover-topics already hands us a full, click-worthy title (see
+  // schemas/topics.json / prompts/discover-topics.md) — wrapping it in a
+  // curiosity-gap template on top only inflates it past the 60-char limit.
+  // Use it directly once it's long enough to already read as a title.
+  if (topic.trim().length > 40) {
+    const t = topic.trim();
+    if (t.length <= MAX_TITLE_LENGTH) return t;
+    const truncated = t.slice(0, MAX_TITLE_LENGTH - 1).replace(/\s+\S*$/, "");
+    return `${truncated}…`;
+  }
 
   // Build title patterns based on hook type
   const patterns = {
@@ -153,39 +186,69 @@ function buildKeywordParagraph(topic, channel) {
 }
 
 /**
- * Generate chapter timestamps (estimated from script sections).
+ * Generate chapter timestamps from a script's real sections.
+ *
+ * LONGFORM-SPEC.md Rule 1.5: "chapter titles come from the script's section
+ * headings — never auto-summarised." There is deliberately no fallback that
+ * fabricates generic chapters ("Introduction", "Deep Dive", ...) when
+ * sections aren't available — that was a silent fake (a real video's
+ * uploaded chapter list, invented rather than derived from what the video
+ * actually contains). Callers without real script sections should not call
+ * this yet — generate chapters after Stage C, not before.
+ *
+ * @param sections Real script sections (schema.mg.json / schema.section.json
+ *   shape) — each needs `id` (used as the chapter title, kebab-case ->
+ *   Title Case) and `voiceover` (used to weight each chapter's share of
+ *   totalDurationSeconds proportionally to its actual word count, since
+ *   sections are rarely equal length).
+ * @param totalDurationSeconds Real video duration (from the rendered
+ *   voiceover's measured length) — not a guess.
  */
-function generateChapters(sections, totalDurationSeconds = 600) {
+function generateChapters(sections, totalDurationSeconds) {
   if (!sections || sections.length === 0) {
-    // Default chapters for a 10-minute video
-    return [
-      { timestamp: "0:00", title: "Introduction" },
-      { timestamp: "0:30", title: "Context & Background" },
-      { timestamp: "2:30", title: "Deep Dive" },
-      { timestamp: "5:00", title: "Key Findings" },
-      { timestamp: "7:30", title: "Conclusion & Takeaways" },
-    ];
+    throw new Error(
+      "generateChapters requires real script sections — no fallback chapters are generated. " +
+        "Call this after Stage C has produced a script, passing its sections."
+    );
   }
+  if (!totalDurationSeconds || totalDurationSeconds <= 0) {
+    throw new Error("generateChapters requires a real totalDurationSeconds (from the measured voiceover length).");
+  }
+
+  const MIN_CHAPTER_SECONDS = 10; // LONGFORM-SPEC.md LF-10
+
+  const wordCounts = sections.map((s) => String(s.voiceover || "").split(/\s+/).filter(Boolean).length || 1);
+  const totalWords = wordCounts.reduce((a, b) => a + b, 0);
 
   const chapters = [];
   let currentTime = 0;
-  const timePerSection = totalDurationSeconds / sections.length;
-
   for (let i = 0; i < sections.length; i++) {
     const mins = Math.floor(currentTime / 60);
-    const secs = currentTime % 60;
+    const secs = Math.floor(currentTime % 60);
     const timestamp = `${mins}:${secs.toString().padStart(2, "0")}`;
 
-    let title = sections[i];
-    // Clean up section title
-    if (title.startsWith("##")) title = title.replace(/^#+\s*/, "");
-    if (title.length > 60) title = title.substring(0, 57) + "...";
+    const title = (sections[i].id || `section-${i + 1}`)
+      .replace(/[-_]+/g, " ")
+      .replace(/\b\w/g, (c) => c.toUpperCase());
 
     chapters.push({ timestamp, title });
-    currentTime += Math.round(timePerSection);
+    const share = wordCounts[i] / totalWords;
+    currentTime += share * totalDurationSeconds;
   }
 
-  return chapters;
+  // LF-10: merge any chapter shorter than the minimum into the previous one
+  // rather than uploading a chapter list YouTube would reject/ignore.
+  const merged = [chapters[0]];
+  for (let i = 1; i < chapters.length; i++) {
+    const [prevM, prevS] = merged[merged.length - 1].timestamp.split(":").map(Number);
+    const [curM, curS] = chapters[i].timestamp.split(":").map(Number);
+    const gap = (curM * 60 + curS) - (prevM * 60 + prevS);
+    if (gap >= MIN_CHAPTER_SECONDS) {
+      merged.push(chapters[i]);
+    }
+  }
+
+  return merged;
 }
 
 /**
@@ -193,12 +256,7 @@ function generateChapters(sections, totalDurationSeconds = 600) {
  */
 function generateHashtags(topic, channel) {
   const niche = channel.niche || "";
-  const topicSlug = topic
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, "")
-    .split(/\s+/)
-    .slice(0, 2)
-    .join("");
+  const topicSlug = significantWords(topic).slice(0, 2).join("");
 
   const nicheSlug = niche
     .toLowerCase()
@@ -226,17 +284,14 @@ function generateTags(topic, channel) {
   // Add channel's base tags
   (channel.tags || []).forEach((t) => tags.add(t.toLowerCase()));
 
-  // Add topic-derived tags
-  const topicWords = topic
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, "")
-    .split(/\s+/)
-    .filter((w) => w.length > 3);
+  // Add topic-derived tags (stopwords stripped so a full-sentence topic
+  // doesn't turn into tags like "what"/"your"/"from").
+  const topicWords = significantWords(topic);
   topicWords.forEach((w) => tags.add(w));
 
   // Add compound tags
   if (topicWords.length >= 2) {
-    tags.add(topicWords.join(" "));
+    tags.add(topicWords.slice(0, 4).join(" "));
     tags.add(`${topicWords[0]} ${topicWords[1]} explained`);
   }
 
@@ -260,8 +315,11 @@ function generateTags(topic, channel) {
 
 /**
  * Full SEO metadata generation.
+ *
+ * `sections` and `totalDuration` are required, not optional — see
+ * generateChapters()'s header note on why there's no fallback.
  */
-function generateSEO(topic, channel, sections = [], totalDuration = 600) {
+function generateSEO(topic, channel, sections, totalDuration) {
   const title = generateTitle(topic, channel);
   const chapters = generateChapters(sections, totalDuration);
   const description = generateDescription(topic, channel, chapters);
@@ -294,16 +352,22 @@ function generateSEO(topic, channel, sections = [], totalDuration = 600) {
   };
 }
 
+// render.js's WPM targets by style — reused here to estimate duration from
+// word count when the real voiceover audio hasn't been measured yet.
+const WPM_TARGET = { "cinematic-documentary": 135, "motion-graphics": 155, minimal: 165 };
+
 /**
  * CLI entry point.
  */
 function main() {
   const channelId = process.argv[2];
   const topic = process.argv[3];
+  const scriptPath = process.argv[4];
 
-  if (!channelId || !topic) {
-    console.error("Usage: node seo.js <channel-id> <topic>");
-    console.error('Example: node seo.js ch-01 "Bioluminescent Cave Creatures"');
+  if (!channelId || !topic || !scriptPath) {
+    console.error("Usage: node seo.js <channel-id> <topic> <script-path>");
+    console.error('Example: node seo.js ch-01 "Bioluminescent Cave Creatures" data/research/1/movile-cave-longform-script.json');
+    console.error("A script path is required — chapters are derived from the script's real sections, never fabricated.");
     process.exit(1);
   }
 
@@ -318,8 +382,16 @@ function main() {
     process.exit(1);
   }
 
+  const script = JSON.parse(readFileSync(join(ROOT, ...scriptPath.split(/[\/\\]/)), "utf-8"));
+  // Fold the hook in, same as TTS/render do — chapters must line up with the
+  // real video, which opens with the hook. See src/utils/script-narration.js.
+  const sections = narrationSections(script);
+  const totalWords = sections.reduce((sum, s) => sum + String(s.voiceover || "").split(/\s+/).filter(Boolean).length, 0);
+  const wpm = WPM_TARGET[channel.style] || 150;
+  const totalDuration = (totalWords / wpm) * 60;
+
   // Generate SEO
-  const seo = generateSEO(topic, channel);
+  const seo = generateSEO(topic, channel, sections, totalDuration);
 
   // Save
   const outDir = join(ROOT, "data", "research", channelId);

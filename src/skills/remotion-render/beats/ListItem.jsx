@@ -1,5 +1,6 @@
 import React from "react";
-import { Audio, Easing, interpolate, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { Easing, interpolate, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { Audio } from "@remotion/media";
 import { D, MG_TYPE } from "../compositions/beats.js";
 import { Chip } from "../primitives/Chip.jsx";
 import { mixColor } from "../compositions/mg-style.js";

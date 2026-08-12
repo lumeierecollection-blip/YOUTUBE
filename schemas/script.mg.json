@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Stage C output for motion-graphics-style channels. Matches the renderer contract in MOTION-GRAPHICS-MANUAL §8 / DETAIL-REFERENCE §C1-C4. NOTE: as of this rebuild, src/skills/remotion-render/compositions/mg-package.js still derives its own beat/archetype classification from the SRT + prose at render time — it does not yet read sections[].beats from this file. This schema is the target contract (and is what the SCR-03..SCR-08 gates below validate); wiring mg-package.js to prefer these LLM-authored beats over its own classifier is a follow-up, not done as part of this change.",
+  "type": "object",
+  "properties": {
+    "channel_id": { "type": "string" },
+    "topic_slug": { "type": "string" },
+    "format":     { "type": "string", "enum": ["shorts", "longform"] },
+    "hook":       { "type": "string", "minLength": 30, "maxLength": 220 },
+    "sections": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id":        { "type": "string" },
+          "voiceover": { "type": "string", "minLength": 40 },
+          "beats": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "properties": {
+                "text":      { "type": "string", "minLength": 3 },
+                "archetype": {
+                  "type": "string",
+                  "enum": [
+                    "HERO_NUMBER", "TERM_DEFINE", "LIST_ITEM", "CONTRAST",
+                    "PROGRESS", "RELATION", "IMAGE_BEAT", "STATEMENT"
+                  ]
+                },
+                "anchor_token": { "type": "string" },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "unit": { "type": "string" },
+                    "series": {
+                      "type": "array",
+                      "maxItems": 5,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label":     { "type": "string" },
+                          "value":     { "type": "number" },
+                          "highlight": { "type": "boolean" }
+                        },
+                        "required": ["label", "value"]
+                      }
+                    }
+                  }
+                }
+              },
+              "required": ["text", "archetype", "anchor_token"]
+            }
+          },
+          "b_roll":       { "type": "array", "items": { "type": "string" } },
+          "sfx_cue":      { "type": "string" },
+          "text_overlay": {
+            "type": ["object", "null"],
+            "properties": { "text": { "type": "string" } }
+          }
+        },
+        "required": ["id", "voiceover", "beats"]
+      }
+    },
+    "sources_used": { "type": "array", "minItems": 3, "items": { "type": "string" } }
+  },
+  "required": ["channel_id", "topic_slug", "format", "hook", "sections", "sources_used"]
+}

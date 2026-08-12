@@ -136,6 +136,20 @@ function pickNextTopic(channelId, candidates) {
 /**
  * Registers a topic as used. Idempotent — same topic is never added twice.
  * Also sets last_generated so a channel's most recent topic is queryable.
+ *
+ * `channelInfo.slug` (optional): the slug the rest of the pipeline actually
+ * uses for this topic's artifact filenames (data/research/<ch>/<slug>.json,
+ * renders, thumbnails, ...). Pass it whenever the caller has one. Without
+ * it this falls back to slugify(topic), which is a DIFFERENT string — e.g.
+ * topic "Mint shuts down: Best budgeting app replacements in 2024"
+ * slugifies to "mint-shuts-down-best-budgeting-app-replacements-in-2024"
+ * while the pipeline's real artifacts sit under the model-chosen
+ * "mint-shutdown-2024-budget-app-switch". Storing the wrong one makes the
+ * log unusable for locating a topic's files after the fact (already hit
+ * once: a channel-2 topic had to be matched up by hand).
+ *
+ * Dedup is unaffected either way — isDuplicate() re-derives slugify(topic)
+ * from the stored topic text rather than trusting the stored slug.
  */
 function reserveTopic(channelId, topic, channelInfo = {}) {
   if (!topic || !String(topic).trim()) {
@@ -151,7 +165,11 @@ function reserveTopic(channelId, topic, channelInfo = {}) {
     (u) => normalizeTopic(u.topic || u) === normalizeTopic(topic)
   );
   if (!alreadyUsed) {
-    entry.used_topics.push({ topic, slug: slugify(topic), reserved_at: new Date().toISOString() });
+    entry.used_topics.push({
+      topic,
+      slug: channelInfo.slug || slugify(topic),
+      reserved_at: new Date().toISOString(),
+    });
   }
   entry.last_generated = new Date().toISOString();
   saveTopicLog(log);

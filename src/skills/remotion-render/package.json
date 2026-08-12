@@ -17,9 +17,10 @@
     "@remotion/captions": "^4.0.503",
     "@remotion/cli": "^4.0.503",
     "@remotion/effects": "^4.0.503",
+    "@remotion/fonts": "4.0.507",
     "@remotion/layout-utils": "^4.0.503",
+    "@remotion/media": "4.0.507",
     "@remotion/paths": "^4.0.503",
-    "@remotion/player": "^4.0.503",
     "@remotion/renderer": "^4.0.503",
     "@remotion/rough-notation": "^4.0.503",
     "@remotion/shapes": "^4.0.503",
@@ -29,7 +30,7 @@
     "remotion": "^4.0.503"
   },
   "devDependencies": {
-    "typescript": "^5.3.0",
-    "@types/react": "^19.2.0"
+    "@types/react": "^19.2.0",
+    "typescript": "^5.3.0"
   }
 }

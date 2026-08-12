@@ -33,6 +33,7 @@ import { selectComposition, renderMedia } from "@remotion/renderer";
 import { resolveBrollFiles } from "./broll.js";
 import { buildMgPackage } from "./compositions/mg-package.js";
 import { paletteFromHues } from "./styles/tokens.js";
+import { narrationSections } from "../../utils/script-narration.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -167,7 +168,13 @@ function chunkVoiceover(text, maxWords = 7) {
 }
 
 function toContentSections(script) {
-  const sections = script.sections || [];
+  // narrationSections() folds the top-level `hook` into section one, matching
+  // what tts.js actually narrates. This has to happen here, not just in TTS:
+  // motion-graphics section windows are proportional to section word counts
+  // (proportionalWindows in compositions/mg-package.js) against the measured
+  // audio length, so hook audio that no section accounts for would drift
+  // every section's visuals behind its narration for the whole video.
+  const sections = narrationSections(script);
   if (sections.length === 0) return [];
   return sections
     .filter((s) => s.voiceover && s.voiceover.trim())
@@ -300,11 +307,16 @@ async function renderVideo(componentId, outputPath, frames, props) {
     outputLocation: outputPath,
     ...browserOpts,
     // §5.6 — explicit encoder settings: remotion.config.js is inert on the
-    // SSR path, so every quality option must be passed here.
+    // SSR path, so every quality option must be passed here. gl: "swangle"
+    // (--use-gl=angle --use-angle=swiftshader) is the software WebGL2
+    // backend Remotion docs prescribe for GPU-less machines - GitHub
+    // Actions runners have no GPU, and plain "angle" (hardware) fails there
+    // with "Failed to acquire WebGL2 context" on canvas effects, even
+    // though it works on local dev machines with a real GPU.
     imageFormat: "png",                 // lossless intermediates
     crf: 16,                            // below the h264 default
     pixelFormat: "yuv420p",             // required for wide playback
-    chromiumOptions: { gl: "angle" },   // NOT via the config file
+    chromiumOptions: { gl: "swangle" }, // software WebGL2 - NOT via the config file
     concurrency: 2,
     // Cold-start font fetch (21 families / 42 woff2 over the local static
     // server) can exceed the 28s default delayRender timeout.

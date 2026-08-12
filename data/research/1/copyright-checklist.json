@@ -3,38 +3,24 @@
   "checks": [
     {
       "asset": "voiceover",
-      "source": "EdgeTTS",
+      "source": "Unknown — no TTS output found",
       "risk": "UNKNOWN",
-      "message": "UNKNOWN: \"EdgeTTS\" is not in our database.",
+      "message": "UNKNOWN: \"Unknown — no TTS output found\" is not in our database.",
       "action": "Verify license explicitly covers YouTube monetization. Keep proof of license."
     },
     {
-      "asset": "b-roll",
-      "source": "Pexels",
+      "asset": "ui-sfx",
+      "source": "Kenney Audio Packs (CC0)",
       "risk": "LOW",
-      "message": "SAFE: \"Pexels\" is a known safe source.",
-      "action": "Verify license terms. Keep download receipt."
-    },
-    {
-      "asset": "sfx",
-      "source": "YouTube Audio Library",
-      "risk": "LOW",
-      "message": "SAFE: \"YouTube Audio Library\" is a known safe source.",
-      "action": "Verify license terms. Keep download receipt."
-    },
-    {
-      "asset": "music",
-      "source": "YouTube Audio Library",
-      "risk": "LOW",
-      "message": "SAFE: \"YouTube Audio Library\" is a known safe source.",
+      "message": "SAFE: \"Kenney Audio Packs (CC0)\" is a known safe source.",
       "action": "Verify license terms. Keep download receipt."
     },
     {
       "asset": "thumbnail",
-      "source": "AI-generated",
-      "risk": "UNKNOWN",
-      "message": "UNKNOWN: \"AI-generated\" is not in our database.",
-      "action": "Verify license explicitly covers YouTube monetization. Keep proof of license."
+      "source": "Local composite (gradient/text via sharp/canvas) — no external asset",
+      "risk": "LOW",
+      "message": "SAFE: \"Local composite (gradient/text via sharp/canvas) — no external asset\" is a known safe source.",
+      "action": "Verify license terms. Keep download receipt."
     }
   ],
   "issues": [],
