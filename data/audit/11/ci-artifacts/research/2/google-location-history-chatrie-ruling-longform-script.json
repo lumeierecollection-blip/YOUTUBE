@@ -1,0 +1,178 @@
+{
+  "channel_id": "2",
+  "topic_slug": "google-location-history-chatrie-ruling",
+  "format": "longform",
+  "hook": "Your phone tracks every move you make. You might think that data is private, but the government could be using it to put you in a virtual dragnet without a proper warrant.",
+  "sections": [
+    {
+      "id": "the_threat",
+      "voiceover": "Imagine police creating a digital fence around a crime scene. They ask Google for the identity of every single person whose phone was inside that area. This is called a geofence warrant.",
+      "beats": [
+        {
+          "text": "Geofence Warrant",
+          "archetype": "TERM_DEFINE",
+          "anchor_token": "geofence warrant"
+        },
+        {
+          "text": "Digital Dragnet",
+          "archetype": "STATEMENT",
+          "anchor_token": "digital fence"
+        }
+      ],
+      "b_roll": [
+        "Digital map overlay with a pulsing circular radius"
+      ],
+      "sfx_cue": "Digital scanning sound",
+      "text_overlay": {
+        "text": "Geofence Warrant"
+      }
+    },
+    {
+      "id": "the_chatrie_case",
+      "voiceover": "In the case of Okello Chatrie, police used this exact method. They set a geofence radius of 150 meters. Initially, Google provided 19 anonymized accounts, which was eventually narrowed down to just 3 people.",
+      "beats": [
+        {
+          "text": "150 Meters",
+          "archetype": "HERO_NUMBER",
+          "anchor_token": "150 meters",
+          "data": {
+            "unit": "meters",
+            "series": [
+              {
+                "label": "Geofence radius",
+                "value": 150,
+                "highlight": true
+              }
+            ]
+          }
+        },
+        {
+          "text": "Account Filtering",
+          "archetype": "PROGRESS",
+          "anchor_token": "narrowed down",
+          "data": {
+            "unit": "accounts",
+            "series": [
+              {
+                "label": "Initial",
+                "value": 19,
+                "highlight": false
+              },
+              {
+                "label": "Final",
+                "value": 3,
+                "highlight": true
+              }
+            ]
+          }
+        }
+      ],
+      "b_roll": [
+        "Graphic showing a list of accounts being filtered down"
+      ],
+      "sfx_cue": "Filtered click sounds",
+      "text_overlay": {
+        "text": "The Narrowing Net"
+      }
+    },
+    {
+      "id": "the_ruling",
+      "voiceover": "The Supreme Court stepped in with a landmark 6-3 ruling. Justice Elena Kagan declared that you have a reasonable expectation of privacy in your location records, even if a tech company holds that data.",
+      "beats": [
+        {
+          "text": "6-3 Decision",
+          "archetype": "HERO_NUMBER",
+          "anchor_token": "6-3 ruling",
+          "data": {
+            "unit": "votes",
+            "series": [
+              {
+                "label": "Majority",
+                "value": 6,
+                "highlight": true
+              },
+              {
+                "label": "Dissent",
+                "value": 3,
+                "highlight": false
+              }
+            ]
+          }
+        },
+        {
+          "text": "Expectation of Privacy",
+          "archetype": "TERM_DEFINE",
+          "anchor_token": "reasonable expectation of privacy"
+        }
+      ],
+      "b_roll": [
+        "Supreme Court building exterior"
+      ],
+      "sfx_cue": "Gavel strike",
+      "text_overlay": {
+        "text": "Privacy Affirmed"
+      }
+    },
+    {
+      "id": "legal_precedent",
+      "voiceover": "This builds on the Carpenter case. The court rejected the idea that short-term monitoring isn't a search. Whether it's one hour or one month, location data provides an intimate window into your life.",
+      "beats": [
+        {
+          "text": "Carpenter vs Chatrie",
+          "archetype": "CONTRAST",
+          "anchor_token": "Carpenter case"
+        },
+        {
+          "text": "Intimate Window",
+          "archetype": "STATEMENT",
+          "anchor_token": "intimate window"
+        }
+      ],
+      "b_roll": [
+        "Split screen comparing two case names"
+      ],
+      "sfx_cue": "Whoosh transition",
+      "text_overlay": {
+        "text": "The Legal Shift"
+      }
+    },
+    {
+      "id": "empowerment",
+      "voiceover": "With 91 percent of Americans owning smartphones, this protection is vital. Your movements are your business. Now, the law recognizes that your digital footprint is protected by the Fourth Amendment.",
+      "beats": [
+        {
+          "text": "91% Ownership",
+          "archetype": "HERO_NUMBER",
+          "anchor_token": "91 percent",
+          "data": {
+            "unit": "percent",
+            "series": [
+              {
+                "label": "Smartphone users",
+                "value": 91,
+                "highlight": true
+              }
+            ]
+          }
+        },
+        {
+          "text": "Fourth Amendment Rights",
+          "archetype": "LIST_ITEM",
+          "anchor_token": "Fourth Amendment"
+        }
+      ],
+      "b_roll": [
+        "Montage of people using phones in a city"
+      ],
+      "sfx_cue": "Inspiring ambient swell",
+      "text_overlay": {
+        "text": "Know Your Rights"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.scotusblog.com/cases/chatrie-v-united-states/",
+    "https://www.law.cornell.edu/supremecourt/text/25-112",
+    "https://www.courthousenews.com/wp-content/uploads/2026/06/chatrie-v-united-states-opinion-scotus.pdf"
+  ]
+}

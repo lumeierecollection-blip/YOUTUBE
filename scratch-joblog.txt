@@ -1,0 +1,426 @@
+publish	Set up job	???2026-08-11T18:12:56.3295497Z Current runner version: '2.336.0'
+publish	Set up job	2026-08-11T18:12:56.3321549Z ##[group]Runner Image Provisioner
+publish	Set up job	2026-08-11T18:12:56.3322460Z Hosted Compute Agent
+publish	Set up job	2026-08-11T18:12:56.3323192Z Version: 20260707.563
+publish	Set up job	2026-08-11T18:12:56.3323911Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+publish	Set up job	2026-08-11T18:12:56.3324771Z Build Date: 2026-07-07T19:33:50Z
+publish	Set up job	2026-08-11T18:12:56.3325493Z Worker ID: {db14c18b-c0dd-461e-9b11-9c782cf51653}
+publish	Set up job	2026-08-11T18:12:56.3326708Z Azure Region: eastus
+publish	Set up job	2026-08-11T18:12:56.3327407Z ##[endgroup]
+publish	Set up job	2026-08-11T18:12:56.3329310Z ##[group]Operating System
+publish	Set up job	2026-08-11T18:12:56.3330046Z Ubuntu
+publish	Set up job	2026-08-11T18:12:56.3330626Z 24.04.4
+publish	Set up job	2026-08-11T18:12:56.3331240Z LTS
+publish	Set up job	2026-08-11T18:12:56.3331825Z ##[endgroup]
+publish	Set up job	2026-08-11T18:12:56.3332483Z ##[group]Runner Image
+publish	Set up job	2026-08-11T18:12:56.3333176Z Image: ubuntu-24.04
+publish	Set up job	2026-08-11T18:12:56.3333855Z Version: 20260720.247.2
+publish	Set up job	2026-08-11T18:12:56.3334987Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260720.247/images/ubuntu/Ubuntu2404-Readme.md
+publish	Set up job	2026-08-11T18:12:56.3337024Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260720.247
+publish	Set up job	2026-08-11T18:12:56.3338055Z ##[endgroup]
+publish	Set up job	2026-08-11T18:12:56.3339409Z ##[group]GITHUB_TOKEN Permissions
+publish	Set up job	2026-08-11T18:12:56.3341628Z Contents: write
+publish	Set up job	2026-08-11T18:12:56.3342319Z Metadata: read
+publish	Set up job	2026-08-11T18:12:56.3342932Z ##[endgroup]
+publish	Set up job	2026-08-11T18:12:56.3345134Z Secret source: Actions
+publish	Set up job	2026-08-11T18:12:56.3346719Z Prepare workflow directory
+publish	Set up job	2026-08-11T18:12:56.3733221Z Prepare all required actions
+publish	Set up job	2026-08-11T18:12:56.3780364Z Getting action download info
+publish	Set up job	2026-08-11T18:12:56.6049515Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+publish	Set up job	2026-08-11T18:12:56.8291471Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+publish	Set up job	2026-08-11T18:12:56.9171626Z Download action repository 'actions/download-artifact@v4' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+publish	Set up job	2026-08-11T18:12:57.1858139Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+publish	Set up job	2026-08-11T18:12:57.3932027Z Complete job name: publish
+publish	Run actions/checkout@v4	???2026-08-11T18:12:57.4726826Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4735694Z ##[group]Run actions/checkout@v4
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4736820Z with:
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4737380Z   repository: lumeierecollection-blip/YOUTUBE
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4741140Z   token: ***
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4741619Z   ssh-strict: true
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4742098Z   ssh-user: git
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4742588Z   persist-credentials: true
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4743111Z   clean: true
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4743592Z   sparse-checkout-cone-mode: true
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4744164Z   fetch-depth: 1
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4744632Z   fetch-tags: false
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4745145Z   show-progress: true
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4745640Z   lfs: false
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4746292Z   submodules: false
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4746818Z   set-safe-directory: true
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4747374Z   allow-unsafe-pr-checkout: false
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4748333Z env:
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4748819Z   NODE_VERSION: 22
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4749305Z   PYTHON_VERSION: 3.11
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4749834Z   OPENCODE_MODELS: cerebras/gemma-4-31b
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4750427Z   OPENCODE_ENABLE_EXA: 1
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.4750924Z ##[endgroup]
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.5870904Z Syncing repository: lumeierecollection-blip/YOUTUBE
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.5873712Z ##[group]Getting Git version info
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.5874909Z Working directory is '/home/runner/work/YOUTUBE/YOUTUBE'
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.5876983Z [command]/usr/bin/git version
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.5877882Z git version 2.54.0
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.5880745Z ##[endgroup]
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.5886822Z Temporarily overriding HOME='/home/runner/work/_temp/5210b8d5-f359-46be-968e-78acdb47aa34' before making global git config changes
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.5890100Z Adding repository directory to the temporary git global config as a safe directory
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.5892632Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/YOUTUBE/YOUTUBE
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.5950462Z Deleting the contents of '/home/runner/work/YOUTUBE/YOUTUBE'
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.5956811Z ##[group]Initializing the repository
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.5962026Z [command]/usr/bin/git init /home/runner/work/YOUTUBE/YOUTUBE
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6134174Z hint: Using 'master' as the name for the initial branch. This default branch name
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6135626Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6137057Z hint: to use in all of your new repositories, which will suppress this warning,
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6138048Z hint: call:
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6138578Z hint:
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6139239Z hint: 	git config --global init.defaultBranch <name>
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6140163Z hint:
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6140906Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6142128Z hint: 'development'. The just-created branch can be renamed via this command:
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6143092Z hint:
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6143632Z hint: 	git branch -m <name>
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6144250Z hint:
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6145046Z hint: Disable this message with "git config set advice.defaultBranchName false"
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6155141Z Initialized empty Git repository in /home/runner/work/YOUTUBE/YOUTUBE/.git/
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6167367Z [command]/usr/bin/git remote add origin https://github.com/lumeierecollection-blip/YOUTUBE
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6255188Z ##[endgroup]
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6257338Z ##[group]Disabling automatic garbage collection
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6260234Z [command]/usr/bin/git config --local gc.auto 0
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6293069Z ##[endgroup]
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6294601Z ##[group]Setting up auth
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6301862Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6340273Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6727401Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6763954Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.6986163Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.7021547Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.7244045Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.7282309Z ##[endgroup]
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.7291770Z ##[group]Fetching the repository
+publish	Run actions/checkout@v4	2026-08-11T18:12:57.7293623Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +c0d2a729f952734d730ee4be8bccae44f0dcef3c:refs/remotes/origin/fix/cerebras-reasoning-content
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.4775530Z From https://github.com/lumeierecollection-blip/YOUTUBE
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.4779048Z  * [new ref]         c0d2a729f952734d730ee4be8bccae44f0dcef3c -> origin/fix/cerebras-reasoning-content
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.4811692Z ##[endgroup]
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.4813579Z ##[group]Determining the checkout info
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.4816524Z ##[endgroup]
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.4820795Z [command]/usr/bin/git sparse-checkout disable
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.4869555Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.4902656Z ##[group]Checking out the ref
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.4907495Z [command]/usr/bin/git checkout --progress --force -B fix/cerebras-reasoning-content refs/remotes/origin/fix/cerebras-reasoning-content
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.6741895Z Switched to a new branch 'fix/cerebras-reasoning-content'
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.6745837Z branch 'fix/cerebras-reasoning-content' set up to track 'origin/fix/cerebras-reasoning-content'.
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.6762472Z ##[endgroup]
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.6807219Z [command]/usr/bin/git log -1 --format=%H
+publish	Run actions/checkout@v4	2026-08-11T18:12:58.6833284Z c0d2a729f952734d730ee4be8bccae44f0dcef3c
+publish	Run actions/setup-node@v4	???2026-08-11T18:12:58.7205406Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.7211276Z ##[group]Run actions/setup-node@v4
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.7212359Z with:
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.7213168Z   node-version: 22
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.7214053Z   always-auth: false
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.7214962Z   check-latest: false
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.7224249Z   token: ***
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.7225072Z env:
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.7225863Z   NODE_VERSION: 22
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.7226888Z   PYTHON_VERSION: 3.11
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.7227892Z   OPENCODE_MODELS: cerebras/gemma-4-31b
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.7229051Z   OPENCODE_ENABLE_EXA: 1
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.7229994Z ##[endgroup]
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.8615217Z Found in cache @ /opt/hostedtoolcache/node/22.23.1/x64
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.8619546Z (node:2222) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.8623794Z (Use `node --trace-deprecation ...` to show where the warning was created)
+publish	Run actions/setup-node@v4	2026-08-11T18:12:58.8626482Z ##[group]Environment details
+publish	Run actions/setup-node@v4	2026-08-11T18:12:59.3045132Z node: v22.23.1
+publish	Run actions/setup-node@v4	2026-08-11T18:12:59.3046816Z npm: 10.9.8
+publish	Run actions/setup-node@v4	2026-08-11T18:12:59.3047666Z yarn: 1.22.22
+publish	Run actions/setup-node@v4	2026-08-11T18:12:59.3048899Z ##[endgroup]
+publish	Install dependencies	???2026-08-11T18:12:59.3180731Z ##[group]Run npm ci
+publish	Install dependencies	2026-08-11T18:12:59.3181111Z ^[[36;1mnpm ci^[[0m
+publish	Install dependencies	2026-08-11T18:12:59.3237735Z shell: /usr/bin/bash -e {0}
+publish	Install dependencies	2026-08-11T18:12:59.3238093Z env:
+publish	Install dependencies	2026-08-11T18:12:59.3238357Z   NODE_VERSION: 22
+publish	Install dependencies	2026-08-11T18:12:59.3238639Z   PYTHON_VERSION: 3.11
+publish	Install dependencies	2026-08-11T18:12:59.3238951Z   OPENCODE_MODELS: cerebras/gemma-4-31b
+publish	Install dependencies	2026-08-11T18:12:59.3239297Z   OPENCODE_ENABLE_EXA: 1
+publish	Install dependencies	2026-08-11T18:12:59.3239597Z ##[endgroup]
+publish	Install dependencies	2026-08-11T18:13:08.8216714Z 
+publish	Install dependencies	2026-08-11T18:13:08.8223875Z added 272 packages, and audited 273 packages in 9s
+publish	Install dependencies	2026-08-11T18:13:08.8224282Z 
+publish	Install dependencies	2026-08-11T18:13:08.8224507Z 53 packages are looking for funding
+publish	Install dependencies	2026-08-11T18:13:08.8224922Z   run `npm fund` for details
+publish	Install dependencies	2026-08-11T18:13:08.8226535Z 
+publish	Install dependencies	2026-08-11T18:13:08.8227052Z found 0 vulnerabilities
+publish	Download all render artifacts	???2026-08-11T18:13:08.8867583Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+publish	Download all render artifacts	2026-08-11T18:13:08.8868937Z ##[group]Run actions/download-artifact@v4
+publish	Download all render artifacts	2026-08-11T18:13:08.8869223Z with:
+publish	Download all render artifacts	2026-08-11T18:13:08.8869433Z   path: data/renders
+publish	Download all render artifacts	2026-08-11T18:13:08.8869663Z   pattern: renders-*
+publish	Download all render artifacts	2026-08-11T18:13:08.8869895Z   merge-multiple: true
+publish	Download all render artifacts	2026-08-11T18:13:08.8870167Z   repository: lumeierecollection-blip/YOUTUBE
+publish	Download all render artifacts	2026-08-11T18:13:08.8870467Z   run-id: 31520255139
+publish	Download all render artifacts	2026-08-11T18:13:08.8870683Z env:
+publish	Download all render artifacts	2026-08-11T18:13:08.8870904Z   NODE_VERSION: 22
+publish	Download all render artifacts	2026-08-11T18:13:08.8871132Z   PYTHON_VERSION: 3.11
+publish	Download all render artifacts	2026-08-11T18:13:08.8871375Z   OPENCODE_MODELS: cerebras/gemma-4-31b
+publish	Download all render artifacts	2026-08-11T18:13:08.8871659Z   OPENCODE_ENABLE_EXA: 1
+publish	Download all render artifacts	2026-08-11T18:13:08.8871919Z ##[endgroup]
+publish	Download all render artifacts	2026-08-11T18:13:09.0489958Z (node:2283) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+publish	Download all render artifacts	2026-08-11T18:13:09.0491249Z (Use `node --trace-deprecation ...` to show where the warning was created)
+publish	Download all render artifacts	2026-08-11T18:13:09.1326743Z Found 2 artifact(s)
+publish	Download all render artifacts	2026-08-11T18:13:09.1327837Z Filtering artifacts by pattern 'renders-*'
+publish	Download all render artifacts	2026-08-11T18:13:09.1357193Z Preparing to download the following artifacts:
+publish	Download all render artifacts	2026-08-11T18:13:09.1359045Z - renders-31520255139 (ID: 9113204052, Size: 4876585, Expected Digest: sha256:e05dc5861683b7681a0ef30eba8224d14b82039335c615772040e9c54c269ba4)
+publish	Download all render artifacts	2026-08-11T18:13:09.2311068Z Redirecting to blob download url: https://productionresultssa17.blob.core.windows.net/actions-results/8a5cc5bc-9b06-4252-a610-18650fbcfa66/workflow-job-run-71625a3d-8b18-5dff-b7eb-e297ed5f711d/artifacts/ab24db939ee00c112f1e23d246373c172d037b15275665bf95be44c1db9aca74.zip
+publish	Download all render artifacts	2026-08-11T18:13:09.2312988Z Starting download of artifact to: /home/runner/work/YOUTUBE/YOUTUBE/data/renders
+publish	Download all render artifacts	2026-08-11T18:13:09.3525181Z (node:2283) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+publish	Download all render artifacts	2026-08-11T18:13:09.4624882Z SHA256 digest of downloaded artifact is e05dc5861683b7681a0ef30eba8224d14b82039335c615772040e9c54c269ba4
+publish	Download all render artifacts	2026-08-11T18:13:09.4625580Z Artifact download completed successfully.
+publish	Download all render artifacts	2026-08-11T18:13:09.4626168Z Total of 1 artifact(s) downloaded
+publish	Download all render artifacts	2026-08-11T18:13:09.4630963Z Download artifact has finished successfully
+publish	Download all research artifacts (SEO + thumbnails)	???2026-08-11T18:13:09.4798979Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4800333Z ##[group]Run actions/download-artifact@v4
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4800637Z with:
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4800843Z   path: data
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4801068Z   pattern: research-*
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4801308Z   merge-multiple: true
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4801585Z   repository: lumeierecollection-blip/YOUTUBE
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4801907Z   run-id: 31520255139
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4802118Z env:
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4802314Z   NODE_VERSION: 22
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4802532Z   PYTHON_VERSION: 3.11
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4802782Z   OPENCODE_MODELS: cerebras/gemma-4-31b
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4803066Z   OPENCODE_ENABLE_EXA: 1
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.4803305Z ##[endgroup]
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.6423774Z (node:2299) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.6425446Z (Use `node --trace-deprecation ...` to show where the warning was created)
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.7440546Z Found 2 artifact(s)
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.7441661Z Filtering artifacts by pattern 'research-*'
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.7462353Z Preparing to download the following artifacts:
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.7464033Z - research-2-31520255139 (ID: 9112907051, Size: 610872, Expected Digest: sha256:8454b9e4dfa4bbd64fc9871b108a92bc467a6ac840b00953dd7587448d2598a0)
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.8273973Z Redirecting to blob download url: https://productionresultssa17.blob.core.windows.net/actions-results/8a5cc5bc-9b06-4252-a610-18650fbcfa66/workflow-job-run-ce125ee5-4e88-5d82-b8f4-eec923a9f93f/artifacts/56dcdfde33f4ba59d2120af1da12615b81a06c7256461209f478d3f696387380.zip
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.8277047Z Starting download of artifact to: /home/runner/work/YOUTUBE/YOUTUBE/data
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.8923902Z (node:2299) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.9445071Z SHA256 digest of downloaded artifact is 8454b9e4dfa4bbd64fc9871b108a92bc467a6ac840b00953dd7587448d2598a0
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.9446570Z Artifact download completed successfully.
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.9447598Z Total of 1 artifact(s) downloaded
+publish	Download all research artifacts (SEO + thumbnails)	2026-08-11T18:13:09.9451722Z Download artifact has finished successfully
+publish	Materialize per-channel OAuth credentials from secrets	???2026-08-11T18:13:09.9589468Z ##[group]Run mkdir -p config/creds
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9590014Z ^[[36;1mmkdir -p config/creds^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9590290Z ^[[36;1mnode -e "^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9590535Z ^[[36;1m  const fs = require('fs');^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9590951Z ^[[36;1m  const data = JSON.parse(fs.readFileSync('config/channels.json'));^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9591406Z ^[[36;1m  const channels = data.channels || data;^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9591728Z ^[[36;1m  let written = 0;^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9592004Z ^[[36;1m  for (const c of channels) {^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9592330Z ^[[36;1m    const p = String(c.id).padStart(2, '0');^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9592712Z ^[[36;1m    const clientId = process.env[\`CH\${p}_CLIENT_ID\`];^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9593160Z ^[[36;1m    const clientSecret = process.env[\`CH\${p}_CLIENT_SECRET\`];^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9593630Z ^[[36;1m    const refreshToken = process.env[\`CH\${p}_REFRESH_TOKEN\`];^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9594059Z ^[[36;1m    if (clientId && clientSecret && refreshToken) {^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9594426Z ^[[36;1m      fs.writeFileSync(^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9594735Z ^[[36;1m        \`config/creds/\${c.channel_id}.json\`,^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9595310Z ^[[36;1m        JSON.stringify({ client_id: clientId, client_secret: clientSecret, refresh_token: refreshToken }, null, 2)^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9595844Z ^[[36;1m      );^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9596310Z ^[[36;1m      written++;^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9596694Z ^[[36;1m    }^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9596907Z ^[[36;1m  }^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9597340Z ^[[36;1m  console.log(\`Materialized credentials for \${written}/\${channels.length} channel(s).\`);^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9597815Z ^[[36;1m"^[[0m
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9641346Z shell: /usr/bin/bash -e {0}
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9641621Z env:
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9641833Z   NODE_VERSION: 22
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9642074Z   PYTHON_VERSION: 3.11
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9642340Z   OPENCODE_MODELS: cerebras/gemma-4-31b
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9642641Z   OPENCODE_ENABLE_EXA: 1
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9642891Z   CH01_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9643294Z   CH01_CLIENT_SECRET: ***
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9643907Z   CH01_REFRESH_TOKEN: ***
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9644347Z   CH02_CLIENT_ID: ***
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9644645Z   CH02_CLIENT_SECRET: ***
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9645266Z   CH02_REFRESH_TOKEN: ***
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9645723Z   CH03_CLIENT_ID: ***
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9646323Z   CH03_CLIENT_SECRET: ***
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9646981Z   CH03_REFRESH_TOKEN: ***
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9647417Z   CH04_CLIENT_ID: ***
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9647711Z   CH04_CLIENT_SECRET: ***
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9648292Z   CH04_REFRESH_TOKEN: ***
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9648529Z   CH07_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9648751Z   CH07_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9648976Z   CH07_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9649197Z   CH09_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9649412Z   CH09_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9649638Z   CH09_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9649852Z   CH11_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9650062Z   CH11_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9650290Z   CH11_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9650507Z   CH17_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9650719Z   CH17_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9650939Z   CH17_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9651160Z   CH26_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9651367Z   CH26_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9651588Z   CH26_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9651809Z   CH30_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9652020Z   CH30_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9652242Z   CH30_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9652529Z   CH31_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9652764Z   CH31_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9652984Z   CH31_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9653241Z   CH35_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9653462Z   CH35_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9653690Z   CH35_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9653910Z   CH39_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9654125Z   CH39_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9654362Z   CH39_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9654608Z   CH44_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9654835Z   CH44_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9655281Z   CH44_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9655619Z   CH46_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9655836Z   CH46_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9656223Z   CH46_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9656463Z   CH47_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9656681Z   CH47_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9656899Z   CH47_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9657120Z   CH48_CLIENT_ID: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9657334Z   CH48_CLIENT_SECRET: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9657552Z   CH48_REFRESH_TOKEN: 
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9657776Z ##[endgroup]
+publish	Materialize per-channel OAuth credentials from secrets	2026-08-11T18:13:09.9983840Z Materialized credentials for 3/17 channel(s).
+publish	Publish to YouTube	???2026-08-11T18:13:10.0063481Z ##[group]Run CHANNEL_OVERRIDE="2"
+publish	Publish to YouTube	2026-08-11T18:13:10.0063864Z ^[[36;1mCHANNEL_OVERRIDE="2"^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0064133Z ^[[36;1m^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0064377Z ^[[36;1mif [ -n "$CHANNEL_OVERRIDE" ]; then^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0064721Z ^[[36;1m  CHANNELS="[\"$CHANNEL_OVERRIDE\"]"^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0065038Z ^[[36;1melse^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0065266Z ^[[36;1m  CHANNELS=$(node -e "^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0065562Z ^[[36;1m    const fs = require('fs');^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0066267Z ^[[36;1m    const data = JSON.parse(fs.readFileSync('config/channels.json'));^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0066997Z ^[[36;1m    const channels = data.channels || data;^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0067426Z ^[[36;1m    console.log(JSON.stringify(channels.map(c => String(c.id))));^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0067808Z ^[[36;1m  ")^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0068018Z ^[[36;1mfi^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0068211Z ^[[36;1m^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0068519Z ^[[36;1m# As with render: try every channel, then fail if any genuinely^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0069050Z ^[[36;1m# errored. Safe to treat non-zero as a real failure here because^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0069538Z ^[[36;1m# uploadChannel() returns cleanly (exit 0) for the EXPECTED skip^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0070027Z ^[[36;1m# states ??? no credentials configured, unresolved placeholder^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0070542Z ^[[36;1m# artifacts, or a pending human-review gate. A non-zero exit means^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0071056Z ^[[36;1m# an actual upload error (bad/expired token, API rejection), which^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0071511Z ^[[36;1m# must not be reported as a successful publish run.^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0071853Z ^[[36;1mFAILED=0^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0072128Z ^[[36;1mfor CH in $(echo $CHANNELS | jq -r '.[]'); do^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0072456Z ^[[36;1m  echo "=== PUBLISH: $CH ==="^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0072819Z ^[[36;1m  if ! node src/skills/youtube-publish/run.js "$CH"; then^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0073235Z ^[[36;1m    echo "::error::publish failed for channel $CH"^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0073574Z ^[[36;1m    FAILED=$((FAILED + 1))^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0073840Z ^[[36;1m  fi^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0074050Z ^[[36;1mdone^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0074254Z ^[[36;1m^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0074468Z ^[[36;1mif [ "$FAILED" -gt 0 ]; then^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0074888Z ^[[36;1m  echo "::error::$FAILED channel(s) failed to publish ??? see the errors above."^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0075314Z ^[[36;1m  exit 1^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0075537Z ^[[36;1mfi^[[0m
+publish	Publish to YouTube	2026-08-11T18:13:10.0116729Z shell: /usr/bin/bash -e {0}
+publish	Publish to YouTube	2026-08-11T18:13:10.0117014Z env:
+publish	Publish to YouTube	2026-08-11T18:13:10.0117218Z   NODE_VERSION: 22
+publish	Publish to YouTube	2026-08-11T18:13:10.0117460Z   PYTHON_VERSION: 3.11
+publish	Publish to YouTube	2026-08-11T18:13:10.0117730Z   OPENCODE_MODELS: cerebras/gemma-4-31b
+publish	Publish to YouTube	2026-08-11T18:13:10.0118041Z   OPENCODE_ENABLE_EXA: 1
+publish	Publish to YouTube	2026-08-11T18:13:10.0118284Z ##[endgroup]
+publish	Publish to YouTube	2026-08-11T18:13:10.0210447Z === PUBLISH: 2 ===
+publish	Publish to YouTube	2026-08-11T18:13:10.0549664Z [YOUTUBE-PUBLISH] Channel: 2 (Legal Brief)
+publish	Publish to YouTube	2026-08-11T18:13:10.0551940Z   Account: ? | Channel ID: SET_ME
+publish	Publish to YouTube	2026-08-11T18:13:10.0553094Z   Video: /home/runner/work/YOUTUBE/YOUTUBE/data/renders/2/ada-unpaid-leave-reassignment-ruling-shorts-shorts-2026-08-11.mp4
+publish	Publish to YouTube	2026-08-11T18:13:10.0554551Z   Thumbnail: /home/runner/work/YOUTUBE/YOUTUBE/data/thumbnails/2/ada-unpaid-leave-reassignment-ruling-shorts-thumb.png
+publish	Publish to YouTube	2026-08-11T18:13:10.5656965Z   OAuth: access token OK
+publish	Publish to YouTube	2026-08-11T18:13:10.5687006Z   Title: Is Unpaid Leave a Legal ADA Accommodation?
+publish	Publish to YouTube	2026-08-11T18:13:10.5720483Z   Tags: 19 | Privacy: private
+publish	Publish to YouTube	2026-08-11T18:13:12.2914038Z   Uploaded: mgEJrD2V8Ak
+publish	Publish to YouTube	2026-08-11T18:13:17.3608971Z   Thumbnail: https://i9.ytimg.com/vi/mgEJrD2V8Ak/default.jpg?sqp=CPjK7dMG&rs=AOn4CLC5-OQkDDm8cZ78PIHdh3s5FwE7Kg
+publish	Publish to YouTube	2026-08-11T18:13:17.3636468Z 
+publish	Publish to YouTube	2026-08-11T18:13:17.3637175Z   Private link: https://youtu.be/mgEJrD2V8Ak
+publish	Publish to YouTube	2026-08-11T18:13:17.3638037Z   Goes public: 2026-08-11T19:13:17.360Z (in 1 hour(s))
+publish	Publish to YouTube	2026-08-11T18:13:17.3639099Z   Queued: /home/runner/work/YOUTUBE/YOUTUBE/data/publish-queue/2/publish-queue.json
+publish	Publish to YouTube	2026-08-11T18:13:17.3640078Z   To cancel: node run.js cancel 2 mgEJrD2V8Ak
+publish	Process publish queue	???2026-08-11T18:13:17.3719798Z ##[group]Run node src/skills/youtube-publish/run.js process-queue
+publish	Process publish queue	2026-08-11T18:13:17.3720340Z ^[[36;1mnode src/skills/youtube-publish/run.js process-queue^[[0m
+publish	Process publish queue	2026-08-11T18:13:17.3764099Z shell: /usr/bin/bash -e {0}
+publish	Process publish queue	2026-08-11T18:13:17.3764374Z env:
+publish	Process publish queue	2026-08-11T18:13:17.3764587Z   NODE_VERSION: 22
+publish	Process publish queue	2026-08-11T18:13:17.3764828Z   PYTHON_VERSION: 3.11
+publish	Process publish queue	2026-08-11T18:13:17.3765088Z   OPENCODE_MODELS: cerebras/gemma-4-31b
+publish	Process publish queue	2026-08-11T18:13:17.3765407Z   OPENCODE_ENABLE_EXA: 1
+publish	Process publish queue	2026-08-11T18:13:17.3765660Z ##[endgroup]
+publish	Process publish queue	2026-08-11T18:13:17.4144429Z No due entries to publish.
+publish	Process publish queue	2026-08-11T18:13:17.4146586Z Published: 0
+publish	Commit publish queue	???2026-08-11T18:13:17.4215404Z ##[group]Run git config user.name "lumeierecollection-blip"
+publish	Commit publish queue	2026-08-11T18:13:17.4216846Z ^[[36;1mgit config user.name "lumeierecollection-blip"^[[0m
+publish	Commit publish queue	2026-08-11T18:13:17.4217384Z ^[[36;1mgit config user.email "lumeierecollection-blip@users.noreply.github.com"^[[0m
+publish	Commit publish queue	2026-08-11T18:13:17.4217877Z ^[[36;1mgit add data/publish-queue^[[0m
+publish	Commit publish queue	2026-08-11T18:13:17.4218206Z ^[[36;1mif git diff --cached --quiet; then^[[0m
+publish	Commit publish queue	2026-08-11T18:13:17.4218595Z ^[[36;1m  echo "Publish queue unchanged - nothing to commit."^[[0m
+publish	Commit publish queue	2026-08-11T18:13:17.4218948Z ^[[36;1melse^[[0m
+publish	Commit publish queue	2026-08-11T18:13:17.4219295Z ^[[36;1m  git commit -m "publish-queue: $(date -u +%F) [run 31520255139]"^[[0m
+publish	Commit publish queue	2026-08-11T18:13:17.4219768Z ^[[36;1m  git fetch origin "fix/cerebras-reasoning-content"^[[0m
+publish	Commit publish queue	2026-08-11T18:13:17.4220210Z ^[[36;1m  git rebase "origin/fix/cerebras-reasoning-content"^[[0m
+publish	Commit publish queue	2026-08-11T18:13:17.4220629Z ^[[36;1m  git push origin "fix/cerebras-reasoning-content"^[[0m
+publish	Commit publish queue	2026-08-11T18:13:17.4220957Z ^[[36;1mfi^[[0m
+publish	Commit publish queue	2026-08-11T18:13:17.4263006Z shell: /usr/bin/bash -e {0}
+publish	Commit publish queue	2026-08-11T18:13:17.4263411Z env:
+publish	Commit publish queue	2026-08-11T18:13:17.4263625Z   NODE_VERSION: 22
+publish	Commit publish queue	2026-08-11T18:13:17.4263861Z   PYTHON_VERSION: 3.11
+publish	Commit publish queue	2026-08-11T18:13:17.4264121Z   OPENCODE_MODELS: cerebras/gemma-4-31b
+publish	Commit publish queue	2026-08-11T18:13:17.4264431Z   OPENCODE_ENABLE_EXA: 1
+publish	Commit publish queue	2026-08-11T18:13:17.4264680Z ##[endgroup]
+publish	Commit publish queue	2026-08-11T18:13:17.5759725Z [fix/cerebras-reasoning-content 99a5ee2] publish-queue: 2026-08-11 [run 31520255139]
+publish	Commit publish queue	2026-08-11T18:13:17.5760741Z  1 file changed, 12 insertions(+)
+publish	Commit publish queue	2026-08-11T18:13:17.5761378Z  create mode 100644 data/publish-queue/2/publish-queue.json
+publish	Commit publish queue	2026-08-11T18:13:17.8682865Z From https://github.com/lumeierecollection-blip/YOUTUBE
+publish	Commit publish queue	2026-08-11T18:13:17.8683807Z  * branch            fix/cerebras-reasoning-content -> FETCH_HEAD
+publish	Commit publish queue	2026-08-11T18:13:17.8684954Z    c0d2a72..5e105b6  fix/cerebras-reasoning-content -> origin/fix/cerebras-reasoning-content
+publish	Commit publish queue	2026-08-11T18:13:17.8750506Z error: cannot rebase: You have unstaged changes.
+publish	Commit publish queue	2026-08-11T18:13:17.8751692Z error: Please commit or stash them.
+publish	Commit publish queue	2026-08-11T18:13:17.8770424Z ##[error]Process completed with exit code 1.
+publish	Upload run logs	???2026-08-11T18:13:17.8838628Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+publish	Upload run logs	2026-08-11T18:13:17.8839946Z ##[group]Run actions/upload-artifact@v4
+publish	Upload run logs	2026-08-11T18:13:17.8840243Z with:
+publish	Upload run logs	2026-08-11T18:13:17.8840460Z   name: logs-31520255139
+publish	Upload run logs	2026-08-11T18:13:17.8840750Z   path: data/research/*/pipeline-report.json
+publish	Upload run logs	2026-08-11T18:13:17.8841072Z   retention-days: 30
+publish	Upload run logs	2026-08-11T18:13:17.8841322Z   if-no-files-found: warn
+publish	Upload run logs	2026-08-11T18:13:17.8841746Z   compression-level: 6
+publish	Upload run logs	2026-08-11T18:13:17.8841990Z   overwrite: false
+publish	Upload run logs	2026-08-11T18:13:17.8842228Z   include-hidden-files: false
+publish	Upload run logs	2026-08-11T18:13:17.8842487Z env:
+publish	Upload run logs	2026-08-11T18:13:17.8842690Z   NODE_VERSION: 22
+publish	Upload run logs	2026-08-11T18:13:17.8842922Z   PYTHON_VERSION: 3.11
+publish	Upload run logs	2026-08-11T18:13:17.8843183Z   OPENCODE_MODELS: cerebras/gemma-4-31b
+publish	Upload run logs	2026-08-11T18:13:17.8843507Z   OPENCODE_ENABLE_EXA: 1
+publish	Upload run logs	2026-08-11T18:13:17.8843751Z ##[endgroup]
+publish	Upload run logs	2026-08-11T18:13:18.0429153Z (node:2402) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+publish	Upload run logs	2026-08-11T18:13:18.0430622Z (Use `node --trace-deprecation ...` to show where the warning was created)
+publish	Upload run logs	2026-08-11T18:13:18.0519515Z With the provided path, there will be 2 files uploaded
+publish	Upload run logs	2026-08-11T18:13:18.0525093Z Artifact name is valid!
+publish	Upload run logs	2026-08-11T18:13:18.0526473Z Root directory input is valid!
+publish	Upload run logs	2026-08-11T18:13:18.1878936Z Beginning upload of artifact content to blob storage
+publish	Upload run logs	2026-08-11T18:13:18.2100526Z (node:2402) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+publish	Upload run logs	2026-08-11T18:13:18.2525684Z Uploaded bytes 804
+publish	Upload run logs	2026-08-11T18:13:18.2714586Z Finished uploading artifact content to blob storage!
+publish	Upload run logs	2026-08-11T18:13:18.2715751Z SHA256 digest of uploaded artifact zip is 9c6a3e3410af279265ec02dbdb1eb50bb4bd71d2b6ba7337e8cb97baf899f198
+publish	Upload run logs	2026-08-11T18:13:18.2717937Z Finalizing artifact upload
+publish	Upload run logs	2026-08-11T18:13:18.4288319Z Artifact logs-31520255139.zip successfully finalized. Artifact ID 9113219950
+publish	Upload run logs	2026-08-11T18:13:18.4289960Z Artifact logs-31520255139 has been successfully uploaded! Final size is 804 bytes. Artifact ID is 9113219950
+publish	Upload run logs	2026-08-11T18:13:18.4297256Z Artifact download URL: https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/31520255139/artifacts/9113219950
+publish	Post Run actions/checkout@v4	???2026-08-11T18:13:18.4527566Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.4529026Z Post job cleanup.
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.5355210Z [command]/usr/bin/git version
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.5428579Z git version 2.54.0
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.5466864Z Temporarily overriding HOME='/home/runner/work/_temp/230cd08b-1feb-43e3-8906-c64c629a222a' before making global git config changes
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.5468451Z Adding repository directory to the temporary git global config as a safe directory
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.5497481Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/YOUTUBE/YOUTUBE
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.5509775Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.5544935Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.5793793Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.5821225Z http.https://github.com/.extraheader
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.5838692Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.5872924Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.6128280Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+publish	Post Run actions/checkout@v4	2026-08-11T18:13:18.6168523Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+publish	Complete job	???2026-08-11T18:13:18.6605781Z Cleaning up orphan processes
+publish	Complete job	2026-08-11T18:13:18.6988410Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -763,16 +763,65 @@ async function main() {
   writeFileSync(ENTRY, serializeEntry(wiredList), "utf8");
 
   console.log("bundling…");
+  // Single remotion copy — the subpackage 4.0.507 tree (the
+  // production-consistent tree). The bundler's getResolveConfig()
+  // (webpack-config.js:96) aliases `remotion` to the ROOT 4.0.505 esm,
+  // whose Internals LACK RenderResourceManagerContext (4.0.507-only,
+  // subpackage index.mjs:11770/12902) — required by the beats'
+  // @remotion/media 4.0.507 inlined AudioForRendering → useRenderMediaCache
+  // → every frame mounting <Audio> (hero@66, list@18/28/41/45, progress@38)
+  // crashed with "Cannot read properties of undefined (reading
+  // '_currentValue')". webpackOverride runs AFTER getResolveConfig
+  // (webpack-config.js:133-134), so these aliases win.
   const serveUrl = await bundle({
     entryPoint: resolve(ENTRY), // plain absolute path (Windows-safe)
     publicDir: PUBLIC_DIR,
     onProgress: () => {},
+    webpackOverride: (config) => ({
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          remotion: resolve("src/skills/remotion-render/node_modules/remotion/dist/esm/index.mjs"),
+          "remotion/no-react": resolve("src/skills/remotion-render/node_modules/remotion/dist/esm/no-react.mjs"),
+          "remotion/version": resolve("src/skills/remotion-render/node_modules/remotion/dist/esm/version.mjs"),
+          "@remotion/media": resolve("src/skills/remotion-render/node_modules/@remotion/media/dist/esm/index.mjs"),
+          "@remotion/paths": resolve("src/skills/remotion-render/node_modules/@remotion/paths/dist/esm/index.mjs"),
+          "@remotion/shapes": resolve("src/skills/remotion-render/node_modules/@remotion/shapes/dist/esm/index.mjs"),
+        },
+      },
+    }),
   });
   console.log("serveUrl:", serveUrl);
 
+  // Single-copy assertion (orchestrator scope: "verify single-copy — grep
+  // the served bundle"). External tool reads of the Temp bundle are
+  // permission-denied, so the probe verifies its own output: the bundle
+  // must contain ONE remotion copy — "4.0.505" (the root VERSION constant,
+  // the pre-fix crash source) ABSENT, "4.0.507" (subpackage VERSION
+  // constant) PRESENT, and the 4.0.507-only RenderResourceManagerContext
+  // symbol PRESENT.
+  const servedBundle = readFileSync(resolve(serveUrl, "bundle.js"), "utf8");
+  const has505 = servedBundle.includes('"4.0.505"');
+  const has507 = servedBundle.includes('"4.0.507"');
+  const hasCtx = servedBundle.includes("RenderResourceManagerContext");
+  const bundleCheck = {
+    pass: !has505 && has507 && hasCtx,
+    note: has505
+      ? "root remotion 4.0.505 copy present in bundle — single-copy violated"
+      : !has507
+        ? '"4.0.507" remotion copy absent from bundle'
+        : !hasCtx
+          ? "RenderResourceManagerContext absent from bundle (4.0.507 Internals missing)"
+          : "single remotion copy (subpackage 4.0.507) + RenderResourceManagerContext present",
+  };
+  console.log(`${bundleCheck.pass ? "PASS" : "FAIL"} bundle-single-copy: ${bundleCheck.note}`);
+
   const browser = await openBrowser(CHROME);
-  const report = { tA, gates: [], c17: [], d6: null, stills: [] };
+  const report = { tA, gates: [], c17: [], d6: null, stills: [], bundle: bundleCheck };
   let failures = 0;
+  if (!bundleCheck.pass) failures++;
 
   const runGate = async (id, frame, gateName, fn) => {
     const out = `${OUT_DIR}${id}-f${frame}.png`;
@@ -789,6 +838,7 @@ async function main() {
         onBrowserLog: (l) => logs.push(l),
       });
     } catch (err) {
+      console.log(`FAIL ${gateName} ${id}@f${frame}: render error: ${err.message}`);
       report.gates.push({ id, frame, gate: gateName, pass: false, note: `render error: ${err.message}` });
       failures++;
       return;

@@ -1,0 +1,108 @@
+{
+  "topic_slug": "california-workplace-know-your-rights-act-2026",
+  "strongest_angle": "A comprehensive guide to California's Workplace Know Your Rights Act (SB 294), detailing the new annual notice requirements for employers and critical protections for workers regarding immigration, law enforcement, and emergency contacts.",
+  "key_facts": [
+    {
+      "fact": "California's Workplace Know Your Rights Act (Senate Bill 294) requires all employers to provide a stand-alone written notice of workplace rights to all employees by February 1, 2026, and annually thereafter.",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=LAB&sectionNum=1553",
+      "source_name": "California Legislative Information",
+      "confidence": "high"
+    },
+    {
+      "fact": "Starting January 1, 2026, employers must notify a worker's designated emergency contact if the employee is arrested or detained on the worksite, or if the employer has knowledge of such an event during work hours off-site.",
+      "source_url": "https://www.dir.ca.gov/DLSE/LCO-Letter-to-Employers-New-Laws-2026.pdf",
+      "source_name": "California Department of Industrial Relations",
+      "confidence": "high"
+    },
+    {
+      "fact": "The required annual notice must cover seven categories of information, including workers' compensation, I-9 inspection notices, protections against unfair immigration practices, labor organizing rights, and constitutional rights during law enforcement interactions.",
+      "source_url": "https://www.dir.ca.gov/NewLaborLaws",
+      "source_name": "California Department of Industrial Relations",
+      "confidence": "high"
+    },
+    {
+      "fact": "Employers are required to provide the workplace rights notice in the language normally used to communicate employment-related information to the employee, provided the Labor Commissioner has a template available in that language.",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=LAB&sectionNum=1553",
+      "source_name": "California Legislative Information",
+      "confidence": "high"
+    },
+    {
+      "fact": "Employers who fail to provide the required annual workplace rights notice are subject to a penalty of up to $500 per employee.",
+      "source_url": "https://www.dir.ca.gov/DLSE/LCO-Letter-to-Employers-New-Laws-2026.pdf",
+      "source_name": "California Department of Industrial Relations",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Notice deadline year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.dir.ca.gov/wpnodb.html"
+    },
+    {
+      "label": "Notice deadline date",
+      "value": 1,
+      "unit": "February",
+      "source_url": "https://www.dir.ca.gov/wpnodb.html"
+    },
+    {
+      "label": "Emergency contact naming deadline date",
+      "value": 30,
+      "unit": "March 2026",
+      "source_url": "https://www.dir.ca.gov/DLSE/LCO-Letter-to-Employers-New-Laws-2026.pdf"
+    },
+    {
+      "label": "Record keeping requirement",
+      "value": 3,
+      "unit": "years",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=LAB&sectionNum=1553"
+    },
+    {
+      "label": "Penalty for failure to provide annual notice",
+      "value": 500,
+      "unit": "dollars per employee",
+      "source_url": "https://www.dir.ca.gov/DLSE/LCO-Letter-to-Employers-New-Laws-2026.pdf"
+    },
+    {
+      "label": "Penalty for failure to notify emergency contact (daily)",
+      "value": 500,
+      "unit": "dollars per day per employee",
+      "source_url": "https://www.dir.ca.gov/DLSE/LCO-Letter-to-Employers-New-Laws-2026.pdf"
+    },
+    {
+      "label": "Maximum penalty for emergency contact notification failure",
+      "value": 10000,
+      "unit": "dollars per employee",
+      "source_url": "https://www.dir.ca.gov/DLSE/LCO-Letter-to-Employers-New-Laws-2026.pdf"
+    },
+    {
+      "label": "Immigration inspection notice window",
+      "value": 72,
+      "unit": "hours",
+      "source_url": "https://www.dir.ca.gov/dlse/Know-Your-Rights-Notice/Know-Your-Rights-Notice-English.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "California Department of Industrial Relations",
+      "kind": "organization"
+    },
+    {
+      "name": "Labor Commissioner",
+      "kind": "organization"
+    },
+    {
+      "name": "Cal/OSHA",
+      "kind": "organization"
+    },
+    {
+      "name": "Civil Rights Department",
+      "kind": "organization"
+    },
+    {
+      "name": "Senate Bill 294",
+      "kind": "object"
+    }
+  ]
+}
