@@ -288,7 +288,7 @@ function findSrtPath(ttsAudioPath) {
   return existsSync(exact) ? exact : null;
 }
 
-async function renderVideo(componentId, outputPath, frames, props) {
+async function renderVideo(componentId, outputPath, frames, props, scale) {
   const browserOpts = CHROME ? { browserExecutable: CHROME } : {};
   const serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgress: () => {} });
   const composition = await selectComposition({
@@ -318,6 +318,7 @@ async function renderVideo(componentId, outputPath, frames, props) {
     pixelFormat: "yuv420p",             // required for wide playback
     chromiumOptions: { gl: "swangle" }, // software WebGL2 - NOT via the config file
     concurrency: 2,
+    scale,
     // Cold-start font fetch (21 families / 42 woff2 over the local static
     // server) can exceed the 28s default delayRender timeout.
     timeoutInMilliseconds: 120000,
@@ -326,10 +327,11 @@ async function renderVideo(componentId, outputPath, frames, props) {
 }
 
 async function main() {
-  const [format, channelId, scriptPath, ttsAudioPath] = process.argv.slice(2);
+  const [format, channelId, scriptPath, ttsAudioPath, scaleArg] = process.argv.slice(2);
+  const scale = scaleArg ? parseFloat(scaleArg) : 1.0;
 
   if (!format || !channelId || !scriptPath) {
-    console.error("Usage: node render.js <shorts|longform> <channel-id> <script-path> [tts-audio-path]");
+    console.error("Usage: node render.js <shorts|longform> <channel-id> <script-path> [tts-audio-path] [scale]");
     process.exit(1);
   }
 
@@ -412,7 +414,7 @@ async function main() {
   console.log(`Rendering: ${componentId} (${frames} frames)`);
   console.log(`Output: ${outputPath}`);
 
-  await renderVideo(componentId, outputPath, frames, props);
+  await renderVideo(componentId, outputPath, frames, props, scale);
   process.exit(0);
 }
 
