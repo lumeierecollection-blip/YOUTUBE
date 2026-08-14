@@ -1,0 +1,118 @@
+name: review-publish
+
+# Renders a channel's latest script in CI and uploads it to YouTube as
+# PRIVATE so the result can be reviewed before it ever goes public.
+# Credentials are never committed: they come from a GitHub secret holding
+# the channel's OAuth JSON (client_id / client_secret / refresh_token),
+# materialized into config/creds/<channel_id>.json right before use.
+#
+# Trigger:
+#   - workflow_dispatch: manual run, channel_id + script inputs
+#   - push to any branch touching this file (lets it run without gh)
+#
+# Secret expected: YOUTUBE_CREDS_CH02 = JSON for ch-02 OAuth credentials.
+#
+# The script path is a single explicit input and the mp3/srt are derived
+# from it (tts.js names outputs "<script-basename>-vo.mp3|.srt"; render.js
+# findSrtPath() only accepts the exact sibling .srt). Never glob the
+# research/tts dirs independently — alphabetical pairing silently attaches
+# the wrong topic's narration to the wrong visuals.
+
+on:
+  workflow_dispatch:
+    inputs:
+      channel_id:
+        description: Numeric channel id (e.g. 2)
+        default: "2"
+        required: true
+      script:
+        description: Script path (root-relative) to render + publish
+        default: "data/research/2/what-to-say-traffic-stop-script.json"
+        required: true
+  push:
+    branches: ["**"]
+    paths:
+      - ".github/workflows/review-publish.yml"
+
+jobs:
+  render-and-publish-private:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: src/skills/remotion-render/package-lock.json
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Install render deps + edge-tts + ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          pip install edge-tts pillow numpy
+          cd src/skills/remotion-render
+          npm ci
+          npx remotion browser ensure
+
+      - name: Materialize channel credentials from secret
+        run: |
+          CHANNEL_ID="${{ inputs.channel_id }}"
+          SECRET_NAME="YOUTUBE_CREDS_CH0${CHANNEL_ID}"
+          mkdir -p config/creds
+          case "$CHANNEL_ID" in
+            2) CREDS='${{ secrets.YOUTUBE_CREDS_CH02 }}' ;;
+            *) echo "No credential secret wired for channel $CHANNEL_ID"; exit 1 ;;
+          esac
+          if [ -z "$CREDS" ] || [ "$CREDS" = '""' ]; then
+            echo "Secret $SECRET_NAME is empty/missing."
+            exit 1
+          fi
+          echo "$CREDS" > config/creds/ch-0${CHANNEL_ID}.json
+          node -e "const c=require('./config/creds/ch-0${CHANNEL_ID}.json');['client_id','client_secret','refresh_token'].forEach(k=>{if(!c[k])throw new Error('missing '+k)})"
+          echo "Credentials OK for ch-0${CHANNEL_ID}"
+
+      - name: Resolve run inputs
+        id: run
+        run: |
+          CHANNEL_ID="${{ inputs.channel_id }}"
+          SCRIPT="${{ inputs.script }}"
+          SLUG=$(basename "$SCRIPT" .json)
+          MP3="data/tts/$CHANNEL_ID/$SLUG-vo.mp3"
+          echo "CHANNEL_ID=$CHANNEL_ID" >> "$GITHUB_OUTPUT"
+          echo "SCRIPT=$SCRIPT" >> "$GITHUB_OUTPUT"
+          echo "MP3=$MP3" >> "$GITHUB_OUTPUT"
+          if [ ! -f "$SCRIPT" ]; then
+            echo "Script not found: $SCRIPT"
+            exit 1
+          fi
+
+      - name: Regenerate voiceover from the chosen script
+        run: |
+          node src/utils/tts.js "${{ steps.run.outputs.CHANNEL_ID }}" "${{ steps.run.outputs.SCRIPT }}"
+
+      - name: Render
+        run: |
+          node src/skills/remotion-render/render.js shorts "${{ steps.run.outputs.CHANNEL_ID }}" "${{ steps.run.outputs.SCRIPT }}" "${{ steps.run.outputs.MP3 }}" 1
+
+      - name: Publish PRIVATE to YouTube
+        run: |
+          node src/skills/youtube-publish/run.js "${{ inputs.channel_id }}"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: review-render-${{ inputs.channel_id }}
+          path: |
+            data/renders/${{ inputs.channel_id }}/
+            data/publish-queue/${{ inputs.channel_id }}/
+          retention-days: 7
