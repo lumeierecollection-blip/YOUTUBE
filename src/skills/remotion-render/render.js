@@ -30,7 +30,7 @@ import { execSync } from "child_process";
 import { createRequire } from "module";
 import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
-import { resolveBrollFiles } from "./broll.js";
+import { resolveImageAssets } from "./image-assets.js";
 import { buildMgPackage } from "./compositions/mg-package.js";
 import { chunkTextClauseAware } from "./compositions/beats.js";
 import { paletteFromHues } from "./styles/tokens.js";
@@ -353,7 +353,7 @@ async function main() {
   // manifest whose own topic_slug matches the script actually being
   // rendered — see broll.js's loadManifest.
   for (const section of sections) {
-    section.bRollFiles = resolveBrollFiles(section.bRoll || [], channelId, script.topic_slug);
+    section.bRollFiles = resolveImageAssets(section.bRoll || [], channelId, script.topic_slug);
   }
   const withBroll = sections.filter((s) => (s.bRollFiles || []).length > 0).length;
   console.log(`B-roll: ${withBroll}/${sections.length} sections have real imagery`);
@@ -376,6 +376,11 @@ async function main() {
       bRollFiles: sections.flatMap((s) => s.bRollFiles || []),
       imageForSection: (idx) => (sections[idx] && sections[idx].bRollFiles && sections[idx].bRollFiles[0]) || null,
       totalMs: audioSecs ? audioSecs * 1000 : undefined,
+      // PART 7 — "largest visual move lands at reveal_placement" / "respect
+      // sfx_profile.silence_technique". Both are channel-config free text;
+      // see markReveal/computeSilenceWindow in mg-package.js for the parse.
+      revealPlacement: channel.script_template && channel.script_template.reveal_placement,
+      silenceTechnique: channel.sfx_profile && channel.sfx_profile.silence_technique,
     });
     frames = mg.totalFrames;
     console.log(

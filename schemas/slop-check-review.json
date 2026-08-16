@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Cold-review verdict over slop-check.js's measured evidence (PART 9, ANTI-SLOP.md). A fresh, context-free judgement call on rows a plain threshold can't fully resolve.",
+  "type": "object",
+  "properties": {
+    "verdicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "row": { "type": "string", "description": "the evidence row this verdict is about" },
+          "judgement": { "type": "string", "enum": ["looks_fine", "looks_like_slop", "insufficient_evidence"] },
+          "reasoning": { "type": "string", "minLength": 10 }
+        },
+        "required": ["row", "judgement", "reasoning"]
+      }
+    },
+    "overall_impression": { "type": "string", "minLength": 10 }
+  },
+  "required": ["verdicts", "overall_impression"]
+}

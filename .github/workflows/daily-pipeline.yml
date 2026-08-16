@@ -451,84 +451,23 @@ jobs:
           pattern: research-*
           merge-multiple: true
 
-      - name: Render all videos
+      # PART 8 of the motion-graphics rebuild — render-and-qa.js replaces
+      # what used to be two sequential steps (render everything, THEN
+      # review everything). QA for a finished video now runs in the
+      # background while the next video renders, instead of the whole batch
+      # waiting on review only after every render is already done. Same
+      # failure contract as before (0 rendered -> fail; any render failure
+      # -> fail) plus: a rendered video that fails its QA gate now also
+      # fails the job, since previously frame-audit failing here did fail
+      # the step (`|| exit 1`) — this preserves that, just pipelined.
+      - name: Render + QA (concurrent)
         run: |
           CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
-
           if [ -n "$CHANNEL_OVERRIDE" ]; then
-            CHANNELS="[\"$CHANNEL_OVERRIDE\"]"
+            node scripts/render-and-qa.js --channel "$CHANNEL_OVERRIDE"
           else
-            CHANNELS=$(node -e "
-              const fs = require('fs');
-              const data = JSON.parse(fs.readFileSync('config/channels.json'));
-              const channels = data.channels || data;
-              console.log(JSON.stringify(channels.map(c => String(c.id))));
-            ")
+            node scripts/render-and-qa.js
           fi
-
-          # Attempt every channel, then fail the step if ANY render failed.
-          # Previously each failure was swallowed by `|| echo WARN`, so a run
-          # where every single render died still reported success — the worst
-          # possible outcome for an unattended daily pipeline, because publish
-          # then runs against nothing and nobody is alerted.
-          FAILED=0
-          RENDERED=0
-          for CH in $(echo $CHANNELS | jq -r '.[]'); do
-            echo "=== RENDER: $CH ==="
-
-            # Find all script files (JSON format)
-            SCRIPTS=$(ls data/research/$CH/*-script.json 2>/dev/null || true)
-            for SCRIPT in $SCRIPTS; do
-              echo "Rendering: $SCRIPT"
-              # tts.js names audio "<script-basename>-vo.mp3" next to the script's slug.
-              BASE=$(basename "$SCRIPT" .json)
-              AUDIO="data/tts/$CH/${BASE}-vo.mp3"
-              if [ ! -f "$AUDIO" ]; then
-                echo "WARN: no voiceover audio at $AUDIO — skipping render for $SCRIPT"
-                continue
-              fi
-              # Stage C names scripts "<slug>-shorts-script.json" / "<slug>-longform-script.json" —
-              # read the format back out of the filename instead of assuming longform.
-              case "$SCRIPT" in
-                *-shorts-script.json) FORMAT="shorts" ;;
-                *-longform-script.json) FORMAT="longform" ;;
-                *) echo "WARN: can't tell shorts/longform from $SCRIPT — defaulting to longform"; FORMAT="longform" ;;
-              esac
-              if node src/skills/remotion-render/render.js "$FORMAT" "$CH" "$SCRIPT" "$AUDIO"; then
-                RENDERED=$((RENDERED + 1))
-              else
-                echo "::error::render failed for $SCRIPT"
-                FAILED=$((FAILED + 1))
-              fi
-            done
-          done
-
-          echo "Rendered $RENDERED video(s), $FAILED failure(s)."
-          if [ "$RENDERED" -eq 0 ]; then
-            echo "::error::0 videos rendered - nothing for publish to upload. This is a pipeline bug, not a quiet success."
-            exit 1
-          fi
-          if [ "$FAILED" -gt 0 ]; then
-            echo "::error::$FAILED render(s) failed — see the errors above."
-            exit 1
-          fi
-
-      - name: Review renders (frames + pixel audit)
-        if: always()
-        run: |
-          REVIEW_DIR="data/audit/render-review/${{ github.run_id }}"
-          MP4S=$(find data/renders -name "*.mp4" | sort)
-          if [ -z "$MP4S" ]; then
-            echo "::warning::no mp4s under data/renders/ - nothing to review"
-            exit 0
-          fi
-          for MP4 in $MP4S; do
-            SUB="$REVIEW_DIR/$(basename "$MP4" .mp4)"
-            mkdir -p "$SUB"
-            echo "== Reviewing: $MP4"
-            node scripts/video-review.js "$MP4" --frames 10 --out "$SUB" || exit 1
-            node scripts/frame-audit.js "$SUB" || exit 1
-          done
 
       - name: Upload review frames
         if: always()

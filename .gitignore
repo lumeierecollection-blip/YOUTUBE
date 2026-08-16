@@ -23,3 +23,13 @@ src/skills/remotion-render/qa-entry.jsx
 src/skills/remotion-render/verify-entry.jsx
 src/skills/remotion-render/verify-out/
 src/skills/remotion-render/out/
+
+# rembg's dedicated venv (asset-sourcing/treat.js) — heavy CPU-inference
+# deps (onnxruntime, scikit-image, numba), rebuilt per-machine, never
+# committed. See src/skills/asset-sourcing/SKILL.md's Setup section.
+.venv-rembg/
+
+# QA verification videos are throwaway evidence for this rebuild's report,
+# not pipeline output — the extracted frame PNGs next to them are the part
+# worth keeping (same convention as data/renders/**/*.mp4 above).
+qa/**/*.mp4

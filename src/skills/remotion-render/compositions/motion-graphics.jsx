@@ -80,20 +80,70 @@ function easeScale(frame, inputRange, outputRange, easing = E_OUT) {
   });
 }
 
-// D2.1 POP — scale 0 → 1.15 → 1.00 over 9f, opacity 0 → 1 over 3f.
-function popStyle(frame, start) {
+// PART 7 of the rebuild — "vary duration ±20% between comparable beats."
+// A deterministic pseudo-random multiplier keyed off the entrance's own
+// start frame (the one per-instance signal every call site already has),
+// NOT wall-clock randomness — the same script renders identically on every
+// run, which frame-audit/frame-diff tooling and reproducible CI both
+// depend on. Two independent phases (jitter vs jitterB) so an element's
+// duration jitter and its rotation/overshoot jitter don't move in lockstep.
+function jitter(seed, pct = 0.2) {
+  const h = Math.sin(seed * 12.9898) * 43758.5453;
+  const frac = h - Math.floor(h);
+  return 1 + (frac * 2 - 1) * pct;
+}
+
+// D2.1 POP — PART 7: "objects enter with weight: slight rotation plus
+// scale, settling with 3-8% overshoot. Reference objects tumble and
+// settle, they don't fade." Previously a flat 15% scale overshoot with no
+// rotation at all; now a per-instance overshoot inside [1.03, 1.08], a
+// small deterministic tilt that settles to 0, and a duration jittered
+// ±20% so repeated entrances (a dozen icon pops across one video) don't
+// all move in perfect lockstep.
+//
+// `boost` marks the ONE beat nearest the channel's configured
+// script_template.reveal_placement (mg-package.js's markReveal) —
+// PART 7's "largest visual move lands at reveal_placement": that beat
+// gets the top of the overshoot/tilt range instead of the per-instance
+// jittered value, so it reads as deliberately bigger, not just randomly so.
+function popStyle(frame, start, { boost = false } = {}) {
+  const dJ = jitter(start);
+  const dur = Math.max(6, Math.round(9 * dJ));
+  const settle = Math.max(3, Math.round(5 * dJ));
+  const overshoot = boost ? 1.08 : 1.03 + Math.abs(Math.sin(start * 7.13)) * 0.05; // 3%-8%
+  const tiltMax = boost ? 6 : 4;
+  const tilt = Math.sin(start * 3.7) * tiltMax;
   return {
-    opacity: ease(frame - start, [0, 3], [0, 1], E_OUT),
-    scale: easeScale(frame - start, [0, 5, 9], [0, 1.15, 1], E_OUT),
+    opacity: ease(frame - start, [0, Math.max(2, Math.round(3 * dJ))], [0, 1], E_OUT),
+    scale: easeScale(frame - start, [0, settle, dur], [0, overshoot, 1], E_OUT),
+    rotate: `${ease(frame - start, [0, dur], [tilt, 0], E_OUT)}deg`,
     transformOrigin: "center",
   };
 }
 
 // D2.2 RISE — translateY +24 → 0 over 9f, opacity 0 → 1 over 6f. No scale.
-function riseStyle(frame, start, offsetPx = 24) {
+// PART 7 duration variance, same rationale as popStyle above (independent
+// jitter phase so the two primitives don't happen to move together).
+// PART 10 of the rebuild — a real, measured defect found by frame-audit on
+// a genuine render (Money Mind, white mode): headline contrast dropped to
+// 2.17:1 (glyph rgb(176,176,176) on white). Root cause: `colors.textDim`/
+// `textPrimary` are solved by tokens.js to clear >=4.5:1 at FULL opacity,
+// but this fade's own `opacity` ramp (0->1 over shortD frames) composites
+// that already-correct colour toward the background via CSS opacity —
+// contrast is a property of the FINAL rendered pixel, not the declared
+// `color`, so any opacity-faded text necessarily passes through a
+// low-contrast phase while opacity is low, regardless of how correct the
+// colour token is. `noFade` skips the opacity dimension entirely (motion
+// carried by translate alone) for text where legibility can never lapse,
+// even briefly — this also matches PART 7's "objects don't fade, they
+// tumble and settle" instinct better than the fade did.
+function riseStyle(frame, start, offsetPx = 24, { noFade = false } = {}) {
+  const dJ = jitter(start + 1000);
+  const shortD = Math.max(3, Math.round(D.short * dJ));
+  const baseD = Math.max(4, Math.round(D.base * dJ));
   return {
-    opacity: ease(frame - start, [0, D.short], [0, 1], E_OUT),
-    translate: `0px ${offsetPx * ease(frame - start, [0, D.base], [1, 0], E_OUT)}px`,
+    opacity: noFade ? 1 : ease(frame - start, [0, shortD], [0, 1], E_OUT),
+    translate: `0px ${offsetPx * ease(frame - start, [0, baseD], [1, 0], E_OUT)}px`,
   };
 }
 
@@ -167,8 +217,22 @@ function DesignSpace({ children }) {
 // Background — A6: flat bg → dotGrid (stroke 6%) → content → grain (noise 4%).
 // ─────────────────────────────────────────────────────────────────────────────
 
+// PART 7 of the rebuild — "nothing perfectly still: <=1.5% scale breath,
+// 20s+ period, on background layers." Applied to the dotGrid/noise texture
+// layers only, never the flat base-colour fill beneath them (scaling that
+// would risk a 1-2px edge gap under the design-space scale wrapper; the
+// texture layers sit on top of a same-colour base so a breathing edge is
+// invisible either way). frame-audit's margin-flatness check (stddev<=14
+// in empty corners) was re-run against this — see PART 10's report — since
+// a naive implementation could in principle raise it.
+const BREATHE_PERIOD_SEC = 20;
+const BREATHE_AMPLITUDE = 0.015;
+
 function Background({ colors }) {
   const { width, height } = useVideoConfig();
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const breathe = 1 + BREATHE_AMPLITUDE * Math.sin((2 * Math.PI * frame) / (fps * BREATHE_PERIOD_SEC));
   return (
     <>
       <Solid width={width} height={height} color={colors.bg} style={{ position: "absolute", inset: 0 }} />
@@ -177,14 +241,23 @@ function Background({ colors }) {
         height={height}
         color={colors.stroke}
         effects={[dotGrid({ dotSize: 8, gridSize: 80 })]}
-        style={{ position: "absolute", inset: 0, opacity: 0.06 }}
+        style={{ position: "absolute", inset: 0, opacity: 0.06, scale: `${breathe}`, transformOrigin: "center" }}
       />
       <Solid
         width={width}
         height={height}
         color="#ffffff"
         effects={[noise({ amount: 0.05 })]}
-        style={{ position: "absolute", inset: 0, opacity: 0.04 }}
+        // PART 7 parallax — a different (slower, phase-shifted) rate than
+        // the dotGrid layer above it, so the two background layers read as
+        // sitting at different depths rather than moving as one unit.
+        style={{
+          position: "absolute",
+          inset: 0,
+          opacity: 0.04,
+          scale: `${1 + BREATHE_AMPLITUDE * 0.6 * Math.sin((2 * Math.PI * frame) / (fps * BREATHE_PERIOD_SEC * 1.4) + Math.PI / 3)}`,
+          transformOrigin: "center",
+        }}
       />
     </>
   );
@@ -503,11 +576,20 @@ function CaptionLayer({ pages, accentWindows, colors, fontFamily }) {
   const rel = frame - page.startFrame;
   const exitRel = page.endFrame - frame;
 
-  const popOpacity = ease(rel, [0, 5], [0, 1], E_OUT);
+  // PART 10 of the rebuild — this opacity ramp used to fade the whole
+  // caption block in/out (0->1 over 5f in, 1->0 over 3f out). Measured on a
+  // real render (frame-audit, Money Mind/white mode): the ramp composited
+  // CaptionToken's already-contrast-correct colours toward the white
+  // background, dropping measured contrast to 2.10:1 for however many
+  // sampled frames landed inside that window — captions are the most
+  // persistently-on-screen text in the whole composition, so this is the
+  // single biggest legibility exposure in the piece. Motion now carries
+  // entirely through scale+translate (popScale/popTranslate/exitScale)
+  // instead — captions were never meant to fade per PART 7 anyway
+  // ("objects don't fade, they tumble and settle"), this just makes that
+  // true for captions specifically, where it was still measurably false.
   const popScale = easeScale(rel, [0, 5, 8], [0.88, 1.04, 1.0], E_OUT);
   const popTranslate = ease(rel, [0, 6], [14, 0], E_OUT);
-
-  const exitOpacity = exitRel <= 3 && exitRel > 0 ? ease(exitRel, [0, 3], [0, 1], E_IN) : 1;
   const exitScale = exitRel <= 3 && exitRel > 0 ? easeScale(exitRel, [0, 3], [1, 0.97], E_IN) : 1;
 
   return (
@@ -524,7 +606,7 @@ function CaptionLayer({ pages, accentWindows, colors, fontFamily }) {
     >
       <div
         style={{
-          opacity: popOpacity * exitOpacity,
+          opacity: 1,
           scale: `${popScale * exitScale}`,
           translate: `0px ${popTranslate}px`,
           transformOrigin: "center bottom",
@@ -604,7 +686,9 @@ function HeadlineBox({ beat, colors, fontFamily }) {
     [scene.headline, fontStyle, fontSize]
   );
 
-  const rise = riseStyle(frame, start);
+  // noFade — this is the headline title itself, gated by frame-audit's
+  // headlineContrast probe; see riseStyle's PART 10 comment.
+  const rise = riseStyle(frame, start, 24, { noFade: true });
   const ruleProg = ease(frame - (tA + 6), [0, D.large], [0, 1], E_OUT);
   const setupRise = riseStyle(frame, Math.max(start - D.short, 0));
 
@@ -752,7 +836,7 @@ function HeroNumberScene({ beat, scene, colors, fontFamily }) {
               color: colors.accent,
               lineHeight: 1,
               fontVariantNumeric: "tabular-nums",
-              ...popStyle(frame, start),
+              ...popStyle(frame, start, { boost: beat.scene.isReveal }),
             }}
           >
             {formatCounter(counter, scene.value)}
@@ -779,7 +863,7 @@ function TermDefineScene({ beat, scene, colors, fontFamily }) {
         {scene.trace ? (
           <TraceIcon name={scene.icon} size={180} color={colors.stroke} start={start} />
         ) : (
-          <div style={popStyle(frame, start)}>
+          <div style={popStyle(frame, start, { boost: beat.scene.isReveal })}>
             <Icon name={scene.icon} size={180} color={colors.stroke} />
           </div>
         )}
@@ -839,7 +923,7 @@ function ContrastScene({ beat, scene, colors, fontFamily }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          ...popStyle(frame, rightStart),
+          ...popStyle(frame, rightStart, { boost: beat.scene.isReveal }),
         }}
       >
         <div style={{ fontFamily, fontWeight: 800, fontSize: TYPE.body, textAlign: "center", lineHeight: 1.2 }}>
@@ -924,7 +1008,8 @@ function ProgressScene({ beat, scene, colors, fontFamily }) {
       {/* bars */}
       {series.map((s, i) => {
         const x = plotLeft + i * (barW + gap);
-        const start = Math.max(tA - D.micro, 0) + i * 5;
+        // PART 7 — "stagger siblings 2-4 frames in reading order" (was 5f).
+        const start = Math.max(tA - D.micro, 0) + i * 3;
         const g = growSpring(frame, start, fps);
         const h = Math.max(s.value / maxValue * maxBarH * g, s.value > 0 ? 6 * g : 0);
         const settled = ease(frame - (start + 24), [0, 3], [0, 1], E_OUT);
@@ -1008,7 +1093,7 @@ function RelationScene({ beat, scene, colors, fontFamily }) {
   const connProg = ease(frame - connStart, [0, D.large], [0, 1], E_OUT);
   const bAccent = ease(frame - bStart, [0, 24], [0, 1], E_OUT) > 0.99;
   const aPop = popStyle(frame, 0);
-  const bPop = popStyle(frame, bStart);
+  const bPop = popStyle(frame, bStart, { boost: beat.scene.isReveal });
   const aCircle = makeCircle({ radius: 44 });
   const bCircle = makeCircle({ radius: 44 });
 
@@ -1102,7 +1187,7 @@ function StatementScene({ beat, scene, colors, fontFamily }) {
         {scene.trace ? (
           <TraceIcon name={scene.icon} size={120} color={colors.stroke} start={start} />
         ) : (
-          <div style={popStyle(frame, start)}>
+          <div style={popStyle(frame, start, { boost: beat.scene.isReveal })}>
             <Icon name={scene.icon} size={120} color={colors.stroke} />
           </div>
         )}
@@ -1128,6 +1213,17 @@ function StatementScene({ beat, scene, colors, fontFamily }) {
 //  - The credit line — real sourced-image attribution, not fabricated text
 //    — runs vertically along the image's right edge (PART 3.4 "one element
 //    may run vertically along a frame edge as an anchor").
+//
+// PART 6 of the rebuild — "no raw photo reaches a frame." scene.image now
+// carries scene.imageTreatment from asset-sourcing/treat.js:
+//  - "cutout": a rembg-isolated subject on a transparent PNG with its
+//    contact shadow already baked in (treat.js). Rendered `object-fit:
+//    contain` and centred in the stage box — a product shot, not a photo
+//    meant to fill the frame — never `cover`-cropped, which would clip the
+//    subject or the shadow arbitrarily.
+//  - "fullbleed" (or no treatment at all, e.g. an untreated legacy b-roll
+//    fixture): unchanged pre-PART-6 behaviour — `object-fit: cover`,
+//    bleeding to the canvas edge.
 function ImageBeatScene({ beat, scene, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -1135,6 +1231,7 @@ function ImageBeatScene({ beat, scene, colors, fontFamily }) {
   const start = Math.max(tA - D.micro, 0);
   const push = Easing.spring({ damping: 200 })(ease(frame - start, [0, D.push], [0, 1], E_OUT));
   if (!scene.image) return null;
+  const isCutout = scene.imageTreatment === "cutout";
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <div
@@ -1144,7 +1241,10 @@ function ImageBeatScene({ beat, scene, colors, fontFamily }) {
           top: 392,
           right: 0, // bleeds past the 888 safe-right edge to the real canvas edge (1080)
           bottom: 780, // bleeds down toward the caption zone (past the 940 stage floor)
-          overflow: "hidden",
+          overflow: isCutout ? "visible" : "hidden",
+          display: isCutout ? "flex" : "block",
+          alignItems: isCutout ? "center" : undefined,
+          justifyContent: isCutout ? "center" : undefined,
           opacity: ease(frame - start, [0, D.base], [0, 1], E_OUT),
           scale: `${1.05 - push * 0.05}`,
           transformOrigin: "center",
@@ -1152,7 +1252,11 @@ function ImageBeatScene({ beat, scene, colors, fontFamily }) {
       >
         <img
           src={staticFile(scene.image)}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          style={
+            isCutout
+              ? { maxWidth: "88%", maxHeight: "92%", width: "auto", height: "auto", objectFit: "contain" }
+              : { width: "100%", height: "100%", objectFit: "cover" }
+          }
           alt=""
         />
       </div>
@@ -1400,6 +1504,14 @@ function MotionGraphicsContent({ mg, colors, fontFamily }) {
   const boundaryFrames = beats
     .map((b, i) => (i > 0 && beats[i - 1].sectionIndex !== b.sectionIndex ? b.startFrame : null))
     .filter((v) => v !== null);
+  // PART 7 — "respect sfx_profile.silence_technique; settle into a
+  // specified silence." mg.silenceWindow (mg-package.js's
+  // computeSilenceWindow) is a real, detected gap in the VO near the
+  // reveal beat, in absolute timeline frames — never fabricated. A section
+  // whoosh landing inside it would announce a cut into the middle of the
+  // deliberate pause the voiceover is holding, so it's the one SFX trigger
+  // suppressed there.
+  const inSilence = (f) => mg.silenceWindow && f >= mg.silenceWindow[0] && f < mg.silenceWindow[1];
 
   return (
     <>
@@ -1411,7 +1523,7 @@ function MotionGraphicsContent({ mg, colors, fontFamily }) {
         <HeadlineLayer beats={beats} colors={colors} fontFamily={fontFamily} />
         <CaptionLayer pages={mg.pages || []} accentWindows={accentWindows} colors={colors} fontFamily={fontFamily} />
       </DesignSpace>
-      {boundaryFrames.map((f) => (
+      {boundaryFrames.filter((f) => !inSilence(f)).map((f) => (
         <Sfx key={`w-${f}`} file="sfx/transitions/close_001.ogg" at={f} db={-18} />
       ))}
     </>

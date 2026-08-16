@@ -1,0 +1,126 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786875509105/debt-snowball-vs-debt-avalanche-shorts-shorts-2026-08-16/frame-00.png",
+      "bg": "rgb(251,251,251)",
+      "flatness": 1.1887601318345664,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.004737103174603174,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.3329861111111111,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786875509105/debt-snowball-vs-debt-avalanche-shorts-shorts-2026-08-16/frame-01.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 1.2629737003246797,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.20245535714285715,
+      "captionContrast": 19.71206465514972,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.3333333333333333,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786875509105/debt-snowball-vs-debt-avalanche-shorts-shorts-2026-08-16/frame-02.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 1.1168727266347485,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.004761904761904762,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.3333333333333333,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786875509105/debt-snowball-vs-debt-avalanche-shorts-shorts-2026-08-16/frame-03.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 1.3033969998227974,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.13219246031746032,
+      "captionContrast": 21,
+      "headlineContrast": 21,
+      "railForegroundFraction": 0.33741319444444445,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786875509105/debt-snowball-vs-debt-avalanche-shorts-shorts-2026-08-16/frame-04.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 1.0837237886102444,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.04900793650793651,
+      "captionContrast": 6.867656610283617,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.3333333333333333,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786875509105/debt-snowball-vs-debt-avalanche-shorts-shorts-2026-08-16/frame-05.png",
+      "bg": "rgb(250,250,250)",
+      "flatness": 1.1656937667768212,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.20874255952380952,
+      "captionContrast": 19.037934849203438,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.33315972222222223,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786875509105/debt-snowball-vs-debt-avalanche-shorts-shorts-2026-08-16/frame-06.png",
+      "bg": "rgb(253,253,253)",
+      "flatness": 1.1861304805653692,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.12589285714285714,
+      "captionContrast": 20.645011006662344,
+      "headlineContrast": 19.463473147870932,
+      "railForegroundFraction": 0.3333333333333333,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786875509105/debt-snowball-vs-debt-avalanche-shorts-shorts-2026-08-16/frame-07.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 1.1382274112194202,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.004761904761904762,
+      "captionContrast": null,
+      "headlineContrast": 19.682627652657427,
+      "railForegroundFraction": 0.3333333333333333,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786875509105/debt-snowball-vs-debt-avalanche-shorts-shorts-2026-08-16/frame-08.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 1.3125129734802483,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.16336805555555556,
+      "captionContrast": 19.168645448127652,
+      "headlineContrast": 19.79814571052481,
+      "railForegroundFraction": 0.3333333333333333,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786875509105/debt-snowball-vs-debt-avalanche-shorts-shorts-2026-08-16/frame-09.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 1.0772387136064916,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.004761904761904762,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.3333333333333333,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

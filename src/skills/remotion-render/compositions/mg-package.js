@@ -292,8 +292,22 @@ export function deriveScene(beat, ctx = {}) {
       break;
     }
     case "IMAGE_BEAT": {
-      scene.image = (ctx.imageForSection && ctx.imageForSection(beat.sectionIndex)) || null;
-      scene.credit = (beat.data && beat.data.credit) || "";
+      // PART 6 of the rebuild — imageForSection now returns a treated-asset
+      // object ({ path, treatment, mode, credit }) from image-assets.js, not
+      // a bare path string. A bare string is still accepted (defends against
+      // any caller — verify-compositions.js fixtures, older tests — that
+      // still hands a raw path) and treated as an untreated full-bleed photo,
+      // matching the composition's pre-rebuild behaviour exactly.
+      const resolved = (ctx.imageForSection && ctx.imageForSection(beat.sectionIndex)) || null;
+      const asset =
+        resolved && typeof resolved === "object"
+          ? resolved
+          : resolved
+            ? { path: resolved, treatment: "fullbleed", mode: null, credit: null }
+            : null;
+      scene.image = asset ? asset.path : null;
+      scene.imageTreatment = asset ? asset.treatment : null;
+      scene.credit = (asset && asset.credit) || (beat.data && beat.data.credit) || "";
       scene.headline = subjectLabel(beat);
       break;
     }
@@ -435,6 +449,79 @@ export function enrichPages(pages, fps = FPS) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// PART 7 of the rebuild — "the largest visual move lands at
+// script_template.reveal_placement." Channels describe this in free text
+// ("50-60% through video", "25/50/85% layered reveals", "65% match, 80%
+// identity") — never machine-structured, so this is a deterministic best-
+// effort parse, not a guarantee every phrasing is handled perfectly. A
+// range ("50-60%") takes its midpoint; several distinct percentages take
+// the LARGEST one (read as the climax of a build, e.g. Fraud Files'
+// "25/50/85% layered reveals" — the 85% figure is the final, biggest
+// reveal, not the first one). No percentage found at all -> no beat is
+// marked (honest no-op, not a fabricated default).
+// ─────────────────────────────────────────────────────────────────────────────
+
+export function parseRevealTarget(text) {
+  const nums = [...String(text || "").matchAll(/(\d+(?:\.\d+)?)\s*%/g)].map((m) => Number(m[1]));
+  if (!nums.length) return null;
+  const rangeMatch = /(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)\s*%/.exec(text);
+  if (rangeMatch) return (Number(rangeMatch[1]) + Number(rangeMatch[2])) / 2;
+  return Math.max(...nums);
+}
+
+export function markReveal(beats, revealPlacementText, totalFrames) {
+  const pct = parseRevealTarget(revealPlacementText);
+  if (pct == null || !beats.length) return beats;
+  const targetFrame = (Math.max(0, Math.min(100, pct)) / 100) * totalFrames;
+  let best = null;
+  let bestDist = Infinity;
+  for (const b of beats) {
+    if (b.archetype === "LIST_ITEM") continue; // transient chip accumulation, not a single "big moment"
+    const mid = b.startFrame + b.durationInFrames / 2;
+    const dist = Math.abs(mid - targetFrame);
+    if (dist < bestDist) {
+      bestDist = dist;
+      best = b;
+    }
+  }
+  if (best) best.scene.isReveal = true;
+  return beats;
+}
+
+// PART 7 — "respect sfx_profile.silence_technique; settle into a specified
+// silence." The beat timeline is locked to the SRT/audio timeline (see this
+// file's and motion-graphics.jsx's header — shifting it desyncs captions
+// from the voiceover), so this never inserts artificial silence. It only
+// DETECTS a real gap already present in the caption stream near the reveal
+// beat that is at least as long as the configured technique, and hands
+// that window back so the composition can avoid firing new SFX/accent
+// events into a pause the voiceover itself is holding. No matching gap ->
+// null -> nothing is suppressed (honest: most VO won't happen to pause for
+// exactly the configured duration at exactly that moment).
+export function computeSilenceWindow(captions, silenceTechniqueText, revealFrame, fps = FPS) {
+  const m = /(\d+(?:\.\d+)?)\s*second/i.exec(String(silenceTechniqueText || ""));
+  if (!m || revealFrame == null) return null;
+  const minGapFrames = Number(m[1]) * fps * 0.6; // 0.6x tolerance — real VO pauses rarely hit an exact figure
+  const sorted = [...captions].sort((a, b) => a.startMs - b.startMs);
+  const searchWindowMs = 4000; // look within 4s of the reveal beat
+  const revealMs = (revealFrame / fps) * 1000;
+  let best = null;
+  let bestLen = 0;
+  for (let i = 0; i < sorted.length - 1; i++) {
+    const gapStartMs = sorted[i].endMs;
+    const gapEndMs = sorted[i + 1].startMs;
+    const gapFrames = ((gapEndMs - gapStartMs) / 1000) * fps;
+    if (gapFrames < minGapFrames) continue;
+    if (Math.abs(gapStartMs - revealMs) > searchWindowMs) continue;
+    if (gapFrames > bestLen) {
+      bestLen = gapFrames;
+      best = [Math.round((gapStartMs / 1000) * fps), Math.round((gapEndMs / 1000) * fps)];
+    }
+  }
+  return best;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // buildMgPackage — the single entry point used by render.js and verify.
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -523,6 +610,12 @@ export function buildMgPackage(srtText, opts = {}) {
   const rawTotal = beats.reduce((s, b) => s + b.durationInFrames, 0);
   const totalFrames = Math.max(rawTotal, audioFrames) + MG_TAIL_FRAMES;
 
+  markReveal(beats, opts.revealPlacement, totalFrames);
+  const revealBeat = beats.find((b) => b.scene && b.scene.isReveal);
+  const silenceWindow = revealBeat
+    ? computeSilenceWindow(captions, opts.silenceTechnique, revealBeat.anchorFrame, fps)
+    : null;
+
   return {
     beats,
     captions,
@@ -532,6 +625,7 @@ export function buildMgPackage(srtText, opts = {}) {
     totalFrames,
     audioFrames,
     synthesized,
+    silenceWindow,
   };
 }
 

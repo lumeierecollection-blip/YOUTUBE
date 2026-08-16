@@ -70,6 +70,7 @@ never `L7` or `Â§3.1`.
 | `DEL` | absence â€” things that must no longer exist | the owning lane |
 | `FRM` | whole-frame visual QA | orchestrator |
 | `SCR` | daily-pipeline script generation â€” grounding, archetype/anchor sync, pacing | `discover-topics` / `research-and-script` workflow jobs (not a CROSSCHECK lane â€” see Â§3.10) |
+| `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 
 ---
 
@@ -401,6 +402,35 @@ implementations.** Read the check's Method column before trusting its
 State â€” `gate-research.js` and `gate-script.js` both document, inline, the
 gap between what they claim to check and what would be needed to check it
 fully.
+
+## 3.11 `SLOP` â€” anti-slop gate (motion-graphics rebuild PART 9)
+
+Like `SCR`, gates the *daily* pipeline (`scripts/render-and-qa.js`, after
+`frame-audit.js`), not the one-time `FRM` engineering audit above. Full
+spec, rationale, and the "why not a vision model" note live in
+`ANTI-SLOP.md` â€” this row only registers IDs per Â§0.2's rule. **All rows
+are currently `WARN`, not `BLOCKER`**: `render-and-qa.js` logs every
+verdict to `data/audit/slop-check.log` but the gate never fails the job
+(see `ANTI-SLOP.md`'s rationale for shipping warn-only first).
+
+| ID | Check | Method | T | Sev (nominal) | Stage | State |
+|---|---|---|---|---|---|---|
+| SLOP-01 | No rendered frame >40% empty | `slop-check.js checkFrameEmptiness` (pixel) | 3 | MAJOR | post-render | **NEW**, WARN |
+| SLOP-02 | Every non-`LIST_ITEM` beat's scene carries real visual content | `slop-check.js checkSceneHasVisual` (structural, over `mg` package) | 1 | MAJOR | post-render | **NEW**, WARN |
+| SLOP-03 | At least one element bleeds off a frame edge per scene | `slop-check.js checkEdgeBleed` (pixel) â€” **weak signal, see `ANTI-SLOP.md` row 5** | 3 | MINOR | post-render | **NEW**, WARN |
+| SLOP-04 | No untreated/unattributed image reaches an `IMAGE_BEAT` frame | `slop-check.js checkImageTreatment` (structural) | 1 | MINOR | post-render | **NEW**, WARN |
+| SLOP-05 | No hexagon-node/connector-line primitives exist in `motion-graphics.jsx` | `slop-check.js checkStaticSource` (static regression guard, not per-render) | 1 | BLOCKER | build-time | **NEW**, WARN |
+| SLOP-06 | No raw `interpolate()` call bypasses the `ease()`/`easeScale()` bezier default | `slop-check.js checkStaticSource` (static regression guard) | 1 | MAJOR | build-time | **NEW**, WARN |
+| SLOP-07 | No two adjacent non-`LIST_ITEM` beats share an archetype | `slop-check.js checkEntranceDiversity` (structural) | 1 | MAJOR | post-render | **NEW**, WARN â€” confirmed firing on a real script (`ch-02` "what-to-say-traffic-stop"): long `STATEMENT`-only runs, a real finding, not a false positive |
+| SLOP-08 | `Kicker` never renders a channel name or free-text section label | `slop-check.js checkStaticSource` (static regression guard) | 1 | BLOCKER | build-time | **NEW**, WARN |
+| SLOP-09 | Cold model review of residual judgement rows | `slop-check.js coldModelReview` via `scripts/opencode-agent.js`, `--with-model-review` only, off by default | 4 | MINOR | post-render | **NEW**, unverified against a live Cerebras call â€” see `ANTI-SLOP.md` |
+
+**3.11.1** â€” Rows already covered by an existing, reused gate are NOT
+duplicated here: flat background and text contrast are `frame-audit.js`
+(unchanged), duplicated on-screen facts are `mg-package.js`'s
+`gateMgHeadlineOverlap`, and caption mid-phrase breaks are `beats.js`'s
+`gateCaptions`. `ANTI-SLOP.md`'s table is the complete 12-row list;
+`SLOP-*` only covers the rows that needed genuinely new code.
 
 ---
 
