@@ -632,12 +632,18 @@ function HeadlineBox({ beat, colors, fontFamily }) {
           {scene.setupLine}
         </div>
       ) : null}
-      <div style={{ textAlign: "center", ...fontStyle, fontSize, color: colors.textPrimary }}>
+      <div style={{ textAlign: "center", ...fontStyle, fontSize, lineHeight: 1.05, color: colors.textPrimary }}>
         {/* fitTextOnNLines already decided the per-line breaks that fit
             maxBoxWidth — joining them back into one nowrap string (the
             previous behaviour) defeated that fit and let long headlines
             clip off the safe rect ("HIGHEST INTER[EST]"), a real defect
-            confirmed on a rendered frame. Render each line on its own row. */}
+            confirmed on a rendered frame. Render each line on its own row.
+            lineHeight is deliberately tight (browser default is ~1.2-1.3):
+            bottom-anchoring alone wasn't enough — a 2-line headline at the
+            default line-height is still tall enough to reach into a 2-line
+            caption's own worst-case extent (confirmed on a rendered frame),
+            since the manual's own "grows upward into headline's lower 48px"
+            budget assumes a single-line headline. */}
         {fit.lines.map((line, i) => (
           <div key={i} style={{ whiteSpace: "nowrap" }}>
             {line}
