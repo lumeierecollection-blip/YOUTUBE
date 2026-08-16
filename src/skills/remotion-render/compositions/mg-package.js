@@ -144,7 +144,15 @@ function splitAtMarker(text, markers) {
 
 function splitContrast(text) {
   const split = splitAtMarker(text, CONTRAST_PIVOTS);
-  if (!split) return { before: contentWords(text, 3), after: contentWords(text, 3).slice(1), accentWord: 0 };
+  // No marker, OR the marker sits at/near the very start of the sentence
+  // ("But the calculators miss the point.") — the latter left `before`
+  // empty, rendering a genuinely blank left panel (confirmed on a rendered
+  // frame). Fall back to the same before/after-from-the-whole-sentence
+  // split used when no marker is found at all, so both panels always carry
+  // real content.
+  if (!split || !split.before.trim()) {
+    return { before: contentWords(text, 3), after: contentWords(text, 3).slice(1), accentWord: 0 };
+  }
   const before = contentWords(split.before, 3);
   const after = contentWords(split.after, 3);
   return { before, after, accentWord: 0 };

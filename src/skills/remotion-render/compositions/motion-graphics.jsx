@@ -609,7 +609,13 @@ function HeadlineBox({ beat, colors, fontFamily }) {
   const setupRise = riseStyle(frame, Math.max(start - D.short, 0));
 
   return (
-    <div style={{ position: "absolute", top: 1008, left: 468, translate: "-50% 0px", width: "max-content", maxWidth: 780, ...rise }}>
+    // Bottom-anchored at the headline zone's own bottom edge (964+176=1140),
+    // not a fixed top — a 2-line headline (setup line, or a payload that
+    // wraps) grows UPWARD into the Stage zone's slack instead of downward
+    // into the caption zone below. Top-anchoring at a fixed y produced a
+    // real, confirmed defect: a 2-line headline's second line rendered
+    // directly on top of the caption text.
+    <div style={{ position: "absolute", bottom: 1920 - 1140, left: 468, translate: "-50% 0px", width: "max-content", maxWidth: 780, ...rise }}>
       {scene.setupLine ? (
         <div
           style={{
@@ -626,8 +632,17 @@ function HeadlineBox({ beat, colors, fontFamily }) {
           {scene.setupLine}
         </div>
       ) : null}
-      <div style={{ textAlign: "center", ...fontStyle, fontSize, color: colors.textPrimary, whiteSpace: "nowrap" }}>
-        {fit.lines.join(" ")}
+      <div style={{ textAlign: "center", ...fontStyle, fontSize, color: colors.textPrimary }}>
+        {/* fitTextOnNLines already decided the per-line breaks that fit
+            maxBoxWidth — joining them back into one nowrap string (the
+            previous behaviour) defeated that fit and let long headlines
+            clip off the safe rect ("HIGHEST INTER[EST]"), a real defect
+            confirmed on a rendered frame. Render each line on its own row. */}
+        {fit.lines.map((line, i) => (
+          <div key={i} style={{ whiteSpace: "nowrap" }}>
+            {line}
+          </div>
+        ))}
       </div>
       {beat.archetype === "TERM_DEFINE" && ruleProg > 0 ? (
         <div
@@ -788,7 +803,13 @@ function ContrastScene({ beat, scene, colors, fontFamily }) {
       >
         {before.join(" ")}
       </div>
-      {/* right panel */}
+      {/* right panel — the two spans sit inside ONE wrapping text block
+          (normal inline flow), not side-by-side flex row items. As
+          independent flex items they competed for the 408px width
+          separately, and a wrapped second item visually overlapped the
+          first (confirmed on a rendered frame: "miss"/"point" overlapping
+          "calculators"). Normal text flow wraps both words together as one
+          paragraph, the way text actually wraps. */}
       <div
         style={{
           position: "absolute",
@@ -799,18 +820,15 @@ function ContrastScene({ beat, scene, colors, fontFamily }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontFamily,
-          fontWeight: 800,
-          fontSize: TYPE.body,
-          textAlign: "center",
-          lineHeight: 1.2,
           ...popStyle(frame, rightStart),
         }}
       >
-        <span style={{ color: ease(frame - (tA + D.micro), [0, 3], [0, 1], E_OUT) > 0.99 ? colors.accent : colors.textPrimary }}>
-          {after.length ? after[0] : ""}
-        </span>
-        <span style={{ color: colors.textPrimary }}>{after.length > 1 ? " " + after.slice(1).join(" ") : ""}</span>
+        <div style={{ fontFamily, fontWeight: 800, fontSize: TYPE.body, textAlign: "center", lineHeight: 1.2 }}>
+          <span style={{ color: ease(frame - (tA + D.micro), [0, 3], [0, 1], E_OUT) > 0.99 ? colors.accent : colors.textPrimary }}>
+            {after.length ? after[0] : ""}
+          </span>
+          <span style={{ color: colors.textPrimary }}>{after.length > 1 ? " " + after.slice(1).join(" ") : ""}</span>
+        </div>
       </div>
       {/* divider */}
       {dividerProg > 0 ? (

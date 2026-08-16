@@ -7,7 +7,9 @@ phases, eight lanes, an independent counter-check. **This document defines
 *what* is verified.** The protocol without this is a process with no content.
 This without the protocol is a wishlist.
 
-**Scope:** `style: "motion-graphics"`, 12 channels.
+**Scope:** `style: "motion-graphics"` (6 channels as of the 50->17 portfolio
+cut: Money Mind, Legal Brief, Border Lines, Fraud Files, Skill Stack,
+Factory Floor â€” corrected 2026-08-16, was stale at "12 channels").
 
 ---
 
@@ -170,35 +172,66 @@ State column: **FAIL** = measured or computed as failing today Â·
 | TYP-18 | Stroke widths are 2 or 4 px only | compiler | âˆˆ {2,4} | 1 | MINOR | 7 | **FAIL** â€” 1, 3 px |
 | TYP-19 | No uppercase body or caption text | `grep textTransform` | 0 in caption/body | 1 | MINOR | 10 | **FAIL** |
 | TYP-20 | No glyph-edge chroma fringing | contact-sheet edge scan | 0 regions | 3 | MAJOR | 16 | UNK |
+| TYP-21 | Caption/chunk breaks are clause-boundary aware â€” never end a page/chunk on an article, preposition, conjunction, or a number split from its unit | `buildCaptionPages` clause-boundary repair (`compositions/beats.js`) for motion-graphics; `chunkTextClauseAware` (same file) for minimal/cinematic-documentary's plain-text chunking | 0 violations | 1 | MAJOR | 10 | **PASS** - motion-graphics-rebuild-v2, 2026-08-16 (real shipped defect: "...found: 1,980 meters below the"); repair pass only, no separate verifying gate function yet â€” see Â§4.1 |
+| TYP-22 | Adjacent caption word tokens are separated by a real space, not zero-gap inline-blocks | visual confirmation on a rendered frame ("finishedinmonthswith") | 0 concatenated words | 3 | MAJOR | 10 | **PASS** - `CaptionLine` now inserts a literal space text node between `CaptionToken` spans (motion-graphics-rebuild-v2) |
 
 ## 3.3 `COL` â€” palette, contrast, elevation, background
 
 `COL-01â€¦06` are the six palette gates, run across all 50 channels.
 
+**3.3.0 â€” motion-graphics-rebuild-v2 amendment (superseding some rows below).**
+Real reference frames were measured against the OKLCH tonal-elevation `bg`
+this section's gates were built for and showed a colour wash: `bg` derived
+at E0 lightness (0.16) with chroma 0.03 at the channel's `baseHue` is never
+truly neutral â€” a channel with a green `accentHue` got a green-tinted "dark"
+background (measured mean RGB (9,38,23)), not a neutral one. `bg` is now
+flat `#FFFFFF` or `#000000` per a new `channels.json` field, `bg_mode`; see
+`styles/tokens.js` header for the full rationale. Consequences for the rows
+below:
+- **COL-01's 17:1 ceiling is superseded, not met.** The rebuild's explicit
+  colour spec is literal: white-mode text `#111111` on `#FFFFFF` (measured
+  18.88:1), black-mode text ~92% white (`#EBEBEB`) on `#000000` (measured
+  17.62:1) â€” both over the old ceiling. The ceiling existed to avoid harsh
+  eye-strain contrast on a *tonal* dark bg; a pure white/black bg with a
+  near-black/near-white ink is the explicit design now, not an oversight.
+  Re-open this row only if a future pass revisits the exact ink values.
+- **COL-06 (`accent hue >= 60Â° from base hue`) no longer applies.** `bg` has
+  no hue any more, so there is no `baseHue` to measure the accent against.
+  Retained here for history; `baseHue` is still accepted as a dead parameter
+  in `paletteFromHues()` so old call sites don't throw, but nothing reads it.
+- **COL-02â€“05 still apply, re-solved for the new `bg`.** `accent`'s
+  lightness is now solved per bg polarity (`pickAccentL` in `styles/
+  tokens.js`) so COL-02 clears >=4.5:1 against a *pure* bg instead of the old
+  tonal one; `textDim` is solved the same way for COL-05. Measured 2026-08-16
+  across all 17 current channels: COL-02 4.60-4.64:1, COL-03 3.80-4.10:1,
+  COL-05 4.61-4.62:1, all PASS (see the channel table replacing the old
+  50-channel one â€” portfolio is now 17, not 50).
+
 | ID | Check | Method | Threshold | T | Sev | Stage | State |
 |---|---|---|---|---|---|---|---|
-| COL-01 | `textPrimary / bg` contrast | WCAG relative luminance | 7:1 <= r <= 17:1 | 0 | BLOCKER | 3 | **PASS** - 14.35-14.49 (data/audit/3/verify-final.mjs) |
-| COL-02 | `accent / bg` contrast | WCAG | >=4.5:1 | 0 | BLOCKER | 3 | **PASS** - 4.53-5.70 |
-| COL-03 | `accent / textPrimary` contrast | WCAG | >=2.5:1 | 0 | MAJOR | 3 | **PASS** - 2.54-3.20 |
-| COL-04 | `stroke / bg` contrast | WCAG | >=3:1 | 0 | MAJOR | 3 | **PASS** - 3.18-3.28 |
-| COL-05 | `textDim / bg` contrast | WCAG | >=4.5:1 | 0 | MINOR | 3 | **PASS** - 5.07-5.17 |
-| COL-06 | Accent hue >=60 deg from base hue | OKLCH hue circle | >=60 deg | 0 | MAJOR | 3 | **PASS** - 60.0-167.2 deg (21 at constructed 60) |
+| COL-01 | `textPrimary / bg` contrast | WCAG relative luminance | 7:1 <= r <= 17:1 | 0 | BLOCKER | 3 | **SUPERSEDED** â€” 17.62-18.88 (see 3.3.0); intentional per the explicit `#111`/`~92% white` spec |
+| COL-02 | `accent / bg` contrast | WCAG | >=4.5:1 | 0 | BLOCKER | 3 | **PASS** - 4.60-4.64 (17 channels, 2026-08-16) |
+| COL-03 | `accent / textPrimary` contrast | WCAG | >=2.5:1 | 0 | MAJOR | 3 | **PASS** - 3.80-4.10 |
+| COL-04 | `stroke / bg` contrast | WCAG | >=3:1 | 0 | MAJOR | 3 | **PASS** - 17.62-18.88 (stroke reuses the ink colour) |
+| COL-05 | `textDim / bg` contrast | WCAG | >=4.5:1 | 0 | MINOR | 3 | **PASS** - 4.61-4.62 |
+| COL-06 | Accent hue >=60 deg from base hue | OKLCH hue circle | >=60 deg | 0 | MAJOR | 3 | **RETIRED** â€” bg has no hue in the flat bg_mode system (see 3.3.0) |
 | COL-07 | No `#FFFFFF`, `#000000`, or R=G=B in `thumbnail_spec` | parse `channels.json` | 0 | 0 | MAJOR | 3 | **PASS** - 0 (whole-file `.colors` legacy field = T-colors follow-up) |
 | COL-08 | No hex literals in `thumbnail_spec` | parse `channels.json` | 0 | 0 | MAJOR | 3 | **PASS** - 0 (whole-file `.colors` legacy field = T-colors follow-up) |
 | COL-09 | No two channels share both hues | parse | 0 duplicates | 0 | MAJOR | 3 | **PASS** - 50/50 unique |
 | COL-10 | Within a niche cluster, accent hues >=40 deg apart | parse + cluster map | >=40 deg | 0 | MINOR | 3 | N/A - all 50 niches unique, no cluster map exists |
 | COL-11 | Exactly one `accent` element per frame | compiler | =1 | 1 | MAJOR | 9 | **FAIL** |
-| COL-12 | Zero `boxShadow` in the style | `grep -rn "boxShadow"` | 0 hits | 1 | MAJOR | 12 | **FAIL** |
-| COL-13 | Zero gradient fills | `grep -rn "gradient"` | 0 hits | 1 | MAJOR | 12 | **FAIL** |
-| COL-14 | Elevation âˆˆ {E0, E1, E2} only | compiler | â‰¤3 levels | 1 | MINOR | 12 | N/B |
-| COL-15 | â‰¤1 E2 element per frame | compiler | â‰¤1 | 1 | MINOR | 12 | N/B |
-| COL-16 | Elevation is never animated | compiler | 0 transitions | 1 | MINOR | 12 | N/B |
+| COL-12 | Zero `boxShadow` in the style | `grep -rn "boxShadow"` | 0 hits | 1 | MAJOR | 12 | **PASS** - 0 hits (motion-graphics-rebuild-v2, 2026-08-16) |
+| COL-13 | Zero gradient fills | `grep -rn "gradient"` | 0 hits | 1 | MAJOR | 12 | **PASS** - 0 code hits, only removal-comments (motion-graphics-rebuild-v2) |
+| COL-14 | Elevation âˆˆ {E0, E1, E2} only | compiler | â‰¤3 levels | 1 | MINOR | 12 | **RETIRED** â€” the elevation ladder itself is gone (surface/raised collapse to bg, see 3.3.0); a panel/chip separates from bg with a stroke border, not a tonal fill |
+| COL-15 | â‰¤1 E2 element per frame | compiler | â‰¤1 | 1 | MINOR | 12 | **RETIRED** â€” see COL-14 |
+| COL-16 | Elevation is never animated | compiler | 0 transitions | 1 | MINOR | 12 | **RETIRED** â€” see COL-14 |
 | COL-17 | Dot-grid density matches the archetype table | compiler | exact | 1 | MINOR | 12 | N/B |
 | COL-18 | Dot-grid density constant within a section | compiler | 1 value | 1 | MINOR | 12 | N/B |
-| COL-19 | Dot grid uses absolute square pitch | `grep` for `%` in grid | 0 hits | 1 | MAJOR | 12 | **FAIL** |
+| COL-19 | Dot grid uses absolute square pitch | `grep` for `%` in grid | 0 hits | 1 | MAJOR | 12 | **PASS** - `dotGrid({dotSize, gridSize})` takes fixed px, not `%` |
 | COL-20 | Ground-plane luminance constant across the video | contact sheet | Î” â‰¤1% except end card | 3 | MINOR | 16 | UNK |
 | COL-21 | No banding: no monotonic step over 200 px | contact-sheet scan | 0 regions | 3 | MINOR | 16 | UNK |
-| COL-22 | No mood-based colour grading | `grep moodFrom` | 0 hits in style | 1 | MAJOR | 12 | **FAIL** |
+| COL-22 | No mood-based colour grading | `grep moodFrom` | 0 hits in style | 1 | MAJOR | 12 | **PASS** - `moodFromVisualCue`/`moodFromContent` deleted from `visual.js` (motion-graphics-rebuild-v2); 0 code hits, only removal-comments |
+| COL-23 | Rendered text/background WCAG contrast | `scripts/frame-audit.js` `estimateForeground()` + `wcagContrast()` on caption/headline zones (inset past the rail column) | >=4.5:1 | 3 | MAJOR | 16 | **PASS** - 12/12 sampled frames, real render (ch-01, 2026-08-16); source of COL-02/05's role-level guarantee, this is the pixel-level confirmation of it |
 
 ## 3.4 `MOT` â€” timing, easing, springs, holds
 
@@ -258,6 +291,7 @@ State column: **FAIL** = measured or computed as failing today Â·
 | ENC-26 | Counter start has the same digit count as the target | compiler | equal | 1 | MINOR | 11 | **FAIL** |
 | ENC-27 | Counter bounding box byte-identical across the count | contact sheet | identical | 3 | MAJOR | 16 | **FAIL** |
 | ENC-28 | Thousands separators applied to every intermediate value | compiler | 100% | 1 | MINOR | 11 | **FAIL** |
+| ENC-29 | A HERO_NUMBER beat's value never also appears as a caption token during that beat's on-screen window (no fact stated twice simultaneously) | `stripHeroNumberTokens` (`compositions/mg-package.js`) | 0 duplicates | 1 | MAJOR | 9 | **PASS** - motion-graphics-rebuild-v2, 2026-08-16 (real shipped defect: hero "1,980" repeated verbatim in the caption) |
 
 ## 3.6 `AUD` â€” sound
 
@@ -310,6 +344,7 @@ State column: **FAIL** = measured or computed as failing today Â·
 | AST-12 | Every source image â‰¥1134 Ã— 2016 | probe each file | 100% | 0 | MAJOR | 9 | UNK |
 | AST-13 | No asset fetched over the network at render time | `grep https` in compositions | 0 hits | 1 | BLOCKER | 9 | UNK |
 | AST-14 | Every image for a named person or place is verified real | source log | 100% | 4 | BLOCKER | 9 | UNK |
+| AST-15 | A `b-roll-manifest-<channelId>.json` is trusted only when its own `topic_slug` matches the script actually being rendered | `broll.js` `loadManifest()` guard, threaded from `render.js`'s `script.topic_slug` | 100% | 1 | BLOCKER | 9 | **PASS** - motion-graphics-rebuild-v2, 2026-08-16 (this is PART 0's content-routing bug: a stale ch-01 manifest from an unrelated dev-test topic could otherwise leak wrong-channel imagery into a real render; mirrors the guard `src/utils/pipeline.js`'s `loadTopicBrollManifest` already had for the copyright/disclosure/quality gates, now applied on the render path too) |
 
 ## 3.9 `FRM` â€” whole-frame QA
 
@@ -393,7 +428,7 @@ Stage 15, all are a single `grep` returning zero hits.
 | DEL-14 | `inputProps` entry-file workaround | generated entry path | MAJOR |
 | DEL-15 | Linear easing | `Easing.linear\|easing: *undefined` | MAJOR |
 | DEL-16 | Idle sine pulses | `Math.sin(` outside arc helper | MAJOR |
-| DEL-17 | Pure white / pure black | `#FFFFFF\|#FFF\b\|#000000\|#000\b` | MAJOR |
+| DEL-17 | ~~Pure white / pure black~~ **RETIRED, INVERTED 2026-08-16** | ~~`#FFFFFF\|#FFF\b\|#000000\|#000\b`~~ | ~~MAJOR~~ |
 | DEL-18 | Gradient fills | `gradient` | MAJOR |
 | DEL-19 | `border:` in styles | `border: ` | MINOR |
 | DEL-20 | JPEG intermediates | `imageFormat.*jpeg` | MAJOR |
@@ -407,11 +442,24 @@ Stage 15, all are a single `grep` returning zero hits.
 | DEL-28 | Global film grain in this style | `grain` in mg style | MINOR |
 | DEL-29 | Remote asset fetch at render | `https://` in compositions | BLOCKER |
 | DEL-30 | Hex literals in `channels.json` | `#[0-9A-Fa-f]{6}` | MAJOR |
+| DEL-31 | Kicker scaffolding (channel name, or a raw section id, as kicker text) | `channelName` or `sections[idx].id` read inside `Kicker`/`SectionKickers` (`compositions/motion-graphics.jsx`) | MAJOR |
 
 **4.1 â€” A `DEL` check passing is not evidence the replacement works.** Every
 `DEL` pairs with a positive check elsewhere in the register. Deleting
 `pickScene` (DEL-07) without `ENC-05` passing means the router is gone and
 nothing routes.
+
+**4.2 â€” DEL-17 is retired and inverted, not just retired (motion-graphics-
+rebuild-v2, 2026-08-16).** Real reference frames show a flat pure-white or
+pure-black background with black/white ink â€” the opposite of what DEL-17
+assumed. `bg` is now literally `#FFFFFF` or `#000000` per channel (`styles/
+tokens.js`, gated by a new `bg_mode` field in `channels.json`); see Â§3.3.0
+for the full reasoning and the COL-01 ceiling consequence. DEL-09's grep
+pattern is unchanged in name but no longer distinguishes fixed from
+unfixed behaviour â€” see the amendment note after Â§3.10 in this file's
+history, or just: `chunkVoiceover` is now a wrapper around the
+clause-boundary-aware `chunkTextClauseAware`, so the pattern still matches
+by name; TYP-21 is the real behavioural check.
 
 ---
 
