@@ -61,9 +61,25 @@ export const FONT_GATE = { validateFontIsLoaded: true };
  * fontFamily is injected per channel (resolveFontFamily); fontSize is
  * fit-computed at the call site and passed to both measurement and render
  * from the same variable.
+ *
+ * PART 10 (follow-up) — root cause of a real, reproduced defect (a
+ * headline running off the canvas edge, well past the safe rect: "ACCOUNTS
+ * EARLY", fitTextOnNLines() itself claimed it fit on one line at 84px
+ * within a 780px box, which was measurably false in the actual render).
+ * fontWeight was 800, but NO vendored font file in this repo (checked all
+ * of them: public/fonts/*.woff2) ships an 800 weight — every family only
+ * has 400 and 700. Rule 5.2's "identical properties for measurement and
+ * render" guarantees identical INPUT to both, not identical OUTPUT: with
+ * no real 800-weight face loaded, the two independently decide how to
+ * substitute/synthesize a bold weight — @remotion/layout-utils measures
+ * via a Canvas 2D context, the actual headline text renders via normal DOM
+ * layout, and those are separate engines inside Chromium that are not
+ * guaranteed to agree on synthetic-bold metrics even given byte-identical
+ * CSS. 700 is a real, loaded face for every vendored family — no synthesis,
+ * no discrepancy.
  */
 export const HEADLINE_FONT = {
-  fontWeight: 800,
+  fontWeight: 700,
   letterSpacing: "normal",
 };
 

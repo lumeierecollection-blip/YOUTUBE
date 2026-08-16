@@ -21,7 +21,7 @@ import {
   wrapCaptionWords,
   wordCount,
 } from "./beats.js";
-import { resolveIcon } from "./mg-style.js";
+import { resolveIcon, isSpecificIconMatch } from "./mg-style.js";
 
 export const MG_TAIL_FRAMES = 12; // held tail after the last beat (D3 headline/end)
 
@@ -241,7 +241,7 @@ function accentWindowFor(beat, scene) {
 
 export function deriveScene(beat, ctx = {}) {
   const iconMap = ctx.iconMap || null;
-  const scene = { icon: resolveIcon(iconMap, beat.text) };
+  const scene = { icon: resolveIcon(iconMap, beat.text), iconIsSpecific: isSpecificIconMatch(iconMap, beat.text) };
   switch (beat.archetype) {
     case "HERO_NUMBER": {
       const n = beat.data && beat.data.value != null ? beat.data : parseNumber(beat.text);

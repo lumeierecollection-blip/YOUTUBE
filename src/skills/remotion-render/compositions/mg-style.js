@@ -155,12 +155,9 @@ export function scaleUnit(width, height) {
   return Math.min(width, height) / 1080;
 }
 
-/**
- * A4.7 — keyword-driven, channel-scoped icon selection. Longest-key-first
- * against the beat text; falls back to the channel `default`. Never invents
- * an icon name — resolution still must be checked against the vendored set.
- */
-export function resolveIcon(iconMap, text) {
+// Shared by resolveIcon and isSpecificIconMatch — the one place that walks
+// a channel's icon_map.terms against beat text.
+function matchIconTerm(iconMap, text) {
   const map = iconMap || {};
   const terms = map.terms || {};
   const keys = Object.keys(terms).sort((a, b) => b.length - a.length);
@@ -171,5 +168,27 @@ export function resolveIcon(iconMap, text) {
       // malformed regex key — skip, never crash a render over an icon map
     }
   }
-  return map.default || "sparkles";
+  return null;
+}
+
+/**
+ * A4.7 — keyword-driven, channel-scoped icon selection. Longest-key-first
+ * against the beat text; falls back to the channel `default`. Never invents
+ * an icon name — resolution still must be checked against the vendored set.
+ */
+export function resolveIcon(iconMap, text) {
+  const map = iconMap || {};
+  return matchIconTerm(iconMap, text) || map.default || "sparkles";
+}
+
+/**
+ * PART 10 (follow-up) — "the dashed circle is one option, not a default."
+ * True only when beat text matched a specific icon_map.terms keyword —
+ * false for the channel's bare `default` icon or the ultimate "sparkles"
+ * fallback, both of which are generic stand-ins, not a specific asset the
+ * ring is meaningfully framing. Used by TermDefineScene/StatementScene to
+ * decide whether to render DashedRing at all.
+ */
+export function isSpecificIconMatch(iconMap, text) {
+  return matchIconTerm(iconMap, text) !== null;
 }

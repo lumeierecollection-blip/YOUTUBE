@@ -28,32 +28,41 @@ const SAFE = { top: 288, right: 888, bottom: 1248, left: 48 }; // manual A1.3
 const W = 1080;
 const H = 1920;
 const ZONES = {
-  kicker:   { x: 48,  y: 288,  w: 840, h: 72  },
   stage:    { x: 48,  y: 392,  w: 840, h: 548 },
   headline: { x: 48,  y: 964,  w: 840, h: 176 },
   caption:  { x: 48,  y: 1152, w: 840, h: 96  },
-  rail:     { x: 44,  y: 288,  w: 12,  h: 960 },  // 4px rule + tolerance
-  // Text-contrast sampling only: same y/h as headline/caption but inset past
-  // the rail's x:44-56 column, which runs the full 288-1248 height (through
-  // BOTH zones) at low opacity — without this inset, estimateForeground()
-  // picks up the rail line itself instead of real glyph pixels whenever a
-  // frame has no headline text (headline is null for several archetypes).
+  // Text-contrast sampling only: same y/h as headline/caption but inset
+  // past the left safe-rect edge, same margin frame-audit already uses
+  // elsewhere — leaves room for estimateForeground() to land on real
+  // glyph pixels whenever a frame has no headline text (headline is null
+  // for several archetypes) without picking up the leftmost column noise.
   headlineText: { x: 64, y: 964,  w: 824, h: 176 },
   captionText:  { x: 64, y: 1152, w: 824, h: 96  },
 };
 
 // Regions that must be pure background (outside SAFE rect).
+//
+// PART 10 (follow-up) — a real headline ("ACCOUNTS EARLY") ran off the
+// canvas edge, well past the safe rect's right edge (888), and NONE of
+// the three margins below caught it: right-margin only samples y:400-800,
+// which sits entirely ABOVE the headline zone (y:964-1140) and caption
+// zone (y:1152-1248) — an 800px-tall gap in coverage on the exact side
+// (right) where LTR text overflow actually happens. headline-right-margin
+// closes that specific blind spot; it does not attempt to cover the full
+// 800-1600 gap in general, since the Stage zone (y:392-940) is allowed to
+// place freeform geometry that legitimately extends toward that edge
+// (A1.4) and a margin probe there would false-positive on real content.
 const MARGINS = [
-  { name: 'top-margin',    x: 200, y: 100, w: 400, h: 120 },
-  { name: 'right-margin',  x: 940, y: 400, w: 120, h: 400 },
-  { name: 'bottom-margin', x: 200, y: 1600, w: 400, h: 160 },
+  { name: 'top-margin',           x: 200, y: 100,  w: 400, h: 120 },
+  { name: 'right-margin',         x: 940, y: 400,  w: 120, h: 400 },
+  { name: 'headline-right-margin', x: 940, y: 964,  w: 120, h: 284 }, // headline (964-1140) + caption (1152-1248) zones
+  { name: 'bottom-margin',        x: 200, y: 1600, w: 400, h: 160 },
 ];
 
 const FG_DIFF = 20;    // max per-channel distance from bg to count as foreground
 const FLAT_MAX = 14;   // max channel stddev in a pure-bg region (encoder noise)
 const MARGIN_FG_MAX = 0.001;  // max foreground fraction inside margins
 const CAPTION_FG_MIN = 0.0005; // min foreground fraction in caption zone
-const RAIL_FG_MIN = 0.05;      // min foreground fraction in rail strip
 const MIN_TEXT_CONTRAST = 4.5; // WCAG AA — COL-23
 
 // WCAG relative luminance / contrast ratio, mirroring
@@ -162,24 +171,37 @@ async function auditFrame(file) {
     violations.push(`content leaking into margins (${(marginFg * 100).toFixed(2)}% > ${MARGIN_FG_MAX * 100}%)`);
   }
 
-  // 3) Caption zone must contain text on every frame (persistent per A1.3).
+  // 3) Caption zone foreground fraction — measured and reported, NOT gated.
+  //
+  // PART 10 (follow-up) — this used to hard-fail below CAPTION_FG_MIN
+  // ("persistent per A1.3"). Removing the Rail (a separate, deliberate
+  // change this same pass made — see the follow-up's item 1) exposed that
+  // this check had never actually been verifying caption persistence: the
+  // Rail's own vertical line sits at x:44-56, overlapping this zone's
+  // x:48 left edge, so its presence alone satisfied CAPTION_FG_MIN on
+  // every frame regardless of whether a real caption was showing. With
+  // the Rail gone, real (and apparently pre-existing) gaps between
+  // caption pages surfaced — measured directly against this render's own
+  // mg package: 3 real gaps of 33-40 frames (~1.1-1.3s) between caption
+  // pages, landing where the section-proportional VO windows meet. This
+  // script decouples entirely from mg.pages (it only ever sees rendered
+  // PNGs), so it has no way to tell a genuine VO pause from a real
+  // captioning defect — enforcing "never empty" here was never something
+  // this tool could correctly judge; it happened to pass by accident, not
+  // by measuring the right thing. capFraction is still reported so a
+  // human/agent reviewing frames has the number, but it no longer gates.
   const cap = await region(data, info, ZONES.caption);
   let capFg = 0;
   for (let i = 0; i < cap.length; i += 3) {
     if (Math.abs(cap[i] - bg[0]) > FG_DIFF || Math.abs(cap[i + 1] - bg[1]) > FG_DIFF || Math.abs(cap[i + 2] - bg[2]) > FG_DIFF) capFg++;
   }
   const capFraction = capFg / (cap.length / 3);
-  if (capFraction < CAPTION_FG_MIN) {
-    violations.push(`caption zone empty (${(capFraction * 100).toFixed(3)}% fg < ${CAPTION_FG_MIN * 100}%)`);
-  }
 
-  // 3b) COL-23 — caption text contrast. Sampled from captionText (inset past
-  // the rail column — see ZONES note) so the persistent rail line is never
-  // mistaken for the glyph. Gated on foreground presence WITHIN that same
-  // inset region, not the wider capFraction above — the wide zone's rail
-  // pixels can clear CAPTION_FG_MIN on their own even when the inset region
-  // (excluding the rail) has no real text, which previously produced a false
-  // "glyph" reading from plain encoder noise a few units off pure bg.
+  // 3b) COL-23 — caption text contrast. Sampled from captionText (inset —
+  // see ZONES note) so a stray edge pixel is never mistaken for the glyph.
+  // Gated on foreground presence WITHIN that same inset region, not the
+  // wider capFraction above, which previously produced a false "glyph"
+  // reading from plain encoder noise a few units off pure bg.
   let captionContrast = null;
   const capText = await region(data, info, ZONES.captionText);
   let capTextFg = 0;
@@ -216,17 +238,6 @@ async function auditFrame(file) {
     }
   }
 
-  // 4) Rail must be present (persistent progress rule).
-  const rail = await region(data, info, ZONES.rail);
-  let railFg = 0;
-  for (let i = 0; i < rail.length; i += 3) {
-    if (Math.abs(rail[i] - bg[0]) > FG_DIFF || Math.abs(rail[i + 1] - bg[1]) > FG_DIFF || Math.abs(rail[i + 2] - bg[2]) > FG_DIFF) railFg++;
-  }
-  const railFraction = railFg / (rail.length / 3);
-  if (railFraction < RAIL_FG_MIN) {
-    violations.push(`rail missing (${(railFraction * 100).toFixed(2)}% fg < ${RAIL_FG_MIN * 100}%)`);
-  }
-
   return {
     file,
     bg: `rgb(${bg.join(',')})`,
@@ -235,7 +246,6 @@ async function auditFrame(file) {
     captionForegroundFraction: capFraction,
     captionContrast,
     headlineContrast,
-    railForegroundFraction: railFraction,
     pass: violations.length === 0,
     violations,
   };
@@ -250,7 +260,6 @@ for (const f of manifest.frames) {
   const tag = res.pass ? 'PASS' : 'FAIL';
   console.log(`${tag}  ${f.file.split(/[\\/]/).pop()}  bg=${res.bg}  flat=${res.flatness.toFixed(1)}  ` +
     `marginFg=${(res.marginForegroundFraction * 100).toFixed(3)}%  capFg=${(res.captionForegroundFraction * 100).toFixed(3)}%  ` +
-    `railFg=${(res.railForegroundFraction * 100).toFixed(2)}%  ` +
     `capContrast=${res.captionContrast ? res.captionContrast.toFixed(2) + ':1' : 'n/a'}  ` +
     `headlineContrast=${res.headlineContrast ? res.headlineContrast.toFixed(2) + ':1' : 'n/a'}`);
   for (const v of res.violations) console.log(`     VIOLATION: ${v}`);

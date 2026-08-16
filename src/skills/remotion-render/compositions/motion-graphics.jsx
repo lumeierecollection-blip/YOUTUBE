@@ -137,13 +137,29 @@ function popStyle(frame, start, { boost = false } = {}) {
 // carried by translate alone) for text where legibility can never lapse,
 // even briefly — this also matches PART 7's "objects don't fade, they
 // tumble and settle" instinct better than the fade did.
-function riseStyle(frame, start, offsetPx = 24, { noFade = false } = {}) {
+// PART 10 (follow-up) — root cause of a real, reproduced defect (a
+// headline running off the canvas edge, well past the safe rect —
+// "ACCOUNTS EARLY"; separately, "ACTUALLY / FINISHED" overlapping the
+// caption). Neither was a text-fitting/measurement bug: `measureText`
+// correctly reported the string fit inside 780px. The actual cause was a
+// plain object-spread collision — several elements declare their own
+// `translate: "-50% ..."` for horizontal centering, then spread a style
+// object from this function LAST (`...rise`), and this function's own
+// `translate` key silently overwrote the centering one (JS object spread:
+// last key wins). Every headline was rendering flush-left at its anchor
+// x instead of centered on it, extending its full natural width
+// rightward off-canvas for anything wide enough to matter — invisible for
+// short text, catastrophic for a two-word headline at 84px. `translateX`
+// lets a caller that needs horizontal centering ask for it explicitly
+// instead of supplying its own `translate` key that this function's
+// spread would just delete.
+function riseStyle(frame, start, offsetPx = 24, { noFade = false, translateX = "0px" } = {}) {
   const dJ = jitter(start + 1000);
   const shortD = Math.max(3, Math.round(D.short * dJ));
   const baseD = Math.max(4, Math.round(D.base * dJ));
   return {
     opacity: noFade ? 1 : ease(frame - start, [0, shortD], [0, 1], E_OUT),
-    translate: `0px ${offsetPx * ease(frame - start, [0, baseD], [1, 0], E_OUT)}px`,
+    translate: `${translateX} ${offsetPx * ease(frame - start, [0, baseD], [1, 0], E_OUT)}px`,
   };
 }
 
@@ -180,6 +196,38 @@ function fmtValue(v) {
   if (!Number.isFinite(v)) return "0";
   if (Number.isInteger(v)) return v.toLocaleString("en-US");
   return v.toLocaleString("en-US", { maximumFractionDigits: 1 });
+}
+
+// PART 10 (follow-up) — real defect, reproduced on a real render (Money
+// Mind "ACCOUNTS EARLY" headline running off the canvas edge, well past
+// the safe rect). Root cause: fitTextOnNLines() (@remotion/layout-utils)
+// returns a {fontSize, lines} PAIR — the line breaks are only valid at
+// ITS computed fontSize. HeadlineBox then does
+// `Math.max(fit.fontSize, TYPE.support)` to enforce the TYP-03 legibility
+// floor, keeping fit.lines but discarding fit.fontSize — so a headline
+// long enough that the library needed to go under 44px to fit within
+// maxBoxWidth (no minFontSize option exists in that library) got rendered
+// at the LARGER floor size with line breaks computed for the smaller one,
+// overflowing exactly as much as the size difference. Greedy re-wrap at
+// the ACTUAL rendered size is the fix — it may need more than maxLines
+// lines for an unusually long headline, which is a strictly smaller
+// defect than running off the canvas.
+function greedyWrap(text, fontStyle, fontSize, maxWidth) {
+  const words = String(text || "").split(/\s+/).filter(Boolean);
+  const lines = [];
+  let current = "";
+  for (const word of words) {
+    const candidate = current ? `${current} ${word}` : word;
+    const w = measureText({ text: candidate, ...fontStyle, fontSize }).width;
+    if (w <= maxWidth || !current) {
+      current = candidate;
+    } else {
+      lines.push(current);
+      current = word;
+    }
+  }
+  if (current) lines.push(current);
+  return lines;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -260,88 +308,6 @@ function Background({ colors }) {
         }}
       />
     </>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Chrome — rail (D5) + kicker (A1.3). Continuous furniture, identical every
-// beat; the only accent on them is the section rule + the rail fill.
-// ─────────────────────────────────────────────────────────────────────────────
-
-function Rail({ colors, progress }) {
-  return (
-    <div style={{ position: "absolute", left: 48, top: 288, width: 4, height: 1248 - 288 }}>
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundColor: colors.stroke,
-          opacity: 0.25,
-          borderRadius: 2,
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          top: 0,
-          width: 4,
-          height: progress * (1248 - 288),
-          backgroundColor: colors.accent,
-          borderRadius: 2,
-        }}
-      />
-    </div>
-  );
-}
-
-// PART 4.3 of the rebuild: the kicker used to fall back to the channel name
-// ("— MONEY MIND") and, before that, to the script's raw section id
-// ("SECTION 1", "HOOK") — both are scaffolding, not content the viewer can
-// use ("Kicker: position in the argument", MOTION-GRAPHICS-MANUAL.md C3.1
-// table — never the channel name, which is exactly "content"). There is no
-// script field that reliably names a section without either fabricating
-// text or leaking structure, so the kicker renders ONLY what is genuinely
-// known and non-fabricated: the accent progress tick (a shape) and the
-// section's ordinal (a number, not a word). No word label.
-function Kicker({ colors, fontFamily, sectionNumber }) {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const p = spring({ frame, fps, config: { damping: 90, stiffness: 80 } });
-  return (
-    <div
-      style={{
-        position: "absolute",
-        top: 312,
-        left: 80,
-        display: "flex",
-        alignItems: "center",
-        gap: 14,
-        opacity: p,
-      }}
-    >
-      <div
-        style={{
-          width: 40,
-          height: 6,
-          backgroundColor: colors.accent,
-          borderRadius: 3,
-          transformOrigin: "left",
-          scale: `${p}`,
-        }}
-      />
-      <span
-        style={{
-          fontFamily,
-          fontWeight: 800,
-          fontSize: TYPE.kicker,
-          letterSpacing: 4,
-          color: colors.textDim,
-        }}
-      >
-        {String(sectionNumber).padStart(2, "0")}
-      </span>
-    </div>
   );
 }
 
@@ -681,25 +647,70 @@ function HeadlineBox({ beat, colors, fontFamily }) {
     [scene.headline, fontStyle]
   );
   const fontSize = Math.max(fit.fontSize, TYPE.support);
+  // PART 10 (follow-up) — debugged on the exact real failure ("ACCOUNTS
+  // EARLY" running off the canvas edge): fitTextOnNLines() itself
+  // returned {fontSize:84, lines:["ACCOUNTS EARLY"]} — ONE line, at the
+  // MAXIMUM font size, for text that is visibly, measurably wider than
+  // the 780px maxBoxWidth it was told to fit inside. The floor-clamp
+  // above never even ran (84 already >= TYPE.support) — the original
+  // theory (this file's earlier version of this comment) was wrong; the
+  // real bug is that fitTextOnNLines's own fit can be inconsistent with
+  // what the SAME font properties measure as via measureText (used
+  // elsewhere in this file, e.g. ruleWidth below, and trusted there).
+  // Rather than trust either function blindly, verify: measure fit's own
+  // lines at fit's own fontSize, and re-wrap with the reliable primitive
+  // (greedyWrap, plain measureText) if the library's fit doesn't actually
+  // fit. This fixes the failure regardless of which of the two disagrees
+  // with reality on a given string.
+  const lines = useMemo(() => {
+    const widest = Math.max(...fit.lines.map((l) => measureText({ text: l, ...fontStyle, fontSize: fit.fontSize }).width));
+    if (widest > 780 || fontSize > fit.fontSize) return greedyWrap(scene.headline, fontStyle, fontSize, 780);
+    return fit.lines;
+  }, [scene.headline, fontStyle, fontSize, fit.fontSize, fit.lines]);
   const ruleWidth = useMemo(
     () => measureText({ text: scene.headline, ...fontStyle, fontSize }).width,
     [scene.headline, fontStyle, fontSize]
   );
 
   // noFade — this is the headline title itself, gated by frame-audit's
-  // headlineContrast probe; see riseStyle's PART 10 comment.
-  const rise = riseStyle(frame, start, 24, { noFade: true });
+  // headlineContrast probe. translateX:"-50%" — this container is
+  // horizontally centered via `left:468, translate:"-50% ..."` (see the
+  // JSX below); without passing it through here, riseStyle's own
+  // translate would silently replace the centering one on spread. See
+  // riseStyle's PART 10 comment for the real bug this was.
+  const rise = riseStyle(frame, start, 24, { noFade: true, translateX: "-50%" });
   const ruleProg = ease(frame - (tA + 6), [0, D.large], [0, 1], E_OUT);
   const setupRise = riseStyle(frame, Math.max(start - D.short, 0));
 
   return (
-    // Bottom-anchored at the headline zone's own bottom edge (964+176=1140),
-    // not a fixed top — a 2-line headline (setup line, or a payload that
-    // wraps) grows UPWARD into the Stage zone's slack instead of downward
-    // into the caption zone below. Top-anchoring at a fixed y produced a
-    // real, confirmed defect: a 2-line headline's second line rendered
-    // directly on top of the caption text.
-    <div style={{ position: "absolute", bottom: 1920 - 1140, left: 468, translate: "-50% 0px", width: "max-content", maxWidth: 780, ...rise }}>
+    // Bottom-anchored, not a fixed top — a 2-line headline (setup line, or
+    // a payload that wraps) grows UPWARD into the Stage zone's slack
+    // instead of downward into the caption zone below. Top-anchoring at a
+    // fixed y produced a real, confirmed defect: a 2-line headline's
+    // second line rendered directly on top of the caption text.
+    //
+    // PART 10 (follow-up) — the anchor was 1140 (the nominal headline
+    // zone's own bottom edge, 964+176), only 12px above CAPTION.zoneTop
+    // (1152). That's not the "rare, worst-case-only" overlap the earlier
+    // pass's comment described: a 2-line caption block (bottom-anchored at
+    // CAPTION.zoneBottom=1248, ~64px * 1.12 lineHeight * 2 lines ≈ 143px
+    // tall) has its OWN top edge around y=1105 — 35px BELOW the old
+    // headline anchor, i.e. actively overlapping any time the caption
+    // wraps to 2 lines, which is common, not rare. Reproduced on a real
+    // render (channel 1 "found the people who / actually" caption
+    // colliding with an "ACTUALLY FINISHED" headline). Moved to 1100 for
+    // real, positive clearance against that same 2-line-caption worst
+    // case (~5-15px gap depending on descenders) instead of a negative
+    // one. Still a local anchor tweak, not the layout/slots.js zone-height
+    // rework the earlier pass correctly scoped out — a caption at ITS
+    // absolute character-count ceiling wrapping to 2 lines AND landing
+    // under a multi-line headline at the same instant can still touch;
+    // documented here rather than silently, same as before.
+    // translate comes entirely from `rise` (translateX:"-50%" above) — a
+    // literal "-50% 0px" here would be silently deleted by the ...rise
+    // spread anyway (see riseStyle's PART 10 comment); not declaring it
+    // twice keeps that fact visible instead of hidden behind spread order.
+    <div style={{ position: "absolute", bottom: 1920 - 1100, left: 468, width: "max-content", maxWidth: 780, ...rise }}>
       {scene.setupLine ? (
         <div
           style={{
@@ -741,7 +752,7 @@ function HeadlineBox({ beat, colors, fontFamily }) {
             beat's caption is simultaneously at its own max length — rare
             relative to the defects this pass fixes (which were constant,
             not conditional). Left as a documented limit, not silently. */}
-        {fit.lines.map((line, i) => (
+        {lines.map((line, i) => (
           <div key={i} style={{ whiteSpace: "nowrap" }}>
             {line}
           </div>
@@ -857,8 +868,13 @@ function TermDefineScene({ beat, scene, colors, fontFamily }) {
   return (
     <>
       {/* PART 3.2 — a dashed ring around the focal icon, diameter matching
-          the icon's own footprint plus padding. */}
-      <DashedRing x={468} y={600} radius={140} start={start} colors={colors} />
+          the icon's own footprint plus padding. PART 10 (follow-up): one
+          option, not a default — only when the icon is a specific match
+          for this beat's text, never around a channel's generic
+          default/"sparkles" fallback (see mg-style.js's
+          isSpecificIconMatch). Framing a placeholder icon in a dashed ring
+          drew attention to it, which is backwards. */}
+      {scene.iconIsSpecific ? <DashedRing x={468} y={600} radius={140} start={start} colors={colors} /> : null}
       <Centered x={468} y={600}>
         {scene.trace ? (
           <TraceIcon name={scene.icon} size={180} color={colors.stroke} start={start} />
@@ -1159,14 +1175,15 @@ function RelationScene({ beat, scene, colors, fontFamily }) {
           position: "absolute",
           left: 688,
           top: 666 + 44 + 16,
-          translate: "-50% 0px",
           width: 240,
           textAlign: "center",
           fontFamily,
           fontWeight: 400,
           fontSize: TYPE.support,
           color: colors.textPrimary,
-          ...riseStyle(frame, bStart + 6),
+          // translateX:"-50%" — see riseStyle's PART 10 comment: a bare
+          // "-50% 0px" here would be silently deleted by this same spread.
+          ...riseStyle(frame, bStart + 6, 24, { translateX: "-50%" }),
         }}
       >
         {(scene.b || []).join(" ")}
@@ -1182,7 +1199,10 @@ function StatementScene({ beat, scene, colors, fontFamily }) {
   const start = Math.max(tA - D.micro, 0);
   return (
     <>
-      <DashedRing x={468} y={600} radius={100} start={start} colors={colors} opacity={0.4} />
+      {/* PART 10 (follow-up) — see TermDefineScene's comment: conditional
+          on a specific icon match, not templated onto every STATEMENT
+          beat regardless of what icon it resolved to. */}
+      {scene.iconIsSpecific ? <DashedRing x={468} y={600} radius={100} start={start} colors={colors} opacity={0.4} /> : null}
       <Centered x={468} y={600}>
         {scene.trace ? (
           <TraceIcon name={scene.icon} size={120} color={colors.stroke} start={start} />
@@ -1470,37 +1490,16 @@ function ListRuns({ beats, colors, fontFamily }) {
   );
 }
 
-function SectionKickers({ beats, sectionRanges, colors, fontFamily }) {
-  const indices = Object.keys(sectionRanges || {})
-    .map(Number)
-    .sort((a, b) => a - b);
-  return (
-    <>
-      {indices.map((idx) => {
-        const range = sectionRanges[idx];
-        return (
-          <Sequence key={`k-${idx}`} from={range.from} durationInFrames={Math.max(range.to - range.from, 1)}>
-            <Kicker colors={colors} fontFamily={fontFamily} sectionNumber={idx + 1} />
-          </Sequence>
-        );
-      })}
-    </>
-  );
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // Top-level composition
 // ─────────────────────────────────────────────────────────────────────────────
 
 function MotionGraphicsContent({ mg, colors, fontFamily }) {
-  const frame = useCurrentFrame();
-  const { durationInFrames } = useVideoConfig();
   const beats = mg.beats || [];
   const accentWindows = useMemo(
     () => beats.map((b) => b.scene && b.scene.accentWindow).filter(Boolean),
     [beats]
   );
-  const railProgress = ease(frame, [0, durationInFrames - 1], [0, 1]);
   const boundaryFrames = beats
     .map((b, i) => (i > 0 && beats[i - 1].sectionIndex !== b.sectionIndex ? b.startFrame : null))
     .filter((v) => v !== null);
@@ -1516,8 +1515,6 @@ function MotionGraphicsContent({ mg, colors, fontFamily }) {
   return (
     <>
       <DesignSpace>
-        <Rail colors={colors} progress={railProgress} />
-        <SectionKickers beats={beats} sectionRanges={mg.sectionRanges} colors={colors} fontFamily={fontFamily} />
         <BeatStages beats={beats} colors={colors} fontFamily={fontFamily} />
         <ListRuns beats={beats} colors={colors} fontFamily={fontFamily} />
         <HeadlineLayer beats={beats} colors={colors} fontFamily={fontFamily} />
