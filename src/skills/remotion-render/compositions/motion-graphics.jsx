@@ -643,7 +643,20 @@ function HeadlineBox({ beat, colors, fontFamily }) {
             default line-height is still tall enough to reach into a 2-line
             caption's own worst-case extent (confirmed on a rendered frame),
             since the manual's own "grows upward into headline's lower 48px"
-            budget assumes a single-line headline. */}
+            budget assumes a single-line headline.
+
+            KNOWN RESIDUAL LIMIT: a 2-line headline coinciding with a 2-line
+            caption at ITS worst case (25 chars/line, wrapping to 2 lines)
+            can still touch — confirmed on a rendered frame. Closing this
+            fully would mean either shrinking below TYPE.headline's 84px
+            floor (TYP-03, a tested constraint — not this pass's call to
+            relax) or reworking the headline/caption zone heights in
+            layout/slots.js (LAY namespace — a geometry change, out of
+            scope for a colour/content-correctness pass). This only shows
+            up when a 2-word headline is long enough to wrap AND the same
+            beat's caption is simultaneously at its own max length — rare
+            relative to the defects this pass fixes (which were constant,
+            not conditional). Left as a documented limit, not silently. */}
         {fit.lines.map((line, i) => (
           <div key={i} style={{ whiteSpace: "nowrap" }}>
             {line}
