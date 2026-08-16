@@ -32,6 +32,7 @@ import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
 import { resolveBrollFiles } from "./broll.js";
 import { buildMgPackage } from "./compositions/mg-package.js";
+import { chunkTextClauseAware } from "./compositions/beats.js";
 import { paletteFromHues } from "./styles/tokens.js";
 import { narrationSections } from "../../utils/script-narration.js";
 
@@ -158,13 +159,14 @@ function parseMarkdown(content) {
   return { sections };
 }
 
+// PART 4.2 of the motion-graphics rebuild: this used to be a blind
+// word-count split (DEL-09 / TYP-11 in CHECK-REGISTER.md — a real shipped
+// defect: "...found: 1,980 meters below the" stranded an article as the
+// last word of a caption). chunkTextClauseAware (beats.js) does the same
+// ≤maxWords grouping but repairs any boundary that would orphan an
+// article, preposition, conjunction, or a number split from its unit.
 function chunkVoiceover(text, maxWords = 7) {
-  const words = text.split(/\s+/).filter(Boolean);
-  const chunks = [];
-  for (let i = 0; i < words.length; i += maxWords) {
-    chunks.push(words.slice(i, i + maxWords).join(" "));
-  }
-  return chunks;
+  return chunkTextClauseAware(text, maxWords);
 }
 
 function toContentSections(script) {
@@ -344,8 +346,14 @@ async function main() {
     process.exit(1);
   }
 
+  // PART 0 of the motion-graphics rebuild — a b-roll manifest is keyed by
+  // channel slot, but channels get reused across topics over time (that's
+  // exactly how a stale movile-cave manifest under ch-01 nearly leaked
+  // deep-sea imagery into a Money Mind budgeting render). Only trust a
+  // manifest whose own topic_slug matches the script actually being
+  // rendered — see broll.js's loadManifest.
   for (const section of sections) {
-    section.bRollFiles = resolveBrollFiles(section.bRoll || [], channelId);
+    section.bRollFiles = resolveBrollFiles(section.bRoll || [], channelId, script.topic_slug);
   }
   const withBroll = sections.filter((s) => (s.bRollFiles || []).length > 0).length;
   console.log(`B-roll: ${withBroll}/${sections.length} sections have real imagery`);
@@ -402,11 +410,10 @@ async function main() {
     font: channel.font || "Inter",
     channelName: channel.channel_name || "",
     palette:
-      typeof channel.thumbnail_spec?.baseHue === "number" &&
       typeof channel.thumbnail_spec?.accentHue === "number"
         ? paletteFromHues({
-            baseHue: channel.thumbnail_spec.baseHue,
             accentHue: channel.thumbnail_spec.accentHue,
+            bgMode: channel.bg_mode,
           })
         : null,
   };

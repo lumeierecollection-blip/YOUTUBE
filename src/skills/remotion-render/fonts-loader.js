@@ -10,24 +10,18 @@ export const FONT_FACES = `@font-face{font-family:"Inter";font-style:normal;font
 @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/SpaceGrotesk-700.woff2")}") format("woff2");}
 @font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/CormorantGaramond-400.woff2")}") format("woff2");}
 @font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/CormorantGaramond-700.woff2")}") format("woff2");}
-@font-face{font-family:"Oswald";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/Oswald-400.woff2")}") format("woff2");}
-@font-face{font-family:"Oswald";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/Oswald-700.woff2")}") format("woff2");}
-@font-face{font-family:"Bebas Neue";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/BebasNeue-400.woff2")}") format("woff2");}
-@font-face{font-family:"Nunito";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/Nunito-400.woff2")}") format("woff2");}
-@font-face{font-family:"Nunito";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/Nunito-700.woff2")}") format("woff2");}
 @font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/RobotoCondensed-400.woff2")}") format("woff2");}
 @font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/RobotoCondensed-700.woff2")}") format("woff2");}
-@font-face{font-family:"Playfair Display";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/PlayfairDisplay-400.woff2")}") format("woff2");}
-@font-face{font-family:"Playfair Display";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/PlayfairDisplay-700.woff2")}") format("woff2");}
-@font-face{font-family:"Fira Sans";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/FiraSans-400.woff2")}") format("woff2");}
-@font-face{font-family:"Fira Sans";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/FiraSans-700.woff2")}") format("woff2");}
-@font-face{font-family:"Comic Neue";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/ComicNeue-400.woff2")}") format("woff2");}
-@font-face{font-family:"Comic Neue";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/ComicNeue-700.woff2")}") format("woff2");}
-@font-face{font-family:"Noto Serif";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/NotoSerif-400.woff2")}") format("woff2");}
-@font-face{font-family:"Noto Serif";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/NotoSerif-700.woff2")}") format("woff2");}
 @font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/JetBrainsMono-400.woff2")}") format("woff2");}
 @font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/JetBrainsMono-700.woff2")}") format("woff2");}
+@font-face{font-family:"Playfair Display";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/PlayfairDisplay-400.woff2")}") format("woff2");}
+@font-face{font-family:"Playfair Display";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/PlayfairDisplay-700.woff2")}") format("woff2");}
+@font-face{font-family:"Playfair Display";font-style:italic;font-weight:400;font-display:swap;src:url("${staticFile("fonts/PlayfairDisplay-400Italic.woff2")}") format("woff2");}
+@font-face{font-family:"Nunito";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/Nunito-400.woff2")}") format("woff2");}
+@font-face{font-family:"Nunito";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/Nunito-700.woff2")}") format("woff2");}
+@font-face{font-family:"Fira Sans";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/FiraSans-400.woff2")}") format("woff2");}
+@font-face{font-family:"Fira Sans";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/FiraSans-700.woff2")}") format("woff2");}
 `;
 
 /** Family names of every font bundled above. */
-export const FONT_FAMILIES = ["Inter","DM Sans","Space Grotesk","Cormorant Garamond","Oswald","Bebas Neue","Nunito","Roboto Condensed","Playfair Display","Fira Sans","Comic Neue","Noto Serif","JetBrains Mono"];
+export const FONT_FAMILIES = ["Inter","DM Sans","Space Grotesk","Cormorant Garamond","Roboto Condensed","JetBrains Mono","Playfair Display","Nunito","Fira Sans"];

@@ -174,6 +174,60 @@ export function splitCaptionToWordTokens(caption) {
   return tokens;
 }
 
+// Words a caption/chunk must never end on — orphaning them breaks mid-clause
+// (PART 4.2 of the motion-graphics rebuild; shared by buildCaptionPages'
+// clause-boundary repair below and chunkTextClauseAware for the
+// minimal/cinematic-documentary styles' plain-text chunking).
+const ARTICLES = new Set(["a", "an", "the"]);
+const PREPOSITIONS = new Set([
+  "of", "to", "in", "on", "at", "by", "for", "with", "from", "into", "onto",
+  "over", "under", "near", "through", "during", "before", "after", "between",
+  "among", "across", "along", "behind", "beneath", "beside", "without", "within", "about",
+]);
+const CONJUNCTIONS = new Set([
+  "and", "or", "but", "nor", "so", "yet", "because", "while", "since",
+  "although", "though", "whereas", "if", "when",
+]);
+const bareWord = (w) => String(w || "").replace(/[.,;:!?]+$/, "").toLowerCase();
+const looksNumeric = (w) => /^[\d,]+(\.\d+)?%?$/.test(bareWord(w));
+function endsMidClause(words) {
+  const last = words[words.length - 1];
+  if (!last) return false;
+  if (/[.!?]$/.test(last)) return false; // a real sentence end is never a violation
+  const b = bareWord(last);
+  return ARTICLES.has(b) || PREPOSITIONS.has(b) || CONJUNCTIONS.has(b) || looksNumeric(last);
+}
+
+/**
+ * Word-count chunking, clause-boundary aware (PART 4.2). Used by the
+ * minimal/cinematic-documentary styles, whose captions are plain section
+ * text (no per-word SRT timing) rather than motion-graphics' timed caption
+ * pages. Groups words into ≤maxWords chunks, then repairs any boundary that
+ * would strand an article, preposition, conjunction, or a bare number split
+ * from its unit as the last word of a chunk.
+ */
+export function chunkTextClauseAware(text, maxWords = 7) {
+  const words = String(text || "").split(/\s+/).filter(Boolean);
+  if (words.length === 0) return [];
+  const chunks = [];
+  for (let i = 0; i < words.length; i += maxWords) chunks.push(words.slice(i, i + maxWords));
+  for (let i = 0; i < chunks.length - 1; i++) {
+    const left = chunks[i];
+    const right = chunks[i + 1];
+    let guard = 0;
+    while (endsMidClause(left) && right.length > 0 && guard++ < 6) {
+      if (right.length > 1 && left.length < maxWords) {
+        left.push(right.shift());
+      } else if (left.length > 1) {
+        right.unshift(left.pop());
+      } else {
+        break;
+      }
+    }
+  }
+  return chunks.filter((c) => c.length > 0).map((c) => c.join(" "));
+}
+
 /**
  * §1.2 — split one caption's words into ≤ maxWords-word parts. Even split;
  * every part is ≤ maxWords by construction and the safety tail keeps the
@@ -579,6 +633,54 @@ export function buildCaptionPages(tokens, opts = {}) {
       // Fallback: extend the display window as far as the slot allows (never
       // overlapping the next page). Keeps the text on screen during the pause.
       page.endMs = Math.max(page.endMs, page.startMs + need);
+    }
+  }
+
+  // ── Clause-boundary repair (PART 4.2 of the motion-graphics rebuild) ───────
+  // Everything above closes a page purely on word/char/duration/CPS caps,
+  // with no grammar awareness — that is exactly how a real shipped defect
+  // happened: "...found: 1,980 meters below the" stranded "the" as the last
+  // word of a page with "surface," starting the next one. Walk every
+  // boundary and, where the left page ends mid-clause (an article, a
+  // preposition, a coordinating/subordinating conjunction, or a bare number
+  // split from its unit), move the single dangling word across the boundary
+  // — forward onto the right page when it still fits under caps, otherwise
+  // backward onto the left page (removing a word can never violate a cap).
+  // ARTICLES/PREPOSITIONS/CONJUNCTIONS/endsMidClause are module-scope,
+  // shared with chunkTextClauseAware above.
+  for (let i = 0; i < pages.length - 1; i++) {
+    const left = pages[i];
+    const right = pages[i + 1];
+    let guard = 0;
+    while (endsMidClause(left.words) && right.words.length > 0 && guard++ < 6) {
+      const forwardWords = [...left.words, right.words[0]];
+      if (
+        right.words.length > 1 &&
+        left.words.length < caps.maxWords &&
+        wrapCaptionWords(forwardWords).length <= caps.maxLines
+      ) {
+        // Pull the right page's first word onto the left page — keeps the
+        // dangling word with the clause it belongs to instead of orphaning it.
+        const tok = right.tokens.shift();
+        right.words.shift();
+        left.tokens.push(tok);
+        left.words.push(tok.text);
+        left.endMs = tok.toMs;
+        right.startMs = right.tokens[0].fromMs;
+      } else if (left.words.length > 1) {
+        // No room on the right — retreat the boundary instead. Removing a
+        // word from the left page can never push it over a cap.
+        const tok = left.tokens.pop();
+        left.words.pop();
+        right.tokens.unshift(tok);
+        right.words.unshift(tok.text);
+        right.startMs = tok.fromMs;
+        left.endMs = left.tokens[left.tokens.length - 1].toMs;
+      } else {
+        break; // a single-word page ending mid-clause with nowhere to go — leave it
+      }
+      left.text = fmtPage(left);
+      right.text = fmtPage(right);
     }
   }
 

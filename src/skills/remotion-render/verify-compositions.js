@@ -6,7 +6,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { resolveBrollFiles } from "./broll.js";
 import { buildMgPackage, gateMgHeadlineOverlap, gateIconNames, gateChartData } from "./compositions/mg-package.js";
-import { gateBeats, gateCaptions } from "./compositions/beats.js";
+import { gateBeats, gateCaptions, chunkTextClauseAware } from "./compositions/beats.js";
 import { ICON_INNER } from "./compositions/icons-data.js";
 import { verifyPalette } from "./compositions/mg-style.js";
 import { paletteFromHues, deriveHuesFromHexes } from "./styles/tokens.js";
@@ -16,15 +16,12 @@ const CHROME = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 const OUT_DIR = join(__dirname, "verify-out");
 
 function chunkVoiceover(text, maxWords = 7) {
-  const words = text.split(/\s+/).filter(Boolean);
-  const chunks = [];
-  for (let i = 0; i < words.length; i += maxWords) chunks.push(words.slice(i, i + maxWords).join(" "));
-  return chunks;
+  return chunkTextClauseAware(text, maxWords);
 }
 
-// Real ch-01 script, mapped exactly like render.js toContentSections.
+// Real ch-fixture script, mapped exactly like render.js toContentSections.
 const script = JSON.parse(
-  readFileSync(join(dirname(__dirname), "..", "..", "data", "scripts", "ch-01", "movile-cave-shorts-script.json"), "utf-8")
+  readFileSync(join(dirname(__dirname), "..", "..", "data", "scripts", "ch-fixture", "movile-cave-shorts-script.json"), "utf-8")
 );
 const sections = (script.sections || [])
   .filter((s) => s.voiceover && s.voiceover.trim())
@@ -40,7 +37,7 @@ const sections = (script.sections || [])
     transitionOut: s.transition_out || null,
   }));
 for (const section of sections) {
-  section.bRollFiles = resolveBrollFiles(section.bRoll || [], "ch-01");
+  section.bRollFiles = resolveBrollFiles(section.bRoll || [], "ch-fixture", script.topic_slug);
 }
 for (const section of sections) {
   console.log(`b-roll [${section.id}]:`, JSON.stringify(section.bRollFiles));
@@ -48,7 +45,7 @@ for (const section of sections) {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Motion-graphics package + static gates (H3, H5–H8, H9, H11, H12, H14).
-// Fixture: ch-01 SRT (real caption stream) + a real mg channel's icon map and
+// Fixture: ch-fixture SRT (real caption stream) + a real mg channel's icon map and
 // palette (Legal Brief, id 2) so icon resolution and contrast are genuine.
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -58,7 +55,7 @@ const channelsJson = JSON.parse(
 const mgChannel = (channelsJson.channels || channelsJson).find((c) => c.style === "motion-graphics");
 if (!mgChannel) throw new Error("no motion-graphics channel in config/channels.json");
 
-const mgSrtPath = join(dirname(__dirname), "..", "..", "data", "tts", "ch-01", "movile-cave-shorts-script-vo.srt");
+const mgSrtPath = join(dirname(__dirname), "..", "..", "data", "tts", "ch-fixture", "movile-cave-shorts-script-vo.srt");
 const mgPackage = buildMgPackage(readFileSync(mgSrtPath, "utf-8"), {
   sections,
   iconMap: mgChannel.icon_map || null,

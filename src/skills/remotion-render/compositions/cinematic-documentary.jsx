@@ -12,29 +12,32 @@ import {
 import { Audio } from "@remotion/media";
 import { currentAudio } from "../audio.js";
 import "../wait-for-fonts.js";
-import { resolveColors, resolveFontFamily, moodFromVisualCue, moodFromContent, EndFadeToBlack } from "./visual.js";
+import { resolveColors, resolveFontFamily, EndFadeToBlack } from "./visual.js";
 
 /**
  * CinematicDocumentary — Long-form (16:9, ~10 min)
  *
  * Sections animate through the script with:
- * - Warm golden grading for nostalgia
- * - Cold blue/steel for modern/crisis
- * - Film grain overlay
- * - Ken Burns on stills
- * - Animated data overlays
+ * - Flat, pure background (#FFFFFF or #000000 per channel bg_mode)
+ * - Film grain overlay (texture, not colour)
+ * - Ken Burns on real sourced stills
+ * - Animated data overlays (accent on shapes/values, never on body text)
  * - Dramatic pacing cuts
+ *
+ * REBUILT for motion-graphics-rebuild-v2: mood-based colour grading
+ * (nostalgia/crisis/outrage gradients), the radial-gradient vignette, and
+ * the light-leak flare are all removed — PART 1/2 of the rebuild ban
+ * gradients, radial glows, and tinted washes outright, and the mood system
+ * (moodFromVisualCue/moodFromContent, formerly in visual.js) was exactly
+ * that: a per-section colour wash picked from keyword-matched prose. See
+ * CHECK-REGISTER.md DEL-22 / COL-22 ("no mood-based colour grading").
  */
 
 const COLORS = {
-  nostalgia: "#D4A853",
-  crisis: "#1A3A5C",
-  outrage: "#8B1A1A",
-  neutral: "#2A2A2A",
-  textPrimary: "#FFFFFF",
-  textAccent: "#C9A227",
-  bgDark: "#0D1117",
-  bgMid: "#1A1F2E",
+  textPrimary: "#EBEBEB",
+  textAccent: "#EBEBEB", // never used as a text colour default anymore — kept for callers that pass it through unchanged
+  bgDark: "#000000",
+  bgMid: "#000000",
 };
 
 function FilmGrain({ opacity = 0.1 }) {
@@ -44,39 +47,6 @@ function FilmGrain({ opacity = 0.1 }) {
         background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='${opacity}'/%3E%3C/svg%3E")`,
         mixBlendMode: "overlay",
         opacity,
-        pointerEvents: "none",
-      }}
-    />
-  );
-}
-
-function Vignette({ intensity = 0.2 }) {
-  return (
-    <AbsoluteFill
-      style={{
-        background: `radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,${intensity}) 100%)`,
-        pointerEvents: "none",
-      }}
-    />
-  );
-}
-
-/**
- * Light leak — a soft warm flare that flashes in at a section transition.
- * Spec: 5-12% intensity, transitions/key reveals ONLY, max 3-4 per video.
- * Plays once over ~0.7s at the start of the section it is mounted in.
- */
-function LightLeak({ intensity = 0.08 }) {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const t = (frame / fps) / 0.7;
-  const opacity = t >= 1 ? 0 : Math.sin(t * Math.PI) * intensity;
-  if (opacity <= 0.001) return null;
-  return (
-    <AbsoluteFill
-      style={{
-        background: `radial-gradient(ellipse at 78% 18%, rgba(255,182,90,${opacity}) 0%, rgba(255,140,60,${opacity * 0.5}) 35%, transparent 62%)`,
-        mixBlendMode: "screen",
         pointerEvents: "none",
       }}
     />
@@ -131,7 +101,7 @@ function AnimatedText({ text, delay = 0, style = {}, color, fontFamily, colors =
       style={{
         opacity,
         transform: `translateY(${translateY}px)`,
-        color: color || colors.textAccent,
+        color: color || colors.textPrimary,
         fontFamily: fontFamily || "Inter, sans-serif",
         fontWeight: 900,
         fontSize: 72,
@@ -226,10 +196,12 @@ function KenBurnsImage({ src, direction = "in", durationInFrames = 150, opacity 
 
 /**
  * B-roll layer — real sourced imagery per section, slow Ken Burns motion,
- * crossfaded between shots, tinted to the section's mood grade and darkened
- * top/bottom so captions stay readable. Falls back to nothing (gradient stays).
+ * crossfaded between shots. Readability for text over the photo comes from
+ * two FLAT solid bars (top/bottom, bg-coloured, opaque) sized to the actual
+ * text zones — never a gradient scrim, never a mood tint (PART 1/2: no
+ * gradients, no colour washes, photographic assets keep their own tone).
  */
-function BrollLayer({ files = [], mood = "neutral", colors = COLORS }) {
+function BrollLayer({ files = [], colors = COLORS }) {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
 
@@ -238,13 +210,6 @@ function BrollLayer({ files = [], mood = "neutral", colors = COLORS }) {
   const n = files.length;
   const chunk = Math.floor(durationInFrames / n);
   const fade = 12; // crossfade frames between shots
-
-  const tints = {
-    nostalgia: "rgba(212,168,83,0.18)",
-    crisis: "rgba(16,42,70,0.45)",
-    outrage: "rgba(139,26,26,0.28)",
-    neutral: "rgba(0,0,0,0.28)",
-  };
 
   return (
     <AbsoluteFill>
@@ -267,34 +232,15 @@ function BrollLayer({ files = [], mood = "neutral", colors = COLORS }) {
           />
         );
       })}
-      {/* Readability + grade: darken for captions, tint to the mood */}
-      <AbsoluteFill
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.15) 28%, rgba(0,0,0,0.15) 62%, rgba(0,0,0,0.78) 100%)",
-          pointerEvents: "none",
-        }}
-      />
-      <AbsoluteFill
-        style={{ backgroundColor: tints[mood] || tints.neutral, mixBlendMode: "multiply", pointerEvents: "none" }}
-      />
+      {/* Readability: flat, opaque bars behind the text zones — not a gradient. */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "22%", backgroundColor: colors.bgDark, opacity: 0.72 }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "34%", backgroundColor: colors.bgDark, opacity: 0.8 }} />
     </AbsoluteFill>
   );
 }
 
-function SectionBackground({ mood = "neutral", children, colors = COLORS }) {
-  const bgColors = {
-    nostalgia: `linear-gradient(135deg, ${colors.bgDark} 0%, #2A1F0D 100%)`,
-    crisis: `linear-gradient(135deg, ${colors.bgDark} 0%, ${colors.crisis} 100%)`,
-    outrage: `linear-gradient(135deg, ${colors.bgDark} 0%, ${colors.outrage} 100%)`,
-    neutral: `linear-gradient(135deg, ${colors.bgDark} 0%, ${colors.bgMid} 100%)`,
-  };
-
-  return (
-    <AbsoluteFill style={{ background: bgColors[mood] || bgColors.neutral }}>
-      {children}
-    </AbsoluteFill>
-  );
+function SectionBackground({ children, colors = COLORS }) {
+  return <AbsoluteFill style={{ backgroundColor: colors.bgDark }}>{children}</AbsoluteFill>;
 }
 
 /**
@@ -317,13 +263,6 @@ export function CinematicDocumentaryLongform({ sections = [], thumbnailStyle, tt
     <AbsoluteFill style={{ backgroundColor: colors.bgDark }}>
       {sections.map((section, i) => {
         const { from: sectionStart, duration: sectionDuration } = layout[i];
-        const moods = ["nostalgia", "neutral", "crisis", "outrage", "neutral"];
-        const mood =
-          moodFromVisualCue(section.visualCue) ||
-          moodFromContent(section.voiceover, section.id) ||
-          moods[i % moods.length];
-        // Light leaks at a few key transitions only (spec: max 3-4 per video).
-        const leak = i === 1 || i === 3;
 
         return (
           <Sequence
@@ -331,8 +270,8 @@ export function CinematicDocumentaryLongform({ sections = [], thumbnailStyle, tt
             from={sectionStart}
             durationInFrames={sectionDuration}
           >
-            <SectionBackground mood={mood} colors={colors}>
-              <BrollLayer files={section.bRollFiles} mood={mood} colors={colors} />
+            <SectionBackground colors={colors}>
+              <BrollLayer files={section.bRollFiles} colors={colors} />
               {section.textOverlay ? (
                 <div
                   style={{
@@ -346,7 +285,7 @@ export function CinematicDocumentaryLongform({ sections = [], thumbnailStyle, tt
                     fontSize: 26,
                     letterSpacing: 2,
                     textTransform: "uppercase",
-                    color: colors.textAccent,
+                    color: colors.textPrimary,
                     textShadow: "0 2px 8px rgba(0,0,0,0.6)",
                     opacity: 0.9,
                   }}
@@ -371,35 +310,33 @@ export function CinematicDocumentaryLongform({ sections = [], thumbnailStyle, tt
                     text={line}
                     delay={j * 15}
                     style={{ fontSize: j === 0 ? 56 : 36, marginBottom: 20 }}
-                    color={j === 0 ? colors.textAccent : colors.textPrimary}
+                    color={colors.textPrimary}
                     colors={colors}
                     fontFamily={fontFamily}
                   />
                 ))}
               </AbsoluteFill>
 
-              {/* Overlays */}
-              <FilmGrain opacity={mood === "crisis" ? 0.15 : 0.08} />
-              <Vignette intensity={0.2} />
-              {leak ? <LightLeak intensity={mood === "crisis" ? 0.1 : 0.07} /> : null}
+              {/* Texture only — no vignette, no light leak, no mood grade. */}
+              <FilmGrain opacity={0.08} />
             </SectionBackground>
           </Sequence>
         );
       })}
 
-      {/* Global progress indicator */}
+      {/* Global progress indicator — a shape, so the accent belongs here. */}
       <div
         style={{
           position: "absolute",
           bottom: 0,
           left: 0,
           height: 3,
-          backgroundColor: colors.textAccent,
+          backgroundColor: colors.accent,
           width: `${(frame / durationInFrames) * 100}%`,
-          opacity: 0.6,
+          opacity: 1,
         }}
       />
-      <EndFadeToBlack active={fadeOut} />
+      <EndFadeToBlack active={fadeOut} color={colors.bg} />
       {ttsAudioPath ? <Audio src={currentAudio} /> : null}
     </AbsoluteFill>
   );
@@ -424,12 +361,6 @@ export function CinematicDocumentaryShorts({ sections = [], thumbnailStyle, ttsA
     <AbsoluteFill style={{ backgroundColor: colors.bgDark }}>
       {sections.map((section, i) => {
         const { from: sectionStart, duration: sectionDuration } = layout[i];
-        const moods = ["nostalgia", "crisis", "outrage"];
-        const mood =
-          moodFromVisualCue(section.visualCue) ||
-          moodFromContent(section.voiceover, section.id) ||
-          moods[i % moods.length];
-        const leak = i === 1;
 
         return (
           <Sequence
@@ -437,8 +368,8 @@ export function CinematicDocumentaryShorts({ sections = [], thumbnailStyle, ttsA
             from={sectionStart}
             durationInFrames={sectionDuration}
           >
-            <SectionBackground mood={mood} colors={colors}>
-              <BrollLayer files={section.bRollFiles} mood={mood} colors={colors} />
+            <SectionBackground colors={colors}>
+              <BrollLayer files={section.bRollFiles} colors={colors} />
               {section.textOverlay ? (
                 <div
                   style={{
@@ -452,7 +383,7 @@ export function CinematicDocumentaryShorts({ sections = [], thumbnailStyle, ttsA
                     fontSize: 22,
                     letterSpacing: 2,
                     textTransform: "uppercase",
-                    color: colors.textAccent,
+                    color: colors.textPrimary,
                     textShadow: "0 2px 8px rgba(0,0,0,0.6)",
                     opacity: 0.9,
                   }}
@@ -480,7 +411,7 @@ export function CinematicDocumentaryShorts({ sections = [], thumbnailStyle, ttsA
                       marginBottom: 16,
                       maxWidth: "90%",
                     }}
-                    color={j === 0 ? colors.textAccent : colors.textPrimary}
+                    color={colors.textPrimary}
                     colors={colors}
                     fontFamily={fontFamily}
                   />
@@ -488,13 +419,11 @@ export function CinematicDocumentaryShorts({ sections = [], thumbnailStyle, ttsA
               </AbsoluteFill>
 
               <FilmGrain opacity={0.1} />
-              <Vignette intensity={0.25} />
-              {leak ? <LightLeak intensity={0.08} /> : null}
             </SectionBackground>
           </Sequence>
         );
       })}
-      <EndFadeToBlack active={fadeOut} />
+      <EndFadeToBlack active={fadeOut} color={colors.bg} />
       {ttsAudioPath ? <Audio src={currentAudio} /> : null}
     </AbsoluteFill>
   );

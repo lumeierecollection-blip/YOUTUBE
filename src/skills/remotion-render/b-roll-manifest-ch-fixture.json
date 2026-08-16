@@ -1,12 +1,12 @@
 {
-  "channel_id": "ch-01",
+  "channel_id": "ch-fixture",
   "topic_slug": "movile-cave",
   "script": "data/scripts/ch-01/movile-cave-shorts-script.json",
   "sourced": "2026-08-03",
   "source": "Wikimedia Commons (all files fetched via Special:FilePath thumbnails, max width 1600)",
   "files": [
     {
-      "local": "public/b-roll/ch-01/cave-entrance.jpg",
+      "local": "public/b-roll/ch-fixture/cave-entrance.jpg",
       "commons_title": "File:Lava River Cave Entrance.jpg",
       "content": "Cave entrance in darkness (Lava River Cave, Arizona) - hook 'cave entrance reveal' + close mirror",
       "license": "Public domain (US Forest Service)",
@@ -14,7 +14,7 @@
       "attribution": "Brady Smith / US Forest Service, Coconino National Forest"
     },
     {
-      "local": "public/b-roll/ch-01/flashlight-beam.jpg",
+      "local": "public/b-roll/ch-fixture/flashlight-beam.jpg",
       "commons_title": "File:Lava River Cave - 20578435368.jpg",
       "content": "Dark cave tunnel interior (30s exposure, lava tube) - hook 'flashlight beam cutting through black' / tunnel atmosphere",
       "license": "Public domain (US Forest Service)",
@@ -22,35 +22,35 @@
       "attribution": "Brady Smith / US Forest Service, Coconino National Forest"
     },
     {
-      "local": "public/b-roll/ch-01/calcium-formations.jpg",
+      "local": "public/b-roll/ch-fixture/calcium-formations.jpg",
       "commons_title": "File:Stalactite Formation in Avshalom Cave.jpg",
       "content": "Calcium carbonate stalactite/stalagmite formations - hook 'close-up on calcium formations'",
       "license": "CC BY-SA 3.0",
       "source_url": "https://commons.wikimedia.org/wiki/File:Stalactite_Formation_in_Avshalom_Cave.jpg"
     },
     {
-      "local": "public/b-roll/ch-01/cave-spider.jpg",
+      "local": "public/b-roll/ch-fixture/cave-spider.jpg",
       "commons_title": "File:Stalita taenaria1.jpg",
       "content": "Stalita taenaria, a blind cave spider - section_1 'blind spiders' (caveat: real blind cave spider, not the Movile Nops sp.)",
       "license": "CC BY-SA 4.0",
       "source_url": "https://commons.wikimedia.org/wiki/File:Stalita_taenaria1.jpg"
     },
     {
-      "local": "public/b-roll/ch-01/water-scorpion.jpg",
+      "local": "public/b-roll/ch-fixture/water-scorpion.jpg",
       "commons_title": "File:Image of the troglofaunal water scorpion, Nepa anophthalma.jpg",
       "content": "Nepa anophthalma, blind troglofaunal water scorpion FROM Movile Cave - section_1 'eyeless' creature (no leech image available; real blind Movile troglobite)",
       "license": "CC BY-SA 4.0",
       "source_url": "https://commons.wikimedia.org/wiki/File:Image_of_the_troglofaunal_water_scorpion,_Nepa_anophthalma.jpg"
     },
     {
-      "local": "public/b-roll/ch-01/movile-centipede.jpg",
+      "local": "public/b-roll/ch-fixture/movile-centipede.jpg",
       "commons_title": "File:Cryptops speleorex (holotype).jpg",
       "content": "Cryptops speleorex, the centipede species described from Movile Cave - section_1 'ghost-pale centipedes'",
       "license": "CC BY 4.0",
       "source_url": "https://commons.wikimedia.org/wiki/File:Cryptops_speleorex_(holotype).jpg"
     },
     {
-      "local": "public/b-roll/ch-01/microbial-mats.jpg",
+      "local": "public/b-roll/ch-fixture/microbial-mats.jpg",
       "commons_title": "File:Chemosynthetic Microbial Mats.jpg",
       "content": "Chemosynthetic microbial mats at a hydrothermal vent (NOAA) - section_3 'bacteria... exactly like the vents of the deep ocean'",
       "license": "Public domain (NOAA)",
@@ -58,56 +58,56 @@
       "attribution": "NOAA Submarine Ring of Fire 2004 Exploration, NOAA Vents Program"
     },
     {
-      "local": "public/b-roll/ch-01/microbial-mats-2.jpg",
+      "local": "public/b-roll/ch-fixture/microbial-mats-2.jpg",
       "commons_title": "File:Microbial mat - asessions.jpg",
       "content": "Microbial mat (surface film) - section_1 'microbial mats on cave water'",
       "license": "CC BY-SA 4.0",
       "source_url": "https://commons.wikimedia.org/wiki/File:Microbial_mat_-_asessions.jpg"
     },
     {
-      "local": "public/b-roll/ch-01/tunnel-crawl.jpg",
+      "local": "public/b-roll/ch-fixture/tunnel-crawl.jpg",
       "commons_title": "File:Alabama cave 2005-04-24.km.jpg",
       "content": "Tight cave passage (Alabama cave) - section_1 'claustrophobic tunnel crawl'",
       "license": "CC BY-SA 3.0",
       "source_url": "https://commons.wikimedia.org/wiki/File:Alabama_cave_2005-04-24.km.jpg"
     },
     {
-      "local": "public/b-roll/ch-01/vertical-shaft.jpg",
+      "local": "public/b-roll/ch-fixture/vertical-shaft.jpg",
       "commons_title": "File:Vertical Shaft of Wine Cave - panoramio.jpg",
       "content": "Vertical cave shaft - section_2 'vertical shaft descent'",
       "license": "CC BY 3.0",
       "source_url": "https://commons.wikimedia.org/wiki/File:Vertical_Shaft_of_Wine_Cave_-_panoramio.jpg"
     },
     {
-      "local": "public/b-roll/ch-01/cave-cross-section.png",
+      "local": "public/b-roll/ch-fixture/cave-cross-section.png",
       "commons_title": "File:Movile Cave X-Section.png",
       "content": "Movile Cave cross-section diagram (CC0) - section_2 'cross-section cave map with depth line'",
       "license": "CC0 (public domain)",
       "source_url": "https://commons.wikimedia.org/wiki/File:Movile_Cave_X-Section.png"
     },
     {
-      "local": "public/b-roll/ch-01/springtail-1980m.jpg",
+      "local": "public/b-roll/ch-fixture/springtail-1980m.jpg",
       "commons_title": "File:Plutomurus ortobalaganensis 1980m.jpg",
       "content": "Plutomurus ortobalaganensis, the springtail found 1,980 m deep - section_2 'a springtail called Plutomurus holds the record'",
       "license": "CC BY-SA 3.0",
       "source_url": "https://commons.wikimedia.org/wiki/File:Plutomurus_ortobalaganensis_1980m.jpg"
     },
     {
-      "local": "public/b-roll/ch-01/springtail-macro.jpg",
+      "local": "public/b-roll/ch-fixture/springtail-macro.jpg",
       "commons_title": "File:Collembola sp. (1).jpg",
       "content": "Springtail (Collembola) macro - section_2 'microscopy of the springtail' (generic springtail close-up)",
       "license": "CC BY 4.0",
       "source_url": "https://commons.wikimedia.org/wiki/File:Collembola_sp._(1).jpg"
     },
     {
-      "local": "public/b-roll/ch-01/sulfur-crystal.jpg",
+      "local": "public/b-roll/ch-fixture/sulfur-crystal.jpg",
       "commons_title": "File:Large Sulfur Crystal.jpg",
       "content": "Sulfur crystals - section_3 'rock and mineral macro' / 'bacteria turning minerals and sulfur into food'",
       "license": "CC BY-SA 2.5",
       "source_url": "https://commons.wikimedia.org/wiki/File:Large_Sulfur_Crystal.jpg"
     },
     {
-      "local": "public/b-roll/ch-01/black-smoker.jpg",
+      "local": "public/b-roll/ch-fixture/black-smoker.jpg",
       "commons_title": "File:MARUM Schwarzer Raucher.jpg",
       "content": "Black smoker hydrothermal vent - section_3 'deep-sea vent comparison'",
       "license": "CC BY 4.0",

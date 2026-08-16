@@ -27,6 +27,17 @@ const UA =
 const WEIGHTS = [400, 700];
 const FONT_LIMIT = 30;
 
+// A fixed, always-fetched italic serif face for the "setup line" headline
+// pairing (MOTION-GRAPHICS-MANUAL rebuild PART 3.4: italic serif setup line
+// above a bold sans payload line). This is a structural typographic device
+// shared across every motion-graphics channel, not a per-channel identity
+// font, so it is NOT derived from channels.json's per-channel `font` field —
+// it is fetched unconditionally, in addition to whatever channels.json
+// references. Playfair Display is already vendored (regular/bold) for the
+// channels that use it as their primary font, so this adds only the italic
+// weight, not a new family.
+const EXTRA_FACES = [{ family: "Playfair Display", weight: 400, style: "italic" }];
+
 // Latin block (unicode-range U+0000-00FF) is the LAST @font-face block per
 // weight in the Google Fonts CSS2 response; the first block is cyrillic-ext.
 // Selecting the first matching block shipped 0-digit subsets (audit-assets
@@ -45,18 +56,23 @@ function collectFonts() {
   return fonts.slice(0, FONT_LIMIT);
 }
 
-function cssUrl(font, weight) {
+function cssUrl(font, weight, style = "normal") {
   const fam = font.replace(/ /g, "+");
+  if (style === "italic") {
+    return `https://fonts.googleapis.com/css2?family=${fam}:ital,wght@1,${weight}&display=swap`;
+  }
   return `https://fonts.googleapis.com/css2?family=${fam}:wght@${weight}&display=swap`;
 }
 
-async function getWoff2Url(font, weight) {
-  const res = await fetch(cssUrl(font, weight), { headers: { "User-Agent": UA } });
+async function getWoff2Url(font, weight, style = "normal") {
+  const res = await fetch(cssUrl(font, weight, style), { headers: { "User-Agent": UA } });
   if (!res.ok) throw new Error(`${font}: CSS request failed (${res.status})`);
   const css = await res.text();
   const blocks = css.split("@font-face");
   for (const block of blocks) {
     if (!block.includes(`font-weight: ${weight};`)) continue;
+    if (style === "italic" && !block.includes("font-style: italic;")) continue;
+    if (style === "normal" && block.includes("font-style: italic;")) continue;
     // Skip if the block's unicode-range does not cover latin (U+0020-U+007E
     // sits inside U+0000-00FF). A block with no unicode-range at all is the
     // static single-file case and is acceptable.
@@ -80,7 +96,7 @@ async function main() {
   const manifest = {};
 
   for (const font of fonts) {
-    manifest[font] = {};
+    manifest[font] = manifest[font] || {};
     for (const weight of WEIGHTS) {
       const file = `${slug(font)}-${weight}.woff2`;
       const dest = join(FONT_DIR, file);
@@ -104,15 +120,44 @@ async function main() {
     }
   }
 
+  // Fixed extra faces (italic serif for the setup-line headline pairing) —
+  // always fetched, regardless of what channels.json references. Manifest
+  // key convention: "<weight>i" for italic, e.g. "400i".
+  for (const { family, weight, style } of EXTRA_FACES) {
+    manifest[family] = manifest[family] || {};
+    const key = style === "italic" ? `${weight}i` : String(weight);
+    const file = `${slug(family)}-${weight}${style === "italic" ? "Italic" : ""}.woff2`;
+    const dest = join(FONT_DIR, file);
+    if (existsSync(dest)) {
+      manifest[family][key] = file;
+      console.log(`  skip ${file}`);
+      continue;
+    }
+    try {
+      const url = await getWoff2Url(family, weight, style);
+      if (!url) {
+        console.log(`  ${family} ${weight} ${style}: not available`);
+        continue;
+      }
+      await download(url, dest);
+      manifest[family][key] = file;
+      console.log(`  ok ${file}`);
+    } catch (err) {
+      console.log(`  FAIL ${family} ${weight} ${style}: ${err.message}`);
+    }
+  }
+
   writeFileSync(join(__dirname, "fonts-manifest.json"), JSON.stringify(manifest, null, 2));
 
   let faces = "";
   const families = [];
   for (const font of Object.keys(manifest)) {
     families.push(font);
-    for (const weight of Object.keys(manifest[font])) {
-      const file = manifest[font][weight];
-      faces += `@font-face{font-family:"${font}";font-style:normal;font-weight:${weight};font-display:swap;src:url("\${staticFile(\"fonts/${file}\")}") format("woff2");}\n`;
+    for (const weightKey of Object.keys(manifest[font])) {
+      const file = manifest[font][weightKey];
+      const isItalic = weightKey.endsWith("i");
+      const weight = isItalic ? weightKey.slice(0, -1) : weightKey;
+      faces += `@font-face{font-family:"${font}";font-style:${isItalic ? "italic" : "normal"};font-weight:${weight};font-display:swap;src:url("\${staticFile(\"fonts/${file}\")}") format("woff2");}\n`;
     }
   }
   const loader =

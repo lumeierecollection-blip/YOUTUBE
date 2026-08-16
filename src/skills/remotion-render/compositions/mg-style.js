@@ -89,23 +89,27 @@ import { paletteFromHues, deriveHuesFromHexes } from "../styles/tokens.js";
  */
 export function rolesFromPalette(palette) {
   if (palette && typeof palette === "object" && !Array.isArray(palette)) {
-    if (typeof palette.baseHue === "number" && typeof palette.accentHue === "number") {
-      return paletteFromHues({ baseHue: palette.baseHue, accentHue: palette.accentHue });
+    if (typeof palette.accentHue === "number") {
+      return paletteFromHues({ accentHue: palette.accentHue, bgMode: palette.bgMode });
     }
     if (typeof palette.bg === "string" && typeof palette.accent === "string") {
       return palette; // already derived roles
     }
   }
   if (Array.isArray(palette) && palette.length >= 3) {
-    return paletteFromHues(deriveHuesFromHexes(palette));
+    const { accentHue } = deriveHuesFromHexes(palette);
+    return paletteFromHues({ accentHue, bgMode: FALLBACK_BG_MODE });
   }
-  // No palette / invalid shape: neutral dark default through the same token
-  // path, so verifyPalette(null) reports rather than throwing.
-  return paletteFromHues(deriveHuesFromHexes(FALLBACK_HEXES));
+  // No palette / invalid shape: flat default through the same token path,
+  // so verifyPalette(null) reports rather than throwing.
+  const { accentHue } = deriveHuesFromHexes(FALLBACK_HEXES);
+  return paletteFromHues({ accentHue, bgMode: FALLBACK_BG_MODE });
 }
 
-// Fallback 3-hex palette for null/malformed input (motion-graphics FALLBACK_PALETTE).
+// Fallback 3-hex palette for null/malformed input (motion-graphics FALLBACK_PALETTE),
+// only used to recover an accent hue now — bg is always flat (see tokens.js header).
 const FALLBACK_HEXES = ["#0F0F1A", "#E94560", "#F8FAFC"];
+const FALLBACK_BG_MODE = "black";
 
 // A2.4 — contrast floor (AAA large text, see manual table).
 export const CONTRAST_FLOOR = {

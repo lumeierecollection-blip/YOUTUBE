@@ -18,10 +18,15 @@ import { resolveColors, resolveFontFamily } from "./visual.js";
  * Props: { sections, ttsAudioPath, thumbnailStyle, tone, font, palette }
  */
 
+// REBUILT for motion-graphics-rebuild-v2: the gradient background + radial
+// accent glow are removed — PART 1 bans gradients and radial glows outright.
+// Background is now flat #FFFFFF/#000000 per channel bg_mode; the accent no
+// longer touches text (PART 2) — only the first line's emphasis is kept,
+// recoloured to textPrimary.
 const COLORS = {
-  bg: "#0D0D0F",
+  bg: "#000000",
   accent: "#6366F1",
-  text: "#FFFFFF",
+  text: "#EBEBEB",
   dim: "#A1A1AA",
 };
 
@@ -39,7 +44,7 @@ function AnimatedCaption({ text, delay = 0, index = 0, colors = COLORS, fontFami
       style={{
         opacity,
         transform: `translateY(${y}px) scale(${scale})`,
-        color: emphasis ? colors.accent : index === 0 ? colors.accent : colors.text,
+        color: colors.text,
         fontFamily: fontFamily || "'Space Grotesk', 'Helvetica Neue', sans-serif",
         fontWeight: emphasis ? 900 : 700,
         fontSize: emphasis ? 88 : index === 0 ? 64 : 40,
@@ -55,19 +60,7 @@ function AnimatedCaption({ text, delay = 0, index = 0, colors = COLORS, fontFami
 }
 
 function MinimalBackground({ colors }) {
-  return (
-    <AbsoluteFill
-      style={{
-        background: `linear-gradient(180deg, ${colors.bg} 0%, ${colors.bg} 55%, ${colors.accent}1a 160%)`,
-      }}
-    >
-      <AbsoluteFill
-        style={{
-          background: `radial-gradient(ellipse at 50% 18%, ${colors.accent}26 0%, transparent 55%)`,
-        }}
-      />
-    </AbsoluteFill>
-  );
+  return <AbsoluteFill style={{ backgroundColor: colors.bg }} />;
 }
 
 function MinimalSections({ sections, colors = COLORS, fontFamily }) {

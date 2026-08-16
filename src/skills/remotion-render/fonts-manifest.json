@@ -15,39 +15,25 @@
     "400": "CormorantGaramond-400.woff2",
     "700": "CormorantGaramond-700.woff2"
   },
-  "Oswald": {
-    "400": "Oswald-400.woff2",
-    "700": "Oswald-700.woff2"
+  "Roboto Condensed": {
+    "400": "RobotoCondensed-400.woff2",
+    "700": "RobotoCondensed-700.woff2"
   },
-  "Bebas Neue": {
-    "400": "BebasNeue-400.woff2"
+  "JetBrains Mono": {
+    "400": "JetBrainsMono-400.woff2",
+    "700": "JetBrainsMono-700.woff2"
+  },
+  "Playfair Display": {
+    "400": "PlayfairDisplay-400.woff2",
+    "700": "PlayfairDisplay-700.woff2",
+    "400i": "PlayfairDisplay-400Italic.woff2"
   },
   "Nunito": {
     "400": "Nunito-400.woff2",
     "700": "Nunito-700.woff2"
   },
-  "Roboto Condensed": {
-    "400": "RobotoCondensed-400.woff2",
-    "700": "RobotoCondensed-700.woff2"
-  },
-  "Playfair Display": {
-    "400": "PlayfairDisplay-400.woff2",
-    "700": "PlayfairDisplay-700.woff2"
-  },
   "Fira Sans": {
     "400": "FiraSans-400.woff2",
     "700": "FiraSans-700.woff2"
-  },
-  "Comic Neue": {
-    "400": "ComicNeue-400.woff2",
-    "700": "ComicNeue-700.woff2"
-  },
-  "Noto Serif": {
-    "400": "NotoSerif-400.woff2",
-    "700": "NotoSerif-700.woff2"
-  },
-  "JetBrains Mono": {
-    "400": "JetBrainsMono-400.woff2",
-    "700": "JetBrainsMono-700.woff2"
   }
 }

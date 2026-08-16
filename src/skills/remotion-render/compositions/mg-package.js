@@ -171,6 +171,30 @@ function termFromBeat(beat) {
   return words.length ? words.join(" ").toUpperCase() : null;
 }
 
+// PART 3.4 of the rebuild — "italic serif setup line above bold sans payload
+// line" is a deliberate, repeated headline pairing on the reference frames.
+// TERM_DEFINE beats are the one archetype with a real, non-fabricated setup
+// phrase available: the marker word(s) that introduced the term in the
+// voiceover (the same words pickAnchorTokenIndex's firstTokenAfterMarker
+// used to find the anchor). Returns null — no setup line, single-line
+// headline as before — when the anchor doesn't sit next to a marker word.
+const TERM_SETUP_MARKERS = new Set(["called", "known", "named", "records", "holds", "is", "as", "otherwise"]);
+function setupLineFromBeat(beat) {
+  const wts = beat.wordTokens || [];
+  const anchor = beat.anchorTokenIndex;
+  if (!Number.isInteger(anchor) || wts.length === 0) return null;
+  const isMarker = (tok) => TERM_SETUP_MARKERS.has(String(tok && tok.text || "").replace(/[^a-z]/gi, "").toLowerCase());
+  const bare = (tok) => String(tok.text).replace(/[^a-zA-Z]/g, "").toLowerCase();
+  const words = [];
+  let i = anchor - 1;
+  while (i >= 0 && wts[i] && isMarker(wts[i]) && words.length < 3) {
+    words.unshift(bare(wts[i]));
+    i--;
+  }
+  if (wts[anchor] && isMarker(wts[anchor]) && words.length < 3) words.push(bare(wts[anchor]));
+  return words.length ? words.join(" ") : null;
+}
+
 function subjectLabel(beat) {
   const wts = beat.wordTokens || [];
   const anchor = beat.anchorTokenIndex;
@@ -221,6 +245,7 @@ export function deriveScene(beat, ctx = {}) {
     case "TERM_DEFINE": {
       scene.term = (beat.data && beat.data.term) || termFromBeat(beat);
       scene.headline = scene.term || null;
+      scene.setupLine = scene.headline ? setupLineFromBeat(beat) : null;
       break;
     }
     case "CONTRAST": {
@@ -338,6 +363,43 @@ function proportionalWindows(sections, totalMs) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// PART 4.1 of the rebuild — never state the same fact twice on screen at
+// once. A HERO_NUMBER beat renders its value as a giant numeral on the
+// Stage for the whole beat window; the caption stream (built independently
+// from the same SRT) naturally contains that same digit string at that
+// same moment, since it is transcribing the exact word being spoken. Strip
+// the matching digit token from any caption page whose display window
+// overlaps a HERO_NUMBER beat showing that value — the numeral on Stage
+// already carries the fact, spatially adjacent to the caption.
+// ─────────────────────────────────────────────────────────────────────────────
+
+function stripHeroNumberTokens(pages, beats) {
+  const windows = beats
+    .filter((b) => b.archetype === "HERO_NUMBER" && b.scene && Number.isFinite(b.scene.value))
+    .map((b) => ({ fromMs: b.startMs, toMs: b.endMs, digits: String(Math.round(b.scene.value)) }));
+  if (!windows.length) return pages;
+  const isHeroDup = (tok) => {
+    const digits = String(tok.text).replace(/[^\d]/g, "");
+    if (!digits) return false;
+    return windows.some((w) => tok.fromMs >= w.fromMs && tok.fromMs < w.toMs && digits === w.digits);
+  };
+  return pages
+    .map((page) => {
+      const tokens = (page.tokens || []).filter((t) => !isHeroDup(t));
+      if (tokens.length === (page.tokens || []).length) return page;
+      if (tokens.length === 0) return null; // the whole page WAS the number
+      const words = tokens.map((t) => t.text);
+      return {
+        ...page,
+        tokens,
+        words,
+        text: words.join(" ").replace(/\s+([.,;:!?])/g, "$1"),
+      };
+    })
+    .filter(Boolean);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Caption pages → token-level line groups (word→token mapping preserved).
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -439,7 +501,8 @@ export function buildMgPackage(srtText, opts = {}) {
   const hookBeat = beats.find((b) => b.sectionIndex === 0);
   if (hookBeat) hookBeat.scene.trace = true;
 
-  const pages = enrichPages(parseSrtToMotionGraphics(srtText, { captions: captions.length ? captions : undefined }).pages, fps);
+  const rawPages = parseSrtToMotionGraphics(srtText, { captions: captions.length ? captions : undefined }).pages;
+  const pages = enrichPages(stripHeroNumberTokens(rawPages, beats), fps);
 
   const transitions = beats.map((_, i) => transitionBeforeBeat(i, beats));
 

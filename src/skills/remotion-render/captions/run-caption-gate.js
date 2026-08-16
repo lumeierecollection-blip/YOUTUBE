@@ -8,14 +8,14 @@
  * per-check results and writes evidence JSON to data/audit/10/out/.
  *
  * Cases exercised:
- *   A  ch-01 SRT + real script sections (the production path that
+ *   A  ch-fixture SRT + real script sections (the production path that
  *      verify-compositions.js gates — extended to the full gate set)
- *   B  ch-01 SRT, no sections (SRT-only path)
+ *   B  ch-fixture SRT, no sections (SRT-only path)
  *   C  channel 1 debt-snowball SRT, no sections
  *   D  channel 2 what-to-say SRT, no sections
  *   E  channel 4 great-fire SRT, no sections
  *   F  sections-fallback synthesis (no SRT → word-level captions
- *      synthesized in buildMgPackage, mg-package.js:375-398) — ch-01
+ *      synthesized in buildMgPackage, mg-package.js:375-398) — ch-fixture
  *      movile-cave, declared totalMs (60 s); in-path, failures count
  *   G  sections-fallback synthesis — ch-02 narrowboat (no SRT in data/tts/2,
  *      script in render path); in-path, failures count
@@ -53,13 +53,13 @@ const srt = (rel) => readFileSync(join(REPO, rel), "utf-8");
 
 const CASES = [
   {
-    name: "A ch-01 SRT + sections",
-    srtText: srt("data/tts/ch-01/movile-cave-shorts-script-vo.srt"),
-    sections: loadSections("ch-01", "movile-cave-shorts-script.json"),
+    name: "A ch-fixture SRT + sections",
+    srtText: srt("data/tts/ch-fixture/movile-cave-shorts-script-vo.srt"),
+    sections: loadSections("ch-fixture", "movile-cave-shorts-script.json"),
   },
   {
-    name: "B ch-01 SRT only",
-    srtText: srt("data/tts/ch-01/movile-cave-shorts-script-vo.srt"),
+    name: "B ch-fixture SRT only",
+    srtText: srt("data/tts/ch-fixture/movile-cave-shorts-script-vo.srt"),
   },
   {
     name: "C debt-snowball SRT only",
@@ -76,8 +76,8 @@ const CASES = [
   },
   {
     name: "F movile-cave sections-fallback synthesis (no SRT)",
-    sections: loadSections("ch-01", "movile-cave-shorts-script.json"),
-    totalMs: scriptTotalMs("ch-01", "movile-cave-shorts-script.json"),
+    sections: loadSections("ch-fixture", "movile-cave-shorts-script.json"),
+    totalMs: scriptTotalMs("ch-fixture", "movile-cave-shorts-script.json"),
   },
   {
     name: "G narrowboat sections-fallback synthesis (no SRT)",

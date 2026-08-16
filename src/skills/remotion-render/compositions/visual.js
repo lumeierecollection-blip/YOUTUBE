@@ -25,7 +25,9 @@ export function resolveColors(palette, fallback) {
     typeof palette.bg === "string" &&
     typeof palette.accent === "string"
   ) {
-    // Stage-3 derived roles object (styles/tokens.js paletteFromHues).
+    // Derived roles object (styles/tokens.js paletteFromHues) — flat bg,
+    // accent on shapes only. bgDark/bgMid collapse to the single flat bg;
+    // there is no second background tone to grade toward.
     return {
       ...fallback,
       bgDark: palette.bg,
@@ -59,35 +61,11 @@ export function resolveColors(palette, fallback) {
 }
 
 /**
- * Picks a grading mood from the script's per-section visual_cue text.
- * Returns null when the cue does not imply a mood (caller falls back).
- * Word-boundary matched so e.g. "shots" never triggers "hot".
+ * Fades the whole frame to the channel's own flat bg over the final 20
+ * frames — never a hardcoded black, so a white-mode channel fades to white,
+ * not to a mismatched black flash.
  */
-export function moodFromVisualCue(cue) {
-  if (!cue) return null;
-  const c = String(cue).toLowerCase();
-  if (/\b(warm|gold|golden|amber|sepia|sunset|sunlight|nostal\w*)\b/.test(c)) return "nostalgia";
-  if (/\b(no\s+light)\b|\b(cool|blue|steel|cold|dark|black|night|neon|underwater|shadow|abyss|cave\w*|pale|bioluminescen\w*|deep\w*)\b/.test(c)) return "crisis";
-  if (/\b(red|anger|angry|rage\w*|outrage\w*|fire|fiery|hot|blood)\b/.test(c)) return "outrage";
-  return null;
-}
-
-/**
- * Content-based fallback mood: grades each section from what the voiceover
- * actually says (checking outrage -> crisis -> nostalgia in order), so the
- * color grade never contradicts the story. Returns "neutral" when nothing
- * matches instead of cycling through arbitrary moods.
- */
-export function moodFromContent(voiceover, id) {
-  const c = `${voiceover || ""} ${id || ""}`.toLowerCase();
-  if (/\b(rage\w*|outrage\w*|anger|angry|scandal|collapse|abuse\w*|traged\w*|war|kill\w*|violen\w*|fraud|corrupt\w*)\b/.test(c)) return "outrage";
-  if (/\b(no\s+light)\b|\b(dark\w*|deep\w*|underground|beneath|underwater|cave\w*|abyss\w*|shadow\w*|night\w*|black\w*|void|pressure|extreme)\b/.test(c)) return "crisis";
-  if (/\b(warm|gold\w*|sun\w*|sunset|nostal\w*|childhood|histor\w*|sepia|amber)\b/.test(c)) return "nostalgia";
-  return "neutral";
-}
-
-/** Fades the whole frame to black over the final 20 frames. */
-export function EndFadeToBlack({ active = false }) {
+export function EndFadeToBlack({ active = false, color = "#000000" }) {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   if (!active) return null;
@@ -99,7 +77,7 @@ export function EndFadeToBlack({ active = false }) {
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#000000",
+        backgroundColor: color,
         opacity: fade,
         pointerEvents: "none",
         zIndex: 50,

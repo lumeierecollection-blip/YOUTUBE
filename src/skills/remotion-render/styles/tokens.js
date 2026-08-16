@@ -2,24 +2,36 @@
  * src/skills/remotion-render/styles/tokens.js
  *
  * audit-color lane (Stage 3) — single derivation point for every channel
- * palette. Replaces per-channel hex `thumbnail_spec.color_palette` arrays:
- * channels.json now carries numeric `baseHue` / `accentHue` (degrees on the
- * OKLCH hue circle) and every role colour is derived HERE, at runtime.
+ * palette.
  *
- * Provenance (see data/audit/3/audit-color.ledger.md for the full claim
- * cards and evidence):
+ * REBUILT for the motion-graphics-rebuild-v2 pass (see MOTION-GRAPHICS-
+ * MANUAL.md / CHECK-REGISTER.md DEL-17 retirement note): the previous
+ * design derived `bg` as a dark, per-channel-hue-tinted OKLCH tone
+ * (E0 = 0.16 lightness at the channel's baseHue, chroma 0.03). Measured
+ * against real reference frames this produced a visible colour wash (a
+ * green cast measured at mean RGB (9,38,23) on a channel whose accent hue
+ * is green) instead of a neutral dark background — the chroma was never
+ * zero, so every "dark" background carried its accent's hue at low
+ * intensity. Reference material is flat pure white or flat pure black with
+ * black/white ink and an accent used ONLY on shapes, never as a background
+ * or text tint.
  *
- *  - Elevation ladder E0/E1/E2 = B1 of DETAIL-REFERENCE (0.16 / 0.23 / 0.29).
- *  - Stroke L is AMENDED from B1's 0.40 to 0.50: with 8-bit quantisation,
- *    L 0.40 gives min stroke/bg contrast 2.075:1 (COL-04 requires >= 3:1);
- *    L 0.50 gives min 3.177:1. B1.1's intent (outline clearly separated from
- *    every elevation) is preserved — ΔL from E2 grows 0.11 -> 0.21.
- *  - Role lightness/chroma constants were selected so COL-01..06 pass on all
- *    50 channels with the margins in the ledger (computed on the quantised
- *    hexes; WCAG relative luminance, no rounding, 0.04045 threshold).
- *  - The 0–16% overlay mechanism of Material M2 was replaced by tonal
- *    surfaces (material-components Dark.md); an absolute-L ladder against
- *    `baseHue` is the current-approach implementation.
+ * `bg` is now literally #FFFFFF or #000000, chosen per channel via
+ * `channels.json`'s `bg_mode` field — no hue, no chroma, no elevation
+ * ladder. `surface`/`raised` collapse to `bg` (panels/chips separate from
+ * the background with a hairline `stroke` border, never a tonal fill —
+ * MOTION-GRAPHICS-MANUAL A5.2 "no shadows, no bevels, no glass"). `accent`
+ * is still derived from the channel's `accentHue` (OKLCH hue circle) so
+ * each channel keeps a distinct, meaningful accent colour, but its
+ * lightness is now solved numerically per bg polarity so accent/bg
+ * contrast clears COL-02 (>=4.5:1) against a PURE white or PURE black
+ * background instead of against the old mid-dark tonal bg.
+ *
+ * Provenance (see data/audit/3/audit-color.ledger.md for the original claim
+ * cards; superseded where noted above):
+ *  - Role lightness/chroma constants were selected so COL-01..06 pass on
+ *    every channel (computed on the quantised hexes; WCAG relative
+ *    luminance, no rounding, 0.04045 threshold).
  *
  * This module is dependency-free ESM so any render/verify tool can import it.
  */
@@ -120,46 +132,98 @@ export function contrastRatio(a, b) {
 }
 
 // ---------------------------------------------------------------------------
-// Palette derivation
+// Palette derivation — flat bg_mode system
 // ---------------------------------------------------------------------------
 
-/** Elevation ladder — B1 of DETAIL-REFERENCE (unchanged). */
-export const ELEVATION = Object.freeze({ E0: 0.16, E1: 0.23, E2: 0.29 });
-
-/** Stroke lightness — AMENDED from B1's 0.40 (see header + ledger COL-04 card). */
-export const STROKE_L = 0.5;
+/** The only two backgrounds that exist. Pure, flat, zero chroma. */
+export const BG_WHITE = "#FFFFFF";
+export const BG_BLACK = "#000000";
 
 /**
- * Locked role parameters (audit-color Stage 3; margins in ledger appendix).
- * C_BG/ L_TEXT/ C_TEXT / L_DIM / L_ACC / C_ACC selected so COL-01..06 pass on
- * all 50 channels; L_STROKE is the minimal value passing COL-04 (>= 3:1).
+ * Text/line-work lightness. Never the literal bg-polarity extreme for TEXT
+ * (pure #FFF-on-black reads harshly, pure #000 body text is standard but
+ * near-black reads warmer) — "near-black" / "~92% white" per the reference
+ * material read. Line work (stroke) reuses the same value: both are ink,
+ * not fill, and both need to be unmistakably foreground against a pure
+ * bg — a further-reduced stroke tone would just reintroduce a soft grey
+ * wash by another name.
  */
-export const PALETTE_PARAMS = Object.freeze({
-  C_BG: 0.03,
-  L_TEXT: 0.9,
-  C_TEXT: 0.02,
-  L_DIM: 0.61,
-  L_ACC: 0.6,
-  C_ACC: 0.17,
+export const INK = Object.freeze({
+  white: { textPrimary: "#111111", stroke: "#111111" }, // white-mode ink (bg #FFFFFF)
+  black: { textPrimary: "#EBEBEB", stroke: "#EBEBEB" }, // black-mode ink (bg #000000), ~92% white
 });
 
+/** Accent saturation. Lightness is solved per-bg by pickAccentL(), never fixed. */
+export const C_ACC = 0.17;
+
 /**
- * Derive all seven role colours from a channel's baseHue/accentHue.
- * @param {{baseHue:number, accentHue:number}} hues degrees on the OKLCH hue
- * circle (values as authored in channels.json).
+ * Binary-search the OKLCH lightness (fixed hue/chroma) that clears a target
+ * WCAG contrast ratio against a flat bg, biased toward the MOST VIVID
+ * (closest-to-mid-lightness) colour that still passes — i.e. the darkest
+ * passing tone on a white bg, the lightest passing tone on a black bg —
+ * rather than the extreme end of the search range. Falls back to whichever
+ * bound has more contrast if no candidate clears the target (very low-
+ * chroma hues at extreme lightness can fail to reach 4.5:1 at all).
+ */
+export function pickAccentL(hue, chroma, bgHex, target = 4.6) {
+  const bgIsLight = luminance(bgHex) > 0.5;
+  const contrastAt = (L) => contrastRatio(hexFromOklch(L, chroma, hue), bgHex);
+  let lo = 0.15,
+    hi = 0.92;
+  if (contrastAt(bgIsLight ? lo : hi) < target) return bgIsLight ? lo : hi;
+  for (let i = 0; i < 30; i++) {
+    const mid = (lo + hi) / 2;
+    const ok = contrastAt(mid) >= target;
+    if (bgIsLight) {
+      if (ok) lo = mid;
+      else hi = mid;
+    } else {
+      if (ok) hi = mid;
+      else lo = mid;
+    }
+  }
+  return bgIsLight ? lo : hi;
+}
+
+/**
+ * textDim: a muted secondary ink that still clears COL-05 (textDim/bg
+ * >= 4.5:1). Solved the same way as the accent (chroma 0 — pure grey, never
+ * a hue tint) so it works identically in both bg modes.
+ */
+function pickTextDimL(bgHex, target = 4.6) {
+  return pickAccentL(0, 0, bgHex, target);
+}
+
+/**
+ * Derive all seven role colours for a channel. `bg` is flat #FFFFFF or
+ * #000000 per `bgMode` ("white" | "black") — no hue, no chroma, no
+ * elevation. `surface`/`raised` collapse to `bg`: panels and chips
+ * separate from the background with a hairline `stroke` border, never a
+ * tonal fill (MOTION-GRAPHICS-MANUAL A5.2). `accent` keeps the channel's
+ * `accentHue` (OKLCH hue circle) but its lightness is solved per bg
+ * polarity so COL-02 (accent/bg >= 4.5:1) holds against a PURE bg.
+ *
+ * @param {{accentHue:number, bgMode?: "white"|"black", baseHue?:number}} hues
+ *   accentHue is required; bgMode defaults to "black" when omitted (legacy
+ *   callers / fixtures). baseHue is accepted but unused — bg no longer
+ *   carries a hue (kept in the signature so old call sites don't throw).
  * @returns {{bg:string, surface:string, raised:string, stroke:string,
  *            textPrimary:string, textDim:string, accent:string}} 8-bit hexes.
  */
-export function paletteFromHues({ baseHue, accentHue }) {
-  const { C_BG, L_TEXT, C_TEXT, L_DIM, L_ACC, C_ACC } = PALETTE_PARAMS;
+export function paletteFromHues({ accentHue, bgMode }) {
+  const mode = bgMode === "white" ? "white" : "black";
+  const bg = mode === "white" ? BG_WHITE : BG_BLACK;
+  const ink = INK[mode];
+  const accentL = pickAccentL(accentHue, C_ACC, bg);
+  const textDimL = pickTextDimL(bg);
   return {
-    bg: hexFromOklch(ELEVATION.E0, C_BG, baseHue),
-    surface: hexFromOklch(ELEVATION.E1, C_BG, baseHue),
-    raised: hexFromOklch(ELEVATION.E2, C_BG, baseHue),
-    stroke: hexFromOklch(STROKE_L, C_BG, baseHue),
-    textPrimary: hexFromOklch(L_TEXT, C_TEXT, baseHue),
-    textDim: hexFromOklch(L_DIM, C_TEXT, baseHue),
-    accent: hexFromOklch(L_ACC, C_ACC, accentHue),
+    bg,
+    surface: bg,
+    raised: bg,
+    stroke: ink.stroke,
+    textPrimary: ink.textPrimary,
+    textDim: hexFromOklch(textDimL, 0, 0),
+    accent: hexFromOklch(accentL, C_ACC, accentHue),
   };
 }
 

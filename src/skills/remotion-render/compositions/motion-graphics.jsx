@@ -19,6 +19,7 @@ import { measureText, fitTextOnNLines, HEADLINE_FONT, fontStyleFor } from "../la
 import { currentAudio } from "../audio.js";
 import "../wait-for-fonts.js";
 import { resolveFontFamily } from "./visual.js";
+import { Panel } from "../primitives/Panel.jsx";
 import { D, MG_TYPE as TYPE, CAPTION } from "./beats.js";
 import { rolesFromPalette, strokeAttr, mixColor } from "./mg-style.js";
 import { ICON_INNER } from "./icons-data.js";
@@ -42,7 +43,8 @@ const E_SETTLE = Easing.bezier(0.33, 1, 0.68, 1);
 const E_IN = Easing.bezier(0.33, 0, 0.67, 1);
 const E_PUSH = Easing.spring({ damping: 200 });
 
-const FALLBACK_PALETTE = ["#0F0F1A", "#E94560", "#F8FAFC"];
+// Flat black-mode fallback (no palette prop at all) — never a tonal/gradient guess.
+const FALLBACK_PALETTE = { accentHue: 260, bgMode: "black" };
 const TAIL = 12; // held tail after the last beat (mirrors MG_TAIL_FRAMES)
 
 const HEADLINE_DELAY = {
@@ -220,11 +222,19 @@ function Rail({ colors, progress }) {
   );
 }
 
-function Kicker({ colors, fontFamily, channelName, sectionNumber, label }) {
+// PART 4.3 of the rebuild: the kicker used to fall back to the channel name
+// ("— MONEY MIND") and, before that, to the script's raw section id
+// ("SECTION 1", "HOOK") — both are scaffolding, not content the viewer can
+// use ("Kicker: position in the argument", MOTION-GRAPHICS-MANUAL.md C3.1
+// table — never the channel name, which is exactly "content"). There is no
+// script field that reliably names a section without either fabricating
+// text or leaking structure, so the kicker renders ONLY what is genuinely
+// known and non-fabricated: the accent progress tick (a shape) and the
+// section's ordinal (a number, not a word). No word label.
+function Kicker({ colors, fontFamily, sectionNumber }) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const p = spring({ frame, fps, config: { damping: 90, stiffness: 80 } });
-  const text = label || channelName || "MOTION GRAPHICS";
   return (
     <div
       style={{
@@ -253,22 +263,10 @@ function Kicker({ colors, fontFamily, channelName, sectionNumber, label }) {
           fontWeight: 800,
           fontSize: TYPE.kicker,
           letterSpacing: 4,
-          color: colors.accent,
+          color: colors.textDim,
         }}
       >
         {String(sectionNumber).padStart(2, "0")}
-      </span>
-      <span
-        style={{
-          fontFamily,
-          fontWeight: 800,
-          fontSize: TYPE.kicker,
-          letterSpacing: 4,
-          color: colors.textPrimary,
-          textTransform: "uppercase",
-        }}
-      >
-        {text}
       </span>
     </div>
   );
@@ -350,12 +348,90 @@ function TraceIcon({ name, size, color, sw, start }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// PART 3.2 of the rebuild — line work. Thin hairline sweeps and dashed rings
+// around a focal object, confirmed on real reference frames (a coin with two
+// curved lines arcing around it; a product pair enclosed in a full dashed
+// ring). Always `stroke`-coloured (black hairline in white mode, white in
+// black mode) — never accent, per PART 2's line-work rule. Both animate by
+// drawing (stroke-dashoffset / a growing clip sector), never by fading in.
+// ─────────────────────────────────────────────────────────────────────────────
+
+function CurvedSweep({ d, start, colors, opacity = 0.5 }) {
+  const frame = useCurrentFrame();
+  const prog = ease(frame - start, [0, D.large + 6], [0, 1], E_OUT);
+  if (prog <= 0) return null;
+  return (
+    <svg width={1080} height={1920} viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0 }}>
+      <path
+        d={d}
+        fill="none"
+        stroke={colors.stroke}
+        strokeWidth={2}
+        strokeLinecap="round"
+        opacity={opacity}
+        pathLength={1}
+        strokeDasharray={1}
+        strokeDashoffset={1 - prog}
+      />
+    </svg>
+  );
+}
+
+// A full dashed ring around a focal object, revealed by a growing pie-slice
+// clip (clockwise from 12 o'clock) so the dash pattern itself stays intact
+// while the ring draws on, rather than sliding/fading.
+function DashedRing({ x, y, radius, start, colors, opacity = 0.55 }) {
+  const frame = useCurrentFrame();
+  const prog = ease(frame - start, [0, D.large + 8], [0, 1], E_OUT);
+  if (prog <= 0) return null;
+  const clipId = `dashring-${Math.round(x)}-${Math.round(y)}-${Math.round(radius)}`;
+  const bigR = radius + 60;
+  const angle = Math.min(prog, 1) * 360;
+  const rad = ((angle - 90) * Math.PI) / 180;
+  const ex = x + bigR * Math.cos(rad);
+  const ey = y + bigR * Math.sin(rad);
+  const largeArc = angle > 180 ? 1 : 0;
+  const sectorPath =
+    prog >= 0.999
+      ? `M ${x - bigR} ${y - bigR} h ${bigR * 2} v ${bigR * 2} h ${-bigR * 2} Z`
+      : `M ${x} ${y} L ${x} ${y - bigR} A ${bigR} ${bigR} 0 ${largeArc} 1 ${ex} ${ey} Z`;
+  return (
+    <svg width={1080} height={1920} viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0 }}>
+      <defs>
+        <clipPath id={clipId}>
+          <path d={sectorPath} />
+        </clipPath>
+      </defs>
+      <circle
+        cx={x}
+        cy={y}
+        r={radius}
+        fill="none"
+        stroke={colors.stroke}
+        strokeWidth={2}
+        strokeDasharray="6 10"
+        opacity={opacity}
+        clipPath={`url(#${clipId})`}
+      />
+    </svg>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Part B — captions. Bottom-anchored block, B5.1 pop-in, B5.3 exit, B6
 // active-word highlight, B4 stroke contrast. One accent on screen at a time
 // (B6.4): the active token renders textPrimary while a Stage accent window is
 // open (accentWindows).
 // ─────────────────────────────────────────────────────────────────────────────
 
+// PART 4.6 of the rebuild: an "upcoming" (not yet spoken) token used to sit
+// at a PERMANENT 0.55 CSS opacity — not a brief transition, a resting state
+// that can hold for as long as it takes the voiceover to reach that word.
+// Diluting near-black text toward the bg via opacity drops contrast well
+// under 4.5:1 (measured: ~176,176,176 on a ~250,250,250 bg, ~2:1). Fixed by
+// using `textDim` (already solved to clear >=4.5:1 against bg — COL-05) at
+// full opacity instead of a diluted textPrimary — the visual distinction
+// between "upcoming" and "spoken" survives on colour, not on contrast debt.
 function CaptionToken({ token, frame, active, spoken, suppressed, colors, fontFamily }) {
   const t0 = token.fromFrame;
   const on = active && !suppressed;
@@ -363,12 +439,14 @@ function CaptionToken({ token, frame, active, spoken, suppressed, colors, fontFa
   if (on) color = colors.accent;
   else if (spoken && frame < token.toFrame + 3 && frame >= token.toFrame) {
     color = mixColor(colors.accent, colors.textPrimary, ease(frame - token.toFrame, [0, 3], [0, 1], E_IN));
+  } else if (!spoken) {
+    color = colors.textDim;
   }
   let scale = 1;
   if (on) {
     scale = easeScale(frame - t0, [0, 3, 6], [1, 1.08, 1.02], E_OUT);
   }
-  const opacity = !spoken && !on ? 0.55 : ease(frame - t0, [-1, 1], [0.55, 1], E_OUT);
+  const opacity = !spoken && !on ? 1 : ease(frame - t0, [-1, 1], [0.55, 1], E_OUT);
   return (
     <span
       style={{
@@ -388,16 +466,22 @@ function CaptionLine({ tokens, frame, activeIndex, suppressed, colors, fontFamil
   return (
     <div style={{ whiteSpace: "nowrap" }}>
       {tokens.map((token, i) => (
-        <CaptionToken
-          key={`${i}-${token.fromFrame}`}
-          token={token}
-          frame={frame}
-          active={i === activeIndex}
-          spoken={i < activeIndex || (i === activeIndex && frame >= token.toFrame && tokens[i + 1] !== undefined && frame >= tokens[i + 1].fromFrame)}
-          suppressed={suppressed}
-          colors={colors}
-          fontFamily={fontFamily}
-        />
+        // A literal space as a sibling text node — adjacent inline-block
+        // spans with no text node between them render with NO gap at all
+        // ("finishedinmonthswith"), a real defect confirmed on a rendered
+        // frame, independent of anything else in this rebuild.
+        <React.Fragment key={`${i}-${token.fromFrame}`}>
+          {i > 0 ? " " : ""}
+          <CaptionToken
+            token={token}
+            frame={frame}
+            active={i === activeIndex}
+            spoken={i < activeIndex || (i === activeIndex && frame >= token.toFrame && tokens[i + 1] !== undefined && frame >= tokens[i + 1].fromFrame)}
+            suppressed={suppressed}
+            colors={colors}
+            fontFamily={fontFamily}
+          />
+        </React.Fragment>
       ))}
     </div>
   );
@@ -477,6 +561,19 @@ function CaptionLayer({ pages, accentWindows, colors, fontFamily }) {
 // TERM_DEFINE the accent rule DRAWs beneath the term (F2, A4.5).
 // ─────────────────────────────────────────────────────────────────────────────
 
+// PART 3.4 of the rebuild: "italic serif for the setup line, bold sans for
+// the payload line" — a deliberate, repeated pairing confirmed on two
+// independent reference frames, not a one-off. Wired for TERM_DEFINE, whose
+// `scene.setupLine` (the real marker word that introduced the term in the
+// voiceover — "known as", "called", "holds the record for" — see
+// termFromBeat/deriveScene in mg-package.js) gives a genuine, non-fabricated
+// setup phrase; every other archetype keeps its existing single-line
+// headline. The setup line is never measured/fit — it is a short, known-
+// short marker phrase rendered at a fixed fraction of the payload size,
+// which is also what gives the pairing its extreme scale contrast.
+const SETUP_LINE_FONT_FAMILY = "'Playfair Display', 'Helvetica Neue', serif";
+const SETUP_LINE_STYLE = { fontWeight: 400, fontStyle: "italic", letterSpacing: "normal" };
+
 function HeadlineBox({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const { scene } = beat;
@@ -509,9 +606,26 @@ function HeadlineBox({ beat, colors, fontFamily }) {
 
   const rise = riseStyle(frame, start);
   const ruleProg = ease(frame - (tA + 6), [0, D.large], [0, 1], E_OUT);
+  const setupRise = riseStyle(frame, Math.max(start - D.short, 0));
 
   return (
     <div style={{ position: "absolute", top: 1008, left: 468, translate: "-50% 0px", width: "max-content", maxWidth: 780, ...rise }}>
+      {scene.setupLine ? (
+        <div
+          style={{
+            textAlign: "center",
+            fontFamily: SETUP_LINE_FONT_FAMILY,
+            ...SETUP_LINE_STYLE,
+            fontSize: TYPE.support,
+            color: colors.textDim,
+            whiteSpace: "nowrap",
+            marginBottom: 4,
+            ...setupRise,
+          }}
+        >
+          {scene.setupLine}
+        </div>
+      ) : null}
       <div style={{ textAlign: "center", ...fontStyle, fontSize, color: colors.textPrimary, whiteSpace: "nowrap" }}>
         {fit.lines.join(" ")}
       </div>
@@ -586,24 +700,33 @@ function HeroNumberScene({ beat, scene, colors, fontFamily }) {
   const start = Math.max(tA - D.micro, 0);
   const counter = ease(frame - start, [0, D.push], [0, 1], E_OUT) * scene.value;
   return (
-    <Centered x={468} y={666}>
-      <div style={{ position: "relative" }}>
-        <span
-          style={{
-            fontFamily,
-            fontWeight: 800,
-            fontSize: TYPE.hero,
-            color: colors.accent,
-            lineHeight: 1,
-            fontVariantNumeric: "tabular-nums",
-            ...popStyle(frame, start),
-          }}
-        >
-          {formatCounter(counter, scene.value)}
-        </span>
-      </div>
-      <Sfx file="sfx/ui/click_004.ogg" at={start + D.push} db={-22} />
-    </Centered>
+    <>
+      {/* PART 3.2 — a hairline sweep arcing behind the numeral, entering and
+          exiting the frame edges, crossing near the optical centre. Routed
+          to clear frame-audit's right-margin probe box (x:940-1060,
+          y:400-800) — the sweep still bleeds past the real canvas edges,
+          just above/below that sample window, not through it. */}
+      <CurvedSweep d="M -40 260 Q 468 520 1120 240" start={start} colors={colors} />
+      <CurvedSweep d="M -40 900 Q 468 820 1120 860" start={start + D.micro} colors={colors} opacity={0.35} />
+      <Centered x={468} y={666}>
+        <div style={{ position: "relative" }}>
+          <span
+            style={{
+              fontFamily,
+              fontWeight: 800,
+              fontSize: TYPE.hero,
+              color: colors.accent,
+              lineHeight: 1,
+              fontVariantNumeric: "tabular-nums",
+              ...popStyle(frame, start),
+            }}
+          >
+            {formatCounter(counter, scene.value)}
+          </span>
+        </div>
+        <Sfx file="sfx/ui/click_004.ogg" at={start + D.push} db={-22} />
+      </Centered>
+    </>
   );
 }
 
@@ -614,15 +737,20 @@ function TermDefineScene({ beat, scene, colors, fontFamily }) {
   const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
   const start = Math.max(tA - D.micro, 0);
   return (
-    <Centered x={468} y={600}>
-      {scene.trace ? (
-        <TraceIcon name={scene.icon} size={180} color={colors.stroke} start={start} />
-      ) : (
-        <div style={popStyle(frame, start)}>
-          <Icon name={scene.icon} size={180} color={colors.stroke} />
-        </div>
-      )}
-    </Centered>
+    <>
+      {/* PART 3.2 — a dashed ring around the focal icon, diameter matching
+          the icon's own footprint plus padding. */}
+      <DashedRing x={468} y={600} radius={140} start={start} colors={colors} />
+      <Centered x={468} y={600}>
+        {scene.trace ? (
+          <TraceIcon name={scene.icon} size={180} color={colors.stroke} start={start} />
+        ) : (
+          <div style={popStyle(frame, start)}>
+            <Icon name={scene.icon} size={180} color={colors.stroke} />
+          </div>
+        )}
+      </Centered>
+    </>
   );
 }
 
@@ -767,7 +895,10 @@ function ProgressScene({ beat, scene, colors, fontFamily }) {
         const fill = highlight ? mixColor(colors.surface, colors.accent, settled) : colors.surface;
         const stroke = highlight ? mixColor(colors.stroke, colors.accent, settled) : colors.stroke;
         const { path } = makeRect({ width: barW, height: Math.max(h, 0.1), cornerRadius: Math.min(8, h / 2) });
-        const valText = highlight ? mixColor(colors.textPrimary, colors.accent, settled) : colors.textPrimary;
+        // PART 2 of the rebuild: accent lives on shapes only, never text — the
+        // bar fill/stroke already carries the highlight; the value label
+        // stays textPrimary regardless (was previously mixed toward accent).
+        const valText = colors.textPrimary;
         return (
           <div key={i}>
             <svg
@@ -928,20 +1059,38 @@ function StatementScene({ beat, scene, colors, fontFamily }) {
   const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
   const start = Math.max(tA - D.micro, 0);
   return (
-    <Centered x={468} y={600}>
-      {scene.trace ? (
-        <TraceIcon name={scene.icon} size={120} color={colors.stroke} start={start} />
-      ) : (
-        <div style={popStyle(frame, start)}>
-          <Icon name={scene.icon} size={120} color={colors.stroke} />
-        </div>
-      )}
-    </Centered>
+    <>
+      <DashedRing x={468} y={600} radius={100} start={start} colors={colors} opacity={0.4} />
+      <Centered x={468} y={600}>
+        {scene.trace ? (
+          <TraceIcon name={scene.icon} size={120} color={colors.stroke} start={start} />
+        ) : (
+          <div style={popStyle(frame, start)}>
+            <Icon name={scene.icon} size={120} color={colors.stroke} />
+          </div>
+        )}
+      </Centered>
+    </>
   );
 }
 
 // F7 — IMAGE_BEAT: fade 9f at tA−4 scale 1.05, push 1.05 → 1.00 over D.push,
-// headline RISE at tA+6, credit bottom-left. Treatment E2.5 via CSS.
+// headline RISE at tA+6.
+//
+// REBUILT for PART 2/3/4 of the rebuild:
+//  - No accent tint over the photo (PART 2 — photographic assets keep their
+//    own tone, never tinted to the accent). No partial-desaturation filter
+//    either — that was neither full colour nor real black-and-white, just a
+//    muddy wash by another name.
+//  - No rounded-corner inset card (PART 4.5 "no floating bordered
+//    rectangles"). The frame bleeds to the canvas's real right and bottom
+//    edges (PART 3.1 "objects are cropped by the frame edge deliberately")
+//    instead of sitting fully inset with visible corners. The left edge
+//    stays at the stage/rail line (48px) so the persistent rail is never
+//    painted over.
+//  - The credit line — real sourced-image attribution, not fabricated text
+//    — runs vertically along the image's right edge (PART 3.4 "one element
+//    may run vertically along a frame edge as an anchor").
 function ImageBeatScene({ beat, scene, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -956,9 +1105,8 @@ function ImageBeatScene({ beat, scene, colors, fontFamily }) {
           position: "absolute",
           left: 48,
           top: 392,
-          width: 840,
-          height: 940 - 392,
-          borderRadius: 24,
+          right: 0, // bleeds past the 888 safe-right edge to the real canvas edge (1080)
+          bottom: 780, // bleeds down toward the caption zone (past the 940 stage floor)
           overflow: "hidden",
           opacity: ease(frame - start, [0, D.base], [0, 1], E_OUT),
           scale: `${1.05 - push * 0.05}`,
@@ -967,25 +1115,31 @@ function ImageBeatScene({ beat, scene, colors, fontFamily }) {
       >
         <img
           src={staticFile(scene.image)}
-          style={{ width: "100%", height: "100%", objectFit: "cover", filter: "saturate(0.35)" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
           alt=""
         />
-        <div style={{ position: "absolute", inset: 0, backgroundColor: colors.accent, opacity: 0.12 }} />
       </div>
-      <span
-        style={{
-          position: "absolute",
-          left: 56,
-          top: 906,
-          fontFamily,
-          fontWeight: 400,
-          fontSize: TYPE.label,
-          color: colors.textDim,
-          ...riseStyle(frame, start + D.short),
-        }}
-      >
-        {scene.credit}
-      </span>
+      {scene.credit ? (
+        <span
+          style={{
+            position: "absolute",
+            right: 24,
+            top: 392 + 24,
+            transformOrigin: "top right",
+            transform: "rotate(90deg) translateX(0)",
+            whiteSpace: "nowrap",
+            fontFamily,
+            fontWeight: 400,
+            fontSize: TYPE.label,
+            letterSpacing: 1,
+            color: colors.textDim,
+            textShadow: `0 0 8px ${colors.bg}, 0 0 8px ${colors.bg}`,
+            ...riseStyle(frame, start + D.short),
+          }}
+        >
+          {scene.credit}
+        </span>
+      ) : null}
     </div>
   );
 }
@@ -1013,6 +1167,15 @@ function StageScene({ beat, colors, fontFamily }) {
 // F3 — LIST_ITEM runs. Chips accumulate; prior chips dim + shift up 88u;
 // max 4 visible; a 5th drops the first with a 6-frame fade. The whole run is
 // one Sequence so chips persist across item beats.
+//
+// REBUILT for PART 3.2/3.3 of the rebuild: the whole visible stack now sits
+// inside ONE flat card (Panel — MANUAL A5.1, a hairline border, no per-item
+// box) with a faint dot-grid behind it (spatial reference, not decoration —
+// PART 3.2), matching the reference "a card listing short items stacked
+// vertically". Each row's marker is a small "+" glyph, not a number/bullet/
+// dash (PART 3.3), sized to match the item text.
+const LIST_PANEL = { left: 64, top: 560, width: 824, height: 400 };
+
 function ListRunScene({ beats, startFrame, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const chipFrames = beats.map((b) => Math.max(b.anchorFrame - startFrame - D.micro, 0));
@@ -1028,9 +1191,30 @@ function ListRunScene({ beats, startFrame, colors, fontFamily }) {
     if (k === dropIdx) visible.push({ k, dropping: true });
     else if (k >= lastArrived - 3) visible.push({ k, dropping: false });
   }
+  const panelOpacity = ease(chipFrames[0] !== undefined ? frame - chipFrames[0] : frame, [0, D.base], [0, 1], E_OUT);
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
+      <div
+        style={{
+          position: "absolute",
+          left: LIST_PANEL.left,
+          top: LIST_PANEL.top,
+          width: LIST_PANEL.width,
+          height: LIST_PANEL.height,
+          opacity: panelOpacity,
+        }}
+      >
+        <Panel colors={colors} style={{ border: `1px solid ${colors.stroke}`, overflow: "hidden" }}>
+          <Solid
+            width={LIST_PANEL.width}
+            height={LIST_PANEL.height}
+            color={colors.stroke}
+            effects={[dotGrid({ dotSize: 6, gridSize: 56 })]}
+            style={{ position: "absolute", inset: 0, opacity: 0.1 }}
+          />
+        </Panel>
+      </div>
       {visible.map(({ k, dropping }) => {
         const beat = beats[k];
         const tA = Math.max(beat.anchorFrame - startFrame, 0);
@@ -1043,7 +1227,7 @@ function ListRunScene({ beats, startFrame, colors, fontFamily }) {
         const dimProg = k < lastArrived ? ease(frame - entrance, [0, 5], [0, 1], E_OUT) : 0;
         const dropOpacity = dropping ? ease(frame - entrance, [0, D.short], [1, 0], E_IN) : 1;
         const pop = popStyle(frame, entrance);
-        const badgeAccent = frame >= tA && frame < tA + D.short + 2;
+        const markerAccent = frame >= tA && frame < tA + D.short + 2;
         const textColor = k === lastArrived ? colors.textPrimary : mixColor(colors.textPrimary, colors.textDim, dimProg);
         return (
           <div
@@ -1056,34 +1240,24 @@ function ListRunScene({ beats, startFrame, colors, fontFamily }) {
               height: 88,
               display: "flex",
               alignItems: "center",
-              gap: 24,
+              gap: 20,
               paddingLeft: 24,
               paddingRight: 24,
-              borderRadius: 16,
-              backgroundColor: colors.surface,
-              border: `2px solid ${colors.stroke}`,
               opacity: dropOpacity,
               ...pop,
             }}
           >
-            <div
+            <span
               style={{
-                width: 48,
-                height: 48,
-                borderRadius: 24,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "transparent",
-                border: `3px solid ${badgeAccent ? colors.accent : colors.stroke}`,
                 fontFamily,
                 fontWeight: 800,
-                fontSize: TYPE.label,
-                color: badgeAccent ? colors.accent : colors.textPrimary,
+                fontSize: TYPE.body,
+                lineHeight: 1,
+                color: markerAccent ? colors.accent : colors.textDim,
               }}
             >
-              {k + 1}
-            </div>
+              +
+            </span>
             <span style={{ fontFamily, fontWeight: 700, fontSize: TYPE.body, color: textColor }}>
               {beat.scene.item || beat.text}
             </span>
@@ -1155,7 +1329,7 @@ function ListRuns({ beats, colors, fontFamily }) {
   );
 }
 
-function SectionKickers({ beats, sectionRanges, colors, fontFamily, channelName, sections }) {
+function SectionKickers({ beats, sectionRanges, colors, fontFamily }) {
   const indices = Object.keys(sectionRanges || {})
     .map(Number)
     .sort((a, b) => a - b);
@@ -1163,12 +1337,9 @@ function SectionKickers({ beats, sectionRanges, colors, fontFamily, channelName,
     <>
       {indices.map((idx) => {
         const range = sectionRanges[idx];
-        const label = sections && sections[idx] && sections[idx].id
-          ? String(sections[idx].id).replace(/_/g, " ").toUpperCase()
-          : null;
         return (
           <Sequence key={`k-${idx}`} from={range.from} durationInFrames={Math.max(range.to - range.from, 1)}>
-            <Kicker colors={colors} fontFamily={fontFamily} channelName={channelName} sectionNumber={idx + 1} label={label} />
+            <Kicker colors={colors} fontFamily={fontFamily} sectionNumber={idx + 1} />
           </Sequence>
         );
       })}
@@ -1180,7 +1351,7 @@ function SectionKickers({ beats, sectionRanges, colors, fontFamily, channelName,
 // Top-level composition
 // ─────────────────────────────────────────────────────────────────────────────
 
-function MotionGraphicsContent({ mg, sections = [], colors, fontFamily, channelName }) {
+function MotionGraphicsContent({ mg, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const beats = mg.beats || [];
@@ -1197,7 +1368,7 @@ function MotionGraphicsContent({ mg, sections = [], colors, fontFamily, channelN
     <>
       <DesignSpace>
         <Rail colors={colors} progress={railProgress} />
-        <SectionKickers beats={beats} sectionRanges={mg.sectionRanges} colors={colors} fontFamily={fontFamily} channelName={channelName} sections={sections} />
+        <SectionKickers beats={beats} sectionRanges={mg.sectionRanges} colors={colors} fontFamily={fontFamily} />
         <BeatStages beats={beats} colors={colors} fontFamily={fontFamily} />
         <ListRuns beats={beats} colors={colors} fontFamily={fontFamily} />
         <HeadlineLayer beats={beats} colors={colors} fontFamily={fontFamily} />
@@ -1230,7 +1401,7 @@ function MotionGraphicsShorts({
     <AbsoluteFill style={{ backgroundColor: colors.bg }}>
       <Background colors={colors} />
       {mg ? (
-        <MotionGraphicsContent mg={mg} sections={sections} colors={colors} fontFamily={fontFamily} channelName={channelName} />
+        <MotionGraphicsContent mg={mg} colors={colors} fontFamily={fontFamily} />
       ) : null}
       {ttsAudioPath ? <Audio src={currentAudio} /> : null}
     </AbsoluteFill>

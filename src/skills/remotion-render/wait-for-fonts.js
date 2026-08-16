@@ -19,6 +19,10 @@ if (typeof document !== "undefined") {
     document.fonts.load(`400 40px "${fam}"`),
     document.fonts.load(`700 40px "${fam}"`),
   ]);
+  // Italic faces are requested separately — document.fonts.load() defaults to
+  // normal style, so the setup-line italic serif (PART 3.4) needs its own
+  // explicit request or it never resolves before the font gate/first frame.
+  loads.push(document.fonts.load(`italic 400 40px "Playfair Display"`));
   // A single hung font fetch must never stall the whole render: race the full
   // load against a cap so delayRender always clears. Fonts that arrive late
   // are swapped in via font-display: swap.
