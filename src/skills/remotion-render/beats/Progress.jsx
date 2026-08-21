@@ -79,6 +79,7 @@ import {
 } from "remotion";
 import { Audio } from "@remotion/media";
 import { D, MG_TYPE } from "../compositions/beats.js";
+import { needsFixedSlots, reserveCounterWidth, fontStyleFor } from "../layout/measure.js";
 
 // ── Mirrored from the static primitive (Chart.jsx:48-67) — verbatim values,
 //    so the animated tree and the static tree are identical at rest.
@@ -166,6 +167,27 @@ function counterText(value, p) {
   return fmtValue(rounded);
 }
 
+/**
+ * A1.3 fallback — per-digit fixed `0.62em` slots, for fonts
+ * `layout/measure.js`'s `needsFixedSlots()` flags as unable to do
+ * equal-width digits (no `tnum`, proportional advances: DM Sans, Nunito).
+ * Verbatim copy of HeroNumber.jsx's helper of the same name — each beat
+ * file in this directory is self-contained by convention (see e.g. `ease`/
+ * `easeScale` duplicated across every sibling file) rather than sharing a
+ * render helper across archetypes.
+ */
+function fixedSlotChars(text) {
+  return Array.from(text).map((ch, i) =>
+    /\d/.test(ch) ? (
+      <span key={i} style={{ display: "inline-block", width: "0.62em", textAlign: "center" }}>
+        {ch}
+      </span>
+    ) : (
+      <span key={i}>{ch}</span>
+    )
+  );
+}
+
 /** E4.2 gain — matches the live renderer (motion-graphics.jsx:116). */
 function dbToVolume(db) {
   return Math.pow(DECADE, db / 20);
@@ -179,11 +201,23 @@ function dbToVolume(db) {
  * @param {number} [props.anchorFrame] beat-relative anchor token frame (tA) —
  *                                    default 0 (bars grow from frame 0)
  * @param {number} [props.frame]      beat-relative frame (default useCurrentFrame)
+ * @param {string} [props.fontFamily] channel font family — default "Inter".
+ *                                    Only consumed to decide the A1.3
+ *                                    fixed-slot fallback (`needsFixedSlots`)
+ *                                    for the per-bar value counter; this
+ *                                    file otherwise never sets fontFamily on
+ *                                    an element (unlike HeroNumber.jsx it
+ *                                    had no such prop at all before this).
  */
-export function Progress({ chart, colors, unit, anchorFrame = 0, frame: frameProp, ...rest }) {
+export function Progress({ chart, colors, unit, anchorFrame = 0, frame: frameProp, fontFamily = "Inter", ...rest }) {
   const frame = frameProp ?? useCurrentFrame();
   const { fps } = useVideoConfig();
   if (!chart || !Array.isArray(chart.bars)) return null;
+
+  // A1.3 — see HeroNumber.jsx's identical comment. Only DM Sans/Nunito pay
+  // for this; every other family's rendering is byte-for-byte unchanged.
+  const fixedSlots = needsFixedSlots(fontFamily);
+  const valueFontStyle = fontStyleFor(fontFamily, { fontWeight: 800 });
 
   const plotH = chart.axisY - chart.barAreaTop; // compiled — never recomputed
   const tA = Math.max(anchorFrame, 0);
@@ -326,7 +360,18 @@ export function Progress({ chart, colors, unit, anchorFrame = 0, frame: framePro
                   ...(valueInside ? { top: VALUE_GAP } : { bottom: H + VALUE_GAP }),
                 }}
               >
-                {counterText(bar.value, p)}
+                {fixedSlots ? (
+                  <span
+                    style={{
+                      display: "inline-block",
+                      width: reserveCounterWidth(counterText(bar.value, 1), valueFontStyle, MG_TYPE.value),
+                    }}
+                  >
+                    {fixedSlotChars(counterText(bar.value, p))}
+                  </span>
+                ) : (
+                  counterText(bar.value, p)
+                )}
               </div>
             </div>
             {/* the label — under its bar, below the axis (E3.5), RISE at

@@ -75,6 +75,13 @@ function Run({ run }) {
           frame={frame}
           value={run.value}
           unit={run.unit}
+          // Now passed explicitly (was relying on the wrapper div's CSS
+          // inheritance alone, which was only ever a workaround for finding
+          // 4-1 — HeroNumber ignoring its own fontFamily prop). HeroNumber
+          // now consumes this prop directly to decide needsFixedSlots(), so
+          // the probe must actually pass it or that check silently sees the
+          // "Inter" default on every run regardless of run.fontFamily.
+          fontFamily={run.fontFamily}
         />
       </div>
       <Measure compId={run.id} frame={frame} fontFamily={run.fontFamily} />

@@ -26,9 +26,22 @@ own schedule, separate from `daily-pipeline.yml`'s daily render.
 | Smithsonian Open Access | yes (`SMITHSONIAN_API_KEY` or `DATA_GOV_API_KEY`) | `sources/smithsonian.js` |
 | Pexels | yes (`PEXELS_API_KEY`) | `sources/pexels.js` |
 | Unsplash | yes (`UNSPLASH_ACCESS_KEY`) | `sources/unsplash.js` |
+| Openverse (commercial-filtered meta-search) | no | `sources/openverse.js` |
 
 A source with no key set logs a warning and returns no candidates — it
 never fails the whole build.
+
+Openverse is a meta-search layer over 50+ providers (Flickr, Wikimedia,
+Europeana, and more, including several of the dedicated sources above) —
+it widens recall beyond the 8 dedicated sources, it doesn't replace them.
+Queried with `license_type=commercial,modification` and then filtered
+again client-side against this skill's own `licenses.js` allowlist (see
+`sources/openverse.js`'s header for why CC-BY-SA still has to be excluded
+by hand). Deliberately NOT added: StockSnap and Rawpixel's CC0 tier, both
+commercially-usable but neither exposes a documented public REST API —
+onboarding them would mean scraping HTML, which is a different (and more
+fragile/ToS-sensitive) architecture than every other module in this
+skill, not a same-shape addition.
 
 ## Setup (one-time)
 
@@ -48,7 +61,7 @@ cache to `~/.u2net/` — `actions/cache` should key on `.venv-rembg` and
 ## Process
 
 1. `node src/skills/asset-sourcing/fetch-library.js <channel-id> <query terms...> [--count N] [--mode bw|color]`
-2. Searches all 8 sources, filters to allowed licenses (`licenses.js`).
+2. Searches all 9 sources, filters to allowed licenses (`licenses.js`).
 3. Downloads at >=2x the shorts stage width (2160px) — anything smaller is
    skipped, not silently accepted undersized.
 4. Runs `treat.js`: rembg cutout (or full-bleed for texture/landscape
@@ -77,7 +90,10 @@ cache to `~/.u2net/` — `actions/cache` should key on `.venv-rembg` and
   egress policy denied `commons.wikimedia.org` and `huggingface.co`
   outright (confirmed via the proxy's status endpoint) while allowing
   `pypi.org`/`files.pythonhosted.org` (rembg's own install) and
-  `github.com` (rembg's model-weight download). The source modules
+  `github.com` (rembg's model-weight download). `sources/openverse.js` was
+  added in a later session whose proxy likewise denied `api.openverse.org`
+  outright (`EGRESS_BLOCKED`, confirmed via a direct fetch attempt) — same
+  situation, one more host on the denied list. The source modules
   (`sources/*.js`) are therefore verified by construction against each
   API's documented contract and by their pure `parseX()` functions, not by
   a live end-to-end fetch against every host — run `fetch-library.js` once

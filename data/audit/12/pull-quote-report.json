@@ -1,0 +1,81 @@
+{
+  "pullQuote": [
+    {
+      "id": "pq-inter-digit",
+      "frame": 30,
+      "out": "/home/user/YOUTUBE/data/audit/12/out/pq-inter-digit-f30.png",
+      "measured": {
+        "lineCount": 2,
+        "lineTexts": [
+          "This one change quietly saved most",
+          "families twelve thousand dollars"
+        ],
+        "accentWordCount": 1,
+        "accentWords": [
+          "thousand"
+        ],
+        "wrapperBox": {
+          "x": 101.640625,
+          "y": 691,
+          "w": 876.71875,
+          "h": 118
+        },
+        "holdEndFrame": "138"
+      },
+      "lineCountOk": true,
+      "accentOk": true
+    },
+    {
+      "id": "pq-dmsans-no-digit",
+      "frame": 30,
+      "out": "/home/user/YOUTUBE/data/audit/12/out/pq-dmsans-no-digit-f30.png",
+      "measured": {
+        "lineCount": 2,
+        "lineTexts": [
+          "The plan quietly rebuilt",
+          "the entire budget"
+        ],
+        "accentWordCount": 1,
+        "accentWords": [
+          "rebuilt"
+        ],
+        "wrapperBox": {
+          "x": 97.734375,
+          "y": 658,
+          "w": 884.53125,
+          "h": 184
+        },
+        "holdEndFrame": "88"
+      },
+      "lineCountOk": true,
+      "accentOk": true
+    }
+  ],
+  "heroNumberFixedSlot": [
+    {
+      "id": "t11-2000-dmsans",
+      "frame": 6,
+      "text": "1,000",
+      "offsetWidth": 648
+    },
+    {
+      "id": "t11-2000-dmsans",
+      "frame": 65,
+      "text": "2,000",
+      "offsetWidth": 648
+    },
+    {
+      "id": "t11-13600-inter",
+      "frame": 6,
+      "text": "10,000",
+      "offsetWidth": 770
+    },
+    {
+      "id": "t11-13600-inter",
+      "frame": 65,
+      "text": "13,600",
+      "offsetWidth": 770
+    }
+  ],
+  "pass": true
+}

@@ -15,7 +15,7 @@ import { dotGrid } from "@remotion/effects/dot-grid";
 import { noise } from "@remotion/effects/noise";
 import { evolvePath, getSubpaths } from "@remotion/paths";
 import { makeCircle, makeRect } from "@remotion/shapes";
-import { measureText, fitTextOnNLines, HEADLINE_FONT, fontStyleFor } from "../layout/measure.js";
+import { measureText, fitTextOnNLines, HEADLINE_FONT, fontStyleFor, needsFixedSlots, reserveCounterWidth } from "../layout/measure.js";
 import { currentAudio } from "../audio.js";
 import "../wait-for-fonts.js";
 import { resolveFontFamily } from "./visual.js";
@@ -192,10 +192,62 @@ function formatCounter(value, maxValue) {
   return s.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+/**
+ * A1.3 fallback — per-digit fixed `0.62em` slots, for fonts
+ * layout/measure.js's needsFixedSlots() flags as unable to do equal-width
+ * digits (no `tnum`, proportional advances: DM Sans, Nunito —
+ * data/audit/2/tnum-features.txt). This is the production path
+ * (Root.jsx mounts this file, not beats/**) — closes SFR-T-11-2
+ * (data/audit/11/audit-type.ledger.md §2.4). Verbatim copy of
+ * beats/HeroNumber.jsx's helper of the same name; this file's own
+ * convention is local, undeduplicated helpers per scene (see ease/
+ * easeScale/popStyle above), not a shared import across the two counter
+ * renderers.
+ */
+function fixedSlotChars(text) {
+  return Array.from(text).map((ch, i) =>
+    /\d/.test(ch) ? (
+      <span key={i} style={{ display: "inline-block", width: "0.62em", textAlign: "center" }}>
+        {ch}
+      </span>
+    ) : (
+      <span key={i}>{ch}</span>
+    )
+  );
+}
+
 function fmtValue(v) {
   if (!Number.isFinite(v)) return "0";
   if (Number.isInteger(v)) return v.toLocaleString("en-US");
   return v.toLocaleString("en-US", { maximumFractionDigits: 1 });
+}
+
+/**
+ * A2.3 raised floor + A2.6 clamp for ProgressScene's per-bar value — mirrors
+ * beats/Progress.jsx's counterText (DETAIL-REFERENCE A2.3: "a raised floor
+ * is preferred inside charts", vs. HeroNumberScene's zero-pad formatCounter,
+ * where "padding is preferred for hero numbers" — this file intentionally
+ * keeps both conventions rather than picking one for both scenes).
+ *
+ * Also closes a real, unclamped-overshoot bug this legacy scene had that
+ * beats/Progress.jsx's sibling never did: the call this replaces,
+ * `fmtValue(s.value * g)`, fed the RAW spring value straight into the
+ * label. `growSpring`'s config (damping 16, stiffness 90) is underdamped
+ * (critical damping = 2*sqrt(90) ≈ 18.97 > 16), so it overshoots past 1 —
+ * the counter visibly counted past its target value and dropped back down,
+ * independent of any font (the exact "counts up then jumps back" defect
+ * class this session's motivating research was scoped around). The bar's
+ * own HEIGHT is deliberately left on the unclamped `g` (A3.1's documented
+ * ~15% bar overshoot is intentional); only the number is clamped, per A2.6
+ * ("the bar still overshoots... the counter does not follow").
+ */
+function progressCounterText(value, p) {
+  const clampedP = Math.min(Math.max(p, 0), 1);
+  const digits = String(Math.abs(Math.trunc(value))).length;
+  const floor = Math.abs(value) >= 10 ? 10 ** (digits - 1) : 0;
+  const shown = Math.min(value, floor + (value - floor) * clampedP);
+  const rounded = Number.isInteger(value) ? Math.round(shown) : Math.round(shown * 10) / 10;
+  return fmtValue(rounded);
 }
 
 // PART 10 (follow-up) — real defect, reproduced on a real render (Money
@@ -828,6 +880,14 @@ function HeroNumberScene({ beat, scene, colors, fontFamily }) {
   const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
   const start = Math.max(tA - D.micro, 0);
   const counter = ease(frame - start, [0, D.push], [0, 1], E_OUT) * scene.value;
+  // A1.3 — see fixedSlotChars' comment. Only paid for on the 5 flagged
+  // channels; every other channel's rendering is byte-for-byte unchanged.
+  const fixedSlots = needsFixedSlots(fontFamily);
+  const numeralFontStyle = fontStyleFor(fontFamily, { fontWeight: 800 });
+  const reservedWidth = fixedSlots
+    ? reserveCounterWidth(formatCounter(scene.value, scene.value), numeralFontStyle, TYPE.hero)
+    : null;
+  const counterStr = formatCounter(counter, scene.value);
   return (
     <>
       {/* PART 3.2 — a hairline sweep arcing behind the numeral, entering and
@@ -841,16 +901,17 @@ function HeroNumberScene({ beat, scene, colors, fontFamily }) {
         <div style={{ position: "relative" }}>
           <span
             style={{
-              fontFamily,
-              fontWeight: 800,
+              ...numeralFontStyle,
               fontSize: TYPE.hero,
               color: colors.accent,
               lineHeight: 1,
               fontVariantNumeric: "tabular-nums",
+              textAlign: "center",
+              ...(reservedWidth ? { display: "inline-block", width: reservedWidth } : null),
               ...popStyle(frame, start, { boost: beat.scene.isReveal }),
             }}
           >
-            {formatCounter(counter, scene.value)}
+            {fixedSlots ? fixedSlotChars(counterStr) : counterStr}
           </span>
         </div>
         <Sfx file="sfx/ui/click_004.ogg" at={start + D.push} db={-22} />
@@ -984,6 +1045,10 @@ function ProgressScene({ beat, scene, colors, fontFamily }) {
   const baselineY = 880;
   const maxValue = Math.max(...series.map((s) => Number(s.value) || 0), 1);
   const maxBarH = 880 - 480;
+  // A1.3 — see fixedSlotChars' comment. Only paid for on the 5 flagged
+  // channels; every other channel's rendering is byte-for-byte unchanged.
+  const fixedSlots = needsFixedSlots(fontFamily);
+  const valueFontStyle = fontStyleFor(fontFamily, { fontWeight: 800 });
 
   const baselineProg = ease(frame, [0, 10], [0, 1], E_OUT);
   const gridYs = [0.25, 0.5, 0.75];
@@ -1063,7 +1128,18 @@ function ProgressScene({ beat, scene, colors, fontFamily }) {
                 fontVariantNumeric: "tabular-nums",
               }}
             >
-              {fmtValue(s.value * g)}
+              {fixedSlots ? (
+                <span
+                  style={{
+                    display: "inline-block",
+                    width: reserveCounterWidth(progressCounterText(s.value, 1), valueFontStyle, TYPE.value * 0.5),
+                  }}
+                >
+                  {fixedSlotChars(progressCounterText(s.value, g))}
+                </span>
+              ) : (
+                progressCounterText(s.value, g)
+              )}
             </span>
             {/* axis label */}
             <span

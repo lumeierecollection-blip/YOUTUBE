@@ -34,6 +34,7 @@ import * as nara from "./sources/nara.js";
 import * as smithsonian from "./sources/smithsonian.js";
 import * as pexels from "./sources/pexels.js";
 import * as unsplash from "./sources/unsplash.js";
+import * as openverse from "./sources/openverse.js";
 import { isAllowedLicense, normalizeLicense } from "./licenses.js";
 import { downloadFile } from "./http.js";
 import { treatAsset } from "./treat.js";
@@ -46,7 +47,7 @@ const RAW_DIR = join(ROOT, "data", "asset-library", "raw");
 const PUBLIC_DIR = join(ROOT, "src", "skills", "remotion-render", "public", "asset-library");
 const MIN_WIDTH = 2160; // PART 5 — 2x the 1080-wide shorts stage, minimum
 
-const SOURCES = { wikimedia, met, nasa, loc, nara, smithsonian, pexels, unsplash };
+const SOURCES = { wikimedia, met, nasa, loc, nara, smithsonian, pexels, unsplash, openverse };
 
 function loadManifest() {
   if (!existsSync(MANIFEST_PATH)) return { version: 1, assets: [] };
@@ -128,7 +129,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`Searching 8 sources for "${query}" (channel ${channel.channel_id}, mode=${mode})...`);
+  console.log(`Searching ${Object.keys(SOURCES).length} sources for "${query}" (channel ${channel.channel_id}, mode=${mode})...`);
   const rawCandidates = await searchAll(query, count);
   const licensed = rawCandidates.filter((c) => isAllowedLicense(c.license));
   console.log(`${rawCandidates.length} candidates found, ${licensed.length} pass the license filter.`);

@@ -3,6 +3,7 @@ import { Easing, interpolate, Sequence, staticFile, useCurrentFrame } from "remo
 import { Audio } from "@remotion/media";
 import { D, MG_TYPE } from "../compositions/beats.js";
 import Layer from "../layers/Layer.jsx";
+import { needsFixedSlots, reserveCounterWidth, fontStyleFor } from "../layout/measure.js";
 
 function dbToVolume(db) {
   return Math.pow(10, db / 20);
@@ -50,6 +51,27 @@ export function formatCounter(value, progress) {
 }
 
 /**
+ * A1.3 fallback — per-digit fixed `0.62em` slots, for fonts
+ * `layout/measure.js`'s `needsFixedSlots()` flags as unable to do
+ * equal-width digits (no `tnum`, proportional advances: DM Sans, Nunito —
+ * binary-verified in data/audit/2/tnum-features.txt). Each digit gets its
+ * own centred box so the glyph may re-flow but the slot never does; the
+ * thousands separator renders inline, unslotted (DETAIL-REFERENCE A1.3,
+ * data/audit/11 D14 probe — this is the fallback that probe justified).
+ */
+function fixedSlotChars(text) {
+  return Array.from(text).map((ch, i) =>
+    /\d/.test(ch) ? (
+      <span key={i} style={{ display: "inline-block", width: "0.62em", textAlign: "center" }}>
+        {ch}
+      </span>
+    ) : (
+      <span key={i}>{ch}</span>
+    )
+  );
+}
+
+/**
  * HERO_NUMBER — split-overline: the numeral counts 47 (A2: raised floor,
  * D.push-long E_OUT ramp) at the stage centre; the unit ("%") travels in
  * the compiled headline layer (RISE@anchor+8, rect.from = tA+8) below the
@@ -85,6 +107,14 @@ export function HeroNumber({
   const opacity = ease(frame - start, [0, D.short], [0, 1], E_OUT);
   const scale = easeScale(frame - start, [0, D.base], [0.92, 1], E_OUT);
 
+  // A1.3 — see fixedSlotChars' comment above. Only paid for on DM Sans/
+  // Nunito channels; every other channel's rendering is byte-for-byte
+  // unchanged (fixedSlots false -> reservedWidth null -> no width/display
+  // override, no fixedSlotChars call).
+  const fixedSlots = needsFixedSlots(fontFamily);
+  const numeralFontStyle = fontStyleFor(fontFamily, { fontWeight: 800 });
+  const reservedWidth = fixedSlots ? reserveCounterWidth(formatCounter(value, 1), numeralFontStyle, MG_TYPE.hero) : null;
+
   return (
     <div {...rest} style={{ position: "absolute", left: 0, top: 0, width: 0, height: 0 }}>
       <span
@@ -95,18 +125,20 @@ export function HeroNumber({
           left: cx,
           top: cy,
           translate: "-50% -50%",
+          ...numeralFontStyle,
           fontSize: MG_TYPE.hero, // 220 — w800
-          fontWeight: 800,
           color: colors.accent,
           lineHeight: 1,
           fontVariantNumeric: "tabular-nums",
           whiteSpace: "nowrap",
+          textAlign: "center",
           opacity,
           ...(scale !== 1 ? { scale } : null),
+          ...(reservedWidth ? { width: reservedWidth } : null),
           transformOrigin: "center",
         }}
       >
-        {counter}
+        {fixedSlots ? fixedSlotChars(counter) : counter}
       </span>
 
       <Sequence from={start + D.push} durationInFrames={60}>
@@ -127,6 +159,7 @@ export function HeroNumber({
               display: "block",
               width: "100%",
               height: "100%",
+              fontFamily,
               fontSize: headline.fontSize,
               lineHeight: `${headline.h}px`,
               fontWeight: 800, // MG_TYPE headline — w800
