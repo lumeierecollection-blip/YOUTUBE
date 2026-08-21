@@ -2,15 +2,14 @@ import React from "react";
 import { registerRoot, Composition, AbsoluteFill, useCurrentFrame } from "remotion";
 import "../../../src/skills/remotion-render/wait-for-fonts.js";
 import { PullQuote } from "../../../src/skills/remotion-render/beats/PullQuote.jsx";
+import { paletteFromHues, hexToRgb } from "../../../src/skills/remotion-render/styles/tokens.js";
 
-const COLORS = {
-  bg: "#0B0F19",
-  surface: "#141A26",
-  accent: "#22D3EE",
-  textPrimary: "#F1F5F9",
-  textDim: "#94A3B8",
-  stroke: "#334155",
-};
+// White-mode palette, via the real derivation function (styles/tokens.js) —
+// not hand-picked hex values. accentHue 149.6 is channel 1's (Money Mind,
+// config/channels.json:13,51 — bg_mode "white", the same channel the
+// existing HERO_NUMBER fixtures below use) real accentHue, so this demo
+// matches an actual configured channel rather than an invented palette.
+const COLORS = paletteFromHues({ accentHue: 149.6, bgMode: "white" });
 const STAGE = { x: 48, y: 300, w: 984, h: 900 };
 
 const WIRED = [
@@ -26,13 +25,16 @@ const WIRED = [
   },
 ];
 
+const accentRgb = hexToRgb(COLORS.accent);
+const ACCENT_CSS_RGB = `rgb(${accentRgb.r}, ${accentRgb.g}, ${accentRgb.b})`;
+
 function Measure({ compId }) {
   React.useEffect(() => {
     const root = document.querySelector("[data-root]");
     const rr = root ? root.getBoundingClientRect() : { x: 0, y: 0 };
     const lines = Array.from(document.querySelectorAll('[data-role="pull-quote-line"]'));
     const spans = Array.from(document.querySelectorAll('[data-role="pull-quote-line"] span'));
-    const accentSpans = spans.filter((s) => getComputedStyle(s).color === "rgb(34, 211, 238)"); // COLORS.accent
+    const accentSpans = spans.filter((s) => getComputedStyle(s).color === ACCENT_CSS_RGB);
     const wrapper = document.querySelector('[data-role="pull-quote"]');
     const rect = wrapper ? wrapper.getBoundingClientRect() : null;
     console.log(
