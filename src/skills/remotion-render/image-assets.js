@@ -37,6 +37,29 @@ export function resolveImageAssets(cues, channelId, topicSlug) {
     }
   }
 
+  // Broaden-and-retry: none of this section's own cues matched anything in
+  // the asset-library manifest. Before giving up on the manifest entirely,
+  // retry once against the video's overall topic (topicSlug, already a
+  // parameter here) — a broader term than any single cue phrase, on the
+  // theory that a topic-relevant photo beats no photo. Still routed through
+  // select.js's own keyword-overlap match (never a blind first-asset
+  // guess), and still per-channel scoped.
+  if (out.length === 0 && topicSlug) {
+    const broadCue = String(topicSlug).replace(/[-_]+/g, " ").trim();
+    if (broadCue) {
+      const asset = selectAsset(channelId, broadCue, { manifest });
+      if (asset && !seenPaths.has(asset.publicPath)) {
+        out.push({
+          path: asset.publicPath,
+          treatment: asset.treatment,
+          mode: asset.mode || null,
+          credit: asset.attribution || null,
+        });
+        seenPaths.add(asset.publicPath);
+      }
+    }
+  }
+
   // Legacy fixture manifests are untreated raw photos — always rendered
   // full-bleed (the composition's pre-existing behaviour), no attribution
   // metadata carried by that system.
