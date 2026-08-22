@@ -25,6 +25,7 @@ on:
       - claude/png-sourcing-animations-captions-wgv6ty
     paths:
       - ".github/workflows/fetch-underscore-track.yml"
+      - "src/skills/music-sourcing/**"
 
 jobs:
   fetch:
