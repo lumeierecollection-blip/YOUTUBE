@@ -195,13 +195,33 @@ async function main() {
     'button:has-text("Download")',
     '[data-download]',
   ];
+  // Visibility into any new tab the click opens, independent of whether
+  // context.waitForEvent("download") below ends up catching a download —
+  // if the new tab shows something else (a login wall, a quality picker
+  // needing a second click), this is what will show it.
+  context.on("page", (p) => {
+    console.log(`New page/tab opened: ${p.url()}`);
+    p.waitForLoadState("domcontentloaded", { timeout: 10000 })
+      .then(() => p.title())
+      .then((t) => console.log(`New tab loaded — title: "${t}", url: ${p.url()}`))
+      .catch((e) => console.log(`New tab didn't finish loading within 10s: ${e.message}`));
+  });
   let triggered = false;
   let download = null;
   for (const sel of downloadTriggers) {
     const el = page.locator(sel).first();
     if ((await el.count()) === 0) continue;
     try {
-      const [dl] = await Promise.all([page.waitForEvent("download", { timeout: 15000 }), el.click()]);
+      // A real run showed the button's own text flip to "Downloading..."
+      // on click (the site really did start something) but page.waitForEvent
+      // never fired — the download almost certainly lands in a NEW tab
+      // (common for Pixabay's UI), which a listener scoped to this one
+      // `page` can't see. context.waitForEvent("download") catches a
+      // download in ANY page/tab belonging to this browser context, so
+      // that's the one that actually matters here; also races a "page"
+      // (popup) event so a newly opened tab's own subsequent download can
+      // still be caught even if it arrives just after the popup opens.
+      const [dl] = await Promise.all([context.waitForEvent("download", { timeout: 30000 }), el.click()]);
       download = dl;
       triggered = true;
       break;
