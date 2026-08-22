@@ -7,6 +7,17 @@ name: Network Policy Check (diagnostic)
 
 on:
   workflow_dispatch: {}
+  # workflow_dispatch alone turned out to be untriggerable from this
+  # session's GitHub App token ("403 Resource not accessible by
+  # integration" — an actions:write scope gap, not a network-policy
+  # finding). Push access to this branch works fine (every other commit
+  # this session used it), so a scoped push trigger is the workaround —
+  # removed once this diagnostic's result is captured.
+  push:
+    branches:
+      - claude/png-sourcing-animations-captions-wgv6ty
+    paths:
+      - ".github/workflows/network-policy-check.yml"
 
 jobs:
   check:
