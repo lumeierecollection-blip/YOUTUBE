@@ -13,6 +13,7 @@
     "verify": "node verify-compositions.js"
   },
   "dependencies": {
+    "@react-three/postprocessing": "^3.0.5",
     "@remotion/bundler": "^4.0.503",
     "@remotion/captions": "^4.0.503",
     "@remotion/cli": "^4.0.503",
@@ -24,10 +25,13 @@
     "@remotion/renderer": "^4.0.503",
     "@remotion/rough-notation": "^4.0.503",
     "@remotion/shapes": "^4.0.503",
+    "@remotion/three": "^4.0.515",
     "@remotion/transitions": "^4.0.503",
+    "postprocessing": "^6.39.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "remotion": "^4.0.503"
+    "remotion": "^4.0.503",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.0",

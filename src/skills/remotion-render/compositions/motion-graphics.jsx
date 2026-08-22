@@ -23,6 +23,7 @@ import { Panel } from "../primitives/Panel.jsx";
 import { D, MG_TYPE as TYPE, CAPTION } from "./beats.js";
 import { rolesFromPalette, strokeAttr, mixColor } from "./mg-style.js";
 import { ICON_INNER } from "./icons-data.js";
+import { PhotoTreatment } from "../effects/PhotoTreatment.jsx";
 
 /**
  * MotionGraphics — MOTION-GRAPHICS-MANUAL.md Parts A–F.
@@ -1320,6 +1321,17 @@ function StatementScene({ beat, scene, colors, fontFamily }) {
 //  - "fullbleed" (or no treatment at all, e.g. an untreated legacy b-roll
 //    fixture): unchanged pre-PART-6 behaviour — `object-fit: cover`,
 //    bleeding to the canvas edge.
+// Stage box in DesignSpace's 1080×1920 design-space pixels (see the
+// left/top/right/bottom literals below) — ThreeCanvas needs explicit
+// numeric width/height (unlike <img>, it can't just fill a flexible CSS
+// box), and DesignSpace's own `transform: scale(S)` wrapper (useLayout(),
+// above) already scales this whole subtree to the real output resolution
+// exactly like it does for every other beat's design-space coordinates,
+// so these stay fixed design-space pixels, not useVideoConfig()'s output
+// pixels.
+const IMAGE_STAGE_W = 1080 - 48 - 0; // left:48, right:0
+const IMAGE_STAGE_H = 1920 - 392 - 780; // top:392, bottom:780
+
 export function ImageBeatScene({ beat, scene, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -1337,46 +1349,35 @@ export function ImageBeatScene({ beat, scene, colors, fontFamily }) {
           top: 392,
           right: 0, // bleeds past the 888 safe-right edge to the real canvas edge (1080)
           bottom: 780, // bleeds down toward the caption zone (past the 940 stage floor)
-          overflow: isCutout ? "visible" : "hidden",
-          display: isCutout ? "flex" : "block",
-          alignItems: isCutout ? "center" : undefined,
-          justifyContent: isCutout ? "center" : undefined,
           opacity: ease(frame - start, [0, D.base], [0, 1], E_OUT),
           scale: `${1.05 - push * 0.05}`,
           transformOrigin: "center",
         }}
       >
-        <img
+        {/* vox-style-treatment SKILL.md's per-photo treatment: real,
+            tested libraries (postprocessing's Vignette/Noise/
+            ChromaticAberration + a real 3D LUT), never freehand shader
+            math — see effects/PhotoTreatment.jsx. Contain/cover sizing for
+            cutout/fullbleed now happens INSIDE PhotoTreatment's own Plane
+            (matching the old <img> maxWidth:88%/maxHeight:92%-contain vs
+            100%-cover logic exactly), so this wrapper no longer needs the
+            flex-centering the plain <img> required — the canvas is always
+            the full stage box and the plane is centered within it. */}
+        <PhotoTreatment
           src={staticFile(scene.image)}
-          style={
-            isCutout
-              ? { maxWidth: "88%", maxHeight: "92%", width: "auto", height: "auto", objectFit: "contain" }
-              : { width: "100%", height: "100%", objectFit: "cover" }
-          }
-          alt=""
+          treatment={isCutout ? "cutout" : "fullbleed"}
+          width={IMAGE_STAGE_W}
+          height={IMAGE_STAGE_H}
         />
       </div>
-      {scene.credit ? (
-        <span
-          style={{
-            position: "absolute",
-            right: 24,
-            top: 392 + 24,
-            transformOrigin: "top right",
-            transform: "rotate(90deg) translateX(0)",
-            whiteSpace: "nowrap",
-            fontFamily,
-            fontWeight: 400,
-            fontSize: TYPE.label,
-            letterSpacing: 1,
-            color: colors.textDim,
-            textShadow: `0 0 8px ${colors.bg}, 0 0 8px ${colors.bg}`,
-            ...riseStyle(frame, start + D.short),
-          }}
-        >
-          {scene.credit}
-        </span>
-      ) : null}
+      {/* vox-style-treatment SKILL.md's SFX resolution: every beat gets
+          SOME cue. Every other push-in-style beat (e.g. HeroNumberScene)
+          fires one on landing; IMAGE_BEAT had none of its own and relied
+          entirely on the global caption-gap cue in MotionGraphicsContent,
+          which a densely-captioned beat can miss outright. Same plain
+          click, same quiet level, as HeroNumberScene's — an image landing
+          isn't a "moment that earns" a distinctive sound. */}
+      <Sfx file="sfx/ui/click_004.ogg" at={start + D.push} db={-22} />
     </div>
   );
 }
