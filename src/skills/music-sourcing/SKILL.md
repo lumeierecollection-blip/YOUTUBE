@@ -34,19 +34,28 @@ never a hardcoded or assumed license string.
 node src/skills/music-sourcing/fetch-underscore.mjs "kalimba"
 ```
 
-Output: `data/music/underscore-<slug>.mp3` (the real downloaded audio) +
-`data/music/underscore-<slug>.json` (page URL, title, license text as
-found, attribution text as found, duration, fetch timestamp — the
-auditable record of what was actually on the page at fetch time).
+Output (fixed filenames — a single stable bed track, not a growing
+library, so there's one known path to reference rather than a slug to
+discover):
+- `src/skills/remotion-render/public/music/underscore.mp3` — the real
+  downloaded audio, committed (a stable, reused-every-render asset, same
+  as asset-library's treated PNGs — not gitignored scratch like `vo.mp3`,
+  which is genuinely per-video content).
+- `data/music/underscore.json` — page URL, title, license text as found,
+  attribution text as found, duration, fetch timestamp: the auditable
+  record of what was actually on the page at fetch time, mirroring
+  asset-library's own manifest-vs-treated-file split.
 
 ## Wiring into the render pipeline
 
-`compositions/motion-graphics.jsx`'s `MotionGraphicsShorts` plays the
-fetched track as a persistent, low-volume `<Audio>` bed for the whole
-video — well below the per-beat SFX and voiceover levels (static gain
-staging, not dynamic sidechain ducking — see UNDERSCORE_DB's comment in
-that file for the exact level and why a fixed level is the right choice
-here over a more complex reactive system). The track file itself is
-gitignored raw audio (like `vo.mp3`) — `render.js` copies whatever the
-latest `data/music/underscore-*.mp3` is into the render bundle's public
-dir before each render, same pattern as the voiceover.
+`compositions/motion-graphics.jsx`'s `MotionGraphicsShorts` conditionally
+renders the track (via `staticFile("music/underscore.mp3")`, only when
+`hasUnderscore` is true) as a persistent, low-volume `<Audio>` bed for the
+whole video — well below the per-beat SFX and voiceover levels (static
+gain staging, not dynamic sidechain ducking — see UNDERSCORE_DB's comment
+in that file for the exact level and why a fixed level is the right
+choice here over a more complex reactive system). `render.js` sets
+`hasUnderscore` by checking whether the committed MP3 exists — never a
+static import (unlike `vo.mp3`, which always exists by the time render.js
+runs and is required, a missing OPTIONAL underscore track must not break
+the webpack bundle or fail the render).

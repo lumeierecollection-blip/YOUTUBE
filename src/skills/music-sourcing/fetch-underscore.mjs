@@ -26,18 +26,23 @@
  * never a hardcoded/assumed license string.
  *
  * Usage: node src/skills/music-sourcing/fetch-underscore.mjs [query]
- * Output: data/music/underscore-<slug>.mp3 +
- *         data/music/underscore-<slug>.json (title, url, artist, license
- *         text as found on the page, duration, fetchedAt)
+ * Output: src/skills/remotion-render/public/music/underscore.mp3 (the real
+ *         downloaded audio, fixed filename — a single stable bed track,
+ *         not a growing library, so no per-track slug needed at the path
+ *         render.js/motion-graphics.jsx actually read) +
+ *         data/music/underscore.json (title, url, artist, license text as
+ *         found on the page, duration, fetchedAt — the auditable record,
+ *         alongside asset-library's own manifest-vs-treated-file split)
  */
 import { chromium } from "playwright";
-import { mkdirSync, writeFileSync, renameSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "..", "..");
-const OUT_DIR = join(ROOT, "data", "music");
+const META_DIR = join(ROOT, "data", "music");
+const AUDIO_DIR = join(ROOT, "src", "skills", "remotion-render", "public", "music");
 const QUERY = process.argv[2] || "kalimba";
 
 function slugify(s) {
@@ -49,7 +54,8 @@ function slugify(s) {
 }
 
 async function main() {
-  mkdirSync(OUT_DIR, { recursive: true });
+  mkdirSync(META_DIR, { recursive: true });
+  mkdirSync(AUDIO_DIR, { recursive: true });
   const browser = await chromium.launch();
   const context = await browser.newContext({ acceptDownloads: true });
   const page = await context.newPage();
@@ -67,7 +73,7 @@ async function main() {
     Array.from(new Set(as.map((a) => a.href).filter((h) => /\/music\/[a-z0-9-]+-\d+\/?$/.test(h))))
   );
   if (trackLinks.length === 0) {
-    await page.screenshot({ path: join(OUT_DIR, "_debug-search-page.png"), fullPage: true });
+    await page.screenshot({ path: join(META_DIR, "_debug-search-page.png"), fullPage: true });
     throw new Error(`No track links found on search page for "${QUERY}" — see _debug-search-page.png`);
   }
   console.log(`Found ${trackLinks.length} candidate track(s). First few: ${trackLinks.slice(0, 5).join(", ")}`);
@@ -143,17 +149,19 @@ async function main() {
     }
   }
   if (!triggered || !download) {
-    await page.screenshot({ path: join(OUT_DIR, "_debug-track-page.png"), fullPage: true });
-    writeFileSync(join(OUT_DIR, "_debug-track-meta.json"), JSON.stringify(meta, null, 2));
+    await page.screenshot({ path: join(META_DIR, "_debug-track-page.png"), fullPage: true });
+    writeFileSync(join(META_DIR, "_debug-track-meta.json"), JSON.stringify(meta, null, 2));
     throw new Error(`Could not trigger a download on ${chosen} — see _debug-track-page.png / _debug-track-meta.json`);
   }
 
-  const slug = slugify(h1 || title || QUERY);
-  const mp3Path = join(OUT_DIR, `underscore-${slug}.mp3`);
+  // Fixed filename (not slug-based) — this is a single stable bed track,
+  // not a growing library, so render.js/motion-graphics.jsx can reference
+  // one known path rather than needing to discover the latest slug.
+  const mp3Path = join(AUDIO_DIR, "underscore.mp3");
   await download.saveAs(mp3Path);
   console.log(`Saved audio -> ${mp3Path}`);
 
-  const metaPath = join(OUT_DIR, `underscore-${slug}.json`);
+  const metaPath = join(META_DIR, "underscore.json");
   writeFileSync(metaPath, JSON.stringify(meta, null, 2) + "\n");
   console.log(`Saved metadata -> ${metaPath}`);
   console.log(JSON.stringify(meta, null, 2));
