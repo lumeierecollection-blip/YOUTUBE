@@ -62,8 +62,21 @@ async function main() {
 
   const searchUrl = `https://pixabay.com/music/search/${encodeURIComponent(QUERY)}/`;
   console.log(`Navigating to ${searchUrl}`);
-  await page.goto(searchUrl, { waitUntil: "networkidle", timeout: 60000 });
-  await page.waitForTimeout(2000);
+  // "networkidle" timed out at 60s on a real run (never resolved) — Pixabay's
+  // page evidently keeps some background connection open (analytics/ads are
+  // the usual cause) that stops the network from ever going fully idle.
+  // "domcontentloaded" + an explicit settle delay is the standard fix for
+  // exactly this failure mode: it doesn't wait on traffic this script
+  // doesn't care about, just gives the client-side JS time to paint results.
+  await page.goto(searchUrl, { waitUntil: "domcontentloaded", timeout: 60000 });
+  await page.waitForTimeout(5000);
+  // Bounded, non-hanging extra wait for actual result links specifically
+  // (as opposed to networkidle's unbounded wait on ALL traffic) — best
+  // effort only: if this never resolves, the code below still runs and
+  // dumps real diagnostics instead of hanging the whole job.
+  await page
+    .waitForSelector('a[href*="/music/"]', { timeout: 15000 })
+    .catch((e) => console.log(`waitForSelector didn't find a /music/ link within 15s (continuing anyway): ${e.message}`));
 
   // Diagnostic dump BEFORE filtering — printed to the job log (readable
   // via the GitHub API even when this session can't reach the blob
