@@ -54,6 +54,7 @@ on:
       - claude/png-sourcing-animations-captions-wgv6ty
     paths:
       - ".github/workflows/build-asset-library.yml"
+      - "src/skills/asset-sourcing/**"
 
 jobs:
   fetch:

@@ -35,6 +35,7 @@ import * as smithsonian from "./sources/smithsonian.js";
 import * as pexels from "./sources/pexels.js";
 import * as unsplash from "./sources/unsplash.js";
 import * as openverse from "./sources/openverse.js";
+import * as rawpixel from "./sources/rawpixel.js";
 import { isAllowedLicense, normalizeLicense } from "./licenses.js";
 import { downloadFile } from "./http.js";
 import { treatAsset } from "./treat.js";
@@ -47,7 +48,7 @@ const RAW_DIR = join(ROOT, "data", "asset-library", "raw");
 const PUBLIC_DIR = join(ROOT, "src", "skills", "remotion-render", "public", "asset-library");
 const MIN_WIDTH = 2160; // PART 5 — 2x the 1080-wide shorts stage, minimum
 
-const SOURCES = { wikimedia, met, nasa, loc, nara, smithsonian, pexels, unsplash, openverse };
+const SOURCES = { wikimedia, met, nasa, loc, nara, smithsonian, pexels, unsplash, openverse, rawpixel };
 
 function loadManifest() {
   if (!existsSync(MANIFEST_PATH)) return { version: 1, assets: [] };
@@ -71,15 +72,28 @@ function loadChannel(channelId) {
 }
 
 async function searchAll(query, count) {
-  const settled = await Promise.allSettled(
-    Object.entries(SOURCES).map(async ([name, mod]) => ({ name, results: await mod.search(query, { count }) }))
+  // Each entry catches its OWN error and tags it with `name` before
+  // resolving — a bare Promise.allSettled loses which source failed on
+  // rejection (the {name, results} wrapper never gets built when search()
+  // throws), which is exactly why a real "one source 404s on every query"
+  // failure (build-asset-library.yml run 32541446166) logged as an
+  // unattributed "source failed, continuing without it" with no source
+  // name at all. This keeps that name on both paths.
+  const settled = await Promise.all(
+    Object.entries(SOURCES).map(async ([name, mod]) => {
+      try {
+        return { name, results: await mod.search(query, { count }) };
+      } catch (err) {
+        return { name, error: err };
+      }
+    })
   );
   const candidates = [];
   for (const s of settled) {
-    if (s.status === "fulfilled") {
-      candidates.push(...s.value.results);
+    if (s.error) {
+      console.warn(`[asset-sourcing/${s.name}] source failed, continuing without it: ${s.error.message}`);
     } else {
-      console.warn(`[asset-sourcing] source failed, continuing without it: ${s.reason && s.reason.message}`);
+      candidates.push(...s.results);
     }
   }
   return candidates;

@@ -27,21 +27,31 @@ own schedule, separate from `daily-pipeline.yml`'s daily render.
 | Pexels | yes (`PEXELS_API_KEY`) | `sources/pexels.js` |
 | Unsplash | yes (`UNSPLASH_ACCESS_KEY`) | `sources/unsplash.js` |
 | Openverse (commercial-filtered meta-search) | no | `sources/openverse.js` |
+| Rawpixel (CC0/public-domain tier only) | yes (`RAWPIXEL_API_KEY`, partner-only — see below) | `sources/rawpixel.js` |
 
 A source with no key set logs a warning and returns no candidates — it
 never fails the whole build.
 
 Openverse is a meta-search layer over 50+ providers (Flickr, Wikimedia,
 Europeana, and more, including several of the dedicated sources above) —
-it widens recall beyond the 8 dedicated sources, it doesn't replace them.
+it widens recall beyond the other 9 sources, it doesn't replace them.
 Queried with `license_type=commercial,modification` and then filtered
 again client-side against this skill's own `licenses.js` allowlist (see
 `sources/openverse.js`'s header for why CC-BY-SA still has to be excluded
-by hand). Deliberately NOT added: StockSnap and Rawpixel's CC0 tier, both
-commercially-usable but neither exposes a documented public REST API —
-onboarding them would mean scraping HTML, which is a different (and more
-fragile/ToS-sensitive) architecture than every other module in this
-skill, not a same-shape addition.
+by hand).
+
+Rawpixel is different from every other module here: it has no public,
+self-serve developer-signup API — what exists is a partner-key API (with
+its own HMAC-SHA256 request-signing scheme, transcribed from Openverse's
+own open-source ingestion pipeline for it) that even Openverse itself had
+to separately arrange a key for. `sources/rawpixel.js` implements the real
+signing algorithm but has not been exercised against a real key (none
+exists yet, and this session's own egress was proxy-blocked to
+rawpixel.com regardless) — verify it once a key is available. Superseded
+this skill's earlier "declined, HTML-scraping only" assessment: Rawpixel
+does have a real, keyed REST API, it's just not self-serve like the rest.
+StockSnap remains genuinely not added — no API of any kind has surfaced
+for it, partner or otherwise.
 
 ## Setup (one-time)
 
@@ -61,7 +71,7 @@ cache to `~/.u2net/` — `actions/cache` should key on `.venv-rembg` and
 ## Process
 
 1. `node src/skills/asset-sourcing/fetch-library.js <channel-id> <query terms...> [--count N] [--mode bw|color]`
-2. Searches all 9 sources, filters to allowed licenses (`licenses.js`).
+2. Searches all 10 sources, filters to allowed licenses (`licenses.js`).
 3. Downloads at >=2x the shorts stage width (2160px) — anything smaller is
    skipped, not silently accepted undersized.
 4. Runs `treat.js`: rembg cutout (or full-bleed for texture/landscape
