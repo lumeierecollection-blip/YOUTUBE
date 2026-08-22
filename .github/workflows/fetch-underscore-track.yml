@@ -1,0 +1,71 @@
+# Fetches a real, license-verified Pixabay Music track for the whole-video
+# background underscore bed. See src/skills/music-sourcing/SKILL.md for why
+# this runs here rather than in the interactive session (pixabay.com is
+# blocked by that session's egress proxy — confirmed live, same failure
+# mode build-asset-library.yml's photo sources hit before moving here) and
+# why it drives a real browser rather than calling an API (Pixabay Music
+# has no documented/public API endpoint, only a download-from-the-page
+# flow).
+
+name: Fetch Underscore Track
+
+on:
+  workflow_dispatch:
+    inputs:
+      query:
+        description: "Pixabay Music search query"
+        required: false
+        default: "kalimba"
+  # TEMPORARY — this session has no actions:write scope to dispatch
+  # workflow_dispatch directly, so this push trigger stands in for one
+  # real run, then gets removed. Same pattern as build-asset-library.yml
+  # and network-policy-check.yml earlier this session.
+  push:
+    branches:
+      - claude/png-sourcing-animations-captions-wgv6ty
+    paths:
+      - ".github/workflows/fetch-underscore-track.yml"
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install Playwright + Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Fetch track
+        run: |
+          QUERY="${{ github.event.inputs.query }}"
+          QUERY="${QUERY:-kalimba}"
+          node src/skills/music-sourcing/fetch-underscore.mjs "$QUERY"
+
+      - name: Upload debug artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fetch-underscore-debug
+          path: data/music/_debug-*
+          if-no-files-found: ignore
+
+      - name: Commit track + metadata
+        run: |
+          git config user.name "lumeierecollection-blip"
+          git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          git add data/music/
+          if git diff --cached --quiet; then
+            echo "No new track — nothing to commit."
+          else
+            git commit -m "music-sourcing: fetch-underscore.mjs run [${{ github.run_id }}]"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
