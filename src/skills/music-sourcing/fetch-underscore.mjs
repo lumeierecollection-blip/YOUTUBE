@@ -213,9 +213,36 @@ async function main() {
     // Log-based diagnostics (readable via the GitHub API job log even
     // when this session can't reach the blob storage a screenshot
     // artifact would need pulling from — the real failure mode hit while
-    // building this).
-    const allButtons = await page.$$eval("button, a", (els) => els.map((e) => e.textContent.trim()).filter(Boolean).slice(0, 60));
-    console.log(`Buttons/links with text on this page:\n${allButtons.join(" | ")}`);
+    // building this). A real run showed a click resolving and firing
+    // (element found, click succeeded) but no `download` event within
+    // 15s — that's consistent with several different real causes (a
+    // dropdown/quality-picker opening instead of downloading directly, a
+    // login wall, or a plain in-tab navigation to the audio file that
+    // Chromium plays inline rather than treats as a download), so this
+    // dumps targeted evidence for each rather than guessing which.
+    console.log(`Current URL after click attempts: ${page.url()}`);
+    const downloadish = await page.$$eval("*", (els) =>
+      els
+        .filter((e) => {
+          const t = (e.textContent || "").trim();
+          return t.length < 80 && /download/i.test(t) && e.children.length <= 2;
+        })
+        .map((e) => ({
+          tag: e.tagName,
+          text: e.textContent.trim().slice(0, 80),
+          href: e.getAttribute("href"),
+          hasDownloadAttr: e.hasAttribute("download"),
+          visible: !!(e.offsetWidth || e.offsetHeight || e.getClientRects().length),
+        }))
+        .slice(0, 25)
+    );
+    console.log(`Elements whose own text mentions "download":\n${JSON.stringify(downloadish, null, 2)}`);
+    const mediaLinks = await page.$$eval("a[href]", (as) =>
+      as.map((a) => a.href).filter((h) => /\.(mp3|wav|ogg|m4a)(\?|$)/i.test(h) || /download/i.test(h))
+    );
+    console.log(`Hrefs that look like a direct audio file or a download path:\n${mediaLinks.join("\n")}`);
+    const loginish = await page.evaluate(() => document.body.innerText.toLowerCase().includes("log in") || document.body.innerText.toLowerCase().includes("sign in"));
+    console.log(`Page text mentions "log in"/"sign in": ${loginish}`);
     console.log(`Track metadata gathered so far:\n${JSON.stringify(meta, null, 2)}`);
     throw new Error(`Could not trigger a download on ${chosen} — see the diagnostic dump above in the log`);
   }
