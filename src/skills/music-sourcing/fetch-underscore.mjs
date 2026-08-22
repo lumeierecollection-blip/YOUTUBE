@@ -258,28 +258,39 @@ async function main() {
   if (triggerLocator) {
     // Races the real download event against a fixed observation window —
     // context.waitForEvent (not page-scoped) so a download landing in a
-    // new tab (common for Pixabay's UI) is still caught. Two real runs
-    // showed neither this nor a new-tab/matching-response ever firing
-    // within 30s, only the button's own text changing — so this run also
-    // snapshots the DOM a few seconds in to check for a login/signup
-    // modal that might explain a click producing no real network request.
-    const downloadPromise = context.waitForEvent("download", { timeout: 26000 }).catch((e) => {
-      console.log(`No download event within 26s: ${e.message}`);
-      return null;
-    });
+    // new tab (common for Pixabay's UI) is still caught. Three real runs
+    // now show the click reliably flipping the button's own text away
+    // from "Free download" and then, one run showed, back again by ~26s —
+    // i.e. whatever this is, it's a TRANSIENT state, not stuck. A single
+    // 4s snapshot couldn't say whether that reversion means "gave up" or
+    // "finished and reset," so this polls the button's own text every 2s
+    // for up to 44s and logs every change, to see the full lifecycle
+    // instead of one frame of it. A real modal/login-wall check (a
+    // previous run) found nothing — only the page's pre-existing,
+    // unrelated "Log in to view comments" prompt and two invisible
+    // cookie-consent elements — so that hypothesis is now ruled out.
+    let downloadSettled = false;
+    const downloadPromise = context
+      .waitForEvent("download", { timeout: 44000 })
+      .then((dl) => {
+        downloadSettled = true;
+        return dl;
+      })
+      .catch((e) => {
+        console.log(`No download event within 44s: ${e.message}`);
+        downloadSettled = true;
+        return null;
+      });
     await triggerLocator.click();
-    await page.waitForTimeout(4000);
-    const modalish = await page
-      .$$eval('[role="dialog"], dialog, [class*="odal" i], [class*="ogin" i], [class*="ignup" i], [class*="uth-" i], [id*="odal" i]', (els) =>
-        els.map((e) => ({
-          tag: e.tagName,
-          className: typeof e.className === "string" ? e.className.slice(0, 100) : "",
-          text: (e.textContent || "").trim().slice(0, 300),
-          visible: !!(e.offsetWidth || e.offsetHeight || e.getClientRects().length),
-        }))
-      )
-      .catch((e) => [`eval failed: ${e.message}`]);
-    console.log(`Modal/login/auth-ish elements present ~4s after click:\n${JSON.stringify(modalish, null, 2)}`);
+    let lastText = null;
+    for (let elapsed = 0; elapsed <= 44000 && !downloadSettled; elapsed += 2000) {
+      const t = await triggerLocator.textContent().catch(() => null);
+      if (t !== lastText) {
+        console.log(`Button text @ +${elapsed}ms: "${t}"`);
+        lastText = t;
+      }
+      await page.waitForTimeout(2000);
+    }
     download = await downloadPromise;
     triggered = !!download;
   }
