@@ -62,19 +62,32 @@ async function main() {
 
   const searchUrl = `https://pixabay.com/music/search/${encodeURIComponent(QUERY)}/`;
   console.log(`Navigating to ${searchUrl}`);
-  await page.goto(searchUrl, { waitUntil: "domcontentloaded", timeout: 60000 });
+  await page.goto(searchUrl, { waitUntil: "networkidle", timeout: 60000 });
   await page.waitForTimeout(2000);
 
+  // Diagnostic dump BEFORE filtering — printed to the job log (readable
+  // via the GitHub API even when this session can't reach the blob
+  // storage a screenshot artifact would need to be pulled from, which is
+  // exactly what happened on the first real run: the log is the reliable
+  // channel here, not a downloaded PNG).
+  const allHrefs = await page.$$eval("a[href]", (as) => Array.from(new Set(as.map((a) => a.href))));
+  const musicHrefs = allHrefs.filter((h) => h.includes("/music/"));
+  console.log(`Page title: ${await page.title()}`);
+  console.log(`Total <a href> on page: ${allHrefs.length}`);
+  console.log(`Hrefs containing "/music/": ${musicHrefs.length}`);
+  console.log(musicHrefs.slice(0, 40).join("\n"));
+
   // Result cards on Pixabay's music search page link to individual track
-  // pages under /music/<slug>-<id>/. Collect real hrefs from the actual
-  // rendered page rather than guessing a selector class name that could
-  // be a build hash.
-  const trackLinks = await page.$$eval('a[href*="/music/"]', (as) =>
-    Array.from(new Set(as.map((a) => a.href).filter((h) => /\/music\/[a-z0-9-]+-\d+\/?$/.test(h))))
-  );
+  // pages. Broadened from an earlier, over-specific pattern (a real run
+  // showed 0 matches for /\/music\/[a-z0-9-]+-\d+\/?$/ against this
+  // page's actual hrefs — see the diagnostic dump above/in the log for
+  // what they really look like) to just "contains /music/ and isn't the
+  // search page itself."
+  const trackLinks = musicHrefs.filter((h) => !h.includes("/music/search/") && h !== searchUrl && !h.endsWith("/music/"));
   if (trackLinks.length === 0) {
-    await page.screenshot({ path: join(META_DIR, "_debug-search-page.png"), fullPage: true });
-    throw new Error(`No track links found on search page for "${QUERY}" — see _debug-search-page.png`);
+    const bodyText = await page.evaluate(() => document.body.innerText.slice(0, 2000));
+    console.log(`Body text (first 2000 chars):\n${bodyText}`);
+    throw new Error(`No track links found on search page for "${QUERY}" — see the diagnostic dump above in the log`);
   }
   console.log(`Found ${trackLinks.length} candidate track(s). First few: ${trackLinks.slice(0, 5).join(", ")}`);
 
@@ -149,9 +162,14 @@ async function main() {
     }
   }
   if (!triggered || !download) {
-    await page.screenshot({ path: join(META_DIR, "_debug-track-page.png"), fullPage: true });
-    writeFileSync(join(META_DIR, "_debug-track-meta.json"), JSON.stringify(meta, null, 2));
-    throw new Error(`Could not trigger a download on ${chosen} — see _debug-track-page.png / _debug-track-meta.json`);
+    // Log-based diagnostics (readable via the GitHub API job log even
+    // when this session can't reach the blob storage a screenshot
+    // artifact would need pulling from — the real failure mode hit while
+    // building this).
+    const allButtons = await page.$$eval("button, a", (els) => els.map((e) => e.textContent.trim()).filter(Boolean).slice(0, 60));
+    console.log(`Buttons/links with text on this page:\n${allButtons.join(" | ")}`);
+    console.log(`Track metadata gathered so far:\n${JSON.stringify(meta, null, 2)}`);
+    throw new Error(`Could not trigger a download on ${chosen} — see the diagnostic dump above in the log`);
   }
 
   // Fixed filename (not slug-based) — this is a single stable bed track,
