@@ -82,7 +82,7 @@ function runRembg(inputPath, outputPath, { matting = false } = {}) {
 // Analyse a cutout PNG's alpha channel: coverage fraction (opaque + midtone,
 // i.e. anything not fully transparent) and how many of the 4 edges the
 // opaque region touches. Mirrors frame-audit.js's raw-buffer style.
-async function analyseAlpha(pngPath) {
+export async function analyseAlpha(pngPath) {
   const img = sharp(pngPath);
   const { width, height } = await img.metadata();
   const { data } = await img.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
@@ -119,7 +119,7 @@ async function analyseAlpha(pngPath) {
   };
 }
 
-function classify(alphaInfo) {
+export function classify(alphaInfo) {
   if (!alphaInfo.bbox) return "fullbleed"; // segmentation found nothing at all
   if (alphaInfo.coverage > FULLBLEED_COVERAGE_MAX) return "fullbleed";
   if (alphaInfo.edgesTouched >= FULLBLEED_EDGE_TOUCH_MIN) return "fullbleed";

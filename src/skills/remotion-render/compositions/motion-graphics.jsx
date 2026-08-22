@@ -579,7 +579,7 @@ function CaptionLine({ tokens, frame, activeIndex, suppressed, colors, fontFamil
   );
 }
 
-function CaptionLayer({ pages, accentWindows, colors, fontFamily }) {
+export function CaptionLayer({ pages, accentWindows, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const page = pages.find((p) => frame >= p.startFrame && frame < p.endFrame);
   if (!page) return null;
@@ -1270,7 +1270,7 @@ function RelationScene({ beat, scene, colors, fontFamily }) {
 }
 
 // F8 — STATEMENT: icon 120 POP at tA−4, headline RISE at tA. Nothing else.
-function StatementScene({ beat, scene, colors, fontFamily }) {
+export function StatementScene({ beat, scene, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
   const start = Math.max(tA - D.micro, 0);
@@ -1332,6 +1332,24 @@ function StatementScene({ beat, scene, colors, fontFamily }) {
 const IMAGE_STAGE_W = 1080 - 48 - 0; // left:48, right:0
 const IMAGE_STAGE_H = 1920 - 392 - 780; // top:392, bottom:780
 
+// vox-style-treatment SKILL.md's "Fallback: cutout quality fails the rembg
+// gate" section. treat.js's classify() (src/skills/asset-sourcing/treat.js)
+// is that gate — a photo only ever gets imageTreatment:"fullbleed" because
+// rembg's segmentation didn't find a clean, isolated subject (coverage too
+// high or the alpha mask touches 3+ edges: "texture/landscape filling the
+// frame, not an isolated object"). treat.js already does NOT discard that
+// photo — it saves a tone-normalized fullbleed JPEG instead of a cutout PNG,
+// and select.js/image-assets.js already carry it through unfiltered. What
+// WAS missing: at render time, a fullbleed photo was just filling the same
+// bounded stage box a cutout uses, not reading as "that beat's own
+// background" the way the skill asks for. This stage box is fullbleed-only:
+// edge-to-edge width, and tall enough to run underneath the caption zone
+// (CAPTION.zoneBottom=1248) rather than stopping short of it, so the photo
+// genuinely reads as a background instead of a bounded panel.
+const FULLBLEED_STAGE_TOP = 392; // same top as the cutout stage — HeadlineBox grows upward into the slack above this, never below it
+const FULLBLEED_STAGE_BOTTOM_EDGE = 1290; // ~40px past CAPTION.zoneBottom (1248)
+const FULLBLEED_STAGE_H = 1920 - FULLBLEED_STAGE_TOP - (1920 - FULLBLEED_STAGE_BOTTOM_EDGE);
+
 export function ImageBeatScene({ beat, scene, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -1340,15 +1358,17 @@ export function ImageBeatScene({ beat, scene, colors, fontFamily }) {
   const push = Easing.spring({ damping: 200 })(ease(frame - start, [0, D.push], [0, 1], E_OUT));
   if (!scene.image) return null;
   const isCutout = scene.imageTreatment === "cutout";
+  const stageW = isCutout ? IMAGE_STAGE_W : 1080;
+  const stageH = isCutout ? IMAGE_STAGE_H : FULLBLEED_STAGE_H;
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <div
         style={{
           position: "absolute",
-          left: 48,
-          top: 392,
+          left: isCutout ? 48 : 0,
+          top: FULLBLEED_STAGE_TOP, // 392 either way
           right: 0, // bleeds past the 888 safe-right edge to the real canvas edge (1080)
-          bottom: 780, // bleeds down toward the caption zone (past the 940 stage floor)
+          bottom: isCutout ? 780 : 1920 - FULLBLEED_STAGE_BOTTOM_EDGE,
           opacity: ease(frame - start, [0, D.base], [0, 1], E_OUT),
           scale: `${1.05 - push * 0.05}`,
           transformOrigin: "center",
@@ -1356,19 +1376,39 @@ export function ImageBeatScene({ beat, scene, colors, fontFamily }) {
       >
         {/* vox-style-treatment SKILL.md's per-photo treatment: real,
             tested libraries (postprocessing's Vignette/Noise/
-            ChromaticAberration + a real 3D LUT), never freehand shader
-            math — see effects/PhotoTreatment.jsx. Contain/cover sizing for
-            cutout/fullbleed now happens INSIDE PhotoTreatment's own Plane
-            (matching the old <img> maxWidth:88%/maxHeight:92%-contain vs
-            100%-cover logic exactly), so this wrapper no longer needs the
-            flex-centering the plain <img> required — the canvas is always
-            the full stage box and the plane is centered within it. */}
+            ChromaticAberration/DotScreen + a real 3D LUT), never freehand
+            shader math — see effects/PhotoTreatment.jsx. Contain/cover
+            sizing for cutout/fullbleed now happens INSIDE PhotoTreatment's
+            own Plane (matching the old <img> maxWidth:88%/maxHeight:92%-
+            contain vs 100%-cover logic exactly), so this wrapper no longer
+            needs the flex-centering the plain <img> required — the canvas
+            is always the full stage box and the plane is centered within
+            it. */}
         <PhotoTreatment
           src={staticFile(scene.image)}
           treatment={isCutout ? "cutout" : "fullbleed"}
-          width={IMAGE_STAGE_W}
-          height={IMAGE_STAGE_H}
+          width={stageW}
+          height={stageH}
         />
+        {!isCutout ? (
+          // Gradient scrim WITHIN the photo layer only (never the canvas —
+          // cutout and typography-only beats have no gradient, unchanged).
+          // Fades to the channel's own bg color, fully opaque well before
+          // the caption zone starts (80% of this box's height = y≈1110,
+          // CAPTION.zoneTop=1152) so the caption's existing stroke-outlined
+          // text — unchanged, "same type rules as elsewhere" — sits on a
+          // clean, consistent surface exactly like it does over the flat
+          // canvas on every other beat type, instead of directly on top of
+          // uncontrolled photo detail.
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: `linear-gradient(to bottom, transparent 0%, transparent 45%, ${colors.bg} 80%, ${colors.bg} 100%)`,
+              pointerEvents: "none",
+            }}
+          />
+        ) : null}
       </div>
       {/* vox-style-treatment SKILL.md's SFX resolution: every beat gets
           SOME cue. Every other push-in-style beat (e.g. HeroNumberScene)

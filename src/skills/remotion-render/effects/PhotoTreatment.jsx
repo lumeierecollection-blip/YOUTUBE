@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from "react";
 import { ThreeCanvas } from "@remotion/three";
 import { useLoader, useThree } from "@react-three/fiber";
-import { EffectComposer, Vignette, Noise, ChromaticAberration, LUT } from "@react-three/postprocessing";
+import { EffectComposer, Vignette, Noise, ChromaticAberration, LUT, DotScreen } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
 import { LUTCubeLoader } from "three/examples/jsm/loaders/LUTCubeLoader.js";
@@ -10,9 +10,27 @@ import { staticFile, useDelayRender } from "remotion";
 /**
  * vox-style-treatment SKILL.md's "Photo/asset treatment" checklist,
  * implemented via real, tested libraries — never freehand shader math:
- *   - Vignette, Noise (grain), ChromaticAberration: postprocessing's own
- *     tested Effect classes (pmndrs/postprocessing, Zlib), used through
- *     @react-three/postprocessing's JSX wrappers, not hand-rolled GLSL.
+ *   - Vignette, Noise (grain), ChromaticAberration, DotScreen (halftone):
+ *     postprocessing's own tested Effect classes (pmndrs/postprocessing,
+ *     Zlib), used through @react-three/postprocessing's JSX wrappers, not
+ *     hand-rolled GLSL. DotScreen's real shader (read directly from
+ *     node_modules/postprocessing/build/postprocessing.js, since this is
+ *     exactly the class of parameter this session's rule requires reading
+ *     real source for rather than guessing) remaps color as
+ *     `rgb*10-5 + pattern(uv*resolution)` — i.e. at full strength it's a
+ *     near-literal black/white print halftone, not a subtle overlay.
+ *     Reined in the same way Noise already is: an OVERLAY blend, but at a
+ *     much lower opacity than Noise's (0.02 vs 0.06) — a first pass at 0.1
+ *     rendered as a harsh, dominant crosshatch (real evidence, not a
+ *     guess: data/audit/13/out/halftone-crop-before-0.1.png vs
+ *     halftone-crop-after-0.02.png), because DotScreen's near-binary
+ *     black/white output
+ *     reads as far stronger than continuous grain at the same opacity.
+ *     0.02 is the value that actually reads as "editorial print texture,"
+ *     confirmed on a real render at both a close crop and full frame.
+ *     angle=π/4 (45°) is the standard print halftone screening angle (the
+ *     class's own default, π/2, is grid-aligned and reads as a
+ *     screen-door pattern, not print).
  *   - Desaturated editorial base grade: a real 3D LUT (.cube), loaded via
  *     Three.js's own LUTCubeLoader and applied via postprocessing's real
  *     LUT3DEffect (the <LUT> component) — see
@@ -74,6 +92,7 @@ const LUT_URL = staticFile("luts/editorial-grade.cube");
 const VIGNETTE_PROPS = { eskil: false, offset: 0.15, darkness: 0.65 };
 const NOISE_PROPS = { opacity: 0.06, blendFunction: BlendFunction.OVERLAY };
 const CHROMATIC_ABERRATION_PROPS = { offset: [0.0009, 0.0009], radialModulation: true, modulationOffset: 0.4 };
+const DOT_SCREEN_PROPS = { angle: Math.PI / 4, scale: 1.4, opacity: 0.02, blendFunction: BlendFunction.OVERLAY };
 
 function Plane({ src, treatment, containerWidth, containerHeight }) {
   const texture = useLoader(THREE.TextureLoader, src);
@@ -201,6 +220,7 @@ export function PhotoTreatment({ src, treatment, width, height }) {
       <Plane src={src} treatment={treatment} containerWidth={width} containerHeight={height} />
       <EffectComposer ref={composerRef} enableNormalPass={false} autoClear={false}>
         <Vignette {...VIGNETTE_PROPS} />
+        <DotScreen {...DOT_SCREEN_PROPS} />
         <Noise {...NOISE_PROPS} />
         <ChromaticAberration {...CHROMATIC_ABERRATION_PROPS} />
         <LutLayer />
