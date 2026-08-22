@@ -61,13 +61,30 @@ const CHALLENGE_TITLE = "Just a moment...";
 // polling instead of a flat wait (a managed challenge usually self-resolves
 // in a few seconds once the browser's JS passes its checks, so this gives
 // it real time rather than assuming either "instant" or "never").
-async function waitForChallenge(page, label) {
-  let title = await page.title();
-  let waited = 0;
-  while (title === CHALLENGE_TITLE && waited < 25000) {
-    await page.waitForTimeout(1000);
-    waited += 1000;
-    title = await page.title();
+//
+// One reload-and-retry: a later real run showed the SAME code getting
+// re-challenged and never clearing within 25s, on a run immediately after
+// one that sailed through cleanly with 20 real results — i.e. this
+// specific challenge is intermittent per-attempt, not a deterministic
+// pass/fail for this browser/IP. A fresh navigation gets a fresh
+// risk-scoring pass, so one retry meaningfully raises the odds of getting
+// through within a single job run instead of only across separate CI runs.
+async function waitForChallenge(page, label, { allowReload = true } = {}) {
+  async function poll(budgetMs) {
+    let title = await page.title();
+    let waited = 0;
+    while (title === CHALLENGE_TITLE && waited < budgetMs) {
+      await page.waitForTimeout(1000);
+      waited += 1000;
+      title = await page.title();
+    }
+    return { title, waited };
+  }
+  let { title, waited } = await poll(25000);
+  if (title === CHALLENGE_TITLE && allowReload) {
+    console.log(`[${label}] still challenged after ${waited}ms — reloading once and retrying`);
+    await page.reload({ waitUntil: "domcontentloaded", timeout: 60000 });
+    ({ title, waited } = await poll(25000));
   }
   console.log(`[${label}] post-challenge-wait title (after ${waited}ms): "${title}"`);
   return title;
