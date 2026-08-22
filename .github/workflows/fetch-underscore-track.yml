@@ -46,10 +46,18 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Fetch track
+        # xvfb-run: fetch-underscore.mjs launches Chromium headed
+        # (headless: false), not headless — a real run showed Cloudflare's
+        # bot-check interstitial in place of Pixabay's actual search
+        # results, and headless Chromium's fingerprint is a common trigger
+        # for that specific challenge tier. A headed browser needs a real
+        # X display, which this runner doesn't have by default; xvfb-run
+        # provides a virtual one (xvfb itself is already installed here as
+        # a Playwright OS dependency from the previous step).
         run: |
           QUERY="${{ github.event.inputs.query }}"
           QUERY="${QUERY:-kalimba}"
-          node src/skills/music-sourcing/fetch-underscore.mjs "$QUERY"
+          xvfb-run -a node src/skills/music-sourcing/fetch-underscore.mjs "$QUERY"
 
       - name: Upload debug artifacts on failure
         if: failure()

@@ -53,23 +53,57 @@ function slugify(s) {
     .slice(0, 60);
 }
 
+const CHALLENGE_TITLE = "Just a moment...";
+
+// Polls for Cloudflare's "Just a moment..." interstitial to clear instead of
+// a single fixed delay — see main()'s header comment for why this exists at
+// all (a real run returned that exact title, 0 real content) and why
+// polling instead of a flat wait (a managed challenge usually self-resolves
+// in a few seconds once the browser's JS passes its checks, so this gives
+// it real time rather than assuming either "instant" or "never").
+async function waitForChallenge(page, label) {
+  let title = await page.title();
+  let waited = 0;
+  while (title === CHALLENGE_TITLE && waited < 25000) {
+    await page.waitForTimeout(1000);
+    waited += 1000;
+    title = await page.title();
+  }
+  console.log(`[${label}] post-challenge-wait title (after ${waited}ms): "${title}"`);
+  return title;
+}
+
 async function main() {
   mkdirSync(META_DIR, { recursive: true });
   mkdirSync(AUDIO_DIR, { recursive: true });
-  const browser = await chromium.launch();
-  const context = await browser.newContext({ acceptDownloads: true });
+  // headless: false — a real run (data/music/_run4-log, see SKILL.md) showed
+  // the search page returning Cloudflare's "Just a moment... Performing
+  // security verification" interstitial instead of real content (page title
+  // literally "Just a moment...", 0 real hrefs). That single fact also
+  // retroactively explains the EARLIER "networkidle" hang: the challenge
+  // page itself polls in the background, so network traffic never goes
+  // idle. Headless Chromium's fingerprint is a well-known, common trigger
+  // for exactly this Cloudflare challenge tier — running a real, windowed
+  // browser instance (via Xvfb, already installed on the runner as a
+  // Playwright OS dependency) is the standard, legitimate fix: a real
+  // browser window, not a fingerprint-spoofing library. If this still gets
+  // challenged, that points at IP reputation (GitHub Actions runner
+  // ranges are commonly flagged as datacenter traffic) rather than
+  // anything fixable in this script — see SKILL.md for that fallback.
+  const browser = await chromium.launch({ headless: false });
+  const context = await browser.newContext({
+    acceptDownloads: true,
+    userAgent:
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    viewport: { width: 1366, height: 900 },
+  });
   const page = await context.newPage();
 
   const searchUrl = `https://pixabay.com/music/search/${encodeURIComponent(QUERY)}/`;
   console.log(`Navigating to ${searchUrl}`);
-  // "networkidle" timed out at 60s on a real run (never resolved) — Pixabay's
-  // page evidently keeps some background connection open (analytics/ads are
-  // the usual cause) that stops the network from ever going fully idle.
-  // "domcontentloaded" + an explicit settle delay is the standard fix for
-  // exactly this failure mode: it doesn't wait on traffic this script
-  // doesn't care about, just gives the client-side JS time to paint results.
   await page.goto(searchUrl, { waitUntil: "domcontentloaded", timeout: 60000 });
-  await page.waitForTimeout(5000);
+  await waitForChallenge(page, "search");
+  await page.waitForTimeout(2000);
   // Bounded, non-hanging extra wait for actual result links specifically
   // (as opposed to networkidle's unbounded wait on ALL traffic) — best
   // effort only: if this never resolves, the code below still runs and
@@ -114,6 +148,7 @@ async function main() {
   let chosenText = "";
   for (const url of trackLinks.slice(0, 8)) {
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+    await waitForChallenge(page, `track:${url}`);
     await page.waitForTimeout(1500);
     const bodyText = await page.evaluate(() => document.body.innerText);
     const lower = bodyText.toLowerCase();
