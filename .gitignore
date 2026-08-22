@@ -33,3 +33,10 @@ src/skills/remotion-render/out/
 # not pipeline output — the extracted frame PNGs next to them are the part
 # worth keeping (same convention as data/renders/**/*.mp4 above).
 qa/**/*.mp4
+
+# fetch-library.js's pre-treatment downloads — scratch input to treat.js,
+# not pipeline output. The treated copy under
+# src/skills/remotion-render/public/asset-library/ plus the manifest row in
+# data/asset-library/index.json are what actually matter downstream; the
+# raw originals would just bloat the repo with redundant multi-MB images.
+data/asset-library/raw/
