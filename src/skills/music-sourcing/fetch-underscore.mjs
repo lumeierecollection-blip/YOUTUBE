@@ -231,10 +231,27 @@ async function main() {
       .then((t) => console.log(`New tab loaded — title: "${t}", url: ${p.url()}`))
       .catch((e) => console.log(`New tab didn't finish loading within 10s: ${e.message}`));
   });
+  // A real run (context-level download listener + this "download"-URL
+  // filter both in place) showed NEITHER firing even once, alongside the
+  // button staying stuck on "Downloading..." for the full 44s observation
+  // window with no reversion — a real, consistent failure, not a poll bug
+  // this time. That combination leaves one thing still unverified: whether
+  // the click causes ANY network request at all, under any URL, or truly
+  // none. captureAllResponses (armed only around the click, not for the
+  // whole page lifetime, to avoid drowning this in the page's ordinary
+  // load traffic) answers that with certainty instead of a keyword guess.
+  let captureAllResponses = false;
   page.on("response", (res) => {
-    if (/download/i.test(res.url())) {
+    if (captureAllResponses) {
+      console.log(`Response during capture window: ${res.status()} ${res.request().method()} ${res.url()}`);
+    } else if (/download/i.test(res.url())) {
       console.log(`Response for a "download"-matching URL: ${res.status()} ${res.url()}`);
     }
+  });
+  page.on("websocket", (ws) => {
+    console.log(`WebSocket opened: ${ws.url()}`);
+    ws.on("framesent", (f) => console.log(`WS frame sent: ${String(f.payload).slice(0, 200)}`));
+    ws.on("framereceived", (f) => console.log(`WS frame received: ${String(f.payload).slice(0, 200)}`));
   });
   // A single attempt, not a loop over the whole downloadTriggers list — two
   // real runs showed the SAME button's text flipping from "Download" to
@@ -293,7 +310,11 @@ async function main() {
     // referencing the same DOM node even after its text changes, which is
     // exactly what needs to be polled here.
     const handle = await triggerLocator.elementHandle();
+    captureAllResponses = true;
     await triggerLocator.click();
+    setTimeout(() => {
+      captureAllResponses = false;
+    }, 10000);
     let lastText = "<unset>";
     for (let elapsed = 0; elapsed <= 44000 && !downloadSettled; elapsed += 2000) {
       const t = handle ? await handle.textContent().catch((e) => `<error: ${e.message}>`) : "<no handle>";
