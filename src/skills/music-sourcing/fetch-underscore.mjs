@@ -281,10 +281,22 @@ async function main() {
         downloadSettled = true;
         return null;
       });
+    // A real run showed this poll logging NOTHING for the full 44s — the
+    // bug was in the poll itself, not the site: triggerLocator is
+    // `button:has-text("Free Download")`, which stops matching the
+    // instant the button's own text changes away from that (to
+    // "Downloading..."), so every post-click .textContent() call was
+    // silently timing out against Playwright's actionability wait and
+    // getting swallowed by `.catch(() => null)` — burning the whole
+    // budget on one dead call instead of ever observing a real
+    // transition. Grabbing a stable elementHandle BEFORE the click keeps
+    // referencing the same DOM node even after its text changes, which is
+    // exactly what needs to be polled here.
+    const handle = await triggerLocator.elementHandle();
     await triggerLocator.click();
-    let lastText = null;
+    let lastText = "<unset>";
     for (let elapsed = 0; elapsed <= 44000 && !downloadSettled; elapsed += 2000) {
-      const t = await triggerLocator.textContent().catch(() => null);
+      const t = handle ? await handle.textContent().catch((e) => `<error: ${e.message}>`) : "<no handle>";
       if (t !== lastText) {
         console.log(`Button text @ +${elapsed}ms: "${t}"`);
         lastText = t;
