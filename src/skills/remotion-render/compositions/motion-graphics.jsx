@@ -12,7 +12,6 @@ import {
 } from "remotion";
 import { Audio } from "@remotion/media";
 import { dotGrid } from "@remotion/effects/dot-grid";
-import { noise } from "@remotion/effects/noise";
 import { evolvePath, getSubpaths } from "@remotion/paths";
 import { makeCircle, makeRect } from "@remotion/shapes";
 import { measureText, fitTextOnNLines, HEADLINE_FONT, fontStyleFor, needsFixedSlots, reserveCounterWidth } from "../layout/measure.js";
@@ -24,6 +23,7 @@ import { D, MG_TYPE as TYPE, CAPTION } from "./beats.js";
 import { rolesFromPalette, strokeAttr, mixColor } from "./mg-style.js";
 import { ICON_INNER } from "./icons-data.js";
 import { PhotoTreatment } from "../effects/PhotoTreatment.jsx";
+import { CanvasGrain } from "../effects/CanvasGrain.jsx";
 
 /**
  * MotionGraphics — MOTION-GRAPHICS-MANUAL.md Parts A–F.
@@ -315,17 +315,22 @@ function DesignSpace({ children }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Background — A6: flat bg → dotGrid (stroke 6%) → content → grain (noise 4%).
+// Background — A6: flat bg → dotGrid (stroke 6%) → content → grain (noise 5%,
+// effects/CanvasGrain.jsx — postprocessing's NoiseEffect via ThreeCanvas, the
+// same mechanism as the photo treatment's grain, swapped in for the
+// @remotion/effects noise() this layer used before).
 // ─────────────────────────────────────────────────────────────────────────────
 
 // PART 7 of the rebuild — "nothing perfectly still: <=1.5% scale breath,
-// 20s+ period, on background layers." Applied to the dotGrid/noise texture
+// 20s+ period, on background layers." Applied to the dotGrid/grain texture
 // layers only, never the flat base-colour fill beneath them (scaling that
 // would risk a 1-2px edge gap under the design-space scale wrapper; the
 // texture layers sit on top of a same-colour base so a breathing edge is
-// invisible either way). frame-audit's margin-flatness check (stddev<=14
-// in empty corners) was re-run against this — see PART 10's report — since
-// a naive implementation could in principle raise it.
+// invisible either way). frame-audit's margin-flatness check was re-run
+// against this — see PART 10's report — since a naive implementation could
+// in principle raise it; extended again for CanvasGrain (frame-audit.js's
+// blurredStddev/chromaStddev) to allow grain specifically while still
+// catching a real gradient/tint.
 const BREATHE_PERIOD_SEC = 20;
 const BREATHE_AMPLITUDE = 0.015;
 
@@ -344,22 +349,29 @@ function Background({ colors }) {
         effects={[dotGrid({ dotSize: 8, gridSize: 80 })]}
         style={{ position: "absolute", inset: 0, opacity: 0.06, scale: `${breathe}`, transformOrigin: "center" }}
       />
-      <Solid
-        width={width}
-        height={height}
-        color="#ffffff"
-        effects={[noise({ amount: 0.05 })]}
+      {/* vox-style-treatment SKILL.md's grain, extended from photo assets
+          to the flat canvas itself — see effects/CanvasGrain.jsx for the
+          real-library rationale (postprocessing's NoiseEffect, same
+          mechanism as the photo treatment) and the honest tradeoff against
+          the dotGrid layer's lighter-weight @remotion/effects noise().
+          Luminance-only by construction (CanvasGrain.jsx's header), so
+          this never touches hue — frame-audit.js's flatness check verifies
+          that distinction directly rather than just tolerating a bigger
+          number (see frame-audit.js's blurredStddev/chromaStddev). */}
+      <div
         // PART 7 parallax — a different (slower, phase-shifted) rate than
         // the dotGrid layer above it, so the two background layers read as
         // sitting at different depths rather than moving as one unit.
+        // Preserved from the noise() layer this replaces.
         style={{
           position: "absolute",
           inset: 0,
-          opacity: 0.04,
           scale: `${1 + BREATHE_AMPLITUDE * 0.6 * Math.sin((2 * Math.PI * frame) / (fps * BREATHE_PERIOD_SEC * 1.4) + Math.PI / 3)}`,
           transformOrigin: "center",
         }}
-      />
+      >
+        <CanvasGrain color={colors.bg} width={width} height={height} />
+      </div>
     </>
   );
 }
@@ -1648,6 +1660,7 @@ function MotionGraphicsShorts({
   mg = null,
   sections = [],
   ttsAudioPath,
+  hasUnderscore = false,
   font = "DM Sans",
   palette = null,
   channelName = "",
@@ -1666,6 +1679,19 @@ function MotionGraphicsShorts({
       {mg ? (
         <MotionGraphicsContent mg={mg} colors={colors} fontFamily={fontFamily} />
       ) : null}
+      {/* music-sourcing/SKILL.md's whole-video underscore bed — distinct
+          from the existing per-beat Sfx system (short one-shot cues, not
+          a continuous track). Static gain staging (a fixed, low level for
+          the ENTIRE bed), not dynamic sidechain ducking: this pipeline
+          has no VO-amplitude analysis to react to, and a fixed level well
+          under both the voiceover and the SFX cues (-24dB here vs Sfx's
+          own -18 to -24dB range, itself already under the voiceover)
+          reads as "present but never competing" without that added
+          machinery. hasUnderscore comes from render.js checking whether
+          the committed public/music/underscore.mp3 actually exists —
+          optional, so no static import (that would break the bundle on
+          any checkout that hasn't fetched a track). */}
+      {hasUnderscore ? <Audio src={staticFile("music/underscore.mp3")} volume={dbToVolume(-24)} loop /> : null}
       {ttsAudioPath ? <Audio src={currentAudio} /> : null}
     </AbsoluteFill>
   );

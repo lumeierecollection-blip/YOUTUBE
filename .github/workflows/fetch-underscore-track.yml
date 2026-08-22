@@ -6,6 +6,20 @@
 # why it drives a real browser rather than calling an API (Pixabay Music
 # has no documented/public API endpoint, only a download-from-the-page
 # flow).
+#
+# KNOWN LIMITATION, confirmed via 12 real runs of this workflow (see
+# SKILL.md's full run log): the page-load Cloudflare challenge can be
+# worked around, but the download BUTTON itself is separately gated by a
+# Cloudflare Turnstile widget, and Turnstile's own verification request
+# (.../challenge-platform/h/b/pat/...) returns 401 for this automated
+# browser every time — the download never completes as a result. That is
+# Cloudflare's anti-bot protection working as intended; defeating it would
+# mean CAPTCHA-solving or IP-reputation laundering, neither of which this
+# script attempts. This workflow is kept, dispatchable, as an honestly-
+# documented attempt (and it does everything up to the actual file
+# transfer correctly), not because it currently succeeds end-to-end.
+# Sourcing the real audio file needs a one-time manual download by a
+# human — see SKILL.md for the specific recommended track.
 
 name: Fetch Underscore Track
 
@@ -16,16 +30,6 @@ on:
         description: "Pixabay Music search query"
         required: false
         default: "kalimba"
-  # TEMPORARY — this session has no actions:write scope to dispatch
-  # workflow_dispatch directly, so this push trigger stands in for one
-  # real run, then gets removed. Same pattern as build-asset-library.yml
-  # and network-policy-check.yml earlier this session.
-  push:
-    branches:
-      - claude/png-sourcing-animations-captions-wgv6ty
-    paths:
-      - ".github/workflows/fetch-underscore-track.yml"
-      - "src/skills/music-sourcing/**"
 
 jobs:
   fetch:

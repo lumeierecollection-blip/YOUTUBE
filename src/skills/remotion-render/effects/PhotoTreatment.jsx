@@ -1,11 +1,12 @@
-import React, { useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { ThreeCanvas } from "@remotion/three";
-import { useLoader, useThree } from "@react-three/fiber";
+import { useLoader } from "@react-three/fiber";
 import { EffectComposer, Vignette, Noise, ChromaticAberration, LUT, DotScreen } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
 import { LUTCubeLoader } from "three/examples/jsm/loaders/LUTCubeLoader.js";
-import { staticFile, useDelayRender } from "remotion";
+import { staticFile } from "remotion";
+import { PostFxReadyGate } from "./PostFxReadyGate.jsx";
 
 /**
  * vox-style-treatment SKILL.md's "Photo/asset treatment" checklist,
@@ -76,14 +77,16 @@ import { staticFile, useDelayRender } from "remotion";
  * nothing paints, not even the raw photo. ThreeCanvas's Suspense-driven
  * "ready" signal (SuspenseLoader's fallback continueRender, released
  * synchronously in the commit's layout-effect phase) has no idea this
- * second async hop exists and can resolve before it. PostFxReadyGate below
- * closes that gap explicitly: it holds its own delayRender and retries
- * advance() across real render cycles (via a counter-driven useEffect,
- * not an assumption about effect ordering) until composerRef.current
- * (EffectComposer's own imperative handle, populated by the same state
- * update) confirms the composer actually exists — only then does it
- * release Remotion's delay, guaranteeing at least one advance() happens
- * after EffectComposer is truly ready to render.
+ * second async hop exists and can resolve before it. PostFxReadyGate.jsx
+ * (shared with CanvasGrain.jsx, the same class of ThreeCanvas+
+ * EffectComposer consumer) closes that gap explicitly: it holds its own
+ * delayRender and retries advance() across real render cycles (via a
+ * counter-driven useEffect, not an assumption about effect ordering)
+ * until composerRef.current (EffectComposer's own imperative handle,
+ * populated by the same state update) confirms the composer actually
+ * exists — only then does it release Remotion's delay, guaranteeing at
+ * least one advance() happens after EffectComposer is truly ready to
+ * render.
  */
 
 const LUT_URL = staticFile("luts/editorial-grade.cube");
@@ -131,68 +134,6 @@ function LutLayer() {
   return <LUT lut={texture3D} blendFunction={BlendFunction.NORMAL} />;
 }
 
-// See the file-header comment ("Rendering sync, part 2") for why this
-// exists. Caps at MAX_RETRIES attempts so a genuinely broken composer
-// can't hang the whole render forever — that ceiling should never be hit
-// in practice (the composer is normally ready within 1-2 real R3F ticks),
-// so hitting it is logged loudly rather than failing silently.
-const MAX_RETRIES = 20;
-const RETRY_DELAY_MS = 30;
-
-function PostFxReadyGate({ composerRef }) {
-  const { advance } = useThree();
-  const { delayRender, continueRender } = useDelayRender();
-
-  // Registration AND retries both live inside this single mount-only
-  // effect — never in the render body, not even ref-guarded. A real bug
-  // caught here (data/audit/13): React can invoke this component's render
-  // function more than once for what becomes ONE logical mount while a
-  // Suspense boundary above it resolves (one invocation gets committed,
-  // the other is discarded) — a side effect like delayRender() in the
-  // render body runs for BOTH, permanently orphaning one handle even
-  // though only one fiber ever gets a useEffect/cleanup cycle to release
-  // it (the discarded one silently never runs its effects at all, which
-  // is how this was diagnosed: its console.log calls in the render body
-  // fired, but its useEffect-guarded logging never did). useEffect with an
-  // empty dependency array does not have this problem — React only runs
-  // effects for fibers that actually commit.
-  React.useEffect(() => {
-    const handle = delayRender("Waiting for PhotoTreatment's EffectComposer to paint a real frame");
-    let released = false;
-    let attempts = 0;
-    let timeoutId = null;
-
-    function attempt() {
-      if (released) return;
-      advance(performance.now());
-      attempts += 1;
-      if (composerRef.current) {
-        released = true;
-        continueRender(handle);
-        return;
-      }
-      if (attempts >= MAX_RETRIES) {
-        console.warn(
-          `PhotoTreatment: EffectComposer did not become ready after ${MAX_RETRIES} attempts — releasing Remotion's render anyway. This frame likely has no post-fx treatment; investigate before trusting this render.`
-        );
-        released = true;
-        continueRender(handle);
-        return;
-      }
-      timeoutId = setTimeout(attempt, RETRY_DELAY_MS);
-    }
-    attempt();
-
-    return () => {
-      released = true;
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return null;
-}
-
 /**
  * @param {object} props
  * @param {string} props.src        staticFile()-resolved image URL
@@ -225,7 +166,7 @@ export function PhotoTreatment({ src, treatment, width, height }) {
         <ChromaticAberration {...CHROMATIC_ABERRATION_PROPS} />
         <LutLayer />
       </EffectComposer>
-      <PostFxReadyGate composerRef={composerRef} />
+      <PostFxReadyGate composerRef={composerRef} label="PhotoTreatment" />
     </ThreeCanvas>
   );
 }

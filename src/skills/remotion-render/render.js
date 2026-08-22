@@ -438,6 +438,15 @@ async function main() {
   writeFileSync(creditsPath, JSON.stringify([...creditSet], null, 2) + "\n");
   console.log(`Image credits: ${creditSet.size} attribution(s) -> ${creditsPath}`);
 
+  // music-sourcing/SKILL.md's underscore bed — a committed, stable asset
+  // (src/skills/music-sourcing/fetch-underscore.mjs's fixed output path),
+  // never a static import: unlike vo.mp3 (always present, required), this
+  // is optional, so a missing file must not break the webpack bundle or
+  // fail the render. hasUnderscore just tells the composition whether to
+  // render the <Audio> bed at all; the actual staticFile() resolution
+  // happens in motion-graphics.jsx, at render time, inside the bundle.
+  const hasUnderscore = existsSync(join(__dirname, "public", "music", "underscore.mp3"));
+
   const props = {
     channelId: channel.channel_id,
     style: channel.style,
@@ -445,6 +454,7 @@ async function main() {
     sections,
     mg,
     ttsAudioPath: staged,
+    hasUnderscore,
     thumbnailStyle: channel.thumbnail_spec?.style || "dramatic-visual",
     tone: channel.tone,
     font: channel.font || "Inter",
