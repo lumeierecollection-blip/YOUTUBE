@@ -12,10 +12,9 @@ import {
 } from "remotion";
 import { Audio } from "@remotion/media";
 import { dotGrid } from "@remotion/effects/dot-grid";
-import { noise } from "@remotion/effects/noise";
 import { evolvePath, getSubpaths } from "@remotion/paths";
 import { makeCircle, makeRect } from "@remotion/shapes";
-import { measureText, fitTextOnNLines, HEADLINE_FONT, fontStyleFor } from "../layout/measure.js";
+import { measureText, fitTextOnNLines, HEADLINE_FONT, fontStyleFor, needsFixedSlots, reserveCounterWidth } from "../layout/measure.js";
 import { currentAudio } from "../audio.js";
 import "../wait-for-fonts.js";
 import { resolveFontFamily } from "./visual.js";
@@ -23,6 +22,8 @@ import { Panel } from "../primitives/Panel.jsx";
 import { D, MG_TYPE as TYPE, CAPTION } from "./beats.js";
 import { rolesFromPalette, strokeAttr, mixColor } from "./mg-style.js";
 import { ICON_INNER } from "./icons-data.js";
+import { PhotoTreatment } from "../effects/PhotoTreatment.jsx";
+import { CanvasGrain } from "../effects/CanvasGrain.jsx";
 
 /**
  * MotionGraphics — MOTION-GRAPHICS-MANUAL.md Parts A–F.
@@ -192,10 +193,62 @@ function formatCounter(value, maxValue) {
   return s.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+/**
+ * A1.3 fallback — per-digit fixed `0.62em` slots, for fonts
+ * layout/measure.js's needsFixedSlots() flags as unable to do equal-width
+ * digits (no `tnum`, proportional advances: DM Sans, Nunito —
+ * data/audit/2/tnum-features.txt). This is the production path
+ * (Root.jsx mounts this file, not beats/**) — closes SFR-T-11-2
+ * (data/audit/11/audit-type.ledger.md §2.4). Verbatim copy of
+ * beats/HeroNumber.jsx's helper of the same name; this file's own
+ * convention is local, undeduplicated helpers per scene (see ease/
+ * easeScale/popStyle above), not a shared import across the two counter
+ * renderers.
+ */
+function fixedSlotChars(text) {
+  return Array.from(text).map((ch, i) =>
+    /\d/.test(ch) ? (
+      <span key={i} style={{ display: "inline-block", width: "0.62em", textAlign: "center" }}>
+        {ch}
+      </span>
+    ) : (
+      <span key={i}>{ch}</span>
+    )
+  );
+}
+
 function fmtValue(v) {
   if (!Number.isFinite(v)) return "0";
   if (Number.isInteger(v)) return v.toLocaleString("en-US");
   return v.toLocaleString("en-US", { maximumFractionDigits: 1 });
+}
+
+/**
+ * A2.3 raised floor + A2.6 clamp for ProgressScene's per-bar value — mirrors
+ * beats/Progress.jsx's counterText (DETAIL-REFERENCE A2.3: "a raised floor
+ * is preferred inside charts", vs. HeroNumberScene's zero-pad formatCounter,
+ * where "padding is preferred for hero numbers" — this file intentionally
+ * keeps both conventions rather than picking one for both scenes).
+ *
+ * Also closes a real, unclamped-overshoot bug this legacy scene had that
+ * beats/Progress.jsx's sibling never did: the call this replaces,
+ * `fmtValue(s.value * g)`, fed the RAW spring value straight into the
+ * label. `growSpring`'s config (damping 16, stiffness 90) is underdamped
+ * (critical damping = 2*sqrt(90) ≈ 18.97 > 16), so it overshoots past 1 —
+ * the counter visibly counted past its target value and dropped back down,
+ * independent of any font (the exact "counts up then jumps back" defect
+ * class this session's motivating research was scoped around). The bar's
+ * own HEIGHT is deliberately left on the unclamped `g` (A3.1's documented
+ * ~15% bar overshoot is intentional); only the number is clamped, per A2.6
+ * ("the bar still overshoots... the counter does not follow").
+ */
+function progressCounterText(value, p) {
+  const clampedP = Math.min(Math.max(p, 0), 1);
+  const digits = String(Math.abs(Math.trunc(value))).length;
+  const floor = Math.abs(value) >= 10 ? 10 ** (digits - 1) : 0;
+  const shown = Math.min(value, floor + (value - floor) * clampedP);
+  const rounded = Number.isInteger(value) ? Math.round(shown) : Math.round(shown * 10) / 10;
+  return fmtValue(rounded);
 }
 
 // PART 10 (follow-up) — real defect, reproduced on a real render (Money
@@ -262,17 +315,22 @@ function DesignSpace({ children }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Background — A6: flat bg → dotGrid (stroke 6%) → content → grain (noise 4%).
+// Background — A6: flat bg → dotGrid (stroke 6%) → content → grain (noise 5%,
+// effects/CanvasGrain.jsx — postprocessing's NoiseEffect via ThreeCanvas, the
+// same mechanism as the photo treatment's grain, swapped in for the
+// @remotion/effects noise() this layer used before).
 // ─────────────────────────────────────────────────────────────────────────────
 
 // PART 7 of the rebuild — "nothing perfectly still: <=1.5% scale breath,
-// 20s+ period, on background layers." Applied to the dotGrid/noise texture
+// 20s+ period, on background layers." Applied to the dotGrid/grain texture
 // layers only, never the flat base-colour fill beneath them (scaling that
 // would risk a 1-2px edge gap under the design-space scale wrapper; the
 // texture layers sit on top of a same-colour base so a breathing edge is
-// invisible either way). frame-audit's margin-flatness check (stddev<=14
-// in empty corners) was re-run against this — see PART 10's report — since
-// a naive implementation could in principle raise it.
+// invisible either way). frame-audit's margin-flatness check was re-run
+// against this — see PART 10's report — since a naive implementation could
+// in principle raise it; extended again for CanvasGrain (frame-audit.js's
+// blurredStddev/chromaStddev) to allow grain specifically while still
+// catching a real gradient/tint.
 const BREATHE_PERIOD_SEC = 20;
 const BREATHE_AMPLITUDE = 0.015;
 
@@ -291,22 +349,29 @@ function Background({ colors }) {
         effects={[dotGrid({ dotSize: 8, gridSize: 80 })]}
         style={{ position: "absolute", inset: 0, opacity: 0.06, scale: `${breathe}`, transformOrigin: "center" }}
       />
-      <Solid
-        width={width}
-        height={height}
-        color="#ffffff"
-        effects={[noise({ amount: 0.05 })]}
+      {/* vox-style-treatment SKILL.md's grain, extended from photo assets
+          to the flat canvas itself — see effects/CanvasGrain.jsx for the
+          real-library rationale (postprocessing's NoiseEffect, same
+          mechanism as the photo treatment) and the honest tradeoff against
+          the dotGrid layer's lighter-weight @remotion/effects noise().
+          Luminance-only by construction (CanvasGrain.jsx's header), so
+          this never touches hue — frame-audit.js's flatness check verifies
+          that distinction directly rather than just tolerating a bigger
+          number (see frame-audit.js's blurredStddev/chromaStddev). */}
+      <div
         // PART 7 parallax — a different (slower, phase-shifted) rate than
         // the dotGrid layer above it, so the two background layers read as
         // sitting at different depths rather than moving as one unit.
+        // Preserved from the noise() layer this replaces.
         style={{
           position: "absolute",
           inset: 0,
-          opacity: 0.04,
           scale: `${1 + BREATHE_AMPLITUDE * 0.6 * Math.sin((2 * Math.PI * frame) / (fps * BREATHE_PERIOD_SEC * 1.4) + Math.PI / 3)}`,
           transformOrigin: "center",
         }}
-      />
+      >
+        <CanvasGrain color={colors.bg} width={width} height={height} />
+      </div>
     </>
   );
 }
@@ -526,7 +591,7 @@ function CaptionLine({ tokens, frame, activeIndex, suppressed, colors, fontFamil
   );
 }
 
-function CaptionLayer({ pages, accentWindows, colors, fontFamily }) {
+export function CaptionLayer({ pages, accentWindows, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const page = pages.find((p) => frame >= p.startFrame && frame < p.endFrame);
   if (!page) return null;
@@ -828,6 +893,14 @@ function HeroNumberScene({ beat, scene, colors, fontFamily }) {
   const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
   const start = Math.max(tA - D.micro, 0);
   const counter = ease(frame - start, [0, D.push], [0, 1], E_OUT) * scene.value;
+  // A1.3 — see fixedSlotChars' comment. Only paid for on the 5 flagged
+  // channels; every other channel's rendering is byte-for-byte unchanged.
+  const fixedSlots = needsFixedSlots(fontFamily);
+  const numeralFontStyle = fontStyleFor(fontFamily, { fontWeight: 800 });
+  const reservedWidth = fixedSlots
+    ? reserveCounterWidth(formatCounter(scene.value, scene.value), numeralFontStyle, TYPE.hero)
+    : null;
+  const counterStr = formatCounter(counter, scene.value);
   return (
     <>
       {/* PART 3.2 — a hairline sweep arcing behind the numeral, entering and
@@ -841,16 +914,17 @@ function HeroNumberScene({ beat, scene, colors, fontFamily }) {
         <div style={{ position: "relative" }}>
           <span
             style={{
-              fontFamily,
-              fontWeight: 800,
+              ...numeralFontStyle,
               fontSize: TYPE.hero,
               color: colors.accent,
               lineHeight: 1,
               fontVariantNumeric: "tabular-nums",
+              textAlign: "center",
+              ...(reservedWidth ? { display: "inline-block", width: reservedWidth } : null),
               ...popStyle(frame, start, { boost: beat.scene.isReveal }),
             }}
           >
-            {formatCounter(counter, scene.value)}
+            {fixedSlots ? fixedSlotChars(counterStr) : counterStr}
           </span>
         </div>
         <Sfx file="sfx/ui/click_004.ogg" at={start + D.push} db={-22} />
@@ -984,6 +1058,10 @@ function ProgressScene({ beat, scene, colors, fontFamily }) {
   const baselineY = 880;
   const maxValue = Math.max(...series.map((s) => Number(s.value) || 0), 1);
   const maxBarH = 880 - 480;
+  // A1.3 — see fixedSlotChars' comment. Only paid for on the 5 flagged
+  // channels; every other channel's rendering is byte-for-byte unchanged.
+  const fixedSlots = needsFixedSlots(fontFamily);
+  const valueFontStyle = fontStyleFor(fontFamily, { fontWeight: 800 });
 
   const baselineProg = ease(frame, [0, 10], [0, 1], E_OUT);
   const gridYs = [0.25, 0.5, 0.75];
@@ -1063,7 +1141,18 @@ function ProgressScene({ beat, scene, colors, fontFamily }) {
                 fontVariantNumeric: "tabular-nums",
               }}
             >
-              {fmtValue(s.value * g)}
+              {fixedSlots ? (
+                <span
+                  style={{
+                    display: "inline-block",
+                    width: reserveCounterWidth(progressCounterText(s.value, 1), valueFontStyle, TYPE.value * 0.5),
+                  }}
+                >
+                  {fixedSlotChars(progressCounterText(s.value, g))}
+                </span>
+              ) : (
+                progressCounterText(s.value, g)
+              )}
             </span>
             {/* axis label */}
             <span
@@ -1193,7 +1282,7 @@ function RelationScene({ beat, scene, colors, fontFamily }) {
 }
 
 // F8 — STATEMENT: icon 120 POP at tA−4, headline RISE at tA. Nothing else.
-function StatementScene({ beat, scene, colors, fontFamily }) {
+export function StatementScene({ beat, scene, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
   const start = Math.max(tA - D.micro, 0);
@@ -1244,7 +1333,36 @@ function StatementScene({ beat, scene, colors, fontFamily }) {
 //  - "fullbleed" (or no treatment at all, e.g. an untreated legacy b-roll
 //    fixture): unchanged pre-PART-6 behaviour — `object-fit: cover`,
 //    bleeding to the canvas edge.
-function ImageBeatScene({ beat, scene, colors, fontFamily }) {
+// Stage box in DesignSpace's 1080×1920 design-space pixels (see the
+// left/top/right/bottom literals below) — ThreeCanvas needs explicit
+// numeric width/height (unlike <img>, it can't just fill a flexible CSS
+// box), and DesignSpace's own `transform: scale(S)` wrapper (useLayout(),
+// above) already scales this whole subtree to the real output resolution
+// exactly like it does for every other beat's design-space coordinates,
+// so these stay fixed design-space pixels, not useVideoConfig()'s output
+// pixels.
+const IMAGE_STAGE_W = 1080 - 48 - 0; // left:48, right:0
+const IMAGE_STAGE_H = 1920 - 392 - 780; // top:392, bottom:780
+
+// vox-style-treatment SKILL.md's "Fallback: cutout quality fails the rembg
+// gate" section. treat.js's classify() (src/skills/asset-sourcing/treat.js)
+// is that gate — a photo only ever gets imageTreatment:"fullbleed" because
+// rembg's segmentation didn't find a clean, isolated subject (coverage too
+// high or the alpha mask touches 3+ edges: "texture/landscape filling the
+// frame, not an isolated object"). treat.js already does NOT discard that
+// photo — it saves a tone-normalized fullbleed JPEG instead of a cutout PNG,
+// and select.js/image-assets.js already carry it through unfiltered. What
+// WAS missing: at render time, a fullbleed photo was just filling the same
+// bounded stage box a cutout uses, not reading as "that beat's own
+// background" the way the skill asks for. This stage box is fullbleed-only:
+// edge-to-edge width, and tall enough to run underneath the caption zone
+// (CAPTION.zoneBottom=1248) rather than stopping short of it, so the photo
+// genuinely reads as a background instead of a bounded panel.
+const FULLBLEED_STAGE_TOP = 392; // same top as the cutout stage — HeadlineBox grows upward into the slack above this, never below it
+const FULLBLEED_STAGE_BOTTOM_EDGE = 1290; // ~40px past CAPTION.zoneBottom (1248)
+const FULLBLEED_STAGE_H = 1920 - FULLBLEED_STAGE_TOP - (1920 - FULLBLEED_STAGE_BOTTOM_EDGE);
+
+export function ImageBeatScene({ beat, scene, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
@@ -1252,55 +1370,66 @@ function ImageBeatScene({ beat, scene, colors, fontFamily }) {
   const push = Easing.spring({ damping: 200 })(ease(frame - start, [0, D.push], [0, 1], E_OUT));
   if (!scene.image) return null;
   const isCutout = scene.imageTreatment === "cutout";
+  const stageW = isCutout ? IMAGE_STAGE_W : 1080;
+  const stageH = isCutout ? IMAGE_STAGE_H : FULLBLEED_STAGE_H;
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <div
         style={{
           position: "absolute",
-          left: 48,
-          top: 392,
+          left: isCutout ? 48 : 0,
+          top: FULLBLEED_STAGE_TOP, // 392 either way
           right: 0, // bleeds past the 888 safe-right edge to the real canvas edge (1080)
-          bottom: 780, // bleeds down toward the caption zone (past the 940 stage floor)
-          overflow: isCutout ? "visible" : "hidden",
-          display: isCutout ? "flex" : "block",
-          alignItems: isCutout ? "center" : undefined,
-          justifyContent: isCutout ? "center" : undefined,
+          bottom: isCutout ? 780 : 1920 - FULLBLEED_STAGE_BOTTOM_EDGE,
           opacity: ease(frame - start, [0, D.base], [0, 1], E_OUT),
           scale: `${1.05 - push * 0.05}`,
           transformOrigin: "center",
         }}
       >
-        <img
+        {/* vox-style-treatment SKILL.md's per-photo treatment: real,
+            tested libraries (postprocessing's Vignette/Noise/
+            ChromaticAberration/DotScreen + a real 3D LUT), never freehand
+            shader math — see effects/PhotoTreatment.jsx. Contain/cover
+            sizing for cutout/fullbleed now happens INSIDE PhotoTreatment's
+            own Plane (matching the old <img> maxWidth:88%/maxHeight:92%-
+            contain vs 100%-cover logic exactly), so this wrapper no longer
+            needs the flex-centering the plain <img> required — the canvas
+            is always the full stage box and the plane is centered within
+            it. */}
+        <PhotoTreatment
           src={staticFile(scene.image)}
-          style={
-            isCutout
-              ? { maxWidth: "88%", maxHeight: "92%", width: "auto", height: "auto", objectFit: "contain" }
-              : { width: "100%", height: "100%", objectFit: "cover" }
-          }
-          alt=""
+          treatment={isCutout ? "cutout" : "fullbleed"}
+          width={stageW}
+          height={stageH}
         />
+        {!isCutout ? (
+          // Gradient scrim WITHIN the photo layer only (never the canvas —
+          // cutout and typography-only beats have no gradient, unchanged).
+          // Fades to the channel's own bg color, fully opaque well before
+          // the caption zone starts (80% of this box's height = y≈1110,
+          // CAPTION.zoneTop=1152) so the caption's existing stroke-outlined
+          // text — unchanged, "same type rules as elsewhere" — sits on a
+          // clean, consistent surface exactly like it does over the flat
+          // canvas on every other beat type, instead of directly on top of
+          // uncontrolled photo detail.
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: `linear-gradient(to bottom, transparent 0%, transparent 45%, ${colors.bg} 80%, ${colors.bg} 100%)`,
+              pointerEvents: "none",
+            }}
+          />
+        ) : null}
       </div>
-      {scene.credit ? (
-        <span
-          style={{
-            position: "absolute",
-            right: 24,
-            top: 392 + 24,
-            transformOrigin: "top right",
-            transform: "rotate(90deg) translateX(0)",
-            whiteSpace: "nowrap",
-            fontFamily,
-            fontWeight: 400,
-            fontSize: TYPE.label,
-            letterSpacing: 1,
-            color: colors.textDim,
-            textShadow: `0 0 8px ${colors.bg}, 0 0 8px ${colors.bg}`,
-            ...riseStyle(frame, start + D.short),
-          }}
-        >
-          {scene.credit}
-        </span>
-      ) : null}
+      {/* vox-style-treatment SKILL.md's SFX resolution: every beat gets
+          SOME cue. Every other push-in-style beat (e.g. HeroNumberScene)
+          fires one on landing; IMAGE_BEAT had none of its own and relied
+          entirely on the global caption-gap cue in MotionGraphicsContent,
+          which a densely-captioned beat can miss outright. Same plain
+          click, same quiet level, as HeroNumberScene's — an image landing
+          isn't a "moment that earns" a distinctive sound. */}
+      <Sfx file="sfx/ui/click_004.ogg" at={start + D.push} db={-22} />
     </div>
   );
 }
@@ -1531,6 +1660,7 @@ function MotionGraphicsShorts({
   mg = null,
   sections = [],
   ttsAudioPath,
+  hasUnderscore = false,
   font = "DM Sans",
   palette = null,
   channelName = "",
@@ -1549,6 +1679,19 @@ function MotionGraphicsShorts({
       {mg ? (
         <MotionGraphicsContent mg={mg} colors={colors} fontFamily={fontFamily} />
       ) : null}
+      {/* music-sourcing/SKILL.md's whole-video underscore bed — distinct
+          from the existing per-beat Sfx system (short one-shot cues, not
+          a continuous track). Static gain staging (a fixed, low level for
+          the ENTIRE bed), not dynamic sidechain ducking: this pipeline
+          has no VO-amplitude analysis to react to, and a fixed level well
+          under both the voiceover and the SFX cues (-24dB here vs Sfx's
+          own -18 to -24dB range, itself already under the voiceover)
+          reads as "present but never competing" without that added
+          machinery. hasUnderscore comes from render.js checking whether
+          the committed public/music/underscore.mp3 actually exists —
+          optional, so no static import (that would break the bundle on
+          any checkout that hasn't fetched a track). */}
+      {hasUnderscore ? <Audio src={staticFile("music/underscore.mp3")} volume={dbToVolume(-24)} loop /> : null}
       {ttsAudioPath ? <Audio src={currentAudio} /> : null}
     </AbsoluteFill>
   );

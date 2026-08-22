@@ -26,9 +26,32 @@ own schedule, separate from `daily-pipeline.yml`'s daily render.
 | Smithsonian Open Access | yes (`SMITHSONIAN_API_KEY` or `DATA_GOV_API_KEY`) | `sources/smithsonian.js` |
 | Pexels | yes (`PEXELS_API_KEY`) | `sources/pexels.js` |
 | Unsplash | yes (`UNSPLASH_ACCESS_KEY`) | `sources/unsplash.js` |
+| Openverse (commercial-filtered meta-search) | no | `sources/openverse.js` |
+| Rawpixel (CC0/public-domain tier only) | yes (`RAWPIXEL_API_KEY`, partner-only — see below) | `sources/rawpixel.js` |
 
 A source with no key set logs a warning and returns no candidates — it
 never fails the whole build.
+
+Openverse is a meta-search layer over 50+ providers (Flickr, Wikimedia,
+Europeana, and more, including several of the dedicated sources above) —
+it widens recall beyond the other 9 sources, it doesn't replace them.
+Queried with `license_type=commercial,modification` and then filtered
+again client-side against this skill's own `licenses.js` allowlist (see
+`sources/openverse.js`'s header for why CC-BY-SA still has to be excluded
+by hand).
+
+Rawpixel is different from every other module here: it has no public,
+self-serve developer-signup API — what exists is a partner-key API (with
+its own HMAC-SHA256 request-signing scheme, transcribed from Openverse's
+own open-source ingestion pipeline for it) that even Openverse itself had
+to separately arrange a key for. `sources/rawpixel.js` implements the real
+signing algorithm but has not been exercised against a real key (none
+exists yet, and this session's own egress was proxy-blocked to
+rawpixel.com regardless) — verify it once a key is available. Superseded
+this skill's earlier "declined, HTML-scraping only" assessment: Rawpixel
+does have a real, keyed REST API, it's just not self-serve like the rest.
+StockSnap remains genuinely not added — no API of any kind has surfaced
+for it, partner or otherwise.
 
 ## Setup (one-time)
 
@@ -48,7 +71,7 @@ cache to `~/.u2net/` — `actions/cache` should key on `.venv-rembg` and
 ## Process
 
 1. `node src/skills/asset-sourcing/fetch-library.js <channel-id> <query terms...> [--count N] [--mode bw|color]`
-2. Searches all 8 sources, filters to allowed licenses (`licenses.js`).
+2. Searches all 10 sources, filters to allowed licenses (`licenses.js`).
 3. Downloads at >=2x the shorts stage width (2160px) — anything smaller is
    skipped, not silently accepted undersized.
 4. Runs `treat.js`: rembg cutout (or full-bleed for texture/landscape
@@ -77,9 +100,33 @@ cache to `~/.u2net/` — `actions/cache` should key on `.venv-rembg` and
   egress policy denied `commons.wikimedia.org` and `huggingface.co`
   outright (confirmed via the proxy's status endpoint) while allowing
   `pypi.org`/`files.pythonhosted.org` (rembg's own install) and
-  `github.com` (rembg's model-weight download). The source modules
+  `github.com` (rembg's model-weight download). `sources/openverse.js` was
+  added in a later session whose proxy likewise denied `api.openverse.org`
+  outright (`EGRESS_BLOCKED`, confirmed via a direct fetch attempt) — same
+  situation, one more host on the denied list. The source modules
   (`sources/*.js`) are therefore verified by construction against each
   API's documented contract and by their pure `parseX()` functions, not by
   a live end-to-end fetch against every host — run `fetch-library.js` once
   in an environment with open egress (e.g. GitHub Actions) before trusting
-  a source module you haven't seen return real results.
+  a source module you haven't seen return real results. This has now
+  happened for real: `.github/workflows/build-asset-library.yml`, run
+  32541446166, confirmed every source is genuinely reachable from a
+  standard `ubuntu-latest` runner (this interactive session's own proxy
+  blocks all 10 hosts outright — a session-level allowlist, not a property
+  of these APIs) and fetched real assets end to end.
+- That same real run surfaced a serious, unmitigated defect: a search for
+  "credit card debt" returned a Met Museum "Charity" allegory painting (a
+  partially nude woman with nude children) — the Met's own search decided
+  it was relevant to "credit", not this pipeline's judgement, but nothing
+  here caught it before it reached the manifest. `fetch-library.js` now
+  rejects a candidate whose own title shares no keyword with the query
+  (`keywordsOfTitle`), which would have caught this specific case — but
+  that is a text-only check. A second real example from the same run
+  slipped straight through it: a Wikimedia photo titled "Rid of credit
+  card debt" that is actually a bullet cartridge, a pun/metaphor in the
+  title, not a literal photograph of the subject. No code in this skill
+  can catch a title that matches while the image doesn't — that needs
+  real vision-content verification against the query, which does not
+  exist here. Spot-check treated output before trusting a channel's whole
+  batch — this line already existed above for the cutout classifier;
+  it applies at least as much to content relevance now.

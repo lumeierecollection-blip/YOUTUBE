@@ -34,6 +34,8 @@ import * as nara from "./sources/nara.js";
 import * as smithsonian from "./sources/smithsonian.js";
 import * as pexels from "./sources/pexels.js";
 import * as unsplash from "./sources/unsplash.js";
+import * as openverse from "./sources/openverse.js";
+import * as rawpixel from "./sources/rawpixel.js";
 import { isAllowedLicense, normalizeLicense } from "./licenses.js";
 import { downloadFile } from "./http.js";
 import { treatAsset } from "./treat.js";
@@ -46,7 +48,7 @@ const RAW_DIR = join(ROOT, "data", "asset-library", "raw");
 const PUBLIC_DIR = join(ROOT, "src", "skills", "remotion-render", "public", "asset-library");
 const MIN_WIDTH = 2160; // PART 5 — 2x the 1080-wide shorts stage, minimum
 
-const SOURCES = { wikimedia, met, nasa, loc, nara, smithsonian, pexels, unsplash };
+const SOURCES = { wikimedia, met, nasa, loc, nara, smithsonian, pexels, unsplash, openverse, rawpixel };
 
 function loadManifest() {
   if (!existsSync(MANIFEST_PATH)) return { version: 1, assets: [] };
@@ -70,18 +72,44 @@ function loadChannel(channelId) {
 }
 
 async function searchAll(query, count) {
-  const settled = await Promise.allSettled(
-    Object.entries(SOURCES).map(async ([name, mod]) => ({ name, results: await mod.search(query, { count }) }))
+  // Each entry catches its OWN error and tags it with `name` before
+  // resolving — a bare Promise.allSettled loses which source failed on
+  // rejection (the {name, results} wrapper never gets built when search()
+  // throws), which is exactly why a real "one source 404s on every query"
+  // failure (build-asset-library.yml run 32541446166) logged as an
+  // unattributed "source failed, continuing without it" with no source
+  // name at all. This keeps that name on both paths.
+  const settled = await Promise.all(
+    Object.entries(SOURCES).map(async ([name, mod]) => {
+      try {
+        return { name, results: await mod.search(query, { count }) };
+      } catch (err) {
+        return { name, error: err };
+      }
+    })
   );
   const candidates = [];
   for (const s of settled) {
-    if (s.status === "fulfilled") {
-      candidates.push(...s.value.results);
+    if (s.error) {
+      console.warn(`[asset-sourcing/${s.name}] source failed, continuing without it: ${s.error.message}`);
     } else {
-      console.warn(`[asset-sourcing] source failed, continuing without it: ${s.reason && s.reason.message}`);
+      candidates.push(...s.results);
     }
   }
   return candidates;
+}
+
+// Mirrors select.js's keywordsOf — deliberately not imported/shared: this
+// is a search-time acceptance filter (is the candidate worth downloading
+// at all), select.js's is a render-time selection filter (which already-
+// accepted asset best fits a beat's cue); keeping them independent means a
+// change to one's stopword/length rules can't silently reshape the other.
+const STOPWORDS = new Set(["a", "an", "the", "of", "and", "or", "for", "with", "on", "in", "to", "is", "are"]);
+function keywordsOfTitle(text) {
+  return String(text || "")
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((w) => w.length >= 3 && !STOPWORDS.has(w));
 }
 
 async function resolveOriginal(candidate) {
@@ -128,16 +156,39 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`Searching 8 sources for "${query}" (channel ${channel.channel_id}, mode=${mode})...`);
+  console.log(`Searching ${Object.keys(SOURCES).length} sources for "${query}" (channel ${channel.channel_id}, mode=${mode})...`);
   const rawCandidates = await searchAll(query, count);
   const licensed = rawCandidates.filter((c) => isAllowedLicense(c.license));
   console.log(`${rawCandidates.length} candidates found, ${licensed.length} pass the license filter.`);
+
+  // Real defect found on a real render (data/audit/12): a Met search for
+  // "credit card debt" returned a Baroque "Charity" allegory painting (a
+  // partially nude woman with nude children) — zero relation to the query,
+  // just the Met's own internal search deciding "charity" was close enough
+  // to "credit". This filter only catches the mechanical case (the
+  // candidate's OWN title shares no keyword at all with the query) — it
+  // does NOT catch a title that superficially matches but whose visual
+  // content doesn't (a separate real example from the same render: a
+  // Wikimedia photo titled "Rid of credit card debt" that is actually a
+  // bullet cartridge, a metaphor/pun in the title, not a literal subject).
+  // That second class needs real vision-content verification against the
+  // query, which this text-only filter cannot do — SKILL.md's existing
+  // "spot-check treated output" line extends to this, not just the cutout
+  // classifier it was originally written for.
+  const relevant = licensed.filter((c) => {
+    const titleWords = keywordsOfTitle(c.title);
+    const queryWords = keywordsOfTitle(query);
+    return titleWords.some((w) => queryWords.includes(w));
+  });
+  if (relevant.length < licensed.length) {
+    console.warn(`  ${licensed.length - relevant.length} candidate(s) dropped: title shares no keyword with the query "${query}" (e.g. an art-museum result matched on thematic/curatorial grounds, not literal subject)`);
+  }
 
   const manifest = loadManifest();
   const seen = new Set(manifest.assets.map((a) => a.downloadUrl));
   let added = 0;
 
-  for (const raw of licensed) {
+  for (const raw of relevant) {
     if (added >= count) break;
     if (seen.has(raw.downloadUrl)) continue;
     let candidate;

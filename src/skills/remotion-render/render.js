@@ -23,7 +23,7 @@
  * prop and the duration comes from the package (never from the mp3 length).
  */
 
-import { readFileSync, mkdirSync, existsSync, copyFileSync, readdirSync } from "fs";
+import { readFileSync, mkdirSync, existsSync, copyFileSync, readdirSync, writeFileSync } from "fs";
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
@@ -403,6 +403,50 @@ async function main() {
   const timestamp = new Date().toISOString().slice(0, 10);
   const outputPath = join(outputDir, `${slug}-${format}-${timestamp}.mp4`);
 
+  // ENC-31 — an IMAGE_BEAT that couldn't resolve a real photo (mg-package.js's
+  // imageGaps) must be visible in this run's report, not just quietly
+  // downgraded to STATEMENT/HERO_NUMBER in the rendered output. Always
+  // written, even empty — an absent file is ambiguous ("did this check even
+  // run?"), an empty array is not.
+  if (mg) {
+    const gapsPath = join(outputDir, `${slug}-${format}-image-gaps.json`);
+    writeFileSync(gapsPath, JSON.stringify(mg.imageGaps || [], null, 2) + "\n");
+    for (const gap of mg.imageGaps || []) {
+      console.warn(`::warning::IMAGE_BEAT gap (section ${gap.sectionIndex} -> ${gap.fallbackArchetype}): ${gap.reason} — "${gap.text}"`);
+    }
+    console.log(`Image gaps: ${(mg.imageGaps || []).length} beat(s) fell back from IMAGE_BEAT -> ${gapsPath}`);
+  }
+
+  // Attribution for CC-BY-sourced photos used to live ONLY as on-screen
+  // text in ImageBeatScene — real production-value complaint (reads as
+  // unfinished scaffolding), but licenses.js's requiresAttribution() exists
+  // because SOME assets (Wikimedia/Openverse CC-BY) are only licensed on
+  // the condition attribution is given somewhere. Removing on-screen text
+  // without another surface would be a real compliance regression, not a
+  // cleanup — so this writes the real per-render credit list here, and
+  // youtube-publish/run.js's buildMetadata reads it and appends a credits
+  // block to the actual video description at upload time. Always written,
+  // same "empty file still confirms the check ran" reasoning as the gaps
+  // file above.
+  const creditSet = new Set();
+  for (const section of sections) {
+    for (const asset of section.bRollFiles || []) {
+      if (asset.credit) creditSet.add(asset.credit);
+    }
+  }
+  const creditsPath = join(outputDir, `${slug}-${format}-image-credits.json`);
+  writeFileSync(creditsPath, JSON.stringify([...creditSet], null, 2) + "\n");
+  console.log(`Image credits: ${creditSet.size} attribution(s) -> ${creditsPath}`);
+
+  // music-sourcing/SKILL.md's underscore bed — a committed, stable asset
+  // (src/skills/music-sourcing/fetch-underscore.mjs's fixed output path),
+  // never a static import: unlike vo.mp3 (always present, required), this
+  // is optional, so a missing file must not break the webpack bundle or
+  // fail the render. hasUnderscore just tells the composition whether to
+  // render the <Audio> bed at all; the actual staticFile() resolution
+  // happens in motion-graphics.jsx, at render time, inside the bundle.
+  const hasUnderscore = existsSync(join(__dirname, "public", "music", "underscore.mp3"));
+
   const props = {
     channelId: channel.channel_id,
     style: channel.style,
@@ -410,6 +454,7 @@ async function main() {
     sections,
     mg,
     ttsAudioPath: staged,
+    hasUnderscore,
     thumbnailStyle: channel.thumbnail_spec?.style || "dramatic-visual",
     tone: channel.tone,
     font: channel.font || "Inter",

@@ -65,6 +65,35 @@ const MARGIN_FG_MAX = 0.001;  // max foreground fraction inside margins
 const CAPTION_FG_MIN = 0.0005; // min foreground fraction in caption zone
 const MIN_TEXT_CONTRAST = 4.5; // WCAG AA — COL-23
 
+// vox-style-treatment SKILL.md's canvas grain (effects/CanvasGrain.jsx) —
+// "a LUMINANCE-NOISE TEXTURE, not a color change... does not touch hue, so
+// it does not conflict with the flatness gate's actual purpose (which
+// guards against color gradients/tints, not texture)." Raising FLAT_MAX
+// alone would NOT honour that distinction — it would just tolerate MORE
+// overall variance, including a genuine mild gradient slipping through.
+// Instead this measures what KIND of variance is present, using two
+// properties true of real grain (per-pixel, uncorrelated, chromaticity-
+// neutral by construction — see CanvasGrain.jsx's header) that are NOT
+// true of a gradient or tint:
+//   - Noise is high-frequency: average a few neighbouring pixels together
+//     (a blur) and it collapses toward the region's flat mean. A gradient
+//     is low-frequency by definition and survives that same blur intact.
+//     So a margin's BLURRED stddev has to stay under the original strict
+//     FLAT_MAX even when its raw (unblurred) stddev is allowed to be
+//     higher — a real gradient fails here regardless of how the raw
+//     number is judged.
+//   - Noise is achromatic: the SAME delta is added to r/g/b at a given
+//     pixel (NoiseEffect's own shader is a single `rand()` scalar broadcast
+//     into vec3 — see CanvasGrain.jsx), so channel DIFFERENCES (r-g, g-b)
+//     stay near-constant across the region even though each channel's own
+//     value swings with the grain. A tint/hue-shift moves channels apart
+//     from each other, which this catches directly, independent of the
+//     raw or blurred stddev.
+// FLAT_MAX_WITH_GRAIN only raises the ceiling on the raw, unstructured
+// number; both structural checks above still gate at the original FLAT_MAX.
+const FLAT_MAX_WITH_GRAIN = 26; // raw stddev ceiling once grain is expected
+const GRAIN_BLUR_SIGMA = 6; // px — well above per-pixel grain scale, well below margin region span
+
 // WCAG relative luminance / contrast ratio, mirroring
 // src/skills/remotion-render/styles/tokens.js (kept standalone here: this
 // script runs over exported PNGs, not the render bundle).
@@ -118,6 +147,47 @@ async function region(buf, meta, r) {
     .toBuffer();
 }
 
+// Same region, blurred first — collapses high-frequency per-pixel noise
+// toward the region's flat mean while leaving a genuine low-frequency
+// gradient's trend intact. See FLAT_MAX_WITH_GRAIN's comment above.
+async function blurredRegion(buf, meta, r) {
+  return sharp(buf, { raw: { width: meta.width, height: meta.height, channels: 3 } })
+    .extract({ left: r.x, top: r.y, width: r.w, height: r.h })
+    .blur(GRAIN_BLUR_SIGMA)
+    .raw()
+    .toBuffer();
+}
+
+// Combined stddev of (r-g) and (g-b) per pixel, each measured against its
+// OWN region-wide mean — near-zero for anything that shifts all three
+// channels by the same amount per pixel (real grain), elevated for
+// anything that shifts channels apart from each other (a colour tint or a
+// hue-drifting gradient). Independent of overall brightness/contrast, so
+// it isolates hue specifically, per FLAT_MAX_WITH_GRAIN's comment above.
+function chromaStddev(buf, len) {
+  const n = len / 3;
+  const rg = new Float64Array(n);
+  const gb = new Float64Array(n);
+  let sumRg = 0;
+  let sumGb = 0;
+  for (let i = 0, p = 0; i < len; i += 3, p++) {
+    const d1 = buf[i] - buf[i + 1];
+    const d2 = buf[i + 1] - buf[i + 2];
+    rg[p] = d1;
+    gb[p] = d2;
+    sumRg += d1;
+    sumGb += d2;
+  }
+  const meanRg = sumRg / n;
+  const meanGb = sumGb / n;
+  let sq = 0;
+  for (let p = 0; p < n; p++) {
+    sq += (rg[p] - meanRg) * (rg[p] - meanRg);
+    sq += (gb[p] - meanGb) * (gb[p] - meanGb);
+  }
+  return Math.sqrt(sq / (2 * n));
+}
+
 async function auditFrame(file) {
   const buf = await sharp(file).resize(W, H).removeAlpha().raw().toBuffer({ resolveWithObject: true });
   const { data, info } = buf;
@@ -131,7 +201,12 @@ async function auditFrame(file) {
   const marginStats = {};
   for (const m of MARGINS) {
     const r = await region(data, info, m);
-    marginStats[m.name] = stats(r, r.length);
+    const blurred = await blurredRegion(data, info, m);
+    marginStats[m.name] = {
+      ...stats(r, r.length),
+      blurredStddev: stats(blurred, blurred.length).stddev,
+      chromaStddev: chromaStddev(r, r.length),
+    };
     bgSamples.push([r[0], r[1], r[2]]);
   }
   const bg = [
@@ -147,11 +222,19 @@ async function auditFrame(file) {
 
   const violations = [];
 
-  // 1) Flatness: every margin region must be near-uniform (no gradient).
+  // 1) Flatness: every margin region must be near-uniform (no gradient/
+  // tint) — but real, deliberate grain (effects/CanvasGrain.jsx) is
+  // allowed. See FLAT_MAX_WITH_GRAIN's comment for why this is 3 separate
+  // checks rather than one loosened number: raw stddev alone can't tell
+  // "textured but flat" apart from "genuinely graded/tinted."
   for (const m of MARGINS) {
     const s = marginStats[m.name];
-    if (s.stddev > FLAT_MAX) {
-      violations.push(`bg not flat in ${m.name} (stddev ${s.stddev.toFixed(1)} > ${FLAT_MAX})`);
+    if (s.blurredStddev > FLAT_MAX) {
+      violations.push(`bg not flat in ${m.name} (blurred stddev ${s.blurredStddev.toFixed(1)} > ${FLAT_MAX} — survives blur, looks like a real gradient, not grain)`);
+    } else if (s.chromaStddev > FLAT_MAX) {
+      violations.push(`bg not flat in ${m.name} (chroma stddev ${s.chromaStddev.toFixed(1)} > ${FLAT_MAX} — channels diverge from each other, looks like a tint, not grain)`);
+    } else if (s.stddev > FLAT_MAX_WITH_GRAIN) {
+      violations.push(`bg not flat in ${m.name} (stddev ${s.stddev.toFixed(1)} > ${FLAT_MAX_WITH_GRAIN} even allowing for grain)`);
     }
   }
 

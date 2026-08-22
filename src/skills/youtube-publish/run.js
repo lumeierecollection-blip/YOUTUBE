@@ -152,10 +152,41 @@ function writeQueue(channelId, entries) {
   writeFileSync(p, JSON.stringify(entries, null, 2));
 }
 
+// render.js writes <slug>-<format>-image-credits.json next to
+// <slug>-<format>-<timestamp>.mp4 (no timestamp on the credits file — it's
+// always the latest render's real attribution list, not one-per-render).
+function creditsPathFor(videoPath) {
+  const dir = dirname(videoPath);
+  const base = basename(videoPath, extname(videoPath));
+  const m = base.match(/^(.+)-(shorts|longform)-\d{4}-\d{2}-\d{2}$/);
+  if (!m) return null;
+  return join(dir, `${m[1]}-${m[2]}-image-credits.json`);
+}
+
+// Some sourced photos (Wikimedia/Openverse CC-BY) are only licensed on the
+// condition that attribution is given somewhere — licenses.js's
+// requiresAttribution() exists for exactly that. This pipeline used to
+// give that attribution ONLY as on-screen text burned into the frame; that
+// text is gone now (real production-value complaint: it read as unfinished
+// scaffolding), so the video description is the only remaining place a
+// viewer can see it. A missing/malformed credits file must never block a
+// publish — it's additive metadata, not a gate.
+function appendImageCredits(description, videoPath) {
+  const creditsPath = creditsPathFor(videoPath);
+  if (!creditsPath || !existsSync(creditsPath)) return description;
+  try {
+    const credits = JSON.parse(readFileSync(creditsPath, "utf-8"));
+    if (!Array.isArray(credits) || credits.length === 0) return description;
+    return `${description}\n\n📷 Photo credits:\n${credits.map((c) => `• ${c}`).join("\n")}`;
+  } catch {
+    return description;
+  }
+}
+
 async function buildMetadata(channel, videoPath, seo, topicHint) {
   const topic = topicHint || basename(videoPath, extname(videoPath)).replace(/[-_]+/g, " ");
   const title = seo?.title || `${topic} — ${channel.channel_name}`;
-  const description = seo?.description || channel.description || "";
+  const description = appendImageCredits(seo?.description || channel.description || "", videoPath);
   const tags = seo?.tags?.length ? seo.tags : channel.tags || [];
   return {
     snippet: { title, description, tags, categoryId: "22" },

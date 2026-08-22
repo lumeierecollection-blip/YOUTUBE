@@ -571,22 +571,55 @@ export function buildMgPackage(srtText, opts = {}) {
 
   const imageForSection = opts.imageForSection || (() => null);
 
+  // ENC-31 — "every beat that isn't a HERO_NUMBER or chart resolves to a
+  // real photo" is enforced here, not left to whatever imageForSection
+  // happens to return. image-assets.js's resolveImageAssets already tried
+  // (and broadened-and-retried once against the topic) before this ever
+  // runs, so a still-empty imageForSection(sectionIndex) means genuinely no
+  // manifest match exists for this section. The chain from here: fall back
+  // to HERO_NUMBER only if the beat's own text actually carries a number
+  // (parseNumber — the same signal/precedent the PROGRESS fallback right
+  // below already uses; there is no chart fallback for IMAGE_BEAT in
+  // practice, since a plain text beat never carries the structured
+  // data.series a chart needs), else STATEMENT — but NEVER silently: every
+  // downgrade is pushed onto imageGaps so it shows up in the run's report
+  // (render.js writes <slug>-image-gaps.json and echoes a ::warning:: per
+  // gap) instead of vanishing into typography-only output unremarked.
+  const imageGaps = [];
   // Archetype fallbacks (E3.2, E2.1): no data → downgrade honestly.
   for (const b of beats) {
     if (b.archetype === "PROGRESS" && !(b.data && Array.isArray(b.data.series) && b.data.series.length)) {
       b.archetype = parseNumber(b.text) ? "HERO_NUMBER" : "STATEMENT";
     }
     if (b.archetype === "IMAGE_BEAT" && !imageForSection(b.sectionIndex)) {
-      b.archetype = "STATEMENT";
+      b.archetype = parseNumber(b.text) ? "HERO_NUMBER" : "STATEMENT";
+      imageGaps.push({
+        sectionIndex: b.sectionIndex,
+        text: b.text,
+        fallbackArchetype: b.archetype,
+        reason: "no asset-library match for this section's cues, even after the topic-broadened retry",
+      });
     }
   }
 
-  // IMAGE_BEAT cap ≤20% (E2.1).
+  // IMAGE_BEAT cap ≤20% (E2.1) — a different reason than a sourcing miss
+  // (there WAS a real match; the mix ratio just already spent its budget),
+  // so tracked as its own, differently-worded gap rather than folded into
+  // imageGaps above.
   const imgIdx = beats
     .map((b, i) => (b.archetype === "IMAGE_BEAT" ? i : -1))
     .filter((i) => i >= 0);
   const cap = Math.floor(beats.length * 0.2);
-  for (const i of imgIdx.slice(cap)) beats[i].archetype = "STATEMENT";
+  for (const i of imgIdx.slice(cap)) {
+    const b = beats[i];
+    b.archetype = parseNumber(b.text) ? "HERO_NUMBER" : "STATEMENT";
+    imageGaps.push({
+      sectionIndex: b.sectionIndex,
+      text: b.text,
+      fallbackArchetype: b.archetype,
+      reason: "had a real asset-library match, but the IMAGE_BEAT ≤20% mix cap (ENC-18) was already spent",
+    });
+  }
 
   for (const b of beats) b.scene = deriveScene(b, { iconMap: opts.iconMap, imageForSection });
 
@@ -626,6 +659,7 @@ export function buildMgPackage(srtText, opts = {}) {
     audioFrames,
     synthesized,
     silenceWindow,
+    imageGaps,
   };
 }
 
