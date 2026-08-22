@@ -41,20 +41,6 @@ on:
         description: "bw or color — leave empty to let fetch-library.js infer from the channel's bg_mode"
         required: false
         default: ""
-  # TEMP-DISPATCH-WORKAROUND: this session's GitHub App token can't call the
-  # workflow_dispatch API (403 "Resource not accessible by integration" —
-  # actions:write scope gap), same issue network-policy-check.yml hit. Push
-  # access works fine, so this scoped push trigger stands in for one real
-  # workflow_dispatch call (the "Fetch each query" step below falls back to
-  # the same defaults declared above via bash `:-` defaulting, since
-  # `github.event.inputs` is empty on a push event) — remove this trigger
-  # once that end-to-end run is captured.
-  push:
-    branches:
-      - claude/png-sourcing-animations-captions-wgv6ty
-    paths:
-      - ".github/workflows/build-asset-library.yml"
-      - "src/skills/asset-sourcing/**"
 
 jobs:
   fetch:

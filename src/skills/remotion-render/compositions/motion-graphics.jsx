@@ -1320,7 +1320,7 @@ function StatementScene({ beat, scene, colors, fontFamily }) {
 //  - "fullbleed" (or no treatment at all, e.g. an untreated legacy b-roll
 //    fixture): unchanged pre-PART-6 behaviour — `object-fit: cover`,
 //    bleeding to the canvas edge.
-function ImageBeatScene({ beat, scene, colors, fontFamily }) {
+export function ImageBeatScene({ beat, scene, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);

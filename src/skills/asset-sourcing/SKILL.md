@@ -108,4 +108,25 @@ cache to `~/.u2net/` — `actions/cache` should key on `.venv-rembg` and
   API's documented contract and by their pure `parseX()` functions, not by
   a live end-to-end fetch against every host — run `fetch-library.js` once
   in an environment with open egress (e.g. GitHub Actions) before trusting
-  a source module you haven't seen return real results.
+  a source module you haven't seen return real results. This has now
+  happened for real: `.github/workflows/build-asset-library.yml`, run
+  32541446166, confirmed every source is genuinely reachable from a
+  standard `ubuntu-latest` runner (this interactive session's own proxy
+  blocks all 10 hosts outright — a session-level allowlist, not a property
+  of these APIs) and fetched real assets end to end.
+- That same real run surfaced a serious, unmitigated defect: a search for
+  "credit card debt" returned a Met Museum "Charity" allegory painting (a
+  partially nude woman with nude children) — the Met's own search decided
+  it was relevant to "credit", not this pipeline's judgement, but nothing
+  here caught it before it reached the manifest. `fetch-library.js` now
+  rejects a candidate whose own title shares no keyword with the query
+  (`keywordsOfTitle`), which would have caught this specific case — but
+  that is a text-only check. A second real example from the same run
+  slipped straight through it: a Wikimedia photo titled "Rid of credit
+  card debt" that is actually a bullet cartridge, a pun/metaphor in the
+  title, not a literal photograph of the subject. No code in this skill
+  can catch a title that matches while the image doesn't — that needs
+  real vision-content verification against the query, which does not
+  exist here. Spot-check treated output before trusting a channel's whole
+  batch — this line already existed above for the cutout classifier;
+  it applies at least as much to content relevance now.

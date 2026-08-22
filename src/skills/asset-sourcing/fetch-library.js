@@ -99,6 +99,19 @@ async function searchAll(query, count) {
   return candidates;
 }
 
+// Mirrors select.js's keywordsOf — deliberately not imported/shared: this
+// is a search-time acceptance filter (is the candidate worth downloading
+// at all), select.js's is a render-time selection filter (which already-
+// accepted asset best fits a beat's cue); keeping them independent means a
+// change to one's stopword/length rules can't silently reshape the other.
+const STOPWORDS = new Set(["a", "an", "the", "of", "and", "or", "for", "with", "on", "in", "to", "is", "are"]);
+function keywordsOfTitle(text) {
+  return String(text || "")
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((w) => w.length >= 3 && !STOPWORDS.has(w));
+}
+
 async function resolveOriginal(candidate) {
   // NASA's search response only carries a preview thumbnail; the full-res
   // original needs a second request per item (see nasa.js).
@@ -148,11 +161,34 @@ async function main() {
   const licensed = rawCandidates.filter((c) => isAllowedLicense(c.license));
   console.log(`${rawCandidates.length} candidates found, ${licensed.length} pass the license filter.`);
 
+  // Real defect found on a real render (data/audit/12): a Met search for
+  // "credit card debt" returned a Baroque "Charity" allegory painting (a
+  // partially nude woman with nude children) — zero relation to the query,
+  // just the Met's own internal search deciding "charity" was close enough
+  // to "credit". This filter only catches the mechanical case (the
+  // candidate's OWN title shares no keyword at all with the query) — it
+  // does NOT catch a title that superficially matches but whose visual
+  // content doesn't (a separate real example from the same render: a
+  // Wikimedia photo titled "Rid of credit card debt" that is actually a
+  // bullet cartridge, a metaphor/pun in the title, not a literal subject).
+  // That second class needs real vision-content verification against the
+  // query, which this text-only filter cannot do — SKILL.md's existing
+  // "spot-check treated output" line extends to this, not just the cutout
+  // classifier it was originally written for.
+  const relevant = licensed.filter((c) => {
+    const titleWords = keywordsOfTitle(c.title);
+    const queryWords = keywordsOfTitle(query);
+    return titleWords.some((w) => queryWords.includes(w));
+  });
+  if (relevant.length < licensed.length) {
+    console.warn(`  ${licensed.length - relevant.length} candidate(s) dropped: title shares no keyword with the query "${query}" (e.g. an art-museum result matched on thematic/curatorial grounds, not literal subject)`);
+  }
+
   const manifest = loadManifest();
   const seen = new Set(manifest.assets.map((a) => a.downloadUrl));
   let added = 0;
 
-  for (const raw of licensed) {
+  for (const raw of relevant) {
     if (added >= count) break;
     if (seen.has(raw.downloadUrl)) continue;
     let candidate;
