@@ -417,6 +417,27 @@ async function main() {
     console.log(`Image gaps: ${(mg.imageGaps || []).length} beat(s) fell back from IMAGE_BEAT -> ${gapsPath}`);
   }
 
+  // Attribution for CC-BY-sourced photos used to live ONLY as on-screen
+  // text in ImageBeatScene — real production-value complaint (reads as
+  // unfinished scaffolding), but licenses.js's requiresAttribution() exists
+  // because SOME assets (Wikimedia/Openverse CC-BY) are only licensed on
+  // the condition attribution is given somewhere. Removing on-screen text
+  // without another surface would be a real compliance regression, not a
+  // cleanup — so this writes the real per-render credit list here, and
+  // youtube-publish/run.js's buildMetadata reads it and appends a credits
+  // block to the actual video description at upload time. Always written,
+  // same "empty file still confirms the check ran" reasoning as the gaps
+  // file above.
+  const creditSet = new Set();
+  for (const section of sections) {
+    for (const asset of section.bRollFiles || []) {
+      if (asset.credit) creditSet.add(asset.credit);
+    }
+  }
+  const creditsPath = join(outputDir, `${slug}-${format}-image-credits.json`);
+  writeFileSync(creditsPath, JSON.stringify([...creditSet], null, 2) + "\n");
+  console.log(`Image credits: ${creditSet.size} attribution(s) -> ${creditsPath}`);
+
   const props = {
     channelId: channel.channel_id,
     style: channel.style,
