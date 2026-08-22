@@ -12,8 +12,11 @@ fix passes.
 
 ## Photo/asset treatment (per-asset, never the canvas background)
 - [ ] Soft vignette pulling the eye toward center
-- [ ] Grain (film/paper/halftone), light-leak, slight chromatic aberration
-      at edges -- "breaking the digital feel"
+- [ ] Halftone dots -- a genuine Vox signature, not incidental (documented
+      as deliberate: "1950s print dots on brand-new graphics") -- distinct
+      from generic grain, apply as its own texture pass
+- [ ] Grain (film/paper), light-leak, slight chromatic aberration at edges
+      -- "breaking the digital feel"
 - [ ] Desaturated editorial base grade (cream/navy/gray family)
 - [ ] Drop shadow, grounding the cutout
 - [ ] SAME grade recipe applied to every sourced photo regardless of
@@ -21,6 +24,18 @@ fix passes.
       photos read as one continuous piece instead of a mismatched slideshow
 - [ ] Implemented via real, tested libraries (postprocessing /
       @remotion/three / a verified-license LUT) -- never freehand shader math
+
+## Fallback: cutout quality fails the rembg gate
+- [ ] SCOPED, does not change the general rule: normal cutout-composited
+      beats and typography-only beats stay exactly as established (flat
+      white/black canvas, no background gradient)
+- [ ] When a specific photo fails cutout-quality scoring, use it full-bleed
+      for that beat instead of discarding it -- same per-photo grade
+      (vignette/halftone/grain/desaturation) as any other photo
+- [ ] Add a gradient scrim WITHIN that full-bleed photo only, for text
+      legibility where the caption sits -- this lives on the photo layer,
+      not the canvas
+- [ ] Typography sits in the scrim zone, same type rules as elsewhere
 
 ## Accent color system
 - [ ] Exactly ONE bold accent color per channel, reserved for the single
