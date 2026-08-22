@@ -215,7 +215,15 @@ async function main() {
   // Visibility into any new tab the click opens, independent of whether
   // context.waitForEvent("download") below ends up catching a download —
   // if the new tab shows something else (a login wall, a quality picker
-  // needing a second click), this is what will show it.
+  // needing a second click), this is what will show it. TWO real runs now
+  // (context-level download listener in place both times) show the same
+  // pattern with neither of these firing: button text flips to
+  // "Downloading...", no download event, no new tab. So this also adds a
+  // network-level view — whatever request the click actually sends is the
+  // most direct way to tell a login-gated rejection (401/403) apart from a
+  // slow server-side prep step (a redirect/JSON response that arrives late)
+  // apart from a pure client-side counter with no real file transfer at all
+  // (no matching response ever appears).
   context.on("page", (p) => {
     console.log(`New page/tab opened: ${p.url()}`);
     p.waitForLoadState("domcontentloaded", { timeout: 10000 })
@@ -223,28 +231,57 @@ async function main() {
       .then((t) => console.log(`New tab loaded — title: "${t}", url: ${p.url()}`))
       .catch((e) => console.log(`New tab didn't finish loading within 10s: ${e.message}`));
   });
-  let triggered = false;
-  let download = null;
+  page.on("response", (res) => {
+    if (/download/i.test(res.url())) {
+      console.log(`Response for a "download"-matching URL: ${res.status()} ${res.url()}`);
+    }
+  });
+  // A single attempt, not a loop over the whole downloadTriggers list — two
+  // real runs showed the SAME button's text flipping from "Download" to
+  // "Downloading..." on click, and Playwright's :has-text() is a substring
+  // match, so a later selector in the old loop (button:has-text("Download"))
+  // would match that SAME now-"Downloading..." button and click it AGAIN,
+  // which isn't a real second attempt at anything — just interference with
+  // whatever the first click started. Click whichever selector matches
+  // first, then observe.
+  let triggerLocator = null;
   for (const sel of downloadTriggers) {
     const el = page.locator(sel).first();
-    if ((await el.count()) === 0) continue;
-    try {
-      // A real run showed the button's own text flip to "Downloading..."
-      // on click (the site really did start something) but page.waitForEvent
-      // never fired — the download almost certainly lands in a NEW tab
-      // (common for Pixabay's UI), which a listener scoped to this one
-      // `page` can't see. context.waitForEvent("download") catches a
-      // download in ANY page/tab belonging to this browser context, so
-      // that's the one that actually matters here; also races a "page"
-      // (popup) event so a newly opened tab's own subsequent download can
-      // still be caught even if it arrives just after the popup opens.
-      const [dl] = await Promise.all([context.waitForEvent("download", { timeout: 30000 }), el.click()]);
-      download = dl;
-      triggered = true;
+    if ((await el.count()) > 0) {
+      triggerLocator = el;
+      console.log(`Using download trigger selector: "${sel}"`);
       break;
-    } catch (e) {
-      console.log(`Selector "${sel}" clicked but no download fired: ${e.message}`);
     }
+  }
+  let triggered = false;
+  let download = null;
+  if (triggerLocator) {
+    // Races the real download event against a fixed observation window —
+    // context.waitForEvent (not page-scoped) so a download landing in a
+    // new tab (common for Pixabay's UI) is still caught. Two real runs
+    // showed neither this nor a new-tab/matching-response ever firing
+    // within 30s, only the button's own text changing — so this run also
+    // snapshots the DOM a few seconds in to check for a login/signup
+    // modal that might explain a click producing no real network request.
+    const downloadPromise = context.waitForEvent("download", { timeout: 26000 }).catch((e) => {
+      console.log(`No download event within 26s: ${e.message}`);
+      return null;
+    });
+    await triggerLocator.click();
+    await page.waitForTimeout(4000);
+    const modalish = await page
+      .$$eval('[role="dialog"], dialog, [class*="odal" i], [class*="ogin" i], [class*="ignup" i], [class*="uth-" i], [id*="odal" i]', (els) =>
+        els.map((e) => ({
+          tag: e.tagName,
+          className: typeof e.className === "string" ? e.className.slice(0, 100) : "",
+          text: (e.textContent || "").trim().slice(0, 300),
+          visible: !!(e.offsetWidth || e.offsetHeight || e.getClientRects().length),
+        }))
+      )
+      .catch((e) => [`eval failed: ${e.message}`]);
+    console.log(`Modal/login/auth-ish elements present ~4s after click:\n${JSON.stringify(modalish, null, 2)}`);
+    download = await downloadPromise;
+    triggered = !!download;
   }
   if (!triggered || !download) {
     // Log-based diagnostics (readable via the GitHub API job log even
