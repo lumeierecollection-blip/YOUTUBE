@@ -285,7 +285,23 @@ export function summarizeSound(soundtrack, opts = {}) {
     });
   }
 
-  return { metrics, warnings };
+  // The event list travels WITH the metrics into the render report, because
+  // qa-scripts/audio-qa.mjs needs to know where to look in the finished
+  // mp4: a level measured at an arbitrary offset proves nothing, a level
+  // measured in the window where an event was scheduled proves it played.
+  const eventList = events.map((e) => ({
+    atFrame: e.atFrame,
+    role: e.role,
+    strategy: e.strategy,
+    state: e.state,
+    reason: e.reason,
+    file: e.file,
+    durationMs: e.durationMs,
+    targetDb: e.targetDb,
+    volume: e.volume,
+  }));
+
+  return { metrics, warnings, events: eventList };
 }
 
 function round2(v) {
