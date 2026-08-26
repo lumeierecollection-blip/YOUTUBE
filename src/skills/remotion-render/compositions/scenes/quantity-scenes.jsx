@@ -22,6 +22,24 @@ import { progressOf, reached } from "../../visual/states.js";
  * never centred as the composition.
  */
 
+/**
+ * Currency handling. `unit` arrives either as a symbol (from "$500") or as
+ * the spoken word (from "five hundred dollars"), because scripts are
+ * written to be read aloud. Both have to produce the same rendered figure.
+ */
+function isMoney(unit) {
+  return /[$£€]/.test(String(unit || "")) || /dollar|pound|euro|cent|usd|gbp/i.test(String(unit || ""));
+}
+function currencySymbol(unit) {
+  const u = String(unit || "");
+  const sym = u.match(/[$£€]/);
+  if (sym) return sym[0];
+  if (/pound|gbp/i.test(u)) return "£";
+  if (/euro/i.test(u)) return "€";
+  if (/dollar|cent|usd/i.test(u)) return "$";
+  return "";
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // ACCUMULATION — many small things becoming one consequential total.
 // "Twenty small purchases quietly became $500."
@@ -33,8 +51,8 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
 
   const count = Math.max(3, Math.min(24, Math.round(sup.count || 12)));
   const total = Number.isFinite(sup.total) ? sup.total : null;
-  const money = /^[$£€]/.test(String(sup.unit || "")) || /dollar|pound|euro/i.test(String(sup.unit || ""));
-  const symbol = money ? (String(sup.unit || "$").match(/[$£€]/) || ["$"])[0] : "";
+  const money = isMoney(sup.unit);
+  const symbol = currencySymbol(sup.unit);
 
   const pEmpty = useStateProgress(states, "empty");
   const pFirst = useStateProgress(states, "first");
@@ -167,7 +185,7 @@ export function TransformationScene({ beat, colors, fontFamily }) {
   const to = Number.isFinite(sup.to) ? sup.to : from;
   const rising = to >= from;
   const unit = String(sup.unit || "");
-  const symbol = (unit.match(/[$£€]/) || [""])[0];
+  const symbol = currencySymbol(unit);
   const labels = Array.isArray(sup.labels) ? sup.labels : null;
 
   const pEst = useStateProgress(states, "establish");

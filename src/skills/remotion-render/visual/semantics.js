@@ -134,10 +134,16 @@ export function extractNumbers(text) {
     // Skip if a digit-form number already covers this span.
     if (value > 0 && !out.some((n) => Math.abs(n.index - startIdx) < 4)) {
       const after = s.slice(consumedEnd, consumedEnd + 26);
+      // Capture the unit WORD that follows, not just its kind. Leaving this
+      // empty meant "five hundred dollars" rendered as a bare 500 in a
+      // finance video: the kind was known to be money, but nothing carried
+      // which money, so no symbol could be chosen.
+      const unitWord = (after.match(/^\s*([A-Za-z%]+)/) || [])[1] || "";
+      const isUnit = unitWord && unitKind(unitWord) !== null;
       out.push({
         value,
         raw: s.slice(startIdx, consumedEnd),
-        unit: "",
+        unit: isUnit ? unitWord : "",
         index: startIdx,
         kind: unitKind(after) || null,
       });
