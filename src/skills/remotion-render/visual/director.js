@@ -31,6 +31,7 @@
 import { STRATEGIES, STRATEGY_PREFERENCE, TERMINAL_STRATEGY, getStrategy } from "./strategies.js";
 import { analyzeBeat, seriesFrom, unitKind } from "./semantics.js";
 import { grammarForChannel, grammarBias } from "./channel-grammar.js";
+import { subjectPhrase, clausePhrase, entityLabels, wordsIn } from "./text-budget.js";
 
 /** Minimum confidence a deterministic reading needs before it may render. */
 const MIN_CONFIDENCE = 0.5;
@@ -367,9 +368,58 @@ export function variantSeed(beat) {
   return h;
 }
 
+/**
+ * The one short phrase a scene may print, per strategy.
+ *
+ * Most strategies return nothing: a chart with a dimension on it, a
+ * boundary with a measurement, a process with numbered stages — none of
+ * them need a sentence, and the budget's normal answer is zero words.
+ */
+function supportingPhraseFor(strategy, payload, analysis, beat) {
+  switch (strategy) {
+    case "VISUAL_METAPHOR":
+      // Names the thing the field is acting on.
+      return subjectPhrase(analysis.text, 3);
+    case "CINEMATIC_STATEMENT": {
+      // The writer's own on-screen label if they gave a short one, since
+      // that is a deliberate authored choice; otherwise the beat's
+      // strongest content words.
+      const authored = beat.authoredText && String(beat.authoredText).trim();
+      if (authored && authored.length <= 28) return authored.toUpperCase();
+      return subjectPhrase(analysis.text, 4);
+    }
+    case "DOCUMENT_EVIDENCE":
+      // A QUOTATION, so the wording is kept verbatim and only the length is
+      // capped — this used to run to ten words, which is a subtitle.
+      return clausePhrase(analysis.text, 7);
+    default:
+      return "";
+  }
+}
+
 function finalize(strategy, payload, analysis, beat, ctx, provenance, fallbacks, rejected = []) {
   const def = getStrategy(strategy);
   const supporting = buildSupporting(strategy, payload, analysis, beat);
+
+  // The exact text the scene will draw, decided HERE so it can be counted.
+  // Three scene files used to extract this themselves with three different
+  // limits (3, 3 and ten words), and nothing outside the JSX could see the
+  // result — so "the picture is printing the narration" was unmeasurable.
+  // See visual/text-budget.js.
+  supporting.phrase = supportingPhraseFor(strategy, payload, analysis, beat);
+  if (strategy === "RELATIONSHIP") supporting.labels = entityLabels(analysis.text, 5);
+  if (strategy === "COMPARISON" && supporting.qualitative) {
+    // Two opposed positions, one per panel. Four words each: the scene used
+    // to take eight from each side, which is sixteen words on screen — a
+    // sentence broken across two boxes, not two labels.
+    supporting.leftPhrase = subjectPhrase(supporting.left, 4);
+    supporting.rightPhrase = subjectPhrase(supporting.right, 4);
+  }
+  supporting.words =
+    wordsIn(supporting.phrase) +
+    wordsIn(supporting.labels) +
+    wordsIn(supporting.leftPhrase) +
+    wordsIn(supporting.rightPhrase);
 
   // PART 8 — an icon is NEVER the hero. A strategy may declare that a small
   // glyph genuinely helps inside its composition (a map marker, UI chrome);

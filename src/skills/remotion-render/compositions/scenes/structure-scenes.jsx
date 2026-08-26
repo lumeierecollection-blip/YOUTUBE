@@ -336,12 +336,10 @@ export function RelationshipScene({ beat, colors, fontFamily }) {
   const pWeight = useStateProgress(states, "weight");
 
   // Entities named in the beat itself; falls back to an abstract 4-node
-  // graph when the text doesn't name enough of them.
-  const words = String(beat.text || "")
-    .replace(/[^\w\s'-]/g, " ")
-    .split(/\s+/)
-    .filter((w) => w.length > 3 && !STOP.has(w.toLowerCase()));
-  const labels = [...new Set(words)].slice(0, 5);
+  // graph when the text doesn't name enough of them. Extracted on the plan
+  // so the node labels count toward the same on-screen word budget as
+  // every other scene's text (visual/text-budget.js).
+  const labels = (beat.visualPlan && beat.visualPlan.supporting.labels) || [];
   const n = Math.max(3, Math.min(5, labels.length || 4));
 
   const cx = STAGE_CX, cy = 730, R = 240;

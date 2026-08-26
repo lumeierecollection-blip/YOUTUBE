@@ -18,18 +18,6 @@ import { progressOf } from "../../visual/states.js";
  * Neither scene here renders an icon at all.
  */
 
-const STOP = new Set(
-  "a an the of and or but not is are was were be been being to from in on at for with by as it its this that these those they them their he she we you i our your his her have has had do does did will would can could may might must there here then so if than when while where why how what which who".split(" ")
-);
-
-function subjectPhrase(text, maxWords = 4) {
-  const words = String(text || "")
-    .replace(/[^\w\s'-]/g, " ")
-    .split(/\s+/)
-    .filter((w) => w.length > 2 && !STOP.has(w.toLowerCase()));
-  if (!words.length) return "";
-  return words.slice(0, maxWords).join(" ").toUpperCase();
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // VISUAL_METAPHOR — an abstract idea given physical behaviour.
@@ -123,7 +111,7 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
       </svg>
 
       {pResolve > 0 ? (
-        <Label x={cx} y={cy + 330} text={subjectPhrase(beat.text, 3)}
+        <Label x={cx} y={cy + 330} text={(beat.visualPlan && beat.visualPlan.supporting.phrase) || ""}
           color={colors.textPrimary} size={40} weight={800} tracking={2}
           align="center" opacity={pResolve} fontFamily={fontFamily} />
       ) : null}
@@ -148,12 +136,11 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
   const pSubject = useStateProgress(states, "subject");
   const pDrift = progressOf(states, "drift", frame);
 
-  // Prefer the writer's own short on-screen label; fall back to the
-  // strongest content words of the narration span.
-  const phrase =
-    (beat.authoredText && String(beat.authoredText).trim().length <= 28
-      ? String(beat.authoredText).toUpperCase()
-      : "") || subjectPhrase(beat.text, 4);
+  // Decided on the plan (visual/text-budget.js), not here: the phrase has
+  // to be countable by the render report, and three scene files each
+  // extracting their own with three different word limits is how it stopped
+  // being countable in the first place.
+  const phrase = (beat.visualPlan && beat.visualPlan.supporting.phrase) || "";
 
   // Slow lateral parallax — the ground moves further than the subject, so
   // the frame reads as a held shot rather than a still slide.

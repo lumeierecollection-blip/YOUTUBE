@@ -414,16 +414,6 @@ function OppositionComparison({ beat, sup, states, colors, fontFamily }) {
   const pGap = useStateProgress(states, "gap");
   const pVerdict = useStateProgress(states, "verdict");
 
-  const keyWords = (t, n = 5) => {
-    const STOP = new Set("a an the of and or but not is are was were be been to from in on at for with by as it its this that these those they them their".split(" "));
-    return String(t || "")
-      .replace(/[^\w\s'-]/g, " ")
-      .split(/\s+/)
-      .filter((w) => w.length > 2 && !STOP.has(w.toLowerCase()))
-      .slice(0, n)
-      .join(" ");
-  };
-
   const panelW = 760, panelH = 200;
   const x = STAGE_CX - panelW / 2;
   const yTop = 470, yBot = 830;
@@ -456,7 +446,7 @@ function OppositionComparison({ beat, sup, states, colors, fontFamily }) {
         position: "absolute", left: x + 28, top: yTop + 42, width: panelW - 56,
         color: colors.textPrimary, fontFamily, fontWeight: 700, fontSize: 36, lineHeight: 1.25,
         opacity: ease(pLeft) * (pVerdict > 0 ? 0.55 : 1),
-      }}>{keyWords(sup.left, 8)}</div>
+      }}>{sup.leftPhrase || ""}</div>
 
       {pGap > 0 ? (
         <div style={{
@@ -475,7 +465,7 @@ function OppositionComparison({ beat, sup, states, colors, fontFamily }) {
           position: "absolute", left: x + 28, top: yBot + 42, width: panelW - 56,
           color: colors.textPrimary, fontFamily, fontWeight: 800, fontSize: 38, lineHeight: 1.25,
           opacity: ease(pRight),
-        }}>{keyWords(sup.right, 8)}</div>
+        }}>{sup.rightPhrase || ""}</div>
       ) : null}
     </div>
   );

@@ -16,6 +16,7 @@
  */
 
 import { TERMINAL_STRATEGY } from "./strategies.js";
+import { MAX_SUPPORTING_WORDS } from "./text-budget.js";
 
 const FPS = 30;
 
@@ -36,6 +37,9 @@ export function summarizeVisuals(beats, opts = {}) {
   let visualStateCount = 0;
   let longestStatic = 0;
   let contextDerived = 0;
+  let supportingWords = 0;
+  let maxBeatWords = 0;
+  let wordlessBeats = 0;
 
   for (const b of staged) {
     const plan = b.visualPlan;
@@ -60,6 +64,13 @@ export function summarizeVisuals(beats, opts = {}) {
     // A beat that carries an icon but no plan is, by definition, the old
     // icon-hero path still being reachable.
     if (b.scene && b.scene.icon && role !== "secondary") iconHero += 1;
+
+    // PART 6 — how many words this beat prints on screen. Narration lives
+    // in the audio; supporting text is a label, not a subtitle.
+    const words = (plan.supporting && plan.supporting.words) || 0;
+    supportingWords += words;
+    maxBeatWords = Math.max(maxBeatWords, words);
+    if (words === 0) wordlessBeats += 1;
 
     const states = b.visualStates || [];
     visualStateCount += states.length;
@@ -89,6 +100,19 @@ export function summarizeVisuals(beats, opts = {}) {
     genericFallbackRatio: +(byProvenance.emergency / n).toFixed(3),
     statementRatio: +(statementCount / n).toFixed(3),
     iconHeroRatio: +(iconHero / n).toFixed(3),
+
+    // PART 6 / PART 29. `textNarrationRatio` is the share of the spoken
+    // words that also appear on screen — with captions off this should be
+    // small; a video approaching 1.0 is an animated transcript again.
+    supportingTextWords: supportingWords,
+    averageWordsPerBeat: staged.length ? +(supportingWords / staged.length).toFixed(2) : 0,
+    maxWordsOnOneBeat: maxBeatWords,
+    wordlessBeatRatio: staged.length ? +(wordlessBeats / staged.length).toFixed(3) : 0,
+    textNarrationRatio: (() => {
+      const spoken = staged.reduce(
+        (a, b) => a + String(b.text || "").trim().split(/\s+/).filter(Boolean).length, 0);
+      return spoken ? +(supportingWords / spoken).toFixed(3) : 0;
+    })(),
 
     iconSecondaryCount: iconSecondary,
     sectionContextDerivedCount: contextDerived,
@@ -166,6 +190,21 @@ function buildWarnings(m, staged, fps) {
     } else {
       run = 1;
     }
+  }
+
+  if (m.maxWordsOnOneBeat > MAX_SUPPORTING_WORDS) {
+    w.push({
+      id: "VIS-TEXT-BUDGET",
+      severity: "MAJOR",
+      message: `a beat prints ${m.maxWordsOnOneBeat} words on screen (budget ${MAX_SUPPORTING_WORDS}) — that is a subtitle, not a label`,
+    });
+  }
+  if (m.textNarrationRatio > 0.35) {
+    w.push({
+      id: "VIS-TEXT-HEAVY",
+      severity: "MAJOR",
+      message: `${Math.round(m.textNarrationRatio * 100)}% of the spoken words are also printed on screen — the picture is reciting the narration`,
+    });
   }
 
   // PART 30 — a strategy used twice with the SAME composition variant draws
@@ -350,6 +389,8 @@ export function formatVisualReport(summary) {
     `generic fallback    : ${m.genericFallbackRatio}`,
     `statement ratio     : ${m.statementRatio}`,
     `icon-hero ratio     : ${m.iconHeroRatio}${m.iconSecondaryCount ? ` (${m.iconSecondaryCount} secondary)` : ""}`,
+    `on-screen words     : ${m.supportingTextWords} total, ${m.averageWordsPerBeat}/beat, max ${m.maxWordsOnOneBeat} (budget ${MAX_SUPPORTING_WORDS})`,
+    `text/narration      : ${m.textNarrationRatio}  (${Math.round(m.wordlessBeatRatio * 100)}% of beats print nothing)`,
     `strategy mix        : ${Object.entries(m.strategyMix).map(([k, v]) => `${k}=${v}`).join(" ") || "(none)"}`,
   ];
   for (const warn of summary.warnings) lines.push(`  ! [${warn.severity}] ${warn.id}: ${warn.message}`);

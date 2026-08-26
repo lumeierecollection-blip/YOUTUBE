@@ -25,6 +25,7 @@ import { planVisual } from "./director.js";
 import { buildStates, MAX_STATE_FRAMES, longestStaticRun } from "./states.js";
 import { analyzeBeat } from "./semantics.js";
 import { summarizeVisuals, summarizeSound } from "./diagnostics.js";
+import { MAX_SUPPORTING_WORDS } from "./text-budget.js";
 import { assertSoundMapIsSound, buildSoundtrack, soundEventsForBeat, volumeFor, MIN_GAP_FRAMES, MAX_EVENTS_PER_BEAT, ROLE_TARGET_DB } from "./sound-design.js";
 import { SFX_LIBRARY } from "./sfx-library.js";
 
@@ -350,6 +351,47 @@ check("summarizeVisuals flags a beat that still renders an icon hero", () => {
   const beats = [{ text: "x", archetype: "STATEMENT", durationInFrames: 120, visualPlan: null, visualStates: [], scene: { iconRole: "none", icon: "banknote" } }];
   const s = summarizeVisuals(beats);
   return s.warnings.some((w) => w.id === "VIS-ICON-HERO") || "no VIS-ICON-HERO warning";
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+console.log("\non-screen text budget");
+
+check("no strategy prints more than the supporting-text budget", () => {
+  const over = [];
+  for (const beat of [
+    geofenceBeat,
+    { text: "The government argued that short-term location data is not a search, but Justice Kagan disagreed, ruling that it is.", archetype: "CONTRAST", anchor_token: "disagreed", data: {} },
+    { text: "The Fourth Amendment requires a warrant supported by probable cause and particularity of place.", archetype: "STATEMENT", anchor_token: "warrant", data: {} },
+    { text: "Each purchase was small, but the balance you carry compounds every month it survives.", archetype: "STATEMENT", anchor_token: "balance", data: {} },
+    { text: "The request passes through intake, then review, then approval before anything ships.", archetype: "PROCESS", anchor_token: "review", data: {} },
+    { text: "Every regulator, every bank and every clearing house depends on the same settlement layer.", archetype: "STATEMENT", anchor_token: "settlement", data: {} },
+  ]) {
+    const plan = planVisual(beat, { channel });
+    const words = plan.supporting.words || 0;
+    if (words > MAX_SUPPORTING_WORDS) over.push(`${plan.strategy}: ${words} words`);
+  }
+  return over.length === 0 || over.join("; ");
+});
+
+check("no scene re-derives its own on-screen phrase", () => {
+  // The three extractors this replaced lived in the scene files with three
+  // different word limits, and nothing outside the JSX could count them.
+  const dir = join(__dirname, "..", "compositions", "scenes");
+  const offenders = [];
+  for (const f of readdirSync(dir).filter((x) => x.endsWith(".jsx"))) {
+    const src = readFileSync(join(dir, f), "utf-8");
+    if (/function (subjectPhrase|clauseFrom|keyWords)\s*\(/.test(src)) offenders.push(f);
+  }
+  return offenders.length === 0 || `phrase extractors still in ${offenders.join(", ")}`;
+});
+
+check("summarizeVisuals flags a beat that prints a subtitle", () => {
+  const s = summarizeVisuals([{
+    text: "one two three four five six seven eight nine ten", archetype: "STATEMENT",
+    durationInFrames: 90, visualStates: [], scene: { iconRole: "none" },
+    visualPlan: { strategy: "COMPARISON", provenance: "deterministic", fallbacks: [], supporting: { words: 14 } },
+  }]);
+  return s.warnings.some((w) => w.id === "VIS-TEXT-BUDGET") || "no VIS-TEXT-BUDGET warning";
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

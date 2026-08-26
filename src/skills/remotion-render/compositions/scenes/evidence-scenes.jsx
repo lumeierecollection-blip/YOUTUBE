@@ -20,14 +20,6 @@ import { progressOf, reached } from "../../visual/states.js";
  * and why it is on screen.
  */
 
-const STOP = new Set("a an the of and or but not is are was were be been being to from in on at for with by as it its this that these those".split(" "));
-
-function clauseFrom(text, maxWords = 9) {
-  const t = String(text || "").trim();
-  if (!t) return "";
-  const words = t.split(/\s+/);
-  return words.length <= maxWords ? t : words.slice(0, maxWords).join(" ") + "…";
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DOCUMENT_EVIDENCE — the page, then the clause that actually matters.
@@ -112,7 +104,7 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
             borderLeft: `4px solid ${colors.accent}`, paddingLeft: 20,
             color: colors.textPrimary, fontFamily, fontWeight: 700, fontSize: 40, lineHeight: 1.25,
           }}>
-            {clauseFrom(beat.text, 10)}
+            {(beat.visualPlan && beat.visualPlan.supporting.phrase) || ""}
           </div>
         </div>
       ) : null}
