@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, STAGE_CX, Label, Figure, Rule, MeasureBracket, variantOf,
+  CANVAS_W, CANVAS_H, STAGE_CX, Label, Figure, Rule, MeasureBracket, variantOf, useValueProgress,
   ease, seeded, useStateProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
@@ -188,14 +188,30 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
         />
       ) : null}
 
-      {/* The consequential total, only after the pile becomes it. */}
+      {/* The consequential total, only after the pile becomes it.
+          Two things caught on a rendered frame at this beat's ANCHOR — the
+          frame where "five hundred dollars" is actually spoken:
+
+          IT READ $0. `total` is the anchored state, and the figure counted
+          up from zero starting at that state, so the number was still at
+          zero on the exact frame the words landed. The counting already
+          happened, on the running total that climbed with the pile; this
+          figure is the RESULT, so it arrives at its value and fades in
+          rather than counting again.
+
+          IT WAS 132px, CENTRED. That is a hero number — the number as the
+          composition, which is the thing this whole rebuild removed. It is
+          now a caption on the compressed pile: the pile is the idea, the
+          figure says what the pile is worth. */}
       {collapsed && total != null ? (
-        <Figure
-          x={STAGE_CX} y={700}
-          value={total} p={ease(pTotal)} color={colors.accent}
-          size={132} align="center" fontFamily={fontFamily}
-          format={(v) => `${symbol}${Math.round(v).toLocaleString("en-US")}`}
-        />
+        <div style={{ opacity: ease(pTotal), transform: `scale(${0.94 + 0.06 * ease(pTotal)})`, transformOrigin: `${STAGE_CX}px 760px` }}>
+          <Figure
+            x={STAGE_CX} y={716}
+            value={total} p={1} color={colors.accent}
+            size={72} align="center" fontFamily={fontFamily}
+            format={(v) => `${symbol}${Math.round(v).toLocaleString("en-US")}`}
+          />
+        </div>
       ) : null}
 
       {pWeigh > 0 && total != null ? (
@@ -347,6 +363,7 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
 
   const pLeft = useStateProgress(states, "left");
   const pRight = useStateProgress(states, "right");
+  const pValue = useValueProgress(states);
   const pGap = useStateProgress(states, "gap");
   const pVerdict = useStateProgress(states, "verdict");
 
@@ -385,7 +402,10 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
 
       <Figure x={midX - 250 + colW / 2} y={axisY - hA - 56} value={a.value} p={pLeft}
         color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} format={fmt} />
-      <Figure x={midX + 60 + colW / 2} y={axisY - hB - 56} value={b.value} p={pRight}
+      {/* The right-hand quantity lands on the anchor, so its figure must be
+          AT its value there rather than starting to count from zero — see
+          useValueProgress. */}
+      <Figure x={midX + 60 + colW / 2} y={axisY - hB - 56} value={b.value} p={pValue}
         color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} format={fmt} />
 
       <Label x={midX - 250 + colW / 2} y={axisY + 20} text={String(a.label || "").toUpperCase().slice(0, 18)}
@@ -551,6 +571,7 @@ export function ScaleComparisonScene({ beat, colors, fontFamily }) {
 
   const pRef = useStateProgress(states, "reference");
   const pGrow = progressOf(states, "grow", frame);
+  const pValue = useValueProgress(states);
   const pRead = useStateProgress(states, "read");
 
   // A unit-block field: the value expressed as countable blocks, so the
@@ -581,7 +602,7 @@ export function ScaleComparisonScene({ beat, colors, fontFamily }) {
       </svg>
       <MeasureBracket x1={gridX} x2={gridX + gridW} y={gridY + rows * cell + 18} color={colors.stroke} p={pRef} />
       <Figure x={STAGE_CX} y={gridY + rows * cell + 52} value={value} unit={String(sup.unit || "")}
-        p={ease(pGrow)} color={colors.accent} size={72} align="center" fontFamily={fontFamily} />
+        p={pValue} color={colors.accent} size={72} align="center" fontFamily={fontFamily} />
       {pRead > 0 ? (
         <Label x={STAGE_CX} y={gridY - 54} text={`${Math.round(ease(pGrow) * 100)}% OF THE FIELD`}
           color={colors.textDim} size={24} tracking={2.4} align="center" opacity={pRead} fontFamily={fontFamily} />

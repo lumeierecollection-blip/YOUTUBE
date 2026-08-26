@@ -2,7 +2,7 @@ import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
   CANVAS_W, CANVAS_H, STAGE_CX, Label, Figure, variantOf,
-  ease, seeded, useStateProgress, EASE_OUT, EASE_IN_OUT,
+  ease, seeded, useStateProgress, useValueProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
 
@@ -154,6 +154,9 @@ export function GeospatialRadiusScene({ beat, colors, fontFamily }) {
   const pSelect = useStateProgress(states, "select");
   const pMeasure = useStateProgress(states, "measure");
   const locked = reached(states, "lock", frame);
+  // The measurement climbs WITH the radius and reaches 150 exactly when the
+  // boundary locks — which is the frame the narration says it.
+  const pValue = useValueProgress(states);
 
   const { avenues, streets } = React.useMemo(buildStreets, []);
   const buildings = React.useMemo(() => buildBuildings({ avenues, streets }), [avenues, streets]);
@@ -401,13 +404,13 @@ export function GeospatialRadiusScene({ beat, colors, fontFamily }) {
           title card. Screen-space, so the camera never stretches it, and
           haloed because it is set over map detail: on the first render the
           unit glyph disappeared into a building footprint. */}
-      {locked && Number.isFinite(sup.value) ? (
+      {pExpand > 0 && Number.isFinite(sup.value) ? (
         <Figure
           x={cx + panX + (r * zoom) / 2}
           y={cy + panY - 74}
           value={sup.value}
           unit={sup.unit && /^m$|met/i.test(String(sup.unit)) ? "m" : String(sup.unit || "")}
-          p={Math.max(ease(pLock), pMeasure)}
+          p={pValue}
           color={accent}
           halo={colors.bg}
           size={52}

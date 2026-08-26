@@ -44,6 +44,31 @@ export function useStateProgress(states, key, easing = EASE_OUT) {
   return ease(progressOf(states, key, frame), easing);
 }
 
+/**
+ * Progress for a NUMBER, so it lands on the word that names it.
+ *
+ * Counts from the beat's first frame and reaches exactly 1 at the anchor —
+ * the frame where the beat's key token is genuinely spoken, from the SRT.
+ *
+ * This exists because of a defect found on a rendered frame, not in review.
+ * Counters were driven by their own state's progress, and for four scenes
+ * that state WAS the anchored one, so the figure started counting from zero
+ * at the anchor. The accumulation beat displayed "$0" on the exact frame the
+ * narration said "five hundred dollars"; the geofence would have shown "0 m"
+ * on the frame that says "150 meter radius" — the one number the whole
+ * PART-23 gate is about.
+ *
+ * A number should be AT its value when its word is spoken. Anything else
+ * contradicts the narration at the only moment anyone is checking.
+ */
+export function useValueProgress(states) {
+  const frame = useCurrentFrame();
+  const anchored = (states || []).find((s) => s.anchored);
+  // No anchor, or the beat opens on it: nothing to count through.
+  if (!anchored || !(anchored.startFrame > 0)) return 1;
+  return ease(Math.max(0, Math.min(1, frame / anchored.startFrame)));
+}
+
 export function useReached(states, key) {
   const frame = useCurrentFrame();
   return reached(states, key, frame);

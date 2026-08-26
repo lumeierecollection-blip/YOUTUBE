@@ -354,6 +354,50 @@ check("summarizeVisuals flags a beat that still renders an icon hero", () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+console.log("\nnumbers land on their word");
+
+check("a counter is never driven by the state it is anchored to", () => {
+  // The defect this catches was found on a rendered frame: counters were
+  // driven by their own state's progress, and for four scenes that state
+  // WAS the anchored one, so the figure read ZERO on the exact frame the
+  // narration spoke the number. Any <Figure p={...pX}> whose pX names its
+  // strategy's anchored state is that bug.
+  const dir = join(__dirname, "..", "compositions", "scenes");
+  const offenders = [];
+  for (const [name, def] of Object.entries(STRATEGIES)) {
+    const anchored = (def.states || []).find((s) => s.anchored);
+    if (!anchored) continue;
+    const file = readdirSync(dir)
+      .filter((f) => f.endsWith(".jsx"))
+      .map((f) => ({ f, src: readFileSync(join(dir, f), "utf-8") }))
+      .find((x) => new RegExp(`function ${def.scene}\\b`).test(x.src));
+    if (!file) continue;
+    const start = file.src.indexOf(`function ${def.scene}`);
+    const next = file.src.indexOf("\nexport function", start + 1);
+    const body = file.src.slice(start, next === -1 ? undefined : next);
+    // p{Lock}, p{Right}, p{Grow}... the hook name for the anchored state.
+    const hook = "p" + anchored.key[0].toUpperCase() + anchored.key.slice(1);
+    const re = new RegExp(`<Figure[^>]*p=\\{[^}]*\\b${hook}\\b`, "s");
+    if (re.test(body)) offenders.push(`${def.scene}: <Figure p={...${hook}}> counts from zero at the anchor`);
+  }
+  return offenders.length === 0 || offenders.join("; ");
+});
+
+check("useValueProgress reaches exactly 1 on the anchor frame", () => {
+  // Simulated directly: the helper is a React hook, so the arithmetic it
+  // performs is checked here rather than the hook itself.
+  const plan = planVisual(geofenceBeat, { channel });
+  const states = buildStates(plan, { startFrame: 0, durationInFrames: 240, anchorFrame: 150 });
+  const anchored = states.find((s) => s.anchored);
+  if (!anchored) return "no anchored state";
+  const at = (f) => Math.max(0, Math.min(1, f / anchored.startFrame));
+  if (at(anchored.startFrame) !== 1) return `progress at anchor = ${at(anchored.startFrame)}`;
+  if (at(anchored.startFrame + 30) !== 1) return "progress falls back after the anchor";
+  if (at(0) !== 0) return `progress at beat start = ${at(0)}`;
+  return true;
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 console.log("\non-screen text budget");
 
 check("no strategy prints more than the supporting-text budget", () => {
