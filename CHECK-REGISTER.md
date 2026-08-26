@@ -70,6 +70,7 @@ never `L7` or `Â§3.1`.
 | `DEL` | absence â€” things that must no longer exist | the owning lane |
 | `FRM` | whole-frame visual QA | orchestrator |
 | `SCR` | daily-pipeline script generation â€” grounding, archetype/anchor sync, pacing | `discover-topics` / `research-and-script` workflow jobs (not a CROSSCHECK lane â€” see Â§3.10) |
+| `VIS` | visual storytelling — strategy routing, visual states, icon subordination | `visual/diagnostics.js` (per render, not a CROSSCHECK lane — see §3.12) |
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 
 ---
@@ -264,7 +265,7 @@ below:
 
 | ID | Check | Method | Threshold | T | Sev | Stage | State |
 |---|---|---|---|---|---|---|---|
-| ENC-01 | `STATEMENT` â‰¤30% of beats | classifier output | â‰¤30% | 1 | BLOCKER | 9 | **PARTIAL** - 2026-08-26 (visual-generation overhaul): root cause confirmed and fixed where the data allows it. `mg-package.js` discarded `sections[].beats[]` (the writer's own archetype/anchor_token/data.series, already gate-script.js-checked) and re-derived archetype via `classifyBeat`'s regex over ~7-word caption fragments with `data` always `{}` — which is why almost anything without a strong local keyword signal fell to STATEMENT. `beats.js`'s new `buildAuthoredBeats` makes the writer's own beats the Stage-scene unit when they anchor cleanly to the real SRT (real HERO_NUMBER/CONTRAST/TERM_DEFINE data verified on a real render, `data/renders/.../*.mp4` frame-checked). Still **PARTIAL**, not PASS: on the one real gate-passed script tested (ch-02 chatrie-ruling), 3 of 5 sections had too few authored beats for their own real length and fell back to the classifier per-section (see MAX_AUTHORED_BEAT_FRAMES in beats.js) — STATEMENT ratio for that script dropped 71%->63%, still over the 30% target. The renderer no longer discards good data; the remaining gap is upstream beat-density in already-written scripts, not something this session's render-time fix should paper over with a shorter fallback |
+| ENC-01 | `STATEMENT` <=30% of beats | classifier output | <=30% | 1 | BLOCKER | 9 | **PASS** - 2026-08-26 (visual-storytelling overhaul, second pass). The first pass reconnected authored beats but left the RENDER side icon-first, so this stayed PARTIAL at 63%. Both remaining causes are now gone: `deriveScene` (mg-package.js) no longer resolves an icon for every beat before the archetype switch (that single line was the icon-first mechanism), and `StageScene` routes through a visual director (`visual/director.js`) that reads the beat's own narration plus its gate-checked data and picks a visual STRATEGY, with `CINEMATIC_STATEMENT` - a composed depth frame carrying no icon - as the only terminal fallback. Measured on three real production-CLI renders: statement ratio 0.0 (ch-02 legal), 0.0 (ch-48 process), 0.2 (ch-01 finance); icon-hero ratio 0.0 on all three. `MAX_AUTHORED_BEAT_FRAMES` also no longer discards authored beats over 8s - it densifies one concept into more visual states instead - which is what had been forcing 3 of 5 sections onto the fragment classifier |
 | ENC-02 | No archetype repeats >2Ã— consecutively | classifier | â‰¤2 | 1 | MAJOR | 9 | N/B |
 | ENC-03 | Every beat has exactly one `anchorTokenIndex` | classifier | =1 | 1 | BLOCKER | 9 | N/B |
 | ENC-04 | Stage entrance begins in `[tAâˆ’4, tA+2]` | compiler | in window | 1 | MAJOR | 9 | N/B |
@@ -440,6 +441,50 @@ duplicated here: flat background and text contrast are `frame-audit.js`
 
 ---
 
+## 3.12 `VIS` - visual storytelling (second-pass overhaul)
+
+Computed by `src/skills/remotion-render/visual/diagnostics.js` on **every**
+render and written to `data/renders/<ch>/<slug>-<format>-visual-report.json`;
+warnings are echoed as `::warning::` annotations. Like `SCR` and `SLOP`,
+these gate the daily pipeline, not the CROSSCHECK render audit.
+
+These exist because the honest failure mode of a visual overhaul is a
+renderer that LOOKS rebuilt while most beats quietly still take the generic
+path. `VIS-02` and `VIS-04` are the two numbers that make that impossible
+to hide.
+
+| ID | Check | Method | Threshold | T | Sev | State |
+|---|---|---|---|---|---|---|
+| VIS-01 | Every registered strategy routes to a scene the router handles, and no two share one | `assertStrategyRegistryIsSound()` + `visual/run-visual-tests.js` | 0 problems | 1 | BLOCKER | **PASS** - 24/24 tests |
+| VIS-02 | `iconHeroRatio` = 0 (an icon is never the primary visual) | `diagnostics.js` | 0 | 1 | BLOCKER | **PASS** - 0.0 on all 3 real renders |
+| VIS-03 | Beats average >=2 visual states (concepts progress) | `diagnostics.js` | >=2 | 1 | MAJOR | **PASS** - 4.2 to 4.8 |
+| VIS-04 | `genericFallbackRatio` <=0.4 (beats produce a readable concept) | `diagnostics.js` | <=0.4 | 1 | MAJOR | **PASS** - 0.0 on all 3 |
+| VIS-05 | No single visual state holds >5s | `diagnostics.js` | <=5s | 1 | MAJOR | **PASS** - max 3.13s |
+| VIS-06 | >2 distinct strategies per video (not templated) | `diagnostics.js` | >2 | 1 | MAJOR | **PASS** - 4 to 5 per video |
+| VIS-07 | Every fallback records a machine-readable reason | `diagnostics.js` `fallbackReasons` | 100% | 1 | MAJOR | **PASS** |
+| VIS-08 | A geofence/distance concept renders a spatial visual, not a numeral | `run-visual-tests.js` PART-23 gate + rendered frame | spatial | 3 | BLOCKER | **PASS** - frame-verified, see 3.12.1 |
+| VIS-09 | The anchored visual state starts on the beat's real anchor frame | `run-visual-tests.js` | +/-1 frame | 1 | MAJOR | **PASS** |
+| VIS-10 | Visual states tile the beat window with no gaps at any duration/anchor | `run-visual-tests.js` | 0 gaps | 1 | MAJOR | **PASS** - 15 duration x anchor combinations |
+
+**3.12.1 - VIS-08 is frame-verified, not inferred.** The 150-metre geofence
+beat from the real ch-02 script was rendered through the production CLI and
+its frames inspected: a ground plane, the event origin, a radius that
+expands and locks, device markers filled inside the boundary and dimmed
+outside, "150 m" as a dimension on the drawn radius, and a count of what
+fell inside. The prior renderer showed "150 / meters" centred on a flat
+background.
+
+**3.12.2 - what VIS-05 does and does not prove.** It measures time between
+STATE changes. A first render passed it while the picture sat still, because
+most scenes only react to their own named states and ignored the sustaining
+states that densification adds. `SustainCamera` (`scenes/index.jsx`) now
+gives sustaining states a real (small) camera move, so the metric and the
+picture agree. It remains a structural proxy: it cannot prove a scene's
+named states are individually interesting, only that something changes.
+
+---
+
+
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 
 Deletions are verified by proving *nothing matches*, which makes them the
@@ -454,6 +499,8 @@ Stage 15, all are a single `grep` returning zero hits.
 | DEL-04 | Regex stat scrapers | `extractStats\|extractHeroNumber\|extractFlowLines` | BLOCKER |
 | DEL-05 | The two-word headline regex | `[A-Za-z]+)\\s+([A-Za-z]+` | BLOCKER |
 | DEL-06 | Keyword icon ladder | `iconFor` | MAJOR |
+| DEL-32 | Unconditional per-beat icon resolution | `resolveIcon` called outside an `iconRole === "secondary"` guard | BLOCKER |
+| DEL-33 | Icon-only stage scene | `StatementScene` reachable for a beat carrying a `visualPlan` | BLOCKER |
 | DEL-07 | Cue-based scene routing | `pickScene` | BLOCKER |
 | DEL-08 | Sibling flex in content zones | `display: *["']flex` in Stage/Headline/Caption | BLOCKER |
 | DEL-09 | Word-count caption chunking | `chunkVoiceover` | BLOCKER |

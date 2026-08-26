@@ -1,0 +1,64 @@
+{
+  "_fixture_note": "TEST FIXTURE \u2014 NOT RESEARCHED CONTENT, NOT FOR PUBLICATION. Written by hand to exercise specific visual strategies in the render pipeline (see qa-scripts/render-visual-tests.sh). Deliberately NOT placed under data/research/ because nothing here came from a real research pass: every figure is illustrative. This repo's grounding rule (CLAUDE.md) forbids presenting invented numbers as researched, so this file must never be fed to TTS/publish or copied into a channel's research dir.",
+  "channel_id": "48",
+  "topic_slug": "fixture-three-stage-process",
+  "format": "shorts",
+  "hook": "Every request the system takes moves through three separate stages before anything reaches you.",
+  "sections": [
+    {
+      "id": "process",
+      "timing": "0:00-0:14",
+      "voiceover": "The system processes every request through three separate stages, and a failure at any one of them stops the whole line.",
+      "beats": [
+        {
+          "text": "Three stages",
+          "archetype": "STATEMENT",
+          "anchor_token": "three separate stages",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "id": "interface",
+      "timing": "0:14-0:26",
+      "voiceover": "On the dashboard, the operator submits the query and the platform returns a ranked list of results within seconds.",
+      "beats": [
+        {
+          "text": "Dashboard query",
+          "archetype": "STATEMENT",
+          "anchor_token": "dashboard",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "id": "cause",
+      "timing": "0:26-0:38",
+      "voiceover": "Throughput collapsed because the second stage was holding every batch until the slowest item finished.",
+      "beats": [
+        {
+          "text": "Throughput collapse",
+          "archetype": "RELATION",
+          "anchor_token": "because",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "id": "timeline",
+      "timing": "0:38-0:50",
+      "voiceover": "The line ran this way from 1998 until 2015, when the batching rule was finally removed.",
+      "beats": [
+        {
+          "text": "1998 to 2015",
+          "archetype": "PROGRESS",
+          "anchor_token": "2015",
+          "data": {}
+        }
+      ]
+    }
+  ],
+  "sources_used": [
+    "FIXTURE-NOT-A-REAL-SOURCE"
+  ]
+}

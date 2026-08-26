@@ -887,17 +887,28 @@ function anchorAuthoredBeats(authoredBeats, sectionTokens, startFrom = 0) {
   return anchors;
 }
 
-// §6 of the visual-generation overhaul: "avoid compositions that remain
-// visually unchanged for 8-10s without deliberate cinematic justification".
-// A section can legally have as few as one authored beat (schema
-// minItems: 1); combined with the hook being folded into section one's
-// timeline (script-narration.js) without any beat of its own, an
-// under-provisioned section can otherwise stretch a single Stage scene
-// across the hook's entire ~20s. Rather than render that, treat it as the
-// data-quality problem it is and fall back to the classifier for the whole
-// video — same "refuse to guess" precedent as the anchor/word-count checks
-// above.
-const MAX_AUTHORED_BEAT_FRAMES = 8 * FPS;
+// PART 12 — ONE CONCEPT, MORE VISUAL STATES. NOT SIX UNRELATED SCENES.
+//
+// This threshold used to DISCARD the writer's authored beats for a whole
+// section whenever one of them spanned more than 8s, falling back to the
+// fragment classifier. The reasoning was "a static scene that long is
+// worse than a generic one" — which was true of the renderer as it existed
+// then, because a beat WAS one static composition. It threw the authored
+// idea away at exactly the moment the writer had given it the most room,
+// and on the one real gate-passed script in the repo it discarded 3 of 5
+// sections.
+//
+// That is no longer the trade. visual/states.js densifies a long window
+// into more states OF THE SAME CONCEPT (the geofence beat gets establish ->
+// origin -> expand -> lock -> populate -> select -> measure rather than one
+// held frame), so length now buys visual progression instead of a stall.
+//
+// A ceiling still exists, far higher, for genuinely pathological spans: a
+// single authored beat covering most of a long-form section means the
+// script's beat density is wrong, and silently spreading one concept over
+// 30s would hide that. At that point the classifier's finer-grained beats
+// really are the better rendering, and the warning says so.
+const MAX_AUTHORED_BEAT_FRAMES = 22 * FPS;
 
 /**
  * Build the real-timed, archetype/data-carrying beats for ONE section from
@@ -973,9 +984,10 @@ function authoredBeatsForSection(section, sectionTokens, sectionIndex, opts) {
     const durationInFrames = Math.max(Math.round(((endMs - startMs) / 1000) * fps), 1);
     if (durationInFrames > MAX_AUTHORED_BEAT_FRAMES) {
       console.warn(
-        `MG: authored beat "${authored.text}" (section ${sectionIndex}) would hold the Stage for ` +
-          `${(durationInFrames / fps).toFixed(1)}s — too few beats for this section's real length ` +
+        `MG: authored beat "${authored.text}" (section ${sectionIndex}) would hold ONE concept for ` +
+          `${(durationInFrames / fps).toFixed(1)}s — beyond what state densification can carry ` +
           `(${section.beats.length} beat(s) covering ~${((sectionEndMs - sectionStartMs) / 1000).toFixed(1)}s). ` +
+          `This is a script beat-density problem: the section needs more authored beats. ` +
           `Falling back to the SRT classifier for this section only.`
       );
       return null;
@@ -988,6 +1000,9 @@ function authoredBeatsForSection(section, sectionTokens, sectionIndex, opts) {
     beats.push({
       startFrame: Math.round((startMs / 1000) * fps),
       durationInFrames,
+      // The REAL spoken words in this beat's window. This is the richest
+      // context the visual director gets — a whole authored idea's worth of
+      // narration, not the ~7-word fragment classifyBeat has to guess from.
       text: tokensForText.map((t) => t.text).join(" "),
       startMs,
       endMs,
@@ -995,6 +1010,21 @@ function authoredBeatsForSection(section, sectionTokens, sectionIndex, opts) {
       sectionIndex,
       archetype: authored.archetype,
       data: authored.data || {},
+      // The writer's own authored fields, carried through for the visual
+      // director (visual/director.js). These used to be dropped here, which
+      // meant the renderer could see WHEN a beat happened and WHAT TYPE it
+      // was, but not what the writer said it was ABOUT:
+      //   authoredText — the short on-screen label the writer wrote
+      //     ("150 meters", "6-3 Decision"). Good as a supporting caption,
+      //     useless as semantic input on its own, which is exactly why the
+      //     director reads `text` above for meaning and this for display.
+      //   anchorToken — names the subject of the beat.
+      //   visual — the optional authored visual plan (schemas/script.mg.json).
+      //     Absent on every script written before that field existed; the
+      //     director falls through to its deterministic reading then.
+      authoredText: authored.text || null,
+      anchorToken: authored.anchor_token || null,
+      visual: authored.visual || null,
       wordTokens: tokensForText,
       anchorTokenIndex,
       anchorFrame: Math.round((ms / 1000) * fps),

@@ -21,6 +21,7 @@ import { resolveFontFamily } from "./visual.js";
 import { Panel } from "../primitives/Panel.jsx";
 import { D, MG_TYPE as TYPE, CAPTION } from "./beats.js";
 import { rolesFromPalette, strokeAttr, mixColor } from "./mg-style.js";
+import { SemanticScene } from "./scenes/index.jsx";
 import { ICON_INNER } from "./icons-data.js";
 import { PhotoTreatment } from "../effects/PhotoTreatment.jsx";
 import { CanvasGrain } from "../effects/CanvasGrain.jsx";
@@ -840,11 +841,25 @@ function HeadlineBox({ beat, colors, fontFamily }) {
   );
 }
 
+/**
+ * PART 12/16/17 — a beat routed to a semantic scene does NOT also get the
+ * generic headline.
+ *
+ * The old frame was: Stage icon + HeadlineBox + CaptionLayer, i.e. exactly
+ * the "icon -> headline -> caption" grammar this change is removing. The
+ * semantic scenes compose their own typography (a measurement on a drawn
+ * radius, a value beside its bar, a year on an axis) placed where it means
+ * something. Painting a second, larger headline over that would restore
+ * the template AND state the same fact twice.
+ *
+ * The caption stream stays: it is the actual spoken words, timed to real
+ * SRT, and is a different thing from a headline card.
+ */
 function HeadlineLayer({ beats, colors, fontFamily }) {
   return (
     <>
       {beats
-        .filter((b) => b.archetype !== "LIST_ITEM" && b.scene && b.scene.headline)
+        .filter((b) => b.archetype !== "LIST_ITEM" && !b.visualPlan && b.scene && b.scene.headline)
         .map((b) => (
           <Sequence key={`h-${b.startFrame}`} from={b.startFrame} durationInFrames={b.durationInFrames}>
             <HeadlineBox beat={b} colors={colors} fontFamily={fontFamily} />
@@ -1434,8 +1449,34 @@ export function ImageBeatScene({ beat, scene, colors, fontFamily }) {
   );
 }
 
+/**
+ * The stage router.
+ *
+ * PRIMARY PATH — the visual plan (visual/director.js) decides what the
+ * viewer sees, and SemanticScene (scenes/index.jsx) draws it. The plan
+ * carries its own timed visual states, so one authored concept can play
+ * through several meaningful moments instead of holding one static card.
+ *
+ * LEGACY PATH — the archetype switch below. It survives for exactly two
+ * cases, both real:
+ *   1. a caller that builds beats without going through buildMgPackage
+ *      (verify-compositions.js fixtures, older tests),
+ *   2. LIST_ITEM, which is not stage-routed at all — consecutive LIST_ITEM
+ *      beats accumulate as chips via ListRuns, which is already a real
+ *      non-icon visual system and had no reason to be replaced (PART 26).
+ *
+ * The old default case was StatementScene: a single 120px icon, and
+ * nothing else, for any beat the classifier couldn't read. That is the
+ * template this whole change exists to remove, so the default now routes
+ * through the plan-aware path instead.
+ */
 function StageScene({ beat, colors, fontFamily }) {
   const { scene } = beat;
+
+  if (beat.visualPlan) {
+    return <SemanticScene beat={beat} colors={colors} fontFamily={fontFamily} />;
+  }
+
   switch (beat.archetype) {
     case "HERO_NUMBER":
       return <HeroNumberScene beat={beat} scene={scene} colors={colors} fontFamily={fontFamily} />;

@@ -23,6 +23,9 @@ import {
   wordCount,
 } from "./beats.js";
 import { resolveIcon, isSpecificIconMatch } from "./mg-style.js";
+import { planVisual } from "../visual/director.js";
+import { buildStates } from "../visual/states.js";
+import { summarizeVisuals } from "../visual/diagnostics.js";
 
 export const MG_TAIL_FRAMES = 12; // held tail after the last beat (D3 headline/end)
 
@@ -242,7 +245,32 @@ function accentWindowFor(beat, scene) {
 
 export function deriveScene(beat, ctx = {}) {
   const iconMap = ctx.iconMap || null;
-  const scene = { icon: resolveIcon(iconMap, beat.text), iconIsSpecific: isSpecificIconMatch(iconMap, beat.text) };
+
+  // PART 8 — ICONS ARE NO LONGER RESOLVED FOR EVERY BEAT.
+  //
+  // This line used to read:
+  //   const scene = { icon: resolveIcon(iconMap, beat.text), ... }
+  // unconditionally, before the archetype switch below had even run. That
+  // single line is where the "large text + icon + dark background" look
+  // came from: every beat got a glyph whether or not anything wanted one,
+  // resolveIcon() falls back to the channel `default` and then to a literal
+  // "sparkles", and StatementScene (motion-graphics.jsx) rendered that glyph
+  // as the ENTIRE composition.
+  //
+  // Now: the visual plan decides. A strategy declares iconRole "secondary"
+  // only when a small glyph genuinely helps inside its own composition (a
+  // map marker on a map); everything else gets "none" and no icon is even
+  // looked up. Scene selection decides whether an icon is useful — icon
+  // selection never again decides the scene.
+  const plan = beat.visualPlan || null;
+  const iconRole = plan ? plan.iconRole : "none";
+  const wantsIcon = iconRole === "secondary";
+
+  const scene = {
+    iconRole: iconRole || "none",
+    icon: wantsIcon ? resolveIcon(iconMap, beat.text) : null,
+    iconIsSpecific: wantsIcon ? isSpecificIconMatch(iconMap, beat.text) : false,
+  };
   switch (beat.archetype) {
     case "HERO_NUMBER": {
       const n = beat.data && beat.data.value != null ? beat.data : parseNumber(beat.text);
@@ -635,6 +663,41 @@ export function buildMgPackage(srtText, opts = {}) {
     });
   }
 
+  // ── VISUAL DIRECTION ───────────────────────────────────────────────────
+  // The plan must exist BEFORE deriveScene, because deriveScene now asks
+  // the plan whether an icon is wanted at all (PART 8) instead of resolving
+  // one for every beat.
+  //
+  // LIST_ITEM is deliberately not planned: consecutive LIST_ITEM beats are
+  // not stage-routed at all, they accumulate as chips through ListRuns,
+  // which is already a real non-icon visual system (PART 26 — don't rewrite
+  // working systems without evidence).
+  const sectionTextFor = (idx) => (sections[idx] && sections[idx].voiceover) || "";
+  // Variety pressure needs to know what the last two staged beats chose,
+  // or one broad detector wins the whole video (see director.js).
+  let recent = [];
+  for (const b of beats) {
+    if (b.archetype === "LIST_ITEM") {
+      b.visualPlan = null;
+      b.visualStates = [];
+      continue;
+    }
+    b.visualPlan = planVisual(b, {
+      channel: opts.channel || null,
+      asset: imageForSection(b.sectionIndex),
+      sectionText: sectionTextFor(b.sectionIndex),
+      recent,
+    });
+    recent = [b.visualPlan.strategy, recent[0]].slice(0, 2);
+    // Deterministic frame math from the beat's REAL SRT window — no model
+    // is ever asked when something happens (PART 24).
+    b.visualStates = buildStates(b.visualPlan, {
+      startFrame: b.startFrame,
+      durationInFrames: b.durationInFrames,
+      anchorFrame: b.anchorFrame,
+    }, { fps });
+  }
+
   for (const b of beats) b.scene = deriveScene(b, { iconMap: opts.iconMap, imageForSection });
 
   groupListRuns(beats);
@@ -689,6 +752,10 @@ export function buildMgPackage(srtText, opts = {}) {
     usedAuthoredBeats,
     silenceWindow,
     imageGaps,
+    // PART 19/20 — every render carries its own visual QA numbers and the
+    // reason behind every fallback, so a video that quietly degraded is
+    // visible in the run that produced it.
+    visual: summarizeVisuals(beats, { fps }),
   };
 }
 

@@ -34,6 +34,7 @@ import { findChrome } from "./find-chrome.js";
 import { resolveImageAssets } from "./image-assets.js";
 import { resolveSfxCue, ensureSfxAvailable } from "./sfx.js";
 import { buildMgPackage } from "./compositions/mg-package.js";
+import { formatVisualReport } from "./visual/diagnostics.js";
 import { chunkTextClauseAware, sectionFrameWindows } from "./compositions/beats.js";
 import { paletteFromHues } from "./styles/tokens.js";
 import { narrationSections } from "../../utils/script-narration.js";
@@ -358,6 +359,10 @@ async function main() {
     mg = buildMgPackage(srtText, {
       sections,
       hook: script.hook || null,
+      // The visual director reads the channel's own niche to pick its
+      // visual vocabulary (visual/channel-grammar.js) — a legal channel
+      // reaches for documents, a finance channel for balances (PART 15).
+      channel,
       iconMap: channel.icon_map || null,
       sectionSfx: sections.map((s) => s.resolvedSfx),
       bRollFiles: sections.flatMap((s) => s.bRollFiles || []),
@@ -427,6 +432,20 @@ async function main() {
       console.warn(`::warning::IMAGE_BEAT gap (section ${gap.sectionIndex} -> ${gap.fallbackArchetype}): ${gap.reason} — "${gap.text}"`);
     }
     console.log(`Image gaps: ${(mg.imageGaps || []).length} beat(s) fell back from IMAGE_BEAT -> ${gapsPath}`);
+
+    // PART 19/20 — the visual QA report. Always written, even when clean,
+    // for the same reason the image-gaps file is: an absent file is
+    // ambiguous ("did this check run?"), an empty one is not. Warnings are
+    // echoed as GitHub-Actions annotations so a degraded render is visible
+    // in the run that produced it rather than in a later audit.
+    const visualPath = join(outputDir, `${slug}-${format}-visual-report.json`);
+    writeFileSync(visualPath, JSON.stringify(mg.visual, null, 2) + "\n");
+    console.log("\n--- VISUAL REPORT ---");
+    console.log(formatVisualReport(mg.visual));
+    console.log(`--- visual report -> ${visualPath}\n`);
+    for (const w of mg.visual.warnings || []) {
+      console.warn(`::warning::${w.id} (${w.severity}): ${w.message}`);
+    }
   }
 
   // Attribution for CC-BY-sourced photos used to live ONLY as on-screen

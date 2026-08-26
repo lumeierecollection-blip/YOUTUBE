@@ -113,6 +113,41 @@ Rules that follow from that table:
   adjust the beat mix until the split meets these bounds — it's
   gate-checked.
 
+### `visual` — optional, and usually leave it out
+
+`archetype` says what KIND of beat this is. It does not say what the viewer
+should SEE. The renderer works that out itself, deterministically, from the
+beat's own narration plus `anchor_token` and `data` — so a beat about a
+150-metre search radius becomes an expanding boundary on real ground with
+the devices caught inside it, not a large "150".
+
+**Do not add a `visual` block just because the field exists.** It costs
+output tokens on every beat that carries one, and on the scripts this was
+built against the automatic reading was already correct. Add one ONLY when
+the automatic reading would land on the wrong concept — typically when the
+sentence's real subject is not the thing its words emphasise.
+
+When you do, the whole block is: `{"strategy": "<ONE OF BELOW>"}`, plus
+`"data"` only if the strategy needs a figure the beat's `data` above does
+not already carry.
+
+`GEOSPATIAL_RADIUS` (a distance drawn on ground) · `ACCUMULATION` (many
+small things becoming one total) · `TRANSFORMATION` (one value becoming
+another) · `PROCESS` (ordered stages something moves through) · `TIMELINE`
+(dated events on an axis) · `DATA_CHART` (real series on a zero axis) ·
+`COMPARISON` (two quantities, or two opposed positions) · `CAUSE_EFFECT` ·
+`RELATIONSHIP` (several linked parties) · `BEFORE_AFTER` ·
+`INTERFACE_SIMULATION` (a system's own screen) · `DOCUMENT_EVIDENCE` (the
+text of a rule or record) · `IMAGE_EVIDENCE` (a real sourced photo) ·
+`SCALE_COMPARISON` (how big a number is against a reference) ·
+`VISUAL_METAPHOR` (an abstract idea given physical behaviour) ·
+`CINEMATIC_STATEMENT` (last resort — no richer visual exists).
+
+The same grounding rule applies here as to `data.series`: any number inside
+`visual.data` must come from the research. A strategy whose figures aren't
+available is rejected at render time and logged, so naming one you can't
+support just costs the beat its visual.
+
 ## If you were given the section schema (minimal / cinematic-documentary)
 
 Write `visual_cue`, `sfx_cue`, `b_roll`, and `transition_out` as concrete,

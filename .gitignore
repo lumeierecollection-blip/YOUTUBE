@@ -40,3 +40,10 @@ qa/**/*.mp4
 # data/asset-library/index.json are what actually matter downstream; the
 # raw originals would just bloat the repo with redundant multi-MB images.
 data/asset-library/raw/
+
+# Visual-storytelling render tests (qa-scripts/render-visual-tests.sh) stage
+# their inputs here. The fixtures themselves are versioned under
+# src/skills/remotion-render/qa-scripts/fixtures/; this is scratch staging,
+# deliberately kept out of data/research/ so a hand-written fixture can never
+# be mistaken for a gate-passed research artifact.
+data/audit/visual-tests/
