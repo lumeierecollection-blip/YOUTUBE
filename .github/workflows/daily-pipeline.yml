@@ -113,6 +113,7 @@ jobs:
             --search-budget "$DISCOVERY_SEARCH_BUDGET" \
             --agent pipeline-research \
             --model "$OPENCODE_MODELS" \
+            --task-label discover-topics \
             > /tmp/topics-raw.json 2> /tmp/topics-err.log
           AGENT_EXIT=$?
           set -e
@@ -238,6 +239,7 @@ jobs:
                 --schema-file schemas/research.json \
                 --agent pipeline-research \
                 --model "$OPENCODE_MODELS" \
+                --task-label research --channel-id "$CH" --video-id "$SLUG" \
                 > /tmp/research-raw.json 2> /tmp/research-err.log
           AGENT_EXIT=$?
           set -e
@@ -304,6 +306,7 @@ jobs:
                     --schema-file "$SCHEMA" \
                     --agent pipeline-script \
                     --model "$OPENCODE_MODELS" \
+                    --task-label write-script --channel-id "$CH" --video-id "$SCRIPT_SLUG" \
                     > /tmp/script-raw-$FORMAT.json 2> /tmp/script-err-$FORMAT.log
               AGENT_EXIT=$?
               set -e

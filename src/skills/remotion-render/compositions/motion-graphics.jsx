@@ -1595,6 +1595,7 @@ function BeatStages({ beats, colors, fontFamily }) {
             <StageContainer beat={{ ...b, scene: { ...b.scene, exit } }}>
               <StageScene beat={{ ...b, scene: { ...b.scene, exit } }} colors={colors} fontFamily={fontFamily} />
             </StageContainer>
+            {b.scene.sfx ? <Sfx file={b.scene.sfx} at={0} db={-20} /> : null}
           </Sequence>
         );
       })}

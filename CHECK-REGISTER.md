@@ -238,7 +238,7 @@ below:
 
 | ID | Check | Method | Threshold | T | Sev | Stage | State |
 |---|---|---|---|---|---|---|---|
-| MOT-01 | Beats are SRT-derived, not section-index divided | `grep "durationInFrames / .*sections"` | 0 hits | 1 | BLOCKER | 9 | **FAIL** |
+| MOT-01 | Beats are SRT-derived, not section-index divided | `grep "durationInFrames / .*sections"` | 0 hits | 1 | BLOCKER | 9 | **PASS** - 2026-08-26 (visual-generation overhaul): confirmed real and worse than the grep implies — `minimal.jsx` divided by section COUNT (equal screen time regardless of narration length) and `cinematic-documentary.jsx`'s `computeLayout` used a hardcoded dramatic-pacing weight that also never looked at word count (neither matched this row's own grep pattern, so this was never actually caught). `beats.js`'s new `realSectionWindows`/`sectionFrameWindows` give both styles the same real-per-word-SRT timing motion-graphics already had (word-count-proportional fallback when no SRT exists), threaded through `render.js` -> both compositions' new `sectionWindows` prop |
 | MOT-02 | 4â€“8 beats per rolling 300 frames | beat timeline | 4â€“8 | 1 | MAJOR | 9 | **FAIL** |
 | MOT-03 | Every beat â‰¥ its `holdFrames(text)` | compiler | â‰¥ | 1 | MAJOR | 9 | N/B |
 | MOT-04 | No `interpolate()` without an easing | `grep` + AST scan | 0 | 1 | MAJOR | 7 | **FAIL** |
@@ -264,7 +264,7 @@ below:
 
 | ID | Check | Method | Threshold | T | Sev | Stage | State |
 |---|---|---|---|---|---|---|---|
-| ENC-01 | `STATEMENT` â‰¤30% of beats | classifier output | â‰¤30% | 1 | BLOCKER | 9 | **FAIL** â€” ~100% |
+| ENC-01 | `STATEMENT` â‰¤30% of beats | classifier output | â‰¤30% | 1 | BLOCKER | 9 | **PARTIAL** - 2026-08-26 (visual-generation overhaul): root cause confirmed and fixed where the data allows it. `mg-package.js` discarded `sections[].beats[]` (the writer's own archetype/anchor_token/data.series, already gate-script.js-checked) and re-derived archetype via `classifyBeat`'s regex over ~7-word caption fragments with `data` always `{}` — which is why almost anything without a strong local keyword signal fell to STATEMENT. `beats.js`'s new `buildAuthoredBeats` makes the writer's own beats the Stage-scene unit when they anchor cleanly to the real SRT (real HERO_NUMBER/CONTRAST/TERM_DEFINE data verified on a real render, `data/renders/.../*.mp4` frame-checked). Still **PARTIAL**, not PASS: on the one real gate-passed script tested (ch-02 chatrie-ruling), 3 of 5 sections had too few authored beats for their own real length and fell back to the classifier per-section (see MAX_AUTHORED_BEAT_FRAMES in beats.js) — STATEMENT ratio for that script dropped 71%->63%, still over the 30% target. The renderer no longer discards good data; the remaining gap is upstream beat-density in already-written scripts, not something this session's render-time fix should paper over with a shorter fallback |
 | ENC-02 | No archetype repeats >2Ã— consecutively | classifier | â‰¤2 | 1 | MAJOR | 9 | N/B |
 | ENC-03 | Every beat has exactly one `anchorTokenIndex` | classifier | =1 | 1 | BLOCKER | 9 | N/B |
 | ENC-04 | Stage entrance begins in `[tAâˆ’4, tA+2]` | compiler | in window | 1 | MAJOR | 9 | N/B |
@@ -282,7 +282,7 @@ below:
 | ENC-16 | â‰¤4 Stage layers per frame | compiler | â‰¤4 | 1 | MINOR | 9 | N/B |
 | ENC-17 | Archetype mix matches the channel's `concepts` | compiler vs config | â‰¥50% / â‰¤35% / 0% | 1 | MINOR | 9 | N/B |
 | ENC-18 | `IMAGE_BEAT` â‰¤20% of beats | compiler | â‰¤20% | 1 | MINOR | 9 | N/B |
-| ENC-19 | `bRollFiles` is actually consumed | `grep` in style file | â‰¥1 hit | 1 | MAJOR | 9 | **FAIL** â€” 0 |
+| ENC-19 | `bRollFiles` is actually consumed | `grep` in style file | â‰¥1 hit | 1 | MAJOR | 9 | **PASS** - this row was already stale before the 2026-08-26 visual-generation overhaul session (which re-verified, not re-fixed, it): `render.js` -> `image-assets.js` -> `mg-package.js`/`beats.js` -> `ImageBeatScene` is a real, live chain today (confirmed by direct grep + a real render). Whoever's fix closed this didn't update the row |
 | ENC-20 | Percentages shown only when the script states one | compiler vs script | 100% | 1 | MAJOR | 8 | UNK |
 | ENC-21 | Two values share an axis only if they share a unit | compiler | 100% | 1 | MAJOR | 8 | UNK |
 | ENC-22 | Single-point data renders as `HERO_NUMBER`, not a chart | classifier | 100% | 1 | MINOR | 8 | UNK |
@@ -300,7 +300,7 @@ below:
 
 | ID | Check | Method | Threshold | T | Sev | Stage | State |
 |---|---|---|---|---|---|---|---|
-| AUD-01 | `sfxCue` is actually consumed by a composition | `grep` | â‰¥1 hit | 1 | MAJOR | 13 | **FAIL** â€” 0 |
+| AUD-01 | `sfxCue` is actually consumed by a composition | `grep` | â‰¥1 hit | 1 | MAJOR | 13 | **PASS** - 2026-08-26 (visual-generation overhaul): new `sfx.js` resolves each section's `sfx_cue` text (or the channel style's `sfx_profile`/`style_mapping` default) against the real vendored/licensed manifest (`src/audio/sfx-manifest.json`, 24 Kenney CC0 + Mixkit files — the only real SFX inventory that exists; channel.json's `sfx_profile.primary_sfx` wishlist, e.g. "cash-register-ding", was never actually sourced and is not fabricated here), threaded through `render.js` -> `mg-package.js` -> `motion-graphics.jsx`'s existing `<Sfx>` component. Verified on a real rendered MP4: silent at 10-12s, real non-zero audio at 0-2s (section start) |
 | AUD-02 | â‰¤1 SFX per beat | compiler | â‰¤1 | 1 | MINOR | 13 | N/B |
 | AUD-03 | SFX fires on the visual-land frame, not the word | compiler | match | 1 | MINOR | 13 | N/B |
 | AUD-04 | Gains match the SFX map | compiler | exact | 1 | MINOR | 13 | N/B |
@@ -314,9 +314,9 @@ below:
 
 | ID | Check | Method | Threshold | T | Sev | Stage | State |
 |---|---|---|---|---|---|---|---|
-| RND-01 | Render subpackage matches root Remotion version | parse both `package.json` | equal | 0 | BLOCKER | 1 | **FAIL** â€” 4.0.0 vs 4.0.503 |
-| RND-02 | React versions match | parse | equal | 0 | BLOCKER | 1 | **FAIL** â€” 18 vs 19 |
-| RND-03 | `@remotion/captions` installed and â‰¥4.0.216 | parse | present | 0 | BLOCKER | 1 | **FAIL** |
+| RND-01 | Render subpackage matches root Remotion version | parse both `package.json` | equal | 0 | BLOCKER | 1 | **PASS** - stale before the 2026-08-26 session (re-verified, not re-fixed): both now pin `^4.0.503` |
+| RND-02 | React versions match | parse | equal | 0 | BLOCKER | 1 | **PASS** - stale before the 2026-08-26 session (re-verified, not re-fixed): both now pin `^19.2.8` |
+| RND-03 | `@remotion/captions` installed and â‰¥4.0.216 | parse | present | 0 | BLOCKER | 1 | **PASS** - stale before the 2026-08-26 session (re-verified, not re-fixed): `^4.0.503` in both `package.json`s, confirmed actually installed and importable |
 | RND-04 | `inputProps` reaches the component | fixture render | reaches | 2 | BLOCKER | 1 | **FAIL** |
 | RND-05 | The generated-entry-file workaround is gone | `grep` | 0 hits | 1 | MAJOR | 1 | **FAIL** |
 | RND-06 | `renderMedia` sets `imageFormat: 'png'` | parse `render.js` | present | 1 | MAJOR | 14 | **FAIL** |
@@ -325,9 +325,12 @@ below:
 | RND-09 | `chromiumOptions.gl` passed to `renderMedia`, not the config file | parse | present | 1 | BLOCKER | 14 | **FAIL** |
 | RND-10 | `remotion.config.js` is deleted or annotated as CLI-only | file check | one of | 1 | MAJOR | 14 | **FAIL** |
 | RND-11 | No config-file setting is relied on by the SSR path | code review | 0 | 4 | BLOCKER | 14 | **FAIL** |
-| RND-12 | One full Short renders per mg channel | CI | 12/12 | 3 | BLOCKER | 16 | **FAIL** â€” never a clean run |
+| RND-12 | One full Short renders per mg channel | CI | 12/12 | 3 | BLOCKER | 16 | **FAIL** â€” never a clean run in CI. 2026-08-26: one real ch-02 (Legal Brief) Short rendered clean end-to-end via `render.js`'s actual CLI in a sandboxed Linux environment (`data/renders/2/*.mp4`, not committed — a local verification artifact, not a CI run) — 1/12, still open |
 | RND-13 | Frame 0 and final frame match for loop quality | contact sheet | match | 3 | MINOR | 16 | UNK |
 | RND-14 | No frame is >92% a single colour | contact sheet | 0 frames | 3 | MAJOR | 16 | UNK |
+
+**3.7.1 â€” `verify-compositions.js` never actually ran on Linux/CI before 2026-08-26.**
+Two real defects, unrelated to this session's actual work but found while using it to verify that work: (1) its `CHROME` constant was a hardcoded Windows path, so it always fell through to Remotion trying to download its own Chrome Headless Shell, which any egress-restricted environment (including a real GitHub Actions runner with default egress) refuses; (2) its `openBrowser({...})` call passed the whole options object as the `browser` positional argument (`openBrowser(browser, options)` in the installed `@remotion/renderer`), so even with a real `browserExecutable` set, it was silently discarded. Fixed: `CHROME` now reuses `render.js`'s own cross-platform `findChrome()` (extracted to `find-chrome.js` so importing it doesn't also run `render.js`'s top-level `main()`), and the `openBrowser` call now passes `(undefined, options)`. With both fixed, this session got a real still-render pass on the `movile-cave` ch-fixture for the first time and it surfaced two more real, previously-uncatchable findings, left **undiagnosed this session** (out of scope for a visual-generation-overhaul session to chase an unrelated pre-existing bug to ground): `mg f900 pixels near accent: 0 -> accent MISSING`, and `mg f505/1210/1565 IMAGE_BEAT stage stddev ~10.5-10.9 -> STAGE FLAT` despite the fixture's referenced b-roll files existing on disk. Whether these are real current defects in `motion-graphics.jsx` or the fixture's hardcoded check frame numbers (505/900/1210/1565/...) having drifted from what the current beat timeline actually puts at those archetypes could not be determined without further investigation.
 
 ## 3.8 `AST` â€” fonts, icons, images, licences
 

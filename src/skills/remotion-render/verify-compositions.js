@@ -10,9 +10,13 @@ import { gateBeats, gateCaptions, chunkTextClauseAware } from "./compositions/be
 import { ICON_INNER } from "./compositions/icons-data.js";
 import { verifyPalette } from "./compositions/mg-style.js";
 import { paletteFromHues, deriveHuesFromHexes } from "./styles/tokens.js";
+import { findChrome } from "./find-chrome.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const CHROME = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+// Was a hardcoded Windows-only path — never ran on Linux/CI as a result
+// (render.js's own cross-platform findChrome(), reused here, already
+// handles the sandboxed Playwright cache this environment provides).
+const CHROME = findChrome();
 const OUT_DIR = join(__dirname, "verify-out");
 
 function chunkVoiceover(text, maxWords = 7) {
@@ -123,7 +127,12 @@ const serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgr
 
 // One browser for all stills: each cold launch can exceed Chrome's 25s
 // connect timeout on this machine, so reuse a single instance.
-const browserInstance = await openBrowser({ browserExecutable: CHROME, chromiumOptions: { gl: "angle" } });
+// openBrowser's real signature is (browser, options) — passing a single
+// options object as `browser` (as this used to) silently drops
+// browserExecutable and makes it try to download its own Chrome, which
+// this sandbox's egress policy blocks. Found while verifying this session's
+// changes; real defect, unrelated to this session's actual work.
+const browserInstance = await openBrowser(undefined, { browserExecutable: CHROME, chromiumOptions: { gl: "swangle" } });
 
 const renderStillSafe = async (compId, inputProps, out, frame, durationOverride = null) => {
   const composition = await selectComposition({ serveUrl, id: compId, browserExecutable: CHROME, puppeteerInstance: browserInstance, inputProps });

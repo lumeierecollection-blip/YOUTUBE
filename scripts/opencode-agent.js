@@ -36,10 +36,13 @@
  */
 
 import { spawnSync } from "child_process";
-import { readFileSync, mkdtempSync, rmSync } from "fs";
+import { readFileSync, mkdtempSync, rmSync, mkdirSync, appendFileSync } from "fs";
 import { tmpdir } from "os";
-import { join } from "path";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 import Ajv from "ajv";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 function parseArgs(argv) {
   const args = {};
@@ -73,9 +76,31 @@ function readStdin() {
 // environment this was built in (egress to every model host was blocked
 // there), so if the real event shape differs, the broad-fallback regex
 // extraction below is the safety net rather than a hard failure.
+// Phase 17 (token observability) — sum whatever usage shape a step_finish
+// event actually carries. Providers vary in field naming (input_tokens vs
+// promptTokens vs prompt_tokens, etc.); this is defensive the same way cost
+// extraction above is, and for the same reason: this couldn't be verified
+// against a live event stream when it was built (egress blocked). Returns
+// null fields rather than 0 when nothing matched, so a report can tell
+// "no usage reported" apart from "reported zero".
+function addUsage(acc, usage) {
+  if (!usage || typeof usage !== "object") return;
+  const input = usage.input_tokens ?? usage.inputTokens ?? usage.prompt_tokens ?? usage.promptTokens;
+  const output = usage.output_tokens ?? usage.outputTokens ?? usage.completion_tokens ?? usage.completionTokens;
+  const reasoning = usage.reasoning_tokens ?? usage.reasoningTokens;
+  const cacheRead = usage.cache_read_tokens ?? usage.cacheReadTokens ?? usage.cache?.read;
+  const cacheWrite = usage.cache_write_tokens ?? usage.cacheWriteTokens ?? usage.cache?.write;
+  if (typeof input === "number") acc.input = (acc.input || 0) + input;
+  if (typeof output === "number") acc.output = (acc.output || 0) + output;
+  if (typeof reasoning === "number") acc.reasoning = (acc.reasoning || 0) + reasoning;
+  if (typeof cacheRead === "number") acc.cacheRead = (acc.cacheRead || 0) + cacheRead;
+  if (typeof cacheWrite === "number") acc.cacheWrite = (acc.cacheWrite || 0) + cacheWrite;
+}
+
 function extractTextAndCost(stdout) {
   let text = "";
   let cost = 0;
+  const usage = {};
   const searches = [];
   const lines = stdout.split("\n").filter((l) => l.trim());
   for (const line of lines) {
@@ -96,6 +121,11 @@ function extractTextAndCost(stdout) {
     } else if (evt?.info?.role === "assistant" && typeof evt.info.cost === "number") {
       cost = evt.info.cost;
     }
+    // Token usage — same event, alongside cost, plus the same fallback
+    // shapes checked above for cost.
+    addUsage(usage, evt?.part?.usage || evt?.part?.tokens);
+    addUsage(usage, evt?.usage);
+    addUsage(usage, evt?.info?.usage);
     // TextPart-shaped event.
     if (evt?.type === "text" && typeof evt.text === "string") {
       text += evt.text;
@@ -124,7 +154,7 @@ function extractTextAndCost(stdout) {
   // the whole transcript and can never parse. If the text parts above
   // matched nothing, the caller's error path (which dumps real output) is
   // more useful than a guess.
-  return { text, cost, searches };
+  return { text, cost, usage, searches };
 }
 
 function sleep(ms) {
@@ -238,7 +268,7 @@ function runOnce({ model, agent, promptText }) {
     return { ok: false, error: `opencode exited ${result.status}: ${detail || "(no output on stdout or stderr)"}` };
   }
 
-  const { text, cost, searches } = extractTextAndCost(result.stdout);
+  const { text, cost, usage, searches } = extractTextAndCost(result.stdout);
   if (!text) {
     return { ok: false, error: `no text content extracted from opencode output (first 500 chars): ${result.stdout.slice(0, 500)}` };
   }
@@ -246,12 +276,48 @@ function runOnce({ model, agent, promptText }) {
   if (!parsed) {
     return { ok: false, error: `could not extract valid JSON from model output: ${text.slice(0, 500)}` };
   }
-  return { ok: true, data: parsed, cost, searches };
+  return { ok: true, data: parsed, cost, usage, searches };
+}
+
+// Phase 17 — one JSONL line per model call, appended locally rather than
+// estimated after the fact. --task-label/--channel-id/--video-id are
+// optional so existing callers that don't pass them keep working; a report
+// can still group by provider/model/agent without them.
+function logTokenUsage({ model, agent, task, channelId, videoId, cost, usage, ok }) {
+  try {
+    const dir = join(ROOT, "data", "token-usage");
+    mkdirSync(dir, { recursive: true });
+    const [provider] = String(model || "").split("/");
+    const entry = {
+      timestamp: new Date().toISOString(),
+      provider: provider || null,
+      model: model || null,
+      task: task || agent || null,
+      channel_id: channelId || null,
+      video_id: videoId || null,
+      ok: !!ok,
+      cost_usd: cost || 0,
+      input_tokens: usage?.input ?? null,
+      output_tokens: usage?.output ?? null,
+      reasoning_tokens: usage?.reasoning ?? null,
+      cache_read_tokens: usage?.cacheRead ?? null,
+      cache_write_tokens: usage?.cacheWrite ?? null,
+    };
+    appendFileSync(join(dir, "log.jsonl"), JSON.stringify(entry) + "\n");
+  } catch (err) {
+    // Observability must never break the pipeline it's observing.
+    console.error(`token usage logging failed (non-fatal): ${err.message}`);
+  }
 }
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const { "prompt-file": promptFile, "schema-file": schemaFile, agent, model: modelArg } = args;
+  // Phase 17 (token observability) — all optional, purely for the local
+  // per-call log; nothing here changes what gets sent to the model.
+  const taskLabel = args["task-label"];
+  const channelId = args["channel-id"];
+  const videoId = args["video-id"];
   const systemPromptFile = args["append-system-prompt-file"];
   // Default lowered from 3 to 2: more attempts means more cumulative
   // token spend against the same tight quota, not a better chance of
@@ -324,6 +390,7 @@ Do your research and reasoning silently — do not quote, paste, or summarize se
     let promptText = `${basePrompt}${inputBlock}${schemaInstruction}`;
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       const result = runOnce({ model, agent, promptText });
+      logTokenUsage({ model, agent, task: taskLabel, channelId, videoId, cost: result.cost, usage: result.usage, ok: result.ok });
       if (!result.ok) {
         lastError = `[${model}] attempt ${attempt}/${maxRetries}: ${result.error}`;
         console.error(lastError);
@@ -354,6 +421,8 @@ Do your research and reasoning silently — do not quote, paste, or summarize se
         model_used: model,
         websearch_calls: (result.searches || []).length,
         search_queries: (result.searches || []).map((s) => s.query).filter(Boolean),
+        input_tokens: result.usage?.input ?? null,
+        output_tokens: result.usage?.output ?? null,
       }));
       return;
     }

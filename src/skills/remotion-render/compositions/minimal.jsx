@@ -63,18 +63,23 @@ function MinimalBackground({ colors }) {
   return <AbsoluteFill style={{ backgroundColor: colors.bg }} />;
 }
 
-function MinimalSections({ sections, colors = COLORS, fontFamily }) {
-  const { fps, durationInFrames } = useVideoConfig();
-  const sectionDuration = Math.floor(durationInFrames / Math.max(sections.length, 1));
+function MinimalSections({ sections, colors = COLORS, fontFamily, sectionWindows }) {
+  const { durationInFrames } = useVideoConfig();
+  // MOT-01 — real (or word-count-proportional) per-section windows from
+  // render.js, replacing equal division by section count: a 10-word section
+  // used to get exactly as much screen time as a 60-word one.
+  const fallbackDuration = Math.floor(durationInFrames / Math.max(sections.length, 1));
 
   return (
     <>
       {sections.map((section, i) => {
-        const start = i * sectionDuration;
+        const window = sectionWindows && sectionWindows[i];
+        const start = window ? window.from : i * fallbackDuration;
+        const duration = window ? window.duration : fallbackDuration;
         const lines = (section.content || []).slice(0, 5);
         const emphasize = i === 0 || lines.length <= 1;
         return (
-          <Sequence key={i} from={start} durationInFrames={sectionDuration}>
+          <Sequence key={i} from={start} durationInFrames={duration}>
             <MinimalBackground colors={colors} />
             <AbsoluteFill
               style={{
@@ -104,23 +109,23 @@ function MinimalSections({ sections, colors = COLORS, fontFamily }) {
   );
 }
 
-export function MinimalShorts({ sections = [], ttsAudioPath, font = "Space Grotesk", palette = null }) {
+export function MinimalShorts({ sections = [], ttsAudioPath, font = "Space Grotesk", palette = null, sectionWindows = null }) {
   const colors = resolveColors(palette, COLORS);
   const fontFamily = resolveFontFamily(font);
   return (
     <AbsoluteFill>
-      <MinimalSections sections={sections} colors={colors} fontFamily={fontFamily} />
+      <MinimalSections sections={sections} colors={colors} fontFamily={fontFamily} sectionWindows={sectionWindows} />
       {ttsAudioPath ? <Audio src={currentAudio} /> : null}
     </AbsoluteFill>
   );
 }
 
-export function MinimalLongform({ sections = [], ttsAudioPath, font = "Space Grotesk", palette = null }) {
+export function MinimalLongform({ sections = [], ttsAudioPath, font = "Space Grotesk", palette = null, sectionWindows = null }) {
   const colors = resolveColors(palette, COLORS);
   const fontFamily = resolveFontFamily(font);
   return (
     <AbsoluteFill>
-      <MinimalSections sections={sections} colors={colors} fontFamily={fontFamily} />
+      <MinimalSections sections={sections} colors={colors} fontFamily={fontFamily} sectionWindows={sectionWindows} />
       {ttsAudioPath ? <Audio src={currentAudio} /> : null}
     </AbsoluteFill>
   );

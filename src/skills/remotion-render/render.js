@@ -23,16 +23,18 @@
  * prop and the duration comes from the package (never from the mp3 length).
  */
 
-import { readFileSync, mkdirSync, existsSync, copyFileSync, readdirSync, writeFileSync } from "fs";
+import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync } from "fs";
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 import { createRequire } from "module";
 import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
+import { findChrome } from "./find-chrome.js";
 import { resolveImageAssets } from "./image-assets.js";
+import { resolveSfxCue, ensureSfxAvailable } from "./sfx.js";
 import { buildMgPackage } from "./compositions/mg-package.js";
-import { chunkTextClauseAware } from "./compositions/beats.js";
+import { chunkTextClauseAware, sectionFrameWindows } from "./compositions/beats.js";
 import { paletteFromHues } from "./styles/tokens.js";
 import { narrationSections } from "../../utils/script-narration.js";
 
@@ -62,42 +64,6 @@ function findFFprobe() {
     if (existsSync(candidate)) return candidate;
   } catch {}
   return "ffprobe";
-}
-
-// Finds a usable Chrome/Chromium binary. Explicit env override first, then
-// platform-typical install locations, then the sandboxed Playwright cache
-// this environment pre-installs Chromium into. Returns undefined (rather
-// than a bad path) when nothing is found, so Remotion falls back to
-// downloading/managing its own Chrome Headless Shell.
-function findChrome() {
-  if (process.env.REMOTION_CHROME_PATH && existsSync(process.env.REMOTION_CHROME_PATH)) {
-    return process.env.REMOTION_CHROME_PATH;
-  }
-  if (process.platform === "win32") {
-    const p = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
-    return existsSync(p) ? p : undefined;
-  }
-  if (process.platform === "darwin") {
-    const p = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-    return existsSync(p) ? p : undefined;
-  }
-  const candidates = ["/usr/bin/google-chrome", "/usr/bin/chromium", "/usr/bin/chromium-browser"];
-  const pwBase = process.env.PLAYWRIGHT_BROWSERS_PATH;
-  if (pwBase && existsSync(pwBase)) {
-    for (const entry of readdirSync(pwBase)) {
-      // Prefer chromium_headless_shell: modern Chrome removed "old headless"
-      // mode, which is what Remotion's renderer launches with.
-      if (entry.startsWith("chromium_headless_shell-")) {
-        const p = join(pwBase, entry, "chrome-linux", "headless_shell");
-        if (existsSync(p)) candidates.unshift(p);
-      }
-      if (entry.startsWith("chromium-")) {
-        const p = join(pwBase, entry, "chrome-linux", "chrome");
-        if (existsSync(p)) candidates.push(p);
-      }
-    }
-  }
-  return candidates.find((p) => existsSync(p));
 }
 
 const CHROME = findChrome();
@@ -191,6 +157,14 @@ function toContentSections(script) {
       textOverlay: s.text_overlay || null,
       animationCue: s.animation_cue || null,
       transitionOut: s.transition_out || null,
+      // schemas/script.mg.json sections[].beats[] — the writer's own
+      // archetype/anchor_token/data.series per visual idea, gate-script.js
+      // (SCR-03/04/05) checked. Forwarded so buildMgPackage can prefer it
+      // over its own SRT-text classifier (see beats.js buildAuthoredBeats).
+      // Absent for minimal/cinematic-documentary scripts and any legacy
+      // script written before this field existed — both fall back exactly
+      // as before.
+      beats: Array.isArray(s.beats) ? s.beats : null,
     }));
 }
 
@@ -358,6 +332,17 @@ async function main() {
   const withBroll = sections.filter((s) => (s.bRollFiles || []).length > 0).length;
   console.log(`B-roll: ${withBroll}/${sections.length} sections have real imagery`);
 
+  // AUD-01 — sfx_cue used to be extracted and then never read again (see
+  // sfx.js's header). Resolve each section's cue against the real vendored,
+  // licensed SFX manifest now, so it can actually reach the composition.
+  for (const section of sections) {
+    const resolved = resolveSfxCue(section.sfxCue, channel.style, section.id);
+    section.resolvedSfx = resolved ? ensureSfxAvailable(resolved) : null;
+  }
+  const withSfx = sections.filter((s) => s.resolvedSfx).length;
+  const matchedSfx = sections.filter((s) => s.resolvedSfx && s.resolvedSfx.matched).length;
+  console.log(`SFX: ${withSfx}/${sections.length} sections have a resolved cue (${matchedSfx} matched the cue text, rest used the channel style's default)`);
+
   const componentId = getCompositionForStyle(channel.style, format);
   const staged = stageAudio(ttsAudioPath);
 
@@ -372,7 +357,9 @@ async function main() {
     const audioSecs = getAudioDurationSeconds(ttsAudioPath);
     mg = buildMgPackage(srtText, {
       sections,
+      hook: script.hook || null,
       iconMap: channel.icon_map || null,
+      sectionSfx: sections.map((s) => s.resolvedSfx),
       bRollFiles: sections.flatMap((s) => s.bRollFiles || []),
       imageForSection: (idx) => (sections[idx] && sections[idx].bRollFiles && sections[idx].bRollFiles[0]) || null,
       totalMs: audioSecs ? audioSecs * 1000 : undefined,
@@ -384,8 +371,16 @@ async function main() {
     });
     frames = mg.totalFrames;
     console.log(
-      `MG package: ${mg.beats.length} beats, ${mg.pages.length} pages, ${mg.totalFrames}f (audio ${mg.audioFrames}f, synthesized=${mg.synthesized})`
+      `MG package: ${mg.beats.length} beats, ${mg.pages.length} pages, ${mg.totalFrames}f ` +
+        `(audio ${mg.audioFrames}f, synthesized=${mg.synthesized}, authoredBeats=${mg.usedAuthoredBeats})`
     );
+    if (!mg.usedAuthoredBeats) {
+      console.warn(
+        "MG: falling back to the SRT-text classifier for beat archetypes — " +
+          "script has no sections[].beats, an anchor_token didn't match the real narration, " +
+          "or the SRT word count didn't match the script's voiceover word count."
+      );
+    }
     // Only the platform ceiling is enforced — the package never cuts audio.
     const ceiling = (format === "shorts" ? SHORTS_CLAMP : LONGFORM_CLAMP)[1];
     if (frames > ceiling) {
@@ -394,6 +389,23 @@ async function main() {
     }
   } else {
     frames = computeDurationFrames(script, channel.style, format, ttsAudioPath);
+  }
+
+  // MOT-01 — minimal/cinematic-documentary used to divide screen time by
+  // section COUNT (minimal.jsx) or a hardcoded dramatic-pacing weight that
+  // never looked at word count (cinematic-documentary.jsx's computeLayout),
+  // either of which can hold a section's visuals on screen for far longer
+  // or shorter than its narration actually takes — the same class of bug
+  // motion-graphics used to have before the SRT became its timing source.
+  // Same fix here: real per-word SRT timing when the same TTS run produced
+  // one (findSrtPath isn't MG-specific — it just looks next to the audio),
+  // else an honest word-count-proportional split.
+  let sectionWindows = null;
+  if (channel.style !== "motion-graphics") {
+    const srtPath = findSrtPath(ttsAudioPath);
+    const srtText = srtPath ? readFileSync(srtPath, "utf-8") : "";
+    if (srtPath) console.log(`${channel.style} SRT: ${srtPath}`);
+    sectionWindows = sectionFrameWindows(sections, srtText, frames, 30);
   }
 
   const outputDir = join(ROOT, "data", "renders", channelId);
@@ -453,6 +465,7 @@ async function main() {
     format: format,
     sections,
     mg,
+    sectionWindows,
     ttsAudioPath: staged,
     hasUnderscore,
     thumbnailStyle: channel.thumbnail_spec?.style || "dramatic-visual",

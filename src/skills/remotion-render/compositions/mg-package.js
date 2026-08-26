@@ -17,6 +17,7 @@ import {
   parseSrtToBeats,
   parseSrtToMotionGraphics,
   assignBeatsToSections,
+  buildAuthoredBeats,
   transitionBeforeBeat,
   wrapCaptionWords,
   wordCount,
@@ -558,15 +559,28 @@ export function buildMgPackage(srtText, opts = {}) {
   const audioFrames = Math.round((audioEndMs / 1000) * fps);
 
   const bRollFiles = opts.bRollFiles || [];
-  let beats = parseSrtToBeats(srtText, { bRollFiles, captions: captions.length ? captions : undefined });
 
-  // Sections → beats.
-  if (sections.length) {
-    const windows = sectionWindowsMs(sections, audioEndMs || opts.totalMs || 60000, fps);
-    beats = assignBeatsToSections(beats, windows); // returns a new array (beats.js)
-    beats = beats.map(({ _i, ...rest }) => rest); // strip the section-mapping index
-  } else {
-    for (const b of beats) b.sectionIndex = 0;
+  // Prefer the writer's own beats[] (archetype + anchor_token + data.series,
+  // already gate-script.js-checked) over the blind regex classifier — see
+  // buildAuthoredBeats' header comment in beats.js. Falls back to the
+  // classifier path unchanged the moment anything doesn't line up (no
+  // sections[].beats, an unmatched anchor_token, a word-count mismatch
+  // against the real SRT) so scripts predating this field, and the
+  // minimal/cinematic-documentary styles, are unaffected.
+  let beats = captions.length ? buildAuthoredBeats(sections, captions, { fps, hook: opts.hook }) : null;
+  const usedAuthoredBeats = !!beats;
+
+  if (!beats) {
+    beats = parseSrtToBeats(srtText, { bRollFiles, captions: captions.length ? captions : undefined });
+
+    // Sections → beats.
+    if (sections.length) {
+      const windows = sectionWindowsMs(sections, audioEndMs || opts.totalMs || 60000, fps);
+      beats = assignBeatsToSections(beats, windows); // returns a new array (beats.js)
+      beats = beats.map(({ _i, ...rest }) => rest); // strip the section-mapping index
+    } else {
+      for (const b of beats) b.sectionIndex = 0;
+    }
   }
 
   const imageForSection = opts.imageForSection || (() => null);
@@ -629,6 +643,20 @@ export function buildMgPackage(srtText, opts = {}) {
   const hookBeat = beats.find((b) => b.sectionIndex === 0);
   if (hookBeat) hookBeat.scene.trace = true;
 
+  // AUD-01 — fire each section's resolved sfx_cue (sfx.js) once, on the
+  // first beat of that section, so the section's own sound atmosphere
+  // actually plays instead of being silently dropped after extraction.
+  const sectionSfx = opts.sectionSfx || [];
+  if (sectionSfx.some(Boolean)) {
+    const seenSections = new Set();
+    for (const b of beats) {
+      if (seenSections.has(b.sectionIndex)) continue;
+      seenSections.add(b.sectionIndex);
+      const resolved = sectionSfx[b.sectionIndex];
+      if (resolved) b.scene.sfx = resolved.relativePath;
+    }
+  }
+
   const rawPages = parseSrtToMotionGraphics(srtText, { captions: captions.length ? captions : undefined }).pages;
   const pages = enrichPages(stripHeroNumberTokens(rawPages, beats), fps);
 
@@ -658,6 +686,7 @@ export function buildMgPackage(srtText, opts = {}) {
     totalFrames,
     audioFrames,
     synthesized,
+    usedAuthoredBeats,
     silenceWindow,
     imageGaps,
   };
