@@ -120,7 +120,21 @@ export function summarizeVisuals(beats, opts = {}) {
     distinctStrategies: Object.keys(byStrategy).length,
   };
 
-  return { metrics, fallbackReasons, warnings: buildWarnings(metrics, staged, fps) };
+  // One row per staged beat, so a QA pass can find each beat in the
+  // finished mp4 without re-deriving the package. qa-scripts/mute-test.mjs
+  // uses anchorFrame to pull the frame where the beat's key word is
+  // actually spoken — the moment the picture has to be carrying it.
+  const beatRows = staged.map((b) => ({
+    startFrame: b.startFrame,
+    anchorFrame: b.anchorFrame,
+    durationInFrames: b.durationInFrames,
+    strategy: b.visualPlan ? b.visualPlan.strategy : null,
+    variant: b.visualPlan ? b.visualPlan.variant : null,
+    words: (b.visualPlan && b.visualPlan.supporting && b.visualPlan.supporting.words) || 0,
+    text: String(b.text || "").slice(0, 70),
+  }));
+
+  return { metrics, fallbackReasons, beats: beatRows, warnings: buildWarnings(metrics, staged, fps) };
 }
 
 /**

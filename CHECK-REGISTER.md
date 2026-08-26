@@ -301,7 +301,7 @@ below:
 
 | ID | Check | Method | Threshold | T | Sev | Stage | State |
 |---|---|---|---|---|---|---|---|
-| AUD-01 | `sfxCue` is actually consumed by a composition | `grep` | â‰¥1 hit | 1 | MAJOR | 13 | **PASS** - 2026-08-26 (visual-generation overhaul): new `sfx.js` resolves each section's `sfx_cue` text (or the channel style's `sfx_profile`/`style_mapping` default) against the real vendored/licensed manifest (`src/audio/sfx-manifest.json`, 24 Kenney CC0 + Mixkit files — the only real SFX inventory that exists; channel.json's `sfx_profile.primary_sfx` wishlist, e.g. "cash-register-ding", was never actually sourced and is not fabricated here), threaded through `render.js` -> `mg-package.js` -> `motion-graphics.jsx`'s existing `<Sfx>` component. Verified on a real rendered MP4: silent at 10-12s, real non-zero audio at 0-2s (section start) |
+| AUD-01 | Sound is triggered by a VISUAL EVENT and every event is explainable | `visual/diagnostics.js` `summarizeSound` + `qa-scripts/audio-qa.mjs` on the rendered mp4 | `semanticMatchRate` = 1, every event audible | 1 | MAJOR | **PASS** - 2026-08-26 (third pass). SUPERSEDES the second-pass close: that resolved one sound per section by keyword-matching the script's free-text `sfx_cue` against file tags and fired it at frame zero of the section, so it played because a section began rather than because anything happened on screen, and it matched the narration's WORDS not the picture (a cue reading "low sub-bass drone" scored against "click, ui, button"). `sfx.js` and the `sfxCue` plumbing are deleted; `visual/sound-design.js` schedules from visual states instead. Verified in the rendered mp4 by `audio-qa.mjs`: 9/9 events present, measured RMS within 0.1-2.3 dB of each event's target |
 | AUD-02 | â‰¤1 SFX per beat | compiler | â‰¤1 | 1 | MINOR | 13 | N/B |
 | AUD-03 | SFX fires on the visual-land frame, not the word | compiler | match | 1 | MINOR | 13 | N/B |
 | AUD-04 | Gains match the SFX map | compiler | exact | 1 | MINOR | 13 | N/B |
@@ -455,7 +455,7 @@ to hide.
 
 | ID | Check | Method | Threshold | T | Sev | State |
 |---|---|---|---|---|---|---|
-| VIS-01 | Every registered strategy routes to a scene the router handles, and no two share one | `assertStrategyRegistryIsSound()` + `visual/run-visual-tests.js` | 0 problems | 1 | BLOCKER | **PASS** - 24/24 tests |
+| VIS-01 | Every registered strategy routes to a scene the router handles, and no two share one | `assertStrategyRegistryIsSound()` + `visual/run-visual-tests.js` | 0 problems | 1 | BLOCKER | **PASS** - 45/45 tests |
 | VIS-02 | `iconHeroRatio` = 0 (an icon is never the primary visual) | `diagnostics.js` | 0 | 1 | BLOCKER | **PASS** - 0.0 on all 3 real renders |
 | VIS-03 | Beats average >=2 visual states (concepts progress) | `diagnostics.js` | >=2 | 1 | MAJOR | **PASS** - 4.2 to 4.8 |
 | VIS-04 | `genericFallbackRatio` <=0.4 (beats produce a readable concept) | `diagnostics.js` | <=0.4 | 1 | MAJOR | **PASS** - 0.0 on all 3 |
@@ -465,14 +465,32 @@ to hide.
 | VIS-08 | A geofence/distance concept renders a spatial visual, not a numeral | `run-visual-tests.js` PART-23 gate + rendered frame | spatial | 3 | BLOCKER | **PASS** - frame-verified, see 3.12.1 |
 | VIS-09 | The anchored visual state starts on the beat's real anchor frame | `run-visual-tests.js` | +/-1 frame | 1 | MAJOR | **PASS** |
 | VIS-10 | Visual states tile the beat window with no gaps at any duration/anchor | `run-visual-tests.js` | 0 gaps | 1 | MAJOR | **PASS** - 15 duration x anchor combinations |
+| VIS-11 | A beat prints at most 8 words on screen (supporting text, not a subtitle) | `diagnostics.js` `maxWordsOnOneBeat` + `run-visual-tests.js` | <=8 | 1 | MAJOR | **PASS** - max 8 (legal), 3 (finance), 0 (tech) |
+| VIS-12 | `textNarrationRatio` stays low (the picture is not reciting the narration) | `diagnostics.js` | <=0.35 | 1 | MAJOR | **PASS** - 0.221 / 0.05 / 0.00 |
+| VIS-13 | Full narration captions are OFF unless a channel opts in | `render.js` `showCaptions` = `channel.captions === "burned-in"` | opt-in only | 1 | MAJOR | **PASS** - no channel in `channels.json` sets it today |
+| VIS-14 | Two beats never draw the same composition | `diagnostics.js` `VIS-SAME-COMPOSITION` | 0 repeats | 1 | MINOR | **PASS** - clean on all 3 after variants were added to DOCUMENT_EVIDENCE / GEOSPATIAL_RADIUS / PROCESS / ACCUMULATION |
+| VIS-15 | A declared composition-variant count is backed by a scene that branches on it | `run-visual-tests.js` (reads the scene sources) | 0 false declarations | 1 | MAJOR | **PASS** - guard verified to fail when a declaration is falsified |
+| VIS-16 | Sound events are spaced, capped, explained and never boosted to unity | `run-visual-tests.js` + `diagnostics.js` `summarizeSound` | 0 warnings | 1 | MAJOR | **PASS** - 0 AUD-* warnings on all 3 |
+| VIS-17 | Every sound-library entry's duration/peak/RMS is MEASURED from the file | `qa-scripts/fetch-sfx-library.mjs` + `run-visual-tests.js` | 26/26 measured | 1 | MAJOR | **PASS** |
 
 **3.12.1 - VIS-08 is frame-verified, not inferred.** The 150-metre geofence
 beat from the real ch-02 script was rendered through the production CLI and
-its frames inspected: a ground plane, the event origin, a radius that
-expands and locks, device markers filled inside the boundary and dimmed
-outside, "150 m" as a dimension on the drawn radius, and a count of what
-fell inside. The prior renderer showed "150 / meters" centred on a flat
-background.
+its frames inspected (`qa/pass3/geofence-*.png`).
+
+Frame-verified TWICE, because the first pass at it was not good enough. The
+original renderer showed "150 / meters" centred on a flat background - the
+data, not the idea. The second-pass replacement drew a perspective floor
+grid, an ellipse and fourteen scattered rectangles: spatial, but read cold
+it is a grid, an oval and some squares, and nothing in it says CITY.
+
+What the current frames show is a plan-view MAP - an irregular street
+network with arterials and a diagonal, city blocks, building footprints - a
+true circle laid over it, an accent pin on the incident, device pins
+standing ON buildings with the twelve inside the boundary filled and those
+outside dimmed, "150 m" as a dimension on the drawn radius, and a camera
+that opens at the scale of one address and pulls back as the boundary
+grows. Muted, the frame still says: this corner, this boundary, these
+buildings inside it.
 
 **3.12.2 - what VIS-05 does and does not prove.** It measures time between
 STATE changes. A first render passed it while the picture sat still, because
