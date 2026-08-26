@@ -116,8 +116,16 @@ export function TimelineScene({ beat, colors, fontFamily }) {
         );
       })}
 
-      <Label x={x0} y={axisY + 26} text={String(span.lo)} color={colors.textDim} size={22} tracking={2} opacity={pAxis} fontFamily={fontFamily} mono />
-      <Label x={x0 + w} y={axisY + 26} text={String(span.hi)} color={colors.textDim} size={22} tracking={2} align="right" opacity={pAxis} fontFamily={fontFamily} mono />
+      {/* Axis endpoints, but only where they are NOT already an event label.
+          With two dated events the span ends exactly on them, and drawing
+          both put "1998" on screen twice — the same fact stated twice, which
+          is the duplication ENC-29 exists to prevent in the caption stream. */}
+      {years.includes(span.lo) ? null : (
+        <Label x={x0} y={axisY + 26} text={String(span.lo)} color={colors.textDim} size={22} tracking={2} opacity={pAxis} fontFamily={fontFamily} mono />
+      )}
+      {years.includes(span.hi) ? null : (
+        <Label x={x0 + w} y={axisY + 26} text={String(span.hi)} color={colors.textDim} size={22} tracking={2} align="right" opacity={pAxis} fontFamily={fontFamily} mono />
+      )}
 
       {pCons > 0 && focusYear != null ? (
         <Label x={(xFor(focusYear) + x0 + w) / 2} y={axisY + 62} text="AFTER"

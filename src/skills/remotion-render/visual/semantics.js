@@ -303,18 +303,38 @@ export function detectTimeline(text) {
   return null;
 }
 
-const CAUSAL = /\b(because|since|due to|thanks to|as a result|results? in|resulting in|leads? to|led to|causes?|caused|drives?|driven by|triggers?|forces?|means that|so that|therefore|which is why|that's why|makes? it)\b/i;
+// Causal markers point in one of two directions, and getting this wrong
+// draws the arrow backwards. Caught on a rendered frame: "Throughput
+// collapsed BECAUSE the second stage was holding" rendered
+// collapse -> holding, i.e. the outcome causing its own cause.
+//
+//   FORWARD:  <cause> MARKER <effect>   "X led to Y"
+//   BACKWARD: <effect> MARKER <cause>   "Y because X"
+const CAUSAL_FORWARD = /\b(as a result|results? in|resulting in|leads? to|led to|causes?|triggers?|forces?|means that|so that|therefore|which is why|that's why|makes? it)\b/i;
+const CAUSAL_BACKWARD = /\b(because|because of|since|due to|thanks to|caused by|driven by|owing to|as a consequence of)\b/i;
 
-/** CAUSE_EFFECT: one thing driving another. */
+/** CAUSE_EFFECT: one thing driving another, in the right direction. */
 export function detectCauseEffect(text) {
-  const t = lc(text);
-  const m = CAUSAL.exec(t);
+  const s = String(text);
+  const fwd = CAUSAL_FORWARD.exec(s);
+  const bwd = CAUSAL_BACKWARD.exec(s);
+  // Whichever marker appears first governs the sentence.
+  const useBackward = bwd && (!fwd || bwd.index < fwd.index);
+  const m = useBackward ? bwd : fwd;
   if (!m) return null;
-  const idx = m.index;
-  const cause = String(text).slice(0, idx).trim();
-  const effect = String(text).slice(idx + m[0].length).trim();
-  if (!cause || !effect) return { confidence: 0.4, missing: "causal marker with nothing on one side of it" };
-  return { confidence: 0.86, marker: m[0], cause, effect };
+
+  const before = s.slice(0, m.index).trim();
+  const after = s.slice(m.index + m[0].length).trim();
+  if (!before || !after) {
+    return { confidence: 0.4, missing: "causal marker with nothing on one side of it" };
+  }
+  return {
+    confidence: 0.86,
+    marker: m[0],
+    cause: useBackward ? after : before,
+    effect: useBackward ? before : after,
+    direction: useBackward ? "backward" : "forward",
+  };
 }
 
 const COMPARE = /\b(versus|vs\.?|compared (?:to|with)|more than|less than|fewer than|twice|three times|half|double|outnumber\w*|whereas|while|but only|against)\b/i;

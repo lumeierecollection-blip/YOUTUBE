@@ -278,6 +278,63 @@ check("sustaining states never rename the concept", () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+console.log("\nsemantics — readings that a rendered frame proved wrong once");
+
+check("'because' puts the CAUSE upstream of the EFFECT, not the reverse", () => {
+  // Real defect: "Throughput collapsed because the second stage was holding"
+  // drew collapse -> holding, i.e. an outcome causing its own cause.
+  const r = analyzeBeat({
+    text: "Throughput collapsed because the second stage was holding every batch until the slowest item finished.",
+    archetype: "RELATION", anchor_token: "because", data: {},
+  }).signals.CAUSE_EFFECT;
+  if (!r) return "no causal signal";
+  return (/second stage/.test(r.cause) && /collapsed/.test(r.effect)) || `cause="${r.cause}" effect="${r.effect}"`;
+});
+
+check("a forward marker keeps its natural order", () => {
+  const r = analyzeBeat({
+    text: "The batching rule led to a complete collapse in throughput.",
+    archetype: "RELATION", anchor_token: "led to", data: {},
+  }).signals.CAUSE_EFFECT;
+  return (/batching rule/.test(r.cause) && /collapse/.test(r.effect)) || `cause="${r.cause}" effect="${r.effect}"`;
+});
+
+check("spelled-out numerals compose across words", () => {
+  // "five hundred dollars" read as 100 once, so an accumulation counted to 100.
+  const cases = [
+    ["Twenty small purchases became five hundred dollars", 500],
+    ["grew to eight hundred and forty dollars", 840],
+    ["three hundred and forty dollars in interest", 340],
+  ];
+  for (const [text, want] of cases) {
+    const nums = analyzeBeat({ text, archetype: "HERO_NUMBER", anchor_token: "", data: {} }).numbers;
+    if (!nums.some((n) => n.value === want)) return `"${text}" -> ${JSON.stringify(nums.map((n) => n.value))}, wanted ${want}`;
+  }
+  return true;
+});
+
+check("a pronoun 'one' is not counted as a stated quantity", () => {
+  // "Each one felt too small" became count=2 via a Math.max floor, so a
+  // $500 total drew two cards — a picture stating a fact nobody said.
+  const plan = planVisual({
+    text: "quietly became five hundred dollars by the end of the month. Each one felt too small to matter.",
+    archetype: "HERO_NUMBER", anchor_token: "five hundred dollars", data: {},
+  }, { channel: financeChannel });
+  if (plan.strategy !== "ACCUMULATION") return `routed to ${plan.strategy}`;
+  return plan.supporting.countKnown === false || `countKnown=${plan.supporting.countKnown} count=${plan.supporting.count}`;
+});
+
+check("an opposition splits on the contrast, not on a reporting verb", () => {
+  const r = analyzeBeat({
+    text: "The government argued that short-term location data isn't a search, but Justice Kagan disagreed, ruling that it is.",
+    archetype: "CONTRAST", anchor_token: "disagreed", data: {},
+  }).signals.COMPARISON;
+  if (!r || !r.qualitative) return "no qualitative opposition detected";
+  return (r.pivot.toLowerCase() === "but" && /government/.test(r.left) && /Kagan/.test(r.right))
+    || `pivot="${r.pivot}" left="${r.left.slice(0, 40)}"`;
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 console.log("\ndiagnostics");
 
 check("summarizeVisuals reports icon-hero as zero for planned beats", () => {
