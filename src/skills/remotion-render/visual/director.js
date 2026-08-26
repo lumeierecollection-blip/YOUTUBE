@@ -340,6 +340,33 @@ export function planVisual(beat, ctx = {}) {
   return finalize(TERMINAL_STRATEGY, {}, analysis, beat, inner, "emergency", fallbacks, det.rejected);
 }
 
+/**
+ * A stable per-beat number the scenes use to pick a COMPOSITION VARIANT.
+ *
+ * PART 13 / PART 30. A strategy firing twice in one video drew a
+ * pixel-identical composition both times — on a real legal script
+ * DOCUMENT_EVIDENCE took three beats and the viewer saw the same page, the
+ * same ruled lines and the same highlighted clause three times.
+ *
+ * It lives HERE, on the plan, rather than only inside the JSX, for two
+ * reasons: the render report can then say which variant each beat got (so
+ * "the video is templated" is a number, not an impression), and node tests
+ * can check the distribution without importing .jsx.
+ *
+ * DETERMINISTIC — hashed from the beat's own identity. Re-rendering a
+ * script must produce a byte-identical video, so there is no Math.random
+ * anywhere in this path.
+ */
+export function variantSeed(beat) {
+  const key = `${beat && beat.startFrame}|${(beat && (beat.anchorToken || beat.text)) || ""}`;
+  let h = 2166136261;
+  for (let i = 0; i < key.length; i++) {
+    h ^= key.charCodeAt(i);
+    h = Math.imul(h, 16777619) >>> 0;
+  }
+  return h;
+}
+
 function finalize(strategy, payload, analysis, beat, ctx, provenance, fallbacks, rejected = []) {
   const def = getStrategy(strategy);
   const supporting = buildSupporting(strategy, payload, analysis, beat);
@@ -362,6 +389,12 @@ function finalize(strategy, payload, analysis, beat, ctx, provenance, fallbacks,
     considered: (rejected || []).slice(0, 4),
     archetype: beat.archetype,
     text: analysis.text,
+    // Which composition variant the scene should draw, and how many the
+    // scene declares it has. mg-package.js overwrites `variant` with an
+    // ordinal once it can see all the beats; this hash is the value a plan
+    // built in isolation (a single-beat clip render, a test) gets.
+    variant: variantSeed(beat),
+    variantCount: def.variants || 1,
   };
 }
 

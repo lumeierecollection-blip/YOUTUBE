@@ -168,6 +168,35 @@ function buildWarnings(m, staged, fps) {
     }
   }
 
+  // PART 30 — a strategy used twice with the SAME composition variant draws
+  // the same picture twice. This is the check that turns "the video feels
+  // templated" into a number: it counts beats that will be visually
+  // identical to an earlier beat, not beats that merely share a strategy.
+  const seen = new Map();
+  for (const b of staged) {
+    const plan = b.visualPlan;
+    if (!plan) continue;
+    // Keyed on the strategy's DECLARED variant count, not on the raw
+    // ordinal. A scene that draws one composition collapses every beat to
+    // #0 and is reported as repeating — which is the truth. Keying on the
+    // ordinal alone would have made two identical ACCUMULATION beats look
+    // like two different pictures because they happened to be numbered 0
+    // and 1.
+    const count = plan.variantCount || 1;
+    const key = `${plan.strategy}#${count > 1 && Number.isFinite(plan.variant) ? plan.variant % count : 0}`;
+    seen.set(key, (seen.get(key) || 0) + 1);
+  }
+  const duplicated = [...seen.entries()].filter(([, n]) => n > 1);
+  if (duplicated.length) {
+    w.push({
+      id: "VIS-SAME-COMPOSITION",
+      severity: "MINOR",
+      message:
+        `repeated composition: ${duplicated.map(([k, n]) => `${k} x${n}`).join(", ")} — ` +
+        "these beats draw the same picture as each other",
+    });
+  }
+
   // A beat whose only content is text (PART 20's "visual beat contains
   // only text"): the terminal fallback is exactly that shape.
   const textOnly = staged.filter(

@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, STAGE_CX, Label, Figure,
+  CANVAS_W, CANVAS_H, STAGE_CX, Label, Figure, variantOf,
   ease, seeded, useStateProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
@@ -59,10 +59,10 @@ import { progressOf, reached } from "../../visual/states.js";
 // Map geometry, in design-space px.
 //
 // Sized so the network still covers the 1080x1920 frame at the WIDEST point
-// of the camera move, after the -7 degree rotation: the first render pulled
-// back past the edge of the generated city and put a black wedge in the
-// bottom-right corner. 3600 is the diagonal of the frame at minimum zoom
-// plus rotation slack.
+// of the camera move, at any variant rotation and pan: the first render
+// pulled back past the edge of the generated city and put a black wedge in
+// the bottom-right corner. 3600 is the frame diagonal at minimum zoom plus
+// slack for the rotation and pan.
 const MAP_W = 3600;
 const MAP_H = 3600;
 const LOCK_RADIUS = 300; // drawn px at full lock — this is the "150 m"
@@ -177,7 +177,15 @@ export function GeospatialRadiusScene({ beat, colors, fontFamily }) {
 
   // Slight rotation so the network never reads as a lattice aligned to the
   // frame. Real cities are not square to a phone screen.
-  const rotation = -7;
+  //
+  // The variant rotates and pans, and does NOT reseed the street network
+  // (PART 13 vs PART 12): two geofence beats in one script are two shots of
+  // the same neighbourhood, so regenerating the city between them would be
+  // a continuity error dressed as variety. Same place, different framing.
+  const v = variantOf(beat);
+  const rotation = [-7, 6, -14][v];
+  const panX = [0, -70, 55][v];
+  const panY = [0, 40, -50][v];
 
   const road = colors.stroke;
   const accent = colors.accent;
@@ -239,7 +247,7 @@ export function GeospatialRadiusScene({ beat, colors, fontFamily }) {
         {/* Everything spatial lives in one transform: the camera move and
             the map rotation are applied once, so nothing can drift out of
             register with anything else. */}
-        <g transform={`translate(${cx} ${cy}) scale(${zoom}) rotate(${rotation})`}>
+        <g transform={`translate(${cx + panX} ${cy + panY}) scale(${zoom}) rotate(${rotation})`}>
           {/* ── background: block fills ─────────────────────────────── */}
           <g opacity={pEstablish}>
             {avenues.slice(0, -1).map((a, i) =>
@@ -395,8 +403,8 @@ export function GeospatialRadiusScene({ beat, colors, fontFamily }) {
           unit glyph disappeared into a building footprint. */}
       {locked && Number.isFinite(sup.value) ? (
         <Figure
-          x={cx + (r * zoom) / 2}
-          y={cy - 74}
+          x={cx + panX + (r * zoom) / 2}
+          y={cy + panY - 74}
           value={sup.value}
           unit={sup.unit && /^m$|met/i.test(String(sup.unit)) ? "m" : String(sup.unit || "")}
           p={Math.max(ease(pLock), pMeasure)}
@@ -415,8 +423,8 @@ export function GeospatialRadiusScene({ beat, colors, fontFamily }) {
           stays clear of the circle at every point of the camera move. */}
       {pSelect > 0 ? (
         <Label
-          x={cx}
-          y={cy + r * zoom + 54}
+          x={cx + panX}
+          y={cy + panY + r * zoom + 54}
           text={`${caughtCount} ${sup.subjects && /phone|device/i.test(sup.subjects) ? "DEVICES" : "SUBJECTS"} INSIDE`}
           color={colors.textPrimary}
           halo={colors.bg}

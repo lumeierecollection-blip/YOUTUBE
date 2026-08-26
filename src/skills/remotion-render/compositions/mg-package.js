@@ -678,6 +678,7 @@ export function buildMgPackage(srtText, opts = {}) {
   // Variety pressure needs to know what the last two staged beats chose,
   // or one broad detector wins the whole video (see director.js).
   let recent = [];
+  const strategyUse = {};
   for (const b of beats) {
     if (b.archetype === "LIST_ITEM") {
       b.visualPlan = null;
@@ -691,6 +692,17 @@ export function buildMgPackage(srtText, opts = {}) {
       recent,
     });
     recent = [b.visualPlan.strategy, recent[0]].slice(0, 2);
+    // COMPOSITION VARIANT (PART 13/30). Assigned as an ORDINAL — the nth
+    // beat to use a strategy gets variant n — rather than left as the
+    // per-beat hash director.js gives it. The hash is independent per beat,
+    // so on the ch-02 legal script two of the three DOCUMENT_EVIDENCE beats
+    // and both GEOSPATIAL_RADIUS beats collided on variant 0 and drew the
+    // identical picture anyway. An ordinal cannot repeat until a strategy is
+    // used more times than it has variants, and is still fully
+    // deterministic. Only this loop can do it: the director plans one beat
+    // at a time and never sees how many came before.
+    strategyUse[b.visualPlan.strategy] = (strategyUse[b.visualPlan.strategy] || 0) + 1;
+    b.visualPlan.variant = strategyUse[b.visualPlan.strategy] - 1;
     // Deterministic frame math from the beat's REAL SRT window — no model
     // is ever asked when something happens (PART 24).
     b.visualStates = buildStates(b.visualPlan, {

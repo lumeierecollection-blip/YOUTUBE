@@ -1,7 +1,7 @@
 import React from "react";
 import { Img, staticFile, useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, STAGE_CX, Label, ease, seeded,
+  CANVAS_W, CANVAS_H, STAGE_CX, Label, ease, seeded, variantOf,
   useStateProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
@@ -41,15 +41,29 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
   const pFind = useStateProgress(states, "find");
   const pRead = useStateProgress(states, "read");
 
-  const pageW = 560, pageH = 700;
-  const px = STAGE_CX - pageW / 2, py = 400;
+  // COMPOSITION VARIANT (PART 13). Three DOCUMENT_EVIDENCE beats in one
+  // legal script used to draw the identical page, the identical seventeen
+  // ruled lines and the identical highlighted line nine. Different
+  // documents look different: the variant changes the page proportions, how
+  // dense the body copy is, and where in it the operative clause sits.
+  // Deterministic from the beat, so a re-render is byte-identical.
+  const v = variantOf(beat);
+  const PAGES = [
+    { w: 560, h: 700, lines: 17, clause: 9, lead: 33 },  // a filing
+    { w: 620, h: 620, lines: 12, clause: 4, lead: 40 },  // a wider order, clause near the top
+    { w: 500, h: 760, lines: 22, clause: 16, lead: 29 }, // a long opinion, buried clause
+  ];
+  const page = PAGES[v];
+  const pageW = page.w, pageH = page.h;
+  const px = STAGE_CX - pageW / 2, py = 400 + (700 - pageH) / 2;
 
   // Ruled text lines standing in for body copy. Deliberately abstract —
   // fabricating legal text would be inventing a source, which this repo
   // forbids outright. The REAL words come from the beat's own narration,
   // pulled out at `read`.
-  const lines = 17;
-  const clauseLine = 9;
+  const lines = page.lines;
+  const clauseLine = page.clause;
+  const lead = page.lead;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
@@ -64,9 +78,9 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
         {Array.from({ length: lines }).map((_, i) => {
           const a = ease(Math.max(0, Math.min(1, pPage * 2.2 - i * 0.06)));
           if (a <= 0.01) return null;
-          const y = py + 110 + i * 33;
+          const y = py + 110 + i * lead;
           const isClause = i === clauseLine;
-          const w = (pageW - 80) * (0.62 + seeded(i * 5 + 3) * 0.36);
+          const w = (pageW - 80) * (0.62 + seeded(i * 5 + 3 + v * 97) * 0.36);
           return (
             <rect key={i} x={px + 40} y={y} width={w} height={isClause ? 12 : 8} rx={2}
               fill={isClause && pFind > 0 ? colors.accent : colors.stroke}
@@ -82,7 +96,7 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
 
         {/* The clause, located */}
         {pFind > 0 ? (
-          <rect x={px + 28} y={py + 110 + clauseLine * 33 - 14} width={(pageW - 56) * ease(pFind)} height={40}
+          <rect x={px + 28} y={py + 110 + clauseLine * lead - 14} width={(pageW - 56) * ease(pFind)} height={40}
             fill="none" stroke={colors.accent} strokeWidth={3} />
         ) : null}
       </svg>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, STAGE_CX, Label, Rule, ease, seeded,
+  CANVAS_W, CANVAS_H, STAGE_CX, Label, Rule, ease, seeded, variantOf,
   useStateProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
@@ -148,17 +148,36 @@ export function ProcessScene({ beat, colors, fontFamily }) {
   const pAdvance = progressOf(states, "advance", frame);
   const pArrive = useStateProgress(states, "arrive");
 
-  const boxW = 168, boxH = 168, gapX = 40;
-  const totalW = n * boxW + (n - 1) * gapX;
-  const x0 = STAGE_CX - totalW / 2;
-  const y = 660;
+  // COMPOSITION VARIANT (PART 13). Two PROCESS beats in one script drew the
+  // identical left-to-right chain of boxes. A process read top-to-bottom is
+  // the same idea in a genuinely different composition — and with six
+  // stages it is the more legible one, because a vertical chain has room
+  // for a stage label beside each box instead of cramped underneath it.
+  const vertical = variantOf(beat) === 1;
+
+  const boxW = vertical ? 300 : 168;
+  const boxH = vertical ? 96 : 168;
+  const gap = vertical ? 34 : 40;
+  const span = n * (vertical ? boxH : boxW) + (n - 1) * gap;
+  // Along-axis origin, then the fixed cross-axis position.
+  const a0 = vertical ? 700 - span / 2 : STAGE_CX - span / 2;
+  const cross = vertical ? STAGE_CX - boxW / 2 - 90 : 660;
+
+  const boxAt = (i) => (vertical
+    ? { x: cross, y: a0 + i * (boxH + gap) }
+    : { x: a0 + i * (boxW + gap), y: cross });
 
   // The token's position along the chain — this is the "something moves
   // through" that makes it a process rather than a list of boxes.
   const tokenT = ease(pAdvance, EASE_IN_OUT) * n;
   const tokenStage = Math.min(Math.floor(tokenT), n - 1);
   const withinStage = tokenT - tokenStage;
-  const tokenX = x0 + tokenStage * (boxW + gapX) + boxW / 2 + withinStage * (boxW + gapX);
+  const step = (vertical ? boxH : boxW) + gap;
+  const along = a0 + tokenStage * step + (vertical ? boxH : boxW) / 2 + withinStage * step;
+  const tokenX = vertical ? cross + boxW / 2 : along;
+  const tokenY = vertical ? along : cross + boxH / 2;
+  const endX = vertical ? cross + boxW / 2 : a0 + span - boxW / 2;
+  const endY = vertical ? a0 + span - boxH / 2 : cross + boxH / 2;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
@@ -167,54 +186,65 @@ export function ProcessScene({ beat, colors, fontFamily }) {
           const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.7)));
           const done = tokenT > i + 0.85;
           const active = tokenStage === i && pAdvance > 0 && !done;
+          const b = boxAt(i);
           return (
             <g key={i} opacity={a}>
-              <rect x={x0 + i * (boxW + gapX)} y={y} width={boxW} height={boxH} rx={4}
+              <rect x={b.x} y={b.y} width={boxW} height={boxH} rx={4}
                 fill="none"
                 stroke={active || done ? colors.accent : colors.stroke}
                 strokeWidth={active ? 4 : 2.5} />
               {/* Fill shows the stage has been completed — real state change */}
               {done ? (
-                <rect x={x0 + i * (boxW + gapX)} y={y} width={boxW} height={boxH} rx={4}
+                <rect x={b.x} y={b.y} width={boxW} height={boxH} rx={4}
                   fill={colors.accent} opacity={0.13} />
               ) : null}
             </g>
           );
         })}
 
-        {/* Connectors between stages */}
+        {/* Connectors between stages, arrowheads pointing along the axis */}
         {Array.from({ length: n - 1 }).map((_, i) => {
-          const cx1 = x0 + i * (boxW + gapX) + boxW;
+          const b = boxAt(i);
           const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.7 - 0.4)));
           const passed = tokenT > i + 1;
+          const col = passed ? colors.accent : colors.stroke;
+          const x1 = vertical ? b.x + boxW / 2 : b.x + boxW;
+          const y1 = vertical ? b.y + boxH : b.y + boxH / 2;
+          const x2 = vertical ? x1 : x1 + gap;
+          const y2 = vertical ? y1 + gap : y1;
+          const head = vertical
+            ? `${x2 - 6},${y2 - 9} ${x2 + 6},${y2 - 9} ${x2},${y2}`
+            : `${x2 - 9},${y2 - 6} ${x2 - 9},${y2 + 6} ${x2},${y2}`;
           return (
             <g key={`c${i}`} opacity={a}>
-              <line x1={cx1} y1={y + boxH / 2} x2={cx1 + gapX} y2={y + boxH / 2}
-                stroke={passed ? colors.accent : colors.stroke} strokeWidth={passed ? 3 : 2} />
-              <polygon
-                points={`${cx1 + gapX - 9},${y + boxH / 2 - 6} ${cx1 + gapX - 9},${y + boxH / 2 + 6} ${cx1 + gapX},${y + boxH / 2}`}
-                fill={passed ? colors.accent : colors.stroke} />
+              <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={col} strokeWidth={passed ? 3 : 2} />
+              <polygon points={head} fill={col} />
             </g>
           );
         })}
 
         {/* The travelling token */}
         {pAdvance > 0 ? (
-          <circle cx={tokenX} cy={y + boxH / 2} r={14} fill={colors.accent} />
+          <circle cx={tokenX} cy={tokenY} r={14} fill={colors.accent} />
         ) : null}
         {pArrive > 0 ? (
-          <circle cx={x0 + totalW - boxW / 2} cy={y + boxH / 2} r={14 + 26 * ease(pArrive)}
+          <circle cx={endX} cy={endY} r={14 + 26 * ease(pArrive)}
             fill="none" stroke={colors.accent} strokeWidth={2.5} opacity={0.7 * (1 - ease(pArrive))} />
         ) : null}
       </svg>
 
       {Array.from({ length: n }).map((_, i) => {
         const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.7)));
-        const cx = x0 + i * (boxW + gapX) + boxW / 2;
+        const b = boxAt(i);
         return (
-          <Label key={i} x={cx} y={y + boxH + 22} text={`STAGE ${i + 1}`}
+          <Label
+            key={i}
+            x={vertical ? b.x + boxW + 24 : b.x + boxW / 2}
+            y={vertical ? b.y + boxH / 2 - 12 : b.y + boxH + 22}
+            text={`STAGE ${i + 1}`}
             color={tokenT > i + 0.85 ? colors.accent : colors.textDim}
-            size={24} tracking={2.4} align="center" opacity={a} fontFamily={fontFamily} />
+            size={24} tracking={2.4} align={vertical ? "left" : "center"}
+            opacity={a} fontFamily={fontFamily} />
         );
       })}
     </div>

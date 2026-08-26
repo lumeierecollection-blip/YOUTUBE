@@ -52,6 +52,13 @@ export const STRATEGIES = {
     intent: "a distance/boundary drawn on real ground, with what falls inside it",
     dataNeeds: ["value", "unit:distance"],
     iconRole: "secondary", // a small map marker is genuinely useful here
+    // How many DISTINCT compositions the scene can draw (PART 13/30). This
+    // is a claim about the scene component, checked by run-visual-tests.js
+    // against the arrays it actually indexes — declaring 3 while the scene
+    // draws one would make the render report say a video is varied when it
+    // is not. Strategies without this draw one composition, which the
+    // report then flags honestly as a repeat.
+    variants: 3,
     states: [
       { key: "establish", action: "environment appears", weight: 1.4 },
       { key: "origin", action: "the event point lands", weight: 1.0 },
@@ -65,6 +72,7 @@ export const STRATEGIES = {
 
   ACCUMULATION: {
     scene: "AccumulationScene",
+    variants: 2, // a tray the units fall into, or a ledger they stack down
     intent: "many small things adding up into one consequential total",
     dataNeeds: ["total"],
     iconRole: "none",
@@ -131,6 +139,7 @@ export const STRATEGIES = {
 
   PROCESS: {
     scene: "ProcessScene",
+    variants: 2, // left-to-right chain, or read top-to-bottom
     intent: "a sequence of stages something actually moves through",
     dataNeeds: ["stages>=2"],
     iconRole: "none",
@@ -156,6 +165,7 @@ export const STRATEGIES = {
 
   DOCUMENT_EVIDENCE: {
     scene: "DocumentEvidenceScene",
+    variants: 3, // three page shapes — see PAGES in evidence-scenes.jsx
     intent: "the actual text of a rule/record, with the operative part found",
     dataNeeds: [],
     iconRole: "none",

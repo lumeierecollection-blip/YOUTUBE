@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, STAGE_CX, Label, Figure, Rule, MeasureBracket,
+  CANVAS_W, CANVAS_H, STAGE_CX, Label, Figure, Rule, MeasureBracket, variantOf,
   ease, seeded, useStateProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
@@ -68,8 +68,21 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
   const pWeigh = useStateProgress(states, "weigh");
   const collapsed = reached(states, "total", frame);
 
+  // COMPOSITION VARIANT (PART 13). Two ACCUMULATION beats in one finance
+  // script drew the identical tray-of-tokens, differing only in how many
+  // tokens fell in. Variant 1 is a LEDGER: the same units, but stacked as
+  // full-width rows down a left rule the way small charges accumulate on a
+  // statement. Same meaning, genuinely different picture — and for money it
+  // is arguably the truer one.
+  const ledger = variantOf(beat) === 1;
+
   // The tray: a real container with a floor the items stack on.
   const trayX = 168, trayW = 600, floorY = 980;
+
+  // The ledger: a left rule with rows running down it.
+  const ledgerTop = 470;
+  const ledgerH = floorY - ledgerTop;
+  const rowH = Math.max(11, Math.min(34, ledgerH / Math.max(count, 1)));
 
   // How many items have landed. `first` lands exactly one, so the viewer
   // reads the unit before the pile becomes a texture.
@@ -89,10 +102,17 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
-      {/* Tray floor + walls — the container that gives "accumulation" a place */}
-      <Rule x={trayX} y={floorY} w={trayW} p={pEmpty} color={colors.stroke} thickness={3} />
-      <div style={{ position: "absolute", left: trayX, top: floorY - 300, width: 2, height: 300 * ease(pEmpty), background: colors.stroke, opacity: 0.45 }} />
-      <div style={{ position: "absolute", left: trayX + trayW - 2, top: floorY - 300, width: 2, height: 300 * ease(pEmpty), background: colors.stroke, opacity: 0.45 }} />
+      {/* The container that gives "accumulation" a place: a tray with a
+          floor the units land on, or the ledger's single left rule. */}
+      {ledger ? (
+        <div style={{ position: "absolute", left: trayX, top: ledgerTop, width: 3, height: ledgerH * ease(pEmpty), background: colors.stroke, opacity: 0.6 }} />
+      ) : (
+        <>
+          <Rule x={trayX} y={floorY} w={trayW} p={pEmpty} color={colors.stroke} thickness={3} />
+          <div style={{ position: "absolute", left: trayX, top: floorY - 300, width: 2, height: 300 * ease(pEmpty), background: colors.stroke, opacity: 0.45 }} />
+          <div style={{ position: "absolute", left: trayX + trayW - 2, top: floorY - 300, width: 2, height: 300 * ease(pEmpty), background: colors.stroke, opacity: 0.45 }} />
+        </>
+      )}
 
       {/* The items themselves. Each one is a discrete unit that fell in. */}
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
@@ -101,8 +121,12 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
           const row = Math.floor(i / perRow);
           const col = i % perRow;
           const jitterX = (seeded(i * 3 + 2) - 0.5) * 8;
-          const x = trayX + col * cellW + cellW / 2 + jitterX;
-          const y = floorY - 22 - row * cellH;
+          // Tray: fill left-to-right, bottom-up. Ledger: one row per unit,
+          // running down the rule, each a different length because no two
+          // charges are the same size.
+          const rowW = trayW * (0.34 + seeded(i * 7 + 13) * 0.52);
+          const x = ledger ? trayX + 14 + rowW / 2 : trayX + col * cellW + cellW / 2 + jitterX;
+          const y = ledger ? ledgerTop + 10 + i * rowH : floorY - 22 - row * cellH;
 
           // Individual drop-in for the item that just landed.
           const isNewest = i === landed - 1;
@@ -118,12 +142,19 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
 
           return (
             <g key={i} transform={`translate(${x + tx}, ${y + dy + ty}) scale(${scale})`} opacity={op}>
-              <rect x={-cellW / 2 + 5} y={-16} width={cellW - 10} height={32} rx={3}
-                fill="none" stroke={colors.stroke} strokeWidth={2} />
-              {money ? (
-                <text x={0} y={6} textAnchor="middle" fill={colors.textDim}
-                  style={{ font: `700 17px ${fontFamily}` }}>{symbol}</text>
-              ) : null}
+              {ledger ? (
+                <rect x={-rowW / 2} y={-rowH * 0.32} width={rowW} height={Math.max(4, rowH * 0.62)} rx={2}
+                  fill={colors.stroke} opacity={0.5} />
+              ) : (
+                <>
+                  <rect x={-cellW / 2 + 5} y={-16} width={cellW - 10} height={32} rx={3}
+                    fill="none" stroke={colors.stroke} strokeWidth={2} />
+                  {money ? (
+                    <text x={0} y={6} textAnchor="middle" fill={colors.textDim}
+                      style={{ font: `700 17px ${fontFamily}` }}>{symbol}</text>
+                  ) : null}
+                </>
+              )}
             </g>
           );
         })}

@@ -64,6 +64,37 @@ export function seeded(seed) {
   return x - Math.floor(x);
 }
 
+/**
+ * Which composition variant this beat gets, out of `count`.
+ *
+ * PART 13 / PART 30 — the same strategy firing twice in one video drew a
+ * pixel-identical composition both times. On a real legal script
+ * DOCUMENT_EVIDENCE took three beats, so the viewer saw the same page, the
+ * same seventeen ruled lines and the same highlighted line nine, three
+ * times. Individually correct, collectively templated.
+ *
+ * DETERMINISTIC, NOT RANDOM. The index is hashed from the beat's own
+ * identity, so a given script always renders the same way — re-running a
+ * render must not shuffle the video, and a diff between two renders of the
+ * same script must stay empty. Math.random would break both.
+ *
+ * The variant may only change HOW a concept is composed (which line is
+ * operative, which side the subject sits, how the page is cropped), never
+ * WHAT it says. A variant that changed the meaning would be a second scene
+ * wearing the same name.
+ */
+export function variantOf(beat) {
+  // Both numbers come from the plan: the index from mg-package.js (an
+  // ordinal across the strategy's uses in this video) and the count from
+  // the strategy's own `variants` declaration. Neither is recomputed here,
+  // so the render report and the pixels cannot disagree about which variant
+  // a beat got.
+  const plan = beat && beat.visualPlan;
+  if (!plan) return 0;
+  const count = plan.variantCount || 1;
+  return count > 1 && Number.isFinite(plan.variant) ? plan.variant % count : 0;
+}
+
 /** A hairline rule that draws itself left-to-right over progress p. */
 export function Rule({ x, y, w, p = 1, color, thickness = 2, vertical = false }) {
   const len = Math.max(0, Math.min(1, p)) * (vertical ? 1 : w);

@@ -17,7 +17,7 @@
  *      not a giant number (PART 23).
  */
 
-import { readFileSync } from "fs";
+import { readFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { STRATEGIES, STRATEGY_PREFERENCE, TERMINAL_STRATEGY, assertStrategyRegistryIsSound } from "./strategies.js";
@@ -350,6 +350,51 @@ check("summarizeVisuals flags a beat that still renders an icon hero", () => {
   const beats = [{ text: "x", archetype: "STATEMENT", durationInFrames: 120, visualPlan: null, visualStates: [], scene: { iconRole: "none", icon: "banknote" } }];
   const s = summarizeVisuals(beats);
   return s.warnings.some((w) => w.id === "VIS-ICON-HERO") || "no VIS-ICON-HERO warning";
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+console.log("\ncomposition variants");
+
+check("a declared variant count is backed by a scene that actually branches on it", () => {
+  // Read the scene sources the same way the dead-strategy check reads the
+  // router: a `variants: 3` declaration that no component consumes would
+  // make the render report claim variety the pixels do not have.
+  const dir = join(__dirname, "..", "compositions", "scenes");
+  const sources = readdirSync(dir)
+    .filter((f) => f.endsWith(".jsx"))
+    .map((f) => ({ f, src: readFileSync(join(dir, f), "utf-8") }));
+  const bad = [];
+  for (const [name, def] of Object.entries(STRATEGIES)) {
+    const declared = def.variants || 1;
+    const file = sources.find((s) => new RegExp(`function ${def.scene}\\b`).test(s.src));
+    if (!file) {
+      bad.push(`${name}: no source defines ${def.scene}`);
+      continue;
+    }
+    const body = file.src.slice(file.src.indexOf(`function ${def.scene}`));
+    const uses = /variantOf\(beat\)/.test(body.slice(0, body.indexOf("\nexport function") + 1 || undefined));
+    if (declared > 1 && !uses) bad.push(`${name} declares ${declared} variants but ${def.scene} never calls variantOf`);
+    if (declared === 1 && uses) bad.push(`${def.scene} calls variantOf but ${name} declares no variants`);
+  }
+  return bad.length === 0 || bad.join("; ");
+});
+
+check("variants are ordinals across a strategy's uses, so repeats cannot collide", () => {
+  // Three beats on one strategy must get 0,1,2 — not three independent
+  // hashes, which is what collided on the real ch-02 script.
+  const plans = [0, 1, 2].map((i) => ({ strategy: "DOCUMENT_EVIDENCE", variantCount: 3, variant: i }));
+  const seen = new Set(plans.map((p) => p.variant % p.variantCount));
+  return seen.size === 3 || `only ${seen.size} distinct variants`;
+});
+
+check("summarizeVisuals flags two beats that draw the same composition", () => {
+  const mk = (v) => ({
+    text: "x", archetype: "STATEMENT", durationInFrames: 90, visualStates: [],
+    scene: { iconRole: "none" },
+    visualPlan: { strategy: "COMPARISON", provenance: "deterministic", variantCount: 1, variant: v, fallbacks: [] },
+  });
+  const s = summarizeVisuals([mk(0), mk(1)]);
+  return s.warnings.some((w) => w.id === "VIS-SAME-COMPOSITION") || "no VIS-SAME-COMPOSITION warning";
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
