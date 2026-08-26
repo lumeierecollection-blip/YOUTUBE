@@ -30,6 +30,13 @@ import { progressOf, reached } from "../../visual/states.js";
 function isMoney(unit) {
   return /[$£€]/.test(String(unit || "")) || /dollar|pound|euro|cent|usd|gbp/i.test(String(unit || ""));
 }
+/** A value formatter that respects the unit, for use as Figure's `format`. */
+function figureFormat(unit) {
+  const sym = currencySymbol(unit);
+  const pct = /%|percent/i.test(String(unit || ""));
+  return (v) => `${sym}${Math.round(v).toLocaleString("en-US")}${pct ? "%" : ""}`;
+}
+
 function currencySymbol(unit) {
   const u = String(unit || "");
   const sym = u.match(/[$£€]/);
@@ -312,6 +319,7 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
   const pGap = useStateProgress(states, "gap");
   const pVerdict = useStateProgress(states, "verdict");
 
+  const fmt = figureFormat(sup.unit);
   const midX = STAGE_CX, axisY = 900, maxH = 420, colW = 190;
   const hA = (Math.abs(a.value) / max) * maxH * ease(pLeft);
   const hB = (Math.abs(b.value) / max) * maxH * ease(pRight);
@@ -345,9 +353,9 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
       </svg>
 
       <Figure x={midX - 250 + colW / 2} y={axisY - hA - 56} value={a.value} p={pLeft}
-        color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} />
+        color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} format={fmt} />
       <Figure x={midX + 60 + colW / 2} y={axisY - hB - 56} value={b.value} p={pRight}
-        color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} />
+        color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} format={fmt} />
 
       <Label x={midX - 250 + colW / 2} y={axisY + 20} text={String(a.label || "").toUpperCase().slice(0, 18)}
         color={colors.textDim} size={24} tracking={2.2} align="center" opacity={pLeft} fontFamily={fontFamily} />
@@ -356,7 +364,7 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
 
       {pGap > 0 ? (
         <Label x={midX + 60 + colW + 40} y={axisY - Math.max(hA, hB) / 2}
-          text={`${Math.abs(Math.round(a.value - b.value)).toLocaleString("en-US")} APART`}
+          text={`${fmt(Math.abs(a.value - b.value))} APART`}
           color={colors.accent} size={26} tracking={1.8} opacity={pGap} fontFamily={fontFamily} />
       ) : null}
     </div>
@@ -459,6 +467,7 @@ export function DataChartScene({ beat, colors, fontFamily }) {
   const pHi = useStateProgress(states, "highlight");
   const pRead = useStateProgress(states, "read");
 
+  const chartFmt = figureFormat(sup.unit);
   const max = Math.max(...series.map((s) => Math.abs(s.value))) || 1;
   const axisY = 940, x0 = 168, w = 600, maxH = 430;
   const gap = 26;
@@ -493,7 +502,7 @@ export function DataChartScene({ beat, colors, fontFamily }) {
             {/* ENC-14 — the value sits adjacent to ITS bar, not in a legend */}
             <Figure x={x} y={axisY - h - 50} value={s.value} p={grow}
               color={i === hiIdx && pHi > 0 ? colors.accent : colors.textPrimary}
-              size={38} align="center" fontFamily={fontFamily} />
+              size={38} align="center" fontFamily={fontFamily} format={chartFmt} />
             <Label x={x} y={axisY + 18} text={String(s.label || "").toUpperCase().slice(0, 14)}
               color={colors.textDim} size={22} tracking={1.8} align="center"
               opacity={Math.max(pRead, grow)} fontFamily={fontFamily} />
