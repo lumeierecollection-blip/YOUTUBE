@@ -87,7 +87,7 @@ export function Rule({ x, y, w, p = 1, color, thickness = 2, vertical = false })
  * "big headline" primitive, because PART 16 wants text supporting the
  * visual rather than being it.
  */
-export function Label({ x, y, text, color, size = 30, weight = 700, opacity = 1, align = "left", tracking = 1.5, fontFamily, mono = false }) {
+export function Label({ x, y, text, color, size = 30, weight = 700, opacity = 1, align = "left", tracking = 1.5, fontFamily, mono = false, halo = null }) {
   if (!text) return null;
   return (
     <div
@@ -97,6 +97,11 @@ export function Label({ x, y, text, color, size = 30, weight = 700, opacity = 1,
         top: y,
         color,
         opacity,
+        // A cartographic halo, not a card. Map labels have been set over
+        // busy ground this way for a century; a panel behind the text would
+        // reintroduce exactly the card furniture these scenes exist to
+        // avoid. Only passed where a label actually sits over detail.
+        textShadow: halo ? `0 0 10px ${halo}, 0 0 6px ${halo}, 0 0 3px ${halo}` : undefined,
         fontFamily,
         fontWeight: weight,
         fontSize: size,
@@ -117,7 +122,7 @@ export function Label({ x, y, text, color, size = 30, weight = 700, opacity = 1,
  * renderer (they were never the problem) but per PART 6 they now live
  * INSIDE a concept, at supporting scale, never as the composition.
  */
-export function Figure({ x, y, value, unit = "", p = 1, color, size = 64, fontFamily, align = "left", format }) {
+export function Figure({ x, y, value, unit = "", p = 1, color, size = 64, fontFamily, align = "left", format, halo = null }) {
   const shown = (typeof format === "function" ? format : defaultFormat)(value * Math.max(0, Math.min(1, p)), value);
   return (
     <div
@@ -126,6 +131,7 @@ export function Figure({ x, y, value, unit = "", p = 1, color, size = 64, fontFa
         left: x,
         top: y,
         color,
+        textShadow: halo ? `0 0 12px ${halo}, 0 0 7px ${halo}, 0 0 4px ${halo}` : undefined,
         fontFamily,
         fontWeight: 800,
         fontSize: size,
