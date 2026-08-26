@@ -24,7 +24,9 @@ import { STRATEGIES, STRATEGY_PREFERENCE, TERMINAL_STRATEGY, assertStrategyRegis
 import { planVisual } from "./director.js";
 import { buildStates, MAX_STATE_FRAMES, longestStaticRun } from "./states.js";
 import { analyzeBeat } from "./semantics.js";
-import { summarizeVisuals } from "./diagnostics.js";
+import { summarizeVisuals, summarizeSound } from "./diagnostics.js";
+import { assertSoundMapIsSound, buildSoundtrack, soundEventsForBeat, volumeFor, MIN_GAP_FRAMES, MAX_EVENTS_PER_BEAT, ROLE_TARGET_DB } from "./sound-design.js";
+import { SFX_LIBRARY } from "./sfx-library.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "..", "..", "..");
@@ -348,6 +350,101 @@ check("summarizeVisuals flags a beat that still renders an icon hero", () => {
   const beats = [{ text: "x", archetype: "STATEMENT", durationInFrames: 120, visualPlan: null, visualStates: [], scene: { iconRole: "none", icon: "banknote" } }];
   const s = summarizeVisuals(beats);
   return s.warnings.some((w) => w.id === "VIS-ICON-HERO") || "no VIS-ICON-HERO warning";
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+console.log("\nsound design");
+
+check("no dead sound entries: every mapped state, role and library asset is reachable", () => {
+  const r = assertSoundMapIsSound(STRATEGIES, SFX_LIBRARY);
+  return r.pass || r.failures.join("; ");
+});
+
+check("every library asset carries MEASURED numbers, not placeholders", () => {
+  const bad = SFX_LIBRARY.filter(
+    (e) => !(e.durationMs > 0) || typeof e.meanDb !== "number" || typeof e.peakDb !== "number"
+  );
+  return bad.length === 0 || `${bad.length} entries missing measurements: ${bad.map((e) => e.file).join(", ")}`;
+});
+
+check("no sound is ever boosted above unity", () => {
+  const over = [];
+  for (const e of SFX_LIBRARY) {
+    const v = volumeFor(e, e.role);
+    if (v >= 1) over.push(`${e.file}@${v}`);
+  }
+  return over.length === 0 || `boosted to unity: ${over.join(", ")}`;
+});
+
+check("loudness normalisation lands each asset on its role target", () => {
+  const off = [];
+  for (const e of SFX_LIBRARY) {
+    const out = e.meanDb + 20 * Math.log10(volumeFor(e, e.role));
+    if (Math.abs(out - ROLE_TARGET_DB[e.role]) > 0.5) off.push(`${e.file} -> ${out.toFixed(1)}dB`);
+  }
+  return off.length === 0 || `off target: ${off.join(", ")}`;
+});
+
+check("sustaining states are silent — a long beat gets more picture, not more sound", () => {
+  const plan = planVisual(geofenceBeat, { channel });
+  // 20s: long enough that densify() must append sustaining states.
+  const states = buildStates(plan, { startFrame: 0, durationInFrames: 600, anchorFrame: 300 });
+  const sustaining = states.filter((s) => s.sustaining);
+  if (sustaining.length === 0) return "densify produced no sustaining states to test";
+  const events = soundEventsForBeat(
+    { startFrame: 0, durationInFrames: 600, visualPlan: plan, visualStates: states },
+    SFX_LIBRARY
+  );
+  const fromSustaining = events.filter((e) => sustaining.some((s) => s.key === e.state));
+  return fromSustaining.length === 0 || `${fromSustaining.length} events fired on sustaining states`;
+});
+
+check("a beat never exceeds the per-beat cap or the minimum gap", () => {
+  const plan = planVisual(geofenceBeat, { channel });
+  const events = soundEventsForBeat(
+    { startFrame: 0, durationInFrames: 300, visualPlan: plan, visualStates: buildStates(plan, { startFrame: 0, durationInFrames: 300, anchorFrame: 150 }) },
+    SFX_LIBRARY
+  );
+  if (events.length > MAX_EVENTS_PER_BEAT) return `${events.length} events > cap ${MAX_EVENTS_PER_BEAT}`;
+  for (let i = 1; i < events.length; i++) {
+    const gap = events[i].atFrame - events[i - 1].atFrame;
+    if (gap < MIN_GAP_FRAMES) return `gap ${gap} < ${MIN_GAP_FRAMES}`;
+  }
+  return true;
+});
+
+check("scheduling is deterministic — the same beats give the same score", () => {
+  const plan = planVisual(geofenceBeat, { channel });
+  const beat = { startFrame: 90, durationInFrames: 300, archetype: "HERO_NUMBER", visualPlan: plan, visualStates: buildStates(plan, { startFrame: 90, durationInFrames: 300, anchorFrame: 200 }) };
+  const a = JSON.stringify(buildSoundtrack([beat], SFX_LIBRARY));
+  const b = JSON.stringify(buildSoundtrack([beat], SFX_LIBRARY));
+  return a === b || "two runs produced different soundtracks";
+});
+
+check("a falling value gets a contraction, not an expansion", () => {
+  const plan = planVisual(
+    { text: "The fund fell from 40 million to 12 million in eighteen months.", archetype: "PROGRESS", anchor_token: "fell", data: {} },
+    { channel: financeChannel }
+  );
+  if (plan.strategy !== "TRANSFORMATION") return `routed to ${plan.strategy}, not TRANSFORMATION`;
+  const states = buildStates(plan, { startFrame: 0, durationInFrames: 240, anchorFrame: 120 });
+  const grow = soundEventsForBeat({ startFrame: 0, durationInFrames: 240, visualPlan: plan, visualStates: states }, SFX_LIBRARY)
+    .find((e) => e.state === "grow");
+  if (!grow) return "no event on the `grow` state";
+  return grow.role === "contraction" || `role=${grow.role} (from=${plan.supporting.from} to=${plan.supporting.to})`;
+});
+
+check("summarizeSound flags a score with no silence in it", () => {
+  const events = Array.from({ length: 12 }, (_, i) => ({
+    atFrame: i * 15, role: "texture", state: "x", reason: "y", volume: 0.1, targetDb: -38, file: "a.wav",
+  }));
+  const s = summarizeSound(events, { totalFrames: 180 });
+  return s.warnings.some((w) => w.id === "AUD-NO-SILENCE") || `warnings: ${s.warnings.map((w) => w.id).join(",") || "none"}`;
+});
+
+check("summarizeSound flags an event that carries no reason", () => {
+  const s = summarizeSound([{ atFrame: 0, role: "impact", volume: 0.3, targetDb: -31, file: "a.wav" }], { totalFrames: 300 });
+  return s.warnings.some((w) => w.id === "AUD-UNEXPLAINED") || "no AUD-UNEXPLAINED warning";
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

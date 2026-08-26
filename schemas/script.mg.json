@@ -94,7 +94,10 @@
             }
           },
           "b_roll":       { "type": "array", "items": { "type": "string" } },
-          "sfx_cue":      { "type": "string" },
+          "sfx_cue":      {
+            "description": "ADVISORY ONLY — the motion-graphics renderer does not read this. Sound is scheduled from visual states by src/skills/remotion-render/visual/sound-design.js, because a cue written from the narration (\"low sub-bass drone\") describes the words rather than what is on screen. Kept because it is still a useful record of the writer's intent, and because minimal/cinematic-documentary scripts share this field name; do not add a keyword matcher back on top of it.",
+            "type": "string"
+          },
           "text_overlay": {
             "type": ["object", "null"],
             "properties": { "text": { "type": "string" } }

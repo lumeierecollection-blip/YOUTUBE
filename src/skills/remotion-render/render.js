@@ -32,7 +32,6 @@ import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
 import { findChrome } from "./find-chrome.js";
 import { resolveImageAssets } from "./image-assets.js";
-import { resolveSfxCue, ensureSfxAvailable } from "./sfx.js";
 import { buildMgPackage } from "./compositions/mg-package.js";
 import { formatVisualReport } from "./visual/diagnostics.js";
 import { chunkTextClauseAware, sectionFrameWindows } from "./compositions/beats.js";
@@ -153,7 +152,6 @@ function toContentSections(script) {
       voiceover: s.voiceover,
       content: chunkVoiceover(s.voiceover),
       visualCue: s.visual_cue || null,
-      sfxCue: s.sfx_cue || null,
       bRoll: Array.isArray(s.b_roll) ? s.b_roll : null,
       textOverlay: s.text_overlay || null,
       animationCue: s.animation_cue || null,
@@ -333,17 +331,6 @@ async function main() {
   const withBroll = sections.filter((s) => (s.bRollFiles || []).length > 0).length;
   console.log(`B-roll: ${withBroll}/${sections.length} sections have real imagery`);
 
-  // AUD-01 — sfx_cue used to be extracted and then never read again (see
-  // sfx.js's header). Resolve each section's cue against the real vendored,
-  // licensed SFX manifest now, so it can actually reach the composition.
-  for (const section of sections) {
-    const resolved = resolveSfxCue(section.sfxCue, channel.style, section.id);
-    section.resolvedSfx = resolved ? ensureSfxAvailable(resolved) : null;
-  }
-  const withSfx = sections.filter((s) => s.resolvedSfx).length;
-  const matchedSfx = sections.filter((s) => s.resolvedSfx && s.resolvedSfx.matched).length;
-  console.log(`SFX: ${withSfx}/${sections.length} sections have a resolved cue (${matchedSfx} matched the cue text, rest used the channel style's default)`);
-
   const componentId = getCompositionForStyle(channel.style, format);
   const staged = stageAudio(ttsAudioPath);
 
@@ -364,7 +351,6 @@ async function main() {
       // reaches for documents, a finance channel for balances (PART 15).
       channel,
       iconMap: channel.icon_map || null,
-      sectionSfx: sections.map((s) => s.resolvedSfx),
       bRollFiles: sections.flatMap((s) => s.bRollFiles || []),
       imageForSection: (idx) => (sections[idx] && sections[idx].bRollFiles && sections[idx].bRollFiles[0]) || null,
       totalMs: audioSecs ? audioSecs * 1000 : undefined,
@@ -485,6 +471,16 @@ async function main() {
     sections,
     mg,
     sectionWindows,
+    // Burned-in narration captions, OFF unless the channel asks for them.
+    // The narration is already in the audio track; printing it over the
+    // picture turned the video into an animated transcript and let the
+    // visuals off the hook. Opt in per channel with
+    //   "captions": "burned-in"
+    // in config/channels.json (accessibility / sound-off distribution).
+    // Any other value, or the field's absence, means no drawn captions.
+    // The SRT is unaffected either way — it remains the timing source for
+    // beats, anchors and visual states.
+    showCaptions: channel.captions === "burned-in",
     ttsAudioPath: staged,
     hasUnderscore,
     thumbnailStyle: channel.thumbnail_spec?.style || "dramatic-visual",

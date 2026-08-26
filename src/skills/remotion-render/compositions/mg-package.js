@@ -25,7 +25,9 @@ import {
 import { resolveIcon, isSpecificIconMatch } from "./mg-style.js";
 import { planVisual } from "../visual/director.js";
 import { buildStates } from "../visual/states.js";
-import { summarizeVisuals } from "../visual/diagnostics.js";
+import { summarizeVisuals, summarizeSound } from "../visual/diagnostics.js";
+import { buildSoundtrack } from "../visual/sound-design.js";
+import { SFX_LIBRARY } from "../visual/sfx-library.js";
 
 export const MG_TAIL_FRAMES = 12; // held tail after the last beat (D3 headline/end)
 
@@ -706,20 +708,6 @@ export function buildMgPackage(srtText, opts = {}) {
   const hookBeat = beats.find((b) => b.sectionIndex === 0);
   if (hookBeat) hookBeat.scene.trace = true;
 
-  // AUD-01 — fire each section's resolved sfx_cue (sfx.js) once, on the
-  // first beat of that section, so the section's own sound atmosphere
-  // actually plays instead of being silently dropped after extraction.
-  const sectionSfx = opts.sectionSfx || [];
-  if (sectionSfx.some(Boolean)) {
-    const seenSections = new Set();
-    for (const b of beats) {
-      if (seenSections.has(b.sectionIndex)) continue;
-      seenSections.add(b.sectionIndex);
-      const resolved = sectionSfx[b.sectionIndex];
-      if (resolved) b.scene.sfx = resolved.relativePath;
-    }
-  }
-
   const rawPages = parseSrtToMotionGraphics(srtText, { captions: captions.length ? captions : undefined }).pages;
   const pages = enrichPages(stripHeroNumberTokens(rawPages, beats), fps);
 
@@ -740,6 +728,31 @@ export function buildMgPackage(srtText, opts = {}) {
     ? computeSilenceWindow(captions, opts.silenceTechnique, revealBeat.anchorFrame, fps)
     : null;
 
+  // AUD-01 / AUD-11 — sound is scheduled by VISUAL EVENT, not by section.
+  //
+  // This used to fire one keyword-matched sfx_cue per section at the first
+  // frame of that section's first beat. Both halves of that were wrong: the
+  // trigger was "a section began" rather than "something happened on
+  // screen", and the selection scored the NARRATION'S WORDS against file
+  // tags, so a cue reading "low sub-bass drone" resolved against
+  // "click, ui, button". buildSoundtrack reads the visual states instead —
+  // a boundary expanding, a total resolving — and every event carries the
+  // reason it exists. See visual/sound-design.js.
+  //
+  // Built here, after silenceWindow, because that window is the one place
+  // sound must NOT go: it is a real detected gap in the voiceover that the
+  // channel's sfx_profile.silence_technique asked for, and a sound landing
+  // inside it spends the pause the video was holding. Previously only the
+  // section whoosh respected it; now every event does, and the suppressed
+  // ones are counted rather than quietly dropped.
+  let soundtrack = usedAuthoredBeats ? buildSoundtrack(beats, SFX_LIBRARY) : [];
+  let soundSuppressedBySilence = 0;
+  if (silenceWindow) {
+    const before = soundtrack.length;
+    soundtrack = soundtrack.filter((ev) => ev.atFrame < silenceWindow[0] || ev.atFrame >= silenceWindow[1]);
+    soundSuppressedBySilence = before - soundtrack.length;
+  }
+
   return {
     beats,
     captions,
@@ -752,10 +765,20 @@ export function buildMgPackage(srtText, opts = {}) {
     usedAuthoredBeats,
     silenceWindow,
     imageGaps,
+    // Absolute-frame sound events. The composition plays these; nothing
+    // else in the render is allowed to trigger a sound.
+    soundtrack,
+    soundSuppressedBySilence,
     // PART 19/20 — every render carries its own visual QA numbers and the
     // reason behind every fallback, so a video that quietly degraded is
     // visible in the run that produced it.
-    visual: summarizeVisuals(beats, { fps }),
+    visual: {
+      ...summarizeVisuals(beats, { fps }),
+      // Sound QA lives inside the visual report because it is one
+      // production judgement, not two: a beat whose picture says nothing
+      // and whose sound fires anyway is a single defect.
+      sound: summarizeSound(soundtrack, { fps, totalFrames }),
+    },
   };
 }
 

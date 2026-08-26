@@ -378,16 +378,49 @@ function Background({ colors }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SFX — E4. Fires on the frame the visual lands, never on the word (E4.3).
-// Sequence `from` is relative to the enclosing sequence timeline.
+// SFX — one component, one source of events.
+//
+// Every sound in the video comes from mg.soundtrack, scheduled by
+// visual/sound-design.js against the frame a VISUAL STATE begins. Nothing
+// else plays a sound: there are no hardcoded cues inside scene components
+// and none fired at section boundaries. Two reasons that matters.
+//
+//   - A cue buried in a scene fires whenever that scene renders, so it is
+//     tied to a component, not to an event. Four of them (three clicks and
+//     a boundary whoosh) were doing exactly that.
+//   - Anything not in mg.soundtrack cannot be counted, spaced, level-checked
+//     or explained by the QA pass, so it silently escapes every rule the
+//     scheduler enforces.
+//
+// The sequence is exactly as long as the file's MEASURED duration rather
+// than a fixed 60-frame window, and the tail is faded so a long sound
+// (the 2.9s cinematic whoosh) never truncates into a click.
 // ─────────────────────────────────────────────────────────────────────────────
 
-function Sfx({ file, at, db }) {
-  if (!file) return null;
+const SFX_FADE_FRAMES = 5;
+
+function SoundEvent({ event }) {
+  const { fps } = useVideoConfig();
+  if (!event.file || !event.volume) return null;
+  const frames = Math.max(2, Math.ceil(((event.durationMs || 400) / 1000) * fps));
+  const fade = Math.min(SFX_FADE_FRAMES, Math.floor(frames / 3));
   return (
-    <Sequence from={at} durationInFrames={60}>
-      <Audio src={staticFile(file)} volume={dbToVolume(db)} />
+    <Sequence from={event.atFrame} durationInFrames={frames} layout="none" name={`sfx:${event.role}`}>
+      <Audio
+        src={staticFile(event.file)}
+        volume={(f) => (fade > 0 && f > frames - fade ? event.volume * ((frames - f) / fade) : event.volume)}
+      />
     </Sequence>
+  );
+}
+
+function Soundtrack({ events }) {
+  return (
+    <>
+      {(events || []).map((ev, i) => (
+        <SoundEvent key={`${ev.atFrame}-${ev.role}-${i}`} event={ev} />
+      ))}
+    </>
   );
 }
 
@@ -942,7 +975,6 @@ function HeroNumberScene({ beat, scene, colors, fontFamily }) {
             {fixedSlots ? fixedSlotChars(counterStr) : counterStr}
           </span>
         </div>
-        <Sfx file="sfx/ui/click_004.ogg" at={start + D.push} db={-22} />
       </Centered>
     </>
   );
@@ -1191,13 +1223,6 @@ function ProgressScene({ beat, scene, colors, fontFamily }) {
           </div>
         );
       })}
-      {series.some((s) => s.highlight) ? (
-        <Sfx
-          file="sfx/ui/click_004.ogg"
-          at={Math.max(tA - D.micro, 0) + series.findIndex((s) => s.highlight) * 5 + 24}
-          db={-22}
-        />
-      ) : null}
     </div>
   );
 }
@@ -1437,14 +1462,6 @@ export function ImageBeatScene({ beat, scene, colors, fontFamily }) {
           />
         ) : null}
       </div>
-      {/* vox-style-treatment SKILL.md's SFX resolution: every beat gets
-          SOME cue. Every other push-in-style beat (e.g. HeroNumberScene)
-          fires one on landing; IMAGE_BEAT had none of its own and relied
-          entirely on the global caption-gap cue in MotionGraphicsContent,
-          which a densely-captioned beat can miss outright. Same plain
-          click, same quiet level, as HeroNumberScene's — an image landing
-          isn't a "moment that earns" a distinctive sound. */}
-      <Sfx file="sfx/ui/click_004.ogg" at={start + D.push} db={-22} />
     </div>
   );
 }
@@ -1595,7 +1612,6 @@ function ListRunScene({ beats, startFrame, colors, fontFamily }) {
           </div>
         );
       })}
-      <Sfx file="sfx/ui/click_001.ogg" at={chipFrames[lastArrived] + D.micro} db={-24} />
     </div>
   );
 }
@@ -1636,7 +1652,6 @@ function BeatStages({ beats, colors, fontFamily }) {
             <StageContainer beat={{ ...b, scene: { ...b.scene, exit } }}>
               <StageScene beat={{ ...b, scene: { ...b.scene, exit } }} colors={colors} fontFamily={fontFamily} />
             </StageContainer>
-            {b.scene.sfx ? <Sfx file={b.scene.sfx} at={0} db={-20} /> : null}
           </Sequence>
         );
       })}
@@ -1665,35 +1680,46 @@ function ListRuns({ beats, colors, fontFamily }) {
 // Top-level composition
 // ─────────────────────────────────────────────────────────────────────────────
 
-function MotionGraphicsContent({ mg, colors, fontFamily }) {
+function MotionGraphicsContent({ mg, colors, fontFamily, showCaptions }) {
   const beats = mg.beats || [];
   const accentWindows = useMemo(
     () => beats.map((b) => b.scene && b.scene.accentWindow).filter(Boolean),
     [beats]
   );
-  const boundaryFrames = beats
-    .map((b, i) => (i > 0 && beats[i - 1].sectionIndex !== b.sectionIndex ? b.startFrame : null))
-    .filter((v) => v !== null);
-  // PART 7 — "respect sfx_profile.silence_technique; settle into a
-  // specified silence." mg.silenceWindow (mg-package.js's
-  // computeSilenceWindow) is a real, detected gap in the VO near the
-  // reveal beat, in absolute timeline frames — never fabricated. A section
-  // whoosh landing inside it would announce a cut into the middle of the
-  // deliberate pause the voiceover is holding, so it's the one SFX trigger
-  // suppressed there.
-  const inSilence = (f) => mg.silenceWindow && f >= mg.silenceWindow[0] && f < mg.silenceWindow[1];
-
   return (
     <>
       <DesignSpace>
         <BeatStages beats={beats} colors={colors} fontFamily={fontFamily} />
         <ListRuns beats={beats} colors={colors} fontFamily={fontFamily} />
         <HeadlineLayer beats={beats} colors={colors} fontFamily={fontFamily} />
-        <CaptionLayer pages={mg.pages || []} accentWindows={accentWindows} colors={colors} fontFamily={fontFamily} />
+        {/* NARRATION CAPTIONS ARE OFF BY DEFAULT.
+
+            The viewer already has the narration in audio. Printing it again
+            along the bottom made the video an animated transcript: the eye
+            reads the sentence, the picture becomes decoration behind it, and
+            the visual never has to carry the meaning. That is the single
+            biggest reason the output read as "narration on a background".
+
+            The SRT itself is untouched and remains load-bearing — it is
+            still the timing source for beats, anchors and visual states
+            (compositions/beats.js). What changed is only whether the words
+            are DRAWN.
+
+            CaptionLayer is preserved in full, not deleted: a channel that
+            wants burned-in captions for accessibility sets
+            `captions: "burned-in"` in channels.json and gets exactly the
+            previous behaviour. See render.js's showCaptions. */}
+        {showCaptions ? (
+          <CaptionLayer pages={mg.pages || []} accentWindows={accentWindows} colors={colors} fontFamily={fontFamily} />
+        ) : null}
       </DesignSpace>
-      {boundaryFrames.filter((f) => !inSilence(f)).map((f) => (
-        <Sfx key={`w-${f}`} file="sfx/transitions/close_001.ogg" at={f} db={-18} />
-      ))}
+      {/* The ONLY sound source in the video besides the voiceover and the
+          optional underscore. mg.soundtrack is already spaced, capped,
+          level-normalised against each file's measured loudness, and
+          filtered out of the deliberate reveal silence (mg-package.js).
+          Every event in it carries the visual state and the reason it
+          fired, which is what qa-scripts/audio-qa.mjs checks. */}
+      <Soundtrack events={mg.soundtrack} />
     </>
   );
 }
@@ -1706,6 +1732,9 @@ function MotionGraphicsShorts({
   font = "DM Sans",
   palette = null,
   channelName = "",
+  // Default FALSE: narration belongs in the audio track, not printed over
+  // the picture. render.js sets this true only when a channel opts in.
+  showCaptions = false,
 }) {
   const colors = rolesFromPalette(
     palette && typeof palette === "object" && !Array.isArray(palette)
@@ -1719,17 +1748,18 @@ function MotionGraphicsShorts({
     <AbsoluteFill style={{ backgroundColor: colors.bg }}>
       <Background colors={colors} />
       {mg ? (
-        <MotionGraphicsContent mg={mg} colors={colors} fontFamily={fontFamily} />
+        <MotionGraphicsContent mg={mg} colors={colors} fontFamily={fontFamily} showCaptions={showCaptions} />
       ) : null}
       {/* music-sourcing/SKILL.md's whole-video underscore bed — distinct
-          from the existing per-beat Sfx system (short one-shot cues, not
-          a continuous track). Static gain staging (a fixed, low level for
+          from the sound-design events above (short one-shot cues, not a
+          continuous track). Static gain staging (a fixed, low level for
           the ENTIRE bed), not dynamic sidechain ducking: this pipeline
           has no VO-amplitude analysis to react to, and a fixed level well
-          under both the voiceover and the SFX cues (-24dB here vs Sfx's
-          own -18 to -24dB range, itself already under the voiceover)
-          reads as "present but never competing" without that added
-          machinery. hasUnderscore comes from render.js checking whether
+          under both the voiceover and the sound events (-24dB here against
+          the -20 to -30dB targets in sound-design.js's ROLE_GAIN_DB, itself
+          already under the voiceover) reads as "present but never
+          competing" without that added machinery.
+          hasUnderscore comes from render.js checking whether
           the committed public/music/underscore.mp3 actually exists —
           optional, so no static import (that would break the bundle on
           any checkout that hasn't fetched a track). */}

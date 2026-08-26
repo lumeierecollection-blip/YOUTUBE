@@ -184,6 +184,114 @@ function buildWarnings(m, staged, fps) {
   return w;
 }
 
+/**
+ * Sound QA — the same idea applied to the score.
+ *
+ * A sound track can fail in ways that are invisible on a waveform and
+ * inaudible until you notice you are annoyed: one sound every 1.5s for a
+ * minute, the same file eleven times, or a "score" that is really four
+ * clicks with no silence anywhere. These numbers are cheap and go in the
+ * same per-render report as the visual ones.
+ *
+ * `semanticMatchRate` is deliberately NOT "does the sound match the
+ * narration's words" — matching words is the defect this replaced. It is
+ * the share of events whose visual state is one the strategy actually
+ * declares as an event, which is what "the sound matches the picture"
+ * means here.
+ */
+export function summarizeSound(soundtrack, opts = {}) {
+  const fps = opts.fps || FPS;
+  const events = soundtrack || [];
+  const seconds = Math.max((opts.totalFrames || 0) / fps, 1);
+
+  const byRole = {};
+  const byFile = {};
+  for (const ev of events) {
+    byRole[ev.role] = (byRole[ev.role] || 0) + 1;
+    if (ev.file) byFile[ev.file] = (byFile[ev.file] || 0) + 1;
+  }
+
+  // Longest stretch with no sound at all, including the head and tail —
+  // silence is a design element, so it gets measured like one.
+  let longestGap = events.length ? events[0].atFrame : opts.totalFrames || 0;
+  for (let i = 1; i < events.length; i++) {
+    longestGap = Math.max(longestGap, events[i].atFrame - events[i - 1].atFrame);
+  }
+  if (events.length) longestGap = Math.max(longestGap, (opts.totalFrames || 0) - events[events.length - 1].atFrame);
+
+  let tightest = Infinity;
+  for (let i = 1; i < events.length; i++) tightest = Math.min(tightest, events[i].atFrame - events[i - 1].atFrame);
+
+  const fileCounts = Object.values(byFile);
+  const withReason = events.filter((e) => e.reason && e.state).length;
+
+  const metrics = {
+    eventCount: events.length,
+    eventsPerMinute: round2((events.length / seconds) * 60),
+    distinctFiles: Object.keys(byFile).length,
+    distinctRoles: Object.keys(byRole).length,
+    roleMix: byRole,
+    mostRepeatedFile: fileCounts.length ? Math.max(...fileCounts) : 0,
+    longestSilenceSec: round2(longestGap / fps),
+    tightestGapFrames: Number.isFinite(tightest) ? tightest : null,
+    // Every event should carry both; a 1.0 here is the check that nothing
+    // is firing for a reason nobody can name.
+    semanticMatchRate: events.length ? round2(withReason / events.length) : 1,
+    loudestTargetDb: events.length ? Math.max(...events.map((e) => e.targetDb)) : null,
+    peakVolume: events.length ? Math.max(...events.map((e) => e.volume)) : 0,
+  };
+
+  const warnings = [];
+  if (metrics.eventsPerMinute > 40) {
+    warnings.push({
+      id: "AUD-DENSITY",
+      severity: "MAJOR",
+      message: `${metrics.eventsPerMinute} sound events per minute — the score is constant, not punctuation`,
+    });
+  }
+  if (metrics.longestSilenceSec < 3 && events.length > 4) {
+    warnings.push({
+      id: "AUD-NO-SILENCE",
+      severity: "MAJOR",
+      message: `longest silence is only ${metrics.longestSilenceSec}s — nothing is ever allowed to land in the clear`,
+    });
+  }
+  if (metrics.mostRepeatedFile > 4) {
+    warnings.push({
+      id: "AUD-REPEAT",
+      severity: "MINOR",
+      message: `one file plays ${metrics.mostRepeatedFile}x — the score reads as a single recurring click`,
+    });
+  }
+  if (metrics.semanticMatchRate < 1) {
+    warnings.push({
+      id: "AUD-UNEXPLAINED",
+      severity: "MAJOR",
+      message: `${Math.round((1 - metrics.semanticMatchRate) * 100)}% of events carry no visual state or reason`,
+    });
+  }
+  if (metrics.peakVolume >= 1) {
+    warnings.push({
+      id: "AUD-CLIPPED-GAIN",
+      severity: "MAJOR",
+      message: `an event plays at unity gain — it was boosted rather than attenuated and will sit on top of the narration`,
+    });
+  }
+  if (metrics.tightestGapFrames !== null && metrics.tightestGapFrames < 12) {
+    warnings.push({
+      id: "AUD-SMEAR",
+      severity: "MINOR",
+      message: `two events are ${metrics.tightestGapFrames} frames apart — they will read as one smeared noise`,
+    });
+  }
+
+  return { metrics, warnings };
+}
+
+function round2(v) {
+  return Math.round(v * 100) / 100;
+}
+
 /** Human-readable one-screen summary for CI logs. */
 export function formatVisualReport(summary) {
   const m = summary.metrics;
@@ -200,5 +308,16 @@ export function formatVisualReport(summary) {
     `strategy mix        : ${Object.entries(m.strategyMix).map(([k, v]) => `${k}=${v}`).join(" ") || "(none)"}`,
   ];
   for (const warn of summary.warnings) lines.push(`  ! [${warn.severity}] ${warn.id}: ${warn.message}`);
+
+  if (summary.sound) {
+    const s = summary.sound.metrics;
+    lines.push(
+      `sound events        : ${s.eventCount} (${s.eventsPerMinute}/min, ${s.distinctFiles} distinct files)`,
+      `longest silence     : ${s.longestSilenceSec}s`,
+      `sound role mix      : ${Object.entries(s.roleMix).map(([k, v]) => `${k}=${v}`).join(" ") || "(none)"}`,
+      `event->state match  : ${s.semanticMatchRate}  loudest target ${s.loudestTargetDb ?? "n/a"}dBFS  peak vol ${s.peakVolume}`
+    );
+    for (const warn of summary.sound.warnings) lines.push(`  ! [${warn.severity}] ${warn.id}: ${warn.message}`);
+  }
   return lines.join("\n");
 }

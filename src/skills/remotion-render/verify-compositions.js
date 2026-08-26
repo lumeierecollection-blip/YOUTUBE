@@ -35,7 +35,6 @@ const sections = (script.sections || [])
     voiceover: s.voiceover,
     content: chunkVoiceover(s.voiceover),
     visualCue: s.visual_cue || null,
-    sfxCue: s.sfx_cue || null,
     bRoll: Array.isArray(s.b_roll) ? s.b_roll : null,
     textOverlay: s.text_overlay || null,
     transitionOut: s.transition_out || null,
