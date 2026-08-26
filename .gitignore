@@ -54,3 +54,7 @@ data/asset-library/raw/
 # deliberately kept out of data/research/ so a hand-written fixture can never
 # be mistaken for a gate-passed research artifact.
 data/audit/visual-tests/
+
+# Short single-beat clips from qa-scripts/render-clip.mjs — same per-run
+# output convention as the full renders above.
+data/renders/clips/
