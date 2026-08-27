@@ -1,10 +1,13 @@
 import React from "react";
 import { Img, staticFile, useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, STAGE_CX, Label, ease, seeded, variantOf,
+  CANVAS_W, CANVAS_H, Label, ease, seeded, variantOf,
   useStateProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
+import { DOCUMENT_PAGES, documentPageGeometry } from "../layout-constants.js";
 import { progressOf, reached } from "../../visual/states.js";
+import { shotFrame } from "./stage.jsx";
+
 
 /**
  * Evidence scenes — showing the THING, not a symbol standing in for it.
@@ -25,19 +28,18 @@ import { progressOf, reached } from "../../visual/states.js";
 // DOCUMENT_EVIDENCE — the page, then the clause that actually matters.
 // ─────────────────────────────────────────────────────────────────────────────
 /**
- * Page geometry per variant, exported so the safe-rect test checks the REAL
- * numbers instead of a duplicate that can drift out of sync with them.
+ * Page geometry lives in ../layout-constants.js, a pure .js module, so the
+ * safe-rect test can import and exercise the REAL function instead of
+ * re-deriving a second copy of the same maths that drifts out of sync with
+ * it. That drift already happened once: the check kept recomputing the page
+ * from DOCUMENT_PAGE_TOP and DOCUMENT_PAGES after the scene had started
+ * scaling the page to the shot, so it verified numbers the renderer no
+ * longer drew and still passed.
  */
-export const DOCUMENT_PAGE_TOP = 300;
-export const DOCUMENT_PAGES = [
-  { w: 560, h: 660, lines: 17, clause: 9, lead: 31 },
-  { w: 620, h: 580, lines: 12, clause: 4, lead: 37 },
-  { w: 500, h: 690, lines: 22, clause: 16, lead: 25 },
-];
-
 export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
+  const f = shotFrame((beat.visualPlan && beat.visualPlan.shot) || null);
 
   const pPage = useStateProgress(states, "page");
   const pScan = progressOf(states, "scan", frame);
@@ -68,10 +70,9 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
   // `lead` is then whatever fits `lines` inside the page. TESTED, not
   // eyeballed — see run-visual-tests.js "a document page never draws
   // outside the safe rect".
-  const PAGE_TOP = DOCUMENT_PAGE_TOP;
+  const g = documentPageGeometry(v, f);
   const page = DOCUMENT_PAGES[v];
-  const pageW = page.w, pageH = page.h;
-  const px = STAGE_CX - pageW / 2, py = PAGE_TOP;
+  const { pageW, pageH, px, py, lead } = g;
 
   // Ruled text lines standing in for body copy. Deliberately abstract —
   // fabricating legal text would be inventing a source, which this repo
@@ -79,7 +80,6 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
   // pulled out at `read`.
   const lines = page.lines;
   const clauseLine = page.clause;
-  const lead = page.lead;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
@@ -121,7 +121,7 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
           real narration, never invented document text. */}
       {pRead > 0 ? (
         <div style={{
-          position: "absolute", left: px - 30, top: py + pageH + 40, width: pageW + 60,
+          position: "absolute", left: g.clause.x, top: g.clause.y, width: g.clause.w,
           opacity: ease(pRead), transform: `translateY(${(1 - ease(pRead)) * 14}px)`,
         }}>
           <div style={{
@@ -142,6 +142,7 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
 export function ImageEvidenceScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
+  const f = shotFrame((beat.visualPlan && beat.visualPlan.shot) || null);
   const plan = beat.visualPlan || {};
   const asset = (plan.payload && plan.payload.asset) || (beat.scene && beat.scene.image ? { path: beat.scene.image } : null);
   if (!asset || !asset.path) return null;
@@ -158,7 +159,7 @@ export function ImageEvidenceScene({ beat, colors, fontFamily }) {
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
       <div style={{
-        position: "absolute", left: 48, top: 300, width: 1032, height: 860,
+        position: "absolute", left: f.x, top: f.y, width: f.w, height: f.h,
         overflow: "hidden", opacity: ease(pReveal),
       }}>
         <Img
@@ -194,6 +195,7 @@ export function ImageEvidenceScene({ beat, colors, fontFamily }) {
 export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
+  const f = shotFrame((beat.visualPlan && beat.visualPlan.shot) || null);
 
   const pChrome = useStateProgress(states, "chrome");
   const pInput = useStateProgress(states, "input");
@@ -201,7 +203,7 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
   const pResult = useStateProgress(states, "result");
 
   const w = 720, h = 520;
-  const x = STAGE_CX - w / 2, y = 480;
+  const x = f.cx - w / 2, y = f.cy - f.h * 0.3;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
@@ -263,6 +265,7 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
 export function BeforeAfterScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
+  const f = shotFrame((beat.visualPlan && beat.visualPlan.shot) || null);
 
   const pBefore = useStateProgress(states, "before");
   const pWipe = progressOf(states, "wipe", frame);

@@ -48,7 +48,8 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
           ? "destabilising"
           : "converging";
 
-  const cx = STAGE_CX, cy = 730;
+  const f = shotFrame((beat.visualPlan && beat.visualPlan.shot) || null);
+  const cx = f.cx, cy = f.cy;
   const a = ease(pAct, EASE_IN_OUT);
   const rings = 5;
 
@@ -131,6 +132,7 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
 export function CinematicStatementScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
+  const f = shotFrame((beat.visualPlan && beat.visualPlan.shot) || null);
 
   const pField = useStateProgress(states, "field");
   const pSubject = useStateProgress(states, "subject");

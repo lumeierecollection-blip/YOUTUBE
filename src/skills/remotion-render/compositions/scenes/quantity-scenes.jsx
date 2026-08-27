@@ -5,6 +5,7 @@ import {
   ease, seeded, useStateProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
+import { shotFrame } from "./stage.jsx";
 
 /**
  * Quantity scenes — the four ways this renderer explains a NUMBER.
@@ -54,7 +55,12 @@ function currencySymbol(unit) {
 export function AccumulationScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
-  const sup = (beat.visualPlan && beat.visualPlan.supporting) || {};
+  const plan = beat.visualPlan || {};
+  const sup = plan.supporting || {};
+  // Laid out against the SHOT (visual/composition.js), not hardcoded pixels:
+  // an audit found 13 of 16 scenes ignoring it and drawing at the same size
+  // in the same place regardless of framing.
+  const f = shotFrame(plan.shot || null);
 
   const count = Math.max(3, Math.min(24, Math.round(sup.count || 12)));
   const total = Number.isFinite(sup.total) ? sup.total : null;
@@ -77,10 +83,12 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
   const ledger = variantOf(beat) === 1;
 
   // The tray: a real container with a floor the items stack on.
-  const trayX = 168, trayW = 600, floorY = 980;
+  const trayW = f.w * 0.62;
+  const trayX = f.cx - trayW / 2;
+  const floorY = f.cy + f.h * 0.42;
 
   // The ledger: a left rule with rows running down it.
-  const ledgerTop = 470;
+  const ledgerTop = f.cy - f.h * 0.34;
   const ledgerH = floorY - ledgerTop;
   const rowH = Math.max(11, Math.min(34, ledgerH / Math.max(count, 1)));
 
@@ -233,7 +241,9 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
 export function TransformationScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
-  const sup = (beat.visualPlan && beat.visualPlan.supporting) || {};
+  const plan = beat.visualPlan || {};
+  const sup = plan.supporting || {};
+  const f = shotFrame(plan.shot || null);
 
   const from = Number.isFinite(sup.from) ? sup.from : 0;
   const to = Number.isFinite(sup.to) ? sup.to : from;
@@ -247,7 +257,10 @@ export function TransformationScene({ beat, colors, fontFamily }) {
   const pGrow = progressOf(states, "grow", frame);
   const pSettle = useStateProgress(states, "settle");
 
-  const x0 = 168, x1 = 768, baseY = 960, topY = 520;
+  const x0 = f.x + f.w * 0.12;
+  const x1 = f.x + f.w * 0.88;
+  const baseY = f.cy + f.h * 0.42;
+  const topY = f.cy - f.h * 0.34;
   const span = x1 - x0;
   const g = ease(pGrow, EASE_IN_OUT);
   const current = from + (to - from) * g;
@@ -346,7 +359,9 @@ export function TransformationScene({ beat, colors, fontFamily }) {
 export function ComparisonScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
-  const sup = (beat.visualPlan && beat.visualPlan.supporting) || {};
+  const plan = beat.visualPlan || {};
+  const sup = plan.supporting || {};
+  const f = shotFrame(plan.shot || null);
   const series = (sup.series || []).slice(0, 2);
 
   // Two opposed POSITIONS rather than two magnitudes. Same concept (X set
@@ -367,7 +382,10 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
   const pVerdict = useStateProgress(states, "verdict");
 
   const fmt = figureFormat(sup.unit);
-  const midX = STAGE_CX, axisY = 900, maxH = 420, colW = 190;
+  const midX = f.cx;
+  const axisY = f.cy + f.h * 0.38;
+  const maxH = f.h * 0.72;
+  const colW = f.w * 0.2;
   const hA = (Math.abs(a.value) / max) * maxH * ease(pLeft);
   const hB = (Math.abs(b.value) / max) * maxH * ease(pRight);
   const winner = Math.abs(a.value) >= Math.abs(b.value) ? "a" : "b";
@@ -437,9 +455,11 @@ function OppositionComparison({ beat, sup, states, colors, fontFamily }) {
   const pGap = useStateProgress(states, "gap");
   const pVerdict = useStateProgress(states, "verdict");
 
-  const panelW = 760, panelH = 200;
-  const x = STAGE_CX - panelW / 2;
-  const yTop = 470, yBot = 830;
+  const panelW = f.w * 0.78;
+  const panelH = f.h * 0.24;
+  const x = f.cx - panelW / 2;
+  const yTop = f.cy - f.h * 0.32;
+  const yBot = yTop + panelH + f.h * 0.2;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
@@ -519,7 +539,9 @@ function OppositionComparison({ beat, sup, states, colors, fontFamily }) {
 export function DataChartScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
-  const sup = (beat.visualPlan && beat.visualPlan.supporting) || {};
+  const plan = beat.visualPlan || {};
+  const sup = plan.supporting || {};
+  const f = shotFrame(plan.shot || null);
   const series = (sup.series || []).slice(0, 5);
   if (series.length < 2) return null;
 
@@ -530,7 +552,10 @@ export function DataChartScene({ beat, colors, fontFamily }) {
 
   const chartFmt = figureFormat(sup.unit);
   const max = Math.max(...series.map((s) => Math.abs(s.value))) || 1;
-  const axisY = 940, x0 = 168, w = 600, maxH = 430;
+  const axisY = f.cy + f.h * 0.4;
+  const x0 = f.x + f.w * 0.14;
+  const w = f.w * 0.72;
+  const maxH = f.h * 0.74;
   const gap = 26;
   const barW = (w - gap * (series.length - 1)) / series.length;
   const hiIdx = Math.max(series.findIndex((s) => s.highlight), 0);
@@ -586,7 +611,9 @@ export function DataChartScene({ beat, colors, fontFamily }) {
 export function ScaleComparisonScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
-  const sup = (beat.visualPlan && beat.visualPlan.supporting) || {};
+  const plan = beat.visualPlan || {};
+  const sup = plan.supporting || {};
+  const f = shotFrame(plan.shot || null);
   const value = Number.isFinite(sup.value) ? sup.value : 0;
 
   const pRef = useStateProgress(states, "reference");
@@ -599,7 +626,9 @@ export function ScaleComparisonScene({ beat, colors, fontFamily }) {
   const blocks = cols * rows;
   const filled = Math.round(blocks * ease(pGrow, EASE_IN_OUT));
   const cell = 52, pad = 8;
-  const gridW = cols * cell, gridX = STAGE_CX - gridW / 2, gridY = 520;
+  const gridW = cols * cell;
+  const gridX = f.cx - gridW / 2;
+  const gridY = f.cy - f.h * 0.3;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>

@@ -474,9 +474,10 @@ to hide.
 | VIS-17 | Every sound-library entry's duration/peak/RMS is MEASURED from the file | `qa-scripts/fetch-sfx-library.mjs` + `run-visual-tests.js` | 26/26 measured | 1 | MAJOR | **PASS** |
 | VIS-18 | Every strategy the director can prefer is actually selectable | `run-visual-tests.js` (signals table vs `STRATEGY_PREFERENCE`) | 0 unreachable | 1 | BLOCKER | **PASS** - found `DATA_CHART` and `SCALE_COMPARISON` with NO detector, unreachable on every beat ever rendered; both now detected, guard verified to fire on the pre-fix source |
 | VIS-19 | A comparison keeps both its values; a chart keeps all of them | `run-visual-tests.js` | 0 dropped | 1 | MAJOR | **PASS** - `detectComparison` accepted >=2 while `ComparisonScene` slices to 2, so a 4-figure beat rendered 2 and silently discarded the rest |
-| VIS-20 | No scene draws outside the safe rect | `run-visual-tests.js` (real exported geometry vs `SAFE` and `CAPTION_RESERVE_Y`) | inside | 1 | MAJOR | **PASS** - caught all 3 `DOCUMENT_EVIDENCE` page variants 62-132px below `SAFE.bottom` once captions were turned off |
-| VIS-21 | Every scene component parses as JSX | `run-visual-tests.js` (esbuild) | 0 errors | 1 | BLOCKER | **PASS** - the text-based checks cannot see a syntax error; one reached a bundler 15 minutes into a render |
+| VIS-20 | No scene draws outside the safe rect | `run-visual-tests.js` calls the renderer's own `documentPageGeometry()` against the renderer's own `SAFE` / `CAPTION_RESERVE_Y`, both imported from `compositions/layout-constants.js` | inside | 1 | MAJOR | **PASS** - see 3.12.3; caught all 3 `DOCUMENT_EVIDENCE` page variants 62-132px below `SAFE.bottom` once captions were turned off, and later the clause overhanging `SAFE.right` by 30px on 2 framings |
+| VIS-21 | Every scene component parses as JSX | `run-visual-tests.js` (esbuild, per file) | 0 errors | 1 | BLOCKER | **PASS** - the text-based checks cannot see a syntax error; one reached a bundler 15 minutes into a render |
 | VIS-22 | No module in `visual/` exports something nothing imports | `run-visual-tests.js` | 0 dead | 1 | MINOR | **PASS** - removed `planAll`, `strategyNames` |
+| VIS-23 | Every import in the scene graph names something that is actually exported | `run-visual-tests.js` (esbuild `bundle: true` from `scenes/index.jsx` and `motion-graphics.jsx`) | 0 unresolved | 1 | BLOCKER | **PASS** - verified to fail on both real modes: an importer naming a helper that moved, and a re-export surface that drops a name 4 scenes import |
 
 **3.12.1 - VIS-08 is frame-verified, not inferred.** The 150-metre geofence
 beat from the real ch-02 script was rendered through the production CLI and
@@ -504,6 +505,36 @@ states that densification adds. `SustainCamera` (`scenes/index.jsx`) now
 gives sustaining states a real (small) camera move, so the metric and the
 picture agree. It remains a structural proxy: it cannot prove a scene's
 named states are individually interesting, only that something changes.
+
+**3.12.3 - VIS-20 passed for a while against geometry the renderer had
+stopped drawing.** This is the failure mode worth recording, because the
+check never went red while it was wrong.
+
+The constants and the page maths lived in `.jsx` files. Node cannot import
+`.jsx`, so the check recovered `SAFE` and `CAPTION_RESERVE_Y` by regex over
+`primitives.jsx` and recomputed the page from `DOCUMENT_PAGE_TOP` and
+`DOCUMENT_PAGES`. That duplicate was correct until the scene began scaling
+the page to its shot frame; from then on the check verified a geometry the
+renderer no longer drew, and passed on every run.
+
+The fix was structural, not a better regex: `compositions/layout-constants.js`
+is a pure `.js` module holding the constants **and** `documentPageGeometry()`,
+imported by both the scene and the check. `primitives.jsx` re-exports the
+constants so existing scene imports are unchanged. With one model and two
+callers, the check immediately found a real defect the duplicate had been
+hiding — the pulled-out clause is set 30px wider than the page on each side,
+so on the `close` and `grounded` framings of variant 1 it spanned 112..918
+against a safe rect of 48..888. The clamp now budgets for the overhang.
+
+Two consequences worth keeping:
+
+- Anything a test or a gate needs to reason about goes in a `.js` module,
+  not a component file. Parsing source text to recover a renderer's numbers
+  is a duplicate by another name.
+- `VIS-23` exists because moving code between modules is exactly when
+  imports break, and per-file parsing (`VIS-21`) cannot see across a module
+  boundary. It bundles the graph and fails on a name that is imported but
+  never exported.
 
 ---
 

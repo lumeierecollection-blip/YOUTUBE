@@ -27,6 +27,7 @@ import { buildStates, MAX_STATE_FRAMES, longestStaticRun } from "./states.js";
 import { analyzeBeat } from "./semantics.js";
 import { summarizeVisuals, summarizeSound } from "./diagnostics.js";
 import { MAX_SUPPORTING_WORDS } from "./text-budget.js";
+import { SAFE, CAPTION_RESERVE_Y, documentPageGeometry } from "../compositions/layout-constants.js";
 import { composeShot, composedStrategies, assertCompositionIsComplete, shotSignatures, FRAMINGS, CAMERA_MOVES } from "./composition.js";
 import { assertSoundMapIsSound, buildSoundtrack, soundEventsForBeat, volumeFor, MIN_GAP_FRAMES, MAX_EVENTS_PER_BEAT, ROLE_TARGET_DB } from "./sound-design.js";
 import { SFX_LIBRARY } from "./sfx-library.js";
@@ -394,56 +395,53 @@ check("no module exports something nothing imports", () => {
 // ─────────────────────────────────────────────────────────────────────────────
 console.log("\nnothing draws outside the safe rect");
 
-/** Read a numeric constant or an array literal out of a source file. */
-function constFrom(src, name) {
-  const m = new RegExp(`export const ${name} = ([\\s\\S]*?);\\n`).exec(src)
-    || new RegExp(`const ${name} = ([\\s\\S]*?);\\n`).exec(src);
-  if (!m) return null;
-  const body = m[1].replace(/\/\/[^\n]*/g, "").replace(/(\w+):/g, '"$1":').replace(/,(\s*[\]}])/g, "$1");
-  try {
-    return JSON.parse(body);
-  } catch {
-    return Number(m[1]);
-  }
-}
-
 check("a document page never draws outside the safe rect", () => {
-  // Computed from the REAL exported geometry, not a copy of it. This scene
-  // draws a page AND a pulled-out clause below it, and the whole stack sits
-  // CAPTION_RESERVE_Y lower now that captions are off. The first version of
-  // the page variants put that clause 62-132px outside SAFE.bottom on all
-  // three — invisible in a node test suite, and a 25-minute render away.
-  const scenes = join(__dirname, "..", "compositions", "scenes");
-  const evidence = readFileSync(join(scenes, "evidence-scenes.jsx"), "utf-8");
-  const prims = readFileSync(join(scenes, "primitives.jsx"), "utf-8");
-  const mg = readFileSync(join(__dirname, "..", "compositions", "motion-graphics.jsx"), "utf-8");
-
-  const SAFE = constFrom(prims, "SAFE");
-  const drop = constFrom(mg, "CAPTION_RESERVE_Y");
-  const top = constFrom(evidence, "DOCUMENT_PAGE_TOP");
-  const pages = constFrom(evidence, "DOCUMENT_PAGES");
-  if (!SAFE || !Number.isFinite(drop) || !Number.isFinite(top) || !Array.isArray(pages)) {
-    return "could not read the geometry constants out of the sources";
+  // Calls the RENDERER'S OWN geometry function against the RENDERER'S OWN
+  // constants, both imported from compositions/layout-constants.js.
+  //
+  // Two earlier versions of this check were wrong in the same way. Both
+  // recovered SAFE and CAPTION_RESERVE_Y by regex over primitives.jsx —
+  // node cannot import .jsx, so there was no other option — and one of them
+  // also recomputed the page from DOCUMENT_PAGE_TOP and DOCUMENT_PAGES.
+  // That duplicate stayed true right up until the scene began scaling the
+  // page to its shot, after which the check was verifying a geometry the
+  // renderer had abandoned and passing anyway. Moving the constants and the
+  // maths into a pure .js module is what makes one model with two callers
+  // possible; parsing source text never could.
+  const failures = [];
+  // Every framing DOCUMENT_EVIDENCE can receive, at every page variant.
+  for (let v = 0; v < 3; v++) {
+    for (const variant of [0, 1]) {
+      const shot = composeShot("DOCUMENT_EVIDENCE", { variant });
+      const f = {
+        w: 1080 * (shot.bleed ? Math.max(shot.coverage, 1.05) : shot.coverage),
+        cx: 1080 * shot.anchorX,
+      };
+      const g = documentPageGeometry(v, f);
+      const where = `variant ${v} framing ${shot.framing.id}`;
+      // The whole stack sits CAPTION_RESERVE_Y lower than design space says,
+      // because captions are off and DesignSpace drops the stage into the
+      // band they used to occupy. That drop is what broke this scene the
+      // first time, so it is applied here rather than assumed away.
+      if (g.py + CAPTION_RESERVE_Y < SAFE.top) {
+        failures.push(`${where}: page top ${Math.round(g.py + CAPTION_RESERVE_Y)} < SAFE.top ${SAFE.top}`);
+      }
+      const clauseBottom = g.clause.y + g.clause.h + CAPTION_RESERVE_Y;
+      if (clauseBottom > SAFE.bottom) {
+        failures.push(`${where}: clause bottom ${Math.round(clauseBottom)} > SAFE.bottom ${SAFE.bottom}`);
+      }
+      if (g.px < SAFE.left || g.px + g.pageW > SAFE.right) {
+        failures.push(`${where}: page spans ${Math.round(g.px)}..${Math.round(g.px + g.pageW)} outside ${SAFE.left}..${SAFE.right}`);
+      }
+      // The clause overhangs the page on both sides; it is the wider element
+      // and therefore the one that decides whether the composition fits.
+      if (g.clause.x < SAFE.left || g.clause.x + g.clause.w > SAFE.right) {
+        failures.push(`${where}: clause spans ${Math.round(g.clause.x)}..${Math.round(g.clause.x + g.clause.w)} outside ${SAFE.left}..${SAFE.right}`);
+      }
+    }
   }
-
-  const CLAUSE_GAP = 40;
-  const CLAUSE_H = 100; // two lines at fontSize 40, lineHeight 1.25
-  const problems = [];
-  pages.forEach((p, i) => {
-    if (top < SAFE.top) problems.push(`v${i}: page starts at ${top}, above SAFE.top ${SAFE.top}`);
-    const bottom = top + p.h + CLAUSE_GAP + CLAUSE_H + drop;
-    if (bottom > SAFE.bottom) problems.push(`v${i}: draws to ${bottom}, ${bottom - SAFE.bottom}px below SAFE.bottom ${SAFE.bottom}`);
-    // Body copy must also fit inside its own page.
-    const lastLine = top + 110 + (p.lines - 1) * p.lead;
-    if (lastLine > top + p.h - 20) problems.push(`v${i}: ${p.lines} lines at lead ${p.lead} overflow the page by ${Math.round(lastLine - (top + p.h - 20))}px`);
-    if (p.clause >= p.lines) problems.push(`v${i}: clause line ${p.clause} is past the last line ${p.lines - 1}`);
-  });
-  return problems.length === 0 || problems.join("; ");
+  return failures.length === 0 || failures.join("; ");
 });
-
-// ─────────────────────────────────────────────────────────────────────────────
-console.log("\nevery scene is a shot, not a diagram");
-
 check("every strategy has a material, framing, camera and depth", () => {
   const r = assertCompositionIsComplete(STRATEGIES);
   return r.pass || r.failures.join("; ");
@@ -588,6 +586,59 @@ check("every scene component parses as JSX", () => {
       esbuild.buildSync({ entryPoints: [file], bundle: false, write: false, loader: { ".jsx": "jsx" } });
     } catch (err) {
       failures.push(`${basename(file)}: ${String(err.message).split("\n")[1] || err.message}`);
+    }
+  }
+  return failures.length === 0 || failures.join("; ");
+});
+
+check("the scene graph resolves — every import names something that exists", () => {
+  // Parsing each file ALONE cannot see across module boundaries, and that is
+  // where the last two breakages actually were: a helper moved into a pure
+  // .js module while an importer still named the old .jsx file, and a
+  // constant re-exported from one file but never defined in the other.
+  // Bundling from the router resolves the whole graph and fails on a name
+  // that is imported but not exported.
+  //
+  // Not written to disk and not the render bundle — this is a resolution
+  // check, not a build. The real render still goes through @remotion/bundler.
+  let esbuild;
+  try {
+    esbuild = createRequire(import.meta.url)("esbuild");
+  } catch {
+    return "esbuild not resolvable — cannot verify the scene graph resolves";
+  }
+  const entries = [
+    join(__dirname, "..", "compositions", "scenes", "index.jsx"),
+    join(__dirname, "..", "compositions", "motion-graphics.jsx"),
+  ];
+  const failures = [];
+  for (const entry of entries) {
+    try {
+      esbuild.buildSync({
+        entryPoints: [entry],
+        bundle: true,
+        write: false,
+        format: "esm",
+        platform: "browser",
+        loader: {
+          ".jsx": "jsx", ".js": "jsx", ".json": "json",
+          // Media and font imports are real (audio.js imports vo.mp3). They
+          // are dropped rather than embedded: their bytes prove nothing about
+          // whether the module graph resolves, and reading them would make
+          // this check cost megabytes.
+          ".mp3": "empty", ".wav": "empty", ".png": "empty", ".jpg": "empty",
+          ".jpeg": "empty", ".svg": "empty", ".webp": "empty", ".mp4": "empty",
+          ".woff": "empty", ".woff2": "empty", ".ttf": "empty", ".otf": "empty",
+          ".css": "empty",
+        },
+        // Third-party packages are somebody else's problem; this check is
+        // about THIS repo's own module graph.
+        external: ["react", "react-dom", "remotion", "@remotion/*"],
+        logLevel: "silent",
+      });
+    } catch (err) {
+      const detail = (err.errors || []).map((e) => `${e.location ? basename(e.location.file) + ":" + e.location.line + " " : ""}${e.text}`);
+      failures.push(`${basename(entry)}: ${detail.join(" | ") || err.message}`);
     }
   }
   return failures.length === 0 || failures.join("; ");

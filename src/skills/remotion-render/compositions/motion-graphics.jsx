@@ -21,6 +21,7 @@ import { resolveFontFamily } from "./visual.js";
 import { Panel } from "../primitives/Panel.jsx";
 import { D, MG_TYPE as TYPE, CAPTION } from "./beats.js";
 import { rolesFromPalette, strokeAttr, mixColor } from "./mg-style.js";
+import { CAPTION_RESERVE_Y } from "./layout-constants.js";
 import { SemanticScene } from "./scenes/index.jsx";
 import { ICON_INNER } from "./icons-data.js";
 import { PhotoTreatment } from "../effects/PhotoTreatment.jsx";
@@ -311,7 +312,7 @@ function useLayout() {
  * the safe rect. When a channel opts back into burned-in captions the drop
  * is zero, because then the space is genuinely in use.
  */
-const CAPTION_RESERVE_Y = 110;
+
 
 function DesignSpace({ children, captionDrop = 0 }) {
   const { S, shiftX, shiftY } = useLayout();

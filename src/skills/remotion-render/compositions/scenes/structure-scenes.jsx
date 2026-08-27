@@ -628,7 +628,11 @@ export function RelationshipScene({ beat, colors, fontFamily }) {
   const labels = (beat.visualPlan && beat.visualPlan.supporting.labels) || [];
   const n = Math.max(3, Math.min(5, labels.length || 4));
 
-  const cx = STAGE_CX, cy = 730, R = 240;
+  // The party ring is sized to the shot. RELATIONSHIP takes a CLOSE
+  // framing, meaning the viewer stands among the parties rather than
+  // looking at a diagram of them.
+  const f = shotFrame((beat.visualPlan && beat.visualPlan.shot) || null);
+  const cx = f.cx, cy = f.cy, R = Math.min(f.w, f.h) * 0.42;
 
   const nodes = Array.from({ length: n }).map((_, i) => {
     const ang = -Math.PI / 2 + (i / n) * Math.PI * 2;

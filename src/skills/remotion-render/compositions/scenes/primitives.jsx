@@ -22,17 +22,20 @@ import { progressOf, reached, stateAt } from "../../visual/states.js";
 export const EASE_OUT = Easing.bezier(0.16, 1, 0.3, 1);
 export const EASE_IN_OUT = Easing.bezier(0.65, 0, 0.35, 1);
 
-/** Design-space canvas. Matches DesignSpace in motion-graphics.jsx. */
-export const CANVAS_W = 1080;
-export const CANVAS_H = 1920;
+/**
+ * Canvas, safe rect and stage band.
+ *
+ * DEFINED IN ../layout-constants.js, NOT HERE. They used to be declared in
+ * this file, which meant nothing outside the Remotion bundle could read
+ * them — node cannot import .jsx — so the test suite recovered SAFE and
+ * CAPTION_RESERVE_Y by regex over this file's source text. Re-exported so
+ * every existing `from "./primitives.jsx"` import keeps working.
+ */
+export {
+  CANVAS_W, CANVAS_H, SAFE, CAPTION_RESERVE_Y, STAGE, STAGE_CX, STAGE_CY,
+} from "../layout-constants.js";
 
-/** Safe rect (MOTION-GRAPHICS-MANUAL A1) — never draw meaning outside this. */
-export const SAFE = { left: 48, right: 888, top: 288, bottom: 1248 };
-
-/** The stage band: above the caption zone, below the headline zone. */
-export const STAGE = { x: 48, y: 300, w: 840, h: 820 };
-export const STAGE_CX = STAGE.x + STAGE.w / 2; // 468 — the real optical centre
-export const STAGE_CY = STAGE.y + STAGE.h / 2;
+import { CANVAS_W, CANVAS_H, STAGE_CX } from "../layout-constants.js";
 
 export function ease(p, easing = EASE_OUT) {
   return easing(Math.max(0, Math.min(1, p)));
