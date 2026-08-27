@@ -32,9 +32,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const RENDER_DIR = join(__dirname, "..");
 const ROOT = join(RENDER_DIR, "..", "..", "..");
 
-const [, , scriptPath, srtPath, channelId, wantStrategy, scaleArg] = process.argv;
+const argv = process.argv.filter((a) => a !== "--captions");
+const [, , scriptPath, srtPath, channelId, wantStrategy, scaleArg] = argv;
 if (!scriptPath || !srtPath || !channelId) {
-  console.error("Usage: node qa-scripts/render-clip.mjs <script.json> <srt> <channel-id> [strategy] [scale]");
+  console.error("Usage: node qa-scripts/render-clip.mjs <script.json> <srt> <channel-id> [strategy] [scale] [--captions]");
   process.exit(1);
 }
 const scale = scaleArg ? parseFloat(scaleArg) : 0.5;
@@ -108,13 +109,18 @@ const props = {
   font: channel.font || "Inter",
   channelName: channel.channel_name || "",
   palette,
+  // Narration captions are off in production unless a channel opts in
+  // (render.js: channel.captions === "burned-in"). `--captions` forces them
+  // on here so the preserved accessibility path can actually be rendered and
+  // looked at, rather than only asserted to still exist.
+  showCaptions: process.argv.includes("--captions") || channel.captions === "burned-in",
 };
 
 const OUT_DIR = join(ROOT, "data", "renders", "clips");
 mkdirSync(OUT_DIR, { recursive: true });
 const outPath = join(
   OUT_DIR,
-  `${script.topic_slug || "clip"}-${target.visualPlan.strategy}.mp4`
+  `${script.topic_slug || "clip"}-${target.visualPlan.strategy}${process.argv.includes("--captions") ? "-captions" : ""}.mp4`
 );
 
 const CHROME = findChrome();
