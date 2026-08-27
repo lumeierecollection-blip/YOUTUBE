@@ -16,10 +16,22 @@
           "anchor_token": "ninety",
           "data": {
             "series": [
-              { "label": "NORTH", "value": 40 },
-              { "label": "SOUTH", "value": 65 },
-              { "label": "EAST", "value": 30 },
-              { "label": "WEST", "value": 90 }
+              {
+                "label": "NORTH",
+                "value": 40
+              },
+              {
+                "label": "SOUTH",
+                "value": 65
+              },
+              {
+                "label": "EAST",
+                "value": 30
+              },
+              {
+                "label": "WEST",
+                "value": 90
+              }
             ]
           }
         }
@@ -41,7 +53,7 @@
     {
       "id": "scale",
       "timing": "0:26-0:38",
-      "voiceover": "Seventy percent of the entire field was taken up by that single holding, which is far more than anyone assumed.",
+      "voiceover": "Seventy percent of the entire field was taken up by that single holding, and the rest was split between everyone else.",
       "beats": [
         {
           "text": "Seventy percent of the field",
