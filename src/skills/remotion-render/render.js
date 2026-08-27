@@ -23,16 +23,18 @@
  * prop and the duration comes from the package (never from the mp3 length).
  */
 
-import { readFileSync, mkdirSync, existsSync, copyFileSync, readdirSync, writeFileSync } from "fs";
+import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync } from "fs";
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 import { createRequire } from "module";
 import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
+import { findChrome } from "./find-chrome.js";
 import { resolveImageAssets } from "./image-assets.js";
 import { buildMgPackage } from "./compositions/mg-package.js";
-import { chunkTextClauseAware } from "./compositions/beats.js";
+import { formatVisualReport } from "./visual/diagnostics.js";
+import { chunkTextClauseAware, sectionFrameWindows } from "./compositions/beats.js";
 import { paletteFromHues } from "./styles/tokens.js";
 import { narrationSections } from "../../utils/script-narration.js";
 
@@ -62,42 +64,6 @@ function findFFprobe() {
     if (existsSync(candidate)) return candidate;
   } catch {}
   return "ffprobe";
-}
-
-// Finds a usable Chrome/Chromium binary. Explicit env override first, then
-// platform-typical install locations, then the sandboxed Playwright cache
-// this environment pre-installs Chromium into. Returns undefined (rather
-// than a bad path) when nothing is found, so Remotion falls back to
-// downloading/managing its own Chrome Headless Shell.
-function findChrome() {
-  if (process.env.REMOTION_CHROME_PATH && existsSync(process.env.REMOTION_CHROME_PATH)) {
-    return process.env.REMOTION_CHROME_PATH;
-  }
-  if (process.platform === "win32") {
-    const p = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
-    return existsSync(p) ? p : undefined;
-  }
-  if (process.platform === "darwin") {
-    const p = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-    return existsSync(p) ? p : undefined;
-  }
-  const candidates = ["/usr/bin/google-chrome", "/usr/bin/chromium", "/usr/bin/chromium-browser"];
-  const pwBase = process.env.PLAYWRIGHT_BROWSERS_PATH;
-  if (pwBase && existsSync(pwBase)) {
-    for (const entry of readdirSync(pwBase)) {
-      // Prefer chromium_headless_shell: modern Chrome removed "old headless"
-      // mode, which is what Remotion's renderer launches with.
-      if (entry.startsWith("chromium_headless_shell-")) {
-        const p = join(pwBase, entry, "chrome-linux", "headless_shell");
-        if (existsSync(p)) candidates.unshift(p);
-      }
-      if (entry.startsWith("chromium-")) {
-        const p = join(pwBase, entry, "chrome-linux", "chrome");
-        if (existsSync(p)) candidates.push(p);
-      }
-    }
-  }
-  return candidates.find((p) => existsSync(p));
 }
 
 const CHROME = findChrome();
@@ -186,11 +152,18 @@ function toContentSections(script) {
       voiceover: s.voiceover,
       content: chunkVoiceover(s.voiceover),
       visualCue: s.visual_cue || null,
-      sfxCue: s.sfx_cue || null,
       bRoll: Array.isArray(s.b_roll) ? s.b_roll : null,
       textOverlay: s.text_overlay || null,
       animationCue: s.animation_cue || null,
       transitionOut: s.transition_out || null,
+      // schemas/script.mg.json sections[].beats[] — the writer's own
+      // archetype/anchor_token/data.series per visual idea, gate-script.js
+      // (SCR-03/04/05) checked. Forwarded so buildMgPackage can prefer it
+      // over its own SRT-text classifier (see beats.js buildAuthoredBeats).
+      // Absent for minimal/cinematic-documentary scripts and any legacy
+      // script written before this field existed — both fall back exactly
+      // as before.
+      beats: Array.isArray(s.beats) ? s.beats : null,
     }));
 }
 
@@ -352,8 +325,23 @@ async function main() {
   // deep-sea imagery into a Money Mind budgeting render). Only trust a
   // manifest whose own topic_slug matches the script actually being
   // rendered — see broll.js's loadManifest.
+  //
+  // KEYED BY channel.channel_id, NOT THE CLI ARGUMENT. Both image sources
+  // are keyed by the slug form: data/asset-library/index.json stores
+  // `"channelId": "ch-01"`, the legacy manifests are
+  // b-roll-manifest-ch-01.json, and the files live under
+  // public/asset-library/ch-01/ and public/b-roll/ch-01/. The pipeline
+  // invokes this CLI with the NUMERIC id — scripts/render-and-qa.js passes
+  // String(c.id), and data/renders/1 exists to prove it — so passing the
+  // raw argument through made every asset-library lookup compare "1"
+  // against "ch-01" and return nothing. Every photo in the library was
+  // unreachable in production, which is also why IMAGE_EVIDENCE (the one
+  // strategy with no text detector — it fires only when a real asset
+  // exists) had never rendered a single frame. loadChannel() already
+  // accepts either form, so channel.channel_id is the one spelling both
+  // sides agree on.
   for (const section of sections) {
-    section.bRollFiles = resolveImageAssets(section.bRoll || [], channelId, script.topic_slug);
+    section.bRollFiles = resolveImageAssets(section.bRoll || [], channel.channel_id, script.topic_slug);
   }
   const withBroll = sections.filter((s) => (s.bRollFiles || []).length > 0).length;
   console.log(`B-roll: ${withBroll}/${sections.length} sections have real imagery`);
@@ -372,6 +360,11 @@ async function main() {
     const audioSecs = getAudioDurationSeconds(ttsAudioPath);
     mg = buildMgPackage(srtText, {
       sections,
+      hook: script.hook || null,
+      // The visual director reads the channel's own niche to pick its
+      // visual vocabulary (visual/channel-grammar.js) — a legal channel
+      // reaches for documents, a finance channel for balances (PART 15).
+      channel,
       iconMap: channel.icon_map || null,
       bRollFiles: sections.flatMap((s) => s.bRollFiles || []),
       imageForSection: (idx) => (sections[idx] && sections[idx].bRollFiles && sections[idx].bRollFiles[0]) || null,
@@ -384,8 +377,16 @@ async function main() {
     });
     frames = mg.totalFrames;
     console.log(
-      `MG package: ${mg.beats.length} beats, ${mg.pages.length} pages, ${mg.totalFrames}f (audio ${mg.audioFrames}f, synthesized=${mg.synthesized})`
+      `MG package: ${mg.beats.length} beats, ${mg.pages.length} pages, ${mg.totalFrames}f ` +
+        `(audio ${mg.audioFrames}f, synthesized=${mg.synthesized}, authoredBeats=${mg.usedAuthoredBeats})`
     );
+    if (!mg.usedAuthoredBeats) {
+      console.warn(
+        "MG: falling back to the SRT-text classifier for beat archetypes — " +
+          "script has no sections[].beats, an anchor_token didn't match the real narration, " +
+          "or the SRT word count didn't match the script's voiceover word count."
+      );
+    }
     // Only the platform ceiling is enforced — the package never cuts audio.
     const ceiling = (format === "shorts" ? SHORTS_CLAMP : LONGFORM_CLAMP)[1];
     if (frames > ceiling) {
@@ -394,6 +395,23 @@ async function main() {
     }
   } else {
     frames = computeDurationFrames(script, channel.style, format, ttsAudioPath);
+  }
+
+  // MOT-01 — minimal/cinematic-documentary used to divide screen time by
+  // section COUNT (minimal.jsx) or a hardcoded dramatic-pacing weight that
+  // never looked at word count (cinematic-documentary.jsx's computeLayout),
+  // either of which can hold a section's visuals on screen for far longer
+  // or shorter than its narration actually takes — the same class of bug
+  // motion-graphics used to have before the SRT became its timing source.
+  // Same fix here: real per-word SRT timing when the same TTS run produced
+  // one (findSrtPath isn't MG-specific — it just looks next to the audio),
+  // else an honest word-count-proportional split.
+  let sectionWindows = null;
+  if (channel.style !== "motion-graphics") {
+    const srtPath = findSrtPath(ttsAudioPath);
+    const srtText = srtPath ? readFileSync(srtPath, "utf-8") : "";
+    if (srtPath) console.log(`${channel.style} SRT: ${srtPath}`);
+    sectionWindows = sectionFrameWindows(sections, srtText, frames, 30);
   }
 
   const outputDir = join(ROOT, "data", "renders", channelId);
@@ -415,6 +433,20 @@ async function main() {
       console.warn(`::warning::IMAGE_BEAT gap (section ${gap.sectionIndex} -> ${gap.fallbackArchetype}): ${gap.reason} — "${gap.text}"`);
     }
     console.log(`Image gaps: ${(mg.imageGaps || []).length} beat(s) fell back from IMAGE_BEAT -> ${gapsPath}`);
+
+    // PART 19/20 — the visual QA report. Always written, even when clean,
+    // for the same reason the image-gaps file is: an absent file is
+    // ambiguous ("did this check run?"), an empty one is not. Warnings are
+    // echoed as GitHub-Actions annotations so a degraded render is visible
+    // in the run that produced it rather than in a later audit.
+    const visualPath = join(outputDir, `${slug}-${format}-visual-report.json`);
+    writeFileSync(visualPath, JSON.stringify(mg.visual, null, 2) + "\n");
+    console.log("\n--- VISUAL REPORT ---");
+    console.log(formatVisualReport(mg.visual));
+    console.log(`--- visual report -> ${visualPath}\n`);
+    for (const w of mg.visual.warnings || []) {
+      console.warn(`::warning::${w.id} (${w.severity}): ${w.message}`);
+    }
   }
 
   // Attribution for CC-BY-sourced photos used to live ONLY as on-screen
@@ -453,6 +485,17 @@ async function main() {
     format: format,
     sections,
     mg,
+    sectionWindows,
+    // Burned-in narration captions, OFF unless the channel asks for them.
+    // The narration is already in the audio track; printing it over the
+    // picture turned the video into an animated transcript and let the
+    // visuals off the hook. Opt in per channel with
+    //   "captions": "burned-in"
+    // in config/channels.json (accessibility / sound-off distribution).
+    // Any other value, or the field's absence, means no drawn captions.
+    // The SRT is unaffected either way — it remains the timing source for
+    // beats, anchors and visual states.
+    showCaptions: channel.captions === "burned-in",
     ttsAudioPath: staged,
     hasUnderscore,
     thumbnailStyle: channel.thumbnail_spec?.style || "dramatic-visual",

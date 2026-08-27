@@ -50,13 +50,50 @@
                       }
                     }
                   }
+                },
+                "visual": {
+                  "description": "OPTIONAL visual plan — what the viewer should SEE for this beat, as opposed to `archetype`, which only says what KIND of beat it is. Omit it and src/skills/remotion-render/visual/director.js derives the same shape deterministically from this beat's narration, anchor_token and data (no model call); that deterministic path is what every script written before this field existed uses, and it stays the supported default. Author this block only when the deterministic reading would genuinely get the concept wrong — it costs output tokens on every beat that carries it. `strategy` must be one of the registered strategies in visual/strategies.js; an unregistered or unrenderable value is rejected at plan time and logged as a real fallback reason rather than silently ignored.",
+                  "type": "object",
+                  "properties": {
+                    "strategy": {
+                      "type": "string",
+                      "enum": [
+                        "GEOSPATIAL_RADIUS", "ACCUMULATION", "TRANSFORMATION", "PROCESS",
+                        "TIMELINE", "DATA_CHART", "COMPARISON", "CAUSE_EFFECT",
+                        "RELATIONSHIP", "BEFORE_AFTER", "INTERFACE_SIMULATION",
+                        "DOCUMENT_EVIDENCE", "IMAGE_EVIDENCE", "SCALE_COMPARISON",
+                        "VISUAL_METAPHOR", "CINEMATIC_STATEMENT"
+                      ]
+                    },
+                    "concept": {
+                      "type": "string",
+                      "maxLength": 120,
+                      "description": "One phrase naming what the viewer should understand from the picture, e.g. 'phones caught inside a 150m warrant boundary'. Diagnostic only — never rendered as on-screen text."
+                    },
+                    "primary":   { "type": "string", "description": "The hero element of the composition." },
+                    "secondary": { "type": "array", "maxItems": 3, "items": { "type": "string" } },
+                    "data": {
+                      "type": "object",
+                      "description": "Values the strategy needs that `data` above does not already carry (e.g. from/to for TRANSFORMATION, total/count for ACCUMULATION, stages for PROCESS). Every value here is subject to the same grounding rule as data.series: it must come from the research, never be invented to make a visual work.",
+                      "properties": {
+                        "value":  { "type": "number" },
+                        "unit":   { "type": "string" },
+                        "from":   { "type": "number" },
+                        "to":     { "type": "number" },
+                        "total":  { "type": "number" },
+                        "count":  { "type": "number" },
+                        "stages": { "type": "number" },
+                        "years":  { "type": "array", "maxItems": 5, "items": { "type": "number" } }
+                      }
+                    }
+                  },
+                  "required": ["strategy"]
                 }
               },
               "required": ["text", "archetype", "anchor_token"]
             }
           },
           "b_roll":       { "type": "array", "items": { "type": "string" } },
-          "sfx_cue":      { "type": "string" },
           "text_overlay": {
             "type": ["object", "null"],
             "properties": { "text": { "type": "string" } }

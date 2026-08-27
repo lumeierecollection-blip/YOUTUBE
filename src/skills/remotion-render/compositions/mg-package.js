@@ -17,11 +17,17 @@ import {
   parseSrtToBeats,
   parseSrtToMotionGraphics,
   assignBeatsToSections,
+  buildAuthoredBeats,
   transitionBeforeBeat,
   wrapCaptionWords,
   wordCount,
 } from "./beats.js";
 import { resolveIcon, isSpecificIconMatch } from "./mg-style.js";
+import { planVisual, attachShot } from "../visual/director.js";
+import { buildStates } from "../visual/states.js";
+import { summarizeVisuals, summarizeSound } from "../visual/diagnostics.js";
+import { buildSoundtrack } from "../visual/sound-design.js";
+import { SFX_LIBRARY } from "../visual/sfx-library.js";
 
 export const MG_TAIL_FRAMES = 12; // held tail after the last beat (D3 headline/end)
 
@@ -241,7 +247,32 @@ function accentWindowFor(beat, scene) {
 
 export function deriveScene(beat, ctx = {}) {
   const iconMap = ctx.iconMap || null;
-  const scene = { icon: resolveIcon(iconMap, beat.text), iconIsSpecific: isSpecificIconMatch(iconMap, beat.text) };
+
+  // PART 8 — ICONS ARE NO LONGER RESOLVED FOR EVERY BEAT.
+  //
+  // This line used to read:
+  //   const scene = { icon: resolveIcon(iconMap, beat.text), ... }
+  // unconditionally, before the archetype switch below had even run. That
+  // single line is where the "large text + icon + dark background" look
+  // came from: every beat got a glyph whether or not anything wanted one,
+  // resolveIcon() falls back to the channel `default` and then to a literal
+  // "sparkles", and StatementScene (motion-graphics.jsx) rendered that glyph
+  // as the ENTIRE composition.
+  //
+  // Now: the visual plan decides. A strategy declares iconRole "secondary"
+  // only when a small glyph genuinely helps inside its own composition (a
+  // map marker on a map); everything else gets "none" and no icon is even
+  // looked up. Scene selection decides whether an icon is useful — icon
+  // selection never again decides the scene.
+  const plan = beat.visualPlan || null;
+  const iconRole = plan ? plan.iconRole : "none";
+  const wantsIcon = iconRole === "secondary";
+
+  const scene = {
+    iconRole: iconRole || "none",
+    icon: wantsIcon ? resolveIcon(iconMap, beat.text) : null,
+    iconIsSpecific: wantsIcon ? isSpecificIconMatch(iconMap, beat.text) : false,
+  };
   switch (beat.archetype) {
     case "HERO_NUMBER": {
       const n = beat.data && beat.data.value != null ? beat.data : parseNumber(beat.text);
@@ -558,15 +589,28 @@ export function buildMgPackage(srtText, opts = {}) {
   const audioFrames = Math.round((audioEndMs / 1000) * fps);
 
   const bRollFiles = opts.bRollFiles || [];
-  let beats = parseSrtToBeats(srtText, { bRollFiles, captions: captions.length ? captions : undefined });
 
-  // Sections → beats.
-  if (sections.length) {
-    const windows = sectionWindowsMs(sections, audioEndMs || opts.totalMs || 60000, fps);
-    beats = assignBeatsToSections(beats, windows); // returns a new array (beats.js)
-    beats = beats.map(({ _i, ...rest }) => rest); // strip the section-mapping index
-  } else {
-    for (const b of beats) b.sectionIndex = 0;
+  // Prefer the writer's own beats[] (archetype + anchor_token + data.series,
+  // already gate-script.js-checked) over the blind regex classifier — see
+  // buildAuthoredBeats' header comment in beats.js. Falls back to the
+  // classifier path unchanged the moment anything doesn't line up (no
+  // sections[].beats, an unmatched anchor_token, a word-count mismatch
+  // against the real SRT) so scripts predating this field, and the
+  // minimal/cinematic-documentary styles, are unaffected.
+  let beats = captions.length ? buildAuthoredBeats(sections, captions, { fps, hook: opts.hook }) : null;
+  const usedAuthoredBeats = !!beats;
+
+  if (!beats) {
+    beats = parseSrtToBeats(srtText, { bRollFiles, captions: captions.length ? captions : undefined });
+
+    // Sections → beats.
+    if (sections.length) {
+      const windows = sectionWindowsMs(sections, audioEndMs || opts.totalMs || 60000, fps);
+      beats = assignBeatsToSections(beats, windows); // returns a new array (beats.js)
+      beats = beats.map(({ _i, ...rest }) => rest); // strip the section-mapping index
+    } else {
+      for (const b of beats) b.sectionIndex = 0;
+    }
   }
 
   const imageForSection = opts.imageForSection || (() => null);
@@ -621,6 +665,58 @@ export function buildMgPackage(srtText, opts = {}) {
     });
   }
 
+  // ── VISUAL DIRECTION ───────────────────────────────────────────────────
+  // The plan must exist BEFORE deriveScene, because deriveScene now asks
+  // the plan whether an icon is wanted at all (PART 8) instead of resolving
+  // one for every beat.
+  //
+  // LIST_ITEM is deliberately not planned: consecutive LIST_ITEM beats are
+  // not stage-routed at all, they accumulate as chips through ListRuns,
+  // which is already a real non-icon visual system (PART 26 — don't rewrite
+  // working systems without evidence).
+  const sectionTextFor = (idx) => (sections[idx] && sections[idx].voiceover) || "";
+  // Variety pressure needs to know what the last two staged beats chose,
+  // or one broad detector wins the whole video (see director.js).
+  let recent = [];
+  const strategyUse = {};
+  for (const b of beats) {
+    if (b.archetype === "LIST_ITEM") {
+      b.visualPlan = null;
+      b.visualStates = [];
+      continue;
+    }
+    b.visualPlan = planVisual(b, {
+      channel: opts.channel || null,
+      asset: imageForSection(b.sectionIndex),
+      sectionText: sectionTextFor(b.sectionIndex),
+      recent,
+    });
+    recent = [b.visualPlan.strategy, recent[0]].slice(0, 2);
+    // COMPOSITION VARIANT (PART 13/30). Assigned as an ORDINAL — the nth
+    // beat to use a strategy gets variant n — rather than left as the
+    // per-beat hash director.js gives it. The hash is independent per beat,
+    // so on the ch-02 legal script two of the three DOCUMENT_EVIDENCE beats
+    // and both GEOSPATIAL_RADIUS beats collided on variant 0 and drew the
+    // identical picture anyway. An ordinal cannot repeat until a strategy is
+    // used more times than it has variants, and is still fully
+    // deterministic. Only this loop can do it: the director plans one beat
+    // at a time and never sees how many came before.
+    strategyUse[b.visualPlan.strategy] = (strategyUse[b.visualPlan.strategy] || 0) + 1;
+    b.visualPlan.variant = strategyUse[b.visualPlan.strategy] - 1;
+    // The SHOT depends on that ordinal, so it is composed here rather than
+    // in the director — material, framing, camera and depth, from
+    // visual/composition.js. This is what stops every scene drawing a
+    // hairline diagram in the middle of an empty frame.
+    attachShot(b.visualPlan);
+    // Deterministic frame math from the beat's REAL SRT window — no model
+    // is ever asked when something happens (PART 24).
+    b.visualStates = buildStates(b.visualPlan, {
+      startFrame: b.startFrame,
+      durationInFrames: b.durationInFrames,
+      anchorFrame: b.anchorFrame,
+    }, { fps });
+  }
+
   for (const b of beats) b.scene = deriveScene(b, { iconMap: opts.iconMap, imageForSection });
 
   groupListRuns(beats);
@@ -649,6 +745,31 @@ export function buildMgPackage(srtText, opts = {}) {
     ? computeSilenceWindow(captions, opts.silenceTechnique, revealBeat.anchorFrame, fps)
     : null;
 
+  // AUD-01 / AUD-11 — sound is scheduled by VISUAL EVENT, not by section.
+  //
+  // This used to fire one keyword-matched sfx_cue per section at the first
+  // frame of that section's first beat. Both halves of that were wrong: the
+  // trigger was "a section began" rather than "something happened on
+  // screen", and the selection scored the NARRATION'S WORDS against file
+  // tags, so a cue reading "low sub-bass drone" resolved against
+  // "click, ui, button". buildSoundtrack reads the visual states instead —
+  // a boundary expanding, a total resolving — and every event carries the
+  // reason it exists. See visual/sound-design.js.
+  //
+  // Built here, after silenceWindow, because that window is the one place
+  // sound must NOT go: it is a real detected gap in the voiceover that the
+  // channel's sfx_profile.silence_technique asked for, and a sound landing
+  // inside it spends the pause the video was holding. Previously only the
+  // section whoosh respected it; now every event does, and the suppressed
+  // ones are counted rather than quietly dropped.
+  let soundtrack = usedAuthoredBeats ? buildSoundtrack(beats, SFX_LIBRARY) : [];
+  let soundSuppressedBySilence = 0;
+  if (silenceWindow) {
+    const before = soundtrack.length;
+    soundtrack = soundtrack.filter((ev) => ev.atFrame < silenceWindow[0] || ev.atFrame >= silenceWindow[1]);
+    soundSuppressedBySilence = before - soundtrack.length;
+  }
+
   return {
     beats,
     captions,
@@ -658,8 +779,23 @@ export function buildMgPackage(srtText, opts = {}) {
     totalFrames,
     audioFrames,
     synthesized,
+    usedAuthoredBeats,
     silenceWindow,
     imageGaps,
+    // Absolute-frame sound events. The composition plays these; nothing
+    // else in the render is allowed to trigger a sound.
+    soundtrack,
+    soundSuppressedBySilence,
+    // PART 19/20 — every render carries its own visual QA numbers and the
+    // reason behind every fallback, so a video that quietly degraded is
+    // visible in the run that produced it.
+    visual: {
+      ...summarizeVisuals(beats, { fps }),
+      // Sound QA lives inside the visual report because it is one
+      // production judgement, not two: a beat whose picture says nothing
+      // and whose sound fires anyway is a single defect.
+      sound: summarizeSound(soundtrack, { fps, totalFrames }),
+    },
   };
 }
 

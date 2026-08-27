@@ -805,6 +805,383 @@ export function classifyBeat(text, ctx = {}) {
   return matches[0];
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// §1.2c — LLM-authored beats as the Stage-scene unit.
+//
+// classifyBeat (above) guesses an archetype from a ~7-word caption FRAGMENT
+// with no data, which is why STATEMENT dominates in practice (ENC-01) and
+// PROGRESS/CONTRAST/RELATION beats never carry real numbers (ENC-08/DEL-04's
+// neighbor problem) — most 7-word fragments just don't contain a strong
+// regex signal on their own, and a real chart figure never survives being
+// re-derived from prose at render time. schemas/script.mg.json's own header
+// admits the fix was never wired in: "mg-package.js still derives its own
+// beat/archetype classification... it does not yet read sections[].beats".
+//
+// This is that wiring. sections[].beats[] is already gate-script.js-checked
+// (SCR-03/04/05: anchor_token verbatim in the voiceover, PROGRESS has real
+// series data traced to research numbers) — the writer already decided what
+// each beat IS and what data it carries. What it doesn't have is real
+// timing, so this function gets that from the SRT the exact same way the
+// classifier path does: every caption is split into real per-word timestamps
+// (splitCaptionToWordTokens), and each authored beat's anchor_token is
+// located in that real word stream to get a real anchorMs. A beat's on-
+// screen window is the real time between its own anchor and its neighbors'
+// (first beat starts at the section's real start, last ends at the
+// section's real end) — so Stage cuts land on real speech boundaries, not a
+// word-count guess, while still being sized to a whole authored visual idea
+// instead of one caption-sized fragment.
+//
+// Returns null — caller falls back to parseSrtToBeats unchanged — the
+// moment anything doesn't line up: no captions to anchor against, a section
+// missing beats entirely, or a section's real word count disagreeing with
+// its voiceover's word count (TTS was given different text than the script
+// contains, or an anchor_token that doesn't actually occur). Refusing to
+// render un-anchored guesses on top of a data-quality problem matches this
+// file's own precedent (parseNumber over extractStats/extractHeroNumber).
+// ─────────────────────────────────────────────────────────────────────────────
+
+const bareToken = (w) => String(w || "").replace(/[^\w']/g, "").toLowerCase();
+
+/**
+ * anchor_token is frequently a multi-word phrase in real authored scripts
+ * ("150 meter", "6 to 3", "Fourth Amendment"), not a single word, even
+ * though the field name suggests otherwise — gate-script.js's SCR-03 only
+ * checks verbatim substring presence, not word count. Find the phrase as a
+ * consecutive run of tokens; the anchor position is its first word.
+ */
+function findPhrase(tokens, phraseWords, from) {
+  outer: for (let i = from; i <= tokens.length - phraseWords.length; i++) {
+    for (let k = 0; k < phraseWords.length; k++) {
+      if (bareToken(tokens[i + k].text) !== phraseWords[k]) continue outer;
+    }
+    return i;
+  }
+  return -1;
+}
+
+/**
+ * Locate every authored beat's anchor_token in a section's real word-token
+ * stream, in the writer's own order (never re-sorted — a re-sort would
+ * silently override the writer's narrative sequencing if two anchors
+ * happened to match out of order). Returns null on any unmatched anchor.
+ */
+function anchorAuthoredBeats(authoredBeats, sectionTokens, startFrom = 0) {
+  const anchors = [];
+  let searchFrom = startFrom;
+  for (const ab of authoredBeats) {
+    const phrase = String(ab.anchor_token || "").split(/\s+/).filter(Boolean).map(bareToken);
+    if (!phrase.length) return null;
+    let idx = findPhrase(sectionTokens, phrase, searchFrom);
+    if (idx === -1) {
+      // Second pass from startFrom — covers an authored beat list that
+      // isn't in strict narration order (rare, but not itself a data
+      // error). Never below startFrom: for section 0 that's the hook's own
+      // word span, which the writer's beats were never told about and must
+      // not match into (see the hook synthesis below).
+      idx = findPhrase(sectionTokens, phrase, startFrom);
+    }
+    if (idx === -1) return null;
+    searchFrom = idx + phrase.length;
+    anchors.push({ authored: ab, idx, ms: sectionTokens[idx].fromMs });
+  }
+  return anchors;
+}
+
+// PART 12 — ONE CONCEPT, MORE VISUAL STATES. NOT SIX UNRELATED SCENES.
+//
+// This threshold used to DISCARD the writer's authored beats for a whole
+// section whenever one of them spanned more than 8s, falling back to the
+// fragment classifier. The reasoning was "a static scene that long is
+// worse than a generic one" — which was true of the renderer as it existed
+// then, because a beat WAS one static composition. It threw the authored
+// idea away at exactly the moment the writer had given it the most room,
+// and on the one real gate-passed script in the repo it discarded 3 of 5
+// sections.
+//
+// That is no longer the trade. visual/states.js densifies a long window
+// into more states OF THE SAME CONCEPT (the geofence beat gets establish ->
+// origin -> expand -> lock -> populate -> select -> measure rather than one
+// held frame), so length now buys visual progression instead of a stall.
+//
+// A ceiling still exists, far higher, for genuinely pathological spans: a
+// single authored beat covering most of a long-form section means the
+// script's beat density is wrong, and silently spreading one concept over
+// 30s would hide that. At that point the classifier's finer-grained beats
+// really are the better rendering, and the warning says so.
+const MAX_AUTHORED_BEAT_FRAMES = 22 * FPS;
+
+/**
+ * Build the real-timed, archetype/data-carrying beats for ONE section from
+ * its authored beats[], or return null if this section's authored data
+ * can't be safely used (missing beats, an anchor_token that doesn't occur
+ * in the real narration, or a beat that would hold the Stage past
+ * MAX_AUTHORED_BEAT_FRAMES). null means "this section falls back to the
+ * classifier", not "the whole video does" — see buildAuthoredBeats.
+ */
+function authoredBeatsForSection(section, sectionTokens, sectionIndex, opts) {
+  const fps = opts.fps || FPS;
+  if (!Array.isArray(section.beats) || section.beats.length === 0) return null;
+
+  // script-narration.js folds the top-level `hook` into section one's
+  // voiceover so it actually gets narrated and timed — but the writer
+  // authored sections[0].beats against section one's ORIGINAL text, before
+  // that fold, so the hook itself has no beat of its own. Without this, the
+  // hook (the first ~5-10s a viewer decides whether to keep watching) would
+  // either steal its screen time from section one's first real beat or push
+  // that beat past the density cap below. Synthesize one STATEMENT beat
+  // covering exactly the hook's own words, anchored on its last content
+  // word (the same backward-search heuristic classifyBeat's
+  // STATEMENT/default case already uses) — deterministic, no model call —
+  // and section one's real authored beats still only ever search their own
+  // text (startFrom below), never the hook's.
+  const hook = typeof opts.hook === "string" ? opts.hook.trim() : "";
+  const hookWordCount =
+    sectionIndex === 0 && hook && section.voiceover.trim().startsWith(hook) ? wordCount(hook) : 0;
+
+  let hookAnchor = null;
+  let startFrom = 0;
+  if (hookWordCount > 0 && hookWordCount < sectionTokens.length) {
+    const hookTokens = sectionTokens.slice(0, hookWordCount);
+    let anchorIdx = hookTokens.length - 1;
+    for (let i = hookTokens.length - 1; i >= 0; i--) {
+      if (isContentWord(hookTokens[i].text)) {
+        anchorIdx = i;
+        break;
+      }
+    }
+    hookAnchor = {
+      authored: { text: hook, archetype: "STATEMENT", anchor_token: hookTokens[anchorIdx].text, data: {} },
+      idx: anchorIdx,
+      ms: hookTokens[anchorIdx].fromMs,
+    };
+    startFrom = hookWordCount;
+  }
+
+  const rest = anchorAuthoredBeats(section.beats, sectionTokens, startFrom);
+  if (!rest) return null;
+  const anchors = hookAnchor ? [hookAnchor, ...rest] : rest;
+
+  const sectionStartMs = sectionTokens[0].fromMs;
+  const sectionEndMs = sectionTokens[sectionTokens.length - 1].toMs;
+  const minSpanMs = (MIN_BEAT_FRAMES / fps) * 1000;
+
+  const beats = [];
+  let prevEndMs = sectionStartMs;
+  for (let j = 0; j < anchors.length; j++) {
+    const { authored, idx, ms } = anchors[j];
+    const nextMs = j === anchors.length - 1 ? null : anchors[j + 1].ms;
+    let startMs = j === 0 ? sectionStartMs : prevEndMs;
+    let endMs = j === anchors.length - 1 ? sectionEndMs : Math.round((ms + nextMs) / 2);
+    // Never let a beat fall below the readability floor by borrowing frames
+    // from its own end — packing this many beats into too short a real
+    // span is a script-pacing problem, not something to hide, so this only
+    // nudges the boundary, it never invents time the SRT doesn't have.
+    if (endMs - startMs < minSpanMs && j < anchors.length - 1) {
+      endMs = Math.min(startMs + minSpanMs, sectionEndMs);
+    }
+    prevEndMs = endMs;
+
+    const durationInFrames = Math.max(Math.round(((endMs - startMs) / 1000) * fps), 1);
+    if (durationInFrames > MAX_AUTHORED_BEAT_FRAMES) {
+      console.warn(
+        `MG: authored beat "${authored.text}" (section ${sectionIndex}) would hold ONE concept for ` +
+          `${(durationInFrames / fps).toFixed(1)}s — beyond what state densification can carry ` +
+          `(${section.beats.length} beat(s) covering ~${((sectionEndMs - sectionStartMs) / 1000).toFixed(1)}s). ` +
+          `This is a script beat-density problem: the section needs more authored beats. ` +
+          `Falling back to the SRT classifier for this section only.`
+      );
+      return null;
+    }
+
+    const beatTokens = sectionTokens.filter((t) => t.fromMs >= startMs && t.fromMs < endMs);
+    const tokensForText = beatTokens.length ? beatTokens : [sectionTokens[idx]];
+    const anchorTokenIndex = Math.max(tokensForText.findIndex((t) => t === sectionTokens[idx]), 0);
+
+    beats.push({
+      startFrame: Math.round((startMs / 1000) * fps),
+      durationInFrames,
+      // The REAL spoken words in this beat's window. This is the richest
+      // context the visual director gets — a whole authored idea's worth of
+      // narration, not the ~7-word fragment classifyBeat has to guess from.
+      text: tokensForText.map((t) => t.text).join(" "),
+      startMs,
+      endMs,
+      words: tokensForText.length,
+      sectionIndex,
+      archetype: authored.archetype,
+      data: authored.data || {},
+      // The writer's own authored fields, carried through for the visual
+      // director (visual/director.js). These used to be dropped here, which
+      // meant the renderer could see WHEN a beat happened and WHAT TYPE it
+      // was, but not what the writer said it was ABOUT:
+      //   authoredText — the short on-screen label the writer wrote
+      //     ("150 meters", "6-3 Decision"). Good as a supporting caption,
+      //     useless as semantic input on its own, which is exactly why the
+      //     director reads `text` above for meaning and this for display.
+      //   anchorToken — names the subject of the beat.
+      //   visual — the optional authored visual plan (schemas/script.mg.json).
+      //     Absent on every script written before that field existed; the
+      //     director falls through to its deterministic reading then.
+      authoredText: authored.text || null,
+      anchorToken: authored.anchor_token || null,
+      visual: authored.visual || null,
+      wordTokens: tokensForText,
+      anchorTokenIndex,
+      anchorFrame: Math.round((ms / 1000) * fps),
+    });
+  }
+  return beats;
+}
+
+export function buildAuthoredBeats(sections, captions, opts = {}) {
+  const fps = opts.fps || FPS;
+  if (!captions || captions.length === 0) return null;
+  if (!Array.isArray(sections) || sections.length === 0) return null;
+
+  const allTokens = [];
+  for (const cap of captions) {
+    for (const tok of splitCaptionToWordTokens(cap)) allTokens.push(tok);
+  }
+
+  const sectionWordCounts = sections.map((s) => wordCount(s.voiceover));
+  const totalExpected = sectionWordCounts.reduce((a, b) => a + b, 0);
+  // Can't safely align anything without real per-word timing agreeing with
+  // the script's own word count — this is the one case with no per-section
+  // fallback, since it means the SRT wasn't actually narrating this script.
+  if (totalExpected === 0 || allTokens.length !== totalExpected) return null;
+
+  const perSection = [];
+  let cursor = 0;
+  let anyAuthored = false;
+  let anyFallback = false;
+  for (let s = 0; s < sections.length; s++) {
+    const count = sectionWordCounts[s];
+    const sectionTokens = allTokens.slice(cursor, cursor + count);
+    const sectionStartMs = sectionTokens.length ? sectionTokens[0].fromMs : cursor === 0 ? 0 : null;
+    const sectionEndMs = sectionTokens.length ? sectionTokens[sectionTokens.length - 1].toMs : sectionStartMs;
+    cursor += count;
+    if (sectionTokens.length === 0) {
+      perSection.push({ beats: [], startMs: sectionStartMs ?? 0, endMs: sectionEndMs ?? 0 });
+      continue;
+    }
+
+    const authored = authoredBeatsForSection(sections[s], sectionTokens, s, opts);
+    if (authored) {
+      anyAuthored = true;
+      perSection.push({ beats: authored, startMs: sectionStartMs, endMs: sectionEndMs });
+    } else {
+      anyFallback = true;
+      perSection.push({ beats: null, startMs: sectionStartMs, endMs: sectionEndMs });
+    }
+  }
+
+  // Nothing usable anywhere — let the caller take the classifier path for
+  // the whole video exactly as before (simpler than a per-section fallback
+  // when there is no authored data to prefer in the first place).
+  if (!anyAuthored) return null;
+
+  // Only compute the classifier's fine-grained, real-timed beats (same as
+  // the pre-existing path) when at least one section actually needs them.
+  let classifierBeats = null;
+  if (anyFallback) {
+    classifierBeats = assignBeatsToSections(
+      parseSrtToBeats(null, { captions, bRollFiles: opts.bRollFiles }),
+      perSection.map((p) => [p.startMs, p.endMs])
+    ).map(({ _i, ...rest }) => rest);
+  }
+
+  const beats = [];
+  for (let s = 0; s < perSection.length; s++) {
+    if (perSection[s].beats) {
+      beats.push(...perSection[s].beats);
+    } else {
+      beats.push(...classifierBeats.filter((b) => b.sectionIndex === s));
+    }
+  }
+  return beats;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MOT-01 (CHECK-REGISTER.md): "Beats are SRT-derived, not section-index
+// divided". True for motion-graphics (this file's own beat pipeline above),
+// false for minimal/cinematic-documentary — minimal.jsx divides
+// `durationInFrames` by section COUNT (equal screen time regardless of how
+// much each section's voiceover actually says), and cinematic-documentary.jsx
+// weights sections by a hardcoded dramatic-pacing multiplier that also never
+// looks at word count. Both can put a section's visuals on screen for far
+// longer or shorter than its narration takes to speak. This gives both
+// styles the same real-per-word-timing source of truth motion-graphics
+// already has, on the same terms: real SRT when available, and an honest
+// word-count-proportional (not equal, not a content-blind dramatic weight)
+// fallback when it isn't.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Real per-section [startMs, endMs] windows from actual per-word SRT
+ * timing, the same word-count-cursor alignment buildAuthoredBeats uses for
+ * beats. Returns null when there's nothing to anchor against (no captions,
+ * or the SRT's word count doesn't match the sections' own voiceover word
+ * count) — callers fall back to proportionalSectionWindows.
+ */
+export function realSectionWindows(sections, captions, fps = FPS) {
+  if (!captions || captions.length === 0) return null;
+  if (!Array.isArray(sections) || sections.length === 0) return null;
+
+  const allTokens = [];
+  for (const cap of captions) {
+    for (const tok of splitCaptionToWordTokens(cap)) allTokens.push(tok);
+  }
+
+  const counts = sections.map((s) => wordCount(s.voiceover));
+  const total = counts.reduce((a, b) => a + b, 0);
+  if (total === 0 || allTokens.length !== total) return null;
+
+  const windows = [];
+  let cursor = 0;
+  for (let i = 0; i < sections.length; i++) {
+    const slice = allTokens.slice(cursor, cursor + counts[i]);
+    cursor += counts[i];
+    if (slice.length === 0) return null;
+    windows.push([slice[0].fromMs, slice[slice.length - 1].toMs]);
+  }
+  return windows;
+}
+
+/**
+ * Word-count-proportional fallback for when there's no SRT to anchor
+ * against — still honest about content length, unlike equal division or a
+ * content-blind pacing weight.
+ */
+export function proportionalSectionWindows(sections, totalMs) {
+  const counts = sections.map((s) => wordCount(s.voiceover || (s.content || []).join(" ")));
+  const total = counts.reduce((a, b) => a + b, 0) || 1;
+  const windows = [];
+  let acc = 0;
+  for (let i = 0; i < sections.length; i++) {
+    const fromMs = (acc / total) * totalMs;
+    acc += counts[i];
+    const toMs = i === sections.length - 1 ? totalMs : (acc / total) * totalMs;
+    windows.push([fromMs, toMs]);
+  }
+  return windows;
+}
+
+/**
+ * Real or word-count-proportional per-section [startFrame, durationInFrames]
+ * pairs for the minimal/cinematic-documentary compositions. Always returns
+ * a full-coverage, gapless set of windows.
+ */
+export function sectionFrameWindows(sections, srtText, totalFrames, fps = FPS) {
+  const totalMs = (totalFrames / fps) * 1000;
+  const captions = srtText ? parseSRT(srtText) : [];
+  const msWindows = realSectionWindows(sections, captions, fps) || proportionalSectionWindows(sections, totalMs);
+  return msWindows.map(([fromMs, toMs], i) => {
+    const startFrame = Math.round((fromMs / 1000) * fps);
+    const endFrame = i === msWindows.length - 1 ? totalFrames : Math.round((toMs / 1000) * fps);
+    return { from: startFrame, duration: Math.max(endFrame - startFrame, 1) };
+  });
+}
+
 /**
  * Assign each beat to a section by its audio start time.
  * sections: array of { windowMs: [startMs, endMs] } (must be contiguous).

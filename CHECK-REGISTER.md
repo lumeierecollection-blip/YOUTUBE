@@ -70,6 +70,7 @@ never `L7` or `Â§3.1`.
 | `DEL` | absence â€” things that must no longer exist | the owning lane |
 | `FRM` | whole-frame visual QA | orchestrator |
 | `SCR` | daily-pipeline script generation â€” grounding, archetype/anchor sync, pacing | `discover-topics` / `research-and-script` workflow jobs (not a CROSSCHECK lane â€” see Â§3.10) |
+| `VIS` | visual storytelling — strategy routing, visual states, icon subordination | `visual/diagnostics.js` (per render, not a CROSSCHECK lane — see §3.12) |
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 
 ---
@@ -238,7 +239,7 @@ below:
 
 | ID | Check | Method | Threshold | T | Sev | Stage | State |
 |---|---|---|---|---|---|---|---|
-| MOT-01 | Beats are SRT-derived, not section-index divided | `grep "durationInFrames / .*sections"` | 0 hits | 1 | BLOCKER | 9 | **FAIL** |
+| MOT-01 | Beats are SRT-derived, not section-index divided | `grep "durationInFrames / .*sections"` | 0 hits | 1 | BLOCKER | 9 | **PASS** - 2026-08-26 (visual-generation overhaul): confirmed real and worse than the grep implies — `minimal.jsx` divided by section COUNT (equal screen time regardless of narration length) and `cinematic-documentary.jsx`'s `computeLayout` used a hardcoded dramatic-pacing weight that also never looked at word count (neither matched this row's own grep pattern, so this was never actually caught). `beats.js`'s new `realSectionWindows`/`sectionFrameWindows` give both styles the same real-per-word-SRT timing motion-graphics already had (word-count-proportional fallback when no SRT exists), threaded through `render.js` -> both compositions' new `sectionWindows` prop |
 | MOT-02 | 4â€“8 beats per rolling 300 frames | beat timeline | 4â€“8 | 1 | MAJOR | 9 | **FAIL** |
 | MOT-03 | Every beat â‰¥ its `holdFrames(text)` | compiler | â‰¥ | 1 | MAJOR | 9 | N/B |
 | MOT-04 | No `interpolate()` without an easing | `grep` + AST scan | 0 | 1 | MAJOR | 7 | **FAIL** |
@@ -264,7 +265,7 @@ below:
 
 | ID | Check | Method | Threshold | T | Sev | Stage | State |
 |---|---|---|---|---|---|---|---|
-| ENC-01 | `STATEMENT` â‰¤30% of beats | classifier output | â‰¤30% | 1 | BLOCKER | 9 | **FAIL** â€” ~100% |
+| ENC-01 | `STATEMENT` <=30% of beats | classifier output | <=30% | 1 | BLOCKER | 9 | **PASS** - 2026-08-26 (visual-storytelling overhaul, second pass). The first pass reconnected authored beats but left the RENDER side icon-first, so this stayed PARTIAL at 63%. Both remaining causes are now gone: `deriveScene` (mg-package.js) no longer resolves an icon for every beat before the archetype switch (that single line was the icon-first mechanism), and `StageScene` routes through a visual director (`visual/director.js`) that reads the beat's own narration plus its gate-checked data and picks a visual STRATEGY, with `CINEMATIC_STATEMENT` - a composed depth frame carrying no icon - as the only terminal fallback. Measured on three real production-CLI renders: statement ratio 0.0 (ch-02 legal), 0.0 (ch-48 process), 0.2 (ch-01 finance); icon-hero ratio 0.0 on all three. `MAX_AUTHORED_BEAT_FRAMES` also no longer discards authored beats over 8s - it densifies one concept into more visual states instead - which is what had been forcing 3 of 5 sections onto the fragment classifier |
 | ENC-02 | No archetype repeats >2Ã— consecutively | classifier | â‰¤2 | 1 | MAJOR | 9 | N/B |
 | ENC-03 | Every beat has exactly one `anchorTokenIndex` | classifier | =1 | 1 | BLOCKER | 9 | N/B |
 | ENC-04 | Stage entrance begins in `[tAâˆ’4, tA+2]` | compiler | in window | 1 | MAJOR | 9 | N/B |
@@ -282,7 +283,7 @@ below:
 | ENC-16 | â‰¤4 Stage layers per frame | compiler | â‰¤4 | 1 | MINOR | 9 | N/B |
 | ENC-17 | Archetype mix matches the channel's `concepts` | compiler vs config | â‰¥50% / â‰¤35% / 0% | 1 | MINOR | 9 | N/B |
 | ENC-18 | `IMAGE_BEAT` â‰¤20% of beats | compiler | â‰¤20% | 1 | MINOR | 9 | N/B |
-| ENC-19 | `bRollFiles` is actually consumed | `grep` in style file | â‰¥1 hit | 1 | MAJOR | 9 | **FAIL** â€” 0 |
+| ENC-19 | `bRollFiles` is actually consumed | `grep` in style file | â‰¥1 hit | 1 | MAJOR | 9 | **PASS** - this row was already stale before the 2026-08-26 visual-generation overhaul session (which re-verified, not re-fixed, it): `render.js` -> `image-assets.js` -> `mg-package.js`/`beats.js` -> `ImageBeatScene` is a real, live chain today (confirmed by direct grep + a real render). Whoever's fix closed this didn't update the row |
 | ENC-20 | Percentages shown only when the script states one | compiler vs script | 100% | 1 | MAJOR | 8 | UNK |
 | ENC-21 | Two values share an axis only if they share a unit | compiler | 100% | 1 | MAJOR | 8 | UNK |
 | ENC-22 | Single-point data renders as `HERO_NUMBER`, not a chart | classifier | 100% | 1 | MINOR | 8 | UNK |
@@ -300,7 +301,7 @@ below:
 
 | ID | Check | Method | Threshold | T | Sev | Stage | State |
 |---|---|---|---|---|---|---|---|
-| AUD-01 | `sfxCue` is actually consumed by a composition | `grep` | â‰¥1 hit | 1 | MAJOR | 13 | **FAIL** â€” 0 |
+| AUD-01 | Sound is triggered by a VISUAL EVENT and every event is explainable | `visual/diagnostics.js` `summarizeSound` + `qa-scripts/audio-qa.mjs` on the rendered mp4 | `semanticMatchRate` = 1, every event audible | 1 | MAJOR | **PASS** - 2026-08-26 (third pass). SUPERSEDES the second-pass close: that resolved one sound per section by keyword-matching the script's free-text `sfx_cue` against file tags and fired it at frame zero of the section, so it played because a section began rather than because anything happened on screen, and it matched the narration's WORDS not the picture (a cue reading "low sub-bass drone" scored against "click, ui, button"). `sfx.js` and the `sfxCue` plumbing are deleted; `visual/sound-design.js` schedules from visual states instead. Verified in the rendered mp4 by `audio-qa.mjs`: 9/9 events present, measured RMS within 0.1-2.3 dB of each event's target. `sfx_cue` is also REMOVED from `schemas/script.mg.json`, because `opencode-agent.js` puts the whole schema into every script prompt with `JSON.stringify(schema)` - a field nothing reads costs tokens on every run. The mg schema is now 7 est. tokens smaller than before this pass. `schemas/script.section.json` keeps it for minimal / cinematic-documentary, which are not part of this overhaul. Do not reintroduce a keyword matcher on top of it |
 | AUD-02 | â‰¤1 SFX per beat | compiler | â‰¤1 | 1 | MINOR | 13 | N/B |
 | AUD-03 | SFX fires on the visual-land frame, not the word | compiler | match | 1 | MINOR | 13 | N/B |
 | AUD-04 | Gains match the SFX map | compiler | exact | 1 | MINOR | 13 | N/B |
@@ -314,9 +315,9 @@ below:
 
 | ID | Check | Method | Threshold | T | Sev | Stage | State |
 |---|---|---|---|---|---|---|---|
-| RND-01 | Render subpackage matches root Remotion version | parse both `package.json` | equal | 0 | BLOCKER | 1 | **FAIL** â€” 4.0.0 vs 4.0.503 |
-| RND-02 | React versions match | parse | equal | 0 | BLOCKER | 1 | **FAIL** â€” 18 vs 19 |
-| RND-03 | `@remotion/captions` installed and â‰¥4.0.216 | parse | present | 0 | BLOCKER | 1 | **FAIL** |
+| RND-01 | Render subpackage matches root Remotion version | parse both `package.json` | equal | 0 | BLOCKER | 1 | **PASS** - stale before the 2026-08-26 session (re-verified, not re-fixed): both now pin `^4.0.503` |
+| RND-02 | React versions match | parse | equal | 0 | BLOCKER | 1 | **PASS** - stale before the 2026-08-26 session (re-verified, not re-fixed): both now pin `^19.2.8` |
+| RND-03 | `@remotion/captions` installed and â‰¥4.0.216 | parse | present | 0 | BLOCKER | 1 | **PASS** - stale before the 2026-08-26 session (re-verified, not re-fixed): `^4.0.503` in both `package.json`s, confirmed actually installed and importable |
 | RND-04 | `inputProps` reaches the component | fixture render | reaches | 2 | BLOCKER | 1 | **FAIL** |
 | RND-05 | The generated-entry-file workaround is gone | `grep` | 0 hits | 1 | MAJOR | 1 | **FAIL** |
 | RND-06 | `renderMedia` sets `imageFormat: 'png'` | parse `render.js` | present | 1 | MAJOR | 14 | **FAIL** |
@@ -325,9 +326,12 @@ below:
 | RND-09 | `chromiumOptions.gl` passed to `renderMedia`, not the config file | parse | present | 1 | BLOCKER | 14 | **FAIL** |
 | RND-10 | `remotion.config.js` is deleted or annotated as CLI-only | file check | one of | 1 | MAJOR | 14 | **FAIL** |
 | RND-11 | No config-file setting is relied on by the SSR path | code review | 0 | 4 | BLOCKER | 14 | **FAIL** |
-| RND-12 | One full Short renders per mg channel | CI | 12/12 | 3 | BLOCKER | 16 | **FAIL** â€” never a clean run |
+| RND-12 | One full Short renders per mg channel | CI | 12/12 | 3 | BLOCKER | 16 | **FAIL** â€” never a clean run in CI. 2026-08-26: one real ch-02 (Legal Brief) Short rendered clean end-to-end via `render.js`'s actual CLI in a sandboxed Linux environment (`data/renders/2/*.mp4`, not committed — a local verification artifact, not a CI run) — 1/12, still open |
 | RND-13 | Frame 0 and final frame match for loop quality | contact sheet | match | 3 | MINOR | 16 | UNK |
 | RND-14 | No frame is >92% a single colour | contact sheet | 0 frames | 3 | MAJOR | 16 | UNK |
+
+**3.7.1 â€” `verify-compositions.js` never actually ran on Linux/CI before 2026-08-26.**
+Two real defects, unrelated to this session's actual work but found while using it to verify that work: (1) its `CHROME` constant was a hardcoded Windows path, so it always fell through to Remotion trying to download its own Chrome Headless Shell, which any egress-restricted environment (including a real GitHub Actions runner with default egress) refuses; (2) its `openBrowser({...})` call passed the whole options object as the `browser` positional argument (`openBrowser(browser, options)` in the installed `@remotion/renderer`), so even with a real `browserExecutable` set, it was silently discarded. Fixed: `CHROME` now reuses `render.js`'s own cross-platform `findChrome()` (extracted to `find-chrome.js` so importing it doesn't also run `render.js`'s top-level `main()`), and the `openBrowser` call now passes `(undefined, options)`. With both fixed, this session got a real still-render pass on the `movile-cave` ch-fixture for the first time and it surfaced two more real, previously-uncatchable findings, left **undiagnosed this session** (out of scope for a visual-generation-overhaul session to chase an unrelated pre-existing bug to ground): `mg f900 pixels near accent: 0 -> accent MISSING`, and `mg f505/1210/1565 IMAGE_BEAT stage stddev ~10.5-10.9 -> STAGE FLAT` despite the fixture's referenced b-roll files existing on disk. Whether these are real current defects in `motion-graphics.jsx` or the fixture's hardcoded check frame numbers (505/900/1210/1565/...) having drifted from what the current beat timeline actually puts at those archetypes could not be determined without further investigation.
 
 ## 3.8 `AST` â€” fonts, icons, images, licences
 
@@ -349,6 +353,7 @@ below:
 | AST-14 | Every image for a named person or place is verified real | source log | 100% | 4 | BLOCKER | 9 | UNK |
 | AST-15 | A `b-roll-manifest-<channelId>.json` is trusted only when its own `topic_slug` matches the script actually being rendered | `broll.js` `loadManifest()` guard, threaded from `render.js`'s `script.topic_slug` | 100% | 1 | BLOCKER | 9 | **PASS** - motion-graphics-rebuild-v2, 2026-08-16 (this is PART 0's content-routing bug: a stale ch-01 manifest from an unrelated dev-test topic could otherwise leak wrong-channel imagery into a real render; mirrors the guard `src/utils/pipeline.js`'s `loadTopicBrollManifest` already had for the copyright/disclosure/quality gates, now applied on the render path too) |
 | AST-16 | A fetched asset's own title shares at least one real keyword with the query it was fetched for | `fetch-library.js` `keywordsOfTitle` filter | 0 zero-overlap assets admitted | 1 | MAJOR | pre-render | **PARTIAL** - 2026-08-22, real defect found on a real render (`data/audit/12/multi-image-beat-*`): a Met search for "credit card debt" returned a Baroque "Charity" allegory painting (partially nude woman with nude children) — zero title/query keyword overlap, the Met's own search relevance, not this pipeline's, decided it was close enough. Now rejected mechanically at fetch time. Marked PARTIAL, not PASS: a second real example from the same run — a Wikimedia photo titled "Rid of credit card debt" that is actually a bullet cartridge (a title pun, not a literal subject) — has full title/query overlap and passes this filter while still being visually wrong. No check in this pipeline verifies image CONTENT against the query, only text metadata; closing that gap needs real vision-content verification, which does not exist here. Both bad assets removed from `data/asset-library/index.json` and their files deleted; SKILL.md's spot-check guidance extended to cover this |
+| AST-17 | An asset-library photo is reachable with the id `render.js` actually passes | `run-visual-tests.js` (resolves each catalogued asset by its own query, asserts the numeric id does NOT resolve, and greps the call site) | 100% resolvable | 1 | BLOCKER | 9 | **PASS** - 2026-08-27. Found by tracing, not by a render: both image sources are keyed by the SLUG form (`index.json` stores `"channelId": "ch-01"`, manifests are `b-roll-manifest-ch-01.json`, files live under `public/asset-library/ch-01/`) while `scripts/render-and-qa.js` invokes the CLI with `String(c.id)` and `render.js` passed that argument straight through. Every lookup compared `"1"` against `"ch-01"` and returned nothing, so EVERY photo in the library was unreachable in production — and `IMAGE_EVIDENCE`, whose only trigger is "a real sourced asset exists for this section" (no text detector, by design), could never fire on any beat of any video. `render.js` now passes `channel.channel_id`; `loadChannel()` already accepted either spelling. Verified by reverting the call site, which fails the check |
 
 ## 3.9 `FRM` â€” whole-frame QA
 
@@ -437,6 +442,217 @@ duplicated here: flat background and text contrast are `frame-audit.js`
 
 ---
 
+## 3.12 `VIS` - visual storytelling (second-pass overhaul)
+
+Computed by `src/skills/remotion-render/visual/diagnostics.js` on **every**
+render and written to `data/renders/<ch>/<slug>-<format>-visual-report.json`;
+warnings are echoed as `::warning::` annotations. Like `SCR` and `SLOP`,
+these gate the daily pipeline, not the CROSSCHECK render audit.
+
+These exist because the honest failure mode of a visual overhaul is a
+renderer that LOOKS rebuilt while most beats quietly still take the generic
+path. `VIS-02` and `VIS-04` are the two numbers that make that impossible
+to hide.
+
+| ID | Check | Method | Threshold | T | Sev | State |
+|---|---|---|---|---|---|---|
+| VIS-01 | Every registered strategy routes to a scene the router handles, and no two share one | `assertStrategyRegistryIsSound()` + `visual/run-visual-tests.js` | 0 problems | 1 | BLOCKER | **PASS** - 55/55 tests |
+| VIS-02 | `iconHeroRatio` = 0 (an icon is never the primary visual) | `diagnostics.js` | 0 | 1 | BLOCKER | **PASS** - 0.0 on all 3 real renders |
+| VIS-03 | Beats average >=2 visual states (concepts progress) | `diagnostics.js` | >=2 | 1 | MAJOR | **PASS** - 4.2 to 4.8 |
+| VIS-04 | `genericFallbackRatio` <=0.4 (beats produce a readable concept) | `diagnostics.js` | <=0.4 | 1 | MAJOR | **PASS** - 0.0 on all 3 |
+| VIS-05 | No single visual state holds >5s | `diagnostics.js` | <=5s | 1 | MAJOR | **PASS** - max 3.13s |
+| VIS-06 | >2 distinct strategies per video (not templated) | `diagnostics.js` | >2 | 1 | MAJOR | **PASS** - 4 to 5 per video |
+| VIS-07 | Every fallback records a machine-readable reason | `diagnostics.js` `fallbackReasons` | 100% | 1 | MAJOR | **PASS** |
+| VIS-08 | A geofence/distance concept renders a spatial visual, not a numeral | `run-visual-tests.js` PART-23 gate + rendered frame | spatial | 3 | BLOCKER | **PASS** - frame-verified, see 3.12.1 |
+| VIS-09 | The anchored visual state starts on the beat's real anchor frame | `run-visual-tests.js` | +/-1 frame | 1 | MAJOR | **PASS** |
+| VIS-10 | Visual states tile the beat window with no gaps at any duration/anchor | `run-visual-tests.js` | 0 gaps | 1 | MAJOR | **PASS** - 15 duration x anchor combinations |
+| VIS-11 | A beat prints at most 8 words on screen (supporting text, not a subtitle) | `diagnostics.js` `maxWordsOnOneBeat` + `run-visual-tests.js` | <=8 | 1 | MAJOR | **PASS** - max 8 (legal), 3 (finance), 0 (tech) |
+| VIS-12 | `textNarrationRatio` stays low (the picture is not reciting the narration) | `diagnostics.js` | <=0.35 | 1 | MAJOR | **PASS** - 0.221 / 0.05 / 0.00 |
+| VIS-13 | Full narration captions are OFF unless a channel opts in | `render.js` `showCaptions` = `channel.captions === "burned-in"` | opt-in only | 1 | MAJOR | **PASS** - no channel in `channels.json` sets it today |
+| VIS-14 | Two beats never draw the same composition | `diagnostics.js` `VIS-SAME-COMPOSITION` | 0 repeats | 1 | MINOR | **PASS** - clean on all 3 after variants were added to DOCUMENT_EVIDENCE / GEOSPATIAL_RADIUS / PROCESS / ACCUMULATION |
+| VIS-15 | A declared composition-variant count is backed by a scene that branches on it | `run-visual-tests.js` (reads the scene sources) | 0 false declarations | 1 | MAJOR | **PASS** - guard verified to fail when a declaration is falsified |
+| VIS-16 | Sound events are spaced, capped, explained and never boosted to unity | `run-visual-tests.js` + `diagnostics.js` `summarizeSound` | 0 warnings | 1 | MAJOR | **PASS** - 0 AUD-* warnings on all 3 |
+| VIS-17 | Every sound-library entry's duration/peak/RMS is MEASURED from the file | `qa-scripts/fetch-sfx-library.mjs` + `run-visual-tests.js` | 26/26 measured | 1 | MAJOR | **PASS** |
+| VIS-18 | Every strategy the director can prefer is actually selectable | `run-visual-tests.js` (signals table vs `STRATEGY_PREFERENCE`) | 0 unreachable | 1 | BLOCKER | **PASS** - found `DATA_CHART` and `SCALE_COMPARISON` with NO detector, unreachable on every beat ever rendered; both now detected, guard verified to fire on the pre-fix source |
+| VIS-19 | A comparison keeps both its values; a chart keeps all of them | `run-visual-tests.js` | 0 dropped | 1 | MAJOR | **PASS** - `detectComparison` accepted >=2 while `ComparisonScene` slices to 2, so a 4-figure beat rendered 2 and silently discarded the rest |
+| VIS-20 | No scene draws outside the safe rect | `run-visual-tests.js` calls the renderer's own `documentPageGeometry()` against the renderer's own `SAFE` / `CAPTION_RESERVE_Y`, both imported from `compositions/layout-constants.js` | inside | 1 | MAJOR | **PASS** - see 3.12.3; caught all 3 `DOCUMENT_EVIDENCE` page variants 62-132px below `SAFE.bottom` once captions were turned off, and later the clause overhanging `SAFE.right` by 30px on 2 framings |
+| VIS-21 | Every scene component parses as JSX | `run-visual-tests.js` (esbuild, per file) | 0 errors | 1 | BLOCKER | **PASS** - the text-based checks cannot see a syntax error; one reached a bundler 15 minutes into a render |
+| VIS-22 | No module in `visual/` exports something nothing imports | `run-visual-tests.js` | 0 dead | 1 | MINOR | **PASS** - removed `planAll`, `strategyNames` |
+| VIS-23 | Every import in the scene graph names something that is actually exported | `run-visual-tests.js` (esbuild `bundle: true` from `scenes/index.jsx` and `motion-graphics.jsx`) | 0 unresolved | 1 | BLOCKER | **PASS** - verified to fail on both real modes: an importer naming a helper that moved, and a re-export surface that drops a name 4 scenes import |
+| VIS-24 | No scene references an identifier nothing binds | `visual/scope-check.js` (`@babel/parser`, scope walk) via `run-visual-tests.js` | 0 free identifiers | 1 | BLOCKER | **PASS** - see 3.12.4; found TWO shipped `ReferenceError`s no other check could see |
+| VIS-25 | A sound is chosen for the MATERIAL the picture is made of | `sound-design.js` `MATERIAL_CHARACTER` + `assertSoundMapIsSound` + `run-visual-tests.js` (through `soundEventsForBeat`, not `pickAsset`) | different materials pick different characters | 1 | MINOR | **PASS** - `shot.material` was on every plan and read by nothing in the audio path; only `impact` / `emphasis` / `transition` can discriminate on a 26-file library and the guard fails if the map ever pretends otherwise |
+| VIS-26 | The anchor frame is not empty — the picture has arrived by the time the key word is spoken | `qa-scripts/inspect-anchors.mjs` (renderStill on each beat's real SRT anchor frame, ink measured from the pixels) | >=0.4% ink | 3 | MAJOR | **PASS** - see 3.12.5. Found THREE shipped instances no code reading would have caught: `DATA_CHART` (empty axis, four figures reading 0 on the frame saying "ninety"), `CINEMATIC_STATEMENT` (blank frame, 0.1% ink — the phrase IS the scene), `TRANSFORMATION` (0.34%, the plotted curve had zero length). The floor is deliberately low: it is not a quality bar, a frame at 1.2% can still be a thin diagram in a void |
+
+**3.12.1 - VIS-08 is frame-verified, not inferred.** The 150-metre geofence
+beat from the real ch-02 script was rendered through the production CLI and
+its frames inspected (`qa/pass3/geofence-*.png`).
+
+Frame-verified TWICE, because the first pass at it was not good enough. The
+original renderer showed "150 / meters" centred on a flat background - the
+data, not the idea. The second-pass replacement drew a perspective floor
+grid, an ellipse and fourteen scattered rectangles: spatial, but read cold
+it is a grid, an oval and some squares, and nothing in it says CITY.
+
+What the current frames show is a plan-view MAP - an irregular street
+network with arterials and a diagonal, city blocks, building footprints - a
+true circle laid over it, an accent pin on the incident, device pins
+standing ON buildings with the twelve inside the boundary filled and those
+outside dimmed, "150 m" as a dimension on the drawn radius, and a camera
+that opens at the scale of one address and pulls back as the boundary
+grows. Muted, the frame still says: this corner, this boundary, these
+buildings inside it.
+
+**3.12.2 - what VIS-05 does and does not prove.** It measures time between
+STATE changes. A first render passed it while the picture sat still, because
+most scenes only react to their own named states and ignored the sustaining
+states that densification adds. `SustainCamera` (`scenes/index.jsx`) now
+gives sustaining states a real (small) camera move, so the metric and the
+picture agree. It remains a structural proxy: it cannot prove a scene's
+named states are individually interesting, only that something changes.
+
+**3.12.3 - VIS-20 passed for a while against geometry the renderer had
+stopped drawing.** This is the failure mode worth recording, because the
+check never went red while it was wrong.
+
+The constants and the page maths lived in `.jsx` files. Node cannot import
+`.jsx`, so the check recovered `SAFE` and `CAPTION_RESERVE_Y` by regex over
+`primitives.jsx` and recomputed the page from `DOCUMENT_PAGE_TOP` and
+`DOCUMENT_PAGES`. That duplicate was correct until the scene began scaling
+the page to its shot frame; from then on the check verified a geometry the
+renderer no longer drew, and passed on every run.
+
+The fix was structural, not a better regex: `compositions/layout-constants.js`
+is a pure `.js` module holding the constants **and** `documentPageGeometry()`,
+imported by both the scene and the check. `primitives.jsx` re-exports the
+constants so existing scene imports are unchanged. With one model and two
+callers, the check immediately found a real defect the duplicate had been
+hiding — the pulled-out clause is set 30px wider than the page on each side,
+so on the `close` and `grounded` framings of variant 1 it spanned 112..918
+against a safe rect of 48..888. The clamp now budgets for the overhang.
+
+Two consequences worth keeping:
+
+- Anything a test or a gate needs to reason about goes in a `.js` module,
+  not a component file. Parsing source text to recover a renderer's numbers
+  is a duplicate by another name.
+- `VIS-23` exists because moving code between modules is exactly when
+  imports break, and per-file parsing (`VIS-21`) cannot see across a module
+  boundary. It bundles the graph and fails on a name that is imported but
+  never exported.
+
+**3.12.4 - VIS-24, and two `ReferenceError`s that were in the tree while
+the suite reported 64 green.** Converting the scenes to lay out against
+their shot frame introduced two crashes, both of which survived every check
+in this file:
+
+- `OppositionComparison` (`quantity-scenes.jsx`) read `f.w`, `f.cx` and
+  `f.h`. `f` was not a parameter, not a declaration, and not a module
+  binding. Every qualitative COMPARISON beat would have thrown.
+- `abstract-scenes.jsx` called `shotFrame` without importing it. Every
+  `VISUAL_METAPHOR` and every `CINEMATIC_STATEMENT` beat would have thrown
+  — including the terminal fallback, which is the one scene that has to
+  work when nothing else does.
+
+Why nothing caught them: the text-based checks do not model scope; `VIS-21`
+parses each file alone and only proves it is syntactically valid; `VIS-23`
+bundles the graph, but a free identifier is a legal reference to a global
+as far as any bundler is concerned. And the renders did not catch them
+because neither branch fired in the clips that had been rendered — a
+qualitative comparison needs a beat with no numeric series, and the
+metaphor scenes need a beat nothing else claims.
+
+That last point is the one to keep: **a rendered frame proves the path it
+rendered, and nothing else.** Frame inspection is still the acceptance
+test, but it is not coverage, and treating one render as coverage is how
+two guaranteed crashes sat in the tree behind a green suite.
+
+`visual/scope-check.js` walks the AST (`@babel/parser`, JSX) and reports
+any identifier referenced in a function with no binding in that function,
+any enclosing function, module scope, or a short list of real globals. It
+is deliberately conservative — every binding anywhere in a function counts
+for the whole function, so it does not model block scope, shadowing or the
+temporal dead zone, and it will not catch a use-before-declare. It catches
+exactly the class that shipped. Both bugs were re-introduced afterwards to
+confirm the check fails on them.
+
+**3.12.5 - VIS-26, and why the anchor frame gets its own check.** Every
+beat has one frame that matters more than the rest: the one where its key
+token is actually spoken, from the SRT. Three scenes shipped with nothing
+drawn on it, and all three were invisible to code review because each was
+individually reasonable:
+
+- `DATA_CHART` anchored its `bars` state, so the state that draws EVERY bar
+  began exactly when the key token was spoken. The frame of the narration
+  saying "ninety" was an empty axis with four figures reading 0.
+- `CINEMATIC_STATEMENT` anchored its `subject` state, and that phrase is the
+  entire content of the terminal fallback, so the frame came back blank —
+  0.1% ink, bbox 100x1%.
+- `TRANSFORMATION` anchored its `grow` state, which draws the whole plotted
+  curve; at the anchor the path had zero length. 0.34% ink in a 9%-tall band.
+
+This is NOT the same rule as the counter check above it. There the question
+was whether a figure contradicts the element it labels, and the answer
+depends on whether the anchored state introduces the quantity or resolves
+it. Here the question is whether ANYTHING is on screen, and an anchored
+state that introduces the entire composition always answers no.
+
+The fix in each case was to anchor the state that RESOLVES the picture
+rather than the one that builds it — `highlight` instead of `bars`, `settle`
+instead of `grow` — or, for the statement, to drive the phrase from
+`useValueProgress` so it lands on the anchor instead of starting there.
+
+**No structural check is claimed for this.** A rule like "the states before
+the anchor must outweigh it" was considered and rejected: it produces false
+positives on `SCALE_COMPARISON` and `CINEMATIC_STATEMENT`, both of which are
+correct for other reasons. The gate is the rendered pixel and nothing else,
+which is the honest position — the same reason this register keeps saying a
+rendered frame is the acceptance test.
+
+A related fix came out of the same measurements: `progressOf` now returns 1
+for a state with a window of one frame or less. When a sentence leads with
+its key figure the anchor lands on the beat's opening frame, every state
+before the anchored one is squeezed to a degenerate window, and those states
+read as not-yet-started on the one frame anyone is looking at.
+`SCALE_COMPARISON` measured 0.24% ink for exactly this reason. You cannot
+animate something in in a single frame; the honest reading is that it is
+established, not absent. That change alone took it to 3.0%.
+
+**3.12.6 - WHAT THE PIXEL AUDIT STILL SAYS, AFTER ALL OF THIS.** Twenty-two
+anchor frames rendered through the real composition across four scripts,
+measured for ink coverage, bounding box and centroid. The honest summary:
+
+| | before this pass | after |
+|---|---|---|
+| median anchor ink | 1.4% | 1.4% |
+| frames under 1% ink | 9 / 22 | 7 / 22 |
+| frames empty at the anchor | 3 | 0 |
+| `GEOSPATIAL_RADIUS` | 35-47% | 32-46% |
+
+Bounding boxes moved a lot — `DOCUMENT_EVIDENCE` 62x41% to 85x78%,
+`VISUAL_METAPHOR` 82x36% to 98x81%, `PROCESS` 55x94% to 96x94%,
+`SCALE_COMPARISON` 95x22% to 100x44% — so compositions now reach across the
+frame instead of sitting in a band. **Ink did not move.** The scenes are
+wider, not heavier.
+
+**`GEOSPATIAL_RADIUS` is still the only scene that fills its frame, by an
+order of magnitude, and it is still the only one nobody called a template.**
+That was the finding at the start of this pass and it is the finding at the
+end of it. The difference is not the subject and it is no longer ground,
+depth, framing or camera — every scene has those now. It is that the map
+draws MASS (filled blocks, a filled radius, a street grid with weight) while
+the other fifteen draw LINE (2-4px strokes on an empty field). At
+1080x1920 a 3px stroke is 0.28% of the width; you cannot reach 30% ink with
+strokes, whatever you stage them on.
+
+Closing that gap means giving the other fifteen scenes real filled mass, and
+that is per-scene design work, not another shared layer. It is not done, and
+this register should not imply otherwise: the composition layer removed the
+`cx 0.43` monoculture and the empty-anchor class of defect, and it did not
+make the frames dense.
+
+---
+
+
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 
 Deletions are verified by proving *nothing matches*, which makes them the
@@ -451,6 +667,8 @@ Stage 15, all are a single `grep` returning zero hits.
 | DEL-04 | Regex stat scrapers | `extractStats\|extractHeroNumber\|extractFlowLines` | BLOCKER |
 | DEL-05 | The two-word headline regex | `[A-Za-z]+)\\s+([A-Za-z]+` | BLOCKER |
 | DEL-06 | Keyword icon ladder | `iconFor` | MAJOR |
+| DEL-32 | Unconditional per-beat icon resolution | `resolveIcon` called outside an `iconRole === "secondary"` guard | BLOCKER |
+| DEL-33 | Icon-only stage scene | `StatementScene` reachable for a beat carrying a `visualPlan` | BLOCKER |
 | DEL-07 | Cue-based scene routing | `pickScene` | BLOCKER |
 | DEL-08 | Sibling flex in content zones | `display: *["']flex` in Stage/Headline/Caption | BLOCKER |
 | DEL-09 | Word-count caption chunking | `chunkVoiceover` | BLOCKER |

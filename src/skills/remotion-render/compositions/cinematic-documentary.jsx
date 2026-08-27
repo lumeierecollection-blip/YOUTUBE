@@ -56,8 +56,19 @@ function FilmGrain({ opacity = 0.1 }) {
 /**
  * Dramatic pacing: weights section lengths so the opening and resolution
  * breathe (slow cuts) while crisis/tension sections run fast.
+ *
+ * MOT-01 — this used to be the ONLY input to section timing: a hardcoded
+ * weight per section that never looked at how many words that section's
+ * voiceover actually has, so a 20-word "crisis" section and a 150-word calm
+ * one could get sized by the same 0.8x/1.0x multiplier — real risk of the
+ * narration for one section still playing over another section's visuals.
+ * `sectionWindows` (render.js's sectionFrameWindows: real SRT timing, or an
+ * honest word-count-proportional split) is used directly when provided;
+ * this dramatic-only layout is now only the last-resort fallback for a
+ * caller that doesn't pass it (e.g. verify-compositions.js's fixtures).
  */
-function computeLayout(durationInFrames, sections) {
+function computeLayout(durationInFrames, sections, sectionWindows) {
+  if (sectionWindows && sectionWindows.length === sections.length) return sectionWindows;
   const n = Math.max(sections.length, 1);
   const weights = [];
   for (let i = 0; i < n; i++) {
@@ -247,14 +258,14 @@ function SectionBackground({ children, colors = COLORS }) {
  * Main CinematicDocumentary composition.
  * Props: { sections, thumbnailStyle, tone, font, palette }
  */
-export function CinematicDocumentaryLongform({ sections = [], thumbnailStyle, ttsAudioPath, font = "Inter", palette = null }) {
+export function CinematicDocumentaryLongform({ sections = [], thumbnailStyle, ttsAudioPath, font = "Inter", palette = null, sectionWindows = null }) {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
   const colors = resolveColors(palette, COLORS);
   const fontFamily = resolveFontFamily(font);
 
   // Dramatic pacing: opening/resolution breathe, crisis sections run fast.
-  const layout = computeLayout(durationInFrames, sections);
+  const layout = computeLayout(durationInFrames, sections, sectionWindows);
 
   const lastSection = sections[sections.length - 1];
   const fadeOut = Boolean(lastSection?.transitionOut?.toLowerCase().includes("fade"));
@@ -346,13 +357,13 @@ export function CinematicDocumentaryLongform({ sections = [], thumbnailStyle, tt
  * Shorts composition (9:16, ~60s).
  * Same visual language, vertical format, faster pacing.
  */
-export function CinematicDocumentaryShorts({ sections = [], thumbnailStyle, ttsAudioPath, font = "Inter", palette = null }) {
+export function CinematicDocumentaryShorts({ sections = [], thumbnailStyle, ttsAudioPath, font = "Inter", palette = null, sectionWindows = null }) {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
   const colors = resolveColors(palette, COLORS);
   const fontFamily = resolveFontFamily(font);
 
-  const layout = computeLayout(durationInFrames, sections);
+  const layout = computeLayout(durationInFrames, sections, sectionWindows);
 
   const lastSection = sections[sections.length - 1];
   const fadeOut = Boolean(lastSection?.transitionOut?.toLowerCase().includes("fade"));
