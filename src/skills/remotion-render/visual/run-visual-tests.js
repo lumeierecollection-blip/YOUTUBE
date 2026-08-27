@@ -18,8 +18,9 @@
  */
 
 import { readFileSync, readdirSync } from "fs";
-import { join, dirname } from "path";
+import { join, dirname, basename } from "path";
 import { fileURLToPath } from "url";
+import { createRequire } from "module";
 import { STRATEGIES, STRATEGY_PREFERENCE, TERMINAL_STRATEGY, assertStrategyRegistryIsSound } from "./strategies.js";
 import { planVisual } from "./director.js";
 import { buildStates, MAX_STATE_FRAMES, longestStaticRun } from "./states.js";
@@ -351,6 +352,39 @@ check("summarizeVisuals flags a beat that still renders an icon hero", () => {
   const beats = [{ text: "x", archetype: "STATEMENT", durationInFrames: 120, visualPlan: null, visualStates: [], scene: { iconRole: "none", icon: "banknote" } }];
   const s = summarizeVisuals(beats);
   return s.warnings.some((w) => w.id === "VIS-ICON-HERO") || "no VIS-ICON-HERO warning";
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+console.log("\nthe scenes actually compile");
+
+check("every scene component parses as JSX", () => {
+  // This suite runs in node, which cannot import .jsx, so several checks
+  // read the scene files as TEXT. That is what makes them possible at all,
+  // and it is also a blind spot: a JSX comment placed inside an attribute
+  // list is invalid syntax that every text-based check happily passes, and
+  // it took a 15-minute render to the bundler to find out. esbuild is
+  // already in this package's node_modules; parsing costs milliseconds.
+  const dir = join(__dirname, "..", "compositions", "scenes");
+  const compDir = join(__dirname, "..", "compositions");
+  let esbuild;
+  try {
+    esbuild = createRequire(import.meta.url)("esbuild");
+  } catch {
+    return "esbuild not resolvable — cannot verify the scenes parse";
+  }
+  const failures = [];
+  const files = [
+    ...readdirSync(dir).filter((f) => f.endsWith(".jsx")).map((f) => join(dir, f)),
+    ...readdirSync(compDir).filter((f) => f.endsWith(".jsx")).map((f) => join(compDir, f)),
+  ];
+  for (const file of files) {
+    try {
+      esbuild.buildSync({ entryPoints: [file], bundle: false, write: false, loader: { ".jsx": "jsx" } });
+    } catch (err) {
+      failures.push(`${basename(file)}: ${String(err.message).split("\n")[1] || err.message}`);
+    }
+  }
+  return failures.length === 0 || failures.join("; ");
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

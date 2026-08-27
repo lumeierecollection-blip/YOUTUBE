@@ -603,9 +603,11 @@ export function ScaleComparisonScene({ beat, colors, fontFamily }) {
         })}
       </svg>
       <MeasureBracket x1={gridX} x2={gridX + gridW} y={gridY + rows * cell + 18} color={colors.stroke} p={pRef} />
+      {/* p is `grow`, the anchored state, ON PURPOSE — same as COMPARISON's
+          right-hand column. The quantity grows FROM the anchor, so the
+          figure grows with it rather than standing at full value before the
+          thing it measures exists. See strategies.js `resolves`. */}
       <Figure x={STAGE_CX} y={gridY + rows * cell + 52} value={value} unit={String(sup.unit || "")}
-        {/* Same as COMPARISON: the quantity grows FROM the anchor, so the
-            figure grows with it rather than being full before it exists. */}
         p={ease(pGrow)} color={colors.accent} size={72} align="center" fontFamily={fontFamily} />
       {pRead > 0 ? (
         <Label x={STAGE_CX} y={gridY - 54} text={`${Math.round(ease(pGrow) * 100)}% OF THE FIELD`}
