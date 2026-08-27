@@ -207,6 +207,16 @@ export function shotFrame(shot) {
  *
  * `p` fades the ground in with the scene's first state so it establishes
  * rather than being simply present.
+ *
+ * ALPHAS ROUGHLY DOUBLED after looking at rendered frames. The first pass
+ * set these at 2-8% "so the ground is texture, not decoration", and the
+ * result on real frames is that the ground contributes essentially nothing:
+ * at 5% a stroke lands ~12/255 from the background, below the threshold at
+ * which the frame audit counts a pixel as ink at all, on light and dark
+ * channels alike. A world the viewer cannot see is not a world — it is the
+ * same subject floating in the same void, with a comment claiming
+ * otherwise. Still deliberately quiet; the ceiling is "you notice it if you
+ * look for it", not "you notice it".
  */
 export function Ground({ material, colors, p = 1, seed = 1 }) {
   const a = ease(p);
@@ -241,7 +251,7 @@ function PaperGround({ colors, a, seed }) {
     const y = (i / 26) * CANVAS_H + seeded(seed * 7 + i) * 14;
     lines.push(
       <line key={i} x1={0} y1={y} x2={CANVAS_W} y2={y}
-        stroke={colors.stroke} strokeWidth={1} opacity={0.022 * a} />
+        stroke={colors.stroke} strokeWidth={1} opacity={0.05 * a} />
     );
   }
   return (
@@ -250,7 +260,7 @@ function PaperGround({ colors, a, seed }) {
       {/* Falloff toward the edges, as if the sheet is lit from above. */}
       <defs>
         <radialGradient id="paper-fall" cx="50%" cy="42%" r="72%">
-          <stop offset="0%" stopColor={colors.stroke} stopOpacity={0.05 * a} />
+          <stop offset="0%" stopColor={colors.stroke} stopOpacity={0.1 * a} />
           <stop offset="100%" stopColor={colors.bg} stopOpacity={0} />
         </radialGradient>
       </defs>
@@ -267,11 +277,11 @@ function MechanismGround({ colors, a, seed }) {
     const w = 26 + seeded(seed * 11 + i) * 44;
     marks.push(
       <line key={`l${i}`} x1={0} y1={y} x2={w} y2={y}
-        stroke={colors.stroke} strokeWidth={2} opacity={0.05 * a} />
+        stroke={colors.stroke} strokeWidth={2} opacity={0.11 * a} />
     );
     marks.push(
       <line key={`r${i}`} x1={CANVAS_W - w} y1={y} x2={CANVAS_W} y2={y}
-        stroke={colors.stroke} strokeWidth={2} opacity={0.05 * a} />
+        stroke={colors.stroke} strokeWidth={2} opacity={0.11 * a} />
     );
   }
   return (
@@ -288,7 +298,7 @@ function SubstanceGround({ colors, a }) {
       <defs>
         <linearGradient id="sub-floor" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={colors.bg} stopOpacity={0} />
-          <stop offset="100%" stopColor={colors.stroke} stopOpacity={0.07 * a} />
+          <stop offset="100%" stopColor={colors.stroke} stopOpacity={0.14 * a} />
         </linearGradient>
       </defs>
       <rect x={0} y={CANVAS_H * 0.46} width={CANVAS_W} height={CANVAS_H * 0.54} fill="url(#sub-floor)" />
@@ -306,7 +316,7 @@ function FieldGround({ colors, a, seed }) {
     rings.push(
       <ellipse key={i} cx={cx} cy={cy} rx={r} ry={r * 0.82}
         fill="none" stroke={colors.stroke} strokeWidth={1.5}
-        opacity={0.05 * a * (1 - i / 12)} />
+        opacity={0.11 * a * (1 - i / 12)} />
     );
   }
   return (
@@ -325,20 +335,20 @@ function AtmosphereGround({ colors, a, seed }) {
     const y = horizonY + Math.pow(t, 2.1) * (CANVAS_H - horizonY);
     marks.push(
       <line key={i} x1={0} y1={y} x2={CANVAS_W} y2={y}
-        stroke={colors.stroke} strokeWidth={1} opacity={0.05 * a * (0.3 + t * 0.7)} />
+        stroke={colors.stroke} strokeWidth={1} opacity={0.11 * a * (0.3 + t * 0.7)} />
     );
   }
   return (
     <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0 }}>
       <defs>
         <linearGradient id="atmo-haze" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={colors.stroke} stopOpacity={0.045 * a} />
+          <stop offset="0%" stopColor={colors.stroke} stopOpacity={0.1 * a} />
           <stop offset="55%" stopColor={colors.bg} stopOpacity={0} />
         </linearGradient>
       </defs>
       <rect x={0} y={0} width={CANVAS_W} height={horizonY} fill="url(#atmo-haze)" />
       <line x1={0} y1={horizonY} x2={CANVAS_W} y2={horizonY}
-        stroke={colors.stroke} strokeWidth={1.5} opacity={0.16 * a} />
+        stroke={colors.stroke} strokeWidth={1.5} opacity={0.3 * a} />
       {marks}
       {/* Deterministic distant markers — scale cues, not decoration. */}
       {Array.from({ length: 7 }).map((_, i) => {
@@ -346,7 +356,7 @@ function AtmosphereGround({ colors, a, seed }) {
         const h = 12 + seeded(seed * 17 + i) * 30;
         return (
           <line key={`d${i}`} x1={x} y1={horizonY} x2={x} y2={horizonY - h}
-            stroke={colors.stroke} strokeWidth={1.5} opacity={0.1 * a} />
+            stroke={colors.stroke} strokeWidth={1.5} opacity={0.22 * a} />
         );
       })}
     </svg>

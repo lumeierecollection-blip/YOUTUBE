@@ -29,7 +29,7 @@
  */
 
 import { STRATEGIES, STRATEGY_PREFERENCE, TERMINAL_STRATEGY, getStrategy } from "./strategies.js";
-import { analyzeBeat, seriesFrom, unitKind } from "./semantics.js";
+import { analyzeBeat, seriesFrom, unitKind, extractNumbers } from "./semantics.js";
 import { grammarForChannel, grammarBias } from "./channel-grammar.js";
 import { subjectPhrase, clausePhrase, entityLabels, wordsIn } from "./text-budget.js";
 import { composeShot } from "./composition.js";
@@ -264,9 +264,38 @@ function buildSupporting(strategy, payload, analysis, beat) {
       supporting.to = payload.to;
       supporting.labels = payload.labels || null;
       break;
-    case "DATA_CHART":
-      supporting.series = (analysis.series.length ? analysis.series : payload.pairs || []).slice(0, 5);
+    case "DATA_CHART": {
+      const points = (analysis.series.length ? analysis.series : payload.pairs || []).slice(0, 5);
+      // WHICH BAR THE SENTENCE IS ABOUT.
+      //
+      // The scene fell back to `Math.max(findIndex(s => s.highlight), 0)`,
+      // so when the script did not flag a point — which is every script,
+      // because nothing in this pipeline sets `highlight` — it emphasised
+      // the FIRST bar. On a real fixture reading "forty in the north, sixty
+      // five in the south, thirty in the east and ninety in the west" with
+      // an anchor token of "ninety", it picked out NORTH=40.
+      //
+      // The anchor token is the word the narration actually leans on, so
+      // the bar it names is the bar to emphasise. Matched by VALUE (the
+      // token is usually the number) and then by LABEL. Nothing is
+      // invented: if neither matches, no bar is flagged and the scene
+      // emphasises none rather than guessing.
+      const token = String(beat.anchor_token || "").toLowerCase();
+      if (token && points.length && !points.some((p) => p.highlight)) {
+        // extractNumbers already composes spelled-out numerals ("ninety",
+        // "five hundred and forty"), which is how a script written to be
+        // read aloud states a figure. Reusing it beats writing a second,
+        // weaker parser here — that duplication is what put "5" and "100"
+        // on screen for "five hundred dollars" once already.
+        const tokenValues = new Set(extractNumbers(token).map((n) => n.value));
+        const named = points.findIndex(
+          (p) => tokenValues.has(Number(p.value)) || (p.label && token.includes(String(p.label).toLowerCase()))
+        );
+        if (named >= 0) points[named] = { ...points[named], highlight: true };
+      }
+      supporting.series = points;
       break;
+    }
     case "COMPARISON":
       supporting.series = (analysis.series.length ? analysis.series : payload.pairs || []).slice(0, 5);
       // Two opposed positions rather than two magnitudes — the scene

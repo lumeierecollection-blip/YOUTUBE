@@ -235,10 +235,28 @@ export function reached(states, key, frame) {
   return s ? frame >= s.startFrame : false;
 }
 
-/** 0..1 progress through the named state (0 before it, 1 after). */
+/**
+ * 0..1 progress through the named state (0 before it, 1 after).
+ *
+ * A STATE WITH NO TIME IS ALREADY DONE. When the anchor token falls on the
+ * beat's opening words — which happens whenever a sentence leads with its
+ * key figure — every state before the anchored one is squeezed to a
+ * one-frame window, because the anchored state must still begin exactly on
+ * the anchor. Those states cannot play; treating them as 0 meant the frame
+ * of the narration saying "seventy percent" had nothing drawn at all.
+ *
+ * Found on a rendered anchor frame: SCALE_COMPARISON on a beat whose anchor
+ * frame WAS its start frame measured 0.24% ink. Its `reference` state — the
+ * field the quantity is measured against — held a [0..1] window and read as
+ * not-yet-started on the one frame anyone was looking at.
+ *
+ * You cannot animate something in in a single frame. The honest reading is
+ * that it is established, not that it is absent.
+ */
 export function progressOf(states, key, frame) {
   const s = (states || []).find((x) => x.key === key);
   if (!s) return 0;
+  if (s.durationInFrames <= 1 && frame >= s.startFrame) return 1;
   return clamp((frame - s.startFrame) / Math.max(s.durationInFrames, 1), 0, 1);
 }
 

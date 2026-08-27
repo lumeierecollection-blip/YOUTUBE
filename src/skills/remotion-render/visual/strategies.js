@@ -98,8 +98,19 @@ export const STRATEGIES = {
     states: [
       { key: "establish", action: "starting value sits alone", weight: 1.4 },
       { key: "pressure", action: "the force acting on it becomes visible", weight: 1.6 },
-      { key: "grow", action: "the value moves, driven by that force", weight: 2.4, anchored: true },
-      { key: "settle", action: "the end value locks, gap to the start visible", weight: 1.6 },
+      { key: "grow", action: "the value moves, driven by that force", weight: 2.4 },
+      // ANCHORED ON `settle`, NOT `grow` — the same defect DATA_CHART had.
+      // `grow` draws the entire curve, so anchoring it meant the plotted
+      // path had exactly zero length on the frame the narration says the
+      // end value. Measured on a real render: 0.34% ink in a 9%-tall band,
+      // the flat starting level and nothing else.
+      //
+      // The anchor token on a transformation beat is the END value ("grew
+      // from five hundred dollars to eight hundred and forty dollars"), and
+      // `settle` begins exactly when `grow` finishes — so anchoring here
+      // makes the curve ARRIVE on the word instead of departing from it.
+      // `resolves` because the path is complete before this state begins.
+      { key: "settle", action: "the end value locks, gap to the start visible", weight: 1.6, anchored: true, resolves: true },
     ],
   },
 
@@ -162,8 +173,22 @@ export const STRATEGIES = {
     iconRole: "none",
     states: [
       { key: "axis", action: "axis and baseline draw", weight: 1.0 },
-      { key: "bars", action: "bars grow to their real values", weight: 2.6, anchored: true },
-      { key: "highlight", action: "the bar that matters is picked out", weight: 1.6 },
+      { key: "bars", action: "bars grow to their real values", weight: 2.6 },
+      // ANCHORED HERE, NOT ON `bars`. A rendered anchor frame showed why:
+      // with `bars` anchored, the state that draws EVERY bar began exactly
+      // when the key token was spoken, so the frame of the narration saying
+      // "ninety" was an empty axis with four figures reading 0. That is a
+      // worse version of the counter bug — there, one number was wrong;
+      // here the whole picture was absent at the only moment anyone checks.
+      //
+      // This is not COMPARISON's case, where the anchored state introduces
+      // the second bar against a first that is already up: DATA_CHART's
+      // anchored state introduced all of them at once, so there was nothing
+      // left on screen to introduce them against.
+      //
+      // `resolves` because the bars are complete before this begins — the
+      // anchor picks one OUT, it does not build them.
+      { key: "highlight", action: "the bar that matters is picked out", weight: 1.6, anchored: true, resolves: true },
       { key: "read", action: "values sit adjacent to their bars", weight: 1.2 },
     ],
   },

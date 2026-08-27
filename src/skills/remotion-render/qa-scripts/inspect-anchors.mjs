@@ -245,7 +245,50 @@ for (const beat of staged) {
   }
 }
 
+/**
+ * THE ANCHOR FRAME MUST NOT BE EMPTY.
+ *
+ * Not a style preference — a correctness rule about the one frame anyone
+ * checks. Two scenes shipped violating it and neither could be caught by
+ * reading code:
+ *
+ *   DATA_CHART      anchored its `bars` state, so the frame of the
+ *                   narration saying "ninety" was an empty axis with four
+ *                   figures reading 0.
+ *   CINEMATIC_STATEMENT
+ *                   anchored its `subject` state, and since that phrase is
+ *                   the entire content of the terminal fallback, the anchor
+ *                   frame came back blank at 0.1% ink.
+ *
+ * The floor is deliberately low. It is not a quality bar — a frame at 1.2%
+ * ink can still be a thin diagram in a void, and this says nothing about
+ * that. It only catches "the picture had not arrived yet when the word was
+ * spoken", which is a different and worse defect.
+ */
+const ANCHOR_INK_FLOOR = 0.004; // 0.4% of sampled pixels
+
+const anchorRows = rows.filter((r) => r.tag === "anchor");
+const empty = anchorRows.filter((r) => r.ink < ANCHOR_INK_FLOOR);
+
 const reportPath = join(outDir, `${slug}-anchor-metrics.json`);
-writeFileSync(reportPath, JSON.stringify({ script: slug, channel: channel.id, frames: rows }, null, 2));
+writeFileSync(
+  reportPath,
+  JSON.stringify(
+    {
+      script: slug,
+      channel: channel.id,
+      anchorInkFloor: ANCHOR_INK_FLOOR,
+      emptyAtAnchor: empty.map((r) => ({ strategy: r.strategy, variant: r.variant, frame: r.frame, ink: r.ink })),
+      frames: rows,
+    },
+    null,
+    2
+  )
+);
 console.log(`\n${rows.length} frames -> ${outDir}`);
 console.log(`metrics -> ${reportPath}`);
+if (empty.length) {
+  console.log(`\nEMPTY AT THE ANCHOR (< ${(ANCHOR_INK_FLOOR * 100).toFixed(1)}% ink) — the frame the key word lands on has no picture:`);
+  for (const r of empty) console.log(`  ${r.strategy} v${r.variant} f${r.frame}: ${(r.ink * 100).toFixed(2)}%`);
+  process.exitCode = 1;
+}

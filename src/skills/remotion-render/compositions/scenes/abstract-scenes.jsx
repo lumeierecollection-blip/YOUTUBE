@@ -2,7 +2,7 @@ import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
   CANVAS_W, CANVAS_H, SAFE, Label, ease, seeded,
-  useStateProgress, EASE_OUT, EASE_IN_OUT,
+  useStateProgress, useValueProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf } from "../../visual/states.js";
 import { Plane, shotFrame } from "./stage.jsx";
@@ -161,8 +161,18 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
   const dur = beat.durationInFrames;
 
   const pField = useStateProgress(states, "field");
-  const pSubject = useStateProgress(states, "subject");
   const pDrift = progressOf(states, "drift", frame);
+  // THE STATEMENT LANDS ON THE ANCHOR, IT DOES NOT START THERE.
+  //
+  // `subject` is this strategy's anchored state, so driving the phrase from
+  // it put opacity 0 on the exact frame the key word is spoken — and this
+  // scene's entire content IS that phrase, so the rendered anchor frame
+  // came back blank. Measured: 0.1% ink, bbox 100x1%, no text at all.
+  //
+  // useValueProgress reaches exactly 1 at the anchor, which is what the
+  // channel config means by "the largest visual move lands at reveal": the
+  // words arrive as they are said, rather than beginning to arrive.
+  const pSubject = useValueProgress(states);
 
   // Decided on the plan (visual/text-budget.js), not here: the phrase has
   // to be countable by the render report, and three scene files each
@@ -202,7 +212,10 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
           so it barely moves, the way distance behaves. */}
       <Plane shot={shot} depth="far" states={states} durationInFrames={dur}>
         <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0 }}>
-          <path d={ridge.join(" ")} fill={colors.stroke} opacity={0.07 * eField} />
+          {/* 0.07 was invisible. These planes ARE the composition for the
+              terminal fallback, not background texture, and on a white-bg
+              channel (Money Mind) the whole frame rendered as blank paper. */}
+          <path d={ridge.join(" ")} fill={colors.stroke} opacity={0.26 * eField} />
         </svg>
       </Plane>
 
@@ -264,7 +277,7 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
                 return `L${x.toFixed(1)},${y.toFixed(1)}`;
               })
               .join(" ")} L${CANVAS_W + 60},${CANVAS_H} Z`}
-            fill={colors.stroke} opacity={0.1 * eField} />
+            fill={colors.stroke} opacity={0.32 * eField} />
         </svg>
       </Plane>
     </div>

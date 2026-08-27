@@ -481,6 +481,7 @@ to hide.
 | VIS-23 | Every import in the scene graph names something that is actually exported | `run-visual-tests.js` (esbuild `bundle: true` from `scenes/index.jsx` and `motion-graphics.jsx`) | 0 unresolved | 1 | BLOCKER | **PASS** - verified to fail on both real modes: an importer naming a helper that moved, and a re-export surface that drops a name 4 scenes import |
 | VIS-24 | No scene references an identifier nothing binds | `visual/scope-check.js` (`@babel/parser`, scope walk) via `run-visual-tests.js` | 0 free identifiers | 1 | BLOCKER | **PASS** - see 3.12.4; found TWO shipped `ReferenceError`s no other check could see |
 | VIS-25 | A sound is chosen for the MATERIAL the picture is made of | `sound-design.js` `MATERIAL_CHARACTER` + `assertSoundMapIsSound` + `run-visual-tests.js` (through `soundEventsForBeat`, not `pickAsset`) | different materials pick different characters | 1 | MINOR | **PASS** - `shot.material` was on every plan and read by nothing in the audio path; only `impact` / `emphasis` / `transition` can discriminate on a 26-file library and the guard fails if the map ever pretends otherwise |
+| VIS-26 | The anchor frame is not empty — the picture has arrived by the time the key word is spoken | `qa-scripts/inspect-anchors.mjs` (renderStill on each beat's real SRT anchor frame, ink measured from the pixels) | >=0.4% ink | 3 | MAJOR | **PASS** - see 3.12.5. Found THREE shipped instances no code reading would have caught: `DATA_CHART` (empty axis, four figures reading 0 on the frame saying "ninety"), `CINEMATIC_STATEMENT` (blank frame, 0.1% ink — the phrase IS the scene), `TRANSFORMATION` (0.34%, the plotted curve had zero length). The floor is deliberately low: it is not a quality bar, a frame at 1.2% can still be a thin diagram in a void |
 
 **3.12.1 - VIS-08 is frame-verified, not inferred.** The 150-metre geofence
 beat from the real ch-02 script was rendered through the production CLI and
@@ -573,6 +574,48 @@ for the whole function, so it does not model block scope, shadowing or the
 temporal dead zone, and it will not catch a use-before-declare. It catches
 exactly the class that shipped. Both bugs were re-introduced afterwards to
 confirm the check fails on them.
+
+**3.12.5 - VIS-26, and why the anchor frame gets its own check.** Every
+beat has one frame that matters more than the rest: the one where its key
+token is actually spoken, from the SRT. Three scenes shipped with nothing
+drawn on it, and all three were invisible to code review because each was
+individually reasonable:
+
+- `DATA_CHART` anchored its `bars` state, so the state that draws EVERY bar
+  began exactly when the key token was spoken. The frame of the narration
+  saying "ninety" was an empty axis with four figures reading 0.
+- `CINEMATIC_STATEMENT` anchored its `subject` state, and that phrase is the
+  entire content of the terminal fallback, so the frame came back blank —
+  0.1% ink, bbox 100x1%.
+- `TRANSFORMATION` anchored its `grow` state, which draws the whole plotted
+  curve; at the anchor the path had zero length. 0.34% ink in a 9%-tall band.
+
+This is NOT the same rule as the counter check above it. There the question
+was whether a figure contradicts the element it labels, and the answer
+depends on whether the anchored state introduces the quantity or resolves
+it. Here the question is whether ANYTHING is on screen, and an anchored
+state that introduces the entire composition always answers no.
+
+The fix in each case was to anchor the state that RESOLVES the picture
+rather than the one that builds it — `highlight` instead of `bars`, `settle`
+instead of `grow` — or, for the statement, to drive the phrase from
+`useValueProgress` so it lands on the anchor instead of starting there.
+
+**No structural check is claimed for this.** A rule like "the states before
+the anchor must outweigh it" was considered and rejected: it produces false
+positives on `SCALE_COMPARISON` and `CINEMATIC_STATEMENT`, both of which are
+correct for other reasons. The gate is the rendered pixel and nothing else,
+which is the honest position — the same reason this register keeps saying a
+rendered frame is the acceptance test.
+
+A related fix came out of the same measurements: `progressOf` now returns 1
+for a state with a window of one frame or less. When a sentence leads with
+its key figure the anchor lands on the beat's opening frame, every state
+before the anchored one is squeezed to a degenerate window, and those states
+read as not-yet-started on the one frame anyone is looking at.
+`SCALE_COMPARISON` measured 0.24% ink for exactly this reason. You cannot
+animate something in in a single frame; the honest reading is that it is
+established, not absent. That change alone took it to 3.0%.
 
 ---
 
