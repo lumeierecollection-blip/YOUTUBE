@@ -32,6 +32,7 @@ import { composeShot, composedStrategies, assertCompositionIsComplete, shotSigna
 import { assertSoundMapIsSound, buildSoundtrack, soundEventsForBeat, materialsWithCharacter, volumeFor, MIN_GAP_FRAMES, MAX_EVENTS_PER_BEAT, ROLE_TARGET_DB } from "./sound-design.js";
 import { SFX_LIBRARY } from "./sfx-library.js";
 import { undefinedIdentifiers } from "./scope-check.js";
+import { resolveImageAssets } from "../image-assets.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "..", "..", "..");
@@ -590,6 +591,58 @@ check("every scene component parses as JSX", () => {
     }
   }
   return failures.length === 0 || failures.join("; ");
+});
+
+check("an asset-library photo is reachable with the id the renderer passes", () => {
+  // A REAL PRODUCTION BUG, found by tracing rather than by a render.
+  //
+  // Both image sources are keyed by the slug form of the channel id:
+  // data/asset-library/index.json stores "channelId": "ch-01", the legacy
+  // manifests are b-roll-manifest-ch-01.json, and the files live under
+  // public/asset-library/ch-01/. render.js was passing its raw CLI argument
+  // instead, and scripts/render-and-qa.js invokes it with String(c.id) —
+  // so every lookup compared "1" against "ch-01" and returned nothing.
+  // Every photo in the library was unreachable, and IMAGE_EVIDENCE, whose
+  // only trigger is "a real asset exists for this section", could never
+  // fire on any beat of any video.
+  //
+  // Checked against the manifest that actually ships, so a re-keyed
+  // library or a reverted call site both fail here.
+  const manifestPath = join(ROOT, "data", "asset-library", "index.json");
+  if (!existsSync(manifestPath)) return true; // nothing catalogued yet
+  const lib = JSON.parse(readFileSync(manifestPath, "utf-8"));
+  const assets = lib.assets || [];
+  if (assets.length === 0) return true;
+
+  const all = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
+  const channels = all.channels || all;
+  const problems = [];
+  for (const asset of assets) {
+    const owner = channels.find((c) => c.channel_id === asset.channelId);
+    if (!owner) {
+      problems.push(`asset ${asset.id} is keyed "${asset.channelId}" which is no channel's channel_id`);
+      continue;
+    }
+    // The cue the asset was catalogued under must find it again through
+    // the real resolver, with the id render.js now passes.
+    const hit = resolveImageAssets([asset.query || asset.id], owner.channel_id, null);
+    if (!hit.length) {
+      problems.push(`asset ${asset.id} does not resolve for its own query "${asset.query}" under ${owner.channel_id}`);
+    }
+  }
+  // And the numeric form must NOT work, or the check proves nothing about
+  // which spelling the call site uses.
+  const sample = assets[0];
+  const numeric = channels.find((c) => c.channel_id === sample.channelId);
+  if (numeric && resolveImageAssets([sample.query || sample.id], String(numeric.id), null).length) {
+    problems.push("the numeric id resolves too — this check cannot detect the mismatch it exists for");
+  }
+  // The call site itself: passing the CLI argument is the bug.
+  const renderSrc = readFileSync(join(__dirname, "..", "render.js"), "utf-8");
+  if (/resolveImageAssets\([^)]*,\s*channelId\s*,/.test(renderSrc)) {
+    problems.push("render.js passes its raw CLI channelId to resolveImageAssets — must be channel.channel_id");
+  }
+  return problems.length === 0 || problems.join("; ");
 });
 
 check("no scene references an identifier that does not exist", () => {

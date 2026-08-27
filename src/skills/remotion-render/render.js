@@ -325,8 +325,23 @@ async function main() {
   // deep-sea imagery into a Money Mind budgeting render). Only trust a
   // manifest whose own topic_slug matches the script actually being
   // rendered — see broll.js's loadManifest.
+  //
+  // KEYED BY channel.channel_id, NOT THE CLI ARGUMENT. Both image sources
+  // are keyed by the slug form: data/asset-library/index.json stores
+  // `"channelId": "ch-01"`, the legacy manifests are
+  // b-roll-manifest-ch-01.json, and the files live under
+  // public/asset-library/ch-01/ and public/b-roll/ch-01/. The pipeline
+  // invokes this CLI with the NUMERIC id — scripts/render-and-qa.js passes
+  // String(c.id), and data/renders/1 exists to prove it — so passing the
+  // raw argument through made every asset-library lookup compare "1"
+  // against "ch-01" and return nothing. Every photo in the library was
+  // unreachable in production, which is also why IMAGE_EVIDENCE (the one
+  // strategy with no text detector — it fires only when a real asset
+  // exists) had never rendered a single frame. loadChannel() already
+  // accepts either form, so channel.channel_id is the one spelling both
+  // sides agree on.
   for (const section of sections) {
-    section.bRollFiles = resolveImageAssets(section.bRoll || [], channelId, script.topic_slug);
+    section.bRollFiles = resolveImageAssets(section.bRoll || [], channel.channel_id, script.topic_slug);
   }
   const withBroll = sections.filter((s) => (s.bRollFiles || []).length > 0).length;
   console.log(`B-roll: ${withBroll}/${sections.length} sections have real imagery`);

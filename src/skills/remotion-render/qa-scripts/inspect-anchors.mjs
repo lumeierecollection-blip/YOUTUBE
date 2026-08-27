@@ -41,6 +41,7 @@ import { buildMgPackage } from "../compositions/mg-package.js";
 import { chunkTextClauseAware } from "../compositions/beats.js";
 import { paletteFromHues } from "../styles/tokens.js";
 import { narrationSections } from "../../../utils/script-narration.js";
+import { resolveImageAssets } from "../image-assets.js";
 import { findChrome } from "../find-chrome.js";
 import { decodePNG } from "../decode-png.js";
 
@@ -77,13 +78,29 @@ const sections = narrationSections(script)
     beats: Array.isArray(s.beats) ? s.beats : null,
   }));
 
+// IMAGES COME FROM THE REAL RESOLVER, exactly as render.js does it.
+//
+// render-clip.mjs stubs this to `() => null`, which is why IMAGE_EVIDENCE
+// had never once been rendered: the strategy has no text detector — it
+// fires only when a real sourced asset exists for the section — so a stub
+// makes it unreachable by construction. Going through resolveImageAssets
+// means a photo appears only if the asset library genuinely has a match,
+// with the licence and attribution it was catalogued with. Nothing is
+// fabricated to make the strategy fire; if nothing matches, it stays
+// uncovered and the report says so.
+for (const section of sections) {
+  section.bRollFiles = resolveImageAssets(section.bRoll || [], channel.channel_id, script.topic_slug);
+}
+const withImagery = sections.filter((s) => (s.bRollFiles || []).length > 0).length;
+console.log(`imagery: ${withImagery}/${sections.length} sections resolved a real asset`);
+
 const mg = buildMgPackage(srtText, {
   sections,
   hook: script.hook || null,
   channel,
   iconMap: channel.icon_map || null,
-  bRollFiles: [],
-  imageForSection: () => null,
+  bRollFiles: sections.flatMap((s) => s.bRollFiles || []),
+  imageForSection: (idx) => (sections[idx] && sections[idx].bRollFiles && sections[idx].bRollFiles[0]) || null,
 });
 
 const palette =
