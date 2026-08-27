@@ -5,6 +5,7 @@ import {
   useStateProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
+import { shotFrame } from "./stage.jsx";
 
 /**
  * Structure scenes — how things are ARRANGED, rather than how big they are.
@@ -41,7 +42,9 @@ function keyPhrase(text, maxWords = 3) {
 export function TimelineScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
-  const sup = (beat.visualPlan && beat.visualPlan.supporting) || {};
+  const plan = beat.visualPlan || {};
+  const sup = plan.supporting || {};
+  const shot = plan.shot || null;
   const years = (sup.years || []).slice(0, 5);
 
   const pAxis = useStateProgress(states, "axis");
@@ -49,9 +52,46 @@ export function TimelineScene({ beat, colors, fontFamily }) {
   const pFocus = useStateProgress(states, "focus");
   const pCons = useStateProgress(states, "consequence");
 
-  const x0 = 148, w = 680, axisY = 760;
-  // A single dated event still gets a real axis with a before/after span,
-  // so "the law changed in 1998" reads as a moment IN time, not a caption.
+  /**
+   * WHAT THIS USED TO BE
+   *
+   * A 680px hairline at a fixed y=760 with decade ticks, two endpoint dots
+   * and year labels. Measured on a rendered frame it covered 0.2% of the
+   * picture in a 70x9% band — the thinnest scene in the system. It also
+   * shared its whole primitive vocabulary (circle + line) with
+   * RELATIONSHIP, so the two were structurally one picture.
+   *
+   * WHAT IT DRAWS NOW: CHRONOLOGICAL SPACE.
+   *
+   * Time runs across a receding ground rather than along a rule. Each dated
+   * event is a MARKER STANDING IN THAT SPACE — a post with a footing on the
+   * ground and a shadow cast along it — so a date has physical presence and
+   * the gap between two dates is legible as distance travelled. The
+   * decisive event stands taller and carries accent; everything after it
+   * sits on ground the consequence has visibly changed.
+   *
+   * The camera tracks right (composition.js gives TIMELINE the TRACK_RIGHT
+   * move), so the frame travels through the period instead of watching it
+   * from outside, and the AtmosphereGround behind it supplies the horizon
+   * and distance markers the earlier version had no room for.
+   *
+   * Text stays to dates. A year is one of the few things a viewer genuinely
+   * cannot infer from a picture.
+   */
+  const f = shotFrame(shot);
+  // The ground sits on the SAME horizon AtmosphereGround draws (0.6 of
+  // frame height). A first version put it at f.cy + 22% of the band and a
+  // rendered frame showed two competing horizons in one shot — the shared
+  // ground's and the scene's — with the markers stranded below both.
+  const groundY = CANVAS_H * 0.6;
+  // Inset hard. Spreading the span across the full frame width put 1998 and
+  // 2015 on the left and right edges, and the camera track clipped one of
+  // them off entirely. Endpoints need room to be endpoints.
+  const x0 = f.x + f.w * 0.26;
+  const w = f.w * 0.48;
+
+  // A single dated event still gets a real span, so "the law changed in
+  // 1998" reads as a moment IN time rather than a caption.
   const span = years.length >= 2
     ? { lo: years[0], hi: years[years.length - 1] }
     : years.length === 1
@@ -64,73 +104,117 @@ export function TimelineScene({ beat, colors, fontFamily }) {
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
-      <Rule x={x0} y={axisY} w={w} p={pAxis} color={colors.stroke} thickness={2} />
-
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {/* Decade ticks — gives the axis real scale rather than two dots */}
-        {Array.from({ length: 11 }).map((_, i) => {
-          const t = i / 10;
-          const x = x0 + w * t;
-          const a = ease(Math.max(0, Math.min(1, pAxis * 2 - t)));
-          return <line key={i} x1={x} y1={axisY} x2={x} y2={axisY + 10} stroke={colors.stroke} strokeWidth={1.5} opacity={0.55 * a} />;
-        })}
+        {/* ── the ground time runs across ──────────────────────────── */}
+        <g opacity={ease(pAxis)}>
+          {/* Receding bands: the surface has depth, so markers stand ON
+              something instead of floating over a rule. */}
+          {Array.from({ length: 7 }).map((_, i) => {
+            const t = i / 7;
+            const y = groundY + Math.pow(t, 1.7) * f.h * 0.42;
+            return (
+              <line key={`g${i}`} x1={x0 - f.w * 0.1} y1={y} x2={x0 + w + f.w * 0.1} y2={y}
+                stroke={colors.stroke} strokeWidth={2} opacity={0.3 * (1 - t * 0.55)} />
+            );
+          })}
+          <line x1={0} y1={groundY} x2={CANVAS_W} y2={groundY}
+            stroke={colors.stroke} strokeWidth={4} opacity={0.75} />
+          {/* Interval marks: real scale on the ground, not ticks on a rule. */}
+          {Array.from({ length: 13 }).map((_, i) => {
+            const t = i / 12;
+            const x = x0 + w * t;
+            const a = ease(Math.max(0, Math.min(1, pAxis * 2 - t)));
+            return (
+              <line key={`t${i}`} x1={x} y1={groundY} x2={x} y2={groundY + 16}
+                stroke={colors.stroke} strokeWidth={2} opacity={0.55 * a} />
+            );
+          })}
+        </g>
 
+        {/* ── the period the sentence is about, as ground between the
+               first and last date. A timeline's subject is the SPAN, and
+               leaving it as bare floor made the shot read as two posts in
+               a void. Derived from the stated dates, not invented. ────── */}
+        {years.length >= 2 && pEvents > 0 ? (
+          <rect
+            x={xFor(years[0])}
+            y={groundY}
+            width={Math.max(0, (xFor(years[years.length - 1]) - xFor(years[0]))) * ease(pEvents)}
+            height={CANVAS_H - groundY}
+            fill={colors.stroke}
+            opacity={0.07}
+          />
+        ) : null}
+
+        {/* ── events as markers standing in the space ───────────────── */}
         {years.map((y, i) => {
           const a = ease(Math.max(0, Math.min(1, pEvents * years.length - i)));
           if (a <= 0.01) return null;
           const x = xFor(y);
           const isFocus = y === focusYear && pFocus > 0;
-          const stemH = 92 + (i % 2) * 44;
+          // Uneven heights: real events are not the same size as each other,
+          // and an even row of posts reads as a chart axis again.
+          const postH = (f.h * 0.5) * (0.72 + seeded(i * 17 + 3) * 0.5) * (isFocus ? 1.4 : 1);
+          const col = isFocus ? colors.accent : colors.stroke;
           return (
-            <g key={y} opacity={pFocus > 0 && !isFocus ? 0.4 : 1}>
-              <line x1={x} y1={axisY} x2={x} y2={axisY - stemH * a} stroke={isFocus ? colors.accent : colors.stroke} strokeWidth={isFocus ? 3 : 2} />
-              <circle cx={x} cy={axisY} r={isFocus ? 9 : 6} fill={isFocus ? colors.accent : colors.stroke} opacity={a} />
+            <g key={y} opacity={pFocus > 0 && !isFocus ? 0.42 : 1}>
+              {/* Shadow along the ground — the cheapest, most reliable way
+                  to say "this object is standing on that surface". */}
+              <line x1={x} y1={groundY} x2={x + postH * 0.42} y2={groundY + 13}
+                stroke={col} strokeWidth={2} opacity={0.2 * a} />
+              <line x1={x} y1={groundY} x2={x} y2={groundY - postH * a}
+                stroke={col} strokeWidth={isFocus ? 6 : 4} opacity={0.9} />
+              {/* Footing where it meets the ground. */}
+              <line x1={x - 11} y1={groundY} x2={x + 11} y2={groundY}
+                stroke={col} strokeWidth={isFocus ? 6 : 4} opacity={0.9 * a} />
+              {/* The head of the marker carries the weight of the event. */}
+              <rect x={x - (isFocus ? 13 : 9)} y={groundY - postH * a - (isFocus ? 15 : 11)}
+                width={(isFocus ? 26 : 18)} height={(isFocus ? 15 : 11)}
+                fill={col} opacity={a} />
               {isFocus ? (
-                <circle cx={x} cy={axisY} r={9 + 22 * ease(pFocus)} fill="none" stroke={colors.accent} strokeWidth={2} opacity={0.6 * (1 - ease(pFocus))} />
+                <circle cx={x} cy={groundY} r={14 + 40 * ease(pFocus)}
+                  fill="none" stroke={colors.accent} strokeWidth={2}
+                  opacity={0.5 * (1 - ease(pFocus))} />
               ) : null}
             </g>
           );
         })}
 
-        {/* What changed after the decisive moment: the axis beyond it
-            becomes the accent, so "after" is visibly a different regime. */}
-        {pCons > 0 && focusYear != null ? (
-          <line
-            x1={xFor(focusYear)} y1={axisY}
-            x2={xFor(focusYear) + (x0 + w - xFor(focusYear)) * ease(pCons)} y2={axisY}
-            stroke={colors.accent} strokeWidth={5}
+        {/* ── what the decisive moment changed: ground beyond it ────── */}
+        {pCons > 0 && focusYear !== null ? (
+          <rect
+            x={xFor(focusYear)}
+            y={groundY}
+            width={Math.max(0, (x0 + w - xFor(focusYear))) * ease(pCons)}
+            height={CANVAS_H - groundY}
+            fill={colors.accent}
+            opacity={0.09}
           />
         ) : null}
       </svg>
 
+      {/* Dates sit at the foot of their own marker, in the space, rather
+          than in a caption row under an axis. */}
       {years.map((y, i) => {
         const a = ease(Math.max(0, Math.min(1, pEvents * years.length - i)));
-        if (a <= 0.01) return null;
         const isFocus = y === focusYear && pFocus > 0;
-        const stemH = 92 + (i % 2) * 44;
         return (
-          <Label key={y} x={xFor(y)} y={axisY - stemH - 40} text={String(y)}
+          <Label
+            key={y}
+            x={xFor(y)}
+            y={groundY + 30}
+            text={String(y)}
             color={isFocus ? colors.accent : colors.textDim}
-            size={isFocus ? 46 : 34} weight={800} tracking={1} align="center"
-            opacity={a * (pFocus > 0 && !isFocus ? 0.5 : 1)} fontFamily={fontFamily} mono />
+            size={isFocus ? 30 : 24}
+            weight={800}
+            tracking={1.5}
+            align="center"
+            opacity={a}
+            fontFamily={fontFamily}
+            halo={colors.bg}
+          />
         );
       })}
-
-      {/* Axis endpoints, but only where they are NOT already an event label.
-          With two dated events the span ends exactly on them, and drawing
-          both put "1998" on screen twice — the same fact stated twice, which
-          is the duplication ENC-29 exists to prevent in the caption stream. */}
-      {years.includes(span.lo) ? null : (
-        <Label x={x0} y={axisY + 26} text={String(span.lo)} color={colors.textDim} size={22} tracking={2} opacity={pAxis} fontFamily={fontFamily} mono />
-      )}
-      {years.includes(span.hi) ? null : (
-        <Label x={x0 + w} y={axisY + 26} text={String(span.hi)} color={colors.textDim} size={22} tracking={2} align="right" opacity={pAxis} fontFamily={fontFamily} mono />
-      )}
-
-      {pCons > 0 && focusYear != null ? (
-        <Label x={(xFor(focusYear) + x0 + w) / 2} y={axisY + 62} text="AFTER"
-          color={colors.accent} size={24} tracking={3} align="center" opacity={pCons} fontFamily={fontFamily} />
-      ) : null}
     </div>
   );
 }

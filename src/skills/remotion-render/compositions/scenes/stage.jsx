@@ -130,6 +130,38 @@ export function Plane({ shot, depth = "subject", states, durationInFrames, child
   );
 }
 
+/**
+ * The rect a scene's subject should occupy, from the shot.
+ *
+ * WHY THIS EXISTS AS A HELPER
+ *
+ * An audit found only two of sixteen scenes reading shot.coverage or
+ * shot.anchorY; the other fourteen laid out against hardcoded pixel
+ * constants. They inherited ground, camera and falloff from the router and
+ * still drew their subject at the same size in the same place, which is
+ * most of why the composition layer had not yet changed their measured ink.
+ *
+ * Converting a scene by hand is a per-file negotiation with whatever
+ * constants it happened to pick. This turns it into one call: ask for the
+ * frame, lay out inside it. `bleed` framings deliberately return a rect
+ * LARGER than the canvas, because a world that stops at the frame edge
+ * reads as a diagram on a page.
+ */
+export function shotFrame(shot) {
+  if (!shot) {
+    return { x: 0, y: 0, w: CANVAS_W, h: CANVAS_H, cx: CANVAS_W / 2, cy: CANVAS_H / 2 };
+  }
+  const cov = shot.coverage;
+  // Width is driven by coverage against the frame's short axis; height
+  // follows the subject band rather than the whole 9:16, because a subject
+  // that fills 1920px tall is not composed, it is stretched.
+  const w = CANVAS_W * (shot.bleed ? Math.max(cov, 1.05) : cov);
+  const h = CANVAS_H * 0.46 * (shot.bleed ? Math.max(cov, 1.05) : cov);
+  const cx = CANVAS_W * shot.anchorX;
+  const cy = CANVAS_H * shot.anchorY;
+  return { x: cx - w / 2, y: cy - h / 2, w, h, cx, cy };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUND — what the world is made of
 // ─────────────────────────────────────────────────────────────────────────────
