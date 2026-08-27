@@ -447,12 +447,3 @@ function finalize(strategy, payload, analysis, beat, ctx, provenance, fallbacks,
     variantCount: def.variants || 1,
   };
 }
-
-/**
- * Convenience for tests and diagnostics: plan a whole beat array.
- */
-export function planAll(beats, ctx = {}) {
-  return beats.map((b) =>
-    planVisual(b, { ...ctx, asset: ctx.assetForSection ? ctx.assetForSection(b.sectionIndex) : ctx.asset })
-  );
-}

@@ -303,10 +303,6 @@ export const STRATEGY_PREFERENCE = [
  */
 export const TERMINAL_STRATEGY = "CINEMATIC_STATEMENT";
 
-export function strategyNames() {
-  return Object.keys(STRATEGIES);
-}
-
 export function getStrategy(name) {
   return STRATEGIES[name] || null;
 }

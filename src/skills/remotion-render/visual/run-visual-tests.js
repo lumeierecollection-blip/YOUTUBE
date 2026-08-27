@@ -18,7 +18,7 @@
  */
 
 import { readFileSync, readdirSync, existsSync } from "fs";
-import { join, dirname, basename } from "path";
+import { join, dirname, basename, sep } from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
 import { STRATEGIES, STRATEGY_PREFERENCE, TERMINAL_STRATEGY, assertStrategyRegistryIsSound } from "./strategies.js";
@@ -352,6 +352,42 @@ check("summarizeVisuals flags a beat that still renders an icon hero", () => {
   const beats = [{ text: "x", archetype: "STATEMENT", durationInFrames: 120, visualPlan: null, visualStates: [], scene: { iconRole: "none", icon: "banknote" } }];
   const s = summarizeVisuals(beats);
   return s.warnings.some((w) => w.id === "VIS-ICON-HERO") || "no VIS-ICON-HERO warning";
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+console.log("\nno dead code");
+
+check("no module exports something nothing imports", () => {
+  // Two pass-2 leftovers (director.planAll, strategies.strategyNames) were
+  // exported and never called by anything, including this suite. An export
+  // with no reader is a maintenance cost and, worse, reads as a supported
+  // entry point that is actually untested.
+  const roots = [
+    join(__dirname),
+    join(__dirname, "..", "compositions"),
+    join(__dirname, "..", "compositions", "scenes"),
+    join(__dirname, "..", "qa-scripts"),
+  ];
+  const sources = [];
+  for (const dir of roots) {
+    for (const f of readdirSync(dir)) {
+      if (!/\.(js|jsx|mjs)$/.test(f)) continue;
+      sources.push({ file: join(dir, f), src: readFileSync(join(dir, f), "utf-8") });
+    }
+  }
+  sources.push({ file: "render.js", src: readFileSync(join(__dirname, "..", "render.js"), "utf-8") });
+  const corpus = sources.map((s) => s.src).join("\n");
+
+  const dead = [];
+  for (const { file, src } of sources) {
+    if (!file.includes(`${sep}visual${sep}`)) continue; // this pass's own modules
+    for (const m of src.matchAll(/export (?:function|const) (\w+)/g)) {
+      const name = m[1];
+      const uses = [...corpus.matchAll(new RegExp(`\\b${name}\\b`, "g"))].length;
+      if (uses <= 1) dead.push(`${basename(file)}: ${name}`);
+    }
+  }
+  return dead.length === 0 || `exported but never imported: ${dead.join(", ")}`;
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
