@@ -65,11 +65,11 @@
       "camera": "drift",
       "depth": "layered",
       "file": "fixture-small-purchases-COMPARISON-v0-anchor-f910.png",
-      "ink": 0.006921296296296296,
+      "ink": 0.006905864197530864,
       "bboxW": 0.6462962962962963,
       "bboxH": 0.42291666666666666,
-      "cx": 0.3874246459391387,
-      "cy": 0.6665845062244519,
+      "cx": 0.38702824332712604,
+      "cy": 0.6667341713221602,
       "empty": false
     },
     {
@@ -82,11 +82,11 @@
       "camera": "drift",
       "depth": "deep",
       "file": "fixture-small-purchases-CINEMATIC_STATEMENT-v0-anchor-f1028.png",
-      "ink": 0.01798418209876543,
+      "ink": 0.01746141975308642,
       "bboxW": 0.9981481481481481,
-      "bboxH": 0.38125,
-      "cx": 0.45256236070888006,
-      "cy": 0.7482209097572312,
+      "bboxH": 0.49270833333333336,
+      "cx": 0.4519674391581152,
+      "cy": 0.6760013901163647,
       "empty": false
     }
   ]

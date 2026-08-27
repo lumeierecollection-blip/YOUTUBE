@@ -192,8 +192,17 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
   // sets it low and near the ground; ISOLATED lifts it into the haze and
   // pushes it left, which is what "isolated" should look like.
   const textCx = f.cx;
-  const textY = Math.min(f.cy, horizon - 90);
-  const stakeH = Math.max(60, horizon - textY - 40);
+  // A CLEAN VERTICAL STACK: ground, then the stake standing on it, then the
+  // words above the stake. The first version derived the stake's height
+  // from the text's top edge, and on a rendered frame the two overlapped —
+  // "CARRIED BALANCE" was struck through by its own stake and sat across
+  // the horizon line. Stack downward from the horizon instead, and let the
+  // text sit on top of the stake rather than around it.
+  const stakeH = Math.max(90, f.h * 0.2);
+  const stakeTop = horizon - stakeH;
+  // Positioned by its BOTTOM edge, so a phrase that wraps to two lines
+  // grows upward into empty sky instead of down through the stake.
+  const textBottom = CANVAS_H - (stakeTop - 26);
 
   // A far ridge: deterministic, irregular, and BELOW the eye — it sits on
   // the horizon rather than floating. Seeded, so a re-render is identical.
@@ -243,7 +252,7 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
             position: "absolute",
             left: Math.max(SAFE.left, textCx - f.w * 0.44),
             width: Math.min(f.w * 0.88, SAFE.right - SAFE.left),
-            top: textY,
+            bottom: textBottom,
             textAlign: shot && shot.anchorX < 0.45 ? "left" : "center",
             opacity: eSubject,
             transform: `translateY(${(1 - eSubject) * 20 - settle * 6}px)`,
