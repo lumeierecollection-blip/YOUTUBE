@@ -184,6 +184,11 @@ export const STRATEGIES = {
 
   IMAGE_EVIDENCE: {
     scene: "ImageEvidenceScene",
+    // Reached by a FACT, not a reading: whether a real sourced asset exists
+    // for this section (director.js fromDeterministic). Declared so the
+    // reachability check knows this is deliberate and not a missing
+    // detector — the distinction the DATA_CHART hole turned on.
+    reachedBy: "asset",
     intent: "a real sourced photograph, shown for a stated reason",
     dataNeeds: ["asset"],
     iconRole: "none",
@@ -258,6 +263,8 @@ export const STRATEGIES = {
 
   CINEMATIC_STATEMENT: {
     scene: "CinematicStatementScene",
+    reachedBy: "terminal", // the fallback of last resort; never detected
+
     intent: "no richer representation was available — compose the frame anyway",
     dataNeeds: [],
     iconRole: "none",

@@ -1,0 +1,56 @@
+{
+  "_fixture_note": "TEST FIXTURE — NOT RESEARCHED CONTENT, NOT FOR PUBLICATION. Written by hand for one purpose: the three render-test scripts exercise 12 of the 16 registered visual strategies, leaving DATA_CHART, RELATIONSHIP, SCALE_COMPARISON and IMAGE_EVIDENCE with no rendered evidence at all. A strategy that has never been rendered is a strategy nobody has checked. Every figure below is ILLUSTRATIVE and was invented to trigger a detector, not researched. Deliberately NOT under data/research/ — this repo's grounding rule (CLAUDE.md) forbids presenting invented numbers as researched, so this file must never reach TTS, publish, or a channel's research directory. IMAGE_EVIDENCE is not covered here because it needs a real sourced photograph; a fixture cannot supply one without fabricating provenance, so it stays uncovered and is reported as such.",
+  "channel_id": "1",
+  "topic_slug": "fixture-uncovered-strategies",
+  "format": "shorts",
+  "hook": "Three things the numbers show once you put them side by side.",
+  "sections": [
+    {
+      "id": "chart",
+      "timing": "0:00-0:14",
+      "voiceover": "Across the four regions the figures were forty in the north, sixty five in the south, thirty in the east and ninety in the west.",
+      "beats": [
+        {
+          "text": "Four regions compared",
+          "archetype": "PROGRESS",
+          "anchor_token": "ninety",
+          "data": {
+            "series": [
+              { "label": "NORTH", "value": 40 },
+              { "label": "SOUTH", "value": 65 },
+              { "label": "EAST", "value": 30 },
+              { "label": "WEST", "value": 90 }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "relationship",
+      "timing": "0:14-0:26",
+      "voiceover": "The regulator, the clearing house, the custodian bank and the exchange all depend on each other, and each one is connected to every other.",
+      "beats": [
+        {
+          "text": "Four parties connected",
+          "archetype": "STATEMENT",
+          "anchor_token": "connected",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "id": "scale",
+      "timing": "0:26-0:38",
+      "voiceover": "Seventy percent of the entire field was taken up by that single holding, which is far more than anyone assumed.",
+      "beats": [
+        {
+          "text": "Seventy percent of the field",
+          "archetype": "PROGRESS",
+          "anchor_token": "seventy percent",
+          "data": {}
+        }
+      ]
+    }
+  ],
+  "sources_used": []
+}

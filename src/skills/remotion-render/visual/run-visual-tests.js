@@ -355,6 +355,56 @@ check("summarizeVisuals flags a beat that still renders an icon hero", () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+console.log("\nevery strategy is actually reachable");
+
+check("every strategy the director can prefer has a way to be selected", () => {
+  // The registry guard checked that every strategy is IN STRATEGY_PREFERENCE.
+  // It never checked the other direction — that a listed strategy has a
+  // detector — and two did not: DATA_CHART and SCALE_COMPARISON sat in the
+  // preference list with no entry in the signals table, so
+  // `if (!signal) continue` skipped them on every beat of every video. They
+  // were reachable only through an authored `visual.strategy` block, which
+  // no real script has yet written (authoredVisualPlanRatio is 0 on all
+  // three test renders). Dead in practice while looking wired.
+  const signals = Object.keys(analyzeBeat({ text: "probe", archetype: "STATEMENT", data: {} }).signals);
+  const unreachable = [];
+  for (const name of STRATEGY_PREFERENCE) {
+    if (signals.includes(name)) continue;
+    const how = STRATEGIES[name] && STRATEGIES[name].reachedBy;
+    if (how === "asset" || how === "terminal") continue; // declared, deliberate
+    unreachable.push(`${name} has no detector and no reachedBy declaration`);
+  }
+  return unreachable.length === 0 || unreachable.join("; ");
+});
+
+check("a comparison is between exactly two things", () => {
+  // ComparisonScene draws two columns and slices the series to 2, so
+  // accepting more silently DISCARDED real stated values.
+  const four = [
+    { label: "NORTH", value: 40 }, { label: "SOUTH", value: 65 },
+    { label: "EAST", value: 30 }, { label: "WEST", value: 90 },
+  ];
+  const plan = planVisual(
+    { text: "Four regions compared", archetype: "PROGRESS", anchor_token: "ninety", data: { series: four } },
+    { sectionText: "The figures were forty, sixty five, thirty and ninety across the four regions." }
+  );
+  if (plan.strategy !== "DATA_CHART") return `four points routed to ${plan.strategy}`;
+  const kept = (plan.supporting.series || []).length;
+  return kept === 4 || `only ${kept} of 4 stated values survived to the scene`;
+});
+
+check("a magnitude with no reference is not a scale comparison", () => {
+  // "five percent" alone has nothing to be scaled against; only "N percent
+  // OF the <thing>" does. Without this the detector would swallow every
+  // percentage in the corpus.
+  const plan = planVisual(
+    { text: "Rates rose to five percent", archetype: "PROGRESS", anchor_token: "five percent", data: {} },
+    { sectionText: "Rates rose to five percent last year." }
+  );
+  return plan.strategy !== "SCALE_COMPARISON" || "a bare percentage was read as a scale comparison";
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 console.log("\nthe scenes actually compile");
 
 check("every scene component parses as JSX", () => {

@@ -383,8 +383,16 @@ function sidesFrom(text) {
 /** COMPARISON: two quantities — or two positions — set against each other. */
 export function detectComparison(text, numbers, series) {
   const t = lc(text);
-  if (series.length >= 2) {
-    return { confidence: COMPARE.test(t) ? 0.9 : 0.66, pairs: series.slice(0, 5) };
+  // TWO things. ComparisonScene draws exactly two columns and slices the
+  // series to 2, so accepting three or more silently DISCARDED the rest: a
+  // beat stating four regional figures rendered two of them and threw away
+  // the other two, asserting a two-way comparison the narration never made.
+  // Three or more real points is a chart, and DATA_CHART is what draws one.
+  if (series.length === 2) {
+    return { confidence: COMPARE.test(t) ? 0.9 : 0.66, pairs: series.slice(0, 2) };
+  }
+  if (series.length > 2) {
+    return { confidence: 0.2, missing: `${series.length} series points is a chart, not a two-way comparison` };
   }
   if (numbers.length >= 2 && COMPARE.test(t)) {
     return {
@@ -397,6 +405,68 @@ export function detectComparison(text, numbers, series) {
     return { confidence: 0.68, qualitative: true, ...sides };
   }
   if (COMPARE.test(t)) return { confidence: 0.36, missing: "comparison language but only one quantity" };
+  return null;
+}
+
+/**
+ * DATA_CHART: three or more real values that belong on one axis.
+ *
+ * This detector did not exist. DATA_CHART sat in STRATEGY_PREFERENCE with
+ * no entry in the signals table, so `if (!signal) continue` skipped it on
+ * every beat and the strategy was unreachable except through an authored
+ * `visual.strategy` block — which no real script has yet written. Meanwhile
+ * COMPARISON accepted any series of two or more and dropped everything past
+ * the second point.
+ *
+ * Deliberately requires >= 3: two values are a comparison, and COMPARISON
+ * composes two better than a bar chart does.
+ */
+export function detectDataChart(text, numbers, series) {
+  if (series.length >= 3) {
+    return { confidence: 0.85, pairs: series.slice(0, 5) };
+  }
+  // Several bare quantities plus explicit enumeration language also plot.
+  if (series.length === 0 && numbers.length >= 3 && CHART_LANGUAGE.test(lc(text))) {
+    return {
+      confidence: 0.55,
+      pairs: numbers.slice(0, 5).map((n) => ({ label: "", value: n.value, unit: n.unit })),
+    };
+  }
+  return null;
+}
+
+const CHART_LANGUAGE = /\b(each|per|across|respectively|breakdown|by (?:region|year|month|category|quarter|country|state)|figures? (?:were|are)|ranged? from)\b/i;
+
+// "of the <thing>" — the reference that gives the magnitude its meaning.
+const SHARE_REFERENCE = /\bof\s+(?:the\s+)?(?:entire\s+|whole\s+|total\s+|all\s+(?:the\s+)?)?([a-z]+)/i;
+const TIMES_LARGER = /\btimes\s+(?:the\s+)?(?:size|area|weight|length|height|number|amount|volume)\b/i;
+
+/**
+ * SCALE_COMPARISON: how big a number is, against something that gives it size.
+ *
+ * Also had no detector, for the same reason and with the same effect. The
+ * cases it is for are "seventy percent of the field" and "four times the
+ * size of X" — a magnitude that means nothing without a reference, which is
+ * exactly what a bare hero number fails to supply.
+ */
+export function detectScaleComparison(text, numbers) {
+  const t = lc(text);
+
+  // Read the NUMBER from the shared extractor rather than from a regex of
+  // this detector's own. A first version matched digits only and missed
+  // "Seventy percent of the entire field" outright, which is precisely the
+  // sentence this strategy exists for — extractNumbers already composes
+  // word numerals and carries the unit.
+  const pct = numbers.find((n) => n.kind === "percent" || /^%$|percent|per\s?cent/i.test(n.unit || ""));
+  if (pct) {
+    const ref = SHARE_REFERENCE.exec(t.slice(pct.index));
+    if (ref) return { confidence: 0.8, value: pct.value, unit: "%", reference: ref[1] };
+  }
+
+  const times = numbers.find((n) => /^times$/i.test(n.unit || ""));
+  if (times && TIMES_LARGER.test(t)) {
+    return { confidence: 0.62, value: times.value, unit: "x", reference: "" };
+  }
   return null;
 }
 
@@ -499,6 +569,8 @@ export function analyzeBeat(beat, opts = {}) {
       PROCESS: detectProcess(haystack, numbersWithSeries),
       TIMELINE: detectTimeline(haystack),
       COMPARISON: detectComparison(haystack, numbersWithSeries, series),
+      DATA_CHART: detectDataChart(haystack, numbersWithSeries, series),
+      SCALE_COMPARISON: detectScaleComparison(haystack, numbersWithSeries),
       CAUSE_EFFECT: detectCauseEffect(haystack),
       BEFORE_AFTER: detectBeforeAfter(haystack),
       DOCUMENT_EVIDENCE: detectDocument(haystack),
@@ -521,6 +593,8 @@ export function analyzeBeat(beat, opts = {}) {
             PROCESS: detectProcess(both, ctxNumbers),
             TIMELINE: detectTimeline(both),
             COMPARISON: detectComparison(both, ctxNumbers, series),
+            DATA_CHART: detectDataChart(both, ctxNumbers, series),
+            SCALE_COMPARISON: detectScaleComparison(both, ctxNumbers),
             CAUSE_EFFECT: detectCauseEffect(both),
             BEFORE_AFTER: detectBeforeAfter(both),
             DOCUMENT_EVIDENCE: detectDocument(both),
