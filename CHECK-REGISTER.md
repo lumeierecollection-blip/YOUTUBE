@@ -617,6 +617,39 @@ read as not-yet-started on the one frame anyone is looking at.
 animate something in in a single frame; the honest reading is that it is
 established, not absent. That change alone took it to 3.0%.
 
+**3.12.6 - WHAT THE PIXEL AUDIT STILL SAYS, AFTER ALL OF THIS.** Twenty-two
+anchor frames rendered through the real composition across four scripts,
+measured for ink coverage, bounding box and centroid. The honest summary:
+
+| | before this pass | after |
+|---|---|---|
+| median anchor ink | 1.4% | 1.4% |
+| frames under 1% ink | 9 / 22 | 7 / 22 |
+| frames empty at the anchor | 3 | 0 |
+| `GEOSPATIAL_RADIUS` | 35-47% | 32-46% |
+
+Bounding boxes moved a lot — `DOCUMENT_EVIDENCE` 62x41% to 85x78%,
+`VISUAL_METAPHOR` 82x36% to 98x81%, `PROCESS` 55x94% to 96x94%,
+`SCALE_COMPARISON` 95x22% to 100x44% — so compositions now reach across the
+frame instead of sitting in a band. **Ink did not move.** The scenes are
+wider, not heavier.
+
+**`GEOSPATIAL_RADIUS` is still the only scene that fills its frame, by an
+order of magnitude, and it is still the only one nobody called a template.**
+That was the finding at the start of this pass and it is the finding at the
+end of it. The difference is not the subject and it is no longer ground,
+depth, framing or camera — every scene has those now. It is that the map
+draws MASS (filled blocks, a filled radius, a street grid with weight) while
+the other fifteen draw LINE (2-4px strokes on an empty field). At
+1080x1920 a 3px stroke is 0.28% of the width; you cannot reach 30% ink with
+strokes, whatever you stage them on.
+
+Closing that gap means giving the other fifteen scenes real filled mass, and
+that is per-scene design work, not another shared layer. It is not done, and
+this register should not imply otherwise: the composition layer removed the
+`cx 0.43` monoculture and the empty-anchor class of defect, and it did not
+make the frames dense.
+
 ---
 
 
