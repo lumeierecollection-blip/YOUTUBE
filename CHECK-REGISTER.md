@@ -455,7 +455,7 @@ to hide.
 
 | ID | Check | Method | Threshold | T | Sev | State |
 |---|---|---|---|---|---|---|
-| VIS-01 | Every registered strategy routes to a scene the router handles, and no two share one | `assertStrategyRegistryIsSound()` + `visual/run-visual-tests.js` | 0 problems | 1 | BLOCKER | **PASS** - 45/45 tests |
+| VIS-01 | Every registered strategy routes to a scene the router handles, and no two share one | `assertStrategyRegistryIsSound()` + `visual/run-visual-tests.js` | 0 problems | 1 | BLOCKER | **PASS** - 55/55 tests |
 | VIS-02 | `iconHeroRatio` = 0 (an icon is never the primary visual) | `diagnostics.js` | 0 | 1 | BLOCKER | **PASS** - 0.0 on all 3 real renders |
 | VIS-03 | Beats average >=2 visual states (concepts progress) | `diagnostics.js` | >=2 | 1 | MAJOR | **PASS** - 4.2 to 4.8 |
 | VIS-04 | `genericFallbackRatio` <=0.4 (beats produce a readable concept) | `diagnostics.js` | <=0.4 | 1 | MAJOR | **PASS** - 0.0 on all 3 |
@@ -472,6 +472,11 @@ to hide.
 | VIS-15 | A declared composition-variant count is backed by a scene that branches on it | `run-visual-tests.js` (reads the scene sources) | 0 false declarations | 1 | MAJOR | **PASS** - guard verified to fail when a declaration is falsified |
 | VIS-16 | Sound events are spaced, capped, explained and never boosted to unity | `run-visual-tests.js` + `diagnostics.js` `summarizeSound` | 0 warnings | 1 | MAJOR | **PASS** - 0 AUD-* warnings on all 3 |
 | VIS-17 | Every sound-library entry's duration/peak/RMS is MEASURED from the file | `qa-scripts/fetch-sfx-library.mjs` + `run-visual-tests.js` | 26/26 measured | 1 | MAJOR | **PASS** |
+| VIS-18 | Every strategy the director can prefer is actually selectable | `run-visual-tests.js` (signals table vs `STRATEGY_PREFERENCE`) | 0 unreachable | 1 | BLOCKER | **PASS** - found `DATA_CHART` and `SCALE_COMPARISON` with NO detector, unreachable on every beat ever rendered; both now detected, guard verified to fire on the pre-fix source |
+| VIS-19 | A comparison keeps both its values; a chart keeps all of them | `run-visual-tests.js` | 0 dropped | 1 | MAJOR | **PASS** - `detectComparison` accepted >=2 while `ComparisonScene` slices to 2, so a 4-figure beat rendered 2 and silently discarded the rest |
+| VIS-20 | No scene draws outside the safe rect | `run-visual-tests.js` (real exported geometry vs `SAFE` and `CAPTION_RESERVE_Y`) | inside | 1 | MAJOR | **PASS** - caught all 3 `DOCUMENT_EVIDENCE` page variants 62-132px below `SAFE.bottom` once captions were turned off |
+| VIS-21 | Every scene component parses as JSX | `run-visual-tests.js` (esbuild) | 0 errors | 1 | BLOCKER | **PASS** - the text-based checks cannot see a syntax error; one reached a bundler 15 minutes into a render |
+| VIS-22 | No module in `visual/` exports something nothing imports | `run-visual-tests.js` | 0 dead | 1 | MINOR | **PASS** - removed `planAll`, `strategyNames` |
 
 **3.12.1 - VIS-08 is frame-verified, not inferred.** The 150-metre geofence
 beat from the real ch-02 script was rendered through the production CLI and
