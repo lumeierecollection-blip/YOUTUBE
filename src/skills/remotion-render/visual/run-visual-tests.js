@@ -707,9 +707,19 @@ check("a declared variant count is backed by a scene that actually branches on i
       continue;
     }
     const body = file.src.slice(file.src.indexOf(`function ${def.scene}`));
-    const uses = /variantOf\(beat\)/.test(body.slice(0, body.indexOf("\nexport function") + 1 || undefined));
-    if (declared > 1 && !uses) bad.push(`${name} declares ${declared} variants but ${def.scene} never calls variantOf`);
-    if (declared === 1 && uses) bad.push(`${def.scene} calls variantOf but ${name} declares no variants`);
+    const scoped = body.slice(0, body.indexOf("\nexport function") + 1 || undefined);
+    const usesVariant = /variantOf\(beat\)/.test(scoped);
+    // A scene may now vary through the SHOT instead: composition.js gives a
+    // strategy several framings and the variant ordinal picks between them,
+    // so a scene that lays out against shot.anchorX / coverage is already
+    // rendering its second use differently. This check predates that layer
+    // and originally demanded variantOf specifically, which would have
+    // pushed a scene into carrying two variation mechanisms for one
+    // purpose. Either satisfies the declaration; neither does not.
+    const usesShot = /\bshot\.(anchorX|anchorY|coverage)\b/.test(scoped);
+    const varies = usesVariant || usesShot;
+    if (declared > 1 && !varies) bad.push(`${name} declares ${declared} variants but ${def.scene} neither calls variantOf nor lays out against the shot`);
+    if (declared === 1 && usesVariant) bad.push(`${def.scene} calls variantOf but ${name} declares no variants`);
   }
   return bad.length === 0 || bad.join("; ");
 });

@@ -141,110 +141,188 @@ export function TimelineScene({ beat, colors, fontFamily }) {
 export function ProcessScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
-  const sup = (beat.visualPlan && beat.visualPlan.supporting) || {};
+  const plan = beat.visualPlan || {};
+  const sup = plan.supporting || {};
+  const shot = plan.shot || null;
   const n = Math.max(2, Math.min(6, Math.round(sup.stages || 3)));
 
   const pStages = useStateProgress(states, "stages");
   const pAdvance = progressOf(states, "advance", frame);
   const pArrive = useStateProgress(states, "arrive");
 
-  // COMPOSITION VARIANT (PART 13). Two PROCESS beats in one script drew the
-  // identical left-to-right chain of boxes. A process read top-to-bottom is
-  // the same idea in a genuinely different composition — and with six
-  // stages it is the more legible one, because a vertical chain has room
-  // for a stage label beside each box instead of cramped underneath it.
-  const vertical = variantOf(beat) === 1;
+  /**
+   * WHAT THIS USED TO BE
+   *
+   * [ STAGE 1 ] -> [ STAGE 2 ] -> [ STAGE 3 ]: n rounded rectangles, a
+   * connector line, a triangle arrowhead, a label under each box. Measured
+   * on a rendered anchor frame it covered 0.5% of the picture in a 54x11%
+   * band. It shared its whole primitive vocabulary (line + polygon + rect)
+   * with CAUSE_EFFECT, which is another way of saying they were the same
+   * picture. It was a UI flowchart, and the fix was never to restyle the
+   * boxes or animate them harder — it was to stop using boxes as the
+   * grammar for "process" at all.
+   *
+   * WHAT IT DRAWS NOW: A MACHINE, SEEN FROM THE SIDE.
+   *
+   * A track runs the full height of the frame and off both ends, so the
+   * process visibly continues beyond the shot rather than being a diagram
+   * that starts and stops. Stages are STATIONS on that track — paired
+   * rollers that clamp across it — not containers holding a label. A
+   * workpiece descends the track under them, and at each station it is
+   * physically worked: it narrows through the rollers and comes out
+   * changed, carrying accent colour it did not have before.
+   *
+   * The camera descends with it (composition.js gives PROCESS the DESCEND
+   * move), so the frame travels the sequence instead of watching it from
+   * outside. Stations already passed keep their state — the machine
+   * remembers what it did, which is the difference between a process and a
+   * slideshow of steps.
+   *
+   * Stage labels still exist because a viewer needs to count the stages,
+   * but they are set small beside the track, subordinate to the mechanism.
+   */
+  const cov = shot ? shot.coverage : 0.9;
+  const trackX = CANVAS_W * (shot ? shot.anchorX : 0.44);
+  // The run is TALLER than the frame on purpose: bleed is what makes a
+  // machine read as continuing past the shot.
+  const runTop = -CANVAS_H * 0.12;
+  const runBot = CANVAS_H * 1.12;
+  // The run sits high in the frame because two later transforms push it
+  // down: the DESCEND camera travels +6% of frame height, and
+  // motion-graphics.jsx drops the whole stage 110px to reclaim the space
+  // captions used to occupy. A rendered frame showed the workpiece
+  // finishing its run half off the bottom edge with lastY at 0.86.
+  const firstY = CANVAS_H * 0.16;
+  const lastY = CANVAS_H * 0.68;
+  const stationY = (i) => firstY + (i / Math.max(n - 1, 1)) * (lastY - firstY);
 
-  const boxW = vertical ? 300 : 168;
-  const boxH = vertical ? 96 : 168;
-  const gap = vertical ? 34 : 40;
-  const span = n * (vertical ? boxH : boxW) + (n - 1) * gap;
-  // Along-axis origin, then the fixed cross-axis position.
-  const a0 = vertical ? 700 - span / 2 : STAGE_CX - span / 2;
-  const cross = vertical ? STAGE_CX - boxW / 2 - 90 : 660;
+  // The channel takes the width the shot actually granted it. At 0.17 the
+  // track measured 34% of frame width against a coverage of 0.9 — the
+  // scene was ignoring most of the room it had been given, which is the
+  // same under-use of the frame the whole audit was about.
+  const halfW = CANVAS_W * 0.24 * (cov / 0.9);
+  const gapW = halfW * 0.34; // how far the rollers close on the workpiece
 
-  const boxAt = (i) => (vertical
-    ? { x: cross, y: a0 + i * (boxH + gap) }
-    : { x: a0 + i * (boxW + gap), y: cross });
+  // Where the workpiece is, and how far through the whole run.
+  const t = ease(pAdvance, EASE_IN_OUT);
+  const pieceY = firstY + t * (lastY - firstY);
+  const stagesPassed = Math.floor(t * (n - 1) + 0.5);
 
-  // The token's position along the chain — this is the "something moves
-  // through" that makes it a process rather than a list of boxes.
-  const tokenT = ease(pAdvance, EASE_IN_OUT) * n;
-  const tokenStage = Math.min(Math.floor(tokenT), n - 1);
-  const withinStage = tokenT - tokenStage;
-  const step = (vertical ? boxH : boxW) + gap;
-  const along = a0 + tokenStage * step + (vertical ? boxH : boxW) / 2 + withinStage * step;
-  const tokenX = vertical ? cross + boxW / 2 : along;
-  const tokenY = vertical ? along : cross + boxH / 2;
-  const endX = vertical ? cross + boxW / 2 : a0 + span - boxW / 2;
-  const endY = vertical ? a0 + span - boxH / 2 : cross + boxH / 2;
+  // Worked = narrower and accented. The change is cumulative, so the piece
+  // arriving at the end is visibly not the piece that started.
+  const workedness = Math.max(0, Math.min(1, t));
+  const pieceW = halfW * (1.05 - 0.5 * workedness);
+  const pieceH = 72 - 20 * workedness;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
+        {/* ── the track: two rails running off both ends of the frame ── */}
+        <g opacity={ease(pStages)}>
+          {/* The channel itself. Two rails alone measured 1.0% ink and read
+              as a pair of hairlines; a machine has a body, and the fill is
+              what gives the track mass without adding another line. */}
+          <rect x={trackX - halfW} y={runTop} width={halfW * 2} height={runBot - runTop}
+            fill={colors.stroke} opacity={0.05} />
+          <line x1={trackX - halfW} y1={runTop} x2={trackX - halfW} y2={runBot}
+            stroke={colors.stroke} strokeWidth={5} opacity={0.6} />
+          <line x1={trackX + halfW} y1={runTop} x2={trackX + halfW} y2={runBot}
+            stroke={colors.stroke} strokeWidth={5} opacity={0.6} />
+          {/* Cross-ties, denser than the stations, so the track reads as
+              structure rather than as two more lines. */}
+          {Array.from({ length: 26 }).map((_, i) => {
+            const y = runTop + (i / 26) * (runBot - runTop);
+            return (
+              <line key={`tie${i}`} x1={trackX - halfW} y1={y} x2={trackX + halfW} y2={y}
+                stroke={colors.stroke} strokeWidth={1.5} opacity={0.14} />
+            );
+          })}
+        </g>
+
+        {/* ── stations: rollers that clamp across the track ─────────── */}
         {Array.from({ length: n }).map((_, i) => {
-          const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.7)));
-          const done = tokenT > i + 0.85;
-          const active = tokenStage === i && pAdvance > 0 && !done;
-          const b = boxAt(i);
+          const y = stationY(i);
+          const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.6)));
+          if (a <= 0.01) return null;
+          const passed = t * (n - 1) > i + 0.15;
+          const working = Math.abs(t * (n - 1) - i) < 0.35 && pAdvance > 0;
+          const col = passed || working ? colors.accent : colors.stroke;
+          const r = working ? 30 : 25;
           return (
             <g key={i} opacity={a}>
-              <rect x={b.x} y={b.y} width={boxW} height={boxH} rx={4}
-                fill="none"
-                stroke={active || done ? colors.accent : colors.stroke}
-                strokeWidth={active ? 4 : 2.5} />
-              {/* Fill shows the stage has been completed — real state change */}
-              {done ? (
-                <rect x={b.x} y={b.y} width={boxW} height={boxH} rx={4}
-                  fill={colors.accent} opacity={0.13} />
+              {/* The pair of rollers. Their inner faces define the gap the
+                  workpiece has to pass through — that gap IS the stage. */}
+              <circle cx={trackX - gapW - r} cy={y} r={r}
+                fill={colors.bg} stroke={col} strokeWidth={working ? 6 : 4} opacity={passed ? 0.95 : 0.7} />
+              <circle cx={trackX + gapW + r} cy={y} r={r}
+                fill={colors.bg} stroke={col} strokeWidth={working ? 6 : 4} opacity={passed ? 0.95 : 0.7} />
+              {/* Roller shafts out to the rails. */}
+              <line x1={trackX - halfW} y1={y} x2={trackX - gapW - r * 2} y2={y}
+                stroke={col} strokeWidth={4} opacity={0.55} />
+              <line x1={trackX + gapW + r * 2} y1={y} x2={trackX + halfW} y2={y}
+                stroke={col} strokeWidth={4} opacity={0.55} />
+              {/* A station that has done its work keeps a mark. The machine
+                  remembers; a slideshow of steps does not. */}
+              {passed ? (
+                <line x1={trackX - gapW} y1={y + r + 8} x2={trackX + gapW} y2={y + r + 8}
+                  stroke={colors.accent} strokeWidth={2} opacity={0.55} />
               ) : null}
             </g>
           );
         })}
 
-        {/* Connectors between stages, arrowheads pointing along the axis */}
-        {Array.from({ length: n - 1 }).map((_, i) => {
-          const b = boxAt(i);
-          const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.7 - 0.4)));
-          const passed = tokenT > i + 1;
-          const col = passed ? colors.accent : colors.stroke;
-          const x1 = vertical ? b.x + boxW / 2 : b.x + boxW;
-          const y1 = vertical ? b.y + boxH : b.y + boxH / 2;
-          const x2 = vertical ? x1 : x1 + gap;
-          const y2 = vertical ? y1 + gap : y1;
-          const head = vertical
-            ? `${x2 - 6},${y2 - 9} ${x2 + 6},${y2 - 9} ${x2},${y2}`
-            : `${x2 - 9},${y2 - 6} ${x2 - 9},${y2 + 6} ${x2},${y2}`;
-          return (
-            <g key={`c${i}`} opacity={a}>
-              <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={col} strokeWidth={passed ? 3 : 2} />
-              <polygon points={head} fill={col} />
-            </g>
-          );
-        })}
-
-        {/* The travelling token */}
-        {pAdvance > 0 ? (
-          <circle cx={tokenX} cy={tokenY} r={14} fill={colors.accent} />
+        {/* ── the workpiece, descending and being worked ─────────────── */}
+        {pAdvance > 0 || pArrive > 0 ? (
+          <g>
+            <rect
+              x={trackX - pieceW / 2}
+              y={pieceY - pieceH / 2}
+              width={pieceW}
+              height={pieceH}
+              rx={3}
+              fill={colors.accent}
+              fillOpacity={0.18 + 0.5 * workedness}
+              stroke={colors.accent}
+              strokeWidth={3}
+            />
+            {/* Material still to come, trailing above it up the track. */}
+            {/* Unworked material still queued above it — a column with
+                width, not a rod: this is the stuff the machine is eating. */}
+            <rect x={trackX - halfW * 0.46} y={runTop} width={halfW * 0.92}
+              height={Math.max(0, pieceY - pieceH / 2 - runTop)}
+              fill={colors.stroke} opacity={0.09} />
+          </g>
         ) : null}
+
+        {/* ── arrival: it leaves the machine ────────────────────────── */}
         {pArrive > 0 ? (
-          <circle cx={endX} cy={endY} r={14 + 26 * ease(pArrive)}
-            fill="none" stroke={colors.accent} strokeWidth={2.5} opacity={0.7 * (1 - ease(pArrive))} />
+          <line x1={trackX} y1={lastY + 34}
+            x2={trackX} y2={lastY + 34 + (runBot - lastY) * ease(pArrive)}
+            stroke={colors.accent} strokeWidth={9} opacity={0.75} strokeLinecap="round" />
         ) : null}
       </svg>
 
+      {/* Stage numbers, small, beside the track. Subordinate to the
+          mechanism — a viewer counts stations by looking at the rollers,
+          not by reading a box. */}
       {Array.from({ length: n }).map((_, i) => {
-        const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.7)));
-        const b = boxAt(i);
+        const y = stationY(i);
+        const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.6)));
+        const passed = t * (n - 1) > i + 0.15;
         return (
           <Label
             key={i}
-            x={vertical ? b.x + boxW + 24 : b.x + boxW / 2}
-            y={vertical ? b.y + boxH / 2 - 12 : b.y + boxH + 22}
-            text={`STAGE ${i + 1}`}
-            color={tokenT > i + 0.85 ? colors.accent : colors.textDim}
-            size={24} tracking={2.4} align={vertical ? "left" : "center"}
-            opacity={a} fontFamily={fontFamily} />
+            x={trackX + halfW + 34}
+            y={y - 13}
+            text={`${i + 1}`}
+            color={passed ? colors.accent : colors.textDim}
+            size={26}
+            weight={800}
+            tracking={1}
+            opacity={a}
+            fontFamily={fontFamily}
+            halo={colors.bg}
+          />
         );
       })}
     </div>
