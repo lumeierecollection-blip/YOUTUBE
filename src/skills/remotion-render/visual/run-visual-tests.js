@@ -29,7 +29,7 @@ import { summarizeVisuals, summarizeSound } from "./diagnostics.js";
 import { MAX_SUPPORTING_WORDS } from "./text-budget.js";
 import { SAFE, CAPTION_RESERVE_Y, documentPageGeometry } from "../compositions/layout-constants.js";
 import { composeShot, composedStrategies, assertCompositionIsComplete, shotSignatures, FRAMINGS, CAMERA_MOVES } from "./composition.js";
-import { assertSoundMapIsSound, buildSoundtrack, soundEventsForBeat, volumeFor, MIN_GAP_FRAMES, MAX_EVENTS_PER_BEAT, ROLE_TARGET_DB } from "./sound-design.js";
+import { assertSoundMapIsSound, buildSoundtrack, soundEventsForBeat, materialsWithCharacter, volumeFor, MIN_GAP_FRAMES, MAX_EVENTS_PER_BEAT, ROLE_TARGET_DB } from "./sound-design.js";
 import { SFX_LIBRARY } from "./sfx-library.js";
 import { undefinedIdentifiers } from "./scope-check.js";
 
@@ -872,6 +872,57 @@ check("every library asset carries MEASURED numbers, not placeholders", () => {
     (e) => !(e.durationMs > 0) || typeof e.meanDb !== "number" || typeof e.peakDb !== "number"
   );
   return bad.length === 0 || `${bad.length} entries missing measurements: ${bad.map((e) => e.file).join(", ")}`;
+});
+
+check("a sound is chosen for the material it lands on", () => {
+  // `shot.material` was on every plan and read by nothing in the audio
+  // path: a thud on paper and a thud on a machine bed played the same file.
+  // This asserts the wiring actually changes the pick, on the three roles
+  // where the 26-file library genuinely has more than one character.
+  //
+  // It does NOT claim the library can express every material — most roles
+  // have one character and `assertSoundMapIsSound` fails if MATERIAL_CHARACTER
+  // ever pretends otherwise.
+  // GOES THROUGH soundEventsForBeat, NOT pickAsset. A first version of this
+  // check called pickAsset directly with a material and passed even after
+  // makeEvent stopped passing one — proving the function respects material
+  // while the plan never reached it, which is the exact "wired but not
+  // used" defect being fixed here. Real beats, real planner, real path.
+  const problems = [];
+  const sameSeedBeat = (strategy, stateKey) => {
+    const shot = composeShot(strategy, { variant: 0 });
+    return {
+      startFrame: 0,
+      durationInFrames: 120,
+      archetype: "STATEMENT",
+      visualPlan: { strategy, variant: 0, shot, supporting: {} },
+      visualStates: [{ key: stateKey, startFrame: 0, durationInFrames: 120, endFrame: 120 }],
+    };
+  };
+  // Pairs that share a discriminating role but sit on different materials.
+  const pairs = [
+    ["DOCUMENT_EVIDENCE", "page", "CAUSE_EFFECT", "effect", "impact"],       // paper vs field
+    ["TRANSFORMATION", "settle", "TIMELINE", "focus", "emphasis"],           // mechanism vs atmosphere
+  ];
+  for (const [sa, ka, sb, kb, role] of pairs) {
+    // Fresh carry each time: `avoid` is about not repeating, and letting it
+    // leak between the two would explain a difference that material didn't.
+    const ea = soundEventsForBeat(sameSeedBeat(sa, ka), SFX_LIBRARY, {})[0];
+    const eb = soundEventsForBeat(sameSeedBeat(sb, kb), SFX_LIBRARY, {})[0];
+    if (!ea || !eb) { problems.push(`${role}: ${!ea ? sa : sb} produced no event`); continue; }
+    if (ea.role !== role || eb.role !== role) { problems.push(`${role}: got roles ${ea.role}/${eb.role}`); continue; }
+    if (!ea.material || !eb.material) { problems.push(`${role}: event carries no material (${ea.material}/${eb.material})`); continue; }
+    if (ea.character === eb.character) {
+      problems.push(`${role}: ${ea.material} and ${eb.material} both chose "${ea.character}" — material is not reaching the pick`);
+    }
+  }
+  // Every material the composition layer can assign is either mapped or
+  // deliberately absent; a typo'd key would silently never match.
+  const known = new Set(materialsWithCharacter());
+  const composed = new Set(composedStrategies().map((s) => composeShot(s, { variant: 0 }).material));
+  const unmapped = [...composed].filter((m) => !known.has(m));
+  if (unmapped.length) problems.push(`materials no MATERIAL_CHARACTER entry covers: ${unmapped.join(", ")}`);
+  return problems.length === 0 || problems.join("; ");
 });
 
 check("no sound is ever boosted above unity", () => {

@@ -479,6 +479,7 @@ to hide.
 | VIS-22 | No module in `visual/` exports something nothing imports | `run-visual-tests.js` | 0 dead | 1 | MINOR | **PASS** - removed `planAll`, `strategyNames` |
 | VIS-23 | Every import in the scene graph names something that is actually exported | `run-visual-tests.js` (esbuild `bundle: true` from `scenes/index.jsx` and `motion-graphics.jsx`) | 0 unresolved | 1 | BLOCKER | **PASS** - verified to fail on both real modes: an importer naming a helper that moved, and a re-export surface that drops a name 4 scenes import |
 | VIS-24 | No scene references an identifier nothing binds | `visual/scope-check.js` (`@babel/parser`, scope walk) via `run-visual-tests.js` | 0 free identifiers | 1 | BLOCKER | **PASS** - see 3.12.4; found TWO shipped `ReferenceError`s no other check could see |
+| VIS-25 | A sound is chosen for the MATERIAL the picture is made of | `sound-design.js` `MATERIAL_CHARACTER` + `assertSoundMapIsSound` + `run-visual-tests.js` (through `soundEventsForBeat`, not `pickAsset`) | different materials pick different characters | 1 | MINOR | **PASS** - `shot.material` was on every plan and read by nothing in the audio path; only `impact` / `emphasis` / `transition` can discriminate on a 26-file library and the guard fails if the map ever pretends otherwise |
 
 **3.12.1 - VIS-08 is frame-verified, not inferred.** The 150-metre geofence
 beat from the real ch-02 script was rendered through the production CLI and

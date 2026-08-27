@@ -254,8 +254,79 @@ export function assertSoundMapIsSound(strategies, library) {
     for (const entry of library) {
       if (!reachable.has(entry.role)) failures.push(`library asset ${entry.file} has role "${entry.role}" that nothing plays`);
     }
+
+    // MATERIAL_CHARACTER is a preference expressed over real files. A
+    // preferred character no asset actually has would silently do nothing —
+    // art direction that exists only in a comment, which is the failure
+    // mode this whole file is written against.
+    for (const [material, roles] of Object.entries(MATERIAL_CHARACTER)) {
+      for (const [role, chars] of Object.entries(roles)) {
+        const inRole = library.filter((e) => e.role === role);
+        if (inRole.length === 0) {
+          failures.push(`MATERIAL_CHARACTER.${material} names role "${role}" the library has no asset for`);
+          continue;
+        }
+        // One character in a role means the role cannot discriminate; the
+        // entry is decoration and should be deleted rather than believed.
+        const distinct = new Set(inRole.map((e) => e.character));
+        if (distinct.size < 2) {
+          failures.push(`MATERIAL_CHARACTER.${material}.${role} cannot discriminate — every ${role} asset is "${[...distinct][0]}"`);
+        }
+        for (const ch of chars) {
+          if (!inRole.some((e) => e.character === ch)) {
+            failures.push(`MATERIAL_CHARACTER.${material}.${role} prefers character "${ch}" that no ${role} asset has`);
+          }
+        }
+      }
+    }
   }
   return { pass: failures.length === 0, failures };
+}
+
+/**
+ * Which asset CHARACTERS suit which shot MATERIAL — and where that stops.
+ *
+ * The shot carries a material (visual/composition.js: paper, mechanism,
+ * terrain, substance, field, interface, footage, atmosphere), and a thud on
+ * paper should not be the same sound as a thud on a machine bed.
+ *
+ * WHAT THIS CAN AND CANNOT DO, AGAINST THE ACTUAL LIBRARY. The library is
+ * 26 CC0 files and most of its roles have exactly ONE character, so for
+ * those roles material selection is not possible and claiming otherwise
+ * would be a lie dressed as art direction. Three roles genuinely vary:
+ *
+ *   impact      wood-thud (2) | soft-thud (2) | bright-material (1)
+ *   emphasis    tonal-bell (1) | tonal-pluck (2)
+ *   transition  dry-whoosh (1) | reverberant-whoosh (1)
+ *
+ * Only those three are discriminated. Everything else falls through to the
+ * whole role pool, unchanged. This is a preference, not a filter: if a
+ * material's preferred characters are all unavailable (or all excluded by
+ * `avoid`), the pick falls back rather than going silent.
+ *
+ * The mapping is by the files' `character` labels, which come from what the
+ * source packs are — Kenney's interface set and a wood-impact set — not
+ * from any claim about their spectra. Nothing here asserts a measured
+ * acoustic property that was not measured.
+ */
+const MATERIAL_CHARACTER = {
+  // Near, small, dry. A page does not ring or reverberate.
+  paper: { impact: ["soft-thud"], emphasis: ["tonal-pluck"], transition: ["dry-whoosh"] },
+  // Something physical and heavy meeting something physical and heavy.
+  mechanism: { impact: ["wood-thud"], emphasis: ["tonal-pluck"], transition: ["dry-whoosh"] },
+  substance: { impact: ["wood-thud", "soft-thud"], emphasis: ["tonal-pluck"] },
+  terrain: { impact: ["wood-thud"], transition: ["reverberant-whoosh"] },
+  // Distance: the two roles where the library can actually express it.
+  atmosphere: { impact: ["soft-thud"], emphasis: ["tonal-bell"], transition: ["reverberant-whoosh"] },
+  field: { impact: ["bright-material"], emphasis: ["tonal-bell"] },
+  // A screen. Digital, bright, immediate.
+  interface: { impact: ["bright-material", "soft-thud"], emphasis: ["tonal-pluck"], transition: ["dry-whoosh"] },
+  footage: { impact: ["soft-thud"], transition: ["reverberant-whoosh"] },
+};
+
+/** The materials this map can actually discriminate, for the guard below. */
+export function materialsWithCharacter() {
+  return Object.keys(MATERIAL_CHARACTER);
 }
 
 /**
@@ -265,13 +336,21 @@ export function assertSoundMapIsSound(strategies, library) {
  * play the identical file (mechanical repetition is its own defect), while
  * staying reproducible for a given script — no Math.random anywhere.
  * `avoid` is the previously used file for this role, so consecutive uses
- * differ.
+ * differ. `material` comes from the beat's shot and narrows the pool to the
+ * characters that suit it, where the library has more than one.
  */
-export function pickAsset(library, role, seed, avoid) {
+export function pickAsset(library, role, seed, avoid, material) {
   const candidates = (library || []).filter((e) => e.role === role);
   if (candidates.length === 0) return null;
-  const usable = candidates.length > 1 && avoid ? candidates.filter((e) => e.file !== avoid) : candidates;
-  const pool = usable.length ? usable : candidates;
+
+  // Material first, because a sound that matches the picture matters more
+  // than a sound that differs from the last one.
+  const wanted = material && MATERIAL_CHARACTER[material] && MATERIAL_CHARACTER[material][role];
+  const matched = wanted ? candidates.filter((e) => wanted.includes(e.character)) : [];
+  const base = matched.length ? matched : candidates;
+
+  const usable = base.length > 1 && avoid ? base.filter((e) => e.file !== avoid) : base;
+  const pool = usable.length ? usable : base;
   let h = 0;
   const key = `${role}:${seed}`;
   for (const ch of key) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
@@ -339,7 +418,11 @@ function weight(role) {
 
 function makeEvent(beat, state, spec, localFrame, library, lastByRole, variant) {
   const seed = `${beat.startFrame}:${state.key}:${variant}`;
-  const asset = pickAsset(library, spec.role, seed, lastByRole[spec.role]);
+  // The shot's material, so the sound matches what the picture is made of.
+  // Until this was passed in, `shot.material` was on every plan and read by
+  // nothing in the audio path — wired but not heard.
+  const material = (beat.visualPlan.shot && beat.visualPlan.shot.material) || null;
+  const asset = pickAsset(library, spec.role, seed, lastByRole[spec.role], material);
   if (asset) lastByRole[spec.role] = asset.file;
   return {
     atFrame: beat.startFrame + localFrame,
@@ -348,6 +431,7 @@ function makeEvent(beat, state, spec, localFrame, library, lastByRole, variant) 
     reason: spec.reason,
     strategy: beat.visualPlan.strategy,
     state: state.key,
+    material,
     file: asset ? asset.file : null,
     character: asset ? asset.character : null,
     durationMs: asset ? asset.durationMs : null,
