@@ -447,12 +447,29 @@ function OppositionComparison({ beat, sup, states, colors, fontFamily }) {
         <rect x={x} y={yTop} width={panelW} height={panelH} rx={4}
           fill="none" stroke={colors.stroke} strokeWidth={2.5}
           opacity={ease(pLeft) * (pVerdict > 0 ? 0.45 : 1)} />
-        {pRight > 0 ? (
-          <rect x={x} y={yBot} width={panelW} height={panelH} rx={4}
-            fill={colors.accent} fillOpacity={0.12 * ease(pVerdict)}
-            stroke={colors.accent} strokeWidth={3} opacity={ease(pRight)} />
-        ) : null}
-        {/* The dividing line IS the disagreement — it draws between them. */}
+        {/* THE SECOND POSITION'S FRAME IS DRAWN FROM THE START, empty.
+            `right` is this strategy's anchored state, so at the anchor —
+            the frame where the contrast word is spoken, and the moment the
+            picture is most on the hook — the composition used to be ONE box
+            with four words in it and nothing else. A rendered frame of the
+            ch-02 opposition beat showed exactly that: narration on a
+            background, which is the failure this rebuild exists to remove.
+            An opposition has two sides before either is filled in, so the
+            structure is established during `left` and the second side's
+            content lands on the anchor. */}
+        <rect x={x} y={yBot} width={panelW} height={panelH} rx={4}
+          fill={colors.accent} fillOpacity={0.12 * ease(pVerdict)}
+          stroke={pRight > 0 ? colors.accent : colors.stroke}
+          strokeWidth={pRight > 0 ? 3 : 2.5}
+          strokeDasharray={pRight > 0 ? "none" : "10 8"}
+          opacity={pRight > 0 ? ease(pRight) : 0.45 * ease(pLeft)} />
+        {/* The dividing line IS the disagreement — it draws through on
+            `gap`, over a faint rule that exists as soon as there are two
+            sides to divide. */}
+        <line
+          x1={x} y1={(yTop + panelH + yBot) / 2}
+          x2={x + panelW} y2={(yTop + panelH + yBot) / 2}
+          stroke={colors.stroke} strokeWidth={1.5} opacity={0.3 * ease(pLeft)} />
         {pGap > 0 ? (
           <line
             x1={x} y1={(yTop + panelH + yBot) / 2}
