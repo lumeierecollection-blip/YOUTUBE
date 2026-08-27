@@ -58,3 +58,8 @@ data/audit/visual-tests/
 # Short single-beat clips from qa-scripts/render-clip.mjs — same per-run
 # output convention as the full renders above.
 data/renders/clips/
+
+# Per-beat frames from qa-scripts/mute-test.mjs — regenerated from any
+# render on demand, and one set per render adds ~4MB. The frames worth
+# keeping are copied up to qa/pass3/ by hand and committed there.
+qa/pass3/mute-test/
