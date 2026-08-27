@@ -27,6 +27,7 @@ import { buildStates, MAX_STATE_FRAMES, longestStaticRun } from "./states.js";
 import { analyzeBeat } from "./semantics.js";
 import { summarizeVisuals, summarizeSound } from "./diagnostics.js";
 import { MAX_SUPPORTING_WORDS } from "./text-budget.js";
+import { composeShot, composedStrategies, assertCompositionIsComplete, shotSignatures, FRAMINGS, CAMERA_MOVES } from "./composition.js";
 import { assertSoundMapIsSound, buildSoundtrack, soundEventsForBeat, volumeFor, MIN_GAP_FRAMES, MAX_EVENTS_PER_BEAT, ROLE_TARGET_DB } from "./sound-design.js";
 import { SFX_LIBRARY } from "./sfx-library.js";
 
@@ -438,6 +439,75 @@ check("a document page never draws outside the safe rect", () => {
     if (p.clause >= p.lines) problems.push(`v${i}: clause line ${p.clause} is past the last line ${p.lines - 1}`);
   });
   return problems.length === 0 || problems.join("; ");
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+console.log("\nevery scene is a shot, not a diagram");
+
+check("every strategy has a material, framing, camera and depth", () => {
+  const r = assertCompositionIsComplete(STRATEGIES);
+  return r.pass || r.failures.join("; ");
+});
+
+check("no two strategies share a whole shot signature", () => {
+  // Two strategies with the same material, framing, camera AND depth will
+  // look alike however different their subjects are. This caught
+  // ACCUMULATION vs DATA_CHART and RELATIONSHIP vs VISUAL_METAPHOR in the
+  // first draft of the table, which is exactly what it is for.
+  const dupes = Object.entries(shotSignatures(STRATEGIES)).filter(([, v]) => v.length > 1);
+  return dupes.length === 0 || dupes.map(([k, v]) => `${k}: ${v.join(" + ")}`).join("; ");
+});
+
+check("shots are not all centred", () => {
+  // The pixel audit found fifteen of sixteen scenes centred within a few
+  // percent of cx 0.43. Framing has to actually vary or the composition
+  // layer is just paperwork.
+  const xs = new Set();
+  const ys = new Set();
+  for (const name of composedStrategies()) {
+    const s = composeShot(name, { variant: 0 });
+    xs.add(s.anchorX);
+    ys.add(s.anchorY);
+  }
+  if (xs.size < 3) return `only ${xs.size} distinct horizontal anchors across 16 strategies`;
+  if (ys.size < 3) return `only ${ys.size} distinct vertical anchors across 16 strategies`;
+  return true;
+});
+
+check("coverage is large enough that scenes are not hairlines", () => {
+  // ISOLATED is the one deliberately sparse framing and is allowed; nothing
+  // else may sit below half the frame's short axis.
+  const thin = composedStrategies()
+    .map((n) => [n, composeShot(n, { variant: 0 })])
+    .filter(([, s]) => s.coverage < 0.5 && s.framing.id !== "isolated");
+  return thin.length === 0 || thin.map(([n, s]) => `${n} at ${s.coverage}`).join(", ");
+});
+
+check("every camera move states a reason", () => {
+  const bad = Object.values(CAMERA_MOVES).filter((m) => !m.reason || m.reason.length < 12);
+  return bad.length === 0 || `moves without a reason: ${bad.map((m) => m.id).join(", ")}`;
+});
+
+check("a strategy's variants are framed differently", () => {
+  // Where a strategy offers more than one framing, consecutive uses must
+  // actually get different ones — that is the anti-repetition mechanism.
+  const same = [];
+  for (const name of composedStrategies()) {
+    const a = composeShot(name, { variant: 0 });
+    const b = composeShot(name, { variant: 1 });
+    const opts = new Set([a.framing.id, b.framing.id]);
+    // One-framing strategies (the map, the interface) are intentional.
+    if (opts.size === 1 && a.framing.id !== "immersive" && a.framing.id !== "close") {
+      same.push(`${name} always ${a.framing.id}`);
+    }
+  }
+  return same.length === 0 || same.join("; ");
+});
+
+check("composing a shot is deterministic", () => {
+  const a = JSON.stringify(composeShot("CAUSE_EFFECT", { variant: 1 }));
+  const b = JSON.stringify(composeShot("CAUSE_EFFECT", { variant: 1 }));
+  return a === b || "two calls produced different shots";
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

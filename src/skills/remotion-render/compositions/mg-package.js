@@ -23,7 +23,7 @@ import {
   wordCount,
 } from "./beats.js";
 import { resolveIcon, isSpecificIconMatch } from "./mg-style.js";
-import { planVisual } from "../visual/director.js";
+import { planVisual, attachShot } from "../visual/director.js";
 import { buildStates } from "../visual/states.js";
 import { summarizeVisuals, summarizeSound } from "../visual/diagnostics.js";
 import { buildSoundtrack } from "../visual/sound-design.js";
@@ -703,6 +703,11 @@ export function buildMgPackage(srtText, opts = {}) {
     // at a time and never sees how many came before.
     strategyUse[b.visualPlan.strategy] = (strategyUse[b.visualPlan.strategy] || 0) + 1;
     b.visualPlan.variant = strategyUse[b.visualPlan.strategy] - 1;
+    // The SHOT depends on that ordinal, so it is composed here rather than
+    // in the director — material, framing, camera and depth, from
+    // visual/composition.js. This is what stops every scene drawing a
+    // hairline diagram in the middle of an empty frame.
+    attachShot(b.visualPlan);
     // Deterministic frame math from the beat's REAL SRT window — no model
     // is ever asked when something happens (PART 24).
     b.visualStates = buildStates(b.visualPlan, {

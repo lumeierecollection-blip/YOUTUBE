@@ -15,6 +15,7 @@ import {
 } from "./evidence-scenes.jsx";
 import { VisualMetaphorScene, CinematicStatementScene } from "./abstract-scenes.jsx";
 import { STRATEGIES, TERMINAL_STRATEGY } from "../../visual/strategies.js";
+import { Shot, Ground, Falloff } from "./stage.jsx";
 
 /**
  * The semantic scene router.
@@ -65,9 +66,43 @@ export function SemanticScene({ beat, colors, fontFamily }) {
   const plan = beat.visualPlan;
   const def = plan && plan.strategy ? STRATEGIES[plan.strategy] : null;
   const Component = (def && SCENE_COMPONENTS[def.scene]) || SCENE_COMPONENTS[STRATEGIES[TERMINAL_STRATEGY].scene];
+  const shot = plan && plan.shot;
+
+  /**
+   * THE STAGE IS APPLIED HERE, ONCE, FOR ALL SIXTEEN SCENES.
+   *
+   * A pixel audit of 23 rendered anchor frames found fifteen of sixteen
+   * scenes drawing a hairline diagram under 5% ink, centred within a few
+   * percent of the same point. The exception was the map — the only scene
+   * that had been given ground, depth, framing and a camera by hand.
+   *
+   * Doing that per scene is how the monoculture happened: sixteen
+   * components each improvising staging with the same primitives converge
+   * on the same picture. So the staging comes from ONE place —
+   * visual/composition.js decides material/framing/camera/depth per beat,
+   * and every scene inherits it whether or not its author thought about it.
+   *
+   * The scene still owns its SUBJECT. The stage owns the shot.
+   */
+  if (!shot) {
+    // No plan (legacy/classifier beats): behave exactly as before rather
+    // than staging something the director never described.
+    return (
+      <SustainCamera beat={beat}>
+        <Component beat={beat} colors={colors} fontFamily={fontFamily} />
+      </SustainCamera>
+    );
+  }
+
   return (
     <SustainCamera beat={beat}>
-      <Component beat={beat} colors={colors} fontFamily={fontFamily} />
+      <Shot shot={shot} states={beat.visualStates} durationInFrames={beat.durationInFrames}>
+        <Ground material={shot.material} colors={colors} seed={(beat.startFrame || 0) + 1} />
+        <Component beat={beat} colors={colors} fontFamily={fontFamily} />
+      </Shot>
+      {/* Light falloff sits OUTSIDE the camera transform: the frame is lit,
+          not the world, so a push-in does not drag the vignette with it. */}
+      <Falloff colors={colors} strength={0.4} />
     </SustainCamera>
   );
 }

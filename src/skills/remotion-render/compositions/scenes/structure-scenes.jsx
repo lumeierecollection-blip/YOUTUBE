@@ -258,7 +258,9 @@ export function ProcessScene({ beat, colors, fontFamily }) {
 export function CauseEffectScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
-  const sup = (beat.visualPlan && beat.visualPlan.supporting) || {};
+  const plan = beat.visualPlan || {};
+  const sup = plan.supporting || {};
+  const shot = plan.shot || null;
 
   const causeText = keyPhrase(sup.cause, 3) || keyPhrase(beat.text, 3);
   const effectText = keyPhrase(sup.effect, 3) || "";
@@ -269,56 +271,178 @@ export function CauseEffectScene({ beat, colors, fontFamily }) {
   const pEffect = useStateProgress(states, "effect");
   const pSettle = useStateProgress(states, "settle");
 
-  const boxW = 470, boxH = 132;
-  const x = STAGE_CX - boxW / 2;
-  const yCause = 500, yEffect = 880;
+  /**
+   * WHAT THIS USED TO BE, AND WHY IT WAS THE WORST SCENE IN THE SYSTEM
+   *
+   * Two 470x132 rounded rectangles stacked vertically with a line and a
+   * triangle between them. Measured on a rendered anchor frame it covered
+   * 0.6% of the picture in a 44x7% band, and at the anchor — before the
+   * effect box existed — the entire frame was ONE rounded rectangle reading
+   * "SECOND STAGE HOLDING". That is not an explanation of causality; it is
+   * a label in a box.
+   *
+   * WHAT IT DRAWS NOW
+   *
+   * Causality as FLOW THROUGH A CONSTRAINT, left to right, which is the
+   * direction the camera also tracks:
+   *
+   *   upstream lanes  ->  a constriction  ->  what comes out the far side
+   *
+   * The cause is a bank of lanes carrying flow. The constraint physically
+   * narrows them. Downstream, the lanes that survive are visibly fewer and
+   * thinner than the ones that went in, and pressure accumulates against
+   * the upstream face of the constriction as the effect lands. The viewer
+   * reads "throughput collapsed because something was holding" from the
+   * geometry, with the sound off, before reading either label.
+   *
+   * DIRECTION IS NEVER REVERSED. The semantics layer already decides which
+   * side is cause (CAUSAL_FORWARD / CAUSAL_BACKWARD in semantics.js);
+   * upstream is always drawn left and the flow always moves toward the
+   * effect, so a "because" clause cannot render backwards.
+   */
+  const LANES = 7;
+  // Laid out against the SHOT, not against hardcoded pixels. `coverage` is
+  // the share of the frame the subject should span and `anchorY` is where
+  // its centre belongs — both from visual/composition.js. Hardcoding these
+  // per scene is precisely how sixteen scenes ended up centred within a few
+  // percent of the same point.
+  const cov = shot ? shot.coverage : 0.74;
+  const bandH = CANVAS_H * 0.34 * (cov / 0.74);
+  const laneGap = bandH / (LANES - 1);
+  const laneTop = CANVAS_H * (shot ? shot.anchorY : 0.45) - bandH / 2;
+  const inset = CANVAS_W * (1 - cov) * 0.5;
+  const xIn = inset;
+  const xOut = CANVAS_W - inset;
+  const xGate = xIn + (xOut - xIn) * 0.54;
+
+  // How much each lane still carries downstream. Deterministic per lane —
+  // an even collapse would read as a wipe rather than as congestion.
+  const survives = (i) => {
+    const s = seeded(i * 31 + 7);
+    return s > 0.55 ? 1 : s > 0.3 ? 0.45 : 0.12;
+  };
+
+  const eLink = ease(pLink, EASE_IN_OUT);
+  const eEffect = ease(pEffect);
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        <rect x={x} y={yCause} width={boxW} height={boxH} rx={4}
-          fill="none" stroke={colors.stroke} strokeWidth={2.5} opacity={ease(pCause)} />
+        {/* ── upstream: flow arriving, full width ─────────────────────── */}
+        {Array.from({ length: LANES }).map((_, i) => {
+          const y = laneTop + i * laneGap;
+          const a = ease(Math.max(0, Math.min(1, pCause * 1.8 - i * 0.09)));
+          if (a <= 0.01) return null;
+          // Lanes converge toward the gate: the constriction is geometric,
+          // not a label saying "bottleneck".
+          const yGate = laneTop + (LANES - 1) * laneGap * 0.5 + (i - (LANES - 1) / 2) * 16;
+          return (
+            <path
+              key={`in${i}`}
+              d={`M ${xIn} ${y} L ${xGate - 120} ${y} Q ${xGate - 40} ${y} ${xGate} ${yGate}`}
+              fill="none"
+              stroke={colors.stroke}
+              strokeWidth={9}
+              opacity={0.5 * a}
+              strokeLinecap="round"
+            />
+          );
+        })}
 
-        {/* The link is the point of this scene: it DRAWS, downward, and the
-            effect cannot appear before it arrives. */}
+        {/* ── pressure building against the upstream face ─────────────── */}
         {pLink > 0 ? (
-          <>
-            <line x1={STAGE_CX} y1={yCause + boxH}
-              x2={STAGE_CX} y2={yCause + boxH + (yEffect - yCause - boxH) * ease(pLink, EASE_IN_OUT)}
-              stroke={colors.accent} strokeWidth={4} />
-            {ease(pLink) > 0.9 ? (
-              <polygon
-                points={`${STAGE_CX - 11},${yEffect - 16} ${STAGE_CX + 11},${yEffect - 16} ${STAGE_CX},${yEffect - 2}`}
-                fill={colors.accent} />
-            ) : null}
-          </>
+          <g opacity={eLink}>
+            {Array.from({ length: 5 }).map((_, i) => (
+              <line
+                key={`p${i}`}
+                x1={xGate - 30 - i * 15 - 26 * eLink}
+                y1={laneTop - 26 + i * 8}
+                x2={xGate - 30 - i * 15 - 26 * eLink}
+                y2={laneTop + (LANES - 1) * laneGap + 26 - i * 8}
+                stroke={colors.accent}
+                strokeWidth={2}
+                opacity={0.16 + 0.1 * i}
+              />
+            ))}
+          </g>
         ) : null}
 
-        {pEffect > 0 ? (
-          <rect x={x} y={yEffect} width={boxW} height={boxH} rx={4}
-            fill={colors.accent} fillOpacity={0.12 * ease(pEffect)}
-            stroke={colors.accent} strokeWidth={3} opacity={ease(pEffect)} />
+        {/* ── the constriction itself ─────────────────────────────────── */}
+        {pLink > 0 ? (
+          <g>
+            <path
+              d={`M ${xGate} ${laneTop - 70} L ${xGate + 34} ${laneTop + (LANES - 1) * laneGap * 0.5 - 46}`}
+              stroke={colors.accent} strokeWidth={7} fill="none" strokeLinecap="round" opacity={eLink} />
+            <path
+              d={`M ${xGate} ${laneTop + (LANES - 1) * laneGap + 70} L ${xGate + 34} ${laneTop + (LANES - 1) * laneGap * 0.5 + 46}`}
+              stroke={colors.accent} strokeWidth={7} fill="none" strokeLinecap="round" opacity={eLink} />
+          </g>
         ) : null}
 
-        {/* Both readable at once at the end — the whole relationship */}
+        {/* ── downstream: what actually got through ───────────────────── */}
+        {pEffect > 0
+          ? Array.from({ length: LANES }).map((_, i) => {
+              const carry = survives(i);
+              const yGate = laneTop + (LANES - 1) * laneGap * 0.5 + (i - (LANES - 1) / 2) * 16;
+              const ySpread = laneTop + i * laneGap;
+              const reach = xGate + (xOut - xGate) * eEffect;
+              return (
+                <path
+                  key={`out${i}`}
+                  d={`M ${xGate + 36} ${yGate} Q ${xGate + 150} ${ySpread} ${reach} ${ySpread}`}
+                  fill="none"
+                  stroke={carry > 0.5 ? colors.accent : colors.stroke}
+                  strokeWidth={Math.max(1.5, 9 * carry)}
+                  opacity={(carry > 0.5 ? 0.85 : 0.3) * eEffect}
+                  strokeLinecap="round"
+                />
+              );
+            })
+          : null}
+
+        {/* The collapse, stated as a proportion of the section area rather
+            than as a word: the downstream band is visibly thinner. */}
         {pSettle > 0 ? (
-          <rect x={x - 22} y={yCause - 22} width={boxW + 44} height={yEffect + boxH - yCause + 44} rx={6}
-            fill="none" stroke={colors.stroke} strokeWidth={1} strokeDasharray="8 10" opacity={0.4 * ease(pSettle)} />
+          <line
+            x1={xOut - 8} y1={laneTop - 40} x2={xOut - 8} y2={laneTop + (LANES - 1) * laneGap + 40}
+            stroke={colors.stroke} strokeWidth={1.5} strokeDasharray="7 9" opacity={0.4 * ease(pSettle)} />
         ) : null}
       </svg>
 
-      <Label x={STAGE_CX} y={yCause + boxH / 2 - 18} text={short(causeText, 24)}
-        color={colors.textPrimary} size={38} weight={800} tracking={1} align="center"
-        opacity={pCause} fontFamily={fontFamily} />
+      {/* Labels sit ON the thing they name, upstream and downstream — not in
+          boxes, and never as the composition. */}
+      <Label x={xIn} y={laneTop - 66} text={short(causeText, 22)}
+        color={colors.textPrimary} size={34} weight={800} tracking={1}
+        opacity={pCause} fontFamily={fontFamily} halo={colors.bg} />
+      {/* The causal marker rides ON the constriction, vertically, because
+          that is where the causality physically happens. Laying it flat
+          under the gate collided with the effect label on a rendered
+          frame — "BECAUSE" printed straight through "THROUGHPUT
+          COLLAPSED". */}
       {marker ? (
-        <Label x={STAGE_CX + boxW / 2 + 26} y={(yCause + boxH + yEffect) / 2 - 14}
-          text={short(marker, 14)} color={colors.accent} size={24} tracking={2.4}
-          opacity={pLink} fontFamily={fontFamily} />
+        <div
+          style={{
+            position: "absolute",
+            left: xGate - 118,
+            top: laneTop - 54,
+            transform: "rotate(-90deg)",
+            transformOrigin: "100% 50%",
+            color: colors.accent,
+            fontFamily,
+            fontWeight: 800,
+            fontSize: 22,
+            letterSpacing: 3,
+            opacity: pLink,
+            textShadow: `0 0 10px ${colors.bg}, 0 0 5px ${colors.bg}`,
+          }}
+        >
+          {short(marker, 14)}
+        </div>
       ) : null}
       {effectText ? (
-        <Label x={STAGE_CX} y={yEffect + boxH / 2 - 18} text={short(effectText, 24)}
-          color={colors.accent} size={38} weight={800} tracking={1} align="center"
-          opacity={pEffect} fontFamily={fontFamily} />
+        <Label x={xOut} y={laneTop + bandH + 46} text={short(effectText, 22)}
+          color={colors.accent} size={34} weight={800} tracking={1} align="right"
+          opacity={pEffect} fontFamily={fontFamily} halo={colors.bg} />
       ) : null}
     </div>
   );

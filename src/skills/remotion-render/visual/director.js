@@ -32,6 +32,7 @@ import { STRATEGIES, STRATEGY_PREFERENCE, TERMINAL_STRATEGY, getStrategy } from 
 import { analyzeBeat, seriesFrom, unitKind } from "./semantics.js";
 import { grammarForChannel, grammarBias } from "./channel-grammar.js";
 import { subjectPhrase, clausePhrase, entityLabels, wordsIn } from "./text-budget.js";
+import { composeShot } from "./composition.js";
 
 /** Minimum confidence a deterministic reading needs before it may render. */
 const MIN_CONFIDENCE = 0.5;
@@ -446,4 +447,18 @@ function finalize(strategy, payload, analysis, beat, ctx, provenance, fallbacks,
     variant: variantSeed(beat),
     variantCount: def.variants || 1,
   };
+}
+
+/**
+ * Attach the art-direction shot to a plan.
+ *
+ * Separate from finalize() because the SHOT depends on the variant ordinal,
+ * and only mg-package.js knows that — it is assigned across a strategy's
+ * uses in one video. Calling this after the ordinal is set is what lets the
+ * second COMPARISON in a script be framed differently from the first.
+ */
+export function attachShot(plan) {
+  if (!plan || !plan.strategy) return plan;
+  plan.shot = composeShot(plan.strategy, plan);
+  return plan;
 }
