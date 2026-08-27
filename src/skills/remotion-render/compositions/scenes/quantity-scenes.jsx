@@ -2,7 +2,7 @@ import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
   CANVAS_W, CANVAS_H, STAGE_CX, SAFE, CAPTION_RESERVE_Y, Label, Figure, Rule, MeasureBracket, variantOf,
-  ease, seeded, useStateProgress, EASE_OUT, EASE_IN_OUT,
+  ease, seeded, useStateProgress, useValueProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
 import { shotFrame } from "./stage.jsx";
@@ -468,7 +468,18 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
  */
 function OppositionComparison({ beat, sup, states, f, colors, fontFamily }) {
   const pLeft = useStateProgress(states, "left");
-  const pRight = useStateProgress(states, "right");
+  // THE SECOND SIDE LANDS ON THE ANCHOR RATHER THAN STARTING THERE.
+  //
+  // `right` is this strategy's anchored state, so driving the opposing mass
+  // from its own progress meant that at the anchor — the frame where the
+  // contrast word is spoken — only ONE side existed. A rendered frame of
+  // the ch-02 opposition beat showed exactly that: the left mass, the seam,
+  // and nothing opposing it.
+  //
+  // This is safe here and NOT in the quantitative branch above: an
+  // opposition prints no figure, so there is no number that could end up
+  // contradicting a mass it labels.
+  const pRight = useValueProgress(states);
   const pGap = useStateProgress(states, "gap");
   const pVerdict = useStateProgress(states, "verdict");
 
@@ -567,13 +578,19 @@ function OppositionComparison({ beat, sup, states, f, colors, fontFamily }) {
         ) : null}
       </svg>
 
-      {/* Each position is SET INTO its own mass, not into a panel. Left
-          copy hangs off the seam leftward, right copy rightward, so the
-          text inherits the composition's asymmetry instead of fighting it. */}
+      {/* Each position sits CLEAR OF its own mass, not inside it.
+          A rendered frame had the left mass's strata drawn straight through
+          "GOVERNMENT ARGUED / SHORT-TERM LOCATION" — seven rules struck
+          through two lines of type — because the copy was placed at the
+          same `top` the strata start from. The masses meet in the middle of
+          the frame, so the words go above and below them: statement, the
+          fault between them, counter-statement, read top to bottom.
+          Positioned by their outer edges so a phrase that wraps grows away
+          from the strata rather than into them. */}
       <div style={{
         position: "absolute",
         left: Math.max(SAFE.left, seamX - f.w * 0.58), width: Math.max(180, f.w * 0.5),
-        top: top - 4,
+        bottom: CANVAS_H - (top - 22),
         textAlign: "right", paddingRight: 26,
         color: colors.textPrimary, fontFamily, fontWeight: 700, fontSize: 36, lineHeight: 1.25,
         opacity: eLeft * (pVerdict > 0 ? 0.5 : 1),
@@ -583,7 +600,7 @@ function OppositionComparison({ beat, sup, states, f, colors, fontFamily }) {
         <div style={{
           position: "absolute",
           left: Math.min(seamX + 26, SAFE.right - 200), width: Math.max(180, Math.min(f.w * 0.5, SAFE.right - seamX - 26)),
-          top: bottom - 90 + slip,
+          top: bottom + slip + 26,
           color: colors.textPrimary, fontFamily, fontWeight: 800, fontSize: 38, lineHeight: 1.25,
           opacity: eRight,
           transform: `translateY(${(1 - eRight) * 16}px)`,
