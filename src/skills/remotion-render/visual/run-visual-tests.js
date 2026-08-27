@@ -356,17 +356,26 @@ check("summarizeVisuals flags a beat that still renders an icon hero", () => {
 // ─────────────────────────────────────────────────────────────────────────────
 console.log("\nnumbers land on their word");
 
-check("a counter is never driven by the state it is anchored to", () => {
-  // The defect this catches was found on a rendered frame: counters were
-  // driven by their own state's progress, and for four scenes that state
-  // WAS the anchored one, so the figure read ZERO on the exact frame the
-  // narration spoke the number. Any <Figure p={...pX}> whose pX names its
-  // strategy's anchored state is that bug.
+check("a counter never contradicts the picture it labels at the anchor", () => {
+  // Found on a rendered frame: the accumulation beat displayed "$0" on the
+  // exact frame the narration said "five hundred dollars", because the
+  // figure was driven by its own anchored state and started counting there.
+  //
+  // The rule is NOT "every figure is full at the anchor" — an earlier
+  // version of this test said that and was wrong. Where the anchored state
+  // INTRODUCES the quantity (COMPARISON's second bar lands on the anchor,
+  // SCALE_COMPARISON's quantity grows from it), the figure SHOULD grow with
+  // it; forcing it to full would print "$340" above a bar of zero height,
+  // the same contradiction the other way round.
+  //
+  // The distinction is declared on the state itself as `resolves`: true
+  // means the thing being labelled is already on screen and the anchored
+  // state finishes it, so a figure must not restart there.
   const dir = join(__dirname, "..", "compositions", "scenes");
   const offenders = [];
   for (const [name, def] of Object.entries(STRATEGIES)) {
     const anchored = (def.states || []).find((s) => s.anchored);
-    if (!anchored) continue;
+    if (!anchored || !anchored.resolves) continue;
     const file = readdirSync(dir)
       .filter((f) => f.endsWith(".jsx"))
       .map((f) => ({ f, src: readFileSync(join(dir, f), "utf-8") }))
@@ -378,7 +387,7 @@ check("a counter is never driven by the state it is anchored to", () => {
     // p{Lock}, p{Right}, p{Grow}... the hook name for the anchored state.
     const hook = "p" + anchored.key[0].toUpperCase() + anchored.key.slice(1);
     const re = new RegExp(`<Figure[^>]*p=\\{[^}]*\\b${hook}\\b`, "s");
-    if (re.test(body)) offenders.push(`${def.scene}: <Figure p={...${hook}}> counts from zero at the anchor`);
+    if (re.test(body)) offenders.push(`${def.scene}: <Figure p={...${hook}}> restarts at an anchor that only RESOLVES an already-drawn value`);
   }
   return offenders.length === 0 || offenders.join("; ");
 });

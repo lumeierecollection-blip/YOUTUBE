@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, STAGE_CX, Label, Figure, Rule, MeasureBracket, variantOf, useValueProgress,
+  CANVAS_W, CANVAS_H, STAGE_CX, Label, Figure, Rule, MeasureBracket, variantOf,
   ease, seeded, useStateProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
@@ -363,7 +363,6 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
 
   const pLeft = useStateProgress(states, "left");
   const pRight = useStateProgress(states, "right");
-  const pValue = useValueProgress(states);
   const pGap = useStateProgress(states, "gap");
   const pVerdict = useStateProgress(states, "verdict");
 
@@ -402,10 +401,14 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
 
       <Figure x={midX - 250 + colW / 2} y={axisY - hA - 56} value={a.value} p={pLeft}
         color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} format={fmt} />
-      {/* The right-hand quantity lands on the anchor, so its figure must be
-          AT its value there rather than starting to count from zero — see
-          useValueProgress. */}
-      <Figure x={midX + 60 + colW / 2} y={axisY - hB - 56} value={b.value} p={pValue}
+      {/* Driven by `right`, the anchored state, ON PURPOSE — do not
+          "fix" this to useValueProgress. The right-hand BAR also grows on
+          pRight, so the figure and the column it labels arrive together;
+          forcing the number to full at the anchor would put "$340" above a
+          bar of zero height, which is the same inconsistency the other way
+          round. The rule is that a figure matches the element it labels,
+          not that every figure lands on the anchor. */}
+      <Figure x={midX + 60 + colW / 2} y={axisY - hB - 56} value={b.value} p={pRight}
         color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} format={fmt} />
 
       <Label x={midX - 250 + colW / 2} y={axisY + 20} text={String(a.label || "").toUpperCase().slice(0, 18)}
@@ -571,7 +574,6 @@ export function ScaleComparisonScene({ beat, colors, fontFamily }) {
 
   const pRef = useStateProgress(states, "reference");
   const pGrow = progressOf(states, "grow", frame);
-  const pValue = useValueProgress(states);
   const pRead = useStateProgress(states, "read");
 
   // A unit-block field: the value expressed as countable blocks, so the
@@ -602,7 +604,9 @@ export function ScaleComparisonScene({ beat, colors, fontFamily }) {
       </svg>
       <MeasureBracket x1={gridX} x2={gridX + gridW} y={gridY + rows * cell + 18} color={colors.stroke} p={pRef} />
       <Figure x={STAGE_CX} y={gridY + rows * cell + 52} value={value} unit={String(sup.unit || "")}
-        p={pValue} color={colors.accent} size={72} align="center" fontFamily={fontFamily} />
+        {/* Same as COMPARISON: the quantity grows FROM the anchor, so the
+            figure grows with it rather than being full before it exists. */}
+        p={ease(pGrow)} color={colors.accent} size={72} align="center" fontFamily={fontFamily} />
       {pRead > 0 ? (
         <Label x={STAGE_CX} y={gridY - 54} text={`${Math.round(ease(pGrow) * 100)}% OF THE FIELD`}
           color={colors.textDim} size={24} tracking={2.4} align="center" opacity={pRead} fontFamily={fontFamily} />

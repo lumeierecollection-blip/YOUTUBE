@@ -296,7 +296,24 @@ function useLayout() {
   return { S, shiftX, shiftY };
 }
 
-function DesignSpace({ children }) {
+/**
+ * `captionDrop` — reclaim the space captions used to occupy.
+ *
+ * Every scene lays out against a stage band roughly 400-1100 in design
+ * space, which leaves the bottom third of a 1920-tall frame free because
+ * that is where the narration captions sat. With captions off by default
+ * the captions are gone but the hole is not: on a rendered frame the whole
+ * composition sits high with a large dead area under it.
+ *
+ * Sixteen scenes hardcode their own y positions, so nothing is gained by
+ * moving the stage constants — the fix has to be one transform on the
+ * container. 110px down recentres the band without pushing anything past
+ * the safe rect. When a channel opts back into burned-in captions the drop
+ * is zero, because then the space is genuinely in use.
+ */
+const CAPTION_RESERVE_Y = 110;
+
+function DesignSpace({ children, captionDrop = 0 }) {
   const { S, shiftX, shiftY } = useLayout();
   return (
     <div
@@ -306,7 +323,7 @@ function DesignSpace({ children }) {
         top: shiftY,
         width: 1080,
         height: 1920,
-        transform: `scale(${S})`,
+        transform: `scale(${S}) translateY(${captionDrop}px)`,
         transformOrigin: "top left",
       }}
     >
@@ -1688,7 +1705,7 @@ function MotionGraphicsContent({ mg, colors, fontFamily, showCaptions }) {
   );
   return (
     <>
-      <DesignSpace>
+      <DesignSpace captionDrop={showCaptions ? 0 : CAPTION_RESERVE_Y}>
         <BeatStages beats={beats} colors={colors} fontFamily={fontFamily} />
         <ListRuns beats={beats} colors={colors} fontFamily={fontFamily} />
         <HeadlineLayer beats={beats} colors={colors} fontFamily={fontFamily} />

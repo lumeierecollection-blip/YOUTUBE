@@ -63,7 +63,10 @@ export const STRATEGIES = {
       { key: "establish", action: "environment appears", weight: 1.4 },
       { key: "origin", action: "the event point lands", weight: 1.0 },
       { key: "expand", action: "radius grows outward", weight: 2.2 },
-      { key: "lock", action: "boundary locks at the stated distance", weight: 1.0, anchored: true },
+      // `resolves`: at this point the radius is ALREADY drawn at ~84% and
+      // the lock finishes it. A figure labelling it must therefore track
+      // the radius, not start counting here — see useValueProgress.
+      { key: "lock", action: "boundary locks at the stated distance", weight: 1.0, anchored: true, resolves: true },
       { key: "populate", action: "devices/subjects inside the boundary appear", weight: 1.6 },
       { key: "select", action: "the ones caught are highlighted", weight: 1.4 },
       { key: "measure", action: "measurement label resolves", weight: 1.2 },
@@ -80,7 +83,9 @@ export const STRATEGIES = {
       { key: "empty", action: "the empty surface establishes the container", weight: 1.0 },
       { key: "first", action: "the first item lands, at readable size", weight: 1.2 },
       { key: "accumulate", action: "items pile in, running total climbing", weight: 3.0 },
-      { key: "total", action: "the pile compresses into the total", weight: 1.6, anchored: true },
+      // `resolves`: the pile is complete before this state begins, so a
+      // figure that counts up from zero here contradicts the picture.
+      { key: "total", action: "the pile compresses into the total", weight: 1.6, anchored: true, resolves: true },
       { key: "weigh", action: "the total is held against what it means", weight: 1.4 },
     ],
   },
