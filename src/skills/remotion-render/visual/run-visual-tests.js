@@ -355,6 +355,56 @@ check("summarizeVisuals flags a beat that still renders an icon hero", () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+console.log("\nnothing draws outside the safe rect");
+
+/** Read a numeric constant or an array literal out of a source file. */
+function constFrom(src, name) {
+  const m = new RegExp(`export const ${name} = ([\\s\\S]*?);\\n`).exec(src)
+    || new RegExp(`const ${name} = ([\\s\\S]*?);\\n`).exec(src);
+  if (!m) return null;
+  const body = m[1].replace(/\/\/[^\n]*/g, "").replace(/(\w+):/g, '"$1":').replace(/,(\s*[\]}])/g, "$1");
+  try {
+    return JSON.parse(body);
+  } catch {
+    return Number(m[1]);
+  }
+}
+
+check("a document page never draws outside the safe rect", () => {
+  // Computed from the REAL exported geometry, not a copy of it. This scene
+  // draws a page AND a pulled-out clause below it, and the whole stack sits
+  // CAPTION_RESERVE_Y lower now that captions are off. The first version of
+  // the page variants put that clause 62-132px outside SAFE.bottom on all
+  // three — invisible in a node test suite, and a 25-minute render away.
+  const scenes = join(__dirname, "..", "compositions", "scenes");
+  const evidence = readFileSync(join(scenes, "evidence-scenes.jsx"), "utf-8");
+  const prims = readFileSync(join(scenes, "primitives.jsx"), "utf-8");
+  const mg = readFileSync(join(__dirname, "..", "compositions", "motion-graphics.jsx"), "utf-8");
+
+  const SAFE = constFrom(prims, "SAFE");
+  const drop = constFrom(mg, "CAPTION_RESERVE_Y");
+  const top = constFrom(evidence, "DOCUMENT_PAGE_TOP");
+  const pages = constFrom(evidence, "DOCUMENT_PAGES");
+  if (!SAFE || !Number.isFinite(drop) || !Number.isFinite(top) || !Array.isArray(pages)) {
+    return "could not read the geometry constants out of the sources";
+  }
+
+  const CLAUSE_GAP = 40;
+  const CLAUSE_H = 100; // two lines at fontSize 40, lineHeight 1.25
+  const problems = [];
+  pages.forEach((p, i) => {
+    if (top < SAFE.top) problems.push(`v${i}: page starts at ${top}, above SAFE.top ${SAFE.top}`);
+    const bottom = top + p.h + CLAUSE_GAP + CLAUSE_H + drop;
+    if (bottom > SAFE.bottom) problems.push(`v${i}: draws to ${bottom}, ${bottom - SAFE.bottom}px below SAFE.bottom ${SAFE.bottom}`);
+    // Body copy must also fit inside its own page.
+    const lastLine = top + 110 + (p.lines - 1) * p.lead;
+    if (lastLine > top + p.h - 20) problems.push(`v${i}: ${p.lines} lines at lead ${p.lead} overflow the page by ${Math.round(lastLine - (top + p.h - 20))}px`);
+    if (p.clause >= p.lines) problems.push(`v${i}: clause line ${p.clause} is past the last line ${p.lines - 1}`);
+  });
+  return problems.length === 0 || problems.join("; ");
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 console.log("\nevery strategy is actually reachable");
 
 check("every strategy the director can prefer has a way to be selected", () => {

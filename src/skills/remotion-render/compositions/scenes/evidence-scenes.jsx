@@ -24,6 +24,17 @@ import { progressOf, reached } from "../../visual/states.js";
 // ─────────────────────────────────────────────────────────────────────────────
 // DOCUMENT_EVIDENCE — the page, then the clause that actually matters.
 // ─────────────────────────────────────────────────────────────────────────────
+/**
+ * Page geometry per variant, exported so the safe-rect test checks the REAL
+ * numbers instead of a duplicate that can drift out of sync with them.
+ */
+export const DOCUMENT_PAGE_TOP = 300;
+export const DOCUMENT_PAGES = [
+  { w: 560, h: 660, lines: 17, clause: 9, lead: 31 },
+  { w: 620, h: 580, lines: 12, clause: 4, lead: 37 },
+  { w: 500, h: 690, lines: 22, clause: 16, lead: 25 },
+];
+
 export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
@@ -40,14 +51,27 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
   // dense the body copy is, and where in it the operative clause sits.
   // Deterministic from the beat, so a re-render is byte-identical.
   const v = variantOf(beat);
-  const PAGES = [
-    { w: 560, h: 700, lines: 17, clause: 9, lead: 33 },  // a filing
-    { w: 620, h: 620, lines: 12, clause: 4, lead: 40 },  // a wider order, clause near the top
-    { w: 500, h: 760, lines: 22, clause: 16, lead: 29 }, // a long opinion, buried clause
-  ];
-  const page = PAGES[v];
+  // GEOMETRY IS CONSTRAINED, not chosen freely. This scene draws the page
+  // AND a pulled-out clause 40px below it, and the whole stack now sits
+  // 110px lower because captions are off (motion-graphics.jsx
+  // CAPTION_RESERVE_Y). Computed against SAFE.bottom = 1248, the first
+  // version of these variants put the clause 62-132px OUTSIDE the safe
+  // rect on all three; the original single page was inside by 8px, so the
+  // drop is what broke it and the variants made it worse.
+  //
+  // Budget, in pre-drop design space:
+  //   top          300   (SAFE.top is 288)
+  //   page                <= PAGE_MAX_H
+  //   gap           40
+  //   clause       100    (two lines at 40px / 1.25)
+  //   bottom      1138    (SAFE.bottom - CAPTION_RESERVE_Y)
+  // `lead` is then whatever fits `lines` inside the page. TESTED, not
+  // eyeballed — see run-visual-tests.js "a document page never draws
+  // outside the safe rect".
+  const PAGE_TOP = DOCUMENT_PAGE_TOP;
+  const page = DOCUMENT_PAGES[v];
   const pageW = page.w, pageH = page.h;
-  const px = STAGE_CX - pageW / 2, py = 400 + (700 - pageH) / 2;
+  const px = STAGE_CX - pageW / 2, py = PAGE_TOP;
 
   // Ruled text lines standing in for body copy. Deliberately abstract —
   // fabricating legal text would be inventing a source, which this repo
