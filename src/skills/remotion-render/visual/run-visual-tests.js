@@ -31,6 +31,7 @@ import { SAFE, CAPTION_RESERVE_Y, documentPageGeometry } from "../compositions/l
 import { composeShot, composedStrategies, assertCompositionIsComplete, shotSignatures, FRAMINGS, CAMERA_MOVES } from "./composition.js";
 import { assertSoundMapIsSound, buildSoundtrack, soundEventsForBeat, volumeFor, MIN_GAP_FRAMES, MAX_EVENTS_PER_BEAT, ROLE_TARGET_DB } from "./sound-design.js";
 import { SFX_LIBRARY } from "./sfx-library.js";
+import { undefinedIdentifiers } from "./scope-check.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "..", "..", "..");
@@ -588,6 +589,57 @@ check("every scene component parses as JSX", () => {
       failures.push(`${basename(file)}: ${String(err.message).split("\n")[1] || err.message}`);
     }
   }
+  return failures.length === 0 || failures.join("; ");
+});
+
+check("no scene references an identifier that does not exist", () => {
+  // The one every other check here is blind to. `OppositionComparison` read
+  // `f.w`, `f.cx` and `f.h` with `f` neither a parameter nor a declaration
+  // anywhere in the module — a guaranteed ReferenceError the moment a
+  // qualitative COMPARISON beat rendered — and `abstract-scenes.jsx` called
+  // `shotFrame` without importing it, which would have crashed every
+  // VISUAL_METAPHOR and CINEMATIC_STATEMENT beat. Both shipped past the
+  // text checks (no scope model), the per-file parse (syntax only), and the
+  // whole-graph bundle (a free identifier is a legal global reference).
+  //
+  // Both were introduced by a refactor that converted scenes to lay out
+  // against the shot frame, and both were in branches the clips I had
+  // rendered never took. That is precisely the shape of bug a render cannot
+  // be relied on to find.
+  const roots = [
+    join(__dirname, "..", "compositions"),
+    join(__dirname, "..", "compositions", "scenes"),
+    join(__dirname),
+    join(__dirname, "..", "layers"),
+    join(__dirname, "..", "primitives"),
+    join(__dirname, "..", "effects"),
+    join(__dirname, "..", "layout"),
+    join(__dirname, "..", "styles"),
+    join(__dirname, "..", "beats"),
+    join(__dirname, "..", "captions"),
+  ];
+  const failures = [];
+  let scanned = 0;
+  for (const dir of roots) {
+    if (!existsSync(dir)) continue;
+    for (const name of readdirSync(dir)) {
+      if (!/\.(jsx|js)$/.test(name)) continue;
+      const file = join(dir, name);
+      let found;
+      try {
+        found = undefinedIdentifiers(readFileSync(file, "utf-8"), name);
+      } catch (err) {
+        failures.push(`${name}: could not parse — ${String(err.message).split("\n")[0]}`);
+        continue;
+      }
+      scanned++;
+      for (const x of found) {
+        if (x.unavailable) return "@babel/parser not resolvable — cannot check scope";
+        failures.push(`${name}:${x.line} \`${x.name}\` in ${x.fn}`);
+      }
+    }
+  }
+  if (scanned < 20) return `only scanned ${scanned} files — the scan is not reaching the render path`;
   return failures.length === 0 || failures.join("; ");
 });
 

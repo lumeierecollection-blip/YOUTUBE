@@ -478,6 +478,7 @@ to hide.
 | VIS-21 | Every scene component parses as JSX | `run-visual-tests.js` (esbuild, per file) | 0 errors | 1 | BLOCKER | **PASS** - the text-based checks cannot see a syntax error; one reached a bundler 15 minutes into a render |
 | VIS-22 | No module in `visual/` exports something nothing imports | `run-visual-tests.js` | 0 dead | 1 | MINOR | **PASS** - removed `planAll`, `strategyNames` |
 | VIS-23 | Every import in the scene graph names something that is actually exported | `run-visual-tests.js` (esbuild `bundle: true` from `scenes/index.jsx` and `motion-graphics.jsx`) | 0 unresolved | 1 | BLOCKER | **PASS** - verified to fail on both real modes: an importer naming a helper that moved, and a re-export surface that drops a name 4 scenes import |
+| VIS-24 | No scene references an identifier nothing binds | `visual/scope-check.js` (`@babel/parser`, scope walk) via `run-visual-tests.js` | 0 free identifiers | 1 | BLOCKER | **PASS** - see 3.12.4; found TWO shipped `ReferenceError`s no other check could see |
 
 **3.12.1 - VIS-08 is frame-verified, not inferred.** The 150-metre geofence
 beat from the real ch-02 script was rendered through the production CLI and
@@ -535,6 +536,41 @@ Two consequences worth keeping:
   imports break, and per-file parsing (`VIS-21`) cannot see across a module
   boundary. It bundles the graph and fails on a name that is imported but
   never exported.
+
+**3.12.4 - VIS-24, and two `ReferenceError`s that were in the tree while
+the suite reported 64 green.** Converting the scenes to lay out against
+their shot frame introduced two crashes, both of which survived every check
+in this file:
+
+- `OppositionComparison` (`quantity-scenes.jsx`) read `f.w`, `f.cx` and
+  `f.h`. `f` was not a parameter, not a declaration, and not a module
+  binding. Every qualitative COMPARISON beat would have thrown.
+- `abstract-scenes.jsx` called `shotFrame` without importing it. Every
+  `VISUAL_METAPHOR` and every `CINEMATIC_STATEMENT` beat would have thrown
+  — including the terminal fallback, which is the one scene that has to
+  work when nothing else does.
+
+Why nothing caught them: the text-based checks do not model scope; `VIS-21`
+parses each file alone and only proves it is syntactically valid; `VIS-23`
+bundles the graph, but a free identifier is a legal reference to a global
+as far as any bundler is concerned. And the renders did not catch them
+because neither branch fired in the clips that had been rendered — a
+qualitative comparison needs a beat with no numeric series, and the
+metaphor scenes need a beat nothing else claims.
+
+That last point is the one to keep: **a rendered frame proves the path it
+rendered, and nothing else.** Frame inspection is still the acceptance
+test, but it is not coverage, and treating one render as coverage is how
+two guaranteed crashes sat in the tree behind a green suite.
+
+`visual/scope-check.js` walks the AST (`@babel/parser`, JSX) and reports
+any identifier referenced in a function with no binding in that function,
+any enclosing function, module scope, or a short list of real globals. It
+is deliberately conservative — every binding anywhere in a function counts
+for the whole function, so it does not model block scope, shadowing or the
+temporal dead zone, and it will not catch a use-before-declare. It catches
+exactly the class that shipped. Both bugs were re-introduced afterwards to
+confirm the check fails on them.
 
 ---
 

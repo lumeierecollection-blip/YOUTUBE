@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, STAGE_CX, Label, Figure, Rule, MeasureBracket, variantOf,
+  CANVAS_W, CANVAS_H, STAGE_CX, SAFE, CAPTION_RESERVE_Y, Label, Figure, Rule, MeasureBracket, variantOf,
   ease, seeded, useStateProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
@@ -369,7 +369,7 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
   // alternative would be inventing bar values for a sentence that never
   // stated any.
   if (sup.qualitative && series.length < 2) {
-    return <OppositionComparison beat={beat} sup={sup} states={states} colors={colors} fontFamily={fontFamily} />;
+    return <OppositionComparison beat={beat} sup={sup} states={states} f={f} colors={colors} fontFamily={fontFamily} />;
   }
   if (series.length < 2) return null;
 
@@ -444,88 +444,160 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
 }
 
 /**
- * The qualitative register of COMPARISON: two stated positions facing each
- * other across a dividing line, the second one arriving to displace the
- * first. No numbers are shown because none were stated.
+ * The qualitative register of COMPARISON: two stated positions under load,
+ * meeting along a seam. No numbers are shown because none were stated.
+ *
+ * TWO THINGS WERE WRONG WITH THE FIRST VERSION.
+ *
+ * The first was fatal and shipped: it read `f.w`, `f.cx` and `f.h` while
+ * `f` was never a parameter and never declared anywhere in the module — a
+ * guaranteed ReferenceError the moment a qualitative comparison rendered.
+ * Nothing caught it. The text-based checks do not model scope, the esbuild
+ * parse only proves syntax, the whole-graph bundle treats a free identifier
+ * as a global, and no clip I had rendered took this branch. `f` is now
+ * passed in from the caller, which already computes it, and
+ * `visual/scope-check.js` (VIS-24) exists so the next one cannot ship.
+ *
+ * The second was that it drew two rounded rectangles with text inside them
+ * and a dashed line between: cards. The whole point of this renderer is
+ * that a disagreement is not two boxes. COMPARISON's material is FIELD —
+ * isolines of a potential — so an opposition is two bodies of pressure
+ * meeting along a seam, and the disagreement is the seam FAILING TO LINE
+ * UP: the strata on one side do not continue into the other. That is a
+ * picture of a disagreement rather than a diagram labelled BUT.
  */
-function OppositionComparison({ beat, sup, states, colors, fontFamily }) {
-  const frame = useCurrentFrame();
+function OppositionComparison({ beat, sup, states, f, colors, fontFamily }) {
   const pLeft = useStateProgress(states, "left");
   const pRight = useStateProgress(states, "right");
   const pGap = useStateProgress(states, "gap");
   const pVerdict = useStateProgress(states, "verdict");
 
-  const panelW = f.w * 0.78;
-  const panelH = f.h * 0.24;
-  const x = f.cx - panelW / 2;
-  const yTop = f.cy - f.h * 0.32;
-  const yBot = yTop + panelH + f.h * 0.2;
+  const shot = (beat.visualPlan && beat.visualPlan.shot) || null;
+  const eLeft = ease(pLeft), eRight = ease(pRight), eGap = ease(pGap), eVerdict = ease(pVerdict);
+
+  // The seam sits where the FRAMING puts the subject, so the two masses are
+  // deliberately unequal on the ACTING_LEFT variant and even on HORIZON.
+  // That asymmetry is the composition doing work; a seam always at the
+  // middle is the thing that makes two uses of a strategy look identical.
+  const seamX = f.cx;
+  const top = Math.max(SAFE.top + 20, f.cy - f.h * 0.42);
+  const bottom = Math.min(SAFE.bottom - CAPTION_RESERVE_Y - 150, f.cy + f.h * 0.42);
+  const height = Math.max(160, bottom - top);
+  const leftEdge = Math.max(-40, seamX - f.w * 0.62);
+  const rightEdge = Math.min(CANVAS_W + 40, seamX + f.w * 0.62);
+
+  // Strata: the same layering on both sides, so the eye reads them as ONE
+  // body until the seam displaces. Count is fixed, not derived from any
+  // stated quantity — nothing here claims to measure anything.
+  const STRATA = 9;
+  // How far the right-hand mass has slipped against the left. This is the
+  // disagreement, and it arrives on `gap`.
+  const slip = height * 0.075 * eGap;
+
+  const strata = [];
+  for (let i = 0; i < STRATA; i++) {
+    const t = i / (STRATA - 1);
+    const y = top + t * height;
+    // Left mass establishes on `left`, right on `right` (the anchor), each
+    // drawing outward from the seam so the seam is the origin of both.
+    const lp = ease(Math.max(0, Math.min(1, pLeft * 1.9 - t * 0.5)));
+    const rp = ease(Math.max(0, Math.min(1, pRight * 1.9 - t * 0.5)));
+    const weight = 1.5 + (1 - Math.abs(t - 0.5) * 2) * 2.2;
+    if (lp > 0.01) {
+      strata.push(
+        <line key={`l${i}`}
+          x1={seamX} y1={y} x2={seamX - (seamX - leftEdge) * lp} y2={y}
+          stroke={colors.stroke} strokeWidth={weight}
+          opacity={(0.34 + 0.3 * lp) * (pVerdict > 0 ? 0.4 : 1)} />
+      );
+    }
+    if (rp > 0.01) {
+      strata.push(
+        <line key={`r${i}`}
+          x1={seamX} y1={y + slip} x2={seamX + (rightEdge - seamX) * rp} y2={y + slip}
+          stroke={pVerdict > 0 ? colors.accent : colors.stroke}
+          strokeWidth={weight * (pVerdict > 0 ? 1.35 : 1)}
+          opacity={0.34 + 0.34 * rp} />
+      );
+    }
+  }
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        <rect x={x} y={yTop} width={panelW} height={panelH} rx={4}
-          fill="none" stroke={colors.stroke} strokeWidth={2.5}
-          opacity={ease(pLeft) * (pVerdict > 0 ? 0.45 : 1)} />
-        {/* THE SECOND POSITION'S FRAME IS DRAWN FROM THE START, empty.
-            `right` is this strategy's anchored state, so at the anchor —
-            the frame where the contrast word is spoken, and the moment the
-            picture is most on the hook — the composition used to be ONE box
-            with four words in it and nothing else. A rendered frame of the
-            ch-02 opposition beat showed exactly that: narration on a
-            background, which is the failure this rebuild exists to remove.
-            An opposition has two sides before either is filled in, so the
-            structure is established during `left` and the second side's
-            content lands on the anchor. */}
-        <rect x={x} y={yBot} width={panelW} height={panelH} rx={4}
-          fill={colors.accent} fillOpacity={0.12 * ease(pVerdict)}
-          stroke={pRight > 0 ? colors.accent : colors.stroke}
-          strokeWidth={pRight > 0 ? 3 : 2.5}
-          strokeDasharray={pRight > 0 ? "none" : "10 8"}
-          opacity={pRight > 0 ? ease(pRight) : 0.45 * ease(pLeft)} />
-        {/* The dividing line IS the disagreement — it draws through on
-            `gap`, over a faint rule that exists as soon as there are two
-            sides to divide. */}
-        <line
-          x1={x} y1={(yTop + panelH + yBot) / 2}
-          x2={x + panelW} y2={(yTop + panelH + yBot) / 2}
-          stroke={colors.stroke} strokeWidth={1.5} opacity={0.3 * ease(pLeft)} />
+        {strata}
+
+        {/* THE SEAM. Present from the moment there are two sides — an
+            opposition has a boundary before either side is filled in. A
+            rendered frame of the old ch-02 opposition beat showed one box
+            with four words in it on the anchor, i.e. narration on a
+            background, which is exactly the failure this rebuild removes. */}
+        <line x1={seamX} y1={top - 30} x2={seamX} y2={top - 30 + (height + 60) * Math.max(eLeft, 0.02)}
+          stroke={colors.stroke} strokeWidth={2} opacity={0.5} />
+
+        {/* On `gap` the seam becomes the fault it always was: it thickens,
+            takes the accent, and the right mass is already displaced along
+            it. Nothing is labelled; the offset IS the disagreement. */}
         {pGap > 0 ? (
-          <line
-            x1={x} y1={(yTop + panelH + yBot) / 2}
-            x2={x + panelW * ease(pGap)} y2={(yTop + panelH + yBot) / 2}
-            stroke={colors.accent} strokeWidth={3} strokeDasharray="12 10" />
+          <>
+            <line x1={seamX} y1={top - 30} x2={seamX} y2={top - 30 + (height + 60) * eGap}
+              stroke={colors.accent} strokeWidth={4} />
+            {/* Shear marks where the strata fail to meet — short ticks at
+                the offset, the way a slipped fault is actually read. */}
+            {Array.from({ length: 4 }).map((_, i) => {
+              const y = top + height * (0.2 + i * 0.2) + slip / 2;
+              return (
+                <line key={`s${i}`} x1={seamX - 16} y1={y} x2={seamX + 16} y2={y - slip * 0.9}
+                  stroke={colors.accent} strokeWidth={2} opacity={0.7 * eGap} />
+              );
+            })}
+          </>
+        ) : null}
+
+        {/* On `verdict` the right mass encroaches: its strata continue PAST
+            the seam into the left mass's ground. One side gives way. */}
+        {pVerdict > 0 ? (
+          Array.from({ length: 4 }).map((_, i) => {
+            const y = top + height * (0.28 + i * 0.16) + slip;
+            return (
+              <line key={`e${i}`} x1={seamX} y1={y} x2={seamX - f.w * 0.2 * eVerdict} y2={y}
+                stroke={colors.accent} strokeWidth={3} opacity={0.85} />
+            );
+          })
         ) : null}
       </svg>
 
-      {/* Each side carries its own position. No "ARGUED"/"BUT" headers
-          stacked above them — the pivot word sits ON the dividing line,
-          which is where the opposition actually happens, and costs one
-          word instead of two labels. */}
+      {/* Each position is SET INTO its own mass, not into a panel. Left
+          copy hangs off the seam leftward, right copy rightward, so the
+          text inherits the composition's asymmetry instead of fighting it. */}
       <div style={{
-        position: "absolute", left: x + 28, top: yTop + 42, width: panelW - 56,
+        position: "absolute",
+        left: Math.max(SAFE.left, seamX - f.w * 0.58), width: Math.max(180, f.w * 0.5),
+        top: top - 4,
+        textAlign: "right", paddingRight: 26,
         color: colors.textPrimary, fontFamily, fontWeight: 700, fontSize: 36, lineHeight: 1.25,
-        opacity: ease(pLeft) * (pVerdict > 0 ? 0.55 : 1),
+        opacity: eLeft * (pVerdict > 0 ? 0.5 : 1),
       }}>{sup.leftPhrase || ""}</div>
-
-      {pGap > 0 ? (
-        <div style={{
-          position: "absolute", left: 0, right: 0, top: (yTop + panelH + yBot) / 2 - 20,
-          textAlign: "center", opacity: ease(pGap),
-        }}>
-          <span style={{
-            background: colors.bg, padding: "0 18px",
-            color: colors.accent, fontFamily, fontWeight: 800, fontSize: 26, letterSpacing: 3,
-          }}>{String(sup.pivot || "BUT").toUpperCase()}</span>
-        </div>
-      ) : null}
 
       {pRight > 0 ? (
         <div style={{
-          position: "absolute", left: x + 28, top: yBot + 42, width: panelW - 56,
+          position: "absolute",
+          left: Math.min(seamX + 26, SAFE.right - 200), width: Math.max(180, Math.min(f.w * 0.5, SAFE.right - seamX - 26)),
+          top: bottom - 90 + slip,
           color: colors.textPrimary, fontFamily, fontWeight: 800, fontSize: 38, lineHeight: 1.25,
-          opacity: ease(pRight),
+          opacity: eRight,
+          transform: `translateY(${(1 - eRight) * 16}px)`,
         }}>{sup.rightPhrase || ""}</div>
+      ) : null}
+
+      {/* The pivot word rides ON the fault, at the offset, where the
+          disagreement physically is. One word, not two column headers. */}
+      {pGap > 0 ? (
+        <Label
+          x={seamX} y={top + height * 0.5 + slip / 2 - 16}
+          text={String(sup.pivot || "BUT").toUpperCase()}
+          color={colors.accent} size={26} weight={800} tracking={3}
+          align="center" opacity={eGap} fontFamily={fontFamily} halo={colors.bg} />
       ) : null}
     </div>
   );

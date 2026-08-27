@@ -1,10 +1,11 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, STAGE_CX, Label, GroundPlane, ease, seeded,
+  CANVAS_W, CANVAS_H, SAFE, Label, ease, seeded,
   useStateProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf } from "../../visual/states.js";
+import { Plane, shotFrame } from "./stage.jsx";
 
 /**
  * Abstract scenes — the two that carry a beat when nothing concrete is
@@ -52,6 +53,12 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
   const cx = f.cx, cy = f.cy;
   const a = ease(pAct, EASE_IN_OUT);
   const rings = 5;
+  // Field size follows the SHOT, not a fixed 330px. IMMERSIVE puts the
+  // viewer inside the field; CLOSE puts them near a smaller one. Hardcoding
+  // the radius made both framings draw an identical field, which is the
+  // whole complaint this layer exists to answer.
+  const R = Math.min(f.w, f.h) * 0.46;
+  const step = R * 0.079;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
@@ -65,31 +72,31 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
           switch (mode) {
             case "closing":
               // Rings contract toward the centre: the space available shrinks.
-              r = (330 - i * 26) * (1 - 0.55 * a);
+              r = (R - i * step) * (1 - 0.55 * a);
               sw = 2 + i * 0.4;
               break;
             case "loading":
               // Stacked bars compress downward under accumulating weight.
-              r = 300 - i * 30;
+              r = R * 0.9 - i * step * 1.15;
               break;
             case "revealing":
               // Rings expand outward, exposing what was inside.
-              r = (70 + i * 30) * (1 + 1.6 * a);
+              r = (R * 0.21 + i * step * 1.15) * (1 + 1.6 * a);
               opacity *= 1 - 0.5 * a;
               break;
             case "destabilising":
-              r = 300 - i * 30;
+              r = R * 0.9 - i * step * 1.15;
               break;
             default: // converging
-              r = (330 - i * 26) * (1 - 0.3 * a);
+              r = (R - i * step) * (1 - 0.3 * a);
           }
 
           if (mode === "loading") {
             const squash = 1 - 0.5 * a * (1 - t);
             return (
               <rect key={i}
-                x={cx - r} y={cy - 150 + i * 62 * squash}
-                width={r * 2} height={44 * squash} rx={3}
+                x={cx - r} y={cy - f.h * 0.17 + i * (f.h * 0.07) * squash}
+                width={r * 2} height={f.h * 0.05 * squash} rx={3}
                 fill="none" stroke={i === 0 ? colors.accent : colors.stroke}
                 strokeWidth={i === 0 ? 3.5 : 2} opacity={opacity} />
             );
@@ -112,7 +119,7 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
       </svg>
 
       {pResolve > 0 ? (
-        <Label x={cx} y={cy + 330} text={(beat.visualPlan && beat.visualPlan.supporting.phrase) || ""}
+        <Label x={cx} y={cy + R * 0.95} text={(beat.visualPlan && beat.visualPlan.supporting.phrase) || ""}
           color={colors.textPrimary} size={40} weight={800} tracking={2}
           align="center" opacity={pResolve} fontFamily={fontFamily} />
       ) : null}
@@ -124,15 +131,34 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
 // CINEMATIC_STATEMENT — the terminal fallback.
 //
 // This replaces the icon-only StatementScene. When no richer reading was
-// available, the frame is still COMPOSED: a receding ground plane gives
-// real depth, the subject phrase sits in that space at a considered
-// position, and a slow parallax drift keeps it from being a static card.
-// No icon. Ever.
+// available the frame is still a SHOT: distance, three real depth planes,
+// and the statement standing somewhere in that distance. No icon. Ever.
+//
+// WHAT WAS WRONG WITH THE FIRST VERSION. It drew `GroundPlane` — a
+// perspective grid — with a horizon line at y=560, on top of the
+// `AtmosphereGround` the router already stages, whose own horizon is at
+// y=1152. Two horizons, at different heights, in one frame. That is the
+// same defect the TIMELINE rebuild fixed, and it is what a scene gets for
+// staging its own world instead of standing in the one it was given.
+//
+// It also ignored its shot entirely: `f` was computed and then never read,
+// while the composition used a hardcoded STAGE_CX and a fixed y=640. Both
+// framings CINEMATIC_STATEMENT can receive drew the identical picture.
+//
+// This version stands in the atmosphere ground's world — its horizon,
+// nothing competing with it — and separates near from far with the real
+// `Plane` primitive, which until now was exported and used by no scene.
 // ─────────────────────────────────────────────────────────────────────────────
+
+/** Where AtmosphereGround puts its horizon. One horizon per frame. */
+const ATMOSPHERE_HORIZON_Y = CANVAS_H * 0.6;
+
 export function CinematicStatementScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
-  const f = shotFrame((beat.visualPlan && beat.visualPlan.shot) || null);
+  const shot = (beat.visualPlan && beat.visualPlan.shot) || null;
+  const f = shotFrame(shot);
+  const dur = beat.durationInFrames;
 
   const pField = useStateProgress(states, "field");
   const pSubject = useStateProgress(states, "subject");
@@ -144,55 +170,103 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
   // being countable in the first place.
   const phrase = (beat.visualPlan && beat.visualPlan.supporting.phrase) || "";
 
-  // Slow lateral parallax — the ground moves further than the subject, so
-  // the frame reads as a held shot rather than a still slide.
-  const drift = ease(pDrift, EASE_IN_OUT);
-  const groundShift = -26 * drift;
-  const subjectShift = -9 * drift;
+  const seed = (beat.startFrame || 0) + 7;
+  const horizon = ATMOSPHERE_HORIZON_Y;
+  const eField = ease(pField);
+  const eSubject = ease(pSubject);
+  // The one extra breath the terminal fallback gets, on top of the camera's
+  // drift. Small: the sparseness is the point, movement is not the point.
+  const settle = ease(pDrift, EASE_IN_OUT);
+
+  // The statement stands where the FRAMING says, not in the middle. HORIZON
+  // sets it low and near the ground; ISOLATED lifts it into the haze and
+  // pushes it left, which is what "isolated" should look like.
+  const textCx = f.cx;
+  const textY = Math.min(f.cy, horizon - 90);
+  const stakeH = Math.max(60, horizon - textY - 40);
+
+  // A far ridge: deterministic, irregular, and BELOW the eye — it sits on
+  // the horizon rather than floating. Seeded, so a re-render is identical.
+  const ridge = [];
+  const ridgeN = 22;
+  for (let i = 0; i <= ridgeN; i++) {
+    const x = (i / ridgeN) * CANVAS_W;
+    const y = horizon - (10 + seeded(seed * 31 + i) * 46) * eField;
+    ridge.push(`${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`);
+  }
+  ridge.push(`L${CANVAS_W},${horizon} L0,${horizon} Z`);
 
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-      <div style={{ position: "absolute", inset: 0, transform: `translateX(${groundShift}px)` }}>
-        <GroundPlane p={pField} color={colors.stroke} cx={STAGE_CX} horizonY={560} rows={8} cols={9} />
-      </div>
+      {/* FAR — a ridge on the horizon. Lags the camera most (parallax 0.2),
+          so it barely moves, the way distance behaves. */}
+      <Plane shot={shot} depth="far" states={states} durationInFrames={dur}>
+        <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0 }}>
+          <path d={ridge.join(" ")} fill={colors.stroke} opacity={0.07 * eField} />
+        </svg>
+      </Plane>
 
-      {/* A single horizon marker anchoring the subject in the space. */}
-      <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        <line
-          x1={0} y1={560}
-          x2={CANVAS_W * ease(pField)} y2={560}
-          stroke={colors.stroke} strokeWidth={1.5} opacity={0.55} />
-        {pSubject > 0 ? (
-          <line
-            x1={STAGE_CX - 150 + subjectShift} y1={742}
-            x2={STAGE_CX - 150 + subjectShift + 300 * ease(pSubject)} y2={742}
-            stroke={colors.accent} strokeWidth={4} />
-        ) : null}
-      </svg>
+      {/* SUBJECT — the statement, and a single stake tying it to the
+          ground. Without the stake the words float; with it, they are
+          somewhere. */}
+      <Plane shot={shot} depth="subject" states={states} durationInFrames={dur}>
+        <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
+          {pSubject > 0 ? (
+            <line
+              x1={textCx} y1={horizon}
+              x2={textCx} y2={horizon - stakeH * eSubject}
+              stroke={colors.accent} strokeWidth={3} />
+          ) : null}
+          {/* Its footing on the ground — a shadow, so the stake is standing
+              on the plane rather than crossing in front of it. */}
+          {pSubject > 0 ? (
+            <ellipse cx={textCx} cy={horizon + 3} rx={26 * eSubject} ry={4 * eSubject}
+              fill={colors.stroke} opacity={0.22} />
+          ) : null}
+        </svg>
 
-      {phrase ? (
-        <div style={{
-          position: "absolute",
-          left: 0, right: 0, top: 640,
-          textAlign: "center",
-          transform: `translateX(${subjectShift}px)`,
-          opacity: ease(pSubject),
-        }}>
+        {phrase ? (
           <div style={{
-            display: "inline-block",
-            color: colors.textPrimary,
-            fontFamily,
-            fontWeight: 800,
-            fontSize: phrase.length > 20 ? 56 : 72,
-            letterSpacing: 1.5,
-            lineHeight: 1.1,
-            maxWidth: 780,
-            transform: `translateY(${(1 - ease(pSubject)) * 20}px)`,
+            position: "absolute",
+            left: Math.max(SAFE.left, textCx - f.w * 0.44),
+            width: Math.min(f.w * 0.88, SAFE.right - SAFE.left),
+            top: textY,
+            textAlign: shot && shot.anchorX < 0.45 ? "left" : "center",
+            opacity: eSubject,
+            transform: `translateY(${(1 - eSubject) * 20 - settle * 6}px)`,
           }}>
-            {phrase}
+            <div style={{
+              color: colors.textPrimary,
+              fontFamily,
+              fontWeight: 800,
+              // Type scales with the shot: a tighter framing means the
+              // words are nearer, not smaller in the same frame.
+              fontSize: Math.round((phrase.length > 20 ? 56 : 72) * Math.min(1.1, f.w / 1080)),
+              letterSpacing: 1.5,
+              lineHeight: 1.1,
+            }}>
+              {phrase}
+            </div>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+      </Plane>
+
+      {/* FOREGROUND — the near edge of the ground the viewer is standing
+          on. Leads the camera (parallax 1.5), so it is the layer that
+          actually sells the depth; a still frame shows only a dark band. */}
+      <Plane shot={shot} depth="foreground" states={states} durationInFrames={dur}>
+        <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0 }}>
+          <path
+            d={`M-60,${CANVAS_H} L-60,${CANVAS_H - 150 * eField} ${Array.from({ length: 13 })
+              .map((_, i) => {
+                const x = -60 + (i / 12) * (CANVAS_W + 120);
+                const y = CANVAS_H - (110 + seeded(seed * 53 + i) * 80) * eField;
+                return `L${x.toFixed(1)},${y.toFixed(1)}`;
+              })
+              .join(" ")} L${CANVAS_W + 60},${CANVAS_H} Z`}
+            fill={colors.stroke} opacity={0.1 * eField} />
+        </svg>
+      </Plane>
     </div>
   );
 }

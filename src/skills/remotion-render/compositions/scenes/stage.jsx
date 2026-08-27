@@ -113,6 +113,11 @@ export function Shot({ shot, states, durationInFrames, children }) {
 export function Plane({ shot, depth = "subject", states, durationInFrames, children }) {
   const p = useShotProgress(states, durationInFrames);
   const e = ease(p, EASE_IN_OUT);
+  // A beat can reach a scene with no shot — scenes/index.jsx renders the
+  // component bare in that case. Depth without a camera is nothing to
+  // offset against, so the plane passes its children straight through
+  // rather than throwing on `shot.planes`.
+  if (!shot) return <div style={{ position: "absolute", inset: 0 }}>{children}</div>;
   const plane = (shot.planes || []).find((x) => x.name === depth);
   const factor = plane ? plane.parallax : 1;
   // Differential against the subject plane; the camera already moved
