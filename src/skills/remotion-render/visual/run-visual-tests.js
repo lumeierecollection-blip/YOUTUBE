@@ -28,7 +28,7 @@ import { analyzeBeat } from "./semantics.js";
 import { summarizeVisuals, summarizeSound } from "./diagnostics.js";
 import { MAX_SUPPORTING_WORDS } from "./text-budget.js";
 import { SAFE, CAPTION_RESERVE_Y, documentPageGeometry } from "../compositions/layout-constants.js";
-import { composeShot, composedStrategies, assertCompositionIsComplete, shotSignatures, FRAMINGS, CAMERA_MOVES } from "./composition.js";
+import { composeShot, composedStrategies, assertCompositionIsComplete, shotSignatures, FRAMINGS, CAMERA_MOVES, DEPTH_PROFILES, planeOffset } from "./composition.js";
 import { assertSoundMapIsSound, buildSoundtrack, soundEventsForBeat, materialsWithCharacter, volumeFor, MIN_GAP_FRAMES, MAX_EVENTS_PER_BEAT, ROLE_TARGET_DB } from "./sound-design.js";
 import { SFX_LIBRARY } from "./sfx-library.js";
 import { undefinedIdentifiers } from "./scope-check.js";
@@ -456,6 +456,90 @@ check("no two strategies share a whole shot signature", () => {
   // first draft of the table, which is exactly what it is for.
   const dupes = Object.entries(shotSignatures(STRATEGIES)).filter(([, v]) => v.length > 1);
   return dupes.length === 0 || dupes.map(([k, v]) => `${k}: ${v.join(" + ")}`).join("; ");
+});
+
+check("depth planes are far enough apart to be seen as depth", () => {
+  // `vendor/video-shotcraft`'s depth-layer reference (Apache-2.0, already
+  // vendored here) states it as a number: the parallax gradient between
+  // adjacent planes must be >= 2x or the eye does not separate them, and a
+  // shot gets at most four planes before it reads as overload.
+  //
+  // The first draft of DEPTH_PROFILES broke the first rule on both profiles
+  // — LAYERED's foreground step was 1.35x and DEEP's was 1.50x — so those
+  // planes were doing arithmetic and not much else.
+  const problems = [];
+  for (const [name, profile] of Object.entries(DEPTH_PROFILES)) {
+    const planes = profile.planes;
+    if (planes.length > 4) problems.push(`${name}: ${planes.length} planes, reference caps depth at 4`);
+    for (let i = 1; i < planes.length; i++) {
+      const g = planes[i].parallax / planes[i - 1].parallax;
+      if (g < 2) {
+        problems.push(`${name}: ${planes[i - 1].name}->${planes[i].name} gradient ${g.toFixed(2)}x is below 2x`);
+      }
+    }
+  }
+  return problems.length === 0 || problems.join("; ");
+});
+
+check("a plane ends up moving exactly its parallax factor times the camera", () => {
+  // THE SIGN WAS INVERTED AND THE DEPTH READ BACKWARDS. `Shot` translates
+  // the world by the camera's travel, so a plane at factor k must ADD
+  // (k-1)*travel to land on k*travel. The first version added
+  // (k-1)*travel*-1, which on TIMELINE's TRACK_RIGHT sent the FAR plane
+  // 1.86x the camera's distance — it should go 0.14x — and sent the
+  // FOREGROUND plane backwards at -0.20x. Near and far were swapped, so
+  // every scene using planes was reading its own depth inside out.
+  //
+  // Checked as a RATIO against the camera's own travel, which is the thing
+  // the parallax factor is defined against; asserting a pixel number would
+  // just re-encode whatever the code happens to do.
+  const problems = [];
+  for (const name of composedStrategies()) {
+    const shot = composeShot(name, { variant: 0 });
+    const cam = shot.camera;
+    const travelX = (cam.to.x - cam.from.x) * 1080;
+    const travelY = (cam.to.y - cam.from.y) * 1920;
+    // A HOLD has no travel, so there is no ratio to check — and no depth to
+    // read either. Skipped rather than fudged.
+    if (Math.abs(travelX) < 1e-6 && Math.abs(travelY) < 1e-6) continue;
+    for (const plane of shot.planes) {
+      const off = planeOffset(shot, plane.name, 1);
+      for (const [axis, travel, add] of [["x", travelX, off.x], ["y", travelY, off.y]]) {
+        if (Math.abs(travel) < 1e-6) continue;
+        const ratio = (travel + add) / travel;
+        if (Math.abs(ratio - plane.parallax) > 1e-6) {
+          problems.push(`${name}.${plane.name} moves ${ratio.toFixed(2)}x the camera on ${axis}, declared ${plane.parallax}x`);
+        }
+      }
+    }
+  }
+  return problems.length === 0 || problems.slice(0, 6).join("; ");
+});
+
+check("every plane carries a depth anchor, and the subject stays sharp", () => {
+  // The same reference names the failure mode for offset-only parallax:
+  // without a blur / desaturation anchor, layers read as stickers sliding
+  // around rather than as distance. Plane applied only the translation
+  // until this was added.
+  const problems = [];
+  for (const [name, profile] of Object.entries(DEPTH_PROFILES)) {
+    for (const plane of profile.planes) {
+      for (const key of ["blur", "saturate", "opacity"]) {
+        if (typeof plane[key] !== "number") problems.push(`${name}.${plane.name} has no ${key}`);
+      }
+      if (plane.name === "subject") {
+        // The layer being read is never softened. Everything else may be.
+        if (plane.blur !== 0) problems.push(`${name}.subject is blurred ${plane.blur}px — the read layer must be sharp`);
+        if (plane.saturate !== 1 || plane.opacity !== 1) problems.push(`${name}.subject is not at full saturation/opacity`);
+      } else if (plane.blur === 0 && plane.saturate === 1 && plane.opacity === 1) {
+        problems.push(`${name}.${plane.name} has parallax but no blur/saturation/opacity anchor`);
+      }
+    }
+  }
+  // And the component has to actually apply them.
+  const stage = readFileSync(join(__dirname, "..", "compositions", "scenes", "stage.jsx"), "utf-8");
+  if (!/filter:\s*parts/.test(stage)) problems.push("stage.jsx Plane does not apply a filter — the anchors are inert");
+  return problems.length === 0 || problems.join("; ");
 });
 
 check("shots are not all centred", () => {

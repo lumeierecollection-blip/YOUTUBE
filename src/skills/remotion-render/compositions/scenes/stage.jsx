@@ -2,6 +2,7 @@ import React from "react";
 import { useCurrentFrame } from "remotion";
 import { CANVAS_W, CANVAS_H, ease, seeded, EASE_IN_OUT } from "./primitives.jsx";
 import { progressOf } from "../../visual/states.js";
+import { planeOffset } from "../../visual/composition.js";
 
 /**
  * Art-direction primitives: the things that turn a subject into a SHOT.
@@ -104,11 +105,19 @@ export function Shot({ shot, states, durationInFrames, children }) {
 }
 
 /**
- * A depth plane. Lags or leads the camera by its parallax factor.
+ * A depth plane. Lags or leads the camera, AND carries a depth anchor.
  *
- * Parallax below 1 sits behind the subject, above 1 in front. The amounts
- * are small on purpose — a few pixels of differential over a whole beat is
- * enough for the eye to read separation, and more reads as drifting junk.
+ * PARALLAX ALONE IS NOT DEPTH. `vendor/video-shotcraft`'s depth-layer
+ * reference states the failure directly: without a blur / desaturation
+ * anchor, offset layers read as stickers sliding around rather than as
+ * distance. An earlier version of this component applied only the
+ * translation, which is exactly that. Each plane now also carries the blur,
+ * saturation and opacity that make its distance legible — and the SUBJECT
+ * plane is always perfectly sharp, because that is the layer being read.
+ *
+ * The parallax gradients live in visual/composition.js and are >= 2x
+ * between adjacent planes, per the same reference: below that the eye does
+ * not separate them at all.
  */
 export function Plane({ shot, depth = "subject", states, durationInFrames, children }) {
   const p = useShotProgress(states, durationInFrames);
@@ -119,17 +128,34 @@ export function Plane({ shot, depth = "subject", states, durationInFrames, child
   // rather than throwing on `shot.planes`.
   if (!shot) return <div style={{ position: "absolute", inset: 0 }}>{children}</div>;
   const plane = (shot.planes || []).find((x) => x.name === depth);
-  const factor = plane ? plane.parallax : 1;
   // Differential against the subject plane; the camera already moved
-  // everything, this only adds what depth would add.
-  const cam = shot.camera;
-  const travel = (cam.to.x - cam.from.x) * CANVAS_W * e;
-  const rise = (cam.to.y - cam.from.y) * CANVAS_H * e;
-  const offX = travel * (factor - 1) * -1;
-  const offY = rise * (factor - 1) * -1;
+  // everything, this only adds what depth would add. The maths lives in
+  // visual/composition.js so a test can exercise the real function — and
+  // because the first version of it had the sign inverted, which sent far
+  // planes racing ahead of the camera and foreground planes backwards.
+  const { x: offX, y: offY } = planeOffset(shot, depth, e);
+
+  const blur = plane ? plane.blur || 0 : 0;
+  const saturate = plane && plane.saturate != null ? plane.saturate : 1;
+  const opacity = plane && plane.opacity != null ? plane.opacity : 1;
+  // Built as a string rather than always emitting `filter`: a filter of
+  // "none" is free, but `blur(0px) saturate(1)` still forces the subject
+  // layer through a compositing pass it does not need, and this renders on
+  // software WebGL.
+  const parts = [];
+  if (blur > 0) parts.push(`blur(${blur}px)`);
+  if (saturate !== 1) parts.push(`saturate(${saturate})`);
 
   return (
-    <div style={{ position: "absolute", inset: 0, transform: `translate(${offX}px, ${offY}px)` }}>
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        transform: `translate(${offX}px, ${offY}px)`,
+        filter: parts.length ? parts.join(" ") : undefined,
+        opacity,
+      }}
+    >
       {children}
     </div>
   );

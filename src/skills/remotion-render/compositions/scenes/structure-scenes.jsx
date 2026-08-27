@@ -5,7 +5,7 @@ import {
   useStateProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
-import { shotFrame } from "./stage.jsx";
+import { shotFrame, Plane } from "./stage.jsx";
 
 /**
  * Structure scenes — how things are ARRANGED, rather than how big they are.
@@ -104,6 +104,26 @@ export function TimelineScene({ beat, colors, fontFamily }) {
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
+      {/* FAR — a distant row of markers beyond the period being discussed.
+          At parallax 0.14 it barely moves while the camera tracks right,
+          which is what tells the eye it is far away rather than small.
+          Deterministic from the beat's own seed; no Math.random. */}
+      <Plane shot={shot} depth="far" states={states} durationInFrames={beat.durationInFrames}>
+        <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0 }}>
+          {Array.from({ length: 11 }).map((_, i) => {
+            const x = seeded((beat.startFrame || 0) * 3 + i * 29) * CANVAS_W;
+            const h = 18 + seeded((beat.startFrame || 0) * 5 + i * 31) * 44;
+            return (
+              <line key={`far${i}`} x1={x} y1={groundY} x2={x} y2={groundY - h * ease(pAxis)}
+                stroke={colors.stroke} strokeWidth={2} opacity={0.4} />
+            );
+          })}
+        </svg>
+      </Plane>
+
+      {/* BACKGROUND — the surface itself. The ground lags the camera at
+          0.34, so the markers standing on it are visibly nearer than it. */}
+      <Plane shot={shot} depth="background" states={states} durationInFrames={beat.durationInFrames}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
         {/* ── the ground time runs across ──────────────────────────── */}
         <g opacity={ease(pAxis)}>
@@ -146,6 +166,13 @@ export function TimelineScene({ beat, colors, fontFamily }) {
           />
         ) : null}
 
+      </svg>
+      </Plane>
+
+      {/* SUBJECT — the dated markers. Sharp, at 1.0x: this is what the
+          viewer is reading. */}
+      <Plane shot={shot} depth="subject" states={states} durationInFrames={beat.durationInFrames}>
+      <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
         {/* ── events as markers standing in the space ───────────────── */}
         {years.map((y, i) => {
           const a = ease(Math.max(0, Math.min(1, pEvents * years.length - i)));
@@ -194,7 +221,9 @@ export function TimelineScene({ beat, colors, fontFamily }) {
       </svg>
 
       {/* Dates sit at the foot of their own marker, in the space, rather
-          than in a caption row under an axis. */}
+          than in a caption row under an axis. Inside the SUBJECT plane so a
+          date travels with the post it belongs to — on the background plane
+          it would slide off its own marker as the camera tracks. */}
       {years.map((y, i) => {
         const a = ease(Math.max(0, Math.min(1, pEvents * years.length - i)));
         const isFocus = y === focusYear && pFocus > 0;
@@ -215,6 +244,25 @@ export function TimelineScene({ beat, colors, fontFamily }) {
           />
         );
       })}
+      </Plane>
+
+      {/* FOREGROUND — the near lip of the ground, passing the camera at
+          2.2x. This is the layer that actually sells the track: the far
+          markers hold almost still, the posts travel, and this sweeps.
+          Blurred, because nothing this close to the lens is in focus. */}
+      <Plane shot={shot} depth="foreground" states={states} durationInFrames={beat.durationInFrames}>
+        <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0 }}>
+          <path
+            d={`M-200,${CANVAS_H} L-200,${CANVAS_H - 90 * ease(pAxis)} ${Array.from({ length: 11 })
+              .map((_, i) => {
+                const x = -200 + (i / 10) * (CANVAS_W + 400);
+                const yy = CANVAS_H - (70 + seeded((beat.startFrame || 0) * 7 + i * 13) * 70) * ease(pAxis);
+                return `L${x.toFixed(1)},${yy.toFixed(1)}`;
+              })
+              .join(" ")} L${CANVAS_W + 200},${CANVAS_H} Z`}
+            fill={colors.stroke} opacity={0.13} />
+        </svg>
+      </Plane>
     </div>
   );
 }

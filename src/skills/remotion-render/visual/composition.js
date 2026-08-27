@@ -234,26 +234,73 @@ const STRATEGY_CAMERA = {
  * front and lead. A shot with one plane is flat by definition, which is
  * most of why a hairline diagram on black reads as a diagram.
  */
+/**
+ * TWO RULES, TAKEN FROM `vendor/video-shotcraft` (Apache-2.0), which this
+ * repo already vendors as a shot reference. Both are stated there as hard
+ * numbers with the failure they prevent, and the first draft of this table
+ * broke both.
+ *
+ * 1. THE GRADIENT BETWEEN ADJACENT PLANES MUST BE >= 2x, or the separation
+ *    is not perceptible. The first draft used 0.35 / 1 / 1.35 and
+ *    0.2 / 0.45 / 1 / 1.5 — the foreground steps were 1.35x and 1.5x, so
+ *    the foreground plane was doing arithmetic and not much else.
+ *
+ * 2. PARALLAX ALONE IS NOT DEPTH. Without a blur / desaturation anchor the
+ *    reference says layers read as stickers sliding around rather than as
+ *    distance, which is exactly what an offset-only implementation gives
+ *    you. So each plane carries its own `blur`, `saturate` and `opacity`,
+ *    and the SUBJECT plane is always perfectly sharp — the viewer is
+ *    reading it.
+ *
+ * The reference also caps depth at four planes; DEEP is at the cap.
+ */
 export const DEPTH_PROFILES = {
-  FLAT: { id: "flat", planes: [{ name: "subject", parallax: 1 }] },
+  FLAT: { id: "flat", planes: [{ name: "subject", parallax: 1, blur: 0, saturate: 1, opacity: 1 }] },
   LAYERED: {
     id: "layered",
     planes: [
-      { name: "background", parallax: 0.35 },
-      { name: "subject", parallax: 1 },
-      { name: "foreground", parallax: 1.35 },
+      { name: "background", parallax: 0.32, blur: 2, saturate: 0.92, opacity: 0.85 },
+      { name: "subject", parallax: 1, blur: 0, saturate: 1, opacity: 1 },
+      { name: "foreground", parallax: 2.1, blur: 3, saturate: 1, opacity: 0.9 },
     ],
   },
   DEEP: {
     id: "deep",
     planes: [
-      { name: "far", parallax: 0.2 },
-      { name: "background", parallax: 0.45 },
-      { name: "subject", parallax: 1 },
-      { name: "foreground", parallax: 1.5 },
+      { name: "far", parallax: 0.14, blur: 3, saturate: 0.86, opacity: 0.7 },
+      { name: "background", parallax: 0.34, blur: 2, saturate: 0.92, opacity: 0.85 },
+      { name: "subject", parallax: 1, blur: 0, saturate: 1, opacity: 1 },
+      { name: "foreground", parallax: 2.2, blur: 3.5, saturate: 1, opacity: 0.9 },
     ],
   },
 };
+
+/**
+ * How far one depth plane must move IN ADDITION to the camera, at eased
+ * progress `e` through the beat.
+ *
+ * THE SIGN HERE WAS WRONG AND THE DEPTH READ BACKWARDS. `Shot` translates
+ * the whole world by the camera's travel, so content at parallax factor k
+ * should end up having moved k times that travel; the plane therefore adds
+ * `(k - 1) * travel`. The first version added `(k - 1) * travel * -1`,
+ * which on TIMELINE's TRACK_RIGHT move sent the FAR plane 1.86x the
+ * camera's distance (it should go 0.14x) and sent the FOREGROUND plane
+ * BACKWARDS at -0.20x. Near and far were inverted, so every scene using
+ * planes was reading its own depth inside out.
+ *
+ * PURE AND IN .js DELIBERATELY: the component that uses it is .jsx, which
+ * node cannot import, and the last time geometry lived only in a component
+ * the test re-derived it and drifted. One model, two callers.
+ */
+export function planeOffset(shot, depth, e) {
+  if (!shot || !shot.camera) return { x: 0, y: 0, factor: 1 };
+  const plane = (shot.planes || []).find((p) => p.name === depth);
+  const factor = plane ? plane.parallax : 1;
+  const cam = shot.camera;
+  const travelX = (cam.to.x - cam.from.x) * 1080 * e;
+  const travelY = (cam.to.y - cam.from.y) * 1920 * e;
+  return { x: travelX * (factor - 1), y: travelY * (factor - 1), factor };
+}
 
 const D = DEPTH_PROFILES;
 
