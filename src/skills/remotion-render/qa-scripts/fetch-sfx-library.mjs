@@ -297,6 +297,11 @@ async function main() {
   // numbers are emitted as a plain ES module that both environments import
   // with no special handling. Generated — edit the measurement, not this.
   const outJs = join(RENDER_DIR, "visual", "sfx-library.js");
+  // `bytes` is dropped (the file on disk is the authority) but source and
+  // license are NOT: provenance has to travel with the thing that actually
+  // reads the assets, not only with the JSON record beside them. A first
+  // version of this projection stripped them, and the renderer-facing
+  // library then had 26 entries with no licence on any of them.
   const slim = entries.map((e) => ({
     file: e.file,
     role: e.role,
@@ -305,6 +310,8 @@ async function main() {
     durationMs: e.durationMs,
     peakDb: e.peakDb,
     meanDb: e.meanDb,
+    source: e.source,
+    license: e.license,
   }));
   writeFileSync(
     outJs,

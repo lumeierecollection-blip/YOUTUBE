@@ -17,7 +17,7 @@
  *      not a giant number (PART 23).
  */
 
-import { readFileSync, readdirSync } from "fs";
+import { readFileSync, readdirSync, existsSync } from "fs";
 import { join, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
@@ -532,6 +532,20 @@ console.log("\nsound design");
 check("no dead sound entries: every mapped state, role and library asset is reachable", () => {
   const r = assertSoundMapIsSound(STRATEGIES, SFX_LIBRARY);
   return r.pass || r.failures.join("; ");
+});
+
+check("every library asset carries its licence and source", () => {
+  // Provenance has to travel with the thing the RENDERER reads, not only
+  // with the JSON record beside it. The first version of the generated
+  // module stripped both fields and nobody would have noticed.
+  const bad = SFX_LIBRARY.filter((e) => !e.license || !e.source);
+  return bad.length === 0 || `${bad.length} entries with no licence/source: ${bad.map((e) => e.file).join(", ")}`;
+});
+
+check("every library asset actually exists under public/", () => {
+  const dir = join(__dirname, "..", "public");
+  const missing = SFX_LIBRARY.filter((e) => !existsSync(join(dir, e.file)));
+  return missing.length === 0 || `missing: ${missing.map((e) => e.file).join(", ")}`;
 });
 
 check("every library asset carries MEASURED numbers, not placeholders", () => {

@@ -21,7 +21,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.93,
     "durationMs": 261,
     "peakDb": -1,
-    "meanDb": -13
+    "meanDb": -13,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/maximize_004.wav",
@@ -30,7 +32,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.87,
     "durationMs": 428,
     "peakDb": -0.9,
-    "meanDb": -15.3
+    "meanDb": -15.3,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/maximize_006.wav",
@@ -39,7 +43,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.89,
     "durationMs": 387,
     "peakDb": -0.9,
-    "meanDb": -14.3
+    "meanDb": -14.3,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/minimize_001.wav",
@@ -48,7 +54,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.92,
     "durationMs": 271,
     "peakDb": -0.9,
-    "meanDb": -13.2
+    "meanDb": -13.2,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/minimize_006.wav",
@@ -57,7 +65,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.89,
     "durationMs": 380,
     "peakDb": -1,
-    "meanDb": -14.2
+    "meanDb": -14.2,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/bong_001.wav",
@@ -66,7 +76,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.84,
     "durationMs": 132,
     "peakDb": -0.9,
-    "meanDb": -16.6
+    "meanDb": -16.6,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/pluck_001.wav",
@@ -75,7 +87,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.73,
     "durationMs": 112,
     "peakDb": 0,
-    "meanDb": -20.9
+    "meanDb": -20.9,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/pluck_002.wav",
@@ -84,7 +98,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.7,
     "durationMs": 181,
     "peakDb": -0.5,
-    "meanDb": -22.2
+    "meanDb": -22.2,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/tick_001.wav",
@@ -93,7 +109,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.71,
     "durationMs": 45,
     "peakDb": -0.8,
-    "meanDb": -21.5
+    "meanDb": -21.5,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/tick_002.wav",
@@ -102,7 +120,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.82,
     "durationMs": 23,
     "peakDb": -1.2,
-    "meanDb": -17.2
+    "meanDb": -17.2,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/tick_004.wav",
@@ -111,7 +131,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.85,
     "durationMs": 55,
     "peakDb": -0.9,
-    "meanDb": -15.9
+    "meanDb": -15.9,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/drop_001.wav",
@@ -120,7 +142,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.72,
     "durationMs": 132,
     "peakDb": -0.9,
-    "meanDb": -21.2
+    "meanDb": -21.2,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/drop_003.wav",
@@ -129,7 +153,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.76,
     "durationMs": 199,
     "peakDb": -1.1,
-    "meanDb": -19.8
+    "meanDb": -19.8,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/glass_001.wav",
@@ -138,7 +164,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.74,
     "durationMs": 292,
     "peakDb": -1,
-    "meanDb": -20.3
+    "meanDb": -20.3,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/confirmation_001.wav",
@@ -147,7 +175,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.97,
     "durationMs": 295,
     "peakDb": -0.9,
-    "meanDb": -11.4
+    "meanDb": -11.4,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/confirmation_002.wav",
@@ -156,7 +186,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.87,
     "durationMs": 562,
     "peakDb": -1,
-    "meanDb": -15.1
+    "meanDb": -15.1,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/select_001.wav",
@@ -165,7 +197,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.77,
     "durationMs": 62,
     "peakDb": -1.1,
-    "meanDb": -19.2
+    "meanDb": -19.2,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/open_001.wav",
@@ -174,7 +208,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.88,
     "durationMs": 148,
     "peakDb": -0.9,
-    "meanDb": -14.8
+    "meanDb": -14.8,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/open_004.wav",
@@ -183,7 +219,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.82,
     "durationMs": 325,
     "peakDb": -1,
-    "meanDb": -17.4
+    "meanDb": -17.4,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/switch_001.wav",
@@ -192,7 +230,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.57,
     "durationMs": 620,
     "peakDb": -1,
-    "meanDb": -27.4
+    "meanDb": -27.4,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/toggle_001.wav",
@@ -201,7 +241,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.88,
     "durationMs": 158,
     "peakDb": -0.9,
-    "meanDb": -14.7
+    "meanDb": -14.7,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/interface-kenney/click_001.wav",
@@ -210,7 +252,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.57,
     "durationMs": 115,
     "peakDb": -1.4,
-    "meanDb": -27.1
+    "meanDb": -27.1,
+    "source": "Kenney Interface Sounds 1.0 (kenney.nl), via github.com/Calinou/kenney-interface-sounds",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/transitions/mixkit-fast-whoosh.mp3",
@@ -219,7 +263,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.74,
     "durationMs": 810,
     "peakDb": -3.9,
-    "meanDb": -20.3
+    "meanDb": -20.3,
+    "source": "Mixkit (mixkit.co)",
+    "license": "Mixkit Free License (free for commercial use)"
   },
   {
     "file": "sfx/transitions/mixkit-cinematic-whoosh.mp3",
@@ -228,7 +274,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.7,
     "durationMs": 2873,
     "peakDb": -0.1,
-    "meanDb": -22.1
+    "meanDb": -22.1,
+    "source": "Mixkit (mixkit.co)",
+    "license": "Mixkit Free License (free for commercial use)"
   },
   {
     "file": "sfx/emphasis/impactWood_heavy_000.ogg",
@@ -237,7 +285,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.76,
     "durationMs": 313,
     "peakDb": -0.9,
-    "meanDb": -19.6
+    "meanDb": -19.6,
+    "source": "Kenney Impact Sounds (kenney.nl)",
+    "license": "CC0-1.0"
   },
   {
     "file": "sfx/emphasis/impactWood_heavy_002.ogg",
@@ -246,7 +296,9 @@ export const SFX_LIBRARY = [
     "intensity": 0.78,
     "durationMs": 313,
     "peakDb": -1,
-    "meanDb": -18.9
+    "meanDb": -18.9,
+    "source": "Kenney Impact Sounds (kenney.nl)",
+    "license": "CC0-1.0"
   }
 ];
 
