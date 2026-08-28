@@ -1,5 +1,6 @@
 import React from "react";
-import { Img, staticFile, useCurrentFrame } from "remotion";
+import { staticFile, useCurrentFrame } from "remotion";
+import { PhotoTreatment } from "../../effects/PhotoTreatment.jsx";
 import {
   CANVAS_W, CANVAS_H, Label, ease, seeded, variantOf,
   useStateProgress, EASE_IN_OUT,
@@ -144,14 +145,27 @@ export function ImageEvidenceScene({ beat, colors, fontFamily }) {
         position: "absolute", left: f.x, top: f.y, width: f.w, height: f.h,
         overflow: "hidden", opacity: ease(pReveal),
       }}>
-        <Img
-          src={asset.path.startsWith("http") ? asset.path : staticFile(asset.path)}
-          style={{
-            width: "100%", height: "100%",
-            objectFit: asset.treatment === "cutout" ? "contain" : "cover",
-            transform: `scale(${scale})`,
-          }}
-        />
+        {/* Real photo treatment (effects/PhotoTreatment.jsx), not a bare
+            <Img>. Ported from the now-deleted legacy ImageBeatScene
+            (CHECK-REGISTER §3.12.11/§3.12.12) rather than left stranded
+            there — a vignette, print-halftone grain, chromatic aberration
+            and a real 3D LUT is what makes a sourced photo read as
+            EVIDENCE (this repo's own material handled) instead of a raw
+            web image sitting in a box. The scale animation moves the
+            outer wrapper; PhotoTreatment itself renders at a fixed size
+            (its internal orthographic camera is derived from width/height
+            once), same technique any other DOM element uses for a push-in. */}
+        <div style={{ width: "100%", height: "100%", transform: `scale(${scale})` }}>
+          {/* ThreeCanvas demands INTEGER width/height — shotFrame()'s w/h
+              are coverage-derived floats (a real render caught this:
+              "the height prop... must be an integer, but is 927.36"). */}
+          <PhotoTreatment
+            src={asset.path.startsWith("http") ? asset.path : staticFile(asset.path)}
+            treatment={asset.treatment === "cutout" ? "cutout" : "fullbleed"}
+            width={Math.round(f.w)}
+            height={Math.round(f.h)}
+          />
+        </div>
       </div>
       {/* What this is evidence OF — the semantic role, not decoration. */}
       {pRole > 0 && role ? (

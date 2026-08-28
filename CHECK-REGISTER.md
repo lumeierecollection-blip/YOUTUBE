@@ -1233,6 +1233,69 @@ render-verified.
 
 ---
 
+**3.12.12 — the ImageBeatScene decision, made: ported, not left as
+archaeology.** A sixth directive ("FINAL INTEGRATION + DESTRUCTION PASS")
+required §3.12.11's deliberately-open `ImageBeatScene` question be
+resolved to one of exactly two outcomes — port its capability, or delete
+it outright — rather than left indefinitely unreferenced.
+
+**Outcome: A, ported.** `effects/PhotoTreatment.jsx` (the real
+`@react-three/postprocessing` pipeline — vignette, print-halftone grain,
+chromatic aberration, a generated 3D LUT) is a small, self-contained
+component (`{ src, treatment, width, height }` in, a `<ThreeCanvas>` out)
+with no dependency on anything else `ImageBeatScene` or
+`motion-graphics.jsx` privately held, which made this a clean swap rather
+than a rewrite. `compositions/scenes/evidence-scenes.jsx`'s
+`ImageEvidenceScene` had its plain `<Img objectFit=.../>` replaced with
+`<PhotoTreatment .../>` inside the same reveal/scale wrapper the scene
+already had, sized from the same `shotFrame()` rect it already computed.
+
+**A real bug the render caught, not the code review:** `ThreeCanvas`
+requires integer `width`/`height`; `shotFrame()`'s `f.w`/`f.h` are
+coverage-derived floats. First render threw `TypeError: The "height"
+prop of the <ThreeCanvas /> component must be an integer, but is
+927.3600000000001.` Fixed with `Math.round()` on both dimensions at the
+`PhotoTreatment` call site.
+
+**Verified with an actual sourced photo, per the directive's own
+"render an actual sourced image, inspect the result" requirement** — not
+claimed from code reading alone, per `PhotoTreatment.jsx`'s own
+documented history of a prior "renders without crashing, frame is blank
+white" failure mode. New one-off script
+`qa-scripts/qa-render-image-evidence.mjs` drives the REAL
+`buildMgPackage`/`planVisual` pipeline (not a hand-built `mg` package —
+`visual/director.js:206-214` selects IMAGE_EVIDENCE whenever
+`ctx.asset` is truthy, which `imageForSection` supplies) against the one
+real, non-fixture photo in this repo's asset library
+(`public/asset-library/ch-01/piggy-bank-savings-all-of-our-savings-to-
+the-homeland-0.png`) and rendered real frames via `renderStill`. The
+rendered PNG shows the actual photo — a real 1920s Italian savings-bond
+piggy bank illustration, "TUTTO IL NOSTRO RISPARMIO ALLA PATRIA" — with
+a visible vignette and warm editorial grade at the frame edges; not
+blank, not a placeholder.
+
+**Then, and only then, the legacy implementation was removed**, per the
+directive's own ordering ("if porting: ... remove the old legacy
+implementation"): `ImageBeatScene`
+(`compositions/motion-graphics.jsx`, 146 lines including its
+`IMAGE_STAGE_*`/`FULLBLEED_STAGE_*` constants and the "unreachable, left
+in place on purpose" comment from §3.12.11 — that comment's job is done,
+so it went too) and the now-unused `PhotoTreatment` import in that same
+file (its only consumer in `motion-graphics.jsx` was the deleted
+function). `qa-scripts/qa-render-image-beat.mjs`, the old one-off
+verification script for the deleted `ImageBeatScene`/archetype-driven
+path, was deleted as well — it hand-built an `mg` package with no
+`visualPlan`, which is exactly the shape §3.12.11 proved `SemanticScene`
+no longer accepts.
+
+**QA run this pass:** `node visual/run-visual-tests.js` — 70/70, unchanged.
+Bundle+render via `inspect-anchors.mjs` against `finance-accumulation.
+fixture.json` after the `ImageBeatScene` deletion — clean, ink numbers
+unchanged. `qa-render-image-evidence.mjs`'s own render, described above,
+is the one that actually exercises the new code path.
+
+---
+
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 
