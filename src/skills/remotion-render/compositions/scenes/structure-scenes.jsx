@@ -513,13 +513,26 @@ export function ProcessScene({ beat, colors, fontFamily }) {
  * travelling signal packet, not rollers and a workpiece.
  */
 function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, colors, fontFamily }) {
+  // ZIGZAG, not a single vertical column. A rendered frame (CHECK-REGISTER
+  // §3.12.15) showed this family collapsing into the exact grammar the
+  // whole rebuild bans: three boxes joined by one straight line, because
+  // every node shared trackX — CircuitTrace's "right-angle" path degenerates
+  // to a straight line whenever x1 === x2. Offsetting alternate nodes left
+  // and right of the centreline is what makes the traces actually bend, and
+  // it is also a real PCB convention (routing around components), not
+  // decoration added to make the line look busier.
+  const zag = Math.min(140, (lastY - firstY) / Math.max(n - 1, 1) * 0.42);
+  const nodeX = (i) => trackX + (i % 2 === 0 ? -1 : 1) * zag;
   const nodeY = (i) => firstY + (i / Math.max(n - 1, 1)) * (lastY - firstY);
-  const r = 46;
+  const r = 54;
   const t = ease(pAdvance, EASE_IN_OUT);
   const posIdx = t * (n - 1);
+  const seg = Math.min(n - 2, Math.max(0, Math.floor(posIdx)));
+  const segT = posIdx - seg;
+  const packetX = nodeX(seg) + (nodeX(seg + 1) - nodeX(seg)) * segT;
+  const packetY = nodeY(seg) + (nodeY(seg + 1) - nodeY(seg)) * segT;
 
-  const segY = firstY + t * (lastY - firstY);
-  const boardW = r * 2 + 140;
+  const boardW = zag * 2 + r * 2.6;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
@@ -531,40 +544,43 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
             beside in the same strategy). */}
         <MachineBody x={trackX - boardW / 2} y={firstY - r - 50} w={boardW} h={(lastY - firstY) + r * 2 + 100}
           colors={colors} opacity={ease(pStages)} ribs={14} vertical />
-        {/* traces between consecutive nodes */}
+        {/* traces between consecutive nodes — now genuinely bent, since
+            consecutive nodes no longer share an x-coordinate. */}
         {Array.from({ length: n - 1 }).map((_, i) => {
           const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.6)));
           if (a <= 0.01) return null;
           const lit = posIdx > i + 0.5 || pArrive > 0;
           return (
             <g key={i} opacity={a}>
-              <CircuitTrace x1={trackX} y1={nodeY(i) + r} x2={trackX} y2={nodeY(i + 1) - r}
+              <CircuitTrace x1={nodeX(i)} y1={nodeY(i) + r * 0.9} x2={nodeX(i + 1)} y2={nodeY(i + 1) - r * 0.9}
                 colors={colors} progress={1} lit={lit} />
             </g>
           );
         })}
-        {/* the signal itself, travelling node to node */}
+        {/* the signal itself, travelling node to node along the same bend */}
         {pAdvance > 0 && posIdx < n - 1 ? (
-          <SignalPacket x={trackX} y={segY} colors={colors} opacity={ease(pAdvance) > 0.02 ? 1 : 0} />
+          <SignalPacket x={packetX} y={packetY} colors={colors} opacity={ease(pAdvance) > 0.02 ? 1 : 0} />
         ) : null}
         {/* the nodes */}
         {Array.from({ length: n }).map((_, i) => {
           const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.6)));
           const lit = posIdx > i + 0.15 || (pArrive > 0 && i === n - 1);
           const working = Math.abs(posIdx - i) < 0.4 && pAdvance > 0;
-          return <CircuitNode key={i} x={trackX} y={nodeY(i)} r={r} colors={colors} lit={lit} working={working} appear={a} />;
+          return <CircuitNode key={i} x={nodeX(i)} y={nodeY(i)} r={r} colors={colors} lit={lit} working={working} appear={a} />;
         })}
         {/* arrival: the response leaving the chain */}
         {pArrive > 0 ? (
-          <CircuitTrace x1={trackX} y1={lastY + r} x2={trackX} y2={lastY + r + (CANVAS_H * 1.12 - lastY) * ease(pArrive) * 0.3}
+          <CircuitTrace x1={nodeX(n - 1)} y1={lastY + r * 0.9} x2={trackX} y2={lastY + r + (CANVAS_H * 1.12 - lastY) * ease(pArrive) * 0.3}
             colors={colors} progress={1} lit />
         ) : null}
       </svg>
       {Array.from({ length: n }).map((_, i) => {
         const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.6)));
         const lit = posIdx > i + 0.15 || (pArrive > 0 && i === n - 1);
+        const rightSide = i % 2 !== 0;
         return (
-          <Label key={i} x={trackX + r + 34} y={nodeY(i) - 13} text={`${i + 1}`}
+          <Label key={i} x={nodeX(i) + (rightSide ? r * 0.75 + 34 : -(r * 0.75 + 34))} y={nodeY(i) - 13}
+            text={`${i + 1}`} align={rightSide ? "left" : "right"}
             color={lit ? colors.accent : colors.textDim} size={26} weight={800} tracking={1}
             opacity={a} fontFamily={fontFamily} halo={colors.bg} />
         );

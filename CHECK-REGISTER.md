@@ -1409,6 +1409,62 @@ one strategy verified to this directive's actual standard so far.
 
 ---
 
+**3.12.15 — PROCESS's circuit family: a genuine regression found by fresh
+rendering, not by re-reading old code.** A ninth directive's opening
+instruction — "do not trust previous reports, verify against the current
+filesystem" — was applied literally: rather than relying on §3.12.8's
+description of PROCESS ("a track with roller stations... not boxes"),
+the tech-process fixture was re-rendered fresh under the current code.
+§3.12.8's description was accurate for PROCESS's MECHANISM family, but
+wrong as a description of the whole strategy — the fixture's actual beat
+text ("intake, then review, then approval") matches
+`DIGITAL_PROCESS`'s keyword `request`, routing it to the CIRCUIT family
+instead, which nobody had rendered and looked at since it was built.
+
+**What the render showed:** three rounded squares, numbered 1/2/3,
+joined top-to-bottom by a single straight line, a small dot inside each
+square. That is box-arrow-box rotated 90 degrees — the exact pattern
+this whole rebuild exists to remove, present in a strategy self-reported
+as already fixed.
+
+**Root cause, found by reading `elements/circuit.jsx` against the render:**
+`CircuitTrace`'s path *can* draw a right-angle bend, but every node shared
+one x-coordinate (`trackX`), so `x1 === x2` on every call and the bend
+math degenerated to a straight line. `CircuitNode` was a rounded square
+with a small dot — nothing about it read as "electronic component" rather
+than "labelled box."
+
+**Fixed, not patched:** `CircuitNode` (`elements/circuit.jsx`) rebuilt as
+a DIP-package chip — a body plus real pins (short perpendicular legs) on
+both edges and a pin-1 notch, the one feature that unambiguously reads as
+"component" rather than "box." `CircuitProcess`
+(`compositions/scenes/structure-scenes.jsx`) rebuilt to zigzag alternate
+nodes left/right of the centreline instead of stacking them on one axis —
+a real PCB convention (routing around components), and structurally what
+makes the traces actually bend, not merely cosmetic. `SignalPacket`'s
+path updated to travel the same zigzag. Labels moved to whichever side
+each node now sits on.
+
+**QA run this pass:** `node visual/run-visual-tests.js` — 70/70,
+unchanged. Rendered twice via `inspect-anchors.mjs --all-states` against
+`tech-process.fixture.json` — before (confirmed the box-line-box defect
+directly) and after (both PROCESS variants: bent traces, pinned chip
+packages, signal packet following the bend, response leaving the board
+at arrival). Read cold with the numbers covered, the frame now describes
+"a signal moving through chip components on a circuit board," not "three
+connected boxes."
+
+**Not done this pass:** PROCESS's MECHANISM family (the roller/workpiece
+track) was not re-rendered this pass — §3.12.8's description of it was
+not contradicted by anything found here, but per this same directive's
+own standard it has not been freshly re-verified either, and is recorded
+as such rather than assumed. The other 14 strategies remain unaudited
+against this directive. No camera-variety pass, no typography-rhythm
+pass, no material-behaviour audit beyond sound, no full 16-strategy
+production render, no muted human-review pass across the whole system.
+
+---
+
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 

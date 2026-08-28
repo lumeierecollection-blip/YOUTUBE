@@ -12,12 +12,25 @@ import { ease } from "../primitives.jsx";
  * stage count.
  */
 
-/** A node on the circuit — a component with a body and a status light,
- * not a bare circle standing in for "a stage". */
+/**
+ * A node on the circuit — a DIP-style chip package (a body plus pins on
+ * two edges), not a bare rounded square standing in for "a stage".
+ *
+ * WHY THIS CHANGED. A rendered frame (CHECK-REGISTER §3.12.15) showed the
+ * original rounded square + status-light dot reading as nothing more than
+ * "a numbered box" once placed in a straight vertical column joined by a
+ * single line — precisely the banned box-arrow-box grammar, unintentionally
+ * rebuilt. Pins are the one feature that is unambiguously "electronic
+ * component" and not "labelled box": no other object in this renderer has
+ * short perpendicular legs on two sides of a rectangular body.
+ */
 export function CircuitNode({ x, y, r, colors, lit, working, appear = 1 }) {
   const a = ease(appear);
   if (a <= 0.01) return null;
   const col = lit || working ? colors.accent : colors.stroke;
+  const bodyW = r * 1.5, bodyH = r * 2;
+  const pinCount = 3;
+  const pinLen = r * 0.42;
   // Fill opacity does NOT drop below the render's own measured ink-visible
   // floor (stage.jsx documents 5% landing ~12/255 from bg, under what the
   // frame audit counts as ink at all) just because a node has not lit up
@@ -26,14 +39,28 @@ export function CircuitNode({ x, y, r, colors, lit, working, appear = 1 }) {
   // exist until the signal reaches it.
   return (
     <g opacity={a}>
-      <rect x={x - r} y={y - r} width={r * 2} height={r * 2} rx={r * 0.3}
-        fill={colors.stroke} fillOpacity={lit ? 0.22 : 0.13}
+      {Array.from({ length: pinCount }).map((_, i) => {
+        const py = y - bodyH / 2 + ((i + 0.5) / pinCount) * bodyH;
+        return (
+          <React.Fragment key={i}>
+            <line x1={x - bodyW / 2 - pinLen} y1={py} x2={x - bodyW / 2} y2={py}
+              stroke={col} strokeWidth={3} opacity={0.75} />
+            <line x1={x + bodyW / 2} y1={py} x2={x + bodyW / 2 + pinLen} y2={py}
+              stroke={col} strokeWidth={3} opacity={0.75} />
+          </React.Fragment>
+        );
+      })}
+      <rect x={x - bodyW / 2} y={y - bodyH / 2} width={bodyW} height={bodyH} rx={4}
+        fill={colors.stroke} fillOpacity={lit ? 0.24 : 0.14}
         stroke={col} strokeWidth={working ? 4 : 2.5} />
+      {/* Notch — the pin-1 orientation mark real DIP packages carry. */}
+      <path d={`M ${x - bodyW * 0.22} ${y - bodyH / 2} a ${bodyW * 0.22} ${bodyW * 0.22} 0 0 0 ${bodyW * 0.44} 0`}
+        fill="none" stroke={col} strokeWidth={2} opacity={0.6} />
       {/* The status light — off, working (pulsing ring), or lit (solid). */}
-      <circle cx={x} cy={y + r * 0.55} r={r * 0.16}
+      <circle cx={x} cy={y + bodyH * 0.22} r={r * 0.14}
         fill={lit ? colors.accent : "none"} stroke={col} strokeWidth={2} />
       {working ? (
-        <circle cx={x} cy={y + r * 0.55} r={r * 0.32}
+        <circle cx={x} cy={y + bodyH * 0.22} r={r * 0.28}
           fill="none" stroke={colors.accent} strokeWidth={1.5} opacity={0.5} />
       ) : null}
     </g>
