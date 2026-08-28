@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
-import { CANVAS_W, CANVAS_H, ease, seeded, EASE_IN_OUT } from "./primitives.jsx";
+import { CANVAS_W, CANVAS_H, ease, seeded, EASE_IN_OUT, EASE_OUT } from "./primitives.jsx";
 import { progressOf } from "../../visual/states.js";
 import { planeOffset } from "../../visual/composition.js";
 
@@ -58,6 +58,57 @@ function useShotProgress(states, durationInFrames) {
 }
 
 /**
+ * Camera progress: hold -> move -> settle -> hold, not one continuous ease
+ * across the whole beat.
+ *
+ * WHAT THIS REPLACES. Every shot previously moved via a single
+ * `ease(p, EASE_IN_OUT)` from `cam.from` to `cam.to` spread linearly across
+ * the beat's ENTIRE duration — a slow, constant drift for the full length
+ * of every shot, on every strategy, with no relationship to when anything
+ * actually happened on screen. That is precisely the "single A->B
+ * interpolation" / "slow zoom as the only camera idea" pattern
+ * Liamrjohnston/remotion-motion-graphics-skill's
+ * skills/cinematic-camera/SKILL.md names as a rejected pattern, and the
+ * same file's own camera rig ("one shared keyframe timeline for focal
+ * point and zoom... repeated adjacent keys create holds... camera moves
+ * usually take 14-24 frames... end with two nearly identical keys for a
+ * stable hold") is the technique this function implements: HOLD at `from`,
+ * a short decisive MOVE, HOLD at `to` — timed to the beat's own anchored
+ * state (visual/states.js) rather than a fixed fraction, so the camera
+ * arrives as the anchor's content actually lands ("camera moves to the
+ * next action; action completes during the hold", same file) instead of
+ * arriving whenever a linear ease happens to reach 1.
+ *
+ * A HOLD-type move (`cam.from` numerically equal to `cam.to`, e.g.
+ * INTERFACE_SIMULATION) is unaffected either way — this curve still
+ * produces zero visible motion, so stillness stays stillness (PART 11.2).
+ */
+function cameraCurve(p, states, durationInFrames) {
+  let arriveAt = 0.58;
+  if (states && states.length && durationInFrames) {
+    const anchored = states.find((s) => s.anchored);
+    if (anchored) {
+      arriveAt = Math.max(0.32, Math.min(0.82, anchored.startFrame / durationInFrames));
+    }
+  }
+  // The move starts before the anchor lands (PART 11.9: begin moving
+  // toward the next focal point before the current action completely
+  // ends) and the settle finishes a little after it, rather than the
+  // camera stopping dead exactly on the anchor frame.
+  const startMove = Math.max(0.08, arriveAt - 0.24);
+  const settle = Math.min(0.97, arriveAt + 0.14);
+
+  if (p <= startMove) return 0;
+  if (p >= settle) return 1;
+  if (p >= arriveAt) {
+    const t = (p - arriveAt) / (settle - arriveAt || 1);
+    return 0.9 + 0.1 * ease(t, EASE_OUT);
+  }
+  const t = (p - startMove) / (arriveAt - startMove || 1);
+  return 0.9 * ease(t, EASE_IN_OUT);
+}
+
+/**
  * The camera. Applies the shot's move plus the framing's anchor offset.
  *
  * The anchor is the reason this is not just a zoom: FRAMINGS place the
@@ -66,7 +117,7 @@ function useShotProgress(states, durationInFrames) {
  */
 export function Shot({ shot, states, durationInFrames, children }) {
   const p = useShotProgress(states, durationInFrames);
-  const e = ease(p, EASE_IN_OUT);
+  const e = cameraCurve(p, states, durationInFrames);
   const cam = shot.camera;
 
   const scale = cam.from.scale + (cam.to.scale - cam.from.scale) * e;
@@ -121,7 +172,12 @@ export function Shot({ shot, states, durationInFrames, children }) {
  */
 export function Plane({ shot, depth = "subject", states, durationInFrames, children }) {
   const p = useShotProgress(states, durationInFrames);
-  const e = ease(p, EASE_IN_OUT);
+  // MUST be the same curve Shot uses for the camera itself (cameraCurve,
+  // not a bare ease(p)) — a plane's parallax offset is a multiple of how
+  // far the camera has actually travelled, so if the two used different
+  // timing the foreground/background would drift out of sync with the
+  // camera: sliding during a hold, or standing still during the move.
+  const e = cameraCurve(p, states, durationInFrames);
   // A beat can reach a scene with no shot — scenes/index.jsx renders the
   // component bare in that case. Depth without a camera is nothing to
   // offset against, so the plane passes its children straight through
