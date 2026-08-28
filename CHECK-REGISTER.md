@@ -1354,6 +1354,61 @@ human-review pass. Recorded plainly, not implied solved.
 
 ---
 
+**3.12.14 — RELATIONSHIP, rebuilt a SECOND time: the first rebuild's
+mistake was fixing the geometry, not the idea.** An eighth directive
+treated §3.12.13's chain-of-cords-converging-on-a-bound-mass rebuild
+itself as a rejected reference, and it was right to: on honest
+re-inspection that render was still "labelled things + connectors + one
+shared convergence point" with the connector curved instead of straight
+and the convergence point de-circled instead of round. Bowing the line
+and de-circling the node changed the render, not the underlying visual
+IDEA (a radial-convergence diagram), which is exactly the failure this
+whole rebuild exists to catch — restyling a bad concept and mistaking the
+restyle for a redesign.
+
+**The actual fix: remove the connector element entirely.** Rebuilt again
+around `ChainLink` (`compositions/scenes/structure-scenes.jsx`) — a
+stadium-ring cross-section (thick stroke, open centre; a ring because the
+object drawn IS a ring, not a circle standing in for "a node"). Entities
+are physical links that interlock directly: even-indexed links horizontal,
+odd-indexed vertical (exactly how real chain links alternate to
+interlock), starting spread apart with visible gaps and pulling together
+into an overlapping row as the beat plays. Nothing is drawn BETWEEN the
+entities — the entities' own overlap IS the connection. `BoundMass` and
+the whole strand-and-convergence approach from §3.12.13 were deleted, not
+kept alongside the new version.
+
+**Two real defects the render caught across three iterations, not code
+review:** (1) first render — labels overlapping the chain body, worst on
+"HOUSE" (a horizontal link sitting between two much-taller ROTATED
+neighbours) — traced to computing label clearance from a link's OWN
+rotation only, when adjacent rotated links are what actually crowd a
+label at this spacing. (2) second render, after using each link's own
+rotated extent — still collided, because the "weight" state grows every
+link toward `settleTint`'s max (1.22x) and clearance was still being
+measured off some links' un-rotated `linkH`; the real worst case at any
+position is a NEIGHBOURING vertical link, so clearance now uses `linkW`
+(the tall dimension) at `SETTLE_MAX` for every label regardless of that
+label's own link's rotation. Third render: clean — all five labels clear
+of the chain body and of each other at every inspected state.
+
+**QA run this pass:** `node visual/run-visual-tests.js` — 70/70,
+unchanged. Rendered three times via `inspect-anchors.mjs --all-states`
+against `uncovered-strategies.fixture.json` — defect found and fixed
+after render 1, a second defect found and fixed after render 2, clean on
+render 3. Muted/label-removed test applied by inspection: the frame
+reads as "several distinct pieces locking into one chain" without
+reading any text.
+
+**Not done this pass:** same open scope as §3.12.13 — the other 15
+strategies were not re-walked against this directive's per-strategy list,
+no camera-variety pass, no typography-rhythm pass, no material-behaviour
+audit beyond sound, no full 16-strategy production render, no muted
+human-review pass across the whole system. RELATIONSHIP itself is the
+one strategy verified to this directive's actual standard so far.
+
+---
+
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 
