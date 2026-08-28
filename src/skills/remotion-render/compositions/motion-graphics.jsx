@@ -951,418 +951,6 @@ function Centered({ x, y, children }) {
   );
 }
 
-// F1 — HERO_NUMBER: hero numeral, counter 0 → value over D.push, headline
-// RISE at tA+8, click on settle.
-function HeroNumberScene({ beat, scene, colors, fontFamily }) {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
-  const start = Math.max(tA - D.micro, 0);
-  const counter = ease(frame - start, [0, D.push], [0, 1], E_OUT) * scene.value;
-  // A1.3 — see fixedSlotChars' comment. Only paid for on the 5 flagged
-  // channels; every other channel's rendering is byte-for-byte unchanged.
-  const fixedSlots = needsFixedSlots(fontFamily);
-  const numeralFontStyle = fontStyleFor(fontFamily, { fontWeight: 800 });
-  const reservedWidth = fixedSlots
-    ? reserveCounterWidth(formatCounter(scene.value, scene.value), numeralFontStyle, TYPE.hero)
-    : null;
-  const counterStr = formatCounter(counter, scene.value);
-  return (
-    <>
-      {/* PART 3.2 — a hairline sweep arcing behind the numeral, entering and
-          exiting the frame edges, crossing near the optical centre. Routed
-          to clear frame-audit's right-margin probe box (x:940-1060,
-          y:400-800) — the sweep still bleeds past the real canvas edges,
-          just above/below that sample window, not through it. */}
-      <CurvedSweep d="M -40 260 Q 468 520 1120 240" start={start} colors={colors} />
-      <CurvedSweep d="M -40 900 Q 468 820 1120 860" start={start + D.micro} colors={colors} opacity={0.35} />
-      <Centered x={468} y={666}>
-        <div style={{ position: "relative" }}>
-          <span
-            style={{
-              ...numeralFontStyle,
-              fontSize: TYPE.hero,
-              color: colors.accent,
-              lineHeight: 1,
-              fontVariantNumeric: "tabular-nums",
-              textAlign: "center",
-              ...(reservedWidth ? { display: "inline-block", width: reservedWidth } : null),
-              ...popStyle(frame, start, { boost: beat.scene.isReveal }),
-            }}
-          >
-            {fixedSlots ? fixedSlotChars(counterStr) : counterStr}
-          </span>
-        </div>
-      </Centered>
-    </>
-  );
-}
-
-// F2 — TERM_DEFINE: icon 180 POP at tA−4, headline RISE at tA, accent rule
-// DRAW in the headline layer. The icon is `stroke`, never accent.
-function TermDefineScene({ beat, scene, colors, fontFamily }) {
-  const frame = useCurrentFrame();
-  const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
-  const start = Math.max(tA - D.micro, 0);
-  return (
-    <>
-      {/* PART 3.2 — a dashed ring around the focal icon, diameter matching
-          the icon's own footprint plus padding. PART 10 (follow-up): one
-          option, not a default — only when the icon is a specific match
-          for this beat's text, never around a channel's generic
-          default/"sparkles" fallback (see mg-style.js's
-          isSpecificIconMatch). Framing a placeholder icon in a dashed ring
-          drew attention to it, which is backwards. */}
-      {scene.iconIsSpecific ? <DashedRing x={468} y={600} radius={140} start={start} colors={colors} /> : null}
-      <Centered x={468} y={600}>
-        {scene.trace ? (
-          <TraceIcon name={scene.icon} size={180} color={colors.stroke} start={start} />
-        ) : (
-          <div style={popStyle(frame, start, { boost: beat.scene.isReveal })}>
-            <Icon name={scene.icon} size={180} color={colors.stroke} />
-          </div>
-        )}
-      </Centered>
-    </>
-  );
-}
-
-// F4 — CONTRAST: split at x=468. Left panel present from 0 (textDim), divider
-// DRAW top→bottom at tA−6, right panel POP at tA−4, its first word takes
-// accent at tA+4.
-function ContrastScene({ beat, scene, colors, fontFamily }) {
-  const frame = useCurrentFrame();
-  const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
-  const dividerProg = ease(frame - (tA - D.short), [0, D.large], [0, 1], E_OUT);
-  const dividerY = 520 + (860 - 520) * dividerProg;
-  const rightStart = Math.max(tA - D.micro, 0);
-  const before = scene.before || [];
-  const after = scene.after || [];
-  return (
-    <div style={{ position: "absolute", inset: 0 }}>
-      {/* left panel */}
-      <div
-        style={{
-          position: "absolute",
-          left: 48,
-          top: 520,
-          width: 412,
-          height: 340,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontFamily,
-          fontWeight: 400,
-          fontSize: TYPE.body,
-          color: colors.textDim,
-          textAlign: "center",
-          lineHeight: 1.2,
-        }}
-      >
-        {before.join(" ")}
-      </div>
-      {/* right panel — the two spans sit inside ONE wrapping text block
-          (normal inline flow), not side-by-side flex row items. As
-          independent flex items they competed for the 408px width
-          separately, and a wrapped second item visually overlapped the
-          first (confirmed on a rendered frame: "miss"/"point" overlapping
-          "calculators"). Normal text flow wraps both words together as one
-          paragraph, the way text actually wraps. */}
-      <div
-        style={{
-          position: "absolute",
-          left: 480,
-          top: 520,
-          width: 408,
-          height: 340,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          ...popStyle(frame, rightStart, { boost: beat.scene.isReveal }),
-        }}
-      >
-        <div style={{ fontFamily, fontWeight: 800, fontSize: TYPE.body, textAlign: "center", lineHeight: 1.2 }}>
-          <span style={{ color: ease(frame - (tA + D.micro), [0, 3], [0, 1], E_OUT) > 0.99 ? colors.accent : colors.textPrimary }}>
-            {after.length ? after[0] : ""}
-          </span>
-          <span style={{ color: colors.textPrimary }}>{after.length > 1 ? " " + after.slice(1).join(" ") : ""}</span>
-        </div>
-      </div>
-      {/* divider */}
-      {dividerProg > 0 ? (
-        <svg width={1080} height={1920} viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0 }}>
-          <line
-            x1={468}
-            y1={520}
-            x2={468}
-            y2={Math.max(dividerY, 521)}
-            stroke={colors.stroke}
-            strokeWidth={4}
-            strokeLinecap="round"
-          />
-        </svg>
-      ) : null}
-    </div>
-  );
-}
-
-// F5 — PROGRESS: full chart, construction order E3.4. Baseline → gridlines →
-// axis labels → bars GROW staggered 5f from tA−4 → values count with bar →
-// labels RISE after. Only the highlight point takes accent (at settle, +click).
-function ProgressScene({ beat, scene, colors, fontFamily }) {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
-  const series = scene.series || [];
-  const n = Math.max(series.length, 1);
-
-  const plotLeft = 96;
-  const plotRight = 840;
-  const barW = 48;
-  const gap = n > 1 ? (plotRight - plotLeft - n * barW) / (n - 1) : 0;
-  const baselineY = 880;
-  const maxValue = Math.max(...series.map((s) => Number(s.value) || 0), 1);
-  const maxBarH = 880 - 480;
-  // A1.3 — see fixedSlotChars' comment. Only paid for on the 5 flagged
-  // channels; every other channel's rendering is byte-for-byte unchanged.
-  const fixedSlots = needsFixedSlots(fontFamily);
-  const valueFontStyle = fontStyleFor(fontFamily, { fontWeight: 800 });
-
-  const baselineProg = ease(frame, [0, 10], [0, 1], E_OUT);
-  const gridYs = [0.25, 0.5, 0.75];
-  const gridProg = (i) => ease(frame - (8 + i * 3), [0, 10], [0, 1], E_OUT);
-
-  return (
-    <div style={{ position: "absolute", inset: 0 }}>
-      {/* gridlines */}
-      {gridYs.map((g, i) =>
-        gridProg(i) > 0 ? (
-          <svg key={i} width={1080} height={1920} viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0 }}>
-            <line
-              x1={plotLeft}
-              y1={baselineY - g * maxBarH}
-              x2={plotLeft + (plotRight - plotLeft) * gridProg(i)}
-              y2={baselineY - g * maxBarH}
-              stroke={colors.stroke}
-              strokeWidth={2}
-              opacity={0.3}
-            />
-          </svg>
-        ) : null
-      )}
-      {/* baseline */}
-      {baselineProg > 0 ? (
-        <svg width={1080} height={1920} viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0 }}>
-          <line
-            x1={plotLeft}
-            y1={baselineY}
-            x2={plotLeft + (plotRight - plotLeft) * baselineProg}
-            y2={baselineY}
-            stroke={colors.stroke}
-            strokeWidth={4}
-            strokeLinecap="round"
-          />
-        </svg>
-      ) : null}
-      {/* bars */}
-      {series.map((s, i) => {
-        const x = plotLeft + i * (barW + gap);
-        // PART 7 — "stagger siblings 2-4 frames in reading order" (was 5f).
-        const start = Math.max(tA - D.micro, 0) + i * 3;
-        const g = growSpring(frame, start, fps);
-        const h = Math.max(s.value / maxValue * maxBarH * g, s.value > 0 ? 6 * g : 0);
-        const settled = ease(frame - (start + 24), [0, 3], [0, 1], E_OUT);
-        const highlight = !!s.highlight;
-        const fill = highlight ? mixColor(colors.surface, colors.accent, settled) : colors.surface;
-        const stroke = highlight ? mixColor(colors.stroke, colors.accent, settled) : colors.stroke;
-        const { path } = makeRect({ width: barW, height: Math.max(h, 0.1), cornerRadius: Math.min(8, h / 2) });
-        // PART 2 of the rebuild: accent lives on shapes only, never text — the
-        // bar fill/stroke already carries the highlight; the value label
-        // stays textPrimary regardless (was previously mixed toward accent).
-        const valText = colors.textPrimary;
-        return (
-          <div key={i}>
-            <svg
-              width={barW}
-              height={Math.max(h, 0.1)}
-              viewBox={`0 0 ${barW} ${Math.max(h, 0.1)}`}
-              style={{ position: "absolute", left: x, top: baselineY - Math.max(h, 0.1) }}
-            >
-              <path d={path} fill={fill} stroke={stroke} strokeWidth={2} />
-            </svg>
-            {/* value on the bar */}
-            <span
-              style={{
-                position: "absolute",
-                left: x,
-                top: baselineY - Math.max(h, 0.1) - 56,
-                width: barW,
-                textAlign: "center",
-                fontFamily,
-                fontWeight: 800,
-                fontSize: TYPE.value * 0.5,
-                color: valText,
-                opacity: ease(frame - (start + 10), [0, 6], [0, 1], E_OUT),
-                fontVariantNumeric: "tabular-nums",
-              }}
-            >
-              {fixedSlots ? (
-                <span
-                  style={{
-                    display: "inline-block",
-                    width: reserveCounterWidth(progressCounterText(s.value, 1), valueFontStyle, TYPE.value * 0.5),
-                  }}
-                >
-                  {fixedSlotChars(progressCounterText(s.value, g))}
-                </span>
-              ) : (
-                progressCounterText(s.value, g)
-              )}
-            </span>
-            {/* axis label */}
-            <span
-              style={{
-                position: "absolute",
-                left: x,
-                top: baselineY + 16,
-                width: barW + 32,
-                marginLeft: -16,
-                textAlign: "center",
-                fontFamily,
-                fontWeight: 700,
-                fontSize: TYPE.label,
-                letterSpacing: 2,
-                color: colors.textDim,
-                ...riseStyle(frame, 16 + i * 5),
-              }}
-            >
-              {s.label}
-            </span>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-// F6 — RELATION: two nodes r44 at (248,666)/(688,666); node A POP at 0, node B
-// POP at tA−4, connector DRAW 14f A→B, headline RISE at tA+18. B's border is
-// the accent element and only during its entrance window.
-function RelationScene({ beat, scene, colors, fontFamily }) {
-  const frame = useCurrentFrame();
-  const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
-  const bStart = Math.max(tA - D.micro, 0);
-  const connStart = tA + D.micro;
-  const connProg = ease(frame - connStart, [0, D.large], [0, 1], E_OUT);
-  const bAccent = ease(frame - bStart, [0, 24], [0, 1], E_OUT) > 0.99;
-  const aPop = popStyle(frame, 0);
-  const bPop = popStyle(frame, bStart, { boost: beat.scene.isReveal });
-  const aCircle = makeCircle({ radius: 44 });
-  const bCircle = makeCircle({ radius: 44 });
-
-  return (
-    <div style={{ position: "absolute", inset: 0 }}>
-      <svg
-        width={88}
-        height={88}
-        viewBox="0 0 88 88"
-        style={{ position: "absolute", left: 248 - 44, top: 666 - 44, ...aPop }}
-      >
-        <path d={aCircle.path} fill={colors.surface} stroke={colors.stroke} strokeWidth={3} />
-      </svg>
-      <svg
-        width={88}
-        height={88}
-        viewBox="0 0 88 88"
-        style={{ position: "absolute", left: 688 - 44, top: 666 - 44, ...bPop }}
-      >
-        <path
-          d={bCircle.path}
-          fill={colors.surface}
-          stroke={bAccent ? colors.accent : colors.stroke}
-          strokeWidth={3}
-        />
-      </svg>
-      {/* connector */}
-      {connProg > 0 ? (
-        <svg width={1080} height={1920} viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0 }}>
-          <path
-            d={`M ${248 + 44} 666 L ${688 - 44} 666`}
-            stroke={colors.stroke}
-            strokeWidth={4}
-            strokeLinecap="round"
-            fill="none"
-            {...(() => {
-              const { strokeDasharray, strokeDashoffset } = evolvePath(connProg, `M ${248 + 44} 666 L ${688 - 44} 666`);
-              return { strokeDasharray, strokeDashoffset };
-            })()}
-          />
-        </svg>
-      ) : null}
-      {/* node labels (spatial contiguity — adjacent to the node) */}
-      <div
-        style={{
-          position: "absolute",
-          left: 248,
-          top: 666 + 44 + 16,
-          translate: "-50% 0px",
-          width: 240,
-          textAlign: "center",
-          fontFamily,
-          fontWeight: 400,
-          fontSize: TYPE.support,
-          color: colors.textDim,
-          opacity: ease(frame, [0, D.base], [0, 1], E_OUT),
-        }}
-      >
-        {(scene.a || []).join(" ")}
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          left: 688,
-          top: 666 + 44 + 16,
-          width: 240,
-          textAlign: "center",
-          fontFamily,
-          fontWeight: 400,
-          fontSize: TYPE.support,
-          color: colors.textPrimary,
-          // translateX:"-50%" — see riseStyle's PART 10 comment: a bare
-          // "-50% 0px" here would be silently deleted by this same spread.
-          ...riseStyle(frame, bStart + 6, 24, { translateX: "-50%" }),
-        }}
-      >
-        {(scene.b || []).join(" ")}
-      </div>
-    </div>
-  );
-}
-
-// F8 — STATEMENT: icon 120 POP at tA−4, headline RISE at tA. Nothing else.
-export function StatementScene({ beat, scene, colors, fontFamily }) {
-  const frame = useCurrentFrame();
-  const tA = Math.max(beat.anchorFrame - beat.startFrame, 0);
-  const start = Math.max(tA - D.micro, 0);
-  return (
-    <>
-      {/* PART 10 (follow-up) — see TermDefineScene's comment: conditional
-          on a specific icon match, not templated onto every STATEMENT
-          beat regardless of what icon it resolved to. */}
-      {scene.iconIsSpecific ? <DashedRing x={468} y={600} radius={100} start={start} colors={colors} opacity={0.4} /> : null}
-      <Centered x={468} y={600}>
-        {scene.trace ? (
-          <TraceIcon name={scene.icon} size={120} color={colors.stroke} start={start} />
-        ) : (
-          <div style={popStyle(frame, start, { boost: beat.scene.isReveal })}>
-            <Icon name={scene.icon} size={120} color={colors.stroke} />
-          </div>
-        )}
-      </Centered>
-    </>
-  );
-}
-
 // F7 — IMAGE_BEAT: fade 9f at tA−4 scale 1.05, push 1.05 → 1.00 over D.push,
 // headline RISE at tA+6.
 //
@@ -1420,6 +1008,31 @@ const FULLBLEED_STAGE_TOP = 392; // same top as the cutout stage — HeadlineBox
 const FULLBLEED_STAGE_BOTTOM_EDGE = 1290; // ~40px past CAPTION.zoneBottom (1248)
 const FULLBLEED_STAGE_H = 1920 - FULLBLEED_STAGE_TOP - (1920 - FULLBLEED_STAGE_BOTTOM_EDGE);
 
+/**
+ * UNREACHABLE IN PRODUCTION, LEFT IN PLACE ON PURPOSE — NOT AN OVERSIGHT.
+ *
+ * This was called only from the archetype-keyed legacy switch StageScene
+ * used to fall through to, which CHECK-REGISTER §3.12.11 confirms and
+ * removes as dead (every real beat carries a visualPlan, so that switch
+ * never ran). HeroNumberScene/TermDefineScene/ContrastScene/
+ * ProgressScene/RelationScene/StatementScene were deleted alongside it —
+ * they were pure bars/nodes-and-arrows/icon vocabulary with nothing the
+ * live SemanticScene path (compositions/scenes/) lacked.
+ *
+ * This one is different: it drives `effects/PhotoTreatment.jsx` — a real
+ * @react-three/postprocessing pipeline (Vignette, Noise, ChromaticAberration,
+ * DotScreen, a generated 3D LUT) — for cutout-vs-fullbleed photo treatment.
+ * The LIVE image path, `ImageEvidenceScene` (compositions/scenes/
+ * evidence-scenes.jsx), does NOT use PhotoTreatment — it renders a plain
+ * `<Img>` with a bare CSS objectFit. Deleting this function would delete
+ * that unported capability with it, which is a different, larger decision
+ * (does IMAGE_EVIDENCE's real photo deserve the WebGL treatment pipeline,
+ * and is the integration work — ThreeCanvas/Suspense/PostFxReadyGate —
+ * worth it) than "this is old primitive vocabulary, remove it." Left here,
+ * unreferenced, until that decision is made deliberately — not preserved
+ * "just in case," preserved because discarding it silently would be a
+ * worse mistake than leaving one unreferenced export until someone decides.
+ */
 export function ImageBeatScene({ beat, scene, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -1482,52 +1095,6 @@ export function ImageBeatScene({ beat, scene, colors, fontFamily }) {
       </div>
     </div>
   );
-}
-
-/**
- * The stage router.
- *
- * PRIMARY PATH — the visual plan (visual/director.js) decides what the
- * viewer sees, and SemanticScene (scenes/index.jsx) draws it. The plan
- * carries its own timed visual states, so one authored concept can play
- * through several meaningful moments instead of holding one static card.
- *
- * LEGACY PATH — the archetype switch below. It survives for exactly two
- * cases, both real:
- *   1. a caller that builds beats without going through buildMgPackage
- *      (verify-compositions.js fixtures, older tests),
- *   2. LIST_ITEM, which is not stage-routed at all — consecutive LIST_ITEM
- *      beats accumulate as chips via ListRuns, which is already a real
- *      non-icon visual system and had no reason to be replaced (PART 26).
- *
- * The old default case was StatementScene: a single 120px icon, and
- * nothing else, for any beat the classifier couldn't read. That is the
- * template this whole change exists to remove, so the default now routes
- * through the plan-aware path instead.
- */
-function StageScene({ beat, colors, fontFamily }) {
-  const { scene } = beat;
-
-  if (beat.visualPlan) {
-    return <SemanticScene beat={beat} colors={colors} fontFamily={fontFamily} />;
-  }
-
-  switch (beat.archetype) {
-    case "HERO_NUMBER":
-      return <HeroNumberScene beat={beat} scene={scene} colors={colors} fontFamily={fontFamily} />;
-    case "TERM_DEFINE":
-      return <TermDefineScene beat={beat} scene={scene} colors={colors} fontFamily={fontFamily} />;
-    case "CONTRAST":
-      return <ContrastScene beat={beat} scene={scene} colors={colors} fontFamily={fontFamily} />;
-    case "PROGRESS":
-      return <ProgressScene beat={beat} scene={scene} colors={colors} fontFamily={fontFamily} />;
-    case "RELATION":
-      return <RelationScene beat={beat} scene={scene} colors={colors} fontFamily={fontFamily} />;
-    case "IMAGE_BEAT":
-      return <ImageBeatScene beat={beat} scene={scene} colors={colors} fontFamily={fontFamily} />;
-    default:
-      return <StatementScene beat={beat} scene={scene} colors={colors} fontFamily={fontFamily} />;
-  }
 }
 
 // F3 — LIST_ITEM runs. Chips accumulate; prior chips dim + shift up 88u;
@@ -1668,7 +1235,21 @@ function BeatStages({ beats, colors, fontFamily }) {
             durationInFrames={b.durationInFrames + (i === last ? TAIL : 0)}
           >
             <StageContainer beat={{ ...b, scene: { ...b.scene, exit } }}>
-              <StageScene beat={{ ...b, scene: { ...b.scene, exit } }} colors={colors} fontFamily={fontFamily} />
+              {/* Every beat that reaches here carries a real visualPlan —
+                  mg-package.js's buildMgPackage calls planVisual() for
+                  every non-LIST_ITEM beat (LIST_ITEM never reaches this
+                  map at all, filtered above), and planVisual() always
+                  returns a plan via one of authored/deterministic/
+                  emergency, never null. The archetype-keyed fallback
+                  switch this used to route through first (HeroNumberScene,
+                  TermDefineScene, ContrastScene, ProgressScene,
+                  RelationScene, StatementScene — bars, nodes-and-arrows,
+                  a lone centred icon) was confirmed unreachable in every
+                  real caller (render.js, verify-compositions.js,
+                  qa-sample.js all build beats through buildMgPackage) and
+                  deleted rather than kept "just in case" — CHECK-REGISTER
+                  §3.12.11. */}
+              <SemanticScene beat={{ ...b, scene: { ...b.scene, exit } }} colors={colors} fontFamily={fontFamily} />
             </StageContainer>
           </Sequence>
         );

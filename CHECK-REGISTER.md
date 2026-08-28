@@ -1140,6 +1140,99 @@ was done this pass. These remain real, open work.
 
 ---
 
+**3.12.11 — the legacy path, confirmed dead and deleted.** A fifth
+directive ("FINAL VISUAL REBUILD — DELETE THE OLD LANGUAGE, DO NOT LAYER
+ON TOP") asked for the §3.12.10 finding to be independently re-confirmed
+by tracing production execution end to end, not assumed from the prior
+note — and then deleted, not merely marked deprecated, if still true.
+
+**Confirmed, by source tracing, not by re-reading the old comment:**
+- Every caller that reaches `compositions/motion-graphics.jsx`'s
+  `StageScene` router builds its beats through
+  `compositions/mg-package.js`'s `buildMgPackage`: `render.js:268` and
+  `verify-compositions.js:125` both bundle `Root.jsx` (the real entry —
+  confirmed via `remotion.config.js` carrying no separate entry override),
+  and `qa-sample.js:20` imports `buildMgPackage` directly.
+- `buildMgPackage` sets `b.visualPlan = null` for exactly one case —
+  `archetype === "LIST_ITEM"` (`mg-package.js:683-686`) — and LIST_ITEM
+  beats never reach `StageScene` at all: `BeatStages`
+  (`motion-graphics.jsx`, then ~1657-1678) filters them out before the
+  map that renders `StageScene`, because they are handled by the
+  separate, real `ListRuns`/chip system instead.
+- For every other archetype, `b.visualPlan = planVisual(b, ...)` runs
+  unconditionally, and `planVisual` (`visual/director.js:341-372`) always
+  returns a real plan object via one of three paths — `authored`,
+  `deterministic`, or an `emergency` fallback to `TERMINAL_STRATEGY` —
+  with no code path that returns null or undefined.
+- Therefore `StageScene`'s `if (beat.visualPlan) return <SemanticScene
+  .../>` fires for every beat that reaches it, unconditionally, in every
+  real caller. The archetype-keyed `switch` below it — and the seven
+  scene functions it called (`HeroNumberScene`, `TermDefineScene`,
+  `ContrastScene`, `ProgressScene`, `RelationScene`, `StatementScene`,
+  `ImageBeatScene`) — is not "legacy-mostly," it is provably unreachable
+  from every currently existing caller. §3.12.10's "mainly through
+  verify-compositions.js" was itself imprecise: that file also goes
+  through `buildMgPackage`, so it never hit the switch either.
+- Separately traced and confirmed fully orphaned: `_motion-entry.jsx` is
+  a second, self-registering Remotion root (`registerRoot`) that nothing
+  bundles — not `remotion.config.js`, not `render.js`, not
+  `verify-compositions.js` — built against `beats/*.jsx` (a directory,
+  distinct from the live `compositions/beats.js` constants file of the
+  same basename) and hardcoded fixture data predating the current
+  `visualPlan`/`visual/states.js` architecture entirely. `beats/*.jsx`
+  had exactly one importer: `_motion-entry.jsx`. `primitives/{Chart,Chip,
+  Icon,Node}.jsx` had exactly one importer each: the corresponding
+  `beats/*.jsx` file. `primitives/Rule.jsx` had zero importers anywhere.
+  `layers/Layer.jsx` had exactly one importer group: `beats/*.jsx`.
+  `primitives/Panel.jsx` was the one exception — checked and confirmed
+  used by the LIVE `ListRuns` chip system (`motion-graphics.jsx`, the
+  "MANUAL A5.1" flat-card comment), so it was kept.
+
+**Deleted:** `StageScene`'s archetype switch and six of its seven scene
+functions (`HeroNumberScene`, `TermDefineScene`, `ContrastScene`,
+`ProgressScene`, `RelationScene`, `StatementScene` —
+`compositions/motion-graphics.jsx`, 458 lines removed total across both
+cuts); the call site rewired to call `SemanticScene` directly.
+`_motion-entry.jsx`; the whole `beats/` directory (9 files:
+`Contrast.jsx`, `HeroNumber.jsx`, `ImageBeat.jsx`, `ListItem.jsx`,
+`Progress.jsx`, `PullQuote.jsx`, `Relation.jsx`, `Statement.jsx`,
+`TermDefine.jsx`); `primitives/Chart.jsx`, `Chip.jsx`, `Icon.jsx`,
+`Node.jsx`, `Rule.jsx`; `layers/Layer.jsx` (and both now-empty
+directories).
+
+**Deliberately NOT deleted, and why this is not a hedge:** `ImageBeatScene`
+(the seventh scene function). It was equally unreachable by the same
+proof, but unlike the other six it is not primitive-vocabulary decoration
+— it drives `effects/PhotoTreatment.jsx`, a real `@react-three/
+postprocessing` pipeline (Vignette, Noise, ChromaticAberration, DotScreen,
+a generated 3D LUT) for cutout-vs-fullbleed photo treatment, and the LIVE
+image path (`ImageEvidenceScene`, `compositions/scenes/evidence-scenes.jsx`)
+was checked and confirmed to use none of that — it renders a plain `<Img>`
+with a bare CSS `objectFit`. Deleting `ImageBeatScene` would have deleted
+that unported capability with it. That is a real, separate, larger
+decision — whether IMAGE_EVIDENCE's photo treatment deserves the WebGL
+pipeline, and whether the integration work (ThreeCanvas/Suspense/
+PostFxReadyGate) is worth it for this repo's actual asset library — not
+"is this old primitive vocabulary." Left in place, unreferenced, flagged
+with an explicit comment at its definition explaining exactly this, so it
+is a deliberate open decision and not a silently preserved dead system.
+
+**QA run this pass:** `node visual/run-visual-tests.js` — 70/70 passing,
+unchanged (this deletion touched no strategy, state, or check). Two real
+bundle+render passes via `inspect-anchors.mjs` after the deletion —
+`finance-accumulation.fixture.json` (ACCUMULATION, TRANSFORMATION,
+COMPARISON, CINEMATIC_STATEMENT) and `tech-process.fixture.json`
+(PROCESS, INTERFACE_SIMULATION, CAUSE_EFFECT, TIMELINE) — both bundled
+and rendered cleanly, ink numbers unchanged from before the deletion.
+LIST_ITEM's `ListRuns` chip path (the one thing this deletion could have
+broken, since it shares `primitives/Panel.jsx`) was not exercised by
+either fixture this pass — neither contains a LIST_ITEM beat — so it is
+verified by code-tracing (Panel's import untouched, ListRuns' own code
+untouched) rather than by a render. Recorded as such, not claimed
+render-verified.
+
+---
+
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 
