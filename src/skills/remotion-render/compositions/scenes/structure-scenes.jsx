@@ -1,11 +1,32 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, STAGE_CX, Label, Rule, ease, seeded, variantOf,
-  useStateProgress, EASE_OUT, EASE_IN_OUT,
+  CANVAS_W, CANVAS_H, Label, ease, seeded,
+  useStateProgress, useValueProgress, EASE_IN_OUT,
 } from "./primitives.jsx";
-import { progressOf, reached } from "../../visual/states.js";
+import { progressOf } from "../../visual/states.js";
 import { shotFrame, Plane } from "./stage.jsx";
+import { MachineBody, Gate, MaterialSlug } from "./elements/machine.jsx";
+import { CircuitNode, CircuitTrace, SignalPacket } from "./elements/circuit.jsx";
+
+/**
+ * Which OBJECT FAMILY a process is built from — a deterministic keyword
+ * read of the beat's own text, the same technique VisualMetaphorScene
+ * already uses to pick its physical behaviour (never a fabricated label,
+ * only a different vocabulary for a stage COUNT that carries no names —
+ * see director.js: PROCESS's only real data is `stages`, a bare number).
+ *
+ * "REQUEST -> SERVER -> DATABASE -> RESPONSE" and "RAW MATERIAL -> MACHINE
+ * -> TRANSFORMED MATERIAL" should not be the same picture (visual-system-
+ * reset PART 12). Two families, not one universal template: "circuit" for
+ * a digital/software subject, "mechanism" (the existing roller-and-gate
+ * machine) for everything else, which is the more defensible default for
+ * an unspecified physical process.
+ */
+const DIGITAL_PROCESS = /\b(server|database|api|request|software|source code|network|algorithm|quer(y|ies)|cache|cloud|app|application|computer|program|processor|upload|download|login|log in|authenticat|browser|website|platform|encrypt|packet|router|firewall|endpoint)\b/i;
+function processFamily(beat) {
+  return DIGITAL_PROCESS.test(String(beat && beat.text || "")) ? "circuit" : "mechanism";
+}
 
 /**
  * Structure scenes — how things are ARRANGED, rather than how big they are.
@@ -194,9 +215,11 @@ export function TimelineScene({ beat, colors, fontFamily }) {
               {/* Footing where it meets the ground. */}
               <line x1={x - 11} y1={groundY} x2={x + 11} y2={groundY}
                 stroke={col} strokeWidth={isFocus ? 6 : 4} opacity={0.9 * a} />
-              {/* The head of the marker carries the weight of the event. */}
-              <rect x={x - (isFocus ? 13 : 9)} y={groundY - postH * a - (isFocus ? 15 : 11)}
-                width={(isFocus ? 26 : 18)} height={(isFocus ? 15 : 11)}
+              {/* The head of the marker — a pennant, not a bare cap, so the
+                  event reads as a real waypoint object planted in the
+                  ground rather than a post with a rectangle glued on. */}
+              <path
+                d={`M ${x} ${groundY - postH * a} L ${x + (isFocus ? 30 : 21)} ${groundY - postH * a + (isFocus ? 9 : 6)} L ${x} ${groundY - postH * a + (isFocus ? 18 : 12)} Z`}
                 fill={col} opacity={a} />
               {isFocus ? (
                 <circle cx={x} cy={groundY} r={14 + 40 * ease(pFocus)}
@@ -282,6 +305,23 @@ export function ProcessScene({ beat, colors, fontFamily }) {
   const pAdvance = progressOf(states, "advance", frame);
   const pArrive = useStateProgress(states, "arrive");
 
+  // Shared staging math both families lay out against — same physical
+  // space either way, only the OBJECTS built in it differ.
+  const cov = shot ? shot.coverage : 0.9;
+  const trackX = CANVAS_W * (shot ? shot.anchorX : 0.44);
+  const firstY = CANVAS_H * 0.16;
+  const lastY = CANVAS_H * 0.68;
+
+  if (processFamily(beat) === "circuit") {
+    return (
+      <CircuitProcess
+        n={n} trackX={trackX} firstY={firstY} lastY={lastY}
+        pStages={pStages} pAdvance={pAdvance} pArrive={pArrive}
+        colors={colors} fontFamily={fontFamily}
+      />
+    );
+  }
+
   /**
    * WHAT THIS USED TO BE
    *
@@ -313,8 +353,6 @@ export function ProcessScene({ beat, colors, fontFamily }) {
    * Stage labels still exist because a viewer needs to count the stages,
    * but they are set small beside the track, subordinate to the mechanism.
    */
-  const cov = shot ? shot.coverage : 0.9;
-  const trackX = CANVAS_W * (shot ? shot.anchorX : 0.44);
   // The run is TALLER than the frame on purpose: bleed is what makes a
   // machine read as continuing past the shot.
   const runTop = -CANVAS_H * 0.12;
@@ -324,8 +362,6 @@ export function ProcessScene({ beat, colors, fontFamily }) {
   // motion-graphics.jsx drops the whole stage 110px to reclaim the space
   // captions used to occupy. A rendered frame showed the workpiece
   // finishing its run half off the bottom edge with lastY at 0.86.
-  const firstY = CANVAS_H * 0.16;
-  const lastY = CANVAS_H * 0.68;
   const stationY = (i) => firstY + (i / Math.max(n - 1, 1)) * (lastY - firstY);
 
   // The channel takes the width the shot actually granted it. At 0.17 the
@@ -465,12 +501,83 @@ export function ProcessScene({ beat, colors, fontFamily }) {
   );
 }
 
+/**
+ * PROCESS's "circuit" family — a request/signal moving through a chain of
+ * system components, for beats whose own words are about software/digital
+ * systems rather than physical material (`processFamily` above).
+ *
+ * Same track geometry as the mechanism family (same trackX/firstY/lastY),
+ * so the two families occupy the same physical space differently rather
+ * than each inventing its own layout — but the OBJECTS are a different
+ * vocabulary: circuit nodes with status lights, right-angle traces, and a
+ * travelling signal packet, not rollers and a workpiece.
+ */
+function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, colors, fontFamily }) {
+  const nodeY = (i) => firstY + (i / Math.max(n - 1, 1)) * (lastY - firstY);
+  const r = 46;
+  const t = ease(pAdvance, EASE_IN_OUT);
+  const posIdx = t * (n - 1);
+
+  const segY = firstY + t * (lastY - firstY);
+  const boardW = r * 2 + 140;
+
+  return (
+    <div style={{ position: "absolute", inset: 0 }}>
+      <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
+        {/* The board the chain is mounted on — a circuit needs a board the
+            same way a machine needs a casing; without it the nodes were
+            three squares floating with nothing around them (1.5% ink on a
+            rendered frame, thinner than the mechanism family it sits
+            beside in the same strategy). */}
+        <MachineBody x={trackX - boardW / 2} y={firstY - r - 50} w={boardW} h={(lastY - firstY) + r * 2 + 100}
+          colors={colors} opacity={ease(pStages)} ribs={14} vertical />
+        {/* traces between consecutive nodes */}
+        {Array.from({ length: n - 1 }).map((_, i) => {
+          const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.6)));
+          if (a <= 0.01) return null;
+          const lit = posIdx > i + 0.5 || pArrive > 0;
+          return (
+            <g key={i} opacity={a}>
+              <CircuitTrace x1={trackX} y1={nodeY(i) + r} x2={trackX} y2={nodeY(i + 1) - r}
+                colors={colors} progress={1} lit={lit} />
+            </g>
+          );
+        })}
+        {/* the signal itself, travelling node to node */}
+        {pAdvance > 0 && posIdx < n - 1 ? (
+          <SignalPacket x={trackX} y={segY} colors={colors} opacity={ease(pAdvance) > 0.02 ? 1 : 0} />
+        ) : null}
+        {/* the nodes */}
+        {Array.from({ length: n }).map((_, i) => {
+          const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.6)));
+          const lit = posIdx > i + 0.15 || (pArrive > 0 && i === n - 1);
+          const working = Math.abs(posIdx - i) < 0.4 && pAdvance > 0;
+          return <CircuitNode key={i} x={trackX} y={nodeY(i)} r={r} colors={colors} lit={lit} working={working} appear={a} />;
+        })}
+        {/* arrival: the response leaving the chain */}
+        {pArrive > 0 ? (
+          <CircuitTrace x1={trackX} y1={lastY + r} x2={trackX} y2={lastY + r + (CANVAS_H * 1.12 - lastY) * ease(pArrive) * 0.3}
+            colors={colors} progress={1} lit />
+        ) : null}
+      </svg>
+      {Array.from({ length: n }).map((_, i) => {
+        const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.6)));
+        const lit = posIdx > i + 0.15 || (pArrive > 0 && i === n - 1);
+        return (
+          <Label key={i} x={trackX + r + 34} y={nodeY(i) - 13} text={`${i + 1}`}
+            color={lit ? colors.accent : colors.textDim} size={26} weight={800} tracking={1}
+            opacity={a} fontFamily={fontFamily} halo={colors.bg} />
+        );
+      })}
+    </div>
+  );
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // CAUSE_EFFECT — one thing driving another, with the link made visible.
 // Vertical, so it reads as "this produces that" rather than "these two".
 // ─────────────────────────────────────────────────────────────────────────────
 export function CauseEffectScene({ beat, colors, fontFamily }) {
-  const frame = useCurrentFrame();
   const states = beat.visualStates || [];
   const plan = beat.visualPlan || {};
   const sup = plan.supporting || {};
@@ -481,164 +588,125 @@ export function CauseEffectScene({ beat, colors, fontFamily }) {
   const marker = String(sup.marker || "").toUpperCase().trim();
 
   const pCause = useStateProgress(states, "cause");
-  const pLink = progressOf(states, "link", frame);
   const pEffect = useStateProgress(states, "effect");
-  const pSettle = useStateProgress(states, "settle");
+  // `settle` ("the whole relationship is readable at once") has no visual
+  // delta of its own on purpose: by the time it starts, `link` and `effect`
+  // are already at progress 1, so the gate is closed, the backlog is at its
+  // built level and the downstream slugs are in place. Settle is the HOLD
+  // on that resolved picture, not a fifth thing to draw.
 
   /**
-   * WHAT THIS USED TO BE, AND WHY IT WAS THE WORST SCENE IN THE SYSTEM
+   * REBUILT, NOT POLISHED (visual-system-reset PART 11).
    *
-   * Two 470x132 rounded rectangles stacked vertically with a line and a
-   * triangle between them. Measured on a rendered anchor frame it covered
-   * 0.6% of the picture in a 44x7% band, and at the anchor — before the
-   * effect box existed — the entire frame was ONE rounded rectangle reading
-   * "SECOND STAGE HOLDING". That is not an explanation of causality; it is
-   * a label in a box.
+   * The previous two passes made this scene's LINES thicker and gave it
+   * filled-adjacent stroke weight (0.6% ink -> 4.1% in the earlier pass),
+   * but read cold it was still curved strokes converging through two
+   * chevron strokes — primitives with more width, not an object. The
+   * "colored wireframe" test (PART 10) fails it: recolouring or thickening
+   * those same paths would not change what it is.
    *
-   * WHAT IT DRAWS NOW
+   * WHAT IT DRAWS NOW: an actual gated duct (`elements/machine.jsx`).
    *
-   * Causality as FLOW THROUGH A CONSTRAINT, left to right, which is the
-   * direction the camera also tracks:
+   *   MachineBody   the casing — a real object with wall and floor, not a
+   *                 background the flow happens to sit on
+   *   MaterialSlug  discrete filled bodies of material, not stroked lines
+   *                 standing in for "flow"
+   *   Gate          two facing jaws that physically narrow the channel —
+   *                 the constraint is a mechanical part with a visible
+   *                 aperture, not a symbol for a constraint
    *
-   *   upstream lanes  ->  a constriction  ->  what comes out the far side
-   *
-   * The cause is a bank of lanes carrying flow. The constraint physically
-   * narrows them. Downstream, the lanes that survive are visibly fewer and
-   * thinner than the ones that went in, and pressure accumulates against
-   * the upstream face of the constriction as the effect lands. The viewer
-   * reads "throughput collapsed because something was holding" from the
-   * geometry, with the sound off, before reading either label.
-   *
-   * DIRECTION IS NEVER REVERSED. The semantics layer already decides which
-   * side is cause (CAUSAL_FORWARD / CAUSAL_BACKWARD in semantics.js);
-   * upstream is always drawn left and the flow always moves toward the
-   * effect, so a "because" clause cannot render backwards.
+   * The backlog is the upstream slugs themselves compressing toward the
+   * gate as it closes (see the upstream block below) rather than a
+   * separate "pressure level" indicator — an earlier version tried a
+   * pooling-liquid shape here and it read as an unrelated blob sitting
+   * under a horizontal duct, not congestion. Downstream material is
+   * fewer, thinner slugs than went in — the same "throughput collapsed"
+   * argument as before, now carried by objects instead of stroke width.
    */
-  const LANES = 7;
-  // Laid out against the SHOT, not against hardcoded pixels. `coverage` is
-  // the share of the frame the subject should span and `anchorY` is where
-  // its centre belongs — both from visual/composition.js. Hardcoding these
-  // per scene is precisely how sixteen scenes ended up centred within a few
-  // percent of the same point.
   const cov = shot ? shot.coverage : 0.74;
-  const bandH = CANVAS_H * 0.34 * (cov / 0.74);
-  const laneGap = bandH / (LANES - 1);
-  const laneTop = CANVAS_H * (shot ? shot.anchorY : 0.45) - bandH / 2;
+  const channelHalfH = (CANVAS_H * 0.34 * (cov / 0.74)) / 2;
+  const cy = CANVAS_H * (shot ? shot.anchorY : 0.45);
   const inset = CANVAS_W * (1 - cov) * 0.5;
   const xIn = inset;
   const xOut = CANVAS_W - inset;
   const xGate = xIn + (xOut - xIn) * 0.54;
 
-  // How much each lane still carries downstream. Deterministic per lane —
-  // an even collapse would read as a wipe rather than as congestion.
-  const survives = (i) => {
-    const s = seeded(i * 31 + 7);
-    return s > 0.55 ? 1 : s > 0.3 ? 0.45 : 0.12;
-  };
-
-  const eLink = ease(pLink, EASE_IN_OUT);
   const eEffect = ease(pEffect);
+  // The gate's own close amount is NOT driven by raw `link` progress — that
+  // is 0 at the exact frame `link` (the anchored state) BEGINS, which is
+  // the anchor frame itself, so a rendered anchor frame showed no gate at
+  // all: the causal word spoken with nothing on screen enacting it.
+  // `useValueProgress` counts from the beat's first frame and reaches
+  // exactly 1 at the anchor (primitives.jsx), the same technique
+  // GEOSPATIAL_RADIUS uses for its boundary lock — the mechanism is already
+  // closing while material arrives, and is closed by the time the sentence
+  // names it.
+  const pValue = useValueProgress(states);
+  const gateClose = pValue;
+
+  const UP_SLUGS = 6;
+  const DOWN_SLUGS = 3; // fewer than went in — the collapse, as a count of objects
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {/* ── upstream: flow arriving, full width ─────────────────────── */}
-        {Array.from({ length: LANES }).map((_, i) => {
-          const y = laneTop + i * laneGap;
-          const a = ease(Math.max(0, Math.min(1, pCause * 1.8 - i * 0.09)));
+        <MachineBody
+          x={xIn - 30} y={cy - channelHalfH - 54} w={xOut - xIn + 60} h={channelHalfH * 2 + 108}
+          colors={colors} opacity={ease(pCause)} />
+
+        {/* ── upstream: a queue that visibly compresses as the gate closes ──
+            Evenly spaced while the gate is open (material flowing through at
+            its own pace); as `pValue` rises toward the gate closing, the
+            SAME objects compress into a crowd just short of the gate. That
+            compression IS the backlog — material queuing because the gate
+            ahead of it is closing — carried by the positions of real
+            objects rather than a separate "pressure level" indicator, which
+            in a horizontal duct read as an unrelated blob rather than
+            congestion. */}
+        {Array.from({ length: UP_SLUGS }).map((_, i) => {
+          const a = ease(Math.max(0, Math.min(1, pCause * 1.6 - i * 0.12)));
           if (a <= 0.01) return null;
-          // Lanes converge toward the gate: the constriction is geometric,
-          // not a label saying "bottleneck".
-          const yGate = laneTop + (LANES - 1) * laneGap * 0.5 + (i - (LANES - 1) / 2) * 16;
-          return (
-            <path
-              key={`in${i}`}
-              d={`M ${xIn} ${y} L ${xGate - 120} ${y} Q ${xGate - 40} ${y} ${xGate} ${yGate}`}
-              fill="none"
-              stroke={colors.stroke}
-              strokeWidth={9}
-              opacity={0.5 * a}
-              strokeLinecap="round"
-            />
-          );
+          const phase = seeded(i * 13 + 5);
+          const slotsFrom = xIn + 70;
+          const slotsTo = xGate - 60;
+          const evenX = slotsFrom + (slotsTo - slotsFrom) * (i / Math.max(UP_SLUGS - 1, 1));
+          const crowdedX = slotsTo - (UP_SLUGS - 1 - i) * 34;
+          const x = evenX + (crowdedX - evenX) * ease(pValue);
+          const y = cy + (phase - 0.5) * channelHalfH * 1.1;
+          return <MaterialSlug key={i} x={x} y={y} w={54} h={30} colors={colors} opacity={a} />;
         })}
 
-        {/* ── pressure building against the upstream face ─────────────── */}
-        {pLink > 0 ? (
-          <g opacity={eLink}>
-            {Array.from({ length: 5 }).map((_, i) => (
-              <line
-                key={`p${i}`}
-                x1={xGate - 30 - i * 15 - 26 * eLink}
-                y1={laneTop - 26 + i * 8}
-                x2={xGate - 30 - i * 15 - 26 * eLink}
-                y2={laneTop + (LANES - 1) * laneGap + 26 - i * 8}
-                stroke={colors.accent}
-                strokeWidth={2}
-                opacity={0.16 + 0.1 * i}
-              />
-            ))}
-          </g>
+        {/* ── the gate itself ──────────────────────────────────────────── */}
+        {pValue > 0.02 ? (
+          <Gate cx={xGate} cy={cy} channelHalfH={channelHalfH} close={gateClose} colors={colors} working />
         ) : null}
 
-        {/* ── the constriction itself ─────────────────────────────────── */}
-        {pLink > 0 ? (
-          <g>
-            <path
-              d={`M ${xGate} ${laneTop - 70} L ${xGate + 34} ${laneTop + (LANES - 1) * laneGap * 0.5 - 46}`}
-              stroke={colors.accent} strokeWidth={7} fill="none" strokeLinecap="round" opacity={eLink} />
-            <path
-              d={`M ${xGate} ${laneTop + (LANES - 1) * laneGap + 70} L ${xGate + 34} ${laneTop + (LANES - 1) * laneGap * 0.5 + 46}`}
-              stroke={colors.accent} strokeWidth={7} fill="none" strokeLinecap="round" opacity={eLink} />
-          </g>
-        ) : null}
-
-        {/* ── downstream: what actually got through ───────────────────── */}
+        {/* ── downstream: fewer, thinner slugs got through ─────────────── */}
         {pEffect > 0
-          ? Array.from({ length: LANES }).map((_, i) => {
-              const carry = survives(i);
-              const yGate = laneTop + (LANES - 1) * laneGap * 0.5 + (i - (LANES - 1) / 2) * 16;
-              const ySpread = laneTop + i * laneGap;
-              const reach = xGate + (xOut - xGate) * eEffect;
-              return (
-                <path
-                  key={`out${i}`}
-                  d={`M ${xGate + 36} ${yGate} Q ${xGate + 150} ${ySpread} ${reach} ${ySpread}`}
-                  fill="none"
-                  stroke={carry > 0.5 ? colors.accent : colors.stroke}
-                  strokeWidth={Math.max(1.5, 9 * carry)}
-                  opacity={(carry > 0.5 ? 0.85 : 0.3) * eEffect}
-                  strokeLinecap="round"
-                />
-              );
+          ? Array.from({ length: DOWN_SLUGS }).map((_, i) => {
+              const a = ease(Math.max(0, Math.min(1, pEffect * 2.2 - i * 0.4)));
+              if (a <= 0.01) return null;
+              const phase = seeded(i * 19 + 41);
+              const reach = xGate + 60 + (xOut - xGate - 100) * eEffect * (0.55 + phase * 0.45);
+              const y = cy + (phase - 0.5) * channelHalfH * 1.1;
+              return <MaterialSlug key={i} x={reach} y={y} w={30} h={17} colors={colors} accent opacity={a} />;
             })
           : null}
-
-        {/* The collapse, stated as a proportion of the section area rather
-            than as a word: the downstream band is visibly thinner. */}
-        {pSettle > 0 ? (
-          <line
-            x1={xOut - 8} y1={laneTop - 40} x2={xOut - 8} y2={laneTop + (LANES - 1) * laneGap + 40}
-            stroke={colors.stroke} strokeWidth={1.5} strokeDasharray="7 9" opacity={0.4 * ease(pSettle)} />
-        ) : null}
       </svg>
 
       {/* Labels sit ON the thing they name, upstream and downstream — not in
           boxes, and never as the composition. */}
-      <Label x={xIn} y={laneTop - 66} text={short(causeText, 22)}
+      <Label x={xIn} y={cy - channelHalfH - 90} text={short(causeText, 22)}
         color={colors.textPrimary} size={34} weight={800} tracking={1}
         opacity={pCause} fontFamily={fontFamily} halo={colors.bg} />
-      {/* The causal marker rides ON the constriction, vertically, because
-          that is where the causality physically happens. Laying it flat
-          under the gate collided with the effect label on a rendered
-          frame — "BECAUSE" printed straight through "THROUGHPUT
-          COLLAPSED". */}
+      {/* The causal marker rides ON the gate, vertically, because that is
+          where the causality physically happens. */}
       {marker ? (
         <div
           style={{
             position: "absolute",
-            left: xGate - 118,
-            top: laneTop - 54,
+            left: xGate - 160,
+            top: cy - channelHalfH * 0.6,
             transform: "rotate(-90deg)",
             transformOrigin: "100% 50%",
             color: colors.accent,
@@ -646,7 +714,7 @@ export function CauseEffectScene({ beat, colors, fontFamily }) {
             fontWeight: 800,
             fontSize: 22,
             letterSpacing: 3,
-            opacity: pLink,
+            opacity: ease(pValue),
             textShadow: `0 0 10px ${colors.bg}, 0 0 5px ${colors.bg}`,
           }}
         >
@@ -654,7 +722,7 @@ export function CauseEffectScene({ beat, colors, fontFamily }) {
         </div>
       ) : null}
       {effectText ? (
-        <Label x={xOut} y={laneTop + bandH + 46} text={short(effectText, 22)}
+        <Label x={xOut} y={cy + channelHalfH + 78} text={short(effectText, 22)}
           color={colors.accent} size={34} weight={800} tracking={1} align="right"
           opacity={pEffect} fontFamily={fontFamily} halo={colors.bg} />
       ) : null}

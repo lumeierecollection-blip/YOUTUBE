@@ -147,7 +147,14 @@ export const STRATEGIES = {
     iconRole: "none",
     states: [
       { key: "cause", action: "the cause establishes", weight: 1.4 },
-      { key: "link", action: "the connection draws between them", weight: 1.6, anchored: true },
+      // `resolves`: the gate closing IS the causal mechanism, and the
+      // anchor is the frame the causal word is spoken — so the gate must
+      // already be closing there, not just starting to. Found the same way
+      // as GEOSPATIAL_RADIUS's `lock` and DATA_CHART's `highlight`: a
+      // rendered anchor frame with no gate visible at all (CauseEffectScene
+      // drove it from raw `link` progress, which is 0 at the exact frame
+      // the anchored state begins).
+      { key: "link", action: "the connection draws between them", weight: 1.6, anchored: true, resolves: true },
       { key: "effect", action: "the effect arrives", weight: 1.6 },
       { key: "settle", action: "the whole relationship is readable at once", weight: 1.2 },
     ],

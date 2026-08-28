@@ -370,6 +370,13 @@ check("no module exports something nothing imports", () => {
     join(__dirname),
     join(__dirname, "..", "compositions"),
     join(__dirname, "..", "compositions", "scenes"),
+    // The element layer (visual-system-reset PART 8): designed objects
+    // built on primitives.jsx/stage.jsx. Added after this check's original
+    // scope (visual/*.js only) missed a real dead export here —
+    // elements/machine.jsx's BackedUpLevel was written, used once, then
+    // orphaned when CauseEffectScene was redesigned to show backlog as
+    // queue compression instead, and nothing caught it until read by hand.
+    join(__dirname, "..", "compositions", "scenes", "elements"),
     join(__dirname, "..", "qa-scripts"),
   ];
   const sources = [];
@@ -384,7 +391,8 @@ check("no module exports something nothing imports", () => {
 
   const dead = [];
   for (const { file, src } of sources) {
-    if (!file.includes(`${sep}visual${sep}`)) continue; // this pass's own modules
+    // this pass's own modules — visual/*.js, and now the element layer.
+    if (!file.includes(`${sep}visual${sep}`) && !file.includes(`${sep}elements${sep}`)) continue;
     for (const m of src.matchAll(/export (?:function|const) (\w+)/g)) {
       const name = m[1];
       const uses = [...corpus.matchAll(new RegExp(`\\b${name}\\b`, "g"))].length;
@@ -455,6 +463,53 @@ check("no two strategies share a whole shot signature", () => {
   // ACCUMULATION vs DATA_CHART and RELATIONSHIP vs VISUAL_METAPHOR in the
   // first draft of the table, which is exactly what it is for.
   const dupes = Object.entries(shotSignatures(STRATEGIES)).filter(([, v]) => v.length > 1);
+  return dupes.length === 0 || dupes.map(([k, v]) => `${k}: ${v.join(" + ")}`).join("; ");
+});
+
+check("no two strategies share BOTH a shot signature and an object family", () => {
+  // Element-layer version of the check above (visual-system-reset PART 31:
+  // "identical object hierarchy... identical element family" is its own
+  // sameness signal, not just shot geometry). This pass gave several
+  // strategies designed OBJECTS from compositions/scenes/elements/*.jsx —
+  // ChartColumn is legitimately used by both COMPARISON and DATA_CHART,
+  // MachineBody by both CAUSE_EFFECT and PROCESS's circuit family. That
+  // reuse is fine on its own (PART 10: sharing a PRIMITIVE is not the
+  // violation, sharing the whole composition is) — it only becomes the old
+  // failure if two strategies ALSO land on the same material/framing/
+  // camera/depth, at which point matching object families too means two
+  // strategies would render the literal same picture with different data.
+  //
+  // Element usage is read from the scene component's own source (the same
+  // start/next-export slicing the anchor-resolves check above already
+  // uses), not tracked by hand, so this cannot drift from what actually
+  // renders the way a maintained list would.
+  const ELEMENT_NAMES = [
+    "MachineBody", "Gate", "MaterialSlug", "BackedUpLevel",
+    "CircuitNode", "CircuitTrace", "SignalPacket",
+    "DocumentSheet", "WindowChrome", "NavRail", "StatusBar",
+    "ChartColumn", "MorphShape", "ContentVessel",
+  ];
+  const dir = join(__dirname, "..", "compositions", "scenes");
+  const files = readdirSync(dir).filter((f) => f.endsWith(".jsx"));
+  const sources = files.map((f) => ({ f, src: readFileSync(join(dir, f), "utf-8") }));
+
+  const byKey = {};
+  for (const name of Object.keys(STRATEGIES)) {
+    const def = STRATEGIES[name];
+    const file = sources.find((x) => new RegExp(`function ${def.scene}\\b`).test(x.src));
+    if (!file) continue;
+    const start = file.src.indexOf(`function ${def.scene}`);
+    const next = file.src.indexOf("\nexport function", start + 1);
+    const body = file.src.slice(start, next === -1 ? undefined : next);
+    const family = ELEMENT_NAMES.filter((el) => new RegExp(`[<{]\\s*${el}\\b|\\b${el}\\(`).test(body)).sort();
+    if (family.length === 0) continue; // no shared element vocabulary to compare
+
+    const s = composeShot(name, { variant: 0 });
+    const shotKey = `${s.material}|${s.framing.id}|${s.camera.id}|${s.depth.id}`;
+    const key = `${shotKey}::${family.join(",")}`;
+    (byKey[key] = byKey[key] || []).push(name);
+  }
+  const dupes = Object.entries(byKey).filter(([, v]) => v.length > 1);
   return dupes.length === 0 || dupes.map(([k, v]) => `${k}: ${v.join(" + ")}`).join("; ");
 });
 

@@ -6,6 +6,8 @@ import {
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
 import { shotFrame } from "./stage.jsx";
+import { ChartColumn } from "./elements/chart.jsx";
+import { MorphShape } from "./elements/transform.jsx";
 
 /**
  * Quantity scenes — the four ways this renderer explains a NUMBER.
@@ -106,6 +108,42 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
   const cellW = trayW / perRow;
   const cellH = 46;
 
+  /**
+   * A PILE, not a grid (visual-system-reset PART 15). The tray previously
+   * placed units in even rows/columns — a spreadsheet of tokens, "many"
+   * read as a count rather than felt as a heap. Real accumulation has
+   * overlap, depth and irregularity: fewer items fit on each layer up
+   * (a mound tapers), items within a layer overlap their neighbours
+   * instead of sitting in clean cells, and each one carries a small seeded
+   * rotation and scale so no two look machine-placed.
+   *
+   * Deterministic from `i` alone — no simulation state, no Math.random —
+   * so a re-render is byte-identical, same rule as the rest of the file.
+   */
+  function pileSlot(i) {
+    let layer = 0;
+    let cap = Math.max(2, perRow);
+    let remaining = i;
+    while (remaining >= cap) {
+      remaining -= cap;
+      layer++;
+      cap = Math.max(2, perRow - layer);
+    }
+    const spacing = cellW * 0.66; // < cellW: neighbours overlap
+    const layerWidth = (cap - 1) * spacing;
+    const layerX = trayX + trayW / 2 - layerWidth / 2 + remaining * spacing;
+    const jitterX = (seeded(i * 3 + 2) - 0.5) * spacing * 0.5;
+    const jitterY = (seeded(i * 11 + 6) - 0.5) * 10;
+    const rot = (seeded(i * 17 + 4) - 0.5) * 22;
+    const scale = 0.86 + seeded(i * 23 + 9) * 0.28;
+    return {
+      x: layerX + jitterX,
+      y: floorY - 22 - layer * (cellH * 0.62) + jitterY,
+      rot,
+      scale,
+    };
+  }
+
   const runningTotal = total != null ? (total * landed) / count : null;
 
   return (
@@ -122,19 +160,31 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
         </>
       )}
 
+      {/* A ground shadow under the pile — the cheapest, most reliable way
+          to say "this heap has weight and sits on something", and it
+          grows with the pile rather than being a fixed decoration. */}
+      {!ledger && landed > 0 ? (
+        <div style={{
+          position: "absolute", left: trayX + trayW / 2 - (trayW * 0.36), top: floorY - 6,
+          width: trayW * 0.72, height: 22, borderRadius: "50%",
+          background: colors.stroke, opacity: 0.12 * Math.min(1, landed / Math.max(count * 0.4, 1)),
+          transform: `scale(${Math.min(1, 0.4 + landed / count)})`, transformOrigin: "50% 50%",
+        }} />
+      ) : null}
+
       {/* The items themselves. Each one is a discrete unit that fell in. */}
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
         {Array.from({ length: count }).map((_, i) => {
           if (i >= landed) return null;
-          const row = Math.floor(i / perRow);
-          const col = i % perRow;
-          const jitterX = (seeded(i * 3 + 2) - 0.5) * 8;
-          // Tray: fill left-to-right, bottom-up. Ledger: one row per unit,
-          // running down the rule, each a different length because no two
-          // charges are the same size.
+          // Tray: a pile — overlapping, tapering, irregular (pileSlot
+          // above). Ledger: one row per unit, running down the rule, each
+          // a different length because no two charges are the same size.
           const rowW = trayW * (0.34 + seeded(i * 7 + 13) * 0.52);
-          const x = ledger ? trayX + 14 + rowW / 2 : trayX + col * cellW + cellW / 2 + jitterX;
-          const y = ledger ? ledgerTop + 10 + i * rowH : floorY - 22 - row * cellH;
+          const slot = ledger ? null : pileSlot(i);
+          const x = ledger ? trayX + 14 + rowW / 2 : slot.x;
+          const y = ledger ? ledgerTop + 10 + i * rowH : slot.y;
+          const itemRot = ledger ? 0 : slot.rot;
+          const itemScale = ledger ? 1 : slot.scale;
 
           // Individual drop-in for the item that just landed.
           const isNewest = i === landed - 1;
@@ -145,11 +195,11 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
           const collapseP = ease(pTotal, EASE_IN_OUT);
           const tx = collapsed ? (STAGE_CX - x) * collapseP : 0;
           const ty = collapsed ? (760 - y) * collapseP : 0;
-          const scale = collapsed ? 1 - 0.75 * collapseP : 1;
+          const scale = (collapsed ? 1 - 0.75 * collapseP : 1) * itemScale;
           const op = collapsed ? 1 - 0.85 * collapseP : dropP;
 
           return (
-            <g key={i} transform={`translate(${x + tx}, ${y + dy + ty}) scale(${scale})`} opacity={op}>
+            <g key={i} transform={`translate(${x + tx}, ${y + dy + ty}) rotate(${itemRot}) scale(${scale})`} opacity={op}>
               {ledger ? (
                 <rect x={-rowW / 2} y={-rowH * 0.32} width={rowW} height={Math.max(4, rowH * 0.62)} rx={2}
                   fill={colors.stroke} opacity={0.5} />
@@ -330,7 +380,21 @@ export function TransformationScene({ beat, colors, fontFamily }) {
           />
         ) : null}
         {pts.length > 1 ? <path d={d} fill="none" stroke={colors.accent} strokeWidth={4} /> : null}
-        {pGrow > 0 ? <circle cx={head[0]} cy={head[1]} r={7} fill={colors.accent} /> : null}
+        {/* The value as an OBJECT, not just a point on a line
+            (visual-system-reset PART 14: "the object itself should
+            change"). A morphing block riding the curve's head — its
+            height is the value's own magnitude against the larger of
+            from/to, so the shape is visibly a different size AND a
+            different roundness by the time it settles, not a dot that
+            slides along a path. */}
+        {pGrow > 0 ? (
+          <MorphShape
+            cx={head[0]} baseY={baseY}
+            fromH={(Math.abs(from) / (Math.max(Math.abs(from), Math.abs(to)) || 1)) * f.h * 0.2}
+            toH={(Math.abs(to) / (Math.max(Math.abs(from), Math.abs(to)) || 1)) * f.h * 0.2}
+            w={44} progress={pGrow} colors={colors} accent
+          />
+        ) : null}
 
         {/* The gap between where it started and where it ended */}
         {pSettle > 0 ? (
@@ -410,21 +474,15 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
       <Rule x={midX - 330} y={axisY} w={660} p={Math.max(pLeft, 0.01)} color={colors.stroke} thickness={2} />
 
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {/* Both columns are filled mass from the moment they exist — WAS
-            fill="none" until a verdict fired, which meant most of this
-            scene's life was two wireframe outlines and it measured 0.7%
-            ink. A comparison of two quantities should show two quantities,
-            not one bar plus a promise of a bar. */}
-        <rect x={midX - 250} y={axisY - hA} width={colW} height={hA}
-          fill={colors.accent}
-          fillOpacity={pVerdict > 0 ? (winner === "a" ? 0.9 : 0.16) : 0.32}
-          stroke={colors.accent} strokeWidth={3}
-          opacity={pVerdict > 0 && winner !== "a" ? 0.4 : 1} />
-        <rect x={midX + 60} y={axisY - hB} width={colW} height={hB}
-          fill={colors.accent}
-          fillOpacity={pVerdict > 0 ? (winner === "b" ? 0.9 : 0.16) : 0.32}
-          stroke={colors.accent} strokeWidth={3}
-          opacity={pVerdict > 0 && winner !== "b" ? 0.4 : 1} />
+        {/* Two constructed blocks (elements/chart.jsx), not two flat
+            rectangles — front/top/side faces off the same ink give each
+            quantity real volume, so "physically different scales" (PART
+            13) is the actual geometry of two solids, not a colour swap
+            between equal-shaped rects. */}
+        <ChartColumn x={midX - 250} w={colW} baseY={axisY} h={hA} colors={colors}
+          emphasis={pVerdict > 0 && winner === "a" ? 1 : 0.4} dim={pVerdict > 0 && winner !== "a"} />
+        <ChartColumn x={midX + 60} w={colW} baseY={axisY} h={hB} colors={colors}
+          emphasis={pVerdict > 0 && winner === "b" ? 1 : 0.4} dim={pVerdict > 0 && winner !== "b"} />
 
         {/* The difference between them, marked where it actually is */}
         {pGap > 0 ? (
@@ -700,19 +758,14 @@ export function DataChartScene({ beat, colors, fontFamily }) {
           const h = (Math.abs(s.value) / max) * maxH * grow;
           const x = x0 + i * (barW + gap);
           const isHi = i === hiIdx && pHi > 0;
-          // WAS fill="none" on every bar but the highlighted one — a bar
-          // chart whose bars are wireframes until the sound off reads as an
-          // axis with some brackets on it, which is exactly the DATA_CHART
-          // anchor-frame defect (register 3.12.5, the "ninety" frame) minus
-          // the timing bug. A bar's height is its whole argument; it should
-          // be a filled column like any other bar chart, highlighted or not.
+          // A constructed column (elements/chart.jsx), not a flat rect —
+          // real bar-chart convention keeps the non-highlighted/highlighted
+          // colour distinction (neutral ink vs accent), now with the same
+          // three-face volume ComparisonScene's blocks use.
           return (
-            <rect key={i} x={x} y={axisY - h} width={barW} height={h}
-              fill={isHi ? colors.accent : colors.stroke}
-              fillOpacity={isHi ? 1 : 0.4}
-              stroke={isHi ? colors.accent : colors.stroke}
-              strokeWidth={3}
-              opacity={pHi > 0 && !isHi ? 0.45 : 1} />
+            <ChartColumn key={i} x={x} w={barW} baseY={axisY} h={h} colors={colors}
+              color={isHi ? colors.accent : colors.stroke}
+              emphasis={isHi ? 1 : 0.5} dim={pHi > 0 && !isHi} />
           );
         })}
       </svg>

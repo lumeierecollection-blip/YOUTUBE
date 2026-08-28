@@ -2,11 +2,14 @@ import React from "react";
 import { Img, staticFile, useCurrentFrame } from "remotion";
 import {
   CANVAS_W, CANVAS_H, Label, ease, seeded, variantOf,
-  useStateProgress, EASE_OUT, EASE_IN_OUT,
+  useStateProgress, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { DOCUMENT_PAGES, documentPageGeometry } from "../layout-constants.js";
-import { progressOf, reached } from "../../visual/states.js";
+import { progressOf } from "../../visual/states.js";
 import { shotFrame } from "./stage.jsx";
+import { DocumentSheet } from "./elements/document.jsx";
+import { WindowChrome, NavRail, StatusBar } from "./elements/interface.jsx";
+import { ContentVessel } from "./elements/transform.jsx";
 
 
 /**
@@ -84,44 +87,16 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {/* The page itself.
-            WAS fill={colors.bg} — in this token system bg/surface/raised are
-            all literally the same flat #FFFFFF or #000000 as the canvas
-            (styles/tokens.js), so the page was invisible except for its
-            2.5px stroke border: a document scene with no document drawn.
-            Paper the way PaperGround already renders it elsewhere — ink at
-            low opacity — so the sheet itself is real filled mass, not just
-            an outline waiting to be read as one. */}
-        <rect x={px} y={py} width={pageW} height={pageH * ease(pPage, EASE_OUT)}
-          fill={colors.stroke} fillOpacity={0.07} stroke={colors.stroke} strokeWidth={2.5} />
-        {/* Header rule */}
-        <line x1={px + 40} y1={py + 62} x2={px + pageW - 40} y2={py + 62}
-          stroke={colors.stroke} strokeWidth={2} opacity={ease(pPage)} />
-
-        {Array.from({ length: lines }).map((_, i) => {
-          const a = ease(Math.max(0, Math.min(1, pPage * 2.2 - i * 0.06)));
-          if (a <= 0.01) return null;
-          const y = py + 110 + i * lead;
-          const isClause = i === clauseLine;
-          const w = (pageW - 80) * (0.62 + seeded(i * 5 + 3 + v * 97) * 0.36);
-          return (
-            <rect key={i} x={px + 40} y={y} width={w} height={isClause ? 12 : 8} rx={2}
-              fill={isClause && pFind > 0 ? colors.accent : colors.stroke}
-              opacity={isClause && pFind > 0 ? 1 : pFind > 0 ? 0.22 : 0.5 * a} />
-          );
-        })}
-
-        {/* Attention moving down the page during `scan` */}
-        {pScan > 0 && pFind <= 0 ? (
-          <rect x={px + 24} y={py + 96 + (pageH - 200) * ease(pScan, EASE_IN_OUT)} width={pageW - 48} height={40}
-            fill="none" stroke={colors.accent} strokeWidth={2} opacity={0.75} />
-        ) : null}
-
-        {/* The clause, located */}
-        {pFind > 0 ? (
-          <rect x={px + 28} y={py + 110 + clauseLine * lead - 14} width={(pageW - 56) * ease(pFind)} height={40}
-            fill="none" stroke={colors.accent} strokeWidth={3} />
-        ) : null}
+        {/* The page, as a constructed object — depth, a folded corner, a
+            letterhead region, body rhythm, a margin annotation and a page
+            number, not a bordered rectangle with ruled bars (see
+            elements/document.jsx). The safe-rect budget this geometry was
+            tuned against (documentPageGeometry) is unchanged; the sheet's
+            depth shadow is a small +6/+8px offset, not new page footprint. */}
+        <DocumentSheet
+          px={px} py={py} pageW={pageW} pageH={pageH} lines={lines} clauseLine={clauseLine}
+          lead={lead} variant={v} pPage={pPage} pScan={pScan} pFind={pFind} colors={colors}
+        />
       </svg>
 
       {/* The operative words, pulled out legible. These are the beat's own
@@ -209,29 +184,34 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
   const pWork = progressOf(states, "work", frame);
   const pResult = useStateProgress(states, "result");
 
-  const w = 720, h = 520;
+  /**
+   * REBUILT (visual-system-reset PART 19): window chrome + three loose
+   * rectangles is a diagram OF a UI, not a UI. A real windowed application
+   * has a navigation rail beside its content and a status strip under it —
+   * regions, not just a title bar and a content blob. No product identity
+   * is invented (still `dataNeeds: []`, still abstract per PART 23); this
+   * is the same abstraction with the actual regions an interface has.
+   */
+  const w = 760, h = 560;
   const x = f.cx - w / 2, y = f.cy - f.h * 0.3;
+  const navW = 84;
+  const contentX = x + navW;
+  const contentW = w - navW;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {/* Window chrome. WAS fill="none" — the same invisible-container
-            defect as DOCUMENT_EVIDENCE's page: a screen with no surface,
-            only a stroke outline. A real UI has a panel behind its chrome. */}
-        <rect x={x} y={y} width={w} height={h * ease(pChrome, EASE_OUT)} rx={6}
-          fill={colors.stroke} fillOpacity={0.05} stroke={colors.stroke} strokeWidth={2.5} />
-        <line x1={x} y1={y + 52} x2={x + w} y2={y + 52} stroke={colors.stroke} strokeWidth={2} opacity={ease(pChrome)} />
-        {[0, 1, 2].map((i) => (
-          <circle key={i} cx={x + 26 + i * 24} cy={y + 26} r={6}
-            fill="none" stroke={colors.stroke} strokeWidth={1.8} opacity={ease(pChrome)} />
-        ))}
+        <WindowChrome x={x} y={y} w={w} h={h} colors={colors} progress={pChrome} />
+        <NavRail x={x} y={y + 52} w={navW} h={h - 52} colors={colors} progress={pChrome} active={pResult > 0 ? 1 : 0} />
 
-        {/* The request entering */}
+        {/* The request entering — inside the content region, not spanning
+            the whole window (the nav rail is part of the window, not part
+            of what the request travels through). */}
         {pInput > 0 ? (
           <>
-            <rect x={x + 32} y={y + 90} width={(w - 64) * ease(pInput)} height={54} rx={4}
+            <rect x={contentX + 24} y={y + 90} width={(contentW - 48) * ease(pInput)} height={54} rx={4}
               fill={colors.accent} fillOpacity={0.1} stroke={colors.accent} strokeWidth={2.5} />
-            <line x1={x + 48} y1={y + 117} x2={x + 48 + 180 * ease(pInput)} y2={y + 117}
+            <line x1={contentX + 40} y1={y + 117} x2={contentX + 40 + 180 * ease(pInput)} y2={y + 117}
               stroke={colors.accent} strokeWidth={3} />
           </>
         ) : null}
@@ -239,9 +219,9 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
         {/* The system visibly working — a real progress bar tied to state */}
         {pWork > 0 ? (
           <>
-            <rect x={x + 32} y={y + 186} width={w - 64} height={10} rx={5}
+            <rect x={contentX + 24} y={y + 186} width={contentW - 48} height={10} rx={5}
               fill="none" stroke={colors.stroke} strokeWidth={1.5} />
-            <rect x={x + 32} y={y + 186} width={(w - 64) * ease(pWork, EASE_IN_OUT)} height={10} rx={5}
+            <rect x={contentX + 24} y={y + 186} width={(contentW - 48) * ease(pWork, EASE_IN_OUT)} height={10} rx={5}
               fill={colors.accent} />
           </>
         ) : null}
@@ -254,19 +234,17 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
               const ry = y + 240 + i * 62;
               return (
                 <g key={i} opacity={a}>
-                  {/* Every row is a filled surface, not just the highlighted
-                      one — three rows at fill="none" were three more
-                      invisible containers, the same defect as the chrome
-                      above and the DOCUMENT_EVIDENCE page. */}
-                  <rect x={x + 32} y={ry} width={w - 64} height={46} rx={4}
+                  <rect x={contentX + 24} y={ry} width={contentW - 48} height={46} rx={4}
                     fill={i === 0 ? colors.accent : colors.stroke} fillOpacity={i === 0 ? 0.14 : 0.05}
                     stroke={i === 0 ? colors.accent : colors.stroke} strokeWidth={i === 0 ? 2.5 : 1.5} />
-                  <rect x={x + 50} y={ry + 18} width={(w - 200) * (0.5 + seeded(i * 9 + 1) * 0.45)} height={9} rx={2}
+                  <rect x={contentX + 42} y={ry + 18} width={(contentW - 160) * (0.5 + seeded(i * 9 + 1) * 0.45)} height={9} rx={2}
                     fill={i === 0 ? colors.accent : colors.stroke} opacity={i === 0 ? 1 : 0.5} />
                 </g>
               );
             })
           : null}
+
+        <StatusBar x={x} y={y + h - 26} w={w} colors={colors} progress={pChrome} active={pWork > 0 && pResult <= 0} />
       </svg>
     </div>
   );
@@ -296,7 +274,11 @@ export function BeforeAfterScene({ beat, colors, fontFamily }) {
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        <rect x={x} y={y} width={w} height={h} fill="none" stroke={colors.stroke} strokeWidth={2} opacity={ease(pBefore)} />
+        {/* A bounded vessel holding the field — one object whose CONTENTS
+            change (visual-system-reset PART 14), not an unbounded grid of
+            independent cells with nothing holding them. WAS fill="none",
+            the same invisible-container defect fixed elsewhere. */}
+        <ContentVessel x={x} y={y} w={w} h={h} colors={colors} progress={pBefore} />
 
         {Array.from({ length: cells }).map((_, i) => {
           const r = Math.floor(i / cols), c = i % cols;

@@ -754,6 +754,164 @@ PRODUCTION-VERIFIED against real speech. `RelationshipScene`'s link-band fix
 specifically needs a frame where `links`/`weight` are active to see
 rendered, which this pass's fixtures did not sample.
 
+**3.12.8 — the element layer: designed objects replacing primitive
+assembly, not more mass on the same primitives.** 3.12.7 closed the
+mass gap (fills instead of hairlines) without changing what the scenes
+were built FROM — a filled rectangle is still a rectangle. This pass's
+brief was narrower and harder: trace each target scene back to the
+primitive-assembly problem, remove it, and rebuild the visual body on
+actual designed objects with internal structure
+(`compositions/scenes/elements/*.jsx`, new this pass), while leaving the
+semantic/director/composition/camera/sound infrastructure untouched.
+
+New element files, each a real object with internal parts, not a
+primitive with a new name:
+
+- `elements/machine.jsx` — `MachineBody` (casing with wall/floor/ties),
+  `Gate` (two facing jaws with a real aperture), `MaterialSlug` (a
+  discrete body of material).
+- `elements/circuit.jsx` — `CircuitNode` (a component with a status
+  light), `CircuitTrace` (a right-angle PCB-style connection),
+  `SignalPacket` (the thing actually travelling).
+- `elements/document.jsx` — `DocumentSheet`: depth shadow, a folded
+  corner, a letterhead region distinct from body rhythm, a margin
+  annotation bracket, a page number — a constructed page, not a bordered
+  rectangle with ruled bars.
+- `elements/interface.jsx` — `WindowChrome`, `NavRail`, `StatusBar`: a
+  real windowed-application region hierarchy (title bar + tab, a
+  navigation rail, a status strip), still fully abstract (no invented
+  product identity, `dataNeeds: []` unchanged).
+- `elements/chart.jsx` — `ChartColumn`: a three-face block (front/top/
+  side, one ink at three opacities, no gradient) instead of a flat
+  rectangle, shared by COMPARISON and DATA_CHART.
+- `elements/transform.jsx` — `MorphShape` (corner-rounding + proportion
+  interpolation, not a swapped rectangle), `ContentVessel` (a bounded
+  container for BEFORE_AFTER's field so it is one object's contents
+  changing, not an unbounded cell grid).
+
+Strategies rebuilt on these, each with a specific traced defect, not a
+restyle:
+
+- **CAUSE_EFFECT** — the flow-lanes version (already thickened twice, in
+  earlier passes) was still curved strokes converging through two chevron
+  strokes: primitives with more width. Rebuilt as a gated duct
+  (`MachineBody` + `Gate` + `MaterialSlug`). Found and fixed a real timing
+  bug in the process: `link` (the anchored state) drove the gate's close
+  amount from raw `progressOf`, which is 0 at the exact frame the anchor
+  lands — the causal word landing with no gate reaction on screen. Fixed
+  by driving it from `useValueProgress` (reaches 1 at the anchor, the same
+  technique GEOSPATIAL_RADIUS's `lock` already uses) and adding
+  `resolves: true` to `strategies.js`'s `CAUSE_EFFECT.link`, matching the
+  existing precedent (`lock`, `total`, `settle`, `highlight`). Also fixed
+  a real composition defect found on the first render: upstream material
+  collapsed to a narrow band near the gate instead of using the casing's
+  width — rewritten so the queue is evenly spread when the gate is open
+  and compresses toward the gate as it closes, which is the backlog made
+  of the same objects rather than a separate indicator.
+- **PROCESS** — was one universal template (a roller-and-workpiece
+  machine) regardless of subject, which PART 12 explicitly forbids.
+  `sup.stages` is confirmed to be a bare count with no per-stage labels
+  anywhere in the data pipeline (`director.js`: `supporting.stages =
+  payload.stages || 3`), so per-stage NAMES cannot be shown without
+  inventing content. What CAN change without inventing anything is the
+  OBJECT FAMILY: a deterministic keyword read of the beat's own text
+  (`processFamily`, the same technique `VisualMetaphorScene` already uses
+  for its `mode`) now selects "circuit" (a request/signal moving through
+  system components — `CircuitNode`/`CircuitTrace`/`SignalPacket` mounted
+  on a `MachineBody` board) for a digital/software subject, or keeps the
+  existing roller-and-gate machine ("mechanism" family) otherwise. A real
+  defect surfaced building this: `CircuitNode`'s unlit fill opacity was
+  0.09-0.13, under the render's own documented ink-visibility floor, so
+  the circuit family's anchor frame came back under `ANCHOR_INK_FLOOR`
+  the first time it rendered — raised to a floor that stays visible
+  regardless of lit state.
+- **DOCUMENT_EVIDENCE** — extended past 3.12.7's paper-fill fix into a
+  constructed page: depth shadow, a folded corner, a letterhead region,
+  a margin annotation bracket beside the located clause, a page number.
+  No new document text — the only words drawn are still the beat's real
+  pulled narration phrase.
+- **INTERFACE_SIMULATION** — chrome + three loose rectangles became a
+  real region hierarchy (nav rail, status bar, tab), still fully
+  abstract per PART 23 (no product identity invented).
+- **ACCUMULATION** (tray variant) — was a grid (even rows/columns); now a
+  pile — items overlap, a mound tapers (fewer items fit per layer up),
+  each item carries a small seeded rotation/scale, with a ground shadow
+  that grows with the pile. Deterministic from `i` alone, same
+  no-`Math.random` rule as the rest of the file.
+- **COMPARISON / DATA_CHART** — flat bars became `ChartColumn` blocks
+  (front/top/side faces). Two strategies sharing one element is the kind
+  of primitive reuse PART 10 explicitly allows ("may share individual
+  primitives... may NOT share the same overall composition") — verified
+  they do NOT also share a shot signature (see 3.12.8's new check below),
+  which is the actual test of whether reuse became duplication.
+- **TRANSFORMATION** — added `MorphShape` at the curve's head: an object
+  whose own height (scaled to the from/to magnitude) and corner-rounding
+  change, not a dot riding a line. The plotted curve + area fill from
+  3.12.7 stays as the trajectory evidence; the block is the value as an
+  object.
+- **BEFORE_AFTER** — the sparse/dense cell field (a real, meaningful
+  contrast, kept) is now held inside a `ContentVessel` — one bounded
+  object whose contents change, not a borderless grid.
+- **TIMELINE** — event markers' rectangular caps became pennants (a flag
+  planted in the ground), a small but real object-silhouette change; the
+  post/shadow/footing construction from the prior pass is unchanged.
+
+**Not touched, with reason:** GEOSPATIAL_RADIUS (the benchmark, PART 20
+explicit "do not regress it" — re-measured this pass at 39.4%/47.0% ink,
+unchanged), CINEMATIC_STATEMENT (PART 21: "do not force mechanisms into
+sentences that do not contain mechanisms" — it is deliberately
+object-free typography-in-a-shot and no rendered defect was found this
+pass), RELATIONSHIP, VISUAL_METAPHOR, SCALE_COMPARISON (not named in this
+pass's target list; re-measured unchanged at 21.9% ink for VISUAL_METAPHOR
+on the same fixture as a spot check).
+
+**QA extended, not just re-run:**
+
+- A new check, "no two strategies share BOTH a shot signature and an
+  object family" (`run-visual-tests.js`), reads each strategy's actual
+  scene source to extract which `elements/*` components it references,
+  combines that with the existing material/framing/camera/depth
+  signature, and flags a strategy pair only if BOTH match — sharing an
+  element alone (COMPARISON/DATA_CHART both use `ChartColumn`;
+  CAUSE_EFFECT/PROCESS both use `MachineBody`) is confirmed fine because
+  their full shot signatures differ (verified directly:
+  `CAUSE_EFFECT=field|acting-left|track-right|layered` vs
+  `PROCESS=mechanism|columnar|descend|layered`).
+- The existing "no module exports something nothing imports" check only
+  ever scanned `visual/*.js`. Extended to also scan
+  `compositions/scenes/elements/*.jsx` — and immediately found a real
+  dead export building this pass (`BackedUpLevel`, written for
+  CAUSE_EFFECT's backlog, then orphaned when that backlog became queue
+  compression instead of a separate indicator). The check still counts
+  raw name occurrences including comments (a pre-existing limitation, not
+  fixed this pass), so it did not catch `BackedUpLevel` automatically —
+  found by hand, removed by hand, recorded here so the gap in the check's
+  method is not silently relied on again.
+
+**QA run this pass:** `node visual/run-visual-tests.js` — 70/70 passing
+(69 from 3.12.7 plus the one new check). One real production render
+(`node render.js shorts 48 …`) for the tech-process fixture — 5 beats, 21
+states, 0 fallback reasons, 0 warnings, 12 sound events — with frames
+pulled from the actual encoded MP4, not `renderStill`, and inspected.
+Every strategy listed as "rebuilt" above was rendered and its PNG looked
+at, not inferred from the ink number; several (CAUSE_EFFECT, PROCESS
+circuit family) needed a second or third render after a defect was found
+on the first look, per PART 32's own instruction not to claim success
+without one.
+
+**Still not proven, honestly:** the same IMAGE_EVIDENCE and real-TTS caveats
+from 3.12.7 hold unchanged. Additionally: `ink%` from `inspect-anchors.mjs`
+was observed to shift by a large margin (PROCESS mechanism family: ~18%
+in one measurement run, ~30-38% in another, on byte-identical unmodified
+code, confirmed via `git diff` showing zero change to `ProcessScene`
+between runs) — almost certainly the corner-based background sampling
+being thrown off by the renderer's own background noise/dot-grid texture
+on a large near-threshold fill, not a real visual difference (the PNGs
+from both runs were visually inspected and are indistinguishable). Noted
+here rather than chased further; it is why this entry leans on rendered
+PNGs, described directly, rather than presenting ink percentages as the
+evidence.
+
 ---
 
 

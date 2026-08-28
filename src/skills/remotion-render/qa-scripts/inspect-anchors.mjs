@@ -142,7 +142,15 @@ function framesFor(beat) {
   const out = [{ tag: "anchor", frame: Math.min(beat.anchorFrame, beat.startFrame + beat.durationInFrames - 1) }];
   if (!ALL_STATES) return out;
   for (const st of beat.visualStates || []) {
-    out.push({ tag: st.key, frame: Math.min(st.startFrame + Math.floor(st.durationInFrames / 3), mg.totalFrames - 1) });
+    // `st.startFrame` is LOCAL to the beat (states.js: "0 = beat start" —
+    // it's what the scene sees inside its own <Sequence>). This was being
+    // passed straight to renderStill as if it were an absolute frame in
+    // the whole composition, so every --all-states frame for any beat
+    // that doesn't start at frame 0 sampled a DIFFERENT, earlier beat
+    // instead — found by rendering CAUSE_EFFECT's "cause"/"link" states
+    // and getting PROCESS's picture back. beat.startFrame is absolute
+    // (same field the "anchor" row above already uses correctly).
+    out.push({ tag: st.key, frame: Math.min(beat.startFrame + st.startFrame + Math.floor(st.durationInFrames / 3), mg.totalFrames - 1) });
   }
   return out;
 }
