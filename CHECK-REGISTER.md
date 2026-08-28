@@ -1024,6 +1024,122 @@ this section as a starting point, not a completed rebuild.
 
 ---
 
+**3.12.10 — fresh audit for a fourth, still-larger directive ("MAJOR
+VISUAL REBUILD — DELETE THE OLD VISUAL LANGUAGE AND REBUILD THE MOTION
+SYSTEM"), plus one completed high-leverage fix: real camera
+choreography.** This directive named four new reference repos
+(`iart-ai/motion-design-skills`, `haidrrrry/claude-remotion-skill`,
+`Liamrjohnston/remotion-motion-graphics-skill`, `remotion-dev/skills`)
+and a 24-phase scope covering every strategy, camera, typography, motion,
+materials and sound. What follows is the Phase 0 audit and the one phase
+carried through to a real, rendered, committed fix — not a claim that the
+other 23 phases are done.
+
+**Phase 0 finding that changes the audit's shape: there is a second,
+parallel rendering path this repo's last three passes never touched.**
+`Root.jsx` registers three composition sets —
+`compositions/cinematic-documentary.jsx`, `compositions/minimal.jsx`,
+`compositions/motion-graphics.jsx` — and `motion-graphics.jsx` (1813
+lines) is not just a thin wrapper around `SemanticScene`
+(`compositions/scenes/index.jsx`, the system 3.12.7-3.12.9 rebuilt). It
+contains its OWN inline scene components — `HeroNumberScene`,
+`TermDefineScene`, `ContrastScene`, `ProgressScene`, `RelationScene`,
+`StatementScene`, `ImageBeatScene` (`motion-graphics.jsx:956-1485`) — and
+a `StageScene` router (`motion-graphics.jsx:1508-1531`) that is
+EXACTLY the box/bar/node-and-arrow vocabulary this whole rebuild exists
+to remove: `ContrastScene` is bars, `RelationScene` is nodes connected by
+lines, `StatementScene` is a lone centred icon. The router's own comment
+(`motion-graphics.jsx:1487-1507`) states why this still exists: it is a
+LEGACY PATH that only fires when `beat.visualPlan` is absent — real
+production beats always carry one (built by `visual/director.js` via
+`buildMgPackage`), so this switch is reachable only by callers that
+construct beats without going through that pipeline
+(`verify-compositions.js` fixtures, older tests) and by `LIST_ITEM`
+(routed separately, before this switch, as a chip-accumulation system
+that was already real and out of scope). Separately, `primitives/*.jsx`
+(`Chart.jsx`, `Chip.jsx`, `Icon.jsx`, `Node.jsx`, `Panel.jsx`, `Rule.jsx`)
+and `beats/*.jsx` (`Contrast.jsx`, `HeroNumber.jsx`, `ImageBeat.jsx`,
+`ListItem.jsx`, `Progress.jsx`, `PullQuote.jsx`, `Relation.jsx`,
+`Statement.jsx`, `TermDefine.jsx`) exist as FILES but a grep of
+`motion-graphics.jsx`'s imports shows only `Panel` from `primitives/` is
+actually imported — the `beats/*.jsx` versions of these same names are
+not the ones `motion-graphics.jsx` renders (it defines its own inline
+copies); whether `beats/*.jsx` is reachable from `minimal.jsx` or
+`cinematic-documentary.jsx` was not checked this pass and is recorded
+here as unverified, not assumed.
+
+**Recorded, not yet acted on:** Phase 16 says delete an old primitive
+system unless "actually required," and says rewrite a test that protects
+rejected behaviour rather than keep the behaviour for the test's sake.
+The legacy `StageScene` switch is required, today, for
+`verify-compositions.js` and older tests to run at all. Deleting it
+correctly means first making those callers build a real `visualPlan` (or
+retiring the tests that cannot), which is real, separate, scoped work —
+not done this pass. Recorded here so it is not silently rediscovered
+later: this is what Phase 16 refers to for this repo, its exact location
+is `motion-graphics.jsx:1508-1531` plus the seven scene functions above
+it, and the blocker is the two callers named in the router's own comment.
+
+**Phase 11 (camera), completed and verified.** `Shot` and `Plane`
+(`compositions/scenes/stage.jsx`) drove every camera move — all 16
+strategies, via the shared `STRATEGY_CAMERA` table in
+`visual/composition.js` — through one continuous
+`ease(p, EASE_IN_OUT)` from `cam.from` to `cam.to`, linearly across the
+beat's ENTIRE duration. That is the exact pattern
+`Liamrjohnston/remotion-motion-graphics-skill`'s
+`skills/cinematic-camera/SKILL.md` names as rejected ("slow zoom as the
+only camera idea", "single A->B interpolation") — and it is a SHARED
+infrastructure defect, not a per-strategy one, so it affected every
+strategy's shot identically regardless of how good that strategy's
+objects were. Replaced with `cameraCurve()`
+(`compositions/scenes/stage.jsx`): hold at the start framing, a short
+decisive move, hold at the end framing, timed to the beat's own anchored
+state (`visual/states.js`) so the camera's arrival lines up with when the
+anchor's content actually lands, per the same file's camera rig
+("repeated adjacent keys create holds... camera moves to the next
+action; action completes during the hold"). `Plane`'s parallax now reads
+off the identical curve so depth layers stay synced to the camera instead
+of drifting on their own schedule. `composition.js` itself — the
+`CAMERA_MOVES` presets, `STRATEGY_CAMERA` table, `composeShot` — is
+unchanged; this is purely how the existing values are traversed over
+time. 70/70 checks pass; rendered via `inspect-anchors.mjs --all-states`
+against `finance-accumulation.fixture.json`, TRANSFORMATION's
+establish→anchor frames inspected directly and show the camera actually
+travelling rather than a flat linear drift.
+
+**Checked and found already real, not rebuilt:**
+- **PROCESS's mechanism family**
+  (`compositions/scenes/structure-scenes.jsx:296-502`, `CircuitProcess`
+  at `515-578`) is not BOX→ARROW→BOX. It is a track with roller stations
+  and a workpiece that descends, narrows and gains colour as it is
+  worked, camera descending with it — "material moving through a
+  system," one of Phase 3's own listed acceptable structures, built in
+  3.12.8. Judged KEEP; not touched this pass.
+- **Material-aware SFX** (Phase 15's premise: "the current sound system
+  has not yet properly incorporated MATERIAL") — already exists.
+  `visual/sound-design.js`'s `MATERIAL_CHARACTER` table
+  (`sound-design.js:312-325`) maps each of the 8 shot materials to
+  preferred asset characters for the 3 roles the actual 26-file CC0
+  library can discriminate (`impact`, `emphasis`, `transition`), and
+  `pickAsset` (`sound-design.js:342-358`) narrows its pool by the beat's
+  real `shot.material` before falling back. The same code is explicit
+  about where this stops: most roles have exactly one character in the
+  library, so no material choice is possible for them, and the comment
+  says so rather than claiming otherwise. Judged KEEP; not touched this
+  pass.
+
+**Not done this pass, so not claimed done:** the remaining 5 untouched
+strategies (RELATIONSHIP, IMAGE_EVIDENCE, SCALE_COMPARISON,
+INTERFACE_SIMULATION, BEFORE_AFTER) have not been individually
+re-audited against this directive's forbidden-pattern list; Phase 10
+(typography as the visual, not a label in a box) was not attempted;
+Phase 14 (material identity beyond the sound layer) was not attempted;
+the legacy `motion-graphics.jsx` beats-switch deletion described above
+was not attempted; no full production render across all 16 strategies
+was done this pass. These remain real, open work.
+
+---
+
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 
