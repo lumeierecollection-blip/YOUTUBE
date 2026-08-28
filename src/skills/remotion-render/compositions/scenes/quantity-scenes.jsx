@@ -6,7 +6,8 @@ import {
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
 import { shotFrame } from "./stage.jsx";
-import { ChartColumn } from "./elements/chart.jsx";
+import { StackedMass } from "./elements/chart.jsx";
+import { BalanceBeam } from "./elements/balance.jsx";
 import { MorphShape } from "./elements/transform.jsx";
 
 /**
@@ -461,63 +462,59 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
   const pVerdict = useStateProgress(states, "verdict");
 
   const fmt = figureFormat(sup.unit);
-  const midX = f.cx;
-  const axisY = f.cy + f.h * 0.38;
-  const maxH = f.h * 0.72;
-  const colW = f.w * 0.2;
+  const cx = f.cx;
+  const fulcrumY = f.cy - f.h * 0.05;
+  const span = f.w * 0.56;
+  const halfSpan = span / 2;
+  const maxDrop = 44;
+  const hanger = 30;
+  const maxH = f.h * 0.42;
   const hA = (Math.abs(a.value) / max) * maxH * ease(pLeft);
   const hB = (Math.abs(b.value) / max) * maxH * ease(pRight);
   const winner = Math.abs(a.value) >= Math.abs(b.value) ? "a" : "b";
+  const delta = Math.max(-1, Math.min(1, (Math.abs(b.value) - Math.abs(a.value)) / max));
+  const tiltAmount = ease(Math.max(pGap, pVerdict), EASE_IN_OUT);
+  const tilt = delta * tiltAmount;
+  const leftY = fulcrumY - tilt * maxDrop;
+  const rightY = fulcrumY + tilt * maxDrop;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
-      <Rule x={midX - 330} y={axisY} w={660} p={Math.max(pLeft, 0.01)} color={colors.stroke} thickness={2} />
-
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {/* Two constructed blocks (elements/chart.jsx), not two flat
-            rectangles — front/top/side faces off the same ink give each
-            quantity real volume, so "physically different scales" (PART
-            13) is the actual geometry of two solids, not a colour swap
-            between equal-shaped rects. */}
-        <ChartColumn x={midX - 250} w={colW} baseY={axisY} h={hA} colors={colors}
-          emphasis={pVerdict > 0 && winner === "a" ? 1 : 0.4} dim={pVerdict > 0 && winner !== "a"} />
-        <ChartColumn x={midX + 60} w={colW} baseY={axisY} h={hB} colors={colors}
-          emphasis={pVerdict > 0 && winner === "b" ? 1 : 0.4} dim={pVerdict > 0 && winner !== "b"} />
-
-        {/* The difference between them, marked where it actually is */}
-        {pGap > 0 ? (
-          <>
-            <line x1={midX - 250} y1={axisY - Math.max(hA, hB)} x2={midX + 60 + colW} y2={axisY - Math.max(hA, hB)}
-              stroke={colors.textDim} strokeWidth={1.5} strokeDasharray="6 7" opacity={0.8 * ease(pGap)} />
-            <line
-              x1={midX + 60 + colW + 22} y1={axisY - Math.min(hA, hB)}
-              x2={midX + 60 + colW + 22} y2={axisY - Math.min(hA, hB) - (Math.max(hA, hB) - Math.min(hA, hB)) * ease(pGap)}
-              stroke={colors.accent} strokeWidth={3} />
-          </>
-        ) : null}
+        {/* Two stated quantities as a weighing scale (elements/balance.jsx),
+            not two fake-3D-bevelled blocks on a shared axis. The heavier
+            side's pan sits lower — tilt is the real value delta, nothing
+            invented — instead of a dashed "gap" line annotating a diagram. */}
+        <BalanceBeam
+          cx={cx} fulcrumY={fulcrumY} span={span} tilt={tilt} colors={colors}
+          aH={hA} bH={hB}
+          aDim={pVerdict > 0 && winner !== "a"} bDim={pVerdict > 0 && winner !== "b"}
+          aEmphasis={pVerdict > 0 && winner === "a" ? 1 : 0.4}
+          bEmphasis={pVerdict > 0 && winner === "b" ? 1 : 0.4}
+        />
       </svg>
 
-      <Figure x={midX - 250 + colW / 2} y={axisY - hA - 56} value={a.value} p={pLeft}
+      <Figure x={cx - halfSpan} y={leftY + hanger - hA - 50} value={a.value} p={pLeft}
         color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} format={fmt} />
       {/* Driven by `right`, the anchored state, ON PURPOSE — do not
-          "fix" this to useValueProgress. The right-hand BAR also grows on
-          pRight, so the figure and the column it labels arrive together;
-          forcing the number to full at the anchor would put "$340" above a
-          bar of zero height, which is the same inconsistency the other way
-          round. The rule is that a figure matches the element it labels,
-          not that every figure lands on the anchor. */}
-      <Figure x={midX + 60 + colW / 2} y={axisY - hB - 56} value={b.value} p={pRight}
+          "fix" this to useValueProgress. The right-hand pan's mass also
+          grows on pRight, so the figure and the mass it labels arrive
+          together; forcing the number to full at the anchor would put the
+          value above a pan of zero height, the same inconsistency the
+          other way round. A figure matches the element it labels, not
+          every figure lands on the anchor. */}
+      <Figure x={cx + halfSpan} y={rightY + hanger - hB - 50} value={b.value} p={pRight}
         color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} format={fmt} />
 
-      <Label x={midX - 250 + colW / 2} y={axisY + 20} text={String(a.label || "").toUpperCase().slice(0, 18)}
+      <Label x={cx - halfSpan} y={leftY + hanger + 34} text={String(a.label || "").toUpperCase().slice(0, 18)}
         color={colors.textDim} size={24} tracking={2.2} align="center" opacity={pLeft} fontFamily={fontFamily} />
-      <Label x={midX + 60 + colW / 2} y={axisY + 20} text={String(b.label || "").toUpperCase().slice(0, 18)}
+      <Label x={cx + halfSpan} y={rightY + hanger + 34} text={String(b.label || "").toUpperCase().slice(0, 18)}
         color={colors.textDim} size={24} tracking={2.2} align="center" opacity={pRight} fontFamily={fontFamily} />
 
       {pGap > 0 ? (
-        <Label x={midX + 60 + colW + 40} y={axisY - Math.max(hA, hB) / 2}
+        <Label x={cx} y={fulcrumY + 74}
           text={`${fmt(Math.abs(a.value - b.value))} APART`}
-          color={colors.accent} size={26} tracking={1.8} opacity={pGap} fontFamily={fontFamily} />
+          color={colors.accent} size={26} tracking={1.8} align="center" opacity={pGap} fontFamily={fontFamily} />
       ) : null}
     </div>
   );
@@ -758,12 +755,12 @@ export function DataChartScene({ beat, colors, fontFamily }) {
           const h = (Math.abs(s.value) / max) * maxH * grow;
           const x = x0 + i * (barW + gap);
           const isHi = i === hiIdx && pHi > 0;
-          // A constructed column (elements/chart.jsx), not a flat rect —
-          // real bar-chart convention keeps the non-highlighted/highlighted
-          // colour distinction (neutral ink vs accent), now with the same
-          // three-face volume ComparisonScene's blocks use.
+          // A stack of discrete counted units (elements/chart.jsx), not a
+          // flat rect and not a fake-3D-bevelled block — the
+          // highlighted/neutral colour distinction (accent vs ink) is the
+          // series' real hierarchy, not a decoration on top of it.
           return (
-            <ChartColumn key={i} x={x} w={barW} baseY={axisY} h={h} colors={colors}
+            <StackedMass key={i} x={x} w={barW} baseY={axisY} h={h} colors={colors}
               color={isHi ? colors.accent : colors.stroke}
               emphasis={isHi ? 1 : 0.5} dim={pHi > 0 && !isHi} />
           );

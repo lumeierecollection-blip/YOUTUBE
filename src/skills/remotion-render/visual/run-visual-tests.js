@@ -471,8 +471,9 @@ check("no two strategies share BOTH a shot signature and an object family", () =
   // "identical object hierarchy... identical element family" is its own
   // sameness signal, not just shot geometry). This pass gave several
   // strategies designed OBJECTS from compositions/scenes/elements/*.jsx —
-  // ChartColumn is legitimately used by both COMPARISON and DATA_CHART,
-  // MachineBody by both CAUSE_EFFECT and PROCESS's circuit family. That
+  // StackedMass is legitimately used by both COMPARISON's balance pans and
+  // DATA_CHART's columns, MachineBody by both CAUSE_EFFECT and PROCESS's
+  // circuit family. That
   // reuse is fine on its own (PART 10: sharing a PRIMITIVE is not the
   // violation, sharing the whole composition is) — it only becomes the old
   // failure if two strategies ALSO land on the same material/framing/
@@ -484,10 +485,11 @@ check("no two strategies share BOTH a shot signature and an object family", () =
   // uses), not tracked by hand, so this cannot drift from what actually
   // renders the way a maintained list would.
   const ELEMENT_NAMES = [
-    "MachineBody", "Gate", "MaterialSlug", "BackedUpLevel",
+    "MachineBody", "Gate", "MaterialSlug",
     "CircuitNode", "CircuitTrace", "SignalPacket",
     "DocumentSheet", "WindowChrome", "NavRail", "StatusBar",
-    "ChartColumn", "MorphShape", "ContentVessel",
+    "StackedMass", "BalanceBeam", "MorphShape", "ContentVessel",
+    "PressureWalls",
   ];
   const dir = join(__dirname, "..", "compositions", "scenes");
   const files = readdirSync(dir).filter((f) => f.endsWith(".jsx"));

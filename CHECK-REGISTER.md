@@ -914,6 +914,116 @@ evidence.
 
 ---
 
+**3.12.9 — killing the two named bad patterns: fake-3D-bevel bars and the
+concentric-ring ground.** A third, larger directive ("MAJOR VISUAL
+REBUILD — DELETE THE OLD VISUAL LANGUAGE AND REBUILD THE MOTION SYSTEM")
+arrived after 3.12.8 shipped, naming four specific renders from THAT pass
+as bad patterns that must not survive: "the grey 3D bar chart", "the green
+$340 block", "the concentric-ring background", "arbitrary decorative
+geometry" — the message was cut off after that list, before its full
+9-phase scope (a `visualLanguage` field on every strategy's contract, a
+forbidden-default-pattern audit across all 16 strategies, a full
+material-aware SFX rebuild, camera-choreography rebuild, typography
+rebuild, and a final production render with audio inspection) could be
+read in full.
+
+**What this entry covers is the two named patterns that could be traced to
+an exact cause and fixed with evidence in the time available — not the
+full 9-phase rebuild, which is honestly out of reach of one pass and is
+recorded as remaining work below, not silently dropped.**
+
+- **"the grey 3D bar chart" / "the green $340 block".** Both are
+  `ChartColumn` (`elements/chart.jsx`, added in 3.12.8): three `<path>`
+  faces at three opacities faking an isometric block. Read cold, that IS a
+  bevelled 3D bar with a number over it — decoration bolted onto a
+  rectangle, and PART 11 of the new directive explicitly forbids exactly
+  this ("do NOT use fake 3D bevels just to make a bar feel designed").
+  Deleted, not patched. Replaced with:
+  - `StackedMass` (`elements/chart.jsx`, rewritten) — a quantity as a
+    stack of discrete, separately-drawn unit segments (isotype/pictogram
+    convention: segment count derived from the real value, nothing
+    invented), no fake depth faces.
+  - `BalanceBeam` (`elements/balance.jsx`, new) — COMPARISON's two
+    quantities as a literal weighing scale: fulcrum, tilting beam, two
+    pans, real value delta driving the tilt angle. Weighing is the
+    non-decorative reading of "comparison" (PART 28's carve-out: geometry
+    earns its place when the story specifically requires it), and it
+    gives COMPARISON an object unmistakably different from DATA_CHART's
+    freestanding columns even though both now share `StackedMass` as
+    their underlying material — sharing a primitive is fine, sharing the
+    whole composition is the violation (PART 10, restated in 3.12.8).
+  - `ComparisonScene`'s quantitative branch and `DataChartScene` rewired
+    to the new elements. The old dashed-line-plus-arrow "gap" annotation
+    in `ComparisonScene` is gone — the balance's tilt already encodes the
+    difference, so a diagram annotating a diagram was dropped rather than
+    kept.
+  - Rendered and pixel-inspected: `finance-accumulation.fixture.json`
+    (COMPARISON, "$340 vs $0" — the exact beat the "$340 block" callout
+    matches) and `uncovered-strategies.fixture.json` (DATA_CHART, 4-region
+    series). Both PNGs show flat stacked-unit columns / a tilting scale;
+    no bevel, no isometric faces.
+
+- **"the concentric-ring background".** Traced past the scene layer to
+  shared staging infrastructure: `FieldGround` (`compositions/scenes/
+  stage.jsx`), the ground texture drawn under every strategy whose
+  material is `field` (COMPARISON among them, per `visual/composition.js`'s
+  `STRATEGY_MATERIAL` table) — nine concentric ellipses centred at a FIXED
+  screen point, unconditionally, regardless of what any given beat needed.
+  That is the pattern PART 28 forbids by definition: decorative geometry
+  that appears because it is the layer's default, not because the story
+  asked for it. Rewritten to a family of wavy horizontal contour bands
+  (still "isolines of a potential" — the concept `FieldGround` documents
+  itself as representing — just not a bullseye). Separately,
+  `VisualMetaphorScene` (`abstract-scenes.jsx`) drew its OWN five
+  concentric ellipses for four of its five notion-driven "modes"
+  (`closing`/`converging`/`revealing`/`destabilising`); only `loading`'s
+  compressing bars were not rings. Replaced with `PressureWalls`
+  (`elements/pressure.jsx`, new) — four solid walls closing on or opening
+  away from the subject, standoff distance driven by the same per-mode
+  progress math the rings used. `converging` (the no-keyword-match
+  default) was folded into `closing` rather than kept as a fifth
+  near-duplicate bucket. `loading`'s bars are unchanged — they were never
+  rings and PART 28 explicitly allows geometry the story requires.
+  Rendered and pixel-inspected via the `FieldGround` fix (COMPARISON
+  frames, since no fixture currently drives VISUAL_METAPHOR); the
+  `PressureWalls` code path itself is covered by the full test suite's
+  "every scene component parses" / "no identifier that does not exist" /
+  "scene graph resolves" checks but has NOT been rendered and looked at —
+  recorded as unverified below, not claimed as proven.
+
+- **QA changes.** `visual/run-visual-tests.js`'s hand-maintained
+  `ELEMENT_NAMES` list (object-family anti-template check, added 3.12.8)
+  updated: `ChartColumn` removed, `StackedMass` / `BalanceBeam` /
+  `PressureWalls` added, and the already-dead `BackedUpLevel` entry
+  (deleted from `machine.jsx` in 3.12.8, but left in this list) finally
+  removed.
+
+**QA run this pass:** `node visual/run-visual-tests.js` — 70/70 passing,
+unchanged count (this pass swapped element implementations, it did not
+add or remove a strategy or a check). Rendered via
+`qa-scripts/inspect-anchors.mjs --all-states` against
+`finance-accumulation.fixture.json` (channel 1) both before and after the
+`FieldGround` fix, and against `uncovered-strategies.fixture.json`
+(channel 1) after — all PNGs opened and looked at, not inferred from ink
+percentages alone.
+
+**What this pass explicitly did NOT attempt, so it is not claimed done:**
+the directive's full 9-phase scope. In particular: no `visualLanguage` (or
+purpose/entities/relationship/mechanism/muteRelationship/
+prohibitedRepresentations/preferredReferences/cameraIntent/motionIntent/
+material/soundIntent) field was added to any strategy's contract; the
+remaining 13 strategies were not individually re-audited against the full
+forbidden-default-pattern list (centred box, three-column cards, arrow
+flowchart, circles-connected-by-lines, horizontal timeline, stacked
+rectangles, rectangle+label, giant centred number, decorative grid); no
+SFX/material-sound redesign, no camera-choreography rebuild, no
+typography-system rebuild, and no full production render with audio
+inspection were done. These are real, large, separately-schedulable
+pieces of work, not implied by this entry — a future pass should treat
+this section as a starting point, not a completed rebuild.
+
+---
+
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 

@@ -1,39 +1,47 @@
 import React from "react";
 
 /**
- * ChartColumn — a constructed block, not a flat rectangle standing in for
- * a number. Three faces (front, top, side) built from the SAME ink at
- * three opacities — no new colour, no gradient, the same technique the
- * rest of the renderer already uses for depth — so a column reads as a
- * solid volume with weight rather than a bar-chart rectangle.
+ * StackedMass — a quantity built from discrete, countable units stacked
+ * upward, not a flat rectangle and not a rectangle with fake isometric
+ * bevel faces pretending to be a 3D block.
  *
- * Shared by ComparisonScene (two quantities, physically different scales)
- * and DataChartScene (a designed data column with real hierarchy), so the
- * "two magnitudes" and "series of magnitudes" cases build the same kind
- * of object instead of each inventing its own rectangle.
+ * WHY THIS REPLACES ChartColumn.
+ *
+ * ChartColumn (visual-system-reset PART 2 of this repo's history) drew
+ * three `<path>` faces — front/top/side — off one ink colour at three
+ * opacities, styled as a fake-3D isometric block. Read cold on a rendered
+ * frame it is a grey bevelled block with a number over it: the exact
+ * "grey 3D bar chart" / fake-3D-bevel pattern this rebuild is explicitly
+ * required to remove (visual-system-reset PART 11, PART 35). Faking depth
+ * with two extra parallelograms is decoration bolted onto a rectangle, not
+ * a designed object with internal structure.
+ *
+ * A stack of real, separately-drawn unit segments IS internal structure:
+ * the number of segments is the value (derived from the real number, nothing
+ * invented), each segment is a discrete filled body with its own edge, and
+ * the whole column reads as counted mass — the isotype/pictogram-chart
+ * convention (discrete repeated units) rather than the continuous-bar
+ * convention this project was told to stop defaulting to.
  */
-export function ChartColumn({ x, w, baseY, h, colors, emphasis = 1, dim = false, color }) {
+export function StackedMass({ x, w, baseY, h, colors, color, dim = false, emphasis = 1 }) {
   if (h <= 0.5) return null;
-  const depth = Math.min(18, w * 0.22);
-  const topY = baseY - h;
   const col = color || colors.accent;
-  const baseOpacity = dim ? 0.16 : 0.32 + 0.58 * emphasis;
-
-  return (
-    <g opacity={dim ? 0.55 : 1}>
-      {/* Side face — darkest of the three, the "shadowed" side. */}
-      <path
-        d={`M ${x + w} ${topY} L ${x + w + depth} ${topY - depth * 0.6} L ${x + w + depth} ${baseY - depth * 0.6} L ${x + w} ${baseY} Z`}
-        fill={col} fillOpacity={baseOpacity * 0.55} stroke={col} strokeOpacity={0.5} strokeWidth={1.5}
-      />
-      {/* Top face — lightest, catching the light. */}
-      <path
-        d={`M ${x} ${topY} L ${x + depth} ${topY - depth * 0.6} L ${x + w + depth} ${topY - depth * 0.6} L ${x + w} ${topY} Z`}
-        fill={col} fillOpacity={Math.min(1, baseOpacity * 1.25)} stroke={col} strokeOpacity={0.6} strokeWidth={1.5}
-      />
-      {/* Front face. */}
-      <rect x={x} y={topY} width={w} height={h}
-        fill={col} fillOpacity={baseOpacity} stroke={col} strokeWidth={2.5} />
-    </g>
-  );
+  const unit = Math.max(10, Math.min(20, w * 0.55));
+  const gapPx = Math.max(2, unit * 0.16);
+  const count = Math.max(1, Math.round(h / unit));
+  const segH = (h - gapPx * (count - 1)) / count;
+  const baseOpacity = dim ? 0.18 : 0.32 + 0.55 * emphasis;
+  const segs = [];
+  for (let i = 0; i < count; i++) {
+    const segTop = baseY - (i + 1) * segH - i * gapPx;
+    // Alternating opacity between neighbouring units is what makes them
+    // read as separate counted pieces instead of one gradient-shaded bar.
+    const o = baseOpacity * (i % 2 === 0 ? 1 : 0.84);
+    segs.push(
+      <rect key={i} x={x} y={segTop} width={w} height={Math.max(1, segH)}
+        rx={Math.min(4, segH * 0.32)}
+        fill={col} fillOpacity={o} stroke={col} strokeOpacity={0.5} strokeWidth={1.5} />
+    );
+  }
+  return <g opacity={dim ? 0.55 : 1}>{segs}</g>;
 }

@@ -6,6 +6,7 @@ import {
 } from "./primitives.jsx";
 import { progressOf } from "../../visual/states.js";
 import { Plane, shotFrame } from "./stage.jsx";
+import { PressureWalls } from "./elements/pressure.jsx";
 
 /**
  * Abstract scenes — the two that carry a beat when nothing concrete is
@@ -38,7 +39,10 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
   const pResolve = useStateProgress(states, "resolve");
 
   // Which physical behaviour the notion maps to. Each is a genuinely
-  // different motion, not a restyled version of the same one.
+  // different motion, not a restyled version of the same one. No keyword
+  // match now folds into "closing" rather than a separate "converging"
+  // bucket — both were the same shrink formula at a different rate, i.e.
+  // one mode wearing two names.
   const mode = /trap|caught|stuck|lock|bound|constrain|squeeze/.test(notion)
     ? "closing"
     : /pressure|burden|weight|crush|strain/.test(notion)
@@ -47,55 +51,63 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
         ? "revealing"
         : /risk|fragile|collapse|fail/.test(notion)
           ? "destabilising"
-          : "converging";
+          : "closing";
 
   const f = shotFrame((beat.visualPlan && beat.visualPlan.shot) || null);
   const cx = f.cx, cy = f.cy;
   const a = ease(pAct, EASE_IN_OUT);
-  const rings = 5;
   // Field size follows the SHOT, not a fixed 330px. IMMERSIVE puts the
   // viewer inside the field; CLOSE puts them near a smaller one. Hardcoding
-  // the radius made both framings draw an identical field, which is the
+  // the size made both framings draw an identical field, which is the
   // whole complaint this layer exists to answer.
+  const boxHalfW = f.w * 0.21;
+  const boxHalfH = f.h * 0.17;
+  const openMax = Math.min(f.w, f.h) * 0.2;
+  const appear = ease(pEst);
+
+  // loading's own geometry: a compressing stack of load bars, unrelated
+  // to the wall box the other three modes use.
+  const rings = 5;
   const R = Math.min(f.w, f.h) * 0.46;
   const step = R * 0.079;
+
+  let standoff = openMax, wallOpacity = appear, wobble = [0, 0, 0, 0], accent = false;
+  switch (mode) {
+    case "closing":
+      // Walls close toward the subject as the beat plays out. A working
+      // vice never fully seals — same residual-gap precedent as
+      // elements/machine.jsx's Gate — so the minimum standoff stays a
+      // small positive gap, not zero.
+      standoff = openMax * (1 - 0.82 * a);
+      break;
+    case "revealing":
+      // Walls start almost flush against the subject and retreat outward,
+      // exposing what they held, fading as they go.
+      standoff = openMax * (0.08 + 1.6 * a);
+      wallOpacity = appear * (1 - 0.5 * a);
+      accent = true;
+      break;
+    case "destabilising":
+      standoff = openMax * 0.55;
+      wobble = [0, 1, 2, 3].map((i) => Math.sin(frame * 0.13 + i * 1.7) * 9 * a);
+      break;
+    default:
+      break; // "loading" draws its own bars below and ignores standoff
+  }
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {Array.from({ length: rings }).map((_, i) => {
-          const t = i / (rings - 1 || 1);
-          const appear = ease(Math.max(0, Math.min(1, pEst * rings - i * 0.6)));
-          if (appear <= 0.02) return null;
-
-          let r, opacity = 0.5 + 0.5 * appear, sw = 2;
-          switch (mode) {
-            case "closing":
-              // Rings contract toward the centre: the space available shrinks.
-              r = (R - i * step) * (1 - 0.55 * a);
-              sw = 2 + i * 0.4;
-              break;
-            case "loading":
-              // Stacked bars compress downward under accumulating weight.
-              r = R * 0.9 - i * step * 1.15;
-              break;
-            case "revealing":
-              // Rings expand outward, exposing what was inside.
-              r = (R * 0.21 + i * step * 1.15) * (1 + 1.6 * a);
-              opacity *= 1 - 0.5 * a;
-              break;
-            case "destabilising":
-              r = R * 0.9 - i * step * 1.15;
-              break;
-            default: // converging
-              r = (R - i * step) * (1 - 0.3 * a);
-          }
-
-          if (mode === "loading") {
+        {mode === "loading" ? (
+          Array.from({ length: rings }).map((_, i) => {
+            const t = i / (rings - 1 || 1);
+            const barAppear = ease(Math.max(0, Math.min(1, pEst * rings - i * 0.6)));
+            if (barAppear <= 0.02) return null;
+            const r = R * 0.9 - i * step * 1.15;
+            const opacity = 0.5 + 0.5 * barAppear;
             const squash = 1 - 0.5 * a * (1 - t);
-            // WAS fill="none" — a stack of wireframe bars. The weight
-            // accumulating under load is exactly what a fill communicates
-            // that an outline cannot: each bar is load-bearing MASS.
+            // Stacked bars compress downward under accumulating weight —
+            // filled MASS, not a wireframe outline, so the weight reads.
             return (
               <rect key={i}
                 x={cx - r} y={cy - f.h * 0.17 + i * (f.h * 0.07) * squash}
@@ -105,36 +117,17 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
                 stroke={i === 0 ? colors.accent : colors.stroke}
                 strokeWidth={i === 0 ? 3.5 : 2} opacity={opacity} />
             );
-          }
+          })
+        ) : (
+          // Four solid walls acting on the subject — a vice/frame closing
+          // or opening — instead of a field of concentric rings.
+          <PressureWalls cx={cx} cy={cy} halfW={boxHalfW} halfH={boxHalfH}
+            standoff={standoff} colors={colors} opacity={wallOpacity}
+            wobble={wobble} accent={accent} />
+        )}
 
-          const wobble = mode === "destabilising" ? Math.sin(frame * 0.11 + i) * 10 * a : 0;
-          return (
-            <React.Fragment key={i}>
-              {/* The field itself, as filled ground under the ring — WAS
-                  five stroke-only ellipses (0.28% ink per ring's stroke),
-                  which is a diagram of a field rather than a field. Five
-                  concentric discs at low, EQUAL, per-layer opacity compose
-                  additively wherever they overlap (same ink, so paint order
-                  does not matter): the centre, covered by every ring, reads
-                  densest, and density falls off toward the boundary — a
-                  real potential gradient, drawn the way stage.jsx's own
-                  FieldGround already describes this material: "isolines of
-                  a potential", filled, not hairline contours. */}
-              <ellipse cx={cx + wobble} cy={cy} rx={Math.max(r, 4)} ry={Math.max(r * 0.72, 3)}
-                fill={colors.stroke} fillOpacity={0.1 * appear} stroke="none" />
-              <ellipse
-                cx={cx + wobble} cy={cy}
-                rx={Math.max(r, 4)} ry={Math.max(r * 0.72, 3)}
-                fill="none"
-                stroke={i === 0 ? colors.accent : colors.stroke}
-                strokeWidth={i === 0 ? 3.5 : sw}
-                opacity={opacity} />
-            </React.Fragment>
-          );
-        })}
-
-        {/* The subject held at the centre — the thing the field acts upon. */}
-        <circle cx={cx} cy={cy} r={12 + 6 * ease(pEst)} fill={colors.accent} opacity={ease(pEst)} />
+        {/* The subject held at the centre — the thing the walls act upon. */}
+        <circle cx={cx} cy={cy} r={12 + 6 * appear} fill={colors.accent} opacity={appear} />
       </svg>
 
       {pResolve > 0 ? (

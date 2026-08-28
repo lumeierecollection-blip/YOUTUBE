@@ -307,21 +307,42 @@ function SubstanceGround({ colors, a }) {
 }
 
 /** Field: isolines of a potential — where force lives. */
+/**
+ * Field: isolines of a potential, as a family of contour bands rather than
+ * a target radiating from a fixed screen point.
+ *
+ * WAS nine concentric ellipses centred at (0.5, 0.46) of the canvas — the
+ * SAME bullseye, at the SAME point, under every field-material frame
+ * regardless of what that beat's story needed. That is exactly the
+ * "concentric-ring background" / "decorative bullseye" pattern
+ * visual-system-reset PART 28/35 requires removed: geometry the story
+ * never asked for, appearing anyway because it is the ground layer's
+ * default. Wavy horizontal contour bands still read as isolines of a
+ * potential (denser toward the ground, sparser toward open air) without
+ * being a target painted behind the subject.
+ */
 function FieldGround({ colors, a, seed }) {
-  const rings = [];
-  const cx = CANVAS_W * 0.5;
-  const cy = CANVAS_H * 0.46;
-  for (let i = 1; i <= 9; i++) {
-    const r = i * 148 + seeded(seed * 5 + i) * 30;
-    rings.push(
-      <ellipse key={i} cx={cx} cy={cy} rx={r} ry={r * 0.82}
-        fill="none" stroke={colors.stroke} strokeWidth={1.5}
-        opacity={0.11 * a * (1 - i / 12)} />
+  const lines = [];
+  const n = 11;
+  const steps = 10;
+  for (let i = 0; i < n; i++) {
+    const t = i / (n - 1);
+    const y = CANVAS_H * (0.18 + Math.pow(t, 1.6) * 0.72);
+    const wobbleAmp = 10 + t * 18;
+    let d = `M0,${y.toFixed(1)}`;
+    for (let s = 1; s <= steps; s++) {
+      const x = (s / steps) * CANVAS_W;
+      const yy = y + Math.sin(s * 1.3 + seeded(seed * 11 + i) * 6) * wobbleAmp;
+      d += ` L${x.toFixed(1)},${yy.toFixed(1)}`;
+    }
+    lines.push(
+      <path key={i} d={d} fill="none" stroke={colors.stroke} strokeWidth={1.5}
+        opacity={0.1 * a * (1 - t * 0.4)} />
     );
   }
   return (
     <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-      {rings}
+      {lines}
     </svg>
   );
 }
