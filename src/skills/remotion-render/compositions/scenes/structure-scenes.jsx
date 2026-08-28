@@ -733,81 +733,135 @@ export function CauseEffectScene({ beat, colors, fontFamily }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // RELATIONSHIP — several entities and how they connect. Radial, not linear.
 // ─────────────────────────────────────────────────────────────────────────────
+/**
+ * An irregular bound mass — where entities actually converge — rather
+ * than a circle. A closed path through N points at a JITTERED radius
+ * (seeded, so a re-render is identical), not a geometric circle: the
+ * whole point of rebuilding RELATIONSHIP is that "circle" is banned as a
+ * stand-in for "where things connect" (visual-system-reset, RELATIONSHIP
+ * section — "circle — line — circle" is exactly the pattern to remove).
+ */
+function BoundMass({ cx, cy, r, seed, colors, opacity }) {
+  const pts = 9;
+  const p = [];
+  for (let i = 0; i < pts; i++) {
+    const ang = (i / pts) * Math.PI * 2;
+    const rr = r * (0.76 + seeded(seed * 13 + i) * 0.46);
+    p.push([cx + Math.cos(ang) * rr, cy + Math.sin(ang) * rr * 0.86]);
+  }
+  let d = `M ${p[0][0].toFixed(1)} ${p[0][1].toFixed(1)}`;
+  for (let i = 1; i <= pts; i++) {
+    const cur = p[i % pts], prev = p[(i - 1) % pts];
+    const mx = (cur[0] + prev[0]) / 2, my = (cur[1] + prev[1]) / 2;
+    d += ` Q ${prev[0].toFixed(1)} ${prev[1].toFixed(1)} ${mx.toFixed(1)} ${my.toFixed(1)}`;
+  }
+  d += " Z";
+  return <path d={d} fill={colors.stroke} fillOpacity={0.42} stroke={colors.accent} strokeWidth={3} opacity={opacity} />;
+}
+
+/**
+ * RELATIONSHIP — several named entities converging into one bound mass,
+ * not a node graph.
+ *
+ * WHAT THIS REPLACES. The previous version placed N filled circles in a
+ * ring and drew a line between every pair — literally "circle — line —
+ * circle", the exact pattern this rebuild is required to remove, and it
+ * did not become a different picture when the circles got real fill and
+ * the lines got real width (visual-system-reset PART 5: colour/width is
+ * not a redesign).
+ *
+ * WHAT THE REAL DATA ACTUALLY SUPPORTS. `supporting.labels` (director.js)
+ * is `entityLabels()` (text-budget.js): distinct content words in
+ * FIRST-MENTION order, nothing else — no frequency count, no strength
+ * value, no direction. The old scene's "first pair is strongest, drawn
+ * heavier" was not reading a real signal; it was inventing a hierarchy
+ * the extraction never produced. This version claims only what the data
+ * actually supports: N entities, named together, equally.
+ *
+ * THE MECHANISM. Entities sit spread along the top of the shot — not a
+ * ring, so this cannot be mistaken for the old layout with the labels
+ * moved — and each draws a real strand (a curved, thick, rounded-cap
+ * path, not a hairline) down into a shared, irregular bound mass low in
+ * the frame. The strands arrive together and the mass thickens as they
+ * do: "these things are bound up in the same situation" is what the real
+ * data supports, and that is what converging into one mass shows,
+ * without asserting which entity drives which.
+ */
 export function RelationshipScene({ beat, colors, fontFamily }) {
-  const frame = useCurrentFrame();
   const states = beat.visualStates || [];
 
-  const pNodes = progressOf(states, "nodes", frame);
-  const pLinks = progressOf(states, "links", frame);
-  const pWeight = useStateProgress(states, "weight");
+  const pEntities = useStateProgress(states, "nodes");
+  const pStrands = useValueProgress(states);
+  const pBind = useStateProgress(states, "weight");
 
-  // Entities named in the beat itself; falls back to an abstract 4-node
-  // graph when the text doesn't name enough of them. Extracted on the plan
-  // so the node labels count toward the same on-screen word budget as
-  // every other scene's text (visual/text-budget.js).
   const labels = (beat.visualPlan && beat.visualPlan.supporting.labels) || [];
   const n = Math.max(3, Math.min(5, labels.length || 4));
 
-  // The party ring is sized to the shot. RELATIONSHIP takes a CLOSE
-  // framing, meaning the viewer stands among the parties rather than
-  // looking at a diagram of them.
   const f = shotFrame((beat.visualPlan && beat.visualPlan.shot) || null);
-  const cx = f.cx, cy = f.cy, R = Math.min(f.w, f.h) * 0.42;
+  const seed = (beat.startFrame || 0) + 11;
 
-  const nodes = Array.from({ length: n }).map((_, i) => {
-    const ang = -Math.PI / 2 + (i / n) * Math.PI * 2;
-    return { x: cx + Math.cos(ang) * R, y: cy + Math.sin(ang) * R * 0.86, label: labels[i] || "" };
-  });
+  // Labels alternate a step higher/lower — real names vary in length
+  // ("REGULATOR" vs "BANK"), and levelling every one on the same
+  // baseline is what collided ("REGULATORCLEARING") at five-wide
+  // spacing. Staggering keeps neighbours apart without shrinking type
+  // or capping names harder than the shared text budget already does.
+  const topY = f.y + f.h * 0.16;
+  const stagger = 34;
+  const spread = f.w * 0.84;
+  const anchors = Array.from({ length: n }).map((_, i) => ({
+    x: n === 1 ? f.cx : f.cx - spread / 2 + (i / (n - 1)) * spread,
+    y: topY + (i % 2 === 0 ? 0 : stagger),
+    label: labels[i] || "",
+  }));
 
-  // Link every pair; the strongest (first-to-second) is emphasized later.
-  const links = [];
-  for (let i = 0; i < n; i++) {
-    for (let j = i + 1; j < n; j++) links.push([i, j]);
-  }
+  const knotX = f.cx;
+  const knotY = f.y + f.h * 0.72;
+  // Each strand lands at its OWN point near the knot, not the literal
+  // same pixel — converging to one exact point is what made the
+  // pre-bind frame read as a wireframe cone (spokes to an apex), the
+  // same "generic nodes/connector lines" grammar this rebuild removes.
+  const knotTargets = anchors.map((_, i) => ({
+    x: knotX + Math.cos((i / n) * Math.PI * 2 + 0.6) * 30,
+    y: knotY + Math.sin((i / n) * Math.PI * 2 + 0.6) * 20,
+  }));
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {/* Connections as bands with real width, not hairlines — a tie
-            between two parties has physical presence, and at 1.8px it
-            measured as the thinnest scene in the system (0.5% ink). Width
-            still carries the strongest/other distinction the graph already
-            encodes; it is now the difference between a tie and a bond. */}
-        {links.map(([i, j], k) => {
-          const a = ease(Math.max(0, Math.min(1, pLinks * links.length - k * 0.6)));
-          if (a <= 0.01) return null;
-          const strongest = k === 0 && pWeight > 0;
-          const A = nodes[i], B = nodes[j];
+        {pBind > 0 ? (
+          <BoundMass cx={knotX} cy={knotY} r={40 + 26 * ease(pBind)} seed={seed} colors={colors} opacity={ease(pBind)} />
+        ) : null}
+
+        {anchors.map((a, i) => {
+          const appear = ease(Math.max(0, Math.min(1, pEntities * n - i * 0.6)));
+          if (appear <= 0.01) return null;
+          const grow = ease(Math.max(0, Math.min(1, pStrands * n - i * 0.5)));
+          const startX = a.x, startY = a.y + 22;
+          const target = knotTargets[i];
+          const endX = startX + (target.x - startX) * grow;
+          const endY = startY + (target.y - startY) * grow;
+          // A real bow, not a near-straight radius — each strand curves
+          // out to its own side before curling in, the way a slack cord
+          // hangs rather than a taut spoke.
+          const dir = i % 2 === 0 ? 1 : -1;
+          const bow = dir * (90 + seeded(seed + i) * 40);
+          const midX = (startX + endX) / 2 + bow;
+          const midY = (startY + endY) / 2 + (knotY - topY) * 0.08;
+          const d = `M ${startX} ${startY} Q ${midX} ${midY} ${endX} ${endY}`;
           return (
-            <line key={k}
-              x1={A.x} y1={A.y}
-              x2={A.x + (B.x - A.x) * a} y2={A.y + (B.y - A.y) * a}
-              stroke={strongest ? colors.accent : colors.stroke}
-              strokeWidth={strongest ? 13 : 6}
-              strokeLinecap="round"
-              opacity={pWeight > 0 && !strongest ? 0.28 : 0.55} />
-          );
-        })}
-        {nodes.map((nd, i) => {
-          const a = ease(Math.max(0, Math.min(1, pNodes * n - i * 0.6)));
-          if (a <= 0.01) return null;
-          // WAS fill={colors.bg} — identical to the canvas in this token
-          // system (surface/raised/bg all collapse to the same flat colour),
-          // so every party in the graph was an invisible disc with a 3px
-          // ring around it. A party is a body with mass, not a ring.
-          return (
-            <circle key={i} cx={nd.x} cy={nd.y} r={24 * a}
-              fill={colors.stroke} fillOpacity={0.82} stroke={colors.accent} strokeWidth={3} />
+            <path key={i} d={d} fill="none" stroke={colors.stroke} strokeWidth={9}
+              strokeLinecap="round" opacity={0.6 * appear} />
           );
         })}
       </svg>
-      {nodes.map((nd, i) => {
-        const a = ease(Math.max(0, Math.min(1, pNodes * n - i * 0.6)));
-        if (a <= 0.01 || !nd.label) return null;
-        const below = nd.y > cy;
+
+      {anchors.map((a, i) => {
+        const appear = ease(Math.max(0, Math.min(1, pEntities * n - i * 0.6)));
+        if (appear <= 0.01 || !a.label) return null;
         return (
-          <Label key={i} x={nd.x} y={nd.y + (below ? 30 : -56)} text={short(nd.label.toUpperCase(), 14)}
-            color={colors.textDim} size={26} tracking={1.8} align="center" opacity={a} fontFamily={fontFamily} />
+          <Label key={i} x={a.x} y={a.y - 30} text={short(a.label.toUpperCase(), 12)}
+            color={colors.textPrimary} size={24} weight={800} tracking={1.4} align="center"
+            opacity={appear} fontFamily={fontFamily} />
         );
       })}
     </div>

@@ -1296,6 +1296,64 @@ is the one that actually exercises the new code path.
 
 ---
 
+**3.12.13 — RELATIONSHIP rebuilt: bound mass, not a node graph.** A
+seventh directive ("MOTION-GRAPHICS REBUILD — FINAL VISUAL-LANGUAGE
+PASS") re-audited the repository fresh (re-confirmed §3.12.11/§3.12.12's
+deletions and the Panel.jsx/PhotoTreatment findings still hold — nothing
+had regressed) and named RELATIONSHIP explicitly: "circle — line —
+circle... if a line is the only thing communicating the relationship,
+redesign it."
+
+**What was there:** N filled circles arranged in a full ring, a straight
+line drawn between every pair, the first-drawn pair rendered heavier as
+"the strongest relationship." Read cold, that is exactly circle-line-
+circle — a node graph — regardless of the circles having real fill and
+the lines having real width (both already fixed in 3.12.7/3.12.8; the
+STRUCTURE was never touched). Worse, checking `visual/director.js:440`
+and `text-budget.js`'s `entityLabels()` against what the scene claimed
+found a real grounding problem: `entityLabels` returns distinct content
+words in first-MENTION order — no frequency, no strength, no direction.
+"The first pair is strongest" was inventing a hierarchy the extraction
+never produced, not reading one.
+
+**Rebuilt around what the data actually supports** — N named entities,
+equally, no claimed hierarchy — as entities spread along the top of the
+shot, each drawing a real curved strand down into a shared, irregular
+`BoundMass` (a seeded-jitter closed polygon, not a circle) low in the
+frame: "these are bound up in the same situation," which is the honest
+reading of "named together in one sentence," without asserting who
+drives whom.
+
+**Two real defects the render caught, not code review, fixed in a second
+pass:** (1) five labels at the original spacing/size collided —
+"REGULATOR" and "CLEARING" rendered as one illegible word,
+"REGULATORCLEARING" — fixed by staggering alternating labels to a second
+baseline and widening the spread (0.68→0.84 of shot width) rather than
+just shrinking type. (2) the first pass's "bow" offset (26-30px against
+~800px strands) was imperceptible — the pre-bind frame read as a
+wireframe cone of straight spokes converging to one exact pixel, which is
+the same "generic nodes/connector lines" grammar under a different name.
+Fixed by giving each strand a real bow (90-130px, alternating direction)
+and its own jittered landing point on the bound mass instead of one
+shared exact point.
+
+**QA run this pass:** `node visual/run-visual-tests.js` — 70/70,
+unchanged. Rendered via `inspect-anchors.mjs --all-states` against
+`uncovered-strategies.fixture.json` (the fixture that covers
+RELATIONSHIP) twice — once before the label/bow fix (caught both
+defects), once after (labels legible, strands read as gathered cords
+converging into a bound mass, not a diagram).
+
+**Not done this pass:** the other 15 strategies were not re-walked
+against this directive's per-strategy list (sections 9-25) beyond what
+3.12.7-3.12.12 already covered; no camera-variety pass (PUSH/PULL/
+LATERAL/REVEAL/FOLLOW per strategy, beyond the existing hold-move-settle
+curve from 3.12.10); no typography-rhythm pass; no material-behaviour
+audit beyond sound; no full 16-strategy production render; no muted
+human-review pass. Recorded plainly, not implied solved.
+
+---
+
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 
