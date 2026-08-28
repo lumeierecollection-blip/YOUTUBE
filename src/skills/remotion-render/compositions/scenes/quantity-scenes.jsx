@@ -155,8 +155,12 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
                   fill={colors.stroke} opacity={0.5} />
               ) : (
                 <>
+                  {/* WAS fill="none" — each unit was a wireframe outline;
+                      the ledger variant already fills its rows (line above),
+                      so the tray variant drew the same concept two different
+                      ways. A unit that fell in is a solid thing. */}
                   <rect x={-cellW / 2 + 5} y={-16} width={cellW - 10} height={32} rx={3}
-                    fill="none" stroke={colors.stroke} strokeWidth={2} />
+                    fill={colors.stroke} fillOpacity={0.42} stroke={colors.stroke} strokeWidth={2} />
                   {money ? (
                     <text x={0} y={6} textAnchor="middle" fill={colors.textDim}
                       style={{ font: `700 17px ${fontFamily}` }}>{symbol}</text>
@@ -313,7 +317,18 @@ export function TransformationScene({ beat, colors, fontFamily }) {
             })
           : null}
 
-        {/* The value's actual path */}
+        {/* The change ITSELF, as area — not just a line reporting the value.
+            A 4px path measured 0.6% ink and answered "what value" without
+            answering "how much changed". Closing the path back to the
+            starting level and filling it makes the accumulated change a
+            real shape: it grows exactly as fast as the plotted curve does,
+            because it is bounded by the same points. */}
+        {pts.length > 1 ? (
+          <path
+            d={`${d} L ${head[0].toFixed(1)} ${yFor(from).toFixed(1)} L ${x0} ${yFor(from).toFixed(1)} Z`}
+            fill={colors.accent} fillOpacity={0.15} stroke="none"
+          />
+        ) : null}
         {pts.length > 1 ? <path d={d} fill="none" stroke={colors.accent} strokeWidth={4} /> : null}
         {pGrow > 0 ? <circle cx={head[0]} cy={head[1]} r={7} fill={colors.accent} /> : null}
 
@@ -395,12 +410,19 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
       <Rule x={midX - 330} y={axisY} w={660} p={Math.max(pLeft, 0.01)} color={colors.stroke} thickness={2} />
 
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
+        {/* Both columns are filled mass from the moment they exist — WAS
+            fill="none" until a verdict fired, which meant most of this
+            scene's life was two wireframe outlines and it measured 0.7%
+            ink. A comparison of two quantities should show two quantities,
+            not one bar plus a promise of a bar. */}
         <rect x={midX - 250} y={axisY - hA} width={colW} height={hA}
-          fill={pVerdict > 0 && winner === "a" ? colors.accent : "none"}
+          fill={colors.accent}
+          fillOpacity={pVerdict > 0 ? (winner === "a" ? 0.9 : 0.16) : 0.32}
           stroke={colors.accent} strokeWidth={3}
           opacity={pVerdict > 0 && winner !== "a" ? 0.4 : 1} />
         <rect x={midX + 60} y={axisY - hB} width={colW} height={hB}
-          fill={pVerdict > 0 && winner === "b" ? colors.accent : "none"}
+          fill={colors.accent}
+          fillOpacity={pVerdict > 0 ? (winner === "b" ? 0.9 : 0.16) : 0.32}
           stroke={colors.accent} strokeWidth={3}
           opacity={pVerdict > 0 && winner !== "b" ? 0.4 : 1} />
 
@@ -500,35 +522,54 @@ function OppositionComparison({ beat, sup, states, f, colors, fontFamily }) {
   // Strata: the same layering on both sides, so the eye reads them as ONE
   // body until the seam displaces. Count is fixed, not derived from any
   // stated quantity — nothing here claims to measure anything.
-  const STRATA = 9;
+  //
+  // WAS 9 separated HAIRLINES (1.5-3.7px) with real canvas gaps between
+  // them — read cold, thin ruled lines in a void, not rock. Real strata are
+  // FILLED BANDS with thickness; a stratum drawn as a line is the one
+  // metaphor in this file that had a literal, filled, "just draw it"
+  // answer sitting unused. Fewer, thicker, filled bands read as a rock face;
+  // the same nine hairlines never could, because 3px is 0.28% of the frame
+  // width whatever it is staged on (register 3.12.6).
+  const STRATA = 6;
+  const bandH = height / STRATA;
   // How far the right-hand mass has slipped against the left. This is the
   // disagreement, and it arrives on `gap`.
   const slip = height * 0.075 * eGap;
 
   const strata = [];
   for (let i = 0; i < STRATA; i++) {
-    const t = i / (STRATA - 1);
-    const y = top + t * height;
+    const t = (i + 0.5) / STRATA;
+    const bandTop = top + i * bandH;
     // Left mass establishes on `left`, right on `right` (the anchor), each
-    // drawing outward from the seam so the seam is the origin of both.
+    // growing outward from the seam so the seam is the origin of both.
     const lp = ease(Math.max(0, Math.min(1, pLeft * 1.9 - t * 0.5)));
     const rp = ease(Math.max(0, Math.min(1, pRight * 1.9 - t * 0.5)));
-    const weight = 1.5 + (1 - Math.abs(t - 0.5) * 2) * 2.2;
+    // Alternating tone within one ink, so adjacent bands read as distinct
+    // layers of the same rock rather than one flat block.
+    const bandTone = 0.2 + (i % 2 === 0 ? 0.09 : 0);
     if (lp > 0.01) {
+      const w = (seamX - leftEdge) * lp;
       strata.push(
-        <line key={`l${i}`}
-          x1={seamX} y1={y} x2={seamX - (seamX - leftEdge) * lp} y2={y}
-          stroke={colors.stroke} strokeWidth={weight}
-          opacity={(0.34 + 0.3 * lp) * (pVerdict > 0 ? 0.4 : 1)} />
+        <rect key={`l${i}`}
+          x={seamX - w} y={bandTop} width={w} height={bandH}
+          fill={colors.stroke} fillOpacity={bandTone * (pVerdict > 0 ? 0.45 : 1)} />
+      );
+      strata.push(
+        <line key={`le${i}`} x1={seamX - w} y1={bandTop} x2={seamX} y2={bandTop}
+          stroke={colors.stroke} strokeWidth={1} opacity={0.25 * lp} />
       );
     }
     if (rp > 0.01) {
+      const w = (rightEdge - seamX) * rp;
       strata.push(
-        <line key={`r${i}`}
-          x1={seamX} y1={y + slip} x2={seamX + (rightEdge - seamX) * rp} y2={y + slip}
-          stroke={pVerdict > 0 ? colors.accent : colors.stroke}
-          strokeWidth={weight * (pVerdict > 0 ? 1.35 : 1)}
-          opacity={0.34 + 0.34 * rp} />
+        <rect key={`r${i}`}
+          x={seamX} y={bandTop + slip} width={w} height={bandH}
+          fill={pVerdict > 0 ? colors.accent : colors.stroke}
+          fillOpacity={pVerdict > 0 ? bandTone * 1.7 : bandTone * 1.15} />
+      );
+      strata.push(
+        <line key={`re${i}`} x1={seamX} y1={bandTop + slip} x2={seamX + w} y2={bandTop + slip}
+          stroke={pVerdict > 0 ? colors.accent : colors.stroke} strokeWidth={1} opacity={0.3 * rp} />
       );
     }
   }
@@ -659,9 +700,16 @@ export function DataChartScene({ beat, colors, fontFamily }) {
           const h = (Math.abs(s.value) / max) * maxH * grow;
           const x = x0 + i * (barW + gap);
           const isHi = i === hiIdx && pHi > 0;
+          // WAS fill="none" on every bar but the highlighted one — a bar
+          // chart whose bars are wireframes until the sound off reads as an
+          // axis with some brackets on it, which is exactly the DATA_CHART
+          // anchor-frame defect (register 3.12.5, the "ninety" frame) minus
+          // the timing bug. A bar's height is its whole argument; it should
+          // be a filled column like any other bar chart, highlighted or not.
           return (
             <rect key={i} x={x} y={axisY - h} width={barW} height={h}
-              fill={isHi ? colors.accent : "none"}
+              fill={isHi ? colors.accent : colors.stroke}
+              fillOpacity={isHi ? 1 : 0.4}
               stroke={isHi ? colors.accent : colors.stroke}
               strokeWidth={3}
               opacity={pHi > 0 && !isHi ? 0.45 : 1} />

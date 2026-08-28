@@ -162,7 +162,7 @@ export function TimelineScene({ beat, colors, fontFamily }) {
             width={Math.max(0, (xFor(years[years.length - 1]) - xFor(years[0]))) * ease(pEvents)}
             height={CANVAS_H - groundY}
             fill={colors.stroke}
-            opacity={0.07}
+            opacity={0.14}
           />
         ) : null}
 
@@ -215,7 +215,7 @@ export function TimelineScene({ beat, colors, fontFamily }) {
             width={Math.max(0, (x0 + w - xFor(focusYear))) * ease(pCons)}
             height={CANVAS_H - groundY}
             fill={colors.accent}
-            opacity={0.09}
+            opacity={0.16}
           />
         ) : null}
       </svg>
@@ -353,9 +353,13 @@ export function ProcessScene({ beat, colors, fontFamily }) {
         <g opacity={ease(pStages)}>
           {/* The channel itself. Two rails alone measured 1.0% ink and read
               as a pair of hairlines; a machine has a body, and the fill is
-              what gives the track mass without adding another line. */}
+              what gives the track mass without adding another line.
+              0.05 -> 0.11: stage.jsx's own Ground comment documents that 5%
+              opacity lands ~12/255 from the background, under the threshold
+              the frame audit counts as ink at all — this rect covered the
+              whole run and still measured as if it were not there. */}
           <rect x={trackX - halfW} y={runTop} width={halfW * 2} height={runBot - runTop}
-            fill={colors.stroke} opacity={0.05} />
+            fill={colors.stroke} opacity={0.11} />
           <line x1={trackX - halfW} y1={runTop} x2={trackX - halfW} y2={runBot}
             stroke={colors.stroke} strokeWidth={5} opacity={0.6} />
           <line x1={trackX + halfW} y1={runTop} x2={trackX + halfW} y2={runBot}
@@ -422,7 +426,7 @@ export function ProcessScene({ beat, colors, fontFamily }) {
                 width, not a rod: this is the stuff the machine is eating. */}
             <rect x={trackX - halfW * 0.46} y={runTop} width={halfW * 0.92}
               height={Math.max(0, pieceY - pieceH / 2 - runTop)}
-              fill={colors.stroke} opacity={0.09} />
+              fill={colors.stroke} opacity={0.16} />
           </g>
         ) : null}
 
@@ -696,6 +700,11 @@ export function RelationshipScene({ beat, colors, fontFamily }) {
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
+        {/* Connections as bands with real width, not hairlines — a tie
+            between two parties has physical presence, and at 1.8px it
+            measured as the thinnest scene in the system (0.5% ink). Width
+            still carries the strongest/other distinction the graph already
+            encodes; it is now the difference between a tie and a bond. */}
         {links.map(([i, j], k) => {
           const a = ease(Math.max(0, Math.min(1, pLinks * links.length - k * 0.6)));
           if (a <= 0.01) return null;
@@ -706,16 +715,21 @@ export function RelationshipScene({ beat, colors, fontFamily }) {
               x1={A.x} y1={A.y}
               x2={A.x + (B.x - A.x) * a} y2={A.y + (B.y - A.y) * a}
               stroke={strongest ? colors.accent : colors.stroke}
-              strokeWidth={strongest ? 4 : 1.8}
-              opacity={pWeight > 0 && !strongest ? 0.3 : 0.85} />
+              strokeWidth={strongest ? 13 : 6}
+              strokeLinecap="round"
+              opacity={pWeight > 0 && !strongest ? 0.28 : 0.55} />
           );
         })}
         {nodes.map((nd, i) => {
           const a = ease(Math.max(0, Math.min(1, pNodes * n - i * 0.6)));
           if (a <= 0.01) return null;
+          // WAS fill={colors.bg} — identical to the canvas in this token
+          // system (surface/raised/bg all collapse to the same flat colour),
+          // so every party in the graph was an invisible disc with a 3px
+          // ring around it. A party is a body with mass, not a ring.
           return (
-            <circle key={i} cx={nd.x} cy={nd.y} r={16 * a}
-              fill={colors.bg} stroke={colors.accent} strokeWidth={3} />
+            <circle key={i} cx={nd.x} cy={nd.y} r={24 * a}
+              fill={colors.stroke} fillOpacity={0.82} stroke={colors.accent} strokeWidth={3} />
           );
         })}
       </svg>

@@ -84,9 +84,16 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {/* The page itself */}
+        {/* The page itself.
+            WAS fill={colors.bg} — in this token system bg/surface/raised are
+            all literally the same flat #FFFFFF or #000000 as the canvas
+            (styles/tokens.js), so the page was invisible except for its
+            2.5px stroke border: a document scene with no document drawn.
+            Paper the way PaperGround already renders it elsewhere — ink at
+            low opacity — so the sheet itself is real filled mass, not just
+            an outline waiting to be read as one. */}
         <rect x={px} y={py} width={pageW} height={pageH * ease(pPage, EASE_OUT)}
-          fill={colors.bg} stroke={colors.stroke} strokeWidth={2.5} />
+          fill={colors.stroke} fillOpacity={0.07} stroke={colors.stroke} strokeWidth={2.5} />
         {/* Header rule */}
         <line x1={px + 40} y1={py + 62} x2={px + pageW - 40} y2={py + 62}
           stroke={colors.stroke} strokeWidth={2} opacity={ease(pPage)} />
@@ -208,9 +215,11 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {/* Window chrome */}
+        {/* Window chrome. WAS fill="none" — the same invisible-container
+            defect as DOCUMENT_EVIDENCE's page: a screen with no surface,
+            only a stroke outline. A real UI has a panel behind its chrome. */}
         <rect x={x} y={y} width={w} height={h * ease(pChrome, EASE_OUT)} rx={6}
-          fill="none" stroke={colors.stroke} strokeWidth={2.5} />
+          fill={colors.stroke} fillOpacity={0.05} stroke={colors.stroke} strokeWidth={2.5} />
         <line x1={x} y1={y + 52} x2={x + w} y2={y + 52} stroke={colors.stroke} strokeWidth={2} opacity={ease(pChrome)} />
         {[0, 1, 2].map((i) => (
           <circle key={i} cx={x + 26 + i * 24} cy={y + 26} r={6}
@@ -221,7 +230,7 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
         {pInput > 0 ? (
           <>
             <rect x={x + 32} y={y + 90} width={(w - 64) * ease(pInput)} height={54} rx={4}
-              fill="none" stroke={colors.accent} strokeWidth={2.5} />
+              fill={colors.accent} fillOpacity={0.1} stroke={colors.accent} strokeWidth={2.5} />
             <line x1={x + 48} y1={y + 117} x2={x + 48 + 180 * ease(pInput)} y2={y + 117}
               stroke={colors.accent} strokeWidth={3} />
           </>
@@ -245,8 +254,12 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
               const ry = y + 240 + i * 62;
               return (
                 <g key={i} opacity={a}>
+                  {/* Every row is a filled surface, not just the highlighted
+                      one — three rows at fill="none" were three more
+                      invisible containers, the same defect as the chrome
+                      above and the DOCUMENT_EVIDENCE page. */}
                   <rect x={x + 32} y={ry} width={w - 64} height={46} rx={4}
-                    fill={i === 0 ? colors.accent : "none"} fillOpacity={i === 0 ? 0.14 : 0}
+                    fill={i === 0 ? colors.accent : colors.stroke} fillOpacity={i === 0 ? 0.14 : 0.05}
                     stroke={i === 0 ? colors.accent : colors.stroke} strokeWidth={i === 0 ? 2.5 : 1.5} />
                   <rect x={x + 50} y={ry + 18} width={(w - 200) * (0.5 + seeded(i * 9 + 1) * 0.45)} height={9} rx={2}
                     fill={i === 0 ? colors.accent : colors.stroke} opacity={i === 0 ? 1 : 0.5} />

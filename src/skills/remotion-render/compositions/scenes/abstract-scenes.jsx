@@ -93,24 +93,43 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
 
           if (mode === "loading") {
             const squash = 1 - 0.5 * a * (1 - t);
+            // WAS fill="none" — a stack of wireframe bars. The weight
+            // accumulating under load is exactly what a fill communicates
+            // that an outline cannot: each bar is load-bearing MASS.
             return (
               <rect key={i}
                 x={cx - r} y={cy - f.h * 0.17 + i * (f.h * 0.07) * squash}
                 width={r * 2} height={f.h * 0.05 * squash} rx={3}
-                fill="none" stroke={i === 0 ? colors.accent : colors.stroke}
+                fill={i === 0 ? colors.accent : colors.stroke}
+                fillOpacity={(i === 0 ? 0.55 : 0.3) * opacity}
+                stroke={i === 0 ? colors.accent : colors.stroke}
                 strokeWidth={i === 0 ? 3.5 : 2} opacity={opacity} />
             );
           }
 
           const wobble = mode === "destabilising" ? Math.sin(frame * 0.11 + i) * 10 * a : 0;
           return (
-            <ellipse key={i}
-              cx={cx + wobble} cy={cy}
-              rx={Math.max(r, 4)} ry={Math.max(r * 0.72, 3)}
-              fill="none"
-              stroke={i === 0 ? colors.accent : colors.stroke}
-              strokeWidth={i === 0 ? 3.5 : sw}
-              opacity={opacity} />
+            <React.Fragment key={i}>
+              {/* The field itself, as filled ground under the ring — WAS
+                  five stroke-only ellipses (0.28% ink per ring's stroke),
+                  which is a diagram of a field rather than a field. Five
+                  concentric discs at low, EQUAL, per-layer opacity compose
+                  additively wherever they overlap (same ink, so paint order
+                  does not matter): the centre, covered by every ring, reads
+                  densest, and density falls off toward the boundary — a
+                  real potential gradient, drawn the way stage.jsx's own
+                  FieldGround already describes this material: "isolines of
+                  a potential", filled, not hairline contours. */}
+              <ellipse cx={cx + wobble} cy={cy} rx={Math.max(r, 4)} ry={Math.max(r * 0.72, 3)}
+                fill={colors.stroke} fillOpacity={0.1 * appear} stroke="none" />
+              <ellipse
+                cx={cx + wobble} cy={cy}
+                rx={Math.max(r, 4)} ry={Math.max(r * 0.72, 3)}
+                fill="none"
+                stroke={i === 0 ? colors.accent : colors.stroke}
+                strokeWidth={i === 0 ? 3.5 : sw}
+                opacity={opacity} />
+            </React.Fragment>
           );
         })}
 

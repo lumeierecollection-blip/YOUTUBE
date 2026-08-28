@@ -650,6 +650,110 @@ this register should not imply otherwise: the composition layer removed the
 `cx 0.43` monoculture and the empty-anchor class of defect, and it did not
 make the frames dense.
 
+**3.12.7 — closing part of the mass gap: 11 of the 15 LINE scenes given real
+fill.** Same method as 3.12.6 (`qa-scripts/inspect-anchors.mjs`, the same
+three fixtures plus the real ch-02 script), a baseline captured before any
+edit this pass, the same tool re-run after. Before/after ink, same anchor
+frames:
+
+| Strategy | before | after |
+|---|---|---|
+| DOCUMENT_EVIDENCE | 4.7% / 3.4% / 4.7% | 25.8% / 17.5% / 18.5% |
+| VISUAL_METAPHOR | 1.9% | 21.9% |
+| COMPARISON (qualitative/Opposition) | 2.8% | 15.6% |
+| PROCESS | 2.3% / 2.1% | 17.7% / 18.0% |
+| DATA_CHART | 0.8% / 1.3% | 11.6% / 18.0% |
+| TIMELINE | 1.4% | 11.0% |
+| COMPARISON (quantitative) | 0.7% | 8.8% |
+| ACCUMULATION (tray, v0) | 1.2% | 4.4% |
+| TRANSFORMATION | 0.6% | 5.0% |
+| INTERFACE_SIMULATION | 0.8% | 3.5% |
+| RELATIONSHIP | 0.5% | 1.0% (anchor frame lands before `links` fires — see below) |
+
+**What actually changed, per scene, and why it was a fill, not a redesign.**
+Each of these had a specific, findable root cause, not "make it bigger":
+
+- `DocumentEvidenceScene` and `InterfaceSimulationScene` (`evidence-scenes.jsx`)
+  filled their page/window with `colors.bg` or `fill="none"`. In this token
+  system (`styles/tokens.js`) `bg`/`surface`/`raised` are the SAME flat
+  `#FFFFFF`/`#000000` as the canvas — the page and the window chrome were
+  invisible containers, drawn as nothing but their own stroke outline. This
+  is the same class of bug on two different scenes, not a style choice; the
+  fix is the fill GEOSPATIAL_RADIUS already used (`colors.stroke` at low
+  opacity) applied to the two scenes that had never gotten it.
+- `RelationshipScene` nodes had the identical `fill={colors.bg}` bug (an
+  invisible disc with a 3px ring). Links were 1.8-4px hairlines. Fixed to
+  filled discs and 6-13px bands — the weakest scene in the system barely
+  moved on THIS anchor frame because the anchor lands during the `nodes`
+  state, before `links` fires; the link fix is real but this fixture's SRT
+  timing doesn't exercise it at the sampled frame. Recorded honestly rather
+  than claimed fixed by a number that didn't move.
+- `VisualMetaphorScene` five rings were stroke-only ellipses. Added a filled
+  disc per ring at equal low opacity (0.1); same-colour translucent layers
+  compose additively wherever they overlap, so the centre (under all five)
+  reads densest and it falls off toward the boundary with no per-ring
+  ordering logic required. This is what `stage.jsx`'s own material comment
+  ("field: isolines of a potential") already specified and no scene drew.
+- `OppositionComparison` (`quantity-scenes.jsx`) had 9 hairline "strata" per
+  side with real canvas gaps between them. Reduced to 6 filled bands
+  (alternating tone) per side — literal: sedimentary strata are filled rock
+  layers, and the code's own name for the technique had a filled answer
+  sitting unused.
+- `DataChartScene`, `ComparisonScene` (quantitative), `AccumulationScene`
+  (tray variant) — bars/items were `fill="none"` except one highlighted
+  element. Standard filled-bar/filled-unit convention, matching the
+  ledger variant `AccumulationScene` already used for the same concept.
+- `TransformationScene` — added a filled area between the plotted curve and
+  its starting level (an area chart), closed and filled with the same
+  points the line already plots. Answers "how much changed", which a bare
+  4px line did not.
+- `ProcessScene` / `TimelineScene` fills existed but at 0.05-0.09 opacity —
+  under `stage.jsx`'s OWN documented finding two paragraphs above this one
+  in this file's history ("5% opacity lands ~12/255 from bg, below the ink
+  threshold"). Raised to 0.11-0.16, the same range `Ground`'s alphas
+  already sit in.
+
+**Not touched, with reason:** `CauseEffectScene` (already flow-ribbon strokes
+up to 9px from the prior pass, 2.4% ink, no specific rendered defect found
+this pass), `BeforeAfterScene` (the sparse-outline/dense-fill contrast
+between its two sides IS the concept), `ScaleComparisonScene` (already
+mostly filled once grown), `CinematicStatementScene` (register 3.12.5
+already treats its low ink as correct for a deliberately sparse terminal
+fallback), `GeospatialRadiusScene` (the benchmark; untouched — its own
+before/after ink moved 38.3%->36.2% and 47.0%->47.0% on IDENTICAL code
+across two separate render passes, which is measurement noise in the
+headless render, not a regression, and is recorded here so it isn't
+mistaken for one later).
+
+**A real, unrelated, blocking bug found and fixed to make ANY of this
+measurable:** `package.json` was missing four dependencies
+(`@remotion/media`, `@remotion/three`, `@react-three/postprocessing`,
+`postprocessing`) that `compositions/*.jsx`, `beats/*.jsx` and
+`effects/PhotoTreatment.jsx` already imported (from the unrelated
+vox-style-treatment work on `main`). Without them `@remotion/bundler` cannot
+resolve the module graph at all — `inspect-anchors.mjs` and `render.js`
+both fail before rendering a single frame. Added at the versions already
+pinned elsewhere in the file (`4.0.503`) or latest compatible.
+
+**QA run this pass:** `node visual/run-visual-tests.js` — 69/69 passed,
+including the anti-template shot-signature check (`no two strategies share a
+whole shot signature`), after these edits. One real production render
+(`node render.js shorts 48 …`, not `renderStill`) for the tech-process
+fixture: 5 beats, 21 states, 0 fallback reasons, 0 warnings, 12 sound events,
+a real MP4 written to `data/renders/48/`; frames pulled from the actual
+encoded video (not `renderStill`) at six timestamps and inspected. All
+changes above were viewed as rendered PNGs, before and after, not judged
+from the ink number alone.
+
+**Still not proven, honestly:** `IMAGE_EVIDENCE` — no real sourced asset
+resolved in this sandbox on any fixture run (imagery: 0/N every time), so it
+remains unverified per PART 47, not claimed fixed. Real TTS/EdgeTTS audio is
+still blocked in this environment — every number in this entry is
+FIXTURE-VERIFIED (generated SRT timing, silent placeholder audio), not
+PRODUCTION-VERIFIED against real speech. `RelationshipScene`'s link-band fix
+specifically needs a frame where `links`/`weight` are active to see
+rendered, which this pass's fixtures did not sample.
+
 ---
 
 
