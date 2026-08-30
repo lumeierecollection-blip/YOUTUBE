@@ -2,32 +2,36 @@ name: review-publish
 
 # Renders a channel's latest script in CI and uploads it to YouTube as
 # PRIVATE so the result can be reviewed before it ever goes public.
-# Credentials are never committed: they come from a GitHub secret holding
-# the channel's OAuth JSON (client_id / client_secret / refresh_token),
-# materialized into config/creds/<channel_id>.json right before use.
+# Credentials are never committed: they come from per-channel GitHub
+# secrets (CHANNEL_01_CLIENT_ID / CHANNEL_01_CLIENT_SECRET /
+# CHANNEL_01_REFRESH_TOKEN, etc.), materialized into
+# config/creds/ch-0<id>.json right before use.
 #
 # Trigger:
 #   - workflow_dispatch: manual run, channel_id + script inputs
 #   - push to any branch touching this file (lets it run without gh)
 #
-# Secret expected: YOUTUBE_CREDS_CH02 = JSON for ch-02 OAuth credentials.
+# Secrets expected: per-channel triples, same scheme as daily-pipeline.yml:
+#   CHANNEL_01_CLIENT_ID / CHANNEL_01_CLIENT_SECRET / CHANNEL_01_REFRESH_TOKEN
+#   CHANNEL_02_CLIENT_ID / CHANNEL_02_CLIENT_SECRET / CHANNEL_02_REFRESH_TOKEN
+# Add a channel by extending the env block in the materialize step.
 #
 # The script path is a single explicit input and the mp3/srt are derived
 # from it (tts.js names outputs "<script-basename>-vo.mp3|.srt"; render.js
 # findSrtPath() only accepts the exact sibling .srt). Never glob the
-# research/tts dirs independently — alphabetical pairing silently attaches
+# research/tts dirs independently -- alphabetical pairing silently attaches
 # the wrong topic's narration to the wrong visuals.
 
 on:
   workflow_dispatch:
     inputs:
       channel_id:
-        description: Numeric channel id (e.g. 2)
-        default: "2"
+        description: Numeric channel id (e.g. 1)
+        default: "1"
         required: true
       script:
         description: Script path (root-relative) to render + publish
-        default: "data/research/2/what-to-say-traffic-stop-script.json"
+        default: "data/research/1/debt-snowball-vs-debt-avalanche-shorts-script.json"
         required: true
   push:
     branches: ["**"]
@@ -64,22 +68,35 @@ jobs:
           npm ci
           npx remotion browser ensure
 
-      - name: Materialize channel credentials from secret
+      - name: Materialize channel credentials from secrets
+        env:
+          CH01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CH01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CH01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CH02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CH02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CH02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
         run: |
           CHANNEL_ID="${{ inputs.channel_id }}"
-          SECRET_NAME="YOUTUBE_CREDS_CH0${CHANNEL_ID}"
+          PAD=$(printf '%02d' "$CHANNEL_ID")
           mkdir -p config/creds
-          case "$CHANNEL_ID" in
-            2) CREDS='${{ secrets.YOUTUBE_CREDS_CH02 }}' ;;
-            *) echo "No credential secret wired for channel $CHANNEL_ID"; exit 1 ;;
-          esac
-          if [ -z "$CREDS" ] || [ "$CREDS" = '""' ]; then
-            echo "Secret $SECRET_NAME is empty/missing."
-            exit 1
-          fi
-          echo "$CREDS" > config/creds/ch-0${CHANNEL_ID}.json
-          node -e "const c=require('./config/creds/ch-0${CHANNEL_ID}.json');['client_id','client_secret','refresh_token'].forEach(k=>{if(!c[k])throw new Error('missing '+k)})"
-          echo "Credentials OK for ch-0${CHANNEL_ID}"
+          node -e "
+            const fs = require('fs');
+            const id = process.argv[1];
+            const pad = process.argv[2];
+            const clientId = process.env['CH' + pad + '_CLIENT_ID'];
+            const clientSecret = process.env['CH' + pad + '_CLIENT_SECRET'];
+            const refreshToken = process.env['CH' + pad + '_REFRESH_TOKEN'];
+            if (!clientId || !clientSecret || !refreshToken) {
+              console.error('Missing credential secret for channel ' + id + ' (CHANNEL_' + pad + '_CLIENT_ID/_CLIENT_SECRET/_REFRESH_TOKEN)');
+              process.exit(1);
+            }
+            fs.writeFileSync(
+              'config/creds/ch-' + pad + '.json',
+              JSON.stringify({ client_id: clientId, client_secret: clientSecret, refresh_token: refreshToken }, null, 2)
+            );
+            console.log('Credentials OK for ch-' + pad);
+          " "$CHANNEL_ID" "$PAD"
 
       - name: Resolve run inputs
         id: run
