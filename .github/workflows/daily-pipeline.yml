@@ -34,7 +34,7 @@ env:
   # that field (HTTP 400 wrong_api_format) on every multi-turn call
   # (verified on live runs; see vercel/ai#15042). gemma-4-31b has
   # reasoning disabled by default, so it never emits the field.
-  OPENCODE_MODELS: "cerebras/gemma-4-31b"
+  OPENCODE_MODELS: "cerebras/gemma-4-31b,openai/gpt-4o-mini,anthropic/claude-3-5-haiku,google/gemini-2.5-flash,deepseek/deepseek-chat"
   OPENCODE_ENABLE_EXA: "1"
 
 jobs:

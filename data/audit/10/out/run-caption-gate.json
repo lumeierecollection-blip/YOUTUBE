@@ -1,9 +1,9 @@
 {
   "date": "2026-08-08",
-  "overallFailures": 3,
+  "overallFailures": 17,
   "evidence": [
     {
-      "case": "A ch-01 SRT + sections",
+      "case": "A ch-fixture SRT + sections",
       "legacy": false,
       "warnings": 0,
       "beats": 32,
@@ -12,8 +12,16 @@
       "checks": [
         {
           "name": "prod.gateCaptions (H5-H8)",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "caption \"seven\" duration 544ms < 833ms",
+            "caption \"And this\" duration 784ms < 833ms",
+            "caption \"in a world\" duration 661ms < 833ms",
+            "caption \"with no\" duration 463ms < 833ms",
+            "caption \"exactly\" duration 471ms < 833ms",
+            "caption \"but rock.\" duration 745ms < 833ms",
+            "caption \"So next\" duration 426ms < 833ms"
+          ]
         },
         {
           "name": "prod.gateMgHeadlineOverlap (H9)",
@@ -22,19 +30,36 @@
         },
         {
           "name": "ind.gateCaptionPages (H5-H8 + B2.4 + gap)",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "caption \"seven\" duration 544ms < 833ms",
+            "caption \"And this\" duration 784ms < 833ms",
+            "caption \"in a world\" duration 661ms < 833ms",
+            "caption \"with no\" duration 463ms < 833ms",
+            "caption \"exactly\" duration 471ms < 833ms",
+            "caption \"but rock.\" duration 745ms < 833ms",
+            "caption \"So next\" duration 426ms < 833ms",
+            "caption \"seven\" independent duration 544ms outside [833, 5000]",
+            "caption \"And this\" independent duration 784ms outside [833, 5000]",
+            "caption \"in a world\" independent duration 661ms outside [833, 5000]",
+            "caption \"with no\" independent duration 463ms outside [833, 5000]",
+            "caption \"exactly\" independent duration 471ms outside [833, 5000]",
+            "caption \"but rock.\" independent duration 745ms outside [833, 5000]",
+            "caption \"So next\" independent duration 426ms outside [833, 5000]"
+          ]
         },
         {
           "name": "canon.captionPagesFromSrt drift + raw gate",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "canonical captionPagesFromSrt (47 pages) differs from production pages (47)"
+          ]
         }
       ],
       "independent": {
         "pageCount": 47,
-        "productionGate": true,
-        "independentFailures": 0,
+        "productionGate": false,
+        "independentFailures": 7,
         "gaps": [
           {
             "index": 1,
@@ -95,8 +120,8 @@
           {
             "index": 9,
             "gapFrames": 2,
-            "prevEndMs": 14742.333333333334,
-            "nextStartMs": 14809,
+            "prevEndMs": 15252.333333333334,
+            "nextStartMs": 15319,
             "gapMs": 66.66666666666667
           },
           {
@@ -151,15 +176,15 @@
           {
             "index": 17,
             "gapFrames": 2,
-            "prevEndMs": 27256.333333333332,
-            "nextStartMs": 27323,
+            "prevEndMs": 27827.333333333332,
+            "nextStartMs": 27894,
             "gapMs": 66.66666666666667
           },
           {
             "index": 18,
             "gapFrames": 2,
-            "prevEndMs": 28205.333333333332,
-            "nextStartMs": 28272,
+            "prevEndMs": 28678.333333333332,
+            "nextStartMs": 28745,
             "gapMs": 66.66666666666667
           },
           {
@@ -172,8 +197,8 @@
           {
             "index": 20,
             "gapFrames": 2,
-            "prevEndMs": 30939.333333333332,
-            "nextStartMs": 31006,
+            "prevEndMs": 31469.333333333332,
+            "nextStartMs": 31536,
             "gapMs": 66.66666666666667
           },
           {
@@ -207,22 +232,22 @@
           {
             "index": 25,
             "gapFrames": 2,
-            "prevEndMs": 39806.333333333336,
-            "nextStartMs": 39873,
+            "prevEndMs": 39409.333333333336,
+            "nextStartMs": 39476,
             "gapMs": 66.66666666666667
           },
           {
             "index": 26,
             "gapFrames": 2,
-            "prevEndMs": 40931.333333333336,
-            "nextStartMs": 40998,
+            "prevEndMs": 41526.333333333336,
+            "nextStartMs": 41593,
             "gapMs": 66.66666666666667
           },
           {
             "index": 27,
             "gapFrames": 2,
-            "prevEndMs": 41857.333333333336,
-            "nextStartMs": 41924,
+            "prevEndMs": 42254.333333333336,
+            "nextStartMs": 42321,
             "gapMs": 66.66666666666667
           },
           {
@@ -263,8 +288,8 @@
           {
             "index": 33,
             "gapFrames": 2,
-            "prevEndMs": 50838.333333333336,
-            "nextStartMs": 50905,
+            "prevEndMs": 51241.333333333336,
+            "nextStartMs": 51308,
             "gapMs": 66.66666666666667
           },
           {
@@ -284,15 +309,15 @@
           {
             "index": 36,
             "gapFrames": 2,
-            "prevEndMs": 56419.333333333336,
-            "nextStartMs": 56486,
+            "prevEndMs": 57069.333333333336,
+            "nextStartMs": 57136,
             "gapMs": 66.66666666666667
           },
           {
             "index": 37,
             "gapFrames": 2,
-            "prevEndMs": 57394.333333333336,
-            "nextStartMs": 57461,
+            "prevEndMs": 57881.333333333336,
+            "nextStartMs": 57948,
             "gapMs": 66.66666666666667
           },
           {
@@ -305,8 +330,8 @@
           {
             "index": 39,
             "gapFrames": 2,
-            "prevEndMs": 59483.333333333336,
-            "nextStartMs": 59550,
+            "prevEndMs": 60037.333333333336,
+            "nextStartMs": 60104,
             "gapMs": 66.66666666666667
           },
           {
@@ -354,19 +379,19 @@
           {
             "index": 46,
             "gapFrames": 2,
-            "prevEndMs": 67777.33333333333,
-            "nextStartMs": 67844,
+            "prevEndMs": 68166.33333333333,
+            "nextStartMs": 68233,
             "gapMs": 66.66666666666667
           }
         ],
         "pages": [
           {
             "index": 0,
-            "text": "In 1986, workers near the Black Sea",
-            "words": 7,
+            "text": "In workers near the Black Sea",
+            "words": 6,
             "lines": [
-              "25:In 1986, workers near the",
-              "9:Black Sea"
+              "25:In workers near the Black",
+              "3:Sea"
             ],
             "durationMs": 2375,
             "cps": 12.2
@@ -445,23 +470,23 @@
           },
           {
             "index": 8,
-            "text": "Oxygen at",
-            "words": 2,
+            "text": "Oxygen at just",
+            "words": 3,
             "lines": [
-              "9:Oxygen at"
+              "14:Oxygen at just"
             ],
-            "durationMs": 952,
-            "cps": 8.4
+            "durationMs": 1462,
+            "cps": 8.2
           },
           {
             "index": 9,
-            "text": "just seven",
-            "words": 2,
+            "text": "seven",
+            "words": 1,
             "lines": [
-              "10:just seven"
+              "5:seven"
             ],
-            "durationMs": 1054,
-            "cps": 8.5
+            "durationMs": 544,
+            "cps": 9.2
           },
           {
             "index": 10,
@@ -526,55 +551,54 @@
           },
           {
             "index": 16,
-            "text": "of them needing sunlight to",
-            "words": 5,
+            "text": "of them needing sunlight to survive.",
+            "words": 6,
             "lines": [
               "24:of them needing sunlight",
-              "2:to"
+              "11:to survive."
             ],
-            "durationMs": 1711,
-            "cps": 13.4
+            "durationMs": 2282,
+            "cps": 13.6
           },
           {
             "index": 17,
-            "text": "survive. And",
+            "text": "And this",
             "words": 2,
             "lines": [
-              "12:survive. And"
+              "8:And this"
             ],
-            "durationMs": 882,
-            "cps": 12.5
+            "durationMs": 784,
+            "cps": 8.9
           },
           {
             "index": 18,
-            "text": "this cave is not",
-            "words": 4,
+            "text": "cave is not",
+            "words": 3,
             "lines": [
-              "16:this cave is not"
+              "11:cave is not"
             ],
-            "durationMs": 1542,
+            "durationMs": 1069,
             "cps": 8.4
           },
           {
             "index": 19,
-            "text": "alone. In the",
-            "words": 3,
+            "text": "alone. In the deepest",
+            "words": 4,
             "lines": [
-              "13:alone. In the"
+              "21:alone. In the deepest"
             ],
-            "durationMs": 1058,
-            "cps": 10.4
+            "durationMs": 1588,
+            "cps": 11.3
           },
           {
             "index": 20,
-            "text": "deepest caves on Earth, two",
-            "words": 5,
+            "text": "caves on Earth, two",
+            "words": 4,
             "lines": [
-              "23:deepest caves on Earth,",
-              "3:two"
+              "19:caves on Earth, two"
             ],
-            "durationMs": 1786,
-            "cps": 12.9
+            "durationMs": 1256,
+            "cps": 12.7
           },
           {
             "index": 21,
@@ -609,44 +633,44 @@
           },
           {
             "index": 24,
-            "text": "for the deepest animal ever found: 1,980",
-            "words": 7,
+            "text": "for the deepest animal ever found:",
+            "words": 6,
             "lines": [
               "22:for the deepest animal",
-              "17:ever found: 1,980"
+              "11:ever found:"
             ],
-            "durationMs": 2646,
-            "cps": 12.8
+            "durationMs": 2249,
+            "cps": 12.9
           },
           {
             "index": 25,
-            "text": "meters below the",
-            "words": 3,
+            "text": "meters below the surface,",
+            "words": 4,
             "lines": [
-              "16:meters below the"
+              "25:meters below the surface,"
             ],
-            "durationMs": 1058,
+            "durationMs": 2050,
             "cps": 13.2
           },
           {
             "index": 26,
-            "text": "surface, in a",
+            "text": "in a world",
             "words": 3,
             "lines": [
-              "13:surface, in a"
+              "10:in a world"
             ],
-            "durationMs": 859,
-            "cps": 12.8
+            "durationMs": 661,
+            "cps": 12.1
           },
           {
             "index": 27,
-            "text": "world with no",
-            "words": 3,
+            "text": "with no",
+            "words": 2,
             "lines": [
-              "13:world with no"
+              "7:with no"
             ],
-            "durationMs": 860,
-            "cps": 12.8
+            "durationMs": 463,
+            "cps": 12.9
           },
           {
             "index": 28,
@@ -690,24 +714,24 @@
           },
           {
             "index": 32,
-            "text": "bacteria turning minerals and sulfur into",
-            "words": 6,
+            "text": "bacteria turning minerals and sulfur into food,",
+            "words": 7,
             "lines": [
               "25:bacteria turning minerals",
-              "15:and sulfur into"
+              "21:and sulfur into food,"
             ],
-            "durationMs": 2755,
-            "cps": 13.1
+            "durationMs": 3158,
+            "cps": 13
           },
           {
             "index": 33,
-            "text": "food, exactly",
-            "words": 2,
+            "text": "exactly",
+            "words": 1,
             "lines": [
-              "13:food, exactly"
+              "7:exactly"
             ],
-            "durationMs": 874,
-            "cps": 13.7
+            "durationMs": 471,
+            "cps": 14.9
           },
           {
             "index": 34,
@@ -722,55 +746,55 @@
           },
           {
             "index": 35,
-            "text": "ocean. Entire ecosystems running on",
-            "words": 5,
+            "text": "ocean. Entire ecosystems running on nothing",
+            "words": 6,
             "lines": [
               "24:ocean. Entire ecosystems",
-              "10:running on"
+              "18:running on nothing"
             ],
-            "durationMs": 2759,
-            "cps": 11.2
+            "durationMs": 3409,
+            "cps": 11.1
           },
           {
             "index": 36,
-            "text": "nothing but",
+            "text": "but rock.",
             "words": 2,
             "lines": [
-              "11:nothing but"
+              "9:but rock."
             ],
-            "durationMs": 908,
-            "cps": 11
+            "durationMs": 745,
+            "cps": 10.7
           },
           {
             "index": 37,
-            "text": "rock. So next",
-            "words": 3,
+            "text": "So next",
+            "words": 2,
             "lines": [
-              "13:rock. So next"
+              "7:So next"
             ],
-            "durationMs": 913,
-            "cps": 12
+            "durationMs": 426,
+            "cps": 14.1
           },
           {
             "index": 38,
-            "text": "time you stand in",
-            "words": 4,
+            "text": "time you stand in the sun,",
+            "words": 6,
             "lines": [
-              "17:time you stand in"
+              "21:time you stand in the",
+              "4:sun,"
             ],
-            "durationMs": 1042,
-            "cps": 13.4
+            "durationMs": 1596,
+            "cps": 13.2
           },
           {
             "index": 39,
-            "text": "the sun, remember: two kilometers",
-            "words": 5,
+            "text": "remember: two kilometers",
+            "words": 3,
             "lines": [
-              "22:the sun, remember: two",
-              "10:kilometers"
+              "24:remember: two kilometers"
             ],
-            "durationMs": 2028,
-            "cps": 14.3
+            "durationMs": 1474,
+            "cps": 14.9
           },
           {
             "index": 40,
@@ -824,29 +848,29 @@
           },
           {
             "index": 45,
-            "text": "Unknown for",
-            "words": 2,
+            "text": "Unknown for more",
+            "words": 3,
             "lines": [
-              "11:Unknown for"
+              "16:Unknown for more"
             ],
-            "durationMs": 868,
-            "cps": 11.5
+            "durationMs": 1257,
+            "cps": 11.1
           },
           {
             "index": 46,
-            "text": "more from the dark.",
-            "words": 4,
+            "text": "from the dark.",
+            "words": 3,
             "lines": [
-              "19:more from the dark."
+              "14:from the dark."
             ],
-            "durationMs": 1558,
+            "durationMs": 1169,
             "cps": 10.3
           }
         ]
       }
     },
     {
-      "case": "B ch-01 SRT only",
+      "case": "B ch-fixture SRT only",
       "legacy": false,
       "warnings": 0,
       "beats": 32,
@@ -855,8 +879,16 @@
       "checks": [
         {
           "name": "prod.gateCaptions (H5-H8)",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "caption \"seven\" duration 544ms < 833ms",
+            "caption \"And this\" duration 784ms < 833ms",
+            "caption \"in a world\" duration 661ms < 833ms",
+            "caption \"with no\" duration 463ms < 833ms",
+            "caption \"exactly\" duration 471ms < 833ms",
+            "caption \"but rock.\" duration 745ms < 833ms",
+            "caption \"So next\" duration 426ms < 833ms"
+          ]
         },
         {
           "name": "prod.gateMgHeadlineOverlap (H9)",
@@ -865,19 +897,36 @@
         },
         {
           "name": "ind.gateCaptionPages (H5-H8 + B2.4 + gap)",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "caption \"seven\" duration 544ms < 833ms",
+            "caption \"And this\" duration 784ms < 833ms",
+            "caption \"in a world\" duration 661ms < 833ms",
+            "caption \"with no\" duration 463ms < 833ms",
+            "caption \"exactly\" duration 471ms < 833ms",
+            "caption \"but rock.\" duration 745ms < 833ms",
+            "caption \"So next\" duration 426ms < 833ms",
+            "caption \"seven\" independent duration 544ms outside [833, 5000]",
+            "caption \"And this\" independent duration 784ms outside [833, 5000]",
+            "caption \"in a world\" independent duration 661ms outside [833, 5000]",
+            "caption \"with no\" independent duration 463ms outside [833, 5000]",
+            "caption \"exactly\" independent duration 471ms outside [833, 5000]",
+            "caption \"but rock.\" independent duration 745ms outside [833, 5000]",
+            "caption \"So next\" independent duration 426ms outside [833, 5000]"
+          ]
         },
         {
           "name": "canon.captionPagesFromSrt drift + raw gate",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "canonical captionPagesFromSrt (47 pages) differs from production pages (47)"
+          ]
         }
       ],
       "independent": {
         "pageCount": 47,
-        "productionGate": true,
-        "independentFailures": 0,
+        "productionGate": false,
+        "independentFailures": 7,
         "gaps": [
           {
             "index": 1,
@@ -938,8 +987,8 @@
           {
             "index": 9,
             "gapFrames": 2,
-            "prevEndMs": 14742.333333333334,
-            "nextStartMs": 14809,
+            "prevEndMs": 15252.333333333334,
+            "nextStartMs": 15319,
             "gapMs": 66.66666666666667
           },
           {
@@ -994,15 +1043,15 @@
           {
             "index": 17,
             "gapFrames": 2,
-            "prevEndMs": 27256.333333333332,
-            "nextStartMs": 27323,
+            "prevEndMs": 27827.333333333332,
+            "nextStartMs": 27894,
             "gapMs": 66.66666666666667
           },
           {
             "index": 18,
             "gapFrames": 2,
-            "prevEndMs": 28205.333333333332,
-            "nextStartMs": 28272,
+            "prevEndMs": 28678.333333333332,
+            "nextStartMs": 28745,
             "gapMs": 66.66666666666667
           },
           {
@@ -1015,8 +1064,8 @@
           {
             "index": 20,
             "gapFrames": 2,
-            "prevEndMs": 30939.333333333332,
-            "nextStartMs": 31006,
+            "prevEndMs": 31469.333333333332,
+            "nextStartMs": 31536,
             "gapMs": 66.66666666666667
           },
           {
@@ -1050,22 +1099,22 @@
           {
             "index": 25,
             "gapFrames": 2,
-            "prevEndMs": 39806.333333333336,
-            "nextStartMs": 39873,
+            "prevEndMs": 39409.333333333336,
+            "nextStartMs": 39476,
             "gapMs": 66.66666666666667
           },
           {
             "index": 26,
             "gapFrames": 2,
-            "prevEndMs": 40931.333333333336,
-            "nextStartMs": 40998,
+            "prevEndMs": 41526.333333333336,
+            "nextStartMs": 41593,
             "gapMs": 66.66666666666667
           },
           {
             "index": 27,
             "gapFrames": 2,
-            "prevEndMs": 41857.333333333336,
-            "nextStartMs": 41924,
+            "prevEndMs": 42254.333333333336,
+            "nextStartMs": 42321,
             "gapMs": 66.66666666666667
           },
           {
@@ -1106,8 +1155,8 @@
           {
             "index": 33,
             "gapFrames": 2,
-            "prevEndMs": 50838.333333333336,
-            "nextStartMs": 50905,
+            "prevEndMs": 51241.333333333336,
+            "nextStartMs": 51308,
             "gapMs": 66.66666666666667
           },
           {
@@ -1127,15 +1176,15 @@
           {
             "index": 36,
             "gapFrames": 2,
-            "prevEndMs": 56419.333333333336,
-            "nextStartMs": 56486,
+            "prevEndMs": 57069.333333333336,
+            "nextStartMs": 57136,
             "gapMs": 66.66666666666667
           },
           {
             "index": 37,
             "gapFrames": 2,
-            "prevEndMs": 57394.333333333336,
-            "nextStartMs": 57461,
+            "prevEndMs": 57881.333333333336,
+            "nextStartMs": 57948,
             "gapMs": 66.66666666666667
           },
           {
@@ -1148,8 +1197,8 @@
           {
             "index": 39,
             "gapFrames": 2,
-            "prevEndMs": 59483.333333333336,
-            "nextStartMs": 59550,
+            "prevEndMs": 60037.333333333336,
+            "nextStartMs": 60104,
             "gapMs": 66.66666666666667
           },
           {
@@ -1197,19 +1246,19 @@
           {
             "index": 46,
             "gapFrames": 2,
-            "prevEndMs": 67777.33333333333,
-            "nextStartMs": 67844,
+            "prevEndMs": 68166.33333333333,
+            "nextStartMs": 68233,
             "gapMs": 66.66666666666667
           }
         ],
         "pages": [
           {
             "index": 0,
-            "text": "In 1986, workers near the Black Sea",
-            "words": 7,
+            "text": "In workers near the Black Sea",
+            "words": 6,
             "lines": [
-              "25:In 1986, workers near the",
-              "9:Black Sea"
+              "25:In workers near the Black",
+              "3:Sea"
             ],
             "durationMs": 2375,
             "cps": 12.2
@@ -1288,23 +1337,23 @@
           },
           {
             "index": 8,
-            "text": "Oxygen at",
-            "words": 2,
+            "text": "Oxygen at just",
+            "words": 3,
             "lines": [
-              "9:Oxygen at"
+              "14:Oxygen at just"
             ],
-            "durationMs": 952,
-            "cps": 8.4
+            "durationMs": 1462,
+            "cps": 8.2
           },
           {
             "index": 9,
-            "text": "just seven",
-            "words": 2,
+            "text": "seven",
+            "words": 1,
             "lines": [
-              "10:just seven"
+              "5:seven"
             ],
-            "durationMs": 1054,
-            "cps": 8.5
+            "durationMs": 544,
+            "cps": 9.2
           },
           {
             "index": 10,
@@ -1369,55 +1418,54 @@
           },
           {
             "index": 16,
-            "text": "of them needing sunlight to",
-            "words": 5,
+            "text": "of them needing sunlight to survive.",
+            "words": 6,
             "lines": [
               "24:of them needing sunlight",
-              "2:to"
+              "11:to survive."
             ],
-            "durationMs": 1711,
-            "cps": 13.4
+            "durationMs": 2282,
+            "cps": 13.6
           },
           {
             "index": 17,
-            "text": "survive. And",
+            "text": "And this",
             "words": 2,
             "lines": [
-              "12:survive. And"
+              "8:And this"
             ],
-            "durationMs": 882,
-            "cps": 12.5
+            "durationMs": 784,
+            "cps": 8.9
           },
           {
             "index": 18,
-            "text": "this cave is not",
-            "words": 4,
+            "text": "cave is not",
+            "words": 3,
             "lines": [
-              "16:this cave is not"
+              "11:cave is not"
             ],
-            "durationMs": 1542,
+            "durationMs": 1069,
             "cps": 8.4
           },
           {
             "index": 19,
-            "text": "alone. In the",
-            "words": 3,
+            "text": "alone. In the deepest",
+            "words": 4,
             "lines": [
-              "13:alone. In the"
+              "21:alone. In the deepest"
             ],
-            "durationMs": 1058,
-            "cps": 10.4
+            "durationMs": 1588,
+            "cps": 11.3
           },
           {
             "index": 20,
-            "text": "deepest caves on Earth, two",
-            "words": 5,
+            "text": "caves on Earth, two",
+            "words": 4,
             "lines": [
-              "23:deepest caves on Earth,",
-              "3:two"
+              "19:caves on Earth, two"
             ],
-            "durationMs": 1786,
-            "cps": 12.9
+            "durationMs": 1256,
+            "cps": 12.7
           },
           {
             "index": 21,
@@ -1452,44 +1500,44 @@
           },
           {
             "index": 24,
-            "text": "for the deepest animal ever found: 1,980",
-            "words": 7,
+            "text": "for the deepest animal ever found:",
+            "words": 6,
             "lines": [
               "22:for the deepest animal",
-              "17:ever found: 1,980"
+              "11:ever found:"
             ],
-            "durationMs": 2646,
-            "cps": 12.8
+            "durationMs": 2249,
+            "cps": 12.9
           },
           {
             "index": 25,
-            "text": "meters below the",
-            "words": 3,
+            "text": "meters below the surface,",
+            "words": 4,
             "lines": [
-              "16:meters below the"
+              "25:meters below the surface,"
             ],
-            "durationMs": 1058,
+            "durationMs": 2050,
             "cps": 13.2
           },
           {
             "index": 26,
-            "text": "surface, in a",
+            "text": "in a world",
             "words": 3,
             "lines": [
-              "13:surface, in a"
+              "10:in a world"
             ],
-            "durationMs": 859,
-            "cps": 12.8
+            "durationMs": 661,
+            "cps": 12.1
           },
           {
             "index": 27,
-            "text": "world with no",
-            "words": 3,
+            "text": "with no",
+            "words": 2,
             "lines": [
-              "13:world with no"
+              "7:with no"
             ],
-            "durationMs": 860,
-            "cps": 12.8
+            "durationMs": 463,
+            "cps": 12.9
           },
           {
             "index": 28,
@@ -1533,24 +1581,24 @@
           },
           {
             "index": 32,
-            "text": "bacteria turning minerals and sulfur into",
-            "words": 6,
+            "text": "bacteria turning minerals and sulfur into food,",
+            "words": 7,
             "lines": [
               "25:bacteria turning minerals",
-              "15:and sulfur into"
+              "21:and sulfur into food,"
             ],
-            "durationMs": 2755,
-            "cps": 13.1
+            "durationMs": 3158,
+            "cps": 13
           },
           {
             "index": 33,
-            "text": "food, exactly",
-            "words": 2,
+            "text": "exactly",
+            "words": 1,
             "lines": [
-              "13:food, exactly"
+              "7:exactly"
             ],
-            "durationMs": 874,
-            "cps": 13.7
+            "durationMs": 471,
+            "cps": 14.9
           },
           {
             "index": 34,
@@ -1565,55 +1613,55 @@
           },
           {
             "index": 35,
-            "text": "ocean. Entire ecosystems running on",
-            "words": 5,
+            "text": "ocean. Entire ecosystems running on nothing",
+            "words": 6,
             "lines": [
               "24:ocean. Entire ecosystems",
-              "10:running on"
+              "18:running on nothing"
             ],
-            "durationMs": 2759,
-            "cps": 11.2
+            "durationMs": 3409,
+            "cps": 11.1
           },
           {
             "index": 36,
-            "text": "nothing but",
+            "text": "but rock.",
             "words": 2,
             "lines": [
-              "11:nothing but"
+              "9:but rock."
             ],
-            "durationMs": 908,
-            "cps": 11
+            "durationMs": 745,
+            "cps": 10.7
           },
           {
             "index": 37,
-            "text": "rock. So next",
-            "words": 3,
+            "text": "So next",
+            "words": 2,
             "lines": [
-              "13:rock. So next"
+              "7:So next"
             ],
-            "durationMs": 913,
-            "cps": 12
+            "durationMs": 426,
+            "cps": 14.1
           },
           {
             "index": 38,
-            "text": "time you stand in",
-            "words": 4,
+            "text": "time you stand in the sun,",
+            "words": 6,
             "lines": [
-              "17:time you stand in"
+              "21:time you stand in the",
+              "4:sun,"
             ],
-            "durationMs": 1042,
-            "cps": 13.4
+            "durationMs": 1596,
+            "cps": 13.2
           },
           {
             "index": 39,
-            "text": "the sun, remember: two kilometers",
-            "words": 5,
+            "text": "remember: two kilometers",
+            "words": 3,
             "lines": [
-              "22:the sun, remember: two",
-              "10:kilometers"
+              "24:remember: two kilometers"
             ],
-            "durationMs": 2028,
-            "cps": 14.3
+            "durationMs": 1474,
+            "cps": 14.9
           },
           {
             "index": 40,
@@ -1667,22 +1715,22 @@
           },
           {
             "index": 45,
-            "text": "Unknown for",
-            "words": 2,
+            "text": "Unknown for more",
+            "words": 3,
             "lines": [
-              "11:Unknown for"
+              "16:Unknown for more"
             ],
-            "durationMs": 868,
-            "cps": 11.5
+            "durationMs": 1257,
+            "cps": 11.1
           },
           {
             "index": 46,
-            "text": "more from the dark.",
-            "words": 4,
+            "text": "from the dark.",
+            "words": 3,
             "lines": [
-              "19:more from the dark."
+              "14:from the dark."
             ],
-            "durationMs": 1558,
+            "durationMs": 1169,
             "cps": 10.3
           }
         ]
@@ -1693,13 +1741,20 @@
       "legacy": false,
       "warnings": 0,
       "beats": 33,
-      "pages": 45,
+      "pages": 42,
       "synthesized": false,
       "checks": [
         {
           "name": "prod.gateCaptions (H5-H8)",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "caption \"On a\" duration 570ms < 833ms",
+            "caption \"and\" duration 558ms < 833ms",
+            "caption \"who closed\" duration 621ms < 833ms",
+            "caption \"answer?\" duration 775ms < 833ms",
+            "caption \"trust your\" duration 786ms < 833ms",
+            "caption \"before.\" duration 580ms < 833ms"
+          ]
         },
         {
           "name": "prod.gateMgHeadlineOverlap (H9)",
@@ -1708,19 +1763,34 @@
         },
         {
           "name": "ind.gateCaptionPages (H5-H8 + B2.4 + gap)",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "caption \"On a\" duration 570ms < 833ms",
+            "caption \"and\" duration 558ms < 833ms",
+            "caption \"who closed\" duration 621ms < 833ms",
+            "caption \"answer?\" duration 775ms < 833ms",
+            "caption \"trust your\" duration 786ms < 833ms",
+            "caption \"before.\" duration 580ms < 833ms",
+            "caption \"On a\" independent duration 570ms outside [833, 5000]",
+            "caption \"and\" independent duration 558ms outside [833, 5000]",
+            "caption \"who closed\" independent duration 621ms outside [833, 5000]",
+            "caption \"answer?\" independent duration 775ms outside [833, 5000]",
+            "caption \"trust your\" independent duration 786ms outside [833, 5000]",
+            "caption \"before.\" independent duration 580ms outside [833, 5000]"
+          ]
         },
         {
           "name": "canon.captionPagesFromSrt drift + raw gate",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "canonical captionPagesFromSrt (45 pages) differs from production pages (42)"
+          ]
         }
       ],
       "independent": {
-        "pageCount": 45,
-        "productionGate": true,
-        "independentFailures": 0,
+        "pageCount": 42,
+        "productionGate": false,
+        "independentFailures": 6,
         "gaps": [
           {
             "index": 1,
@@ -1738,293 +1808,272 @@
           },
           {
             "index": 3,
-            "gapFrames": 2,
+            "gapFrames": 37,
             "prevEndMs": 9012.333333333334,
-            "nextStartMs": 9079,
-            "gapMs": 66.66666666666667
-          },
-          {
-            "index": 4,
-            "gapFrames": 2,
-            "prevEndMs": 10163.333333333334,
             "nextStartMs": 10230,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 5,
+            "index": 4,
             "gapFrames": 2,
             "prevEndMs": 11339.333333333334,
             "nextStartMs": 11406,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 6,
+            "index": 5,
             "gapFrames": 2,
             "prevEndMs": 13882.333333333334,
             "nextStartMs": 13949,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 7,
+            "index": 6,
             "gapFrames": 2,
-            "prevEndMs": 14928.333333333334,
-            "nextStartMs": 14995,
+            "prevEndMs": 15625.333333333334,
+            "nextStartMs": 15692,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 8,
+            "index": 7,
             "gapFrames": 2,
             "prevEndMs": 16262.333333333334,
             "nextStartMs": 16329,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 9,
-            "gapFrames": 2,
+            "index": 8,
+            "gapFrames": 33,
             "prevEndMs": 17536.333333333332,
-            "nextStartMs": 17603,
-            "gapMs": 66.66666666666667
-          },
-          {
-            "index": 10,
-            "gapFrames": 2,
-            "prevEndMs": 18556.333333333332,
             "nextStartMs": 18623,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 11,
+            "index": 9,
             "gapFrames": 2,
             "prevEndMs": 20085.333333333332,
             "nextStartMs": 20152,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 12,
+            "index": 10,
             "gapFrames": 2,
-            "prevEndMs": 24800.333333333332,
-            "nextStartMs": 24867,
+            "prevEndMs": 24417.333333333332,
+            "nextStartMs": 24484,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 13,
+            "index": 11,
             "gapFrames": 2,
             "prevEndMs": 26074.333333333332,
             "nextStartMs": 26141,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 14,
+            "index": 12,
             "gapFrames": 2,
             "prevEndMs": 27229.333333333332,
             "nextStartMs": 27296,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 15,
+            "index": 13,
             "gapFrames": 2,
             "prevEndMs": 28961.333333333332,
             "nextStartMs": 29028,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 16,
+            "index": 14,
             "gapFrames": 2,
-            "prevEndMs": 31257.333333333332,
-            "nextStartMs": 31324,
+            "prevEndMs": 32351.333333333332,
+            "nextStartMs": 32418,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 17,
-            "gapFrames": 2,
+            "index": 15,
+            "gapFrames": 40,
             "prevEndMs": 32976.333333333336,
-            "nextStartMs": 33043,
-            "gapMs": 66.66666666666667
-          },
-          {
-            "index": 18,
-            "gapFrames": 2,
-            "prevEndMs": 34226.333333333336,
             "nextStartMs": 34293,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 19,
+            "index": 16,
             "gapFrames": 2,
             "prevEndMs": 36689.333333333336,
             "nextStartMs": 36756,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 20,
+            "index": 17,
             "gapFrames": 2,
-            "prevEndMs": 38409.333333333336,
-            "nextStartMs": 38476,
+            "prevEndMs": 39406.333333333336,
+            "nextStartMs": 39473,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 21,
+            "index": 18,
             "gapFrames": 2,
-            "prevEndMs": 40859.333333333336,
-            "nextStartMs": 40926,
+            "prevEndMs": 41360.333333333336,
+            "nextStartMs": 41427,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 22,
+            "index": 19,
             "gapFrames": 2,
             "prevEndMs": 43800.333333333336,
             "nextStartMs": 43867,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 23,
+            "index": 20,
             "gapFrames": 2,
             "prevEndMs": 45677.333333333336,
             "nextStartMs": 45744,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 24,
+            "index": 21,
             "gapFrames": 2,
-            "prevEndMs": 46803.333333333336,
-            "nextStartMs": 46870,
+            "prevEndMs": 47116.333333333336,
+            "nextStartMs": 47183,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 25,
+            "index": 22,
             "gapFrames": 2,
             "prevEndMs": 47804.333333333336,
             "nextStartMs": 47871,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 26,
+            "index": 23,
             "gapFrames": 2,
             "prevEndMs": 48805.333333333336,
             "nextStartMs": 48872,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 27,
+            "index": 24,
             "gapFrames": 2,
             "prevEndMs": 50558.333333333336,
             "nextStartMs": 50625,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 28,
+            "index": 25,
             "gapFrames": 2,
             "prevEndMs": 51581.333333333336,
             "nextStartMs": 51648,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 29,
+            "index": 26,
             "gapFrames": 2,
             "prevEndMs": 52677.333333333336,
             "nextStartMs": 52744,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 30,
+            "index": 27,
             "gapFrames": 2,
             "prevEndMs": 53794.333333333336,
             "nextStartMs": 53861,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 31,
+            "index": 28,
             "gapFrames": 2,
             "prevEndMs": 54990.333333333336,
             "nextStartMs": 55057,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 32,
+            "index": 29,
             "gapFrames": 2,
             "prevEndMs": 55947.333333333336,
             "nextStartMs": 56014,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 33,
+            "index": 30,
             "gapFrames": 2,
             "prevEndMs": 56911.333333333336,
             "nextStartMs": 56978,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 34,
+            "index": 31,
             "gapFrames": 2,
             "prevEndMs": 58513.333333333336,
             "nextStartMs": 58580,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 35,
+            "index": 32,
             "gapFrames": 2,
-            "prevEndMs": 59488.333333333336,
-            "nextStartMs": 59555,
+            "prevEndMs": 60436.333333333336,
+            "nextStartMs": 60503,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 36,
+            "index": 33,
             "gapFrames": 2,
             "prevEndMs": 61278.333333333336,
             "nextStartMs": 61345,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 37,
+            "index": 34,
             "gapFrames": 2,
-            "prevEndMs": 62364.333333333336,
-            "nextStartMs": 62431,
+            "prevEndMs": 62674.333333333336,
+            "nextStartMs": 62741,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 38,
+            "index": 35,
             "gapFrames": 2,
             "prevEndMs": 63527.333333333336,
             "nextStartMs": 63594,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 39,
+            "index": 36,
             "gapFrames": 2,
             "prevEndMs": 64457.333333333336,
             "nextStartMs": 64524,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 40,
+            "index": 37,
             "gapFrames": 2,
-            "prevEndMs": 65508.333333333336,
-            "nextStartMs": 65575,
+            "prevEndMs": 66074.33333333333,
+            "nextStartMs": 66141,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 41,
+            "index": 38,
             "gapFrames": 2,
-            "prevEndMs": 66640.33333333333,
-            "nextStartMs": 66707,
+            "prevEndMs": 67044.33333333333,
+            "nextStartMs": 67111,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 42,
+            "index": 39,
             "gapFrames": 2,
             "prevEndMs": 67691.33333333333,
             "nextStartMs": 67758,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 43,
+            "index": 40,
             "gapFrames": 2,
             "prevEndMs": 70327.33333333333,
             "nextStartMs": 70394,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 44,
+            "index": 41,
             "gapFrames": 2,
             "prevEndMs": 71787.33333333333,
             "nextStartMs": 71854,
@@ -2044,11 +2093,11 @@
           },
           {
             "index": 1,
-            "text": "avalanche debate is a $215 question. Not",
-            "words": 7,
+            "text": "avalanche debate is a question. Not",
+            "words": 6,
             "lines": [
               "21:avalanche debate is a",
-              "18:$215 question. Not"
+              "13:question. Not"
             ],
             "durationMs": 3766,
             "cps": 9
@@ -2062,16 +2111,6 @@
             ],
             "durationMs": 3257,
             "cps": 6.4
-          },
-          {
-            "index": 3,
-            "text": "$13,600.",
-            "words": 1,
-            "lines": [
-              "8:$13,600."
-            ],
-            "durationMs": 1084,
-            "cps": 7.4
           },
           {
             "index": 4,
@@ -2096,23 +2135,23 @@
           },
           {
             "index": 6,
-            "text": "wins the",
-            "words": 2,
+            "text": "wins the math.",
+            "words": 3,
             "lines": [
-              "8:wins the"
+              "14:wins the math."
             ],
-            "durationMs": 979,
-            "cps": 7.1
+            "durationMs": 1676,
+            "cps": 7.2
           },
           {
             "index": 7,
-            "text": "math. On a",
-            "words": 3,
+            "text": "On a",
+            "words": 2,
             "lines": [
-              "10:math. On a"
+              "4:On a"
             ],
-            "durationMs": 1267,
-            "cps": 6.3
+            "durationMs": 570,
+            "cps": 5.3
           },
           {
             "index": 8,
@@ -2123,16 +2162,6 @@
             ],
             "durationMs": 1207,
             "cps": 7.5
-          },
-          {
-            "index": 9,
-            "text": "$10,636",
-            "words": 1,
-            "lines": [
-              "7:$10,636"
-            ],
-            "durationMs": 953,
-            "cps": 7.3
           },
           {
             "index": 10,
@@ -2146,24 +2175,24 @@
           },
           {
             "index": 11,
-            "text": "finished in 27 months with $2,838 in",
-            "words": 7,
+            "text": "finished in months with $2,838",
+            "words": 5,
             "lines": [
-              "21:finished in 27 months",
-              "14:with $2,838 in"
+              "23:finished in months with",
+              "6:$2,838"
             ],
-            "durationMs": 4648,
-            "cps": 6.5
+            "durationMs": 4265,
+            "cps": 6.6
           },
           {
             "index": 12,
-            "text": "interest.",
-            "words": 1,
+            "text": "in interest.",
+            "words": 2,
             "lines": [
-              "9:interest."
+              "12:in interest."
             ],
-            "durationMs": 1207,
-            "cps": 7.5
+            "durationMs": 1590,
+            "cps": 6.9
           },
           {
             "index": 13,
@@ -2187,33 +2216,23 @@
           },
           {
             "index": 15,
-            "text": "first. It took 28",
+            "text": "first. It took months",
             "words": 4,
             "lines": [
-              "17:first. It took 28"
+              "21:first. It took months"
             ],
-            "durationMs": 2229,
-            "cps": 6.3
+            "durationMs": 3323,
+            "cps": 6
           },
           {
             "index": 16,
-            "text": "months and",
-            "words": 2,
-            "lines": [
-              "10:months and"
-            ],
-            "durationMs": 1652,
-            "cps": 5.4
-          },
-          {
-            "index": 17,
-            "text": "$3,053.",
+            "text": "and",
             "words": 1,
             "lines": [
-              "7:$3,053."
+              "3:and"
             ],
-            "durationMs": 1183,
-            "cps": 5.9
+            "durationMs": 558,
+            "cps": 5.4
           },
           {
             "index": 18,
@@ -2227,34 +2246,33 @@
           },
           {
             "index": 19,
-            "text": "$215. But the",
+            "text": "But the calculators",
             "words": 3,
             "lines": [
-              "13:$215. But the"
+              "19:But the calculators"
             ],
-            "durationMs": 1653,
-            "cps": 6.7
+            "durationMs": 2650,
+            "cps": 8.3
           },
           {
             "index": 20,
-            "text": "calculators miss the point. A",
+            "text": "miss the point. A Kellogg",
             "words": 5,
             "lines": [
-              "20:calculators miss the",
-              "8:point. A"
+              "25:miss the point. A Kellogg"
             ],
-            "durationMs": 2383,
-            "cps": 10.5
+            "durationMs": 1887,
+            "cps": 11.1
           },
           {
             "index": 21,
-            "text": "Kellogg study of 6,000 debt settlement clients",
-            "words": 7,
+            "text": "study of debt settlement clients",
+            "words": 5,
             "lines": [
-              "22:Kellogg study of 6,000",
-              "23:debt settlement clients"
+              "24:study of debt settlement",
+              "7:clients"
             ],
-            "durationMs": 2874,
+            "durationMs": 2373,
             "cps": 13.9
           },
           {
@@ -2270,23 +2288,23 @@
           },
           {
             "index": 23,
-            "text": "finished were the",
-            "words": 3,
+            "text": "finished were the ones",
+            "words": 4,
             "lines": [
-              "17:finished were the"
+              "22:finished were the ones"
             ],
-            "durationMs": 1059,
-            "cps": 14.2
+            "durationMs": 1372,
+            "cps": 13.8
           },
           {
             "index": 24,
-            "text": "ones who closed",
-            "words": 3,
+            "text": "who closed",
+            "words": 2,
             "lines": [
-              "15:ones who closed"
+              "10:who closed"
             ],
-            "durationMs": 934,
-            "cps": 13.9
+            "durationMs": 621,
+            "cps": 14.5
           },
           {
             "index": 25,
@@ -2380,43 +2398,43 @@
           },
           {
             "index": 34,
-            "text": "going. So",
-            "words": 2,
+            "text": "going. So the real",
+            "words": 4,
             "lines": [
-              "9:going. So"
+              "18:going. So the real"
             ],
-            "durationMs": 908,
-            "cps": 8.8
-          },
-          {
-            "index": 35,
-            "text": "the real answer?",
-            "words": 3,
-            "lines": [
-              "16:the real answer?"
-            ],
-            "durationMs": 1723,
+            "durationMs": 1856,
             "cps": 8.1
           },
           {
-            "index": 36,
-            "text": "Avalanche, if",
-            "words": 2,
+            "index": 35,
+            "text": "answer?",
+            "words": 1,
             "lines": [
-              "13:Avalanche, if"
+              "7:answer?"
             ],
-            "durationMs": 1019,
-            "cps": 11.8
+            "durationMs": 775,
+            "cps": 9
+          },
+          {
+            "index": 36,
+            "text": "Avalanche, if you",
+            "words": 3,
+            "lines": [
+              "17:Avalanche, if you"
+            ],
+            "durationMs": 1329,
+            "cps": 11.3
           },
           {
             "index": 37,
-            "text": "you trust your",
-            "words": 3,
+            "text": "trust your",
+            "words": 2,
             "lines": [
-              "14:you trust your"
+              "10:trust your"
             ],
-            "durationMs": 1096,
-            "cps": 10.9
+            "durationMs": 786,
+            "cps": 11.4
           },
           {
             "index": 38,
@@ -2430,33 +2448,33 @@
           },
           {
             "index": 39,
-            "text": "Snowball, if",
-            "words": 2,
+            "text": "Snowball, if you've",
+            "words": 3,
             "lines": [
-              "12:Snowball, if"
+              "19:Snowball, if you've"
             ],
-            "durationMs": 984,
-            "cps": 11.2
+            "durationMs": 1550,
+            "cps": 11
           },
           {
             "index": 40,
-            "text": "you've quit a",
+            "text": "quit a plan",
             "words": 3,
             "lines": [
-              "13:you've quit a"
+              "11:quit a plan"
             ],
-            "durationMs": 1065,
-            "cps": 10.3
+            "durationMs": 903,
+            "cps": 10
           },
           {
             "index": 41,
-            "text": "plan before.",
-            "words": 2,
+            "text": "before.",
+            "words": 1,
             "lines": [
-              "12:plan before."
+              "7:before."
             ],
-            "durationMs": 984,
-            "cps": 11.2
+            "durationMs": 580,
+            "cps": 12.1
           },
           {
             "index": 42,
@@ -2505,12 +2523,26 @@
           "pass": false,
           "failures": [
             "caption \"their rights during traffic stops not\" is 16.3 CPS > 15",
-            "caption \"because they're guilty, but because\" is 16.7 CPS > 15",
-            "caption \"they don't know what\" is 16.1 CPS > 15",
-            "caption \"moment where every word becomes evidence. Here\" is 15.6 CPS > 15",
+            "caption \"because they're guilty, but because they\" is 16.5 CPS > 15",
+            "caption \"don't know what\" is 16.5 CPS > 15",
+            "caption \"don't know what\" duration 789ms < 833ms",
+            "caption \"talk too much in a moment\" is 15.1 CPS > 15",
+            "caption \"where every word becomes evidence. Here\" is 15.5 CPS > 15",
             "caption \"Because in the moment, you will not\" is 15.7 CPS > 15",
             "caption \"invent good wording —\" is 16.3 CPS > 15",
-            "caption \"you will revert to whatever you've\" is 16.2 CPS > 15"
+            "caption \"you will revert to whatever you've\" is 16.2 CPS > 15",
+            "caption \"It's\" duration 303ms < 833ms",
+            "caption \"false\" is 16.1 CPS > 15",
+            "caption \"false\" duration 311ms < 833ms",
+            "caption \"from people\" duration 688ms < 833ms",
+            "caption \"stop is\" duration 453ms < 833ms",
+            "caption \"They\" is 15.7 CPS > 15",
+            "caption \"They\" duration 254ms < 833ms",
+            "caption \"defense is\" duration 638ms < 833ms",
+            "caption \"they tell\" duration 574ms < 833ms",
+            "caption \"Court\" duration 355ms < 833ms",
+            "caption \"time those\" is 15.9 CPS > 15",
+            "caption \"time those\" duration 567ms < 833ms"
           ]
         },
         {
@@ -2523,39 +2555,67 @@
           "pass": false,
           "failures": [
             "caption \"their rights during traffic stops not\" is 16.3 CPS > 15",
-            "caption \"because they're guilty, but because\" is 16.7 CPS > 15",
-            "caption \"they don't know what\" is 16.1 CPS > 15",
-            "caption \"moment where every word becomes evidence. Here\" is 15.6 CPS > 15",
+            "caption \"because they're guilty, but because they\" is 16.5 CPS > 15",
+            "caption \"don't know what\" is 16.5 CPS > 15",
+            "caption \"don't know what\" duration 789ms < 833ms",
+            "caption \"talk too much in a moment\" is 15.1 CPS > 15",
+            "caption \"where every word becomes evidence. Here\" is 15.5 CPS > 15",
             "caption \"Because in the moment, you will not\" is 15.7 CPS > 15",
             "caption \"invent good wording —\" is 16.3 CPS > 15",
             "caption \"you will revert to whatever you've\" is 16.2 CPS > 15",
+            "caption \"It's\" duration 303ms < 833ms",
+            "caption \"false\" is 16.1 CPS > 15",
+            "caption \"false\" duration 311ms < 833ms",
+            "caption \"from people\" duration 688ms < 833ms",
+            "caption \"stop is\" duration 453ms < 833ms",
+            "caption \"They\" is 15.7 CPS > 15",
+            "caption \"They\" duration 254ms < 833ms",
+            "caption \"defense is\" duration 638ms < 833ms",
+            "caption \"they tell\" duration 574ms < 833ms",
+            "caption \"Court\" duration 355ms < 833ms",
+            "caption \"time those\" is 15.9 CPS > 15",
+            "caption \"time those\" duration 567ms < 833ms",
             "caption \"their rights during traffic stops not\" independent CPS 16.3 > 15",
-            "caption \"because they're guilty, but because\" independent CPS 16.7 > 15",
-            "caption \"they don't know what\" independent CPS 16.1 > 15",
-            "caption \"moment where every word becomes evidence. Here\" independent CPS 15.6 > 15",
+            "caption \"because they're guilty, but because they\" independent CPS 16.5 > 15",
+            "caption \"don't know what\" independent CPS 16.5 > 15",
+            "caption \"don't know what\" independent duration 789ms outside [833, 5000]",
+            "caption \"talk too much in a moment\" independent CPS 15.1 > 15",
+            "caption \"where every word becomes evidence. Here\" independent CPS 15.5 > 15",
             "caption \"Because in the moment, you will not\" independent CPS 15.7 > 15",
             "caption \"invent good wording —\" independent CPS 16.3 > 15",
-            "caption \"you will revert to whatever you've\" independent CPS 16.2 > 15"
+            "caption \"you will revert to whatever you've\" independent CPS 16.2 > 15",
+            "caption \"It's\" independent duration 303ms outside [833, 5000]",
+            "caption \"false\" independent CPS 16.1 > 15",
+            "caption \"false\" independent duration 311ms outside [833, 5000]",
+            "caption \"from people\" independent duration 688ms outside [833, 5000]",
+            "caption \"stop is\" independent duration 453ms outside [833, 5000]",
+            "caption \"They\" independent CPS 15.7 > 15",
+            "caption \"They\" independent duration 254ms outside [833, 5000]",
+            "caption \"defense is\" independent duration 638ms outside [833, 5000]",
+            "caption \"they tell\" independent duration 574ms outside [833, 5000]",
+            "caption \"Court\" independent duration 355ms outside [833, 5000]",
+            "caption \"time those\" independent CPS 15.9 > 15",
+            "caption \"time those\" independent duration 567ms outside [833, 5000]"
           ]
         },
         {
           "name": "canon.captionPagesFromSrt drift + raw gate",
           "pass": false,
           "failures": [
-            "canonical raw pages fail gates: caption \"their rights during traffic stops not\" is 16.3 CPS > 15; caption \"because they're guilty, but because\" is 16.7 CPS > 15; caption \"they don't know what\" is 16.1 CPS > 15; caption \"moment where every word becomes evidence. Here\" is 15.6 CPS > 15; caption \"Because in the moment, you will not\" is 15.7 CPS > 15; caption \"invent good wording —\" is 16.3 CPS > 15; caption \"you will revert to whatever you've\" is 16.2 CPS > 15; caption \"their rights during traffic stops not\" independent CPS 16.3 > 15; caption \"because they're guilty, but because\" independent CPS 16.7 > 15; caption \"they don't know what\" independent CPS 16.1 > 15; caption \"moment where every word becomes evidence. Here\" independent CPS 15.6 > 15; caption \"Because in the moment, you will not\" independent CPS 15.7 > 15; caption \"invent good wording —\" independent CPS 16.3 > 15; caption \"you will revert to whatever you've\" independent CPS 16.2 > 15"
+            "canonical captionPagesFromSrt (120 pages) differs from production pages (120)"
           ]
         }
       ],
       "independent": {
         "pageCount": 120,
         "productionGate": false,
-        "independentFailures": 7,
+        "independentFailures": 21,
         "gaps": [
           {
             "index": 1,
             "gapFrames": 2,
-            "prevEndMs": 2575.3333333333335,
-            "nextStartMs": 2642,
+            "prevEndMs": 2390.3333333333335,
+            "nextStartMs": 2457,
             "gapMs": 66.66666666666667
           },
           {
@@ -2582,8 +2642,8 @@
           {
             "index": 5,
             "gapFrames": 2,
-            "prevEndMs": 10136.333333333334,
-            "nextStartMs": 10203,
+            "prevEndMs": 10017.333333333334,
+            "nextStartMs": 10084,
             "gapMs": 66.66666666666667
           },
           {
@@ -2624,8 +2684,8 @@
           {
             "index": 11,
             "gapFrames": 2,
-            "prevEndMs": 20316.333333333332,
-            "nextStartMs": 20383,
+            "prevEndMs": 20583.333333333332,
+            "nextStartMs": 20650,
             "gapMs": 66.66666666666667
           },
           {
@@ -2645,8 +2705,8 @@
           {
             "index": 14,
             "gapFrames": 2,
-            "prevEndMs": 23419.333333333332,
-            "nextStartMs": 23486,
+            "prevEndMs": 23793.333333333332,
+            "nextStartMs": 23860,
             "gapMs": 66.66666666666667
           },
           {
@@ -2673,8 +2733,8 @@
           {
             "index": 18,
             "gapFrames": 2,
-            "prevEndMs": 29471.333333333332,
-            "nextStartMs": 29538,
+            "prevEndMs": 29238.333333333332,
+            "nextStartMs": 29305,
             "gapMs": 66.66666666666667
           },
           {
@@ -2722,8 +2782,8 @@
           {
             "index": 25,
             "gapFrames": 2,
-            "prevEndMs": 38506.333333333336,
-            "nextStartMs": 38573,
+            "prevEndMs": 38777.333333333336,
+            "nextStartMs": 38844,
             "gapMs": 66.66666666666667
           },
           {
@@ -2792,8 +2852,8 @@
           {
             "index": 35,
             "gapFrames": 2,
-            "prevEndMs": 53361.333333333336,
-            "nextStartMs": 53428,
+            "prevEndMs": 53820.333333333336,
+            "nextStartMs": 53887,
             "gapMs": 66.66666666666667
           },
           {
@@ -2841,8 +2901,8 @@
           {
             "index": 42,
             "gapFrames": 2,
-            "prevEndMs": 64286.333333333336,
-            "nextStartMs": 64353,
+            "prevEndMs": 64856.333333333336,
+            "nextStartMs": 64923,
             "gapMs": 66.66666666666667
           },
           {
@@ -2967,8 +3027,8 @@
           {
             "index": 60,
             "gapFrames": 2,
-            "prevEndMs": 87983.33333333333,
-            "nextStartMs": 88050,
+            "prevEndMs": 88547.33333333333,
+            "nextStartMs": 88614,
             "gapMs": 66.66666666666667
           },
           {
@@ -3002,8 +3062,8 @@
           {
             "index": 65,
             "gapFrames": 2,
-            "prevEndMs": 94889.33333333333,
-            "nextStartMs": 94956,
+            "prevEndMs": 94511.33333333333,
+            "nextStartMs": 94578,
             "gapMs": 66.66666666666667
           },
           {
@@ -3030,8 +3090,8 @@
           {
             "index": 69,
             "gapFrames": 2,
-            "prevEndMs": 101312.33333333333,
-            "nextStartMs": 101379,
+            "prevEndMs": 101878.33333333333,
+            "nextStartMs": 101945,
             "gapMs": 66.66666666666667
           },
           {
@@ -3044,15 +3104,15 @@
           {
             "index": 71,
             "gapFrames": 2,
-            "prevEndMs": 103200.33333333333,
-            "nextStartMs": 103267,
+            "prevEndMs": 103892.33333333333,
+            "nextStartMs": 103959,
             "gapMs": 66.66666666666667
           },
           {
             "index": 72,
             "gapFrames": 2,
-            "prevEndMs": 104206.33333333333,
-            "nextStartMs": 104273,
+            "prevEndMs": 104647.33333333333,
+            "nextStartMs": 104714,
             "gapMs": 66.66666666666667
           },
           {
@@ -3114,8 +3174,8 @@
           {
             "index": 81,
             "gapFrames": 2,
-            "prevEndMs": 118494.33333333333,
-            "nextStartMs": 118561,
+            "prevEndMs": 119013.33333333333,
+            "nextStartMs": 119080,
             "gapMs": 66.66666666666667
           },
           {
@@ -3170,8 +3230,8 @@
           {
             "index": 89,
             "gapFrames": 2,
-            "prevEndMs": 127140.33333333333,
-            "nextStartMs": 127207,
+            "prevEndMs": 127881.33333333333,
+            "nextStartMs": 127948,
             "gapMs": 66.66666666666667
           },
           {
@@ -3212,8 +3272,8 @@
           {
             "index": 95,
             "gapFrames": 2,
-            "prevEndMs": 136914.33333333334,
-            "nextStartMs": 136981,
+            "prevEndMs": 137235.33333333334,
+            "nextStartMs": 137302,
             "gapMs": 66.66666666666667
           },
           {
@@ -3233,8 +3293,8 @@
           {
             "index": 98,
             "gapFrames": 2,
-            "prevEndMs": 139928.33333333334,
-            "nextStartMs": 139995,
+            "prevEndMs": 140248.33333333334,
+            "nextStartMs": 140315,
             "gapMs": 66.66666666666667
           },
           {
@@ -3268,8 +3328,8 @@
           {
             "index": 103,
             "gapFrames": 2,
-            "prevEndMs": 146529.33333333334,
-            "nextStartMs": 146596,
+            "prevEndMs": 147092.33333333334,
+            "nextStartMs": 147159,
             "gapMs": 66.66666666666667
           },
           {
@@ -3310,8 +3370,8 @@
           {
             "index": 109,
             "gapFrames": 2,
-            "prevEndMs": 153704.33333333334,
-            "nextStartMs": 153771,
+            "prevEndMs": 154172.33333333334,
+            "nextStartMs": 154239,
             "gapMs": 66.66666666666667
           },
           {
@@ -3338,8 +3398,8 @@
           {
             "index": 113,
             "gapFrames": 2,
-            "prevEndMs": 161819.33333333334,
-            "nextStartMs": 161886,
+            "prevEndMs": 162337.33333333334,
+            "nextStartMs": 162404,
             "gapMs": 66.66666666666667
           },
           {
@@ -3388,25 +3448,25 @@
         "pages": [
           {
             "index": 0,
-            "text": "Four lines. That's all it takes to",
-            "words": 7,
+            "text": "Four lines. That's all it takes",
+            "words": 6,
             "lines": [
               "25:Four lines. That's all it",
-              "8:takes to"
+              "5:takes"
             ],
-            "durationMs": 2525,
+            "durationMs": 2340,
             "cps": 11.1
           },
           {
             "index": 1,
-            "text": "protect your constitutional rights",
-            "words": 4,
+            "text": "to protect your constitutional rights",
+            "words": 5,
             "lines": [
-              "12:protect your",
+              "15:to protect your",
               "21:constitutional rights"
             ],
-            "durationMs": 2093,
-            "cps": 14.8
+            "durationMs": 2278,
+            "cps": 14.5
           },
           {
             "index": 2,
@@ -3431,25 +3491,25 @@
           },
           {
             "index": 4,
-            "text": "— and you could be handing a",
-            "words": 7,
+            "text": "— and you could be handing",
+            "words": 6,
             "lines": [
               "18:— and you could be",
-              "9:handing a"
+              "7:handing"
             ],
-            "durationMs": 1656,
-            "cps": 13.3
+            "durationMs": 1537,
+            "cps": 13.7
           },
           {
             "index": 5,
-            "text": "prosecutor the evidence they need.",
-            "words": 5,
+            "text": "a prosecutor the evidence they need.",
+            "words": 6,
             "lines": [
-              "23:prosecutor the evidence",
+              "25:a prosecutor the evidence",
               "10:they need."
             ],
-            "durationMs": 2012,
-            "cps": 14.9
+            "durationMs": 2131,
+            "cps": 14.5
           },
           {
             "index": 6,
@@ -3495,24 +3555,24 @@
           },
           {
             "index": 10,
-            "text": "because they're guilty, but because",
-            "words": 5,
+            "text": "because they're guilty, but because they",
+            "words": 6,
             "lines": [
               "23:because they're guilty,",
-              "11:but because"
+              "16:but because they"
             ],
-            "durationMs": 1859,
-            "cps": 16.7
+            "durationMs": 2126,
+            "cps": 16.5
           },
           {
             "index": 11,
-            "text": "they don't know what",
-            "words": 4,
+            "text": "don't know what",
+            "words": 3,
             "lines": [
-              "20:they don't know what"
+              "15:don't know what"
             ],
-            "durationMs": 1056,
-            "cps": 16.1
+            "durationMs": 789,
+            "cps": 16.5
           },
           {
             "index": 12,
@@ -3526,24 +3586,24 @@
           },
           {
             "index": 13,
-            "text": "talk too much in a",
-            "words": 5,
+            "text": "talk too much in a moment",
+            "words": 6,
             "lines": [
-              "18:talk too much in a"
+              "25:talk too much in a moment"
             ],
-            "durationMs": 950,
-            "cps": 14.7
+            "durationMs": 1324,
+            "cps": 15.1
           },
           {
             "index": 14,
-            "text": "moment where every word becomes evidence. Here",
-            "words": 7,
+            "text": "where every word becomes evidence. Here",
+            "words": 6,
             "lines": [
-              "23:moment where every word",
-              "22:becomes evidence. Here"
+              "24:where every word becomes",
+              "14:evidence. Here"
             ],
-            "durationMs": 2568,
-            "cps": 15.6
+            "durationMs": 2194,
+            "cps": 15.5
           },
           {
             "index": 15,
@@ -3567,23 +3627,23 @@
           },
           {
             "index": 17,
-            "text": "over decades of",
-            "words": 3,
+            "text": "over decades",
+            "words": 2,
             "lines": [
-              "15:over decades of"
+              "12:over decades"
             ],
-            "durationMs": 1175,
-            "cps": 11.1
+            "durationMs": 942,
+            "cps": 11.7
           },
           {
             "index": 18,
-            "text": "civil-rights",
-            "words": 1,
+            "text": "of civil-rights",
+            "words": 2,
             "lines": [
-              "12:civil-rights"
+              "15:of civil-rights"
             ],
-            "durationMs": 943,
-            "cps": 12.7
+            "durationMs": 1176,
+            "cps": 11.9
           },
           {
             "index": 19,
@@ -3637,23 +3697,23 @@
           },
           {
             "index": 24,
-            "text": "detained, or",
-            "words": 2,
+            "text": "detained, or am",
+            "words": 3,
             "lines": [
-              "12:detained, or"
+              "15:detained, or am"
             ],
-            "durationMs": 1107,
-            "cps": 9.9
+            "durationMs": 1378,
+            "cps": 9.4
           },
           {
             "index": 25,
-            "text": "am I free to go? Line",
-            "words": 6,
+            "text": "I free to go? Line",
+            "words": 5,
             "lines": [
-              "21:am I free to go? Line"
+              "18:I free to go? Line"
             ],
-            "durationMs": 1904,
-            "cps": 8.4
+            "durationMs": 1633,
+            "cps": 8.6
           },
           {
             "index": 26,
@@ -3738,25 +3798,24 @@
           },
           {
             "index": 34,
-            "text": "them. Practice them in the",
-            "words": 5,
+            "text": "them. Practice them in the mirror",
+            "words": 6,
             "lines": [
               "22:them. Practice them in",
-              "3:the"
+              "10:the mirror"
             ],
-            "durationMs": 1886,
-            "cps": 11.7
+            "durationMs": 2345,
+            "cps": 11.9
           },
           {
             "index": 35,
-            "text": "mirror until they feel boring.",
-            "words": 5,
+            "text": "until they feel boring.",
+            "words": 4,
             "lines": [
-              "22:mirror until they feel",
-              "7:boring."
+              "23:until they feel boring."
             ],
-            "durationMs": 1966,
-            "cps": 13.2
+            "durationMs": 1507,
+            "cps": 13.3
           },
           {
             "index": 36,
@@ -3813,24 +3872,24 @@
           },
           {
             "index": 41,
-            "text": "most people. A",
-            "words": 3,
+            "text": "most people. A routine",
+            "words": 4,
             "lines": [
-              "14:most people. A"
+              "22:most people. A routine"
             ],
-            "durationMs": 929,
-            "cps": 12.9
+            "durationMs": 1499,
+            "cps": 12.7
           },
           {
             "index": 42,
-            "text": "routine traffic stop is NOT considered",
-            "words": 6,
+            "text": "traffic stop is NOT considered",
+            "words": 5,
             "lines": [
-              "23:routine traffic stop is",
-              "14:NOT considered"
+              "19:traffic stop is NOT",
+              "10:considered"
             ],
-            "durationMs": 2710,
-            "cps": 12.2
+            "durationMs": 2140,
+            "cps": 12.1
           },
           {
             "index": 43,
@@ -3995,23 +4054,23 @@
           },
           {
             "index": 59,
-            "text": "over?' — is a",
-            "words": 4,
+            "text": "over?' — is a trap.",
+            "words": 5,
             "lines": [
-              "13:over?' — is a"
+              "19:over?' — is a trap."
             ],
-            "durationMs": 1064,
-            "cps": 9.4
+            "durationMs": 1628,
+            "cps": 9.2
           },
           {
             "index": 60,
-            "text": "trap. It's",
-            "words": 2,
+            "text": "It's",
+            "words": 1,
             "lines": [
-              "10:trap. It's"
+              "4:It's"
             ],
-            "durationMs": 867,
-            "cps": 10.4
+            "durationMs": 303,
+            "cps": 13.2
           },
           {
             "index": 61,
@@ -4046,23 +4105,23 @@
           },
           {
             "index": 64,
-            "text": "giving them evidence. The",
-            "words": 4,
+            "text": "giving them evidence.",
+            "words": 3,
             "lines": [
-              "25:giving them evidence. The"
+              "21:giving them evidence."
             ],
-            "durationMs": 1661,
-            "cps": 13.2
+            "durationMs": 1283,
+            "cps": 14.8
           },
           {
             "index": 65,
-            "text": "Innocence",
-            "words": 1,
+            "text": "The Innocence",
+            "words": 2,
             "lines": [
-              "9:Innocence"
+              "13:The Innocence"
             ],
-            "durationMs": 878,
-            "cps": 10.2
+            "durationMs": 1256,
+            "cps": 9.6
           },
           {
             "index": 66,
@@ -4076,64 +4135,65 @@
           },
           {
             "index": 67,
-            "text": "documented over 375 DNA",
-            "words": 4,
+            "text": "documented over DNA",
+            "words": 3,
             "lines": [
-              "23:documented over 375 DNA"
+              "19:documented over DNA"
             ],
             "durationMs": 2200,
             "cps": 9.1
           },
           {
             "index": 68,
-            "text": "exonerations. Roughly 30%",
+            "text": "exonerations. Roughly involved",
             "words": 3,
             "lines": [
-              "25:exonerations. Roughly 30%"
+              "21:exonerations. Roughly",
+              "8:involved"
             ],
-            "durationMs": 2011,
-            "cps": 11.4
+            "durationMs": 2577,
+            "cps": 12
           },
           {
             "index": 69,
-            "text": "involved false",
-            "words": 2,
+            "text": "false",
+            "words": 1,
             "lines": [
-              "14:involved false"
+              "5:false"
             ],
-            "durationMs": 877,
-            "cps": 14.8
+            "durationMs": 311,
+            "cps": 16.1
           },
           {
             "index": 70,
-            "text": "confessions or",
-            "words": 2,
+            "text": "confessions or statements",
+            "words": 3,
             "lines": [
-              "14:confessions or"
+              "25:confessions or statements"
             ],
-            "durationMs": 877,
-            "cps": 14.8
+            "durationMs": 1569,
+            "cps": 14.7
           },
           {
             "index": 71,
-            "text": "statements from",
+            "text": "from people",
             "words": 2,
             "lines": [
-              "15:statements from"
+              "11:from people"
             ],
-            "durationMs": 939,
-            "cps": 14.9
+            "durationMs": 688,
+            "cps": 14.5
           },
           {
             "index": 72,
-            "text": "people who thought talking would clear them.",
-            "words": 7,
+            "text": "who thought talking would clear them.",
+            "words": 6,
             "lines": [
-              "18:people who thought",
-              "25:talking would clear them."
+              "25:who thought talking would",
+              "11:clear them."
             ],
-            "durationMs": 2765,
-            "cps": 13.7
+            "durationMs": 2324,
+            "cps": 13.8
           },
           {
             "index": 73,
@@ -4209,23 +4269,23 @@
           },
           {
             "index": 80,
-            "text": "Your job during a",
-            "words": 4,
+            "text": "Your job during a traffic",
+            "words": 5,
             "lines": [
-              "17:Your job during a"
+              "25:Your job during a traffic"
             ],
-            "durationMs": 1103,
-            "cps": 12.7
+            "durationMs": 1622,
+            "cps": 12.9
           },
           {
             "index": 81,
-            "text": "traffic stop is",
-            "words": 3,
+            "text": "stop is",
+            "words": 2,
             "lines": [
-              "15:traffic stop is"
+              "7:stop is"
             ],
-            "durationMs": 972,
-            "cps": 13.4
+            "durationMs": 453,
+            "cps": 13.2
           },
           {
             "index": 82,
@@ -4289,23 +4349,23 @@
           },
           {
             "index": 88,
-            "text": "to you about",
-            "words": 3,
+            "text": "to you about evidence.",
+            "words": 4,
             "lines": [
-              "12:to you about"
+              "22:to you about evidence."
             ],
-            "durationMs": 897,
-            "cps": 11.1
+            "durationMs": 1638,
+            "cps": 11.6
           },
           {
             "index": 89,
-            "text": "evidence. They",
-            "words": 2,
+            "text": "They",
+            "words": 1,
             "lines": [
-              "14:evidence. They"
+              "4:They"
             ],
-            "durationMs": 995,
-            "cps": 13.1
+            "durationMs": 254,
+            "cps": 15.7
           },
           {
             "index": 90,
@@ -4352,23 +4412,23 @@
           },
           {
             "index": 94,
-            "text": "to be true. The",
-            "words": 4,
+            "text": "to be true. The only",
+            "words": 5,
             "lines": [
-              "15:to be true. The"
+              "20:to be true. The only"
             ],
-            "durationMs": 1113,
-            "cps": 10.8
+            "durationMs": 1434,
+            "cps": 11.2
           },
           {
             "index": 95,
-            "text": "only defense is",
-            "words": 3,
+            "text": "defense is",
+            "words": 2,
             "lines": [
-              "15:only defense is"
+              "10:defense is"
             ],
-            "durationMs": 959,
-            "cps": 13.6
+            "durationMs": 638,
+            "cps": 14.1
           },
           {
             "index": 96,
@@ -4382,23 +4442,23 @@
           },
           {
             "index": 97,
-            "text": "that depends on",
-            "words": 3,
+            "text": "that depends on what",
+            "words": 4,
             "lines": [
-              "15:that depends on"
+              "20:that depends on what"
             ],
-            "durationMs": 959,
-            "cps": 13.6
+            "durationMs": 1279,
+            "cps": 13.3
           },
           {
             "index": 98,
-            "text": "what they tell",
-            "words": 3,
+            "text": "they tell",
+            "words": 2,
             "lines": [
-              "14:what they tell"
+              "9:they tell"
             ],
-            "durationMs": 894,
-            "cps": 13.4
+            "durationMs": 574,
+            "cps": 13.9
           },
           {
             "index": 99,
@@ -4432,24 +4492,24 @@
           },
           {
             "index": 102,
-            "text": "must verbally invoke your rights. The",
-            "words": 6,
+            "text": "must verbally invoke your rights. The Supreme",
+            "words": 7,
             "lines": [
               "25:must verbally invoke your",
-              "11:rights. The"
+              "19:rights. The Supreme"
             ],
-            "durationMs": 2468,
-            "cps": 13
+            "durationMs": 3031,
+            "cps": 12.9
           },
           {
             "index": 103,
-            "text": "Supreme Court",
-            "words": 2,
+            "text": "Court",
+            "words": 1,
             "lines": [
-              "13:Supreme Court"
+              "5:Court"
             ],
-            "durationMs": 918,
-            "cps": 13.1
+            "durationMs": 355,
+            "cps": 14.1
           },
           {
             "index": 104,
@@ -4493,23 +4553,23 @@
           },
           {
             "index": 108,
-            "text": "have to say the",
-            "words": 4,
+            "text": "have to say the words.",
+            "words": 5,
             "lines": [
-              "15:have to say the"
+              "22:have to say the words."
             ],
-            "durationMs": 1004,
-            "cps": 11.9
+            "durationMs": 1472,
+            "cps": 12.2
           },
           {
             "index": 109,
-            "text": "words. Out loud.",
-            "words": 3,
+            "text": "Out loud.",
+            "words": 2,
             "lines": [
-              "16:words. Out loud."
+              "9:Out loud."
             ],
-            "durationMs": 1485,
-            "cps": 9.4
+            "durationMs": 1017,
+            "cps": 7.9
           },
           {
             "index": 110,
@@ -4534,23 +4594,23 @@
           },
           {
             "index": 112,
-            "text": "them. Because",
-            "words": 2,
+            "text": "them. Because the next",
+            "words": 4,
             "lines": [
-              "13:them. Because"
+              "22:them. Because the next"
             ],
-            "durationMs": 920,
-            "cps": 13
+            "durationMs": 1438,
+            "cps": 13.2
           },
           {
             "index": 113,
-            "text": "the next time those",
-            "words": 4,
+            "text": "time those",
+            "words": 2,
             "lines": [
-              "19:the next time those"
+              "10:time those"
             ],
-            "durationMs": 1085,
-            "cps": 14.7
+            "durationMs": 567,
+            "cps": 15.9
           },
           {
             "index": 114,
@@ -4623,13 +4683,34 @@
       "legacy": false,
       "warnings": 0,
       "beats": 96,
-      "pages": 146,
+      "pages": 145,
       "synthesized": false,
       "checks": [
         {
           "name": "prod.gateCaptions (H5-H8)",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "caption \"a city\" duration 685ms < 833ms",
+            "caption \"streets.\" is 16.0 CPS > 15",
+            "caption \"streets.\" duration 500ms < 833ms",
+            "caption \"Lane was\" duration 557ms < 833ms",
+            "caption \"His\" duration 504ms < 833ms",
+            "caption \"he\" duration 172ms < 833ms",
+            "caption \"watched\" duration 581ms < 833ms",
+            "caption \"long: it\" duration 590ms < 833ms",
+            "caption \"that\" duration 281ms < 833ms",
+            "caption \"was\" duration 331ms < 833ms",
+            "caption \"Pepys was\" duration 631ms < 833ms",
+            "caption \"raged\" duration 534ms < 833ms",
+            "caption \"simply\" duration 501ms < 833ms",
+            "caption \"there.\" is 15.1 CPS > 15",
+            "caption \"there.\" duration 396ms < 833ms",
+            "caption \"Charles II\" duration 693ms < 833ms",
+            "caption \"a vision. None of their plans were fully\" has 8 words > 7",
+            "caption \"street\" duration 509ms < 833ms",
+            "caption \"Every\" duration 460ms < 833ms",
+            "caption \"It\" duration 160ms < 833ms"
+          ]
         },
         {
           "name": "prod.gateMgHeadlineOverlap (H9)",
@@ -4638,19 +4719,62 @@
         },
         {
           "name": "ind.gateCaptionPages (H5-H8 + B2.4 + gap)",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "caption \"a city\" duration 685ms < 833ms",
+            "caption \"streets.\" is 16.0 CPS > 15",
+            "caption \"streets.\" duration 500ms < 833ms",
+            "caption \"Lane was\" duration 557ms < 833ms",
+            "caption \"His\" duration 504ms < 833ms",
+            "caption \"he\" duration 172ms < 833ms",
+            "caption \"watched\" duration 581ms < 833ms",
+            "caption \"long: it\" duration 590ms < 833ms",
+            "caption \"that\" duration 281ms < 833ms",
+            "caption \"was\" duration 331ms < 833ms",
+            "caption \"Pepys was\" duration 631ms < 833ms",
+            "caption \"raged\" duration 534ms < 833ms",
+            "caption \"simply\" duration 501ms < 833ms",
+            "caption \"there.\" is 15.1 CPS > 15",
+            "caption \"there.\" duration 396ms < 833ms",
+            "caption \"Charles II\" duration 693ms < 833ms",
+            "caption \"a vision. None of their plans were fully\" has 8 words > 7",
+            "caption \"street\" duration 509ms < 833ms",
+            "caption \"Every\" duration 460ms < 833ms",
+            "caption \"It\" duration 160ms < 833ms",
+            "caption \"a city\" independent duration 685ms outside [833, 5000]",
+            "caption \"streets.\" independent CPS 16.0 > 15",
+            "caption \"streets.\" independent duration 500ms outside [833, 5000]",
+            "caption \"Lane was\" independent duration 557ms outside [833, 5000]",
+            "caption \"His\" independent duration 504ms outside [833, 5000]",
+            "caption \"he\" independent duration 172ms outside [833, 5000]",
+            "caption \"watched\" independent duration 581ms outside [833, 5000]",
+            "caption \"long: it\" independent duration 590ms outside [833, 5000]",
+            "caption \"that\" independent duration 281ms outside [833, 5000]",
+            "caption \"was\" independent duration 331ms outside [833, 5000]",
+            "caption \"Pepys was\" independent duration 631ms outside [833, 5000]",
+            "caption \"raged\" independent duration 534ms outside [833, 5000]",
+            "caption \"simply\" independent duration 501ms outside [833, 5000]",
+            "caption \"there.\" independent CPS 15.1 > 15",
+            "caption \"there.\" independent duration 396ms outside [833, 5000]",
+            "caption \"Charles II\" independent duration 693ms outside [833, 5000]",
+            "caption \"a vision. None of their plans were fully\" has 8 words > 7 (independent)",
+            "caption \"street\" independent duration 509ms outside [833, 5000]",
+            "caption \"Every\" independent duration 460ms outside [833, 5000]",
+            "caption \"It\" independent duration 160ms outside [833, 5000]"
+          ]
         },
         {
           "name": "canon.captionPagesFromSrt drift + raw gate",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "canonical captionPagesFromSrt (146 pages) differs from production pages (145)"
+          ]
         }
       ],
       "independent": {
-        "pageCount": 146,
-        "productionGate": true,
-        "independentFailures": 0,
+        "pageCount": 145,
+        "productionGate": false,
+        "independentFailures": 20,
         "gaps": [
           {
             "index": 1,
@@ -4662,8 +4786,8 @@
           {
             "index": 2,
             "gapFrames": 2,
-            "prevEndMs": 6338.333333333333,
-            "nextStartMs": 6405,
+            "prevEndMs": 7338.333333333333,
+            "nextStartMs": 7405,
             "gapMs": 66.66666666666667
           },
           {
@@ -4711,8 +4835,8 @@
           {
             "index": 9,
             "gapFrames": 2,
-            "prevEndMs": 16084.333333333334,
-            "nextStartMs": 16151,
+            "prevEndMs": 17051.333333333332,
+            "nextStartMs": 17118,
             "gapMs": 66.66666666666667
           },
           {
@@ -4732,15 +4856,15 @@
           {
             "index": 12,
             "gapFrames": 2,
-            "prevEndMs": 22401.333333333332,
-            "nextStartMs": 22468,
+            "prevEndMs": 22968.333333333332,
+            "nextStartMs": 23035,
             "gapMs": 66.66666666666667
           },
           {
             "index": 13,
             "gapFrames": 2,
-            "prevEndMs": 23346.333333333332,
-            "nextStartMs": 23413,
+            "prevEndMs": 23913.333333333332,
+            "nextStartMs": 23980,
             "gapMs": 66.66666666666667
           },
           {
@@ -4767,22 +4891,22 @@
           {
             "index": 17,
             "gapFrames": 2,
-            "prevEndMs": 29438.333333333332,
-            "nextStartMs": 29505,
+            "prevEndMs": 29243.333333333332,
+            "nextStartMs": 29310,
             "gapMs": 66.66666666666667
           },
           {
             "index": 18,
             "gapFrames": 2,
-            "prevEndMs": 30416.333333333332,
-            "nextStartMs": 30483,
+            "prevEndMs": 31002.333333333332,
+            "nextStartMs": 31069,
             "gapMs": 66.66666666666667
           },
           {
             "index": 19,
             "gapFrames": 2,
-            "prevEndMs": 32942.333333333336,
-            "nextStartMs": 33009,
+            "prevEndMs": 33496.333333333336,
+            "nextStartMs": 33563,
             "gapMs": 66.66666666666667
           },
           {
@@ -4816,8 +4940,8 @@
           {
             "index": 24,
             "gapFrames": 2,
-            "prevEndMs": 38288.333333333336,
-            "nextStartMs": 38355,
+            "prevEndMs": 38959.333333333336,
+            "nextStartMs": 39026,
             "gapMs": 66.66666666666667
           },
           {
@@ -4900,8 +5024,8 @@
           {
             "index": 36,
             "gapFrames": 2,
-            "prevEndMs": 54106.333333333336,
-            "nextStartMs": 54173,
+            "prevEndMs": 54521.333333333336,
+            "nextStartMs": 54588,
             "gapMs": 66.66666666666667
           },
           {
@@ -4942,8 +5066,8 @@
           {
             "index": 42,
             "gapFrames": 2,
-            "prevEndMs": 63932.333333333336,
-            "nextStartMs": 63999,
+            "prevEndMs": 64651.333333333336,
+            "nextStartMs": 64718,
             "gapMs": 66.66666666666667
           },
           {
@@ -5005,8 +5129,8 @@
           {
             "index": 51,
             "gapFrames": 2,
-            "prevEndMs": 75699.33333333333,
-            "nextStartMs": 75766,
+            "prevEndMs": 75375.33333333333,
+            "nextStartMs": 75442,
             "gapMs": 66.66666666666667
           },
           {
@@ -5054,8 +5178,8 @@
           {
             "index": 58,
             "gapFrames": 2,
-            "prevEndMs": 84138.33333333333,
-            "nextStartMs": 84205,
+            "prevEndMs": 84503.33333333333,
+            "nextStartMs": 84570,
             "gapMs": 66.66666666666667
           },
           {
@@ -5068,8 +5192,8 @@
           {
             "index": 60,
             "gapFrames": 2,
-            "prevEndMs": 87174.33333333333,
-            "nextStartMs": 87241,
+            "prevEndMs": 86912.33333333333,
+            "nextStartMs": 86979,
             "gapMs": 66.66666666666667
           },
           {
@@ -5089,22 +5213,22 @@
           {
             "index": 63,
             "gapFrames": 2,
-            "prevEndMs": 91107.33333333333,
-            "nextStartMs": 91174,
+            "prevEndMs": 91566.33333333333,
+            "nextStartMs": 91633,
             "gapMs": 66.66666666666667
           },
           {
             "index": 64,
             "gapFrames": 2,
-            "prevEndMs": 92221.33333333333,
-            "nextStartMs": 92288,
+            "prevEndMs": 92680.33333333333,
+            "nextStartMs": 92747,
             "gapMs": 66.66666666666667
           },
           {
             "index": 65,
             "gapFrames": 2,
-            "prevEndMs": 93270.33333333333,
-            "nextStartMs": 93337,
+            "prevEndMs": 94122.33333333333,
+            "nextStartMs": 94189,
             "gapMs": 66.66666666666667
           },
           {
@@ -5117,8 +5241,8 @@
           {
             "index": 67,
             "gapFrames": 2,
-            "prevEndMs": 96009.33333333333,
-            "nextStartMs": 96076,
+            "prevEndMs": 96634.33333333333,
+            "nextStartMs": 96701,
             "gapMs": 66.66666666666667
           },
           {
@@ -5159,8 +5283,8 @@
           {
             "index": 73,
             "gapFrames": 2,
-            "prevEndMs": 102963.33333333333,
-            "nextStartMs": 103030,
+            "prevEndMs": 104059.33333333333,
+            "nextStartMs": 104126,
             "gapMs": 66.66666666666667
           },
           {
@@ -5201,8 +5325,8 @@
           {
             "index": 79,
             "gapFrames": 2,
-            "prevEndMs": 110780.33333333333,
-            "nextStartMs": 110847,
+            "prevEndMs": 110445.33333333333,
+            "nextStartMs": 110512,
             "gapMs": 66.66666666666667
           },
           {
@@ -5222,8 +5346,8 @@
           {
             "index": 82,
             "gapFrames": 2,
-            "prevEndMs": 114412.33333333333,
-            "nextStartMs": 114479,
+            "prevEndMs": 114901.33333333333,
+            "nextStartMs": 114968,
             "gapMs": 66.66666666666667
           },
           {
@@ -5236,22 +5360,22 @@
           {
             "index": 84,
             "gapFrames": 2,
-            "prevEndMs": 116648.33333333333,
-            "nextStartMs": 116715,
+            "prevEndMs": 117207.33333333333,
+            "nextStartMs": 117274,
             "gapMs": 66.66666666666667
           },
           {
             "index": 85,
             "gapFrames": 2,
-            "prevEndMs": 118604.33333333333,
-            "nextStartMs": 118671,
+            "prevEndMs": 119303.33333333333,
+            "nextStartMs": 119370,
             "gapMs": 66.66666666666667
           },
           {
             "index": 86,
             "gapFrames": 2,
-            "prevEndMs": 119703.33333333333,
-            "nextStartMs": 119770,
+            "prevEndMs": 120204.33333333333,
+            "nextStartMs": 120271,
             "gapMs": 66.66666666666667
           },
           {
@@ -5277,391 +5401,384 @@
           },
           {
             "index": 90,
-            "gapFrames": 2,
-            "prevEndMs": 126269.33333333333,
-            "nextStartMs": 126336,
-            "gapMs": 66.66666666666667
-          },
-          {
-            "index": 91,
-            "gapFrames": 2,
-            "prevEndMs": 127282.33333333333,
+            "gapFrames": 10,
+            "prevEndMs": 127006.33333333333,
             "nextStartMs": 127349,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 92,
+            "index": 91,
             "gapFrames": 2,
             "prevEndMs": 128204.33333333333,
             "nextStartMs": 128271,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 93,
+            "index": 92,
             "gapFrames": 2,
-            "prevEndMs": 130047.33333333333,
-            "nextStartMs": 130114,
+            "prevEndMs": 130784.33333333333,
+            "nextStartMs": 130851,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 94,
+            "index": 93,
             "gapFrames": 2,
             "prevEndMs": 133372.33333333334,
             "nextStartMs": 133439,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 95,
+            "index": 94,
             "gapFrames": 2,
             "prevEndMs": 135236.33333333334,
             "nextStartMs": 135303,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 96,
+            "index": 95,
             "gapFrames": 2,
             "prevEndMs": 136432.33333333334,
             "nextStartMs": 136499,
             "gapMs": 66.66666666666667
           },
           {
+            "index": 96,
+            "gapFrames": 2,
+            "prevEndMs": 138932.33333333334,
+            "nextStartMs": 138999,
+            "gapMs": 66.66666666666667
+          },
+          {
             "index": 97,
             "gapFrames": 2,
-            "prevEndMs": 139256.33333333334,
-            "nextStartMs": 139323,
+            "prevEndMs": 141851.33333333334,
+            "nextStartMs": 141918,
             "gapMs": 66.66666666666667
           },
           {
             "index": 98,
-            "gapFrames": 2,
-            "prevEndMs": 140392.33333333334,
-            "nextStartMs": 140459,
-            "gapMs": 66.66666666666667
-          },
-          {
-            "index": 99,
             "gapFrames": 2,
             "prevEndMs": 142419.33333333334,
             "nextStartMs": 142486,
             "gapMs": 66.66666666666667
           },
           {
+            "index": 99,
+            "gapFrames": 2,
+            "prevEndMs": 143826.33333333334,
+            "nextStartMs": 143893,
+            "gapMs": 66.66666666666667
+          },
+          {
             "index": 100,
             "gapFrames": 2,
-            "prevEndMs": 143495.33333333334,
-            "nextStartMs": 143562,
+            "prevEndMs": 145878.33333333334,
+            "nextStartMs": 145945,
             "gapMs": 66.66666666666667
           },
           {
             "index": 101,
-            "gapFrames": 2,
-            "prevEndMs": 145348.33333333334,
-            "nextStartMs": 145415,
-            "gapMs": 66.66666666666667
-          },
-          {
-            "index": 102,
             "gapFrames": 2,
             "prevEndMs": 146341.33333333334,
             "nextStartMs": 146408,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 103,
+            "index": 102,
             "gapFrames": 2,
             "prevEndMs": 147511.33333333334,
             "nextStartMs": 147578,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 104,
+            "index": 103,
             "gapFrames": 2,
             "prevEndMs": 148500.33333333334,
             "nextStartMs": 148567,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 105,
+            "index": 104,
             "gapFrames": 2,
             "prevEndMs": 149400.33333333334,
             "nextStartMs": 149467,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 106,
+            "index": 105,
             "gapFrames": 2,
             "prevEndMs": 150390.33333333334,
             "nextStartMs": 150457,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 107,
+            "index": 106,
             "gapFrames": 2,
             "prevEndMs": 152804.33333333334,
             "nextStartMs": 152871,
             "gapMs": 66.66666666666667
           },
           {
+            "index": 107,
+            "gapFrames": 2,
+            "prevEndMs": 155073.33333333334,
+            "nextStartMs": 155140,
+            "gapMs": 66.66666666666667
+          },
+          {
             "index": 108,
             "gapFrames": 2,
-            "prevEndMs": 154312.33333333334,
-            "nextStartMs": 154379,
+            "prevEndMs": 157493.33333333334,
+            "nextStartMs": 157560,
             "gapMs": 66.66666666666667
           },
           {
             "index": 109,
-            "gapFrames": 2,
-            "prevEndMs": 157147.33333333334,
-            "nextStartMs": 157214,
-            "gapMs": 66.66666666666667
-          },
-          {
-            "index": 110,
             "gapFrames": 2,
             "prevEndMs": 158253.33333333334,
             "nextStartMs": 158320,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 111,
+            "index": 110,
             "gapFrames": 2,
             "prevEndMs": 161605.33333333334,
             "nextStartMs": 161672,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 112,
+            "index": 111,
             "gapFrames": 2,
-            "prevEndMs": 164146.33333333334,
-            "nextStartMs": 164213,
+            "prevEndMs": 164005.33333333334,
+            "nextStartMs": 164072,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 113,
+            "index": 112,
             "gapFrames": 2,
             "prevEndMs": 167196.33333333334,
             "nextStartMs": 167263,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 114,
+            "index": 113,
             "gapFrames": 2,
-            "prevEndMs": 168246.33333333334,
-            "nextStartMs": 168313,
+            "prevEndMs": 168575.33333333334,
+            "nextStartMs": 168642,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 115,
+            "index": 114,
             "gapFrames": 2,
             "prevEndMs": 169151.33333333334,
             "nextStartMs": 169218,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 116,
+            "index": 115,
             "gapFrames": 2,
             "prevEndMs": 170056.33333333334,
             "nextStartMs": 170123,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 117,
+            "index": 116,
             "gapFrames": 2,
             "prevEndMs": 172549.33333333334,
             "nextStartMs": 172616,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 118,
+            "index": 117,
             "gapFrames": 2,
             "prevEndMs": 174872.33333333334,
             "nextStartMs": 174939,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 119,
+            "index": 118,
             "gapFrames": 2,
             "prevEndMs": 176615.33333333334,
             "nextStartMs": 176682,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 120,
+            "index": 119,
             "gapFrames": 2,
             "prevEndMs": 177559.33333333334,
             "nextStartMs": 177626,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 121,
+            "index": 120,
             "gapFrames": 2,
             "prevEndMs": 178664.33333333334,
             "nextStartMs": 178731,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 122,
+            "index": 121,
             "gapFrames": 2,
             "prevEndMs": 180523.33333333334,
             "nextStartMs": 180590,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 123,
+            "index": 122,
             "gapFrames": 2,
             "prevEndMs": 181718.33333333334,
             "nextStartMs": 181785,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 124,
+            "index": 123,
             "gapFrames": 2,
             "prevEndMs": 182913.33333333334,
             "nextStartMs": 182980,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 125,
+            "index": 124,
             "gapFrames": 2,
             "prevEndMs": 185767.33333333334,
             "nextStartMs": 185834,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 126,
+            "index": 125,
             "gapFrames": 2,
-            "prevEndMs": 186962.33333333334,
-            "nextStartMs": 187029,
+            "prevEndMs": 187626.33333333334,
+            "nextStartMs": 187693,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 127,
+            "index": 126,
             "gapFrames": 2,
             "prevEndMs": 188798.33333333334,
             "nextStartMs": 188865,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 128,
+            "index": 127,
             "gapFrames": 2,
             "prevEndMs": 190478.33333333334,
             "nextStartMs": 190545,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 129,
+            "index": 128,
             "gapFrames": 2,
             "prevEndMs": 192770.33333333334,
             "nextStartMs": 192837,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 130,
+            "index": 129,
             "gapFrames": 2,
-            "prevEndMs": 193950.33333333334,
-            "nextStartMs": 194017,
+            "prevEndMs": 194374.33333333334,
+            "nextStartMs": 194441,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 131,
+            "index": 130,
             "gapFrames": 2,
             "prevEndMs": 195649.33333333334,
             "nextStartMs": 195716,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 132,
+            "index": 131,
             "gapFrames": 2,
             "prevEndMs": 196658.33333333334,
             "nextStartMs": 196725,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 133,
+            "index": 132,
             "gapFrames": 2,
             "prevEndMs": 197980.33333333334,
             "nextStartMs": 198047,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 134,
+            "index": 133,
             "gapFrames": 2,
             "prevEndMs": 200715.33333333334,
             "nextStartMs": 200782,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 135,
+            "index": 134,
             "gapFrames": 2,
             "prevEndMs": 201672.33333333334,
             "nextStartMs": 201739,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 136,
+            "index": 135,
             "gapFrames": 2,
             "prevEndMs": 202628.33333333334,
             "nextStartMs": 202695,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 137,
+            "index": 136,
             "gapFrames": 2,
-            "prevEndMs": 203585.33333333334,
-            "nextStartMs": 203652,
+            "prevEndMs": 204031.33333333334,
+            "nextStartMs": 204098,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 138,
+            "index": 137,
             "gapFrames": 2,
             "prevEndMs": 204558.33333333334,
             "nextStartMs": 204625,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 139,
+            "index": 138,
             "gapFrames": 2,
             "prevEndMs": 205613.33333333334,
             "nextStartMs": 205680,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 140,
+            "index": 139,
             "gapFrames": 2,
             "prevEndMs": 206667.33333333334,
             "nextStartMs": 206734,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 141,
+            "index": 140,
             "gapFrames": 2,
             "prevEndMs": 208532.33333333334,
             "nextStartMs": 208599,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 142,
+            "index": 141,
             "gapFrames": 2,
-            "prevEndMs": 209576.33333333334,
-            "nextStartMs": 209643,
+            "prevEndMs": 210322.33333333334,
+            "nextStartMs": 210389,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 143,
+            "index": 142,
             "gapFrames": 2,
             "prevEndMs": 210549.33333333334,
             "nextStartMs": 210616,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 144,
+            "index": 143,
             "gapFrames": 2,
             "prevEndMs": 211686.33333333334,
             "nextStartMs": 211753,
             "gapMs": 66.66666666666667
           },
           {
-            "index": 145,
+            "index": 144,
             "gapFrames": 2,
             "prevEndMs": 212823.33333333334,
             "nextStartMs": 212890,
@@ -5671,35 +5788,34 @@
         "pages": [
           {
             "index": 0,
-            "text": "In 1666, a single spark in a",
-            "words": 7,
+            "text": "In a single spark in a",
+            "words": 6,
             "lines": [
-              "23:In 1666, a single spark",
-              "4:in a"
+              "22:In a single spark in a"
             ],
             "durationMs": 2835,
             "cps": 7.8
           },
           {
             "index": 1,
-            "text": "bakery destroyed 13,000 homes, 87",
-            "words": 5,
+            "text": "bakery destroyed 13,000 homes, 87 churches,",
+            "words": 6,
             "lines": [
               "23:bakery destroyed 13,000",
-              "9:homes, 87"
+              "19:homes, 87 churches,"
             ],
-            "durationMs": 3336,
-            "cps": 8.7
+            "durationMs": 4336,
+            "cps": 8.8
           },
           {
             "index": 2,
-            "text": "churches, and most",
-            "words": 3,
+            "text": "and most",
+            "words": 2,
             "lines": [
-              "18:churches, and most"
+              "8:and most"
             ],
-            "durationMs": 1834,
-            "cps": 8.7
+            "durationMs": 834,
+            "cps": 8.4
           },
           {
             "index": 3,
@@ -5753,22 +5869,22 @@
           },
           {
             "index": 8,
-            "text": "London in",
-            "words": 2,
+            "text": "London in was",
+            "words": 3,
             "lines": [
-              "9:London in"
+              "13:London in was"
             ],
-            "durationMs": 1007,
-            "cps": 7.9
+            "durationMs": 1974,
+            "cps": 7.6
           },
           {
             "index": 9,
-            "text": "1666 was a city",
-            "words": 4,
+            "text": "a city",
+            "words": 2,
             "lines": [
-              "15:1666 was a city"
+              "6:a city"
             ],
-            "durationMs": 1652,
+            "durationMs": 685,
             "cps": 7.3
           },
           {
@@ -5784,34 +5900,34 @@
           },
           {
             "index": 11,
-            "text": "buildings pressed shoulder to",
-            "words": 4,
+            "text": "buildings pressed shoulder to shoulder",
+            "words": 5,
             "lines": [
               "17:buildings pressed",
-              "11:shoulder to"
+              "20:shoulder to shoulder"
             ],
-            "durationMs": 1823,
-            "cps": 14.3
+            "durationMs": 2390,
+            "cps": 14.2
           },
           {
             "index": 12,
-            "text": "shoulder along",
+            "text": "along medieval",
             "words": 2,
             "lines": [
-              "14:shoulder along"
+              "14:along medieval"
             ],
             "durationMs": 878,
             "cps": 14.8
           },
           {
             "index": 13,
-            "text": "medieval streets.",
-            "words": 2,
+            "text": "streets.",
+            "words": 1,
             "lines": [
-              "17:medieval streets."
+              "8:streets."
             ],
-            "durationMs": 1067,
-            "cps": 15
+            "durationMs": 500,
+            "cps": 16
           },
           {
             "index": 14,
@@ -5835,44 +5951,45 @@
           },
           {
             "index": 16,
-            "text": "and bone-dry. The wood was seasoned to",
-            "words": 7,
+            "text": "and bone-dry. The wood was seasoned",
+            "words": 6,
             "lines": [
               "22:and bone-dry. The wood",
-              "15:was seasoned to"
+              "12:was seasoned"
             ],
-            "durationMs": 2621,
-            "cps": 12.2
+            "durationMs": 2426,
+            "cps": 12.4
           },
           {
             "index": 17,
-            "text": "perfection for",
-            "words": 2,
+            "text": "to perfection for burning.",
+            "words": 4,
             "lines": [
-              "14:perfection for"
+              "17:to perfection for",
+              "8:burning."
             ],
-            "durationMs": 911,
-            "cps": 14.3
+            "durationMs": 1692,
+            "cps": 13.6
           },
           {
             "index": 18,
-            "text": "burning. Thomas Farriner's bakery on",
+            "text": "Thomas Farriner's bakery on Pudding",
             "words": 5,
             "lines": [
-              "15:burning. Thomas",
-              "20:Farriner's bakery on"
+              "24:Thomas Farriner's bakery",
+              "10:on Pudding"
             ],
-            "durationMs": 2459,
-            "cps": 13
+            "durationMs": 2427,
+            "cps": 12.8
           },
           {
             "index": 19,
-            "text": "Pudding Lane was",
-            "words": 3,
+            "text": "Lane was",
+            "words": 2,
             "lines": [
-              "16:Pudding Lane was"
+              "8:Lane was"
             ],
-            "durationMs": 1111,
+            "durationMs": 557,
             "cps": 12.6
           },
           {
@@ -5907,31 +6024,31 @@
           },
           {
             "index": 23,
-            "text": "unattended on",
-            "words": 2,
+            "text": "unattended on Saturday",
+            "words": 3,
             "lines": [
-              "13:unattended on"
+              "22:unattended on Saturday"
             ],
-            "durationMs": 976,
-            "cps": 12.3
+            "durationMs": 1647,
+            "cps": 12.1
           },
           {
             "index": 24,
-            "text": "Saturday night. By dawn on Sunday, September",
-            "words": 7,
+            "text": "night. By dawn on Sunday, September",
+            "words": 6,
             "lines": [
-              "23:Saturday night. By dawn",
-              "20:on Sunday, September"
+              "25:night. By dawn on Sunday,",
+              "9:September"
             ],
-            "durationMs": 3495,
-            "cps": 10.9
+            "durationMs": 2824,
+            "cps": 10.6
           },
           {
             "index": 25,
-            "text": "2nd, flames",
-            "words": 2,
+            "text": "flames",
+            "words": 1,
             "lines": [
-              "11:2nd, flames"
+              "6:flames"
             ],
             "durationMs": 914,
             "cps": 10.9
@@ -6029,23 +6146,23 @@
           },
           {
             "index": 35,
-            "text": "woken with the",
-            "words": 3,
+            "text": "woken with the news.",
+            "words": 4,
             "lines": [
-              "14:woken with the"
+              "20:woken with the news."
             ],
-            "durationMs": 972,
+            "durationMs": 1387,
             "cps": 12.3
           },
           {
             "index": 36,
-            "text": "news. His",
-            "words": 2,
+            "text": "His",
+            "words": 1,
             "lines": [
-              "9:news. His"
+              "3:His"
             ],
-            "durationMs": 919,
-            "cps": 8.7
+            "durationMs": 504,
+            "cps": 5.9
           },
           {
             "index": 37,
@@ -6090,23 +6207,23 @@
           },
           {
             "index": 41,
-            "text": "firebreaks. By",
-            "words": 2,
+            "text": "firebreaks. By the time",
+            "words": 4,
             "lines": [
-              "14:firebreaks. By"
+              "23:firebreaks. By the time"
             ],
-            "durationMs": 1017,
-            "cps": 12.8
+            "durationMs": 1736,
+            "cps": 11.5
           },
           {
             "index": 42,
-            "text": "the time he",
-            "words": 3,
+            "text": "he",
+            "words": 1,
             "lines": [
-              "11:the time he"
+              "2:he"
             ],
-            "durationMs": 891,
-            "cps": 10.1
+            "durationMs": 172,
+            "cps": 11.6
           },
           {
             "index": 43,
@@ -6180,23 +6297,23 @@
           },
           {
             "index": 50,
-            "text": "watched the",
-            "words": 2,
+            "text": "watched",
+            "words": 1,
             "lines": [
-              "11:watched the"
+              "7:watched"
             ],
-            "durationMs": 905,
-            "cps": 11
+            "durationMs": 581,
+            "cps": 12
           },
           {
             "index": 51,
-            "text": "destruction",
-            "words": 1,
+            "text": "the destruction",
+            "words": 2,
             "lines": [
-              "11:destruction"
+              "15:the destruction"
             ],
-            "durationMs": 905,
-            "cps": 12.2
+            "durationMs": 1229,
+            "cps": 11.4
           },
           {
             "index": 52,
@@ -6251,44 +6368,43 @@
           },
           {
             "index": 57,
-            "text": "of fire above a",
-            "words": 4,
+            "text": "of fire above a mile",
+            "words": 5,
             "lines": [
-              "15:of fire above a"
+              "20:of fire above a mile"
             ],
-            "durationMs": 1100,
+            "durationMs": 1465,
             "cps": 10.9
           },
           {
             "index": 58,
-            "text": "mile long: it",
-            "words": 3,
+            "text": "long: it",
+            "words": 2,
             "lines": [
-              "13:mile long: it"
+              "8:long: it"
             ],
-            "durationMs": 955,
-            "cps": 11.5
+            "durationMs": 590,
+            "cps": 11.9
           },
           {
             "index": 59,
-            "text": "made me weep to see it. The",
-            "words": 7,
+            "text": "made me weep to see it.",
+            "words": 6,
             "lines": [
-              "23:made me weep to see it.",
-              "3:The"
+              "23:made me weep to see it."
             ],
-            "durationMs": 1947,
-            "cps": 10.8
+            "durationMs": 1685,
+            "cps": 10.7
           },
           {
             "index": 60,
-            "text": "churches, houses",
-            "words": 2,
+            "text": "The churches, houses",
+            "words": 3,
             "lines": [
-              "16:churches, houses"
+              "20:The churches, houses"
             ],
-            "durationMs": 1047,
-            "cps": 14.3
+            "durationMs": 1309,
+            "cps": 13.7
           },
           {
             "index": 61,
@@ -6302,65 +6418,64 @@
           },
           {
             "index": 62,
-            "text": "and flaming at once, and a",
-            "words": 6,
+            "text": "and flaming at once, and a horrid",
+            "words": 7,
             "lines": [
               "24:and flaming at once, and",
-              "1:a"
+              "8:a horrid"
             ],
-            "durationMs": 1703,
-            "cps": 12.3
+            "durationMs": 2162,
+            "cps": 12.5
           },
           {
             "index": 63,
-            "text": "horrid noise the",
+            "text": "noise the flames",
             "words": 3,
             "lines": [
-              "16:horrid noise the"
+              "16:noise the flames"
             ],
             "durationMs": 1047,
             "cps": 13.4
           },
           {
             "index": 64,
-            "text": "flames made and",
-            "words": 3,
+            "text": "made and the cracking",
+            "words": 4,
             "lines": [
-              "15:flames made and"
+              "21:made and the cracking"
             ],
-            "durationMs": 982,
-            "cps": 13.2
+            "durationMs": 1375,
+            "cps": 13.1
           },
           {
             "index": 65,
-            "text": "the cracking of the houses.",
-            "words": 5,
+            "text": "of the houses.",
+            "words": 3,
             "lines": [
-              "19:the cracking of the",
-              "7:houses."
+              "14:of the houses."
             ],
-            "durationMs": 1768,
-            "cps": 13
+            "durationMs": 916,
+            "cps": 13.1
           },
           {
             "index": 66,
-            "text": "Pepys made a",
-            "words": 3,
+            "text": "Pepys made a decision",
+            "words": 4,
             "lines": [
-              "12:Pepys made a"
+              "21:Pepys made a decision"
             ],
-            "durationMs": 837,
-            "cps": 11.9
+            "durationMs": 1462,
+            "cps": 12.3
           },
           {
             "index": 67,
-            "text": "decision that",
-            "words": 2,
+            "text": "that",
+            "words": 1,
             "lines": [
-              "13:decision that"
+              "4:that"
             ],
-            "durationMs": 906,
-            "cps": 13.2
+            "durationMs": 281,
+            "cps": 14.2
           },
           {
             "index": 68,
@@ -6404,23 +6519,24 @@
           },
           {
             "index": 72,
-            "text": "in his garden. But in",
-            "words": 5,
+            "text": "in his garden. But in this",
+            "words": 6,
             "lines": [
-              "21:in his garden. But in"
+              "21:in his garden. But in",
+              "4:this"
             ],
-            "durationMs": 1674,
-            "cps": 10.2
+            "durationMs": 2770,
+            "cps": 9.4
           },
           {
             "index": 73,
-            "text": "1666, this was",
-            "words": 3,
+            "text": "was",
+            "words": 1,
             "lines": [
-              "14:1666, this was"
+              "3:was"
             ],
-            "durationMs": 1427,
-            "cps": 8.4
+            "durationMs": 331,
+            "cps": 9.1
           },
           {
             "index": 74,
@@ -6464,23 +6580,23 @@
           },
           {
             "index": 78,
-            "text": "expensive, and",
-            "words": 2,
-            "lines": [
-              "14:expensive, and"
-            ],
-            "durationMs": 1189,
-            "cps": 10.9
-          },
-          {
-            "index": 79,
-            "text": "remarkably",
+            "text": "expensive,",
             "words": 1,
             "lines": [
-              "10:remarkably"
+              "10:expensive,"
             ],
             "durationMs": 854,
             "cps": 11.7
+          },
+          {
+            "index": 79,
+            "text": "and remarkably",
+            "words": 2,
+            "lines": [
+              "14:and remarkably"
+            ],
+            "durationMs": 1189,
+            "cps": 10.9
           },
           {
             "index": 80,
@@ -6494,64 +6610,64 @@
           },
           {
             "index": 81,
-            "text": "descending into",
-            "words": 2,
+            "text": "descending into chaos,",
+            "words": 3,
             "lines": [
-              "15:descending into"
+              "22:descending into chaos,"
             ],
-            "durationMs": 1051,
-            "cps": 13.3
+            "durationMs": 1540,
+            "cps": 13
           },
           {
             "index": 82,
-            "text": "chaos, Pepys was",
-            "words": 3,
+            "text": "Pepys was",
+            "words": 2,
             "lines": [
-              "16:chaos, Pepys was"
+              "9:Pepys was"
             ],
-            "durationMs": 1120,
-            "cps": 12.5
+            "durationMs": 631,
+            "cps": 12.7
           },
           {
             "index": 83,
-            "text": "safeguarding a",
-            "words": 2,
+            "text": "safeguarding a compact",
+            "words": 3,
             "lines": [
-              "14:safeguarding a"
+              "22:safeguarding a compact"
             ],
-            "durationMs": 982,
-            "cps": 13.2
+            "durationMs": 1541,
+            "cps": 13
           },
           {
             "index": 84,
-            "text": "compact store of wealth and",
+            "text": "store of wealth and calories.",
             "words": 5,
             "lines": [
-              "23:compact store of wealth",
-              "3:and"
+              "19:store of wealth and",
+              "9:calories."
             ],
-            "durationMs": 1889,
-            "cps": 12.2
+            "durationMs": 2029,
+            "cps": 12.3
           },
           {
             "index": 85,
-            "text": "calories. The",
+            "text": "The fire",
             "words": 2,
             "lines": [
-              "13:calories. The"
+              "8:The fire"
             ],
-            "durationMs": 1032,
-            "cps": 11.6
+            "durationMs": 834,
+            "cps": 8.4
           },
           {
             "index": 86,
-            "text": "fire raged",
-            "words": 2,
+            "text": "raged",
+            "words": 1,
             "lines": [
-              "10:fire raged"
+              "5:raged"
             ],
-            "durationMs": 1035,
-            "cps": 8.7
+            "durationMs": 534,
+            "cps": 9.4
           },
           {
             "index": 87,
@@ -6576,23 +6692,13 @@
           },
           {
             "index": 89,
-            "text": "in its path: 13,200",
+            "text": "in its path: houses,",
             "words": 4,
             "lines": [
-              "19:in its path: 13,200"
+              "20:in its path: houses,"
             ],
-            "durationMs": 1776,
-            "cps": 9
-          },
-          {
-            "index": 90,
-            "text": "houses, 87",
-            "words": 2,
-            "lines": [
-              "10:houses, 87"
-            ],
-            "durationMs": 946,
-            "cps": 9.5
+            "durationMs": 2513,
+            "cps": 9.2
           },
           {
             "index": 91,
@@ -6606,24 +6712,25 @@
           },
           {
             "index": 92,
-            "text": "most of the City of",
-            "words": 5,
+            "text": "most of the City of London.",
+            "words": 6,
             "lines": [
-              "19:most of the City of"
+              "19:most of the City of",
+              "7:London."
             ],
-            "durationMs": 1776,
-            "cps": 8.4
+            "durationMs": 2513,
+            "cps": 8.8
           },
           {
             "index": 93,
-            "text": "London. Only six deaths were officially",
-            "words": 6,
+            "text": "Only six deaths were officially",
+            "words": 5,
             "lines": [
-              "23:London. Only six deaths",
-              "15:were officially"
+              "20:Only six deaths were",
+              "10:officially"
             ],
-            "durationMs": 3258,
-            "cps": 10.4
+            "durationMs": 2521,
+            "cps": 10.7
           },
           {
             "index": 94,
@@ -6647,65 +6754,66 @@
           },
           {
             "index": 96,
-            "text": "number was much higher. The poor, the",
-            "words": 7,
+            "text": "number was much higher. The poor,",
+            "words": 6,
             "lines": [
               "23:number was much higher.",
-              "13:The poor, the"
+              "9:The poor,"
             ],
-            "durationMs": 2757,
-            "cps": 11.2
+            "durationMs": 2433,
+            "cps": 11.5
           },
           {
             "index": 97,
-            "text": "homeless, the",
-            "words": 2,
+            "text": "the homeless, the undocumented—they",
+            "words": 4,
             "lines": [
-              "13:homeless, the"
+              "17:the homeless, the",
+              "17:undocumented—they"
             ],
-            "durationMs": 1069,
+            "durationMs": 2852,
             "cps": 11.2
           },
           {
             "index": 98,
-            "text": "undocumented—they simply",
-            "words": 2,
+            "text": "simply",
+            "words": 1,
             "lines": [
-              "24:undocumented—they simply"
+              "6:simply"
             ],
-            "durationMs": 1960,
-            "cps": 11.7
+            "durationMs": 501,
+            "cps": 12
           },
           {
             "index": 99,
-            "text": "vanished. The",
-            "words": 2,
+            "text": "vanished. The fire",
+            "words": 3,
             "lines": [
-              "13:vanished. The"
+              "18:vanished. The fire"
             ],
-            "durationMs": 1009,
+            "durationMs": 1340,
             "cps": 11.9
           },
           {
             "index": 100,
-            "text": "fire reached the Thames and",
+            "text": "reached the Thames and stopped",
             "words": 5,
             "lines": [
-              "23:fire reached the Thames",
-              "3:and"
+              "22:reached the Thames and",
+              "7:stopped"
             ],
-            "durationMs": 1786,
-            "cps": 12.9
+            "durationMs": 1985,
+            "cps": 13.1
           },
           {
             "index": 101,
-            "text": "stopped there.",
-            "words": 2,
+            "text": "there.",
+            "words": 1,
             "lines": [
-              "14:stopped there."
+              "6:there."
             ],
-            "durationMs": 926,
-            "cps": 14
+            "durationMs": 396,
+            "cps": 15.1
           },
           {
             "index": 102,
@@ -6760,34 +6868,35 @@
           },
           {
             "index": 107,
-            "text": "annihilation. In the",
-            "words": 3,
+            "text": "annihilation. In the aftermath,",
+            "words": 4,
             "lines": [
-              "20:annihilation. In the"
+              "20:annihilation. In the",
+              "10:aftermath,"
             ],
-            "durationMs": 1441,
-            "cps": 12.5
+            "durationMs": 2202,
+            "cps": 12.7
           },
           {
             "index": 108,
-            "text": "aftermath, three plans were presented to",
+            "text": "three plans were presented to King",
             "words": 6,
             "lines": [
-              "22:aftermath, three plans",
-              "17:were presented to"
+              "16:three plans were",
+              "17:presented to King"
             ],
-            "durationMs": 2768,
-            "cps": 12.6
+            "durationMs": 2353,
+            "cps": 12.3
           },
           {
             "index": 109,
-            "text": "King Charles II",
-            "words": 3,
+            "text": "Charles II",
+            "words": 2,
             "lines": [
-              "15:King Charles II"
+              "10:Charles II"
             ],
-            "durationMs": 1039,
-            "cps": 12.5
+            "durationMs": 693,
+            "cps": 13
           },
           {
             "index": 110,
@@ -6802,45 +6911,45 @@
           },
           {
             "index": 111,
-            "text": "Evelyn, and Robert Hooke each had a",
-            "words": 7,
+            "text": "Evelyn, and Robert Hooke each had",
+            "words": 6,
             "lines": [
               "24:Evelyn, and Robert Hooke",
-              "10:each had a"
+              "8:each had"
             ],
-            "durationMs": 2474,
-            "cps": 11.7
+            "durationMs": 2333,
+            "cps": 12
           },
           {
             "index": 112,
-            "text": "vision. None of their plans were fully",
-            "words": 7,
+            "text": "a vision. None of their plans were fully",
+            "words": 8,
             "lines": [
-              "21:vision. None of their",
+              "23:a vision. None of their",
               "16:plans were fully"
             ],
-            "durationMs": 2983,
-            "cps": 10.7
+            "durationMs": 3124,
+            "cps": 10.6
           },
           {
             "index": 113,
-            "text": "adopted. The",
-            "words": 2,
+            "text": "adopted. The old",
+            "words": 3,
             "lines": [
-              "12:adopted. The"
+              "16:adopted. The old"
             ],
-            "durationMs": 983,
-            "cps": 11.2
+            "durationMs": 1312,
+            "cps": 10.7
           },
           {
             "index": 114,
-            "text": "old street",
-            "words": 2,
+            "text": "street",
+            "words": 1,
             "lines": [
-              "10:old street"
+              "6:street"
             ],
-            "durationMs": 838,
-            "cps": 10.7
+            "durationMs": 509,
+            "cps": 11.8
           },
           {
             "index": 115,
@@ -6948,23 +7057,24 @@
           },
           {
             "index": 125,
-            "text": "created space for",
-            "words": 3,
+            "text": "created space for something",
+            "words": 4,
             "lines": [
-              "17:created space for"
+              "17:created space for",
+              "9:something"
             ],
-            "durationMs": 1128,
-            "cps": 13.3
+            "durationMs": 1792,
+            "cps": 13.4
           },
           {
             "index": 126,
-            "text": "something new. The London",
-            "words": 4,
+            "text": "new. The London",
+            "words": 3,
             "lines": [
-              "25:something new. The London"
+              "15:new. The London"
             ],
-            "durationMs": 1769,
-            "cps": 12.4
+            "durationMs": 1105,
+            "cps": 11.8
           },
           {
             "index": 127,
@@ -6989,23 +7099,23 @@
           },
           {
             "index": 129,
-            "text": "ambitious. The",
-            "words": 2,
+            "text": "ambitious. The fire",
+            "words": 3,
             "lines": [
-              "14:ambitious. The"
+              "19:ambitious. The fire"
             ],
-            "durationMs": 1113,
-            "cps": 11.7
+            "durationMs": 1537,
+            "cps": 11.1
           },
           {
             "index": 130,
-            "text": "fire didn't destroy",
-            "words": 3,
+            "text": "didn't destroy",
+            "words": 2,
             "lines": [
-              "19:fire didn't destroy"
+              "14:didn't destroy"
             ],
-            "durationMs": 1632,
-            "cps": 10.4
+            "durationMs": 1208,
+            "cps": 10.8
           },
           {
             "index": 131,
@@ -7060,23 +7170,23 @@
           },
           {
             "index": 136,
-            "text": "that rose from",
-            "words": 3,
+            "text": "that rose from ashes.",
+            "words": 4,
             "lines": [
-              "14:that rose from"
+              "21:that rose from ashes."
             ],
-            "durationMs": 890,
+            "durationMs": 1336,
             "cps": 13.5
           },
           {
             "index": 137,
-            "text": "ashes. Every",
-            "words": 2,
+            "text": "Every",
+            "words": 1,
             "lines": [
-              "12:ashes. Every"
+              "5:Every"
             ],
-            "durationMs": 906,
-            "cps": 12.1
+            "durationMs": 460,
+            "cps": 10.9
           },
           {
             "index": 138,
@@ -7110,23 +7220,23 @@
           },
           {
             "index": 141,
-            "text": "wasn't just a",
-            "words": 3,
+            "text": "wasn't just a disaster.",
+            "words": 4,
             "lines": [
-              "13:wasn't just a"
+              "23:wasn't just a disaster."
             ],
-            "durationMs": 977,
-            "cps": 11.3
+            "durationMs": 1723,
+            "cps": 11.6
           },
           {
             "index": 142,
-            "text": "disaster. It",
-            "words": 2,
+            "text": "It",
+            "words": 1,
             "lines": [
-              "12:disaster. It"
+              "2:It"
             ],
-            "durationMs": 906,
-            "cps": 12.1
+            "durationMs": 160,
+            "cps": 12.5
           },
           {
             "index": 143,
@@ -7173,11 +7283,19 @@
           "name": "prod.gateCaptions (H5-H8)",
           "pass": false,
           "failures": [
-            "caption \"In 1986, workers near the Black Sea\" is 16.6 CPS > 15",
+            "caption \"In workers near the Black Sea\" is 16.6 CPS > 15",
             "caption \"broke into a cave that had been\" is 16.1 CPS > 15",
             "caption \"sealed for five and a half million\" is 16.5 CPS > 15",
-            "caption \"years. Inside: toxic air, total darkness, and\" is 17.3 CPS > 15",
-            "caption \"thirty-five species found nowhere else on Earth.\" is 17.4 CPS > 15"
+            "caption \"years. Inside: toxic air, total darkness,\" is 17.5 CPS > 15",
+            "caption \"and thirty-five species found nowhere else on Earth.\" has 3 lines > 2",
+            "caption \"and thirty-five species found nowhere else on Earth.\" has 8 words > 7",
+            "caption \"and thirty-five species found nowhere else on Earth.\" is 17.2 CPS > 15",
+            "caption \"sulfide.\" is 15.8 CPS > 15",
+            "caption \"sulfide.\" duration 507ms < 833ms",
+            "caption \"And this\" duration 486ms < 833ms",
+            "caption \"into food,\" duration 614ms < 833ms",
+            "caption \"So next\" duration 485ms < 833ms",
+            "caption \"that has\" duration 554ms < 833ms"
           ]
         },
         {
@@ -7196,16 +7314,31 @@
           "name": "ind.gateCaptionPages (H5-H8 + B2.4 + gap)",
           "pass": false,
           "failures": [
-            "caption \"In 1986, workers near the Black Sea\" is 16.6 CPS > 15",
+            "caption \"In workers near the Black Sea\" is 16.6 CPS > 15",
             "caption \"broke into a cave that had been\" is 16.1 CPS > 15",
             "caption \"sealed for five and a half million\" is 16.5 CPS > 15",
-            "caption \"years. Inside: toxic air, total darkness, and\" is 17.3 CPS > 15",
-            "caption \"thirty-five species found nowhere else on Earth.\" is 17.4 CPS > 15",
-            "caption \"In 1986, workers near the Black Sea\" independent CPS 16.6 > 15",
+            "caption \"years. Inside: toxic air, total darkness,\" is 17.5 CPS > 15",
+            "caption \"and thirty-five species found nowhere else on Earth.\" has 3 lines > 2",
+            "caption \"and thirty-five species found nowhere else on Earth.\" has 8 words > 7",
+            "caption \"and thirty-five species found nowhere else on Earth.\" is 17.2 CPS > 15",
+            "caption \"sulfide.\" is 15.8 CPS > 15",
+            "caption \"sulfide.\" duration 507ms < 833ms",
+            "caption \"And this\" duration 486ms < 833ms",
+            "caption \"into food,\" duration 614ms < 833ms",
+            "caption \"So next\" duration 485ms < 833ms",
+            "caption \"that has\" duration 554ms < 833ms",
             "caption \"broke into a cave that had been\" independent CPS 16.1 > 15",
             "caption \"sealed for five and a half million\" independent CPS 16.5 > 15",
-            "caption \"years. Inside: toxic air, total darkness, and\" independent CPS 17.3 > 15",
-            "caption \"thirty-five species found nowhere else on Earth.\" independent CPS 17.4 > 15"
+            "caption \"years. Inside: toxic air, total darkness,\" independent CPS 17.5 > 15",
+            "caption \"and thirty-five species found nowhere else on Earth.\" independent CPS 17.2 > 15",
+            "caption \"and thirty-five species found nowhere else on Earth.\" has 3 lines > 2 (independent)",
+            "caption \"and thirty-five species found nowhere else on Earth.\" has 8 words > 7 (independent)",
+            "caption \"sulfide.\" independent CPS 15.8 > 15",
+            "caption \"sulfide.\" independent duration 507ms outside [833, 5000]",
+            "caption \"And this\" independent duration 486ms outside [833, 5000]",
+            "caption \"into food,\" independent duration 614ms outside [833, 5000]",
+            "caption \"So next\" independent duration 485ms outside [833, 5000]",
+            "caption \"that has\" independent duration 554ms outside [833, 5000]"
           ]
         },
         {
@@ -7217,7 +7350,7 @@
       "independent": {
         "pageCount": 41,
         "productionGate": false,
-        "independentFailures": 5,
+        "independentFailures": 12,
         "gaps": [
           {
             "index": 1,
@@ -7243,8 +7376,8 @@
           {
             "index": 4,
             "gapFrames": 2,
-            "prevEndMs": 7458.333333333333,
-            "nextStartMs": 7525,
+            "prevEndMs": 7256.333333333333,
+            "nextStartMs": 7323,
             "gapMs": 66.66666666666667
           },
           {
@@ -7271,8 +7404,8 @@
           {
             "index": 8,
             "gapFrames": 2,
-            "prevEndMs": 12805.333333333334,
-            "nextStartMs": 12872,
+            "prevEndMs": 13380.333333333334,
+            "nextStartMs": 13447,
             "gapMs": 66.66666666666667
           },
           {
@@ -7313,8 +7446,8 @@
           {
             "index": 14,
             "gapFrames": 2,
-            "prevEndMs": 21359.333333333332,
-            "nextStartMs": 21426,
+            "prevEndMs": 21933.333333333332,
+            "nextStartMs": 22000,
             "gapMs": 66.66666666666667
           },
           {
@@ -7404,8 +7537,8 @@
           {
             "index": 27,
             "gapFrames": 2,
-            "prevEndMs": 41314.333333333336,
-            "nextStartMs": 41381,
+            "prevEndMs": 41747.333333333336,
+            "nextStartMs": 41814,
             "gapMs": 66.66666666666667
           },
           {
@@ -7418,8 +7551,8 @@
           {
             "index": 29,
             "gapFrames": 2,
-            "prevEndMs": 43479.333333333336,
-            "nextStartMs": 43546,
+            "prevEndMs": 43851.333333333336,
+            "nextStartMs": 43918,
             "gapMs": 66.66666666666667
           },
           {
@@ -7432,8 +7565,8 @@
           {
             "index": 31,
             "gapFrames": 2,
-            "prevEndMs": 47562.333333333336,
-            "nextStartMs": 47629,
+            "prevEndMs": 47933.333333333336,
+            "nextStartMs": 48000,
             "gapMs": 66.66666666666667
           },
           {
@@ -7474,8 +7607,8 @@
           {
             "index": 37,
             "gapFrames": 2,
-            "prevEndMs": 54761.333333333336,
-            "nextStartMs": 54828,
+            "prevEndMs": 55174.333333333336,
+            "nextStartMs": 55241,
             "gapMs": 66.66666666666667
           },
           {
@@ -7503,11 +7636,11 @@
         "pages": [
           {
             "index": 0,
-            "text": "In 1986, workers near the Black Sea",
-            "words": 7,
+            "text": "In workers near the Black Sea",
+            "words": 6,
             "lines": [
-              "25:In 1986, workers near the",
-              "9:Black Sea"
+              "25:In workers near the Black",
+              "3:Sea"
             ],
             "durationMs": 1751,
             "cps": 16.6
@@ -7536,25 +7669,26 @@
           },
           {
             "index": 3,
-            "text": "years. Inside: toxic air, total darkness, and",
-            "words": 7,
+            "text": "years. Inside: toxic air, total darkness,",
+            "words": 6,
             "lines": [
               "25:years. Inside: toxic air,",
-              "19:total darkness, and"
+              "15:total darkness,"
             ],
-            "durationMs": 2256,
-            "cps": 17.3
+            "durationMs": 2054,
+            "cps": 17.5
           },
           {
             "index": 4,
-            "text": "thirty-five species found nowhere else on Earth.",
-            "words": 7,
+            "text": "and thirty-five species found nowhere else on Earth.",
+            "words": 8,
             "lines": [
-              "25:thirty-five species found",
-              "22:nowhere else on Earth."
+              "23:and thirty-five species",
+              "21:found nowhere else on",
+              "6:Earth."
             ],
-            "durationMs": 2408,
-            "cps": 17.4
+            "durationMs": 2610,
+            "cps": 17.2
           },
           {
             "index": 5,
@@ -7578,23 +7712,23 @@
           },
           {
             "index": 7,
-            "text": "Air thick with",
-            "words": 3,
+            "text": "Air thick with hydrogen",
+            "words": 4,
             "lines": [
-              "14:Air thick with"
+              "23:Air thick with hydrogen"
             ],
-            "durationMs": 890,
-            "cps": 13.5
+            "durationMs": 1465,
+            "cps": 13.6
           },
           {
             "index": 8,
-            "text": "hydrogen sulfide.",
-            "words": 2,
+            "text": "sulfide.",
+            "words": 1,
             "lines": [
-              "17:hydrogen sulfide."
+              "8:sulfide."
             ],
-            "durationMs": 1082,
-            "cps": 14.8
+            "durationMs": 507,
+            "cps": 15.8
           },
           {
             "index": 9,
@@ -7639,24 +7773,24 @@
           },
           {
             "index": 13,
-            "text": "of them needing sunlight to",
-            "words": 5,
+            "text": "of them needing sunlight to survive.",
+            "words": 6,
             "lines": [
               "24:of them needing sunlight",
-              "2:to"
+              "11:to survive."
             ],
-            "durationMs": 1721,
-            "cps": 13.4
+            "durationMs": 2295,
+            "cps": 13.5
           },
           {
             "index": 14,
-            "text": "survive. And this",
-            "words": 3,
+            "text": "And this",
+            "words": 2,
             "lines": [
-              "17:survive. And this"
+              "8:And this"
             ],
-            "durationMs": 1060,
-            "cps": 14.1
+            "durationMs": 486,
+            "cps": 14.4
           },
           {
             "index": 15,
@@ -7732,10 +7866,10 @@
           },
           {
             "index": 22,
-            "text": "1,980 meters below",
-            "words": 3,
+            "text": "meters below",
+            "words": 2,
             "lines": [
-              "18:1,980 meters below"
+              "12:meters below"
             ],
             "durationMs": 1099,
             "cps": 14.6
@@ -7775,66 +7909,65 @@
           },
           {
             "index": 26,
-            "text": "bacteria turning minerals and",
-            "words": 4,
+            "text": "bacteria turning minerals and sulfur",
+            "words": 5,
             "lines": [
               "25:bacteria turning minerals",
-              "3:and"
+              "10:and sulfur"
             ],
-            "durationMs": 1788,
-            "cps": 14.5
+            "durationMs": 2221,
+            "cps": 14.4
           },
           {
             "index": 27,
-            "text": "sulfur into food,",
-            "words": 3,
+            "text": "into food,",
+            "words": 2,
             "lines": [
-              "17:sulfur into food,"
+              "10:into food,"
             ],
-            "durationMs": 1047,
-            "cps": 14.3
+            "durationMs": 614,
+            "cps": 14.7
           },
           {
             "index": 28,
-            "text": "exactly like the",
-            "words": 3,
+            "text": "exactly like the vents",
+            "words": 4,
             "lines": [
-              "16:exactly like the"
+              "22:exactly like the vents"
             ],
-            "durationMs": 984,
-            "cps": 14.2
+            "durationMs": 1356,
+            "cps": 14
           },
           {
             "index": 29,
-            "text": "vents of the deep ocean. Entire",
-            "words": 6,
+            "text": "of the deep ocean. Entire",
+            "words": 5,
             "lines": [
-              "24:vents of the deep ocean.",
-              "6:Entire"
+              "25:of the deep ocean. Entire"
             ],
-            "durationMs": 1913,
+            "durationMs": 1541,
             "cps": 13.6
           },
           {
             "index": 30,
-            "text": "ecosystems running on nothing but",
-            "words": 5,
+            "text": "ecosystems running on nothing but rock.",
+            "words": 6,
             "lines": [
               "21:ecosystems running on",
-              "11:nothing but"
+              "17:nothing but rock."
             ],
-            "durationMs": 2036,
-            "cps": 14.2
+            "durationMs": 2407,
+            "cps": 14.1
           },
           {
             "index": 31,
-            "text": "rock. So next",
-            "words": 3,
+            "text": "So next",
+            "words": 2,
             "lines": [
-              "13:rock. So next"
+              "7:So next"
             ],
-            "durationMs": 856,
-            "cps": 12.8
+            "durationMs": 485,
+            "cps": 12.4
           },
           {
             "index": 32,
@@ -7879,23 +8012,23 @@
           },
           {
             "index": 36,
-            "text": "is thriving in a",
-            "words": 4,
+            "text": "is thriving in a world",
+            "words": 5,
             "lines": [
-              "16:is thriving in a"
+              "22:is thriving in a world"
             ],
-            "durationMs": 1106,
+            "durationMs": 1519,
             "cps": 11.8
           },
           {
             "index": 37,
-            "text": "world that has",
-            "words": 3,
+            "text": "that has",
+            "words": 2,
             "lines": [
-              "14:world that has"
+              "8:that has"
             ],
-            "durationMs": 967,
-            "cps": 12.4
+            "durationMs": 554,
+            "cps": 12.6
           },
           {
             "index": 38,
@@ -7941,8 +8074,13 @@
       "checks": [
         {
           "name": "prod.gateCaptions (H5-H8)",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "caption \"left\" duration 271ms < 833ms",
+            "caption \"Twelve\" duration 405ms < 833ms",
+            "caption \"must\" duration 406ms < 833ms",
+            "caption \"The fix:\" duration 752ms < 833ms"
+          ]
         },
         {
           "name": "prod.gateMgHeadlineOverlap (H9)",
@@ -7956,8 +8094,17 @@
         },
         {
           "name": "ind.gateCaptionPages (H5-H8 + B2.4 + gap)",
-          "pass": true,
-          "failures": []
+          "pass": false,
+          "failures": [
+            "caption \"left\" duration 271ms < 833ms",
+            "caption \"Twelve\" duration 405ms < 833ms",
+            "caption \"must\" duration 406ms < 833ms",
+            "caption \"The fix:\" duration 752ms < 833ms",
+            "caption \"left\" independent duration 271ms outside [833, 5000]",
+            "caption \"Twelve\" independent duration 405ms outside [833, 5000]",
+            "caption \"must\" independent duration 406ms outside [833, 5000]",
+            "caption \"The fix:\" independent duration 752ms outside [833, 5000]"
+          ]
         },
         {
           "name": "canon.captionPagesFromSrt drift + raw gate",
@@ -7967,8 +8114,8 @@
       ],
       "independent": {
         "pageCount": 37,
-        "productionGate": true,
-        "independentFailures": 0,
+        "productionGate": false,
+        "independentFailures": 4,
         "gaps": [
           {
             "index": 1,
@@ -8001,15 +8148,15 @@
           {
             "index": 5,
             "gapFrames": 2,
-            "prevEndMs": 10135.333333333334,
-            "nextStartMs": 10202,
+            "prevEndMs": 10540.333333333334,
+            "nextStartMs": 10607,
             "gapMs": 66.66666666666667
           },
           {
             "index": 6,
             "gapFrames": 2,
-            "prevEndMs": 11281.333333333334,
-            "nextStartMs": 11348,
+            "prevEndMs": 11955.333333333334,
+            "nextStartMs": 12022,
             "gapMs": 66.66666666666667
           },
           {
@@ -8029,15 +8176,15 @@
           {
             "index": 9,
             "gapFrames": 2,
-            "prevEndMs": 18023.333333333332,
-            "nextStartMs": 18090,
+            "prevEndMs": 17821.333333333332,
+            "nextStartMs": 17888,
             "gapMs": 66.66666666666667
           },
           {
             "index": 10,
             "gapFrames": 2,
-            "prevEndMs": 19102.333333333332,
-            "nextStartMs": 19169,
+            "prevEndMs": 19573.333333333332,
+            "nextStartMs": 19640,
             "gapMs": 66.66666666666667
           },
           {
@@ -8064,8 +8211,8 @@
           {
             "index": 14,
             "gapFrames": 2,
-            "prevEndMs": 26568.333333333332,
-            "nextStartMs": 26635,
+            "prevEndMs": 26379.333333333332,
+            "nextStartMs": 26446,
             "gapMs": 66.66666666666667
           },
           {
@@ -8085,8 +8232,8 @@
           {
             "index": 17,
             "gapFrames": 2,
-            "prevEndMs": 31109.333333333332,
-            "nextStartMs": 31176,
+            "prevEndMs": 31676.333333333332,
+            "nextStartMs": 31743,
             "gapMs": 66.66666666666667
           },
           {
@@ -8099,8 +8246,8 @@
           {
             "index": 19,
             "gapFrames": 2,
-            "prevEndMs": 34419.333333333336,
-            "nextStartMs": 34486,
+            "prevEndMs": 34892.333333333336,
+            "nextStartMs": 34959,
             "gapMs": 66.66666666666667
           },
           {
@@ -8113,15 +8260,15 @@
           {
             "index": 21,
             "gapFrames": 2,
-            "prevEndMs": 38024.333333333336,
-            "nextStartMs": 38091,
+            "prevEndMs": 38569.333333333336,
+            "nextStartMs": 38636,
             "gapMs": 66.66666666666667
           },
           {
             "index": 22,
             "gapFrames": 2,
-            "prevEndMs": 39569.333333333336,
-            "nextStartMs": 39636,
+            "prevEndMs": 39388.333333333336,
+            "nextStartMs": 39455,
             "gapMs": 66.66666666666667
           },
           {
@@ -8148,8 +8295,8 @@
           {
             "index": 26,
             "gapFrames": 2,
-            "prevEndMs": 46115.333333333336,
-            "nextStartMs": 46182,
+            "prevEndMs": 46660.333333333336,
+            "nextStartMs": 46727,
             "gapMs": 66.66666666666667
           },
           {
@@ -8162,8 +8309,8 @@
           {
             "index": 28,
             "gapFrames": 2,
-            "prevEndMs": 48842.333333333336,
-            "nextStartMs": 48909,
+            "prevEndMs": 49297.333333333336,
+            "nextStartMs": 49364,
             "gapMs": 66.66666666666667
           },
           {
@@ -8269,33 +8416,33 @@
           },
           {
             "index": 4,
-            "text": "it sinking. In",
-            "words": 3,
+            "text": "it sinking. In June,",
+            "words": 4,
             "lines": [
-              "14:it sinking. In"
+              "20:it sinking. In June,"
             ],
-            "durationMs": 998,
-            "cps": 12
+            "durationMs": 1403,
+            "cps": 12.1
           },
           {
             "index": 5,
-            "text": "June, Daniel and",
+            "text": "Daniel and Charlotte",
             "words": 3,
             "lines": [
-              "16:June, Daniel and"
+              "20:Daniel and Charlotte"
             ],
-            "durationMs": 1079,
-            "cps": 13
+            "durationMs": 1348,
+            "cps": 13.3
           },
           {
             "index": 6,
-            "text": "Charlotte left",
-            "words": 2,
+            "text": "left",
+            "words": 1,
             "lines": [
-              "14:Charlotte left"
+              "4:left"
             ],
-            "durationMs": 945,
-            "cps": 13.8
+            "durationMs": 271,
+            "cps": 14.7
           },
           {
             "index": 7,
@@ -8310,34 +8457,34 @@
           },
           {
             "index": 8,
-            "text": "narrowboat. Costs dropped from two thousand to",
-            "words": 7,
+            "text": "narrowboat. Costs dropped from two thousand",
+            "words": 6,
             "lines": [
               "25:narrowboat. Costs dropped",
-              "20:from two thousand to"
+              "17:from two thousand"
             ],
-            "durationMs": 3102,
-            "cps": 12.9
+            "durationMs": 2900,
+            "cps": 13.1
           },
           {
             "index": 9,
-            "text": "eight hundred a",
-            "words": 3,
+            "text": "to eight hundred a month.",
+            "words": 5,
             "lines": [
-              "15:eight hundred a"
+              "25:to eight hundred a month."
             ],
-            "durationMs": 1012,
-            "cps": 12.8
+            "durationMs": 1685,
+            "cps": 12.5
           },
           {
             "index": 10,
-            "text": "month. Twelve",
-            "words": 2,
+            "text": "Twelve",
+            "words": 1,
             "lines": [
-              "13:month. Twelve"
+              "6:Twelve"
             ],
-            "durationMs": 876,
-            "cps": 13.7
+            "durationMs": 405,
+            "cps": 14.8
           },
           {
             "index": 11,
@@ -8362,24 +8509,24 @@
           },
           {
             "index": 13,
-            "text": "is tight: three hundred square feet, a",
-            "words": 7,
+            "text": "is tight: three hundred square feet,",
+            "words": 6,
             "lines": [
               "23:is tight: three hundred",
-              "14:square feet, a"
+              "12:square feet,"
             ],
-            "durationMs": 3622,
-            "cps": 8.8
+            "durationMs": 3433,
+            "cps": 9
           },
           {
             "index": 14,
-            "text": "two-fifty-litre",
-            "words": 1,
+            "text": "a two-fifty-litre",
+            "words": 2,
             "lines": [
-              "15:two-fifty-litre"
+              "17:a two-fifty-litre"
             ],
-            "durationMs": 1447,
-            "cps": 10.4
+            "durationMs": 1636,
+            "cps": 9.8
           },
           {
             "index": 15,
@@ -8393,74 +8540,74 @@
           },
           {
             "index": 16,
-            "text": "emptied by",
-            "words": 2,
+            "text": "emptied by hand.",
+            "words": 3,
             "lines": [
-              "10:emptied by"
+              "16:emptied by hand."
             ],
-            "durationMs": 974,
-            "cps": 9.2
+            "durationMs": 1541,
+            "cps": 9.1
           },
           {
             "index": 17,
-            "text": "hand. And every fourteen",
-            "words": 4,
+            "text": "And every fourteen",
+            "words": 3,
             "lines": [
-              "24:hand. And every fourteen"
+              "18:And every fourteen"
             ],
-            "durationMs": 2298,
-            "cps": 9.1
+            "durationMs": 1731,
+            "cps": 9.2
           },
           {
             "index": 18,
-            "text": "days, the",
-            "words": 2,
+            "text": "days, the boat",
+            "words": 3,
             "lines": [
-              "9:days, the"
+              "14:days, the boat"
             ],
-            "durationMs": 878,
-            "cps": 9.1
+            "durationMs": 1351,
+            "cps": 8.9
           },
           {
             "index": 19,
-            "text": "boat must",
-            "words": 2,
+            "text": "must",
+            "words": 1,
             "lines": [
-              "9:boat must"
+              "4:must"
             ],
-            "durationMs": 879,
-            "cps": 9.1
+            "durationMs": 406,
+            "cps": 9.8
           },
           {
             "index": 20,
-            "text": "move. Then the boat began to",
-            "words": 6,
+            "text": "move. Then the boat began to sink.",
+            "words": 7,
             "lines": [
               "25:move. Then the boat began",
-              "2:to"
+              "8:to sink."
             ],
-            "durationMs": 2592,
+            "durationMs": 3137,
             "cps": 8.9
           },
           {
             "index": 21,
-            "text": "sink. The fix: a",
-            "words": 4,
+            "text": "The fix:",
+            "words": 2,
             "lines": [
-              "16:sink. The fix: a"
+              "8:The fix:"
             ],
-            "durationMs": 1478,
-            "cps": 8.8
+            "durationMs": 752,
+            "cps": 9.3
           },
           {
             "index": 22,
-            "text": "completely",
-            "words": 1,
+            "text": "a completely",
+            "words": 2,
             "lines": [
-              "10:completely"
+              "12:a completely"
             ],
-            "durationMs": 933,
-            "cps": 10.7
+            "durationMs": 1114,
+            "cps": 9.9
           },
           {
             "index": 23,
@@ -8485,43 +8632,43 @@
           },
           {
             "index": 25,
-            "text": "hundred a",
-            "words": 2,
+            "text": "hundred a month",
+            "words": 3,
             "lines": [
-              "9:hundred a"
+              "15:hundred a month"
             ],
-            "durationMs": 842,
-            "cps": 9.5
+            "durationMs": 1387,
+            "cps": 9.4
           },
           {
             "index": 26,
-            "text": "month looked small.",
-            "words": 3,
+            "text": "looked small.",
+            "words": 2,
             "lines": [
-              "19:month looked small."
+              "13:looked small."
             ],
-            "durationMs": 1751,
-            "cps": 9.7
+            "durationMs": 1206,
+            "cps": 9.9
           },
           {
             "index": 27,
-            "text": "There's a",
-            "words": 2,
+            "text": "There's a joke",
+            "words": 3,
             "lines": [
-              "9:There's a"
+              "14:There's a joke"
             ],
-            "durationMs": 842,
-            "cps": 9.5
+            "durationMs": 1297,
+            "cps": 9.2
           },
           {
             "index": 28,
-            "text": "joke among boaters:",
-            "words": 3,
+            "text": "among boaters:",
+            "words": 2,
             "lines": [
-              "19:joke among boaters:"
+              "14:among boaters:"
             ],
-            "durationMs": 1751,
-            "cps": 9.7
+            "durationMs": 1296,
+            "cps": 10
           },
           {
             "index": 29,

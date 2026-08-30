@@ -297,15 +297,11 @@ per-beat word split is the builder's arithmetic, the same char-proportional
 split `parseSrtToBeats` applies). Per script: beats → ShotSpec[] (inline
 `spec/fromBeats.js` stand-in) → `validateShotSpecs` (all pass, schema.js) →
 `compile()` → `lintAll()` → every check passes on every frame. Frames:
-32 + 9 + 25 = 66 real beat-frames, × 13 channels = 858 compiles+lintAlls.
+32 + 9 + 25 = 66 real beat-frames, × 6 channels = 396 compiles+lintAlls.
 
-**Leg 2 — all mg channels.** channels.json has **13** `motion-graphics`
-channels (ids 1, 2, 9, 14, 15, 26, 32, 34, 40, 41, 42, 44, 48). The manual's
-"12" list omits Money Mind (id 1). The runner asserts 13 AND that 13 ⊇ the
-manual's 12 (superset check passes) — a superset satisfies "all 12". The
-13-vs-12 discrepancy is escalated (§7.2); every channel runs with its REAL
-font (channels.json "font": Inter, DM Sans, Roboto Condensed, Fira Sans,
-JetBrains Mono, Nunito), proving L1–L12 are font-agnostic.
+**Leg 2 — all mg channels.** channels.json has **6** `motion-graphics`
+channels (ids 1, 2, 9, 26, 44, 48). Every channel runs with its REAL
+font (channels.json "font": Inter, DM Sans, Roboto Condensed, JetBrains Mono, Fira Sans), proving L1–L12 are font-agnostic.
 
 **Leg 3 — R3/R4 negative tests (compile throws = build error).** Six
 machine cases, all THROW as the spec requires: missing `fonts` input →

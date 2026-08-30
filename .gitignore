@@ -25,9 +25,6 @@ data/research/**/topic-log.json
 config/creds/
 youtubetokens.txt
 src/skills/remotion-render/vo.mp3
-src/skills/remotion-render/render-entry.jsx
-src/skills/remotion-render/qa-entry.jsx
-src/skills/remotion-render/verify-entry.jsx
 src/skills/remotion-render/verify-out/
 src/skills/remotion-render/out/
 

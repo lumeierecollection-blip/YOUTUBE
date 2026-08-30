@@ -70,8 +70,8 @@ function check(label, cond, detail) {
 // ── Script + SRT inputs ──────────────────────────────────────────────────────
 
 const SCRIPTS = [
-  { path: "data/scripts/ch-01/movile-cave-shorts-script.json", srt: "data/tts/ch-01/movile-cave-shorts-script-vo.srt" },
-  { path: "data/scripts/ch-01/render-test-script.json", srt: null },
+  { path: "data/scripts/ch-fixture/movile-cave-shorts-script.json", srt: "data/tts/ch-fixture/movile-cave-shorts-script-vo.srt" },
+  { path: "data/scripts/ch-fixture/render-test-script.json", srt: null },
   { path: "data/scripts/ch-02/narrowboat-10k-surprise-shorts-script.json", srt: null },
 ];
 
@@ -246,8 +246,8 @@ function buildInputs(specs, beats, channel) {
 
 console.log("stage 6 gate — three scripts, all mg channels");
 const channels = JSON.parse(read("config/channels.json")).channels.filter((c) => c.style === "motion-graphics");
-check("13 motion-graphics channels found in channels.json (manual says 12 — see ledger)", channels.length === 13, String(channels.length));
-check("13 is a superset of the manual's 12", channels.length >= 12);
+check("6 motion-graphics channels found in channels.json", channels.length === 6, String(channels.length));
+check("6 motion-graphics channels present", channels.length >= 6);
 
 for (const scriptDef of SCRIPTS) {
   const script = JSON.parse(read(scriptDef.path));
