@@ -1,0 +1,103 @@
+{
+  "check": "MOT-18",
+  "assertion": "Motion blur only inside a transition subtree; 0 elsewhere.",
+  "graphBase": "C:\\Users\\user\\YOUTUBE\\src\\skills\\remotion-render",
+  "source": "composition.js (SFR applied)",
+  "graphFilesScanned": 43,
+  "motionBlur": {
+    "pass": true,
+    "total": 0,
+    "insideTransition": 0,
+    "outsideTransition": 0,
+    "details": {
+      "inside": [],
+      "outside": []
+    }
+  },
+  "motionBlurPackageInstalled": false,
+  "gateSelfMatch": {
+    "defected": false,
+    "details": []
+  },
+  "depthBlur": {
+    "rows": [
+      {
+        "profile": "FLAT",
+        "plane": "subject",
+        "blur": 0
+      },
+      {
+        "profile": "LAYERED",
+        "plane": "background",
+        "blur": 2
+      },
+      {
+        "profile": "LAYERED",
+        "plane": "subject",
+        "blur": 0
+      },
+      {
+        "profile": "LAYERED",
+        "plane": "foreground",
+        "blur": 3
+      },
+      {
+        "profile": "DEEP",
+        "plane": "far",
+        "blur": 3
+      },
+      {
+        "profile": "DEEP",
+        "plane": "background",
+        "blur": 2
+      },
+      {
+        "profile": "DEEP",
+        "plane": "subject",
+        "blur": 0
+      },
+      {
+        "profile": "DEEP",
+        "plane": "foreground",
+        "blur": 3.5
+      }
+    ],
+    "subjectNotSharp": [],
+    "nonConstant": []
+  },
+  "fixtures": [
+    {
+      "name": "hold/end-card camera motion blur must be outside a transition",
+      "file": "compositions/motion-graphics.jsx",
+      "inTransitionContext": false,
+      "outsideHits": 1,
+      "expectedOutside": 1,
+      "ok": true
+    },
+    {
+      "name": "transition presentation camera motion blur is allowed inside a transition",
+      "file": "transitions/presentation.jsx",
+      "inTransitionContext": true,
+      "outsideHits": 0,
+      "expectedOutside": 0,
+      "ok": true
+    },
+    {
+      "name": "frame-driven blur in a caption file is motion blur → outside",
+      "file": "captions/caption.jsx",
+      "inTransitionContext": false,
+      "outsideHits": 1,
+      "expectedOutside": 1,
+      "ok": true
+    },
+    {
+      "name": "Phase-4 back-door proof: real violation planted 2 lines after the gate's own block in composition.js is still caught",
+      "file": "visual/composition.js",
+      "inTransitionContext": false,
+      "outsideHits": 1,
+      "expectedOutside": 1,
+      "ok": true
+    }
+  ],
+  "verdict": "PASS"
+}

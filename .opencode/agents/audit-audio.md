@@ -6,6 +6,8 @@ permission:
     "**": deny
     "src/audio/**": allow
     "src/skills/remotion-render/audio.js": allow
+    "src/skills/remotion-render/visual/sound-design.js": allow
+    "src/skills/remotion-render/visual/sfx-library.js": allow
     "data/audit/**": allow
   bash: allow
   websearch: allow

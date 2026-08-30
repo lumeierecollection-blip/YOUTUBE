@@ -164,7 +164,7 @@ State column: **FAIL** = measured or computed as failing today Â·
 | TYP-08 | Caption page duration in range | compiler | 833â€“5000 ms | 1 | MAJOR | 10 | N/B |
 | TYP-09 | â‰¥2 blank frames between caption pages | compiler | â‰¥2 | 1 | MAJOR | 10 | N/B |
 | TYP-10 | Headline and caption share â‰¤2 words | compiler | â‰¤2 | 1 | MINOR | 10 | N/B |
-| TYP-11 | Caption is SRT-derived, not word-count chunked | `grep chunkVoiceover` | 0 hits | 1 | BLOCKER | 10 | **FAIL** |
+| TYP-11 | Caption is SRT-derived, not word-count chunked | `grep chunkVoiceover` | 0 hits | 1 | BLOCKER | 10 | **PASS** - 2026-08-30 (wrapper deleted; both call sites call `chunkTextClauseAware` directly) |
 | TYP-12 | Exactly one active caption token per frame | compiler | =1 | 1 | MAJOR | 10 | N/B |
 | TYP-13 | Highlight scale does not reflow the line | measured at 1.08 | 0 reflow | 2 | MAJOR | 10 | N/B |
 | TYP-14 | Every entrance ends at integer translate | compiler | integer | 1 | MAJOR | 11 | N/B |
@@ -223,7 +223,7 @@ below:
 | COL-10 | Within a niche cluster, accent hues >=40 deg apart | parse + cluster map | >=40 deg | 0 | MINOR | 3 | N/A - all 50 niches unique, no cluster map exists |
 | COL-11 | Exactly one `accent` element per frame | compiler | =1 | 1 | MAJOR | 9 | **FAIL** |
 | COL-12 | Zero `boxShadow` in the style | `grep -rn "boxShadow"` | 0 hits | 1 | MAJOR | 12 | **PASS** - 0 hits (motion-graphics-rebuild-v2, 2026-08-16) |
-| COL-13 | Zero gradient fills | `grep -rn "gradient"` | 0 hits | 1 | MAJOR | 12 | **PASS** - 0 code hits, only removal-comments (motion-graphics-rebuild-v2) |
+| COL-13 | Zero gradient fills | `grep -rn "gradient"` | 0 hits | 1 | MAJOR | 12 | **PASS-with-amendment** - 0 CSS/code gradient hits as-written, but the class-level "0 code hits" does NOT hold since 61ded3d (2026-08-27): four designed SVG environment fills in scenes/stage.jsx (paper-fall/sub-floor/atmo-haze/shot-falloff) are invisible to the case-sensitive pattern and are carved out under DEL-12/18 amendments |
 | COL-14 | Elevation âˆˆ {E0, E1, E2} only | compiler | â‰¤3 levels | 1 | MINOR | 12 | **RETIRED** â€” the elevation ladder itself is gone (surface/raised collapse to bg, see 3.3.0); a panel/chip separates from bg with a stroke border, not a tonal fill |
 | COL-15 | â‰¤1 E2 element per frame | compiler | â‰¤1 | 1 | MINOR | 12 | **RETIRED** â€” see COL-14 |
 | COL-16 | Elevation is never animated | compiler | 0 transitions | 1 | MINOR | 12 | **RETIRED** â€” see COL-14 |
@@ -269,8 +269,8 @@ below:
 | ENC-02 | No archetype repeats >2Ã— consecutively | classifier | â‰¤2 | 1 | MAJOR | 9 | N/B |
 | ENC-03 | Every beat has exactly one `anchorTokenIndex` | classifier | =1 | 1 | BLOCKER | 9 | N/B |
 | ENC-04 | Stage entrance begins in `[tAâˆ’4, tA+2]` | compiler | in window | 1 | MAJOR | 9 | N/B |
-| ENC-05 | Routing is text-based, not cue-based | `grep pickScene` | 0 hits | 1 | BLOCKER | 9 | **FAIL** |
-| ENC-06 | No number is regex-scraped from prose | `grep extractStats\|extractHeroNumber` | 0 hits | 1 | BLOCKER | 9 | **FAIL** |
+| ENC-05 | Routing is text-based, not cue-based | `grep pickScene` | 0 hits | 1 | BLOCKER | 9 | **PASS** - 2026-08-30 stage-15 remeasure (0 code hits; Stage-9 ledger recorded CHANGED→PASS) |
+| ENC-06 | No number is regex-scraped from prose | `grep extractStats\|extractHeroNumber` | 0 hits | 1 | BLOCKER | 9 | **PASS** - 2026-08-30 stage-15 remeasure (0 code hits; Stage-9 ledger recorded CHANGED→PASS) |
 | ENC-07 | No headline is regex-derived from the voiceover | `grep` the two-word match | 0 hits | 1 | BLOCKER | 9 | **FAIL** |
 | ENC-08 | Every chart beat has explicit `beat.data` | compiler | 100% | 1 | BLOCKER | 8 | **FAIL** |
 | ENC-09 | â‰¤5 series points per chart | compiler | â‰¤5 | 1 | MAJOR | 8 | N/B |
@@ -302,13 +302,13 @@ below:
 | ID | Check | Method | Threshold | T | Sev | Stage | State |
 |---|---|---|---|---|---|---|---|
 | AUD-01 | Sound is triggered by a VISUAL EVENT and every event is explainable | `visual/diagnostics.js` `summarizeSound` + `qa-scripts/audio-qa.mjs` on the rendered mp4 | `semanticMatchRate` = 1, every event audible | 1 | MAJOR | **PASS** - 2026-08-26 (third pass). SUPERSEDES the second-pass close: that resolved one sound per section by keyword-matching the script's free-text `sfx_cue` against file tags and fired it at frame zero of the section, so it played because a section began rather than because anything happened on screen, and it matched the narration's WORDS not the picture (a cue reading "low sub-bass drone" scored against "click, ui, button"). `sfx.js` and the `sfxCue` plumbing are deleted; `visual/sound-design.js` schedules from visual states instead. Verified in the rendered mp4 by `audio-qa.mjs`: 9/9 events present, measured RMS within 0.1-2.3 dB of each event's target. `sfx_cue` is also REMOVED from `schemas/script.mg.json`, because `opencode-agent.js` puts the whole schema into every script prompt with `JSON.stringify(schema)` - a field nothing reads costs tokens on every run. The mg schema is now 7 est. tokens smaller than before this pass. `schemas/script.section.json` keeps it for minimal / cinematic-documentary, which are not part of this overhaul. Do not reintroduce a keyword matcher on top of it |
-| AUD-02 | â‰¤1 SFX per beat | compiler | â‰¤1 | 1 | MINOR | 13 | N/B |
-| AUD-03 | SFX fires on the visual-land frame, not the word | compiler | match | 1 | MINOR | 13 | N/B |
-| AUD-04 | Gains match the SFX map | compiler | exact | 1 | MINOR | 13 | N/B |
-| AUD-05 | Every SFX file is local, never a remote URL | `grep https` in audio | 0 hits | 1 | BLOCKER | 13 | UNK |
-| AUD-06 | Every SFX file's licence permits monetised use | licence log | 100% | 0 | BLOCKER | 13 | UNK |
-| AUD-07 | Master is âˆ’14 LUFS integrated | ffmpeg `ebur128` on a real render | âˆ’14 Â±0.5 | 3 | MAJOR | 13 | UNK |
-| AUD-08 | VO peaks â‰¤ âˆ’3 dBFS | ffmpeg | â‰¤ âˆ’3 | 3 | MINOR | 13 | UNK |
+| AUD-02 | ≤3 SFX per beat, ≥12 frames apart, each explainable | compiler (`MAX_EVENTS_PER_BEAT`, `MIN_GAP_FRAMES`) | ≤3, gap≥12 | 1 | MINOR | 13 | FAIL→amended 2026-08-29 (stage 13). The ≤1 threshold never matched the compiler: `sound-design.js` ships `MAX_EVENTS_PER_BEAT=3`/`MIN_GAP_FRAMES=12` as documented design, and the PASS record is incompatible with a ≤1 cap — row 304's own "9/9 events present" counts 9 events across 5 beats. Stage-13 measurement of the QA inputs: 9 events/5 beats (ch-01), 12 events/5 beats (ch-48), 15 events/8 beats (ch-02 real script); beats with >1 event = 4/5, 5/5, 6/8; max 3; tightest actual gap 15 f. Texture ticks repeat inside one audible state by design; non-repetition events land exactly on visual-state start frames |
+| AUD-03 | SFX fires on the visual-land frame, not the word | compiler | match | 1 | MINOR | 13 | **PASS** - 2026-08-29 stage 13: anchorCheck exact (26 events at localDelta 0, 10 on-grid ticks inside repeat states, 0 OTHER); scheduler keys only off visualStates; SoundEvent mounts at the same atFrame |
+| AUD-04 | Gains match the SFX map | compiler | exact | 1 | MINOR | 13 | **PASS** - 2026-08-29 stage 13: 0 vol/target/missing violations across all QA inputs; 26/26 files present |
+| AUD-05 | Every SFX file is local, never a remote URL | `grep https` in audio | 0 hits | 1 | BLOCKER | 13 | **PASS** - 2026-08-29 stage 13: 0 https in audio.js/sound-design.js/sfx-library.js; attribution URLs are text records in sfx-manifest.json only; runtime loads via staticFile() |
+| AUD-06 | Every SFX file's licence permits monetised use | licence log | 100% | 0 | BLOCKER | 13 | **PASS** - 2026-08-29 stage 13: 26/26 licence records in sfx-library.js + sfx-library.measured.json; Kenney CC0 + Mixkit commercial use verified from first-party sources |
+| AUD-07 | Master is −14 LUFS integrated | ffmpeg `ebur128` on a real render | −14 ±0.5 | 3 | MAJOR | 13 | N/B - 2026-08-29 stage 13: UNVERIFIABLE (no compositor/render on this machine); venue = production render + `audio-qa.mjs` ebur128 (stage 16/17) |
+| AUD-08 | VO peaks ≤ −3 dBFS | ffmpeg | ≤ −3 | 3 | MINOR | 13 | N/B - 2026-08-29 stage 13: UNVERIFIABLE (`vo.mp3` is a silent placeholder, measured 73.13 s, byte-identical to the staged file); venue = a real TTS render (stage 16/17) |
 | AUD-09 | Audio track duration â‰¥ video duration | probe | â‰¥ | 3 | BLOCKER | 16 | UNK |
 
 ## 3.7 `RND` â€” render, encoder, CI
@@ -320,13 +320,13 @@ below:
 | RND-03 | `@remotion/captions` installed and â‰¥4.0.216 | parse | present | 0 | BLOCKER | 1 | **PASS** - stale before the 2026-08-26 session (re-verified, not re-fixed): `^4.0.503` in both `package.json`s, confirmed actually installed and importable |
 | RND-04 | `inputProps` reaches the component | fixture render | reaches | 2 | BLOCKER | 1 | **FAIL** |
 | RND-05 | The generated-entry-file workaround is gone | `grep` | 0 hits | 1 | MAJOR | 1 | **FAIL** |
-| RND-06 | `renderMedia` sets `imageFormat: 'png'` | parse `render.js` | present | 1 | MAJOR | 14 | **FAIL** |
-| RND-07 | `renderMedia` sets an explicit `crf` | parse | present | 1 | MAJOR | 14 | **FAIL** |
-| RND-08 | `renderMedia` sets `pixelFormat` | parse | present | 1 | MINOR | 14 | **FAIL** |
-| RND-09 | `chromiumOptions.gl` passed to `renderMedia`, not the config file | parse | present | 1 | BLOCKER | 14 | **FAIL** |
-| RND-10 | `remotion.config.js` is deleted or annotated as CLI-only | file check | one of | 1 | MAJOR | 14 | **FAIL** |
-| RND-11 | No config-file setting is relied on by the SSR path | code review | 0 | 4 | BLOCKER | 14 | **FAIL** |
-| RND-12 | One full Short renders per mg channel | CI | 12/12 | 3 | BLOCKER | 16 | **FAIL** â€” never a clean run in CI. 2026-08-26: one real ch-02 (Legal Brief) Short rendered clean end-to-end via `render.js`'s actual CLI in a sandboxed Linux environment (`data/renders/2/*.mp4`, not committed — a local verification artifact, not a CI run) — 1/12, still open |
+| RND-06 | `renderMedia` sets `imageFormat: 'png'` | parse `render.js` | present | 1 | MAJOR | 14 | **PASS** - 2026-08-29 stage 14: render.js:291 `imageFormat: "png"` |
+| RND-07 | `renderMedia` sets an explicit `crf` | parse | present | 1 | MAJOR | 14 | **PASS** - 2026-08-29 stage 14: render.js:292 `crf: 16` |
+| RND-08 | `renderMedia` sets `pixelFormat` | parse | present | 1 | MINOR | 14 | **PASS** - 2026-08-29 stage 14: render.js:293 `pixelFormat: "yuv420p"`; byte-confirmed in stage-14 clip ffprobe (pix_fmt=yuv420p) |
+| RND-09 | `chromiumOptions.gl` passed to `renderMedia`, not the config file | parse | present | 1 | BLOCKER | 14 | **PASS** - 2026-08-29 stage 14: render.js:294 `chromiumOptions: { gl: "swangle" }`; config file deleted (RND-10) |
+| RND-10 | `remotion.config.js` is deleted or annotated as CLI-only | file check | one of | 1 | MAJOR | 14 | **PASS** - 2026-08-29 stage 14: file deleted (git status: ` D`), Test-Path False; nothing imports or loads it |
+| RND-11 | No config-file setting is relied on by the SSR path | code review | 0 | 4 | BLOCKER | 14 | **PASS** - 2026-08-29 stage 14: zero `Config.set` repo-wide; publicDir verified as bundler default from installed `@remotion/bundler` source (dist/bundle.js:182,256-258) |
+| RND-12 | One full Short renders per mg channel | CI | 6/6 | 3 | BLOCKER | 16 | N/B - 2026-08-29 stage 14: denominator restated 12/12 -> 6/6 per register scope header (corrected 2026-08-16; 12/12 predated the 50->17 portfolio cut). CI not dispatchable from this session (`gh` 2.97.0 unauthenticated, no token). Evidence stands: 2026-08-26 ch-02 clean run (1/6), plus stage-14 real-path clip (270x480 yuv420p h264) and full-length runs reaching `renderMedia`. Row gates at stage 16 |
 | RND-13 | Frame 0 and final frame match for loop quality | contact sheet | match | 3 | MINOR | 16 | UNK |
 | RND-14 | No frame is >92% a single colour | contact sheet | 0 frames | 3 | MAJOR | 16 | UNK |
 
@@ -1474,7 +1474,7 @@ Stage 15, all are a single `grep` returning zero hits.
 
 | ID | Must not exist | Pattern | Sev |
 |---|---|---|---|
-| DEL-01 | The no-op scale factor | `Math.min(width, height) / 1080` | MAJOR |
+| DEL-01 | ~~The no-op scale factor~~ **RETIRED, INVERTED 2026-08-30** | ~~`Math.min(width, height) / 1080`~~ | ~~MAJOR~~ |
 | DEL-02 | Percentage dot grid + breathing ring | `GridBackground` | MAJOR |
 | DEL-03 | `ColorWipe` overlay | `ColorWipe` | MAJOR |
 | DEL-04 | Regex stat scrapers | `extractStats\|extractHeroNumber\|extractFlowLines` | BLOCKER |
@@ -1483,29 +1483,29 @@ Stage 15, all are a single `grep` returning zero hits.
 | DEL-32 | Unconditional per-beat icon resolution | `resolveIcon` called outside an `iconRole === "secondary"` guard | BLOCKER |
 | DEL-33 | Icon-only stage scene | `StatementScene` reachable for a beat carrying a `visualPlan` | BLOCKER |
 | DEL-07 | Cue-based scene routing | `pickScene` | BLOCKER |
-| DEL-08 | Sibling flex in content zones | `display: *["']flex` in Stage/Headline/Caption | BLOCKER |
+| DEL-08 | Sibling flex in content zones (mg-style path) | `display: *["']flex` in mg-style Stage/Headline/Caption; `minimal`/`cinematic-documentary` = OTHER-STYLE per Part 6 (amended 2026-08-30); carved: motion-graphics.jsx:940 dead `Centered` (line 940), :1024 leaf-internal chip (line 1024) — line numbers as of post-sweep 2026-08-30 | BLOCKER |
 | DEL-09 | Word-count caption chunking | `chunkVoiceover` | BLOCKER |
 | DEL-10 | `space-around` | `space-around` | MAJOR |
 | DEL-11 | Inert `remotion.config.js` reliance | `Config.set` referenced by `render.js` | BLOCKER |
-| DEL-12 | Bar glow / radial gradients / accent gridlines | `boxShadow\|radial-gradient` | MAJOR |
+| DEL-12 | Bar glow / radial gradients / accent gridlines (outside the designed ground shading) | `boxShadow\|radial-gradient\|radialGradient\|linearGradient` — EXCEPT the four `scenes/stage.jsx` environment fills `paper-fall`/`sub-floor`/`atmo-haze`/`shot-falloff` (ink-on-bg alpha ≤14%, no hue; render-QA'd §3.12.11) and `visual/composition.js` parallax plane ratios (run-visual-tests ≥2×) | MAJOR |
 | DEL-13 | `MinimalSections` text-on-gradient | `MinimalSections` | MAJOR |
-| DEL-14 | `inputProps` entry-file workaround | generated entry path | MAJOR |
+| DEL-14 | `inputProps` entry-file workaround | generated entry path in the production SSR path (`render.js` / real `Root.jsx`) — amended 2026-08-30: `qa-sample.js` refactored to `inputProps` (SFR-DEL14-1, option A); `data/audit/*/_*-entry.jsx` QA-harness shims carved as instrumentation | MAJOR |
 | DEL-15 | Linear easing | `Easing.linear\|easing: *undefined` | MAJOR |
 | DEL-16 | Idle sine pulses | `Math.sin(` outside arc helper | MAJOR |
 | DEL-17 | ~~Pure white / pure black~~ **RETIRED, INVERTED 2026-08-16** | ~~`#FFFFFF\|#FFF\b\|#000000\|#000\b`~~ | ~~MAJOR~~ |
-| DEL-18 | Gradient fills | `gradient` | MAJOR |
+| DEL-18 | Gradient fills | `(?i)gradient` — same four-`stage.jsx` carve as DEL-12; everything else live still fails | MAJOR |
 | DEL-19 | `border:` in styles | `border: ` | MINOR |
 | DEL-20 | JPEG intermediates | `imageFormat.*jpeg` | MAJOR |
-| DEL-21 | Text transform / skew / rotate | `skew\|rotate(` on text | MINOR |
+| DEL-21 | ~~Text transform / skew / rotate~~ **AMENDED 2026-08-30** | `skew\|rotate(` on body/caption/supporting text — `skew` 0 hits; excepted: vertical causal-marker label (structure-scenes.jsx:726, LAY-15-governed pivot); scene/`<g>` canvas transforms are shape-scope, out of scope by definition | MINOR |
 | DEL-22 | Mood-based colour grading | `moodFrom` | MAJOR |
 | DEL-23 | `Math.random` | `Math.random` | BLOCKER |
 | DEL-24 | Particle systems | `particle` | MINOR |
-| DEL-25 | Parallax / depth layers | `parallax` | MINOR |
-| DEL-26 | Three.js / WebGL geometry | `three\|THREE\.` | MAJOR |
+| DEL-25 | ~~Parallax / depth layers~~ **AMENDED 2026-08-30** | `parallax` — carved: the positive-checked DEPTH-plane system (`visual/composition.js` DEPTH_PROFILES + `Shot`/`planeOffset`, `stage.jsx` Plane, run-visual-tests.js depth tests, COL-20); any OTHER parallax (outside the plane system, or a plane without a blur/saturate/opacity depth anchor) still FAILs | MINOR |
+| DEL-26 | Three.js / WebGL geometry | `three\|THREE\.` case-bound (`THREE\.`, `react-three`) — amended 2026-08-30: carved the verified `effects/` pipeline (`PhotoTreatment.jsx`, `CanvasGrain.jsx`, `PostFxReadyGate.jsx` via `@remotion/three` + `@react-three/postprocessing`, §3.12.12); any 3D object geometry or fake-3D lit scene outside it still FAILs (§3.12.9) | MAJOR |
 | DEL-27 | Uppercase captions | `textTransform.*uppercase` in caption | MINOR |
-| DEL-28 | Global film grain in this style | `grain` in mg style | MINOR |
+| DEL-28 | ~~Global film grain in this style~~ **RETIRED-scoped 2026-08-30** — `grain` allowed only as CanvasGrain (`effects/CanvasGrain.jsx` + its mg Background mount), PhotoTreatment's per-photo grain, and the word in "fine-grained" (beats.js:909,1083); any other `grain` in mg live code fails. Positive checks: data/audit/17 measurements + synthetic controls, §3.12.12 render, frame-audit blurredStddev/chromaStddev | MINOR |
 | DEL-29 | Remote asset fetch at render | `https://` in compositions | BLOCKER |
-| DEL-30 | Hex literals in `channels.json` | `#[0-9A-Fa-f]{6}` | MAJOR |
+| DEL-30 | ~~Hex literals in `channels.json`~~ **RETIRED, INVERTED 2026-08-30** — hex is the sanctioned palette and lives ONLY inside a channel's `colors` block: `#[0-9A-Fa-f]{6}` outside `colors` = 0 hits (68/68 inside). Script-side sibling: SCR-13 | MAJOR |
 | DEL-31 | Kicker scaffolding (channel name, or a raw section id, as kicker text) | `channelName` or `sections[idx].id` read inside `Kicker`/`SectionKickers` (`compositions/motion-graphics.jsx`) | MAJOR |
 
 **4.1 â€” A `DEL` check passing is not evidence the replacement works.** Every
@@ -1519,11 +1519,55 @@ pure-black background with black/white ink â€” the opposite of what DEL-17
 assumed. `bg` is now literally `#FFFFFF` or `#000000` per channel (`styles/
 tokens.js`, gated by a new `bg_mode` field in `channels.json`); see Â§3.3.0
 for the full reasoning and the COL-01 ceiling consequence. DEL-09's grep
-pattern is unchanged in name but no longer distinguishes fixed from
-unfixed behaviour â€” see the amendment note after Â§3.10 in this file's
-history, or just: `chunkVoiceover` is now a wrapper around the
-clause-boundary-aware `chunkTextClauseAware`, so the pattern still matches
-by name; TYP-21 is the real behavioural check.
+hit 0 from 2026-08-30 (stage-15 sweep): the `chunkVoiceover` wrapper is
+deleted from render.js and verify-compositions.js, and both call sites call
+the clause-boundary-aware `chunkTextClauseAware` directly, so the grep no
+longer matches by name; TYP-21 is the real behavioural check.
+
+**4.3 — Stage-15 DEL amendment set (delete-list sweep, 2026-08-30).** Rows
+amended per §4.2's DEL-17 precedent (amendment, not deletion; every case
+backed by live evidence in the stage-15 lane ledgers `data/audit/15/*.ledger.md`):
+
+- **DEL-01** — RETIRED, INVERTED 2026-08-30: its pattern's only live hit
+  is `scaleUnit()` at `compositions/mg-style.js:155`, the LAY-20 u-scaler
+  (MANUAL A3.2), NOT the deleted no-op (Part 0.1's dead scaler is
+  structurally replaced by the DesignSpace S-fit, motion-graphics.jsx:294).
+  LAY-20's "applied" wording is stale: `scaleUnit` has 0 call sites
+  repo-wide; the convention is carried by the fixed 1080×1920 design space
+  (u=1 both formats). The dead export should be wired into MG_TYPE scaling
+  or removed under a hygiene notice; neither is a DEL-01 deletion.
+- **DEL-08** — re-scoped to the mg-style path per Part 6: `minimal`/
+  `cinematic-documentary` flex is OTHER-STYLE (their own rebuilds). Live
+  mg-path hits are gone: SFR-LAY15-1 rebuilt the evidence-scenes.jsx:174
+  role strip absolute. Carved: motion-graphics.jsx:940 (dead `Centered`),
+  :1024 (leaf-internal chip; both line numbers shifted by the stage-15 deletions).
+- **DEL-12 / DEL-18** — patterns extended to SVG camelCase after the real
+  blind spot: the kebab-case patterns could never match SVG
+  `<radialGradient>` / `<linearGradient>` elements, so four designed
+  ink-on-bg environment fills in `scenes/stage.jsx` (paper-fall / sub-floor /
+  atmo-haze / shot-falloff, alpha ≤14%, no hue, render-QA'd §3.12.11) were
+  invisible to the gate for 3 days. Amended patterns + carve; COL-13's
+  stale PASS corrected.
+- **DEL-14** — scoped to the production SSR path (`render.js` / real
+  `Root.jsx`): `qa-sample.js` refactored to `inputProps` (SFR-DEL14-1,
+  option A); `data/audit/*/_*-entry.jsx` QA-harness shims carved as
+  instrumentation.
+- **DEL-21** — `rotate(` scoped to body/caption/supporting text; the
+  vertical causal-marker label (structure-scenes.jsx:726) is a designed,
+  LAY-15-governed feature; scene/`<g>` canvas transforms are shape-scope.
+- **DEL-25** — the positive-checked DEPTH-plane system (`visual/composition.js`
+  DEPTH_PROFILES + `Shot`/`planeOffset`, `stage.jsx` Plane, run-visual-tests.js
+  depth tests, COL-20) carved; other parallax still FAILs.
+- **DEL-26** — three.js/WebGL confined to the verified @remotion/three +
+  @react-three/postprocessing effects pipeline (§3.12.12); pattern made
+  case-bound (`THREE\.`, `react-three`) so the English word "three" is not
+  a false positive; any 3D object geometry or fake-3D lit scene still FAILs.
+- **DEL-28** — channel/photo grain carved as the designed feature
+  (CanvasGrain + PhotoTreatment + "fine-grained" in beats.js); any other
+  `grain` in mg live code fails.
+- **DEL-30** — hex is the sanctioned palette and lives ONLY inside a
+  channel's `colors` block (68/68 hits inside); hex outside `colors` = 0
+  hits. Script-side sibling: SCR-13.
 
 ---
 

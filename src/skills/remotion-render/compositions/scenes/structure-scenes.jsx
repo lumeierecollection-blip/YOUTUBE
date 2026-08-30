@@ -8,6 +8,7 @@ import { progressOf } from "../../visual/states.js";
 import { shotFrame, Plane } from "./stage.jsx";
 import { MachineBody, Gate, MaterialSlug } from "./elements/machine.jsx";
 import { CircuitNode, CircuitTrace, SignalPacket } from "./elements/circuit.jsx";
+import { ATMOSPHERE_HORIZON_Y } from "../../layout/slots.js";
 
 /**
  * Which OBJECT FAMILY a process is built from — a deterministic keyword
@@ -100,11 +101,12 @@ export function TimelineScene({ beat, colors, fontFamily }) {
    * cannot infer from a picture.
    */
   const f = shotFrame(shot);
-  // The ground sits on the SAME horizon AtmosphereGround draws (0.6 of
-  // frame height). A first version put it at f.cy + 22% of the band and a
-  // rendered frame showed two competing horizons in one shot — the shared
-  // ground's and the scene's — with the markers stranded below both.
-  const groundY = CANVAS_H * 0.6;
+  // The ground sits on the SAME horizon AtmosphereGround draws
+  // (ATMOSPHERE_HORIZON_Y, layout/slots.js). A first version put it at
+  // f.cy + 22% of the band and a rendered frame showed two competing
+  // horizons in one shot — the shared ground's and the scene's — with the
+  // markers stranded below both.
+  const groundY = ATMOSPHERE_HORIZON_Y;
   // Inset hard. Spreading the span across the full frame width put 1998 and
   // 2015 on the left and right edges, and the camera track clipped one of
   // them off entirely. Endpoints need room to be endpoints.

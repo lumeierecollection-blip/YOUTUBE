@@ -3,8 +3,8 @@ name: visual-qa-loop
 # Renders a short sample of the MotionGraphicsShorts composition, checks it for
 # free, and only escalates to a paid vision call when the free check is clean.
 # Hard-capped at 3 attempts so a failing composition can never drain the credit
-# budget. Renders through qa-sample.js because compositions are data-driven (no
-# defaultProps): it bakes a channel's SRT into a QA entry and renders frames 0-179.
+# budget. Renders through qa-sample.js — real Root.jsx entry, props via
+# inputProps, scale 0.5 (DEL-14 refactor 2026-08-30): frames 0-179 at 540x960.
 
 on:
   workflow_dispatch:

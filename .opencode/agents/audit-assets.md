@@ -6,6 +6,17 @@ permission:
     "**": deny
     "src/skills/remotion-render/public/**": allow
     "THIRD_PARTY_LICENSES.md": allow
+    "src/skills/remotion-render/fonts-loader.js": allow
+    "src/skills/remotion-render/fonts-manifest.json": allow
+    "src/skills/remotion-render/fetch-fonts.js": allow
+    "src/skills/remotion-render/wait-for-fonts.js": allow
+    "src/skills/remotion-render/vendor-icons.js": allow
+    "src/skills/remotion-render/image-assets.js": allow
+    "src/skills/remotion-render/broll.js": allow
+    "src/skills/remotion-render/b-roll-manifest-ch-fixture.json": allow
+    "src/skills/remotion-render/decode-png.js": allow
+    "src/skills/remotion-render/compositions/icons-data.js": allow
+    "src/skills/remotion-render/effects/PhotoTreatment.jsx": allow
     "data/audit/**": allow
   bash: allow
   websearch: allow

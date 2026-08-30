@@ -307,10 +307,11 @@ already removed `GlassCard.tsx` for exactly this reason. `dropShadow()` from
    5–10% for the minimal style; motion-graphics is flatter and takes the
    lower end)
 
-**A6.2** — `@remotion/effects` runs on WebGL2, and renders require
-`Config.setChromiumOpenGlRenderer('angle')`. This must be set in
-`remotion.config.js` before any effect is used, or CI renders will silently
-differ from local ones.
+**A6.2** — Superseded 2026-08-29 by RND-10/RND-11 (stage 14). `remotion.config.js`
+no longer exists — the SSR path (`bundle()` + `renderMedia()`) never read it
+(LAYOUT-SYSTEM §0.10), so no config file may set the renderer. GL selection is
+passed explicitly: `renderMedia({ chromiumOptions: { gl: 'swangle' } })` in
+`render.js`. See LAYOUT-SYSTEM §0.10 for the full reasoning.
 
 **A6.3 — The background never animates during a beat.** The current
 `GridBackground` breathes a 520 px ring continuously; that is removed. It

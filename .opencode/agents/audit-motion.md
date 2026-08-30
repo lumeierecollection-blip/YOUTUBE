@@ -4,7 +4,10 @@ mode: subagent
 permission:
   edit:
     "**": deny
-    "src/skills/remotion-render/beats/**": allow
+    "src/skills/remotion-render/visual/states.js": allow
+    "src/skills/remotion-render/visual/composition.js": allow
+    "src/skills/remotion-render/compositions/beats.js": allow
+    "src/skills/remotion-render/compositions/scenes/stage.jsx": allow
     "data/audit/**": allow
   bash: allow
   websearch: allow

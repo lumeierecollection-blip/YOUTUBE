@@ -1,0 +1,85 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review-full\\frame-00.png",
+      "bg": "rgb(253,253,253)",
+      "flatness": 1.4641811950778005,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review-full\\frame-01.png",
+      "bg": "rgb(248,248,248)",
+      "flatness": 2.299815176792631,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.363640873015873,
+      "captionContrast": 4.338464174190023,
+      "headlineContrast": 4.338464174190023,
+      "pass": false,
+      "violations": [
+        "caption contrast 4.34:1 < 4.5:1 (glyph rgb(117,117,117) on bg rgb(248,248,248))",
+        "headline contrast 4.34:1 < 4.5:1 (glyph rgb(117,117,117) on bg rgb(248,248,248))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review-full\\frame-02.png",
+      "bg": "rgb(250,250,250)",
+      "flatness": 2.324084318539279,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.031820436507936506,
+      "captionContrast": 11.927622214398156,
+      "headlineContrast": 3.05865277981723,
+      "pass": false,
+      "violations": [
+        "headline contrast 3.06:1 < 4.5:1 (glyph rgb(144,144,144) on bg rgb(250,250,250))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review-full\\frame-03.png",
+      "bg": "rgb(249,249,249)",
+      "flatness": 4.740208389140898,
+      "marginForegroundFraction": 0.002370156636438582,
+      "captionForegroundFraction": 0.13799603174603176,
+      "captionContrast": 4.77409147862209,
+      "headlineContrast": 19.02232452915649,
+      "pass": false,
+      "violations": [
+        "content leaking into margins (0.24% > 0.1%)"
+      ]
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review-full\\frame-04.png",
+      "bg": "rgb(251,251,251)",
+      "flatness": 5.050835404600792,
+      "marginForegroundFraction": 0.006409727947238252,
+      "captionForegroundFraction": 0.13860367063492063,
+      "captionContrast": 4.49504975406245,
+      "headlineContrast": 19.812631495958655,
+      "pass": false,
+      "violations": [
+        "content leaking into margins (0.64% > 0.1%)",
+        "caption contrast 4.50:1 < 4.5:1 (glyph rgb(1,135,51) on bg rgb(251,251,251))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review-full\\frame-05.png",
+      "bg": "rgb(252,252,252)",
+      "flatness": 2.881597089255906,
+      "marginForegroundFraction": 0.00010305028854080792,
+      "captionForegroundFraction": 0.004228670634920635,
+      "captionContrast": 1.4775212420692039,
+      "headlineContrast": 2.02097751342553,
+      "pass": false,
+      "violations": [
+        "caption contrast 1.48:1 < 4.5:1 (glyph rgb(187,217,198) on bg rgb(252,252,252))",
+        "headline contrast 2.02:1 < 4.5:1 (glyph rgb(180,180,180) on bg rgb(252,252,252))"
+      ]
+    }
+  ]
+}

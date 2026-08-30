@@ -3,7 +3,7 @@
  *
  * 26 CC0 sounds from Kenney "Interface Sounds 1.0" (kenney.nl),
  * mirrored by github.com/Calinou/kenney-interface-sounds. Licence text is
- * committed at src/audio/kenney_interface_sounds_1.0/LICENSE.txt.
+ * committed at src/audio/kenney_interface/License.txt.
  *
  * Every durationMs/peakDb/meanDb below was MEASURED from the decoded file,
  * never asserted; `intensity` is derived from measured meanDb. The mixer

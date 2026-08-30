@@ -1,0 +1,24 @@
+{
+  "channel_id": "1",
+  "topic_slug": "audit-14-mini-measurement",
+  "format": "shorts",
+  "hook": "A minimal script used by the Stage-14 audit-render lane to measure render.js's encoder options end to end.",
+  "sections": [
+    {
+      "id": "sec_1",
+      "voiceover": "This is a measurement render. It checks that imageFormat and crf and pixelFormat and the software WebGL backend all reach renderMedia.",
+      "beats": [
+        {
+          "text": "MEASUREMENT RUN",
+          "archetype": "STATEMENT",
+          "anchor_token": "measurement render"
+        }
+      ],
+      "b_roll": [],
+      "sfx_cue": "",
+      "text_overlay": {
+        "text": "ENCODER CHECK"
+      }
+    }
+  ]
+}

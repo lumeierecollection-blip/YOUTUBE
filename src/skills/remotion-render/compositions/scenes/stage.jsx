@@ -3,6 +3,7 @@ import { useCurrentFrame } from "remotion";
 import { CANVAS_W, CANVAS_H, ease, seeded, EASE_IN_OUT, EASE_OUT } from "./primitives.jsx";
 import { progressOf } from "../../visual/states.js";
 import { planeOffset } from "../../visual/composition.js";
+import { ATMOSPHERE_HORIZON_Y } from "../../layout/slots.js";
 
 /**
  * Art-direction primitives: the things that turn a subject into a SHOT.
@@ -405,7 +406,7 @@ function FieldGround({ colors, a, seed }) {
 
 /** Atmosphere: distance. A horizon and depth haze, nothing else. */
 function AtmosphereGround({ colors, a, seed }) {
-  const horizonY = CANVAS_H * 0.6;
+  const horizonY = ATMOSPHERE_HORIZON_Y;
   const marks = [];
   for (let i = 0; i < 14; i++) {
     const t = i / 14;
@@ -419,7 +420,7 @@ function AtmosphereGround({ colors, a, seed }) {
     <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0 }}>
       <defs>
         <linearGradient id="atmo-haze" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={colors.stroke} stopOpacity={0.1 * a} />
+          <stop offset="0%" stopColor={colors.stroke} stopOpacity={0.06 * a} />
           <stop offset="55%" stopColor={colors.bg} stopOpacity={0} />
         </linearGradient>
       </defs>

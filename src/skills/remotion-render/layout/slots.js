@@ -22,6 +22,56 @@ export const SAFE_SHORTS = { top: 288, bottom: 1248, left: 48, right: 888 };
 export const SAFE_LONGFORM = { top: 100, bottom: 980, left: 160, right: 1760 };
 
 /**
+ * Where the atmosphere world draws its horizon (AtmosphereGround in
+ * compositions/scenes/stage.jsx and every scene that stands in that world:
+ * CinematicStatement's ridge/stake/ellipse stack in abstract-scenes.jsx,
+ * TimelineScene's ground in structure-scenes.jsx). ONE horizon per frame —
+ * this single constant is what keeps that true (§8.3: a layout number lives
+ * here, not as `CANVAS_H * 0.6` in three scene files).
+ *
+ * DERIVED, NOT A TASTE — stage-16 gate FRM-02 / frame-audit.js failed five
+ * CINEMATIC_STATEMENT frames (marginFg 0.80/0.02/1.13/1.27/0.14%) for
+ * content crossing SAFE_SHORTS.bottom (1248), diagnosed per-probe in
+ * data/audit/16/diagnose-margins.mjs: the headline-right margin (frame-
+ * audit.js MARGINS: x940-1060, y964-1248) caught a solid full-width ridge
+ * band. The previous value, CANVAS_H * 0.6 = 1152, put the ridge's dark
+ * fill at output ≈ 1.06·(h − 56) .. 1.06·h + 50.25 (FAR plane, parallax
+ * 0.14, settled DRIFT) = y1215-1271 — straddling 1248, so the part above
+ * it leaked into the probe. (The +50.25 = motion-graphics.jsx's captionless
+ * 110 px DesignSpace drop + Shot's settled scale 1.06 around y960 + camera
+ * dy −15.36 + far-plane parallax +13.21. Confirmed by re-deriving the
+ * measured band bottom, 1.06·1152+50.25 = 1271.4.)
+ *
+ * RAISING makes it worse (the band would sit INSIDE the y964-1248 probe —
+ * measured up to ~20% coverage at h=1120), so the horizon moves DOWN until
+ * the whole band is below the safe rect:
+ *
+ *   worst crest 1.06·(h − 56) + 50.25 ≥ 1248 + 3 (safe bottom + blur(3)
+ *   edge spread)  →  h ≥ 1188.8  →  h = 1200 (= 150·8, grid §3.5)
+ *
+ * At 1200, worst-case output (drift-phase independent; both planes clear):
+ *   far-plane ridge crest        1.06·1144 + 50.25 = 1262.9  (11.9 px clear)
+ *   far-plane ridge horizon edge 1.06·1200 + 50.25 = 1322.3
+ *   ground-plane horizon line    1.06·1200 + 37.04 = 1309.0  (k = 1, the
+ *                              AtmosphereGround backdrop / TimelineScene)
+ * (The fixture in run-lint.js checks the ground-plane value 1309.0 and the
+ * crest 1262.9; the far-plane edge 1322.3 is the same h in the far plane.)
+ *
+ * The statement text stays inside the safe rect for both framings (HORIZON
+ * output ≈ [926, 1033], ISOLATED ≈ [869, 937] — bottom edge CANVAS_H −
+ * (h − stakeH) + 26 with stakeH = max(90, f.h·0.2), subject plane k = 1).
+ *
+ * Fine print — the band below 1248 is the world's GROUND (the floor the
+ * shot stands on); the caption slot (1152-1248) is empty on captionless
+ * channels, and the mark-fan alphas entering the bottom margin probe are a
+ * separate pre-existing knife-edge (~±2 units from the audit's FG_DIFF at
+ * a≈1, unchanged by this value). The haze top-stop 0.1·a in stage.jsx's
+ * atmo-haze gradient is the other half of the same audit fix (top-margin
+ * leak on frames 07/08) and must track this value in lockstep.
+ */
+export const ATMOSPHERE_HORIZON_Y = 1200;
+
+/**
  * Part 3 — Shorts slot table. Absolute px in a 1080 × 1920 frame, derived
  * from the safe rect and the 8 px grid. These are the only positions that
  * exist in the system.

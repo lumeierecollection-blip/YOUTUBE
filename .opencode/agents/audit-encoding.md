@@ -4,8 +4,20 @@ mode: subagent
 permission:
   edit:
     "**": deny
-    "src/skills/remotion-render/primitives/Chart.jsx": allow
     "src/skills/remotion-render/spec/fromBeats.js": allow
+    "src/skills/remotion-render/visual/strategies.js": allow
+    "src/skills/remotion-render/visual/director.js": allow
+    "src/skills/remotion-render/visual/semantics.js": allow
+    "src/skills/remotion-render/visual/channel-grammar.js": allow
+    "src/skills/remotion-render/primitives/Panel.jsx": allow
+    "src/skills/remotion-render/compositions/scenes/abstract-scenes.jsx": allow
+    "src/skills/remotion-render/compositions/scenes/evidence-scenes.jsx": allow
+    "src/skills/remotion-render/compositions/scenes/GeospatialRadiusScene.jsx": allow
+    "src/skills/remotion-render/compositions/scenes/primitives.jsx": allow
+    "src/skills/remotion-render/compositions/scenes/quantity-scenes.jsx": allow
+    "src/skills/remotion-render/compositions/scenes/structure-scenes.jsx": allow
+    "src/skills/remotion-render/compositions/scenes/index.jsx": allow
+    "src/skills/remotion-render/compositions/scenes/elements/**": allow
     "data/audit/**": allow
   bash: allow
   websearch: allow

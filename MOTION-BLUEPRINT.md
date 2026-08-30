@@ -240,8 +240,8 @@ is roughly half the size it needs to be. Raise to `84 * u` / `44 * u`.
 <cite index="38-1">Aim for 1–2 lines, break phrases into logical chunks to reduce eye travel, and keep most moments to one core idea on screen — usually 5–12 words. For complex topics, break information into multiple quick screens rather than one dense paragraph.</cite>
 
 **Rule 3.1 — Max 7 words per beat. Max 2 lines. One idea per beat.**
-This replaces `chunkVoiceover`'s fixed word-count chunker, which splits
-mid-phrase.
+Enforced by `chunkTextClauseAware()` (beats.js) — the old `chunkVoiceover`
+fixed word-count chunker it replaced was deleted 2026-08-30 (DEL-09/TYP-11).
 
 ### 3.3 Minimum on-screen time
 

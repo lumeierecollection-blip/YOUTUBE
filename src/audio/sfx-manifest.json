@@ -1,4 +1,5 @@
 {
+  "_note": "DESIGN CATALOG (2026-07-27 planning pass; pre-dates the 26-file shipped library). NOT the per-file license log: the authoritative per-file log is src/skills/remotion-render/visual/sfx-library.js (file/source/license per entry) plus src/audio/sfx-library.measured.json. See CHECK-REGISTER AUD-06 (stage 13, 2026-08-29).",
   "sfx_library": {
     "version": "1.0.0",
     "last_updated": "2026-07-27",

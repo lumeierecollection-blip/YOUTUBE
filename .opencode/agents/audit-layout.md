@@ -6,7 +6,7 @@ permission:
     "**": deny
     "src/skills/remotion-render/layout/**": allow
     "src/skills/remotion-render/spec/**": allow
-    "src/skills/remotion-render/layers/**": allow
+    "src/skills/remotion-render/compositions/layout-constants.js": allow
     "data/audit/**": allow
   bash: allow
   websearch: allow

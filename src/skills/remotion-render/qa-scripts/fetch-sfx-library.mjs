@@ -320,7 +320,7 @@ async function main() {
       ` *\n` +
       ` * ${entries.length} CC0 sounds from Kenney "Interface Sounds 1.0" (kenney.nl),\n` +
       ` * mirrored by github.com/Calinou/kenney-interface-sounds. Licence text is\n` +
-      ` * committed at src/audio/kenney_interface_sounds_1.0/LICENSE.txt.\n` +
+      ` * committed at src/audio/kenney_interface/License.txt.\n` +
       ` *\n` +
       ` * Every durationMs/peakDb/meanDb below was MEASURED from the decoded file,\n` +
       ` * never asserted; \`intensity\` is derived from measured meanDb. The mixer\n` +

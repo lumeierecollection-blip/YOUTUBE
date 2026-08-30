@@ -6,6 +6,8 @@ permission:
     "**": deny
     "config/channels.json": allow
     "src/skills/remotion-render/styles/tokens.js": allow
+    "src/skills/remotion-render/effects/CanvasGrain.jsx": allow
+    "src/skills/remotion-render/effects/generate-editorial-lut.mjs": allow
     "data/audit/**": allow
   bash: allow
   websearch: allow

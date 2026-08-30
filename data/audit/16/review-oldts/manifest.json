@@ -1,0 +1,62 @@
+{
+  "tool": "current-audit-fresh-oldts",
+  "video": "",
+  "durationSec": 73.13,
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "frames": [
+    {
+      "index": 0,
+      "timeSec": 0,
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\review-oldts\\\\frame-00.png"
+    },
+    {
+      "index": 1,
+      "timeSec": 8.126,
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\review-oldts\\\\frame-01.png"
+    },
+    {
+      "index": 2,
+      "timeSec": 16.251,
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\review-oldts\\\\frame-02.png"
+    },
+    {
+      "index": 3,
+      "timeSec": 24.377,
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\review-oldts\\\\frame-03.png"
+    },
+    {
+      "index": 4,
+      "timeSec": 32.502,
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\review-oldts\\\\frame-04.png"
+    },
+    {
+      "index": 5,
+      "timeSec": 40.628,
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\review-oldts\\\\frame-05.png"
+    },
+    {
+      "index": 6,
+      "timeSec": 48.753,
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\review-oldts\\\\frame-06.png"
+    },
+    {
+      "index": 7,
+      "timeSec": 56.879,
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\review-oldts\\\\frame-07.png"
+    },
+    {
+      "index": 8,
+      "timeSec": 65.004,
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\review-oldts\\\\frame-08.png"
+    },
+    {
+      "index": 9,
+      "timeSec": 73.03,
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\review-oldts\\\\frame-09.png"
+    }
+  ],
+  "contactSheet": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\review-oldts\\\\contact-sheet.png",
+  "note": "fresh native scale-1.0 renders (render-frame.mjs, same Root.jsx/MotionGraphicsShorts pipeline) at the 2026-08-16 evidence timestamps, re-rendered 2026-08-30 17:4x after layout SFR (horizon 1200) + color SFRs (opacity rails, exit-fade, stake width). The 2026-08-30 15:05 mp4 in data/renders/1 is STALE (pre-fix) and does not represent the current tree."
+}

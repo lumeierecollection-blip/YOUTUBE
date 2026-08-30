@@ -149,9 +149,9 @@ is left to a default chosen for general video. §5.6 fixes this.
   (`minimal.jsx:86-93`, `cd.jsx:359-367`), hardcoded font sizes (`minimal.jsx:45`,
   `cd.jsx:131,373`), no text measurement or fit, and `sectionDuration =
   durationInFrames / sections.length` (`minimal.jsx:75`) with no audio timing.
-- **`chunkVoiceover` (Part 7 D2) is still live** at `render.js:118` and
-  `verify-compositions.js:38` — word-count chunking that ignores phrase
-  boundaries and SRT timing, feeding the two emergent styles.
+- **~~`chunkVoiceover` (Part 7 D2)~~ — CLEARED 2026-08-30.** The wrapper is
+  deleted (stage-15 sweep, DEL-09/TYP-11); `chunkTextClauseAware` (beats.js)
+  is called directly at both call sites (render.js, verify-compositions.js).
 - **~~The Part 7 D6 entry-file workaround~~ — CLEARED.** `render.js` and
   `verify-compositions.js` now pass props via `inputProps` to both
   `selectComposition()` and `renderMedia()`/`renderStill()`, and apply the exact
@@ -651,7 +651,7 @@ are the deletions that are still live. Delete them. Do not refactor them.
 | # | Delete | File | Why |
 |---|---|---|---|
 | D1 | Every `display: flex` between siblings in Stage/Headline/Caption | `motion-graphics.jsx` (`CaptionLayer`, `HeadlineBox`, `ListRunScene`), `minimal.jsx`, `cinematic-documentary.jsx` | the root cause (Part 1); replaced by `Layer.jsx` rects |
-| D2 | `chunkVoiceover()` | `render.js:118`, `verify-compositions.js:38` | word-count chunking that ignores phrase boundaries and SRT timing |
+| D2 | ~~`chunkVoiceover()`~~ — **CLEARED 2026-08-30** | ~~`render.js:118`, `verify-compositions.js:38`~~ | wrapper deleted (DEL-09/TYP-11); clause-aware `chunkTextClauseAware` called directly |
 | D3 | `remotion.config.js` (or reduce to Studio-only + a comment) | `remotion.config.js` | inert on the SSR render path (§0.10) |
 | D4 | Radial gradients and vignette overlay used as the main background | `minimal.jsx:57-71`, `cinematic-documentary.jsx` (`Vignette`, `SectionBackground`) | decoration spending the accent budget; rebuild on the slot model |
 | D5 | `minimal.jsx` `MinimalSections` in full | `minimal.jsx:73` | text on a gradient; rebuild on the slot model |

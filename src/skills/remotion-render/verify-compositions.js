@@ -19,10 +19,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const CHROME = findChrome();
 const OUT_DIR = join(__dirname, "verify-out");
 
-function chunkVoiceover(text, maxWords = 7) {
-  return chunkTextClauseAware(text, maxWords);
-}
-
 // Real ch-fixture script, mapped exactly like render.js toContentSections.
 const script = JSON.parse(
   readFileSync(join(dirname(__dirname), "..", "..", "data", "scripts", "ch-fixture", "movile-cave-shorts-script.json"), "utf-8")
@@ -33,7 +29,7 @@ const sections = (script.sections || [])
     id: s.id,
     timing: s.timing,
     voiceover: s.voiceover,
-    content: chunkVoiceover(s.voiceover),
+    content: chunkTextClauseAware(s.voiceover),
     visualCue: s.visual_cue || null,
     bRoll: Array.isArray(s.b_roll) ? s.b_roll : null,
     textOverlay: s.text_overlay || null,

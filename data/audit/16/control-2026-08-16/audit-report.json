@@ -1,0 +1,125 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\control-2026-08-16\\\\frame-00.png",
+      "bg": "rgb(252,252,252)",
+      "flatness": 1.1887601318345664,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.004761904761904762,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\control-2026-08-16\\\\frame-01.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 1.2629737003246797,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.20245535714285715,
+      "captionContrast": 19.71206465514972,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\control-2026-08-16\\\\frame-02.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 1.1168727266347485,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.004761904761904762,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\control-2026-08-16\\\\frame-03.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 1.3033969998227974,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.13219246031746032,
+      "captionContrast": 21,
+      "headlineContrast": 21,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\control-2026-08-16\\\\frame-04.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 1.0837237886102444,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.04900793650793651,
+      "captionContrast": 6.867656610283617,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\control-2026-08-16\\\\frame-05.png",
+      "bg": "rgb(251,251,251)",
+      "flatness": 1.1656937667768212,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.2089905753968254,
+      "captionContrast": 19.202825420178414,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\control-2026-08-16\\\\frame-06.png",
+      "bg": "rgb(254,254,254)",
+      "flatness": 65.39743730285197,
+      "marginForegroundFraction": 0.015869744435284418,
+      "captionForegroundFraction": 0.12622767857142858,
+      "captionContrast": 20.822041942276595,
+      "headlineContrast": 19.630372398278624,
+      "pass": false,
+      "violations": [
+        "bg not flat in headline-right-margin (blurred stddev 47.8 > 14 — survives blur, looks like a real gradient, not grain)",
+        "content leaking into margins (1.59% > 0.1%)"
+      ]
+    },
+    {
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\control-2026-08-16\\\\frame-07.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 73.95263249848364,
+      "marginForegroundFraction": 0.021187139323990106,
+      "captionForegroundFraction": 0.004761904761904762,
+      "captionContrast": null,
+      "headlineContrast": 19.682627652657427,
+      "pass": false,
+      "violations": [
+        "bg not flat in headline-right-margin (blurred stddev 54.4 > 14 — survives blur, looks like a real gradient, not grain)",
+        "content leaking into margins (2.12% > 0.1%)"
+      ]
+    },
+    {
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\control-2026-08-16\\\\frame-08.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 53.91552956001493,
+      "marginForegroundFraction": 0.010634789777411377,
+      "captionForegroundFraction": 0.16336805555555556,
+      "captionContrast": 19.168645448127652,
+      "headlineContrast": 19.79814571052481,
+      "pass": false,
+      "violations": [
+        "bg not flat in headline-right-margin (blurred stddev 38.7 > 14 — survives blur, looks like a real gradient, not grain)",
+        "content leaking into margins (1.06% > 0.1%)"
+      ]
+    },
+    {
+      "file": "C:\\\\Users\\\\user\\\\YOUTUBE\\\\data\\\\audit\\\\16\\\\control-2026-08-16\\\\frame-09.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 1.0772387136064916,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.004761904761904762,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

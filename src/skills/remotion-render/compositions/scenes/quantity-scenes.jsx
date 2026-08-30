@@ -152,12 +152,12 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
       {/* The container that gives "accumulation" a place: a tray with a
           floor the units land on, or the ledger's single left rule. */}
       {ledger ? (
-        <div style={{ position: "absolute", left: trayX, top: ledgerTop, width: 3, height: ledgerH * ease(pEmpty), background: colors.stroke, opacity: 0.6 }} />
+        <div style={{ position: "absolute", left: trayX, top: ledgerTop, width: 3, height: ledgerH * ease(pEmpty), background: colors.stroke, opacity: 1 }} />
       ) : (
         <>
           <Rule x={trayX} y={floorY} w={trayW} p={pEmpty} color={colors.stroke} thickness={3} />
-          <div style={{ position: "absolute", left: trayX, top: floorY - 300, width: 2, height: 300 * ease(pEmpty), background: colors.stroke, opacity: 0.45 }} />
-          <div style={{ position: "absolute", left: trayX + trayW - 2, top: floorY - 300, width: 2, height: 300 * ease(pEmpty), background: colors.stroke, opacity: 0.45 }} />
+          <div style={{ position: "absolute", left: trayX, top: floorY - 300, width: 2, height: 300 * ease(pEmpty), background: colors.stroke, opacity: 1 }} />
+          <div style={{ position: "absolute", left: trayX + trayW - 2, top: floorY - 300, width: 2, height: 300 * ease(pEmpty), background: colors.stroke, opacity: 1 }} />
         </>
       )}
 

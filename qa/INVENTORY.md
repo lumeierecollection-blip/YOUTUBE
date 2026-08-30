@@ -13,8 +13,6 @@ Skills: `.opencode/skills/{video-shotcraft,scene-director,mograph-critic}/`.
   the SRT next to the TTS audio; `buildMgPackage()` bakes `mg` and the duration.
   Renders at full res/length. Not suitable for cheap QA samples → QA entry generator needed.
 - `audio.js` — static import of `./vo.mp3` staged by `render.js`. Absent in QA samples (fine).
-- `remotion.config.js` — jpeg format, overwrite, public dir `public`, OpenGL `angle`
-  renderer (needed by `@remotion/effects`).
 - `wait-for-fonts.js` — cold-start font fetch (21 families) requires
   `timeoutInMilliseconds: 120000` (render.js) or `--timeout` on the CLI.
 

@@ -72,3 +72,58 @@ Stage 0 complete. Stage 1 may be dispatched on the user's go-ahead only.
 ## Next action
 
 Stopped. Waiting for the user's go-ahead to dispatch Stage 1 (audit-render + audit-assets).
+
+---
+
+# RE-VERIFICATION — 2026-08-29 (new session, new prompt authority)
+**Runner:** mg-orchestrator (big-pickle session)
+**Prompt authority:** `visual guide.txt` (repo root, untracked) — the operative version of the
+fourth-to-ninth rebuild directives already recorded in CHECK-REGISTER §3.12.10–3.12.15.
+The user instructed: "use visual guide as a prompt." The guide therefore joins the five spec
+docs as an input to verify and implement, per the protocol's own precedence (live source >
+spec > register).
+
+| # | Check | Result |
+|---|---|---|
+| 1 | `websearch` live | **PASS** — fresh search returned the guide's primary reference repo `Liamrjohnston/remotion-motion-graphics-skill` (MIT, main branch, created 2026-07-23, 14 commits, 52 stars). The live skills match the guide's attributed claims: one-world camera rig, 14–24-frame moves, repeated-key holds, clean end hold, zero-neon/zero-glow policy, "never restate the voiceover", hold→move→hold→settle, and the rejected "slow zoom as the only camera idea" pattern. Guide §1/§9/§13 citations verified against the live source. |
+| 2 | `subagent_depth: 2` | **PASS** — `opencode.json` line 4: `"subagent_depth": 2`; `default_agent: mg-orchestrator`; all 11 agent files present at `.opencode/agents/` (orchestrator, 8 audit lanes, verify-independent, 2 pipeline agents). Lane task permissions gate `"verify-independent": allow`. |
+| 3 | Throwaway `verify-independent` call | **PASS** — lane relay (same accepted mechanism as the 2026-08-06 run, per deviation log item 2 above): `audit-type` invoked `verify-independent` with a trivial domain claim; verifier researched from scratch, returned **CONFIRM** citing remotion.dev docs + two GitHub source files. No files touched. |
+
+## GATE VERDICT: **PASS** (re-verified 2026-08-29)
+
+## State discovered during preflight (carried into the stage decision)
+
+- **Stages 0–11 already gated** (2026-08-06 → 2026-08-12), including Stage 10 captions and
+  Stage 11 counters/settles with the D4/D14 exception on 5 non-tnum channels.
+- **`data/audit/12…18` contain probe scripts but NO GATE.md and no ledgers.** Their contents
+  (image-beat / pull-quote / photo-treatment / no-attribution / fallback / cover-fit / grain /
+  fullbleed probes) do not match the protocol's Part 4 stage-12–16 definitions (Background+depth,
+  Audio, Encoder+CI, Delete-sweep, Full render). They are artifacts of the directive-driven
+  visual passes (commits `6ce130b`…`7282e8c`), written outside the lane/gate process.
+- **Recent `visual:` commits (2026-08-27/28)** already implement the guide's core decrees:
+  filled mass for line scenes, designed objects replacing primitives, bevel/ring-ground removal,
+  hold→move camera (CHECK-REGISTER §3.12.10 Phase 11), legacy path deletion (§3.12.11),
+  PhotoTreatment port (§3.12.12), RELATIONSHIP rebuilt twice to interlocking ChainLink
+  (§3.12.13/14), PROCESS circuit-family regression fixed (§3.12.15).
+- **QA baseline:** `node visual/run-visual-tests.js` 70/70 (stable through all of the above).
+
+## Open items the visual guide + register pin to remaining protocol stages
+
+- §3.12.15: PROCESS MECHANISM family not freshly re-rendered; 14 strategies unaudited against the
+  guide's per-strategy lists; no camera-variety pass; no typography-rhythm pass; no material
+  audit beyond sound; no full 16-strategy production render; no muted human-review pass.
+- Stage 0's original findings still open: FINISH-SPEC.md missing from repo; 13-vs-12 mg channels
+  row; MANUAL §A6.2 (inert `remotion.config.js`) — RND-09…11; safe-zone source conflict.
+- The protocol's own Part 4 remaining stages: **12 Background+depth (audit-color), 13 Audio
+  (audit-audio), 14 Encoder+CI (audit-render), 15 Delete-sweep (all eight), 16 Full render
+  (orchestrator)**.
+
+## Routing decision requested from the user (next message)
+
+1. **Resume at the protocol's next ungated stage (12, audit-color)** with the visual guide folded
+   into every lane's spec set — recommended, since stages 0–11 are gated and their output is what
+   the recent `visual:` commits already rebuilt on.
+2. **Restart the staged protocol from Stage 1** under the visual guide as the sole spec authority
+   (re-gates everything, re-runs all lanes).
+3. Something else (e.g. run the guide's remaining §16-per-strategy audit as its own lane-then-gate
+   stage before 12).

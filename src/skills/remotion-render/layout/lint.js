@@ -293,6 +293,106 @@ export function lintL12(frames) {
   return { id: "L12", failures };
 }
 
+/** LAY-18 (register, MINOR, tier 1, stage 12) — Stage occupancy ≤ 253,000 px².
+ *  DETAIL-REF B4.1: "At least 45% of the Stage slot must be ground at every
+ *  frame. 840 × 548 = 460,320 px²; occupied geometry may not exceed 253,000
+ *  px²." B4.2: the rule that varies is Stage density, not the always-occupied
+ *  kicker/headline/caption slots — so only stage-slot content counts.
+ *
+ *  Occupied geometry = the summed painted area of non-structural stage-slot
+ *  rects, clipped to the Stage slot bounds: for a `chart` with `chart.bars[]`
+ *  the sum of each bar's w×h (the painted figure — a chart's white plot
+ *  padding is ground, not occupied, so the container box is never counted;
+ *  a container would be 352,640 px² yet visually ~40% occupied), otherwise
+ *  the rect's w×h. Persistent chrome (kicker/caption/rail) and the fixed
+ *  skeleton (rail/accent) are never stage content and are excluded.
+ *
+ *  Threshold reconciliation: 55% of 460,320 = 253,176, but B4.1 pins the
+ *  operational bound at 253,000 and CHECK-REGISTER keys the check on
+ *  "≤253,000" — the strict constant 253,000 is implemented. */
+export function lintL18(frames, opts = {}) {
+  const failures = [];
+  const limit = opts.stageOccupancyLimit ?? 253000;
+  const slots = opts.slots || SLOTS_SHORTS;
+  const stage = slots.stage;
+  if (!stage) return { id: "L18", failures, observations: [] };
+  const sb = slotBounds(stage);
+  const observations = [];
+  for (const frame of frames) {
+    let occupied = 0;
+    for (const rect of frame.rects || []) {
+      if (rect.slot !== "stage") continue;
+      if (rect.structural === true) continue;
+      // The painted area of the rect that falls inside the Stage slot. A chart
+      // is measured by its bars (the figure); anything else by its box.
+      const boxes =
+        rect.role === "chart" && Array.isArray(rect.chart && rect.chart.bars) && rect.chart.bars.length
+          ? rect.chart.bars.map((b) => ({ x: b.x ?? rect.x, y: b.y ?? rect.y, w: b.w, h: b.h }))
+          : [{ x: rect.x, y: rect.y, w: rect.w, h: rect.h }];
+      for (const box of boxes) {
+        const clipW = Math.max(0, Math.min(box.x + box.w, sb.right) - Math.max(box.x, sb.left));
+        const clipH = Math.max(0, Math.min(box.y + box.h, sb.bottom) - Math.max(box.y, sb.top));
+        occupied += clipW * clipH;
+      }
+    }
+    observations.push({ beatId: frame.beatId, occupiedPx2: occupied, limit });
+    if (occupied > limit) {
+      const pct = (occupied / (stage.w * stage.h)) * 100;
+      failures.push(
+        `${frame.beatId}: stage occupied geometry ${occupied}px² (${pct.toFixed(1)}% of the ${stage.w}×${stage.h} slot) exceeds the ${limit}px² (≤55%) budget`
+      );
+    }
+  }
+  return { id: "L18", failures, observations };
+}
+
+/** LAY-19 (register, MINOR, tier 1, stage 12) — no two rects within 24 px.
+ *  DETAIL-REF B4.3: "No element may sit closer than 24 px to another element's
+ *  bounding box. Below 24 px, two elements read as one object with a seam."
+ *
+ *  SCOPE — participants are the emitted content rects: everything that is
+ *  neither `persistent` (kicker/caption/rail) nor `structural` (rail/accent),
+ *  i.e. headline/chart/support and any non-persistent non-structural object.
+ *  The fixed skeleton is held apart by the slot system and MUST NOT be a
+ *  participant (the rail stroke overlaps every content box by design; caption
+ *  and kicker are intended close to their slots). Bars *within one chart* are
+ *  also excluded: a chart's bars share an intentional GRID.gutter (8 px) so
+ *  they group as ONE object (Gestalt proximity), and checking them would flag
+ *  every chart. "rect" here = one emitted content object.
+ *
+ *  Distance = the closest approach between two axis-aligned bounding boxes:
+ *  sqrt(max(0,hGap)² + max(0,vGap)²), 0 when they overlap. A pair visible in an
+ *  overlapping (or undeclared) range closer than 24 px is a failure. */
+export function lintL19(frames, opts = {}) {
+  const failures = [];
+  const minSep = opts.minSeparation ?? 24;
+  for (const frame of frames) {
+    const dur = frame.durationInFrames;
+    const parts = (frame.rects || [])
+      .filter((r) => r.persistent !== true && r.structural !== true)
+      .map((r) => ({
+        r,
+        range: r.from === undefined && r.to === undefined ? null : { from: r.from ?? 0, to: r.to ?? dur ?? Infinity },
+      }));
+    for (let i = 0; i < parts.length; i++) {
+      for (let j = i + 1; j < parts.length; j++) {
+        const a = parts[i];
+        const b = parts[j];
+        if (a.range && b.range && !rangesOverlap(a.range, b.range)) continue;
+        const hGap = Math.max(a.r.x, b.r.x) - Math.min(a.r.x + a.r.w, b.r.x + b.r.w);
+        const vGap = Math.max(a.r.y, b.r.y) - Math.min(a.r.y + a.r.h, b.r.y + b.r.h);
+        const dist = Math.hypot(Math.max(0, hGap), Math.max(0, vGap));
+        if (dist < minSep) {
+          failures.push(
+            `${frame.beatId} ${a.r.role} is ${dist.toFixed(1)}px from ${b.r.role} (want ≥ ${minSep}px; below that two elements read as one object with a seam)`
+          );
+        }
+      }
+    }
+  }
+  return { id: "L19", failures };
+}
+
 /** Stage 5 combined — the tier-1 checks that predate Stage 6 (L1–L3). */
 export function lintTier1(frames, opts = {}) {
   const slots = opts.slots || SLOTS_SHORTS;
@@ -319,6 +419,8 @@ export function lintAll(frames, opts = {}) {
     lintL10(frames),
     lintL11(frames),
     lintL12(frames),
+    lintL18(frames, opts),
+    lintL19(frames, opts),
   ];
   const pass = results.every((r) => r.failures.length === 0);
   return { pass, results };

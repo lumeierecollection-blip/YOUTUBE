@@ -7,6 +7,7 @@ import {
 import { progressOf } from "../../visual/states.js";
 import { Plane, shotFrame } from "./stage.jsx";
 import { PressureWalls } from "./elements/pressure.jsx";
+import { ATMOSPHERE_HORIZON_Y } from "../../layout/slots.js";
 
 /**
  * Abstract scenes — the two that carry a beat when nothing concrete is
@@ -89,7 +90,7 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
       break;
     case "destabilising":
       standoff = openMax * 0.55;
-      wobble = [0, 1, 2, 3].map((i) => Math.sin(frame * 0.13 + i * 1.7) * 9 * a);
+      wobble = [0, 0, 0, 0];
       break;
     default:
       break; // "loading" draws its own bars below and ignores standoff
@@ -162,8 +163,9 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
 // `Plane` primitive, which until now was exported and used by no scene.
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Where AtmosphereGround puts its horizon. One horizon per frame. */
-const ATMOSPHERE_HORIZON_Y = CANVAS_H * 0.6;
+// Horizon lives in layout/slots.js (ATMOSPHERE_HORIZON_Y = 1200) —
+// stage-16 FRM-02: 1152 placed the ridge band straddling safe-bottom
+// 1248 under the captionDrop(110) + camera mapping.
 
 export function CinematicStatementScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
@@ -247,9 +249,9 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
         <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
           {pSubject > 0 ? (
             <line
-              x1={textCx} y1={horizon}
-              x2={textCx} y2={horizon - stakeH * eSubject}
-              stroke={colors.accent} strokeWidth={3} />
+              x1={Math.round(textCx)} y1={horizon}
+              x2={Math.round(textCx)} y2={horizon - stakeH * eSubject}
+              stroke={colors.accent} strokeWidth={6} />
           ) : null}
           {/* Its footing on the ground — a shadow, so the stake is standing
               on the plane rather than crossing in front of it. */}

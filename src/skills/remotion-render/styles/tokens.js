@@ -23,9 +23,12 @@
  * MOTION-GRAPHICS-MANUAL A5.2 "no shadows, no bevels, no glass"). `accent`
  * is still derived from the channel's `accentHue` (OKLCH hue circle) so
  * each channel keeps a distinct, meaningful accent colour, but its
- * lightness is now solved numerically per bg polarity so accent/bg
- * contrast clears COL-02 (>=4.5:1) against a PURE white or PURE black
- * background instead of against the old mid-dark tonal bg.
+*    lightness is now solved numerically per bg polarity so accent/bg
+ *    contrast clears COL-02 (>=4.5:1) measured against the actual rendered
+ *    background (pure bg + CanvasGrain) — the 5.3-vs-pure solve target
+ *    leaves headroom for the grained white bg, which measures a mode of
+ *    rgb(248-253) on real frames (see data/audit/16/color.ledger.md
+ *    CLAIM-color-16-001); a 4.6-vs-pure solve drops to ~4.45:1 there.
  *
  * Provenance (see data/audit/3/audit-color.ledger.md for the original claim
  * cards; superseded where noted above):
@@ -164,8 +167,19 @@ export const C_ACC = 0.17;
  * rather than the extreme end of the search range. Falls back to whichever
  * bound has more contrast if no candidate clears the target (very low-
  * chroma hues at extreme lightness can fail to reach 4.5:1 at all).
+ *
+ * The default target is 5.3, NOT the 4.5 floor. First hardened pass
+ * (data/audit/16 run 1) used 5.0 — that left every full-coverage role at
+ * >=4.64:1 on the grained bg but the frame-03 vertical-line pixel (a
+ * textDim hairline at ~96% AA coverage spanning both probe bands) still
+ * measured 4.40:1 on the darkest draw (bg 248). 5.3 is the smallest
+ * target whose ~96%-coverage blend clears 4.5 there (rgb(112) -> ~4.66:1;
+ * full-coverage roles measure ~4.9-5.1:1 vs grained 248-253). The AA-
+ * blended pixels at ~55% opacity or ~80% coverage stay unfixable by ANY
+ * ink (convex blend bound) — those are geometry/FRM-02, filed as SFRs in
+ * data/audit/16/color.ledger.md.
  */
-export function pickAccentL(hue, chroma, bgHex, target = 4.6) {
+export function pickAccentL(hue, chroma, bgHex, target = 5.3) {
   const bgIsLight = luminance(bgHex) > 0.5;
   const contrastAt = (L) => contrastRatio(hexFromOklch(L, chroma, hue), bgHex);
   let lo = 0.15,
@@ -187,10 +201,12 @@ export function pickAccentL(hue, chroma, bgHex, target = 4.6) {
 
 /**
  * textDim: a muted secondary ink that still clears COL-05 (textDim/bg
- * >= 4.5:1). Solved the same way as the accent (chroma 0 — pure grey, never
- * a hue tint) so it works identically in both bg modes.
+ * >= 4.5:1) against the grained rendered bg — the 4.5 floor is not the
+ * solve target, see pickAccentL's 5.0 note. Solved the same way as the
+ * accent (chroma 0 — pure grey, never a hue tint) so it works identically
+ * in both bg modes.
  */
-function pickTextDimL(bgHex, target = 4.6) {
+function pickTextDimL(bgHex, target = 5.3) {
   return pickAccentL(0, 0, bgHex, target);
 }
 
@@ -201,7 +217,8 @@ function pickTextDimL(bgHex, target = 4.6) {
  * separate from the background with a hairline `stroke` border, never a
  * tonal fill (MOTION-GRAPHICS-MANUAL A5.2). `accent` keeps the channel's
  * `accentHue` (OKLCH hue circle) but its lightness is solved per bg
- * polarity so COL-02 (accent/bg >= 4.5:1) holds against a PURE bg.
+ * polarity so COL-02 (accent/bg >= 4.5:1) holds when measured against the
+ * actual rendered (grained) bg — see pickAccentL's 5.3 target note.
  *
  * @param {{accentHue:number, bgMode?: "white"|"black", baseHue?:number}} hues
  *   accentHue is required; bgMode defaults to "black" when omitted (legacy
@@ -265,4 +282,103 @@ export function checkPaletteGates({ baseHue, accentHue }, roles) {
     c05: contrastRatio(roles.textDim, roles.bg), // >= 4.5:1
     c06: hueDistance(accentHue, baseHue), // >= 60°
   };
+}
+
+// ---------------------------------------------------------------------------
+// Background texture — dot grid (DETAIL-REFERENCE Part B2; COL-17/18).
+// audit-color lane, Stage 12. Dependency-free like the rest of this module.
+//
+// Provenance: the per-archetype values and geometry are TABLE-OWNED figures
+// from DETAIL-REFERENCE.md B2 (6%/4%/0%, 64 px pitch, 4 px dot). Third-party
+// practice grounds the TECHNIQUE (low-opacity dot-grid textures behind
+// content — see data/audit/12/audit-color.ledger.md CLAIM COLOR-12-1), not
+// the exact numbers; recorded there as a SPEC AMENDMENT (P3.5). The density
+// is expressed as the grid layer's opacity, matching the repo convention
+// (motion-graphics.jsx line 336 comment "dotGrid (stroke 6%)"). 0% renders
+// NO grid layer (PROGRESS: a chart is already a grid; IMAGE_BEAT: the image
+// occupies the stage; B2 table Notes column).
+// ---------------------------------------------------------------------------
+
+/** B2.3 — absolute pitch, 64 px, square. Never percentage-based. */
+export const DOT_GRID_PITCH = 64;
+
+/** B2.4 — dot diameter 4 px. */
+export const DOT_DIAMETER = 4;
+
+/**
+ * B2 — per-archetype dot-grid density as layer opacity. 6% / 4% / 0%,
+ * nothing between (B2.1), decided by the archetype, never by the channel.
+ */
+export const DOT_GRID = Object.freeze({
+  HERO_NUMBER: 0.06,
+  TERM_DEFINE: 0.06,
+  LIST_ITEM: 0.04,
+  CONTRAST: 0.04,
+  PROGRESS: 0,
+  RELATION: 0.06,
+  IMAGE_BEAT: 0,
+  STATEMENT: 0.06,
+});
+
+/**
+ * Density for one archetype. Throws on any archetype not in the table:
+ * a beat that reaches the background without a table row is schema drift
+ * (COL-17 "exact"), and silently defaulting would paper over it.
+ */
+export function dotGridDensityForArchetype(archetype) {
+  const d = DOT_GRID[archetype];
+  if (d === undefined) {
+    throw new Error(`dot-grid: no density for archetype "${archetype}" (COL-17) — beat/schema drift; add a B2 table row first`);
+  }
+  return d;
+}
+
+/**
+ * B2.2 — one density per section: the minimum of its beats' densities
+ * (adjacent beats with different densities resolve DOWN, so the background
+ * never flickers mid-section). A section with no beats inherits its
+ * predecessor's density — the background changes only at a section wipe.
+ * Returns a plain object keyed by numeric sectionIndex.
+ */
+export function dotGridDensityPerSection(beats) {
+  const bySection = new Map();
+  for (const b of beats || []) {
+    if (!b || typeof b.archetype !== "string") continue;
+    const d = dotGridDensityForArchetype(b.archetype);
+    const idx = Number(b.sectionIndex);
+    if (Number.isNaN(idx)) continue;
+    bySection.set(idx, Math.min(bySection.has(idx) ? bySection.get(idx) : d, d));
+  }
+  const out = {};
+  let carry = 0;
+  for (const idx of [...bySection.keys()].sort((x, y) => x - y)) {
+    out[idx] = carry = bySection.get(idx);
+  }
+  return out;
+}
+
+/**
+ * B2.2 — grid state for an absolute frame: the active section is the last
+ * one whose `from` is <= frame (so gaps BETWEEN sections and the tail after
+ * the last section keep the current density — the background changes only
+ * at a section WIPE, never mid-section). Returns `{ opacity, dotSize,
+ * gridSize }` or `null` (0% density — no grid layer, or before the first
+ * section).
+ */
+export function dotGridStateForFrame(sectionRanges = {}, beats = [], frame) {
+  const density = dotGridDensityPerSection(beats);
+  const idxs = Object.keys(sectionRanges).map(Number).filter((v) => !Number.isNaN(v)).sort((a, b) => a - b);
+  if (!idxs.length) return null;
+  let active = null;
+  for (const idx of idxs) {
+    const r = sectionRanges[idx];
+    if (r && frame >= r.from) {
+      // density[idx] undefined = section with no beats → inherits the
+      // previous section's density (B2.2).
+      if (density[idx] !== undefined) active = density[idx];
+    }
+  }
+  return active !== null && active > 0
+    ? { opacity: active, dotSize: DOT_DIAMETER, gridSize: DOT_GRID_PITCH }
+    : null;
 }

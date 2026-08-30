@@ -169,12 +169,9 @@ export function ImageEvidenceScene({ beat, colors, fontFamily }) {
       </div>
       {/* What this is evidence OF — the semantic role, not decoration. */}
       {pRole > 0 && role ? (
-        <div style={{
-          position: "absolute", left: 48, top: 1176, opacity: ease(pRole),
-          display: "flex", alignItems: "center", gap: 12,
-        }}>
-          <div style={{ width: 28, height: 3, background: colors.accent }} />
-          <Label x={0} y={-13} text={role} color={colors.accent} size={24} tracking={3} fontFamily={fontFamily} />
+        <div style={{ position: "absolute", left: 48, top: 1176, opacity: ease(pRole) }}>
+          <div style={{ position: "absolute", left: 0, top: 2, width: 28, height: 3, background: colors.accent }} />
+          <Label x={40} y={-13} text={role} color={colors.accent} size={24} tracking={3} fontFamily={fontFamily} />
         </div>
       ) : null}
       {asset.credit ? (

@@ -25,6 +25,7 @@ import { CAPTION_RESERVE_Y } from "./layout-constants.js";
 import { SemanticScene } from "./scenes/index.jsx";
 import { ICON_INNER } from "./icons-data.js";
 import { CanvasGrain } from "../effects/CanvasGrain.jsx";
+import { DOT_DIAMETER, DOT_GRID_PITCH, DOT_GRID, dotGridStateForFrame } from "../styles/tokens.js";
 
 /**
  * MotionGraphics — MOTION-GRAPHICS-MANUAL.md Parts A–F.
@@ -170,7 +171,7 @@ function stageExitStyle(frame, durationInFrames) {
   const rel = durationInFrames - frame;
   if (rel > D.short || rel <= 0) return null;
   const p = ease(frame - (durationInFrames - D.short), [0, D.short], [0, 1], E_IN);
-  return { opacity: 1 - p, translate: `0px ${-12 * p}px` };
+  return { opacity: 1, translate: `0px ${-12 * p}px` };
 }
 
 // D2.4 GROW spring — the one place overshoot is used on a dimension.
@@ -339,34 +340,33 @@ function DesignSpace({ children, captionDrop = 0 }) {
 // @remotion/effects noise() this layer used before).
 // ─────────────────────────────────────────────────────────────────────────────
 
-// PART 7 of the rebuild — "nothing perfectly still: <=1.5% scale breath,
-// 20s+ period, on background layers." Applied to the dotGrid/grain texture
-// layers only, never the flat base-colour fill beneath them (scaling that
-// would risk a 1-2px edge gap under the design-space scale wrapper; the
-// texture layers sit on top of a same-colour base so a breathing edge is
-// invisible either way). frame-audit's margin-flatness check was re-run
-// against this — see PART 10's report — since a naive implementation could
-// in principle raise it; extended again for CanvasGrain (frame-audit.js's
-// blurredStddev/chromaStddev) to allow grain specifically while still
-// catching a real gradient/tint.
-const BREATHE_PERIOD_SEC = 20;
-const BREATHE_AMPLITUDE = 0.015;
-
-function Background({ colors }) {
+// DEL-16 (2026-08-30): the PART-7 "nothing perfectly still" rule was
+// originally shipped as a <=1.5% scale breathe (20s+ period) on the
+// dotGrid/grain texture layers. That sine pulse is DEL-16's banned class
+// (D5.1 / MOT-14 — frames inside a hold must not differ), so the breathe
+// is deleted and the texture layers are static. The base flat-colour fill
+// never scaled (a breathing edge would risk a 1-2px gap under the
+// design-space scale wrapper); frame-audit's margin-flatness check remains
+// extended for CanvasGrain (frame-audit.js's blurredStddev/chromaStddev)
+// to allow grain specifically while still catching a real gradient/tint.
+function Background({ colors, beats = [], sectionRanges = {} }) {
   const { width, height } = useVideoConfig();
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const breathe = 1 + BREATHE_AMPLITUDE * Math.sin((2 * Math.PI * frame) / (fps * BREATHE_PERIOD_SEC));
+  // B2.1–B2.4 — density per archetype (6%/4%/0%, nothing between), per-section
+  // min (B2.2), fixed 64 px pitch / 4 px dot (B2.3/B2.4). 0% renders no layer.
+  const grid = dotGridStateForFrame(sectionRanges, beats, frame);
   return (
     <>
       <Solid width={width} height={height} color={colors.bg} style={{ position: "absolute", inset: 0 }} />
-      <Solid
-        width={width}
-        height={height}
-        color={colors.stroke}
-        effects={[dotGrid({ dotSize: 8, gridSize: 80 })]}
-        style={{ position: "absolute", inset: 0, opacity: 0.06, scale: `${breathe}`, transformOrigin: "center" }}
-      />
+      {grid ? (
+        <Solid
+          width={width}
+          height={height}
+          color={colors.stroke}
+          effects={[dotGrid({ dotSize: grid.dotSize, gridSize: grid.gridSize })]}
+          style={{ position: "absolute", inset: 0, opacity: grid.opacity }}
+        />
+      ) : null}
       {/* vox-style-treatment SKILL.md's grain, extended from photo assets
           to the flat canvas itself — see effects/CanvasGrain.jsx for the
           real-library rationale (postprocessing's NoiseEffect, same
@@ -377,15 +377,12 @@ function Background({ colors }) {
           that distinction directly rather than just tolerating a bigger
           number (see frame-audit.js's blurredStddev/chromaStddev). */}
       <div
-        // PART 7 parallax — a different (slower, phase-shifted) rate than
-        // the dotGrid layer above it, so the two background layers read as
-        // sitting at different depths rather than moving as one unit.
-        // Preserved from the noise() layer this replaces.
+        // DEL-16 (2026-08-30): the background texture layers are static —
+        // the dotGrid/grain "parallax" depth cue was the deleted breathe's
+        // phase shift; both layers now share the DesignSpace plane.
         style={{
           position: "absolute",
           inset: 0,
-          scale: `${1 + BREATHE_AMPLITUDE * 0.6 * Math.sin((2 * Math.PI * frame) / (fps * BREATHE_PERIOD_SEC * 1.4) + Math.PI / 3)}`,
-          transformOrigin: "center",
         }}
       >
         <CanvasGrain color={colors.bg} width={width} height={height} />
@@ -996,8 +993,8 @@ function ListRunScene({ beats, startFrame, colors, fontFamily }) {
             width={LIST_PANEL.width}
             height={LIST_PANEL.height}
             color={colors.stroke}
-            effects={[dotGrid({ dotSize: 6, gridSize: 56 })]}
-            style={{ position: "absolute", inset: 0, opacity: 0.1 }}
+            effects={[dotGrid({ dotSize: DOT_DIAMETER, gridSize: DOT_GRID_PITCH })]}
+            style={{ position: "absolute", inset: 0, opacity: DOT_GRID.LIST_ITEM }}
           />
         </Panel>
       </div>
@@ -1198,7 +1195,7 @@ function MotionGraphicsShorts({
   const fontFamily = resolveFontFamily(font);
   return (
     <AbsoluteFill style={{ backgroundColor: colors.bg }}>
-      <Background colors={colors} />
+      <Background colors={colors} beats={mg?.beats || []} sectionRanges={mg?.sectionRanges || {}} />
       {mg ? (
         <MotionGraphicsContent mg={mg} colors={colors} fontFamily={fontFamily} showCaptions={showCaptions} />
       ) : null}

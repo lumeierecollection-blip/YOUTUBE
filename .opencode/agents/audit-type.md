@@ -6,6 +6,7 @@ permission:
     "**": deny
     "src/skills/remotion-render/captions/**": allow
     "src/skills/remotion-render/layout/measure.js": allow
+    "src/skills/remotion-render/visual/text-budget.js": allow
     "data/audit/**": allow
   bash: allow
   websearch: allow

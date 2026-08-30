@@ -5,7 +5,8 @@ permission:
   edit:
     "**": deny
     "src/skills/remotion-render/Root.jsx": allow
-    "src/skills/remotion-render/styles/motion-graphics.jsx": allow
+    "src/skills/remotion-render/compositions/motion-graphics.jsx": allow
+    "src/skills/remotion-render/compositions/mg-style.js": allow
     "src/skills/remotion-render/package.json": allow
     "data/audit/**": allow
   bash: allow

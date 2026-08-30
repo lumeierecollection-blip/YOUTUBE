@@ -128,12 +128,11 @@ function parseMarkdown(content) {
 // PART 4.2 of the motion-graphics rebuild: this used to be a blind
 // word-count split (DEL-09 / TYP-11 in CHECK-REGISTER.md — a real shipped
 // defect: "...found: 1,980 meters below the" stranded an article as the
-// last word of a caption). chunkTextClauseAware (beats.js) does the same
-// ≤maxWords grouping but repairs any boundary that would orphan an
-// article, preposition, conjunction, or a number split from its unit.
-function chunkVoiceover(text, maxWords = 7) {
-  return chunkTextClauseAware(text, maxWords);
-}
+// last word of a caption). The `chunkVoiceover` wrapper was deleted on
+// 2026-08-30 (stage-15 sweep, DEL-09/TYP-11 PASS). chunkTextClauseAware
+// (beats.js) does the same ≤maxWords grouping but repairs any boundary
+// that would orphan an article, preposition, conjunction, or a number
+// split from its unit.
 
 function toContentSections(script) {
   // narrationSections() folds the top-level `hook` into section one, matching
@@ -150,7 +149,7 @@ function toContentSections(script) {
       id: s.id,
       timing: s.timing,
       voiceover: s.voiceover,
-      content: chunkVoiceover(s.voiceover),
+      content: chunkTextClauseAware(s.voiceover),
       visualCue: s.visual_cue || null,
       bRoll: Array.isArray(s.b_roll) ? s.b_roll : null,
       textOverlay: s.text_overlay || null,

@@ -26,13 +26,15 @@
  *   - lintAll passes the compiler-shaped good frame across all 12 checks
  */
 
-import { SAFE_LONGFORM, SAFE_SHORTS, SLOTS_LONGFORM, SLOTS_SHORTS } from "./slots.js";
+import { ATMOSPHERE_HORIZON_Y, SAFE_LONGFORM, SAFE_SHORTS, SLOTS_LONGFORM, SLOTS_SHORTS } from "./slots.js";
 import {
   lintAll,
   lintL1,
   lintL10,
   lintL11,
   lintL12,
+  lintL18,
+  lintL19,
   lintL2,
   lintL3,
   lintL4,
@@ -310,6 +312,65 @@ const l12OutOfRange = {
   ],
 };
 
+// ── Stage 12: LAY-18 / LAY-19 fixtures (compiler-shaped frames) ──────────────
+
+/** L18-bad — the Stage slot is packed so the painted area exceeds 253,000 px².
+ *  Five chart bars each ~59,600 px² (several 56-col×~1064-row units would sum
+ *  well past budget without any rect leaving its slot). */
+const l18OverOccupied = {
+  beatId: "b35",
+  startFrame: 0,
+  durationInFrames: 60,
+  rects: [
+    { role: "kicker", slot: "kicker", x: 48, y: 288, w: 160, h: 32, fontSize: 28, lines: 1, persistent: true, from: 0, to: 60 },
+    { role: "rail", slot: "rail", x: 48, y: 288, w: 4, h: 960, structural: true, persistent: true, from: 0, to: 60 },
+    {
+      role: "chart", slot: "stage", x: 48, y: 392, w: 840, h: 548, persistent: false, from: 0, to: 60,
+      chart: {
+        axisY: 940, gridX: 48, barAreaTop: 392,
+        bars: [
+          { label: "a", value: 50, x: 48, w: 168, h: 540, y: 400, bottom: 940, highlight: false },
+          { label: "b", value: 50, x: 216, w: 168, h: 540, y: 400, bottom: 940, highlight: false },
+          { label: "c", value: 50, x: 384, w: 168, h: 540, y: 400, bottom: 940, highlight: false },
+          { label: "d", value: 50, x: 552, w: 168, h: 540, y: 400, bottom: 940, highlight: true },
+        ],
+        gutters: [8, 8, 8],
+        highlightIndex: 3,
+        axisLabelRight: 36,
+      },
+    },
+    { role: "caption", slot: "caption", x: 88, y: 1176, w: 760, h: 72, fontSize: 64, lines: 1, persistent: true, from: 0, to: 60 },
+  ],
+};
+
+/** L19-bad — two content rects 10 px apart (below the 24 px floor) read as one. */
+const l19TooClose = {
+  beatId: "b36",
+  startFrame: 0,
+  durationInFrames: 60,
+  rects: [
+    { role: "headline", slot: "headline", x: 48, y: 964, w: 800, h: 96, fontSize: 84, lines: 1, persistent: false, from: 0, to: 60 },
+    { role: "support", slot: "stage", x: 48, y: 432, w: 400, h: 48, fontSize: 44, lines: 1, persistent: false, from: 0, to: 60 },
+    { role: "support", slot: "stage", x: 48, y: 490, w: 400, h: 48, fontSize: 44, lines: 1, persistent: false, from: 0, to: 60 },
+  ],
+};
+
+/** L19-good — a headline and a chart genuinely coexist with a real ≥24 px
+ *  gap: headline top y=964 vs chart bottom y=896 → 68 px vertical separation,
+ *  both non-persistent content participants, same frame range. */
+const l19WellSeparated = {
+  beatId: "b37",
+  startFrame: 0,
+  durationInFrames: 60,
+  rects: [
+    { role: "headline", slot: "headline", x: 48, y: 964, w: 800, h: 96, fontSize: 84, lines: 1, persistent: false, from: 0, to: 60 },
+    {
+      role: "chart", slot: "stage", x: 88, y: 432, w: 760, h: 464, persistent: false, from: 0, to: 60,
+      chart: { axisY: 896, gridX: 88, bars: [], gutters: [], highlightIndex: 0, axisLabelRight: 76 },
+    },
+  ],
+};
+
 // ── Stage 1: L1 — rect inside slot ──────────────────────────────────────────
 
 console.log("L1 — rect inside slot");
@@ -422,11 +483,96 @@ const l12 = lintL12([l12OutOfRange]);
 check("exit past the beat and enter before 0 are caught", l12.failures.length === 2 && /b34 headline: atFrame range \[0,70\]/.test(l12.failures[0]) && /b34 support: atFrame range \[-2,60\]/.test(l12.failures[1]), failuresOf(l12));
 check("good full frame ranges are inside the beat", lintL12([goodFull]).failures.length === 0);
 
+// ── ATMOSPHERE_HORIZON_Y — world-horizon safe-rect clearance ────────────────
+//
+// The horizon constant is DERIVED (see slots.js): the CinematicStatement
+// ridge band (a full-width dark fill whose peaks reach up to 56 px above
+// the horizon, at far-plane parallax 0.14) must sit entirely below the
+// safe rect's bottom once the settled DRIFT camera maps it to output.
+// These fixture checks pin the horizon value under the CURRENT settling
+// camera (scale 1.06, far parallax 0.14), the captionless 110 px drop in
+// motion-graphics.jsx, and SAFE_SHORTS.bottom — so this bed cannot drift
+// back across 1248 while those hold. If a future change touches the camera
+// or caption-drop constants, update THIS derivation and the slots.js value
+// in the same change; the frame-audit FRM-02 run is the backstop that
+// catches drift the fixtures cannot (they hardcode the settled mapping).
+//
+// Constants: outY = 110 + (d − 960)·1.06 + 960 + dy + offY with
+//   dy = −15.36 (camera, settled DRIFT) and offY = +13.21 (far plane,
+//   parallax 0.14) → outY = 1.06·d + 50.25. The 3 px term is the audit's
+//   blur() edge spread; the ground plane (k=1) settles at 1.06·d + 37.04,
+//   so `horizon` itself mapping below 1248 places the whole band below it.
+
+console.log("ATMOSPHERE_HORIZON_Y — world horizon vs safe rect");
+check(
+  "horizon is an exact 8 px grid multiple (§3.5)",
+  ATMOSPHERE_HORIZON_Y % 8 === 0,
+  String(ATMOSPHERE_HORIZON_Y)
+);
+const CREST_H = 56; // CinematicStatement ridge peaks: 10 + seeded·46
+const crestOut = 1.06 * (ATMOSPHERE_HORIZON_Y - CREST_H) + 50.25;
+check(
+  "worst ridge crest maps below SAFE_SHORTS.bottom + blur spread (≥1248+3)",
+  crestOut >= SAFE_SHORTS.bottom + 3,
+  `crest output ${crestOut.toFixed(1)} vs 1251`
+);
+const horizonOut = 1.06 * ATMOSPHERE_HORIZON_Y + 37.04;
+check(
+  "horizon line itself maps below the safe bottom (whole band below)",
+  horizonOut > SAFE_SHORTS.bottom,
+  `horizon output ${horizonOut.toFixed(1)}`
+);
+
+// ── Stage 12: LAY-18 — Stage occupancy ≤ 253,000 px² ────────────────────────
+
+console.log("LAY-18 — stage occupancy");
+const l18 = lintL18([l18OverOccupied]);
+check(
+  "over-packed stage (4 bars × 168×540) is caught",
+  l18.failures.length === 1 && /b35: stage occupied geometry 362880px²/.test(l18.failures[0]),
+  failuresOf(l18)
+);
+const l18goodChart = lintL18([goodChart]);
+check(
+  "a normal chart counts its bars (144,384px²), not the blank container",
+  l18goodChart.failures.length === 0 && l18goodChart.observations[0].occupiedPx2 === 144384,
+  failuresOf(l18goodChart) + " obs=" + JSON.stringify(l18goodChart.observations)
+);
+check("good full frame (no stage content) has zero occupancy", lintL18([goodFull]).failures.length === 0);
+
+// ── Stage 12: LAY-19 — no two rects within 24 px ────────────────────────────
+
+console.log("LAY-19 — 24px separation");
+const l19 = lintL19([l19TooClose]);
+check(
+  "two content objects 10px apart are caught",
+  l19.failures.length === 1 && /b36 support is 10.0px from support/.test(l19.failures[0]),
+  failuresOf(l19)
+);
+check(
+  "a headline and chart genuinely separated by a 68px gap pass",
+  lintL19([l19WellSeparated]).failures.length === 0,
+  failuresOf(lintL19([l19WellSeparated]))
+);
+check(
+  "goodChart (single content participant, chart only) passes with no pairs",
+  lintL19([goodChart]).failures.length === 0
+);
+check(
+  "goodFull (single content participant) has no pairs to collide",
+  lintL19([goodFull]).failures.length === 0
+);
+check(
+  "intra-chart bars (8px gutter) are one object, not a LAY-19 pair",
+  lintL19([l18OverOccupied]).failures.length === 0,
+  failuresOf(lintL19([l18OverOccupied]))
+);
+
 // ── Stage 6: lintAll — the complete Tier 1 gate ─────────────────────────────
 
-console.log("lintAll L1–L12");
+console.log("lintAll L1–L12 + LAY-18/L19");
 const all = lintAll([goodFull, goodChart]);
-check("good frames pass all 12 checks", all.pass === true, JSON.stringify(all.results.map((r) => r.id + ":" + r.failures.length)));
+check("good frames pass all 14 checks", all.pass === true, JSON.stringify(all.results.map((r) => r.id + ":" + r.failures.length)));
 const allBad = lintAll([l12OutOfRange]);
 check("a bad frame fails the combined run", allBad.pass === false && allBad.results.some((r) => r.failures.length > 0));
 
