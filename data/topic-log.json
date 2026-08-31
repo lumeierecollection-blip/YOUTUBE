@@ -55,9 +55,14 @@
           "topic": "How the Fed's 2026 Rate Shift Reshapes Your 50/30/20 Budget",
           "slug": "how-the-fed-2026-rate-shift-reshapes-50-30-20-budget",
           "reserved_at": "2026-08-31T00:33:04.630Z"
+        },
+        {
+          "topic": "Loud Budgeting: The Money Trend Reshaping How We Talk About Spending",
+          "slug": "loud-budgeting-gen-z-money-talk",
+          "reserved_at": "2026-08-31T02:30:29.607Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.630Z"
+      "last_generated": "2026-08-31T02:30:29.608Z"
     },
     "2": {
       "channel_name": "Legal Brief",
@@ -127,9 +132,14 @@
           "topic": "Supreme Court Limits Warrantless Drone Surveillance Over Homes",
           "slug": "supreme-court-drone-surveillance-ruling",
           "reserved_at": "2026-08-31T00:33:04.633Z"
+        },
+        {
+          "topic": "UK Renters' Rights Act: No-Fault Evictions Officially End May 2026",
+          "slug": "uk-renters-rights-act-no-fault-eviction",
+          "reserved_at": "2026-08-31T02:30:29.611Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.633Z"
+      "last_generated": "2026-08-31T02:30:29.611Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -139,9 +149,14 @@
           "topic": "Perplexity AI vs ChatGPT: Real Research Task Showdown",
           "slug": "perplexity-vs-chatgpt-research-showdown",
           "reserved_at": "2026-08-31T00:33:04.633Z"
+        },
+        {
+          "topic": "GLM-5.3-Flash: Z.ai's 320B Open-Weight Model at $0.15/M Tokens",
+          "slug": "glm-5-3-flash-open-weight-review",
+          "reserved_at": "2026-08-31T02:30:29.611Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.633Z"
+      "last_generated": "2026-08-31T02:30:29.611Z"
     },
     "4": {
       "channel_name": "Hidden Past",
@@ -161,9 +176,14 @@
           "topic": "The Voynich Manuscript: History's Most Mysterious Unsolved Codebook",
           "slug": "voynich-manuscript-unsolved-codebook",
           "reserved_at": "2026-08-31T00:33:04.634Z"
+        },
+        {
+          "topic": "The Chantress of Karnak: 18th Dynasty Priestess Found in Dra Abu el-Naga",
+          "slug": "chantress-karnak-merit-dra-abu-el-naga",
+          "reserved_at": "2026-08-31T02:30:29.611Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.634Z"
+      "last_generated": "2026-08-31T02:30:29.611Z"
     },
     "5": {
       "channel_name": "Force of Nature",
@@ -185,9 +205,14 @@
           "topic": "WeWork's $47 Billion Collapse: The IPO That Broke a Unicorn",
           "slug": "wework-47-billion-ipo-collapse",
           "reserved_at": "2026-08-31T00:33:04.634Z"
+        },
+        {
+          "topic": "Casas Bahia: Brazil's R$17.3 Billion Retail Collapse",
+          "slug": "casas-bahia-retail-bankruptcy-2026",
+          "reserved_at": "2026-08-31T02:30:29.612Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.634Z"
+      "last_generated": "2026-08-31T02:30:29.612Z"
     },
     "8": {
       "channel_name": "Mind Decoded",
@@ -203,9 +228,14 @@
           "topic": "The Arctic Shelf Race: Why Five Nations Want the North Pole Seabed",
           "slug": "arctic-shelf-seabed-geopolitics-race",
           "reserved_at": "2026-08-31T00:33:04.634Z"
+        },
+        {
+          "topic": "India-China Boundary Talks: 25th Round Produces Eight-Point Consensus",
+          "slug": "india-china-25th-boundary-talks-consensus",
+          "reserved_at": "2026-08-31T02:30:29.612Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.634Z"
+      "last_generated": "2026-08-31T02:30:29.612Z"
     },
     "10": {
       "channel_name": "Double Cross",
@@ -221,9 +251,14 @@
           "topic": "JWST Confirms Water Vapor in Rocky Exoplanet Atmosphere",
           "slug": "jwst-water-vapor-rocky-exoplanet",
           "reserved_at": "2026-08-31T00:33:04.635Z"
+        },
+        {
+          "topic": "JWST Discovers Planet Beta Pictoris d via Atmospheric Fingerprint",
+          "slug": "jwst-beta-pictoris-d-atmospheric-fingerprint",
+          "reserved_at": "2026-08-31T02:30:29.613Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.635Z"
+      "last_generated": "2026-08-31T02:30:29.613Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
@@ -263,9 +298,14 @@
           "topic": "The Fall of Constantinople: The Siege That Split Two Worlds",
           "slug": "fall-of-constantinople-split-worlds",
           "reserved_at": "2026-08-31T00:33:04.635Z"
+        },
+        {
+          "topic": "120 Roman Inscriptions to Goddess Domina Found in Spanish Cave",
+          "slug": "roman-inscriptions-domina-spanish-cave",
+          "reserved_at": "2026-08-31T02:30:29.613Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.635Z"
+      "last_generated": "2026-08-31T02:30:29.613Z"
     },
     "18": {
       "channel_name": "Brief History",
@@ -323,9 +363,14 @@
           "topic": "OneCoin: The $4 Billion Crypto Ponzi That Fooled the World",
           "slug": "onecoin-4-billion-ponzi-fraud",
           "reserved_at": "2026-08-31T00:33:04.636Z"
+        },
+        {
+          "topic": "Goliath Ventures: The $425 Million Crypto Ponzi Scheme",
+          "slug": "goliath-ventures-425m-crypto-ponzi",
+          "reserved_at": "2026-08-31T02:30:29.614Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.636Z"
+      "last_generated": "2026-08-31T02:30:29.614Z"
     },
     "27": {
       "channel_name": "Trial Files",
@@ -353,9 +398,14 @@
           "topic": "Golden State Killer: How GEDmatch Solved a 40-Year Case",
           "slug": "golden-state-killer-gedmatch-dna",
           "reserved_at": "2026-08-31T00:33:04.636Z"
+        },
+        {
+          "topic": "Happy Face Killer's Final Victim Identified After Three Decades",
+          "slug": "happy-face-killer-last-victim-identified",
+          "reserved_at": "2026-08-31T02:30:29.614Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.636Z"
+      "last_generated": "2026-08-31T02:30:29.614Z"
     },
     "31": {
       "channel_name": "Justice Denied",
@@ -365,9 +415,14 @@
           "topic": "How Richard Rosario Spent 20 Years in Prison for a Crime He Didn't Commit",
           "slug": "richard-rosario-wrongful-conviction",
           "reserved_at": "2026-08-31T00:33:04.637Z"
+        },
+        {
+          "topic": "Guy Miles Exonerated After 18 Years for a Crime He Didn't Commit",
+          "slug": "guy-miles-18-years-wrongful-conviction",
+          "reserved_at": "2026-08-31T02:30:29.615Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.637Z"
+      "last_generated": "2026-08-31T02:30:29.615Z"
     },
     "32": {
       "channel_name": "Machine Anatomy",
@@ -395,9 +450,14 @@
           "topic": "Inside the F-35: Why the Pentagon's Most Expensive Jet Still Struggles",
           "slug": "f35-most-expensive-fighter-jet",
           "reserved_at": "2026-08-31T00:33:04.637Z"
+        },
+        {
+          "topic": "Phononic Subsurfaces: How Tiny Vibrations Could Cut Jet Fuel Use",
+          "slug": "phononic-subsurfaces-jet-fuel-efficiency",
+          "reserved_at": "2026-08-31T02:30:29.615Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.637Z"
+      "last_generated": "2026-08-31T02:30:29.615Z"
     },
     "36": {
       "channel_name": "Terminal Tactics",
@@ -425,9 +485,14 @@
           "topic": "The Teen Whose Chest Pain Stumped Every ER Doctor",
           "slug": "teen-chest-pain-er-mystery-diagnosis",
           "reserved_at": "2026-08-31T00:33:04.637Z"
+        },
+        {
+          "topic": "Hereditary Angioedema Misdiagnosed as Gastroenteritis for Seven Years",
+          "slug": "hereditary-angioedema-misdiagnosed-gastroenteritis",
+          "reserved_at": "2026-08-31T02:30:29.616Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.637Z"
+      "last_generated": "2026-08-31T02:30:29.616Z"
     },
     "40": {
       "channel_name": "MedBrief",
@@ -461,9 +526,14 @@
           "topic": "The Eisenhower Matrix: Why Most Productivity Systems Fail",
           "slug": "eisenhower-matrix-productivity-fail",
           "reserved_at": "2026-08-31T00:33:04.638Z"
+        },
+        {
+          "topic": "Salary Negotiation: Why Not Asking Costs You $600K Over Your Career",
+          "slug": "salary-negotiation-career-cost-not-asking",
+          "reserved_at": "2026-08-31T02:30:29.616Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.638Z"
+      "last_generated": "2026-08-31T02:30:29.616Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
@@ -479,9 +549,14 @@
           "topic": "Tell Me About Yourself: The STAR Method That Lands the Job",
           "slug": "tell-me-about-yourself-star-method",
           "reserved_at": "2026-08-31T00:33:04.638Z"
+        },
+        {
+          "topic": "Behavioral Interview Questions: Why STAR Method Still Dominates 2026",
+          "slug": "behavioral-interview-questions-star-method",
+          "reserved_at": "2026-08-31T02:30:29.617Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.638Z"
+      "last_generated": "2026-08-31T02:30:29.617Z"
     },
     "47": {
       "channel_name": "Medicare Navigator",
@@ -491,9 +566,14 @@
           "topic": "Medicare 2026 Open Enrollment: What Changed and What to Switch",
           "slug": "medicare-2026-open-enrollment-changes",
           "reserved_at": "2026-08-31T00:33:04.638Z"
+        },
+        {
+          "topic": "Medicare 2027 Open Enrollment: Part B Premium Jumps to $206",
+          "slug": "medicare-2027-open-enrollment-premium-changes",
+          "reserved_at": "2026-08-31T02:30:29.617Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.638Z"
+      "last_generated": "2026-08-31T02:30:29.617Z"
     },
     "48": {
       "channel_name": "Factory Floor",
@@ -503,9 +583,14 @@
           "topic": "Inside a Chip Fabrication Plant: How 3nm Transistors Are Made",
           "slug": "chip-fab-3nm-transistor-fabrication",
           "reserved_at": "2026-08-31T00:33:04.639Z"
+        },
+        {
+          "topic": "1872: Former SpaceX Engineers Automate Steel Fabrication With AI",
+          "slug": "1872-spacex-engineers-automated-steel-factory",
+          "reserved_at": "2026-08-31T02:30:29.618Z"
         }
       ],
-      "last_generated": "2026-08-31T00:33:04.639Z"
+      "last_generated": "2026-08-31T02:30:29.618Z"
     },
     "49": {
       "channel_name": "Wander Budget",
