@@ -3,7 +3,7 @@
  *
  * Visual style: Animated diagrams, illustrated explainers, data visualization
  * Voiceover pacing: 140–150 WPM
- * Target: 100-150 words, 45-60 seconds
+ * Target: 90-115 words, exactly 35-45 seconds max (high retention, zero fluff)
  * Format: 9:16 vertical
  */
 
@@ -86,7 +86,7 @@ export default function motionGraphicsShorts({ topic, keyFacts, strongestAngle, 
     format: 'shorts',
     sections,
     total_words: sections.reduce((sum, s) => sum + s.word_count, 0),
-    estimated_duration_seconds: 40,
+    estimated_duration_seconds: 42,
     cta_primary: {
       placement: 'close',
       text: 'Subscribe for more.',
