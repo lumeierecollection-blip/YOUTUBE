@@ -60,9 +60,14 @@
           "topic": "Loud Budgeting: The Money Trend Reshaping How We Talk About Spending",
           "slug": "loud-budgeting-gen-z-money-talk",
           "reserved_at": "2026-08-31T02:30:29.607Z"
+        },
+        {
+          "topic": "The No-Spend Challenge That Actually Works",
+          "slug": "no-spend-challenge-works",
+          "reserved_at": "2026-08-31T09:12:55.106Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.608Z"
+      "last_generated": "2026-08-31T09:12:55.106Z"
     },
     "2": {
       "channel_name": "Legal Brief",
@@ -137,9 +142,14 @@
           "topic": "UK Renters' Rights Act: No-Fault Evictions Officially End May 2026",
           "slug": "uk-renters-rights-act-no-fault-eviction",
           "reserved_at": "2026-08-31T02:30:29.611Z"
+        },
+        {
+          "topic": "Your Rights When Police Knock on Your Door",
+          "slug": "police-knock-door-rights",
+          "reserved_at": "2026-08-31T09:12:55.109Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.611Z"
+      "last_generated": "2026-08-31T09:12:55.109Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -154,9 +164,14 @@
           "topic": "GLM-5.3-Flash: Z.ai's 320B Open-Weight Model at $0.15/M Tokens",
           "slug": "glm-5-3-flash-open-weight-review",
           "reserved_at": "2026-08-31T02:30:29.611Z"
+        },
+        {
+          "topic": "GPT-4o vs Gemini: Coding Test Results",
+          "slug": "gpt4o-vs-gemini-coding-test",
+          "reserved_at": "2026-08-31T09:12:55.109Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.611Z"
+      "last_generated": "2026-08-31T09:12:55.109Z"
     },
     "4": {
       "channel_name": "Hidden Past",
@@ -181,9 +196,14 @@
           "topic": "The Chantress of Karnak: 18th Dynasty Priestess Found in Dra Abu el-Naga",
           "slug": "chantress-karnak-merit-dra-abu-el-naga",
           "reserved_at": "2026-08-31T02:30:29.611Z"
+        },
+        {
+          "topic": "The Library of Alexandria: What Really Burned",
+          "slug": "library-alexandria-what-burned",
+          "reserved_at": "2026-08-31T09:12:55.109Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.611Z"
+      "last_generated": "2026-08-31T09:12:55.109Z"
     },
     "5": {
       "channel_name": "Force of Nature",
@@ -210,9 +230,14 @@
           "topic": "Casas Bahia: Brazil's R$17.3 Billion Retail Collapse",
           "slug": "casas-bahia-retail-bankruptcy-2026",
           "reserved_at": "2026-08-31T02:30:29.612Z"
+        },
+        {
+          "topic": "Toys R Us: How Private Equity Killed a Retail Giant",
+          "slug": "toys-r-us-private-equity-collapse",
+          "reserved_at": "2026-08-31T09:12:55.110Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.612Z"
+      "last_generated": "2026-08-31T09:12:55.110Z"
     },
     "8": {
       "channel_name": "Mind Decoded",
@@ -233,9 +258,14 @@
           "topic": "India-China Boundary Talks: 25th Round Produces Eight-Point Consensus",
           "slug": "india-china-25th-boundary-talks-consensus",
           "reserved_at": "2026-08-31T02:30:29.612Z"
+        },
+        {
+          "topic": "The South China Sea: Why Six Nations Claim It",
+          "slug": "south-china-sea-six-nations",
+          "reserved_at": "2026-08-31T09:12:55.110Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.612Z"
+      "last_generated": "2026-08-31T09:12:55.110Z"
     },
     "10": {
       "channel_name": "Double Cross",
@@ -256,9 +286,14 @@
           "topic": "JWST Discovers Planet Beta Pictoris d via Atmospheric Fingerprint",
           "slug": "jwst-beta-pictoris-d-atmospheric-fingerprint",
           "reserved_at": "2026-08-31T02:30:29.613Z"
+        },
+        {
+          "topic": "Black Holes Don't Actually Suck Things In",
+          "slug": "black-holes-dont-suck",
+          "reserved_at": "2026-08-31T09:12:55.111Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.613Z"
+      "last_generated": "2026-08-31T09:12:55.111Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
@@ -303,9 +338,14 @@
           "topic": "120 Roman Inscriptions to Goddess Domina Found in Spanish Cave",
           "slug": "roman-inscriptions-domina-spanish-cave",
           "reserved_at": "2026-08-31T02:30:29.613Z"
+        },
+        {
+          "topic": "The Mongol Empire: How Genghis Khan Conquered the World",
+          "slug": "mongol-empire-genghis-khan",
+          "reserved_at": "2026-08-31T09:12:55.111Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.613Z"
+      "last_generated": "2026-08-31T09:12:55.111Z"
     },
     "18": {
       "channel_name": "Brief History",
@@ -368,9 +408,14 @@
           "topic": "Goliath Ventures: The $425 Million Crypto Ponzi Scheme",
           "slug": "goliath-ventures-425m-crypto-ponzi",
           "reserved_at": "2026-08-31T02:30:29.614Z"
+        },
+        {
+          "topic": "BitConnect: The $2.4 Billion Crypto Scam",
+          "slug": "bitconnect-24-billion-crypto-scam",
+          "reserved_at": "2026-08-31T09:12:55.111Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.614Z"
+      "last_generated": "2026-08-31T09:12:55.111Z"
     },
     "27": {
       "channel_name": "Trial Files",
@@ -403,9 +448,14 @@
           "topic": "Happy Face Killer's Final Victim Identified After Three Decades",
           "slug": "happy-face-killer-last-victim-identified",
           "reserved_at": "2026-08-31T02:30:29.614Z"
+        },
+        {
+          "topic": "The Zodiac Killer: Can DNA Finally Solve It?",
+          "slug": "zodiac-killer-dna-solve",
+          "reserved_at": "2026-08-31T09:12:55.112Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.614Z"
+      "last_generated": "2026-08-31T09:12:55.112Z"
     },
     "31": {
       "channel_name": "Justice Denied",
@@ -420,9 +470,14 @@
           "topic": "Guy Miles Exonerated After 18 Years for a Crime He Didn't Commit",
           "slug": "guy-miles-18-years-wrongful-conviction",
           "reserved_at": "2026-08-31T02:30:29.615Z"
+        },
+        {
+          "topic": "The Central Park Five: A Case of Tunnel Vision",
+          "slug": "central-park-five-tunnel-vision",
+          "reserved_at": "2026-08-31T09:12:55.112Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.615Z"
+      "last_generated": "2026-08-31T09:12:55.112Z"
     },
     "32": {
       "channel_name": "Machine Anatomy",
@@ -455,9 +510,14 @@
           "topic": "Phononic Subsurfaces: How Tiny Vibrations Could Cut Jet Fuel Use",
           "slug": "phononic-subsurfaces-jet-fuel-efficiency",
           "reserved_at": "2026-08-31T02:30:29.615Z"
+        },
+        {
+          "topic": "The Concorde: Why Supersonic Travel Died",
+          "slug": "concorde-supersonic-travel-died",
+          "reserved_at": "2026-08-31T09:12:55.113Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.615Z"
+      "last_generated": "2026-08-31T09:12:55.113Z"
     },
     "36": {
       "channel_name": "Terminal Tactics",
@@ -490,9 +550,14 @@
           "topic": "Hereditary Angioedema Misdiagnosed as Gastroenteritis for Seven Years",
           "slug": "hereditary-angioedema-misdiagnosed-gastroenteritis",
           "reserved_at": "2026-08-31T02:30:29.616Z"
+        },
+        {
+          "topic": "The Woman Who Couldn't Stop Vomiting for Years",
+          "slug": "woman-cant-stop-vomiting-mystery",
+          "reserved_at": "2026-08-31T09:12:55.113Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.616Z"
+      "last_generated": "2026-08-31T09:12:55.113Z"
     },
     "40": {
       "channel_name": "MedBrief",
@@ -531,9 +596,14 @@
           "topic": "Salary Negotiation: Why Not Asking Costs You $600K Over Your Career",
           "slug": "salary-negotiation-career-cost-not-asking",
           "reserved_at": "2026-08-31T02:30:29.616Z"
+        },
+        {
+          "topic": "Active Listening: The Skill Most People Fake",
+          "slug": "active-listening-most-people-fake",
+          "reserved_at": "2026-08-31T09:12:55.114Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.616Z"
+      "last_generated": "2026-08-31T09:12:55.114Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
@@ -554,9 +624,14 @@
           "topic": "Behavioral Interview Questions: Why STAR Method Still Dominates 2026",
           "slug": "behavioral-interview-questions-star-method",
           "reserved_at": "2026-08-31T02:30:29.617Z"
+        },
+        {
+          "topic": "How to Answer What's Your Weakness",
+          "slug": "answer-whats-your-weakness",
+          "reserved_at": "2026-08-31T09:12:55.114Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.617Z"
+      "last_generated": "2026-08-31T09:12:55.114Z"
     },
     "47": {
       "channel_name": "Medicare Navigator",
@@ -571,9 +646,14 @@
           "topic": "Medicare 2027 Open Enrollment: Part B Premium Jumps to $206",
           "slug": "medicare-2027-open-enrollment-premium-changes",
           "reserved_at": "2026-08-31T02:30:29.617Z"
+        },
+        {
+          "topic": "Medicare Advantage vs Supplement: 2026 Guide",
+          "slug": "medicare-advantage-vs-supplement-2026",
+          "reserved_at": "2026-08-31T09:12:55.115Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.617Z"
+      "last_generated": "2026-08-31T09:12:55.115Z"
     },
     "48": {
       "channel_name": "Factory Floor",
@@ -588,9 +668,14 @@
           "topic": "1872: Former SpaceX Engineers Automate Steel Fabrication With AI",
           "slug": "1872-spacex-engineers-automated-steel-factory",
           "reserved_at": "2026-08-31T02:30:29.618Z"
+        },
+        {
+          "topic": "How Car Paint is Applied: The Electrostatic Process",
+          "slug": "car-paint-electrostatic-process",
+          "reserved_at": "2026-08-31T09:12:55.115Z"
         }
       ],
-      "last_generated": "2026-08-31T02:30:29.618Z"
+      "last_generated": "2026-08-31T09:12:55.115Z"
     },
     "49": {
       "channel_name": "Wander Budget",
