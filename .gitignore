@@ -60,3 +60,4 @@ data/renders/clips/
 # render on demand, and one set per render adds ~4MB. The frames worth
 # keeping are copied up to qa/pass3/ by hand and committed there.
 qa/pass3/mute-test/
+github token.txt
