@@ -62,3 +62,9 @@ data/renders/clips/
 qa/pass3/mute-test/
 github token.txt
 .artifact-download/
+
+# QA frame dumps from the mograph-critic loop: large, regenerable from
+# qa-scripts/inspect-anchors.mjs and qa-scripts/motion-metrics.mjs. The JSON
+# reports beside them ARE tracked - those are the evidence.
+qa/critic/**/*.png
+qa/critic/**/frames/
