@@ -23,6 +23,36 @@ The starting render's problem was not its animation curves. It was that
 | PROCESS | three anonymous boxes labelled "1" "2" "3" at 26px | named travelling subject, claim landing at the end of the run, numerals at 38px |
 | TIMELINE | two dated flags, no event | the event, set against its own year |
 
+Directories: `before/` is the original render, `after/` the first pass
+(words into scenes), `mg5/` the current state after the scenes were made
+to use the frame their shot grants them. Intermediate runs between `after`
+and `mg5` were deleted; each was superseded by the next.
+
+## Ink: scenes were not taking the frame they were granted
+
+`composition.js` calls `coverage` "the direct answer to the 0.2%-ink
+measurement", and FRAMINGS grants each strategy 0.74-1.0 of the frame. The
+scenes were discounting it, some of them ignoring `shotFrame` outright:
+
+| scene | granted | drew |
+|---|---|---|
+| INTERFACE (CLOSE) | 929x760 | hardcoded 760x560 |
+| PROCESS (COLUMNAR) | 972 wide | 518 |
+| TIMELINE (HORIZON) | 1037 wide | 498 |
+
+    mean ink        before/  4.50%  ->  mg5/  8.86%
+    under 5% ink    before/  20/26  ->  mg5/   5/26
+
+The five remaining are early build states — a window still assembling, an
+axis before its markers — not finished compositions.
+
+A WARNING FROM THIS PASS: widening the PROCESS board raised measured ink
+while the rendered frame showed a *larger empty container* holding the
+same three 108px chips. The number moved and the picture did not. Node
+size was a flat constant regardless of what the shot granted. Ink is a
+useful proxy for "is anything there", not for "is it composed" — the PNGs
+remain the acceptance test.
+
 ## Numbers
 
 `motion-metrics.mjs` over frames 0-420:
@@ -57,8 +87,9 @@ of frame height.
 - `motion-metrics`' margin number counts ALL ink, and several scenes bleed
   off frame deliberately. Use it to find frames worth opening, not as a
   defect count.
-- Ink is still under 5% on most frames. The scenes fill more of the frame
-  than they did, but "content island in a void" is not solved.
+- The PROCESS board still sits left of centre (cx ~0.43) with the right
+  ~40% of the frame empty, and for a long claim the safe-rect clamp
+  overrides the column alignment the scene asks for.
 - `run-visual-tests.js` has one PRE-EXISTING failure unrelated to this
   work: `composition.js` exports `gateMotionBlur`, which nothing imports.
   It implements MOT-18 and looks like a gate that was written and never
