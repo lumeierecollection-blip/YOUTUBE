@@ -24,9 +24,32 @@ The starting render's problem was not its animation curves. It was that
 | TIMELINE | two dated flags, no event | the event, set against its own year |
 
 Directories: `before/` is the original render, `after/` the first pass
-(words into scenes), `mg5/` the current state after the scenes were made
-to use the frame their shot grants them. Intermediate runs between `after`
-and `mg5` were deleted; each was superseded by the next.
+(words into scenes), `mg5/` the state after the scenes were made to use
+the frame their shot grants them. Intermediate runs were deleted; each was
+superseded by the next.
+
+`ch-01-current/`, `ch-02-current/`, `ch-09-current/` are the multi-channel
+pass — three channels on three different scripts, two of them
+white-background, which nothing here had been checked against before.
+`ch-01` and `ch-02` reflect the current code; `ch-09`'s stills predate the
+fix that stops the PROCESS arrival trace drawing through the claim's
+glyphs, so read that one against the commit, not the frames.
+
+## What rendering unfamiliar channels found
+
+Six defects, none of which the ch-48 frames could have shown:
+
+| defect | what the frame showed |
+|---|---|
+| ACCUMULATION collapsed to a hardcoded point and faded out | an EMPTY vessel with "$500" in it — the pile had deleted itself |
+| running total drew after the collapse | "$500" printed twice in one frame |
+| entityLabels split multi-word names | "clearing house" became CLEARING + HOUSE; "exchange" dropped; 5 labels, 4 nodes |
+| chain links overlapped 40% | four parties rendered as one unreadable white mass |
+| subjectPhrase stopword-stripping | "PURCHASES NEVER PROBLEM" at 84px |
+| clauses() ignored sentence ends | a label ran through a full stop |
+
+The third one is the one worth remembering: it was not an ugly picture, it
+was a WRONG one — the frame named entities the narration never did.
 
 ## Ink: scenes were not taking the frame they were granted
 
