@@ -113,23 +113,43 @@ Rules that follow from that table:
   adjust the beat mix until the split meets these bounds — it's
   gate-checked.
 
-### `visual` — optional, and usually leave it out
+### `visual` — REQUIRED on every beat you write
 
 `archetype` says what KIND of beat this is. It does not say what the viewer
-should SEE. The renderer works that out itself, deterministically, from the
-beat's own narration plus `anchor_token` and `data` — so a beat about a
-150-metre search radius becomes an expanding boundary on real ground with
-the devices caught inside it, not a large "150".
+should SEE. **You decide that. Decide it for every beat.**
 
-**Do not add a `visual` block just because the field exists.** It costs
-output tokens on every beat that carries one, and on the scripts this was
-built against the automatic reading was already correct. Add one ONLY when
-the automatic reading would land on the wrong concept — typically when the
-sentence's real subject is not the thing its words emphasise.
+This used to say the opposite — "usually leave it out", and let the renderer
+work it out from keywords in the narration. That is why the videos looked
+alike. A keyword reader picks a picture from the words that happen to be in
+a sentence; it cannot know what the sentence is DOING. Two beats that both
+mention a number get the same treatment whether one is a shock and the other
+is a footnote. The renderer executes; it does not direct.
 
-When you do, the whole block is: `{"strategy": "<ONE OF BELOW>"}`, plus
-`"data"` only if the strategy needs a figure the beat's `data` above does
-not already carry.
+Work through these in order for each beat. Do not skip to naming a strategy.
+
+1. **What is this beat doing?** hook, setup, escalation, turn, evidence, or
+   payoff. A hook and a piece of evidence must not look alike.
+2. **What is the ONE thing the viewer must see?** Exactly one. If you can
+   name two, you have not decided yet — pick one and drop the other. That
+   one thing goes in `primary`.
+3. **What should they understand from the picture?** One phrase, in
+   `concept`. If the picture only makes sense once the narration explains
+   it, the picture is wrong — choose a different strategy.
+4. **Then name the `strategy`** that draws that. Not the one that matches a
+   word in the sentence.
+
+Across the script, check the run before you finish: if every beat came out
+the same strategy, you defaulted instead of directing — the words varied, so
+the pictures should. Vary treatment where the beats genuinely differ, and
+keep it where they genuinely repeat.
+
+The block is `{"strategy": "<ONE OF BELOW>", "concept": "<one phrase>",
+"primary": "<the hero element>"}`, plus `"data"` only if the strategy needs
+a figure the beat's `data` above does not already carry.
+
+Keep it terse — three short fields per beat, not prose. Output tokens are
+capped account-wide, and a script that runs long is a script that fails to
+return.
 
 `GEOSPATIAL_RADIUS` (a distance drawn on ground) · `ACCUMULATION` (many
 small things becoming one total) · `TRANSFORMATION` (one value becoming

@@ -198,6 +198,51 @@ export const CAMERA_MOVES = {
 const C = CAMERA_MOVES;
 
 /**
+ * TRANSLATION REQUIRES SOMETHING TO TRANSLATE OVER.
+ *
+ * `Shot` (compositions/scenes/stage.jsx) implements these moves as a
+ * transform on the world: `translate(dx, dy) scale(s)`. When the world is
+ * bigger than the frame — a framing with `bleed` — translating the world
+ * moves the viewport across it, and new content arrives at the leading
+ * edge. That is a camera move.
+ *
+ * When the world is NOT bigger than the frame, the same transform does
+ * something else entirely: it slides a finite object sideways, empties the
+ * space it left, and reveals nothing. That is the graphic moving, not the
+ * camera, and it reads as exactly that — an object drifting across a still
+ * field for no reason the picture can justify.
+ *
+ * Four of sixteen composed shots were doing it: TRANSFORMATION v1 and
+ * CAUSE_EFFECT v1 tracking right across `acting-left`, RELATIONSHIP v1
+ * drifting on `close`, BEFORE_AFTER v1 drifting on `acting-right` — all
+ * framings that stop at the frame edge.
+ *
+ * So on a non-bleeding framing the translation is dropped and only the
+ * SCALE survives. A scale is a real change of viewpoint even on a finite
+ * subject (the viewer gets nearer to it); a slide is not. A move that was
+ * pure translation therefore becomes a genuine hold, which is the honest
+ * answer: there was nothing to track across.
+ *
+ * Returns a NEW object — CAMERA_MOVES entries are shared module constants
+ * and mutating one would silently change every other shot using it.
+ */
+function viewportMove(move, framing) {
+  if (framing.bleed) return move;
+  const translates =
+    Math.abs(move.to.x - move.from.x) > 0.001 || Math.abs(move.to.y - move.from.y) > 0.001;
+  if (!translates) return move;
+  const scales = Math.abs(move.to.scale - move.from.scale) > 0.001;
+  return {
+    id: scales ? `${move.id}-in-place` : "hold",
+    from: { scale: move.from.scale, x: 0, y: 0 },
+    to: { scale: move.to.scale, x: 0, y: 0 },
+    reason: scales
+      ? `${move.reason} — held in place because ${framing.id} does not bleed, so a translation would slide the subject rather than travel over it`
+      : `${framing.id} does not bleed: there is no world past the frame edge to track across, so the shot holds`,
+  };
+}
+
+/**
  * Camera per strategy. Deliberately mostly DRIFT or HOLD.
  *
  * A renderer where every scene pushes in is exactly as templated as one
@@ -342,8 +387,8 @@ export function composeShot(strategy, plan, opts = {}) {
   const variant = Number.isFinite(plan && plan.variant) ? plan.variant : 0;
   const framing = options[variant % options.length];
 
-  const camera = STRATEGY_CAMERA[strategy] || C.DRIFT;
   const depth = STRATEGY_DEPTH[strategy] || D.LAYERED;
+  const camera = viewportMove(STRATEGY_CAMERA[strategy] || C.DRIFT, framing);
 
   return {
     material,

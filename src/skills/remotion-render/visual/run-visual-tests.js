@@ -573,6 +573,37 @@ check("a plane ends up moving exactly its parallax factor times the camera", () 
   return problems.length === 0 || problems.slice(0, 6).join("; ");
 });
 
+check("a shot only translates over a world that bleeds past the frame", () => {
+  /**
+   * Stage.jsx implements a camera move as `translate(dx, dy) scale(s)` on
+   * the world. Over a world larger than the frame that is a viewport
+   * travelling and new content arrives at the leading edge — a camera move.
+   * Over a world that stops at the frame edge it is a finite object sliding
+   * sideways and leaving a hole, which reads as the GRAPHIC moving rather
+   * than the camera, because that is what it is.
+   *
+   * Four of sixteen shots were doing it (TRANSFORMATION v1, CAUSE_EFFECT v1,
+   * RELATIONSHIP v1, BEFORE_AFTER v1). composition.js's viewportMove now
+   * strips the translation on a non-bleeding framing and keeps only the
+   * scale; this is the check that keeps it stripped, because the pairing is
+   * produced by two independent tables (STRATEGY_CAMERA and
+   * STRATEGY_FRAMINGS) and adding an entry to either can recreate it.
+   */
+  const problems = [];
+  for (const name of composedStrategies()) {
+    for (const variant of [0, 1, 2]) {
+      const shot = composeShot(name, { variant });
+      if (shot.bleed) continue;
+      const dx = Math.abs(shot.camera.to.x - shot.camera.from.x);
+      const dy = Math.abs(shot.camera.to.y - shot.camera.from.y);
+      if (dx + dy > 0.001) {
+        problems.push(`${name} v${variant}: ${shot.camera.id} translates ${((dx + dy) * 100).toFixed(1)}% over non-bleeding ${shot.framing.id}`);
+      }
+    }
+  }
+  return problems.length === 0 || problems.slice(0, 6).join("; ");
+});
+
 check("every plane carries a depth anchor, and the subject stays sharp", () => {
   // The same reference names the failure mode for offset-only parallax:
   // without a blur / desaturation anchor, layers read as stickers sliding
