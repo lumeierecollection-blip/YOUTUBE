@@ -1,6 +1,6 @@
 import React from "react";
 import { useThree } from "@react-three/fiber";
-import { useDelayRender } from "remotion";
+import { useDelayRender, useCurrentFrame, useVideoConfig } from "remotion";
 
 /**
  * Shared by every ThreeCanvas + @react-three/postprocessing <EffectComposer>
@@ -28,6 +28,32 @@ const RETRY_DELAY_MS = 30;
 export function PostFxReadyGate({ composerRef, label = "PostFx" }) {
   const { advance } = useThree();
   const { delayRender, continueRender } = useDelayRender();
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  /**
+   * THE CLOCK IS THE TIMELINE, NOT THE WALL.
+   *
+   * This used to call `advance(performance.now())`. R3F derives its frame
+   * delta from the timestamp it is handed, so feeding it wall-clock time
+   * made every post-fx effect's phase depend on how long this particular
+   * render took — the animated grain in CanvasGrain landed somewhere
+   * different on every run.
+   *
+   * That silently broke the guarantee asserted all over this package
+   * ("same script, same pixels"; composition.js, director.js,
+   * sound-design.js all state it). It was caught by rendering the SAME
+   * commit twice and diffing the frame metrics: the TIMELINE anchor set
+   * moved by up to 2.4 points of ink and 28 points of bbox height between
+   * two runs of identical code, which is more than most real changes move
+   * them — i.e. it was large enough to fake or mask a regression in any
+   * before/after comparison, which is exactly what it did once here.
+   *
+   * The retry loop below re-advances with the SAME timestamp, which is
+   * correct: retries exist to give the composer another React cycle, not
+   * to move time forward. A still frame should not age while it waits.
+   */
+  const timelineMs = (frame / (fps || 30)) * 1000;
 
   React.useEffect(() => {
     const handle = delayRender(`Waiting for ${label}'s EffectComposer to paint a real frame`);
@@ -37,7 +63,7 @@ export function PostFxReadyGate({ composerRef, label = "PostFx" }) {
 
     function attempt() {
       if (released) return;
-      advance(performance.now());
+      advance(timelineMs);
       attempts += 1;
       if (composerRef.current) {
         released = true;
