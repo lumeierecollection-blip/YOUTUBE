@@ -31,7 +31,7 @@
 import { STRATEGIES, STRATEGY_PREFERENCE, TERMINAL_STRATEGY, getStrategy } from "./strategies.js";
 import { analyzeBeat, seriesFrom, unitKind, extractNumbers } from "./semantics.js";
 import { grammarForChannel, grammarBias } from "./channel-grammar.js";
-import { subjectPhrase, clausePhrase, entityLabels, predicatePhrase, clauses, wordsIn } from "./text-budget.js";
+import { subjectPhrase, clausePhrase, entityLabels, predicatePhrase, completeClause, bestClause, clauses, wordsIn, MAX_SUPPORTING_WORDS } from "./text-budget.js";
 import { composeShot } from "./composition.js";
 
 /** Minimum confidence a deterministic reading needs before it may render. */
@@ -439,7 +439,20 @@ function supportingPhraseFor(strategy, payload, analysis, beat) {
       // strongest content words.
       const authored = beat.authoredText && String(beat.authoredText).trim();
       if (authored && authored.length <= 28) return authored.toUpperCase();
-      return subjectPhrase(analysis.text, 4);
+      // This strategy exists to put a statement on screen, so unlike the
+      // others it may not return nothing — but it must not return word
+      // salad either. subjectPhrase gave "FIVE HUNDRED DOLLARS END" and
+      // "REST SPLIT EVERYONE" on the fixtures. Verbatim: a whole clause if
+      // one fits, otherwise the strongest one trimmed.
+      // The SECTION sentence, not the beat fragment: beats are ~7-word
+      // chunks, so analysis.text routinely starts mid-clause and the label
+      // came out as "BANK AND THE EXCHANGE ALL DEPEND…".
+      const src = analysis.context || analysis.text;
+      // The full 8-word budget here, not 6: this strategy's whole job is to
+      // put a statement on screen, and a clause that fits WHOLE at 8 beats a
+      // tidier one truncated at 6 ("TWENTY SMALL PURCHASES QUIETLY BECAME
+      // FIVE…"). Ellipsis only when no clause fits at all.
+      return completeClause(src, MAX_SUPPORTING_WORDS) || bestClause(src, MAX_SUPPORTING_WORDS).toUpperCase();
     }
     case "DOCUMENT_EVIDENCE":
       // A QUOTATION, so the wording is kept verbatim and only the length is
@@ -484,7 +497,13 @@ function supportingPhraseFor(strategy, payload, analysis, beat) {
       // The operative clause is usually the last one ("X runs this way,
       // and THEN A FAILURE STOPS IT"); fall back to the whole line.
       const operative = cl.length > 1 ? cl[cl.length - 1] : source;
-      return predicatePhrase(operative, 4) || subjectPhrase(operative, 3);
+      // predicate first (the claim), then a clause that fits WHOLE, then
+      // nothing. Never subjectPhrase here: stripping stopwords out of a
+      // narration line yields "PURCHASES NEVER PROBLEM" — checked against
+      // the finance and strategies fixtures before this changed. A scene
+      // with no printable phrase draws none; these three all carry their
+      // own labels regardless.
+      return predicatePhrase(operative, 4) || completeClause(source, 6);
     }
     default:
       return "";

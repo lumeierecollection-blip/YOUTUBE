@@ -105,9 +105,32 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
         ? 1
         : 0;
 
+  // Where the running total is actually drawn (see the Figure below). The
+  // collapse used to aim at a hardcoded (STAGE_CX, 760) that matched
+  // neither this nor the shot.
+  const figureX = trayX + trayW;
+  const figureY = floorY + 26;
+
   const perRow = Math.ceil(Math.sqrt(count * 1.6));
   const cellW = trayW / perRow;
   const cellH = 46;
+
+  /**
+   * The tray walls fit what the tray HOLDS.
+   *
+   * They were a hardcoded `height: 300`, which on a 1920-tall frame drew a
+   * squat box with a thin scatter of units along its floor and the whole
+   * upper half of the shot empty — visible on qa/critic/ch-01's
+   * ACCUMULATION frames. The pile's height is knowable (it is a function of
+   * `count` and `perRow`), so the container is sized from it plus headroom,
+   * bounded by the frame the shot granted rather than by a constant.
+   */
+  const layersDeep = (() => {
+    let layer = 0, cap = Math.max(2, perRow), remaining = Math.max(0, count - 1);
+    while (remaining >= cap) { remaining -= cap; layer++; cap = Math.max(2, perRow - layer); }
+    return layer;
+  })();
+  const wallH = Math.max(300, Math.min(f.h * 0.62, 22 + (layersDeep + 1) * (cellH * 0.62) + 90));
 
   /**
    * A PILE, not a grid (visual-system-reset PART 15). The tray previously
@@ -156,8 +179,8 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
       ) : (
         <>
           <Rule x={trayX} y={floorY} w={trayW} p={pEmpty} color={colors.stroke} thickness={3} />
-          <div style={{ position: "absolute", left: trayX, top: floorY - 300, width: 2, height: 300 * ease(pEmpty), background: colors.stroke, opacity: 1 }} />
-          <div style={{ position: "absolute", left: trayX + trayW - 2, top: floorY - 300, width: 2, height: 300 * ease(pEmpty), background: colors.stroke, opacity: 1 }} />
+          <div style={{ position: "absolute", left: trayX, top: floorY - wallH, width: 2, height: wallH * ease(pEmpty), background: colors.stroke, opacity: 1 }} />
+          <div style={{ position: "absolute", left: trayX + trayW - 2, top: floorY - wallH, width: 2, height: wallH * ease(pEmpty), background: colors.stroke, opacity: 1 }} />
         </>
       )}
 
@@ -192,12 +215,30 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
           const dropP = isNewest ? ease(Math.min(1, (pAcc * (count - 1)) % 1 + 0.25)) : 1;
           const dy = (1 - dropP) * -60;
 
-          // On `total` the pile compresses toward the figure.
+          /**
+           * On `total` the pile LEANS toward the figure. It used to leave.
+           *
+           * The previous version sent every item to a hardcoded (STAGE_CX,
+           * 760) — a point with no relationship to this shot or to the
+           * figure it was supposedly collapsing into, which is drawn at the
+           * tray's own far edge — while fading to 15% opacity and 25%
+           * scale. On a rendered `total` frame (qa/critic/ch-01,
+           * ACCUMULATION v0 f169) that produced an EMPTY vessel with "$500"
+           * printed twice and nothing inside it: the twenty purchases the
+           * whole scene exists to show had erased themselves at the moment
+           * the point landed.
+           *
+           * The pile is the evidence for the total. It stays. It shifts a
+           * fraction of the way toward the figure and settles slightly, so
+           * the beat still reads as "these became that" without the subject
+           * of the shot deleting itself.
+           */
           const collapseP = ease(pTotal, EASE_IN_OUT);
-          const tx = collapsed ? (STAGE_CX - x) * collapseP : 0;
-          const ty = collapsed ? (760 - y) * collapseP : 0;
-          const scale = (collapsed ? 1 - 0.75 * collapseP : 1) * itemScale;
-          const op = collapsed ? 1 - 0.85 * collapseP : dropP;
+          const LEAN = 0.16;
+          const tx = collapsed ? (figureX - x) * collapseP * LEAN : 0;
+          const ty = collapsed ? (figureY - y) * collapseP * LEAN : 0;
+          const scale = (collapsed ? 1 - 0.06 * collapseP : 1) * itemScale;
+          const op = collapsed ? 1 : dropP;
 
           return (
             <g key={i} transform={`translate(${x + tx}, ${y + dy + ty}) rotate(${itemRot}) scale(${scale})`} opacity={op}>
@@ -223,20 +264,29 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
         })}
       </svg>
 
-      {/* Running total — climbs WITH the pile, on the tray's own edge. */}
+      {/* Running total — climbs WITH the pile, on the tray's own edge.
+          HANDS OFF at `total`. It used to keep drawing after the collapse
+          with `value={collapsed ? total : runningTotal}`, while the result
+          figure below drew the SAME number at the same moment: "$500"
+          printed twice in one frame, once big above the tray and once small
+          beside it (caught on qa/critic/ch01b, ACCUMULATION v0 f169). The
+          running total's job ends when the total lands; it fades out as the
+          result arrives, the same way the "N OF M" counter below does. */}
       {landed > 0 && total != null ? (
-        <Figure
-          x={trayX + trayW}
-          y={floorY + 26}
-          value={collapsed ? total : runningTotal}
-          unit=""
-          p={1}
-          color={collapsed ? colors.accent : colors.textDim}
-          size={collapsed ? 40 : 34}
-          align="right"
-          fontFamily={fontFamily}
-          format={(v) => `${symbol}${Math.round(v).toLocaleString("en-US")}`}
-        />
+        <div style={{ opacity: collapsed ? 1 - ease(pTotal) : 1 }}>
+          <Figure
+            x={figureX}
+            y={figureY}
+            value={runningTotal}
+            unit=""
+            p={1}
+            color={colors.textDim}
+            size={34}
+            align="right"
+            fontFamily={fontFamily}
+            format={(v) => `${symbol}${Math.round(v).toLocaleString("en-US")}`}
+          />
+        </div>
       ) : null}
 
       {/* Only label a count the script actually stated (supporting.countKnown).

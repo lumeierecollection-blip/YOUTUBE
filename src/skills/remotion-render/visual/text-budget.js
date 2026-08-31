@@ -84,8 +84,15 @@ export function clausePhrase(text, maxWords = 7) {
  */
 export function clauses(text) {
   return String(text || "")
-    .split(/,\s*(?:and|but|which|when|where|while|because|until|so)\b|[;:]|\s+—\s+/i)
-    .map((c) => c.trim().replace(/^(and|but|which|when|where|while|because|until|so)\s+/i, ""))
+    // SENTENCE BOUNDARIES FIRST. Without this a section's two sentences
+    // were one "clause", and a label drawn from it ran straight through the
+    // full stop: "THE PURCHASES WERE NEVER THE PROBLEM. THE BALANCE…".
+    // A sentence end is the strongest clause boundary there is.
+    .split(/(?<=[.!?])\s+/)
+    .flatMap((sentence) =>
+      sentence.split(/,\s*(?:and|but|which|when|where|while|because|until|so)\b|[;:]|\s+—\s+/i)
+    )
+    .map((c) => c.trim().replace(/^(and|but|which|when|where|while|because|until|so)\s+/i, "").replace(/[.!?]+$/, ""))
     .filter((c) => c.split(/\s+/).filter(Boolean).length >= 2);
 }
 
@@ -126,15 +133,30 @@ export function predicatePhrase(text, maxWords = 4) {
   const passive = /\b(was|were|been|is|are|get|got)\s+(\w+\s+)?$/i.test(before);
   const head = passive ? subjectPhrase(before, 2) : "";
 
-  const tail = t
-    .slice(m.index)
+  /**
+   * THE PREDICATE MUST BE COMPLETE, NOT CUT TO LENGTH.
+   *
+   * This used to slice the words after the verb to the cap, which on a long
+   * sentence produced "COLLAPSED BECAUSE THE SECOND" — a label that stops
+   * mid-clause and reads as a bug. So the tail runs only to the end of the
+   * verb's OWN clause, and if that does not fit the cap this returns
+   * nothing and the caller falls back to a clause that does.
+   */
+  const clauseEnd = /\b(because|until|while|when|where|which|and|but|so|though|after|before)\b|[,;:.]/i;
+  let tailText = t.slice(m.index);
+  const cut = clauseEnd.exec(tailText.slice(1));
+  if (cut) tailText = tailText.slice(0, cut.index + 1);
+
+  const tail = tailText
     .replace(/[^\w\s'-]/g, " ")
     .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, Math.max(1, limit - (head ? head.split(/\s+/).length : 0)));
+    .filter(Boolean);
 
   // Trim trailing connectives so the label ends on a content word.
   while (tail.length > 1 && TRAILING.has(tail[tail.length - 1].toLowerCase())) tail.pop();
+
+  const budget = Math.max(1, limit - (head ? head.split(/\s+/).length : 0));
+  if (tail.length > budget) return "";
 
   return [head, tail.join(" ").toUpperCase()].filter(Boolean).join(" ").trim();
 }
@@ -176,7 +198,39 @@ export function bestClause(text, maxWords = 8) {
   while (words.length > 1 && (STOP.has(words[words.length - 1].toLowerCase().replace(/[^\w'-]/g, "")) || TRAILING.has(words[words.length - 1].toLowerCase().replace(/[^\w'-]/g, "")))) {
     words.pop();
   }
-  return words.join(" ").replace(/[,;:]$/, "") + "…";
+  return words.join(" ").replace(/[.,;:]+$/, "") + "…";
+}
+
+/**
+ * A clause that fits the cap WHOLE — verbatim, grammatical, no ellipsis.
+ *
+ * WHY THIS EXISTS. The two existing extractors both fail on a label:
+ * `subjectPhrase` strips stopwords and concatenates whatever survives,
+ * which on real narration produces "PURCHASES NEVER PROBLEM", "PUT SIDE
+ * SIDE", "FORTY NORTH SIXTY FIVE" — not English, and printed at 84px in
+ * the middle of a frame. `bestClause` keeps the wording but truncates, so a
+ * long sentence becomes "SEVENTY PERCENT OF THE ENTIRE…", which reads as
+ * unfinished rather than as a label.
+ *
+ * A label has to be a whole thought or it should not be drawn. So this only
+ * returns a clause that already fits: no cutting, no rewording, no
+ * stopword surgery. Returns "" when the sentence has no short clause in it,
+ * and callers draw nothing — which text-budget's own header calls a
+ * perfectly good answer, and is certainly better than word salad.
+ */
+export function completeClause(text, maxWords = 6) {
+  const limit = Math.min(maxWords, MAX_SUPPORTING_WORDS);
+  const candidates = clauses(text)
+    .map((c) => c.replace(/[.,;:]+$/, "").trim())
+    .filter((c) => {
+      const n = c.split(/\s+/).filter(Boolean).length;
+      return n >= 3 && n <= limit;
+    });
+  if (!candidates.length) return "";
+  const contentWords = (c) =>
+    c.split(/\s+/).filter((w) => w.length > 3 && !STOP.has(w.toLowerCase().replace(/[^\w'-]/g, ""))).length;
+  const best = candidates.reduce((a, b) => (contentWords(b) > contentWords(a) ? b : a), candidates[0]);
+  return best.toUpperCase();
 }
 
 /** Distinct content words, for scenes that label several nodes at once. */

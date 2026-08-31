@@ -705,6 +705,9 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
   // Same fitting rule as TimelineScene's event: never below TYP-04's floor,
   // never wider than the safe rect, never a hand-picked number.
   const phraseSize = fitPhraseSize(phrase, CANVAS_W * 0.82);
+  // One source of truth for where the claim sits: the Label below draws
+  // at it, and the arrival trace stops short of it.
+  const claimY = aboveUiBand(runBottom + r + 96, phraseSize);
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
@@ -745,9 +748,19 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
           const working = pAdvance > 0 && (dwelling ? i === Math.round(posIdx) : Math.abs(posIdx - i) < 0.4);
           return <CircuitNode key={i} x={nodeX(i)} y={nodeY(i)} r={r} colors={colors} lit={lit} working={working} appear={a} />;
         })}
-        {/* arrival: the response leaving the chain */}
+        {/* arrival: the response leaving the chain.
+            Stopped short of the claim when there is one. The trace runs to
+            30% of the way off frame, and the claim sits at the bottom of
+            the same column, so on a rendered arrive frame the line went
+            straight through the glyphs of "STOPS THE WHOLE LINE" — hidden
+            on a dark channel by the text's halo, plainly visible on a
+            white one (ch-09). */}
         {pArrive > 0 ? (
-          <CircuitTrace x1={nodeX(n - 1)} y1={runBottom + r * 0.9} x2={trackX} y2={runBottom + r + (CANVAS_H * 1.12 - runBottom) * ease(pArrive) * 0.3}
+          <CircuitTrace x1={nodeX(n - 1)} y1={runBottom + r * 0.9} x2={trackX}
+            y2={Math.min(
+              runBottom + r + (CANVAS_H * 1.12 - runBottom) * ease(pArrive) * 0.3,
+              phrase ? claimY - 14 : Infinity
+            )}
             colors={colors} progress={1} lit />
         ) : null}
       </svg>
@@ -810,7 +823,7 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
             const hi = CANVAS_W * 0.91 - halfW;
             return lo > hi ? CANVAS_W / 2 : Math.max(lo, Math.min(hi, trackX));
           })()}
-          y={aboveUiBand(runBottom + r + 96, phraseSize)}
+          y={claimY}
           text={phrase} align="center"
           color={colors.textPrimary} size={phraseSize} weight={900} tracking={-0.5}
           opacity={ease(Math.min(1, pArrive * 2.2))}
