@@ -11,6 +11,22 @@ import { Audio } from "@remotion/media";
 import { currentAudio } from "../audio.js";
 import "../wait-for-fonts.js";
 import { resolveColors, resolveFontFamily } from "./visual.js";
+import { MG_TYPE as TYPE } from "./beats.js";
+
+/**
+ * ONE TYPE SCALE FOR THE WHOLE SYSTEM.
+ *
+ * This style is pure kinetic typography, so the text IS the picture and
+ * the sizes matter more here than anywhere else. They were hand-picked
+ * (88/64/40) and the 40px step for continuation lines sat under
+ * MG_TYPE.support, the 44px floor registered as TYP-04 in
+ * CHECK-REGISTER.md and recorded there as failing.
+ *
+ * Imported from beats.js rather than restated, for the same reason
+ * cinematic-documentary.jsx now does: three composition files were each
+ * carrying their own numbers, which is how "no text below 44px" ends up
+ * true in one style and false in the other two.
+ */
 
 /**
  * Minimal — kinetic typography, clean background, synced captions.
@@ -47,7 +63,10 @@ function AnimatedCaption({ text, delay = 0, index = 0, colors = COLORS, fontFami
         color: colors.text,
         fontFamily: fontFamily || "'Space Grotesk', 'Helvetica Neue', sans-serif",
         fontWeight: emphasis ? 900 : 700,
-        fontSize: emphasis ? 88 : index === 0 ? 64 : 40,
+        // headline / caption / body — real steps off the shared scale, not
+        // arithmetic on one. The old ladder was 88/64/40, and that 40px
+        // continuation step sat under TYP-04's 44px floor.
+        fontSize: emphasis ? TYPE.headline : index === 0 ? TYPE.caption : TYPE.body,
         lineHeight: 1.15,
         textAlign: "center",
         marginBottom: 20,

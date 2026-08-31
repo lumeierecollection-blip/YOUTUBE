@@ -4,6 +4,7 @@ import {
   CANVAS_W, CANVAS_H, CAPTION_RESERVE_Y, Label, ease, seeded,
   useStateProgress, useValueProgress, EASE_IN_OUT, EASE_OUT,
 } from "./primitives.jsx";
+import { MG_TYPE as TYPE } from "../beats.js";
 import { progressOf } from "../../visual/states.js";
 import { shotFrame, Plane } from "./stage.jsx";
 import { MachineBody, Gate, MaterialSlug } from "./elements/machine.jsx";
@@ -63,6 +64,28 @@ const BOTTOM_SAFE_FRACTION = 0.79;
 function aboveUiBand(y, size) {
   const limit = CANVAS_H * BOTTOM_SAFE_FRACTION - CAPTION_RESERVE_Y - size * 1.15;
   return Math.min(y, limit);
+}
+
+/**
+ * The largest house-scale size a phrase can be drawn at and still fit the
+ * safe width.
+ *
+ * The floors are the repo's own, not invented here: MG_TYPE.headline (84)
+ * and MG_TYPE.support (44) are registered as TYP-03 and TYP-04 in
+ * CHECK-REGISTER.md ("Remotion floor. Never lower."), and both are recorded
+ * there as currently FAILING. A fixed size cannot satisfy both that floor
+ * and the safe rect — "STOPS THE WHOLE LINE" at the full 84 measures ~940px
+ * against 886px of safe width — so the size is fitted to the string and
+ * then clamped into the house range instead of being picked by hand.
+ *
+ * Width is estimated from glyph count because Label has no measurement pass
+ * (unlike HeadlineBox, which uses measureText). The estimate only has to be
+ * good enough to choose between house steps.
+ */
+const GLYPH_W = 0.56;
+function fitPhraseSize(text, maxWidth, max = TYPE.headline, min = TYPE.support) {
+  const n = String(text || "").length || 1;
+  return Math.max(min, Math.min(max, Math.floor(maxWidth / (n * GLYPH_W))));
 }
 
 const short = (s, n) => {
@@ -146,6 +169,9 @@ export function TimelineScene({ beat, colors, fontFamily }) {
 
   const xFor = (y) => x0 + ((y - span.lo) / (span.hi - span.lo || 1)) * w;
   const focusYear = years.length ? years[years.length - 1] : null;
+  // Fitted into the house range rather than a hand-picked size, so a long
+  // event still clears TYP-04's 44px floor without leaving the safe rect.
+  const eventSize = fitPhraseSize(sup.event, CANVAS_W * 0.82);
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
@@ -309,18 +335,18 @@ export function TimelineScene({ beat, colors, fontFamily }) {
              measurement pass); the estimate only has to be good enough to
              keep a centred string off the edge. */
           x={(() => {
-            const halfW = (sup.event.length * 44 * 0.56) / 2;
+            const halfW = (sup.event.length * eventSize * GLYPH_W) / 2;
             const lo = CANVAS_W * 0.09 + halfW;
             const hi = CANVAS_W * 0.91 - halfW;
             // When the string is too wide for the safe rect at all, centre
             // it rather than pinning it to a nonsense position.
             return lo > hi ? CANVAS_W / 2 : Math.max(lo, Math.min(hi, xFor(focusYear)));
           })()}
-          y={aboveUiBand(groundY + 78, 44)}
+          y={aboveUiBand(groundY + 78, eventSize)}
           text={sup.event}
           align="center"
           color={colors.textPrimary}
-          size={44}
+          size={eventSize}
           weight={900}
           tracking={0}
           opacity={ease(Math.min(1, pFocus * 2))}
@@ -642,6 +668,9 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
   const packetY = nodeY(seg) + (nodeY(seg + 1) - nodeY(seg)) * segT;
 
   const boardW = zag * 2 + r * 2.6;
+  // Same fitting rule as TimelineScene's event: never below TYP-04's floor,
+  // never wider than the safe rect, never a hand-picked number.
+  const phraseSize = fitPhraseSize(phrase, CANVAS_W * 0.82);
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
@@ -700,7 +729,7 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
             // numerals were the ONLY text in the entire scene and sat
             // under it, which is how a shot ends up with nothing legible
             // in it at all.
-            color={lit ? colors.accent : colors.textDim} size={38} weight={800} tracking={1}
+            color={lit ? colors.accent : colors.textDim} size={TYPE.support} weight={800} tracking={1}
             opacity={a} fontFamily={fontFamily} halo={colors.bg} />
         );
       })}
@@ -720,7 +749,7 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
              the packet is the one side that carries neither. */
           x={packetX} y={packetY + 62} align="center"
           text={subject}
-          color={colors.accent} size={34} weight={800} tracking={1.5}
+          color={colors.accent} size={TYPE.support} weight={800} tracking={1.5}
           opacity={ease(Math.min(1, pAdvance * 6))}
           fontFamily={fontFamily} halo={colors.bg}
         />
@@ -742,14 +771,14 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
              rect (width estimated from glyph count; Label has no
              measurement pass). */
           x={(() => {
-            const halfW = (phrase.length * 62 * 0.56) / 2;
+            const halfW = (phrase.length * phraseSize * GLYPH_W) / 2;
             const lo = CANVAS_W * 0.09 + halfW;
             const hi = CANVAS_W * 0.91 - halfW;
             return lo > hi ? CANVAS_W / 2 : Math.max(lo, Math.min(hi, trackX));
           })()}
-          y={aboveUiBand(lastY + r + 96, 62)}
+          y={aboveUiBand(lastY + r + 96, phraseSize)}
           text={phrase} align="center"
-          color={colors.textPrimary} size={62} weight={900} tracking={-0.5}
+          color={colors.textPrimary} size={phraseSize} weight={900} tracking={-0.5}
           opacity={ease(Math.min(1, pArrive * 2.2))}
           fontFamily={fontFamily} halo={colors.bg}
         />

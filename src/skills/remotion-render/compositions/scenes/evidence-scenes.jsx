@@ -6,6 +6,7 @@ import {
   useStateProgress, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { DOCUMENT_PAGES, documentPageGeometry } from "../layout-constants.js";
+import { MG_TYPE as TYPE } from "../beats.js";
 import { progressOf } from "../../visual/states.js";
 import { shotFrame } from "./stage.jsx";
 import { DocumentSheet } from "./elements/document.jsx";
@@ -109,7 +110,7 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
         }}>
           <div style={{
             borderLeft: `4px solid ${colors.accent}`, paddingLeft: 20,
-            color: colors.textPrimary, fontFamily, fontWeight: 700, fontSize: 40, lineHeight: 1.25,
+            color: colors.textPrimary, fontFamily, fontWeight: 700, fontSize: TYPE.support, lineHeight: 1.25,
           }}>
             {(beat.visualPlan && beat.visualPlan.supporting.phrase) || ""}
           </div>
@@ -278,7 +279,7 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
                     stroke={i === 0 ? colors.accent : colors.stroke} strokeWidth={i === 0 ? 2.5 : 1.5} />
                   {/* Rank position — a real ordinal, which a ranked list has. */}
                   <text x={contentX + 44} y={ry + 31} fill={i === 0 ? colors.accent : colors.stroke}
-                    opacity={i === 0 ? 1 : 0.55} fontFamily={fontFamily} fontSize={22} fontWeight={700}>
+                    opacity={i === 0 ? 1 : 0.55} fontFamily={fontFamily} fontSize={TYPE.label} fontWeight={700}>
                     {i + 1}
                   </text>
                 </g>
@@ -302,7 +303,7 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
         <Label
           x={contentX + 42} y={y + 100}
           text={queryLabel}
-          color={colors.accent} size={34} weight={700} tracking={1.5}
+          color={colors.accent} size={TYPE.support} weight={700} tracking={1.5}
           opacity={ease(Math.min(1, pInput * 1.4))}
           fontFamily={fontFamily} halo={colors.bg}
         />
@@ -311,7 +312,7 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
         <Label
           x={contentX + 78} y={y + 250}
           text={resultLabel}
-          color={colors.textPrimary} size={34} weight={800} tracking={1}
+          color={colors.textPrimary} size={TYPE.support} weight={800} tracking={1}
           opacity={ease(Math.min(1, pResult * 3))}
           fontFamily={fontFamily} halo={colors.bg}
         />

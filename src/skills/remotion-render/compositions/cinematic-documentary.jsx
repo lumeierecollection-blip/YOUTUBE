@@ -13,6 +13,34 @@ import { Audio } from "@remotion/media";
 import { currentAudio } from "../audio.js";
 import "../wait-for-fonts.js";
 import { resolveColors, resolveFontFamily, EndFadeToBlack } from "./visual.js";
+import { MG_TYPE as TYPE } from "./beats.js";
+import { bestClause } from "../visual/text-budget.js";
+
+/**
+ * TYPE SCALE AND SAFE AREA — the same ones the motion-graphics path obeys.
+ *
+ * This file sets eight of the seventeen channels, and it was carrying its
+ * own hand-picked sizes: a 22px overlay pinned at top:28 and narration at
+ * 48/32 on the vertical frame. Measured against the repo's OWN registered
+ * checks that is three violations, not a style choice:
+ *
+ *   TYP-03  no headline below 84px   (CHECK-REGISTER.md, recorded FAILING)
+ *   TYP-04  no supporting text below 44px            (recorded FAILING)
+ *   top:28 on a 1920-tall frame is 1.5% of frame height, inside the top
+ *   band a phone's status bar and the Shorts header sit over.
+ *
+ * The motion-graphics path already imports these floors from beats.js.
+ * Importing the same module here is the point: one type scale for the
+ * whole system, so "make it consistent across channels" is enforced by a
+ * shared constant rather than by remembering to edit two files.
+ *
+ * The narration sizes below stay BELOW MG_TYPE.headline deliberately —
+ * this style prints several lines at once over imagery, so headline scale
+ * would not fit. They are raised to the supporting floor, which is the
+ * relevant one for multi-line text, and the top overlay is moved out of
+ * the unsafe band.
+ */
+const CINEMATIC_SAFE_TOP_FRACTION = 0.11;
 
 /**
  * CinematicDocumentary — Long-form (16:9, ~10 min)
@@ -67,6 +95,40 @@ function FilmGrain({ opacity = 0.1 }) {
  * this dramatic-only layout is now only the last-resort fallback for a
  * caller that doesn't pass it (e.g. verify-compositions.js's fixtures).
  */
+
+/**
+ * The ONE line this section is allowed to print over its picture.
+ *
+ * WHAT THIS REPLACES: `section.content.map(...)`, i.e. every chunked line
+ * of the section's narration, stacked in the middle of the frame. On a
+ * rendered frame that was five lines and ~35 words printed over the
+ * photograph — the photo reduced to a texture behind a paragraph.
+ *
+ * That is the exact failure motion-graphics.jsx documents at its
+ * CaptionLayer ("the eye reads the sentence, the picture becomes
+ * decoration behind it, and the visual never has to carry the meaning"),
+ * and the reason narration captions are off by default there. Eight of the
+ * seventeen channels run on THIS file, so leaving it printing full
+ * narration meant that decision only ever applied to a third of the
+ * system.
+ *
+ * The viewer still has the whole sentence in the voiceover. What stays on
+ * screen is the claim, drawn from the section's own words through the same
+ * text-budget module the motion-graphics director uses, under the same
+ * 8-word ceiling. Nothing is invented: an authored `text_overlay` wins
+ * when the writer supplied one.
+ */
+function sectionKeyLine(section) {
+  const authored = String(section.textOverlay || "").trim();
+  if (authored && authored.length <= 40) return authored.toUpperCase();
+  const src = String(section.voiceover || "");
+  if (!src) return "";
+  // bestClause, not predicatePhrase: this line IS the shot, so it needs to
+  // read as a sentence fragment rather than as a diagram label. See the
+  // note on bestClause for why the label rule collapses to "SURVIVE" here.
+  return bestClause(src, 8);
+}
+
 function computeLayout(durationInFrames, sections, sectionWindows) {
   if (sectionWindows && sectionWindows.length === sections.length) return sectionWindows;
   const n = Math.max(sections.length, 1);
@@ -161,7 +223,7 @@ function DataOverlay({ value, label, delay = 0, colors = COLORS, fontFamily = "I
           color: colors.textPrimary,
           fontFamily,
           fontWeight: 400,
-          fontSize: 24,
+          fontSize: TYPE.label,
           opacity: 0.8,
         }}
       >
@@ -244,8 +306,13 @@ function BrollLayer({ files = [], colors = COLORS }) {
         );
       })}
       {/* Readability: flat, opaque bars behind the text zones — not a gradient. */}
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "22%", backgroundColor: colors.bgDark, opacity: 0.72 }} />
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "34%", backgroundColor: colors.bgDark, opacity: 0.8 }} />
+      {/* Readability scrims: flat, opaque bars behind the text zones — not a
+          gradient. Sized to what is actually printed. They used to cover 22%
+          + 34% = OVER HALF the frame, because half the frame is what a
+          five-line paragraph needs to stay legible; with one line the
+          photograph gets to be the picture again. */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "14%", backgroundColor: colors.bgDark, opacity: 0.62 }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "24%", backgroundColor: colors.bgDark, opacity: 0.72 }} />
     </AbsoluteFill>
   );
 }
@@ -287,13 +354,13 @@ export function CinematicDocumentaryLongform({ sections = [], thumbnailStyle, tt
                 <div
                   style={{
                     position: "absolute",
-                    top: 48,
+                    top: 1080 * CINEMATIC_SAFE_TOP_FRACTION,
                     left: 0,
                     right: 0,
                     textAlign: "center",
                     fontFamily,
                     fontWeight: 700,
-                    fontSize: 26,
+                    fontSize: TYPE.label,
                     letterSpacing: 2,
                     textTransform: "uppercase",
                     color: colors.textPrimary,
@@ -315,17 +382,14 @@ export function CinematicDocumentaryLongform({ sections = [], thumbnailStyle, tt
                   padding: 80,
                 }}
               >
-                {section.content?.map((line, j) => (
-                  <AnimatedText
-                    key={j}
-                    text={line}
-                    delay={j * 15}
-                    style={{ fontSize: j === 0 ? 56 : 36, marginBottom: 20 }}
-                    color={colors.textPrimary}
-                    colors={colors}
-                    fontFamily={fontFamily}
-                  />
-                ))}
+                <AnimatedText
+                  text={sectionKeyLine(section)}
+                  delay={8}
+                  style={{ fontSize: TYPE.caption, maxWidth: "78%" }}
+                  color={colors.textPrimary}
+                  colors={colors}
+                  fontFamily={fontFamily}
+                />
               </AbsoluteFill>
 
               {/* Texture only — no vignette, no light leak, no mood grade. */}
@@ -385,13 +449,13 @@ export function CinematicDocumentaryShorts({ sections = [], thumbnailStyle, ttsA
                 <div
                   style={{
                     position: "absolute",
-                    top: 28,
+                    top: 1920 * CINEMATIC_SAFE_TOP_FRACTION,
                     left: 0,
                     right: 0,
                     textAlign: "center",
                     fontFamily,
                     fontWeight: 700,
-                    fontSize: 22,
+                    fontSize: TYPE.label,
                     letterSpacing: 2,
                     textTransform: "uppercase",
                     color: colors.textPrimary,
@@ -412,21 +476,14 @@ export function CinematicDocumentaryShorts({ sections = [], thumbnailStyle, ttsA
                   padding: 40,
                 }}
               >
-                {section.content?.map((line, j) => (
-                  <AnimatedText
-                    key={j}
-                    text={line}
-                    delay={j * 10}
-                    style={{
-                      fontSize: j === 0 ? 48 : 32,
-                      marginBottom: 16,
-                      maxWidth: "90%",
-                    }}
-                    color={colors.textPrimary}
-                    colors={colors}
-                    fontFamily={fontFamily}
-                  />
-                ))}
+                <AnimatedText
+                  text={sectionKeyLine(section)}
+                  delay={6}
+                  style={{ fontSize: TYPE.caption, maxWidth: "82%" }}
+                  color={colors.textPrimary}
+                  colors={colors}
+                  fontFamily={fontFamily}
+                />
               </AbsoluteFill>
 
               <FilmGrain opacity={0.1} />

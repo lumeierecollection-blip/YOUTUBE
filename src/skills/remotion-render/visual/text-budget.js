@@ -108,7 +108,7 @@ const CONSEQUENCE_VERB =
 
 /** Connectives a label must never END on — "STOPS THE WHOLE" reads as truncation. */
 const TRAILING = new Set(
-  "a an the of and or but not to from in on at for with by as it its this that these those because until while when where so is are was were be been being every any".split(" ")
+  "a an the of and or but not to from in on at for with by as it its this that these those because until while when where so is are was were be been being every any none each all both some many much more other another such own same".split(" ")
 );
 
 export function predicatePhrase(text, maxWords = 4) {
@@ -137,6 +137,46 @@ export function predicatePhrase(text, maxWords = 4) {
   while (tail.length > 1 && TRAILING.has(tail[tail.length - 1].toLowerCase())) tail.pop();
 
   return [head, tail.join(" ").toUpperCase()].filter(Boolean).join(" ").trim();
+}
+
+/**
+ * The most substantial clause of a line, kept verbatim.
+ *
+ * A DIFFERENT JOB FROM predicatePhrase, which exists to label an object
+ * inside a diagram and so wants the shortest thing that names the claim
+ * ("STOPS THE WHOLE LINE"). Where the text IS the shot — a documentary
+ * line set over a photograph — that rule degenerates: the last clause of
+ * "none of them needing sunlight to survive" reduces to the single word
+ * "SURVIVE", a verb with nothing to attach to.
+ *
+ * So this picks by information instead of by position: the clause with the
+ * most content words, with a number counting extra because a figure is the
+ * most concrete thing a documentary line can put on screen. Verbatim and
+ * length-capped, never reworded — the script's own sentence, shortened.
+ */
+export function bestClause(text, maxWords = 8) {
+  const cl = clauses(text);
+  if (!cl.length) return clausePhrase(text, maxWords);
+  const score = (c) => {
+    const words = c.split(/\s+/).filter(Boolean);
+    const content = words.filter((w) => w.length > 3 && !STOP.has(w.toLowerCase().replace(/[^\w'-]/g, "")));
+    const hasNumber = /\d|\b(one|two|three|four|five|six|seven|eight|nine|ten|hundred|thousand|million|billion)\b/i.test(c);
+    // Long enough to be a sentence fragment worth reading, short enough to
+    // set large: content words carry it, a figure adds weight, and anything
+    // past the cap will be trimmed anyway so extra length earns nothing.
+    return content.length + (hasNumber ? 2 : 0) - Math.max(0, words.length - maxWords) * 0.5;
+  };
+  const best = cl.reduce((a, b) => (score(b) > score(a) ? b : a), cl[0]);
+  const cut = clausePhrase(best, maxWords);
+  // A truncated clause must not end on a function word: "…centipedes, none
+  // of…" reads as a bug rather than as an elision. Trim back to the last
+  // content word, then re-attach the ellipsis.
+  if (!cut.endsWith("…")) return cut;
+  const words = cut.slice(0, -1).trim().split(/\s+/);
+  while (words.length > 1 && (STOP.has(words[words.length - 1].toLowerCase().replace(/[^\w'-]/g, "")) || TRAILING.has(words[words.length - 1].toLowerCase().replace(/[^\w'-]/g, "")))) {
+    words.pop();
+  }
+  return words.join(" ").replace(/[,;:]$/, "") + "…";
 }
 
 /** Distinct content words, for scenes that label several nodes at once. */
