@@ -1055,7 +1055,11 @@ export function RelationshipScene({ beat, colors, fontFamily }) {
 
   const linkW = Math.min(f.w * 0.24, 190);
   const linkH = linkW * 0.5;
-  const spacing = linkW * 0.6; // overlap when locked: consecutive links share ~40% of their span
+  // 40% overlap merged the chain into one unreadable white mass at this
+  // stroke weight (rendered frame: ch-02 RELATIONSHIP weight f657 — four
+  // parties, one blob). Links still interlock, but far enough apart that
+  // a viewer can count them.
+  const spacing = linkW * 0.78;
   const midY = f.cy + f.h * 0.02;
   const sag = f.h * 0.05; // a slight droop toward the centre, like a real hanging chain
 
@@ -1109,10 +1113,13 @@ export function RelationshipScene({ beat, colors, fontFamily }) {
         const halfExtent = (linkW * SETTLE_MAX) / 2;
         const above = i % 2 === 0;
         return (
-          <Label key={i} x={l.x} y={l.y + (above ? -halfExtent - 26 : halfExtent + 46)}
-            text={short(l.label.toUpperCase(), 12)}
-            color={colors.textPrimary} size={22} weight={800} tracking={1.4} align="center"
-            opacity={appear} fontFamily={fontFamily} />
+          <Label key={i} x={l.x} y={l.y + (above ? -halfExtent - 52 : halfExtent + 74)}
+            /* 12 chars truncated real party names to "CLEARING HO…"; 22px was
+               under the house label step. Clearance raised because a label
+               was landing ON the chain (white on white) at the old offset. */
+            text={short(l.label.toUpperCase(), 16)}
+            color={colors.textPrimary} size={TYPE.label} weight={800} tracking={1.4} align="center"
+            opacity={appear} fontFamily={fontFamily} halo={colors.bg} />
         );
       })}
     </div>

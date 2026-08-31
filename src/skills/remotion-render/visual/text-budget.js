@@ -233,6 +233,41 @@ export function completeClause(text, maxWords = 6) {
   return best.toUpperCase();
 }
 
+/**
+ * The items of a spoken list — "the regulator, the clearing house, the
+ * custodian bank and the exchange" — as whole names.
+ *
+ * entityLabels() below splits on whitespace and keeps distinct words, which
+ * tears multi-word names in half. On a rendered RELATIONSHIP frame that put
+ * "CLEARING" and "HOUSE" on screen as two separate parties, dropped
+ * "exchange" entirely, and left five labels around four nodes. The parties
+ * were wrong, not just ugly — the picture asserted something the script did
+ * not say.
+ *
+ * A list is a real grammatical structure and can be read as one: split on
+ * commas and the final "and", strip the article each item starts with, and
+ * keep what is left whole. Returns [] when the sentence is not a list, and
+ * the caller falls back to entityLabels.
+ */
+export function listEntities(text, max = 5) {
+  const t = String(text || "");
+  // Needs at least one comma AND a final connective, or it is not a list.
+  if (!/,/.test(t) || !/\b(and|or)\b/i.test(t)) return [];
+  const upTo = t.split(/\b(?:all|both|each|every|which|that|who)\b/i)[0] || t;
+  const items = upTo
+    .replace(/\s+(and|or)\s+/gi, ",")
+    .split(",")
+    .map((p) => p.trim().replace(/^(the|a|an|its|their|his|her|our|your)\s+/i, "").replace(/[.;:]+$/, "").trim())
+    .filter((p) => {
+      const words = p.split(/\s+/).filter(Boolean);
+      return words.length >= 1 && words.length <= 3 && /[a-z]/i.test(p);
+    });
+  // A single item is not a list, and neither is a sentence that merely
+  // happens to contain a comma.
+  if (items.length < 3) return [];
+  return [...new Set(items.map((p) => p.toUpperCase()))].slice(0, max);
+}
+
 /** Distinct content words, for scenes that label several nodes at once. */
 export function entityLabels(text, max = 5) {
   const words = String(text || "")

@@ -31,7 +31,7 @@
 import { STRATEGIES, STRATEGY_PREFERENCE, TERMINAL_STRATEGY, getStrategy } from "./strategies.js";
 import { analyzeBeat, seriesFrom, unitKind, extractNumbers } from "./semantics.js";
 import { grammarForChannel, grammarBias } from "./channel-grammar.js";
-import { subjectPhrase, clausePhrase, entityLabels, predicatePhrase, completeClause, bestClause, clauses, wordsIn, MAX_SUPPORTING_WORDS } from "./text-budget.js";
+import { subjectPhrase, clausePhrase, entityLabels, predicatePhrase, completeClause, bestClause, listEntities, clauses, wordsIn, MAX_SUPPORTING_WORDS } from "./text-budget.js";
 import { composeShot } from "./composition.js";
 
 /** Minimum confidence a deterministic reading needs before it may render. */
@@ -520,7 +520,15 @@ function finalize(strategy, payload, analysis, beat, ctx, provenance, fallbacks,
   // result — so "the picture is printing the narration" was unmeasurable.
   // See visual/text-budget.js.
   supporting.phrase = supportingPhraseFor(strategy, payload, analysis, beat);
-  if (strategy === "RELATIONSHIP") supporting.labels = entityLabels(analysis.text, 5);
+  if (strategy === "RELATIONSHIP") {
+    // A spoken list read as WHOLE names first. entityLabels splits on
+    // whitespace, which turned "the clearing house" into two parties
+    // ("CLEARING", "HOUSE") and dropped "the exchange" — five labels
+    // around four nodes, asserting parties the script never named.
+    const src = analysis.context || analysis.text;
+    supporting.labels = listEntities(src, 5);
+    if (!supporting.labels.length) supporting.labels = entityLabels(analysis.text, 5);
+  }
   if (strategy === "COMPARISON" && supporting.qualitative) {
     // Two opposed positions, one per panel. Four words each: the scene used
     // to take eight from each side, which is sixteen words on screen — a

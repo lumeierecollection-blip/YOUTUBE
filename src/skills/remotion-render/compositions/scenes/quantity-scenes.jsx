@@ -113,7 +113,25 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
 
   const perRow = Math.ceil(Math.sqrt(count * 1.6));
   const cellW = trayW / perRow;
-  const cellH = 46;
+
+  /**
+   * THE UNITS ARE SIZED TO THE PILE THEY HAVE TO BUILD.
+   *
+   * `cellH` was a flat 46 and each unit a flat 32px tall, so twenty items
+   * stacked five layers deep made a ~140px mound inside a shot granting 927
+   * — measured across ch-01's anchor set, mean ink 3.1% with 23 of 30
+   * frames under 5%, i.e. a correct picture of almost nothing. The layer
+   * count is knowable from `count` and `perRow`, so the unit height falls
+   * out of "how tall should the finished pile be" instead of a constant.
+   */
+  const layersDeep = (() => {
+    let layer = 0, cap = Math.max(2, perRow), remaining = Math.max(0, count - 1);
+    while (remaining >= cap) { remaining -= cap; layer++; cap = Math.max(2, perRow - layer); }
+    return layer;
+  })();
+  const targetPileH = f.h * 0.46;
+  const cellH = Math.max(46, Math.min(150, targetPileH / (layersDeep + 1) / 0.62));
+  const itemH = Math.max(32, Math.min(84, cellH * 0.52));
 
   /**
    * The tray walls fit what the tray HOLDS.
@@ -125,11 +143,6 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
    * `count` and `perRow`), so the container is sized from it plus headroom,
    * bounded by the frame the shot granted rather than by a constant.
    */
-  const layersDeep = (() => {
-    let layer = 0, cap = Math.max(2, perRow), remaining = Math.max(0, count - 1);
-    while (remaining >= cap) { remaining -= cap; layer++; cap = Math.max(2, perRow - layer); }
-    return layer;
-  })();
   const wallH = Math.max(300, Math.min(f.h * 0.62, 22 + (layersDeep + 1) * (cellH * 0.62) + 90));
 
   /**
@@ -251,11 +264,11 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
                       the ledger variant already fills its rows (line above),
                       so the tray variant drew the same concept two different
                       ways. A unit that fell in is a solid thing. */}
-                  <rect x={-cellW / 2 + 5} y={-16} width={cellW - 10} height={32} rx={3}
+                  <rect x={-cellW / 2 + 5} y={-itemH / 2} width={cellW - 10} height={itemH} rx={3}
                     fill={colors.stroke} fillOpacity={0.42} stroke={colors.stroke} strokeWidth={2} />
                   {money ? (
-                    <text x={0} y={6} textAnchor="middle" fill={colors.textDim}
-                      style={{ font: `700 17px ${fontFamily}` }}>{symbol}</text>
+                    <text x={0} y={itemH * 0.19} textAnchor="middle" fill={colors.textDim}
+                      style={{ font: `700 ${Math.round(itemH * 0.53)}px ${fontFamily}` }}>{symbol}</text>
                   ) : null}
                 </>
               )}
