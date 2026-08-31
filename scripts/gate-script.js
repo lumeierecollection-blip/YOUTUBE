@@ -115,6 +115,40 @@ function main() {
     if (statementShare > 0.3) {
       majors.push(`SCR-07: STATEMENT is ${(statementShare * 100).toFixed(0)}% of beats, must be <=30%.`);
     }
+
+    /**
+     * SCR-15 (soft) — the writer actually directed the visuals.
+     *
+     * The style contract requires a `visual` block on every beat. When it is
+     * missing, visual/director.js falls back to picking a strategy by
+     * keyword match on the narration — which still renders, so nothing
+     * fails, it just quietly produces the templated look this gate exists
+     * to catch. Reported as MAJOR rather than BLOCKER for that reason: a
+     * script with no direction is worse, not broken, and failing the run
+     * would cost the channel its upload for the day.
+     *
+     * Two separate failures, because they need different answers: none at
+     * all means the writer ignored the instruction; all-the-same means it
+     * answered without deciding, which the contract calls out by name.
+     */
+    const directed = allBeats.filter((b) => b.visual && b.visual.strategy);
+    const share = directed.length / (allBeats.length || 1);
+    if (directed.length === 0) {
+      majors.push(
+        `SCR-15: no beat carries a visual block — every one will be planned by keyword fallback. The style contract requires the writer to direct each beat.`
+      );
+    } else if (share < 0.6) {
+      majors.push(
+        `SCR-15: only ${(share * 100).toFixed(0)}% of beats carry a visual block; the rest fall back to keyword matching.`
+      );
+    } else {
+      const mix = new Set(directed.map((b) => String(b.visual.strategy).toUpperCase()));
+      if (directed.length >= 4 && mix.size === 1) {
+        majors.push(
+          `SCR-15: all ${directed.length} directed beats chose the same strategy (${[...mix][0]}) — that is defaulting, not directing.`
+        );
+      }
+    }
   }
 
   // SCR-08 (soft, both schemas) — pacing sanity check against style WPM target.

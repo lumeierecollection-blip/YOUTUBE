@@ -396,6 +396,7 @@ runs per-video, before TTS, implemented in `scripts/gate-research.js` and
 | SCR-12 | `text_overlay` is an object or null, never a string | `--json-schema` at the CLI boundary, re-checked in `gate-script.js` | 100% | 1 | BLOCKER | pre-TTS | **NEW** |
 | SCR-13 | No hex colour value anywhere in the script JSON | `gate-script.js` regex | 0 hits | 1 | MAJOR | pre-TTS | **NEW** â€” a real hex literal (`#0A1020`) already exists in `data/research/1/pay-frequency-budgeting-script.json`'s `visual_cue`, predating this gate |
 | SCR-14 | `sources_used` >=3 and every URL appears in the research file | `gate-script.js` | 100% | 1 | BLOCKER | pre-TTS | **NEW** |
+| SCR-15 | The writer directed the visuals: >=60% of beats carry `visual.strategy`, and not all the same one | `gate-script.js` | >=60%, mix>1 | 1 | MAJOR | pre-TTS | **NEW** — before this, `prompts/style-contract.md` told the writer to omit the block, so `authored plan ratio` was 0 on every script and every beat of every video was planned by keyword match in `visual/director.js` |
 
 **3.10.1 â€” SCR-05 is the enforcement point for `ENC-06`/`ENC-08`.** A number
 only reaches a chart if the research pass logged it with a source, closing
