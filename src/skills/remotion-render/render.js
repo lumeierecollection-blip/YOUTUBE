@@ -23,7 +23,7 @@
  * prop and the duration comes from the package (never from the mp3 length).
  */
 
-import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync } from "fs";
+import os from "os";`r`nimport { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync } from "fs";
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
@@ -291,7 +291,7 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
     crf: 16,                            // below the h264 default
     pixelFormat: "yuv420p",             // required for wide playback
     chromiumOptions: { gl: "swangle" }, // software WebGL2 - NOT via the config file
-    concurrency: 2,
+    concurrency: Math.max(4, os.cpus().length),`r`n    audioBitrate: "192k",
     scale,
     // Cold-start font fetch (21 families / 42 woff2 over the local static
     // server) can exceed the 28s default delayRender timeout.
