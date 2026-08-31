@@ -2,7 +2,7 @@ import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
   CANVAS_W, CANVAS_H, Label, ease, seeded,
-  useStateProgress, useValueProgress, EASE_IN_OUT,
+  useStateProgress, useValueProgress, EASE_IN_OUT, EASE_OUT,
 } from "./primitives.jsx";
 import { progressOf } from "../../visual/states.js";
 import { shotFrame, Plane } from "./stage.jsx";
@@ -269,6 +269,43 @@ export function TimelineScene({ beat, colors, fontFamily }) {
           />
         );
       })}
+
+      {/* WHAT HAPPENED, not just when.
+          Two dated posts tell the viewer a span existed and nothing else —
+          the event that makes the span worth showing lived only in the
+          audio. This sets it against the focus year's own marker, so the
+          date and the event read as one object (aesthetic-rules C3), and
+          it is the scene's dominant text per scene-director rule 3. */}
+      {sup.event && plan.runLast && pFocus > 0 ? (
+        <Label
+          /* Centred on the focus marker, but clamped so a long event never
+             runs off the safe rect. On the first render of this label
+             "BATCHING RULE REMOVED" centred on the 2015 post reached
+             x=992 against a 983px safe edge — a real margin violation,
+             caught on the frame rather than reasoned about. Width is
+             estimated from the glyph count (this is a Label, which has no
+             measurement pass); the estimate only has to be good enough to
+             keep a centred string off the edge. */
+          x={(() => {
+            const halfW = (sup.event.length * 44 * 0.56) / 2;
+            const lo = CANVAS_W * 0.09 + halfW;
+            const hi = CANVAS_W * 0.91 - halfW;
+            // When the string is too wide for the safe rect at all, centre
+            // it rather than pinning it to a nonsense position.
+            return lo > hi ? CANVAS_W / 2 : Math.max(lo, Math.min(hi, xFor(focusYear)));
+          })()}
+          y={groundY + 78}
+          text={sup.event}
+          align="center"
+          color={colors.textPrimary}
+          size={44}
+          weight={900}
+          tracking={0}
+          opacity={ease(Math.min(1, pFocus * 2))}
+          fontFamily={fontFamily}
+          halo={colors.bg}
+        />
+      ) : null}
       </Plane>
 
       {/* FOREGROUND — the near lip of the ground, passing the camera at
@@ -320,6 +357,12 @@ export function ProcessScene({ beat, colors, fontFamily }) {
         n={n} trackX={trackX} firstY={firstY} lastY={lastY}
         pStages={pStages} pAdvance={pAdvance} pArrive={pArrive}
         colors={colors} fontFamily={fontFamily}
+        // Both come from the director, counted against the text budget
+        // there. The scene places them; it never derives them.
+        // The claim is drawn only on the LAST beat of a same-strategy run
+        // (mg-package.js runLast) so it lands once, as the sentence ends,
+        // instead of restarting on each 2.5s chunk of that sentence.
+        subject={sup.subject || ""} phrase={plan.runLast ? sup.phrase || "" : ""}
       />
     );
   }
@@ -514,7 +557,7 @@ export function ProcessScene({ beat, colors, fontFamily }) {
  * vocabulary: circuit nodes with status lights, right-angle traces, and a
  * travelling signal packet, not rollers and a workpiece.
  */
-function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, colors, fontFamily }) {
+function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, colors, fontFamily, subject, phrase }) {
   // ZIGZAG, not a single vertical column. A rendered frame (CHECK-REGISTER
   // §3.12.15) showed this family collapsing into the exact grammar the
   // whole rebuild bans: three boxes joined by one straight line, because
@@ -523,14 +566,56 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
   // and right of the centreline is what makes the traces actually bend, and
   // it is also a real PCB convention (routing around components), not
   // decoration added to make the line look busier.
-  const zag = Math.min(140, (lastY - firstY) / Math.max(n - 1, 1) * 0.42);
+  /**
+   * The zigzag takes the width the frame actually has, instead of a flat
+   * 140px cap.
+   *
+   * Measured on a rendered arrive frame, the board spanned x=135..578 of a
+   * 1080-wide frame: the entire right 45% was empty black, with the whole
+   * mechanism squeezed into a column on the left. That is the "hairline
+   * diagram floating in a void" the repo's own pixel audit is about, and
+   * the cap was the cause — a 140px zag makes a ~420px board no matter how
+   * much room the shot granted.
+   *
+   * Bounded by the safe rect on the side the board is nearest, so widening
+   * can never push a node or its pins off frame.
+   */
+  const room = Math.min(trackX - CANVAS_W * 0.09, CANVAS_W * 0.91 - trackX) - 54 - 40;
+  const zag = Math.max(90, Math.min(room, (lastY - firstY) / Math.max(n - 1, 1) * 0.42, 210));
   const nodeX = (i) => trackX + (i % 2 === 0 ? -1 : 1) * zag;
   const nodeY = (i) => firstY + (i / Math.max(n - 1, 1)) * (lastY - firstY);
   const r = 54;
-  const t = ease(pAdvance, EASE_IN_OUT);
-  const posIdx = t * (n - 1);
-  const seg = Math.min(n - 2, Math.max(0, Math.floor(posIdx)));
-  const segT = posIdx - seg;
+
+  /**
+   * STAGE-BY-STAGE, NOT ONE SLIDE DOWN THE WHOLE CHAIN.
+   *
+   * This was `ease(pAdvance, EASE_IN_OUT)` scaled across the entire chain:
+   * one interpolation from the first node to the last, so the packet
+   * crossed every station at a near-constant speed and never registered
+   * arriving anywhere. That is mograph-critic's defect #1 (linear
+   * interpolation — measured as velocity_linearity, where >= 0.80 is a
+   * hard defect) and it is also a lie about the mechanism: the narration
+   * says a request is WORKED at each of three stages, and a thing that is
+   * worked stops while that happens.
+   *
+   * So the run is split into per-segment hops: each hop eases out into its
+   * station (fast departure, decelerating arrival) and then DWELLS there
+   * while the station works. Per aesthetic-rules R2, speed comes from
+   * acceleration rather than from a uniformly fast slide, and the dwell is
+   * the "0.5s pause after the batch lands" that rule asks for.
+   */
+  const HOP = 0.62; // of each segment's time budget spent moving; rest dwells
+  const segCount = Math.max(1, n - 1);
+  const raw = Math.max(0, Math.min(1, pAdvance)) * segCount;
+  const seg = Math.min(segCount - 1, Math.floor(raw));
+  const within = raw - seg;
+  // ease-out inside the hop, then hold at 1 for the dwell.
+  const segT = within >= HOP ? 1 : ease(within / HOP, EASE_OUT);
+  const posIdx = seg + segT;
+  const t = posIdx / segCount;
+  // True while the packet is parked at a station being worked — drives the
+  // station's own reaction below, so the mechanism and the motion agree.
+  const dwelling = within >= HOP && pAdvance < 1;
   const packetX = nodeX(seg) + (nodeX(seg + 1) - nodeX(seg)) * segT;
   const packetY = nodeY(seg) + (nodeY(seg + 1) - nodeY(seg)) * segT;
 
@@ -581,12 +666,46 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
         const lit = posIdx > i + 0.15 || (pArrive > 0 && i === n - 1);
         const rightSide = i % 2 !== 0;
         return (
-          <Label key={i} x={nodeX(i) + (rightSide ? r * 0.75 + 34 : -(r * 0.75 + 34))} y={nodeY(i) - 13}
+          <Label key={i} x={nodeX(i) + (rightSide ? r * 0.75 + 30 : -(r * 0.75 + 30))} y={nodeY(i) - 20}
             text={`${i + 1}`} align={rightSide ? "left" : "right"}
-            color={lit ? colors.accent : colors.textDim} size={26} weight={800} tracking={1}
+            // WAS 26px. Q11 puts the floor for auxiliary text at 32px /
+            // 3% of frame height, measured on the rendered frame — these
+            // numerals were the ONLY text in the entire scene and sat
+            // under it, which is how a shot ends up with nothing legible
+            // in it at all.
+            color={lit ? colors.accent : colors.textDim} size={38} weight={800} tracking={1}
             opacity={a} fontFamily={fontFamily} halo={colors.bg} />
         );
       })}
+
+      {/* The travelling thing, NAMED, riding along with it.
+          A packet moving between anonymous boxes is a screensaver; the
+          same packet labelled with the script's own subject is the
+          process the line is describing. Typography carried by the moving
+          object rather than parked in a caption band — aesthetic-rules C3. */}
+      {subject && pAdvance > 0 && posIdx < n - 1 ? (
+        <Label
+          x={packetX + 46} y={packetY - 16}
+          text={subject} align="left"
+          color={colors.accent} size={34} weight={800} tracking={1.5}
+          opacity={ease(Math.min(1, pAdvance * 6))}
+          fontFamily={fontFamily} halo={colors.bg}
+        />
+      ) : null}
+
+      {/* The claim of the line, landing when the run completes. This is the
+          scene's dominant element per scene-director rule 3 — one thing the
+          viewer must see, at a size nothing else competes with — and it is
+          placed against the board rather than centred in a title bar. */}
+      {phrase && pArrive > 0 ? (
+        <Label
+          x={CANVAS_W * 0.5} y={lastY + r + 96}
+          text={phrase} align="center"
+          color={colors.textPrimary} size={62} weight={900} tracking={-0.5}
+          opacity={ease(Math.min(1, pArrive * 2.2))}
+          fontFamily={fontFamily} halo={colors.bg}
+        />
+      ) : null}
     </div>
   );
 }

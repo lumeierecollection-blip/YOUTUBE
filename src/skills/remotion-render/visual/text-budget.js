@@ -32,7 +32,14 @@ export const MAX_SUPPORTING_WORDS = 8;
 
 const STOP = new Set(
   ("a an the of and or but not is are was were be been being to from in on at for with by as it its " +
-   "this that these those they them their our your his her he she we you i").split(" ")
+   "this that these those they them their our your his her he she we you i " +
+   // Quantifiers and prepositions. Without these, subjectPhrase's "first
+   // content word" lands on the determiner rather than the noun: "Every
+   // request the system takes…" named the travelling object "EVERY", which
+   // on screen is a label attached to nothing.
+   "every any each all both some many much most more other another such own same " +
+   "through into about after before during over under between within across along " +
+   "than then very just only also while when where which who whom whose what how why").split(" ")
 );
 
 /**
@@ -64,6 +71,72 @@ export function clausePhrase(text, maxWords = 7) {
   const limit = Math.min(maxWords, MAX_SUPPORTING_WORDS);
   const words = t.split(/\s+/);
   return words.length <= limit ? t : words.slice(0, limit).join(" ") + "…";
+}
+
+/**
+ * Split a sentence into its clauses, in order.
+ *
+ * Used by the scenes that draw a RELATION between two halves of a line
+ * ("X happens, and a failure stops the whole thing"): the halves are the
+ * two things on screen, so they have to be separable before either can be
+ * labelled. Verbatim — no rewording, so a clause is always the script's
+ * own words, per the repo's no-invented-content rule.
+ */
+export function clauses(text) {
+  return String(text || "")
+    .split(/,\s*(?:and|but|which|when|where|while|because|until|so)\b|[;:]|\s+—\s+/i)
+    .map((c) => c.trim().replace(/^(and|but|which|when|where|while|because|until|so)\s+/i, ""))
+    .filter((c) => c.split(/\s+/).filter(Boolean).length >= 2);
+}
+
+/**
+ * The operative predicate of a line — the verb that carries the claim, plus
+ * what it acts on ("STOPS THE WHOLE LINE", "COLLAPSED").
+ *
+ * WHY NOT subjectPhrase. subjectPhrase takes the FIRST content words, which
+ * on a narration line is almost always the grammatical subject: "SYSTEM
+ * PROCESSES EVERY" — the setup, never the point. The point of a line is
+ * nearly always its verb. On a rendered frame the difference is whether the
+ * one phrase on screen says what happened or just names the actor.
+ *
+ * Verbatim from the matched verb onward, so this quotes the script rather
+ * than paraphrasing it; returns "" when no verb of consequence is present,
+ * and callers fall back to subjectPhrase.
+ */
+const CONSEQUENCE_VERB =
+  /\b(stops?|stopped|halts?|halted|blocks?|blocked|prevents?|prevented|collapsed?|collapses|fails?|failed|breaks?|broke|removed?|removes|doubled?|doubles|tripled?|triples|dropped?|drops|rose|risen|grew|grows|fell|falls|returns?|returned|holds?|holding|held|reaches?|reached|survives?|survived|killed?|kills|saved?|saves)\b/i;
+
+/** Connectives a label must never END on — "STOPS THE WHOLE" reads as truncation. */
+const TRAILING = new Set(
+  "a an the of and or but not to from in on at for with by as it its this that these those because until while when where so is are was were be been being every any".split(" ")
+);
+
+export function predicatePhrase(text, maxWords = 4) {
+  const t = String(text || "").trim();
+  if (!t) return "";
+  const m = CONSEQUENCE_VERB.exec(t);
+  if (!m) return "";
+  const limit = Math.min(maxWords, MAX_SUPPORTING_WORDS);
+
+  // PASSIVE ("the batching rule WAS finally REMOVED"): the verb alone is
+  // "REMOVED", which names an action with no object — on screen that is a
+  // label that could belong to any line in the script. The thing it happened
+  // TO sits before the auxiliary, so carry it along.
+  const before = t.slice(0, m.index);
+  const passive = /\b(was|were|been|is|are|get|got)\s+(\w+\s+)?$/i.test(before);
+  const head = passive ? subjectPhrase(before, 2) : "";
+
+  const tail = t
+    .slice(m.index)
+    .replace(/[^\w\s'-]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, Math.max(1, limit - (head ? head.split(/\s+/).length : 0)));
+
+  // Trim trailing connectives so the label ends on a content word.
+  while (tail.length > 1 && TRAILING.has(tail[tail.length - 1].toLowerCase())) tail.pop();
+
+  return [head, tail.join(" ").toUpperCase()].filter(Boolean).join(" ").trim();
 }
 
 /** Distinct content words, for scenes that label several nodes at once. */

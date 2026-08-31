@@ -209,6 +209,18 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
   const contentX = x + navW;
   const contentW = w - navW;
 
+  // The words this scene is allowed to draw, decided by the director from
+  // the beat's own narration and counted against the 8-word budget there
+  // (visual/text-budget.js). The scene does not extract or invent any text
+  // of its own — it only places what it was given.
+  const sup = (beat.visualPlan && beat.visualPlan.supporting) || {};
+  // Once per same-strategy run (mg-package.js runLast), not on every 2.5s
+  // beat of the sentence that produced it.
+  const resultLabel = beat.visualPlan && beat.visualPlan.runLast ? sup.phrase || "" : "";
+  // The request being submitted. Falls back to a neutral field marker
+  // rather than a made-up query string.
+  const queryLabel = sup.subject || "QUERY";
+
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
@@ -237,7 +249,23 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
           </>
         ) : null}
 
-        {/* Result rows landing */}
+        {/* Result rows landing.
+ *
+ * THE GREEKED BARS ARE GONE. Each row used to carry a grey rectangle of
+ * pseudo-random width (`seeded(i * 9 + 1)`) standing in for text — lorem
+ * ipsum drawn as geometry. On a rendered frame (qa/critic/before,
+ * INTERFACE_SIMULATION result f512) that is the single most obviously
+ * machine-made thing in the whole video: a window full of grey bars is
+ * what a placeholder looks like, and no amount of animation on top of it
+ * reads as real.
+ *
+ * The top row now carries the line's actual words instead (drawn below
+ * this svg, since Label is HTML). The remaining rows keep their frames
+ * but hold NOTHING: the narration says a ranked list came back, it does
+ * not say what was in it, and filling those rows with invented titles is
+ * exactly the fabrication this repo forbids. An empty row is honest about
+ * being structure; a fake row is not.
+ */}
         {pResult > 0
           ? Array.from({ length: 4 }).map((_, i) => {
               const a = ease(Math.max(0, Math.min(1, pResult * 4 - i)));
@@ -248,8 +276,11 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
                   <rect x={contentX + 24} y={ry} width={contentW - 48} height={46} rx={4}
                     fill={i === 0 ? colors.accent : colors.stroke} fillOpacity={i === 0 ? 0.14 : 0.05}
                     stroke={i === 0 ? colors.accent : colors.stroke} strokeWidth={i === 0 ? 2.5 : 1.5} />
-                  <rect x={contentX + 42} y={ry + 18} width={(contentW - 160) * (0.5 + seeded(i * 9 + 1) * 0.45)} height={9} rx={2}
-                    fill={i === 0 ? colors.accent : colors.stroke} opacity={i === 0 ? 1 : 0.5} />
+                  {/* Rank position — a real ordinal, which a ranked list has. */}
+                  <text x={contentX + 44} y={ry + 31} fill={i === 0 ? colors.accent : colors.stroke}
+                    opacity={i === 0 ? 1 : 0.55} fontFamily={fontFamily} fontSize={22} fontWeight={700}>
+                    {i + 1}
+                  </text>
                 </g>
               );
             })
@@ -257,6 +288,34 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
 
         <StatusBar x={x} y={y + h - 26} w={w} colors={colors} progress={pChrome} active={pWork > 0 && pResult <= 0} />
       </svg>
+
+      {/* TYPOGRAPHY INSIDE THE PICTURE, not in a band above or below it.
+          aesthetic-rules C3: text that belongs to an object lives with the
+          object. These sit in the interface's own regions — the query in
+          its field, the result in the row that landed — so the words and
+          the thing they describe are read in one look, which is what a
+          separate headline zone can never do.
+
+          Q11's floor for auxiliary text is 32px; both are at or above it,
+          unlike the 26px numerals this scene used to rely on. */}
+      {pInput > 0 ? (
+        <Label
+          x={contentX + 42} y={y + 100}
+          text={queryLabel}
+          color={colors.accent} size={34} weight={700} tracking={1.5}
+          opacity={ease(Math.min(1, pInput * 1.4))}
+          fontFamily={fontFamily} halo={colors.bg}
+        />
+      ) : null}
+      {pResult > 0 && resultLabel ? (
+        <Label
+          x={contentX + 78} y={y + 250}
+          text={resultLabel}
+          color={colors.textPrimary} size={34} weight={800} tracking={1}
+          opacity={ease(Math.min(1, pResult * 3))}
+          fontFamily={fontFamily} halo={colors.bg}
+        />
+      ) : null}
     </div>
   );
 }

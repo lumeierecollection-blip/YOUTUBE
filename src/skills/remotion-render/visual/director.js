@@ -31,7 +31,7 @@
 import { STRATEGIES, STRATEGY_PREFERENCE, TERMINAL_STRATEGY, getStrategy } from "./strategies.js";
 import { analyzeBeat, seriesFrom, unitKind, extractNumbers } from "./semantics.js";
 import { grammarForChannel, grammarBias } from "./channel-grammar.js";
-import { subjectPhrase, clausePhrase, entityLabels, wordsIn } from "./text-budget.js";
+import { subjectPhrase, clausePhrase, entityLabels, predicatePhrase, clauses, wordsIn } from "./text-budget.js";
 import { composeShot } from "./composition.js";
 
 /** Minimum confidence a deterministic reading needs before it may render. */
@@ -309,9 +309,32 @@ function buildSupporting(strategy, payload, analysis, beat) {
       break;
     case "TIMELINE":
       supporting.years = payload.years || [];
+      // What actually happened at the end of the span. Two bare years on an
+      // axis date an event the picture never names; this is that event, in
+      // the script's own words.
+      supporting.event = (() => {
+        const src = analysis.context || analysis.text;
+        const cl = clauses(src);
+        return predicatePhrase(cl.length > 1 ? cl[cl.length - 1] : src, 3);
+      })();
       break;
     case "PROCESS":
       supporting.stages = payload.stages || 3;
+      // The thing that MOVES through the stages. Naming the travelling
+      // object is what separates "a sequence of three anonymous boxes" from
+      // a process with a subject; the stages themselves stay numbered,
+      // since the narration rarely names them and inventing names for them
+      // would be inventing content.
+      // Sentence, not fragment — on a fragment this returned "EVERY",
+      // "THREE", "SEPARATE", i.e. whichever word the chunk happened to
+      // start on.
+      supporting.subject = subjectPhrase(analysis.context || analysis.text, 1);
+      break;
+    case "INTERFACE_SIMULATION":
+      // What is being operated on, for the query field. Without it the
+      // field can only show a generic "QUERY" placeholder, which is the
+      // same greeked-content problem in smaller form.
+      supporting.subject = subjectPhrase(analysis.context || analysis.text, 1);
       break;
     case "CAUSE_EFFECT":
       supporting.cause = payload.cause || "";
@@ -422,6 +445,47 @@ function supportingPhraseFor(strategy, payload, analysis, beat) {
       // A QUOTATION, so the wording is kept verbatim and only the length is
       // capped — this used to run to ten words, which is a subtitle.
       return clausePhrase(analysis.text, 7);
+
+    /**
+     * THESE THREE USED TO RETURN "" — and that is why their frames were
+     * empty.
+     *
+     * The old comment here read "a process with numbered stages needs no
+     * sentence, and the budget's normal answer is zero words". Measured on
+     * rendered anchor frames, the answer that produced was: PROCESS drew
+     * three anonymous boxes labelled "1" "2" "3" at 2.7% ink, TIMELINE drew
+     * two flags labelled only with years, and INTERFACE_SIMULATION drew
+     * greeked grey bars where text should be. Nothing on screen said what
+     * the line was ABOUT, so the picture could not carry meaning and the
+     * narration had to — which is the "animated transcript" failure the
+     * caption default was turned off to avoid, arrived at from the other
+     * side.
+     *
+     * One phrase, from the script's own words, inside the same 8-word
+     * budget everything else obeys. It is the verb of the line, not its
+     * subject (see predicatePhrase), because the verb is the claim.
+     */
+    case "PROCESS":
+    case "TIMELINE":
+    case "INTERFACE_SIMULATION": {
+      /**
+       * FROM THE SECTION SENTENCE, NOT THE BEAT FRAGMENT.
+       *
+       * Beats are ~7-word chunks of a spoken line (compositions/beats.js
+       * chunkTextClauseAware), so `analysis.text` here is routinely half a
+       * clause: "separate stages, and a failure at any". Extracting a label
+       * from that produces word salad — "EVERY REQUEST SYSTEM", "UNTIL 2015
+       * WHEN" — which is worse on screen than no label at all. The sentence
+       * the fragment came from is what the viewer is actually hearing, and
+       * it is already on the plan as `context`.
+       */
+      const source = analysis.context || analysis.text;
+      const cl = clauses(source);
+      // The operative clause is usually the last one ("X runs this way,
+      // and THEN A FAILURE STOPS IT"); fall back to the whole line.
+      const operative = cl.length > 1 ? cl[cl.length - 1] : source;
+      return predicatePhrase(operative, 4) || subjectPhrase(operative, 3);
+    }
     default:
       return "";
   }
@@ -449,7 +513,12 @@ function finalize(strategy, payload, analysis, beat, ctx, provenance, fallbacks,
     wordsIn(supporting.phrase) +
     wordsIn(supporting.labels) +
     wordsIn(supporting.leftPhrase) +
-    wordsIn(supporting.rightPhrase);
+    wordsIn(supporting.rightPhrase) +
+    // Counted like every other drawn string: these are new (TIMELINE's
+    // event, PROCESS's travelling subject) and a budget that silently
+    // ignored them would be measuring the wrong picture.
+    wordsIn(supporting.event) +
+    wordsIn(supporting.subject);
 
   // PART 8 — an icon is NEVER the hero. A strategy may declare that a small
   // glyph genuinely helps inside its composition (a map marker, UI chrome);

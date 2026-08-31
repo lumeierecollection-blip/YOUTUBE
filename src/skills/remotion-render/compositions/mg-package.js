@@ -717,6 +717,32 @@ export function buildMgPackage(srtText, opts = {}) {
     }, { fps });
   }
 
+  /**
+   * RUN POSITION WITHIN A STRETCH OF THE SAME STRATEGY.
+   *
+   * Beats are ~7-word chunks, so one spoken sentence routinely becomes
+   * three or four consecutive beats that all plan the SAME strategy — the
+   * fixture script's first sentence produces four PROCESS beats in a row.
+   * Each one is rendered as its own scene, so without this the scene's
+   * dominant phrase re-animates from scratch every ~2.5 seconds, three
+   * times, while the viewer is still hearing the sentence it came from.
+   * That is the "cuts with no connective tissue" failure: the picture
+   * restarts mid-thought.
+   *
+   * `runLast` marks the beat where the sentence's claim actually lands, so
+   * the dominant typography is drawn ONCE per run, at the end, instead of
+   * on every beat of it. Cheap to compute, and it has to happen here —
+   * the director plans one beat at a time and cannot see its neighbours.
+   */
+  for (let i = 0; i < beats.length; i++) {
+    const p = beats[i].visualPlan;
+    if (!p) continue;
+    const next = beats[i + 1] && beats[i + 1].visualPlan;
+    const prev = beats[i - 1] && beats[i - 1].visualPlan;
+    p.runFirst = !prev || prev.strategy !== p.strategy;
+    p.runLast = !next || next.strategy !== p.strategy;
+  }
+
   for (const b of beats) b.scene = deriveScene(b, { iconMap: opts.iconMap, imageForSection });
 
   groupListRuns(beats);
