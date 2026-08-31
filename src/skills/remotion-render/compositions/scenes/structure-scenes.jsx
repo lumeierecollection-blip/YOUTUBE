@@ -628,11 +628,45 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
    * Bounded by the safe rect on the side the board is nearest, so widening
    * can never push a node or its pins off frame.
    */
-  const room = Math.min(trackX - CANVAS_W * 0.09, CANVAS_W * 0.91 - trackX) - 54 - 40;
-  const zag = Math.max(90, Math.min(room, (lastY - firstY) / Math.max(n - 1, 1) * 0.42, 210));
+  /**
+   * THE COMPONENTS SCALE WITH THE BOARD, not just the board with the frame.
+   *
+   * Widening the zigzag alone made the board bigger and left the same three
+   * 108px chips sitting in it — measured ink rose, but the rendered frame
+   * showed a larger empty container rather than a fuller picture, which is
+   * the same defect one level up. `r` was a flat 54 whatever the shot
+   * granted.
+   *
+   * Sized from the space that actually exists: no more than a third of the
+   * gap to the next station (so a 6-stage chain still reads as separate
+   * components, not a stack), and never wider than the safe rect once its
+   * own pins are counted. CircuitNode derives its body, pins and notch from
+   * `r`, so this scales the whole component, not just a circle.
+   */
+  const safeHalf = Math.min(trackX - CANVAS_W * 0.09, CANVAS_W * 0.91 - trackX);
+  const spacing = (lastY - firstY) / Math.max(n - 1, 1);
+  const NODE_HALF_SPAN = 1.17; // bodyW/2 + pinLen, as multiples of r (circuit.jsx)
+  const r = Math.max(54, Math.min(100, spacing * 0.3, (safeHalf - 110) / NODE_HALF_SPAN));
+  const room = safeHalf - r * NODE_HALF_SPAN - 20;
+  const zag = Math.max(90, Math.min(room, spacing * 0.42, 210));
   const nodeX = (i) => trackX + (i % 2 === 0 ? -1 : 1) * zag;
-  const nodeY = (i) => firstY + (i / Math.max(n - 1, 1)) * (lastY - firstY);
-  const r = 54;
+  /**
+   * THE CLAIM GETS ITS OWN BAND, taken out of the chain's run.
+   *
+   * With the nodes scaled up, the last station's own body reached the y the
+   * claim was placed at, and aboveUiBand() — which only knows about the
+   * bottom of the FRAME, not about what the scene has already drawn —
+   * clamped the text upward straight into it. A rendered arrive frame
+   * showed "STOPS THE WHOLE LINE" printed across station 3 and its numeral.
+   *
+   * Two constraints cannot both be met by moving text alone: the claim must
+   * clear the station above it AND stay out of the bottom fifth. So the
+   * chain gives up the room instead — it ends higher when there is a claim
+   * to land, and keeps its full run when there is not.
+   */
+  const CLAIM_BAND = 180;
+  const runBottom = phrase ? lastY - CLAIM_BAND : lastY;
+  const nodeY = (i) => firstY + (i / Math.max(n - 1, 1)) * (runBottom - firstY);
 
   /**
    * STAGE-BY-STAGE, NOT ONE SLIDE DOWN THE WHOLE CHAIN.
@@ -680,7 +714,7 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
             three squares floating with nothing around them (1.5% ink on a
             rendered frame, thinner than the mechanism family it sits
             beside in the same strategy). */}
-        <MachineBody x={trackX - boardW / 2} y={firstY - r - 50} w={boardW} h={(lastY - firstY) + r * 2 + 100}
+        <MachineBody x={trackX - boardW / 2} y={firstY - r - 50} w={boardW} h={(runBottom - firstY) + r * 2 + 100}
           colors={colors} opacity={ease(pStages)} ribs={14} vertical />
         {/* traces between consecutive nodes — now genuinely bent, since
             consecutive nodes no longer share an x-coordinate. */}
@@ -713,7 +747,7 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
         })}
         {/* arrival: the response leaving the chain */}
         {pArrive > 0 ? (
-          <CircuitTrace x1={nodeX(n - 1)} y1={lastY + r * 0.9} x2={trackX} y2={lastY + r + (CANVAS_H * 1.12 - lastY) * ease(pArrive) * 0.3}
+          <CircuitTrace x1={nodeX(n - 1)} y1={runBottom + r * 0.9} x2={trackX} y2={runBottom + r + (CANVAS_H * 1.12 - runBottom) * ease(pArrive) * 0.3}
             colors={colors} progress={1} lit />
         ) : null}
       </svg>
@@ -776,7 +810,7 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
             const hi = CANVAS_W * 0.91 - halfW;
             return lo > hi ? CANVAS_W / 2 : Math.max(lo, Math.min(hi, trackX));
           })()}
-          y={aboveUiBand(lastY + r + 96, phraseSize)}
+          y={aboveUiBand(runBottom + r + 96, phraseSize)}
           text={phrase} align="center"
           color={colors.textPrimary} size={phraseSize} weight={900} tracking={-0.5}
           opacity={ease(Math.min(1, pArrive * 2.2))}

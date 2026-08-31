@@ -204,9 +204,35 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
    * is invented (still `dataNeeds: []`, still abstract per PART 23); this
    * is the same abstraction with the actual regions an interface has.
    */
-  const w = 760, h = 560;
+  /**
+   * THE WINDOW TAKES THE FRAME ITS SHOT GRANTED IT.
+   *
+   * This was `const w = 760, h = 560` — fixed pixels that ignored
+   * `shotFrame` entirely. INTERFACE_SIMULATION is framed CLOSE (coverage
+   * 0.86), which on a 1080x1920 frame grants 929x760; the scene drew 66%
+   * of that area and left the rest black. Measured across the anchor set
+   * it was the last scene still stuck at 1.8-3.5% ink with a bbox pinned
+   * at 70x29% while every other scene had moved into 6-13%.
+   *
+   * composition.js calls `coverage` "the direct answer to the 0.2%-ink
+   * measurement", so a scene that hardcodes its own size is not just
+   * smaller than intended — it opts out of the mechanism that exists to
+   * stop frames reading as diagrams floating in a void.
+   *
+   * Clamped to the safe rect rather than taken raw: centred on the CLOSE
+   * anchor (0.48), the full granted width would put the window's left edge
+   * at x=54 against a 9% safe edge of 97.
+   */
+  const safeHalf = Math.min(f.cx - CANVAS_W * 0.09, CANVAS_W * 0.91 - f.cx);
+  const w = Math.min(f.w, safeHalf * 2);
+  const h = f.h;
   const x = f.cx - w / 2, y = f.cy - f.h * 0.3;
-  const navW = 84;
+  // The interior rhythm was tuned against 760x560. Scale it with the
+  // window instead of restating every offset, so a bigger window is the
+  // same design at size rather than the old layout stranded in the top
+  // corner of a larger box.
+  const sx = w / 760, sy = h / 560;
+  const navW = 84 * sx;
   const contentX = x + navW;
   const contentW = w - navW;
 
@@ -226,16 +252,16 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
         <WindowChrome x={x} y={y} w={w} h={h} colors={colors} progress={pChrome} />
-        <NavRail x={x} y={y + 52} w={navW} h={h - 52} colors={colors} progress={pChrome} active={pResult > 0 ? 1 : 0} />
+        <NavRail x={x} y={y + 52 * sy} w={navW} h={h - 52 * sy} colors={colors} progress={pChrome} active={pResult > 0 ? 1 : 0} />
 
         {/* The request entering — inside the content region, not spanning
             the whole window (the nav rail is part of the window, not part
             of what the request travels through). */}
         {pInput > 0 ? (
           <>
-            <rect x={contentX + 24} y={y + 90} width={(contentW - 48) * ease(pInput)} height={54} rx={4}
+            <rect x={contentX + 24 * sx} y={y + 90 * sy} width={(contentW - 48 * sx) * ease(pInput)} height={54 * sy} rx={4}
               fill={colors.accent} fillOpacity={0.1} stroke={colors.accent} strokeWidth={2.5} />
-            <line x1={contentX + 40} y1={y + 117} x2={contentX + 40 + 180 * ease(pInput)} y2={y + 117}
+            <line x1={contentX + 40 * sx} y1={y + 117 * sy} x2={contentX + (40 + 180 * ease(pInput)) * sx} y2={y + 117 * sy}
               stroke={colors.accent} strokeWidth={3} />
           </>
         ) : null}
@@ -243,9 +269,9 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
         {/* The system visibly working — a real progress bar tied to state */}
         {pWork > 0 ? (
           <>
-            <rect x={contentX + 24} y={y + 186} width={contentW - 48} height={10} rx={5}
+            <rect x={contentX + 24 * sx} y={y + 186 * sy} width={contentW - 48 * sx} height={10 * sy} rx={5}
               fill="none" stroke={colors.stroke} strokeWidth={1.5} />
-            <rect x={contentX + 24} y={y + 186} width={(contentW - 48) * ease(pWork, EASE_IN_OUT)} height={10} rx={5}
+            <rect x={contentX + 24 * sx} y={y + 186 * sy} width={(contentW - 48 * sx) * ease(pWork, EASE_IN_OUT)} height={10 * sy} rx={5}
               fill={colors.accent} />
           </>
         ) : null}
@@ -271,14 +297,14 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
           ? Array.from({ length: 4 }).map((_, i) => {
               const a = ease(Math.max(0, Math.min(1, pResult * 4 - i)));
               if (a <= 0.01) return null;
-              const ry = y + 240 + i * 62;
+              const ry = y + (240 + i * 62) * sy;
               return (
                 <g key={i} opacity={a}>
-                  <rect x={contentX + 24} y={ry} width={contentW - 48} height={46} rx={4}
+                  <rect x={contentX + 24 * sx} y={ry} width={contentW - 48 * sx} height={46 * sy} rx={4}
                     fill={i === 0 ? colors.accent : colors.stroke} fillOpacity={i === 0 ? 0.14 : 0.05}
                     stroke={i === 0 ? colors.accent : colors.stroke} strokeWidth={i === 0 ? 2.5 : 1.5} />
                   {/* Rank position — a real ordinal, which a ranked list has. */}
-                  <text x={contentX + 44} y={ry + 31} fill={i === 0 ? colors.accent : colors.stroke}
+                  <text x={contentX + 44 * sx} y={ry + 31 * sy} fill={i === 0 ? colors.accent : colors.stroke}
                     opacity={i === 0 ? 1 : 0.55} fontFamily={fontFamily} fontSize={TYPE.label} fontWeight={700}>
                     {i + 1}
                   </text>
@@ -287,7 +313,7 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
             })
           : null}
 
-        <StatusBar x={x} y={y + h - 26} w={w} colors={colors} progress={pChrome} active={pWork > 0 && pResult <= 0} />
+        <StatusBar x={x} y={y + h - 26 * sy} w={w} colors={colors} progress={pChrome} active={pWork > 0 && pResult <= 0} />
       </svg>
 
       {/* TYPOGRAPHY INSIDE THE PICTURE, not in a band above or below it.
@@ -301,7 +327,7 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
           unlike the 26px numerals this scene used to rely on. */}
       {pInput > 0 ? (
         <Label
-          x={contentX + 42} y={y + 100}
+          x={contentX + 58 * sx} y={y + 100 * sy}
           text={queryLabel}
           color={colors.accent} size={TYPE.support} weight={700} tracking={1.5}
           opacity={ease(Math.min(1, pInput * 1.4))}
@@ -310,7 +336,7 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
       ) : null}
       {pResult > 0 && resultLabel ? (
         <Label
-          x={contentX + 78} y={y + 250}
+          x={contentX + 78 * sx} y={y + 250 * sy}
           text={resultLabel}
           color={colors.textPrimary} size={TYPE.support} weight={800} tracking={1}
           opacity={ease(Math.min(1, pResult * 3))}
