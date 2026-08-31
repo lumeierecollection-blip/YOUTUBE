@@ -34,6 +34,16 @@
  *   margin — ink outside the safe area (9% l/r, 10% top, 20% bottom; the
  *     bottom band is large because YouTube's UI covers it).
  *
+ *     READ THIS NUMBER WITH CARE. It counts ALL ink, and several scenes
+ *     bleed off frame ON PURPOSE — ProcessScene's track is documented as
+ *     running past both ends so the machine reads as continuing beyond the
+ *     shot, and the atmosphere ground fills the lower frame by design. So
+ *     a high percentage here is not automatically a defect count: it mixes
+ *     intended full-bleed background with the thing actually worth
+ *     catching, which is a LABEL landing under YouTube's UI. Until this
+ *     separates subject/text ink from background ink, use it to find
+ *     frames worth looking at, not as a pass/fail number.
+ *
  * These are DIAGNOSTICS, not a gate. A frame can score well and still look
  * wrong — looking at the PNGs remains the acceptance test. They exist so
  * "it looks robotic" becomes a number that can be moved and shown.

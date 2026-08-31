@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, Label, ease, seeded,
+  CANVAS_W, CANVAS_H, CAPTION_RESERVE_Y, Label, ease, seeded,
   useStateProgress, useValueProgress, EASE_IN_OUT, EASE_OUT,
 } from "./primitives.jsx";
 import { progressOf } from "../../visual/states.js";
@@ -42,6 +42,28 @@ function processFamily(beat) {
  * vertical driver/outcome pair, and a radial node graph. If they shared a
  * layout they'd be aliases (PART 2), which the registry check would catch.
  */
+
+/**
+ * Keep a drawn label above the band YouTube's own UI covers.
+ *
+ * Two things push scene content down that a scene cannot see from its own
+ * coordinates: DesignSpace translates the whole stage down by
+ * CAPTION_RESERVE_Y (110px) whenever narration captions are off, which is
+ * the default, and a DESCEND-style camera adds its own travel on top. A
+ * label placed at a y that looks fine in scene coordinates can therefore
+ * land in the bottom fifth of the delivered frame, which is exactly where
+ * the title, channel row and progress bar sit.
+ *
+ * Confirmed on a rendered arrive frame: the PROCESS claim, placed just
+ * under the board at y=1456, delivered at ~1745/1920 (91% of frame
+ * height). `size` is the label's font size, since the anchor is its TOP
+ * edge and the text hangs below it.
+ */
+const BOTTOM_SAFE_FRACTION = 0.79;
+function aboveUiBand(y, size) {
+  const limit = CANVAS_H * BOTTOM_SAFE_FRACTION - CAPTION_RESERVE_Y - size * 1.15;
+  return Math.min(y, limit);
+}
 
 const short = (s, n) => {
   const t = String(s || "").trim().replace(/\s+/g, " ");
@@ -294,7 +316,7 @@ export function TimelineScene({ beat, colors, fontFamily }) {
             // it rather than pinning it to a nonsense position.
             return lo > hi ? CANVAS_W / 2 : Math.max(lo, Math.min(hi, xFor(focusYear)));
           })()}
-          y={groundY + 78}
+          y={aboveUiBand(groundY + 78, 44)}
           text={sup.event}
           align="center"
           color={colors.textPrimary}
@@ -652,7 +674,12 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
         {Array.from({ length: n }).map((_, i) => {
           const a = ease(Math.max(0, Math.min(1, pStages * n - i * 0.6)));
           const lit = posIdx > i + 0.15 || (pArrive > 0 && i === n - 1);
-          const working = Math.abs(posIdx - i) < 0.4 && pAdvance > 0;
+          // While the packet is parked at a station, THAT station is the one
+          // working — the dwell and the station's reaction are the same
+          // event seen twice, which is the point of splitting the run into
+          // hops. Between hops it falls back to proximity so a station still
+          // reacts as the packet passes through it.
+          const working = pAdvance > 0 && (dwelling ? i === Math.round(posIdx) : Math.abs(posIdx - i) < 0.4);
           return <CircuitNode key={i} x={nodeX(i)} y={nodeY(i)} r={r} colors={colors} lit={lit} working={working} appear={a} />;
         })}
         {/* arrival: the response leaving the chain */}
@@ -685,8 +712,14 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
           object rather than parked in a caption band — aesthetic-rules C3. */}
       {subject && pAdvance > 0 && posIdx < n - 1 ? (
         <Label
-          x={packetX + 46} y={packetY - 16}
-          text={subject} align="left"
+          /* UNDER the packet, centred on it — not beside it. Beside it the
+             label sat on top of the node's own pins AND collided with the
+             stage numeral, which is parked at nodeX ± (r*0.75 + 30) on the
+             same side (confirmed on a rendered advance frame: "REQUEST"
+             printed straight through station 2's right-hand pins). Below
+             the packet is the one side that carries neither. */
+          x={packetX} y={packetY + 62} align="center"
+          text={subject}
           color={colors.accent} size={34} weight={800} tracking={1.5}
           opacity={ease(Math.min(1, pAdvance * 6))}
           fontFamily={fontFamily} halo={colors.bg}
@@ -699,7 +732,22 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
           placed against the board rather than centred in a title bar. */}
       {phrase && pArrive > 0 ? (
         <Label
-          x={CANVAS_W * 0.5} y={lastY + r + 96}
+          /* Centred on the BOARD's column, not the canvas's.
+             scene-director's consistency pass: a scene's dominant element
+             sits on the same column as the composition, because two
+             competing alignments in one frame is what reads as "everything
+             is everywhere". On a rendered arrive frame the board was
+             centred at x≈356 and this phrase at x=540 — two axes, one
+             picture. Clamped so a long claim still cannot leave the safe
+             rect (width estimated from glyph count; Label has no
+             measurement pass). */
+          x={(() => {
+            const halfW = (phrase.length * 62 * 0.56) / 2;
+            const lo = CANVAS_W * 0.09 + halfW;
+            const hi = CANVAS_W * 0.91 - halfW;
+            return lo > hi ? CANVAS_W / 2 : Math.max(lo, Math.min(hi, trackX));
+          })()}
+          y={aboveUiBand(lastY + r + 96, 62)}
           text={phrase} align="center"
           color={colors.textPrimary} size={62} weight={900} tracking={-0.5}
           opacity={ease(Math.min(1, pArrive * 2.2))}
