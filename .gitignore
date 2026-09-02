@@ -62,3 +62,6 @@ data/renders/clips/
 qa/pass3/mute-test/
 github token.txt
 .artifact-download/
+client id.txt
+dist/
+reference-video.mp4

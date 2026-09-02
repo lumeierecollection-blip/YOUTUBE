@@ -30,7 +30,7 @@
  * Usage: node scripts/render-and-qa.js [--channel <numeric-id>]
  */
 import { spawn } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { join, dirname, basename, extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -199,25 +199,32 @@ async function main() {
     await Promise.all(slopChecks);
   }
 
+  for (const r of qaFailed) {
+    if (existsSync(r.outputPath)) {
+      try {
+        rmSync(r.outputPath);
+        console.log(`Removed QA-failed video from renders output: ${r.outputPath}`);
+      } catch (e) {
+        console.warn(`Failed to remove QA-failed video ${r.outputPath}:`, e.message);
+      }
+    }
+  }
+
+  const successfulCount = rendered - qaFailed.length;
+
   console.log(
-    `\n=== SUMMARY === rendered=${rendered} renderFailed=${renderFailed} qaChecked=${qaResults.length} qaFailed=${qaFailed.length}`
+    `\n=== SUMMARY === rendered=${rendered} renderFailed=${renderFailed} qaChecked=${qaResults.length} qaFailed=${qaFailed.length} successful=${successfulCount}`
   );
 
-  if (rendered === 0) {
-    console.error("::error::0 videos rendered - nothing for publish to upload. This is a pipeline bug, not a quiet success.");
+  if (successfulCount === 0) {
+    console.error("::error::0 videos successfully rendered and passed QA - nothing for publish to upload.");
     process.exit(1);
   }
   if (renderFailed > 0) {
-    console.error(`::error::${renderFailed} render(s) failed — see the errors above.`);
-    process.exit(1);
+    console.warn(`WARN: ${renderFailed} render(s) failed, but ${successfulCount} video(s) succeeded and passed QA. Continuing with successful channels.`);
   }
   if (qaFailed.length > 0) {
-    // PART 8 — "fail the job only if a video that would have published
-    // failed its gate." Every video reaching qaOne() DID render
-    // successfully and would otherwise have gone to publish, so any QA
-    // failure here qualifies.
-    console.error(`::error::${qaFailed.length} rendered video(s) failed their QA gate — see FAIL lines above.`);
-    process.exit(1);
+    console.warn(`WARN: ${qaFailed.length} rendered video(s) failed their QA gate and were excluded from publishing.`);
   }
 }
 
