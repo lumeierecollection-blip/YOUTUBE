@@ -1,0 +1,1320 @@
+# OPENCODE — DESTROY THE OLD VISUAL SYSTEM AND REBUILD THE ACTUAL RUNTIME
+## AUTONOMOUS MULTI-AGENT EXECUTION — NO QUESTIONS — NO STOPPING — NO COSMETIC PATCHES
+
+You are taking over the YOUTUBE repository.
+
+This is NOT a normal incremental improvement task.
+
+The repository is still heavily influenced by the old visual-generation architecture and visual language. Previous work removed some obsolete code, but the actual rendered output proves that the old design philosophy is still present somewhere in the live runtime.
+
+The latest debt-snowball render is the evidence.
+
+The render still behaves like this:
+
+- sparse/empty white canvas
+- isolated text
+- thin lines
+- basic rectangular outlines
+- tiny/simple movement
+- generic geometric primitives
+- abstract graphics with weak semantic meaning
+- visuals that feel like generated motion-graphics templates
+- visual elements that do not physically or narratively explain the narration
+- very little actual visual storytelling
+- insufficient camera choreography
+- no convincing sense that a human motion designer/editor authored the shot
+
+DO NOT try to defend the existing system.
+
+DO NOT merely polish it.
+
+DO NOT add another visual layer on top of it.
+
+DO NOT preserve bad legacy architecture because it already exists.
+
+The goal is to identify exactly what is still causing this output, remove the bad system, replace it, and prove that the NEW system is actually being used at runtime.
+
+==================================================
+0. ABSOLUTE OPERATING RULES
+==================================================
+
+You are autonomous.
+
+DO NOT:
+
+- ask me questions
+- ask for confirmation
+- stop at a checkpoint
+- wait for approval
+- return a plan and stop
+- tell me what I should do next
+- leave major decisions unresolved
+- preserve code solely because it already exists
+- preserve architecture merely for backwards compatibility
+- create temporary compatibility layers that continue the old visual language
+- claim something is fixed without rendering and inspecting it
+
+You MUST:
+
+- inspect the repository first
+- use multiple agents/subagents concurrently
+- trace the actual production render path
+- identify the code responsible for the observed render
+- aggressively remove obsolete visual systems
+- rebuild failed concepts instead of cosmetically patching them
+- render real output
+- inspect actual frames
+- diagnose failures
+- fix them
+- render again
+- repeat until the output meets the acceptance criteria
+- run tests after structural changes
+- distinguish VERIFIED from NOT VERIFIED in the final report
+
+Use parallel agents wherever tasks are independent.
+
+Do not have multiple agents simultaneously edit the same files.
+
+==================================================
+1. FIRST PRINCIPLE: THE RENDER IS THE TRUTH
+==================================================
+
+Do not assume that because old files were deleted, the old system is gone.
+
+The actual output proves otherwise.
+
+You must determine:
+
+SCRIPT
+→ BEATS
+→ VISUAL PLAN
+→ STRATEGY SELECTION
+→ SCENE RESOLUTION
+→ SCENE COMPONENT
+→ CAMERA
+→ ASSET SELECTION
+→ COMPOSITION
+→ FINAL RENDER
+
+Trace the entire path.
+
+Find the exact code that produced the current debt-snowball output.
+
+Do not rely on filenames or previous reports.
+
+Search the live repository.
+
+Use:
+
+- imports
+- exports
+- render entry points
+- strategy registries
+- scene routers
+- fallback logic
+- default plans
+- catch blocks
+- legacy compatibility paths
+- feature flags
+- conditional branches
+- dead-looking but still imported components
+- barrel exports
+- dynamic imports
+- config mappings
+- strategy aliases
+- test-only paths that may also be production paths
+
+You are not done until you know exactly why the current runtime is generating:
+
+- blank white space
+- thin green lines
+- rectangular outlines
+- generic primitive graphics
+- weak motion
+- visually empty compositions
+
+==================================================
+2. MULTI-AGENT DEPLOYMENT
+==================================================
+
+Immediately create or use multiple OpenCode agents.
+
+Run independent investigations in parallel.
+
+Recommended agent roles:
+
+AGENT A — LIVE RUNTIME AUDITOR
+Trace the actual production render path from script to final frame.
+
+AGENT B — VISUAL SYSTEM AUDITOR
+Find every current visual strategy, scene registry, visual primitive, generic graphic system, fallback renderer, and old visual grammar.
+
+AGENT C — LEGACY DETECTION AGENT
+Search specifically for remnants of the previous visual system:
+- primitive diagrams
+- boxes
+- cards
+- generic lines
+- generic circles
+- node systems
+- simplistic title scenes
+- old scene routers
+- default/fallback scenes
+- compatibility renderers
+- dead visual helpers still reachable
+- alternate render paths
+
+AGENT D — MOTION DESIGN AGENT
+Study the current camera, animation, timing, staging, transitions, and composition behavior. Identify why it feels static, mechanical, or template-generated.
+
+AGENT E — VISUAL STORYTELLING ARCHITECT
+Design the replacement visual grammar around semantic storytelling rather than generic motion graphics.
+
+AGENT F — REFERENCE RESEARCH AGENT
+Inspect high-quality Remotion / motion-design / editorial-animation repositories and examples. Find concrete implementation patterns for:
+- cinematic camera choreography
+- layered editorial compositions
+- real image/footage treatments
+- kinetic typography
+- data storytelling
+- documentary graphics
+- physically meaningful transformations
+- timelines
+- maps
+- documents
+- interfaces
+- object-based storytelling
+
+Do not invent references.
+Inspect actual repositories/examples.
+
+AGENT G — QA / RENDER AGENT
+Independently inspect rendered output, extract frames, and evaluate whether the output still resembles the forbidden visual system.
+
+AGENT H — GITHUB / CLEANUP AGENT
+Audit branches, stale branches, historical code, duplicate architecture, and unnecessary files. Clean only what is demonstrably obsolete.
+
+AGENT I — INTEGRATION AGENT
+After the independent audits, reconcile findings into one coherent architecture.
+
+AGENT J — FINAL REVIEW AGENT
+Perform a hostile review of the resulting system as if rejecting it for production.
+
+==================================================
+3. CLASSIFY EVERYTHING
+==================================================
+
+For every relevant visual file/component/strategy/helper, classify it as:
+
+LIVE
+LOAD-BEARING
+PARTIALLY USED
+DUPLICATED
+LEGACY
+DEAD
+BROKEN
+BAD-CONCEPT
+REPLACE
+PRESERVE
+PORT-THEN-DELETE
+
+Do not classify based only on filename.
+
+Trace usage.
+
+A file called something modern can still contain the old visual philosophy.
+
+A file called something legacy can still be load-bearing.
+
+If something is bad and unused:
+DELETE IT.
+
+If something is bad but live:
+REPLACE IT.
+
+If something is load-bearing but contains a bad visual implementation:
+extract the useful infrastructure and rewrite the visual layer.
+
+If a capability is valuable but its implementation is bad:
+port the capability into the new system, verify it, then DELETE the old implementation.
+
+Do not keep both systems forever.
+
+==================================================
+4. CRITICAL RULE: NO PARALLEL OLD + NEW VISUAL SYSTEM
+==================================================
+
+The biggest failure mode is:
+
+OLD SYSTEM
++
+NEW SYSTEM
++
+FALLBACK
++
+COMPATIBILITY PATH
++
+LEGACY DEFAULT
+
+That creates a repository where the new architecture exists but the renderer continues using the old one.
+
+Do not do that.
+
+There should be ONE authoritative visual runtime.
+
+There may be multiple visual grammars inside it, but there must not be two competing rendering architectures.
+
+Remove obsolete fallback routes.
+
+Remove duplicate scene systems.
+
+Remove old strategy aliases that map into the bad system.
+
+Remove dead compatibility paths.
+
+Remove legacy renderers after migration.
+
+==================================================
+5. DEFINE THE NEW VISUAL PHILOSOPHY
+==================================================
+
+The new renderer must NOT think:
+
+"How do I animate text and shapes?"
+
+It must think:
+
+"What is happening in the narration, and what is the most meaningful visual way to show it?"
+
+Visual generation should work conceptually as:
+
+SCRIPT
+→ SEMANTIC BEATS
+→ VISUAL INTENT
+→ VISUAL CONCEPT
+→ ASSET REQUIREMENTS
+→ COMPOSITION
+→ MOTION
+→ CAMERA
+→ SOUND
+→ QA
+
+Each beat must have an actual visual reason for existing.
+
+The renderer should be able to answer:
+
+- What is the viewer supposed to understand here?
+- Why is this visual on screen?
+- What changes during this shot?
+- What is the visual event?
+- What is the camera looking at?
+- Why does the camera move?
+- Why does the object move?
+- Why does this shot transition into the next shot?
+
+If those questions cannot be answered, the beat is probably visually empty.
+
+==================================================
+6. ABSOLUTELY FORBIDDEN VISUAL LANGUAGE
+==================================================
+
+The renderer must aggressively avoid falling back into the old system.
+
+Do NOT use these as the default visual vocabulary:
+
+- generic rounded cards
+- generic floating cards
+- generic dashboards
+- generic UI panels
+- generic nodes
+- generic arrows
+- generic connector lines
+- generic circles connected by lines
+- random rings
+- random decorative particles
+- arbitrary grids
+- generic boxes
+- generic rectangles used as "visuals"
+- icon + heading
+- centered title + line
+- text sitting above an empty background
+- abstract wireframes
+- generic "tech" diagrams
+- identical compositions repeated across videos
+- one primitive changing color
+- one primitive scaling up/down
+- fake charts with no semantic purpose
+- arbitrary lines that exist only to create motion
+- empty white/black canvas with sparse primitives
+- ornamental motion that does not explain anything
+- identical zooms for every shot
+- generic transition packs
+- visual filler
+
+A rectangle is not automatically bad.
+
+A line is not automatically bad.
+
+A circle is not automatically bad.
+
+BUT:
+
+A shape must have a semantic/material/narrative reason to exist.
+
+"Because it looks clean" is not sufficient.
+
+==================================================
+7. WHAT SHOULD REPLACE THAT LANGUAGE
+==================================================
+
+Prefer real visual storytelling.
+
+Depending on the narration, use:
+
+- real footage
+- archival footage
+- photographs
+- documents
+- newspaper clippings
+- maps
+- charts with real data
+- authentic interfaces
+- screens
+- phone recordings
+- product footage
+- physical objects
+- money
+- receipts
+- contracts
+- timelines
+- locations
+- environments
+- cinematic scenes
+- visual metaphors grounded in physical objects
+- editorial collage
+- bespoke diagrams
+- typographic compositions
+- kinetic typography
+- documentary-style graphics
+- layered image compositions
+- perspective-based staging
+- meaningful object transformations
+- montage
+- before/after visual states
+- evidence-based visual storytelling
+
+The visual system should be capable of looking like:
+
+- documentary
+- cinematic essay
+- editorial explainer
+- investigative piece
+- modern news package
+- finance documentary
+- technology documentary
+- archival story
+- premium social short
+- visual essay
+- hybrid editorial motion design
+
+Not like:
+
+"AI generated a collection of SVG primitives."
+
+==================================================
+8. THE DEBT-SNOWBALL RENDER IS A FAILURE TEST
+==================================================
+
+The debt-snowball render must become the canonical regression test.
+
+The current output should be considered FAILED.
+
+Do not merely change its colors.
+
+Do not merely add grain.
+
+Do not merely add camera movement.
+
+Do not merely add more shapes.
+
+Rebuild the visual concept.
+
+The phrase:
+
+"debt snowball"
+
+should result in a visual idea that communicates:
+
+- multiple debts exist
+- one debt is prioritized
+- the smallest debt is eliminated
+- its payment becomes available
+- that payment increases the attack on the next debt
+- the process compounds
+- momentum grows
+
+The visual should make that idea understandable through the scene itself.
+
+A meaningful physical or editorial representation is acceptable.
+
+A generic set of boxes with arrows connecting them is NOT acceptable.
+
+The viewer should feel that something is happening.
+
+There should be:
+
+- visual hierarchy
+- a clear subject
+- a visual event
+- transformation
+- progression
+- escalation
+- camera response
+- payoff
+
+==================================================
+9. CAMERA DESIGN
+==================================================
+
+The current camera behavior is still too static/template-like.
+
+Do not implement one universal camera function and apply it everywhere.
+
+Camera language must be driven by the visual.
+
+Possible behaviors include:
+
+- hold
+- slow push
+- reveal
+- lateral track
+- parallax move
+- rack-focus-like emphasis
+- overhead move
+- object follow
+- whip/rapid transition when appropriate
+- push through layers
+- reframing
+- editorial snap
+- controlled handheld feel
+- locked-off documentary framing
+- perspective shift
+- orbit when semantically appropriate
+
+Use:
+
+HOLD
+→ ACTION
+→ MOVE
+→ SETTLE
+
+when appropriate.
+
+But do not turn that into another universal mathematical template.
+
+Camera should respond to the subject.
+
+Example:
+
+If an object is physically rolling:
+camera can follow it.
+
+If a document is being examined:
+camera can push into the evidence.
+
+If a chart is revealing a dramatic change:
+camera can reframe toward the change.
+
+If a statement lands:
+camera can lock.
+
+If a montage accelerates:
+cuts can become the motion.
+
+The camera should feel edited, not mechanically interpolated.
+
+==================================================
+10. MOTION MUST HAVE A CAUSE
+==================================================
+
+Every important movement must have a reason.
+
+Bad:
+
+"rectangle moves from left to right"
+
+Good:
+
+"the document slides into frame because the narration introduces the document"
+
+Bad:
+
+"circle scales from 100% to 130%"
+
+Good:
+
+"the debt payment physically accumulates and visibly changes the next stage"
+
+Bad:
+
+"background slowly zooms because all scenes need camera movement"
+
+Good:
+
+"camera pushes toward the specific evidence being discussed"
+
+Movement should communicate:
+
+- change
+- emphasis
+- cause
+- effect
+- escalation
+- transition
+- discovery
+- comparison
+- accumulation
+- reduction
+- transformation
+
+==================================================
+11. TYPOGRAPHY
+==================================================
+
+Typography is important, but typography must not replace visual storytelling.
+
+No full subtitles.
+
+Narration remains primary.
+
+Use text for:
+
+- opening hooks
+- strong statements
+- important numbers
+- labels
+- names
+- locations
+- evidence
+- short conclusions
+- re-hooks
+- emphasis
+
+Typography can itself become a visual composition.
+
+Do not reduce typography to:
+
+CENTERED TEXT
++
+UNDERLINE
++
+WHITE BACKGROUND
+
+Typography should have:
+
+- hierarchy
+- pacing
+- composition
+- scale
+- contrast
+- movement when appropriate
+- interaction with visual evidence
+
+==================================================
+12. REAL ASSETS MUST BE FIRST CLASS
+==================================================
+
+The system must support real visual assets as a first-class path.
+
+Build or preserve a proper asset workflow for:
+
+- images
+- video clips
+- archival material
+- maps
+- screenshots
+- documents
+- logos when legally appropriate
+- generated visual assets when necessary
+- user-provided assets
+
+Do not build the system around primitives simply because they are easier to code.
+
+Prefer semantic asset selection.
+
+An asset should answer:
+
+"What does this show?"
+
+not:
+
+"What shape can we animate?"
+
+==================================================
+13. VISUAL STRATEGIES MUST BE DISTINCT
+==================================================
+
+Do not create 16 strategies that are essentially:
+
+same composition
++
+different color
++
+different primitive
+
+Strategies must have actual visual grammars.
+
+Examples:
+
+DOCUMENTARY
+→ footage + archival + restrained typography
+
+CINEMATIC
+→ layered imagery + depth + controlled camera
+
+DATA
+→ meaningful data visualization + emphasis + camera reframe
+
+NEWS
+→ editorial evidence + labels + news-style composition
+
+ARCHIVAL
+→ documents + photos + timeline/context
+
+INTERFACE
+→ authentic interface behavior, not generic fake UI
+
+PROCESS
+→ actual material moving through an understandable process
+
+RELATIONSHIP
+→ physically or visually meaningful relationships, not lines between nodes
+
+BEFORE_AFTER
+→ clearly distinct visual states with meaningful transformation
+
+SCALE
+→ actual visual comparison with believable proportions
+
+TYPOGRAPHIC
+→ typography is the visual subject
+
+MONTAGE
+→ multiple real visual pieces edited rhythmically
+
+HYBRID
+→ intentional combination of real media + graphics
+
+Each strategy must be visually recognizable.
+
+==================================================
+14. REFERENCE IMPLEMENTATIONS ARE REQUIRED
+==================================================
+
+When rebuilding major visual systems, inspect real open-source implementations.
+
+Do not say:
+
+"I know how Remotion works."
+
+Actually inspect relevant repositories/files.
+
+Study concrete examples of:
+
+- image treatment
+- editorial montage
+- camera movement
+- kinetic typography
+- data animation
+- documentary composition
+- perspective staging
+- scene transitions
+- asset composition
+
+Then adapt useful implementation patterns to this repository.
+
+Do not copy blindly.
+
+Do not import entire unrelated systems.
+
+Use references to prevent abstract guessing.
+
+==================================================
+15. BUILD A REAL VISUAL DIRECTOR
+==================================================
+
+The visual director should not merely select:
+
+"strategy = X"
+
+It should produce semantic intent.
+
+For every beat, determine:
+
+SUBJECT
+ACTION
+CONTEXT
+VISUAL PURPOSE
+VISUAL TYPE
+ASSET NEED
+CAMERA BEHAVIOR
+MOTION BEHAVIOR
+TYPOGRAPHY
+TRANSITION
+SOUND CUE
+
+Example conceptual structure:
+
+{
+  semanticSubject,
+  semanticAction,
+  visualIntent,
+  visualGrammar,
+  assetRequirements,
+  composition,
+  cameraPlan,
+  motionPlan,
+  typographyPlan,
+  transitionPlan,
+  soundCue
+}
+
+The exact data model should be determined by the repository architecture.
+
+Do not create unnecessary abstraction for abstraction's sake.
+
+==================================================
+16. PREVENT FALLBACK TO BAD VISUALS
+==================================================
+
+This is critical.
+
+Search for every fallback like:
+
+if no plan → render default scene
+
+if no asset → render generic graphic
+
+if unsupported strategy → render primitive scene
+
+if visual planning fails → render title card
+
+These are dangerous.
+
+A failure to obtain a proper visual should not silently downgrade the result into the old primitive renderer.
+
+Instead:
+
+- resolve a different valid visual approach
+- use another supported grammar
+- use another asset
+- restructure the beat
+- fail loudly during development
+
+Do not silently produce garbage.
+
+==================================================
+17. DELETE AGGRESSIVELY
+==================================================
+
+Once the new runtime proves a subsystem is no longer necessary:
+
+DELETE IT.
+
+This includes:
+
+- dead scene files
+- obsolete strategy implementations
+- primitive-only renderers
+- duplicate routers
+- duplicate visual planners
+- unused helpers
+- compatibility layers
+- fallback renderers
+- old test fixtures for deleted architecture
+- stale imports
+- dead constants
+- obsolete documentation that falsely describes the architecture
+
+Do not leave:
+
+"just in case"
+
+files.
+
+The repository should become smaller where possible, not bigger forever.
+
+==================================================
+18. DO NOT DELETE LOAD-BEARING INFRASTRUCTURE BLINDLY
+==================================================
+
+Before deleting anything:
+
+trace its usage.
+
+Especially preserve valuable infrastructure such as:
+
+- SRT timing
+- authored beat timing
+- SFX wiring
+- asset handling
+- valid render pipeline infrastructure
+- working image treatment
+- real sound design
+- useful package/build infrastructure
+
+But if an old visual implementation is attached to useful infrastructure:
+
+SEPARATE THE INFRASTRUCTURE
+FROM
+THE BAD VISUAL IMPLEMENTATION.
+
+Keep what is actually useful.
+
+Delete the visual dead weight.
+
+==================================================
+19. AUDIO
+==================================================
+
+Do not unnecessarily rebuild sound design if it already works.
+
+Preserve good:
+
+- SFX cue routing
+- material-aware sounds
+- music
+- timing
+- audio layering
+
+But verify that sounds correspond to visual events.
+
+No random:
+
+"click"
+
+"whoosh"
+
+"pop"
+
+simply because something moved.
+
+Sound should reinforce the visual action.
+
+==================================================
+20. RENDER-DRIVEN DEVELOPMENT
+==================================================
+
+Do not consider the task complete when tests pass.
+
+You MUST render.
+
+At minimum:
+
+1. build
+2. render debt-snowball production example
+3. extract representative frames
+4. inspect actual pixels
+5. inspect frame progression
+6. inspect camera behavior
+7. inspect typography
+8. inspect visual semantics
+9. inspect transitions
+10. inspect audio sync
+11. render again after fixes
+
+The first render is expected to fail.
+
+That is fine.
+
+What is NOT acceptable is stopping after the first render.
+
+Use:
+
+RENDER
+→ REVIEW
+→ DIAGNOSE
+→ MODIFY
+→ RENDER
+→ REVIEW
+
+until the output actually changes in the intended direction.
+
+==================================================
+21. HUMAN-DESIGN TEST
+==================================================
+
+Perform a hostile visual review.
+
+Ask:
+
+Would this look like something a professional motion designer intentionally authored?
+
+Or would it look like:
+
+"an AI made a generic animated infographic"?
+
+Reject it if it feels like the latter.
+
+Watch it:
+
+WITH SOUND
+
+and
+
+MUTED
+
+With sound:
+
+Does the visual support the narration?
+
+Muted:
+
+Can I understand what the scene is about without needing full subtitles?
+
+Do NOT solve the muted test by turning narration into subtitles.
+
+The visuals themselves must carry meaning.
+
+==================================================
+22. NO EMPTY VISUALS
+==================================================
+
+Large negative space is allowed.
+
+Minimalism is allowed.
+
+But minimalism is not the same as emptiness.
+
+A shot must have a subject.
+
+The frame should establish:
+
+- what I'm looking at
+- what matters
+- what is changing
+- why it is changing
+
+A completely empty background with one line and one title is not acceptable unless there is a compelling artistic reason for it.
+
+==================================================
+23. PIPELINE ARCHITECTURE
+==================================================
+
+The long-term system should support:
+
+50 channels
+→ channel identity
+→ independent production job
+→ research
+→ script
+→ semantic beats
+→ visual plan
+→ asset plan
+→ asset acquisition
+→ composition
+→ sound
+→ QA
+→ render
+→ post-render QA
+
+Each channel must retain its own identity.
+
+Do not build 50 separate renderers.
+
+Build:
+
+ONE ENGINE
++
+CHANNEL-SPECIFIC VISUAL GRAMMAR / IDENTITY
+
+The engine must remain capable of producing genuinely different outputs.
+
+==================================================
+24. INDEPENDENT CHANNEL EXECUTION
+==================================================
+
+The architecture must support jobs progressing independently.
+
+Example:
+
+CHANNEL A
+researching
+
+CHANNEL B
+building assets
+
+CHANNEL C
+composing
+
+CHANNEL D
+rendering
+
+CHANNEL E
+post-render QA
+
+Do not force the entire system into one giant synchronized batch.
+
+Each job must be resumable.
+
+Failures must be isolated.
+
+==================================================
+25. COST SAFETY
+==================================================
+
+Do not introduce unnecessary paid services.
+
+Use provider abstraction.
+
+Prefer free/open sources where practical.
+
+Do not add expensive AI asset generation to every beat.
+
+Use generated visuals only when they provide actual value.
+
+Keep provider usage measurable.
+
+No uncontrolled loops.
+
+No infinite retries.
+
+No accidental high-cost regeneration.
+
+==================================================
+26. TESTING REQUIREMENTS
+==================================================
+
+After the architecture changes:
+
+Run:
+
+- unit tests
+- integration tests
+- build
+- lint/type checks if configured
+- render checks
+- visual QA
+- asset validation
+- strategy validation
+- pipeline validation
+
+Create/update regression checks for forbidden legacy visual behavior where practical.
+
+The system should make it difficult for an old primitive fallback to silently return.
+
+==================================================
+27. MULTI-AGENT VISUAL QA
+==================================================
+
+Do not let the same agent that implemented the visual system be the only judge of it.
+
+Use separate review agents.
+
+At minimum:
+
+REVIEWER A
+checks architecture and runtime path
+
+REVIEWER B
+checks visual quality
+
+REVIEWER C
+checks semantic storytelling
+
+REVIEWER D
+checks forbidden legacy language
+
+REVIEWER E
+checks render stability and performance
+
+REVIEWER F
+checks whether the final output actually differs from the old system
+
+Resolve disagreements by looking at the actual implementation and rendered output.
+
+==================================================
+28. FINAL PRODUCTION PROOF
+==================================================
+
+The task is not complete until you can demonstrate:
+
+A. The debt-snowball video is rendered through the real production path.
+
+B. The runtime is no longer using the old primitive-first visual architecture.
+
+C. The major visual strategies have been migrated to the new semantic system.
+
+D. The bad fallback renderer is gone or unreachable and removed where appropriate.
+
+E. The output contains meaningful visual storytelling.
+
+F. The camera feels intentionally choreographed.
+
+G. Typography is sparse and purposeful.
+
+H. Real assets are supported.
+
+I. Visual concepts vary between strategies.
+
+J. The output no longer resembles:
+   text + line + box + empty background.
+
+K. Build/tests pass.
+
+L. Render output is actually inspected.
+
+M. Any deleted capability was either verified unnecessary or successfully ported.
+
+==================================================
+29. GIT / BRANCH CLEANUP
+==================================================
+
+Audit:
+
+- current branch
+- main
+- temporary branches
+- stale branches
+- recent commits
+- working tree
+- unmerged visual experiments
+
+Keep the final architecture coherent.
+
+Do not preserve abandoned experiments just because they exist in Git history.
+
+Do not rewrite history destructively unless explicitly required and safe.
+
+If permissions allow branch deletion, remove obsolete temporary branches.
+
+Never claim a branch was deleted unless you verified that it was actually deleted.
+
+Final production code should be on:
+
+main
+
+==================================================
+30. IMPORTANT: DO NOT RECREATE OLD FILENAMES
+==================================================
+
+Historical filenames are not requirements.
+
+If an old file existed before but has already been deleted:
+
+DO NOT recreate it merely because a previous report mentioned it.
+
+Inspect the CURRENT repository.
+
+Design the architecture from what actually exists now.
+
+==================================================
+31. DEFINITION OF DONE
+==================================================
+
+DONE means:
+
+The codebase has one authoritative production visual runtime.
+
+The old visual philosophy has been removed from the live render path.
+
+The debt-snowball render has been rebuilt as an actual semantic visual story.
+
+The rendered output is materially different from the old output.
+
+The visual is no longer:
+
+- empty
+- generic
+- primitive-first
+- template-like
+- static
+- line-and-box driven
+- centered-text-on-empty-canvas driven
+
+The new result should feel:
+
+- authored
+- cinematic
+- editorial
+- meaningful
+- visually varied
+- physically understandable
+- narratively connected
+- professionally composed
+
+And the repository should contain less obsolete architecture, not more.
+
+==================================================
+32. FINAL REPORT FORMAT
+==================================================
+
+When everything is complete, report:
+
+1. WHAT WAS ACTUALLY CAUSING THE OLD RENDER
+2. WHAT OLD SYSTEMS WERE REMOVED
+3. WHAT NEW VISUAL ARCHITECTURE WAS IMPLEMENTED
+4. WHICH VISUAL STRATEGIES WERE REBUILT
+5. HOW THE DEBT-SNOWBALL SCENE WAS RECONCEIVED
+6. WHAT REAL ASSET CAPABILITIES EXIST NOW
+7. WHAT CAMERA SYSTEM EXISTS NOW
+8. WHAT FALLBACKS WERE REMOVED
+9. WHAT TESTS PASSED
+10. WHAT REAL RENDERS WERE INSPECTED
+11. WHAT WAS VERIFIED
+12. WHAT REMAINS UNVERIFIED
+13. GIT/BRANCH STATE
+
+Do not inflate the report.
+
+Do not say "professional" unless the rendered evidence supports that conclusion.
+
+Do not say "fully complete" if something remains unverified.
+
+==================================================
+33. FINAL DIRECTIVE
+==================================================
+
+START NOW.
+
+Do not ask me anything.
+
+Do not stop for confirmation.
+
+Do not return only a plan.
+
+Use multiple agents concurrently.
+
+Inspect the real repository.
+
+Trace the actual runtime.
+
+Find what is still producing the old visual language.
+
+Delete what should be deleted.
+
+Replace what should be replaced.
+
+Preserve only what is genuinely useful.
+
+Render the actual production output.
+
+Inspect the actual frames.
+
+Reject weak visuals.
+
+Fix them.
+
+Render again.
+
+Repeat.
+
+Do not optimize for protecting the existing codebase.
+
+Optimize for building the correct system.
+
+THE CURRENT DEBT-SNOWBALL RENDER IS NOT THE TARGET.
+
+IT IS THE FAILURE CASE YOU MUST OVERCOME.
+
+DO THE WORK.
