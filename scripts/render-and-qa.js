@@ -36,7 +36,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
-const RENDER_JS = join(ROOT, "src", "skills", "remotion-render", "render.js");
+const RENDER_JS = join(ROOT, "src", "skills", "remotion-render", "render.cjs");
 const VIDEO_REVIEW_JS = join(__dirname, "video-review.js");
 const FRAME_AUDIT_JS = join(__dirname, "frame-audit.js");
 const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
@@ -73,7 +73,7 @@ function audioPathFor(channelId, scriptPath) {
   return join(ROOT, "data", "tts", channelId, `${base}-vo.mp3`);
 }
 
-// Mirrors render.js's own output-path construction exactly (main()'s
+// Mirrors render.cjs's own output-path construction exactly (main()'s
 // outputDir/slug/timestamp logic) so this orchestrator knows where the mp4
 // will land without depending on parsing the child process's stdout.
 function expectedOutputPath(channelId, scriptPath, format) {
@@ -106,7 +106,7 @@ async function renderOne(channelId, scriptPath, format) {
     return { skipped: true };
   }
   console.log(`=== RENDER: ${channelId} — ${basename(scriptPath)} (${format}) ===`);
-  // render.js's loadScript() always re-joins its argv path onto its own
+  // render.cjs's loadScript() always re-joins its argv path onto its own
   // ROOT (`join(ROOT, ...scriptPath.split(/[\/\\]/))`) — it expects a path
   // RELATIVE to the repo root, exactly like the bash loop this replaces
   // always passed (`"$SCRIPT"` from a `data/research/...` glob run with cwd
@@ -120,7 +120,7 @@ async function renderOne(channelId, scriptPath, format) {
   if (code !== 0) return { skipped: false, ok: false };
   const outputPath = expectedOutputPath(channelId, scriptPath, format);
   if (!existsSync(outputPath)) {
-    console.error(`::error::render.js exited 0 but expected output not found: ${outputPath}`);
+    console.error(`::error::render.cjs exited 0 but expected output not found: ${outputPath}`);
     return { skipped: false, ok: false };
   }
   return { skipped: false, ok: true, outputPath, channelId, scriptPath, audio };
