@@ -70,9 +70,14 @@
           "topic": "The Pay-What-You-Can Grocery Model: How Real Stores Make It Work",
           "slug": "pay-what-you-can-grocery-model",
           "reserved_at": "2026-08-31T12:16:45.227Z"
+        },
+        {
+          "topic": "The 'Pay Yourself First' Budget: Why It Beats 50/30/20 in 2026",
+          "slug": "pay-yourself-first-budget-vs-50-30-20",
+          "reserved_at": "2026-09-02T10:20:43.864Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.227Z"
+      "last_generated": "2026-09-02T10:20:43.865Z"
     },
     "2": {
       "channel_name": "Legal Brief",
@@ -157,9 +162,14 @@
           "topic": "The 'Consent to Search' Trap: What Police Won't Tell You",
           "slug": "consent-search-trap-traffic-stops",
           "reserved_at": "2026-08-31T12:16:45.229Z"
+        },
+        {
+          "topic": "Wisconsin Students Win Miranda Rights in School Police Interrogations",
+          "slug": "wisconsin-students-miranda-rights-school",
+          "reserved_at": "2026-09-02T10:20:43.867Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.229Z"
+      "last_generated": "2026-09-02T10:20:43.867Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -184,9 +194,14 @@
           "topic": "Claude 4 vs GPT-5: Head-to-Head on Real Coding Projects",
           "slug": "claude-4-vs-gpt5-coding-test",
           "reserved_at": "2026-08-31T12:16:45.230Z"
+        },
+        {
+          "topic": "Claude Fable 5.1 vs GPT-5.6 Sol: Cost and Benchmark Results",
+          "slug": "claude-fable-51-vs-gpt56-benchmark",
+          "reserved_at": "2026-09-02T10:20:43.867Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.230Z"
+      "last_generated": "2026-09-02T10:20:43.867Z"
     },
     "4": {
       "channel_name": "Hidden Past",
@@ -221,9 +236,14 @@
           "topic": "The Lost Colony of Roanoke: What therecent digs actually revealed",
           "slug": "roanoke-lost-colony-recent-digs",
           "reserved_at": "2026-08-31T12:16:45.230Z"
+        },
+        {
+          "topic": "The Cayonu Copper Workshop: A 9,000-Year-Old Factory Found",
+          "slug": "cayonu-copper-workshop-neolithic-mining",
+          "reserved_at": "2026-09-02T10:20:43.868Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.230Z"
+      "last_generated": "2026-09-02T10:20:43.868Z"
     },
     "5": {
       "channel_name": "Force of Nature",
@@ -260,9 +280,14 @@
           "topic": "The WeWork Fallout: How SoftBank's Vision Fund Lost $18 Billion",
           "slug": "softbank-vision-fund-wework-loss",
           "reserved_at": "2026-08-31T12:16:45.231Z"
+        },
+        {
+          "topic": "Bathla Group: Australia's $3.3B Builder Leaves 219 Projects Dead",
+          "slug": "bathla-group-3-billion-collapse",
+          "reserved_at": "2026-09-02T10:20:43.932Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.231Z"
+      "last_generated": "2026-09-02T10:20:43.932Z"
     },
     "8": {
       "channel_name": "Mind Decoded",
@@ -293,9 +318,14 @@
           "topic": "The Nile Water Wars: Why Ethiopia and Egypt Are on the Brink",
           "slug": "nile-water-wars-ethiopia-egypt",
           "reserved_at": "2026-08-31T12:16:45.231Z"
+        },
+        {
+          "topic": "Pakistan vs Afghanistan: Border War, Ceasefire, and the Durand Line",
+          "slug": "pakistan-afghanistan-border-conflict-ceasefire",
+          "reserved_at": "2026-09-02T10:20:43.933Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.231Z"
+      "last_generated": "2026-09-02T10:20:43.933Z"
     },
     "10": {
       "channel_name": "Double Cross",
@@ -326,9 +356,14 @@
           "topic": "James Webb Just Found Water on a Planet That Shouldn't Exist",
           "slug": "jwst-water-rocky-planet-red-dwarf",
           "reserved_at": "2026-08-31T12:16:45.232Z"
+        },
+        {
+          "topic": "TOI-1752: Lava World and Habitable Zone Planet Found Orbiting Same Star",
+          "slug": "toi-1752-lava-habitable-zone-pair",
+          "reserved_at": "2026-09-02T10:20:43.933Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.232Z"
+      "last_generated": "2026-09-02T10:20:43.933Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
@@ -383,9 +418,14 @@
           "topic": "The Fall of Carthage: Rome'sRival That Almost Won",
           "slug": "fall-of-carthage-rival-almost-won",
           "reserved_at": "2026-08-31T12:16:45.232Z"
+        },
+        {
+          "topic": "The Baekje Reservoir: 1,600 Years of History Found in a Korean Fortress",
+          "slug": "baekje-reservoir-chungju-fortress",
+          "reserved_at": "2026-09-02T10:20:43.934Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.232Z"
+      "last_generated": "2026-09-02T10:20:43.934Z"
     },
     "18": {
       "channel_name": "Brief History",
@@ -458,9 +498,14 @@
           "topic": "Wirecard: The $2 Billion Accounting Fraud That Fooled Regulators",
           "slug": "wirecard-2-billion-fraud-regulators",
           "reserved_at": "2026-08-31T12:16:45.233Z"
+        },
+        {
+          "topic": "Pacific Private Money: The $103M Fraud That Devoured Retiree Savings",
+          "slug": "pacific-private-money-103m-fraud",
+          "reserved_at": "2026-09-02T10:20:43.934Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.233Z"
+      "last_generated": "2026-09-02T10:20:43.934Z"
     },
     "27": {
       "channel_name": "Trial Files",
@@ -503,9 +548,14 @@
           "topic": "The '基因侦探' Revolution: How DNA Genealogy Is Reshaping Cold Cases",
           "slug": "gene-detective-revolution-dna-genealogy",
           "reserved_at": "2026-08-31T12:16:45.233Z"
+        },
+        {
+          "topic": "A Discarded Beer Can Solved a 45-Year-Old Murder in Texas",
+          "slug": "beer-can-dna-1981-universal-city-murder",
+          "reserved_at": "2026-09-02T10:20:43.935Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.233Z"
+      "last_generated": "2026-09-02T10:20:43.935Z"
     },
     "31": {
       "channel_name": "Justice Denied",
@@ -530,9 +580,14 @@
           "topic": "Pope Francis' Legacy: How Vatican Advocacy Boosted Global Wrongful Convictions Reform",
           "slug": "pope-francis-wrongful-convictions-reform",
           "reserved_at": "2026-08-31T12:16:45.234Z"
+        },
+        {
+          "topic": "People v. Fenderson: Police Resumed Interrogating After a Lawyer Was Requested",
+          "slug": "fenderson-miranda-violation-michigan",
+          "reserved_at": "2026-09-02T10:20:43.936Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.234Z"
+      "last_generated": "2026-09-02T10:20:43.936Z"
     },
     "32": {
       "channel_name": "Machine Anatomy",
@@ -575,9 +630,14 @@
           "topic": "The Hyperloop Promise: Why Elon Musk's Transit Dream Keeps Collapsing",
           "slug": "hyperloop-promise-musk-transit-collapse",
           "reserved_at": "2026-08-31T12:16:45.234Z"
+        },
+        {
+          "topic": "The Longview Tank Collapse: How 900,000 Gallons of Chemical Killed 11",
+          "slug": "longview-tank-collapse-chemical-failure",
+          "reserved_at": "2026-09-02T10:20:43.936Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.234Z"
+      "last_generated": "2026-09-02T10:20:43.936Z"
     },
     "36": {
       "channel_name": "Terminal Tactics",
@@ -620,9 +680,14 @@
           "topic": "The Patient Who Couldn't Stop Glowing: A Radiology Mystery",
           "slug": "patient-cant-stop-glowing-radiology-mystery",
           "reserved_at": "2026-08-31T12:16:45.235Z"
+        },
+        {
+          "topic": "The 66-Day-Old With a Fever Who Had a Tumor the Size of a Plum",
+          "slug": "infant-cardiac-leiomyosarcoma-mystery",
+          "reserved_at": "2026-09-02T10:20:43.937Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.235Z"
+      "last_generated": "2026-09-02T10:20:43.937Z"
     },
     "40": {
       "channel_name": "MedBrief",
@@ -671,9 +736,14 @@
           "topic": "The Feynman Technique: Learning by Teaching in the Age of AI",
           "slug": "feynman-technique-learning-teaching-ai",
           "reserved_at": "2026-08-31T12:16:45.235Z"
+        },
+        {
+          "topic": "FIRE Feedback: The 4-Step Framework for Difficult Leadership Conversations",
+          "slug": "fire-framework-difficult-feedback-leadership",
+          "reserved_at": "2026-09-02T10:20:43.937Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.235Z"
+      "last_generated": "2026-09-02T10:20:43.937Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
@@ -704,9 +774,14 @@
           "topic": "The 'Greatest Weakness' Question: Why Your Answer Still Fails in 2026",
           "slug": "greatest-weakness-question-still-fails",
           "reserved_at": "2026-08-31T12:16:45.236Z"
+        },
+        {
+          "topic": "22% of Job Seekers Now Use AI Tools During Live Interviews",
+          "slug": "ai-tools-during-live-interviews-2026",
+          "reserved_at": "2026-09-02T10:20:43.938Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.236Z"
+      "last_generated": "2026-09-02T10:20:43.938Z"
     },
     "47": {
       "channel_name": "Medicare Navigator",
@@ -731,9 +806,14 @@
           "topic": "Medicare's Hidden Penalty: How Late Enrollment Costs You Thousands",
           "slug": "medicare-hidden-penalty-late-enrollment",
           "reserved_at": "2026-08-31T12:16:45.236Z"
+        },
+        {
+          "topic": "Medicare's Skin Substitute Scam: The $11/Month Premium It Almost Cost You",
+          "slug": "medicare-skin-substitute-premium-saved",
+          "reserved_at": "2026-09-02T10:20:43.938Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.236Z"
+      "last_generated": "2026-09-02T10:20:43.938Z"
     },
     "48": {
       "channel_name": "Factory Floor",
@@ -758,9 +838,14 @@
           "topic": "Inside a Battery Gigafactory: How Tesla Makes 4680 Cells",
           "slug": "battery-gigafactory-tesla-4680-cells",
           "reserved_at": "2026-08-31T12:16:45.236Z"
+        },
+        {
+          "topic": "Humanoid Robots at BMW: 30,000 X3s Built in an 11-Month Pilot",
+          "slug": "humanoid-robot-bmw-spartanburg-production",
+          "reserved_at": "2026-09-02T10:20:43.938Z"
         }
       ],
-      "last_generated": "2026-08-31T12:16:45.236Z"
+      "last_generated": "2026-09-02T10:20:43.938Z"
     },
     "49": {
       "channel_name": "Wander Budget",
