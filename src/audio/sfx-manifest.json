@@ -1,0 +1,248 @@
+{
+  "_note": "DESIGN CATALOG (2026-07-27 planning pass; pre-dates the 26-file shipped library). NOT the per-file license log: the authoritative per-file log is src/skills/remotion-render/visual/sfx-library.js (file/source/license per entry) plus src/audio/sfx-library.measured.json. See CHECK-REGISTER AUD-06 (stage 13, 2026-08-29).",
+  "sfx_library": {
+    "version": "1.0.0",
+    "last_updated": "2026-07-27",
+    "total_sounds": 20,
+    "sources": [
+      {
+        "name": "Kenney Interface Sounds",
+        "license": "CC0",
+        "url": "https://kenney.nl/assets/interface-sounds",
+        "files_count": 100,
+        "categories": ["ui", "click", "button"]
+      },
+      {
+        "name": "Kenney Impact Sounds",
+        "license": "CC0",
+        "url": "https://kenney.nl/assets/impact-sounds",
+        "files_count": 130,
+        "categories": ["impact", "foley"]
+      },
+      {
+        "name": "Mixkit Sound Effects",
+        "license": "Mixkit License (free commercial use)",
+        "url": "https://mixkit.co/free-sound-effects/",
+        "files_count": 5000,
+        "categories": ["whoosh", "impact", "ambient", "cinematic"]
+      }
+    ],
+    "categories": {
+      "transitions": {
+        "description": "Whooshes, sweeps, and transition sounds",
+        "usage": "Use on scene changes, text reveals, and visual transitions",
+        "files": [
+          {
+            "name": "mixkit-fast-whoosh.mp3",
+            "source": "Mixkit",
+            "license": "Mixkit License",
+            "duration": "0:01",
+            "tags": ["whoosh", "fast", "transition"]
+          },
+          {
+            "name": "mixkit-cinematic-whoosh.mp3",
+            "source": "Mixkit",
+            "license": "Mixkit License",
+            "duration": "0:06",
+            "tags": ["whoosh", "cinematic", "transition", "reverb"]
+          },
+          {
+            "name": "mixkit-magic-whoosh.mp3",
+            "source": "Mixkit",
+            "license": "Mixkit License",
+            "duration": "0:03",
+            "tags": ["whoosh", "magic", "transition", "sparkle"]
+          }
+        ]
+      },
+      "emphasis": {
+        "description": "Impacts, hits, and emphasis sounds",
+        "usage": "Use on title cards, key stats, and dramatic moments",
+        "files": [
+          {
+            "name": "confirmation_001.ogg",
+            "source": "Kenney Interface Sounds",
+            "license": "CC0",
+            "duration": "0:02",
+            "tags": ["confirmation", "success", "positive"]
+          },
+          {
+            "name": "confirmation_002.ogg",
+            "source": "Kenney Interface Sounds",
+            "license": "CC0",
+            "duration": "0:03",
+            "tags": ["confirmation", "success", "positive"]
+          },
+          {
+            "name": "confirmation_003.ogg",
+            "source": "Kenney Interface Sounds",
+            "license": "CC0",
+            "duration": "0:02",
+            "tags": ["confirmation", "success", "positive"]
+          },
+          {
+            "name": "confirmation_004.ogg",
+            "source": "Kenney Interface Sounds",
+            "license": "CC0",
+            "duration": "0:03",
+            "tags": ["confirmation", "success", "positive"]
+          },
+          {
+            "name": "impactWood_heavy_000.ogg",
+            "source": "Kenney Impact Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["impact", "wood", "heavy", "thud"]
+          },
+          {
+            "name": "impactWood_heavy_001.ogg",
+            "source": "Kenney Impact Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["impact", "wood", "heavy", "thud"]
+          },
+          {
+            "name": "impactWood_heavy_002.ogg",
+            "source": "Kenney Impact Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["impact", "wood", "heavy", "thud"]
+          },
+          {
+            "name": "impactWood_heavy_003.ogg",
+            "source": "Kenney Impact Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["impact", "wood", "heavy", "thud"]
+          },
+          {
+            "name": "impactWood_heavy_004.ogg",
+            "source": "Kenney Impact Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["impact", "wood", "heavy", "thud"]
+          }
+        ]
+      },
+      "ambient": {
+        "description": "Background atmosphere and environmental sounds",
+        "usage": "Use under narration for atmosphere and mood",
+        "files": [
+          {
+            "name": "mixkit-rain-loop.mp3",
+            "source": "Mixkit",
+            "license": "Mixkit License",
+            "duration": "0:15",
+            "tags": ["rain", "ambient", "nature", "loop"]
+          },
+          {
+            "name": "mixkit-morning-birds.mp3",
+            "source": "Mixkit",
+            "license": "Mixkit License",
+            "duration": "3:29",
+            "tags": ["birds", "morning", "nature", "ambient"]
+          }
+        ]
+      },
+      "ui": {
+        "description": "Interface sounds for text and UI elements",
+        "usage": "Use on text appearances, button clicks, and UI animations",
+        "files": [
+          {
+            "name": "click_001.ogg",
+            "source": "Kenney Interface Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["click", "ui", "button"]
+          },
+          {
+            "name": "click_002.ogg",
+            "source": "Kenney Interface Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["click", "ui", "button"]
+          },
+          {
+            "name": "click_003.ogg",
+            "source": "Kenney Interface Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["click", "ui", "button"]
+          },
+          {
+            "name": "click_004.ogg",
+            "source": "Kenney Interface Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["click", "ui", "button"]
+          },
+          {
+            "name": "click_005.ogg",
+            "source": "Kenney Interface Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["click", "ui", "button"]
+          }
+        ]
+      },
+      "cinematic": {
+        "description": "Dramatic cinematic sounds for reveals and impacts",
+        "usage": "Use on dramatic reveals, title cards, and key moments",
+        "files": [
+          {
+            "name": "impactBell_heavy_000.ogg",
+            "source": "Kenney Impact Sounds",
+            "license": "CC0",
+            "duration": "0:02",
+            "tags": ["impact", "bell", "heavy", "cinematic"]
+          },
+          {
+            "name": "impactBell_heavy_001.ogg",
+            "source": "Kenney Impact Sounds",
+            "license": "CC0",
+            "duration": "0:02",
+            "tags": ["impact", "bell", "heavy", "cinematic"]
+          },
+          {
+            "name": "impactBell_heavy_002.ogg",
+            "source": "Kenney Impact Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["impact", "bell", "heavy", "cinematic"]
+          },
+          {
+            "name": "impactBell_heavy_003.ogg",
+            "source": "Kenney Impact Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["impact", "bell", "heavy", "cinematic"]
+          },
+          {
+            "name": "impactBell_heavy_004.ogg",
+            "source": "Kenney Impact Sounds",
+            "license": "CC0",
+            "duration": "0:01",
+            "tags": ["impact", "bell", "heavy", "cinematic"]
+          }
+        ]
+      }
+    },
+    "style_mapping": {
+      "minimal": {
+        "sfx_density": "sparse",
+        "recommended_sounds": ["ui", "emphasis"],
+        "notes": "Use sparingly. Only on key moments. Subtle clicks and soft impacts."
+      },
+      "motion-graphics": {
+        "sfx_density": "moderate",
+        "recommended_sounds": ["transitions", "ui", "emphasis"],
+        "notes": "Use whooshes on transitions, clicks on text, impacts on reveals."
+      },
+      "cinematic-documentary": {
+        "sfx_density": "heavy",
+        "recommended_sounds": ["cinematic", "ambient", "transitions", "emphasis"],
+        "notes": "Use cinematic impacts on reveals, ambient under narration, whooshes on transitions."
+      }
+    }
+  }
+}

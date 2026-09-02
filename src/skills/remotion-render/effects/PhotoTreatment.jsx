@@ -1,0 +1,174 @@
+import { useMemo, useRef } from "react";
+import { ThreeCanvas } from "@remotion/three";
+import { useLoader } from "@react-three/fiber";
+import { EffectComposer, Vignette, Noise, ChromaticAberration, LUT, DotScreen } from "@react-three/postprocessing";
+import { BlendFunction } from "postprocessing";
+import * as THREE from "three";
+import { LUTCubeLoader } from "three/examples/jsm/loaders/LUTCubeLoader.js";
+import { staticFile } from "remotion";
+import { PostFxReadyGate } from "./PostFxReadyGate.jsx";
+
+/**
+ * vox-style-treatment SKILL.md's "Photo/asset treatment" checklist,
+ * implemented via real, tested libraries — never freehand shader math:
+ *   - Vignette, Noise (grain), ChromaticAberration, DotScreen (halftone):
+ *     postprocessing's own tested Effect classes (pmndrs/postprocessing,
+ *     Zlib), used through @react-three/postprocessing's JSX wrappers, not
+ *     hand-rolled GLSL. DotScreen's real shader (read directly from
+ *     node_modules/postprocessing/build/postprocessing.js, since this is
+ *     exactly the class of parameter this session's rule requires reading
+ *     real source for rather than guessing) remaps color as
+ *     `rgb*10-5 + pattern(uv*resolution)` — i.e. at full strength it's a
+ *     near-literal black/white print halftone, not a subtle overlay.
+ *     Reined in the same way Noise already is: an OVERLAY blend, but at a
+ *     much lower opacity than Noise's (0.02 vs 0.06) — a first pass at 0.1
+ *     rendered as a harsh, dominant crosshatch (real evidence, not a
+ *     guess: data/audit/13/out/halftone-crop-before-0.1.png vs
+ *     halftone-crop-after-0.02.png), because DotScreen's near-binary
+ *     black/white output
+ *     reads as far stronger than continuous grain at the same opacity.
+ *     0.02 is the value that actually reads as "editorial print texture,"
+ *     confirmed on a real render at both a close crop and full frame.
+ *     angle=π/4 (45°) is the standard print halftone screening angle (the
+ *     class's own default, π/2, is grid-aligned and reads as a
+ *     screen-door pattern, not print).
+ *   - Desaturated editorial base grade: a real 3D LUT (.cube), loaded via
+ *     Three.js's own LUTCubeLoader and applied via postprocessing's real
+ *     LUT3DEffect (the <LUT> component) — see
+ *     effects/generate-editorial-lut.mjs for why this LUT is generated
+ *     in-repo from a documented formula rather than a found third-party
+ *     file (the most promising candidate researched had an unverifiable
+ *     provenance disclaimer on the grade data itself, not just the code).
+ *
+ * SAME parameter recipe on every photo regardless of source (the whole
+ * point per the skill file: "what makes many different stock photos read
+ * as one continuous piece") — no per-asset tuning, no conditional
+ * parameters below.
+ *
+ * Rendering sync, part 1 (texture/LUT loading): deliberately NO manual
+ * delayRender/continueRender for asset loading. @remotion/three's
+ * ThreeCanvas already wraps its children in a real Suspense boundary
+ * (confirmed by reading node_modules/@remotion/three/dist/esm/index.mjs
+ * directly — remotion.dev's own docs were proxy-blocked in this sandbox,
+ * so the installed package's real source is the source of truth here, not
+ * memory). A first pass at this file used manual useEffect + useState for
+ * texture loading instead of Suspense, which does NOT trip that boundary —
+ * every rendered frame came out blank white (data/audit/13's first real
+ * render caught this; "no crash" was not evidence of a working image).
+ * useLoader() below is React-Suspense-integrated, which is what actually
+ * makes ThreeCanvas's SuspenseLoader wait correctly for assets.
+ *
+ * Rendering sync, part 2 (EffectComposer's own extra async hop): fixing
+ * asset loading was NOT sufficient — a second, separate bug remained,
+ * caught the same way (real renders still came out blank, this time with
+ * NO texture-loading problem at all — confirmed via data/audit/13's
+ * isolation probes: a bare useLoader'd textured plane with no
+ * postprocessing rendered correctly at every frame tested; the exact same
+ * plane wrapped in <EffectComposer> did not, with ANY combination of
+ * effects, including none). Root cause, read directly from
+ * node_modules/@react-three/postprocessing/dist/index.js: EffectComposer
+ * builds its actual postprocessing.EffectComposer instance inside a plain
+ * (passive) useEffect, then calls a useState setter to publish it — a
+ * second React render is required after mount before EffectComposer's
+ * useFrame-priority render callback (or its children, i.e. Vignette/Noise/
+ * LUT/etc — EffectComposer literally renders null until that state lands)
+ * does anything at all. Meanwhile it also claims R3F's render priority, so
+ * while it's not ready, R3F's own default gl.render() is suppressed too —
+ * nothing paints, not even the raw photo. ThreeCanvas's Suspense-driven
+ * "ready" signal (SuspenseLoader's fallback continueRender, released
+ * synchronously in the commit's layout-effect phase) has no idea this
+ * second async hop exists and can resolve before it. PostFxReadyGate.jsx
+ * (shared with CanvasGrain.jsx, the same class of ThreeCanvas+
+ * EffectComposer consumer) closes that gap explicitly: it holds its own
+ * delayRender and retries advance() across real render cycles (via a
+ * counter-driven useEffect, not an assumption about effect ordering)
+ * until composerRef.current (EffectComposer's own imperative handle,
+ * populated by the same state update) confirms the composer actually
+ * exists — only then does it release Remotion's delay, guaranteeing at
+ * least one advance() happens after EffectComposer is truly ready to
+ * render.
+ */
+
+const LUT_URL = staticFile("luts/editorial-grade.cube");
+
+// One recipe, everywhere — see file header.
+const VIGNETTE_PROPS = { eskil: false, offset: 0.15, darkness: 0.65 };
+const NOISE_PROPS = { opacity: 0.06, blendFunction: BlendFunction.OVERLAY };
+const CHROMATIC_ABERRATION_PROPS = { offset: [0.0009, 0.0009], radialModulation: true, modulationOffset: 0.4 };
+const DOT_SCREEN_PROPS = { angle: Math.PI / 4, scale: 1.4, opacity: 0.02, blendFunction: BlendFunction.OVERLAY };
+
+function Plane({ src, treatment, containerWidth, containerHeight }) {
+  const texture = useLoader(THREE.TextureLoader, src);
+  texture.colorSpace = THREE.SRGBColorSpace;
+
+  // Reproduce CSS object-fit contain/cover in plane-scale terms, matching
+  // the sizing the plain <img> path used (isCutout -> contain within
+  // 88%/92% of the box, matching ImageBeatScene's existing maxWidth/
+  // maxHeight; fullbleed -> cover the full box) — same visual footprint,
+  // different render path.
+  const boxW = treatment === "cutout" ? containerWidth * 0.88 : containerWidth;
+  const boxH = treatment === "cutout" ? containerHeight * 0.92 : containerHeight;
+  const boxAspect = boxW / boxH;
+  const imgAspect = texture.image.width / texture.image.height;
+  const fit = treatment === "cutout" ? "contain" : "cover";
+  let planeW;
+  let planeH;
+  if (fit === "contain" ? imgAspect > boxAspect : imgAspect < boxAspect) {
+    planeW = boxW;
+    planeH = boxW / imgAspect;
+  } else {
+    planeH = boxH;
+    planeW = boxH * imgAspect;
+  }
+
+  return (
+    <mesh>
+      <planeGeometry args={[planeW, planeH]} />
+      <meshBasicMaterial map={texture} transparent toneMapped={false} />
+    </mesh>
+  );
+}
+
+function LutLayer() {
+  const { texture3D } = useLoader(LUTCubeLoader, LUT_URL);
+  return <LUT lut={texture3D} blendFunction={BlendFunction.NORMAL} />;
+}
+
+/**
+ * @param {object} props
+ * @param {string} props.src        staticFile()-resolved image URL
+ * @param {"cutout"|"fullbleed"} props.treatment
+ * @param {number} props.width      container box width, px
+ * @param {number} props.height     container box height, px
+ */
+export function PhotoTreatment({ src, treatment, width, height }) {
+  const orthoCamera = useMemo(
+    () => ({ left: -width / 2, right: width / 2, top: height / 2, bottom: -height / 2, near: -1000, far: 1000, position: [0, 0, 10] }),
+    [width, height]
+  );
+  const composerRef = useRef(null);
+
+  return (
+    <ThreeCanvas
+      width={width}
+      height={height}
+      orthographic
+      camera={orthoCamera}
+      gl={{ alpha: true, antialias: true, preserveDrawingBuffer: true }}
+      style={{ position: "absolute", inset: 0 }}
+    >
+      <ambientLight intensity={1} />
+      <Plane src={src} treatment={treatment} containerWidth={width} containerHeight={height} />
+      <EffectComposer ref={composerRef} enableNormalPass={false} autoClear={false}>
+        <Vignette {...VIGNETTE_PROPS} />
+        <DotScreen {...DOT_SCREEN_PROPS} />
+        <Noise {...NOISE_PROPS} />
+        <ChromaticAberration {...CHROMATIC_ABERRATION_PROPS} />
+        <LutLayer />
+      </EffectComposer>
+      <PostFxReadyGate composerRef={composerRef} label="PhotoTreatment" />
+    </ThreeCanvas>
+  );
+}
+
+export default PhotoTreatment;
