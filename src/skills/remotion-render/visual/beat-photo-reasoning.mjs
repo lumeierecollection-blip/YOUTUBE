@@ -193,6 +193,16 @@ export function formatBeatLog(decision, { index } = {}) {
   } else {
     L.push(`  CANDIDATES CONSIDERED: ${decision.considered.length}`);
     decision.considered.forEach(({ candidate: c, verdict }, i) => {
+      // The five fields are a contract, not a suggestion: a caller that omits
+      // one would silently produce a log entry that looks complete. Enforce it
+      // here rather than trusting every caller to remember.
+      const absent = REQUIRED_CANDIDATE_FIELDS.filter((f) => !(f in c));
+      if (absent.length) {
+        throw new Error(
+          `candidate ${i + 1} omits required field(s): ${absent.join(", ")}. ` +
+            `A field the source did not supply must be present and set to MISSING, never left out.`,
+        );
+      }
       const t = c.source_text;
       const st = isMissing(t)
         ? "MISSING — not provided by the source"

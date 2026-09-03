@@ -1,5 +1,6 @@
 import React from "react";
 import { staticFile, useCurrentFrame } from "remotion";
+import { resolveSceneAsset } from "../../visual/asset-shape.js";
 import { PhotoTreatment } from "../../effects/PhotoTreatment.jsx";
 import {
   CANVAS_W, CANVAS_H, Label, ease, seeded, variantOf,
@@ -128,8 +129,10 @@ export function ImageEvidenceScene({ beat, colors, fontFamily }) {
   const states = beat.visualStates || [];
   const f = shotFrame((beat.visualPlan && beat.visualPlan.shot) || null);
   const plan = beat.visualPlan || {};
-  const asset = (plan.payload && plan.payload.asset) || (beat.scene && beat.scene.image ? { path: beat.scene.image } : null);
-  if (!asset || !asset.path) return null;
+  // Shared with run-visual-tests.js on purpose — see visual/asset-shape.js for
+  // why these two drifted and why the rule now lives in one place.
+  const asset = resolveSceneAsset(plan, beat);
+  if (!asset) return null;
 
   const pReveal = useStateProgress(states, "reveal");
   const pRole = useStateProgress(states, "role");

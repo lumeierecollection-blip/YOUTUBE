@@ -18,6 +18,7 @@ import { buildMgPackage } from "../compositions/mg-package.js";
 import { chunkTextClauseAware } from "../compositions/beats.js";
 import { narrationSections } from "../../../utils/script-narration.js";
 import { findChrome } from "../find-chrome.js";
+import { resolveBrollFiles } from "../broll.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const RENDER_DIR = join(__dirname, "..");
@@ -77,7 +78,23 @@ for (const channel of channels) {
       .map((s) => ({ id: s.id, timing: s.timing, voiceover: s.voiceover,
         content: chunkTextClauseAware(s.voiceover), sfxCue: s.sfx_cue || null,
         bRoll: Array.isArray(s.b_roll) ? s.b_roll : null, beats: Array.isArray(s.beats) ? s.beats : null }));
-    const mg = buildMgPackage(srtText, { sections, hook: script.hook || null, channel, bRollFiles: [], imageForSection: () => null });
+    // Resolve the channel's REAL b-roll, the way render.js and
+    // verify-compositions.js do. This used to pass `bRollFiles: []` and an
+    // imageForSection that always returned null, which silently downgraded
+    // every IMAGE_BEAT and meant no beat could ever be planned as
+    // IMAGE_EVIDENCE. The clips therefore looked fine while never once
+    // exercising the photo path — including through the whole period when
+    // ImageEvidenceScene rendered nothing at all (see CHECK-REGISTER VIS-27).
+    // A channel with no manifest still resolves to nothing, which is the
+    // honest result for it rather than a hidden one.
+    for (const sec of sections) {
+      sec.bRollFiles = resolveBrollFiles(sec.bRoll || [], channel.channel_id, script.topic_slug);
+    }
+    const mg = buildMgPackage(srtText, {
+      sections, hook: script.hook || null, channel,
+      bRollFiles: sections.flatMap((s) => s.bRollFiles || []),
+      imageForSection: (i) => (sections[i] && sections[i].bRollFiles && sections[i].bRollFiles[0]) || null,
+    });
     const staged = mg.beats.filter((b) => b.archetype !== "LIST_ITEM" && b.visualPlan);
 
     const audioNote = stageAudio(pair.slug, mg.totalFrames / 30);

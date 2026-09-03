@@ -169,19 +169,36 @@ for (const [name, id, frame] of [
 // runs, section kickers, image beats). Frames land inside HERO_NUMBER (5, 60,
 // 600, 1200, 1800), LIST_ITEM runs (300, 700, 1790), IMAGE_BEAT (505, 1210,
 // 1565), CONTRAST (900), RELATION (1500) and STATEMENT (2050).
-for (const frame of [5, 60, 300, 505, 600, 700, 900, 1210, 1500, 1565, 1800, 2050]) {
+const IMAGE_BEAT_FRAMES = mgPackage.beats
+  .filter((b) => b.archetype === "IMAGE_BEAT")
+  .map((b) => Math.round(b.startFrame + b.durationInFrames / 2));
+const MG_SWEEP = [5, 60, 300, 505, 600, 700, 900, 1210, 1500, 1565, 1800, 2050];
+for (const frame of [...new Set([...MG_SWEEP, ...IMAGE_BEAT_FRAMES])].sort((a, b) => a - b)) {
   await renderStillSafe("MotionGraphicsShorts", mgProps, join(OUT_DIR, `mg-f${frame}.png`), frame, mgPackage.totalFrames);
   console.log("rendered:", join(OUT_DIR, `mg-f${frame}.png`));
 }
 
 await browserInstance.close({ silent: true });
 
+// Every probe below used to print a verdict and nothing else: the file ended
+// with an unconditional "ALL STYLES OK" and only the static mg gates above
+// could set a non-zero exit code. So a run in which the accent never rendered,
+// the captions were unreadable and two image beats were blank still reported
+// success. These record their result instead, and the summary at the end fails
+// the process if any of them did.
+const probes = [];
+function check(label, ok, detail) {
+  probes.push({ label, ok });
+  console.log(`[probe] ${ok ? "PASS" : "FAIL"} ${label}${detail ? `: ${detail}` : ""}`);
+  return ok;
+}
+
 const { decodePNG, meanColor } = await import("./decode-png.js");
 const hash = (p) => createHash("sha256").update(readFileSync(p)).digest("hex");
 
 const hA = hash(join(OUT_DIR, "cinematic-documentary-f60.png"));
 const hAlt = hash(join(OUT_DIR, "cinematic-alt-f60.png"));
-console.log("cinematic vs alt-palette:", hA === hAlt ? "IDENTICAL -> palette NOT applied" : "DIFFERENT -> palette applied");
+check("cinematic palette is actually applied", hA !== hAlt, hA === hAlt ? "IDENTICAL -> palette NOT applied" : "DIFFERENT -> palette applied");
 
 for (const f of ["cinematic-documentary-f60", "cinematic-documentary-f600", "cinematic-documentary-f900", "cinematic-documentary-f1200", "cinematic-documentary-f1500", "minimal-f60"]) {
   const png = decodePNG(join(OUT_DIR, `${f}.png`));
@@ -200,8 +217,30 @@ const diff = (a, b) => a.map((v, i) => Math.abs(v - b[i]));
 console.log("b-roll top strip f60:", strip60.join(","));
 console.log("b-roll top strip f90:", strip90.join(","));
 console.log("b-roll top strip f200:", strip200.join(","));
-console.log("Ken Burns motion f60->f90 diff:", diff(strip60, strip90).join(","));
-console.log("shot change f60->f200 diff:", diff(strip60, strip200).join(","));
+// This used to compare the MEAN colour of the two strips and demand it differ.
+// It cannot work: panning or zooming a textured photo moves every pixel while
+// leaving the strip's average brightness almost exactly where it was, so the
+// check read 0,0,0 and called a working Ken Burns move dead. Measured on the
+// real frames: mean per-pixel difference 72.8 with 94.6% of pixels changing,
+// against a mean-colour difference of 0. Compare pixels, not averages.
+const movedPct = (a, b) => {
+  const h = Math.round(a.height * 0.22);
+  let changed = 0, n = 0;
+  for (let y = 0; y < h; y += 2) for (let x = 0; x < a.width; x += 2) {
+    const i = (y * a.width + x) * a.channels;
+    const d = Math.abs(a.data[i] - b.data[i]) + Math.abs(a.data[i + 1] - b.data[i + 1]) + Math.abs(a.data[i + 2] - b.data[i + 2]);
+    if (d > 6) changed++;
+    n++;
+  }
+  return (100 * changed) / n;
+};
+const png60 = decodePNG(join(OUT_DIR, "cinematic-documentary-f60.png"));
+const png90 = decodePNG(join(OUT_DIR, "cinematic-documentary-f90.png"));
+const png200 = decodePNG(join(OUT_DIR, "cinematic-documentary-f200.png"));
+const kbPct = movedPct(png60, png90);
+const shotPct = movedPct(png60, png200);
+check("b-roll Ken Burns moves between f60 and f90", kbPct > 20, `${kbPct.toFixed(1)}% of strip pixels moved`);
+check("b-roll shot changes between f60 and f200", shotPct > 20, `${shotPct.toFixed(1)}% of strip pixels changed`);
 
 const cin1790 = decodePNG(join(OUT_DIR, "cinematic-documentary-f1790.png"));
 console.log("cinematic f1790 (fade-to-black): corner", sampleAtRaw(cin1790, 40, 40).join(","), "center", sampleAtRaw(cin1790, 540, 960).join(","));
@@ -215,34 +254,73 @@ console.log("cinematic leak f415 region (78%,18%):", sampleAtRaw(leak, Math.roun
 // ─────────────────────────────────────────────────────────────────────────────
 const mg60 = decodePNG(join(OUT_DIR, "mg-f60.png"));
 const mg1500 = decodePNG(join(OUT_DIR, "mg-f1500.png"));
-console.log("mg f60 vs f1500:", hash(join(OUT_DIR, "mg-f60.png")) === hash(join(OUT_DIR, "mg-f1500.png")) ? "IDENTICAL -> no motion" : "DIFFERENT -> alive");
+check("mg timeline is alive (f60 differs from f1500)",
+  hash(join(OUT_DIR, "mg-f60.png")) !== hash(join(OUT_DIR, "mg-f1500.png")));
 
 const corner = sampleAtRaw(mg60, 20, 20);
 const near = (a, b, tol) => a.every((v, i) => Math.abs(v - b[i]) <= tol);
-console.log(`mg f60 corner (bg ${mgPalette.bg}):`, corner.join(","), near(corner, hex(mgPalette.bg), 26) ? "bg OK" : "bg MISMATCH");
+check(`mg f60 corner is the channel bg (${mgPalette.bg})`, near(corner, hex(mgPalette.bg), 26), corner.join(","));
 
-const accentCount = countNear(mg900(), hex(mgPalette.accent), 48);
-console.log("mg f900 pixels near accent:", accentCount, accentCount > 0 ? "accent OK" : "accent MISSING");
+// This used to demand the accent on frame 900 specifically. Which frame carries
+// accent is the director's choice, not a constant: f900 now lands on a
+// full-bleed IMAGE_EVIDENCE photograph, which correctly has no accent on it,
+// while f300/f505/f600 do. Ask the real question — does the accent render at
+// all — across the sweep instead of pinning it to one frame.
+const accentFrames = MG_SWEEP.map((f) => [f, countNear(decodePNG(join(OUT_DIR, `mg-f${f}.png`)), hex(mgPalette.accent), 48)])
+  .filter(([, n]) => n > 0);
+check("mg renders the accent colour somewhere in the sweep", accentFrames.length > 0,
+  accentFrames.length ? accentFrames.map(([f, n]) => `f${f}:${n}px`).join(" ") : `0 px near ${mgPalette.accent} on any of ${MG_SWEEP.length} frames`);
 
 const capMean = meanColor(mg60, 300, 1150, 780, 1230);
 const capBg = meanColor(mg60, 200, 1400, 880, 1500);
-console.log("mg f60 caption zone mean:", capMean.join(","), "lower-zone mean:", capBg.join(","), capMean[0] + capMean[1] + capMean[2] > capBg[0] + capBg[1] + capBg[2] + 30 ? "caption OK" : "caption zone too dark");
+// Burned-in captions are OFF unless a channel opts in with
+// `captions: "burned-in"` (render.js:496 -> the composition's showCaptions,
+// default false). This check predates that decision and was demanding a lit
+// caption band from a composition that deliberately draws no captions and
+// reclaims the space with captionDrop. Assert the legibility only when the
+// captions are actually drawn; otherwise assert that the band really is empty,
+// which is the property that matters when the space has been reclaimed.
+const mgShowsCaptions = mgChannel.captions === "burned-in";
+const capLit = capMean[0] + capMean[1] + capMean[2];
+const plateLit = capBg[0] + capBg[1] + capBg[2];
+if (mgShowsCaptions) {
+  check("mg f60 caption zone is brighter than the plate behind it", capLit > plateLit + 30,
+    `caption ${capMean.join(",")} vs plate ${capBg.join(",")}`);
+} else {
+  check(`mg f60 draws no caption band (${mgChannel.channel_name} has not opted into burned-in captions)`,
+    capLit <= plateLit + 30, `caption ${capMean.join(",")} vs plate ${capBg.join(",")}`);
+}
 
 // IMAGE_BEAT frames must show real photo content — high pixel variance in the
 // stage region (flat bg + grid would be near-zero variance).
-for (const f of [505, 1210, 1565]) {
+// 505/1210/1565 were hardcoded and are all beat START frames — 505 and 1565
+// are shared with the preceding beat, because beat ranges overlap by a frame
+// at some boundaries. At a beat's first frame its entrance animation has not
+// run, so an empty stage there is correct, not a missing photo. Derive the
+// midpoint of each real IMAGE_BEAT instead, so the check tests its own claim.
+check("the fixture still produces IMAGE_BEATs to probe", IMAGE_BEAT_FRAMES.length > 0,
+  `${IMAGE_BEAT_FRAMES.length} image beat(s)`);
+for (const f of IMAGE_BEAT_FRAMES) {
   const png = decodePNG(join(OUT_DIR, `mg-f${f}.png`));
   const sd = stdDev(png, 48, 392, 888, 940);
-  console.log(`mg f${f} IMAGE_BEAT stage stddev:`, sd.toFixed(1), sd > 18 ? "photo OK" : "STAGE FLAT -> image NOT rendering");
+  check(`mg f${f} IMAGE_BEAT stage shows photo content`, sd > 18, `stage stddev ${sd.toFixed(1)}`);
 }
 
 // Every mg still must contain real content (no all-flat frame).
-for (const f of [5, 60, 300, 505, 600, 700, 900, 1210, 1500, 1565, 1800, 2050]) {
+for (const f of MG_SWEEP) {
   const png = decodePNG(join(OUT_DIR, `mg-f${f}.png`));
   const sd = stdDev(png, 0, 0, png.width - 1, png.height - 1);
-  if (sd < 3) console.log(`mg f${f}: WHOLE FRAME FLAT (stddev ${sd.toFixed(1)})`);
+  check(`mg f${f} is not a flat frame`, sd >= 3, `stddev ${sd.toFixed(1)}`);
 }
-console.log("ALL STYLES OK");
+
+const failedProbes = probes.filter((p) => !p.ok);
+if (failedProbes.length) {
+  console.error(`\nPIXEL PROBES FAILED (${failedProbes.length}/${probes.length}):`);
+  for (const p of failedProbes) console.error(`  - ${p.label}`);
+  process.exitCode = 1;
+} else {
+  console.log(`\nALL STYLES OK (${probes.length} pixel probes passed)`);
+}
 
 function stdDev(png, x0, y0, x1, y1) {
   const samples = [];
@@ -255,10 +333,6 @@ function stdDev(png, x0, y0, x1, y1) {
   const mean = samples.reduce((a, b) => a + b, 0) / samples.length;
   const varr = samples.reduce((a, s) => a + (s - mean) * (s - mean), 0) / samples.length;
   return Math.sqrt(varr);
-}
-
-function mg900() {
-  return decodePNG(join(OUT_DIR, "mg-f900.png"));
 }
 
 function countNear(png, rgb, tol) {

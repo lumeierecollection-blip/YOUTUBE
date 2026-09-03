@@ -18,6 +18,7 @@
  */
 
 import { readFileSync, readdirSync, existsSync } from "fs";
+import { resolveSceneAsset } from "./asset-shape.js";
 import { join, dirname, basename, sep } from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
@@ -207,7 +208,12 @@ check("no plan selects a strategy whose dataNeeds are unmet", () => {
     if (plan.strategy === "COMPARISON" && !sup.qualitative && (!sup.series || sup.series.length < 2)) return "COMPARISON with <2 series and no opposition";
     if (plan.strategy === "TIMELINE" && (!sup.years || sup.years.length < 1)) return "TIMELINE with no years";
     if (plan.strategy === "GEOSPATIAL_RADIUS" && !Number.isFinite(sup.value)) return "GEOSPATIAL_RADIUS with no distance";
-    if (plan.strategy === "IMAGE_EVIDENCE" && !(plan.payload && plan.payload.asset)) return "IMAGE_EVIDENCE with no asset";
+    // Truthiness is not enough here, and that is the whole point: this used to
+    // read `!(plan.payload && plan.payload.asset)`, which a bare path string
+    // satisfies — while the scene required an object with `.path` and rendered
+    // nothing. Ask the SAME resolver the scene asks.
+    if (plan.strategy === "IMAGE_EVIDENCE" && !resolveSceneAsset(plan, null))
+      return `IMAGE_EVIDENCE whose asset the scene cannot resolve (got ${typeof (plan.payload && plan.payload.asset)})`;
   }
   return true;
 });
