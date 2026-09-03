@@ -7,7 +7,10 @@ project source even though MIT/ISC require no in-UI attribution.
 ## Lucide icons — ISC License
 
 Vendored into `src/skills/remotion-render/public/icons/` from `lucide-static`
-v1.28.0. See `src/skills/remotion-render/vendor-icons.js`.
+v1.28.0. The `vendor-icons.js` script that produced them was removed with the
+channel `icon_map` config it read; the vendored SVGs and
+`compositions/icons-data.js` remain in the tree but are no longer reached by
+scene derivation, which never resolves an icon.
 
 ```
 ISC License

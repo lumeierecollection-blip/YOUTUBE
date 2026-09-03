@@ -364,7 +364,6 @@ async function main() {
       // visual vocabulary (visual/channel-grammar.js) — a legal channel
       // reaches for documents, a finance channel for balances (PART 15).
       channel,
-      iconMap: channel.icon_map || null,
       bRollFiles: sections.flatMap((s) => s.bRollFiles || []),
       imageForSection: (idx) => (sections[idx] && sections[idx].bRollFiles && sections[idx].bRollFiles[0]) || null,
       totalMs: audioSecs ? audioSecs * 1000 : undefined,

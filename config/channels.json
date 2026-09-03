@@ -93,20 +93,6 @@
           "fade-gentle"
         ]
       },
-      "icon_map": {
-        "default": "banknote",
-        "terms": {
-          "money|dollar|dollars|pounds|cash|paid|paying|payment|payments|income|salary|budget|budgeting|afford|cost|costs|expensive|price|bills|bill|rent": "banknote",
-          "debt|debts|loan|loans|owe|owing|minimums|minimum|payoff|paying": "chart-column",
-          "interest|rate|apr|math|percent": "gauge",
-          "snowball|avalanche|plan|strategy|method|approach": "target",
-          "month|months|monthly|year|years|time|week|weeks|day": "clock",
-          "save|saving|saved|savings|fund|funds|stash": "coins",
-          "risk|warning|danger|trap|wrong": "triangle-alert",
-          "discipline|trust|quit|gave|habit|habits|motivation": "flame",
-          "number|numbers|value|amount|total|realistic": "scale"
-        }
-      },
       "creds_secret_prefix": "CHANNEL_01",
       "concepts": {
         "primary": [
@@ -208,23 +194,6 @@
           "dramatic-cut",
           "scale-impact"
         ]
-      },
-      "icon_map": {
-        "default": "gavel",
-        "terms": {
-          "contract|clause|agreement|document|lease": "file-text",
-          "court|judge|ruling|trial": "gavel",
-          "deadline|expires|time|day": "clock",
-          "fine|penalty|cost|money": "banknote",
-          "risk|warning|illegal|danger": "triangle-alert",
-          "rights|freedom|protection|constitution": "shield",
-          "arrest|jail|prison|custody": "lock",
-          "police|officer|patrol|stop": "shield-alert",
-          "tenant|rent|landlord": "building-2",
-          "employment|job|hire|worker": "briefcase",
-          "evidence|proof|probable cause": "search",
-          "attorney|lawyer|counsel|law": "scale"
-        }
       },
       "creds_secret_prefix": "CHANNEL_02",
       "concepts": {
@@ -589,23 +558,6 @@
           "zoom-region"
         ]
       },
-      "icon_map": {
-        "default": "globe",
-        "terms": {
-          "border|territory|boundary": "land-plot",
-          "country|nation|state|region": "map",
-          "conflict|war|invasion|military": "sword",
-          "sanctions|embargo|blockade": "globe-lock",
-          "oil|energy|resource": "flame",
-          "dispute|claim|annex|occup": "flag",
-          "checkpoint|fence|wall|security": "shield",
-          "migration|refugee|asylum": "footprints",
-          "canal|strait|chokepoint|port": "ship",
-          "mountain|terrain|geography": "mountain",
-          "river|waterway|coast": "waves",
-          "treaty|alliance|pact|agreement": "scroll-text"
-        }
-      },
       "creds_secret_prefix": "CHANNEL_09",
       "concepts": {
         "primary": [
@@ -883,23 +835,6 @@
           "map-zoom",
           "timeline-slide"
         ]
-      },
-      "icon_map": {
-        "default": "search",
-        "terms": {
-          "ponzi|scam|scheme|fraud": "banknote",
-          "money|funds|wire|transfer": "banknote-x",
-          "heist|robbery|stolen": "key-round",
-          "crypto|bitcoin|coin|token": "coins",
-          "trail|trace|ledger": "route",
-          "indict|convict|crime|court": "gavel",
-          "bank|account|institution": "banknote",
-          "counterfeit|forgery|fake": "file-warning",
-          "launder|hidden|shell": "scan-search",
-          "expose|reveal|whistleblow": "lightbulb",
-          "jail|prison|sentence": "lock",
-          "victim|investor|investigate": "fingerprint"
-        }
       },
       "creds_secret_prefix": "CHANNEL_26",
       "concepts": {
@@ -1354,23 +1289,6 @@
           "vector-morph"
         ]
       },
-      "icon_map": {
-        "default": "lightbulb",
-        "terms": {
-          "communicat|talk|listen|speak": "messages-square",
-          "leadership|manage|lead": "users",
-          "productivity|focus|efficient": "timer",
-          "career|job|interview|resume": "briefcase",
-          "negotiat|deal|persuade": "handshake",
-          "writing|email|document": "pen-line",
-          "presentation|public speaking": "presentation",
-          "learning|skill|grow|study": "graduation-cap",
-          "goal|target|outcome": "target",
-          "network|mentor|connect": "share-2",
-          "strategy|plan|roadmap": "route",
-          "feedback|review|critique": "clipboard-check"
-        }
-      },
       "creds_secret_prefix": "CHANNEL_44",
       "concepts": {
         "primary": [
@@ -1647,23 +1565,6 @@
           "cross-section-reveal",
           "assembly-sequence"
         ]
-      },
-      "icon_map": {
-        "default": "factory",
-        "terms": {
-          "process|production|manufactur": "factory",
-          "machine|equipment|line": "cog",
-          "automation|automated|robot": "circuit-board",
-          "quality|inspection|check": "circle-check",
-          "supply|chain|logistics": "truck",
-          "packaging|box|carton": "package",
-          "assembly|part|component": "boxes",
-          "tracking|label|barcode": "barcode",
-          "power|energy|electric": "zap",
-          "safety|compliance|hazard": "shield",
-          "sensor|data|monitor": "gauge",
-          "waste|scrap|defect": "triangle-alert"
-        }
       },
       "creds_secret_prefix": "CHANNEL_48",
       "concepts": {

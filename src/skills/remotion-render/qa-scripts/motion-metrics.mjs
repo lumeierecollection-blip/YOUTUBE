@@ -112,7 +112,6 @@ const mg = buildMgPackage(srtText, {
   sections,
   hook: script.hook || null,
   channel,
-  iconMap: channel.icon_map || null,
   bRollFiles: [],
   imageForSection: () => null,
 });

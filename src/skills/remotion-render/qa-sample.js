@@ -49,7 +49,7 @@ async function main() {
   if (!existsSync(srtPath)) throw new Error(`SRT not found: ${srtPath}`);
   const srtText = readFileSync(srtPath, "utf-8");
 
-  const mg = buildMgPackage(srtText, { iconMap: channel.icon_map || null });
+  const mg = buildMgPackage(srtText, {});
   const frames = Math.min(parseInt(framesArg, 10) || SAMPLE_FRAMES, mg.totalFrames);
 
   const props = {

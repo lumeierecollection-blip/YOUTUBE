@@ -88,7 +88,6 @@ function rebuildMgPackage(channelId, scriptPath, audioPath) {
   const srtText = srtPath ? readFileSync(srtPath, "utf-8") : "";
   return buildMgPackage(srtText, {
     sections,
-    iconMap: channel.icon_map || null,
     bRollFiles: sections.flatMap((s) => s.bRollFiles || []),
     imageForSection: (idx) => (sections[idx] && sections[idx].bRollFiles && sections[idx].bRollFiles[0]) || null,
     revealPlacement: channel.script_template && channel.script_template.reveal_placement,

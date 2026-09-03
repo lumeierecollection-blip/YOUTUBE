@@ -22,7 +22,6 @@ import {
   wrapCaptionWords,
   wordCount,
 } from "./beats.js";
-import { resolveIcon, isSpecificIconMatch } from "./mg-style.js";
 import { planVisual, attachShot } from "../visual/director.js";
 import { buildStates } from "../visual/states.js";
 import { summarizeVisuals, summarizeSound } from "../visual/diagnostics.js";
@@ -246,32 +245,29 @@ function accentWindowFor(beat, scene) {
 }
 
 export function deriveScene(beat, ctx = {}) {
-  const iconMap = ctx.iconMap || null;
-
-  // PART 8 — ICONS ARE NO LONGER RESOLVED FOR EVERY BEAT.
+  // PART 8 / ICON CLEANUP — ICONS ARE NOT RESOLVED AT ALL.
   //
-  // This line used to read:
+  // This function used to read:
   //   const scene = { icon: resolveIcon(iconMap, beat.text), ... }
   // unconditionally, before the archetype switch below had even run. That
   // single line is where the "large text + icon + dark background" look
   // came from: every beat got a glyph whether or not anything wanted one,
-  // resolveIcon() falls back to the channel `default` and then to a literal
+  // resolveIcon() fell back to the channel `default` and then to a literal
   // "sparkles", and StatementScene (motion-graphics.jsx) rendered that glyph
   // as the ENTIRE composition.
   //
-  // Now: the visual plan decides. A strategy declares iconRole "secondary"
-  // only when a small glyph genuinely helps inside its own composition (a
-  // map marker on a map); everything else gets "none" and no icon is even
-  // looked up. Scene selection decides whether an icon is useful — icon
-  // selection never again decides the scene.
+  // PART 8 narrowed that to beats whose strategy declared iconRole
+  // "secondary". Icons have since been ruled out entirely, so the channel
+  // `icon_map` config they read is gone from config/channels.json and the
+  // lookup is gone with it. `scene.icon` is now always null; `iconRole` is
+  // still carried so visual/diagnostics.js can keep asserting that no scene
+  // ever makes an icon its primary element.
   const plan = beat.visualPlan || null;
-  const iconRole = plan ? plan.iconRole : "none";
-  const wantsIcon = iconRole === "secondary";
 
   const scene = {
-    iconRole: iconRole || "none",
-    icon: wantsIcon ? resolveIcon(iconMap, beat.text) : null,
-    iconIsSpecific: wantsIcon ? isSpecificIconMatch(iconMap, beat.text) : false,
+    iconRole: (plan ? plan.iconRole : "none") || "none",
+    icon: null,
+    iconIsSpecific: false,
   };
   switch (beat.archetype) {
     case "HERO_NUMBER": {
@@ -743,7 +739,7 @@ export function buildMgPackage(srtText, opts = {}) {
     p.runLast = !next || next.strategy !== p.strategy;
   }
 
-  for (const b of beats) b.scene = deriveScene(b, { iconMap: opts.iconMap, imageForSection });
+  for (const b of beats) b.scene = deriveScene(b, { imageForSection });
 
   groupListRuns(beats);
 

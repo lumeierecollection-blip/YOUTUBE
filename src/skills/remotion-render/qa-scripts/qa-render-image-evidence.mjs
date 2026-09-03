@@ -62,13 +62,12 @@ const sections = [
 const srtText =
   "1\n00:00:00,000 --> 00:00:04,500\nEvery small deposit added up in the piggy bank over the year.\n";
 
-const channel = { id: "1", niche: "finance", icon_map: null, script_template: {}, sfx_profile: {} };
+const channel = { id: "1", niche: "finance", script_template: {}, sfx_profile: {} };
 
 const mg = buildMgPackage(srtText, {
   sections,
   hook: null,
   channel,
-  iconMap: null,
   bRollFiles: [],
   imageForSection: (idx) => (idx === 0 ? REAL_ASSET : null),
   totalMs: 5000,

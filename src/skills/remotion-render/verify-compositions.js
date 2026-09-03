@@ -57,7 +57,6 @@ if (!mgChannel) throw new Error("no motion-graphics channel in config/channels.j
 const mgSrtPath = join(dirname(__dirname), "..", "..", "data", "tts", "ch-fixture", "movile-cave-shorts-script-vo.srt");
 const mgPackage = buildMgPackage(readFileSync(mgSrtPath, "utf-8"), {
   sections,
-  iconMap: mgChannel.icon_map || null,
   bRollFiles: sections.flatMap((s) => s.bRollFiles || []),
   imageForSection: (idx) => (sections[idx] && sections[idx].bRollFiles && sections[idx].bRollFiles[0]) || null,
 });
