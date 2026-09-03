@@ -183,7 +183,7 @@
     "channel": "ch-fixture",
     "channel_id": "fixture",
     "script": "movile-cave-shorts-script",
-    "strategy": "ACCUMULATION",
+    "strategy": "IMAGE_EVIDENCE",
     "beat_text": "Sea broke into a cave that",
     "frames": [
       62,
@@ -191,14 +191,14 @@
     ],
     "seconds": 2.23,
     "audio": "SILENT PLACEHOLDER (no TTS reachable)",
-    "file": "data/renders/beat-clips/chfixture-movile-cave-shorts-ACCUMULATION.mp4",
+    "file": "data/renders/beat-clips/chfixture-movile-cave-shorts-IMAGE_EVIDENCE.mp4",
     "status": "OK"
   },
   {
     "channel": "ch-fixture",
     "channel_id": "fixture",
     "script": "movile-cave-shorts-script",
-    "strategy": "COMPARISON",
+    "strategy": "ACCUMULATION",
     "beat_text": "had been sealed for five",
     "frames": [
       117,
@@ -206,7 +206,7 @@
     ],
     "seconds": 2.1,
     "audio": "SILENT PLACEHOLDER (no TTS reachable)",
-    "file": "data/renders/beat-clips/chfixture-movile-cave-shorts-COMPARISON.mp4",
+    "file": "data/renders/beat-clips/chfixture-movile-cave-shorts-ACCUMULATION.mp4",
     "status": "OK"
   },
   {

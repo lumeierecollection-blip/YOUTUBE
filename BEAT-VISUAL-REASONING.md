@@ -113,10 +113,26 @@ The 25 unmatched fixture beats are each logged as an explicit gap.
 
 ## Clips
 
-15 clips rendered, one per distinct visual strategy per script, 1.4–3.5s each,
-1280x720 h264 at scale 0.5. They cover 8 distinct strategies:
-`CINEMATIC_STATEMENT`, `ACCUMULATION`, `COMPARISON`, `VISUAL_METAPHOR`,
-`CAUSE_EFFECT`, `TIMELINE`, `SCALE_COMPARISON`.
+15 clips, one per distinct visual strategy per script, 1280x720 h264 at scale
+0.5, covering 8 strategies:
+
+| Channel | Strategies rendered |
+|---|---|
+| Money Mind | `CINEMATIC_STATEMENT`, `ACCUMULATION`, `COMPARISON` |
+| Legal Brief | `CINEMATIC_STATEMENT`, `VISUAL_METAPHOR`, `CAUSE_EFFECT`, `ACCUMULATION` |
+| Hidden Past | `TIMELINE`, `CINEMATIC_STATEMENT`, `COMPARISON` |
+| ch-fixture | `TIMELINE`, `IMAGE_EVIDENCE`, `ACCUMULATION`, `SCALE_COMPARISON` |
+
+**An earlier set of these clips was not the evidence it looked like.**
+`render-beat-clips.mjs` passed `bRollFiles: []` and an `imageForSection` that
+always returned null, which downgraded every IMAGE_BEAT and made
+`IMAGE_EVIDENCE` unreachable. So the clips exercised only the typography path
+and never once drew a photograph — including throughout the period when
+`ImageEvidenceScene` rendered nothing at all for any beat (CHECK-REGISTER
+VIS-27). The runner now resolves each channel's real b-roll, which is why
+ch-fixture has an `IMAGE_EVIDENCE` clip here and did not before. A channel with
+no manifest still resolves to nothing, which is its honest state rather than a
+hidden one.
 
 Every clip's audio track is a **silent placeholder**, not a voiceover. No TTS is
 reachable here (`edge-tts` is absent and every TTS host is refused by the egress
