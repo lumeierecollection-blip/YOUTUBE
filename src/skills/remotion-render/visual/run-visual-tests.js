@@ -33,6 +33,7 @@ import { composeShot, composedStrategies, assertCompositionIsComplete, shotSigna
 import { assertSoundMapIsSound, buildSoundtrack, soundEventsForBeat, materialsWithCharacter, volumeFor, MIN_GAP_FRAMES, MAX_EVENTS_PER_BEAT, ROLE_TARGET_DB } from "./sound-design.js";
 import { SFX_LIBRARY } from "./sfx-library.js";
 import { undefinedIdentifiers } from "./scope-check.js";
+import { gateMotionBlur } from "./composition.js";
 import { resolveImageAssets } from "../image-assets.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -366,6 +367,33 @@ check("summarizeVisuals flags a beat that still renders an icon hero", () => {
 
 // ─────────────────────────────────────────────────────────────────────────────
 console.log("\nno dead code");
+
+check("MOT-18 — motion blur appears only inside a transition subtree", () => {
+  // CHECK-REGISTER lists MOT-18 as a tier-1 static check that runs every
+  // build. It did not run: `gateMotionBlur` was exported by
+  // visual/composition.js and called by nothing, which is how the dead-export
+  // check kept flagging it. A gate that is documented as enforced and is
+  // never invoked is worse than no gate — it makes the register wrong.
+  const roots = [
+    join(__dirname),
+    join(__dirname, "..", "compositions"),
+    join(__dirname, "..", "compositions", "scenes"),
+    join(__dirname, "..", "compositions", "scenes", "elements"),
+    join(__dirname, "..", "effects"),
+  ].filter((d) => existsSync(d));
+  const sourceMap = {};
+  for (const dir of roots) {
+    for (const f of readdirSync(dir)) {
+      if (!/\.(js|jsx|mjs)$/.test(f)) continue;
+      sourceMap[join(dir, f)] = readFileSync(join(dir, f), "utf-8");
+    }
+  }
+  if (Object.keys(sourceMap).length === 0) return "scanned no source files";
+  const g = gateMotionBlur(sourceMap);
+  if (g.pass) return true;
+  return `${g.outsideTransition} motion-blur signal(s) outside a transition: ` +
+    g.detail.outside.slice(0, 5).map((h) => `${h.file.split("/").slice(-2).join("/")}${h.line ? `:${h.line}` : ""}`).join(", ");
+});
 
 check("no module exports something nothing imports", () => {
   // Two pass-2 leftovers (director.planAll, strategies.strategyNames) were

@@ -594,47 +594,58 @@ export function buildCaptionPages(tokens, opts = {}) {
   const fmtPage = (page) =>
     page.words.join(" ").replace(/\s+([.,;:!?])/g, "$1");
 
-  let changed = true;
-  while (changed) {
-    changed = false;
-    for (let i = 0; i < pages.length; i++) {
-      const page = pages[i];
-      const nextStart = i + 1 < pages.length ? pages[i + 1].startMs : Infinity;
-      const displayEnd = Math.min(page.endMs, nextStart - gapMs);
-      const dur = displayEnd - page.startMs;
-      const need = Math.min(
-        caps.maxDurationMs,
-        Math.max(caps.minDurationMs, (pageChars(page) / caps.maxCPS) * 1000)
-      );
-      if (dur >= need) continue;
+  // Extracted so it can run AGAIN after the clause-boundary repair below.
+  // The repair moves a word across a boundary and moves the timing with it
+  // (`left.endMs = tok.toMs`, `right.startMs = ...`), which SHRINKS one of the
+  // two pages. That happened after this pass had already run, and nothing
+  // re-checked, so a page that satisfied minDurationMs before the repair could
+  // end up under it afterwards and stay there — the final clamp only rescues
+  // the LAST page. Seven cues in the ch-fixture SRT were short for exactly
+  // this reason, and gateCaptions had been failing on them.
+  function enforceWindows() {
+    let changed = true;
+    while (changed) {
+      changed = false;
+      for (let i = 0; i < pages.length; i++) {
+        const page = pages[i];
+        const nextStart = i + 1 < pages.length ? pages[i + 1].startMs : Infinity;
+        const displayEnd = Math.min(page.endMs, nextStart - gapMs);
+        const dur = displayEnd - page.startMs;
+        const need = Math.min(
+          caps.maxDurationMs,
+          Math.max(caps.minDurationMs, (pageChars(page) / caps.maxCPS) * 1000)
+        );
+        if (dur >= need) continue;
 
-      // Backward merge — absorb this page into the previous one.
-      if (i > 0 && canMerge(pages[i - 1], page)) {
-        const prev = pages[i - 1];
-        prev.words.push(...page.words);
-        prev.tokens.push(...page.tokens);
-        prev.endMs = page.endMs;
-        prev.text = fmtPage(prev);
-        pages.splice(i, 1);
-        changed = true;
-        break;
+        // Backward merge — absorb this page into the previous one.
+        if (i > 0 && canMerge(pages[i - 1], page)) {
+          const prev = pages[i - 1];
+          prev.words.push(...page.words);
+          prev.tokens.push(...page.tokens);
+          prev.endMs = page.endMs;
+          prev.text = fmtPage(prev);
+          pages.splice(i, 1);
+          changed = true;
+          break;
+        }
+        // Forward merge — absorb the next page into this one.
+        if (i + 1 < pages.length && canMerge(page, pages[i + 1])) {
+          const next = pages[i + 1];
+          page.words.push(...next.words);
+          page.tokens.push(...next.tokens);
+          page.endMs = next.endMs;
+          page.text = fmtPage(page);
+          pages.splice(i + 1, 1);
+          changed = true;
+          break;
+        }
+        // Fallback: extend the display window as far as the slot allows (never
+        // overlapping the next page). Keeps the text on screen during the pause.
+        page.endMs = Math.max(page.endMs, page.startMs + need);
       }
-      // Forward merge — absorb the next page into this one.
-      if (i + 1 < pages.length && canMerge(page, pages[i + 1])) {
-        const next = pages[i + 1];
-        page.words.push(...next.words);
-        page.tokens.push(...next.tokens);
-        page.endMs = next.endMs;
-        page.text = fmtPage(page);
-        pages.splice(i + 1, 1);
-        changed = true;
-        break;
-      }
-      // Fallback: extend the display window as far as the slot allows (never
-      // overlapping the next page). Keeps the text on screen during the pause.
-      page.endMs = Math.max(page.endMs, page.startMs + need);
     }
   }
+  enforceWindows();
 
   // ── Clause-boundary repair (PART 4.2 of the motion-graphics rebuild) ───────
   // Everything above closes a page purely on word/char/duration/CPS caps,
@@ -683,6 +694,11 @@ export function buildCaptionPages(tokens, opts = {}) {
       right.text = fmtPage(right);
     }
   }
+
+  // Re-run the window pass now that the repair has moved boundaries. A merge
+  // here cannot re-stranded a dangling word: the merged page ends where the
+  // right page ended, a boundary the repair above already walked.
+  enforceWindows();
 
   // Final clamp: reserve the inter-page gap, cap at maxDurationMs, and let the
   // last page hold its full minimum. Tokens clamp to the display window so the
