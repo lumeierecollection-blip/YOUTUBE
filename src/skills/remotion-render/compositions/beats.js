@@ -349,9 +349,21 @@ export function buildBeatsFromCaptions(captions, opts = {}) {
     merged.push(beat);
   }
 
+  // Round the START and the END to frames and take the difference. Rounding
+  // the start and the DURATION independently cannot preserve contiguity —
+  // round(a) + round(b - a) != round(b) in general — so two beats meeting
+  // exactly on the millisecond could still leave an uncovered frame between
+  // them, or overlap by one. An uncovered frame renders BLACK, because no
+  // beat's Sequence is mounted over it. Measured on the ch-fixture script: 30
+  // of 31 boundaries are contiguous to the millisecond, yet 12 frame
+  // boundaries were wrong — six gaps and six overlaps — and a rendered gap
+  // frame came back at stddev 5.3 against 22-28 for its neighbours.
   return merged.map((beat) => ({
     startFrame: Math.round((beat.startMs / 1000) * fps),
-    durationInFrames: Math.max(Math.round(((beat.endMs - beat.startMs) / 1000) * fps), 1),
+    durationInFrames: Math.max(
+      Math.round((beat.endMs / 1000) * fps) - Math.round((beat.startMs / 1000) * fps),
+      1,
+    ),
     text: beat.text,
     tokens: beat.tokens,
     startMs: beat.startMs,
@@ -997,7 +1009,11 @@ function authoredBeatsForSection(section, sectionTokens, sectionIndex, opts) {
     }
     prevEndMs = endMs;
 
-    const durationInFrames = Math.max(Math.round(((endMs - startMs) / 1000) * fps), 1);
+    // Same end-frame derivation as buildBeatsFromCaptions above, for the same
+    // reason: independent rounding of start and duration opens black one-frame
+    // gaps between beats that meet exactly in milliseconds.
+    const startFrameRounded = Math.round((startMs / 1000) * fps);
+    const durationInFrames = Math.max(Math.round((endMs / 1000) * fps) - startFrameRounded, 1);
     if (durationInFrames > MAX_AUTHORED_BEAT_FRAMES) {
       console.warn(
         `MG: authored beat "${authored.text}" (section ${sectionIndex}) would hold ONE concept for ` +
@@ -1014,7 +1030,7 @@ function authoredBeatsForSection(section, sectionTokens, sectionIndex, opts) {
     const anchorTokenIndex = Math.max(tokensForText.findIndex((t) => t === sectionTokens[idx]), 0);
 
     beats.push({
-      startFrame: Math.round((startMs / 1000) * fps),
+      startFrame: startFrameRounded,
       durationInFrames,
       // The REAL spoken words in this beat's window. This is the richest
       // context the visual director gets — a whole authored idea's worth of

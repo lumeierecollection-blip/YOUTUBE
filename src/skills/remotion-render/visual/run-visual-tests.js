@@ -34,6 +34,7 @@ import { assertSoundMapIsSound, buildSoundtrack, soundEventsForBeat, materialsWi
 import { SFX_LIBRARY } from "./sfx-library.js";
 import { undefinedIdentifiers } from "./scope-check.js";
 import { gateMotionBlur } from "./composition.js";
+import { parseSrtToBeats } from "../compositions/beats.js";
 import { resolveImageAssets } from "../image-assets.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -367,6 +368,25 @@ check("summarizeVisuals flags a beat that still renders an icon hero", () => {
 
 // ─────────────────────────────────────────────────────────────────────────────
 console.log("\nno dead code");
+
+check("MOT-22 — the beat timeline leaves no frame uncovered", () => {
+  // A frame no beat's Sequence covers renders BLACK. That happened because
+  // startFrame rounded startMs while durationInFrames rounded the DURATION,
+  // independently: round(a) + round(b - a) != round(b), so beats meeting
+  // exactly on the millisecond could still leave a hole. Both are now derived
+  // from the rounded END frame. This guards the property directly, on the real
+  // fixture, rather than trusting the arithmetic to stay right.
+  const srt = readFileSync(join(ROOT, "data", "tts", "ch-fixture", "movile-cave-shorts-script-vo.srt"), "utf-8");
+  const beats = parseSrtToBeats(srt, {});
+  const sorted = [...beats].sort((a, b) => a.startFrame - b.startFrame);
+  const holes = [];
+  for (let i = 1; i < sorted.length; i++) {
+    const prevEnd = sorted[i - 1].startFrame + sorted[i - 1].durationInFrames;
+    if (sorted[i].startFrame > prevEnd) holes.push(`${prevEnd}..${sorted[i].startFrame}`);
+  }
+  if (holes.length) return `${holes.length} uncovered frame range(s): ${holes.slice(0, 5).join(", ")}`;
+  return true;
+});
 
 check("MOT-18 — motion blur appears only inside a transition subtree", () => {
   // CHECK-REGISTER lists MOT-18 as a tier-1 static check that runs every
