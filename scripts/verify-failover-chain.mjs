@@ -17,7 +17,7 @@
  *
  *   node scripts/verify-failover-chain.mjs
  */
-import { mkdtempSync, writeFileSync, readFileSync, chmodSync, existsSync, rmSync } from "node:fs";
+import { mkdtempSync, writeFileSync, readFileSync, chmodSync, existsSync, rmSync, statSync, truncateSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
@@ -26,6 +26,17 @@ import { fileURLToPath } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dir = mkdtempSync(join(tmpdir(), "failover-"));
 const log = join(dir, "calls.log");
+
+// opencode-agent.js appends a real row to data/token-usage/log.jsonl for every
+// model call, including these stubbed ones. That file is a real observability
+// log, so remember how long it was and cut it back afterwards rather than
+// leaving five fabricated provider calls in it.
+const usageLog = join(ROOT, "data", "token-usage", "log.jsonl");
+const usageLogBytes = existsSync(usageLog) ? statSync(usageLog).size : null;
+const restoreUsageLog = () => {
+  if (usageLogBytes === null) { rmSync(usageLog, { force: true }); return; }
+  if (existsSync(usageLog) && statSync(usageLog).size > usageLogBytes) truncateSync(usageLog, usageLogBytes);
+};
 
 const MODELS = [
   "opencode/mimo-v2.5-free",
@@ -81,5 +92,6 @@ check("each got its full retry budget", calls.length === MODELS.length * MAX_RET
 check("runner exits non-zero once the chain is exhausted", res.status !== 0, `exit ${res.status}`);
 
 rmSync(dir, { recursive: true, force: true });
+restoreUsageLog();
 console.log(failed ? "\nFAILED" : "\nOK — a 5-provider chain is walked end to end.");
 process.exit(failed ? 1 : 0);
