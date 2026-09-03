@@ -34,6 +34,57 @@ env:
   # that field (HTTP 400 wrong_api_format) on every multi-turn call
   # (verified on live runs; see vercel/ai#15042). gemma-4-31b has
   # reasoning disabled by default, so it never emits the field.
+  # --- Two-stage provider routing (5 providers, one model each) ---------
+  #
+  # Both lists are consumed by scripts/opencode-agent.js, NOT by OpenCode's
+  # own config. OpenCode's config cannot express a fallback list: in its
+  # published schema `Config.model` is `{"type": "string"}` — a single
+  # `provider_id/model_id` — and the schema has no fallback/retry/failover
+  # key at all (sst/opencode @ d8eb3b8, packages/sdk/openapi.json). So the
+  # N-provider chain lives in our runner's `--model a,b,c,d,e` argument,
+  # which splits on commas and tries each in order with no arity limit.
+  #
+  # Ranking source: the models.dev database OpenCode itself reads
+  # (github.com/sst/models.dev @ 3daf906), providers/<p>/models/*.toml.
+  # Prices below are that file's [cost] block, in USD per million tokens.
+  # models.dev publishes NO tokens/sec field for any provider, and every
+  # provider's own pricing/throughput page is refused by this environment's
+  # egress policy, so these lists are ranked on VERIFIED PRICE ONLY. The
+  # "fastest" half of "fastest/cheapest" is unranked because no throughput
+  # number could be sourced — do not add one from memory.
+  #
+  # Stage A (discover) + Stage B (research): cheapest first. These stages
+  # only need tool_call for websearch, not reasoning; every entry has
+  # `tool_call = true` in models.dev except cerebras/gpt-oss-120b, which
+  # .opencode/opencode.json declares tool_call itself.
+  #   opencode/mimo-v2.5-free       0.00 in / 0.00 out  (Zen free tier)
+  #   mistral/ministral-3b-latest   0.04 in / 0.04 out
+  #   groq/llama-3.1-8b-instant     0.05 in / 0.08 out
+  #   google/gemini-2.5-flash-lite  0.10 in / 0.40 out
+  #   cerebras/gpt-oss-120b         0.35 in / 0.75 out
+  OPENCODE_MODELS_RESEARCH: "opencode/mimo-v2.5-free,mistral/ministral-3b-latest,groq/llama-3.1-8b-instant,google/gemini-2.5-flash-lite,cerebras/gpt-oss-120b"
+  #
+  # Stage C (write-script) — the reasoning stage. Ordered by how granular a
+  # reasoning control the provider actually exposes, then by price; cost is
+  # secondary here on purpose. Each entry's control is quoted from its
+  # models.dev TOML:
+  #   google/gemini-3.5-flash-lite  effort: minimal|low|medium|high  0.30/2.50
+  #   groq/openai/gpt-oss-120b      effort: low|medium|high          0.15/0.60
+  #   cerebras/gpt-oss-120b         effort: low|medium|high          0.35/0.75
+  #   mistral/mistral-medium-latest effort: none|high                1.50/7.50
+  #   opencode/glm-5-free           toggle only (no effort levels)   0.00/0.00
+  # Zen is last for a documented reason, not a guess: models.dev's
+  # providers/opencode/provider.toml states "Zen does not document reasoning
+  # request fields, values, bounds, translation, or passthrough".
+  #
+  # Known constraint, kept from the Cerebras-only era: the
+  # openai-compatible adapter replays `reasoning_content` in assistant
+  # history and the Cerebras API rejects that field (HTTP 400
+  # wrong_api_format) on multi-turn calls (vercel/ai#15042). Stage C runs
+  # single-turn with no tools, so it does not hit this; do NOT move
+  # cerebras/gpt-oss-120b into a tool-using stage without re-testing.
+  OPENCODE_MODELS_REASONING: "google/gemini-3.5-flash-lite,groq/openai/gpt-oss-120b,cerebras/gpt-oss-120b,mistral/mistral-medium-latest,opencode/glm-5-free"
+  # Back-compat default for any call site not yet split by stage.
   OPENCODE_MODELS: "opencode/mimo-v2.5-free,opencode/nemotron-3.5-lightning-free,google/gemini-3.5-flash-lite"
   OPENCODE_ENABLE_EXA: "1"
 
@@ -97,6 +148,15 @@ jobs:
       - name: Discover topics
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          # The other four providers in OPENCODE_MODELS_*. Names taken from
+          # each provider.toml `env` array in models.dev @ 3daf906. A key
+          # left unset in repo secrets makes that provider fail on use and
+          # the runner falls through to the next one, which is the intended
+          # degradation, not a silent skip.
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
         run: |
           set -u
           # GitHub Actions invokes `run:` blocks as `bash -e {0}` — -e is
@@ -112,7 +172,7 @@ jobs:
             --schema-file schemas/topics.json \
             --search-budget "$DISCOVERY_SEARCH_BUDGET" \
             --agent pipeline-research \
-            --model "$OPENCODE_MODELS" \
+            --model "$OPENCODE_MODELS_RESEARCH" \
             --task-label discover-topics \
             > /tmp/topics-raw.json 2> /tmp/topics-err.log
           AGENT_EXIT=$?
@@ -212,6 +272,15 @@ jobs:
       - name: Stage B — research
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          # The other four providers in OPENCODE_MODELS_*. Names taken from
+          # each provider.toml `env` array in models.dev @ 3daf906. A key
+          # left unset in repo secrets makes that provider fail on use and
+          # the runner falls through to the next one, which is the intended
+          # degradation, not a silent skip.
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           # A real topic ("YNAB raises annual subscription price by $10 in
           # 2024") broke this the direct-interpolation way: GitHub Actions
           # pastes ${{ matrix.topic }}'s literal text into the run: script,
@@ -238,7 +307,7 @@ jobs:
                 --prompt-file prompts/research.md \
                 --schema-file schemas/research.json \
                 --agent pipeline-research \
-                --model "$OPENCODE_MODELS" \
+                --model "$OPENCODE_MODELS_RESEARCH" \
                 --task-label research --channel-id "$CH" --video-id "$SLUG" \
                 > /tmp/research-raw.json 2> /tmp/research-err.log
           AGENT_EXIT=$?
@@ -271,6 +340,15 @@ jobs:
       - name: Stage C — script (one per today's format, gate-feedback retry)
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          # The other four providers in OPENCODE_MODELS_*. Names taken from
+          # each provider.toml `env` array in models.dev @ 3daf906. A key
+          # left unset in repo secrets makes that provider fail on use and
+          # the runner falls through to the next one, which is the intended
+          # degradation, not a silent skip.
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
         run: |
           set -euo pipefail
           CH="${{ matrix.channel_id }}"; SLUG="${{ matrix.slug }}"
@@ -305,7 +383,7 @@ jobs:
                     --append-system-prompt-file prompts/style-contract.md \
                     --schema-file "$SCHEMA" \
                     --agent pipeline-script \
-                    --model "$OPENCODE_MODELS" \
+                    --model "$OPENCODE_MODELS_REASONING" \
                     --task-label write-script --channel-id "$CH" --video-id "$SCRIPT_SLUG" \
                     > /tmp/script-raw-$FORMAT.json 2> /tmp/script-err-$FORMAT.log
               AGENT_EXIT=$?
