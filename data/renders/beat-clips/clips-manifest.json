@@ -1,0 +1,227 @@
+[
+  {
+    "channel": "Money Mind",
+    "channel_id": 1,
+    "script": "debt-snowball-vs-debt-avalanche-shorts-script",
+    "strategy": "CINEMATIC_STATEMENT",
+    "beat_text": "The snowball versus",
+    "frames": [
+      0,
+      64
+    ],
+    "seconds": 2.13,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/ch1-debt-snowball-vs-debt-avalanche-shorts-CINEMATIC_STATEMENT.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "Money Mind",
+    "channel_id": 1,
+    "script": "debt-snowball-vs-debt-avalanche-shorts-script",
+    "strategy": "ACCUMULATION",
+    "beat_text": "avalanche debate is",
+    "frames": [
+      52,
+      119
+    ],
+    "seconds": 2.23,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/ch1-debt-snowball-vs-debt-avalanche-shorts-ACCUMULATION.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "Money Mind",
+    "channel_id": 1,
+    "script": "debt-snowball-vs-debt-avalanche-shorts-script",
+    "strategy": "COMPARISON",
+    "beat_text": "Not choosing at all",
+    "frames": [
+      151,
+      240
+    ],
+    "seconds": 2.97,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/ch1-debt-snowball-vs-debt-avalanche-shorts-COMPARISON.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "Legal Brief",
+    "channel_id": 2,
+    "script": "what-to-say-traffic-stop-script",
+    "strategy": "CINEMATIC_STATEMENT",
+    "beat_text": "Four lines.",
+    "frames": [
+      0,
+      43
+    ],
+    "seconds": 1.43,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/ch2-what-to-say-traffic-stop-CINEMATIC_STATEMENT.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "Legal Brief",
+    "channel_id": 2,
+    "script": "what-to-say-traffic-stop-script",
+    "strategy": "VISUAL_METAPHOR",
+    "beat_text": "you stay in control.",
+    "frames": [
+      416,
+      471
+    ],
+    "seconds": 1.83,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/ch2-what-to-say-traffic-stop-VISUAL_METAPHOR.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "Legal Brief",
+    "channel_id": 2,
+    "script": "what-to-say-traffic-stop-script",
+    "strategy": "CAUSE_EFFECT",
+    "beat_text": "stops not because they're guilty, but because",
+    "frames": [
+      532,
+      618
+    ],
+    "seconds": 2.87,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/ch2-what-to-say-traffic-stop-CAUSE_EFFECT.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "Legal Brief",
+    "channel_id": 2,
+    "script": "what-to-say-traffic-stop-script",
+    "strategy": "ACCUMULATION",
+    "beat_text": "they don't know what to say —",
+    "frames": [
+      605,
+      665
+    ],
+    "seconds": 2,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/ch2-what-to-say-traffic-stop-ACCUMULATION.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "Hidden Past",
+    "channel_id": 4,
+    "script": "great-fire-of-london-script",
+    "strategy": "TIMELINE",
+    "beat_text": "In 1666, a single spark",
+    "frames": [
+      0,
+      81
+    ],
+    "seconds": 2.7,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/ch4-great-fire-of-london-TIMELINE.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "Hidden Past",
+    "channel_id": 4,
+    "script": "great-fire-of-london-script",
+    "strategy": "CINEMATIC_STATEMENT",
+    "beat_text": "in a bakery destroyed",
+    "frames": [
+      69,
+      147
+    ],
+    "seconds": 2.6,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/ch4-great-fire-of-london-CINEMATIC_STATEMENT.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "Hidden Past",
+    "channel_id": 4,
+    "script": "great-fire-of-london-script",
+    "strategy": "COMPARISON",
+    "beat_text": "But here's what most people don't know:",
+    "frames": [
+      1340,
+      1427
+    ],
+    "seconds": 2.9,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/ch4-great-fire-of-london-COMPARISON.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "Hidden Past",
+    "channel_id": 4,
+    "script": "great-fire-of-london-script",
+    "strategy": "VISUAL_METAPHOR",
+    "beat_text": "The fire had grown beyond control.",
+    "frames": [
+      2027,
+      2131
+    ],
+    "seconds": 3.47,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/ch4-great-fire-of-london-VISUAL_METAPHOR.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "ch-fixture",
+    "channel_id": "fixture",
+    "script": "movile-cave-shorts-script",
+    "strategy": "TIMELINE",
+    "beat_text": "In 1986, workers near the Black",
+    "frames": [
+      0,
+      74
+    ],
+    "seconds": 2.47,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/chfixture-movile-cave-shorts-TIMELINE.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "ch-fixture",
+    "channel_id": "fixture",
+    "script": "movile-cave-shorts-script",
+    "strategy": "ACCUMULATION",
+    "beat_text": "Sea broke into a cave that",
+    "frames": [
+      62,
+      129
+    ],
+    "seconds": 2.23,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/chfixture-movile-cave-shorts-ACCUMULATION.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "ch-fixture",
+    "channel_id": "fixture",
+    "script": "movile-cave-shorts-script",
+    "strategy": "COMPARISON",
+    "beat_text": "had been sealed for five",
+    "frames": [
+      117,
+      180
+    ],
+    "seconds": 2.1,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/chfixture-movile-cave-shorts-COMPARISON.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "ch-fixture",
+    "channel_id": "fixture",
+    "script": "movile-cave-shorts-script",
+    "strategy": "SCALE_COMPARISON",
+    "beat_text": "and thirty-five species found",
+    "frames": [
+      294,
+      370
+    ],
+    "seconds": 2.53,
+    "audio": "SILENT PLACEHOLDER (no TTS reachable)",
+    "file": "data/renders/beat-clips/chfixture-movile-cave-shorts-SCALE_COMPARISON.mp4",
+    "status": "OK"
+  }
+]
