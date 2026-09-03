@@ -19,6 +19,7 @@
     "@remotion/cli": "^4.0.503",
     "@remotion/effects": "^4.0.503",
     "@remotion/fonts": "4.0.507",
+    "@remotion/google-fonts": "^4.0.520",
     "@remotion/layout-utils": "^4.0.503",
     "@remotion/media": "4.0.507",
     "@remotion/paths": "^4.0.503",

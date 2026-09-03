@@ -68,3 +68,6 @@ github token.txt
 # reports beside them ARE tracked - those are the evidence.
 qa/critic/**/*.png
 qa/critic/**/frames/
+
+# QA clip renders (regenerate with the qa-scripts / remocn-demo runners)
+data/renders/
