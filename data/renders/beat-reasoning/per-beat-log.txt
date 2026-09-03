@@ -2,169 +2,355 @@
 ==============================================================================
 CHANNEL 1  Money Mind  [ch-01]
 ==============================================================================
-  candidate photos available: 0  (no b-roll manifest at /home/user/YOUTUBE/src/skills/remotion-render/b-roll-manifest-ch-01.json)
+  candidate photos available: 1  (1 from data/asset-library/index.json; no b-roll manifest for ch-01)
 
   SCRIPT: debt-snowball-vs-debt-avalanche-shorts-script  (31 beats)
   BEAT 1/31
     SCRIPT LINE: The snowball versus
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (snowball, versu) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 2/31
     SCRIPT LINE: avalanche debate is
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (avalanche, debate) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 3/31
     SCRIPT LINE: a $215 question.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line ($215, question.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 4/31
     SCRIPT LINE: Not choosing at all
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (choosing) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 5/31
     SCRIPT LINE: costs you $13,600.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (cost, $13600.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 6/31
     SCRIPT LINE: Avalanche pays the
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (avalanche, pays) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 7/31
     SCRIPT LINE: highest interest first.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (highest, interest, first.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 8/31
     SCRIPT LINE: It wins the math.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (wins, math.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 9/31
     SCRIPT LINE: On a realistic $10,636
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (realistic, $10636) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 10/31
     SCRIPT LINE: in debt, it finished
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (debt, finished) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 11/31
     SCRIPT LINE: in 27 months with
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (month) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 12/31
     SCRIPT LINE: $2,838 in interest.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line ($2838, interest.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 13/31
     SCRIPT LINE: Snowball pays the
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (snowball, pays) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 14/31
     SCRIPT LINE: It took 28
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (took) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 15/31
     SCRIPT LINE: months and $3,053.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (month, $3053.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 16/31
     SCRIPT LINE: A gap of
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (none) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 17/31
     SCRIPT LINE: just $215.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line ($215.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 18/31
     SCRIPT LINE: But the calculators miss the point.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (calculator, miss, point.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 19/31
     SCRIPT LINE: A Kellogg study of 6,000 debt settlement
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (kellogg, study, debt, settlement) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 20/31
     SCRIPT LINE: clients found the people who actually finished
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (client, found, people, actually, finished) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 21/31
     SCRIPT LINE: were the ones who closed accounts early.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (ones, closed, account, early.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 22/31
     SCRIPT LINE: account in month four.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (account, month, four.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 23/31
     SCRIPT LINE: The avalanche closes nothing
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (avalanche, clos, nothing) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 24/31
     SCRIPT LINE: until month ten.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (month, ten.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 25/31
     SCRIPT LINE: Small wins keep people going.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (small, wins, keep, people, going.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 26/31
     SCRIPT LINE: So the real answer?
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (real, answer) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 27/31
     SCRIPT LINE: Avalanche, if you trust your discipline.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (avalanche, trust, discipline.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 28/31
     SCRIPT LINE: Snowball, if you've quit
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (snowball, youve, quit) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 29/31
     SCRIPT LINE: a plan before.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (plan, before.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 30/31
     SCRIPT LINE: Either beats paying minimums.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (either, beat, paying, minimums.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
   BEAT 31/31
     SCRIPT LINE: Follow for the numbers.
-    CANDIDATES CONSIDERED: none — no photo source returned any candidate for this beat
+    CANDIDATES CONSIDERED: 1
+      [1] source_name:   loc
+          source_url:    http://www.loc.gov/item/2021670895/
+          search_query:  piggy bank savings
+          dimensions:    2281x2448 (measured from the file)
+          source_text:   title=MISSING — not provided by the source; description=MISSING — not provided by the source; alt=MISSING — not provided by the source
+          verdict:       does not fit — no concrete term from the script line (follow, numbers.) appears in any source-provided text; the only remaining link would be what the image looks like, which is not evidence
     PICKED: none
     UNMATCHED GAP: no candidate's source-provided text names anything the script line names
 
 ==============================================================================
 CHANNEL 2  Legal Brief  [ch-02]
 ==============================================================================
-  candidate photos available: 0  (no b-roll manifest at /home/user/YOUTUBE/src/skills/remotion-render/b-roll-manifest-ch-02.json)
+  candidate photos available: 0  (0 from data/asset-library/index.json; no b-roll manifest for ch-02)
 
   SCRIPT: what-to-say-traffic-stop-script  (80 beats)
   BEAT 1/80
@@ -576,7 +762,7 @@ CHANNEL 3  AI Tested  [ch-03]
 ==============================================================================
 CHANNEL 4  Hidden Past  [ch-04]
 ==============================================================================
-  candidate photos available: 0  (no b-roll manifest at /home/user/YOUTUBE/src/skills/remotion-render/b-roll-manifest-ch-04.json)
+  candidate photos available: 0  (0 from data/asset-library/index.json; no b-roll manifest for ch-04)
 
   SCRIPT: great-fire-of-london-script  (92 beats)
   BEAT 1/92
@@ -1108,7 +1294,7 @@ CHANNEL 48  Factory Floor  [ch-48]
 ==============================================================================
 CHANNEL fixture  (ch-fixture — not a production channel)  [ch-fixture]
 ==============================================================================
-  candidate photos available: 15
+  candidate photos available: 15  (0 from data/asset-library/index.json; 15 from b-roll-manifest-ch-fixture.json (no query recorded by that format))
 
   SCRIPT: movile-cave-shorts-script  (29 beats)
   BEAT 1/29

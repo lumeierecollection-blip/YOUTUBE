@@ -17,6 +17,8 @@ export function parseUnsplashPhoto(photo) {
     sourceUrl: (photo.links && photo.links.html) || "",
     downloadUrl: `${base}&w=${TARGET_WIDTH}&q=90&fm=jpg`,
     title: photo.alt_description || photo.description || "",
+    // Unsplash returns these as two distinct fields; keep them distinct.
+    sourceText: { alt: photo.alt_description || "", description: photo.description || "" },
     license: "UNSPLASH",
     licenseRaw: "Unsplash License",
     attribution: photo.user && photo.user.name ? `Photo by ${photo.user.name} on Unsplash` : "Unsplash",

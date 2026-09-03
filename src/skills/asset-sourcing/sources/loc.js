@@ -28,6 +28,7 @@ export function parseLocItem(item) {
     sourceUrl: item.id || item.url || "",
     downloadUrl: largest,
     title: item.title || "",
+    sourceText: { title: item.title || "" },
     license: "PD",
     licenseRaw: item.rights_advisory && item.rights_advisory.length ? item.rights_advisory.join("; ") : "No known restrictions (Library of Congress)",
     attribution: "Library of Congress",

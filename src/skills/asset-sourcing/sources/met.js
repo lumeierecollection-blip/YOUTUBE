@@ -17,6 +17,7 @@ export function parseMetObject(obj) {
     sourceUrl: obj.objectURL || `https://www.metmuseum.org/art/collection/search/${obj.objectID}`,
     downloadUrl: url,
     title: obj.title || "",
+    sourceText: { title: obj.title || "" },
     license: "CC0",
     licenseRaw: "Met Museum Open Access (CC0)",
     attribution: obj.creditLine || obj.artistDisplayName || "The Metropolitan Museum of Art",

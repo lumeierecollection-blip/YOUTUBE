@@ -31,6 +31,7 @@ export function parseNaraRecord(record) {
     sourceUrl: `https://catalog.archives.gov/id/${r.naId}`,
     downloadUrl: image.objectUrl,
     title: r.title || "",
+    sourceText: { title: r.title || "" },
     license: "PD",
     licenseRaw: "US federal record (National Archives)",
     attribution: "National Archives and Records Administration (NARA)",

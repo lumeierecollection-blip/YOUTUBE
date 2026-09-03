@@ -23,6 +23,14 @@ export function parseWikimediaResponse(json) {
       sourceUrl: `https://commons.wikimedia.org/wiki/${encodeURIComponent(page.title || "")}`,
       downloadUrl: info.url,
       title: page.title || "",
+      // extmetadata is already requested, so ImageDescription costs nothing
+      // extra and is the only real description Commons gives us.
+      sourceText: {
+        title: page.title || "",
+        description: meta.ImageDescription && meta.ImageDescription.value
+          ? String(meta.ImageDescription.value).replace(/<[^>]+>/g, "").trim()
+          : "",
+      },
       license,
       licenseRaw: licenseRaw || null,
       attribution: artist ? `${artist} via Wikimedia Commons` : "Wikimedia Commons",

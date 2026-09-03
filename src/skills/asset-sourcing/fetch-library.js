@@ -238,6 +238,15 @@ async function main() {
       query,
       sourceApi: candidate.sourceApi,
       sourceUrl: candidate.sourceUrl,
+      // The source API's OWN text, kept verbatim and kept separate by which
+      // field it came from. This used to be dropped here: every source module
+      // returned a title, fetch-library used it for the slug and for warnings,
+      // and then never wrote it down. That made it impossible for anything
+      // downstream to justify using a picture from the source's own words —
+      // the only evidence that counts — so a candidate could only ever be
+      // matched on what someone guessed it looked like. Absent fields stay
+      // absent; nothing here is back-filled with a stand-in.
+      sourceText: candidate.sourceText || {},
       downloadUrl: candidate.downloadUrl,
       license: normalizeLicense(candidate.license),
       attribution: candidate.attribution,

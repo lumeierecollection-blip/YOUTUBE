@@ -16,7 +16,7 @@ import { fileURLToPath } from "node:url";
 import { buildMgPackage } from "../compositions/mg-package.js";
 import { chunkTextClauseAware } from "../compositions/beats.js";
 import { narrationSections } from "../../../utils/script-narration.js";
-import { reasonBeat, formatBeatLog, readDimensions, MISSING } from "./beat-photo-reasoning.mjs";
+import { reasonBeat, formatBeatLog, readDimensions, isMissing, MISSING } from "./beat-photo-reasoning.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const RENDER_DIR = join(__dirname, "..");
@@ -46,29 +46,90 @@ function findScriptPairs(channel) {
 /**
  * Candidate photos for a channel, with the exact five required fields.
  * A field the source did not supply is MISSING — never omitted, never guessed.
+ *
+ * Two pools are read, and they differ in what they can actually prove:
+ *
+ *   data/asset-library/index.json — written by asset-sourcing/fetch-library.js,
+ *   which records the search query it used and the source API's own text
+ *   (`sourceText`, kept under the field name that API uses: Commons gives a
+ *   title and a description, Pexels gives alt-text, and so on). Entries here
+ *   can carry real evidence.
+ *
+ *   b-roll-manifest-<channel>.json — an older, hand-written manifest. It has
+ *   no query field at all and its `content` key is a production note somebody
+ *   typed while sourcing, not something the source returned, so it is NOT
+ *   passed as evidence. Entries from here can only ever go unmatched, which
+ *   is the honest outcome rather than a hidden one.
  */
+/** On-disk bytes if we have them, else the width/height sourcing measured. */
+function measureAsset(a) {
+  const onDisk = readDimensions(join(RENDER_DIR, "public", a.publicPath || ""));
+  if (!isMissing(onDisk)) return onDisk;
+  if (a.width && a.height) return { width: a.width, height: a.height, measured: true };
+  return MISSING;
+}
+
 function loadCandidates(channel) {
+  const candidates = [];
+  const notes = [];
+
+  const libPath = join(ROOT, "data", "asset-library", "index.json");
+  if (existsSync(libPath)) {
+    const lib = JSON.parse(readFileSync(libPath, "utf-8"));
+    const assets = (lib.assets || lib.files || (Array.isArray(lib) ? lib : [])).filter(
+      (a) => a.channelId === channel.channel_id,
+    );
+    for (const a of assets) {
+      const st = a.sourceText || {};
+      candidates.push({
+        source_name: a.sourceApi || MISSING,
+        source_url: a.sourceUrl || MISSING,
+        search_query: a.query || MISSING,
+        // Prefer the bytes on disk; fall back to what the sourcing pass
+        // measured with sharp, which is also a measurement, not a guess.
+        // readDimensions returns the MISSING marker (truthy) rather than null,
+        // so this has to test it, not rely on ||.
+        dimensions: measureAsset(a),
+        source_text: {
+          title: st.title || MISSING,
+          description: st.description || MISSING,
+          alt: st.alt || MISSING,
+        },
+        _local: a.publicPath,
+      });
+    }
+    notes.push(`${assets.length} from data/asset-library/index.json`);
+  } else {
+    notes.push("no data/asset-library/index.json");
+  }
+
   const manifestPath = join(RENDER_DIR, `b-roll-manifest-${channel.channel_id}.json`);
-  if (!existsSync(manifestPath)) return { candidates: [], note: `no b-roll manifest at ${manifestPath}` };
-  const m = JSON.parse(readFileSync(manifestPath, "utf-8"));
-  const candidates = (m.files || []).map((f) => ({
-    source_name: m.source || MISSING,
-    source_url: f.source_url || MISSING,
-    // The sourcing pass did not record the query it searched with. That is a
-    // real hole in the manifest schema, so it is reported as one.
-    search_query: MISSING,
-    dimensions: readDimensions(join(RENDER_DIR, f.local)),
-    source_text: {
-      // The ONLY text the source itself returned. `content` in this manifest is
-      // a production note written while sourcing, so it is not admissible as
-      // evidence of what the picture shows, and is deliberately not passed here.
-      title: f.commons_title || MISSING,
-      description: MISSING,
-      alt: MISSING,
-    },
-    _local: f.local,
-  }));
-  return { candidates, note: null };
+  if (existsSync(manifestPath)) {
+    const m = JSON.parse(readFileSync(manifestPath, "utf-8"));
+    for (const f of m.files || []) {
+      candidates.push({
+        source_name: m.source || MISSING,
+        source_url: f.source_url || MISSING,
+        // This manifest format has no field for it. Reported, not invented.
+        search_query: MISSING,
+        dimensions: readDimensions(join(RENDER_DIR, f.local)),
+        source_text: {
+          // `content` in this manifest is a production note written while
+          // sourcing, so it is not admissible as evidence of what the picture
+          // shows, and is deliberately not passed here.
+          title: f.commons_title || MISSING,
+          description: MISSING,
+          alt: MISSING,
+        },
+        _local: f.local,
+      });
+    }
+    notes.push(`${(m.files || []).length} from ${`b-roll-manifest-${channel.channel_id}.json`} (no query recorded by that format)`);
+  } else {
+    notes.push(`no b-roll manifest for ${channel.channel_id}`);
+  }
+
+  return { candidates, note: notes.join("; ") };
 }
 
 const OUT_DIR = join(ROOT, "data", "renders", "beat-reasoning");

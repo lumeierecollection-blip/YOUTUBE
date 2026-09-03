@@ -21,6 +21,7 @@ export function parseNasaItem(item) {
     sourceUrl: `https://images.nasa.gov/details-${data.nasa_id}`,
     downloadUrl: preview.href, // upgraded to ~orig via the collection manifest in fetchOriginal()
     title: data.title || "",
+    sourceText: { title: data.title || "" },
     license: "PD",
     licenseRaw: "NASA Image and Video Library (US Government work)",
     attribution: `NASA${data.center ? ` / ${data.center}` : ""}`,

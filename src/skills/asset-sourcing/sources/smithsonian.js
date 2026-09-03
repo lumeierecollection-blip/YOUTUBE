@@ -20,6 +20,7 @@ export function parseSmithsonianRow(row) {
     sourceUrl: descriptive.guid || descriptive.record_link || "",
     downloadUrl: largest.url,
     title: (content.freetext && content.freetext.name && content.freetext.name[0] && content.freetext.name[0].content) || row.title || "",
+    sourceText: { title: (content.freetext && content.freetext.name && content.freetext.name[0] && content.freetext.name[0].content) || row.title || "" },
     license: "CC0",
     licenseRaw: "Smithsonian Open Access (CC0)",
     attribution: descriptive.unit_code ? `Smithsonian ${descriptive.unit_code}` : "Smithsonian Institution",

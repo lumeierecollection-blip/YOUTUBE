@@ -52,6 +52,7 @@ export function parseOpenverseResult(item) {
     sourceUrl: item.foreign_landing_url || item.url,
     downloadUrl: item.url,
     title: item.title || "",
+    sourceText: { title: item.title || "" },
     license,
     licenseRaw: item.license_version ? `${item.license} ${item.license_version}` : item.license,
     attribution: item.creator ? `${item.creator} via Openverse (${provider})` : `Openverse (${provider})`,

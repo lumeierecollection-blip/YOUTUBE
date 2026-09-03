@@ -63,6 +63,7 @@ export function parseRawpixelItem(item) {
     sourceUrl: item.url || `${HOST}/image/${item.id}`,
     downloadUrl,
     title: item.metadata && item.metadata.title ? item.metadata.title : "",
+    sourceText: { title: item.metadata && item.metadata.title ? item.metadata.title : "" },
     license,
     licenseRaw: (item.metadata && item.metadata.licenseUrl) || "",
     attribution: "Rawpixel (public domain tier)",

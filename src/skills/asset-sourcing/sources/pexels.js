@@ -15,6 +15,8 @@ export function parsePexelsPhoto(photo) {
     sourceUrl: photo.url || "",
     downloadUrl: url,
     title: photo.alt || "",
+    // Pexels returns alt-text, not a title. Recorded as alt.
+    sourceText: { alt: photo.alt || "" },
     license: "PEXELS",
     licenseRaw: "Pexels License",
     attribution: photo.photographer ? `Photo by ${photo.photographer} on Pexels` : "Pexels",
