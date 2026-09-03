@@ -73,7 +73,11 @@ const res = spawnSync(
    "--schema-file", join(dir, "schema.json"),
    "--model", MODELS.join(","),
    "--max-retries", String(MAX_RETRIES)],
-  { encoding: "utf-8", env: { ...process.env, PATH: `${dir}:${process.env.PATH}`, OPENCODE_RETRY_SLEEP_MS: "0" },
+  { encoding: "utf-8",
+    // Every provider needs a credential present or the runner skips it before
+    // dialling, which is the behaviour the second case below checks.
+    env: { ...process.env, PATH: `${dir}:${process.env.PATH}`, OPENCODE_RETRY_SLEEP_MS: "0",
+      MISTRAL_API_KEY: "test", GROQ_API_KEY: "test", GOOGLE_API_KEY: "test", CEREBRAS_API_KEY: "test" },
     input: "", timeout: 120000 },
 );
 
@@ -90,6 +94,29 @@ check("all 5 providers were attempted", attempted.length === 5, `attempted ${att
 check("attempted in the configured order", attempted.join(",") === MODELS.join(","), attempted.join(" -> "));
 check("each got its full retry budget", calls.length === MODELS.length * MAX_RETRIES, `${calls.length} calls, expected ${MODELS.length * MAX_RETRIES}`);
 check("runner exits non-zero once the chain is exhausted", res.status !== 0, `exit ${res.status}`);
+
+// A provider with no credentials cannot succeed, so it must be skipped before
+// any attempt is spent on it — and a keyless OpenCode Zen free model must NOT
+// be skipped, because Zen serves those with a literal "public" key.
+writeFileSync(log, "");
+const res2 = spawnSync(
+  process.execPath,
+  [join(ROOT, "scripts", "opencode-agent.js"),
+   "--prompt-file", join(dir, "prompt.md"),
+   "--schema-file", join(dir, "schema.json"),
+   "--model", MODELS.join(","),
+   "--max-retries", "1"],
+  { encoding: "utf-8",
+    env: { ...process.env, PATH: `${dir}:${process.env.PATH}`,
+      MISTRAL_API_KEY: "", GROQ_API_KEY: "", GOOGLE_API_KEY: "",
+      GOOGLE_GENERATIVE_AI_API_KEY: "", GEMINI_API_KEY: "", CEREBRAS_API_KEY: "" },
+    input: "", timeout: 120000 },
+);
+const calls2 = existsSync(log) ? readFileSync(log, "utf-8").trim().split("\n").filter(Boolean) : [];
+check("keyless run dials only the Zen free model", calls2.join(",") === "opencode/mimo-v2.5-free", calls2.join(", ") || "(none)");
+check("and says which entries it skipped, rather than failing silently",
+  /Skipping mistral\/|Skipping groq\/|Skipping google\/|Skipping cerebras\//.test(res2.stderr || ""),
+  (res2.stderr || "").split("\n").filter((l) => l.startsWith("Skipping")).join(" | ") || "(no skip lines)");
 
 rmSync(dir, { recursive: true, force: true });
 restoreUsageLog();

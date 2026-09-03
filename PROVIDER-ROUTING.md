@@ -82,6 +82,42 @@ budget.
 are from the docs' own source files in the repository the site is built from,
 at a pinned commit.
 
+### Credentials decide which entries are actually in the chain
+
+`opencode-agent.js` drops a model whose provider has no credential set, before
+spending any attempt on it, and prints what it skipped. Without that, a chain
+whose first four keys are unset looks exactly like one that got its first
+choice: it succeeds, on its last entry, silently. For the reasoning stage that
+is the difference between a 4-level effort control and a bare toggle.
+
+OpenCode Zen is deliberately exempt. With no key it keeps only the models
+priced at 0 and authenticates them with a literal `"public"` key:
+
+```ts
+      if (!ok) {
+        for (const [key, value] of Object.entries(input.models)) {
+          if (value.cost.input === 0) continue
+          delete input.models[key]
+        }
+      }
+
+      return {
+        autoload: Object.keys(input.models).length > 0,
+        options: ok ? {} : { apiKey: "public" },
+      }
+```
+
+— `packages/opencode/src/provider/provider.ts`, sst/opencode @ `d8eb3b8`.
+
+That is not a curiosity, it is how this pipeline has been running. The switch
+to Zen free models landed 2026-08-31 00:26 UTC in `cea3b45` with no
+`OPENCODE_API_KEY` added, and three topic runs succeeded after it the same day.
+So the chain always has a working last resort, and the skip rule must never
+remove it.
+
+The rule fails open: a provider not in the table is never skipped, so being
+wrong about an env var name cannot silently shorten the chain.
+
 ## 2. Ranking the five providers — price only, and why
 
 Source: the models.dev database OpenCode itself reads, `sst/models.dev` at

@@ -310,6 +310,43 @@ function logTokenUsage({ model, agent, task, channelId, videoId, cost, usage, ok
   }
 }
 
+/**
+ * Which env vars each provider authenticates with. Taken from the `env` array
+ * in that provider's models.dev provider.toml (sst/models.dev @ 3daf906),
+ * which is the same database OpenCode itself resolves providers against.
+ *
+ * OpenCode Zen is the exception and is deliberately absent: with no key it
+ * keeps only the models priced at 0 and authenticates them with a literal
+ * "public" key (packages/opencode/src/provider/provider.ts, the `opencode`
+ * block). A free Zen model is therefore reachable with no credentials at all,
+ * which is how this pipeline has been running since 2026-08-31.
+ */
+const PROVIDER_ENV = {
+  google: ["GOOGLE_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY", "GEMINI_API_KEY"],
+  groq: ["GROQ_API_KEY"],
+  mistral: ["MISTRAL_API_KEY"],
+  cerebras: ["CEREBRAS_API_KEY"],
+};
+
+/**
+ * A provider whose key is absent cannot succeed, so trying it burns every
+ * retry in its budget and buries the real reason under N identical auth
+ * errors. Skipping it loudly is the point: a chain that quietly lands on its
+ * last entry looks identical to one that got its first choice, which for the
+ * reasoning stage is the difference between the best reasoning control
+ * available and the weakest.
+ *
+ * Fails open. An unknown provider is never skipped — being wrong about a
+ * provider's env var must not silently remove it from the chain.
+ */
+function credentialsMissing(model) {
+  const [provider] = String(model).split("/");
+  const vars = PROVIDER_ENV[provider];
+  if (!vars) return null;
+  if (vars.some((v) => process.env[v])) return null;
+  return `no credentials for provider "${provider}" (set one of: ${vars.join(", ")})`;
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const { "prompt-file": promptFile, "schema-file": schemaFile, agent, model: modelArg } = args;
@@ -345,7 +382,20 @@ async function main() {
   const basePrompt = systemPrompt + readFileSync(promptFile, "utf-8");
   const schema = JSON.parse(readFileSync(schemaFile, "utf-8"));
   const stdinContext = readStdin();
-  const models = String(modelArg).split(",").map((m) => m.trim()).filter(Boolean);
+  const requested = String(modelArg).split(",").map((m) => m.trim()).filter(Boolean);
+  const models = [];
+  for (const m of requested) {
+    const why = credentialsMissing(m);
+    if (why) { console.error(`Skipping ${m}: ${why}`); continue; }
+    models.push(m);
+  }
+  if (models.length === 0) {
+    console.error(`No usable model in --model "${modelArg}": every entry is missing its provider credentials.`);
+    process.exit(1);
+  }
+  if (models.length < requested.length) {
+    console.error(`Model chain: ${models.length} of ${requested.length} entries usable -> ${models.join(", ")}`);
+  }
 
   const ajv = new Ajv({ allErrors: true, strict: false });
   const validate = ajv.compile(schema);

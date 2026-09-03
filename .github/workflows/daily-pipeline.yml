@@ -150,9 +150,13 @@ jobs:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
           # The other four providers in OPENCODE_MODELS_*. Names taken from
           # each provider.toml `env` array in models.dev @ 3daf906. A key
-          # left unset in repo secrets makes that provider fail on use and
-          # the runner falls through to the next one, which is the intended
-          # degradation, not a silent skip.
+          # left unset in repo secrets arrives here as an empty string, and
+          # opencode-agent.js drops that provider from the chain before
+          # dialling it, printing which entries it skipped. So an unset key
+          # costs nothing and is visible; it does not quietly become the
+          # reason the reasoning stage ran on the weakest model in the list.
+          # OpenCode Zen needs no key for its free models, so the chain always
+          # has a working last resort.
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
