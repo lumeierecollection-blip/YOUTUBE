@@ -56,6 +56,11 @@ data/audit/visual-tests/
 # output convention as the full renders above.
 data/renders/clips/
 
+# scripts/video-review.js's frame-extraction output — throwaway review
+# evidence regenerated from any render on demand, same convention as the
+# mute-test frames below.
+data/renders/_review/
+
 # Per-beat frames from qa-scripts/mute-test.mjs — regenerated from any
 # render on demand, and one set per render adds ~4MB. The frames worth
 # keeping are copied up to qa/pass3/ by hand and committed there.
