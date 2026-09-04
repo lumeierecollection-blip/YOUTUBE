@@ -174,18 +174,61 @@ Two distinctions worth keeping straight, because both are easy to overstate:
   carry `reasoning_options = []`. The reasoning stage previously had no
   reasoning control available on its first two providers at all.
 
-## 4. Mistral free-tier limits — NOT VERIFIED
+## 4. Mistral free-tier limits — Mistral does not publish them
 
 The task called for the exact current free-tier limit quoted from Mistral's own
-page. That page could not be opened here: `mistral.ai`, `docs.mistral.ai`, and
-`help.mistral.ai` are all refused by the egress proxy (`EGRESS_BLOCKED` via
-WebFetch, `CONNECT tunnel failed, response 403` via curl). A web search returned
-figures, but a search engine's synthesis of a page is not a line quoted from
-that page, so no number is recorded here. **This is an open gap**, not a
-resolved item; it needs re-checking from an environment that can reach
-`docs.mistral.ai`.
+page. `mistral.ai`, `docs.mistral.ai` and `help.mistral.ai` are all refused by
+this environment's egress proxy, so the rendered page could not be opened. But
+`github.com/mistralai/platform-docs-public` — the source docs.mistral.ai is
+built from — is reachable, and reading it settles the question better than the
+rendered page would have.
 
-Mistral is still in both chains — its *pricing* is quoted above from
-models.dev, which is a separate question from its free-tier rate limits — but
-nothing in this repo should be tuned to an assumed Mistral free-tier quota
-until that page is actually read.
+**There is no number to quote. Mistral does not publish one.**
+
+`public/admin/user-management-finops/tier.md`, at commit
+`54bf814a14e01a96852418c2207071027ce7200a`, names the three limit types:
+
+> We enforce three types of limits:
+>
+> - **Requests per second (RPS)**: the maximum number of concurrent API requests.
+> - **Tokens per minute**: throughput limit for token processing (input and output tokens combined).
+> - **Tokens per month**: overall consumption cap.
+
+and describes the free tier without a single figure:
+
+> Free mode is enabled by default with limited rate limits, intended for
+> **evaluation and prototyping**. To increase your limits, upgrade to a **Scale**
+> plan.
+
+Its tier table says the same:
+
+> | $0 / €0 (Free mode) | Free | Limited rate limits for evaluation and prototyping |
+
+The values are per-account and live behind authentication. Both that page and
+`src/content/en/docs/admin/billing-usage/usage-limits/page.mdx` send you to your
+own console for them:
+
+> Visit Limits to see the current rate limits and usage tier for your Workspace.
+> — `https://admin.mistral.ai/plateforme/limits`
+
+A grep of the whole English documentation tree for any numeric rate limit
+(`requests per second|minute`, `tokens per minute|month`, `RPS`, `TPM` preceded
+by digits) returns nothing.
+
+**So the widely-repeated "1 request/second, 500,000 tokens/minute, 1 billion
+tokens/month" figures do not come from Mistral's documentation.** A web search
+returns them confidently, which is exactly why a search engine's synthesis was
+not admissible here: they trace to third-party aggregators or to someone's
+console, not to a page Mistral publishes. Nothing in this repo should be tuned
+to them.
+
+The operational consequence is the one this repo already lives with for
+Cerebras: a provider's real quota is discovered at runtime from its error
+responses, not read off a doc page in advance. The failover chain and the
+capped search budget are the right shape for that, and stay as they are.
+
+Mistral's pricing is a separate question from its rate limits, and is quoted in
+§2 above from models.dev. That is still an aggregator rather than Mistral's own
+page: this docs repository carries no pricing figures either — `src/content/en/
+docs/inference/pricing/` contains only a `_meta.md`, so the pricing page is
+generated outside it.
