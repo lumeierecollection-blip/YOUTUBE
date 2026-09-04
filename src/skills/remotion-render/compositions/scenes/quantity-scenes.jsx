@@ -9,6 +9,12 @@ import { shotFrame } from "./stage.jsx";
 import { StackedMass } from "./elements/chart.jsx";
 import { BalanceBeam } from "./elements/balance.jsx";
 import { MorphShape } from "./elements/transform.jsx";
+// remocn number treatments — see REMOCN-COMPONENTS.md for the per-page
+// verified install command behind each of these four.
+import { RollingNumber } from "../../components/remocn/rolling-number";
+import { NumberWheel } from "../../components/remocn/number-wheel";
+import { SlotMachineRoll } from "../../components/remocn/slot-machine-roll";
+import { MatrixDecode } from "../../components/remocn/matrix-decode";
 
 /**
  * Quantity scenes — the four ways this renderer explains a NUMBER.
@@ -49,6 +55,83 @@ function currencySymbol(unit) {
   if (/euro/i.test(u)) return "€";
   if (/dollar|cent|usd/i.test(u)) return "$";
   return "";
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NUMBER TREATMENTS — how a figure ARRIVES at its value.
+//
+// The settle-in that already lived in this file is `Figure` with a progress
+// `p`: the value counts up through its formatter and lands. That stays the
+// default and is untouched — every existing call site keeps its exact
+// behaviour, because a beat with no declared treatment renders the same
+// pixels it did before.
+//
+// These four are alternatives, from the remocn registry, installed and
+// verified per-component against their own doc pages (see
+// REMOCN-COMPONENTS.md for each install command and the diff against the
+// registry source). They are wired here rather than in primitives.jsx
+// because choosing a treatment is a QUANTITY-SCENE decision; `Figure` stays
+// a dumb positioned numeral.
+//
+// Selection is deterministic. `beat.visualPlan.numberTreatment` names one
+// explicitly when the director asks for it; otherwise a beat keeps the
+// settle-in default. Nothing is chosen at random, so a re-render of the same
+// beat produces the same treatment.
+//
+// All four take just a value or a string and render only the digits, so the
+// surrounding layout — position, unit, halo, alignment — is still this
+// file's job, exactly as with `Figure`.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const NUMBER_TREATMENTS = ["settle", "rolling", "number-wheel", "slot-machine", "matrix-decode"];
+
+/**
+ * Which treatment this beat asked for. Unknown or absent → "settle", so a
+ * typo in a plan degrades to the existing behaviour instead of rendering
+ * nothing.
+ */
+export function numberTreatmentOf(beat) {
+  const asked = beat && beat.visualPlan && beat.visualPlan.numberTreatment;
+  return NUMBER_TREATMENTS.includes(asked) ? asked : "settle";
+}
+
+/**
+ * A figure with a treatment. Drop-in for `Figure`: same positioning props,
+ * same unit rendering, same halo. Only the digits' arrival differs.
+ */
+export function TreatedFigure({
+  x, y, value, unit = "", p = 1, color, size = 64, fontFamily, align = "left", format, halo = null,
+  treatment = "settle",
+}) {
+  if (treatment === "settle") {
+    return (
+      <Figure x={x} y={y} value={value} unit={unit} p={p} color={color} size={size}
+        fontFamily={fontFamily} align={align} format={format} halo={halo} />
+    );
+  }
+  const fmt = typeof format === "function" ? format : (v) => Math.round(v).toLocaleString("en-US");
+  const shell = {
+    position: "absolute", left: x, top: y, color, fontFamily,
+    textShadow: halo ? `0 0 12px ${halo}, 0 0 7px ${halo}, 0 0 4px ${halo}` : undefined,
+    transform: align === "center" ? "translateX(-50%)" : align === "right" ? "translateX(-100%)" : "none",
+    display: "flex", alignItems: "baseline", gap: size * 0.1,
+  };
+  let digits = null;
+  if (treatment === "rolling") {
+    digits = <RollingNumber from={0} to={value} fontSize={size} color={color} />;
+  } else if (treatment === "number-wheel") {
+    digits = <NumberWheel from={0} to={value} fontSize={size} color={color} />;
+  } else if (treatment === "slot-machine") {
+    digits = <SlotMachineRoll from={fmt(0, value)} to={fmt(value, value)} fontSize={size} color={color} fontWeight={800} />;
+  } else if (treatment === "matrix-decode") {
+    digits = <MatrixDecode text={String(fmt(value, value))} fontSize={size} color={color} fontWeight={800} />;
+  }
+  return (
+    <div style={shell}>
+      {digits}
+      {unit ? <span style={{ fontSize: size * 0.42, fontWeight: 700 }}>{unit}</span> : null}
+    </div>
+  );
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

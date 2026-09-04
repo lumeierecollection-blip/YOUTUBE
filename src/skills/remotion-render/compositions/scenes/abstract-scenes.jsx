@@ -8,6 +8,13 @@ import { progressOf } from "../../visual/states.js";
 import { Plane, shotFrame } from "./stage.jsx";
 import { PressureWalls } from "./elements/pressure.jsx";
 import { ATMOSPHERE_HORIZON_Y } from "../../layout/slots.js";
+// remocn text-entrance and pull-quote emphasis. Installed and verified
+// per-component against their own doc pages — see REMOCN-COMPONENTS.md for
+// each install command and the diff against the registry source.
+import { LineByLineSlide } from "../../components/remocn/line-by-line-slide";
+import { SoftBlurIn } from "../../components/remocn/soft-blur-in";
+import { MicroScaleFade } from "../../components/remocn/micro-scale-fade";
+import { InlineHighlight } from "../../components/remocn/inline-highlight";
 
 /**
  * Abstract scenes — the two that carry a beat when nothing concrete is
@@ -167,6 +174,70 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
 // stage-16 FRM-02: 1152 placed the ridge band straddling safe-bottom
 // 1248 under the captionDrop(110) + camera mapping.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// TEXT ENTRANCE + PULL-QUOTE EMPHASIS.
+//
+// This scene is where a phrase IS the picture (CINEMATIC_STATEMENT, the
+// terminal fallback), so it is where text entrance belongs — NOT in
+// structure-scenes.jsx, which draws timelines, processes, cause/effect and
+// relationships and contains no text-as-subject at all.
+//
+// The existing entrance — opacity and a 20px rise driven by `eSubject`, so the
+// words LAND on the anchor rather than starting there — remains the default and
+// is unchanged. A beat that declares nothing renders exactly the pixels it did
+// before; that property is why the anchor-frame check (CHECK-REGISTER VIS-26)
+// still means what it meant.
+//
+// `beat.visualPlan.textEntrance` selects an alternative; `emphasis` names one
+// word inside the phrase to carry Inline Highlight. Both are deterministic: an
+// unknown value falls back to the default rather than rendering nothing.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const TEXT_ENTRANCES = ["default", "line-by-line-slide", "soft-blur-in", "micro-scale-fade"];
+
+export function textEntranceOf(beat) {
+  const asked = beat && beat.visualPlan && beat.visualPlan.textEntrance;
+  return TEXT_ENTRANCES.includes(asked) ? asked : "default";
+}
+
+/**
+ * The phrase, rendered with whichever entrance this beat asked for.
+ * `style` carries the type treatment the scene already computed, so the size,
+ * weight, tracking and colour decisions stay in one place.
+ */
+function PhraseText({ phrase, entrance, emphasis, style }) {
+  // Inline Highlight emphasises ONE word inside an otherwise-plain phrase, so
+  // it composes with the phrase rather than replacing its entrance. Only a
+  // word that actually occurs is used — a mismatch renders the plain phrase
+  // instead of silently highlighting nothing.
+  if (emphasis && phrase.includes(emphasis)) {
+    const at = phrase.indexOf(emphasis);
+    return (
+      <div style={style}>
+        <InlineHighlight
+          before={phrase.slice(0, at)}
+          highlight={emphasis}
+          after={phrase.slice(at + emphasis.length)}
+          baseColor={style.color}
+          highlightColor={style.accentColor || style.color}
+          fontSize={style.fontSize}
+          fontWeight={style.fontWeight}
+        />
+      </div>
+    );
+  }
+  if (entrance === "line-by-line-slide") {
+    return <div style={style}><LineByLineSlide text={phrase} fontSize={style.fontSize} color={style.color} fontWeight={style.fontWeight} /></div>;
+  }
+  if (entrance === "soft-blur-in") {
+    return <div style={style}><SoftBlurIn text={phrase} fontSize={style.fontSize} color={style.color} fontWeight={style.fontWeight} /></div>;
+  }
+  if (entrance === "micro-scale-fade") {
+    return <div style={style}><MicroScaleFade text={phrase} fontSize={style.fontSize} color={style.color} fontWeight={style.fontWeight} /></div>;
+  }
+  return <div style={style}>{phrase}</div>;
+}
+
 export function CinematicStatementScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
@@ -271,18 +342,22 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
             opacity: eSubject,
             transform: `translateY(${(1 - eSubject) * 20 - settle * 6}px)`,
           }}>
-            <div style={{
-              color: colors.textPrimary,
-              fontFamily,
-              fontWeight: 800,
-              // Type scales with the shot: a tighter framing means the
-              // words are nearer, not smaller in the same frame.
-              fontSize: Math.round((phrase.length > 20 ? 56 : 72) * Math.min(1.1, f.w / 1080)),
-              letterSpacing: 1.5,
-              lineHeight: 1.1,
-            }}>
-              {phrase}
-            </div>
+            <PhraseText
+              phrase={phrase}
+              entrance={textEntranceOf(beat)}
+              emphasis={(beat.visualPlan && beat.visualPlan.supporting.emphasis) || null}
+              style={{
+                color: colors.textPrimary,
+                accentColor: colors.accent,
+                fontFamily,
+                fontWeight: 800,
+                // Type scales with the shot: a tighter framing means the
+                // words are nearer, not smaller in the same frame.
+                fontSize: Math.round((phrase.length > 20 ? 56 : 72) * Math.min(1.1, f.w / 1080)),
+                letterSpacing: 1.5,
+                lineHeight: 1.1,
+              }}
+            />
           </div>
         ) : null}
       </Plane>
