@@ -277,6 +277,47 @@ export function entityLabels(text, max = 5) {
   return [...new Set(words)].slice(0, max);
 }
 
+/**
+ * What a NUMBER at `index` is called, taken from the words beside it.
+ *
+ * COMPARISON draws two figures side by side. When both come from the
+ * writer's own `data.series` they arrive with authored labels, but the
+ * fallback path — two bare quantities plus comparison language — emitted
+ * `label: ""`, so a rendered beat showed "215" next to "13,600" with
+ * nothing on screen saying which was which. Muted, that is half a claim:
+ * the viewer sees that one is bigger and cannot see what either IS.
+ *
+ * EXTRACTED, NEVER INVENTED. The label is real words from the same
+ * sentence, nearest first, scanning backwards from the number and falling
+ * forward only if nothing qualifies behind it — the same discipline every
+ * other helper in this module follows. A wrong label is worse than none,
+ * because it asserts an identity the script never gave, so when no content
+ * word sits within `window` this returns "" and the scene draws no label
+ * rather than a guess.
+ */
+export function labelNearNumber(text, index, { maxWords = 2, window = 6 } = {}) {
+  const s = String(text || "");
+  if (!Number.isFinite(index) || index < 0) return "";
+  const isContent = (w) => w.length > 3 && !STOP.has(w.toLowerCase());
+  const tokens = (chunk) => chunk.replace(/[^\w\s'-]/g, " ").split(/\s+/).filter(Boolean);
+
+  const before = tokens(s.slice(0, index)).slice(-window);
+  const picked = [];
+  for (let i = before.length - 1; i >= 0 && picked.length < maxWords; i--) {
+    if (isContent(before[i])) picked.unshift(before[i]);
+  }
+  if (picked.length) return picked.join(" ").toUpperCase();
+
+  // Nothing behind it — look just ahead, skipping the number's own token
+  // and any unit that trails it ("$215 question" -> QUESTION).
+  const after = tokens(s.slice(index)).slice(0, window);
+  for (const w of after) {
+    if (/^\d/.test(w)) continue;
+    if (isContent(w)) return w.toUpperCase();
+  }
+  return "";
+}
+
 /** How many words a phrase or label set puts on screen. */
 export function wordsIn(value) {
   if (!value) return 0;

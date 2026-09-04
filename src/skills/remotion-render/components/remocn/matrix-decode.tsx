@@ -1,5 +1,22 @@
 "use client";
 
+// LOCAL DEVIATION from the component as published by remocn: the original
+// root element carried `background: "white"`, painting an opaque white card
+// behind the digits. Standalone that is the component's own look; embedded
+// as a number treatment it is exactly the "card furniture" this renderer's
+// rebuild exists to remove — on a black channel a real rendered frame showed
+// a white block around a green "7" with the "%" beside it, which reads as a
+// UI chip, not as a figure in the scene. The fill is now transparent so the
+// digits sit on whatever the scene already drew; nothing else is changed.
+//
+// Lifeprompt's TextScramble (lifeprompt-team/remotion-scenes,
+// src/scenes/TextAnimations/TextScramble.tsx) was read as the alternative
+// before choosing this, and rejected on its real source: it has the SAME
+// defect inverted (`<AbsoluteFill style={{ background: C.black }}>`, line
+// 31), hardcodes its palette instead of taking the channel's, is a
+// full-screen scene rather than an embeddable treatment, and prints a
+// literal "DECODING COMPLETE" sub-caption — invented on-screen words from
+// no source, which CLAUDE.md's grounding rule forbids outright.
 import { random, useCurrentFrame, useVideoConfig } from "remotion";
 
 export interface MatrixDecodeProps {
@@ -49,7 +66,6 @@ export function MatrixDecode({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "white",
       }}
     >
       <span

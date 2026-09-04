@@ -15,6 +15,7 @@
       "COMPARISON"
     ],
     "file": "data/renders/clips-15s/ch-01-motion-graphics-white-15s.mp4",
+    "visualReport": "data/renders/clips-15s/ch-01-motion-graphics-white-15s-visual-report.json",
     "status": "OK"
   },
   {
@@ -32,6 +33,7 @@
       "VISUAL_METAPHOR"
     ],
     "file": "data/renders/clips-15s/ch-02-motion-graphics-black-15s.mp4",
+    "visualReport": "data/renders/clips-15s/ch-02-motion-graphics-black-15s-visual-report.json",
     "status": "OK"
   },
   {
@@ -49,6 +51,7 @@
       "CINEMATIC_STATEMENT"
     ],
     "file": "data/renders/clips-15s/ch-04-cinematic-documentary-black-15s.mp4",
+    "visualReport": "data/renders/clips-15s/ch-04-cinematic-documentary-black-15s-visual-report.json",
     "status": "OK"
   },
   {
@@ -69,6 +72,7 @@
       "COMPARISON"
     ],
     "file": "data/renders/clips-15s/ch-fixture-motion-graphics-black-15s.mp4",
+    "visualReport": "data/renders/clips-15s/ch-fixture-motion-graphics-black-15s-visual-report.json",
     "status": "OK"
   },
   {
@@ -89,6 +93,7 @@
       "COMPARISON"
     ],
     "file": "data/renders/clips-15s/ch-fixture-minimal-white-15s.mp4",
+    "visualReport": "data/renders/clips-15s/ch-fixture-minimal-white-15s-visual-report.json",
     "status": "OK"
   }
 ]

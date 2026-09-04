@@ -17,6 +17,7 @@ import { execFileSync } from "node:child_process";
 import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
 import { buildMgPackage } from "../compositions/mg-package.js";
+import { summarizeVisuals } from "../visual/diagnostics.js";
 import { chunkTextClauseAware } from "../compositions/beats.js";
 import { paletteFromHues } from "../styles/tokens.js";
 import { narrationSections } from "../../../utils/script-narration.js";
@@ -131,11 +132,41 @@ for (const job of JOBS) {
       imageFormat: "png", crf: 20, pixelFormat: "yuv420p", chromiumOptions: { gl: "swangle" },
       concurrency: 2, scale: 0.5, timeoutInMilliseconds: 300000, logLevel: "error",
       ...(CHROME ? { browserExecutable: CHROME } : {}) });
+    /**
+     * The visual report, written next to the clip.
+     *
+     * `qa-scripts/mute-test.mjs` — which pulls each beat's ANCHOR frame so
+     * the muted-comprehension read can be done on the frames that actually
+     * carry the claim — takes `<video.mp4> <visual-report.json>` and reads
+     * `report.beats` / `report.metrics`. `render.js` has always written this
+     * file for production renders, but this clip renderer never did, so the
+     * one tool built to make that review repeatable could not be pointed at
+     * the clips it was built for, and every muted pass was done by hand
+     * against ffmpeg-seeked frames instead. `mg.visual` is already computed
+     * by buildMgPackage in exactly the shape mute-test expects — it was only
+     * ever missing the write.
+     */
+    const reportName = name.replace(/\.mp4$/, "-visual-report.json");
+    /**
+     * SCOPED TO THE FRAMES THIS CLIP ACTUALLY CONTAINS.
+     *
+     * `mg.visual` describes the whole script. Writing it beside a 15s clip
+     * pairs a 72-second report with a 15-second video, and mute-test.mjs
+     * then tries to seek 60s of beats that are not in the file — it
+     * announced "31 frames" while writing 8. Recomputing over just the
+     * rendered beats means the metrics describe THIS clip, which is also
+     * what the manifest's `strategies` list beside it already does.
+     */
+    const clipBeats = mg.beats.filter((b) => b.startFrame <= to);
+    const clipVisual = { ...summarizeVisuals(clipBeats, { fps: FPS }), renderedFrameRange: [0, to] };
+    writeFileSync(join(OUT_DIR, reportName), JSON.stringify(clipVisual, null, 2) + "\n");
     console.log(`OK   ${name}  ${(to / FPS).toFixed(1)}s  photos=${photos}  ${audioNote}`);
+    console.log(`     report -> data/renders/clips-15s/${reportName}`);
     manifest.push({ channel: c.channel_name, channel_id: c.channel_id, style: c.style,
       bg_mode: c.bg_mode, composition: id, seconds: +(to / FPS).toFixed(1), photos,
       audio: audioNote, first_line: sections[0] && sections[0].voiceover.slice(0, 80),
-      strategies, file: `data/renders/clips-15s/${name}`, status: "OK" });
+      strategies, file: `data/renders/clips-15s/${name}`,
+      visualReport: `data/renders/clips-15s/${reportName}`, status: "OK" });
   } catch (err) {
     console.log(`FAIL ${name}: ${err.message.split("\n")[0]}`);
     manifest.push({ channel: c.channel_name, status: "FAIL", error: err.message.split("\n")[0] });

@@ -27,6 +27,9 @@
  * first — the ordering bug that made the old priority chain arbitrary.
  */
 
+// text-budget.js imports nothing, so this stays acyclic.
+import { labelNearNumber } from "./text-budget.js";
+
 const lc = (s) => String(s || "").toLowerCase();
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -395,9 +398,18 @@ export function detectComparison(text, numbers, series) {
     return { confidence: 0.2, missing: `${series.length} series points is a chart, not a two-way comparison` };
   }
   if (numbers.length >= 2 && COMPARE.test(t)) {
+    // Each figure is named from the words beside it in this same sentence
+    // (labelNearNumber), not left blank: two bare numbers side by side tell
+    // a muted viewer which is bigger and nothing about what either IS.
+    // Extraction only — where no content word sits near the number the
+    // label stays empty and the scene draws none.
     return {
       confidence: 0.8,
-      pairs: numbers.slice(0, 2).map((n) => ({ label: "", value: n.value, unit: n.unit })),
+      pairs: numbers.slice(0, 2).map((n) => ({
+        label: labelNearNumber(text, n.index),
+        value: n.value,
+        unit: n.unit,
+      })),
     };
   }
   const sides = sidesFrom(text);

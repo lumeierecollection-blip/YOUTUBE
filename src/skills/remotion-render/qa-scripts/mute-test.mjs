@@ -70,16 +70,46 @@ console.log(`  generic fallback ratio  : ${m.genericFallbackRatio}`);
 console.log(`  visual states per beat  : ${m.averageStatesPerBeat}`);
 
 console.log(`\nFRAMES AT EACH BEAT'S ANCHOR (the frame the picture has to carry)`);
+/**
+ * A BEAT PAST THE END OF THE VIDEO IS REPORTED, NOT COUNTED.
+ *
+ * ffmpeg seeking beyond EOF exits 0 and writes nothing, and this loop used
+ * to print `beats.length` regardless — so pointing it at a 15s clip whose
+ * report describes the whole 72s script announced "31 frames" when 8 were
+ * on disk. A muted review that thinks it has 31 frames and has 8 is worse
+ * than one that knows it has 8: the strategies in the missing 23 look
+ * reviewed and never were.
+ */
+let written = 0;
+const missing = [];
 for (const b of beats) {
   const frame = Number.isFinite(b.anchorFrame) ? b.anchorFrame : b.startFrame + Math.floor(b.durationInFrames / 2);
   const t = frame / FPS;
   const name = `beat-${String(frame).padStart(5, "0")}-${b.strategy || "unplanned"}.png`;
-  execFileSync(FFMPEG, ["-v", "error", "-ss", String(t), "-i", videoPath, "-frames:v", "1", join(outDir, name), "-y"]);
-  console.log(
-    `  ${t.toFixed(2).padStart(6)}s  ${String(b.strategy || "-").padEnd(21)} v${b.variant ?? "-"}  ` +
-      `${String(b.words).padStart(2)} words on screen   "${b.text}"`
-  );
+  const outPath = join(outDir, name);
+  try {
+    execFileSync(FFMPEG, ["-v", "error", "-ss", String(t), "-i", videoPath, "-frames:v", "1", outPath, "-y"]);
+  } catch {
+    /* fall through to the existsSync check — a failed seek is not fatal */
+  }
+  if (existsSync(outPath)) {
+    written++;
+    console.log(
+      `  ${t.toFixed(2).padStart(6)}s  ${String(b.strategy || "-").padEnd(21)} v${b.variant ?? "-"}  ` +
+        `${String(b.words).padStart(2)} words on screen   "${b.text}"`
+    );
+  } else {
+    missing.push({ t, strategy: b.strategy || "-" });
+  }
 }
 
-console.log(`\n${beats.length} frames -> ${outDir}`);
+console.log(`\n${written} frames -> ${outDir}`);
+if (missing.length) {
+  const strategies = [...new Set(missing.map((m) => m.strategy))].sort();
+  console.log(
+    `${missing.length} beat(s) lie past the end of this video (from ${missing[0].t.toFixed(2)}s) and were NOT captured — ` +
+    `strategies unreviewed here: ${strategies.join(", ")}`
+  );
+  console.log("The report describes the whole script; this clip is only part of it.");
+}
 console.log("Now LOOK at them. Nothing above is a substitute for that.");

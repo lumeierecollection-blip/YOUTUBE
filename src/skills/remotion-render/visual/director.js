@@ -205,10 +205,31 @@ function fromDeterministic(analysis, beat, ctx) {
 
   // IMAGE_EVIDENCE has no text detector — it is decided by whether a real
   // sourced asset exists for this section, which is a fact, not a reading.
+  //
+  // IT GETS THE SAME ANTI-REPETITION PENALTY AS EVERYTHING ELSE.
+  //
+  // It did not, and that omission — not the 0.55 itself — is what made it
+  // a monoculture. Both scoring paths above add `repeatPenalty`; this push
+  // was the one place that skipped it, so a section with assets re-won
+  // every consecutive beat at an unchanging 0.55 while every rival reading
+  // was still being penalised for repeating. Measured on the only
+  // photo-backed script in the repo (movile-cave, assets on 5 of 5
+  // sections): IMAGE_EVIDENCE took 21 of 29 staged beats, 72%, in runs.
+  //
+  // That is precisely the failure this file's own REPEAT_PENALTY comment
+  // describes happening to DOCUMENT_EVIDENCE ("5 of 8 beats... reads as
+  // templated even though each frame is individually correct"), and the
+  // fix is to stop exempting one strategy from the cure. A photo still
+  // wins when it is the best available reading and has not just fired; a
+  // third consecutive use scores 0.55 - RUN_PENALTY = 0.25, below
+  // MIN_CONFIDENCE, so a run cannot continue on the asset's existence
+  // alone. Nothing here invents a new number — it applies the one the
+  // module already uses everywhere else.
   if (ctx.asset) {
     considered.push({
       strategy: "IMAGE_EVIDENCE",
-      score: 0.55 + (affinity.IMAGE_EVIDENCE || 0) + grammarBias(grammar, "IMAGE_EVIDENCE"),
+      score: 0.55 + (affinity.IMAGE_EVIDENCE || 0) + grammarBias(grammar, "IMAGE_EVIDENCE")
+        + repeatPenalty("IMAGE_EVIDENCE", recent),
       base: 0.55,
       signal: { confidence: 0.55 },
     });

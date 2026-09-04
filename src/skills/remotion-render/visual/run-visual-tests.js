@@ -1308,6 +1308,50 @@ check("summarizeSound flags an event that carries no reason", () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+console.log("\nframe bounds (rendered)");
+
+/**
+ * THIS SUITE CANNOT RENDER, SO IT GATES ON THE RENDERED RESULT INSTEAD.
+ *
+ * Three defects in one session — ComparisonScene's figure past the safe
+ * rect, ScaleComparisonScene drawing entirely off-canvas, and
+ * CinematicStatementScene's phrase overflowing on an off-centre framing —
+ * were all "the subject left the frame", and every one of the checks above
+ * passed through all three. They had to: two are CSS behaviours that do
+ * not exist until a browser lays the scene out, and this file is pure node
+ * with no Chrome, by design (it runs in seconds and gates every commit).
+ *
+ * So the pixels are measured by `qa-scripts/frame-bounds.mjs`, which
+ * renders one real anchor frame per strategy and writes
+ * data/audit/frame-bounds/report.json. These checks read that report. The
+ * split is deliberate: the expensive lane stays opt-in, but it cannot be
+ * quietly skipped either, because a missing or failing report fails HERE,
+ * in the suite everyone actually runs.
+ */
+const FB_REPORT = join(__dirname, "..", "..", "..", "..", "data", "audit", "frame-bounds", "report.json");
+
+check("the frame-bounds report exists (run qa-scripts/frame-bounds.mjs)", () => {
+  return existsSync(FB_REPORT) || `missing ${FB_REPORT} — run: node qa-scripts/frame-bounds.mjs`;
+});
+
+check("no strategy draws its subject outside the frame", () => {
+  if (!existsSync(FB_REPORT)) return "no frame-bounds report (see previous check)";
+  const r = JSON.parse(readFileSync(FB_REPORT, "utf-8"));
+  const bad = (r.results || []).filter((x) => x.status !== "PASS");
+  if (!bad.length) return true;
+  return bad.map((b) => `${b.strategy}: ${(b.violations || []).join("; ") || b.status}`).join(" | ");
+});
+
+check("the frame-bounds report covers every registered strategy", () => {
+  if (!existsSync(FB_REPORT)) return "no frame-bounds report (see previous check)";
+  const r = JSON.parse(readFileSync(FB_REPORT, "utf-8"));
+  // A strategy no input script routes a beat to is UNMEASURED, not passing.
+  // Letting that slide is how a gate quietly stops covering what it claims.
+  const missing = Object.keys(STRATEGIES).filter((s) => !(r.covered || []).includes(s));
+  return missing.length === 0 || `uncovered by any fixture: ${missing.join(", ")}`;
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 console.log(`\n${passed} passed, ${failures.length} failed`);
 if (failures.length) {
   console.error("\nFAILURES:");

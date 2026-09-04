@@ -388,9 +388,25 @@ export function TransformationScene({ beat, colors, fontFamily }) {
 // Distinct from DataChartScene: this is a HEAD-TO-HEAD of two things, drawn
 // as opposing masses, not a series plotted on a shared axis.
 // ─────────────────────────────────────────────────────────────────────────────
-// Same estimate structure-scenes.jsx uses (Label/Figure have no measurement
-// pass) to keep a figure's own text off the edge of the frame.
-const COMPARISON_GLYPH_W = 0.56;
+/**
+ * Glyph-width estimate for the clamp below (Label/Figure have no measurement
+ * pass, so width has to be estimated from the string).
+ *
+ * MEASURED, NOT INHERITED. This started at 0.56 — the value
+ * structure-scenes.jsx uses for its uppercase labels — and the frame-bounds
+ * gate caught the consequence on a real render: "$340" at `maxSize` (128px)
+ * measured 338px of actual ink, a ratio of 0.660, so a clamp built on 0.56
+ * under-reserved by ~18% and let the figure land at x=17 against a
+ * SAFE.left of 48. `Figure` sets fontWeight 800 with tabular-nums, which is
+ * simply wider per glyph than the tracked uppercase labels 0.56 was fitted
+ * to; the same number cannot serve both. 0.70 keeps headroom over the
+ * measured 0.660, and over-reserving is the safe direction here — it only
+ * ever pulls a figure further inside the frame.
+ */
+const COMPARISON_GLYPH_W = 0.70;
+// The label drawn under each figure, as actually passed to <Label> below.
+const LABEL_SIZE = 24;
+const LABEL_TRACKING = 2.2;
 export function ComparisonScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
@@ -456,8 +472,22 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
    * other, but never bigger than the frame has room for.
    */
   const halfTextW = (text, size) => (String(text).length * size * COMPARISON_GLYPH_W) / 2;
-  const aHalfW = halfTextW(fmt(a.value), sizeA);
-  const bHalfW = halfTextW(fmt(b.value), sizeB);
+  /**
+   * RESERVE FOR THE WIDEST THING DRAWN AT THIS x, NOT JUST THE FIGURE.
+   *
+   * Each side draws a figure AND a label under it, both centred on the same
+   * x. Clamping on the figure alone leaves a long label free to overhang —
+   * and at the small end (`baseSize` 56, e.g. "$0" = 2 glyphs) an 18-char
+   * label is comfortably the wider of the two. Whichever is wider is what
+   * the margin has to hold.
+   */
+  const labelOf = (s) => String(s.label || "").toUpperCase().slice(0, 18);
+  const halfLabelW = (s) => {
+    const t = labelOf(s);
+    return t ? (t.length * (LABEL_SIZE * COMPARISON_GLYPH_W + LABEL_TRACKING)) / 2 : 0;
+  };
+  const aHalfW = Math.max(halfTextW(fmt(a.value), sizeA), halfLabelW(a));
+  const bHalfW = Math.max(halfTextW(fmt(b.value), sizeB), halfLabelW(b));
   const gap = 24;
   // The most the two centres can be pushed apart while BOTH texts still
   // land inside SAFE — the hard ceiling. Below that, spread them enough
@@ -477,8 +507,8 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
           color={pVerdict > 0 && winner === "a" ? colors.accent : colors.textPrimary}
           size={sizeA} align="center" fontFamily={fontFamily} format={fmt} />
         <div style={{ marginTop: sizeA * 0.55 }}>
-          <Label x={0} y={0} text={String(a.label || "").toUpperCase().slice(0, 18)}
-            color={colors.textDim} size={24} tracking={2.2} align="center" opacity={pLeft} fontFamily={fontFamily} />
+          <Label x={0} y={0} text={labelOf(a)}
+            color={colors.textDim} size={LABEL_SIZE} tracking={LABEL_TRACKING} align="center" opacity={pLeft} fontFamily={fontFamily} />
         </div>
       </div>
 
@@ -490,8 +520,8 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
           color={pVerdict > 0 && winner === "b" ? colors.accent : colors.textPrimary}
           size={sizeB} align="center" fontFamily={fontFamily} format={fmt} />
         <div style={{ marginTop: sizeB * 0.55 }}>
-          <Label x={0} y={0} text={String(b.label || "").toUpperCase().slice(0, 18)}
-            color={colors.textDim} size={24} tracking={2.2} align="center" opacity={pRight} fontFamily={fontFamily} />
+          <Label x={0} y={0} text={labelOf(b)}
+            color={colors.textDim} size={LABEL_SIZE} tracking={LABEL_TRACKING} align="center" opacity={pRight} fontFamily={fontFamily} />
         </div>
       </div>
 
