@@ -138,15 +138,24 @@ free tier does — 31 of its 97 priced models are `input = 0, output = 0` — an
 the research stage is routed there first, with the other four behind it in
 ascending price order.
 
-**Throughput could not be ranked.** models.dev publishes no tokens/sec,
-throughput, or speed field for any provider (a grep for `^(tps|throughput|
-tokens_per_second|speed) *=` across `providers/` matches no file), and every
-provider's own pricing/throughput page is refused by this environment's egress
-proxy: `mistral.ai`, `docs.mistral.ai`, `help.mistral.ai`,
-`inference-docs.cerebras.ai`, `console.groq.com`, `models.dev`, and
-`opencode.ai` all return `EGRESS_BLOCKED`. So the "fastest" half of
-"fastest/cheapest" is unresolved, and the list is ordered on verified price
-alone. Do not fill that gap from memory.
+**Throughput could not be ranked, and the search for it is exhausted rather
+than untried.** What was checked:
+
+| Source | Result |
+|---|---|
+| `mistral.ai`, `docs.mistral.ai`, `help.mistral.ai` | `EGRESS_BLOCKED` |
+| `inference-docs.cerebras.ai`, `console.groq.com` | `EGRESS_BLOCKED` |
+| `models.dev`, `opencode.ai` | `EGRESS_BLOCKED` |
+| models.dev database (via GitHub) | no `tps`/`throughput`/`tokens_per_second`/`speed` field on any provider |
+| `mistralai/platform-docs-public` (via GitHub) | reachable, carries no throughput figure |
+| `groq/groq-api-cookbook` (via GitHub) | reachable, no tokens-per-second figure in its markdown |
+| `Cerebras/inference-docs` | no such public repository |
+
+Provider throughput claims live on the rendered marketing and docs pages, all
+of which are blocked; SDK and cookbook repositories do not carry them. So the
+"fastest" half of "fastest/cheapest" is unresolved, and the list is ordered on
+verified price alone. Do not fill that gap from memory — the Mistral case in §4
+is what happens when a plausible remembered number meets its primary source.
 
 ## 3. Extended-reasoning support, per provider
 
