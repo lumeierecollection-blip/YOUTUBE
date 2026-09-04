@@ -134,6 +134,25 @@ export function wordCount(text) {
  * §3.3 — minimum on-screen time. seconds = (chars ÷ 12) + 0.5,
  * rounded up to the nearest 7.5 frames. Never less than D.hold.
  */
+/**
+ * A beat's frame window, from its millisecond window.
+ *
+ * ONE definition, shared by the SRT-classifier path and the authored-beat
+ * path, because they used to compute it separately and the arithmetic is the
+ * kind that is easy to get subtly wrong twice. Round the START and the END,
+ * then take the difference — never round the start and the DURATION
+ * independently, because `round(a) + round(b - a) != round(b)` in general, so
+ * two beats meeting exactly on the millisecond can still leave a frame
+ * uncovered. An uncovered frame renders BLACK: no beat's Sequence is mounted
+ * over it. See CHECK-REGISTER MOT-22, and the boundary check in
+ * visual/run-visual-tests.js that guards it on the real fixture.
+ */
+export function beatFrameWindow(startMs, endMs, fps = FPS) {
+  const startFrame = Math.round((startMs / 1000) * fps);
+  const endFrame = Math.round((endMs / 1000) * fps);
+  return { startFrame, durationInFrames: Math.max(endFrame - startFrame, 1) };
+}
+
 export function holdFrames(text, fps = FPS) {
   const secs = String(text || "").length / 12 + 0.5;
   return Math.max(D.hold, Math.ceil((secs * fps) / 7.5) * 7.5);
@@ -359,11 +378,7 @@ export function buildBeatsFromCaptions(captions, opts = {}) {
   // boundaries were wrong — six gaps and six overlaps — and a rendered gap
   // frame came back at stddev 5.3 against 22-28 for its neighbours.
   return merged.map((beat) => ({
-    startFrame: Math.round((beat.startMs / 1000) * fps),
-    durationInFrames: Math.max(
-      Math.round((beat.endMs / 1000) * fps) - Math.round((beat.startMs / 1000) * fps),
-      1,
-    ),
+    ...beatFrameWindow(beat.startMs, beat.endMs, fps),
     text: beat.text,
     tokens: beat.tokens,
     startMs: beat.startMs,
@@ -1012,8 +1027,7 @@ function authoredBeatsForSection(section, sectionTokens, sectionIndex, opts) {
     // Same end-frame derivation as buildBeatsFromCaptions above, for the same
     // reason: independent rounding of start and duration opens black one-frame
     // gaps between beats that meet exactly in milliseconds.
-    const startFrameRounded = Math.round((startMs / 1000) * fps);
-    const durationInFrames = Math.max(Math.round((endMs / 1000) * fps) - startFrameRounded, 1);
+    const { startFrame: startFrameRounded, durationInFrames } = beatFrameWindow(startMs, endMs, fps);
     if (durationInFrames > MAX_AUTHORED_BEAT_FRAMES) {
       console.warn(
         `MG: authored beat "${authored.text}" (section ${sectionIndex}) would hold ONE concept for ` +

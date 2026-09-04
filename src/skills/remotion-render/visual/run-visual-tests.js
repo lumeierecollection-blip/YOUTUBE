@@ -34,7 +34,7 @@ import { assertSoundMapIsSound, buildSoundtrack, soundEventsForBeat, materialsWi
 import { SFX_LIBRARY } from "./sfx-library.js";
 import { undefinedIdentifiers } from "./scope-check.js";
 import { gateMotionBlur } from "./composition.js";
-import { parseSrtToBeats } from "../compositions/beats.js";
+import { parseSrtToBeats, beatFrameWindow } from "../compositions/beats.js";
 import { resolveImageAssets } from "../image-assets.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -368,6 +368,25 @@ check("summarizeVisuals flags a beat that still renders an icon hero", () => {
 
 // ─────────────────────────────────────────────────────────────────────────────
 console.log("\nno dead code");
+
+check("MOT-22 — beatFrameWindow tiles adjacent beats exactly", () => {
+  // The fixture check below covers the SRT-classifier path. Nothing on this
+  // branch exercises the AUTHORED-beat path — the two scripts carrying
+  // authored beats have no `-vo.srt`, so it cannot run — and both paths now
+  // share `beatFrameWindow`, so this proves the property for both from the
+  // arithmetic instead of leaving one path untested.
+  let holes = 0, checked = 0;
+  for (let ms = 0; ms < 120000; ms += 137) {
+    for (const span of [1455.74, 900.5, 2000, 43.87 * (1000 / 30)]) {
+      const a = beatFrameWindow(ms, ms + span, 30);
+      const b = beatFrameWindow(ms + span, ms + span + 900, 30);
+      if (b.startFrame !== a.startFrame + a.durationInFrames) holes++;
+      checked++;
+    }
+  }
+  if (holes) return `${holes}/${checked} adjacent boundaries left a gap or overlap`;
+  return true;
+});
 
 check("MOT-22 — the beat timeline leaves no frame uncovered", () => {
   // A frame no beat's Sequence covers renders BLACK. That happened because
