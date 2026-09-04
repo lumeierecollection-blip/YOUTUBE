@@ -351,14 +351,99 @@ export const DEPTH_PROFILES = {
  * node cannot import, and the last time geometry lived only in a component
  * the test re-derived it and drifted. One model, two callers.
  */
+/** Canvas size, stated once here for the two pure-geometry helpers below. */
+export const CANVAS_W = 1080;
+export const CANVAS_H = 1920;
+
 export function planeOffset(shot, depth, e) {
   if (!shot || !shot.camera) return { x: 0, y: 0, factor: 1 };
   const plane = (shot.planes || []).find((p) => p.name === depth);
   const factor = plane ? plane.parallax : 1;
   const cam = shot.camera;
-  const travelX = (cam.to.x - cam.from.x) * 1080 * e;
-  const travelY = (cam.to.y - cam.from.y) * 1920 * e;
+  const travelX = (cam.to.x - cam.from.x) * CANVAS_W * e;
+  const travelY = (cam.to.y - cam.from.y) * CANVAS_H * e;
   return { x: travelX * (factor - 1), y: travelY * (factor - 1), factor };
+}
+
+/**
+ * THE SAFE RECT AS THE CAMERA WILL LEAVE IT.
+ *
+ * Scenes lay out in world coordinates, then `Shot` transforms the whole
+ * world: `translate(dx, dy) scale(s)` about the canvas centre. So a scene
+ * that pins its subject to SAFE.left ends up OUTSIDE the safe rect the
+ * moment the camera scales above 1 — which most moves do.
+ *
+ * Measured, not reasoned: on the ENUMERATION anchor frames, a column laid
+ * out at exactly SAFE.left (48) rendered with its accent ink starting at
+ * x=23 and, one beat later, x=4. DESCEND scales 1.1 -> 1.05, and
+ * 540 + (48 - 540) * 1.1 = -1.2. The frame-bounds gate does not catch this
+ * (its edge band is 2% of the width, and it samples one frame per
+ * strategy), so it was invisible until the pixels were probed directly.
+ *
+ * screen_x = 540 + dx(e) + (x - 540) * s(e), and both dx and s are linear
+ * in the camera's eased progress, so the extremes are the two endpoints
+ * exactly — no sampling, no margin of error. This inverts that mapping at
+ * both endpoints and returns the tightest world-space rect that still
+ * lands inside SAFE for the whole move.
+ *
+ * ONLY ENUMERATION USES THIS SO FAR. A pixel probe across the gate's 17
+ * anchor frames found 12 of them putting visible ink outside SAFE, so the
+ * problem is system-wide, not specific to one scene — but retro-fitting
+ * every scene is a composition change to all of them and is not something
+ * to do blind (CHECK-REGISTER §3.12.25).
+ */
+/**
+ * THE SECOND CAMERA. `SustainCamera` (compositions/scenes/index.jsx) wraps
+ * every scene OUTSIDE `Shot` and, on any sustaining state, adds its own
+ * `translateX(±10px) scale(1..1.018)` about the canvas centre. Two nested
+ * transforms, and the first version of cameraSafe below modelled only one.
+ *
+ * That is not a rounding error. It is exactly why INTERFACE_SIMULATION,
+ * clamped to SAFE and measured clean on its anchor frame at x[149..886],
+ * rendered at x[152..903] on the last frame of the same beat: 886 maps to
+ * 540 + 10 + (886 - 540) x 1.018 = 902.2. The gate found it only once it
+ * sampled the camera's endpoints (--extremes) instead of the anchor alone.
+ *
+ * Stated here, next to the model that has to account for them, and imported
+ * by the component that applies them — the same "one model, two callers"
+ * rule planeOffset is under.
+ */
+export const SUSTAIN_DRIFT_PX = 10;
+export const SUSTAIN_SCALE_GAIN = 0.018;
+
+export function cameraSafe(shot, safe) {
+  const cx = CANVAS_W / 2;
+  const cy = CANVAS_H / 2;
+  const c = (shot && shot.camera) || { from: { scale: 1, x: 0, y: 0 }, to: { scale: 1, x: 0, y: 0 } };
+
+  /**
+   * Both transforms are `translate(d) scale(s)` about the same centre, so
+   * they compose to a single `translate(ds + dc*ss) scale(sc*ss)` and the
+   * inverse is one division. `Shot` interpolates linearly in eased progress
+   * and `SustainCamera` in its own, independently — so the extremes are the
+   * endpoint COMBINATIONS, and every one of them is checked rather than
+   * assuming which is worst.
+   */
+  const sustainScales = [1, 1 + SUSTAIN_SCALE_GAIN];
+  const sustainDx = [-SUSTAIN_DRIFT_PX, 0, SUSTAIN_DRIFT_PX];
+  let left = -Infinity, right = Infinity, top = -Infinity, bottom = Infinity;
+  for (const end of [c.from, c.to]) {
+    const sc = end.scale || 1;
+    const dxc = (end.x || 0) * CANVAS_W;
+    const dyc = (end.y || 0) * CANVAS_H;
+    for (const ss of sustainScales) {
+      for (const dxs of sustainDx) {
+        const s = sc * ss;
+        const dx = dxs + dxc * ss;
+        const dy = dyc * ss; // SustainCamera translates X only
+        left = Math.max(left, cx + (safe.left - cx - dx) / s);
+        right = Math.min(right, cx + (safe.right - cx - dx) / s);
+        top = Math.max(top, cy + (safe.top - cy - dy) / s);
+        bottom = Math.min(bottom, cy + (safe.bottom - cy - dy) / s);
+      }
+    }
+  }
+  return { left, right, top, bottom, width: right - left, height: bottom - top };
 }
 
 const D = DEPTH_PROFILES;

@@ -5,10 +5,15 @@
  * Usage:
  *   node qa-scripts/frame-bounds.mjs            # render + assert, exit 1 on violation
  *   node qa-scripts/frame-bounds.mjs --keep     # also keep every rendered PNG
+ *   node qa-scripts/frame-bounds.mjs --anchor-only
+ *                                               # one frame per strategy instead
+ *                                               # of three — cheaper, and blind to
+ *                                               # anything outside the anchor
  *   node qa-scripts/frame-bounds.mjs --only=COMPARISON,ACCUMULATION
  *                                               # one or more strategies, for a
  *                                               # cheap regression proof (the full
- *                                               # sweep renders 16 stills)
+ *                                               # sweep renders 3 stills for each
+ *                                               # of the 17 strategies)
  *
  * WHY THIS EXISTS
  *
@@ -88,12 +93,39 @@ import { paletteFromHues } from "../styles/tokens.js";
 import { findChrome } from "../find-chrome.js";
 import { decodePNG } from "../decode-png.js";
 import { STRATEGIES } from "../visual/strategies.js";
+import { SAFE_SHORTS } from "../layout/slots.js";
+import { cameraSafe } from "../visual/composition.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const RENDER_DIR = join(__dirname, "..");
 const ROOT = join(RENDER_DIR, "..", "..", "..");
 const OUT_DIR = join(ROOT, "data", "audit", "frame-bounds");
 const KEEP = process.argv.includes("--keep");
+/**
+ * THREE FRAMES PER STRATEGY, NOT ONE — the beat's first, its anchor, and
+ * its last.
+ *
+ * `Shot` and `SustainCamera` both interpolate `translate(d) scale(s)`
+ * linearly in eased progress, so the composed transform's extremes are the
+ * beat's FIRST and LAST frames exactly; there is no interior maximum to
+ * search for. The anchor is neither of them.
+ *
+ * THIS IS THE DEFAULT BECAUSE ANCHOR-ONLY HID REAL DEFECTS. With every
+ * strategy measuring clean on its anchor frame, sampling the endpoints
+ * found three more, all of them content a viewer would see:
+ *
+ *   INTERFACE_SIMULATION  window chrome to x=903 on its last frame
+ *                         (SustainCamera's 1.018x, unmodelled until then)
+ *   TIMELINE              "BATCHING RULE REMOVED" running off BOTH frame
+ *                         edges, ink x[0..1003], 690px hard against the edge
+ *   VISUAL_METAPHOR       its resolve phrase at x=906 — a label that only
+ *                         exists in a late state, so the anchor never drew it
+ *
+ * It triples the render count. That is the price of a gate that does not
+ * lie. `--anchor-only` restores the cheap single-frame sweep for a quick
+ * regression check on a scene whose camera and states are unchanged.
+ */
+const EXTREMES = !process.argv.includes("--anchor-only");
 const ONLY_ARG = process.argv.find((a) => a.startsWith("--only="));
 const ONLY = ONLY_ARG ? new Set(ONLY_ARG.slice(7).split(",").map((s) => s.trim()).filter(Boolean)) : null;
 
@@ -123,6 +155,67 @@ const MIN_EDGE_RUN = 4;
  * merely draws is.
  */
 const EDGE_EXEMPT_MATERIALS = new Set(["footage"]);
+
+const SAFE = SAFE_SHORTS;
+
+/**
+ * ── THE SAFE-RECT CHECK ──────────────────────────────────────────────────
+ *
+ * The edge bands above ask one narrow question: did something get clipped
+ * BY THE FRAME EDGE. They say nothing about the SAFE rect
+ * (`layout/slots.js` SAFE_SHORTS: left 48, right 888 of a 1080 frame — the
+ * right margin is 192px because the Shorts action buttons run down that
+ * side). A subject can sit entirely inside the frame and still be under
+ * the platform's UI, and nothing here measured that.
+ *
+ * IT IS NOT ENOUGH TO LAY OUT AGAINST SAFE. `Shot` transforms the whole
+ * world by `translate(dx,dy) scale(s)` about the canvas centre, so a scene
+ * that pins content to SAFE.left renders outside it the moment its camera
+ * scales above 1. That is exactly how ENUMERATION's column, laid out at
+ * x=48, rendered at x=23 and then x=4 (§3.12.25). This check measures the
+ * RENDERED frame, which is already post-transform, so it sees where the
+ * content actually landed rather than where the scene meant to put it.
+ * `cameraSafe()` (stage.jsx) is the inverse — the world rect a scene must
+ * lay out inside for this to hold across the whole move — and the report
+ * carries it per strategy so a failing scene has the number to lay out to.
+ *
+ * SAFE_CONTRAST = 100, MEASURED, NOT CHOSEN. A threshold sweep over all 17
+ * anchor frames (60..180 in steps of 10, tallest contiguous vertical run of
+ * out-of-SAFE ink at each) put the two populations far apart at 100:
+ *
+ *   ground / clean, run at T100:  0 on eight strategies, 3 on TIMELINE
+ *                                 (its horizon rule, which is meant to span)
+ *   real violations, run at T100: 19, 20, 23, 753, 803, 814
+ *
+ * EDGE_CONTRAST's 140 is measured for the 21px edge BAND, where ground is
+ * quietest. It is too high here: DATA_CHART's grey bars on a near-white
+ * ground sit at delta ~121 and are unmistakably subject, and 140 misses
+ * them (run 19 at T100, run 1 at T140).
+ *
+ * SAFE_MIN_RUN = 8 sits in the gap between the highest ground run (3) and
+ * the lowest real violation (19). A separate constant from MIN_EDGE_RUN
+ * because it is a separate measurement over a much larger region: a
+ * horizontal rule crossing the boundary has a run of 1-3 per column and is
+ * ground by construction; an object's edge or a clipped glyph is tall.
+ */
+const SAFE_CONTRAST = 100;
+const SAFE_MIN_RUN = 8;
+/**
+ * Materials that ARE the world, not an object in it.
+ *
+ * `footage` is a photograph and `terrain` is a map seen from above; in both
+ * the frame is a window onto something larger, so reaching past the safe
+ * rect is the composition, not a defect. Verified on the frames: the
+ * GEOSPATIAL_RADIUS anchor is a full-bleed street map whose only readable
+ * subject — the pin and "150 m" — sits at x[450..660], well inside SAFE,
+ * while the T100 hits outside it are bright street lines.
+ *
+ * Exempting by MATERIAL, not by strategy name, is the same rule the edge
+ * check already uses, and the data says it is not too broad: `field` backs
+ * VISUAL_METAPHOR and CAUSE_EFFECT (both failing) AND COMPARISON and
+ * RELATIONSHIP (both at run 0), so no material is being excused wholesale.
+ */
+const SAFE_EXEMPT_MATERIALS = new Set(["footage", "terrain"]);
 
 /**
  * ONLY motion-graphics. This is not a shortcut — it is the only style whose
@@ -232,7 +325,53 @@ function measure(pngPath) {
       }
     }
   }
-  return { ink: inkPx / sampled, edgeHits, tallestRun, worstEdgeDelta: worstDelta, width, height };
+  /**
+   * SAFE-RECT SCAN — report-only for now, thresholds being measured.
+   *
+   * The edge bands above only ask "did something get clipped by the frame
+   * edge". They say nothing about the SAFE rect, which sits 48px in on
+   * each side and is where platform UI lands. Scenes lay out against SAFE
+   * in WORLD space and are then scaled about the canvas centre by their
+   * camera, so laying out correctly and rendering outside SAFE are not the
+   * same thing.
+   */
+  // Where the subject ink actually sits, at the same contrast the safe-rect
+  // rule uses. Recorded for every strategy, passing or not: a before/after
+  // x-range is the only honest way to show a bounds fix worked.
+  let boxL = null, boxR = null, boxT = null, boxB = null;
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      if (delta(x, y) < SAFE_CONTRAST) continue;
+      if (boxL === null || x < boxL) boxL = x;
+      if (boxR === null || x > boxR) boxR = x;
+      if (boxT === null || y < boxT) boxT = y;
+      if (boxB === null || y > boxB) boxB = y;
+    }
+  }
+
+  let outsidePx = 0, outsideRun = 0, leftMost = null, rightMost = null;
+  for (const [x0, x1] of [[0, SAFE.left], [SAFE.right + 1, width]]) {
+    for (let x = x0; x < x1; x++) {
+      let run = 0;
+      for (let y = 0; y < height; y++) {
+        if (delta(x, y) >= SAFE_CONTRAST) {
+          outsidePx++; run++;
+          if (run > outsideRun) outsideRun = run;
+          if (leftMost === null || x < leftMost) leftMost = x;
+          if (rightMost === null || x > rightMost) rightMost = x;
+        } else run = 0;
+      }
+    }
+  }
+  // How far past the rect the worst ink actually reached, in px, per side.
+  const overLeft = leftMost !== null && leftMost < SAFE.left ? SAFE.left - leftMost : 0;
+  const overRight = rightMost !== null && rightMost > SAFE.right ? rightMost - SAFE.right : 0;
+
+  return {
+    ink: inkPx / sampled, edgeHits, tallestRun, worstEdgeDelta: worstDelta, width, height,
+    outsidePx, outsideRun, overLeft, overRight,
+    inkBox: boxL === null ? null : { left: boxL, right: boxR, top: boxT, bottom: boxB },
+  };
 }
 
 function buildProps(c, scriptPath, srtPath) {
@@ -309,33 +448,68 @@ for (const c of CASES) {
     if (ONLY && !ONLY.has(strategy)) continue;
     seen.add(strategy);
 
-    const frame = Math.min(
-      Number.isFinite(beat.anchorFrame) ? beat.anchorFrame : beat.startFrame,
-      mg.totalFrames - 1
-    );
-    const png = join(OUT_DIR, `${strategy}.png`);
-    try {
-      const composition = await selectComposition({
-        serveUrl, id, inputProps: props, ...(CHROME ? { browserExecutable: CHROME } : {}),
-      });
-      await renderStill({
-        composition: { ...composition, durationInFrames: mg.totalFrames },
-        serveUrl, output: png, frame, inputProps: props, imageFormat: "png",
-        chromiumOptions: { gl: "swangle" }, timeoutInMilliseconds: 180000, logLevel: "error",
-        ...(CHROME ? { browserExecutable: CHROME } : {}),
-      });
-    } catch (err) {
-      results.push({ strategy, case: c.name, status: "RENDER_FAIL", error: err.message.split("\n")[0] });
-      console.log(`FAIL  ${strategy.padEnd(22)} render error: ${err.message.split("\n")[0]}`);
+    const last = mg.totalFrames - 1;
+    const frame = Math.min(Number.isFinite(beat.anchorFrame) ? beat.anchorFrame : beat.startFrame, last);
+    const beatEnd = Number.isFinite(beat.durationInFrames)
+      ? beat.startFrame + beat.durationInFrames - 1 : frame;
+    // anchor first, so `${strategy}.png` is always the composed moment
+    const shots = EXTREMES
+      ? [["", frame], ["-start", Math.min(beat.startFrame, last)], ["-end", Math.min(beatEnd, last)]]
+      : [["", frame]];
+    const pngs = [];
+    let renderFailed = null;
+    for (const [suffix, fr] of shots) {
+      const out = join(OUT_DIR, `${strategy}${suffix}.png`);
+      try {
+        const composition = await selectComposition({
+          serveUrl, id, inputProps: props, ...(CHROME ? { browserExecutable: CHROME } : {}),
+        });
+        await renderStill({
+          composition: { ...composition, durationInFrames: mg.totalFrames },
+          serveUrl, output: out, frame: fr, inputProps: props, imageFormat: "png",
+          chromiumOptions: { gl: "swangle" }, timeoutInMilliseconds: 180000, logLevel: "error",
+          ...(CHROME ? { browserExecutable: CHROME } : {}),
+        });
+        pngs.push({ suffix: suffix || "-anchor", frame: fr, path: out });
+      } catch (err) { renderFailed = err; break; }
+    }
+    if (renderFailed) {
+      results.push({ strategy, case: c.name, status: "RENDER_FAIL", error: renderFailed.message.split("\n")[0] });
+      console.log(`FAIL  ${strategy.padEnd(22)} render error: ${renderFailed.message.split("\n")[0]}`);
       continue;
     }
+    const png = pngs[0].path;
 
-    const m = measure(png);
-    const material = (beat.visualPlan.shot && beat.visualPlan.shot.material) || null;
+    // Every sampled frame is measured; the strategy's row reports the WORST
+    // one, so a violation at either end of the move cannot hide behind a
+    // clean anchor.
+    const samples = pngs.map((s) => ({ ...s, m: measure(s.path) }));
+    const worst = samples.reduce((a, b) => (b.m.outsideRun > a.m.outsideRun ? b : a));
+    const m = worst.m;
+    const shot = beat.visualPlan.shot || null;
+    const material = (shot && shot.material) || null;
     const edgeExempt = EDGE_EXEMPT_MATERIALS.has(material);
+    const safeExempt = SAFE_EXEMPT_MATERIALS.has(material);
+    // The world rect this scene had to lay out inside for the rendered
+    // result to stay in SAFE across the whole camera move. Reported, not
+    // asserted — the assertion is on the pixels — but it is the number a
+    // failing scene needs, and it comes from the same helper the scenes
+    // call so the two cannot drift.
+    const worldSafe = cameraSafe(shot, SAFE);
     const violations = [];
     if (!edgeExempt && m.edgeHits > 0 && m.tallestRun >= MIN_EDGE_RUN) {
       violations.push(`${m.edgeHits} high-contrast px in the L/R edge band (tallest run ${m.tallestRun}px) — subject clipped by the frame edge`);
+    }
+    if (!safeExempt && m.outsideRun >= SAFE_MIN_RUN) {
+      const sides = [
+        m.overLeft ? `${m.overLeft}px past SAFE.left` : null,
+        m.overRight ? `${m.overRight}px past SAFE.right` : null,
+      ].filter(Boolean).join(", ");
+      violations.push(
+        `${m.outsidePx} px outside the safe rect (tallest run ${m.outsideRun}px; ${sides}) — ` +
+        `lay this scene out inside x[${worldSafe.left.toFixed(0)}..${worldSafe.right.toFixed(0)}] ` +
+        `y[${worldSafe.top.toFixed(0)}..${worldSafe.bottom.toFixed(0)}] (cameraSafe for ${shot && shot.camera && shot.camera.id})`
+      );
     }
     if (m.ink < MIN_INK) {
       violations.push(`ink ${(m.ink * 100).toFixed(2)}% below ${(MIN_INK * 100).toFixed(2)}% — the scene drew essentially nothing`);
@@ -343,18 +517,46 @@ for (const c of CASES) {
     const status = violations.length ? "FAIL" : "PASS";
     results.push({
       strategy, case: c.name, channel: c.channel.channel_id, frame, status, violations,
-      material, edgeExempt,
+      material, edgeExempt, safeExempt,
       ink: +(m.ink).toFixed(5), edgeHits: m.edgeHits, tallestRun: m.tallestRun,
       worstEdgeDelta: +m.worstEdgeDelta.toFixed(1),
+      outsideSafePx: m.outsidePx, outsideSafeRun: m.outsideRun,
+      overLeft: m.overLeft, overRight: m.overRight, inkBox: m.inkBox,
+      camera: (shot && shot.camera && shot.camera.id) || null,
+      sampledFrames: samples.map((x) => ({
+        at: x.suffix.replace("-", ""), frame: x.frame,
+        outsideSafeRun: x.m.outsideRun, outsideSafePx: x.m.outsidePx,
+        inkBox: x.m.inkBox,
+      })),
+      worstAt: worst.suffix.replace("-", ""),
+      bleed: !!(shot && shot.bleed),
+      worldSafe: {
+        left: +worldSafe.left.toFixed(1), right: +worldSafe.right.toFixed(1),
+        top: +worldSafe.top.toFixed(1), bottom: +worldSafe.bottom.toFixed(1),
+      },
     });
     console.log(
       `${status === "PASS" ? "ok  " : "FAIL"}  ${strategy.padEnd(22)} ink ${(m.ink * 100).toFixed(1).padStart(5)}%  ` +
       `edgeHits ${String(m.edgeHits).padStart(4)}  run ${String(m.tallestRun).padStart(3)}  ` +
-      `worstEdgeDelta ${String(m.worstEdgeDelta.toFixed(0)).padStart(3)}` +
+      `outSafe ${String(m.outsideRun).padStart(3)}px run  ` +
+      `ink x[${m.inkBox ? m.inkBox.left : "-"}..${m.inkBox ? m.inkBox.right : "-"}]` +
       (edgeExempt ? `  [edge-exempt: ${material}]` : "") +
+      (safeExempt ? `  [safe-exempt: ${material}]` : "") +
       (violations.length ? `\n        ${violations.join("\n        ")}` : "")
     );
-    if (!KEEP && status === "PASS") rmSync(png, { force: true });
+
+    if (EXTREMES) {
+      console.log("      " + samples.map((x) =>
+        `${x.suffix.replace("-", "")}@${x.frame} run=${x.m.outsideRun} x[${x.m.inkBox ? x.m.inkBox.left : "-"}..${x.m.inkBox ? x.m.inkBox.right : "-"}]`
+      ).join("   "));
+    }
+    // Endpoint stills are intermediates unless --keep asked for them, or the
+    // strategy failed — in which case the frame that FAILED is the one worth
+    // looking at, and it is usually not the anchor.
+    for (const x of samples) {
+      const keepThis = KEEP || status !== "PASS";
+      if (!keepThis) rmSync(x.path, { force: true });
+    }
   }
 }
 
@@ -370,7 +572,9 @@ if (!ONLY) writeFileSync(
   JSON.stringify({
     generatedAt: new Date().toISOString(),
     thresholds: { EDGE_CONTRAST, EDGE_BAND_FRAC, MIN_EDGE_RUN, MIN_INK, INK_THRESHOLD,
-      edgeExemptMaterials: [...EDGE_EXEMPT_MATERIALS] },
+      SAFE_CONTRAST, SAFE_MIN_RUN, safeRect: SAFE,
+      edgeExemptMaterials: [...EDGE_EXEMPT_MATERIALS],
+      safeExemptMaterials: [...SAFE_EXEMPT_MATERIALS] },
     covered, uncovered, results,
     passed: results.filter((r) => r.status === "PASS").length,
     failed: failed.length,

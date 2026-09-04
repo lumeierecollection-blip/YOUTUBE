@@ -9,7 +9,7 @@ import {
 import { DOCUMENT_PAGES, documentPageGeometry } from "../layout-constants.js";
 import { MG_TYPE as TYPE } from "../beats.js";
 import { progressOf } from "../../visual/states.js";
-import { shotFrame } from "./stage.jsx";
+import { shotFrame, cameraSafe } from "./stage.jsx";
 import { DocumentSheet } from "./elements/document.jsx";
 import { WindowChrome, NavRail, StatusBar } from "./elements/interface.jsx";
 import { CinematicStatementScene } from "./abstract-scenes.jsx";
@@ -254,9 +254,27 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
    *
    * Clamped to the safe rect rather than taken raw: centred on the CLOSE
    * anchor (0.48), the full granted width would put the window's left edge
-   * at x=54 against a 9% safe edge of 97.
+   * at x=54.
+   *
+   * THE CLAMP USED THE WRONG RECT. It was `CANVAS_W * 0.09` to
+   * `CANVAS_W * 0.91` — 97 to 983 — a hand-rolled pair of percentages, not
+   * the real safe rect. SAFE_SHORTS is 48 to 888, and it is ASYMMETRIC
+   * because the Shorts action buttons only run down the right side. 983 is
+   * 95px past the right edge, so the window's own chrome rendered at
+   * x=940: 2873px outside SAFE with a 756px contiguous run, which is the
+   * window's right wall standing under the platform UI. Measured on the
+   * anchor frame, not inferred.
+   *
+   * `cameraSafe` rather than SAFE directly, so a future camera change on
+   * this strategy (it is HOLD today, scale 1.0, so the two are identical)
+   * cannot silently reintroduce the same defect.
    */
-  const safeHalf = Math.min(f.cx - CANVAS_W * 0.09, CANVAS_W * 0.91 - f.cx);
+  const safe = cameraSafe((beat.visualPlan && beat.visualPlan.shot) || null, SAFE);
+  // WindowChrome's outer rect is stroked and the stroke is centred on the
+  // path, so part of it lies outside the geometry. Same 2px reserve, and
+  // the same reason, as CauseEffectScene's casing.
+  const CHROME_STROKE = 2;
+  const safeHalf = Math.min(f.cx - safe.left, safe.right - f.cx) - CHROME_STROKE;
   const w = Math.min(f.w, safeHalf * 2);
   const h = f.h;
   const x = f.cx - w / 2, y = f.cy - f.h * 0.3;

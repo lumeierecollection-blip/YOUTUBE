@@ -1,13 +1,25 @@
 {
-  "generatedAt": "2026-09-04T20:45:14.022Z",
+  "generatedAt": "2026-09-04T22:14:09.364Z",
   "thresholds": {
     "EDGE_CONTRAST": 140,
     "EDGE_BAND_FRAC": 0.02,
     "MIN_EDGE_RUN": 4,
     "MIN_INK": 0.0025,
     "INK_THRESHOLD": 26,
+    "SAFE_CONTRAST": 100,
+    "SAFE_MIN_RUN": 8,
+    "safeRect": {
+      "top": 288,
+      "bottom": 1248,
+      "left": 48,
+      "right": 888
+    },
     "edgeExemptMaterials": [
       "footage"
+    ],
+    "safeExemptMaterials": [
+      "footage",
+      "terrain"
     ]
   },
   "covered": [
@@ -40,10 +52,68 @@
       "violations": [],
       "material": "substance",
       "edgeExempt": false,
+      "safeExempt": false,
       "ink": 0.00352,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 10.5
+      "worstEdgeDelta": 10.5,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 436,
+        "right": 615,
+        "top": 881,
+        "bottom": 960
+      },
+      "camera": "drift",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 162,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 436,
+            "right": 615,
+            "top": 881,
+            "bottom": 960
+          }
+        },
+        {
+          "at": "start",
+          "frame": 0,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 601,
+            "right": 649,
+            "top": 898,
+            "bottom": 975
+          }
+        },
+        {
+          "at": "end",
+          "frame": 201,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 314,
+            "right": 724,
+            "top": 868,
+            "bottom": 953
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": true,
+      "worldSafe": {
+        "left": 111.7,
+        "right": 840.6,
+        "top": 351.7,
+        "bottom": 1232
+      }
     },
     {
       "strategy": "TRANSFORMATION",
@@ -54,10 +124,68 @@
       "violations": [],
       "material": "mechanism",
       "edgeExempt": false,
-      "ink": 0.05013,
+      "safeExempt": false,
+      "ink": 0.04785,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 25.3
+      "worstEdgeDelta": 25.3,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 66,
+        "right": 820,
+        "top": 763,
+        "bottom": 1302
+      },
+      "camera": "hold",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 582,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 66,
+            "right": 820,
+            "top": 763,
+            "bottom": 1302
+          }
+        },
+        {
+          "at": "start",
+          "frame": 443,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 68,
+            "right": 115,
+            "top": 1179,
+            "bottom": 1215
+          }
+        },
+        {
+          "at": "end",
+          "frame": 715,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 68,
+            "right": 835,
+            "top": 746,
+            "bottom": 1295
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": false,
+      "worldSafe": {
+        "left": 93.3,
+        "right": 853.2,
+        "top": 337.2,
+        "bottom": 1226.9
+      }
     },
     {
       "strategy": "COMPARISON",
@@ -68,10 +196,68 @@
       "violations": [],
       "material": "field",
       "edgeExempt": false,
+      "safeExempt": false,
       "ink": 0.01044,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 19.3
+      "worstEdgeDelta": 19.3,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 104,
+        "right": 804,
+        "top": 1220,
+        "bottom": 1387
+      },
+      "camera": "drift",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 910,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 104,
+            "right": 804,
+            "top": 1220,
+            "bottom": 1387
+          }
+        },
+        {
+          "at": "start",
+          "frame": 723,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 235,
+            "right": 837,
+            "top": 1232,
+            "bottom": 1357
+          }
+        },
+        {
+          "at": "end",
+          "frame": 941,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 103,
+            "right": 858,
+            "top": 1209,
+            "bottom": 1375
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": true,
+      "worldSafe": {
+        "left": 111.7,
+        "right": 840.6,
+        "top": 351.7,
+        "bottom": 1232
+      }
     },
     {
       "strategy": "CINEMATIC_STATEMENT",
@@ -82,10 +268,63 @@
       "violations": [],
       "material": "atmosphere",
       "edgeExempt": false,
-      "ink": 0.03676,
+      "safeExempt": false,
+      "ink": 0.03689,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 72
+      "worstEdgeDelta": 72,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 110,
+        "right": 807,
+        "top": 1056,
+        "bottom": 1310
+      },
+      "camera": "drift",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 1028,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 110,
+            "right": 807,
+            "top": 1056,
+            "bottom": 1310
+          }
+        },
+        {
+          "at": "start",
+          "frame": 948,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": null
+        },
+        {
+          "at": "end",
+          "frame": 1139,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 105,
+            "right": 803,
+            "top": 1049,
+            "bottom": 1309
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": true,
+      "worldSafe": {
+        "left": 111.7,
+        "right": 840.6,
+        "top": 351.7,
+        "bottom": 1232
+      }
     },
     {
       "strategy": "PROCESS",
@@ -96,10 +335,63 @@
       "violations": [],
       "material": "mechanism",
       "edgeExempt": false,
+      "safeExempt": false,
       "ink": 0.10915,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 30.3
+      "worstEdgeDelta": 30.3,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 112,
+        "right": 831,
+        "top": 308,
+        "bottom": 1680
+      },
+      "camera": "descend",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 140,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 112,
+            "right": 831,
+            "top": 308,
+            "bottom": 1680
+          }
+        },
+        {
+          "at": "start",
+          "frame": 0,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": null
+        },
+        {
+          "at": "end",
+          "frame": 187,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 114,
+            "right": 829,
+            "top": 329,
+            "bottom": 1909
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": true,
+      "worldSafe": {
+        "left": 109.6,
+        "right": 841.8,
+        "top": 517,
+        "bottom": 1119.7
+      }
     },
     {
       "strategy": "INTERFACE_SIMULATION",
@@ -110,10 +402,63 @@
       "violations": [],
       "material": "interface",
       "edgeExempt": false,
-      "ink": 0.04745,
+      "safeExempt": false,
+      "ink": 0.04046,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 12.3
+      "worstEdgeDelta": 12.3,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 165,
+        "right": 870,
+        "top": 726,
+        "bottom": 1487
+      },
+      "camera": "hold",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 416,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 165,
+            "right": 870,
+            "top": 726,
+            "bottom": 1487
+          }
+        },
+        {
+          "at": "start",
+          "frame": 403,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": null
+        },
+        {
+          "at": "end",
+          "frame": 613,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 169,
+            "right": 886,
+            "top": 708,
+            "bottom": 1483
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": false,
+      "worldSafe": {
+        "left": 66.5,
+        "right": 872,
+        "top": 299.9,
+        "bottom": 1242.9
+      }
     },
     {
       "strategy": "CAUSE_EFFECT",
@@ -124,10 +469,63 @@
       "violations": [],
       "material": "field",
       "edgeExempt": false,
-      "ink": 0.07804,
+      "safeExempt": false,
+      "ink": 0.07412,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 26.3
+      "worstEdgeDelta": 26.3,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 67,
+        "right": 871,
+        "top": 534,
+        "bottom": 1372
+      },
+      "camera": "hold",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 655,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 67,
+            "right": 871,
+            "top": 534,
+            "bottom": 1372
+          }
+        },
+        {
+          "at": "start",
+          "frame": 621,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": null
+        },
+        {
+          "at": "end",
+          "frame": 794,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 67,
+            "right": 871,
+            "top": 523,
+            "bottom": 1418
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": false,
+      "worldSafe": {
+        "left": 93.3,
+        "right": 853.2,
+        "top": 337.2,
+        "bottom": 1226.9
+      }
     },
     {
       "strategy": "TIMELINE",
@@ -138,10 +536,63 @@
       "violations": [],
       "material": "atmosphere",
       "edgeExempt": false,
-      "ink": 0.13044,
+      "safeExempt": false,
+      "ink": 0.11679,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 117.3
+      "worstEdgeDelta": 117.3,
+      "outsideSafePx": 308,
+      "outsideSafeRun": 3,
+      "overLeft": 30,
+      "overRight": 137,
+      "inkBox": {
+        "left": 18,
+        "right": 1025,
+        "top": 783,
+        "bottom": 1377
+      },
+      "camera": "track-right",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 884,
+          "outsideSafeRun": 3,
+          "outsideSafePx": 308,
+          "inkBox": {
+            "left": 18,
+            "right": 1025,
+            "top": 783,
+            "bottom": 1377
+          }
+        },
+        {
+          "at": "start",
+          "frame": 801,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": null
+        },
+        {
+          "at": "end",
+          "frame": 974,
+          "outsideSafeRun": 3,
+          "outsideSafePx": 284,
+          "inkBox": {
+            "left": 12,
+            "right": 1003,
+            "top": 567,
+            "bottom": 1453
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": true,
+      "worldSafe": {
+        "left": 195.2,
+        "right": 751.3,
+        "top": 337.2,
+        "bottom": 1226.9
+      }
     },
     {
       "strategy": "DATA_CHART",
@@ -152,10 +603,68 @@
       "violations": [],
       "material": "substance",
       "edgeExempt": false,
-      "ink": 0.10858,
-      "edgeHits": 1,
-      "tallestRun": 1,
-      "worstEdgeDelta": 148.8
+      "safeExempt": false,
+      "ink": 0.07237,
+      "edgeHits": 0,
+      "tallestRun": 0,
+      "worstEdgeDelta": 12.8,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 88,
+        "right": 677,
+        "top": 850,
+        "bottom": 1628
+      },
+      "camera": "track-right",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 112,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 88,
+            "right": 677,
+            "top": 850,
+            "bottom": 1628
+          }
+        },
+        {
+          "at": "start",
+          "frame": 0,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 361,
+            "right": 793,
+            "top": 1578,
+            "bottom": 1608
+          }
+        },
+        {
+          "at": "end",
+          "frame": 233,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 66,
+            "right": 655,
+            "top": 839,
+            "bottom": 1617
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": true,
+      "worldSafe": {
+        "left": 195.2,
+        "right": 751.3,
+        "top": 337.2,
+        "bottom": 1226.9
+      }
     },
     {
       "strategy": "RELATIONSHIP",
@@ -166,10 +675,63 @@
       "violations": [],
       "material": "field",
       "edgeExempt": false,
+      "safeExempt": false,
       "ink": 0.03791,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 20.3
+      "worstEdgeDelta": 20.3,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 164,
+        "right": 850,
+        "top": 792,
+        "bottom": 1230
+      },
+      "camera": "drift-in-place",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 620,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 164,
+            "right": 850,
+            "top": 792,
+            "bottom": 1230
+          }
+        },
+        {
+          "at": "start",
+          "frame": 404,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": null
+        },
+        {
+          "at": "end",
+          "frame": 672,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 138,
+            "right": 850,
+            "top": 781,
+            "bottom": 1219
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": false,
+      "worldSafe": {
+        "left": 93.3,
+        "right": 853.2,
+        "top": 337.2,
+        "bottom": 1226.9
+      }
     },
     {
       "strategy": "SCALE_COMPARISON",
@@ -180,10 +742,68 @@
       "violations": [],
       "material": "atmosphere",
       "edgeExempt": false,
+      "safeExempt": false,
       "ink": 0.0171,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 64.3
+      "worstEdgeDelta": 64.3,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 316,
+        "right": 772,
+        "top": 1103,
+        "bottom": 1391
+      },
+      "camera": "pull",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 679,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 316,
+            "right": 772,
+            "top": 1103,
+            "bottom": 1391
+          }
+        },
+        {
+          "at": "start",
+          "frame": 679,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 316,
+            "right": 772,
+            "top": 1103,
+            "bottom": 1391
+          }
+        },
+        {
+          "at": "end",
+          "frame": 906,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 360,
+            "right": 706,
+            "top": 1084,
+            "bottom": 1235
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": true,
+      "worldSafe": {
+        "left": 186.7,
+        "right": 787.8,
+        "top": 467.4,
+        "bottom": 1171.1
+      }
     },
     {
       "strategy": "ENUMERATION",
@@ -194,10 +814,63 @@
       "violations": [],
       "material": "atmosphere",
       "edgeExempt": false,
-      "ink": 0.0089,
+      "safeExempt": false,
+      "ink": 0.008,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 63.3
+      "worstEdgeDelta": 63.3,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 88,
+        "right": 756,
+        "top": 1168,
+        "bottom": 1215
+      },
+      "camera": "descend",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 933,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 88,
+            "right": 756,
+            "top": 1168,
+            "bottom": 1215
+          }
+        },
+        {
+          "at": "start",
+          "frame": 914,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": null
+        },
+        {
+          "at": "end",
+          "frame": 958,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 90,
+            "right": 755,
+            "top": 1186,
+            "bottom": 1289
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": true,
+      "worldSafe": {
+        "left": 109.6,
+        "right": 841.8,
+        "top": 517,
+        "bottom": 1119.7
+      }
     },
     {
       "strategy": "BEFORE_AFTER",
@@ -208,10 +881,63 @@
       "violations": [],
       "material": "mechanism",
       "edgeExempt": false,
-      "ink": 0.00856,
+      "safeExempt": false,
+      "ink": 0.00841,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 31.3
+      "worstEdgeDelta": 31.3,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 129,
+        "right": 867,
+        "top": 1070,
+        "bottom": 1323
+      },
+      "camera": "drift-in-place",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 283,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 129,
+            "right": 867,
+            "top": 1070,
+            "bottom": 1323
+          }
+        },
+        {
+          "at": "start",
+          "frame": 0,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": null
+        },
+        {
+          "at": "end",
+          "frame": 386,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 128,
+            "right": 868,
+            "top": 1059,
+            "bottom": 1313
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": false,
+      "worldSafe": {
+        "left": 93.3,
+        "right": 853.2,
+        "top": 337.2,
+        "bottom": 1226.9
+      }
     },
     {
       "strategy": "DOCUMENT_EVIDENCE",
@@ -222,10 +948,63 @@
       "violations": [],
       "material": "paper",
       "edgeExempt": false,
+      "safeExempt": false,
       "ink": 0.26309,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 22
+      "worstEdgeDelta": 22,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 175,
+        "right": 855,
+        "top": 313,
+        "bottom": 1114
+      },
+      "camera": "push-in-place",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 491,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 175,
+            "right": 855,
+            "top": 313,
+            "bottom": 1114
+          }
+        },
+        {
+          "at": "start",
+          "frame": 387,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": null
+        },
+        {
+          "at": "end",
+          "frame": 547,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 136,
+            "right": 859,
+            "top": 292,
+            "bottom": 1276
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": false,
+      "worldSafe": {
+        "left": 131.8,
+        "right": 826.2,
+        "top": 390.9,
+        "bottom": 1203.9
+      }
     },
     {
       "strategy": "GEOSPATIAL_RADIUS",
@@ -236,10 +1015,63 @@
       "violations": [],
       "material": "terrain",
       "edgeExempt": false,
+      "safeExempt": true,
       "ink": 0.24721,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 97.5
+      "worstEdgeDelta": 97.5,
+      "outsideSafePx": 2554,
+      "outsideSafeRun": 19,
+      "overLeft": 0,
+      "overRight": 156,
+      "inkBox": {
+        "left": 67,
+        "right": 1044,
+        "top": 116,
+        "bottom": 1803
+      },
+      "camera": "pull",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 634,
+          "outsideSafeRun": 19,
+          "outsideSafePx": 2554,
+          "inkBox": {
+            "left": 67,
+            "right": 1044,
+            "top": 116,
+            "bottom": 1803
+          }
+        },
+        {
+          "at": "start",
+          "frame": 555,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": null
+        },
+        {
+          "at": "end",
+          "frame": 699,
+          "outsideSafeRun": 19,
+          "outsideSafePx": 6238,
+          "inkBox": {
+            "left": 0,
+            "right": 1079,
+            "top": 98,
+            "bottom": 1919
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": true,
+      "worldSafe": {
+        "left": 186.7,
+        "right": 787.8,
+        "top": 467.4,
+        "bottom": 1171.1
+      }
     },
     {
       "strategy": "VISUAL_METAPHOR",
@@ -250,10 +1082,63 @@
       "violations": [],
       "material": "field",
       "edgeExempt": false,
-      "ink": 0.06495,
+      "safeExempt": false,
+      "ink": 0.02872,
       "edgeHits": 0,
       "tallestRun": 0,
-      "worstEdgeDelta": 25.3
+      "worstEdgeDelta": 25.3,
+      "outsideSafePx": 0,
+      "outsideSafeRun": 0,
+      "overLeft": 0,
+      "overRight": 0,
+      "inkBox": {
+        "left": 246,
+        "right": 872,
+        "top": 730,
+        "bottom": 1249
+      },
+      "camera": "drift",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 1445,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 246,
+            "right": 872,
+            "top": 730,
+            "bottom": 1249
+          }
+        },
+        {
+          "at": "start",
+          "frame": 1426,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": null
+        },
+        {
+          "at": "end",
+          "frame": 1644,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": {
+            "left": 189,
+            "right": 869,
+            "top": 806,
+            "bottom": 1293
+          }
+        }
+      ],
+      "worstAt": "anchor",
+      "bleed": true,
+      "worldSafe": {
+        "left": 111.7,
+        "right": 840.6,
+        "top": 351.7,
+        "bottom": 1232
+      }
     },
     {
       "strategy": "IMAGE_EVIDENCE",
@@ -264,10 +1149,63 @@
       "violations": [],
       "material": "footage",
       "edgeExempt": true,
-      "ink": 0.73886,
-      "edgeHits": 34,
-      "tallestRun": 4,
-      "worstEdgeDelta": 156
+      "safeExempt": true,
+      "ink": 0.35767,
+      "edgeHits": 726,
+      "tallestRun": 20,
+      "worstEdgeDelta": 174,
+      "outsideSafePx": 38540,
+      "outsideSafeRun": 101,
+      "overLeft": 48,
+      "overRight": 191,
+      "inkBox": {
+        "left": 0,
+        "right": 1079,
+        "top": 98,
+        "bottom": 1919
+      },
+      "camera": "drift",
+      "sampledFrames": [
+        {
+          "at": "anchor",
+          "frame": 103,
+          "outsideSafeRun": 89,
+          "outsideSafePx": 25459,
+          "inkBox": {
+            "left": 0,
+            "right": 1079,
+            "top": 110,
+            "bottom": 1919
+          }
+        },
+        {
+          "at": "start",
+          "frame": 68,
+          "outsideSafeRun": 0,
+          "outsideSafePx": 0,
+          "inkBox": null
+        },
+        {
+          "at": "end",
+          "frame": 122,
+          "outsideSafeRun": 101,
+          "outsideSafePx": 38540,
+          "inkBox": {
+            "left": 0,
+            "right": 1079,
+            "top": 98,
+            "bottom": 1919
+          }
+        }
+      ],
+      "worstAt": "end",
+      "bleed": true,
+      "worldSafe": {
+        "left": 111.7,
+        "right": 840.6,
+        "top": 351.7,
+        "bottom": 1232
+      }
     }
   ],
   "passed": 17,

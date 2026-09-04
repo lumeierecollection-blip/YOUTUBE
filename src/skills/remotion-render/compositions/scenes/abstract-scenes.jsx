@@ -69,15 +69,56 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
   // viewer inside the field; CLOSE puts them near a smaller one. Hardcoding
   // the size made both framings draw an identical field, which is the
   // whole complaint this layer exists to answer.
-  const boxHalfW = f.w * 0.21;
-  const boxHalfH = f.h * 0.17;
-  const openMax = Math.min(f.w, f.h) * 0.2;
+  const rawHalfW = f.w * 0.21;
+  const rawHalfH = f.h * 0.17;
+  const rawOpen = Math.min(f.w, f.h) * 0.2;
   const appear = ease(pEst);
 
   // loading's own geometry: a compressing stack of load bars, unrelated
   // to the wall box the other three modes use.
   const rings = 5;
-  const R = Math.min(f.w, f.h) * 0.46;
+  const rawR = Math.min(f.w, f.h) * 0.46;
+
+  /**
+   * THE FIELD IS SCALED TO FIT THE SAFE RECT — MEASURED, NOT ASSUMED.
+   *
+   * The shot for this strategy is IMMERSIVE (coverage 1.0, bleed), so
+   * `f.w` is 1134 and every size above is a fraction of a world WIDER than
+   * the frame. The walls were therefore drawn wider than the safe rect and
+   * then scaled outward again by the camera: the rendered anchor frame put
+   * 7277 px of wall outside SAFE, reaching x=1050 — 162px past SAFE.right
+   * — with a contiguous run of 814px. That is the enclosure's right bar and
+   * the overhanging ends of its two horizontal bars.
+   *
+   * Scaling the WHOLE field by one factor, rather than clamping each part,
+   * is the same answer ComparisonScene needed for its figure pair: clamping
+   * parts independently breaks the proportion that carries the meaning. A
+   * vice whose right wall is nearer than its left is not a vice.
+   *
+   * The extent is computed for the mode that will actually draw, at the
+   * point in ITS animation where it is widest — `revealing` retreats to
+   * 1.68x its opening, `closing` starts at 1.0x and shrinks — so the fit
+   * holds for the whole beat, not just the anchor frame.
+   */
+  const safe = cameraSafe(plan.shot || null, SAFE);
+  const availHalfW = Math.max(40, Math.min(cx - safe.left, safe.right - cx));
+  const availHalfH = Math.max(40, Math.min(cy - safe.top, safe.bottom - cy));
+  const standoffPeak = mode === "revealing" ? 1.68 : mode === "destabilising" ? 0.55 : 1;
+  // Mirrors PressureWalls' own th/overhang, which extend the horizontal
+  // bars past the wall box on both sides.
+  const wallTh = Math.max(12, Math.min(rawHalfW, rawHalfH) * 0.22);
+  const wallOver = wallTh * 1.4;
+  const extentX = mode === "loading"
+    ? rawR * 0.9
+    : rawHalfW + rawOpen * standoffPeak + wallOver;
+  const extentY = mode === "loading"
+    ? f.h * 0.17 + rings * f.h * 0.07
+    : rawHalfH + rawOpen * standoffPeak + wallOver;
+  const fit = Math.min(1, availHalfW / extentX, availHalfH / extentY);
+  const boxHalfW = rawHalfW * fit;
+  const boxHalfH = rawHalfH * fit;
+  const openMax = rawOpen * fit;
+  const R = rawR * fit;
   const step = R * 0.079;
 
   let standoff = openMax, wallOpacity = appear, wobble = [0, 0, 0, 0], accent = false;
@@ -139,11 +180,34 @@ export function VisualMetaphorScene({ beat, colors, fontFamily }) {
         <circle cx={cx} cy={cy} r={12 + 6 * appear} fill={colors.accent} opacity={appear} />
       </svg>
 
-      {pResolve > 0 ? (
-        <Label x={cx} y={cy + R * 0.95} text={(beat.visualPlan && beat.visualPlan.supporting.phrase) || ""}
-          color={colors.textPrimary} size={40} weight={800} tracking={2}
-          align="center" opacity={pResolve} fontFamily={fontFamily} />
-      ) : null}
+      {pResolve > 0 ? (() => {
+        /**
+         * THE ONE PIECE OF THIS SCENE THE FIELD FIT DOES NOT COVER.
+         *
+         * The walls are scaled to the safe rect above, but this label was
+         * a fixed 40px centred on `cx` with no width constraint at all. It
+         * only appears in the `resolve` state, so the anchor frame never
+         * showed it — the gate caught it only when it sampled the last
+         * frame of the beat, where the phrase measured x[151..906], 18px
+         * past SAFE.right.
+         *
+         * Fitted then elided, the same two-step every other text in this
+         * system uses: shrink to what fits, and trim if the size floor
+         * still will not.
+         */
+        const phrase = String((beat.visualPlan && beat.visualPlan.supporting.phrase) || "");
+        if (!phrase) return null;
+        const halfAvail = Math.min(cx - safe.left, safe.right - cx);
+        const GLYPH_W = 0.62; // 800-weight mixed case, narrower than the 0.78 uppercase case
+        const size = Math.max(TYPE.support, Math.min(40, Math.floor((halfAvail * 2) / (phrase.length * GLYPH_W))));
+        const fitChars = Math.max(6, Math.floor((halfAvail * 2) / (size * GLYPH_W)));
+        const shown = phrase.length > fitChars ? `${phrase.slice(0, fitChars - 1).trimEnd()}…` : phrase;
+        return (
+          <Label x={cx} y={cy + R * 0.95} text={shown}
+            color={colors.textPrimary} size={size} weight={800} tracking={2}
+            align="center" opacity={pResolve} fontFamily={fontFamily} />
+        );
+      })() : null}
     </div>
   );
 }
@@ -292,8 +356,22 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
   // The phrase box: centred on `textCx`, but clamped so BOTH edges stay
   // inside SAFE — see the box's own comment below for the rendered-frame
   // defect this exists to prevent.
-  const textBoxW = Math.min(f.w * 0.88, SAFE.right - SAFE.left);
-  const textBoxLeft = Math.max(SAFE.left, Math.min(SAFE.right - textBoxW, textCx - textBoxW / 2));
+  /**
+   * CLAMPED TO THE CAMERA-SAFE RECT, NOT TO SAFE.
+   *
+   * These two lines used SAFE directly, which is correct only for a camera
+   * that never scales. BEFORE_AFTER delegates to this scene and gets a
+   * different shot — ACTING_LEFT, drift held in place, scale 1.04 -> 1.06 —
+   * and on its anchor frame the last glyph of "...TRACKING EVERY" rendered
+   * at x=904, 16px past SAFE.right, with a 23px run. Real words under the
+   * platform UI, not decoration.
+   */
+  const statementSafe = cameraSafe(shot, SAFE);
+  const textBoxW = Math.min(f.w * 0.88, statementSafe.width);
+  const textBoxLeft = Math.max(
+    statementSafe.left,
+    Math.min(statementSafe.right - textBoxW, textCx - textBoxW / 2)
+  );
 
   // A far ridge: deterministic, irregular, and BELOW the eye — it sits on
   // the horizon rather than floating. Seeded, so a re-render is identical.

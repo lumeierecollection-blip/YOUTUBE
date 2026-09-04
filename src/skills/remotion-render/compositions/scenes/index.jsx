@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import { stateAt } from "../../visual/states.js";
+import { SUSTAIN_DRIFT_PX, SUSTAIN_SCALE_GAIN } from "../../visual/composition.js";
 import { GeospatialRadiusScene } from "./GeospatialRadiusScene.jsx";
 import {
   AccumulationScene, TransformationScene, ComparisonScene,
@@ -139,8 +140,11 @@ function SustainCamera({ beat, children }) {
   const eased = p * p * (3 - 2 * p); // smoothstep
 
   const dir = sustainIndex % 2 === 0 ? 1 : -1;
-  const dx = dir * 10 * eased;
-  const scale = 1 + 0.018 * eased;
+  // The two magnitudes live in visual/composition.js beside cameraSafe,
+  // which has to account for this transform as well as Shot's — see the
+  // note there. Restating them here is how they drifted out of the model.
+  const dx = dir * SUSTAIN_DRIFT_PX * eased;
+  const scale = 1 + SUSTAIN_SCALE_GAIN * eased;
 
   return (
     <div style={{ position: "absolute", inset: 0, transform: `translateX(${dx}px) scale(${scale})` }}>

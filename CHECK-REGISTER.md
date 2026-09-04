@@ -2178,9 +2178,16 @@ reasoning about them, and both are fixed:
    SAFE[48..888]. The same helper also gave the stack a top clamp, which
    the old comment claimed and the code did not have.
 
-**A SYSTEM-WIDE FINDING, NOT FIXED HERE.** A pixel probe of all 17 gate
+**A SYSTEM-WIDE FINDING, NOT FIXED HERE — AND THE COUNT BELOW IS WRONG.**
+See §3.12.26: this probe used delta >= 60, which counts ground the design
+intends to bleed. Re-measured at a threshold that separates subject from
+ground, the real count is **6 of 17**, and all six are fixed there. The
+paragraph is kept as written because the mechanism it names is correct and
+the number is the kind of thing this register exists to catch.
+
+A pixel probe of all 17 gate
 anchor frames (ink delta >= 60 against the frame's own corner background)
-found **12 of 17 putting visible ink outside SAFE[48,888]** — CINEMATIC_-
+found 12 of 17 putting visible ink outside SAFE[48,888] — CINEMATIC_-
 STATEMENT, ENUMERATION, GEOSPATIAL_RADIUS, IMAGE_EVIDENCE, SCALE_COMPARISON
 and TIMELINE on both edges, DATA_CHART and TRANSFORMATION on the left,
 VISUAL_METAPHOR, CAUSE_EFFECT, INTERFACE_SIMULATION and BEFORE_AFTER on the
@@ -2198,6 +2205,124 @@ DELETED: `ListRunScene`, its `<ListRuns/>` mount, the `listRuns`/`ListRuns`
 helpers and `LIST_PANEL` in `motion-graphics.jsx`; `groupListRuns` and the
 `scene.listIndex`/`scene.listTotal` it wrote in `mg-package.js`, which
 nothing read any more; and the now-unused `Panel` import.
+
+**3.12.26 — the safe rect, asserted for every strategy, at every extreme of
+every camera.** §3.12.25 left `cameraSafe` applied to ONE scene and reported
+"12 of 17 frames put ink outside SAFE". **That 12 was wrong** and is
+withdrawn here. It came from a probe at ink delta >= 60, which counts the
+ground — atmosphere shading, horizon rules, map streets — all of which are
+MEANT to reach past the safe rect. The number was never re-measured at a
+threshold that separates subject from ground.
+
+WHAT THE GATE NOW ASSERTS. `frame-bounds.mjs` gained a safe-rect rule beside
+its edge-band rule: no contiguous vertical run of subject ink outside
+`SAFE_SHORTS` (48..888 of a 1080 frame; the right margin is 192px because
+the Shorts action buttons run down that side). Both constants measured, not
+picked — a sweep of all 17 anchor frames at delta 60 through 180 in steps of
+10, recording the tallest out-of-SAFE run at each:
+
+| at delta | clean/ground runs | real-violation runs |
+|---|---|---|
+| 100 | 0 on eight strategies, 3 on TIMELINE's horizon rule | 19, 20, 23, 753, 803, 814 |
+
+`SAFE_CONTRAST` is 100 and `SAFE_MIN_RUN` is 8, in the gap between 3 and 19.
+EDGE_CONTRAST's 140 is measured for the 21px edge band where ground is
+quietest and is too high here: DATA_CHART's grey bars on a near-white ground
+sit at delta ~121 (run 19 at T100, run 1 at T140) and are unmistakably
+subject. A horizontal rule crossing the boundary has a run of 1-3 per column
+and is ground by construction; an object's edge or a clipped glyph is tall,
+which is what the run floor keys on.
+
+`SAFE_EXEMPT_MATERIALS` is `footage` and `terrain` — a photograph and a map
+from above, where the frame is a window onto something larger. Verified on
+the frames: GEOSPATIAL_RADIUS's only readable subject, the pin and "150 m",
+sits at x[450..660], and the T100 hits outside SAFE are street lines. The
+exemption is by MATERIAL, as the edge check's already was, and the data says
+it is not too broad — `field` backs the failing VISUAL_METAPHOR and
+CAUSE_EFFECT *and* the clean COMPARISON and RELATIONSHIP.
+
+THE REAL FAILURE COUNT: **6 of 17**, not 12. Ordered by measured overshoot,
+with the rendered ink range before and after each fix:
+
+| strategy | overshoot | run | ink x, before | ink x, after |
+|---|---|---|---|---|
+| VISUAL_METAPHOR | 162px past right | 814 | [..1050] | [246..872] |
+| CAUSE_EFFECT | 108px past right | 803 | [..996] | [67..871] |
+| INTERFACE_SIMULATION | 52px past right | 756 | [97..940] | [165..870] |
+| DATA_CHART | 27px past left | 19 | [21..885] | [88..677] |
+| BEFORE_AFTER | 16px past right | 23 | [..904] | [129..867] |
+| TRANSFORMATION | 13px past left | 20 | [35..820] | [66..820] |
+
+Each was a different mistake, fixed on its own terms, every one verified on
+a re-rendered frame:
+
+- **VISUAL_METAPHOR** sized its walls off `f.w` (1134 on an IMMERSIVE,
+  bleeding shot), so the enclosure was drawn wider than the frame before the
+  camera scaled it further. Now one fit factor scales the whole field —
+  clamping parts independently breaks the proportion that carries the
+  meaning; a vice whose right wall is nearer than its left is not a vice —
+  computed at the point in each MODE's animation where it is widest, so the
+  fit holds for the beat and not just the anchor.
+- **CAUSE_EFFECT** ran its duct from `CANVAS_W * (1 - cov) * 0.5`; the
+  casing overhangs the channel by 30px and is stroked 3px, and an SVG stroke
+  is centred on its path. Coverage still decides how wide the duct wants to
+  be; the safe rect decides how wide it may be, and the span centres on that
+  rect rather than the canvas — SAFE is asymmetric, so those are not the
+  same point.
+- **INTERFACE_SIMULATION** and **TIMELINE** and **PROCESS** all clamped
+  against `CANVAS_W * 0.09 .. 0.91` — 97 to 983, a hand-rolled pair of
+  percentages that is neither SAFE nor what the camera leaves of it. 983 is
+  95px past the right edge.
+- **DATA_CHART** is read, not travelled over. Its TRACK_RIGHT camera keeps a
+  full ±108px translation on a bleeding framing, so the pan-safe world rect
+  is x[195..751], much narrower than the frame. The chart takes that rect
+  and the ground pans behind it.
+- **BEFORE_AFTER** delegates to CinematicStatementScene, whose text box
+  clamped to SAFE — correct only for a camera that never scales. Its own
+  shot scales 1.04 to 1.06.
+- **TRANSFORMATION** was 63.5 in world space, already close, and the camera
+  did the rest.
+
+**SAMPLING ONE FRAME PER STRATEGY WAS ITSELF THE BUG.** With all six fixed
+and every strategy measuring clean on its anchor, sampling the beat's first
+and last frames — the exact extremes, since both transforms interpolate
+linearly in eased progress — found three more, all of them content a viewer
+sees:
+
+1. **A SECOND CAMERA NOBODY HAD MODELLED.** `SustainCamera`
+   (`scenes/index.jsx`) wraps every scene OUTSIDE `Shot` and adds its own
+   `translateX(±10px) scale(1..1.018)` on any sustaining state.
+   INTERFACE_SIMULATION, clamped to SAFE and clean at x[149..886] on its
+   anchor, rendered at x[152..903] on the last frame of the same beat:
+   540 + 10 + (886 − 540) x 1.018 = 902.2. `cameraSafe` now composes both
+   transforms and checks every endpoint COMBINATION, and the two magnitudes
+   live in `composition.js` beside it with `SustainCamera` importing them —
+   restating them in the component is how they drifted out of the model in
+   the first place.
+2. **TIMELINE's event label ran off BOTH frame edges** — "BATCHING RULE
+   REMOVED", ink x[0..1003], 690px hard against the edge. When the string
+   did not fit, the old clamp centred the oversized string instead of
+   shrinking it.
+3. **VISUAL_METAPHOR's resolve phrase** was a fixed 40px centred label with
+   no width constraint at all. It only exists in the `resolve` state, so the
+   anchor frame never drew it.
+
+Three stills per strategy is therefore the DEFAULT now, not a flag;
+`--anchor-only` restores the single-frame sweep. It triples the render cost,
+which is the price of a gate that does not lie.
+
+FINAL STATE, MEASURED: **17 passed, 0 failed at the camera extremes**, 17/17
+coverage; `run-visual-tests.js` 77/77 (it caught one real failure on the way
+— the PROCESS clamp referencing a `shot` that does not exist inside
+`CircuitProcess`, now passed in as a prop); `verify-compositions.js` 26/26
+pixel probes.
+
+STILL NOT CHECKED, DELIBERATELY: the TOP and BOTTOM safe edges. The gate's
+existing reasoning holds — the PROCESS track runs -12% to +112% of frame
+height on purpose and foreground planes are meant to leave the frame, so
+banding vertically would flag intent as failure and the check would be
+suppressed within a week. `cameraSafe` returns `top`/`bottom` and scenes use
+them (ENUMERATION clamps its stack both ways), but nothing asserts on them.
 
 ---
 

@@ -1,12 +1,12 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, CAPTION_RESERVE_Y, Label, ease, seeded,
+  CANVAS_W, CANVAS_H, CAPTION_RESERVE_Y, SAFE, Label, ease, seeded,
   useStateProgress, useValueProgress, EASE_IN_OUT, EASE_OUT,
 } from "./primitives.jsx";
 import { MG_TYPE as TYPE } from "../beats.js";
 import { progressOf } from "../../visual/states.js";
-import { shotFrame, Plane } from "./stage.jsx";
+import { shotFrame, Plane, cameraSafe } from "./stage.jsx";
 import { MachineBody, Gate, MaterialSlug } from "./elements/machine.jsx";
 import { CircuitNode, CircuitTrace, SignalPacket } from "./elements/circuit.jsx";
 import { ATMOSPHERE_HORIZON_Y } from "../../layout/slots.js";
@@ -155,8 +155,21 @@ export function TimelineScene({ beat, colors, fontFamily }) {
   // Inset hard. Spreading the span across the full frame width put 1998 and
   // 2015 on the left and right edges, and the camera track clipped one of
   // them off entirely. Endpoints need room to be endpoints.
-  const x0 = f.x + f.w * 0.26;
-  const w = f.w * 0.48;
+  /**
+   * ...and inset to the CAMERA-SAFE rect, not the frame. TRACK_RIGHT keeps
+   * its full ±108px translation on a bleeding framing, and SustainCamera
+   * adds its own ±10px and 1.018x on top, so `f.w * 0.48` off a 1134px
+   * world put the last marker at x=812 — which the pan carries to 941.
+   * Each year label is centred on its marker, so the span also has to
+   * reserve room for half a label at each end.
+   */
+  const safe = cameraSafe(shot, SAFE);
+  const YEAR_HALF = 40; // a centred 4-digit year at its focus size (30px)
+  const w = Math.min(f.w * 0.48, Math.max(120, safe.width - YEAR_HALF * 2));
+  const x0 = Math.max(
+    safe.left + YEAR_HALF,
+    Math.min(safe.right - YEAR_HALF - w, f.x + f.w * 0.26)
+  );
 
   // A single dated event still gets a real span, so "the law changed in
   // 1998" reads as a moment IN time rather than a caption.
@@ -171,7 +184,10 @@ export function TimelineScene({ beat, colors, fontFamily }) {
   const focusYear = years.length ? years[years.length - 1] : null;
   // Fitted into the house range rather than a hand-picked size, so a long
   // event still clears TYP-04's 44px floor without leaving the safe rect.
-  const eventSize = fitPhraseSize(sup.event, CANVAS_W * 0.82);
+  const eventSize = fitPhraseSize(sup.event, safe.width);
+  // Backstop: the size floor can outvote the fit, so trim to what actually
+  // fits at the size that will actually be drawn.
+  const eventText = short(sup.event, Math.max(6, Math.floor(safe.width / (eventSize * GLYPH_W))));
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
@@ -326,24 +342,26 @@ export function TimelineScene({ beat, colors, fontFamily }) {
           it is the scene's dominant text per scene-director rule 3. */}
       {sup.event && plan.runLast && pFocus > 0 ? (
         <Label
-          /* Centred on the focus marker, but clamped so a long event never
-             runs off the safe rect. On the first render of this label
-             "BATCHING RULE REMOVED" centred on the 2015 post reached
-             x=992 against a 983px safe edge — a real margin violation,
-             caught on the frame rather than reasoned about. Width is
-             estimated from the glyph count (this is a Label, which has no
-             measurement pass); the estimate only has to be good enough to
-             keep a centred string off the edge. */
+          /* Centred on the focus marker, clamped into the CAMERA-safe rect.
+             This clamped against `CANVAS_W * 0.09 .. 0.91` — a hand-rolled
+             pair of percentages, 97..983 — which is neither SAFE (48..888)
+             nor what the camera leaves of it. And when a string did not fit
+             it centred the oversized string instead of shrinking it, which
+             is how "BATCHING RULE REMOVED" rendered on the last frame of
+             its own beat running off BOTH edges: ink from x=0 to x=1003,
+             690 px of it hard against the frame edge. `eventSize` is now
+             fitted to the camera-safe width, and `short()` is the backstop
+             for when TYP-04's 44px floor still will not fit. */
           x={(() => {
-            const halfW = (sup.event.length * eventSize * GLYPH_W) / 2;
-            const lo = CANVAS_W * 0.09 + halfW;
-            const hi = CANVAS_W * 0.91 - halfW;
-            // When the string is too wide for the safe rect at all, centre
-            // it rather than pinning it to a nonsense position.
-            return lo > hi ? CANVAS_W / 2 : Math.max(lo, Math.min(hi, xFor(focusYear)));
+            const halfW = (eventText.length * eventSize * GLYPH_W) / 2;
+            const lo = safe.left + halfW;
+            const hi = safe.right - halfW;
+            return lo > hi
+              ? (safe.left + safe.right) / 2
+              : Math.max(lo, Math.min(hi, xFor(focusYear)));
           })()}
           y={aboveUiBand(groundY + 78, eventSize)}
-          text={sup.event}
+          text={eventText}
           align="center"
           color={colors.textPrimary}
           size={eventSize}
@@ -405,6 +423,12 @@ export function ProcessScene({ beat, colors, fontFamily }) {
         n={n} trackX={trackX} firstY={firstY} lastY={lastY}
         pStages={pStages} pAdvance={pAdvance} pArrive={pArrive}
         colors={colors} fontFamily={fontFamily}
+        // The scene's own shot, so the claim below can clamp itself to what
+        // the camera leaves of the safe rect. Passed rather than read from
+        // a closure: CircuitProcess is a separate component and has no
+        // `shot` of its own — run-visual-tests caught the first version
+        // referencing one that does not exist here.
+        safe={cameraSafe(shot, SAFE)}
         // Both come from the director, counted against the text budget
         // there. The scene places them; it never derives them.
         // The claim is drawn only on the LAST beat of a same-strategy run
@@ -605,7 +629,7 @@ export function ProcessScene({ beat, colors, fontFamily }) {
  * vocabulary: circuit nodes with status lights, right-angle traces, and a
  * travelling signal packet, not rollers and a workpiece.
  */
-function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, colors, fontFamily, subject, phrase }) {
+function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, colors, fontFamily, subject, phrase, safe }) {
   // ZIGZAG, not a single vertical column. A rendered frame (CHECK-REGISTER
   // §3.12.15) showed this family collapsing into the exact grammar the
   // whole rebuild bans: three boxes joined by one straight line, because
@@ -818,10 +842,14 @@ function CircuitProcess({ n, trackX, firstY, lastY, pStages, pAdvance, pArrive, 
              rect (width estimated from glyph count; Label has no
              measurement pass). */
           x={(() => {
+            // Same correction as TimelineScene's event label: the rect is
+            // cameraSafe, not a pair of canvas percentages. This one
+            // measures clean today; it was wrong for the same reason.
+            const pSafe = safe || SAFE;
             const halfW = (phrase.length * phraseSize * GLYPH_W) / 2;
-            const lo = CANVAS_W * 0.09 + halfW;
-            const hi = CANVAS_W * 0.91 - halfW;
-            return lo > hi ? CANVAS_W / 2 : Math.max(lo, Math.min(hi, trackX));
+            const lo = pSafe.left + halfW;
+            const hi = pSafe.right - halfW;
+            return lo > hi ? (pSafe.left + pSafe.right) / 2 : Math.max(lo, Math.min(hi, trackX));
           })()}
           y={claimY}
           text={phrase} align="center"
@@ -887,9 +915,40 @@ export function CauseEffectScene({ beat, colors, fontFamily }) {
   const cov = shot ? shot.coverage : 0.74;
   const channelHalfH = (CANVAS_H * 0.34 * (cov / 0.74)) / 2;
   const cy = CANVAS_H * (shot ? shot.anchorY : 0.45);
-  const inset = CANVAS_W * (1 - cov) * 0.5;
-  const xIn = inset;
-  const xOut = CANVAS_W - inset;
+  /**
+   * THE DUCT SPANS THE SAFE RECT, NOT THE CANVAS.
+   *
+   * It used to be `inset = CANVAS_W * (1 - cov) * 0.5`, so the channel ran
+   * from x=140 to x=940 and MachineBody's casing — which overhangs the
+   * channel by 30px on each side — reached x=970 in world space. The camera
+   * (drift held in place on a non-bleeding framing, scale 1.06) then pushed
+   * that to 995: the rendered anchor frame measured 3147 px outside SAFE
+   * with an 803px contiguous run, 108px past SAFE.right. That run is the
+   * casing's right wall, which on a Shorts screen sits under the action
+   * buttons.
+   *
+   * Coverage still decides how wide the duct WANTS to be; the safe rect
+   * decides how wide it may be, and the span is centred on that rect rather
+   * than on the canvas — SAFE is asymmetric (48 left, 192 right) because
+   * the platform UI is only on one side, so centring on the canvas is not
+   * the same thing as centring on the readable area.
+   */
+  const safe = cameraSafe(shot, SAFE);
+  const BODY_OVERHANG = 30; // MachineBody's casing, each side — see below
+  /**
+   * MachineBody's outer rect carries `strokeWidth={3}`, and an SVG stroke
+   * is centred on its path: 1.5px of it lies OUTSIDE the rect, plus a pixel
+   * of antialiasing. Reserving only the 30px overhang left the casing edge
+   * exactly on SAFE.left and the stroke fell past it — the first fix here
+   * measured ink at x[46..889] instead of the intended [48..888]. Two px,
+   * measured off that frame, not estimated.
+   */
+  const CASING_STROKE = 2;
+  const reserve = BODY_OVERHANG + CASING_STROKE;
+  const span = Math.min(CANVAS_W * cov, Math.max(160, safe.width - reserve * 2));
+  const spanCx = (safe.left + safe.right) / 2;
+  const xIn = spanCx - span / 2;
+  const xOut = spanCx + span / 2;
   const xGate = xIn + (xOut - xIn) * 0.54;
 
   const eEffect = ease(pEffect);
@@ -912,7 +971,8 @@ export function CauseEffectScene({ beat, colors, fontFamily }) {
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
         <MachineBody
-          x={xIn - 30} y={cy - channelHalfH - 54} w={xOut - xIn + 60} h={channelHalfH * 2 + 108}
+          x={xIn - BODY_OVERHANG} y={cy - channelHalfH - 54}
+          w={xOut - xIn + BODY_OVERHANG * 2} h={channelHalfH * 2 + 108}
           colors={colors} opacity={ease(pCause)} />
 
         {/* ── upstream: a queue that visibly compresses as the gate closes ──

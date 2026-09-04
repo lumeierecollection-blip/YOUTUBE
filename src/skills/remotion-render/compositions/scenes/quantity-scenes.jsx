@@ -5,7 +5,7 @@ import {
   ease, seeded, useStateProgress, useValueProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
-import { shotFrame } from "./stage.jsx";
+import { shotFrame, cameraSafe } from "./stage.jsx";
 import { StackedMass } from "./elements/chart.jsx";
 // remocn number treatments — see REMOCN-COMPONENTS.md for the per-page
 // verified install command behind each of these four.
@@ -267,8 +267,17 @@ export function TransformationScene({ beat, colors, fontFamily }) {
   const pGrow = progressOf(states, "grow", frame);
   const pSettle = useStateProgress(states, "settle");
 
-  const x0 = f.x + f.w * 0.12;
-  const x1 = f.x + f.w * 0.88;
+  /**
+   * The plot's span, clamped to what survives the camera.
+   *
+   * ACTING_LEFT (anchor 0.34, coverage 0.74) put x0 at 63.5 in world space
+   * — already close to SAFE.left — and the camera (drift held in place,
+   * scale 1.06) mapped that to x=35 on the rendered anchor frame: 13px past
+   * SAFE.left, with the "$500" label and the baseline both starting there.
+   */
+  const safe = cameraSafe(plan.shot || null, SAFE);
+  const x0 = Math.max(safe.left, f.x + f.w * 0.12);
+  const x1 = Math.min(safe.right, f.x + f.w * 0.88);
   const baseY = f.cy + f.h * 0.42;
   const topY = f.cy - f.h * 0.34;
   const span = x1 - x0;
@@ -792,8 +801,28 @@ export function DataChartScene({ beat, colors, fontFamily }) {
   const chartFmt = figureFormat(sup.unit);
   const max = Math.max(...series.map((s) => Math.abs(s.value))) || 1;
   const axisY = f.cy + f.h * 0.4;
-  const x0 = f.x + f.w * 0.14;
-  const w = f.w * 0.72;
+  /**
+   * THE CHART SPANS WHAT SURVIVES THE PAN, NOT WHAT THE SHOT GRANTS.
+   *
+   * This was `x0 = f.x + f.w * 0.14; w = f.w * 0.72`. The framing is
+   * HORIZON (coverage 0.96, bleed), so f.w is 1134 and the chart ran from
+   * x=132 to x=948 in world space — already wider than SAFE. The camera is
+   * TRACK_RIGHT, which on a bleeding framing keeps its full translation:
+   * dx sweeps +108 to -108 while the world is also scaled 1.06. On the
+   * anchor frame that put the first stack's bars at x=22, 27px past
+   * SAFE.left, with a 19px run (they are grey slabs on a near-white ground,
+   * delta ~121 — under EDGE_CONTRAST's 140, which is why only the safe-rect
+   * rule at 100 sees them).
+   *
+   * `cameraSafe` returns the world rect that is still inside SAFE at BOTH
+   * ends of the move, which for a ±108px pan is a good deal narrower than
+   * the frame: x[178..766]. A chart is read, not travelled over — its
+   * numbers cannot be allowed to pan under the platform UI — so it takes
+   * that rect and the pan moves the ground behind it instead.
+   */
+  const safe = cameraSafe(plan.shot || null, SAFE);
+  const w = Math.min(f.w * 0.72, safe.width);
+  const x0 = Math.max(safe.left, Math.min(safe.right - w, f.x + f.w * 0.14));
   const maxH = f.h * 0.74;
   const gap = 26;
   const barW = (w - gap * (series.length - 1)) / series.length;
