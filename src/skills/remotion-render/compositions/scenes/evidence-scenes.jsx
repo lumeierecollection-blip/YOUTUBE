@@ -138,15 +138,38 @@ export function ImageEvidenceScene({ beat, colors, fontFamily }) {
   const pRole = useStateProgress(states, "role");
   const pHold = progressOf(states, "hold", frame);
 
-  // Slow move across the subject — motion that says "look at this", the one
-  // kind of ambient movement PART 17 still allows because it aids reading.
-  const scale = 1.06 - 0.05 * ease(pHold, EASE_IN_OUT);
+  // THE PHOTOGRAPH IS THE SCENE, NOT AN EXHIBIT INSIDE ONE.
+  //
+  // This used to draw the photo into `shotFrame()` — a band capped at
+  // CANVAS_H * 0.46, so a real sourced photograph always arrived letterboxed,
+  // a rectangular panel with the composition's black above and below it. That
+  // framing is right for a diagram subject ("a subject that fills 1920px tall
+  // is not composed, it is stretched") and wrong for a photograph, which is
+  // not a subject sitting in a world — it IS the world. It now fills the
+  // canvas and the camera works inside it.
+  //
+  // AND THE CAMERA IS NO LONGER ONE MOVE FOR EVERY BEAT. It was a uniform
+  // `1.06 - 0.05 * hold` on every image beat without exception: the slow zoom
+  // that stands in for "cinematic". Each beat now gets one of four readings of
+  // its own photograph, chosen by the beat's seed, and one of them is holding
+  // still — stillness has to be reachable or the alternative is just a
+  // different universal formula.
+  const move = seeded(beat.startFrame || 1);
+  const h = ease(pHold, EASE_IN_OUT);
+  const camera =
+    move < 0.25
+      ? { scale: 1.0, x: 0, y: 0, name: "held" }
+      : move < 0.5
+        ? { scale: 1.0 + 0.14 * h, x: 0, y: 0, name: "push" }
+        : move < 0.75
+          ? { scale: 1.12, x: (0.5 - h) * 0.10 * CANVAS_W, y: 0, name: "track" }
+          : { scale: 1.18 - 0.14 * h, x: 0, y: (h - 0.5) * 0.06 * CANVAS_H, name: "pull-back" };
   const role = String(plan.assetRole || (asset.role || "")).toUpperCase();
 
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
       <div style={{
-        position: "absolute", left: f.x, top: f.y, width: f.w, height: f.h,
+        position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H,
         overflow: "hidden", opacity: ease(pReveal),
       }}>
         {/* Real photo treatment (effects/PhotoTreatment.jsx), not a bare
@@ -159,15 +182,18 @@ export function ImageEvidenceScene({ beat, colors, fontFamily }) {
             outer wrapper; PhotoTreatment itself renders at a fixed size
             (its internal orthographic camera is derived from width/height
             once), same technique any other DOM element uses for a push-in. */}
-        <div style={{ width: "100%", height: "100%", transform: `scale(${scale})` }}>
+        <div style={{
+          width: "100%", height: "100%",
+          transform: `translate(${camera.x.toFixed(1)}px, ${camera.y.toFixed(1)}px) scale(${camera.scale.toFixed(3)})`,
+        }}>
           {/* ThreeCanvas demands INTEGER width/height — shotFrame()'s w/h
               are coverage-derived floats (a real render caught this:
               "the height prop... must be an integer, but is 927.36"). */}
           <PhotoTreatment
             src={asset.path.startsWith("http") ? asset.path : staticFile(asset.path)}
             treatment={asset.treatment === "cutout" ? "cutout" : "fullbleed"}
-            width={Math.round(f.w)}
-            height={Math.round(f.h)}
+            width={CANVAS_W}
+            height={CANVAS_H}
           />
         </div>
       </div>
