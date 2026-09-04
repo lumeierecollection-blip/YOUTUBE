@@ -370,7 +370,7 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
           result arrives, the same way the "N OF M" counter below does. */}
       {landed > 0 && total != null ? (
         <div style={{ opacity: collapsed ? 1 - ease(pTotal) : 1 }}>
-          <Figure
+          <TreatedFigure treatment={numberTreatmentOf(beat)}
             x={figureX}
             y={figureY}
             value={runningTotal}
@@ -414,7 +414,7 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
           figure says what the pile is worth. */}
       {collapsed && total != null ? (
         <div style={{ opacity: ease(pTotal), transform: `scale(${0.94 + 0.06 * ease(pTotal)})`, transformOrigin: `${STAGE_CX}px 760px` }}>
-          <Figure
+          <TreatedFigure treatment={numberTreatmentOf(beat)}
             x={STAGE_CX} y={716}
             value={total} p={1} color={colors.accent}
             size={72} align="center" fontFamily={fontFamily}
@@ -552,14 +552,14 @@ export function TransformationScene({ beat, colors, fontFamily }) {
         ) : null}
       </svg>
 
-      <Figure x={x0} y={yFor(from) + 16} value={from} p={pEst} color={colors.textDim} size={38}
+      <TreatedFigure treatment={numberTreatmentOf(beat)} x={x0} y={yFor(from) + 16} value={from} p={pEst} color={colors.textDim} size={38}
         fontFamily={fontFamily} format={(v) => `${symbol}${Math.round(v).toLocaleString("en-US")}`} />
       {labels && labels[0] ? (
         <Label x={x0} y={baseY + 20} text={String(labels[0]).toUpperCase()} color={colors.textDim} size={24} tracking={2.2} opacity={pEst} fontFamily={fontFamily} />
       ) : null}
 
       {pGrow > 0 ? (
-        <Figure x={head[0] + 18} y={head[1] - 26} value={current} p={1} color={colors.accent} size={46}
+        <TreatedFigure treatment={numberTreatmentOf(beat)} x={head[0] + 18} y={head[1] - 26} value={current} p={1} color={colors.accent} size={46}
           fontFamily={fontFamily} format={(v) => `${symbol}${Math.round(v).toLocaleString("en-US")}`} />
       ) : null}
       {labels && labels[1] ? (
@@ -640,7 +640,7 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
         />
       </svg>
 
-      <Figure x={cx - halfSpan} y={leftY + hanger - hA - 50} value={a.value} p={pLeft}
+      <TreatedFigure treatment={numberTreatmentOf(beat)} x={cx - halfSpan} y={leftY + hanger - hA - 50} value={a.value} p={pLeft}
         color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} format={fmt} />
       {/* Driven by `right`, the anchored state, ON PURPOSE — do not
           "fix" this to useValueProgress. The right-hand pan's mass also
@@ -649,7 +649,7 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
           value above a pan of zero height, the same inconsistency the
           other way round. A figure matches the element it labels, not
           every figure lands on the anchor. */}
-      <Figure x={cx + halfSpan} y={rightY + hanger - hB - 50} value={b.value} p={pRight}
+      <TreatedFigure treatment={numberTreatmentOf(beat)} x={cx + halfSpan} y={rightY + hanger - hB - 50} value={b.value} p={pRight}
         color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} format={fmt} />
 
       <Label x={cx - halfSpan} y={leftY + hanger + 34} text={String(a.label || "").toUpperCase().slice(0, 18)}
@@ -919,7 +919,7 @@ export function DataChartScene({ beat, colors, fontFamily }) {
         return (
           <React.Fragment key={i}>
             {/* ENC-14 — the value sits adjacent to ITS bar, not in a legend */}
-            <Figure x={x} y={axisY - h - 50} value={s.value} p={grow}
+            <TreatedFigure treatment={numberTreatmentOf(beat)} x={x} y={axisY - h - 50} value={s.value} p={grow}
               color={i === hiIdx && pHi > 0 ? colors.accent : colors.textPrimary}
               size={38} align="center" fontFamily={fontFamily} format={chartFmt} />
             <Label x={x} y={axisY + 18} text={String(s.label || "").toUpperCase().slice(0, 14)}
@@ -986,7 +986,7 @@ export function ScaleComparisonScene({ beat, colors, fontFamily }) {
           right-hand column. The quantity grows FROM the anchor, so the
           figure grows with it rather than standing at full value before the
           thing it measures exists. See strategies.js `resolves`. */}
-      <Figure x={STAGE_CX} y={gridY + rows * cell + 52} value={value} unit={String(sup.unit || "")}
+      <TreatedFigure treatment={numberTreatmentOf(beat)} x={STAGE_CX} y={gridY + rows * cell + 52} value={value} unit={String(sup.unit || "")}
         p={ease(pGrow)} color={colors.accent} size={72} align="center" fontFamily={fontFamily} />
       {pRead > 0 ? (
         <Label x={STAGE_CX} y={gridY - 54} text={`${Math.round(ease(pGrow) * 100)}% OF THE FIELD`}
