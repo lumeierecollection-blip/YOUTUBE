@@ -220,14 +220,25 @@ function pickTextDimL(bgHex, target = 5.3) {
  * polarity so COL-02 (accent/bg >= 4.5:1) holds when measured against the
  * actual rendered (grained) bg — see pickAccentL's 5.3 target note.
  *
- * @param {{accentHue:number, bgMode?: "white"|"black", baseHue?:number}} hues
+ * PASS `accent` TO KEEP THE CHANNEL'S DECLARED COLOUR. Solving the accent
+ * from `accentHue` re-derives a colour that is NOT the one channels.json
+ * declares in `colors.accent`: measured across all 17 channels, 17 of 17
+ * differed, some heavily (ch-31 declares #FBBF24 and this solved #AF7400;
+ * ch-35 declares #60A5FA and this solved #006BC9). `thumbnail_spec.accentHue`
+ * is numeric on every channel, so every render took the derived value. The bg
+ * and ink roles here are right and stay; only the accent was wrong.
+ *
+ * @param {{accentHue:number, bgMode?: "white"|"black", baseHue?:number,
+ *          accent?:string}} hues
  *   accentHue is required; bgMode defaults to "black" when omitted (legacy
  *   callers / fixtures). baseHue is accepted but unused — bg no longer
  *   carries a hue (kept in the signature so old call sites don't throw).
+ *   accent, when a hex string, is used VERBATIM instead of being solved from
+ *   accentHue — that is how a caller supplies channels.json's own colour.
  * @returns {{bg:string, surface:string, raised:string, stroke:string,
  *            textPrimary:string, textDim:string, accent:string}} 8-bit hexes.
  */
-export function paletteFromHues({ accentHue, bgMode }) {
+export function paletteFromHues({ accentHue, bgMode, accent }) {
   const mode = bgMode === "white" ? "white" : "black";
   const bg = mode === "white" ? BG_WHITE : BG_BLACK;
   const ink = INK[mode];
@@ -240,7 +251,7 @@ export function paletteFromHues({ accentHue, bgMode }) {
     stroke: ink.stroke,
     textPrimary: ink.textPrimary,
     textDim: hexFromOklch(textDimL, 0, 0),
-    accent: hexFromOklch(accentL, C_ACC, accentHue),
+    accent: /^#[0-9a-fA-F]{6}$/.test(String(accent)) ? String(accent) : hexFromOklch(accentL, C_ACC, accentHue),
   };
 }
 

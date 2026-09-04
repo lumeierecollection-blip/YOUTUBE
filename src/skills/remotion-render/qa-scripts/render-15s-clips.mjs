@@ -108,7 +108,7 @@ for (const job of JOBS) {
   }
 
   const palette = typeof c.thumbnail_spec?.accentHue === "number"
-    ? paletteFromHues({ accentHue: c.thumbnail_spec.accentHue, bgMode: c.bg_mode }) : null;
+    ? paletteFromHues({ accentHue: c.thumbnail_spec.accentHue, bgMode: c.bg_mode, accent: (c.colors || {}).accent }) : null;
   const props = {
     channelId: c.channel_id, style: c.style, format: "shorts", sections, mg,
     ttsAudioPath: job.vo ? job.vo : null, hasUnderscore: false,

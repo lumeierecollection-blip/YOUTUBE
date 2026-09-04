@@ -80,7 +80,7 @@ console.log(`beats: ${staged.map((b) => b.visualPlan && b.visualPlan.strategy).j
 
 const palette =
   typeof channel.thumbnail_spec?.accentHue === "number"
-    ? paletteFromHues({ accentHue: channel.thumbnail_spec.accentHue, bgMode: channel.bg_mode })
+    ? paletteFromHues({ accentHue: channel.thumbnail_spec.accentHue, bgMode: channel.bg_mode, accent: (channel.colors || {}).accent })
     : null;
 
 const props = {

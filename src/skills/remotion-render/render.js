@@ -505,6 +505,10 @@ async function main() {
         ? paletteFromHues({
             accentHue: channel.thumbnail_spec.accentHue,
             bgMode: channel.bg_mode,
+            // The channel's DECLARED accent, not one re-solved from the hue.
+            // Colour lives in channels.json (CHECK-REGISTER SCR-13); solving
+            // it here silently overrode all 17 channels' chosen colour.
+            accent: (channel.colors || {}).accent,
           })
         : null,
   };

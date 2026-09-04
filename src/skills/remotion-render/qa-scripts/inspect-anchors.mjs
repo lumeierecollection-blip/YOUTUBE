@@ -104,7 +104,7 @@ const mg = buildMgPackage(srtText, {
 
 const palette =
   typeof channel.thumbnail_spec?.accentHue === "number"
-    ? paletteFromHues({ accentHue: channel.thumbnail_spec.accentHue, bgMode: channel.bg_mode })
+    ? paletteFromHues({ accentHue: channel.thumbnail_spec.accentHue, bgMode: channel.bg_mode, accent: (channel.colors || {}).accent })
     : null;
 
 const props = {
