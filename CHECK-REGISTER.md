@@ -1468,6 +1468,276 @@ production render, no muted human-review pass across the whole system.
 
 ---
 
+**3.12.16 — a tenth directive: delete the components that exist only to
+draw a banned generic shape, not just recolour them.** Named four
+patterns as still-generic regardless of styling: a seesaw standing in for
+a numeric comparison, a gauge drawn because the component existed, grey
+bars standing in for a document's body text, and a rounded-rect blob
+riding a curve. The rule: if a component exists ONLY to produce one of
+these and nothing else depends on it, delete the component itself, not
+just its call site — trace to source, grep every usage, confirm nothing
+else needs it, then remove it.
+
+**Deleted, confirmed zero remaining call sites (`grep` for the export
+name across `compositions/scenes/**` returns only explanatory comments,
+never a live import or JSX use):**
+- `elements/balance.jsx` (`BalanceBeam`) — the fulcrum/tilting-beam/two-
+  pans construction `ComparisonScene`'s quantitative branch used to
+  express a value delta. Deleted outright: the delta can size the two
+  figures directly (below), so the beam was standing between the claim
+  and the number for no reason a weighing scale actually earns.
+- `elements/transform.jsx` (`MorphShape`, `ContentVessel`) — `MorphShape`
+  was a rounded-rect blob riding `TransformationScene`'s real plotted
+  curve; `ContentVessel` was a bounding rect around `BeforeAfterScene`'s
+  cell grid. Both deleted.
+- `components/lifeprompt/data-gauge.jsx` (`DataGauge`), plus its now-empty
+  parent directory — `ScaleComparisonScene`'s gauge branch, drawn because
+  the component had been ported in, not because a gauge is what "how big
+  is this, really" actually calls for.
+- `primitives.jsx`'s `GroundPlane()` — already flagged dead in-file
+  (§3.12.8 ported it, nothing ever called it, including the one scene its
+  own doc comment named); this pass finished the deletion.
+- `quantity-scenes.jsx`'s inline `gaugeFits()` / `ValueGauge()` — dead the
+  moment the gauge branch above was removed.
+
+**Rewritten, not just restyled — the representation itself changed:**
+- `ScaleComparisonScene` — gauge AND the 100-square unit-block grid
+  fallback both gone. A magnitude is now communicated by the number's own
+  log-scaled typographic size (`70 + log10(|value|+1) * 62`, clamped
+  96–320px): no object stands between the claim and the number.
+- `AccumulationScene` — the pile/ledger/jitter/tray system (identical
+  rectangular units stacked or dropped into a tray — "money as stacked
+  rectangles," one of this directive's four named patterns, verbatim)
+  deleted outright. The total now counts up as itself, positioned and
+  scaled off the strategy's own two real shot framings (GROUNDED,
+  COLUMNAR — `composition.js`) instead of a fixed centre point, which is
+  also what keeps the strategy's declared `variants: 2` backed by an
+  actual second composition rather than a stale claim (caught by
+  `run-visual-tests.js`'s own composition-variants check immediately
+  after the rewrite — see QA note below).
+- `ComparisonScene`'s quantitative branch — two real values now sized
+  directly by their own magnitude (`baseSize` to `maxSize`, scaled by
+  `|value| / max`); the winner takes `colors.accent` once resolved. The
+  qualitative/opposition branch (rock-strata metaphor) was reviewed and
+  kept unchanged — a legitimate non-generic construction, not a case this
+  directive names.
+- `TransformationScene` — the real plotted curve and filled area stay (a
+  genuine chart, not the banned pattern); only the `MorphShape` marker at
+  its head was replaced, with a plain circle at the literal point on the
+  curve.
+- `BeforeAfterScene` — `BEFORE_AFTER` has `dataNeeds: []` in
+  `strategies.js`: the sparse/dense cell grid this scene used to draw was
+  never actually backed by data, only by a `seeded()` toggle between two
+  fixed densities. Rather than invent a replacement object for a
+  strategy with nothing real to draw, it now delegates to
+  `CinematicStatementScene` — the same honest typography-only fallback
+  already used elsewhere in this system for zero-data strategies.
+- `DocumentSheet` (`elements/document.jsx`) — removed the "body text
+  rhythm" block (`lines` grey rects at `seeded()`-random widths standing
+  in for sentences that were never real, one of them, `isClause`,
+  pre-highlighted as "the clause" *before* the real clause is ever shown
+  by the caller). The page's real physical properties — depth shadow,
+  folded corner, letterhead double-rule, scan indicator, find-bracket,
+  page number — are unchanged; the body is blank paper until the real
+  words the scene exists to reveal arrive.
+
+**Traced and explicitly kept, not deleted — re-read against their actual
+call sites rather than assumed guilty by association with the pattern
+above:**
+- `elements/chart.jsx` (`StackedMass`) — the bar renderer inside
+  `DataChartScene`, driven by real per-beat `series` values against a
+  real axis with real per-bar labels. A real chart, the case this
+  directive itself carves out, not the banned pattern.
+- `elements/machine.jsx` (`MachineBody`/`Gate`/`MaterialSlug`) — already
+  rebuilt in §3.12.8 specifically to replace curved "flow" strokes and
+  chevron-stroke gates with a real gate whose jaw gap narrows on
+  `useValueProgress` and material carried as discrete filled bodies whose
+  width scales with real throughput. Doing this directive's job again to
+  it would undo §3.12.8's fix, not extend it.
+- `elements/circuit.jsx` (`CircuitNode`/`CircuitTrace`/`SignalPacket`) —
+  already rebuilt in §3.12.15 for the identical reason this directive
+  exists: an earlier version WAS the banned box-arrow-box pattern
+  (rounded square + dot, joined by a degenerate straight line). The
+  current version is a DIP-chip object with real pins, used in exactly
+  one place, driven by real per-stage progress.
+- `elements/pressure.jsx` (`PressureWalls`) — its own doc comment records
+  replacing a decorative concentric-ring field (`VisualMetaphorScene`'s
+  first two passes) with a literal four-wall vice/press; already the fix
+  this directive asks for, not a target of it.
+
+These four were on this pass's own first-draft delete list, built from an
+incomplete usage trace; re-reading each component's actual implementation
+and call site before deleting corrected the list down to the five items
+above. Recorded here rather than silently fixed, per this register's own
+standard (§0.1) that a check — or in this case a deletion candidate — is
+only as good as the evidence behind it.
+
+**QA run this pass:** `node visual/run-visual-tests.js` — 74/74 passing.
+Immediately after the `AccumulationScene` rewrite this was 73/74: the
+composition-variants check correctly caught that the new scene had
+dropped the only mechanism (the tray-vs-ledger switch) that made
+`ACCUMULATION`'s declared `variants: 2` real. Fixed by deriving the
+scene's position and scale from `plan.shot` (GROUNDED vs COLUMNAR), not
+by loosening the check. Every touched scene file individually
+re-verified with `npx esbuild <file> --outfile=/dev/null` after each
+edit.
+
+**Not done this pass:** no fresh render or frame inspection of any
+rewritten scene — verification so far is compile-clean-and-tests-pass
+only, not a rendered pixel. No muted-comprehension review. No direct
+comparison against reference clips. These are the actual proof this
+directive's own closing phase requires and are tracked as outstanding,
+not implied by the 74/74 above.
+
+---
+
+**3.12.17 — the actual proof, and three real bugs neither esbuild nor
+run-visual-tests.js could have caught.** §3.12.16 closed with compile-
+clean-and-tests-pass, explicitly not claimed as proof. This pass ran
+`qa-scripts/render-15s-clips.mjs` — real production script/SRT pairs,
+real channels, the actual `MotionGraphicsShorts`/`MinimalShorts`
+compositions — across `ch-01` (real voiceover), `ch-02`, `ch-04`, and
+`ch-fixture` in both `motion-graphics` and `minimal` styles, the same
+five files (`ch-0N-<style>-<bg>-15s.mp4`) named in this directive as the
+reference set. The pre-§3.12.16 renders were copied to
+`data/renders/clips-15s-before-delete-pass/` first so the comparison is
+against this repo's own prior output, not memory.
+
+**Three real defects found by looking at rendered frames, none visible
+in a text diff or a passing test suite:**
+
+1. **`ComparisonScene`: the larger figure ran off the canvas.** At
+   `maxSize` (128px) a 6-digit value ("13,600") is ~430px wide; the fixed
+   `halfSpan = f.w * 0.28` placed its centre at x=857 on the HORIZON
+   framing (1080-wide canvas) — its right half printed past the frame
+   edge, past even `SAFE.right`. Fixed by clamping each side's centre
+   independently so ITS OWN text at ITS OWN size stays inside `SAFE`
+   (same glyph-count-estimate technique `structure-scenes.jsx` already
+   uses), falling back to a minimum gap only when both texts already fit.
+2. **`ScaleComparisonScene`: the figure rendered off-canvas for the
+   ENTIRE beat**, not just at the anchor. `TreatedFigure` was called with
+   `x={STAGE_CX} y={CANVAS_H/2}` inside a `<div style={{transform:
+   scale()}}>` — a CSS `transform` makes an element a containing block
+   for absolutely-positioned descendants regardless of its own
+   `position` value, so `Figure`'s `left/top` resolved against that
+   *already flex-centred* wrapper's own origin, not the canvas — a
+   second, redundant offset that landed the figure at roughly (1008,
+   1920), off-canvas. Invisible on every frame of the beat, not only the
+   anchor, which is why it surfaced on a full render and not on the
+   isolated frames checked when the scene was first written. Fixed by
+   passing `x={0} y={0}` (the `AccumulationScene` rewrite earlier in
+   §3.12.16 used the correct form of this same pattern; this scene did
+   not).
+3. **Separately, `pGrow` was driven by `progressOf(states, "grow",
+   frame)`** — progress THROUGH `grow`, which is `SCALE_COMPARISON`'s
+   OWN anchored state, so it read 0 at frame 0 of `grow` — which IS the
+   anchor frame. The exact bug class `primitives.jsx`'s own
+   `useValueProgress` doc comment names ("the accumulation beat displayed
+   '$0' on the exact frame the narration said 'five hundred dollars'").
+   Fixed by switching to `useValueProgress(states)`, which counts from
+   the beat's own first frame and reaches exactly 1 at the anchor.
+4. **`TreatedFigure`: the unit suffix was rendered, then invisibly
+   painted over.** `RollingNumber`, `NumberWheel` and `MatrixDecode` are
+   each built on Remotion's `AbsoluteFill` (correct for each as a
+   standalone component, per their own doc pages) — but `TreatedFigure`'s
+   `shell` div was an unsized flex row whose only in-flow child was the
+   `unit` span, so `shell` shrank to fit just that, and the absolutely-
+   positioned digits filled that tiny box and — being a POSITIONED
+   element — painted ON TOP of the `unit` span regardless of JSX order
+   (position:absolute always paints above position:static siblings,
+   independent of source order). Any beat with a non-"settle" treatment
+   AND a non-empty unit (SCALE_COMPARISON's "%", any currency/unit
+   ACCUMULATION beat that rolls a non-settle treatment) rendered the
+   digits with the unit buried underneath, invisible. This is a defect in
+   how `TreatedFigure` composes vendored components, not in the vendored
+   components themselves (each is correctly self-contained per its own
+   doc page) — fixed there, not by patching the ported files: `digits`
+   now renders inside an explicitly sized `position: relative` box, and
+   `unit`'s span is also `position: relative`, so both are POSITIONED
+   siblings and JSX order (unit after digits) decides paint order.
+
+None of these four are dead code or unreachable paths — `ComparisonScene`
+and `ScaleComparisonScene` fired in the very first real beats rendered
+against real channel scripts, and `TreatedFigure`'s non-settle path is a
+1-in-3 chance on any `ACCUMULATION`/`HERO_NUMBER` beat. All four are
+exactly the class of defect this directive's PART 4 says only a real
+render can catch — `run-visual-tests.js` stayed 74/0 throughout, since
+none of the four is a logic error the test suite's fixtures exercise.
+
+**QA after each fix:** `npx esbuild <file> --outfile=/dev/null` (clean)
+and `node visual/run-visual-tests.js` (74/0, unchanged) before every
+re-render; each of the four fixes was confirmed on a freshly re-rendered
+frame at the beat's own anchor before moving to the next.
+
+**Muted-comprehension read, on the current renders, sound off:**
+- `ch-01` ACCUMULATION ($13,600 / $215) and COMPARISON (215 vs 13,600,
+  "13,385 APART") — the number's own size and colour-on-resolve read
+  correctly as "this one is bigger" and "this is the running total"
+  without narration. Honest limitation, not a regression: `sup.series`
+  carries no per-item `label` for this content (`a.label`/`b.label` are
+  empty strings), so nothing on screen says WHICH number is snowball vs.
+  avalanche — a viewer needs the narration for that half of the claim.
+  This is a text-budget/data-population gap in `director.js`'s
+  COMPARISON case, not a generic-primitive problem, and was equally true
+  of the pre-delete-pass seesaw version (it printed no labels either) —
+  named here rather than silently left for a later pass to rediscover.
+- `ch-fixture` ACCUMULATION ("1,000,000 years") and SCALE_COMPARISON
+  ("7%") read cleanly as a magnitude on their own. `ch-fixture`'s
+  qualitative COMPARISON (`OppositionComparison`, the strata/seam
+  branch — untouched this whole rebuild) is unchanged frame-for-frame
+  against the pre-pass render, confirmed by direct comparison.
+- `ch-02` (VISUAL_METAPHOR + CINEMATIC_STATEMENT) and `ch-04` (TIMELINE +
+  CINEMATIC_STATEMENT) — both untouched by this pass's edits — spot-
+  checked against the pre-pass render and read identically: real
+  environment, real quoted phrases, no collateral damage from the
+  `primitives.jsx`/`elements/*.jsx` deletions.
+
+**Against the three named reference clips, directly:** `ch-01-motion-
+graphics-white-15s.mp4`, `ch-fixture-motion-graphics-black-15s.mp4`, and
+`ch-fixture-minimal-white-15s.mp4` are the same files, same
+script/SRT/channel inputs, before and after this pass — the comparison is
+this repo's own prior output, preserved at
+`data/renders/clips-15s-before-delete-pass/`, not a separate reference
+set. Camera, ground/atmosphere layers, typography rhythm, and every
+strategy this pass did not touch (TIMELINE, VISUAL_METAPHOR,
+CINEMATIC_STATEMENT, IMAGE_EVIDENCE, the qualitative half of COMPARISON)
+render pixel-identical to before, confirmed by direct comparison, not
+assumed from an unchanged diff. What changed is confined to the four
+strategies this directive named: ACCUMULATION, the quantitative half of
+COMPARISON, SCALE_COMPARISON, and TRANSFORMATION's curve-head marker —
+each now a real number at its own honest size instead of a pile, a
+seesaw, or a gauge borrowed from an unrelated component. That is the same
+production philosophy (real per-beat data, earned camera, staged ground,
+typography subordinate to the picture) applied more literally where it
+had been standing in for itself with a shape — not a different renderer.
+
+**`DOCUMENT_EVIDENCE`, closed by a targeted render.** None of the first
+15 seconds of the four production scripts route a beat to it, so a
+second, targeted render (`frameRange` over `ch-02`'s full 171s script,
+not the first-15s set) was pointed at its three real
+`DOCUMENT_EVIDENCE` beats (`data/research/2/what-to-say-traffic-stop-
+script.json`, beats at 82.0s/114.9s/146.3s of the full timeline). The
+82.0s beat ("...still admissible in court.") confirmed the fix on a real
+frame: the page shows depth shadow, folded corner, letterhead rule, a
+find-bracket highlighting where the clause sits, and a page number —
+body copy stays genuinely blank paper, and the real narration ("still
+admissible in court.") lands pulled-out below the page in the channel
+accent once `read` begins. No fabricated line lengths, no clause
+pre-highlighted before the real one appears. Muted-comprehension read:
+correct — a silent viewer sees a highlighted document and the exact
+words it says, nothing invented.
+
+**Not done this pass:** `BEFORE_AFTER` — the one remaining strategy this
+rebuild touched (`BeforeAfterScene`'s delegation to
+`CinematicStatementScene`) was not exercised by any of the five 15s
+clips or by a scan of `ch-02`'s full script; none of the topics rendered
+this pass has a stated before/after contrast. Confirmed by compile-check
+and the existing "the scenes actually compile" test only, not by a
+rendered frame. A future pass should render a script with a genuine
+before/after beat before calling that one strategy proven.
+
+---
+
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 

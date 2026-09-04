@@ -75,7 +75,7 @@ export const STRATEGIES = {
 
   ACCUMULATION: {
     scene: "AccumulationScene",
-    variants: 2, // a tray the units fall into, or a ledger they stack down
+    variants: 2, // GROUNDED (high, wide) or COLUMNAR (lower, narrower) framing of the same counting total — see AccumulationScene
     intent: "many small things adding up into one consequential total",
     dataNeeds: ["total"],
     iconRole: "none",

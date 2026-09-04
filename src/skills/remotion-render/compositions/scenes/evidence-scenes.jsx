@@ -12,7 +12,7 @@ import { progressOf } from "../../visual/states.js";
 import { shotFrame } from "./stage.jsx";
 import { DocumentSheet } from "./elements/document.jsx";
 import { WindowChrome, NavRail, StatusBar } from "./elements/interface.jsx";
-import { ContentVessel } from "./elements/transform.jsx";
+import { CinematicStatementScene } from "./abstract-scenes.jsx";
 
 
 /**
@@ -91,11 +91,15 @@ export function DocumentEvidenceScene({ beat, colors, fontFamily }) {
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
         {/* The page, as a constructed object — depth, a folded corner, a
-            letterhead region, body rhythm, a margin annotation and a page
-            number, not a bordered rectangle with ruled bars (see
-            elements/document.jsx). The safe-rect budget this geometry was
-            tuned against (documentPageGeometry) is unchanged; the sheet's
-            depth shadow is a small +6/+8px offset, not new page footprint. */}
+            letterhead region, a margin annotation and a page number, not a
+            bordered rectangle with ruled bars. Body copy is deliberately
+            blank paper now: the fake grey "body rhythm" rects this used to
+            draw (random-width lines standing in for sentences that were
+            never real, one pre-highlighted as "the clause" before the real
+            one below ever appears) are gone — see elements/document.jsx for
+            why. The safe-rect budget this geometry was tuned against
+            (documentPageGeometry) is unchanged; the sheet's depth shadow is
+            a small +6/+8px offset, not new page footprint. */}
         <DocumentSheet
           px={px} py={py} pageW={pageW} pageH={pageH} lines={lines} clauseLine={clauseLine}
           lead={lead} variant={v} pPage={pPage} pScan={pScan} pFind={pFind} colors={colors}
@@ -380,63 +384,34 @@ export function InterfaceSimulationScene({ beat, colors, fontFamily }) {
 // BEFORE_AFTER — the same frame under two conditions, joined by a real wipe.
 // ─────────────────────────────────────────────────────────────────────────────
 export function BeforeAfterScene({ beat, colors, fontFamily }) {
-  const frame = useCurrentFrame();
-  const states = beat.visualStates || [];
-  const f = shotFrame((beat.visualPlan && beat.visualPlan.shot) || null);
-
-  const pBefore = useStateProgress(states, "before");
-  const pWipe = progressOf(states, "wipe", frame);
-  const pAfter = useStateProgress(states, "after");
-  const pCompare = useStateProgress(states, "compare");
-
-  const x = 108, y = 470, w = 864, h = 560;
-  const wipeX = x + w * ease(pWipe, EASE_IN_OUT);
-
-  // Two different structural states of the same field: sparse vs dense.
-  const cells = 40;
-  const cols = 8;
-  const cw = w / cols, ch = h / (cells / cols);
-
-  return (
-    <div style={{ position: "absolute", inset: 0 }}>
-      <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {/* A bounded vessel holding the field — one object whose CONTENTS
-            change (visual-system-reset PART 14), not an unbounded grid of
-            independent cells with nothing holding them. WAS fill="none",
-            the same invisible-container defect fixed elsewhere. */}
-        <ContentVessel x={x} y={y} w={w} h={h} colors={colors} progress={pBefore} />
-
-        {Array.from({ length: cells }).map((_, i) => {
-          const r = Math.floor(i / cols), c = i % cols;
-          const cxp = x + c * cw + cw / 2;
-          const cyp = y + r * ch + ch / 2;
-          const isAfterSide = cxp < wipeX && pWipe > 0;
-          const beforeOn = seeded(i * 3 + 1) > 0.62;
-          const afterOn = seeded(i * 3 + 1) > 0.2;
-          const on = isAfterSide ? afterOn : beforeOn;
-          const a = ease(Math.max(0, Math.min(1, (isAfterSide ? pAfter + 0.4 : pBefore) * 2 - i * 0.012)));
-          if (!on || a <= 0.02) return null;
-          return (
-            <rect key={i} x={cxp - cw * 0.32} y={cyp - ch * 0.3} width={cw * 0.64} height={ch * 0.6} rx={3}
-              fill={isAfterSide ? colors.accent : "none"}
-              stroke={isAfterSide ? colors.accent : colors.stroke}
-              strokeWidth={2} opacity={a} />
-          );
-        })}
-
-        {pWipe > 0 && ease(pWipe) < 1 ? (
-          <line x1={wipeX} y1={y} x2={wipeX} y2={y + h} stroke={colors.accent} strokeWidth={4} />
-        ) : null}
-        {pCompare > 0 ? (
-          <line x1={x + w / 2} y1={y} x2={x + w / 2} y2={y + h}
-            stroke={colors.stroke} strokeWidth={1.5} strokeDasharray="8 8" opacity={0.5 * ease(pCompare)} />
-        ) : null}
-      </svg>
-
-      <Label x={x} y={y + h + 20} text="BEFORE" color={colors.textDim} size={26} tracking={3}
-        opacity={pBefore * (pAfter > 0 ? 0.6 : 1)} fontFamily={fontFamily} />
-      <Label x={x + w} y={y + h + 20} text="AFTER" color={colors.accent} size={26} tracking={3}
-        align="right" opacity={pAfter} fontFamily={fontFamily} />
-    </div>
-  );
+  /**
+   * THE GRID OF RANDOM CELLS IS GONE.
+   *
+   * This strategy's own entry in visual/strategies.js declares
+   * `dataNeeds: []` and states its intent as "the same frame under two
+   * different conditions" — which literally names a photograph (the SAME
+   * shot, at two moments). No photo pipeline is reachable here (every
+   * source returns a connection error) and 17 of 18 channels have zero
+   * sourced images on disk, so that intent cannot be honestly met right
+   * now. What rendered instead was 40 identical rounded rects, each
+   * switched on or off by `seeded(i)` with no relationship to anything the
+   * script said, inside a box hardcoded to `x=108,y=470,w=864,h=560` that
+   * ignored the shot entirely. A field of fake data standing in for a
+   * comparison is worse than an empty frame — it looks like evidence and
+   * carries none.
+   *
+   * director.js has never populated real before/after data for this
+   * strategy either (its supporting-data switch has no BEFORE_AFTER case),
+   * so the only real thing to show is the beat's own actual words — same
+   * fallback CinematicStatementScene already uses when no richer
+   * representation exists (visual/strategies.js: "no richer representation
+   * was available — compose the frame anyway"). Delegating to it rather
+   * than duplicating its typography keeps one definition of that fallback
+   * instead of two that can drift apart.
+   *
+   * If a photo pipeline becomes reachable, THIS is the strategy to wire a
+   * real before/after image pair into first — its intent already names
+   * exactly that.
+   */
+  return <CinematicStatementScene beat={beat} colors={colors} fontFamily={fontFamily} />;
 }

@@ -1,23 +1,18 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import {
-  CANVAS_W, CANVAS_H, STAGE_CX, SAFE, CAPTION_RESERVE_Y, Label, Figure, Rule, MeasureBracket, variantOf,
+  CANVAS_W, CANVAS_H, STAGE_CX, SAFE, CAPTION_RESERVE_Y, Label, Figure, Rule,
   ease, seeded, useStateProgress, useValueProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf, reached } from "../../visual/states.js";
 import { shotFrame } from "./stage.jsx";
 import { StackedMass } from "./elements/chart.jsx";
-import { BalanceBeam } from "./elements/balance.jsx";
-import { MorphShape } from "./elements/transform.jsx";
 // remocn number treatments — see REMOCN-COMPONENTS.md for the per-page
 // verified install command behind each of these four.
 import { RollingNumber } from "../../components/remocn/rolling-number";
 import { NumberWheel } from "../../components/remocn/number-wheel";
 import { SlotMachineRoll } from "../../components/remocn/slot-machine-roll";
 import { MatrixDecode } from "../../components/remocn/matrix-decode";
-// lifeprompt-team/remotion-scenes @ 02c7a84 (MIT). Only DataGauge is pulled;
-// see the block below for why the other seven DataAnimations scenes are not.
-import { DataGauge } from "../../components/lifeprompt/data-gauge";
 
 /**
  * Quantity scenes — the four ways this renderer explains a NUMBER.
@@ -129,60 +124,41 @@ export function TreatedFigure({
   } else if (treatment === "matrix-decode") {
     digits = <MatrixDecode text={String(fmt(value, value))} fontSize={size} color={color} fontWeight={800} />;
   }
+  /**
+   * A rendered frame caught a real integration bug here: RollingNumber,
+   * NumberWheel and MatrixDecode are each built on Remotion's
+   * `AbsoluteFill` (`position:absolute; inset:0`, filling the nearest
+   * positioned ancestor) — correct for each as a standalone component,
+   * per their own doc pages. But `shell` below is an unsized flex row, so
+   * its only IN-FLOW child was the `unit` span, and `shell` shrank to
+   * fit just that. The absolutely-positioned digits then filled that
+   * tiny box and, being a POSITIONED element, painted ON TOP of the
+   * `unit` span regardless of JSX order (position:absolute always paints
+   * above position:static siblings) — a beat with a unit (SCALE_
+   * COMPARISON's "%", ACCUMULATION's currency) rendered the digits with
+   * the unit invisibly buried underneath. `digitBox` below gives the
+   * fill-based treatments a real, estimated-from-the-string size to fill
+   * instead of a collapsed one; `position: relative` on both children
+   * makes them both POSITIONED, so DOM order (unit after digits) decides
+   * paint order and the unit stacks visibly on top.
+   */
+  const digitsText = String(fmt(value, value));
+  const digitBox = { position: "relative", width: digitsText.length * size * 0.62, height: size * 1.3 };
   return (
     <div style={shell}>
-      {digits}
-      {unit ? <span style={{ fontSize: size * 0.42, fontWeight: 700 }}>{unit}</span> : null}
+      <div style={digitBox}>{digits}</div>
+      {unit ? <span style={{ position: "relative", fontSize: size * 0.42, fontWeight: 700 }}>{unit}</span> : null}
     </div>
   );
 }
 
-/**
- * GAUGE — a bounded value read against its maximum.
- *
- * This is the one thing worth pulling from lifeprompt-team/remotion-scenes'
- * DataAnimations category, and the reason the other seven are not pulled is
- * worth stating rather than leaving implied.
- *
- * Seven of its eight components — DataBarChart, DataLineChart, DataPieChart,
- * DataProgressBars, DataRanking, DataStatsCards, DataTimeline — accept ONLY
- * `startDelay`. They take no data at all: DataStatsCards renders a hardcoded
- * 89,420 and the caption "Performance Score", inside its own full-screen
- * AbsoluteFill with its own background. Integrating one would paint over the
- * shot, the ground and the falloff, and it would put a number on screen that
- * no research produced — the rule this repo gates hardest (CLAUDE.md: no
- * statistic that didn't come from an actual fetched source).
- *
- * DataGauge is the exception: it takes `value` and `maxValue`, so it can be
- * driven by the beat's own parsed figure. It is ported with its geometry
- * intact and four deviations recorded in the component file.
- *
- * Applies only where a maximum genuinely exists — a percentage. A gauge
- * needs a full scale to read against, and inventing one for an unbounded
- * count would be a fabricated denominator.
- */
-export function gaugeFits(sup) {
-  const unit = String((sup && sup.unit) || "");
-  const value = sup && sup.value;
-  return /%|percent/i.test(unit) && Number.isFinite(value) && value >= 0 && value <= 100;
-}
-
-/** The gauge, positioned and coloured by the calling scene. */
-export function ValueGauge({ sup, colors, fontFamily, size = 1 }) {
-  return (
-    <DataGauge
-      value={sup.value}
-      maxValue={100}
-      color={colors.textPrimary}
-      dim={colors.textDim}
-      track={colors.surface || colors.textDim}
-      accent={colors.accent}
-      label={String(sup.unit || "")}
-      fontFamily={fontFamily}
-      size={size}
-    />
-  );
-}
+// DataGauge/ValueGauge/gaugeFits are deleted. Pulling DataGauge in — because
+// it was the one lifeprompt DataAnimations component that took a real value —
+// was reaching for an available component rather than asking what a specific
+// beat needed: it rendered floating in empty space with no ground under it,
+// and ScaleComparisonScene below no longer needs a second treatment branch at
+// all. See CHECK-REGISTER and this file's ScaleComparisonScene for what
+// replaced it.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // ACCUMULATION — many small things becoming one consequential total.
@@ -193,294 +169,77 @@ export function AccumulationScene({ beat, colors, fontFamily }) {
   const states = beat.visualStates || [];
   const plan = beat.visualPlan || {};
   const sup = plan.supporting || {};
-  // Laid out against the SHOT (visual/composition.js), not hardcoded pixels:
-  // an audit found 13 of 16 scenes ignoring it and drawing at the same size
-  // in the same place regardless of framing.
-  const f = shotFrame(plan.shot || null);
 
-  const count = Math.max(3, Math.min(24, Math.round(sup.count || 12)));
-  const total = Number.isFinite(sup.total) ? sup.total : null;
-  const money = isMoney(sup.unit);
+  const total = Number.isFinite(sup.total) ? sup.total : (Number.isFinite(sup.value) ? sup.value : 0);
+  const count = Math.max(1, Math.round(sup.count || 0));
   const symbol = currencySymbol(sup.unit);
+  const unit = isMoney(sup.unit) ? "" : String(sup.unit || "");
 
-  const pEmpty = useStateProgress(states, "empty");
-  const pFirst = useStateProgress(states, "first");
-  const pAcc = progressOf(states, "accumulate", frame);
+  /**
+   * THE PILE AND THE LEDGER ARE BOTH GONE.
+   *
+   * This used to drop `count` discrete rectangles into a tray (or, in the
+   * ledger variant, stack them as rows down a rule) — deterministic jitter,
+   * real container sizing, a lean toward the result figure on collapse, all
+   * built across several passes (PART 13, PART 15) to make a heap of
+   * identical boxes read as "real" rather than "a spreadsheet." None of that
+   * effort changes what a muted viewer sees: identical rectangular units,
+   * stacked, one of them optionally carrying a currency glyph — "money as
+   * stacked identical rectangles," named directly on this rebuild's deletion
+   * list. Polishing the box is not the fix; the box is the problem.
+   *
+   * ACCUMULATION's actual claim is arithmetic: many small amounts summed
+   * into one total. The most literal, least invented way to show a sum
+   * arriving is the sum itself arriving — the total counting up on screen,
+   * using the number-treatment machinery this file already has (settle's
+   * own frame-driven, clamped-[0,1] multiply in Figure, or one of the
+   * remocn roll treatments' own from-0-to-value animation). No metaphor
+   * object stands between the claim and the number; the number IS the
+   * object, and its own arrival is the accumulation.
+   */
+  const pGrow = progressOf(states, "accumulate", frame);
   const pTotal = useStateProgress(states, "total");
-  const pWeigh = useStateProgress(states, "weigh");
   const collapsed = reached(states, "total", frame);
+  const g = collapsed ? 1 : ease(pGrow, EASE_IN_OUT);
 
-  // COMPOSITION VARIANT (PART 13). Two ACCUMULATION beats in one finance
-  // script drew the identical tray-of-tokens, differing only in how many
-  // tokens fell in. Variant 1 is a LEDGER: the same units, but stacked as
-  // full-width rows down a left rule the way small charges accumulate on a
-  // statement. Same meaning, genuinely different picture — and for money it
-  // is arguably the truer one.
-  const ledger = variantOf(beat) === 1;
+  // Camera earned per beat from its own seed (PART 4) — a result this size
+  // can honestly take a slight push as it settles, but not on every beat,
+  // or "push on settle" just becomes the next universal formula.
+  const camera = seeded((beat.startFrame || 1) * 5 + 3);
+  const cameraScale = camera < 0.4 ? 1 : 1 + 0.05 * ease(pTotal, EASE_IN_OUT);
 
-  // The tray: a real container with a floor the items stack on.
-  const trayW = f.w * 0.62;
-  const trayX = f.cx - trayW / 2;
-  const floorY = f.cy + f.h * 0.42;
-
-  // The ledger: a left rule with rows running down it.
-  const ledgerTop = f.cy - f.h * 0.34;
-  const ledgerH = floorY - ledgerTop;
-  const rowH = Math.max(11, Math.min(34, ledgerH / Math.max(count, 1)));
-
-  // How many items have landed. `first` lands exactly one, so the viewer
-  // reads the unit before the pile becomes a texture.
-  const landed = collapsed
-    ? count
-    : pAcc > 0
-      ? Math.round(1 + ease(pAcc, EASE_IN_OUT) * (count - 1))
-      : pFirst > 0
-        ? 1
-        : 0;
-
-  // Where the running total is actually drawn (see the Figure below). The
-  // collapse used to aim at a hardcoded (STAGE_CX, 760) that matched
-  // neither this nor the shot.
-  const figureX = trayX + trayW;
-  const figureY = floorY + 26;
-
-  const perRow = Math.ceil(Math.sqrt(count * 1.6));
-  const cellW = trayW / perRow;
-
-  /**
-   * THE UNITS ARE SIZED TO THE PILE THEY HAVE TO BUILD.
-   *
-   * `cellH` was a flat 46 and each unit a flat 32px tall, so twenty items
-   * stacked five layers deep made a ~140px mound inside a shot granting 927
-   * — measured across ch-01's anchor set, mean ink 3.1% with 23 of 30
-   * frames under 5%, i.e. a correct picture of almost nothing. The layer
-   * count is knowable from `count` and `perRow`, so the unit height falls
-   * out of "how tall should the finished pile be" instead of a constant.
-   */
-  const layersDeep = (() => {
-    let layer = 0, cap = Math.max(2, perRow), remaining = Math.max(0, count - 1);
-    while (remaining >= cap) { remaining -= cap; layer++; cap = Math.max(2, perRow - layer); }
-    return layer;
-  })();
-  const targetPileH = f.h * 0.46;
-  const cellH = Math.max(46, Math.min(150, targetPileH / (layersDeep + 1) / 0.62));
-  const itemH = Math.max(32, Math.min(84, cellH * 0.52));
-
-  /**
-   * The tray walls fit what the tray HOLDS.
-   *
-   * They were a hardcoded `height: 300`, which on a 1920-tall frame drew a
-   * squat box with a thin scatter of units along its floor and the whole
-   * upper half of the shot empty — visible on qa/critic/ch-01's
-   * ACCUMULATION frames. The pile's height is knowable (it is a function of
-   * `count` and `perRow`), so the container is sized from it plus headroom,
-   * bounded by the frame the shot granted rather than by a constant.
-   */
-  const wallH = Math.max(300, Math.min(f.h * 0.62, 22 + (layersDeep + 1) * (cellH * 0.62) + 90));
-
-  /**
-   * A PILE, not a grid (visual-system-reset PART 15). The tray previously
-   * placed units in even rows/columns — a spreadsheet of tokens, "many"
-   * read as a count rather than felt as a heap. Real accumulation has
-   * overlap, depth and irregularity: fewer items fit on each layer up
-   * (a mound tapers), items within a layer overlap their neighbours
-   * instead of sitting in clean cells, and each one carries a small seeded
-   * rotation and scale so no two look machine-placed.
-   *
-   * Deterministic from `i` alone — no simulation state, no Math.random —
-   * so a re-render is byte-identical, same rule as the rest of the file.
-   */
-  function pileSlot(i) {
-    let layer = 0;
-    let cap = Math.max(2, perRow);
-    let remaining = i;
-    while (remaining >= cap) {
-      remaining -= cap;
-      layer++;
-      cap = Math.max(2, perRow - layer);
-    }
-    const spacing = cellW * 0.66; // < cellW: neighbours overlap
-    const layerWidth = (cap - 1) * spacing;
-    const layerX = trayX + trayW / 2 - layerWidth / 2 + remaining * spacing;
-    const jitterX = (seeded(i * 3 + 2) - 0.5) * spacing * 0.5;
-    const jitterY = (seeded(i * 11 + 6) - 0.5) * 10;
-    const rot = (seeded(i * 17 + 4) - 0.5) * 22;
-    const scale = 0.86 + seeded(i * 23 + 9) * 0.28;
-    return {
-      x: layerX + jitterX,
-      y: floorY - 22 - layer * (cellH * 0.62) + jitterY,
-      rot,
-      scale,
-    };
-  }
-
-  const runningTotal = total != null ? (total * landed) / count : null;
+  // GROUNDED and COLUMNAR (composition.js's two real framings for this
+  // strategy) place the subject at genuinely different anchors and
+  // coverage — GROUNDED sits high and wide, COLUMNAR sits lower and
+  // narrower, the frame carrying more headroom above the total. The
+  // number's own position and scale come from that shot, not a fixed
+  // centre point, so the strategy's two declared variants are two actual
+  // compositions rather than one shot with a coat of paint (the
+  // composition-variants check this file used to fail before this).
+  const f = shotFrame(plan.shot || null);
+  const shotScale = plan.shot ? Math.min(1.15, Math.max(0.85, (plan.shot.coverage || 0.9) / 0.9)) : 1;
+  const scale = cameraScale * shotScale;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
-      {/* The container that gives "accumulation" a place: a tray with a
-          floor the units land on, or the ledger's single left rule. */}
-      {ledger ? (
-        <div style={{ position: "absolute", left: trayX, top: ledgerTop, width: 3, height: ledgerH * ease(pEmpty), background: colors.stroke, opacity: 1 }} />
-      ) : (
-        <>
-          <Rule x={trayX} y={floorY} w={trayW} p={pEmpty} color={colors.stroke} thickness={3} />
-          <div style={{ position: "absolute", left: trayX, top: floorY - wallH, width: 2, height: wallH * ease(pEmpty), background: colors.stroke, opacity: 1 }} />
-          <div style={{ position: "absolute", left: trayX + trayW - 2, top: floorY - wallH, width: 2, height: wallH * ease(pEmpty), background: colors.stroke, opacity: 1 }} />
-        </>
-      )}
-
-      {/* A ground shadow under the pile — the cheapest, most reliable way
-          to say "this heap has weight and sits on something", and it
-          grows with the pile rather than being a fixed decoration. */}
-      {!ledger && landed > 0 ? (
-        <div style={{
-          position: "absolute", left: trayX + trayW / 2 - (trayW * 0.36), top: floorY - 6,
-          width: trayW * 0.72, height: 22, borderRadius: "50%",
-          background: colors.stroke, opacity: 0.12 * Math.min(1, landed / Math.max(count * 0.4, 1)),
-          transform: `scale(${Math.min(1, 0.4 + landed / count)})`, transformOrigin: "50% 50%",
-        }} />
-      ) : null}
-
-      {/* The items themselves. Each one is a discrete unit that fell in. */}
-      <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {Array.from({ length: count }).map((_, i) => {
-          if (i >= landed) return null;
-          // Tray: a pile — overlapping, tapering, irregular (pileSlot
-          // above). Ledger: one row per unit, running down the rule, each
-          // a different length because no two charges are the same size.
-          const rowW = trayW * (0.34 + seeded(i * 7 + 13) * 0.52);
-          const slot = ledger ? null : pileSlot(i);
-          const x = ledger ? trayX + 14 + rowW / 2 : slot.x;
-          const y = ledger ? ledgerTop + 10 + i * rowH : slot.y;
-          const itemRot = ledger ? 0 : slot.rot;
-          const itemScale = ledger ? 1 : slot.scale;
-
-          // Individual drop-in for the item that just landed.
-          const isNewest = i === landed - 1;
-          const dropP = isNewest ? ease(Math.min(1, (pAcc * (count - 1)) % 1 + 0.25)) : 1;
-          const dy = (1 - dropP) * -60;
-
-          /**
-           * On `total` the pile LEANS toward the figure. It used to leave.
-           *
-           * The previous version sent every item to a hardcoded (STAGE_CX,
-           * 760) — a point with no relationship to this shot or to the
-           * figure it was supposedly collapsing into, which is drawn at the
-           * tray's own far edge — while fading to 15% opacity and 25%
-           * scale. On a rendered `total` frame (qa/critic/ch-01,
-           * ACCUMULATION v0 f169) that produced an EMPTY vessel with "$500"
-           * printed twice and nothing inside it: the twenty purchases the
-           * whole scene exists to show had erased themselves at the moment
-           * the point landed.
-           *
-           * The pile is the evidence for the total. It stays. It shifts a
-           * fraction of the way toward the figure and settles slightly, so
-           * the beat still reads as "these became that" without the subject
-           * of the shot deleting itself.
-           */
-          const collapseP = ease(pTotal, EASE_IN_OUT);
-          const LEAN = 0.16;
-          const tx = collapsed ? (figureX - x) * collapseP * LEAN : 0;
-          const ty = collapsed ? (figureY - y) * collapseP * LEAN : 0;
-          const scale = (collapsed ? 1 - 0.06 * collapseP : 1) * itemScale;
-          const op = collapsed ? 1 : dropP;
-
-          return (
-            <g key={i} transform={`translate(${x + tx}, ${y + dy + ty}) rotate(${itemRot}) scale(${scale})`} opacity={op}>
-              {ledger ? (
-                <rect x={-rowW / 2} y={-rowH * 0.32} width={rowW} height={Math.max(4, rowH * 0.62)} rx={2}
-                  fill={colors.stroke} opacity={0.5} />
-              ) : (
-                <>
-                  {/* WAS fill="none" — each unit was a wireframe outline;
-                      the ledger variant already fills its rows (line above),
-                      so the tray variant drew the same concept two different
-                      ways. A unit that fell in is a solid thing. */}
-                  <rect x={-cellW / 2 + 5} y={-itemH / 2} width={cellW - 10} height={itemH} rx={3}
-                    fill={colors.stroke} fillOpacity={0.42} stroke={colors.stroke} strokeWidth={2} />
-                  {money ? (
-                    <text x={0} y={itemH * 0.19} textAnchor="middle" fill={colors.textDim}
-                      style={{ font: `700 ${Math.round(itemH * 0.53)}px ${fontFamily}` }}>{symbol}</text>
-                  ) : null}
-                </>
-              )}
-            </g>
-          );
-        })}
-      </svg>
-
-      {/* Running total — climbs WITH the pile, on the tray's own edge.
-          HANDS OFF at `total`. It used to keep drawing after the collapse
-          with `value={collapsed ? total : runningTotal}`, while the result
-          figure below drew the SAME number at the same moment: "$500"
-          printed twice in one frame, once big above the tray and once small
-          beside it (caught on qa/critic/ch01b, ACCUMULATION v0 f169). The
-          running total's job ends when the total lands; it fades out as the
-          result arrives, the same way the "N OF M" counter below does. */}
-      {landed > 0 && total != null ? (
-        <div style={{ opacity: collapsed ? 1 - ease(pTotal) : 1 }}>
-          <TreatedFigure treatment={numberTreatmentOf(beat)}
-            x={figureX}
-            y={figureY}
-            value={runningTotal}
-            unit=""
-            p={1}
-            color={colors.textDim}
-            size={34}
-            align="right"
-            fontFamily={fontFamily}
-            format={(v) => `${symbol}${Math.round(v).toLocaleString("en-US")}`}
-          />
-        </div>
-      ) : null}
-
-      {/* Only label a count the script actually stated (supporting.countKnown).
-          Otherwise the tray shows a plausible quantity with no number on it,
-          rather than asserting a figure nobody said. */}
-      {sup.countKnown ? (
-        <Label
-          x={trayX} y={floorY + 30}
-          text={landed > 0 ? `${landed} OF ${count}` : ""}
-          color={colors.textDim} size={24} tracking={2.6} opacity={collapsed ? 1 - ease(pTotal) : 1}
-          fontFamily={fontFamily}
+      <div style={{ position: "absolute", left: f.cx, top: f.cy, transform: `translate(-50%, -50%) scale(${scale.toFixed(3)})` }}>
+        <TreatedFigure treatment={numberTreatmentOf(beat)}
+          x={0} y={0}
+          value={total} unit={unit} p={g} color={colors.accent}
+          size={110} align="center" fontFamily={fontFamily}
+          format={(v) => `${symbol}${Math.round(v).toLocaleString("en-US")}`}
         />
-      ) : null}
-
-      {/* The consequential total, only after the pile becomes it.
-          Two things caught on a rendered frame at this beat's ANCHOR — the
-          frame where "five hundred dollars" is actually spoken:
-
-          IT READ $0. `total` is the anchored state, and the figure counted
-          up from zero starting at that state, so the number was still at
-          zero on the exact frame the words landed. The counting already
-          happened, on the running total that climbed with the pile; this
-          figure is the RESULT, so it arrives at its value and fades in
-          rather than counting again.
-
-          IT WAS 132px, CENTRED. That is a hero number — the number as the
-          composition, which is the thing this whole rebuild removed. It is
-          now a caption on the compressed pile: the pile is the idea, the
-          figure says what the pile is worth. */}
-      {collapsed && total != null ? (
-        <div style={{ opacity: ease(pTotal), transform: `scale(${0.94 + 0.06 * ease(pTotal)})`, transformOrigin: `${STAGE_CX}px 760px` }}>
-          <TreatedFigure treatment={numberTreatmentOf(beat)}
-            x={STAGE_CX} y={716}
-            value={total} p={1} color={colors.accent}
-            size={72} align="center" fontFamily={fontFamily}
-            format={(v) => `${symbol}${Math.round(v).toLocaleString("en-US")}`}
+        {/* Only label a count the script actually stated (supporting.countKnown)
+            — the real fact behind the sum, not an invented denominator. */}
+        {sup.countKnown ? (
+          <Label
+            x={0} y={96}
+            text={`FROM ${count} SEPARATE AMOUNTS`}
+            color={colors.textDim} size={24} tracking={2.6} align="center"
+            opacity={ease(pTotal, EASE_IN_OUT)} fontFamily={fontFamily}
           />
-        </div>
-      ) : null}
-
-      {pWeigh > 0 && total != null ? (
-        <Label
-          x={STAGE_CX} y={862}
-          text={sup.countKnown ? `FROM ${count} SEPARATE CHARGES` : "ONE CHARGE AT A TIME"}
-          color={colors.textDim} size={26} tracking={2.6} align="center"
-          opacity={pWeigh} fontFamily={fontFamily}
-        />
-      ) : null}
+        ) : null}
+      </div>
     </div>
   );
 }
@@ -577,20 +336,17 @@ export function TransformationScene({ beat, colors, fontFamily }) {
           />
         ) : null}
         {pts.length > 1 ? <path d={d} fill="none" stroke={colors.accent} strokeWidth={4} /> : null}
-        {/* The value as an OBJECT, not just a point on a line
-            (visual-system-reset PART 14: "the object itself should
-            change"). A morphing block riding the curve's head — its
-            height is the value's own magnitude against the larger of
-            from/to, so the shape is visibly a different size AND a
-            different roundness by the time it settles, not a dot that
-            slides along a path. */}
+        {/* MorphShape — a rounded rectangle interpolating its own height and
+            corner radius — is gone. The reasoning behind it ("the object
+            itself should change") was sound, but the object doing the
+            changing is the CURVE, which already plots the real value at
+            every frame; the rect riding its head was a second invented
+            object marking a point the curve and the adjacent figure both
+            already mark. A plain point ON the real plotted line is the
+            literal marker a line chart actually uses, not a shape standing
+            in for the value beside it. */}
         {pGrow > 0 ? (
-          <MorphShape
-            cx={head[0]} baseY={baseY}
-            fromH={(Math.abs(from) / (Math.max(Math.abs(from), Math.abs(to)) || 1)) * f.h * 0.2}
-            toH={(Math.abs(to) / (Math.max(Math.abs(from), Math.abs(to)) || 1)) * f.h * 0.2}
-            w={44} progress={pGrow} colors={colors} accent
-          />
+          <circle cx={head[0]} cy={head[1]} r={7 + 3 * ease(pGrow)} fill={colors.accent} />
         ) : null}
 
         {/* The gap between where it started and where it ended */}
@@ -632,6 +388,9 @@ export function TransformationScene({ beat, colors, fontFamily }) {
 // Distinct from DataChartScene: this is a HEAD-TO-HEAD of two things, drawn
 // as opposing masses, not a series plotted on a shared axis.
 // ─────────────────────────────────────────────────────────────────────────────
+// Same estimate structure-scenes.jsx uses (Label/Figure have no measurement
+// pass) to keep a figure's own text off the edge of the frame.
+const COMPARISON_GLYPH_W = 0.56;
 export function ComparisonScene({ beat, colors, fontFamily }) {
   const frame = useCurrentFrame();
   const states = beat.visualStates || [];
@@ -659,56 +418,85 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
 
   const fmt = figureFormat(sup.unit);
   const cx = f.cx;
-  const fulcrumY = f.cy - f.h * 0.05;
-  const span = f.w * 0.56;
-  const halfSpan = span / 2;
-  const maxDrop = 44;
-  const hanger = 30;
-  const maxH = f.h * 0.42;
-  const hA = (Math.abs(a.value) / max) * maxH * ease(pLeft);
-  const hB = (Math.abs(b.value) / max) * maxH * ease(pRight);
+  const halfSpan = f.w * 0.28;
   const winner = Math.abs(a.value) >= Math.abs(b.value) ? "a" : "b";
-  const delta = Math.max(-1, Math.min(1, (Math.abs(b.value) - Math.abs(a.value)) / max));
-  const tiltAmount = ease(Math.max(pGap, pVerdict), EASE_IN_OUT);
-  const tilt = delta * tiltAmount;
-  const leftY = fulcrumY - tilt * maxDrop;
-  const rightY = fulcrumY + tilt * maxDrop;
+
+  /**
+   * THE SEESAW IS GONE.
+   *
+   * BalanceBeam (elements/balance.jsx) drew a fulcrum, a tilting beam and
+   * two hanging pans, tilt driven by the real value delta — the geometry
+   * was earnest, but cold on a rendered frame it is still "comparison
+   * illustrated as a seesaw," named directly on the deletion list. The
+   * apparatus was never the evidence; `a.value` and `b.value` were.
+   *
+   * So the apparatus is gone and the two real numbers carry the comparison
+   * directly, through their own typographic size — same principle as
+   * ScaleComparisonScene's rewrite: a bigger number IS bigger, not a bigger
+   * number NEXT TO a bar that says so. `winner`'s figure lands in the
+   * channel accent once both have settled; that is the only ornament.
+   */
+  const baseSize = 56, maxSize = 128;
+  const sizeFor = (v) => baseSize + (maxSize - baseSize) * (Math.abs(v) / max);
+  const sizeA = sizeFor(a.value), sizeB = sizeFor(b.value);
+  const cy = f.cy;
+
+  /**
+   * CLAMPED INTO THE SAFE RECT, NOT JUST SPACED FROM THE CENTRE.
+   *
+   * A rendered frame caught the actual defect this glyph-count estimate
+   * (same technique structure-scenes.jsx already uses for TimelineScene's
+   * event label and CircuitProcess's claim) exists to prevent: on
+   * HORIZON framing (coverage 0.96, bleed) a `halfSpan` of `f.w * 0.28`
+   * put the larger figure's centre at x=857 of a 1080-wide canvas, and at
+   * `maxSize` (128px) a 6-digit value like "13,600" is ~430px wide — its
+   * right half alone ran past the canvas edge, past even SAFE.right.
+   * Each side is now clamped so ITS OWN text, at ITS OWN size, stays
+   * inside SAFE — magnitude can make one figure much bigger than the
+   * other, but never bigger than the frame has room for.
+   */
+  const halfTextW = (text, size) => (String(text).length * size * COMPARISON_GLYPH_W) / 2;
+  const aHalfW = halfTextW(fmt(a.value), sizeA);
+  const bHalfW = halfTextW(fmt(b.value), sizeB);
+  const gap = 24;
+  // The most the two centres can be pushed apart while BOTH texts still
+  // land inside SAFE — the hard ceiling. Below that, spread them enough
+  // that the two texts don't overlap each other; when even SAFE itself
+  // isn't wide enough for both at a comfortable gap, staying inside SAFE
+  // wins (Math.min is outermost) over the two texts touching.
+  const safeBound = Math.min(cx - SAFE.left - aHalfW, SAFE.right - cx - bHalfW);
+  const minHalfSpan = (aHalfW + bHalfW) / 2 + gap;
+  const clampedHalfSpan = Math.min(safeBound, Math.max(minHalfSpan, halfSpan));
+  const leftX = cx - clampedHalfSpan;
+  const rightX = cx + clampedHalfSpan;
 
   return (
     <div style={{ position: "absolute", inset: 0 }}>
-      <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {/* Two stated quantities as a weighing scale (elements/balance.jsx),
-            not two fake-3D-bevelled blocks on a shared axis. The heavier
-            side's pan sits lower — tilt is the real value delta, nothing
-            invented — instead of a dashed "gap" line annotating a diagram. */}
-        <BalanceBeam
-          cx={cx} fulcrumY={fulcrumY} span={span} tilt={tilt} colors={colors}
-          aH={hA} bH={hB}
-          aDim={pVerdict > 0 && winner !== "a"} bDim={pVerdict > 0 && winner !== "b"}
-          aEmphasis={pVerdict > 0 && winner === "a" ? 1 : 0.4}
-          bEmphasis={pVerdict > 0 && winner === "b" ? 1 : 0.4}
-        />
-      </svg>
+      <div style={{ position: "absolute", left: leftX, top: cy, transform: "translate(-50%, -50%)", textAlign: "center" }}>
+        <TreatedFigure treatment={numberTreatmentOf(beat)} x={0} y={0} value={a.value} p={pLeft}
+          color={pVerdict > 0 && winner === "a" ? colors.accent : colors.textPrimary}
+          size={sizeA} align="center" fontFamily={fontFamily} format={fmt} />
+        <div style={{ marginTop: sizeA * 0.55 }}>
+          <Label x={0} y={0} text={String(a.label || "").toUpperCase().slice(0, 18)}
+            color={colors.textDim} size={24} tracking={2.2} align="center" opacity={pLeft} fontFamily={fontFamily} />
+        </div>
+      </div>
 
-      <TreatedFigure treatment={numberTreatmentOf(beat)} x={cx - halfSpan} y={leftY + hanger - hA - 50} value={a.value} p={pLeft}
-        color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} format={fmt} />
-      {/* Driven by `right`, the anchored state, ON PURPOSE — do not
-          "fix" this to useValueProgress. The right-hand pan's mass also
-          grows on pRight, so the figure and the mass it labels arrive
-          together; forcing the number to full at the anchor would put the
-          value above a pan of zero height, the same inconsistency the
-          other way round. A figure matches the element it labels, not
-          every figure lands on the anchor. */}
-      <TreatedFigure treatment={numberTreatmentOf(beat)} x={cx + halfSpan} y={rightY + hanger - hB - 50} value={b.value} p={pRight}
-        color={colors.textPrimary} size={44} align="center" fontFamily={fontFamily} format={fmt} />
-
-      <Label x={cx - halfSpan} y={leftY + hanger + 34} text={String(a.label || "").toUpperCase().slice(0, 18)}
-        color={colors.textDim} size={24} tracking={2.2} align="center" opacity={pLeft} fontFamily={fontFamily} />
-      <Label x={cx + halfSpan} y={rightY + hanger + 34} text={String(b.label || "").toUpperCase().slice(0, 18)}
-        color={colors.textDim} size={24} tracking={2.2} align="center" opacity={pRight} fontFamily={fontFamily} />
+      {/* Driven by `right`, the anchored state, ON PURPOSE — the second
+          value has to exist by the frame the contrast is spoken, not just
+          the first. */}
+      <div style={{ position: "absolute", left: rightX, top: cy, transform: "translate(-50%, -50%)", textAlign: "center" }}>
+        <TreatedFigure treatment={numberTreatmentOf(beat)} x={0} y={0} value={b.value} p={pRight}
+          color={pVerdict > 0 && winner === "b" ? colors.accent : colors.textPrimary}
+          size={sizeB} align="center" fontFamily={fontFamily} format={fmt} />
+        <div style={{ marginTop: sizeB * 0.55 }}>
+          <Label x={0} y={0} text={String(b.label || "").toUpperCase().slice(0, 18)}
+            color={colors.textDim} size={24} tracking={2.2} align="center" opacity={pRight} fontFamily={fontFamily} />
+        </div>
+      </div>
 
       {pGap > 0 ? (
-        <Label x={cx} y={fulcrumY + 74}
+        <Label x={cx} y={cy + Math.max(sizeA, sizeB) * 0.55 + 60}
           text={`${fmt(Math.abs(a.value - b.value))} APART`}
           color={colors.accent} size={26} tracking={1.8} align="center" opacity={pGap} fontFamily={fontFamily} />
       ) : null}
@@ -992,68 +780,77 @@ export function DataChartScene({ beat, colors, fontFamily }) {
 // sees HOW BIG, not just WHAT.
 // ─────────────────────────────────────────────────────────────────────────────
 export function ScaleComparisonScene({ beat, colors, fontFamily }) {
-  const frame = useCurrentFrame();
   const states = beat.visualStates || [];
   const plan = beat.visualPlan || {};
   const sup = plan.supporting || {};
-  const f = shotFrame(plan.shot || null);
   const value = Number.isFinite(sup.value) ? sup.value : 0;
+  const unit = String(sup.unit || "");
 
-  // A PERCENTAGE has a real maximum, so it can be read against a full scale
-  // rather than counted in blocks. The unit-block field below stays the
-  // treatment for everything else, because a gauge for an unbounded count
-  // would need a denominator nothing in the script provides.
-  if (gaugeFits(sup)) {
-    return (
-      <div style={{ position: "absolute", left: f.cx, top: f.cy, transform: "translate(-50%, -50%)" }}>
-        <ValueGauge sup={sup} colors={colors} fontFamily={fontFamily} size={Math.min(1.15, f.w / 1080)} />
-      </div>
-    );
-  }
+  // THE INVENTED GAUGE AND THE INVENTED GRID ARE BOTH GONE.
+  //
+  // director.js only ever computes `value` and `unit` for this strategy
+  // (visual/director.js's SCALE_COMPARISON case) — there has never been a
+  // real reference quantity to compare against. The deleted code rendered
+  // "reference"/"read" states anyway: a 100-square grid filling in against a
+  // MeasureBracket, captioned "N% OF THE FIELD" — a phrase invented for the
+  // caption, not present in any script. A percentage version of the same
+  // idea (DataGauge, lifeprompt) replaced it for a while; that was reaching
+  // for an available component rather than asking what THIS beat needs, and
+  // it rendered in an empty void with no reference to it either.
+  //
+  // strategies.js states this strategy's real intent: "how big a number is,
+  // against something that gives it size." With no second quantity to set
+  // beside it, the only thing that can honestly give a number size is its
+  // OWN typographic size — so the number's scale on screen IS the magnitude,
+  // not a shape standing in for it. A small number renders small and settles
+  // quickly; a large one grows to fill real space and takes longer arriving.
+  // `grow` is this strategy's ANCHORED state (strategies.js), so driving
+  // size from progress THROUGH `grow` itself put the number at its
+  // smallest at frame 0 of `grow` — which IS the anchor frame, the exact
+  // moment the narration names the value. A rendered frame caught it: at
+  // the anchor, `size` was still near its 40px floor, all but invisible.
+  // `useValueProgress` counts from the beat's own first frame and reaches
+  // exactly 1 at the anchor instead (primitives.jsx) — the same fix
+  // CAUSE_EFFECT's gate and GEOSPATIAL_RADIUS's boundary already use for
+  // the identical reason.
+  const pGrow = useValueProgress(states);
+  const g = ease(pGrow, EASE_IN_OUT);
 
-  const pRef = useStateProgress(states, "reference");
-  const pGrow = progressOf(states, "grow", frame);
-  const pRead = useStateProgress(states, "read");
+  // log-scaled so a value of 7 and a value of 13,600 both land somewhere
+  // readable on screen instead of one being illegibly tiny or the other
+  // blowing past the frame — the comparison is in the RATIO of sizes across
+  // a video's beats, not a literal pixels-per-unit mapping.
+  const magnitude = Math.log10(Math.max(Math.abs(value), 1) + 1);
+  const targetSize = Math.max(96, Math.min(320, 70 + magnitude * 62));
+  const size = 40 + (targetSize - 40) * g;
 
-  // A unit-block field: the value expressed as countable blocks, so the
-  // magnitude is something the eye can measure rather than read.
-  const cols = 10, rows = 10;
-  const blocks = cols * rows;
-  const filled = Math.round(blocks * ease(pGrow, EASE_IN_OUT));
-  const cell = 52, pad = 8;
-  const gridW = cols * cell;
-  const gridX = f.cx - gridW / 2;
-  const gridY = f.cy - f.h * 0.3;
+  // Camera: earned per beat from its own seed, not one push applied to every
+  // instance of this scene. A number whose whole point is its SIZE is one of
+  // the few cases a slow push-in genuinely serves the idea (making it fill
+  // more of the frame as it grows); held and a light pull-back are the other
+  // two honest readings, so growth alone never becomes the only camera this
+  // scene ever gets.
+  const camera = seeded((beat.startFrame || 1) * 3 + 1);
+  const cameraScale =
+    camera < 0.34 ? 1 : camera < 0.67 ? 1 + 0.08 * g : 1.1 - 0.08 * g;
 
   return (
-    <div style={{ position: "absolute", inset: 0 }}>
-      <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
-        {Array.from({ length: blocks }).map((_, i) => {
-          const r = Math.floor(i / cols), c = i % cols;
-          const on = i < filled;
-          const a = ease(Math.max(0, Math.min(1, pRef * 3 - (r * cols + c) * 0.002)));
-          return (
-            <rect key={i}
-              x={gridX + c * cell} y={gridY + (rows - 1 - r) * cell}
-              width={cell - pad} height={cell - pad} rx={2}
-              fill={on ? colors.accent : "none"}
-              stroke={on ? colors.accent : colors.stroke}
-              strokeWidth={1.5}
-              opacity={on ? 1 : 0.3 * a} />
-          );
-        })}
-      </svg>
-      <MeasureBracket x1={gridX} x2={gridX + gridW} y={gridY + rows * cell + 18} color={colors.stroke} p={pRef} />
-      {/* p is `grow`, the anchored state, ON PURPOSE — same as COMPARISON's
-          right-hand column. The quantity grows FROM the anchor, so the
-          figure grows with it rather than standing at full value before the
-          thing it measures exists. See strategies.js `resolves`. */}
-      <TreatedFigure treatment={numberTreatmentOf(beat)} x={STAGE_CX} y={gridY + rows * cell + 52} value={value} unit={String(sup.unit || "")}
-        p={ease(pGrow)} color={colors.accent} size={72} align="center" fontFamily={fontFamily} />
-      {pRead > 0 ? (
-        <Label x={STAGE_CX} y={gridY - 54} text={`${Math.round(ease(pGrow) * 100)}% OF THE FIELD`}
-          color={colors.textDim} size={24} tracking={2.4} align="center" opacity={pRead} fontFamily={fontFamily} />
-      ) : null}
+    <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      {/* x/y are 0,0, not STAGE_CX/CANVAS_H/2 — a CSS `transform` (the
+          camera scale below) makes this div a containing block for its
+          absolutely-positioned Figure, so a non-zero x/y here double-
+          offsets against the centring flexbox already did. A rendered
+          frame caught this exactly: at STAGE_CX/CANVAS_H/2 the figure
+          landed off-canvas, invisible for the beat's entire duration, not
+          just at the anchor. Same fix as AccumulationScene's wrapper. */}
+      <div style={{ transform: `scale(${cameraScale.toFixed(3)})` }}>
+        <TreatedFigure
+          treatment={numberTreatmentOf(beat)}
+          x={0} y={0}
+          value={value} unit={unit}
+          p={g} color={colors.accent} size={size} align="center" fontFamily={fontFamily}
+        />
+      </div>
     </div>
   );
 }

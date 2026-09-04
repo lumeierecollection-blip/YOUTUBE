@@ -60,19 +60,17 @@ export function DocumentSheet({
       <line x1={px + 40} y1={py + 66} x2={px + pageW * 0.42} y2={py + 66}
         stroke={colors.stroke} strokeWidth={1.5} opacity={0.5 * eDraw} />
 
-      {/* Body text rhythm. */}
-      {Array.from({ length: lines }).map((_, i) => {
-        const a = ease(Math.max(0, Math.min(1, pPage * 2.2 - i * 0.06)));
-        if (a <= 0.01) return null;
-        const y = py + 112 + i * lead;
-        const isClause = i === clauseLine;
-        const w = (pageW - 80) * (0.62 + seeded(i * 5 + 3 + variant * 97) * 0.36);
-        return (
-          <rect key={i} x={px + 40} y={y} width={w} height={isClause ? 12 : 8} rx={2}
-            fill={isClause && pFind > 0 ? colors.accent : colors.stroke}
-            opacity={isClause && pFind > 0 ? 1 : pFind > 0 ? 0.22 : 0.5 * a} />
-        );
-      })}
+      {/* THE FAKE BODY COPY IS GONE. This used to draw `lines` grey rects of
+          varying width, each width chosen by `seeded()` — a claim that
+          specific sentences of specific lengths sit on this page, when
+          nothing behind it is real. One of those fake rects was even
+          pre-highlighted as "the clause" (`isClause`) BEFORE the real
+          clause below ever appears, which is a fabricated line standing in
+          for a real one at the exact moment this scene's whole job is to
+          reveal the real one. The physical page (depth, fold, letterhead
+          rule) stays — those are real properties any page has, not a claim
+          about THIS page's content. The body stays blank paper until the
+          real words arrive at `read`, below. */}
 
       {/* Attention moving down the page during `scan`. */}
       {pScan > 0 && pFind <= 0 ? (

@@ -212,50 +212,12 @@ function defaultFormat(current, target) {
   return current.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 }
 
-/**
- * Ground plane — a perspective floor grid. This is the shared "real space"
- * cue for the spatial scenes. Lines converge toward a horizon, so a radius
- * drawn on it reads as lying ON ground rather than floating on a slide.
- */
-export function GroundPlane({ p = 1, color, cx = STAGE_CX, horizonY = 520, rows = 9, cols = 11, spread = 1180 }) {
-  const a = ease(p);
-  const lines = [];
-  const baseY = horizonY + 470;
-
-  for (let i = 0; i <= cols; i++) {
-    const t = i / cols - 0.5;
-    const xTop = cx + t * 190;
-    const xBot = cx + t * spread;
-    lines.push(
-      <line
-        key={`v${i}`}
-        x1={xTop} y1={horizonY} x2={xBot} y2={baseY}
-        stroke={color} strokeWidth={1} opacity={0.3 * a}
-      />
-    );
-  }
-  for (let r = 1; r <= rows; r++) {
-    const t = r / rows;
-    const y = horizonY + (baseY - horizonY) * (t * t); // perspective compression
-    const halfW = (190 + (spread - 190) * (t * t)) / 2;
-    lines.push(
-      <line
-        key={`h${r}`}
-        x1={cx - halfW} y1={y} x2={cx + halfW} y2={y}
-        stroke={color} strokeWidth={1} opacity={0.26 * a * (0.4 + t * 0.6)}
-      />
-    );
-  }
-  return (
-    <svg
-      width={CANVAS_W}
-      height={CANVAS_H}
-      style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}
-    >
-      {lines}
-    </svg>
-  );
-}
+// GroundPlane (a decorative perspective floor grid) is deleted. Its own doc
+// comment claimed it was "the shared real-space cue for the spatial scenes,"
+// but grepping every scene file found zero call sites, including
+// GeospatialRadiusScene, the one scene the comment named — the grid was
+// scenery describing a use that never happened. It matched the "decorative
+// grids" pattern on the deletion list.
 
 /** Bracket used to mark a measured span (a real measurement, not decor). */
 export function MeasureBracket({ x1, y, x2, color, p = 1, tickH = 14, thickness = 2 }) {

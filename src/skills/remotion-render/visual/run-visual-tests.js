@@ -544,9 +544,8 @@ check("no two strategies share BOTH a shot signature and an object family", () =
   // "identical object hierarchy... identical element family" is its own
   // sameness signal, not just shot geometry). This pass gave several
   // strategies designed OBJECTS from compositions/scenes/elements/*.jsx —
-  // StackedMass is legitimately used by both COMPARISON's balance pans and
-  // DATA_CHART's columns, MachineBody by both CAUSE_EFFECT and PROCESS's
-  // circuit family. That
+  // MachineBody is legitimately used by both CAUSE_EFFECT and PROCESS's
+  // circuit family (the board its chain of nodes sits on). That
   // reuse is fine on its own (PART 10: sharing a PRIMITIVE is not the
   // violation, sharing the whole composition is) — it only becomes the old
   // failure if two strategies ALSO land on the same material/framing/
@@ -561,8 +560,13 @@ check("no two strategies share BOTH a shot signature and an object family", () =
     "MachineBody", "Gate", "MaterialSlug",
     "CircuitNode", "CircuitTrace", "SignalPacket",
     "DocumentSheet", "WindowChrome", "NavRail", "StatusBar",
-    "StackedMass", "BalanceBeam", "MorphShape", "ContentVessel",
-    "PressureWalls",
+    "StackedMass", "PressureWalls",
+    // BalanceBeam, MorphShape and ContentVessel are gone (visual-system-
+    // reset delete pass) — each was the last thing standing in for a
+    // banned generic shape (a seesaw for comparison, a blob head on a
+    // real curve, a bounding rect around real content) and nothing else
+    // used them, so the elements themselves were deleted, not just their
+    // one call site.
   ];
   const dir = join(__dirname, "..", "compositions", "scenes");
   const files = readdirSync(dir).filter((f) => f.endsWith(".jsx"));
