@@ -1,0 +1,94 @@
+[
+  {
+    "channel": "Money Mind",
+    "channel_id": "ch-01",
+    "style": "motion-graphics",
+    "bg_mode": "white",
+    "composition": "MotionGraphicsShorts",
+    "seconds": 15,
+    "photos": 0,
+    "audio": "real voiceover + SFX",
+    "first_line": "The snowball versus avalanche debate is a $215 question. Not choosing at all cos",
+    "strategies": [
+      "CINEMATIC_STATEMENT",
+      "ACCUMULATION",
+      "COMPARISON"
+    ],
+    "file": "data/renders/clips-15s/ch-01-motion-graphics-white-15s.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "Legal Brief",
+    "channel_id": "ch-02",
+    "style": "motion-graphics",
+    "bg_mode": "black",
+    "composition": "MotionGraphicsShorts",
+    "seconds": 15,
+    "photos": 0,
+    "audio": "picture + SFX (no voiceover exists)",
+    "first_line": "Four lines. That's all it takes to protect your constitutional rights during a t",
+    "strategies": [
+      "CINEMATIC_STATEMENT",
+      "VISUAL_METAPHOR"
+    ],
+    "file": "data/renders/clips-15s/ch-02-motion-graphics-black-15s.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "Hidden Past",
+    "channel_id": "ch-04",
+    "style": "cinematic-documentary",
+    "bg_mode": "black",
+    "composition": "CinematicDocumentaryShorts",
+    "seconds": 15,
+    "photos": 0,
+    "audio": "picture + SFX (no voiceover exists)",
+    "first_line": "In 1666, a single spark in a bakery destroyed 13,000 homes, 87 churches, and mos",
+    "strategies": [
+      "TIMELINE",
+      "CINEMATIC_STATEMENT"
+    ],
+    "file": "data/renders/clips-15s/ch-04-cinematic-documentary-black-15s.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "ch-fixture (photo treatment)",
+    "channel_id": "ch-fixture",
+    "style": "motion-graphics",
+    "bg_mode": "black",
+    "composition": "MotionGraphicsShorts",
+    "seconds": 15,
+    "photos": 16,
+    "audio": "picture + SFX, real sourced photos",
+    "first_line": "In 1986, workers near the Black Sea broke into a cave that had been sealed for f",
+    "strategies": [
+      "TIMELINE",
+      "IMAGE_EVIDENCE",
+      "ACCUMULATION",
+      "SCALE_COMPARISON",
+      "COMPARISON"
+    ],
+    "file": "data/renders/clips-15s/ch-fixture-motion-graphics-black-15s.mp4",
+    "status": "OK"
+  },
+  {
+    "channel": "minimal style (fixture content)",
+    "channel_id": "ch-fixture",
+    "style": "minimal",
+    "bg_mode": "white",
+    "composition": "MinimalShorts",
+    "seconds": 15,
+    "photos": 16,
+    "audio": "STYLE DEMO — no minimal channel has a script; fixture words in minimal style",
+    "first_line": "In 1986, workers near the Black Sea broke into a cave that had been sealed for f",
+    "strategies": [
+      "TIMELINE",
+      "IMAGE_EVIDENCE",
+      "ACCUMULATION",
+      "SCALE_COMPARISON",
+      "COMPARISON"
+    ],
+    "file": "data/renders/clips-15s/ch-fixture-minimal-white-15s.mp4",
+    "status": "OK"
+  }
+]
