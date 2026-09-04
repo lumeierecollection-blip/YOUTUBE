@@ -12,7 +12,6 @@ import {
 } from "remotion";
 import { Audio } from "@remotion/media";
 import { dotGrid } from "@remotion/effects/dot-grid";
-import { evolvePath, getSubpaths } from "@remotion/paths";
 import { makeCircle, makeRect } from "@remotion/shapes";
 import { measureText, fitTextOnNLines, HEADLINE_FONT, fontStyleFor, needsFixedSlots, reserveCounterWidth } from "../layout/measure.js";
 import { currentAudio } from "../audio.js";
@@ -20,10 +19,9 @@ import "../wait-for-fonts.js";
 import { resolveFontFamily } from "./visual.js";
 import { Panel } from "../primitives/Panel.jsx";
 import { D, MG_TYPE as TYPE, CAPTION } from "./beats.js";
-import { rolesFromPalette, strokeAttr, mixColor } from "./mg-style.js";
+import { rolesFromPalette, mixColor } from "./mg-style.js";
 import { CAPTION_RESERVE_Y } from "./layout-constants.js";
 import { SemanticScene } from "./scenes/index.jsx";
-import { ICON_INNER } from "./icons-data.js";
 import { CanvasGrain } from "../effects/CanvasGrain.jsx";
 import { DOT_DIAMETER, DOT_GRID_PITCH, DOT_GRID, dotGridStateForFrame } from "../styles/tokens.js";
 
@@ -437,67 +435,13 @@ function Soundtrack({ events }) {
     </>
   );
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Icons — A4. Vendored Lucide inner SVG; stroke recomputed per A4.3, colour
-// `stroke` by default and `accent` only when the icon IS the accent element.
-// ─────────────────────────────────────────────────────────────────────────────
-
-function extractPathDs(inner) {
-  const out = [];
-  const re = /<path d="([^"]+)"/g;
-  let m;
-  while ((m = re.exec(inner || ""))) out.push(m[1]);
-  return out;
-}
-
-function Icon({ name, size, color, sw }) {
-  const inner = ICON_INNER[name];
-  if (!inner) return null;
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={color}
-      strokeWidth={sw ?? strokeAttr(size)}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      dangerouslySetInnerHTML={{ __html: inner }}
-    />
-  );
-}
-
-// D2.5 TRACE — evolve each subpath, 10f each, staggered D.micro. One per video.
-function TraceIcon({ name, size, color, sw, start }) {
-  const frame = useCurrentFrame();
-  const inner = ICON_INNER[name];
-  const subpaths = [];
-  for (const d of extractPathDs(inner)) {
-    for (const sp of getSubpaths(d)) subpaths.push(sp);
-  }
-  if (subpaths.length === 0) return <Icon name={name} size={size} color={color} sw={sw} />;
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={color}
-      strokeWidth={sw ?? strokeAttr(size)}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      style={{ opacity: ease(frame - start, [0, D.short], [0, 1], E_OUT) }}
-    >
-      {subpaths.map((sp, i) => {
-        const s0 = start + i * (10 + D.micro);
-        const { strokeDasharray, strokeDashoffset } = evolvePath(ease(frame - s0, [0, 10], [0, 1], E_OUT), sp);
-        return <path key={i} d={sp} strokeDasharray={strokeDasharray} strokeDashoffset={strokeDashoffset} />;
-      })}
-    </svg>
-  );
-}
+// Icons were ruled out entirely. The vendored Lucide set (icons-data.js),
+// the Icon and TraceIcon components that drew it, and extractPathDs which
+// fed them are all gone: `scene.icon` has been null since the icon_map
+// config was removed, so the only reference to <Icon> was inside TraceIcon
+// and nothing rendered TraceIcon — a closed loop of dead code.
+// `scene.iconRole` deliberately SURVIVES: visual/diagnostics.js still
+// asserts on it that no scene ever makes an icon its primary element.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PART 3.2 of the rebuild — line work. Thin hairline sweeps and dashed rings

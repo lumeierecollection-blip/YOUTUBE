@@ -5,9 +5,8 @@ import { createHash } from "crypto";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { resolveBrollFiles } from "./broll.js";
-import { buildMgPackage, gateMgHeadlineOverlap, gateIconNames, gateChartData } from "./compositions/mg-package.js";
+import { buildMgPackage, gateMgHeadlineOverlap, gateChartData } from "./compositions/mg-package.js";
 import { gateBeats, gateCaptions, chunkTextClauseAware } from "./compositions/beats.js";
-import { ICON_INNER } from "./compositions/icons-data.js";
 import { verifyPalette } from "./compositions/mg-style.js";
 import { paletteFromHues, deriveHuesFromHexes } from "./styles/tokens.js";
 import { findChrome } from "./find-chrome.js";
@@ -65,7 +64,6 @@ const mgGates = {
   beats: gateBeats(mgPackage.beats, { audioFrames: mgPackage.audioFrames, requireAnchorTokens: true }),
   captions: gateCaptions(mgPackage.pages),
   headlineOverlap: gateMgHeadlineOverlap(mgPackage.beats),
-  iconNames: gateIconNames(mgPackage.beats, ICON_INNER),
   chartData: gateChartData(mgPackage.beats),
   palette: verifyPalette(
     typeof mgChannel.thumbnail_spec?.baseHue === "number" &&

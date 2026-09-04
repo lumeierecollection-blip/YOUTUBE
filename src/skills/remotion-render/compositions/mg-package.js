@@ -838,14 +838,10 @@ export function gateMgHeadlineOverlap(beats) {
   return { pass: failures.length === 0, failures };
 }
 
-export function gateIconNames(beats, iconSet) {
-  const failures = [];
-  for (const b of beats) {
-    const name = b.scene && b.scene.icon;
-    if (name && iconSet && !iconSet[name]) failures.push(`icon "${name}" (beat "${b.text}") not in vendored set`);
-  }
-  return { pass: failures.length === 0, failures };
-}
+// gateIconNames lived here and checked every beat's `scene.icon` against the
+// vendored set. `scene.icon` has been null for every beat since the icon_map
+// config was removed, so the gate could only ever pass; it is gone with the
+// icon set itself rather than left as a check that cannot fail.
 
 export function gateChartData(beats) {
   const failures = [];
