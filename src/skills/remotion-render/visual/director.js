@@ -510,6 +510,42 @@ function supportingPhraseFor(strategy, payload, analysis, beat) {
   }
 }
 
+/**
+ * WHICH TYPOGRAPHIC TREATMENT THIS BEAT GETS.
+ *
+ * The remocn components were wired into the scenes and proven to render, but
+ * nothing chose between them: `numberTreatment` and `textEntrance` were read
+ * by the scenes and written by nobody, so every number settled and every
+ * phrase used the built-in entrance. Selection belongs here, with the rest of
+ * the art direction, not in the JSX.
+ *
+ * OCCASIONAL BY CONSTRUCTION, not by a coin flip. A rolling number is a
+ * device: used on every figure it becomes wallpaper and stops meaning
+ * anything. So a roll is reserved for a beat whose figure is the POINT — a
+ * HERO_NUMBER or an ACCUMULATION total — and even then only one in three, on
+ * the beat's own variant seed. Everything else settles.
+ *
+ * Deterministic: the same beat in the same script always gets the same
+ * treatment, so a re-render is byte-comparable and the render report cannot
+ * disagree with the pixels.
+ */
+const ROLLS = ["rolling", "number-wheel", "slot-machine", "matrix-decode"];
+const ENTRANCES = ["line-by-line-slide", "soft-blur-in", "micro-scale-fade"];
+
+function numberTreatmentFor(strategy, beat, seed) {
+  const figureIsThePoint = beat.archetype === "HERO_NUMBER" || strategy === "ACCUMULATION";
+  if (!figureIsThePoint) return "settle";
+  if (seed % 3 !== 0) return "settle"; // one in three, so it stays a device
+  return ROLLS[Math.floor(seed / 3) % ROLLS.length];
+}
+
+function textEntranceFor(strategy, seed) {
+  // Only the terminal fallback draws a phrase as the whole picture, so it is
+  // the only place a text entrance changes anything.
+  if (strategy !== "CINEMATIC_STATEMENT") return "default";
+  return ENTRANCES[seed % ENTRANCES.length];
+}
+
 function finalize(strategy, payload, analysis, beat, ctx, provenance, fallbacks, rejected = []) {
   const def = getStrategy(strategy);
   const supporting = buildSupporting(strategy, payload, analysis, beat);
@@ -571,6 +607,10 @@ function finalize(strategy, payload, analysis, beat, ctx, provenance, fallbacks,
     // built in isolation (a single-beat clip render, a test) gets.
     variant: variantSeed(beat),
     variantCount: def.variants || 1,
+    // Read by quantity-scenes.jsx's numberTreatmentOf and abstract-scenes.jsx's
+    // textEntranceOf. Both fall back safely if the name is not one they know.
+    numberTreatment: numberTreatmentFor(strategy, beat, variantSeed(beat)),
+    textEntrance: textEntranceFor(strategy, variantSeed(beat)),
   };
 }
 
