@@ -132,6 +132,24 @@ for (const t of TEXT) {
     } else { console.log("UNVERIFIED inline-highlight: statement beat has no phrase"); failures++; }
   }
 }
+// The lifeprompt gauge. The fixture carries a real percentage beat ("Oxygen at
+// just seven percent."), so this is driven by a figure the script actually
+// says rather than a number invented for the demo.
+{
+  const mg = build();
+  const b = mg.beats.find((x) => {
+    const sup = x.visualPlan && x.visualPlan.supporting;
+    return sup && /%|percent/i.test(String(sup.unit || "")) && Number.isFinite(sup.value);
+  });
+  if (!b) { console.log("UNVERIFIED gauge: no percentage beat in the fixture"); failures++; }
+  else {
+    b.visualPlan.strategy = "SCALE_COMPARISON";
+    console.log(`(gauge reads ${b.visualPlan.supporting.value}${b.visualPlan.supporting.unit} from ${JSON.stringify(b.text)})`);
+    baselines.gauge = null;
+    delete baselines.gauge;
+    await shoot("gauge-value", mg, Math.round(b.startFrame + b.durationInFrames * 0.7));
+  }
+}
 await browser.close({ silent: true });
 console.log(failures ? `\n${failures} treatment(s) BLANK or UNVERIFIED` : "\nevery wired treatment was exercised and drew something");
 process.exit(failures ? 1 : 0);

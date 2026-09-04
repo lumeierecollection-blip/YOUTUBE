@@ -15,6 +15,9 @@ import { RollingNumber } from "../../components/remocn/rolling-number";
 import { NumberWheel } from "../../components/remocn/number-wheel";
 import { SlotMachineRoll } from "../../components/remocn/slot-machine-roll";
 import { MatrixDecode } from "../../components/remocn/matrix-decode";
+// lifeprompt-team/remotion-scenes @ 02c7a84 (MIT). Only DataGauge is pulled;
+// see the block below for why the other seven DataAnimations scenes are not.
+import { DataGauge } from "../../components/lifeprompt/data-gauge";
 
 /**
  * Quantity scenes — the four ways this renderer explains a NUMBER.
@@ -131,6 +134,53 @@ export function TreatedFigure({
       {digits}
       {unit ? <span style={{ fontSize: size * 0.42, fontWeight: 700 }}>{unit}</span> : null}
     </div>
+  );
+}
+
+/**
+ * GAUGE — a bounded value read against its maximum.
+ *
+ * This is the one thing worth pulling from lifeprompt-team/remotion-scenes'
+ * DataAnimations category, and the reason the other seven are not pulled is
+ * worth stating rather than leaving implied.
+ *
+ * Seven of its eight components — DataBarChart, DataLineChart, DataPieChart,
+ * DataProgressBars, DataRanking, DataStatsCards, DataTimeline — accept ONLY
+ * `startDelay`. They take no data at all: DataStatsCards renders a hardcoded
+ * 89,420 and the caption "Performance Score", inside its own full-screen
+ * AbsoluteFill with its own background. Integrating one would paint over the
+ * shot, the ground and the falloff, and it would put a number on screen that
+ * no research produced — the rule this repo gates hardest (CLAUDE.md: no
+ * statistic that didn't come from an actual fetched source).
+ *
+ * DataGauge is the exception: it takes `value` and `maxValue`, so it can be
+ * driven by the beat's own parsed figure. It is ported with its geometry
+ * intact and four deviations recorded in the component file.
+ *
+ * Applies only where a maximum genuinely exists — a percentage. A gauge
+ * needs a full scale to read against, and inventing one for an unbounded
+ * count would be a fabricated denominator.
+ */
+export function gaugeFits(sup) {
+  const unit = String((sup && sup.unit) || "");
+  const value = sup && sup.value;
+  return /%|percent/i.test(unit) && Number.isFinite(value) && value >= 0 && value <= 100;
+}
+
+/** The gauge, positioned and coloured by the calling scene. */
+export function ValueGauge({ sup, colors, fontFamily, size = 1 }) {
+  return (
+    <DataGauge
+      value={sup.value}
+      maxValue={100}
+      color={colors.textPrimary}
+      dim={colors.textDim}
+      track={colors.surface || colors.textDim}
+      accent={colors.accent}
+      label={String(sup.unit || "")}
+      fontFamily={fontFamily}
+      size={size}
+    />
   );
 }
 
@@ -948,6 +998,18 @@ export function ScaleComparisonScene({ beat, colors, fontFamily }) {
   const sup = plan.supporting || {};
   const f = shotFrame(plan.shot || null);
   const value = Number.isFinite(sup.value) ? sup.value : 0;
+
+  // A PERCENTAGE has a real maximum, so it can be read against a full scale
+  // rather than counted in blocks. The unit-block field below stays the
+  // treatment for everything else, because a gauge for an unbounded count
+  // would need a denominator nothing in the script provides.
+  if (gaugeFits(sup)) {
+    return (
+      <div style={{ position: "absolute", left: f.cx, top: f.cy, transform: "translate(-50%, -50%)" }}>
+        <ValueGauge sup={sup} colors={colors} fontFamily={fontFamily} size={Math.min(1.15, f.w / 1080)} />
+      </div>
+    );
+  }
 
   const pRef = useStateProgress(states, "reference");
   const pGrow = progressOf(states, "grow", frame);
