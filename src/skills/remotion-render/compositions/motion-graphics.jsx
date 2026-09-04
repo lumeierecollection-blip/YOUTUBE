@@ -11,7 +11,6 @@ import {
   Solid,
 } from "remotion";
 import { Audio } from "@remotion/media";
-import { dotGrid } from "@remotion/effects/dot-grid";
 import { makeCircle, makeRect } from "@remotion/shapes";
 import { measureText, fitTextOnNLines, HEADLINE_FONT, fontStyleFor, needsFixedSlots, reserveCounterWidth } from "../layout/measure.js";
 import { currentAudio } from "../audio.js";
@@ -23,7 +22,7 @@ import { rolesFromPalette, mixColor } from "./mg-style.js";
 import { CAPTION_RESERVE_Y } from "./layout-constants.js";
 import { SemanticScene } from "./scenes/index.jsx";
 import { CanvasGrain } from "../effects/CanvasGrain.jsx";
-import { DOT_DIAMETER, DOT_GRID_PITCH, DOT_GRID, dotGridStateForFrame } from "../styles/tokens.js";
+import { dotGridStateForFrame } from "../styles/tokens.js";
 
 /**
  * MotionGraphics — MOTION-GRAPHICS-MANUAL.md Parts A–F.
@@ -352,19 +351,18 @@ function Background({ colors, beats = [], sectionRanges = {} }) {
   const frame = useCurrentFrame();
   // B2.1–B2.4 — density per archetype (6%/4%/0%, nothing between), per-section
   // min (B2.2), fixed 64 px pitch / 4 px dot (B2.3/B2.4). 0% renders no layer.
-  const grid = dotGridStateForFrame(sectionRanges, beats, frame);
+  // THE DOT GRID IS GONE. It was the permanent canvas: a full-frame decorative
+  // lattice mounted OUTSIDE every per-beat Sequence, so it survived every scene
+  // change with only its density varying by archetype. That is the "same canvas,
+  // swapped content" pattern — scenery that belongs to no scene and means
+  // nothing in any of them. A scene that needs ground now has to build its own,
+  // for its own reason.
+  //
+  // `frame`, `beats` and `sectionRanges` are still taken so the signature and
+  // its callers are unchanged; the grain below still reads `frame`.
   return (
     <>
       <Solid width={width} height={height} color={colors.bg} style={{ position: "absolute", inset: 0 }} />
-      {grid ? (
-        <Solid
-          width={width}
-          height={height}
-          color={colors.stroke}
-          effects={[dotGrid({ dotSize: grid.dotSize, gridSize: grid.gridSize })]}
-          style={{ position: "absolute", inset: 0, opacity: grid.opacity }}
-        />
-      ) : null}
       {/* vox-style-treatment SKILL.md's grain, extended from photo assets
           to the flat canvas itself — see effects/CanvasGrain.jsx for the
           real-library rationale (postprocessing's NoiseEffect, same
@@ -932,15 +930,12 @@ function ListRunScene({ beats, startFrame, colors, fontFamily }) {
           opacity: panelOpacity,
         }}
       >
-        <Panel colors={colors} style={{ border: `1px solid ${colors.stroke}`, overflow: "hidden" }}>
-          <Solid
-            width={LIST_PANEL.width}
-            height={LIST_PANEL.height}
-            color={colors.stroke}
-            effects={[dotGrid({ dotSize: DOT_DIAMETER, gridSize: DOT_GRID_PITCH })]}
-            style={{ position: "absolute", inset: 0, opacity: DOT_GRID.LIST_ITEM }}
-          />
-        </Panel>
+        {/* The panel's decorative dot-grid fill is gone with the full-frame one.
+            It was texture inside a box, carrying no meaning about the list. The
+            panel itself remains for now because list rendering positions against
+            it; it is a rounded container and is on the deletion list, but it
+            needs a real replacement for list beats, not just removal. */}
+        <Panel colors={colors} style={{ border: `1px solid ${colors.stroke}`, overflow: "hidden" }} />
       </div>
       {visible.map(({ k, dropping }) => {
         const beat = beats[k];
