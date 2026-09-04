@@ -38,6 +38,11 @@ import { interpolate, Easing, useCurrentFrame } from "remotion";
  * the gauge. Both now use the arc's real 180°: ticks at 180 + (t/100)*180 in
  * SVG coordinates, and the needle at -90 + progress*180, since the needle div
  * points up at rotation 0 and up is 270° in that frame.
+ *
+ * A SECOND one, found the same way once the first was fixed: the needle's
+ * transformOrigin is "bottom center" while it is placed at top:250, so it
+ * pivoted at y=370, a full needle-length below the hub it is drawn around.
+ * Corrected to top:130 so its bottom edge sits on the arc's centre.
  */
 const EASE_OUT = Easing.bezier(0.16, 1, 0.3, 1);
 
@@ -70,7 +75,12 @@ export function DataGauge({
           );
         })}
       </svg>
-      <div style={{ position: "absolute", left: 200, top: 250, width: 4, height: 120, background: color,
+      {/* SECOND UPSTREAM BUG. transformOrigin is "bottom center", so a needle
+          at top:250 with height:120 pivots at y=370 — 120px BELOW the arc's
+          centre (200,250). Rendered, the needle hung under the dial instead of
+          turning on the hub. It has to span from 130 to 250 for its bottom
+          edge to sit on the centre. */}
+      <div style={{ position: "absolute", left: 200, top: 130, width: 4, height: 120, background: color,
         transformOrigin: "bottom center", transform: `translateX(-50%) rotate(${angle}deg)`, borderRadius: 2 }} />
       <div style={{ position: "absolute", left: 200, top: 250, width: 20, height: 20, background: color,
         borderRadius: "50%", transform: "translate(-50%, -50%)" }} />
