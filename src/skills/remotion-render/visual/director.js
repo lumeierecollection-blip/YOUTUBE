@@ -94,6 +94,13 @@ function unmetNeed(strategy, payload, analysis, ctx) {
           return `needs >=2 real series points${strategy === "COMPARISON" ? " or two opposed positions" : ""}, has ${series.length}`;
         }
         break;
+      case "items>=2":
+        // Two names make a list; one is a statement, and drawing it as a
+        // roll call would claim a plurality the script never said.
+        if (!(payload.items && payload.items.length >= 2)) {
+          return `needs >=2 named items, has ${(payload.items || []).length}`;
+        }
+        break;
       case "events>=2":
         if (!(payload.years && payload.years.length >= 1)) return "no dated events to place on an axis";
         break;
@@ -236,6 +243,32 @@ function fromDeterministic(analysis, beat, ctx) {
   }
 
   /**
+   * A LIST BEAT IS A LIST. That is a fact about the beat, not a reading of
+   * its text, so — like IMAGE_EVIDENCE's asset — it is pushed here rather
+   * than scored by a detector.
+   *
+   * Confidence is high (0.9) on purpose. The classifier has already decided
+   * this beat enumerates (`archetype === "LIST_ITEM"`, from real list
+   * grammar: ordinals, "next/then/finally", two or more commas), and the
+   * run it belongs to is known. Nothing a text detector could say about
+   * the same sentence outranks that. It still carries `repeatPenalty` like
+   * everything else — but a run of list beats SHOULD stay ENUMERATION, and
+   * it does: consecutive members share one accumulating picture rather
+   * than each re-deciding what a list looks like, which is why the penalty
+   * is applied against `recent` and 0.9 clears MIN_CONFIDENCE even at
+   * -RUN_PENALTY.
+   */
+  if (ctx.listRun && ctx.listRun.items && ctx.listRun.items.length >= 2) {
+    considered.push({
+      strategy: "ENUMERATION",
+      score: 0.9 + (affinity.ENUMERATION || 0) + grammarBias(grammar, "ENUMERATION")
+        + repeatPenalty("ENUMERATION", recent),
+      base: 0.9,
+      signal: { confidence: 0.9, items: ctx.listRun.items, itemIndex: ctx.listRun.index },
+    });
+  }
+
+  /**
    * A DECLARED before/after image pair outranks a single photo of the same
    * section, and only then.
    *
@@ -294,6 +327,13 @@ function buildSupporting(strategy, payload, analysis, beat) {
       // Present only when a pair was DECLARED in the manifest; null
       // otherwise, and the scene falls back to its statement rendering.
       supporting.assetPair = payload.assetPair || null;
+      break;
+    case "ENUMERATION":
+      // The run's real names and which one this beat is. Both come from
+      // mg-package.js, which is the only place that can see a whole run —
+      // the director plans one beat at a time.
+      supporting.items = payload.items || [];
+      supporting.itemIndex = Number.isFinite(payload.itemIndex) ? payload.itemIndex : 0;
       break;
     case "GEOSPATIAL_RADIUS":
       supporting.value = payload.value;

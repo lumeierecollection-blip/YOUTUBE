@@ -1,5 +1,5 @@
 {
-  "_fixture_note": "TEST FIXTURE — NOT RESEARCHED CONTENT, NOT FOR PUBLICATION. Written by hand for one purpose: the three render-test scripts exercise 12 of the 16 registered visual strategies, leaving DATA_CHART, RELATIONSHIP, SCALE_COMPARISON and IMAGE_EVIDENCE with no rendered evidence at all. A strategy that has never been rendered is a strategy nobody has checked. Every figure below is ILLUSTRATIVE and was invented to trigger a detector, not researched. Deliberately NOT under data/research/ — this repo's grounding rule (CLAUDE.md) forbids presenting invented numbers as researched, so this file must never reach TTS, publish, or a channel's research directory. IMAGE_EVIDENCE is not covered here because it needs a real sourced photograph; a fixture cannot supply one without fabricating provenance, so it stays uncovered and is reported as such.",
+  "_fixture_note": "TEST FIXTURE \u2014 NOT RESEARCHED CONTENT, NOT FOR PUBLICATION. Written by hand for one purpose: the three render-test scripts exercise 12 of the 16 registered visual strategies, leaving DATA_CHART, RELATIONSHIP, SCALE_COMPARISON and IMAGE_EVIDENCE with no rendered evidence at all. A strategy that has never been rendered is a strategy nobody has checked. Every figure below is ILLUSTRATIVE and was invented to trigger a detector, not researched. Deliberately NOT under data/research/ \u2014 this repo's grounding rule (CLAUDE.md) forbids presenting invented numbers as researched, so this file must never reach TTS, publish, or a channel's research directory. The `enumeration` section was added later, for the same reason: ENUMERATION replaced the LIST_ITEM card fallback and no motion-graphics script in the repo produces a consecutive list run, so it had no rendered evidence either. Its role names are invented like everything else here. IMAGE_EVIDENCE is not covered here because it needs a real sourced photograph; a fixture cannot supply one without fabricating provenance, so it stays uncovered and is reported as such.",
   "channel_id": "1",
   "topic_slug": "fixture-uncovered-strategies",
   "format": "shorts",
@@ -59,6 +59,25 @@
           "text": "Seventy percent of the field",
           "archetype": "PROGRESS",
           "anchor_token": "seventy percent",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "id": "enumeration",
+      "timing": "0:42-0:56",
+      "voiceover": "First, the harbour master. Then, the customs officer. Next, the warehouse keeper. Finally, the shipping clerk.",
+      "beats": [
+        {
+          "text": "First, the harbour master",
+          "archetype": "LIST_ITEM",
+          "anchor_token": "harbour",
+          "data": {}
+        },
+        {
+          "text": "Then, the customs officer",
+          "archetype": "LIST_ITEM",
+          "anchor_token": "customs",
           "data": {}
         }
       ]

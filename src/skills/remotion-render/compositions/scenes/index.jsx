@@ -13,7 +13,7 @@ import {
   DocumentEvidenceScene, ImageEvidenceScene,
   InterfaceSimulationScene, BeforeAfterScene,
 } from "./evidence-scenes.jsx";
-import { VisualMetaphorScene, CinematicStatementScene } from "./abstract-scenes.jsx";
+import { VisualMetaphorScene, CinematicStatementScene, EnumerationScene } from "./abstract-scenes.jsx";
 import { STRATEGIES, TERMINAL_STRATEGY } from "../../visual/strategies.js";
 import { Shot, Ground, Falloff } from "./stage.jsx";
 
@@ -43,6 +43,7 @@ export const SCENE_COMPONENTS = {
   BeforeAfterScene,
   VisualMetaphorScene,
   CinematicStatementScene,
+  EnumerationScene,
 };
 
 export const KNOWN_SCENES = Object.keys(SCENE_COMPONENTS);

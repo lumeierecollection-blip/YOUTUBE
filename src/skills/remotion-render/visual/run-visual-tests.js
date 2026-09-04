@@ -776,7 +776,10 @@ check("every strategy the director can prefer has a way to be selected", () => {
   for (const name of STRATEGY_PREFERENCE) {
     if (signals.includes(name)) continue;
     const how = STRATEGIES[name] && STRATEGIES[name].reachedBy;
-    if (how === "asset" || how === "terminal") continue; // declared, deliberate
+    // "archetype": reached because the classifier read a FACT about the
+    // beat (ENUMERATION fires on a LIST_ITEM run), the same shape as
+    // "asset" — not a confidence score over the text.
+    if (how === "asset" || how === "terminal" || how === "archetype") continue; // declared, deliberate
     unreachable.push(`${name} has no detector and no reachedBy declaration`);
   }
   return unreachable.length === 0 || unreachable.join("; ");

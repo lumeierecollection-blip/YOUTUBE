@@ -347,35 +347,6 @@ export function deriveScene(beat, ctx = {}) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// List runs — consecutive LIST_ITEM beats accumulate chips (F3).
-// ─────────────────────────────────────────────────────────────────────────────
-
-export function groupListRuns(beats) {
-  let run = -1;
-  for (let i = 0; i < beats.length; i++) {
-    const b = beats[i];
-    if (b.archetype !== "LIST_ITEM") {
-      run = -1;
-      b.scene.listIndex = -1;
-      b.scene.listTotal = 0;
-      continue;
-    }
-    if (run === -1) run = i;
-    b.scene.listIndex = i - run;
-  }
-  let start = -1;
-  for (let i = 0; i <= beats.length; i++) {
-    const isList = i < beats.length && beats[i].archetype === "LIST_ITEM";
-    if (isList && start === -1) start = i;
-    if ((!isList || i === beats.length) && start !== -1) {
-      for (let k = start; k < i; k++) beats[k].scene.listTotal = i - start;
-      start = -1;
-    }
-  }
-  return beats;
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
 // Section windows from the script's timing strings ("0:00-0:10").
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -666,22 +637,69 @@ export function buildMgPackage(srtText, opts = {}) {
   // the plan whether an icon is wanted at all (PART 8) instead of resolving
   // one for every beat.
   //
-  // LIST_ITEM is deliberately not planned: consecutive LIST_ITEM beats are
-  // not stage-routed at all, they accumulate as chips through ListRuns,
-  // which is already a real non-icon visual system (PART 26 — don't rewrite
-  // working systems without evidence).
+  // LIST_ITEM used to be the one archetype excluded from planning. It is
+  // planned like everything else now (ENUMERATION), which is what removed
+  // the bordered chip card and made these beats countable by the VIS
+  // metrics and the frame-bounds gate (CHECK-REGISTER §3.12.25).
   const sectionTextFor = (idx) => (sections[idx] && sections[idx].voiceover) || "";
   // Variety pressure needs to know what the last two staged beats chose,
   // or one broad detector wins the whole video (see director.js).
+  /**
+   * LIST RUNS, RESOLVED BEFORE PLANNING.
+   *
+   * A list beat's real content is the whole RUN it belongs to — "blind
+   * spiders, eyeless leeches, ghost-pale centipedes" is one idea spread
+   * over three beats — and only this loop can see that, because the
+   * director plans one beat at a time. Each list beat is therefore handed
+   * its run's names and its own position in them.
+   *
+   * These beats used to be skipped entirely (`visualPlan = null`), which
+   * routed them around the strategy system into ListRunScene's bordered
+   * card AND made them invisible to every VIS metric, since
+   * diagnostics.js filtered on the same archetype. Planning them like any
+   * other beat is what closes both holes at once (CHECK-REGISTER §3.12.25).
+   */
+  const LIST_CONNECTIVE = /^(first|second|third|fourth|fifth|next|then|finally|last|also|another|one|two|three|four)$/i;
+  const listRunOf = new Map();
+  for (let i = 0; i < beats.length; i++) {
+    if (beats[i].archetype !== "LIST_ITEM") continue;
+    let j = i;
+    while (j < beats.length && beats[j].archetype === "LIST_ITEM") j++;
+    const members = beats.slice(i, j);
+    /**
+     * The names themselves — content words lifted from each member's own
+     * sentence, never invented.
+     *
+     * `scene.item` (deriveScene's LIST_ITEM case) is the same extraction and
+     * is preferred when it produced something. When it came back empty —
+     * a fragment that is all stopwords, e.g. "number was much higher." —
+     * this re-extracts with a wider window rather than dumping the raw
+     * fragment on screen: a roll call of sentence fragments reads no better
+     * than the chips it replaced. Only if BOTH come back empty does the
+     * trimmed text stand in, with trailing punctuation removed, so the run's
+     * length still matches the beats the viewer actually hears.
+     */
+    const items = members.map((m) => {
+      // "first / then / next / finally" are the list's GRAMMAR, not part of
+      // any item's name — leaving them in produced "CUSTOMS OFFICER NEXT
+      // WAREHOUSE", which reads as one absurd role and is long enough to
+      // overflow the column at the house type floor.
+      const named = String((m.scene && m.scene.item) || "")
+        .split(/\s+/).filter((w) => w && !LIST_CONNECTIVE.test(w)).slice(0, 3).join(" ");
+      if (named) return named;
+      const words = contentWords(m.text, 4).filter((w) => !LIST_CONNECTIVE.test(w));
+      if (words.length) return words.slice(0, 3).join(" ").toUpperCase();
+      return String(m.text || "").trim().replace(/[^\w'\s]+$/g, "").toUpperCase();
+    });
+    for (let k = 0; k < members.length; k++) listRunOf.set(members[k], { items, index: k });
+    i = j - 1;
+  }
+
   let recent = [];
   const strategyUse = {};
   for (const b of beats) {
-    if (b.archetype === "LIST_ITEM") {
-      b.visualPlan = null;
-      b.visualStates = [];
-      continue;
-    }
     b.visualPlan = planVisual(b, {
+      listRun: listRunOf.get(b) || null,
       channel: opts.channel || null,
       asset: imageForSection(b.sectionIndex),
       // A DECLARED before/after pair for this section, when one exists
@@ -748,7 +766,6 @@ export function buildMgPackage(srtText, opts = {}) {
 
   for (const b of beats) b.scene = deriveScene(b, { imageForSection });
 
-  groupListRuns(beats);
 
   // TRACE — D2.5, at most one per video, hook icon only.
   const hookBeat = beats.find((b) => b.sectionIndex === 0);

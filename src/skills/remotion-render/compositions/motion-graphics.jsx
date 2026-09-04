@@ -16,7 +16,6 @@ import { measureText, fitTextOnNLines, HEADLINE_FONT, fontStyleFor, needsFixedSl
 import { currentAudio } from "../audio.js";
 import "../wait-for-fonts.js";
 import { resolveFontFamily } from "./visual.js";
-import { Panel } from "../primitives/Panel.jsx";
 import { D, MG_TYPE as TYPE, CAPTION } from "./beats.js";
 import { rolesFromPalette, mixColor } from "./mg-style.js";
 import { CAPTION_RESERVE_Y } from "./layout-constants.js";
@@ -889,122 +888,12 @@ function Centered({ x, y, children }) {
   );
 }
 
-// F3 — LIST_ITEM runs. Chips accumulate; prior chips dim + shift up 88u;
-// max 4 visible; a 5th drops the first with a 6-frame fade. The whole run is
-// one Sequence so chips persist across item beats.
-//
-// REBUILT for PART 3.2/3.3 of the rebuild: the whole visible stack now sits
-// inside ONE flat card (Panel — MANUAL A5.1, a hairline border, no per-item
-// box) with a faint dot-grid behind it (spatial reference, not decoration —
-// PART 3.2), matching the reference "a card listing short items stacked
-// vertically". Each row's marker is a small "+" glyph, not a number/bullet/
-// dash (PART 3.3), sized to match the item text.
-const LIST_PANEL = { left: 64, top: 560, width: 824, height: 400 };
+// F3 — LIST_ITEM runs used to be drawn here by ListRunScene: chips inside one
+// bordered Panel, routed around the stage entirely. That component and its
+// Sequence mount are deleted. LIST_ITEM beats now carry a real visualPlan
+// (ENUMERATION) and render through SemanticScene with the rest
+// (CHECK-REGISTER §3.12.25).
 
-function ListRunScene({ beats, startFrame, colors, fontFamily }) {
-  const frame = useCurrentFrame();
-  const chipFrames = beats.map((b) => Math.max(b.anchorFrame - startFrame - D.micro, 0));
-  let lastArrived = -1;
-  for (let i = 0; i < chipFrames.length; i++) {
-    if (chipFrames[i] <= frame) lastArrived = i;
-  }
-  if (lastArrived < 0) return null;
-
-  const dropIdx = lastArrived - 4;
-  const visible = [];
-  for (let k = 0; k <= lastArrived; k++) {
-    if (k === dropIdx) visible.push({ k, dropping: true });
-    else if (k >= lastArrived - 3) visible.push({ k, dropping: false });
-  }
-  const panelOpacity = ease(chipFrames[0] !== undefined ? frame - chipFrames[0] : frame, [0, D.base], [0, 1], E_OUT);
-
-  return (
-    <div style={{ position: "absolute", inset: 0 }}>
-      <div
-        style={{
-          position: "absolute",
-          left: LIST_PANEL.left,
-          top: LIST_PANEL.top,
-          width: LIST_PANEL.width,
-          height: LIST_PANEL.height,
-          opacity: panelOpacity,
-        }}
-      >
-        {/* The panel's decorative dot-grid fill is gone with the full-frame one.
-            It was texture inside a box, carrying no meaning about the list. The
-            panel itself remains for now because list rendering positions against
-            it; it is a rounded container and is on the deletion list, but it
-            needs a real replacement for list beats, not just removal. */}
-        <Panel colors={colors} style={{ border: `1px solid ${colors.stroke}`, overflow: "hidden" }} />
-      </div>
-      {visible.map(({ k, dropping }) => {
-        const beat = beats[k];
-        const tA = Math.max(beat.anchorFrame - startFrame, 0);
-        const entrance = chipFrames[k];
-        const shiftBase = 940 - (lastArrived - 1 - k) * 88;
-        const shiftProg = k < lastArrived
-          ? ease(frame - entrance, [0, 5], [0, 1], E_OUT)
-          : 1;
-        const bottom = shiftBase - (k < lastArrived ? shiftProg * 88 : 0);
-        const dimProg = k < lastArrived ? ease(frame - entrance, [0, 5], [0, 1], E_OUT) : 0;
-        const dropOpacity = dropping ? ease(frame - entrance, [0, D.short], [1, 0], E_IN) : 1;
-        const pop = popStyle(frame, entrance);
-        const markerAccent = frame >= tA && frame < tA + D.short + 2;
-        const textColor = k === lastArrived ? colors.textPrimary : mixColor(colors.textPrimary, colors.textDim, dimProg);
-        return (
-          <div
-            key={k}
-            style={{
-              position: "absolute",
-              left: 88,
-              bottom,
-              width: 760,
-              height: 88,
-              display: "flex",
-              alignItems: "center",
-              gap: 20,
-              paddingLeft: 24,
-              paddingRight: 24,
-              opacity: dropOpacity,
-              ...pop,
-            }}
-          >
-            <span
-              style={{
-                fontFamily,
-                fontWeight: 800,
-                fontSize: TYPE.body,
-                lineHeight: 1,
-                color: markerAccent ? colors.accent : colors.textDim,
-              }}
-            >
-              +
-            </span>
-            <span style={{ fontFamily, fontWeight: 700, fontSize: TYPE.body, color: textColor }}>
-              {beat.scene.item || beat.text}
-            </span>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-function listRuns(beats) {
-  const runs = [];
-  let cur = null;
-  for (let i = 0; i < beats.length; i++) {
-    if (beats[i].archetype === "LIST_ITEM") {
-      if (!cur) cur = [];
-      cur.push(i);
-    } else if (cur) {
-      runs.push(cur);
-      cur = null;
-    }
-  }
-  if (cur) runs.push(cur);
-  return runs;
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Orchestration — absolute-timeline beats + list runs + per-section kicker.
@@ -1015,7 +904,11 @@ function BeatStages({ beats, colors, fontFamily }) {
   return (
     <>
       {beats.map((b, i) => {
-        if (b.archetype === "LIST_ITEM") return null;
+        // LIST_ITEM beats are NO LONGER routed around the stage. They carry
+        // a real visualPlan now (ENUMERATION) and render through
+        // SemanticScene like every other beat — which is also what makes
+        // them visible to the VIS metrics and the frame-bounds gate, both
+        // of which keyed off this exclusion. See CHECK-REGISTER §3.12.25.
         const exit = i < last && beats[i + 1].sectionIndex !== b.sectionIndex;
         return (
           <Sequence
@@ -1047,22 +940,6 @@ function BeatStages({ beats, colors, fontFamily }) {
   );
 }
 
-function ListRuns({ beats, colors, fontFamily }) {
-  return (
-    <>
-      {listRuns(beats).map((run) => {
-        const first = beats[run[0]];
-        const lastBeat = beats[run[run.length - 1]];
-        const duration = lastBeat.startFrame + lastBeat.durationInFrames - first.startFrame;
-        return (
-          <Sequence key={`run-${first.startFrame}`} from={first.startFrame} durationInFrames={duration}>
-            <ListRunScene beats={run.map((i) => beats[i])} startFrame={first.startFrame} colors={colors} fontFamily={fontFamily} />
-          </Sequence>
-        );
-      })}
-    </>
-  );
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Top-level composition
@@ -1078,7 +955,6 @@ function MotionGraphicsContent({ mg, colors, fontFamily, showCaptions }) {
     <>
       <DesignSpace captionDrop={showCaptions ? 0 : CAPTION_RESERVE_Y}>
         <BeatStages beats={beats} colors={colors} fontFamily={fontFamily} />
-        <ListRuns beats={beats} colors={colors} fontFamily={fontFamily} />
         <HeadlineLayer beats={beats} colors={colors} fontFamily={fontFamily} />
         {/* NARRATION CAPTIONS ARE OFF BY DEFAULT.
 

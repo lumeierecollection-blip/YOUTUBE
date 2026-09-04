@@ -314,6 +314,48 @@ export const STRATEGIES = {
     ],
   },
 
+  /**
+   * ENUMERATION — several named things, arriving in the order they are said.
+   *
+   * WHAT THIS REPLACES. LIST_ITEM beats used to get `visualPlan = null` and
+   * were routed around the whole strategy system into `ListRunScene`, which
+   * drew chips inside a rounded bordered Panel — the card grammar this
+   * rebuild deletes everywhere else, surviving here precisely BECAUSE no
+   * plan pointed at it, so no check ever looked (CHECK-REGISTER §3.12.21).
+   *
+   * THE IDEA is plurality: "blind spiders, eyeless leeches, ghost-pale
+   * centipedes" argues that there are many of these and they keep coming.
+   * The accumulation is the claim, not decoration on it.
+   *
+   * THE OBJECT is the names. `scene.item` is content words lifted from the
+   * beat's own sentence — the only real data a list beat has. Real photos
+   * per item would be better and are what this strategy should use the day
+   * the sourcing pipeline can reach them (§3.12.24), but 0 of 17 production
+   * channels have any, so inventing an object to hold each name would be
+   * exactly the fabrication the last version committed with its chips.
+   *
+   * WHY IT MOVES: each name lands on its own anchor, when it is spoken.
+   * Names already said stay on screen and recede — they are context now,
+   * not the subject. Nothing moves that is not arriving.
+   *
+   * `reachedBy: "archetype"` — like IMAGE_EVIDENCE's "asset", this is
+   * decided by a FACT about the beat (the classifier read a list), not by a
+   * confidence score over its text.
+   */
+  ENUMERATION: {
+    scene: "EnumerationScene",
+    reachedBy: "archetype",
+    variants: 2, // COLUMNAR (a long run) or ISOLATED (a short one)
+    intent: "several named things, accumulating in the order they are said",
+    dataNeeds: ["items>=2"],
+    iconRole: "none",
+    states: [
+      { key: "standing", action: "the names already said hold their place", weight: 1.4 },
+      { key: "arrive", action: "this beat's name lands", weight: 2.4, anchored: true },
+      { key: "settle", action: "the set so far reads as one list", weight: 1.6 },
+    ],
+  },
+
   CINEMATIC_STATEMENT: {
     scene: "CinematicStatementScene",
     reachedBy: "terminal", // the fallback of last resort; never detected
@@ -345,6 +387,7 @@ export const STRATEGY_PREFERENCE = [
   "DOCUMENT_EVIDENCE",
   "IMAGE_EVIDENCE",
   "SCALE_COMPARISON",
+  "ENUMERATION",
   "VISUAL_METAPHOR",
   "CINEMATIC_STATEMENT",
 ];

@@ -2010,7 +2010,9 @@ VIS metric counts them and the strategy census does not see them; and
 `frame-bounds.mjs` filters them the same way `inspect-anchors.mjs` does,
 so **the new gate does not cover them either**. 3 of 29 beats on the
 fixture script take this path. Replacing the panel is real scene work and
-was not attempted here.
+was not attempted here. **SUPERSEDED by §3.12.25** — the panel is deleted,
+both exclusions are gone, and the beats plan as ENUMERATION. This entry is
+kept as the record of what was found.
 
 **3.12.22 — a local TTS path, researched and wired, not run.** EdgeTTS
 needs a WebSocket this environment's proxy cannot carry at all, which is
@@ -2084,6 +2086,118 @@ additionally need credentials that are not set in this environment:
 `nara` (NARA_API_KEY, optional). Nothing was attempted against the
 allowlist. 0 of 17 production channels have any sourced photos; that is
 unchanged and unfixable from here.
+
+**3.12.25 — the LIST_ITEM card is gone; the beats are planned, measured and
+gated like every other beat.** §3.12.21 traced the last piece of card
+furniture in the renderer and left it standing: LIST_ITEM beats got
+`visualPlan = null`, `BeatStages` returned null for them, and `ListRuns` ->
+`ListRunScene` drew chips inside a rounded bordered Panel. Two exclusions
+kept that invisible — `diagnostics.js` filtered on `archetype !==
+"LIST_ITEM"`, so no VIS metric counted those beats, and `frame-bounds.mjs`
+copied the same filter from `inspect-anchors.mjs`, so the gate could not
+see them either.
+
+WHAT REPLACED IT. A new strategy, ENUMERATION (`visual/strategies.js`),
+reached by archetype rather than by a text detector — `reachedBy:
+"archetype"`, a third value alongside `"asset"` and `"terminal"`, allowed
+in `run-visual-tests.js` and in `schemas/script.mg.json`. Its idea is a
+ROLL CALL: the names already said hold their place, this beat's name lands
+on the anchor, and the set so far reads as one list. The object is the
+names themselves — no container, no chip, no bullet. The only structural
+mark is each name's real ordinal (`01`, `02`), which the "+" glyph it
+replaced did not carry. Material ATMOSPHERE, framing COLUMNAR + CLOSE,
+camera DESCEND (the frame travels down the sequence, the same reason
+PROCESS descends), depth LAYERED.
+
+The run is resolved BEFORE planning, in `mg-package.js`: the director sees
+one beat at a time and a list beat's real content is the whole run it
+belongs to, so each list beat is handed its run's names and its own index
+in them. `items>=2` is a real `dataNeeds` clause — a run of one is not a
+list, and those beats plan as whatever their own text supports.
+
+WHAT THE NUMBERS ACTUALLY DID (measured on this branch, not projected):
+
+| | before | after |
+|---|---|---|
+| frame-bounds strategy coverage | 16/17 | **17/17**, 17 passed 0 failed |
+| `run-visual-tests.js` | 77/77 | 77/77 (4 new failures found and fixed first: schema enum, `reachedBy` allowlist, variants-not-backed, coverage) |
+| VIS `visualBeatCount`, uncovered-strategies fixture | 4 | 6 (2 ENUMERATION) |
+| VIS `visualBeatCount`, what-to-say-traffic-stop | 80 | 84 |
+| VIS `visualBeatCount`, movile-cave | 29 | 32 |
+| VIS `listItemBeatCount`, all three | 0 | 2 / 4 / 3 |
+
+`listItemBeatCount` was `beats.length - staged.length` — a count of what
+the filter THREW AWAY. Nothing is thrown away now, so it read 0 on a script
+with four list beats and the CI line said "+0 list-item". It counts the
+beats themselves now.
+
+Only the fixture run plans as ENUMERATION. On the two real scripts every
+LIST_ITEM run is length 1 (4 runs and 3 runs respectively), so `items>=2`
+is not met and those beats plan as CINEMATIC_STATEMENT / CAUSE_EFFECT /
+COMPARISON / IMAGE_EVIDENCE. They are counted and gated either way; what
+changed is that none of them reach a card.
+
+**COUNTING THE HIDDEN BEATS EXPOSED A BREACH THAT WAS ALREADY THERE.**
+`what-to-say-traffic-stop` measures `genericFallbackRatio` 0.429, over
+VIS-04's <=0.4, and `statementRatio` 0.429, over the 0.3 that raises
+VIS-GENERIC-FALLBACK / MAJOR. It was **0.412 before this change** — already
+over — because 33 of its 80 staged beats fell to the terminal strategy;
+adding its 4 previously-uncounted list beats (3 of which also fall there)
+moved it to 0.429. The threshold is NOT being loosened and the beats are
+NOT being re-excluded to get under it: the real cause is that this script's
+sentences trigger no detector, which is a script/detector problem, not a
+metric problem. VIS-01's row records "PASS - 0.0 on all 3" from a different
+set of renders; that row is left alone rather than overwritten with numbers
+from other inputs, but this measurement stands against it.
+
+RENDERED, NOT ASSERTED. `data/audit/frame-bounds/ENUMERATION.png` (fixture
+ch-01, frame 933) shows `01 HARBOUR MASTER` in accent on the atmosphere
+ground — no card, no border, no chip. Item 02's anchor (frame 986) shows
+`01 HARBOUR MASTER` receded to grey above `02 CUSTOMS OFFICER WAR…` in
+accent. Two defects were found by looking at those frames rather than
+reasoning about them, and both are fixed:
+
+1. **A name was elided that fit.** The size was fitted against the indent
+   at the LABEL FLOOR while `elide()` measured the indent actually drawn,
+   which is larger — "HARBOUR MASTER" came out "HARBOUR MAST…" with ~100px
+   of empty column beside it. The fit is two passes now; the second re-fits
+   against the indent the first implies, and the indent can only shrink
+   between them, so the result always has at least the room it was fitted
+   for.
+
+2. **THE SAFE RECT IS NOT WHAT THE CAMERA LEAVES YOU.** A column pinned to
+   `SAFE.left` (48) rendered with its accent ink starting at x=23, and at
+   x=4 one beat later. `Shot` transforms the world by `translate(dx,dy)
+   scale(s)` about the canvas centre, and DESCEND scales 1.1 -> 1.05:
+   540 + (48 - 540) x 1.1 = -1.2. New `cameraSafe(shot, safe)` in
+   `stage.jsx` inverts that mapping at both endpoints of the move (both dx
+   and s are linear in the eased progress, so the extremes ARE the
+   endpoints — no sampling) and returns the world-space rect that still
+   lands inside SAFE throughout. ENUMERATION lays out in that rect: its
+   accent ink now measures x[53..757] and x[69..770], both inside
+   SAFE[48..888]. The same helper also gave the stack a top clamp, which
+   the old comment claimed and the code did not have.
+
+**A SYSTEM-WIDE FINDING, NOT FIXED HERE.** A pixel probe of all 17 gate
+anchor frames (ink delta >= 60 against the frame's own corner background)
+found **12 of 17 putting visible ink outside SAFE[48,888]** — CINEMATIC_-
+STATEMENT, ENUMERATION, GEOSPATIAL_RADIUS, IMAGE_EVIDENCE, SCALE_COMPARISON
+and TIMELINE on both edges, DATA_CHART and TRANSFORMATION on the left,
+VISUAL_METAPHOR, CAUSE_EFFECT, INTERFACE_SIMULATION and BEFORE_AFTER on the
+right. Some of that is ground and environment, which is MEANT to bleed; the
+probe cannot separate ground from subject automatically. What is certain is
+the mechanism, because it is arithmetic: any scene that lays out against
+SAFE and is then scaled above 1 by its camera ends up outside it.
+`cameraSafe` is the fix and it is exported for every scene, but only
+ENUMERATION uses it — retro-fitting the other 16 changes the composition of
+all of them and needs its own rendered-frame pass. The frame-bounds gate
+does not catch this and is not being widened to: its edge band is 2% of the
+width and it samples one frame per strategy, both deliberate (§3.12.20).
+
+DELETED: `ListRunScene`, its `<ListRuns/>` mount, the `listRuns`/`ListRuns`
+helpers and `LIST_PANEL` in `motion-graphics.jsx`; `groupListRuns` and the
+`scene.listIndex`/`scene.listTotal` it wrote in `mg-package.js`, which
+nothing read any more; and the now-unused `Panel` import.
 
 ---
 

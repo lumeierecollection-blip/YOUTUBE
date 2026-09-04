@@ -25,7 +25,24 @@ export const STATIC_WARN_FRAMES = 5 * FPS;
 
 export function summarizeVisuals(beats, opts = {}) {
   const fps = opts.fps || FPS;
-  const staged = (beats || []).filter((b) => b.archetype !== "LIST_ITEM");
+  /**
+   * EVERY BEAT WITH A PLAN IS MEASURED, INCLUDING LIST BEATS.
+   *
+   * This used to read `filter((b) => b.archetype !== "LIST_ITEM")`, because
+   * list beats genuinely had no visualPlan — they were routed around the
+   * strategy system into a chip-in-a-card renderer. The exclusion then hid
+   * the consequence: those beats were absent from iconHeroRatio,
+   * genericFallbackRatio, the strategy census and the static-hold check, so
+   * the one surviving piece of card furniture in the whole renderer was
+   * invisible to every metric built to find exactly that
+   * (CHECK-REGISTER §3.12.21).
+   *
+   * They carry a real ENUMERATION plan now, so they are measured like
+   * anything else. A beat that somehow still arrives without a plan stays
+   * counted — it lands in `staged` and is missing from `planned`, which is
+   * what genericFallbackRatio is for.
+   */
+  const staged = (beats || []).filter((b) => b.visualPlan || b.archetype !== "LIST_ITEM");
   const planned = staged.filter((b) => b.visualPlan);
   const n = staged.length || 1;
 
@@ -88,7 +105,12 @@ export function summarizeVisuals(beats, opts = {}) {
 
   const metrics = {
     visualBeatCount: staged.length,
-    listItemBeatCount: (beats || []).length - staged.length,
+    // Was `beats.length - staged.length`: a count of the beats the filter
+    // above THREW AWAY. Nothing is thrown away any more, so that expression
+    // is structurally 0 forever and the report line read "+0 list-item" on
+    // a script with four of them. It counts the beats themselves now, and
+    // they are inside visualBeatCount too (CHECK-REGISTER §3.12.25).
+    listItemBeatCount: (beats || []).filter((b) => b.archetype === "LIST_ITEM").length,
     visualStateCount,
     averageBeatDurationSec: staged.length ? +(totalFrames / staged.length / fps).toFixed(2) : 0,
     averageStatesPerBeat: staged.length ? +(visualStateCount / staged.length).toFixed(2) : 0,
@@ -394,7 +416,7 @@ function round2(v) {
 export function formatVisualReport(summary) {
   const m = summary.metrics;
   const lines = [
-    `visual beats        : ${m.visualBeatCount} (+${m.listItemBeatCount} list-item)`,
+    `visual beats        : ${m.visualBeatCount} (${m.listItemBeatCount} of them list-item)`,
     `visual states       : ${m.visualStateCount} (avg ${m.averageStatesPerBeat}/beat)`,
     `avg beat duration   : ${m.averageBeatDurationSec}s`,
     `longest static hold : ${m.longestStaticPeriodSec}s`,

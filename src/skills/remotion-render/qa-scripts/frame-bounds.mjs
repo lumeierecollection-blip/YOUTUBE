@@ -124,10 +124,26 @@ const MIN_EDGE_RUN = 4;
  */
 const EDGE_EXEMPT_MATERIALS = new Set(["footage"]);
 
+/**
+ * ONLY motion-graphics. This is not a shortcut — it is the only style whose
+ * composition consumes `visualPlan` at all.
+ *
+ * `compositions/cinematic-documentary.jsx` and `compositions/minimal.jsx`
+ * contain zero references to SemanticScene or visualPlan; they render their
+ * own way from the beat text. Rendering a strategy's anchor frame through
+ * one of them therefore measures a frame that strategy never drew, and
+ * counting it as coverage is a lie the gate tells itself. Caught when
+ * ENUMERATION was first reached on ch-04 (cinematic-documentary) and the
+ * "covered" frame came back as that composition's serif title card, with
+ * EnumerationScene never invoked.
+ *
+ * The first 16 strategies were unaffected — every one was first seen on a
+ * motion-graphics channel (verified against the report's own `case`/
+ * `channel` columns) — but the hole was real and would have swallowed the
+ * next strategy to land on ch-04.
+ */
 const COMPOSITION = {
   "motion-graphics": "MotionGraphicsShorts",
-  "cinematic-documentary": "CinematicDocumentaryShorts",
-  minimal: "MinimalShorts",
 };
 
 const channels = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8")).channels;
@@ -260,6 +276,11 @@ const seen = new Set();
 
 for (const c of CASES) {
   if (!c.channel) { console.log(`SKIP ${c.name}: channel not in config`); continue; }
+  if (!COMPOSITION[c.channel.style]) {
+    // Not a strategy-driven style — see the COMPOSITION note above.
+    console.log(`SKIP ${c.name}: style "${c.channel.style}" does not render visualPlan`);
+    continue;
+  }
   const scriptPath = join(ROOT, c.script);
   if (!existsSync(scriptPath)) { console.log(`SKIP ${c.name}: missing ${c.script}`); continue; }
   const srtPath = c.srt === "fixture" ? fixtureSrt(scriptPath, c.name) : join(ROOT, c.srt);
@@ -270,10 +291,16 @@ for (const c of CASES) {
   catch (err) { console.log(`SKIP ${c.name}: ${err.message.split("\n")[0]}`); continue; }
   const { mg, props } = built;
 
-  // One beat per strategy, first occurrence. LIST_ITEM beats carry no
-  // visualPlan (they accumulate chips instead of staging a scene), which is
-  // why inspect-anchors.mjs filters them the same way.
-  const staged = mg.beats.filter((b) => b.archetype !== "LIST_ITEM" && b.visualPlan && b.visualPlan.strategy);
+  // One beat per strategy, first occurrence.
+  //
+  // NO LIST_ITEM EXCLUSION. This filter used to carry
+  // `b.archetype !== "LIST_ITEM"`, copied from inspect-anchors.mjs, from
+  // when those beats had no visualPlan and were drawn by a separate
+  // chip-in-a-card renderer. That exclusion meant the one piece of card
+  // furniture left in the system was the one thing this gate could not
+  // see. List beats plan as ENUMERATION now; the only condition is having
+  // a plan to render.
+  const staged = mg.beats.filter((b) => b.visualPlan && b.visualPlan.strategy);
   const id = COMPOSITION[c.channel.style];
 
   for (const beat of staged) {

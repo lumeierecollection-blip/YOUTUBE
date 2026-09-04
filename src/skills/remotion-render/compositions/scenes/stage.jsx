@@ -255,6 +255,52 @@ export function shotFrame(shot) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
+ * THE SAFE RECT AS THE CAMERA WILL LEAVE IT.
+ *
+ * Scenes lay out in world coordinates, then `Shot` transforms the whole
+ * world: `translate(dx, dy) scale(s)` about the canvas centre. So a scene
+ * that pins its subject to SAFE.left ends up OUTSIDE the safe rect the
+ * moment the camera scales above 1 — which most moves do.
+ *
+ * Measured, not reasoned: on the ENUMERATION anchor frames, a column laid
+ * out at exactly SAFE.left (48) rendered with its accent ink starting at
+ * x=23 and, one beat later, x=4. DESCEND scales 1.1 -> 1.05, and
+ * 540 + (48 - 540) * 1.1 = -1.2. The frame-bounds gate does not catch this
+ * (its edge band is 2% of the width, and it samples one frame per
+ * strategy), so it was invisible until the pixels were probed directly.
+ *
+ * screen_x = 540 + dx(e) + (x - 540) * s(e), and both dx and s are linear
+ * in the camera's eased progress, so the extremes are the two endpoints
+ * exactly — no sampling, no margin of error. This inverts that mapping at
+ * both endpoints and returns the tightest world-space rect that still
+ * lands inside SAFE for the whole move.
+ *
+ * ONLY ENUMERATION USES THIS SO FAR. A pixel probe across the gate's 17
+ * anchor frames found 12 of them putting visible ink outside SAFE, so the
+ * problem is system-wide, not specific to one scene — but retro-fitting
+ * every scene is a composition change to all of them and is not something
+ * to do blind (CHECK-REGISTER §3.12.25).
+ */
+export function cameraSafe(shot, safe) {
+  const c = shot && shot.camera;
+  if (!c) return { ...safe, width: safe.right - safe.left, height: safe.bottom - safe.top };
+  const cx = CANVAS_W / 2;
+  const cy = CANVAS_H / 2;
+  const ends = [c.from, c.to];
+  let left = -Infinity, right = Infinity, top = -Infinity, bottom = Infinity;
+  for (const end of ends) {
+    const s = end.scale || 1;
+    const dx = (end.x || 0) * CANVAS_W;
+    const dy = (end.y || 0) * CANVAS_H;
+    left = Math.max(left, cx + (safe.left - cx - dx) / s);
+    right = Math.min(right, cx + (safe.right - cx - dx) / s);
+    top = Math.max(top, cy + (safe.top - cy - dy) / s);
+    bottom = Math.min(bottom, cy + (safe.bottom - cy - dy) / s);
+  }
+  return { left, right, top, bottom, width: right - left, height: bottom - top };
+}
+
+/**
  * The environment layer, one per material.
  *
  * This is the single biggest change to how a frame reads. A subject on flat

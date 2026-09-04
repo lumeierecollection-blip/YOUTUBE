@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T18:18:00.498Z",
+  "generatedAt": "2026-09-04T20:45:14.022Z",
   "thresholds": {
     "EDGE_CONTRAST": 140,
     "EDGE_BAND_FRAC": 0.02,
@@ -18,6 +18,7 @@
     "COMPARISON",
     "DATA_CHART",
     "DOCUMENT_EVIDENCE",
+    "ENUMERATION",
     "GEOSPATIAL_RADIUS",
     "IMAGE_EVIDENCE",
     "INTERFACE_SIMULATION",
@@ -185,6 +186,20 @@
       "worstEdgeDelta": 64.3
     },
     {
+      "strategy": "ENUMERATION",
+      "case": "uncovered-strategies",
+      "channel": "ch-01",
+      "frame": 933,
+      "status": "PASS",
+      "violations": [],
+      "material": "atmosphere",
+      "edgeExempt": false,
+      "ink": 0.0089,
+      "edgeHits": 0,
+      "tallestRun": 0,
+      "worstEdgeDelta": 63.3
+    },
+    {
       "strategy": "BEFORE_AFTER",
       "case": "legal-geofence",
       "channel": "ch-02",
@@ -255,6 +270,6 @@
       "worstEdgeDelta": 156
     }
   ],
-  "passed": 16,
+  "passed": 17,
   "failed": 0
 }

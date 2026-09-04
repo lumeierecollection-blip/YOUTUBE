@@ -100,6 +100,9 @@ const STRATEGY_MATERIAL = {
   INTERFACE_SIMULATION: M.INTERFACE,
   SCALE_COMPARISON: M.ATMOSPHERE,
   VISUAL_METAPHOR: M.FIELD,
+  // Names standing in open space — no paper, no mechanism, nothing to
+  // enclose them. The material that has no container is the point.
+  ENUMERATION: M.ATMOSPHERE,
   CINEMATIC_STATEMENT: M.ATMOSPHERE,
 };
 
@@ -171,6 +174,14 @@ const STRATEGY_FRAMINGS = {
   // The terminal fallback gets a real shot, not a card. ISOLATED is the one
   // place a sparse frame is the intent rather than an accident: nothing
   // richer was readable, so the composition is atmosphere and distance.
+  // A column is literally what a roll call is. The second framing is CLOSE,
+  // not ISOLATED: ISOLATED is coverage 0.4 ("deliberately small in a large
+  // empty field — only where silence is the point"), and a rendered frame
+  // showed what that does to a list — a 432px column in a 1080px frame,
+  // forcing "CUSTOMS OFFICER WAREHOUSE" down to "CUSTOMS OFFI…" with two
+  // thirds of the picture empty. Names need width; silence is not the point
+  // of a roll call.
+  ENUMERATION: [F.COLUMNAR, F.CLOSE],
   CINEMATIC_STATEMENT: [F.HORIZON, F.ISOLATED],
 };
 
@@ -268,6 +279,9 @@ const STRATEGY_CAMERA = {
   INTERFACE_SIMULATION: C.HOLD,
   SCALE_COMPARISON: C.PULL,
   VISUAL_METAPHOR: C.DRIFT,
+  // The frame travels down the sequence as it accumulates — the same
+  // reason PROCESS descends, applied to names instead of stages.
+  ENUMERATION: C.DESCEND,
   CINEMATIC_STATEMENT: C.DRIFT,
 };
 
@@ -367,6 +381,7 @@ const STRATEGY_DEPTH = {
   INTERFACE_SIMULATION: D.FLAT,
   SCALE_COMPARISON: D.DEEP,
   VISUAL_METAPHOR: D.LAYERED,
+  ENUMERATION: D.LAYERED,
   CINEMATIC_STATEMENT: D.DEEP,
 };
 

@@ -5,7 +5,8 @@ import {
   useStateProgress, useValueProgress, EASE_OUT, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { progressOf } from "../../visual/states.js";
-import { Plane, shotFrame } from "./stage.jsx";
+import { MG_TYPE as TYPE } from "../beats.js";
+import { Plane, shotFrame, cameraSafe } from "./stage.jsx";
 import { PressureWalls } from "./elements/pressure.jsx";
 import { ATMOSPHERE_HORIZON_Y } from "../../layout/slots.js";
 // remocn text-entrance and pull-quote emphasis. Installed and verified
@@ -396,6 +397,237 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
             fill={colors.stroke} opacity={0.32 * eField} />
         </svg>
       </Plane>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ENUMERATION — several named things, arriving as they are said.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * A ROLL CALL, NOT A LIST WIDGET.
+ *
+ * WHAT THIS REPLACES. LIST_ITEM beats were skipped by the whole strategy
+ * system (`visualPlan = null`) and drawn by `ListRunScene` as chips inside a
+ * rounded bordered `Panel` at hardcoded geometry — `left: 88`, `width: 760`,
+ * `height: 88` per row, a "+" bullet per chip, the shot ignored entirely. It
+ * was a UI list control, and it survived this rebuild only because nothing
+ * pointed a plan at it, so no check ever looked (CHECK-REGISTER §3.12.21).
+ *
+ * WHY THERE IS NO CONTAINER HERE. A border encloses; a roll call does not.
+ * The names are set directly on the scene's own ground — the ATMOSPHERE
+ * material the stage already draws — with nothing around them. Type
+ * hierarchy does the work a box was doing: the name being said is large and
+ * in the channel accent, the names already said are smaller and dimmer above
+ * it. That difference alone says "these are one list, and this is where we
+ * are in it".
+ *
+ * WHAT IS REAL HERE. Only the names. `supporting.items` are content words
+ * lifted from each member beat's own sentence, and `itemIndex` is this
+ * beat's real position in the run — both assembled in mg-package.js, which
+ * is the only place that can see a whole run. Nothing is invented: no
+ * counts, no categories, no icon per item.
+ *
+ * NAMES NOT YET SPOKEN ARE NOT DRAWN. Printing the rest of the list ahead of
+ * the narration would put words on screen before they are said — the same
+ * defect `DocumentSheet` was carrying when it pre-highlighted "the clause"
+ * before the real one appeared. The list assembles at the speed it is
+ * spoken.
+ *
+ * THE OLDEST NAMES FALL AWAY once more than `VISIBLE_PRIOR` are behind the
+ * current one. They had their moment when they were said; keeping every name
+ * forever would either shrink the type below the house floor or run off the
+ * top of the frame. This is a display window, not a claim that the list was
+ * shorter than it was.
+ *
+ * WITH REAL PHOTOS, THIS SHOULD SHOW THEM. The strategy's intent names
+ * concrete things — species, locations, events — and a real sourced photo
+ * per item would beat typography. 0 of 17 production channels have any and
+ * the asset APIs are egress-blocked (§3.12.24), so this is the honest
+ * treatment available now, not the ceiling.
+ */
+const VISIBLE_PRIOR = 3;
+
+export function EnumerationScene({ beat, colors, fontFamily }) {
+  const states = beat.visualStates || [];
+  const plan = beat.visualPlan || {};
+  const sup = plan.supporting || {};
+  const f = shotFrame(plan.shot || null);
+
+  const items = Array.isArray(sup.items) ? sup.items : [];
+  const idx = Number.isFinite(sup.itemIndex) ? sup.itemIndex : 0;
+  if (!items.length) return null;
+
+  // The name lands ON the anchor, not starting from it — same reason every
+  // other scene in this system uses useValueProgress for its key moment.
+  const pArrive = useValueProgress(states);
+  const pSettle = useStateProgress(states, "settle");
+  const eArrive = ease(pArrive);
+
+  // Which names are on screen: this one, plus up to VISIBLE_PRIOR already
+  // said. Never anything ahead of the narration.
+  const shot = plan.shot || null;
+  const coverage = shot ? shot.coverage : 0.9;
+  // A narrow field holds fewer names before they crowd. ISOLATED
+  // (coverage 0.4) keeps one behind the current name; COLUMNAR keeps the
+  // full window.
+  const visiblePrior = coverage < 0.6 ? 1 : VISIBLE_PRIOR;
+  const firstShown = Math.max(0, idx - visiblePrior);
+  const shown = [];
+  for (let k = firstShown; k <= idx; k++) shown.push({ k, text: String(items[k] || "").trim() });
+
+  /**
+   * Type fitted to the longest name actually on screen, so a long species
+   * name cannot leave the safe rect. Same glyph-count estimate the rest of
+   * the system uses for un-measured text (Label has no measurement pass);
+   * clamped into the house range rather than free-scaled, so the current
+   * name never drops under TYP-04's floor.
+   */
+  // Bold uppercase is WIDE. Measured off a rendered frame: "HARBOUR MASTER"
+  // at the label size occupied ~0.75 of size per glyph, and the same lesson
+  // cost a clipped figure in ComparisonScene (COMPARISON_GLYPH_W, 0.56 ->
+  // 0.70). Over-estimating is the safe direction here: it elides a shade
+  // early, where under-estimating clips.
+  const GLYPH_W = 0.78;
+  /**
+   * The column takes the width the SHOT granted, not the whole safe rect.
+   *
+   * This strategy's two framings are genuinely different rooms: COLUMNAR is
+   * a wide vertical stack (coverage 0.9, bleed) for a long run, ISOLATED a
+   * narrow field (coverage 0.4) for a short one. Sizing against SAFE alone
+   * would draw both identically and make the declared `variants: 2` a claim
+   * the pixels do not honour — which run-visual-tests.js checks for.
+   */
+  // The rect the camera will still have inside SAFE when it is done moving
+  // — not SAFE itself. See cameraSafe() in stage.jsx for the measurement
+  // that forced this: a column pinned to SAFE.left rendered at x=4.
+  const safe = cameraSafe(plan.shot || null, SAFE);
+  const avail = Math.min(f.w, safe.width);
+  const longest = shown.reduce((n, s) => Math.max(n, s.text.length), 1);
+  /**
+   * THE ORDINAL'S INDENT COMES OUT OF THE WIDTH THE NAME GETS.
+   *
+   * Sizing the name against the full column and THEN starting it at
+   * `colX + indent` overflows by exactly the indent. A rendered frame
+   * caught it: item 02 of the fixture run, "CUSTOMS OFFICER NEXT
+   * WAREHOUSE", ran off the right edge as "...WAREHO". The gate did not,
+   * because it samples ONE anchor frame per strategy — the first item,
+   * where a short name fit fine.
+   *
+   * The indent is derived from `priorSize`, and `priorSize` from
+   * `currentSize`, which is circular; the two-pass resolution below is how
+   * that loop is settled.
+   */
+  const INDENT_STEPS = 2.2; // matches the name's x offset below
+  const fitSize = (ind) =>
+    Math.max(TYPE.support, Math.min(TYPE.headline,
+      Math.floor(Math.max(120, avail - ind) / (longest * GLYPH_W))));
+  const indentOf = (size) => Math.max(TYPE.label, Math.round(size * 0.52)) * INDENT_STEPS;
+  /**
+   * Two passes, because one pass and the elision check below disagreed.
+   *
+   * Pass one sizes against the indent at the LABEL FLOOR, which is the
+   * smallest the indent can be. But the indent actually drawn comes from
+   * `priorSize`, which is usually larger — so the name was fitted to more
+   * width than it got, and `elide()` (which measures the real indent)
+   * trimmed a name that would have fit. A rendered frame caught it: the
+   * fixture's "HARBOUR MASTER" came out "HARBOUR MAST…" with ~100px of
+   * empty column to its right, one character over the limit.
+   *
+   * Pass two re-fits against the indent pass one implies. The indent can
+   * only grow between the passes, so the second size is <= the first and
+   * the second indent <= the first: the result is always at least as much
+   * room as it was fitted for, never less.
+   */
+  const indent = indentOf(fitSize(indentOf(fitSize(TYPE.label * INDENT_STEPS))));
+  const currentSize = fitSize(indent);
+  const priorSize = Math.max(TYPE.label, Math.round(currentSize * 0.52));
+  /**
+   * A HARD BACKSTOP, because the house type floor can outvote the fit.
+   *
+   * `currentSize` is clamped up to TYPE.support (TYP-04, "Never lower"), so
+   * a long enough name is drawn larger than the width it was fitted for and
+   * runs off the column anyway — measured on a rendered frame at 30 glyphs.
+   * Truncating to what actually fits at the size that will actually be used
+   * is the only thing that closes it. `short()`-style elision is already the
+   * house answer elsewhere (structure-scenes.jsx), and an elided real name
+   * is still the script's own word; a clipped one is just broken.
+   */
+  const fitChars = (size) => Math.max(6, Math.floor((avail - indent) / (size * GLYPH_W)));
+  const elide = (t, size) => (t.length > fitChars(size) ? `${t.slice(0, fitChars(size) - 1).trimEnd()}…` : t);
+
+  // A column, left-aligned: a roll call is read down an edge, not centred.
+  // Kept inside the camera-safe rect even when the framing pushes the shot
+  // off-centre.
+  const colX = Math.max(safe.left, Math.min(safe.right - avail, f.cx - avail / 2));
+  const step = priorSize * 1.9;
+  /**
+   * The current name sits on the shot's own centre; prior names step up
+   * from it. Both ends are clamped: the bottom so the current name clears
+   * the safe floor, the top so a FULL stack of priors cannot climb out of
+   * it. The comment here used to claim the second clamp while only having
+   * the first — the stack climbs `visiblePrior * step` above `currentY`,
+   * and nothing checked it.
+   */
+  const currentY = Math.max(
+    safe.top + visiblePrior * step,
+    Math.min(f.cy, safe.bottom - currentSize * 1.6)
+  );
+
+  return (
+    <div style={{ position: "absolute", inset: 0 }}>
+      {shown.map(({ k, text }) => {
+        const isCurrent = k === idx;
+        const behind = idx - k;
+        // The stack shifts up by one step as the new name lands, so the
+        // older names are visibly pushed along rather than teleporting.
+        const y = currentY - behind * step;
+        const shift = isCurrent ? (1 - eArrive) * 26 : (1 - eArrive) * step * 0.25;
+        // Recede with age, floored so an older name stays legible rather
+        // than fading into the ground.
+        const dim = Math.max(0.32, 1 - behind * 0.26);
+        return (
+          <React.Fragment key={k}>
+            {/* The ordinal is real — this name's position in the run — and
+                is the only structural mark here. It replaces the "+" bullet
+                the chip rows carried, which said nothing. */}
+            <Label
+              x={colX} y={y + shift + (isCurrent ? currentSize * 0.12 : 0)}
+              text={String(k + 1).padStart(2, "0")}
+              color={isCurrent ? colors.accent : colors.textDim}
+              size={isCurrent ? priorSize : Math.round(priorSize * 0.8)}
+              weight={800} tracking={2}
+              opacity={isCurrent ? eArrive : dim * 0.8}
+              fontFamily={fontFamily} halo={colors.bg}
+            />
+            <Label
+              x={colX + (isCurrent ? indent : priorSize * 1.8)} y={y + shift}
+              text={elide(text, isCurrent ? currentSize : priorSize)}
+              color={isCurrent ? colors.accent : colors.textPrimary}
+              size={isCurrent ? currentSize : priorSize}
+              weight={isCurrent ? 900 : 700}
+              tracking={isCurrent ? 0 : 1.2}
+              opacity={isCurrent ? eArrive : dim}
+              fontFamily={fontFamily} halo={colors.bg}
+            />
+          </React.Fragment>
+        );
+      })}
+
+      {/* How far through the run this is. Real numbers, and the only thing
+          on screen that is not one of the script's own words. It earns its
+          place: without it a viewer cannot tell a list of three from the
+          first three of nine. Appears as the set settles, not before. */}
+      {items.length > 1 ? (
+        <Label
+          x={colX} y={currentY + currentSize * 1.35}
+          text={`${idx + 1} OF ${items.length}`}
+          color={colors.textDim} size={TYPE.label} weight={700} tracking={3}
+          opacity={0.7 * ease(pSettle)}
+          fontFamily={fontFamily} halo={colors.bg}
+        />
+      ) : null}
     </div>
   );
 }
