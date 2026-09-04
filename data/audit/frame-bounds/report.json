@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T17:33:40.205Z",
+  "generatedAt": "2026-09-04T18:18:00.498Z",
   "thresholds": {
     "EDGE_CONTRAST": 140,
     "EDGE_BAND_FRAC": 0.02,
@@ -67,7 +67,7 @@
       "violations": [],
       "material": "field",
       "edgeExempt": false,
-      "ink": 0.01032,
+      "ink": 0.01044,
       "edgeHits": 0,
       "tallestRun": 0,
       "worstEdgeDelta": 19.3

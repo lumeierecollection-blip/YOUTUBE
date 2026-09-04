@@ -3,8 +3,8 @@ import { staticFile, useCurrentFrame } from "remotion";
 import { resolveSceneAsset } from "../../visual/asset-shape.js";
 import { PhotoTreatment } from "../../effects/PhotoTreatment.jsx";
 import {
-  CANVAS_W, CANVAS_H, Label, ease, seeded, variantOf,
-  useStateProgress, EASE_IN_OUT,
+  CANVAS_W, CANVAS_H, SAFE, Label, ease, seeded, variantOf,
+  useStateProgress, useValueProgress, EASE_IN_OUT,
 } from "./primitives.jsx";
 import { DOCUMENT_PAGES, documentPageGeometry } from "../layout-constants.js";
 import { MG_TYPE as TYPE } from "../beats.js";
@@ -409,9 +409,62 @@ export function BeforeAfterScene({ beat, colors, fontFamily }) {
    * than duplicating its typography keeps one definition of that fallback
    * instead of two that can drift apart.
    *
-   * If a photo pipeline becomes reachable, THIS is the strategy to wire a
-   * real before/after image pair into first — its intent already names
-   * exactly that.
+   * WIRED, BUT NOT YET PROVEN. The pair path below now exists: when the
+   * manifest DECLARES two images as one subject under two conditions
+   * (broll.js resolveAssetPair — explicit pair_id + before/after, never
+   * inferred from "this section has two photos"), the scene shows them.
+   * No manifest in this repo declares a pair and none can be sourced while
+   * the asset APIs are egress-blocked, so this branch is compile-checked
+   * and has never rendered a frame. The statement fallback below remains
+   * what every real beat actually gets today. See CHECK-REGISTER §3.12.19.
    */
+  const pair = (beat.visualPlan && beat.visualPlan.supporting && beat.visualPlan.supporting.assetPair) || null;
+  if (pair && pair.before && pair.after) {
+    return <BeforeAfterPair beat={beat} pair={pair} colors={colors} fontFamily={fontFamily} />;
+  }
   return <CinematicStatementScene beat={beat} colors={colors} fontFamily={fontFamily} />;
+}
+
+/**
+ * Two real photographs of one subject, the second wiping across the first.
+ *
+ * The wipe is the whole argument: a hard edge travelling over a FIXED frame
+ * is what makes the two images read as the same place rather than two
+ * pictures side by side, which is why the states are `before` / `wipe` /
+ * `after` / `compare` (strategies.js) and not a crossfade. Both images are
+ * drawn at identical geometry for the same reason — any offset between
+ * them and the eye reads two subjects.
+ *
+ * Labels are the manifest's own `condition` words, nothing invented, and
+ * the attribution each image carries is preserved on the plan so the
+ * credits block can pick it up the way it already does for CC-BY photos.
+ */
+function BeforeAfterPair({ beat, pair, colors, fontFamily }) {
+  const states = beat.visualStates || [];
+  const pWipe = useValueProgress(states); // reaches 1 exactly on the anchor
+  const pCompare = useStateProgress(states, "compare");
+  const cut = `${(Math.max(0, Math.min(1, pWipe)) * 100).toFixed(2)}%`;
+
+  return (
+    <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+      <img src={staticFile(pair.before.path)} alt=""
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+      {/* The AFTER image, revealed by a moving edge over the same frame. */}
+      <div style={{ position: "absolute", inset: 0, clipPath: `inset(0 0 0 ${cut})` }}>
+        <img src={staticFile(pair.after.path)} alt=""
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+      </div>
+      {/* The edge itself, so the wipe is an event and not a dissolve. */}
+      {pWipe > 0 && pWipe < 1 ? (
+        <div style={{ position: "absolute", top: 0, bottom: 0, left: cut, width: 3, background: colors.accent }} />
+      ) : null}
+      <Label x={SAFE.left} y={SAFE.top} text={String(pair.before.conditionLabel || "BEFORE")}
+        color={colors.textPrimary} size={TYPE.label} weight={800} tracking={2}
+        opacity={1 - Math.max(0, Math.min(1, pWipe))} fontFamily={fontFamily} halo={colors.bg} />
+      <Label x={SAFE.right} y={SAFE.top} text={String(pair.after.conditionLabel || "AFTER")}
+        color={colors.accent} size={TYPE.label} weight={800} tracking={2} align="right"
+        opacity={Math.max(0, Math.min(1, pWipe)) * (0.5 + 0.5 * ease(pCompare))}
+        fontFamily={fontFamily} halo={colors.bg} />
+    </div>
+  );
 }

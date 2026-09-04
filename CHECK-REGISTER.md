@@ -458,7 +458,7 @@ to hide.
 
 | ID | Check | Method | Threshold | T | Sev | State |
 |---|---|---|---|---|---|---|
-| VIS-01 | Every registered strategy routes to a scene the router handles, and no two share one | `assertStrategyRegistryIsSound()` + `visual/run-visual-tests.js` | 0 problems | 1 | BLOCKER | **PASS** - 55/55 tests |
+| VIS-01 | Every registered strategy routes to a scene the router handles, and no two share one | `assertStrategyRegistryIsSound()` + `visual/run-visual-tests.js` | 0 problems | 1 | BLOCKER | **PASS** - 77/77 tests (was recorded as 55/55 for several passes after the suite had grown; corrected §3.12.20) |
 | VIS-02 | `iconHeroRatio` = 0 (an icon is never the primary visual) | `diagnostics.js` | 0 | 1 | BLOCKER | **PASS** - 0.0 on all 3 real renders |
 | VIS-03 | Beats average >=2 visual states (concepts progress) | `diagnostics.js` | >=2 | 1 | MAJOR | **PASS** - 4.2 to 4.8 |
 | VIS-04 | `genericFallbackRatio` <=0.4 (beats produce a readable concept) | `diagnostics.js` | <=0.4 | 1 | MAJOR | **PASS** - 0.0 on all 3 |
@@ -1869,6 +1869,221 @@ instead of a feature that cannot be demonstrated. The unblock is one real
 sourced pair — a glacier, a shoreline, a building, photographed twice —
 at which point the scoring and the two-asset path can be built and shown
 in the same pass.
+
+---
+
+**3.12.20 — a rendered frame-bounds gate, and the six defects found by
+building it.** §3.12.17 recorded that three "the subject left the frame"
+defects had all passed a 74-check suite. This pass built the check that
+catches them, then used it.
+
+**`qa-scripts/frame-bounds.mjs`.** Renders one real anchor frame per
+strategy (16/16 covered) through the same `renderStill` path
+`inspect-anchors.mjs` uses, and asserts two things. Every threshold was
+MEASURED against this repo's own known-bad frames (captured before each
+fix earlier in the session) and known-good ones, not chosen by eye:
+
+| | known-bad | known-good |
+|---|---|---|
+| edge high-contrast px | 363, 85, 55 | 0 across 7 frames incl. TIMELINE |
+| worst edge delta | 199.75–204.75 | max 48.75 (ch-02's ridge) |
+| ink (blank-frame case) | 0.1% | 0.5% sparsest legitimate |
+
+So `EDGE_CONTRAST` 140 sits between 48.75 and 199.75; `MIN_INK` 0.25%
+between 0.1% and 0.5%. Two scoping decisions keep it from becoming a
+check people suppress: it bands the LEFT/RIGHT edges only (all three real
+defects were horizontal; vertical bleed is designed — the PROCESS track
+runs -12%..+112% of frame height on purpose), and it exempts scenes whose
+MATERIAL is `footage`, because a photograph filling the frame is the
+intent. Exempting by material rather than strategy name means any future
+photographic strategy is covered and nothing that merely draws is.
+
+`run-visual-tests.js` gained three checks that CONSUME the gate's report
+(74 -> 77), so the expensive lane stays opt-in but cannot rot: a missing,
+failing, or under-covered report fails the fast suite. All three failure
+modes were verified by corrupting the report — failing result, deleted
+file, and a strategy dropped from `covered` each exit 1 with the reason
+named. The gate itself exits 1 on violation and 0 on pass, verified both
+ways, including by re-injecting the ScaleComparisonScene off-canvas bug
+and watching `ink 0.18% below 0.25%` catch it.
+
+**What it found immediately, all six confirmed by looking at frames:**
+
+1. **COMPARISON was still clipping**, on a beat nobody had rendered. The
+   clamp added in §3.12.17 estimated glyph width at 0.56/char — inherited
+   from `structure-scenes.jsx`, which fitted it to TRACKED UPPERCASE
+   LABELS. `Figure` draws fontWeight 800 tabular-nums; measured off the
+   render, "$340" at 128px is 338px of ink, a ratio of 0.660. The clamp
+   under-reserved ~18% and put the figure at x=17 against SAFE.left 48.
+   Now 0.70, and the clamp reserves for whichever is wider, figure or
+   label — at `baseSize` an 18-char label beats a 2-char value easily.
+2. **IMAGE_EVIDENCE's edge ink is a real photograph** (73.9% ink, rock
+   texture to both margins). Not a defect; exempted by material.
+3. **DATA_CHART's failure was one pixel** — rgb 100 against a 249
+   background at x=21 of a 21px band, the antialiased corner of an element
+   grazing the boundary. `MIN_EDGE_RUN` 4 handles it: a clipped glyph runs
+   21px+ at full scale, antialiasing runs 1.
+4. **Fixing (1) then made the two figures OVERLAP.** Bigger reserves
+   shrank the available span until the clamp's only move was to pull the
+   centres together — "215" printed through "13,600". Sizing each figure
+   from its own magnitude and clamping each independently can demand more
+   width than SAFE has. The pair is now measured and scaled to fit AS A
+   UNIT, preserving the size RATIO (which is what carries the comparison)
+   and shrinking both. The gate cannot catch overlap — that is not an
+   out-of-frame violation — so it is prevented by construction here.
+5. **Both COMPARISON labels were printed across their own figures.** The
+   label sat in a `marginTop` wrapper, but `Label` renders
+   position:absolute and is out of flow, so a parent margin moved nothing
+   and both landed at the wrapper origin. The offset has to be the label's
+   own `y`, and clear the figure's FULL height — `Figure` sets lineHeight
+   1 and is positioned by its top edge, so 0.62 still landed inside the
+   glyphs. 1.08 clears them and scales with the figure.
+6. **`mute-test.mjs` reported 31 frames while writing 8.** ffmpeg seeking
+   past EOF exits 0 and writes nothing, and the count was `beats.length`
+   — attempts, not files. It now counts real writes and names the
+   strategies left unreviewed. The cause was pairing a whole-script report
+   with a 15s clip, so the clip renderer's new report is scoped to the
+   frames the clip actually contains.
+
+**Also fixed this pass, each measured before and after:**
+
+- **IMAGE_EVIDENCE monoculture.** The cause was not the flat 0.55 — it was
+  that its scoring push in `director.js` was the ONE place omitting
+  `repeatPenalty`, so it re-won every consecutive beat while every rival
+  reading was penalised for repeating. That is exactly the failure this
+  file's own REPEAT_PENALTY comment describes happening to
+  DOCUMENT_EVIDENCE. On the only photo-backed script (movile-cave, assets
+  on 5/5 sections): **21 of 29 staged beats (72%) -> 13 (45%)**, distinct
+  strategies 6 -> 7. No new constant; it applies the one already there.
+- **COMPARISON's unlabelled figures.** `detectComparison`'s bare-numbers
+  path hardcoded `label: ""`. Labels are now EXTRACTED from the words
+  beside each number in the same sentence (`text-budget.js`
+  `labelNearNumber`, reusing the existing STOP list) and stay empty when
+  no content word is near — a wrong label asserts an identity the script
+  never gave. On ch-01: `AVALANCHE DEBATE` / `CHOOSING COSTS`.
+- **MatrixDecode's white card.** The vendored component painted
+  `background: "white"` behind its digits — on a black channel a rendered
+  frame showed a white block around a green "7". Patched to a transparent
+  fill. Lifeprompt's `TextScramble`
+  (`lifeprompt-team/remotion-scenes`, TextAnimations) was read as the
+  alternative FIRST and rejected on its real source, not assumed: it has
+  the same defect inverted (`<AbsoluteFill style={{ background: C.black }}>`,
+  line 31), hardcodes its palette instead of taking the channel's, is a
+  full-screen scene rather than an embeddable treatment, and prints a
+  literal "DECODING COMPLETE" sub-caption — invented on-screen words from
+  no source.
+
+**Stale items, checked rather than assumed:**
+
+- **`thumbnail_spec.baseHue` / `accentHue` are NOT vestigial — KEEP.** The
+  earlier "vestigial" note (mine) was wrong and is corrected here. Grep
+  found `render.js:504`, the PRODUCTION path, gating palette construction
+  on `accentHue` being a number: strip the field and `palette` goes null
+  for all 17 channels and `mg-style.js` falls back to FALLBACK_HEXES.
+  `paletteFromHues` also still uses it for `pickAccentL` and as the accent
+  fallback when a channel has no valid `colors.accent`, `baseHue` feeds
+  the C06 hue-distance gate in `checkPaletteGates`, and
+  `verify-compositions.js` requires both. The palette fix changed which
+  colour FRAMES use; it did not make the fields dead.
+- **VIS-01's "55/55 tests" corrected to 77/77**, the real current count.
+- **`.opencode/skills` NOT mirrored to `.claude/skills`, deliberately.**
+  `.claude/skills` already exists with 14 different (vendor) skills, and
+  `remotion-render` exists in BOTH with different content — the project's
+  pipeline skill vs the vendor "Export a Remotion video" one. Copying
+  would overwrite an active skill. That is not the "quick, safe copy" the
+  task allowed for, so it was left alone.
+
+**3.12.21 — what a LIST_ITEM beat actually renders, traced with a frame.**
+Recorded as unverified in the audit. Traced: `mg-package.js` sets
+`visualPlan = null` for LIST_ITEM, `BeatStages` returns null for them, and
+they are picked up instead by `ListRuns` -> `ListRunScene`
+(`motion-graphics.jsx`). It does NOT degrade to nothing. A rendered frame
+(ch-fixture, "Inside: toxic air, total darkness," at frame 265) shows a
+ROUNDED BORDERED CARD containing a "+ INSIDE TOXIC AIR" chip on an
+otherwise empty panel — the card grammar this entire rebuild exists to
+delete, still live. The code says so itself
+(`motion-graphics.jsx`: "it is a rounded container and is on the deletion
+list, but it needs a real replacement for list beats, not just removal").
+
+Two consequences worth naming: these beats carry no `visualPlan`, so no
+VIS metric counts them and the strategy census does not see them; and
+`frame-bounds.mjs` filters them the same way `inspect-anchors.mjs` does,
+so **the new gate does not cover them either**. 3 of 29 beats on the
+fixture script take this path. Replacing the panel is real scene work and
+was not attempted here.
+
+**3.12.22 — a local TTS path, researched and wired, not run.** EdgeTTS
+needs a WebSocket this environment's proxy cannot carry at all, which is
+why only 4 scripts in the repo have real per-word timing.
+`src/utils/tts-local.js` adapts Piper — `OHF-Voice/piper1-gpl`, GPL-3.0,
+the maintained successor to the archived `rhasspy/piper` — invoked as a
+subprocess against a local ONNX voice, no network of any kind. Invoked as
+a separate PROGRAM, so the GPL does not reach this repo; that must stay
+true (no vendoring, no in-process binding) without real legal advice.
+
+**The licensing trap, from the maintainer's own answer**
+(`rhasspy/piper` discussions/271): the engine licence is not the voice
+licence and Piper's voices do not share one. **Blizzard-derived voices may
+not be used commercially** — the Blizzard licence restricts use to
+research and names LibriTTS_r fine-tunes as an example. Voices trained
+from scratch on **LibriTTS are CC BY 4.0**, commercial-OK *with
+attribution*, from public-domain LibriVox recordings. The maintainer
+states plainly he is not a lawyer. These channels are monetised, so
+`CLEARED_VOICES` starts EMPTY and `assertVoiceAllowed` refuses anything
+not explicitly recorded with the licence string read from its own
+MODEL_CARD. An empty allowlist fails loudly; a guessed one ships a
+non-commercial voice on a monetised channel.
+
+**The real obstacle is timing, not audio.** EdgeTTS returns WordBoundary
+events for free; the plain Piper C++ CLI returns none, and the whole
+visual pipeline is timed from per-word SRT. Piper CAN emit alignment via
+its Python entry point (alignment-to-TSV landed in `rhasspy/piper` PR
+#407; VITS duration predictors give frame-level durations mappable to
+tokens), so the adapter requires it and THROWS if it is absent rather
+than emitting untimed audio — modelled timing is what this module exists
+to stop being load-bearing.
+
+**Not verified:** this module has never executed. Piper is not installed
+here and the voices live on `huggingface.co`, which this environment's
+egress policy also blocks. It is compile-checked and reviewed only; the
+first real run is the acceptance test, and the alignment parsing in
+particular should be checked against Piper's actual output rather than
+trusted from its comment.
+
+**3.12.23 — the two-asset BEFORE_AFTER path, built and compile-checked,
+NOT proven.** §3.12.19 recorded that `ctx.asset` is singular and that
+BEFORE_AFTER therefore cannot be image-backed. The path now exists:
+`broll.js` `resolveAssetPair` reads a pair from the manifest,
+`mg-package.js` passes it as `ctx.assetPair`, `director.js` scores
+BEFORE_AFTER at 0.72 when one is present (above IMAGE_EVIDENCE's 0.55,
+because two real photographs of one subject are better evidence than one
+of them — and with the same `repeatPenalty` everything else gets), and
+`BeforeAfterScene` renders the two images at identical geometry with a
+hard wipe edge travelling across the fixed frame.
+
+A pair is only ever DECLARED — matching `pair_id` plus
+`condition: before|after` in the manifest — never inferred from "this
+section has two photos". Inferring it would assert a same-subject
+relationship no source stated. An incomplete or ambiguous declaration
+returns null and the scene keeps its statement fallback.
+
+**This has never rendered a frame.** No manifest declares a pair, none can
+be sourced while the asset APIs are egress-blocked, and
+`resolveAssetPair` returns null against every real input today (verified).
+`dataNeeds` stays empty and every real beat still gets the statement
+rendering, so nothing regressed — but the image path is unproven code,
+and is recorded as such rather than counted as done.
+
+**3.12.24 — photo sourcing: fetchers ready, blocked on egress only.** All
+10 fetchers in `src/skills/asset-sourcing/sources/` parse and each carries
+licence, attribution and `sourceText`. Five are KEYLESS and need nothing
+but egress: `loc`, `met`, `nasa`, `openverse`, `wikimedia`. Five
+additionally need credentials that are not set in this environment:
+`pexels` (PEXELS_API_KEY), `unsplash` (UNSPLASH_ACCESS_KEY), `rawpixel`
+(RAWPIXEL_API_KEY), `smithsonian` (SMITHSONIAN_API_KEY / DATA_GOV_API_KEY),
+`nara` (NARA_API_KEY, optional). Nothing was attempted against the
+allowlist. 0 of 17 production channels have any sourced photos; that is
+unchanged and unfixable from here.
 
 ---
 

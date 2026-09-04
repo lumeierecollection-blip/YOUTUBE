@@ -235,6 +235,32 @@ function fromDeterministic(analysis, beat, ctx) {
     });
   }
 
+  /**
+   * A DECLARED before/after image pair outranks a single photo of the same
+   * section, and only then.
+   *
+   * BEFORE_AFTER's intent is "the same frame under two different
+   * conditions". Two real photographs of one subject ARE that, and are
+   * strictly better evidence than one of them alone — so when a pair is
+   * declared (broll.js resolveAssetPair, which requires an explicit
+   * pair_id + before/after in the manifest and never infers), this scores
+   * above IMAGE_EVIDENCE's 0.55 rather than below it. Without a pair
+   * nothing changes: BEFORE_AFTER keeps whatever its text detector earned,
+   * `dataNeeds` stays empty, and the scene still renders as a statement.
+   *
+   * Carries the same repeatPenalty as everything else — the omission of
+   * which is what turned IMAGE_EVIDENCE into a monoculture above.
+   */
+  if (ctx.assetPair) {
+    considered.push({
+      strategy: "BEFORE_AFTER",
+      score: 0.72 + (affinity.BEFORE_AFTER || 0) + grammarBias(grammar, "BEFORE_AFTER")
+        + repeatPenalty("BEFORE_AFTER", recent),
+      base: 0.72,
+      signal: { confidence: 0.72, assetPair: ctx.assetPair },
+    });
+  }
+
   considered.sort((a, b) => b.score - a.score);
 
   const rejected = [];
@@ -264,6 +290,11 @@ function buildSupporting(strategy, payload, analysis, beat) {
   const supporting = { unit };
 
   switch (strategy) {
+    case "BEFORE_AFTER":
+      // Present only when a pair was DECLARED in the manifest; null
+      // otherwise, and the scene falls back to its statement rendering.
+      supporting.assetPair = payload.assetPair || null;
+      break;
     case "GEOSPATIAL_RADIUS":
       supporting.value = payload.value;
       supporting.label = `${payload.value}${/^m$|met/i.test(unit) ? "m" : ` ${unit}`}`.trim().toUpperCase();

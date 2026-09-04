@@ -59,6 +59,58 @@ function loadManifest(channelId, topicSlug) {
 }
 
 /**
+ * A DECLARED before/after pair: one subject, photographed under two
+ * conditions.
+ *
+ * BEFORE_AFTER's stated intent is "the same frame under two different
+ * conditions", and it has never been able to honour it — `ctx.asset` is
+ * singular everywhere and every caller passes `bRollFiles[0]`, so the
+ * strategy has only ever had one image available and renders as text.
+ *
+ * A pair is only ever DECLARED, never inferred. Two photos happening to sit
+ * in the same section does not make them one subject under two conditions —
+ * treating them that way would assert a relationship no source stated,
+ * which is the fabrication CLAUDE.md's first rule forbids. So a pair exists
+ * only when the manifest says so, by giving two entries the same
+ * `pair_id` and marking each `condition: "before" | "after"`:
+ *
+ *   { "local": "public/b-roll/ch-07/glacier-1928.jpg",
+ *     "pair_id": "muir-glacier", "condition": "before", ... }
+ *   { "local": "public/b-roll/ch-07/glacier-2004.jpg",
+ *     "pair_id": "muir-glacier", "condition": "after",  ... }
+ *
+ * Returns null unless exactly one complete before+after pair resolves for
+ * this section — an incomplete or ambiguous declaration draws nothing
+ * rather than guessing which image is which.
+ *
+ * NOT YET EXERCISED BY ANY REAL DATA. No manifest in this repo declares a
+ * pair, and none can be sourced while the asset APIs are egress-blocked, so
+ * this path is compile-checked and reviewed but has never rendered a frame.
+ * See CHECK-REGISTER §3.12.19.
+ */
+export function resolveAssetPair(cues, channelId, topicSlug) {
+  const files = loadManifest(channelId, topicSlug) || [];
+  const available = new Set(resolveBrollFiles(cues, channelId, topicSlug));
+  const byPair = new Map();
+  for (const f of files) {
+    if (!f || !f.pair_id || !f.condition) continue;
+    const path = `b-roll/${channelId}/${basename(f.local || "")}`;
+    if (!available.has(path)) continue;
+    const cond = String(f.condition).toLowerCase();
+    if (cond !== "before" && cond !== "after") continue;
+    const slot = byPair.get(f.pair_id) || {};
+    // A second image claiming the same slot makes the pair ambiguous.
+    if (slot[cond]) { slot.ambiguous = true; }
+    slot[cond] = { path, attribution: f.attribution || null, license: f.license || null };
+    byPair.set(f.pair_id, slot);
+  }
+  const complete = [...byPair.entries()].filter(([, s]) => s.before && s.after && !s.ambiguous);
+  if (complete.length !== 1) return null;
+  const [pairId, slot] = complete[0];
+  return { pairId, before: slot.before, after: slot.after };
+}
+
+/**
  * Resolve an array of b_roll cue strings to image paths relative to public/.
  * Only files that actually exist in the channel's manifest are returned, and
  * only when the manifest's own topic_slug matches `topicSlug` (the script

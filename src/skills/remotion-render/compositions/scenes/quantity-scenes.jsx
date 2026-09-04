@@ -454,8 +454,42 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
    */
   const baseSize = 56, maxSize = 128;
   const sizeFor = (v) => baseSize + (maxSize - baseSize) * (Math.abs(v) / max);
-  const sizeA = sizeFor(a.value), sizeB = sizeFor(b.value);
   const cy = f.cy;
+
+  /**
+   * BOTH FIGURES ARE SCALED DOWN UNTIL THE PAIR FITS. THEY NEVER OVERLAP.
+   *
+   * Sizing each figure from its own magnitude, then clamping each into
+   * SAFE independently, can demand more width than SAFE has — and the
+   * clamp's only remaining move was to pull the two centres together until
+   * they collided. A rendered frame showed exactly that: "215" printed
+   * through "13,600", with "AVALANCHE DEBATE" and "CHOOSING COSTS"
+   * overlapping under them. Two numbers on top of each other are less
+   * readable than two smaller numbers side by side, and the whole point of
+   * this scene is that the reader can compare them.
+   *
+   * So the pair is measured first and scaled to fit as a unit. The RATIO
+   * between the two sizes is preserved, which is what carries the
+   * comparison — shrinking both by the same factor keeps "this one is much
+   * bigger" exactly as true, it just says it at a size the frame has room
+   * for. The frame-bounds gate cannot catch this case (overlap is not an
+   * out-of-frame violation), so it is handled here by construction rather
+   * than left to be found on a later render.
+   */
+  const GAP = 24;
+  const fitScale = (() => {
+    const wOf = (s, size) => {
+      const fig = String(fmt(s.value)).length * size * COMPARISON_GLYPH_W;
+      const lab = String(s.label || "").toUpperCase().slice(0, 18);
+      return Math.max(fig, lab ? lab.length * (LABEL_SIZE * COMPARISON_GLYPH_W + LABEL_TRACKING) : 0);
+    };
+    const need = wOf(a, sizeFor(a.value)) + wOf(b, sizeFor(b.value)) + GAP;
+    const have = SAFE.right - SAFE.left;
+    // Only ever shrinks. A pair that already fits is untouched.
+    return need > have ? have / need : 1;
+  })();
+  const sizeA = sizeFor(a.value) * fitScale;
+  const sizeB = sizeFor(b.value) * fitScale;
 
   /**
    * CLAMPED INTO THE SAFE RECT, NOT JUST SPACED FROM THE CENTRE.
@@ -482,13 +516,17 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
    * the margin has to hold.
    */
   const labelOf = (s) => String(s.label || "").toUpperCase().slice(0, 18);
+  // The label shrinks with the pair too. Scaling only the figures would
+  // leave a label-dominated pair (a short value under a long name) still
+  // wider than SAFE, which is the same collision by another route.
+  const labelSize = LABEL_SIZE * fitScale;
   const halfLabelW = (s) => {
     const t = labelOf(s);
-    return t ? (t.length * (LABEL_SIZE * COMPARISON_GLYPH_W + LABEL_TRACKING)) / 2 : 0;
+    return t ? (t.length * (labelSize * COMPARISON_GLYPH_W + LABEL_TRACKING)) / 2 : 0;
   };
   const aHalfW = Math.max(halfTextW(fmt(a.value), sizeA), halfLabelW(a));
   const bHalfW = Math.max(halfTextW(fmt(b.value), sizeB), halfLabelW(b));
-  const gap = 24;
+  const gap = GAP;
   // The most the two centres can be pushed apart while BOTH texts still
   // land inside SAFE — the hard ceiling. Below that, spread them enough
   // that the two texts don't overlap each other; when even SAFE itself
@@ -506,10 +544,14 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
         <TreatedFigure treatment={numberTreatmentOf(beat)} x={0} y={0} value={a.value} p={pLeft}
           color={pVerdict > 0 && winner === "a" ? colors.accent : colors.textPrimary}
           size={sizeA} align="center" fontFamily={fontFamily} format={fmt} />
-        <div style={{ marginTop: sizeA * 0.55 }}>
-          <Label x={0} y={0} text={labelOf(a)}
-            color={colors.textDim} size={LABEL_SIZE} tracking={LABEL_TRACKING} align="center" opacity={pLeft} fontFamily={fontFamily} />
-        </div>
+        {/* OFFSET ON THE LABEL, NOT A marginTop WRAPPER.
+            `Label` renders position:absolute, so it is out of flow and a
+            margin on its parent moves nothing — both labels were landing at
+            the wrapper origin, printed straight across their own figure
+            ("MINIMUM ONLY" through "$340" on a rendered frame). The drop has
+            to be the label's own `y`. */}
+        <Label x={0} y={sizeA * 1.08} text={labelOf(a)}
+          color={colors.textDim} size={labelSize} tracking={LABEL_TRACKING} align="center" opacity={pLeft} fontFamily={fontFamily} />
       </div>
 
       {/* Driven by `right`, the anchored state, ON PURPOSE — the second
@@ -519,10 +561,8 @@ export function ComparisonScene({ beat, colors, fontFamily }) {
         <TreatedFigure treatment={numberTreatmentOf(beat)} x={0} y={0} value={b.value} p={pRight}
           color={pVerdict > 0 && winner === "b" ? colors.accent : colors.textPrimary}
           size={sizeB} align="center" fontFamily={fontFamily} format={fmt} />
-        <div style={{ marginTop: sizeB * 0.55 }}>
-          <Label x={0} y={0} text={labelOf(b)}
-            color={colors.textDim} size={LABEL_SIZE} tracking={LABEL_TRACKING} align="center" opacity={pRight} fontFamily={fontFamily} />
-        </div>
+        <Label x={0} y={sizeB * 1.08} text={labelOf(b)}
+          color={colors.textDim} size={labelSize} tracking={LABEL_TRACKING} align="center" opacity={pRight} fontFamily={fontFamily} />
       </div>
 
       {pGap > 0 ? (

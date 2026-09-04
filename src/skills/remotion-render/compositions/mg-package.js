@@ -684,6 +684,13 @@ export function buildMgPackage(srtText, opts = {}) {
     b.visualPlan = planVisual(b, {
       channel: opts.channel || null,
       asset: imageForSection(b.sectionIndex),
+      // A DECLARED before/after pair for this section, when one exists
+      // (broll.js resolveAssetPair). Optional and null everywhere today —
+      // no manifest in the repo declares a pair yet — so every existing
+      // caller behaves exactly as before.
+      assetPair: typeof opts.assetPairForSection === "function"
+        ? opts.assetPairForSection(b.sectionIndex) || null
+        : null,
       sectionText: sectionTextFor(b.sectionIndex),
       recent,
     });
