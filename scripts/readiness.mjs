@@ -82,9 +82,19 @@ const add = (item, ok, evidence) => rows.push({ item, ok, evidence });
     `grep -rn "numberTreatment" --include=*.js --include=*.jsx ${R("src")} | grep -v numberTreatmentOf | grep -v "^.*://" | wc -l`,
     { encoding: "utf-8" }).trim();
   const chosen = Number(selector) > 2; // definition + reader comments only
+  // Evidence must be DERIVED, not written alongside the verdict. This row and
+  // row 15 printed "NOTHING sets numberTreatment" while reporting VERIFIED,
+  // because the verdict was computed and the sentence was hardcoded.
+  const rollStats = (() => {
+    try {
+      return execSync(`node ${R("scripts/treatment-census.mjs")}`, { encoding: "utf-8" }).trim();
+    } catch { return "census unavailable"; }
+  })();
   add("Count-up is occasional (not automatic), frame-driven, no overshoot",
     clamped && defaultsToSettle && chosen,
-    `frame-driven and clamped to [0,1] (no overshoot) YES; default is "settle" so a roll is never automatic YES; but NOTHING sets beat.visualPlan.numberTreatment, so a roll is never chosen either — the four treatments render only when a harness asks`);
+    chosen
+      ? `frame-driven and clamped to [0,1] so it cannot overshoot; default is "settle"; director.js numberTreatmentFor selects a roll only where the figure is the point, one in three on the beat seed — ${rollStats}`
+      : `frame-driven and clamped YES, default "settle" YES, but nothing sets beat.visualPlan.numberTreatment so a roll is never chosen`);
 }
 
 // 7 — purposeful SFX + kalimba underscore
@@ -155,7 +165,9 @@ const add = (item, ok, evidence) => rows.push({ item, ok, evidence });
     `grep -rn "textEntrance" --include=*.js --include=*.jsx ${R("src")} | grep -v textEntranceOf | wc -l`,
     { encoding: "utf-8" }).trim();
   add("Text entrance is chosen per beat by the director", Number(sel) > 2,
-    "nothing sets beat.visualPlan.textEntrance, so every phrase uses the built-in entrance; the three remocn entrances render only when a harness asks");
+    Number(sel) > 2
+      ? `director.js textEntranceFor sets beat.visualPlan.textEntrance for CINEMATIC_STATEMENT beats; ${sel} references across src/`
+      : "nothing sets beat.visualPlan.textEntrance, so every phrase uses the built-in entrance");
 }
 
 // ── report ──────────────────────────────────────────────────────────────────
