@@ -288,6 +288,11 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
   // Positioned by its BOTTOM edge, so a phrase that wraps to two lines
   // grows upward into empty sky instead of down through the stake.
   const textBottom = CANVAS_H - (stakeTop - 26);
+  // The phrase box: centred on `textCx`, but clamped so BOTH edges stay
+  // inside SAFE — see the box's own comment below for the rendered-frame
+  // defect this exists to prevent.
+  const textBoxW = Math.min(f.w * 0.88, SAFE.right - SAFE.left);
+  const textBoxLeft = Math.max(SAFE.left, Math.min(SAFE.right - textBoxW, textCx - textBoxW / 2));
 
   // A far ridge: deterministic, irregular, and BELOW the eye — it sits on
   // the horizon rather than floating. Seeded, so a re-render is identical.
@@ -335,8 +340,21 @@ export function CinematicStatementScene({ beat, colors, fontFamily }) {
         {phrase ? (
           <div style={{
             position: "absolute",
-            left: Math.max(SAFE.left, textCx - f.w * 0.44),
-            width: Math.min(f.w * 0.88, SAFE.right - SAFE.left),
+            /**
+             * CLAMPED ON BOTH EDGES, not just the left (textBoxLeft/
+             * textBoxW above). The old `left` only ever floored at
+             * SAFE.left; nothing capped `left + width` at SAFE.right.
+             * CINEMATIC_STATEMENT's own two framings (HORIZON, ISOLATED)
+             * are both roughly centred, so this never overflowed — but
+             * BEFORE_AFTER's ACTING_RIGHT framing (anchor 0.66, off-
+             * centre right) routes through this same scene via
+             * BeforeAfterScene's delegation, and a rendered frame caught
+             * it there: "YOUR PHONE IS TRACKING EVERY MOVE YOU MAKE" ran
+             * its first line ("...TRACKING EVERY") straight off the
+             * right edge of the canvas.
+             */
+            left: textBoxLeft,
+            width: textBoxW,
             bottom: textBottom,
             textAlign: shot && shot.anchorX < 0.45 ? "left" : "center",
             opacity: eSubject,

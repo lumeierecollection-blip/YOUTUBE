@@ -1738,6 +1738,70 @@ before/after beat before calling that one strategy proven.
 
 ---
 
+**3.12.18 — `BEFORE_AFTER`, closed, and two more real bugs a rendered
+frame found.** `visual/semantics.js`'s `BEFORE_AFTER` regex (`used to`,
+`no longer`, `previously`, `until now`, `once was`, `has since`, `changed
+from`, …) was grepped against every research/script JSON in the repo
+rather than guessed at. Two real, sourced candidates turned up;
+`data/research/2/google-location-history-chatrie-ruling-shorts-script.json`
+(Chatrie v. United States, a real Supreme Court geofence-warrant ruling)
+has no real TTS/SRT yet, so `qa-scripts/make-fixture-srt.mjs` — this
+repo's own established tool for exercising the visual pipeline on a
+script with modelled-not-measured timing, named so it can never be
+mistaken for real TTS output — produced one. The very first beat of the
+real hook sentence ("Your phone is tracking every move you make, and
+until now, the police could potentially use it to put you in a crime
+scene without a proper warrant") classified as `BEFORE_AFTER` on its own,
+with no hand-picked fixture involved.
+
+**What the render found, twice:**
+
+1. **Blank frame, the entire 387-frame beat.** `BeforeAfterScene`
+   delegates to `CinematicStatementScene` (§3.12.16), which draws nothing
+   when `supporting.phrase` is empty — and `director.js`'s
+   `supportingPhraseFor` had no `case "BEFORE_AFTER"`, so it fell to
+   `default: return ""`. This is the exact defect the surrounding code
+   comment already names for `PROCESS`/`TIMELINE`/`INTERFACE_SIMULATION`
+   ("nothing on screen said what the line was ABOUT") — just not yet
+   fixed for the strategy this pass just pointed at the same zero-data
+   fallback. Fixed by adding `BEFORE_AFTER` to `CINEMATIC_STATEMENT`'s
+   own case (shared body: `BeforeAfterScene` now IS that scene, so it
+   needs the identical phrase-selection logic, not a second one).
+2. **Once text appeared, its first line ran off the right edge of the
+   canvas.** `CinematicStatementScene`'s phrase box floored `left` at
+   `SAFE.left` but never capped `left + width` at `SAFE.right`. Harmless
+   for `CINEMATIC_STATEMENT` itself — both its framings (`HORIZON`,
+   `ISOLATED`) are roughly centred — but `BEFORE_AFTER` uses
+   `ACTING_RIGHT` (anchor 0.66, off-centre right), the first framing to
+   route through this box that isn't centred, and "...TRACKING EVERY"
+   printed straight past the frame edge. Fixed by centring the box on
+   `textCx` and clamping BOTH edges into `SAFE`, the same two-sided clamp
+   `ComparisonScene` (§3.12.17) and `structure-scenes.jsx`'s existing
+   labels already use.
+
+Neither bug is in code this rebuild wrote from scratch — both are latent
+defects in already-existing code (`director.js`'s phrase switch,
+`CinematicStatementScene`'s box) that a NEW routing path (`BeforeAfterScene`
+delegating to it) was the first thing to actually exercise. This is the
+same lesson §3.12.17 already recorded, from the opposite direction: a
+rendered frame does not just verify new code, it verifies the old code a
+change newly depends on.
+
+**QA:** `npx esbuild` clean on both touched files; `run-visual-tests.js`
+74/0 before and after both fixes; re-rendered after each fix and
+confirmed on the anchor frame (283) before moving on. Muted-comprehension
+read on the final render: correct — "YOUR PHONE IS TRACKING EVERY MOVE
+YOU MAKE" reads as the BEFORE half of a real, sourced claim, fully inside
+frame, no narration required to know what it says.
+
+With this, all six strategies this rebuild touched (`ACCUMULATION`, the
+quantitative half of `COMPARISON`, `SCALE_COMPARISON`,
+`TRANSFORMATION`'s curve-head marker, `DOCUMENT_EVIDENCE`'s body copy,
+and now `BEFORE_AFTER`) have each been confirmed on at least one real
+rendered frame, not compile-checked alone.
+
+---
+
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 

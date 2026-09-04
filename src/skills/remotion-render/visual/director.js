@@ -433,7 +433,21 @@ function supportingPhraseFor(strategy, payload, analysis, beat) {
     case "VISUAL_METAPHOR":
       // Names the thing the field is acting on.
       return subjectPhrase(analysis.text, 3);
-    case "CINEMATIC_STATEMENT": {
+    // BEFORE_AFTER has `dataNeeds: []` (strategies.js) — it has never had a
+    // real quantity to draw, so BeforeAfterScene (compositions/scenes/
+    // evidence-scenes.jsx) delegates its whole render to
+    // CinematicStatementScene, the same zero-data fallback CINEMATIC_
+    // STATEMENT itself uses. That scene draws NOTHING when `supporting.
+    // phrase` is empty (`{phrase ? <div>...</div> : null}`) — and this
+    // case fell to the `default: return ""` below until a real render
+    // caught it: a beat whose own words are literally "until now, the
+    // police could...", real Chatrie v. United States sourcing, rendered
+    // as a bare stake on an empty horizon, no text anywhere, for the
+    // beat's entire 387-frame duration. Sharing CINEMATIC_STATEMENT's own
+    // case body is not a hack — BeforeAfterScene now IS that scene, so it
+    // needs the exact same phrase it does.
+    case "CINEMATIC_STATEMENT":
+    case "BEFORE_AFTER": {
       // The writer's own on-screen label if they gave a short one, since
       // that is a deliberate authored choice; otherwise the beat's
       // strongest content words.
