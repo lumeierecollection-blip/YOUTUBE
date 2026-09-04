@@ -36,6 +36,25 @@ function build() {
     imageForSection: (i) => (sections[i] && sections[i].bRollFiles && sections[i].bRollFiles[0]) || null });
 }
 
+/**
+ * Whole-stage stddev was the first metric here and it was useless: five
+ * different number treatments all returned 31.4, because one numeral changing
+ * style barely moves the variance of a whole frame. It reported "drew
+ * something" while the treatments were not wired at all. What actually
+ * answers the question is whether the treatment CHANGED the picture, so each
+ * one is diffed against its own untreated baseline and a zero diff fails.
+ */
+const pctDifferent = (a, b) => {
+  let diff = 0, n = 0;
+  for (let y = 0; y < a.height; y += 2) for (let x = 0; x < a.width; x += 2) {
+    const i = (y * a.width + x) * a.channels;
+    const d = Math.abs(a.data[i] - b.data[i]) + Math.abs(a.data[i + 1] - b.data[i + 1]) + Math.abs(a.data[i + 2] - b.data[i + 2]);
+    if (d > 8) diff++;
+    n++;
+  }
+  return (100 * diff) / n;
+};
+
 const stdDev = (p, x0, y0, x1, y1) => {
   const v = [];
   for (let y = y0; y < y1; y += 3) for (let x = x0; x < x1; x += 3) {
@@ -59,11 +78,17 @@ async function shoot(label, mg, frame) {
   const comp = await selectComposition({ serveUrl, id: "MotionGraphicsShorts", browserExecutable: CHROME, puppeteerInstance: browser, inputProps: props });
   await renderStill({ composition: { ...comp, durationInFrames: mg.totalFrames }, serveUrl, output: out,
     frame, browserExecutable: CHROME, puppeteerInstance: browser, inputProps: props });
-  const sd = stdDev(decodePNG(out), 48, 300, 1032, 1400);
-  const ok = sd > 6;
+  const png = decodePNG(out);
+  const sd = stdDev(png, 48, 300, 1032, 1400);
+  if (sd <= 6) { console.log(`BLANK ${label.padEnd(34)} stage stddev ${sd.toFixed(1)}`); failures++; return; }
+  const base = baselines[label.split("-")[0]];
+  if (!base) { baselines[label.split("-")[0]] = png; console.log(`BASE  ${label.padEnd(34)} stage stddev ${sd.toFixed(1)}`); return; }
+  const pct = pctDifferent(png, base);
+  const ok = pct > 0.01;
   if (!ok) failures++;
-  console.log(`${ok ? "OK  " : "BLANK"} ${label.padEnd(34)} stage stddev ${sd.toFixed(1)}`);
+  console.log(`${ok ? "OK   " : "NOCHANGE"} ${label.padEnd(33)} ${pct.toFixed(2)}% of pixels differ from its baseline`);
 }
+const baselines = {};
 
 for (const t of NUMBER) {
   const mg = build();
@@ -91,15 +116,20 @@ for (const t of TEXT) {
 // Inline Highlight needs a word that actually occurs in the phrase.
 {
   const mg = build();
-  const b = mg.beats.find((x) => x.visualPlan && x.visualPlan.strategy === "CINEMATIC_STATEMENT");
-  if (b) {
+  let b = mg.beats.find((x) => x.visualPlan && x.visualPlan.strategy === "CINEMATIC_STATEMENT");
+  if (!b) {
+    const alt = mg.beats.find((x) => x.visualPlan && x.visualPlan.supporting && x.visualPlan.supporting.phrase);
+    if (alt) { alt.visualPlan.strategy = "CINEMATIC_STATEMENT"; b = alt; }
+  }
+  if (!b) { console.log("UNVERIFIED inline-highlight: no beat carries a phrase"); failures++; }
+  else {
     const phrase = (b.visualPlan.supporting && b.visualPlan.supporting.phrase) || "";
     const word = phrase.split(/\s+/).filter(Boolean).sort((a, c) => c.length - a.length)[0];
     if (word) {
       b.visualPlan.supporting.emphasis = word;
       console.log(`(inline-highlight emphasises ${JSON.stringify(word)} from ${JSON.stringify(phrase)})`);
       await shoot("text-inline-highlight", mg, Math.round(b.startFrame + b.durationInFrames * 0.7));
-    } else console.log("SKIP inline-highlight: statement beat has no phrase");
+    } else { console.log("UNVERIFIED inline-highlight: statement beat has no phrase"); failures++; }
   }
 }
 await browser.close({ silent: true });
