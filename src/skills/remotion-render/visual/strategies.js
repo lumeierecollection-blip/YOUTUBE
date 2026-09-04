@@ -256,6 +256,27 @@ export const STRATEGIES = {
     ],
   },
 
+  /**
+   * WHAT THIS STRATEGY CANNOT DO TODAY (CHECK-REGISTER §3.12.19).
+   *
+   * The `intent` below says "the same frame under two different
+   * conditions", and the honest reading of that is two real photographs
+   * of one subject. The renderer cannot do that, for a reason that is
+   * architectural rather than a missing file: `ctx.asset` is SINGULAR
+   * (director.js's ctx contract), the render entry points pass
+   * `bRollFiles[0]` only, and director.js scores IMAGE_EVIDENCE at a flat
+   * 0.55 whenever a section has any asset — which outranks the
+   * text-derived confidence this strategy can earn. Measured on the one
+   * real photo-backed script in the repo, IMAGE_EVIDENCE took 21 of 32
+   * beats and this strategy took none.
+   *
+   * So BEFORE_AFTER fires only on ASSETLESS sections, and `dataNeeds: []`
+   * below is accurate: it has no data, which is why BeforeAfterScene
+   * delegates to CinematicStatementScene and renders the claim as words.
+   * That is the honest floor, not the intent above. Making the intent
+   * true needs two-asset support end to end plus a scoring change, and
+   * needs one real sourced pair to prove it on a frame.
+   */
   BEFORE_AFTER: {
     scene: "BeforeAfterScene",
     intent: "the same frame under two different conditions",

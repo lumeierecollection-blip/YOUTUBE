@@ -1800,6 +1800,76 @@ quantitative half of `COMPARISON`, `SCALE_COMPARISON`,
 and now `BEFORE_AFTER`) have each been confirmed on at least one real
 rendered frame, not compile-checked alone.
 
+**Scope of that `BEFORE_AFTER` claim, stated precisely (§3.12.19
+qualifies it):** what was proven is the TEXT rendering. `BEFORE_AFTER`'s
+own declared intent — "the same frame under two different conditions"
+(strategies.js) — has never been rendered with images, and cannot be in
+the current architecture. See below.
+
+---
+
+**3.12.19 — `BEFORE_AFTER` cannot be image-backed, and the reason is
+architectural, not a missing photo.** Asked to render a genuine
+same-subject-two-conditions IMAGE beat, three independent blockers were
+found, each verified rather than assumed:
+
+1. **No real pair exists on disk.** The only real sourced photo library
+   on this branch is `ch-fixture`'s 15 files
+   (`b-roll-manifest-ch-fixture.json`, every one carrying a real Commons
+   title, licence and attribution). Read against their own manifest
+   `content` fields, no two depict one subject under two conditions.
+   The nearest candidates are decoys and are recorded here so the next
+   pass does not re-litigate them: `microbial-mats.jpg` (NOAA, a
+   hydrothermal vent) and `microbial-mats-2.jpg` (a surface film) are two
+   different subjects in two different places; `springtail-1980m.jpg`
+   (Plutomurus ortobalaganensis) and `springtail-macro.jpg` (a generic
+   Collembola) are two different species; `cave-entrance.jpg` and
+   `flashlight-beam.jpg` are both Lava River Cave but are an entrance and
+   an interior, not one subject before and after anything. Pairing any of
+   these as a before/after would assert a relationship no source states —
+   the fabrication CLAUDE.md's first hard rule exists to stop.
+2. **Nothing can be sourced to fill the gap.** Every asset API still
+   returns connection code `000` (`commons.wikimedia.org`,
+   `api.openverse.org`, `images-api.nasa.gov` — re-checked this pass, not
+   carried over from the earlier session note).
+3. **The pipeline could not carry a pair even if one existed, and
+   `BEFORE_AFTER` could not win the beat even if it could.** `ctx.asset`
+   is singular throughout (`director.js`'s own ctx contract:
+   `{ channel, asset, sectionIndex }`), and the render entry points
+   supply it as `sections[i].bRollFiles[0]` — the FIRST file only. On top
+   of that, `director.js` pushes `IMAGE_EVIDENCE` at a flat base of
+   `0.55` for any section where an asset exists at all, which outranks
+   the text-derived confidence `BEFORE_AFTER` can earn. Measured on the
+   real photo-backed script (`movile-cave-shorts-script.json`, 5 sections
+   all carrying assets): `IMAGE_EVIDENCE` took 21 of 32 beats and
+   `BEFORE_AFTER` took none. So `BEFORE_AFTER` fires only on ASSETLESS
+   sections by construction — which is also why its text-only delegation
+   (§3.12.16) has never actually dropped a photo in practice.
+
+**The semantic case is real, and it is being rendered as something
+else.** That same script contains a true same-subject-two-conditions
+claim — a cave "sealed for five and a half million years" that workers
+"broke into" in 1986. Rendered, that claim splits across beats: the
+opening is `IMAGE_EVIDENCE` (one real photograph of a cave mouth being
+entered, frame-verified) and the sealed duration becomes an
+`ACCUMULATION` figure. One condition gets a picture; the other gets a
+number; nothing in the frame says they are the same subject. That is not
+a rendering defect — every beat is individually honest — but it is the
+gap between what `BEFORE_AFTER` promises in `strategies.js` and what the
+system can express.
+
+**Deliberately NOT built this pass.** Two-asset support (manifest →
+section → `ctx` → scene) plus a scoring change so a two-condition beat
+can outrank `IMAGE_EVIDENCE` is a real, multi-layer change — and with no
+real pair on disk and no network, it could not be proven on a rendered
+frame, only compile-checked. This register's own standard (§1.1, and
+§3.12.17's whole lesson) is that a visual claim needs a frame behind it,
+so the capability is left unbuilt and the limitation is written down
+instead of a feature that cannot be demonstrated. The unblock is one real
+sourced pair — a glacier, a shoreline, a building, photographed twice —
+at which point the scoring and the two-asset path can be built and shown
+in the same pass.
+
 ---
 
 
