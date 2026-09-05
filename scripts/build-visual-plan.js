@@ -33,6 +33,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { paletteRoles } from "../src/skills/remotion-render/visual/palette-roles.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -173,6 +174,50 @@ function repeatCount(obj, tpl, filled) {
   return Math.max(1, Math.min(decl.max_items || 6, Math.round(n)));
 }
 
+
+/**
+ * The same resolved template, in the shape the renderer consumes. Every value
+ * here also appears in the section-5 text; neither is derived from the other,
+ * both are derived from the template plus the extracted data, so a discrepancy
+ * between them is impossible by construction rather than by discipline.
+ */
+function structurePlan({ cid, channel, tpl, filled, beat }) {
+  const at = (f) => Math.round(beat.startFrame + f * beat.durationInFrames);
+  return {
+    version: 1,
+    channel_id: cid,
+    template: tpl.name,
+    strategy: tpl.strategy,
+    intent: tpl.intent,
+    beat,
+    palette: { primary: channel.primary_palette, secondary: channel.secondary_palette },
+    fonts: { primary: channel.typography_primary, secondary: channel.typography_secondary },
+    environment: tpl.environment,
+    motion_curve: channel.motion_curve,
+    framing: channel.framing_default,
+    negative_space: channel.use_of_negative_space,
+    objects: tpl.objects.map((o) => ({
+      object: o.object,
+      role: o.role,
+      anchor: o.anchor,
+      count: repeatCount(o, tpl, filled),
+      repeat_note: o.repeat_note || null,
+    })),
+    camera: tpl.camera_path.map((k) => ({ frame: at(k.at), move: k.move, target: k.target || null, reason: k.reason })),
+    typography: tpl.typography.map((t) => {
+      const m = /^\{([a-z0-9_]+)\}$/i.exec(t.slot);
+      const v = m ? (filled[m[1]] ? filled[m[1]].value : null) : t.slot;
+      return v == null ? null : {
+        text: Array.isArray(v) ? v.join(", ") : String(v),
+        face: t.face, placement: t.placement,
+        from: at(t.in_at), to: at(t.out_at),
+      };
+    }).filter(Boolean),
+    transitions: tpl.transitions.map((t) => ({ to: t.to, type: t.type, duration_frames: t.duration_frames })),
+    data: Object.fromEntries(Object.entries(filled).map(([k, v]) => [k, { value: v.value, from_sentence: v.sentence }])),
+  };
+}
+
 function renderPlan({ channel, tpl, filled, beat }) {
   const dur = beat.durationInFrames;
   const at = (f) => Math.round(beat.startFrame + f * dur);
@@ -215,7 +260,11 @@ function renderPlan({ channel, tpl, filled, beat }) {
       L.push(`     NOTE: ${shown.split(/\s+/).length} words. The repo already measures this as`);
       L.push(`     textNarrationRatio; a slot this long is the picture reciting the narration.`);
     }
-    L.push(`     face ${face} (${t.face}), placement ${t.placement}, colour ${channel.primary_palette[2]}`);
+    // The renderer DERIVES the caption colour from the palette rather than
+    // reading an index, so the plan asks it the same question instead of
+    // guessing. See src/skills/remotion-render/visual/palette-roles.js.
+    const roles = paletteRoles({ primary: channel.primary_palette, secondary: channel.secondary_palette });
+    L.push(`     face ${face} (${t.face}), placement ${t.placement}, colour ${roles.onGround} (mark on the ${roles.ground} ground)`);
     L.push(`     frames ${at(t.in_at)} to ${at(t.out_at)}`);
   }
   L.push("");
@@ -267,12 +316,22 @@ function main() {
   if (!sents.length) die(`${scriptPath} has no voiceover sentences to extract from`);
 
   const filled = fillTemplate(tpl, sents);
-  const plan = renderPlan({ channel, tpl, filled, beat: { startFrame, durationInFrames } });
+  const beat = { startFrame, durationInFrames };
+  const structured = structurePlan({ cid, channel, tpl, filled, beat });
+  const plan = renderPlan({ channel, tpl, filled, beat });
 
   if (out) {
     mkdirSync(dirname(join(ROOT, out)), { recursive: true });
     writeFileSync(join(ROOT, out), plan);
+    // The renderer is a pure function of the plan (section 6) and parsing the
+    // section-5 prose to drive pixels would be fragile. Both serialisations come
+    // from ONE resolution of the template, so they cannot disagree: the .txt is
+    // the human artefact section 5 mandates, the .json is the same content in the
+    // shape the renderer consumes.
+    const jsonPath = join(ROOT, out).replace(/\.txt$/, "") + ".json";
+    writeFileSync(jsonPath, JSON.stringify(structured, null, 2) + "\n");
     console.log(`wrote ${out}`);
+    console.log(`wrote ${jsonPath.replace(ROOT + "/", "")}`);
   } else {
     console.log(plan);
   }

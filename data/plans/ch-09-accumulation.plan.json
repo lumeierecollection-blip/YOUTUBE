@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "channel_id": "ch-09",
+  "template": "ch-09-territory-accrues-across-the-front",
+  "strategy": "ACCUMULATION",
+  "intent": "Control is gained in separate places and together it becomes a changed map.",
+  "beat": {
+    "startFrame": 0,
+    "durationInFrames": 150
+  },
+  "palette": {
+    "primary": [
+      "#0A1A2E",
+      "#152A40",
+      "#3B82F6",
+      "#050F1A"
+    ],
+    "secondary": [
+      "#F59E0B",
+      "#94A3B8",
+      "#E2E8F0"
+    ]
+  },
+  "fonts": {
+    "primary": "Roboto Condensed",
+    "secondary": "JetBrains Mono"
+  },
+  "environment": {
+    "type": "map-territory",
+    "ground": "satellite terrain, north up, filling the frame",
+    "lighting": "none"
+  },
+  "motion_curve": "ease-in-out",
+  "framing": "wide",
+  "negative_space": "low",
+  "objects": [
+    {
+      "object": "territory fill",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.46,
+        "scale": 1
+      },
+      "count": 6,
+      "repeat_note": "symbolic: fills standing for the stated total, not a count of real territories"
+    },
+    {
+      "object": "national border line",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.46,
+        "scale": 1
+      },
+      "count": 1,
+      "repeat_note": null
+    },
+    {
+      "object": "date marker",
+      "role": "context",
+      "anchor": {
+        "x": 0.86,
+        "y": 0.12,
+        "scale": 0.7
+      },
+      "count": 1,
+      "repeat_note": null
+    }
+  ],
+  "camera": [
+    {
+      "frame": 0,
+      "move": "top-down",
+      "target": null,
+      "reason": "territory only reads as territory seen from above"
+    },
+    {
+      "frame": 75,
+      "move": "track-left",
+      "target": null,
+      "reason": "the camera travels across the geography as the front moves, rather than turning in place"
+    },
+    {
+      "frame": 150,
+      "move": "push-in",
+      "target": "territory fill",
+      "reason": "the last gain is closed on so the changed extent is legible"
+    }
+  ],
+  "typography": [],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "territory-fill",
+      "duration_frames": 20
+    }
+  ],
+  "data": {
+    "total": {
+      "value": "375",
+      "from_sentence": 25
+    }
+  }
+}

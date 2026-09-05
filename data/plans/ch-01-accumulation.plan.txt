@@ -20,7 +20,7 @@ TEXT CONTENT
   "The snowball versus avalanche debate is a $215 question."
      NOTE: 9 words. The repo already measures this as
      textNarrationRatio; a slot this long is the picture reciting the narration.
-     face JetBrains Mono (secondary), placement lower-third, colour #22C55E
+     face JetBrains Mono (secondary), placement lower-third, colour #0F172A (mark on the #FAFAFA ground)
      frames 90 to 150
 
 TRANSITION SCHEDULE

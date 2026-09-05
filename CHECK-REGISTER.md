@@ -74,6 +74,7 @@ never `L7` or `Â§3.1`.
 | `VID` | channel visual identity â€” the declared per-channel visual world and the research behind it | `scripts/gate-visual-identity.js` (design-time, not a CROSSCHECK lane â€” see Â§3.13) |
 | `VQA` | section-7 QA on a rendered video â€” colour, typography, environment, objects, transitions, authenticity | `scripts/gate-visual-qa.js` (per render â€” see Â§3.15) |
 | `TPL` | design-time scene templates â€” the per-channel static scenes and their conformance to the declared identity | `scripts/gate-scene-templates.js` (design-time â€” see Â§3.14) |
+| `PLN` | the plan renderer — the pure function from a structured plan to pixels, and the aborts that stop it emitting a frame nobody can read | `src/skills/remotion-render/compositions/template-scene.jsx` + `visual/palette-roles.js` (per render — see §3.16) |
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 
 ---
@@ -2534,7 +2535,7 @@ so the gate exits non-zero, writes a rejection record under
 | ID | Check | How | Sev |
 |---|---|---|---|
 | VQA-7.1 | Dominant colours are within ±5% HSV of `primary_palette` | **MEASURED** from the video's pixels | BLOCKER |
-| VQA-7.2 | Declared faces exist as real woff2 | contract, not pixels | BLOCKER |
+| VQA-7.2 | Declared faces exist as real woff2 **and** are declared by an `@font-face` in `fonts-loader.js` | contract, not pixels | BLOCKER |
 | VQA-7.3 | The environment shown is the declared `environment_type` | **VISION** | BLOCKER |
 | VQA-7.4 | At least one `core_object` is visually identifiable | **VISION** | BLOCKER |
 | VQA-7.5 | Every transition used is in `transition_language` | from the plan | BLOCKER |
@@ -2548,8 +2549,23 @@ off-white's hue is noise.
 
 **7.2 IS NOT A PIXEL CHECK AND DOES NOT CLAIM TO BE.** Identifying a typeface
 from a rendered frame needs OCR plus font matching. The gate checks the
-declared faces against the woff2 files that exist. That is a real check of the
-contract; calling it a check of the pixels would be a lie.
+declared faces against the woff2 files that exist and against the `@font-face`
+rules that load them. That is a real check of the contract; calling it a check
+of the pixels would be a lie.
+
+**7.2 PASSED A RENDER WHOSE FONT NEVER LOADED — 2026-09-05.** The first version
+asked one question, "is there a woff2 for this family", and ch-02 answered yes:
+`NotoSerif-400.woff2` and `-700.woff2` were both in `public/fonts`. But
+`fonts-loader.js`, which is what actually injects the `@font-face` rules, is
+generated from `channels.json`'s per-channel `font` field, and Noto Serif
+reaches the repo only through `visual-identity.json`'s `typography_secondary`.
+No rule, no load: ch-02's caption rendered in Chromium's fallback sans while
+the plan document said Noto Serif and this gate said ok. Two fixes, because
+there were two faults — `fetch-fonts.js` now collects families from
+`visual-identity.json` as well as `channels.json` (Noto Serif is the 10th
+family in the regenerated loader), and 7.2 now requires the `@font-face` rule
+as well as the file. Verified by deleting the Noto Serif rule from the loader:
+the gate rejected with the new message, and passed again once restored.
 
 **AN UNRUN CHECK IS NOT A PASSED CHECK.** With no `VISION_API_KEY`, 7.3 and 7.4
 report UNVERIFIED **as failures**. The gate is wired into
@@ -2558,6 +2574,19 @@ report UNVERIFIED **as failures**. The gate is wired into
 present in a development sandbox, so those two checks have been written and
 wired but never executed against a live model. Stated plainly rather than
 implied by a green tick.
+
+**WHICH ENDPOINT, AND WHAT WAS MEASURED — 2026-09-05.** The default base moved
+from `opencode.ai/zen/v1` to `generativelanguage.googleapis.com/v1beta/openai`,
+Google's OpenAI-compatible surface, on measurement rather than preference. From
+this sandbox `opencode.ai:443` is refused at the egress proxy (`connect_rejected`,
+curl exit 56); the Gemini endpoint answers, and POSTing the exact body this gate
+builds with a deliberately invalid key returns `400 Please pass a valid API key`
+— path, method and payload accepted, credential missing. Both remain selectable
+through `VISION_API_BASE`, because what this container can reach is not what CI
+can reach. A second fix came out of the same test: an unreachable endpoint made
+`execFileSync` throw and aborted the whole gate, so 7.1, 7.2, 7.5 and 7.6 went
+unreported. It is now caught and reported as UNVERIFIED, which is what an
+endpoint you cannot reach actually is.
 
 **THE FIRST RUN FOUND A REAL BUG IN THE SPECIFICATION ITSELF.** Run against
 ch-01's 73-second render, 7.1 rejected with three dominant colours outside the
@@ -2581,6 +2610,98 @@ finding.
 ch-09 carries the same `bg_mode: white` with a dark `colors.bg`. It is NOT
 corrected here: there is no ch-09 render to measure, and changing a curated
 value without evidence is the thing this whole register exists to prevent.
+
+
+## 3.16 `PLN` — the plan renderer, and the three frames that proved it (addendum section 6)
+
+Section 6 asks for a renderer that is a pure function of the plan. This one
+takes `{ plan }` and nothing else: no channel id, no strategy name, no script.
+The only reason a Money Mind frame differs from a Legal Brief frame is that
+their plans differ, and PLN-07 is what stops that claim from decaying.
+
+PLN-07 strips comments before it looks, which is a deliberate loosening rather
+than an oversight: these three files explain the ch-02 and ch-09 bugs that
+shaped them **by name**, and a check that could not tell prose from code would
+force those explanations out of the file to keep the tick green. Verified by
+inserting `const HACK = "ch-02"` into `palette-roles.js` — the check failed
+naming the file and the token, and passed again once removed.
+
+| ID | Check | How | Sev |
+|---|---|---|---|
+| PLN-01 | Every object a plan names has a procedural drawing | `ObjectShape` throws on an unknown name | BLOCKER |
+| PLN-02 | `ink` reaches WCAG AA 4.5:1 against `paper` | `paletteRoles` throws | BLOCKER |
+| PLN-03 | `onGround` reaches WCAG AA 4.5:1 against `ground` | `paletteRoles` throws | BLOCKER |
+| PLN-04 | The accent is the primary palette's highest **absolute chroma**, not its highest HSV saturation | `paletteRoles`, by measurement | BLOCKER |
+| PLN-05 | Content is fitted inside the rect that survives the plan's own camera keyframes | `planSafeRect` inverts every keyframe and intersects | BLOCKER |
+| PLN-06 | The typography band is reserved before objects are sized | `TEXT_BAND` subtracted from the content rect first | MAJOR |
+| PLN-07 | The renderer names no channel and no strategy **in its executable code** | `run-visual-tests.js` strips comments, then matches channel ids and registry strategy keys | BLOCKER |
+
+**THE ACCEPTANCE TEST WAS THREE RENDERS, AND IT FAILED THE FIRST TIME.** The
+request was to prove Money Mind, Legal Brief and Geopolitical look different
+before calling the architecture finished. Rendered at frame 120 of 150 from
+their three ACCUMULATION plans, the first pass gave: ch-01 correct; ch-02
+readable objects with **no caption at all**; ch-09 a **near-black frame** whose
+subject was invisible against its own ground. Two distinct bugs, both in role
+derivation, both invisible to every existing check because a frame that renders
+the background colour is still a frame that renders.
+
+**PLN-04 — HSV SATURATION IS THE WRONG QUESTION.** Saturation is
+`(max-min)/max`, so a near-black navy scores high on it: `#0A1A2E` measures
+0.78 against `#3B82F6`'s 0.76, and ch-09 therefore chose a colour
+indistinguishable from its ground as its accent. Absolute chroma,
+`(max-min)/255`, separates them by five times — 0.14 against 0.73 — and gives
+the right accent for all three channels. ch-02 escaped by 0.015 (`#F5536B` at
+0.66 over `#16213E` at 0.645), which is not a margin, it is luck.
+
+**PLN-02/03 — ONE MARK COLOUR CANNOT SERVE TWO BACKDROPS.** `ink` was the
+darkest entry in the pool, which on a dark channel is the ground itself: ch-02
+and ch-09 both resolved `ink` and `ground` to the same hex, so their captions
+were painted in the background colour. There are two surfaces in this renderer
+— the paper an object lays down for itself, and the environment ground — so
+there are two mark colours, each chosen for contrast against its own surface.
+An object picks by what it draws on: a statement or a legal document marks its
+own sheet with `ink`; terrain, a border line and a desk keypad mark the ground
+with `onGround`.
+
+Measured after the fix, every channel clears the floor by more than three
+times:
+
+| Channel | ink on paper | onGround on ground |
+|---|---|---|
+| ch-01 | 17.10:1 | 17.10:1 |
+| ch-02 | 15.51:1 | 15.51:1 |
+| ch-09 | 15.63:1 | 15.63:1 |
+
+4.5:1 is WCAG 2.1 AA for body text — an external standard, not a number chosen
+to fit. The two failures it catches scored **1.03:1**, verified against a
+deliberately monochrome palette that made every non-accent entry the same dark
+navy; the assertion threw, the real palettes passed, and the fixture was not
+kept.
+
+**PAPER IS NOT REQUIRED TO CONTRAST WITH THE GROUND, AND THAT IS DELIBERATE.**
+ch-01 resolves both to `#FAFAFA` — white sheets on a white desk, 1.00:1 — which
+is what a desk flatlay is, and the sheets read by their outline. Asserting on
+that pair would have failed a frame that demonstrably works.
+
+**ONE THING IS UNCHECKED AND IS NOT BEING PRESENTED AS CHECKED.** An object
+drawn on top of *another object's* paper — ch-02's case file folder over its
+document stack — uses `ink`, which is correct there and would be near-invisible
+if a template ever placed that folder alone on the dark ground. Nothing detects
+it, because the renderer cannot know what a template stacked.
+
+**WHAT THE THREE FRAMES SHOW AFTER THE FIX.** ch-01: near-white desk, green
+accent, monospace caption in the lower third, statements and a keypad and a
+ledger. ch-02: near-black ground, coral accent, a serif caption in the upper
+third, a stack of line-numbered legal documents with one highlighted clause.
+ch-09: dark navy, blue accent, six territory polygons accumulating under a
+border line that draws itself, no caption at all because its `{label}`
+parameter was absent from the script and the builder refused to invent one.
+Three plans, one renderer, three frames that could not be mistaken for each
+other. Stills and clips under `data/renders/plan/`.
+
+**THE SECTION-7 GATE ON ALL THREE:** 7.1, 7.2, 7.5 and 7.6 pass; 7.3 and 7.4
+are UNVERIFIED failures for want of a vision key, exactly as §3.15 describes.
+No render here is claimed to have passed section 7.
 
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)

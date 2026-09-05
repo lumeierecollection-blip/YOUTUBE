@@ -17,14 +17,35 @@
  *   7.2 typography   NOT measured from pixels. Identifying a typeface from a
  *                    rendered frame needs OCR plus font matching, which this
  *                    does not attempt. It checks the PLAN's declared faces
- *                    against the channel's two declared families and against
- *                    the woff2 files that actually exist. That is a real check
- *                    of the contract; it is not a check of the pixels, and
- *                    calling it one would be a lie.
+ *                    against the channel's two declared families, against the
+ *                    woff2 files that exist, AND against the @font-face rules
+ *                    in fonts-loader.js. That is a real check of the contract;
+ *                    it is not a check of the pixels, and calling it one would
+ *                    be a lie.
  *   7.3 environment  VISION. Needs VISION_API_KEY and a vision-capable
  *                    VISION_MODEL. Absent, it FAILS as unverified rather than
  *                    passing quietly — an unrun check is not a passed check.
  *   7.4 objects      VISION, same conditions.
+ *
+ * WHICH VISION ENDPOINT, AND WHAT WAS ACTUALLY MEASURED FROM HERE.
+ *
+ * The default base is Google's OpenAI-compatible surface, because that is the
+ * one this sandbox can reach and the one whose request shape was verified:
+ * POSTing exactly the body built below, with a deliberately invalid key,
+ * returns 400 "Please pass a valid API key" — the path, method and payload are
+ * accepted and only the credential is missing. `opencode.ai/zen/v1`, the
+ * previous default, is refused at the egress proxy from this container
+ * (connect_rejected, curl exit 56); it may well be reachable from CI, which is
+ * why the base stays an environment variable rather than a constant.
+ *
+ * Set for Gemini:  VISION_API_BASE=https://generativelanguage.googleapis.com/v1beta/openai
+ *                  VISION_MODEL=gemini-2.5-flash   (any vision-capable Gemini)
+ * Set for OpenCode: VISION_API_BASE=https://opencode.ai/zen/v1
+ *
+ * NEITHER 7.3 NOR 7.4 HAS EVER RETURNED A REAL VERDICT. No key reaches this
+ * container, so every run to date has recorded them as UNVERIFIED failures.
+ * The first real answer will come from CI, and it may well disagree with the
+ * four measured checks.
  *   7.5 transitions  MEASURED from the plan against transition_language.
  *   7.6 authenticity MEASURED from the plan's ASSET REFERENCES: every asset
  *                    must name a source and the query that retrieved it.
@@ -166,7 +187,7 @@ function parsePlan(text) {
 }
 
 function visionCheck(sheet, spec) {
-  const base = process.env.VISION_API_BASE || "https://opencode.ai/zen/v1";
+  const base = process.env.VISION_API_BASE || "https://generativelanguage.googleapis.com/v1beta/openai";
   const key = process.env.VISION_API_KEY;
   const model = process.env.VISION_MODEL;
   if (!key || !model) {
@@ -197,11 +218,23 @@ function visionCheck(sheet, spec) {
       { type: "image_url", image_url: { url: `data:image/jpeg;base64,${readFileSync(sheet).toString("base64")}` } },
     ] }],
   });
-  const res = execFileSync("curl", ["-sS", "--max-time", "180",
-    "-H", "Content-Type: application/json",
-    "-H", `Authorization: Bearer ${key}`,
-    "-d", "@-", `${base.replace(/\/$/, "")}/chat/completions`],
-    { input: body, encoding: "utf-8" });
+  // A blocked or unreachable endpoint makes curl exit non-zero, which would
+  // otherwise abort the whole gate with a stack trace and leave 7.1, 7.2, 7.5
+  // and 7.6 unreported. An endpoint that cannot be reached is exactly the
+  // UNVERIFIED case this check already knows how to state.
+  let res;
+  try {
+    res = execFileSync("curl", ["-sS", "--max-time", "180",
+      "-H", "Content-Type: application/json",
+      "-H", `Authorization: Bearer ${key}`,
+      "-d", "@-", `${base.replace(/\/$/, "")}/chat/completions`],
+      { input: body, encoding: "utf-8" });
+  } catch (e) {
+    return {
+      ran: false,
+      reason: `vision endpoint ${base} could not be reached: ${String(e.stderr || e.message).trim().slice(0, 200)}`,
+    };
+  }
   let raw;
   try {
     raw = JSON.parse(res).choices[0].message.content.trim()
@@ -263,13 +296,30 @@ function main() {
     }
 
     // ── 7.2 typography compliance (contract, not pixels) ──────────────────
-    const fontDir = join(ROOT, "src", "skills", "remotion-render", "public", "fonts");
-    const have = new Set(readdirSync(fontDir).map((f) => (/^([A-Za-z]+)-/.exec(f) || [])[1]).filter(Boolean)
+    //
+    // TWO CONDITIONS, NOT ONE. The first version of this check asked only
+    // whether a woff2 sat in public/fonts, and passed ch-02 on the strength of
+    // NotoSerif-400.woff2 being there — while fonts-loader.js, which is what
+    // actually injects the @font-face rules, had no rule for the family. The
+    // caption rendered in Chromium's fallback sans and the gate said ok. A
+    // font is only loaded if a file exists AND something declares it.
+    const renderDir = join(ROOT, "src", "skills", "remotion-render");
+    const have = new Set(readdirSync(join(renderDir, "public", "fonts"))
+      .map((f) => (/^([A-Za-z]+)-/.exec(f) || [])[1]).filter(Boolean)
       .map((s) => s.toLowerCase()));
+    const loader = readFileSync(join(renderDir, "fonts-loader.js"), "utf-8");
+    const declaredFaces = new Set([...loader.matchAll(/font-family:"([^"]+)"/g)]
+      .map((m) => m[1].replace(/[\s_-]+/g, "").toLowerCase()));
     const norm = (s) => String(s).replace(/[\s_-]+/g, "").toLowerCase();
-    const missing = [spec.typography_primary, spec.typography_secondary].filter((f) => !have.has(norm(f)));
-    results["7.2"] = { declared: [spec.typography_primary, spec.typography_secondary], missing };
+    const faces = [spec.typography_primary, spec.typography_secondary];
+    const missing = faces.filter((f) => !have.has(norm(f)));
+    const undeclared = faces.filter((f) => have.has(norm(f)) && !declaredFaces.has(norm(f)));
+    results["7.2"] = { declared: faces, missing, undeclared };
     if (missing.length) findings.push(`7.2 typography: declared face(s) with no woff2: ${missing.join(", ")}`);
+    if (undeclared.length) {
+      findings.push(`7.2 typography: ${undeclared.join(", ")} has a woff2 but no @font-face in fonts-loader.js — ` +
+        `the render will silently fall back. Re-run src/skills/remotion-render/fetch-fonts.js.`);
+    }
 
     // ── 7.5 transition compliance + 7.6 asset authenticity ────────────────
     if (planPath) {

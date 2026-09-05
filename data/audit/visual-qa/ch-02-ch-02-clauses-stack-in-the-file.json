@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-09-05T14:12:01.020Z",
+  "channel": "ch-02",
+  "video": "ch-02-clauses-stack-in-the-file.mp4",
+  "plan": "data/plans/ch-02-accumulation.plan.json",
+  "verdict": "REJECTED",
+  "tolerances": {
+    "hue_degrees": 18,
+    "saturation": 0.05,
+    "value": 0.05,
+    "dominant_min_share": 0.04
+  },
+  "results": {
+    "7.1": {
+      "dominant": 1,
+      "offPalette": []
+    },
+    "7.2": {
+      "declared": [
+        "DM Sans",
+        "Noto Serif"
+      ],
+      "missing": [],
+      "undeclared": []
+    },
+    "7.5": {
+      "used": [],
+      "disallowed": []
+    },
+    "7.6": {
+      "assets": 0,
+      "unsourced": 0,
+      "note": "no external assets in this plan, so 7.6 has nothing to verify — a pass here is vacuous, not strong"
+    },
+    "7.4": {
+      "ran": false,
+      "reason": "VISION_API_KEY / VISION_MODEL not set — 7.3 and 7.4 are UNVERIFIED. An unrun check is not a passed check, so both are reported as failures."
+    },
+    "7.3": {
+      "ran": false,
+      "reason": "VISION_API_KEY / VISION_MODEL not set — 7.3 and 7.4 are UNVERIFIED. An unrun check is not a passed check, so both are reported as failures."
+    }
+  },
+  "findings": [
+    "7.3 environment: UNVERIFIED — VISION_API_KEY / VISION_MODEL not set — 7.3 and 7.4 are UNVERIFIED. An unrun check is not a passed check, so both are reported as failures.",
+    "7.4 objects: UNVERIFIED — same reason"
+  ]
+}

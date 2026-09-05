@@ -1,0 +1,30 @@
+TEMPLATE SELECTED
+  ch-09-territory-accrues-across-the-front   (channel ch-09, strategy ACCUMULATION)
+  intent: Control is gained in separate places and together it becomes a changed map.
+
+DATA FILLED
+  total = 375   from script sentence 25
+
+ASSET REFERENCES
+  (none — this template draws its own environment and objects; no external media is referenced)
+
+TIMING AND DURATION
+  beat: start frame 0, duration 150 frames at 30 fps
+  territory fill (subject) x6  anchor 0.5,0.46 scale 1
+     symbolic: fills standing for the stated total, not a count of real territories
+  national border line (supporting) x1  anchor 0.5,0.46 scale 1
+  date marker (context) x1  anchor 0.86,0.12 scale 0.7
+
+TEXT CONTENT
+  {label}: omitted, the optional parameter was not present in the script
+
+TRANSITION SCHEDULE
+  -> next: territory-fill, 20 frames, ending at frame 150
+
+CAMERA MOTION SCRIPT
+  frame 0: top-down
+     territory only reads as territory seen from above
+  frame 75: track-left
+     the camera travels across the geography as the front moves, rather than turning in place
+  frame 150: push-in toward territory fill
+     the last gain is closed on so the changed extent is legible

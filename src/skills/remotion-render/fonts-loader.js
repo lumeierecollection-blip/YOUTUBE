@@ -21,7 +21,9 @@ export const FONT_FACES = `@font-face{font-family:"Inter";font-style:normal;font
 @font-face{font-family:"Nunito";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/Nunito-700.woff2")}") format("woff2");}
 @font-face{font-family:"Fira Sans";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/FiraSans-400.woff2")}") format("woff2");}
 @font-face{font-family:"Fira Sans";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/FiraSans-700.woff2")}") format("woff2");}
+@font-face{font-family:"Noto Serif";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/NotoSerif-400.woff2")}") format("woff2");}
+@font-face{font-family:"Noto Serif";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/NotoSerif-700.woff2")}") format("woff2");}
 `;
 
 /** Family names of every font bundled above. */
-export const FONT_FAMILIES = ["Inter","DM Sans","Space Grotesk","Cormorant Garamond","Roboto Condensed","JetBrains Mono","Playfair Display","Nunito","Fira Sans"];
+export const FONT_FAMILIES = ["Inter","DM Sans","Space Grotesk","Cormorant Garamond","Roboto Condensed","JetBrains Mono","Playfair Display","Nunito","Fira Sans","Noto Serif"];

@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "channel_id": "ch-01",
+  "template": "ch-01-debts-pile-on-the-desk",
+  "strategy": "ACCUMULATION",
+  "intent": "Several debts exist at once and together they are heavier than any one of them.",
+  "beat": {
+    "startFrame": 0,
+    "durationInFrames": 150
+  },
+  "palette": {
+    "primary": [
+      "#0F172A",
+      "#1E293B",
+      "#22C55E",
+      "#FAFAFA"
+    ],
+    "secondary": [
+      "#16A34A",
+      "#94A3B8",
+      "#F8FAFC"
+    ]
+  },
+  "fonts": {
+    "primary": "Inter",
+    "secondary": "JetBrains Mono"
+  },
+  "environment": {
+    "type": "desk-flatlay",
+    "ground": "a matte desk surface, seen square from above",
+    "lighting": "flat-overhead"
+  },
+  "motion_curve": "ease-in-out",
+  "framing": "medium",
+  "negative_space": "high",
+  "objects": [
+    {
+      "object": "bank statement",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.52,
+        "scale": 1
+      },
+      "count": 6,
+      "repeat_note": "symbolic: statements standing for the stated total, not a count of real accounts"
+    },
+    {
+      "object": "calculator",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.78,
+        "scale": 0.8
+      },
+      "count": 1,
+      "repeat_note": null
+    },
+    {
+      "object": "ledger notebook",
+      "role": "context",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.9
+      },
+      "count": 1,
+      "repeat_note": null
+    }
+  ],
+  "camera": [
+    {
+      "frame": 0,
+      "move": "top-down",
+      "target": null,
+      "reason": "a flat-lay begins square to the desk so the whole surface reads as one place"
+    },
+    {
+      "frame": 83,
+      "move": "push-in",
+      "target": "bank statement",
+      "reason": "the pile is the point; the frame closes on it as it grows"
+    },
+    {
+      "frame": 150,
+      "move": "static",
+      "target": null,
+      "reason": "the last statement lands and the frame holds so the total is legible"
+    }
+  ],
+  "typography": [
+    {
+      "text": "The snowball versus avalanche debate is a $215 question.",
+      "face": "secondary",
+      "placement": "lower-third",
+      "from": 90,
+      "to": 150
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "smooth-slide",
+      "duration_frames": 12
+    }
+  ],
+  "data": {
+    "label": {
+      "value": "The snowball versus avalanche debate is a $215 question.",
+      "from_sentence": 1
+    },
+    "total": {
+      "value": "$215",
+      "from_sentence": 1
+    }
+  }
+}

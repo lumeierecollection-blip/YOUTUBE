@@ -17,7 +17,7 @@ TIMING AND DURATION
 
 TEXT CONTENT
   "Four lines."
-     face Noto Serif (secondary), placement upper-third, colour #F5536B
+     face Noto Serif (secondary), placement upper-third, colour #E6E8EC (mark on the #0F0F1A ground)
      frames 68 to 150
 
 TRANSITION SCHEDULE

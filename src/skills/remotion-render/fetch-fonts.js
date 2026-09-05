@@ -25,7 +25,9 @@ const UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36";
 
 const WEIGHTS = [400, 700];
-const FONT_LIMIT = 30;
+// Raised from 30 when visual-identity.json's two faces per channel joined the
+// list: 17 channels x 3 declarations is 51 slots before de-duplication.
+const FONT_LIMIT = 60;
 
 // A fixed, always-fetched italic serif face for the "setup line" headline
 // pairing (MOTION-GRAPHICS-MANUAL rebuild PART 3.4: italic serif setup line
@@ -49,11 +51,33 @@ function slug(name) {
   return name.replace(/\s+/g, "");
 }
 
+/**
+ * Every family the repo declares, from BOTH places that declare one.
+ *
+ * channels.json names one `font` per channel. config/visual-identity.json
+ * names two more per channel — `typography_primary` and
+ * `typography_secondary` — and until this read them, they were invisible here:
+ * ch-02 declares Noto Serif, the woff2 files were on disk from some earlier
+ * pass, and the generated loader had no @font-face for the family. The plan
+ * document said Noto Serif, the QA gate's 7.2 saw NotoSerif-400.woff2 and
+ * passed, and the rendered caption came out in Chromium's fallback sans.
+ * A file on disk is not a loaded font.
+ */
 function collectFonts() {
   const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
   const channels = data.channels || data;
-  const fonts = [...new Set(channels.map((c) => c.font).filter(Boolean))];
-  return fonts.slice(0, FONT_LIMIT);
+  const fonts = new Set(channels.map((c) => c.font).filter(Boolean));
+
+  const idPath = join(ROOT, "config", "visual-identity.json");
+  if (existsSync(idPath)) {
+    const spec = JSON.parse(readFileSync(idPath, "utf-8")).channels || {};
+    for (const c of Object.values(spec)) {
+      for (const fam of [c.typography_primary, c.typography_secondary]) {
+        if (fam) fonts.add(fam);
+      }
+    }
+  }
+  return [...fonts].slice(0, FONT_LIMIT);
 }
 
 function cssUrl(font, weight, style = "normal") {

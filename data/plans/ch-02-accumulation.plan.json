@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "channel_id": "ch-02",
+  "template": "ch-02-clauses-stack-in-the-file",
+  "strategy": "ACCUMULATION",
+  "intent": "Several legal conditions apply at once and together they close off an option.",
+  "beat": {
+    "startFrame": 0,
+    "durationInFrames": 150
+  },
+  "palette": {
+    "primary": [
+      "#1A1A2E",
+      "#16213E",
+      "#F5536B",
+      "#0F0F1A"
+    ],
+    "secondary": [
+      "#C81E3C",
+      "#8892B0",
+      "#E6E8EC"
+    ]
+  },
+  "fonts": {
+    "primary": "DM Sans",
+    "secondary": "Noto Serif"
+  },
+  "environment": {
+    "type": "courtroom",
+    "ground": "a printed page held flat under a reading lamp",
+    "lighting": "raking-side"
+  },
+  "motion_curve": "ease-out",
+  "framing": "close-up",
+  "negative_space": "medium",
+  "objects": [
+    {
+      "object": "legal document",
+      "role": "subject",
+      "anchor": {
+        "x": 0.46,
+        "y": 0.5,
+        "scale": 1
+      },
+      "count": 6,
+      "repeat_note": "symbolic: pages standing for the number of conditions the script states"
+    },
+    {
+      "object": "case file folder",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.86,
+        "scale": 1.1
+      },
+      "count": 1,
+      "repeat_note": null
+    }
+  ],
+  "camera": [
+    {
+      "frame": 0,
+      "move": "tilt-down",
+      "target": "case file folder",
+      "reason": "the frame arrives at the file the way a reader does, from above and slightly off"
+    },
+    {
+      "frame": 60,
+      "move": "push-in",
+      "target": "legal document",
+      "reason": "the camera moves into the clause because the clause is the evidence"
+    },
+    {
+      "frame": 120,
+      "move": "pan-right",
+      "target": "legal document",
+      "reason": "a clause is read left to right; the camera reads it"
+    }
+  ],
+  "typography": [
+    {
+      "text": "Four lines.",
+      "face": "secondary",
+      "placement": "upper-third",
+      "from": 68,
+      "to": 150
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "document-reveal",
+      "duration_frames": 18
+    }
+  ],
+  "data": {
+    "label": {
+      "value": "Four lines.",
+      "from_sentence": 1
+    },
+    "total": {
+      "value": "375",
+      "from_sentence": 25
+    }
+  }
+}

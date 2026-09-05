@@ -35,5 +35,9 @@
   "Fira Sans": {
     "400": "FiraSans-400.woff2",
     "700": "FiraSans-700.woff2"
+  },
+  "Noto Serif": {
+    "400": "NotoSerif-400.woff2",
+    "700": "NotoSerif-700.woff2"
   }
 }

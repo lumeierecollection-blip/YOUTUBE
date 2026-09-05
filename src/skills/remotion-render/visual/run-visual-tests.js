@@ -1355,6 +1355,39 @@ check("the frame-bounds report covers every registered strategy", () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+// PLN — the plan renderer is a pure function of the plan (CHECK-REGISTER 3.16)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * PLN-07. Section 6's whole claim is that the renderer decides nothing per
+ * channel, so a channel id or strategy name appearing in its EXECUTABLE code
+ * would falsify it outright. Comments are stripped first and deliberately:
+ * these files explain the ch-02 and ch-09 bugs that shaped them by name, and a
+ * check that could not tell prose from code would force those explanations out
+ * of the file to stay green.
+ */
+check("the plan renderer names no channel and no strategy in its code", () => {
+  const files = [
+    join(__dirname, "..", "compositions", "template-scene.jsx"),
+    join(__dirname, "..", "compositions", "objects", "index.jsx"),
+    join(__dirname, "palette-roles.js"),
+  ];
+  const hits = [];
+  for (const p of files) {
+    const code = readFileSync(p, "utf-8")
+      .replace(/\/\*[\s\S]*?\*\//g, "")   // block comments
+      .replace(/^\s*\/\/.*$/gm, "");     // whole-line comments
+    for (const m of code.matchAll(/\bch-\d{2}\b|\b[A-Z][A-Z_]{4,}\b/g)) {
+      // Strategy names are the SCREAMING_CASE keys of the strategy registry.
+      if (/^ch-/.test(m[0]) || Object.prototype.hasOwnProperty.call(STRATEGIES, m[0])) {
+        hits.push(`${p.split("/").slice(-1)[0]}: ${m[0]}`);
+      }
+    }
+  }
+  return hits.length === 0 || hits.join(", ");
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 console.log(`\n${passed} passed, ${failures.length} failed`);
 if (failures.length) {
   console.error("\nFAILURES:");
