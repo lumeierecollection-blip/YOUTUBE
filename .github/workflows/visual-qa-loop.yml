@@ -92,6 +92,17 @@ jobs:
               fi
             fi
 
+            # Section-7 QA, where the vision key actually lives. This is the
+            # only place 7.3 (environment) and 7.4 (core object identifiable)
+            # can run: they need VISION_API_KEY, which is a repository secret
+            # and is not present in a development sandbox. Non-blocking here on
+            # purpose -- the loop above owns pass/fail; this records the
+            # section-7 verdict alongside it so the two can be compared.
+            if [ -f "config/visual-identity.json" ]; then
+              node scripts/gate-visual-qa.js \
+                --channel "$CHANNEL_ID" --video out/qa.mp4 || true
+            fi
+
             # Hand the findings back to the agent to fix, then loop.
             npx opencode run \
               "Read qa/report-$i.json and qa/critique-$i.json if it exists. Fix ONLY the

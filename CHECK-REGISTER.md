@@ -72,6 +72,7 @@ never `L7` or `Â§3.1`.
 | `SCR` | daily-pipeline script generation â€” grounding, archetype/anchor sync, pacing | `discover-topics` / `research-and-script` workflow jobs (not a CROSSCHECK lane â€” see Â§3.10) |
 | `VIS` | visual storytelling — strategy routing, visual states, icon subordination | `visual/diagnostics.js` (per render, not a CROSSCHECK lane — see §3.12) |
 | `VID` | channel visual identity â€” the declared per-channel visual world and the research behind it | `scripts/gate-visual-identity.js` (design-time, not a CROSSCHECK lane â€” see Â§3.13) |
+| `VQA` | section-7 QA on a rendered video â€” colour, typography, environment, objects, transitions, authenticity | `scripts/gate-visual-qa.js` (per render â€” see Â§3.15) |
 | `TPL` | design-time scene templates â€” the per-channel static scenes and their conformance to the declared identity | `scripts/gate-scene-templates.js` (design-time â€” see Â§3.14) |
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 
@@ -2521,6 +2522,65 @@ it is behind a flag and the existing path still runs.
 The plan generator also flags any text slot over 8 words as the picture
 reciting the narration — the same failure `textNarrationRatio` already measures
 at 0.809 on ch-01's real render.
+
+
+## 3.15 `VQA` — section-7 QA, and the spec bug its first run found (addendum sections 6, 7)
+
+Six checks against one rendered video. Section 7 ends "the render must be
+marked as rejected and a human must be notified. Do not automatically retry",
+so the gate exits non-zero, writes a rejection record under
+`data/audit/visual-qa/`, and never re-renders or adjusts anything.
+
+| ID | Check | How | Sev |
+|---|---|---|---|
+| VQA-7.1 | Dominant colours are within ±5% HSV of `primary_palette` | **MEASURED** from the video's pixels | BLOCKER |
+| VQA-7.2 | Declared faces exist as real woff2 | contract, not pixels | BLOCKER |
+| VQA-7.3 | The environment shown is the declared `environment_type` | **VISION** | BLOCKER |
+| VQA-7.4 | At least one `core_object` is visually identifiable | **VISION** | BLOCKER |
+| VQA-7.5 | Every transition used is in `transition_language` | from the plan | BLOCKER |
+| VQA-7.6 | Every asset names a source and the query that retrieved it | from the plan | BLOCKER |
+
+**±5% IN HSV IS NOT A METRIC UNTIL SOMEONE DEFINES IT.** The addendum does not,
+so the gate states one and holds to it: 5% of each channel's own range. Hue is
+circular over 360°, so 18°; saturation and value are 0..1, so 0.05. Hue is not
+compared between two near-greys (both under 0.12 saturation), because an
+off-white's hue is noise.
+
+**7.2 IS NOT A PIXEL CHECK AND DOES NOT CLAIM TO BE.** Identifying a typeface
+from a rendered frame needs OCR plus font matching. The gate checks the
+declared faces against the woff2 files that exist. That is a real check of the
+contract; calling it a check of the pixels would be a lie.
+
+**AN UNRUN CHECK IS NOT A PASSED CHECK.** With no `VISION_API_KEY`, 7.3 and 7.4
+report UNVERIFIED **as failures**. The gate is wired into
+`visual-qa-loop.yml`, which already carries `VISION_API_BASE`,
+`VISION_API_KEY` and `VISION_MODEL`; the key is a repository secret and is not
+present in a development sandbox, so those two checks have been written and
+wired but never executed against a live model. Stated plainly rather than
+implied by a green tick.
+
+**THE FIRST RUN FOUND A REAL BUG IN THE SPECIFICATION ITSELF.** Run against
+ch-01's 73-second render, 7.1 rejected with three dominant colours outside the
+palette: `#fafafa` at **71.4%** of sampled pixels, `#f4f4f4` at 17.4%,
+`#ececec` at 6.8%, against a declared palette of `#0F172A, #1E293B, #22C55E,
+#0A1020`. The cause is the `bg_mode` / `colors.bg` contradiction flagged during
+transcription and now proven from pixels: ch-01 renders on a near-white ground
+because `bg_mode` is `white`, while `colors.bg` is a dark navy the render path
+never reads. The palette's fourth entry was transcribed from that unread field.
+Corrected to the **measured** ground `#FAFAFA`, and the rejection dropped from
+three colours to one.
+
+**THE ONE THAT REMAINS IS ALSO REAL, AND IS NOT BEING TOLERANCED AWAY.**
+`#ececec` at 6.8% sits 0.055 below `#FAFAFA` on value — just outside the 0.05
+tolerance. It is the atmosphere ground's shading gradient. A gradient ground
+cannot be expressed by four discrete hex values, so either the ground should be
+flat or the specification needs a range concept. Widening the tolerance to make
+this pass would break the check for everything else, so it stands as an open
+finding.
+
+ch-09 carries the same `bg_mode: white` with a dark `colors.bg`. It is NOT
+corrected here: there is no ch-09 render to measure, and changing a curated
+value without evidence is the thing this whole register exists to prevent.
 
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
