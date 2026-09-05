@@ -4,8 +4,17 @@ Written 2026-09-05, at commit `f97f759` on `main`.
 
 `PROMPT_FOR_OPENCODE.md` is the ORIGINAL bootstrap prompt from before any of
 this existed. It is kept as a record of the intent and is no longer a work
-order. **This file is the work order.** Read `CLAUDE.md` and `PLAN.md` too;
-they carry the hard rules, and the hard rules are not negotiable.
+order. **This file is the work order.** `CLAUDE.md` and `PLAN.md` carry the
+project's background and conventions.
+
+**You have full build authority here.** Most of this system does not exist
+yet — 14 channels have no visual identity, 48 template pairs are unwritten,
+whole style families have no object vocabulary. Create them. Write new specs,
+new templates, new object primitives, new gates, new scripts, new schemas,
+whatever the work needs. Nothing below is a list of things you may not do; it
+is a description of what is here, what has been measured, and where the
+biggest gaps are. Where this brief and your own judgement disagree, back your
+judgement with a measurement and go.
 
 ---
 
@@ -20,32 +29,34 @@ the channel's delay.
 
 The three pipeline stages all run through `scripts/opencode-agent.js`, which
 drives `opencode run` — you. So you are two things in this repo at once: the
-engineer editing it, and the runtime it calls. Do not confuse the two. The
-pipeline's own agents are scoped in `.opencode/agents/pipeline-*.md` with
-`read` denied, deliberately, so they cannot load repo docs and confuse
-themselves about which stage they are in.
+engineer editing it, and the runtime it calls. Worth holding both in mind,
+because you can improve the runtime from the engineer's seat. The pipeline's
+own agents are scoped in `.opencode/agents/pipeline-*.md` with `read` denied,
+which was done because an agent that could read repo docs started confusing
+itself about which stage it was in. Rescope them if you have a better
+arrangement.
 
-## 2. The hard rules
+## 2. The one thing that is actually load-bearing
 
-These are not style preferences. Breaking one is worse than shipping nothing.
+The output is factual video. Every fact, statistic, claim, image and sound in
+a finished video has to come from a real fetched source, and every claim in a
+script has to trace to a URL that appears in the research artifact. That is
+what `scripts/gate-script.js` checks. It is the product, not a restriction on
+your engineering.
 
-- **No fact, statistic, claim, image or sound that did not come from a real
-  fetched source.** A topic that cannot be grounded gets skipped, not
-  invented.
-- **Every claim in a script traces to `sources_used`, and every URL there
-  appears in the research artifact.** Gated by `scripts/gate-script.js`.
-- **Never loosen a schema or skip a gate to make a run pass.** Fix what is
-  producing bad output. If a gate is wrong, prove it is wrong with a
-  measurement, then change it and say so in `CHECK-REGISTER.md`.
-- **Never claim a visual works without a rendered frame to point at.**
-  "Should work" is not evidence. This repo has been burned by that
-  specifically.
-- **Never merge to `main` without explicit human confirmation.** The cron is
-  inert on any other branch, which is the safety valve during development.
-- Colour lives in `config/channels.json` and `config/visual-identity.json`,
-  never in a script or a generated string.
-- `CHECK-REGISTER.md` is the single source of truth for check IDs. Extend the
-  namespace table in §0.3; never invent a parallel ID scheme.
+Everything else is convention, and conventions are yours to change when you
+have a reason:
+
+- **Gates and schemas are editable.** If one is wrong, measure it, change it,
+  and record what you found in `CHECK-REGISTER.md`. Extending the namespace
+  table in §0.3 keeps the check IDs coherent.
+- **A rendered frame beats an argument.** Whenever you change something
+  visual, render it and look. This repo has shipped bugs that only a frame
+  revealed — see `CHECK-REGISTER.md` §3.16 for two of them.
+- **Colour lives in `config/channels.json` and `config/visual-identity.json`**
+  so a channel's look is editable in one place. Add fields there freely.
+- **`main` is where the 06:00 UTC cron fires**, so it is the branch that ships
+  to real channels. Work on a branch, merge deliberately.
 
 ## 3. What just landed, and why it existed
 
@@ -66,11 +77,12 @@ a 9-section addendum and now built:
   function of that plan — it contains no channel id and no strategy name, and
   a test enforces that.
 
-**Section 3's abort is real and must stay real.** A beat whose (channel,
-strategy) pair has no template stops the run. There is no generic template and
-no nearest match. With 48 pairs still missing, a fallback would silently
-become the entire system, which is exactly the monoculture this rebuild
-exists to end.
+**How the missing-template case behaves today.** A beat whose (channel,
+strategy) pair has no template stops the run rather than falling back to a
+generic scene. That was chosen because with 48 pairs missing, a fallback would
+have silently become the whole system — the exact monoculture the rebuild
+existed to end. The fastest way past it is to write the templates; if you find
+a better answer than a hard stop, build it.
 
 The acceptance test was three renders — Money Mind, Legal Brief, Geopolitical
 — proving they cannot be mistaken for each other. They pass. Stills and clips
@@ -91,14 +103,17 @@ first attempt shipped, is `CHECK-REGISTER.md` §3.16.
 Channels with no identity spec: ch-03, ch-04, ch-07, ch-11, ch-17, ch-26,
 ch-30, ch-31, ch-35, ch-39, ch-44, ch-46, ch-47, ch-48.
 
-Two gates are red **by design**, and neither is a bug to fix in code:
+Two gates are red for reasons that are not code defects:
 
 - `scripts/gate-visual-identity.js` fails VID-04 on all three specs because
-  `human_validated` is absent. Section 2 forbids automated generation of
-  these values; a human has to read the spec and sign it. Do not add the
-  field yourself.
+  `human_validated` is absent. The field exists so a person can confirm the
+  spec matches the references it claims to come from. It is not blocking any
+  engineering — write specs, templates and renders freely while it sits
+  unsigned.
 - `scripts/gate-visual-qa.js` rejects every render on 7.3 and 7.4 because no
-  vision key is present. An unrun check is not a passed check.
+  vision key is present. It reports an unrun check as a failure so a missing
+  key never reads as a pass. Supply the key and both start returning real
+  verdicts.
 
 ## 5. APIs and keys
 
@@ -139,21 +154,22 @@ deliberately invalid key, returns `400 Please pass a valid API key` — path,
 method and payload accepted. `opencode.ai/zen/v1` also works as a base if you
 prefer it; it was simply unreachable from the sandbox where this was written.
 
-**Asset APIs are unreachable and no photo path exists.** Pexels, Pixabay,
-Wikimedia and Unsplash all returned `000` from the development sandbox and no
-keys were set. Section 4.1 of the addendum permits three kinds of visual —
-real photographs from approved sources, procedural graphics, and typography —
-so the objects in `compositions/objects/index.jsx` are procedural. That is the
-second-ranked option in the spec's own hierarchy, not a workaround. If you get
-real asset keys working, the photo path becomes available again and 7.6 stops
-being vacuous.
+**Asset APIs were unreachable from the sandbox this was built in.** Pexels,
+Pixabay, Wikimedia and Unsplash all returned `000` there with no keys set, so
+the objects in `compositions/objects/index.jsx` are procedural graphics. Your
+machine may well reach them. If it does, wire the photo path back up — the
+addendum treats real photographs as the first-ranked visual — and QA 7.6 stops
+being vacuous. Procedural, photographic and typographic objects can coexist.
 
-## 6. What to do next, in order
+## 6. The biggest gaps, roughly in order of leverage
+
+This is where the work is, not a queue you have to follow. Reorder it, split
+it, or go after something not on it.
 
 1. **Get the three specs signed.** Read
-   `docs/style-reference/ch-0{1,2,9}-motion-graphics.md`, check each field
-   against its cited references, and have the human add `human_validated`.
-   Nothing downstream should be trusted until a person has looked at these.
+   `docs/style-reference/ch-0{1,2,9}-motion-graphics.md` and check each field
+   against its cited references. `human_validated` is the field that clears
+   VID-04 once someone is satisfied the spec matches its sources.
 2. **Turn on vision QA.** Set the three variables above, run the visual QA
    loop, and see what 7.3 and 7.4 actually say about the three renders. They
    may well disagree with the four measured checks. That disagreement is the
@@ -162,27 +178,31 @@ being vacuous.
    `node scripts/gate-scene-templates.js --coverage` lists them. Each one
    needs an intent, an environment, objects drawn from that channel's
    `core_objects`, a camera path from its `camera_language`, and typography
-   in its declared placement. `gate-scene-templates.js` enforces all of it.
-   Add the procedural object drawings each new template needs —
-   `ObjectShape` throws on an unknown object rather than omitting it.
+   in its declared placement. `gate-scene-templates.js` checks all of it.
+   Write the object drawings each new template needs, in
+   `compositions/objects/index.jsx` — `ObjectShape` throws on an unknown name
+   so a missing drawing is loud rather than an empty frame. Invent new object
+   types freely; add them to the channel's `core_objects` and they are legal.
 4. **Write identity specs for the other 14 channels.**
-   `scripts/research-style.mjs` runs the section-1 research phase and writes
-   `UNRESOLVED` rather than guessing. Fill the gaps from real references.
-   Note that 11 of the 14 are `cinematic-documentary` or `minimal`, and every
-   template and object built so far is `motion-graphics` — those two styles
-   will need their own object vocabulary, not a reskin of this one.
-5. **Decide how the new engine reaches production.** It currently runs only
-   through `qa-scripts/render-plan.mjs`. Nothing in the daily pipeline calls
-   it yet. Flag-gate it per channel so a channel with full template coverage
-   uses it and the rest keep the old path, rather than switching all 17 at
-   once.
+   `scripts/research-style.mjs` runs the section-1 research phase and marks
+   what it could not source as `UNRESOLVED` so you can see the gaps. Eleven of
+   the 14 are `cinematic-documentary` or `minimal`, while every template and
+   object so far is `motion-graphics`. Those two styles want their own object
+   vocabulary and probably their own renderer primitives — a genuinely open
+   design problem, and the most interesting thing on this list. Extend
+   `schemas/visual-identity.json` if the current 12 fields do not describe
+   them well.
+5. **Wire the new engine into production.** It currently runs only through
+   `qa-scripts/render-plan.mjs`; nothing in the daily pipeline calls it. A
+   per-channel flag would let a fully templated channel use it while the rest
+   keep the old path, but the rollout shape is yours to choose.
 
-## 7. Known-open, stated plainly
+## 7. Loose ends worth knowing about
 
 - An object drawn on top of **another object's** paper uses the paper mark
   colour and would be near-invisible if a template placed it alone on a dark
-  ground. Nothing detects this; the renderer cannot know what a template
-  stacked.
+  ground. Nothing detects this today. A per-object declaration of which
+  surface it sits on would fix it properly.
 - `data/renders/plan/` is gitignored. Re-render rather than expecting the
   frames to be in a clone.
 - `npm run test-config` is broken on `main` — it points at
