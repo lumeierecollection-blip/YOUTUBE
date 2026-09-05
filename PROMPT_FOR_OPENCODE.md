@@ -1,3 +1,9 @@
+> **HISTORICAL — this is the original bootstrap prompt, from before any of
+> this was built.** It records the intent the system was started from and is
+> kept for that reason. It is not a current work order: the pipeline, the 17
+> channels and the visual architecture all exist now. For what to actually do
+> next, read `OPENCODE-BRIEF.md`.
+
 # Project: Automated Multi-Channel YouTube System
 
 ## What we're building

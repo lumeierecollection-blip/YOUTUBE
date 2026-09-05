@@ -57,6 +57,7 @@ per channel, mostly unattended. See `README.md` for the full system and
 
 | What | Where |
 |---|---|
+| Current state and the next moves, for whoever picks this up | `OPENCODE-BRIEF.md` — written at the visual-architecture handoff; `PROMPT_FOR_OPENCODE.md` is the original bootstrap prompt and is historical |
 | Channel config (17 channels) | `config/channels.json` |
 | Per-channel topic history (dedup) | `data/topic-log.json`, via `src/utils/topic-log.cjs` |
 | Daily pipeline (GitHub Actions) | `.github/workflows/daily-pipeline.yml` |
