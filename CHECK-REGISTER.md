@@ -2324,6 +2324,84 @@ banding vertically would flag intent as failure and the check would be
 suppressed within a week. `cameraSafe` returns `top`/`bottom` and scenes use
 them (ENUMERATION clamps its stack both ways), but nothing asserts on them.
 
+**3.12.27 — readiness audit, 2026-09-05: what is actually deployable.**
+Three questions were asked of the REAL system, not of the code as read.
+
+**THE PRODUCTION RENDERER DID NOT PARSE.** `8506ad4` ("perf(render):
+optimize concurrency and audio bitrate", 2026-08-31) wrote a literal
+PowerShell escape — backtick-r-backtick-n — into two lines of `render.js`
+instead of newlines:
+
+    import os from "os";`r`nimport { readFileSync, ... } from "fs";
+    concurrency: Math.max(4, os.cpus().length),`r`n    audioBitrate: "192k",
+
+`node --check` fails on both. That commit is an ancestor of `main`, so the
+renderer has been syntactically invalid on the branch the daily pipeline
+runs from for five days. It was invisible because the pipeline's `render`
+job needs `research-and-script`, which has failed partially on every recent
+run, so `render` was SKIPPED rather than reached — a broken stage hidden
+behind an earlier one. Fixed (`b0ec156`) and proven by a real end-to-end
+render: ch-01, 1080x1920 h264 + aac, 73.1s, 2185 frames. A sweep of all 130
+`.js`/`.mjs`/`.cjs` files under `scripts/` and `src/` found no other syntax
+failure (`compositions/visual.js` is JSX in a `.js` file, which node cannot
+parse and webpack can — not a defect).
+
+**`main` HAS BEEN EMPTIED.** It is 22 files. A run of commits titled "Delete
+.github directory", "Delete src directory", "Delete scripts directory",
+"Delete schemas directory", "Delete qa directory", "Delete prompts
+directory" and "Delete CLAUDE.md" removed everything the pipeline needs.
+`GET /actions/workflows` returns exactly one workflow,
+`network-policy-check.yml`; `daily-pipeline.yml` is not registered. The last
+pipeline run was 2026-09-02 and the daily cron has produced nothing since,
+because the workflow no longer exists on the branch it fires from.
+
+**STYLE EXPOSURE — 11 OF 17 CHANNELS BYPASS THIS ENTIRE REBUILD.**
+motion-graphics: ch-01, ch-02, ch-09, ch-26, ch-44, ch-48 (6).
+cinematic-documentary: ch-04, ch-07, ch-11, ch-17, ch-30, ch-31, ch-35,
+ch-39 (8). minimal: ch-03, ch-46, ch-47 (3). Counted references in the three
+composition files: `cinematic-documentary.jsx` and `minimal.jsx` contain
+ZERO references to `SemanticScene`, `visualPlan` or the beat package. The
+strategy registry, the director, all 17 scenes, the frame-bounds gate and
+every safe-rect fix in 3.12.25-26 reach 6 channels out of 17.
+
+**THE LAST REAL CI RUN (82, 2026-09-02, 21 jobs).** `discover-topics`
+succeeded and committed 17 topics. `research-and-script`: 10 of 17 channels
+succeeded; 5 failed at TTS, 1 at the research gate (ch-07), 1 at Stage C
+(ch-48). `render` and `publish` SKIPPED.
+
+  - **EdgeTTS DOES work in CI** — 10 channels produced voiceovers. The 5
+    failures are `edge_tts.exceptions.NoAudioReceived`, a parameter/voice
+    problem, NOT the WebSocket block this sandbox has. The sandbox's
+    constraint is not CI's constraint, and §3.12.22 should be read with that
+    correction.
+  - **PHOTO SOURCING IS NOT IN THE PIPELINE AT ALL.** The per-channel job's
+    21 steps contain no asset-sourcing step; the workflow's only related
+    line is `pip install edge-tts`. The 10 fetchers in
+    `src/skills/asset-sourcing/sources/` have never run in CI. §3.12.24
+    called them "blocked on egress only" — the more basic fact is that
+    nothing calls them.
+
+**SECRETS COULD NOT BE ENUMERATED, AND THE REASON IS THE ENVIRONMENT.**
+`GET /actions/secrets` returns HTTP 403 `"Access to this GitHub Actions path
+is not permitted through this proxy"` — the agent proxy, not the token. The
+GitHub MCP server has no secrets tool and no `gh` CLI is installed;
+`workflow_dispatch` separately returns 403 `Resource not accessible by
+integration` (no `actions: write`). No per-secret checklist is recorded here
+because none could be measured. What run 82 proves indirectly: the
+`OPENCODE_MODELS` chain authenticated, so at least one of `OPENCODE_API_KEY`
+/ `GOOGLE_GENERATIVE_AI_API_KEY` is live; Cerebras, Groq and Mistral were
+not exercised at all (and `cea3b45` is titled "use free OpenCode Zen models
+to bypass Cerebras 402 billing and missing keys"); the 51
+`CHANNEL_XX_CLIENT_ID`/`_SECRET`/`_REFRESH_TOKEN` secrets were never touched,
+because `publish` is gated `if: dry_run != 'true'`.
+
+**CONTENT METRICS ON REAL SCRIPTS, NOT FIXTURES.** The two production
+renders emit `genericFallbackRatio` 0.424 (ch-01) and 0.429 (ch-02), both
+over VIS-04's 0.4; ch-01's `textNarrationRatio` is 0.809 — four fifths of
+the spoken words are also printed on screen. The bounds work of 3.12.25-26
+is orthogonal to this: a frame can be perfectly inside the safe rect and
+still be the narration in text.
+
 ---
 
 
