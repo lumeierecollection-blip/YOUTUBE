@@ -1,0 +1,126 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786874087273/what-to-say-traffic-stop-longform-2026-08-16/frame-00.png",
+      "bg": "rgb(10,10,10)",
+      "flatness": 1.212095063396946,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.004761904761904762,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.3332465277777778,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786874087273/what-to-say-traffic-stop-longform-2026-08-16/frame-01.png",
+      "bg": "rgb(10,10,10)",
+      "flatness": 1.1858856717231603,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.21083829365079365,
+      "captionContrast": 19.79814571052481,
+      "headlineContrast": 19.79814571052481,
+      "railForegroundFraction": 0.46710069444444446,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786874087273/what-to-say-traffic-stop-longform-2026-08-16/frame-02.png",
+      "bg": "rgb(10,10,10)",
+      "flatness": 1.18778177778546,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.004761904761904762,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.5308159722222222,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786874087273/what-to-say-traffic-stop-longform-2026-08-16/frame-03.png",
+      "bg": "rgb(10,10,10)",
+      "flatness": 1.1903983225063532,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.19005456349206348,
+      "captionContrast": 19.79814571052481,
+      "headlineContrast": 19.79814571052481,
+      "railForegroundFraction": 0.5594618055555556,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786874087273/what-to-say-traffic-stop-longform-2026-08-16/frame-04.png",
+      "bg": "rgb(10,10,10)",
+      "flatness": 1.1853419672968455,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.13876488095238096,
+      "captionContrast": 19.79814571052481,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.57265625,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786874087273/what-to-say-traffic-stop-longform-2026-08-16/frame-05.png",
+      "bg": "rgb(10,10,10)",
+      "flatness": 1.1697377508744113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.005753968253968254,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.5792534722222222,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786874087273/what-to-say-traffic-stop-longform-2026-08-16/frame-06.png",
+      "bg": "rgb(10,10,10)",
+      "flatness": 1.164847285048387,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.08131200396825397,
+      "captionContrast": 4.84812489121031,
+      "headlineContrast": 19.79814571052481,
+      "railForegroundFraction": 0.58203125,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786874087273/what-to-say-traffic-stop-longform-2026-08-16/frame-07.png",
+      "bg": "rgb(10,10,10)",
+      "flatness": 1.1567448218620617,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.005952380952380952,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.5832465277777777,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786874087273/what-to-say-traffic-stop-longform-2026-08-16/frame-08.png",
+      "bg": "rgb(10,10,10)",
+      "flatness": 1.1595670138938006,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0787078373015873,
+      "captionContrast": 19.79814571052481,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.5832465277777777,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "/home/user/YOUTUBE/data/audit/render-review/1786874087273/what-to-say-traffic-stop-longform-2026-08-16/frame-09.png",
+      "bg": "rgb(10,10,10)",
+      "flatness": 1.169075251084017,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.005952380952380952,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "railForegroundFraction": 0.5832465277777777,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

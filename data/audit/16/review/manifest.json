@@ -1,0 +1,42 @@
+{
+  "tool": "stage16-frm-01-02",
+  "video": "data/renders/1/debt-snowball-vs-debt-avalanche-shorts-shorts-2026-08-30.mp4",
+  "durationSec": 73.133333,
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "frames": [
+    {
+      "index": 0,
+      "timeSec": 0,
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review\\frame-00.png"
+    },
+    {
+      "index": 1,
+      "timeSec": 15,
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review\\frame-01.png"
+    },
+    {
+      "index": 2,
+      "timeSec": 30,
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review\\frame-02.png"
+    },
+    {
+      "index": 3,
+      "timeSec": 45,
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review\\frame-03.png"
+    },
+    {
+      "index": 4,
+      "timeSec": 60,
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review\\frame-04.png"
+    },
+    {
+      "index": 5,
+      "timeSec": 73.08,
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review\\frame-05.png"
+    }
+  ],
+  "contactSheet": "C:\\Users\\user\\YOUTUBE\\data\\audit\\16\\review\\contact-sheet.png",
+  "note": "1 frame / 15s per FRM-01; audit with scripts/frame-audit.js per FRM-02/COL-23."
+}

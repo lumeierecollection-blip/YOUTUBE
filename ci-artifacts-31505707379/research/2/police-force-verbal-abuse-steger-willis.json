@@ -1,0 +1,72 @@
+{
+  "topic_slug": "police-force-verbal-abuse-steger-willis",
+  "strongest_angle": "The 2026 Steger v. Willis ruling affirms that using physical force against a citizen who is not resisting arrest—even if they are being obnoxious and cursing at officers on their own porch—is a violation of the Fourth Amendment.",
+  "key_facts": [
+    {
+      "fact": "In Steger v. Willis, the U.S. Court of Appeals for the Sixth Circuit affirmed that Officer Steven Willis used excessive force when he slammed a gate into Melvin Steger and punched him twice after Steger cursed at him.",
+      "source_url": "https://www.opn.ca6.uscourts.gov/opinions.pdf/26a0201p-06.pdf",
+      "source_name": "U.S. Court of Appeals for the Sixth Circuit",
+      "confidence": "high"
+    },
+    {
+      "fact": "The court found that Steger did not pose an imminent threat to the officer because an iron gate separated them and Steger made no attempt to leave his front porch.",
+      "source_url": "https://www.opn.ca6.uscourts.gov/opinions.pdf/26a0201p-06.pdf",
+      "source_name": "U.S. Court of Appeals for the Sixth Circuit",
+      "confidence": "high"
+    },
+    {
+      "fact": "The triggering event for the use of force was Steger yelling 'Fuck you!' to Officer Willis after being asked not to cuss.",
+      "source_url": "https://www.opn.ca6.uscourts.gov/opinions.pdf/26a0201p-06.pdf",
+      "source_name": "U.S. Court of Appeals for the Sixth Circuit",
+      "confidence": "high"
+    },
+    {
+      "fact": "The court ruled that a suspect has a clearly established constitutional right to be free from physical force by police when they are not resisting efforts to apprehend them.",
+      "source_url": "https://www.opn.ca6.uscourts.gov/opinions.pdf/26a0201p-06.pdf",
+      "source_name": "U.S. Court of Appeals for the Sixth Circuit",
+      "confidence": "high"
+    },
+    {
+      "fact": "The U.S. Supreme Court previously held in City of Houston v. Hill that the First Amendment protects a significant amount of verbal criticism and challenge directed at police officers.",
+      "source_url": "https://www.law.cornell.edu/supremecourt/text/482/451",
+      "source_name": "Supreme Court of the United States",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Punches delivered by Officer Willis",
+      "value": 2,
+      "unit": "punches",
+      "source_url": "https://www.opn.ca6.uscourts.gov/opinions.pdf/26a0201p-06.pdf"
+    },
+    {
+      "label": "Duration of the use-of-force event",
+      "value": 13,
+      "unit": "seconds",
+      "source_url": "https://exa.ai/library/legal/opinion/v4bqw8xkjp4wj8b6ph15z9wb"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Melvin Steger",
+      "kind": "person"
+    },
+    {
+      "name": "Steven Willis",
+      "kind": "person"
+    },
+    {
+      "name": "Mandie Appleman",
+      "kind": "person"
+    },
+    {
+      "name": "Covington Police Department",
+      "kind": "organization"
+    },
+    {
+      "name": "U.S. Court of Appeals for the Sixth Circuit",
+      "kind": "organization"
+    }
+  ]
+}

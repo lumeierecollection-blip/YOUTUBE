@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Stage C output for minimal and cinematic-documentary channels. Matches what src/skills/remotion-render/render.js's toContentSections() and the minimal/cinematic-documentary compositions actually read today (visual_cue, sfx_cue, b_roll, text_overlay, transition_out) — unlike schema.mg.json's beats/archetype contract, every field here is already consumed by the renderer as-is.",
+  "type": "object",
+  "properties": {
+    "channel_id": { "type": "string" },
+    "topic_slug": { "type": "string" },
+    "format":     { "type": "string", "enum": ["shorts", "longform"] },
+    "hook":       { "type": "string", "minLength": 30, "maxLength": 220 },
+    "sections": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id":            { "type": "string" },
+          "timing":        { "type": "string" },
+          "voiceover":     { "type": "string", "minLength": 40 },
+          "visual_cue":    { "type": "string", "minLength": 10 },
+          "sfx_cue":       { "type": "string" },
+          "b_roll":        { "type": "array", "items": { "type": "string" } },
+          "animation_cue": { "type": "string" },
+          "transition_out":{ "type": "string" },
+          "text_overlay": {
+            "description": "Object or null, never a bare string — cinematic-documentary.jsx renders {section.textOverlay} directly as a React child (LAYOUT-SYSTEM §8.2).",
+            "type": ["object", "null"],
+            "properties": { "text": { "type": "string" } }
+          }
+        },
+        "required": ["id", "voiceover", "visual_cue"]
+      }
+    },
+    "sources_used": { "type": "array", "minItems": 3, "items": { "type": "string" } }
+  },
+  "required": ["channel_id", "topic_slug", "format", "hook", "sections", "sources_used"]
+}

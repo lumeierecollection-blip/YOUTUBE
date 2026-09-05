@@ -1,0 +1,40 @@
+﻿106:   return anchorFrame + delay <= dur - 6 ? `anchor+${delay}` : "end-6";
+107: }
+108: 
+109: /** The headline fallback: the beat's own anchor phrase, â‰¤maxChars and â‰¤4
+110:  *  tokens (CLAIM-ENC-9-01 â€” CONTRAST's anchor is the first token after the
+111:  *  pivot marker, i.e. the consequence start; beats.js pickAnchorTokenIndex). */
+112: export function headlineFor(beat, maxChars = HEADLINE_MAX_CHARS, maxTokens = 4) {
+113:   const tokens = beat.wordTokens || [];
+114:   const anchor = tokens[beat.anchorTokenIndex];
+115:   if (!anchor) return String(beat.text || "").split(/\s+/)[0] || "";
+116:   let phrase = anchor.text;
+117:   let words = 1;
+118:   for (let i = beat.anchorTokenIndex + 1; i < tokens.length; i++) {
+119:     if (words >= maxTokens) break;
+120:     const next = `${phrase} ${tokens[i].text}`;
+121:     if (next.length > maxChars) break;
+122:     phrase = next;
+123:     words += 1;
+124:   }
+125:   return phrase;
+126: }
+127: 
+128: /** scene.headline when it carries a real value, else the fallback. */
+129: function sceneOr(beat, fallback) {
+130:   const h = beat.scene && beat.scene.headline;
+131:   return h && String(h).trim() ? String(h).trim() : fallback;
+132: }
+133: 
+134: /** CLAIM-ENC-9-01 â€” HERO_NUMBER headline = the unit: real data first, then
+135:  *  the production scene, then the caption's own number unit. Empty â†’ the
+136:  *  headline layer is omitted (an invented phrase is never printed). */
+137: function heroNumberHeadline(beat) {
+138:   const fromData = beat.data && beat.data.unit ? normalizeUnit(beat.data.unit) : "";
+139:   if (fromData) return fromData;
+140:   const fromScene = beat.scene && beat.scene.headline;
+141:   if (fromScene && String(fromScene).trim()) return String(fromScene).trim();
+142:   // parseNumber can return null for classifier-marked HERO_NUMBER captions
+143:   // ("thirty-five species" â€” a digit-less compound; beats.js classifyBeat's
+144:   // word list is wider than parseNumber's parser). Null â†’ "" â†’ layer omitted:
+145:   // no invented unit, never a crash. The value-side fix (parseNumber compound

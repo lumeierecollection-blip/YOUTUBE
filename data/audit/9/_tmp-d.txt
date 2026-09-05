@@ -1,0 +1,17 @@
+﻿export const D = {
+  micro: 4, // 133ms â€” accent flash, counter tick, chip pop
+  short: 6, // 200ms â€” small element entrance (icon, label, dot)
+  base: 9, // 300ms â€” standard entrance (text line, bar, node)
+  large: 12, // 400ms â€” large element (headline, panel, chart frame)
+  complex: 15, // 500ms â€” full layout shift, scene furniture rebuild
+  push: 60, // 2.0s  â€” slow camera push / Ken Burns, ONE at a time
+  hold: 45, // 1.5s  â€” minimum on-screen time for readable text (Â§3.3)
+};
+
+import { SAFE_SHORTS, SLOTS_SHORTS } from "../layout/slots.js";
+
+/** Hard safe rect â€” Â§2.1. Design to the Google numbers. Single source: layout/slots.js. */
+export const SAFE = SAFE_SHORTS;
+
+/** Minimum type sizes â€” Â§3.1, scaled by u = min(w,h)/1080. */
+export const TYPE = {

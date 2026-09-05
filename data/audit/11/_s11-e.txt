@@ -1,0 +1,221 @@
+560: }
+561: 
+562: function gateG6b(rows, w) {
+563:   const cs = chips(rows);
+564:   if (cs.length !== 4) return { pass: false, note: `chip count ${cs.length}` };
+565:   const allSettled = cs.every(settled);
+566:   const bottom = cs[cs.length - 1].y + cs[cs.length - 1].h;
+567:   const anchored = Math.abs(bottom - (w.stage.y + w.stage.h)) <= 0.5;
+568:   const first = cs[0];
+569:   return {
+570:     pass: allSettled && anchored && first.dtext === "Beta" && String(first.anchor) === "15",
+571:     note: `first=${first.dtext}/${first.anchor} settled=${allSettled} anchored=${anchored} bottom=${bottom.toFixed(1)} want=${w.stage.y + w.stage.h}`,
+572:   };
+573: }
+574: 
+575: function gateG6c(rows) {
+576:   const cs = chips(rows);
+577:   if (cs.length !== 5) return { pass: false, note: `chip count ${cs.length}` };
+578:   const oldest = cs[0];
+579:   return {
+580:     pass: oldest.dtext === "Alpha" && oldest.opacity < 0.999 && inFlight(oldest),
+581:     note: `oldest ${oldest.dtext} op=${oldest.opacity} tr=${oldest.translate} (drop fade in progress)`,
+582:   };
+583: }
+584: 
+585: function gateImagePush(rows) {
+586:   const img = byRole(rows, "image");
+587:   if (!img) return { pass: false, note: "no image" };
+588:   const sc = parseFloat(img.scale);
+589:   return { pass: sc > 1.0, note: `image scale=${img.scale} op=${img.opacity} (push mid-run)` };
+590: }
+591: 
+592: function gateMidRise(rows) {
+593:   const h = byRole(rows, "headline");
+594:   if (!h) return { pass: false, note: "no headline" };
+595:   const mid = h.opacity < 0.999 || (h.translate !== "none" && h.translate !== "0px" && h.translate !== "0px 0px");
+596:   return { pass: mid, note: `headline op=${h.opacity} tr=${h.translate} (mid-flight evidence)` };
+597: }
+598: 
+599: // ── D6 source scan ─────────────────────────────────────────────────────────
+600: // Every spring config in beats/*.jsx must be ζ ∈ [0.46, 1.0] EXCEPT the
+601: // documented A3.3 / MANUAL D1 E.push exception (ImageBeat's overdamped
+602: // settle). Resolves Progress's `config: SPRING_CONFIG` reference to its
+603: // literal in the same file. ζ = damping / (2·√(stiffness·mass)), mass = 1
+604: // (Remotion default; Easing.spring defaults stiffness 100 when omitted).
+605: function zeta(damping, stiffness) {
+606:   return damping / (2 * Math.sqrt(stiffness));
+607: }
+608: 
+609: function gateD6() {
+610:   const dir = resolve(BEATS_DIR);
+611:   const files = readdirSync(dir).filter((f) => f.endsWith(".jsx"));
+612:   const sites = [];
+613:   const configs = {}; // file → named spring config literals
+614:   for (const f of files) {
+615:     const src = readFileSync(resolve(dir, f), "utf8");
+616:     const cfgRe = /const\s+(\w+)\s*=\s*\{([^}]*damping[^}]*)\};?/g;
+617:     let cm;
+618:     while ((cm = cfgRe.exec(src))) configs[`${f}:${cm[1]}`] = cm[2];
+619:     const re = /(?:Easing\.spring|spring)\(\s*\{([^}]*)\}/g;
+620:     let m;
+621:     while ((m = re.exec(src))) sites.push({ file: f, opts: m[1] });
+622:   }
+623:   const resolved = sites.map((s) => {
+624:     const cfgRef = /config:\s*(\w+)/.exec(s.opts);
+625:     const opts = cfgRef ? configs[`${s.file}:${cfgRef[1]}`] || s.opts : s.opts;
+626:     const damping = Number(/damping:\s*([\d.]+)/.exec(opts)?.[1] ?? NaN);
+627:     const stiffness = Number(/stiffness:\s*([\d.]+)/.exec(opts)?.[1] ?? 100);
+628:     return {
+629:       ...s,
+630:       damping,
+631:       stiffness,
+632:       zeta: Number.isFinite(damping) ? zeta(damping, stiffness) : NaN,
+633:     };
+634:   });
+635:   const progress = resolved.find((s) => s.file === "Progress.jsx");
+636:   const image = resolved.find((s) => s.file === "ImageBeat.jsx");
+637:   const others = resolved.filter((s) => s.file !== "Progress.jsx" && s.file !== "ImageBeat.jsx");
+638:   const okCount = resolved.length === 2 && others.length === 0;
+639:   const okProgress =
+640:     progress && Math.abs(progress.zeta - zeta(13.9, 180)) < 1e-6 && progress.zeta >= 0.46 && progress.zeta <= 1.0;
+641:   const okImage = image && Math.abs(image.damping - 200) < 1e-9 && image.zeta > 1.0; // the sanctioned exception
+642:   return {
+643:     pass: okCount && !!okProgress && !!okImage,
+644:     note: `sites=${resolved.length} ${resolved
+645:       .map((s) => `${s.file} ζ=${s.zeta.toFixed(3)} (d=${s.damping}, k=${s.stiffness})`)
+646:       .join(" | ")} — Progress ζ=0.518 in-range, ImageBeat push ζ=10 = A3.3 exception`,
+647:   };
+648: }
+649: 
+650: // ── C17 pixel-identity region ─────────────────────────────────────────────
+651: 
+652: function c17Region(w) {
+653:   const s = w.stage;
+654:   const h = w.compiled.headline;
+655:   const lefts = [s.x, h ? h.x : s.x];
+656:   const tops = [s.y, h ? h.y : s.y];
+657:   const rights = [s.x + s.w, h ? h.x + h.w : s.x + s.w];
+658:   const bottoms = [s.y + s.h, h ? h.y + h.h : s.y + s.h];
+659:   return {
+660:     x0: Math.max(0, Math.min(...lefts) - 8),
+661:     y0: Math.max(0, Math.min(...tops) - 8),
+662:     x1: Math.min(w.width, Math.max(...rights) + 8),
+663:     y1: Math.min(w.height, Math.max(...bottoms) + 8),
+664:   };
+665: }
+666: 
+667: // ── MAIN ───────────────────────────────────────────────────────────────────
+668: 
+669: function parseMeasures(logs) {
+670:   const rows = [];
+671:   for (const log of logs) {
+672:     const line = typeof log === "string" ? log : String(log && log.text ? log.text : log);
+673:     if (line.includes("MOTION_MEASURE:")) {
+674:       try {
+675:         const json = line.slice(line.indexOf("MOTION_MEASURE:") + "MOTION_MEASURE:".length);
+676:         const arr = JSON.parse(json);
+677:         if (Array.isArray(arr)) rows.push(...arr);
+678:       } catch {
+679:         /* ignore malformed */
+680:       }
+681:     }
+682:   }
+683:   return rows;
+684: }
+685: 
+686: // GATE SCHEDULE — frames are beat-relative; hold frames per §0.3 of the
+687: // ledger. Mid-flight evidence frames: hero f17 (headline pre-RISE), term f19
+688: // (rule mid-draw), list f18/f28/f45 (run in flight), relation f32/f33 (the
+689: // OLD declared hold tA+23 — headline still moving there), image f30 (push).
+690: const SCHEDULE = [
+691:   { run: "hero", frame: 17, gates: ["mid-rise"] },
+692:   { run: "hero", frame: 66, gates: ["G1", "G2a", "G2b", "hold-static"] },
+693:   { run: "term", frame: 19, gates: ["G5"] },
+694:   { run: "term", frame: 30, gates: ["G1", "G2b", "hold-static"] },
+695:   { run: "list", frame: 18, gates: ["G6a"] },
+696:   { run: "list", frame: 28, gates: ["G6c"] },
+697:   { run: "list", frame: 41, gates: ["hold-static"] },
+698:   { run: "list", frame: 45, gates: ["G6b"] },
+699:   { run: "contrast", frame: 23, gates: ["G1", "hold-static"] },
+700:   { run: "relation", frame: 32, gates: ["mid-rise"] },
+701:   { run: "relation", frame: 33, gates: ["mid-rise"] },
+702:   { run: "relation", frame: 37, gates: ["G1", "hold-static"] },
+703:   { run: "image", frame: 30, gates: ["image-push"] },
+704:   { run: "image", frame: 66, gates: ["G1", "hold-static"] },
+705:   { run: "statement", frame: 19, gates: ["G1", "hold-static"] },
+706:   { run: "progress", frame: 38, gates: ["G1", "hold-static"] },
+707: ];
+708: 
+709: // hold−1 / hold — the C17 pairs (both formats). PROGRESS (37,38): the accent
+710: // switch is a discrete change AT 37, so the first identical pair is (37,38).
+711: const C17_PAIRS = [
+712:   { run: "hero", a: 65, b: 66 },
+713:   { run: "term", a: 29, b: 30 },
+714:   { run: "list", a: 40, b: 41 },
+715:   { run: "contrast", a: 22, b: 23 },
+716:   { run: "relation", a: 36, b: 37 },
+717:   { run: "image", a: 65, b: 66 },
+718:   { run: "statement", a: 18, b: 19 },
+719:   { run: "progress", a: 37, b: 38 },
+720: ];
+721: 
+722: async function main() {
+723:   mkdirSync(OUT_DIR, { recursive: true });
+724:   rmSync(REPORT, { force: true });
+725: 
+726:   const wiredByRun = {};
+727:   const wiredList = [];
+728:   for (const beat of FIX) {
+729:     for (const fmt of ["shorts", "longform"]) {
+730:       const w = wire(beat, fmt);
+731:       wiredByRun[`${RUN_SLUG[beat.id] || beat.id}-${fmt}`] = w;
+732:       wiredList.push(w);
+733:     }
+734:   }
+735: 
+736:   writeFileSync(ENTRY, serializeEntry(wiredList), "utf8");
+737: 
+738:   console.log("bundling…");
+739:   const serveUrl = await bundle({
+740:     entryPoint: resolve(ENTRY), // plain absolute path (Windows-safe)
+741:     publicDir: PUBLIC_DIR,
+742:     onProgress: () => {},
+743:   });
+744:   console.log("serveUrl:", serveUrl);
+745: 
+746:   const browser = await openBrowser(CHROME);
+747:   const report = { tA, gates: [], c17: [], d6: null, stills: [] };
+748:   let failures = 0;
+749: 
+750:   const runGate = async (id, frame, gateName, fn) => {
+751:     const out = `${OUT_DIR}${id}-f${frame}.png`;
+752:     const logs = [];
+753:     try {
+754:       const composition = await selectComposition({ serveUrl, id });
+755:       await renderStill({
+756:         serveUrl,
+757:         composition,
+758:         frame,
+759:         output: out,
+760:         browser,
+761:         logLevel: "error",
+762:         onBrowserLog: (l) => logs.push(l),
+763:       });
+764:     } catch (err) {
+765:       report.gates.push({ id, frame, gate: gateName, pass: false, note: `render error: ${err.message}` });
+766:       failures++;
+767:       return;
+768:     }
+769:     const rows = parseMeasures(logs);
+770:     report.stills.push({ id, frame, out });
+771:     const r = fn(rows);
+772:     report.gates.push({ id, frame, gate: gateName, pass: r.pass, note: r.note });
+773:     if (!r.pass) failures++;
+774:     console.log(`${r.pass ? "PASS" : "FAIL"} ${gateName} ${id}@f${frame}: ${r.note}`);
+775:   };
+776: 
+777:   const gateFns = {
+778:     G1: (rows, w) => gateG1(rows, w),
+779:     G2a: (rows) => gateG2a(rows),
+780:     G2b: (rows, w) => gateG2b(rows, w),

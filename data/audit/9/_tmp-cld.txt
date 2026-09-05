@@ -1,0 +1,18 @@
+﻿319:       to: a.to,
+320:       accent: true,
+321:     });
+322:   }
+323: 
+324:   // Â§3.7 / Â§5.3 â€” the headline and the caption must never collide (the
+325:   // headline slot publishes its occupied height; a two-line caption grows
+326:   // into the slot's lower 48 px, never over the headline text).
+327:   const headline = rects.find((r) => r.role === "headline");
+328:   const caption = rects.find((r) => r.role === "caption");
+329:   if (headline && caption && rectsOverlap(headline, caption)) {
+330:     throw new Error(
+331:       `${spec.id}: headline rect collides with the caption rect (Â§3.7/Â§5.3) â€” use a 1-line headline or a 1-line caption`
+332:     );
+333:   }
+334: 
+335:   // R4 â€” final assertions on every emitted rect.
+336:   for (const rect of rects) {

@@ -1,0 +1,14 @@
+{
+  "file": "C:/Users/user/YOUTUBE/data/audit/14/measure/debt-snowball-shorts-vo.mp3",
+  "bytes": 1168865,
+  "durationSec": 73,
+  "bitRate": "128000",
+  "peakDbFS": -1.93,
+  "rmsDbFS": -58.24,
+  "nonzeroSampleRatio": 0,
+  "isSilent": false,
+  "unityRenderPeakDbFS": -1.93,
+  "exceedsMinus3DbFS": true,
+  "sameBytesAsRepoVoMp3": true,
+  "note": "render path plays vo.mp3 at unity (audio.js static import, <Audio> no volume prop)"
+}

@@ -1,0 +1,138 @@
+name: review-publish
+
+# Renders a channel's latest script in CI and uploads it to YouTube as
+# PRIVATE so the result can be reviewed before it ever goes public.
+# Credentials are never committed: they come from per-channel GitHub
+# secrets (CHANNEL_01_CLIENT_ID / CHANNEL_01_CLIENT_SECRET /
+# CHANNEL_01_REFRESH_TOKEN, etc.), materialized into
+# config/creds/ch-0<id>.json right before use.
+#
+# Trigger:
+#   - workflow_dispatch: manual run, channel_id + script inputs
+#   - push to any branch touching this file (lets it run without gh).
+#     Push runs have NO inputs, so every inputs.channel_id / inputs.script
+#     reference falls back to the defaults below (|| fallback) - without
+#     that the push path evaluates them as empty and dies at materialize.
+#
+# Secrets expected: per-channel triples, same scheme as daily-pipeline.yml:
+#   CHANNEL_01_CLIENT_ID / CHANNEL_01_CLIENT_SECRET / CHANNEL_01_REFRESH_TOKEN
+#   CHANNEL_02_CLIENT_ID / CHANNEL_02_CLIENT_SECRET / CHANNEL_02_REFRESH_TOKEN
+# Add a channel by extending the env block in the materialize step.
+#
+# The script path is a single explicit input and the mp3/srt are derived
+# from it (tts.js names outputs "<script-basename>-vo.mp3|.srt"; render.js
+# findSrtPath() only accepts the exact sibling .srt). Never glob the
+# research/tts dirs independently -- alphabetical pairing silently attaches
+# the wrong topic's narration to the wrong visuals.
+
+on:
+  workflow_dispatch:
+    inputs:
+      channel_id:
+        description: Numeric channel id (e.g. 1)
+        default: "1"
+        required: true
+      script:
+        description: Script path (root-relative) to render + publish
+        default: "data/research/1/debt-snowball-vs-debt-avalanche-shorts-script.json"
+        required: true
+  push:
+    branches: ["**"]
+    paths:
+      - ".github/workflows/review-publish.yml"
+
+jobs:
+  render-and-publish-private:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: src/skills/remotion-render/package-lock.json
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Install render deps + edge-tts + ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          pip install edge-tts pillow numpy
+          cd src/skills/remotion-render
+          npm ci
+          npx remotion browser ensure
+
+      - name: Materialize channel credentials from secrets
+        env:
+          CH01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CH01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CH01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CH02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CH02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CH02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+        run: |
+          CHANNEL_ID="${{ inputs.channel_id || '1' }}"
+          PAD=$(printf '%02d' "$CHANNEL_ID")
+          mkdir -p config/creds
+          node -e "
+            const fs = require('fs');
+            const id = process.argv[1];
+            const pad = process.argv[2];
+            const clientId = process.env['CH' + pad + '_CLIENT_ID'];
+            const clientSecret = process.env['CH' + pad + '_CLIENT_SECRET'];
+            const refreshToken = process.env['CH' + pad + '_REFRESH_TOKEN'];
+            if (!clientId || !clientSecret || !refreshToken) {
+              console.error('Missing credential secret for channel ' + id + ' (CHANNEL_' + pad + '_CLIENT_ID/_CLIENT_SECRET/_REFRESH_TOKEN)');
+              process.exit(1);
+            }
+            fs.writeFileSync(
+              'config/creds/ch-' + pad + '.json',
+              JSON.stringify({ client_id: clientId, client_secret: clientSecret, refresh_token: refreshToken }, null, 2)
+            );
+            console.log('Credentials OK for ch-' + pad);
+          " "$CHANNEL_ID" "$PAD"
+
+      - name: Resolve run inputs
+        id: run
+        run: |
+          CHANNEL_ID="${{ inputs.channel_id || '1' }}"
+          SCRIPT="${{ inputs.script || 'data/research/1/debt-snowball-vs-debt-avalanche-shorts-script.json' }}"
+          SLUG=$(basename "$SCRIPT" .json)
+          MP3="data/tts/$CHANNEL_ID/$SLUG-vo.mp3"
+          echo "CHANNEL_ID=$CHANNEL_ID" >> "$GITHUB_OUTPUT"
+          echo "SCRIPT=$SCRIPT" >> "$GITHUB_OUTPUT"
+          echo "MP3=$MP3" >> "$GITHUB_OUTPUT"
+          if [ ! -f "$SCRIPT" ]; then
+            echo "Script not found: $SCRIPT"
+            exit 1
+          fi
+
+      - name: Regenerate voiceover from the chosen script
+        run: |
+          node src/utils/tts.js "${{ steps.run.outputs.CHANNEL_ID }}" "${{ steps.run.outputs.SCRIPT }}"
+
+      - name: Render
+        run: |
+          node src/skills/remotion-render/render.js shorts "${{ steps.run.outputs.CHANNEL_ID }}" "${{ steps.run.outputs.SCRIPT }}" "${{ steps.run.outputs.MP3 }}" 1
+
+      - name: Publish PRIVATE to YouTube
+        run: |
+          node src/skills/youtube-publish/run.js "${{ inputs.channel_id || '1' }}"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: review-render-${{ inputs.channel_id || '1' }}
+          path: |
+            data/renders/${{ inputs.channel_id || '1' }}/
+            data/publish-queue/${{ inputs.channel_id || '1' }}/
+          retention-days: 7

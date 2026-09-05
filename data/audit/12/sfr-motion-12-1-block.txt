@@ -1,0 +1,90 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// MOT-18 — motion blur only inside a transition subtree
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * The primitives that count as MOTION blur in this composition graph,
+ * distinct from DEPTH blur. The only blur today is DEPTH blur: the fixed
+ * per-plane `blur` constants in DEPTH_PROFILES, applied by stage.jsx from the
+ * resolved plane value — never a function of frame/progress, so it can never
+ * read as motion. MOTION blur is temporal: Remotion's CameraMotionBlur
+ * averages `samples` time-offset frames, so on a frame with no motion it
+ * averages a frame with itself — a useless, colour-destructive smear of
+ * what-did-not-move. The vendored shotcraft reference confines CameraMotionBlur
+ * to camera-move / transition segments only (demos/transition/shot-transitions/
+ * WhipPanReal.tsx: "blur 只包甩动段 ... 0–35 A hold → 35–43 甩(糊) → 43–120 B
+ * hold(真静止)"). MOT-18: these may exist ONLY inside a transition subtree;
+ * everywhere else (holds, subtitle stages, end card) they must be 0.
+ */
+export const MOTION_BLUR_SIGNALS = [
+  { name: "@remotion/motion-blur package", re: /@remotion\/motion-blur/ },
+  { name: "<CameraMotionBlur>", re: /<CameraMotionBlur\b/ },
+  { name: "<Trail> (motion-blur package)", re: /<Trail\b/ },
+];
+
+/**
+ * A `blur(...)` whose radius is driven by frame/progress is a blur that
+ * follows motion (motion blur), not the static per-plane depth blur.
+ * `blur(${plane.blur}px)` (stage.jsx) does NOT match: after `blur(` comes a
+ * resolved constant, never a frame token. Catches a future mistake that
+ * animates the depth blur per frame, which would turn a depth anchor into
+ * motion blur.
+ */
+export const FRAME_BLUR_RE = /blur\(\s*.*?(?:interpolate\s*\(|ease\s*\(|progressOf\s*\(|Math\.(?:sin|cos)\s*\(|\bframe\b|\bp\b\s*[*+])/;
+
+/**
+ * Pure scanner: given one source file's text and whether that file is a
+ * transition context, return its motion-blur signals, each tagged with line
+ * and in/out of transition. Pure (takes text, not paths) so a test can feed
+ * planted source and prove the scanner has teeth.
+ */
+export function scanMotionBlurSource(src, { isTransitionContext = false } = {}) {
+  const hits = [];
+  const lines = String(src).split(/\r?\n/);
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    for (const sig of MOTION_BLUR_SIGNALS) {
+      if (sig.re.test(line)) hits.push({ line: i + 1, signal: sig.name, inTransition: isTransitionContext });
+    }
+    if (/blur\(/.test(line) && FRAME_BLUR_RE.test(line)) {
+      hits.push({ line: i + 1, signal: "frame-driven blur (a blur that follows motion)", inTransition: isTransitionContext });
+    }
+  }
+  return hits;
+}
+
+/**
+ * A file path is a transition context when it is the transition subsystem
+ * itself (a transition/presentation component, or the transition code in
+ * beats.js). Every other file is by definition a hold/subtitle/resting
+ * context, so a motion-blur signal there is OUTSIDE any transition subtree.
+ */
+export function isTransitionContextFile(filePath) {
+  const base = String(filePath).toLowerCase().replace(/\\/g, "/");
+  return /(?:^|\/)(?:transition|transitions|presentation|presentations)\b/.test(base);
+}
+
+/**
+ * MOT-18 gate over the whole graph. `sourceMap` maps path -> source text.
+ * Pass iff every motion-blur signal is inside a transition subtree
+ * (outsideTransition === 0).
+ */
+export function gateMotionBlur(sourceMap) {
+  const outside = [];
+  const inside = [];
+  let totalHits = 0;
+  for (const [file, src] of Object.entries(sourceMap)) {
+    const inTransition = isTransitionContextFile(file);
+    for (const h of scanMotionBlurSource(src, { isTransitionContext: inTransition })) {
+      totalHits += 1;
+      (h.inTransition ? inside : outside).push({ file, ...h });
+    }
+  }
+  return {
+    pass: outside.length === 0,
+    totalMotionBlur: totalHits,
+    outsideTransition: outside.length,
+    insideTransition: inside.length,
+    detail: { inside, outside },
+  };
+}

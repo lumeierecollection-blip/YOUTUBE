@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "channel_id": "1",
+    "generated_at": "2026-08-08T18:29:37.163Z",
+    "api_available": false,
+    "fallback": "content_pillars"
+  },
+  "trending_topics": [],
+  "content_pillars": [
+    "50/30/20 budget breakdowns",
+    "debt payoff strategies",
+    "saving challenges",
+    "budget tool reviews",
+    "money mindset shifts"
+  ],
+  "notes": "API credentials not available. Using content pillars as topic source."
+}

@@ -1,0 +1,10 @@
+{
+  "voice": "en-US-JennyNeural",
+  "segments": 4,
+  "total_words": 141,
+  "text_file": "C:\\Users\\Chile\\YOUTUBE\\data\\tts\\1\\debt-snowball-vs-debt-avalanche-shorts-script-vo-text.txt",
+  "audio_output": "C:\\Users\\Chile\\YOUTUBE\\data\\tts\\1\\debt-snowball-vs-debt-avalanche-shorts-script-vo.mp3",
+  "generated_at": "2026-08-04T00:20:00.000Z",
+  "status": "done",
+  "duration_seconds": 72.79
+}

@@ -1,0 +1,99 @@
+name: visual-qa-loop
+
+# Renders a short sample, checks it for free, and only escalates to a paid
+# vision call when the free check is clean. Hard-capped at 3 attempts so a
+# failing composition can never drain the credit budget.
+
+on:
+  workflow_dispatch:
+    inputs:
+      composition:
+        description: Remotion composition id
+        required: true
+      max_attempts:
+        description: Hard cap on fix iterations
+        default: "3"
+
+concurrency:
+  group: visual-qa-${{ github.ref }}-${{ inputs.composition }}
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install
+        run: |
+          npm ci
+          pip install pillow numpy
+          npx remotion browser ensure
+
+      - name: Attempt loop
+        env:
+          VISION_API_BASE: ${{ vars.VISION_API_BASE }}
+          VISION_API_KEY: ${{ secrets.VISION_API_KEY }}
+          VISION_MODEL: ${{ vars.VISION_MODEL }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+        run: |
+          set +e
+          MAX="${{ inputs.max_attempts }}"
+          COMP="${{ inputs.composition }}"
+          mkdir -p qa out
+
+          for i in $(seq 1 "$MAX"); do
+            echo "::group::attempt $i"
+
+            # Sample render only — 6 seconds at half scale. Never full length in QA.
+            npx remotion render "$COMP" "out/qa.mp4" \
+              --frames=0-179 --scale=0.5 --concurrency=1 --jpeg-quality=70 \
+              ${CHROME_PATH:+--browser-executable="$CHROME_PATH"} || exit 1
+
+            # Free deterministic pass.
+            python scripts/qa_frames.py \
+              --video out/qa.mp4 --report "qa/report-$i.json" --sheet "qa/sheet-$i.jpg"
+            FREE=$?
+
+            if [ $FREE -eq 0 ]; then
+              # Only now is a paid call justified.
+              if [ -n "$VISION_MODEL" ]; then
+                python scripts/vision_critic.py \
+                  --sheet "qa/sheet-$i.jpg" --context "qa/report-$i.json" \
+                  --out "qa/critique-$i.json"
+                [ $? -eq 0 ] && echo "PASSED on attempt $i" && echo "::endgroup::" && exit 0
+              else
+                echo "no vision model configured; free checks passed" && exit 0
+              fi
+            fi
+
+            # Hand the findings back to the agent to fix, then loop.
+            npx opencode run \
+              "Read qa/report-$i.json and qa/critique-$i.json if it exists. Fix ONLY the
+               highest-severity defect listed, in composition $COMP, using parameters from
+               a video-shotcraft shot recipe card. Change nothing else. Do not render."
+
+            echo "::endgroup::"
+          done
+
+          echo "still failing after $MAX attempts — see qa/ artifacts"
+          exit 1
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qa-${{ inputs.composition }}
+          path: |
+            qa/
+            out/qa.mp4
+          retention-days: 7

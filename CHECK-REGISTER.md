@@ -161,7 +161,7 @@ State column: **FAIL** = measured or computed as failing today Â·
 | TYP-05 | Caption â‰¤25 chars per line | caption compiler | â‰¤25 | 1 | MAJOR | 10 | N/B |
 | TYP-06 | Caption â‰¤2 lines, â‰¤7 words per page | caption compiler | â‰¤2 / â‰¤7 | 1 | MAJOR | 10 | N/B |
 | TYP-07 | Caption â‰¤15 characters per second | page duration Ã· chars | â‰¤15 CPS | 1 | MAJOR | 10 | N/B |
-| TYP-08 | Caption page duration in range | compiler | 833â€“5000 ms | 1 | MAJOR | 10 | N/B |
+| TYP-08 | Caption page duration in range | `compositions/beats.js` `buildCaptionPages` window enforcement, gated by `gateCaptions` | 833â€“5000 ms | 1 | MAJOR | 10 | **PASS 2026-09-03** - the window-enforcement pass ran BEFORE the clause-boundary repair, and the repair moves a word across a boundary and moves the timing with it (`left.endMs = tok.toMs`, `right.startMs = ...`), shrinking one of the two pages. Nothing re-checked afterwards, and the final clamp only rescues the LAST page, so a page that satisfied the floor before the repair could end up under it and stay there. Seven ch-fixture cues were short for exactly this reason. The pass is now a named function run again after the repair; a second merge cannot re-strand a dangling word because the merged page ends where the right page ended, a boundary the repair already walked. 47 pages -> 42, all in range |
 | TYP-09 | â‰¥2 blank frames between caption pages | compiler | â‰¥2 | 1 | MAJOR | 10 | N/B |
 | TYP-10 | Headline and caption share â‰¤2 words | compiler | â‰¤2 | 1 | MINOR | 10 | N/B |
 | TYP-11 | Caption is SRT-derived, not word-count chunked | `grep chunkVoiceover` | 0 hits | 1 | BLOCKER | 10 | **PASS** - 2026-08-30 (wrapper deleted; both call sites call `chunkTextClauseAware` directly) |
@@ -241,7 +241,7 @@ below:
 |---|---|---|---|---|---|---|---|
 | MOT-01 | Beats are SRT-derived, not section-index divided | `grep "durationInFrames / .*sections"` | 0 hits | 1 | BLOCKER | 9 | **PASS** - 2026-08-26 (visual-generation overhaul): confirmed real and worse than the grep implies — `minimal.jsx` divided by section COUNT (equal screen time regardless of narration length) and `cinematic-documentary.jsx`'s `computeLayout` used a hardcoded dramatic-pacing weight that also never looked at word count (neither matched this row's own grep pattern, so this was never actually caught). `beats.js`'s new `realSectionWindows`/`sectionFrameWindows` give both styles the same real-per-word-SRT timing motion-graphics already had (word-count-proportional fallback when no SRT exists), threaded through `render.js` -> both compositions' new `sectionWindows` prop |
 | MOT-02 | 4â€“8 beats per rolling 300 frames | beat timeline | 4â€“8 | 1 | MAJOR | 9 | **FAIL** |
-| MOT-03 | Every beat â‰¥ its `holdFrames(text)` | compiler | â‰¥ | 1 | MAJOR | 9 | N/B |
+| MOT-03 | Every beat â‰¥ its `holdFrames(text)` | `gateBeats` hold-floor check, run by `verify-compositions.js` | `>= MIN_BEAT_FRAMES - 1` (45f floor, 1f tolerance for sub-frame SRT rounding) | 1 | MAJOR | 9 | **FAIL 2026-09-03, correctly** - two ch-fixture beats hold 43f against the 45f floor: "with no light at all." (43.67f of real audio) and "nothing but rock." (43.87f). Masked rather than absent before: `durationInFrames` rounded the DURATION and yielded 44f, landing exactly on the `- 1` tolerance boundary and passing. MOT-22's end-frame derivation reports the true frame count the beat occupies. Not fixable by merging - `buildBeatsFromCaptions` step 3 already attempts it, and for both beats a backward merge breaks the 7-word cap or `MAX_BEAT_FRAMES` while a forward merge breaks the word cap too (both directions checked explicitly, not assumed). The audio genuinely gives these beats ~1.46s where the readability target is 1.5s. Left failing on purpose: widening the tolerance to 2f would restore exactly the masking MOT-22 removed |
 | MOT-04 | No `interpolate()` without an easing | `grep` + AST scan | 0 | 1 | MAJOR | 7 | **FAIL** |
 | MOT-05 | No `interpolate()` without both clamps | AST scan | 0 | 1 | MAJOR | 7 | **FAIL** |
 | MOT-06 | Every scale interpolation sets `perceptual-scale` | AST scan | 100% | 1 | MINOR | 7 | **FAIL** |
@@ -256,10 +256,11 @@ below:
 | MOT-15 | Translations >200 px follow an arc | compiler | arc present | 1 | MINOR | 11 | N/B |
 | MOT-16 | Seeded jitter is deterministic | `grep "Math.random"` | 0 hits | 1 | BLOCKER | 11 | UNK |
 | MOT-17 | Jitter touches only timing and overshoot | compiler | no pos/size/colour | 1 | MINOR | 11 | N/B |
-| MOT-18 | Motion blur only inside a transition subtree | compiler | 0 elsewhere | 1 | MINOR | 12 | N/B |
+| MOT-18 | Motion blur only inside a transition subtree | `visual/composition.js` `gateMotionBlur` over every source file in `visual/`, `compositions/`, `compositions/scenes/`, `.../elements/` and `effects/`, via `run-visual-tests.js` | 0 outside a transition subtree | 1 | MINOR | 12 | **PASS 2026-09-03** - was `N/B` for a real reason: `gateMotionBlur` had been written and exported and was called by nothing, so the check existed in code and in this table while never running. Now wired in and scanning 44 files. Proven non-vacuous rather than assumed: a planted `blur(interpolate(frame, ...))` in a scene file fails it, and the identical line under `transitions/` passes |
 | MOT-19 | â‰¤3 full-frame luminance changes per second | contact sheet | â‰¤3 | 3 | BLOCKER | 16 | UNK |
 | MOT-20 | â‰¥4 visually distinct frames per 10 s | contact sheet | â‰¥4 | 3 | MAJOR | 16 | **FAIL** |
 | MOT-21 | Transition frames added back into total duration | compiler vs audio length | â‰¥ audio | 1 | BLOCKER | 9 | N/B |
+| MOT-22 | The beat timeline covers every frame — no frame falls between two beats | `compositions/beats.js` (`buildBeatsFromCaptions` and the authored-beat path both derive `durationInFrames` from the rounded END frame) + `run-visual-tests.js` boundary scan | 0 uncovered frames | 1 | MAJOR | 9 | **PASS 2026-09-03** - `startFrame` rounded `startMs` while `durationInFrames` rounded the DURATION, independently. `round(a) + round(b - a) != round(b)`, so beats meeting exactly on the millisecond could still leave a frame uncovered — and an uncovered frame renders BLACK, since no beat's `Sequence` is mounted over it. On the ch-fixture script 30 of 31 boundaries were contiguous to the millisecond and 12 frame boundaries were still wrong: six gaps, six overlaps. Rendered proof: frame 413 came back at stddev 5.3 between neighbours at 22.4 and 7.4, a literal black frame; after the fix it is 22.4. Six gaps -> zero. The one remaining overlap is a genuine -50ms overlap in the source cues, so it is faithful to the input rather than a rounding artifact. CONSEQUENCE, recorded rather than smoothed over: this makes the `beats` gate fail on two beats — "with no light at all." and "nothing but rock." — at 43f against a 44f tolerance. They are NOT a regression from this change. Their true audio spans are 43.67f and 43.87f, already under that tolerance on the SRT itself; the old `round(endMs - startMs)` rounded both up to exactly 44 and landed them on the boundary. The gate is now telling the truth about two beats that have always been ~1.3f under the 45f readability target, and the merge step at `beats.js:336` could not fold either into a neighbour without breaking its word/frame caps. The tolerance was deliberately NOT widened to make this pass |
 
 ## 3.5 `ENC` â€” archetypes, charts, representation, honesty
 
@@ -396,6 +397,7 @@ runs per-video, before TTS, implemented in `scripts/gate-research.js` and
 | SCR-12 | `text_overlay` is an object or null, never a string | `--json-schema` at the CLI boundary, re-checked in `gate-script.js` | 100% | 1 | BLOCKER | pre-TTS | **NEW** |
 | SCR-13 | No hex colour value anywhere in the script JSON | `gate-script.js` regex | 0 hits | 1 | MAJOR | pre-TTS | **NEW** â€” a real hex literal (`#0A1020`) already exists in `data/research/1/pay-frequency-budgeting-script.json`'s `visual_cue`, predating this gate |
 | SCR-14 | `sources_used` >=3 and every URL appears in the research file | `gate-script.js` | 100% | 1 | BLOCKER | pre-TTS | **NEW** |
+| SCR-15 | The writer directed the visuals: >=60% of beats carry `visual.strategy`, and not all the same one | `gate-script.js` | >=60%, mix>1 | 1 | MAJOR | pre-TTS | **NEW** — before this, `prompts/style-contract.md` told the writer to omit the block, so `authored plan ratio` was 0 on every script and every beat of every video was planned by keyword match in `visual/director.js` |
 
 **3.10.1 â€” SCR-05 is the enforcement point for `ENC-06`/`ENC-08`.** A number
 only reaches a chart if the research pass logged it with a source, closing
@@ -456,7 +458,7 @@ to hide.
 
 | ID | Check | Method | Threshold | T | Sev | State |
 |---|---|---|---|---|---|---|
-| VIS-01 | Every registered strategy routes to a scene the router handles, and no two share one | `assertStrategyRegistryIsSound()` + `visual/run-visual-tests.js` | 0 problems | 1 | BLOCKER | **PASS** - 55/55 tests |
+| VIS-01 | Every registered strategy routes to a scene the router handles, and no two share one | `assertStrategyRegistryIsSound()` + `visual/run-visual-tests.js` | 0 problems | 1 | BLOCKER | **PASS** - 77/77 tests (was recorded as 55/55 for several passes after the suite had grown; corrected §3.12.20) |
 | VIS-02 | `iconHeroRatio` = 0 (an icon is never the primary visual) | `diagnostics.js` | 0 | 1 | BLOCKER | **PASS** - 0.0 on all 3 real renders |
 | VIS-03 | Beats average >=2 visual states (concepts progress) | `diagnostics.js` | >=2 | 1 | MAJOR | **PASS** - 4.2 to 4.8 |
 | VIS-04 | `genericFallbackRatio` <=0.4 (beats produce a readable concept) | `diagnostics.js` | <=0.4 | 1 | MAJOR | **PASS** - 0.0 on all 3 |
@@ -482,6 +484,7 @@ to hide.
 | VIS-24 | No scene references an identifier nothing binds | `visual/scope-check.js` (`@babel/parser`, scope walk) via `run-visual-tests.js` | 0 free identifiers | 1 | BLOCKER | **PASS** - see 3.12.4; found TWO shipped `ReferenceError`s no other check could see |
 | VIS-25 | A sound is chosen for the MATERIAL the picture is made of | `sound-design.js` `MATERIAL_CHARACTER` + `assertSoundMapIsSound` + `run-visual-tests.js` (through `soundEventsForBeat`, not `pickAsset`) | different materials pick different characters | 1 | MINOR | **PASS** - `shot.material` was on every plan and read by nothing in the audio path; only `impact` / `emphasis` / `transition` can discriminate on a 26-file library and the guard fails if the map ever pretends otherwise |
 | VIS-26 | The anchor frame is not empty — the picture has arrived by the time the key word is spoken | `qa-scripts/inspect-anchors.mjs` (renderStill on each beat's real SRT anchor frame, ink measured from the pixels) | >=0.4% ink | 3 | MAJOR | **PASS** - see 3.12.5. Found THREE shipped instances no code reading would have caught: `DATA_CHART` (empty axis, four figures reading 0 on the frame saying "ninety"), `CINEMATIC_STATEMENT` (blank frame, 0.1% ink — the phrase IS the scene), `TRANSFORMATION` (0.34%, the plotted curve had zero length). The floor is deliberately low: it is not a quality bar, a frame at 1.2% can still be a thin diagram in a void |
+| VIS-27 | A scene that a strategy routed to actually draws something — the plan's asset reaches the scene in the shape the scene reads | `compositions/scenes/evidence-scenes.jsx` `ImageEvidenceScene` + the derived-frame IMAGE_BEAT probes in `verify-compositions.js` | every IMAGE_EVIDENCE beat renders ink | 2 | BLOCKER | **FIXED 2026-09-03** - `director.js` puts a bare path STRING in `plan.payload.asset`; the scene was written for an object and its `||` short-circuited on the truthy string, so `asset.path` was `undefined` and the guard early-returned `null`. Every IMAGE_EVIDENCE beat rendered an empty stage: 21 of the ch-fixture script's 32 beats, the whole timeline after frame 837. Nothing caught it because NO pixel probe in `verify-compositions.js` could affect its exit code — the file had exactly one `process.exitCode = 1`, for the static mg gates, and then printed `ALL STYLES OK` unconditionally, so on any run whose static gates passed, four failing pixel probes still exited 0. (On this fixture the process did exit 1 throughout, but for an unrelated reason: the `captions` static gate was failing on seven ch-fixture SRT cues shorter than the 833ms floor — a separate defect, since fixed under TYP-08.) Its three IMAGE_BEAT probes were also hardcoded to 505/1210/1565 — all beat-START frames, two of them shared with the preceding beat, where an empty stage is correct |
 
 **3.12.1 - VIS-08 is frame-verified, not inferred.** The 150-metre geofence
 beat from the real ch-02 script was rendered through the production CLI and
@@ -1462,6 +1465,942 @@ as such rather than assumed. The other 14 strategies remain unaudited
 against this directive. No camera-variety pass, no typography-rhythm
 pass, no material-behaviour audit beyond sound, no full 16-strategy
 production render, no muted human-review pass across the whole system.
+
+---
+
+**3.12.16 — a tenth directive: delete the components that exist only to
+draw a banned generic shape, not just recolour them.** Named four
+patterns as still-generic regardless of styling: a seesaw standing in for
+a numeric comparison, a gauge drawn because the component existed, grey
+bars standing in for a document's body text, and a rounded-rect blob
+riding a curve. The rule: if a component exists ONLY to produce one of
+these and nothing else depends on it, delete the component itself, not
+just its call site — trace to source, grep every usage, confirm nothing
+else needs it, then remove it.
+
+**Deleted, confirmed zero remaining call sites (`grep` for the export
+name across `compositions/scenes/**` returns only explanatory comments,
+never a live import or JSX use):**
+- `elements/balance.jsx` (`BalanceBeam`) — the fulcrum/tilting-beam/two-
+  pans construction `ComparisonScene`'s quantitative branch used to
+  express a value delta. Deleted outright: the delta can size the two
+  figures directly (below), so the beam was standing between the claim
+  and the number for no reason a weighing scale actually earns.
+- `elements/transform.jsx` (`MorphShape`, `ContentVessel`) — `MorphShape`
+  was a rounded-rect blob riding `TransformationScene`'s real plotted
+  curve; `ContentVessel` was a bounding rect around `BeforeAfterScene`'s
+  cell grid. Both deleted.
+- `components/lifeprompt/data-gauge.jsx` (`DataGauge`), plus its now-empty
+  parent directory — `ScaleComparisonScene`'s gauge branch, drawn because
+  the component had been ported in, not because a gauge is what "how big
+  is this, really" actually calls for.
+- `primitives.jsx`'s `GroundPlane()` — already flagged dead in-file
+  (§3.12.8 ported it, nothing ever called it, including the one scene its
+  own doc comment named); this pass finished the deletion.
+- `quantity-scenes.jsx`'s inline `gaugeFits()` / `ValueGauge()` — dead the
+  moment the gauge branch above was removed.
+
+**Rewritten, not just restyled — the representation itself changed:**
+- `ScaleComparisonScene` — gauge AND the 100-square unit-block grid
+  fallback both gone. A magnitude is now communicated by the number's own
+  log-scaled typographic size (`70 + log10(|value|+1) * 62`, clamped
+  96–320px): no object stands between the claim and the number.
+- `AccumulationScene` — the pile/ledger/jitter/tray system (identical
+  rectangular units stacked or dropped into a tray — "money as stacked
+  rectangles," one of this directive's four named patterns, verbatim)
+  deleted outright. The total now counts up as itself, positioned and
+  scaled off the strategy's own two real shot framings (GROUNDED,
+  COLUMNAR — `composition.js`) instead of a fixed centre point, which is
+  also what keeps the strategy's declared `variants: 2` backed by an
+  actual second composition rather than a stale claim (caught by
+  `run-visual-tests.js`'s own composition-variants check immediately
+  after the rewrite — see QA note below).
+- `ComparisonScene`'s quantitative branch — two real values now sized
+  directly by their own magnitude (`baseSize` to `maxSize`, scaled by
+  `|value| / max`); the winner takes `colors.accent` once resolved. The
+  qualitative/opposition branch (rock-strata metaphor) was reviewed and
+  kept unchanged — a legitimate non-generic construction, not a case this
+  directive names.
+- `TransformationScene` — the real plotted curve and filled area stay (a
+  genuine chart, not the banned pattern); only the `MorphShape` marker at
+  its head was replaced, with a plain circle at the literal point on the
+  curve.
+- `BeforeAfterScene` — `BEFORE_AFTER` has `dataNeeds: []` in
+  `strategies.js`: the sparse/dense cell grid this scene used to draw was
+  never actually backed by data, only by a `seeded()` toggle between two
+  fixed densities. Rather than invent a replacement object for a
+  strategy with nothing real to draw, it now delegates to
+  `CinematicStatementScene` — the same honest typography-only fallback
+  already used elsewhere in this system for zero-data strategies.
+- `DocumentSheet` (`elements/document.jsx`) — removed the "body text
+  rhythm" block (`lines` grey rects at `seeded()`-random widths standing
+  in for sentences that were never real, one of them, `isClause`,
+  pre-highlighted as "the clause" *before* the real clause is ever shown
+  by the caller). The page's real physical properties — depth shadow,
+  folded corner, letterhead double-rule, scan indicator, find-bracket,
+  page number — are unchanged; the body is blank paper until the real
+  words the scene exists to reveal arrive.
+
+**Traced and explicitly kept, not deleted — re-read against their actual
+call sites rather than assumed guilty by association with the pattern
+above:**
+- `elements/chart.jsx` (`StackedMass`) — the bar renderer inside
+  `DataChartScene`, driven by real per-beat `series` values against a
+  real axis with real per-bar labels. A real chart, the case this
+  directive itself carves out, not the banned pattern.
+- `elements/machine.jsx` (`MachineBody`/`Gate`/`MaterialSlug`) — already
+  rebuilt in §3.12.8 specifically to replace curved "flow" strokes and
+  chevron-stroke gates with a real gate whose jaw gap narrows on
+  `useValueProgress` and material carried as discrete filled bodies whose
+  width scales with real throughput. Doing this directive's job again to
+  it would undo §3.12.8's fix, not extend it.
+- `elements/circuit.jsx` (`CircuitNode`/`CircuitTrace`/`SignalPacket`) —
+  already rebuilt in §3.12.15 for the identical reason this directive
+  exists: an earlier version WAS the banned box-arrow-box pattern
+  (rounded square + dot, joined by a degenerate straight line). The
+  current version is a DIP-chip object with real pins, used in exactly
+  one place, driven by real per-stage progress.
+- `elements/pressure.jsx` (`PressureWalls`) — its own doc comment records
+  replacing a decorative concentric-ring field (`VisualMetaphorScene`'s
+  first two passes) with a literal four-wall vice/press; already the fix
+  this directive asks for, not a target of it.
+
+These four were on this pass's own first-draft delete list, built from an
+incomplete usage trace; re-reading each component's actual implementation
+and call site before deleting corrected the list down to the five items
+above. Recorded here rather than silently fixed, per this register's own
+standard (§0.1) that a check — or in this case a deletion candidate — is
+only as good as the evidence behind it.
+
+**QA run this pass:** `node visual/run-visual-tests.js` — 74/74 passing.
+Immediately after the `AccumulationScene` rewrite this was 73/74: the
+composition-variants check correctly caught that the new scene had
+dropped the only mechanism (the tray-vs-ledger switch) that made
+`ACCUMULATION`'s declared `variants: 2` real. Fixed by deriving the
+scene's position and scale from `plan.shot` (GROUNDED vs COLUMNAR), not
+by loosening the check. Every touched scene file individually
+re-verified with `npx esbuild <file> --outfile=/dev/null` after each
+edit.
+
+**Not done this pass:** no fresh render or frame inspection of any
+rewritten scene — verification so far is compile-clean-and-tests-pass
+only, not a rendered pixel. No muted-comprehension review. No direct
+comparison against reference clips. These are the actual proof this
+directive's own closing phase requires and are tracked as outstanding,
+not implied by the 74/74 above.
+
+---
+
+**3.12.17 — the actual proof, and three real bugs neither esbuild nor
+run-visual-tests.js could have caught.** §3.12.16 closed with compile-
+clean-and-tests-pass, explicitly not claimed as proof. This pass ran
+`qa-scripts/render-15s-clips.mjs` — real production script/SRT pairs,
+real channels, the actual `MotionGraphicsShorts`/`MinimalShorts`
+compositions — across `ch-01` (real voiceover), `ch-02`, `ch-04`, and
+`ch-fixture` in both `motion-graphics` and `minimal` styles, the same
+five files (`ch-0N-<style>-<bg>-15s.mp4`) named in this directive as the
+reference set. The pre-§3.12.16 renders were copied to
+`data/renders/clips-15s-before-delete-pass/` first so the comparison is
+against this repo's own prior output, not memory.
+
+**Three real defects found by looking at rendered frames, none visible
+in a text diff or a passing test suite:**
+
+1. **`ComparisonScene`: the larger figure ran off the canvas.** At
+   `maxSize` (128px) a 6-digit value ("13,600") is ~430px wide; the fixed
+   `halfSpan = f.w * 0.28` placed its centre at x=857 on the HORIZON
+   framing (1080-wide canvas) — its right half printed past the frame
+   edge, past even `SAFE.right`. Fixed by clamping each side's centre
+   independently so ITS OWN text at ITS OWN size stays inside `SAFE`
+   (same glyph-count-estimate technique `structure-scenes.jsx` already
+   uses), falling back to a minimum gap only when both texts already fit.
+2. **`ScaleComparisonScene`: the figure rendered off-canvas for the
+   ENTIRE beat**, not just at the anchor. `TreatedFigure` was called with
+   `x={STAGE_CX} y={CANVAS_H/2}` inside a `<div style={{transform:
+   scale()}}>` — a CSS `transform` makes an element a containing block
+   for absolutely-positioned descendants regardless of its own
+   `position` value, so `Figure`'s `left/top` resolved against that
+   *already flex-centred* wrapper's own origin, not the canvas — a
+   second, redundant offset that landed the figure at roughly (1008,
+   1920), off-canvas. Invisible on every frame of the beat, not only the
+   anchor, which is why it surfaced on a full render and not on the
+   isolated frames checked when the scene was first written. Fixed by
+   passing `x={0} y={0}` (the `AccumulationScene` rewrite earlier in
+   §3.12.16 used the correct form of this same pattern; this scene did
+   not).
+3. **Separately, `pGrow` was driven by `progressOf(states, "grow",
+   frame)`** — progress THROUGH `grow`, which is `SCALE_COMPARISON`'s
+   OWN anchored state, so it read 0 at frame 0 of `grow` — which IS the
+   anchor frame. The exact bug class `primitives.jsx`'s own
+   `useValueProgress` doc comment names ("the accumulation beat displayed
+   '$0' on the exact frame the narration said 'five hundred dollars'").
+   Fixed by switching to `useValueProgress(states)`, which counts from
+   the beat's own first frame and reaches exactly 1 at the anchor.
+4. **`TreatedFigure`: the unit suffix was rendered, then invisibly
+   painted over.** `RollingNumber`, `NumberWheel` and `MatrixDecode` are
+   each built on Remotion's `AbsoluteFill` (correct for each as a
+   standalone component, per their own doc pages) — but `TreatedFigure`'s
+   `shell` div was an unsized flex row whose only in-flow child was the
+   `unit` span, so `shell` shrank to fit just that, and the absolutely-
+   positioned digits filled that tiny box and — being a POSITIONED
+   element — painted ON TOP of the `unit` span regardless of JSX order
+   (position:absolute always paints above position:static siblings,
+   independent of source order). Any beat with a non-"settle" treatment
+   AND a non-empty unit (SCALE_COMPARISON's "%", any currency/unit
+   ACCUMULATION beat that rolls a non-settle treatment) rendered the
+   digits with the unit buried underneath, invisible. This is a defect in
+   how `TreatedFigure` composes vendored components, not in the vendored
+   components themselves (each is correctly self-contained per its own
+   doc page) — fixed there, not by patching the ported files: `digits`
+   now renders inside an explicitly sized `position: relative` box, and
+   `unit`'s span is also `position: relative`, so both are POSITIONED
+   siblings and JSX order (unit after digits) decides paint order.
+
+None of these four are dead code or unreachable paths — `ComparisonScene`
+and `ScaleComparisonScene` fired in the very first real beats rendered
+against real channel scripts, and `TreatedFigure`'s non-settle path is a
+1-in-3 chance on any `ACCUMULATION`/`HERO_NUMBER` beat. All four are
+exactly the class of defect this directive's PART 4 says only a real
+render can catch — `run-visual-tests.js` stayed 74/0 throughout, since
+none of the four is a logic error the test suite's fixtures exercise.
+
+**QA after each fix:** `npx esbuild <file> --outfile=/dev/null` (clean)
+and `node visual/run-visual-tests.js` (74/0, unchanged) before every
+re-render; each of the four fixes was confirmed on a freshly re-rendered
+frame at the beat's own anchor before moving to the next.
+
+**Muted-comprehension read, on the current renders, sound off:**
+- `ch-01` ACCUMULATION ($13,600 / $215) and COMPARISON (215 vs 13,600,
+  "13,385 APART") — the number's own size and colour-on-resolve read
+  correctly as "this one is bigger" and "this is the running total"
+  without narration. Honest limitation, not a regression: `sup.series`
+  carries no per-item `label` for this content (`a.label`/`b.label` are
+  empty strings), so nothing on screen says WHICH number is snowball vs.
+  avalanche — a viewer needs the narration for that half of the claim.
+  This is a text-budget/data-population gap in `director.js`'s
+  COMPARISON case, not a generic-primitive problem, and was equally true
+  of the pre-delete-pass seesaw version (it printed no labels either) —
+  named here rather than silently left for a later pass to rediscover.
+- `ch-fixture` ACCUMULATION ("1,000,000 years") and SCALE_COMPARISON
+  ("7%") read cleanly as a magnitude on their own. `ch-fixture`'s
+  qualitative COMPARISON (`OppositionComparison`, the strata/seam
+  branch — untouched this whole rebuild) is unchanged frame-for-frame
+  against the pre-pass render, confirmed by direct comparison.
+- `ch-02` (VISUAL_METAPHOR + CINEMATIC_STATEMENT) and `ch-04` (TIMELINE +
+  CINEMATIC_STATEMENT) — both untouched by this pass's edits — spot-
+  checked against the pre-pass render and read identically: real
+  environment, real quoted phrases, no collateral damage from the
+  `primitives.jsx`/`elements/*.jsx` deletions.
+
+**Against the three named reference clips, directly:** `ch-01-motion-
+graphics-white-15s.mp4`, `ch-fixture-motion-graphics-black-15s.mp4`, and
+`ch-fixture-minimal-white-15s.mp4` are the same files, same
+script/SRT/channel inputs, before and after this pass — the comparison is
+this repo's own prior output, preserved at
+`data/renders/clips-15s-before-delete-pass/`, not a separate reference
+set. Camera, ground/atmosphere layers, typography rhythm, and every
+strategy this pass did not touch (TIMELINE, VISUAL_METAPHOR,
+CINEMATIC_STATEMENT, IMAGE_EVIDENCE, the qualitative half of COMPARISON)
+render pixel-identical to before, confirmed by direct comparison, not
+assumed from an unchanged diff. What changed is confined to the four
+strategies this directive named: ACCUMULATION, the quantitative half of
+COMPARISON, SCALE_COMPARISON, and TRANSFORMATION's curve-head marker —
+each now a real number at its own honest size instead of a pile, a
+seesaw, or a gauge borrowed from an unrelated component. That is the same
+production philosophy (real per-beat data, earned camera, staged ground,
+typography subordinate to the picture) applied more literally where it
+had been standing in for itself with a shape — not a different renderer.
+
+**`DOCUMENT_EVIDENCE`, closed by a targeted render.** None of the first
+15 seconds of the four production scripts route a beat to it, so a
+second, targeted render (`frameRange` over `ch-02`'s full 171s script,
+not the first-15s set) was pointed at its three real
+`DOCUMENT_EVIDENCE` beats (`data/research/2/what-to-say-traffic-stop-
+script.json`, beats at 82.0s/114.9s/146.3s of the full timeline). The
+82.0s beat ("...still admissible in court.") confirmed the fix on a real
+frame: the page shows depth shadow, folded corner, letterhead rule, a
+find-bracket highlighting where the clause sits, and a page number —
+body copy stays genuinely blank paper, and the real narration ("still
+admissible in court.") lands pulled-out below the page in the channel
+accent once `read` begins. No fabricated line lengths, no clause
+pre-highlighted before the real one appears. Muted-comprehension read:
+correct — a silent viewer sees a highlighted document and the exact
+words it says, nothing invented.
+
+**Not done this pass:** `BEFORE_AFTER` — the one remaining strategy this
+rebuild touched (`BeforeAfterScene`'s delegation to
+`CinematicStatementScene`) was not exercised by any of the five 15s
+clips or by a scan of `ch-02`'s full script; none of the topics rendered
+this pass has a stated before/after contrast. Confirmed by compile-check
+and the existing "the scenes actually compile" test only, not by a
+rendered frame. A future pass should render a script with a genuine
+before/after beat before calling that one strategy proven.
+
+---
+
+**3.12.18 — `BEFORE_AFTER`, closed, and two more real bugs a rendered
+frame found.** `visual/semantics.js`'s `BEFORE_AFTER` regex (`used to`,
+`no longer`, `previously`, `until now`, `once was`, `has since`, `changed
+from`, …) was grepped against every research/script JSON in the repo
+rather than guessed at. Two real, sourced candidates turned up;
+`data/research/2/google-location-history-chatrie-ruling-shorts-script.json`
+(Chatrie v. United States, a real Supreme Court geofence-warrant ruling)
+has no real TTS/SRT yet, so `qa-scripts/make-fixture-srt.mjs` — this
+repo's own established tool for exercising the visual pipeline on a
+script with modelled-not-measured timing, named so it can never be
+mistaken for real TTS output — produced one. The very first beat of the
+real hook sentence ("Your phone is tracking every move you make, and
+until now, the police could potentially use it to put you in a crime
+scene without a proper warrant") classified as `BEFORE_AFTER` on its own,
+with no hand-picked fixture involved.
+
+**What the render found, twice:**
+
+1. **Blank frame, the entire 387-frame beat.** `BeforeAfterScene`
+   delegates to `CinematicStatementScene` (§3.12.16), which draws nothing
+   when `supporting.phrase` is empty — and `director.js`'s
+   `supportingPhraseFor` had no `case "BEFORE_AFTER"`, so it fell to
+   `default: return ""`. This is the exact defect the surrounding code
+   comment already names for `PROCESS`/`TIMELINE`/`INTERFACE_SIMULATION`
+   ("nothing on screen said what the line was ABOUT") — just not yet
+   fixed for the strategy this pass just pointed at the same zero-data
+   fallback. Fixed by adding `BEFORE_AFTER` to `CINEMATIC_STATEMENT`'s
+   own case (shared body: `BeforeAfterScene` now IS that scene, so it
+   needs the identical phrase-selection logic, not a second one).
+2. **Once text appeared, its first line ran off the right edge of the
+   canvas.** `CinematicStatementScene`'s phrase box floored `left` at
+   `SAFE.left` but never capped `left + width` at `SAFE.right`. Harmless
+   for `CINEMATIC_STATEMENT` itself — both its framings (`HORIZON`,
+   `ISOLATED`) are roughly centred — but `BEFORE_AFTER` uses
+   `ACTING_RIGHT` (anchor 0.66, off-centre right), the first framing to
+   route through this box that isn't centred, and "...TRACKING EVERY"
+   printed straight past the frame edge. Fixed by centring the box on
+   `textCx` and clamping BOTH edges into `SAFE`, the same two-sided clamp
+   `ComparisonScene` (§3.12.17) and `structure-scenes.jsx`'s existing
+   labels already use.
+
+Neither bug is in code this rebuild wrote from scratch — both are latent
+defects in already-existing code (`director.js`'s phrase switch,
+`CinematicStatementScene`'s box) that a NEW routing path (`BeforeAfterScene`
+delegating to it) was the first thing to actually exercise. This is the
+same lesson §3.12.17 already recorded, from the opposite direction: a
+rendered frame does not just verify new code, it verifies the old code a
+change newly depends on.
+
+**QA:** `npx esbuild` clean on both touched files; `run-visual-tests.js`
+74/0 before and after both fixes; re-rendered after each fix and
+confirmed on the anchor frame (283) before moving on. Muted-comprehension
+read on the final render: correct — "YOUR PHONE IS TRACKING EVERY MOVE
+YOU MAKE" reads as the BEFORE half of a real, sourced claim, fully inside
+frame, no narration required to know what it says.
+
+With this, all six strategies this rebuild touched (`ACCUMULATION`, the
+quantitative half of `COMPARISON`, `SCALE_COMPARISON`,
+`TRANSFORMATION`'s curve-head marker, `DOCUMENT_EVIDENCE`'s body copy,
+and now `BEFORE_AFTER`) have each been confirmed on at least one real
+rendered frame, not compile-checked alone.
+
+**Scope of that `BEFORE_AFTER` claim, stated precisely (§3.12.19
+qualifies it):** what was proven is the TEXT rendering. `BEFORE_AFTER`'s
+own declared intent — "the same frame under two different conditions"
+(strategies.js) — has never been rendered with images, and cannot be in
+the current architecture. See below.
+
+---
+
+**3.12.19 — `BEFORE_AFTER` cannot be image-backed, and the reason is
+architectural, not a missing photo.** Asked to render a genuine
+same-subject-two-conditions IMAGE beat, three independent blockers were
+found, each verified rather than assumed:
+
+1. **No real pair exists on disk.** The only real sourced photo library
+   on this branch is `ch-fixture`'s 15 files
+   (`b-roll-manifest-ch-fixture.json`, every one carrying a real Commons
+   title, licence and attribution). Read against their own manifest
+   `content` fields, no two depict one subject under two conditions.
+   The nearest candidates are decoys and are recorded here so the next
+   pass does not re-litigate them: `microbial-mats.jpg` (NOAA, a
+   hydrothermal vent) and `microbial-mats-2.jpg` (a surface film) are two
+   different subjects in two different places; `springtail-1980m.jpg`
+   (Plutomurus ortobalaganensis) and `springtail-macro.jpg` (a generic
+   Collembola) are two different species; `cave-entrance.jpg` and
+   `flashlight-beam.jpg` are both Lava River Cave but are an entrance and
+   an interior, not one subject before and after anything. Pairing any of
+   these as a before/after would assert a relationship no source states —
+   the fabrication CLAUDE.md's first hard rule exists to stop.
+2. **Nothing can be sourced to fill the gap.** Every asset API still
+   returns connection code `000` (`commons.wikimedia.org`,
+   `api.openverse.org`, `images-api.nasa.gov` — re-checked this pass, not
+   carried over from the earlier session note).
+3. **The pipeline could not carry a pair even if one existed, and
+   `BEFORE_AFTER` could not win the beat even if it could.** `ctx.asset`
+   is singular throughout (`director.js`'s own ctx contract:
+   `{ channel, asset, sectionIndex }`), and the render entry points
+   supply it as `sections[i].bRollFiles[0]` — the FIRST file only. On top
+   of that, `director.js` pushes `IMAGE_EVIDENCE` at a flat base of
+   `0.55` for any section where an asset exists at all, which outranks
+   the text-derived confidence `BEFORE_AFTER` can earn. Measured on the
+   real photo-backed script (`movile-cave-shorts-script.json`, 5 sections
+   all carrying assets): `IMAGE_EVIDENCE` took 21 of 32 beats and
+   `BEFORE_AFTER` took none. So `BEFORE_AFTER` fires only on ASSETLESS
+   sections by construction — which is also why its text-only delegation
+   (§3.12.16) has never actually dropped a photo in practice.
+
+**The semantic case is real, and it is being rendered as something
+else.** That same script contains a true same-subject-two-conditions
+claim — a cave "sealed for five and a half million years" that workers
+"broke into" in 1986. Rendered, that claim splits across beats: the
+opening is `IMAGE_EVIDENCE` (one real photograph of a cave mouth being
+entered, frame-verified) and the sealed duration becomes an
+`ACCUMULATION` figure. One condition gets a picture; the other gets a
+number; nothing in the frame says they are the same subject. That is not
+a rendering defect — every beat is individually honest — but it is the
+gap between what `BEFORE_AFTER` promises in `strategies.js` and what the
+system can express.
+
+**Deliberately NOT built this pass.** Two-asset support (manifest →
+section → `ctx` → scene) plus a scoring change so a two-condition beat
+can outrank `IMAGE_EVIDENCE` is a real, multi-layer change — and with no
+real pair on disk and no network, it could not be proven on a rendered
+frame, only compile-checked. This register's own standard (§1.1, and
+§3.12.17's whole lesson) is that a visual claim needs a frame behind it,
+so the capability is left unbuilt and the limitation is written down
+instead of a feature that cannot be demonstrated. The unblock is one real
+sourced pair — a glacier, a shoreline, a building, photographed twice —
+at which point the scoring and the two-asset path can be built and shown
+in the same pass.
+
+---
+
+**3.12.20 — a rendered frame-bounds gate, and the six defects found by
+building it.** §3.12.17 recorded that three "the subject left the frame"
+defects had all passed a 74-check suite. This pass built the check that
+catches them, then used it.
+
+**`qa-scripts/frame-bounds.mjs`.** Renders one real anchor frame per
+strategy (16/16 covered) through the same `renderStill` path
+`inspect-anchors.mjs` uses, and asserts two things. Every threshold was
+MEASURED against this repo's own known-bad frames (captured before each
+fix earlier in the session) and known-good ones, not chosen by eye:
+
+| | known-bad | known-good |
+|---|---|---|
+| edge high-contrast px | 363, 85, 55 | 0 across 7 frames incl. TIMELINE |
+| worst edge delta | 199.75–204.75 | max 48.75 (ch-02's ridge) |
+| ink (blank-frame case) | 0.1% | 0.5% sparsest legitimate |
+
+So `EDGE_CONTRAST` 140 sits between 48.75 and 199.75; `MIN_INK` 0.25%
+between 0.1% and 0.5%. Two scoping decisions keep it from becoming a
+check people suppress: it bands the LEFT/RIGHT edges only (all three real
+defects were horizontal; vertical bleed is designed — the PROCESS track
+runs -12%..+112% of frame height on purpose), and it exempts scenes whose
+MATERIAL is `footage`, because a photograph filling the frame is the
+intent. Exempting by material rather than strategy name means any future
+photographic strategy is covered and nothing that merely draws is.
+
+`run-visual-tests.js` gained three checks that CONSUME the gate's report
+(74 -> 77), so the expensive lane stays opt-in but cannot rot: a missing,
+failing, or under-covered report fails the fast suite. All three failure
+modes were verified by corrupting the report — failing result, deleted
+file, and a strategy dropped from `covered` each exit 1 with the reason
+named. The gate itself exits 1 on violation and 0 on pass, verified both
+ways, including by re-injecting the ScaleComparisonScene off-canvas bug
+and watching `ink 0.18% below 0.25%` catch it.
+
+**What it found immediately, all six confirmed by looking at frames:**
+
+1. **COMPARISON was still clipping**, on a beat nobody had rendered. The
+   clamp added in §3.12.17 estimated glyph width at 0.56/char — inherited
+   from `structure-scenes.jsx`, which fitted it to TRACKED UPPERCASE
+   LABELS. `Figure` draws fontWeight 800 tabular-nums; measured off the
+   render, "$340" at 128px is 338px of ink, a ratio of 0.660. The clamp
+   under-reserved ~18% and put the figure at x=17 against SAFE.left 48.
+   Now 0.70, and the clamp reserves for whichever is wider, figure or
+   label — at `baseSize` an 18-char label beats a 2-char value easily.
+2. **IMAGE_EVIDENCE's edge ink is a real photograph** (73.9% ink, rock
+   texture to both margins). Not a defect; exempted by material.
+3. **DATA_CHART's failure was one pixel** — rgb 100 against a 249
+   background at x=21 of a 21px band, the antialiased corner of an element
+   grazing the boundary. `MIN_EDGE_RUN` 4 handles it: a clipped glyph runs
+   21px+ at full scale, antialiasing runs 1.
+4. **Fixing (1) then made the two figures OVERLAP.** Bigger reserves
+   shrank the available span until the clamp's only move was to pull the
+   centres together — "215" printed through "13,600". Sizing each figure
+   from its own magnitude and clamping each independently can demand more
+   width than SAFE has. The pair is now measured and scaled to fit AS A
+   UNIT, preserving the size RATIO (which is what carries the comparison)
+   and shrinking both. The gate cannot catch overlap — that is not an
+   out-of-frame violation — so it is prevented by construction here.
+5. **Both COMPARISON labels were printed across their own figures.** The
+   label sat in a `marginTop` wrapper, but `Label` renders
+   position:absolute and is out of flow, so a parent margin moved nothing
+   and both landed at the wrapper origin. The offset has to be the label's
+   own `y`, and clear the figure's FULL height — `Figure` sets lineHeight
+   1 and is positioned by its top edge, so 0.62 still landed inside the
+   glyphs. 1.08 clears them and scales with the figure.
+6. **`mute-test.mjs` reported 31 frames while writing 8.** ffmpeg seeking
+   past EOF exits 0 and writes nothing, and the count was `beats.length`
+   — attempts, not files. It now counts real writes and names the
+   strategies left unreviewed. The cause was pairing a whole-script report
+   with a 15s clip, so the clip renderer's new report is scoped to the
+   frames the clip actually contains.
+
+**Also fixed this pass, each measured before and after:**
+
+- **IMAGE_EVIDENCE monoculture.** The cause was not the flat 0.55 — it was
+  that its scoring push in `director.js` was the ONE place omitting
+  `repeatPenalty`, so it re-won every consecutive beat while every rival
+  reading was penalised for repeating. That is exactly the failure this
+  file's own REPEAT_PENALTY comment describes happening to
+  DOCUMENT_EVIDENCE. On the only photo-backed script (movile-cave, assets
+  on 5/5 sections): **21 of 29 staged beats (72%) -> 13 (45%)**, distinct
+  strategies 6 -> 7. No new constant; it applies the one already there.
+- **COMPARISON's unlabelled figures.** `detectComparison`'s bare-numbers
+  path hardcoded `label: ""`. Labels are now EXTRACTED from the words
+  beside each number in the same sentence (`text-budget.js`
+  `labelNearNumber`, reusing the existing STOP list) and stay empty when
+  no content word is near — a wrong label asserts an identity the script
+  never gave. On ch-01: `AVALANCHE DEBATE` / `CHOOSING COSTS`.
+- **MatrixDecode's white card.** The vendored component painted
+  `background: "white"` behind its digits — on a black channel a rendered
+  frame showed a white block around a green "7". Patched to a transparent
+  fill. Lifeprompt's `TextScramble`
+  (`lifeprompt-team/remotion-scenes`, TextAnimations) was read as the
+  alternative FIRST and rejected on its real source, not assumed: it has
+  the same defect inverted (`<AbsoluteFill style={{ background: C.black }}>`,
+  line 31), hardcodes its palette instead of taking the channel's, is a
+  full-screen scene rather than an embeddable treatment, and prints a
+  literal "DECODING COMPLETE" sub-caption — invented on-screen words from
+  no source.
+
+**Stale items, checked rather than assumed:**
+
+- **`thumbnail_spec.baseHue` / `accentHue` are NOT vestigial — KEEP.** The
+  earlier "vestigial" note (mine) was wrong and is corrected here. Grep
+  found `render.js:504`, the PRODUCTION path, gating palette construction
+  on `accentHue` being a number: strip the field and `palette` goes null
+  for all 17 channels and `mg-style.js` falls back to FALLBACK_HEXES.
+  `paletteFromHues` also still uses it for `pickAccentL` and as the accent
+  fallback when a channel has no valid `colors.accent`, `baseHue` feeds
+  the C06 hue-distance gate in `checkPaletteGates`, and
+  `verify-compositions.js` requires both. The palette fix changed which
+  colour FRAMES use; it did not make the fields dead.
+- **VIS-01's "55/55 tests" corrected to 77/77**, the real current count.
+- **`.opencode/skills` NOT mirrored to `.claude/skills`, deliberately.**
+  `.claude/skills` already exists with 14 different (vendor) skills, and
+  `remotion-render` exists in BOTH with different content — the project's
+  pipeline skill vs the vendor "Export a Remotion video" one. Copying
+  would overwrite an active skill. That is not the "quick, safe copy" the
+  task allowed for, so it was left alone.
+
+**3.12.21 — what a LIST_ITEM beat actually renders, traced with a frame.**
+Recorded as unverified in the audit. Traced: `mg-package.js` sets
+`visualPlan = null` for LIST_ITEM, `BeatStages` returns null for them, and
+they are picked up instead by `ListRuns` -> `ListRunScene`
+(`motion-graphics.jsx`). It does NOT degrade to nothing. A rendered frame
+(ch-fixture, "Inside: toxic air, total darkness," at frame 265) shows a
+ROUNDED BORDERED CARD containing a "+ INSIDE TOXIC AIR" chip on an
+otherwise empty panel — the card grammar this entire rebuild exists to
+delete, still live. The code says so itself
+(`motion-graphics.jsx`: "it is a rounded container and is on the deletion
+list, but it needs a real replacement for list beats, not just removal").
+
+Two consequences worth naming: these beats carry no `visualPlan`, so no
+VIS metric counts them and the strategy census does not see them; and
+`frame-bounds.mjs` filters them the same way `inspect-anchors.mjs` does,
+so **the new gate does not cover them either**. 3 of 29 beats on the
+fixture script take this path. Replacing the panel is real scene work and
+was not attempted here. **SUPERSEDED by §3.12.25** — the panel is deleted,
+both exclusions are gone, and the beats plan as ENUMERATION. This entry is
+kept as the record of what was found.
+
+**3.12.22 — a local TTS path, researched and wired, not run.** EdgeTTS
+needs a WebSocket this environment's proxy cannot carry at all, which is
+why only 4 scripts in the repo have real per-word timing.
+`src/utils/tts-local.js` adapts Piper — `OHF-Voice/piper1-gpl`, GPL-3.0,
+the maintained successor to the archived `rhasspy/piper` — invoked as a
+subprocess against a local ONNX voice, no network of any kind. Invoked as
+a separate PROGRAM, so the GPL does not reach this repo; that must stay
+true (no vendoring, no in-process binding) without real legal advice.
+
+**The licensing trap, from the maintainer's own answer**
+(`rhasspy/piper` discussions/271): the engine licence is not the voice
+licence and Piper's voices do not share one. **Blizzard-derived voices may
+not be used commercially** — the Blizzard licence restricts use to
+research and names LibriTTS_r fine-tunes as an example. Voices trained
+from scratch on **LibriTTS are CC BY 4.0**, commercial-OK *with
+attribution*, from public-domain LibriVox recordings. The maintainer
+states plainly he is not a lawyer. These channels are monetised, so
+`CLEARED_VOICES` starts EMPTY and `assertVoiceAllowed` refuses anything
+not explicitly recorded with the licence string read from its own
+MODEL_CARD. An empty allowlist fails loudly; a guessed one ships a
+non-commercial voice on a monetised channel.
+
+**The real obstacle is timing, not audio.** EdgeTTS returns WordBoundary
+events for free; the plain Piper C++ CLI returns none, and the whole
+visual pipeline is timed from per-word SRT. Piper CAN emit alignment via
+its Python entry point (alignment-to-TSV landed in `rhasspy/piper` PR
+#407; VITS duration predictors give frame-level durations mappable to
+tokens), so the adapter requires it and THROWS if it is absent rather
+than emitting untimed audio — modelled timing is what this module exists
+to stop being load-bearing.
+
+**Not verified:** this module has never executed. Piper is not installed
+here and the voices live on `huggingface.co`, which this environment's
+egress policy also blocks. It is compile-checked and reviewed only; the
+first real run is the acceptance test, and the alignment parsing in
+particular should be checked against Piper's actual output rather than
+trusted from its comment.
+
+**3.12.23 — the two-asset BEFORE_AFTER path, built and compile-checked,
+NOT proven.** §3.12.19 recorded that `ctx.asset` is singular and that
+BEFORE_AFTER therefore cannot be image-backed. The path now exists:
+`broll.js` `resolveAssetPair` reads a pair from the manifest,
+`mg-package.js` passes it as `ctx.assetPair`, `director.js` scores
+BEFORE_AFTER at 0.72 when one is present (above IMAGE_EVIDENCE's 0.55,
+because two real photographs of one subject are better evidence than one
+of them — and with the same `repeatPenalty` everything else gets), and
+`BeforeAfterScene` renders the two images at identical geometry with a
+hard wipe edge travelling across the fixed frame.
+
+A pair is only ever DECLARED — matching `pair_id` plus
+`condition: before|after` in the manifest — never inferred from "this
+section has two photos". Inferring it would assert a same-subject
+relationship no source stated. An incomplete or ambiguous declaration
+returns null and the scene keeps its statement fallback.
+
+**This has never rendered a frame.** No manifest declares a pair, none can
+be sourced while the asset APIs are egress-blocked, and
+`resolveAssetPair` returns null against every real input today (verified).
+`dataNeeds` stays empty and every real beat still gets the statement
+rendering, so nothing regressed — but the image path is unproven code,
+and is recorded as such rather than counted as done.
+
+**3.12.24 — photo sourcing: fetchers ready, blocked on egress only.** All
+10 fetchers in `src/skills/asset-sourcing/sources/` parse and each carries
+licence, attribution and `sourceText`. Five are KEYLESS and need nothing
+but egress: `loc`, `met`, `nasa`, `openverse`, `wikimedia`. Five
+additionally need credentials that are not set in this environment:
+`pexels` (PEXELS_API_KEY), `unsplash` (UNSPLASH_ACCESS_KEY), `rawpixel`
+(RAWPIXEL_API_KEY), `smithsonian` (SMITHSONIAN_API_KEY / DATA_GOV_API_KEY),
+`nara` (NARA_API_KEY, optional). Nothing was attempted against the
+allowlist. 0 of 17 production channels have any sourced photos; that is
+unchanged and unfixable from here.
+
+**3.12.25 — the LIST_ITEM card is gone; the beats are planned, measured and
+gated like every other beat.** §3.12.21 traced the last piece of card
+furniture in the renderer and left it standing: LIST_ITEM beats got
+`visualPlan = null`, `BeatStages` returned null for them, and `ListRuns` ->
+`ListRunScene` drew chips inside a rounded bordered Panel. Two exclusions
+kept that invisible — `diagnostics.js` filtered on `archetype !==
+"LIST_ITEM"`, so no VIS metric counted those beats, and `frame-bounds.mjs`
+copied the same filter from `inspect-anchors.mjs`, so the gate could not
+see them either.
+
+WHAT REPLACED IT. A new strategy, ENUMERATION (`visual/strategies.js`),
+reached by archetype rather than by a text detector — `reachedBy:
+"archetype"`, a third value alongside `"asset"` and `"terminal"`, allowed
+in `run-visual-tests.js` and in `schemas/script.mg.json`. Its idea is a
+ROLL CALL: the names already said hold their place, this beat's name lands
+on the anchor, and the set so far reads as one list. The object is the
+names themselves — no container, no chip, no bullet. The only structural
+mark is each name's real ordinal (`01`, `02`), which the "+" glyph it
+replaced did not carry. Material ATMOSPHERE, framing COLUMNAR + CLOSE,
+camera DESCEND (the frame travels down the sequence, the same reason
+PROCESS descends), depth LAYERED.
+
+The run is resolved BEFORE planning, in `mg-package.js`: the director sees
+one beat at a time and a list beat's real content is the whole run it
+belongs to, so each list beat is handed its run's names and its own index
+in them. `items>=2` is a real `dataNeeds` clause — a run of one is not a
+list, and those beats plan as whatever their own text supports.
+
+WHAT THE NUMBERS ACTUALLY DID (measured on this branch, not projected):
+
+| | before | after |
+|---|---|---|
+| frame-bounds strategy coverage | 16/17 | **17/17**, 17 passed 0 failed |
+| `run-visual-tests.js` | 77/77 | 77/77 (4 new failures found and fixed first: schema enum, `reachedBy` allowlist, variants-not-backed, coverage) |
+| VIS `visualBeatCount`, uncovered-strategies fixture | 4 | 6 (2 ENUMERATION) |
+| VIS `visualBeatCount`, what-to-say-traffic-stop | 80 | 84 |
+| VIS `visualBeatCount`, movile-cave | 29 | 32 |
+| VIS `listItemBeatCount`, all three | 0 | 2 / 4 / 3 |
+
+`listItemBeatCount` was `beats.length - staged.length` — a count of what
+the filter THREW AWAY. Nothing is thrown away now, so it read 0 on a script
+with four list beats and the CI line said "+0 list-item". It counts the
+beats themselves now.
+
+Only the fixture run plans as ENUMERATION. On the two real scripts every
+LIST_ITEM run is length 1 (4 runs and 3 runs respectively), so `items>=2`
+is not met and those beats plan as CINEMATIC_STATEMENT / CAUSE_EFFECT /
+COMPARISON / IMAGE_EVIDENCE. They are counted and gated either way; what
+changed is that none of them reach a card.
+
+**COUNTING THE HIDDEN BEATS EXPOSED A BREACH THAT WAS ALREADY THERE.**
+`what-to-say-traffic-stop` measures `genericFallbackRatio` 0.429, over
+VIS-04's <=0.4, and `statementRatio` 0.429, over the 0.3 that raises
+VIS-GENERIC-FALLBACK / MAJOR. It was **0.412 before this change** — already
+over — because 33 of its 80 staged beats fell to the terminal strategy;
+adding its 4 previously-uncounted list beats (3 of which also fall there)
+moved it to 0.429. The threshold is NOT being loosened and the beats are
+NOT being re-excluded to get under it: the real cause is that this script's
+sentences trigger no detector, which is a script/detector problem, not a
+metric problem. VIS-01's row records "PASS - 0.0 on all 3" from a different
+set of renders; that row is left alone rather than overwritten with numbers
+from other inputs, but this measurement stands against it.
+
+RENDERED, NOT ASSERTED. `data/audit/frame-bounds/ENUMERATION.png` (fixture
+ch-01, frame 933) shows `01 HARBOUR MASTER` in accent on the atmosphere
+ground — no card, no border, no chip. Item 02's anchor (frame 986) shows
+`01 HARBOUR MASTER` receded to grey above `02 CUSTOMS OFFICER WAR…` in
+accent. Two defects were found by looking at those frames rather than
+reasoning about them, and both are fixed:
+
+1. **A name was elided that fit.** The size was fitted against the indent
+   at the LABEL FLOOR while `elide()` measured the indent actually drawn,
+   which is larger — "HARBOUR MASTER" came out "HARBOUR MAST…" with ~100px
+   of empty column beside it. The fit is two passes now; the second re-fits
+   against the indent the first implies, and the indent can only shrink
+   between them, so the result always has at least the room it was fitted
+   for.
+
+2. **THE SAFE RECT IS NOT WHAT THE CAMERA LEAVES YOU.** A column pinned to
+   `SAFE.left` (48) rendered with its accent ink starting at x=23, and at
+   x=4 one beat later. `Shot` transforms the world by `translate(dx,dy)
+   scale(s)` about the canvas centre, and DESCEND scales 1.1 -> 1.05:
+   540 + (48 - 540) x 1.1 = -1.2. New `cameraSafe(shot, safe)` in
+   `stage.jsx` inverts that mapping at both endpoints of the move (both dx
+   and s are linear in the eased progress, so the extremes ARE the
+   endpoints — no sampling) and returns the world-space rect that still
+   lands inside SAFE throughout. ENUMERATION lays out in that rect: its
+   accent ink now measures x[53..757] and x[69..770], both inside
+   SAFE[48..888]. The same helper also gave the stack a top clamp, which
+   the old comment claimed and the code did not have.
+
+**A SYSTEM-WIDE FINDING, NOT FIXED HERE — AND THE COUNT BELOW IS WRONG.**
+See §3.12.26: this probe used delta >= 60, which counts ground the design
+intends to bleed. Re-measured at a threshold that separates subject from
+ground, the real count is **6 of 17**, and all six are fixed there. The
+paragraph is kept as written because the mechanism it names is correct and
+the number is the kind of thing this register exists to catch.
+
+A pixel probe of all 17 gate
+anchor frames (ink delta >= 60 against the frame's own corner background)
+found 12 of 17 putting visible ink outside SAFE[48,888] — CINEMATIC_-
+STATEMENT, ENUMERATION, GEOSPATIAL_RADIUS, IMAGE_EVIDENCE, SCALE_COMPARISON
+and TIMELINE on both edges, DATA_CHART and TRANSFORMATION on the left,
+VISUAL_METAPHOR, CAUSE_EFFECT, INTERFACE_SIMULATION and BEFORE_AFTER on the
+right. Some of that is ground and environment, which is MEANT to bleed; the
+probe cannot separate ground from subject automatically. What is certain is
+the mechanism, because it is arithmetic: any scene that lays out against
+SAFE and is then scaled above 1 by its camera ends up outside it.
+`cameraSafe` is the fix and it is exported for every scene, but only
+ENUMERATION uses it — retro-fitting the other 16 changes the composition of
+all of them and needs its own rendered-frame pass. The frame-bounds gate
+does not catch this and is not being widened to: its edge band is 2% of the
+width and it samples one frame per strategy, both deliberate (§3.12.20).
+
+DELETED: `ListRunScene`, its `<ListRuns/>` mount, the `listRuns`/`ListRuns`
+helpers and `LIST_PANEL` in `motion-graphics.jsx`; `groupListRuns` and the
+`scene.listIndex`/`scene.listTotal` it wrote in `mg-package.js`, which
+nothing read any more; and the now-unused `Panel` import.
+
+**3.12.26 — the safe rect, asserted for every strategy, at every extreme of
+every camera.** §3.12.25 left `cameraSafe` applied to ONE scene and reported
+"12 of 17 frames put ink outside SAFE". **That 12 was wrong** and is
+withdrawn here. It came from a probe at ink delta >= 60, which counts the
+ground — atmosphere shading, horizon rules, map streets — all of which are
+MEANT to reach past the safe rect. The number was never re-measured at a
+threshold that separates subject from ground.
+
+WHAT THE GATE NOW ASSERTS. `frame-bounds.mjs` gained a safe-rect rule beside
+its edge-band rule: no contiguous vertical run of subject ink outside
+`SAFE_SHORTS` (48..888 of a 1080 frame; the right margin is 192px because
+the Shorts action buttons run down that side). Both constants measured, not
+picked — a sweep of all 17 anchor frames at delta 60 through 180 in steps of
+10, recording the tallest out-of-SAFE run at each:
+
+| at delta | clean/ground runs | real-violation runs |
+|---|---|---|
+| 100 | 0 on eight strategies, 3 on TIMELINE's horizon rule | 19, 20, 23, 753, 803, 814 |
+
+`SAFE_CONTRAST` is 100 and `SAFE_MIN_RUN` is 8, in the gap between 3 and 19.
+EDGE_CONTRAST's 140 is measured for the 21px edge band where ground is
+quietest and is too high here: DATA_CHART's grey bars on a near-white ground
+sit at delta ~121 (run 19 at T100, run 1 at T140) and are unmistakably
+subject. A horizontal rule crossing the boundary has a run of 1-3 per column
+and is ground by construction; an object's edge or a clipped glyph is tall,
+which is what the run floor keys on.
+
+`SAFE_EXEMPT_MATERIALS` is `footage` and `terrain` — a photograph and a map
+from above, where the frame is a window onto something larger. Verified on
+the frames: GEOSPATIAL_RADIUS's only readable subject, the pin and "150 m",
+sits at x[450..660], and the T100 hits outside SAFE are street lines. The
+exemption is by MATERIAL, as the edge check's already was, and the data says
+it is not too broad — `field` backs the failing VISUAL_METAPHOR and
+CAUSE_EFFECT *and* the clean COMPARISON and RELATIONSHIP.
+
+THE REAL FAILURE COUNT: **6 of 17**, not 12. Ordered by measured overshoot,
+with the rendered ink range before and after each fix:
+
+| strategy | overshoot | run | ink x, before | ink x, after |
+|---|---|---|---|---|
+| VISUAL_METAPHOR | 162px past right | 814 | [..1050] | [246..872] |
+| CAUSE_EFFECT | 108px past right | 803 | [..996] | [67..871] |
+| INTERFACE_SIMULATION | 52px past right | 756 | [97..940] | [165..870] |
+| DATA_CHART | 27px past left | 19 | [21..885] | [88..677] |
+| BEFORE_AFTER | 16px past right | 23 | [..904] | [129..867] |
+| TRANSFORMATION | 13px past left | 20 | [35..820] | [66..820] |
+
+Each was a different mistake, fixed on its own terms, every one verified on
+a re-rendered frame:
+
+- **VISUAL_METAPHOR** sized its walls off `f.w` (1134 on an IMMERSIVE,
+  bleeding shot), so the enclosure was drawn wider than the frame before the
+  camera scaled it further. Now one fit factor scales the whole field —
+  clamping parts independently breaks the proportion that carries the
+  meaning; a vice whose right wall is nearer than its left is not a vice —
+  computed at the point in each MODE's animation where it is widest, so the
+  fit holds for the beat and not just the anchor.
+- **CAUSE_EFFECT** ran its duct from `CANVAS_W * (1 - cov) * 0.5`; the
+  casing overhangs the channel by 30px and is stroked 3px, and an SVG stroke
+  is centred on its path. Coverage still decides how wide the duct wants to
+  be; the safe rect decides how wide it may be, and the span centres on that
+  rect rather than the canvas — SAFE is asymmetric, so those are not the
+  same point.
+- **INTERFACE_SIMULATION** and **TIMELINE** and **PROCESS** all clamped
+  against `CANVAS_W * 0.09 .. 0.91` — 97 to 983, a hand-rolled pair of
+  percentages that is neither SAFE nor what the camera leaves of it. 983 is
+  95px past the right edge.
+- **DATA_CHART** is read, not travelled over. Its TRACK_RIGHT camera keeps a
+  full ±108px translation on a bleeding framing, so the pan-safe world rect
+  is x[195..751], much narrower than the frame. The chart takes that rect
+  and the ground pans behind it.
+- **BEFORE_AFTER** delegates to CinematicStatementScene, whose text box
+  clamped to SAFE — correct only for a camera that never scales. Its own
+  shot scales 1.04 to 1.06.
+- **TRANSFORMATION** was 63.5 in world space, already close, and the camera
+  did the rest.
+
+**SAMPLING ONE FRAME PER STRATEGY WAS ITSELF THE BUG.** With all six fixed
+and every strategy measuring clean on its anchor, sampling the beat's first
+and last frames — the exact extremes, since both transforms interpolate
+linearly in eased progress — found three more, all of them content a viewer
+sees:
+
+1. **A SECOND CAMERA NOBODY HAD MODELLED.** `SustainCamera`
+   (`scenes/index.jsx`) wraps every scene OUTSIDE `Shot` and adds its own
+   `translateX(±10px) scale(1..1.018)` on any sustaining state.
+   INTERFACE_SIMULATION, clamped to SAFE and clean at x[149..886] on its
+   anchor, rendered at x[152..903] on the last frame of the same beat:
+   540 + 10 + (886 − 540) x 1.018 = 902.2. `cameraSafe` now composes both
+   transforms and checks every endpoint COMBINATION, and the two magnitudes
+   live in `composition.js` beside it with `SustainCamera` importing them —
+   restating them in the component is how they drifted out of the model in
+   the first place.
+2. **TIMELINE's event label ran off BOTH frame edges** — "BATCHING RULE
+   REMOVED", ink x[0..1003], 690px hard against the edge. When the string
+   did not fit, the old clamp centred the oversized string instead of
+   shrinking it.
+3. **VISUAL_METAPHOR's resolve phrase** was a fixed 40px centred label with
+   no width constraint at all. It only exists in the `resolve` state, so the
+   anchor frame never drew it.
+
+Three stills per strategy is therefore the DEFAULT now, not a flag;
+`--anchor-only` restores the single-frame sweep. It triples the render cost,
+which is the price of a gate that does not lie.
+
+FINAL STATE, MEASURED: **17 passed, 0 failed at the camera extremes**, 17/17
+coverage; `run-visual-tests.js` 77/77 (it caught one real failure on the way
+— the PROCESS clamp referencing a `shot` that does not exist inside
+`CircuitProcess`, now passed in as a prop); `verify-compositions.js` 26/26
+pixel probes.
+
+STILL NOT CHECKED, DELIBERATELY: the TOP and BOTTOM safe edges. The gate's
+existing reasoning holds — the PROCESS track runs -12% to +112% of frame
+height on purpose and foreground planes are meant to leave the frame, so
+banding vertically would flag intent as failure and the check would be
+suppressed within a week. `cameraSafe` returns `top`/`bottom` and scenes use
+them (ENUMERATION clamps its stack both ways), but nothing asserts on them.
+
+**3.12.27 — readiness audit, 2026-09-05: what is actually deployable.**
+Three questions were asked of the REAL system, not of the code as read.
+
+**THE PRODUCTION RENDERER DID NOT PARSE.** `8506ad4` ("perf(render):
+optimize concurrency and audio bitrate", 2026-08-31) wrote a literal
+PowerShell escape — backtick-r-backtick-n — into two lines of `render.js`
+instead of newlines:
+
+    import os from "os";`r`nimport { readFileSync, ... } from "fs";
+    concurrency: Math.max(4, os.cpus().length),`r`n    audioBitrate: "192k",
+
+`node --check` fails on both. That commit is an ancestor of `main`, so the
+renderer has been syntactically invalid on the branch the daily pipeline
+runs from for five days. It was invisible because the pipeline's `render`
+job needs `research-and-script`, which has failed partially on every recent
+run, so `render` was SKIPPED rather than reached — a broken stage hidden
+behind an earlier one. Fixed (`b0ec156`) and proven by a real end-to-end
+render: ch-01, 1080x1920 h264 + aac, 73.1s, 2185 frames. A sweep of all 130
+`.js`/`.mjs`/`.cjs` files under `scripts/` and `src/` found no other syntax
+failure (`compositions/visual.js` is JSX in a `.js` file, which node cannot
+parse and webpack can — not a defect).
+
+**`main` HAS BEEN EMPTIED.** It is 22 files. A run of commits titled "Delete
+.github directory", "Delete src directory", "Delete scripts directory",
+"Delete schemas directory", "Delete qa directory", "Delete prompts
+directory" and "Delete CLAUDE.md" removed everything the pipeline needs.
+`GET /actions/workflows` returns exactly one workflow,
+`network-policy-check.yml`; `daily-pipeline.yml` is not registered. The last
+pipeline run was 2026-09-02 and the daily cron has produced nothing since,
+because the workflow no longer exists on the branch it fires from.
+
+**STYLE EXPOSURE — 11 OF 17 CHANNELS BYPASS THIS ENTIRE REBUILD.**
+motion-graphics: ch-01, ch-02, ch-09, ch-26, ch-44, ch-48 (6).
+cinematic-documentary: ch-04, ch-07, ch-11, ch-17, ch-30, ch-31, ch-35,
+ch-39 (8). minimal: ch-03, ch-46, ch-47 (3). Counted references in the three
+composition files: `cinematic-documentary.jsx` and `minimal.jsx` contain
+ZERO references to `SemanticScene`, `visualPlan` or the beat package. The
+strategy registry, the director, all 17 scenes, the frame-bounds gate and
+every safe-rect fix in 3.12.25-26 reach 6 channels out of 17.
+
+**THE LAST REAL CI RUN (82, 2026-09-02, 21 jobs).** `discover-topics`
+succeeded and committed 17 topics. `research-and-script`: 10 of 17 channels
+succeeded; 5 failed at TTS, 1 at the research gate (ch-07), 1 at Stage C
+(ch-48). `render` and `publish` SKIPPED.
+
+  - **EdgeTTS DOES work in CI** — 10 channels produced voiceovers. The 5
+    failures are `edge_tts.exceptions.NoAudioReceived`, a parameter/voice
+    problem, NOT the WebSocket block this sandbox has. The sandbox's
+    constraint is not CI's constraint, and §3.12.22 should be read with that
+    correction.
+  - **PHOTO SOURCING IS NOT IN THE PIPELINE AT ALL.** The per-channel job's
+    21 steps contain no asset-sourcing step; the workflow's only related
+    line is `pip install edge-tts`. The 10 fetchers in
+    `src/skills/asset-sourcing/sources/` have never run in CI. §3.12.24
+    called them "blocked on egress only" — the more basic fact is that
+    nothing calls them.
+
+**SECRETS COULD NOT BE ENUMERATED, AND THE REASON IS THE ENVIRONMENT.**
+`GET /actions/secrets` returns HTTP 403 `"Access to this GitHub Actions path
+is not permitted through this proxy"` — the agent proxy, not the token. The
+GitHub MCP server has no secrets tool and no `gh` CLI is installed;
+`workflow_dispatch` separately returns 403 `Resource not accessible by
+integration` (no `actions: write`). No per-secret checklist is recorded here
+because none could be measured. What run 82 proves indirectly: the
+`OPENCODE_MODELS` chain authenticated, so at least one of `OPENCODE_API_KEY`
+/ `GOOGLE_GENERATIVE_AI_API_KEY` is live; Cerebras, Groq and Mistral were
+not exercised at all (and `cea3b45` is titled "use free OpenCode Zen models
+to bypass Cerebras 402 billing and missing keys"); the 51
+`CHANNEL_XX_CLIENT_ID`/`_SECRET`/`_REFRESH_TOKEN` secrets were never touched,
+because `publish` is gated `if: dry_run != 'true'`.
+
+**CONTENT METRICS ON REAL SCRIPTS, NOT FIXTURES.** The two production
+renders emit `genericFallbackRatio` 0.424 (ch-01) and 0.429 (ch-02), both
+over VIS-04's 0.4; ch-01's `textNarrationRatio` is 0.809 — four fifths of
+the spoken words are also printed on screen. The bounds work of 3.12.25-26
+is orthogonal to this: a frame can be perfectly inside the safe rect and
+still be the narration in text.
 
 ---
 

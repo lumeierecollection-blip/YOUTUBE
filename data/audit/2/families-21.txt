@@ -1,0 +1,21 @@
+﻿Space Grotesk
+Inter
+Playfair Display
+DM Sans
+JetBrains Mono
+Oswald
+Nunito
+Lora
+Cormorant Garamond
+Roboto Condensed
+Crimson Pro
+Source Serif 4
+Barlow
+Nunito Sans
+IBM Plex Sans
+Barlow Condensed
+Archivo Black
+Source Sans 3
+Plus Jakarta Sans
+Bebas Neue
+Rubik

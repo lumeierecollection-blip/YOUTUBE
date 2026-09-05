@@ -1,0 +1,12 @@
+﻿369: }
+370: 
+371: function captionLayer(beat) {
+372:   return {
+373:     role: "caption",
+374:     slot: "caption",
+375:     content: { text: beat.text },
+376:     fit: { maxSize: MG_TYPE.caption, minSize: MG_TYPE.caption, maxLines: 2 },
+377:     enter: { pattern: "RISE", atFrame: 0 },
+378:     exit: { pattern: "NONE" },
+379:   };
+380: }

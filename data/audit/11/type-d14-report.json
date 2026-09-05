@@ -1,0 +1,1073 @@
+{
+  "tA": 10,
+  "start": 6,
+  "end": 66,
+  "runs": [
+    {
+      "id": "t11-13600-inter",
+      "value": 13600,
+      "unit": "",
+      "fontFamily": "Inter",
+      "expect": "stable",
+      "note": "debt-snowball ch-01 — Inter has tnum (tnum-features.txt)",
+      "distinctStrings": 53,
+      "widest": "12,894",
+      "narrowest": "11,012",
+      "frames": [
+        6,
+        9,
+        12,
+        18,
+        20,
+        24,
+        30,
+        36,
+        42,
+        48,
+        54,
+        60,
+        66
+      ],
+      "measured": [
+        {
+          "frame": 6,
+          "text": "10,000",
+          "predicted": "10,000",
+          "x": 113.69937133789062,
+          "y": 564.8125,
+          "w": 708.601318359375,
+          "h": 202.375,
+          "ow": 770,
+          "oh": 220,
+          "reserved": 776,
+          "reserveFits": true
+        },
+        {
+          "frame": 9,
+          "text": "11,012",
+          "predicted": "11,012",
+          "x": 85.774169921875,
+          "y": 556.8125,
+          "w": 764.45166015625,
+          "h": 218.375,
+          "ow": 770,
+          "oh": 220,
+          "reserved": 776,
+          "reserveFits": true
+        },
+        {
+          "frame": 12,
+          "text": "11,780",
+          "predicted": "11,780",
+          "x": 83.07528686523438,
+          "y": 556.0625,
+          "w": 769.849365234375,
+          "h": 219.875,
+          "ow": 770,
+          "oh": 220,
+          "reserved": 776,
+          "reserveFits": true
+        },
+        {
+          "frame": 18,
+          "text": "12,708",
+          "predicted": "12,708",
+          "x": 82.890625,
+          "y": 556,
+          "w": 770.21875,
+          "h": 220,
+          "ow": 770,
+          "oh": 220,
+          "reserved": 776,
+          "reserveFits": true
+        },
+        {
+          "frame": 20,
+          "text": "12,894",
+          "predicted": "12,894",
+          "x": 82.890625,
+          "y": 556,
+          "w": 770.21875,
+          "h": 220,
+          "ow": 770,
+          "oh": 220,
+          "reserved": 776,
+          "reserveFits": true
+        },
+        {
+          "frame": 24,
+          "text": "13,158",
+          "predicted": "13,158",
+          "x": 82.890625,
+          "y": 556,
+          "w": 770.21875,
+          "h": 220,
+          "ow": 770,
+          "oh": 220,
+          "reserved": 776,
+          "reserveFits": true
+        },
+        {
+          "frame": 30,
+          "text": "13,383",
+          "predicted": "13,383",
+          "x": 82.890625,
+          "y": 556,
+          "w": 770.21875,
+          "h": 220,
+          "ow": 770,
+          "oh": 220,
+          "reserved": 776,
+          "reserveFits": true
+        },
+        {
+          "frame": 36,
+          "text": "13,498",
+          "predicted": "13,498",
+          "x": 82.890625,
+          "y": 556,
+          "w": 770.21875,
+          "h": 220,
+          "ow": 770,
+          "oh": 220,
+          "reserved": 776,
+          "reserveFits": true
+        },
+        {
+          "frame": 42,
+          "text": "13,557",
+          "predicted": "13,557",
+          "x": 82.890625,
+          "y": 556,
+          "w": 770.21875,
+          "h": 220,
+          "ow": 770,
+          "oh": 220,
+          "reserved": 776,
+          "reserveFits": true
+        },
+        {
+          "frame": 48,
+          "text": "13,584",
+          "predicted": "13,584",
+          "x": 82.890625,
+          "y": 556,
+          "w": 770.21875,
+          "h": 220,
+          "ow": 770,
+          "oh": 220,
+          "reserved": 776,
+          "reserveFits": true
+        },
+        {
+          "frame": 54,
+          "text": "13,596",
+          "predicted": "13,596",
+          "x": 82.890625,
+          "y": 556,
+          "w": 770.21875,
+          "h": 220,
+          "ow": 770,
+          "oh": 220,
+          "reserved": 776,
+          "reserveFits": true
+        },
+        {
+          "frame": 60,
+          "text": "13,600",
+          "predicted": "13,600",
+          "x": 82.890625,
+          "y": 556,
+          "w": 770.21875,
+          "h": 220,
+          "ow": 770,
+          "oh": 220,
+          "reserved": 776,
+          "reserveFits": true
+        },
+        {
+          "frame": 66,
+          "error": "Cannot read properties of undefined (reading '_currentValue')"
+        }
+      ],
+      "result": {
+        "distinctStrings": 53,
+        "widest": "12,894",
+        "narrowest": "11,012",
+        "frames": 13,
+        "owMin": 770,
+        "owMax": 770,
+        "ohMin": 220,
+        "ohMax": 220,
+        "boxStable": true,
+        "rectSpread": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "rectStable": true,
+        "reserveOk": true,
+        "reserves": [
+          {
+            "frame": 6,
+            "str": "10,000",
+            "reserved": 776
+          },
+          {
+            "frame": 9,
+            "str": "11,012",
+            "reserved": 776
+          },
+          {
+            "frame": 12,
+            "str": "11,780",
+            "reserved": 776
+          },
+          {
+            "frame": 18,
+            "str": "12,708",
+            "reserved": 776
+          },
+          {
+            "frame": 20,
+            "str": "12,894",
+            "reserved": 776
+          },
+          {
+            "frame": 24,
+            "str": "13,158",
+            "reserved": 776
+          },
+          {
+            "frame": 30,
+            "str": "13,383",
+            "reserved": 776
+          },
+          {
+            "frame": 36,
+            "str": "13,498",
+            "reserved": 776
+          },
+          {
+            "frame": 42,
+            "str": "13,557",
+            "reserved": 776
+          },
+          {
+            "frame": 48,
+            "str": "13,584",
+            "reserved": 776
+          },
+          {
+            "frame": 54,
+            "str": "13,596",
+            "reserved": 776
+          },
+          {
+            "frame": 60,
+            "str": "13,600",
+            "reserved": 776
+          }
+        ],
+        "mismatches": [],
+        "pass": true
+      }
+    },
+    {
+      "id": "t11-1986-inter",
+      "value": 1986,
+      "unit": "",
+      "fontFamily": "Inter",
+      "expect": "stable",
+      "note": "movile-cave ch-01 — Inter has tnum",
+      "distinctStrings": 47,
+      "widest": "1,099",
+      "narrowest": "1,711",
+      "frames": [
+        6,
+        7,
+        12,
+        17,
+        18,
+        24,
+        30,
+        36,
+        42,
+        48,
+        54,
+        60,
+        66
+      ],
+      "measured": [
+        {
+          "frame": 6,
+          "text": "1,000",
+          "predicted": "1,000",
+          "x": 179.1199951171875,
+          "y": 564.8125,
+          "w": 577.760009765625,
+          "h": 202.375,
+          "ow": 628,
+          "oh": 220,
+          "reserved": 632,
+          "reserveFits": true
+        },
+        {
+          "frame": 7,
+          "text": "1,099",
+          "predicted": "1,099",
+          "x": 165.47164916992188,
+          "y": 560,
+          "w": 605.056640625,
+          "h": 212,
+          "ow": 628,
+          "oh": 220,
+          "reserved": 632,
+          "reserveFits": true
+        },
+        {
+          "frame": 12,
+          "text": "1,487",
+          "predicted": "1,487",
+          "x": 154.15057373046875,
+          "y": 556.0625,
+          "w": 627.6988525390625,
+          "h": 219.875,
+          "ow": 628,
+          "oh": 220,
+          "reserved": 632,
+          "reserveFits": true
+        },
+        {
+          "frame": 17,
+          "text": "1,711",
+          "predicted": "1,711",
+          "x": 154,
+          "y": 556,
+          "w": 628,
+          "h": 220,
+          "ow": 628,
+          "oh": 220,
+          "reserved": 632,
+          "reserveFits": true
+        },
+        {
+          "frame": 18,
+          "text": "1,742",
+          "predicted": "1,742",
+          "x": 154,
+          "y": 556,
+          "w": 628,
+          "h": 220,
+          "ow": 628,
+          "oh": 220,
+          "reserved": 632,
+          "reserveFits": true
+        },
+        {
+          "frame": 24,
+          "text": "1,865",
+          "predicted": "1,865",
+          "x": 154,
+          "y": 556,
+          "w": 628,
+          "h": 220,
+          "ow": 628,
+          "oh": 220,
+          "reserved": 632,
+          "reserveFits": true
+        },
+        {
+          "frame": 30,
+          "text": "1,927",
+          "predicted": "1,927",
+          "x": 154,
+          "y": 556,
+          "w": 628,
+          "h": 220,
+          "ow": 628,
+          "oh": 220,
+          "reserved": 632,
+          "reserveFits": true
+        },
+        {
+          "frame": 36,
+          "text": "1,958",
+          "predicted": "1,958",
+          "x": 154,
+          "y": 556,
+          "w": 628,
+          "h": 220,
+          "ow": 628,
+          "oh": 220,
+          "reserved": 632,
+          "reserveFits": true
+        },
+        {
+          "frame": 42,
+          "text": "1,974",
+          "predicted": "1,974",
+          "x": 154,
+          "y": 556,
+          "w": 628,
+          "h": 220,
+          "ow": 628,
+          "oh": 220,
+          "reserved": 632,
+          "reserveFits": true
+        },
+        {
+          "frame": 48,
+          "text": "1,982",
+          "predicted": "1,982",
+          "x": 154,
+          "y": 556,
+          "w": 628,
+          "h": 220,
+          "ow": 628,
+          "oh": 220,
+          "reserved": 632,
+          "reserveFits": true
+        },
+        {
+          "frame": 54,
+          "text": "1,985",
+          "predicted": "1,985",
+          "x": 154,
+          "y": 556,
+          "w": 628,
+          "h": 220,
+          "ow": 628,
+          "oh": 220,
+          "reserved": 632,
+          "reserveFits": true
+        },
+        {
+          "frame": 60,
+          "text": "1,986",
+          "predicted": "1,986",
+          "x": 154,
+          "y": 556,
+          "w": 628,
+          "h": 220,
+          "ow": 628,
+          "oh": 220,
+          "reserved": 632,
+          "reserveFits": true
+        },
+        {
+          "frame": 66,
+          "error": "Cannot read properties of undefined (reading '_currentValue')"
+        }
+      ],
+      "result": {
+        "distinctStrings": 47,
+        "widest": "1,099",
+        "narrowest": "1,711",
+        "frames": 13,
+        "owMin": 628,
+        "owMax": 628,
+        "ohMin": 220,
+        "ohMax": 220,
+        "boxStable": true,
+        "rectSpread": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "rectStable": true,
+        "reserveOk": true,
+        "reserves": [
+          {
+            "frame": 6,
+            "str": "1,000",
+            "reserved": 632
+          },
+          {
+            "frame": 7,
+            "str": "1,099",
+            "reserved": 632
+          },
+          {
+            "frame": 12,
+            "str": "1,487",
+            "reserved": 632
+          },
+          {
+            "frame": 17,
+            "str": "1,711",
+            "reserved": 632
+          },
+          {
+            "frame": 18,
+            "str": "1,742",
+            "reserved": 632
+          },
+          {
+            "frame": 24,
+            "str": "1,865",
+            "reserved": 632
+          },
+          {
+            "frame": 30,
+            "str": "1,927",
+            "reserved": 632
+          },
+          {
+            "frame": 36,
+            "str": "1,958",
+            "reserved": 632
+          },
+          {
+            "frame": 42,
+            "str": "1,974",
+            "reserved": 632
+          },
+          {
+            "frame": 48,
+            "str": "1,982",
+            "reserved": 632
+          },
+          {
+            "frame": 54,
+            "str": "1,985",
+            "reserved": 632
+          },
+          {
+            "frame": 60,
+            "str": "1,986",
+            "reserved": 632
+          }
+        ],
+        "mismatches": [],
+        "pass": true
+      }
+    },
+    {
+      "id": "t11-2000-dmsans",
+      "value": 2000,
+      "unit": "",
+      "fontFamily": "DM Sans",
+      "expect": "jitter",
+      "note": "narrowboat ch-02 — DM Sans has NO tnum (stage-2 binary read)",
+      "distinctStrings": 47,
+      "widest": "1,988",
+      "narrowest": "1,101",
+      "frames": [
+        6,
+        7,
+        12,
+        18,
+        24,
+        30,
+        36,
+        42,
+        48,
+        54,
+        60,
+        66
+      ],
+      "measured": [
+        {
+          "frame": 6,
+          "text": "1,000",
+          "predicted": "1,000",
+          "x": 192.5318603515625,
+          "y": 564.8125,
+          "w": 550.936279296875,
+          "h": 202.375,
+          "ow": 599,
+          "oh": 220,
+          "reserved": 600,
+          "reserveFits": true
+        },
+        {
+          "frame": 7,
+          "text": "1,101",
+          "predicted": "1,101",
+          "x": 251.5814208984375,
+          "y": 560,
+          "w": 432.837158203125,
+          "h": 212,
+          "ow": 449,
+          "oh": 220,
+          "reserved": 456,
+          "reserveFits": true
+        },
+        {
+          "frame": 12,
+          "text": "1,494",
+          "predicted": "1,494",
+          "x": 188.18112182617188,
+          "y": 556.0625,
+          "w": 559.6376953125,
+          "h": 219.875,
+          "ow": 560,
+          "oh": 220,
+          "reserved": 560,
+          "reserveFits": true
+        },
+        {
+          "frame": 18,
+          "text": "1,752",
+          "predicted": "1,752",
+          "x": 213.34375,
+          "y": 556,
+          "w": 509.3125,
+          "h": 220,
+          "ow": 509,
+          "oh": 220,
+          "reserved": 512,
+          "reserveFits": true
+        },
+        {
+          "frame": 24,
+          "text": "1,877",
+          "predicted": "1,877",
+          "x": 214.3359375,
+          "y": 556,
+          "w": 507.328125,
+          "h": 220,
+          "ow": 507,
+          "oh": 220,
+          "reserved": 512,
+          "reserveFits": true
+        },
+        {
+          "frame": 30,
+          "text": "1,940",
+          "predicted": "1,940",
+          "x": 182.109375,
+          "y": 556,
+          "w": 571.78125,
+          "h": 220,
+          "ow": 572,
+          "oh": 220,
+          "reserved": 576,
+          "reserveFits": true
+        },
+        {
+          "frame": 36,
+          "text": "1,972",
+          "predicted": "1,972",
+          "x": 210.9296875,
+          "y": 556,
+          "w": 514.140625,
+          "h": 220,
+          "ow": 514,
+          "oh": 220,
+          "reserved": 520,
+          "reserveFits": true
+        },
+        {
+          "frame": 42,
+          "text": "1,988",
+          "predicted": "1,988",
+          "x": 192.5546875,
+          "y": 556,
+          "w": 550.890625,
+          "h": 220,
+          "ow": 551,
+          "oh": 220,
+          "reserved": 552,
+          "reserveFits": true
+        },
+        {
+          "frame": 48,
+          "text": "1,996",
+          "predicted": "1,996",
+          "x": 191.453125,
+          "y": 556,
+          "w": 553.09375,
+          "h": 220,
+          "ow": 553,
+          "oh": 220,
+          "reserved": 560,
+          "reserveFits": true
+        },
+        {
+          "frame": 54,
+          "text": "1,999",
+          "predicted": "1,999",
+          "x": 191.34375,
+          "y": 556,
+          "w": 553.3125,
+          "h": 220,
+          "ow": 553,
+          "oh": 220,
+          "reserved": 560,
+          "reserveFits": true
+        },
+        {
+          "frame": 60,
+          "text": "2,000",
+          "predicted": "2,000",
+          "x": 145.1484375,
+          "y": 556,
+          "w": 645.703125,
+          "h": 220,
+          "ow": 646,
+          "oh": 220,
+          "reserved": 648,
+          "reserveFits": true
+        },
+        {
+          "frame": 66,
+          "error": "Cannot read properties of undefined (reading '_currentValue')"
+        }
+      ],
+      "result": {
+        "distinctStrings": 47,
+        "widest": "1,988",
+        "narrowest": "1,101",
+        "frames": 12,
+        "owMin": 449,
+        "owMax": 646,
+        "ohMin": 220,
+        "ohMax": 220,
+        "boxStable": false,
+        "rectSpread": {
+          "x": 69.1875,
+          "y": 0,
+          "w": 138.375,
+          "h": 0
+        },
+        "rectStable": false,
+        "reserveOk": true,
+        "reserves": [
+          {
+            "frame": 6,
+            "str": "1,000",
+            "reserved": 600
+          },
+          {
+            "frame": 7,
+            "str": "1,101",
+            "reserved": 456
+          },
+          {
+            "frame": 12,
+            "str": "1,494",
+            "reserved": 560
+          },
+          {
+            "frame": 18,
+            "str": "1,752",
+            "reserved": 512
+          },
+          {
+            "frame": 24,
+            "str": "1,877",
+            "reserved": 512
+          },
+          {
+            "frame": 30,
+            "str": "1,940",
+            "reserved": 576
+          },
+          {
+            "frame": 36,
+            "str": "1,972",
+            "reserved": 520
+          },
+          {
+            "frame": 42,
+            "str": "1,988",
+            "reserved": 552
+          },
+          {
+            "frame": 48,
+            "str": "1,996",
+            "reserved": 560
+          },
+          {
+            "frame": 54,
+            "str": "1,999",
+            "reserved": 560
+          },
+          {
+            "frame": 60,
+            "str": "2,000",
+            "reserved": 648
+          }
+        ],
+        "mismatches": [],
+        "pass": true
+      }
+    },
+    {
+      "id": "t11-800-dmsans",
+      "value": 800,
+      "unit": "",
+      "fontFamily": "DM Sans",
+      "expect": "jitter",
+      "note": "narrowboat ch-02 — DM Sans has NO tnum",
+      "distinctStrings": 45,
+      "widest": "789",
+      "narrowest": "171",
+      "frames": [
+        6,
+        7,
+        12,
+        18,
+        24,
+        30,
+        36,
+        40,
+        42,
+        48,
+        54,
+        60,
+        66
+      ],
+      "measured": [
+        {
+          "frame": 6,
+          "text": "100",
+          "predicted": "100",
+          "x": 288.671875,
+          "y": 564.8125,
+          "w": 358.65625,
+          "h": 202.375,
+          "ow": 390,
+          "oh": 220,
+          "reserved": 392,
+          "reserveFits": true
+        },
+        {
+          "frame": 7,
+          "text": "171",
+          "predicted": "171",
+          "x": 331.9179382324219,
+          "y": 560,
+          "w": 272.1640930175781,
+          "h": 212,
+          "ow": 282,
+          "oh": 220,
+          "reserved": 288,
+          "reserveFits": true
+        },
+        {
+          "frame": 12,
+          "text": "446",
+          "predicted": "446",
+          "x": 255.35983276367188,
+          "y": 556.0625,
+          "w": 425.2803039550781,
+          "h": 219.875,
+          "ow": 425,
+          "oh": 220,
+          "reserved": 432,
+          "reserveFits": true
+        },
+        {
+          "frame": 18,
+          "text": "626",
+          "predicted": "626",
+          "x": 266.2578125,
+          "y": 556,
+          "w": 403.484375,
+          "h": 220,
+          "ow": 403,
+          "oh": 220,
+          "reserved": 408,
+          "reserveFits": true
+        },
+        {
+          "frame": 24,
+          "text": "714",
+          "predicted": "714",
+          "x": 295.296875,
+          "y": 556,
+          "w": 345.40625,
+          "h": 220,
+          "ow": 345,
+          "oh": 220,
+          "reserved": 352,
+          "reserveFits": true
+        },
+        {
+          "frame": 30,
+          "text": "758",
+          "predicted": "758",
+          "x": 273.515625,
+          "y": 556,
+          "w": 388.96875,
+          "h": 220,
+          "ow": 389,
+          "oh": 220,
+          "reserved": 392,
+          "reserveFits": true
+        },
+        {
+          "frame": 36,
+          "text": "780",
+          "predicted": "780",
+          "x": 262.625,
+          "y": 556,
+          "w": 410.75,
+          "h": 220,
+          "ow": 411,
+          "oh": 220,
+          "reserved": 416,
+          "reserveFits": true
+        },
+        {
+          "frame": 40,
+          "text": "789",
+          "predicted": "789",
+          "x": 272.859375,
+          "y": 556,
+          "w": 390.28125,
+          "h": 220,
+          "ow": 390,
+          "oh": 220,
+          "reserved": 392,
+          "reserveFits": true
+        },
+        {
+          "frame": 42,
+          "text": "792",
+          "predicted": "792",
+          "x": 277.5859375,
+          "y": 556,
+          "w": 380.828125,
+          "h": 220,
+          "ow": 381,
+          "oh": 220,
+          "reserved": 384,
+          "reserveFits": true
+        },
+        {
+          "frame": 48,
+          "text": "797",
+          "predicted": "797",
+          "x": 282.4296875,
+          "y": 556,
+          "w": 371.140625,
+          "h": 220,
+          "ow": 371,
+          "oh": 220,
+          "reserved": 376,
+          "reserveFits": true
+        },
+        {
+          "frame": 54,
+          "text": "799",
+          "predicted": "799",
+          "x": 270.4375,
+          "y": 556,
+          "w": 395.125,
+          "h": 220,
+          "ow": 395,
+          "oh": 220,
+          "reserved": 400,
+          "reserveFits": true
+        },
+        {
+          "frame": 60,
+          "text": "800",
+          "predicted": "800",
+          "x": 243.484375,
+          "y": 556,
+          "w": 449.03125,
+          "h": 220,
+          "ow": 449,
+          "oh": 220,
+          "reserved": 456,
+          "reserveFits": true
+        },
+        {
+          "frame": 66,
+          "error": "Cannot read properties of undefined (reading '_currentValue')"
+        }
+      ],
+      "result": {
+        "distinctStrings": 45,
+        "widest": "789",
+        "narrowest": "171",
+        "frames": 13,
+        "owMin": 282,
+        "owMax": 449,
+        "ohMin": 220,
+        "ohMax": 220,
+        "boxStable": false,
+        "rectSpread": {
+          "x": 51.8125,
+          "y": 0,
+          "w": 103.625,
+          "h": 0
+        },
+        "rectStable": false,
+        "reserveOk": true,
+        "reserves": [
+          {
+            "frame": 6,
+            "str": "100",
+            "reserved": 392
+          },
+          {
+            "frame": 7,
+            "str": "171",
+            "reserved": 288
+          },
+          {
+            "frame": 12,
+            "str": "446",
+            "reserved": 432
+          },
+          {
+            "frame": 18,
+            "str": "626",
+            "reserved": 408
+          },
+          {
+            "frame": 24,
+            "str": "714",
+            "reserved": 352
+          },
+          {
+            "frame": 30,
+            "str": "758",
+            "reserved": 392
+          },
+          {
+            "frame": 36,
+            "str": "780",
+            "reserved": 416
+          },
+          {
+            "frame": 40,
+            "str": "789",
+            "reserved": 392
+          },
+          {
+            "frame": 42,
+            "str": "792",
+            "reserved": 384
+          },
+          {
+            "frame": 48,
+            "str": "797",
+            "reserved": 376
+          },
+          {
+            "frame": 54,
+            "str": "799",
+            "reserved": 400
+          },
+          {
+            "frame": 60,
+            "str": "800",
+            "reserved": 456
+          }
+        ],
+        "mismatches": [],
+        "pass": true
+      }
+    }
+  ],
+  "pass": true
+}

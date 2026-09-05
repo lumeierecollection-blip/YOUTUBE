@@ -7,7 +7,12 @@ project source even though MIT/ISC require no in-UI attribution.
 ## Lucide icons — ISC License
 
 Vendored into `src/skills/remotion-render/public/icons/` from `lucide-static`
-v1.28.0. See `src/skills/remotion-render/vendor-icons.js`.
+v1.28.0. Icons were ruled out entirely and the code is gone: `vendor-icons.js`
+went with the channel `icon_map` config it read, and `compositions/icons-data.js`
+was deleted along with the `Icon`/`TraceIcon` components and the
+`gateIconNames` check that were its only readers. The vendored SVGs remain in
+`public/icons/` and nothing renders them; this notice stays for as long as they
+are in the tree.
 
 ```
 ISC License
@@ -178,3 +183,77 @@ FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 ```
 
+
+
+## remocn components — MIT License
+
+Nine typography and number components copied into
+`src/skills/remotion-render/components/remocn/` from the remocn registry
+(`Remocn/remocn` @ `412c601d55e25d60be8b506c2195648569bc38b9`), which is what
+`remocn.dev` is built from. `npx shadcn@latest add @remocn/<name>` copies files
+rather than adding a dependency, so these are source, not a package. See
+REMOCN-COMPONENTS.md for the per-component install command verified against
+its own doc page, and for the two files that deviate from the registry source.
+
+```
+MIT License
+
+Copyright (c) 2026 Remocn
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## lifeprompt-team/remotion-scenes — MIT License
+
+ONE component ported into
+`src/skills/remotion-render/components/lifeprompt/data-gauge.jsx`, from
+`src/scenes/DataAnimations/DataGauge.tsx` at commit
+`02c7a84241da7010b5f59c420b0110aafd1d6f0d`. Its arc geometry, tick placement,
+needle and sweep timing are reproduced faithfully; four deviations (no
+full-screen fill, channel palette instead of the vendored colour constants,
+inlined easing, and the beat's own unit instead of a hardcoded caption) are
+recorded in the component file's header.
+
+The other seven DataAnimations components are deliberately NOT vendored: they
+accept only `startDelay` and render hardcoded content, which cannot be driven
+by a script's real figures.
+
+```
+MIT License
+
+Copyright (c) 2026 lifeprompt-team
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```

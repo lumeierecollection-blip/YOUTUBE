@@ -1,0 +1,35 @@
+﻿151: const findClosestFolderWithItem = (currentDir, file) => {
+152:     let possibleFile = '';
+153:     for (let i = 0; i < recursionLimit; i++) {
+154:         possibleFile = node_path_1.default.join(currentDir, file);
+155:         const exists = node_fs_1.default.existsSync(possibleFile);
+156:         if (exists) {
+157:             return node_path_1.default.dirname(possibleFile);
+158:         }
+159:         currentDir = node_path_1.default.dirname(currentDir);
+160:     }
+161:     return null;
+162: };
+163: exports.findClosestFolderWithItem = findClosestFolderWithItem;
+164: const findClosestPackageJsonFolder = (currentDir) => {
+165:     return (0, exports.findClosestFolderWithItem)(currentDir, 'package.json');
+166: };
+167: const validateEntryPoint = async (entryPoint) => {
+168:     const contents = await node_fs_1.promises.readFile(entryPoint, 'utf8');
+169:     if (!contents.includes('registerRoot')) {
+170:         throw new Error([
+171:             `You passed ${entryPoint} as your entry point, but this file does not contain "registerRoot".`,
+172:             'You should use the file that calls registerRoot() as the entry point.',
+173:             'To ignore this error, pass "ignoreRegisterRootWarning" to bundle().',
+174:             'This error cannot be ignored on the CLI.',
+175:         ].join(' '));
+176:     }
+177: };
+178: const internalBundle = async (actualArgs) => {
+179:     var _a, _b;
+180:     var _c, _d, _e, _f, _g, _h, _j, _k;
+181:     const entryPoint = node_path_1.default.resolve(process.cwd(), actualArgs.entryPoint);
+182:     const resolvedRemotionRoot = (_d = (_c = actualArgs === null || actualArgs === void 0 ? void 0 : actualArgs.rootDir) !== null && _c !== void 0 ? _c : findClosestPackageJsonFolder(entryPoint)) !== null && _d !== void 0 ? _d : process.cwd();
+183:     if (!actualArgs.ignoreRegisterRootWarning) {
+184:         await validateEntryPoint(entryPoint);
+185:     }

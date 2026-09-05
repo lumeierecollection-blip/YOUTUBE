@@ -1,0 +1,311 @@
+{
+  "video": "src\\skills\\remotion-render\\out\\qa.mp4",
+  "frames_analyzed": 90,
+  "background_luma": 35.9,
+  "motions": [
+    {
+      "frames": [
+        1,
+        10
+      ],
+      "velocity_linearity": 0.0
+    },
+    {
+      "frames": [
+        16,
+        21
+      ],
+      "velocity_linearity": 0.0
+    },
+    {
+      "frames": [
+        29,
+        33
+      ],
+      "velocity_linearity": 0.389
+    },
+    {
+      "frames": [
+        36,
+        43
+      ],
+      "velocity_linearity": 0.0
+    },
+    {
+      "frames": [
+        46,
+        53
+      ],
+      "velocity_linearity": 0.0
+    },
+    {
+      "frames": [
+        72,
+        76
+      ],
+      "velocity_linearity": 0.0
+    },
+    {
+      "frames": [
+        78,
+        83
+      ],
+      "velocity_linearity": 0.328
+    }
+  ],
+  "summary": {
+    "hard_defects": 12,
+    "soft_defects": 9,
+    "worst_linearity": 0.389,
+    "distinct_left_edges": 3
+  },
+  "defects": [
+    {
+      "type": "dead_hold",
+      "severity": "soft",
+      "frame": 53,
+      "fix": "add a slow drift, scale breath, or grain so the frame stays alive"
+    },
+    {
+      "type": "margin_violation",
+      "severity": "hard",
+      "frame": 0,
+      "box": [
+        24,
+        144,
+        25,
+        623
+      ],
+      "fix": "move inside the safe area; the bottom band is covered by YouTube UI"
+    },
+    {
+      "type": "margin_violation",
+      "severity": "hard",
+      "frame": 3,
+      "box": [
+        24,
+        144,
+        25,
+        623
+      ],
+      "fix": "move inside the safe area; the bottom band is covered by YouTube UI"
+    },
+    {
+      "type": "margin_violation",
+      "severity": "hard",
+      "frame": 6,
+      "box": [
+        24,
+        144,
+        25,
+        623
+      ],
+      "fix": "move inside the safe area; the bottom band is covered by YouTube UI"
+    },
+    {
+      "type": "margin_violation",
+      "severity": "hard",
+      "frame": 6,
+      "box": [
+        40,
+        144,
+        406,
+        623
+      ],
+      "fix": "move inside the safe area; the bottom band is covered by YouTube UI"
+    },
+    {
+      "type": "margin_violation",
+      "severity": "hard",
+      "frame": 9,
+      "box": [
+        24,
+        144,
+        25,
+        623
+      ],
+      "fix": "move inside the safe area; the bottom band is covered by YouTube UI"
+    },
+    {
+      "type": "margin_violation",
+      "severity": "hard",
+      "frame": 9,
+      "box": [
+        40,
+        144,
+        406,
+        623
+      ],
+      "fix": "move inside the safe area; the bottom band is covered by YouTube UI"
+    },
+    {
+      "type": "margin_violation",
+      "severity": "hard",
+      "frame": 12,
+      "box": [
+        24,
+        144,
+        25,
+        623
+      ],
+      "fix": "move inside the safe area; the bottom band is covered by YouTube UI"
+    },
+    {
+      "type": "margin_violation",
+      "severity": "hard",
+      "frame": 12,
+      "box": [
+        40,
+        144,
+        406,
+        623
+      ],
+      "fix": "move inside the safe area; the bottom band is covered by YouTube UI"
+    },
+    {
+      "type": "margin_violation",
+      "severity": "hard",
+      "frame": 15,
+      "box": [
+        24,
+        144,
+        25,
+        623
+      ],
+      "fix": "move inside the safe area; the bottom band is covered by YouTube UI"
+    },
+    {
+      "type": "margin_violation",
+      "severity": "hard",
+      "frame": 15,
+      "box": [
+        40,
+        144,
+        406,
+        623
+      ],
+      "fix": "move inside the safe area; the bottom band is covered by YouTube UI"
+    },
+    {
+      "type": "margin_violation",
+      "severity": "hard",
+      "frame": 18,
+      "box": [
+        24,
+        144,
+        25,
+        623
+      ],
+      "fix": "move inside the safe area; the bottom band is covered by YouTube UI"
+    },
+    {
+      "type": "margin_violation",
+      "severity": "hard",
+      "frame": 18,
+      "box": [
+        40,
+        144,
+        406,
+        623
+      ],
+      "fix": "move inside the safe area; the bottom band is covered by YouTube UI"
+    },
+    {
+      "type": "low_contrast",
+      "severity": "soft",
+      "frame": 3,
+      "box": [
+        55,
+        144,
+        413,
+        623
+      ],
+      "fix": "raise luminance separation or add a scrim behind the text"
+    },
+    {
+      "type": "low_contrast",
+      "severity": "soft",
+      "frame": 6,
+      "box": [
+        40,
+        144,
+        406,
+        623
+      ],
+      "fix": "raise luminance separation or add a scrim behind the text"
+    },
+    {
+      "type": "low_contrast",
+      "severity": "soft",
+      "frame": 9,
+      "box": [
+        40,
+        144,
+        406,
+        623
+      ],
+      "fix": "raise luminance separation or add a scrim behind the text"
+    },
+    {
+      "type": "low_contrast",
+      "severity": "soft",
+      "frame": 12,
+      "box": [
+        40,
+        144,
+        406,
+        623
+      ],
+      "fix": "raise luminance separation or add a scrim behind the text"
+    },
+    {
+      "type": "low_contrast",
+      "severity": "soft",
+      "frame": 15,
+      "box": [
+        40,
+        144,
+        406,
+        623
+      ],
+      "fix": "raise luminance separation or add a scrim behind the text"
+    },
+    {
+      "type": "low_contrast",
+      "severity": "soft",
+      "frame": 18,
+      "box": [
+        40,
+        144,
+        406,
+        623
+      ],
+      "fix": "raise luminance separation or add a scrim behind the text"
+    },
+    {
+      "type": "low_contrast",
+      "severity": "soft",
+      "frame": 21,
+      "box": [
+        40,
+        144,
+        406,
+        623
+      ],
+      "fix": "raise luminance separation or add a scrim behind the text"
+    },
+    {
+      "type": "low_contrast",
+      "severity": "soft",
+      "frame": 24,
+      "box": [
+        40,
+        144,
+        406,
+        623
+      ],
+      "fix": "raise luminance separation or add a scrim behind the text"
+    }
+  ],
+  "contact_sheet": "qa\\sheet.jpg"
+}

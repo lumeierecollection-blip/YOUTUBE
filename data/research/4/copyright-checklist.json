@@ -1,0 +1,28 @@
+{
+  "overall_risk": "LOW",
+  "checks": [
+    {
+      "asset": "voiceover",
+      "source": "EdgeTTS",
+      "risk": "UNKNOWN",
+      "message": "UNKNOWN: \"EdgeTTS\" is not in our database.",
+      "action": "Verify license explicitly covers YouTube monetization. Keep proof of license."
+    },
+    {
+      "asset": "thumbnail",
+      "source": "Local composite (gradient/text via sharp/canvas) — no external asset",
+      "risk": "LOW",
+      "message": "SAFE: \"Local composite (gradient/text via sharp/canvas) — no external asset\" is a known safe source.",
+      "action": "Verify license terms. Keep download receipt."
+    }
+  ],
+  "issues": [],
+  "recommendations": [
+    "Save license PDFs, receipts, and download URLs for every asset",
+    "Run copyright checker BEFORE upload, not after",
+    "When in doubt, use YouTube Audio Library (built-in, Content ID safe)",
+    "No safe threshold exists — even under 5 seconds can trigger claims",
+    "Background TV/radio during recording still triggers Content ID",
+    "Keep a paper trail — turns 30-day appeal into 5-minute dispute"
+  ]
+}

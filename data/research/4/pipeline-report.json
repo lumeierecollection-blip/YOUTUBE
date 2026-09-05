@@ -1,0 +1,42 @@
+{
+  "channel_id": "4",
+  "started_at": "2026-08-10T08:15:24.146Z",
+  "steps": {
+    "8": {
+      "status": "ok"
+    },
+    "9": {
+      "status": "warnings",
+      "srt_count": 1
+    },
+    "10": {
+      "status": "ok",
+      "count": 2
+    },
+    "11": {
+      "status": "ok"
+    },
+    "12": {
+      "status": "ok"
+    },
+    "13": {
+      "status": "ok",
+      "requires": false
+    },
+    "14": {
+      "status": "ok",
+      "evidence_checks": 5
+    },
+    "15": {
+      "status": "ok",
+      "cached": true
+    },
+    "16": {
+      "status": "skipped",
+      "reason": "no API"
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "completed_at": "2026-08-10T08:15:24.151Z"
+}

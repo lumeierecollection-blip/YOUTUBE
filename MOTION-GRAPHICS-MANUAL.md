@@ -864,9 +864,10 @@ render time — the project already hit a Pixabay CDN rate-limit failure caused
 by Remotion's concurrent frame rendering hitting remote URLs, and the fix was
 pre-downloading to local paths. The same failure mode applies to icons.
 
-**E1.2 — Vendor only what's used.** Each channel's `icon_map` is the
-allow-list; a build step copies the union of all 12 maps plus the defaults.
-Expect 60–120 icons total, not 1,500.
+**E1.2 — Vendor only what's used.** SUPERSEDED: icons were ruled out entirely.
+The channel `icon_map` allow-list and the `vendor-icons.js` build step that
+read it have both been removed. The already-vendored SVGs remain in
+`public/icons/` but nothing resolves an icon at render time.
 
 **E1.3 — Strip and normalise on vendoring:** remove `width`/`height`
 attributes (size is set at render), keep `viewBox="0 0 24 24"`, set
@@ -1120,7 +1121,7 @@ SFX map, licence handling.
 |---|---|
 | `thumbnail_spec.baseHue` / `accentHue` | 2 hues, derived roles must pass A2.4 and COL-01..06 |
 | `font` | one of the vendored families; 2 weights |
-| `icon_map` | keyword → Lucide name, names must exist in the vendored set |
+| ~~`icon_map`~~ | REMOVED — icons were ruled out; scene derivation never resolves an icon |
 | `tone` | affects script wording only, never motion |
 | `channel_name` | kicker + end screen |
 

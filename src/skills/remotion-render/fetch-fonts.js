@@ -1,0 +1,175 @@
+﻿/**
+ * Font fetcher — downloads the woff2 files for every font referenced in
+ * config/channels.json so Remotion can render the channels' actual fonts
+ * (Google Fonts are not installed locally and the renderer cannot rely on
+ * network access at render time).
+ *
+ * Usage:
+ *   node src/skills/remotion-render/fetch-fonts.js
+ *
+ * Downloads <Family>-<weight>.woff2 files into ./public/fonts (the Remotion
+ * bundler copies ./public into the bundle and `staticFile()` serves them) and
+ * regenerates ./fonts-loader.js plus ./fonts-manifest.json. Safe to re-run:
+ * existing files are skipped.
+ */
+
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = join(__dirname, "..", "..", "..");
+const FONT_DIR = join(__dirname, "public", "fonts");
+
+const UA =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36";
+
+const WEIGHTS = [400, 700];
+const FONT_LIMIT = 30;
+
+// A fixed, always-fetched italic serif face for the "setup line" headline
+// pairing (MOTION-GRAPHICS-MANUAL rebuild PART 3.4: italic serif setup line
+// above a bold sans payload line). This is a structural typographic device
+// shared across every motion-graphics channel, not a per-channel identity
+// font, so it is NOT derived from channels.json's per-channel `font` field —
+// it is fetched unconditionally, in addition to whatever channels.json
+// references. Playfair Display is already vendored (regular/bold) for the
+// channels that use it as their primary font, so this adds only the italic
+// weight, not a new family.
+const EXTRA_FACES = [{ family: "Playfair Display", weight: 400, style: "italic" }];
+
+// Latin block (unicode-range U+0000-00FF) is the LAST @font-face block per
+// weight in the Google Fonts CSS2 response; the first block is cyrillic-ext.
+// Selecting the first matching block shipped 0-digit subsets (audit-assets
+// claim 001, SFR-002). Request one weight per CSS2 call and select by
+// unicode-range.
+const LATIN_RANGE = "U+0000-00FF";
+
+function slug(name) {
+  return name.replace(/\s+/g, "");
+}
+
+function collectFonts() {
+  const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
+  const channels = data.channels || data;
+  const fonts = [...new Set(channels.map((c) => c.font).filter(Boolean))];
+  return fonts.slice(0, FONT_LIMIT);
+}
+
+function cssUrl(font, weight, style = "normal") {
+  const fam = font.replace(/ /g, "+");
+  if (style === "italic") {
+    return `https://fonts.googleapis.com/css2?family=${fam}:ital,wght@1,${weight}&display=swap`;
+  }
+  return `https://fonts.googleapis.com/css2?family=${fam}:wght@${weight}&display=swap`;
+}
+
+async function getWoff2Url(font, weight, style = "normal") {
+  const res = await fetch(cssUrl(font, weight, style), { headers: { "User-Agent": UA } });
+  if (!res.ok) throw new Error(`${font}: CSS request failed (${res.status})`);
+  const css = await res.text();
+  const blocks = css.split("@font-face");
+  for (const block of blocks) {
+    if (!block.includes(`font-weight: ${weight};`)) continue;
+    if (style === "italic" && !block.includes("font-style: italic;")) continue;
+    if (style === "normal" && block.includes("font-style: italic;")) continue;
+    // Skip if the block's unicode-range does not cover latin (U+0020-U+007E
+    // sits inside U+0000-00FF). A block with no unicode-range at all is the
+    // static single-file case and is acceptable.
+    const ur = block.match(/unicode-range:\s*([^;}]+)/);
+    if (ur && !ur[1].includes(LATIN_RANGE)) continue;
+    const m = block.match(/url\((https:\/\/[^)]+\.woff2)\)/);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+async function download(url, dest) {
+  const res = await fetch(url, { headers: { "User-Agent": UA } });
+  if (!res.ok) throw new Error(`download failed (${res.status}) for ${url}`);
+  writeFileSync(dest, Buffer.from(await res.arrayBuffer()));
+}
+
+async function main() {
+  mkdirSync(FONT_DIR, { recursive: true });
+  const fonts = collectFonts();
+  const manifest = {};
+
+  for (const font of fonts) {
+    manifest[font] = manifest[font] || {};
+    for (const weight of WEIGHTS) {
+      const file = `${slug(font)}-${weight}.woff2`;
+      const dest = join(FONT_DIR, file);
+      if (existsSync(dest)) {
+        manifest[font][weight] = file;
+        console.log(`  skip ${file}`);
+        continue;
+      }
+      try {
+        const url = await getWoff2Url(font, weight);
+        if (!url) {
+          console.log(`  ${font} ${weight}: not available`);
+          continue;
+        }
+        await download(url, dest);
+        manifest[font][weight] = file;
+        console.log(`  ok ${file}`);
+      } catch (err) {
+        console.log(`  FAIL ${font} ${weight}: ${err.message}`);
+      }
+    }
+  }
+
+  // Fixed extra faces (italic serif for the setup-line headline pairing) —
+  // always fetched, regardless of what channels.json references. Manifest
+  // key convention: "<weight>i" for italic, e.g. "400i".
+  for (const { family, weight, style } of EXTRA_FACES) {
+    manifest[family] = manifest[family] || {};
+    const key = style === "italic" ? `${weight}i` : String(weight);
+    const file = `${slug(family)}-${weight}${style === "italic" ? "Italic" : ""}.woff2`;
+    const dest = join(FONT_DIR, file);
+    if (existsSync(dest)) {
+      manifest[family][key] = file;
+      console.log(`  skip ${file}`);
+      continue;
+    }
+    try {
+      const url = await getWoff2Url(family, weight, style);
+      if (!url) {
+        console.log(`  ${family} ${weight} ${style}: not available`);
+        continue;
+      }
+      await download(url, dest);
+      manifest[family][key] = file;
+      console.log(`  ok ${file}`);
+    } catch (err) {
+      console.log(`  FAIL ${family} ${weight} ${style}: ${err.message}`);
+    }
+  }
+
+  writeFileSync(join(__dirname, "fonts-manifest.json"), JSON.stringify(manifest, null, 2));
+
+  let faces = "";
+  const families = [];
+  for (const font of Object.keys(manifest)) {
+    families.push(font);
+    for (const weightKey of Object.keys(manifest[font])) {
+      const file = manifest[font][weightKey];
+      const isItalic = weightKey.endsWith("i");
+      const weight = isItalic ? weightKey.slice(0, -1) : weightKey;
+      faces += `@font-face{font-family:"${font}";font-style:${isItalic ? "italic" : "normal"};font-weight:${weight};font-display:swap;src:url("\${staticFile(\"fonts/${file}\")}") format("woff2");}\n`;
+    }
+  }
+  const loader =
+    `// AUTO-GENERATED by fetch-fonts.js — do not edit.\n` +
+    `import { staticFile } from "remotion";\n\n` +
+    `/** All configured channel fonts as @font-face rules. */\nexport const FONT_FACES = \`${faces}\`;\n\n` +
+    `/** Family names of every font bundled above. */\nexport const FONT_FAMILIES = ${JSON.stringify(families)};\n`;
+  writeFileSync(join(__dirname, "fonts-loader.js"), loader);
+  console.log(`\nDone. ${fonts.length} families, manifest written, fonts-loader.js regenerated.`);
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

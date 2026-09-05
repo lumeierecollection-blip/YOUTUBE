@@ -1,0 +1,810 @@
+# YouTube Automation — Fully Autonomous Daily Pipeline
+# Runs daily, picks fresh topics, researches, scripts, renders, publishes
+# No manual intervention required after initial setup
+
+name: Daily Pipeline — Autonomous
+
+on:
+  schedule:
+    # Run at 6:00 AM UTC daily
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (no publish)"
+        type: boolean
+        default: false
+      channel_override:
+        description: "Process specific channel ID only (leave empty for all)"
+        required: false
+
+env:
+  NODE_VERSION: "22"
+  PYTHON_VERSION: "3.11"
+  # Provider switched from Anthropic to Cerebras (via the OpenCode CLI,
+  # which supplies the real websearch/webfetch tools Cerebras's own API
+  # doesn't have — see opencode.json's "cerebras" provider entry and
+  # scripts/opencode-agent.js). Comma-separated = primary,failover — tried
+  # in order, each with its own retry budget, before moving to the next.
+  # Verify current Cerebras model IDs with `opencode models | grep cerebras`
+  # before changing; this list isn't guaranteed stable long-term.
+  # ONLY gemma-4-31b here, on purpose: gpt-oss-120b and zai-glm-4.7 are
+  # reasoning models - the openai-compatible adapter replays their
+  # `reasoning_content` in assistant history and the Cerebras API rejects
+  # that field (HTTP 400 wrong_api_format) on every multi-turn call
+  # (verified on live runs; see vercel/ai#15042). gemma-4-31b has
+  # reasoning disabled by default, so it never emits the field.
+  # --- Two-stage provider routing (5 providers, one model each) ---------
+  #
+  # Both lists are consumed by scripts/opencode-agent.js, NOT by OpenCode's
+  # own config. OpenCode's config cannot express a fallback list: in its
+  # published schema `Config.model` is `{"type": "string"}` — a single
+  # `provider_id/model_id` — and the schema has no fallback/retry/failover
+  # key at all (sst/opencode @ d8eb3b8, packages/sdk/openapi.json). So the
+  # N-provider chain lives in our runner's `--model a,b,c,d,e` argument,
+  # which splits on commas and tries each in order with no arity limit.
+  #
+  # Ranking source: the models.dev database OpenCode itself reads
+  # (github.com/sst/models.dev @ 3daf906), providers/<p>/models/*.toml.
+  # Prices below are that file's [cost] block, in USD per million tokens.
+  # models.dev publishes NO tokens/sec field for any provider, and every
+  # provider's own pricing/throughput page is refused by this environment's
+  # egress policy, so these lists are ranked on VERIFIED PRICE ONLY. The
+  # "fastest" half of "fastest/cheapest" is unranked because no throughput
+  # number could be sourced — do not add one from memory.
+  #
+  # Stage A (discover) + Stage B (research): cheapest first. These stages
+  # only need tool_call for websearch, not reasoning; every entry has
+  # `tool_call = true` in models.dev except cerebras/gpt-oss-120b, which
+  # .opencode/opencode.json declares tool_call itself.
+  #   opencode/mimo-v2.5-free       0.00 in / 0.00 out  (Zen free tier)
+  #   mistral/ministral-3b-latest   0.04 in / 0.04 out
+  #   groq/llama-3.1-8b-instant     0.05 in / 0.08 out
+  #   google/gemini-2.5-flash-lite  0.10 in / 0.40 out
+  #   cerebras/gpt-oss-120b         0.35 in / 0.75 out
+  OPENCODE_MODELS_RESEARCH: "opencode/mimo-v2.5-free,mistral/ministral-3b-latest,groq/llama-3.1-8b-instant,google/gemini-2.5-flash-lite,cerebras/gpt-oss-120b"
+  #
+  # Stage C (write-script) — the reasoning stage. Ordered by how granular a
+  # reasoning control the provider actually exposes, then by price; cost is
+  # secondary here on purpose. Each entry's control is quoted from its
+  # models.dev TOML:
+  #   google/gemini-3.5-flash-lite  effort: minimal|low|medium|high  0.30/2.50
+  #   groq/openai/gpt-oss-120b      effort: low|medium|high          0.15/0.60
+  #   cerebras/gpt-oss-120b         effort: low|medium|high          0.35/0.75
+  #   mistral/mistral-medium-latest effort: none|high                1.50/7.50
+  #   opencode/glm-5-free           toggle only (no effort levels)   0.00/0.00
+  # Zen is last for a documented reason, not a guess: models.dev's
+  # providers/opencode/provider.toml states "Zen does not document reasoning
+  # request fields, values, bounds, translation, or passthrough".
+  #
+  # Known constraint, kept from the Cerebras-only era: the
+  # openai-compatible adapter replays `reasoning_content` in assistant
+  # history and the Cerebras API rejects that field (HTTP 400
+  # wrong_api_format) on multi-turn calls (vercel/ai#15042). Stage C runs
+  # single-turn with no tools, so it does not hit this; do NOT move
+  # cerebras/gpt-oss-120b into a tool-using stage without re-testing.
+  OPENCODE_MODELS_REASONING: "google/gemini-3.5-flash-lite,groq/openai/gpt-oss-120b,cerebras/gpt-oss-120b,mistral/mistral-medium-latest,opencode/glm-5-free"
+  # Back-compat default for any call site not yet split by stage.
+  OPENCODE_MODELS: "opencode/mimo-v2.5-free,opencode/nemotron-3.5-lightning-free,google/gemini-3.5-flash-lite"
+  OPENCODE_ENABLE_EXA: "1"
+
+jobs:
+  # ============================================================
+  # PHASE 1: Discover topics — one Claude call, all channels, once/day
+  # ============================================================
+  # Replaces the old pillar-cycling logic, which had two fatal problems:
+  # (1) its `used.includes(p)` compared a string against topic-log's object
+  #     entries and was always false, so every run picked pillars[0] forever;
+  # (2) even fixed, 5 pillars x 50 channels is only 250 topics total — the
+  # whole network would exhaust its supply in ~2.5 days. Pillars are now a
+  # *scope constraint* passed to the model, not a queue to cycle through.
+  discover-topics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: topic-log
+      cancel-in-progress: false
+    outputs:
+      matrix: ${{ steps.emit.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install OpenCode
+        run: npm install -g opencode-ai
+
+      - name: Build discovery context
+        run: |
+          CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
+          if [ -n "$CHANNEL_OVERRIDE" ]; then
+            node scripts/build-discovery-context.js --channel "$CHANNEL_OVERRIDE" > /tmp/context.json
+          else
+            node scripts/build-discovery-context.js > /tmp/context.json
+          fi
+
+          # Stage A grounds EVERY channel in one call, so its search budget
+          # has to scale with how many channels are actually in this run —
+          # a flat "at most 2 searches" is right for a 1-channel override and
+          # impossible for a 17-channel daily run.
+          N=$(jq '.channels | length' /tmp/context.json)
+          # Floor of 2 so even a single-channel override gets one retry when
+          # its first query comes back with nothing groundable.
+          # Written as if/fi, not `[ ] && x` — under the `bash -e {0}` these
+          # run: blocks use, a false test in an AND-OR list is an easy way to
+          # kill the step by accident.
+          BUDGET=$N
+          if [ "$BUDGET" -lt 2 ]; then BUDGET=2; fi
+          echo "DISCOVERY_CHANNELS=$N" >> "$GITHUB_ENV"
+          echo "DISCOVERY_SEARCH_BUDGET=$BUDGET" >> "$GITHUB_ENV"
+          echo "Discovery covers $N channel(s); search budget $BUDGET."
+
+      - name: Discover topics
+        env:
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          # The other four providers in OPENCODE_MODELS_*. Names taken from
+          # each provider.toml `env` array in models.dev @ 3daf906. A key
+          # left unset in repo secrets arrives here as an empty string, and
+          # opencode-agent.js drops that provider from the chain before
+          # dialling it, printing which entries it skipped. So an unset key
+          # costs nothing and is visible; it does not quietly become the
+          # reason the reasoning stage ran on the weakest model in the list.
+          # OpenCode Zen needs no key for its free models, so the chain always
+          # has a working last resort.
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+        run: |
+          set -u
+          # GitHub Actions invokes `run:` blocks as `bash -e {0}` — -e is
+          # already on before this script starts, so `set -uo pipefail`
+          # alone does NOT disable it. Without an explicit `set +e` here,
+          # the pipe failing kills the script immediately, before AGENT_EXIT
+          # is even assigned, and every diagnostic below is silently
+          # skipped. (Confirmed the hard way: this exact bug ate the real
+          # error from the first live Cerebras test run.)
+          set +e
+          cat /tmp/context.json | node scripts/opencode-agent.js \
+            --prompt-file prompts/discover-topics.md \
+            --schema-file schemas/topics.json \
+            --search-budget "$DISCOVERY_SEARCH_BUDGET" \
+            --agent pipeline-research \
+            --model "$OPENCODE_MODELS_RESEARCH" \
+            --task-label discover-topics \
+            > /tmp/topics-raw.json 2> /tmp/topics-err.log
+          AGENT_EXIT=$?
+          set -e
+          if [ "$AGENT_EXIT" -ne 0 ]; then
+            echo "::error::opencode-agent.js exited with code $AGENT_EXIT"
+            echo "--- stdout (/tmp/topics-raw.json) ---"; cat /tmp/topics-raw.json 2>/dev/null || echo "(empty)"
+            echo "--- stderr ---"; cat /tmp/topics-err.log 2>/dev/null || echo "(empty)"
+            exit 1
+          fi
+          if ! jq -e '.structured_output.topics | length > 0' /tmp/topics-raw.json > /dev/null; then
+            echo "::error::opencode-agent.js succeeded but produced no usable topics — dumping raw output"
+            cat /tmp/topics-raw.json
+            exit 1
+          fi
+          jq '.structured_output' /tmp/topics-raw.json > /tmp/topics.json
+          echo "cost_usd=$(jq -r '.total_cost_usd' /tmp/topics-raw.json)" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Reserve topics and commit the log
+        run: |
+          node scripts/reserve-topics.js /tmp/topics.json
+          git config user.name "pipeline-bot"
+          git config user.email "pipeline@youtube-automation.local"
+          git add data/topic-log.json
+          git diff --staged --quiet || git commit -m "topics: $(date -u +%F)"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: emit
+        run: |
+          echo "matrix={\"include\":$(jq -c '.topics' /tmp/topics.json)}" >> "$GITHUB_OUTPUT"
+          echo "Total topics: $(jq '.topics | length' /tmp/topics.json)"
+
+  # ============================================================
+  # PHASE 2: Research + Script + TTS (per channel, parallel)
+  # ============================================================
+  # Stage B (research) and Stage C (script) are separate model calls: Stage
+  # C has no web access and writes only from Stage B's frozen, sourced
+  # research artifact — that's what guarantees every claim in a script
+  # traces to a searched source, instead of the model filling gaps with
+  # uncited general knowledge at write time.
+  research-and-script:
+    needs: discover-topics
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.discover-topics.outputs.matrix) }}
+      # Lowered 5 -> 2 deliberately. Cerebras's free tier rate-limits on
+      # tokens-per-minute ACCOUNT-WIDE (observed: both models returning the
+      # identical quota error at the same instant), so parallel channels
+      # compete for one budget rather than getting one each. At 5-wide a
+      # full 17-channel run would spend most of its attempts colliding with
+      # its own siblings and burning the retry budget on 65s backoffs. Raise
+      # this only alongside a paid tier.
+      max-parallel: 2
+      fail-fast: false
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install EdgeTTS
+        run: pip install edge-tts
+
+      - name: Install OpenCode
+        run: npm install -g opencode-ai
+
+      - name: Ensure output directories
+        run: |
+          CH="${{ matrix.channel_id }}"
+          mkdir -p data/research/$CH data/tts/$CH data/thumbnails/$CH
+
+      - name: Determine today's formats
+        # NICHE-AUDIT.md Part 0.1/0.2: long-form is the qualifying and
+        # earning format (8-min mid-roll threshold, 4000-watch-hour path to
+        # monetization), Shorts are the funnel. Shorts run every day;
+        # long-form runs Mon/Wed/Fri (ISO weekday 1/3/5) on top of that
+        # day's Short, from the same researched topic.
+        run: |
+          WEEKDAY=$(date -u +%u)
+          if [ "$WEEKDAY" = "1" ] || [ "$WEEKDAY" = "3" ] || [ "$WEEKDAY" = "5" ]; then
+            echo "FORMATS=shorts longform" >> "$GITHUB_ENV"
+          else
+            echo "FORMATS=shorts" >> "$GITHUB_ENV"
+          fi
+
+      - name: Stage B — research
+        env:
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          # The other four providers in OPENCODE_MODELS_*. Names taken from
+          # each provider.toml `env` array in models.dev @ 3daf906. A key
+          # left unset in repo secrets makes that provider fail on use and
+          # the runner falls through to the next one, which is the intended
+          # degradation, not a silent skip.
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+          # A real topic ("YNAB raises annual subscription price by $10 in
+          # 2024") broke this the direct-interpolation way: GitHub Actions
+          # pastes ${{ matrix.topic }}'s literal text into the run: script,
+          # and bash then reads "$10" inside it as ${1}0 (a positional
+          # parameter), not literal text — "$1: unbound variable" under
+          # set -u. Passing through env: instead means bash only ever sees
+          # "$MATRIX_TOPIC" in the script text; the value itself, once
+          # assigned, is inert and never re-parsed for $-expansion.
+          MATRIX_TOPIC: ${{ matrix.topic }}
+          MATRIX_ANGLE: ${{ matrix.angle }}
+        run: |
+          set -u
+          CH="${{ matrix.channel_id }}"; SLUG="${{ matrix.slug }}"
+          echo "=== RESEARCH: $CH — $SLUG ==="
+          # See the "Discover topics" step for why set +e is required here:
+          # bash -e {0} is already active from how Actions invokes run:
+          # blocks, so without this the pipe failing would skip AGENT_EXIT
+          # and every diagnostic below it.
+          set +e
+          jq -n --arg t "$MATRIX_TOPIC" --arg a "$MATRIX_ANGLE" \
+                --arg s "$SLUG" --arg c "$CH" \
+                '{topic:$t, angle:$a, slug:$s, channel_id:$c}' \
+            | node scripts/opencode-agent.js \
+                --prompt-file prompts/research.md \
+                --schema-file schemas/research.json \
+                --agent pipeline-research \
+                --model "$OPENCODE_MODELS_RESEARCH" \
+                --task-label research --channel-id "$CH" --video-id "$SLUG" \
+                > /tmp/research-raw.json 2> /tmp/research-err.log
+          AGENT_EXIT=$?
+          set -e
+          if [ "$AGENT_EXIT" -ne 0 ]; then
+            echo "::error::opencode-agent.js exited with code $AGENT_EXIT"
+            echo "--- stdout (/tmp/research-raw.json) ---"; cat /tmp/research-raw.json 2>/dev/null || echo "(empty)"
+            echo "--- stderr ---"; cat /tmp/research-err.log 2>/dev/null || echo "(empty)"
+            exit 1
+          fi
+          if ! jq -e '.structured_output.key_facts | length >= 5' /tmp/research-raw.json > /dev/null; then
+            echo "::error::research didn't meet the quality bar — dumping raw output"
+            cat /tmp/research-raw.json
+            exit 1
+          fi
+          jq '.structured_output' /tmp/research-raw.json > "data/research/$CH/$SLUG.json"
+
+          # Keep the raw agent output (schema + websearch-call telemetry)
+          # next to the artifact: gate-research.js reads .agent-raw.json to
+          # say HOW MANY searches a failed run actually made, which is the
+          # difference between "the model searched twice and still found 2
+          # domains" and "the model stopped after one search". The dotfile is
+          # invisible to every downstream consumer (script/TTS/render globs
+          # only match *-script.json).
+          cp /tmp/research-raw.json "data/research/$CH/.agent-raw.json"
+
+      - name: Gate — research quality
+        run: node scripts/gate-research.js "${{ matrix.channel_id }}" "${{ matrix.slug }}"
+
+      - name: Stage C — script (one per today's format, gate-feedback retry)
+        env:
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          # The other four providers in OPENCODE_MODELS_*. Names taken from
+          # each provider.toml `env` array in models.dev @ 3daf906. A key
+          # left unset in repo secrets makes that provider fail on use and
+          # the runner falls through to the next one, which is the intended
+          # degradation, not a silent skip.
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+        run: |
+          set -euo pipefail
+          CH="${{ matrix.channel_id }}"; SLUG="${{ matrix.slug }}"
+          STYLE=$(node scripts/channel-style.js "$CH")
+          if [ "$STYLE" = "motion-graphics" ]; then
+            SCHEMA="schemas/script.mg.json"
+          else
+            SCHEMA="schemas/script.section.json"
+          fi
+          for FORMAT in $FORMATS; do
+            SCRIPT_SLUG="${SLUG}-${FORMAT}"
+            FEEDBACK=""
+            PASSED=0
+            # Up to 3 attempts: a script gate rejection (invented chart
+            # values, anchor_token not verbatim, ...) is fed back to the
+            # model so the retry fixes exactly those problems against the
+            # SAME frozen research. Observed failures (SCR-05 binary chart,
+            # SCR-03 anchor token) were one-off model mistakes that a plain
+            # re-run with the gate's own lines routinely fixes.
+            for ATTEMPT in 1 2 3; do
+              echo "=== SCRIPT: $CH — $SCRIPT_SLUG (attempt $ATTEMPT/3) ==="
+              PROMPT_FILE=prompts/write-script.md
+              if [ -n "$FEEDBACK" ]; then
+                cp prompts/write-script.md /tmp/write-script-feedback.md
+                printf '\n\n## Quality gate rejected your previous script\n\n%s\n\nRewrite the FULL script JSON now, fixing exactly the problems above. Keep everything the gate did not flag identical — same research grounding, same sources_used, same structure. Return only the JSON object.\n' "$FEEDBACK" >> /tmp/write-script-feedback.md
+                PROMPT_FILE=/tmp/write-script-feedback.md
+              fi
+              set +e
+              node scripts/build-script-context.js "$CH" "$SLUG" --format "$FORMAT" \
+                | node scripts/opencode-agent.js \
+                    --prompt-file "$PROMPT_FILE" \
+                    --append-system-prompt-file prompts/style-contract.md \
+                    --schema-file "$SCHEMA" \
+                    --agent pipeline-script \
+                    --model "$OPENCODE_MODELS_REASONING" \
+                    --task-label write-script --channel-id "$CH" --video-id "$SCRIPT_SLUG" \
+                    > /tmp/script-raw-$FORMAT.json 2> /tmp/script-err-$FORMAT.log
+              AGENT_EXIT=$?
+              set -e
+              if [ "$AGENT_EXIT" -ne 0 ]; then
+                # Hard failure (quota/provider/model), not a gate rejection —
+                # retrying the same broken call is pointless.
+                echo "::error::opencode-agent.js exited with code $AGENT_EXIT for format $FORMAT"
+                echo "--- stdout (/tmp/script-raw-$FORMAT.json) ---"; cat /tmp/script-raw-$FORMAT.json 2>/dev/null || echo "(empty)"
+                echo "--- stderr ---"; cat /tmp/script-err-$FORMAT.log 2>/dev/null || echo "(empty)"
+                exit 1
+              fi
+              jq '.structured_output' /tmp/script-raw-$FORMAT.json \
+                > "data/research/$CH/${SCRIPT_SLUG}-script.json"
+              # gate-script.js writes warnings+blockers to stderr and exits
+              # 1 on blockers — capture both streams for the feedback.
+              if node scripts/gate-script.js "${{ matrix.channel_id }}" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then
+                PASSED=1
+                break
+              fi
+              echo "::warning::script gate rejected attempt $ATTEMPT/3 for $SCRIPT_SLUG — retrying with gate feedback"
+              cat /tmp/gate-out-$FORMAT.log
+              FEEDBACK=$(grep -E '^  - ' /tmp/gate-out-$FORMAT.log || true)
+            done
+            if [ "$PASSED" -ne 1 ]; then
+              echo "::error::script gate still failing for $SCRIPT_SLUG after 3 attempts"
+              exit 1
+            fi
+          done
+
+      - name: Gate — script quality (one per today's format)
+        run: |
+          set -euo pipefail
+          for FORMAT in $FORMATS; do
+            node scripts/gate-script.js "${{ matrix.channel_id }}" "${{ matrix.slug }}-$FORMAT" "${{ matrix.slug }}"
+          done
+
+      - name: Generate TTS voiceover (one per today's format)
+        # set -e so a failure on an earlier format in the loop isn't masked
+        # by a later format's success (a bare loop's exit code is only its
+        # last command's) — tts.js now fails loudly (T1.6) and this step
+        # must actually surface that instead of swallowing it.
+        run: |
+          set -euo pipefail
+          CH="${{ matrix.channel_id }}"
+          SLUG="${{ matrix.slug }}"
+          for FORMAT in $FORMATS; do
+            SCRIPT_SLUG="${SLUG}-${FORMAT}"
+            echo "=== TTS: $CH — $SCRIPT_SLUG ==="
+            SCRIPT="data/research/$CH/${SCRIPT_SLUG}-script.json"
+            if [ -f "$SCRIPT" ]; then
+              node src/utils/tts.js "$CH" "$SCRIPT"
+            else
+              echo "WARN: Script not found at $SCRIPT — skipping TTS"
+            fi
+          done
+
+      - name: Generate thumbnail (one per today's format)
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG="${{ matrix.slug }}"
+          for FORMAT in $FORMATS; do
+            SCRIPT_SLUG="${SLUG}-${FORMAT}"
+            echo "=== THUMBNAIL: $CH — $SCRIPT_SLUG ==="
+            SCRIPT="data/research/$CH/${SCRIPT_SLUG}-script.json"
+            if [ -f "$SCRIPT" ]; then
+              node src/skills/thumbnail-maker/generate.js "$CH" "$SCRIPT" || echo "WARN: thumbnail spec failed"
+              node src/skills/thumbnail-maker/render-thumb.js "$CH" "$SCRIPT_SLUG" || echo "WARN: thumbnail render failed"
+            else
+              echo "WARN: Script not found — skipping thumbnail"
+            fi
+          done
+
+      - name: Generate SEO + metadata
+        env:
+          # Same $-expansion risk as Stage B (see its comment) — a topic
+          # containing e.g. "$10" would otherwise be misread as a
+          # positional parameter when pasted directly into this script.
+          MATRIX_TOPIC: ${{ matrix.topic }}
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG="${{ matrix.slug }}"
+          echo "=== METADATA: $CH — $SLUG ==="
+
+          # pipeline.js --step 5 skips step 1, so it never learns today's
+          # topic on its own — the new research.json schema has no topic/
+          # title field (only topic_slug) for pipeline.js's old
+          # collectResearchTopics() to find. Write next-topic.json (the
+          # fallback pipeline.js already checks) from the matrix's real
+          # topic/slug so SEO and end-screen generation target the actual
+          # script files instead of falling through to "Unknown Topic".
+          jq -n --arg t "$MATRIX_TOPIC" --arg s "$SLUG" '{topic:$t, slug:$s}' \
+            > "data/research/$CH/next-topic.json"
+
+          # Run pipeline steps 5-15 (SEO through render settings) for this channel
+          node src/utils/pipeline.js "$CH" --step 5 || echo "WARN: metadata generation had issues"
+
+      - name: Upload research artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-${{ matrix.channel_id }}-${{ github.run_id }}
+          path: |
+            data/research/${{ matrix.channel_id }}/
+            data/tts/${{ matrix.channel_id }}/
+            data/thumbnails/${{ matrix.channel_id }}/
+          retention-days: 7
+
+  # ============================================================
+  # PHASE 3: Render videos
+  # ============================================================
+  render:
+    needs: research-and-script
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install Remotion dependencies
+        working-directory: src/skills/remotion-render
+        run: npm ci
+
+      # upload-artifact@v4 strips the least common ancestor of multi-path
+      # uploads: the research job uploads data/research/<ch>/, data/tts/<ch>/
+      # and data/thumbnails/<ch>/, so the artifact root is "data" and the
+      # archive holds research/<ch>/..., tts/<ch>/..., thumbnails/<ch>/...
+      # Downloading to path: data (not .) restores the data/ prefix the render
+      # loop expects. With path: . the files landed at ./research/<ch>/, the
+      # loop only ever saw git-tracked scripts with no audio, and the run
+      # reported success with 0 renders rendered.
+      - name: Download all research artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: data
+          pattern: research-*
+          merge-multiple: true
+
+      # PART 8 of the motion-graphics rebuild — render-and-qa.js replaces
+      # what used to be two sequential steps (render everything, THEN
+      # review everything). QA for a finished video now runs in the
+      # background while the next video renders, instead of the whole batch
+      # waiting on review only after every render is already done. Same
+      # failure contract as before (0 rendered -> fail; any render failure
+      # -> fail) plus: a rendered video that fails its QA gate now also
+      # fails the job, since previously frame-audit failing here did fail
+      # the step (`|| exit 1`) — this preserves that, just pipelined.
+      - name: Render + QA (concurrent)
+        run: |
+          CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
+          if [ -n "$CHANNEL_OVERRIDE" ]; then
+            node scripts/render-and-qa.js --channel "$CHANNEL_OVERRIDE"
+          else
+            node scripts/render-and-qa.js
+          fi
+
+      - name: Upload review frames
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-frames-${{ github.run_id }}
+          path: data/audit/render-review/
+          retention-days: 7
+
+      - name: Upload render artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: renders-${{ github.run_id }}
+          path: data/renders/
+          retention-days: 7
+
+  # ============================================================
+  # PHASE 4: Publish to YouTube
+  # ============================================================
+  publish:
+    needs: render
+    if: ${{ github.event.inputs.dry_run != 'true' }}
+    runs-on: ubuntu-latest
+    # contents: write so the publish queue (data/publish-queue/) can be
+    # committed back — the queue must persist across runs for process-queue
+    # to flip videos public on later cron cycles.
+    permissions:
+      contents: write
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Same upload-artifact@v4 LCA rule, other direction: the render job
+      # uploads a SINGLE path (data/renders/), so the artifact root is
+      # data/renders/ and it holds 2/xxx.mp4 (channel dir at top level), not
+      # data/renders/2/xxx.mp4. Downloading to path: data/renders restores
+      # the data/renders/ prefix that youtube-publish/run.js reads.
+      - name: Download all render artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: data/renders
+          pattern: renders-*
+          merge-multiple: true
+
+      # Publish also needs the research artifacts: run.js reads SEO metadata
+      # from data/research/<ch>/*-seo.json and the thumbnail from
+      # data/thumbnails/<ch>/ - without them every upload silently falls back
+      # to default title/description and no thumbnail. Same path: data
+      # convention as the render job's download.
+      - name: Download all research artifacts (SEO + thumbnails)
+        uses: actions/download-artifact@v4
+        with:
+          path: data
+          pattern: research-*
+          merge-multiple: true
+
+      # src/utils/youtube-auth.js reads OAuth credentials from a local file,
+      # config/creds/<channel_id>.json — it does NOT read GitHub secrets
+      # directly. GitHub Actions can't dynamically index secrets by a
+      # runtime-constructed name (`secrets.CHANNEL_${id}_...` isn't valid),
+      # so every channel's 3 secrets must be named explicitly here, then
+      # bash indirect expansion below picks the right one per channel id.
+      # A channel with no secrets configured yet just gets skipped — publish
+      # falls through to its existing "API creds needed" warning, unchanged.
+      - name: Materialize per-channel OAuth credentials from secrets
+        env:
+          CH01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CH01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CH01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CH02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CH02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CH02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+          CH03_CLIENT_ID: ${{ secrets.CHANNEL_03_CLIENT_ID }}
+          CH03_CLIENT_SECRET: ${{ secrets.CHANNEL_03_CLIENT_SECRET }}
+          CH03_REFRESH_TOKEN: ${{ secrets.CHANNEL_03_REFRESH_TOKEN }}
+          CH04_CLIENT_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+          CH04_CLIENT_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+          CH04_REFRESH_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+          CH07_CLIENT_ID: ${{ secrets.CHANNEL_07_CLIENT_ID }}
+          CH07_CLIENT_SECRET: ${{ secrets.CHANNEL_07_CLIENT_SECRET }}
+          CH07_REFRESH_TOKEN: ${{ secrets.CHANNEL_07_REFRESH_TOKEN }}
+          CH09_CLIENT_ID: ${{ secrets.CHANNEL_09_CLIENT_ID }}
+          CH09_CLIENT_SECRET: ${{ secrets.CHANNEL_09_CLIENT_SECRET }}
+          CH09_REFRESH_TOKEN: ${{ secrets.CHANNEL_09_REFRESH_TOKEN }}
+          CH11_CLIENT_ID: ${{ secrets.CHANNEL_11_CLIENT_ID }}
+          CH11_CLIENT_SECRET: ${{ secrets.CHANNEL_11_CLIENT_SECRET }}
+          CH11_REFRESH_TOKEN: ${{ secrets.CHANNEL_11_REFRESH_TOKEN }}
+          CH17_CLIENT_ID: ${{ secrets.CHANNEL_17_CLIENT_ID }}
+          CH17_CLIENT_SECRET: ${{ secrets.CHANNEL_17_CLIENT_SECRET }}
+          CH17_REFRESH_TOKEN: ${{ secrets.CHANNEL_17_REFRESH_TOKEN }}
+          CH26_CLIENT_ID: ${{ secrets.CHANNEL_26_CLIENT_ID }}
+          CH26_CLIENT_SECRET: ${{ secrets.CHANNEL_26_CLIENT_SECRET }}
+          CH26_REFRESH_TOKEN: ${{ secrets.CHANNEL_26_REFRESH_TOKEN }}
+          CH30_CLIENT_ID: ${{ secrets.CHANNEL_30_CLIENT_ID }}
+          CH30_CLIENT_SECRET: ${{ secrets.CHANNEL_30_CLIENT_SECRET }}
+          CH30_REFRESH_TOKEN: ${{ secrets.CHANNEL_30_REFRESH_TOKEN }}
+          CH31_CLIENT_ID: ${{ secrets.CHANNEL_31_CLIENT_ID }}
+          CH31_CLIENT_SECRET: ${{ secrets.CHANNEL_31_CLIENT_SECRET }}
+          CH31_REFRESH_TOKEN: ${{ secrets.CHANNEL_31_REFRESH_TOKEN }}
+          CH35_CLIENT_ID: ${{ secrets.CHANNEL_35_CLIENT_ID }}
+          CH35_CLIENT_SECRET: ${{ secrets.CHANNEL_35_CLIENT_SECRET }}
+          CH35_REFRESH_TOKEN: ${{ secrets.CHANNEL_35_REFRESH_TOKEN }}
+          CH39_CLIENT_ID: ${{ secrets.CHANNEL_39_CLIENT_ID }}
+          CH39_CLIENT_SECRET: ${{ secrets.CHANNEL_39_CLIENT_SECRET }}
+          CH39_REFRESH_TOKEN: ${{ secrets.CHANNEL_39_REFRESH_TOKEN }}
+          CH44_CLIENT_ID: ${{ secrets.CHANNEL_44_CLIENT_ID }}
+          CH44_CLIENT_SECRET: ${{ secrets.CHANNEL_44_CLIENT_SECRET }}
+          CH44_REFRESH_TOKEN: ${{ secrets.CHANNEL_44_REFRESH_TOKEN }}
+          CH46_CLIENT_ID: ${{ secrets.CHANNEL_46_CLIENT_ID }}
+          CH46_CLIENT_SECRET: ${{ secrets.CHANNEL_46_CLIENT_SECRET }}
+          CH46_REFRESH_TOKEN: ${{ secrets.CHANNEL_46_REFRESH_TOKEN }}
+          CH47_CLIENT_ID: ${{ secrets.CHANNEL_47_CLIENT_ID }}
+          CH47_CLIENT_SECRET: ${{ secrets.CHANNEL_47_CLIENT_SECRET }}
+          CH47_REFRESH_TOKEN: ${{ secrets.CHANNEL_47_REFRESH_TOKEN }}
+          CH48_CLIENT_ID: ${{ secrets.CHANNEL_48_CLIENT_ID }}
+          CH48_CLIENT_SECRET: ${{ secrets.CHANNEL_48_CLIENT_SECRET }}
+          CH48_REFRESH_TOKEN: ${{ secrets.CHANNEL_48_REFRESH_TOKEN }}
+        run: |
+          mkdir -p config/creds
+          node -e "
+            const fs = require('fs');
+            const data = JSON.parse(fs.readFileSync('config/channels.json'));
+            const channels = data.channels || data;
+            let written = 0;
+            for (const c of channels) {
+              const p = String(c.id).padStart(2, '0');
+              const clientId = process.env[\`CH\${p}_CLIENT_ID\`];
+              const clientSecret = process.env[\`CH\${p}_CLIENT_SECRET\`];
+              const refreshToken = process.env[\`CH\${p}_REFRESH_TOKEN\`];
+              if (clientId && clientSecret && refreshToken) {
+                fs.writeFileSync(
+                  \`config/creds/\${c.channel_id}.json\`,
+                  JSON.stringify({ client_id: clientId, client_secret: clientSecret, refresh_token: refreshToken }, null, 2)
+                );
+                written++;
+              }
+            }
+            console.log(\`Materialized credentials for \${written}/\${channels.length} channel(s).\`);
+          "
+
+      - name: Publish to YouTube
+        run: |
+          CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
+
+          if [ -n "$CHANNEL_OVERRIDE" ]; then
+            CHANNELS="[\"$CHANNEL_OVERRIDE\"]"
+          else
+            CHANNELS=$(node -e "
+              const fs = require('fs');
+              const data = JSON.parse(fs.readFileSync('config/channels.json'));
+              const channels = data.channels || data;
+              console.log(JSON.stringify(channels.map(c => String(c.id))));
+            ")
+          fi
+
+          # As with render: try every channel, then fail if any genuinely
+          # errored. Safe to treat non-zero as a real failure here because
+          # uploadChannel() returns cleanly (exit 0) for the EXPECTED skip
+          # states — no credentials configured, unresolved placeholder
+          # artifacts, or a pending human-review gate. A non-zero exit means
+          # an actual upload error (bad/expired token, API rejection), which
+          # must not be reported as a successful publish run.
+          FAILED=0
+          for CH in $(echo $CHANNELS | jq -r '.[]'); do
+            echo "=== PUBLISH: $CH ==="
+            if ! node src/skills/youtube-publish/run.js "$CH"; then
+              echo "::error::publish failed for channel $CH"
+              FAILED=$((FAILED + 1))
+            fi
+          done
+
+          if [ "$FAILED" -gt 0 ]; then
+            echo "::error::$FAILED channel(s) failed to publish — see the errors above."
+            exit 1
+          fi
+
+      # Flip any publish-queue entries past their go_public_at to public.
+      # Without this step nothing ever calls process-queue, so every video
+      # would stay private forever. Credentials are already materialized
+      # above; process-queue is best-effort per entry (a failed flip is
+      # logged, not fatal).
+      - name: Process publish queue
+        run: node src/skills/youtube-publish/run.js process-queue
+
+      # The queue file must survive between runs: data/run-logs/ is
+      # gitignored and the runner is ephemeral, so the queue lives in
+      # git-tracked data/publish-queue/ and is committed back here. This
+      # job's checkout is pinned to the triggering commit, which predates
+      # discover-topics' mid-run commit — fetch + rebase before pushing
+      # avoids a stale overwrite or rejected push.
+      - name: Commit publish queue
+        run: |
+          git config user.name "lumeierecollection-blip"
+          git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          git add data/publish-queue
+          if git diff --cached --quiet; then
+            echo "Publish queue unchanged - nothing to commit."
+          else
+            git commit -m "publish-queue: $(date -u +%F) [run ${{ github.run_id }}]"
+            git fetch origin "${{ github.ref_name }}"
+            # Artifact downloads above restore tracked research/tts/thumbnail
+            # files to run-specific content, so the worktree is dirty; discard
+            # them so the rebase sees a clean tree. The queue file was already
+            # committed above and is unaffected.
+            git checkout -- . 2>/dev/null || true
+            git rebase "origin/${{ github.ref_name }}"
+            git push origin "${{ github.ref_name }}"
+          fi
+
+      # No topic-log write here: discover-topics is topic-log.json's single
+      # writer now (one commit, before the matrix fans out). This job's
+      # checkout is pinned to the commit that triggered the workflow, which
+      # predates discover-topics' mid-run commit — writing here risked
+      # either a rejected push or, worse, a stale overwrite.
+
+      - name: Upload run logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-${{ github.run_id }}
+          path: data/research/*/pipeline-report.json
+          retention-days: 30
+
+  # ============================================================
+  # PHASE 5: Log results
+  # ============================================================
+  log-results:
+    needs: [discover-topics, research-and-script, render, publish]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate run report
+        run: |
+          echo "=== PIPELINE RUN REPORT ==="
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Triggered: ${{ github.event_name }}"
+          echo "Dry Run: ${{ github.event.inputs.dry_run || 'false' }}"
+          echo "Channels: ${{ github.event.inputs.channel_override || 'ALL' }}"
+          echo "Date: $(date -u)"
+          echo ""
+          echo "=== STATUS ==="
+          echo "Discover Topics: ${{ needs.discover-topics.result }}"
+          echo "Research+Script: ${{ needs.research-and-script.result }}"
+          echo "Render: ${{ needs.render.result }}"
+          echo "Publish: ${{ needs.publish.result }}"
