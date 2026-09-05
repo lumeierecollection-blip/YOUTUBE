@@ -68,8 +68,8 @@
       "TIMELINE",
       "IMAGE_EVIDENCE",
       "ACCUMULATION",
-      "SCALE_COMPARISON",
-      "COMPARISON"
+      "COMPARISON",
+      "SCALE_COMPARISON"
     ],
     "file": "data/renders/clips-15s/ch-fixture-motion-graphics-black-15s.mp4",
     "visualReport": "data/renders/clips-15s/ch-fixture-motion-graphics-black-15s-visual-report.json",
@@ -89,8 +89,8 @@
       "TIMELINE",
       "IMAGE_EVIDENCE",
       "ACCUMULATION",
-      "SCALE_COMPARISON",
-      "COMPARISON"
+      "COMPARISON",
+      "SCALE_COMPARISON"
     ],
     "file": "data/renders/clips-15s/ch-fixture-minimal-white-15s.mp4",
     "visualReport": "data/renders/clips-15s/ch-fixture-minimal-white-15s-visual-report.json",
