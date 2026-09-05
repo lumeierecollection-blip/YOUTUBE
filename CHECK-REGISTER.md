@@ -71,6 +71,7 @@ never `L7` or `Â§3.1`.
 | `FRM` | whole-frame visual QA | orchestrator |
 | `SCR` | daily-pipeline script generation â€” grounding, archetype/anchor sync, pacing | `discover-topics` / `research-and-script` workflow jobs (not a CROSSCHECK lane â€” see Â§3.10) |
 | `VIS` | visual storytelling — strategy routing, visual states, icon subordination | `visual/diagnostics.js` (per render, not a CROSSCHECK lane — see §3.12) |
+| `VID` | channel visual identity â€” the declared per-channel visual world and the research behind it | `scripts/gate-visual-identity.js` (design-time, not a CROSSCHECK lane â€” see Â§3.13) |
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 
 ---
@@ -2410,6 +2411,57 @@ is orthogonal to this: a frame can be perfectly inside the safe rect and
 still be the narration in text.
 
 ---
+
+
+## 3.13 `VID` — the declared channel visual identity (addendum sections 1-2)
+
+**THE MEASUREMENT THAT MADE THIS NECESSARY.** `config/channels.json` already
+describes three completely different visual worlds: ch-01 asks for a "top-down
+desk flat-lay", ch-02 for a "courtroom establishing wide", ch-09 for "satellite
+top-down", each with its own `b_roll_sources`, `transitions` and `color_grade`.
+**None of it reaches a frame.** `visual_spec` has ZERO references anywhere in
+the codebase; so do `camera_angles`, `b_roll_sources` and `color_grade`. A
+census of what the render path actually reads off a channel returns:
+`style`, `channel_id`, `thumbnail_spec`, `channel_name`, `sfx_profile`,
+`script_template`, `font`, `content_pillars`, `tone`, `niche`, `colors`,
+`captions`, `bg_mode` — and nothing else. Everything separating Money Mind from
+Legal Brief at render time is `colors.accent`, `bg_mode` and `font`. That is
+the whole explanation for why the two renders read as a white-and-green and a
+black-and-red version of one video.
+
+| ID | Check | Venue | Pass | T | Sev | Status |
+|---|---|---|---|---|---|---|
+| VID-01 | Specification matches `schemas/visual-identity.json` — every field, closed enums, exact cardinalities (4/3/>=5/>=4/exactly 3) | `scripts/gate-visual-identity.js` | 0 errors | 0 | BLOCKER | **NOT YET APPLICABLE** — no `config/visual-identity.json` exists; section 2 forbids this repo generating one |
+| VID-02 | Both font families exist as real woff2 in `public/fonts` | same | 0 missing | 0 | BLOCKER | as above |
+| VID-03 | `style_reference_document` points at a file that exists | same | exists | 0 | BLOCKER | as above |
+| VID-04 | `human_validated.by` and `.date` present | same | present | 0 | BLOCKER | as above |
+| VID-05 | Every specification names a real channel (`--require-all`: every channel has one) | same | 0 orphans | 0 | MAJOR | as above |
+| VID-06 | No two channels share a byte-identical visual identity | same | 0 collisions | 0 | BLOCKER | as above |
+
+Gate behaviour proven on fixtures rather than asserted: a deliberately broken
+specification produced 8 findings across VID-01 through VID-04 (short palettes,
+`Helvetica Neue` with no woff2, a missing reference document, an empty
+validator name), and two channels given the same identity produced the VID-06
+collision. Both fixtures were deleted after the probe.
+
+**WHAT THE TOOLING CANNOT DO HERE, MEASURED.** `scripts/research-style.mjs`
+implements section 1 as four verbs (`query`, `scaffold`, `build`, `verify`). It
+builds the section-1.2 query from the channel's own `niche`, enforces the
+ten-reference floor, consolidates by 1.5's rule with ties broken on source
+tier, and freezes the result with a digest per 1.6. It does NOT fetch and it
+does not author attributes. Two reasons, both measured on this machine: curl to
+`behance.net`, `vimeo.com`, `awwwards.com` and `elements.envato.com` all return
+000, so a script here has no egress at all; and "the exact hex codes used most
+frequently" in a reference VIDEO is a measurement of pixels no text fetch can
+make. An attribute supplied by fewer than 3 of the 10 references is written as
+UNRESOLVED rather than consolidated — a majority of one is that one reference,
+not a consensus, and inventing the rest is precisely what this repo's grounding
+rule forbids.
+
+**ALSO MEASURED, FOR SECTION 4.** All four approved asset sources are
+unreachable from this environment (`api.pexels.com`, `pixabay.com`,
+`commons.wikimedia.org`, `api.unsplash.com` — 000 apiece) and none of
+`PEXELS_API_KEY`, `PIXABAY_API_KEY`, `UNSPLASH_ACCESS_KEY` is set here.
 
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)

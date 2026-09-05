@@ -1,0 +1,142 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "visual-identity.json",
+  "title": "Channel Visual Identity Specification",
+  "description": "Addendum section 2. One entry per channel, keyed by channel_id, in config/visual-identity.json. Every field is REQUIRED and every enum is closed: the point of this file is that a channel's visual world is DECLARED, not inferred at render time. Section 2 forbids automated generation of these values -- they are curated by a human from the Style Reference Document produced by the section-1 research phase, and `human_validated` records that step. Nothing may reach a production render without it.",
+  "type": "object",
+  "required": ["version", "channels"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "const": 1 },
+    "channels": {
+      "type": "object",
+      "description": "channel_id -> specification. A channel absent from here has no visual identity and, per section 3, its render must abort rather than fall back.",
+      "propertyNames": { "pattern": "^ch-[0-9]{2}$" },
+      "minProperties": 1,
+      "additionalProperties": { "$ref": "#/definitions/spec" }
+    }
+  },
+  "definitions": {
+    "hex": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$",
+      "description": "Six-digit hex. Colour lives in config, never in a prompt-generated string (CHECK-REGISTER SCR-13)."
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary_palette",
+        "secondary_palette",
+        "typography_primary",
+        "typography_secondary",
+        "environment_type",
+        "core_objects",
+        "camera_language",
+        "transition_language",
+        "framing_default",
+        "text_placement",
+        "use_of_negative_space",
+        "motion_curve",
+        "style_reference_document",
+        "human_validated"
+      ],
+      "properties": {
+        "primary_palette": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/hex" },
+          "minItems": 4,
+          "maxItems": 4,
+          "description": "Exactly 4, ordered most to least prominent."
+        },
+        "secondary_palette": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/hex" },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Exactly 3 accent colours."
+        },
+        "typography_primary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Font family name. The validator checks it against the woff2 files actually present in src/skills/remotion-render/public/fonts -- section 2 requires the font be available in the rendering environment, and a name that is not there is a render-time failure, not a preference."
+        },
+        "typography_secondary": { "type": "string", "minLength": 1 },
+        "environment_type": {
+          "enum": [
+            "desk-flatlay",
+            "courtroom",
+            "map-territory",
+            "archive-photo",
+            "machine-mechanism",
+            "abstract-space",
+            "urban-exterior",
+            "interior-room"
+          ]
+        },
+        "core_objects": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 5,
+          "uniqueItems": true,
+          "description": "At least 5 specific object types that define this channel's visual world. Section 8 makes this list load-bearing: a chart type may only be drawn if it is named here."
+        },
+        "camera_language": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "static",
+              "push-in",
+              "pull-out",
+              "pan-left",
+              "pan-right",
+              "tilt-up",
+              "tilt-down",
+              "track-left",
+              "track-right",
+              "top-down",
+              "low-angle",
+              "high-angle"
+            ]
+          },
+          "minItems": 4,
+          "uniqueItems": true,
+          "description": "At least 4 permitted moves, ordered by preference. Any move NOT listed is forbidden for this channel."
+        },
+        "transition_language": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "description": "Exactly 3, ordered by frequency of use."
+        },
+        "framing_default": { "enum": ["wide", "medium", "close-up", "extreme-close-up"] },
+        "text_placement": { "enum": ["centre", "lower-third", "upper-third", "corner-overlay"] },
+        "use_of_negative_space": {
+          "enum": ["high", "medium", "low"],
+          "description": "high = more than 60% empty, medium = 40-60%, low = less than 40%."
+        },
+        "motion_curve": {
+          "enum": ["linear", "ease-in", "ease-out", "ease-in-out", "bounce", "elastic"]
+        },
+        "style_reference_document": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Repo-relative path to the immutable Style Reference Document (section 1.5) this specification was curated from. The validator requires the file to exist: a specification with no research behind it is exactly what section 1 exists to prevent."
+        },
+        "human_validated": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["by", "date"],
+          "properties": {
+            "by": { "type": "string", "minLength": 1 },
+            "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+            "notes": { "type": "string" }
+          },
+          "description": "Section 2: 'must be validated by a human before it is used in any production render'. This block is the only machine-readable record of that, so the gate can refuse an unvalidated specification instead of trusting a convention. NOTE FOR REVIEW: section 2 mandates the human validation but does not specify how it is recorded -- this block is the minimum mechanism to enforce what section 2 requires, and is the one field here not named verbatim in the addendum."
+        }
+      }
+    }
+  }
+}
