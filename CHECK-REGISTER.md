@@ -2335,12 +2335,19 @@ instead of newlines:
     import os from "os";`r`nimport { readFileSync, ... } from "fs";
     concurrency: Math.max(4, os.cpus().length),`r`n    audioBitrate: "192k",
 
-`node --check` fails on both. That commit is an ancestor of `main`, so the
-renderer has been syntactically invalid on the branch the daily pipeline
-runs from for five days. It was invisible because the pipeline's `render`
-job needs `research-and-script`, which has failed partially on every recent
-run, so `render` was SKIPPED rather than reached — a broken stage hidden
-behind an earlier one. Fixed (`b0ec156`) and proven by a real end-to-end
+`node --check` fails on both.
+
+**CORRECTED, 2026-09-05, while restoring main.** The first version of this
+entry said the renderer "has been syntactically invalid on the branch the
+daily pipeline runs from". That is wrong and is withdrawn. `main` fixed the
+corruption itself on 2026-09-02 in `9507b2a`. The breakage was real, but it
+lived only on `claude/visual-rebuild-from-5f91e75`, which forked at
+`9d0304f` — one day BEFORE that fix — and carried it until `b0ec156`. Both
+`8506ad4` and `9d0304f` measure 2 corrupt sequences and fail `node --check`;
+`9507b2a` measures 0 and parses. The pipeline's own renderer was never
+broken; this branch's was, for five days. It stayed invisible here because
+the `render` job needs `research-and-script`, which has failed partially on
+every recent run, so `render` was SKIPPED rather than reached. Fixed (`b0ec156`) and proven by a real end-to-end
 render: ch-01, 1080x1920 h264 + aac, 73.1s, 2185 frames. A sweep of all 130
 `.js`/`.mjs`/`.cjs` files under `scripts/` and `src/` found no other syntax
 failure (`compositions/visual.js` is JSX in a `.js` file, which node cannot
