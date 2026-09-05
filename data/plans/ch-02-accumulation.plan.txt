@@ -1,0 +1,32 @@
+TEMPLATE SELECTED
+  ch-02-clauses-stack-in-the-file   (channel ch-02, strategy ACCUMULATION)
+  intent: Several legal conditions apply at once and together they close off an option.
+
+DATA FILLED
+  label = Four lines.   from script sentence 1
+  total = 375   from script sentence 25
+
+ASSET REFERENCES
+  (none — this template draws its own environment and objects; no external media is referenced)
+
+TIMING AND DURATION
+  beat: start frame 0, duration 150 frames at 30 fps
+  legal document (subject) x6  anchor 0.46,0.5 scale 1
+     symbolic: pages standing for the number of conditions the script states
+  case file folder (supporting) x1  anchor 0.5,0.86 scale 1.1
+
+TEXT CONTENT
+  "Four lines."
+     face Noto Serif (secondary), placement upper-third, colour #F5536B
+     frames 68 to 150
+
+TRANSITION SCHEDULE
+  -> next: document-reveal, 18 frames, ending at frame 150
+
+CAMERA MOTION SCRIPT
+  frame 0: tilt-down toward case file folder
+     the frame arrives at the file the way a reader does, from above and slightly off
+  frame 60: push-in toward legal document
+     the camera moves into the clause because the clause is the evidence
+  frame 120: pan-right toward legal document
+     a clause is read left to right; the camera reads it

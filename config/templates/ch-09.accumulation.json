@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "channel_id": "ch-09",
+  "strategy": "ACCUMULATION",
+  "name": "ch-09-territory-accrues-across-the-front",
+  "intent": "Control is gained in separate places and together it becomes a changed map.",
+  "environment": {
+    "type": "map-territory",
+    "ground": "satellite terrain, north up, filling the frame",
+    "lighting": "none"
+  },
+  "objects": [
+    {
+      "object": "territory fill",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.46,
+        "scale": 1
+      },
+      "repeats": "total",
+      "repeat_note": "symbolic: fills standing for the stated total, not a count of real territories"
+    },
+    {
+      "object": "national border line",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.46,
+        "scale": 1
+      }
+    },
+    {
+      "object": "date marker",
+      "role": "context",
+      "anchor": {
+        "x": 0.86,
+        "y": 0.12,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "top-down",
+      "reason": "territory only reads as territory seen from above"
+    },
+    {
+      "at": 0.5,
+      "move": "track-left",
+      "reason": "the camera travels across the geography as the front moves, rather than turning in place"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "target": "territory fill",
+      "reason": "the last gain is closed on so the changed extent is legible"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "corner-overlay",
+      "in_at": 0,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "territory-fill",
+      "duration_frames": 20
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "date",
+      "from": "script-date",
+      "required": false
+    },
+    "total": {
+      "type": "number",
+      "from": "script-number",
+      "required": true,
+      "max_items": 6
+    }
+  }
+}

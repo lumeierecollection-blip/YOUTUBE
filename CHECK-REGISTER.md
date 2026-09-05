@@ -72,6 +72,7 @@ never `L7` or `Â§3.1`.
 | `SCR` | daily-pipeline script generation â€” grounding, archetype/anchor sync, pacing | `discover-topics` / `research-and-script` workflow jobs (not a CROSSCHECK lane â€” see Â§3.10) |
 | `VIS` | visual storytelling — strategy routing, visual states, icon subordination | `visual/diagnostics.js` (per render, not a CROSSCHECK lane — see §3.12) |
 | `VID` | channel visual identity â€” the declared per-channel visual world and the research behind it | `scripts/gate-visual-identity.js` (design-time, not a CROSSCHECK lane â€” see Â§3.13) |
+| `TPL` | design-time scene templates â€” the per-channel static scenes and their conformance to the declared identity | `scripts/gate-scene-templates.js` (design-time â€” see Â§3.14) |
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 
 ---
@@ -2462,6 +2463,64 @@ rule forbids.
 unreachable from this environment (`api.pexels.com`, `pixabay.com`,
 `commons.wikimedia.org`, `api.unsplash.com` — 000 apiece) and none of
 `PEXELS_API_KEY`, `PIXABAY_API_KEY`, `UNSPLASH_ACCESS_KEY` is set here.
+
+
+## 3.14 `TPL` — scene templates, and section 8 made enforceable (addendum sections 3, 5)
+
+Section 8 is a list of prohibitions, and every one of them has the same shape:
+something that is supposed to differ per channel is instead shared across all
+of them. A prohibition written in prose gets violated by the next person in a
+hurry, so each is a check against the channel's own Visual Identity
+Specification rather than a rule someone has to remember.
+
+| ID | Check | Section 8 clause it enforces | Sev |
+|---|---|---|---|
+| TPL-01 | Template matches `schemas/scene-template.json`; every `repeats` and `{param}` names a declared parameter | — | BLOCKER |
+| TPL-02 | `environment.type` equals the channel's `environment_type` | "each template must define its own staging" | BLOCKER |
+| TPL-03 | Every camera move is in the channel's `camera_language` | "no generic camera rig the same across channels" | BLOCKER |
+| TPL-04 | Every transition is in the channel's `transition_language` | "not the same set of transitions for all channels" | BLOCKER |
+| TPL-05 | Every text placement is the channel's `text_placement`; no slot exits before it enters | "not the same typography treatment across channels" | MAJOR |
+| TPL-06 | Every object is in the channel's `core_objects`; exactly one is the subject | "no visual element not explicitly defined" | BLOCKER |
+| TPL-07 | `is_primary_visual` requires a `justification` | numerals as the primary element only where the template supports it | MAJOR |
+| TPL-08 | A chart-shaped object must be declared in `core_objects` | "no chart types unless listed as a core object" | BLOCKER |
+| TPL-09 | No two channels' templates for one strategy are identical in every look-bearing field | — (copying a template is not escaping the monoculture) | BLOCKER |
+| TPL-10 | A count-driven `repeats` needs a `repeat_note` and a `max_items` | data honesty | BLOCKER |
+
+**Status: 3 templates, 0 problems.** ch-01, ch-02 and ch-09 each have an
+ACCUMULATION template, and the same strategy produces genuinely different
+scenes: statements piling on a desk under a top-down camera closing to a
+`smooth-slide`, versus documents stacking in a case file entered by
+`tilt-down` and leaving on a `document-reveal`, versus territory accruing on
+satellite terrain with the camera tracking across it.
+
+Proven on a probe rather than asserted: one template mutated to use another
+channel's camera move, transition and text placement, plus an undeclared bar
+chart and an unjustified primary numeral, produced exactly six findings across
+TPL-03, TPL-04, TPL-05, TPL-06, TPL-07 and TPL-08. Probe deleted after.
+
+**COVERAGE IS THE REAL NUMBER: 3 of 51.** `--coverage` reports 48 (channel,
+strategy) pairs with no template. Section 3 makes each of those a hard abort,
+so the template engine is nowhere near able to render a video yet. That is why
+it is behind a flag and the existing path still runs.
+
+**TWO DEFECTS IN THE FIRST DRAFT, BOTH FOUND BY RUNNING IT.**
+
+1. The three templates asked for a `list` parameter, but `ACCUMULATION`'s own
+   `dataNeeds` in `strategies.js` is `["total"]` — a number. The plan generator
+   correctly ABORTED on a real ch-01 script rather than inventing a list, which
+   is the behaviour working; the templates were wrong, not the abort. A
+   count-driven repeat is now a first-class thing, with TPL-10 requiring it to
+   declare what the count means.
+2. With the count wired up, `total = "$215"` drew **four** bank statements —
+   `.length` of the string, presented as a quantity. Fixed to parse the number
+   and cap it at the template's `max_items`, and the plan now prints the
+   `repeat_note` ("symbolic: statements standing for the stated total, not a
+   count of real accounts") directly under the object so a symbolic pile can
+   never be read as a data claim.
+
+The plan generator also flags any text slot over 8 words as the picture
+reciting the narration — the same failure `textNarrationRatio` already measures
+at 0.809 on ch-01's real render.
 
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)

@@ -1,0 +1,35 @@
+TEMPLATE SELECTED
+  ch-01-debts-pile-on-the-desk   (channel ch-01, strategy ACCUMULATION)
+  intent: Several debts exist at once and together they are heavier than any one of them.
+
+DATA FILLED
+  label = The snowball versus avalanche debate is a $215 question.   from script sentence 1
+  total = $215   from script sentence 1
+
+ASSET REFERENCES
+  (none — this template draws its own environment and objects; no external media is referenced)
+
+TIMING AND DURATION
+  beat: start frame 0, duration 150 frames at 30 fps
+  bank statement (subject) x6  anchor 0.5,0.52 scale 1
+     symbolic: statements standing for the stated total, not a count of real accounts
+  calculator (supporting) x1  anchor 0.22,0.78 scale 0.8
+  ledger notebook (context) x1  anchor 0.78,0.8 scale 0.9
+
+TEXT CONTENT
+  "The snowball versus avalanche debate is a $215 question."
+     NOTE: 9 words. The repo already measures this as
+     textNarrationRatio; a slot this long is the picture reciting the narration.
+     face JetBrains Mono (secondary), placement lower-third, colour #22C55E
+     frames 90 to 150
+
+TRANSITION SCHEDULE
+  -> next: smooth-slide, 12 frames, ending at frame 150
+
+CAMERA MOTION SCRIPT
+  frame 0: top-down
+     a flat-lay begins square to the desk so the whole surface reads as one place
+  frame 83: push-in toward bank statement
+     the pile is the point; the frame closes on it as it grows
+  frame 150: static
+     the last statement lands and the frame holds so the total is legible

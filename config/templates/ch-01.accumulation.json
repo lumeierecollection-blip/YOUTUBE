@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "channel_id": "ch-01",
+  "strategy": "ACCUMULATION",
+  "name": "ch-01-debts-pile-on-the-desk",
+  "intent": "Several debts exist at once and together they are heavier than any one of them.",
+  "environment": {
+    "type": "desk-flatlay",
+    "ground": "a matte desk surface, seen square from above",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "bank statement",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.52,
+        "scale": 1
+      },
+      "repeats": "total",
+      "repeat_note": "symbolic: statements standing for the stated total, not a count of real accounts"
+    },
+    {
+      "object": "calculator",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.78,
+        "scale": 0.8
+      }
+    },
+    {
+      "object": "ledger notebook",
+      "role": "context",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.9
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "top-down",
+      "reason": "a flat-lay begins square to the desk so the whole surface reads as one place"
+    },
+    {
+      "at": 0.55,
+      "move": "push-in",
+      "target": "bank statement",
+      "reason": "the pile is the point; the frame closes on it as it grows"
+    },
+    {
+      "at": 1,
+      "move": "static",
+      "reason": "the last statement lands and the frame holds so the total is legible"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "smooth-slide",
+      "duration_frames": 12
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    },
+    "total": {
+      "type": "number",
+      "from": "script-number",
+      "required": true,
+      "max_items": 6
+    }
+  }
+}

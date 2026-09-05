@@ -1,0 +1,314 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "scene-template.json",
+  "title": "Scene Template (design-time)",
+  "description": "Addendum section 3, Stage A. One template per (channel, semantic strategy). A template is a STATIC placeholder: it fixes the environment, the objects and where they sit, the camera path, the typography layout and timing, and the transitions. Only the `parameters` it declares may vary at runtime, and only with data extracted from the script. Section 3 is explicit that the runtime engine may not decide any of this -- it may only select a template and fill it. A strategy with no template for a channel is a hard abort, never a fallback.",
+  "type": "object",
+  "required": [
+    "version",
+    "channel_id",
+    "strategy",
+    "name",
+    "environment",
+    "objects",
+    "camera_path",
+    "typography",
+    "transitions",
+    "parameters"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "channel_id": {
+      "type": "string",
+      "pattern": "^ch-[0-9]{2}$"
+    },
+    "strategy": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The semantic strategy this template serves, e.g. ACCUMULATION. Must exist in visual/strategies.js."
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Stable identifier. The runtime plan names this verbatim under TEMPLATE SELECTED, so it must never be renamed once a plan has referenced it."
+    },
+    "intent": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the viewer is meant to understand from this template, in one sentence. Not rendered; it is the thing a reviewer checks the template against."
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "ground",
+        "lighting"
+      ],
+      "description": "Section 8 forbids a single shared staging system. Each template stages itself, and `type` must equal the channel's declared environment_type -- the validator enforces that.",
+      "properties": {
+        "type": {
+          "enum": [
+            "desk-flatlay",
+            "courtroom",
+            "map-territory",
+            "archive-photo",
+            "machine-mechanism",
+            "abstract-space",
+            "urban-exterior",
+            "interior-room"
+          ]
+        },
+        "ground": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What the objects rest on or sit within, in this template's own words: 'a matte desk surface', 'a printed page', 'terrain seen from orbit'."
+        },
+        "lighting": {
+          "enum": [
+            "flat-overhead",
+            "raking-side",
+            "soft-diffuse",
+            "hard-directional",
+            "screen-glow",
+            "none"
+          ]
+        }
+      }
+    },
+    "objects": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every object drawn by this template, with where it sits. Each `object` must be one of the channel's core_objects -- that is what stops a template inventing a visual world its channel never declared.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "object",
+          "role",
+          "anchor"
+        ],
+        "properties": {
+          "object": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "enum": [
+              "subject",
+              "supporting",
+              "context"
+            ],
+            "description": "Exactly one object must be the subject."
+          },
+          "anchor": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "x",
+              "y"
+            ],
+            "description": "Fraction of the frame, 0..1. The renderer resolves these against the safe rect; it does not reposition them.",
+            "properties": {
+              "x": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "y": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "scale": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 2
+              }
+            }
+          },
+          "repeats": {
+            "type": "string",
+            "description": "Name of a `parameters` entry. A `list` parameter draws the object once per item. A `number` parameter draws that many copies, capped by its `max_items` — which is how ACCUMULATION accumulates, because the strategy's own dataNeeds is `total`, a number, not an enumeration. A count-driven repeat must also set `repeat_note`."
+          },
+          "repeat_note": {
+            "type": "string",
+            "description": "Required when `repeats` points at a `number`. States plainly whether the count is quantitative (N objects means N things) or symbolic (N objects stand for a total). Printed verbatim in the plan, so a symbolic pile can never be read as a data claim."
+          }
+        }
+      }
+    },
+    "camera_path": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Ordered keyframes. Every `move` must appear in the channel's camera_language; a move the channel did not declare is a validator failure, which is section 8's 'no generic camera rig' made enforceable.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "at",
+          "move",
+          "reason"
+        ],
+        "properties": {
+          "at": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Fraction of the beat's duration."
+          },
+          "move": {
+            "enum": [
+              "static",
+              "push-in",
+              "pull-out",
+              "pan-left",
+              "pan-right",
+              "tilt-up",
+              "tilt-down",
+              "track-left",
+              "track-right",
+              "top-down",
+              "low-angle",
+              "high-angle"
+            ]
+          },
+          "target": {
+            "type": "string",
+            "description": "Which object the move is toward, if any."
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Why the camera does this here. A move with no reason is decoration."
+          }
+        }
+      }
+    },
+    "typography": {
+      "type": "array",
+      "description": "Every piece of on-screen text. Empty is legal and often correct: section 8 prefers physical representation over numeric display. `face` must be one of the channel's two declared families and `placement` its declared text_placement.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "slot",
+          "face",
+          "placement",
+          "in_at",
+          "out_at"
+        ],
+        "properties": {
+          "slot": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Either a literal string, or `{param}` naming a `parameters` entry."
+          },
+          "face": {
+            "enum": [
+              "primary",
+              "secondary"
+            ]
+          },
+          "placement": {
+            "enum": [
+              "centre",
+              "lower-third",
+              "upper-third",
+              "corner-overlay"
+            ]
+          },
+          "in_at": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "out_at": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "is_primary_visual": {
+            "type": "boolean",
+            "default": false,
+            "description": "Section 8: a numerical display may only be the primary visual element where the template explicitly supports it. Setting this true is that explicit support, and the validator demands a `justification`."
+          },
+          "justification": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "transitions": {
+      "type": "array",
+      "description": "Transitions out of this scene. Each must be in the channel's transition_language.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "to",
+          "type",
+          "duration_frames"
+        ],
+        "properties": {
+          "to": {
+            "type": "string",
+            "description": "`next` for the following beat, or a template name."
+          },
+          "type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "duration_frames": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 90
+          }
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "description": "The only things runtime may vary. Each declares its type and where it must come from; the plan generator refuses to fill one from anywhere else.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "from"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "number",
+              "text",
+              "date",
+              "list"
+            ]
+          },
+          "from": {
+            "enum": [
+              "script-number",
+              "script-entity",
+              "script-date",
+              "script-phrase",
+              "script-list"
+            ],
+            "description": "Which extractor supplies it. Nothing may be filled from general knowledge."
+          },
+          "required": {
+            "type": "boolean",
+            "default": true
+          },
+          "max_items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  }
+}

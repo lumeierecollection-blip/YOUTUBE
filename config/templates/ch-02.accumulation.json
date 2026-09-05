@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "channel_id": "ch-02",
+  "strategy": "ACCUMULATION",
+  "name": "ch-02-clauses-stack-in-the-file",
+  "intent": "Several legal conditions apply at once and together they close off an option.",
+  "environment": {
+    "type": "courtroom",
+    "ground": "a printed page held flat under a reading lamp",
+    "lighting": "raking-side"
+  },
+  "objects": [
+    {
+      "object": "legal document",
+      "role": "subject",
+      "anchor": {
+        "x": 0.46,
+        "y": 0.5,
+        "scale": 1
+      },
+      "repeats": "total",
+      "repeat_note": "symbolic: pages standing for the number of conditions the script states"
+    },
+    {
+      "object": "case file folder",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.86,
+        "scale": 1.1
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "tilt-down",
+      "target": "case file folder",
+      "reason": "the frame arrives at the file the way a reader does, from above and slightly off"
+    },
+    {
+      "at": 0.4,
+      "move": "push-in",
+      "target": "legal document",
+      "reason": "the camera moves into the clause because the clause is the evidence"
+    },
+    {
+      "at": 0.8,
+      "move": "pan-right",
+      "target": "legal document",
+      "reason": "a clause is read left to right; the camera reads it"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.45,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "document-reveal",
+      "duration_frames": 18
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    },
+    "total": {
+      "type": "number",
+      "from": "script-number",
+      "required": true,
+      "max_items": 6
+    }
+  }
+}
