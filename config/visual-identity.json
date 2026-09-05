@@ -2,20 +2,124 @@
   "version": 1,
   "channels": {
     "ch-01": {
-      "primary_palette": ["#0F172A", "#1E293B", "#22C55E", "#0A1020"],
+      "primary_palette": [
+        "#0F172A",
+        "#1E293B",
+        "#22C55E",
+        "#0A1020"
+      ],
+      "secondary_palette": [
+        "#16A34A",
+        "#94A3B8",
+        "#F8FAFC"
+      ],
       "typography_primary": "Inter",
+      "typography_secondary": "JetBrains Mono",
       "environment_type": "desk-flatlay",
-      "transition_language": ["smooth-slide", "infographic-build", "fade-gentle"]
+      "core_objects": [
+        "bank statement",
+        "receipt",
+        "calculator",
+        "phone showing a budgeting app",
+        "cash notes",
+        "ledger notebook"
+      ],
+      "camera_language": [
+        "top-down",
+        "push-in",
+        "pull-out",
+        "static"
+      ],
+      "transition_language": [
+        "smooth-slide",
+        "infographic-build",
+        "fade-gentle"
+      ],
+      "framing_default": "medium",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "high",
+      "motion_curve": "ease-in-out",
+      "style_reference_document": "docs/style-reference/ch-01-motion-graphics.md"
     },
     "ch-02": {
-      "primary_palette": ["#1A1A2E", "#16213E", "#F5536B", "#0F0F1A"],
+      "primary_palette": [
+        "#1A1A2E",
+        "#16213E",
+        "#F5536B",
+        "#0F0F1A"
+      ],
+      "secondary_palette": [
+        "#C81E3C",
+        "#8892B0",
+        "#E6E8EC"
+      ],
       "typography_primary": "DM Sans",
-      "environment_type": "courtroom"
+      "typography_secondary": "Noto Serif",
+      "environment_type": "courtroom",
+      "core_objects": [
+        "legal document",
+        "gavel",
+        "state map",
+        "constitutional text",
+        "police dashcam frame",
+        "case file folder"
+      ],
+      "camera_language": [
+        "push-in",
+        "static",
+        "tilt-down",
+        "pan-right"
+      ],
+      "transition_language": [
+        "document-reveal",
+        "dramatic-cut",
+        "map-zoom"
+      ],
+      "framing_default": "close-up",
+      "text_placement": "upper-third",
+      "use_of_negative_space": "medium",
+      "motion_curve": "ease-out",
+      "style_reference_document": "docs/style-reference/ch-02-motion-graphics.md"
     },
     "ch-09": {
-      "primary_palette": ["#0A1A2E", "#152A40", "#3B82F6", "#050F1A"],
+      "primary_palette": [
+        "#0A1A2E",
+        "#152A40",
+        "#3B82F6",
+        "#050F1A"
+      ],
+      "secondary_palette": [
+        "#F59E0B",
+        "#94A3B8",
+        "#E2E8F0"
+      ],
       "typography_primary": "Roboto Condensed",
-      "environment_type": "map-territory"
+      "typography_secondary": "JetBrains Mono",
+      "environment_type": "map-territory",
+      "core_objects": [
+        "national border line",
+        "territory fill",
+        "satellite terrain",
+        "resource site marker",
+        "supply route",
+        "date marker"
+      ],
+      "camera_language": [
+        "top-down",
+        "push-in",
+        "track-left",
+        "pan-right"
+      ],
+      "transition_language": [
+        "border-draw",
+        "territory-fill",
+        "zoom-region"
+      ],
+      "framing_default": "wide",
+      "text_placement": "corner-overlay",
+      "use_of_negative_space": "low",
+      "motion_curve": "ease-in-out",
+      "style_reference_document": "docs/style-reference/ch-09-motion-graphics.md"
     }
   }
 }

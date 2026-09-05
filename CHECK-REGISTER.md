@@ -2431,12 +2431,12 @@ black-and-red version of one video.
 
 | ID | Check | Venue | Pass | T | Sev | Status |
 |---|---|---|---|---|---|---|
-| VID-01 | Specification matches `schemas/visual-identity.json` — every field, closed enums, exact cardinalities (4/3/>=5/>=4/exactly 3) | `scripts/gate-visual-identity.js` | 0 errors | 0 | BLOCKER | **NOT YET APPLICABLE** — no `config/visual-identity.json` exists; section 2 forbids this repo generating one |
-| VID-02 | Both font families exist as real woff2 in `public/fonts` | same | 0 missing | 0 | BLOCKER | as above |
-| VID-03 | `style_reference_document` points at a file that exists | same | exists | 0 | BLOCKER | as above |
-| VID-04 | `human_validated.by` and `.date` present | same | present | 0 | BLOCKER | as above |
-| VID-05 | Every specification names a real channel (`--require-all`: every channel has one) | same | 0 orphans | 0 | MAJOR | as above |
-| VID-06 | No two channels share a byte-identical visual identity | same | 0 collisions | 0 | BLOCKER | as above |
+| VID-01 | Specification matches `schemas/visual-identity.json` — every field, closed enums, exact cardinalities (4/3/>=5/>=4/exactly 3) | `scripts/gate-visual-identity.js` | 0 errors | 0 | BLOCKER | **FAIL, 3 findings** — ch-01/02/09 filled and passing on content; `human_validated` outstanding on all three |
+| VID-02 | Both font families exist as real woff2 in `public/fonts` | same | 0 missing | 0 | BLOCKER | **PASS** on ch-01/02/09 (Inter, DM Sans, Roboto Condensed, JetBrains Mono, Noto Serif) |
+| VID-03 | `style_reference_document` points at a file that exists | same | exists | 0 | BLOCKER | **PASS** on ch-01/02/09 |
+| VID-04 | `human_validated.by` and `.date` present | same | present | 0 | BLOCKER | **FAIL, 3** — the only thing standing between these three and a usable specification |
+| VID-05 | Every specification names a real channel (`--require-all`: every channel has one) | same | 0 orphans | 0 | MAJOR | **PASS** for the 3 present; 14 channels still have none |
+| VID-06 | No two channels share a byte-identical visual identity | same | 0 collisions | 0 | BLOCKER | **PASS** — and a weaker collision it does NOT catch was found by hand and fixed: the first draft gave all three the same four camera moves in a different order, so the arrays differed while the permitted SET was identical. Sets are now {top-down, push-in, pull-out, static}, {push-in, static, tilt-down, pan-right}, {top-down, push-in, track-left, pan-right} — `push-in` is the only move all three share |
 
 Gate behaviour proven on fixtures rather than asserted: a deliberately broken
 specification produced 8 findings across VID-01 through VID-04 (short palettes,
