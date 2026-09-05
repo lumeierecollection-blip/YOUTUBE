@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "channels": {
+    "ch-01": {
+      "primary_palette": ["#0F172A", "#1E293B", "#22C55E", "#0A1020"],
+      "typography_primary": "Inter",
+      "environment_type": "desk-flatlay",
+      "transition_language": ["smooth-slide", "infographic-build", "fade-gentle"]
+    },
+    "ch-02": {
+      "primary_palette": ["#1A1A2E", "#16213E", "#F5536B", "#0F0F1A"],
+      "typography_primary": "DM Sans",
+      "environment_type": "courtroom"
+    },
+    "ch-09": {
+      "primary_palette": ["#0A1A2E", "#152A40", "#3B82F6", "#050F1A"],
+      "typography_primary": "Roboto Condensed",
+      "environment_type": "map-territory"
+    }
+  }
+}
