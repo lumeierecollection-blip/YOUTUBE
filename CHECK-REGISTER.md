@@ -76,6 +76,7 @@ never `L7` or `Â§3.1`.
 | `TPL` | design-time scene templates â€” the per-channel static scenes and their conformance to the declared identity | `scripts/gate-scene-templates.js` (design-time â€” see Â§3.14) |
 | `PLN` | the plan renderer — the pure function from a structured plan to pixels, and the aborts that stop it emitting a frame nobody can read | `src/skills/remotion-render/compositions/template-scene.jsx` + `visual/palette-roles.js` (per render — see §3.16) |
 | `OBJ` | the procedural object library — every noun a channel's `core_objects` names, and the box each drawing is bound to | `src/skills/remotion-render/qa-scripts/audit-object-bounds.mjs` (per change to a drawing — see §3.17) |
+| `MOT2` | the beat engine — visual intent, actor persistence, kinetic typography, and whether a video moves at all | `src/skills/remotion-render/visual-engine/qa/motion-checks.mjs` (per render — see §3.18) |
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 
 ---
@@ -2832,6 +2833,107 @@ Separately, an object drawn on top of another object's paper still uses the
 paper mark colour, and at context scale a `police dashcam frame` or `medical
 scan` reads as a small dark rectangle rather than a screen. Neither is
 detected by anything.
+
+
+## 3.18 `MOT2` — the beat engine, and the check that could not see the defect
+
+The complaint was that the renderer produced a static slideshow with entrance
+animations: assets appear and hold, typography never changes, nothing explains
+anything. Measured on the 70-second ch-02 render, that was accurate — twenty
+consecutive beats drew the same document and the only thing moving was a slow
+camera push.
+
+| ID | Check | How | Sev |
+|---|---|---|---|
+| MOT2-1 | No frozen stretch longer than 3s | **MEASURED** from pixels | BLOCKER |
+| MOT2-2 | The kinetic type band changes at least every 2s | **MEASURED** from pixels, band-limited | BLOCKER |
+| MOT2-3 | No actor leaves the stage and comes back | from the beat plan | BLOCKER |
+| MOT2-4 | More than one visual intent in a video | from the beat plan | BLOCKER |
+| MOT2-5 | Every number counts on the beat it enters | from the beat plan | BLOCKER |
+| MOT2-6 | No single composition held longer than 3s | from the beat plan | BLOCKER |
+
+**THE SPECIFIED CHECK PASSED ON THE BROKEN VIDEO, AND THAT IS THE MOST USEFUL
+THING THIS SECTION RECORDS.** Section 5.2 asks: if pixel content does not
+change for 90 frames, fail. Run against the render everyone agreed was a
+slideshow, the longest frozen stretch was **10 frames** and the mean change
+between samples a third of a second apart was **7.98% of the frame**. It passed
+comfortably. A slow camera push moves pixels continuously, so pixel-change
+measures CAMERA MOTION and cannot tell a moving picture from a moving camera
+over a still one.
+
+MOT2-6 is the check that catches it, and it is not a pixel check. A composition
+is the set of actors present and where they are; consecutive beats resolving to
+the same set in the same places are one held picture however much the frame
+drifts. On the first beat plan it measured **94 frames, 3.1 seconds**, and
+failed.
+
+**THE THRESHOLDS ARE NOW MEASURED, WHICH THEY WERE NOT ON THE FIRST PASS.** The
+first version of this file asserted two populations of frame-change without
+measuring either — the exact habit §3.16 was written about. The real
+distribution over 210 samples: adjacent-sample change min 0.00%, p10 3.47%,
+median 7.15%, p90 10.97%. A 0.4% floor sits below p10 with room, so it catches
+a genuinely frozen frame and claims nothing more.
+
+**WHAT REPLACED THE SCENE SYSTEM.** A beat no longer composes a picture; it
+mutates a stage that already exists.
+
+- `visual-intent/intent-mapper.js` reads each beat's own sentence for §3.4's
+  cue words and returns one of the ten intents. Measured over the fixture, it
+  assigns **9 distinct intents across 35 beats**. The old classifier's fall-back
+  to STATEMENT is where the twenty identical beats came from, so the no-cue case
+  here alternates BUILD and EMPHASIZE rather than repeating: a beat with no cue
+  still has something to do.
+- `actors/actor-manager.js` carries the stage forward. §3.5's rules are
+  structural, not checked afterwards: every surviving actor is assigned a
+  behaviour, so "disappear and reappear" is not an outcome the code can produce.
+- `typography/kinetic-text.js` is the second text layer the old renderer never
+  had. The caption keeps the spoken words; this carries the beat's own word and
+  animates with the nine named actions.
+- `beat-scene.jsx` interpolates every actor across the WHOLE beat rather than
+  snapping at the boundary, so the picture is always mid-move.
+
+**FIVE DEFECTS THE FRAMES AND THE CHECKS FOUND, IN ORDER.**
+
+1. **An infinite loop.** CONNECT pushed into the array its own loop condition
+   read, and ran out of heap after 125 seconds on a four-beat script.
+2. **Unbounded actor accumulation.** With no cap the stage reached 33 actors
+   over 32 beats, which is a pile, not a composition. Capped at three on a
+   triangle — five and four both overlapped once the type band was reserved,
+   and four only fitted by shrinking every object to a thumbnail.
+3. **A number the sentence never said.** `valueOf` read the director's payload,
+   which resolves per SECTION, so "841,871" counted up over the words "had been
+   sealed for five". A number on screen is a claim. The value now comes from the
+   beat's own digits or its own spoken number words, and there is no fallback.
+4. **The kinetic line drawn over its own subject.** No band was reserved, so
+   THIRTY-FIVE sat across the document it described.
+5. **Counts evicted in the beat they were born.** The numeric actor had no
+   `bornAt`, so the eviction sort read it as the oldest thing on stage and threw
+   it out immediately. MOT2-5 measured 1 of 4 before, 4 of 4 after. Nothing
+   born in the current beat is evictable now.
+
+**MOT2-5 WAS WRONG, NOT THE RENDER.** It first demanded COUNT in every beat a
+numeric actor is present and reported 1 of 7. A quantity counts up once and then
+holds while the narration moves on; what §4.1 forbids is a number that never
+animates at all. The check is on the beat where each number ENTERS.
+
+**A BEAT OVER THE CEILING IS SPLIT VISUALLY, NOT RETIMED.** The SRT is this
+repo's timing source of truth and the caption must stay on the words spoken, so
+the narration is never resegmented. A beat over 90 frames becomes two plan
+entries carrying the same sentence, the second re-staging what the first
+assembled. That took MOT2-6 from 94 frames to 89.
+
+**MEASURED AFTER THE REBUILD:** all six checks pass. 9 intents over 35 beats, no
+actor leaves and returns, 4 of 4 numbers count on entry, longest held
+composition 89 frames.
+
+**WHAT IS NOT DONE, PLAINLY.** The engine renders through its own composition
+and is not yet wired into `render.js` — no channel ships video from it. The
+`TRANSFORM`, `SPLIT` and `MERGE` behaviours are assigned in plans but the
+renderer draws them as a MOVE with a changed object rather than a true morph.
+Numeric actors can overlap the object under them. And §3.3's instruction to
+delete `SemanticScene` has NOT been carried out: it still renders every channel
+in production, and deleting it before the replacement ships would leave the
+daily cron with nothing to run.
 
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
