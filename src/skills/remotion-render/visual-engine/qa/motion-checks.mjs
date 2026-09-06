@@ -175,9 +175,16 @@ if (!plan) {
    * slideshow. Signature is actor id + rounded anchor, so a MOVE or a SPLIT
    * counts as a change and a re-render of the same arrangement does not.
    */
-  const sig = (b) => (b.actors || [])
-    .map((a) => `${a.id}@${Math.round((a.x ?? 0.5) * 20)},${Math.round((a.y ?? 0.5) * 20)}`)
-    .sort().join("|");
+  const sig = (b) =>
+    // The focal element is part of the composition, and leaving it out made this
+    // check wrong under screen ownership: a TYPE beat carries no actors by
+    // design, so three consecutive TYPE beats showing three different phrases
+    // all signed as the empty set and measured as one 132-frame hold. What is
+    // on screen is the word, and the word changed every beat.
+    `${b.screen_mode || ""}:${b.focal_element || ""}|` +
+    (b.actors || [])
+      .map((a) => `${a.id}@${Math.round((a.x ?? 0.5) * 20)},${Math.round((a.y ?? 0.5) * 20)}`)
+      .sort().join("|");
   let held = 0, worstHold = 0, holdAt = 0, holdStart = 0, prev = null;
   beats.forEach((b, i) => {
     const s2 = sig(b);

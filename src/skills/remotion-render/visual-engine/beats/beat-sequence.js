@@ -144,6 +144,15 @@ export function buildBeatPlan(beats, opts = {}) {
       emphasis_word: intents[i].emphasis,
       screen_mode: screenMode,
       focal_element: focalElement,
+      /**
+       * Both candidates travel with every beat, because the visual split below
+       * flips a beat's owner and needs the OTHER kind of focal element to hand.
+       * Without these it reused the one it had: a HERO beat split into
+       * HERO+TYPE handed an object name to the typography layer, and the render
+       * set the words "gavel" and "state map" in 200px display type.
+       */
+      hero_candidate: objects[i % objects.length],
+      type_candidate: intents[i].emphasis,
       typography_action: screenMode === "TYPE" ? tAction : null,
       hero_action: screenMode === "HERO" ? hAction : null,
       transition_in: transitionIn,
@@ -178,12 +187,15 @@ export function buildBeatPlan(beats, opts = {}) {
       intent_reason: `second half of a ${b.duration_frames}f beat — the screen changes hands mid-sentence`,
       transition_in: flipped === "HERO" ? "MORPH" : "CLEAR",
       transition_type: flipped === "HERO" ? "MORPH" : "CLEAR",
-      typography_state: flipped === "TYPE" ? b.typography_state : null,
+      focal_element: flipped === "TYPE" ? b.type_candidate : b.hero_candidate,
+      typography_state: flipped === "TYPE"
+        ? (b.typography_state || { primary_text: b.type_candidate, secondary_text: "", primary_emphasis: b.type_candidate, action: "SCALE", replaces: null })
+        : null,
       typography_action: flipped === "TYPE" ? (b.typography_action || "SCALE") : null,
       hero_action: flipped === "HERO" ? (b.hero_action || "SETTLE") : null,
       actors: flipped === "HERO"
         ? [{
-            id: `hero:${b.focal_element}#${b.beat_id}b`, type: "object", object: b.focal_element,
+            id: `hero:${b.hero_candidate}#${b.beat_id}b`, type: "object", object: b.hero_candidate,
             behavior: b.hero_action || "SETTLE", role: "focal",
             x: 0.5, y: 0.5, scale: 1, opacity: 1, state: "highlighted", bornAt: 0, value: null,
           }]
