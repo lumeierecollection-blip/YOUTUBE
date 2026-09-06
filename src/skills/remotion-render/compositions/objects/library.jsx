@@ -78,6 +78,30 @@ const Pin = ({ cx, cy, r, colors }) => (
 // PRINTED THINGS — each lays down its own sheet and marks it with ink.
 // ─────────────────────────────────────────────────────────────────────────────
 
+
+/**
+ * The field of a screen — a scan, a dashcam frame, a ticker board.
+ *
+ * These were painted pure #000000, which on a light channel reads correctly as
+ * a screen and on a dark channel is a hole: at hero size on ch-02 the dashcam
+ * was an invisible rectangle with a road floating in it. A screen is DARKER
+ * than what surrounds it, so on a dark ground it has to be lifted off the
+ * ground rather than driven to black.
+ */
+const screenField = (colors) => {
+  const lum = (h) => {
+    const [r, g, b] = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+    return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  };
+  if (lum(colors.ground) > 0.4) return "#000000";
+  // mix the ground 16% toward its own mark colour: still clearly a screen,
+  // but separated from the wall behind it
+  const g = [1, 3, 5].map((i) => parseInt(colors.ground.slice(i, i + 2), 16));
+  const o = [1, 3, 5].map((i) => parseInt(colors.onGround.slice(i, i + 2), 16));
+  const mix = g.map((v, i) => Math.round(v + (o[i] - v) * 0.16));
+  return `#${mix.map((v) => v.toString(16).padStart(2, "0")).join("")}`;
+};
+
 registerObject("archival photograph", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
   const m = w * 0.07;
@@ -344,7 +368,7 @@ registerObject("medical scan", ({ box, colors }) => {
   return (
     <g>
       {/* a scan is bright tissue on a black field, not ink on paper */}
-      <rect x={x} y={y} width={w} height={h} fill="#000000" />
+      <rect x={x} y={y} width={w} height={h} fill={screenField(colors)} />
       <rect x={x} y={y} width={w} height={h} fill="none" stroke={colors.onGround} strokeWidth={1.5} strokeOpacity={0.4} />
       <ellipse cx={x + w / 2} cy={y + h * 0.5} rx={w * 0.34} ry={h * 0.3} fill={colors.paper} opacity={0.22} />
       <ellipse cx={x + w / 2} cy={y + h * 0.5} rx={w * 0.24} ry={h * 0.21} fill={colors.paper} opacity={0.34} />
@@ -571,7 +595,7 @@ registerObject("police dashcam frame", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
   return (
     <g>
-      <rect x={x} y={y} width={w} height={h} fill="#000000" />
+      <rect x={x} y={y} width={w} height={h} fill={screenField(colors)} />
       <rect x={x} y={y} width={w} height={h} fill="none" stroke={colors.onGround} strokeWidth={1.5} strokeOpacity={0.4} />
       {/* road, lane markings running to a vanishing point, tail lights ahead */}
       <path d={`M${x},${y + h} L${x + w * 0.42},${y + h * 0.46} L${x + w * 0.58},${y + h * 0.46} L${x + w},${y + h} Z`}
@@ -1999,7 +2023,7 @@ registerObject("stock ticker tape", ({ box, colors, p, uid }) => {
   return (
     <g>
       {/* the band the tape runs in, dark whatever the channel's ground is */}
-      <rect x={x} y={ty} width={w} height={th} fill="#000000" opacity={0.75} />
+      <rect x={x} y={ty} width={w} height={th} fill={screenField(colors)} opacity={0.95} />
       <rect x={x} y={ty} width={w} height={th} fill="none" stroke={colors.onGround} strokeWidth={1.5} strokeOpacity={0.4} />
       <defs>
         <clipPath id={`tk${uid}`}><rect x={x} y={ty} width={w} height={th} /></clipPath>

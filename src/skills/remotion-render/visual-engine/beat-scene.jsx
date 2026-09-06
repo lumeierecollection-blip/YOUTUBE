@@ -6,221 +6,257 @@ import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
 
 /**
- * THE BEAT RENDERER — draws the stage, not a scene.
+ * ONE PERFORMER AT A TIME.
  *
- * The renderer this replaces composed each beat from nothing. Its output was a
- * slideshow: measured on a 70-second ch-02 render, twenty consecutive beats
- * drew the same document, and the only thing moving was a slow camera push.
+ * The version this replaces drew a display line, a supporting line, a caption
+ * and a stage of three objects simultaneously. That is an animated infographic:
+ * four things asking for the eye, none of them large enough to be the subject.
  *
- * Here the frame is the state of a STAGE that persists. An actor present in
- * two beats is interpolated from where it was to where it now is, ACROSS THE
- * WHOLE BEAT rather than snapping at the boundary — so the picture is always
- * mid-move and never settles into a held image. That is the difference between
- * entrance animation and motion graphics, and it is why nothing here waits.
+ * Here every beat declares an owner and this file draws only that owner.
  *
- * TWO TEXT LAYERS, SECTION 2.2. The kinetic line carries the beat's word and
- * animates; the caption carries the spoken sentence and sits still. The old
- * renderer had only the second, which is why the typography never changed.
+ *   TYPE  the words fill the frame. No objects at all — not dimmed, not small,
+ *         none. The type is sized to the width it has.
+ *   HERO  one object fills the frame. The kinetic line is gone; only the small
+ *         caption remains, and it is deliberately quiet.
  *
- * NOTHING HERE KNOWS A CHANNEL. Palette, fonts and object vocabulary all
- * arrive in the plan, the same rule PLN-07 holds the template renderer to.
+ * There is no branch in which both are drawn, and the beat model makes that
+ * unrepresentable rather than merely discouraged: a TYPE beat carries an empty
+ * actor list.
+ *
+ * MOTION IS THE SENTENCE'S. `hero_action` comes from the verb, so "deeper"
+ * descends and "disappeared" disappears. A beat with no verb cue gets SETTLE,
+ * which is weight and a slow drift, rather than a borrowed animation.
  */
 
 const CANVAS_W = 1080;
 const CANVAS_H = 1920;
 const S = SAFE_SHORTS;
-const px = (fx) => S.left + (S.right - S.left) * fx;
+const SAFE_W = S.right - S.left;
+const SAFE_H = S.bottom - S.top;
+const MID_Y = S.top + SAFE_H / 2;
 
-/**
- * THE TYPE BAND IS RESERVED BEFORE THE ACTORS ARE PLACED.
- *
- * The kinetic line is 108px display type with a 40px second line under it, so
- * it occupies roughly 260px wherever it sits. Placed without reserving that,
- * the first render put THIRTY-FIVE straight across the document it was
- * describing. The actors get what is left, and the caption's own band at the
- * foot is reserved the same way.
- */
-const TYPE_BAND = 270;
-// One line of 38px caption plus its leading. 190 was reserving a paragraph's
-// worth of space for a single line and taking it from the actors.
-const CAPTION_BAND = 110;
-function actorBand(placement) {
-  const top = placement === "upper-third" ? S.top + TYPE_BAND : S.top + 20;
-  const bottom = placement === "upper-third" ? S.bottom - CAPTION_BAND : S.bottom - TYPE_BAND - CAPTION_BAND;
-  return { top, bottom };
-}
+const EASE = Easing.bezier(0.22, 1, 0.36, 1);
+const EASE_IO = Easing.bezier(0.65, 0, 0.35, 1);
 
-/**
- * Actor footprint at scale 1. 0.34 of the safe width left the objects reading
- * as scattered thumbnails on the first render; the stage holds at most five and
- * they are meant to be the subject of the frame.
- */
-const BASE = (S.right - S.left) * 0.44;
-
-const EASE = Easing.bezier(0.33, 0, 0.15, 1);
-
-/** The beat containing this frame, and how far through it we are. */
 function at(plan, frame) {
   const beats = plan.beats;
   let i = 0;
   while (i < beats.length - 1 && frame >= beats[i + 1].start_frame) i++;
   const b = beats[i];
   const p = Math.max(0, Math.min(1, (frame - b.start_frame) / Math.max(1, b.duration_frames)));
-  return { beat: b, prev: beats[i - 1] || null, index: i, p };
+  return { beat: b, prev: beats[i - 1] || null, p };
 }
 
-/** Where an actor was in the previous beat, if it was there at all. */
-const findPrev = (prev, id) => (prev ? (prev.actors || []).find((a) => a.id === id) : null);
+/**
+ * Type set to the width it has, not to a fixed size.
+ *
+ * A fixed 108px made a short word look timid and a long one overflow. The
+ * advance of a bold grotesque is about 0.56em per character, so the size that
+ * fills the safe width is width / (chars * 0.56), clamped so one very long word
+ * does not shrink to nothing and one very short word does not become absurd.
+ */
+/**
+ * Per-character advance for bold uppercase, as ems.
+ *
+ * MEASURED, after a flat 0.56 put "ALONE" 98px past the right edge of the safe
+ * rect at 300px — the measured advance on that render was 0.625, and a flat
+ * average is wrong anyway because M and W are twice the width of I. These
+ * weights are relative to a 0.64 default, which is the measured figure with a
+ * small margin.
+ */
+const WIDE = new Set("MWQG@%".split(""));
+const SEMI = new Set("LTFY".split(""));
+const NARROW = new Set("IJ1.,';:!|-".split(""));
+/**
+ * Second correction. Treating uppercase L as narrow at 0.34 was wrong — in a
+ * bold grotesque it is about 0.52 — and it dragged "ALONE" 66px past the safe
+ * rect even after the first fix. The 1.03 factor makes every estimate err small,
+ * because a word that fits with a hair to spare is invisible and a word that
+ * overruns is a gate failure.
+ */
+const emWidth = (s) => 1.03 * [...s].reduce(
+  (w, c) => w + (WIDE.has(c) ? 0.92 : SEMI.has(c) ? 0.52 : NARROW.has(c) ? 0.30 : 0.68), 0);
+
+function fitLines(text, maxWidth, maxHeight) {
+  const words = String(text || "").trim().split(/\s+/).filter(Boolean);
+  if (!words.length) return { lines: [], size: 0 };
+  // One word per line: a stack is what fills a 9:16 frame. Laid out as a
+  // paragraph, three words came to one line 136px tall in a frame 1920 deep.
+  const lines = words.slice(0, 3);
+  const widest = lines.reduce((m, l) => Math.max(m, emWidth(l)), 0.5);
+  const byWidth = maxWidth / widest;
+  const byHeight = maxHeight / (lines.length * 1.06);
+  const size = Math.max(72, Math.min(300, Math.min(byWidth, byHeight)));
+  return { lines, size };
+}
+
+/** The type owner: the words, filling the frame, doing what the intent asks. */
+function TypeStage({ beat, p, colors, font }) {
+  const st = beat.typography_state || {};
+  const text = beat.focal_element || st.primary_text || "";
+  // The type may use the whole safe rect minus the caption's own strip.
+  const { lines, size } = fitLines(text, SAFE_W, SAFE_H - 150);
+  if (!lines.length) return null;
+
+  const inE = EASE(Math.min(1, p / 0.34));
+  const outE = Math.max(0, Math.min(1, (p - 0.88) / 0.12));
+  const action = beat.typography_action || "SCALE";
+
+  const wrap = { position: "absolute", left: S.left, width: SAFE_W, top: MID_Y - (lines.length * size * 1.02) / 2 };
+  const base = {
+    color: colors.onGround, fontFamily: `${font}, sans-serif`, fontWeight: 800,
+    fontSize: size, lineHeight: 1.02, letterSpacing: -size * 0.03, margin: 0,
+  };
+
+  /** Per-line motion, so the words arrive as words rather than as a block. */
+  const lineStyle = (li) => {
+    const stagger = EASE(Math.max(0, Math.min(1, (p - li * 0.06) / 0.34)));
+    const s = { ...base, opacity: (1 - outE) * stagger };
+    switch (action) {
+      // Slides in from the left edge of the safe rect, never from outside it.
+      case "SLIDE": s.transform = `translateX(${(1 - stagger) * -SAFE_W * 0.18}px)`; s.opacity *= stagger; break;
+      case "SCALE": s.transform = `scale(${0.7 + 0.3 * stagger})`; s.transformOrigin = "left center"; break;
+      case "REVEAL": s.clipPath = `inset(0 ${(1 - stagger) * 100}% 0 0)`; s.opacity = 1 - outE; break;
+      /**
+       * EXPLODE and SPLIT both used to animate OUTWARD, and the line is already
+       * sized to exactly fill the safe width — so any outward motion put it
+       * outside. Measured, the typographic split reached x[22,966] against a
+       * safe rect of [48,888]. Both now resolve INWARD to the fitted width:
+       * the letters open from tight rather than closing from wide, and the
+       * lines converge vertically rather than sliding in from the sides.
+       */
+      case "EXPLODE": s.letterSpacing = `${-size * (0.03 + 0.22 * (1 - stagger))}px`; break;
+      case "COLLAPSE": s.transform = `scaleY(${0.4 + 0.6 * stagger})`; s.transformOrigin = "center bottom"; break;
+      case "REPLACE": s.transform = `translateY(${(1 - stagger) * size * 0.9}px)`; break;
+      case "SPLIT": s.transform = `translateY(${(li % 2 ? 1 : -1) * (1 - stagger) * size * 0.8}px)`; break;
+      default: s.transform = `scale(${0.9 + 0.1 * stagger})`; break;
+    }
+    return s;
+  };
+
+  return (
+    <div style={wrap}>
+      {/* STRIKE draws a rule through the word this one displaces, then clears it */}
+      {action === "STRIKE" && st.replaces && p < 0.55 && (
+        <div style={{ ...base, fontSize: size * 0.5, opacity: 0.42 * (1 - p / 0.55), position: "relative", marginBottom: size * 0.18 }}>
+          {st.replaces}
+          <span style={{
+            position: "absolute", left: 0, top: "48%", height: Math.max(5, size * 0.05),
+            width: `${Math.min(1, p / 0.4) * 100}%`, background: colors.accent,
+          }} />
+        </div>
+      )}
+      {lines.map((l, li) => <div key={li} style={lineStyle(li)}>{l}</div>)}
+      {/* one accent rule under the word: the only mark allowed to share a TYPE beat */}
+      <div style={{
+        marginTop: size * 0.22, height: Math.max(6, size * 0.055),
+        width: `${inE * 46}%`, background: colors.accent, opacity: 1 - outE,
+      }} />
+    </div>
+  );
+}
 
 /**
- * One actor, interpolated from its previous state to its current one.
- *
- * A NEW actor eases in from slightly small and transparent. A SURVIVING one
- * travels the whole beat. An EXITing one shrinks away. In no case does an
- * actor cut from one state to another, which is Section 3.5's rule 1 expressed
- * in pixels rather than in the plan.
+ * The visual owner: ONE object, at a size that makes it the subject, moving the
+ * way the sentence says.
  */
-function Actor({ actor, prev, p, colors, band }) {
-  const e = EASE(p);
-  const from = prev || { x: actor.x, y: actor.y, scale: (actor.scale ?? 1) * 0.72, opacity: 0 };
-  const lerp = (a, b) => a + (b - a) * e;
+function HeroStage({ beat, p, colors }) {
+  const a = (beat.actors || [])[0];
+  if (!a) return null;
+  const action = beat.hero_action || "SETTLE";
+  const e = EASE(Math.min(1, p / 0.42));
+  const eio = EASE_IO(p);
+  const out = Math.max(0, Math.min(1, (p - 0.9) / 0.1));
 
-  const scale = lerp(from.scale ?? 1, actor.scale ?? 1);
-  /**
-   * The band is the range the object's EDGES must stay inside, not the range
-   * its centre may take. Mapping the anchor straight onto the band put the
-   * bottom of a document 46px past the caption on the first render, because an
-   * anchor at 0.76 of the band plus half an object's height lands outside it.
-   */
-  const halfH = (BASE * scale * 1.02) / 2;
-  const halfW = (BASE * scale) / 2;
-  const py = (fy) => {
-    const lo = band.top + halfH, hi = band.bottom - halfH;
-    return hi > lo ? lo + (hi - lo) * fy : (band.top + band.bottom) / 2;
-  };
-  const pxc = (fx) => {
-    const lo = S.left + halfW, hi = S.right - halfW;
-    return hi > lo ? lo + (hi - lo) * fx : (S.left + S.right) / 2;
-  };
-  const x = pxc(lerp(from.x ?? 0.5, actor.x ?? 0.5));
-  const y = py(lerp(from.y ?? 0.5, actor.y ?? 0.5));
-  const opacity = lerp(from.opacity ?? 0, actor.opacity ?? 1);
-  if (opacity <= 0.01) return null;
-
-  if (actor.type === "number") {
-    // Section 4.2: a quantity counts. The number reaching its value IS the
-    // beat, so it runs over the whole duration rather than appearing set.
-    const target = Number(actor.value);
+  if (a.type === "number") {
+    const target = Number(a.value);
     const shown = Number.isFinite(target) && target > 0
-      ? Math.round(target * e).toLocaleString()
-      : String(actor.text || "");
+      ? Math.round(target * EASE_IO(Math.min(1, p / 0.72))).toLocaleString()
+      : String(a.text || "");
+    const size = Math.max(150, Math.min(400, SAFE_W / (String(shown).length * 0.58)));
     return (
       <div style={{
-        position: "absolute", left: 0, top: y - 130, width: CANVAS_W,
-        textAlign: "center", opacity,
-        color: colors.accent, fontWeight: 800, fontSize: 210 * scale,
-        letterSpacing: -2, fontVariantNumeric: "tabular-nums",
+        position: "absolute", left: S.left, width: SAFE_W, top: MID_Y - size * 0.62,
+        textAlign: "center", color: colors.accent, fontWeight: 800, fontSize: size,
+        letterSpacing: -size * 0.04, fontVariantNumeric: "tabular-nums", opacity: 1 - out,
       }}>{shown}</div>
     );
   }
 
-  const w = BASE * scale;
-  // Nearly square: most of these objects are wider than tall, and a 1.2 ratio
-  // pushed them into each other vertically in a band only 500px deep.
-  const h = w * 1.02;
-  const dim = actor.state === "dimmed";
-  return (
-    <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, opacity: opacity * (dim ? 0.42 : 1) }}>
-      <g transform={`translate(${x - w / 2}, ${y - h / 2})`}>
-        <ObjectShape name={actor.object} colors={colors} p={Math.max(0.15, e)}
-          box={{ x: 0, y: 0, w, h }} />
+  /** The hero fills most of the frame. That is what makes it the hero. */
+  const FULL = SAFE_W * 0.82;
+  const draw = (w, x, y, opacity, rot = 0, name = a.object) => (
+    <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, opacity }}>
+      <g transform={`translate(${x - w / 2}, ${y - (w * 1.02) / 2}) rotate(${rot} ${w / 2} ${w * 0.51})`}>
+        <ObjectShape name={name} colors={colors} p={Math.max(0.2, e)} box={{ x: 0, y: 0, w, h: w * 1.02 }} />
       </g>
     </svg>
   );
-}
+  const cx = S.left + SAFE_W / 2;
 
-/** A connection between two actors, drawn as it is made. */
-function Link({ link, beat, colors, p, band }) {
-  const a = (beat.actors || []).find((x) => x.id === link.from);
-  const b = (beat.actors || []).find((x) => x.id === link.to);
-  if (!a || !b) return null;
-  const e = EASE(Math.min(1, p * 1.6));
-  const py = (fy) => band.top + (band.bottom - band.top) * fy;
-  const x1 = px(a.x), y1 = py(a.y), x2 = px(b.x), y2 = py(b.y);
-  return (
-    <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0 }}>
-      <line x1={x1} y1={y1} x2={x1 + (x2 - x1) * e} y2={y1 + (y2 - y1) * e}
-        stroke={colors.accent} strokeWidth={4} opacity={0.75} strokeLinecap="round" />
-      <circle cx={x1 + (x2 - x1) * e} cy={y1 + (y2 - y1) * e} r={7} fill={colors.accent} opacity={0.9} />
-    </svg>
-  );
+  switch (action) {
+    case "DESCEND":
+      // the object travels down the frame, which is what "deeper" means
+      return draw(FULL, cx, S.top + SAFE_H * (0.18 + 0.6 * eio), 1 - out);
+    case "GROW":
+      return draw(FULL * (0.28 + 0.72 * eio), cx, MID_Y, 1 - out);
+    case "VANISH":
+      // it actually goes: shrinks and fades to nothing by the end of the beat
+      return draw(FULL * (1 - 0.55 * eio), cx, MID_Y, Math.max(0, 1 - eio * 1.15));
+    case "SPLIT": {
+      /**
+       * Measured: at a 0.24 gap and 0.58 size the two halves reached x[22,966]
+       * against a safe rect of [48,888] — the rotation adds about 8% to each
+       * half's footprint and nothing accounted for it. Gap and size pulled in so
+       * the rotated extent stays inside.
+       */
+      const gap = SAFE_W * 0.2 * eio;
+      return (<>
+        {draw(FULL * 0.5, cx - gap, MID_Y, 1 - out, -5 * eio)}
+        {draw(FULL * 0.5, cx + gap, MID_Y, 1 - out, 5 * eio)}
+      </>);
+    }
+    case "CONNECT": {
+      const gap = SAFE_W * 0.26;
+      const t = EASE_IO(Math.min(1, p / 0.8));
+      return (<>
+        {draw(FULL * 0.5, cx - gap, MID_Y, 1 - out)}
+        <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0 }}>
+          <line x1={cx - gap + FULL * 0.24} y1={MID_Y} x2={cx - gap + FULL * 0.24 + (gap * 2 - FULL * 0.48) * t} y2={MID_Y}
+            stroke={colors.accent} strokeWidth={10} strokeLinecap="round" opacity={0.95} />
+        </svg>
+        {draw(FULL * 0.5, cx + gap, MID_Y, (1 - out) * t)}
+      </>);
+    }
+    case "TRANSFORM":
+      // one thing becoming another IN PLACE, which is what makes it a
+      // transformation rather than a cut to something else
+      return (<>
+        {draw(FULL, cx, MID_Y, Math.max(0, 1 - eio * 1.6))}
+        {draw(FULL, cx, MID_Y, Math.max(0, (eio - 0.35) / 0.65) * (1 - out), 0, a.object)}
+      </>);
+    case "REVEAL_IN":
+      return (<>
+        {draw(FULL * (1 + 0.5 * eio), cx, MID_Y, (1 - out) * (1 - eio * 0.55))}
+        {draw(FULL * 0.4 * eio, cx, MID_Y, (1 - out) * eio)}
+      </>);
+    default:
+      // SETTLE — weight on arrival, then a slow live drift so it never freezes
+      return draw(FULL * (0.9 + 0.1 * e), cx, MID_Y + Math.sin(p * Math.PI) * -18, 1 - out);
+  }
 }
 
 /**
- * The kinetic line. Each action is the literal motion its name describes, so a
- * CONTRAST beat visibly strikes the previous word out before the new one lands.
+ * The caption. Small, bottom-left, and never the focal element. It exists so
+ * the spoken words are legible with sound off; it is not the text layer.
  */
-function Kinetic({ state, p, colors, font, placement, caption }) {
-  if (!state || !state.primary_text) return null;
-  const e = EASE(Math.min(1, p * 2.2));
-  const out = Math.max(0, Math.min(1, (p - 0.86) / 0.14));
-  const base = {
-    position: "absolute", left: S.left, width: S.right - S.left,
-    color: colors.onGround, fontFamily: `${font}, sans-serif`,
-    fontWeight: 800, letterSpacing: -1, lineHeight: 1.02,
-  };
-  const top = placement === "upper-third" ? S.top + 30 : S.bottom - 430;
-
-  let style = { ...base, top, fontSize: 108, opacity: 1 - out * 0.9 };
-  let strike = 0;
-  switch (state.action) {
-    case "SLIDE_IN": style.transform = `translateX(${(1 - e) * -140}px)`; style.opacity *= e; break;
-    case "SCALE": style.fontSize = 108 * (0.72 + 0.28 * e); style.opacity *= e; break;
-    case "REVEAL": style.clipPath = `inset(0 ${(1 - e) * 100}% 0 0)`; break;
-    case "EMPHASIZE": style.fontSize = 108 * (1 + 0.06 * Math.sin(p * Math.PI)); style.color = colors.accent; break;
-    case "REPLACE": style.transform = `translateY(${(1 - e) * 60}px)`; style.opacity *= e; break;
-    case "STRIKE_THROUGH": strike = e; style.opacity *= Math.min(1, e * 1.4); break;
-    case "FADE_TRANSFORM": style.opacity *= e; break;
-    case "EXPLODE": style.letterSpacing = `${(1 - e) * 26}px`; style.opacity *= e; break;
-    default: style.transform = `scale(${0.94 + 0.06 * e})`; style.opacity *= e; break;
-  }
-
-  return (
-    <>
-      {/* the word being replaced, struck out as the new one arrives */}
-      {state.action === "STRIKE_THROUGH" && state.replaces && (
-        <div style={{ ...base, top: top - 96, fontSize: 64, opacity: 0.5 * (1 - e) }}>
-          <span style={{ position: "relative" }}>
-            {state.replaces}
-            <span style={{
-              position: "absolute", left: 0, top: "52%", height: 5, width: `${strike * 100}%`,
-              background: colors.accent,
-            }} />
-          </span>
-        </div>
-      )}
-      <div style={style}>{state.primary_text}</div>
-      {/* Suppressed when it merely repeats the caption. On the first render the
-          secondary line and the caption both read "Plutomurus holds the record
-          for", which is the picture reciting the narration twice. */}
-      {state.secondary_text && !String(caption || "").toLowerCase().includes(state.secondary_text.toLowerCase()) && (
-        <div style={{
-          ...base, top: top + 124, fontSize: 40, fontWeight: 500, letterSpacing: 0,
-          opacity: (1 - out) * 0.62 * e, color: colors.onGround,
-        }}>{state.secondary_text}</div>
-      )}
-    </>
-  );
-}
-
-/** The caption: the spoken words, verbatim, in one fixed place. */
 function Caption({ text, colors, font }) {
   if (!text) return null;
   return (
     <div style={{
-      position: "absolute", left: S.left, width: S.right - S.left, top: S.bottom - 150,
-      color: colors.onGround, opacity: 0.78, fontFamily: `${font}, sans-serif`,
-      fontWeight: 500, fontSize: 38, lineHeight: 1.25,
+      position: "absolute", left: S.left, width: SAFE_W * 0.8, top: S.bottom - 92,
+      color: colors.onGround, opacity: 0.5, fontFamily: `${font}, sans-serif`,
+      fontWeight: 500, fontSize: 32, lineHeight: 1.2,
     }}>{text}</div>
   );
 }
@@ -228,29 +264,30 @@ function Caption({ text, colors, font }) {
 export function BeatScene({ plan }) {
   const frame = useCurrentFrame();
   const colors = paletteRoles(plan.palette);
-  const { beat, prev, p, index } = at(plan, frame);
-  const actors = (beat.actors || []).filter((a) => a.type !== "line");
-  const links = (beat.actors || []).filter((a) => a.type === "line");
+  const { beat, p } = at(plan, frame);
 
   /**
-   * A slow continuous drift over the whole video, independent of the beats.
-   * It is small on purpose: the motion that matters is the actors moving, and
-   * a camera doing the work is the thing that made the old renderer look like
-   * it was moving when nothing was happening.
+   * The handover. A change of owner clears the frame first: the outgoing
+   * element is already gone by the time the incoming one starts, so the two
+   * are never on screen together. That is the transition doing the work the
+   * prohibition asks for, rather than a crossfade that briefly shows both.
    */
-  const drift = interpolate(frame % 900, [0, 450, 900], [0, 8, 0]);
-  const band = actorBand(plan.text_placement);
+  const handover = beat.transition_in === "CLEAR" || beat.transition_in === "MORPH";
+  /**
+   * The dead window at the start of a handover was 10% of the beat, which on a
+   * 60-frame beat is six frames of nothing but a caption — measured, one
+   * sampled still came back at 0.2% ink. A handover still clears first, but the
+   * incoming element starts almost immediately.
+   */
+  const enter = handover ? Math.max(0, Math.min(1, (p - 0.02) / 0.22)) : 1;
 
   return (
     <AbsoluteFill style={{ backgroundColor: colors.ground }}>
-      <AbsoluteFill style={{ transform: `translateY(${drift}px)` }}>
-        {links.map((l) => <Link key={l.id} link={l} beat={beat} colors={colors} p={p} band={band} />)}
-        {actors.map((a) => (
-          <Actor key={a.id} actor={a} prev={findPrev(prev, a.id)} p={p} colors={colors} band={band} />
-        ))}
+      <AbsoluteFill style={{ opacity: enter }}>
+        {beat.screen_mode === "TYPE"
+          ? <TypeStage beat={beat} p={p} colors={colors} font={plan.fonts.primary} />
+          : <HeroStage beat={beat} p={p} colors={colors} />}
       </AbsoluteFill>
-      <Kinetic state={beat.typography_state} p={p} colors={colors} caption={beat.narrative_text}
-        font={plan.fonts.primary} placement={plan.text_placement} />
       <Caption text={beat.narrative_text} colors={colors} font={plan.fonts.secondary} />
     </AbsoluteFill>
   );
@@ -266,7 +303,7 @@ export const compositions = [
     height: CANVAS_H,
     defaultProps: {
       plan: {
-        beats: [{ beat_id: "b0", start_frame: 0, duration_frames: 300, narrative_text: "", visual_intent: "INTRODUCE", typography_state: null, actors: [] }],
+        beats: [{ beat_id: "b0", start_frame: 0, duration_frames: 300, narrative_text: "", screen_mode: "TYPE", focal_element: "", typography_state: null, typography_action: "SCALE", transition_in: "CUT", actors: [] }],
         palette: { primary: ["#1A1A2E", "#16213E", "#F5536B", "#0F0F1A"], secondary: ["#C81E3C", "#8892B0", "#E6E8EC"] },
         fonts: { primary: "DM Sans", secondary: "Noto Serif" },
         text_placement: "upper-third",
