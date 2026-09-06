@@ -75,6 +75,7 @@ never `L7` or `Â§3.1`.
 | `VQA` | section-7 QA on a rendered video â€” colour, typography, environment, objects, transitions, authenticity | `scripts/gate-visual-qa.js` (per render â€” see Â§3.15) |
 | `TPL` | design-time scene templates â€” the per-channel static scenes and their conformance to the declared identity | `scripts/gate-scene-templates.js` (design-time â€” see Â§3.14) |
 | `PLN` | the plan renderer — the pure function from a structured plan to pixels, and the aborts that stop it emitting a frame nobody can read | `src/skills/remotion-render/compositions/template-scene.jsx` + `visual/palette-roles.js` (per render — see §3.16) |
+| `OBJ` | the procedural object library — every noun a channel's `core_objects` names, and the box each drawing is bound to | `src/skills/remotion-render/qa-scripts/audit-object-bounds.mjs` (per change to a drawing — see §3.17) |
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 
 ---
@@ -2437,7 +2438,7 @@ black-and-red version of one video.
 | VID-01 | Specification matches `schemas/visual-identity.json` — every field, closed enums, exact cardinalities (4/3/>=5/>=4/exactly 3) | `scripts/gate-visual-identity.js` | 0 errors | 0 | BLOCKER | **FAIL, 3 findings** — ch-01/02/09 filled and passing on content; `human_validated` outstanding on all three |
 | VID-02 | Both font families exist as real woff2 in `public/fonts` | same | 0 missing | 0 | BLOCKER | **PASS** on ch-01/02/09 (Inter, DM Sans, Roboto Condensed, JetBrains Mono, Noto Serif) |
 | VID-03 | `style_reference_document` points at a file that exists | same | exists | 0 | BLOCKER | **PASS** on ch-01/02/09 |
-| VID-04 | `human_validated.by` and `.date` present | same | present | 0 | BLOCKER | **FAIL, 3** — the only thing standing between these three and a usable specification |
+| VID-04 | ~~`human_validated.by` and `.date` present~~ **RETIRED 2026-09-06** | ~~same~~ | — | — | — | Removed on request. One manual signature per channel gated all 17 behind a step nothing else depended on, and every field in a derived spec traces to curated config in `channels.json` rather than to a model's invention. Provenance now lives in the spec's `style_reference_document`, which VID-03 still requires to exist. IDs are never reused: VID-04 stays listed and stays retired. |
 | VID-05 | Every specification names a real channel (`--require-all`: every channel has one) | same | 0 orphans | 0 | MAJOR | **PASS** for the 3 present; 14 channels still have none |
 | VID-06 | No two channels share a byte-identical visual identity | same | 0 collisions | 0 | BLOCKER | **PASS** — and a weaker collision it does NOT catch was found by hand and fixed: the first draft gave all three the same four camera moves in a different order, so the arrays differed while the permitted SET was identical. Sets are now {top-down, push-in, pull-out, static}, {push-in, static, tilt-down, pan-right}, {top-down, push-in, track-left, pan-right} — `push-in` is the only move all three share |
 
@@ -2702,6 +2703,135 @@ other. Stills and clips under `data/renders/plan/`.
 **THE SECTION-7 GATE ON ALL THREE:** 7.1, 7.2, 7.5 and 7.6 pass; 7.3 and 7.4
 are UNVERIFIED failures for want of a vision key, exactly as §3.15 describes.
 No render here is claimed to have passed section 7.
+
+
+## 3.17 `OBJ` and the full build-out — 17 identities, 289 templates, 88 objects
+
+The state before this: 3 channels had a visual identity, 3 of 51 (channel,
+strategy) pairs had a template, and 9 objects were drawn. Fourteen channels
+could not render a single beat through this engine. This closes all of it.
+
+| ID | Check | How | Sev |
+|---|---|---|---|
+| OBJ-01 | Every object any channel's `core_objects` names has a drawing | `ObjectShape` throws on an unknown name | BLOCKER |
+| OBJ-02 | No drawing puts ink outside the box it was given | `qa-scripts/audit-object-bounds.mjs`, one render of all 88 | BLOCKER |
+| OBJ-03 | Every `<clipPath>` / `<defs>` id is unique within a frame | ids derive from object name + box size | BLOCKER |
+| OBJ-04 | Rendered templates keep their ink inside the Shorts safe rect | `qa-scripts/measure-template-bounds.mjs`, measured from pixels | BLOCKER |
+
+**WHERE 14 NEW IDENTITIES CAME FROM, AND WHY IT IS NOT INVENTION.**
+`config/channels.json` already carried a curated `visual_spec` per channel —
+`b_roll_sources`, `camera_angles`, `transitions`, `pacing`, `color_grade` —
+plus `colors`, `font` and `bg_mode`. `scripts/build-visual-identity.js` reads
+those and merges them with the per-channel decisions authored in
+`config/visual-identity.source.json`, each carrying a `from` field naming the
+channels.json text it was read off. ch-01, ch-02 and ch-09 keep their
+hand-curated specs untouched; a derived value is not an improvement on a
+researched one, and the generated Style Reference Documents say in their own
+first paragraph that they are derivation records rather than research.
+
+The secondary palette is computed, and the arithmetic is stated: accent x 0.78,
+mix(primary, white, 0.55), mix(primary, white, 0.92). Checked against the
+hand-curated channels it lands close to what a person chose — ch-02's curated
+slate is `#8892B0` against a computed `#9898A1`, its curated paper `#E6E8EC`
+against `#EDEDEE`. **The ground is the `bg_mode` ground from `styles/tokens.js`,
+never `colors.bg`**: several channels carry a dark `colors.bg` while running
+`bg_mode: white`, and transcribing that field is the exact bug §3.15 caught on
+ch-01.
+
+**THE ENVIRONMENT ENUM GREW FROM 8 TO 15.** The original eight were written for
+three motion-graphics channels and could not describe a forensic lab, an
+orbital fly-through or a factory floor, so channels were being pushed into the
+nearest wrong box. Two channels may share an environment — a courtroom drama
+and a wrongful-conviction series genuinely both live in courtrooms — because
+VID-06 compares the whole identity fingerprint, not this field alone.
+
+**289 TEMPLATES FROM A CROSS-PRODUCT, AND WHY THAT IS NOT THE MONOCULTURE
+RETURNING.** `config/strategy-structures.json` fixes only the GRAMMAR of a beat:
+one subject and two supports, where they sit, which way the camera travels,
+what the script must supply. The channel's identity supplies every noun — the
+objects, the environment, the palette, the typeface, which of the twelve moves
+the camera indices resolve to, the transitions. Legal Brief's COMPARISON and
+Factory Floor's COMPARISON share a sentence structure and not one word. TPL-09
+is what proves that rather than asserting it, and all 289 pass it.
+
+All 17 strategies carry a distinct camera triple and a distinct object triple,
+so two strategies on one channel never resolve to the same arrangement either.
+
+**THE SUBJECT SLOT IS RESTRICTED TO THE FIRST THREE OBJECTS, BECAUSE OF WHAT A
+FRAME SHOWED.** TIMELINE originally took its subject from slot 5, which on
+ch-30 is `date marker` — an annotation drawn as a line and a tab. Rendered as
+the subject at full framing it was three enormous cyan bars that read as
+nothing. A strategy cannot know which of a channel's objects have mass, so the
+convention is positional: slots 0-2 are substantial, 3+ are incidental, and
+only 0-2 may carry the subject. Four channels had their `core_objects`
+reordered to match, ch-09 included.
+
+**OBJ-02 FOUND SIXTEEN DRAWINGS BREAKING THEIR OWN BOX, AND ONE PRODUCTION BUG
+NOBODY WAS LOOKING FOR.** The renderer sizes and anchors objects against the
+camera-inverted safe rect, and PLN-05 calls that safe — which is only true if a
+drawing honours the box it is handed. Four did not: ch-09's border line drew at
+1.24x (a measured frame 16px below the safe rect), the film reel at 1.22x, the
+gear train at 1.05x, and the exhibit tag hung 20% past the right edge. Three of
+those had never yet rendered outside the safe rect; they were waiting for a
+template that anchored them near a margin. Twelve more turned up once the audit
+existed — endpoint discs centred on a box edge, a cursor's click ring centred on
+the box ORIGIN, a tilted photograph whose corners swung out, round line caps
+adding half a stroke width past each end.
+
+The production bug: three objects built a `<clipPath>` id from the box's x and
+y. Every object is placed by a parent `<g transform>`, so inside its own drawing
+x and y are always zero — every clip in a scene was called `cs00`, `pl00` or
+`tk00` and the FIRST definition won for all of them. A planet and a
+cross-section in one frame clipped each other. Ids now derive from the object's
+name and box size, which is unique per object and per repeated copy and still
+deterministic.
+
+**THE FIRST RUN OF THE AUDIT REPORTED A CLEAN PASS OVER ZERO OBJECTS**, because
+Node cannot import the .jsx drawing files and importing the registry alone
+gives an empty map. A checker that reports success over an empty set is the
+worst failure mode available, so the names are now scanned out of the source
+files and the script exits 2 if that scan finds nothing.
+
+**MEASURED, NOT ASSERTED.** 34 template stills across 17 channels: every one
+inside the safe rect, none empty, ink between 1.6% and 19.9% of the frame. 88
+objects on both a light and a dark palette: every one inside its box.
+
+**THE ENGINE IS WIRED IN, OPT-IN, AND ON FOR ONE CHANNEL.** `render.js` loads a
+channel's identity and templates only when `config/channels.json` gives it
+`visual_engine: "template"`; `mg-package.js` then builds a plan per beat from
+the strategy the existing director already chose, and `motion-graphics.jsx`
+draws that beat with `TemplateScene` instead of its own scene. The strategy
+chooser is not replaced — `director.js` and its grounded detectors in
+`semantics.js` still decide, which is what keeps every visual traceable to the
+beat's own text.
+
+Measured end to end on the ch-fixture script with its real caption stream:
+**30 of 32 beats drawn by the template engine.** The two that were not are
+TIMELINE beats whose payload held a single year; a timeline of one event is not
+a timeline, and those beats keep the existing scene. `mg.templateBeats` reports
+drawn-over-offered on every run, so a video that mostly fell back is visible as
+such rather than looking like a success.
+
+Two rounds of that measurement were needed. The first drew 25 of 32, because
+`fillList` looked for parameter-shaped key names and the director actually
+files COMPARISON's two sides under `pairs` and TIMELINE's dates under `years`.
+Five COMPARISON beats and two TIMELINE beats were falling back over a key name.
+
+**ONLY ch-02 IS SWITCHED ON.** It is the one channel with end-to-end evidence —
+30 of 32 beats, frames rendered and looked at, both engines coexisting in one
+composition. The other 16 have per-template stills and nothing more, and
+seventeen channels changing engine on one commit is not a rollout. Turning one
+on is a single field in `config/channels.json`.
+
+**WHAT IS NOT CHECKED, PLAINLY.** A beat whose required parameter cannot be
+grounded falls back to the existing engine rather than aborting, which is a
+deliberate departure from section 3's hard stop — section 3 forbids a generic
+FALLBACK TEMPLATE, and falling back to the engine that has rendered these
+channels all along is not that. It is per beat, not per run, and it is counted.
+Separately, an object drawn on top of another object's paper still uses the
+paper mark colour, and at context scale a `police dashcam frame` or `medical
+scan` reads as a small dark rectangle rather than a screen. Neither is
+detected by anything.
 
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)

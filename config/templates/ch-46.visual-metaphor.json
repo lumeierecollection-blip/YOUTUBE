@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-46",
+  "strategy": "VISUAL_METAPHOR",
+  "name": "ch-46-visual-metaphor-interior-room",
+  "intent": "An abstract idea given physical behaviour, using objects this channel already owns. Here that is checklist rule on a room's floor and back wall, furniture implied at the edges.",
+  "environment": {
+    "type": "interior-room",
+    "ground": "a room's floor and back wall, furniture implied at the edges",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "checklist rule",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.46,
+        "scale": 1
+      }
+    },
+    {
+      "object": "clock face",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8,
+        "scale": 0.72
+      }
+    },
+    {
+      "object": "question line",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.26,
+        "scale": 0.55
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "static",
+      "reason": "the physical arrangement is established before it is asked to mean anything"
+    },
+    {
+      "at": 0.55,
+      "move": "tilt-up",
+      "target": "checklist rule",
+      "reason": "the camera moves so the behaviour reads as behaviour"
+    },
+    {
+      "at": 1,
+      "move": "pan-right",
+      "reason": "the arrangement holds in its changed state"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "centre",
+      "in_at": 0.44,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "text-card",
+      "duration_frames": 18
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

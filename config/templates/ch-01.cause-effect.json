@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-01",
+  "strategy": "CAUSE_EFFECT",
+  "name": "ch-01-cause-effect-desk-flatlay",
+  "intent": "One thing drives another and the link between them is drawn, not implied by adjacency. Here that is receipt on a matte desk surface, seen square from above.",
+  "environment": {
+    "type": "desk-flatlay",
+    "ground": "a matte desk surface, seen square from above",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "receipt",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      }
+    },
+    {
+      "object": "phone showing a budgeting app",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "bank statement",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "static",
+      "reason": "the cause is alone in frame first"
+    },
+    {
+      "at": 0.55,
+      "move": "top-down",
+      "target": "receipt",
+      "reason": "the camera follows the link across to what it produced"
+    },
+    {
+      "at": 1,
+      "move": "pull-out",
+      "reason": "the effect holds with the cause still visible behind it"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "fade-gentle",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-26",
+  "strategy": "DATA_CHART",
+  "name": "ch-26-data-chart-evidence-board",
+  "intent": "Real measured values compared against each other from a common origin. Here that is money trail on a board surface things are pinned to.",
+  "environment": {
+    "type": "evidence-board",
+    "ground": "a board surface things are pinned to",
+    "lighting": "raking-side"
+  },
+  "objects": [
+    {
+      "object": "money trail",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "series"
+    },
+    {
+      "object": "red string",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "court document",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the baseline is established before any value is drawn from it"
+    },
+    {
+      "at": 0.55,
+      "move": "top-down",
+      "target": "money trail",
+      "reason": "the frame closes as the values resolve"
+    },
+    {
+      "at": 1,
+      "move": "track-right",
+      "reason": "the finished comparison holds"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "glitch-digital",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "series": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

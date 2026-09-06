@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "channel_id": "ch-31",
+  "strategy": "SCALE_COMPARISON",
+  "name": "ch-31-scale-comparison-courtroom",
+  "intent": "How big a number is, set against something that gives it size. Here that is courthouse column on the dark panelling and bench of a courtroom.",
+  "environment": {
+    "type": "courtroom",
+    "ground": "the dark panelling and bench of a courtroom",
+    "lighting": "hard-directional"
+  },
+  "objects": [
+    {
+      "object": "courthouse column",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "evidence exhibit",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "legal document",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "tilt-up",
+      "reason": "the reference object is in frame first so the scale is honest"
+    },
+    {
+      "at": 0.55,
+      "move": "low-angle",
+      "target": "courthouse column",
+      "reason": "the frame pulls back to admit the quantity being measured"
+    },
+    {
+      "at": 1,
+      "move": "pull-out",
+      "reason": "both are held at one scale"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "evidence-exhibit",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "value": {
+      "type": "number",
+      "from": "script-number",
+      "required": true
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

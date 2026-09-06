@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-03",
+  "strategy": "CAUSE_EFFECT",
+  "name": "ch-03-cause-effect-screen-interface",
+  "intent": "One thing drives another and the link between them is drawn, not implied by adjacency. Here that is output transcript on the flat plane of a display, chrome implied not drawn.",
+  "environment": {
+    "type": "screen-interface",
+    "ground": "the flat plane of a display, chrome implied not drawn",
+    "lighting": "screen-glow"
+  },
+  "objects": [
+    {
+      "object": "output transcript",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      }
+    },
+    {
+      "object": "prompt field",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "application window",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "high-angle",
+      "reason": "the cause is alone in frame first"
+    },
+    {
+      "at": 0.55,
+      "move": "static",
+      "target": "output transcript",
+      "reason": "the camera follows the link across to what it produced"
+    },
+    {
+      "at": 1,
+      "move": "pan-right",
+      "reason": "the effect holds with the cause still visible behind it"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "glitch-cut",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-39",
+  "strategy": "BEFORE_AFTER",
+  "name": "ch-39-before-after-hospital-ward",
+  "intent": "The same frame under two conditions, with everything except the condition held constant. Here that is vital trace on a ward floor and curtain rail, equipment at the margins.",
+  "environment": {
+    "type": "hospital-ward",
+    "ground": "a ward floor and curtain rail, equipment at the margins",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "vital trace",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "vital trace",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "iv stand",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the first condition is established alone"
+    },
+    {
+      "at": 0.55,
+      "move": "static",
+      "target": "vital trace",
+      "reason": "the camera crosses to the second with the framing unchanged"
+    },
+    {
+      "at": 1,
+      "move": "tilt-down",
+      "reason": "both are held so the difference is the only thing that moved"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "scan-transition",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

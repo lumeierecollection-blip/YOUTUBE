@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-03",
+  "strategy": "BEFORE_AFTER",
+  "name": "ch-03-before-after-screen-interface",
+  "intent": "The same frame under two conditions, with everything except the condition held constant. Here that is output transcript on the flat plane of a display, chrome implied not drawn.",
+  "environment": {
+    "type": "screen-interface",
+    "ground": "the flat plane of a display, chrome implied not drawn",
+    "lighting": "screen-glow"
+  },
+  "objects": [
+    {
+      "object": "output transcript",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "output transcript",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "latency trace",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the first condition is established alone"
+    },
+    {
+      "at": 0.55,
+      "move": "pan-right",
+      "target": "output transcript",
+      "reason": "the camera crosses to the second with the framing unchanged"
+    },
+    {
+      "at": 1,
+      "move": "high-angle",
+      "reason": "both are held so the difference is the only thing that moved"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "screen-switch",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

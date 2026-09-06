@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-48",
+  "strategy": "CAUSE_EFFECT",
+  "name": "ch-48-cause-effect-industrial-floor",
+  "intent": "One thing drives another and the link between them is drawn, not implied by adjacency. Here that is robot arm on a painted concrete floor with machine bases on it.",
+  "environment": {
+    "type": "industrial-floor",
+    "ground": "a painted concrete floor with machine bases on it",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "robot arm",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      }
+    },
+    {
+      "object": "component part",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "conveyor belt",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pan-left",
+      "reason": "the cause is alone in frame first"
+    },
+    {
+      "at": 0.55,
+      "move": "track-right",
+      "target": "robot arm",
+      "reason": "the camera follows the link across to what it produced"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the effect holds with the cause still visible behind it"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "cross-section-reveal",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

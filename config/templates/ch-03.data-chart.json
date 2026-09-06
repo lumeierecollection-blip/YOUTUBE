@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-03",
+  "strategy": "DATA_CHART",
+  "name": "ch-03-data-chart-screen-interface",
+  "intent": "Real measured values compared against each other from a common origin. Here that is output transcript on the flat plane of a display, chrome implied not drawn.",
+  "environment": {
+    "type": "screen-interface",
+    "ground": "the flat plane of a display, chrome implied not drawn",
+    "lighting": "screen-glow"
+  },
+  "objects": [
+    {
+      "object": "output transcript",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "series"
+    },
+    {
+      "object": "latency trace",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "application window",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "static",
+      "reason": "the baseline is established before any value is drawn from it"
+    },
+    {
+      "at": 0.55,
+      "move": "pan-right",
+      "target": "output transcript",
+      "reason": "the frame closes as the values resolve"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the finished comparison holds"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "split-reveal",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "series": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

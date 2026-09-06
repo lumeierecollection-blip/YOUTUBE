@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-11",
+  "strategy": "BEFORE_AFTER",
+  "name": "ch-11-before-after-orbital-space",
+  "intent": "The same frame under two conditions, with everything except the condition held constant. Here that is galaxy spiral on open space, a star field standing in for distance.",
+  "environment": {
+    "type": "orbital-space",
+    "ground": "open space, a star field standing in for distance",
+    "lighting": "hard-directional"
+  },
+  "objects": [
+    {
+      "object": "galaxy spiral",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "galaxy spiral",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "star field",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the first condition is established alone"
+    },
+    {
+      "at": 0.55,
+      "move": "pull-out",
+      "target": "galaxy spiral",
+      "reason": "the camera crosses to the second with the framing unchanged"
+    },
+    {
+      "at": 1,
+      "move": "tilt-up",
+      "reason": "both are held so the difference is the only thing that moved"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "corner-overlay",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "zoom-through-space",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

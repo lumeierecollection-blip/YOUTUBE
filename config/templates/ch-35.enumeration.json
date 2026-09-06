@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-35",
+  "strategy": "ENUMERATION",
+  "name": "ch-35-enumeration-machine-mechanism",
+  "intent": "Several named things, arriving in the order they are spoken. Here that is load curve on the cut plane of an assembly, drawn as a section.",
+  "environment": {
+    "type": "machine-mechanism",
+    "ground": "the cut plane of an assembly, drawn as a section",
+    "lighting": "hard-directional"
+  },
+  "objects": [
+    {
+      "object": "load curve",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.46,
+        "scale": 1
+      },
+      "repeats": "items"
+    },
+    {
+      "object": "bolt joint",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8,
+        "scale": 0.72
+      }
+    },
+    {
+      "object": "scale bar",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.26,
+        "scale": 0.55
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pan-left",
+      "reason": "the frame is empty so the first item is an arrival"
+    },
+    {
+      "at": 0.55,
+      "move": "track-right",
+      "target": "load curve",
+      "reason": "the camera opens out as the list grows"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the finished list is held whole"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "corner-overlay",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "3d-flythrough",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "items": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "channel_id": "ch-02",
+  "strategy": "TRANSFORMATION",
+  "name": "ch-02-transformation-courtroom",
+  "intent": "One value becomes another, and the mechanism between them is shown rather than asserted. Here that is gavel on the dark panelling and bench of a courtroom.",
+  "environment": {
+    "type": "courtroom",
+    "ground": "the dark panelling and bench of a courtroom",
+    "lighting": "hard-directional"
+  },
+  "objects": [
+    {
+      "object": "gavel",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "legal document",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "constitutional text",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "static",
+      "reason": "both states are in frame from the start so the change has somewhere to go"
+    },
+    {
+      "at": 0.55,
+      "move": "tilt-down",
+      "target": "gavel",
+      "reason": "the camera crosses from the old state to the new one"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the new state holds alone"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.44,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "map-zoom",
+      "duration_frames": 18
+    }
+  ],
+  "parameters": {
+    "from": {
+      "type": "number",
+      "from": "script-number",
+      "required": true
+    },
+    "to": {
+      "type": "number",
+      "from": "script-number",
+      "required": true
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

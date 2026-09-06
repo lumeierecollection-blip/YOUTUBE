@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-09",
+  "strategy": "PROCESS",
+  "name": "ch-09-process-map-territory",
+  "intent": "A sequence of stages something actually moves through, in the order it moves through them. Here that is satellite terrain on a map sheet, terrain seen from altitude.",
+  "environment": {
+    "type": "map-territory",
+    "ground": "a map sheet, terrain seen from altitude",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "satellite terrain",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "stages"
+    },
+    {
+      "object": "supply route",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "national border line",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "track-left",
+      "reason": "the first stage stands alone so the sequence has a beginning"
+    },
+    {
+      "at": 0.55,
+      "move": "pan-right",
+      "target": "satellite terrain",
+      "reason": "the camera moves along the sequence at the rate the stages arrive"
+    },
+    {
+      "at": 1,
+      "move": "top-down",
+      "reason": "the finished sequence is held whole"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "corner-overlay",
+      "in_at": 0.44,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "border-draw",
+      "duration_frames": 18
+    }
+  ],
+  "parameters": {
+    "stages": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

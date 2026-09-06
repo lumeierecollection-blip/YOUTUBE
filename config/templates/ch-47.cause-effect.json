@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-47",
+  "strategy": "CAUSE_EFFECT",
+  "name": "ch-47-cause-effect-screen-interface",
+  "intent": "One thing drives another and the link between them is drawn, not implied by adjacency. Here that is plan comparison rows on the flat plane of a display, chrome implied not drawn.",
+  "environment": {
+    "type": "screen-interface",
+    "ground": "the flat plane of a display, chrome implied not drawn",
+    "lighting": "screen-glow"
+  },
+  "objects": [
+    {
+      "object": "plan comparison rows",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      }
+    },
+    {
+      "object": "benefit rule",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "enrollment form",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pan-left",
+      "reason": "the cause is alone in frame first"
+    },
+    {
+      "at": 0.55,
+      "move": "static",
+      "target": "plan comparison rows",
+      "reason": "the camera follows the link across to what it produced"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the effect holds with the cause still visible behind it"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "document-reveal",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

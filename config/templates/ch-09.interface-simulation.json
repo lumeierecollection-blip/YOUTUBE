@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-09",
+  "strategy": "INTERFACE_SIMULATION",
+  "name": "ch-09-interface-simulation-map-territory",
+  "intent": "The system's own screen, doing the thing being described, rather than a drawing of it. Here that is territory fill on a map sheet, terrain seen from altitude.",
+  "environment": {
+    "type": "map-territory",
+    "ground": "a map sheet, terrain seen from altitude",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "territory fill",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "national border line",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "supply route",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "top-down",
+      "reason": "the interface is square to the frame the way a screen is"
+    },
+    {
+      "at": 0.55,
+      "move": "pan-right",
+      "target": "territory fill",
+      "reason": "the camera goes to the control being described"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the result holds on screen"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{step}",
+      "face": "secondary",
+      "placement": "corner-overlay",
+      "in_at": 0.44,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "territory-fill",
+      "duration_frames": 18
+    }
+  ],
+  "parameters": {
+    "step": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

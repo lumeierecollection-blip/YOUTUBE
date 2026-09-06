@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-07",
+  "strategy": "BEFORE_AFTER",
+  "name": "ch-07-before-after-corporate-interior",
+  "intent": "The same frame under two conditions, with everything except the condition held constant. Here that is share price line on a glazed office floor, the city implied beyond it.",
+  "environment": {
+    "type": "corporate-interior",
+    "ground": "a glazed office floor, the city implied beyond it",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "share price line",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "share price line",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "press headline",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the first condition is established alone"
+    },
+    {
+      "at": 0.55,
+      "move": "track-right",
+      "target": "share price line",
+      "reason": "the camera crosses to the second with the framing unchanged"
+    },
+    {
+      "at": 1,
+      "move": "low-angle",
+      "reason": "both are held so the difference is the only thing that moved"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "stock-crash",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

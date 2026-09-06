@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-17",
+  "strategy": "CAUSE_EFFECT",
+  "name": "ch-17-cause-effect-archive-photo",
+  "intent": "One thing drives another and the link between them is drawn, not implied by adjacency. Here that is archival map sheet on the mount board an archival print is laid on.",
+  "environment": {
+    "type": "archive-photo",
+    "ground": "the mount board an archival print is laid on",
+    "lighting": "raking-side"
+  },
+  "objects": [
+    {
+      "object": "archival map sheet",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      }
+    },
+    {
+      "object": "stone monument",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "period painting",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "track-right",
+      "reason": "the cause is alone in frame first"
+    },
+    {
+      "at": 0.55,
+      "move": "push-in",
+      "target": "archival map sheet",
+      "reason": "the camera follows the link across to what it produced"
+    },
+    {
+      "at": 1,
+      "move": "high-angle",
+      "reason": "the effect holds with the cause still visible behind it"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "map-morph",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

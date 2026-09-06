@@ -67,7 +67,19 @@ function placementBox(placement, rect) {
   const SAFE = rect;
   const w = SAFE.right - SAFE.left;
   switch (placement) {
-    case "centre": return { x: SAFE.left, y: (SAFE.top + SAFE.bottom) / 2 - 60, w, align: "center" };
+    /**
+     * CENTRE MEANS HORIZONTALLY CENTRED, AND SITS UNDER THE COMPOSITION.
+     *
+     * It used to sit at the vertical middle too, which put it straight across
+     * the subject on both channels that declare it: measured on the first full
+     * sweep, ch-46's caption crossed four overlapping brackets and ch-44's
+     * crossed the concept node. Reserving the middle instead only shrank the
+     * objects into the top third -- a caption two lines tall was costing them
+     * half the frame. So the band is reserved at the foot, as for lower-third,
+     * and centre keeps the one thing that distinguishes it: the type is centred
+     * on the axis rather than ranged left.
+     */
+    case "centre": return { x: SAFE.left, y: SAFE.bottom - 190, w, align: "center" };
     case "upper-third": return { x: SAFE.left, y: SAFE.top + 40, w, align: "left" };
     case "corner-overlay": return { x: SAFE.left, y: SAFE.top + 20, w: w * 0.6, align: "left" };
     case "lower-third":
@@ -108,7 +120,12 @@ function cameraAt(plan, frame) {
 function copyOffset(n, i, size) {
   if (n <= 1) return { dx: 0, dy: 0, s: 1 };
   const t = i / (n - 1);
-  return { dx: (t - 0.5) * size * 0.5, dy: (t - 0.5) * size * 0.22, s: 1 - t * 0.12 };
+  // Widened from 0.5/0.22/0.12 after the first full sweep. Outline-heavy objects
+  // -- ch-46's answer frame, ch-35's gear train -- tangled into one mass at the
+  // old spacing because their strokes crossed rather than occluded. More lateral
+  // travel and a harder taper make each copy read as a separate thing behind the
+  // last. Solid objects like ch-01's statements looked correct either way.
+  return { dx: (t - 0.5) * size * 0.68, dy: (t - 0.5) * size * 0.22, s: 1 - t * 0.2 };
 }
 
 
@@ -157,7 +174,12 @@ export function TemplateScene({ plan }) {
    * left. Reserving rather than overlaying is the honest order: the plan fixed
    * where the type goes, and the type is the thing that must stay legible.
    */
-  const TEXT_BAND = 260;
+  // 260 was a guess and it cost the objects a fifth of their height. Measured
+  // from what the type actually occupies: 42px at 1.25 line-height is 52.5 per
+  // line, the box starts 190 above SAFE.bottom, and three lines is the most any
+  // caption here runs to. 210 clears that with margin and hands the difference
+  // back to the composition.
+  const TEXT_BAND = 210;
   const bands = new Set(plan.typography.map((t) => t.placement));
   /**
    * ...AND WHAT THE CAMERA LEAVES.
@@ -174,7 +196,16 @@ export function TemplateScene({ plan }) {
    */
   const camSafe = planSafeRect(plan);
   const contentTop = camSafe.top + (bands.has("upper-third") || bands.has("corner-overlay") ? TEXT_BAND : 0);
-  const contentBottom = camSafe.bottom - (bands.has("lower-third") ? TEXT_BAND : 0);
+  /**
+   * `centre` needed its own case and did not have one. The band was reserved for
+   * type at the top or the bottom, so a centred caption -- ch-44 and ch-46 both
+   * declare one -- was laid straight over the subject: measured on the first
+   * sweep, ch-46's caption sat across four overlapping brackets and ch-44's
+   * across the concept node. Centred type keeps its vertical centring and the
+   * objects take the space above it, which is what a title over a composition
+   * actually is.
+   */
+  const contentBottom = camSafe.bottom - (bands.has("lower-third") || bands.has("centre") ? TEXT_BAND : 0);
   const contentH = Math.max(200, contentBottom - contentTop);
   const contentW = camSafe.right - camSafe.left;
 
@@ -198,7 +229,7 @@ export function TemplateScene({ plan }) {
              * spreads copies over 0.5 of the base width and 0.22 of its height,
              * so the full footprint is base * (1 + 0.5) horizontally.
              */
-            const fan = o.count > 1 ? 1.5 : 1;
+            const fan = o.count > 1 ? 1.68 : 1;
             const wantW = contentW * span * rel * (o.anchor.scale ?? 1);
             const maxW = (contentW * 0.98) / fan;
             const maxH = (contentH * 0.98) / (1.32 * (o.count > 1 ? 1.22 : 1));

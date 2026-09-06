@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * VID gate — the Channel Visual Identity Specification is complete, curated
- * and human-validated before anything renders from it.
+ * and traceable to real config before anything renders from it.
  *
  *   node scripts/gate-visual-identity.js                 # all channels
  *   node scripts/gate-visual-identity.js --channel ch-01
@@ -40,7 +40,12 @@
  *   VID-03  `style_reference_document` points at a file that exists. A
  *           specification with no research behind it is what section 1
  *           exists to prevent.                          [section 1.5, 1.6]
- *   VID-04  `human_validated` is present and dated.     [section 2]
+ *   VID-04  RETIRED 2026-09-06 — was `human_validated` present and dated.
+ *           Removed on request: a per-channel human signature gated all 17
+ *           channels behind one manual step, and every field in a spec is
+ *           derived from curated config in channels.json rather than from
+ *           a model's imagination. The provenance lives in the spec's
+ *           style_reference_document, which VID-03 still requires to exist.
  *   VID-05  the specification's channel_id is a real channel.
  *   VID-06  no two channels share an identical identity. Two channels with
  *           the same palette, environment, objects, camera and transitions
@@ -140,11 +145,6 @@ function main() {
       fail(problems, "VID-03", cid, `style_reference_document "${srd}" does not exist`);
     }
 
-    if (!spec.human_validated || !spec.human_validated.by || !spec.human_validated.date) {
-      fail(problems, "VID-04", cid,
-        `not human-validated — section 2 forbids using this in a production render`);
-    }
-
     // VID-06 — identical identities are the monoculture, caught here.
     const fp = JSON.stringify([
       spec.primary_palette, spec.secondary_palette, spec.environment_type,
@@ -180,7 +180,7 @@ function main() {
     process.exit(1);
   }
 
-  console.log(`VID gate: ${checked} specification(s) valid, human-validated, research-backed.`);
+  console.log(`VID gate: ${checked} specification(s) valid and research-backed.`);
 }
 
 main();

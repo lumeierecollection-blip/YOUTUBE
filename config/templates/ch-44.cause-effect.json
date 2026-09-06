@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-44",
+  "strategy": "CAUSE_EFFECT",
+  "name": "ch-44-cause-effect-abstract-space",
+  "intent": "One thing drives another and the link between them is drawn, not implied by adjacency. Here that is link path on an empty field with no horizon, depth carried by scale alone.",
+  "environment": {
+    "type": "abstract-space",
+    "ground": "an empty field with no horizon, depth carried by scale alone",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "link path",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      }
+    },
+    {
+      "object": "progress arc",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "concept node",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pull-out",
+      "reason": "the cause is alone in frame first"
+    },
+    {
+      "at": 0.55,
+      "move": "static",
+      "target": "link path",
+      "reason": "the camera follows the link across to what it produced"
+    },
+    {
+      "at": 1,
+      "move": "pan-left",
+      "reason": "the effect holds with the cause still visible behind it"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "centre",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "concept-zoom",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

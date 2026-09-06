@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-30",
+  "strategy": "DOCUMENT_EVIDENCE",
+  "name": "ch-30-document-evidence-forensic-lab",
+  "intent": "The actual text of a rule or record, with the operative part found inside it. Here that is dna helix on a stainless bench under even overhead light.",
+  "environment": {
+    "type": "forensic-lab",
+    "ground": "a stainless bench under even overhead light",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "dna helix",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "date marker",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "evidence tube",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pull-out",
+      "reason": "the whole document is in frame so the reader knows what is being quoted from"
+    },
+    {
+      "at": 0.55,
+      "move": "push-in",
+      "target": "dna helix",
+      "reason": "the camera closes on the operative passage"
+    },
+    {
+      "at": 1,
+      "move": "tilt-down",
+      "reason": "the passage is held long enough to be read"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{quote}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "photo-dissolve",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "quote": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

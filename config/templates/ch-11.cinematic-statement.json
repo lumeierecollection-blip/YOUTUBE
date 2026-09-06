@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-11",
+  "strategy": "CINEMATIC_STATEMENT",
+  "name": "ch-11-cinematic-statement-orbital-space",
+  "intent": "No richer representation was available for this beat, so the frame is composed rather than filled. Here that is planet sphere on open space, a star field standing in for distance.",
+  "environment": {
+    "type": "orbital-space",
+    "ground": "open space, a star field standing in for distance",
+    "lighting": "hard-directional"
+  },
+  "objects": [
+    {
+      "object": "planet sphere",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "star field",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "orbit path",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pull-out",
+      "reason": "one object holds the frame"
+    },
+    {
+      "at": 0.55,
+      "move": "tilt-up",
+      "target": "planet sphere",
+      "reason": "the camera moves slowly enough to be felt rather than watched"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the frame settles"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{line}",
+      "face": "secondary",
+      "placement": "corner-overlay",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "parallax-shift",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "line": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

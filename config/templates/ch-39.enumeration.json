@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-39",
+  "strategy": "ENUMERATION",
+  "name": "ch-39-enumeration-hospital-ward",
+  "intent": "Several named things, arriving in the order they are spoken. Here that is pill dose on a ward floor and curtain rail, equipment at the margins.",
+  "environment": {
+    "type": "hospital-ward",
+    "ground": "a ward floor and curtain rail, equipment at the margins",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "pill dose",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.46,
+        "scale": 1
+      },
+      "repeats": "items"
+    },
+    {
+      "object": "patient chart",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8,
+        "scale": 0.72
+      }
+    },
+    {
+      "object": "lab bench",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.26,
+        "scale": 0.55
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the frame is empty so the first item is an arrival"
+    },
+    {
+      "at": 0.55,
+      "move": "track-left",
+      "target": "pill dose",
+      "reason": "the camera opens out as the list grows"
+    },
+    {
+      "at": 1,
+      "move": "static",
+      "reason": "the finished list is held whole"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "scan-transition",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "items": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

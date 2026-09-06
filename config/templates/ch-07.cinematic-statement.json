@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-07",
+  "strategy": "CINEMATIC_STATEMENT",
+  "name": "ch-07-cinematic-statement-corporate-interior",
+  "intent": "No richer representation was available for this beat, so the frame is composed rather than filled. Here that is stock ticker tape on a glazed office floor, the city implied beyond it.",
+  "environment": {
+    "type": "corporate-interior",
+    "ground": "a glazed office floor, the city implied beyond it",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "stock ticker tape",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "press headline",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "product silhouette",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "track-right",
+      "reason": "one object holds the frame"
+    },
+    {
+      "at": 0.55,
+      "move": "low-angle",
+      "target": "stock ticker tape",
+      "reason": "the camera moves slowly enough to be felt rather than watched"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the frame settles"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{line}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "glass-break",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "line": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

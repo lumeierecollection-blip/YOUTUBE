@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-30",
+  "strategy": "INTERFACE_SIMULATION",
+  "name": "ch-30-interface-simulation-forensic-lab",
+  "intent": "The system's own screen, doing the thing being described, rather than a drawing of it. Here that is dna helix on a stainless bench under even overhead light.",
+  "environment": {
+    "type": "forensic-lab",
+    "ground": "a stainless bench under even overhead light",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "dna helix",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "evidence tube",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "lab bench",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the interface is square to the frame the way a screen is"
+    },
+    {
+      "at": 0.55,
+      "move": "tilt-down",
+      "target": "dna helix",
+      "reason": "the camera goes to the control being described"
+    },
+    {
+      "at": 1,
+      "move": "pull-out",
+      "reason": "the result holds on screen"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{step}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.44,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "dna-animation",
+      "duration_frames": 18
+    }
+  ],
+  "parameters": {
+    "step": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

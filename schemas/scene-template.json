@@ -59,8 +59,16 @@
             "machine-mechanism",
             "abstract-space",
             "urban-exterior",
-            "interior-room"
-          ]
+            "interior-room",
+            "screen-interface",
+            "orbital-space",
+            "forensic-lab",
+            "hospital-ward",
+            "industrial-floor",
+            "evidence-board",
+            "corporate-interior"
+          ],
+          "description": "Must equal the channel's declared environment_type. Kept in lockstep with schemas/visual-identity.json's enum -- the two lists describe the same thing and a template whose environment is unspellable here could never match a spec."
         },
         "ground": {
           "type": "string",
@@ -132,7 +140,7 @@
           },
           "repeats": {
             "type": "string",
-            "description": "Name of a `parameters` entry. A `list` parameter draws the object once per item. A `number` parameter draws that many copies, capped by its `max_items` — which is how ACCUMULATION accumulates, because the strategy's own dataNeeds is `total`, a number, not an enumeration. A count-driven repeat must also set `repeat_note`."
+            "description": "Name of a `parameters` entry. A `list` parameter draws the object once per item. A `number` parameter draws that many copies, capped by its `max_items` \u2014 which is how ACCUMULATION accumulates, because the strategy's own dataNeeds is `total`, a number, not an enumeration. A count-driven repeat must also set `repeat_note`."
           },
           "repeat_note": {
             "type": "string",

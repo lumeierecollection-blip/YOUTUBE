@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "channel_id": "ch-39",
+  "strategy": "TRANSFORMATION",
+  "name": "ch-39-transformation-hospital-ward",
+  "intent": "One value becomes another, and the mechanism between them is shown rather than asserted. Here that is vital trace on a ward floor and curtain rail, equipment at the margins.",
+  "environment": {
+    "type": "hospital-ward",
+    "ground": "a ward floor and curtain rail, equipment at the margins",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "vital trace",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "medical scan",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "patient chart",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "both states are in frame from the start so the change has somewhere to go"
+    },
+    {
+      "at": 0.55,
+      "move": "static",
+      "target": "vital trace",
+      "reason": "the camera crosses from the old state to the new one"
+    },
+    {
+      "at": 1,
+      "move": "track-left",
+      "reason": "the new state holds alone"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.44,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "medical-reveal",
+      "duration_frames": 18
+    }
+  ],
+  "parameters": {
+    "from": {
+      "type": "number",
+      "from": "script-number",
+      "required": true
+    },
+    "to": {
+      "type": "number",
+      "from": "script-number",
+      "required": true
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

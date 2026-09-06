@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-35",
+  "strategy": "CAUSE_EFFECT",
+  "name": "ch-35-cause-effect-machine-mechanism",
+  "intent": "One thing drives another and the link between them is drawn, not implied by adjacency. Here that is cross section on the cut plane of an assembly, drawn as a section.",
+  "environment": {
+    "type": "machine-mechanism",
+    "ground": "the cut plane of an assembly, drawn as a section",
+    "lighting": "hard-directional"
+  },
+  "objects": [
+    {
+      "object": "cross section",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      }
+    },
+    {
+      "object": "bolt joint",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "gear train",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "high-angle",
+      "reason": "the cause is alone in frame first"
+    },
+    {
+      "at": 0.55,
+      "move": "track-right",
+      "target": "cross section",
+      "reason": "the camera follows the link across to what it produced"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the effect holds with the cause still visible behind it"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "corner-overlay",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "cross-dissolve-tech",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

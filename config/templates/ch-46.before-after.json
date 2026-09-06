@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-46",
+  "strategy": "BEFORE_AFTER",
+  "name": "ch-46-before-after-interior-room",
+  "intent": "The same frame under two conditions, with everything except the condition held constant. Here that is checklist rule on a room's floor and back wall, furniture implied at the edges.",
+  "environment": {
+    "type": "interior-room",
+    "ground": "a room's floor and back wall, furniture implied at the edges",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "checklist rule",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "checklist rule",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "desk edge",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the first condition is established alone"
+    },
+    {
+      "at": 0.55,
+      "move": "tilt-up",
+      "target": "checklist rule",
+      "reason": "the camera crosses to the second with the framing unchanged"
+    },
+    {
+      "at": 1,
+      "move": "pan-right",
+      "reason": "both are held so the difference is the only thing that moved"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "centre",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "simple-cut",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

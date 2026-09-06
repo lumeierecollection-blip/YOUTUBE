@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-01",
+  "strategy": "DOCUMENT_EVIDENCE",
+  "name": "ch-01-document-evidence-desk-flatlay",
+  "intent": "The actual text of a rule or record, with the operative part found inside it. Here that is bank statement on a matte desk surface, seen square from above.",
+  "environment": {
+    "type": "desk-flatlay",
+    "ground": "a matte desk surface, seen square from above",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "bank statement",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "ledger notebook",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "calculator",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the whole document is in frame so the reader knows what is being quoted from"
+    },
+    {
+      "at": 0.55,
+      "move": "top-down",
+      "target": "bank statement",
+      "reason": "the camera closes on the operative passage"
+    },
+    {
+      "at": 1,
+      "move": "static",
+      "reason": "the passage is held long enough to be read"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{quote}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "fade-gentle",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "quote": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

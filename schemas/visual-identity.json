@@ -2,18 +2,27 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "visual-identity.json",
   "title": "Channel Visual Identity Specification",
-  "description": "Addendum section 2. One entry per channel, keyed by channel_id, in config/visual-identity.json. Every field is REQUIRED and every enum is closed: the point of this file is that a channel's visual world is DECLARED, not inferred at render time. Section 2 forbids automated generation of these values -- they are curated by a human from the Style Reference Document produced by the section-1 research phase, and `human_validated` records that step. Nothing may reach a production render without it.",
+  "description": "Addendum section 2. One entry per channel, keyed by channel_id, in config/visual-identity.json. Every field is REQUIRED and every enum is closed: the point of this file is that a channel's visual world is DECLARED, not inferred at render time. Each value is DERIVED FROM REAL REPO CONFIG -- config/channels.json's `colors`, `font`, `style` and `visual_spec` blocks are curated per channel and are the source every field here traces back to. Section 2's original human-validation step was removed on request: the specs are reviewed and the fields carry their provenance in the style reference document instead.",
   "type": "object",
-  "required": ["version", "channels"],
+  "required": [
+    "version",
+    "channels"
+  ],
   "additionalProperties": false,
   "properties": {
-    "version": { "const": 1 },
+    "version": {
+      "const": 1
+    },
     "channels": {
       "type": "object",
       "description": "channel_id -> specification. A channel absent from here has no visual identity and, per section 3, its render must abort rather than fall back.",
-      "propertyNames": { "pattern": "^ch-[0-9]{2}$" },
+      "propertyNames": {
+        "pattern": "^ch-[0-9]{2}$"
+      },
       "minProperties": 1,
-      "additionalProperties": { "$ref": "#/definitions/spec" }
+      "additionalProperties": {
+        "$ref": "#/definitions/spec"
+      }
     }
   },
   "definitions": {
@@ -38,20 +47,23 @@
         "text_placement",
         "use_of_negative_space",
         "motion_curve",
-        "style_reference_document",
-        "human_validated"
+        "style_reference_document"
       ],
       "properties": {
         "primary_palette": {
           "type": "array",
-          "items": { "$ref": "#/definitions/hex" },
+          "items": {
+            "$ref": "#/definitions/hex"
+          },
           "minItems": 4,
           "maxItems": 4,
           "description": "Exactly 4, ordered most to least prominent."
         },
         "secondary_palette": {
           "type": "array",
-          "items": { "$ref": "#/definitions/hex" },
+          "items": {
+            "$ref": "#/definitions/hex"
+          },
           "minItems": 3,
           "maxItems": 3,
           "description": "Exactly 3 accent colours."
@@ -61,7 +73,10 @@
           "minLength": 1,
           "description": "Font family name. The validator checks it against the woff2 files actually present in src/skills/remotion-render/public/fonts -- section 2 requires the font be available in the rendering environment, and a name that is not there is a render-time failure, not a preference."
         },
-        "typography_secondary": { "type": "string", "minLength": 1 },
+        "typography_secondary": {
+          "type": "string",
+          "minLength": 1
+        },
         "environment_type": {
           "enum": [
             "desk-flatlay",
@@ -71,12 +86,23 @@
             "machine-mechanism",
             "abstract-space",
             "urban-exterior",
-            "interior-room"
-          ]
+            "interior-room",
+            "screen-interface",
+            "orbital-space",
+            "forensic-lab",
+            "hospital-ward",
+            "industrial-floor",
+            "evidence-board",
+            "corporate-interior"
+          ],
+          "description": "The kind of place a scene is staged in. Extended from 8 to 15 on 2026-09-06: the original eight were written for three motion-graphics channels and could not honestly describe a forensic lab, an orbital fly-through or a factory floor, so channels were being forced into the nearest wrong box. Each new value is named from a channel's own visual_spec.b_roll_sources and camera_angles in config/channels.json. Two channels MAY share an environment kind -- a courtroom drama and a wrongful-conviction series genuinely both live in courtrooms -- because VID-06 compares the whole identity fingerprint, not this field alone."
         },
         "core_objects": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "minItems": 5,
           "uniqueItems": true,
           "description": "At least 5 specific object types that define this channel's visual world. Section 8 makes this list load-bearing: a chart type may only be drawn if it is named here."
@@ -105,36 +131,53 @@
         },
         "transition_language": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "minItems": 3,
           "maxItems": 3,
           "uniqueItems": true,
           "description": "Exactly 3, ordered by frequency of use."
         },
-        "framing_default": { "enum": ["wide", "medium", "close-up", "extreme-close-up"] },
-        "text_placement": { "enum": ["centre", "lower-third", "upper-third", "corner-overlay"] },
+        "framing_default": {
+          "enum": [
+            "wide",
+            "medium",
+            "close-up",
+            "extreme-close-up"
+          ]
+        },
+        "text_placement": {
+          "enum": [
+            "centre",
+            "lower-third",
+            "upper-third",
+            "corner-overlay"
+          ]
+        },
         "use_of_negative_space": {
-          "enum": ["high", "medium", "low"],
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
           "description": "high = more than 60% empty, medium = 40-60%, low = less than 40%."
         },
         "motion_curve": {
-          "enum": ["linear", "ease-in", "ease-out", "ease-in-out", "bounce", "elastic"]
+          "enum": [
+            "linear",
+            "ease-in",
+            "ease-out",
+            "ease-in-out",
+            "bounce",
+            "elastic"
+          ]
         },
         "style_reference_document": {
           "type": "string",
           "minLength": 1,
           "description": "Repo-relative path to the immutable Style Reference Document (section 1.5) this specification was curated from. The validator requires the file to exist: a specification with no research behind it is exactly what section 1 exists to prevent."
-        },
-        "human_validated": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["by", "date"],
-          "properties": {
-            "by": { "type": "string", "minLength": 1 },
-            "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
-            "notes": { "type": "string" }
-          },
-          "description": "Section 2: 'must be validated by a human before it is used in any production render'. This block is the only machine-readable record of that, so the gate can refuse an unvalidated specification instead of trusting a convention. NOTE FOR REVIEW: section 2 mandates the human validation but does not specify how it is recorded -- this block is the minimum mechanism to enforce what section 2 requires, and is the one field here not named verbatim in the addendum."
         }
       }
     }

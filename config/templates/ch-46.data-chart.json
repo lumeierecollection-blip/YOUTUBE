@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-46",
+  "strategy": "DATA_CHART",
+  "name": "ch-46-data-chart-interior-room",
+  "intent": "Real measured values compared against each other from a common origin. Here that is checklist rule on a room's floor and back wall, furniture implied at the edges.",
+  "environment": {
+    "type": "interior-room",
+    "ground": "a room's floor and back wall, furniture implied at the edges",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "checklist rule",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "series"
+    },
+    {
+      "object": "desk edge",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "answer frame",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "static",
+      "reason": "the baseline is established before any value is drawn from it"
+    },
+    {
+      "at": 0.55,
+      "move": "tilt-up",
+      "target": "checklist rule",
+      "reason": "the frame closes as the values resolve"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the finished comparison holds"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "centre",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "fade-section",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "series": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

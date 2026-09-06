@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-47",
+  "strategy": "RELATIONSHIP",
+  "name": "ch-47-relationship-screen-interface",
+  "intent": "Several entities and the connections that actually run between them. Here that is calendar grid on the flat plane of a display, chrome implied not drawn.",
+  "environment": {
+    "type": "screen-interface",
+    "ground": "the flat plane of a display, chrome implied not drawn",
+    "lighting": "screen-glow"
+  },
+  "objects": [
+    {
+      "object": "calendar grid",
+      "role": "subject",
+      "anchor": {
+        "x": 0.46,
+        "y": 0.48,
+        "scale": 1
+      },
+      "repeats": "nodes"
+    },
+    {
+      "object": "application window",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.76,
+        "y": 0.3,
+        "scale": 0.6
+      }
+    },
+    {
+      "object": "plan comparison rows",
+      "role": "context",
+      "anchor": {
+        "x": 0.24,
+        "y": 0.72,
+        "scale": 0.62
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the entities are placed before any link is drawn"
+    },
+    {
+      "at": 0.55,
+      "move": "high-angle",
+      "target": "calendar grid",
+      "reason": "the camera moves around the arrangement so the links read as depth not overlap"
+    },
+    {
+      "at": 1,
+      "move": "pan-left",
+      "reason": "the finished network holds"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "document-reveal",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "nodes": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

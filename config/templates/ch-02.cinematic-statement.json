@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-02",
+  "strategy": "CINEMATIC_STATEMENT",
+  "name": "ch-02-cinematic-statement-courtroom",
+  "intent": "No richer representation was available for this beat, so the frame is composed rather than filled. Here that is legal document on the dark panelling and bench of a courtroom.",
+  "environment": {
+    "type": "courtroom",
+    "ground": "the dark panelling and bench of a courtroom",
+    "lighting": "hard-directional"
+  },
+  "objects": [
+    {
+      "object": "legal document",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "police dashcam frame",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "constitutional text",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "tilt-down",
+      "reason": "one object holds the frame"
+    },
+    {
+      "at": 0.55,
+      "move": "pan-right",
+      "target": "legal document",
+      "reason": "the camera moves slowly enough to be felt rather than watched"
+    },
+    {
+      "at": 1,
+      "move": "static",
+      "reason": "the frame settles"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{line}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "dramatic-cut",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "line": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

@@ -1,4 +1,11 @@
 import React from "react";
+import { registerObject } from "./registry.js";
+// The library registers itself on import. It is a second file only because 79
+// more drawings in this one would bury everything else; the contract is identical.
+import "./library.jsx";
+
+// Re-exported so every existing importer of ./objects/index.jsx keeps working.
+export { registerObject, hasObject, knownObjects, ObjectShape } from "./registry.js";
 
 /**
  * PROCEDURAL OBJECTS — the things a template's `core_objects` actually draw.
@@ -19,27 +26,6 @@ import React from "react";
  * channel's palette, and `p` from 0 to 1 for how far into the beat it is. None
  * of them decides where it sits or how big it is; the plan does.
  */
-
-const OBJECTS = {};
-export const registerObject = (name, fn) => { OBJECTS[name] = fn; };
-export const hasObject = (name) => Boolean(OBJECTS[name]);
-export const knownObjects = () => Object.keys(OBJECTS).sort();
-
-/**
- * Draw one object, or throw. Section 3 forbids a fallback for a missing
- * template, and the same reasoning applies one level down: silently drawing
- * nothing where an object should be is how a scene quietly becomes empty.
- */
-export function ObjectShape({ name, box, colors, p = 1 }) {
-  const fn = OBJECTS[name];
-  if (!fn) {
-    throw new Error(
-      `no procedural drawing for object "${name}". Known: ${knownObjects().join(", ")}.\n` +
-      `Section 3's no-fallback rule applies here too: a scene must not quietly omit its subject.`
-    );
-  }
-  return fn({ box, colors, p });
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // ch-01 — the desk. Paper, ruled lines, a keypad. Nothing here is a card.
@@ -109,7 +95,7 @@ registerObject("ledger notebook", ({ box, colors }) => {
       <rect x={x} y={y} width={w} height={h} rx={3} fill={colors.paper} stroke={colors.ink} strokeWidth={1.5} strokeOpacity={0.3} />
       {/* the spiral binding is what makes it a notebook rather than a page */}
       {Array.from({ length: 9 }).map((_, i) => (
-        <rect key={i} x={x - w * 0.03} y={y + h * (0.06 + i * 0.1)} width={w * 0.09} height={Math.max(2, h * 0.014)}
+        <rect key={i} x={x} y={y + h * (0.06 + i * 0.1)} width={w * 0.09} height={Math.max(2, h * 0.014)}
           rx={2} fill={colors.ink} opacity={0.45} />
       ))}
       {/* a ruled column, the thing a ledger is */}
@@ -211,7 +197,11 @@ registerObject("territory fill", ({ box, colors, p }) => {
 
 registerObject("national border line", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
-  const d = territoryPath(x, y, w * 1.24, h * 1.24, 3);
+  // Was w*1.24, h*1.24 -- a border drawn a quarter larger than the box it was
+  // given, which put ch-09 16px below the safe rect on a measured frame. The
+  // box is the contract; a border reads as enclosing by sitting outside the
+  // FILL, not outside its own bounds.
+  const d = territoryPath(x, y, w, h, 3);
   // The border DRAWS itself, which is the one motion ch-09's references name
   // as carrying a real factual change.
   return (
@@ -226,7 +216,11 @@ registerObject("satellite terrain", ({ box, colors }) => {
   const { x, y, w, h } = box;
   const cells = 9;
   return (
-    <g opacity={0.5}>
+    // Was opacity 0.5 over cell alphas of 0.04-0.10, which on a light-ground
+    // channel rendered as an almost blank rectangle -- visible in the object
+    // audit sheet as the one empty-looking cell. The terrain now carries enough
+    // tone to read as ground.
+    <g opacity={0.85}>
       {Array.from({ length: cells }).map((_, r) =>
         Array.from({ length: cells }).map((_, c) => {
           const v = ((r * 31 + c * 17) * 2654435761) >>> 24;
@@ -234,7 +228,7 @@ registerObject("satellite terrain", ({ box, colors }) => {
             <rect key={`${r}-${c}`}
               x={x + (c * w) / cells} y={y + (r * h) / cells}
               width={w / cells + 1} height={h / cells + 1}
-              fill={colors.onGround} opacity={0.04 + (v % 40) / 620} />
+              fill={colors.onGround} opacity={0.1 + (v % 40) / 210} />
           );
         })
       )}
@@ -242,7 +236,7 @@ registerObject("satellite terrain", ({ box, colors }) => {
       {[0.32, 0.68].map((f, i) => (
         <path key={i}
           d={`M${x},${y + h * f} Q${x + w * 0.3},${y + h * (f - 0.12)} ${x + w * 0.55},${y + h * (f + 0.05)} T${x + w},${y + h * (f - 0.04)}`}
-          fill="none" stroke={colors.onGround} strokeWidth={2} opacity={0.16} />
+          fill="none" stroke={colors.onGround} strokeWidth={2.4} opacity={0.34} />
       ))}
     </g>
   );

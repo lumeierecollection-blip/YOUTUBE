@@ -6,6 +6,9 @@ import { compositions as motionGraphics } from "./compositions/motion-graphics.j
 // knows nothing about channels or strategies, so it is registered once and
 // every channel drives it through inputProps.
 import { compositions as templatePlan } from "./compositions/template-scene.jsx";
+// A QA-only composition: every registered object drawn once in a known box, so
+// one render can prove none of them draws outside the box it was given.
+import { compositions as objectAudit } from "./compositions/object-audit.jsx";
 
 /**
  * Remotion entry point.
@@ -19,6 +22,7 @@ function RemotionRoot() {
       {minimal.map(c => <Composition key={c.id} {...c} />)}
       {motionGraphics.map(c => <Composition key={c.id} {...c} />)}
       {templatePlan.map(c => <Composition key={c.id} {...c} />)}
+      {objectAudit.map(c => <Composition key={c.id} {...c} />)}
     </>
   );
 }

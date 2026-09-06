@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-30",
+  "strategy": "CAUSE_EFFECT",
+  "name": "ch-30-cause-effect-forensic-lab",
+  "intent": "One thing drives another and the link between them is drawn, not implied by adjacency. Here that is family tree on a stainless bench under even overhead light.",
+  "environment": {
+    "type": "forensic-lab",
+    "ground": "a stainless bench under even overhead light",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "family tree",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      }
+    },
+    {
+      "object": "pinned photograph",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "dna helix",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "tilt-down",
+      "reason": "the cause is alone in frame first"
+    },
+    {
+      "at": 0.55,
+      "move": "push-in",
+      "target": "family tree",
+      "reason": "the camera follows the link across to what it produced"
+    },
+    {
+      "at": 1,
+      "move": "top-down",
+      "reason": "the effect holds with the cause still visible behind it"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "photo-dissolve",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

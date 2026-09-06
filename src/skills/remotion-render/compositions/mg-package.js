@@ -23,6 +23,7 @@ import {
   wordCount,
 } from "./beats.js";
 import { planVisual, attachShot } from "../visual/director.js";
+import { templatePlanFor } from "../visual/template-plan.js";
 import { buildStates } from "../visual/states.js";
 import { summarizeVisuals, summarizeSound } from "../visual/diagnostics.js";
 import { buildSoundtrack } from "../visual/sound-design.js";
@@ -729,6 +730,27 @@ export function buildMgPackage(srtText, opts = {}) {
     // visual/composition.js. This is what stops every scene drawing a
     // hairline diagram in the middle of an empty frame.
     attachShot(b.visualPlan);
+    /**
+     * THE TEMPLATE ENGINE, PER BEAT AND OPT-IN.
+     *
+     * When the caller passes `templates` and `identitySpec` -- render.js does
+     * so only for a channel whose config sets `visual_engine: "template"` --
+     * this beat gets a plan for the addendum's renderer instead of a scene from
+     * this engine. The strategy is the one the director just chose, so the
+     * template is selected by the same grounded decision that has always driven
+     * the scene.
+     *
+     * A null here is a beat whose required parameter could not be grounded, and
+     * it keeps the existing scene. That is per beat, not per run, and
+     * `templateBeats` counts it so a video that mostly fell back is visible as
+     * such in the render report rather than looking like a success.
+     */
+    if (opts.templates && opts.identitySpec) {
+      const tpl = opts.templates[b.visualPlan.strategy];
+      b.templatePlan = tpl
+        ? templatePlanFor(b, { spec: opts.identitySpec, template: tpl })
+        : null;
+    }
     // Deterministic frame math from the beat's REAL SRT window — no model
     // is ever asked when something happens (PART 24).
     b.visualStates = buildStates(b.visualPlan, {
@@ -832,6 +854,15 @@ export function buildMgPackage(srtText, opts = {}) {
     // else in the render is allowed to trigger a sound.
     soundtrack,
     soundSuppressedBySilence,
+    /**
+     * How many beats the template engine actually drew, out of how many it was
+     * offered. A run where this is 3/40 is a run that mostly rendered through
+     * the old engine, and saying so here is the difference between a measured
+     * rollout and a claimed one.
+     */
+    templateBeats: opts.templates && opts.identitySpec
+      ? { drawn: beats.filter((b) => b.templatePlan).length, offered: beats.length }
+      : null,
     // PART 19/20 — every render carries its own visual QA numbers and the
     // reason behind every fallback, so a video that quietly degraded is
     // visible in the run that produced it.

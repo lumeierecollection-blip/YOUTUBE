@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-44",
+  "strategy": "IMAGE_EVIDENCE",
+  "name": "ch-44-image-evidence-abstract-space",
+  "intent": "A real sourced image, shown because of what it proves rather than as decoration. Here that is concept node on an empty field with no horizon, depth carried by scale alone.",
+  "environment": {
+    "type": "abstract-space",
+    "ground": "an empty field with no horizon, depth carried by scale alone",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "concept node",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "progress arc",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "link path",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pull-out",
+      "reason": "the image is given the frame to itself"
+    },
+    {
+      "at": 0.55,
+      "move": "push-in",
+      "target": "concept node",
+      "reason": "the camera moves to the part of it that carries the claim"
+    },
+    {
+      "at": 1,
+      "move": "static",
+      "reason": "it holds while the claim is made"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{asset}",
+      "face": "secondary",
+      "placement": "centre",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "morph-concept",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "asset": {
+      "type": "text",
+      "from": "script-entity",
+      "required": true
+    }
+  }
+}

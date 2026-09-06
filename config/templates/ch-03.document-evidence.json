@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-03",
+  "strategy": "DOCUMENT_EVIDENCE",
+  "name": "ch-03-document-evidence-screen-interface",
+  "intent": "The actual text of a rule or record, with the operative part found inside it. Here that is application window on the flat plane of a display, chrome implied not drawn.",
+  "environment": {
+    "type": "screen-interface",
+    "ground": "the flat plane of a display, chrome implied not drawn",
+    "lighting": "screen-glow"
+  },
+  "objects": [
+    {
+      "object": "application window",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "cursor pointer",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "benchmark bar",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the whole document is in frame so the reader knows what is being quoted from"
+    },
+    {
+      "at": 0.55,
+      "move": "static",
+      "target": "application window",
+      "reason": "the camera closes on the operative passage"
+    },
+    {
+      "at": 1,
+      "move": "high-angle",
+      "reason": "the passage is held long enough to be read"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{quote}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "glitch-cut",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "quote": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

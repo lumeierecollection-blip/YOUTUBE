@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-48",
+  "strategy": "IMAGE_EVIDENCE",
+  "name": "ch-48-image-evidence-industrial-floor",
+  "intent": "A real sourced image, shown because of what it proves rather than as decoration. Here that is conveyor belt on a painted concrete floor with machine bases on it.",
+  "environment": {
+    "type": "industrial-floor",
+    "ground": "a painted concrete floor with machine bases on it",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "conveyor belt",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "component part",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "robot arm",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pan-left",
+      "reason": "the image is given the frame to itself"
+    },
+    {
+      "at": 0.55,
+      "move": "top-down",
+      "target": "conveyor belt",
+      "reason": "the camera moves to the part of it that carries the claim"
+    },
+    {
+      "at": 1,
+      "move": "track-right",
+      "reason": "it holds while the claim is made"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{asset}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "3d-orbit",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "asset": {
+      "type": "text",
+      "from": "script-entity",
+      "required": true
+    }
+  }
+}

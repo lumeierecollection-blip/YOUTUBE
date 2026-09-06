@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-48",
+  "strategy": "BEFORE_AFTER",
+  "name": "ch-48-before-after-industrial-floor",
+  "intent": "The same frame under two conditions, with everything except the condition held constant. Here that is robot arm on a painted concrete floor with machine bases on it.",
+  "environment": {
+    "type": "industrial-floor",
+    "ground": "a painted concrete floor with machine bases on it",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "robot arm",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "robot arm",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "process arrow",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "top-down",
+      "reason": "the first condition is established alone"
+    },
+    {
+      "at": 0.55,
+      "move": "push-in",
+      "target": "robot arm",
+      "reason": "the camera crosses to the second with the framing unchanged"
+    },
+    {
+      "at": 1,
+      "move": "pan-left",
+      "reason": "both are held so the difference is the only thing that moved"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "3d-orbit",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

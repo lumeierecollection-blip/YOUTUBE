@@ -15,6 +15,7 @@ import { makeCircle, makeRect } from "@remotion/shapes";
 import { measureText, fitTextOnNLines, HEADLINE_FONT, fontStyleFor, needsFixedSlots, reserveCounterWidth } from "../layout/measure.js";
 import { currentAudio } from "../audio.js";
 import "../wait-for-fonts.js";
+import { TemplateScene } from "./template-scene.jsx";
 import { resolveFontFamily } from "./visual.js";
 import { D, MG_TYPE as TYPE, CAPTION } from "./beats.js";
 import { rolesFromPalette, mixColor } from "./mg-style.js";
@@ -931,7 +932,15 @@ function BeatStages({ beats, colors, fontFamily }) {
                   qa-sample.js all build beats through buildMgPackage) and
                   deleted rather than kept "just in case" — CHECK-REGISTER
                   §3.12.11. */}
-              <SemanticScene beat={{ ...b, scene: { ...b.scene, exit } }} colors={colors} fontFamily={fontFamily} />
+              {/* A beat carrying a template plan is drawn by the addendum's
+                  renderer instead of this engine's scenes. It is per beat and
+                  opt-in per channel: mg-package only builds these when
+                  render.js passed the channel's templates, which it does only
+                  for a channel whose config sets visual_engine: "template".
+                  Everything else is unchanged. */}
+              {b.templatePlan
+                ? <TemplateScene plan={b.templatePlan} />
+                : <SemanticScene beat={{ ...b, scene: { ...b.scene, exit } }} colors={colors} fontFamily={fontFamily} />}
             </StageContainer>
           </Sequence>
         );

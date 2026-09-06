@@ -1,0 +1,351 @@
+{
+  "$comment": [
+    "AUTHORED per-channel visual decisions for the channels that had no Style Reference",
+    "Document. Everything here is chosen from that channel's OWN entry in",
+    "config/channels.json -- its niche, its visual_spec.b_roll_sources,",
+    "visual_spec.camera_angles and visual_spec.transitions -- and nothing is chosen from",
+    "general knowledge about the subject. scripts/build-visual-identity.js merges these",
+    "with the palette, font and pacing already in channels.json and writes",
+    "config/visual-identity.json plus one style reference document per channel.",
+    "ch-01, ch-02 and ch-09 are NOT here: they were curated by hand from real cited",
+    "external references and the builder leaves them exactly as they are."
+  ],
+  "channels": {
+    "ch-03": {
+      "environment_type": "screen-interface",
+      "core_objects": [
+        "application window",
+        "output transcript",
+        "benchmark bar",
+        "prompt field",
+        "latency trace",
+        "cursor pointer"
+      ],
+      "camera_language": [
+        "static",
+        "push-in",
+        "pan-right",
+        "high-angle"
+      ],
+      "framing_default": "medium",
+      "text_placement": "upper-third",
+      "use_of_negative_space": "high",
+      "from": "b_roll: screen recordings of AI tools, output comparisons, pricing page screenshots. cameras: screen capture primary, split-screen comparison, output zoom-in, pricing table.",
+      "typography_secondary": "JetBrains Mono",
+      "motion_curve": "ease-out",
+      "curve_from": "pacing: fast-paced with clear comparisons"
+    },
+    "ch-04": {
+      "environment_type": "archive-photo",
+      "core_objects": [
+        "archival photograph",
+        "handwritten letter",
+        "museum artifact",
+        "archival map sheet",
+        "film reel",
+        "date marker"
+      ],
+      "camera_language": [
+        "push-in",
+        "pan-left",
+        "pull-out",
+        "tilt-down"
+      ],
+      "framing_default": "close-up",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "high",
+      "from": "b_roll: archival footage, historical photographs, document animations, map territory changes, museum artifact footage. cameras: archival photo Ken Burns (a slow push with lateral drift), document zoom-in, map territory pan, artifact close-up.",
+      "typography_secondary": "DM Sans",
+      "motion_curve": "ease-in-out",
+      "curve_from": "pacing: slow-build with dramatic reveals"
+    },
+    "ch-07": {
+      "environment_type": "corporate-interior",
+      "core_objects": [
+        "stock ticker tape",
+        "share price line",
+        "office tower",
+        "product silhouette",
+        "press headline",
+        "balance sheet"
+      ],
+      "camera_language": [
+        "pull-out",
+        "push-in",
+        "track-right",
+        "low-angle"
+      ],
+      "framing_default": "wide",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "medium",
+      "from": "b_roll: stock market footage, office/corporate B-roll, product footage, news broadcasts, financial chart animations. cameras: corporate office wide, stock ticker close-up, product glamour shot, financial chart animation, news broadcast frame.",
+      "typography_secondary": "Roboto Condensed",
+      "motion_curve": "ease-in",
+      "curve_from": "pacing: measured build to dramatic collapse"
+    },
+    "ch-11": {
+      "environment_type": "orbital-space",
+      "core_objects": [
+        "planet sphere",
+        "galaxy spiral",
+        "spacecraft silhouette",
+        "orbit path",
+        "star field",
+        "scale bar"
+      ],
+      "camera_language": [
+        "track-left",
+        "push-in",
+        "pull-out",
+        "tilt-up"
+      ],
+      "framing_default": "wide",
+      "text_placement": "corner-overlay",
+      "use_of_negative_space": "high",
+      "from": "b_roll: NASA public domain 4K, ESA imagery, James Webb Telescope CC images. cameras: orbital fly-through, planet close-up, galaxy wide, scale comparison zoom, star field tracking.",
+      "typography_secondary": "Cormorant Garamond",
+      "motion_curve": "ease-in-out",
+      "curve_from": "pacing: slow-build with awe-inspiring reveals"
+    },
+    "ch-17": {
+      "environment_type": "archive-photo",
+      "core_objects": [
+        "period painting",
+        "archival map sheet",
+        "timeline rule",
+        "stone monument",
+        "royal seal",
+        "date marker"
+      ],
+      "camera_language": [
+        "push-in",
+        "pan-right",
+        "high-angle",
+        "track-right"
+      ],
+      "framing_default": "wide",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "medium",
+      "from": "b_roll: period paintings, archival maps, Google Earth historical, museum footage. cameras: painting Ken Burns, map territory pan, historical location drone (a high angle), artifact detail, timeline animation (a lateral track).",
+      "typography_secondary": "Inter",
+      "motion_curve": "ease-in-out",
+      "curve_from": "pacing: measured epic with dramatic peaks"
+    },
+    "ch-26": {
+      "environment_type": "evidence-board",
+      "core_objects": [
+        "court document",
+        "money trail",
+        "wire node",
+        "pinned photograph",
+        "red string",
+        "ledger notebook"
+      ],
+      "camera_language": [
+        "push-in",
+        "track-right",
+        "top-down",
+        "static"
+      ],
+      "framing_default": "medium",
+      "text_placement": "upper-third",
+      "use_of_negative_space": "medium",
+      "from": "b_roll: SEC/FBI press footage, court documents, social media screenshots, blockchain explorers. cameras: document zoom-in, money trail animation, map fund movement (overhead), scam website walkthrough (static).",
+      "typography_secondary": "Inter",
+      "motion_curve": "ease-out",
+      "curve_from": "pacing: medium-slow with evidence breathing room"
+    },
+    "ch-30": {
+      "environment_type": "forensic-lab",
+      "core_objects": [
+        "dna helix",
+        "family tree",
+        "evidence tube",
+        "pinned photograph",
+        "lab bench",
+        "date marker"
+      ],
+      "camera_language": [
+        "push-in",
+        "pull-out",
+        "top-down",
+        "tilt-down"
+      ],
+      "framing_default": "close-up",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "high",
+      "from": "b_roll: Othram/Parabon NanoLabs footage, DNA extraction animations, family tree visualizations. cameras: family photo Ken Burns, DNA animation, forensic lab wide, family tree overhead.",
+      "typography_secondary": "Noto Serif",
+      "motion_curve": "ease-in-out",
+      "curve_from": "pacing: slow emotional, medium investigation, quick resolution"
+    },
+    "ch-31": {
+      "environment_type": "courtroom",
+      "core_objects": [
+        "legal document",
+        "prison window",
+        "courthouse column",
+        "evidence exhibit",
+        "timeline rule",
+        "pinned photograph"
+      ],
+      "camera_language": [
+        "static",
+        "pull-out",
+        "low-angle",
+        "tilt-up"
+      ],
+      "framing_default": "medium",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "medium",
+      "from": "b_roll: courtroom footage, prison stock, exoneree press conferences, Innocence Project archives. cameras: prison exterior, exoneree interview medium (static), courtroom wide, freedom moment, courthouse steps (low angle).",
+      "typography_secondary": "DM Sans",
+      "motion_curve": "ease-in",
+      "curve_from": "pacing: deliberate during injustice, quick exoneration, slow aftermath"
+    },
+    "ch-35": {
+      "environment_type": "machine-mechanism",
+      "core_objects": [
+        "gear train",
+        "cross section",
+        "load curve",
+        "bolt joint",
+        "blueprint sheet",
+        "scale bar"
+      ],
+      "camera_language": [
+        "track-right",
+        "pan-left",
+        "push-in",
+        "high-angle"
+      ],
+      "framing_default": "medium",
+      "text_placement": "corner-overlay",
+      "use_of_negative_space": "medium",
+      "from": "b_roll: custom 3D animations, data visualizations, real engineering footage, CAD models. cameras: 3D tech orbit (a lateral track), process flow, data visualization, scale comparison.",
+      "typography_secondary": "JetBrains Mono",
+      "motion_curve": "ease-in",
+      "curve_from": "pacing: measured with technical crescendos"
+    },
+    "ch-39": {
+      "environment_type": "hospital-ward",
+      "core_objects": [
+        "medical scan",
+        "vital trace",
+        "pill dose",
+        "patient chart",
+        "iv stand",
+        "lab bench"
+      ],
+      "camera_language": [
+        "track-left",
+        "push-in",
+        "static",
+        "tilt-down"
+      ],
+      "framing_default": "close-up",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "medium",
+      "from": "b_roll: hospital stock footage, medical scans (CT, MRI), pharmaceutical imagery, lab footage. cameras: hospital hallway tracking, medical scan close-up, lab equipment, patient room medium, diagnostic data overlay.",
+      "typography_secondary": "Noto Serif",
+      "motion_curve": "ease-out",
+      "curve_from": "pacing: slow diagnostic, fast treatment, reflective closing"
+    },
+    "ch-44": {
+      "environment_type": "abstract-space",
+      "core_objects": [
+        "concept node",
+        "link path",
+        "stacked layer",
+        "progress arc",
+        "figure silhouette",
+        "stepped platform"
+      ],
+      "camera_language": [
+        "static",
+        "push-in",
+        "pan-left",
+        "pull-out"
+      ],
+      "framing_default": "medium",
+      "text_placement": "centre",
+      "use_of_negative_space": "high",
+      "from": "b_roll: custom vector illustrations (Kurzgesagt style), infographic animations, concept visualizations, diagram builds. cameras: concept animation, infographic build, data visualization, metaphor illustration.",
+      "typography_secondary": "Space Grotesk",
+      "motion_curve": "ease-out",
+      "curve_from": "pacing: fast but readable, pattern interrupts every 90-120 sec"
+    },
+    "ch-46": {
+      "environment_type": "interior-room",
+      "core_objects": [
+        "answer frame",
+        "checklist rule",
+        "figure silhouette",
+        "question line",
+        "desk edge",
+        "clock face"
+      ],
+      "camera_language": [
+        "static",
+        "push-in",
+        "tilt-up",
+        "pan-right"
+      ],
+      "framing_default": "medium",
+      "text_placement": "centre",
+      "use_of_negative_space": "high",
+      "from": "b_roll: stock corporate footage, text overlays, question/answer graphics. cameras: medium talking head equivalent, text question display, answer framework, pass/fail indicator.",
+      "typography_secondary": "Playfair Display",
+      "motion_curve": "linear",
+      "curve_from": "pacing: steady, allows each tip to land"
+    },
+    "ch-47": {
+      "environment_type": "screen-interface",
+      "core_objects": [
+        "enrollment form",
+        "plan comparison rows",
+        "calendar grid",
+        "benefit rule",
+        "application window",
+        "clock face"
+      ],
+      "camera_language": [
+        "static",
+        "high-angle",
+        "push-in",
+        "pan-left"
+      ],
+      "framing_default": "medium",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "high",
+      "from": "b_roll: screen recordings of Medicare.gov, document/form visuals, comparison charts. cameras: screen capture Medicare.gov, comparison chart, document close-up, plan comparison split.",
+      "typography_secondary": "Roboto Condensed",
+      "motion_curve": "ease-in",
+      "curve_from": "pacing: deliberate measured for senior audience"
+    },
+    "ch-48": {
+      "environment_type": "industrial-floor",
+      "core_objects": [
+        "conveyor belt",
+        "robot arm",
+        "machine housing",
+        "component part",
+        "process arrow",
+        "gauge dial"
+      ],
+      "camera_language": [
+        "track-right",
+        "top-down",
+        "push-in",
+        "pan-left"
+      ],
+      "framing_default": "wide",
+      "text_placement": "upper-third",
+      "use_of_negative_space": "low",
+      "from": "b_roll: custom 3D from CAD files, factory drone footage, machine close-ups, process flow diagrams, component photography. cameras: 3D factory orbit, process flow overhead, machine cross-section, assembly line tracking.",
+      "typography_secondary": "Space Grotesk",
+      "motion_curve": "ease-in",
+      "curve_from": "pacing: deliberate with process crescendos"
+    }
+  }
+}

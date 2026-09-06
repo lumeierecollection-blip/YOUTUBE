@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-46",
+  "strategy": "ENUMERATION",
+  "name": "ch-46-enumeration-interior-room",
+  "intent": "Several named things, arriving in the order they are spoken. Here that is figure silhouette on a room's floor and back wall, furniture implied at the edges.",
+  "environment": {
+    "type": "interior-room",
+    "ground": "a room's floor and back wall, furniture implied at the edges",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "figure silhouette",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.46,
+        "scale": 1
+      },
+      "repeats": "items"
+    },
+    {
+      "object": "question line",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8,
+        "scale": 0.72
+      }
+    },
+    {
+      "object": "clock face",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.26,
+        "scale": 0.55
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the frame is empty so the first item is an arrival"
+    },
+    {
+      "at": 0.55,
+      "move": "static",
+      "target": "figure silhouette",
+      "reason": "the camera opens out as the list grows"
+    },
+    {
+      "at": 1,
+      "move": "tilt-up",
+      "reason": "the finished list is held whole"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "centre",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "simple-cut",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "items": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

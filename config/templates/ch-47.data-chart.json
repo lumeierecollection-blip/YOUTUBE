@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-47",
+  "strategy": "DATA_CHART",
+  "name": "ch-47-data-chart-screen-interface",
+  "intent": "Real measured values compared against each other from a common origin. Here that is plan comparison rows on the flat plane of a display, chrome implied not drawn.",
+  "environment": {
+    "type": "screen-interface",
+    "ground": "the flat plane of a display, chrome implied not drawn",
+    "lighting": "screen-glow"
+  },
+  "objects": [
+    {
+      "object": "plan comparison rows",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "series"
+    },
+    {
+      "object": "application window",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "enrollment form",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "static",
+      "reason": "the baseline is established before any value is drawn from it"
+    },
+    {
+      "at": 0.55,
+      "move": "push-in",
+      "target": "plan comparison rows",
+      "reason": "the frame closes as the values resolve"
+    },
+    {
+      "at": 1,
+      "move": "high-angle",
+      "reason": "the finished comparison holds"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "plan-compare",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "series": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

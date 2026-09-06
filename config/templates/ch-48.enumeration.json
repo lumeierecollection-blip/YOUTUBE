@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-48",
+  "strategy": "ENUMERATION",
+  "name": "ch-48-enumeration-industrial-floor",
+  "intent": "Several named things, arriving in the order they are spoken. Here that is machine housing on a painted concrete floor with machine bases on it.",
+  "environment": {
+    "type": "industrial-floor",
+    "ground": "a painted concrete floor with machine bases on it",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "machine housing",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.46,
+        "scale": 1
+      },
+      "repeats": "items"
+    },
+    {
+      "object": "component part",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8,
+        "scale": 0.72
+      }
+    },
+    {
+      "object": "gauge dial",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.26,
+        "scale": 0.55
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "top-down",
+      "reason": "the frame is empty so the first item is an arrival"
+    },
+    {
+      "at": 0.55,
+      "move": "track-right",
+      "target": "machine housing",
+      "reason": "the camera opens out as the list grows"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the finished list is held whole"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "3d-orbit",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "items": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

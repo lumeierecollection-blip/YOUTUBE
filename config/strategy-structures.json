@@ -1,0 +1,666 @@
+{
+  "$comment": [
+    "The STRUCTURE of each of the 17 semantic strategies: how many objects, in what",
+    "roles, where they sit, how the camera moves through them, and what the beat must",
+    "supply. Channel-independent by design -- a comparison is two things measured",
+    "against each other whatever channel is speaking.",
+    "",
+    "WHY THIS IS NOT THE MONOCULTURE COMING BACK. The thing that made every channel",
+    "look the same was that the RENDERER decided the look. Here the structure decides",
+    "only the grammar: which role goes where, and which way the camera travels. Every",
+    "noun in the finished frame -- the objects, the environment, the palette, the",
+    "typeface, the specific camera moves those indices resolve to, the transitions --",
+    "comes from the channel's own Visual Identity Specification. Legal Brief's",
+    "COMPARISON and Factory Floor's COMPARISON share a sentence structure and no words.",
+    "",
+    "object_slots and camera_slots are INDICES into the channel's own core_objects and",
+    "camera_language, taken modulo their length. Every strategy uses a different triple,",
+    "so two strategies on one channel never resolve to the same objects or the same",
+    "camera arc either.",
+    "object_slots[0] is always 0, 1 or 2: the subject is drawn at full framing and has to be an object with mass. Slots 3+ are a channel's incidental objects -- markers, rules, pointers -- and appear only as supporting or context."
+  ],
+  "environments": {
+    "desk-flatlay": {
+      "ground": "a matte desk surface, seen square from above",
+      "lighting": "flat-overhead"
+    },
+    "courtroom": {
+      "ground": "the dark panelling and bench of a courtroom",
+      "lighting": "hard-directional"
+    },
+    "map-territory": {
+      "ground": "a map sheet, terrain seen from altitude",
+      "lighting": "flat-overhead"
+    },
+    "archive-photo": {
+      "ground": "the mount board an archival print is laid on",
+      "lighting": "raking-side"
+    },
+    "machine-mechanism": {
+      "ground": "the cut plane of an assembly, drawn as a section",
+      "lighting": "hard-directional"
+    },
+    "abstract-space": {
+      "ground": "an empty field with no horizon, depth carried by scale alone",
+      "lighting": "soft-diffuse"
+    },
+    "urban-exterior": {
+      "ground": "a street surface between building faces",
+      "lighting": "soft-diffuse"
+    },
+    "interior-room": {
+      "ground": "a room's floor and back wall, furniture implied at the edges",
+      "lighting": "soft-diffuse"
+    },
+    "screen-interface": {
+      "ground": "the flat plane of a display, chrome implied not drawn",
+      "lighting": "screen-glow"
+    },
+    "orbital-space": {
+      "ground": "open space, a star field standing in for distance",
+      "lighting": "hard-directional"
+    },
+    "forensic-lab": {
+      "ground": "a stainless bench under even overhead light",
+      "lighting": "flat-overhead"
+    },
+    "hospital-ward": {
+      "ground": "a ward floor and curtain rail, equipment at the margins",
+      "lighting": "flat-overhead"
+    },
+    "industrial-floor": {
+      "ground": "a painted concrete floor with machine bases on it",
+      "lighting": "flat-overhead"
+    },
+    "evidence-board": {
+      "ground": "a board surface things are pinned to",
+      "lighting": "raking-side"
+    },
+    "corporate-interior": {
+      "ground": "a glazed office floor, the city implied beyond it",
+      "lighting": "soft-diffuse"
+    }
+  },
+  "layouts": {
+    "pile": [
+      {
+        "x": 0.5,
+        "y": 0.5,
+        "scale": 1
+      },
+      {
+        "x": 0.24,
+        "y": 0.76,
+        "scale": 0.78
+      },
+      {
+        "x": 0.78,
+        "y": 0.78,
+        "scale": 0.82
+      }
+    ],
+    "side-by-side": [
+      {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      },
+      {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      },
+      {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    ],
+    "axis": [
+      {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      },
+      {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    ],
+    "stack": [
+      {
+        "x": 0.5,
+        "y": 0.46,
+        "scale": 1
+      },
+      {
+        "x": 0.5,
+        "y": 0.8,
+        "scale": 0.72
+      },
+      {
+        "x": 0.22,
+        "y": 0.26,
+        "scale": 0.55
+      }
+    ],
+    "orbit": [
+      {
+        "x": 0.46,
+        "y": 0.48,
+        "scale": 1
+      },
+      {
+        "x": 0.76,
+        "y": 0.3,
+        "scale": 0.6
+      },
+      {
+        "x": 0.24,
+        "y": 0.72,
+        "scale": 0.62
+      }
+    ],
+    "single": [
+      {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      },
+      {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      },
+      {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    ]
+  },
+  "strategies": {
+    "GEOSPATIAL_RADIUS": {
+      "layout": "orbit",
+      "object_slots": [
+        2,
+        0,
+        4
+      ],
+      "camera_slots": [
+        0,
+        1,
+        2
+      ],
+      "intent": "A distance is drawn on real ground and what falls inside it becomes visible.",
+      "reasons": [
+        "the extent is established before anything is said about it",
+        "the frame closes on the boundary itself",
+        "the edge holds so what it encloses can be read"
+      ],
+      "parameters": {
+        "value": {
+          "type": "number",
+          "from": "script-number",
+          "required": true
+        },
+        "unit": {
+          "type": "text",
+          "from": "script-phrase",
+          "required": false
+        }
+      }
+    },
+    "ACCUMULATION": {
+      "layout": "pile",
+      "object_slots": [
+        0,
+        1,
+        5
+      ],
+      "camera_slots": [
+        0,
+        1,
+        3
+      ],
+      "repeat": {
+        "slot": 0,
+        "param": "total",
+        "note": "symbolic: copies standing for the stated total, not a count of real instances"
+      },
+      "intent": "Several separate things exist at once, and together they weigh more than any one of them.",
+      "reasons": [
+        "the whole surface reads as one place before anything lands on it",
+        "the pile is the point; the frame closes on it as it grows",
+        "the last one lands and the frame holds so the total is legible"
+      ],
+      "parameters": {
+        "total": {
+          "type": "number",
+          "from": "script-number",
+          "required": true,
+          "max_items": 6
+        }
+      }
+    },
+    "TRANSFORMATION": {
+      "layout": "side-by-side",
+      "object_slots": [
+        1,
+        0,
+        3
+      ],
+      "camera_slots": [
+        1,
+        2,
+        0
+      ],
+      "intent": "One value becomes another, and the mechanism between them is shown rather than asserted.",
+      "reasons": [
+        "both states are in frame from the start so the change has somewhere to go",
+        "the camera crosses from the old state to the new one",
+        "the new state holds alone"
+      ],
+      "parameters": {
+        "from": {
+          "type": "number",
+          "from": "script-number",
+          "required": true
+        },
+        "to": {
+          "type": "number",
+          "from": "script-number",
+          "required": true
+        }
+      }
+    },
+    "COMPARISON": {
+      "layout": "side-by-side",
+      "object_slots": [
+        0,
+        0,
+        3
+      ],
+      "camera_slots": [
+        2,
+        0,
+        1
+      ],
+      "repeat": {
+        "slot": 0,
+        "param": "series",
+        "note": null
+      },
+      "intent": "Two quantities are put in the same frame at the same scale so the proportion between them is the argument.",
+      "reasons": [
+        "both sides enter together; a comparison shown in sequence is not a comparison",
+        "the frame pulls back until both fit at one scale",
+        "the pair holds so the ratio can be read off"
+      ],
+      "parameters": {
+        "series": {
+          "type": "list",
+          "from": "script-list",
+          "required": true,
+          "max_items": 4
+        }
+      }
+    },
+    "TIMELINE": {
+      "layout": "axis",
+      "object_slots": [
+        2,
+        5,
+        1
+      ],
+      "camera_slots": [
+        1,
+        3,
+        2
+      ],
+      "repeat": {
+        "slot": 0,
+        "param": "events",
+        "note": null
+      },
+      "intent": "Things happened in an order, laid along a real axis rather than described as a list.",
+      "reasons": [
+        "the axis is established before anything is placed on it",
+        "the camera travels the axis in the direction time runs",
+        "the last event lands and the whole span is in frame"
+      ],
+      "parameters": {
+        "events": {
+          "type": "list",
+          "from": "script-list",
+          "required": true,
+          "max_items": 5
+        }
+      }
+    },
+    "CAUSE_EFFECT": {
+      "layout": "axis",
+      "object_slots": [
+        1,
+        3,
+        0
+      ],
+      "camera_slots": [
+        3,
+        0,
+        2
+      ],
+      "intent": "One thing drives another and the link between them is drawn, not implied by adjacency.",
+      "reasons": [
+        "the cause is alone in frame first",
+        "the camera follows the link across to what it produced",
+        "the effect holds with the cause still visible behind it"
+      ],
+      "parameters": {}
+    },
+    "PROCESS": {
+      "layout": "axis",
+      "object_slots": [
+        1,
+        4,
+        2
+      ],
+      "camera_slots": [
+        2,
+        3,
+        0
+      ],
+      "repeat": {
+        "slot": 0,
+        "param": "stages",
+        "note": null
+      },
+      "intent": "A sequence of stages something actually moves through, in the order it moves through them.",
+      "reasons": [
+        "the first stage stands alone so the sequence has a beginning",
+        "the camera moves along the sequence at the rate the stages arrive",
+        "the finished sequence is held whole"
+      ],
+      "parameters": {
+        "stages": {
+          "type": "list",
+          "from": "script-list",
+          "required": true,
+          "max_items": 5
+        }
+      }
+    },
+    "DATA_CHART": {
+      "layout": "axis",
+      "object_slots": [
+        1,
+        4,
+        0
+      ],
+      "camera_slots": [
+        0,
+        2,
+        1
+      ],
+      "repeat": {
+        "slot": 0,
+        "param": "series",
+        "note": null
+      },
+      "intent": "Real measured values compared against each other from a common origin.",
+      "reasons": [
+        "the baseline is established before any value is drawn from it",
+        "the frame closes as the values resolve",
+        "the finished comparison holds"
+      ],
+      "parameters": {
+        "series": {
+          "type": "list",
+          "from": "script-list",
+          "required": true,
+          "max_items": 5
+        }
+      }
+    },
+    "DOCUMENT_EVIDENCE": {
+      "layout": "single",
+      "object_slots": [
+        0,
+        5,
+        2
+      ],
+      "camera_slots": [
+        1,
+        0,
+        3
+      ],
+      "intent": "The actual text of a rule or record, with the operative part found inside it.",
+      "reasons": [
+        "the whole document is in frame so the reader knows what is being quoted from",
+        "the camera closes on the operative passage",
+        "the passage is held long enough to be read"
+      ],
+      "parameters": {
+        "quote": {
+          "type": "text",
+          "from": "script-phrase",
+          "required": false
+        }
+      }
+    },
+    "IMAGE_EVIDENCE": {
+      "layout": "single",
+      "object_slots": [
+        0,
+        3,
+        1
+      ],
+      "camera_slots": [
+        3,
+        1,
+        0
+      ],
+      "intent": "A real sourced image, shown because of what it proves rather than as decoration.",
+      "reasons": [
+        "the image is given the frame to itself",
+        "the camera moves to the part of it that carries the claim",
+        "it holds while the claim is made"
+      ],
+      "parameters": {
+        "asset": {
+          "type": "text",
+          "from": "script-entity",
+          "required": true
+        }
+      }
+    },
+    "INTERFACE_SIMULATION": {
+      "layout": "single",
+      "object_slots": [
+        0,
+        2,
+        4
+      ],
+      "camera_slots": [
+        0,
+        3,
+        1
+      ],
+      "intent": "The system's own screen, doing the thing being described, rather than a drawing of it.",
+      "reasons": [
+        "the interface is square to the frame the way a screen is",
+        "the camera goes to the control being described",
+        "the result holds on screen"
+      ],
+      "parameters": {
+        "step": {
+          "type": "text",
+          "from": "script-phrase",
+          "required": false
+        }
+      }
+    },
+    "RELATIONSHIP": {
+      "layout": "orbit",
+      "object_slots": [
+        2,
+        4,
+        1
+      ],
+      "camera_slots": [
+        2,
+        1,
+        3
+      ],
+      "repeat": {
+        "slot": 0,
+        "param": "nodes",
+        "note": null
+      },
+      "intent": "Several entities and the connections that actually run between them.",
+      "reasons": [
+        "the entities are placed before any link is drawn",
+        "the camera moves around the arrangement so the links read as depth not overlap",
+        "the finished network holds"
+      ],
+      "parameters": {
+        "nodes": {
+          "type": "list",
+          "from": "script-list",
+          "required": true,
+          "max_items": 5
+        }
+      }
+    },
+    "BEFORE_AFTER": {
+      "layout": "side-by-side",
+      "object_slots": [
+        1,
+        1,
+        4
+      ],
+      "camera_slots": [
+        1,
+        2,
+        3
+      ],
+      "intent": "The same frame under two conditions, with everything except the condition held constant.",
+      "reasons": [
+        "the first condition is established alone",
+        "the camera crosses to the second with the framing unchanged",
+        "both are held so the difference is the only thing that moved"
+      ],
+      "parameters": {}
+    },
+    "SCALE_COMPARISON": {
+      "layout": "side-by-side",
+      "object_slots": [
+        2,
+        3,
+        0
+      ],
+      "camera_slots": [
+        3,
+        2,
+        1
+      ],
+      "intent": "How big a number is, set against something that gives it size.",
+      "reasons": [
+        "the reference object is in frame first so the scale is honest",
+        "the frame pulls back to admit the quantity being measured",
+        "both are held at one scale"
+      ],
+      "parameters": {
+        "value": {
+          "type": "number",
+          "from": "script-number",
+          "required": true
+        }
+      }
+    },
+    "VISUAL_METAPHOR": {
+      "layout": "stack",
+      "object_slots": [
+        1,
+        5,
+        3
+      ],
+      "camera_slots": [
+        0,
+        2,
+        3
+      ],
+      "intent": "An abstract idea given physical behaviour, using objects this channel already owns.",
+      "reasons": [
+        "the physical arrangement is established before it is asked to mean anything",
+        "the camera moves so the behaviour reads as behaviour",
+        "the arrangement holds in its changed state"
+      ],
+      "parameters": {}
+    },
+    "ENUMERATION": {
+      "layout": "stack",
+      "object_slots": [
+        2,
+        3,
+        5
+      ],
+      "camera_slots": [
+        1,
+        0,
+        2
+      ],
+      "repeat": {
+        "slot": 0,
+        "param": "items",
+        "note": null
+      },
+      "intent": "Several named things, arriving in the order they are spoken.",
+      "reasons": [
+        "the frame is empty so the first item is an arrival",
+        "the camera opens out as the list grows",
+        "the finished list is held whole"
+      ],
+      "parameters": {
+        "items": {
+          "type": "list",
+          "from": "script-list",
+          "required": true,
+          "max_items": 5
+        }
+      }
+    },
+    "CINEMATIC_STATEMENT": {
+      "layout": "single",
+      "object_slots": [
+        0,
+        4,
+        3
+      ],
+      "camera_slots": [
+        2,
+        3,
+        1
+      ],
+      "intent": "No richer representation was available for this beat, so the frame is composed rather than filled.",
+      "reasons": [
+        "one object holds the frame",
+        "the camera moves slowly enough to be felt rather than watched",
+        "the frame settles"
+      ],
+      "parameters": {
+        "line": {
+          "type": "text",
+          "from": "script-phrase",
+          "required": false
+        }
+      }
+    }
+  }
+}

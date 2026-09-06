@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "channel_id": "ch-17",
+  "strategy": "SCALE_COMPARISON",
+  "name": "ch-17-scale-comparison-archive-photo",
+  "intent": "How big a number is, set against something that gives it size. Here that is timeline rule on the mount board an archival print is laid on.",
+  "environment": {
+    "type": "archive-photo",
+    "ground": "the mount board an archival print is laid on",
+    "lighting": "raking-side"
+  },
+  "objects": [
+    {
+      "object": "timeline rule",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "stone monument",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "period painting",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "track-right",
+      "reason": "the reference object is in frame first so the scale is honest"
+    },
+    {
+      "at": 0.55,
+      "move": "high-angle",
+      "target": "timeline rule",
+      "reason": "the frame pulls back to admit the quantity being measured"
+    },
+    {
+      "at": 1,
+      "move": "pan-right",
+      "reason": "both are held at one scale"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "painting-dissolve",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "value": {
+      "type": "number",
+      "from": "script-number",
+      "required": true
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

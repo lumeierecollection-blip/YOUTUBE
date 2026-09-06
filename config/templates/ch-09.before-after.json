@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-09",
+  "strategy": "BEFORE_AFTER",
+  "name": "ch-09-before-after-map-territory",
+  "intent": "The same frame under two conditions, with everything except the condition held constant. Here that is satellite terrain on a map sheet, terrain seen from altitude.",
+  "environment": {
+    "type": "map-territory",
+    "ground": "a map sheet, terrain seen from altitude",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "satellite terrain",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "satellite terrain",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "supply route",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the first condition is established alone"
+    },
+    {
+      "at": 0.55,
+      "move": "track-left",
+      "target": "satellite terrain",
+      "reason": "the camera crosses to the second with the framing unchanged"
+    },
+    {
+      "at": 1,
+      "move": "pan-right",
+      "reason": "both are held so the difference is the only thing that moved"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "corner-overlay",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "border-draw",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

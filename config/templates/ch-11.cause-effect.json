@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-11",
+  "strategy": "CAUSE_EFFECT",
+  "name": "ch-11-cause-effect-orbital-space",
+  "intent": "One thing drives another and the link between them is drawn, not implied by adjacency. Here that is galaxy spiral on open space, a star field standing in for distance.",
+  "environment": {
+    "type": "orbital-space",
+    "ground": "open space, a star field standing in for distance",
+    "lighting": "hard-directional"
+  },
+  "objects": [
+    {
+      "object": "galaxy spiral",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      }
+    },
+    {
+      "object": "orbit path",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "planet sphere",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "tilt-up",
+      "reason": "the cause is alone in frame first"
+    },
+    {
+      "at": 0.55,
+      "move": "track-left",
+      "target": "galaxy spiral",
+      "reason": "the camera follows the link across to what it produced"
+    },
+    {
+      "at": 1,
+      "move": "pull-out",
+      "reason": "the effect holds with the cause still visible behind it"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "corner-overlay",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "cross-dissolve-cosmic",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

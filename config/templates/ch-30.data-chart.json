@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-30",
+  "strategy": "DATA_CHART",
+  "name": "ch-30-data-chart-forensic-lab",
+  "intent": "Real measured values compared against each other from a common origin. Here that is family tree on a stainless bench under even overhead light.",
+  "environment": {
+    "type": "forensic-lab",
+    "ground": "a stainless bench under even overhead light",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "family tree",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "series"
+    },
+    {
+      "object": "lab bench",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "dna helix",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the baseline is established before any value is drawn from it"
+    },
+    {
+      "at": 0.55,
+      "move": "top-down",
+      "target": "family tree",
+      "reason": "the frame closes as the values resolve"
+    },
+    {
+      "at": 1,
+      "move": "pull-out",
+      "reason": "the finished comparison holds"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "dna-animation",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "series": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-07",
+  "strategy": "COMPARISON",
+  "name": "ch-07-comparison-corporate-interior",
+  "intent": "Two quantities are put in the same frame at the same scale so the proportion between them is the argument. Here that is stock ticker tape on a glazed office floor, the city implied beyond it.",
+  "environment": {
+    "type": "corporate-interior",
+    "ground": "a glazed office floor, the city implied beyond it",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "stock ticker tape",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      },
+      "repeats": "series"
+    },
+    {
+      "object": "stock ticker tape",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "product silhouette",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "track-right",
+      "reason": "both sides enter together; a comparison shown in sequence is not a comparison"
+    },
+    {
+      "at": 0.55,
+      "move": "pull-out",
+      "target": "stock ticker tape",
+      "reason": "the frame pulls back until both fit at one scale"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the pair holds so the ratio can be read off"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "stock-crash",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "series": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 4
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

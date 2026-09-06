@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-01",
+  "strategy": "TIMELINE",
+  "name": "ch-01-timeline-desk-flatlay",
+  "intent": "Things happened in an order, laid along a real axis rather than described as a list. Here that is calculator on a matte desk surface, seen square from above.",
+  "environment": {
+    "type": "desk-flatlay",
+    "ground": "a matte desk surface, seen square from above",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "calculator",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "events"
+    },
+    {
+      "object": "ledger notebook",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "receipt",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the axis is established before anything is placed on it"
+    },
+    {
+      "at": 0.55,
+      "move": "static",
+      "target": "calculator",
+      "reason": "the camera travels the axis in the direction time runs"
+    },
+    {
+      "at": 1,
+      "move": "pull-out",
+      "reason": "the last event lands and the whole span is in frame"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "infographic-build",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "events": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

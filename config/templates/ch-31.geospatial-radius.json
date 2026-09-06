@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "channel_id": "ch-31",
+  "strategy": "GEOSPATIAL_RADIUS",
+  "name": "ch-31-geospatial-radius-courtroom",
+  "intent": "A distance is drawn on real ground and what falls inside it becomes visible. Here that is courthouse column on the dark panelling and bench of a courtroom.",
+  "environment": {
+    "type": "courtroom",
+    "ground": "the dark panelling and bench of a courtroom",
+    "lighting": "hard-directional"
+  },
+  "objects": [
+    {
+      "object": "courthouse column",
+      "role": "subject",
+      "anchor": {
+        "x": 0.46,
+        "y": 0.48,
+        "scale": 1
+      }
+    },
+    {
+      "object": "legal document",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.76,
+        "y": 0.3,
+        "scale": 0.6
+      }
+    },
+    {
+      "object": "timeline rule",
+      "role": "context",
+      "anchor": {
+        "x": 0.24,
+        "y": 0.72,
+        "scale": 0.62
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "static",
+      "reason": "the extent is established before anything is said about it"
+    },
+    {
+      "at": 0.55,
+      "move": "pull-out",
+      "target": "courthouse column",
+      "reason": "the frame closes on the boundary itself"
+    },
+    {
+      "at": 1,
+      "move": "low-angle",
+      "reason": "the edge holds so what it encloses can be read"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{unit}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "timeline-wipe-years",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "value": {
+      "type": "number",
+      "from": "script-number",
+      "required": true
+    },
+    "unit": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

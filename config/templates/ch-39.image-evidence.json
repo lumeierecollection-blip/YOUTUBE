@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-39",
+  "strategy": "IMAGE_EVIDENCE",
+  "name": "ch-39-image-evidence-hospital-ward",
+  "intent": "A real sourced image, shown because of what it proves rather than as decoration. Here that is medical scan on a ward floor and curtain rail, equipment at the margins.",
+  "environment": {
+    "type": "hospital-ward",
+    "ground": "a ward floor and curtain rail, equipment at the margins",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "medical scan",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "patient chart",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "vital trace",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "tilt-down",
+      "reason": "the image is given the frame to itself"
+    },
+    {
+      "at": 0.55,
+      "move": "push-in",
+      "target": "medical scan",
+      "reason": "the camera moves to the part of it that carries the claim"
+    },
+    {
+      "at": 1,
+      "move": "track-left",
+      "reason": "it holds while the claim is made"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{asset}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "scan-transition",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "asset": {
+      "type": "text",
+      "from": "script-entity",
+      "required": true
+    }
+  }
+}

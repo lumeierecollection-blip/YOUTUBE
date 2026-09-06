@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-35",
+  "strategy": "DOCUMENT_EVIDENCE",
+  "name": "ch-35-document-evidence-machine-mechanism",
+  "intent": "The actual text of a rule or record, with the operative part found inside it. Here that is gear train on the cut plane of an assembly, drawn as a section.",
+  "environment": {
+    "type": "machine-mechanism",
+    "ground": "the cut plane of an assembly, drawn as a section",
+    "lighting": "hard-directional"
+  },
+  "objects": [
+    {
+      "object": "gear train",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "scale bar",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "load curve",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pan-left",
+      "reason": "the whole document is in frame so the reader knows what is being quoted from"
+    },
+    {
+      "at": 0.55,
+      "move": "track-right",
+      "target": "gear train",
+      "reason": "the camera closes on the operative passage"
+    },
+    {
+      "at": 1,
+      "move": "high-angle",
+      "reason": "the passage is held long enough to be read"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{quote}",
+      "face": "secondary",
+      "placement": "corner-overlay",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "cross-dissolve-tech",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "quote": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

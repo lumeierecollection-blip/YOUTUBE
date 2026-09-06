@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-01",
+  "strategy": "RELATIONSHIP",
+  "name": "ch-01-relationship-desk-flatlay",
+  "intent": "Several entities and the connections that actually run between them. Here that is calculator on a matte desk surface, seen square from above.",
+  "environment": {
+    "type": "desk-flatlay",
+    "ground": "a matte desk surface, seen square from above",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "calculator",
+      "role": "subject",
+      "anchor": {
+        "x": 0.46,
+        "y": 0.48,
+        "scale": 1
+      },
+      "repeats": "nodes"
+    },
+    {
+      "object": "cash notes",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.76,
+        "y": 0.3,
+        "scale": 0.6
+      }
+    },
+    {
+      "object": "receipt",
+      "role": "context",
+      "anchor": {
+        "x": 0.24,
+        "y": 0.72,
+        "scale": 0.62
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pull-out",
+      "reason": "the entities are placed before any link is drawn"
+    },
+    {
+      "at": 0.55,
+      "move": "push-in",
+      "target": "calculator",
+      "reason": "the camera moves around the arrangement so the links read as depth not overlap"
+    },
+    {
+      "at": 1,
+      "move": "static",
+      "reason": "the finished network holds"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "fade-gentle",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "nodes": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-39",
+  "strategy": "TIMELINE",
+  "name": "ch-39-timeline-hospital-ward",
+  "intent": "Things happened in an order, laid along a real axis rather than described as a list. Here that is pill dose on a ward floor and curtain rail, equipment at the margins.",
+  "environment": {
+    "type": "hospital-ward",
+    "ground": "a ward floor and curtain rail, equipment at the margins",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "pill dose",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "events"
+    },
+    {
+      "object": "lab bench",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "vital trace",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the axis is established before anything is placed on it"
+    },
+    {
+      "at": 0.55,
+      "move": "tilt-down",
+      "target": "pill dose",
+      "reason": "the camera travels the axis in the direction time runs"
+    },
+    {
+      "at": 1,
+      "move": "static",
+      "reason": "the last event lands and the whole span is in frame"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "timeline-symptom",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "events": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

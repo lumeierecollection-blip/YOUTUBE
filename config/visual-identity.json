@@ -81,6 +81,126 @@
       "motion_curve": "ease-out",
       "style_reference_document": "docs/style-reference/ch-02-motion-graphics.md"
     },
+    "ch-03": {
+      "primary_palette": [
+        "#0A0A1A",
+        "#1A1A3A",
+        "#8B5CF6",
+        "#000000"
+      ],
+      "secondary_palette": [
+        "#6C48C0",
+        "#919198",
+        "#EBEBED"
+      ],
+      "typography_primary": "Space Grotesk",
+      "typography_secondary": "JetBrains Mono",
+      "environment_type": "screen-interface",
+      "core_objects": [
+        "application window",
+        "output transcript",
+        "benchmark bar",
+        "prompt field",
+        "latency trace",
+        "cursor pointer"
+      ],
+      "camera_language": [
+        "static",
+        "push-in",
+        "pan-right",
+        "high-angle"
+      ],
+      "transition_language": [
+        "screen-switch",
+        "split-reveal",
+        "glitch-cut"
+      ],
+      "framing_default": "medium",
+      "text_placement": "upper-third",
+      "use_of_negative_space": "high",
+      "motion_curve": "ease-out",
+      "style_reference_document": "docs/style-reference/ch-03-minimal.md"
+    },
+    "ch-04": {
+      "primary_palette": [
+        "#1A100A",
+        "#2D1A12",
+        "#D4A574",
+        "#000000"
+      ],
+      "secondary_palette": [
+        "#A5815A",
+        "#989391",
+        "#EDECEB"
+      ],
+      "typography_primary": "Cormorant Garamond",
+      "typography_secondary": "DM Sans",
+      "environment_type": "archive-photo",
+      "core_objects": [
+        "archival photograph",
+        "handwritten letter",
+        "museum artifact",
+        "archival map sheet",
+        "film reel",
+        "date marker"
+      ],
+      "camera_language": [
+        "push-in",
+        "pan-left",
+        "pull-out",
+        "tilt-down"
+      ],
+      "transition_language": [
+        "archive-reel",
+        "dissolve-era",
+        "document-slide"
+      ],
+      "framing_default": "close-up",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "high",
+      "motion_curve": "ease-in-out",
+      "style_reference_document": "docs/style-reference/ch-04-cinematic-documentary.md"
+    },
+    "ch-07": {
+      "primary_palette": [
+        "#1A0A1A",
+        "#2D1530",
+        "#EF4444",
+        "#000000"
+      ],
+      "secondary_palette": [
+        "#BA3535",
+        "#989198",
+        "#EDEBED"
+      ],
+      "typography_primary": "DM Sans",
+      "typography_secondary": "Roboto Condensed",
+      "environment_type": "corporate-interior",
+      "core_objects": [
+        "stock ticker tape",
+        "share price line",
+        "office tower",
+        "product silhouette",
+        "press headline",
+        "balance sheet"
+      ],
+      "camera_language": [
+        "pull-out",
+        "push-in",
+        "track-right",
+        "low-angle"
+      ],
+      "transition_language": [
+        "stock-crash",
+        "glass-break",
+        "corporate-slide"
+      ],
+      "framing_default": "wide",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "medium",
+      "motion_curve": "ease-in",
+      "style_reference_document": "docs/style-reference/ch-07-cinematic-documentary.md"
+    },
     "ch-09": {
       "primary_palette": [
         "#0A1A2E",
@@ -97,9 +217,9 @@
       "typography_secondary": "JetBrains Mono",
       "environment_type": "map-territory",
       "core_objects": [
-        "national border line",
         "territory fill",
         "satellite terrain",
+        "national border line",
         "resource site marker",
         "supply route",
         "date marker"
@@ -120,6 +240,446 @@
       "use_of_negative_space": "low",
       "motion_curve": "ease-in-out",
       "style_reference_document": "docs/style-reference/ch-09-motion-graphics.md"
+    },
+    "ch-11": {
+      "primary_palette": [
+        "#05051A",
+        "#0A0A30",
+        "#818CF8",
+        "#000000"
+      ],
+      "secondary_palette": [
+        "#656DC1",
+        "#8F8F98",
+        "#EBEBED"
+      ],
+      "typography_primary": "Space Grotesk",
+      "typography_secondary": "Cormorant Garamond",
+      "environment_type": "orbital-space",
+      "core_objects": [
+        "planet sphere",
+        "galaxy spiral",
+        "spacecraft silhouette",
+        "orbit path",
+        "star field",
+        "scale bar"
+      ],
+      "camera_language": [
+        "track-left",
+        "push-in",
+        "pull-out",
+        "tilt-up"
+      ],
+      "transition_language": [
+        "zoom-through-space",
+        "parallax-shift",
+        "cross-dissolve-cosmic"
+      ],
+      "framing_default": "wide",
+      "text_placement": "corner-overlay",
+      "use_of_negative_space": "high",
+      "motion_curve": "ease-in-out",
+      "style_reference_document": "docs/style-reference/ch-11-cinematic-documentary.md"
+    },
+    "ch-17": {
+      "primary_palette": [
+        "#1A1510",
+        "#2D2520",
+        "#B45309",
+        "#000000"
+      ],
+      "secondary_palette": [
+        "#8C4107",
+        "#989693",
+        "#EDECEC"
+      ],
+      "typography_primary": "Cormorant Garamond",
+      "typography_secondary": "Inter",
+      "environment_type": "archive-photo",
+      "core_objects": [
+        "period painting",
+        "archival map sheet",
+        "timeline rule",
+        "stone monument",
+        "royal seal",
+        "date marker"
+      ],
+      "camera_language": [
+        "push-in",
+        "pan-right",
+        "high-angle",
+        "track-right"
+      ],
+      "transition_language": [
+        "timeline-wipe",
+        "painting-dissolve",
+        "map-morph"
+      ],
+      "framing_default": "wide",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "medium",
+      "motion_curve": "ease-in-out",
+      "style_reference_document": "docs/style-reference/ch-17-cinematic-documentary.md"
+    },
+    "ch-26": {
+      "primary_palette": [
+        "#0A0A1A",
+        "#151530",
+        "#22C55E",
+        "#000000"
+      ],
+      "secondary_palette": [
+        "#1B9A49",
+        "#919198",
+        "#EBEBED"
+      ],
+      "typography_primary": "JetBrains Mono",
+      "typography_secondary": "Inter",
+      "environment_type": "evidence-board",
+      "core_objects": [
+        "court document",
+        "money trail",
+        "wire node",
+        "pinned photograph",
+        "red string",
+        "ledger notebook"
+      ],
+      "camera_language": [
+        "push-in",
+        "track-right",
+        "top-down",
+        "static"
+      ],
+      "transition_language": [
+        "zoom-document",
+        "glitch-digital",
+        "map-zoom"
+      ],
+      "framing_default": "medium",
+      "text_placement": "upper-third",
+      "use_of_negative_space": "medium",
+      "motion_curve": "ease-out",
+      "style_reference_document": "docs/style-reference/ch-26-motion-graphics.md"
+    },
+    "ch-30": {
+      "primary_palette": [
+        "#0A0A1A",
+        "#151530",
+        "#06B6D4",
+        "#000000"
+      ],
+      "secondary_palette": [
+        "#058EA5",
+        "#919198",
+        "#EBEBED"
+      ],
+      "typography_primary": "Space Grotesk",
+      "typography_secondary": "Noto Serif",
+      "environment_type": "forensic-lab",
+      "core_objects": [
+        "dna helix",
+        "family tree",
+        "evidence tube",
+        "pinned photograph",
+        "lab bench",
+        "date marker"
+      ],
+      "camera_language": [
+        "push-in",
+        "pull-out",
+        "top-down",
+        "tilt-down"
+      ],
+      "transition_language": [
+        "time-lapse-years",
+        "dna-animation",
+        "photo-dissolve"
+      ],
+      "framing_default": "close-up",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "high",
+      "motion_curve": "ease-in-out",
+      "style_reference_document": "docs/style-reference/ch-30-cinematic-documentary.md"
+    },
+    "ch-31": {
+      "primary_palette": [
+        "#0A0A1A",
+        "#151530",
+        "#FBBF24",
+        "#000000"
+      ],
+      "secondary_palette": [
+        "#C4951C",
+        "#919198",
+        "#EBEBED"
+      ],
+      "typography_primary": "Playfair Display",
+      "typography_secondary": "DM Sans",
+      "environment_type": "courtroom",
+      "core_objects": [
+        "legal document",
+        "prison window",
+        "courthouse column",
+        "evidence exhibit",
+        "timeline rule",
+        "pinned photograph"
+      ],
+      "camera_language": [
+        "static",
+        "pull-out",
+        "low-angle",
+        "tilt-up"
+      ],
+      "transition_language": [
+        "timeline-wipe-years",
+        "evidence-exhibit",
+        "before-after"
+      ],
+      "framing_default": "medium",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "medium",
+      "motion_curve": "ease-in",
+      "style_reference_document": "docs/style-reference/ch-31-cinematic-documentary.md"
+    },
+    "ch-35": {
+      "primary_palette": [
+        "#05051A",
+        "#0A0A30",
+        "#60A5FA",
+        "#FFFFFF"
+      ],
+      "secondary_palette": [
+        "#4B81C3",
+        "#8F8F98",
+        "#EBEBED"
+      ],
+      "typography_primary": "Space Grotesk",
+      "typography_secondary": "JetBrains Mono",
+      "environment_type": "machine-mechanism",
+      "core_objects": [
+        "gear train",
+        "cross section",
+        "load curve",
+        "bolt joint",
+        "blueprint sheet",
+        "scale bar"
+      ],
+      "camera_language": [
+        "track-right",
+        "pan-left",
+        "push-in",
+        "high-angle"
+      ],
+      "transition_language": [
+        "3d-flythrough",
+        "data-morph",
+        "cross-dissolve-tech"
+      ],
+      "framing_default": "medium",
+      "text_placement": "corner-overlay",
+      "use_of_negative_space": "medium",
+      "motion_curve": "ease-in",
+      "style_reference_document": "docs/style-reference/ch-35-cinematic-documentary.md"
+    },
+    "ch-39": {
+      "primary_palette": [
+        "#0A0A1A",
+        "#151530",
+        "#EF4444",
+        "#FFFFFF"
+      ],
+      "secondary_palette": [
+        "#BA3535",
+        "#919198",
+        "#EBEBED"
+      ],
+      "typography_primary": "Roboto Condensed",
+      "typography_secondary": "Noto Serif",
+      "environment_type": "hospital-ward",
+      "core_objects": [
+        "medical scan",
+        "vital trace",
+        "pill dose",
+        "patient chart",
+        "iv stand",
+        "lab bench"
+      ],
+      "camera_language": [
+        "track-left",
+        "push-in",
+        "static",
+        "tilt-down"
+      ],
+      "transition_language": [
+        "scan-transition",
+        "timeline-symptom",
+        "medical-reveal"
+      ],
+      "framing_default": "close-up",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "medium",
+      "motion_curve": "ease-out",
+      "style_reference_document": "docs/style-reference/ch-39-cinematic-documentary.md"
+    },
+    "ch-44": {
+      "primary_palette": [
+        "#0F172A",
+        "#1E293B",
+        "#A78BFA",
+        "#FFFFFF"
+      ],
+      "secondary_palette": [
+        "#826CC3",
+        "#93979F",
+        "#ECECEE"
+      ],
+      "typography_primary": "Inter",
+      "typography_secondary": "Space Grotesk",
+      "environment_type": "abstract-space",
+      "core_objects": [
+        "concept node",
+        "link path",
+        "stacked layer",
+        "progress arc",
+        "figure silhouette",
+        "stepped platform"
+      ],
+      "camera_language": [
+        "static",
+        "push-in",
+        "pan-left",
+        "pull-out"
+      ],
+      "transition_language": [
+        "morph-concept",
+        "infographic-reveal",
+        "concept-zoom"
+      ],
+      "framing_default": "medium",
+      "text_placement": "centre",
+      "use_of_negative_space": "high",
+      "motion_curve": "ease-out",
+      "style_reference_document": "docs/style-reference/ch-44-motion-graphics.md"
+    },
+    "ch-46": {
+      "primary_palette": [
+        "#0F172A",
+        "#1E293B",
+        "#22C55E",
+        "#FFFFFF"
+      ],
+      "secondary_palette": [
+        "#1B9A49",
+        "#93979F",
+        "#ECECEE"
+      ],
+      "typography_primary": "DM Sans",
+      "typography_secondary": "Playfair Display",
+      "environment_type": "interior-room",
+      "core_objects": [
+        "answer frame",
+        "checklist rule",
+        "figure silhouette",
+        "question line",
+        "desk edge",
+        "clock face"
+      ],
+      "camera_language": [
+        "static",
+        "push-in",
+        "tilt-up",
+        "pan-right"
+      ],
+      "transition_language": [
+        "simple-cut",
+        "fade-section",
+        "text-card"
+      ],
+      "framing_default": "medium",
+      "text_placement": "centre",
+      "use_of_negative_space": "high",
+      "motion_curve": "linear",
+      "style_reference_document": "docs/style-reference/ch-46-minimal.md"
+    },
+    "ch-47": {
+      "primary_palette": [
+        "#0A1A2E",
+        "#152D45",
+        "#3B82F6",
+        "#FFFFFF"
+      ],
+      "secondary_palette": [
+        "#2E65C0",
+        "#9198A1",
+        "#EBEDEE"
+      ],
+      "typography_primary": "Nunito",
+      "typography_secondary": "Roboto Condensed",
+      "environment_type": "screen-interface",
+      "core_objects": [
+        "enrollment form",
+        "plan comparison rows",
+        "calendar grid",
+        "benefit rule",
+        "application window",
+        "clock face"
+      ],
+      "camera_language": [
+        "static",
+        "high-angle",
+        "push-in",
+        "pan-left"
+      ],
+      "transition_language": [
+        "fade-section",
+        "plan-compare",
+        "document-reveal"
+      ],
+      "framing_default": "medium",
+      "text_placement": "lower-third",
+      "use_of_negative_space": "high",
+      "motion_curve": "ease-in",
+      "style_reference_document": "docs/style-reference/ch-47-minimal.md"
+    },
+    "ch-48": {
+      "primary_palette": [
+        "#0A0F1A",
+        "#152030",
+        "#F97316",
+        "#000000"
+      ],
+      "secondary_palette": [
+        "#C25A11",
+        "#919398",
+        "#EBECED"
+      ],
+      "typography_primary": "Fira Sans",
+      "typography_secondary": "Space Grotesk",
+      "environment_type": "industrial-floor",
+      "core_objects": [
+        "conveyor belt",
+        "robot arm",
+        "machine housing",
+        "component part",
+        "process arrow",
+        "gauge dial"
+      ],
+      "camera_language": [
+        "track-right",
+        "top-down",
+        "push-in",
+        "pan-left"
+      ],
+      "transition_language": [
+        "3d-orbit",
+        "process-flow",
+        "cross-section-reveal"
+      ],
+      "framing_default": "wide",
+      "text_placement": "upper-third",
+      "use_of_negative_space": "low",
+      "motion_curve": "ease-in",
+      "style_reference_document": "docs/style-reference/ch-48-motion-graphics.md"
     }
   }
 }

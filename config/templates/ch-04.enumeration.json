@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-04",
+  "strategy": "ENUMERATION",
+  "name": "ch-04-enumeration-archive-photo",
+  "intent": "Several named things, arriving in the order they are spoken. Here that is museum artifact on the mount board an archival print is laid on.",
+  "environment": {
+    "type": "archive-photo",
+    "ground": "the mount board an archival print is laid on",
+    "lighting": "raking-side"
+  },
+  "objects": [
+    {
+      "object": "museum artifact",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.46,
+        "scale": 1
+      },
+      "repeats": "items"
+    },
+    {
+      "object": "archival map sheet",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8,
+        "scale": 0.72
+      }
+    },
+    {
+      "object": "date marker",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.26,
+        "scale": 0.55
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pan-left",
+      "reason": "the frame is empty so the first item is an arrival"
+    },
+    {
+      "at": 0.55,
+      "move": "push-in",
+      "target": "museum artifact",
+      "reason": "the camera opens out as the list grows"
+    },
+    {
+      "at": 1,
+      "move": "pull-out",
+      "reason": "the finished list is held whole"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "archive-reel",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "items": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

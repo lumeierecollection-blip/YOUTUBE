@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-02",
+  "strategy": "PROCESS",
+  "name": "ch-02-process-courtroom",
+  "intent": "A sequence of stages something actually moves through, in the order it moves through them. Here that is gavel on the dark panelling and bench of a courtroom.",
+  "environment": {
+    "type": "courtroom",
+    "ground": "the dark panelling and bench of a courtroom",
+    "lighting": "hard-directional"
+  },
+  "objects": [
+    {
+      "object": "gavel",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "stages"
+    },
+    {
+      "object": "police dashcam frame",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "state map",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "tilt-down",
+      "reason": "the first stage stands alone so the sequence has a beginning"
+    },
+    {
+      "at": 0.55,
+      "move": "pan-right",
+      "target": "gavel",
+      "reason": "the camera moves along the sequence at the rate the stages arrive"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the finished sequence is held whole"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.44,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "document-reveal",
+      "duration_frames": 18
+    }
+  ],
+  "parameters": {
+    "stages": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

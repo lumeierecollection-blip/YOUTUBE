@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-46",
+  "strategy": "CAUSE_EFFECT",
+  "name": "ch-46-cause-effect-interior-room",
+  "intent": "One thing drives another and the link between them is drawn, not implied by adjacency. Here that is checklist rule on a room's floor and back wall, furniture implied at the edges.",
+  "environment": {
+    "type": "interior-room",
+    "ground": "a room's floor and back wall, furniture implied at the edges",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "checklist rule",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      }
+    },
+    {
+      "object": "question line",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "answer frame",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pan-right",
+      "reason": "the cause is alone in frame first"
+    },
+    {
+      "at": 0.55,
+      "move": "static",
+      "target": "checklist rule",
+      "reason": "the camera follows the link across to what it produced"
+    },
+    {
+      "at": 1,
+      "move": "tilt-up",
+      "reason": "the effect holds with the cause still visible behind it"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "centre",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "text-card",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

@@ -112,6 +112,7 @@
       "id": 2,
       "niche": "Legal Education (Know Your Rights)",
       "style": "motion-graphics",
+      "visual_engine": "template",
       "bg_mode": "black",
       "asset_treatment": "bw",
       "channel_name": "Legal Brief",

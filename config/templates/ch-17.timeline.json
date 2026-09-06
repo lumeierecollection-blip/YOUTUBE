@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-17",
+  "strategy": "TIMELINE",
+  "name": "ch-17-timeline-archive-photo",
+  "intent": "Things happened in an order, laid along a real axis rather than described as a list. Here that is timeline rule on the mount board an archival print is laid on.",
+  "environment": {
+    "type": "archive-photo",
+    "ground": "the mount board an archival print is laid on",
+    "lighting": "raking-side"
+  },
+  "objects": [
+    {
+      "object": "timeline rule",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "events"
+    },
+    {
+      "object": "date marker",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "archival map sheet",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pan-right",
+      "reason": "the axis is established before anything is placed on it"
+    },
+    {
+      "at": 0.55,
+      "move": "track-right",
+      "target": "timeline rule",
+      "reason": "the camera travels the axis in the direction time runs"
+    },
+    {
+      "at": 1,
+      "move": "high-angle",
+      "reason": "the last event lands and the whole span is in frame"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "painting-dissolve",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "events": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

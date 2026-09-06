@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "channel_id": "ch-46",
+  "strategy": "SCALE_COMPARISON",
+  "name": "ch-46-scale-comparison-interior-room",
+  "intent": "How big a number is, set against something that gives it size. Here that is figure silhouette on a room's floor and back wall, furniture implied at the edges.",
+  "environment": {
+    "type": "interior-room",
+    "ground": "a room's floor and back wall, furniture implied at the edges",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "figure silhouette",
+      "role": "subject",
+      "anchor": {
+        "x": 0.3,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "question line",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.7,
+        "y": 0.5,
+        "scale": 0.92
+      }
+    },
+    {
+      "object": "answer frame",
+      "role": "context",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.84,
+        "scale": 0.6
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "pan-right",
+      "reason": "the reference object is in frame first so the scale is honest"
+    },
+    {
+      "at": 0.55,
+      "move": "tilt-up",
+      "target": "figure silhouette",
+      "reason": "the frame pulls back to admit the quantity being measured"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "both are held at one scale"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "centre",
+      "in_at": 0.28,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "fade-section",
+      "duration_frames": 14
+    }
+  ],
+  "parameters": {
+    "value": {
+      "type": "number",
+      "from": "script-number",
+      "required": true
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-48",
+  "strategy": "TIMELINE",
+  "name": "ch-48-timeline-industrial-floor",
+  "intent": "Things happened in an order, laid along a real axis rather than described as a list. Here that is machine housing on a painted concrete floor with machine bases on it.",
+  "environment": {
+    "type": "industrial-floor",
+    "ground": "a painted concrete floor with machine bases on it",
+    "lighting": "flat-overhead"
+  },
+  "objects": [
+    {
+      "object": "machine housing",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "events"
+    },
+    {
+      "object": "gauge dial",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "robot arm",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "top-down",
+      "reason": "the axis is established before anything is placed on it"
+    },
+    {
+      "at": 0.55,
+      "move": "pan-left",
+      "target": "machine housing",
+      "reason": "the camera travels the axis in the direction time runs"
+    },
+    {
+      "at": 1,
+      "move": "push-in",
+      "reason": "the last event lands and the whole span is in frame"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "upper-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "process-flow",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "events": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

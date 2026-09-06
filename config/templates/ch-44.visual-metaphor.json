@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-44",
+  "strategy": "VISUAL_METAPHOR",
+  "name": "ch-44-visual-metaphor-abstract-space",
+  "intent": "An abstract idea given physical behaviour, using objects this channel already owns. Here that is link path on an empty field with no horizon, depth carried by scale alone.",
+  "environment": {
+    "type": "abstract-space",
+    "ground": "an empty field with no horizon, depth carried by scale alone",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "link path",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.46,
+        "scale": 1
+      }
+    },
+    {
+      "object": "stepped platform",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8,
+        "scale": 0.72
+      }
+    },
+    {
+      "object": "progress arc",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.26,
+        "scale": 0.55
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "static",
+      "reason": "the physical arrangement is established before it is asked to mean anything"
+    },
+    {
+      "at": 0.55,
+      "move": "pan-left",
+      "target": "link path",
+      "reason": "the camera moves so the behaviour reads as behaviour"
+    },
+    {
+      "at": 1,
+      "move": "pull-out",
+      "reason": "the arrangement holds in its changed state"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "centre",
+      "in_at": 0.44,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "concept-zoom",
+      "duration_frames": 18
+    }
+  ],
+  "parameters": {
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

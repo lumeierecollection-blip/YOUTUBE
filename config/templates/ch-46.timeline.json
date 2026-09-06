@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-46",
+  "strategy": "TIMELINE",
+  "name": "ch-46-timeline-interior-room",
+  "intent": "Things happened in an order, laid along a real axis rather than described as a list. Here that is figure silhouette on a room's floor and back wall, furniture implied at the edges.",
+  "environment": {
+    "type": "interior-room",
+    "ground": "a room's floor and back wall, furniture implied at the edges",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "figure silhouette",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "events"
+    },
+    {
+      "object": "clock face",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "checklist rule",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the axis is established before anything is placed on it"
+    },
+    {
+      "at": 0.55,
+      "move": "pan-right",
+      "target": "figure silhouette",
+      "reason": "the camera travels the axis in the direction time runs"
+    },
+    {
+      "at": 1,
+      "move": "tilt-up",
+      "reason": "the last event lands and the whole span is in frame"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "centre",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "fade-section",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "events": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

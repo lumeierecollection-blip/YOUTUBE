@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-46",
+  "strategy": "RELATIONSHIP",
+  "name": "ch-46-relationship-interior-room",
+  "intent": "Several entities and the connections that actually run between them. Here that is figure silhouette on a room's floor and back wall, furniture implied at the edges.",
+  "environment": {
+    "type": "interior-room",
+    "ground": "a room's floor and back wall, furniture implied at the edges",
+    "lighting": "soft-diffuse"
+  },
+  "objects": [
+    {
+      "object": "figure silhouette",
+      "role": "subject",
+      "anchor": {
+        "x": 0.46,
+        "y": 0.48,
+        "scale": 1
+      },
+      "repeats": "nodes"
+    },
+    {
+      "object": "desk edge",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.76,
+        "y": 0.3,
+        "scale": 0.6
+      }
+    },
+    {
+      "object": "checklist rule",
+      "role": "context",
+      "anchor": {
+        "x": 0.24,
+        "y": 0.72,
+        "scale": 0.62
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "tilt-up",
+      "reason": "the entities are placed before any link is drawn"
+    },
+    {
+      "at": 0.55,
+      "move": "push-in",
+      "target": "figure silhouette",
+      "reason": "the camera moves around the arrangement so the links read as depth not overlap"
+    },
+    {
+      "at": 1,
+      "move": "pan-right",
+      "reason": "the finished network holds"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "centre",
+      "in_at": 0.6,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "text-card",
+      "duration_frames": 22
+    }
+  ],
+  "parameters": {
+    "nodes": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

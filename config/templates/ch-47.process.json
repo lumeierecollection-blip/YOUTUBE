@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "channel_id": "ch-47",
+  "strategy": "PROCESS",
+  "name": "ch-47-process-screen-interface",
+  "intent": "A sequence of stages something actually moves through, in the order it moves through them. Here that is plan comparison rows on the flat plane of a display, chrome implied not drawn.",
+  "environment": {
+    "type": "screen-interface",
+    "ground": "the flat plane of a display, chrome implied not drawn",
+    "lighting": "screen-glow"
+  },
+  "objects": [
+    {
+      "object": "plan comparison rows",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.42,
+        "scale": 1
+      },
+      "repeats": "stages"
+    },
+    {
+      "object": "application window",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.2,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    },
+    {
+      "object": "calendar grid",
+      "role": "context",
+      "anchor": {
+        "x": 0.8,
+        "y": 0.74,
+        "scale": 0.7
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "push-in",
+      "reason": "the first stage stands alone so the sequence has a beginning"
+    },
+    {
+      "at": 0.55,
+      "move": "pan-left",
+      "target": "plan comparison rows",
+      "reason": "the camera moves along the sequence at the rate the stages arrive"
+    },
+    {
+      "at": 1,
+      "move": "static",
+      "reason": "the finished sequence is held whole"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{label}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.44,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "fade-section",
+      "duration_frames": 18
+    }
+  ],
+  "parameters": {
+    "stages": {
+      "type": "list",
+      "from": "script-list",
+      "required": true,
+      "max_items": 5
+    },
+    "label": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "channel_id": "ch-47",
+  "strategy": "DOCUMENT_EVIDENCE",
+  "name": "ch-47-document-evidence-screen-interface",
+  "intent": "The actual text of a rule or record, with the operative part found inside it. Here that is enrollment form on the flat plane of a display, chrome implied not drawn.",
+  "environment": {
+    "type": "screen-interface",
+    "ground": "the flat plane of a display, chrome implied not drawn",
+    "lighting": "screen-glow"
+  },
+  "objects": [
+    {
+      "object": "enrollment form",
+      "role": "subject",
+      "anchor": {
+        "x": 0.5,
+        "y": 0.48,
+        "scale": 1.05
+      }
+    },
+    {
+      "object": "clock face",
+      "role": "supporting",
+      "anchor": {
+        "x": 0.78,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    },
+    {
+      "object": "calendar grid",
+      "role": "context",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.8,
+        "scale": 0.5
+      }
+    }
+  ],
+  "camera_path": [
+    {
+      "at": 0,
+      "move": "high-angle",
+      "reason": "the whole document is in frame so the reader knows what is being quoted from"
+    },
+    {
+      "at": 0.55,
+      "move": "static",
+      "target": "enrollment form",
+      "reason": "the camera closes on the operative passage"
+    },
+    {
+      "at": 1,
+      "move": "pan-left",
+      "reason": "the passage is held long enough to be read"
+    }
+  ],
+  "typography": [
+    {
+      "slot": "{quote}",
+      "face": "secondary",
+      "placement": "lower-third",
+      "in_at": 0.12,
+      "out_at": 1
+    }
+  ],
+  "transitions": [
+    {
+      "to": "next",
+      "type": "document-reveal",
+      "duration_frames": 10
+    }
+  ],
+  "parameters": {
+    "quote": {
+      "type": "text",
+      "from": "script-phrase",
+      "required": false
+    }
+  }
+}

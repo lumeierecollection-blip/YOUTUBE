@@ -24,7 +24,7 @@
  */
 
 import os from "os";
-import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync } from "fs";
+import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
@@ -302,6 +302,50 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
   console.log("Rendered:", outputPath);
 }
 
+/**
+ * The channel's Visual Identity Specification and its 17 scene templates, or
+ * nothing at all.
+ *
+ * OPT-IN, PER CHANNEL, BY CONFIG. A channel gets the template engine only when
+ * `config/channels.json` gives it `visual_engine: "template"`. Every other
+ * channel renders exactly as it did before this existed, which is the point:
+ * seventeen channels switching engine on one commit is not a rollout, it is a
+ * coin toss with the whole roster on it.
+ *
+ * Missing files are not an error here. A channel opted in before its templates
+ * exist should render through the old engine and say so, not abort the daily
+ * run for that channel.
+ */
+function loadTemplateEngine(channel) {
+  if (!channel || channel.visual_engine !== "template") return {};
+  const cid = channel.channel_id;
+  try {
+    const identity = JSON.parse(readFileSync(join(ROOT, "config", "visual-identity.json"), "utf-8")).channels || {};
+    const identitySpec = identity[cid];
+    if (!identitySpec) {
+      console.warn(`MG: ${cid} asks for the template engine but has no visual identity — rendering through the existing engine.`);
+      return {};
+    }
+    const dir = join(ROOT, "config", "templates");
+    const templates = {};
+    for (const f of readdirSync(dir)) {
+      if (!f.startsWith(`${cid}.`) || !f.endsWith(".json")) continue;
+      const doc = JSON.parse(readFileSync(join(dir, f), "utf-8"));
+      templates[doc.strategy] = doc;
+    }
+    const n = Object.keys(templates).length;
+    if (!n) {
+      console.warn(`MG: ${cid} asks for the template engine but has no templates — rendering through the existing engine.`);
+      return {};
+    }
+    console.log(`MG: template engine on for ${cid} — ${n} strategy template(s) loaded.`);
+    return { templates, identitySpec };
+  } catch (err) {
+    console.warn(`MG: could not load the template engine for ${cid} (${err.message}) — rendering through the existing engine.`);
+    return {};
+  }
+}
+
 async function main() {
   const [format, channelId, scriptPath, ttsAudioPath, scaleArg] = process.argv.slice(2);
   const scale = scaleArg ? parseFloat(scaleArg) : 1.0;
@@ -374,6 +418,10 @@ async function main() {
       // see markReveal/computeSilenceWindow in mg-package.js for the parse.
       revealPlacement: channel.script_template && channel.script_template.reveal_placement,
       silenceTechnique: channel.sfx_profile && channel.sfx_profile.silence_technique,
+      // The addendum's template engine, opt-in per channel. Both are null
+      // unless config/channels.json sets `visual_engine: "template"` for this
+      // channel, and mg-package does nothing with them when they are.
+      ...loadTemplateEngine(channel),
     });
     frames = mg.totalFrames;
     console.log(
