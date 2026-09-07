@@ -1,0 +1,1211 @@
+{
+ "beats": [
+  {
+   "beat_id": "s0t",
+   "mode": "TYPE",
+   "focal": "In 1986, workers near the Black Sea broke into a cave that had been sealed for five and a half million years.",
+   "start_frame": 3,
+   "duration_frames": 142,
+   "sentence": "In 1986, workers near the Black Sea broke into a cave that had been sealed for five and a half million years.",
+   "words": [
+    {
+     "word": "In",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "1986,",
+     "at": 0.028985507246376812,
+     "frame": 4
+    },
+    {
+     "word": "workers",
+     "at": 0.10144927536231885,
+     "frame": 14
+    },
+    {
+     "word": "near",
+     "at": 0.16666666666666666,
+     "frame": 24
+    },
+    {
+     "word": "the",
+     "at": 0.21014492753623187,
+     "frame": 30
+    },
+    {
+     "word": "Black",
+     "at": 0.2463768115942029,
+     "frame": 35
+    },
+    {
+     "word": "Sea",
+     "at": 0.2971014492753623,
+     "frame": 42
+    },
+    {
+     "word": "broke",
+     "at": 0.3333333333333333,
+     "frame": 47
+    },
+    {
+     "word": "into",
+     "at": 0.38405797101449274,
+     "frame": 55
+    },
+    {
+     "word": "a",
+     "at": 0.427536231884058,
+     "frame": 61
+    },
+    {
+     "word": "cave",
+     "at": 0.4492753623188406,
+     "frame": 64
+    },
+    {
+     "word": "that",
+     "at": 0.4927536231884058,
+     "frame": 70
+    },
+    {
+     "word": "had",
+     "at": 0.5362318840579711,
+     "frame": 76
+    },
+    {
+     "word": "been",
+     "at": 0.572463768115942,
+     "frame": 81
+    },
+    {
+     "word": "sealed",
+     "at": 0.6159420289855072,
+     "frame": 87
+    },
+    {
+     "word": "for",
+     "at": 0.6739130434782609,
+     "frame": 96
+    },
+    {
+     "word": "five",
+     "at": 0.7101449275362319,
+     "frame": 101
+    },
+    {
+     "word": "and",
+     "at": 0.7536231884057971,
+     "frame": 107
+    },
+    {
+     "word": "a",
+     "at": 0.7898550724637681,
+     "frame": 112
+    },
+    {
+     "word": "half",
+     "at": 0.8115942028985508,
+     "frame": 115
+    },
+    {
+     "word": "million",
+     "at": 0.855072463768116,
+     "frame": 121
+    },
+    {
+     "word": "years.",
+     "at": 0.9202898550724637,
+     "frame": 131
+    }
+   ],
+   "transitionIn": "CUT",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s0v",
+   "mode": "VISUAL",
+   "focal": "cave entrance",
+   "start_frame": 145,
+   "duration_frames": 80,
+   "sentence": "In 1986, workers near the Black Sea broke into a cave that had been sealed for five and a half million years.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s1t",
+   "mode": "TYPE",
+   "focal": "Inside: toxic air, total darkness, and thirty-five species found nowhere else on Earth.",
+   "start_frame": 225,
+   "duration_frames": 121,
+   "sentence": "Inside: toxic air, total darkness, and thirty-five species found nowhere else on Earth.",
+   "words": [
+    {
+     "word": "Inside:",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "toxic",
+     "at": 0.10714285714285714,
+     "frame": 13
+    },
+    {
+     "word": "air,",
+     "at": 0.16964285714285715,
+     "frame": 21
+    },
+    {
+     "word": "total",
+     "at": 0.25,
+     "frame": 30
+    },
+    {
+     "word": "darkness,",
+     "at": 0.3125,
+     "frame": 38
+    },
+    {
+     "word": "and",
+     "at": 0.4375,
+     "frame": 53
+    },
+    {
+     "word": "thirty-five",
+     "at": 0.48214285714285715,
+     "frame": 58
+    },
+    {
+     "word": "species",
+     "at": 0.5892857142857143,
+     "frame": 71
+    },
+    {
+     "word": "found",
+     "at": 0.6696428571428571,
+     "frame": 81
+    },
+    {
+     "word": "nowhere",
+     "at": 0.7321428571428571,
+     "frame": 89
+    },
+    {
+     "word": "else",
+     "at": 0.8125,
+     "frame": 98
+    },
+    {
+     "word": "on",
+     "at": 0.8660714285714286,
+     "frame": 105
+    },
+    {
+     "word": "Earth.",
+     "at": 0.9017857142857143,
+     "frame": 109
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s1v",
+   "mode": "VISUAL",
+   "focal": "gas cloud",
+   "start_frame": 346,
+   "duration_frames": 68,
+   "sentence": "Inside: toxic air, total darkness, and thirty-five species found nowhere else on Earth.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s2t",
+   "mode": "TYPE",
+   "focal": "Oxygen at just seven percent.",
+   "start_frame": 414,
+   "duration_frames": 58,
+   "sentence": "Oxygen at just seven percent.",
+   "words": [
+    {
+     "word": "Oxygen",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "at",
+     "at": 0.21052631578947367,
+     "frame": 12
+    },
+    {
+     "word": "just",
+     "at": 0.3157894736842105,
+     "frame": 18
+    },
+    {
+     "word": "seven",
+     "at": 0.47368421052631576,
+     "frame": 27
+    },
+    {
+     "word": "percent.",
+     "at": 0.6578947368421053,
+     "frame": 38
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s2v",
+   "mode": "VISUAL",
+   "focal": "oxygen gauge",
+   "start_frame": 472,
+   "duration_frames": 33,
+   "sentence": "Oxygen at just seven percent.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s3t",
+   "mode": "TYPE",
+   "focal": "Air thick with hydrogen sulfide.",
+   "start_frame": 505,
+   "duration_frames": 60,
+   "sentence": "Air thick with hydrogen sulfide.",
+   "words": [
+    {
+     "word": "Air",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "thick",
+     "at": 0.12195121951219512,
+     "frame": 7
+    },
+    {
+     "word": "with",
+     "at": 0.2926829268292683,
+     "frame": 18
+    },
+    {
+     "word": "hydrogen",
+     "at": 0.43902439024390244,
+     "frame": 26
+    },
+    {
+     "word": "sulfide.",
+     "at": 0.6829268292682927,
+     "frame": 41
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s3v",
+   "mode": "VISUAL",
+   "focal": "gas cloud",
+   "start_frame": 565,
+   "duration_frames": 34,
+   "sentence": "Air thick with hydrogen sulfide.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s4t",
+   "mode": "TYPE",
+   "focal": "And yet life is everywhere: blind spiders, eyeless leeches, ghost-pale centipedes, none of them needing sunlight to survive.",
+   "start_frame": 599,
+   "duration_frames": 152,
+   "sentence": "And yet life is everywhere: blind spiders, eyeless leeches, ghost-pale centipedes, none of them needing sunlight to survive.",
+   "words": [
+    {
+     "word": "And",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "yet",
+     "at": 0.03184713375796178,
+     "frame": 5
+    },
+    {
+     "word": "life",
+     "at": 0.06369426751592357,
+     "frame": 10
+    },
+    {
+     "word": "is",
+     "at": 0.10191082802547771,
+     "frame": 15
+    },
+    {
+     "word": "everywhere:",
+     "at": 0.12738853503184713,
+     "frame": 19
+    },
+    {
+     "word": "blind",
+     "at": 0.22929936305732485,
+     "frame": 35
+    },
+    {
+     "word": "spiders,",
+     "at": 0.27388535031847133,
+     "frame": 42
+    },
+    {
+     "word": "eyeless",
+     "at": 0.35668789808917195,
+     "frame": 54
+    },
+    {
+     "word": "leeches,",
+     "at": 0.4140127388535032,
+     "frame": 63
+    },
+    {
+     "word": "ghost-pale",
+     "at": 0.4968152866242038,
+     "frame": 76
+    },
+    {
+     "word": "centipedes,",
+     "at": 0.5668789808917197,
+     "frame": 86
+    },
+    {
+     "word": "none",
+     "at": 0.6687898089171974,
+     "frame": 102
+    },
+    {
+     "word": "of",
+     "at": 0.7070063694267515,
+     "frame": 107
+    },
+    {
+     "word": "them",
+     "at": 0.732484076433121,
+     "frame": 111
+    },
+    {
+     "word": "needing",
+     "at": 0.7707006369426752,
+     "frame": 117
+    },
+    {
+     "word": "sunlight",
+     "at": 0.8280254777070064,
+     "frame": 126
+    },
+    {
+     "word": "to",
+     "at": 0.89171974522293,
+     "frame": 136
+    },
+    {
+     "word": "survive.",
+     "at": 0.9171974522292994,
+     "frame": 139
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s4v",
+   "mode": "VISUAL",
+   "focal": "blind spider",
+   "start_frame": 751,
+   "duration_frames": 86,
+   "sentence": "And yet life is everywhere: blind spiders, eyeless leeches, ghost-pale centipedes, none of them needing sunlight to survive.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s5t",
+   "mode": "TYPE",
+   "focal": "And this cave is not alone.",
+   "start_frame": 837,
+   "duration_frames": 51,
+   "sentence": "And this cave is not alone.",
+   "words": [
+    {
+     "word": "And",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "this",
+     "at": 0.13513513513513514,
+     "frame": 7
+    },
+    {
+     "word": "cave",
+     "at": 0.2972972972972973,
+     "frame": 15
+    },
+    {
+     "word": "is",
+     "at": 0.4594594594594595,
+     "frame": 23
+    },
+    {
+     "word": "not",
+     "at": 0.5675675675675675,
+     "frame": 29
+    },
+    {
+     "word": "alone.",
+     "at": 0.7027027027027027,
+     "frame": 36
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s5v",
+   "mode": "VISUAL",
+   "focal": "cave cross section",
+   "start_frame": 888,
+   "duration_frames": 28,
+   "sentence": "And this cave is not alone.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s6t",
+   "mode": "TYPE",
+   "focal": "In the deepest caves on Earth, two kilometers down, a springtail called Plutomurus holds the record for the deepest animal ever found: 1,980 meters below the surface, in a world with no light at all.",
+   "start_frame": 916,
+   "duration_frames": 254,
+   "sentence": "In the deepest caves on Earth, two kilometers down, a springtail called Plutomurus holds the record for the deepest animal ever found: 1,980 meters below the surface, in a world with no light at all.",
+   "words": [
+    {
+     "word": "In",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "the",
+     "at": 0.01606425702811245,
+     "frame": 4
+    },
+    {
+     "word": "deepest",
+     "at": 0.03614457831325301,
+     "frame": 9
+    },
+    {
+     "word": "caves",
+     "at": 0.07228915662650602,
+     "frame": 18
+    },
+    {
+     "word": "on",
+     "at": 0.10040160642570281,
+     "frame": 26
+    },
+    {
+     "word": "Earth,",
+     "at": 0.11646586345381527,
+     "frame": 30
+    },
+    {
+     "word": "two",
+     "at": 0.1606425702811245,
+     "frame": 41
+    },
+    {
+     "word": "kilometers",
+     "at": 0.18072289156626506,
+     "frame": 46
+    },
+    {
+     "word": "down,",
+     "at": 0.2289156626506024,
+     "frame": 58
+    },
+    {
+     "word": "a",
+     "at": 0.26907630522088355,
+     "frame": 68
+    },
+    {
+     "word": "springtail",
+     "at": 0.28112449799196787,
+     "frame": 71
+    },
+    {
+     "word": "called",
+     "at": 0.3293172690763052,
+     "frame": 84
+    },
+    {
+     "word": "Plutomurus",
+     "at": 0.3614457831325301,
+     "frame": 92
+    },
+    {
+     "word": "holds",
+     "at": 0.40963855421686746,
+     "frame": 104
+    },
+    {
+     "word": "the",
+     "at": 0.43775100401606426,
+     "frame": 111
+    },
+    {
+     "word": "record",
+     "at": 0.4578313253012048,
+     "frame": 116
+    },
+    {
+     "word": "for",
+     "at": 0.4899598393574297,
+     "frame": 124
+    },
+    {
+     "word": "the",
+     "at": 0.5100401606425703,
+     "frame": 130
+    },
+    {
+     "word": "deepest",
+     "at": 0.5301204819277109,
+     "frame": 135
+    },
+    {
+     "word": "animal",
+     "at": 0.5662650602409639,
+     "frame": 144
+    },
+    {
+     "word": "ever",
+     "at": 0.5983935742971888,
+     "frame": 152
+    },
+    {
+     "word": "found:",
+     "at": 0.6224899598393574,
+     "frame": 158
+    },
+    {
+     "word": "1,980",
+     "at": 0.6666666666666666,
+     "frame": 169
+    },
+    {
+     "word": "meters",
+     "at": 0.6907630522088354,
+     "frame": 175
+    },
+    {
+     "word": "below",
+     "at": 0.7228915662650602,
+     "frame": 184
+    },
+    {
+     "word": "the",
+     "at": 0.751004016064257,
+     "frame": 191
+    },
+    {
+     "word": "surface,",
+     "at": 0.7710843373493976,
+     "frame": 196
+    },
+    {
+     "word": "in",
+     "at": 0.8232931726907631,
+     "frame": 209
+    },
+    {
+     "word": "a",
+     "at": 0.8393574297188755,
+     "frame": 213
+    },
+    {
+     "word": "world",
+     "at": 0.8514056224899599,
+     "frame": 216
+    },
+    {
+     "word": "with",
+     "at": 0.8795180722891566,
+     "frame": 223
+    },
+    {
+     "word": "no",
+     "at": 0.9036144578313253,
+     "frame": 230
+    },
+    {
+     "word": "light",
+     "at": 0.9196787148594378,
+     "frame": 234
+    },
+    {
+     "word": "at",
+     "at": 0.9477911646586346,
+     "frame": 241
+    },
+    {
+     "word": "all.",
+     "at": 0.963855421686747,
+     "frame": 245
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s6v",
+   "mode": "VISUAL",
+   "focal": "springtail",
+   "start_frame": 1170,
+   "duration_frames": 143,
+   "sentence": "In the deepest caves on Earth, two kilometers down, a springtail called Plutomurus holds the record for the deepest animal ever found: 1,980 meters below the surface, in a world with no light at all.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s7t",
+   "mode": "TYPE",
+   "focal": "These creatures do not eat sunlight.",
+   "start_frame": 1313,
+   "duration_frames": 57,
+   "sentence": "These creatures do not eat sunlight.",
+   "words": [
+    {
+     "word": "These",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "creatures",
+     "at": 0.15217391304347827,
+     "frame": 9
+    },
+    {
+     "word": "do",
+     "at": 0.391304347826087,
+     "frame": 22
+    },
+    {
+     "word": "not",
+     "at": 0.4782608695652174,
+     "frame": 27
+    },
+    {
+     "word": "eat",
+     "at": 0.5869565217391305,
+     "frame": 33
+    },
+    {
+     "word": "sunlight.",
+     "at": 0.6956521739130435,
+     "frame": 40
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s7v",
+   "mode": "VISUAL",
+   "focal": "no sunlight",
+   "start_frame": 1370,
+   "duration_frames": 32,
+   "sentence": "These creatures do not eat sunlight.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s8t",
+   "mode": "TYPE",
+   "focal": "They eat chemistry: bacteria turning minerals and sulfur into food, exactly like the vents of the deep ocean.",
+   "start_frame": 1402,
+   "duration_frames": 142,
+   "sentence": "They eat chemistry: bacteria turning minerals and sulfur into food, exactly like the vents of the deep ocean.",
+   "words": [
+    {
+     "word": "They",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "eat",
+     "at": 0.043795620437956206,
+     "frame": 6
+    },
+    {
+     "word": "chemistry:",
+     "at": 0.08029197080291971,
+     "frame": 11
+    },
+    {
+     "word": "bacteria",
+     "at": 0.1897810218978102,
+     "frame": 27
+    },
+    {
+     "word": "turning",
+     "at": 0.26277372262773724,
+     "frame": 37
+    },
+    {
+     "word": "minerals",
+     "at": 0.3284671532846715,
+     "frame": 47
+    },
+    {
+     "word": "and",
+     "at": 0.40145985401459855,
+     "frame": 57
+    },
+    {
+     "word": "sulfur",
+     "at": 0.43795620437956206,
+     "frame": 62
+    },
+    {
+     "word": "into",
+     "at": 0.49635036496350365,
+     "frame": 70
+    },
+    {
+     "word": "food,",
+     "at": 0.5401459854014599,
+     "frame": 77
+    },
+    {
+     "word": "exactly",
+     "at": 0.6131386861313869,
+     "frame": 87
+    },
+    {
+     "word": "like",
+     "at": 0.6788321167883211,
+     "frame": 96
+    },
+    {
+     "word": "the",
+     "at": 0.7226277372262774,
+     "frame": 103
+    },
+    {
+     "word": "vents",
+     "at": 0.7591240875912408,
+     "frame": 108
+    },
+    {
+     "word": "of",
+     "at": 0.8102189781021898,
+     "frame": 115
+    },
+    {
+     "word": "the",
+     "at": 0.8394160583941606,
+     "frame": 119
+    },
+    {
+     "word": "deep",
+     "at": 0.8759124087591241,
+     "frame": 124
+    },
+    {
+     "word": "ocean.",
+     "at": 0.9197080291970803,
+     "frame": 131
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s8v",
+   "mode": "VISUAL",
+   "focal": "ecosystem web",
+   "start_frame": 1544,
+   "duration_frames": 80,
+   "sentence": "They eat chemistry: bacteria turning minerals and sulfur into food, exactly like the vents of the deep ocean.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s9t",
+   "mode": "TYPE",
+   "focal": "Entire ecosystems running on nothing but rock.",
+   "start_frame": 1624,
+   "duration_frames": 73,
+   "sentence": "Entire ecosystems running on nothing but rock.",
+   "words": [
+    {
+     "word": "Entire",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "ecosystems",
+     "at": 0.14035087719298245,
+     "frame": 10
+    },
+    {
+     "word": "running",
+     "at": 0.3508771929824561,
+     "frame": 26
+    },
+    {
+     "word": "on",
+     "at": 0.5087719298245614,
+     "frame": 37
+    },
+    {
+     "word": "nothing",
+     "at": 0.5789473684210527,
+     "frame": 42
+    },
+    {
+     "word": "but",
+     "at": 0.7368421052631579,
+     "frame": 54
+    },
+    {
+     "word": "rock.",
+     "at": 0.8245614035087719,
+     "frame": 60
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s9v",
+   "mode": "VISUAL",
+   "focal": "rock strata",
+   "start_frame": 1697,
+   "duration_frames": 41,
+   "sentence": "Entire ecosystems running on nothing but rock.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s10t",
+   "mode": "TYPE",
+   "focal": "So next time you stand in the sun, remember: two kilometers below your feet, life is thriving in a world that has never seen it.",
+   "start_frame": 1738,
+   "duration_frames": 153,
+   "sentence": "So next time you stand in the sun, remember: two kilometers below your feet, life is thriving in a world that has never seen it.",
+   "words": [
+    {
+     "word": "So",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "next",
+     "at": 0.024096385542168676,
+     "frame": 4
+    },
+    {
+     "word": "time",
+     "at": 0.060240963855421686,
+     "frame": 9
+    },
+    {
+     "word": "you",
+     "at": 0.0963855421686747,
+     "frame": 15
+    },
+    {
+     "word": "stand",
+     "at": 0.12650602409638553,
+     "frame": 19
+    },
+    {
+     "word": "in",
+     "at": 0.1686746987951807,
+     "frame": 26
+    },
+    {
+     "word": "the",
+     "at": 0.1927710843373494,
+     "frame": 29
+    },
+    {
+     "word": "sun,",
+     "at": 0.22289156626506024,
+     "frame": 34
+    },
+    {
+     "word": "remember:",
+     "at": 0.27710843373493976,
+     "frame": 42
+    },
+    {
+     "word": "two",
+     "at": 0.3614457831325301,
+     "frame": 55
+    },
+    {
+     "word": "kilometers",
+     "at": 0.39156626506024095,
+     "frame": 60
+    },
+    {
+     "word": "below",
+     "at": 0.463855421686747,
+     "frame": 71
+    },
+    {
+     "word": "your",
+     "at": 0.5060240963855421,
+     "frame": 77
+    },
+    {
+     "word": "feet,",
+     "at": 0.5421686746987951,
+     "frame": 83
+    },
+    {
+     "word": "life",
+     "at": 0.6024096385542169,
+     "frame": 92
+    },
+    {
+     "word": "is",
+     "at": 0.6385542168674698,
+     "frame": 98
+    },
+    {
+     "word": "thriving",
+     "at": 0.6626506024096386,
+     "frame": 101
+    },
+    {
+     "word": "in",
+     "at": 0.7228915662650602,
+     "frame": 111
+    },
+    {
+     "word": "a",
+     "at": 0.7469879518072289,
+     "frame": 114
+    },
+    {
+     "word": "world",
+     "at": 0.7650602409638554,
+     "frame": 117
+    },
+    {
+     "word": "that",
+     "at": 0.8072289156626506,
+     "frame": 124
+    },
+    {
+     "word": "has",
+     "at": 0.8433734939759037,
+     "frame": 129
+    },
+    {
+     "word": "never",
+     "at": 0.8734939759036144,
+     "frame": 134
+    },
+    {
+     "word": "seen",
+     "at": 0.9156626506024096,
+     "frame": 140
+    },
+    {
+     "word": "it.",
+     "at": 0.9518072289156626,
+     "frame": 146
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s10v",
+   "mode": "VISUAL",
+   "focal": "sunlight",
+   "start_frame": 1891,
+   "duration_frames": 86,
+   "sentence": "So next time you stand in the sun, remember: two kilometers below your feet, life is thriving in a world that has never seen it.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s11t",
+   "mode": "TYPE",
+   "focal": "Follow Depth Unknown for more from the dark.",
+   "start_frame": 1977,
+   "duration_frames": 67,
+   "sentence": "Follow Depth Unknown for more from the dark.",
+   "words": [
+    {
+     "word": "Follow",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "Depth",
+     "at": 0.14285714285714285,
+     "frame": 10
+    },
+    {
+     "word": "Unknown",
+     "at": 0.26785714285714285,
+     "frame": 18
+    },
+    {
+     "word": "for",
+     "at": 0.42857142857142855,
+     "frame": 29
+    },
+    {
+     "word": "more",
+     "at": 0.5178571428571429,
+     "frame": 35
+    },
+    {
+     "word": "from",
+     "at": 0.625,
+     "frame": 42
+    },
+    {
+     "word": "the",
+     "at": 0.7321428571428571,
+     "frame": 49
+    },
+    {
+     "word": "dark.",
+     "at": 0.8214285714285714,
+     "frame": 55
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s11v",
+   "mode": "VISUAL",
+   "focal": "depth scale",
+   "start_frame": 2044,
+   "duration_frames": 38,
+   "sentence": "Follow Depth Unknown for more from the dark.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  }
+ ],
+ "palette": {
+  "primary": [
+   "#1A1A2E",
+   "#16213E",
+   "#F5536B",
+   "#0F0F1A"
+  ],
+  "secondary": [
+   "#C81E3C",
+   "#8892B0",
+   "#E6E8EC"
+  ]
+ },
+ "fonts": {
+  "primary": "DM Sans",
+  "secondary": "Noto Serif"
+ },
+ "picks": [
+  {
+   "sentence": "In 1986, workers near the Black Sea broke into a cave that had been sealed for five and a half million years.",
+   "asset": "cave entrance",
+   "score": 37.4,
+   "subject": "cave"
+  },
+  {
+   "sentence": "Inside: toxic air, total darkness, and thirty-five species found nowhere else on Earth.",
+   "asset": "gas cloud",
+   "score": 22,
+   "subject": "air"
+  },
+  {
+   "sentence": "Oxygen at just seven percent.",
+   "asset": "oxygen gauge",
+   "score": 20,
+   "subject": "oxygen"
+  },
+  {
+   "sentence": "Air thick with hydrogen sulfide.",
+   "asset": "gas cloud",
+   "score": 22,
+   "subject": "air"
+  },
+  {
+   "sentence": "And yet life is everywhere: blind spiders, eyeless leeches, ghost-pale centipedes, none of them needing sunlight to survive.",
+   "asset": "blind spider",
+   "score": 25.3,
+   "subject": "spiders"
+  },
+  {
+   "sentence": "And this cave is not alone.",
+   "asset": "cave cross section",
+   "score": 20.8,
+   "subject": "cave"
+  },
+  {
+   "sentence": "In the deepest caves on Earth, two kilometers down, a springtail called Plutomurus holds the record for the deepest animal ever found: 1,980 meters below the surface, in a world with no light at all.",
+   "asset": "springtail",
+   "score": 44.8,
+   "subject": "springtail"
+  },
+  {
+   "sentence": "These creatures do not eat sunlight.",
+   "asset": "no sunlight",
+   "score": 25.3,
+   "subject": "sunlight"
+  },
+  {
+   "sentence": "They eat chemistry: bacteria turning minerals and sulfur into food, exactly like the vents of the deep ocean.",
+   "asset": "ecosystem web",
+   "score": 22,
+   "subject": "food"
+  },
+  {
+   "sentence": "Entire ecosystems running on nothing but rock.",
+   "asset": "rock strata",
+   "score": 20.8,
+   "subject": "rock"
+  },
+  {
+   "sentence": "So next time you stand in the sun, remember: two kilometers below your feet, life is thriving in a world that has never seen it.",
+   "asset": "sunlight",
+   "score": 16.8,
+   "subject": "sun"
+  },
+  {
+   "sentence": "Follow Depth Unknown for more from the dark.",
+   "asset": "depth scale",
+   "score": 25.6,
+   "subject": "depth"
+  }
+ ]
+}
