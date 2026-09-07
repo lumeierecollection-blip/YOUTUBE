@@ -1,7 +1,5 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, Easing } from "remotion";
-import { ObjectShape } from "../compositions/objects/registry.js";
-import "../compositions/objects/index.jsx";
 import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
 
@@ -158,34 +156,18 @@ function Sentence({ beat, local, colors, font }) {
 }
 
 /**
- * The asset, filling the frame. Nothing else is drawn on a visual beat.
+ * An Iconify icon, contain-fit into the box the beat gives it. This is the
+ * only visual this engine draws — see qa-scripts/render-sentences.mjs for why
+ * the 109-drawing procedural fallback that used to sit behind this is gone
+ * rather than kept as a second-choice candidate.
  *
- * MEASURED DEFECT this fixes: the drawing used to be handed `p = max(0.15, e)`
- * where `e` saturates at 1 after the first third of the beat, so the drawing's
- * own clock stopped there. On the cave script's springtail beat (143 frames)
- * frames 1230 and 1241 came back pixel-identical — bounding box 72,600
- * 730x403 and 4.31% ink on both — and the frozen stretch ran 74 frames, 2.5
- * seconds. That is the slideshow the rebuild exists to kill.
- *
- * The drawing now gets the beat's own linear progress, so a drawing written
- * against `p` runs its full cycle across the beat: the springtail's furcula is
- * `sin(p * 2PI)`, and it now fires over the whole beat instead of once in the
- * first third and then holding. 89 of the 100 drawings reference `p`.
- *
- * The entrance envelope is kept separate as `e` and only drives opacity and
- * the settle in scale — it must not be the drawing's clock, which was the bug.
- */
-/**
- * An Iconify icon, contain-fit into the same box a procedural drawing gets.
- *
- * THIS IS WHY AN ICON CANNOT BREAK THE SAFE RECT THE WAY 16 OF THE 109
- * PROCEDURAL DRAWINGS DID. Those drew arbitrary coordinates relative to their
- * own box and had to individually honour it (qa-scripts/audit-object-bounds.mjs
- * exists because several didn't). An icon's own viewBox is fixed and known
- * (`beat.icon.width/height`), so scaling it to fit `box` by the smaller of the
- * two axis ratios is a geometric guarantee, not a drawing convention someone
- * has to remember. There is nothing to audit here because there is nothing
- * that can go wrong the way it did before.
+ * THIS IS WHY AN ICON CANNOT BREAK THE SAFE RECT THE WAY THE OLD PROCEDURAL
+ * DRAWINGS DID. Those drew arbitrary coordinates relative to their own box
+ * and had to individually honour it (several didn't). An icon's own viewBox
+ * is fixed and known (`beat.icon.width/height`), so scaling it to fit `box`
+ * by the smaller of the two axis ratios is a geometric guarantee, not a
+ * drawing convention someone has to remember. There is nothing to audit here
+ * because there is nothing that can go wrong the way it did before.
  *
  * Icons are flat glyphs with no internal animation of their own — unlike a
  * procedural drawing's `p`-driven motion (a spring, a furcula), there is no
@@ -224,9 +206,7 @@ function Visual({ beat, p, colors }) {
   return (
     <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, opacity: (1 - out) * e }}>
       <g transform={`translate(${cx - w / 2}, ${MID_Y - h / 2})`}>
-        {beat.icon
-          ? <IconGlyph icon={beat.icon} colors={colors} p={p} box={{ x: 0, y: 0, w, h }} />
-          : <ObjectShape name={beat.focal} colors={colors} p={p} box={{ x: 0, y: 0, w, h }} />}
+        <IconGlyph icon={beat.icon} colors={colors} p={p} box={{ x: 0, y: 0, w, h }} />
       </g>
     </svg>
   );

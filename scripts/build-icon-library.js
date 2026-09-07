@@ -20,14 +20,15 @@
  * synonym hits alone). No visualMeaning prose, no compatibleTopics, no
  * incompatibleTopics are authored per icon — that would mean hand-writing
  * semantics for 27,165 entries, which is the ≥2000-with-rich-metadata problem
- * this repo has already tried and abandoned once (see the source-json comment
- * history in config/assets/semantic-library.source.json). Leaving those
- * fields empty is honest: it means an icon's topic multiplier defaults to
- * 0.45 (visual-engine/assets/match.js) instead of the boosted 1.6x a
- * hand-tagged procedural asset can reach, and no icon can hard-reject on
- * incompatibleTopics because none is claimed. A false match is still bounded
- * by MATCH_THRESHOLD; there is simply no hand-authored guardrail beyond that
- * for this set, and that limit is real, not hidden.
+ * this repo already tried and abandoned once, the first time as a 109-drawing
+ * procedural library with hand-authored topics (config/assets/
+ * semantic-library.source.json, deleted once every one of those drawings had
+ * a better-reading icon equivalent — see data/renders/iconify-proof.png).
+ * Leaving these fields empty is honest: it means an icon's topic multiplier
+ * is neutral (visual-engine/assets/match.js) rather than boosted, and no icon
+ * can hard-reject on incompatibleTopics because none is claimed. A false
+ * match is still bounded by MATCH_THRESHOLD; there is simply no hand-authored
+ * guardrail beyond that for this set, and that limit is real, not hidden.
  *
  * SET PRIORITY ON A NAME COLLISION. If two sets publish the same spaced-out
  * name (mdi and tabler both have "volcano"), only one can occupy that name

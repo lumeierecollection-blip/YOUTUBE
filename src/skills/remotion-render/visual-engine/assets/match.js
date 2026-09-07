@@ -25,6 +25,32 @@ const words = (t) => String(t || "").toLowerCase().split(/[^a-z0-9]+/).filter(Bo
 const contentWords = (t) => words(t).filter((w) => w.length > 2 && !STOP.has(w));
 
 /**
+ * A regular-plural-only singularizer, deliberately narrow.
+ *
+ * Icon names are catalogued singular ("spider", "cave", "centipede"); a
+ * narrated sentence says "spiders", "caves", "centipedes". With no stemming
+ * at all, "blind spiders, eyeless leeches, ghost-pale centipedes" matched
+ * none of its own subjects and lost to an unrelated icon scoring only on
+ * incidental words — measured after the procedural library (whose authors
+ * had hand-written both plural and singular into its synonym lists) was
+ * deleted in favour of icons alone, which carry no such accommodation.
+ *
+ * Kept deliberately narrow rather than a real stemmer: length 4+ only (so
+ * "gas", "yes" are never touched), "-ss" excluded (so "glass" survives), and
+ * a sibilant "-es" handled separately from a plain "-s" so "leeches" reduces
+ * to "leech" and not "leeche". Irregular plurals (mice, teeth) are not
+ * covered and are not worth covering for this — MATCH_THRESHOLD is still the
+ * backstop against a bad match, this only recovers the regular case.
+ */
+const singularize = (w) => {
+  if (w.length < 4 || /ss$/.test(w)) return w;
+  if (/(ch|sh|x|z)es$/.test(w)) return w.slice(0, -2);
+  if (/ies$/.test(w)) return w.slice(0, -3) + "y";
+  if (/s$/.test(w)) return w.slice(0, -1);
+  return w;
+};
+
+/**
  * Score one asset against one intent.
  *
  * Weights are ordered by how specific the evidence is. A synonym hit is the
@@ -33,14 +59,18 @@ const contentWords = (t) => words(t).filter((w) => w.length > 2 && !STOP.has(w))
  * the easiest to hit by accident.
  */
 function score(asset, intent, sentenceWords) {
+  // sentenceWords already carries both the literal and singularized form of
+  // every content word (see selectAsset); singularizing the entry word too
+  // catches the rarer reverse case, an icon named in the plural.
+  const matches = (w) => sentenceWords.has(w) || sentenceWords.has(singularize(w));
   const hits = (list) => list.reduce((n, entry) =>
-    n + (words(entry).some((w) => sentenceWords.has(w)) ? 1 : 0), 0);
+    n + (words(entry).some(matches) ? 1 : 0), 0);
 
   let s = 0;
   s += hits(asset.synonyms) * 3.0;
   s += hits(asset.concepts) * 2.0;
-  s += words(asset.visualMeaning).filter((w) => w.length > 3 && sentenceWords.has(w)).length * 0.5;
-  if (asset.name.split(/\s+/).some((w) => sentenceWords.has(w.toLowerCase()))) s += 2.5;
+  s += words(asset.visualMeaning).filter((w) => w.length > 3 && matches(w)).length * 0.5;
+  if (asset.name.split(/\s+/).some((w) => matches(w.toLowerCase()))) s += 2.5;
 
   /**
    * THE SENTENCE'S LITERAL SUBJECT OUTWEIGHS INCIDENTAL OVERLAP.
@@ -56,7 +86,9 @@ function score(asset, intent, sentenceWords) {
   // is how "life is thriving" selected a spider: one of that spider's concepts
   // is the phrase "cave-adapted life".
   const subj = String(intent.literalSubject || "").toLowerCase();
-  if (subj && [asset.name, ...asset.synonyms].some((t) => words(t).includes(subj))) s += 5.0;
+  const subjSingular = singularize(subj);
+  if (subj && [asset.name, ...asset.synonyms].some((t) =>
+    words(t).some((w) => w === subj || w === subjSingular || singularize(w) === subjSingular))) s += 5.0;
 
   /**
    * A NEGATED SENTENCE WANTS THE ABSENCE, NOT THE THING.
@@ -120,8 +152,11 @@ function pickBest(intent, sentenceWords, library, opts) {
 export function selectAsset(sentence, library, opts = {}) {
   const base = visualIntent(sentence);
   // Content words only — see contentWords() for the fragment problem this
-  // fixes. The synonym/concept/name hit tests below all read this set.
-  const sentenceWords = new Set(contentWords(sentence));
+  // fixes. Each word's singular is added alongside it — see singularize()
+  // for why a plural sentence word needs to reach a singular icon name — so
+  // the synonym/concept/name hit tests below (which read this set) see both.
+  const sentenceContent = contentWords(sentence);
+  const sentenceWords = new Set(sentenceContent.flatMap((w) => [w, singularize(w)]));
   /**
    * The subject is chosen by trying the candidates, not guessed once.
    *

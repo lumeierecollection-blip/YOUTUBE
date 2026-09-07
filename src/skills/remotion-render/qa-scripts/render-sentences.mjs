@@ -30,22 +30,23 @@ const srt = readFileSync(join(ROOT, srtPath), "utf-8");
 const spec = JSON.parse(readFileSync(join(ROOT, "config/visual-identity.json"), "utf-8")).channels[cid];
 
 /**
- * ICONS REPLACE A PROCEDURAL DRAWING OF THE SAME NAME.
+ * ICONS ONLY. THIS ENGINE NO LONGER DRAWS ITS OWN OBJECTS.
  *
  * data/renders/iconify-proof.png measured that a hand-drawn spider and
  * centipede did not read at Shorts scale and their Iconify equivalents did.
- * Where the two libraries name the same thing (see icon-library.json's
- * `droppedAsDuplicateName` note in scripts/build-icon-library.js for the
- * cross-icon-set version of this same rule), the icon wins and the
- * procedural entry is removed from the pool entirely — not kept as a
- * second, weaker candidate for the matcher to occasionally still pick.
+ * The 109-drawing procedural library this engine used to fall back on
+ * (config/assets/semantic-library.json) is deleted, not merely deprioritised
+ * — hand-tagging ~100 shapes with invented topics was the same
+ * ≥2000-with-rich-metadata problem this repo already tried once, and every
+ * one of those drawings now has a real icon that reads better at Shorts
+ * scale. `compositions/objects/{library,nature}.jsx` and the registry they
+ * register into still exist and still render — they are load-bearing for
+ * `TemplateScene` (config/channels.json id 2, "Legal Brief", is the one live
+ * channel with `visual_engine: "template"`) — this engine simply no longer
+ * reads from them.
  */
-const procedural = JSON.parse(readFileSync(join(ROOT, "config/assets/semantic-library.json"), "utf-8")).assets;
-const iconAssets = JSON.parse(readFileSync(join(ROOT, "config/assets/icon-library.json"), "utf-8")).assets;
-const iconNames = new Set(iconAssets.map((a) => a.name));
-const proceduralKept = procedural.filter((a) => !iconNames.has(a.name));
-console.log(`asset pool: ${iconAssets.length} icon(s) + ${proceduralKept.length} procedural (${procedural.length - proceduralKept.length} procedural dropped for an icon of the same name)`);
-const library = { assets: [...iconAssets, ...proceduralKept] };
+const library = JSON.parse(readFileSync(join(ROOT, "config/assets/icon-library.json"), "utf-8"));
+console.log(`asset pool: ${library.assets.length} icon(s)`);
 
 /** SRT timestamps to frames. The captions are the timing source of truth. */
 const toFrames = (t) => {
@@ -71,20 +72,21 @@ const { beats, warnings } = buildSentenceBeats(cues, (sentence) => {
 });
 
 /**
- * Resolve the icon body for every VISUAL beat whose winning asset is an icon.
+ * Resolve the icon body for every VISUAL beat.
  *
  * This runs in Node, after the beats exist, so the plan JSON ends up
  * self-contained: `beat.icon` carries the raw SVG body and its native
  * viewBox, and the browser-side composition never imports an npm icon
- * package (see icon-bodies.js for why that split exists).
+ * package (see icon-bodies.js for why that split exists). Every asset in
+ * the pool is an icon now, so a VISUAL beat's focal always resolves to one
+ * — buildSentenceBeats() never emits a VISUAL beat for a sentence pick()
+ * returned null for (see sentence-beats.js's canShowVisual).
  */
 for (const b of beats) {
-  if (b.mode !== "VISUAL" || !b.focal) continue;
+  if (b.mode !== "VISUAL") continue;
   const asset = assetByName.get(b.focal);
-  if (asset && asset.source === "iconify") {
-    b.icon = { ...getIconBody(asset.iconSet, asset.iconName), set: asset.iconSet, name: asset.iconName };
-    if (asset.attribution) b.attribution = asset.attribution;
-  }
+  b.icon = { ...getIconBody(asset.iconSet, asset.iconName), set: asset.iconSet, name: asset.iconName };
+  if (asset.attribution) b.attribution = asset.attribution;
 }
 
 const plan = {

@@ -102,13 +102,20 @@
   {
    "beat_id": "s1v",
    "mode": "VISUAL",
-   "focal": "constitutional text",
+   "focal": "earth arrow right",
    "start_frame": 133,
    "duration_frames": 54,
    "sentence": "That's all it takes to protect your constitutional rights during a traffic stop.",
    "words": [],
    "transitionIn": "MORPH",
-   "transitionOut": "CLEAR"
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19 21v-2h-4v-2h4v-2l3 3zm-7-3c0-2.2 1.2-4.1 3-5.2c-.1-.5-.5-.8-1-.8H8v-2h2c.6 0 1-.4 1-1V7h2c1.1 0 2-.9 2-2v-.4c2.9 1.2 5 4 5 7.4v.3c.7.2 1.3.6 1.9 1.1c.1-.4.1-.9.1-1.4c0-5.5-4.5-10-10-10S2 6.5 2 12s4.5 10 10 10c.5 0 1 0 1.4-.1c-.9-1.1-1.4-2.4-1.4-3.9m-1 1.9c-4-.5-7-3.8-7-7.9c0-.6.1-1.2.2-1.8L9 15v1c0 1.1.9 2 2 2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "earth-arrow-right"
+   }
   },
   {
    "beat_id": "s2t",
@@ -230,13 +237,26 @@
   {
    "beat_id": "s2v",
    "mode": "VISUAL",
-   "focal": "evidence exhibit",
+   "focal": "nothing to say",
    "start_frame": 303,
    "duration_frames": 65,
    "sentence": "Say the wrong thing — or say too much — and you could be handing a prosecutor the evidence they need.",
    "words": [],
    "transitionIn": "MORPH",
-   "transitionOut": "CLEAR"
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M254.156 56.938c-64.144 0-122.393 19.17-165.03 50.718c-42.64 31.547-69.845 76.01-69.845 125.5c0 49.492 27.207 93.952 69.845 125.5c6.388 4.727 13.13 9.164 20.188 13.313l-12.657 95.905l90.594-65.75c21.226 4.708 43.67 7.25 66.906 7.25c64.144 0 122.362-19.17 165-50.72C461.794 327.11 489 282.65 489 233.156c0-49.49-27.206-93.95-69.844-125.5c-42.638-31.546-100.856-50.718-165-50.718M157 274.438c12.69 0 23 10.276 23 22.968c0 12.69-10.31 23-23 23s-22.97-10.31-22.97-23s10.28-22.97 22.97-22.97zm96.844 0c12.69 0 22.97 10.276 22.97 22.968c-.002 12.69-10.28 23-22.97 23s-23-10.31-23-23s10.31-22.97 23-22.97zm99.844 0c12.69 0 22.968 10.276 22.968 22.968c0 12.69-10.278 23-22.97 23c-12.69 0-22.998-10.31-22.998-23s10.31-22.97 23-22.97z\"/>",
+    "width": 512,
+    "height": 512,
+    "set": "game-icons",
+    "name": "nothing-to-say"
+   },
+   "attribution": {
+    "name": "GameIcons",
+    "url": "https://github.com/game-icons/icons",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://github.com/game-icons/icons/blob/master/license.txt"
+   }
   },
   {
    "beat_id": "s3t",
@@ -498,13 +518,20 @@
   {
    "beat_id": "s4v",
    "mode": "VISUAL",
-   "focal": "evidence exhibit",
+   "focal": "earth arrow right",
    "start_frame": 661,
    "duration_frames": 111,
    "sentence": "Most people lose their rights during traffic stops not because they're guilty, but because they don't know what to say — and they talk too much in a moment where every word becomes evidence.",
    "words": [],
    "transitionIn": "MORPH",
-   "transitionOut": "CLEAR"
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19 21v-2h-4v-2h4v-2l3 3zm-7-3c0-2.2 1.2-4.1 3-5.2c-.1-.5-.5-.8-1-.8H8v-2h2c.6 0 1-.4 1-1V7h2c1.1 0 2-.9 2-2v-.4c2.9 1.2 5 4 5 7.4v.3c.7.2 1.3.6 1.9 1.1c.1-.4.1-.9.1-1.4c0-5.5-4.5-10-10-10S2 6.5 2 12s4.5 10 10 10c.5 0 1 0 1.4-.1c-.9-1.1-1.4-2.4-1.4-3.9m-1 1.9c-4-.5-7-3.8-7-7.9c0-.6.1-1.2.2-1.8L9 15v1c0 1.1.9 2 2 2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "earth-arrow-right"
+   }
   },
   {
    "beat_id": "s5t",
@@ -576,7 +603,7 @@
   {
    "beat_id": "s5v",
    "mode": "VISUAL",
-   "focal": "thermometer lines",
+   "focal": "earth arrow right",
    "start_frame": 882,
    "duration_frames": 62,
    "sentence": "Here are the four lines, refined over decades of civil-rights litigation.",
@@ -584,11 +611,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"currentColor\" d=\"M17 3h4v2h-4zm0 4h4v2h-4zm0 4h4v2h-3.25l-.75-.9zm4 4v2h-2c0-.69-.1-1.37-.29-2zM7 3v2H3V3zm0 4v2H3V7zm0 4v1.1l-.75.9H3v-2zm-4 4h2.29c-.19.63-.29 1.31-.29 2H3zm12-2V5c0-1.66-1.34-3-3-3S9 3.34 9 5v8c-2.21 1.66-2.66 4.79-1 7s4.79 2.66 7 1s2.66-4.79 1-7a4.7 4.7 0 0 0-1-1m-3-9c.55 0 1 .45 1 1v3h-2V5c0-.55.45-1 1-1\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M19 21v-2h-4v-2h4v-2l3 3zm-7-3c0-2.2 1.2-4.1 3-5.2c-.1-.5-.5-.8-1-.8H8v-2h2c.6 0 1-.4 1-1V7h2c1.1 0 2-.9 2-2v-.4c2.9 1.2 5 4 5 7.4v.3c.7.2 1.3.6 1.9 1.1c.1-.4.1-.9.1-1.4c0-5.5-4.5-10-10-10S2 6.5 2 12s4.5 10 10 10c.5 0 1 0 1.4-.1c-.9-1.1-1.4-2.4-1.4-3.9m-1 1.9c-4-.5-7-3.8-7-7.9c0-.6.1-1.2.2-1.8L9 15v1c0 1.1.9 2 2 2z\"/>",
     "width": 24,
     "height": 24,
     "set": "mdi",
-    "name": "thermometer-lines"
+    "name": "earth-arrow-right"
    }
   },
   {
@@ -651,7 +678,7 @@
   {
    "beat_id": "s6v",
    "mode": "VISUAL",
-   "focal": "home floor negative 1",
+   "focal": "note search",
    "start_frame": 1021,
    "duration_frames": 44,
    "sentence": "Line one: I do not consent to any searches.",
@@ -659,11 +686,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"currentColor\" d=\"M12 3L2 12h3v8h14v-8h3zm-1 12H7v-2h4zm4 3h-2v-8h-2V8h4z\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M15 3H5c-1.11 0-2 .89-2 2v5.82a6.505 6.505 0 0 1 9.1.08a6.525 6.525 0 0 1 0 9.2c-.36.35-.75.64-1.16.9H19c1.11 0 2-.89 2-2V9zm-1 7V4.5l5.5 5.5zm-6.5 1C5 11 3 13 3 15.5c0 .88.25 1.71.69 2.4L.61 21L2 22.39l3.12-3.07c.69.43 1.51.68 2.38.68c2.5 0 4.5-2 4.5-4.5S10 11 7.5 11m0 7a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5\"/>",
     "width": 24,
     "height": 24,
     "set": "mdi",
-    "name": "home-floor-negative-1"
+    "name": "note-search"
    }
   },
   {
@@ -741,7 +768,7 @@
   {
    "beat_id": "s7v",
    "mode": "VISUAL",
-   "focal": "line",
+   "focal": "thermometer lines",
    "start_frame": 1153,
    "duration_frames": 50,
    "sentence": "Line two: Am I being detained, or am I free to go?",
@@ -749,11 +776,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 18a2 2 0 1 0 4 0a2 2 0 1 0-4 0M16 6a2 2 0 1 0 4 0a2 2 0 1 0-4 0M7.5 16.5l9-9\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M17 3h4v2h-4zm0 4h4v2h-4zm0 4h4v2h-3.25l-.75-.9zm4 4v2h-2c0-.69-.1-1.37-.29-2zM7 3v2H3V3zm0 4v2H3V7zm0 4v1.1l-.75.9H3v-2zm-4 4h2.29c-.19.63-.29 1.31-.29 2H3zm12-2V5c0-1.66-1.34-3-3-3S9 3.34 9 5v8c-2.21 1.66-2.66 4.79-1 7s4.79 2.66 7 1s2.66-4.79 1-7a4.7 4.7 0 0 0-1-1m-3-9c.55 0 1 .45 1 1v3h-2V5c0-.55.45-1 1-1\"/>",
     "width": 24,
     "height": 24,
-    "set": "tabler",
-    "name": "line"
+    "set": "mdi",
+    "name": "thermometer-lines"
    }
   },
   {
@@ -901,7 +928,7 @@
   {
    "beat_id": "s9v",
    "mode": "VISUAL",
-   "focal": "calendar star four points",
+   "focal": "thermometer lines",
    "start_frame": 1414,
    "duration_frames": 38,
    "sentence": "Line four: I would like to speak to a lawyer.",
@@ -909,11 +936,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"currentColor\" d=\"M10.74 12.25L12 9.5l1.25 2.75L16 13.5l-2.75 1.26L12 17.5l-1.26-2.74L8 13.5zM16 3V1h2v2h1c.53 0 1.04.21 1.41.59c.38.37.59.88.59 1.41v14c0 .53-.21 1.04-.59 1.41c-.37.38-.88.59-1.41.59H5c-.53 0-1.04-.21-1.41-.59C3.21 20.04 3 19.53 3 19V5c0-.53.21-1.04.59-1.41C3.96 3.21 4.47 3 5 3h1V1h2v2zM5 8v11h14V8z\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M17 3h4v2h-4zm0 4h4v2h-4zm0 4h4v2h-3.25l-.75-.9zm4 4v2h-2c0-.69-.1-1.37-.29-2zM7 3v2H3V3zm0 4v2H3V7zm0 4v1.1l-.75.9H3v-2zm-4 4h2.29c-.19.63-.29 1.31-.29 2H3zm12-2V5c0-1.66-1.34-3-3-3S9 3.34 9 5v8c-2.21 1.66-2.66 4.79-1 7s4.79 2.66 7 1s2.66-4.79 1-7a4.7 4.7 0 0 0-1-1m-3-9c.55 0 1 .45 1 1v3h-2V5c0-.55.45-1 1-1\"/>",
     "width": 24,
     "height": 24,
     "set": "mdi",
-    "name": "calendar-star-four-points"
+    "name": "thermometer-lines"
    }
   },
   {
@@ -1437,7 +1464,7 @@
   {
    "beat_id": "s17v",
    "mode": "VISUAL",
-   "focal": "frequently asked questions",
+   "focal": "account question",
    "start_frame": 2191,
    "duration_frames": 63,
    "sentence": "That means officers can ask you questions at the roadside — 'Do you know why I pulled you over?",
@@ -1445,11 +1472,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"currentColor\" d=\"M18 15H6l-4 4V3a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1m5-6v14l-4-4H8a1 1 0 0 1-1-1v-1h14V8h1a1 1 0 0 1 1 1M8.19 4c-.87 0-1.57.2-2.11.59c-.52.41-.78.98-.77 1.77l.01.03h1.93c.01-.3.1-.53.28-.69a1 1 0 0 1 .66-.23c.31 0 .57.1.75.28c.18.19.26.45.26.75c0 .32-.07.59-.23.82c-.14.23-.35.43-.61.59c-.51.34-.86.64-1.05.91C7.11 9.08 7 9.5 7 10h2c0-.31.04-.56.13-.74s.26-.36.51-.52c.45-.24.82-.53 1.11-.93s.44-.81.44-1.31c0-.76-.27-1.37-.81-1.82C9.85 4.23 9.12 4 8.19 4M7 11v2h2v-2zm6 2h2v-2h-2zm0-9v6h2V4z\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M13 8a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4a4 4 0 0 1 4 4m4 10v2H1v-2c0-2.21 3.58-4 8-4s8 1.79 8 4m3.5-3.5V16H19v-1.5zm-2-5H17V9a3 3 0 0 1 3-3a3 3 0 0 1 3 3c0 .97-.5 1.88-1.29 2.41l-.3.19c-.57.4-.91 1.01-.91 1.7v.2H19v-.2c0-1.19.6-2.3 1.59-2.95l.29-.19c.39-.26.62-.69.62-1.16A1.5 1.5 0 0 0 20 7.5A1.5 1.5 0 0 0 18.5 9z\"/>",
     "width": 24,
     "height": 24,
     "set": "mdi",
-    "name": "frequently-asked-questions"
+    "name": "account-question"
    }
   },
   {
@@ -1613,13 +1640,20 @@
   {
    "beat_id": "s21v",
    "mode": "VISUAL",
-   "focal": "court document",
+   "focal": "court basketball",
    "start_frame": 2479,
    "duration_frames": 36,
    "sentence": "And your answers are still admissible in court.",
    "words": [],
    "transitionIn": "MORPH",
-   "transitionOut": "CLEAR"
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 112h-8a32 32 0 0 1 0-64h8ZM32 96h8a32 32 0 0 1 0 64h-8Zm0 80h8a48 48 0 0 0 0-96h-8V64h88v128H32Zm192 16h-88V64h88v16h-8a48 48 0 0 0 0 96h8z\"/>",
+    "width": 256,
+    "height": 256,
+    "set": "ph",
+    "name": "court-basketball"
+   }
   },
   {
    "beat_id": "s22t",
@@ -1858,13 +1892,26 @@
   {
    "beat_id": "s25v",
    "mode": "VISUAL",
-   "focal": "evidence exhibit",
+   "focal": "matter states",
    "start_frame": 2801,
    "duration_frames": 36,
    "sentence": "No matter how you answer, you're giving them evidence.",
    "words": [],
    "transitionIn": "MORPH",
-   "transitionOut": "CLEAR"
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M288.3 13.4c-12.3-.01-23 6.49-27.3 15.31l-2.9 5.95l-6.6-1.01c-5.5-.85-11.3-1.32-17.1-1.32c-18.8 0-35.7 4.5-47.3 11.14c-11.5 6.64-16.9 14.59-16.9 22c0 7.42 5.4 15.37 16.9 22c11.6 6.64 28.5 11.13 47.3 11.13c7.5-.02 14.9-.74 21.8-2.13l6.3-1.23l3.2 5.46c5.6 9.2 23.7 18.2 44.7 18.2c13.9 0 26.4-3.6 34.8-8.8s12.2-11.23 12.2-16.9c0-5.09-3-10.48-10-15.44c-6.9-4.97-17.6-8.87-30-9.95l-18.3-1.59l12.5-13.49c4.1-4.41 6.1-9.6 6.1-14.87c0-12.88-12.4-24.46-29.4-24.46M152.2 65.46C84.8 102.3 39 173.9 39 256c0 32.1 7 62.6 19.54 90c5.95-7.9 10.48-13.4 12.67-16C62.05 307.2 57 282.2 57 256c0-74 40.27-138.5 100.1-172.78c-3.1-5.39-4.9-11.34-4.9-17.74zm210.7 1.75c7.5 6.93 12.5 15.9 12.5 25.99c0 1.14-.1 2.27-.2 3.38C423.7 132.9 455 190.7 455 256c0 23.7-4.2 46.5-11.8 67.6l18.3 2.2c7.4-21.9 11.5-45.4 11.5-69.8c0-80.8-44.4-151.5-110.1-188.79m58.6 270.49c-11.1.2-23 1.1-35.9 3.1l-.5.1l-.5.1c-25.8 7.3-37.1 15.2-46.4 24.7l-2.2 2.2l-.3 3.1c-3.4 29.6-5.8 60 0 91.8l1.3 6.8l6.8.6c30.6 2.6 58.7 1.4 86.2 0l1-.1l.9-.2c18.5-5.2 34.4-12.8 46.4-24.6l1.7-1.6l.6-2.2c10-33.4 3.4-63.8.4-92.7l-.8-7.4l-7.3-.7c-16.2-1.5-32.8-3.2-51.4-3M79.62 348.2c-4.94 6.1-11.43 14.5-18.58 25.6c-12.29 18.9-22.53 42.4-20.51 54.9c1.43 8.8 6.97 19.6 14.51 27.6c7.54 7.9 16.69 12.8 24.58 12.8c7.87 0 17.03-4.9 24.58-12.8c7.5-8 13.1-18.8 14.5-27.6c2-12.5-8.2-36-20.5-54.9c-7.15-11-13.64-19.5-18.58-25.6M427 355.7c1.7 0 3.3 0 5 .1c5.4.1 10.7.4 16 .8c-5.9 3.4-12.1 6.8-19.5 9.9l-2.4.2c-19.5 1.4-37.7.3-55.4-2c4.7-2 10.5-4 18.3-6.2c13.8-2.2 26.3-2.9 38-2.8m38 11.6c2.8 22.9 5 44.5-1 66.6c-7 6.3-16 11.4-27 15.4c3-22.5 2-44.8-.5-66.6c11.3-5 20.2-10.2 28.5-15.4m-112.2 13.1c20.7 3.2 42.3 5.4 65.8 4.5c2.5 23 3.5 45.6-.4 67.8c-21.5 1-43.1 1.5-65.8-.1c-3.5-24-2.2-47.9.4-72.2m-216.4 34.7c.9 5.5 1 11 .1 16.4c-.3 1.6-.6 3.3-1 4.9C170 459.5 211.4 473 256 473c21.6 0 42.5-3.2 62.3-9.1l-2-18.2c-19 6-39.3 9.3-60.3 9.3c-44.9 0-86.3-14.8-119.6-39.9\"/>",
+    "width": 512,
+    "height": 512,
+    "set": "game-icons",
+    "name": "matter-states"
+   },
+   "attribution": {
+    "name": "GameIcons",
+    "url": "https://github.com/game-icons/icons",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://github.com/game-icons/icons/blob/master/license.txt"
+   }
   },
   {
    "beat_id": "s26t",
@@ -1926,13 +1973,20 @@
   {
    "beat_id": "s26v",
    "mode": "VISUAL",
-   "focal": "dna helix",
+   "focal": "dna",
    "start_frame": 2953,
    "duration_frames": 66,
    "sentence": "The Innocence Project has documented over 375 DNA exonerations.",
    "words": [],
    "transitionIn": "MORPH",
-   "transitionOut": "CLEAR"
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M4 2h2v2c0 1.44.68 2.61 1.88 3.78c.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21C5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21c-1.41 1.38-3.21 2.52-4.96 3.63c-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21c1.41-1.38 3.21-2.52 4.96-3.63c1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78c-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "dna"
+   }
   },
   {
    "beat_id": "s27t",
@@ -2432,13 +2486,20 @@
   {
    "beat_id": "s34v",
    "mode": "VISUAL",
-   "focal": "evidence exhibit",
+   "focal": "police badge",
    "start_frame": 3801,
    "duration_frames": 37,
    "sentence": "Police can legally lie to you about evidence.",
    "words": [],
    "transitionIn": "MORPH",
-   "transitionOut": "CLEAR"
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"m22 4l-2-2c-1.15.64-2.6 1-4 1s-2.86-.37-4-1c-1.14.63-2.6 1-4 1s-2.85-.36-4-1L2 4s2 2 2 4s-2 6-2 8c0 4 10 6 10 6s10-2 10-6c0-2-2-6-2-8s2-4 2-4m-6.95 12.45l-3.08-1.86l-3.07 1.86l.82-3.5L7 10.61l3.58-.31L11.97 7l1.4 3.29l3.58.31l-2.72 2.34z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "police-badge"
+   }
   },
   {
    "beat_id": "s35t",
@@ -2575,7 +2636,7 @@
   {
    "beat_id": "s36v",
    "mode": "VISUAL",
-   "focal": "nothing to say",
+   "focal": "fingerprint",
    "start_frame": 4008,
    "duration_frames": 31,
    "sentence": "They can say they already have fingerprints.",
@@ -2583,17 +2644,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"currentColor\" d=\"M254.156 56.938c-64.144 0-122.393 19.17-165.03 50.718c-42.64 31.547-69.845 76.01-69.845 125.5c0 49.492 27.207 93.952 69.845 125.5c6.388 4.727 13.13 9.164 20.188 13.313l-12.657 95.905l90.594-65.75c21.226 4.708 43.67 7.25 66.906 7.25c64.144 0 122.362-19.17 165-50.72C461.794 327.11 489 282.65 489 233.156c0-49.49-27.206-93.95-69.844-125.5c-42.638-31.546-100.856-50.718-165-50.718M157 274.438c12.69 0 23 10.276 23 22.968c0 12.69-10.31 23-23 23s-22.97-10.31-22.97-23s10.28-22.97 22.97-22.97zm96.844 0c12.69 0 22.97 10.276 22.97 22.968c-.002 12.69-10.28 23-22.97 23s-23-10.31-23-23s10.31-22.97 23-22.97zm99.844 0c12.69 0 22.968 10.276 22.968 22.968c0 12.69-10.278 23-22.97 23c-12.69 0-22.998-10.31-22.998-23s10.31-22.97 23-22.97z\"/>",
-    "width": 512,
-    "height": 512,
-    "set": "game-icons",
-    "name": "nothing-to-say"
-   },
-   "attribution": {
-    "name": "GameIcons",
-    "url": "https://github.com/game-icons/icons",
-    "license": "CC BY 3.0",
-    "licenseUrl": "https://github.com/game-icons/icons/blob/master/license.txt"
+    "body": "<path fill=\"currentColor\" d=\"M17.81 4.47c-.08 0-.16-.02-.23-.06C15.66 3.42 14 3 12 3c-1.97 0-3.85.47-5.56 1.41c-.24.13-.54.04-.68-.2a.506.506 0 0 1 .2-.68C7.82 2.5 9.86 2 12 2s4 .47 6.04 1.5c.25.15.34.45.21.69a.48.48 0 0 1-.44.28M3.5 9.72c-.1 0-.2-.03-.29-.09a.517.517 0 0 1-.12-.7c.99-1.4 2.25-2.5 3.75-3.27C10 4.04 14 4.03 17.15 5.65c1.5.77 2.76 1.85 3.75 3.25c.16.22.1.54-.12.7c-.23.16-.54.11-.7-.1a9.26 9.26 0 0 0-3.39-2.96c-2.87-1.47-6.54-1.47-9.4.01c-1.36.7-2.5 1.7-3.4 2.95c-.08.15-.23.22-.39.22m6.25 12.07c-.13 0-.25-.05-.35-.15c-.87-.87-1.34-1.43-2.01-2.64c-.69-1.23-1.05-2.73-1.05-4.34c0-2.97 2.54-5.39 5.66-5.39s5.66 2.42 5.66 5.39a.5.5 0 0 1-.5.5a.5.5 0 0 1-.5-.5c0-2.42-2.09-4.39-4.66-4.39s-4.66 1.97-4.66 4.39c0 1.44.32 2.77.93 3.84c.64 1.16 1.08 1.65 1.85 2.43c.19.2.19.51 0 .71c-.12.1-.24.15-.37.15m7.17-1.85c-1.19 0-2.24-.3-3.1-.89c-1.49-1.01-2.38-2.65-2.38-4.39a.5.5 0 0 1 .5-.5a.5.5 0 0 1 .5.5c0 1.41.72 2.74 1.94 3.56c.71.48 1.54.71 2.54.71c.24 0 .64-.03 1.04-.1c.27-.05.54.13.58.41c.05.26-.13.53-.41.58c-.57.11-1.07.12-1.21.12M14.91 22h-.13c-1.59-.46-2.63-1.05-3.72-2.12a7.28 7.28 0 0 1-2.17-5.22c0-1.62 1.38-2.94 3.08-2.94s3.08 1.32 3.08 2.94c0 1.07.95 1.94 2.08 1.94c1.15 0 2.08-.87 2.08-1.94c0-3.77-3.25-6.83-7.25-6.83c-2.84 0-5.46 1.58-6.61 4.03c-.39.81-.59 1.76-.59 2.8c0 .78.07 2.01.67 3.61c.1.26-.03.55-.29.64a.504.504 0 0 1-.64-.29c-.5-1.31-.73-2.62-.73-3.96c0-1.2.23-2.29.68-3.24c1.33-2.79 4.28-4.6 7.51-4.6c4.54 0 8.25 3.51 8.25 7.83c0 1.62-1.38 2.94-3.08 2.94s-3.08-1.32-3.08-2.94c0-1.07-.93-1.94-2.08-1.94s-2.08.87-2.08 1.94c0 1.71.66 3.31 1.87 4.51c.95.94 1.86 1.46 3.27 1.84c.27.08.42.36.35.62c-.05.23-.26.38-.47.38\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "fingerprint"
    }
   },
   {
@@ -2829,13 +2884,20 @@
   {
    "beat_id": "s39v",
    "mode": "VISUAL",
-   "focal": "constitutional text",
+   "focal": "earth arrow right",
    "start_frame": 4335,
    "duration_frames": 54,
    "sentence": "And here's the part most people miss: you must verbally invoke your rights.",
    "words": [],
    "transitionIn": "MORPH",
-   "transitionOut": "CLEAR"
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19 21v-2h-4v-2h4v-2l3 3zm-7-3c0-2.2 1.2-4.1 3-5.2c-.1-.5-.5-.8-1-.8H8v-2h2c.6 0 1-.4 1-1V7h2c1.1 0 2-.9 2-2v-.4c2.9 1.2 5 4 5 7.4v.3c.7.2 1.3.6 1.9 1.1c.1-.4.1-.9.1-1.4c0-5.5-4.5-10-10-10S2 6.5 2 12s4.5 10 10 10c.5 0 1 0 1.4-.1c-.9-1.1-1.4-2.4-1.4-3.9m-1 1.9c-4-.5-7-3.8-7-7.9c0-.6.1-1.2.2-1.8L9 15v1c0 1.1.9 2 2 2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "earth-arrow-right"
+   }
   },
   {
    "beat_id": "s40t",
@@ -2932,13 +2994,20 @@
   {
    "beat_id": "s40v",
    "mode": "VISUAL",
-   "focal": "court document",
+   "focal": "court basketball",
    "start_frame": 4507,
    "duration_frames": 66,
    "sentence": "The Supreme Court held in Salinas v. Texas that silence alone can be used against you.",
    "words": [],
    "transitionIn": "MORPH",
-   "transitionOut": "CLEAR"
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 112h-8a32 32 0 0 1 0-64h8ZM32 96h8a32 32 0 0 1 0 64h-8Zm0 80h8a48 48 0 0 0 0-96h-8V64h88v128H32Zm192 16h-88V64h88v16h-8a48 48 0 0 0 0 96h8z\"/>",
+    "width": 256,
+    "height": 256,
+    "set": "ph",
+    "name": "court-basketball"
+   }
   },
   {
    "beat_id": "s41t",
@@ -3360,15 +3429,15 @@
   },
   {
    "sentence": "That's all it takes to protect your constitutional rights during a traffic stop.",
-   "asset": "constitutional text",
-   "score": 16.8,
-   "subject": "constitutional"
+   "asset": "earth arrow right",
+   "score": 19.5,
+   "subject": "rights"
   },
   {
    "sentence": "Say the wrong thing — or say too much — and you could be handing a prosecutor the evidence they need.",
-   "asset": "evidence exhibit",
-   "score": 20.8,
-   "subject": "evidence"
+   "asset": "nothing to say",
+   "score": 10.5,
+   "subject": "say"
   },
   {
    "sentence": "Say these four lines, and you stay in control.",
@@ -3378,26 +3447,26 @@
   },
   {
    "sentence": "Most people lose their rights during traffic stops not because they're guilty, but because they don't know what to say — and they talk too much in a moment where every word becomes evidence.",
-   "asset": "evidence exhibit",
-   "score": 25.3,
-   "subject": "evidence"
+   "asset": "earth arrow right",
+   "score": 18,
+   "subject": "rights"
   },
   {
    "sentence": "Here are the four lines, refined over decades of civil-rights litigation.",
-   "asset": "thermometer lines",
-   "score": 13.5,
-   "subject": "lines"
+   "asset": "earth arrow right",
+   "score": 19.5,
+   "subject": "rights"
   },
   {
    "sentence": "Line one: I do not consent to any searches.",
-   "asset": "home floor negative 1",
-   "score": 10.5,
+   "asset": "note search",
+   "score": 18,
    "subject": "searches"
   },
   {
    "sentence": "Line two: Am I being detained, or am I free to go?",
-   "asset": "line",
-   "score": 10.5,
+   "asset": "thermometer lines",
+   "score": 13.5,
    "subject": "line"
   },
   {
@@ -3408,9 +3477,9 @@
   },
   {
    "sentence": "Line four: I would like to speak to a lawyer.",
-   "asset": "calendar star four points",
+   "asset": "thermometer lines",
    "score": 13.5,
-   "subject": "four"
+   "subject": "line"
   },
   {
    "sentence": "That's it.",
@@ -3456,8 +3525,8 @@
   },
   {
    "sentence": "That means officers can ask you questions at the roadside — 'Do you know why I pulled you over?",
-   "asset": "frequently asked questions",
-   "score": 10.5,
+   "asset": "account question",
+   "score": 19.5,
    "subject": "questions"
   },
   {
@@ -3474,14 +3543,14 @@
   },
   {
    "sentence": "— without reading you your rights.",
-   "asset": "constitutional text",
-   "score": 10.4,
+   "asset": "earth arrow right",
+   "score": 18,
    "subject": "rights"
   },
   {
    "sentence": "And your answers are still admissible in court.",
-   "asset": "court document",
-   "score": 12.8,
+   "asset": "court basketball",
+   "score": 10.5,
    "subject": "court"
   },
   {
@@ -3504,14 +3573,14 @@
   },
   {
    "sentence": "No matter how you answer, you're giving them evidence.",
-   "asset": "evidence exhibit",
-   "score": 18.4,
-   "subject": "evidence"
+   "asset": "matter states",
+   "score": 9,
+   "subject": "matter"
   },
   {
    "sentence": "The Innocence Project has documented over 375 DNA exonerations.",
-   "asset": "dna helix",
-   "score": 23.1,
+   "asset": "dna",
+   "score": 10.5,
    "subject": "dna"
   },
   {
@@ -3546,8 +3615,8 @@
   },
   {
    "sentence": "Court is.",
-   "asset": "court document",
-   "score": 12.8,
+   "asset": "court basketball",
+   "score": 10.5,
    "subject": "court"
   },
   {
@@ -3558,9 +3627,9 @@
   },
   {
    "sentence": "Police can legally lie to you about evidence.",
-   "asset": "evidence exhibit",
-   "score": 20.8,
-   "subject": "evidence"
+   "asset": "police badge",
+   "score": 10.5,
+   "subject": "police"
   },
   {
    "sentence": "They can claim your friend is in the next room confessing.",
@@ -3570,9 +3639,9 @@
   },
   {
    "sentence": "They can say they already have fingerprints.",
-   "asset": "nothing to say",
+   "asset": "fingerprint",
    "score": 10.5,
-   "subject": "say"
+   "subject": "fingerprints"
   },
   {
    "sentence": "None of it has to be true.",
@@ -3588,21 +3657,21 @@
   },
   {
    "sentence": "And here's the part most people miss: you must verbally invoke your rights.",
-   "asset": "constitutional text",
-   "score": 12.8,
+   "asset": "earth arrow right",
+   "score": 19.5,
    "subject": "rights"
   },
   {
    "sentence": "The Supreme Court held in Salinas v. Texas that silence alone can be used against you.",
-   "asset": "court document",
-   "score": 12.8,
+   "asset": "court basketball",
+   "score": 10.5,
    "subject": "court"
   },
   {
    "sentence": "You have to say the words.",
-   "asset": "nothing to say",
+   "asset": "file word",
    "score": 10.5,
-   "subject": "say"
+   "subject": "words"
   },
   {
    "sentence": "Out loud.",
@@ -3648,8 +3717,8 @@
   },
   {
    "sentence": "This is Legal Brief.",
-   "asset": "legal document",
-   "score": 12,
+   "asset": "scale balance",
+   "score": 8,
    "subject": "legal"
   },
   {

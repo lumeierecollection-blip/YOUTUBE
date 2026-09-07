@@ -7,8 +7,7 @@
  *   node scripts/expand-assets.mjs --concept "hydrothermal vent"
  *
  * The order is the spec's: search the external sources, and only if nothing is
- * found generate a procedural visual matching the intent, attach metadata, add
- * it to the library and log every step.
+ * found queue the gap for a human to source, and log every step.
  *
  * THE EXTERNAL BRANCH CANNOT RUN IN THIS ENVIRONMENT AND THE LOG SAYS SO ON
  * EVERY ATTEMPT. Measured repeatedly: api.pexels.com, pixabay.com,
@@ -17,12 +16,17 @@
  * network that is not. Somewhere with egress and keys it will run unchanged,
  * which is why it is not stubbed out.
  *
- * WHAT THE PROCEDURAL FALLBACK DOES AND DOES NOT DO. It writes a REQUEST, not a
- * drawing: an entry in `config/assets/expansion-queue.json` naming the concept,
- * the intent that needed it, and the sentence that went unserved. It does not
- * autogenerate a shape and call it a cave. A generated placeholder that looks
- * like something would re-create the exact failure this whole rebuild is about
- * — a visual that means nothing standing where a visual that means something
+ * THERE IS NO PROCEDURAL FALLBACK. There used to be one — a 109-drawing
+ * library this same matcher scored against — and it was deleted once icons
+ * proved they read better at Shorts scale (data/renders/iconify-proof.png)
+ * and the icon catalog's 14,000+ entries made the gaps a plain photo search
+ * can't fill rare enough that hand-drawing more of them stopped paying for
+ * itself. What this writes instead is a REQUEST, not a drawing: an entry in
+ * `config/assets/expansion-queue.json` naming the concept, the intent that
+ * needed it, and the sentence that went unserved. It does not autogenerate a
+ * shape and call it a cave. A generated placeholder that looks like
+ * something would re-create the exact failure this whole rebuild is about —
+ * a visual that means nothing standing where a visual that means something
  * should be. The queue is the honest artefact: it says what is missing.
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
@@ -93,12 +97,12 @@ function expand(sentence, library) {
     if (res.ok) return null; // a real download path belongs here; nothing reaches it in this environment
   }
   const n = queueConcept(intent.literalSubject || query, intent, sentence);
-  log(`        queued "${intent.literalSubject || query}" for drawing (${n} concept(s) wanted)`);
+  log(`        queued "${intent.literalSubject || query}" for sourcing (${n} concept(s) wanted)`);
   return null;
 }
 
 const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };
-const library = JSON.parse(readFileSync(join(ROOT, "config", "assets", "semantic-library.json"), "utf-8"));
+const library = JSON.parse(readFileSync(join(ROOT, "config", "assets", "icon-library.json"), "utf-8"));
 const sentences = arg("concept") ? [arg("concept")]
   : readFileSync(join(ROOT, arg("script") || "data/tts/ch-fixture/movile-cave-shorts-script-vo.srt"), "utf-8")
       .split(/\n\n+/).map((b) => b.trim().split("\n").slice(2).join(" ")).filter(Boolean);

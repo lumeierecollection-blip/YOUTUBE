@@ -100,7 +100,7 @@
   {
    "beat_id": "s0v",
    "mode": "VISUAL",
-   "focal": "bed single",
+   "focal": "home analytics",
    "start_frame": 181,
    "duration_frames": 100,
    "sentence": "In 1666, a single spark in a bakery destroyed 13,000 homes, 87 churches, and most of London.",
@@ -108,11 +108,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"currentColor\" d=\"M17 10V7a2 2 0 0 0-2-2H9c-1.1 0-2 .9-2 2v3c-1.1 0-2.11.9-2 2v5h1.33L7 19h1l.67-2h6.66l.67 2h1l.67-2H19v-5a2 2 0 0 0-2-2m-2 0H9V7h6Z\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M12 3L2 12h3v8h14v-8h3M9 18H7v-6h2m4 6h-2v-8h2m4 8h-2v-4h2\"/>",
     "width": 24,
     "height": 24,
     "set": "mdi",
-    "name": "bed-single"
+    "name": "home-analytics"
    }
   },
   {
@@ -365,7 +365,7 @@
   {
    "beat_id": "s4v",
    "mode": "VISUAL",
-   "focal": "buildings",
+   "focal": "office building cog",
    "start_frame": 684,
    "duration_frames": 52,
    "sentence": "Timber-framed buildings pressed shoulder to shoulder along medieval streets.",
@@ -373,11 +373,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 21V6c0-1 1-2 2-2h5c1 0 2 1 2 2v15m3-13h2c1 0 2 1 2 2v11M3 21h18m-11-9v.01M10 16v.01M10 8v.01M7 12v.01M7 16v.01M7 8v.01M17 12v.01M17 16v.01\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M16 13a.26.26 0 0 0-.26.21l-.19 1.32c-.3.13-.59.29-.85.47l-1.24-.5c-.11 0-.24 0-.31.13l-1 1.73c-.06.11-.04.24.06.32l1.06.82a4.2 4.2 0 0 0 0 1l-1.06.82a.26.26 0 0 0-.06.32l1 1.73c.06.13.19.13.31.13l1.24-.5c.26.18.54.35.85.47l.19 1.32c.02.12.12.21.26.21h2c.11 0 .22-.09.24-.21l.19-1.32c.3-.13.57-.29.84-.47l1.23.5c.13 0 .26 0 .33-.13l1-1.73a.26.26 0 0 0-.06-.32l-1.07-.82c.02-.17.04-.33.04-.5s-.01-.33-.04-.5l1.06-.82a.26.26 0 0 0 .06-.32l-1-1.73c-.06-.13-.19-.13-.32-.13l-1.23.5c-.27-.18-.54-.35-.85-.47l-.19-1.32A.236.236 0 0 0 18 13zm1 3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5c-.84 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5m-1-5.42V3H2v18h6v-3.5h2.03c.23-3.3 2.74-5.96 5.97-6.42M6 19H4v-2h2zm0-4H4v-2h2zm0-4H4V9h2zm0-4H4V5h2zm6-2h2v2h-2zm0 4h2v2h-2zm-2 6H8v-2h2zm0-4H8V9h2zM8 7V5h2v2z\"/>",
     "width": 24,
     "height": 24,
-    "set": "tabler",
-    "name": "buildings"
+    "set": "mdi",
+    "name": "office-building-cog"
    }
   },
   {
@@ -741,7 +741,7 @@
   {
    "beat_id": "s9v",
    "mode": "VISUAL",
-   "focal": "gesture tap hold",
+   "focal": "candelabra fire",
    "start_frame": 1288,
    "duration_frames": 58,
    "sentence": "By dawn on Sunday, September 2nd, flames had already taken hold.",
@@ -749,11 +749,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"currentColor\" d=\"M10 9a1 1 0 0 1 1-1a1 1 0 0 1 1 1v4.47l1.21.13l4.94 2.19c.53.24.85.77.85 1.35v4.36c-.03.82-.68 1.47-1.5 1.5H11c-.38 0-.74-.15-1-.43l-4.9-4.2l.74-.77c.19-.21.46-.32.74-.32h.22L10 19zm-1 3.44V9a2 2 0 0 1 2-2a2 2 0 0 1 2 2v3.44c1.19-.69 2-1.97 2-3.44a4 4 0 0 0-4-4a4 4 0 0 0-4 4c0 1.47.81 2.75 2 3.44\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M18 7c.83 0 1.5-.67 1.5-1.5S18.83 3 18 3s-1.5 1.67-1.5 2.5S17.17 7 18 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M12 6c.83 0 1.5-.67 1.5-1.5S12.83 2 12 2s-1.5 1.67-1.5 2.5S11.17 6 12 6m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M6 7c.83 0 1.5-.67 1.5-1.5S6.83 3 6 3S4.5 4.67 4.5 5.5S5.17 7 6 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M20.5 11c0 .55-.45 1-1 1H19v2c0 1.11-.89 2-2 2h-4v4h1a2 2 0 0 1 2 2H8c0-1.1.9-2 2-2h1v-4H7a2 2 0 0 1-2-2v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1s-.45 1-1 1H7v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V8c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v2c.55 0 1 .45 1 1s-.45 1-1 1H13v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1\"/>",
     "width": 24,
     "height": 24,
     "set": "mdi",
-    "name": "gesture-tap-hold"
+    "name": "candelabra-fire"
    }
   },
   {
@@ -931,7 +931,7 @@
   {
    "beat_id": "s11v",
    "mode": "VISUAL",
-   "focal": "brand apple news",
+   "focal": "new box",
    "start_frame": 1583,
    "duration_frames": 55,
    "sentence": "The Lord Mayor of London, Sir Thomas Bloodworth, was woken with the news.",
@@ -939,11 +939,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m4 14l6 6H4zm16-4l-6-6h6zM4 4v4l12 12h4v-4L8 4z\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M20 4c1.11 0 2 .89 2 2v12c0 1.11-.89 2-2 2H4c-1.11 0-2-.89-2-2V6c0-1.11.89-2 2-2zM8.5 15V9H7.25v3.5L4.75 9H3.5v6h1.25v-3.5L7.3 15zm5-4.74V9h-4v6h4v-1.25H11v-1.11h2.5v-1.26H11v-1.12zm7 3.74V9h-1.25v4.5h-1.12V10h-1.25v3.5h-1.13V9H14.5v5a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1\"/>",
     "width": 24,
     "height": 24,
-    "set": "tabler",
-    "name": "brand-apple-news"
+    "set": "mdi",
+    "name": "new-box"
    }
   },
   {
@@ -1088,7 +1088,7 @@
   {
    "beat_id": "s14v",
    "mode": "VISUAL",
-   "focal": "buildings",
+   "focal": "office building cog",
    "start_frame": 1862,
    "duration_frames": 51,
    "sentence": "He refused to demolish surrounding buildings to create firebreaks.",
@@ -1096,11 +1096,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 21V6c0-1 1-2 2-2h5c1 0 2 1 2 2v15m3-13h2c1 0 2 1 2 2v11M3 21h18m-11-9v.01M10 16v.01M10 8v.01M7 12v.01M7 16v.01M7 8v.01M17 12v.01M17 16v.01\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M16 13a.26.26 0 0 0-.26.21l-.19 1.32c-.3.13-.59.29-.85.47l-1.24-.5c-.11 0-.24 0-.31.13l-1 1.73c-.06.11-.04.24.06.32l1.06.82a4.2 4.2 0 0 0 0 1l-1.06.82a.26.26 0 0 0-.06.32l1 1.73c.06.13.19.13.31.13l1.24-.5c.26.18.54.35.85.47l.19 1.32c.02.12.12.21.26.21h2c.11 0 .22-.09.24-.21l.19-1.32c.3-.13.57-.29.84-.47l1.23.5c.13 0 .26 0 .33-.13l1-1.73a.26.26 0 0 0-.06-.32l-1.07-.82c.02-.17.04-.33.04-.5s-.01-.33-.04-.5l1.06-.82a.26.26 0 0 0 .06-.32l-1-1.73c-.06-.13-.19-.13-.32-.13l-1.23.5c-.27-.18-.54-.35-.85-.47l-.19-1.32A.236.236 0 0 0 18 13zm1 3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5c-.84 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5m-1-5.42V3H2v18h6v-3.5h2.03c.23-3.3 2.74-5.96 5.97-6.42M6 19H4v-2h2zm0-4H4v-2h2zm0-4H4V9h2zm0-4H4V5h2zm6-2h2v2h-2zm0 4h2v2h-2zm-2 6H8v-2h2zm0-4H8V9h2zM8 7V5h2v2z\"/>",
     "width": 24,
     "height": 24,
-    "set": "tabler",
-    "name": "buildings"
+    "set": "mdi",
+    "name": "office-building-cog"
    }
   },
   {
@@ -1404,7 +1404,7 @@
   {
    "beat_id": "s18v",
    "mode": "VISUAL",
-   "focal": "account box multiple",
+   "focal": "account multiple check",
    "start_frame": 2385,
    "duration_frames": 36,
    "sentence": "His account is one of the most vivid we have.",
@@ -1412,11 +1412,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"currentColor\" d=\"M4 6H2v14a2 2 0 0 0 2 2h14v-2H4zm16-4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm-3 5a3 3 0 0 0-3-3a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3m-9 8v1h12v-1c0-2-4-3.1-6-3.1S8 13 8 15\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.9 2.9 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.9 2.9 0 0 0 18 11a3 3 0 0 0 0-6M7.34 8.92l1.16 1.41l-4.75 4.75l-2.75-3l1.16-1.16l1.59 1.58z\"/>",
     "width": 24,
     "height": 24,
     "set": "mdi",
-    "name": "account-box-multiple"
+    "name": "account-multiple-check"
    }
   },
   {
@@ -1809,7 +1809,7 @@
   {
    "beat_id": "s21v",
    "mode": "VISUAL",
-   "focal": "arrow decision",
+   "focal": "cellphone sound",
    "start_frame": 2993,
    "duration_frames": 77,
    "sentence": "Pepys made a decision that sounds bizarre today: he buried his Parmesan cheese and wine in his garden.",
@@ -1817,11 +1817,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"currentColor\" d=\"M11 5H8l4-4l4 4h-3v4.43c-.75.46-1.42 1.03-2 1.69zm11 6l-4-4v3a6.747 6.747 0 0 0-7 6.17A3.006 3.006 0 0 0 9.17 20A3.006 3.006 0 0 0 13 21.83A3.01 3.01 0 0 0 14.83 18c-.3-.86-.98-1.53-1.83-1.83c.47-4 4.47-4.2 4.95-4.2v3zm-11.37.59A7.63 7.63 0 0 0 6 10V7l-4 4l4 4v-3c1.34.03 2.63.5 3.64 1.4c.25-.64.58-1.25.99-1.81\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M19.1 8.7c1.8 1.8 1.8 4.6 0 6.5l1 1c2.5-2.3 2.5-6.1 0-8.5zM18 9.8l-1 1c.5.7.5 1.6 0 2.3l1 1c1.2-1.2 1.2-3 0-4.3M14 1H4a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2m0 19H4V4h10z\"/>",
     "width": 24,
     "height": 24,
     "set": "mdi",
-    "name": "arrow-decision"
+    "name": "cellphone-sound"
    }
   },
   {
@@ -2206,7 +2206,7 @@
   {
    "beat_id": "s26v",
    "mode": "VISUAL",
-   "focal": "city",
+   "focal": "home floor negative 1",
    "start_frame": 3834,
    "duration_frames": 92,
    "sentence": "It consumed everything in its path: 13,200 houses, 87 churches, most of the City of London.",
@@ -2214,11 +2214,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"currentColor\" d=\"M19 15h-2v-2h2m0 6h-2v-2h2M13 7h-2V5h2m0 6h-2V9h2m0 6h-2v-2h2m0 6h-2v-2h2m-6-6H5V9h2m0 6H5v-2h2m0 6H5v-2h2m8-6V5l-3-3l-3 3v2H3v14h18V11z\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M12 3L2 12h3v8h14v-8h3zm-1 12H7v-2h4zm4 3h-2v-8h-2V8h4z\"/>",
     "width": 24,
     "height": 24,
     "set": "mdi",
-    "name": "city"
+    "name": "home-floor-negative-1"
    }
   },
   {
@@ -2858,7 +2858,7 @@
   {
    "beat_id": "s35v",
    "mode": "VISUAL",
-   "focal": "border none",
+   "focal": "floor plan",
    "start_frame": 5005,
    "duration_frames": 35,
    "sentence": "None of their plans were fully adopted.",
@@ -2866,11 +2866,11 @@
    "transitionIn": "MORPH",
    "transitionOut": "CLEAR",
    "icon": {
-    "body": "<path fill=\"currentColor\" d=\"M15 5h2V3h-2m0 10h2v-2h-2m0 10h2v-2h-2M11 5h2V3h-2m8 2h2V3h-2m-8 6h2V7h-2m8 2h2V7h-2m0 14h2v-2h-2m0-6h2v-2h-2m0 6h2v-2h-2m-8-2h2v-2h-2M3 5h2V3H3m0 6h2V7H3m0 6h2v-2H3m0 6h2v-2H3m0 6h2v-2H3m8 2h2v-2h-2m0-2h2v-2h-2m-4 6h2v-2H7m0-6h2v-2H7m0-6h2V3H7z\"/>",
+    "body": "<path fill=\"currentColor\" d=\"M10 5v5H9V5H5v8h4v-1h1v5H9v-3H5v5h7v-2h1v2h6v-2h2v4H3V3h18v12h-2v-5h-6v5h-1V9h7V5z\"/>",
     "width": 24,
     "height": 24,
     "set": "mdi",
-    "name": "border-none"
+    "name": "floor-plan"
    }
   },
   {
@@ -3659,9 +3659,9 @@
  "picks": [
   {
    "sentence": "In 1666, a single spark in a bakery destroyed 13,000 homes, 87 churches, and most of London.",
-   "asset": "bed single",
-   "score": 10.5,
-   "subject": "single"
+   "asset": "home analytics",
+   "score": 16.5,
+   "subject": "destroyed"
   },
   {
    "sentence": "But the real story isn't about fire.",
@@ -3683,8 +3683,8 @@
   },
   {
    "sentence": "Timber-framed buildings pressed shoulder to shoulder along medieval streets.",
-   "asset": "buildings",
-   "score": 10.5,
+   "asset": "office building cog",
+   "score": 13.5,
    "subject": "buildings"
   },
   {
@@ -3713,9 +3713,9 @@
   },
   {
    "sentence": "By dawn on Sunday, September 2nd, flames had already taken hold.",
-   "asset": "gesture tap hold",
-   "score": 8.5,
-   "subject": "september"
+   "asset": "candelabra fire",
+   "score": 14,
+   "subject": "flames"
   },
   {
    "sentence": "But here's what most people don't know: the fire could have been stopped.",
@@ -3725,14 +3725,14 @@
   },
   {
    "sentence": "The Lord Mayor of London, Sir Thomas Bloodworth, was woken with the news.",
-   "asset": "brand apple news",
-   "score": 5.5,
+   "asset": "new box",
+   "score": 8.5,
    "subject": "bloodworth"
   },
   {
    "sentence": "His response?",
-   "asset": "latency trace",
-   "score": 4.5,
+   "asset": null,
+   "score": 0,
    "subject": "response"
   },
   {
@@ -3743,8 +3743,8 @@
   },
   {
    "sentence": "He refused to demolish surrounding buildings to create firebreaks.",
-   "asset": "buildings",
-   "score": 10.5,
+   "asset": "office building cog",
+   "score": 13.5,
    "subject": "buildings"
   },
   {
@@ -3767,8 +3767,8 @@
   },
   {
    "sentence": "His account is one of the most vivid we have.",
-   "asset": "account box multiple",
-   "score": 18.5,
+   "asset": "account multiple check",
+   "score": 24.5,
    "subject": "account"
   },
   {
@@ -3780,14 +3780,14 @@
   {
    "sentence": "The churches, houses are all on fire and flaming at once, and a horrid noise the flames made and the cracking of the houses.",
    "asset": "candelabra fire",
-   "score": 11.5,
+   "score": 20.5,
    "subject": "churches"
   },
   {
    "sentence": "Pepys made a decision that sounds bizarre today: he buried his Parmesan cheese and wine in his garden.",
-   "asset": "arrow decision",
-   "score": 10.5,
-   "subject": "decision"
+   "asset": "cellphone sound",
+   "score": 16.5,
+   "subject": "sounds"
   },
   {
    "sentence": "But in 1666, this was practical crisis management.",
@@ -3815,9 +3815,9 @@
   },
   {
    "sentence": "It consumed everything in its path: 13,200 houses, 87 churches, most of the City of London.",
-   "asset": "city",
-   "score": 8.5,
-   "subject": "everything"
+   "asset": "home floor negative 1",
+   "score": 17,
+   "subject": "houses"
   },
   {
    "sentence": "Only six deaths were officially recorded.",
@@ -3869,9 +3869,9 @@
   },
   {
    "sentence": "None of their plans were fully adopted.",
-   "asset": "border none",
-   "score": 4,
-   "subject": "adopted"
+   "asset": "floor plan",
+   "score": 9,
+   "subject": "plans"
   },
   {
    "sentence": "The old street lines were retained.",
