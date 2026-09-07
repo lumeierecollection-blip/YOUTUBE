@@ -125,7 +125,7 @@
   {
    "beat_id": "s0v",
    "mode": "VISUAL",
-   "focal": "cave entrance",
+   "focal": "sealed entrance",
    "start_frame": 145,
    "duration_frames": 80,
    "sentence": "In 1986, workers near the Black Sea broke into a cave that had been sealed for five and a half million years.",
@@ -475,7 +475,7 @@
   {
    "beat_id": "s5v",
    "mode": "VISUAL",
-   "focal": "cave cross section",
+   "focal": "sealed entrance",
    "start_frame": 888,
    "duration_frames": 28,
    "sentence": "And this cave is not alone.",
@@ -1045,13 +1045,20 @@
   {
    "beat_id": "s10v",
    "mode": "VISUAL",
-   "focal": "sunlight",
+   "focal": "sun clock",
    "start_frame": 1891,
    "duration_frames": 86,
    "sentence": "So next time you stand in the sun, remember: two kilometers below your feet, life is thriving in a world that has never seen it.",
    "words": [],
    "transitionIn": "MORPH",
-   "transitionOut": "CLEAR"
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18.1 9.3L19.6 6l-4.1-.4c.6.5 1.1 1.1 1.5 1.9c.3.6.5 1.1.7 1.7c-.5-.1-1.1-.2-1.7-.2h-.4c-.8-1.8-2.5-3-4.6-3c-2.8 0-5 2.2-5 5c0 2.1 1.2 3.8 3 4.6v.4c0 3.9 3.1 7 7 7s7-3.1 7-7c0-3.1-2.1-5.8-4.9-6.7M16 21c-2.8 0-5-2.2-5-5s2.2-5 5-5s5 2.2 5 5s-2.2 5-5 5m.5-4.8l2.9 1.7l-.8 1.2L15 17v-5h1.5zM11 4c-.8 0-1.6.2-2.4.4L11 1l2.4 3.4c-.8-.2-1.6-.4-2.4-.4M4.9 14.5c.4.7 1 1.4 1.6 1.9L2.4 16l1.8-3.8c.1.8.3 1.6.7 2.3m-.8-4.7L2.3 6l4.2-.3c-.6.5-1.1 1.1-1.6 1.8c-.4.7-.7 1.5-.8 2.3\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "sun-clock"
+   }
   },
   {
    "beat_id": "s11t",
@@ -1137,8 +1144,8 @@
  "picks": [
   {
    "sentence": "In 1986, workers near the Black Sea broke into a cave that had been sealed for five and a half million years.",
-   "asset": "cave entrance",
-   "score": 37.4,
+   "asset": "sealed entrance",
+   "score": 28.6,
    "subject": "cave"
   },
   {
@@ -1167,14 +1174,14 @@
   },
   {
    "sentence": "And this cave is not alone.",
-   "asset": "cave cross section",
-   "score": 20.8,
+   "asset": "sealed entrance",
+   "score": 20,
    "subject": "cave"
   },
   {
    "sentence": "In the deepest caves on Earth, two kilometers down, a springtail called Plutomurus holds the record for the deepest animal ever found: 1,980 meters below the surface, in a world with no light at all.",
    "asset": "springtail",
-   "score": 44.8,
+   "score": 43.4,
    "subject": "springtail"
   },
   {
@@ -1197,14 +1204,14 @@
   },
   {
    "sentence": "So next time you stand in the sun, remember: two kilometers below your feet, life is thriving in a world that has never seen it.",
-   "asset": "sunlight",
-   "score": 16.8,
+   "asset": "sun clock",
+   "score": 15,
    "subject": "sun"
   },
   {
    "sentence": "Follow Depth Unknown for more from the dark.",
    "asset": "depth scale",
-   "score": 25.6,
+   "score": 16.8,
    "subject": "depth"
   }
  ]

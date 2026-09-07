@@ -164,6 +164,36 @@ function Sentence({ beat, local, colors, font }) {
  * The entrance envelope is kept separate as `e` and only drives opacity and
  * the settle in scale — it must not be the drawing's clock, which was the bug.
  */
+/**
+ * An Iconify icon, contain-fit into the same box a procedural drawing gets.
+ *
+ * THIS IS WHY AN ICON CANNOT BREAK THE SAFE RECT THE WAY 16 OF THE 109
+ * PROCEDURAL DRAWINGS DID. Those drew arbitrary coordinates relative to their
+ * own box and had to individually honour it (qa-scripts/audit-object-bounds.mjs
+ * exists because several didn't). An icon's own viewBox is fixed and known
+ * (`beat.icon.width/height`), so scaling it to fit `box` by the smaller of the
+ * two axis ratios is a geometric guarantee, not a drawing convention someone
+ * has to remember. There is nothing to audit here because there is nothing
+ * that can go wrong the way it did before.
+ *
+ * Icons are flat glyphs with no internal animation of their own — unlike a
+ * procedural drawing's `p`-driven motion (a spring, a furcula), there is no
+ * per-icon behaviour to sweep `p` through. A slow breathing scale keyed to
+ * the beat's own progress is the one motion applied here, so a visual beat is
+ * never a perfectly frozen frame even when its subject is a static glyph.
+ */
+function IconGlyph({ icon, box, colors, p }) {
+  const scale = Math.min(box.w / icon.width, box.h / icon.height);
+  const iw = icon.width * scale, ih = icon.height * scale;
+  const breathe = 1 + Math.sin(p * Math.PI * 2) * 0.015;
+  return (
+    <g transform={`translate(${box.x + box.w / 2}, ${box.y + box.h / 2}) scale(${breathe}) translate(${-iw / 2}, ${-ih / 2})`}>
+      <g transform={`scale(${scale})`} fill={colors.onGround} color={colors.onGround}
+        dangerouslySetInnerHTML={{ __html: icon.body }} />
+    </g>
+  );
+}
+
 function Visual({ beat, p, colors }) {
   const e = EASE(Math.min(1, p / 0.28));
   const out = Math.max(0, Math.min(1, (p - 0.88) / 0.12));
@@ -174,7 +204,9 @@ function Visual({ beat, p, colors }) {
   return (
     <svg width={CANVAS_W} height={CANVAS_H} style={{ position: "absolute", left: 0, top: 0, opacity: (1 - out) * e }}>
       <g transform={`translate(${cx - w / 2}, ${MID_Y - h / 2})`}>
-        <ObjectShape name={beat.focal} colors={colors} p={p} box={{ x: 0, y: 0, w, h }} />
+        {beat.icon
+          ? <IconGlyph icon={beat.icon} colors={colors} p={p} box={{ x: 0, y: 0, w, h }} />
+          : <ObjectShape name={beat.focal} colors={colors} p={p} box={{ x: 0, y: 0, w, h }} />}
       </g>
     </svg>
   );

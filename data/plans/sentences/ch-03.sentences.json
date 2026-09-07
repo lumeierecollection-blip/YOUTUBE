@@ -1,0 +1,3662 @@
+{
+ "beats": [
+  {
+   "beat_id": "s0t",
+   "mode": "TYPE",
+   "focal": "Four lines.",
+   "start_frame": 2,
+   "duration_frames": 35,
+   "sentence": "Four lines.",
+   "words": [
+    {
+     "word": "Four",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "lines.",
+     "at": 0.35294117647058826,
+     "frame": 12
+    }
+   ],
+   "transitionIn": "CUT",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s1t",
+   "mode": "TYPE",
+   "focal": "That's all it takes to protect your constitutional rights during a traffic stop.",
+   "start_frame": 37,
+   "duration_frames": 96,
+   "sentence": "That's all it takes to protect your constitutional rights during a traffic stop.",
+   "words": [
+    {
+     "word": "That's",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "all",
+     "at": 0.07291666666666667,
+     "frame": 7
+    },
+    {
+     "word": "it",
+     "at": 0.125,
+     "frame": 12
+    },
+    {
+     "word": "takes",
+     "at": 0.16666666666666666,
+     "frame": 16
+    },
+    {
+     "word": "to",
+     "at": 0.23958333333333334,
+     "frame": 23
+    },
+    {
+     "word": "protect",
+     "at": 0.28125,
+     "frame": 27
+    },
+    {
+     "word": "your",
+     "at": 0.375,
+     "frame": 36
+    },
+    {
+     "word": "constitutional",
+     "at": 0.4375,
+     "frame": 42
+    },
+    {
+     "word": "rights",
+     "at": 0.6041666666666666,
+     "frame": 58
+    },
+    {
+     "word": "during",
+     "at": 0.6875,
+     "frame": 66
+    },
+    {
+     "word": "a",
+     "at": 0.7708333333333334,
+     "frame": 74
+    },
+    {
+     "word": "traffic",
+     "at": 0.8020833333333334,
+     "frame": 77
+    },
+    {
+     "word": "stop.",
+     "at": 0.8958333333333334,
+     "frame": 86
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s1v",
+   "mode": "VISUAL",
+   "focal": "constitutional text",
+   "start_frame": 133,
+   "duration_frames": 54,
+   "sentence": "That's all it takes to protect your constitutional rights during a traffic stop.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s2t",
+   "mode": "TYPE",
+   "focal": "Say the wrong thing — or say too much — and you could be handing a prosecutor the evidence they need.",
+   "start_frame": 187,
+   "duration_frames": 116,
+   "sentence": "Say the wrong thing — or say too much — and you could be handing a prosecutor the evidence they need.",
+   "words": [
+    {
+     "word": "Say",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "the",
+     "at": 0.04032258064516129,
+     "frame": 5
+    },
+    {
+     "word": "wrong",
+     "at": 0.08064516129032258,
+     "frame": 9
+    },
+    {
+     "word": "thing",
+     "at": 0.13709677419354838,
+     "frame": 16
+    },
+    {
+     "word": "—",
+     "at": 0.1935483870967742,
+     "frame": 22
+    },
+    {
+     "word": "or",
+     "at": 0.20967741935483872,
+     "frame": 24
+    },
+    {
+     "word": "say",
+     "at": 0.24193548387096775,
+     "frame": 28
+    },
+    {
+     "word": "too",
+     "at": 0.28225806451612906,
+     "frame": 33
+    },
+    {
+     "word": "much",
+     "at": 0.3225806451612903,
+     "frame": 37
+    },
+    {
+     "word": "—",
+     "at": 0.3709677419354839,
+     "frame": 43
+    },
+    {
+     "word": "and",
+     "at": 0.3870967741935484,
+     "frame": 45
+    },
+    {
+     "word": "you",
+     "at": 0.4274193548387097,
+     "frame": 50
+    },
+    {
+     "word": "could",
+     "at": 0.46774193548387094,
+     "frame": 54
+    },
+    {
+     "word": "be",
+     "at": 0.5241935483870968,
+     "frame": 61
+    },
+    {
+     "word": "handing",
+     "at": 0.5564516129032258,
+     "frame": 65
+    },
+    {
+     "word": "a",
+     "at": 0.6290322580645161,
+     "frame": 73
+    },
+    {
+     "word": "prosecutor",
+     "at": 0.6532258064516129,
+     "frame": 76
+    },
+    {
+     "word": "the",
+     "at": 0.75,
+     "frame": 87
+    },
+    {
+     "word": "evidence",
+     "at": 0.7903225806451613,
+     "frame": 92
+    },
+    {
+     "word": "they",
+     "at": 0.8709677419354839,
+     "frame": 101
+    },
+    {
+     "word": "need.",
+     "at": 0.9193548387096774,
+     "frame": 107
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s2v",
+   "mode": "VISUAL",
+   "focal": "evidence exhibit",
+   "start_frame": 303,
+   "duration_frames": 65,
+   "sentence": "Say the wrong thing — or say too much — and you could be handing a prosecutor the evidence they need.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s3t",
+   "mode": "TYPE",
+   "focal": "Say these four lines, and you stay in control.",
+   "start_frame": 368,
+   "duration_frames": 62,
+   "sentence": "Say these four lines, and you stay in control.",
+   "words": [
+    {
+     "word": "Say",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "these",
+     "at": 0.08064516129032258,
+     "frame": 5
+    },
+    {
+     "word": "four",
+     "at": 0.1935483870967742,
+     "frame": 12
+    },
+    {
+     "word": "lines,",
+     "at": 0.2903225806451613,
+     "frame": 18
+    },
+    {
+     "word": "and",
+     "at": 0.46774193548387094,
+     "frame": 29
+    },
+    {
+     "word": "you",
+     "at": 0.5483870967741935,
+     "frame": 34
+    },
+    {
+     "word": "stay",
+     "at": 0.6290322580645161,
+     "frame": 39
+    },
+    {
+     "word": "in",
+     "at": 0.7258064516129032,
+     "frame": 45
+    },
+    {
+     "word": "control.",
+     "at": 0.7903225806451613,
+     "frame": 49
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s3v",
+   "mode": "VISUAL",
+   "focal": "thermometer lines",
+   "start_frame": 430,
+   "duration_frames": 35,
+   "sentence": "Say these four lines, and you stay in control.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M17 3h4v2h-4zm0 4h4v2h-4zm0 4h4v2h-3.25l-.75-.9zm4 4v2h-2c0-.69-.1-1.37-.29-2zM7 3v2H3V3zm0 4v2H3V7zm0 4v1.1l-.75.9H3v-2zm-4 4h2.29c-.19.63-.29 1.31-.29 2H3zm12-2V5c0-1.66-1.34-3-3-3S9 3.34 9 5v8c-2.21 1.66-2.66 4.79-1 7s4.79 2.66 7 1s2.66-4.79 1-7a4.7 4.7 0 0 0-1-1m-3-9c.55 0 1 .45 1 1v3h-2V5c0-.55.45-1 1-1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "thermometer-lines"
+   }
+  },
+  {
+   "beat_id": "s4t",
+   "mode": "TYPE",
+   "focal": "Most people lose their rights during traffic stops not because they're guilty, but because they don't know what to say — and they talk too much in a moment where every word becomes evidence.",
+   "start_frame": 465,
+   "duration_frames": 196,
+   "sentence": "Most people lose their rights during traffic stops not because they're guilty, but because they don't know what to say — and they talk too much in a moment where every word becomes evidence.",
+   "words": [
+    {
+     "word": "Most",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "people",
+     "at": 0.02631578947368421,
+     "frame": 5
+    },
+    {
+     "word": "lose",
+     "at": 0.06140350877192982,
+     "frame": 12
+    },
+    {
+     "word": "their",
+     "at": 0.08771929824561403,
+     "frame": 17
+    },
+    {
+     "word": "rights",
+     "at": 0.11842105263157894,
+     "frame": 23
+    },
+    {
+     "word": "during",
+     "at": 0.15350877192982457,
+     "frame": 30
+    },
+    {
+     "word": "traffic",
+     "at": 0.18859649122807018,
+     "frame": 37
+    },
+    {
+     "word": "stops",
+     "at": 0.22807017543859648,
+     "frame": 45
+    },
+    {
+     "word": "not",
+     "at": 0.25877192982456143,
+     "frame": 51
+    },
+    {
+     "word": "because",
+     "at": 0.2807017543859649,
+     "frame": 55
+    },
+    {
+     "word": "they're",
+     "at": 0.3201754385964912,
+     "frame": 63
+    },
+    {
+     "word": "guilty,",
+     "at": 0.35526315789473684,
+     "frame": 70
+    },
+    {
+     "word": "but",
+     "at": 0.40789473684210525,
+     "frame": 80
+    },
+    {
+     "word": "because",
+     "at": 0.4298245614035088,
+     "frame": 84
+    },
+    {
+     "word": "they",
+     "at": 0.4692982456140351,
+     "frame": 92
+    },
+    {
+     "word": "don't",
+     "at": 0.4956140350877193,
+     "frame": 97
+    },
+    {
+     "word": "know",
+     "at": 0.5219298245614035,
+     "frame": 102
+    },
+    {
+     "word": "what",
+     "at": 0.5482456140350878,
+     "frame": 107
+    },
+    {
+     "word": "to",
+     "at": 0.5745614035087719,
+     "frame": 113
+    },
+    {
+     "word": "say",
+     "at": 0.5921052631578947,
+     "frame": 116
+    },
+    {
+     "word": "—",
+     "at": 0.6140350877192983,
+     "frame": 120
+    },
+    {
+     "word": "and",
+     "at": 0.6228070175438597,
+     "frame": 122
+    },
+    {
+     "word": "they",
+     "at": 0.6447368421052632,
+     "frame": 126
+    },
+    {
+     "word": "talk",
+     "at": 0.6710526315789473,
+     "frame": 132
+    },
+    {
+     "word": "too",
+     "at": 0.6973684210526315,
+     "frame": 137
+    },
+    {
+     "word": "much",
+     "at": 0.7192982456140351,
+     "frame": 141
+    },
+    {
+     "word": "in",
+     "at": 0.7456140350877193,
+     "frame": 146
+    },
+    {
+     "word": "a",
+     "at": 0.7631578947368421,
+     "frame": 150
+    },
+    {
+     "word": "moment",
+     "at": 0.7763157894736842,
+     "frame": 152
+    },
+    {
+     "word": "where",
+     "at": 0.8114035087719298,
+     "frame": 159
+    },
+    {
+     "word": "every",
+     "at": 0.8421052631578947,
+     "frame": 165
+    },
+    {
+     "word": "word",
+     "at": 0.8728070175438597,
+     "frame": 171
+    },
+    {
+     "word": "becomes",
+     "at": 0.8991228070175439,
+     "frame": 176
+    },
+    {
+     "word": "evidence.",
+     "at": 0.9385964912280702,
+     "frame": 184
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s4v",
+   "mode": "VISUAL",
+   "focal": "evidence exhibit",
+   "start_frame": 661,
+   "duration_frames": 111,
+   "sentence": "Most people lose their rights during traffic stops not because they're guilty, but because they don't know what to say — and they talk too much in a moment where every word becomes evidence.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s5t",
+   "mode": "TYPE",
+   "focal": "Here are the four lines, refined over decades of civil-rights litigation.",
+   "start_frame": 772,
+   "duration_frames": 110,
+   "sentence": "Here are the four lines, refined over decades of civil-rights litigation.",
+   "words": [
+    {
+     "word": "Here",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "are",
+     "at": 0.06666666666666667,
+     "frame": 7
+    },
+    {
+     "word": "the",
+     "at": 0.12222222222222222,
+     "frame": 13
+    },
+    {
+     "word": "four",
+     "at": 0.17777777777777778,
+     "frame": 20
+    },
+    {
+     "word": "lines,",
+     "at": 0.24444444444444444,
+     "frame": 27
+    },
+    {
+     "word": "refined",
+     "at": 0.36666666666666664,
+     "frame": 40
+    },
+    {
+     "word": "over",
+     "at": 0.4666666666666667,
+     "frame": 51
+    },
+    {
+     "word": "decades",
+     "at": 0.5333333333333333,
+     "frame": 59
+    },
+    {
+     "word": "of",
+     "at": 0.6333333333333333,
+     "frame": 70
+    },
+    {
+     "word": "civil-rights",
+     "at": 0.6777777777777778,
+     "frame": 75
+    },
+    {
+     "word": "litigation.",
+     "at": 0.8222222222222222,
+     "frame": 90
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s5v",
+   "mode": "VISUAL",
+   "focal": "thermometer lines",
+   "start_frame": 882,
+   "duration_frames": 62,
+   "sentence": "Here are the four lines, refined over decades of civil-rights litigation.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M17 3h4v2h-4zm0 4h4v2h-4zm0 4h4v2h-3.25l-.75-.9zm4 4v2h-2c0-.69-.1-1.37-.29-2zM7 3v2H3V3zm0 4v2H3V7zm0 4v1.1l-.75.9H3v-2zm-4 4h2.29c-.19.63-.29 1.31-.29 2H3zm12-2V5c0-1.66-1.34-3-3-3S9 3.34 9 5v8c-2.21 1.66-2.66 4.79-1 7s4.79 2.66 7 1s2.66-4.79 1-7a4.7 4.7 0 0 0-1-1m-3-9c.55 0 1 .45 1 1v3h-2V5c0-.55.45-1 1-1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "thermometer-lines"
+   }
+  },
+  {
+   "beat_id": "s6t",
+   "mode": "TYPE",
+   "focal": "Line one: I do not consent to any searches.",
+   "start_frame": 944,
+   "duration_frames": 77,
+   "sentence": "Line one: I do not consent to any searches.",
+   "words": [
+    {
+     "word": "Line",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "one:",
+     "at": 0.1016949152542373,
+     "frame": 8
+    },
+    {
+     "word": "I",
+     "at": 0.2542372881355932,
+     "frame": 20
+    },
+    {
+     "word": "do",
+     "at": 0.3050847457627119,
+     "frame": 23
+    },
+    {
+     "word": "not",
+     "at": 0.3728813559322034,
+     "frame": 29
+    },
+    {
+     "word": "consent",
+     "at": 0.4576271186440678,
+     "frame": 35
+    },
+    {
+     "word": "to",
+     "at": 0.6101694915254238,
+     "frame": 47
+    },
+    {
+     "word": "any",
+     "at": 0.6779661016949152,
+     "frame": 52
+    },
+    {
+     "word": "searches.",
+     "at": 0.7627118644067796,
+     "frame": 59
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s6v",
+   "mode": "VISUAL",
+   "focal": "home floor negative 1",
+   "start_frame": 1021,
+   "duration_frames": 44,
+   "sentence": "Line one: I do not consent to any searches.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M12 3L2 12h3v8h14v-8h3zm-1 12H7v-2h4zm4 3h-2v-8h-2V8h4z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "home-floor-negative-1"
+   }
+  },
+  {
+   "beat_id": "s7t",
+   "mode": "TYPE",
+   "focal": "Line two: Am I being detained, or am I free to go?",
+   "start_frame": 1065,
+   "duration_frames": 88,
+   "sentence": "Line two: Am I being detained, or am I free to go?",
+   "words": [
+    {
+     "word": "Line",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "two:",
+     "at": 0.08333333333333333,
+     "frame": 7
+    },
+    {
+     "word": "Am",
+     "at": 0.20833333333333334,
+     "frame": 18
+    },
+    {
+     "word": "I",
+     "at": 0.2638888888888889,
+     "frame": 23
+    },
+    {
+     "word": "being",
+     "at": 0.3055555555555556,
+     "frame": 27
+    },
+    {
+     "word": "detained,",
+     "at": 0.4027777777777778,
+     "frame": 35
+    },
+    {
+     "word": "or",
+     "at": 0.5972222222222222,
+     "frame": 53
+    },
+    {
+     "word": "am",
+     "at": 0.6527777777777778,
+     "frame": 57
+    },
+    {
+     "word": "I",
+     "at": 0.7083333333333334,
+     "frame": 62
+    },
+    {
+     "word": "free",
+     "at": 0.75,
+     "frame": 66
+    },
+    {
+     "word": "to",
+     "at": 0.8333333333333334,
+     "frame": 73
+    },
+    {
+     "word": "go?",
+     "at": 0.8888888888888888,
+     "frame": 78
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s7v",
+   "mode": "VISUAL",
+   "focal": "line",
+   "start_frame": 1153,
+   "duration_frames": 50,
+   "sentence": "Line two: Am I being detained, or am I free to go?",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 18a2 2 0 1 0 4 0a2 2 0 1 0-4 0M16 6a2 2 0 1 0 4 0a2 2 0 1 0-4 0M7.5 16.5l9-9\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "tabler",
+    "name": "line"
+   }
+  },
+  {
+   "beat_id": "s8t",
+   "mode": "TYPE",
+   "focal": "Line three: I am exercising my right to remain silent.",
+   "start_frame": 1203,
+   "duration_frames": 92,
+   "sentence": "Line three: I am exercising my right to remain silent.",
+   "words": [
+    {
+     "word": "Line",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "three:",
+     "at": 0.08450704225352113,
+     "frame": 8
+    },
+    {
+     "word": "I",
+     "at": 0.23943661971830985,
+     "frame": 22
+    },
+    {
+     "word": "am",
+     "at": 0.28169014084507044,
+     "frame": 26
+    },
+    {
+     "word": "exercising",
+     "at": 0.3380281690140845,
+     "frame": 31
+    },
+    {
+     "word": "my",
+     "at": 0.5070422535211268,
+     "frame": 47
+    },
+    {
+     "word": "right",
+     "at": 0.5633802816901409,
+     "frame": 52
+    },
+    {
+     "word": "to",
+     "at": 0.6619718309859155,
+     "frame": 61
+    },
+    {
+     "word": "remain",
+     "at": 0.7183098591549296,
+     "frame": 66
+    },
+    {
+     "word": "silent.",
+     "at": 0.8309859154929577,
+     "frame": 76
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s8v",
+   "mode": "VISUAL",
+   "focal": "earth arrow right",
+   "start_frame": 1295,
+   "duration_frames": 52,
+   "sentence": "Line three: I am exercising my right to remain silent.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19 21v-2h-4v-2h4v-2l3 3zm-7-3c0-2.2 1.2-4.1 3-5.2c-.1-.5-.5-.8-1-.8H8v-2h2c.6 0 1-.4 1-1V7h2c1.1 0 2-.9 2-2v-.4c2.9 1.2 5 4 5 7.4v.3c.7.2 1.3.6 1.9 1.1c.1-.4.1-.9.1-1.4c0-5.5-4.5-10-10-10S2 6.5 2 12s4.5 10 10 10c.5 0 1 0 1.4-.1c-.9-1.1-1.4-2.4-1.4-3.9m-1 1.9c-4-.5-7-3.8-7-7.9c0-.6.1-1.2.2-1.8L9 15v1c0 1.1.9 2 2 2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "earth-arrow-right"
+   }
+  },
+  {
+   "beat_id": "s9t",
+   "mode": "TYPE",
+   "focal": "Line four: I would like to speak to a lawyer.",
+   "start_frame": 1347,
+   "duration_frames": 67,
+   "sentence": "Line four: I would like to speak to a lawyer.",
+   "words": [
+    {
+     "word": "Line",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "four:",
+     "at": 0.0967741935483871,
+     "frame": 6
+    },
+    {
+     "word": "I",
+     "at": 0.25806451612903225,
+     "frame": 17
+    },
+    {
+     "word": "would",
+     "at": 0.3064516129032258,
+     "frame": 21
+    },
+    {
+     "word": "like",
+     "at": 0.41935483870967744,
+     "frame": 28
+    },
+    {
+     "word": "to",
+     "at": 0.5161290322580645,
+     "frame": 35
+    },
+    {
+     "word": "speak",
+     "at": 0.5806451612903226,
+     "frame": 39
+    },
+    {
+     "word": "to",
+     "at": 0.6935483870967742,
+     "frame": 46
+    },
+    {
+     "word": "a",
+     "at": 0.7580645161290323,
+     "frame": 51
+    },
+    {
+     "word": "lawyer.",
+     "at": 0.8064516129032258,
+     "frame": 54
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s9v",
+   "mode": "VISUAL",
+   "focal": "calendar star four points",
+   "start_frame": 1414,
+   "duration_frames": 38,
+   "sentence": "Line four: I would like to speak to a lawyer.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M10.74 12.25L12 9.5l1.25 2.75L16 13.5l-2.75 1.26L12 17.5l-1.26-2.74L8 13.5zM16 3V1h2v2h1c.53 0 1.04.21 1.41.59c.38.37.59.88.59 1.41v14c0 .53-.21 1.04-.59 1.41c-.37.38-.88.59-1.41.59H5c-.53 0-1.04-.21-1.41-.59C3.21 20.04 3 19.53 3 19V5c0-.53.21-1.04.59-1.41C3.96 3.21 4.47 3 5 3h1V1h2v2zM5 8v11h14V8z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "calendar-star-four-points"
+   }
+  },
+  {
+   "beat_id": "s10t",
+   "mode": "TYPE",
+   "focal": "That's it.",
+   "start_frame": 1452,
+   "duration_frames": 30,
+   "sentence": "That's it.",
+   "words": [
+    {
+     "word": "That's",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "it.",
+     "at": 0.4666666666666667,
+     "frame": 14
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s11t",
+   "mode": "TYPE",
+   "focal": "Four lines.",
+   "start_frame": 1482,
+   "duration_frames": 36,
+   "sentence": "Four lines.",
+   "words": [
+    {
+     "word": "Four",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "lines.",
+     "at": 0.35294117647058826,
+     "frame": 13
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s12t",
+   "mode": "TYPE",
+   "focal": "Memorize them.",
+   "start_frame": 1518,
+   "duration_frames": 44,
+   "sentence": "Memorize them.",
+   "words": [
+    {
+     "word": "Memorize",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "them.",
+     "at": 0.5,
+     "frame": 22
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s13t",
+   "mode": "TYPE",
+   "focal": "Practice them in the mirror until they feel boring.",
+   "start_frame": 1562,
+   "duration_frames": 65,
+   "sentence": "Practice them in the mirror until they feel boring.",
+   "words": [
+    {
+     "word": "Practice",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "them",
+     "at": 0.15625,
+     "frame": 10
+    },
+    {
+     "word": "in",
+     "at": 0.25,
+     "frame": 16
+    },
+    {
+     "word": "the",
+     "at": 0.3125,
+     "frame": 20
+    },
+    {
+     "word": "mirror",
+     "at": 0.390625,
+     "frame": 25
+    },
+    {
+     "word": "until",
+     "at": 0.515625,
+     "frame": 34
+    },
+    {
+     "word": "they",
+     "at": 0.625,
+     "frame": 41
+    },
+    {
+     "word": "feel",
+     "at": 0.71875,
+     "frame": 47
+    },
+    {
+     "word": "boring.",
+     "at": 0.8125,
+     "frame": 53
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s13v",
+   "mode": "VISUAL",
+   "focal": "mirror",
+   "start_frame": 1627,
+   "duration_frames": 37,
+   "sentence": "Practice them in the mirror until they feel boring.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M12 1c4.69 0 8.5 4.93 8.5 11c0 6.08-3.81 11-8.5 11s-8.5-4.92-8.5-11C3.5 5.93 7.31 1 12 1m0 2c-3.59 0-6.5 4.03-6.5 9s2.91 9 6.5 9s6.5-4.03 6.5-9s-2.91-9-6.5-9m-3.71 7.28l3.24-3.25l1.06 1.06l-3.24 3.25zm.41 4.33l5.66-5.66L15.42 10l-5.66 5.67z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "mirror"
+   }
+  },
+  {
+   "beat_id": "s14t",
+   "mode": "TYPE",
+   "focal": "Because in the moment, you will not invent good wording — you will revert to whatever you've rehearsed.",
+   "start_frame": 1664,
+   "duration_frames": 106,
+   "sentence": "Because in the moment, you will not invent good wording — you will revert to whatever you've rehearsed.",
+   "words": [
+    {
+     "word": "Because",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "in",
+     "at": 0.07142857142857142,
+     "frame": 8
+    },
+    {
+     "word": "the",
+     "at": 0.10317460317460317,
+     "frame": 11
+    },
+    {
+     "word": "moment,",
+     "at": 0.14285714285714285,
+     "frame": 15
+    },
+    {
+     "word": "you",
+     "at": 0.23809523809523808,
+     "frame": 25
+    },
+    {
+     "word": "will",
+     "at": 0.2777777777777778,
+     "frame": 29
+    },
+    {
+     "word": "not",
+     "at": 0.3253968253968254,
+     "frame": 34
+    },
+    {
+     "word": "invent",
+     "at": 0.36507936507936506,
+     "frame": 39
+    },
+    {
+     "word": "good",
+     "at": 0.42857142857142855,
+     "frame": 45
+    },
+    {
+     "word": "wording",
+     "at": 0.47619047619047616,
+     "frame": 50
+    },
+    {
+     "word": "—",
+     "at": 0.5476190476190477,
+     "frame": 58
+    },
+    {
+     "word": "you",
+     "at": 0.5634920634920635,
+     "frame": 60
+    },
+    {
+     "word": "will",
+     "at": 0.6031746031746031,
+     "frame": 64
+    },
+    {
+     "word": "revert",
+     "at": 0.6507936507936508,
+     "frame": 69
+    },
+    {
+     "word": "to",
+     "at": 0.7142857142857143,
+     "frame": 76
+    },
+    {
+     "word": "whatever",
+     "at": 0.746031746031746,
+     "frame": 79
+    },
+    {
+     "word": "you've",
+     "at": 0.8253968253968254,
+     "frame": 87
+    },
+    {
+     "word": "rehearsed.",
+     "at": 0.8809523809523809,
+     "frame": 93
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s14v",
+   "mode": "VISUAL",
+   "focal": "bleach no chlorine",
+   "start_frame": 1770,
+   "duration_frames": 60,
+   "sentence": "Because in the moment, you will not invent good wording — you will revert to whatever you've rehearsed.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 19h14a2 2 0 0 0 1.84-2.75L13.74 4a2 2 0 0 0-3.5 0l-7.1 12.25A2 2 0 0 0 4.89 19m1.686 0l7.907-13.733m-2.764 13.747l5.346-9.284\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "tabler",
+    "name": "bleach-no-chlorine"
+   }
+  },
+  {
+   "beat_id": "s15t",
+   "mode": "TYPE",
+   "focal": "Now here's something that surprises most people.",
+   "start_frame": 1830,
+   "duration_frames": 61,
+   "sentence": "Now here's something that surprises most people.",
+   "words": [
+    {
+     "word": "Now",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "here's",
+     "at": 0.08620689655172414,
+     "frame": 5
+    },
+    {
+     "word": "something",
+     "at": 0.20689655172413793,
+     "frame": 13
+    },
+    {
+     "word": "that",
+     "at": 0.39655172413793105,
+     "frame": 24
+    },
+    {
+     "word": "surprises",
+     "at": 0.5,
+     "frame": 31
+    },
+    {
+     "word": "most",
+     "at": 0.6896551724137931,
+     "frame": 42
+    },
+    {
+     "word": "people.",
+     "at": 0.7931034482758621,
+     "frame": 48
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s15v",
+   "mode": "VISUAL",
+   "focal": "account multiple check",
+   "start_frame": 1891,
+   "duration_frames": 35,
+   "sentence": "Now here's something that surprises most people.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.9 2.9 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.9 2.9 0 0 0 18 11a3 3 0 0 0 0-6M7.34 8.92l1.16 1.41l-4.75 4.75l-2.75-3l1.16-1.16l1.59 1.58z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "account-multiple-check"
+   }
+  },
+  {
+   "beat_id": "s16t",
+   "mode": "TYPE",
+   "focal": "A routine traffic stop is NOT considered custody for Miranda purposes.",
+   "start_frame": 1926,
+   "duration_frames": 97,
+   "sentence": "A routine traffic stop is NOT considered custody for Miranda purposes.",
+   "words": [
+    {
+     "word": "A",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "routine",
+     "at": 0.03529411764705882,
+     "frame": 3
+    },
+    {
+     "word": "traffic",
+     "at": 0.1411764705882353,
+     "frame": 14
+    },
+    {
+     "word": "stop",
+     "at": 0.24705882352941178,
+     "frame": 24
+    },
+    {
+     "word": "is",
+     "at": 0.3176470588235294,
+     "frame": 31
+    },
+    {
+     "word": "NOT",
+     "at": 0.36470588235294116,
+     "frame": 35
+    },
+    {
+     "word": "considered",
+     "at": 0.4235294117647059,
+     "frame": 41
+    },
+    {
+     "word": "custody",
+     "at": 0.5647058823529412,
+     "frame": 55
+    },
+    {
+     "word": "for",
+     "at": 0.6705882352941176,
+     "frame": 65
+    },
+    {
+     "word": "Miranda",
+     "at": 0.7294117647058823,
+     "frame": 71
+    },
+    {
+     "word": "purposes.",
+     "at": 0.8352941176470589,
+     "frame": 81
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s16v",
+   "mode": "VISUAL",
+   "focal": "traffic",
+   "start_frame": 2023,
+   "duration_frames": 55,
+   "sentence": "A routine traffic stop is NOT considered custody for Miranda purposes.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M12 9a2 2 0 0 1-2-2a2 2 0 0 1 2-2c1.11 0 2 .89 2 2a2 2 0 0 1-2 2m0 5a2 2 0 0 1-2-2a2 2 0 0 1 2-2c1.11 0 2 .89 2 2a2 2 0 0 1-2 2m0 5a2 2 0 0 1-2-2a2 2 0 0 1 2-2c1.11 0 2 .89 2 2a2 2 0 0 1-2 2m8-9h-3V8.86c1.72-.45 3-2 3-3.86h-3V4a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v1H4c0 1.86 1.28 3.41 3 3.86V10H4c0 1.86 1.28 3.41 3 3.86V15H4c0 1.86 1.28 3.41 3 3.86V20a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1.14c1.72-.45 3-2 3-3.86h-3v-1.14c1.72-.45 3-2 3-3.86\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "traffic-light"
+   }
+  },
+  {
+   "beat_id": "s17t",
+   "mode": "TYPE",
+   "focal": "That means officers can ask you questions at the roadside — 'Do you know why I pulled you over?",
+   "start_frame": 2078,
+   "duration_frames": 113,
+   "sentence": "That means officers can ask you questions at the roadside — 'Do you know why I pulled you over?",
+   "words": [
+    {
+     "word": "That",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "means",
+     "at": 0.05172413793103448,
+     "frame": 6
+    },
+    {
+     "word": "officers",
+     "at": 0.11206896551724138,
+     "frame": 13
+    },
+    {
+     "word": "can",
+     "at": 0.19827586206896552,
+     "frame": 22
+    },
+    {
+     "word": "ask",
+     "at": 0.2413793103448276,
+     "frame": 27
+    },
+    {
+     "word": "you",
+     "at": 0.28448275862068967,
+     "frame": 32
+    },
+    {
+     "word": "questions",
+     "at": 0.3275862068965517,
+     "frame": 37
+    },
+    {
+     "word": "at",
+     "at": 0.4224137931034483,
+     "frame": 48
+    },
+    {
+     "word": "the",
+     "at": 0.45689655172413796,
+     "frame": 52
+    },
+    {
+     "word": "roadside",
+     "at": 0.5,
+     "frame": 57
+    },
+    {
+     "word": "—",
+     "at": 0.5862068965517241,
+     "frame": 66
+    },
+    {
+     "word": "'Do",
+     "at": 0.603448275862069,
+     "frame": 68
+    },
+    {
+     "word": "you",
+     "at": 0.6379310344827587,
+     "frame": 72
+    },
+    {
+     "word": "know",
+     "at": 0.6810344827586207,
+     "frame": 77
+    },
+    {
+     "word": "why",
+     "at": 0.7327586206896551,
+     "frame": 83
+    },
+    {
+     "word": "I",
+     "at": 0.7758620689655172,
+     "frame": 88
+    },
+    {
+     "word": "pulled",
+     "at": 0.8017241379310345,
+     "frame": 91
+    },
+    {
+     "word": "you",
+     "at": 0.8706896551724138,
+     "frame": 98
+    },
+    {
+     "word": "over?",
+     "at": 0.9137931034482759,
+     "frame": 103
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s17v",
+   "mode": "VISUAL",
+   "focal": "frequently asked questions",
+   "start_frame": 2191,
+   "duration_frames": 63,
+   "sentence": "That means officers can ask you questions at the roadside — 'Do you know why I pulled you over?",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 15H6l-4 4V3a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1m5-6v14l-4-4H8a1 1 0 0 1-1-1v-1h14V8h1a1 1 0 0 1 1 1M8.19 4c-.87 0-1.57.2-2.11.59c-.52.41-.78.98-.77 1.77l.01.03h1.93c.01-.3.1-.53.28-.69a1 1 0 0 1 .66-.23c.31 0 .57.1.75.28c.18.19.26.45.26.75c0 .32-.07.59-.23.82c-.14.23-.35.43-.61.59c-.51.34-.86.64-1.05.91C7.11 9.08 7 9.5 7 10h2c0-.31.04-.56.13-.74s.26-.36.51-.52c.45-.24.82-.53 1.11-.93s.44-.81.44-1.31c0-.76-.27-1.37-.81-1.82C9.85 4.23 9.12 4 8.19 4M7 11v2h2v-2zm6 2h2v-2h-2zm0-9v6h2V4z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "frequently-asked-questions"
+   }
+  },
+  {
+   "beat_id": "s18t",
+   "mode": "TYPE",
+   "focal": "Have you been drinking?",
+   "start_frame": 2254,
+   "duration_frames": 48,
+   "sentence": "Have you been drinking?",
+   "words": [
+    {
+     "word": "Have",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "you",
+     "at": 0.1935483870967742,
+     "frame": 9
+    },
+    {
+     "word": "been",
+     "at": 0.3548387096774194,
+     "frame": 17
+    },
+    {
+     "word": "drinking?",
+     "at": 0.5483870967741935,
+     "frame": 26
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s19t",
+   "mode": "TYPE",
+   "focal": "Where are you headed?'",
+   "start_frame": 2302,
+   "duration_frames": 46,
+   "sentence": "Where are you headed?'",
+   "words": [
+    {
+     "word": "Where",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "are",
+     "at": 0.28,
+     "frame": 13
+    },
+    {
+     "word": "you",
+     "at": 0.48,
+     "frame": 22
+    },
+    {
+     "word": "headed?'",
+     "at": 0.68,
+     "frame": 31
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s20t",
+   "mode": "TYPE",
+   "focal": "— without reading you your rights.",
+   "start_frame": 2348,
+   "duration_frames": 68,
+   "sentence": "— without reading you your rights.",
+   "words": [
+    {
+     "word": "—",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "without",
+     "at": 0.046511627906976744,
+     "frame": 3
+    },
+    {
+     "word": "reading",
+     "at": 0.2558139534883721,
+     "frame": 17
+    },
+    {
+     "word": "you",
+     "at": 0.46511627906976744,
+     "frame": 32
+    },
+    {
+     "word": "your",
+     "at": 0.5813953488372093,
+     "frame": 40
+    },
+    {
+     "word": "rights.",
+     "at": 0.7209302325581395,
+     "frame": 49
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s21t",
+   "mode": "TYPE",
+   "focal": "And your answers are still admissible in court.",
+   "start_frame": 2416,
+   "duration_frames": 63,
+   "sentence": "And your answers are still admissible in court.",
+   "words": [
+    {
+     "word": "And",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "your",
+     "at": 0.0847457627118644,
+     "frame": 5
+    },
+    {
+     "word": "answers",
+     "at": 0.1864406779661017,
+     "frame": 12
+    },
+    {
+     "word": "are",
+     "at": 0.3389830508474576,
+     "frame": 21
+    },
+    {
+     "word": "still",
+     "at": 0.423728813559322,
+     "frame": 27
+    },
+    {
+     "word": "admissible",
+     "at": 0.5423728813559322,
+     "frame": 34
+    },
+    {
+     "word": "in",
+     "at": 0.7457627118644068,
+     "frame": 47
+    },
+    {
+     "word": "court.",
+     "at": 0.8135593220338984,
+     "frame": 51
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s21v",
+   "mode": "VISUAL",
+   "focal": "court document",
+   "start_frame": 2479,
+   "duration_frames": 36,
+   "sentence": "And your answers are still admissible in court.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s22t",
+   "mode": "TYPE",
+   "focal": "That question — 'Do you know why I pulled you over?'",
+   "start_frame": 2515,
+   "duration_frames": 68,
+   "sentence": "That question — 'Do you know why I pulled you over?'",
+   "words": [
+    {
+     "word": "That",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "question",
+     "at": 0.1,
+     "frame": 7
+    },
+    {
+     "word": "—",
+     "at": 0.26666666666666666,
+     "frame": 18
+    },
+    {
+     "word": "'Do",
+     "at": 0.3,
+     "frame": 20
+    },
+    {
+     "word": "you",
+     "at": 0.36666666666666664,
+     "frame": 25
+    },
+    {
+     "word": "know",
+     "at": 0.45,
+     "frame": 31
+    },
+    {
+     "word": "why",
+     "at": 0.55,
+     "frame": 37
+    },
+    {
+     "word": "I",
+     "at": 0.6333333333333333,
+     "frame": 43
+    },
+    {
+     "word": "pulled",
+     "at": 0.6833333333333333,
+     "frame": 46
+    },
+    {
+     "word": "you",
+     "at": 0.8166666666666667,
+     "frame": 56
+    },
+    {
+     "word": "over?'",
+     "at": 0.9,
+     "frame": 61
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s22v",
+   "mode": "VISUAL",
+   "focal": "account question",
+   "start_frame": 2583,
+   "duration_frames": 39,
+   "sentence": "That question — 'Do you know why I pulled you over?'",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M13 8a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4a4 4 0 0 1 4 4m4 10v2H1v-2c0-2.21 3.58-4 8-4s8 1.79 8 4m3.5-3.5V16H19v-1.5zm-2-5H17V9a3 3 0 0 1 3-3a3 3 0 0 1 3 3c0 .97-.5 1.88-1.29 2.41l-.3.19c-.57.4-.91 1.01-.91 1.7v.2H19v-.2c0-1.19.6-2.3 1.59-2.95l.29-.19c.39-.26.62-.69.62-1.16A1.5 1.5 0 0 0 20 7.5A1.5 1.5 0 0 0 18.5 9z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "account-question"
+   }
+  },
+  {
+   "beat_id": "s23t",
+   "mode": "TYPE",
+   "focal": "— is a trap.",
+   "start_frame": 2622,
+   "duration_frames": 36,
+   "sentence": "— is a trap.",
+   "words": [
+    {
+     "word": "—",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "is",
+     "at": 0.10526315789473684,
+     "frame": 4
+    },
+    {
+     "word": "a",
+     "at": 0.3157894736842105,
+     "frame": 11
+    },
+    {
+     "word": "trap.",
+     "at": 0.47368421052631576,
+     "frame": 17
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s24t",
+   "mode": "TYPE",
+   "focal": "It's designed to get an admission.",
+   "start_frame": 2658,
+   "duration_frames": 50,
+   "sentence": "It's designed to get an admission.",
+   "words": [
+    {
+     "word": "It's",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "designed",
+     "at": 0.11627906976744186,
+     "frame": 6
+    },
+    {
+     "word": "to",
+     "at": 0.3488372093023256,
+     "frame": 17
+    },
+    {
+     "word": "get",
+     "at": 0.4418604651162791,
+     "frame": 22
+    },
+    {
+     "word": "an",
+     "at": 0.5581395348837209,
+     "frame": 28
+    },
+    {
+     "word": "admission.",
+     "at": 0.6511627906976745,
+     "frame": 33
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s24v",
+   "mode": "VISUAL",
+   "focal": "http get",
+   "start_frame": 2708,
+   "duration_frames": 28,
+   "sentence": "It's designed to get an admission.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M7 8H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v-4H6m8-4h-4v8h4m-4-4h2.5M17 8h4m-2 0v8\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "tabler",
+    "name": "http-get"
+   }
+  },
+  {
+   "beat_id": "s25t",
+   "mode": "TYPE",
+   "focal": "No matter how you answer, you're giving them evidence.",
+   "start_frame": 2736,
+   "duration_frames": 65,
+   "sentence": "No matter how you answer, you're giving them evidence.",
+   "words": [
+    {
+     "word": "No",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "matter",
+     "at": 0.057971014492753624,
+     "frame": 4
+    },
+    {
+     "word": "how",
+     "at": 0.17391304347826086,
+     "frame": 11
+    },
+    {
+     "word": "you",
+     "at": 0.2463768115942029,
+     "frame": 16
+    },
+    {
+     "word": "answer,",
+     "at": 0.3188405797101449,
+     "frame": 21
+    },
+    {
+     "word": "you're",
+     "at": 0.4927536231884058,
+     "frame": 32
+    },
+    {
+     "word": "giving",
+     "at": 0.5942028985507246,
+     "frame": 39
+    },
+    {
+     "word": "them",
+     "at": 0.7101449275362319,
+     "frame": 46
+    },
+    {
+     "word": "evidence.",
+     "at": 0.7971014492753623,
+     "frame": 52
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s25v",
+   "mode": "VISUAL",
+   "focal": "evidence exhibit",
+   "start_frame": 2801,
+   "duration_frames": 36,
+   "sentence": "No matter how you answer, you're giving them evidence.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s26t",
+   "mode": "TYPE",
+   "focal": "The Innocence Project has documented over 375 DNA exonerations.",
+   "start_frame": 2837,
+   "duration_frames": 116,
+   "sentence": "The Innocence Project has documented over 375 DNA exonerations.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "Innocence",
+     "at": 0.06578947368421052,
+     "frame": 8
+    },
+    {
+     "word": "Project",
+     "at": 0.21052631578947367,
+     "frame": 24
+    },
+    {
+     "word": "has",
+     "at": 0.32894736842105265,
+     "frame": 38
+    },
+    {
+     "word": "documented",
+     "at": 0.39473684210526316,
+     "frame": 46
+    },
+    {
+     "word": "over",
+     "at": 0.5526315789473685,
+     "frame": 64
+    },
+    {
+     "word": "375",
+     "at": 0.631578947368421,
+     "frame": 73
+    },
+    {
+     "word": "DNA",
+     "at": 0.6973684210526315,
+     "frame": 81
+    },
+    {
+     "word": "exonerations.",
+     "at": 0.7631578947368421,
+     "frame": 89
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s26v",
+   "mode": "VISUAL",
+   "focal": "dna helix",
+   "start_frame": 2953,
+   "duration_frames": 66,
+   "sentence": "The Innocence Project has documented over 375 DNA exonerations.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s27t",
+   "mode": "TYPE",
+   "focal": "Roughly 30% involved false confessions or statements from people who thought talking would clear them.",
+   "start_frame": 3019,
+   "duration_frames": 124,
+   "sentence": "Roughly 30% involved false confessions or statements from people who thought talking would clear them.",
+   "words": [
+    {
+     "word": "Roughly",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "30%",
+     "at": 0.075,
+     "frame": 9
+    },
+    {
+     "word": "involved",
+     "at": 0.10833333333333334,
+     "frame": 13
+    },
+    {
+     "word": "false",
+     "at": 0.19166666666666668,
+     "frame": 24
+    },
+    {
+     "word": "confessions",
+     "at": 0.25,
+     "frame": 31
+    },
+    {
+     "word": "or",
+     "at": 0.35833333333333334,
+     "frame": 44
+    },
+    {
+     "word": "statements",
+     "at": 0.39166666666666666,
+     "frame": 49
+    },
+    {
+     "word": "from",
+     "at": 0.49166666666666664,
+     "frame": 61
+    },
+    {
+     "word": "people",
+     "at": 0.5416666666666666,
+     "frame": 67
+    },
+    {
+     "word": "who",
+     "at": 0.6083333333333333,
+     "frame": 75
+    },
+    {
+     "word": "thought",
+     "at": 0.65,
+     "frame": 81
+    },
+    {
+     "word": "talking",
+     "at": 0.725,
+     "frame": 90
+    },
+    {
+     "word": "would",
+     "at": 0.8,
+     "frame": 99
+    },
+    {
+     "word": "clear",
+     "at": 0.8583333333333333,
+     "frame": 106
+    },
+    {
+     "word": "them.",
+     "at": 0.9166666666666666,
+     "frame": 114
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s27v",
+   "mode": "VISUAL",
+   "focal": "thought bubble",
+   "start_frame": 3143,
+   "duration_frames": 70,
+   "sentence": "Roughly 30% involved false confessions or statements from people who thought talking would clear them.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M3.5 19A1.5 1.5 0 0 1 5 20.5A1.5 1.5 0 0 1 3.5 22A1.5 1.5 0 0 1 2 20.5A1.5 1.5 0 0 1 3.5 19m5-3a2.5 2.5 0 0 1 2.5 2.5A2.5 2.5 0 0 1 8.5 21A2.5 2.5 0 0 1 6 18.5A2.5 2.5 0 0 1 8.5 16m6-1c-1.19 0-2.27-.5-3-1.35c-.73.85-1.81 1.35-3 1.35c-1.96 0-3.59-1.41-3.93-3.26A4.02 4.02 0 0 1 2 8a4 4 0 0 1 4-4c.26 0 .5.03.77.07C7.5 3.41 8.45 3 9.5 3c1.19 0 2.27.5 3 1.35c.73-.85 1.81-1.35 3-1.35c1.96 0 3.59 1.41 3.93 3.26A4.02 4.02 0 0 1 22 10a4 4 0 0 1-4 4l-.77-.07c-.73.66-1.68 1.07-2.73 1.07\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "thought-bubble"
+   }
+  },
+  {
+   "beat_id": "s28t",
+   "mode": "TYPE",
+   "focal": "Innocent people.",
+   "start_frame": 3213,
+   "duration_frames": 45,
+   "sentence": "Innocent people.",
+   "words": [
+    {
+     "word": "Innocent",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "people.",
+     "at": 0.45454545454545453,
+     "frame": 20
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s29t",
+   "mode": "TYPE",
+   "focal": "Convicted because they said too much.",
+   "start_frame": 3258,
+   "duration_frames": 82,
+   "sentence": "Convicted because they said too much.",
+   "words": [
+    {
+     "word": "Convicted",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "because",
+     "at": 0.23404255319148937,
+     "frame": 19
+    },
+    {
+     "word": "they",
+     "at": 0.425531914893617,
+     "frame": 35
+    },
+    {
+     "word": "said",
+     "at": 0.5531914893617021,
+     "frame": 45
+    },
+    {
+     "word": "too",
+     "at": 0.6808510638297872,
+     "frame": 56
+    },
+    {
+     "word": "much.",
+     "at": 0.7872340425531915,
+     "frame": 65
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s30t",
+   "mode": "TYPE",
+   "focal": "So what does this all mean?",
+   "start_frame": 3340,
+   "duration_frames": 55,
+   "sentence": "So what does this all mean?",
+   "words": [
+    {
+     "word": "So",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "what",
+     "at": 0.10810810810810811,
+     "frame": 6
+    },
+    {
+     "word": "does",
+     "at": 0.2702702702702703,
+     "frame": 15
+    },
+    {
+     "word": "this",
+     "at": 0.43243243243243246,
+     "frame": 24
+    },
+    {
+     "word": "all",
+     "at": 0.5945945945945946,
+     "frame": 33
+    },
+    {
+     "word": "mean?",
+     "at": 0.7297297297297297,
+     "frame": 40
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s31t",
+   "mode": "TYPE",
+   "focal": "It means the roadside is not where you win.",
+   "start_frame": 3395,
+   "duration_frames": 60,
+   "sentence": "It means the roadside is not where you win.",
+   "words": [
+    {
+     "word": "It",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "means",
+     "at": 0.07142857142857142,
+     "frame": 4
+    },
+    {
+     "word": "the",
+     "at": 0.19642857142857142,
+     "frame": 12
+    },
+    {
+     "word": "roadside",
+     "at": 0.2857142857142857,
+     "frame": 17
+    },
+    {
+     "word": "is",
+     "at": 0.4642857142857143,
+     "frame": 28
+    },
+    {
+     "word": "not",
+     "at": 0.5357142857142857,
+     "frame": 32
+    },
+    {
+     "word": "where",
+     "at": 0.625,
+     "frame": 38
+    },
+    {
+     "word": "you",
+     "at": 0.75,
+     "frame": 45
+    },
+    {
+     "word": "win.",
+     "at": 0.8392857142857143,
+     "frame": 50
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s31v",
+   "mode": "VISUAL",
+   "focal": "bleach no chlorine",
+   "start_frame": 3455,
+   "duration_frames": 34,
+   "sentence": "It means the roadside is not where you win.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 19h14a2 2 0 0 0 1.84-2.75L13.74 4a2 2 0 0 0-3.5 0l-7.1 12.25A2 2 0 0 0 4.89 19m1.686 0l7.907-13.733m-2.764 13.747l5.346-9.284\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "tabler",
+    "name": "bleach-no-chlorine"
+   }
+  },
+  {
+   "beat_id": "s32t",
+   "mode": "TYPE",
+   "focal": "Court is.",
+   "start_frame": 3489,
+   "duration_frames": 33,
+   "sentence": "Court is.",
+   "words": [
+    {
+     "word": "Court",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "is.",
+     "at": 0.4666666666666667,
+     "frame": 15
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s33t",
+   "mode": "TYPE",
+   "focal": "Your job during a traffic stop is not to prove your innocence — it's to preserve your ability to fight later.",
+   "start_frame": 3522,
+   "duration_frames": 137,
+   "sentence": "Your job during a traffic stop is not to prove your innocence — it's to preserve your ability to fight later.",
+   "words": [
+    {
+     "word": "Your",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "job",
+     "at": 0.045454545454545456,
+     "frame": 6
+    },
+    {
+     "word": "during",
+     "at": 0.08333333333333333,
+     "frame": 11
+    },
+    {
+     "word": "a",
+     "at": 0.14393939393939395,
+     "frame": 20
+    },
+    {
+     "word": "traffic",
+     "at": 0.16666666666666666,
+     "frame": 23
+    },
+    {
+     "word": "stop",
+     "at": 0.23484848484848486,
+     "frame": 32
+    },
+    {
+     "word": "is",
+     "at": 0.2803030303030303,
+     "frame": 38
+    },
+    {
+     "word": "not",
+     "at": 0.3106060606060606,
+     "frame": 43
+    },
+    {
+     "word": "to",
+     "at": 0.3484848484848485,
+     "frame": 48
+    },
+    {
+     "word": "prove",
+     "at": 0.3787878787878788,
+     "frame": 52
+    },
+    {
+     "word": "your",
+     "at": 0.4318181818181818,
+     "frame": 59
+    },
+    {
+     "word": "innocence",
+     "at": 0.4772727272727273,
+     "frame": 65
+    },
+    {
+     "word": "—",
+     "at": 0.5606060606060606,
+     "frame": 77
+    },
+    {
+     "word": "it's",
+     "at": 0.5757575757575758,
+     "frame": 79
+    },
+    {
+     "word": "to",
+     "at": 0.6136363636363636,
+     "frame": 84
+    },
+    {
+     "word": "preserve",
+     "at": 0.6439393939393939,
+     "frame": 88
+    },
+    {
+     "word": "your",
+     "at": 0.7196969696969697,
+     "frame": 99
+    },
+    {
+     "word": "ability",
+     "at": 0.7651515151515151,
+     "frame": 105
+    },
+    {
+     "word": "to",
+     "at": 0.8333333333333334,
+     "frame": 114
+    },
+    {
+     "word": "fight",
+     "at": 0.8636363636363636,
+     "frame": 118
+    },
+    {
+     "word": "later.",
+     "at": 0.9166666666666666,
+     "frame": 126
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s33v",
+   "mode": "VISUAL",
+   "focal": "traffic",
+   "start_frame": 3659,
+   "duration_frames": 77,
+   "sentence": "Your job during a traffic stop is not to prove your innocence — it's to preserve your ability to fight later.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M12 9a2 2 0 0 1-2-2a2 2 0 0 1 2-2c1.11 0 2 .89 2 2a2 2 0 0 1-2 2m0 5a2 2 0 0 1-2-2a2 2 0 0 1 2-2c1.11 0 2 .89 2 2a2 2 0 0 1-2 2m0 5a2 2 0 0 1-2-2a2 2 0 0 1 2-2c1.11 0 2 .89 2 2a2 2 0 0 1-2 2m8-9h-3V8.86c1.72-.45 3-2 3-3.86h-3V4a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v1H4c0 1.86 1.28 3.41 3 3.86V10H4c0 1.86 1.28 3.41 3 3.86V15H4c0 1.86 1.28 3.41 3 3.86V20a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1.14c1.72-.45 3-2 3-3.86h-3v-1.14c1.72-.45 3-2 3-3.86\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "traffic-light"
+   }
+  },
+  {
+   "beat_id": "s34t",
+   "mode": "TYPE",
+   "focal": "Police can legally lie to you about evidence.",
+   "start_frame": 3736,
+   "duration_frames": 65,
+   "sentence": "Police can legally lie to you about evidence.",
+   "words": [
+    {
+     "word": "Police",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "can",
+     "at": 0.14035087719298245,
+     "frame": 9
+    },
+    {
+     "word": "legally",
+     "at": 0.22807017543859648,
+     "frame": 15
+    },
+    {
+     "word": "lie",
+     "at": 0.38596491228070173,
+     "frame": 25
+    },
+    {
+     "word": "to",
+     "at": 0.47368421052631576,
+     "frame": 31
+    },
+    {
+     "word": "you",
+     "at": 0.543859649122807,
+     "frame": 35
+    },
+    {
+     "word": "about",
+     "at": 0.631578947368421,
+     "frame": 41
+    },
+    {
+     "word": "evidence.",
+     "at": 0.7543859649122807,
+     "frame": 49
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s34v",
+   "mode": "VISUAL",
+   "focal": "evidence exhibit",
+   "start_frame": 3801,
+   "duration_frames": 37,
+   "sentence": "Police can legally lie to you about evidence.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s35t",
+   "mode": "TYPE",
+   "focal": "They can claim your friend is in the next room confessing.",
+   "start_frame": 3838,
+   "duration_frames": 73,
+   "sentence": "They can claim your friend is in the next room confessing.",
+   "words": [
+    {
+     "word": "They",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "can",
+     "at": 0.0821917808219178,
+     "frame": 6
+    },
+    {
+     "word": "claim",
+     "at": 0.1506849315068493,
+     "frame": 11
+    },
+    {
+     "word": "your",
+     "at": 0.2465753424657534,
+     "frame": 18
+    },
+    {
+     "word": "friend",
+     "at": 0.3287671232876712,
+     "frame": 24
+    },
+    {
+     "word": "is",
+     "at": 0.4383561643835616,
+     "frame": 32
+    },
+    {
+     "word": "in",
+     "at": 0.4931506849315068,
+     "frame": 36
+    },
+    {
+     "word": "the",
+     "at": 0.547945205479452,
+     "frame": 40
+    },
+    {
+     "word": "next",
+     "at": 0.6164383561643836,
+     "frame": 45
+    },
+    {
+     "word": "room",
+     "at": 0.6986301369863014,
+     "frame": 51
+    },
+    {
+     "word": "confessing.",
+     "at": 0.7808219178082192,
+     "frame": 57
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s35v",
+   "mode": "VISUAL",
+   "focal": "teddy bear",
+   "start_frame": 3911,
+   "duration_frames": 41,
+   "sentence": "They can claim your friend is in the next room confessing.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M15.75 19.13c-.83 0-1.5-.84-1.5-1.88c0-1.03.67-1.87 1.5-1.87s1.5.84 1.5 1.87c0 1.04-.67 1.88-1.5 1.88M12 11.25c-1.24 0-2.25-.84-2.25-1.87c0-1.04 1.01-1.88 2.25-1.88s2.25.84 2.25 1.88c0 1.03-1.01 1.87-2.25 1.87m-3.75 7.88c-.83 0-1.5-.84-1.5-1.88c0-1.03.67-1.87 1.5-1.87s1.5.84 1.5 1.87c0 1.04-.67 1.88-1.5 1.88M12 8.25c.41 0 .75.34.75.75s-.34.75-.75.75s-.75-.34-.75-.75s.34-.75.75-.75M18.75 12c-.32 0-.63.07-.91.2c-.48-.61-1.13-1.13-1.91-1.53c.57-.8.91-1.77.91-2.82v-.06c1.09-.23 1.91-1.2 1.91-2.37c0-1.33-1.09-2.42-2.42-2.42c-.69 0-1.33.29-1.75.75a4.81 4.81 0 0 0-5.16 0C9 3.29 8.36 3 7.67 3C6.34 3 5.25 4.09 5.25 5.42c0 1.16.82 2.13 1.9 2.37v.06c0 1.05.35 2.03.91 2.82c-.77.4-1.42.92-1.9 1.53A2.24 2.24 0 0 0 3 14.25c0 1.25 1 2.25 2.25 2.25h.06c-.04.24-.06.5-.06.75c0 2.07 1.34 3.75 3 3.75c1.01 0 1.9-.63 2.45-1.59c.42.06.85.09 1.3.09s.88-.03 1.3-.09c.55.96 1.44 1.59 2.45 1.59c1.66 0 3-1.68 3-3.75c0-.25-.02-.51-.06-.75h.06c1.25 0 2.25-1 2.25-2.25S20 12 18.75 12\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "teddy-bear"
+   }
+  },
+  {
+   "beat_id": "s36t",
+   "mode": "TYPE",
+   "focal": "They can say they already have fingerprints.",
+   "start_frame": 3952,
+   "duration_frames": 56,
+   "sentence": "They can say they already have fingerprints.",
+   "words": [
+    {
+     "word": "They",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "can",
+     "at": 0.10909090909090909,
+     "frame": 6
+    },
+    {
+     "word": "say",
+     "at": 0.2,
+     "frame": 11
+    },
+    {
+     "word": "they",
+     "at": 0.2909090909090909,
+     "frame": 16
+    },
+    {
+     "word": "already",
+     "at": 0.4,
+     "frame": 22
+    },
+    {
+     "word": "have",
+     "at": 0.5636363636363636,
+     "frame": 32
+    },
+    {
+     "word": "fingerprints.",
+     "at": 0.6727272727272727,
+     "frame": 38
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s36v",
+   "mode": "VISUAL",
+   "focal": "nothing to say",
+   "start_frame": 4008,
+   "duration_frames": 31,
+   "sentence": "They can say they already have fingerprints.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M254.156 56.938c-64.144 0-122.393 19.17-165.03 50.718c-42.64 31.547-69.845 76.01-69.845 125.5c0 49.492 27.207 93.952 69.845 125.5c6.388 4.727 13.13 9.164 20.188 13.313l-12.657 95.905l90.594-65.75c21.226 4.708 43.67 7.25 66.906 7.25c64.144 0 122.362-19.17 165-50.72C461.794 327.11 489 282.65 489 233.156c0-49.49-27.206-93.95-69.844-125.5c-42.638-31.546-100.856-50.718-165-50.718M157 274.438c12.69 0 23 10.276 23 22.968c0 12.69-10.31 23-23 23s-22.97-10.31-22.97-23s10.28-22.97 22.97-22.97zm96.844 0c12.69 0 22.97 10.276 22.97 22.968c-.002 12.69-10.28 23-22.97 23s-23-10.31-23-23s10.31-22.97 23-22.97zm99.844 0c12.69 0 22.968 10.276 22.968 22.968c0 12.69-10.278 23-22.97 23c-12.69 0-22.998-10.31-22.998-23s10.31-22.97 23-22.97z\"/>",
+    "width": 512,
+    "height": 512,
+    "set": "game-icons",
+    "name": "nothing-to-say"
+   },
+   "attribution": {
+    "name": "GameIcons",
+    "url": "https://github.com/game-icons/icons",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://github.com/game-icons/icons/blob/master/license.txt"
+   }
+  },
+  {
+   "beat_id": "s37t",
+   "mode": "TYPE",
+   "focal": "None of it has to be true.",
+   "start_frame": 4039,
+   "duration_frames": 63,
+   "sentence": "None of it has to be true.",
+   "words": [
+    {
+     "word": "None",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "of",
+     "at": 0.16216216216216217,
+     "frame": 10
+    },
+    {
+     "word": "it",
+     "at": 0.2702702702702703,
+     "frame": 17
+    },
+    {
+     "word": "has",
+     "at": 0.3783783783783784,
+     "frame": 24
+    },
+    {
+     "word": "to",
+     "at": 0.5135135135135135,
+     "frame": 32
+    },
+    {
+     "word": "be",
+     "at": 0.6216216216216216,
+     "frame": 39
+    },
+    {
+     "word": "true.",
+     "at": 0.7297297297297297,
+     "frame": 46
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s38t",
+   "mode": "TYPE",
+   "focal": "The only defense is to say nothing that depends on what they tell you.",
+   "start_frame": 4102,
+   "duration_frames": 87,
+   "sentence": "The only defense is to say nothing that depends on what they tell you.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "only",
+     "at": 0.056818181818181816,
+     "frame": 5
+    },
+    {
+     "word": "defense",
+     "at": 0.125,
+     "frame": 11
+    },
+    {
+     "word": "is",
+     "at": 0.22727272727272727,
+     "frame": 20
+    },
+    {
+     "word": "to",
+     "at": 0.2727272727272727,
+     "frame": 24
+    },
+    {
+     "word": "say",
+     "at": 0.3181818181818182,
+     "frame": 28
+    },
+    {
+     "word": "nothing",
+     "at": 0.375,
+     "frame": 33
+    },
+    {
+     "word": "that",
+     "at": 0.4772727272727273,
+     "frame": 42
+    },
+    {
+     "word": "depends",
+     "at": 0.5454545454545454,
+     "frame": 47
+    },
+    {
+     "word": "on",
+     "at": 0.6477272727272727,
+     "frame": 56
+    },
+    {
+     "word": "what",
+     "at": 0.6931818181818182,
+     "frame": 60
+    },
+    {
+     "word": "they",
+     "at": 0.7613636363636364,
+     "frame": 66
+    },
+    {
+     "word": "tell",
+     "at": 0.8295454545454546,
+     "frame": 72
+    },
+    {
+     "word": "you.",
+     "at": 0.8977272727272727,
+     "frame": 78
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s38v",
+   "mode": "VISUAL",
+   "focal": "nothing to say",
+   "start_frame": 4189,
+   "duration_frames": 49,
+   "sentence": "The only defense is to say nothing that depends on what they tell you.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M254.156 56.938c-64.144 0-122.393 19.17-165.03 50.718c-42.64 31.547-69.845 76.01-69.845 125.5c0 49.492 27.207 93.952 69.845 125.5c6.388 4.727 13.13 9.164 20.188 13.313l-12.657 95.905l90.594-65.75c21.226 4.708 43.67 7.25 66.906 7.25c64.144 0 122.362-19.17 165-50.72C461.794 327.11 489 282.65 489 233.156c0-49.49-27.206-93.95-69.844-125.5c-42.638-31.546-100.856-50.718-165-50.718M157 274.438c12.69 0 23 10.276 23 22.968c0 12.69-10.31 23-23 23s-22.97-10.31-22.97-23s10.28-22.97 22.97-22.97zm96.844 0c12.69 0 22.97 10.276 22.97 22.968c-.002 12.69-10.28 23-22.97 23s-23-10.31-23-23s10.31-22.97 23-22.97zm99.844 0c12.69 0 22.968 10.276 22.968 22.968c0 12.69-10.278 23-22.97 23c-12.69 0-22.998-10.31-22.998-23s10.31-22.97 23-22.97z\"/>",
+    "width": 512,
+    "height": 512,
+    "set": "game-icons",
+    "name": "nothing-to-say"
+   },
+   "attribution": {
+    "name": "GameIcons",
+    "url": "https://github.com/game-icons/icons",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://github.com/game-icons/icons/blob/master/license.txt"
+   }
+  },
+  {
+   "beat_id": "s39t",
+   "mode": "TYPE",
+   "focal": "And here's the part most people miss: you must verbally invoke your rights.",
+   "start_frame": 4238,
+   "duration_frames": 97,
+   "sentence": "And here's the part most people miss: you must verbally invoke your rights.",
+   "words": [
+    {
+     "word": "And",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "here's",
+     "at": 0.05319148936170213,
+     "frame": 5
+    },
+    {
+     "word": "the",
+     "at": 0.1276595744680851,
+     "frame": 12
+    },
+    {
+     "word": "part",
+     "at": 0.18085106382978725,
+     "frame": 18
+    },
+    {
+     "word": "most",
+     "at": 0.24468085106382978,
+     "frame": 24
+    },
+    {
+     "word": "people",
+     "at": 0.30851063829787234,
+     "frame": 30
+    },
+    {
+     "word": "miss:",
+     "at": 0.39361702127659576,
+     "frame": 38
+    },
+    {
+     "word": "you",
+     "at": 0.5,
+     "frame": 49
+    },
+    {
+     "word": "must",
+     "at": 0.5531914893617021,
+     "frame": 54
+    },
+    {
+     "word": "verbally",
+     "at": 0.6170212765957447,
+     "frame": 60
+    },
+    {
+     "word": "invoke",
+     "at": 0.723404255319149,
+     "frame": 70
+    },
+    {
+     "word": "your",
+     "at": 0.8085106382978723,
+     "frame": 78
+    },
+    {
+     "word": "rights.",
+     "at": 0.8723404255319149,
+     "frame": 85
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s39v",
+   "mode": "VISUAL",
+   "focal": "constitutional text",
+   "start_frame": 4335,
+   "duration_frames": 54,
+   "sentence": "And here's the part most people miss: you must verbally invoke your rights.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s40t",
+   "mode": "TYPE",
+   "focal": "The Supreme Court held in Salinas v. Texas that silence alone can be used against you.",
+   "start_frame": 4389,
+   "duration_frames": 118,
+   "sentence": "The Supreme Court held in Salinas v. Texas that silence alone can be used against you.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "Supreme",
+     "at": 0.045871559633027525,
+     "frame": 5
+    },
+    {
+     "word": "Court",
+     "at": 0.12844036697247707,
+     "frame": 15
+    },
+    {
+     "word": "held",
+     "at": 0.1926605504587156,
+     "frame": 23
+    },
+    {
+     "word": "in",
+     "at": 0.24770642201834864,
+     "frame": 29
+    },
+    {
+     "word": "Salinas",
+     "at": 0.28440366972477066,
+     "frame": 34
+    },
+    {
+     "word": "v.",
+     "at": 0.3669724770642202,
+     "frame": 43
+    },
+    {
+     "word": "Texas",
+     "at": 0.43119266055045874,
+     "frame": 51
+    },
+    {
+     "word": "that",
+     "at": 0.4954128440366973,
+     "frame": 58
+    },
+    {
+     "word": "silence",
+     "at": 0.5504587155963303,
+     "frame": 65
+    },
+    {
+     "word": "alone",
+     "at": 0.6330275229357798,
+     "frame": 75
+    },
+    {
+     "word": "can",
+     "at": 0.6972477064220184,
+     "frame": 82
+    },
+    {
+     "word": "be",
+     "at": 0.7431192660550459,
+     "frame": 88
+    },
+    {
+     "word": "used",
+     "at": 0.7798165137614679,
+     "frame": 92
+    },
+    {
+     "word": "against",
+     "at": 0.8348623853211009,
+     "frame": 99
+    },
+    {
+     "word": "you.",
+     "at": 0.9174311926605505,
+     "frame": 108
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s40v",
+   "mode": "VISUAL",
+   "focal": "court document",
+   "start_frame": 4507,
+   "duration_frames": 66,
+   "sentence": "The Supreme Court held in Salinas v. Texas that silence alone can be used against you.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s41t",
+   "mode": "TYPE",
+   "focal": "You have to say the words.",
+   "start_frame": 4573,
+   "duration_frames": 54,
+   "sentence": "You have to say the words.",
+   "words": [
+    {
+     "word": "You",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "have",
+     "at": 0.1388888888888889,
+     "frame": 8
+    },
+    {
+     "word": "to",
+     "at": 0.3055555555555556,
+     "frame": 17
+    },
+    {
+     "word": "say",
+     "at": 0.4166666666666667,
+     "frame": 23
+    },
+    {
+     "word": "the",
+     "at": 0.5555555555555556,
+     "frame": 30
+    },
+    {
+     "word": "words.",
+     "at": 0.6944444444444444,
+     "frame": 38
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s42t",
+   "mode": "TYPE",
+   "focal": "Out loud.",
+   "start_frame": 4627,
+   "duration_frames": 33,
+   "sentence": "Out loud.",
+   "words": [
+    {
+     "word": "Out",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "loud.",
+     "at": 0.3333333333333333,
+     "frame": 11
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s43t",
+   "mode": "TYPE",
+   "focal": "Clearly.",
+   "start_frame": 4660,
+   "duration_frames": 28,
+   "sentence": "Clearly.",
+   "words": [
+    {
+     "word": "Clearly.",
+     "at": 0,
+     "frame": 0
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s44t",
+   "mode": "TYPE",
+   "focal": "Every time.",
+   "start_frame": 4688,
+   "duration_frames": 35,
+   "sentence": "Every time.",
+   "words": [
+    {
+     "word": "Every",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "time.",
+     "at": 0.4117647058823529,
+     "frame": 14
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s45t",
+   "mode": "TYPE",
+   "focal": "Four lines.",
+   "start_frame": 4723,
+   "duration_frames": 37,
+   "sentence": "Four lines.",
+   "words": [
+    {
+     "word": "Four",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "lines.",
+     "at": 0.35294117647058826,
+     "frame": 13
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s46t",
+   "mode": "TYPE",
+   "focal": "Memorize them.",
+   "start_frame": 4760,
+   "duration_frames": 43,
+   "sentence": "Memorize them.",
+   "words": [
+    {
+     "word": "Memorize",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "them.",
+     "at": 0.5,
+     "frame": 22
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s47t",
+   "mode": "TYPE",
+   "focal": "Practice them.",
+   "start_frame": 4803,
+   "duration_frames": 40,
+   "sentence": "Practice them.",
+   "words": [
+    {
+     "word": "Practice",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "them.",
+     "at": 0.5,
+     "frame": 20
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s48t",
+   "mode": "TYPE",
+   "focal": "Because the next time those red and blue lights appear in your rearview mirror, what you say in the next sixty seconds could change everything.",
+   "start_frame": 4843,
+   "duration_frames": 159,
+   "sentence": "Because the next time those red and blue lights appear in your rearview mirror, what you say in the next sixty seconds could change everything.",
+   "words": [
+    {
+     "word": "Because",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "the",
+     "at": 0.05142857142857143,
+     "frame": 8
+    },
+    {
+     "word": "next",
+     "at": 0.08,
+     "frame": 13
+    },
+    {
+     "word": "time",
+     "at": 0.11428571428571428,
+     "frame": 18
+    },
+    {
+     "word": "those",
+     "at": 0.14857142857142858,
+     "frame": 24
+    },
+    {
+     "word": "red",
+     "at": 0.18857142857142858,
+     "frame": 30
+    },
+    {
+     "word": "and",
+     "at": 0.21714285714285714,
+     "frame": 35
+    },
+    {
+     "word": "blue",
+     "at": 0.24571428571428572,
+     "frame": 39
+    },
+    {
+     "word": "lights",
+     "at": 0.28,
+     "frame": 45
+    },
+    {
+     "word": "appear",
+     "at": 0.32571428571428573,
+     "frame": 52
+    },
+    {
+     "word": "in",
+     "at": 0.37142857142857144,
+     "frame": 59
+    },
+    {
+     "word": "your",
+     "at": 0.3942857142857143,
+     "frame": 63
+    },
+    {
+     "word": "rearview",
+     "at": 0.42857142857142855,
+     "frame": 68
+    },
+    {
+     "word": "mirror,",
+     "at": 0.4857142857142857,
+     "frame": 77
+    },
+    {
+     "word": "what",
+     "at": 0.5542857142857143,
+     "frame": 88
+    },
+    {
+     "word": "you",
+     "at": 0.5885714285714285,
+     "frame": 94
+    },
+    {
+     "word": "say",
+     "at": 0.6171428571428571,
+     "frame": 98
+    },
+    {
+     "word": "in",
+     "at": 0.6457142857142857,
+     "frame": 103
+    },
+    {
+     "word": "the",
+     "at": 0.6685714285714286,
+     "frame": 106
+    },
+    {
+     "word": "next",
+     "at": 0.6971428571428572,
+     "frame": 111
+    },
+    {
+     "word": "sixty",
+     "at": 0.7314285714285714,
+     "frame": 116
+    },
+    {
+     "word": "seconds",
+     "at": 0.7714285714285715,
+     "frame": 123
+    },
+    {
+     "word": "could",
+     "at": 0.8228571428571428,
+     "frame": 131
+    },
+    {
+     "word": "change",
+     "at": 0.8628571428571429,
+     "frame": 137
+    },
+    {
+     "word": "everything.",
+     "at": 0.9085714285714286,
+     "frame": 144
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s48v",
+   "mode": "VISUAL",
+   "focal": "string lights",
+   "start_frame": 5002,
+   "duration_frames": 89,
+   "sentence": "Because the next time those red and blue lights appear in your rearview mirror, what you say in the next sixty seconds could change everything.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M22.56 11.39c-.2-.8-.74-1.54-1.51-1.95l-.42-1.7c.48-.16.94-.33 1.37-.51V5c-2 1.07-5.47 2.03-10 2.03S4 6.07 2 5v2.23c.43.18.89.35 1.37.51l-.42 1.7a3.07 3.07 0 0 0-1.51 1.95c-.535 2.18-1.055 5.92 1.48 6.54C4 18.2 6 17.89 7.27 12.82c.19-.82.06-1.7-.43-2.43l.42-1.72c.88.14 1.79.23 2.74.29v1.78c-.65.59-1 1.43-1 2.26c0 2.24.39 6 3 6c1.12 0 3-.78 3-6c0-.83-.35-1.67-1-2.26V8.96c.95-.06 1.86-.15 2.74-.29l.42 1.72a3.1 3.1 0 0 0-.43 2.43C18 17.89 20 18.2 21.08 17.93c2.53-.62 2.01-4.36 1.48-6.54M5.81 12.47s-1.07 4.37-2.53 4.03c-1.46-.38-.38-4.75-.38-4.75s.36-1.46 1.81-1.1s1.1 1.82 1.1 1.82M12 17.5c-1.5 0-1.5-4.5-1.5-4.5s0-1.5 1.5-1.5s1.5 1.5 1.5 1.5s0 4.5-1.5 4.5m8.72-1c-1.45.34-2.53-4.03-2.53-4.03s-.36-1.47 1.1-1.82s1.81 1.1 1.81 1.1s1.08 4.37-.38 4.75\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "string-lights"
+   }
+  },
+  {
+   "beat_id": "s49t",
+   "mode": "TYPE",
+   "focal": "This is Legal Brief.",
+   "start_frame": 5091,
+   "duration_frames": 54,
+   "sentence": "This is Legal Brief.",
+   "words": [
+    {
+     "word": "This",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "is",
+     "at": 0.21428571428571427,
+     "frame": 12
+    },
+    {
+     "word": "Legal",
+     "at": 0.35714285714285715,
+     "frame": 19
+    },
+    {
+     "word": "Brief.",
+     "at": 0.6071428571428571,
+     "frame": 33
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s50t",
+   "mode": "TYPE",
+   "focal": "Subscribe for the next breakdown.",
+   "start_frame": 5145,
+   "duration_frames": 78,
+   "sentence": "Subscribe for the next breakdown.",
+   "words": [
+    {
+     "word": "Subscribe",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "for",
+     "at": 0.2619047619047619,
+     "frame": 20
+    },
+    {
+     "word": "the",
+     "at": 0.38095238095238093,
+     "frame": 30
+    },
+    {
+     "word": "next",
+     "at": 0.5,
+     "frame": 39
+    },
+    {
+     "word": "breakdown.",
+     "at": 0.6428571428571429,
+     "frame": 50
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  }
+ ],
+ "palette": {
+  "primary": [
+   "#0A0A1A",
+   "#1A1A3A",
+   "#8B5CF6",
+   "#000000"
+  ],
+  "secondary": [
+   "#6C48C0",
+   "#919198",
+   "#EBEBED"
+  ]
+ },
+ "fonts": {
+  "primary": "Space Grotesk",
+  "secondary": "JetBrains Mono"
+ },
+ "picks": [
+  {
+   "sentence": "Four lines.",
+   "asset": "thermometer lines",
+   "score": 13.5,
+   "subject": "lines"
+  },
+  {
+   "sentence": "That's all it takes to protect your constitutional rights during a traffic stop.",
+   "asset": "constitutional text",
+   "score": 16.8,
+   "subject": "constitutional"
+  },
+  {
+   "sentence": "Say the wrong thing — or say too much — and you could be handing a prosecutor the evidence they need.",
+   "asset": "evidence exhibit",
+   "score": 20.8,
+   "subject": "evidence"
+  },
+  {
+   "sentence": "Say these four lines, and you stay in control.",
+   "asset": "thermometer lines",
+   "score": 13.5,
+   "subject": "lines"
+  },
+  {
+   "sentence": "Most people lose their rights during traffic stops not because they're guilty, but because they don't know what to say — and they talk too much in a moment where every word becomes evidence.",
+   "asset": "evidence exhibit",
+   "score": 25.3,
+   "subject": "evidence"
+  },
+  {
+   "sentence": "Here are the four lines, refined over decades of civil-rights litigation.",
+   "asset": "thermometer lines",
+   "score": 13.5,
+   "subject": "lines"
+  },
+  {
+   "sentence": "Line one: I do not consent to any searches.",
+   "asset": "home floor negative 1",
+   "score": 10.5,
+   "subject": "searches"
+  },
+  {
+   "sentence": "Line two: Am I being detained, or am I free to go?",
+   "asset": "line",
+   "score": 10.5,
+   "subject": "line"
+  },
+  {
+   "sentence": "Line three: I am exercising my right to remain silent.",
+   "asset": "earth arrow right",
+   "score": 19.5,
+   "subject": "right"
+  },
+  {
+   "sentence": "Line four: I would like to speak to a lawyer.",
+   "asset": "calendar star four points",
+   "score": 13.5,
+   "subject": "four"
+  },
+  {
+   "sentence": "That's it.",
+   "asset": null,
+   "score": 0,
+   "subject": ""
+  },
+  {
+   "sentence": "Four lines.",
+   "asset": "thermometer lines",
+   "score": 13.5,
+   "subject": "lines"
+  },
+  {
+   "sentence": "Memorize them.",
+   "asset": null,
+   "score": 0,
+   "subject": "memorize"
+  },
+  {
+   "sentence": "Practice them in the mirror until they feel boring.",
+   "asset": "mirror",
+   "score": 10.5,
+   "subject": "mirror"
+  },
+  {
+   "sentence": "Because in the moment, you will not invent good wording — you will revert to whatever you've rehearsed.",
+   "asset": "bleach no chlorine",
+   "score": 4,
+   "subject": "rehearsed"
+  },
+  {
+   "sentence": "Now here's something that surprises most people.",
+   "asset": "account multiple check",
+   "score": 11,
+   "subject": "people"
+  },
+  {
+   "sentence": "A routine traffic stop is NOT considered custody for Miranda purposes.",
+   "asset": "traffic",
+   "score": 15,
+   "subject": "traffic"
+  },
+  {
+   "sentence": "That means officers can ask you questions at the roadside — 'Do you know why I pulled you over?",
+   "asset": "frequently asked questions",
+   "score": 10.5,
+   "subject": "questions"
+  },
+  {
+   "sentence": "Have you been drinking?",
+   "asset": "drinking",
+   "score": 10.5,
+   "subject": "drinking"
+  },
+  {
+   "sentence": "Where are you headed?'",
+   "asset": null,
+   "score": 0,
+   "subject": "headed"
+  },
+  {
+   "sentence": "— without reading you your rights.",
+   "asset": "constitutional text",
+   "score": 10.4,
+   "subject": "rights"
+  },
+  {
+   "sentence": "And your answers are still admissible in court.",
+   "asset": "court document",
+   "score": 12.8,
+   "subject": "court"
+  },
+  {
+   "sentence": "That question — 'Do you know why I pulled you over?'",
+   "asset": "account question",
+   "score": 19.5,
+   "subject": "question"
+  },
+  {
+   "sentence": "— is a trap.",
+   "asset": "box trap",
+   "score": 10.5,
+   "subject": "trap"
+  },
+  {
+   "sentence": "It's designed to get an admission.",
+   "asset": "http get",
+   "score": 10.5,
+   "subject": "get"
+  },
+  {
+   "sentence": "No matter how you answer, you're giving them evidence.",
+   "asset": "evidence exhibit",
+   "score": 18.4,
+   "subject": "evidence"
+  },
+  {
+   "sentence": "The Innocence Project has documented over 375 DNA exonerations.",
+   "asset": "dna helix",
+   "score": 23.1,
+   "subject": "dna"
+  },
+  {
+   "sentence": "Roughly 30% involved false confessions or statements from people who thought talking would clear them.",
+   "asset": "thought bubble",
+   "score": 10.5,
+   "subject": "thought"
+  },
+  {
+   "sentence": "Innocent people.",
+   "asset": "account multiple check",
+   "score": 11,
+   "subject": "people"
+  },
+  {
+   "sentence": "Convicted because they said too much.",
+   "asset": null,
+   "score": 0,
+   "subject": "convicted"
+  },
+  {
+   "sentence": "So what does this all mean?",
+   "asset": null,
+   "score": 0,
+   "subject": "mean"
+  },
+  {
+   "sentence": "It means the roadside is not where you win.",
+   "asset": "bleach no chlorine",
+   "score": 4,
+   "subject": "roadside"
+  },
+  {
+   "sentence": "Court is.",
+   "asset": "court document",
+   "score": 12.8,
+   "subject": "court"
+  },
+  {
+   "sentence": "Your job during a traffic stop is not to prove your innocence — it's to preserve your ability to fight later.",
+   "asset": "traffic",
+   "score": 15,
+   "subject": "traffic"
+  },
+  {
+   "sentence": "Police can legally lie to you about evidence.",
+   "asset": "evidence exhibit",
+   "score": 20.8,
+   "subject": "evidence"
+  },
+  {
+   "sentence": "They can claim your friend is in the next room confessing.",
+   "asset": "teddy bear",
+   "score": 14,
+   "subject": "room"
+  },
+  {
+   "sentence": "They can say they already have fingerprints.",
+   "asset": "nothing to say",
+   "score": 10.5,
+   "subject": "say"
+  },
+  {
+   "sentence": "None of it has to be true.",
+   "asset": "border none",
+   "score": 4,
+   "subject": "true"
+  },
+  {
+   "sentence": "The only defense is to say nothing that depends on what they tell you.",
+   "asset": "nothing to say",
+   "score": 13.5,
+   "subject": "nothing"
+  },
+  {
+   "sentence": "And here's the part most people miss: you must verbally invoke your rights.",
+   "asset": "constitutional text",
+   "score": 12.8,
+   "subject": "rights"
+  },
+  {
+   "sentence": "The Supreme Court held in Salinas v. Texas that silence alone can be used against you.",
+   "asset": "court document",
+   "score": 12.8,
+   "subject": "court"
+  },
+  {
+   "sentence": "You have to say the words.",
+   "asset": "nothing to say",
+   "score": 10.5,
+   "subject": "say"
+  },
+  {
+   "sentence": "Out loud.",
+   "asset": "logout",
+   "score": 11,
+   "subject": "out"
+  },
+  {
+   "sentence": "Clearly.",
+   "asset": null,
+   "score": 0,
+   "subject": "clearly"
+  },
+  {
+   "sentence": "Every time.",
+   "asset": null,
+   "score": 0,
+   "subject": ""
+  },
+  {
+   "sentence": "Four lines.",
+   "asset": "thermometer lines",
+   "score": 13.5,
+   "subject": "lines"
+  },
+  {
+   "sentence": "Memorize them.",
+   "asset": null,
+   "score": 0,
+   "subject": "memorize"
+  },
+  {
+   "sentence": "Practice them.",
+   "asset": null,
+   "score": 0,
+   "subject": "practice"
+  },
+  {
+   "sentence": "Because the next time those red and blue lights appear in your rearview mirror, what you say in the next sixty seconds could change everything.",
+   "asset": "string lights",
+   "score": 19.5,
+   "subject": "lights"
+  },
+  {
+   "sentence": "This is Legal Brief.",
+   "asset": "legal document",
+   "score": 12,
+   "subject": "legal"
+  },
+  {
+   "sentence": "Subscribe for the next breakdown.",
+   "asset": null,
+   "score": 0,
+   "subject": "subscribe"
+  }
+ ]
+}

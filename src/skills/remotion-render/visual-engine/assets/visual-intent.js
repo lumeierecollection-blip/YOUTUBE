@@ -18,8 +18,18 @@
  * so on every result.
  */
 
-/** Words that carry no visual content. */
-const STOP = new Set(`a an the and or but of to in on at for with from by is are was were be been being
+/**
+ * Words that carry no visual content. Exported: match.js scores a sentence's
+ * words against an asset's synonyms and concepts, and without this filter a
+ * contraction fragment like the "s" left over from splitting "That's" scores
+ * a real hit against an icon literally named "alpha s" — measured across the
+ * finance, legal and history fixtures, where "coffee to go" won on the bare
+ * words "to" and "go" alone in a dozen sentences that have nothing to do with
+ * coffee. subjectCandidates already filtered these out; the scorer's own
+ * sentence-word set did not, because it was built before there was a second
+ * caller with 14,217 short, literal icon names to accidentally agree with.
+ */
+export const STOP = new Set(`a an the and or but of to in on at for with from by is are was were be been being
   it its this that these those as if then than so not no you your they them their he she his her we our us i
   do does did done have has had will would can could should may might must about into over under after before
   just only very more most much many some any all every each other another such same own here there when where

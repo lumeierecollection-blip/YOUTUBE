@@ -16,6 +16,7 @@ import { selectComposition, renderStill, renderMedia } from "@remotion/renderer"
 import { findChrome } from "../find-chrome.js";
 import { buildSentenceBeats } from "../visual-engine/beats/sentence-beats.js";
 import { selectAsset } from "../visual-engine/assets/match.js";
+import { getIconBody } from "../visual-engine/assets/icon-bodies.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const RENDER_DIR = join(__dirname, "..");
@@ -27,7 +28,24 @@ const FPS = 30;
 const srtPath = arg("srt", "data/tts/ch-fixture/movile-cave-shorts-script-vo.srt");
 const srt = readFileSync(join(ROOT, srtPath), "utf-8");
 const spec = JSON.parse(readFileSync(join(ROOT, "config/visual-identity.json"), "utf-8")).channels[cid];
-const library = JSON.parse(readFileSync(join(ROOT, "config/assets/semantic-library.json"), "utf-8"));
+
+/**
+ * ICONS REPLACE A PROCEDURAL DRAWING OF THE SAME NAME.
+ *
+ * data/renders/iconify-proof.png measured that a hand-drawn spider and
+ * centipede did not read at Shorts scale and their Iconify equivalents did.
+ * Where the two libraries name the same thing (see icon-library.json's
+ * `droppedAsDuplicateName` note in scripts/build-icon-library.js for the
+ * cross-icon-set version of this same rule), the icon wins and the
+ * procedural entry is removed from the pool entirely — not kept as a
+ * second, weaker candidate for the matcher to occasionally still pick.
+ */
+const procedural = JSON.parse(readFileSync(join(ROOT, "config/assets/semantic-library.json"), "utf-8")).assets;
+const iconAssets = JSON.parse(readFileSync(join(ROOT, "config/assets/icon-library.json"), "utf-8")).assets;
+const iconNames = new Set(iconAssets.map((a) => a.name));
+const proceduralKept = procedural.filter((a) => !iconNames.has(a.name));
+console.log(`asset pool: ${iconAssets.length} icon(s) + ${proceduralKept.length} procedural (${procedural.length - proceduralKept.length} procedural dropped for an icon of the same name)`);
+const library = { assets: [...iconAssets, ...proceduralKept] };
 
 /** SRT timestamps to frames. The captions are the timing source of truth. */
 const toFrames = (t) => {
@@ -44,11 +62,30 @@ const cues = srt.split(/\n\n+/).map((b) => b.trim().split("\n")).filter((l) => l
 cues.forEach((c, i) => { c.durationInFrames = Math.max(12, (cues[i + 1] ? cues[i + 1].startFrame : c.endFrame) - c.startFrame); });
 
 const picks = [];
+/** name -> the winning asset record, so the icon body can be resolved once per beat. */
+const assetByName = new Map(library.assets.map((a) => [a.name, a]));
 const { beats, warnings } = buildSentenceBeats(cues, (sentence) => {
   const r = selectAsset(sentence, library);
   picks.push({ sentence, asset: r.asset ? r.asset.name : null, score: r.score, subject: r.intent.literalSubject });
   return r.asset ? r.asset.name : null;
 });
+
+/**
+ * Resolve the icon body for every VISUAL beat whose winning asset is an icon.
+ *
+ * This runs in Node, after the beats exist, so the plan JSON ends up
+ * self-contained: `beat.icon` carries the raw SVG body and its native
+ * viewBox, and the browser-side composition never imports an npm icon
+ * package (see icon-bodies.js for why that split exists).
+ */
+for (const b of beats) {
+  if (b.mode !== "VISUAL" || !b.focal) continue;
+  const asset = assetByName.get(b.focal);
+  if (asset && asset.source === "iconify") {
+    b.icon = { ...getIconBody(asset.iconSet, asset.iconName), set: asset.iconSet, name: asset.iconName };
+    if (asset.attribution) b.attribution = asset.attribution;
+  }
+}
 
 const plan = {
   beats,

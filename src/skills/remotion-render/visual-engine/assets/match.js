@@ -7,12 +7,22 @@
  * threshold, return nothing so the caller can run the expansion loop — a miss
  * that returns a poor asset is how a document came to mean a cave.
  */
-import { visualIntent, subjectCandidates } from "./visual-intent.js";
+import { visualIntent, subjectCandidates, STOP } from "./visual-intent.js";
 
 /** Below this, there is no asset for the sentence and the caller must expand. */
 export const MATCH_THRESHOLD = 3.0;
 
 const words = (t) => String(t || "").toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+
+/**
+ * Content words only: STOP removed, and anything two characters or shorter
+ * dropped outright. The length floor exists because splitting on punctuation
+ * turns a possessive or contraction into a fragment that is not itself an
+ * English word — "That's" becomes "that" and "s" — and no stopword list
+ * anticipates every such fragment. Length alone catches "s", "a", "i", "to",
+ * "at", "go" whether or not STOP happens to name them.
+ */
+const contentWords = (t) => words(t).filter((w) => w.length > 2 && !STOP.has(w));
 
 /**
  * Score one asset against one intent.
@@ -62,10 +72,28 @@ function score(asset, intent, sentenceWords) {
     s += denies ? 4.0 : -1.5;
   }
 
-  // Topic agreement is a multiplier, not a bonus: an asset from the right world
-  // that shares one word beats an asset from the wrong world that shares three.
+  /**
+   * Topic agreement is a multiplier, not a bonus: an asset from the right
+   * world that shares one word beats an asset from the wrong world that
+   * shares three. But "the wrong world" and "no claimed world" are different
+   * things: an asset that names no compatibleTopics at all has not claimed
+   * to be from anywhere, so it cannot be off-topic — it hasn't made a topic
+   * claim to be wrong about. The 25,371 Iconify icons carry no authored
+   * topics (see scripts/build-icon-library.js) precisely because hand-tagging
+   * that many was the ≥2000-with-rich-metadata problem this repo already
+   * tried once; punishing them with the same 0.45 given to a procedural asset
+   * that DOES claim topics and none of them fit made every icon lose to any
+   * topic-tagged procedural rival regardless of how much stronger the icon's
+   * own name or synonym match was — measured on the cave script, zero of the
+   * icons available for it were ever picked. Every icon still needs to clear
+   * MATCH_THRESHOLD entirely on name, synonym and concept hits, since it
+   * cannot benefit from the boosted side either (shared is always 0), and it
+   * cannot hard-reject on incompatibleTopics for the same reason (see the
+   * same script comment for what that bound does and doesn't cover).
+   */
+  const claimsTopics = (asset.compatibleTopics || []).length > 0;
   const shared = (asset.compatibleTopics || []).filter((t) => intent.topics.includes(t)).length;
-  s *= shared ? 1 + shared * 0.6 : 0.45;
+  s *= shared ? 1 + shared * 0.6 : (claimsTopics ? 0.45 : 1.0);
 
   return s;
 }
@@ -91,7 +119,9 @@ function pickBest(intent, sentenceWords, library, opts) {
  */
 export function selectAsset(sentence, library, opts = {}) {
   const base = visualIntent(sentence);
-  const sentenceWords = new Set(words(sentence));
+  // Content words only — see contentWords() for the fragment problem this
+  // fixes. The synonym/concept/name hit tests below all read this set.
+  const sentenceWords = new Set(contentWords(sentence));
   /**
    * The subject is chosen by trying the candidates, not guessed once.
    *
