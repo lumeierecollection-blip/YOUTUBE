@@ -127,8 +127,19 @@ function Sentence({ beat, local, colors, font }) {
             const w = words[idx];
             const since = local - w.frame;
             if (since < 0) return null;
-            // Each word arrives on its own mark: up from below, settling.
-            const e = EASE(Math.min(1, since / 7));
+            /**
+             * Each word arrives on its own mark: up from below, settling.
+             *
+             * +1, not `since / 7` alone: at since=0 (the word's very first
+             * rendered frame) that ratio is exactly 0 and EASE(0) is exactly
+             * 0, so the first word of every TYPE beat opened on a fully blank
+             * frame -- measured on the cave render, frame 145 (a beat's own
+             * first frame) came back 0.000% ink against a lossless still, not
+             * a compression artifact. A fade's first rendered frame already
+             * has one frame of progress into it; it does not render the
+             * instant before the fade began.
+             */
+            const e = EASE(Math.min(1, (since + 1) / 7));
             const current = idx === spoken - 1;
             return (
               <span key={idx} style={{
@@ -195,7 +206,16 @@ function IconGlyph({ icon, box, colors, p }) {
 }
 
 function Visual({ beat, p, colors }) {
-  const e = EASE(Math.min(1, p / 0.28));
+  /**
+   * Same +1-frame fix as the word entrance above, and the same measured
+   * defect: at p=0 (a VISUAL beat's own first rendered frame), `p / 0.28` is
+   * exactly 0 and EASE(0) is exactly 0 -- every one of the 12 visual beats in
+   * the cave render opened on a fully blank frame. Derived in frames, not a
+   * flat constant, so it scales correctly on both a 28-frame beat and a
+   * 150-frame one.
+   */
+  const framesIn = p * beat.duration_frames;
+  const e = EASE(Math.min(1, (framesIn + 1) / (beat.duration_frames * 0.28)));
   const out = Math.max(0, Math.min(1, (p - 0.88) / 0.12));
   const box = Math.min(SAFE_W, SAFE_H * 0.86);
   const w = box * (0.9 + 0.1 * e);

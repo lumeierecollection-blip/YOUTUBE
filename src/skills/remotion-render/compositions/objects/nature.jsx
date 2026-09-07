@@ -111,9 +111,13 @@ registerObject("depth scale", ({ box, colors, p }) => {
   );
 });
 
-registerObject("rock strata", ({ box, colors }) => {
+registerObject("rock strata", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
   const bands = 6;
+  // A light scanning down the exposed face, the way a caver's headlamp would
+  // actually pass over a rock wall -- the strata are millions of years fixed,
+  // the beam reading them is not.
+  const beamY = y + h * ((p * 0.45) % 1);
   return (
     <g>
       {Array.from({ length: bands }).map((_, i) => (
@@ -125,6 +129,7 @@ registerObject("rock strata", ({ box, colors }) => {
       {/* a fracture running through the beds */}
       <path d={`M${x + w * 0.62},${y} L${x + w * 0.56},${y + h * 0.4} L${x + w * 0.66},${y + h * 0.72} L${x + w * 0.6},${y + h}`}
         fill="none" stroke={colors.onGround} strokeWidth={2.5} opacity={0.45} />
+      <rect x={x} y={beamY} width={w} height={h * 0.05} fill={colors.paper} opacity={0.12} />
     </g>
   );
 });
@@ -395,7 +400,15 @@ registerObject("ecosystem web", ({ box, colors, p }) => {
 registerObject("gas cloud", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
   const puffs = [[0.34, 0.5, 0.2], [0.5, 0.4, 0.24], [0.66, 0.52, 0.19], [0.44, 0.62, 0.17], [0.58, 0.64, 0.15]];
-  const rise = Math.sin(p * Math.PI * 2) * h * 0.03;
+  /**
+   * MEASURED TOO SUBTLE TO REGISTER. At h*0.03 the drift was real but the
+   * cave render's frames 390-406 (16 frames, mid-beat) came back at 0.018%
+   * boundary change -- indistinguishable from the drawings in this file that
+   * have no motion at all (rock strata measured 0.020% before its fix). The
+   * puffs are already faint (opacity 0.2-0.34); the only way to make their
+   * drift register is to move them further, not to draw them more solidly.
+   */
+  const rise = Math.sin(p * Math.PI * 2) * h * 0.07;
   return (
     <g>
       {puffs.map(([cx, cy, r], i) => (

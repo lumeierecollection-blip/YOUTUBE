@@ -141,9 +141,24 @@ registerObject("pinned photograph", ({ box, colors, p }) => {
   );
 });
 
-registerObject("period painting", ({ box, colors }) => {
+registerObject("period painting", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
   const f = w * 0.055;
+  /**
+   * A gallery spotlight raking slowly across the varnish, the one thing that
+   * moves on a wall-mounted painting -- the light, never the painting itself.
+   *
+   * Clamped to [0, 1-0.14] so the band's own width never carries it past
+   * either edge -- an earlier version ranged the sweep from -0.3 to 1.3 and
+   * skewed it, meant to look like light sliding in from off-canvas, but skewX
+   * shears around the parent coordinate system's origin, not the rect's own
+   * position, so the actual on-screen offset scaled with how far the whole
+   * box sat from x=0 rather than with the box's own width. Measured: 34px
+   * past this drawing's own box in the audit sheet. A straight, clamped band
+   * still reads as a passing highlight without depending on where the box
+   * happens to sit on the canvas.
+   */
+  const glint = Math.max(0, Math.min(1 - 0.14, (p * 0.6) % 1));
   return (
     <g>
       {/* the frame is what makes it a painting rather than a print */}
@@ -151,6 +166,7 @@ registerObject("period painting", ({ box, colors }) => {
       <rect x={x + f * 0.4} y={y + f * 0.4} width={w - f * 0.8} height={h - f * 0.8} fill="none"
         stroke={colors.paper} strokeWidth={1.5} opacity={0.4} />
       <rect x={x + f} y={y + f} width={w - f * 2} height={h - f * 2} fill={colors.ink} opacity={0.5} />
+      <rect x={x + w * glint} y={y} width={w * 0.14} height={h} fill={colors.paper} opacity={0.06} />
       {/* a sky, a land, a standing figure: a composition, not a texture */}
       <rect x={x + f} y={y + h * 0.58} width={w - f * 2} height={h - f - h * 0.58} fill={colors.paper} opacity={0.16} />
       <circle cx={x + w * 0.68} cy={y + h * 0.3} r={h * 0.07} fill={colors.paper} opacity={0.3} />
@@ -363,12 +379,16 @@ registerObject("patient chart", ({ box, colors, p }) => {
   );
 });
 
-registerObject("medical scan", ({ box, colors }) => {
+registerObject("medical scan", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
+  // The sweep is what makes it a live scan and not a printed x-ray: the beam
+  // that built the image, still passing over it.
+  const sweepY = y + h * ((p * 0.8) % 1);
   return (
     <g>
       {/* a scan is bright tissue on a black field, not ink on paper */}
       <rect x={x} y={y} width={w} height={h} fill={screenField(colors)} />
+      <rect x={x} y={sweepY} width={w} height={Math.max(2, h * 0.012)} fill={colors.accent} opacity={0.55} />
       <rect x={x} y={y} width={w} height={h} fill="none" stroke={colors.onGround} strokeWidth={1.5} strokeOpacity={0.4} />
       <ellipse cx={x + w / 2} cy={y + h * 0.5} rx={w * 0.34} ry={h * 0.3} fill={colors.paper} opacity={0.22} />
       <ellipse cx={x + w / 2} cy={y + h * 0.5} rx={w * 0.24} ry={h * 0.21} fill={colors.paper} opacity={0.34} />
@@ -477,8 +497,11 @@ registerObject("evidence exhibit", ({ box, colors, p }) => {
   );
 });
 
-registerObject("museum artifact", ({ box, colors }) => {
+registerObject("museum artifact", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
+  // Case lighting drifting across the glaze -- an artifact under glass sits
+  // still, but the light over it never quite does.
+  const sheen = 0.2 + Math.sin(p * Math.PI * 2) * 0.14;
   return (
     <g>
       {/* a vessel on a plinth under a case line — an artifact is a displayed thing */}
@@ -489,6 +512,7 @@ registerObject("museum artifact", ({ box, colors }) => {
                 L${x + w * 0.58},${y + h * 0.78}
                 C${x + w * 0.8},${y + h * 0.74} ${x + w * 0.84},${y + h * 0.42} ${x + w * 0.62},${y + h * 0.22} Z`}
         fill={colors.accent} opacity={0.4} stroke={colors.onGround} strokeWidth={2} strokeOpacity={0.7} />
+      <ellipse cx={x + w * 0.5} cy={y + h * 0.32} rx={w * 0.06} ry={h * 0.1} fill={colors.paper} opacity={sheen} />
       {/* handles and a decorative band, so it is a specific vessel */}
       <rect x={x + w * 0.36} y={y + h * 0.16} width={w * 0.28} height={h * 0.07} rx={h * 0.02}
         fill="none" stroke={colors.onGround} strokeWidth={2} strokeOpacity={0.7} />
@@ -545,9 +569,13 @@ registerObject("prompt field", ({ box, colors, p }) => {
   );
 });
 
-registerObject("cursor pointer", ({ box, colors }) => {
+registerObject("cursor pointer", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
   const s = Math.min(w, h);
+  // The ring is a click, and a click repeats: it expands and fades, then
+  // starts over, rather than sitting at one fixed radius.
+  const cyc = p % 0.5;
+  const ringP = cyc / 0.5;
   return (
     <g>
       {/* the arrow, at the real proportions of a pointer, with its click ring */}
@@ -556,8 +584,8 @@ registerObject("cursor pointer", ({ box, colors }) => {
                 L${x + s * 0.33},${y + s * 0.55} L${x + s * 0.56},${y + s * 0.53} Z`}
         fill={colors.paper} stroke={colors.onGround} strokeWidth={2} strokeOpacity={0.85} />
       {/* the click ring, centred on the tip but pulled inside the box */}
-      <circle cx={x + s * 0.34} cy={y + s * 0.34} r={s * 0.32} fill="none"
-        stroke={colors.accent} strokeWidth={2.5} opacity={0.5} />
+      <circle cx={x + s * 0.34} cy={y + s * 0.34} r={s * (0.2 + ringP * 0.18)} fill="none"
+        stroke={colors.accent} strokeWidth={2.5} opacity={0.6 * (1 - ringP)} />
     </g>
   );
 });
@@ -808,11 +836,25 @@ registerObject("gauge dial", ({ box, colors, p }) => {
   );
 });
 
-registerObject("scale bar", ({ box, colors }) => {
+registerObject("scale bar", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
   const n = 6;
   const bh = Math.max(6, h * 0.14);
   const by = y + h * 0.5 - bh / 2;
+  /**
+   * A caret reading the bar left to right, as if someone were measuring
+   * against it right now rather than the bar sitting printed on a page.
+   *
+   * The caret's own half-width is set from `h`, so on a box where h > w (a
+   * tall, narrow cell) that half-width can exceed how close the unclamped
+   * travel fraction gets to the left edge -- measured 5px past this box's
+   * own left edge at p=0.02, where the travel fraction was only 1.4% of w
+   * but the caret reached 4% of h sideways from it. Clamping the fraction
+   * away from 0 and 1 by that same margin keeps the whole triangle inside
+   * regardless of the box's aspect ratio.
+   */
+  const capR = Math.min(w, h) * 0.04;
+  const caretX = x + capR + (w - capR * 2) * ((p * 0.7) % 1);
   return (
     <g>
       {/* alternating blocks with end ticks: a cartographer's scale bar */}
@@ -825,6 +867,10 @@ registerObject("scale bar", ({ box, colors }) => {
         <line key={i} x1={x + w * f} y1={by - h * 0.12} x2={x + w * f} y2={by + bh + h * 0.12}
           stroke={colors.onGround} strokeWidth={1.8} opacity={0.6} />
       ))}
+      {/* peak kept shallower than the end ticks above (by - h*0.12), which were
+          already close to this drawing's own top edge */}
+      <path d={`M${caretX},${by - h * 0.1} L${caretX - capR},${by - h * 0.02} L${caretX + capR},${by - h * 0.02} Z`}
+        fill={colors.paper} opacity={0.9} />
     </g>
   );
 });
@@ -1537,10 +1583,14 @@ registerObject("conveyor belt", ({ box, colors, p }) => {
   );
 });
 
-registerObject("component part", ({ box, colors }) => {
+registerObject("component part", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
+  const cx = x + w * 0.48, cy = y + h * 0.52;
+  // A machinist turning the part over to inspect the chamfer -- a few
+  // degrees each way, not a spin, because it is being examined, not tumbling.
+  const tilt = Math.sin(p * Math.PI * 2) * 4;
   return (
-    <g>
+    <g transform={`rotate(${tilt} ${cx} ${cy})`}>
       {/* an L-bracket with drilled holes and a chamfer: a made part */}
       <path d={`M${x + w * 0.1},${y + h * 0.18} L${x + w * 0.72},${y + h * 0.18} L${x + w * 0.86},${y + h * 0.32}
                 L${x + w * 0.86},${y + h * 0.56} L${x + w * 0.38},${y + h * 0.56} L${x + w * 0.38},${y + h * 0.86}
@@ -1719,12 +1769,16 @@ registerObject("office tower", ({ box, colors, p }) => {
   );
 });
 
-registerObject("courthouse column", ({ box, colors }) => {
+registerObject("courthouse column", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
   const cw = w * 0.34, cx = x + (w - cw) / 2;
   const flutes = 5;
+  // Sun moving across a facade over the course of a day, compressed into the
+  // beat: the architecture is fixed, the light crossing it is not.
+  const sunX = cx + cw * (((p * 0.5) % 1) * 1.3 - 0.15);
   return (
     <g>
+      <rect x={sunX} y={y + h * 0.22} width={cw * 0.22} height={h * 0.68} fill={colors.paper} opacity={0.08} />
       {/* pediment corner, capital, fluted shaft, base: a classical order */}
       <path d={`M${x},${y + h * 0.12} L${x + w / 2},${y} L${x + w},${y + h * 0.12} Z`} fill={colors.onGround} opacity={0.3} />
       <rect x={x} y={y + h * 0.12} width={w} height={h * 0.05} fill={colors.onGround} opacity={0.42} />
@@ -1760,11 +1814,15 @@ registerObject("prison window", ({ box, colors, p }) => {
   );
 });
 
-registerObject("stone monument", ({ box, colors }) => {
+registerObject("stone monument", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
   const mw = w * 0.3, mx = x + (w - mw) / 2;
+  // The same passing daylight as the courthouse column -- an obelisk outdoors
+  // reads time the same way, in the light crossing the stone.
+  const sunX = mx + mw * (((p * 0.5) % 1) * 1.3 - 0.15);
   return (
     <g>
+      <rect x={sunX} y={y + h * 0.04} width={mw * 0.18} height={h * 0.72} fill={colors.paper} opacity={0.1} />
       {/* a tapering obelisk on a stepped plinth */}
       <path d={`M${mx + mw * 0.5},${y + h * 0.04} L${mx + mw * 0.86},${y + h * 0.18} L${mx + mw * 0.78},${y + h * 0.76}
                 L${mx + mw * 0.22},${y + h * 0.76} L${mx + mw * 0.14},${y + h * 0.18} Z`}
@@ -1783,9 +1841,11 @@ registerObject("stone monument", ({ box, colors }) => {
   );
 });
 
-registerObject("desk edge", ({ box, colors }) => {
+registerObject("desk edge", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
   const ey = y + h * 0.42;
+  // Steam off the mug: the one warm, moving thing on an otherwise still desk.
+  const rise = p % 1;
   return (
     <g>
       {/* the front edge of a desk seen level: a surface, a lip, and a shadow under it */}
@@ -1797,17 +1857,22 @@ registerObject("desk edge", ({ box, colors }) => {
         fill={colors.accent} opacity={0.7} />
       <path d={`M${x + w * 0.22},${ey - h * 0.1} q${w * 0.04},${h * 0.03} 0,${h * 0.06}`}
         fill="none" stroke={colors.accent} strokeWidth={2.4} opacity={0.7} />
+      <path d={`M${x + w * 0.15},${ey - h * (0.14 + rise * 0.22)} q${w * 0.02},${-h * 0.05} 0,${-h * 0.1}`}
+        fill="none" stroke={colors.paper} strokeWidth={1.6} opacity={0.35 * (1 - rise)} strokeLinecap="round" />
       <line x1={x + w * 0.62} y1={ey - h * 0.02} x2={x + w * 0.82} y2={ey - h * 0.02}
         stroke={colors.onGround} strokeWidth={Math.max(3, h * 0.022)} opacity={0.55} strokeLinecap="round" />
     </g>
   );
 });
 
-registerObject("figure silhouette", ({ box, colors }) => {
+registerObject("figure silhouette", ({ box, colors, p }) => {
   const { x, y, w, h } = box;
   const cx = x + w / 2;
+  // A person standing still still breathes: the shoulders rise and fall by a
+  // pixel or two rather than holding at one dead height.
+  const breathe = Math.sin(p * Math.PI * 2) * h * 0.006;
   return (
-    <g>
+    <g transform={`translate(0 ${breathe})`}>
       {/* head, neck, shoulders: the standard bust crop, drawn as one mass */}
       <circle cx={cx} cy={y + h * 0.22} r={Math.min(w, h) * 0.16} fill={colors.onGround} opacity={0.55} />
       <path d={`M${cx - w * 0.05},${y + h * 0.35} L${cx + w * 0.05},${y + h * 0.35}
