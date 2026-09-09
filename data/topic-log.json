@@ -80,9 +80,14 @@
           "topic": "The CFPB's 2026 Overdraft Rule: What It Means for Your Budget",
           "slug": "cfpb-2026-overdraft-rule-budget",
           "reserved_at": "2026-09-06T09:54:18.120Z"
+        },
+        {
+          "topic": "YNAB adds AI-powered spending insights for 2026 subscribers",
+          "slug": "ynab-ai-spending-insights-2026",
+          "reserved_at": "2026-09-09T20:21:16.568Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.120Z"
+      "last_generated": "2026-09-09T20:21:16.568Z"
     },
     "2": {
       "channel_name": "Legal Brief",
