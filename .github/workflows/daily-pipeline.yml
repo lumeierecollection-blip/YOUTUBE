@@ -159,7 +159,10 @@ jobs:
           # has a working last resort.
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
-          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          # The repo secret is named GEMINI_API_KEY, not GOOGLE_GENERATIVE_AI_API_KEY —
+          # without this mapping the Google providers were silently dropped from
+          # both chains (empty key => opencode-agent.js skips them).
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
         run: |
           set -u
@@ -283,7 +286,10 @@ jobs:
           # degradation, not a silent skip.
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
-          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          # The repo secret is named GEMINI_API_KEY, not GOOGLE_GENERATIVE_AI_API_KEY —
+          # without this mapping the Google providers were silently dropped from
+          # both chains (empty key => opencode-agent.js skips them).
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           # A real topic ("YNAB raises annual subscription price by $10 in
           # 2024") broke this the direct-interpolation way: GitHub Actions
@@ -351,7 +357,10 @@ jobs:
           # degradation, not a silent skip.
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
-          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          # The repo secret is named GEMINI_API_KEY, not GOOGLE_GENERATIVE_AI_API_KEY —
+          # without this mapping the Google providers were silently dropped from
+          # both chains (empty key => opencode-agent.js skips them).
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
         run: |
           set -euo pipefail
