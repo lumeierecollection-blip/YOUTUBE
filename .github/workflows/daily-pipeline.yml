@@ -62,10 +62,12 @@ env:
   #   groq/llama-3.1-8b-instant     0.05 in / 0.08 out
   #   google/gemini-2.5-flash-lite  0.10 in / 0.40 out
   #   cerebras/gpt-oss-120b         0.35 in / 0.75 out
-  # gemini-2.5-flash-lite pinned FIRST (was 4th): the other keys are
-  # currently dead (groq/mistral 401, cerebras 402) so the free Zen entry
-  # was carrying both stages alone. Rest kept as fallback.
-  OPENCODE_MODELS_RESEARCH: "google/gemini-2.5-flash-lite,opencode/mimo-v2.5-free,mistral/ministral-3b-latest,groq/llama-3.1-8b-instant,cerebras/gpt-oss-120b"
+  # gemini-3.5-flash-lite pinned FIRST: the other keys are currently dead
+  # (groq/mistral 401, cerebras 402) so the free Zen entry was carrying
+  # both stages alone. gemini-2.5-flash-lite is 404 "no longer available to
+  # new users" — Google directs new keys to 3.5-flash-lite. Rest kept as
+  # fallback.
+  OPENCODE_MODELS_RESEARCH: "google/gemini-3.5-flash-lite,opencode/mimo-v2.5-free,mistral/ministral-3b-latest,groq/llama-3.1-8b-instant,cerebras/gpt-oss-120b"
   #
   # Stage C (write-script) — the reasoning stage. Ordered by how granular a
   # reasoning control the provider actually exposes, then by price; cost is
@@ -86,12 +88,11 @@ env:
   # wrong_api_format) on multi-turn calls (vercel/ai#15042). Stage C runs
   # single-turn with no tools, so it does not hit this; do NOT move
   # cerebras/gpt-oss-120b into a tool-using stage without re-testing.
-  # gemini-2.5-flash-lite as the primary reasoning model (replacing the
-  # 3.5-flash-lite lead) — same reason as the research chain: it's the only
-  # provider with a working key right now.
-  OPENCODE_MODELS_REASONING: "google/gemini-2.5-flash-lite,groq/openai/gpt-oss-120b,cerebras/gpt-oss-120b,mistral/mistral-medium-latest,opencode/glm-5-free"
+  # gemini-3.5-flash-lite as the primary reasoning model — same reason as
+  # the research chain: it's the only provider with a working key right now.
+  OPENCODE_MODELS_REASONING: "google/gemini-3.5-flash-lite,groq/openai/gpt-oss-120b,cerebras/gpt-oss-120b,mistral/mistral-medium-latest,opencode/glm-5-free"
   # Back-compat default for any call site not yet split by stage.
-  OPENCODE_MODELS: "google/gemini-2.5-flash-lite,opencode/mimo-v2.5-free,opencode/nemotron-3.5-lightning-free"
+  OPENCODE_MODELS: "google/gemini-3.5-flash-lite,opencode/mimo-v2.5-free,opencode/nemotron-3.5-lightning-free"
   OPENCODE_ENABLE_EXA: "1"
 
 jobs:
