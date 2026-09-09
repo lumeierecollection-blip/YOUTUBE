@@ -27,10 +27,19 @@
  * OAuth cred paths and per-channel b-roll/asset-library dirs, not for
  * data/research|tts|thumbnails/<id>/.
  *
- * Usage: node scripts/render-and-qa.js [--channel <numeric-id>]
+ * Usage:
+ *   node scripts/render-and-qa.js [--channel <numeric-id>]
+ *   node scripts/render-and-qa.js --script <path-to-*-script.json> [--channel <id>] [--output <mp4>]
+ *   node scripts/render-and-qa.js --dry-run [--channel <id>] [--script <path>]
+ *
+ * --script   render one script JSON only (channel id from --channel, else
+ *            the script's parent dir name).
+ * --output   after a successful render, copy the mp4 to this path too
+ *            (render.js still writes its canonical data/renders/<id>/ path).
+ * --dry-run  print the render + QA plan and exit 0 without spawning render.js.
  */
 import { spawn } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync } from "node:fs";
 import { join, dirname, basename, extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -42,8 +51,44 @@ const FRAME_AUDIT_JS = join(__dirname, "frame-audit.js");
 const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
 
 function parseArgs(argv) {
-  const idx = argv.indexOf("--channel");
-  return { channelOverride: idx >= 0 ? argv[idx + 1] : null };
+  const flag = (name) => {
+    const i = argv.indexOf(name);
+    return i >= 0 ? argv[i + 1] : null;
+  };
+  return {
+    channelOverride: flag("--channel"),
+    // --script <path> renders exactly one script JSON and skips the channel
+    // scan. The channel id is taken from --channel if given, else from the
+    // script's parent directory (data/research/<id>/…), which is how every
+    // other path in this file is keyed.
+    scriptOverride: flag("--script"),
+    // --output <path> copies the finished mp4 to an arbitrary location
+    // AFTER the normal render (render.js still writes its canonical
+    // data/renders/<id>/… path; this is an extra copy for test harnesses).
+    outputOverride: flag("--output"),
+    // --dry-run prints the render plan (every script that would render, its
+    // format, its voiceover path, and where the mp4 would land) and exits 0
+    // without spawning render.js.
+    dryRun: argv.includes("--dry-run"),
+  };
+}
+
+// Build the (channelId, scriptPath) work list for either mode.
+function planWork({ channelOverride, scriptOverride }) {
+  if (scriptOverride) {
+    const scriptPath = join(ROOT, relative(ROOT, scriptOverride));
+    if (!existsSync(scriptPath)) {
+      console.error(`::error::--script path not found: ${scriptPath}`);
+      process.exit(1);
+    }
+    const channelId = channelOverride || basename(dirname(scriptPath));
+    return [{ channelId, scriptPath }];
+  }
+  const work = [];
+  for (const channelId of loadChannelIds(channelOverride)) {
+    for (const scriptPath of findScripts(channelId)) work.push({ channelId, scriptPath });
+  }
+  return work;
 }
 
 function loadChannelIds(override) {
@@ -156,30 +201,51 @@ async function qaOne(runId, rendered) {
 }
 
 async function main() {
-  const { channelOverride } = parseArgs(process.argv.slice(2));
+  const opts = parseArgs(process.argv.slice(2));
   const runId = process.env.GITHUB_RUN_ID || String(Date.now());
-  const channelIds = loadChannelIds(channelOverride);
+  const work = planWork(opts);
+
+  if (opts.dryRun) {
+    console.log(`DRY RUN — ${work.length} script(s) would render:\n`);
+    for (const { channelId, scriptPath } of work) {
+      const format = formatFromScriptPath(scriptPath);
+      const audio = audioPathFor(channelId, scriptPath);
+      const out = opts.outputOverride
+        ? join(ROOT, relative(ROOT, opts.outputOverride))
+        : expectedOutputPath(channelId, scriptPath, format);
+      console.log(`  channel ${channelId}  ${format}`);
+      console.log(`    script : ${relative(ROOT, scriptPath)}`);
+      console.log(`    audio  : ${relative(ROOT, audio)}${existsSync(audio) ? "" : "   MISSING — would be skipped"}`);
+      console.log(`    output : ${relative(ROOT, out)}`);
+      console.log(`    QA     : video-review (10 frames) -> frame-audit -> slop-check (warn-only)\n`);
+    }
+    console.log("No render.js processes were spawned.");
+    process.exit(0);
+  }
 
   let rendered = 0;
   let renderFailed = 0;
   const pendingQA = []; // PART 8 — never awaited until every render has been dispatched
 
-  for (const channelId of channelIds) {
-    const scripts = findScripts(channelId);
-    for (const scriptPath of scripts) {
-      const format = formatFromScriptPath(scriptPath);
-      const result = await renderOne(channelId, scriptPath, format);
-      if (result.skipped) continue;
-      if (!result.ok) {
-        renderFailed++;
-        console.error(`::error::render failed for ${scriptPath}`);
-        continue;
-      }
-      rendered++;
-      // Dispatched, NOT awaited — the loop moves straight on to the next
-      // render while this QA runs in the background.
-      pendingQA.push(qaOne(runId, result));
+  for (const { channelId, scriptPath } of work) {
+    const format = formatFromScriptPath(scriptPath);
+    const result = await renderOne(channelId, scriptPath, format);
+    if (result.skipped) continue;
+    if (!result.ok) {
+      renderFailed++;
+      console.error(`::error::render failed for ${scriptPath}`);
+      continue;
     }
+    rendered++;
+    if (opts.outputOverride) {
+      const dest = join(ROOT, relative(ROOT, opts.outputOverride));
+      mkdirSync(dirname(dest), { recursive: true });
+      copyFileSync(result.outputPath, dest);
+      console.log(`Copied render to --output: ${dest}`);
+    }
+    // Dispatched, NOT awaited — the loop moves straight on to the next
+    // render while this QA runs in the background.
+    pendingQA.push(qaOne(runId, result));
   }
 
   console.log(`\nRendered ${rendered} video(s), ${renderFailed} render failure(s). Waiting on ${pendingQA.length} QA task(s)...`);

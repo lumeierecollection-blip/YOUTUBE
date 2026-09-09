@@ -265,14 +265,82 @@ function findSrtPath(ttsAudioPath) {
 
 async function renderVideo(componentId, outputPath, frames, props, scale) {
   const browserOpts = CHROME ? { browserExecutable: CHROME } : {};
+
+  // Profiling / perf-debug knobs — all inert unless the env var is set:
+  //   RENDER_FRAME_CAP=N   render only the first N frames (measure per-frame cost)
+  //   RENDER_CONCURRENCY=N override the concurrency (default = CPU count)
+  //   RENDER_GL=<backend>  override chromiumOptions.gl ("angle", "swiftshader",
+  //                        "swangle", or "none" to omit it entirely)
+  //   RENDER_LOG_LEVEL=verbose  Remotion logLevel (shows delayRender handles)
+  const frameCap = Number(process.env.RENDER_FRAME_CAP) || 0;
+  if (frameCap > 0 && frameCap < frames) {
+    console.log(`[profile] RENDER_FRAME_CAP=${frameCap} — rendering ${frameCap}/${frames} frames only`);
+    frames = frameCap;
+  }
+  // Concurrency: >4 does not help the software-WebGL Three.js path (8 tabs
+  // just thrash 8 cores + memory bandwidth — measured: conc 2-4 renders
+  // FASTER per frame than conc 8), and CI's 4-core runners already land on
+  // 4 via the old Math.max(4, cpus). Cap at 4 so an 8-core dev box stops
+  // over-subscribing; RENDER_CONCURRENCY overrides.
+  const concurrency = Number(process.env.RENDER_CONCURRENCY) || Math.max(2, Math.min(4, os.cpus().length));
+  // gl backend. "swiftshader" (explicit software rasterizer) renders ~3.3x
+  // faster than "swangle" here and does NOT hit "Failed to acquire WebGL2
+  // context" on a GPU-less runner the way plain "angle" does. "swangle"
+  // (ANGLE-over-SwiftShader) turned out to route through Chrome's now-
+  // DEPRECATED automatic software-WebGL fallback ("Please use the
+  // --enable-unsafe-swiftshader flag" warning) — measured at ~0.8 fps vs
+  // ~2.7 fps for "swiftshader". RENDER_GL overrides ("none" omits the flag
+  // entirely — fastest locally, but unverified on headless CI Chrome).
+  const glEnv = process.env.RENDER_GL || "swiftshader";
+  const glOpt = glEnv === "none" ? {} : { gl: glEnv };
+  const logLevel = process.env.RENDER_LOG_LEVEL || undefined;
+
+  const tBundle = Date.now();
   const serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgress: () => {} });
+  console.log(`[profile] bundle(): ${((Date.now() - tBundle) / 1000).toFixed(1)}s`);
+
+  const tSelect = Date.now();
   const composition = await selectComposition({
     serveUrl,
     id: componentId,
     inputProps: props,
     ...browserOpts,
   });
+  console.log(
+    `[profile] selectComposition() (Chrome launch + first eval + delayRender resolve): ${((Date.now() - tSelect) / 1000).toFixed(1)}s`
+  );
+  console.log(`[profile] gl=${glEnv}  concurrency=${concurrency}  logLevel=${logLevel || "(default)"}`);
+
+  // Heartbeat: renderMedia is silent for the whole render otherwise, so a
+  // slow software-WebGL pass (gl: "swangle" on a GPU-less runner) is
+  // indistinguishable from a hang. Log frame progress on a fixed wall-clock
+  // interval — not per-frame — so the line count stays bounded on a
+  // multi-thousand-frame render. Rate from the elapsed time gives an ETA
+  // that a `\r` progress bar (lost when stdout is piped to a file) does not.
+  const renderStart = Date.now();
+  let lastLog = 0;
+  const HEARTBEAT_MS = Number(process.env.RENDER_PROGRESS_MS || 5000);
+  const onProgress = ({ renderedFrames, encodedFrames, stitchStage }) => {
+    const now = Date.now();
+    if (now - lastLog < HEARTBEAT_MS) return;
+    lastLog = now;
+    const elapsed = (now - renderStart) / 1000;
+    const done = encodedFrames || renderedFrames || 0;
+    const fps = done > 0 ? done / elapsed : 0;
+    const etaSec = fps > 0 ? Math.max(0, (frames - done) / fps) : null;
+    const pct = frames > 0 ? ((done / frames) * 100).toFixed(1) : "?";
+    console.log(
+      `[render progress] ${done}/${frames} frames (${pct}%)` +
+        ` rendered=${renderedFrames} encoded=${encodedFrames}` +
+        ` ${fps.toFixed(2)} fps  elapsed ${elapsed.toFixed(0)}s` +
+        (etaSec != null ? `  eta ~${etaSec.toFixed(0)}s` : "") +
+        (stitchStage ? `  [${stitchStage}]` : "")
+    );
+  };
+
   await renderMedia({
+    onProgress,
+    logLevel,
     composition: { ...composition, durationInFrames: frames },
     serveUrl,
     codec: "h264",
@@ -282,24 +350,31 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
     outputLocation: outputPath,
     ...browserOpts,
     // §5.6 — explicit encoder settings: remotion.config.js is inert on the
-    // SSR path, so every quality option must be passed here. gl: "swangle"
-    // (--use-gl=angle --use-angle=swiftshader) is the software WebGL2
-    // backend Remotion docs prescribe for GPU-less machines - GitHub
-    // Actions runners have no GPU, and plain "angle" (hardware) fails there
-    // with "Failed to acquire WebGL2 context" on canvas effects, even
-    // though it works on local dev machines with a real GPU.
+    // SSR path, so every quality option must be passed here.
+    //
+    // gl backend: was "swangle" (--use-gl=angle --use-angle=swiftshader),
+    // chosen because plain "angle" (hardware) fails on GPU-less GitHub
+    // runners with "Failed to acquire WebGL2 context" on the canvas
+    // effects. But profiling the MotionGraphicsShorts render showed
+    // "swangle" routes through Chrome's DEPRECATED automatic software-WebGL
+    // fallback and renders ~4x slower than an explicit software rasterizer
+    // (~0.8 fps vs ~2.7-3.2 fps on a 2565-frame Short). Default is now
+    // "swiftshader" (see glOpt above); RENDER_GL overrides it. The CI run
+    // that lands this change is the check that swiftshader keeps a working
+    // WebGL2 context on a headless GPU-less runner.
     imageFormat: "png",                 // lossless intermediates
     crf: 16,                            // below the h264 default
     pixelFormat: "yuv420p",             // required for wide playback
-    chromiumOptions: { gl: "swangle" }, // software WebGL2 - NOT via the config file
-    concurrency: Math.max(4, os.cpus().length),
+    chromiumOptions: glOpt,             // gl backend from glEnv (default "swiftshader") — NOT via the config file
+    concurrency,
     audioBitrate: "192k",
     scale,
     // Cold-start font fetch (21 families / 42 woff2 over the local static
     // server) can exceed the 28s default delayRender timeout.
     timeoutInMilliseconds: 120000,
   });
-  console.log("Rendered:", outputPath);
+  const totalSec = ((Date.now() - renderStart) / 1000).toFixed(0);
+  console.log(`Rendered: ${outputPath}  (${frames} frames in ${totalSec}s)`);
 }
 
 /**
