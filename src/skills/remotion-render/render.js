@@ -283,15 +283,18 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
   // 4 via the old Math.max(4, cpus). Cap at 4 so an 8-core dev box stops
   // over-subscribing; RENDER_CONCURRENCY overrides.
   const concurrency = Number(process.env.RENDER_CONCURRENCY) || Math.max(2, Math.min(4, os.cpus().length));
-  // gl backend. "swiftshader" (explicit software rasterizer) renders ~3.3x
-  // faster than "swangle" here and does NOT hit "Failed to acquire WebGL2
-  // context" on a GPU-less runner the way plain "angle" does. "swangle"
-  // (ANGLE-over-SwiftShader) turned out to route through Chrome's now-
-  // DEPRECATED automatic software-WebGL fallback ("Please use the
-  // --enable-unsafe-swiftshader flag" warning) — measured at ~0.8 fps vs
-  // ~2.7 fps for "swiftshader". RENDER_GL overrides ("none" omits the flag
-  // entirely — fastest locally, but unverified on headless CI Chrome).
-  const glEnv = process.env.RENDER_GL || "swiftshader";
+  // gl backend. MUST stay "swangle" as the default: on a GPU-less headless
+  // GitHub runner it is the ONLY value that yields a working WebGL2 context.
+  // Verified the hard way (run 34415031147): "swiftshader" there dies
+  // immediately with `THREE.WebGLRenderer: A WebGL context could not be
+  // created ... GL_VENDOR = Disabled ... BindToCurrentSequence failed`, and
+  // plain "angle" (hardware) and "none" fail the same way — that failure is
+  // exactly why "swangle" was chosen. The cost: "swangle" routes through
+  // Chrome's slow software path (~0.8 fps vs ~2.7-3.2 fps for "swiftshader"
+  // on a local machine with a real GL stack). So RENDER_GL is here to let a
+  // GPU runner or a local dev box opt into the fast backend
+  // (RENDER_GL=swiftshader / angle / none), WITHOUT changing what CI does.
+  const glEnv = process.env.RENDER_GL || "swangle";
   const glOpt = glEnv === "none" ? {} : { gl: glEnv };
   const logLevel = process.env.RENDER_LOG_LEVEL || undefined;
 
@@ -352,20 +355,17 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
     // §5.6 — explicit encoder settings: remotion.config.js is inert on the
     // SSR path, so every quality option must be passed here.
     //
-    // gl backend: was "swangle" (--use-gl=angle --use-angle=swiftshader),
-    // chosen because plain "angle" (hardware) fails on GPU-less GitHub
-    // runners with "Failed to acquire WebGL2 context" on the canvas
-    // effects. But profiling the MotionGraphicsShorts render showed
-    // "swangle" routes through Chrome's DEPRECATED automatic software-WebGL
-    // fallback and renders ~4x slower than an explicit software rasterizer
-    // (~0.8 fps vs ~2.7-3.2 fps on a 2565-frame Short). Default is now
-    // "swiftshader" (see glOpt above); RENDER_GL overrides it. The CI run
-    // that lands this change is the check that swiftshader keeps a working
-    // WebGL2 context on a headless GPU-less runner.
+    // gl backend: "swangle" (--use-gl=angle --use-angle=swiftshader). It is
+    // the only value that gives a working WebGL2 context on a GPU-less
+    // GitHub runner — "swiftshader"/"angle"/"none" all fail there with
+    // `THREE.WebGLRenderer: A WebGL context could not be created` (verified
+    // run 34415031147). It is also ~4x slower than those on a machine with
+    // a real GL stack, so RENDER_GL exists to let a GPU/local box opt into
+    // the fast path without changing CI. See the glEnv comment above.
     imageFormat: "png",                 // lossless intermediates
     crf: 16,                            // below the h264 default
     pixelFormat: "yuv420p",             // required for wide playback
-    chromiumOptions: glOpt,             // gl backend from glEnv (default "swiftshader") — NOT via the config file
+    chromiumOptions: glOpt,             // gl backend from glEnv (default "swangle") — NOT via the config file
     concurrency,
     audioBitrate: "192k",
     scale,
