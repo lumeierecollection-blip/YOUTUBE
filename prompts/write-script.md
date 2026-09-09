@@ -27,3 +27,26 @@ provided JSON Schema exactly — nothing outside it.
   35% or less, excluded 0%.
 - `sources_used` has 3 or more URLs that actually appear in the research's
   `key_facts`/`numbers`, and every one is used by something you wrote.
+
+## Gate checklist — the script is rejected if any of these is false
+
+Re-read every beat against this list before returning. These are the exact
+checks `gate-script.js` runs; a script that fails them is thrown away.
+
+1. **SCR-04 — chart beats need ≥2 points.** A `PROGRESS` or `DATA_CHART`
+   beat MUST have 2 or more `data.series` points. If you have only one real
+   number for the idea (a price, a trial length, a single count), the beat
+   is `HERO_NUMBER`, not `PROGRESS`. One number is never a bar chart.
+2. **SCR-05 — every series value is verbatim from `numbers[]`.** Take each
+   `data.series[].value` and find it in the research's `numbers[]` array. If
+   it isn't there character-for-character, delete the point or drop the
+   chart. Do not round, convert, or infer a value.
+3. **SCR-03 — `anchor_token` is a substring of that section's `voiceover`.**
+   Write the section's `voiceover` first, then copy the `anchor_token`
+   straight out of it. If the token is "99.99", the characters "99.99" must
+   appear in that voiceover. Never anchor on a number or phrase you did not
+   speak in that section.
+4. **SCR-08 — hit the word count.** Add up the words in every section's
+   `voiceover` plus the `hook`. `shorts` must total 150–280 words; a
+   90-word shorts script fails. If you are short, expand the section
+   voiceovers with more of the researched detail — do not pad with filler.
