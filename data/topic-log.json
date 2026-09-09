@@ -85,9 +85,14 @@
           "topic": "The Emergency Fund Gap: Why 28% of Households Can't Cover a $1,200 Surprise",
           "slug": "emergency-fund-gap-28-percent-households",
           "reserved_at": "2026-09-09T20:33:17.908Z"
+        },
+        {
+          "topic": "FICO Now Reports Buy Now Pay Later: What It Means for Your Budget",
+          "slug": "fico-bnpl-credit-reporting-budget",
+          "reserved_at": "2026-09-09T20:59:37.038Z"
         }
       ],
-      "last_generated": "2026-09-09T20:33:17.909Z"
+      "last_generated": "2026-09-09T20:59:37.038Z"
     },
     "2": {
       "channel_name": "Legal Brief",
