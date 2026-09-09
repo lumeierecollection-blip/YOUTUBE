@@ -80,9 +80,14 @@
           "topic": "The CFPB's 2026 Overdraft Rule: What It Means for Your Budget",
           "slug": "cfpb-2026-overdraft-rule-budget",
           "reserved_at": "2026-09-06T09:54:18.120Z"
+        },
+        {
+          "topic": "The Emergency Fund Gap: Why 28% of Households Can't Cover a $1,200 Surprise",
+          "slug": "emergency-fund-gap-28-percent-households",
+          "reserved_at": "2026-09-09T20:33:17.908Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.120Z"
+      "last_generated": "2026-09-09T20:33:17.909Z"
     },
     "2": {
       "channel_name": "Legal Brief",
