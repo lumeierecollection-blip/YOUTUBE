@@ -15,6 +15,8 @@ import { compositions as beatSequence } from "./visual-engine/beat-scene.jsx";
 // Sentence, then the thing the sentence was about: word-by-word typography
 // alternating with one semantically matched visual. See sentence-scene.jsx.
 import { compositions as sentenceScene } from "./visual-engine/sentence-scene.jsx";
+// Visual Director — treatment-based rendering driven by sentence meaning.
+import { compositions as directedScene } from "./visual-engine/directed-scene.jsx";
 
 /**
  * Remotion entry point.
@@ -31,6 +33,7 @@ function RemotionRoot() {
       {objectAudit.map(c => <Composition key={c.id} {...c} />)}
       {beatSequence.map(c => <Composition key={c.id} {...c} />)}
       {sentenceScene.map(c => <Composition key={c.id} {...c} />)}
+      {directedScene.map(c => <Composition key={c.id} {...c} />)}
     </>
   );
 }

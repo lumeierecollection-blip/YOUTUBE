@@ -39,9 +39,11 @@ import { chunkTextClauseAware, sectionFrameWindows } from "./compositions/beats.
 import { paletteFromHues } from "./styles/tokens.js";
 import { narrationSections } from "../../utils/script-narration.js";
 
-// 2D sentence-plan pipeline — used when the render engine is "sentence"
-// (the default for motion-graphics channels, unless USE_LEGACY_3D=true).
-// Imported only on the Node side; the browser bundle loads nothing from here.
+// Visual Director — semantic treatment selection pipeline.
+// Replaces the old TYPE → VISUAL alternation with meaning-driven treatments.
+import { direct } from "./visual-engine/director/visual-director.js";
+
+// Legacy sentence pipeline — kept for SentenceShorts fallback only.
 import { buildSentenceBeats } from "./visual-engine/beats/sentence-beats.js";
 import { selectAsset, MATCH_THRESHOLD } from "./visual-engine/assets/match.js";
 import { getIconBody } from "./visual-engine/assets/icon-bodies.js";
@@ -234,20 +236,15 @@ function computeDurationFrames(script, style, format, audioPath) {
 }
 
 function getCompositionForStyle(style, format) {
-  // 2D path (default): SentenceShorts is a pure-React/SVG composition with
-  // zero Three.js/WebGL dependencies.  It handles word-by-word kinetic
-  // typography (TYPE beats) alternating with Iconify icon visuals (VISUAL
-  // beats), resolved at plan-build time in Node, so the browser bundle never
-  // imports any icon package.  Chosen over BeatSequenceShorts because the
-  // latter depends on ObjectShape (hand-drawn SVG registry) which was
-  // already measured as insufficient at phone scale — see commit 457dbef.
+  // 2D path (default): DirectedShorts renders pure React/SVG with zero
+  // Three.js/WebGL dependencies. The Visual Director selects a semantic
+  // treatment per beat based on what each sentence means.
   //
   // Legacy path (USE_LEGACY_3D=true): the original Three.js compositions
   // that require chromiumOptions: { gl: "swangle" } for GPU-less CI.
   if (style === "motion-graphics" && !USE_LEGACY_3D) {
-    // SentenceShorts is Shorts-only for now; longform falls back to legacy.
-    if (format === "shorts") return "SentenceShorts";
-    console.warn("MG 2D: longform not yet supported by SentenceShorts — falling back to legacy MotionGraphicsLongform.");
+    if (format === "shorts") return "DirectedShorts";
+    console.warn("MG 2D: longform not yet supported by DirectedShorts — falling back to legacy MotionGraphicsLongform.");
   }
   const compositions = {
     "cinematic-documentary": { shorts: "CinematicDocumentaryShorts", longform: "CinematicDocumentaryLongform" },
@@ -337,7 +334,8 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
   // Minimal*) that use @remotion/three / CanvasGrain / PhotoTreatment.
   // The 2D SentenceShorts composition renders pure React/SVG and needs no WebGL
   // at all — omitting gl avoids the slow software-WebGL backend on CI.
-  const needs3D = USE_LEGACY_3D || !componentId.startsWith("Sentence");
+  const is2D = componentId === "DirectedShorts" || componentId === "SentenceShorts";
+  const needs3D = USE_LEGACY_3D || !is2D;
   const glOpts = needs3D ? { chromiumOptions: { gl: "swangle" } } : {};
   if (!needs3D) console.log("[2D] rendering without WebGL (no chromiumOptions.gl)");
 
@@ -459,24 +457,24 @@ async function main() {
   const componentId = getCompositionForStyle(channel.style, format);
   const staged = stageAudio(ttsAudioPath);
 
-  // ── 2D sentence engine (SentenceShorts) ──────────────────────────────
-  // When the composition is SentenceShorts, skip the MG package entirely
-  // and build a sentence plan from the SRT + icon library instead.
+  // ── Visual Director engine (DirectedShorts) ─────────────────────────
+  // The Visual Director reads each sentence's meaning and selects a
+  // treatment (EROSION, GROWTH, QUANTITY, VERSUS, etc.) rather than
+  // alternating TYPE → VISUAL. See visual-engine/director/.
   let sentencePlan = null;
   let mg = null;
   let frames;
 
-  if (componentId === "SentenceShorts") {
+  if (componentId === "DirectedShorts") {
     const srtPath = findSrtPath(ttsAudioPath);
     const srtText = srtPath ? readFileSync(srtPath, "utf-8") : "";
-    if (srtPath) console.log("Sentence SRT:", srtPath);
-    else console.warn("Sentence: no SRT next to voiceover — cannot build word timings, aborting.");
+    if (srtPath) console.log("Directed SRT:", srtPath);
+    else console.warn("Directed: no SRT next to voiceover — cannot build word timings, aborting.");
     if (!srtText) {
-      console.error("SentenceShorts requires an SRT file for word timing. None found.");
+      console.error("DirectedShorts requires an SRT file for word timing. None found.");
       process.exit(1);
     }
 
-    // Parse SRT into cues (same logic as qa-scripts/render-sentences.mjs)
     const FPS = 30;
     const toFrames = (t) => {
       const [h, m, rest] = t.split(":");
@@ -491,7 +489,61 @@ async function main() {
       c.durationInFrames = Math.max(12, (cues[i + 1] ? cues[i + 1].startFrame : c.endFrame) - c.startFrame);
     });
 
-    // Load icon library for semantic matching
+    const { beats, warnings, distribution } = direct(cues);
+
+    let viSpec = null;
+    try {
+      const vi = JSON.parse(readFileSync(join(ROOT, "config", "visual-identity.json"), "utf-8")).channels || {};
+      viSpec = vi[channel.channel_id];
+    } catch {}
+
+    sentencePlan = {
+      beats,
+      palette: viSpec
+        ? { primary: viSpec.primary_palette, secondary: viSpec.secondary_palette }
+        : { primary: ["#0F172A", "#1E293B", "#22C55E", "#FAFAFA"], secondary: ["#16A34A", "#94A3B8", "#F8FAFC"] },
+      fonts: viSpec
+        ? { primary: viSpec.typography_primary, secondary: viSpec.typography_secondary }
+        : { primary: "DM Sans", secondary: "Noto Serif" },
+    };
+
+    frames = beats.length ? beats[beats.length - 1].start_frame + beats[beats.length - 1].duration_frames : 300;
+    const ceiling = (format === "shorts" ? SHORTS_CLAMP : LONGFORM_CLAMP)[1];
+    if (frames > ceiling) {
+      console.warn(`WARNING: directed video clamped from ${(frames / 30).toFixed(1)}s to ${(ceiling / 30).toFixed(1)}s — script too long for ${format}.`);
+      frames = ceiling;
+    }
+
+    const distStr = Object.entries(distribution).sort((a, b) => b[1] - a[1]).map(([t, n]) => `${t}:${n}`).join(" ");
+    console.log(`Directed plan: ${cues.length} cues -> ${beats.length} beats, ${frames}f`);
+    console.log(`  treatments: ${distStr}`);
+    for (const b of beats) console.log(`  [${b.beat_id}] ${b.treatment} — ${b.reason}`);
+    if (warnings.length) console.log(`  ${warnings.length} warning(s): ${warnings.slice(0, 5).join("; ")}`);
+
+  } else if (componentId === "SentenceShorts") {
+    const srtPath = findSrtPath(ttsAudioPath);
+    const srtText = srtPath ? readFileSync(srtPath, "utf-8") : "";
+    if (srtPath) console.log("Sentence SRT:", srtPath);
+    else console.warn("Sentence: no SRT next to voiceover — cannot build word timings, aborting.");
+    if (!srtText) {
+      console.error("SentenceShorts requires an SRT file for word timing. None found.");
+      process.exit(1);
+    }
+
+    const FPS = 30;
+    const toFrames = (t) => {
+      const [h, m, rest] = t.split(":");
+      const [s, ms] = rest.split(",");
+      return Math.round(((+h * 3600) + (+m * 60) + +s + +ms / 1000) * FPS);
+    };
+    const cues = srtText.split(/\n\n+/).map((b) => b.trim().split("\n")).filter((l) => l.length >= 3).map((l) => {
+      const [a, b] = l[1].split(" --> ");
+      return { startFrame: toFrames(a), endFrame: toFrames(b), text: l.slice(2).join(" ") };
+    });
+    cues.forEach((c, i) => {
+      c.durationInFrames = Math.max(12, (cues[i + 1] ? cues[i + 1].startFrame : c.endFrame) - c.startFrame);
+    });
+
     const iconLibPath = join(ROOT, "config", "assets", "icon-library.json");
     let library = { assets: [] };
     if (existsSync(iconLibPath)) {
@@ -507,8 +559,6 @@ async function main() {
       return r.asset ? r.asset.name : null;
     });
 
-    // Resolve icon SVG bodies for VISUAL beats (Node-side only, so the
-    // Remotion bundle never imports @iconify-json packages).
     for (const b of beats) {
       if (b.mode !== "VISUAL") continue;
       const asset = assetByName.get(b.focal);
@@ -518,13 +568,11 @@ async function main() {
         if (asset.attribution) b.attribution = asset.attribution;
       } catch (err) {
         console.warn(`Sentence: could not resolve icon for "${b.focal}" — ${err.message}`);
-        // Downgrade to TYPE-only if icon resolution fails
         b.mode = "TYPE";
         b.words = [];
       }
     }
 
-    // Visual identity for this channel (palette + fonts)
     let viSpec = null;
     try {
       const vi = JSON.parse(readFileSync(join(ROOT, "config", "visual-identity.json"), "utf-8")).channels || {};
@@ -684,9 +732,9 @@ async function main() {
   // happens in motion-graphics.jsx, at render time, inside the bundle.
   const hasUnderscore = existsSync(join(__dirname, "public", "music", "underscore.mp3"));
 
-  // SentenceShorts expects { plan } as its input prop.
+  // DirectedShorts and SentenceShorts expect { plan } as input prop.
   // All other compositions expect the legacy prop bag.
-  const props = componentId === "SentenceShorts"
+  const props = (componentId === "DirectedShorts" || componentId === "SentenceShorts")
     ? { plan: sentencePlan }
     : {
         channelId: channel.channel_id,
