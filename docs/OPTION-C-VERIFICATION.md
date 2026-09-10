@@ -266,10 +266,90 @@ are **not wired into the production render path** (`render.js` →
 
 ---
 
-## Proof of work
+## Proof of work (original audit)
 
 - **No new render was executed** — blocked by missing script+audio pair on this branch.
 - **Existing render inspected**: `data/renders/1/september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-09.mp4`
   - Size: 2,013,405 bytes
   - Duration: 1.387s (truncated; expected ~85s)
   - Frame 15 extracted to PNG (935,874 bytes): shows CanvasGrain wavy-line effect (WebGL-rendered Three.js postprocessing), numerals "2" "0", label "INFLATION COOLING" — confirms this is the **existing Three.js render path**, not a 2D-only composition.
+
+---
+
+## Remediation Log
+
+**Date**: 2026-09-10
+**Remediated by**: Claude Opus 4.6
+
+### What was done
+
+Rather than creating `DailyRender.tsx` (a file from the original Option C spec
+that never existed), the remediation wired the **existing 2D `SentenceShorts`
+composition** — already registered in `Root.jsx`, already proven by QA scripts —
+into the production render path. This follows the recommendation from §4 of
+the original audit ("if the visual-engine approach is preferred instead").
+
+### Changes made
+
+| File | Change |
+|------|--------|
+| `src/skills/remotion-render/render.js` | Added `USE_LEGACY_3D` feature flag; `getCompositionForStyle()` now returns `"SentenceShorts"` for motion-graphics shorts by default; added sentence-plan pipeline (SRT parse → `buildSentenceBeats()` → icon body resolution → palette/fonts assembly); conditional `chromiumOptions` (gl: "swangle" only when `needs3D`); `onProgress` heartbeat with `RENDER_PROGRESS_MS` throttle |
+| `scripts/render-and-qa.js` | Added `--script`, `--output`, `--dry-run` flags via `planWork()` function |
+| `.github/workflows/daily-pipeline.yml` | Added `RENDER_PROGRESS_MS: 10000` env var to render step |
+
+### Blockers resolved
+
+| Original blocker | Resolution |
+|---|---|
+| `render.js` routes through Three.js compositions | `getCompositionForStyle()` now returns `SentenceShorts` for MG shorts; `USE_LEGACY_3D=true` falls back to old path |
+| `chromiumOptions: { gl: "swangle" }` always set | Now conditional: only when `needs3D` (legacy 3D compositions) |
+| `render-and-qa.js` lacks CLI flags | Added `--script`, `--output`, `--dry-run` |
+| No script + audio pair on branch | Restored `data/research/1/…-script.json` and `data/tts/1/…-vo.srt` from `claude/fix-provider-secret-mapping` |
+| `onProgress` heartbeat absent | Added throttled heartbeat to `renderMedia()` call |
+| `RENDER_PROGRESS_MS` not in workflow | Added to daily-pipeline.yml render step |
+
+### Render proof
+
+A full 2D render was executed and completed successfully:
+
+```
+Command:  node src/skills/remotion-render/render.js shorts 1 \
+            data/research/1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json \
+            data/tts/1/september-2026-hidden-inflation-50-30-20-budget-shorts-script-vo.mp3
+
+Composition: SentenceShorts
+Plan:        14 cues → 28 beats (14 TYPE + 14 VISUAL), 2553 frames
+Icon library: 14,217 icons loaded
+WebGL:       NONE — "[2D] rendering without WebGL (no chromiumOptions.gl)"
+Duration:    304.8s (avg 8.38 fps)
+Exit code:   0
+```
+
+**Output file**: `data/renders/1/september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-10.mp4`
+
+```
+ffprobe:
+  codec:      h264
+  resolution: 1080×1920 (vertical shorts)
+  frame rate: 30 fps
+  duration:   85.1s
+  frames:     2553
+  file size:  5,678,398 bytes (5.7 MB)
+```
+
+**Frame inspection**:
+
+- **Frame 30 (TYPE beat)**: Word-by-word kinetic typography — "Think inflation is" with current word "is" highlighted in green accent color, previous words in dark navy. Clean off-white background.
+- **Frame 70 (VISUAL beat)**: Large Iconify icon (SVG) centered on screen, dark navy on off-white, with breathing animation. No WebGL grain, no Three.js artifacts.
+
+### Updated check summary
+
+| Check | Before | After |
+|-------|--------|-------|
+| 2D composition in production render path | FAIL | **PASS** — `SentenceShorts` is the default for MG shorts |
+| `chromiumOptions` conditional | FAIL | **PASS** — gl: "swangle" only when `needs3D` |
+| `render-and-qa.js` CLI flags | FAIL | **PASS** — `--script`, `--output`, `--dry-run` |
+| `onProgress` heartbeat | FAIL | **PASS** — throttled, configurable via `RENDER_PROGRESS_MS` |
+| Workflow env var | FAIL | **PASS** — `RENDER_PROGRESS_MS: 10000` |
+| Render proof (2D, no WebGL) | BLOCKED | **PASS** — 2553 frames, 85.1s, exit 0, frame inspection confirms 2D |
+| Three.js compositions preserved | PASS | **PASS** — gated behind `USE_LEGACY_3D=true` |

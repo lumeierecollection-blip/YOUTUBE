@@ -546,6 +546,8 @@ jobs:
       # fails the job, since previously frame-audit failing here did fail
       # the step (`|| exit 1`) — this preserves that, just pipelined.
       - name: Render + QA (concurrent)
+        env:
+          RENDER_PROGRESS_MS: 10000
         run: |
           CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
           if [ -n "$CHANNEL_OVERRIDE" ]; then
