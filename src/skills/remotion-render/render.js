@@ -93,9 +93,9 @@ const WPM = {
   "motion-graphics": 155,
 };
 
-// Shorts: 15s minimum, 180s maximum (YouTube Shorts ceiling per shorts.js spec).
+// Shorts: 15s minimum, 60s maximum (under-1-minute target).
 // Long-form: 2–12 minutes.
-const SHORTS_CLAMP = [15 * 30, 180 * 30]; // frames
+const SHORTS_CLAMP = [15 * 30, 60 * 30]; // frames
 const LONGFORM_CLAMP = [2 * 30 * 60, 12 * 30 * 60];
 
 // Tail padding added after the voiceover so the final word is never cut.
@@ -467,7 +467,7 @@ async function main() {
 
   if (componentId === "DirectedShorts") {
     const srtPath = findSrtPath(ttsAudioPath);
-    const srtText = srtPath ? readFileSync(srtPath, "utf-8") : "";
+    const srtText = srtPath ? readFileSync(srtPath, "utf-8").replace(/\r\n/g, "\n") : "";
     if (srtPath) console.log("Directed SRT:", srtPath);
     else console.warn("Directed: no SRT next to voiceover — cannot build word timings, aborting.");
     if (!srtText) {
@@ -522,7 +522,7 @@ async function main() {
 
   } else if (componentId === "SentenceShorts") {
     const srtPath = findSrtPath(ttsAudioPath);
-    const srtText = srtPath ? readFileSync(srtPath, "utf-8") : "";
+    const srtText = srtPath ? readFileSync(srtPath, "utf-8").replace(/\r\n/g, "\n") : "";
     if (srtPath) console.log("Sentence SRT:", srtPath);
     else console.warn("Sentence: no SRT next to voiceover — cannot build word timings, aborting.");
     if (!srtText) {
