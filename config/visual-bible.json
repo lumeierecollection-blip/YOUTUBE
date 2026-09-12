@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "description": "Visual standards Gemini checks every rendered frame against. Each rule has an ID, a human-readable description, and a machine-readable check specification.",
+  "rules": {
+    "TYP-01": {
+      "name": "single-line-text",
+      "severity": "BLOCKER",
+      "description": "All on-screen text (headlines, overlays, captions, labels) must fit on a single line. No text element should wrap to a second line. If text is too long, the font must shrink to fit one line.",
+      "check": "Count distinct lines of visible text in the frame. Headlines/overlays that span more than one line = FAIL."
+    },
+    "TYP-02": {
+      "name": "text-contrast",
+      "severity": "BLOCKER",
+      "description": "Every text element must be clearly readable against its background. Minimum contrast ratio: 4.5:1 for body text, 3:1 for large text (>24px equivalent). White or bright text on dark backgrounds. No low-contrast text.",
+      "check": "Is every piece of text clearly legible? Could you read it instantly at phone screen size?"
+    },
+    "TYP-03": {
+      "name": "text-safe-zone",
+      "severity": "MAJOR",
+      "description": "No text may appear in the top 15% or bottom 12% of the frame (reserved for platform UI on YouTube Shorts). All text must be within the safe zone.",
+      "check": "Is any text clipped by or positioned in the platform-reserved zones at top/bottom of frame?"
+    },
+    "VIS-01": {
+      "name": "visual-audio-alignment",
+      "severity": "BLOCKER",
+      "description": "The visual content on screen must directly relate to what is being said in the voiceover at that moment. If the voiceover mentions a specific number, that number should be visible. If it mentions a comparison, the visual should show a comparison. The viewer should understand the point even on mute.",
+      "check": "Given the voiceover text for this moment, does the visual content support, illustrate, or reinforce what is being said? Would the visual make sense without audio?"
+    },
+    "VIS-02": {
+      "name": "visual-clarity",
+      "severity": "MAJOR",
+      "description": "Each frame must have exactly one focal point — the single thing the viewer's eye should go to. No clutter, no competing elements. The focal element must be immediately obvious.",
+      "check": "Can you identify the ONE thing the viewer should look at? Is there visual clutter or competing elements?"
+    },
+    "VIS-03": {
+      "name": "no-empty-frames",
+      "severity": "BLOCKER",
+      "description": "No frame should appear empty, broken, or show only a solid background color with no visual content. Every frame must have meaningful visual content.",
+      "check": "Is this frame empty or showing only a background? Does it look broken or incomplete?"
+    },
+    "VIS-04": {
+      "name": "visual-variety",
+      "severity": "MAJOR",
+      "description": "Consecutive beats/scenes must look visually distinct from each other. No two adjacent visual segments should use the same layout, the same visual treatment, or appear identical.",
+      "check": "Does this frame look meaningfully different from the previous beat's frame?"
+    },
+    "COL-01": {
+      "name": "on-palette",
+      "severity": "MAJOR",
+      "description": "All colors used must come from the channel's declared palette (primary + secondary colors in visual-identity.json). No off-brand or random colors.",
+      "check": "Are all visible colors consistent with the channel's palette? Any jarring or off-brand colors?"
+    },
+    "LAY-01": {
+      "name": "breathing-room",
+      "severity": "MAJOR",
+      "description": "Visual elements must have adequate spacing from frame edges and from each other. No cramped layouts. Minimum 5% margin from all edges for non-background elements.",
+      "check": "Do visual elements have breathing room? Is anything cramped against the edge or overlapping other elements?"
+    },
+    "LAY-02": {
+      "name": "visual-hierarchy",
+      "severity": "MAJOR",
+      "description": "The most important element (the number, the comparison, the key word) must be the largest and most prominent thing on screen. Supporting elements must be visually subordinate.",
+      "check": "Is the most important piece of information the most visually prominent element?"
+    }
+  },
+  "gemini_prompt_template": "You are a visual QA editor reviewing frames from a YouTube Shorts video. You have access to the Visual Bible — a set of standards every frame must meet.\n\nFor each frame, you will receive:\n1. The frame image\n2. The voiceover text being spoken at this moment\n3. The beat/scene type and intended visual treatment\n\nYour job: check the frame against each Visual Bible rule and report:\n- PASS or FAIL for each rule\n- For each FAIL, explain what's wrong and suggest a specific fix\n- Rate overall quality 1-10\n- One sentence: what would make this frame better?\n\nBe harsh. A frame that merely looks 'okay' is not good enough for retention. Every frame must earn the viewer's next second of attention.\n\nRespond ONLY with JSON:\n{\n  \"frame_index\": <int>,\n  \"checks\": {\n    \"<rule_id>\": { \"pass\": true|false, \"note\": \"<explanation if fail>\" }\n  },\n  \"quality_score\": <1-10>,\n  \"improvement\": \"<one specific actionable suggestion>\",\n  \"visual_audio_match\": true|false,\n  \"visual_audio_note\": \"<how well the visual matches what is being said>\"\n}"
+}

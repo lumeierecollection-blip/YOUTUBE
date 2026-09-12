@@ -57,38 +57,11 @@ const LH = 1.16;
 const MAX_SIZE = 148;
 const MIN_SIZE = 38;
 
-/** Greedy wrap into exactly n lines, aiming at an even measure per line. */
-function wrapInto(ems, n) {
-  const total = ems.reduce((a, b) => a + b, 0);
-  const target = total / n;
-  const rows = [];
-  let row = [], acc = 0;
-  for (let i = 0; i < ems.length; i++) {
-    const left = ems.length - i;          // words still unplaced
-    const need = n - rows.length;          // lines still to fill
-    // Break when this line has met its share, but never strand a later line
-    // with no words and never overfill the last line.
-    if (row.length && (acc + ems[i] / 2 > target && need > 1) && left >= need) {
-      rows.push(row); row = []; acc = 0;
-    }
-    row.push(i); acc += ems[i];
-  }
-  if (row.length) rows.push(row);
-  return rows.length === n ? rows : null;
-}
-
 function layout(words, maxW, maxH) {
   const ems = words.map((w) => emWidth(w) + 0.3);
-  let best = null;
-  for (let n = 1; n <= Math.min(14, words.length); n++) {
-    const idx = wrapInto(ems, n);
-    if (!idx) continue;
-    const widest = idx.reduce((m, r) => Math.max(m, r.reduce((a, i) => a + ems[i], 0)), 0.5);
-    const size = Math.min(MAX_SIZE, maxW / widest, maxH / (n * LH));
-    if (!best || size > best.size) best = { size, rows: idx.map((r) => r.map((i) => words[i])) };
-  }
-  if (!best) return { rows: [words], size: MIN_SIZE };
-  return { rows: best.rows, size: Math.max(MIN_SIZE, best.size) };
+  const totalEm = ems.reduce((a, b) => a + b, 0);
+  const size = Math.min(MAX_SIZE, maxW / Math.max(0.5, totalEm), maxH / LH);
+  return { rows: [words], size: Math.max(MIN_SIZE, size) };
 }
 
 function at(plan, frame) {
@@ -116,7 +89,7 @@ function Sentence({ beat, local, colors, font }) {
       top: MID_Y - (rows.length * size * LH) / 2,
       fontFamily: `${font}, sans-serif`, fontWeight: 800,
       fontSize: size, lineHeight: LH, letterSpacing: -size * 0.02,
-      opacity: 1 - out,
+      opacity: 1 - out, whiteSpace: "nowrap", overflow: "hidden",
     }}>
       {rows.map((row, ri) => (
         <div key={ri} style={{ whiteSpace: "nowrap" }}>

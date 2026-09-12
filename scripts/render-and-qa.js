@@ -38,6 +38,7 @@
  *            (render.js still writes its canonical data/renders/<id>/ path).
  * --dry-run  print the render + QA plan and exit 0 without spawning render.js.
  */
+import "dotenv/config";
 import { spawn } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync } from "node:fs";
 import { join, dirname, basename, extname, relative } from "node:path";
@@ -49,6 +50,8 @@ const RENDER_JS = join(ROOT, "src", "skills", "remotion-render", "render.js");
 const VIDEO_REVIEW_JS = join(__dirname, "video-review.js");
 const FRAME_AUDIT_JS = join(__dirname, "frame-audit.js");
 const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
+const VISUAL_QA_JS = join(__dirname, "gate-visual-qa.js");
+const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 
 function parseArgs(argv) {
   const flag = (name) => {
@@ -189,6 +192,30 @@ async function qaOne(runId, rendered) {
   }
   const audit = await runChild("node", [FRAME_AUDIT_JS, reviewDir], { label: `qa/audit ${basename(outputPath)}` });
 
+  // Vision QA (Gemini) — runs after frame-audit passes, warn-only so it
+  // doesn't block renders while the visual system is still evolving.
+  let visionQaPromise;
+  if (audit.code === 0 && process.env.VISION_API_KEY) {
+    const chId = `ch-${String(channelId).padStart(2, "0")}`;
+    visionQaPromise = runChild("node", [VISUAL_QA_JS, "--channel", chId, "--video", outputPath], {
+      label: `qa/vision ${basename(outputPath)}`,
+    });
+  }
+
+  // Gemini Frame Review — per-beat visual QA with visual bible checks.
+  // Runs if any Gemini API key is available. Warn-only (doesn't gate).
+  let geminiReviewPromise;
+  const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.VISION_API_KEY;
+  if (audit.code === 0 && geminiKey) {
+    const srtPath = join(dirname(audio), basename(audio, extname(audio)) + ".srt");
+    const srtArg = existsSync(srtPath) ? srtPath : "";
+    const reviewArgs = ["--video", outputPath, "--script", scriptPath, "--channel", String(channelId)];
+    if (srtArg) reviewArgs.push("--srt", srtArg);
+    geminiReviewPromise = runChild("node", [GEMINI_REVIEW_JS, ...reviewArgs], {
+      label: `qa/gemini-review ${basename(outputPath)}`,
+    });
+  }
+
   // PART 9 — dispatched after frame-audit, never awaited into gatePass
   // (ANTI-SLOP.md's warn-only rule: its verdict is logged, not gating).
   // Still tracked (not orphaned) via slopCheckPromise so main() can wait
@@ -197,7 +224,7 @@ async function qaOne(runId, rendered) {
     label: `qa/slop-check ${basename(outputPath)}`,
   });
 
-  return { outputPath, gatePass: audit.code === 0, stage: "frame-audit", reviewDir, slopCheckPromise };
+  return { outputPath, gatePass: audit.code === 0, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise };
 }
 
 async function main() {
@@ -261,9 +288,12 @@ async function main() {
   // process exits, or "log every verdict" wouldn't reliably hold on a run
   // that finishes right after its last render's QA does.
   const slopChecks = qaResults.map((r) => r.slopCheckPromise).filter(Boolean);
-  if (slopChecks.length) {
-    console.log(`Waiting on ${slopChecks.length} slop-check task(s) (warn-only, see ANTI-SLOP.md)...`);
-    await Promise.all(slopChecks);
+  const visionChecks = qaResults.map((r) => r.visionQaPromise).filter(Boolean);
+  const geminiReviews = qaResults.map((r) => r.geminiReviewPromise).filter(Boolean);
+  const pendingBg = [...slopChecks, ...visionChecks, ...geminiReviews];
+  if (pendingBg.length) {
+    console.log(`Waiting on ${slopChecks.length} slop-check + ${visionChecks.length} vision-qa + ${geminiReviews.length} gemini-review task(s)...`);
+    await Promise.all(pendingBg);
   }
 
   for (const r of qaFailed) {

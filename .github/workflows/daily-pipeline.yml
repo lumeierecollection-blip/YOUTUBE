@@ -548,6 +548,10 @@ jobs:
       - name: Render + QA (concurrent)
         env:
           RENDER_PROGRESS_MS: 10000
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          VISION_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          VISION_MODEL: gemini-2.0-flash-lite
         run: |
           CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
           if [ -n "$CHANNEL_OVERRIDE" ]; then
@@ -563,6 +567,14 @@ jobs:
           name: render-frames-${{ github.run_id }}
           path: data/audit/render-review/
           retention-days: 7
+
+      - name: Upload Gemini review reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemini-review-${{ github.run_id }}
+          path: data/audit/gemini-review/
+          retention-days: 14
 
       - name: Upload render artifacts
         if: always()
