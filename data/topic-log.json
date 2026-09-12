@@ -80,9 +80,14 @@
           "topic": "The CFPB's 2026 Overdraft Rule: What It Means for Your Budget",
           "slug": "cfpb-2026-overdraft-rule-budget",
           "reserved_at": "2026-09-06T09:54:18.120Z"
+        },
+        {
+          "topic": "Experian's 2026 Savings Challenges: 10 Ways to Build an Emergency Fund",
+          "slug": "experian-2026-savings-challenges",
+          "reserved_at": "2026-09-12T14:35:59.801Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.120Z"
+      "last_generated": "2026-09-12T14:35:59.801Z"
     },
     "2": {
       "channel_name": "Legal Brief",
