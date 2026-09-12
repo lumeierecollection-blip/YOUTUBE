@@ -41,18 +41,18 @@ function editorialColors(colors, rawPalette) {
     const [r, g, b] = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
     return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   };
-  const chroma = (h) => {
-    const [r, g, b] = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
-    return (Math.max(r, g, b) - Math.min(r, g, b)) / 255;
+  const contrastRatio = (a, b) => {
+    const la = lum(a) + 0.05, lb = lum(b) + 0.05;
+    return la > lb ? la / lb : lb / la;
   };
   const all = [...rawPalette.primary, ...rawPalette.secondary];
   const sorted = [...all].sort((a, b) => lum(a) - lum(b));
+  const bgColor = sorted[0];
   const subdued = all.find((c) => {
-    const l = lum(c);
-    return l > 0.25 && l < 0.7 && chroma(c) < 0.2 && c !== colors.accent;
-  }) || sorted[Math.floor(sorted.length / 2)];
+    return contrastRatio(c, bgColor) >= 4.5 && lum(c) < 0.7 && c !== colors.accent;
+  }) || sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.6))];
   return {
-    bg: sorted[0],
+    bg: bgColor,
     depth: sorted[1] || sorted[0],
     surface: sorted[sorted.length - 1],
     text: sorted[sorted.length - 1],
@@ -783,8 +783,8 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
 
   const causeLabel = cause.label || "";
   const effectLabel = effect.label || "";
-  const causeSz = Math.min(48, SAFE_W * 0.8 / Math.max(1, causeLabel.length * 0.48));
-  const effectSz = Math.min(52, SAFE_W * 0.8 / Math.max(1, effectLabel.length * 0.48));
+  const causeSz = Math.min(48, (SAFE_W * 0.8) / Math.max(0.5, emW(causeLabel)));
+  const effectSz = Math.min(52, (SAFE_W * 0.8) / Math.max(0.5, emW(effectLabel)));
 
   return (
     <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: 1 - fadeOut }}>
@@ -792,6 +792,7 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
       <div style={{
         position: "absolute", left: SAFE_W * 0.06, width: SAFE_W * 0.88,
         top: SAFE_H * 0.1, opacity: causeP,
+        whiteSpace: "nowrap", overflow: "hidden",
       }}>
         <div style={{
           padding: "18px 0 18px 24px",
@@ -822,6 +823,7 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
         position: "absolute", left: SAFE_W * 0.06, width: SAFE_W * 0.88,
         top: SAFE_H * 0.46, opacity: effectP,
         transform: `translateY(${(1 - effectP) * 20}px)`,
+        whiteSpace: "nowrap", overflow: "hidden",
       }}>
         <div style={{
           padding: "18px 0 18px 24px",
@@ -903,8 +905,10 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
 
   const expLabel = expected.label || "";
   const actLabel = actual.label || "";
-  const expSz = Math.min(50, SAFE_W * 0.85 / Math.max(1, expLabel.length * 0.5));
-  const actSz = Math.min(58, SAFE_W * 0.85 / Math.max(1, actLabel.length * 0.5));
+  const expEm = emW(expLabel);
+  const actEm = emW(actLabel);
+  const expSz = Math.min(50, (SAFE_W * 0.85) / Math.max(0.5, expEm));
+  const actSz = Math.min(58, (SAFE_W * 0.85) / Math.max(0.5, actEm));
 
   return (
     <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: 1 - fadeOut }}>
@@ -912,6 +916,7 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
       <div style={{
         position: "absolute", left: SAFE_W * 0.06, width: SAFE_W * 0.88,
         top: SAFE_H * 0.18, opacity: showExpected,
+        whiteSpace: "nowrap", overflow: "hidden",
       }}>
         <div style={{
           fontFamily: `${font}, sans-serif`, fontWeight: 700,
@@ -919,24 +924,16 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
           textDecoration: strikeP > 0.5 ? "line-through" : "none",
           textDecorationColor: ed.accent,
           textDecorationThickness: 3,
-          opacity: 1 - strikeP * 0.45,
+          opacity: Math.max(0.55, 1 - strikeP * 0.35),
         }}>{expLabel}</div>
       </div>
-
-      {/* Divider */}
-      {showActual > 0 && (
-        <svg width={SAFE_W} height={4}
-          style={{ position: "absolute", left: 0, top: S.top + SAFE_H * 0.42 }}>
-          <line x1={SAFE_W * 0.06} y1={2} x2={SAFE_W * 0.06 + SAFE_W * 0.8 * showActual} y2={2}
-            stroke={ed.accent} strokeWidth={2} opacity={showActual * 0.25} />
-        </svg>
-      )}
 
       {/* Actual — appears below */}
       <div style={{
         position: "absolute", left: SAFE_W * 0.06, width: SAFE_W * 0.88,
         top: SAFE_H * 0.48, opacity: showActual,
         transform: `translateY(${(1 - showActual) * 24}px)`,
+        whiteSpace: "nowrap", overflow: "hidden",
       }}>
         <div style={{
           fontFamily: `${font}, sans-serif`, fontWeight: 900,

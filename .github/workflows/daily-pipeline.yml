@@ -551,7 +551,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           VISION_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          VISION_MODEL: gemini-2.0-flash-lite
+          VISION_MODEL: gemini-3.5-flash-lite
         run: |
           CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
           if [ -n "$CHANNEL_OVERRIDE" ]; then

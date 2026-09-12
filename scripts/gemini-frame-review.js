@@ -112,7 +112,7 @@ function computeBeatTimes(srtCues, duration) {
 
 async function reviewFrame(framePath, voiceoverText, frameIndex, totalFrames, apiKey, bible) {
   const base = "https://generativelanguage.googleapis.com/v1beta/openai";
-  const model = "gemini-2.0-flash-lite";
+  const model = "gemini-3.5-flash-lite";
 
   const rulesSummary = Object.entries(bible.rules)
     .map(([id, r]) => `${id} (${r.severity}): ${r.description}`)
