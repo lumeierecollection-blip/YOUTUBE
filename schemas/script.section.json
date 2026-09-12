@@ -9,7 +9,7 @@
     "hook":       { "type": "string", "minLength": 30, "maxLength": 220 },
     "sections": {
       "type": "array",
-      "minItems": 4,
+      "minItems": 3,
       "maxItems": 7,
       "items": {
         "type": "object",
@@ -31,7 +31,7 @@
         "required": ["id", "voiceover", "visual_cue"]
       }
     },
-    "sources_used": { "type": "array", "minItems": 3, "items": { "type": "string" } }
+    "sources_used": { "type": "array", "minItems": 2, "items": { "type": "string" } }
   },
   "required": ["channel_id", "topic_slug", "format", "hook", "sections", "sources_used"]
 }

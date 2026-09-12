@@ -27,10 +27,20 @@
  * OAuth cred paths and per-channel b-roll/asset-library dirs, not for
  * data/research|tts|thumbnails/<id>/.
  *
- * Usage: node scripts/render-and-qa.js [--channel <numeric-id>]
+ * Usage:
+ *   node scripts/render-and-qa.js [--channel <numeric-id>]
+ *   node scripts/render-and-qa.js --script <path-to-*-script.json> [--channel <id>] [--output <mp4>]
+ *   node scripts/render-and-qa.js --dry-run [--channel <id>] [--script <path>]
+ *
+ * --script   render one script JSON only (channel id from --channel, else
+ *            the script's parent dir name).
+ * --output   after a successful render, copy the mp4 to this path too
+ *            (render.js still writes its canonical data/renders/<id>/ path).
+ * --dry-run  print the render + QA plan and exit 0 without spawning render.js.
  */
+import "dotenv/config";
 import { spawn } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync } from "node:fs";
 import { join, dirname, basename, extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -40,10 +50,30 @@ const RENDER_JS = join(ROOT, "src", "skills", "remotion-render", "render.js");
 const VIDEO_REVIEW_JS = join(__dirname, "video-review.js");
 const FRAME_AUDIT_JS = join(__dirname, "frame-audit.js");
 const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
+const VISUAL_QA_JS = join(__dirname, "gate-visual-qa.js");
+const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 
 function parseArgs(argv) {
-  const idx = argv.indexOf("--channel");
-  return { channelOverride: idx >= 0 ? argv[idx + 1] : null };
+  const flag = (name) => {
+    const i = argv.indexOf(name);
+    return i >= 0 ? argv[i + 1] : null;
+  };
+  return {
+    channelOverride: flag("--channel"),
+    // --script <path> renders exactly one script JSON and skips the channel
+    // scan. The channel id is taken from --channel if given, else from the
+    // script's parent directory (data/research/<id>/…), which is how every
+    // other path in this file is keyed.
+    scriptOverride: flag("--script"),
+    // --output <path> copies the finished mp4 to an arbitrary location
+    // AFTER the normal render (render.js still writes its canonical
+    // data/renders/<id>/… path; this is an extra copy for test harnesses).
+    outputOverride: flag("--output"),
+    // --dry-run prints the render plan (every script that would render, its
+    // format, its voiceover path, and where the mp4 would land) and exits 0
+    // without spawning render.js.
+    dryRun: argv.includes("--dry-run"),
+  };
 }
 
 function loadChannelIds(override) {
@@ -59,6 +89,24 @@ function findScripts(channelId) {
   return readdirSync(dir)
     .filter((f) => f.endsWith("-script.json"))
     .map((f) => join(dir, f));
+}
+
+// Build the (channelId, scriptPath) work list for either mode.
+function planWork({ channelOverride, scriptOverride }) {
+  if (scriptOverride) {
+    const scriptPath = join(ROOT, relative(ROOT, scriptOverride));
+    if (!existsSync(scriptPath)) {
+      console.error(`::error::--script path not found: ${scriptPath}`);
+      process.exit(1);
+    }
+    const channelId = channelOverride || basename(dirname(scriptPath));
+    return [{ channelId, scriptPath }];
+  }
+  const work = [];
+  for (const channelId of loadChannelIds(channelOverride)) {
+    for (const scriptPath of findScripts(channelId)) work.push({ channelId, scriptPath });
+  }
+  return work;
 }
 
 function formatFromScriptPath(scriptPath) {
@@ -144,6 +192,30 @@ async function qaOne(runId, rendered) {
   }
   const audit = await runChild("node", [FRAME_AUDIT_JS, reviewDir], { label: `qa/audit ${basename(outputPath)}` });
 
+  // Vision QA (Gemini) — runs after frame-audit passes, warn-only so it
+  // doesn't block renders while the visual system is still evolving.
+  let visionQaPromise;
+  if (audit.code === 0 && process.env.VISION_API_KEY) {
+    const chId = `ch-${String(channelId).padStart(2, "0")}`;
+    visionQaPromise = runChild("node", [VISUAL_QA_JS, "--channel", chId, "--video", outputPath], {
+      label: `qa/vision ${basename(outputPath)}`,
+    });
+  }
+
+  // Gemini Frame Review — per-beat visual QA with visual bible checks.
+  // Runs if any Gemini API key is available. Warn-only (doesn't gate).
+  let geminiReviewPromise;
+  const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.VISION_API_KEY;
+  if (audit.code === 0 && geminiKey) {
+    const srtPath = join(dirname(audio), basename(audio, extname(audio)) + ".srt");
+    const srtArg = existsSync(srtPath) ? srtPath : "";
+    const reviewArgs = ["--video", outputPath, "--script", scriptPath, "--channel", String(channelId)];
+    if (srtArg) reviewArgs.push("--srt", srtArg);
+    geminiReviewPromise = runChild("node", [GEMINI_REVIEW_JS, ...reviewArgs], {
+      label: `qa/gemini-review ${basename(outputPath)}`,
+    });
+  }
+
   // PART 9 — dispatched after frame-audit, never awaited into gatePass
   // (ANTI-SLOP.md's warn-only rule: its verdict is logged, not gating).
   // Still tracked (not orphaned) via slopCheckPromise so main() can wait
@@ -152,34 +224,56 @@ async function qaOne(runId, rendered) {
     label: `qa/slop-check ${basename(outputPath)}`,
   });
 
-  return { outputPath, gatePass: audit.code === 0, stage: "frame-audit", reviewDir, slopCheckPromise };
+  return { outputPath, gatePass: audit.code === 0, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise };
 }
 
 async function main() {
-  const { channelOverride } = parseArgs(process.argv.slice(2));
+  const { channelOverride, scriptOverride, outputOverride, dryRun } = parseArgs(process.argv.slice(2));
   const runId = process.env.GITHUB_RUN_ID || String(Date.now());
-  const channelIds = loadChannelIds(channelOverride);
+  const work = planWork({ channelOverride, scriptOverride });
+
+  // --dry-run: print the plan and exit 0 without spawning anything.
+  if (dryRun) {
+    console.log(`DRY RUN — ${work.length} script(s) would render:\n`);
+    for (const { channelId, scriptPath } of work) {
+      const format = formatFromScriptPath(scriptPath);
+      const audio = audioPathFor(channelId, scriptPath);
+      const hasAudio = existsSync(audio);
+      const out = expectedOutputPath(channelId, scriptPath, format);
+      console.log(`  channel ${channelId}  ${format}`);
+      console.log(`    script : ${relative(ROOT, scriptPath)}`);
+      console.log(`    audio  : ${relative(ROOT, audio)}   ${hasAudio ? "" : "MISSING — would be skipped"}`);
+      console.log(`    output : ${relative(ROOT, out)}`);
+      console.log(`    QA     : video-review (10 frames) -> frame-audit -> slop-check (warn-only)\n`);
+    }
+    console.log("No render.js processes were spawned.");
+    process.exit(0);
+  }
 
   let rendered = 0;
   let renderFailed = 0;
   const pendingQA = []; // PART 8 — never awaited until every render has been dispatched
 
-  for (const channelId of channelIds) {
-    const scripts = findScripts(channelId);
-    for (const scriptPath of scripts) {
-      const format = formatFromScriptPath(scriptPath);
-      const result = await renderOne(channelId, scriptPath, format);
-      if (result.skipped) continue;
-      if (!result.ok) {
-        renderFailed++;
-        console.error(`::error::render failed for ${scriptPath}`);
-        continue;
-      }
-      rendered++;
-      // Dispatched, NOT awaited — the loop moves straight on to the next
-      // render while this QA runs in the background.
-      pendingQA.push(qaOne(runId, result));
+  for (const { channelId, scriptPath } of work) {
+    const format = formatFromScriptPath(scriptPath);
+    const result = await renderOne(channelId, scriptPath, format);
+    if (result.skipped) continue;
+    if (!result.ok) {
+      renderFailed++;
+      console.error(`::error::render failed for ${scriptPath}`);
+      continue;
     }
+    rendered++;
+    // --output: copy the canonical render to the requested location.
+    if (outputOverride && result.outputPath) {
+      const outDir = dirname(outputOverride);
+      if (outDir) mkdirSync(outDir, { recursive: true });
+      copyFileSync(result.outputPath, outputOverride);
+      console.log(`Copied render to --output: ${outputOverride}`);
+    }
+    // Dispatched, NOT awaited — the loop moves straight on to the next
+    // render while this QA runs in the background.
+    pendingQA.push(qaOne(runId, result));
   }
 
   console.log(`\nRendered ${rendered} video(s), ${renderFailed} render failure(s). Waiting on ${pendingQA.length} QA task(s)...`);
@@ -194,9 +288,12 @@ async function main() {
   // process exits, or "log every verdict" wouldn't reliably hold on a run
   // that finishes right after its last render's QA does.
   const slopChecks = qaResults.map((r) => r.slopCheckPromise).filter(Boolean);
-  if (slopChecks.length) {
-    console.log(`Waiting on ${slopChecks.length} slop-check task(s) (warn-only, see ANTI-SLOP.md)...`);
-    await Promise.all(slopChecks);
+  const visionChecks = qaResults.map((r) => r.visionQaPromise).filter(Boolean);
+  const geminiReviews = qaResults.map((r) => r.geminiReviewPromise).filter(Boolean);
+  const pendingBg = [...slopChecks, ...visionChecks, ...geminiReviews];
+  if (pendingBg.length) {
+    console.log(`Waiting on ${slopChecks.length} slop-check + ${visionChecks.length} vision-qa + ${geminiReviews.length} gemini-review task(s)...`);
+    await Promise.all(pendingBg);
   }
 
   for (const r of qaFailed) {

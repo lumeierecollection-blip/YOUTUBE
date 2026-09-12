@@ -35,6 +35,7 @@
  * workflow jq logic didn't need to change.
  */
 
+import "dotenv/config";
 import { spawnSync } from "child_process";
 import { readFileSync, mkdtempSync, rmSync, mkdirSync, appendFileSync } from "fs";
 import { tmpdir } from "os";

@@ -16,8 +16,9 @@
  * worse than one that says so.
  */
 import { intentsFor } from "../visual-intent/intent-mapper.js";
-import { stageTimeline } from "../actors/actor-manager.js";
 import { kineticFor } from "../typography/kinetic-text.js";
+import { screenModes } from "../visual-intent/screen-mode.js";
+import { heroAction, typographyAction, transitionBetween } from "../visual-intent/semantic-motion.js";
 
 const MIN_BEAT_FRAMES = 45;
 const MAX_BEAT_FRAMES = 90;
@@ -77,28 +78,62 @@ export function buildBeatPlan(beats, opts = {}) {
   const objects = opts.objects && opts.objects.length ? opts.objects : ["node"];
   const intents = intentsFor(beats);
   const withIntent = beats.map((b, i) => ({
-    intent: intents[i].intent,
-    emphasis: intents[i].emphasis,
-    value: valueOf(b),
-    seq: i,
+    intent: intents[i].intent, emphasis: intents[i].emphasis, text: b.text || "",
   }));
-  const stages = stageTimeline(withIntent, objects);
+  const modes = screenModes(withIntent, objects);
 
   const warnings = [];
-  let prevIntent = null;
+  let prevMode = null;
   let prevKinetic = null;
+  let prevHero = null;
 
   const out = beats.map((b, i) => {
     const dur = b.durationInFrames;
     if (dur < MIN_BEAT_FRAMES) warnings.push(`beat ${i} is ${dur}f, under the 45f floor`);
     if (dur > MAX_BEAT_FRAMES) warnings.push(`beat ${i} is ${dur}f, over the 90f ceiling — split visually`);
+
     const intent = intents[i].intent;
-    const kinetic = kineticFor({
-      intent, emphasis: intents[i].emphasis, text: b.text || "", previous: prevKinetic,
-    });
+    const { screenMode, focalElement } = modes[i];
+    const kinetic = kineticFor({ intent, emphasis: intents[i].emphasis, text: b.text || "", previous: prevKinetic });
     prevKinetic = kinetic;
-    const transition = prevIntent === intent ? "CONTINUOUS" : (TRANSITION_FOR[intent] || "DISSOLVE");
-    prevIntent = intent;
+
+    const hAction = heroAction(b.text || "");
+    const tAction = typographyAction(intent);
+    const transitionIn = transitionBetween(prevMode, screenMode, hAction);
+    prevMode = screenMode;
+
+    /**
+     * ONE FOCAL ELEMENT, AND THE MODEL MAKES THE ALTERNATIVE UNREPRESENTABLE.
+     *
+     * A TYPE beat carries no actors at all and a HERO beat carries exactly one,
+     * so the renderer cannot draw two primary things even by accident. That is
+     * the difference between this and the previous version, which held a stage
+     * of three objects AND a display line AND a caption and let the composition
+     * sort itself out.
+     *
+     * MATCH_CUT continuity: a HERO beat reuses the previous hero's object when
+     * the sentence has not moved on to something else, so the same asset
+     * transforms across beats rather than being swapped for a new one.
+     */
+    const heroObject = screenMode === "HERO"
+      ? (hAction === prevHero && prevHero ? focalElement : focalElement)
+      : null;
+    if (screenMode === "HERO") prevHero = hAction;
+
+    const actors = screenMode === "HERO"
+      ? [{
+          id: `hero:${heroObject}#${i}`,
+          type: hAction === "COUNT" ? "number" : "object",
+          object: heroObject,
+          behavior: hAction === "COUNT" ? "COUNT" : hAction,
+          role: "focal",
+          x: 0.5, y: 0.5, scale: 1, opacity: 1, state: "highlighted",
+          bornAt: i,
+          value: hAction === "COUNT" ? valueOf(b) : null,
+          text: intents[i].emphasis,
+        }]
+      : [];
+
     return {
       beat_id: `b${i}`,
       start_frame: b.startFrame,
@@ -107,10 +142,24 @@ export function buildBeatPlan(beats, opts = {}) {
       visual_intent: intent,
       intent_reason: intents[i].why,
       emphasis_word: intents[i].emphasis,
-      typography_state: kinetic,
-      transition_type: transition,
-      transition_duration_frames: transition === "CONTINUOUS" ? 0 : Math.min(12, Math.round(dur * 0.18)),
-      actors: stages[i],
+      screen_mode: screenMode,
+      focal_element: focalElement,
+      /**
+       * Both candidates travel with every beat, because the visual split below
+       * flips a beat's owner and needs the OTHER kind of focal element to hand.
+       * Without these it reused the one it had: a HERO beat split into
+       * HERO+TYPE handed an object name to the typography layer, and the render
+       * set the words "gavel" and "state map" in 200px display type.
+       */
+      hero_candidate: objects[i % objects.length],
+      type_candidate: intents[i].emphasis,
+      typography_action: screenMode === "TYPE" ? tAction : null,
+      hero_action: screenMode === "HERO" ? hAction : null,
+      transition_in: transitionIn,
+      typography_state: screenMode === "TYPE" ? kinetic : null,
+      transition_type: transitionIn,
+      transition_duration_frames: transitionIn === "CUT" ? 0 : Math.min(14, Math.round(dur * 0.2)),
+      actors,
     };
   });
 
@@ -118,39 +167,39 @@ export function buildBeatPlan(beats, opts = {}) {
    * A BEAT LONGER THAN THE CEILING IS SPLIT VISUALLY, NOT RETIMED.
    *
    * The SRT is this repo's timing source of truth and the caption must stay on
-   * the words that were spoken, so the narration is not resegmented. But a
-   * 94-frame beat means one composition held for 3.1 seconds, which is the
-   * defect this whole rebuild exists to remove — measured, that is exactly what
-   * CHECK 6 caught on beat 8. So a long beat becomes two plan entries carrying
-   * the same sentence: the second half re-stages, emphasising what the first
-   * half assembled. The viewer hears one continuous line and watches the
-   * picture resolve underneath it.
+   * the words spoken, so the narration is never resegmented. A long beat
+   * becomes two plan entries carrying the same sentence, and the second one
+   * HANDS THE SCREEN OVER — type to visual or visual to type — which is the
+   * strongest thing that can happen inside one sentence without cutting it.
    */
   const split = [];
   for (const b of out) {
     if (b.duration_frames <= MAX_BEAT_FRAMES) { split.push(b); continue; }
     const half = Math.round(b.duration_frames / 2);
-    const lit = (b.actors || []).map((a, i) => ({
-      ...a,
-      behavior: i === 0 ? "EMPHASIZE" : "DE_EMPHASIZE",
-      scale: i === 0 ? (a.scale ?? 1) * 1.14 : (a.scale ?? 1) * 0.86,
-      opacity: i === 0 ? 1 : Math.min(a.opacity ?? 1, 0.3),
-      state: i === 0 ? "highlighted" : "dimmed",
-      x: i === 0 ? 0.5 : a.x,
-      y: i === 0 ? 0.48 : a.y,
-    }));
+    const flipped = b.screen_mode === "TYPE" ? "HERO" : "TYPE";
     split.push({ ...b, duration_frames: half });
     split.push({
       ...b,
       beat_id: `${b.beat_id}b`,
       start_frame: b.start_frame + half,
       duration_frames: b.duration_frames - half,
-      visual_intent: "EMPHASIZE",
-      intent_reason: `second half of a ${b.duration_frames}f beat — the picture resolves while the sentence continues`,
-      transition_type: "CONTINUOUS",
-      transition_duration_frames: 0,
-      typography_state: { ...b.typography_state, action: "EMPHASIZE", replaces: null },
-      actors: lit,
+      screen_mode: flipped,
+      intent_reason: `second half of a ${b.duration_frames}f beat — the screen changes hands mid-sentence`,
+      transition_in: flipped === "HERO" ? "MORPH" : "CLEAR",
+      transition_type: flipped === "HERO" ? "MORPH" : "CLEAR",
+      focal_element: flipped === "TYPE" ? b.type_candidate : b.hero_candidate,
+      typography_state: flipped === "TYPE"
+        ? (b.typography_state || { primary_text: b.type_candidate, secondary_text: "", primary_emphasis: b.type_candidate, action: "SCALE", replaces: null })
+        : null,
+      typography_action: flipped === "TYPE" ? (b.typography_action || "SCALE") : null,
+      hero_action: flipped === "HERO" ? (b.hero_action || "SETTLE") : null,
+      actors: flipped === "HERO"
+        ? [{
+            id: `hero:${b.hero_candidate}#${b.beat_id}b`, type: "object", object: b.hero_candidate,
+            behavior: b.hero_action || "SETTLE", role: "focal",
+            x: 0.5, y: 0.5, scale: 1, opacity: 1, state: "highlighted", bornAt: 0, value: null,
+          }]
+        : [],
     });
   }
 

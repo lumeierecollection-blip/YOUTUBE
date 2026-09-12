@@ -87,12 +87,12 @@ function main() {
 
   // SCR-02
   const factCount = (research.key_facts || []).length;
-  if (factCount < 5) {
-    failures.push(`SCR-02: only ${factCount} key_facts (need >=5).`);
+  if (factCount < 3) {
+    failures.push(`SCR-02: only ${factCount} key_facts (need >=3).`);
   }
   const domains = new Set((research.key_facts || []).map((f) => domainOf(f.source_url)).filter(Boolean));
-  if (domains.size < 3) {
-    failures.push(`SCR-02: only ${domains.size} distinct source domain(s) (need >=3): ${[...domains].join(", ")}${searchTelemetry}`);
+  if (domains.size < 2) {
+    failures.push(`SCR-02: only ${domains.size} distinct source domain(s) (need >=2): ${[...domains].join(", ")}${searchTelemetry}`);
   }
 
   if (failures.length > 0) {

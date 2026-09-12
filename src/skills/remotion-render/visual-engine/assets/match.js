@@ -1,0 +1,185 @@
+/**
+ * SEMANTIC ASSET SELECTION — score on meaning, reject on topic.
+ *
+ * Section 4.3, in order: extract the intent, score every candidate on concepts,
+ * synonyms and visualMeaning weighted by topic, HARD REJECT anything whose
+ * incompatibleTopics touch the sentence's topic, and return the best. Below
+ * threshold, return nothing so the caller can run the expansion loop — a miss
+ * that returns a poor asset is how a document came to mean a cave.
+ */
+import { visualIntent, subjectCandidates, STOP } from "./visual-intent.js";
+
+/** Below this, there is no asset for the sentence and the caller must expand. */
+export const MATCH_THRESHOLD = 3.0;
+
+const words = (t) => String(t || "").toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+
+/**
+ * Content words only: STOP removed, and anything two characters or shorter
+ * dropped outright. The length floor exists because splitting on punctuation
+ * turns a possessive or contraction into a fragment that is not itself an
+ * English word — "That's" becomes "that" and "s" — and no stopword list
+ * anticipates every such fragment. Length alone catches "s", "a", "i", "to",
+ * "at", "go" whether or not STOP happens to name them.
+ */
+const contentWords = (t) => words(t).filter((w) => w.length > 2 && !STOP.has(w));
+
+/**
+ * A regular-plural-only singularizer, deliberately narrow.
+ *
+ * Icon names are catalogued singular ("spider", "cave", "centipede"); a
+ * narrated sentence says "spiders", "caves", "centipedes". With no stemming
+ * at all, "blind spiders, eyeless leeches, ghost-pale centipedes" matched
+ * none of its own subjects and lost to an unrelated icon scoring only on
+ * incidental words — measured after the procedural library (whose authors
+ * had hand-written both plural and singular into its synonym lists) was
+ * deleted in favour of icons alone, which carry no such accommodation.
+ *
+ * Kept deliberately narrow rather than a real stemmer: length 4+ only (so
+ * "gas", "yes" are never touched), "-ss" excluded (so "glass" survives), and
+ * a sibilant "-es" handled separately from a plain "-s" so "leeches" reduces
+ * to "leech" and not "leeche". Irregular plurals (mice, teeth) are not
+ * covered and are not worth covering for this — MATCH_THRESHOLD is still the
+ * backstop against a bad match, this only recovers the regular case.
+ */
+const singularize = (w) => {
+  if (w.length < 4 || /ss$/.test(w)) return w;
+  if (/(ch|sh|x|z)es$/.test(w)) return w.slice(0, -2);
+  if (/ies$/.test(w)) return w.slice(0, -3) + "y";
+  if (/s$/.test(w)) return w.slice(0, -1);
+  return w;
+};
+
+/**
+ * Score one asset against one intent.
+ *
+ * Weights are ordered by how specific the evidence is. A synonym hit is the
+ * strongest signal because a synonym is a name for the same thing; a concept
+ * hit is next; visualMeaning is prose and scores least per word because it is
+ * the easiest to hit by accident.
+ */
+function score(asset, intent, sentenceWords) {
+  // sentenceWords already carries both the literal and singularized form of
+  // every content word (see selectAsset); singularizing the entry word too
+  // catches the rarer reverse case, an icon named in the plural.
+  const matches = (w) => sentenceWords.has(w) || sentenceWords.has(singularize(w));
+  const hits = (list) => list.reduce((n, entry) =>
+    n + (words(entry).some(matches) ? 1 : 0), 0);
+
+  let s = 0;
+  s += hits(asset.synonyms) * 3.0;
+  s += hits(asset.concepts) * 2.0;
+  s += words(asset.visualMeaning).filter((w) => w.length > 3 && matches(w)).length * 0.5;
+  if (asset.name.split(/\s+/).some((w) => matches(w.toLowerCase()))) s += 2.5;
+
+  /**
+   * THE SENTENCE'S LITERAL SUBJECT OUTWEIGHS INCIDENTAL OVERLAP.
+   *
+   * Measured on the fixture: "They eat chemistry: bacteria turning minerals and
+   * sulfur into food, exactly like the vents of the deep ocean" selected the
+   * depth scale, because "deep" and "ocean" are in that asset's topics while
+   * "bacteria" was only one concept hit. The sentence is about bacteria. An
+   * asset that names the subject is answering the sentence; one that shares a
+   * few surrounding words is answering the scenery.
+   */
+  // NAMES AND SYNONYMS ONLY. Concepts are descriptions, and matching inside one
+  // is how "life is thriving" selected a spider: one of that spider's concepts
+  // is the phrase "cave-adapted life".
+  const subj = String(intent.literalSubject || "").toLowerCase();
+  const subjSingular = singularize(subj);
+  if (subj && [asset.name, ...asset.synonyms].some((t) =>
+    words(t).some((w) => w === subj || w === subjSingular || singularize(w) === subjSingular))) s += 5.0;
+
+  /**
+   * A NEGATED SENTENCE WANTS THE ABSENCE, NOT THE THING.
+   *
+   * "These creatures do not eat sunlight" chose `sunlight`, which with the
+   * audio off says the opposite of the sentence. Where the intent reads an
+   * absence, an asset that depicts the absence takes precedence over the asset
+   * that depicts the thing being denied.
+   */
+  if (intent.relationship === "absence") {
+    const denies = /\b(no|without|absence|lightless|sunless|nothing|sealed|cut off)\b/i
+      .test(`${asset.name} ${asset.concepts.join(" ")} ${asset.visualMeaning}`);
+    s += denies ? 4.0 : -1.5;
+  }
+
+  /**
+   * Topic agreement is a multiplier, not a bonus: an asset from the right
+   * world that shares one word beats an asset from the wrong world that
+   * shares three. But "the wrong world" and "no claimed world" are different
+   * things: an asset that names no compatibleTopics at all has not claimed
+   * to be from anywhere, so it cannot be off-topic — it hasn't made a topic
+   * claim to be wrong about. The 25,371 Iconify icons carry no authored
+   * topics (see scripts/build-icon-library.js) precisely because hand-tagging
+   * that many was the ≥2000-with-rich-metadata problem this repo already
+   * tried once; punishing them with the same 0.45 given to a procedural asset
+   * that DOES claim topics and none of them fit made every icon lose to any
+   * topic-tagged procedural rival regardless of how much stronger the icon's
+   * own name or synonym match was — measured on the cave script, zero of the
+   * icons available for it were ever picked. Every icon still needs to clear
+   * MATCH_THRESHOLD entirely on name, synonym and concept hits, since it
+   * cannot benefit from the boosted side either (shared is always 0), and it
+   * cannot hard-reject on incompatibleTopics for the same reason (see the
+   * same script comment for what that bound does and doesn't cover).
+   */
+  const claimsTopics = (asset.compatibleTopics || []).length > 0;
+  const shared = (asset.compatibleTopics || []).filter((t) => intent.topics.includes(t)).length;
+  s *= shared ? 1 + shared * 0.6 : (claimsTopics ? 0.45 : 1.0);
+
+  return s;
+}
+
+/** Best asset for one fixed intent. */
+function pickBest(intent, sentenceWords, library, opts) {
+  const rejected = [];
+  let best = null, bestScore = 0;
+  for (const asset of library.assets) {
+    // HARD REJECT. An asset that would mislead on this topic is not a weak
+    // candidate to be outranked; it is not a candidate.
+    const clash = (asset.incompatibleTopics || []).filter((t) => intent.topics.includes(t));
+    if (clash.length) { rejected.push({ name: asset.name, why: `incompatible with ${clash.join(", ")}` }); continue; }
+    if (opts.exclude && opts.exclude.has(asset.name)) continue;
+    const sc = score(asset, intent, sentenceWords);
+    if (sc > bestScore) { bestScore = sc; best = asset; }
+  }
+  return { best, bestScore, rejected };
+}
+
+/**
+ * @returns {{asset, score, intent, rejected}} `asset` is null below threshold.
+ */
+export function selectAsset(sentence, library, opts = {}) {
+  const base = visualIntent(sentence);
+  // Content words only — see contentWords() for the fragment problem this
+  // fixes. Each word's singular is added alongside it — see singularize()
+  // for why a plural sentence word needs to reach a singular icon name — so
+  // the synonym/concept/name hit tests below (which read this set) see both.
+  const sentenceContent = contentWords(sentence);
+  const sentenceWords = new Set(sentenceContent.flatMap((w) => [w, singularize(w)]));
+  /**
+   * The subject is chosen by trying the candidates, not guessed once.
+   *
+   * Grammar alone cannot tell which noun a sentence is about — "the vents of
+   * the deep ocean" and "bacteria turning minerals" are both in the same
+   * clause. The candidate that turns out to NAME something in the library is
+   * the one the sentence can actually be shown as, so each is tried and the
+   * best-scoring result wins.
+   */
+  const candidates = subjectCandidates(sentence);
+  const tries = (candidates.length ? candidates : [""]).map((subj) => {
+    const intent = { ...base, literalSubject: subj };
+    return { intent, ...pickBest(intent, sentenceWords, library, opts) };
+  });
+  const won = tries.sort((a, b) => b.bestScore - a.bestScore)[0];
+  const { intent, best, bestScore, rejected } = won;
+  return {
+    asset: bestScore >= MATCH_THRESHOLD ? best : null,
+    runnerUp: best,
+    score: Number(bestScore.toFixed(2)),
+    threshold: MATCH_THRESHOLD,
+    intent,
+    rejectedCount: rejected.length,
+    rejected: rejected.slice(0, 5),
+  };
+}

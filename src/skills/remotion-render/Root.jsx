@@ -12,6 +12,11 @@ import { compositions as objectAudit } from "./compositions/object-audit.jsx";
 // The beat engine: a stage that persists across beats, rather than a scene
 // composed from nothing each time. See visual-engine/beat-scene.jsx.
 import { compositions as beatSequence } from "./visual-engine/beat-scene.jsx";
+// Sentence, then the thing the sentence was about: word-by-word typography
+// alternating with one semantically matched visual. See sentence-scene.jsx.
+import { compositions as sentenceScene } from "./visual-engine/sentence-scene.jsx";
+// Visual Director — treatment-based rendering driven by sentence meaning.
+import { compositions as directedScene } from "./visual-engine/directed-scene.jsx";
 
 /**
  * Remotion entry point.
@@ -27,6 +32,8 @@ function RemotionRoot() {
       {templatePlan.map(c => <Composition key={c.id} {...c} />)}
       {objectAudit.map(c => <Composition key={c.id} {...c} />)}
       {beatSequence.map(c => <Composition key={c.id} {...c} />)}
+      {sentenceScene.map(c => <Composition key={c.id} {...c} />)}
+      {directedScene.map(c => <Composition key={c.id} {...c} />)}
     </>
   );
 }

@@ -1,0 +1,1272 @@
+{
+ "beats": [
+  {
+   "beat_id": "s0t",
+   "mode": "TYPE",
+   "focal": "The snowball versus avalanche debate is a $215 question.",
+   "start_frame": 3,
+   "duration_frames": 99,
+   "sentence": "The snowball versus avalanche debate is a $215 question.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "snowball",
+     "at": 0.07352941176470588,
+     "frame": 7
+    },
+    {
+     "word": "versus",
+     "at": 0.22058823529411764,
+     "frame": 22
+    },
+    {
+     "word": "avalanche",
+     "at": 0.3382352941176471,
+     "frame": 33
+    },
+    {
+     "word": "debate",
+     "at": 0.5,
+     "frame": 50
+    },
+    {
+     "word": "is",
+     "at": 0.6176470588235294,
+     "frame": 61
+    },
+    {
+     "word": "a",
+     "at": 0.6764705882352942,
+     "frame": 67
+    },
+    {
+     "word": "$215",
+     "at": 0.7205882352941176,
+     "frame": 71
+    },
+    {
+     "word": "question.",
+     "at": 0.7941176470588235,
+     "frame": 79
+    }
+   ],
+   "transitionIn": "CUT",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s0v",
+   "mode": "VISUAL",
+   "focal": "account question",
+   "start_frame": 102,
+   "duration_frames": 55,
+   "sentence": "The snowball versus avalanche debate is a $215 question.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M13 8a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4a4 4 0 0 1 4 4m4 10v2H1v-2c0-2.21 3.58-4 8-4s8 1.79 8 4m3.5-3.5V16H19v-1.5zm-2-5H17V9a3 3 0 0 1 3-3a3 3 0 0 1 3 3c0 .97-.5 1.88-1.29 2.41l-.3.19c-.57.4-.91 1.01-.91 1.7v.2H19v-.2c0-1.19.6-2.3 1.59-2.95l.29-.19c.39-.26.62-.69.62-1.16A1.5 1.5 0 0 0 20 7.5A1.5 1.5 0 0 0 18.5 9z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "account-question"
+   }
+  },
+  {
+   "beat_id": "s1t",
+   "mode": "TYPE",
+   "focal": "Not choosing at all costs you $13,600.",
+   "start_frame": 157,
+   "duration_frames": 96,
+   "sentence": "Not choosing at all costs you $13,600.",
+   "words": [
+    {
+     "word": "Not",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "choosing",
+     "at": 0.10638297872340426,
+     "frame": 10
+    },
+    {
+     "word": "at",
+     "at": 0.3191489361702128,
+     "frame": 31
+    },
+    {
+     "word": "all",
+     "at": 0.40425531914893614,
+     "frame": 39
+    },
+    {
+     "word": "costs",
+     "at": 0.5106382978723404,
+     "frame": 49
+    },
+    {
+     "word": "you",
+     "at": 0.6595744680851063,
+     "frame": 63
+    },
+    {
+     "word": "$13,600.",
+     "at": 0.7659574468085106,
+     "frame": 74
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s1v",
+   "mode": "VISUAL",
+   "focal": "bleach no chlorine",
+   "start_frame": 253,
+   "duration_frames": 54,
+   "sentence": "Not choosing at all costs you $13,600.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 19h14a2 2 0 0 0 1.84-2.75L13.74 4a2 2 0 0 0-3.5 0l-7.1 12.25A2 2 0 0 0 4.89 19m1.686 0l7.907-13.733m-2.764 13.747l5.346-9.284\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "tabler",
+    "name": "bleach-no-chlorine"
+   }
+  },
+  {
+   "beat_id": "s2t",
+   "mode": "TYPE",
+   "focal": "Avalanche pays the highest interest first.",
+   "start_frame": 307,
+   "duration_frames": 65,
+   "sentence": "Avalanche pays the highest interest first.",
+   "words": [
+    {
+     "word": "Avalanche",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "pays",
+     "at": 0.21153846153846154,
+     "frame": 14
+    },
+    {
+     "word": "the",
+     "at": 0.3269230769230769,
+     "frame": 21
+    },
+    {
+     "word": "highest",
+     "at": 0.4230769230769231,
+     "frame": 28
+    },
+    {
+     "word": "interest",
+     "at": 0.5961538461538461,
+     "frame": 39
+    },
+    {
+     "word": "first.",
+     "at": 0.7884615384615384,
+     "frame": 51
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s2v",
+   "mode": "VISUAL",
+   "focal": "page first",
+   "start_frame": 372,
+   "duration_frames": 36,
+   "sentence": "Avalanche pays the highest interest first.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6l6 6zM6 6h2v12H6z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "page-first"
+   }
+  },
+  {
+   "beat_id": "s3t",
+   "mode": "TYPE",
+   "focal": "It wins the math.",
+   "start_frame": 408,
+   "duration_frames": 63,
+   "sentence": "It wins the math.",
+   "words": [
+    {
+     "word": "It",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "wins",
+     "at": 0.16,
+     "frame": 10
+    },
+    {
+     "word": "the",
+     "at": 0.4,
+     "frame": 25
+    },
+    {
+     "word": "math.",
+     "at": 0.6,
+     "frame": 38
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s4t",
+   "mode": "TYPE",
+   "focal": "On a realistic $10,636 in debt, it finished in 27 months with $2,838 in interest.",
+   "start_frame": 471,
+   "duration_frames": 200,
+   "sentence": "On a realistic $10,636 in debt, it finished in 27 months with $2,838 in interest.",
+   "words": [
+    {
+     "word": "On",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "a",
+     "at": 0.04040404040404041,
+     "frame": 8
+    },
+    {
+     "word": "realistic",
+     "at": 0.0707070707070707,
+     "frame": 14
+    },
+    {
+     "word": "$10,636",
+     "at": 0.18181818181818182,
+     "frame": 36
+    },
+    {
+     "word": "in",
+     "at": 0.25252525252525254,
+     "frame": 51
+    },
+    {
+     "word": "debt,",
+     "at": 0.29292929292929293,
+     "frame": 59
+    },
+    {
+     "word": "it",
+     "at": 0.3939393939393939,
+     "frame": 79
+    },
+    {
+     "word": "finished",
+     "at": 0.43434343434343436,
+     "frame": 87
+    },
+    {
+     "word": "in",
+     "at": 0.5353535353535354,
+     "frame": 107
+    },
+    {
+     "word": "27",
+     "at": 0.5757575757575758,
+     "frame": 115
+    },
+    {
+     "word": "months",
+     "at": 0.6161616161616161,
+     "frame": 123
+    },
+    {
+     "word": "with",
+     "at": 0.696969696969697,
+     "frame": 139
+    },
+    {
+     "word": "$2,838",
+     "at": 0.7575757575757576,
+     "frame": 152
+    },
+    {
+     "word": "in",
+     "at": 0.8181818181818182,
+     "frame": 164
+    },
+    {
+     "word": "interest.",
+     "at": 0.8585858585858586,
+     "frame": 172
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s4v",
+   "mode": "VISUAL",
+   "focal": "calendar month",
+   "start_frame": 671,
+   "duration_frames": 113,
+   "sentence": "On a realistic $10,636 in debt, it finished in 27 months with $2,838 in interest.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M9 10v2H7v-2zm4 0v2h-2v-2zm4 0v2h-2v-2zm2-7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V1h2v2h8V1h2v2zm0 16V8H5v11zM9 14v2H7v-2zm4 0v2h-2v-2zm4 0v2h-2v-2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "calendar-month"
+   }
+  },
+  {
+   "beat_id": "s5t",
+   "mode": "TYPE",
+   "focal": "Snowball pays the smallest balance first.",
+   "start_frame": 784,
+   "duration_frames": 67,
+   "sentence": "Snowball pays the smallest balance first.",
+   "words": [
+    {
+     "word": "Snowball",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "pays",
+     "at": 0.19607843137254902,
+     "frame": 13
+    },
+    {
+     "word": "the",
+     "at": 0.3137254901960784,
+     "frame": 21
+    },
+    {
+     "word": "smallest",
+     "at": 0.4117647058823529,
+     "frame": 28
+    },
+    {
+     "word": "balance",
+     "at": 0.6078431372549019,
+     "frame": 41
+    },
+    {
+     "word": "first.",
+     "at": 0.7843137254901961,
+     "frame": 53
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s5v",
+   "mode": "VISUAL",
+   "focal": "page first",
+   "start_frame": 851,
+   "duration_frames": 37,
+   "sentence": "Snowball pays the smallest balance first.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6l6 6zM6 6h2v12H6z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "page-first"
+   }
+  },
+  {
+   "beat_id": "s6t",
+   "mode": "TYPE",
+   "focal": "It took 28 months and $3,053.",
+   "start_frame": 888,
+   "duration_frames": 90,
+   "sentence": "It took 28 months and $3,053.",
+   "words": [
+    {
+     "word": "It",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "took",
+     "at": 0.10810810810810811,
+     "frame": 10
+    },
+    {
+     "word": "28",
+     "at": 0.2702702702702703,
+     "frame": 24
+    },
+    {
+     "word": "months",
+     "at": 0.3783783783783784,
+     "frame": 34
+    },
+    {
+     "word": "and",
+     "at": 0.5945945945945946,
+     "frame": 54
+    },
+    {
+     "word": "$3,053.",
+     "at": 0.7297297297297297,
+     "frame": 66
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s6v",
+   "mode": "VISUAL",
+   "focal": "calendar month",
+   "start_frame": 978,
+   "duration_frames": 51,
+   "sentence": "It took 28 months and $3,053.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M9 10v2H7v-2zm4 0v2h-2v-2zm4 0v2h-2v-2zm2-7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V1h2v2h8V1h2v2zm0 16V8H5v11zM9 14v2H7v-2zm4 0v2h-2v-2zm4 0v2h-2v-2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "calendar-month"
+   }
+  },
+  {
+   "beat_id": "s7t",
+   "mode": "TYPE",
+   "focal": "A gap of just $215.",
+   "start_frame": 1029,
+   "duration_frames": 67,
+   "sentence": "A gap of just $215.",
+   "words": [
+    {
+     "word": "A",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "gap",
+     "at": 0.1111111111111111,
+     "frame": 7
+    },
+    {
+     "word": "of",
+     "at": 0.2962962962962963,
+     "frame": 20
+    },
+    {
+     "word": "just",
+     "at": 0.4444444444444444,
+     "frame": 30
+    },
+    {
+     "word": "$215.",
+     "at": 0.6666666666666666,
+     "frame": 45
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s7v",
+   "mode": "VISUAL",
+   "focal": "spinner gap",
+   "start_frame": 1096,
+   "duration_frames": 38,
+   "sentence": "A gap of just $215.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M136 32v32a8 8 0 0 1-16 0V32a8 8 0 0 1 16 0m88 88h-32a8 8 0 0 0 0 16h32a8 8 0 0 0 0-16m-45.09 47.6a8 8 0 0 0-11.31 11.31l22.62 22.63a8 8 0 0 0 11.32-11.32ZM128 184a8 8 0 0 0-8 8v32a8 8 0 0 0 16 0v-32a8 8 0 0 0-8-8m-50.91-16.4l-22.63 22.62a8 8 0 0 0 11.32 11.32l22.62-22.63a8 8 0 0 0-11.31-11.31M72 128a8 8 0 0 0-8-8H32a8 8 0 0 0 0 16h32a8 8 0 0 0 8-8m-6.22-73.54a8 8 0 0 0-11.32 11.32L77.09 88.4A8 8 0 0 0 88.4 77.09Z\"/>",
+    "width": 256,
+    "height": 256,
+    "set": "ph",
+    "name": "spinner-gap"
+   }
+  },
+  {
+   "beat_id": "s8t",
+   "mode": "TYPE",
+   "focal": "But the calculators miss the point.",
+   "start_frame": 1134,
+   "duration_frames": 58,
+   "sentence": "But the calculators miss the point.",
+   "words": [
+    {
+     "word": "But",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "the",
+     "at": 0.1111111111111111,
+     "frame": 6
+    },
+    {
+     "word": "calculators",
+     "at": 0.2222222222222222,
+     "frame": 13
+    },
+    {
+     "word": "miss",
+     "at": 0.5111111111111111,
+     "frame": 30
+    },
+    {
+     "word": "the",
+     "at": 0.6444444444444445,
+     "frame": 37
+    },
+    {
+     "word": "point.",
+     "at": 0.7555555555555555,
+     "frame": 44
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s8v",
+   "mode": "VISUAL",
+   "focal": "access point check",
+   "start_frame": 1192,
+   "duration_frames": 32,
+   "sentence": "But the calculators miss the point.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"m20.59 14.84l1.16 1.41L17 21l-2.75-3l1.16-1.16L17 18.43zm-1.52-9.91l-1.41 1.41A7.96 7.96 0 0 1 20 12v.34c.68.25 1.33.62 1.88 1.09c.07-.47.12-.93.12-1.43c0-2.76-1.12-5.26-2.93-7.07m-3.11 7.43c.64-.23 1.32-.36 2.04-.36c0-1.65-.67-3.15-1.76-4.24l-1.41 1.41A4 4 0 0 1 16 12c0 .12-.03.24-.04.36M12 10c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2M6.34 6.34L4.93 4.93C3.12 6.74 2 9.24 2 12s1.12 5.26 2.93 7.07l1.41-1.41A7.94 7.94 0 0 1 4 12c0-2.21.89-4.22 2.34-5.66m1.42 1.42C6.67 8.85 6 10.35 6 12s.67 3.15 1.76 4.24l1.41-1.41C8.45 14.11 8 13.11 8 12s.45-2.11 1.17-2.83z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "access-point-check"
+   }
+  },
+  {
+   "beat_id": "s9t",
+   "mode": "TYPE",
+   "focal": "A Kellogg study of 6,000 debt settlement clients found the people who actually finished were the ones who closed accounts early.",
+   "start_frame": 1224,
+   "duration_frames": 155,
+   "sentence": "A Kellogg study of 6,000 debt settlement clients found the people who actually finished were the ones who closed accounts early.",
+   "words": [
+    {
+     "word": "A",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "Kellogg",
+     "at": 0.019736842105263157,
+     "frame": 3
+    },
+    {
+     "word": "study",
+     "at": 0.07894736842105263,
+     "frame": 12
+    },
+    {
+     "word": "of",
+     "at": 0.125,
+     "frame": 19
+    },
+    {
+     "word": "6,000",
+     "at": 0.1513157894736842,
+     "frame": 23
+    },
+    {
+     "word": "debt",
+     "at": 0.19078947368421054,
+     "frame": 30
+    },
+    {
+     "word": "settlement",
+     "at": 0.23026315789473684,
+     "frame": 36
+    },
+    {
+     "word": "clients",
+     "at": 0.3092105263157895,
+     "frame": 48
+    },
+    {
+     "word": "found",
+     "at": 0.3684210526315789,
+     "frame": 57
+    },
+    {
+     "word": "the",
+     "at": 0.4144736842105263,
+     "frame": 64
+    },
+    {
+     "word": "people",
+     "at": 0.4473684210526316,
+     "frame": 69
+    },
+    {
+     "word": "who",
+     "at": 0.5,
+     "frame": 78
+    },
+    {
+     "word": "actually",
+     "at": 0.5328947368421053,
+     "frame": 83
+    },
+    {
+     "word": "finished",
+     "at": 0.5986842105263158,
+     "frame": 93
+    },
+    {
+     "word": "were",
+     "at": 0.6644736842105263,
+     "frame": 103
+    },
+    {
+     "word": "the",
+     "at": 0.7039473684210527,
+     "frame": 109
+    },
+    {
+     "word": "ones",
+     "at": 0.7368421052631579,
+     "frame": 114
+    },
+    {
+     "word": "who",
+     "at": 0.7763157894736842,
+     "frame": 120
+    },
+    {
+     "word": "closed",
+     "at": 0.8092105263157895,
+     "frame": 125
+    },
+    {
+     "word": "accounts",
+     "at": 0.8618421052631579,
+     "frame": 134
+    },
+    {
+     "word": "early.",
+     "at": 0.9276315789473685,
+     "frame": 144
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s9v",
+   "mode": "VISUAL",
+   "focal": "account multiple check",
+   "start_frame": 1379,
+   "duration_frames": 87,
+   "sentence": "A Kellogg study of 6,000 debt settlement clients found the people who actually finished were the ones who closed accounts early.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.9 2.9 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.9 2.9 0 0 0 18 11a3 3 0 0 0 0-6M7.34 8.92l1.16 1.41l-4.75 4.75l-2.75-3l1.16-1.16l1.59 1.58z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "account-multiple-check"
+   }
+  },
+  {
+   "beat_id": "s10t",
+   "mode": "TYPE",
+   "focal": "The snowball closes its first account in month four.",
+   "start_frame": 1466,
+   "duration_frames": 74,
+   "sentence": "The snowball closes its first account in month four.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "snowball",
+     "at": 0.07692307692307693,
+     "frame": 6
+    },
+    {
+     "word": "closes",
+     "at": 0.23076923076923078,
+     "frame": 17
+    },
+    {
+     "word": "its",
+     "at": 0.35384615384615387,
+     "frame": 26
+    },
+    {
+     "word": "first",
+     "at": 0.4307692307692308,
+     "frame": 32
+    },
+    {
+     "word": "account",
+     "at": 0.5384615384615384,
+     "frame": 40
+    },
+    {
+     "word": "in",
+     "at": 0.676923076923077,
+     "frame": 50
+    },
+    {
+     "word": "month",
+     "at": 0.7384615384615385,
+     "frame": 55
+    },
+    {
+     "word": "four.",
+     "at": 0.8461538461538461,
+     "frame": 63
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s10v",
+   "mode": "VISUAL",
+   "focal": "account multiple check",
+   "start_frame": 1540,
+   "duration_frames": 42,
+   "sentence": "The snowball closes its first account in month four.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.9 2.9 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.9 2.9 0 0 0 18 11a3 3 0 0 0 0-6M7.34 8.92l1.16 1.41l-4.75 4.75l-2.75-3l1.16-1.16l1.59 1.58z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "account-multiple-check"
+   }
+  },
+  {
+   "beat_id": "s11t",
+   "mode": "TYPE",
+   "focal": "The avalanche closes nothing until month ten.",
+   "start_frame": 1582,
+   "duration_frames": 70,
+   "sentence": "The avalanche closes nothing until month ten.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "avalanche",
+     "at": 0.08928571428571429,
+     "frame": 6
+    },
+    {
+     "word": "closes",
+     "at": 0.2857142857142857,
+     "frame": 20
+    },
+    {
+     "word": "nothing",
+     "at": 0.42857142857142855,
+     "frame": 30
+    },
+    {
+     "word": "until",
+     "at": 0.5892857142857143,
+     "frame": 41
+    },
+    {
+     "word": "month",
+     "at": 0.7142857142857143,
+     "frame": 50
+    },
+    {
+     "word": "ten.",
+     "at": 0.8392857142857143,
+     "frame": 59
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s11v",
+   "mode": "VISUAL",
+   "focal": "close box multiple",
+   "start_frame": 1652,
+   "duration_frames": 40,
+   "sentence": "The avalanche closes nothing until month ten.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M4 20h14v2H4a2 2 0 0 1-2-2V6h2zM20.22 2H7.78C6.8 2 6 2.8 6 3.78v12.44C6 17.2 6.8 18 7.78 18h12.44c.98 0 1.78-.8 1.78-1.78V3.78C22 2.8 21.2 2 20.22 2M19 13.6L17.6 15L14 11.4L10.4 15L9 13.6l3.6-3.6L9 6.4L10.4 5L14 8.6L17.6 5L19 6.4L15.4 10z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "close-box-multiple"
+   }
+  },
+  {
+   "beat_id": "s12t",
+   "mode": "TYPE",
+   "focal": "Small wins keep people going.",
+   "start_frame": 1692,
+   "duration_frames": 54,
+   "sentence": "Small wins keep people going.",
+   "words": [
+    {
+     "word": "Small",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "wins",
+     "at": 0.18421052631578946,
+     "frame": 10
+    },
+    {
+     "word": "keep",
+     "at": 0.34210526315789475,
+     "frame": 18
+    },
+    {
+     "word": "people",
+     "at": 0.5,
+     "frame": 27
+    },
+    {
+     "word": "going.",
+     "at": 0.7105263157894737,
+     "frame": 38
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s12v",
+   "mode": "VISUAL",
+   "focal": "account multiple check",
+   "start_frame": 1746,
+   "duration_frames": 31,
+   "sentence": "Small wins keep people going.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.9 2.9 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.9 2.9 0 0 0 18 11a3 3 0 0 0 0-6M7.34 8.92l1.16 1.41l-4.75 4.75l-2.75-3l1.16-1.16l1.59 1.58z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "account-multiple-check"
+   }
+  },
+  {
+   "beat_id": "s13t",
+   "mode": "TYPE",
+   "focal": "So the real answer?",
+   "start_frame": 1777,
+   "duration_frames": 63,
+   "sentence": "So the real answer?",
+   "words": [
+    {
+     "word": "So",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "the",
+     "at": 0.14814814814814814,
+     "frame": 9
+    },
+    {
+     "word": "real",
+     "at": 0.3333333333333333,
+     "frame": 21
+    },
+    {
+     "word": "answer?",
+     "at": 0.5555555555555556,
+     "frame": 35
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s14t",
+   "mode": "TYPE",
+   "focal": "Avalanche, if you trust your discipline.",
+   "start_frame": 1840,
+   "duration_frames": 61,
+   "sentence": "Avalanche, if you trust your discipline.",
+   "words": [
+    {
+     "word": "Avalanche,",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "if",
+     "at": 0.2830188679245283,
+     "frame": 17
+    },
+    {
+     "word": "you",
+     "at": 0.3584905660377358,
+     "frame": 22
+    },
+    {
+     "word": "trust",
+     "at": 0.4528301886792453,
+     "frame": 28
+    },
+    {
+     "word": "your",
+     "at": 0.5849056603773585,
+     "frame": 36
+    },
+    {
+     "word": "discipline.",
+     "at": 0.6981132075471698,
+     "frame": 43
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s14v",
+   "mode": "VISUAL",
+   "focal": "landslide",
+   "start_frame": 1901,
+   "duration_frames": 35,
+   "sentence": "Avalanche, if you trust your discipline.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"m15.47 13.79l-2.58-1.03L6 15.05L2 13.5v2.11l4 1.34zm-4.9-2.37L8 8H2v3.61l4 1.34zM6 19.05l-4-1.33V22h20l-4.97-6.62zM17 6V1l-5-1l-3 2v4l3 2zm1.5 1L16 9v3l2.5 2l4.5-2V8z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "landslide"
+   }
+  },
+  {
+   "beat_id": "s15t",
+   "mode": "TYPE",
+   "focal": "Snowball, if you've quit a plan before.",
+   "start_frame": 1936,
+   "duration_frames": 62,
+   "sentence": "Snowball, if you've quit a plan before.",
+   "words": [
+    {
+     "word": "Snowball,",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "if",
+     "at": 0.2692307692307692,
+     "frame": 17
+    },
+    {
+     "word": "you've",
+     "at": 0.34615384615384615,
+     "frame": 21
+    },
+    {
+     "word": "quit",
+     "at": 0.4807692307692308,
+     "frame": 30
+    },
+    {
+     "word": "a",
+     "at": 0.5961538461538461,
+     "frame": 37
+    },
+    {
+     "word": "plan",
+     "at": 0.6538461538461539,
+     "frame": 41
+    },
+    {
+     "word": "before.",
+     "at": 0.7692307692307693,
+     "frame": 48
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s15v",
+   "mode": "VISUAL",
+   "focal": "floor plan",
+   "start_frame": 1998,
+   "duration_frames": 35,
+   "sentence": "Snowball, if you've quit a plan before.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M10 5v5H9V5H5v8h4v-1h1v5H9v-3H5v5h7v-2h1v2h6v-2h2v4H3V3h18v12h-2v-5h-6v5h-1V9h7V5z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "floor-plan"
+   }
+  },
+  {
+   "beat_id": "s16t",
+   "mode": "TYPE",
+   "focal": "Either beats paying minimums.",
+   "start_frame": 2033,
+   "duration_frames": 51,
+   "sentence": "Either beats paying minimums.",
+   "words": [
+    {
+     "word": "Either",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "beats",
+     "at": 0.21621621621621623,
+     "frame": 11
+    },
+    {
+     "word": "paying",
+     "at": 0.40540540540540543,
+     "frame": 21
+    },
+    {
+     "word": "minimums.",
+     "at": 0.6216216216216216,
+     "frame": 32
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s16v",
+   "mode": "VISUAL",
+   "focal": "beats",
+   "start_frame": 2084,
+   "duration_frames": 28,
+   "sentence": "Either beats paying minimums.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path d=\"M7 12a5 5 0 0 0 5 5a5 5 0 0 0 5-5a5 5 0 0 0-5-5c-1.13 0-2.16.37-3 1V2.46c.95-.3 1.95-.46 3-.46a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12c0-3.7 2-6.93 5-8.66V12m5-3a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3z\" fill=\"currentColor\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "beats"
+   }
+  },
+  {
+   "beat_id": "s17t",
+   "mode": "TYPE",
+   "focal": "Follow for the numbers.",
+   "start_frame": 2112,
+   "duration_frames": 70,
+   "sentence": "Follow for the numbers.",
+   "words": [
+    {
+     "word": "Follow",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "for",
+     "at": 0.25806451612903225,
+     "frame": 18
+    },
+    {
+     "word": "the",
+     "at": 0.41935483870967744,
+     "frame": 29
+    },
+    {
+     "word": "numbers.",
+     "at": 0.5806451612903226,
+     "frame": 41
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  }
+ ],
+ "palette": {
+  "primary": [
+   "#0F172A",
+   "#1E293B",
+   "#22C55E",
+   "#FAFAFA"
+  ],
+  "secondary": [
+   "#16A34A",
+   "#94A3B8",
+   "#F8FAFC"
+  ]
+ },
+ "fonts": {
+  "primary": "Inter",
+  "secondary": "JetBrains Mono"
+ },
+ "picks": [
+  {
+   "sentence": "The snowball versus avalanche debate is a $215 question.",
+   "asset": "account question",
+   "score": 19.5,
+   "subject": "question"
+  },
+  {
+   "sentence": "Not choosing at all costs you $13,600.",
+   "asset": "bleach no chlorine",
+   "score": 4,
+   "subject": "choosing"
+  },
+  {
+   "sentence": "Avalanche pays the highest interest first.",
+   "asset": "page first",
+   "score": 16.5,
+   "subject": "first"
+  },
+  {
+   "sentence": "It wins the math.",
+   "asset": "math cos",
+   "score": 18.5,
+   "subject": "math"
+  },
+  {
+   "sentence": "On a realistic $10,636 in debt, it finished in 27 months with $2,838 in interest.",
+   "asset": "calendar month",
+   "score": 10.5,
+   "subject": "months"
+  },
+  {
+   "sentence": "Snowball pays the smallest balance first.",
+   "asset": "page first",
+   "score": 16.5,
+   "subject": "first"
+  },
+  {
+   "sentence": "It took 28 months and $3,053.",
+   "asset": "calendar month",
+   "score": 10.5,
+   "subject": "months"
+  },
+  {
+   "sentence": "A gap of just $215.",
+   "asset": "spinner gap",
+   "score": 10.5,
+   "subject": "gap"
+  },
+  {
+   "sentence": "But the calculators miss the point.",
+   "asset": "access point check",
+   "score": 16.5,
+   "subject": "point"
+  },
+  {
+   "sentence": "A Kellogg study of 6,000 debt settlement clients found the people who actually finished were the ones who closed accounts early.",
+   "asset": "account multiple check",
+   "score": 30.5,
+   "subject": "accounts"
+  },
+  {
+   "sentence": "The snowball closes its first account in month four.",
+   "asset": "account multiple check",
+   "score": 24.5,
+   "subject": "account"
+  },
+  {
+   "sentence": "The avalanche closes nothing until month ten.",
+   "asset": "close box multiple",
+   "score": 16.5,
+   "subject": "closes"
+  },
+  {
+   "sentence": "Small wins keep people going.",
+   "asset": "account multiple check",
+   "score": 11,
+   "subject": "people"
+  },
+  {
+   "sentence": "So the real answer?",
+   "asset": "sign real estate",
+   "score": 10.5,
+   "subject": "real"
+  },
+  {
+   "sentence": "Avalanche, if you trust your discipline.",
+   "asset": "landslide",
+   "score": 8,
+   "subject": "avalanche"
+  },
+  {
+   "sentence": "Snowball, if you've quit a plan before.",
+   "asset": "floor plan",
+   "score": 10.5,
+   "subject": "plan"
+  },
+  {
+   "sentence": "Either beats paying minimums.",
+   "asset": "beats",
+   "score": 10.5,
+   "subject": "beats"
+  },
+  {
+   "sentence": "Follow for the numbers.",
+   "asset": "numeric 0 circle",
+   "score": 11,
+   "subject": "numbers"
+  }
+ ]
+}

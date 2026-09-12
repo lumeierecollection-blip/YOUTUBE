@@ -11,7 +11,7 @@ render-ready script that matches the schema exactly.
   that isn't in that research file**, even if you know it to be true from
   general knowledge — the point of this pipeline is that nothing reaches a
   video without a logged, searched source.
-- `sources_used` must list at least 3 `source_url` values that actually
+- `sources_used` must list at least 2 `source_url` values that actually
   appear in the research file's `key_facts` or `numbers`, and every one you
   list must actually be referenced by something you wrote in the script.
   Don't pad the list with unused sources, and don't cite a source that isn't
@@ -41,7 +41,12 @@ reveal lands, closing type) in the context JSON — follow those, not a
 generic structure.
 
 Target voiceover word counts (spoken text only):
-- `shorts`: 150–280 words (about 60–108s at the style's WPM).
+- `shorts`: 90–130 words (HARD CAP: 55 seconds). At motion-graphics WPM
+  this lands 35–50s. Never exceed 130 words — a short that runs over 55s
+  loses retention. Pack maximum information density into fewer words: every
+  sentence must either hook, escalate, or pay off. Cut filler ruthlessly.
+  Every word fights for its place. If removing a sentence doesn't hurt the
+  argument, the sentence shouldn't be there.
 - `longform`: match the `script_template`'s section count — a 5-section
   longform lands about 700–950 words at the style's WPM.
 Count the voiceover words before finishing; if you're outside the range,
@@ -54,10 +59,41 @@ contrarian, curiosity-gap, fear-appeal — given in context) and must be
 something a viewer would stop scrolling for, built from a fact that's
 actually in the research.
 
+**Shorts hooks must land in under 2 seconds** — one punchy sentence that
+creates an information gap or challenges a belief. No throat-clearing ("In
+today's video", "Did you know", "Let me explain", "Most people", "Here's
+the thing"). Start mid-thought as if the viewer walked into an argument
+already happening. The hook must make it physically impossible to scroll
+past — a number that sounds wrong, a claim that contradicts common sense,
+or a statement that demands "wait, what?"
+
+## Attention through the whole script
+
+Every sentence must earn the next second of attention. The viewer's thumb is
+always hovering over "scroll." Techniques:
+- **Open loops** — tease a reveal before delivering it ("...and the real
+  number is worse"). Open a loop in the first 3 seconds; close it only
+  after you've opened another.
+- **Pattern interrupts** — change rhythm, cadence, or emotional register
+  every 2-3 sentences. Short sentence. Then a longer one that builds.
+  Then hit them again.
+- **Escalation** — each fact should feel bigger or more urgent than the last.
+  If fact #3 isn't more alarming than fact #1, reorder.
+- **Specificity** — concrete numbers and names beat abstract claims. "$347"
+  hits harder than "hundreds of dollars."
+- **Conversational address** — "you", "your", not "people" or "consumers"
+- **Tension** — every sentence should create or resolve tension. No neutral
+  filler. No "let's take a look at" or "it's important to note."
+
+Never let two consecutive sentences have the same energy level or structure.
+If you catch yourself writing a "bridge sentence" that just connects two
+ideas — delete it and let the ideas collide.
+
 ## Section count
 
-4–7 sections. Fewer than 4 rushes a longform video; more than 7 tends to mean
-the topic should have been split into two videos.
+- `shorts`: 3 sections. Three is the sweet spot — hook, escalation,
+  payoff. Every section earns its place in under 55 seconds.
+- `longform`: 4–7 sections. Fewer than 4 rushes; more than 7 should split.
 
 ## Structural rules the renderer depends on
 

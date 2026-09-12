@@ -65,12 +65,14 @@ const ROOT = join(__dirname, "..");
  * assemble a contact sheet. `ffmpeg-static` has the full filter set. Its
  * ffprobe is the compositor's, which is the one that exists.
  */
+const compositorPkg = process.platform === "win32"
+  ? "@remotion/compositor-win32-x64-msvc" : "@remotion/compositor-linux-x64-gnu";
+const binExt = process.platform === "win32" ? ".exe" : "";
 const FFMPEG_MIN = join(ROOT, "src", "skills", "remotion-render", "node_modules",
-  "@remotion", "compositor-linux-x64-gnu", "ffmpeg");
-const FFPROBE = FFMPEG_MIN.replace(/ffmpeg$/, "ffprobe");
-const FFMPEG = existsSync(join(ROOT, "node_modules", "ffmpeg-static", "ffmpeg"))
-  ? join(ROOT, "node_modules", "ffmpeg-static", "ffmpeg")
-  : FFMPEG_MIN;
+  compositorPkg, `ffmpeg${binExt}`);
+const FFPROBE = join(dirname(FFMPEG_MIN), `ffprobe${binExt}`);
+const ffmpegStatic = join(ROOT, "node_modules", "ffmpeg-static", `ffmpeg${binExt}`);
+const FFMPEG = existsSync(ffmpegStatic) ? ffmpegStatic : FFMPEG_MIN;
 
 /**
  * "within a tolerance of +-5% in HSV" does not name a metric, so this states
@@ -164,11 +166,8 @@ function dominantColours(pngs) {
     }));
 }
 
-function contactSheet(pngs, out) {
-  execFileSync(FFMPEG, ["-hide_banner", "-loglevel", "error",
-    "-pattern_type", "glob", "-i", join(dirname(pngs[0]), "f*.png"),
-    "-vf", "tile=4x3", "-frames:v", "1", "-q:v", "3", "-y", out]);
-  return out;
+function contactSheet(pngs, _out) {
+  return pngs;
 }
 
 /** Section 5's plan is plain text with fixed headings; read the ones QA needs. */
@@ -186,7 +185,7 @@ function parsePlan(text) {
   };
 }
 
-function visionCheck(sheet, spec) {
+function visionCheck(frames, spec) {
   const base = process.env.VISION_API_BASE || "https://generativelanguage.googleapis.com/v1beta/openai";
   const key = process.env.VISION_API_KEY;
   const model = process.env.VISION_MODEL;
@@ -197,8 +196,9 @@ function visionCheck(sheet, spec) {
         "An unrun check is not a passed check, so both are reported as failures.",
     };
   }
+  const framePaths = Array.isArray(frames) ? frames : [frames];
   const prompt =
-    `You are looking at a contact sheet of 12 consecutive frames from one video.\n` +
+    `You are looking at ${framePaths.length} consecutive frames from one video.\n` +
     `Answer ONLY with JSON, no prose, no markdown fences:\n` +
     `{ "environment": "<what place or surface these frames depict, 3 words max>",\n` +
     `  "environment_matches": true|false,\n` +
@@ -211,11 +211,15 @@ function visionCheck(sheet, spec) {
     `${spec.core_objects.join(", ")}?\n` +
     `Report only what is visible. If the frames are abstract shapes and text, ` +
     `say so and answer false.`;
+  const imageContent = framePaths.slice(0, 6).map((p) => ({
+    type: "image_url",
+    image_url: { url: `data:image/png;base64,${readFileSync(p).toString("base64")}` },
+  }));
   const body = JSON.stringify({
     model, max_tokens: 400, temperature: 0,
     messages: [{ role: "user", content: [
       { type: "text", text: prompt },
-      { type: "image_url", image_url: { url: `data:image/jpeg;base64,${readFileSync(sheet).toString("base64")}` } },
+      ...imageContent,
     ] }],
   });
   // A blocked or unreachable endpoint makes curl exit non-zero, which would

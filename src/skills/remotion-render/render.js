@@ -39,6 +39,15 @@ import { chunkTextClauseAware, sectionFrameWindows } from "./compositions/beats.
 import { paletteFromHues } from "./styles/tokens.js";
 import { narrationSections } from "../../utils/script-narration.js";
 
+// Visual Director — semantic treatment selection pipeline.
+// Replaces the old TYPE → VISUAL alternation with meaning-driven treatments.
+import { direct } from "./visual-engine/director/visual-director.js";
+
+// Legacy sentence pipeline — kept for SentenceShorts fallback only.
+import { buildSentenceBeats } from "./visual-engine/beats/sentence-beats.js";
+import { selectAsset, MATCH_THRESHOLD } from "./visual-engine/assets/match.js";
+import { getIconBody } from "./visual-engine/assets/icon-bodies.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..", "..", "..");
@@ -70,15 +79,23 @@ function findFFprobe() {
 const CHROME = findChrome();
 const FFPROBE = findFFprobe();
 
+// Feature flag: set USE_LEGACY_3D=true to route motion-graphics channels
+// through the old MotionGraphicsShorts/Longform compositions that depend on
+// Three.js, @remotion/three and chromiumOptions: { gl: "swangle" }.  The
+// default is now the 2D sentence engine (SentenceShorts) which needs no
+// WebGL at all, making GPU-less CI renders ~4x faster and eliminating the
+// "Failed to acquire WebGL2 context" failure class entirely.
+const USE_LEGACY_3D = process.env.USE_LEGACY_3D === "true";
+
 const WPM = {
   "cinematic-documentary": 135,
   minimal: 165,
   "motion-graphics": 155,
 };
 
-// Shorts: 15s minimum, 180s maximum (YouTube Shorts ceiling per shorts.js spec).
+// Shorts: 15s minimum, 60s maximum (under-1-minute target).
 // Long-form: 2–12 minutes.
-const SHORTS_CLAMP = [15 * 30, 180 * 30]; // frames
+const SHORTS_CLAMP = [15 * 30, 60 * 30]; // frames
 const LONGFORM_CLAMP = [2 * 30 * 60, 12 * 30 * 60];
 
 // Tail padding added after the voiceover so the final word is never cut.
@@ -219,6 +236,16 @@ function computeDurationFrames(script, style, format, audioPath) {
 }
 
 function getCompositionForStyle(style, format) {
+  // 2D path (default): DirectedShorts renders pure React/SVG with zero
+  // Three.js/WebGL dependencies. The Visual Director selects a semantic
+  // treatment per beat based on what each sentence means.
+  //
+  // Legacy path (USE_LEGACY_3D=true): the original Three.js compositions
+  // that require chromiumOptions: { gl: "swangle" } for GPU-less CI.
+  if (style === "motion-graphics" && !USE_LEGACY_3D) {
+    if (format === "shorts") return "DirectedShorts";
+    console.warn("MG 2D: longform not yet supported by DirectedShorts — falling back to legacy MotionGraphicsLongform.");
+  }
   const compositions = {
     "cinematic-documentary": { shorts: "CinematicDocumentaryShorts", longform: "CinematicDocumentaryLongform" },
     minimal: { shorts: "MinimalShorts", longform: "MinimalLongform" },
@@ -265,13 +292,53 @@ function findSrtPath(ttsAudioPath) {
 
 async function renderVideo(componentId, outputPath, frames, props, scale) {
   const browserOpts = CHROME ? { browserExecutable: CHROME } : {};
+
+  const progressMs = parseInt(process.env.RENDER_PROGRESS_MS, 10) || 5000;
+  let renderedFrames = 0;
+  const startMs = Date.now();
+  const onProgress = ({ renderedFrames: rf }) => {
+    renderedFrames = rf;
+    const elapsed = ((Date.now() - startMs) / 1000).toFixed(1);
+    const fps = (rf / Math.max(1, (Date.now() - startMs) / 1000)).toFixed(2);
+    const pct = ((rf / frames) * 100).toFixed(1);
+    const eta = rf > 0 ? (((frames - rf) / (rf / ((Date.now() - startMs) / 1000)))).toFixed(0) : "?";
+    console.log(`[progress] ${rf}/${frames} frames (${pct}%) ${fps} fps  elapsed=${elapsed}s  ETA=${eta}s`);
+  };
+  // Throttle progress to RENDER_PROGRESS_MS (default 5s) so CI logs are not
+  // overwhelmed, but the very first and last callbacks are always printed.
+  let lastProgressMs = 0;
+  const throttledProgress = (p) => {
+    const now = Date.now();
+    if (p.renderedFrames === 0 || p.renderedFrames >= frames - 1 || now - lastProgressMs >= progressMs) {
+      lastProgressMs = now;
+      onProgress(p);
+    }
+  };
+
+  console.log(`[profile] bundling...`);
+  const bundleStart = Date.now();
   const serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgress: () => {} });
+  console.log(`[profile] bundle(): ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
+
+  const compStart = Date.now();
   const composition = await selectComposition({
     serveUrl,
     id: componentId,
     inputProps: props,
     ...browserOpts,
   });
+  console.log(`[profile] selectComposition(): ${((Date.now() - compStart) / 1000).toFixed(1)}s`);
+
+  // chromiumOptions: { gl: "swangle" } is ONLY needed for the legacy
+  // Three.js compositions (MotionGraphicsShorts/Longform, CinematicDocumentary*,
+  // Minimal*) that use @remotion/three / CanvasGrain / PhotoTreatment.
+  // The 2D SentenceShorts composition renders pure React/SVG and needs no WebGL
+  // at all — omitting gl avoids the slow software-WebGL backend on CI.
+  const is2D = componentId === "DirectedShorts" || componentId === "SentenceShorts";
+  const needs3D = USE_LEGACY_3D || !is2D;
+  const glOpts = needs3D ? { chromiumOptions: { gl: "swangle" } } : {};
+  if (!needs3D) console.log("[2D] rendering without WebGL (no chromiumOptions.gl)");
+
   await renderMedia({
     composition: { ...composition, durationInFrames: frames },
     serveUrl,
@@ -281,25 +348,21 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
     inputProps: props,
     outputLocation: outputPath,
     ...browserOpts,
-    // §5.6 — explicit encoder settings: remotion.config.js is inert on the
-    // SSR path, so every quality option must be passed here. gl: "swangle"
-    // (--use-gl=angle --use-angle=swiftshader) is the software WebGL2
-    // backend Remotion docs prescribe for GPU-less machines - GitHub
-    // Actions runners have no GPU, and plain "angle" (hardware) fails there
-    // with "Failed to acquire WebGL2 context" on canvas effects, even
-    // though it works on local dev machines with a real GPU.
     imageFormat: "png",                 // lossless intermediates
     crf: 16,                            // below the h264 default
     pixelFormat: "yuv420p",             // required for wide playback
-    chromiumOptions: { gl: "swangle" }, // software WebGL2 - NOT via the config file
-    concurrency: Math.max(4, os.cpus().length),
+    ...glOpts,
+    concurrency: Math.max(2, Math.min(4, os.cpus().length)),
     audioBitrate: "192k",
     scale,
+    onProgress: throttledProgress,
     // Cold-start font fetch (21 families / 42 woff2 over the local static
     // server) can exceed the 28s default delayRender timeout.
     timeoutInMilliseconds: 120000,
   });
-  console.log("Rendered:", outputPath);
+  const totalSec = ((Date.now() - startMs) / 1000).toFixed(1);
+  const avgFps = (frames / ((Date.now() - startMs) / 1000)).toFixed(2);
+  console.log(`Rendered: ${outputPath}  (${frames} frames in ${totalSec}s, avg ${avgFps} fps)`);
 }
 
 /**
@@ -394,9 +457,151 @@ async function main() {
   const componentId = getCompositionForStyle(channel.style, format);
   const staged = stageAudio(ttsAudioPath);
 
+  // ── Visual Director engine (DirectedShorts) ─────────────────────────
+  // The Visual Director reads each sentence's meaning and selects a
+  // treatment (EROSION, GROWTH, QUANTITY, VERSUS, etc.) rather than
+  // alternating TYPE → VISUAL. See visual-engine/director/.
+  let sentencePlan = null;
   let mg = null;
   let frames;
-  if (channel.style === "motion-graphics") {
+
+  if (componentId === "DirectedShorts") {
+    const srtPath = findSrtPath(ttsAudioPath);
+    const srtText = srtPath ? readFileSync(srtPath, "utf-8").replace(/\r\n/g, "\n") : "";
+    if (srtPath) console.log("Directed SRT:", srtPath);
+    else console.warn("Directed: no SRT next to voiceover — cannot build word timings, aborting.");
+    if (!srtText) {
+      console.error("DirectedShorts requires an SRT file for word timing. None found.");
+      process.exit(1);
+    }
+
+    const FPS = 30;
+    const toFrames = (t) => {
+      const [h, m, rest] = t.split(":");
+      const [s, ms] = rest.split(",");
+      return Math.round(((+h * 3600) + (+m * 60) + +s + +ms / 1000) * FPS);
+    };
+    const cues = srtText.split(/\n\n+/).map((b) => b.trim().split("\n")).filter((l) => l.length >= 3).map((l) => {
+      const [a, b] = l[1].split(" --> ");
+      return { startFrame: toFrames(a), endFrame: toFrames(b), text: l.slice(2).join(" ") };
+    });
+    cues.forEach((c, i) => {
+      c.durationInFrames = Math.max(12, (cues[i + 1] ? cues[i + 1].startFrame : c.endFrame) - c.startFrame);
+    });
+
+    const { beats, warnings, distribution } = direct(cues);
+
+    let viSpec = null;
+    try {
+      const vi = JSON.parse(readFileSync(join(ROOT, "config", "visual-identity.json"), "utf-8")).channels || {};
+      viSpec = vi[channel.channel_id];
+    } catch {}
+
+    sentencePlan = {
+      beats,
+      palette: viSpec
+        ? { primary: viSpec.primary_palette, secondary: viSpec.secondary_palette }
+        : { primary: ["#0F172A", "#1E293B", "#22C55E", "#FAFAFA"], secondary: ["#16A34A", "#94A3B8", "#F8FAFC"] },
+      fonts: viSpec
+        ? { primary: viSpec.typography_primary, secondary: viSpec.typography_secondary }
+        : { primary: "DM Sans", secondary: "Noto Serif" },
+    };
+
+    frames = beats.length ? beats[beats.length - 1].start_frame + beats[beats.length - 1].duration_frames : 300;
+    const ceiling = (format === "shorts" ? SHORTS_CLAMP : LONGFORM_CLAMP)[1];
+    if (frames > ceiling) {
+      console.warn(`WARNING: directed video clamped from ${(frames / 30).toFixed(1)}s to ${(ceiling / 30).toFixed(1)}s — script too long for ${format}.`);
+      frames = ceiling;
+    }
+
+    const distStr = Object.entries(distribution).sort((a, b) => b[1] - a[1]).map(([t, n]) => `${t}:${n}`).join(" ");
+    console.log(`Directed plan: ${cues.length} cues -> ${beats.length} beats, ${frames}f`);
+    console.log(`  treatments: ${distStr}`);
+    for (const b of beats) console.log(`  [${b.beat_id}] ${b.treatment} — ${b.reason}`);
+    if (warnings.length) console.log(`  ${warnings.length} warning(s): ${warnings.slice(0, 5).join("; ")}`);
+
+  } else if (componentId === "SentenceShorts") {
+    const srtPath = findSrtPath(ttsAudioPath);
+    const srtText = srtPath ? readFileSync(srtPath, "utf-8").replace(/\r\n/g, "\n") : "";
+    if (srtPath) console.log("Sentence SRT:", srtPath);
+    else console.warn("Sentence: no SRT next to voiceover — cannot build word timings, aborting.");
+    if (!srtText) {
+      console.error("SentenceShorts requires an SRT file for word timing. None found.");
+      process.exit(1);
+    }
+
+    const FPS = 30;
+    const toFrames = (t) => {
+      const [h, m, rest] = t.split(":");
+      const [s, ms] = rest.split(",");
+      return Math.round(((+h * 3600) + (+m * 60) + +s + +ms / 1000) * FPS);
+    };
+    const cues = srtText.split(/\n\n+/).map((b) => b.trim().split("\n")).filter((l) => l.length >= 3).map((l) => {
+      const [a, b] = l[1].split(" --> ");
+      return { startFrame: toFrames(a), endFrame: toFrames(b), text: l.slice(2).join(" ") };
+    });
+    cues.forEach((c, i) => {
+      c.durationInFrames = Math.max(12, (cues[i + 1] ? cues[i + 1].startFrame : c.endFrame) - c.startFrame);
+    });
+
+    const iconLibPath = join(ROOT, "config", "assets", "icon-library.json");
+    let library = { assets: [] };
+    if (existsSync(iconLibPath)) {
+      library = JSON.parse(readFileSync(iconLibPath, "utf-8"));
+      console.log(`Sentence: icon library loaded — ${library.assets.length} icon(s)`);
+    } else {
+      console.warn("Sentence: config/assets/icon-library.json not found — all beats will be TYPE-only.");
+    }
+    const assetByName = new Map(library.assets.map((a) => [a.name, a]));
+
+    const { beats, warnings } = buildSentenceBeats(cues, (sentence) => {
+      const r = selectAsset(sentence, library);
+      return r.asset ? r.asset.name : null;
+    });
+
+    for (const b of beats) {
+      if (b.mode !== "VISUAL") continue;
+      const asset = assetByName.get(b.focal);
+      if (!asset) continue;
+      try {
+        b.icon = { ...getIconBody(asset.iconSet, asset.iconName), set: asset.iconSet, name: asset.iconName };
+        if (asset.attribution) b.attribution = asset.attribution;
+      } catch (err) {
+        console.warn(`Sentence: could not resolve icon for "${b.focal}" — ${err.message}`);
+        b.mode = "TYPE";
+        b.words = [];
+      }
+    }
+
+    let viSpec = null;
+    try {
+      const vi = JSON.parse(readFileSync(join(ROOT, "config", "visual-identity.json"), "utf-8")).channels || {};
+      viSpec = vi[channel.channel_id];
+    } catch {}
+
+    sentencePlan = {
+      beats,
+      palette: viSpec
+        ? { primary: viSpec.primary_palette, secondary: viSpec.secondary_palette }
+        : { primary: ["#0F172A", "#1E293B", "#22C55E", "#FAFAFA"], secondary: ["#16A34A", "#94A3B8", "#F8FAFC"] },
+      fonts: viSpec
+        ? { primary: viSpec.typography_primary, secondary: viSpec.typography_secondary }
+        : { primary: "Inter", secondary: "JetBrains Mono" },
+    };
+
+    frames = beats.length ? beats[beats.length - 1].start_frame + beats[beats.length - 1].duration_frames : 300;
+    const ceiling = (format === "shorts" ? SHORTS_CLAMP : LONGFORM_CLAMP)[1];
+    if (frames > ceiling) {
+      console.warn(`WARNING: sentence video clamped from ${(frames / 30).toFixed(1)}s to ${(ceiling / 30).toFixed(1)}s — script too long for ${format}.`);
+      frames = ceiling;
+    }
+
+    const typeBeats = beats.filter((b) => b.mode === "TYPE").length;
+    const visBeats = beats.filter((b) => b.mode === "VISUAL").length;
+    console.log(`Sentence plan: ${cues.length} cues -> ${beats.length} beats (${typeBeats} TYPE + ${visBeats} VISUAL), ${frames}f`);
+    if (warnings.length) console.log(`  ${warnings.length} warning(s): ${warnings.slice(0, 5).join("; ")}`);
+
+  } else if (channel.style === "motion-graphics") {
     // Timing comes from the SRT caption stream, never from the mp3 duration.
     const srtPath = findSrtPath(ttsAudioPath);
     const srtText = srtPath ? readFileSync(srtPath, "utf-8") : "";
@@ -527,41 +732,34 @@ async function main() {
   // happens in motion-graphics.jsx, at render time, inside the bundle.
   const hasUnderscore = existsSync(join(__dirname, "public", "music", "underscore.mp3"));
 
-  const props = {
-    channelId: channel.channel_id,
-    style: channel.style,
-    format: format,
-    sections,
-    mg,
-    sectionWindows,
-    // Burned-in narration captions, OFF unless the channel asks for them.
-    // The narration is already in the audio track; printing it over the
-    // picture turned the video into an animated transcript and let the
-    // visuals off the hook. Opt in per channel with
-    //   "captions": "burned-in"
-    // in config/channels.json (accessibility / sound-off distribution).
-    // Any other value, or the field's absence, means no drawn captions.
-    // The SRT is unaffected either way — it remains the timing source for
-    // beats, anchors and visual states.
-    showCaptions: channel.captions === "burned-in",
-    ttsAudioPath: staged,
-    hasUnderscore,
-    thumbnailStyle: channel.thumbnail_spec?.style || "dramatic-visual",
-    tone: channel.tone,
-    font: channel.font || "Inter",
-    channelName: channel.channel_name || "",
-    palette:
-      typeof channel.thumbnail_spec?.accentHue === "number"
-        ? paletteFromHues({
-            accentHue: channel.thumbnail_spec.accentHue,
-            bgMode: channel.bg_mode,
-            // The channel's DECLARED accent, not one re-solved from the hue.
-            // Colour lives in channels.json (CHECK-REGISTER SCR-13); solving
-            // it here silently overrode all 17 channels' chosen colour.
-            accent: (channel.colors || {}).accent,
-          })
-        : null,
-  };
+  // DirectedShorts and SentenceShorts expect { plan } as input prop.
+  // All other compositions expect the legacy prop bag.
+  const props = (componentId === "DirectedShorts" || componentId === "SentenceShorts")
+    ? { plan: sentencePlan }
+    : {
+        channelId: channel.channel_id,
+        style: channel.style,
+        format: format,
+        sections,
+        mg,
+        sectionWindows,
+        // Burned-in narration captions, OFF unless the channel asks for them.
+        showCaptions: channel.captions === "burned-in",
+        ttsAudioPath: staged,
+        hasUnderscore,
+        thumbnailStyle: channel.thumbnail_spec?.style || "dramatic-visual",
+        tone: channel.tone,
+        font: channel.font || "Inter",
+        channelName: channel.channel_name || "",
+        palette:
+          typeof channel.thumbnail_spec?.accentHue === "number"
+            ? paletteFromHues({
+                accentHue: channel.thumbnail_spec.accentHue,
+                bgMode: channel.bg_mode,
+                accent: (channel.colors || {}).accent,
+              })
+            : null,
+      };
 
   console.log(`Rendering: ${componentId} (${frames} frames)`);
   console.log(`Output: ${outputPath}`);
