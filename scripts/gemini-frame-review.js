@@ -307,6 +307,26 @@ async function main() {
       if (slopFail && !slopFail.pass) {
         console.log(`    SLOP: ${slopFail.note}`);
       }
+
+      const headlineFail = result.quality_tests?.HEADLINE_TEST;
+      if (headlineFail && !headlineFail.pass) {
+        console.log(`    HEADLINE: ${headlineFail.note}`);
+      }
+
+      const contFail = result.quality_tests?.CONTINUITY_TEST;
+      if (contFail && !contFail.pass) {
+        console.log(`    CONTINUITY: ${contFail.note}`);
+      }
+
+      const graphFail = result.quality_tests?.GRAPH_TEST;
+      if (graphFail && !graphFail.pass) {
+        console.log(`    GRAPH: ${graphFail.note}`);
+      }
+
+      const iconFail = result.quality_tests?.ICON_TEST;
+      if (iconFail && !iconFail.pass) {
+        console.log(`    ICON: ${iconFail.note}`);
+      }
     }
 
     // ── PHASE 2: Whole-video review ──
@@ -324,9 +344,23 @@ async function main() {
         console.log(`  Repetition issues:`);
         for (const r of wholeResult.repetition_issues) console.log(`    - ${r}`);
       }
+      if (wholeResult.headline_test) {
+        const ht = wholeResult.headline_test;
+        console.log(`  Headline test: ${ht.headline_beat_count}/${ht.total_beats} headline-dominated (${ht.percent}%) — ${ht.pass ? "PASS" : "FAIL"}${ht.monoculture ? " — TEMPLATE_MONOCULTURE" : ""}`);
+      }
+      if (wholeResult.continuity_score != null) {
+        console.log(`  Continuity: ${wholeResult.continuity_score}/10`);
+      }
+      if (wholeResult.motion_weight_score != null) {
+        console.log(`  Motion weight: ${wholeResult.motion_weight_score}/10`);
+      }
       if (wholeResult.slop_indicators?.length) {
         console.log(`  Slop indicators:`);
         for (const s of wholeResult.slop_indicators) console.log(`    - ${s}`);
+      }
+      if (wholeResult.decoration_issues?.length) {
+        console.log(`  Decoration issues:`);
+        for (const d of wholeResult.decoration_issues) console.log(`    - ${d}`);
       }
       if (wholeResult.pacing_assessment) {
         console.log(`  Pacing: ${wholeResult.pacing_assessment}`);
@@ -401,8 +435,13 @@ async function main() {
     console.log(`  Whole-video: ${wholeResult.status || "ERROR"} (${wholeResult.overall_score || "?"}/10)`);
     console.log(`  Report: ${outFile}`);
 
-    if (criticalCount > 0) {
-      console.log(`\n  VERDICT: REJECTED — ${criticalCount} CRITICAL failure(s) require re-render.`);
+    const monoculture = wholeResult.headline_test?.monoculture;
+
+    if (criticalCount > 0 || monoculture) {
+      const reason = monoculture
+        ? `TEMPLATE_MONOCULTURE — ${wholeResult.headline_test.percent}% headline-dominated beats`
+        : `${criticalCount} CRITICAL failure(s)`;
+      console.log(`\n  VERDICT: REJECTED — ${reason} require re-render.`);
       if (fixMode) {
         console.log(`  Corrections written to report. Pipeline should apply and re-render.`);
       }
