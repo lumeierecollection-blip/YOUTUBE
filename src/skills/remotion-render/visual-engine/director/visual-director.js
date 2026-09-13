@@ -530,6 +530,164 @@ function buildScene(text, index, totalBeats, prevScene) {
   return scene;
 }
 
+/* ── Gemini directive → scene ─────────────────────────────────────── */
+
+function applyDirective(directive, originalText, index, totalBeats, prevScene) {
+  const headline = directive.visual_headline;
+  const mechanism = directive.mechanism;
+  const material = detectMaterial(originalText);
+  const subject = extractSubjectPhrase(originalText);
+  const emphWords = directive.emphasis_words || contentWords(headline).slice(0, 3);
+  const objs = directive.objects || {};
+
+  const scene = {
+    narrative_role: "directed",
+    mechanism,
+    reason: directive.reason || `Gemini-directed: ${mechanism}`,
+    subject,
+    material,
+    carries_forward: directive.carries_forward || null,
+    emotional_weight: directive.emotional_weight || "calm",
+    objects: [],
+    shots: [],
+    typography: { role: "primary", style: "kinetic", emphasis_words: emphWords },
+  };
+
+  switch (mechanism) {
+    case "STATE_CHANGE":
+      scene.objects = [
+        { id: "expected", label: objs.label_a || "EXPECTED", material, role: "the expected state", appearance: "clean_text",
+          initial_state: { scale: 1, opacity: 1, position: "center" }, final_state: { scale: 0.7, opacity: 0.3, position: "top", struck: true } },
+        { id: "actual", label: objs.label_b || "ACTUAL", material, role: "the actual state", appearance: "emphasized_text",
+          initial_state: { scale: 0, opacity: 0, position: "center" }, final_state: { scale: 1, opacity: 1, position: "center" } },
+      ];
+      scene.shots = [
+        { phase: 0, phaseDuration: 0.4, camera: "hold", focus: "expected", action: "present expected state" },
+        { phase: 0.4, phaseDuration: 0.3, camera: "hold", focus: "expected", action: "strike through" },
+        { phase: 0.7, phaseDuration: 0.3, camera: "hold", focus: "actual", action: "actual truth replaces it" },
+      ];
+      scene.typography = { role: "secondary", style: "annotation", emphasis_words: emphWords };
+      break;
+
+    case "EVIDENCE_FIGURE":
+      scene.objects = [
+        { id: "figure", label: objs.figure || headline, material, role: "the evidential figure", appearance: "figure",
+          initial_state: { scale: 0, opacity: 0 }, final_state: { scale: 1, opacity: 1, position: "center" } },
+      ];
+      scene.shots = [
+        { phase: 0, phaseDuration: 0.3, camera: "hold", focus: "context", action: "establish context" },
+        { phase: 0.3, phaseDuration: 0.4, camera: "push_in", focus: "figure", action: "figure materializes" },
+        { phase: 0.7, phaseDuration: 0.3, camera: "hold", focus: "figure", action: "figure holds" },
+      ];
+      scene.typography = { role: "caption", style: "kinetic", emphasis_words: [] };
+      break;
+
+    case "ACTION_CONSEQUENCE":
+      scene.objects = [
+        { id: "cause", label: objs.cause || "CAUSE", material, role: "the cause", appearance: "solid_block",
+          initial_state: { scale: 1, opacity: 1, position: "upper" }, final_state: { scale: 1, opacity: 0.6, position: "upper" } },
+        { id: "effect", label: objs.effect || "EFFECT", material, role: "the consequence", appearance: "emergent",
+          initial_state: { scale: 0, opacity: 0, position: "lower" }, final_state: { scale: 1, opacity: 1, position: "lower" } },
+      ];
+      scene.shots = [
+        { phase: 0, phaseDuration: 0.35, camera: "hold", focus: "cause", action: "establish cause" },
+        { phase: 0.35, phaseDuration: 0.3, camera: "tilt_down", focus: "effect", action: "consequence emerges" },
+        { phase: 0.65, phaseDuration: 0.35, camera: "hold", focus: "both", action: "cause and effect together" },
+      ];
+      scene.typography = { role: "label", style: "annotation", emphasis_words: emphWords };
+      break;
+
+    case "PHYSICAL_GROWTH": {
+      const domainLabel = { fuel: "GASOLINE", food: "GROCERIES", money: "COST", housing: "HOUSING", market: "MARKET", document: "INDEX" }[material] || subject.toUpperCase().slice(0, 16);
+      scene.objects = [
+        { id: "growing_thing", label: domainLabel, material, role: "the thing that grows", appearance: "mass",
+          initial_state: { scale: 0.2, opacity: 1, position: "center" }, final_state: { scale: 1, opacity: 1, position: "center" } },
+        { id: "magnitude", label: objs.figure || headline, material: "text", role: "growth amount", appearance: "value_label",
+          initial_state: { scale: 0, opacity: 0 }, final_state: { scale: 1, opacity: 1, position: "beside_subject" } },
+      ];
+      scene.shots = [
+        { phase: 0, phaseDuration: 0.25, camera: "hold", focus: "growing_thing", action: "establish subject" },
+        { phase: 0.25, phaseDuration: 0.45, camera: "pull_back", focus: "growing_thing", action: "subject grows" },
+        { phase: 0.7, phaseDuration: 0.3, camera: "hold", focus: "magnitude", action: "magnitude appears" },
+      ];
+      scene.typography = { role: "caption", style: "annotation", emphasis_words: emphWords };
+      break;
+    }
+
+    case "VISIBLE_CONSUMPTION":
+      scene.objects = [
+        { id: "total", label: "total", material: "money", role: "the total", appearance: "stack",
+          initial_state: { fill: 1, opacity: 1, position: "center" }, final_state: { fill: 1, opacity: 1, position: "center" } },
+        { id: "consumed", label: objs.figure || headline, material: "money", role: "consumed portion", appearance: "consumed_region",
+          initial_state: { fill: 0, opacity: 0.8 }, final_state: { fill: 0.7, opacity: 0.8, position: "overlay" } },
+      ];
+      scene.shots = [
+        { phase: 0, phaseDuration: 0.25, camera: "hold", focus: "total", action: "show full amount" },
+        { phase: 0.25, phaseDuration: 0.45, camera: "hold", focus: "consumed", action: "consumed portion fills" },
+        { phase: 0.7, phaseDuration: 0.3, camera: "push_in", focus: "consumed", action: "viewer sees what remains" },
+      ];
+      scene.typography = { role: "label", style: "annotation", emphasis_words: emphWords };
+      break;
+
+    case "SURFACE_AND_BENEATH": {
+      const surfHeadlineParts = headline.split(/\bvs\.?\b|\bbut\b|\bhides?\b|\bbeneath\b/i);
+      const surfLabel = objs.label_a || (surfHeadlineParts[0] || "").trim() || subject.toUpperCase().slice(0, 20);
+      const beneathLabel = objs.label_b || (surfHeadlineParts[1] || "").trim() || "REALITY";
+      scene.objects = [
+        { id: "surface", label: surfLabel, context: subject, material: "document", role: "the surface claim", appearance: "statistic_callout",
+          initial_state: { scale: 1, opacity: 1, position: "center" }, final_state: { scale: 0.6, opacity: 0.5, position: "top" } },
+        { id: "beneath", label: beneathLabel, context: subject, material, role: "the hidden truth", appearance: "category_breakdown",
+          initial_state: { scale: 0, opacity: 0, position: "behind_surface" }, final_state: { scale: 1, opacity: 1, position: "center" } },
+      ];
+      scene.shots = [
+        { phase: 0, phaseDuration: 0.4, camera: "hold", focus: "surface", action: "establish official claim" },
+        { phase: 0.4, phaseDuration: 0.35, camera: "push_past", focus: "beneath", action: "reality emerges" },
+        { phase: 0.75, phaseDuration: 0.25, camera: "hold", focus: "both", action: "headline vs reality" },
+      ];
+      scene.typography = { role: "label", style: "annotation", emphasis_words: [] };
+      break;
+    }
+
+    case "PROPORTIONAL_OBJECTS": {
+      const headlineParts = headline.split(/\bvs\.?\b/i);
+      const labelA = objs.label_a || (headlineParts[0] || "").trim() || "A";
+      const labelB = objs.label_b || (headlineParts[1] || "").trim() || "B";
+      scene.objects = [
+        { id: "amount_a", label: labelA, context: labelA, material, role: "first quantity", appearance: "filled_area",
+          initial_state: { scale: 0, opacity: 0 }, final_state: { scale: 1, opacity: 1, position: "left" } },
+        { id: "amount_b", label: labelB, context: labelB, material, role: "second quantity", appearance: "filled_area",
+          initial_state: { scale: 0, opacity: 0 }, final_state: { scale: 0.4, opacity: 1, position: "right" } },
+      ];
+      scene.shots = [
+        { phase: 0, phaseDuration: 0.35, camera: "hold", focus: "amount_a", action: "first quantity appears" },
+        { phase: 0.35, phaseDuration: 0.35, camera: "widen", focus: "amount_b", action: "second appears alongside" },
+        { phase: 0.7, phaseDuration: 0.3, camera: "hold", focus: "both", action: "viewer sees the gap" },
+      ];
+      scene.typography = { role: "label", style: "annotation", emphasis_words: [] };
+      break;
+    }
+
+    case "STRUCTURAL_BREAKDOWN":
+      scene.objects = [
+        { id: "structure", label: subject, material, role: "the thing that breaks", appearance: "solid_block",
+          initial_state: { integrity: 1, opacity: 1, position: "center" }, final_state: { integrity: 0.2, opacity: 0.7, position: "center" } },
+      ];
+      scene.shots = [
+        { phase: 0, phaseDuration: 0.3, camera: "hold", focus: "structure", action: "establish intact structure" },
+        { phase: 0.3, phaseDuration: 0.5, camera: "hold", focus: "structure", action: "fractures appear" },
+        { phase: 0.8, phaseDuration: 0.2, camera: "hold", focus: "structure", action: "broken state" },
+      ];
+      scene.typography = { role: "caption", style: "kinetic", emphasis_words: emphWords };
+      break;
+
+    default:
+      scene.shots = [{ phase: 0, phaseDuration: 1, camera: "hold", focus: "text" }];
+      break;
+  }
+
+  return scene;
+}
+
 /* ── Word timings ──────────────────────────────────────────────────── */
 
 function wordTimings(text, durationFrames) {
@@ -596,12 +754,23 @@ export function direct(cues, options) {
   const beats = [];
   const warnings = [];
   let prevScene = null;
+  const plan = options?.visualPlan?.beats || null;
 
   cues.forEach((cue, i) => {
     const text = (cue.text || "").trim();
     if (!text) return;
 
-    const scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
+    let scene;
+    const directive = plan?.[i];
+
+    if (directive && directive.mechanism && directive.visual_headline) {
+      scene = applyDirective(directive, text, i, cues.length, prevScene);
+      scene = randomizeScene(scene, rng);
+    } else {
+      scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
+    }
+
+    const displayText = directive?.visual_headline || text;
 
     const transition = i === 0
       ? "CUT"
@@ -611,13 +780,16 @@ export function direct(cues, options) {
       beat_id: `d${i}`,
       start_frame: cue.startFrame,
       duration_frames: cue.durationInFrames,
-      text,
+      text: displayText,
+      original_text: text,
       treatment: scene.mechanism,
       reason: scene.reason,
-      visual_goal: scene.reason,
+      visual_goal: directive?.reason || scene.reason,
       typography_role: scene.typography.role,
+      carries_forward: scene.carries_forward || directive?.carries_forward || null,
+      emotional_weight: scene.emotional_weight || directive?.emotional_weight || "calm",
       scene,
-      words: wordTimings(text, cue.durationInFrames),
+      words: wordTimings(displayText, cue.durationInFrames),
       transition_in: transition,
     });
 

@@ -576,6 +576,14 @@ jobs:
           path: data/audit/gemini-review/
           retention-days: 14
 
+      - name: Upload visual plans
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-plans-${{ github.run_id }}
+          path: data/visual-plans/
+          retention-days: 14
+
       - name: Upload render artifacts
         if: always()
         uses: actions/upload-artifact@v4
