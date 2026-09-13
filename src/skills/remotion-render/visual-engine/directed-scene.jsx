@@ -409,13 +409,10 @@ function DocumentPage({ x, y, w, h, title, lineCount, highlight, torn, ed, font 
 }
 
 /* ══════════════════════════════════════════════════════════════════════
-   TYPOGRAPHY SCENE — phrase-based, not word-by-word
+   TYPOGRAPHY SCENE — one intentional phrase, not subtitles.
 
-   The bible says: "animate the meaningful unit" and
-   "word → word → word is exactly how the video starts looking AI-generated"
-
-   So: the full phrase appears as one unit, with emphasis words
-   highlighted. The entrance is a single, clean animation.
+   Rule: typography appears because the WORDS ARE THE IDEA.
+   No background panel. No floating card. Text IS the composition.
    ══════════════════════════════════════════════════════════════════════ */
 
 function TypographyScene({ beat, p, local, ed, font, scene }) {
@@ -424,7 +421,7 @@ function TypographyScene({ beat, p, local, ed, font, scene }) {
   if (!headline) return null;
 
   const allWords = headline.split(/\s+/);
-  const { rows, size } = layoutWords(allWords, SAFE_W * 0.9, SAFE_H * 0.45);
+  const { rows, size } = layoutWords(allWords, SAFE_W * 0.9, SAFE_H * 0.48);
   const emphSet = new Set((scene.typography?.emphasis_words || []).map((w) => w.toLowerCase()));
   const isQuestion = scene.typography?.style === "question";
   const isImperative = scene.typography?.style === "imperative";
@@ -433,24 +430,31 @@ function TypographyScene({ beat, p, local, ed, font, scene }) {
   const fadeOut = clamp01((p - 0.92) / 0.08);
   const holdP = clamp01((local - 14) / 20);
 
+  // Anchor to top-third: gives the vertical canvas room to breathe below
+  const anchorY = S.top + SAFE_H * 0.22;
+
   return (
     <div style={{
       position: "absolute", left: S.left, width: SAFE_W,
-      top: S.top + SAFE_H * 0.18,
-      fontFamily: `${font}, sans-serif`, fontWeight: isImperative ? 900 : 800,
-      fontSize: size, lineHeight: LH, letterSpacing: -size * 0.02,
+      top: anchorY,
       opacity: enterP * (1 - fadeOut),
-      fontStyle: isQuestion ? "italic" : "normal",
-      transform: `translateY(${(1 - enterP) * size * 0.5}px)`,
+      transform: `translateY(${(1 - enterP) * size * 0.35}px)`,
     }}>
       {rows.map((row, ri) => (
-        <div key={ri} style={{ whiteSpace: "nowrap", overflow: "hidden" }}>
+        <div key={ri} style={{
+          whiteSpace: "nowrap", overflow: "visible",
+          fontFamily: `${font}, sans-serif`,
+          fontWeight: isImperative ? 900 : 800,
+          fontSize: size, lineHeight: LH,
+          letterSpacing: -size * 0.022,
+          fontStyle: isQuestion ? "italic" : "normal",
+        }}>
           {row.map((word, wi) => {
             const isEmph = emphSet.has(word.toLowerCase().replace(/[^a-z0-9]/g, ""));
             const emphScale = isEmph && holdP > 0 ? 1 + holdP * 0.04 : 1;
             return (
               <span key={wi} style={{
-                display: "inline-block", marginRight: size * 0.24,
+                display: "inline-block", marginRight: size * 0.22,
                 color: isEmph ? ed.accent : ed.text,
                 transform: `scale(${emphScale})`,
                 transformOrigin: "bottom left",
@@ -459,18 +463,34 @@ function TypographyScene({ beat, p, local, ed, font, scene }) {
           })}
         </div>
       ))}
+      {/* Accent rule below text — grounds it without boxing it */}
+      {holdP > 0.3 && (
+        <div style={{
+          marginTop: size * 0.4,
+          width: `${holdP * 48}px`, height: 3,
+          background: ed.accent, opacity: 0.7,
+        }} />
+      )}
     </div>
   );
 }
 
 /* ══════════════════════════════════════════════════════════════════════
-   MECHANISM SCENES
+   SCENE RENDERERS — SVG-native, full-canvas, no panel containers.
 
-   Bible rules applied:
-   - No separate caption/headline — text is part of the composition
-   - Numbers must have physical meaning
-   - Objects interact with typography
+   Architecture rules:
+   - No div panels with background fills (these are rectangular cards)
+   - All compositions span the full SAFE_H (top to bottom)
+   - Typography is embedded INTO visual objects, not floating above
+   - The vertical 9:16 format is used intentionally (not 16:9 centered)
+   - Objects embody meaning — they ARE what they represent
    ══════════════════════════════════════════════════════════════════════ */
+
+/* ── SURFACE AND BENEATH ─────────────────────────────────────────────
+   Mechanism: official figure (surface) is displaced upward as the
+   reality beneath it is revealed. The surface is raw large text,
+   not a card. The reveal is a vertical slide/split.
+   ──────────────────────────────────────────────────────────────────── */
 
 function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
   const ease = easeFor("SURFACE_AND_BENEATH", beat.emotional_weight);
@@ -479,66 +499,102 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
   const beneath = findObj(objs, "beneath", "hidden", "reality");
   const beneathObj = beneath !== surface ? beneath : (objs[1] || {});
 
-  const surfaceLabel = surface.label || "?";
+  const surfaceLabel = surface.label || beat.visual_headline || "";
   const matCats = {
-    money: ["HOUSING", "FOOD", "TRANSPORT"],
-    fuel: ["REGULAR", "PREMIUM", "DIESEL"],
-    food: ["GROCERIES", "DINING", "DELIVERY"],
+    money: ["HOUSING COSTS", "FOOD & ESSENTIALS", "TRANSPORT"],
+    fuel:  ["GASOLINE", "ENERGY BILLS", "TRANSPORT"],
+    food:  ["GROCERIES", "DINING", "PRODUCE"],
     housing: ["RENT", "UTILITIES", "INSURANCE"],
   };
   const categories = beneathObj.categories || matCats[scene.material] || ["SEGMENT 1", "SEGMENT 2", "SEGMENT 3"];
 
-  const enterP = ease(clamp01(p / 0.2));
-  const revealP = ease(clamp01((p - 0.3) / 0.35));
+  const enterP = ease(clamp01(p / 0.22));
+  // revealP: surface slides up, reality slides up from below
+  const revealP = ease(clamp01((p - 0.30) / 0.38));
   const fadeOut = clamp01((p - 0.92) / 0.08);
 
-  const catBarW = SAFE_W * 0.7;
-  const catBarH = 60;
-  const catStartY = SAFE_H * 0.42;
+  // Official figure: large text, anchored to upper canvas
+  const surfSz = fitFontSize(surfaceLabel, SAFE_W * 0.82, 120, 36);
+  // Surface slides up as reality is revealed
+  const surfSlideY = -revealP * SAFE_H * 0.18;
+
+  // Reality items: full-width strips descending from midpoint
+  const stripH = Math.min(90, (SAFE_H * 0.52) / Math.max(1, categories.length + 0.5));
+  const stripGap = 14;
+  const stripsTop = SAFE_H * 0.46;
 
   return (
-    <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: 1 - fadeOut }}>
-      <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}>
-        <g transform={`translate(0, ${-revealP * SAFE_H * 0.1})`} opacity={enterP * (1 - revealP * 0.35)}>
-          <StatisticCallout
-            x={SAFE_W * 0.1} y={SAFE_H * 0.12}
-            value={surfaceLabel} label={surface.context || ""}
-            source={(scene.subject || "REPORTED").toUpperCase()} ed={ed} font={font} highlighted={false} />
-        </g>
-        {revealP > 0 && (
-          <line x1={SAFE_W * 0.08} y1={SAFE_H * 0.42} x2={SAFE_W * 0.08 + SAFE_W * 0.84 * revealP} y2={SAFE_H * 0.42}
-            stroke={ed.accent} strokeWidth={2} opacity={revealP * 0.35} strokeDasharray="8 6" />
-        )}
-        {revealP > 0 && categories.map((cat, i) => {
-          const catP = ease(clamp01((revealP - i * 0.15) / 0.4));
-          const barY = catStartY + i * (catBarH + 30);
-          const barFill = (0.4 + i * 0.2) * catP;
-          return (
-            <g key={i} opacity={catP} transform={`translate(${(1 - catP) * 40}, 0)`}>
-              <rect x={SAFE_W * 0.1} y={barY} width={catBarW * barFill} height={catBarH}
-                rx={4} fill={ed.accent} opacity={0.55 + i * 0.1} />
-              <text x={SAFE_W * 0.1 + 14} y={barY + catBarH / 2 + 6}
-                fontFamily={`${font}, sans-serif`} fontWeight={700}
-                fontSize={20} fill={ed.text} opacity={catP * 0.9} letterSpacing={2}>{cat}</text>
-              <text x={SAFE_W * 0.1 + catBarW * barFill + 14} y={barY + catBarH / 2 + 6}
-                fontFamily={`${font}, monospace`} fontWeight={800}
-                fontSize={22} fill={ed.accent} opacity={catP}>
-                {Math.round(barFill * 100)}%
-              </text>
-            </g>
-          );
-        })}
-        {revealP > 0.3 && (
-          <text x={SAFE_W * 0.1} y={catStartY + categories.length * (catBarH + 30) + 40}
-            fontFamily={`${font}, sans-serif`} fontWeight={600}
-            fontSize={22} fill={ed.text} opacity={ease(clamp01((revealP - 0.3) / 0.3)) * 0.6}>
-            {beneathObj.label || "REALITY"}
-          </text>
-        )}
-      </svg>
-    </div>
+    <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
+      style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+
+      {/* SURFACE: official figure as large raw text — no card */}
+      <g transform={`translate(0, ${surfSlideY})`} opacity={enterP * (1 - revealP * 0.5)}>
+        <text x={24} y={SAFE_H * 0.08}
+          fontFamily={`${font}, monospace`} fontWeight={500}
+          fontSize={12} fill={ed.text} opacity={0.45} letterSpacing={5}>
+          {(scene.subject || "REPORTED FIGURE").toUpperCase()}
+        </text>
+        <text x={24} y={SAFE_H * 0.08 + surfSz * LH}
+          fontFamily={`${font}, sans-serif`} fontWeight={900}
+          fontSize={surfSz} fill={ed.text} fontVariantNumeric="tabular-nums">
+          {surfaceLabel}
+        </text>
+      </g>
+
+      {/* REVEAL SEAM: horizontal accent line that sweeps across */}
+      {revealP > 0 && (
+        <line
+          x1={0} y1={SAFE_H * 0.44}
+          x2={SAFE_W * revealP} y2={SAFE_H * 0.44}
+          stroke={ed.accent} strokeWidth={3} opacity={revealP * 0.6} />
+      )}
+
+      {/* REALITY: full-width strips — no rounded corners, just raw shapes */}
+      {revealP > 0 && categories.map((cat, i) => {
+        const catP = ease(clamp01((revealP - i * 0.14) / 0.4));
+        const stripY = stripsTop + i * (stripH + stripGap);
+        // Vary the fill width per category to show relative magnitude
+        const fillRatio = 0.88 - i * 0.12;
+        return (
+          <g key={i} opacity={catP}>
+            {/* Strip background: full-width, raw rectangle */}
+            <rect x={0} y={stripY} width={SAFE_W * fillRatio * catP} height={stripH}
+              fill={ed.accent} opacity={i === 0 ? 0.9 : 0.6 - i * 0.1} />
+            {/* Label integrated into strip */}
+            <text x={18} y={stripY + stripH * 0.62}
+              fontFamily={`${font}, sans-serif`} fontWeight={700}
+              fontSize={Math.min(22, stripH * 0.38)} fill={ed.bg} opacity={catP}>
+              {cat}
+            </text>
+            {/* Percentage at right edge */}
+            <text x={SAFE_W * fillRatio * catP - 16} y={stripY + stripH * 0.62}
+              textAnchor="end"
+              fontFamily={`${font}, monospace`} fontWeight={800}
+              fontSize={Math.min(18, stripH * 0.32)} fill={ed.bg} opacity={catP * 0.9}>
+              {`${Math.round((fillRatio) * 100)}%`}
+            </text>
+          </g>
+        );
+      })}
+
+      {/* REALITY label — below the strips */}
+      {revealP > 0.5 && (
+        <text x={24} y={stripsTop + categories.length * (stripH + stripGap) + 36}
+          fontFamily={`${font}, sans-serif`} fontWeight={600}
+          fontSize={18} fill={ed.text}
+          opacity={ease(clamp01((revealP - 0.5) / 0.3)) * 0.55}>
+          {beneathObj.label || "THE REAL PICTURE"}
+        </text>
+      )}
+    </svg>
   );
 }
+
+/* ── PROPORTIONAL OBJECTS ────────────────────────────────────────────
+   Two vertical columns growing from a shared baseline at the bottom.
+   Heights are proportional to the actual values. The viewer sees the
+   physical DIFFERENCE in scale, not a progress-bar approximation.
+   ──────────────────────────────────────────────────────────────────── */
 
 function ProportionalScene({ beat, p, local, ed, font, scene }) {
   const ease = easeFor("PROPORTIONAL_OBJECTS", beat.emotional_weight);
@@ -550,114 +606,138 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
   const fallbackA = parts[0]?.trim() || "?";
   const fallbackB = parts[1]?.trim() || "?";
 
-  const enterP = ease(clamp01(p / 0.2));
-  const growP = ease(clamp01((p - 0.15) / 0.5));
+  const enterP = ease(clamp01(p / 0.18));
+  const growP = ease(clamp01((p - 0.12) / 0.52));
+  const diffP = ease(clamp01((p - 0.70) / 0.22));
   const fadeOut = clamp01((p - 0.92) / 0.08);
 
   const labelA = (a.label && a.label !== "A") ? a.label : fallbackA;
   const labelB = (b.label && b.label !== "B") ? b.label : fallbackB;
   const rawNameA = a.context || a.role || "";
   const rawNameB = b.context || b.role || "";
-  const nameA = rawNameA !== labelA ? rawNameA.toUpperCase() : "";
-  const nameB = rawNameB !== labelB ? rawNameB.toUpperCase() : "";
+  const nameA = (rawNameA && rawNameA !== labelA) ? rawNameA.toUpperCase().slice(0, 20) : "";
+  const nameB = (rawNameB && rawNameB !== labelB) ? rawNameB.toUpperCase().slice(0, 20) : "";
 
-  const numA = parseFloat(String(labelA).replace(/[^0-9.]/g, "")) || 1;
-  const numB = parseFloat(String(labelB).replace(/[^0-9.]/g, "")) || 1;
-  const maxVal = Math.max(numA, numB);
+  const parseNum = (label, ctx) => {
+    const fromLabel = parseFloat(String(label).replace(/[^0-9.]/g, ""));
+    if (!isNaN(fromLabel) && fromLabel > 0) return fromLabel;
+    const fromCtx = parseFloat(String(ctx).replace(/[^0-9.]/g, ""));
+    return (!isNaN(fromCtx) && fromCtx > 0) ? fromCtx : 1;
+  };
+  const numA = parseNum(labelA, rawNameA);
+  const numB = parseNum(labelB, rawNameB);
+  const maxVal = Math.max(numA, numB, 0.001);
   const ratioA = numA / maxVal;
   const ratioB = numB / maxVal;
 
-  const barMaxW = SAFE_W * 0.74;
-  const barH = 100;
-  const barX = SAFE_W * 0.06;
-  const barY1 = SAFE_H * 0.10;
-  const barY2 = SAFE_H * 0.44;
-  const szA = fitFontSize(labelA, SAFE_W * 0.28, 56, 22);
-  const szB = fitFontSize(labelB, SAFE_W * 0.28, 56, 22);
+  // Vertical columns layout
+  const colW = SAFE_W * 0.32;
+  const colGap = SAFE_W * 0.12;
+  const colAX = SAFE_W * 0.08;
+  const colBX = SAFE_W - SAFE_W * 0.08 - colW;
+  const colMaxH = SAFE_H * 0.68;
+  const baseline = SAFE_H * 0.86;
+
+  const colAH = colMaxH * ratioA * growP;
+  const colBH = colMaxH * ratioB * growP;
+
+  // Value label sizes fitted to column width
+  const szA = fitFontSize(labelA, colW * 1.1, 72, 22);
+  const szB = fitFontSize(labelB, colW * 1.1, 72, 22);
+  const nameSize = 13;
+
+  const ratio = numA > 0 ? Math.max(numA, numB) / Math.min(numA, numB) : 1;
+  const diffLabel = ratio >= 1.5 ? `${ratio.toFixed(1)}×` : numA !== numB ? `${Math.round(Math.abs(numA - numB))}` : "=";
 
   return (
-    <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: 1 - fadeOut }}>
-      <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}>
-        <g opacity={enterP}>
-          {nameA && <text x={barX} y={barY1 - 16}
-            fontFamily={`${font}, sans-serif`} fontWeight={600}
-            fontSize={18} fill={ed.text} opacity={0.6} letterSpacing={2}>{nameA}</text>}
-          <rect x={barX} y={barY1} width={barMaxW} height={barH}
-            rx={6} fill={ed.surface} opacity={0.1} />
-          <rect x={barX} y={barY1} width={barMaxW * ratioA * growP} height={barH}
-            rx={6} fill={ed.accent} opacity={0.55} />
-          <rect x={barX} y={barY1} width={barMaxW * ratioA * growP} height={barH}
-            rx={6} fill="none" stroke={ed.accent} strokeWidth={2.5} opacity={growP * 0.65} />
-          {growP > 0.3 && (() => {
-            const tX = barX + barMaxW * ratioA * growP + 14;
-            const overflows = tX + emW(labelA) * szA > SAFE_W - 10;
-            return (
-              <text x={overflows ? barX + barMaxW * ratioA * growP - 14 : tX}
-                y={barY1 + barH / 2 + szA * 0.35}
-                textAnchor={overflows ? "end" : "start"}
-                fontFamily={`${font}, sans-serif`} fontWeight={900}
-                fontSize={szA} fill={ed.accent} opacity={growP}
-                fontVariantNumeric="tabular-nums">{labelA}</text>
-            );
-          })()}
-        </g>
-        <g opacity={enterP}>
-          {nameB && <text x={barX} y={barY2 - 16}
-            fontFamily={`${font}, sans-serif`} fontWeight={600}
-            fontSize={18} fill={ed.text} opacity={0.6} letterSpacing={2}>{nameB}</text>}
-          <rect x={barX} y={barY2} width={barMaxW} height={barH}
-            rx={6} fill={ed.surface} opacity={0.1} />
-          <rect x={barX} y={barY2} width={barMaxW * ratioB * growP} height={barH}
-            rx={6} fill={ed.subdued} opacity={0.55} />
-          <rect x={barX} y={barY2} width={barMaxW * ratioB * growP} height={barH}
-            rx={6} fill="none" stroke={ed.subdued} strokeWidth={2} opacity={growP * 0.65} />
-          {growP > 0.3 && (() => {
-            const tX = barX + barMaxW * ratioB * growP + 14;
-            const overflows = tX + emW(labelB) * szB > SAFE_W - 10;
-            return (
-              <text x={overflows ? barX + barMaxW * ratioB * growP - 14 : tX}
-                y={barY2 + barH / 2 + szB * 0.35}
-                textAnchor={overflows ? "end" : "start"}
-                fontFamily={`${font}, sans-serif`} fontWeight={900}
-                fontSize={szB} fill={ed.text} opacity={growP * 0.8}
-                fontVariantNumeric="tabular-nums">{labelB}</text>
-            );
-          })()}
-        </g>
-        {growP > 0.6 && ratioA !== ratioB && (() => {
-          const shorter = Math.min(ratioA, ratioB);
-          return (
-            <line x1={barX + barMaxW * shorter} y1={barY1 + barH + 4}
-              x2={barX + barMaxW * shorter} y2={barY2 - 4}
-              stroke={ed.subdued} strokeWidth={1} opacity={ease(clamp01((growP - 0.6) / 0.3)) * 0.2}
-              strokeDasharray="4 4" />
-          );
-        })()}
-        {growP > 0.7 && (() => {
-          const ratio = Math.max(numA, numB) / Math.min(numA, numB);
-          const diffLabel = ratio >= 1.5 ? `${ratio.toFixed(1)}×` : numA !== numB ? `+${Math.round(Math.abs(numA - numB))}` : "=";
-          const p2 = ease(clamp01((growP - 0.7) / 0.3));
-          return (
-            <g opacity={p2}>
-              <line x1={barX} y1={SAFE_H * 0.68} x2={barX + barMaxW * p2} y2={SAFE_H * 0.68}
-                stroke={ed.subdued} strokeWidth={1} opacity={0.12} strokeDasharray="6 4" />
-              <rect x={SAFE_W * 0.18} y={SAFE_H * 0.73} width={SAFE_W * 0.64} height={SAFE_H * 0.18}
-                rx={10} fill={ed.surface} opacity={0.06} />
-              <text x={SAFE_W / 2} y={SAFE_H * 0.84} textAnchor="middle"
-                fontFamily={`${font}, sans-serif`} fontWeight={900}
-                fontSize={56} fill={ed.accent} opacity={1}
-                fontVariantNumeric="tabular-nums">{diffLabel}</text>
-              <text x={SAFE_W / 2} y={SAFE_H * 0.92} textAnchor="middle"
-                fontFamily={`${font}, monospace`} fontWeight={500}
-                fontSize={13} fill={ed.text} opacity={0.5}
-                letterSpacing={4}>DIFFERENCE</text>
-            </g>
-          );
-        })()}
-      </svg>
-    </div>
+    <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
+      style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * enterP }}>
+
+      {/* Column A (shorter/first value) */}
+      {colAH > 0 && (
+        <rect x={colAX} y={baseline - colAH} width={colW} height={colAH}
+          fill={ed.subdued} opacity={0.75} />
+      )}
+      {/* Value label at top of column A */}
+      {colAH > 40 && (
+        <text x={colAX + colW / 2} y={baseline - colAH - 16}
+          textAnchor="middle"
+          fontFamily={`${font}, sans-serif`} fontWeight={900}
+          fontSize={szA} fill={ed.text}
+          fontVariantNumeric="tabular-nums" opacity={growP}>
+          {labelA}
+        </text>
+      )}
+      {/* Role label at base of column A */}
+      <text x={colAX + colW / 2} y={baseline + 28}
+        textAnchor="middle"
+        fontFamily={`${font}, monospace`} fontWeight={600}
+        fontSize={nameSize} fill={ed.text} opacity={0.5} letterSpacing={2}>
+        {nameA || "A"}
+      </text>
+
+      {/* Column B (taller/second value) */}
+      {colBH > 0 && (
+        <rect x={colBX} y={baseline - colBH} width={colW} height={colBH}
+          fill={ed.accent} opacity={0.9} />
+      )}
+      {/* Value label at top of column B */}
+      {colBH > 40 && (
+        <text x={colBX + colW / 2} y={baseline - colBH - 16}
+          textAnchor="middle"
+          fontFamily={`${font}, sans-serif`} fontWeight={900}
+          fontSize={szB} fill={ed.accent}
+          fontVariantNumeric="tabular-nums" opacity={growP}>
+          {labelB}
+        </text>
+      )}
+      {/* Role label at base of column B */}
+      <text x={colBX + colW / 2} y={baseline + 28}
+        textAnchor="middle"
+        fontFamily={`${font}, monospace`} fontWeight={600}
+        fontSize={nameSize} fill={ed.text} opacity={0.5} letterSpacing={2}>
+        {nameB || "B"}
+      </text>
+
+      {/* Shared baseline */}
+      <line x1={colAX - 8} y1={baseline} x2={colBX + colW + 8} y2={baseline}
+        stroke={ed.text} strokeWidth={2} opacity={0.2} />
+
+      {/* Horizontal gap marker at top of shorter column */}
+      {growP > 0.6 && ratioA !== ratioB && diffP > 0 && (() => {
+        const shorterTop = baseline - Math.min(colAH, colBH);
+        const tallerTop = baseline - Math.max(colAH, colBH);
+        const gapCenterX = (colAX + colW + colBX) / 2;
+        return (
+          <g opacity={diffP}>
+            {/* Vertical gap indicator lines */}
+            <line x1={gapCenterX} y1={tallerTop} x2={gapCenterX} y2={shorterTop}
+              stroke={ed.accent} strokeWidth={2} opacity={0.4} strokeDasharray="5 4" />
+            {/* Difference value in the gap — no card container */}
+            <text x={gapCenterX} y={(tallerTop + shorterTop) / 2 + 6}
+              textAnchor="middle"
+              fontFamily={`${font}, sans-serif`} fontWeight={900}
+              fontSize={36} fill={ed.accent}
+              fontVariantNumeric="tabular-nums" opacity={diffP}>
+              {diffLabel}
+            </text>
+          </g>
+        );
+      })()}
+    </svg>
   );
 }
+
+/* ── PHYSICAL GROWTH ─────────────────────────────────────────────────
+   A single vertical column rises from a baseline at the bottom.
+   The column IS the growth — it physically occupies more vertical space
+   as the value increases. The number appears at the column's top edge,
+   attached to it, not floating above.
+
+   Fuel: FuelGauge (good material object, keep)
+   Food: ReceiptSheet (good material object, keep)
+   Generic: vertical tower
+   ──────────────────────────────────────────────────────────────────── */
 
 function GrowthScene({ beat, p, local, ed, font, scene }) {
   const ease = easeFor("PHYSICAL_GROWTH", beat.emotional_weight);
@@ -665,8 +745,8 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
   const subject = findObj(objs, "growing", "subject", "thing");
   const magnitude = findObj(objs, "magnitude", "amount", "value");
 
-  const growP = ease(clamp01(p / 0.55));
-  const labelP = ease(clamp01((p - 0.5) / 0.3));
+  const growP = ease(clamp01((p - 0.06) / 0.56));
+  const labelP = ease(clamp01((p - 0.50) / 0.32));
   const fadeOut = clamp01((p - 0.92) / 0.08);
 
   const isFuel = scene.material === "fuel" || subject.appearance === "fuel_gauge";
@@ -674,139 +754,180 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
 
   if (isFuel) {
     return (
-      <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: 1 - fadeOut }}>
-        <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}>
-          <FuelGauge
-            cx={SAFE_W / 2} cy={SAFE_H * 0.42} r={SAFE_W * 0.38}
-            fill={growP * 0.88} label={subject.label || "GASOLINE"}
-            reading={labelP > 0.2 ? (magnitude.label || "") : ""}
-            readingOpacity={labelP}
-            ed={ed} font={font} />
-          {growP > 0.6 && (
-            <g opacity={ease(clamp01((growP - 0.6) / 0.3)) * 0.5}>
-              <line x1={SAFE_W * 0.72} y1={SAFE_H * 0.55} x2={SAFE_W * 0.72} y2={SAFE_H * 0.35}
-                stroke={ed.accent} strokeWidth={3} strokeLinecap="round" />
-              <polygon points={`${SAFE_W * 0.72},${SAFE_H * 0.33} ${SAFE_W * 0.72 - 8},${SAFE_H * 0.37} ${SAFE_W * 0.72 + 8},${SAFE_H * 0.37}`}
-                fill={ed.accent} />
-            </g>
-          )}
-        </svg>
-      </div>
+      <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
+        style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+        <FuelGauge
+          cx={SAFE_W / 2} cy={SAFE_H * 0.44} r={SAFE_W * 0.40}
+          fill={growP * 0.90} label={subject.label || "GASOLINE"}
+          reading={labelP > 0.2 ? (magnitude.label || "") : ""}
+          readingOpacity={labelP}
+          ed={ed} font={font} />
+        {labelP > 0.5 && (
+          <text x={SAFE_W / 2} y={SAFE_H * 0.86} textAnchor="middle"
+            fontFamily={`${font}, sans-serif`} fontWeight={600}
+            fontSize={18} fill={ed.text} opacity={labelP * 0.55}>
+            {beat.original_text || beat.text || ""}
+          </text>
+        )}
+      </svg>
     );
   }
 
   if (isFood) {
     const items = [
-      { name: "Bread", price: "$4.89" },
-      { name: "Milk", price: "$5.49" },
-      { name: "Eggs (doz)", price: "$6.79" },
-      { name: "Chicken", price: "$9.99" },
+      { name: "Bread", price: "$4.89" }, { name: "Milk", price: "$5.49" },
+      { name: "Eggs (doz)", price: "$6.79" }, { name: "Chicken", price: "$9.99" },
       { name: "Produce", price: "$12.49" },
     ];
     return (
-      <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: 1 - fadeOut }}>
-        <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}>
-          <g opacity={growP}>
-            <ReceiptSheet x={SAFE_W * 0.12} y={SAFE_H * 0.04} w={SAFE_W * 0.76} h={SAFE_H * 0.75}
-              items={items} total="$39.65" growth={labelP > 0.3 ? (magnitude.label || "32%") : null}
-              growthP={growP} ed={ed} font={font} />
-          </g>
-        </svg>
-      </div>
+      <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
+        style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+        <g opacity={growP}>
+          <ReceiptSheet x={SAFE_W * 0.10} y={SAFE_H * 0.04} w={SAFE_W * 0.80} h={SAFE_H * 0.76}
+            items={items} total="$39.65" growth={labelP > 0.3 ? (magnitude.label || "32%") : null}
+            growthP={growP} ed={ed} font={font} />
+        </g>
+      </svg>
     );
   }
 
-  const colW = SAFE_W * 0.38;
-  const colH = SAFE_H * 0.78;
-  const colX = SAFE_W / 2 - colW / 2;
-  const colY = SAFE_H * 0.04;
-  const fillH = colH * growP;
-  const magText = magnitude.label || beat.text || "";
-  const magSz = fitFontSize(magText, SAFE_W * 0.35, 64, 24);
-  const subText = subject.label || "";
-  const subSz = fitFontSize(subText, SAFE_W * 0.6, 24, 14);
+  // GENERIC: vertical tower rising from baseline at the bottom.
+  // The tower IS the growth. Its height encodes the value.
+  const magText = magnitude.label || "";
+  const subText = (subject.label || scene.subject || "").toUpperCase().slice(0, 24);
+
+  const colW = SAFE_W * 0.44;
+  const colX = (SAFE_W - colW) / 2;
+  const colMaxH = SAFE_H * 0.72;
+  const baseline = SAFE_H * 0.84;
+  const fillH = colMaxH * growP;
+  const colTop = baseline - fillH;
+
+  // Number size fitted to column width, capped below the column height
+  const magSz = fitFontSize(magText, colW * 0.88, Math.min(96, fillH * 0.55), 28);
 
   return (
-    <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: 1 - fadeOut }}>
-      <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}>
-        <rect x={colX} y={colY} width={colW} height={colH}
-          rx={8} fill={ed.surface} opacity={0.15} />
-        <rect x={colX} y={colY + colH - fillH} width={colW} height={fillH}
-          rx={8} fill={ed.accent} opacity={0.55 + growP * 0.15} />
-        <rect x={colX} y={colY + colH - fillH} width={colW} height={fillH}
-          rx={6} fill="none" stroke={ed.accent} strokeWidth={2.5} opacity={growP * 0.65} />
-        {[0.25, 0.5, 0.75, 1.0].map((t) => (
+    <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
+      style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * ease(clamp01(p / 0.06)) }}>
+
+      {/* Eyebrow — what is growing */}
+      {subText && (
+        <text x={SAFE_W / 2} y={SAFE_H * 0.07} textAnchor="middle"
+          fontFamily={`${font}, monospace`} fontWeight={500}
+          fontSize={14} fill={ed.text} opacity={0.5} letterSpacing={4}>
+          {subText}
+        </text>
+      )}
+
+      {/* Tower — the dominant visual object */}
+      {fillH > 0 && (
+        <rect x={colX} y={colTop} width={colW} height={fillH}
+          fill={ed.accent} opacity={0.92} />
+      )}
+
+      {/* Baseline */}
+      <line x1={colX - 16} y1={baseline} x2={colX + colW + 16} y2={baseline}
+        stroke={ed.text} strokeWidth={2} opacity={0.22} />
+
+      {/* Scale ticks on left side of tower */}
+      {[0.25, 0.5, 0.75, 1.0].map((t) => {
+        const ty = baseline - colMaxH * t;
+        return (
           <g key={t}>
-            <line x1={colX - 18} y1={colY + colH * (1 - t)} x2={colX} y2={colY + colH * (1 - t)}
-              stroke={ed.subdued} strokeWidth={1.5} opacity={0.4} />
-            <text x={colX - 22} y={colY + colH * (1 - t) + 5} textAnchor="end"
-              fontFamily={`${font}, monospace`} fontWeight={500}
-              fontSize={12} fill={ed.text} opacity={0.45}>{Math.round(t * 100)}%</text>
+            <line x1={colX - 20} y1={ty} x2={colX} y2={ty}
+              stroke={ed.text} strokeWidth={1} opacity={0.2} />
+            <text x={colX - 26} y={ty + 5} textAnchor="end"
+              fontFamily={`${font}, monospace`} fontWeight={400}
+              fontSize={12} fill={ed.text} opacity={0.3}>
+              {`${Math.round(t * 100)}%`}
+            </text>
           </g>
-        ))}
-        <line x1={colX + colW} y1={colY + colH - fillH}
-          x2={colX + colW + 14} y2={colY + colH - fillH}
-          stroke={ed.accent} strokeWidth={2} opacity={growP * 0.6} />
-        {labelP > 0.2 && (
-          <text x={colX + colW + 20} y={colY + colH - fillH + magSz * 0.35}
-            fontFamily={`${font}, sans-serif`} fontWeight={900}
-            fontSize={magSz} fill={ed.accent}
-            fontVariantNumeric="tabular-nums" opacity={labelP}>{magText}</text>
-        )}
-        <text x={SAFE_W / 2} y={colY + colH + 48} textAnchor="middle"
-          fontFamily={`${font}, sans-serif`} fontWeight={700}
-          fontSize={Math.max(subSz, 22)} fill={ed.text} opacity={growP * 0.7}
-          letterSpacing={3}>{subText.toUpperCase()}</text>
-      </svg>
-    </div>
+        );
+      })}
+
+      {/* Value label at top edge of tower — attached, not floating */}
+      {magText && fillH > 24 && (
+        <text x={colX + colW / 2} y={colTop - 14} textAnchor="middle"
+          fontFamily={`${font}, sans-serif`} fontWeight={900}
+          fontSize={magSz} fill={ed.accent}
+          fontVariantNumeric="tabular-nums" opacity={growP}>
+          {magText}
+        </text>
+      )}
+
+      {/* Context label below baseline */}
+      {labelP > 0.1 && (
+        <text x={SAFE_W / 2} y={baseline + 44} textAnchor="middle"
+          fontFamily={`${font}, sans-serif`} fontWeight={600}
+          fontSize={18} fill={ed.text} opacity={labelP * 0.6}>
+          {beat.original_text || beat.text || ""}
+        </text>
+      )}
+    </svg>
   );
 }
+
+/* ── STRUCTURAL BREAKDOWN ────────────────────────────────────────────
+   A structured visual object fractures. For budget content the
+   rule itself breaks apart. For document content the page tears.
+   No outer card wrapper — the material object takes the full canvas.
+   ──────────────────────────────────────────────────────────────────── */
 
 function BreakdownScene({ beat, p, local, ed, font, scene }) {
   const ease = easeFor("STRUCTURAL_BREAKDOWN", beat.emotional_weight);
   const fadeOut = clamp01((p - 0.92) / 0.08);
-  const buildP = ease(clamp01(p / 0.2));
-  const breakP = ease(clamp01((p - 0.3) / 0.5));
+  const buildP = ease(clamp01(p / 0.18));
+  const breakP = ease(clamp01((p - 0.28) / 0.52));
   const isBudget = scene.material === "money" || /budget|fifty|thirty|twenty|50.30.20/i.test(beat.text);
 
   if (isBudget) {
     const segments = [
-      { label: "NEEDS", pct: "50%", ratio: 0.5, color: ed.accent, fillOp: 0.3 },
-      { label: "WANTS", pct: "30%", ratio: 0.3, color: ed.subdued, fillOp: 0.25 },
-      { label: "SAVE", pct: "20%", ratio: 0.2, color: ed.text, fillOp: 0.15 },
+      { label: "NEEDS", pct: "50%", ratio: 0.5, color: ed.accent, fillOp: 0.35 },
+      { label: "WANTS", pct: "30%", ratio: 0.3, color: ed.subdued, fillOp: 0.28 },
+      { label: "SAVE", pct: "20%", ratio: 0.2, color: ed.text, fillOp: 0.18 },
     ];
     return (
-      <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: (1 - fadeOut) * buildP }}>
-        <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}>
-          <text x={SAFE_W * 0.08} y={SAFE_H * 0.1}
-            fontFamily={`${font}, monospace`} fontWeight={600}
-            fontSize={16} fill={ed.text} opacity={0.5} letterSpacing={3}>50 / 30 / 20 RULE</text>
-          <BudgetBar x={SAFE_W * 0.06} y={SAFE_H * 0.18} w={SAFE_W * 0.88} h={70}
-            segments={segments} broken={breakP} ed={ed} font={font} />
-          {breakP > 0.6 && (
-            <g opacity={ease(clamp01((breakP - 0.6) / 0.3)) * 0.6}>
-              <text x={SAFE_W / 2} y={SAFE_H * 0.48} textAnchor="middle"
-                fontFamily={`${font}, sans-serif`} fontWeight={900}
-                fontSize={64} fill={ed.accent} letterSpacing={12}
-                transform={`rotate(-8, ${SAFE_W / 2}, ${SAFE_H * 0.48})`}>BROKEN</text>
-            </g>
-          )}
-        </svg>
-      </div>
+      <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
+        style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * buildP }}>
+        <text x={24} y={SAFE_H * 0.09}
+          fontFamily={`${font}, monospace`} fontWeight={500}
+          fontSize={13} fill={ed.text} opacity={0.45} letterSpacing={5}>
+          50 / 30 / 20 RULE
+        </text>
+        {/* Bar spans full safe width, tall enough to be the hero */}
+        <BudgetBar x={0} y={SAFE_H * 0.16} w={SAFE_W} h={120}
+          segments={segments} broken={breakP} ed={ed} font={font} />
+        {breakP > 0.55 && (
+          <g opacity={ease(clamp01((breakP - 0.55) / 0.3)) * 0.75}>
+            <text x={SAFE_W / 2} y={SAFE_H * 0.52} textAnchor="middle"
+              fontFamily={`${font}, sans-serif`} fontWeight={900}
+              fontSize={80} fill={ed.accent} letterSpacing={10}
+              transform={`rotate(-6, ${SAFE_W / 2}, ${SAFE_H * 0.52})`}>
+              BROKEN
+            </text>
+          </g>
+        )}
+      </svg>
     );
   }
 
   const subject = scene.subject || "CPI";
   return (
-    <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: (1 - fadeOut) * buildP }}>
-      <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}>
-        <DocumentPage x={SAFE_W * 0.1} y={SAFE_H * 0.05} w={SAFE_W * 0.8} h={SAFE_H * 0.65}
-          title={subject.toUpperCase()} lineCount={10} highlight={breakP < 0.4}
-          torn={breakP} ed={ed} font={font} />
-      </svg>
-    </div>
+    <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
+      style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * buildP }}>
+      {/* DocumentPage takes nearly the full canvas height — it IS the visual */}
+      <DocumentPage x={SAFE_W * 0.06} y={SAFE_H * 0.04} w={SAFE_W * 0.88} h={SAFE_H * 0.80}
+        title={subject.toUpperCase()} lineCount={12} highlight={breakP < 0.35}
+        torn={breakP} ed={ed} font={font} />
+    </svg>
   );
 }
+
+/* ── EVIDENCE FIGURE ─────────────────────────────────────────────────
+   The number IS the visual. It takes the dominant vertical space.
+   A minimal grounding bar below shows its scale in context.
+   No card container. The figure floats in the composition.
+   ──────────────────────────────────────────────────────────────────── */
 
 function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
   const ease = easeFor("EVIDENCE_FIGURE", beat.emotional_weight);
@@ -815,7 +936,8 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
   const ctx = figure.context || scene.subject || "";
   const isFood = scene.material === "food";
 
-  const enterP = ease(clamp01(p / 0.3));
+  const enterP = ease(clamp01(p / 0.28));
+  const groundP = ease(clamp01((p - 0.35) / 0.30));
   const fadeOut = clamp01((p - 0.92) / 0.08);
 
   if (isFood) {
@@ -824,84 +946,107 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
       { name: "Groceries 2026", price: "$201" },
     ];
     return (
-      <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: 1 - fadeOut }}>
-        <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}>
-          <g opacity={enterP}>
-            <ReceiptSheet x={SAFE_W * 0.12} y={SAFE_H * 0.06} w={SAFE_W * 0.76} h={SAFE_H * 0.5}
-              items={items} total={label || "32%"} growth={label}
-              growthP={enterP} ed={ed} font={font} />
-          </g>
-        </svg>
-      </div>
+      <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
+        style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+        <g opacity={enterP}>
+          <ReceiptSheet x={SAFE_W * 0.08} y={SAFE_H * 0.04} w={SAFE_W * 0.84} h={SAFE_H * 0.76}
+            items={items} total={label || "32%"} growth={label}
+            growthP={enterP} ed={ed} font={font} />
+        </g>
+      </svg>
     );
   }
 
+  // The figure takes ~55% of the canvas height as raw text — it IS the visual
+  const heroSz = fitFontSize(label, SAFE_W * 0.86, Math.min(180, SAFE_H * 0.44), 40);
+  const ctxLabel = ctx !== label ? ctx : "";
+  const ctxSz = ctxLabel ? Math.min(22, heroSz * 0.22) : 0;
+
+  // Figure anchored to upper-center
+  const figureTopY = SAFE_H * 0.14;
+  const figureBaseY = figureTopY + heroSz * LH;
+
+  // Grounding bar: thin, below the number, shows its scale
   const isPct = /%/.test(label);
   const numVal = parseFloat(String(label).replace(/[^0-9.]/g, "")) || 0;
-  const fillRatio = isPct ? clamp01(numVal / 100) : 0.65;
-  const labelSz = fitFontSize(label, SAFE_W * 0.5, 96, 28);
-  const ctxLabel = ctx !== label ? ctx : "";
-  const ctxSz = ctxLabel ? fitFontSize(ctxLabel, SAFE_W * 0.7, 24, 14) : 0;
+  const fillRatio = isPct ? clamp01(numVal / 100) : 0.68;
 
-  const barX = SAFE_W * 0.08;
-  const barW = SAFE_W * 0.84;
-  const barY = SAFE_H * 0.42;
-  const barH = 56;
-  const markX = barX + barW * fillRatio * enterP;
+  const barX = 24;
+  const barW = SAFE_W - 48;
+  const barY = figureBaseY + (ctxLabel ? ctxSz + 24 : 16);
+  const barH = 28;
+  const markX = barX + barW * fillRatio * groundP;
 
   return (
-    <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: 1 - fadeOut }}>
-      <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}>
-        <g opacity={enterP}>
-          {scene.material === "document" && (
-            <text x={barX} y={SAFE_H * 0.15}
-              fontFamily={`${font}, monospace`} fontWeight={500}
-              fontSize={13} fill={ed.text} opacity={0.45} letterSpacing={3}>SOURCE</text>
-          )}
+    <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
+      style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+      {/* Source eyebrow */}
+      <text x={24} y={figureTopY - 16}
+        fontFamily={`${font}, monospace`} fontWeight={500}
+        fontSize={12} fill={ed.text} opacity={enterP * 0.45} letterSpacing={5}>
+        {(scene.subject || "").toUpperCase() || "DATA"}
+      </text>
+
+      {/* THE FIGURE — the dominant visual */}
+      <text x={24} y={figureBaseY}
+        fontFamily={`${font}, sans-serif`} fontWeight={900}
+        fontSize={heroSz} fill={ed.accent}
+        fontVariantNumeric="tabular-nums"
+        opacity={enterP}>
+        {label}
+      </text>
+
+      {/* Context label immediately below the figure */}
+      {ctxLabel && (
+        <text x={24} y={figureBaseY + ctxSz + 4}
+          fontFamily={`${font}, sans-serif`} fontWeight={500}
+          fontSize={ctxSz} fill={ed.text} opacity={enterP * 0.6}>
+          {ctxLabel}
+        </text>
+      )}
+
+      {/* Grounding scale bar — thin, attached to figure, not a container */}
+      {groundP > 0 && (
+        <>
           <rect x={barX} y={barY} width={barW} height={barH}
-            rx={8} fill={ed.surface} opacity={0.1} />
-          <rect x={barX} y={barY} width={barW * fillRatio * enterP} height={barH}
-            rx={8} fill={ed.accent} opacity={0.6} />
-          <line x1={markX} y1={barY - 28} x2={markX} y2={barY + barH + 28}
-            stroke={ed.accent} strokeWidth={3} opacity={enterP * 0.8} />
-          <text x={markX} y={barY - 48}
-            textAnchor="middle" fontFamily={`${font}, sans-serif`} fontWeight={900}
-            fontSize={labelSz} fill={ed.accent}
-            fontVariantNumeric="tabular-nums">{label}</text>
-          {ctxLabel && (
-            <text x={markX} y={barY + barH + 56}
-              textAnchor="middle" fontFamily={`${font}, sans-serif`} fontWeight={500}
-              fontSize={ctxSz} fill={ed.text} opacity={0.55}>{ctxLabel}</text>
-          )}
+            fill={ed.surface} opacity={0.1} />
+          <rect x={barX} y={barY} width={barW * fillRatio * groundP} height={barH}
+            fill={ed.accent} opacity={0.85} />
+          {/* Marker at the value position */}
+          <line x1={markX} y1={barY - 12} x2={markX} y2={barY + barH + 12}
+            stroke={ed.accent} strokeWidth={2.5} opacity={groundP * 0.7} />
           {isPct && (
             <>
-              <text x={barX} y={barY + barH + 36}
-                fontFamily={`${font}, monospace`} fontWeight={500}
-                fontSize={14} fill={ed.text} opacity={0.4}>0</text>
-              <text x={barX + barW} y={barY + barH + 36}
-                textAnchor="end" fontFamily={`${font}, monospace`} fontWeight={500}
-                fontSize={14} fill={ed.text} opacity={0.4}>100%</text>
+              <text x={barX} y={barY + barH + 22}
+                fontFamily={`${font}, monospace`} fontWeight={400}
+                fontSize={12} fill={ed.text} opacity={0.35}>0</text>
+              <text x={barX + barW} y={barY + barH + 22} textAnchor="end"
+                fontFamily={`${font}, monospace`} fontWeight={400}
+                fontSize={12} fill={ed.text} opacity={0.35}>100%</text>
             </>
           )}
-          <rect x={barX} y={SAFE_H * 0.68} width={barW} height={SAFE_H * 0.24}
-            rx={10} fill={ed.surface} opacity={0.05} />
-          <line x1={barX} y1={SAFE_H * 0.68} x2={barX + barW} y2={SAFE_H * 0.68}
-            stroke={ed.subdued} strokeWidth={1} opacity={0.1} />
-          <text x={SAFE_W / 2} y={SAFE_H * 0.80} textAnchor="middle"
-            fontFamily={`${font}, sans-serif`} fontWeight={800}
-            fontSize={Math.round(labelSz * 0.65)} fill={ed.accent} opacity={enterP * 0.9}
-            fontVariantNumeric="tabular-nums">{label}</text>
-          {scene.subject && (
-            <text x={SAFE_W / 2} y={SAFE_H * 0.88} textAnchor="middle"
-              fontFamily={`${font}, monospace`} fontWeight={500}
-              fontSize={14} fill={ed.text} opacity={0.45}
-              letterSpacing={3}>{(scene.subject || "").toUpperCase()}</text>
-          )}
-        </g>
-      </svg>
-    </div>
+        </>
+      )}
+
+      {/* Context narration below the bar */}
+      {groundP > 0.5 && (
+        <text x={24} y={barY + barH + 52}
+          fontFamily={`${font}, sans-serif`} fontWeight={500}
+          fontSize={16} fill={ed.text}
+          opacity={ease(clamp01((groundP - 0.5) / 0.4)) * 0.6}>
+          {beat.original_text || ""}
+        </text>
+      )}
+    </svg>
   );
 }
+
+/* ── ACTION → CONSEQUENCE ────────────────────────────────────────────
+   Cause text occupies upper canvas. A vertical connector draws itself
+   downward. Effect text rises from lower canvas. No panels, no fills.
+   The two text blocks ARE the visual — spatial separation + connector
+   communicates the causal relationship.
+   ──────────────────────────────────────────────────────────────────── */
 
 function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
   const ease = easeFor("ACTION_CONSEQUENCE", beat.emotional_weight);
@@ -910,183 +1055,212 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
   const effect = cause === findObj(objs, "consequence", "effect", "result")
     ? (objs[1] || {}) : findObj(objs, "consequence", "effect", "result");
 
-  const causeP = ease(clamp01(p / 0.3));
-  const connectP = ease(clamp01((p - 0.2) / 0.25));
-  const effectP = ease(clamp01((p - 0.4) / 0.35));
+  const causeP = ease(clamp01(p / 0.28));
+  const connectP = ease(clamp01((p - 0.18) / 0.28));
+  const effectP = ease(clamp01((p - 0.42) / 0.32));
   const fadeOut = clamp01((p - 0.92) / 0.08);
 
-  const causeLabel = cause.label || "";
+  const causeLabel = cause.label || beat.original_text || "";
   const effectLabel = effect.label || "";
-  const causeSz = fitFontSize(causeLabel, SAFE_W * 0.72, 56, 22);
-  const effectSz = fitFontSize(effectLabel, SAFE_W * 0.72, 60, 24);
+  const causeSz = fitFontSize(causeLabel, SAFE_W - 48, Math.min(68, SAFE_H * 0.2), 24);
+  const effectSz = fitFontSize(effectLabel, SAFE_W - 48, Math.min(84, SAFE_H * 0.22), 26);
 
-  const panelX = SAFE_W * 0.06;
-  const panelW = SAFE_W * 0.88;
-  const causeY = SAFE_H * 0.06;
-  const effectY = SAFE_H * 0.50;
+  // Cause: anchored in upper third
+  const causeLineCount = Math.ceil(causeLabel.length / 20);
+  const causeBlockH = causeSz * LH * causeLineCount;
+  const causeBaseY = SAFE_H * 0.08 + causeBlockH;
+
+  // Connector: vertical line from below cause to above effect
+  const connStartY = SAFE_H * 0.08 + causeBlockH + 24;
+  const connEndY = SAFE_H * 0.52;
+  const connCurrentY = connStartY + (connEndY - connStartY) * connectP;
+
+  // Arrow at end of connector
+  const arrowSize = 12;
+
+  // Effect: occupies lower canvas — larger text, accent color
+  const effectTopY = SAFE_H * 0.55;
 
   return (
-    <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: 1 - fadeOut }}>
-      <div style={{
-        position: "absolute", left: panelX, width: panelW,
-        top: causeY, opacity: causeP, borderRadius: 6, overflow: "hidden",
-      }}>
-        <div style={{
-          position: "absolute", inset: 0,
-          background: ed.surface, opacity: 0.12, borderRadius: 6,
-        }} />
-        <div style={{
-          position: "absolute", left: 0, top: 0, width: 8, height: "100%",
-          background: ed.surface, opacity: 0.35, borderRadius: "6px 0 0 6px",
-        }} />
-        <div style={{
-          padding: "32px 24px 32px 28px",
-          fontFamily: `${font}, sans-serif`, fontWeight: 800,
-          fontSize: causeSz, lineHeight: 1.25, color: ed.text,
-        }}>{causeLabel}</div>
-      </div>
+    <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
+      style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
 
-      <svg width={SAFE_W} height={SAFE_H}
-        style={{ position: "absolute", left: 0, top: 0, pointerEvents: "none" }}>
-        <line x1={panelX + 4} y1={SAFE_H * 0.28}
-          x2={panelX + 4} y2={SAFE_H * 0.28 + (effectY - SAFE_H * 0.28 - 8) * connectP}
-          stroke={ed.accent} strokeWidth={4} opacity={connectP * 0.7} />
-        {connectP > 0.6 && (
-          <polygon
-            points={`${panelX + 4},${effectY - 4} ${panelX - 6},${effectY - 16} ${panelX + 14},${effectY - 16}`}
-            fill={ed.accent} opacity={connectP * 0.7} />
-        )}
-      </svg>
+      {/* CAUSE: raw text in upper canvas, no container */}
+      <text x={24} y={SAFE_H * 0.08}
+        fontFamily={`${font}, sans-serif`} fontWeight={700}
+        fontSize={causeSz} fill={ed.text} opacity={causeP * 0.75}>
+        {causeLabel.length > 28 ? causeLabel.slice(0, 28) + "…" : causeLabel}
+      </text>
 
-      <div style={{
-        position: "absolute", left: panelX, width: panelW,
-        top: effectY, opacity: effectP, borderRadius: 6, overflow: "hidden",
-        transform: `translateY(${(1 - effectP) * 16}px)`,
-      }}>
-        <div style={{
-          position: "absolute", inset: 0,
-          background: ed.accent, opacity: 0.12, borderRadius: 6,
-        }} />
-        <div style={{
-          position: "absolute", left: 0, top: 0, width: 8, height: "100%",
-          background: ed.accent, opacity: 0.5, borderRadius: "6px 0 0 6px",
-        }} />
-        <div style={{
-          padding: "32px 24px 32px 28px",
-          fontFamily: `${font}, sans-serif`, fontWeight: 900,
-          fontSize: effectSz, lineHeight: 1.25, color: ed.accent,
-        }}>{effectLabel}</div>
-      </div>
+      {/* Eyebrow label for cause */}
+      <text x={24} y={SAFE_H * 0.08 - causeSz * 0.18}
+        fontFamily={`${font}, monospace`} fontWeight={500}
+        fontSize={11} fill={ed.text} opacity={causeP * 0.4} letterSpacing={4}>
+        CAUSE
+      </text>
 
-      {effectP > 0.5 && (
-        <div style={{
-          position: "absolute", left: panelX, width: panelW,
-          top: SAFE_H * 0.84,
-          opacity: ease(clamp01((effectP - 0.5) / 0.4)) * 0.7,
-        }}>
-          <div style={{
-            borderTop: `1px solid ${ed.text}`,
-            paddingTop: 14,
-            display: "flex", justifyContent: "space-between", alignItems: "center",
-          }}>
-            <span style={{
-              fontFamily: `${font}, monospace`, fontWeight: 500,
-              fontSize: 12, color: ed.text, letterSpacing: 3,
-              textTransform: "uppercase", opacity: 0.6,
-            }}>{"CAUSE → EFFECT"}</span>
-          </div>
-        </div>
+      {/* CONNECTOR: vertical line drawing itself downward */}
+      {connectP > 0 && (
+        <>
+          <line
+            x1={24 + causeSz * 0.5} y1={connStartY}
+            x2={24 + causeSz * 0.5} y2={connCurrentY}
+            stroke={ed.accent} strokeWidth={2.5}
+            strokeDasharray="8 5"
+            opacity={connectP * 0.7}
+          />
+          {/* Arrow tip appears when line fully drawn */}
+          {connectP > 0.85 && (
+            <polygon
+              points={`${24 + causeSz * 0.5},${connEndY + arrowSize} ${24 + causeSz * 0.5 - arrowSize * 0.6},${connEndY - 2} ${24 + causeSz * 0.5 + arrowSize * 0.6},${connEndY - 2}`}
+              fill={ed.accent}
+              opacity={ease(clamp01((connectP - 0.85) / 0.15)) * 0.85}
+            />
+          )}
+        </>
       )}
-    </div>
+
+      {/* EFFECT: large, accent colored, rises from lower canvas */}
+      <g opacity={effectP} transform={`translate(0, ${(1 - effectP) * 28})`}>
+        <text x={24} y={effectTopY - 14}
+          fontFamily={`${font}, monospace`} fontWeight={500}
+          fontSize={11} fill={ed.accent} opacity={0.6} letterSpacing={4}>
+          RESULT
+        </text>
+        <text x={24} y={effectTopY}
+          fontFamily={`${font}, sans-serif`} fontWeight={900}
+          fontSize={effectSz} fill={ed.accent}>
+          {effectLabel.length > 32 ? effectLabel.slice(0, 32) + "…" : effectLabel}
+        </text>
+        {/* Accent rule below effect text — grounds it */}
+        <rect x={24} y={effectTopY + effectSz * 0.2}
+          width={48 * effectP} height={3}
+          fill={ed.accent} opacity={0.6} />
+      </g>
+    </svg>
   );
 }
+
+/* ── VISIBLE CONSUMPTION ─────────────────────────────────────────────
+   A tall vessel occupying most of the canvas height drains from full
+   to (1 - fillRatio) remaining. The consumed amount IS the label.
+   Speed of drain communicates urgency. No BudgetBar pattern.
+   No rounded corners on anything that functions as a container.
+   ──────────────────────────────────────────────────────────────────── */
 
 function ConsumptionScene({ beat, p, local, ed, font, scene }) {
   const ease = easeFor("VISIBLE_CONSUMPTION", beat.emotional_weight);
   const objs = scene.objects || [];
   const consumed = findObj(objs, "consumed", "portion", "swallow");
   const fillRatio = consumed.final_state?.fill || 0.62;
+  const consumedLabel = consumed.label || `${Math.round(fillRatio * 100)}%`;
 
-  const buildP = ease(clamp01(p / 0.15));
-  const consumeP = ease(clamp01((p - 0.15) / 0.55));
+  const buildP = ease(clamp01(p / 0.12));
+  const drainP = ease(clamp01((p - 0.12) / 0.48));
+  const labelP = ease(clamp01((p - 0.55) / 0.28));
   const fadeOut = clamp01((p - 0.92) / 0.08);
 
-  const segments = [
-    { label: "NEEDS", pct: `${Math.round(fillRatio * 100)}%`, ratio: fillRatio, color: ed.accent, fillOp: 0.35 },
-    { label: "WANTS", pct: "", ratio: (1 - fillRatio) * 0.6, color: ed.subdued, fillOp: 0.15 },
-    { label: "SAVE", pct: "", ratio: (1 - fillRatio) * 0.4, color: ed.text, fillOp: 0.08 },
-  ];
+  // Vessel: tall rectangle, left-anchored, 80% of canvas height
+  const vesselX = 24;
+  const vesselW = SAFE_W * 0.18;   // narrow column for substance
+  const vesselH = SAFE_H * 0.78;
+  const vesselY = SAFE_H * 0.10;
+
+  // Drain: from full at top, draining to (1 - fillRatio) * vesselH remaining
+  const remaining = (1 - fillRatio);  // what's left after consumption
+  const drained = fillRatio;          // what's consumed
+  // Fill starts at full, drains: currentFill = 1 - drainP * drained (shrinks top-down)
+  const currentFillRatio = 1 - drainP * drained;
+  const currentFillH = vesselH * currentFillRatio;
+  const currentFillY = vesselY + (vesselH - currentFillH);
+
+  // Consumed amount label: large text to the right of the vessel
+  const labelSz = fitFontSize(consumedLabel, SAFE_W - vesselX - vesselW - 56, Math.min(160, SAFE_H * 0.45), 32);
+  const labelX = vesselX + vesselW + 40;
+  const labelY = SAFE_H * 0.42;
+
+  // Drain speed annotation: "< 1 MONTH"
+  const speedLabel = consumed.context || scene.subject || "";
+
+  // Tick marks on the vessel at 25/50/75/100%
+  const ticks = [0, 0.25, 0.5, 0.75, 1.0].map(t => ({
+    y: vesselY + vesselH * (1 - t),
+    pct: Math.round(t * 100),
+  }));
 
   return (
-    <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: (1 - fadeOut) * buildP }}>
-      <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}>
-        <text x={SAFE_W * 0.08} y={SAFE_H * 0.14}
-          fontFamily={`${font}, monospace`} fontWeight={600}
-          fontSize={16} fill={ed.text} opacity={0.5} letterSpacing={3}>HOUSEHOLD INCOME</text>
-        <BudgetBar x={SAFE_W * 0.06} y={SAFE_H * 0.2} w={SAFE_W * 0.88} h={100}
-          segments={segments} consumed={consumeP} ed={ed} font={font} />
-        {consumeP > 0.5 && (
-          <g opacity={ease(clamp01((consumeP - 0.5) / 0.3))}>
-            <line x1={SAFE_W * 0.8} y1={SAFE_H * 0.2 + 108}
-              x2={SAFE_W * 0.8} y2={SAFE_H * 0.2 + 155}
-              stroke={ed.subdued} strokeWidth={1.5} opacity={0.5} />
-            <text x={SAFE_W * 0.8} y={SAFE_H * 0.2 + 180}
-              textAnchor="middle" fontFamily={`${font}, sans-serif`} fontWeight={700}
-              fontSize={22} fill={ed.text} opacity={0.6}>
-              {`${Math.round((1 - fillRatio) * 100)}% left`}
-            </text>
-          </g>
+    <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
+      style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * buildP }}>
+
+      {/* Vessel outline — no fill, just border */}
+      <rect x={vesselX} y={vesselY} width={vesselW} height={vesselH}
+        fill="none" stroke={ed.text} strokeWidth={2} opacity={0.2} />
+
+      {/* Fluid fill — drains from top */}
+      <rect x={vesselX + 2} y={currentFillY} width={vesselW - 4} height={currentFillH}
+        fill={ed.accent} opacity={0.82} />
+
+      {/* Tick marks to the left of the vessel */}
+      {ticks.map((t, i) => (
+        <g key={i}>
+          <line x1={vesselX - 14} y1={t.y} x2={vesselX - 2} y2={t.y}
+            stroke={ed.text} strokeWidth={1.5} opacity={0.3} />
+          <text x={vesselX - 18} y={t.y + 5} textAnchor="end"
+            fontFamily={`${font}, monospace`} fontWeight={400}
+            fontSize={11} fill={ed.text} opacity={0.3}>
+            {t.pct}%
+          </text>
+        </g>
+      ))}
+
+      {/* Drain level line: horizontal marker showing current fill */}
+      {drainP > 0 && (
+        <line x1={vesselX - 8} y1={currentFillY} x2={vesselX + vesselW + 8} y2={currentFillY}
+          stroke={ed.accent} strokeWidth={2} opacity={0.6} />
+      )}
+
+      {/* Consumed amount: large raw text, right of vessel */}
+      <g opacity={labelP} transform={`translate(0, ${(1 - labelP) * 24})`}>
+        <text x={labelX} y={SAFE_H * 0.20}
+          fontFamily={`${font}, monospace`} fontWeight={500}
+          fontSize={12} fill={ed.text} opacity={0.45} letterSpacing={4}>
+          CONSUMED
+        </text>
+        <text x={labelX} y={SAFE_H * 0.20 + labelSz * LH}
+          fontFamily={`${font}, sans-serif`} fontWeight={900}
+          fontSize={labelSz} fill={ed.accent}
+          fontVariantNumeric="tabular-nums">
+          {consumedLabel}
+        </text>
+        {speedLabel && (
+          <text x={labelX} y={SAFE_H * 0.20 + labelSz * LH + 28}
+            fontFamily={`${font}, sans-serif`} fontWeight={500}
+            fontSize={16} fill={ed.text} opacity={0.55}>
+            {speedLabel}
+          </text>
         )}
-        {consumeP > 0.7 && (() => {
-          const cLabel = consumed.label || beat.text || `${Math.round(fillRatio * 100)}%`;
-          const cSz = fitFontSize(cLabel, SAFE_W * 0.84, 72, 28);
-          return (
-            <text x={SAFE_W * 0.08} y={SAFE_H * 0.48} textAnchor="start"
-              fontFamily={`${font}, sans-serif`} fontWeight={900}
-              fontSize={cSz} fill={ed.accent} opacity={ease(clamp01((consumeP - 0.7) / 0.25))}>
-              {cLabel}
-            </text>
-          );
-        })()}
-        {consumeP > 0.8 && (() => {
-          const dp = ease(clamp01((consumeP - 0.8) / 0.2));
-          const cats = [
-            { label: "HOUSING", ratio: 0.35, op: 0.6 },
-            { label: "TRANSPORT", ratio: 0.22, op: 0.5 },
-            { label: "FOOD", ratio: 0.18, op: 0.45 },
-          ];
-          return (
-            <g opacity={dp}>
-              <line x1={SAFE_W * 0.08} y1={SAFE_H * 0.58} x2={SAFE_W * 0.92} y2={SAFE_H * 0.58}
-                stroke={ed.subdued} strokeWidth={1} opacity={0.12} />
-              <text x={SAFE_W * 0.08} y={SAFE_H * 0.64}
-                fontFamily={`${font}, monospace`} fontWeight={500}
-                fontSize={12} fill={ed.text} opacity={0.5} letterSpacing={3}>BREAKDOWN</text>
-              {cats.map((c, i) => {
-                const cy = SAFE_H * 0.68 + i * 64;
-                return (
-                  <g key={i}>
-                    <rect x={SAFE_W * 0.08} y={cy} width={SAFE_W * 0.74 * c.ratio * dp} height={44}
-                      rx={4} fill={ed.accent} opacity={c.op} />
-                    <text x={SAFE_W * 0.08 + 12} y={cy + 28}
-                      fontFamily={`${font}, sans-serif`} fontWeight={700}
-                      fontSize={15} fill={ed.text} opacity={dp * 0.85}
-                      letterSpacing={2}>{c.label}</text>
-                    <text x={SAFE_W * 0.08 + SAFE_W * 0.74 * c.ratio * dp + 12} y={cy + 28}
-                      fontFamily={`${font}, monospace`} fontWeight={800}
-                      fontSize={16} fill={ed.accent} opacity={dp}>
-                      {Math.round(c.ratio * fillRatio * 100)}%
-                    </text>
-                  </g>
-                );
-              })}
-            </g>
-          );
-        })()}
-      </svg>
-    </div>
+      </g>
+
+      {/* Remaining label near the bottom of the vessel */}
+      {drainP > 0.7 && (
+        <text x={vesselX + vesselW / 2} y={vesselY + vesselH + 24}
+          textAnchor="middle"
+          fontFamily={`${font}, monospace`} fontWeight={600}
+          fontSize={14} fill={ed.text} opacity={ease(clamp01((drainP - 0.7) / 0.3)) * 0.5}>
+          {`${Math.round(remaining * 100)}% LEFT`}
+        </text>
+      )}
+    </svg>
   );
 }
+
+/* ── STATE CHANGE ────────────────────────────────────────────────────
+   Before state occupies upper canvas: large text, muted.
+   A strike-through line sweeps across it left to right.
+   After state rises from lower canvas: large text, accent colored.
+   No div panels, no background fills. The contrast between muted
+   before and vivid after IS the state change.
+   ──────────────────────────────────────────────────────────────────── */
 
 function StateChangeScene({ beat, p, local, ed, font, scene }) {
   const ease = easeFor("STATE_CHANGE", beat.emotional_weight);
@@ -1095,84 +1269,91 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
   const actual = expected === findObj(objs, "actual", "after", "new", "true")
     ? (objs[1] || {}) : findObj(objs, "actual", "after", "new", "true");
 
-  const showExpected = ease(clamp01(p / 0.2));
-  const strikeP = ease(clamp01((p - 0.25) / 0.2));
-  const divideP = ease(clamp01((p - 0.3) / 0.15));
-  const showActual = ease(clamp01((p - 0.4) / 0.3));
+  const showExpected = ease(clamp01(p / 0.22));
+  const strikeP = ease(clamp01((p - 0.26) / 0.22));
+  const divideP = ease(clamp01((p - 0.36) / 0.14));
+  const showActual = ease(clamp01((p - 0.44) / 0.32));
   const fadeOut = clamp01((p - 0.92) / 0.08);
 
   const expLabel = expected.label || "";
   const actLabel = actual.label || "";
-  const expSz = fitFontSize(expLabel, SAFE_W * 0.72, 56, 22);
-  const actSz = fitFontSize(actLabel, SAFE_W * 0.72, 64, 24);
+  // Before: relatively large but muted — it's being displaced
+  const expSz = fitFontSize(expLabel, SAFE_W - 48, Math.min(72, SAFE_H * 0.22), 24);
+  // After: larger, more prominent — this is the truth
+  const actSz = fitFontSize(actLabel, SAFE_W - 48, Math.min(96, SAFE_H * 0.30), 28);
 
-  const panelX = SAFE_W * 0.06;
-  const panelW = SAFE_W * 0.88;
+  // Before text: upper canvas
+  const beforeY = SAFE_H * 0.10;
+  const beforeBaseY = beforeY + expSz * LH;
+
+  // Strike-through: sweeps across the "before" text at mid-height
+  const strikeY = beforeY + expSz * LH * 0.5;
+
+  // Divide line: at mid-canvas
+  const divideY = SAFE_H * 0.50;
+
+  // After text: lower canvas
+  const afterY = SAFE_H * 0.56;
 
   return (
-    <div style={{ position: "absolute", left: S.left, top: S.top, width: SAFE_W, height: SAFE_H, opacity: 1 - fadeOut }}>
-      <div style={{
-        position: "absolute", left: panelX, width: panelW,
-        top: SAFE_H * 0.14, opacity: showExpected, borderRadius: 6, overflow: "hidden",
-      }}>
-        <div style={{
-          position: "absolute", inset: 0,
-          background: ed.surface, opacity: 0.12 * (1 - strikeP * 0.5), borderRadius: 6,
-        }} />
-        <div style={{
-          padding: "32px 24px",
-          fontFamily: `${font}, sans-serif`, fontWeight: 700,
-          fontSize: expSz, lineHeight: 1.3, color: ed.text,
-          textDecoration: strikeP > 0.5 ? "line-through" : "none",
-          textDecorationColor: ed.accent,
-          textDecorationThickness: 3,
-          opacity: 1 - strikeP * 0.25,
-        }}>{expLabel}</div>
-      </div>
+    <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
+      style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
 
-      <svg width={SAFE_W} height={SAFE_H}
-        style={{ position: "absolute", left: 0, top: 0, pointerEvents: "none" }}>
-        <line x1={panelX} y1={SAFE_H * 0.40}
-          x2={panelX + panelW * divideP} y2={SAFE_H * 0.40}
-          stroke={ed.accent} strokeWidth={3} opacity={divideP * 0.55} />
-      </svg>
+      {/* BEFORE STATE: raw text, upper canvas, muted */}
+      <g opacity={showExpected * (1 - strikeP * 0.35)}>
+        <text x={24} y={beforeY - 14}
+          fontFamily={`${font}, monospace`} fontWeight={500}
+          fontSize={11} fill={ed.text} opacity={showExpected * 0.35} letterSpacing={4}>
+          EXPECTED
+        </text>
+        <text x={24} y={beforeBaseY}
+          fontFamily={`${font}, sans-serif`} fontWeight={700}
+          fontSize={expSz} fill={ed.text} opacity={showExpected * 0.7}>
+          {expLabel}
+        </text>
+      </g>
 
-      <div style={{
-        position: "absolute", left: panelX, width: panelW,
-        top: SAFE_H * 0.50, opacity: showActual, borderRadius: 6, overflow: "hidden",
-        transform: `translateY(${(1 - showActual) * 20}px)`,
-      }}>
-        <div style={{
-          position: "absolute", inset: 0,
-          background: ed.accent, opacity: 0.12, borderRadius: 6,
-        }} />
-        <div style={{
-          position: "absolute", left: 0, top: 0, width: 8, height: "100%",
-          background: ed.accent, opacity: 0.5, borderRadius: "6px 0 0 6px",
-        }} />
-        <div style={{
-          padding: "32px 24px 32px 28px",
-          fontFamily: `${font}, sans-serif`, fontWeight: 900,
-          fontSize: actSz, lineHeight: 1.3, color: ed.accent,
-        }}>{actLabel}</div>
-      </div>
-
-      {showActual > 0.5 && (
-        <div style={{
-          position: "absolute", left: panelX, width: panelW,
-          top: SAFE_H * 0.86,
-          opacity: ease(clamp01((showActual - 0.5) / 0.4)) * 0.7,
-        }}>
-          <div style={{
-            borderTop: `1px solid ${ed.text}`,
-            paddingTop: 14,
-            fontFamily: `${font}, monospace`, fontWeight: 500,
-            fontSize: 12, color: ed.text, letterSpacing: 3,
-            textTransform: "uppercase", opacity: 0.6,
-          }}>{"EXPECTED → ACTUAL"}</div>
-        </div>
+      {/* STRIKE-THROUGH: sweeps left to right across before text */}
+      {strikeP > 0 && (
+        <line x1={24} y1={strikeY} x2={24 + (SAFE_W - 48) * strikeP} y2={strikeY}
+          stroke={ed.accent} strokeWidth={4} opacity={strikeP * 0.9} />
       )}
-    </div>
+
+      {/* DIVIDE LINE: accent bar at mid-canvas, sweeps right */}
+      {divideP > 0 && (
+        <rect x={0} y={divideY} width={SAFE_W * divideP} height={3}
+          fill={ed.accent} opacity={divideP * 0.75} />
+      )}
+
+      {/* AFTER STATE: rises from below, accent colored, larger */}
+      <g opacity={showActual} transform={`translate(0, ${(1 - showActual) * 32})`}>
+        <text x={24} y={afterY}
+          fontFamily={`${font}, monospace`} fontWeight={500}
+          fontSize={11} fill={ed.accent} opacity={0.55} letterSpacing={4}>
+          REALITY
+        </text>
+        <text x={24} y={afterY + actSz * LH}
+          fontFamily={`${font}, sans-serif`} fontWeight={900}
+          fontSize={actSz} fill={ed.accent}>
+          {actLabel}
+        </text>
+        {/* Accent rule below after text */}
+        <rect x={24} y={afterY + actSz * LH + 12}
+          width={showActual * 56} height={3}
+          fill={ed.accent} opacity={0.55} />
+      </g>
+
+      {/* Footer annotation */}
+      {showActual > 0.5 && (
+        <text x={24} y={SAFE_H * 0.97}
+          fontFamily={`${font}, monospace`} fontWeight={500}
+          fontSize={11} fill={ed.text}
+          opacity={ease(clamp01((showActual - 0.5) / 0.4)) * 0.35}
+          letterSpacing={3}>
+          EXPECTED → ACTUAL
+        </text>
+      )}
+    </svg>
   );
 }
 
@@ -1280,8 +1461,28 @@ export function DirectedScene({ plan }) {
   const showPrevEcho = prev && local < TRANSITION_FRAMES && beatIndex > 0;
   const prevEchoOpacity = showPrevEcho ? clamp01(1 - local / TRANSITION_FRAMES) * 0.4 : 0;
 
+  // carries_forward: when the current beat explicitly inherits a visual object
+  // from the prior beat, that object persists at reduced opacity throughout.
+  // This differs from the transition echo (which is always brief).
+  const carriesForward = beat.carries_forward;
+  const showPersistent = carriesForward && prev && !showPrevEcho && beatIndex > 0;
+  const persistOpacity = showPersistent ? 0.22 : 0;
+
   return (
     <AbsoluteFill style={{ backgroundColor: ed.bg }}>
+      {/* Persistent carry-forward: prior beat's visual lingers at low opacity */}
+      {showPersistent && (
+        <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: persistOpacity, pointerEvents: "none" }}>
+          {prevScene.mechanism === "TYPOGRAPHY" ? (
+            <TypographyScene beat={prev} p={1} local={prev.duration_frames}
+              ed={ed} font={plan.fonts.primary} scene={prevScene} />
+          ) : (
+            <MechanismScene beat={prev} p={1} local={prev.duration_frames}
+              ed={ed} font={plan.fonts.primary} scene={prevScene} />
+          )}
+        </div>
+      )}
+
       {/* Previous beat echo — fading out during transition */}
       {showPrevEcho && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: prevEchoOpacity }}>
