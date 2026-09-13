@@ -1,0 +1,1319 @@
+{
+ "beats": [
+  {
+   "beat_id": "s0t",
+   "mode": "TYPE",
+   "focal": "In 1986, workers near the Black Sea broke into a cave that had been sealed for five and a half million years.",
+   "start_frame": 3,
+   "duration_frames": 142,
+   "sentence": "In 1986, workers near the Black Sea broke into a cave that had been sealed for five and a half million years.",
+   "words": [
+    {
+     "word": "In",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "1986,",
+     "at": 0.028985507246376812,
+     "frame": 4
+    },
+    {
+     "word": "workers",
+     "at": 0.10144927536231885,
+     "frame": 14
+    },
+    {
+     "word": "near",
+     "at": 0.16666666666666666,
+     "frame": 24
+    },
+    {
+     "word": "the",
+     "at": 0.21014492753623187,
+     "frame": 30
+    },
+    {
+     "word": "Black",
+     "at": 0.2463768115942029,
+     "frame": 35
+    },
+    {
+     "word": "Sea",
+     "at": 0.2971014492753623,
+     "frame": 42
+    },
+    {
+     "word": "broke",
+     "at": 0.3333333333333333,
+     "frame": 47
+    },
+    {
+     "word": "into",
+     "at": 0.38405797101449274,
+     "frame": 55
+    },
+    {
+     "word": "a",
+     "at": 0.427536231884058,
+     "frame": 61
+    },
+    {
+     "word": "cave",
+     "at": 0.4492753623188406,
+     "frame": 64
+    },
+    {
+     "word": "that",
+     "at": 0.4927536231884058,
+     "frame": 70
+    },
+    {
+     "word": "had",
+     "at": 0.5362318840579711,
+     "frame": 76
+    },
+    {
+     "word": "been",
+     "at": 0.572463768115942,
+     "frame": 81
+    },
+    {
+     "word": "sealed",
+     "at": 0.6159420289855072,
+     "frame": 87
+    },
+    {
+     "word": "for",
+     "at": 0.6739130434782609,
+     "frame": 96
+    },
+    {
+     "word": "five",
+     "at": 0.7101449275362319,
+     "frame": 101
+    },
+    {
+     "word": "and",
+     "at": 0.7536231884057971,
+     "frame": 107
+    },
+    {
+     "word": "a",
+     "at": 0.7898550724637681,
+     "frame": 112
+    },
+    {
+     "word": "half",
+     "at": 0.8115942028985508,
+     "frame": 115
+    },
+    {
+     "word": "million",
+     "at": 0.855072463768116,
+     "frame": 121
+    },
+    {
+     "word": "years.",
+     "at": 0.9202898550724637,
+     "frame": 131
+    }
+   ],
+   "transitionIn": "CUT",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s0v",
+   "mode": "VISUAL",
+   "focal": "calendar half year",
+   "start_frame": 145,
+   "duration_frames": 80,
+   "sentence": "In 1986, workers near the Black Sea broke into a cave that had been sealed for five and a half million years.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M25 57v30h62V57zm160 0v62h62V57zm80 0v14h62V57zm80 0v39h62V57zm80 0v78h62V57zM105 73v78h62V73zm160 16v78h62V89zM25 105v78h62v-78zm320 9v78h62v-78zm-160 23v78h62v-78zm240 16v78h62v-78zm-320 16v78h62v-78zm160 16v78h62v-78zM25 201v78h62v-78zm320 9v78h62v-78zm-160 23v78h62v-78zm240 16v78h62v-78zm-320 16v78h62v-78zm160 16v78h62v-78zM25 297v78h62v-78zm320 9v78h62v-78zm-160 23v78h62v-78zm240 16v78h62v-78zm-320 16v94h62v-94zm160 16v78h62v-78zM25 393v78h62v-78zm320 9v69h62v-69zm-160 23v46h62v-46zm240 16v14h62v-14z\"/>",
+    "width": 512,
+    "height": 512,
+    "set": "game-icons",
+    "name": "calendar-half-year"
+   },
+   "attribution": {
+    "name": "GameIcons",
+    "url": "https://github.com/game-icons/icons",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://github.com/game-icons/icons/blob/master/license.txt"
+   }
+  },
+  {
+   "beat_id": "s1t",
+   "mode": "TYPE",
+   "focal": "Inside: toxic air, total darkness, and thirty-five species found nowhere else on Earth.",
+   "start_frame": 225,
+   "duration_frames": 121,
+   "sentence": "Inside: toxic air, total darkness, and thirty-five species found nowhere else on Earth.",
+   "words": [
+    {
+     "word": "Inside:",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "toxic",
+     "at": 0.10714285714285714,
+     "frame": 13
+    },
+    {
+     "word": "air,",
+     "at": 0.16964285714285715,
+     "frame": 21
+    },
+    {
+     "word": "total",
+     "at": 0.25,
+     "frame": 30
+    },
+    {
+     "word": "darkness,",
+     "at": 0.3125,
+     "frame": 38
+    },
+    {
+     "word": "and",
+     "at": 0.4375,
+     "frame": 53
+    },
+    {
+     "word": "thirty-five",
+     "at": 0.48214285714285715,
+     "frame": 58
+    },
+    {
+     "word": "species",
+     "at": 0.5892857142857143,
+     "frame": 71
+    },
+    {
+     "word": "found",
+     "at": 0.6696428571428571,
+     "frame": 81
+    },
+    {
+     "word": "nowhere",
+     "at": 0.7321428571428571,
+     "frame": 89
+    },
+    {
+     "word": "else",
+     "at": 0.8125,
+     "frame": 98
+    },
+    {
+     "word": "on",
+     "at": 0.8660714285714286,
+     "frame": 105
+    },
+    {
+     "word": "Earth.",
+     "at": 0.9017857142857143,
+     "frame": 109
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s1v",
+   "mode": "VISUAL",
+   "focal": "air humidifier off",
+   "start_frame": 346,
+   "duration_frames": 68,
+   "sentence": "Inside: toxic air, total darkness, and thirty-five species found nowhere else on Earth.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M22.1 21.5L2.4 1.7L1.1 3l2.7 2.7C3.3 6.3 3 7.1 3 8v14h15v-2.1l2.8 2.8zm-12.5-10l2.8 2.8c-.3.4-.8.7-1.4.7c-1.1 0-2-.9-2-2c0-.6.3-1.1.6-1.5m6.4 6.4V20H5V8c0-.3.1-.6.2-.9l3 3C7.5 10.8 7 11.9 7 13c0 2.2 1.8 4 4 4c1.1 0 2.2-.5 2.9-1.2zm1-4.1c.1-1.3 2-3.3 2-3.3s2 2.2 2 3.5c0 1-.8 1.9-1.8 2zM9.2 6l-2-2H14c2.2 0 4 1.8 4 4v1h-2V8c0-1.1-.9-2-2-2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "air-humidifier-off"
+   }
+  },
+  {
+   "beat_id": "s2t",
+   "mode": "TYPE",
+   "focal": "Oxygen at just seven percent.",
+   "start_frame": 414,
+   "duration_frames": 58,
+   "sentence": "Oxygen at just seven percent.",
+   "words": [
+    {
+     "word": "Oxygen",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "at",
+     "at": 0.21052631578947367,
+     "frame": 12
+    },
+    {
+     "word": "just",
+     "at": 0.3157894736842105,
+     "frame": 18
+    },
+    {
+     "word": "seven",
+     "at": 0.47368421052631576,
+     "frame": 27
+    },
+    {
+     "word": "percent.",
+     "at": 0.6578947368421053,
+     "frame": 38
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s2v",
+   "mode": "VISUAL",
+   "focal": "cart percent",
+   "start_frame": 472,
+   "duration_frames": 33,
+   "sentence": "Oxygen at just seven percent.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M7 18c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2m10 0c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2m-9.8-3.2c0 .1.1.2.2.2H19v2H7c-1.1 0-2-.9-2-2c0-.4.1-.7.2-1l1.3-2.4L3 4H1V2h3.3l4.3 9h7l3.9-7l1.7 1l-3.9 7c-.3.6-1 1-1.7 1H8.1l-.9 1.6zM9.4 1c.8 0 1.4.6 1.4 1.4s-.6 1.4-1.4 1.4S8 3.2 8 2.4S8.7 1 9.4 1m5.2 8c-.8 0-1.4-.6-1.4-1.4s.6-1.4 1.4-1.4s1.4.6 1.4 1.4S15.3 9 14.6 9M9.2 9L8 7.8L14.8 1L16 2.2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "cart-percent"
+   }
+  },
+  {
+   "beat_id": "s3t",
+   "mode": "TYPE",
+   "focal": "Air thick with hydrogen sulfide.",
+   "start_frame": 505,
+   "duration_frames": 60,
+   "sentence": "Air thick with hydrogen sulfide.",
+   "words": [
+    {
+     "word": "Air",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "thick",
+     "at": 0.12195121951219512,
+     "frame": 7
+    },
+    {
+     "word": "with",
+     "at": 0.2926829268292683,
+     "frame": 18
+    },
+    {
+     "word": "hydrogen",
+     "at": 0.43902439024390244,
+     "frame": 26
+    },
+    {
+     "word": "sulfide.",
+     "at": 0.6829268292682927,
+     "frame": 41
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s3v",
+   "mode": "VISUAL",
+   "focal": "air humidifier off",
+   "start_frame": 565,
+   "duration_frames": 34,
+   "sentence": "Air thick with hydrogen sulfide.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M22.1 21.5L2.4 1.7L1.1 3l2.7 2.7C3.3 6.3 3 7.1 3 8v14h15v-2.1l2.8 2.8zm-12.5-10l2.8 2.8c-.3.4-.8.7-1.4.7c-1.1 0-2-.9-2-2c0-.6.3-1.1.6-1.5m6.4 6.4V20H5V8c0-.3.1-.6.2-.9l3 3C7.5 10.8 7 11.9 7 13c0 2.2 1.8 4 4 4c1.1 0 2.2-.5 2.9-1.2zm1-4.1c.1-1.3 2-3.3 2-3.3s2 2.2 2 3.5c0 1-.8 1.9-1.8 2zM9.2 6l-2-2H14c2.2 0 4 1.8 4 4v1h-2V8c0-1.1-.9-2-2-2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "air-humidifier-off"
+   }
+  },
+  {
+   "beat_id": "s4t",
+   "mode": "TYPE",
+   "focal": "And yet life is everywhere: blind spiders, eyeless leeches, ghost-pale centipedes, none of them needing sunlight to survive.",
+   "start_frame": 599,
+   "duration_frames": 152,
+   "sentence": "And yet life is everywhere: blind spiders, eyeless leeches, ghost-pale centipedes, none of them needing sunlight to survive.",
+   "words": [
+    {
+     "word": "And",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "yet",
+     "at": 0.03184713375796178,
+     "frame": 5
+    },
+    {
+     "word": "life",
+     "at": 0.06369426751592357,
+     "frame": 10
+    },
+    {
+     "word": "is",
+     "at": 0.10191082802547771,
+     "frame": 15
+    },
+    {
+     "word": "everywhere:",
+     "at": 0.12738853503184713,
+     "frame": 19
+    },
+    {
+     "word": "blind",
+     "at": 0.22929936305732485,
+     "frame": 35
+    },
+    {
+     "word": "spiders,",
+     "at": 0.27388535031847133,
+     "frame": 42
+    },
+    {
+     "word": "eyeless",
+     "at": 0.35668789808917195,
+     "frame": 54
+    },
+    {
+     "word": "leeches,",
+     "at": 0.4140127388535032,
+     "frame": 63
+    },
+    {
+     "word": "ghost-pale",
+     "at": 0.4968152866242038,
+     "frame": 76
+    },
+    {
+     "word": "centipedes,",
+     "at": 0.5668789808917197,
+     "frame": 86
+    },
+    {
+     "word": "none",
+     "at": 0.6687898089171974,
+     "frame": 102
+    },
+    {
+     "word": "of",
+     "at": 0.7070063694267515,
+     "frame": 107
+    },
+    {
+     "word": "them",
+     "at": 0.732484076433121,
+     "frame": 111
+    },
+    {
+     "word": "needing",
+     "at": 0.7707006369426752,
+     "frame": 117
+    },
+    {
+     "word": "sunlight",
+     "at": 0.8280254777070064,
+     "frame": 126
+    },
+    {
+     "word": "to",
+     "at": 0.89171974522293,
+     "frame": 136
+    },
+    {
+     "word": "survive.",
+     "at": 0.9171974522292994,
+     "frame": 139
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s4v",
+   "mode": "VISUAL",
+   "focal": "spider",
+   "start_frame": 751,
+   "duration_frames": 86,
+   "sentence": "And yet life is everywhere: blind spiders, eyeless leeches, ghost-pale centipedes, none of them needing sunlight to survive.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"m21.29 16.71l1.42-1.42l-3.21-3.18l-3-.85l1.91-.26l4.19-3.2l-1.2-1.6l-3.81 2.85l-2.68.45l3.2-3.19L17 1.76l-2 .48l.86 3.45l-1.1 1.14a3 3 0 0 0-5.52 0L8.11 5.69L9 2.24l-2-.48l-1.11 4.55l3.2 3.19l-2.69-.45L2.6 6.2L1.4 7.8L5.6 11l1.86.31l-3 .85l-3.17 3.13l1.42 1.42l2.79-2.82l2.37-.67L4 16.54V22h2v-4.54l1.56-1.34a4.5 4.5 0 0 0 8.88 0L18 17.46V22h2v-5.46l-3.87-3.32l2.37.67Z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "spider"
+   }
+  },
+  {
+   "beat_id": "s5t",
+   "mode": "TYPE",
+   "focal": "And this cave is not alone.",
+   "start_frame": 837,
+   "duration_frames": 51,
+   "sentence": "And this cave is not alone.",
+   "words": [
+    {
+     "word": "And",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "this",
+     "at": 0.13513513513513514,
+     "frame": 7
+    },
+    {
+     "word": "cave",
+     "at": 0.2972972972972973,
+     "frame": 15
+    },
+    {
+     "word": "is",
+     "at": 0.4594594594594595,
+     "frame": 23
+    },
+    {
+     "word": "not",
+     "at": 0.5675675675675675,
+     "frame": 29
+    },
+    {
+     "word": "alone.",
+     "at": 0.7027027027027027,
+     "frame": 36
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s5v",
+   "mode": "VISUAL",
+   "focal": "cave entrance",
+   "start_frame": 888,
+   "duration_frames": 28,
+   "sentence": "And this cave is not alone.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M346.951 24.582L299.193 72.34l-101.136-7.024l-40.97 80.737l68.688 25.35l37.153-19.936l8.511 15.861l-44.293 23.768l-79.7-29.416l-70.19 55.341l35.117 58.995l-.375.2l13.014 21.585l29.134 2.361l55.06-35.123l9.679 15.176l-60.16 38.377l-44.364-3.596l-18.23-30.234l-56.8 30.586l33.712 61.804l-33.713 40.735L18 444.177V494h170.62l-5.6-45.592a261 261 0 0 1-5.147-4.512c-4.186-3.761-5.89-5.444-8.027-7.484l-73.13 21.797l-21.339-20.484l12.467-12.985l13.777 13.225l73.068-21.78l3.784 3.667s4.24 4.09 9.216 8.636l37.797-37.248l8.133 79.54l6.3-93.444l10.364 28.387l6.281-45.112l3.14-3.091l-.29-.233l22.486-27.974l.465-.907l.188.096l11.453-14.248l14.03 11.277l-9.122 11.348l67.803 34.715l27.008-9.489l22.478 17.71l22.924-12.036l8.367 15.938l-33.262 17.46l-23.875-18.81l-24.964 8.772l-9.584-4.907l39.04 87.842L383.923 494H494v-28.512L462.713 478.2l-6.776-16.678L494 446.06V211.176l-23.438-26.463l-21.654-67.371l-33.547 32.666l-107.77-13.873l-28.019-29.096l12.967-12.486l23.629 24.539l92.867 11.953l31.442-30.615l-52.79-61.801zm27.53 177.74l34.177 41.428l28.863-6.56l-4.136-13.59l17.22-5.243l9.77 32.098l-58.543 13.307l-31.377-38.033l-33.086 19.853l-9.262-15.436z\"/>",
+    "width": 512,
+    "height": 512,
+    "set": "game-icons",
+    "name": "cave-entrance"
+   },
+   "attribution": {
+    "name": "GameIcons",
+    "url": "https://github.com/game-icons/icons",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://github.com/game-icons/icons/blob/master/license.txt"
+   }
+  },
+  {
+   "beat_id": "s6t",
+   "mode": "TYPE",
+   "focal": "In the deepest caves on Earth, two kilometers down, a springtail called Plutomurus holds the record for the deepest animal ever found: 1,980 meters below the surface, in a world with no light at all.",
+   "start_frame": 916,
+   "duration_frames": 254,
+   "sentence": "In the deepest caves on Earth, two kilometers down, a springtail called Plutomurus holds the record for the deepest animal ever found: 1,980 meters below the surface, in a world with no light at all.",
+   "words": [
+    {
+     "word": "In",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "the",
+     "at": 0.01606425702811245,
+     "frame": 4
+    },
+    {
+     "word": "deepest",
+     "at": 0.03614457831325301,
+     "frame": 9
+    },
+    {
+     "word": "caves",
+     "at": 0.07228915662650602,
+     "frame": 18
+    },
+    {
+     "word": "on",
+     "at": 0.10040160642570281,
+     "frame": 26
+    },
+    {
+     "word": "Earth,",
+     "at": 0.11646586345381527,
+     "frame": 30
+    },
+    {
+     "word": "two",
+     "at": 0.1606425702811245,
+     "frame": 41
+    },
+    {
+     "word": "kilometers",
+     "at": 0.18072289156626506,
+     "frame": 46
+    },
+    {
+     "word": "down,",
+     "at": 0.2289156626506024,
+     "frame": 58
+    },
+    {
+     "word": "a",
+     "at": 0.26907630522088355,
+     "frame": 68
+    },
+    {
+     "word": "springtail",
+     "at": 0.28112449799196787,
+     "frame": 71
+    },
+    {
+     "word": "called",
+     "at": 0.3293172690763052,
+     "frame": 84
+    },
+    {
+     "word": "Plutomurus",
+     "at": 0.3614457831325301,
+     "frame": 92
+    },
+    {
+     "word": "holds",
+     "at": 0.40963855421686746,
+     "frame": 104
+    },
+    {
+     "word": "the",
+     "at": 0.43775100401606426,
+     "frame": 111
+    },
+    {
+     "word": "record",
+     "at": 0.4578313253012048,
+     "frame": 116
+    },
+    {
+     "word": "for",
+     "at": 0.4899598393574297,
+     "frame": 124
+    },
+    {
+     "word": "the",
+     "at": 0.5100401606425703,
+     "frame": 130
+    },
+    {
+     "word": "deepest",
+     "at": 0.5301204819277109,
+     "frame": 135
+    },
+    {
+     "word": "animal",
+     "at": 0.5662650602409639,
+     "frame": 144
+    },
+    {
+     "word": "ever",
+     "at": 0.5983935742971888,
+     "frame": 152
+    },
+    {
+     "word": "found:",
+     "at": 0.6224899598393574,
+     "frame": 158
+    },
+    {
+     "word": "1,980",
+     "at": 0.6666666666666666,
+     "frame": 169
+    },
+    {
+     "word": "meters",
+     "at": 0.6907630522088354,
+     "frame": 175
+    },
+    {
+     "word": "below",
+     "at": 0.7228915662650602,
+     "frame": 184
+    },
+    {
+     "word": "the",
+     "at": 0.751004016064257,
+     "frame": 191
+    },
+    {
+     "word": "surface,",
+     "at": 0.7710843373493976,
+     "frame": 196
+    },
+    {
+     "word": "in",
+     "at": 0.8232931726907631,
+     "frame": 209
+    },
+    {
+     "word": "a",
+     "at": 0.8393574297188755,
+     "frame": 213
+    },
+    {
+     "word": "world",
+     "at": 0.8514056224899599,
+     "frame": 216
+    },
+    {
+     "word": "with",
+     "at": 0.8795180722891566,
+     "frame": 223
+    },
+    {
+     "word": "no",
+     "at": 0.9036144578313253,
+     "frame": 230
+    },
+    {
+     "word": "light",
+     "at": 0.9196787148594378,
+     "frame": 234
+    },
+    {
+     "word": "at",
+     "at": 0.9477911646586346,
+     "frame": 241
+    },
+    {
+     "word": "all.",
+     "at": 0.963855421686747,
+     "frame": 245
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s6v",
+   "mode": "VISUAL",
+   "focal": "boom gate arrow down",
+   "start_frame": 1170,
+   "duration_frames": 143,
+   "sentence": "In the deepest caves on Earth, two kilometers down, a springtail called Plutomurus holds the record for the deepest animal ever found: 1,980 meters below the surface, in a world with no light at all.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19.86 3a1.995 1.995 0 0 0-2.74-.73L6.92 8.16C6.62 8.06 6.31 8 6 8a3 3 0 0 0-3 3v9a1 1 0 0 0-1 1v1h8v-1a1 1 0 0 0-1-1v-8.42l10.12-5.85c.96-.55 1.29-1.77.74-2.73M6 12.5A1.5 1.5 0 0 1 4.5 11A1.5 1.5 0 0 1 6 9.5A1.5 1.5 0 0 1 7.5 11A1.5 1.5 0 0 1 6 12.5m4.4-2.88l-2.3-1l1.3-.75l2.3 1zm3.46-2l-2.3-1l1.3-.75l2.3 1zm3.47-2l-2.3-1l1.3-.75l2.29 1zM17 20l-5-5h3v-4h4v4h3z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "boom-gate-arrow-down"
+   }
+  },
+  {
+   "beat_id": "s7t",
+   "mode": "TYPE",
+   "focal": "These creatures do not eat sunlight.",
+   "start_frame": 1313,
+   "duration_frames": 57,
+   "sentence": "These creatures do not eat sunlight.",
+   "words": [
+    {
+     "word": "These",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "creatures",
+     "at": 0.15217391304347827,
+     "frame": 9
+    },
+    {
+     "word": "do",
+     "at": 0.391304347826087,
+     "frame": 22
+    },
+    {
+     "word": "not",
+     "at": 0.4782608695652174,
+     "frame": 27
+    },
+    {
+     "word": "eat",
+     "at": 0.5869565217391305,
+     "frame": 33
+    },
+    {
+     "word": "sunlight.",
+     "at": 0.6956521739130435,
+     "frame": 40
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s7v",
+   "mode": "VISUAL",
+   "focal": "frankenstein creature",
+   "start_frame": 1370,
+   "duration_frames": 32,
+   "sentence": "These creatures do not eat sunlight.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M255.03 18.906c-27.872 0-53.334 14.366-72.31 38.625c-4.504 5.757-8.61 12.07-12.265 18.847l22.856 1.55l16.27-32.16l7.795 33.794l28.01 1.9l13.527-30.103l8.844 31.62l26.535 1.8l9.505-33.548l15.7 35.256l23.827 1.618c-4.853-11.426-10.913-21.81-17.924-30.836c-14.966-19.272-33.975-32.294-55.015-36.883a80.3 80.3 0 0 0-15.352-1.48zM162.19 94.56c-6.697 17.794-10.502 37.84-10.502 59.065c0 39.172 13.372 74.36 33.656 98.813l10.125 12.218l-.677.127c16.8 15.398 36.98 24.15 58.617 24.15c27.744 0 53.088-14.385 71.988-38.722c18.9-24.336 30.913-58.52 30.913-96.472c0-16.34-2.232-31.98-6.277-46.437l-30.926-2.097l-9.142 32.268l-15.1-33.91l-26.326-1.787l-16.09 35.803l-10.518-37.607l-25.883-1.757l-16.892 33.387l-8.092-35.082l-28.875-1.96zm-68.565 92.627v71.032h18.688v-25.345h38.542a171 171 0 0 1-7.76-18.688h-30.782v-27H93.624zm295.406 0v27h-21.497a169 169 0 0 1-7.467 18.688h28.965v25.344h18.69v-71.033h-18.69zm-52.723 79.225c-21.44 25.248-50.626 41.21-82.897 41.21c-31.14 0-59.41-14.863-80.617-38.59c-14.19 3.05-26.44 6.908-37.08 11.61l23.767 27.612l33.268-4.828l-19.107 21.28l19.995 23.23l32.318-11.088l-17.305 28.53l20.16 23.42l34.008-15.92l-16.81 35.903l20.678 24.027l36.53-17.104l-18.056 38.567l30.028 34.886h38.158v-68.312h18.687v68.312h78.94c-.015-65.304-.462-117.143-14.158-153.094c-14.12-37.066-40.573-59.58-100.505-69.65zm-217.48 23.244c-18.722 12.042-31.002 28.007-39.67 48.406c-15.068 35.456-17.94 86.204-18.188 151.094h79.093v-68.312h18.687v68.312h131.79l-21.476-24.95l-26.986 12.636l13.34-28.49l-24.232-28.153l-29.508 13.814l14.586-31.153l-20.97-24.362l-36.68 12.584l19.642-32.38l-17.918-20.817l-43.81 6.357l25.16-28.023l-22.862-26.564z\"/>",
+    "width": 512,
+    "height": 512,
+    "set": "game-icons",
+    "name": "frankenstein-creature"
+   },
+   "attribution": {
+    "name": "GameIcons",
+    "url": "https://github.com/game-icons/icons",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://github.com/game-icons/icons/blob/master/license.txt"
+   }
+  },
+  {
+   "beat_id": "s8t",
+   "mode": "TYPE",
+   "focal": "They eat chemistry: bacteria turning minerals and sulfur into food, exactly like the vents of the deep ocean.",
+   "start_frame": 1402,
+   "duration_frames": 142,
+   "sentence": "They eat chemistry: bacteria turning minerals and sulfur into food, exactly like the vents of the deep ocean.",
+   "words": [
+    {
+     "word": "They",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "eat",
+     "at": 0.043795620437956206,
+     "frame": 6
+    },
+    {
+     "word": "chemistry:",
+     "at": 0.08029197080291971,
+     "frame": 11
+    },
+    {
+     "word": "bacteria",
+     "at": 0.1897810218978102,
+     "frame": 27
+    },
+    {
+     "word": "turning",
+     "at": 0.26277372262773724,
+     "frame": 37
+    },
+    {
+     "word": "minerals",
+     "at": 0.3284671532846715,
+     "frame": 47
+    },
+    {
+     "word": "and",
+     "at": 0.40145985401459855,
+     "frame": 57
+    },
+    {
+     "word": "sulfur",
+     "at": 0.43795620437956206,
+     "frame": 62
+    },
+    {
+     "word": "into",
+     "at": 0.49635036496350365,
+     "frame": 70
+    },
+    {
+     "word": "food,",
+     "at": 0.5401459854014599,
+     "frame": 77
+    },
+    {
+     "word": "exactly",
+     "at": 0.6131386861313869,
+     "frame": 87
+    },
+    {
+     "word": "like",
+     "at": 0.6788321167883211,
+     "frame": 96
+    },
+    {
+     "word": "the",
+     "at": 0.7226277372262774,
+     "frame": 103
+    },
+    {
+     "word": "vents",
+     "at": 0.7591240875912408,
+     "frame": 108
+    },
+    {
+     "word": "of",
+     "at": 0.8102189781021898,
+     "frame": 115
+    },
+    {
+     "word": "the",
+     "at": 0.8394160583941606,
+     "frame": 119
+    },
+    {
+     "word": "deep",
+     "at": 0.8759124087591241,
+     "frame": 124
+    },
+    {
+     "word": "ocean.",
+     "at": 0.9197080291970803,
+     "frame": 131
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s8v",
+   "mode": "VISUAL",
+   "focal": "food hot dog",
+   "start_frame": 1544,
+   "duration_frames": 80,
+   "sentence": "They eat chemistry: bacteria turning minerals and sulfur into food, exactly like the vents of the deep ocean.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M21 5.77c-.15-.12-.28-.22-.41-.32l.03-.04c.78-.78.78-2.04 0-2.82s-2.04-.78-2.83 0l-.74.74a3.465 3.465 0 0 0-4.55.32L3.65 12.5a3.465 3.465 0 0 0-.32 4.55l-.74.74c-.79.79-.79 2.05 0 2.83c.78.78 2.04.78 2.82 0l.04-.03c.1.13.2.26.32.41c1.36 1.34 3.58 1.34 4.95 0l10.25-10.28A3.52 3.52 0 0 0 21 5.77M4.77 15.61a1.5 1.5 0 0 1 .29-1.71l8.84-8.84a1.5 1.5 0 0 1 1.71-.29zM19.56 9.3L9.3 19.56c-.58.59-1.53.59-2.12 0c-.58-.56-.58-1.56 0-2.12L17.44 7.18c.56-.58 1.56-.58 2.12 0c.59.59.59 1.54 0 2.12\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "food-hot-dog"
+   }
+  },
+  {
+   "beat_id": "s9t",
+   "mode": "TYPE",
+   "focal": "Entire ecosystems running on nothing but rock.",
+   "start_frame": 1624,
+   "duration_frames": 73,
+   "sentence": "Entire ecosystems running on nothing but rock.",
+   "words": [
+    {
+     "word": "Entire",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "ecosystems",
+     "at": 0.14035087719298245,
+     "frame": 10
+    },
+    {
+     "word": "running",
+     "at": 0.3508771929824561,
+     "frame": 26
+    },
+    {
+     "word": "on",
+     "at": 0.5087719298245614,
+     "frame": 37
+    },
+    {
+     "word": "nothing",
+     "at": 0.5789473684210527,
+     "frame": 42
+    },
+    {
+     "word": "but",
+     "at": 0.7368421052631579,
+     "frame": 54
+    },
+    {
+     "word": "rock.",
+     "at": 0.8245614035087719,
+     "frame": 60
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s9v",
+   "mode": "VISUAL",
+   "focal": "falling rocks",
+   "start_frame": 1697,
+   "duration_frames": 41,
+   "sentence": "Entire ecosystems running on nothing but rock.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"m156.115 34.48l-36.94.586l10.02 28.995l27.258-2.324zM18 37.727V494h297.682L304 448l-64-64l-48-160l-88.055-80L96 64zM219.076 98.58L160 112l16.38 30.342l17.65 5.394l-1.223 19.672L244.664 144zm34.656 60.99l-19.56 21.05l27.508 12.61l12.855-20.804zm50.907 90.002l-34.38 25.012l-11.766 58.662l100.53 22.97l-4.163-98.218zm107.475 62.373l-20.886 3.465l-15.988 20.033l4.873 21.23l40.848-15.55zm-43.62 95.996l-44.32 5.87l6.858 29.422l36.875-1.396zm37.573 59.982l-32.103 5.375L340.113 494h79.508z\"/>",
+    "width": 512,
+    "height": 512,
+    "set": "game-icons",
+    "name": "falling-rocks"
+   },
+   "attribution": {
+    "name": "GameIcons",
+    "url": "https://github.com/game-icons/icons",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://github.com/game-icons/icons/blob/master/license.txt"
+   }
+  },
+  {
+   "beat_id": "s10t",
+   "mode": "TYPE",
+   "focal": "So next time you stand in the sun, remember: two kilometers below your feet, life is thriving in a world that has never seen it.",
+   "start_frame": 1738,
+   "duration_frames": 153,
+   "sentence": "So next time you stand in the sun, remember: two kilometers below your feet, life is thriving in a world that has never seen it.",
+   "words": [
+    {
+     "word": "So",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "next",
+     "at": 0.024096385542168676,
+     "frame": 4
+    },
+    {
+     "word": "time",
+     "at": 0.060240963855421686,
+     "frame": 9
+    },
+    {
+     "word": "you",
+     "at": 0.0963855421686747,
+     "frame": 15
+    },
+    {
+     "word": "stand",
+     "at": 0.12650602409638553,
+     "frame": 19
+    },
+    {
+     "word": "in",
+     "at": 0.1686746987951807,
+     "frame": 26
+    },
+    {
+     "word": "the",
+     "at": 0.1927710843373494,
+     "frame": 29
+    },
+    {
+     "word": "sun,",
+     "at": 0.22289156626506024,
+     "frame": 34
+    },
+    {
+     "word": "remember:",
+     "at": 0.27710843373493976,
+     "frame": 42
+    },
+    {
+     "word": "two",
+     "at": 0.3614457831325301,
+     "frame": 55
+    },
+    {
+     "word": "kilometers",
+     "at": 0.39156626506024095,
+     "frame": 60
+    },
+    {
+     "word": "below",
+     "at": 0.463855421686747,
+     "frame": 71
+    },
+    {
+     "word": "your",
+     "at": 0.5060240963855421,
+     "frame": 77
+    },
+    {
+     "word": "feet,",
+     "at": 0.5421686746987951,
+     "frame": 83
+    },
+    {
+     "word": "life",
+     "at": 0.6024096385542169,
+     "frame": 92
+    },
+    {
+     "word": "is",
+     "at": 0.6385542168674698,
+     "frame": 98
+    },
+    {
+     "word": "thriving",
+     "at": 0.6626506024096386,
+     "frame": 101
+    },
+    {
+     "word": "in",
+     "at": 0.7228915662650602,
+     "frame": 111
+    },
+    {
+     "word": "a",
+     "at": 0.7469879518072289,
+     "frame": 114
+    },
+    {
+     "word": "world",
+     "at": 0.7650602409638554,
+     "frame": 117
+    },
+    {
+     "word": "that",
+     "at": 0.8072289156626506,
+     "frame": 124
+    },
+    {
+     "word": "has",
+     "at": 0.8433734939759037,
+     "frame": 129
+    },
+    {
+     "word": "never",
+     "at": 0.8734939759036144,
+     "frame": 134
+    },
+    {
+     "word": "seen",
+     "at": 0.9156626506024096,
+     "frame": 140
+    },
+    {
+     "word": "it.",
+     "at": 0.9518072289156626,
+     "frame": 146
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s10v",
+   "mode": "VISUAL",
+   "focal": "sun clock",
+   "start_frame": 1891,
+   "duration_frames": 86,
+   "sentence": "So next time you stand in the sun, remember: two kilometers below your feet, life is thriving in a world that has never seen it.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18.1 9.3L19.6 6l-4.1-.4c.6.5 1.1 1.1 1.5 1.9c.3.6.5 1.1.7 1.7c-.5-.1-1.1-.2-1.7-.2h-.4c-.8-1.8-2.5-3-4.6-3c-2.8 0-5 2.2-5 5c0 2.1 1.2 3.8 3 4.6v.4c0 3.9 3.1 7 7 7s7-3.1 7-7c0-3.1-2.1-5.8-4.9-6.7M16 21c-2.8 0-5-2.2-5-5s2.2-5 5-5s5 2.2 5 5s-2.2 5-5 5m.5-4.8l2.9 1.7l-.8 1.2L15 17v-5h1.5zM11 4c-.8 0-1.6.2-2.4.4L11 1l2.4 3.4c-.8-.2-1.6-.4-2.4-.4M4.9 14.5c.4.7 1 1.4 1.6 1.9L2.4 16l1.8-3.8c.1.8.3 1.6.7 2.3m-.8-4.7L2.3 6l4.2-.3c-.6.5-1.1 1.1-1.6 1.8c-.4.7-.7 1.5-.8 2.3\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "sun-clock"
+   }
+  },
+  {
+   "beat_id": "s11t",
+   "mode": "TYPE",
+   "focal": "Follow Depth Unknown for more from the dark.",
+   "start_frame": 1977,
+   "duration_frames": 67,
+   "sentence": "Follow Depth Unknown for more from the dark.",
+   "words": [
+    {
+     "word": "Follow",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "Depth",
+     "at": 0.14285714285714285,
+     "frame": 10
+    },
+    {
+     "word": "Unknown",
+     "at": 0.26785714285714285,
+     "frame": 18
+    },
+    {
+     "word": "for",
+     "at": 0.42857142857142855,
+     "frame": 29
+    },
+    {
+     "word": "more",
+     "at": 0.5178571428571429,
+     "frame": 35
+    },
+    {
+     "word": "from",
+     "at": 0.625,
+     "frame": 42
+    },
+    {
+     "word": "the",
+     "at": 0.7321428571428571,
+     "frame": 49
+    },
+    {
+     "word": "dark.",
+     "at": 0.8214285714285714,
+     "frame": 55
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s11v",
+   "mode": "VISUAL",
+   "focal": "microsoft xbox controller battery unknown",
+   "start_frame": 2044,
+   "duration_frames": 38,
+   "sentence": "Follow Depth Unknown for more from the dark.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M21.67 5C22.4 5 23 5.6 23 6.33v13.34A1.33 1.33 0 0 1 21.67 21h-7.34c-.73 0-1.33-.6-1.33-1.33v-2.92H7.75C5.75 16.75 5 19 3 20c-2 0-3.5-3 .5-11.5h.25l.44-.83S7 6 8.33 7.23H13v-.9A1.33 1.33 0 0 1 14.33 5H16V3h4v2zM11 8a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1m7.19 0c-.87 0-1.57.2-2.11.59c-.52.41-.78.98-.77 1.77l.01.03h1.93c.01-.3.1-.53.28-.69a1 1 0 0 1 .66-.23c.31 0 .57.1.75.28c.18.19.26.45.26.75c0 .32-.07.59-.23.82c-.14.23-.35.43-.61.59c-.51.34-.86.64-1.05.91c-.2.26-.31.68-.31 1.18h2c0-.31.04-.56.13-.74s.26-.36.51-.52c.45-.24.82-.53 1.11-.93s.44-.81.44-1.31c0-.76-.27-1.37-.81-1.82c-.53-.45-1.26-.68-2.19-.68M17 15v2h2v-2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "microsoft-xbox-controller-battery-unknown"
+   }
+  }
+ ],
+ "palette": {
+  "primary": [
+   "#1A1A2E",
+   "#16213E",
+   "#F5536B",
+   "#0F0F1A"
+  ],
+  "secondary": [
+   "#C81E3C",
+   "#8892B0",
+   "#E6E8EC"
+  ]
+ },
+ "fonts": {
+  "primary": "DM Sans",
+  "secondary": "Noto Serif"
+ },
+ "picks": [
+  {
+   "sentence": "In 1986, workers near the Black Sea broke into a cave that had been sealed for five and a half million years.",
+   "asset": "calendar half year",
+   "score": 13.5,
+   "subject": "years"
+  },
+  {
+   "sentence": "Inside: toxic air, total darkness, and thirty-five species found nowhere else on Earth.",
+   "asset": "air humidifier off",
+   "score": 13.5,
+   "subject": "air"
+  },
+  {
+   "sentence": "Oxygen at just seven percent.",
+   "asset": "cart percent",
+   "score": 13.5,
+   "subject": "percent"
+  },
+  {
+   "sentence": "Air thick with hydrogen sulfide.",
+   "asset": "air humidifier off",
+   "score": 13.5,
+   "subject": "air"
+  },
+  {
+   "sentence": "And yet life is everywhere: blind spiders, eyeless leeches, ghost-pale centipedes, none of them needing sunlight to survive.",
+   "asset": "spider",
+   "score": 9,
+   "subject": "spiders"
+  },
+  {
+   "sentence": "And this cave is not alone.",
+   "asset": "cave entrance",
+   "score": 9,
+   "subject": "cave"
+  },
+  {
+   "sentence": "In the deepest caves on Earth, two kilometers down, a springtail called Plutomurus holds the record for the deepest animal ever found: 1,980 meters below the surface, in a world with no light at all.",
+   "asset": "boom gate arrow down",
+   "score": 22,
+   "subject": "caves"
+  },
+  {
+   "sentence": "These creatures do not eat sunlight.",
+   "asset": "frankenstein creature",
+   "score": 9,
+   "subject": "creatures"
+  },
+  {
+   "sentence": "They eat chemistry: bacteria turning minerals and sulfur into food, exactly like the vents of the deep ocean.",
+   "asset": "food hot dog",
+   "score": 18.5,
+   "subject": "food"
+  },
+  {
+   "sentence": "Entire ecosystems running on nothing but rock.",
+   "asset": "falling rocks",
+   "score": 10.5,
+   "subject": "rock"
+  },
+  {
+   "sentence": "So next time you stand in the sun, remember: two kilometers below your feet, life is thriving in a world that has never seen it.",
+   "asset": "sun clock",
+   "score": 15,
+   "subject": "sun"
+  },
+  {
+   "sentence": "Follow Depth Unknown for more from the dark.",
+   "asset": "microsoft xbox controller battery unknown",
+   "score": 16.5,
+   "subject": "unknown"
+  }
+ ]
+}

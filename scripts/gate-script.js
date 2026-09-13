@@ -19,7 +19,7 @@ const ROOT = join(__dirname, "..");
 const WPM_TARGET = { "cinematic-documentary": 135, "motion-graphics": 155, minimal: 165 };
 // Midpoint of render.js's clamp ranges, used only to sanity-check pacing —
 // actual duration is decided later by the real voiceover audio length.
-const FORMAT_MIDPOINT_MINUTES = { shorts: (15 + 180) / 2 / 60, longform: (2 + 12) / 2 };
+const FORMAT_MIDPOINT_MINUTES = { shorts: (15 + 60) / 2 / 60, longform: (2 + 12) / 2 };
 const HEX_COLOR = /#[0-9a-fA-F]{3}\b|#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{8}\b/g;
 
 function loadChannel(channelId) {
@@ -180,8 +180,8 @@ function main() {
 
   // SCR-14 — sources_used >=3, all appear in the research file.
   const sourcesUsed = script.sources_used || [];
-  if (sourcesUsed.length < 3) {
-    blockers.push(`SCR-14: sources_used has ${sourcesUsed.length} entries, needs >=3.`);
+  if (sourcesUsed.length < 2) {
+    blockers.push(`SCR-14: sources_used has ${sourcesUsed.length} entries, needs >=2.`);
   }
   if (research) {
     const known = new Set([

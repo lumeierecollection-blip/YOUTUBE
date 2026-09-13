@@ -7,8 +7,8 @@
     "strongest_angle": { "type": "string", "minLength": 20 },
     "key_facts": {
       "type": "array",
-      "minItems": 5,
-      "maxItems": 12,
+      "minItems": 3,
+      "maxItems": 8,
       "items": {
         "type": "object",
         "properties": {

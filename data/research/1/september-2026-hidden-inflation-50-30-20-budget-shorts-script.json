@@ -1,0 +1,210 @@
+{
+  "channel_id": "1",
+  "topic_slug": "september-2026-hidden-inflation-50-30-20-budget",
+  "format": "shorts",
+  "hook": "Think inflation is cooling off? That 3.4 percent official headline rate is a lie when you actually look at your everyday bills.",
+  "sections": [
+    {
+      "id": "sec_1",
+      "voiceover": "The official story is that annual inflation slowed to 3.4 percent, while core inflation is down to 2.5 percent. But those CPI numbers strip out the real pain. The price of gasoline actually surged by 24.6 percent, driving massive fuel costs.",
+      "beats": [
+        {
+          "text": "The official annual inflation rate of 3.4 percent is dwarfed by surging fuel costs.",
+          "archetype": "PROGRESS",
+          "anchor_token": "annual inflation",
+          "data": {
+            "unit": "percent",
+            "series": [
+              {
+                "label": "Core inflation rate",
+                "value": 2.5,
+                "highlight": false
+              },
+              {
+                "label": "Headline inflation rate",
+                "value": 3.4,
+                "highlight": false
+              },
+              {
+                "label": "Gasoline price increase",
+                "value": 24.6,
+                "highlight": true
+              }
+            ]
+          },
+          "visual": {
+            "strategy": "COMPARISON",
+            "concept": "official rates contrasted with soaring fuel costs",
+            "primary": "three comparative bar charts"
+          }
+        },
+        {
+          "text": "Headline Consumer Price Index numbers hide the true impact of daily expenses.",
+          "archetype": "TERM_DEFINE",
+          "anchor_token": "CPI",
+          "visual": {
+            "strategy": "DOCUMENT_EVIDENCE",
+            "concept": "definition of consumer price index",
+            "primary": "official BLS CPI document"
+          }
+        }
+      ],
+      "b_roll": [
+        "Gas station pump showing rising price digits",
+        "Close up of hands refueling a car"
+      ],
+      "text_overlay": {
+        "text": "The Real Story Behind Inflation"
+      }
+    },
+    {
+      "id": "sec_2",
+      "voiceover": "And it gets worse at the grocery store. Cumulative grocery prices are 32 percent higher than they were in 2020. This forces average households to spend an extra 1200 to 1400 dollars more every single year.",
+      "beats": [
+        {
+          "text": "Cumulative grocery prices have surged by 32 percent compared to the baseline year.",
+          "archetype": "HERO_NUMBER",
+          "anchor_token": "32 percent",
+          "data": {
+            "unit": "percent",
+            "series": [
+              {
+                "label": "Cumulative grocery price increase since 2020",
+                "value": 32,
+                "highlight": true
+              }
+            ]
+          },
+          "visual": {
+            "strategy": "SCALE_COMPARISON",
+            "concept": "grocery prices rising much faster than other categories",
+            "primary": "giant grocery cart icon next to a standard basket"
+          }
+        },
+        {
+          "text": "Families must find up to 1400 dollars more per year just to buy the same food.",
+          "archetype": "PROGRESS",
+          "anchor_token": "1200",
+          "data": {
+            "unit": "dollars",
+            "series": [
+              {
+                "label": "Lower bound of additional grocery cost",
+                "value": 1200,
+                "highlight": false
+              },
+              {
+                "label": "Upper bound of additional grocery cost",
+                "value": 1400,
+                "highlight": true
+              }
+            ]
+          },
+          "visual": {
+            "strategy": "ACCUMULATION",
+            "concept": "annual grocery spending stacking up",
+            "primary": "stack of dollar bills"
+          }
+        }
+      ],
+      "b_roll": [
+        "Person scanning grocery receipts with a calculator",
+        "Overhead view of a conveyor belt filled with groceries"
+      ],
+      "text_overlay": {
+        "text": "Grocery Costs Skyrocket"
+      }
+    },
+    {
+      "id": "sec_3",
+      "voiceover": "This means the classic fifty-thirty-twenty budgeting rule is completely broken. Instead of spending just half on needs, average household spending on basic necessities has skyrocketed. It now swallows 62 percent of average income, leaving almost nothing for savings.",
+      "beats": [
+        {
+          "text": "Necessities now swallow 62 percent of the average pre-tax household budget.",
+          "archetype": "HERO_NUMBER",
+          "anchor_token": "62 percent",
+          "data": {
+            "unit": "percent",
+            "series": [
+              {
+                "label": "Average household spending share on necessities",
+                "value": 62,
+                "highlight": true
+              }
+            ]
+          },
+          "visual": {
+            "strategy": "DATA_CHART",
+            "concept": "necessities taking up more than half of income",
+            "primary": "income bar with a dominant necessities section"
+          }
+        },
+        {
+          "text": "Traditional budgeting percentages fail to represent current economic reality.",
+          "archetype": "STATEMENT",
+          "anchor_token": "broken",
+          "visual": {
+            "strategy": "VISUAL_METAPHOR",
+            "concept": "outdated budgeting rules snapping",
+            "primary": "cracked budgeting rule shield icon"
+          }
+        }
+      ],
+      "b_roll": [
+        "Close up of an empty wallet",
+        "Stressed individual looking at bills on a kitchen counter"
+      ],
+      "text_overlay": {
+        "text": "Budgeting Rule Is Broken"
+      }
+    },
+    {
+      "id": "sec_4",
+      "voiceover": "You must recalculate your actual needs bucket using these real fuel and grocery rates instead of generic advice. Stop relying on outdated formulas from 2020. Adjust your spending limits today, and subscribe to Money Mind for real, proven financial strategies that actually work.",
+      "beats": [
+        {
+          "text": "Take control by recalculating your budget and adjusting your spending limits.",
+          "archetype": "LIST_ITEM",
+          "anchor_token": "spending limits",
+          "visual": {
+            "strategy": "ENUMERATION",
+            "concept": "list of budget adjustments",
+            "primary": "numbered list of checklist items"
+          }
+        },
+        {
+          "text": "Stop using outdated baseline metrics from years ago to plan your current finances.",
+          "archetype": "HERO_NUMBER",
+          "anchor_token": "2020",
+          "data": {
+            "unit": "year",
+            "series": [
+              {
+                "label": "Baseline year for grocery price comparison",
+                "value": 2020,
+                "highlight": true
+              }
+            ]
+          },
+          "visual": {
+            "strategy": "TIMELINE",
+            "concept": "timeline back to the baseline year 2020",
+            "primary": "horizontal axis marked at year 2020"
+          }
+        }
+      ],
+      "b_roll": [
+        "A hand clicking the subscribe button on a mobile phone screen",
+        "Happy person successfully organizing papers in a binder"
+      ],
+      "text_overlay": {
+        "text": "Recalculate Your Budget"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bls.gov/opub/ted/2026/consumer-prices-up-3-4-over-the-year-in-july-2026.htm",
+    "https://loanpal.io/blog/hidden-inflation-2026-headline-vs-real-household-costs-september-2026",
+    "https://primerate.com/50-30-20-budget-rule/"
+  ]
+}

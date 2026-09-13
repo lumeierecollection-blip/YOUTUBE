@@ -1,0 +1,3937 @@
+{
+ "beats": [
+  {
+   "beat_id": "s0t",
+   "mode": "TYPE",
+   "focal": "In 1666, a single spark in a bakery destroyed 13,000 homes, 87 churches, and most of London.",
+   "start_frame": 3,
+   "duration_frames": 178,
+   "sentence": "In 1666, a single spark in a bakery destroyed 13,000 homes, 87 churches, and most of London.",
+   "words": [
+    {
+     "word": "In",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "1666,",
+     "at": 0.03305785123966942,
+     "frame": 6
+    },
+    {
+     "word": "a",
+     "at": 0.11570247933884298,
+     "frame": 21
+    },
+    {
+     "word": "single",
+     "at": 0.14049586776859505,
+     "frame": 25
+    },
+    {
+     "word": "spark",
+     "at": 0.2066115702479339,
+     "frame": 37
+    },
+    {
+     "word": "in",
+     "at": 0.2644628099173554,
+     "frame": 47
+    },
+    {
+     "word": "a",
+     "at": 0.2975206611570248,
+     "frame": 53
+    },
+    {
+     "word": "bakery",
+     "at": 0.32231404958677684,
+     "frame": 57
+    },
+    {
+     "word": "destroyed",
+     "at": 0.3884297520661157,
+     "frame": 69
+    },
+    {
+     "word": "13,000",
+     "at": 0.4793388429752066,
+     "frame": 85
+    },
+    {
+     "word": "homes,",
+     "at": 0.5371900826446281,
+     "frame": 96
+    },
+    {
+     "word": "87",
+     "at": 0.628099173553719,
+     "frame": 112
+    },
+    {
+     "word": "churches,",
+     "at": 0.6611570247933884,
+     "frame": 118
+    },
+    {
+     "word": "and",
+     "at": 0.7768595041322314,
+     "frame": 138
+    },
+    {
+     "word": "most",
+     "at": 0.8181818181818182,
+     "frame": 146
+    },
+    {
+     "word": "of",
+     "at": 0.8677685950413223,
+     "frame": 154
+    },
+    {
+     "word": "London.",
+     "at": 0.9008264462809917,
+     "frame": 160
+    }
+   ],
+   "transitionIn": "CUT",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s0v",
+   "mode": "VISUAL",
+   "focal": "home analytics",
+   "start_frame": 181,
+   "duration_frames": 100,
+   "sentence": "In 1666, a single spark in a bakery destroyed 13,000 homes, 87 churches, and most of London.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M12 3L2 12h3v8h14v-8h3M9 18H7v-6h2m4 6h-2v-8h2m4 8h-2v-4h2\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "home-analytics"
+   }
+  },
+  {
+   "beat_id": "s1t",
+   "mode": "TYPE",
+   "focal": "But the real story isn't about fire.",
+   "start_frame": 281,
+   "duration_frames": 60,
+   "sentence": "But the real story isn't about fire.",
+   "words": [
+    {
+     "word": "But",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "the",
+     "at": 0.10869565217391304,
+     "frame": 7
+    },
+    {
+     "word": "real",
+     "at": 0.21739130434782608,
+     "frame": 13
+    },
+    {
+     "word": "story",
+     "at": 0.34782608695652173,
+     "frame": 21
+    },
+    {
+     "word": "isn't",
+     "at": 0.5,
+     "frame": 30
+    },
+    {
+     "word": "about",
+     "at": 0.6304347826086957,
+     "frame": 38
+    },
+    {
+     "word": "fire.",
+     "at": 0.782608695652174,
+     "frame": 47
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s1v",
+   "mode": "VISUAL",
+   "focal": "candelabra fire",
+   "start_frame": 341,
+   "duration_frames": 34,
+   "sentence": "But the real story isn't about fire.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 7c.83 0 1.5-.67 1.5-1.5S18.83 3 18 3s-1.5 1.67-1.5 2.5S17.17 7 18 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M12 6c.83 0 1.5-.67 1.5-1.5S12.83 2 12 2s-1.5 1.67-1.5 2.5S11.17 6 12 6m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M6 7c.83 0 1.5-.67 1.5-1.5S6.83 3 6 3S4.5 4.67 4.5 5.5S5.17 7 6 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M20.5 11c0 .55-.45 1-1 1H19v2c0 1.11-.89 2-2 2h-4v4h1a2 2 0 0 1 2 2H8c0-1.1.9-2 2-2h1v-4H7a2 2 0 0 1-2-2v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1s-.45 1-1 1H7v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V8c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v2c.55 0 1 .45 1 1s-.45 1-1 1H13v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "candelabra-fire"
+   }
+  },
+  {
+   "beat_id": "s2t",
+   "mode": "TYPE",
+   "focal": "It's about human failure.",
+   "start_frame": 375,
+   "duration_frames": 49,
+   "sentence": "It's about human failure.",
+   "words": [
+    {
+     "word": "It's",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "about",
+     "at": 0.15625,
+     "frame": 8
+    },
+    {
+     "word": "human",
+     "at": 0.375,
+     "frame": 18
+    },
+    {
+     "word": "failure.",
+     "at": 0.59375,
+     "frame": 29
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s2v",
+   "mode": "VISUAL",
+   "focal": "human dolly",
+   "start_frame": 424,
+   "duration_frames": 28,
+   "sentence": "It's about human failure.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M16.78 21.84a1.998 1.998 0 1 1-1.56-3.68a1.998 1.998 0 1 1 1.56 3.68M7.62 6c1.11 0 2-.89 2-2a2 2 0 0 0-2-2c-1.12 0-2 .9-2 2c0 1.11.88 2 2 2m14.43 10.34L18.2 18c.22.22.42.5.56.82c.14.33.2.68.24 1l3.83-1.64zM10.16 8.78l.74 1.81c-.24-.09-.46-.21-.64-.33c-.6-.39-1.04-.88-1.33-1.46l-.74-1.57c-.19-.35-.42-.61-.74-.79c-.29-.17-.6-.26-.92-.26s-.62.08-.91.22c-1.4 1.1-1.75 3.14-1.75 3.14l-.34 1.57c-.09.52-.14 1.04-.14 1.57v4.96L1 20.87L2.5 22l2.77-3.75l.17-3.25l1.68 2.34V22h1.85v-6.06l-1.85-2.61v-.65c0-.44 0-.87.11-1.29l.35-1.2c.38.55.84 1.03 1.39 1.44c.45.34 1.71.94 2.9 1.23L14 17.8c.22-.22.5-.42.83-.56c.32-.14.67-.2.99-.24L12 8zm5.2 3.34l1.96 4.6l5.63-2.41L21 9.72\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "human-dolly"
+   }
+  },
+  {
+   "beat_id": "s3t",
+   "mode": "TYPE",
+   "focal": "London in 1666 was a city waiting to burn.",
+   "start_frame": 452,
+   "duration_frames": 89,
+   "sentence": "London in 1666 was a city waiting to burn.",
+   "words": [
+    {
+     "word": "London",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "in",
+     "at": 0.14545454545454545,
+     "frame": 13
+    },
+    {
+     "word": "1666",
+     "at": 0.21818181818181817,
+     "frame": 19
+    },
+    {
+     "word": "was",
+     "at": 0.32727272727272727,
+     "frame": 29
+    },
+    {
+     "word": "a",
+     "at": 0.41818181818181815,
+     "frame": 37
+    },
+    {
+     "word": "city",
+     "at": 0.4727272727272727,
+     "frame": 42
+    },
+    {
+     "word": "waiting",
+     "at": 0.5818181818181818,
+     "frame": 52
+    },
+    {
+     "word": "to",
+     "at": 0.7454545454545455,
+     "frame": 66
+    },
+    {
+     "word": "burn.",
+     "at": 0.8181818181818182,
+     "frame": 73
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s3v",
+   "mode": "VISUAL",
+   "focal": "city",
+   "start_frame": 541,
+   "duration_frames": 50,
+   "sentence": "London in 1666 was a city waiting to burn.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19 15h-2v-2h2m0 6h-2v-2h2M13 7h-2V5h2m0 6h-2V9h2m0 6h-2v-2h2m0 6h-2v-2h2m-6-6H5V9h2m0 6H5v-2h2m0 6H5v-2h2m8-6V5l-3-3l-3 3v2H3v14h18V11z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "city"
+   }
+  },
+  {
+   "beat_id": "s4t",
+   "mode": "TYPE",
+   "focal": "Timber-framed buildings pressed shoulder to shoulder along medieval streets.",
+   "start_frame": 591,
+   "duration_frames": 93,
+   "sentence": "Timber-framed buildings pressed shoulder to shoulder along medieval streets.",
+   "words": [
+    {
+     "word": "Timber-framed",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "buildings",
+     "at": 0.1590909090909091,
+     "frame": 15
+    },
+    {
+     "word": "pressed",
+     "at": 0.2840909090909091,
+     "frame": 26
+    },
+    {
+     "word": "shoulder",
+     "at": 0.38636363636363635,
+     "frame": 36
+    },
+    {
+     "word": "to",
+     "at": 0.5,
+     "frame": 47
+    },
+    {
+     "word": "shoulder",
+     "at": 0.5454545454545454,
+     "frame": 51
+    },
+    {
+     "word": "along",
+     "at": 0.6590909090909091,
+     "frame": 61
+    },
+    {
+     "word": "medieval",
+     "at": 0.7386363636363636,
+     "frame": 69
+    },
+    {
+     "word": "streets.",
+     "at": 0.8522727272727273,
+     "frame": 79
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s4v",
+   "mode": "VISUAL",
+   "focal": "office building cog",
+   "start_frame": 684,
+   "duration_frames": 52,
+   "sentence": "Timber-framed buildings pressed shoulder to shoulder along medieval streets.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M16 13a.26.26 0 0 0-.26.21l-.19 1.32c-.3.13-.59.29-.85.47l-1.24-.5c-.11 0-.24 0-.31.13l-1 1.73c-.06.11-.04.24.06.32l1.06.82a4.2 4.2 0 0 0 0 1l-1.06.82a.26.26 0 0 0-.06.32l1 1.73c.06.13.19.13.31.13l1.24-.5c.26.18.54.35.85.47l.19 1.32c.02.12.12.21.26.21h2c.11 0 .22-.09.24-.21l.19-1.32c.3-.13.57-.29.84-.47l1.23.5c.13 0 .26 0 .33-.13l1-1.73a.26.26 0 0 0-.06-.32l-1.07-.82c.02-.17.04-.33.04-.5s-.01-.33-.04-.5l1.06-.82a.26.26 0 0 0 .06-.32l-1-1.73c-.06-.13-.19-.13-.32-.13l-1.23.5c-.27-.18-.54-.35-.85-.47l-.19-1.32A.236.236 0 0 0 18 13zm1 3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5c-.84 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5m-1-5.42V3H2v18h6v-3.5h2.03c.23-3.3 2.74-5.96 5.97-6.42M6 19H4v-2h2zm0-4H4v-2h2zm0-4H4V9h2zm0-4H4V5h2zm6-2h2v2h-2zm0 4h2v2h-2zm-2 6H8v-2h2zm0-4H8V9h2zM8 7V5h2v2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "office-building-cog"
+   }
+  },
+  {
+   "beat_id": "s5t",
+   "mode": "TYPE",
+   "focal": "The summer had been scorching and bone-dry.",
+   "start_frame": 736,
+   "duration_frames": 64,
+   "sentence": "The summer had been scorching and bone-dry.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "summer",
+     "at": 0.09433962264150944,
+     "frame": 6
+    },
+    {
+     "word": "had",
+     "at": 0.24528301886792453,
+     "frame": 16
+    },
+    {
+     "word": "been",
+     "at": 0.33962264150943394,
+     "frame": 22
+    },
+    {
+     "word": "scorching",
+     "at": 0.4528301886792453,
+     "frame": 29
+    },
+    {
+     "word": "and",
+     "at": 0.660377358490566,
+     "frame": 42
+    },
+    {
+     "word": "bone-dry.",
+     "at": 0.7547169811320755,
+     "frame": 48
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s5v",
+   "mode": "VISUAL",
+   "focal": "bone",
+   "start_frame": 800,
+   "duration_frames": 36,
+   "sentence": "The summer had been scorching and bone-dry.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M8 14a3 3 0 0 1-3 3a3 3 0 0 1-3-3c0-.77.29-1.47.76-2c-.47-.53-.76-1.23-.76-2a3 3 0 0 1 3-3a3 3 0 0 1 3 3c1.33.08 2.67.17 4 .17s2.67-.09 4-.17a3 3 0 0 1 3-3a3 3 0 0 1 3 3c0 .77-.29 1.47-.76 2c.47.53.76 1.23.76 2a3 3 0 0 1-3 3a3 3 0 0 1-3-3c-1.33-.08-2.67-.17-4-.17s-2.67.09-4 .17\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "bone"
+   }
+  },
+  {
+   "beat_id": "s6t",
+   "mode": "TYPE",
+   "focal": "The wood was seasoned to perfection for burning.",
+   "start_frame": 836,
+   "duration_frames": 61,
+   "sentence": "The wood was seasoned to perfection for burning.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "wood",
+     "at": 0.08333333333333333,
+     "frame": 5
+    },
+    {
+     "word": "was",
+     "at": 0.18333333333333332,
+     "frame": 11
+    },
+    {
+     "word": "seasoned",
+     "at": 0.26666666666666666,
+     "frame": 16
+    },
+    {
+     "word": "to",
+     "at": 0.43333333333333335,
+     "frame": 26
+    },
+    {
+     "word": "perfection",
+     "at": 0.5,
+     "frame": 31
+    },
+    {
+     "word": "for",
+     "at": 0.7,
+     "frame": 43
+    },
+    {
+     "word": "burning.",
+     "at": 0.7833333333333333,
+     "frame": 48
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s6v",
+   "mode": "VISUAL",
+   "focal": "burning blobs",
+   "start_frame": 897,
+   "duration_frames": 35,
+   "sentence": "The wood was seasoned to perfection for burning.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M30.936 23.332c-.97 100.412 10.37 192.13 100.757 231.064c109.81 47.303 46.883 118.85-58.246 83.002c76.11 65.222 145.665 141.652 200.928 159.985a54.6 54.6 0 0 0 22.12 4.674c11.404 0 22.023-3.508 30.835-9.495c31.55 8.544 59.065 11.345 82.4 9.23c19.94-.195 38.412-6.676 53.524-17.556c49.986-33.49 55.46-109.83 11.715-201.34c1.573-8.565 1.077-16.997-1.154-25.322c-1.973-9.506-6.227-18.195-12.152-25.476c-28.97-42.765-97.358-83.18-159.58-124.506c77.79 99.205 67.214 143.1 10.635 94.234c1.09-7.624-1.225-15.174-6.103-23.178c-1.8-3.4-4.032-6.54-6.625-9.343c-17.988-22.57-52.22-49.85-87.02-92.078c38.056 186.15-97.83 83.32-182.036-53.895zM267.79 173.836c14.032 0 25.208 11.176 25.208 25.21c0 14.032-11.175 25.208-25.21 25.208c-14.032 0-25.208-11.176-25.208-25.21c0-14.032 11.175-25.208 25.21-25.208m147.575 54.834a40.864 40.864 0 0 1 41.004 41.004a40.864 40.864 0 0 1-41.005 41.004a41.2 41.2 0 0 1-14.582-2.65c-.746-19.392-10.64-36.512-25.476-47.16a40.84 40.84 0 0 1 40.058-32.198zm-75.45 39.473a42.1 42.1 0 0 1 42.24 42.242c0 23.44-18.8 42.242-42.24 42.242s-42.243-18.802-42.243-42.242a42.1 42.1 0 0 1 42.242-42.242zm68.886 65.464c41.396 0 74.755 33.36 74.755 74.754c0 41.397-33.357 74.755-74.754 74.755c-23.397 0-44.22-10.662-57.91-27.404c.458-2.85.704-5.772.704-8.75c0-15.814-6.752-30.113-17.506-40.183c.268-12.963 3.804-25.092 9.828-35.61c23.163-1.518 42.872-16.092 51.803-36.403a75.5 75.5 0 0 1 13.08-1.157zm-145.53 10.59c12.626 0 22.662 10.038 22.662 22.664c0 12.628-10.035 22.663-22.662 22.663s-22.663-10.035-22.663-22.662c0-12.625 10.035-22.663 22.663-22.663zm33.226 66.35a36.275 36.275 0 0 1 36.414 36.414a36.27 36.27 0 0 1-36.414 36.413c-20.22 0-36.412-16.192-36.412-36.412s16.19-36.413 36.412-36.413z\"/>",
+    "width": 512,
+    "height": 512,
+    "set": "game-icons",
+    "name": "burning-blobs"
+   },
+   "attribution": {
+    "name": "GameIcons",
+    "url": "https://github.com/game-icons/icons",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://github.com/game-icons/icons/blob/master/license.txt"
+   }
+  },
+  {
+   "beat_id": "s7t",
+   "mode": "TYPE",
+   "focal": "Thomas Farriner's bakery on Pudding Lane was the epicenter.",
+   "start_frame": 932,
+   "duration_frames": 80,
+   "sentence": "Thomas Farriner's bakery on Pudding Lane was the epicenter.",
+   "words": [
+    {
+     "word": "Thomas",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "Farriner's",
+     "at": 0.11267605633802817,
+     "frame": 9
+    },
+    {
+     "word": "bakery",
+     "at": 0.2676056338028169,
+     "frame": 21
+    },
+    {
+     "word": "on",
+     "at": 0.38028169014084506,
+     "frame": 30
+    },
+    {
+     "word": "Pudding",
+     "at": 0.43661971830985913,
+     "frame": 35
+    },
+    {
+     "word": "Lane",
+     "at": 0.5633802816901409,
+     "frame": 45
+    },
+    {
+     "word": "was",
+     "at": 0.647887323943662,
+     "frame": 52
+    },
+    {
+     "word": "the",
+     "at": 0.7183098591549296,
+     "frame": 57
+    },
+    {
+     "word": "epicenter.",
+     "at": 0.7887323943661971,
+     "frame": 63
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s7v",
+   "mode": "VISUAL",
+   "focal": "car 2 plus",
+   "start_frame": 1012,
+   "duration_frames": 45,
+   "sentence": "Thomas Farriner's bakery on Pudding Lane was the epicenter.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M8 16c0-2.4 1.1-4.5 2.7-6H3l1.5-4.5h11l.8 2.5c.6 0 1.2.1 1.7.3L16.9 5c-.2-.6-.8-1-1.4-1h-11c-.7 0-1.2.4-1.4 1L1 11v8c0 .5.5 1 1 1h1c.5 0 1-.5 1-1v-1h4.3c-.2-.6-.3-1.3-.3-2m-3.5-1c-.8 0-1.5-.7-1.5-1.5S3.7 12 4.5 12s1.5.7 1.5 1.5S5.3 15 4.5 15M16 20v-2h-3v-1h1c1.1 0 2-.9 2-2v-1c0-1.1-.9-2-2-2h-3v2h3v1h-1c-1.1 0-2 .9-2 2v3m12-3h-2v2h-2v-2h-2v-2h2v-2h2v2h2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "car-2-plus"
+   }
+  },
+  {
+   "beat_id": "s8t",
+   "mode": "TYPE",
+   "focal": "His oven was allegedly left unattended on Saturday night.",
+   "start_frame": 1057,
+   "duration_frames": 83,
+   "sentence": "His oven was allegedly left unattended on Saturday night.",
+   "words": [
+    {
+     "word": "His",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "oven",
+     "at": 0.07142857142857142,
+     "frame": 6
+    },
+    {
+     "word": "was",
+     "at": 0.15714285714285714,
+     "frame": 13
+    },
+    {
+     "word": "allegedly",
+     "at": 0.22857142857142856,
+     "frame": 19
+    },
+    {
+     "word": "left",
+     "at": 0.38571428571428573,
+     "frame": 32
+    },
+    {
+     "word": "unattended",
+     "at": 0.4714285714285714,
+     "frame": 39
+    },
+    {
+     "word": "on",
+     "at": 0.6428571428571429,
+     "frame": 53
+    },
+    {
+     "word": "Saturday",
+     "at": 0.7,
+     "frame": 58
+    },
+    {
+     "word": "night.",
+     "at": 0.8428571428571429,
+     "frame": 70
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s8v",
+   "mode": "VISUAL",
+   "focal": "weather night",
+   "start_frame": 1140,
+   "duration_frames": 46,
+   "sentence": "His oven was allegedly left unattended on Saturday night.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3zm3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "weather-night"
+   }
+  },
+  {
+   "beat_id": "s9t",
+   "mode": "TYPE",
+   "focal": "By dawn on Sunday, September 2nd, flames had already taken hold.",
+   "start_frame": 1186,
+   "duration_frames": 102,
+   "sentence": "By dawn on Sunday, September 2nd, flames had already taken hold.",
+   "words": [
+    {
+     "word": "By",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "dawn",
+     "at": 0.047058823529411764,
+     "frame": 5
+    },
+    {
+     "word": "on",
+     "at": 0.11764705882352941,
+     "frame": 12
+    },
+    {
+     "word": "Sunday,",
+     "at": 0.16470588235294117,
+     "frame": 17
+    },
+    {
+     "word": "September",
+     "at": 0.3058823529411765,
+     "frame": 31
+    },
+    {
+     "word": "2nd,",
+     "at": 0.43529411764705883,
+     "frame": 44
+    },
+    {
+     "word": "flames",
+     "at": 0.5411764705882353,
+     "frame": 55
+    },
+    {
+     "word": "had",
+     "at": 0.6352941176470588,
+     "frame": 65
+    },
+    {
+     "word": "already",
+     "at": 0.6941176470588235,
+     "frame": 71
+    },
+    {
+     "word": "taken",
+     "at": 0.8,
+     "frame": 82
+    },
+    {
+     "word": "hold.",
+     "at": 0.8823529411764706,
+     "frame": 90
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s9v",
+   "mode": "VISUAL",
+   "focal": "candelabra fire",
+   "start_frame": 1288,
+   "duration_frames": 58,
+   "sentence": "By dawn on Sunday, September 2nd, flames had already taken hold.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 7c.83 0 1.5-.67 1.5-1.5S18.83 3 18 3s-1.5 1.67-1.5 2.5S17.17 7 18 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M12 6c.83 0 1.5-.67 1.5-1.5S12.83 2 12 2s-1.5 1.67-1.5 2.5S11.17 6 12 6m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M6 7c.83 0 1.5-.67 1.5-1.5S6.83 3 6 3S4.5 4.67 4.5 5.5S5.17 7 6 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M20.5 11c0 .55-.45 1-1 1H19v2c0 1.11-.89 2-2 2h-4v4h1a2 2 0 0 1 2 2H8c0-1.1.9-2 2-2h1v-4H7a2 2 0 0 1-2-2v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1s-.45 1-1 1H7v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V8c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v2c.55 0 1 .45 1 1s-.45 1-1 1H13v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "candelabra-fire"
+   }
+  },
+  {
+   "beat_id": "s10t",
+   "mode": "TYPE",
+   "focal": "But here's what most people don't know: the fire could have been stopped.",
+   "start_frame": 1346,
+   "duration_frames": 88,
+   "sentence": "But here's what most people don't know: the fire could have been stopped.",
+   "words": [
+    {
+     "word": "But",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "here's",
+     "at": 0.054945054945054944,
+     "frame": 5
+    },
+    {
+     "word": "what",
+     "at": 0.13186813186813187,
+     "frame": 12
+    },
+    {
+     "word": "most",
+     "at": 0.1978021978021978,
+     "frame": 17
+    },
+    {
+     "word": "people",
+     "at": 0.26373626373626374,
+     "frame": 23
+    },
+    {
+     "word": "don't",
+     "at": 0.3516483516483517,
+     "frame": 31
+    },
+    {
+     "word": "know:",
+     "at": 0.4175824175824176,
+     "frame": 37
+    },
+    {
+     "word": "the",
+     "at": 0.5274725274725275,
+     "frame": 46
+    },
+    {
+     "word": "fire",
+     "at": 0.5824175824175825,
+     "frame": 51
+    },
+    {
+     "word": "could",
+     "at": 0.6483516483516484,
+     "frame": 57
+    },
+    {
+     "word": "have",
+     "at": 0.7252747252747253,
+     "frame": 64
+    },
+    {
+     "word": "been",
+     "at": 0.7912087912087912,
+     "frame": 70
+    },
+    {
+     "word": "stopped.",
+     "at": 0.8571428571428571,
+     "frame": 75
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s10v",
+   "mode": "VISUAL",
+   "focal": "candelabra fire",
+   "start_frame": 1434,
+   "duration_frames": 50,
+   "sentence": "But here's what most people don't know: the fire could have been stopped.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 7c.83 0 1.5-.67 1.5-1.5S18.83 3 18 3s-1.5 1.67-1.5 2.5S17.17 7 18 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M12 6c.83 0 1.5-.67 1.5-1.5S12.83 2 12 2s-1.5 1.67-1.5 2.5S11.17 6 12 6m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M6 7c.83 0 1.5-.67 1.5-1.5S6.83 3 6 3S4.5 4.67 4.5 5.5S5.17 7 6 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M20.5 11c0 .55-.45 1-1 1H19v2c0 1.11-.89 2-2 2h-4v4h1a2 2 0 0 1 2 2H8c0-1.1.9-2 2-2h1v-4H7a2 2 0 0 1-2-2v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1s-.45 1-1 1H7v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V8c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v2c.55 0 1 .45 1 1s-.45 1-1 1H13v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "candelabra-fire"
+   }
+  },
+  {
+   "beat_id": "s11t",
+   "mode": "TYPE",
+   "focal": "The Lord Mayor of London, Sir Thomas Bloodworth, was woken with the news.",
+   "start_frame": 1484,
+   "duration_frames": 99,
+   "sentence": "The Lord Mayor of London, Sir Thomas Bloodworth, was woken with the news.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "Lord",
+     "at": 0.052083333333333336,
+     "frame": 5
+    },
+    {
+     "word": "Mayor",
+     "at": 0.11458333333333333,
+     "frame": 11
+    },
+    {
+     "word": "of",
+     "at": 0.1875,
+     "frame": 19
+    },
+    {
+     "word": "London,",
+     "at": 0.22916666666666666,
+     "frame": 23
+    },
+    {
+     "word": "Sir",
+     "at": 0.3541666666666667,
+     "frame": 35
+    },
+    {
+     "word": "Thomas",
+     "at": 0.40625,
+     "frame": 40
+    },
+    {
+     "word": "Bloodworth,",
+     "at": 0.4895833333333333,
+     "frame": 48
+    },
+    {
+     "word": "was",
+     "at": 0.65625,
+     "frame": 65
+    },
+    {
+     "word": "woken",
+     "at": 0.7083333333333334,
+     "frame": 70
+    },
+    {
+     "word": "with",
+     "at": 0.78125,
+     "frame": 77
+    },
+    {
+     "word": "the",
+     "at": 0.84375,
+     "frame": 84
+    },
+    {
+     "word": "news.",
+     "at": 0.8958333333333334,
+     "frame": 89
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s11v",
+   "mode": "VISUAL",
+   "focal": "new box",
+   "start_frame": 1583,
+   "duration_frames": 55,
+   "sentence": "The Lord Mayor of London, Sir Thomas Bloodworth, was woken with the news.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M20 4c1.11 0 2 .89 2 2v12c0 1.11-.89 2-2 2H4c-1.11 0-2-.89-2-2V6c0-1.11.89-2 2-2zM8.5 15V9H7.25v3.5L4.75 9H3.5v6h1.25v-3.5L7.3 15zm5-4.74V9h-4v6h4v-1.25H11v-1.11h2.5v-1.26H11v-1.12zm7 3.74V9h-1.25v4.5h-1.12V10h-1.25v3.5h-1.13V9H14.5v5a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "new-box"
+   }
+  },
+  {
+   "beat_id": "s12t",
+   "mode": "TYPE",
+   "focal": "His response?",
+   "start_frame": 1638,
+   "duration_frames": 60,
+   "sentence": "His response?",
+   "words": [
+    {
+     "word": "His",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "response?",
+     "at": 0.2631578947368421,
+     "frame": 16
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s13t",
+   "mode": "TYPE",
+   "focal": "A woman could piss it out.",
+   "start_frame": 1698,
+   "duration_frames": 47,
+   "sentence": "A woman could piss it out.",
+   "words": [
+    {
+     "word": "A",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "woman",
+     "at": 0.08333333333333333,
+     "frame": 4
+    },
+    {
+     "word": "could",
+     "at": 0.2777777777777778,
+     "frame": 13
+    },
+    {
+     "word": "piss",
+     "at": 0.4722222222222222,
+     "frame": 22
+    },
+    {
+     "word": "it",
+     "at": 0.6388888888888888,
+     "frame": 30
+    },
+    {
+     "word": "out.",
+     "at": 0.75,
+     "frame": 35
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s13v",
+   "mode": "VISUAL",
+   "focal": "face woman profile",
+   "start_frame": 1745,
+   "duration_frames": 26,
+   "sentence": "A woman could piss it out.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M17.25 13a1.25 1.25 0 1 1-2.5 0a1.25 1.25 0 0 1 2.5 0M22 12c0 5.5-4.5 10-10 10H2V12C2 6.5 6.5 2 12 2s10 4.5 10 10M7 18c1.41 1.23 3 2 5 2c4.41 0 8-3.59 8-8c0-.79-.12-1.55-.33-2.26c-.72.17-1.47.26-2.25.26c-2 0-3.85-.6-5.42-1.61c0 0-1.46 5.37-3.97 4.61c-.66-.2-1.03.31-1.03 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "face-woman-profile"
+   }
+  },
+  {
+   "beat_id": "s14t",
+   "mode": "TYPE",
+   "focal": "He refused to demolish surrounding buildings to create firebreaks.",
+   "start_frame": 1771,
+   "duration_frames": 91,
+   "sentence": "He refused to demolish surrounding buildings to create firebreaks.",
+   "words": [
+    {
+     "word": "He",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "refused",
+     "at": 0.05063291139240506,
+     "frame": 5
+    },
+    {
+     "word": "to",
+     "at": 0.16455696202531644,
+     "frame": 15
+    },
+    {
+     "word": "demolish",
+     "at": 0.21518987341772153,
+     "frame": 20
+    },
+    {
+     "word": "surrounding",
+     "at": 0.34177215189873417,
+     "frame": 31
+    },
+    {
+     "word": "buildings",
+     "at": 0.5063291139240507,
+     "frame": 46
+    },
+    {
+     "word": "to",
+     "at": 0.6455696202531646,
+     "frame": 59
+    },
+    {
+     "word": "create",
+     "at": 0.6962025316455697,
+     "frame": 63
+    },
+    {
+     "word": "firebreaks.",
+     "at": 0.7974683544303798,
+     "frame": 73
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s14v",
+   "mode": "VISUAL",
+   "focal": "office building cog",
+   "start_frame": 1862,
+   "duration_frames": 51,
+   "sentence": "He refused to demolish surrounding buildings to create firebreaks.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M16 13a.26.26 0 0 0-.26.21l-.19 1.32c-.3.13-.59.29-.85.47l-1.24-.5c-.11 0-.24 0-.31.13l-1 1.73c-.06.11-.04.24.06.32l1.06.82a4.2 4.2 0 0 0 0 1l-1.06.82a.26.26 0 0 0-.06.32l1 1.73c.06.13.19.13.31.13l1.24-.5c.26.18.54.35.85.47l.19 1.32c.02.12.12.21.26.21h2c.11 0 .22-.09.24-.21l.19-1.32c.3-.13.57-.29.84-.47l1.23.5c.13 0 .26 0 .33-.13l1-1.73a.26.26 0 0 0-.06-.32l-1.07-.82c.02-.17.04-.33.04-.5s-.01-.33-.04-.5l1.06-.82a.26.26 0 0 0 .06-.32l-1-1.73c-.06-.13-.19-.13-.32-.13l-1.23.5c-.27-.18-.54-.35-.85-.47l-.19-1.32A.236.236 0 0 0 18 13zm1 3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5c-.84 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5m-1-5.42V3H2v18h6v-3.5h2.03c.23-3.3 2.74-5.96 5.97-6.42M6 19H4v-2h2zm0-4H4v-2h2zm0-4H4V9h2zm0-4H4V5h2zm6-2h2v2h-2zm0 4h2v2h-2zm-2 6H8v-2h2zm0-4H8V9h2zM8 7V5h2v2z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "office-building-cog"
+   }
+  },
+  {
+   "beat_id": "s15t",
+   "mode": "TYPE",
+   "focal": "By the time he changed his mind, it was too late.",
+   "start_frame": 1913,
+   "duration_frames": 77,
+   "sentence": "By the time he changed his mind, it was too late.",
+   "words": [
+    {
+     "word": "By",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "the",
+     "at": 0.05970149253731343,
+     "frame": 5
+    },
+    {
+     "word": "time",
+     "at": 0.13432835820895522,
+     "frame": 10
+    },
+    {
+     "word": "he",
+     "at": 0.22388059701492538,
+     "frame": 17
+    },
+    {
+     "word": "changed",
+     "at": 0.2835820895522388,
+     "frame": 22
+    },
+    {
+     "word": "his",
+     "at": 0.417910447761194,
+     "frame": 32
+    },
+    {
+     "word": "mind,",
+     "at": 0.4925373134328358,
+     "frame": 38
+    },
+    {
+     "word": "it",
+     "at": 0.6417910447761194,
+     "frame": 49
+    },
+    {
+     "word": "was",
+     "at": 0.7014925373134329,
+     "frame": 54
+    },
+    {
+     "word": "too",
+     "at": 0.7761194029850746,
+     "frame": 60
+    },
+    {
+     "word": "late.",
+     "at": 0.8507462686567164,
+     "frame": 66
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s15v",
+   "mode": "VISUAL",
+   "focal": "hive mind",
+   "start_frame": 1990,
+   "duration_frames": 43,
+   "sentence": "By the time he changed his mind, it was too late.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M305.6 17.3c-7.1 0-14 1.8-19.2 5.5c-5.1 3.9-9.2 9.7-12.3 17c-9.6 27.6-7.9 53.9-8.1 82.9v.1h-18.7v-.1c-.3-26.6 1.2-60.3-8.1-82.9c-3.1-7.3-7.2-13.1-12.3-17c-11-6.8-33.9-8.6-44 2.4c-3.6 4.3-5.5 10.1-.1 22.2c5.8 8.8 10.4 20.9 14.4 36.4L179 88.5c-6.7-26.3-15.1-36.9-20.8-39.4c-14.6-4.9-39.3 17.7-39 30.4c3.9 14 15.3 21.4 28 27.4l-8 16.9c-5.1-2.5-9.6-5-13.7-7.6c-14.7-8.1-25.5-11.6-31.3-11.1c-13.93 1.5-21.03 32.8-16.2 41.3c2.4 3.9 8.5 8.1 22.9 9.5c4.8-.2 8.6.7 12.8.6l.2 18.7c-4.3 0-8.3-.1-12.1-.4c-12.1-.1-19.3.9-22.3 2.4c-6.45 5.8-8.37 18.5-5.5 26.3c1.1 2.5 2.6 4.4 6.3 6.4c7.4 4 24.4 6.5 52.6 4.1l1.6 18.6c-21.6 1.8-37.9 1.5-50.4-1.6c-1.8 18.5 16 26.8 32.9 27.1h103.8c12.1 0 22.6-8.9 26.7-25.1l8-32l10 31.5c5.3 16.6 16.2 25.6 26.9 25.6h103.8c6.3 0 18.4-3.9 25.6-10.2c4.9-4.6 8.7-10.7 7.5-17.1c-12.6 3.3-29.1 3.7-51.4 1.8l1.6-18.6c28.2 2.4 45.1-.1 52.5-4.1c8.1-7.1 10.9-27.8.8-32.7c-2.9-1.5-10.2-2.5-22.2-2.4c-3.8.3-7.8.4-12.1.4l.2-18.7c4.3-.2 8.8-.5 12.8-.6c14.4-1.4 20.5-5.6 22.8-9.5c5.2-12.8-4.8-40-16.1-41.3c-5.8-.5-16.6 3-31.3 11.1c-4.1 2.6-8.6 5.1-13.7 7.6l-8-16.9c5.1-2.2 8.7-4.8 13-7.3c11.5-7.66 14.8-14.7 15.1-20.2c-1-13.8-25.8-36.2-39-30.3c-2 .8-4.3 2.7-6.8 5.9c-6.4 10.1-11.6 23.7-14.2 33.4l-18-4.6c4.4-17.3 9.6-30.4 16.3-39.4c3.9-10 2.1-15.3-1.2-19.2c-6.2-5.1-15.6-7.9-24.8-7.9M96.18 282c-17.2 0-32.49 18.4-32.49 42.5c0 12.4 4.09 23.4 10.29 31l6.2 7.8l-9.9 1.5c-9.39 1.5-15.79 6-21.09 13.1s-9.2 16.9-11.6 28.4c-4.7 20.9-4.81 40.6-4.81 63h25.91l1.2 24.7h70.61l1.4-24.7h27.3c-.1-22.1-1.2-41.5-6.3-62.3c-2.8-11.3-6.7-21.2-12-28.4c-5.1-7.1-11.4-11.6-19.9-13.2l-9.7-1.8l6.4-7.5c6.4-7.8 10.8-18.9 10.8-31.6c0-22.7-13.7-40.4-29.12-42.5zm160.02 0c-17.2 0-32.5 18.4-32.5 42.5c0 12.4 4.1 23.4 10.3 31l6.2 7.8l-9.9 1.5c-9.4 1.5-15.8 6-21.1 13.1s-9.2 16.9-11.6 28.4c-4.7 20.9-4.8 40.6-4.8 63h25.9l1.2 24.7h70.6l1.4-24.7h27.3c-.1-22.1-1.2-41.5-6.3-62.3c-2.8-11.3-6.7-21.2-12-28.4c-5.1-7.1-11.4-11.6-19.9-13.2l-9.7-1.8l6.4-7.5c6.4-7.8 10.8-18.9 10.8-31.6c0-22.7-13.7-40.4-29.1-42.5zm160 0c-17.1 0-32.4 18.4-32.4 42.5c0 12.4 4.1 23.4 10.3 31l6.2 7.8l-9.9 1.5c-9.4 1.5-15.9 6-21.2 13.1s-9.2 16.9-11.6 28.4c-4.7 20.9-4.8 40.6-4.8 63h25.9l1.2 24.7h70.7l1.4-24.7h27.2c-.1-22.1-1.2-41.5-6.2-62.3c-2.8-11.3-6.8-21.2-12.1-28.4c-5.1-7.1-11.4-11.6-19.8-13.2l-9.7-1.8l6.3-7.5c6.4-7.8 10.8-18.9 10.8-31.6c0-22.7-13.7-40.4-29.1-42.5z\"/>",
+    "width": 512,
+    "height": 512,
+    "set": "game-icons",
+    "name": "hive-mind"
+   },
+   "attribution": {
+    "name": "GameIcons",
+    "url": "https://github.com/game-icons/icons",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://github.com/game-icons/icons/blob/master/license.txt"
+   }
+  },
+  {
+   "beat_id": "s16t",
+   "mode": "TYPE",
+   "focal": "The fire had grown beyond control.",
+   "start_frame": 2033,
+   "duration_frames": 59,
+   "sentence": "The fire had grown beyond control.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "fire",
+     "at": 0.11363636363636363,
+     "frame": 7
+    },
+    {
+     "word": "had",
+     "at": 0.25,
+     "frame": 15
+    },
+    {
+     "word": "grown",
+     "at": 0.36363636363636365,
+     "frame": 21
+    },
+    {
+     "word": "beyond",
+     "at": 0.5227272727272727,
+     "frame": 31
+    },
+    {
+     "word": "control.",
+     "at": 0.7045454545454546,
+     "frame": 42
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s16v",
+   "mode": "VISUAL",
+   "focal": "candelabra fire",
+   "start_frame": 2092,
+   "duration_frames": 33,
+   "sentence": "The fire had grown beyond control.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 7c.83 0 1.5-.67 1.5-1.5S18.83 3 18 3s-1.5 1.67-1.5 2.5S17.17 7 18 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M12 6c.83 0 1.5-.67 1.5-1.5S12.83 2 12 2s-1.5 1.67-1.5 2.5S11.17 6 12 6m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M6 7c.83 0 1.5-.67 1.5-1.5S6.83 3 6 3S4.5 4.67 4.5 5.5S5.17 7 6 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M20.5 11c0 .55-.45 1-1 1H19v2c0 1.11-.89 2-2 2h-4v4h1a2 2 0 0 1 2 2H8c0-1.1.9-2 2-2h1v-4H7a2 2 0 0 1-2-2v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1s-.45 1-1 1H7v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V8c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v2c.55 0 1 .45 1 1s-.45 1-1 1H13v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "candelabra-fire"
+   }
+  },
+  {
+   "beat_id": "s17t",
+   "mode": "TYPE",
+   "focal": "Samuel Pepys, a diarist and naval administrator, watched the destruction unfold.",
+   "start_frame": 2125,
+   "duration_frames": 126,
+   "sentence": "Samuel Pepys, a diarist and naval administrator, watched the destruction unfold.",
+   "words": [
+    {
+     "word": "Samuel",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "Pepys,",
+     "at": 0.07920792079207921,
+     "frame": 10
+    },
+    {
+     "word": "a",
+     "at": 0.18811881188118812,
+     "frame": 24
+    },
+    {
+     "word": "diarist",
+     "at": 0.21782178217821782,
+     "frame": 27
+    },
+    {
+     "word": "and",
+     "at": 0.3069306930693069,
+     "frame": 39
+    },
+    {
+     "word": "naval",
+     "at": 0.3564356435643564,
+     "frame": 45
+    },
+    {
+     "word": "administrator,",
+     "at": 0.42574257425742573,
+     "frame": 54
+    },
+    {
+     "word": "watched",
+     "at": 0.6138613861386139,
+     "frame": 77
+    },
+    {
+     "word": "the",
+     "at": 0.7029702970297029,
+     "frame": 89
+    },
+    {
+     "word": "destruction",
+     "at": 0.7524752475247525,
+     "frame": 95
+    },
+    {
+     "word": "unfold.",
+     "at": 0.8811881188118812,
+     "frame": 111
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s17v",
+   "mode": "VISUAL",
+   "focal": "security",
+   "start_frame": 2251,
+   "duration_frames": 71,
+   "sentence": "Samuel Pepys, a diarist and naval administrator, watched the destruction unfold.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M12 12h7c-.53 4.11-3.28 7.78-7 8.92zH5V6.3l7-3.11M12 1L3 5v6c0 5.55 3.84 10.73 9 12c5.16-1.27 9-6.45 9-12V5z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "security"
+   }
+  },
+  {
+   "beat_id": "s18t",
+   "mode": "TYPE",
+   "focal": "His account is one of the most vivid we have.",
+   "start_frame": 2322,
+   "duration_frames": 63,
+   "sentence": "His account is one of the most vivid we have.",
+   "words": [
+    {
+     "word": "His",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "account",
+     "at": 0.0847457627118644,
+     "frame": 5
+    },
+    {
+     "word": "is",
+     "at": 0.23728813559322035,
+     "frame": 15
+    },
+    {
+     "word": "one",
+     "at": 0.3050847457627119,
+     "frame": 19
+    },
+    {
+     "word": "of",
+     "at": 0.3898305084745763,
+     "frame": 25
+    },
+    {
+     "word": "the",
+     "at": 0.4576271186440678,
+     "frame": 29
+    },
+    {
+     "word": "most",
+     "at": 0.5423728813559322,
+     "frame": 34
+    },
+    {
+     "word": "vivid",
+     "at": 0.6440677966101694,
+     "frame": 41
+    },
+    {
+     "word": "we",
+     "at": 0.7627118644067796,
+     "frame": 48
+    },
+    {
+     "word": "have.",
+     "at": 0.8305084745762712,
+     "frame": 52
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s18v",
+   "mode": "VISUAL",
+   "focal": "account multiple check",
+   "start_frame": 2385,
+   "duration_frames": 36,
+   "sentence": "His account is one of the most vivid we have.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.9 2.9 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.9 2.9 0 0 0 18 11a3 3 0 0 0 0-6M7.34 8.92l1.16 1.41l-4.75 4.75l-2.75-3l1.16-1.16l1.59 1.58z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "account-multiple-check"
+   }
+  },
+  {
+   "beat_id": "s19t",
+   "mode": "TYPE",
+   "focal": "I saw a fire as one entire arch of fire above a mile long: it made me weep to see it.",
+   "start_frame": 2421,
+   "duration_frames": 120,
+   "sentence": "I saw a fire as one entire arch of fire above a mile long: it made me weep to see it.",
+   "words": [
+    {
+     "word": "I",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "saw",
+     "at": 0.02654867256637168,
+     "frame": 3
+    },
+    {
+     "word": "a",
+     "at": 0.07079646017699115,
+     "frame": 8
+    },
+    {
+     "word": "fire",
+     "at": 0.09734513274336283,
+     "frame": 12
+    },
+    {
+     "word": "as",
+     "at": 0.1504424778761062,
+     "frame": 18
+    },
+    {
+     "word": "one",
+     "at": 0.18584070796460178,
+     "frame": 22
+    },
+    {
+     "word": "entire",
+     "at": 0.23008849557522124,
+     "frame": 28
+    },
+    {
+     "word": "arch",
+     "at": 0.3008849557522124,
+     "frame": 36
+    },
+    {
+     "word": "of",
+     "at": 0.35398230088495575,
+     "frame": 42
+    },
+    {
+     "word": "fire",
+     "at": 0.3893805309734513,
+     "frame": 47
+    },
+    {
+     "word": "above",
+     "at": 0.4424778761061947,
+     "frame": 53
+    },
+    {
+     "word": "a",
+     "at": 0.504424778761062,
+     "frame": 61
+    },
+    {
+     "word": "mile",
+     "at": 0.5309734513274337,
+     "frame": 64
+    },
+    {
+     "word": "long:",
+     "at": 0.584070796460177,
+     "frame": 70
+    },
+    {
+     "word": "it",
+     "at": 0.672566371681416,
+     "frame": 81
+    },
+    {
+     "word": "made",
+     "at": 0.7079646017699115,
+     "frame": 85
+    },
+    {
+     "word": "me",
+     "at": 0.7610619469026548,
+     "frame": 91
+    },
+    {
+     "word": "weep",
+     "at": 0.7964601769911505,
+     "frame": 96
+    },
+    {
+     "word": "to",
+     "at": 0.8495575221238938,
+     "frame": 102
+    },
+    {
+     "word": "see",
+     "at": 0.8849557522123894,
+     "frame": 106
+    },
+    {
+     "word": "it.",
+     "at": 0.9292035398230089,
+     "frame": 112
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s19v",
+   "mode": "VISUAL",
+   "focal": "candelabra fire",
+   "start_frame": 2541,
+   "duration_frames": 68,
+   "sentence": "I saw a fire as one entire arch of fire above a mile long: it made me weep to see it.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 7c.83 0 1.5-.67 1.5-1.5S18.83 3 18 3s-1.5 1.67-1.5 2.5S17.17 7 18 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M12 6c.83 0 1.5-.67 1.5-1.5S12.83 2 12 2s-1.5 1.67-1.5 2.5S11.17 6 12 6m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M6 7c.83 0 1.5-.67 1.5-1.5S6.83 3 6 3S4.5 4.67 4.5 5.5S5.17 7 6 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M20.5 11c0 .55-.45 1-1 1H19v2c0 1.11-.89 2-2 2h-4v4h1a2 2 0 0 1 2 2H8c0-1.1.9-2 2-2h1v-4H7a2 2 0 0 1-2-2v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1s-.45 1-1 1H7v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V8c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v2c.55 0 1 .45 1 1s-.45 1-1 1H13v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "candelabra-fire"
+   }
+  },
+  {
+   "beat_id": "s20t",
+   "mode": "TYPE",
+   "focal": "The churches, houses are all on fire and flaming at once, and a horrid noise the flames made and the cracking of the houses.",
+   "start_frame": 2609,
+   "duration_frames": 157,
+   "sentence": "The churches, houses are all on fire and flaming at once, and a horrid noise the flames made and the cracking of the houses.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "churches,",
+     "at": 0.03164556962025317,
+     "frame": 5
+    },
+    {
+     "word": "houses",
+     "at": 0.12025316455696203,
+     "frame": 19
+    },
+    {
+     "word": "are",
+     "at": 0.17088607594936708,
+     "frame": 27
+    },
+    {
+     "word": "all",
+     "at": 0.20253164556962025,
+     "frame": 32
+    },
+    {
+     "word": "on",
+     "at": 0.23417721518987342,
+     "frame": 37
+    },
+    {
+     "word": "fire",
+     "at": 0.25949367088607594,
+     "frame": 41
+    },
+    {
+     "word": "and",
+     "at": 0.2974683544303797,
+     "frame": 47
+    },
+    {
+     "word": "flaming",
+     "at": 0.3291139240506329,
+     "frame": 52
+    },
+    {
+     "word": "at",
+     "at": 0.3860759493670886,
+     "frame": 61
+    },
+    {
+     "word": "once,",
+     "at": 0.41139240506329117,
+     "frame": 65
+    },
+    {
+     "word": "and",
+     "at": 0.47468354430379744,
+     "frame": 75
+    },
+    {
+     "word": "a",
+     "at": 0.5063291139240507,
+     "frame": 79
+    },
+    {
+     "word": "horrid",
+     "at": 0.5253164556962026,
+     "frame": 82
+    },
+    {
+     "word": "noise",
+     "at": 0.5759493670886076,
+     "frame": 90
+    },
+    {
+     "word": "the",
+     "at": 0.620253164556962,
+     "frame": 97
+    },
+    {
+     "word": "flames",
+     "at": 0.6518987341772152,
+     "frame": 102
+    },
+    {
+     "word": "made",
+     "at": 0.7025316455696202,
+     "frame": 110
+    },
+    {
+     "word": "and",
+     "at": 0.740506329113924,
+     "frame": 116
+    },
+    {
+     "word": "the",
+     "at": 0.7721518987341772,
+     "frame": 121
+    },
+    {
+     "word": "cracking",
+     "at": 0.8037974683544303,
+     "frame": 126
+    },
+    {
+     "word": "of",
+     "at": 0.8670886075949367,
+     "frame": 136
+    },
+    {
+     "word": "the",
+     "at": 0.8924050632911392,
+     "frame": 140
+    },
+    {
+     "word": "houses.",
+     "at": 0.9240506329113924,
+     "frame": 145
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s20v",
+   "mode": "VISUAL",
+   "focal": "candelabra fire",
+   "start_frame": 2766,
+   "duration_frames": 89,
+   "sentence": "The churches, houses are all on fire and flaming at once, and a horrid noise the flames made and the cracking of the houses.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 7c.83 0 1.5-.67 1.5-1.5S18.83 3 18 3s-1.5 1.67-1.5 2.5S17.17 7 18 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M12 6c.83 0 1.5-.67 1.5-1.5S12.83 2 12 2s-1.5 1.67-1.5 2.5S11.17 6 12 6m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M6 7c.83 0 1.5-.67 1.5-1.5S6.83 3 6 3S4.5 4.67 4.5 5.5S5.17 7 6 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M20.5 11c0 .55-.45 1-1 1H19v2c0 1.11-.89 2-2 2h-4v4h1a2 2 0 0 1 2 2H8c0-1.1.9-2 2-2h1v-4H7a2 2 0 0 1-2-2v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1s-.45 1-1 1H7v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V8c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v2c.55 0 1 .45 1 1s-.45 1-1 1H13v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "candelabra-fire"
+   }
+  },
+  {
+   "beat_id": "s21t",
+   "mode": "TYPE",
+   "focal": "Pepys made a decision that sounds bizarre today: he buried his Parmesan cheese and wine in his garden.",
+   "start_frame": 2855,
+   "duration_frames": 138,
+   "sentence": "Pepys made a decision that sounds bizarre today: he buried his Parmesan cheese and wine in his garden.",
+   "words": [
+    {
+     "word": "Pepys",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "made",
+     "at": 0.05511811023622047,
+     "frame": 8
+    },
+    {
+     "word": "a",
+     "at": 0.10236220472440945,
+     "frame": 14
+    },
+    {
+     "word": "decision",
+     "at": 0.12598425196850394,
+     "frame": 17
+    },
+    {
+     "word": "that",
+     "at": 0.2047244094488189,
+     "frame": 28
+    },
+    {
+     "word": "sounds",
+     "at": 0.25196850393700787,
+     "frame": 35
+    },
+    {
+     "word": "bizarre",
+     "at": 0.31496062992125984,
+     "frame": 43
+    },
+    {
+     "word": "today:",
+     "at": 0.3858267716535433,
+     "frame": 53
+    },
+    {
+     "word": "he",
+     "at": 0.47244094488188976,
+     "frame": 65
+    },
+    {
+     "word": "buried",
+     "at": 0.5039370078740157,
+     "frame": 70
+    },
+    {
+     "word": "his",
+     "at": 0.5669291338582677,
+     "frame": 78
+    },
+    {
+     "word": "Parmesan",
+     "at": 0.6062992125984252,
+     "frame": 84
+    },
+    {
+     "word": "cheese",
+     "at": 0.6850393700787402,
+     "frame": 95
+    },
+    {
+     "word": "and",
+     "at": 0.7480314960629921,
+     "frame": 103
+    },
+    {
+     "word": "wine",
+     "at": 0.7874015748031497,
+     "frame": 109
+    },
+    {
+     "word": "in",
+     "at": 0.8346456692913385,
+     "frame": 115
+    },
+    {
+     "word": "his",
+     "at": 0.8661417322834646,
+     "frame": 120
+    },
+    {
+     "word": "garden.",
+     "at": 0.905511811023622,
+     "frame": 125
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s21v",
+   "mode": "VISUAL",
+   "focal": "cellphone sound",
+   "start_frame": 2993,
+   "duration_frames": 77,
+   "sentence": "Pepys made a decision that sounds bizarre today: he buried his Parmesan cheese and wine in his garden.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19.1 8.7c1.8 1.8 1.8 4.6 0 6.5l1 1c2.5-2.3 2.5-6.1 0-8.5zM18 9.8l-1 1c.5.7.5 1.6 0 2.3l1 1c1.2-1.2 1.2-3 0-4.3M14 1H4a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2m0 19H4V4h10z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "cellphone-sound"
+   }
+  },
+  {
+   "beat_id": "s22t",
+   "mode": "TYPE",
+   "focal": "But in 1666, this was practical crisis management.",
+   "start_frame": 3070,
+   "duration_frames": 152,
+   "sentence": "But in 1666, this was practical crisis management.",
+   "words": [
+    {
+     "word": "But",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "in",
+     "at": 0.07692307692307693,
+     "frame": 12
+    },
+    {
+     "word": "1666,",
+     "at": 0.13846153846153847,
+     "frame": 21
+    },
+    {
+     "word": "this",
+     "at": 0.2923076923076923,
+     "frame": 44
+    },
+    {
+     "word": "was",
+     "at": 0.38461538461538464,
+     "frame": 58
+    },
+    {
+     "word": "practical",
+     "at": 0.46153846153846156,
+     "frame": 70
+    },
+    {
+     "word": "crisis",
+     "at": 0.6307692307692307,
+     "frame": 96
+    },
+    {
+     "word": "management.",
+     "at": 0.7538461538461538,
+     "frame": 115
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s23t",
+   "mode": "TYPE",
+   "focal": "Hard cheese was imported, expensive, and remarkably durable.",
+   "start_frame": 3222,
+   "duration_frames": 99,
+   "sentence": "Hard cheese was imported, expensive, and remarkably durable.",
+   "words": [
+    {
+     "word": "Hard",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "cheese",
+     "at": 0.07692307692307693,
+     "frame": 8
+    },
+    {
+     "word": "was",
+     "at": 0.1794871794871795,
+     "frame": 18
+    },
+    {
+     "word": "imported,",
+     "at": 0.24358974358974358,
+     "frame": 24
+    },
+    {
+     "word": "expensive,",
+     "at": 0.4230769230769231,
+     "frame": 42
+    },
+    {
+     "word": "and",
+     "at": 0.6153846153846154,
+     "frame": 61
+    },
+    {
+     "word": "remarkably",
+     "at": 0.6794871794871795,
+     "frame": 67
+    },
+    {
+     "word": "durable.",
+     "at": 0.8333333333333334,
+     "frame": 83
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s23v",
+   "mode": "VISUAL",
+   "focal": "cheese",
+   "start_frame": 3321,
+   "duration_frames": 55,
+   "sentence": "Hard cheese was imported, expensive, and remarkably durable.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M11 17.5c0-.83.67-1.5 1.5-1.5c.29 0 .56.09.79.23l7.46-4.3c-.4-.71-.85-1.38-1.34-2.03a.9.9 0 0 1-.41.1c-.55 0-1-.45-1-1c0-.2.08-.38.18-.54A17.7 17.7 0 0 0 12 4.25C11.85 5.24 11 6 10 6a2 2 0 0 1-2-2c0-.28.06-.55.16-.79C7.3 3.08 6.41 3 5.5 3c-.17 0-.33 0-.5.03v6.02a2.5 2.5 0 0 1 0 4.9V21l6-3.46zM14 9a2 2 0 1 1 0 4c-1.11 0-2-.89-2-2s.9-2 2-2m-5 7c-.55 0-1-.45-1-1s.45-1 1-1s1 .45 1 1s-.45 1-1 1m0-6c-.55 0-1-.45-1-1s.45-1 1-1s1 .45 1 1s-.45 1-1 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "cheese"
+   }
+  },
+  {
+   "beat_id": "s24t",
+   "mode": "TYPE",
+   "focal": "With London descending into chaos, Pepys was safeguarding a compact store of wealth and calories.",
+   "start_frame": 3376,
+   "duration_frames": 131,
+   "sentence": "With London descending into chaos, Pepys was safeguarding a compact store of wealth and calories.",
+   "words": [
+    {
+     "word": "With",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "London",
+     "at": 0.05042016806722689,
+     "frame": 7
+    },
+    {
+     "word": "descending",
+     "at": 0.11764705882352941,
+     "frame": 15
+    },
+    {
+     "word": "into",
+     "at": 0.2184873949579832,
+     "frame": 29
+    },
+    {
+     "word": "chaos,",
+     "at": 0.2689075630252101,
+     "frame": 35
+    },
+    {
+     "word": "Pepys",
+     "at": 0.36134453781512604,
+     "frame": 47
+    },
+    {
+     "word": "was",
+     "at": 0.42016806722689076,
+     "frame": 55
+    },
+    {
+     "word": "safeguarding",
+     "at": 0.46218487394957986,
+     "frame": 61
+    },
+    {
+     "word": "a",
+     "at": 0.5798319327731093,
+     "frame": 76
+    },
+    {
+     "word": "compact",
+     "at": 0.6050420168067226,
+     "frame": 79
+    },
+    {
+     "word": "store",
+     "at": 0.680672268907563,
+     "frame": 89
+    },
+    {
+     "word": "of",
+     "at": 0.7394957983193278,
+     "frame": 97
+    },
+    {
+     "word": "wealth",
+     "at": 0.773109243697479,
+     "frame": 101
+    },
+    {
+     "word": "and",
+     "at": 0.8403361344537815,
+     "frame": 110
+    },
+    {
+     "word": "calories.",
+     "at": 0.8823529411764706,
+     "frame": 116
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s24v",
+   "mode": "VISUAL",
+   "focal": "store clock",
+   "start_frame": 3507,
+   "duration_frames": 74,
+   "sentence": "With London descending into chaos, Pepys was safeguarding a compact store of wealth and calories.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 4H2V2h16zm-.5 9H16v5l3.61 2.16l.75-1.22l-2.86-1.69zm6.5 4c0 3.87-3.13 7-7 7c-3.53 0-6.43-2.61-6.92-6H2v-6H1v-2l1-5h16l1 5v.29c2.89.87 5 3.54 5 6.71M4 16h6v-4H4zm18 1c0-2.76-2.24-5-5-5s-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "store-clock"
+   }
+  },
+  {
+   "beat_id": "s25t",
+   "mode": "TYPE",
+   "focal": "The fire raged for four days.",
+   "start_frame": 3581,
+   "duration_frames": 58,
+   "sentence": "The fire raged for four days.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "fire",
+     "at": 0.1282051282051282,
+     "frame": 7
+    },
+    {
+     "word": "raged",
+     "at": 0.28205128205128205,
+     "frame": 16
+    },
+    {
+     "word": "for",
+     "at": 0.46153846153846156,
+     "frame": 27
+    },
+    {
+     "word": "four",
+     "at": 0.5897435897435898,
+     "frame": 34
+    },
+    {
+     "word": "days.",
+     "at": 0.7435897435897436,
+     "frame": 43
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s25v",
+   "mode": "VISUAL",
+   "focal": "candelabra fire",
+   "start_frame": 3639,
+   "duration_frames": 32,
+   "sentence": "The fire raged for four days.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 7c.83 0 1.5-.67 1.5-1.5S18.83 3 18 3s-1.5 1.67-1.5 2.5S17.17 7 18 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M12 6c.83 0 1.5-.67 1.5-1.5S12.83 2 12 2s-1.5 1.67-1.5 2.5S11.17 6 12 6m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M6 7c.83 0 1.5-.67 1.5-1.5S6.83 3 6 3S4.5 4.67 4.5 5.5S5.17 7 6 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M20.5 11c0 .55-.45 1-1 1H19v2c0 1.11-.89 2-2 2h-4v4h1a2 2 0 0 1 2 2H8c0-1.1.9-2 2-2h1v-4H7a2 2 0 0 1-2-2v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1s-.45 1-1 1H7v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V8c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v2c.55 0 1 .45 1 1s-.45 1-1 1H13v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "candelabra-fire"
+   }
+  },
+  {
+   "beat_id": "s26t",
+   "mode": "TYPE",
+   "focal": "It consumed everything in its path: 13,200 houses, 87 churches, most of the City of London.",
+   "start_frame": 3671,
+   "duration_frames": 163,
+   "sentence": "It consumed everything in its path: 13,200 houses, 87 churches, most of the City of London.",
+   "words": [
+    {
+     "word": "It",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "consumed",
+     "at": 0.03361344537815126,
+     "frame": 5
+    },
+    {
+     "word": "everything",
+     "at": 0.11764705882352941,
+     "frame": 19
+    },
+    {
+     "word": "in",
+     "at": 0.2184873949579832,
+     "frame": 36
+    },
+    {
+     "word": "its",
+     "at": 0.25210084033613445,
+     "frame": 41
+    },
+    {
+     "word": "path:",
+     "at": 0.29411764705882354,
+     "frame": 48
+    },
+    {
+     "word": "13,200",
+     "at": 0.37815126050420167,
+     "frame": 62
+    },
+    {
+     "word": "houses,",
+     "at": 0.4369747899159664,
+     "frame": 71
+    },
+    {
+     "word": "87",
+     "at": 0.5378151260504201,
+     "frame": 88
+    },
+    {
+     "word": "churches,",
+     "at": 0.5714285714285714,
+     "frame": 93
+    },
+    {
+     "word": "most",
+     "at": 0.6890756302521008,
+     "frame": 112
+    },
+    {
+     "word": "of",
+     "at": 0.7394957983193278,
+     "frame": 121
+    },
+    {
+     "word": "the",
+     "at": 0.773109243697479,
+     "frame": 126
+    },
+    {
+     "word": "City",
+     "at": 0.8151260504201681,
+     "frame": 133
+    },
+    {
+     "word": "of",
+     "at": 0.865546218487395,
+     "frame": 141
+    },
+    {
+     "word": "London.",
+     "at": 0.8991596638655462,
+     "frame": 147
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s26v",
+   "mode": "VISUAL",
+   "focal": "home floor negative 1",
+   "start_frame": 3834,
+   "duration_frames": 92,
+   "sentence": "It consumed everything in its path: 13,200 houses, 87 churches, most of the City of London.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M12 3L2 12h3v8h14v-8h3zm-1 12H7v-2h4zm4 3h-2v-8h-2V8h4z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "home-floor-negative-1"
+   }
+  },
+  {
+   "beat_id": "s27t",
+   "mode": "TYPE",
+   "focal": "Only six deaths were officially recorded.",
+   "start_frame": 3926,
+   "duration_frames": 65,
+   "sentence": "Only six deaths were officially recorded.",
+   "words": [
+    {
+     "word": "Only",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "six",
+     "at": 0.11764705882352941,
+     "frame": 8
+    },
+    {
+     "word": "deaths",
+     "at": 0.21568627450980393,
+     "frame": 14
+    },
+    {
+     "word": "were",
+     "at": 0.37254901960784315,
+     "frame": 24
+    },
+    {
+     "word": "officially",
+     "at": 0.49019607843137253,
+     "frame": 32
+    },
+    {
+     "word": "recorded.",
+     "at": 0.7254901960784313,
+     "frame": 47
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s27v",
+   "mode": "VISUAL",
+   "focal": "numeric 6 circle",
+   "start_frame": 3991,
+   "duration_frames": 36,
+   "sentence": "Only six deaths were officially recorded.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M11 7a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2V9h4V7zm0 6h2v2h-2zm1-11a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "numeric-6-circle"
+   }
+  },
+  {
+   "beat_id": "s28t",
+   "mode": "TYPE",
+   "focal": "But historians believe the true number was much higher.",
+   "start_frame": 4027,
+   "duration_frames": 76,
+   "sentence": "But historians believe the true number was much higher.",
+   "words": [
+    {
+     "word": "But",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "historians",
+     "at": 0.07352941176470588,
+     "frame": 6
+    },
+    {
+     "word": "believe",
+     "at": 0.25,
+     "frame": 19
+    },
+    {
+     "word": "the",
+     "at": 0.38235294117647056,
+     "frame": 29
+    },
+    {
+     "word": "true",
+     "at": 0.45588235294117646,
+     "frame": 35
+    },
+    {
+     "word": "number",
+     "at": 0.5441176470588235,
+     "frame": 41
+    },
+    {
+     "word": "was",
+     "at": 0.6617647058823529,
+     "frame": 50
+    },
+    {
+     "word": "much",
+     "at": 0.7352941176470589,
+     "frame": 56
+    },
+    {
+     "word": "higher.",
+     "at": 0.8235294117647058,
+     "frame": 63
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s28v",
+   "mode": "VISUAL",
+   "focal": "numeric 0 circle",
+   "start_frame": 4103,
+   "duration_frames": 43,
+   "sentence": "But historians believe the true number was much higher.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M11 7a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm0 2h2v6h-2zm1-7a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "numeric-0-circle"
+   }
+  },
+  {
+   "beat_id": "s29t",
+   "mode": "TYPE",
+   "focal": "The poor, the homeless, the undocumented—they simply vanished.",
+   "start_frame": 4146,
+   "duration_frames": 153,
+   "sentence": "The poor, the homeless, the undocumented—they simply vanished.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "poor,",
+     "at": 0.06329113924050633,
+     "frame": 10
+    },
+    {
+     "word": "the",
+     "at": 0.189873417721519,
+     "frame": 29
+    },
+    {
+     "word": "homeless,",
+     "at": 0.25316455696202533,
+     "frame": 39
+    },
+    {
+     "word": "the",
+     "at": 0.43037974683544306,
+     "frame": 66
+    },
+    {
+     "word": "undocumented—they",
+     "at": 0.4936708860759494,
+     "frame": 76
+    },
+    {
+     "word": "simply",
+     "at": 0.7215189873417721,
+     "frame": 110
+    },
+    {
+     "word": "vanished.",
+     "at": 0.8227848101265823,
+     "frame": 126
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s30t",
+   "mode": "TYPE",
+   "focal": "The fire reached the Thames and stopped there.",
+   "start_frame": 4299,
+   "duration_frames": 60,
+   "sentence": "The fire reached the Thames and stopped there.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "fire",
+     "at": 0.08620689655172414,
+     "frame": 5
+    },
+    {
+     "word": "reached",
+     "at": 0.1896551724137931,
+     "frame": 11
+    },
+    {
+     "word": "the",
+     "at": 0.3448275862068966,
+     "frame": 21
+    },
+    {
+     "word": "Thames",
+     "at": 0.43103448275862066,
+     "frame": 26
+    },
+    {
+     "word": "and",
+     "at": 0.5689655172413793,
+     "frame": 34
+    },
+    {
+     "word": "stopped",
+     "at": 0.6551724137931034,
+     "frame": 39
+    },
+    {
+     "word": "there.",
+     "at": 0.8103448275862069,
+     "frame": 49
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s30v",
+   "mode": "VISUAL",
+   "focal": "candelabra fire",
+   "start_frame": 4359,
+   "duration_frames": 33,
+   "sentence": "The fire reached the Thames and stopped there.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 7c.83 0 1.5-.67 1.5-1.5S18.83 3 18 3s-1.5 1.67-1.5 2.5S17.17 7 18 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M12 6c.83 0 1.5-.67 1.5-1.5S12.83 2 12 2s-1.5 1.67-1.5 2.5S11.17 6 12 6m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M6 7c.83 0 1.5-.67 1.5-1.5S6.83 3 6 3S4.5 4.67 4.5 5.5S5.17 7 6 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M20.5 11c0 .55-.45 1-1 1H19v2c0 1.11-.89 2-2 2h-4v4h1a2 2 0 0 1 2 2H8c0-1.1.9-2 2-2h1v-4H7a2 2 0 0 1-2-2v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1s-.45 1-1 1H7v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V8c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v2c.55 0 1 .45 1 1s-.45 1-1 1H13v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "candelabra-fire"
+   }
+  },
+  {
+   "beat_id": "s31t",
+   "mode": "TYPE",
+   "focal": "Water on one side, open ground on the other.",
+   "start_frame": 4392,
+   "duration_frames": 78,
+   "sentence": "Water on one side, open ground on the other.",
+   "words": [
+    {
+     "word": "Water",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "on",
+     "at": 0.11666666666666667,
+     "frame": 9
+    },
+    {
+     "word": "one",
+     "at": 0.18333333333333332,
+     "frame": 14
+    },
+    {
+     "word": "side,",
+     "at": 0.26666666666666666,
+     "frame": 21
+    },
+    {
+     "word": "open",
+     "at": 0.43333333333333335,
+     "frame": 34
+    },
+    {
+     "word": "ground",
+     "at": 0.5333333333333333,
+     "frame": 42
+    },
+    {
+     "word": "on",
+     "at": 0.6666666666666666,
+     "frame": 52
+    },
+    {
+     "word": "the",
+     "at": 0.7333333333333333,
+     "frame": 57
+    },
+    {
+     "word": "other.",
+     "at": 0.8166666666666667,
+     "frame": 64
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s31v",
+   "mode": "VISUAL",
+   "focal": "water boiler",
+   "start_frame": 4470,
+   "duration_frames": 44,
+   "sentence": "Water on one side, open ground on the other.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M8 2c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h1v2H6v2h3c1.11 0 2-.89 2-2v-2h2v2c0 1.11.89 2 2 2h3v-2h-3v-2h1c1.11 0 2-.89 2-2V4c0-1.11-.89-2-2-2zm4 2.97a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m-2 9.53h4V16h-4z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "water-boiler"
+   }
+  },
+  {
+   "beat_id": "s32t",
+   "mode": "TYPE",
+   "focal": "The city was saved from complete annihilation.",
+   "start_frame": 4514,
+   "duration_frames": 66,
+   "sentence": "The city was saved from complete annihilation.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "city",
+     "at": 0.08771929824561403,
+     "frame": 6
+    },
+    {
+     "word": "was",
+     "at": 0.19298245614035087,
+     "frame": 13
+    },
+    {
+     "word": "saved",
+     "at": 0.2807017543859649,
+     "frame": 19
+    },
+    {
+     "word": "from",
+     "at": 0.40350877192982454,
+     "frame": 27
+    },
+    {
+     "word": "complete",
+     "at": 0.5087719298245614,
+     "frame": 34
+    },
+    {
+     "word": "annihilation.",
+     "at": 0.6842105263157895,
+     "frame": 45
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s32v",
+   "mode": "VISUAL",
+   "focal": "timer sand complete",
+   "start_frame": 4580,
+   "duration_frames": 37,
+   "sentence": "The city was saved from complete annihilation.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 22H6v-6l4-4l-4-4V2h12v6l-4 4l4 4M8 7.5l4 4l4-4V4H8m4 8.5l-4 4V20h8v-3.5M14 18h-4v-.8l2-2l2 2Z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "timer-sand-complete"
+   }
+  },
+  {
+   "beat_id": "s33t",
+   "mode": "TYPE",
+   "focal": "In the aftermath, three plans were presented to King Charles II for rebuilding the city.",
+   "start_frame": 4617,
+   "duration_frames": 118,
+   "sentence": "In the aftermath, three plans were presented to King Charles II for rebuilding the city.",
+   "words": [
+    {
+     "word": "In",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "the",
+     "at": 0.03636363636363636,
+     "frame": 4
+    },
+    {
+     "word": "aftermath,",
+     "at": 0.08181818181818182,
+     "frame": 10
+    },
+    {
+     "word": "three",
+     "at": 0.21818181818181817,
+     "frame": 26
+    },
+    {
+     "word": "plans",
+     "at": 0.2818181818181818,
+     "frame": 33
+    },
+    {
+     "word": "were",
+     "at": 0.34545454545454546,
+     "frame": 41
+    },
+    {
+     "word": "presented",
+     "at": 0.4,
+     "frame": 47
+    },
+    {
+     "word": "to",
+     "at": 0.5,
+     "frame": 59
+    },
+    {
+     "word": "King",
+     "at": 0.5363636363636364,
+     "frame": 63
+    },
+    {
+     "word": "Charles",
+     "at": 0.5909090909090909,
+     "frame": 70
+    },
+    {
+     "word": "II",
+     "at": 0.6727272727272727,
+     "frame": 79
+    },
+    {
+     "word": "for",
+     "at": 0.7090909090909091,
+     "frame": 84
+    },
+    {
+     "word": "rebuilding",
+     "at": 0.7545454545454545,
+     "frame": 89
+    },
+    {
+     "word": "the",
+     "at": 0.8636363636363636,
+     "frame": 102
+    },
+    {
+     "word": "city.",
+     "at": 0.9090909090909091,
+     "frame": 107
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s33v",
+   "mode": "VISUAL",
+   "focal": "home floor 3",
+   "start_frame": 4735,
+   "duration_frames": 66,
+   "sentence": "In the aftermath, three plans were presented to King Charles II for rebuilding the city.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"m12 3l10 9h-3v8H5v-8H2zm3 8.5V10a2 2 0 0 0-2-2H9v2h4v2h-2v2h2v2H9v2h4a2 2 0 0 0 2-2v-1.5a1.5 1.5 0 0 0-1.5-1.5a1.5 1.5 0 0 0 1.5-1.5\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "home-floor-3"
+   }
+  },
+  {
+   "beat_id": "s34t",
+   "mode": "TYPE",
+   "focal": "Christopher Wren, John Evelyn, and Robert Hooke each had a vision.",
+   "start_frame": 4801,
+   "duration_frames": 91,
+   "sentence": "Christopher Wren, John Evelyn, and Robert Hooke each had a vision.",
+   "words": [
+    {
+     "word": "Christopher",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "Wren,",
+     "at": 0.14942528735632185,
+     "frame": 14
+    },
+    {
+     "word": "John",
+     "at": 0.26436781609195403,
+     "frame": 24
+    },
+    {
+     "word": "Evelyn,",
+     "at": 0.3333333333333333,
+     "frame": 30
+    },
+    {
+     "word": "and",
+     "at": 0.47126436781609193,
+     "frame": 43
+    },
+    {
+     "word": "Robert",
+     "at": 0.5287356321839081,
+     "frame": 48
+    },
+    {
+     "word": "Hooke",
+     "at": 0.6206896551724138,
+     "frame": 56
+    },
+    {
+     "word": "each",
+     "at": 0.7011494252873564,
+     "frame": 64
+    },
+    {
+     "word": "had",
+     "at": 0.7701149425287356,
+     "frame": 70
+    },
+    {
+     "word": "a",
+     "at": 0.8275862068965517,
+     "frame": 75
+    },
+    {
+     "word": "vision.",
+     "at": 0.8620689655172413,
+     "frame": 78
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s34v",
+   "mode": "VISUAL",
+   "focal": "device vision pro",
+   "start_frame": 4892,
+   "duration_frames": 51,
+   "sentence": "Christopher Wren, John Evelyn, and Robert Hooke each had a vision.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 7q1.715 0 3.275.104q1.526.101 2.798.42q1.22.304 2.119.909a3.9 3.9 0 0 1 1.328 1.531c.326.657.48 1.48.48 2.466q.002 1.51-.574 2.707q-.562 1.17-1.537 1.848a3.7 3.7 0 0 1-2.16.66q-.764.002-1.382-.21a6 6 0 0 1-1.17-.548a19 19 0 0 1-1.045-.695a9 9 0 0 0-1.001-.63a2.4 2.4 0 0 0-1.13-.301c-.373 0-.75.097-1.132.3q-.475.255-1 .63q-.482.345-1.047.695a5.8 5.8 0 0 1-1.168.548q-.62.212-1.378.21a3.7 3.7 0 0 1-2.165-.659q-.976-.68-1.537-1.848q-.576-1.196-.574-2.709c-.004-.98.15-1.802.477-2.46a3.9 3.9 0 0 1 1.33-1.531q.9-.604 2.12-.907a16 16 0 0 1 2.8-.423Q10.287 7 12 7\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "tabler",
+    "name": "device-vision-pro"
+   }
+  },
+  {
+   "beat_id": "s35t",
+   "mode": "TYPE",
+   "focal": "None of their plans were fully adopted.",
+   "start_frame": 4943,
+   "duration_frames": 62,
+   "sentence": "None of their plans were fully adopted.",
+   "words": [
+    {
+     "word": "None",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "of",
+     "at": 0.12,
+     "frame": 7
+    },
+    {
+     "word": "their",
+     "at": 0.2,
+     "frame": 12
+    },
+    {
+     "word": "plans",
+     "at": 0.34,
+     "frame": 21
+    },
+    {
+     "word": "were",
+     "at": 0.48,
+     "frame": 30
+    },
+    {
+     "word": "fully",
+     "at": 0.6,
+     "frame": 37
+    },
+    {
+     "word": "adopted.",
+     "at": 0.74,
+     "frame": 46
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s35v",
+   "mode": "VISUAL",
+   "focal": "floor plan",
+   "start_frame": 5005,
+   "duration_frames": 35,
+   "sentence": "None of their plans were fully adopted.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M10 5v5H9V5H5v8h4v-1h1v5H9v-3H5v5h7v-2h1v2h6v-2h2v4H3V3h18v12h-2v-5h-6v5h-1V9h7V5z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "floor-plan"
+   }
+  },
+  {
+   "beat_id": "s36t",
+   "mode": "TYPE",
+   "focal": "The old street lines were retained.",
+   "start_frame": 5040,
+   "duration_frames": 56,
+   "sentence": "The old street lines were retained.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "old",
+     "at": 0.1111111111111111,
+     "frame": 6
+    },
+    {
+     "word": "street",
+     "at": 0.2222222222222222,
+     "frame": 12
+    },
+    {
+     "word": "lines",
+     "at": 0.4,
+     "frame": 22
+    },
+    {
+     "word": "were",
+     "at": 0.5555555555555556,
+     "frame": 31
+    },
+    {
+     "word": "retained.",
+     "at": 0.6888888888888889,
+     "frame": 39
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s36v",
+   "mode": "VISUAL",
+   "focal": "thermometer lines",
+   "start_frame": 5096,
+   "duration_frames": 32,
+   "sentence": "The old street lines were retained.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M17 3h4v2h-4zm0 4h4v2h-4zm0 4h4v2h-3.25l-.75-.9zm4 4v2h-2c0-.69-.1-1.37-.29-2zM7 3v2H3V3zm0 4v2H3V7zm0 4v1.1l-.75.9H3v-2zm-4 4h2.29c-.19.63-.29 1.31-.29 2H3zm12-2V5c0-1.66-1.34-3-3-3S9 3.34 9 5v8c-2.21 1.66-2.66 4.79-1 7s4.79 2.66 7 1s2.66-4.79 1-7a4.7 4.7 0 0 0-1-1m-3-9c.55 0 1 .45 1 1v3h-2V5c0-.55.45-1 1-1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "thermometer-lines"
+   }
+  },
+  {
+   "beat_id": "s37t",
+   "mode": "TYPE",
+   "focal": "But Wren's masterpiece survived: St. Paul's Cathedral, rebuilt from the ashes, still stands today.",
+   "start_frame": 5128,
+   "duration_frames": 138,
+   "sentence": "But Wren's masterpiece survived: St. Paul's Cathedral, rebuilt from the ashes, still stands today.",
+   "words": [
+    {
+     "word": "But",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "Wren's",
+     "at": 0.03968253968253968,
+     "frame": 5
+    },
+    {
+     "word": "masterpiece",
+     "at": 0.09523809523809523,
+     "frame": 13
+    },
+    {
+     "word": "survived:",
+     "at": 0.1984126984126984,
+     "frame": 27
+    },
+    {
+     "word": "St.",
+     "at": 0.30952380952380953,
+     "frame": 43
+    },
+    {
+     "word": "Paul's",
+     "at": 0.373015873015873,
+     "frame": 51
+    },
+    {
+     "word": "Cathedral,",
+     "at": 0.42857142857142855,
+     "frame": 59
+    },
+    {
+     "word": "rebuilt",
+     "at": 0.5476190476190477,
+     "frame": 76
+    },
+    {
+     "word": "from",
+     "at": 0.6190476190476191,
+     "frame": 85
+    },
+    {
+     "word": "the",
+     "at": 0.6666666666666666,
+     "frame": 92
+    },
+    {
+     "word": "ashes,",
+     "at": 0.7063492063492064,
+     "frame": 97
+    },
+    {
+     "word": "still",
+     "at": 0.7936507936507936,
+     "frame": 110
+    },
+    {
+     "word": "stands",
+     "at": 0.8492063492063492,
+     "frame": 117
+    },
+    {
+     "word": "today.",
+     "at": 0.9126984126984127,
+     "frame": 126
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s37v",
+   "mode": "VISUAL",
+   "focal": "saint basil cathedral",
+   "start_frame": 5266,
+   "duration_frames": 78,
+   "sentence": "But Wren's masterpiece survived: St. Paul's Cathedral, rebuilt from the ashes, still stands today.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M208 22.81c-7.636 5.524-21.8 17.4-22.885 24.467c2.354 3.189 6.509 5.994 9.506 7.723h26.758c3.704-2.789 7.49-4.404 9.506-7.723c-4.548-11.043-13.671-18-22.885-24.466zM199.027 73l-11.5 46h40.946l-11.5-46zM304 95.5c-16.026 21.362-36.332 41.846-53.34 60.555c-9.89 10.88-18.644 21.146-24.672 30.187C219.961 195.283 217 203 217 208c0 2.1.177 4.112.488 6.045c45.098-28.37 81.492-70.44 97.188-105.135c-3.697-4.426-7.289-8.895-10.676-13.41m23.549 28.225c-19.266 37.932-56.702 78.784-103.026 107.134c4.64 6.573 10.415 11.207 14.297 13.85c51.58-32.122 85.075-67.773 103.881-104.494c-5.012-5.389-10.115-10.892-15.152-16.49M184.219 137l-7.928 87.21l7.197 10.798c14.228 21.341 31.924 36.144 47.512 49.674v-23.537c-10.063-6.447-32-23.84-32-53.145c0-11 5.04-21.283 12.012-31.742c5.927-8.891 13.506-17.983 21.853-27.34L231.781 137zm171.416 17.197c-18.216 32.977-47.038 64.315-87.65 92.803h31.363c37.622-26.747 59.943-50.916 68.187-79.42c-4.276-4.942-7.984-9.125-11.9-13.383M416 159.312c-5.616 7.226-11.495 13.663-17.357 19.52c.883 1.39 1.744 2.78 2.543 4.168h36.427c-7.252-6.935-14.636-14.711-21.613-23.688m-35.309 25.022c-9.618 22.973-27.145 43.002-51.459 62.666h36.293c4.093-2.312 25.475-15.387 25.475-39c0-5-2.96-12.717-8.988-21.758c-.417-.625-.878-1.27-1.32-1.908zM87 198.852c-7.35 15.662-12.948 29.163-16.316 41.515c-5.113 18.745-5.594 34.937-.026 54.633H87zm18 0V295h4.45c5.076-4.732 9.897-8.9 14.782-13.13c2.197-14.161 1.018-27.08-2.916-41.503c-3.368-12.352-8.967-25.852-16.316-41.515M408.32 201c.88 4.77.795 9.509.248 14h64.584c-5.438-5.327-10.16-9.445-15.427-14zm-346.054 9.043C48.463 223.324 25.822 239.658 25 256c0 23.613 21.382 36.688 25.475 39h1.615c-4.93-20.694-4.132-39.721 1.226-59.367c2.265-8.302 5.289-16.737 8.95-25.59m67.468 0c3.661 8.853 6.685 17.288 8.95 25.59c2.67 9.79 4.206 19.429 4.466 29.195c6.809-6.576 13.539-13.79 19.786-22.01c-9.535-13.514-21.75-22.732-33.202-32.775M403.111 233c-2.678 5.38-6.028 10.04-9.53 14h92.763c.417-2.222.656-4.551.656-7a22.3 22.3 0 0 0-1.12-7zM176 255.313c-15.3 19.685-32.57 33.644-46.074 45.46c-7.88 6.896-14.44 13.092-18.694 18.834C106.98 325.35 105 330.25 105 336c0 23.613 21.382 36.688 25.475 39h89.144c1.898-23.248 4.381-44.682 11.381-66.104c-2.715-2.604-5.702-5.301-8.926-8.123c-13.504-11.816-30.773-25.775-46.074-45.46M249 265v46h110v-46zm128 0v14h84.525c2.295-1.296 10.023-5.978 16.371-14zm0 32v19.723c2.677 3.802 3.82 8.068 5.166 13.164c1.74 6.588 3.111 14.563 4.281 23.668c2.744 25.07 4.156 47.613 4.983 69.445H455V297zM57 313v126h62v-49.855c-10.063-6.447-32-23.84-32-53.145c0-8.494 2.766-16.195 6.982-23zm188.361 16c-3.624 9.431-4.982 21.037-6.05 30h129.658c-1.956-10.184-2.672-21.785-6.201-30zm-7.845 48c-1.072 12.843-1.899 27.011-2.524 41.39c-.698 16.054-1.138 31.855-1.424 46.393L259.902 377zm45.463 0L304 482.104L325.021 377zm65.119 0l26.484 88.283c-.25-14.696-.655-30.688-1.334-46.951c-.6-14.36-1.405-28.51-2.473-41.332zM137 393v46h78v-46zm133.252 12.152L243.598 494h44.423zm67.496 0L319.978 494h44.424zM392.025 441c.552 19.69.777 37.785.881 53h89.56c-4.867-18.226-10.506-38.14-22.66-53zM51.803 457c-11.084 11.094-20.588 21.15-24.643 37h68.145c3.994-12.66 9.09-26.375 15.052-37zm80.488 0c-8.132 12.682-14.35 25.025-18.12 37h100.993c.105-11.106.267-23.524.576-37z\"/>",
+    "width": 512,
+    "height": 512,
+    "set": "game-icons",
+    "name": "saint-basil-cathedral"
+   },
+   "attribution": {
+    "name": "GameIcons",
+    "url": "https://github.com/game-icons/icons",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://github.com/game-icons/icons/blob/master/license.txt"
+   }
+  },
+  {
+   "beat_id": "s38t",
+   "mode": "TYPE",
+   "focal": "The fire had swept away the medieval city—with all its inefficiency, its fire hazard, its disease-prone density—and created space for something new.",
+   "start_frame": 5344,
+   "duration_frames": 190,
+   "sentence": "The fire had swept away the medieval city—with all its inefficiency, its fire hazard, its disease-prone density—and created space for something new.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "fire",
+     "at": 0.02824858757062147,
+     "frame": 5
+    },
+    {
+     "word": "had",
+     "at": 0.062146892655367235,
+     "frame": 12
+    },
+    {
+     "word": "swept",
+     "at": 0.0903954802259887,
+     "frame": 17
+    },
+    {
+     "word": "away",
+     "at": 0.12994350282485875,
+     "frame": 25
+    },
+    {
+     "word": "the",
+     "at": 0.1638418079096045,
+     "frame": 31
+    },
+    {
+     "word": "medieval",
+     "at": 0.192090395480226,
+     "frame": 36
+    },
+    {
+     "word": "city—with",
+     "at": 0.24858757062146894,
+     "frame": 47
+    },
+    {
+     "word": "all",
+     "at": 0.3050847457627119,
+     "frame": 58
+    },
+    {
+     "word": "its",
+     "at": 0.3333333333333333,
+     "frame": 63
+    },
+    {
+     "word": "inefficiency,",
+     "at": 0.3615819209039548,
+     "frame": 69
+    },
+    {
+     "word": "its",
+     "at": 0.4632768361581921,
+     "frame": 88
+    },
+    {
+     "word": "fire",
+     "at": 0.4915254237288136,
+     "frame": 93
+    },
+    {
+     "word": "hazard,",
+     "at": 0.5254237288135594,
+     "frame": 100
+    },
+    {
+     "word": "its",
+     "at": 0.5932203389830508,
+     "frame": 113
+    },
+    {
+     "word": "disease-prone",
+     "at": 0.6214689265536724,
+     "frame": 118
+    },
+    {
+     "word": "density—and",
+     "at": 0.7005649717514124,
+     "frame": 133
+    },
+    {
+     "word": "created",
+     "at": 0.768361581920904,
+     "frame": 146
+    },
+    {
+     "word": "space",
+     "at": 0.8192090395480226,
+     "frame": 156
+    },
+    {
+     "word": "for",
+     "at": 0.8587570621468926,
+     "frame": 163
+    },
+    {
+     "word": "something",
+     "at": 0.8870056497175142,
+     "frame": 169
+    },
+    {
+     "word": "new.",
+     "at": 0.9491525423728814,
+     "frame": 180
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s38v",
+   "mode": "VISUAL",
+   "focal": "candelabra fire",
+   "start_frame": 5534,
+   "duration_frames": 107,
+   "sentence": "The fire had swept away the medieval city—with all its inefficiency, its fire hazard, its disease-prone density—and created space for something new.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 7c.83 0 1.5-.67 1.5-1.5S18.83 3 18 3s-1.5 1.67-1.5 2.5S17.17 7 18 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M12 6c.83 0 1.5-.67 1.5-1.5S12.83 2 12 2s-1.5 1.67-1.5 2.5S11.17 6 12 6m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M6 7c.83 0 1.5-.67 1.5-1.5S6.83 3 6 3S4.5 4.67 4.5 5.5S5.17 7 6 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M20.5 11c0 .55-.45 1-1 1H19v2c0 1.11-.89 2-2 2h-4v4h1a2 2 0 0 1 2 2H8c0-1.1.9-2 2-2h1v-4H7a2 2 0 0 1-2-2v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1s-.45 1-1 1H7v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V8c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v2c.55 0 1 .45 1 1s-.45 1-1 1H13v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "candelabra-fire"
+   }
+  },
+  {
+   "beat_id": "s39t",
+   "mode": "TYPE",
+   "focal": "The London that emerged was more orderly, more regulated, more ambitious.",
+   "start_frame": 5641,
+   "duration_frames": 169,
+   "sentence": "The London that emerged was more orderly, more regulated, more ambitious.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "London",
+     "at": 0.05319148936170213,
+     "frame": 9
+    },
+    {
+     "word": "that",
+     "at": 0.13829787234042554,
+     "frame": 23
+    },
+    {
+     "word": "emerged",
+     "at": 0.20212765957446807,
+     "frame": 34
+    },
+    {
+     "word": "was",
+     "at": 0.2978723404255319,
+     "frame": 50
+    },
+    {
+     "word": "more",
+     "at": 0.35106382978723405,
+     "frame": 59
+    },
+    {
+     "word": "orderly,",
+     "at": 0.4148936170212766,
+     "frame": 70
+    },
+    {
+     "word": "more",
+     "at": 0.5531914893617021,
+     "frame": 93
+    },
+    {
+     "word": "regulated,",
+     "at": 0.6170212765957447,
+     "frame": 104
+    },
+    {
+     "word": "more",
+     "at": 0.776595744680851,
+     "frame": 131
+    },
+    {
+     "word": "ambitious.",
+     "at": 0.8404255319148937,
+     "frame": 142
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s40t",
+   "mode": "TYPE",
+   "focal": "The fire didn't destroy London.",
+   "start_frame": 5810,
+   "duration_frames": 52,
+   "sentence": "The fire didn't destroy London.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "fire",
+     "at": 0.1282051282051282,
+     "frame": 7
+    },
+    {
+     "word": "didn't",
+     "at": 0.28205128205128205,
+     "frame": 15
+    },
+    {
+     "word": "destroy",
+     "at": 0.46153846153846156,
+     "frame": 24
+    },
+    {
+     "word": "London.",
+     "at": 0.6923076923076923,
+     "frame": 36
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s40v",
+   "mode": "VISUAL",
+   "focal": "candelabra fire",
+   "start_frame": 5862,
+   "duration_frames": 30,
+   "sentence": "The fire didn't destroy London.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 7c.83 0 1.5-.67 1.5-1.5S18.83 3 18 3s-1.5 1.67-1.5 2.5S17.17 7 18 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M12 6c.83 0 1.5-.67 1.5-1.5S12.83 2 12 2s-1.5 1.67-1.5 2.5S11.17 6 12 6m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M6 7c.83 0 1.5-.67 1.5-1.5S6.83 3 6 3S4.5 4.67 4.5 5.5S5.17 7 6 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M20.5 11c0 .55-.45 1-1 1H19v2c0 1.11-.89 2-2 2h-4v4h1a2 2 0 0 1 2 2H8c0-1.1.9-2 2-2h1v-4H7a2 2 0 0 1-2-2v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1s-.45 1-1 1H7v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V8c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v2c.55 0 1 .45 1 1s-.45 1-1 1H13v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "candelabra-fire"
+   }
+  },
+  {
+   "beat_id": "s41t",
+   "mode": "TYPE",
+   "focal": "It transformed it.",
+   "start_frame": 5892,
+   "duration_frames": 63,
+   "sentence": "It transformed it.",
+   "words": [
+    {
+     "word": "It",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "transformed",
+     "at": 0.16,
+     "frame": 10
+    },
+    {
+     "word": "it.",
+     "at": 0.68,
+     "frame": 43
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "CLEAR"
+  },
+  {
+   "beat_id": "s42t",
+   "mode": "TYPE",
+   "focal": "When you walk through London today, you're walking through a city that rose from ashes.",
+   "start_frame": 5955,
+   "duration_frames": 108,
+   "sentence": "When you walk through London today, you're walking through a city that rose from ashes.",
+   "words": [
+    {
+     "word": "When",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "you",
+     "at": 0.05555555555555555,
+     "frame": 6
+    },
+    {
+     "word": "walk",
+     "at": 0.10185185185185185,
+     "frame": 11
+    },
+    {
+     "word": "through",
+     "at": 0.1574074074074074,
+     "frame": 17
+    },
+    {
+     "word": "London",
+     "at": 0.24074074074074073,
+     "frame": 26
+    },
+    {
+     "word": "today,",
+     "at": 0.3148148148148148,
+     "frame": 34
+    },
+    {
+     "word": "you're",
+     "at": 0.4166666666666667,
+     "frame": 45
+    },
+    {
+     "word": "walking",
+     "at": 0.48148148148148145,
+     "frame": 52
+    },
+    {
+     "word": "through",
+     "at": 0.5648148148148148,
+     "frame": 61
+    },
+    {
+     "word": "a",
+     "at": 0.6481481481481481,
+     "frame": 70
+    },
+    {
+     "word": "city",
+     "at": 0.6759259259259259,
+     "frame": 73
+    },
+    {
+     "word": "that",
+     "at": 0.7314814814814815,
+     "frame": 79
+    },
+    {
+     "word": "rose",
+     "at": 0.7870370370370371,
+     "frame": 85
+    },
+    {
+     "word": "from",
+     "at": 0.8425925925925926,
+     "frame": 91
+    },
+    {
+     "word": "ashes.",
+     "at": 0.8981481481481481,
+     "frame": 97
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s42v",
+   "mode": "VISUAL",
+   "focal": "walk",
+   "start_frame": 6063,
+   "duration_frames": 60,
+   "sentence": "When you walk through London today, you're walking through a city that rose from ashes.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M14.12 10H19V8.2h-3.62l-2-3.33c-.3-.5-.84-.84-1.46-.84c-.18 0-.34.03-.5.08L6 5.8V11h1.8V7.33l2.11-.66L6 22h1.8l2.87-8.11L13 17v5h1.8v-6.41l-2.49-4.54l.73-2.87M14 3.8c1 0 1.8-.8 1.8-1.8S15 .2 14 .2S12.2 1 12.2 2S13 3.8 14 3.8\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "walk"
+   }
+  },
+  {
+   "beat_id": "s43t",
+   "mode": "TYPE",
+   "focal": "Every brick tells that story.",
+   "start_frame": 6123,
+   "duration_frames": 51,
+   "sentence": "Every brick tells that story.",
+   "words": [
+    {
+     "word": "Every",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "brick",
+     "at": 0.18421052631578946,
+     "frame": 9
+    },
+    {
+     "word": "tells",
+     "at": 0.3684210526315789,
+     "frame": 19
+    },
+    {
+     "word": "that",
+     "at": 0.5526315789473685,
+     "frame": 28
+    },
+    {
+     "word": "story.",
+     "at": 0.7105263157894737,
+     "frame": 36
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s43v",
+   "mode": "VISUAL",
+   "focal": "toy brick marker",
+   "start_frame": 6174,
+   "duration_frames": 28,
+   "sentence": "Every brick tells that story.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19 6V5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v1h-2V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v1H3v14h11.54A9.55 9.55 0 0 1 13 15.5a5.58 5.58 0 0 1 5.5-5.5a5.3 5.3 0 0 1 2.5.63V6m-2.5 6a3.54 3.54 0 0 0-3.5 3.5c0 2.6 3.5 6.5 3.5 6.5s3.5-3.9 3.5-6.5a3.54 3.54 0 0 0-3.5-3.5m0 4.8a1.2 1.2 0 1 1 0-2.4a1.29 1.29 0 0 1 1.2 1.2a1.15 1.15 0 0 1-1.2 1.2\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "toy-brick-marker"
+   }
+  },
+  {
+   "beat_id": "s44t",
+   "mode": "TYPE",
+   "focal": "The Great Fire of London wasn't just a disaster.",
+   "start_frame": 6202,
+   "duration_frames": 70,
+   "sentence": "The Great Fire of London wasn't just a disaster.",
+   "words": [
+    {
+     "word": "The",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "Great",
+     "at": 0.08333333333333333,
+     "frame": 6
+    },
+    {
+     "word": "Fire",
+     "at": 0.2,
+     "frame": 14
+    },
+    {
+     "word": "of",
+     "at": 0.3,
+     "frame": 21
+    },
+    {
+     "word": "London",
+     "at": 0.36666666666666664,
+     "frame": 26
+    },
+    {
+     "word": "wasn't",
+     "at": 0.5,
+     "frame": 35
+    },
+    {
+     "word": "just",
+     "at": 0.6166666666666667,
+     "frame": 43
+    },
+    {
+     "word": "a",
+     "at": 0.7166666666666667,
+     "frame": 50
+    },
+    {
+     "word": "disaster.",
+     "at": 0.7666666666666667,
+     "frame": 54
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s44v",
+   "mode": "VISUAL",
+   "focal": "candelabra fire",
+   "start_frame": 6272,
+   "duration_frames": 40,
+   "sentence": "The Great Fire of London wasn't just a disaster.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M18 7c.83 0 1.5-.67 1.5-1.5S18.83 3 18 3s-1.5 1.67-1.5 2.5S17.17 7 18 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M12 6c.83 0 1.5-.67 1.5-1.5S12.83 2 12 2s-1.5 1.67-1.5 2.5S11.17 6 12 6m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M6 7c.83 0 1.5-.67 1.5-1.5S6.83 3 6 3S4.5 4.67 4.5 5.5S5.17 7 6 7m0-1.75c.28 0 .5.22.5.5s-.22.5-.5.5s-.5-.22-.5-.5s.22-.5.5-.5M20.5 11c0 .55-.45 1-1 1H19v2c0 1.11-.89 2-2 2h-4v4h1a2 2 0 0 1 2 2H8c0-1.1.9-2 2-2h1v-4H7a2 2 0 0 1-2-2v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1s-.45 1-1 1H7v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V8c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v2c.55 0 1 .45 1 1s-.45 1-1 1H13v2h4v-2h-.5c-.55 0-1-.45-1-1s.45-1 1-1V9c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1c.55 0 1 .45 1 1\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "candelabra-fire"
+   }
+  },
+  {
+   "beat_id": "s45t",
+   "mode": "TYPE",
+   "focal": "It was the moment a city learned to rebuild.",
+   "start_frame": 6312,
+   "duration_frames": 65,
+   "sentence": "It was the moment a city learned to rebuild.",
+   "words": [
+    {
+     "word": "It",
+     "at": 0,
+     "frame": 0
+    },
+    {
+     "word": "was",
+     "at": 0.07017543859649122,
+     "frame": 5
+    },
+    {
+     "word": "the",
+     "at": 0.15789473684210525,
+     "frame": 10
+    },
+    {
+     "word": "moment",
+     "at": 0.24561403508771928,
+     "frame": 16
+    },
+    {
+     "word": "a",
+     "at": 0.38596491228070173,
+     "frame": 25
+    },
+    {
+     "word": "city",
+     "at": 0.43859649122807015,
+     "frame": 29
+    },
+    {
+     "word": "learned",
+     "at": 0.543859649122807,
+     "frame": 35
+    },
+    {
+     "word": "to",
+     "at": 0.7017543859649122,
+     "frame": 46
+    },
+    {
+     "word": "rebuild.",
+     "at": 0.7719298245614035,
+     "frame": 50
+    }
+   ],
+   "transitionIn": "CLEAR",
+   "transitionOut": "MORPH"
+  },
+  {
+   "beat_id": "s45v",
+   "mode": "VISUAL",
+   "focal": "city",
+   "start_frame": 6377,
+   "duration_frames": 37,
+   "sentence": "It was the moment a city learned to rebuild.",
+   "words": [],
+   "transitionIn": "MORPH",
+   "transitionOut": "CLEAR",
+   "icon": {
+    "body": "<path fill=\"currentColor\" d=\"M19 15h-2v-2h2m0 6h-2v-2h2M13 7h-2V5h2m0 6h-2V9h2m0 6h-2v-2h2m0 6h-2v-2h2m-6-6H5V9h2m0 6H5v-2h2m0 6H5v-2h2m8-6V5l-3-3l-3 3v2H3v14h18V11z\"/>",
+    "width": 24,
+    "height": 24,
+    "set": "mdi",
+    "name": "city"
+   }
+  }
+ ],
+ "palette": {
+  "primary": [
+   "#1A100A",
+   "#2D1A12",
+   "#D4A574",
+   "#000000"
+  ],
+  "secondary": [
+   "#A5815A",
+   "#989391",
+   "#EDECEB"
+  ]
+ },
+ "fonts": {
+  "primary": "Cormorant Garamond",
+  "secondary": "DM Sans"
+ },
+ "picks": [
+  {
+   "sentence": "In 1666, a single spark in a bakery destroyed 13,000 homes, 87 churches, and most of London.",
+   "asset": "home analytics",
+   "score": 16.5,
+   "subject": "destroyed"
+  },
+  {
+   "sentence": "But the real story isn't about fire.",
+   "asset": "candelabra fire",
+   "score": 16.5,
+   "subject": "fire"
+  },
+  {
+   "sentence": "It's about human failure.",
+   "asset": "human dolly",
+   "score": 16.5,
+   "subject": "human"
+  },
+  {
+   "sentence": "London in 1666 was a city waiting to burn.",
+   "asset": "city",
+   "score": 13.5,
+   "subject": "city"
+  },
+  {
+   "sentence": "Timber-framed buildings pressed shoulder to shoulder along medieval streets.",
+   "asset": "office building cog",
+   "score": 13.5,
+   "subject": "buildings"
+  },
+  {
+   "sentence": "The summer had been scorching and bone-dry.",
+   "asset": "bone",
+   "score": 10.5,
+   "subject": "bone"
+  },
+  {
+   "sentence": "The wood was seasoned to perfection for burning.",
+   "asset": "burning blobs",
+   "score": 10.5,
+   "subject": "burning"
+  },
+  {
+   "sentence": "Thomas Farriner's bakery on Pudding Lane was the epicenter.",
+   "asset": "car 2 plus",
+   "score": 9,
+   "subject": "epicenter"
+  },
+  {
+   "sentence": "His oven was allegedly left unattended on Saturday night.",
+   "asset": "weather night",
+   "score": 19.5,
+   "subject": "night"
+  },
+  {
+   "sentence": "By dawn on Sunday, September 2nd, flames had already taken hold.",
+   "asset": "candelabra fire",
+   "score": 14,
+   "subject": "flames"
+  },
+  {
+   "sentence": "But here's what most people don't know: the fire could have been stopped.",
+   "asset": "candelabra fire",
+   "score": 16.5,
+   "subject": "fire"
+  },
+  {
+   "sentence": "The Lord Mayor of London, Sir Thomas Bloodworth, was woken with the news.",
+   "asset": "new box",
+   "score": 8.5,
+   "subject": "bloodworth"
+  },
+  {
+   "sentence": "His response?",
+   "asset": null,
+   "score": 0,
+   "subject": "response"
+  },
+  {
+   "sentence": "A woman could piss it out.",
+   "asset": "face woman profile",
+   "score": 19.5,
+   "subject": "woman"
+  },
+  {
+   "sentence": "He refused to demolish surrounding buildings to create firebreaks.",
+   "asset": "office building cog",
+   "score": 13.5,
+   "subject": "buildings"
+  },
+  {
+   "sentence": "By the time he changed his mind, it was too late.",
+   "asset": "hive mind",
+   "score": 10.5,
+   "subject": "mind"
+  },
+  {
+   "sentence": "The fire had grown beyond control.",
+   "asset": "candelabra fire",
+   "score": 16.5,
+   "subject": "fire"
+  },
+  {
+   "sentence": "Samuel Pepys, a diarist and naval administrator, watched the destruction unfold.",
+   "asset": "security",
+   "score": 8,
+   "subject": "administrator"
+  },
+  {
+   "sentence": "His account is one of the most vivid we have.",
+   "asset": "account multiple check",
+   "score": 24.5,
+   "subject": "account"
+  },
+  {
+   "sentence": "I saw a fire as one entire arch of fire above a mile long: it made me weep to see it.",
+   "asset": "candelabra fire",
+   "score": 16.5,
+   "subject": "fire"
+  },
+  {
+   "sentence": "The churches, houses are all on fire and flaming at once, and a horrid noise the flames made and the cracking of the houses.",
+   "asset": "candelabra fire",
+   "score": 20.5,
+   "subject": "churches"
+  },
+  {
+   "sentence": "Pepys made a decision that sounds bizarre today: he buried his Parmesan cheese and wine in his garden.",
+   "asset": "cellphone sound",
+   "score": 16.5,
+   "subject": "sounds"
+  },
+  {
+   "sentence": "But in 1666, this was practical crisis management.",
+   "asset": null,
+   "score": 0,
+   "subject": "management"
+  },
+  {
+   "sentence": "Hard cheese was imported, expensive, and remarkably durable.",
+   "asset": "cheese",
+   "score": 13.5,
+   "subject": "cheese"
+  },
+  {
+   "sentence": "With London descending into chaos, Pepys was safeguarding a compact store of wealth and calories.",
+   "asset": "store clock",
+   "score": 14.5,
+   "subject": "safeguarding"
+  },
+  {
+   "sentence": "The fire raged for four days.",
+   "asset": "candelabra fire",
+   "score": 16.5,
+   "subject": "fire"
+  },
+  {
+   "sentence": "It consumed everything in its path: 13,200 houses, 87 churches, most of the City of London.",
+   "asset": "home floor negative 1",
+   "score": 17,
+   "subject": "houses"
+  },
+  {
+   "sentence": "Only six deaths were officially recorded.",
+   "asset": "numeric 6 circle",
+   "score": 11,
+   "subject": "six"
+  },
+  {
+   "sentence": "But historians believe the true number was much higher.",
+   "asset": "numeric 0 circle",
+   "score": 11,
+   "subject": "number"
+  },
+  {
+   "sentence": "The poor, the homeless, the undocumented—they simply vanished.",
+   "asset": null,
+   "score": 0,
+   "subject": "undocumented"
+  },
+  {
+   "sentence": "The fire reached the Thames and stopped there.",
+   "asset": "candelabra fire",
+   "score": 16.5,
+   "subject": "fire"
+  },
+  {
+   "sentence": "Water on one side, open ground on the other.",
+   "asset": "water boiler",
+   "score": 25.5,
+   "subject": "water"
+  },
+  {
+   "sentence": "The city was saved from complete annihilation.",
+   "asset": "timer sand complete",
+   "score": 13.5,
+   "subject": "complete"
+  },
+  {
+   "sentence": "In the aftermath, three plans were presented to King Charles II for rebuilding the city.",
+   "asset": "home floor 3",
+   "score": 11,
+   "subject": "three"
+  },
+  {
+   "sentence": "Christopher Wren, John Evelyn, and Robert Hooke each had a vision.",
+   "asset": "device vision pro",
+   "score": 10.5,
+   "subject": "vision"
+  },
+  {
+   "sentence": "None of their plans were fully adopted.",
+   "asset": "floor plan",
+   "score": 9,
+   "subject": "plans"
+  },
+  {
+   "sentence": "The old street lines were retained.",
+   "asset": "thermometer lines",
+   "score": 13.5,
+   "subject": "lines"
+  },
+  {
+   "sentence": "But Wren's masterpiece survived: St. Paul's Cathedral, rebuilt from the ashes, still stands today.",
+   "asset": "saint basil cathedral",
+   "score": 10.5,
+   "subject": "cathedral"
+  },
+  {
+   "sentence": "The fire had swept away the medieval city—with all its inefficiency, its fire hazard, its disease-prone density—and created space for something new.",
+   "asset": "candelabra fire",
+   "score": 11.5,
+   "subject": "disease"
+  },
+  {
+   "sentence": "The London that emerged was more orderly, more regulated, more ambitious.",
+   "asset": null,
+   "score": 0,
+   "subject": "regulated"
+  },
+  {
+   "sentence": "The fire didn't destroy London.",
+   "asset": "candelabra fire",
+   "score": 16.5,
+   "subject": "fire"
+  },
+  {
+   "sentence": "It transformed it.",
+   "asset": null,
+   "score": 0,
+   "subject": "transformed"
+  },
+  {
+   "sentence": "When you walk through London today, you're walking through a city that rose from ashes.",
+   "asset": "walk",
+   "score": 19.5,
+   "subject": "walking"
+  },
+  {
+   "sentence": "Every brick tells that story.",
+   "asset": "toy brick marker",
+   "score": 13.5,
+   "subject": "brick"
+  },
+  {
+   "sentence": "The Great Fire of London wasn't just a disaster.",
+   "asset": "candelabra fire",
+   "score": 16.5,
+   "subject": "fire"
+  },
+  {
+   "sentence": "It was the moment a city learned to rebuild.",
+   "asset": "city",
+   "score": 13.5,
+   "subject": "city"
+  }
+ ]
+}

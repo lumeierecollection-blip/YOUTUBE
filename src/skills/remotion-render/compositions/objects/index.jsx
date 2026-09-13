@@ -3,6 +3,9 @@ import { registerObject } from "./registry.js";
 // The library registers itself on import. It is a second file only because 79
 // more drawings in this one would bury everything else; the contract is identical.
 import "./library.jsx";
+// The natural-world set: caves, creatures, chemistry, light and depth. Added
+// because the library had no cave and returned a legal document for one.
+import "./nature.jsx";
 
 // Re-exported so every existing importer of ./objects/index.jsx keeps working.
 export { registerObject, hasObject, knownObjects, ObjectShape } from "./registry.js";

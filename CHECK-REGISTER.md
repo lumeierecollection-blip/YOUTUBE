@@ -2926,6 +2926,66 @@ assembled. That took MOT2-6 from 94 frames to 89.
 actor leaves and returns, 4 of 4 numbers count on entry, longest held
 composition 89 frames.
 
+### 3.18.1 Screen ownership — one performer at a time
+
+The beat engine fixed the motion and left the composition wrong. Every beat
+still drew a display line AND a supporting line AND a caption AND a stage of
+three objects: four things asking for the eye, none large enough to be the
+subject. That is an animated infographic.
+
+Every beat now declares `screen_mode` and one `focal_element`, and the renderer
+draws only that owner.
+
+| ID | Check | How | Sev |
+|---|---|---|---|
+| MOT2-7 | A TYPE beat carries no actors; a HERO beat carries exactly one | the beat model — a TYPE beat's actor list is empty | BLOCKER |
+| MOT2-8 | No run of more than three beats with the same owner | `screen-mode.js`, enforced at plan time | MAJOR |
+| MOT2-9 | Nothing a beat draws leaves the safe rect | `measure-template-bounds.mjs`, from pixels | BLOCKER |
+
+MOT2-7 is structural rather than checked afterwards: a TYPE beat's actor list is
+empty, so the renderer cannot draw two primary things even by accident.
+
+**MODE COMES FROM THE SENTENCE, THEN ALTERNATION IS FORCED.** Concrete things,
+quantities and relations are shown; abstractions, contrasts and conclusions are
+said. Left to the sentences alone a script listing five concrete things would
+give five HERO beats in a row, so three of a kind is the ceiling and the fourth
+flips whatever the sentence says.
+
+**MOTION IS THE SENTENCE'S VERB.** `semantic-motion.js` maps the verb to one of
+eight hero actions — "deeper" descends, "disappeared" shrinks to nothing,
+"connected" draws a line between two instances, a quantity counts. A sentence
+with no verb cue gets SETTLE, which is weight and a slow drift, rather than a
+borrowed animation.
+
+**FOUR SAFE-RECT VIOLATIONS, ALL FROM ANIMATING OUTWARD.** Type is sized to fill
+the safe width exactly, so anything that moves it outward puts it outside, and
+three of the typography actions did:
+
+- The character-advance estimate was a flat 0.56em. Measured on the render it is
+  0.625, and a flat average is wrong anyway because M is nearly three times the
+  width of I. "ALONE" at 300px landed **98px past the right edge**. Corrected to
+  weighted per-character widths; a second pass was needed because uppercase L is
+  not narrow, which still left it 66px over.
+- `SPLIT` slid its lines in from ±0.35 of the safe width, reaching x[22,966]
+  against a rect of [48,888]. It now converges vertically.
+- `EXPLODE` opened the tracking outward from the fitted width. It now opens from
+  tight to normal, so the widest state is the fitted one.
+- The hero `SPLIT` did not account for the 8% a rotation adds to each half's
+  footprint.
+
+**A HANDOVER LEFT SIX FRAMES OF NOTHING.** Clearing the old owner before the new
+one arrives is the point, but a 10% dead window on a 60-frame beat is six blank
+frames — one sampled still measured **0.2% ink**, a caption on an empty ground.
+The incoming element now starts at 2% and is up by 24%.
+
+**A SCREEN PAINTED PURE BLACK IS INVISIBLE ON A BLACK CHANNEL.** At hero size on
+ch-02 the dashcam frame was a hole with a road floating in it. A screen is
+darker than what surrounds it, so on a dark ground it is lifted 16% toward the
+mark colour instead of being driven to black.
+
+**MEASURED:** 8 stills across the fixture, all inside the safe rect, none empty,
+ink 2.9% to 23.7%.
+
 **WHAT IS NOT DONE, PLAINLY.** The engine renders through its own composition
 and is not yet wired into `render.js` — no channel ships video from it. The
 `TRANSFORM`, `SPLIT` and `MERGE` behaviours are assigned in plans but the

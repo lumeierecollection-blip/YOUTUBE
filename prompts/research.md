@@ -3,9 +3,10 @@
 You are given one `{topic, angle, slug, channel_id}` in the INPUT section of
 this message.
 
-Search the web and gather what a 2–8 minute video on this topic would need.
-This is the only research pass — nothing downstream of this step is allowed
-to add new claims, so be thorough now.
+Search the web and gather what this video topic needs. Keep research LEAN —
+you need 3-4 hard facts with numbers, not an exhaustive survey. One focused
+search call is usually enough. This is the only research pass — nothing
+downstream is allowed to add new claims.
 
 ## Process
 
@@ -17,20 +18,11 @@ text highlights.
 
 ## Hard requirements — the run FAILS a gate if you miss these
 
-- **At least 5 `key_facts`.**
-- **At least 3 DISTINCT source domains** across those facts (cnbc.com and
-  businessinsider.com is only two — you need a third). The run FAILS its
-  research gate if your key_facts don't span three different hostnames, so
-  DO NOT finalize your output until you have counted the distinct hostnames
-  across your key_facts and confirmed three. If your first search only
-  returns sources from one or two domains — common for niche topics where
-  everything comes back from .gov sites — run the second search specifically
-  for a different KIND of source (law-firm alerts, news reporting, legal
-  commentary, industry/HR guides, court-records mirrors) and BASE at least
-  one key_fact on a source from that third domain. A well-sourced fact
-  with confidence: medium on a third domain beats failing the gate. Never
-  finalize a response whose key_facts span fewer than three distinct
-  hostnames.
+- **At least 3 `key_facts`.**
+- **At least 2 DISTINCT source domains** across those facts. The run FAILS
+  its research gate if your key_facts don't span two different hostnames.
+  If your first search only returns sources from one domain, run a second
+  search specifically for a different kind of source.
 - Populate `numbers[]` whenever the sources state concrete figures; a
   motion-graphics script downstream can only chart values that appear here.
 

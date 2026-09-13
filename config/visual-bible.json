@@ -1,0 +1,496 @@
+{
+  "version": "3.0",
+  "principle": "NEVER VISUALIZE A SENTENCE. VISUALIZE WHAT THE SENTENCE IS DOING. The video is not a collection of scenes — it is one continuous visual argument. Every visual must answer: 'Why does this thing need to exist on screen at this exact moment?' If the answer is 'because this is a new sentence' — reject it.",
+  "goal": "The narration drives one evolving composition. Objects appear, transform, carry information, become the next visual, transform again. Not: HEADLINE → GRAPHIC → HEADLINE → GRAPHIC.",
+  "aesthetic": {
+    "target": "CINEMATIC EDITORIAL MOTION GRAPHICS",
+    "feel": ["intentional", "restrained", "intelligent", "cinematic", "editorial", "tactile", "spatial", "visually hierarchical", "rhythmically edited", "semantically meaningful"],
+    "never": ["corporate explainer", "Canva animation", "PowerPoint animation", "generic SaaS", "infographic slideshow", "AI-generated motion graphics", "icon slideshow", "boxes-and-arrows diagrams", "giant-number-everywhere", "rounded-card UI", "everything-floats-in animation", "headline-graphic alternation", "caption track underneath visuals", "word-by-word animation", "decorative grids"]
+  },
+  "failure_categories": [
+    "TYPOGRAPHY",
+    "COMPOSITION",
+    "SEMANTIC_MISMATCH",
+    "TIMING",
+    "AUDIO_SYNC",
+    "CAMERA",
+    "MOTION",
+    "REPETITION",
+    "VISUAL_HIERARCHY",
+    "SAFE_AREA",
+    "CONTINUITY",
+    "MATERIALITY",
+    "CHANNEL_IDENTITY",
+    "EMOTIONAL_RHYTHM",
+    "VISUAL_DENSITY",
+    "EDITORIAL_PACING",
+    "SOURCE_INTEGRITY",
+    "HEADLINE_MONOCULTURE",
+    "DECORATION",
+    "MOTION_WEIGHT"
+  ],
+  "severity_levels": {
+    "CRITICAL": {
+      "description": "Visual contradicts narration, important text unreadable, overlapping elements, visual represents wrong concept, major timing failure, scene renders incorrectly, important content outside frame, headline-graphic alternation pattern detected.",
+      "action": "Video MUST be re-rendered."
+    },
+    "HIGH": {
+      "description": "Repetitive composition, generic visual treatment, poor semantic communication, excessive typography, incorrect camera behavior, obvious AI/template aesthetic, headline monoculture, caption-track duplicate text, decorative elements without semantic purpose, same motion weight on everything.",
+      "action": "Scene SHOULD be re-rendered."
+    },
+    "MEDIUM": {
+      "description": "Spacing issue, weak hierarchy, slightly awkward timing, unnecessary animation, weak continuity between beats.",
+      "action": "Fix when practical."
+    },
+    "LOW": {
+      "description": "Minor alignment, tiny rhythm inconsistency.",
+      "action": "Do not waste render time on trivial imperfections."
+    }
+  },
+  "rules": {
+    "TYP-01": {
+      "name": "single-line-text",
+      "category": "TYPOGRAPHY",
+      "severity": "CRITICAL",
+      "description": "All on-screen text must fit on a single primary line. The default typography unit is ONE VISUAL THOUGHT — usually 1 short line. Maximum: one primary line plus one short supporting line when absolutely necessary. Never create 5-8 lines of subtitles disguised as motion graphics.",
+      "pass": "Text appears on 1 line (or 1 primary + 1 short secondary). Typography communicates hierarchy, not transcription.",
+      "fail": "Multi-line text blocks, wall of text, entire spoken sentences printed on screen."
+    },
+    "TYP-02": {
+      "name": "text-contrast",
+      "category": "TYPOGRAPHY",
+      "severity": "CRITICAL",
+      "description": "Every text element must be instantly readable at phone screen size. Minimum contrast ratio: 4.5:1 for body text, 3:1 for large text.",
+      "pass": "All text clearly legible, strong contrast against background.",
+      "fail": "Any text that requires effort to read, low contrast, text lost in background."
+    },
+    "TYP-03": {
+      "name": "text-safe-zone",
+      "category": "SAFE_AREA",
+      "severity": "CRITICAL",
+      "description": "No critical text in the top 15% or bottom 12% of frame (platform UI zones). No text clipped by edges.",
+      "pass": "All text within safe zone, clear of platform UI areas.",
+      "fail": "Text in platform-reserved zones or clipped by frame edges."
+    },
+    "TYP-04": {
+      "name": "no-caption-track",
+      "category": "TYPOGRAPHY",
+      "severity": "HIGH",
+      "description": "There must be ZERO word-for-word captions underneath the visual. No transcript underneath the animation, no duplicate information, no subtitle-looking secondary text. Typography exists only when it contributes to the visual argument.",
+      "pass": "No duplicate text, no transcript-like captions. Typography distills the idea to its essence.",
+      "fail": "Caption track visible, narration reproduced verbatim, subtitle-like text under visuals."
+    },
+    "TYP-05": {
+      "name": "typography-placement",
+      "category": "COMPOSITION",
+      "severity": "HIGH",
+      "description": "Typography placement must be intentional and varied. Do not center everything by default. Text and asset must become one composition — the typography is part of the visual object, not separate from it.",
+      "pass": "Text placement feels designed for the specific composition. Text integrates with visual objects.",
+      "fail": "Every scene uses centered giant text on empty background. Text and graphic are separate layers."
+    },
+    "TYP-06": {
+      "name": "text-hierarchy",
+      "category": "VISUAL_HIERARCHY",
+      "severity": "HIGH",
+      "description": "Typography must communicate hierarchy. Primary information largest, secondary smaller, tertiary smallest. Typography should behave like a designed object, not a document.",
+      "pass": "Clear size/weight hierarchy — viewer knows what matters most.",
+      "fail": "All text same size, no visual differentiation between primary and secondary info."
+    },
+    "TYP-07": {
+      "name": "text-collision",
+      "category": "TYPOGRAPHY",
+      "severity": "CRITICAL",
+      "description": "No text overlapping text, text overlapping visual objects, labels touching objects, letters colliding, incorrect line wrapping, awkward widows/orphans, or inconsistent spacing.",
+      "pass": "All text elements have clear separation from each other and from visual elements.",
+      "fail": "Any overlapping, clipping, collision, or spacing inconsistency."
+    },
+    "TYP-08": {
+      "name": "no-word-by-word-animation",
+      "category": "TYPOGRAPHY",
+      "severity": "HIGH",
+      "description": "Word-by-word automatic animation is explicitly prohibited. Instead, animate the meaningful unit — sometimes one word, sometimes a number, sometimes an entire phrase, sometimes an object. The script determines the unit, not the engine.",
+      "pass": "Meaningful phrases animate as units. Emphasis on key words through color/scale, not per-word reveal.",
+      "fail": "Words appearing one at a time in sequence. Karaoke-style text animation."
+    },
+    "HDL-01": {
+      "name": "no-headline-system",
+      "category": "HEADLINE_MONOCULTURE",
+      "severity": "HIGH",
+      "description": "The video must NOT follow a HEADLINE → GRAPHIC → HEADLINE → GRAPHIC pattern. Visual objects should appear, transform, carry information, and become the next visual. If more than 40% of beats are headline-dominated compositions, flag as TEMPLATE_MONOCULTURE.",
+      "pass": "Visual treatment varies. Objects evolve. Composition feels like continuous storytelling.",
+      "fail": "Alternating headline/graphic pattern. Every beat starts with big centered text. Template monoculture."
+    },
+    "SEM-01": {
+      "name": "visual-audio-alignment",
+      "category": "SEMANTIC_MISMATCH",
+      "severity": "CRITICAL",
+      "description": "The visual must match the MEANING of the narration, not just a keyword. Visualize what the sentence is DOING — the action, the change, the relationship. Ask: What is the IMPORTANT OBJECT? What ACTION happens? What CHANGES? What should the viewer UNDERSTAND without audio?",
+      "pass": "Viewer understands the relationship being described from visual alone.",
+      "fail": "Visual shows a keyword illustration (money icon for 'money', graph for 'growth') without communicating the actual idea."
+    },
+    "SEM-02": {
+      "name": "semantic-reason",
+      "category": "SEMANTIC_MISMATCH",
+      "severity": "HIGH",
+      "description": "Every visual treatment must have a semantic reason that explains the RELATIONSHIP being communicated. Numbers must have physical meaning — a number cannot simply float in space.",
+      "pass": "The visual treatment choice has a clear reason tied to the narration's meaning. Numbers are attached to physical representations.",
+      "fail": "Visual chosen because a keyword matched. Number floating alone without context."
+    },
+    "SEM-03": {
+      "name": "visual-purpose",
+      "category": "SEMANTIC_MISMATCH",
+      "severity": "HIGH",
+      "description": "Every concrete noun gets a visual possibility. Every scene must answer: What is the most important idea? What should the viewer SEE? The visual must show the thing itself, not a generic representation of its category.",
+      "pass": "The visual specifically communicates the concept through physical representation.",
+      "fail": "Generic icon, generic graph, or visual element chosen without semantic justification."
+    },
+    "COM-01": {
+      "name": "focal-point",
+      "category": "COMPOSITION",
+      "severity": "HIGH",
+      "description": "Each frame must have exactly one focal point. No clutter, no competing elements. The focal element must be immediately obvious.",
+      "pass": "Single clear focal point, viewer's eye goes directly to the important element.",
+      "fail": "Multiple competing elements, clutter, or no clear visual focus."
+    },
+    "COM-02": {
+      "name": "visual-hierarchy",
+      "category": "VISUAL_HIERARCHY",
+      "severity": "HIGH",
+      "description": "The most important element must be the largest and most prominent. Supporting elements must be visually subordinate. Composition must have intentional negative space.",
+      "pass": "Clear size/prominence hierarchy, intentional spacing, composed negative space.",
+      "fail": "Everything same prominence, cramped layout, no visual breathing room."
+    },
+    "COM-03": {
+      "name": "cinematic-framing",
+      "category": "COMPOSITION",
+      "severity": "MEDIUM",
+      "description": "Frame must look like it was composed by a motion designer. Intentional spatial relationships, visual depth where appropriate, controlled balance.",
+      "pass": "Frame feels designed and intentional.",
+      "fail": "Frame feels randomly arranged, template-like, or unfinished."
+    },
+    "COM-04": {
+      "name": "no-empty-frames",
+      "category": "COMPOSITION",
+      "severity": "CRITICAL",
+      "description": "No frame should appear empty, broken, or show only a solid background. Every frame must have meaningful visual content. But empty space must feel composed, not unfinished.",
+      "pass": "Frame has meaningful content with intentional composition.",
+      "fail": "Empty frame, broken render, only background color visible."
+    },
+    "MOT-01": {
+      "name": "purposeful-motion",
+      "category": "MOTION",
+      "severity": "HIGH",
+      "description": "Every movement must answer: Why is this moving? Valid: revealing information, showing causality, showing scale, showing progression, directing attention, changing intensity. Invalid: 'because the scene needs animation.'",
+      "pass": "All motion serves a communicative purpose.",
+      "fail": "Motion exists only to fill time or because 'animation is expected.'"
+    },
+    "MOT-02": {
+      "name": "no-generic-camera",
+      "category": "CAMERA",
+      "severity": "HIGH",
+      "description": "No default slow zoom in. Camera movement must respond to visual structure. Some scenes SHOULD NOT MOVE. Use camera to reveal, follow consequence, change scale, push to detail, or transition between compositions.",
+      "pass": "Camera behavior is specific to the scene's content and meaning.",
+      "fail": "Default slow zoom, generic push/pull, same camera move every scene."
+    },
+    "MOT-03": {
+      "name": "motion-weight",
+      "category": "MOTION_WEIGHT",
+      "severity": "HIGH",
+      "description": "Everything should not move with the same spring/easing. Motion communicates emotional and physical character: bank balance shouldn't bounce like rubber, price spike can be sharp, timeline can be deliberate, financial loss can accelerate, slow accumulation should breathe.",
+      "pass": "Different elements move with distinct physical character matching their meaning.",
+      "fail": "Uniform motion timing. Everything bounces/springs identically. No weight differentiation."
+    },
+    "DEC-01": {
+      "name": "no-decoration",
+      "category": "DECORATION",
+      "severity": "HIGH",
+      "description": "Ban: random dots, random grids, decorative circles, meaningless lines, floating particles, generic gradients, decorative arrows, random graphs, random icons, empty cards, fake dashboards — unless they have a semantic purpose. The question 'What does this object mean?' must always have an answer.",
+      "pass": "Every visual element serves a communicative purpose.",
+      "fail": "Decorative elements without semantic purpose. Visual noise. Meaningless ornament."
+    },
+    "EDT-01": {
+      "name": "editorial-cuts",
+      "category": "EDITORIAL_PACING",
+      "severity": "HIGH",
+      "description": "The video must not feel like one continuous animation timeline. Use editorial cuts when the idea changes, the environment changes, or a major emotional shift occurs. Simple cuts are professional. Not every scene needs a transition.",
+      "pass": "Cuts feel editorial and intentional, placed at idea boundaries.",
+      "fail": "Continuous animation without cuts, or generic transitions between every scene."
+    },
+    "EDT-02": {
+      "name": "beat-rhythm",
+      "category": "EDITORIAL_PACING",
+      "severity": "HIGH",
+      "description": "A beat is not 'sentence → animation → sentence → animation.' Beat design: AUDIO EVENT → SEMANTIC EVENT → VISUAL EVENT → MOTION → HOLD → TRANSFORMATION → NEXT EVENT. The engine must not be afraid of an empty frame — one object sitting still for 1.5s while narration explains can be better than five animations.",
+      "pass": "Scene rhythm varies: quiet frames, reveals, dense frames, holds, cuts.",
+      "fail": "Mechanical alternation: text, icon, text, graph, text, icon."
+    },
+    "EDT-03": {
+      "name": "visual-density",
+      "category": "VISUAL_DENSITY",
+      "severity": "MEDIUM",
+      "description": "Not every frame should contain maximum information. Use quiet frame → reveal → dense frame → hold → cut. Visual breathing room is intentional.",
+      "pass": "Density varies appropriately — quiet moments exist alongside information-dense moments.",
+      "fail": "Every frame maximum density, or every frame empty."
+    },
+    "EDT-04": {
+      "name": "emotional-pacing",
+      "category": "EMOTIONAL_RHYTHM",
+      "severity": "MEDIUM",
+      "description": "Visual intensity should follow emotional state. Motion should communicate emotional and physical character matching the emotional_weight of each beat (calm, building, sharp, heavy, urgent).",
+      "pass": "Visual energy matches the emotional tone of the narration.",
+      "fail": "Everything at maximum energy, or flat emotional line throughout."
+    },
+    "REP-01": {
+      "name": "no-repeated-layouts",
+      "category": "REPETITION",
+      "severity": "HIGH",
+      "description": "No repeated layouts, camera moves, typography positions, animation patterns, or visual metaphors between scenes in the same video.",
+      "pass": "Each scene feels visually distinct from its neighbors.",
+      "fail": "Same layout, same camera, same position, same pattern repeated across scenes."
+    },
+    "REP-02": {
+      "name": "treatment-variety",
+      "category": "REPETITION",
+      "severity": "HIGH",
+      "description": "Variety must come from the STORY, not from cycling through template types. Treatment choices driven by what each idea needs to communicate.",
+      "pass": "Treatment choices driven by what each idea needs to communicate.",
+      "fail": "Same treatment type repeated, or treatments cycling through a fixed rotation."
+    },
+    "CON-01": {
+      "name": "scene-continuity",
+      "category": "CONTINUITY",
+      "severity": "HIGH",
+      "description": "When an object represents something important, it should retain identity across beats. If $4,000 enters the scene, that same $4,000 should continue existing through subsequent beats. Transformations are better than cuts — a visual should become the next visual. Continuity can be broken intentionally through an editorial cut, never accidentally.",
+      "pass": "Objects maintain identity. Previous beat echoes during transitions. Visual flow feels edited, not assembled.",
+      "fail": "Objects teleport, completely unrelated graphic replaces previous without transition, no visual memory."
+    },
+    "IDN-01": {
+      "name": "channel-palette",
+      "category": "CHANNEL_IDENTITY",
+      "severity": "HIGH",
+      "description": "All colors must come from the channel's declared palette. No off-brand or random colors.",
+      "pass": "Colors consistent with channel palette.",
+      "fail": "Off-palette colors, jarring or inconsistent color choices."
+    },
+    "IDN-02": {
+      "name": "channel-materiality",
+      "category": "MATERIALITY",
+      "severity": "MEDIUM",
+      "description": "Visual materials must match the channel's niche. Finance: paper, receipts, ledger, currency, documents.",
+      "pass": "Visual vocabulary matches the channel's domain.",
+      "fail": "Generic visuals that could belong to any channel."
+    },
+    "SAF-01": {
+      "name": "safe-area",
+      "category": "SAFE_AREA",
+      "severity": "CRITICAL",
+      "description": "All critical content inside professional vertical-video safe area.",
+      "pass": "All critical content clearly within safe area, away from platform UI zones.",
+      "fail": "Critical content at edges, under platform UI, or in clutter zones."
+    },
+    "SRC-01": {
+      "name": "source-integrity",
+      "category": "SOURCE_INTEGRITY",
+      "severity": "CRITICAL",
+      "description": "Visual claims must correspond to researched material. Visuals must not exaggerate factual claims.",
+      "pass": "Visual representation is proportional and accurate to the source data.",
+      "fail": "Visual exaggerates, distorts, or misrepresents the factual claim."
+    },
+    "SYN-01": {
+      "name": "audio-visual-sync",
+      "category": "AUDIO_SYNC",
+      "severity": "HIGH",
+      "description": "Visual timing must align with narration. Strongest pattern: narration introduces idea → visual begins forming → visual reveals/changes → narration lands the point → visual holds. Editorial synchronization, not karaoke.",
+      "pass": "Visual reveals and changes feel timed to the narration's meaning.",
+      "fail": "Visual arrives too late or too early relative to narration."
+    },
+    "HKV-01": {
+      "name": "hook-visual",
+      "category": "EDITORIAL_PACING",
+      "severity": "HIGH",
+      "description": "The first seconds must immediately communicate WHAT IS THIS VIDEO ABOUT and WHY SHOULD I CARE. Start with the strongest visual idea available.",
+      "pass": "Opening frame is visually compelling and communicates the video's subject.",
+      "fail": "Generic opening, title card, or decorative animation before the real content."
+    }
+  },
+  "quality_tests": {
+    "MUTED_TEST": {
+      "question": "If the viewer muted the audio and watched this scene, would the visual still communicate what the narration is talking about?",
+      "pass": "Viewer understands the relationship being described from visual alone.",
+      "fail_if": "'Nothing' — the visual is supposed to communicate information but doesn't. Or 'I know the subject but not what is happening.'"
+    },
+    "SCREENSHOT_TEST": {
+      "question": "Would this frame look like it belongs to a professionally designed editorial video?",
+      "must_not_look_like": ["PowerPoint slide", "Canva template", "dashboard", "website hero section", "AI infographic", "stock motion template"],
+      "must_have": ["composition", "hierarchy", "intentional negative space", "meaningful subject", "controlled typography", "cinematic framing"]
+    },
+    "HEADLINE_TEST": {
+      "question": "Count headline-like compositions in the video. Is the video repeatedly BIG TEXT → EMPTY SPACE → BIG TEXT?",
+      "fail_if": "More than 40% of beats are headline-dominated compositions.",
+      "flag": "TEMPLATE_MONOCULTURE"
+    },
+    "GRAPH_TEST": {
+      "question": "For every graph: Why is a graph the best representation? Could another representation communicate the idea better?",
+      "fail_if": "Graph used simply because the script contains a number, not because trend/correlation/distribution needs showing.",
+      "replace_with": "Physical representation — build it, show it doubling, show the basket shrinking."
+    },
+    "ICON_TEST": {
+      "question": "For every icon: What information does this icon communicate that typography or an actual visual object cannot?",
+      "fail_if": "'Nothing' — delete the icon. Prefer real visual evidence, authentic representation, or simple geometry over icons.",
+      "asset_hierarchy": ["real visual evidence", "authentic representation (SVG, timeline, diagram)", "simple geometry", "icon (last resort)"]
+    },
+    "CONTINUITY_TEST": {
+      "question": "Does this beat feel like it came from the previous beat? Do objects retain identity? Does the visual flow, or does everything reset?",
+      "pass": "Previous beat echoes during transition. Objects that represent something important persist. Transformations connect beats.",
+      "fail_if": "Everything suddenly replaced with unrelated card. No visual memory between beats."
+    },
+    "REMOVE_IT_TEST": {
+      "question": "For every visual element: if I remove this element, does the viewer lose understanding?",
+      "principle": "If NO, strongly consider removing it. Prefer fewer meaningful elements over many meaningless elements."
+    },
+    "WHY_TEST": {
+      "question": "Why was this visual treatment chosen?",
+      "valid": "'Shows the difference between official inflation and experienced household inflation.'",
+      "invalid": "'Shows inflation.' — the reason must explain the relationship, not name the topic."
+    },
+    "ANTI_SLOP_TEST": {
+      "question": "Does this look like something a human motion designer intentionally designed?",
+      "warning_signs": [
+        "generic rounded cards",
+        "random gradients",
+        "excessive floating elements",
+        "repeated icons",
+        "giant centered text on empty background",
+        "arbitrary graphs",
+        "excessive UI panels",
+        "template-like transitions",
+        "uniform animation timing",
+        "every object entering from an edge",
+        "every scene using the same layout",
+        "unnecessary glowing effects",
+        "meaningless particles",
+        "decorative noise",
+        "visual elements without semantic purpose",
+        "headline-graphic alternation pattern",
+        "caption track underneath visuals",
+        "word-by-word animation",
+        "numbers floating without physical meaning"
+      ],
+      "verdict": "If several warning signs appear together: FAIL FOR VISUAL SLOP."
+    }
+  },
+  "treatment_guide": {
+    "principle": "Never choose a visual merely because a keyword exists. Understand the concept and the relationship. 'Sentence contains money → money icon' is bad logic. Visualize what the sentence is DOING.",
+    "semantic_mappings": {
+      "QUANTITY": {
+        "when": "The important idea is a number, measured quantity, count, or statistic.",
+        "treatment": "Number must have physical meaning — attach to timeline, measurement, balance, object. Never float alone."
+      },
+      "PROPORTION": {
+        "when": "The important idea is ratio, share, relative size, distribution.",
+        "treatment": "Physical or spatial comparison. Income dividing into portions. Not two random rectangles."
+      },
+      "GROWTH": {
+        "when": "Something genuinely increases.",
+        "treatments": ["the thing itself growing", "money stack increasing", "timeline extending", "price marker climbing", "area filling", "number physically accumulating"],
+        "rule": "Growth should have cause → movement → consequence. Don't create 'GROWTH' with a bar beside it."
+      },
+      "DECLINE": {
+        "when": "Something decreases or disappears.",
+        "treatments": ["the object itself shrinking/depleting", "continuous depletion (not 4 separate cards)", "balance descending", "container emptying"],
+        "avoid": "Do NOT always use a downward graph. Show the thing disappearing."
+      },
+      "CAUSE_EFFECT": {
+        "when": "A causes B.",
+        "avoid": "Generic boxes and arrows.",
+        "prefer": ["same visual objects survive through the sequence", "consequence happens visually", "INCOME → RENT ↑ → REMAINING ↓ → SAVINGS ↓"]
+      },
+      "COMPARISON": {
+        "when": "Two things in relation to one another.",
+        "avoid": "Do not automatically render two rectangles.",
+        "prefer": ["two physical quantities", "scales", "side-by-side objects", "before/after states", "one object overtaking another", "shared baseline"]
+      },
+      "TIMELINE": {
+        "when": "Sequence, duration, or historical change matters.",
+        "prefer": ["physically constructed timeline where the number is a measurement on it", "calendar blocks accumulating", "progress through time"],
+        "rule": "Never just display '3 WEEKS' — build the time visually."
+      },
+      "PROCESS": {
+        "when": "A process needs to be shown.",
+        "prefer": "material → movement → transformation → result. Transformations are better than cuts.",
+        "avoid": "BOX → BOX → BOX. Resetting the scene between steps."
+      }
+    }
+  },
+  "scene_checklist": [
+    "Typography is clean and integrated with visual objects",
+    "Typography is ONE SHORT VISUAL THOUGHT (not a transcript)",
+    "No caption track or duplicate text",
+    "No overlapping elements",
+    "Text remains inside safe areas",
+    "Visual communicates what the narration IS DOING (not a keyword)",
+    "Numbers have physical meaning (not floating alone)",
+    "Visual treatment has a semantic reason",
+    "Motion has a purpose AND appropriate weight",
+    "Camera movement has a purpose",
+    "Timing supports the narration",
+    "Beat connects to previous beat (continuity)",
+    "No headline-graphic alternation pattern",
+    "No meaningless decorative elements",
+    "No generic AI aesthetic",
+    "Composition has intentional hierarchy",
+    "Visual density is appropriate",
+    "Channel identity is respected",
+    "MUTED TEST — visual survives without audio",
+    "SCREENSHOT TEST — frame looks professionally designed",
+    "CONTINUITY TEST — beat connects to previous",
+    "Scene fits the surrounding sequence"
+  ],
+  "whole_video_checklist": [
+    "Opening is visually compelling (hook test)",
+    "Visual objects evolve — NOT headline-graphic alternation",
+    "Scenes are not template repetitions",
+    "Typography does not dominate (headline test)",
+    "Numbers have physical meaning (graph test)",
+    "Icons are last resort (icon test)",
+    "Visuals explain what the sentence IS DOING",
+    "Camera language varies naturally",
+    "Motion weight matches content (not uniform springs)",
+    "Cuts feel editorial",
+    "Visual pacing follows narrative pacing",
+    "Emotional intensity rises/falls appropriately",
+    "Visual metaphors are meaningful",
+    "Continuity between beats (objects persist, transforms connect)",
+    "No caption track anywhere",
+    "No decorative noise",
+    "No repeated generic graphs",
+    "No icon slideshow",
+    "No paragraph typography",
+    "No meaningless animation",
+    "No unresolved critical failures",
+    "Final visual quality is consistent"
+  ],
+  "correction_loop": {
+    "max_iterations": 3,
+    "process": [
+      "RENDER",
+      "EXTRACT FRAMES",
+      "GEMINI VISION REVIEW",
+      "STRUCTURED DIAGNOSIS",
+      "DETERMINE SOURCE OF FAILURE",
+      "MODIFY SCENE PLAN / VISUAL PARAMETERS",
+      "RENDER AGAIN",
+      "GEMINI REVIEW AGAIN"
+    ],
+    "principles": [
+      "Fix the root cause, not the symptom.",
+      "Fix at the correct architectural level.",
+      "Do not hack the render: no arbitrary offsets, no random margins, no shrinking everything.",
+      "If the same problem survives three attempts: mark the scene FAILED and record the exact reason."
+    ]
+  },
+  "prompts": {
+    "scene_review": "You are the VISUAL POST-PRODUCTION DIRECTOR — not a passive QA checker.\n\nTHE FUNDAMENTAL RULE: NEVER VISUALIZE A SENTENCE. VISUALIZE WHAT THE SENTENCE IS DOING.\nThe video is not a collection of scenes — it is one continuous visual argument.\n\nYou are reviewing frame {frame_index}/{total_frames} at t={time}s.\n\nVOICEOVER at this moment: \"{voiceover}\"\n\nBefore judging, answer these questions about the frame:\n1. What is the IMPORTANT OBJECT the narration discusses?\n2. What ACTION is happening to it?\n3. What CHANGES?\n4. Would the viewer UNDERSTAND this without audio?\n5. Does the visual show the thing ITSELF, or just a label/icon for it?\n\nAPPLY THESE CHECKS:\n\n1. HEADLINE TEST: Is this just BIG TEXT on empty space? Or does the visual show what the sentence IS DOING? HEADLINE → GRAPHIC alternation is a failure pattern.\n\n2. CAPTION TEST: Is there any duplicate text — narration reproduced as captions underneath the visual? Any subtitle-like text? Zero tolerance.\n\n3. TYPOGRAPHY: Is text ONE SHORT VISUAL THOUGHT (max 5-6 words)? Is it integrated with the visual object (not floating separately)? Do numbers have physical meaning (attached to timeline, measurement, balance)? No word-by-word animation.\n\n4. SEMANTIC MATCH: Does the visual communicate what the sentence is DOING — the action, the change, the relationship? Not just a keyword illustration. Would the viewer understand the concept on mute?\n\n5. CONTINUITY: Does this frame feel connected to the previous beat? Do objects persist? Or did everything reset to an unrelated graphic?\n\n6. MOTION WEIGHT: Does motion match the content's character? Financial loss should accelerate, not bounce. Growth should breathe, not snap. Sharp decisions should be snappy.\n\n7. DECORATION: Is every visual element answering 'What does this mean?' No random dots, grids, particles, gradients, icons without purpose.\n\n8. COMPOSITION: Single focal point? Intentional hierarchy? No clutter?\n\n9. CAMERA: Does movement serve the content? No generic default zoom.\n\n10. ASSET QUALITY: Is this real visual evidence > authentic representation > geometry > icon (last resort)? For every icon: what does it communicate that an actual visual cannot?\n\n11. GRAPH TEST: If there's a graph — is a graph the best representation? Could the concept be shown physically instead?\n\nBe HARSH. 'Something is on screen' is not success. The video should feel like one continuous visual argument, not a slideshow of graphic cards.\n\nRespond ONLY with JSON (no markdown fences):\n{\n  \"scene\": \"beat_{frame_index}\",\n  \"status\": \"PASS\" | \"FAIL\",\n  \"severity\": \"CRITICAL\" | \"HIGH\" | \"MEDIUM\" | \"LOW\" | null,\n  \"categories\": [\"<failure_category>\", ...],\n  \"checks\": {\n    \"<rule_id>\": { \"pass\": true|false, \"note\": \"<why>\" }\n  },\n  \"quality_score\": <1-10>,\n  \"quality_tests\": {\n    \"MUTED_TEST\": { \"pass\": true|false, \"note\": \"<what viewer understands without audio>\" },\n    \"HEADLINE_TEST\": { \"pass\": true|false, \"note\": \"<is this headline-dominated?>\" },\n    \"CONTINUITY_TEST\": { \"pass\": true|false, \"note\": \"<does it connect to previous beat?>\" },\n    \"GRAPH_TEST\": { \"pass\": true|false, \"note\": \"<if graph present, is it justified?>\" },\n    \"ICON_TEST\": { \"pass\": true|false, \"note\": \"<if icon present, is it last resort?>\" },\n    \"ANTI_SLOP_TEST\": { \"pass\": true|false, \"note\": \"<warning signs found>\" }\n  },\n  \"semantic_reason\": \"<what the sentence is DOING and whether the visual shows it>\",\n  \"visual_audio_match\": true|false,\n  \"visual_audio_note\": \"<does the visual communicate the narration's action/change/relationship?>\",\n  \"problem\": \"<if FAIL: exact description of what's wrong>\",\n  \"correction\": {\n    \"level\": \"treatment_selection\" | \"typography\" | \"composition\" | \"timing\" | \"motion\" | \"palette\" | \"continuity\",\n    \"action\": \"<specific fix at the correct architectural level>\"\n  },\n  \"improvement\": \"<one specific thing that would make this frame better>\"\n}",
+    "whole_video_review": "You are the FINAL EDITOR reviewing the complete video. You have {total_frames} representative frames from a {duration}s YouTube Short.\n\nTHE FUNDAMENTAL RULE: The video is one continuous visual argument, not a collection of scenes. Objects should appear, transform, carry information, and become the next visual.\n\nINSPECT FOR:\n\n1. HEADLINE TEST (MANDATORY): Count headline-like compositions. How many beats are BIG TEXT → EMPTY SPACE? If >40%, flag TEMPLATE_MONOCULTURE. The video should NOT alternate headline → graphic → headline → graphic.\n\n2. CAPTION TEST: Is there ANY caption track — narration duplicated as text underneath visuals? Zero tolerance.\n\n3. CONTINUITY: Do objects persist between beats? Does the visual flow, or does everything reset? Are transformations used instead of cuts where the same subject continues?\n\n4. GRAPH TEST: For every graph — is a graph the best representation? Could the concept be shown physically? If script says 'the price doubled,' show it doubling, don't chart it.\n\n5. ICON TEST: For every icon — what does it communicate that an actual visual cannot? Icons are LAST RESORT, not the default.\n\n6. MOTION WEIGHT: Does different content move differently? Or does everything have the same spring/ease? Loss should accelerate, growth should breathe, decisions should snap.\n\n7. REPETITION: Same composition, camera move, typography placement, animation pattern, or visual metaphor used more than once?\n\n8. PACING: Does visual intensity rise and fall with the narrative? Variation: quiet → reveal → dense → hold?\n\n9. VARIETY: Do treatments come from the story's needs, or from cycling through templates?\n\n10. OPENING: Is the first frame a strong hook? Does it communicate what the video is about?\n\n11. ENDING: Does the video build to a visual payoff?\n\n12. DECORATION: Any meaningless visual noise? Random dots, grids, particles, gradients without purpose?\n\n13. SLOP: Overall, does this feel human-designed or AI-generated? Template repetition? Uniform motion? Number-floating-alone?\n\n14. MUTED TEST: Watching the whole sequence without audio — does the visual argument survive?\n\nRespond ONLY with JSON (no markdown fences):\n{\n  \"status\": \"PASS\" | \"FAIL\",\n  \"severity\": \"CRITICAL\" | \"HIGH\" | \"MEDIUM\" | \"LOW\" | null,\n  \"categories\": [\"<failure_category>\", ...],\n  \"overall_score\": <1-10>,\n  \"headline_test\": { \"headline_beat_count\": <int>, \"total_beats\": <int>, \"percent\": <int>, \"pass\": true|false, \"monoculture\": true|false },\n  \"continuity_score\": <1-10>,\n  \"motion_weight_score\": <1-10>,\n  \"repetition_issues\": [\"<what repeats>\"],\n  \"pacing_assessment\": \"<how pacing works or fails>\",\n  \"opening_assessment\": \"<does the hook work?>\",\n  \"decoration_issues\": [\"<meaningless visual elements>\"],\n  \"slop_indicators\": [\"<any AI/template warning signs>\"],\n  \"strongest_scene\": { \"index\": <int>, \"why\": \"<reason>\" },\n  \"weakest_scene\": { \"index\": <int>, \"why\": \"<reason>\" },\n  \"corrections\": [\n    { \"scene\": \"beat_<N>\", \"problem\": \"<what>\", \"fix\": \"<how>\" }\n  ],\n  \"verdict\": \"<one-sentence final judgment>\"\n}"
+  }
+}

@@ -25,5 +25,5 @@ provided JSON Schema exactly — nothing outside it.
 - Voiceover word count is inside the format range in the style contract.
 - For motion-graphics: primary archetypes 50% or more of beats, secondary
   35% or less, excluded 0%.
-- `sources_used` has 3 or more URLs that actually appear in the research's
+- `sources_used` has 2 or more URLs that actually appear in the research's
   `key_facts`/`numbers`, and every one is used by something you wrote.

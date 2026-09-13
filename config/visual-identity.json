@@ -15,20 +15,20 @@
       ],
       "typography_primary": "Inter",
       "typography_secondary": "JetBrains Mono",
-      "environment_type": "desk-flatlay",
+      "environment_type": "digital-editorial",
       "core_objects": [
-        "bank statement",
-        "receipt",
-        "calculator",
-        "phone showing a budgeting app",
-        "cash notes",
-        "ledger notebook"
+        "data visualization",
+        "number display",
+        "text overlay",
+        "progress bar",
+        "comparison graphic",
+        "animated typography"
       ],
       "camera_language": [
-        "top-down",
+        "static",
         "push-in",
         "pull-out",
-        "static"
+        "fade"
       ],
       "transition_language": [
         "smooth-slide",
