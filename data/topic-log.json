@@ -1263,9 +1263,14 @@
           "topic": "Inside the First Fully AI-Driven Factory Built by Siemens and NVIDIA",
           "slug": "siemens-nvidia-fully-ai-driven-factory-erlangen",
           "reserved_at": "2026-09-14T16:40:52.113Z"
+        },
+        {
+          "topic": "Fanuc and Google Partner to Bring Physical AI to Industrial Robots",
+          "slug": "fanuc-google-physical-ai-industrial-robots",
+          "reserved_at": "2026-09-14T19:15:05.821Z"
         }
       ],
-      "last_generated": "2026-09-14T16:40:52.113Z"
+      "last_generated": "2026-09-14T19:15:05.821Z"
     },
     "49": {
       "channel_name": "Wander Budget",
