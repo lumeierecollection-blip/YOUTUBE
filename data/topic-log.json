@@ -105,9 +105,14 @@
           "topic": "The Guess-Your-Bills Savings Challenge for 2026",
           "slug": "guess-your-bills-savings-challenge-2026",
           "reserved_at": "2026-09-14T11:08:35.696Z"
+        },
+        {
+          "topic": "Why Short-Term Savings Beat Long-Term Goals in 2026",
+          "slug": "short-term-savings-beat-long-term-goals-2026",
+          "reserved_at": "2026-09-14T13:39:50.212Z"
         }
       ],
-      "last_generated": "2026-09-14T11:08:35.696Z"
+      "last_generated": "2026-09-14T13:39:50.212Z"
     },
     "2": {
       "channel_name": "Legal Brief",
