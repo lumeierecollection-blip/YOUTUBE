@@ -136,7 +136,6 @@ jobs:
             opencode-${{ runner.os }}-
 
       - name: Install OpenCode
-        if: steps.opencode-cache.outputs.cache-hit != 'true'
         run: npm install -g opencode-ai
 
       # ── Stage A: discover topic for THIS channel ────────────────────────────
