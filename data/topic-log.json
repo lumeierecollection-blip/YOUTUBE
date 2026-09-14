@@ -723,9 +723,14 @@
           "topic": "The SEC Indictments and Crypto Exchange Frauds of 2026",
           "slug": "2026-crypto-fraud-sec-indictments-investigation",
           "reserved_at": "2026-09-14T07:31:06.476Z"
+        },
+        {
+          "topic": "The $13M Startup Fraud That Bought a Caribbean Wedding",
+          "slug": "shiloh-luckey-13m-startup-fraud-investigation",
+          "reserved_at": "2026-09-14T15:10:32.762Z"
         }
       ],
-      "last_generated": "2026-09-14T07:31:06.476Z"
+      "last_generated": "2026-09-14T15:10:32.762Z"
     },
     "27": {
       "channel_name": "Trial Files",
