@@ -159,13 +159,21 @@ function listenForCode(port, channelId) {
 // ── Open a URL in the default browser ────────────────────────────────────────
 function openBrowser(url) {
   const platform = process.platform;
-  const cmd =
-    platform === "win32" ? `start "" "${url}"` :
-    platform === "darwin" ? `open "${url}"` :
-    `xdg-open "${url}"`;
-  exec(cmd, (err) => {
-    if (err) console.warn(`  Could not auto-open browser: ${err.message}`);
-  });
+  let child;
+  if (platform === "win32") {
+    // Use PowerShell Start-Process — works from Git Bash, cmd, and PS
+    child = exec(`powershell.exe -NoProfile -Command "Start-Process '${url}'"`, (err) => {
+      if (err) {
+        // Fallback: explorer.exe
+        exec(`explorer.exe "${url}"`, () => {});
+      }
+    });
+  } else if (platform === "darwin") {
+    child = exec(`open "${url}"`, () => {});
+  } else {
+    child = exec(`xdg-open "${url}"`, () => {});
+  }
+  return child;
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
@@ -183,14 +191,19 @@ async function main() {
   // Small delay so servers are all listening before we open browsers
   await new Promise((r) => setTimeout(r, 500));
 
-  console.log("\nOpening browser tabs — sign in to the correct Google account for each tab:\n");
+  console.log("\n" + "=".repeat(70));
+  console.log("Opening browser tabs — sign into the correct Google account for each.");
+  console.log("If tabs don't open automatically, copy each URL and paste it into Chrome.");
+  console.log("=".repeat(70) + "\n");
+
   channelIds.forEach((chId, i) => {
     const port = BASE_PORT + i;
     const name = CHANNEL_NAMES[chId] || `Channel ${chId}`;
     const url = authUrl(port, chId);
-    console.log(`  Tab ${i + 1}: CH-${String(chId).padStart(2, "0")} ${name}`);
-    console.log(`            ${url}\n`);
-    setTimeout(() => openBrowser(url), i * 300); // stagger slightly so tabs open in order
+    console.log(`TAB ${i + 1}  CH-${String(chId).padStart(2, "0")} ${name}`);
+    console.log(url);
+    console.log("");
+    setTimeout(() => openBrowser(url), i * 400);
   });
 
   console.log("Waiting for you to authorize all tabs...\n");
