@@ -312,8 +312,15 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
   console.log(`  Uploaded: ${videoId}`);
 
   if (thumb) {
-    const thumbUrl = await setThumbnail(token, videoId, thumb);
-    console.log(`  Thumbnail: ${thumbUrl || "set"}`);
+    try {
+      const thumbUrl = await setThumbnail(token, videoId, thumb);
+      console.log(`  Thumbnail: ${thumbUrl || "set"}`);
+    } catch (err) {
+      // Thumbnail upload requires YouTube channel verification — warn but don't fail.
+      // The video is already uploaded; thumbnail can be set manually in YouTube Studio.
+      console.log(`  WARNING: thumbnail upload skipped — ${err.message}`);
+      console.log(`  To enable: verify the YouTube channel at studio.youtube.com → Settings → Channel → Feature eligibility`);
+    }
   }
 
   const delayHours = channel.publish_delay_hours ?? 1;

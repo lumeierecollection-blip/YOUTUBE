@@ -17,7 +17,7 @@ on:
         type: boolean
         default: false
       channel_override:
-        description: "Process specific channel only (numeric ID, ch1, or ch-01)"
+        description: "Run only these channels (comma-separated IDs, e.g. '1,2,9,26,44,48' or 'ch-01,ch-02')"
         required: false
 
 env:
@@ -45,21 +45,21 @@ jobs:
       - id: channels
         name: Build channel matrix
         run: |
-          # Normalize any channel_override format (ch1, ch-01, 01 → bare integer)
+          # Normalize comma-separated channel_override (ch1, ch-01, 01 → bare integers)
           OVERRIDE="${{ github.event.inputs.channel_override }}"
+          NORM_IDS=""
           if [ -n "$OVERRIDE" ]; then
-            NORM=$(echo "$OVERRIDE" | sed 's/^[a-zA-Z-]*//' | sed 's/^0*//')
-            [ -n "$NORM" ] && OVERRIDE="$NORM"
+            NORM_IDS=$(echo "$OVERRIDE" | tr ',' '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//' | sed 's/^[a-zA-Z-]*//' | sed 's/^0*//' | tr '\n' ',' | sed 's/,$//')
           fi
 
           MATRIX=$(node -e "
             const fs = require('fs');
             const data = JSON.parse(fs.readFileSync('config/channels.json', 'utf-8'));
             const channels = data.channels || data;
-            const ov = process.argv[1];
-            const list = ov ? channels.filter(c => String(c.id) === ov) : channels;
+            const ids = process.argv[1] ? process.argv[1].split(',').filter(Boolean) : [];
+            const list = ids.length ? channels.filter(c => ids.includes(String(c.id))) : channels;
             console.log(JSON.stringify({include: list.map(c => ({channel_id: String(c.id)}))}));
-          " "$OVERRIDE")
+          " "$NORM_IDS")
 
           echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
           COUNT=$(echo "$MATRIX" | node -e "

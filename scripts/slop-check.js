@@ -51,7 +51,11 @@ function loadChannel(channelId) {
 }
 
 function loadScript(scriptPath) {
-  const fullPath = join(ROOT, ...String(scriptPath).split(/[\/\\]/));
+  const p = String(scriptPath);
+  // If already absolute, use as-is; otherwise resolve relative to ROOT.
+  const fullPath = p.startsWith("/") || /^[A-Za-z]:[\\\/]/.test(p)
+    ? p
+    : join(ROOT, ...p.split(/[\/\\]/));
   return JSON.parse(readFileSync(fullPath, "utf-8"));
 }
 
