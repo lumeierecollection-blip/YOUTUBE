@@ -95,9 +95,14 @@
           "topic": "How the CFPB's New 2026 Deregulatory Agenda Reshapes Your Budget Rules",
           "slug": "cfpb-2026-regulatory-agenda-budget-impact",
           "reserved_at": "2026-09-14T07:31:06.468Z"
+        },
+        {
+          "topic": "Why 53 Percent of Americans Are Budgeting in 2026",
+          "slug": "why-53-percent-of-americans-are-budgeting-in-2026",
+          "reserved_at": "2026-09-14T11:07:28.415Z"
         }
       ],
-      "last_generated": "2026-09-14T07:31:06.468Z"
+      "last_generated": "2026-09-14T11:07:28.415Z"
     },
     "2": {
       "channel_name": "Legal Brief",
