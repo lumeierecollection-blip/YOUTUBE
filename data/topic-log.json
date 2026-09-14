@@ -207,9 +207,14 @@
           "topic": "Supreme Court Expands Federal Arbitration Act Exemptions for Delivery Drivers",
           "slug": "supreme-court-federal-arbitration-act-delivery-drivers",
           "reserved_at": "2026-09-14T08:31:50.340Z"
+        },
+        {
+          "topic": "Supreme Court Affirms Warrantless Home Entry During Mental Health Crisis",
+          "slug": "case-v-montana-warrantless-home-entry-emergency-aid",
+          "reserved_at": "2026-09-14T11:07:22.704Z"
         }
       ],
-      "last_generated": "2026-09-14T08:31:50.340Z"
+      "last_generated": "2026-09-14T11:07:22.704Z"
     },
     "3": {
       "channel_name": "AI Tested",
