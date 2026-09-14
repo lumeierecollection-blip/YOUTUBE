@@ -1218,9 +1218,14 @@
           "topic": "Humanoid Robots on the Assembly Line: The 2026 Manufacturing Shift",
           "slug": "humanoid-robots-industrial-automation-manufacturing-2026",
           "reserved_at": "2026-09-14T07:31:06.481Z"
+        },
+        {
+          "topic": "Universal Robots Gen 7: Inside the New Industrial Robotics Platform",
+          "slug": "universal-robots-gen-7-industrial-robotics-platform",
+          "reserved_at": "2026-09-14T15:24:28.575Z"
         }
       ],
-      "last_generated": "2026-09-14T07:31:06.481Z"
+      "last_generated": "2026-09-14T15:24:28.575Z"
     },
     "49": {
       "channel_name": "Wander Budget",
