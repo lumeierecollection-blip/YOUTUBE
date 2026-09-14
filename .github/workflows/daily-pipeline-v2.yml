@@ -195,7 +195,7 @@ jobs:
           SLUG=$(jq -r  '.slug'  /tmp/channel-topic.json)
 
           git config user.name  "pipeline-bot"
-          git config email "pipeline@youtube-automation.local"
+          git config user.email "pipeline@youtube-automation.local"
 
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
