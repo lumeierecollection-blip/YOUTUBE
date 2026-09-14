@@ -100,13 +100,50 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
+      # ── Cache npm dependencies ────────────────────────────────────────
+      - name: Cache npm modules
+        uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-${{ runner.os }}-
+
       - name: Install dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: Restore node_modules from cache
+        if: steps.npm-cache.outputs.cache-hit == 'true'
+        run: npm ci --prefer-offline
+
+      # ── Cache pip packages ────────────────────────────────────────────
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        id: pip-cache
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            pip-${{ runner.os }}-
+
       - name: Install EdgeTTS
+        if: steps.pip-cache.outputs.cache-hit != 'true'
         run: pip install edge-tts
 
+      # ── Cache OpenCode CLI ────────────────────────────────────────────
+      - name: Cache OpenCode CLI
+        uses: actions/cache@v4
+        id: opencode-cache
+        with:
+          path: ~/.local/share/opencode
+          key: opencode-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            opencode-${{ runner.os }}-
+
       - name: Install OpenCode
+        if: steps.opencode-cache.outputs.cache-hit != 'true'
         run: npm install -g opencode-ai
 
       # ── Stage A: discover topic for THIS channel ────────────────────────────
