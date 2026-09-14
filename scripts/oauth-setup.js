@@ -28,7 +28,7 @@
  */
 
 import { createServer } from "node:http";
-import { exec } from "node:child_process";
+import { exec, execFileSync } from "node:child_process";
 
 // ── args ──────────────────────────────────────────────────────────────────────
 function arg(name) {
@@ -197,40 +197,58 @@ async function main() {
 
   const results = await Promise.allSettled(promises);
 
-  console.log("\n" + "=".repeat(70));
-  console.log("RESULTS — copy these into GitHub Secrets");
-  console.log("=".repeat(70));
-  console.log(`\nSettings → Secrets and variables → Actions → New repository secret\n`);
-  console.log(`These two are the SAME for ALL channels (one Google Cloud project):`);
-  console.log(`  CHANNEL_XX_CLIENT_ID     = ${clientId}`);
-  console.log(`  CHANNEL_XX_CLIENT_SECRET = ${clientSecret}`);
-  console.log(`\nPer-channel REFRESH_TOKEN (unique per Google account):\n`);
+  // Push secrets to GitHub via gh CLI
+  function ghSecretSet(name, value) {
+    try {
+      execFileSync("gh", ["secret", "set", name, "--body", value], { stdio: ["ignore", "pipe", "pipe"] });
+      return true;
+    } catch (err) {
+      console.error(`  gh secret set ${name} FAILED: ${err.stderr?.toString().trim() || err.message}`);
+      return false;
+    }
+  }
 
+  console.log("\n" + "=".repeat(70));
+  console.log("Pushing secrets to GitHub via gh CLI...");
+  console.log("=".repeat(70) + "\n");
+
+  // Client ID and secret are the same for every channel — push once per channel
+  const succeeded = [];
   const failed = [];
+
   for (const result of results) {
     if (result.status === "fulfilled") {
       const { channelId, refreshToken } = result.value;
       const n = String(channelId).padStart(2, "0");
-      console.log(`  CHANNEL_${n}_REFRESH_TOKEN = ${refreshToken}`);
+      const name = CHANNEL_NAMES[channelId] || `Channel ${channelId}`;
+      console.log(`CH-${n} ${name}:`);
+
+      const ok1 = ghSecretSet(`CHANNEL_${n}_CLIENT_ID`, clientId);
+      if (ok1) console.log(`  ✓ CHANNEL_${n}_CLIENT_ID`);
+
+      const ok2 = ghSecretSet(`CHANNEL_${n}_CLIENT_SECRET`, clientSecret);
+      if (ok2) console.log(`  ✓ CHANNEL_${n}_CLIENT_SECRET`);
+
+      const ok3 = ghSecretSet(`CHANNEL_${n}_REFRESH_TOKEN`, refreshToken);
+      if (ok3) console.log(`  ✓ CHANNEL_${n}_REFRESH_TOKEN`);
+
+      if (ok1 && ok2 && ok3) {
+        succeeded.push(`CH-${n}`);
+      } else {
+        failed.push(`CH-${n} (partial — check above)`);
+      }
     } else {
-      failed.push(result.reason.message);
+      failed.push(`Authorization failed: ${result.reason.message}`);
     }
   }
 
-  if (failed.length) {
-    console.log("\nFAILED:");
-    failed.forEach((f) => console.log(`  - ${f}`));
-  }
-
   console.log("\n" + "=".repeat(70));
-  console.log("GitHub Secret names used by the pipeline:");
-  console.log("=".repeat(70));
-  channelIds.forEach((chId) => {
-    const n = String(chId).padStart(2, "0");
-    console.log(`  CHANNEL_${n}_CLIENT_ID`);
-    console.log(`  CHANNEL_${n}_CLIENT_SECRET`);
-    console.log(`  CHANNEL_${n}_REFRESH_TOKEN`);
-  });
+  console.log(`Done. ${succeeded.length} channel(s) fully configured.`);
+  if (succeeded.length) console.log(`  OK: ${succeeded.join(", ")}`);
+  if (failed.length) {
+    console.log(`  FAILED: ${failed.join(", ")}`);
+    console.log(`  Run the script again for the failed channels.`);
+  }
   console.log("");
 }
 
