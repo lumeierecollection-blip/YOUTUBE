@@ -100,9 +100,14 @@
           "topic": "Why 53 Percent of Americans Are Budgeting in 2026",
           "slug": "why-53-percent-of-americans-are-budgeting-in-2026",
           "reserved_at": "2026-09-14T11:07:28.415Z"
+        },
+        {
+          "topic": "The Guess-Your-Bills Savings Challenge for 2026",
+          "slug": "guess-your-bills-savings-challenge-2026",
+          "reserved_at": "2026-09-14T11:08:35.696Z"
         }
       ],
-      "last_generated": "2026-09-14T11:07:28.415Z"
+      "last_generated": "2026-09-14T11:08:35.696Z"
     },
     "2": {
       "channel_name": "Legal Brief",
