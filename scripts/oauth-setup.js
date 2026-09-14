@@ -55,8 +55,8 @@ if (!clientId || !clientSecret || !channelArg) {
 const channelIds = channelArg.split(",").map((s) => s.trim()).filter(Boolean);
 const BASE_PORT = 3001;
 const SCOPE = [
-  "https://www.googleapis.com/auth/youtube.upload",
-  "https://www.googleapis.com/auth/youtube.readonly",
+  "https://www.googleapis.com/auth/youtube",         // manage channel + rename
+  "https://www.googleapis.com/auth/youtube.upload",  // upload videos
 ].join(" ");
 const TOKEN_URL = "https://oauth2.googleapis.com/token";
 
