@@ -1066,9 +1066,14 @@
           "topic": "The Two-Job Trap: Why Managers Are Burning Out in 2026",
           "slug": "two-job-trap-manager-burnout-2026",
           "reserved_at": "2026-09-14T15:12:47.876Z"
+        },
+        {
+          "topic": "The Manager AI Modeling Gap: Why Leading by Example Fixes Trust",
+          "slug": "manager-ai-modeling-gap-leadership-trust",
+          "reserved_at": "2026-09-14T15:24:18.079Z"
         }
       ],
-      "last_generated": "2026-09-14T15:12:47.877Z"
+      "last_generated": "2026-09-14T15:24:18.079Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
