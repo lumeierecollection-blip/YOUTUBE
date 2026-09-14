@@ -211,7 +211,11 @@ jobs:
 
             if [ "$attempt" -lt 5 ]; then
               echo "Push conflict — retrying ($attempt/5) ..."
-              git reset HEAD~1
+              # Hard reset discards the uncommitted topic-log change so the
+              # next rebase sees a clean working tree. reserve-topic-single.js
+              # re-reads and re-writes topic-log.json on every call, so the
+              # entry will be re-added correctly in the next iteration.
+              git reset --hard HEAD~1
               sleep $((attempt * 3))
             else
               echo "::error::Failed to push topic-log for channel $CH after 5 attempts"
@@ -365,7 +369,22 @@ jobs:
             echo "=== TTS: $CH — $SCRIPT_SLUG ==="
             SCRIPT="data/research/$CH/${SCRIPT_SLUG}-script.json"
             if [ -f "$SCRIPT" ]; then
-              node src/utils/tts.js "$CH" "$SCRIPT"
+              # edge-tts hits Microsoft's service endpoint; "NoAudioReceived"
+              # is a transient network failure. Retry up to 3 times.
+              TTS_OK=0
+              for tts_try in 1 2 3; do
+                if node src/utils/tts.js "$CH" "$SCRIPT"; then
+                  TTS_OK=1; break
+                fi
+                if [ "$tts_try" -lt 3 ]; then
+                  echo "TTS attempt $tts_try failed — retrying in 15s..."
+                  sleep 15
+                fi
+              done
+              if [ "$TTS_OK" -ne 1 ]; then
+                echo "::error::TTS failed after 3 attempts for $SCRIPT_SLUG"
+                exit 1
+              fi
             else
               echo "WARN: Script not found — skipping TTS for $SCRIPT_SLUG"
             fi
