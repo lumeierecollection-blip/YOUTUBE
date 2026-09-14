@@ -118,8 +118,14 @@ function FilmGrain({ opacity = 0.1 }) {
  * 8-word ceiling. Nothing is invented: an authored `text_overlay` wins
  * when the writer supplied one.
  */
+function resolveTextOverlay(raw) {
+  if (!raw) return "";
+  if (typeof raw === "object") return String(raw.text || "");
+  return String(raw);
+}
+
 function sectionKeyLine(section) {
-  const authored = String(section.textOverlay || "").trim();
+  const authored = resolveTextOverlay(section.textOverlay).trim();
   if (authored && authored.length <= 40) return authored.toUpperCase();
   const src = String(section.voiceover || "");
   if (!src) return "";
@@ -350,7 +356,7 @@ export function CinematicDocumentaryLongform({ sections = [], thumbnailStyle, tt
           >
             <SectionBackground colors={colors}>
               <BrollLayer files={section.bRollFiles} colors={colors} />
-              {section.textOverlay ? (
+              {resolveTextOverlay(section.textOverlay) ? (
                 <div
                   style={{
                     position: "absolute",
@@ -368,7 +374,7 @@ export function CinematicDocumentaryLongform({ sections = [], thumbnailStyle, tt
                     opacity: 0.9,
                   }}
                 >
-                  {section.textOverlay}
+                  {resolveTextOverlay(section.textOverlay)}
                 </div>
               ) : null}
 
@@ -445,7 +451,7 @@ export function CinematicDocumentaryShorts({ sections = [], thumbnailStyle, ttsA
           >
             <SectionBackground colors={colors}>
               <BrollLayer files={section.bRollFiles} colors={colors} />
-              {section.textOverlay ? (
+              {resolveTextOverlay(section.textOverlay) ? (
                 <div
                   style={{
                     position: "absolute",
@@ -463,7 +469,7 @@ export function CinematicDocumentaryShorts({ sections = [], thumbnailStyle, ttsA
                     opacity: 0.9,
                   }}
                 >
-                  {section.textOverlay}
+                  {resolveTextOverlay(section.textOverlay)}
                 </div>
               ) : null}
 
