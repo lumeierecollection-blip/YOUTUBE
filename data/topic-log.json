@@ -773,9 +773,14 @@
           "topic": "The $380 Million Drive Planning Ponzi Scheme Sentencing",
           "slug": "drive-planning-380m-ponzi-scheme-sentencing",
           "reserved_at": "2026-09-14T15:23:31.957Z"
+        },
+        {
+          "topic": "The $270M Medi-Cal Medication Reimbursement Fraud Sentencing",
+          "slug": "270m-medi-cal-medication-reimbursement-fraud",
+          "reserved_at": "2026-09-14T19:12:39.217Z"
         }
       ],
-      "last_generated": "2026-09-14T15:23:31.958Z"
+      "last_generated": "2026-09-14T19:12:39.217Z"
     },
     "27": {
       "channel_name": "Trial Files",
