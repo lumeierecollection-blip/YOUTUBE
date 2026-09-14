@@ -10,7 +10,7 @@
         "properties": {
           "channel_id": { "type": "string" },
           "topic":      { "type": "string", "minLength": 12, "maxLength": 90 },
-          "angle":      { "type": "string", "minLength": 20, "maxLength": 160 },
+          "angle":      { "type": "string", "minLength": 20, "maxLength": 320 },
           "why_now":    { "type": "string", "minLength": 20 },
           "slug":       { "type": "string", "pattern": "^[a-z0-9-]{8,60}$" },
           "pillar":     { "type": "string" }
