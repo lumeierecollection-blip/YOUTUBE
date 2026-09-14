@@ -253,39 +253,46 @@ jobs:
             echo "FORMATS=longform" >> "$GITHUB_ENV"
           fi
 
-      # ── Stage B: research topic ──────────────────────────────────────────────
+      # ── Stage B: research ────────────────────────────────────────────────────
       - name: Research topic
         if: steps.reserve.outputs.skip != 'true'
         env:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
         run: |
-          set -euo pipefail
+          set -u
           CH="${{ matrix.channel_id }}"
+          SLUG=$(jq -r  '.slug'  /tmp/channel-topic.json)
           TOPIC=$(jq -r '.topic' /tmp/channel-topic.json)
-          SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
-
-          node scripts/build-research-context.js --channel "$CH" --topic "$TOPIC" --slug "$SLUG" > /tmp/research-context.json
+          ANGLE=$(jq -r '.angle' /tmp/channel-topic.json)
+          echo "=== RESEARCH: $CH — $SLUG ==="
 
           set +e
-          cat /tmp/research-context.json | node scripts/opencode-agent.js \
-            --prompt-file prompts/research-topic.md \
-            --schema-file schemas/research.json \
-            --search-budget 2 \
-            --agent pipeline-research \
-            --model "$OPENCODE_MODELS_RESEARCH" \
-            --task-label research > /tmp/research-raw.json 2> /tmp/research-err.log
-          RESEARCH_EXIT=$?
+          jq -n --arg t "$TOPIC" --arg a "$ANGLE" \
+                --arg s "$SLUG"  --arg c "$CH" \
+                '{topic:$t, angle:$a, slug:$s, channel_id:$c}' \
+            | node scripts/opencode-agent.js \
+                --prompt-file prompts/research.md \
+                --schema-file schemas/research.json \
+                --agent pipeline-research \
+                --model "$OPENCODE_MODELS_RESEARCH" \
+                --task-label research --channel-id "$CH" --video-id "$SLUG" \
+                > /tmp/research-raw.json 2> /tmp/research-err.log
+          AGENT_EXIT=$?
           set -e
 
-          if [ "$RESEARCH_EXIT" -ne 0 ]; then
-            echo "::error::Research failed for channel $CH"
-            cat /tmp/research-err.log 2>/dev/null || true
+          if [ "$AGENT_EXIT" -ne 0 ]; then
+            echo "::error::research failed for channel $CH"
+            echo "--- stderr ---"; cat /tmp/research-err.log 2>/dev/null || echo "(empty)"
             exit 1
           fi
-
+          if ! jq -e '.structured_output.key_facts | length >= 3' /tmp/research-raw.json > /dev/null; then
+            echo "::error::research didn't meet the quality bar for channel $CH"
+            cat /tmp/research-raw.json
+            exit 1
+          fi
           jq '.structured_output' /tmp/research-raw.json > "data/research/$CH/$SLUG.json"
-          echo "cost_research=$(jq -r '.total_cost_usd' /tmp/research-raw.json)" >> "$GITHUB_STEP_SUMMARY"
+          cp /tmp/research-raw.json "data/research/$CH/.agent-raw.json"
 
       # ── Gate research ────────────────────────────────────────────────────────
       - name: Gate research
@@ -293,9 +300,9 @@ jobs:
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
-          node scripts/gate-research.js "data/research/$CH/$SLUG.json"
+          node scripts/gate-research.js "$CH" "$SLUG"
 
-      # ── Stage C: write script ────────────────────────────────────────────────
+      # ── Stage C: script (per format, gate-feedback retry) ───────────────────
       - name: Write script
         if: steps.reserve.outputs.skip != 'true'
         env:
@@ -305,36 +312,56 @@ jobs:
           set -euo pipefail
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
-
-          node scripts/build-script-context.js --channel "$CH" --slug "$SLUG" > /tmp/script-context.json
-
-          set +e
-          cat /tmp/script-context.json | node scripts/opencode-agent.js \
-            --prompt-file prompts/write-script.md \
-            --schema-file schemas/script.json \
-            --search-budget 0 \
-            --agent pipeline-script \
-            --model "$OPENCODE_MODELS_REASONING" \
-            --task-label write-script > /tmp/script-raw.json 2> /tmp/script-err.log
-          SCRIPT_EXIT=$?
-          set -e
-
-          if [ "$SCRIPT_EXIT" -ne 0 ]; then
-            echo "::error::Script writing failed for channel $CH"
-            cat /tmp/script-err.log 2>/dev/null || true
-            exit 1
+          STYLE=$(node scripts/channel-style.js "$CH")
+          if [ "$STYLE" = "motion-graphics" ]; then
+            SCHEMA="schemas/script.mg.json"
+          else
+            SCHEMA="schemas/script.section.json"
           fi
-
-          jq '.structured_output' /tmp/script-raw.json > "data/research/$CH/${SLUG}-script.json"
-          echo "cost_script=$(jq -r '.total_cost_usd' /tmp/script-raw.json)" >> "$GITHUB_STEP_SUMMARY"
-
-      # ── Gate script ──────────────────────────────────────────────────────────
-      - name: Gate script
-        if: steps.reserve.outputs.skip != 'true'
-        run: |
-          CH="${{ matrix.channel_id }}"
-          SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
-          node scripts/gate-script.js "data/research/$CH/${SLUG}-script.json" "data/research/$CH/$SLUG.json"
+          for FORMAT in $FORMATS; do
+            SCRIPT_SLUG="${SLUG}-${FORMAT}"
+            FEEDBACK=""
+            PASSED=0
+            for ATTEMPT in 1 2 3; do
+              echo "=== SCRIPT: $CH — $SCRIPT_SLUG (attempt $ATTEMPT/3) ==="
+              PROMPT_FILE=prompts/write-script.md
+              if [ -n "$FEEDBACK" ]; then
+                cp prompts/write-script.md /tmp/write-script-feedback.md
+                printf '\n\n## Quality gate rejected your previous script\n\n%s\n\nRewrite the FULL script JSON now, fixing exactly the problems above. Keep everything the gate did not flag identical — same research grounding, same sources_used, same structure. Return only the JSON object.\n' "$FEEDBACK" >> /tmp/write-script-feedback.md
+                PROMPT_FILE=/tmp/write-script-feedback.md
+              fi
+              set +e
+              node scripts/build-script-context.js "$CH" "$SLUG" --format "$FORMAT" \
+                | node scripts/opencode-agent.js \
+                    --prompt-file "$PROMPT_FILE" \
+                    --append-system-prompt-file prompts/style-contract.md \
+                    --schema-file "$SCHEMA" \
+                    --agent pipeline-script \
+                    --model "$OPENCODE_MODELS_REASONING" \
+                    --task-label write-script --channel-id "$CH" --video-id "$SCRIPT_SLUG" \
+                    > /tmp/script-raw-$FORMAT.json 2> /tmp/script-err-$FORMAT.log
+              AGENT_EXIT=$?
+              set -e
+              if [ "$AGENT_EXIT" -ne 0 ]; then
+                echo "::error::script model call failed for channel $CH format $FORMAT"
+                echo "--- stderr ---"; cat /tmp/script-err-$FORMAT.log 2>/dev/null || echo "(empty)"
+                exit 1
+              fi
+              jq '.structured_output' /tmp/script-raw-$FORMAT.json \
+                > "data/research/$CH/${SCRIPT_SLUG}-script.json"
+              if node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then
+                PASSED=1
+                break
+              fi
+              echo "::warning::script gate rejected attempt $ATTEMPT/3 for $SCRIPT_SLUG"
+              cat /tmp/gate-out-$FORMAT.log
+              FEEDBACK=$(grep -E '^  - ' /tmp/gate-out-$FORMAT.log || true)
+            done
+            if [ "$PASSED" -ne 1 ]; then
+              echo "::error::script gate still failing for $SCRIPT_SLUG after 3 attempts"
+              exit 1
+            fi
+          done
 
       # ── Stage D: TTS voiceover ───────────────────────────────────────────────
       - name: Generate TTS voiceover
