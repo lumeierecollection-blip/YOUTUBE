@@ -5,9 +5,9 @@
 name: Daily Pipeline — Autonomous
 
 on:
-  schedule:
-    # Run at 6:00 AM UTC daily
-    - cron: "0 6 * * *"
+  # schedule:
+  #   # PAUSED — re-enable when channels.json is updated with real channel names
+  #   - cron: "0 6 * * *"
   workflow_dispatch:
     inputs:
       dry_run:

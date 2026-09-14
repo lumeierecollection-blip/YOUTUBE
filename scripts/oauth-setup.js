@@ -29,6 +29,11 @@
 
 import { createServer } from "node:http";
 import { exec, execFileSync } from "node:child_process";
+import { mkdirSync, writeFileSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // ── args ──────────────────────────────────────────────────────────────────────
 function arg(name) {
@@ -107,6 +112,42 @@ async function exchangeCode(code, redirectUri) {
     throw new Error(`Token exchange failed: ${data.error} — ${data.error_description || JSON.stringify(data)}`);
   }
   return data.refresh_token;
+}
+
+// ── Identify real YouTube channel from access token ───────────────────────────
+async function identifyChannel(refreshToken) {
+  try {
+    // Get a short-lived access token
+    const body = new URLSearchParams({
+      client_id: clientId,
+      client_secret: clientSecret,
+      refresh_token: refreshToken,
+      grant_type: "refresh_token",
+    });
+    const tokenRes = await fetch(TOKEN_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body,
+    });
+    const tokenData = await tokenRes.json();
+    if (!tokenData.access_token) return null;
+
+    // Ask YouTube which channel this account owns
+    const chRes = await fetch(
+      "https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true",
+      { headers: { Authorization: `Bearer ${tokenData.access_token}` } }
+    );
+    const chData = await chRes.json();
+    const ch = chData.items?.[0];
+    if (!ch) return null;
+    return {
+      youtube_channel_id: ch.id,
+      real_name: ch.snippet.title,
+      description: ch.snippet.description?.slice(0, 120) || "",
+    };
+  } catch {
+    return null;
+  }
 }
 
 // ── One server per channel ────────────────────────────────────────────────────
@@ -222,47 +263,79 @@ async function main() {
   }
 
   console.log("\n" + "=".repeat(70));
-  console.log("Pushing secrets to GitHub via gh CLI...");
+  console.log("Identifying real YouTube channels and saving credentials...");
   console.log("=".repeat(70) + "\n");
 
-  // Client ID and secret are the same for every channel — push once per channel
+  const credsDir = join(__dirname, "..", "config", "creds");
+  mkdirSync(credsDir, { recursive: true });
+
   const succeeded = [];
   const failed = [];
+  const mapping = [];
 
   for (const result of results) {
     if (result.status === "fulfilled") {
       const { channelId, refreshToken } = result.value;
       const n = String(channelId).padStart(2, "0");
-      const name = CHANNEL_NAMES[channelId] || `Channel ${channelId}`;
-      console.log(`CH-${n} ${name}:`);
 
-      const ok1 = ghSecretSet(`CHANNEL_${n}_CLIENT_ID`, clientId);
-      if (ok1) console.log(`  ✓ CHANNEL_${n}_CLIENT_ID`);
-
-      const ok2 = ghSecretSet(`CHANNEL_${n}_CLIENT_SECRET`, clientSecret);
-      if (ok2) console.log(`  ✓ CHANNEL_${n}_CLIENT_SECRET`);
-
-      const ok3 = ghSecretSet(`CHANNEL_${n}_REFRESH_TOKEN`, refreshToken);
-      if (ok3) console.log(`  ✓ CHANNEL_${n}_REFRESH_TOKEN`);
-
-      if (ok1 && ok2 && ok3) {
-        succeeded.push(`CH-${n}`);
+      // Identify the real YouTube channel
+      process.stdout.write(`  CH-${n} identifying...`);
+      const ytChannel = await identifyChannel(refreshToken);
+      if (ytChannel) {
+        console.log(` → "${ytChannel.real_name}" (${ytChannel.youtube_channel_id})`);
       } else {
-        failed.push(`CH-${n} (partial — check above)`);
+        console.log(` → (could not identify — no YouTube channel on this account?)`);
       }
+
+      // Save credentials locally to config/creds/<channel_id>.json
+      const credFile = join(credsDir, `ch-${n}.json`);
+      writeFileSync(credFile, JSON.stringify({
+        client_id: clientId,
+        client_secret: clientSecret,
+        refresh_token: refreshToken,
+        google_account: ytChannel?.real_name || "",
+        youtube_channel_id: ytChannel?.youtube_channel_id || "",
+      }, null, 2));
+
+      // Push to GitHub Secrets
+      const ok1 = ghSecretSet(`CHANNEL_${n}_CLIENT_ID`, clientId);
+      const ok2 = ghSecretSet(`CHANNEL_${n}_CLIENT_SECRET`, clientSecret);
+      const ok3 = ghSecretSet(`CHANNEL_${n}_REFRESH_TOKEN`, refreshToken);
+      const allOk = ok1 && ok2 && ok3;
+      console.log(`  CH-${n}: creds saved locally, GitHub secrets ${allOk ? "✓ pushed" : "⚠ partial"}`);
+
+      if (allOk) succeeded.push(`CH-${n}`);
+      else failed.push(`CH-${n} (partial)`);
+
+      mapping.push({
+        slot: `CH-${n}`,
+        real_name: ytChannel?.real_name || "UNKNOWN",
+        youtube_channel_id: ytChannel?.youtube_channel_id || "UNKNOWN",
+        description: ytChannel?.description || "",
+      });
     } else {
       failed.push(`Authorization failed: ${result.reason.message}`);
     }
   }
 
   console.log("\n" + "=".repeat(70));
-  console.log(`Done. ${succeeded.length} channel(s) fully configured.`);
-  if (succeeded.length) console.log(`  OK: ${succeeded.join(", ")}`);
+  console.log("CHANNEL MAPPING — update channels.json to match:");
+  console.log("=".repeat(70));
+  for (const m of mapping) {
+    console.log(`\n  ${m.slot}`);
+    console.log(`    Real YouTube name : ${m.real_name}`);
+    console.log(`    YouTube channel ID: ${m.youtube_channel_id}`);
+    if (m.description) console.log(`    Description       : ${m.description.slice(0, 80)}...`);
+  }
+
+  console.log(`\n${"=".repeat(70)}`);
+  console.log(`Done. ${succeeded.length}/${succeeded.length + failed.length} channel(s) fully configured.`);
   if (failed.length) {
     console.log(`  FAILED: ${failed.join(", ")}`);
-    console.log(`  Run the script again for the failed channels.`);
+    console.log(`  Run the script again for failed channels.`);
   }
-  console.log("");
+  console.log(`\nLocal credential files saved to: config/creds/`);
+  console.log(`(config/creds/ is gitignored — never committed)\n`);
 }
 
 main().catch((err) => {
