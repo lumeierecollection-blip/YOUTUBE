@@ -115,7 +115,7 @@ concept that isn't covered by one of these rows is `STATEMENT`:
 | Concept in the voiceover | Archetype | Constraint |
 |---|---|---|
 | A single magnitude | `HERO_NUMBER` | never a gauge, ring, or filled shape |
-| A magnitude vs. a baseline, or change over time (2–5 points), or a ranked comparison | `PROGRESS` | bars only, sorted by value (or chronologically if time), shared axis |
+| A magnitude vs. a baseline, or change over time (2–5 points), or a ranked comparison | `PROGRESS` | **requires 2–5 series points** — if you only have one number, use HERO_NUMBER; bars only, sorted by value (or chronologically if time), shared axis |
 | A proportion of a whole | `PROGRESS`, single bar with a marked total | **never a pie or donut** |
 | Two opposed states | `CONTRAST` | left = before, right = after, always |
 | An ordered sequence (max 4) | `LIST_ITEM` | numbered |
@@ -130,7 +130,12 @@ Rules that follow from that table:
 - **`anchor_token` must be a word or short phrase that appears verbatim in
   that section's `voiceover`.** This is what synchronizes the visual beat to
   the spoken word at render time — an anchor token that isn't in the
-  voiceover breaks sync.
+  voiceover breaks sync. **Self-check required:** after writing each beat,
+  search for the anchor_token literally (character-by-character) inside that
+  beat's voiceover string. If the exact substring isn't there, pick a
+  different anchor_token — one that IS literally in the voiceover. Never
+  choose an anchor_token based on what the voiceover means; choose it based
+  on what it literally says. A paraphrase or synonym is not a match.
 - **A beat's `data.series` values must come from the research file's
   `numbers[]` — never invented, estimated, derived, or encoded.** Any beat
   may carry a chart, but every point is a real researched value with its

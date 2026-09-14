@@ -446,119 +446,57 @@ jobs:
           # Run pipeline steps 5-15 (SEO through render settings) for this channel
           node src/utils/pipeline.js "$CH" --step 5 || echo "WARN: metadata generation had issues"
 
-      - name: Upload research artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: research-${{ matrix.channel_id }}-${{ github.run_id }}
-          path: |
-            data/research/${{ matrix.channel_id }}/
-            data/tts/${{ matrix.channel_id }}/
-            data/thumbnails/${{ matrix.channel_id }}/
-          retention-days: 7
-
-  # ============================================================
-  # PHASE 3: Render videos
-  # ============================================================
-  render:
-    needs: research-and-script
-    runs-on: ubuntu-latest
-    timeout-minutes: 120
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
+      # Render runs per-channel, immediately after this channel's script
+      # passes — no waiting for sibling channels. If research or script
+      # failed for this channel the default `if: success()` semantics mean
+      # these steps are automatically skipped for it alone, while every
+      # other matrix item continues unaffected.
       - uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
-
-      - name: Install root dependencies
-        run: npm ci
 
       - name: Install Remotion dependencies
         working-directory: src/skills/remotion-render
         run: npm ci
 
-      # upload-artifact@v4 strips the least common ancestor of multi-path
-      # uploads: the research job uploads data/research/<ch>/, data/tts/<ch>/
-      # and data/thumbnails/<ch>/, so the artifact root is "data" and the
-      # archive holds research/<ch>/..., tts/<ch>/..., thumbnails/<ch>/...
-      # Downloading to path: data (not .) restores the data/ prefix the render
-      # loop expects. With path: . the files landed at ./research/<ch>/, the
-      # loop only ever saw git-tracked scripts with no audio, and the run
-      # reported success with 0 renders rendered.
-      - name: Download all research artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: data
-          pattern: research-*
-          merge-multiple: true
-
-      # PART 8 of the motion-graphics rebuild — render-and-qa.js replaces
-      # what used to be two sequential steps (render everything, THEN
-      # review everything). QA for a finished video now runs in the
-      # background while the next video renders, instead of the whole batch
-      # waiting on review only after every render is already done. Same
-      # failure contract as before (0 rendered -> fail; any render failure
-      # -> fail) plus: a rendered video that fails its QA gate now also
-      # fails the job, since previously frame-audit failing here did fail
-      # the step (`|| exit 1`) — this preserves that, just pipelined.
-      - name: Render + QA (concurrent)
+      - name: Render + QA (this channel)
         env:
           RENDER_PROGRESS_MS: 10000
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           VISION_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           VISION_MODEL: gemini-3.5-flash-lite
-        run: |
-          CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
-          if [ -n "$CHANNEL_OVERRIDE" ]; then
-            node scripts/render-and-qa.js --channel "$CHANNEL_OVERRIDE"
-          else
-            node scripts/render-and-qa.js
-          fi
+        run: node scripts/render-and-qa.js --channel "${{ matrix.channel_id }}"
 
-      - name: Upload review frames
+      - name: Upload research + render artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: render-frames-${{ github.run_id }}
-          path: data/audit/render-review/
-          retention-days: 7
-
-      - name: Upload Gemini review reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: gemini-review-${{ github.run_id }}
-          path: data/audit/gemini-review/
-          retention-days: 14
-
-      - name: Upload visual plans
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: visual-plans-${{ github.run_id }}
-          path: data/visual-plans/
-          retention-days: 14
-
-      - name: Upload render artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: renders-${{ github.run_id }}
-          path: data/renders/
+          name: research-${{ matrix.channel_id }}-${{ github.run_id }}
+          # All paths share the "data/" prefix — upload-artifact@v4 strips
+          # the common ancestor, so the archive root is "data" and
+          # downloading to path: data restores every file at the right place.
+          path: |
+            data/research/${{ matrix.channel_id }}/
+            data/tts/${{ matrix.channel_id }}/
+            data/thumbnails/${{ matrix.channel_id }}/
+            data/renders/${{ matrix.channel_id }}/
+            data/audit/render-review/
+            data/audit/gemini-review/
+            data/visual-plans/
           retention-days: 7
 
   # ============================================================
-  # PHASE 4: Publish to YouTube
+  # PHASE 3: Publish to YouTube
   # ============================================================
   publish:
-    needs: render
-    if: ${{ github.event.inputs.dry_run != 'true' }}
+    needs: research-and-script
+    # Run publish even when some channels failed research/script — the
+    # matrix used fail-fast:false, so succeeded channels produced render
+    # artifacts that should still go out. `!cancelled()` guards against a
+    # hard-stop (Ctrl+C / cancel run); `!= 'skipped'` guards against
+    # discover-topics failing before research-and-script ever started.
+    if: ${{ !cancelled() && needs.research-and-script.result != 'skipped' && github.event.inputs.dry_run != 'true' }}
     runs-on: ubuntu-latest
     # contents: write so the publish queue (data/publish-queue/) can be
     # committed back — the queue must persist across runs for process-queue
@@ -576,24 +514,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Same upload-artifact@v4 LCA rule, other direction: the render job
-      # uploads a SINGLE path (data/renders/), so the artifact root is
-      # data/renders/ and it holds 2/xxx.mp4 (channel dir at top level), not
-      # data/renders/2/xxx.mp4. Downloading to path: data/renders restores
-      # the data/renders/ prefix that youtube-publish/run.js reads.
-      - name: Download all render artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: data/renders
-          pattern: renders-*
-          merge-multiple: true
-
-      # Publish also needs the research artifacts: run.js reads SEO metadata
-      # from data/research/<ch>/*-seo.json and the thumbnail from
-      # data/thumbnails/<ch>/ - without them every upload silently falls back
-      # to default title/description and no thumbnail. Same path: data
-      # convention as the render job's download.
-      - name: Download all research artifacts (SEO + thumbnails)
+      # The research-* artifacts now include renders (data/renders/<ch>/),
+      # thumbnails, TTS, and research — everything publish needs in one
+      # download. The artifact LCA is "data/", so downloading to path: data
+      # restores data/renders/<ch>/video.mp4, data/research/<ch>/seo.json, etc.
+      - name: Download all research + render artifacts
         uses: actions/download-artifact@v4
         with:
           path: data
@@ -771,7 +696,7 @@ jobs:
   # PHASE 5: Log results
   # ============================================================
   log-results:
-    needs: [discover-topics, research-and-script, render, publish]
+    needs: [discover-topics, research-and-script, publish]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -788,6 +713,5 @@ jobs:
           echo ""
           echo "=== STATUS ==="
           echo "Discover Topics: ${{ needs.discover-topics.result }}"
-          echo "Research+Script: ${{ needs.research-and-script.result }}"
-          echo "Render: ${{ needs.render.result }}"
+          echo "Research+Script+Render: ${{ needs.research-and-script.result }}"
           echo "Publish: ${{ needs.publish.result }}"
