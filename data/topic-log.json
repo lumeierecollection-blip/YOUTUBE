@@ -272,9 +272,14 @@
           "topic": "Supreme Court Rules on Reasonable Suspicion When Passengers Flee",
           "slug": "district-of-columbia-rw-reasonable-suspicion",
           "reserved_at": "2026-09-14T15:29:01.110Z"
+        },
+        {
+          "topic": "NLRB Bans Mandatory Workplace Captive Audience Meetings",
+          "slug": "nlrb-mandatory-captive-audience-meetings-ban",
+          "reserved_at": "2026-09-14T19:10:44.802Z"
         }
       ],
-      "last_generated": "2026-09-14T15:29:01.110Z"
+      "last_generated": "2026-09-14T19:10:44.802Z"
     },
     "3": {
       "channel_name": "AI Tested",
