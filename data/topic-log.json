@@ -254,9 +254,14 @@
           "topic": "OpenAI GPT-6 Astra: Tested on Real Coding and Agent Tasks",
           "slug": "gpt-6-astra-openai-testing-review",
           "reserved_at": "2026-09-14T07:31:06.472Z"
+        },
+        {
+          "topic": "DeepSeek V4.1 Flash: Tested on Real Coding and Agent Tasks",
+          "slug": "deepseek-v4-1-flash-coding-agent-review",
+          "reserved_at": "2026-09-14T08:32:49.475Z"
         }
       ],
-      "last_generated": "2026-09-14T07:31:06.472Z"
+      "last_generated": "2026-09-14T08:32:49.476Z"
     },
     "4": {
       "channel_name": "Hidden Past",
