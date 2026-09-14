@@ -488,9 +488,14 @@
           "topic": "China's Salami Slicing Strategy on the Arunachal Pradesh Border",
           "slug": "china-arunachal-pradesh-salami-slicing-border",
           "reserved_at": "2026-09-14T11:10:31.706Z"
+        },
+        {
+          "topic": "Red Sea Chokepoint Crisis: Houthis Seize Bab el-Mandeb Islands",
+          "slug": "red-sea-chokepoint-crisis-houthis-seize-bab-el-mandeb",
+          "reserved_at": "2026-09-14T15:10:04.204Z"
         }
       ],
-      "last_generated": "2026-09-14T11:10:31.706Z"
+      "last_generated": "2026-09-14T15:10:04.205Z"
     },
     "10": {
       "channel_name": "Double Cross",
