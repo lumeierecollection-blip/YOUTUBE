@@ -90,9 +90,14 @@
           "topic": "The Envelope Method Is Making a Comeback in 2026",
           "slug": "envelope-method-budgeting-comeback-2026",
           "reserved_at": "2026-09-10T10:16:27.426Z"
+        },
+        {
+          "topic": "How the CFPB's New 2026 Deregulatory Agenda Reshapes Your Budget Rules",
+          "slug": "cfpb-2026-regulatory-agenda-budget-impact",
+          "reserved_at": "2026-09-14T07:31:06.468Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.427Z"
+      "last_generated": "2026-09-14T07:31:06.468Z"
     },
     "2": {
       "channel_name": "Legal Brief",
@@ -192,9 +197,14 @@
           "topic": "Supreme Court Narrows Qualified Immunity in 2026 Ruling",
           "slug": "supreme-court-qualified-immunity-reform-2026",
           "reserved_at": "2026-09-10T10:16:27.429Z"
+        },
+        {
+          "topic": "Supreme Court Strikes Down Order Ending Birthright Citizenship",
+          "slug": "supreme-court-birthright-citizenship-barbara-ruling",
+          "reserved_at": "2026-09-14T07:31:06.471Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.429Z"
+      "last_generated": "2026-09-14T07:31:06.471Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -234,9 +244,14 @@
           "topic": "Gemini 2.5 Pro vs Claude 4: Real Coding Benchmark Results",
           "slug": "gemini-25-pro-vs-claude-4-coding-benchmark",
           "reserved_at": "2026-09-10T10:16:27.430Z"
+        },
+        {
+          "topic": "OpenAI GPT-6 Astra: Tested on Real Coding and Agent Tasks",
+          "slug": "gpt-6-astra-openai-testing-review",
+          "reserved_at": "2026-09-14T07:31:06.472Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.430Z"
+      "last_generated": "2026-09-14T07:31:06.472Z"
     },
     "4": {
       "channel_name": "Hidden Past",
@@ -286,9 +301,14 @@
           "topic": "The Amber Room: Nazi Loot That Vanished Without a Trace",
           "slug": "amber-room-nazi-loot-vanished-trace",
           "reserved_at": "2026-09-10T10:16:27.431Z"
+        },
+        {
+          "topic": "The Real History Behind 2026 Archival and Archaeological Discoveries",
+          "slug": "2026-archaeological-discoveries-history-secrets",
+          "reserved_at": "2026-09-14T07:31:06.472Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.431Z"
+      "last_generated": "2026-09-14T07:31:06.472Z"
     },
     "5": {
       "channel_name": "Force of Nature",
@@ -340,9 +360,14 @@
           "topic": "Red Lobster: How All-You-Can-Eat Shrimp Bankrupted a Chain",
           "slug": "red-lobster-bankruptcy-shrimp-deal",
           "reserved_at": "2026-09-10T10:16:27.432Z"
+        },
+        {
+          "topic": "The Retail Collapses and Corporate Bankruptcies of 2026",
+          "slug": "2026-retail-bankruptcies-corporate-collapse",
+          "reserved_at": "2026-09-14T07:31:06.473Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.432Z"
+      "last_generated": "2026-09-14T07:31:06.473Z"
     },
     "8": {
       "channel_name": "Mind Decoded",
@@ -388,9 +413,14 @@
           "topic": "Taiwan Strait: Why US and China Keep Brinkmanship on Edge",
           "slug": "taiwan-strait-brinkmanship-us-china",
           "reserved_at": "2026-09-10T10:16:27.432Z"
+        },
+        {
+          "topic": "Cambodia and Thailand Face Off in International Court Over Gulf Oil",
+          "slug": "cambodia-thailand-gulf-maritime-dispute-2026",
+          "reserved_at": "2026-09-14T07:31:06.474Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.432Z"
+      "last_generated": "2026-09-14T07:31:06.474Z"
     },
     "10": {
       "channel_name": "Double Cross",
@@ -436,9 +466,14 @@
           "topic": "Europa's Ocean: Why Jupiter's Moon May Harbor Alien Life",
           "slug": "europa-ocean-alien-life-jupiter-moon",
           "reserved_at": "2026-09-10T10:16:27.433Z"
+        },
+        {
+          "topic": "JWST Discovers Water Vapor and Organic Signatures on Exoplanets",
+          "slug": "jwst-exoplanet-water-vapor-discoveries-2026",
+          "reserved_at": "2026-09-14T07:31:06.474Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.433Z"
+      "last_generated": "2026-09-14T07:31:06.474Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
@@ -508,9 +543,14 @@
           "topic": "The Haitian Revolution: How Enslaved People Toppled an Empire",
           "slug": "haitian-revolution-enslaved-people-empire",
           "reserved_at": "2026-09-10T10:16:27.434Z"
+        },
+        {
+          "topic": "The Fall of Empires: Lessons From Ancient Border Crises",
+          "slug": "ancient-empire-collapse-frontier-lessons",
+          "reserved_at": "2026-09-14T07:31:06.475Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.434Z"
+      "last_generated": "2026-09-14T07:31:06.475Z"
     },
     "18": {
       "channel_name": "Brief History",
@@ -598,9 +638,14 @@
           "topic": "FTX Collapse: How Sam Bankman-Fried Lost $8 Billion",
           "slug": "ftx-collapse-sam-bankman-fried",
           "reserved_at": "2026-09-10T10:16:27.434Z"
+        },
+        {
+          "topic": "The SEC Indictments and Crypto Exchange Frauds of 2026",
+          "slug": "2026-crypto-fraud-sec-indictments-investigation",
+          "reserved_at": "2026-09-14T07:31:06.476Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.434Z"
+      "last_generated": "2026-09-14T07:31:06.476Z"
     },
     "27": {
       "channel_name": "Trial Files",
@@ -658,9 +703,14 @@
           "topic": "Lubbock Coffee Shop Cold Case Solved After 40 Years",
           "slug": "lubbock-cold-case-dna-40-years",
           "reserved_at": "2026-09-10T10:16:27.435Z"
+        },
+        {
+          "topic": "How DNA Genealogy Solved the 1973 Key Largo Sisters Murder",
+          "slug": "key-largo-1973-cold-case-solved-dna",
+          "reserved_at": "2026-09-14T07:31:06.476Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.435Z"
+      "last_generated": "2026-09-14T07:31:06.476Z"
     },
     "31": {
       "channel_name": "Justice Denied",
@@ -700,9 +750,14 @@
           "topic": "Rubin Hurricane Carter: Champion Boxer Wrongfully Jailed",
           "slug": "rubin-hurricane-carter-wrongful-conviction",
           "reserved_at": "2026-09-10T10:16:27.436Z"
+        },
+        {
+          "topic": "The Landmark Exonerations of 2026: Fixing Systemic Injustice",
+          "slug": "2026-wrongful-conviction-exoneration-milestones",
+          "reserved_at": "2026-09-14T07:31:06.477Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.436Z"
+      "last_generated": "2026-09-14T07:31:06.477Z"
     },
     "32": {
       "channel_name": "Machine Anatomy",
@@ -760,9 +815,14 @@
           "topic": "Mars Ingenuity: How a Small Helicopter Changed Space Exploration",
           "slug": "mars-ingenuity-helicopter-space-exploration",
           "reserved_at": "2026-09-10T10:16:27.436Z"
+        },
+        {
+          "topic": "Inside Drone-Bench: How AI Piloted Autonomous Aircraft in 2026",
+          "slug": "drone-bench-ai-aerospace-engineering-2026",
+          "reserved_at": "2026-09-14T07:31:06.478Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.436Z"
+      "last_generated": "2026-09-14T07:31:06.478Z"
     },
     "36": {
       "channel_name": "Terminal Tactics",
@@ -820,9 +880,14 @@
           "topic": "The Patient Whose Bones Turned to Stone: An FOP Mystery",
           "slug": "patient-bones-turned-stone-fop-mystery",
           "reserved_at": "2026-09-10T10:16:27.437Z"
+        },
+        {
+          "topic": "The Rare Genetic Disorders Solved by Rapid Genome Sequencing",
+          "slug": "rapid-genome-sequencing-rare-disease-medical-mystery",
+          "reserved_at": "2026-09-14T07:31:06.478Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.437Z"
+      "last_generated": "2026-09-14T07:31:06.478Z"
     },
     "40": {
       "channel_name": "MedBrief",
@@ -886,9 +951,14 @@
           "topic": "Deep Work in the AI Age: Why Focus Is Your New Superpower",
           "slug": "deep-work-ai-age-focus-superpower",
           "reserved_at": "2026-09-10T10:16:27.438Z"
+        },
+        {
+          "topic": "The Leadership Frameworks That Survive Modern Workplace Burnout",
+          "slug": "2026-workplace-leadership-burnout-strategies",
+          "reserved_at": "2026-09-14T07:31:06.479Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.438Z"
+      "last_generated": "2026-09-14T07:31:06.479Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
@@ -934,9 +1004,14 @@
           "topic": "AI Interview Coaches: Are They Helping or Hurting You",
           "slug": "ai-interview-coaches-hurting-helping",
           "reserved_at": "2026-09-10T10:16:27.439Z"
+        },
+        {
+          "topic": "How Job Seekers Are Using AI During Live Interviews in 2026",
+          "slug": "ai-tools-during-live-interviews-career-prep",
+          "reserved_at": "2026-09-14T07:31:06.479Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.439Z"
+      "last_generated": "2026-09-14T07:31:06.479Z"
     },
     "47": {
       "channel_name": "Medicare Navigator",
@@ -976,9 +1051,14 @@
           "topic": "Medicare Advantage Clawbacks: What the 2026 Rule Changes Mean",
           "slug": "medicare-advantage-clawbacks-2026",
           "reserved_at": "2026-09-10T10:16:27.439Z"
+        },
+        {
+          "topic": "Medicare Open Enrollment 2026: Major Rule Changes & Costs",
+          "slug": "medicare-open-enrollment-2026-rule-changes",
+          "reserved_at": "2026-09-14T07:31:06.480Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.439Z"
+      "last_generated": "2026-09-14T07:31:06.480Z"
     },
     "48": {
       "channel_name": "Factory Floor",
@@ -1018,9 +1098,14 @@
           "topic": "Inside a Battery Recycling Plant: Closing the EV Loop",
           "slug": "battery-recycling-plant-ev-loop",
           "reserved_at": "2026-09-10T10:16:27.440Z"
+        },
+        {
+          "topic": "Humanoid Robots on the Assembly Line: The 2026 Manufacturing Shift",
+          "slug": "humanoid-robots-industrial-automation-manufacturing-2026",
+          "reserved_at": "2026-09-14T07:31:06.481Z"
         }
       ],
-      "last_generated": "2026-09-10T10:16:27.440Z"
+      "last_generated": "2026-09-14T07:31:06.481Z"
     },
     "49": {
       "channel_name": "Wander Budget",
