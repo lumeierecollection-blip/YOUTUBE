@@ -345,8 +345,8 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
     inputProps: props,
     outputLocation: outputPath,
     ...browserOpts,
-    imageFormat: "png",                 // lossless intermediates
-    crf: 16,                            // below the h264 default
+    imageFormat: process.env.RENDER_IMAGE_FORMAT || "jpeg",                 // faster than png
+    crf: parseInt(process.env.RENDER_CRF, 10) || 22,                       // faster encoding than 16
     pixelFormat: "yuv420p",             // required for wide playback
     ...glOpts,
     concurrency: Math.max(2, Math.min(4, os.cpus().length)),
