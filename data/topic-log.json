@@ -496,9 +496,14 @@
           "topic": "JWST Discovers Water Vapor and Organic Signatures on Exoplanets",
           "slug": "jwst-exoplanet-water-vapor-discoveries-2026",
           "reserved_at": "2026-09-14T07:31:06.474Z"
+        },
+        {
+          "topic": "Milky Way's Fastest Star Proves Einstein's Spacetime Twist",
+          "slug": "milky-way-fastest-star-einstein-spin",
+          "reserved_at": "2026-09-14T09:57:58.977Z"
         }
       ],
-      "last_generated": "2026-09-14T07:31:06.474Z"
+      "last_generated": "2026-09-14T09:57:58.977Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
