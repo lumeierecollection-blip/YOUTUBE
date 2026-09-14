@@ -408,7 +408,7 @@ function loadTemplateEngine(channel) {
 
 async function main() {
   const [format, channelId, scriptPath, ttsAudioPath, scaleArg] = process.argv.slice(2);
-  const scale = scaleArg ? parseFloat(scaleArg) : 1.0;
+  const scale = scaleArg ? parseFloat(scaleArg) : (process.env.RENDER_SCALE ? parseFloat(process.env.RENDER_SCALE) : 1.0);
 
   if (!format || !channelId || !scriptPath) {
     console.error("Usage: node render.js <shorts|longform> <channel-id> <script-path> [tts-audio-path] [scale]");

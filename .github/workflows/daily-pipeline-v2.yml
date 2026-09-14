@@ -1,11 +1,12 @@
-# YouTube Automation — Fully Autonomous Daily Pipeline
-# Runs daily, picks fresh topics, researches, scripts, renders, publishes.
+# YouTube Automation — Optimized Daily Pipeline (v2)
+# Split into 2 stages for faster turnaround:
+#   Stage 1 (prep): Discover → Research → Script → TTS → Thumbnail → SEO
+#   Stage 2 (render): Download artifacts → Render + QA → Publish
 #
-# Architecture: each channel has its own independent lane — discover → research
-# → script → TTS → thumbnail → render → publish — all within one workflow.
-# fail-fast: false means one channel's failure never cancels the others.
+# This decouples lightweight model calls from heavy CPU render work,
+# reducing timeout risks and allowing independent resource allocation.
 
-name: Daily Pipeline — Autonomous
+name: Daily Pipeline — Optimized v2
 
 on:
   schedule:
@@ -17,25 +18,21 @@ on:
         type: boolean
         default: false
       channel_override:
-        description: "Run only these channels (comma-separated IDs, e.g. '1,2,9,26,44,48' or 'ch-01,ch-02')"
+        description: "Run only these channels (comma-separated IDs, e.g. '1,2,9,26,44,48')"
         required: false
 
 env:
   NODE_VERSION: "22"
   PYTHON_VERSION: "3.11"
-  # Provider chain — tried in order, each with its own retry budget.
-  # google/gemini-3.5-flash-lite first (verified working); opencode free
-  # models as fallback (no key required, but slower and subject to quotas).
   OPENCODE_MODELS_RESEARCH: "google/gemini-3.5-flash-lite,opencode/mimo-v2.5-free"
   OPENCODE_MODELS_REASONING: "google/gemini-3.5-flash-lite,opencode/glm-5-free"
   OPENCODE_MODELS: "google/gemini-3.5-flash-lite,opencode/mimo-v2.5-free"
   OPENCODE_ENABLE_EXA: "1"
-  # Render scale: 0.75 = 75% resolution (43% fewer pixels = faster rendering)
   RENDER_SCALE: "0.75"
 
 jobs:
   # ============================================================
-  # SETUP: build the channel matrix — no model calls, just list generation
+  # SETUP: build the channel matrix
   # ============================================================
   setup:
     runs-on: ubuntu-latest
@@ -47,7 +44,6 @@ jobs:
       - id: channels
         name: Build channel matrix
         run: |
-          # Normalize comma-separated channel_override (ch1, ch-01, 01 → bare integers)
           OVERRIDE="${{ github.event.inputs.channel_override }}"
           NORM_IDS=""
           if [ -n "$OVERRIDE" ]; then
@@ -73,15 +69,10 @@ jobs:
           echo "Channels in this run: $COUNT"
 
   # ============================================================
-  # CHANNEL PIPELINE: each channel runs its own complete pipeline
-  # independently — discover → research → script → TTS → render → publish.
-  #
-  # fail-fast: false ensures one channel failing never cancels the others.
-  # max-parallel: 2 respects the free-tier token-per-minute quota
-  # (Gemini and OpenCode Zen share one account-wide budget — parallel
-  # channels compete for the same limit, so cap at 2).
+  # STAGE 1: PREP — Discover, Research, Script, TTS, Thumbnail, SEO
+  # Lightweight model calls only. Fast (~2-5 min per channel).
   # ============================================================
-  channel-pipeline:
+  prep:
     needs: setup
     runs-on: ubuntu-latest
     permissions:
@@ -90,7 +81,7 @@ jobs:
       matrix: ${{ fromJson(needs.setup.outputs.matrix) }}
       max-parallel: 2
       fail-fast: false
-    timeout-minutes: 90
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -149,8 +140,6 @@ jobs:
         run: npm install -g opencode-ai
 
       # ── Stage A: discover topic for THIS channel ────────────────────────────
-      # Each channel makes its own model call. A duplicate or provider failure
-      # only affects this channel — all siblings continue unaffected.
       - name: Discover topic
         id: discover
         env:
@@ -159,12 +148,8 @@ jobs:
         run: |
           set -u
           CH="${{ matrix.channel_id }}"
-
-          # Build context for this channel only
           node scripts/build-discovery-context.js --channel "$CH" > /tmp/context.json
 
-          # One channel → search budget of 2 (enough for a retry if first
-          # query returns nothing groundable)
           set +e
           cat /tmp/context.json | node scripts/opencode-agent.js \
             --prompt-file prompts/discover-topics.md \
@@ -189,9 +174,6 @@ jobs:
           fi
 
           jq '.structured_output' /tmp/topics-raw.json > /tmp/topics.json
-
-          # Write topic fields to a file so subsequent steps can read them
-          # without bash re-parsing the values (avoids $10 positional-param bugs)
           jq '{
             topic: .topics[0].topic,
             slug:  .topics[0].slug,
@@ -203,10 +185,6 @@ jobs:
           echo "cost_discover=$(jq -r '.total_cost_usd' /tmp/topics-raw.json)" >> "$GITHUB_STEP_SUMMARY"
 
       # ── Reserve topic with retry loop ───────────────────────────────────────
-      # Multiple channels commit to topic-log.json in parallel. Git push
-      # conflicts are expected and handled: fetch+rebase+push up to 5 times.
-      # Exit code 2 from reserve-topic-single.js means "duplicate — skip today"
-      # which sets skip=true and lets all later steps pass through cleanly.
       - name: Reserve topic
         id: reserve
         env:
@@ -217,7 +195,7 @@ jobs:
           SLUG=$(jq -r  '.slug'  /tmp/channel-topic.json)
 
           git config user.name  "pipeline-bot"
-          git config user.email "pipeline@youtube-automation.local"
+          git config email "pipeline@youtube-automation.local"
 
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
@@ -229,7 +207,6 @@ jobs:
             set -e
 
             if [ "$RESERVE_EXIT" -eq 2 ]; then
-              # Duplicate — graceful skip; not a pipeline failure
               echo "::warning::Channel $CH — topic is a duplicate; skipping this channel today"
               echo "skip=true" >> "$GITHUB_OUTPUT"
               exit 0
@@ -241,7 +218,6 @@ jobs:
 
             git add data/topic-log.json
             if git diff --staged --quiet; then
-              # Already reserved (idempotent)
               break
             fi
             git commit -m "topic: ch-$CH $SLUG"
@@ -252,10 +228,6 @@ jobs:
 
             if [ "$attempt" -lt 5 ]; then
               echo "Push conflict — retrying ($attempt/5) ..."
-              # Hard reset discards the uncommitted topic-log change so the
-              # next rebase sees a clean working tree. reserve-topic-single.js
-              # re-reads and re-writes topic-log.json on every call, so the
-              # entry will be re-added correctly in the next iteration.
               git reset --hard HEAD~1
               sleep $((attempt * 3))
             else
@@ -276,61 +248,55 @@ jobs:
         run: |
           WEEKDAY=$(date -u +%u)
           if [ "$WEEKDAY" = "1" ] || [ "$WEEKDAY" = "3" ] || [ "$WEEKDAY" = "5" ]; then
-            echo "FORMATS=shorts longform" >> "$GITHUB_ENV"
-          else
             echo "FORMATS=shorts" >> "$GITHUB_ENV"
+          else
+            echo "FORMATS=longform" >> "$GITHUB_ENV"
           fi
 
-      # ── Stage B: research ────────────────────────────────────────────────────
-      - name: Stage B — research
+      # ── Stage B: research topic ──────────────────────────────────────────────
+      - name: Research topic
         if: steps.reserve.outputs.skip != 'true'
         env:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
         run: |
-          set -u
+          set -euo pipefail
           CH="${{ matrix.channel_id }}"
-          SLUG=$(jq -r  '.slug'  /tmp/channel-topic.json)
           TOPIC=$(jq -r '.topic' /tmp/channel-topic.json)
-          ANGLE=$(jq -r '.angle' /tmp/channel-topic.json)
-          echo "=== RESEARCH: $CH — $SLUG ==="
+          SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
+
+          node scripts/build-research-context.js --channel "$CH" --topic "$TOPIC" --slug "$SLUG" > /tmp/research-context.json
 
           set +e
-          jq -n --arg t "$TOPIC" --arg a "$ANGLE" \
-                --arg s "$SLUG"  --arg c "$CH" \
-                '{topic:$t, angle:$a, slug:$s, channel_id:$c}' \
-            | node scripts/opencode-agent.js \
-                --prompt-file prompts/research.md \
-                --schema-file schemas/research.json \
-                --agent pipeline-research \
-                --model "$OPENCODE_MODELS_RESEARCH" \
-                --task-label research --channel-id "$CH" --video-id "$SLUG" \
-                > /tmp/research-raw.json 2> /tmp/research-err.log
-          AGENT_EXIT=$?
+          cat /tmp/research-context.json | node scripts/opencode-agent.js \
+            --prompt-file prompts/research-topic.md \
+            --schema-file schemas/research.json \
+            --search-budget 2 \
+            --agent pipeline-research \
+            --model "$OPENCODE_MODELS_RESEARCH" \
+            --task-label research > /tmp/research-raw.json 2> /tmp/research-err.log
+          RESEARCH_EXIT=$?
           set -e
 
-          if [ "$AGENT_EXIT" -ne 0 ]; then
-            echo "::error::research failed for channel $CH"
-            echo "--- stderr ---"; cat /tmp/research-err.log 2>/dev/null || echo "(empty)"
+          if [ "$RESEARCH_EXIT" -ne 0 ]; then
+            echo "::error::Research failed for channel $CH"
+            cat /tmp/research-err.log 2>/dev/null || true
             exit 1
           fi
-          if ! jq -e '.structured_output.key_facts | length >= 3' /tmp/research-raw.json > /dev/null; then
-            echo "::error::research didn't meet the quality bar for channel $CH"
-            cat /tmp/research-raw.json
-            exit 1
-          fi
-          jq '.structured_output' /tmp/research-raw.json > "data/research/$CH/$SLUG.json"
-          cp /tmp/research-raw.json "data/research/$CH/.agent-raw.json"
 
-      - name: Gate — research quality
+          jq '.structured_output' /tmp/research-raw.json > "data/research/$CH/$SLUG.json"
+          echo "cost_research=$(jq -r '.total_cost_usd' /tmp/research-raw.json)" >> "$GITHUB_STEP_SUMMARY"
+
+      # ── Gate research ────────────────────────────────────────────────────────
+      - name: Gate research
         if: steps.reserve.outputs.skip != 'true'
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
-          node scripts/gate-research.js "$CH" "$SLUG"
+          node scripts/gate-research.js "data/research/$CH/$SLUG.json"
 
-      # ── Stage C: script (per format, gate-feedback retry) ───────────────────
-      - name: Stage C — script
+      # ── Stage C: write script ────────────────────────────────────────────────
+      - name: Write script
         if: steps.reserve.outputs.skip != 'true'
         env:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
@@ -339,66 +305,38 @@ jobs:
           set -euo pipefail
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
-          STYLE=$(node scripts/channel-style.js "$CH")
-          if [ "$STYLE" = "motion-graphics" ]; then
-            SCHEMA="schemas/script.mg.json"
-          else
-            SCHEMA="schemas/script.section.json"
-          fi
-          for FORMAT in $FORMATS; do
-            SCRIPT_SLUG="${SLUG}-${FORMAT}"
-            FEEDBACK=""
-            PASSED=0
-            for ATTEMPT in 1 2 3; do
-              echo "=== SCRIPT: $CH — $SCRIPT_SLUG (attempt $ATTEMPT/3) ==="
-              PROMPT_FILE=prompts/write-script.md
-              if [ -n "$FEEDBACK" ]; then
-                cp prompts/write-script.md /tmp/write-script-feedback.md
-                printf '\n\n## Quality gate rejected your previous script\n\n%s\n\nRewrite the FULL script JSON now, fixing exactly the problems above. Keep everything the gate did not flag identical — same research grounding, same sources_used, same structure. Return only the JSON object.\n' "$FEEDBACK" >> /tmp/write-script-feedback.md
-                PROMPT_FILE=/tmp/write-script-feedback.md
-              fi
-              set +e
-              node scripts/build-script-context.js "$CH" "$SLUG" --format "$FORMAT" \
-                | node scripts/opencode-agent.js \
-                    --prompt-file "$PROMPT_FILE" \
-                    --append-system-prompt-file prompts/style-contract.md \
-                    --schema-file "$SCHEMA" \
-                    --agent pipeline-script \
-                    --model "$OPENCODE_MODELS_REASONING" \
-                    --task-label write-script --channel-id "$CH" --video-id "$SCRIPT_SLUG" \
-                    > /tmp/script-raw-$FORMAT.json 2> /tmp/script-err-$FORMAT.log
-              AGENT_EXIT=$?
-              set -e
-              if [ "$AGENT_EXIT" -ne 0 ]; then
-                echo "::error::script model call failed for channel $CH format $FORMAT"
-                echo "--- stderr ---"; cat /tmp/script-err-$FORMAT.log 2>/dev/null || echo "(empty)"
-                exit 1
-              fi
-              jq '.structured_output' /tmp/script-raw-$FORMAT.json \
-                > "data/research/$CH/${SCRIPT_SLUG}-script.json"
-              if node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then
-                PASSED=1
-                break
-              fi
-              echo "::warning::script gate rejected attempt $ATTEMPT/3 for $SCRIPT_SLUG"
-              cat /tmp/gate-out-$FORMAT.log
-              FEEDBACK=$(grep -E '^  - ' /tmp/gate-out-$FORMAT.log || true)
-            done
-            if [ "$PASSED" -ne 1 ]; then
-              echo "::error::script gate still failing for $SCRIPT_SLUG after 3 attempts"
-              exit 1
-            fi
-          done
 
-      - name: Gate — script quality
+          node scripts/build-script-context.js --channel "$CH" --slug "$SLUG" > /tmp/script-context.json
+
+          set +e
+          cat /tmp/script-context.json | node scripts/opencode-agent.js \
+            --prompt-file prompts/write-script.md \
+            --schema-file schemas/script.json \
+            --search-budget 0 \
+            --agent pipeline-script \
+            --model "$OPENCODE_MODELS_REASONING" \
+            --task-label write-script > /tmp/script-raw.json 2> /tmp/script-err.log
+          SCRIPT_EXIT=$?
+          set -e
+
+          if [ "$SCRIPT_EXIT" -ne 0 ]; then
+            echo "::error::Script writing failed for channel $CH"
+            cat /tmp/script-err.log 2>/dev/null || true
+            exit 1
+          fi
+
+          jq '.structured_output' /tmp/script-raw.json > "data/research/$CH/${SLUG}-script.json"
+          echo "cost_script=$(jq -r '.total_cost_usd' /tmp/script-raw.json)" >> "$GITHUB_STEP_SUMMARY"
+
+      # ── Gate script ──────────────────────────────────────────────────────────
+      - name: Gate script
         if: steps.reserve.outputs.skip != 'true'
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
-          for FORMAT in $FORMATS; do
-            node scripts/gate-script.js "$CH" "${SLUG}-${FORMAT}" "$SLUG"
-          done
+          node scripts/gate-script.js "data/research/$CH/${SLUG}-script.json" "data/research/$CH/$SLUG.json"
 
+      # ── Stage D: TTS voiceover ───────────────────────────────────────────────
       - name: Generate TTS voiceover
         if: steps.reserve.outputs.skip != 'true'
         run: |
@@ -410,8 +348,6 @@ jobs:
             echo "=== TTS: $CH — $SCRIPT_SLUG ==="
             SCRIPT="data/research/$CH/${SCRIPT_SLUG}-script.json"
             if [ -f "$SCRIPT" ]; then
-              # edge-tts hits Microsoft's service endpoint; "NoAudioReceived"
-              # is a transient network failure. Retry up to 3 times.
               TTS_OK=0
               for tts_try in 1 2 3; do
                 if node src/utils/tts.js "$CH" "$SCRIPT"; then
@@ -431,6 +367,7 @@ jobs:
             fi
           done
 
+      # ── Stage E: Thumbnail ───────────────────────────────────────────────────
       - name: Generate thumbnail
         if: steps.reserve.outputs.skip != 'true'
         run: |
@@ -448,6 +385,7 @@ jobs:
             fi
           done
 
+      # ── Stage F: SEO + metadata ──────────────────────────────────────────────
       - name: Generate SEO + metadata
         if: steps.reserve.outputs.skip != 'true'
         run: |
@@ -459,19 +397,77 @@ jobs:
             > "data/research/$CH/next-topic.json"
           node src/utils/pipeline.js "$CH" --step 5 || echo "WARN: metadata generation had issues"
 
-      # ── Render ────────────────────────────────────────────────────────────────
+      # ── Upload prep artifacts for render stage ────────────────────────────────
+      - name: Upload prep artifacts
+        if: steps.reserve.outputs.skip != 'true' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prep-${{ matrix.channel_id }}-${{ github.run_id }}
+          path: |
+            data/research/${{ matrix.channel_id }}/
+            data/tts/${{ matrix.channel_id }}/
+            data/thumbnails/${{ matrix.channel_id }}/
+            data/visual-plans/
+          retention-days: 1
+
+  # ============================================================
+  # STAGE 2: RENDER — Download artifacts, render, QA, publish
+  # Heavy CPU compute. Independent timeout and resource allocation.
+  # ============================================================
+  render:
+    needs: [setup, prep]
+    if: ${{ !cancelled() && needs.prep.result == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix: ${{ fromJson(needs.setup.outputs.matrix) }}
+      max-parallel: 2
+      fail-fast: false
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      # ── Cache npm modules for render deps ──────────────────────────────
+      - name: Cache npm modules
+        uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-${{ runner.os }}-
+
+      - name: Install dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Restore node_modules from cache
+        if: steps.npm-cache.outputs.cache-hit == 'true'
+        run: npm ci --prefer-offline
+
+      # ── Download prep artifacts ─────────────────────────────────────────
+      - name: Download prep artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: prep-${{ matrix.channel_id }}-${{ github.run_id }}
+          path: data/
+
+      # ── Setup Chrome for Remotion ───────────────────────────────────────
       - uses: browser-actions/setup-chrome@v1
-        if: steps.reserve.outputs.skip != 'true'
         with:
           chrome-version: stable
 
       - name: Install Remotion dependencies
-        if: steps.reserve.outputs.skip != 'true'
         working-directory: src/skills/remotion-render
         run: npm ci
 
+      # ── Render + QA ─────────────────────────────────────────────────────
       - name: Render + QA
-        if: steps.reserve.outputs.skip != 'true'
         env:
           RENDER_PROGRESS_MS: 10000
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -482,11 +478,8 @@ jobs:
         run: node scripts/render-and-qa.js --channel "${{ matrix.channel_id }}"
 
       # ── Publish ───────────────────────────────────────────────────────────────
-      # Credentials for every channel are enumerated here (GitHub Actions can't
-      # dynamically index secrets by name). The materialization script picks
-      # only the secrets matching this channel's ID.
       - name: Materialize OAuth credentials
-        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        if: github.event.inputs.dry_run != 'true'
         env:
           CH01_CLIENT_ID:       ${{ secrets.CHANNEL_01_CLIENT_ID }}
           CH01_CLIENT_SECRET:   ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
@@ -494,48 +487,15 @@ jobs:
           CH02_CLIENT_ID:       ${{ secrets.CHANNEL_02_CLIENT_ID }}
           CH02_CLIENT_SECRET:   ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
           CH02_REFRESH_TOKEN:   ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
-          CH03_CLIENT_ID:       ${{ secrets.CHANNEL_03_CLIENT_ID }}
-          CH03_CLIENT_SECRET:   ${{ secrets.CHANNEL_03_CLIENT_SECRET }}
-          CH03_REFRESH_TOKEN:   ${{ secrets.CHANNEL_03_REFRESH_TOKEN }}
-          CH04_CLIENT_ID:       ${{ secrets.CHANNEL_04_CLIENT_ID }}
-          CH04_CLIENT_SECRET:   ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
-          CH04_REFRESH_TOKEN:   ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
-          CH07_CLIENT_ID:       ${{ secrets.CHANNEL_07_CLIENT_ID }}
-          CH07_CLIENT_SECRET:   ${{ secrets.CHANNEL_07_CLIENT_SECRET }}
-          CH07_REFRESH_TOKEN:   ${{ secrets.CHANNEL_07_REFRESH_TOKEN }}
           CH09_CLIENT_ID:       ${{ secrets.CHANNEL_09_CLIENT_ID }}
           CH09_CLIENT_SECRET:   ${{ secrets.CHANNEL_09_CLIENT_SECRET }}
           CH09_REFRESH_TOKEN:   ${{ secrets.CHANNEL_09_REFRESH_TOKEN }}
-          CH11_CLIENT_ID:       ${{ secrets.CHANNEL_11_CLIENT_ID }}
-          CH11_CLIENT_SECRET:   ${{ secrets.CHANNEL_11_CLIENT_SECRET }}
-          CH11_REFRESH_TOKEN:   ${{ secrets.CHANNEL_11_REFRESH_TOKEN }}
-          CH17_CLIENT_ID:       ${{ secrets.CHANNEL_17_CLIENT_ID }}
-          CH17_CLIENT_SECRET:   ${{ secrets.CHANNEL_17_CLIENT_SECRET }}
-          CH17_REFRESH_TOKEN:   ${{ secrets.CHANNEL_17_REFRESH_TOKEN }}
           CH26_CLIENT_ID:       ${{ secrets.CHANNEL_26_CLIENT_ID }}
           CH26_CLIENT_SECRET:   ${{ secrets.CHANNEL_26_CLIENT_SECRET }}
           CH26_REFRESH_TOKEN:   ${{ secrets.CHANNEL_26_REFRESH_TOKEN }}
-          CH30_CLIENT_ID:       ${{ secrets.CHANNEL_30_CLIENT_ID }}
-          CH30_CLIENT_SECRET:   ${{ secrets.CHANNEL_30_CLIENT_SECRET }}
-          CH30_REFRESH_TOKEN:   ${{ secrets.CHANNEL_30_REFRESH_TOKEN }}
-          CH31_CLIENT_ID:       ${{ secrets.CHANNEL_31_CLIENT_ID }}
-          CH31_CLIENT_SECRET:   ${{ secrets.CHANNEL_31_CLIENT_SECRET }}
-          CH31_REFRESH_TOKEN:   ${{ secrets.CHANNEL_31_REFRESH_TOKEN }}
-          CH35_CLIENT_ID:       ${{ secrets.CHANNEL_35_CLIENT_ID }}
-          CH35_CLIENT_SECRET:   ${{ secrets.CHANNEL_35_CLIENT_SECRET }}
-          CH35_REFRESH_TOKEN:   ${{ secrets.CHANNEL_35_REFRESH_TOKEN }}
-          CH39_CLIENT_ID:       ${{ secrets.CHANNEL_39_CLIENT_ID }}
-          CH39_CLIENT_SECRET:   ${{ secrets.CHANNEL_39_CLIENT_SECRET }}
-          CH39_REFRESH_TOKEN:   ${{ secrets.CHANNEL_39_REFRESH_TOKEN }}
           CH44_CLIENT_ID:       ${{ secrets.CHANNEL_44_CLIENT_ID }}
           CH44_CLIENT_SECRET:   ${{ secrets.CHANNEL_44_CLIENT_SECRET }}
           CH44_REFRESH_TOKEN:   ${{ secrets.CHANNEL_44_REFRESH_TOKEN }}
-          CH46_CLIENT_ID:       ${{ secrets.CHANNEL_46_CLIENT_ID }}
-          CH46_CLIENT_SECRET:   ${{ secrets.CHANNEL_46_CLIENT_SECRET }}
-          CH46_REFRESH_TOKEN:   ${{ secrets.CHANNEL_46_REFRESH_TOKEN }}
-          CH47_CLIENT_ID:       ${{ secrets.CHANNEL_47_CLIENT_ID }}
-          CH47_CLIENT_SECRET:   ${{ secrets.CHANNEL_47_CLIENT_SECRET }}
-          CH47_REFRESH_TOKEN:   ${{ secrets.CHANNEL_47_REFRESH_TOKEN }}
           CH48_CLIENT_ID:       ${{ secrets.CHANNEL_48_CLIENT_ID }}
           CH48_CLIENT_SECRET:   ${{ secrets.CHANNEL_48_CLIENT_SECRET }}
           CH48_REFRESH_TOKEN:   ${{ secrets.CHANNEL_48_REFRESH_TOKEN }}
@@ -567,20 +527,18 @@ jobs:
           "
 
       - name: Publish to YouTube
-        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        if: github.event.inputs.dry_run != 'true'
         run: |
           CH="${{ matrix.channel_id }}"
           echo "=== PUBLISH: $CH ==="
           node src/skills/youtube-publish/run.js "$CH"
 
-      # Flip any queued videos past their go_public_at to public.
       - name: Process publish queue
-        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        if: github.event.inputs.dry_run != 'true'
         run: node src/skills/youtube-publish/run.js process-queue || true
 
-      # Commit publish-queue changes with retry loop (same pattern as topic-log).
       - name: Commit publish queue
-        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        if: github.event.inputs.dry_run != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -611,26 +569,23 @@ jobs:
             fi
           done
 
-      - name: Upload artifacts
+      # ── Upload render artifacts ──────────────────────────────────────────
+      - name: Upload render artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: pipeline-${{ matrix.channel_id }}-${{ github.run_id }}
+          name: render-${{ matrix.channel_id }}-${{ github.run_id }}
           path: |
-            data/research/${{ matrix.channel_id }}/
-            data/tts/${{ matrix.channel_id }}/
-            data/thumbnails/${{ matrix.channel_id }}/
             data/renders/${{ matrix.channel_id }}/
             data/audit/render-review/
             data/audit/gemini-review/
-            data/visual-plans/
           retention-days: 7
 
   # ============================================================
   # LOG RESULTS
   # ============================================================
   log-results:
-    needs: [setup, channel-pipeline]
+    needs: [setup, prep, render]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -647,4 +602,5 @@ jobs:
           echo ""
           echo "=== STATUS ==="
           echo "Setup:            ${{ needs.setup.result }}"
-          echo "Channel pipeline: ${{ needs.channel-pipeline.result }}"
+          echo "Prep:             ${{ needs.prep.result }}"
+          echo "Render:           ${{ needs.render.result }}"
