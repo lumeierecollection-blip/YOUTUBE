@@ -4,36 +4,26 @@
  *
  * Opens one browser tab per channel. You log into each tab with the right
  * Google account, approve, and this script captures the refresh_token for
- * each channel automatically. At the end it prints the exact GitHub Secret
- * values to paste into your repo settings.
+ * each channel automatically. At the end it pushes secrets to GitHub via gh CLI.
  *
  * Usage:
- *   node scripts/oauth-setup.js --client-id <ID> --client-secret <SECRET> --channels 1,2,3,4,9,11
+ *   node scripts/oauth-setup.js                        # reads Oauth.txt, defaults to motion-graphics channels
+ *   node scripts/oauth-setup.js --channels 1,2,3      # override channels
+ *   node scripts/oauth-setup.js --client-id X --client-secret Y  # override creds
  *
- * Channels is the numeric pipeline ID (1, 2, 3, 4, 7, 9, 11, 17, 26, 30, 31, 35, 39, 44, 46, 47, 48).
- *
- * BEFORE RUNNING:
- *   In Google Cloud Console → APIs & Services → Credentials → your OAuth client:
- *   Add these as Authorized redirect URIs:
- *     http://localhost:3001
- *     http://localhost:3002
- *     http://localhost:3003
- *     http://localhost:3004
- *     http://localhost:3005
- *     http://localhost:3006
- *     http://localhost:3007
- *     http://localhost:3008
- *     http://localhost:3009
- *   (add as many as the max batch size you'll run at once, up to 9)
+ * Oauth.txt format (repo root):
+ *   Line 1: client_id
+ *   Line 2: client_secret
  */
 
 import { createServer } from "node:http";
 import { exec, execFileSync } from "node:child_process";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync, readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = join(__dirname, "..");
 
 // ── args ──────────────────────────────────────────────────────────────────────
 function arg(name) {
@@ -43,16 +33,32 @@ function arg(name) {
   return eq ? eq.split("=").slice(1).join("=") : null;
 }
 
-const clientId = arg("client-id");
-const clientSecret = arg("client-secret");
+// Read Oauth.txt from repo root (line 1 = client_id, line 2 = client_secret)
+function readOauthFile() {
+  try {
+    const content = readFileSync(join(ROOT, "Oauth.txt"), "utf-8").trim();
+    const lines = content.split("\n").map(l => l.trim()).filter(Boolean);
+    return { clientId: lines[0] || null, clientSecret: lines[1] || null };
+  } catch {
+    return { clientId: null, clientSecret: null };
+  }
+}
+
+const oauthFile = readOauthFile();
+const clientId = arg("client-id") || oauthFile.clientId;
+const clientSecret = arg("client-secret") || oauthFile.clientSecret;
 const channelArg = arg("channels");
 
-if (!clientId || !clientSecret || !channelArg) {
-  console.error("Usage: node scripts/oauth-setup.js --client-id <ID> --client-secret <SECRET> --channels 1,2,3");
+if (!clientId || !clientSecret) {
+  console.error("ERROR: Missing OAuth credentials.");
+  console.error("  Either create Oauth.txt in repo root (line 1: client_id, line 2: client_secret)");
+  console.error("  Or pass --client-id <ID> --client-secret <SECRET>");
   process.exit(1);
 }
 
-const channelIds = channelArg.split(",").map((s) => s.trim()).filter(Boolean);
+// Default to the 6 motion-graphics channels if --channels not provided
+const DEFAULT_CHANNELS = "1,2,9,26,44,48";
+const channelIds = (channelArg || DEFAULT_CHANNELS).split(",").map((s) => s.trim()).filter(Boolean);
 const BASE_PORT = 3001;
 const SCOPE = [
   "https://www.googleapis.com/auth/youtube",         // manage channel + rename

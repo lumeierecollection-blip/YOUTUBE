@@ -57,7 +57,9 @@ jobs:
             const data = JSON.parse(fs.readFileSync('config/channels.json', 'utf-8'));
             const channels = data.channels || data;
             const ids = process.argv[1] ? process.argv[1].split(',').filter(Boolean) : [];
-            const list = ids.length ? channels.filter(c => ids.includes(String(c.id))) : channels;
+            const list = ids.length
+              ? channels.filter(c => ids.includes(String(c.id)))
+              : channels.filter(c => !c.paused);
             console.log(JSON.stringify({include: list.map(c => ({channel_id: String(c.id)}))}));
           " "$NORM_IDS")
 

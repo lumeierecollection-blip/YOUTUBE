@@ -106,7 +106,8 @@
         "excluded": [
           "IMAGE_BEAT"
         ]
-      }
+      },
+      "skip_thumbnail_upload": true
     },
     {
       "id": 2,
@@ -207,7 +208,8 @@
           "HERO_NUMBER"
         ],
         "excluded": []
-      }
+      },
+      "skip_thumbnail_upload": true
     },
     {
       "id": 3,
@@ -222,6 +224,7 @@
       "google_account": "UNASSIGNED-3",
       "channel_id": "ch-03",
       "youtube_credentials_path": "config/creds/ch-03.json",
+      "paused": true,
       "description": "We test AI tools with real projects so you don't waste money. Honest reviews with actual outputs shown.",
       "content_pillars": [
         "AI tool head-to-head tests",
@@ -309,6 +312,7 @@
       "google_account": "CH4",
       "channel_id": "ch-04",
       "youtube_credentials_path": "config/creds/ch-04.json",
+      "paused": true,
       "description": "The historical events they didn't teach you in school. Cover-ups, forgotten tragedies, and the stories that shaped the world.",
       "content_pillars": [
         "forgotten historical events",
@@ -397,6 +401,7 @@
       "google_account": "UNASSIGNED-7",
       "channel_id": "ch-07",
       "youtube_credentials_path": "config/creds/ch-07.json",
+      "paused": true,
       "description": "The rise and catastrophic fall of once-great companies. What went wrong, who's to blame, and the lessons left behind.",
       "content_pillars": [
         "company collapse case studies",
@@ -570,7 +575,8 @@
           "IMAGE_BEAT"
         ],
         "excluded": []
-      }
+      },
+      "skip_thumbnail_upload": true
     },
     {
       "id": 11,
@@ -585,6 +591,7 @@
       "google_account": "UNASSIGNED-11",
       "channel_id": "ch-11",
       "youtube_credentials_path": "config/creds/ch-11.json",
+      "paused": true,
       "description": "Journey through the cosmos. Black holes, distant galaxies, and the biggest questions about our universe. Powered by NASA public domain footage.",
       "content_pillars": [
         "black hole deep dives",
@@ -674,6 +681,7 @@
       "google_account": "UNASSIGNED-17",
       "channel_id": "ch-17",
       "youtube_credentials_path": "config/creds/ch-17.json",
+      "paused": true,
       "description": "The pivotal moments that changed civilization. Rise and fall of empires, revolutions, and the turning points of human history.",
       "content_pillars": [
         "empire rise and fall",
@@ -848,7 +856,8 @@
           "RELATION"
         ],
         "excluded": []
-      }
+      },
+      "skip_thumbnail_upload": true
     },
     {
       "id": 30,
@@ -863,6 +872,7 @@
       "google_account": "UNASSIGNED-30",
       "channel_id": "ch-30",
       "youtube_credentials_path": "config/creds/ch-30.json",
+      "paused": true,
       "description": "How DNA genealogy is solving decades-old cold cases. From unidentified victims to killer family trees — science delivers justice.",
       "content_pillars": [
         "DNA genealogy case breakdowns",
@@ -951,6 +961,7 @@
       "google_account": "UNASSIGNED-31",
       "channel_id": "ch-31",
       "youtube_credentials_path": "config/creds/ch-31.json",
+      "paused": true,
       "description": "Innocent people imprisoned for decades. How the system fails, how innocence projects fight back, and the moment freedom finally comes.",
       "content_pillars": [
         "wrongful conviction case studies",
@@ -1039,6 +1050,7 @@
       "google_account": "UNASSIGNED-35",
       "channel_id": "ch-35",
       "youtube_credentials_path": "config/creds/ch-35.json",
+      "paused": true,
       "description": "How complex technology actually works. Electric aircraft, fusion reactors, hyperloops — the engineering behind tomorrow's world.",
       "content_pillars": [
         "future tech engineering",
@@ -1127,6 +1139,7 @@
       "google_account": "UNASSIGNED-39",
       "channel_id": "ch-39",
       "youtube_credentials_path": "config/creds/ch-39.json",
+      "paused": true,
       "description": "A patient walks into the ER with mysterious symptoms. Diagnostic puzzles, rare diseases, and the medicine that saved them.",
       "content_pillars": [
         "mystery diagnosis stories",
@@ -1300,7 +1313,8 @@
           "TERM_DEFINE"
         ],
         "excluded": []
-      }
+      },
+      "skip_thumbnail_upload": true
     },
     {
       "id": 46,
@@ -1315,6 +1329,7 @@
       "google_account": "UNASSIGNED-46",
       "channel_id": "ch-46",
       "youtube_credentials_path": "config/creds/ch-46.json",
+      "paused": true,
       "description": "Ace your next interview. Real questions, real answers, and the psychology behind what hiring managers actually want to hear.",
       "content_pillars": [
         "interview question breakdowns",
@@ -1403,6 +1418,7 @@
       "google_account": "UNASSIGNED-47",
       "channel_id": "ch-47",
       "youtube_credentials_path": "config/creds/ch-47.json",
+      "paused": true,
       "description": "Medicare explained simply for seniors and their families. Plan comparisons, enrollment deadlines, and money-saving strategies.",
       "content_pillars": [
         "Medicare Part A vs B explainers",
@@ -1577,7 +1593,8 @@
           "LIST_ITEM"
         ],
         "excluded": []
-      }
+      },
+      "skip_thumbnail_upload": true
     }
   ]
 }

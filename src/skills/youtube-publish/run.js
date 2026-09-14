@@ -271,9 +271,9 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
   const topicHint = basename(videoPath, extname(videoPath));
   const scriptSlug = topicSlugFromVideo(topicHint);
   const seo = loadSeoMetadata(channelId, scriptSlug);
-  const thumb = findThumbnail(channelId, scriptSlug);
+  const thumb = channel.skip_thumbnail_upload ? null : findThumbnail(channelId, scriptSlug);
   if (!seo) console.log(`  WARNING: no SEO metadata for "${scriptSlug}" - using fallback title/description.`);
-  if (!thumb) console.log(`  WARNING: no thumbnail for "${scriptSlug}" - YouTube will pick a frame.`);
+  if (!thumb && !channel.skip_thumbnail_upload) console.log(`  WARNING: no thumbnail for "${scriptSlug}" - YouTube will pick a frame.`);
 
   // NICHE-AUDIT.md §3.3 — Medicare Navigator's condition for existing at
   // all is human review before every single upload. Enforced as a file a
