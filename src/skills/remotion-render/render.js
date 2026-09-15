@@ -312,10 +312,16 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
     }
   };
 
-  console.log(`[profile] bundling...`);
-  const bundleStart = Date.now();
-  const serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgress: () => {} });
-  console.log(`[profile] bundle(): ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
+  let serveUrl;
+  if (process.env.REMOTION_SERVE_URL) {
+    serveUrl = process.env.REMOTION_SERVE_URL;
+    console.log(`[profile] using pre-built bundle`);
+  } else {
+    console.log(`[profile] bundling...`);
+    const bundleStart = Date.now();
+    serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgress: () => {} });
+    console.log(`[profile] bundle(): ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
+  }
 
   const compStart = Date.now();
   const composition = await selectComposition({

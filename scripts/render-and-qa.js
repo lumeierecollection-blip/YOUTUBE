@@ -174,7 +174,7 @@ async function qaOne(runId, rendered) {
   const { outputPath, channelId, scriptPath, audio } = rendered;
   const reviewDir = join(ROOT, "data", "audit", "render-review", runId, basename(outputPath, ".mp4"));
   mkdirSync(reviewDir, { recursive: true });
-  const review = await runChild("node", [VIDEO_REVIEW_JS, outputPath, "--frames", "10", "--out", reviewDir], {
+  const review = await runChild("node", [VIDEO_REVIEW_JS, outputPath, "--frames", "6", "--out", reviewDir], {
     label: `qa/review ${basename(outputPath)}`,
   });
   if (review.code !== 0) {
@@ -225,13 +225,24 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
   let correctionsPath = null;
   let lastResult = null;
 
+  // Pre-bundle ONCE before the correction loop. The bundle is identical
+  // across iterations — only inputProps change. Saves 15-30s per retry.
+  const { bundle: bundleFn } = await import("@remotion/bundler");
+  const bundleStart = Date.now();
+  const serveUrl = await bundleFn({
+    entryPoint: join(ROOT, "src", "skills", "remotion-render", "Root.jsx"),
+    onProgress: () => {},
+  });
+  process.env.REMOTION_SERVE_URL = serveUrl;
+  console.log(`[perf] Pre-bundled once: ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
+
   for (let attempt = 1; attempt <= MAX_CORRECTION_LOOPS; attempt++) {
     console.log(`\n=== ATTEMPT ${attempt}/${MAX_CORRECTION_LOOPS}: ${basename(scriptPath)} ===`);
 
     // Step 1: Gemini plans (or re-plans with corrections)
     await geminiPlan(channelId, scriptPath, correctionsPath);
 
-    // Step 2: Render
+    // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL)
     const result = await renderOne(channelId, scriptPath, format);
     if (result.skipped) return { skipped: true };
     if (!result.ok) return { skipped: false, ok: false };

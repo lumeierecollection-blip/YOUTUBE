@@ -1,12 +1,12 @@
-# YouTube Automation — Optimized Daily Pipeline (v2)
+﻿# YouTube Automation ΓÇö Optimized Daily Pipeline (v2)
 # Split into 2 stages for faster turnaround:
-#   Stage 1 (prep): Discover → Research → Script → TTS → Thumbnail → SEO
-#   Stage 2 (render): Download artifacts → Render + QA → Publish
+#   Stage 1 (prep): Discover ΓåÆ Research ΓåÆ Script ΓåÆ TTS ΓåÆ Thumbnail ΓåÆ SEO
+#   Stage 2 (render): Download artifacts ΓåÆ Render + QA ΓåÆ Publish
 #
 # This decouples lightweight model calls from heavy CPU render work,
 # reducing timeout risks and allowing independent resource allocation.
 
-name: Daily Pipeline — Optimized v2
+name: Daily Pipeline ΓÇö Optimized v2
 
 on:
   schedule:
@@ -69,7 +69,7 @@ jobs:
           echo "Channels in this run: $COUNT"
 
   # ============================================================
-  # STAGE 1: PREP — Discover, Research, Script, TTS, Thumbnail, SEO
+  # STAGE 1: PREP ΓÇö Discover, Research, Script, TTS, Thumbnail, SEO
   # Lightweight model calls only. Fast (~2-5 min per channel).
   # ============================================================
   prep:
@@ -93,7 +93,7 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      # ── Cache npm dependencies ────────────────────────────────────────
+      # ΓöÇΓöÇ Cache npm dependencies ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Cache npm modules
         uses: actions/cache@v4
         id: npm-cache
@@ -111,7 +111,7 @@ jobs:
         if: steps.npm-cache.outputs.cache-hit == 'true'
         run: npm ci --prefer-offline
 
-      # ── Cache pip packages ────────────────────────────────────────────
+      # ΓöÇΓöÇ Cache pip packages ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Cache pip packages
         uses: actions/cache@v4
         id: pip-cache
@@ -122,10 +122,9 @@ jobs:
             pip-${{ runner.os }}-
 
       - name: Install EdgeTTS
-        if: steps.pip-cache.outputs.cache-hit != 'true'
-        run: pip install edge-tts
+        run: pip install --quiet edge-tts
 
-      # ── Cache OpenCode CLI ────────────────────────────────────────────
+      # ΓöÇΓöÇ Cache OpenCode CLI ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Cache OpenCode CLI
         uses: actions/cache@v4
         id: opencode-cache
@@ -138,7 +137,7 @@ jobs:
       - name: Install OpenCode
         run: npm install -g opencode-ai
 
-      # ── Stage A: discover topic for THIS channel ────────────────────────────
+      # ΓöÇΓöÇ Stage A: discover topic for THIS channel ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Discover topic
         id: discover
         env:
@@ -183,7 +182,7 @@ jobs:
 
           echo "cost_discover=$(jq -r '.total_cost_usd' /tmp/topics-raw.json)" >> "$GITHUB_STEP_SUMMARY"
 
-      # ── Reserve topic with retry loop ───────────────────────────────────────
+      # ΓöÇΓöÇ Reserve topic with retry loop ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Reserve topic
         id: reserve
         env:
@@ -206,7 +205,7 @@ jobs:
             set -e
 
             if [ "$RESERVE_EXIT" -eq 2 ]; then
-              echo "::warning::Channel $CH — topic is a duplicate; skipping this channel today"
+              echo "::warning::Channel $CH ΓÇö topic is a duplicate; skipping this channel today"
               echo "skip=true" >> "$GITHUB_OUTPUT"
               exit 0
             fi
@@ -226,7 +225,7 @@ jobs:
             fi
 
             if [ "$attempt" -lt 5 ]; then
-              echo "Push conflict — retrying ($attempt/5) ..."
+              echo "Push conflict ΓÇö retrying ($attempt/5) ..."
               git reset --hard HEAD~1
               sleep $((attempt * 3))
             else
@@ -252,7 +251,7 @@ jobs:
             echo "FORMATS=longform" >> "$GITHUB_ENV"
           fi
 
-      # ── Stage B: research ────────────────────────────────────────────────────
+      # ΓöÇΓöÇ Stage B: research ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Research topic
         if: steps.reserve.outputs.skip != 'true'
         env:
@@ -264,7 +263,7 @@ jobs:
           SLUG=$(jq -r  '.slug'  /tmp/channel-topic.json)
           TOPIC=$(jq -r '.topic' /tmp/channel-topic.json)
           ANGLE=$(jq -r '.angle' /tmp/channel-topic.json)
-          echo "=== RESEARCH: $CH — $SLUG ==="
+          echo "=== RESEARCH: $CH ΓÇö $SLUG ==="
 
           set +e
           jq -n --arg t "$TOPIC" --arg a "$ANGLE" \
@@ -293,7 +292,7 @@ jobs:
           jq '.structured_output' /tmp/research-raw.json > "data/research/$CH/$SLUG.json"
           cp /tmp/research-raw.json "data/research/$CH/.agent-raw.json"
 
-      # ── Gate research ────────────────────────────────────────────────────────
+      # ΓöÇΓöÇ Gate research ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Gate research
         if: steps.reserve.outputs.skip != 'true'
         run: |
@@ -301,7 +300,7 @@ jobs:
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
           node scripts/gate-research.js "$CH" "$SLUG"
 
-      # ── Stage C: script (per format, gate-feedback retry) ───────────────────
+      # ΓöÇΓöÇ Stage C: script (per format, gate-feedback retry) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Write script
         if: steps.reserve.outputs.skip != 'true'
         env:
@@ -322,11 +321,11 @@ jobs:
             FEEDBACK=""
             PASSED=0
             for ATTEMPT in 1 2 3; do
-              echo "=== SCRIPT: $CH — $SCRIPT_SLUG (attempt $ATTEMPT/3) ==="
+              echo "=== SCRIPT: $CH ΓÇö $SCRIPT_SLUG (attempt $ATTEMPT/3) ==="
               PROMPT_FILE=prompts/write-script.md
               if [ -n "$FEEDBACK" ]; then
                 cp prompts/write-script.md /tmp/write-script-feedback.md
-                printf '\n\n## Quality gate rejected your previous script\n\n%s\n\nRewrite the FULL script JSON now, fixing exactly the problems above. Keep everything the gate did not flag identical — same research grounding, same sources_used, same structure. Return only the JSON object.\n' "$FEEDBACK" >> /tmp/write-script-feedback.md
+                printf '\n\n## Quality gate rejected your previous script\n\n%s\n\nRewrite the FULL script JSON now, fixing exactly the problems above. Keep everything the gate did not flag identical ΓÇö same research grounding, same sources_used, same structure. Return only the JSON object.\n' "$FEEDBACK" >> /tmp/write-script-feedback.md
                 PROMPT_FILE=/tmp/write-script-feedback.md
               fi
               set +e
@@ -362,7 +361,7 @@ jobs:
             fi
           done
 
-      # ── Stage D: TTS voiceover ───────────────────────────────────────────────
+      # ΓöÇΓöÇ Stage D: TTS voiceover ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Generate TTS voiceover
         if: steps.reserve.outputs.skip != 'true'
         run: |
@@ -371,7 +370,7 @@ jobs:
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
           for FORMAT in $FORMATS; do
             SCRIPT_SLUG="${SLUG}-${FORMAT}"
-            echo "=== TTS: $CH — $SCRIPT_SLUG ==="
+            echo "=== TTS: $CH ΓÇö $SCRIPT_SLUG ==="
             SCRIPT="data/research/$CH/${SCRIPT_SLUG}-script.json"
             if [ -f "$SCRIPT" ]; then
               TTS_OK=0
@@ -380,7 +379,7 @@ jobs:
                   TTS_OK=1; break
                 fi
                 if [ "$tts_try" -lt 3 ]; then
-                  echo "TTS attempt $tts_try failed — retrying in 15s..."
+                  echo "TTS attempt $tts_try failed ΓÇö retrying in 15s..."
                   sleep 15
                 fi
               done
@@ -389,11 +388,11 @@ jobs:
                 exit 1
               fi
             else
-              echo "WARN: Script not found — skipping TTS for $SCRIPT_SLUG"
+              echo "WARN: Script not found ΓÇö skipping TTS for $SCRIPT_SLUG"
             fi
           done
 
-      # ── Stage E: Thumbnail ───────────────────────────────────────────────────
+      # ΓöÇΓöÇ Stage E: Thumbnail ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Generate thumbnail
         if: steps.reserve.outputs.skip != 'true'
         run: |
@@ -401,29 +400,29 @@ jobs:
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
           for FORMAT in $FORMATS; do
             SCRIPT_SLUG="${SLUG}-${FORMAT}"
-            echo "=== THUMBNAIL: $CH — $SCRIPT_SLUG ==="
+            echo "=== THUMBNAIL: $CH ΓÇö $SCRIPT_SLUG ==="
             SCRIPT="data/research/$CH/${SCRIPT_SLUG}-script.json"
             if [ -f "$SCRIPT" ]; then
               node src/skills/thumbnail-maker/generate.js "$CH" "$SCRIPT" || echo "WARN: thumbnail spec failed"
               node src/skills/thumbnail-maker/render-thumb.js "$CH" "$SCRIPT_SLUG" || echo "WARN: thumbnail render failed"
             else
-              echo "WARN: Script not found — skipping thumbnail for $SCRIPT_SLUG"
+              echo "WARN: Script not found ΓÇö skipping thumbnail for $SCRIPT_SLUG"
             fi
           done
 
-      # ── Stage F: SEO + metadata ──────────────────────────────────────────────
+      # ΓöÇΓöÇ Stage F: SEO + metadata ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Generate SEO + metadata
         if: steps.reserve.outputs.skip != 'true'
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
           TOPIC=$(jq -r '.topic' /tmp/channel-topic.json)
-          echo "=== METADATA: $CH — $SLUG ==="
+          echo "=== METADATA: $CH ΓÇö $SLUG ==="
           jq -n --arg t "$TOPIC" --arg s "$SLUG" '{topic:$t, slug:$s}' \
             > "data/research/$CH/next-topic.json"
           node src/utils/pipeline.js "$CH" --step 5 || echo "WARN: metadata generation had issues"
 
-      # ── Upload prep artifacts for render stage ────────────────────────────────
+      # ΓöÇΓöÇ Upload prep artifacts for render stage ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Upload prep artifacts
         if: steps.reserve.outputs.skip != 'true' && always()
         uses: actions/upload-artifact@v4
@@ -437,7 +436,7 @@ jobs:
           retention-days: 1
 
   # ============================================================
-  # STAGE 2: RENDER — Download artifacts, render, QA, publish
+  # STAGE 2: RENDER ΓÇö Download artifacts, render, QA, publish
   # Heavy CPU compute. Independent timeout and resource allocation.
   # ============================================================
   render:
@@ -458,7 +457,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      # ── Cache npm modules for render deps ──────────────────────────────
+      # ΓöÇΓöÇ Cache npm modules for render deps ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Cache npm modules
         uses: actions/cache@v4
         id: npm-cache
@@ -476,23 +475,37 @@ jobs:
         if: steps.npm-cache.outputs.cache-hit == 'true'
         run: npm ci --prefer-offline
 
-      # ── Download prep artifacts ─────────────────────────────────────────
+      # ΓöÇΓöÇ Download prep artifacts ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Download prep artifacts
         uses: actions/download-artifact@v4
         with:
           name: prep-${{ matrix.channel_id }}-${{ github.run_id }}
           path: data/
 
-      # ── Setup Chrome for Remotion ───────────────────────────────────────
+      # ΓöÇΓöÇ Setup Chrome for Remotion ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
 
+      - name: Cache render node_modules
+        uses: actions/cache@v4
+        id: render-npm-cache
+        with:
+          path: src/skills/remotion-render/node_modules
+          key: render-npm-${{ runner.os }}-${{ hashFiles('src/skills/remotion-render/package-lock.json') }}
+          restore-keys: render-npm-${{ runner.os }}-
+
       - name: Install Remotion dependencies
+        if: steps.render-npm-cache.outputs.cache-hit != 'true'
         working-directory: src/skills/remotion-render
         run: npm ci
 
-      # ── Render + QA ─────────────────────────────────────────────────────
+      - name: Restore render node_modules
+        if: steps.render-npm-cache.outputs.cache-hit == 'true'
+        working-directory: src/skills/remotion-render
+        run: npm ci --prefer-offline
+
+      # ΓöÇΓöÇ Render + QA ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Render + QA
         env:
           RENDER_PROGRESS_MS: 10000
@@ -503,7 +516,7 @@ jobs:
           RENDER_SCALE: ${{ env.RENDER_SCALE }}
         run: node scripts/render-and-qa.js --channel "${{ matrix.channel_id }}"
 
-      # ── Publish ───────────────────────────────────────────────────────────────
+      # ΓöÇΓöÇ Publish ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Materialize OAuth credentials
         if: github.event.inputs.dry_run != 'true'
         env:
@@ -548,7 +561,7 @@ jobs:
               );
               console.log('Credentials materialized for channel ' + p);
             } else {
-              console.log('No credentials configured for channel ' + p + ' — will skip publish');
+              console.log('No credentials configured for channel ' + p + ' ΓÇö will skip publish');
             }
           "
 
@@ -573,7 +586,7 @@ jobs:
           git config user.email "lumeierecollection-blip@users.noreply.github.com"
           git add data/publish-queue
           if git diff --cached --quiet; then
-            echo "Publish queue unchanged — nothing to commit."
+            echo "Publish queue unchanged ΓÇö nothing to commit."
             exit 0
           fi
           git commit -m "publish-queue: ch-$CH $(date -u +%F) [run ${{ github.run_id }}]"
@@ -585,7 +598,7 @@ jobs:
               break
             fi
             if [ "$attempt" -lt 5 ]; then
-              echo "Push conflict — retrying ($attempt/5) ..."
+              echo "Push conflict ΓÇö retrying ($attempt/5) ..."
               git reset HEAD~1
               git add data/publish-queue
               git diff --cached --quiet || git commit -m "publish-queue: ch-$CH $(date -u +%F) [run ${{ github.run_id }}]"
@@ -595,7 +608,7 @@ jobs:
             fi
           done
 
-      # ── Upload render artifacts ──────────────────────────────────────────
+      # ΓöÇΓöÇ Upload render artifacts ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Upload render artifacts
         if: always()
         uses: actions/upload-artifact@v4
