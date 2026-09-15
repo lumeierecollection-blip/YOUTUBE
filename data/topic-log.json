@@ -1443,9 +1443,14 @@
           "topic": "ABB and NVIDIA Launch RobotStudio HyperReality for Factory AI",
           "slug": "abb-nvidia-robotstudio-hyperreality-factory-ai",
           "reserved_at": "2026-09-15T11:25:00.051Z"
+        },
+        {
+          "topic": "Astha Robotics Deploys First Humanoid Unit in Indian Auto Plant",
+          "slug": "astha-robotics-humanoid-tata-motors-pune",
+          "reserved_at": "2026-09-15T11:50:54.912Z"
         }
       ],
-      "last_generated": "2026-09-15T11:25:00.051Z"
+      "last_generated": "2026-09-15T11:50:54.913Z"
     },
     "49": {
       "channel_name": "Wander Budget",
