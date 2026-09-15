@@ -1383,9 +1383,14 @@
           "topic": "SK Innovation's Dual Brain AI System at Ulsan CLX Refinery",
           "slug": "sk-innovation-ulsan-clx-dual-brain-ai-system",
           "reserved_at": "2026-09-15T09:34:57.420Z"
+        },
+        {
+          "topic": "AWS and SoftServe Build the Autonomous Factory Line",
+          "slug": "aws-softserve-autonomous-factory-digital-thread",
+          "reserved_at": "2026-09-15T10:45:31.052Z"
         }
       ],
-      "last_generated": "2026-09-15T09:34:57.420Z"
+      "last_generated": "2026-09-15T10:45:31.052Z"
     },
     "49": {
       "channel_name": "Wander Budget",
