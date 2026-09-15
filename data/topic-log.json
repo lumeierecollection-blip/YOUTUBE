@@ -1503,9 +1503,14 @@
           "topic": "Inside the First 10,000-Unit Humanoid Robot Smart Factory",
           "slug": "ubtech-liuzhou-10000-unit-humanoid-factory",
           "reserved_at": "2026-09-15T14:51:32.656Z"
+        },
+        {
+          "topic": "Vention's MachineAgent: Combining Agentic AI and Physical AI at IMTS 2026",
+          "slug": "vention-machineagent-agentic-physical-ai-imts-2026",
+          "reserved_at": "2026-09-15T16:15:09.831Z"
         }
       ],
-      "last_generated": "2026-09-15T14:51:32.656Z"
+      "last_generated": "2026-09-15T16:15:09.831Z"
     },
     "49": {
       "channel_name": "Wander Budget",
