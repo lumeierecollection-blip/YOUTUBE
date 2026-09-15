@@ -225,16 +225,6 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
   let correctionsPath = null;
   let lastResult = null;
 
-  // Pre-bundle ONCE before the correction loop. The bundle is identical
-  // across iterations — only inputProps change. Saves 15-30s per retry.
-  const { bundle: bundleFn } = await import("@remotion/bundler");
-  const bundleStart = Date.now();
-  const serveUrl = await bundleFn({
-    entryPoint: join(ROOT, "src", "skills", "remotion-render", "Root.jsx"),
-    onProgress: () => {},
-  });
-  process.env.REMOTION_SERVE_URL = serveUrl;
-  console.log(`[perf] Pre-bundled once: ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
 
   for (let attempt = 1; attempt <= MAX_CORRECTION_LOOPS; attempt++) {
     console.log(`\n=== ATTEMPT ${attempt}/${MAX_CORRECTION_LOOPS}: ${basename(scriptPath)} ===`);
