@@ -953,9 +953,14 @@
           "topic": "The $16 Million Intercontinental Wealth Network Ponzi Scheme",
           "slug": "intercontinental-wealth-network-16m-ponzi-scheme",
           "reserved_at": "2026-09-15T16:13:37.430Z"
+        },
+        {
+          "topic": "The $2.5M Karen Kane Accounting Embezzlement Scheme",
+          "slug": "karen-kane-accounting-embezzlement-case",
+          "reserved_at": "2026-09-15T17:55:34.131Z"
         }
       ],
-      "last_generated": "2026-09-15T16:13:37.430Z"
+      "last_generated": "2026-09-15T17:55:34.131Z"
     },
     "27": {
       "channel_name": "Trial Files",
