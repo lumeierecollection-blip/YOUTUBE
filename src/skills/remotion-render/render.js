@@ -202,7 +202,7 @@ function getAudioDurationSeconds(audioPath) {
 
 function computeDurationFrames(script, style, format, audioPath) {
   const clamp = format === "shorts" ? SHORTS_CLAMP : LONGFORM_CLAMP;
-  const fps = 30;
+  const fps = 30
 
   // Prefer the real voiceover length so audio is never truncated.
   const audioSeconds = audioPath ? getAudioDurationSeconds(audioPath) : null;
