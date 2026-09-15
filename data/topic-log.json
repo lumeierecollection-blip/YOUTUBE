@@ -1293,9 +1293,14 @@
           "topic": "Fanuc and Google Partner to Bring Physical AI to Industrial Robots",
           "slug": "fanuc-google-physical-ai-industrial-robots",
           "reserved_at": "2026-09-14T19:15:05.821Z"
+        },
+        {
+          "topic": "Inside KUKA's New Autonomous Forklift System for Factory Logistics",
+          "slug": "kuka-kmf-1500p-cb-autonomous-forklift-factory-logistics",
+          "reserved_at": "2026-09-15T08:56:49.847Z"
         }
       ],
-      "last_generated": "2026-09-14T19:15:05.821Z"
+      "last_generated": "2026-09-15T08:56:49.847Z"
     },
     "49": {
       "channel_name": "Wander Budget",
