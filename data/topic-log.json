@@ -833,9 +833,14 @@
           "topic": "The $89M Day Trading Ponzi: How One Man Faked $133M in Profits",
           "slug": "89m-day-trading-ponzi-sentencing-2026",
           "reserved_at": "2026-09-15T09:10:36.156Z"
+        },
+        {
+          "topic": "The $240M Bitcoin Heist: Inside the Ring That Stole a Quarter Billion",
+          "slug": "240m-bitcoin-heist-malone-lam",
+          "reserved_at": "2026-09-15T09:32:40.856Z"
         }
       ],
-      "last_generated": "2026-09-15T09:10:36.157Z"
+      "last_generated": "2026-09-15T09:32:40.856Z"
     },
     "27": {
       "channel_name": "Trial Files",
