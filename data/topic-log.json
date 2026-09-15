@@ -1323,9 +1323,14 @@
           "topic": "Inside KUKA's New Autonomous Forklift System for Factory Logistics",
           "slug": "kuka-kmf-1500p-cb-autonomous-forklift-factory-logistics",
           "reserved_at": "2026-09-15T08:56:49.847Z"
+        },
+        {
+          "topic": "How Boeing's AI Optical Inspection Tool Cuts 17 Hours Per 737",
+          "slug": "boeing-ai-optical-inspection-tool-737",
+          "reserved_at": "2026-09-15T09:12:13.187Z"
         }
       ],
-      "last_generated": "2026-09-15T08:56:49.847Z"
+      "last_generated": "2026-09-15T09:12:13.187Z"
     },
     "49": {
       "channel_name": "Wander Budget",
