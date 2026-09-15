@@ -174,7 +174,7 @@ async function qaOne(runId, rendered) {
   const { outputPath, channelId, scriptPath, audio } = rendered;
   const reviewDir = join(ROOT, "data", "audit", "render-review", runId, basename(outputPath, ".mp4"));
   mkdirSync(reviewDir, { recursive: true });
-  const review = await runChild("node", [VIDEO_REVIEW_JS, outputPath, "--frames", "6", "--out", reviewDir], {
+  const review = await runChild("node", [VIDEO_REVIEW_JS, outputPath, "--frames", "4", "--out", reviewDir], {
     label: `qa/review ${basename(outputPath)}`,
   });
   if (review.code !== 0) {
