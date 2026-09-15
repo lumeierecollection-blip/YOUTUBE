@@ -933,9 +933,14 @@
           "topic": "The $14M Bright With Silver Snowmobile Ponzi Scheme Sentencing",
           "slug": "stanley-pophal-14m-bright-with-silver-ponzi-sentencing",
           "reserved_at": "2026-09-15T14:48:22.880Z"
+        },
+        {
+          "topic": "The $16 Million Intercontinental Wealth Network Ponzi Scheme",
+          "slug": "intercontinental-wealth-network-16m-ponzi-scheme",
+          "reserved_at": "2026-09-15T16:13:37.430Z"
         }
       ],
-      "last_generated": "2026-09-15T14:48:22.880Z"
+      "last_generated": "2026-09-15T16:13:37.430Z"
     },
     "27": {
       "channel_name": "Trial Files",
