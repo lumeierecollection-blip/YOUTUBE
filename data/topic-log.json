@@ -1353,9 +1353,14 @@
           "topic": "How Boeing's AI Optical Inspection Tool Cuts 17 Hours Per 737",
           "slug": "boeing-ai-optical-inspection-tool-737",
           "reserved_at": "2026-09-15T09:12:13.187Z"
+        },
+        {
+          "topic": "SK Innovation's Dual Brain AI System at Ulsan CLX Refinery",
+          "slug": "sk-innovation-ulsan-clx-dual-brain-ai-system",
+          "reserved_at": "2026-09-15T09:34:57.420Z"
         }
       ],
-      "last_generated": "2026-09-15T09:12:13.187Z"
+      "last_generated": "2026-09-15T09:34:57.420Z"
     },
     "49": {
       "channel_name": "Wander Budget",
