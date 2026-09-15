@@ -155,9 +155,14 @@
           "topic": "How the 2026 Fidelity Study Reshapes How We Save",
           "slug": "2026-fidelity-study-short-term-savings",
           "reserved_at": "2026-09-15T11:20:44.500Z"
+        },
+        {
+          "topic": "Why 73 Percent of Gen Z Turn to High-Risk Bets in 2026",
+          "slug": "why-73-percent-gen-z-high-risk-bets-2026",
+          "reserved_at": "2026-09-15T11:45:25.551Z"
         }
       ],
-      "last_generated": "2026-09-15T11:20:44.500Z"
+      "last_generated": "2026-09-15T11:45:25.551Z"
     },
     "2": {
       "channel_name": "Legal Brief",
