@@ -1533,9 +1533,14 @@
           "topic": "Vention's MachineAgent: Combining Agentic AI and Physical AI at IMTS 2026",
           "slug": "vention-machineagent-agentic-physical-ai-imts-2026",
           "reserved_at": "2026-09-15T16:15:09.831Z"
+        },
+        {
+          "topic": "Inside Agility's Digit 5: The New Cage-Free Industrial Humanoid",
+          "slug": "agility-robotics-digit-5-cage-free-humanoid",
+          "reserved_at": "2026-09-15T17:57:35.890Z"
         }
       ],
-      "last_generated": "2026-09-15T16:15:09.831Z"
+      "last_generated": "2026-09-15T17:57:35.890Z"
     },
     "49": {
       "channel_name": "Wander Budget",
