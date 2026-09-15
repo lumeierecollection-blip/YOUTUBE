@@ -893,9 +893,14 @@
           "topic": "The $400 Million ATM Ponzi Scheme Guilty Plea",
           "slug": "daryl-heller-400m-atm-ponzi-guilty-plea",
           "reserved_at": "2026-09-15T11:23:12.078Z"
+        },
+        {
+          "topic": "Minecraft Gamers to $245M Bitcoin Heist: Inside Malone Lam's Guilty Plea",
+          "slug": "minecraft-gamers-245m-bitcoin-heist-guilty-plea",
+          "reserved_at": "2026-09-15T11:47:57.328Z"
         }
       ],
-      "last_generated": "2026-09-15T11:23:12.078Z"
+      "last_generated": "2026-09-15T11:47:57.328Z"
     },
     "27": {
       "channel_name": "Trial Files",
