@@ -441,7 +441,7 @@ jobs:
   # ============================================================
   render:
     needs: [setup, prep]
-    if: ${{ !cancelled() && needs.prep.result == 'success' }}
+    if: ${{ !cancelled() && needs.prep.result != 'cancelled' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
