@@ -1473,9 +1473,14 @@
           "topic": "Astha Robotics Deploys First Humanoid Unit in Indian Auto Plant",
           "slug": "astha-robotics-humanoid-tata-motors-pune",
           "reserved_at": "2026-09-15T11:50:54.912Z"
+        },
+        {
+          "topic": "Inside the First 10,000-Unit Humanoid Robot Smart Factory",
+          "slug": "ubtech-liuzhou-10000-unit-humanoid-factory",
+          "reserved_at": "2026-09-15T14:51:32.656Z"
         }
       ],
-      "last_generated": "2026-09-15T11:50:54.913Z"
+      "last_generated": "2026-09-15T14:51:32.656Z"
     },
     "49": {
       "channel_name": "Wander Budget",
