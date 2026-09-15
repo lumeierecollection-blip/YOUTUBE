@@ -1301,9 +1301,14 @@
           "topic": "Learning Debt: Why Short-Term Productivity Is Destroying Long-Term Skills",
           "slug": "learning-debt-short-term-productivity-skills",
           "reserved_at": "2026-09-15T14:50:51.779Z"
+        },
+        {
+          "topic": "Frontier Professionals: Mastering Multi-Step AI Agent Workflows",
+          "slug": "frontier-professionals-multi-step-ai-workflows",
+          "reserved_at": "2026-09-15T16:13:50.468Z"
         }
       ],
-      "last_generated": "2026-09-15T14:50:51.779Z"
+      "last_generated": "2026-09-15T16:13:50.468Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
