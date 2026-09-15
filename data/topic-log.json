@@ -873,9 +873,14 @@
           "topic": "Benjamin Paul Wiener's $20M Crypto Ponzi Scheme Indictment",
           "slug": "benjamin-paul-wiener-20m-crypto-ponzi",
           "reserved_at": "2026-09-15T10:43:25.214Z"
+        },
+        {
+          "topic": "The $400 Million ATM Ponzi Scheme Guilty Plea",
+          "slug": "daryl-heller-400m-atm-ponzi-guilty-plea",
+          "reserved_at": "2026-09-15T11:23:12.078Z"
         }
       ],
-      "last_generated": "2026-09-15T10:43:25.214Z"
+      "last_generated": "2026-09-15T11:23:12.078Z"
     },
     "27": {
       "channel_name": "Trial Files",
