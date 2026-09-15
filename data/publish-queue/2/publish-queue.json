@@ -17,6 +17,17 @@
     "uploaded_at": "2026-09-15T15:31:21.464Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-15T16:31:21.464Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-15T18:22:43.814Z"
+  },
+  {
+    "video_id": "RZFvMF0dXLw",
+    "channel_id": "2",
+    "title": "When Can You Sue Police for Malicious Prosecution? The…",
+    "uploaded_at": "2026-09-15T18:22:42.280Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-15T19:22:42.280Z",
     "privacy_status": "private",
     "cancelled": false
   }
