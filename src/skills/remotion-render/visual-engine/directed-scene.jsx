@@ -87,6 +87,13 @@ function editorialColors(colors, rawPalette) {
 
 /* ── Text layout ────────────────────────────────────────────────────── */
 
+// Minimum opacity for de-emphasized light text (ed.text) on a dark ground.
+// Below ~0.55 the composited glyph drops under WCAG AA 4.5:1 on near-black
+// channel backgrounds (e.g. #050510): 0.5*235=117 gives 4.46:1, a real
+// frame-audit contrast failure (COL-23). Eyebrows/annotations use this
+// floor so they stay legible on every channel without changing layout.
+const DIM = 0.62;
+
 const LH = 1.18;
 const MAX_SZ = 140;
 const MIN_SZ = 28;
@@ -210,7 +217,7 @@ function FuelGauge({ cx, cy, r, fill, label, reading, readingOpacity, ed, font }
       {label && (
         <text x={cx} y={cy + r * 0.65} textAnchor="middle"
           fontFamily={`${font}, sans-serif`} fontWeight={600}
-          fontSize={22} fill={ed.text} opacity={0.5}
+          fontSize={22} fill={ed.text} opacity={DIM}
           letterSpacing={4}>{label}</text>
       )}
     </g>
@@ -284,7 +291,7 @@ function StatisticCallout({ x, y, value, label, source, ed, font, highlighted, o
       {source && (
         <text x={x + 18} y={y + 16}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={13} fill={ed.text} opacity={0.5} letterSpacing={3}>{source}</text>
+          fontSize={13} fill={ed.text} opacity={DIM} letterSpacing={3}>{source}</text>
       )}
       <text x={x + 18} y={valueY}
         fontFamily={`${font}, sans-serif`} fontWeight={900}
@@ -510,13 +517,19 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
   const beneathObj = beneath !== surface ? beneath : (objs[1] || {});
 
   const surfaceLabel = surface.label || beat.visual_headline || "";
-  const matCats = {
-    money: ["HOUSING COSTS", "FOOD & ESSENTIALS", "TRANSPORT"],
-    fuel:  ["GASOLINE", "ENERGY BILLS", "TRANSPORT"],
-    food:  ["GROCERIES", "DINING", "PRODUCE"],
-    housing: ["RENT", "UTILITIES", "INSURANCE"],
-  };
-  const categories = beneathObj.categories || matCats[scene.material] || ["SEGMENT 1", "SEGMENT 2", "SEGMENT 3"];
+  // Only render category LABELS the plan actually supplied (from real
+  // researched breakdown data). This scene must never invent category names
+  // or statistics: it used to fall back to hard-coded budgeting categories
+  // (nonsensical on a fraud/geopolitics channel) or generic "SEGMENT 1/2/3",
+  // and it printed fabricated "88% / 76% / 64%" percentages derived from a
+  // layout constant — invented numbers presented as data, which violates
+  // the repo's no-fabrication rule (CLAUDE.md). Absent real categories the
+  // reveal is drawn as unlabeled magnitude strips (a qualitative "there is
+  // more beneath the headline" gesture that asserts no specific figure).
+  const realCategories = Array.isArray(beneathObj.categories) && beneathObj.categories.length
+    ? beneathObj.categories.slice(0, 3)
+    : null;
+  const stripCount = realCategories ? realCategories.length : 3;
 
   const enterP = ease(clamp01(p / 0.22));
   // revealP: surface slides up, reality slides up from below
@@ -528,7 +541,7 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
   const surfSlideY = -revealP * SAFE_H * 0.18;
 
   // Reality items: full-width strips descending from midpoint
-  const stripH = Math.min(90, (SAFE_H * 0.52) / Math.max(1, categories.length + 0.5));
+  const stripH = Math.min(90, (SAFE_H * 0.52) / Math.max(1, stripCount + 0.5));
   const stripGap = 14;
   const stripsTop = SAFE_H * 0.46;
 
@@ -540,7 +553,7 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
       <g transform={`translate(0, ${surfSlideY})`} opacity={enterP * (1 - revealP * 0.5)}>
         <text x={24} y={SAFE_H * 0.08}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={12} fill={ed.text} opacity={0.45} letterSpacing={5}>
+          fontSize={12} fill={ed.text} opacity={DIM} letterSpacing={5}>
           {(scene.subject || "REPORTED FIGURE").toUpperCase()}
         </text>
         <text x={24} y={SAFE_H * 0.08 + surfSz * LH}
@@ -558,37 +571,34 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
           stroke={ed.accent} strokeWidth={3} opacity={revealP * 0.6} />
       )}
 
-      {/* REALITY: full-width strips — no rounded corners, just raw shapes */}
-      {revealP > 0 && categories.map((cat, i) => {
+      {/* REALITY: descending full-width strips of decreasing length — a
+          qualitative "layers beneath the surface" visual. Strip length
+          encodes relative magnitude only; NO numeric percentage is drawn
+          (that would be a fabricated statistic). A label is drawn only when
+          the plan supplied a real one. */}
+      {revealP > 0 && Array.from({ length: stripCount }).map((_, i) => {
+        const cat = realCategories ? realCategories[i] : null;
         const catP = ease(clamp01((revealP - i * 0.14) / 0.4));
         const stripY = stripsTop + i * (stripH + stripGap);
-        // Vary the fill width per category to show relative magnitude
         const fillRatio = 0.88 - i * 0.12;
         return (
           <g key={i} opacity={catP}>
-            {/* Strip background: full-width, raw rectangle */}
             <rect x={0} y={stripY} width={SAFE_W * fillRatio * catP} height={stripH}
               fill={ed.accent} opacity={i === 0 ? 0.9 : 0.6 - i * 0.1} />
-            {/* Label integrated into strip */}
-            <text x={18} y={stripY + stripH * 0.62}
-              fontFamily={`${font}, sans-serif`} fontWeight={700}
-              fontSize={Math.min(22, stripH * 0.38)} fill={ed.bg} opacity={catP}>
-              {cat}
-            </text>
-            {/* Percentage at right edge */}
-            <text x={SAFE_W * fillRatio * catP - 16} y={stripY + stripH * 0.62}
-              textAnchor="end"
-              fontFamily={`${font}, monospace`} fontWeight={800}
-              fontSize={Math.min(18, stripH * 0.32)} fill={ed.bg} opacity={catP * 0.9}>
-              {`${Math.round((fillRatio) * 100)}%`}
-            </text>
+            {cat && (
+              <text x={18} y={stripY + stripH * 0.62}
+                fontFamily={`${font}, sans-serif`} fontWeight={700}
+                fontSize={Math.min(22, stripH * 0.38)} fill={ed.bg} opacity={catP}>
+                {cat}
+              </text>
+            )}
           </g>
         );
       })}
 
       {/* REALITY label — below the strips */}
       {revealP > 0.5 && (
-        <text x={24} y={stripsTop + categories.length * (stripH + stripGap) + 36}
+        <text x={24} y={stripsTop + stripCount * (stripH + stripGap) + 36}
           fontFamily={`${font}, sans-serif`} fontWeight={600}
           fontSize={18} fill={ed.text}
           opacity={ease(clamp01((revealP - 0.5) / 0.3)) * 0.55}>
@@ -679,7 +689,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
       <text x={colAX + colW / 2} y={baseline + 28}
         textAnchor="middle"
         fontFamily={`${font}, monospace`} fontWeight={600}
-        fontSize={nameSize} fill={ed.text} opacity={0.5} letterSpacing={2}>
+        fontSize={nameSize} fill={ed.text} opacity={DIM} letterSpacing={2}>
         {nameA || "A"}
       </text>
 
@@ -702,7 +712,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
       <text x={colBX + colW / 2} y={baseline + 28}
         textAnchor="middle"
         fontFamily={`${font}, monospace`} fontWeight={600}
-        fontSize={nameSize} fill={ed.text} opacity={0.5} letterSpacing={2}>
+        fontSize={nameSize} fill={ed.text} opacity={DIM} letterSpacing={2}>
         {nameB || "B"}
       </text>
 
@@ -820,7 +830,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
       {subText && (
         <text x={SAFE_W / 2} y={SAFE_H * 0.07} textAnchor="middle"
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={14} fill={ed.text} opacity={0.5} letterSpacing={4}>
+          fontSize={14} fill={ed.text} opacity={DIM} letterSpacing={4}>
           {subText}
         </text>
       )}
@@ -844,7 +854,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
               stroke={ed.text} strokeWidth={1} opacity={0.2} />
             <text x={colX - 26} y={ty + 5} textAnchor="end"
               fontFamily={`${font}, monospace`} fontWeight={400}
-              fontSize={12} fill={ed.text} opacity={0.3}>
+              fontSize={12} fill={ed.text} opacity={DIM}>
               {`${Math.round(t * 100)}%`}
             </text>
           </g>
@@ -895,7 +905,7 @@ function BreakdownScene({ beat, p, local, ed, font, scene }) {
         style={{ position: "absolute", left: S.left, top: S.top }}>
         <text x={24} y={SAFE_H * 0.09}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={13} fill={ed.text} opacity={0.45} letterSpacing={5}>
+          fontSize={13} fill={ed.text} opacity={DIM} letterSpacing={5}>
           50 / 30 / 20 RULE
         </text>
         {/* Bar spans full safe width, tall enough to be the hero */}
@@ -986,7 +996,7 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
       {/* Source eyebrow */}
       <text x={24} y={figureTopY - 16}
         fontFamily={`${font}, monospace`} fontWeight={500}
-        fontSize={12} fill={ed.text} opacity={enterP * 0.45} letterSpacing={5}>
+        fontSize={12} fill={ed.text} opacity={Math.max(DIM, enterP)} letterSpacing={5}>
         {(scene.subject || "").toUpperCase() || "DATA"}
       </text>
 
@@ -1022,10 +1032,10 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
             <>
               <text x={barX} y={barY + barH + 22}
                 fontFamily={`${font}, monospace`} fontWeight={400}
-                fontSize={12} fill={ed.text} opacity={0.35}>0</text>
+                fontSize={12} fill={ed.text} opacity={DIM}>0</text>
               <text x={barX + barW} y={barY + barH + 22} textAnchor="end"
                 fontFamily={`${font}, monospace`} fontWeight={400}
-                fontSize={12} fill={ed.text} opacity={0.35}>100%</text>
+                fontSize={12} fill={ed.text} opacity={DIM}>100%</text>
             </>
           )}
         </>
@@ -1097,7 +1107,7 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
       {/* Eyebrow label for cause */}
       <text x={24} y={SAFE_H * 0.08 - causeSz * 0.18}
         fontFamily={`${font}, monospace`} fontWeight={500}
-        fontSize={11} fill={ed.text} opacity={causeP * 0.4} letterSpacing={4}>
+        fontSize={11} fill={ed.text} opacity={Math.max(DIM, causeP)} letterSpacing={4}>
         CAUSE
       </text>
 
@@ -1207,7 +1217,7 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
             stroke={ed.text} strokeWidth={1.5} opacity={0.3} />
           <text x={vesselX - 18} y={t.y + 5} textAnchor="end"
             fontFamily={`${font}, monospace`} fontWeight={400}
-            fontSize={11} fill={ed.text} opacity={0.3}>
+            fontSize={11} fill={ed.text} opacity={DIM}>
             {t.pct}%
           </text>
         </g>
@@ -1223,7 +1233,7 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
       <g opacity={labelP} transform={`translate(0, ${(1 - labelP) * 24})`}>
         <text x={labelX} y={SAFE_H * 0.20}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={12} fill={ed.text} opacity={0.45} letterSpacing={4}>
+          fontSize={12} fill={ed.text} opacity={DIM} letterSpacing={4}>
           CONSUMED
         </text>
         <text x={labelX} y={SAFE_H * 0.20 + labelSz * LH}
@@ -1246,7 +1256,7 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
         <text x={vesselX + vesselW / 2} y={vesselY + vesselH + 24}
           textAnchor="middle"
           fontFamily={`${font}, monospace`} fontWeight={600}
-          fontSize={14} fill={ed.text} opacity={ease(clamp01((drainP - 0.7) / 0.3)) * 0.5}>
+          fontSize={14} fill={ed.text} opacity={ease(clamp01((drainP - 0.7) / 0.3))}>
           {`${Math.round(remaining * 100)}% LEFT`}
         </text>
       )}
@@ -1302,7 +1312,7 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
       <g opacity={showExpected * (1 - strikeP * 0.35)}>
         <text x={24} y={beforeY - 14}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={11} fill={ed.text} opacity={showExpected * 0.35} letterSpacing={4}>
+          fontSize={11} fill={ed.text} opacity={Math.max(DIM, showExpected)} letterSpacing={4}>
           EXPECTED
         </text>
         <text x={24} y={beforeBaseY}

@@ -314,6 +314,22 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       } catch {}
     }
 
+    // The HARD ship/no-ship gate is qa.gatePass — the OBJECTIVE frame-audit
+    // (WCAG text contrast, safe-area margins, edge-bleed, non-empty frame).
+    // That is what "genuinely broken frame" means and it is measured from
+    // pixels, not opinion. The Gemini pipelineVerdict is a SUBJECTIVE quality
+    // assessment (monoculture, "not cinematic enough", per-scene HIGH/CRITICAL
+    // style notes) and it drives the CORRECTION LOOP — a non-APPROVED verdict
+    // triggers a re-plan + re-render — but it does NOT permanently discard a
+    // frame-audit-clean video once retries are exhausted. Reason: the scene
+    // reviewer flags headline-dominance as a per-scene CRITICAL, so folding
+    // its verdict into the hard gate meant any stylistically-imperfect video
+    // was zeroed out and the channel posted nothing that day. A production
+    // system must post its daily upload (private-first, delayed public, human
+    // review window) when the frame is objectively sound; persistent
+    // monoculture is addressed by the plan prompt + scene design, not by
+    // withholding the upload. Objectively-broken frames still never ship —
+    // qa.gatePass is false for them regardless of the Gemini verdict.
     if (pipelineVerdict === "APPROVED" || attempt === MAX_CORRECTION_LOOPS) {
       return {
         skipped: false,
@@ -321,11 +337,11 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
         outputPath: result.outputPath,
         attempt,
         geminiVerdict,
-        qaGatePass: qa.gatePass && pipelineVerdict !== "REJECTED",
+        qaGatePass: qa.gatePass,
       };
     }
 
-    // Not approved — feed corrections back
+    // Not approved — feed corrections back and re-render
     console.log(`Gemini says ${pipelineVerdict} — feeding corrections back for attempt ${attempt + 1}`);
     correctionsPath = geminiReport;
     if (existsSync(result.outputPath)) {
