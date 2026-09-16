@@ -39,6 +39,17 @@
     "uploaded_at": "2026-09-16T09:10:53.616Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-16T10:10:53.616Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-16T10:40:39.338Z"
+  },
+  {
+    "video_id": "9_C0SFP6_aM",
+    "channel_id": "2",
+    "title": "Can Undocumented Workers Sue for Unpaid Wages Under State…",
+    "uploaded_at": "2026-09-16T10:40:38.179Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-16T11:40:38.178Z",
     "privacy_status": "private",
     "cancelled": false
   }
