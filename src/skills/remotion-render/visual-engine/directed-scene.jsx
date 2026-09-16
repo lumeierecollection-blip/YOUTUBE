@@ -426,8 +426,19 @@ function TypographyScene({ beat, p, local, ed, font, scene }) {
   const isQuestion = scene.typography?.style === "question";
   const isImperative = scene.typography?.style === "imperative";
 
+  // enterP still drives the slide-up entrance transform below — that's
+  // real motion, not a duplicate of the beat crossfade. Its old partner
+  // fadeOut (and the matching one in every other scene in this file) used
+  // to ALSO multiply this container's opacity, stacking with the outer
+  // per-beat tOpacity crossfade in DirectedScene. Two independent fades
+  // compounding multiplicatively (e.g. 0.08 outer x 0.03 scene-level ≈
+  // 0.003 combined) produced the near-black frames confirmed by real pixel
+  // sampling of production QA frames and reproduced in isolation via
+  // scripts/diag-render-frames.mjs (frame at local=1 of a beat: combined
+  // opacity 0.003, pure black; local=75 mid-beat: opacity 1, renders
+  // correctly). DirectedScene's tOpacity is the single beat-transition
+  // fade now; every scene renders at full opacity internally.
   const enterP = ease(clamp01(local / 14));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
   const holdP = clamp01((local - 14) / 20);
 
   // Anchor to top-third: gives the vertical canvas room to breathe below
@@ -437,7 +448,6 @@ function TypographyScene({ beat, p, local, ed, font, scene }) {
     <div style={{
       position: "absolute", left: S.left, width: SAFE_W,
       top: anchorY,
-      opacity: enterP * (1 - fadeOut),
       transform: `translateY(${(1 - enterP) * size * 0.35}px)`,
     }}>
       {rows.map((row, ri) => (
@@ -511,7 +521,6 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
   const enterP = ease(clamp01(p / 0.22));
   // revealP: surface slides up, reality slides up from below
   const revealP = ease(clamp01((p - 0.30) / 0.38));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   // Official figure: large text, anchored to upper canvas
   const surfSz = fitFontSize(surfaceLabel, SAFE_W * 0.82, 120, 36);
@@ -525,7 +534,7 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
 
       {/* SURFACE: official figure as large raw text — no card */}
       <g transform={`translate(0, ${surfSlideY})`} opacity={enterP * (1 - revealP * 0.5)}>
@@ -606,10 +615,8 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
   const fallbackA = parts[0]?.trim() || "?";
   const fallbackB = parts[1]?.trim() || "?";
 
-  const enterP = ease(clamp01(p / 0.18));
   const growP = ease(clamp01((p - 0.12) / 0.52));
   const diffP = ease(clamp01((p - 0.70) / 0.22));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   const labelA = (a.label && a.label !== "A") ? a.label : fallbackA;
   const labelB = (b.label && b.label !== "B") ? b.label : fallbackB;
@@ -651,7 +658,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * enterP }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
 
       {/* Column A (shorter/first value) */}
       {colAH > 0 && (
@@ -747,7 +754,6 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
 
   const growP = ease(clamp01((p - 0.06) / 0.56));
   const labelP = ease(clamp01((p - 0.50) / 0.32));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   const isFuel = scene.material === "fuel" || subject.appearance === "fuel_gauge";
   const isFood = scene.material === "food" || subject.appearance === "receipt";
@@ -755,7 +761,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
   if (isFuel) {
     return (
       <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-        style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+        style={{ position: "absolute", left: S.left, top: S.top }}>
         <FuelGauge
           cx={SAFE_W / 2} cy={SAFE_H * 0.44} r={SAFE_W * 0.40}
           fill={growP * 0.90} label={subject.label || "GASOLINE"}
@@ -781,7 +787,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
     ];
     return (
       <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-        style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+        style={{ position: "absolute", left: S.left, top: S.top }}>
         <g opacity={growP}>
           <ReceiptSheet x={SAFE_W * 0.10} y={SAFE_H * 0.04} w={SAFE_W * 0.80} h={SAFE_H * 0.76}
             items={items} total="$39.65" growth={labelP > 0.3 ? (magnitude.label || "32%") : null}
@@ -806,9 +812,16 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
   // Number size fitted to column width, capped below the column height
   const magSz = fitFontSize(magText, colW * 0.88, Math.min(96, fillH * 0.55), 28);
 
+  if (beat.__debug) {
+    console.log("[DBG GrowthScene]", JSON.stringify({
+      p: +p.toFixed(4), growP: +growP.toFixed(4), fillH: +fillH.toFixed(1),
+      colTop: +colTop.toFixed(1), magText, subText, accent: ed.accent,
+    }));
+  }
+
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * ease(clamp01(p / 0.06)) }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
 
       {/* Eyebrow — what is growing */}
       {subText && (
@@ -875,8 +888,6 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
 
 function BreakdownScene({ beat, p, local, ed, font, scene }) {
   const ease = easeFor("STRUCTURAL_BREAKDOWN", beat.emotional_weight);
-  const fadeOut = clamp01((p - 0.92) / 0.08);
-  const buildP = ease(clamp01(p / 0.18));
   const breakP = ease(clamp01((p - 0.28) / 0.52));
   const isBudget = scene.material === "money" || /budget|fifty|thirty|twenty|50.30.20/i.test(beat.text);
 
@@ -888,7 +899,7 @@ function BreakdownScene({ beat, p, local, ed, font, scene }) {
     ];
     return (
       <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-        style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * buildP }}>
+        style={{ position: "absolute", left: S.left, top: S.top }}>
         <text x={24} y={SAFE_H * 0.09}
           fontFamily={`${font}, monospace`} fontWeight={500}
           fontSize={13} fill={ed.text} opacity={0.45} letterSpacing={5}>
@@ -914,7 +925,7 @@ function BreakdownScene({ beat, p, local, ed, font, scene }) {
   const subject = scene.subject || "CPI";
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * buildP }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
       {/* DocumentPage takes nearly the full canvas height — it IS the visual */}
       <DocumentPage x={SAFE_W * 0.06} y={SAFE_H * 0.04} w={SAFE_W * 0.88} h={SAFE_H * 0.80}
         title={subject.toUpperCase()} lineCount={12} highlight={breakP < 0.35}
@@ -938,7 +949,6 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
 
   const enterP = ease(clamp01(p / 0.28));
   const groundP = ease(clamp01((p - 0.35) / 0.30));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   if (isFood) {
     const items = [
@@ -947,7 +957,7 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
     ];
     return (
       <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-        style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+        style={{ position: "absolute", left: S.left, top: S.top }}>
         <g opacity={enterP}>
           <ReceiptSheet x={SAFE_W * 0.08} y={SAFE_H * 0.04} w={SAFE_W * 0.84} h={SAFE_H * 0.76}
             items={items} total={label || "32%"} growth={label}
@@ -979,7 +989,7 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
       {/* Source eyebrow */}
       <text x={24} y={figureTopY - 16}
         fontFamily={`${font}, monospace`} fontWeight={500}
@@ -1058,7 +1068,6 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
   const causeP = ease(clamp01(p / 0.28));
   const connectP = ease(clamp01((p - 0.18) / 0.28));
   const effectP = ease(clamp01((p - 0.42) / 0.32));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   const causeLabel = cause.label || beat.original_text || "";
   const effectLabel = effect.label || "";
@@ -1083,7 +1092,7 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
 
       {/* CAUSE: raw text in upper canvas, no container */}
       <text x={24} y={SAFE_H * 0.08}
@@ -1155,10 +1164,8 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
   const fillRatio = consumed.final_state?.fill || 0.62;
   const consumedLabel = consumed.label || `${Math.round(fillRatio * 100)}%`;
 
-  const buildP = ease(clamp01(p / 0.12));
   const drainP = ease(clamp01((p - 0.12) / 0.48));
   const labelP = ease(clamp01((p - 0.55) / 0.28));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   // Vessel: tall rectangle, left-anchored, 80% of canvas height
   const vesselX = 24;
@@ -1190,7 +1197,7 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * buildP }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
 
       {/* Vessel outline — no fill, just border */}
       <rect x={vesselX} y={vesselY} width={vesselW} height={vesselH}
@@ -1273,7 +1280,6 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
   const strikeP = ease(clamp01((p - 0.26) / 0.22));
   const divideP = ease(clamp01((p - 0.36) / 0.14));
   const showActual = ease(clamp01((p - 0.44) / 0.32));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   const expLabel = expected.label || "";
   const actLabel = actual.label || "";
@@ -1297,7 +1303,7 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
 
       {/* BEFORE STATE: raw text, upper canvas, muted */}
       <g opacity={showExpected * (1 - strikeP * 0.35)}>
@@ -1453,6 +1459,7 @@ export function DirectedScene({ plan }) {
   const colors = paletteRoles(plan.palette);
   const ed = editorialColors(colors, plan.palette);
   const { beat, p, local, prev, beatIndex } = beatAt(plan, frame);
+  if (plan.debug) beat.__debug = true; // threaded down to scene renderers, see e.g. GrowthScene
   const scene = beat.scene || {};
   const isTypographyOnly = scene.mechanism === "TYPOGRAPHY";
   const tOpacity = transitionOpacity(beat, local, beatIndex);
@@ -1467,6 +1474,19 @@ export function DirectedScene({ plan }) {
   const carriesForward = beat.carries_forward;
   const showPersistent = carriesForward && prev && !showPrevEcho && beatIndex > 0;
   const persistOpacity = showPersistent ? 0.22 : 0;
+
+  // DEBUG_RENDER diagnostic — plan.debug is an explicit inputProp, never
+  // process.env (this file is bundled into the browser; process.env is not
+  // defined there). Zero cost/behavior change when plan.debug is unset.
+  if (plan.debug) {
+    console.log("[DBG beat]", JSON.stringify({
+      frame, beatIndex, mechanism: scene.mechanism || "TYPOGRAPHY",
+      local, duration_frames: beat.duration_frames,
+      p: +p.toFixed(4), tOpacity: +tOpacity.toFixed(4),
+      bg: ed.bg, accent: ed.accent, text: ed.text,
+      showPrevEcho, showPersistent,
+    }));
+  }
 
   return (
     <AbsoluteFill style={{ backgroundColor: ed.bg }}>
