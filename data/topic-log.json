@@ -1748,9 +1748,14 @@
           "topic": "How CUEBUS Linear-Motor Warehouse and Humanoids Automate Factory Logistics",
           "slug": "cuebus-linear-motor-warehouse-humanoid-factory-logistics",
           "reserved_at": "2026-09-16T23:16:53.667Z"
+        },
+        {
+          "topic": "How Through-Glass Vias Are Manufactured for AI Chip Substrates",
+          "slug": "through-glass-vias-ai-chip-manufacturing",
+          "reserved_at": "2026-09-16T23:40:31.902Z"
         }
       ],
-      "last_generated": "2026-09-16T23:16:53.667Z"
+      "last_generated": "2026-09-16T23:40:31.903Z"
     },
     "49": {
       "channel_name": "Wander Budget",
