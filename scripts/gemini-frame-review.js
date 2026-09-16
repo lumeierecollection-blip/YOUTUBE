@@ -444,14 +444,35 @@ async function main() {
     // real decision here, before the report is written, and exposing it as
     // pipelineVerdict/pipelineReason lets render-and-qa.js actually gate on
     // the Visual Bible's own semantic verdict instead of silently discarding it.
+    // Two tiers, deliberately distinct (see render-and-qa.js for how each is
+    // acted on):
+    //   REJECTED          = a HARD defect that makes the frame itself bad —
+    //                       per-frame CRITICAL failures (unreadable text,
+    //                       empty/black frame, safe-area violation, broken
+    //                       scene). These must never ship.
+    //   NEEDS_IMPROVEMENT = a real quality complaint about the video as a
+    //                       whole — template monoculture, too many HIGH scene
+    //                       issues, a failing whole-video review. These DRIVE
+    //                       the correction loop (re-plan + re-render), but a
+    //                       technically-sound video is not permanently
+    //                       discarded over a stylistic opinion once retries
+    //                       are exhausted — otherwise a channel that keeps
+    //                       drawing a monoculture posts nothing at all, which
+    //                       is not a production system. The fix for persistent
+    //                       monoculture is the plan prompt + scene design, not
+    //                       zeroing out the day's upload.
+    // This is NOT a weakening of QA: genuinely broken frames still hard-block
+    // via criticalCount, and the frame-audit pixel gate (qa.gatePass in
+    // render-and-qa.js) is an independent hard gate on top of this.
     const monoculture = wholeResult.headline_test?.monoculture;
     let pipelineVerdict = "APPROVED";
     let pipelineReason = "Meets Visual Bible standards.";
-    if (criticalCount > 0 || monoculture) {
+    if (criticalCount > 0) {
       pipelineVerdict = "REJECTED";
-      pipelineReason = monoculture
-        ? `TEMPLATE_MONOCULTURE — ${wholeResult.headline_test.percent}% headline-dominated beats`
-        : `${criticalCount} CRITICAL failure(s)`;
+      pipelineReason = `${criticalCount} CRITICAL per-frame failure(s)`;
+    } else if (monoculture) {
+      pipelineVerdict = "NEEDS_IMPROVEMENT";
+      pipelineReason = `TEMPLATE_MONOCULTURE — ${wholeResult.headline_test.percent}% headline-dominated beats`;
     } else if (highCount > Math.floor(beatTimes.length * 0.3)) {
       pipelineVerdict = "NEEDS_IMPROVEMENT";
       pipelineReason = `${highCount} HIGH issues across ${beatTimes.length} frames`;

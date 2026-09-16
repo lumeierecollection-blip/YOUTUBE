@@ -126,25 +126,47 @@ VISUAL HEADLINE RULES:
 - Numbers must have physical meaning — don't just float "22.4 WEEKS" alone.
 - Example: Transcript "Only forty-seven percent of Americans can handle a four-hundred-dollar emergency" → Visual headline: "47% CAN'T COVER $400"
 
-MECHANISM SELECTION — choose based on what the sentence IS DOING:
-- TYPOGRAPHY: The words themselves ARE the point (hooks, conclusions, CTAs). Punchy headline only.
-- STATE_CHANGE: Something expected is contrasted with something actual (before/after).
-- EVIDENCE_FIGURE: A specific number/statistic is presented as evidence.
-- ACTION_CONSEQUENCE: A causes B — show the chain of cause and effect.
-- PHYSICAL_GROWTH: Something increases — show the thing itself growing.
-- VISIBLE_CONSUMPTION: Something is depleted — show it disappearing.
-- SURFACE_AND_BENEATH: Official truth hides a deeper reality — show the reveal.
-- PROPORTIONAL_OBJECTS: Two quantities compared — show relative scale.
-- STRUCTURAL_BREAKDOWN: Something deteriorates or breaks down.
+THE MECHANISMS split into two families. Read this before choosing:
 
-CONTINUITY RULES:
-- NEVER repeat the same mechanism more than 2 times in a row.
-- Use AT LEAST 4 different mechanisms across the video. Variety keeps the viewer engaged.
-- Consider what carries forward: if beat 2 shows a money amount, and beat 3 shows it being consumed, mark "carries_forward" so the visual system knows to keep the object.
-- The first beat MUST be a strong hook.
-- The last beat should be a clear CTA or payoff.
+  OBJECT-FIRST (a visual object is the hero; text only labels it) — PREFER THESE:
+  - STATE_CHANGE: Something expected is contrasted with something actual (before/after).
+  - ACTION_CONSEQUENCE: A causes B — show the chain of cause and effect.
+  - PHYSICAL_GROWTH: Something increases — show the thing itself growing.
+  - VISIBLE_CONSUMPTION: Something is depleted — show it disappearing.
+  - SURFACE_AND_BENEATH: Official truth hides a deeper reality — show the reveal.
+  - PROPORTIONAL_OBJECTS: Two quantities compared — show relative scale.
+  - STRUCTURAL_BREAKDOWN: Something deteriorates or breaks down.
 
-CRITICAL: Do NOT default to headline-only typography for every beat. The viewer must SEE the idea, not just READ it. Use mechanisms that create visual representations of the concepts.
+  TEXT-FORWARD (the frame is dominated by words/a number) — USE SPARINGLY:
+  - TYPOGRAPHY: The words themselves ARE the point (hooks, conclusions, CTAs). Punchy headline only.
+  - EVIDENCE_FIGURE: A specific number/statistic is presented as evidence.
+
+THE GRAPH / NUMBER RULE (this is what makes videos feel generic — obey it):
+- A number appearing in a sentence is NOT a reason to reach for EVIDENCE_FIGURE. Ask
+  what the number MEANS and show that: "$1,400 drained per year" is money leaving a
+  wallet (VISIBLE_CONSUMPTION), "gas up 24.6%" is a pump price climbing (PHYSICAL_GROWTH),
+  "50% vs 66%" is two things of different size (PROPORTIONAL_OBJECTS).
+- Reach for a chart/bar/figure ONLY when the sentence is genuinely ABOUT quantitative
+  comparison, trend, or measurement AND no physical/spatial form communicates it better.
+- If removing the narration would leave only a floating number or a headline, the visual
+  is decorative — pick an object-first mechanism instead.
+
+THE MUTED TEST: for every beat, if the viewer had no audio, would the visual still carry
+real information — an object, a change, a comparison, a consequence? If it would look
+identical under almost any other sentence, it is monoculture. Reject it and re-choose.
+
+DISTRIBUTION RULES (a plan that violates these will be rejected downstream):
+- Across the whole video, AT MOST ~1 in 3 beats may be TEXT-FORWARD (TYPOGRAPHY +
+  EVIDENCE_FIGURE combined). The majority MUST be object-first mechanisms.
+- TYPOGRAPHY is for the opening hook and the closing CTA — typically 2 beats total,
+  rarely more. Do not use it for ordinary statements; find what the statement SHOWS.
+- NEVER repeat the same mechanism more than twice in a row, and do not alternate
+  headline/figure/headline/figure — that reads as one template on repeat.
+- Use AT LEAST 5 distinct mechanisms across the video, drawn mostly from the object-first
+  family. Consecutive beats should differ in VISUAL FORM, not just in mechanism name.
+- The first beat MUST be a strong hook; the last beat a clear CTA or payoff.
+- Use carries_forward when an object continues (a sum shown, then consumed) so the visual
+  argument flows rather than resetting each beat.
 
 SCRIPT SENTENCES:
 ${sentenceList}
