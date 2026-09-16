@@ -87,12 +87,14 @@ function editorialColors(colors, rawPalette) {
 
 /* ── Text layout ────────────────────────────────────────────────────── */
 
-// Minimum opacity for de-emphasized light text (ed.text) on a dark ground.
-// Below ~0.55 the composited glyph drops under WCAG AA 4.5:1 on near-black
-// channel backgrounds (e.g. #050510): 0.5*235=117 gives 4.46:1, a real
-// frame-audit contrast failure (COL-23). Eyebrows/annotations use this
-// floor so they stay legible on every channel without changing layout.
-const DIM = 0.62;
+// De-emphasized labels (eyebrows, annotations) are drawn in ed.subdued at
+// FULL opacity, never in translucent ed.text. paletteRoles guarantees
+// ed.subdued clears WCAG AA 4.5:1 against the channel ground. Translucent
+// white was the old approach and it failed frame-audit (COL-23) on
+// near-black channels: a thin, small, letter-spaced monospace glyph at
+// even 0.62 opacity never reaches full pixel coverage, so its anti-aliased
+// cores composite to ~rgb(71) on #000 (2.2:1) — below AA. A solid subdued
+// colour has opaque cores that measure at the colour's own luminance.
 
 const LH = 1.18;
 const MAX_SZ = 140;
@@ -217,7 +219,7 @@ function FuelGauge({ cx, cy, r, fill, label, reading, readingOpacity, ed, font }
       {label && (
         <text x={cx} y={cy + r * 0.65} textAnchor="middle"
           fontFamily={`${font}, sans-serif`} fontWeight={600}
-          fontSize={22} fill={ed.text} opacity={DIM}
+          fontSize={22} fill={ed.subdued}
           letterSpacing={4}>{label}</text>
       )}
     </g>
@@ -291,7 +293,7 @@ function StatisticCallout({ x, y, value, label, source, ed, font, highlighted, o
       {source && (
         <text x={x + 18} y={y + 16}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={13} fill={ed.text} opacity={DIM} letterSpacing={3}>{source}</text>
+          fontSize={13} fill={ed.subdued} letterSpacing={3}>{source}</text>
       )}
       <text x={x + 18} y={valueY}
         fontFamily={`${font}, sans-serif`} fontWeight={900}
@@ -553,7 +555,7 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
       <g transform={`translate(0, ${surfSlideY})`} opacity={enterP * (1 - revealP * 0.5)}>
         <text x={24} y={SAFE_H * 0.08}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={12} fill={ed.text} opacity={DIM} letterSpacing={5}>
+          fontSize={12} fill={ed.subdued} letterSpacing={5}>
           {(scene.subject || "REPORTED FIGURE").toUpperCase()}
         </text>
         <text x={24} y={SAFE_H * 0.08 + surfSz * LH}
@@ -689,7 +691,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
       <text x={colAX + colW / 2} y={baseline + 28}
         textAnchor="middle"
         fontFamily={`${font}, monospace`} fontWeight={600}
-        fontSize={nameSize} fill={ed.text} opacity={DIM} letterSpacing={2}>
+        fontSize={nameSize} fill={ed.subdued} letterSpacing={2}>
         {nameA || "A"}
       </text>
 
@@ -712,7 +714,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
       <text x={colBX + colW / 2} y={baseline + 28}
         textAnchor="middle"
         fontFamily={`${font}, monospace`} fontWeight={600}
-        fontSize={nameSize} fill={ed.text} opacity={DIM} letterSpacing={2}>
+        fontSize={nameSize} fill={ed.subdued} letterSpacing={2}>
         {nameB || "B"}
       </text>
 
@@ -830,7 +832,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
       {subText && (
         <text x={SAFE_W / 2} y={SAFE_H * 0.07} textAnchor="middle"
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={14} fill={ed.text} opacity={DIM} letterSpacing={4}>
+          fontSize={14} fill={ed.subdued} letterSpacing={4}>
           {subText}
         </text>
       )}
@@ -854,7 +856,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
               stroke={ed.text} strokeWidth={1} opacity={0.2} />
             <text x={colX - 26} y={ty + 5} textAnchor="end"
               fontFamily={`${font}, monospace`} fontWeight={400}
-              fontSize={12} fill={ed.text} opacity={DIM}>
+              fontSize={12} fill={ed.subdued}>
               {`${Math.round(t * 100)}%`}
             </text>
           </g>
@@ -905,7 +907,7 @@ function BreakdownScene({ beat, p, local, ed, font, scene }) {
         style={{ position: "absolute", left: S.left, top: S.top }}>
         <text x={24} y={SAFE_H * 0.09}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={13} fill={ed.text} opacity={DIM} letterSpacing={5}>
+          fontSize={13} fill={ed.subdued} letterSpacing={5}>
           50 / 30 / 20 RULE
         </text>
         {/* Bar spans full safe width, tall enough to be the hero */}
@@ -996,7 +998,7 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
       {/* Source eyebrow */}
       <text x={24} y={figureTopY - 16}
         fontFamily={`${font}, monospace`} fontWeight={500}
-        fontSize={12} fill={ed.text} opacity={Math.max(DIM, enterP)} letterSpacing={5}>
+        fontSize={12} fill={ed.subdued} letterSpacing={5}>
         {(scene.subject || "").toUpperCase() || "DATA"}
       </text>
 
@@ -1032,10 +1034,10 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
             <>
               <text x={barX} y={barY + barH + 22}
                 fontFamily={`${font}, monospace`} fontWeight={400}
-                fontSize={12} fill={ed.text} opacity={DIM}>0</text>
+                fontSize={12} fill={ed.subdued}>0</text>
               <text x={barX + barW} y={barY + barH + 22} textAnchor="end"
                 fontFamily={`${font}, monospace`} fontWeight={400}
-                fontSize={12} fill={ed.text} opacity={DIM}>100%</text>
+                fontSize={12} fill={ed.subdued}>100%</text>
             </>
           )}
         </>
@@ -1107,7 +1109,7 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
       {/* Eyebrow label for cause */}
       <text x={24} y={SAFE_H * 0.08 - causeSz * 0.18}
         fontFamily={`${font}, monospace`} fontWeight={500}
-        fontSize={11} fill={ed.text} opacity={Math.max(DIM, causeP)} letterSpacing={4}>
+        fontSize={11} fill={ed.subdued} letterSpacing={4}>
         CAUSE
       </text>
 
@@ -1217,7 +1219,7 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
             stroke={ed.text} strokeWidth={1.5} opacity={0.3} />
           <text x={vesselX - 18} y={t.y + 5} textAnchor="end"
             fontFamily={`${font}, monospace`} fontWeight={400}
-            fontSize={11} fill={ed.text} opacity={DIM}>
+            fontSize={11} fill={ed.subdued}>
             {t.pct}%
           </text>
         </g>
@@ -1233,7 +1235,7 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
       <g opacity={labelP} transform={`translate(0, ${(1 - labelP) * 24})`}>
         <text x={labelX} y={SAFE_H * 0.20}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={12} fill={ed.text} opacity={DIM} letterSpacing={4}>
+          fontSize={12} fill={ed.subdued} letterSpacing={4}>
           CONSUMED
         </text>
         <text x={labelX} y={SAFE_H * 0.20 + labelSz * LH}
@@ -1312,7 +1314,7 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
       <g opacity={showExpected * (1 - strikeP * 0.35)}>
         <text x={24} y={beforeY - 14}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={11} fill={ed.text} opacity={Math.max(DIM, showExpected)} letterSpacing={4}>
+          fontSize={11} fill={ed.subdued} letterSpacing={4}>
           EXPECTED
         </text>
         <text x={24} y={beforeBaseY}
