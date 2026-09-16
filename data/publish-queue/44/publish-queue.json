@@ -6,6 +6,17 @@
     "uploaded_at": "2026-09-15T17:33:06.664Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-15T18:33:06.663Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-16T09:59:27.710Z"
+  },
+  {
+    "video_id": "izm0nD1ZbKk",
+    "channel_id": "44",
+    "title": "The Accidental Manager Trap: Why Promoting Top Performers…",
+    "uploaded_at": "2026-09-16T09:59:26.511Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-16T10:59:26.511Z",
     "privacy_status": "private",
     "cancelled": false
   }
