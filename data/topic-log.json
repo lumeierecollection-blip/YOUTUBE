@@ -1486,9 +1486,14 @@
           "topic": "The Noise Tax: Why Broadcasting Information Destroys Engagement in 2026",
           "slug": "noise-tax-broadcasting-destroys-engagement-2026",
           "reserved_at": "2026-09-16T22:48:20.424Z"
+        },
+        {
+          "topic": "Deconstructing Job Functions: Why Skill-Based Orchestration Beats Job Titles",
+          "slug": "deconstructing-job-functions-skill-orchestration",
+          "reserved_at": "2026-09-16T23:16:49.144Z"
         }
       ],
-      "last_generated": "2026-09-16T22:48:20.424Z"
+      "last_generated": "2026-09-16T23:16:49.144Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
