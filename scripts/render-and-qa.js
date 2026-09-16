@@ -238,6 +238,33 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
   let correctionsPath = null;
   let lastResult = null;
 
+  // Pre-bundle once per VIDEO, reused across this video's correction-loop
+  // attempts (render.js already honors REMOTION_SERVE_URL when set — see
+  // renderVideo()). Scoped per-video, not per-run: src/skills/remotion-
+  // render/audio.js does `import voiceover from "./vo.mp3"`, a static
+  // webpack import, so the bundle bakes in whichever audio file is staged
+  // at bundle time. Bundling once for the whole run (the first version of
+  // this change) broke every render with "Can't resolve './vo.mp3'"
+  // because nothing had staged any audio yet — caught by the real GH
+  // Actions test, not locally. Audio doesn't change between attempt 1 and
+  // 2 of the SAME video, so this still eliminates the redundant re-bundle
+  // exactly where it mattered (a REJECTED video's retry), without
+  // reusing a bundle across videos whose audio differs.
+  const audioForBundle = audioPathFor(channelId, scriptPath);
+  if (existsSync(audioForBundle)) {
+    const voTarget = join(ROOT, "src", "skills", "remotion-render", "vo.mp3");
+    mkdirSync(dirname(voTarget), { recursive: true });
+    copyFileSync(audioForBundle, voTarget);
+    const bundleStart = Date.now();
+    console.log(`[render-and-qa] pre-bundling for ${basename(scriptPath)}...`);
+    try {
+      process.env.REMOTION_SERVE_URL = await bundle({ entryPoint: REMOTION_ROOT_JSX, onProgress: () => {} });
+      console.log(`[render-and-qa] pre-bundle done: ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
+    } catch (e) {
+      console.warn(`[render-and-qa] pre-bundle failed, falling back to per-attempt bundling: ${e.message}`);
+      delete process.env.REMOTION_SERVE_URL;
+    }
+  }
 
   for (let attempt = 1; attempt <= MAX_CORRECTION_LOOPS; attempt++) {
     console.log(`\n=== ATTEMPT ${attempt}/${MAX_CORRECTION_LOOPS}: ${basename(scriptPath)} ===`);
@@ -338,22 +365,6 @@ async function main() {
     }
     console.log("No render.js processes were spawned.");
     process.exit(0);
-  }
-
-  // render.js already supports a pre-built bundle via REMOTION_SERVE_URL
-  // (it just never got one) — every renderOne() call spawned render.js as
-  // a fresh child process with that env var unset, so it re-ran
-  // @remotion/bundler's bundle() + selectComposition() from scratch on
-  // every single render (~14s combined, observed in production logs).
-  // The bundle is identical across every video and every correction-loop
-  // attempt in this process — only the plan/inputProps differ — so build
-  // it once here and let every child inherit it via process.env (spawn()
-  // inherits the parent env by default).
-  if (work.length && !process.env.REMOTION_SERVE_URL) {
-    const bundleStart = Date.now();
-    console.log("[render-and-qa] pre-bundling Remotion composition once for this run...");
-    process.env.REMOTION_SERVE_URL = await bundle({ entryPoint: REMOTION_ROOT_JSX, onProgress: () => {} });
-    console.log(`[render-and-qa] pre-bundle done: ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
   }
 
   let rendered = 0;
