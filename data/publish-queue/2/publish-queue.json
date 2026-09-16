@@ -28,6 +28,17 @@
     "uploaded_at": "2026-09-15T18:22:42.280Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-15T19:22:42.280Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-16T09:10:55.208Z"
+  },
+  {
+    "video_id": "2uT1zrv4N6k",
+    "channel_id": "2",
+    "title": "Can State Subpoenas Force Nonprofits to Disclose Donor…",
+    "uploaded_at": "2026-09-16T09:10:53.616Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-16T10:10:53.616Z",
     "privacy_status": "private",
     "cancelled": false
   }
