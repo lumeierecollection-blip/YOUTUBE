@@ -245,12 +245,8 @@ jobs:
       - name: Determine today's formats
         if: steps.reserve.outputs.skip != 'true'
         run: |
-          WEEKDAY=$(date -u +%u)
-          if [ "$WEEKDAY" = "1" ] || [ "$WEEKDAY" = "3" ] || [ "$WEEKDAY" = "5" ]; then
-            echo "FORMATS=shorts" >> "$GITHUB_ENV"
-          else
-            echo "FORMATS=longform" >> "$GITHUB_ENV"
-          fi
+          # Cap all videos at 35-45 seconds for <30 min render on 2-core runner
+          echo "FORMATS=shorts" >> "$GITHUB_ENV" 
 
       # ΓöÇΓöÇ Stage B: research ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Research topic

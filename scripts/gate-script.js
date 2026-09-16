@@ -19,7 +19,9 @@ const ROOT = join(__dirname, "..");
 const WPM_TARGET = { "cinematic-documentary": 135, "motion-graphics": 155, minimal: 165 };
 // Midpoint of render.js's clamp ranges, used only to sanity-check pacing —
 // actual duration is decided later by the real voiceover audio length.
-const FORMAT_MIDPOINT_MINUTES = { shorts: (15 + 60) / 2 / 60, longform: (2 + 12) / 2 };
+const FORMAT_MIDPOINT_MINUTES = { shorts: 40 / 60, longform: (2 + 12) / 2 };
+// Duration cap: all videos target 35-45 seconds for <30 min render
+const DURATION_RANGE_SECONDS = { shorts: { min: 35, max: 45 }, longform: { min: 35, max: 45 } };
 const HEX_COLOR = /#[0-9a-fA-F]{3}\b|#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{8}\b/g;
 
 function loadChannel(channelId) {
@@ -160,6 +162,18 @@ function main() {
   const impliedWpm = totalWords / midpointMinutes;
   if (impliedWpm < targetWpm * 0.5 || impliedWpm > targetWpm * 1.5) {
     majors.push(`SCR-08: ${totalWords} words implies ~${impliedWpm.toFixed(0)} WPM at the ${script.format} midpoint duration, vs. this channel's ${targetWpm} WPM target — check pacing.`);
+  }
+
+  // SCR-16 (BLOCKER) — duration must be 35-45 seconds.
+  // Voiceover duration = totalWords / WPM; frame count = duration * FPS.
+  // At 30 fps: 35s = 1050 frames, 45s = 1350 frames.
+  const durationRange = DURATION_RANGE_SECONDS[script.format] || DURATION_RANGE_SECONDS.shorts;
+  const impliedSeconds = (totalWords / targetWpm) * 60;
+  if (impliedSeconds < durationRange.min || impliedSeconds > durationRange.max) {
+    blockers.push(
+      `SCR-16: ${totalWords} words implies ~${impliedSeconds.toFixed(0)}s duration — outside ${durationRange.min}-${durationRange.max}s target. ` +
+      `Adjust voiceover length to fit the 35-45 second cap.`
+    );
   }
 
   // SCR-12 — text_overlay is an object or null, never a bare string.

@@ -18,7 +18,7 @@ function main() {
   const [channelId, slug] = process.argv.slice(2);
   const format = process.argv.includes("--format")
     ? process.argv[process.argv.indexOf("--format") + 1]
-    : "longform";
+    : "shorts";
 
   if (!channelId || !slug) {
     console.error("Usage: node scripts/build-script-context.js <channel-id> <slug> [--format shorts|longform]");
