@@ -50,7 +50,7 @@ function parseSrt(srtText) {
   }).filter(Boolean);
 }
 
-function callGemini(apiKey, prompt, maxTokens = 4000) {
+function callGemini(apiKey, prompt, maxTokens) {
   const base = "https://generativelanguage.googleapis.com/v1beta/openai";
   const model = "gemini-3.5-flash-lite";
   const body = JSON.stringify({
@@ -220,7 +220,16 @@ function main() {
 
   console.log(`Requesting visual plan from Gemini for ${sentences.length} beats...`);
   const prompt = buildPlanPrompt(sentences, corrections);
-  const plan = callGemini(apiKey, prompt);
+  // Fixed at 4000 regardless of beat count used to truncate mid-JSON on
+  // longer scripts (observed in production: a 51-beat shorts script came
+  // back as "Unexpected end of JSON input" / a snapped property name a few
+  // hundred beats in) — each beat's JSON object runs well over 4000/14
+  // tokens once headline+reason+objects are filled in, so bigger scripts
+  // need proportionally more room. Capped at 8192 (safe ceiling for this
+  // model tier); a script needing more beats than that fits is a pacing
+  // problem in the script/caption split, not something to fix here.
+  const maxTokens = Math.min(8192, 1500 + sentences.length * 130);
+  const plan = callGemini(apiKey, prompt, maxTokens);
 
   if (!plan || !plan.beats) {
     console.error("Failed to get visual plan from Gemini.");

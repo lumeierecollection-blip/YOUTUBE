@@ -53,11 +53,22 @@ function loadChannelIds(override) {
 }
 
 function findScripts(channelId) {
+  // data/research/<channelId>/*-script.json is committed to git and never
+  // pruned, so a fresh checkout on every CI run sees every script this
+  // channel has ever written — not just today's. data/tts/**/*.mp3 is
+  // gitignored (never committed), so today's freshly-downloaded prep
+  // artifact is the ONLY script with matching audio. Filtering on that
+  // here — before geminiPlan() runs — is what actually skips the stale
+  // backlog, instead of discovering "no audio" only after paying for a
+  // full Gemini visual-plan call per leftover file (seen in production:
+  // 21 of 22 committed scripts for channel 1 were history, each still
+  // triggering a real API call and burning render-job wall-clock time).
   const dir = join(ROOT, "data", "research", channelId);
   if (!existsSync(dir)) return [];
   return readdirSync(dir)
     .filter((f) => f.endsWith("-script.json"))
-    .map((f) => join(dir, f));
+    .map((f) => join(dir, f))
+    .filter((scriptPath) => existsSync(audioPathFor(channelId, scriptPath)));
 }
 
 function planWork({ channelOverride, scriptOverride }) {
