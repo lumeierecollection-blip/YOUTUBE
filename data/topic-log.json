@@ -180,9 +180,14 @@
           "topic": "Why Your Bank Balance Impacts Your Mental Health in 2026",
           "slug": "bank-balance-mental-health-2026",
           "reserved_at": "2026-09-16T09:01:23.629Z"
+        },
+        {
+          "topic": "Why Pen and Paper Remains America's Top Budgeting Tool in 2026",
+          "slug": "pen-and-paper-budgeting-tool-2026",
+          "reserved_at": "2026-09-16T09:45:12.614Z"
         }
       ],
-      "last_generated": "2026-09-16T09:01:23.629Z"
+      "last_generated": "2026-09-16T09:45:12.614Z"
     },
     "2": {
       "channel_name": "Legal Brief",
