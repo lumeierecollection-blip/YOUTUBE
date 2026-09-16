@@ -58,6 +58,9 @@ data/asset-library/raw/
 # deliberately kept out of data/research/ so a hand-written fixture can never
 # be mistaken for a gate-passed research artifact.
 data/audit/visual-tests/
+# Scratch stills from scripts/diag-render-frames.mjs (render-layer
+# regression tool) — per-run output, never source.
+data/audit/diag-frames/
 
 # Short single-beat clips from qa-scripts/render-clip.mjs — same per-run
 # output convention as the full renders above.
