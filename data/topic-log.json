@@ -1623,9 +1623,14 @@
           "topic": "Inside Visteon and Qualcomm's D6Sigma Edge AI Factory Platform",
           "slug": "visteon-qualcomm-d6sigma-edge-ai-factory",
           "reserved_at": "2026-09-16T09:49:27.109Z"
+        },
+        {
+          "topic": "Inside Kawasaki's New 8-Axis Robot for Physical AI Applications",
+          "slug": "kawasaki-rl030n-8dof-physical-ai-robot-platform",
+          "reserved_at": "2026-09-16T10:32:53.834Z"
         }
       ],
-      "last_generated": "2026-09-16T09:49:27.109Z"
+      "last_generated": "2026-09-16T10:32:53.834Z"
     },
     "49": {
       "channel_name": "Wander Budget",
