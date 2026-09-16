@@ -1511,9 +1511,14 @@
           "topic": "Deconstructing Job Functions: Why Skill-Based Orchestration Beats Job Titles",
           "slug": "deconstructing-job-functions-skill-orchestration",
           "reserved_at": "2026-09-16T23:16:49.144Z"
+        },
+        {
+          "topic": "Why 44% of Employees Tune Out Despite Normal Message Volume",
+          "slug": "employees-tune-out-message-volume-2026",
+          "reserved_at": "2026-09-16T23:40:05.682Z"
         }
       ],
-      "last_generated": "2026-09-16T23:16:49.144Z"
+      "last_generated": "2026-09-16T23:40:05.682Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
