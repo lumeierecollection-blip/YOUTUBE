@@ -432,9 +432,14 @@
           "topic": "Supreme Court Rules on Federal Court Jurisdiction During Arbitration Stays",
           "slug": "supreme-court-federal-court-jurisdiction-arbitration-stays",
           "reserved_at": "2026-09-16T23:13:22.275Z"
+        },
+        {
+          "topic": "Supreme Court Rules Geofence Warrants Are a Fourth Amendment Search",
+          "slug": "supreme-court-chatrie-geofence-warrant-search",
+          "reserved_at": "2026-09-16T23:37:18.841Z"
         }
       ],
-      "last_generated": "2026-09-16T23:13:22.275Z"
+      "last_generated": "2026-09-16T23:37:18.841Z"
     },
     "3": {
       "channel_name": "AI Tested",
