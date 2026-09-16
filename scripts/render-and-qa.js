@@ -265,28 +265,39 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
 
     // Step 4: Check Gemini verdict
     const geminiReport = findGeminiReviewReport(channelId, scriptPath);
+    let pipelineVerdict = "UNKNOWN";
     let geminiVerdict = "UNKNOWN";
     if (geminiReport) {
       try {
         const report = JSON.parse(readFileSync(geminiReport, "utf-8"));
-        geminiVerdict = report.wholeVideoResult?.verdict || report.verdict || "UNKNOWN";
-        console.log(`Gemini verdict (attempt ${attempt}): ${geminiVerdict}`);
+        // pipelineVerdict is the Visual Bible's own computed decision
+        // (APPROVED/NEEDS_IMPROVEMENT/REJECTED — see gemini-frame-review.js).
+        // wholeVideoResult.verdict is Gemini's free-text "one-sentence final
+        // judgment" from the whole_video_review prompt and is display-only —
+        // it is NEVER the literal string "APPROVED", so gating on it (the
+        // previous behavior) meant a REJECTED Bible review still shipped
+        // once the unrelated frame-audit pixel check passed. UNKNOWN (no
+        // report, or review skipped/errored) is treated as passable so
+        // environments without a Gemini key don't start blocking publishes.
+        pipelineVerdict = report.pipelineVerdict || "UNKNOWN";
+        geminiVerdict = report.wholeVideoResult?.verdict || report.pipelineReason || pipelineVerdict;
+        console.log(`Gemini verdict (attempt ${attempt}): ${pipelineVerdict} — ${geminiVerdict}`);
       } catch {}
     }
 
-    if (geminiVerdict === "APPROVED" || attempt === MAX_CORRECTION_LOOPS) {
+    if (pipelineVerdict === "APPROVED" || attempt === MAX_CORRECTION_LOOPS) {
       return {
         skipped: false,
         ok: true,
         outputPath: result.outputPath,
         attempt,
         geminiVerdict,
-        qaGatePass: qa.gatePass,
+        qaGatePass: qa.gatePass && pipelineVerdict !== "REJECTED",
       };
     }
 
     // Not approved — feed corrections back
-    console.log(`Gemini says ${geminiVerdict} — feeding corrections back for attempt ${attempt + 1}`);
+    console.log(`Gemini says ${pipelineVerdict} — feeding corrections back for attempt ${attempt + 1}`);
     correctionsPath = geminiReport;
     if (existsSync(result.outputPath)) {
       try { rmSync(result.outputPath); } catch {}

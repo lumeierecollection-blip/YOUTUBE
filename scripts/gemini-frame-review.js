@@ -387,6 +387,36 @@ async function main() {
       ? (sceneResults.reduce((s, r) => s + (r.quality_score || 0), 0) / sceneResults.filter((r) => r.quality_score).length).toFixed(1)
       : "N/A";
 
+    // The pipeline decision (APPROVED / NEEDS_IMPROVEMENT / REJECTED) used to
+    // be computed AFTER the report was already written to disk, and only
+    // ever reached the caller via process.exit() — which render-and-qa.js's
+    // qaOne() never inspects (it fires the review as a background promise
+    // and only ever reads report.wholeVideoResult.verdict). That field is
+    // Gemini's own free-text "<one-sentence final judgment>" from the
+    // whole_video_review prompt in config/visual-bible.json — never the
+    // literal string "APPROVED" — so the correction loop's
+    // `geminiVerdict === "APPROVED"` check could never be true, and a video
+    // this Bible review computed as REJECTED for TEMPLATE_MONOCULTURE still
+    // shipped once frame-audit's unrelated pixel check passed. Computing the
+    // real decision here, before the report is written, and exposing it as
+    // pipelineVerdict/pipelineReason lets render-and-qa.js actually gate on
+    // the Visual Bible's own semantic verdict instead of silently discarding it.
+    const monoculture = wholeResult.headline_test?.monoculture;
+    let pipelineVerdict = "APPROVED";
+    let pipelineReason = "Meets Visual Bible standards.";
+    if (criticalCount > 0 || monoculture) {
+      pipelineVerdict = "REJECTED";
+      pipelineReason = monoculture
+        ? `TEMPLATE_MONOCULTURE — ${wholeResult.headline_test.percent}% headline-dominated beats`
+        : `${criticalCount} CRITICAL failure(s)`;
+    } else if (highCount > Math.floor(beatTimes.length * 0.3)) {
+      pipelineVerdict = "NEEDS_IMPROVEMENT";
+      pipelineReason = `${highCount} HIGH issues across ${beatTimes.length} frames`;
+    } else if (wholeResult.status === "FAIL" && (wholeResult.severity === "CRITICAL" || wholeResult.severity === "HIGH")) {
+      pipelineVerdict = "NEEDS_IMPROVEMENT";
+      pipelineReason = `Whole-video review flagged ${wholeResult.severity} issues`;
+    }
+
     const record = {
       generatedAt: new Date().toISOString(),
       bibleVersion: bible.version,
@@ -394,6 +424,8 @@ async function main() {
       channel: channelId,
       duration: duration.toFixed(2),
       totalFrames: beatTimes.length,
+      pipelineVerdict,
+      pipelineReason,
       summary: {
         critical: criticalCount,
         high: highCount,
@@ -434,26 +466,15 @@ async function main() {
     console.log(`  Pass rate: ${record.summary.passRate}`);
     console.log(`  Whole-video: ${wholeResult.status || "ERROR"} (${wholeResult.overall_score || "?"}/10)`);
     console.log(`  Report: ${outFile}`);
+    console.log(`\n  VERDICT: ${pipelineVerdict} — ${pipelineReason}`);
 
-    const monoculture = wholeResult.headline_test?.monoculture;
-
-    if (criticalCount > 0 || monoculture) {
-      const reason = monoculture
-        ? `TEMPLATE_MONOCULTURE — ${wholeResult.headline_test.percent}% headline-dominated beats`
-        : `${criticalCount} CRITICAL failure(s)`;
-      console.log(`\n  VERDICT: REJECTED — ${reason} require re-render.`);
+    if (pipelineVerdict === "REJECTED") {
       if (fixMode) {
         console.log(`  Corrections written to report. Pipeline should apply and re-render.`);
       }
       process.exit(1);
-    } else if (highCount > Math.floor(beatTimes.length * 0.3)) {
-      console.log(`\n  VERDICT: NEEDS IMPROVEMENT — ${highCount} HIGH issues across ${beatTimes.length} frames.`);
+    } else if (pipelineVerdict === "NEEDS_IMPROVEMENT") {
       if (!fixMode) process.exit(1);
-    } else if (wholeResult.status === "FAIL" && (wholeResult.severity === "CRITICAL" || wholeResult.severity === "HIGH")) {
-      console.log(`\n  VERDICT: NEEDS IMPROVEMENT — whole-video review flagged ${wholeResult.severity} issues.`);
-      if (!fixMode) process.exit(1);
-    } else {
-      console.log(`\n  VERDICT: APPROVED — video meets Visual Bible standards.`);
     }
   } finally {
     rmSync(work, { recursive: true, force: true });
