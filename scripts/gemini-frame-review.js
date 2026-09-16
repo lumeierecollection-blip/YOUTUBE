@@ -91,15 +91,23 @@ function getVideoDuration(video) {
 }
 
 function computeBeatTimes(srtCues, duration) {
+  // Sample each beat at its SETTLED midpoint, not its start. The renderer
+  // crossfades between beats over ~12 frames (0.4s) at every boundary
+  // (DirectedScene.transitionOpacity), and previously this sampled at
+  // cue.start + 0.1s — frame 3, squarely inside that crossfade — so QA
+  // was grading double-exposed transition frames (two beats' visuals
+  // overlaid) instead of the composition each beat actually presents.
+  // That inflated both "headline/monoculture" and overlap readings.
+  // Cue midpoint is past the entrance fade and before the exit fade.
   const times = [];
-  const interval = Math.max(1, duration / 12);
-  for (let t = 0.5; t < duration - 0.3; t += interval) {
-    times.push(t);
-  }
-  for (const cue of srtCues) {
-    if (!times.some((t) => Math.abs(t - cue.start) < 0.5)) {
-      times.push(cue.start + 0.1);
+  if (srtCues.length) {
+    for (const cue of srtCues) {
+      const mid = (cue.start + Math.min(cue.end, duration)) / 2;
+      times.push(Math.max(0.5, Math.min(duration - 0.3, mid)));
     }
+  } else {
+    const interval = Math.max(1, duration / 12);
+    for (let t = 0.7; t < duration - 0.3; t += interval) times.push(t);
   }
   times.sort((a, b) => a - b);
   const unique = [times[0]];

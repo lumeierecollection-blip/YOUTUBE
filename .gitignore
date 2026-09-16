@@ -24,6 +24,13 @@ data/research/**/topic-log.json
 .env.local
 config/creds/
 youtubetokens.txt
+# Local plaintext OAuth client-id/secret scratch file — must NEVER be
+# tracked. Untracked and absent from history as of this rule; ignored so a
+# broad `git add` can't sweep it in. Real credentials belong only in GitHub
+# Actions secrets (CHANNEL_NN_CLIENT_ID / _CLIENT_SECRET / _REFRESH_TOKEN),
+# materialized to config/creds/ at run time (also ignored, above).
+Oauth.txt
+oauth.txt
 src/skills/remotion-render/vo.mp3
 src/skills/remotion-render/verify-out/
 src/skills/remotion-render/out/

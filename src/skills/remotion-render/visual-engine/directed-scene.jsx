@@ -812,13 +812,6 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
   // Number size fitted to column width, capped below the column height
   const magSz = fitFontSize(magText, colW * 0.88, Math.min(96, fillH * 0.55), 28);
 
-  if (beat.__debug) {
-    console.log("[DBG GrowthScene]", JSON.stringify({
-      p: +p.toFixed(4), growP: +growP.toFixed(4), fillH: +fillH.toFixed(1),
-      colTop: +colTop.toFixed(1), magText, subText, accent: ed.accent,
-    }));
-  }
-
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
       style={{ position: "absolute", left: S.left, top: S.top }}>
@@ -1459,51 +1452,27 @@ export function DirectedScene({ plan }) {
   const colors = paletteRoles(plan.palette);
   const ed = editorialColors(colors, plan.palette);
   const { beat, p, local, prev, beatIndex } = beatAt(plan, frame);
-  if (plan.debug) beat.__debug = true; // threaded down to scene renderers, see e.g. GrowthScene
   const scene = beat.scene || {};
   const isTypographyOnly = scene.mechanism === "TYPOGRAPHY";
   const tOpacity = transitionOpacity(beat, local, beatIndex);
 
   const prevScene = prev?.scene || {};
+  // Brief crossfade echo only: the outgoing beat lingers for the ~12-frame
+  // transition and is gone once the incoming beat settles. This is the
+  // ONLY cross-beat layer. A previous version also re-rendered the whole
+  // prior scene at 0.22 opacity for the ENTIRE duration of any beat with
+  // carries_forward set — two full compositions (both headlines included)
+  // stacked for seconds at a time. Real QA frames showed the result as
+  // muddy double-exposed text (e.g. a prior beat's headline printed across
+  // the current beat's chart), which both hurt legibility and inflated the
+  // whole-video reviewer's "headline monoculture" reading. carries_forward
+  // is honored through the crossfade continuity, not a persistent overlay.
   const showPrevEcho = prev && local < TRANSITION_FRAMES && beatIndex > 0;
   const prevEchoOpacity = showPrevEcho ? clamp01(1 - local / TRANSITION_FRAMES) * 0.4 : 0;
 
-  // carries_forward: when the current beat explicitly inherits a visual object
-  // from the prior beat, that object persists at reduced opacity throughout.
-  // This differs from the transition echo (which is always brief).
-  const carriesForward = beat.carries_forward;
-  const showPersistent = carriesForward && prev && !showPrevEcho && beatIndex > 0;
-  const persistOpacity = showPersistent ? 0.22 : 0;
-
-  // DEBUG_RENDER diagnostic — plan.debug is an explicit inputProp, never
-  // process.env (this file is bundled into the browser; process.env is not
-  // defined there). Zero cost/behavior change when plan.debug is unset.
-  if (plan.debug) {
-    console.log("[DBG beat]", JSON.stringify({
-      frame, beatIndex, mechanism: scene.mechanism || "TYPOGRAPHY",
-      local, duration_frames: beat.duration_frames,
-      p: +p.toFixed(4), tOpacity: +tOpacity.toFixed(4),
-      bg: ed.bg, accent: ed.accent, text: ed.text,
-      showPrevEcho, showPersistent,
-    }));
-  }
-
   return (
     <AbsoluteFill style={{ backgroundColor: ed.bg }}>
-      {/* Persistent carry-forward: prior beat's visual lingers at low opacity */}
-      {showPersistent && (
-        <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: persistOpacity, pointerEvents: "none" }}>
-          {prevScene.mechanism === "TYPOGRAPHY" ? (
-            <TypographyScene beat={prev} p={1} local={prev.duration_frames}
-              ed={ed} font={plan.fonts.primary} scene={prevScene} />
-          ) : (
-            <MechanismScene beat={prev} p={1} local={prev.duration_frames}
-              ed={ed} font={plan.fonts.primary} scene={prevScene} />
-          )}
-        </div>
-      )}
-
-      {/* Previous beat echo — fading out during transition */}
+      {/* Previous beat echo — fading out during the transition only */}
       {showPrevEcho && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: prevEchoOpacity }}>
           {prevScene.mechanism === "TYPOGRAPHY" ? (

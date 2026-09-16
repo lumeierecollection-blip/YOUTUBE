@@ -113,9 +113,17 @@ mkdirSync(outDir, { recursive: true });
 
 const n = Math.max(1, Math.min(24, args.frames));
 const frames = [];
+// Sample within an inset window, never at t=0 or the final frame. The
+// composition fades in over its first ~3 frames and the last beat can be
+// mid-exit at the tail, so the extreme endpoints are guaranteed
+// low-opacity and would false-trigger the frameEmptiness pixel audit on
+// otherwise-fine videos. 0.4s ≈ past the 12-frame crossfade at 30fps.
+const inset = Math.min(0.4, meta.durSec * 0.05);
+const lo = inset;
+const hi = Math.max(lo, meta.durSec - inset);
 for (let i = 0; i < n; i++) {
-  const rawT = n === 1 ? 0 : (meta.durSec * i) / (n - 1);
-  const t = Math.max(0, Math.min(rawT, meta.durSec - 0.1));
+  const rawT = n === 1 ? (lo + hi) / 2 : lo + ((hi - lo) * i) / (n - 1);
+  const t = Math.max(0, Math.min(rawT, meta.durSec - 0.05));
   const name = `frame-${String(i).padStart(2, '0')}.png`;
   const path = join(outDir, name);
   const ok = extractFrame(ffmpeg, video, path, t);
