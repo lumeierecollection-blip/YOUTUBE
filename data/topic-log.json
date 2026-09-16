@@ -1718,9 +1718,14 @@
           "topic": "South Korea Bets $1 Billion on Physical AI for Factories",
           "slug": "south-korea-1-billion-physical-ai-factories",
           "reserved_at": "2026-09-16T22:48:26.265Z"
+        },
+        {
+          "topic": "How CUEBUS Linear-Motor Warehouse and Humanoids Automate Factory Logistics",
+          "slug": "cuebus-linear-motor-warehouse-humanoid-factory-logistics",
+          "reserved_at": "2026-09-16T23:16:53.667Z"
         }
       ],
-      "last_generated": "2026-09-16T22:48:26.265Z"
+      "last_generated": "2026-09-16T23:16:53.667Z"
     },
     "49": {
       "channel_name": "Wander Budget",
