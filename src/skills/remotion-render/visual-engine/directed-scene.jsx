@@ -62,23 +62,40 @@ function editorialColors(colors, rawPalette) {
     const [r, g, b] = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
     return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   };
+  // TRUE WCAG 2.1 relative-luminance contrast — the SAME formula the render
+  // gate (scripts/frame-audit.js, COL-23) measures with. The previous
+  // simplified (0.299R+.587G+.114B)/255 ratio disagreed with WCAG by enough
+  // that a "subdued" it rated >=4.5 measured only ~4.1 WCAG at the gate, so
+  // de-emphasized labels drawn in ed.subdued failed frame-audit on some
+  // channels (ch2: glyph rgb(116,116,137), 4.10:1). Selecting subdued with
+  // this formula and a safety margin keeps ed.subdued genuinely legible.
+  const chan = (c) => (c / 255 <= 0.03928 ? c / 255 / 12.92 : Math.pow((c / 255 + 0.055) / 1.055, 2.4));
+  const relLum = (h) => {
+    const [r, g, b] = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+    return 0.2126 * chan(r) + 0.7152 * chan(g) + 0.0722 * chan(b);
+  };
   const contrastRatio = (a, b) => {
-    const la = lum(a) + 0.05, lb = lum(b) + 0.05;
-    return la > lb ? la / lb : lb / la;
+    const [hi, lo] = [relLum(a), relLum(b)].sort((p, q) => q - p);
+    return (hi + 0.05) / (lo + 0.05);
   };
   const all = [...rawPalette.primary, ...rawPalette.secondary];
   const sorted = [...all].sort((a, b) => lum(a) - lum(b));
   const bgColor = sorted[0];
-  const subdued = all.find((c) => {
-    return contrastRatio(c, bgColor) >= 4.5 && lum(c) < 0.7 && c !== colors.accent;
-  }) || sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.6))];
-  const safeSubdued = contrastRatio(subdued, bgColor) >= 4.5
-    ? subdued : (all.find((c) => contrastRatio(c, bgColor) >= 4.5) || sorted[sorted.length - 1]);
+  const brightest = sorted[sorted.length - 1];
+  // Margin over the 4.5 AA floor absorbs anti-aliasing (thin-glyph cores
+  // measure a touch below the flat colour). Prefer the DIMMEST palette
+  // colour that still clears the margin so subdued stays de-emphasized;
+  // if nothing does, fall back to the brightest colour (always legible).
+  const SUBDUED_MARGIN = 5.5;
+  const subduedCandidates = all
+    .filter((c) => c !== colors.accent && contrastRatio(c, bgColor) >= SUBDUED_MARGIN)
+    .sort((a, b) => lum(a) - lum(b));
+  const safeSubdued = subduedCandidates[0] || brightest;
   return {
     bg: bgColor,
     depth: sorted[1] || sorted[0],
-    surface: sorted[sorted.length - 1],
-    text: sorted[sorted.length - 1],
+    surface: brightest,
+    text: brightest,
     textDark: sorted[0],
     accent: colors.accent,
     subdued: safeSubdued,
