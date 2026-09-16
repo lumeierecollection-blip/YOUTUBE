@@ -728,9 +728,14 @@
           "topic": "India and Pakistan Warships Collide in the Arabian Sea",
           "slug": "india-pakistan-arabian-sea-warship-collision",
           "reserved_at": "2026-09-16T18:38:53.478Z"
+        },
+        {
+          "topic": "India Rejects Pakistan-China Boundary Joint Commission",
+          "slug": "india-rejects-pakistan-china-boundary-commission",
+          "reserved_at": "2026-09-16T21:37:22.030Z"
         }
       ],
-      "last_generated": "2026-09-16T18:38:53.478Z"
+      "last_generated": "2026-09-16T21:37:22.030Z"
     },
     "10": {
       "channel_name": "Double Cross",
