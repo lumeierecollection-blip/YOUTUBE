@@ -109,19 +109,27 @@ function computeBeatTimes(srtCues, duration) {
   return unique.slice(0, 20);
 }
 
-function callGemini(apiKey, messages, maxTokens = 1200) {
+async function callGemini(apiKey, messages, maxTokens = 1200) {
   const base = "https://generativelanguage.googleapis.com/v1beta/openai";
   const model = "gemini-3.5-flash-lite";
   const body = JSON.stringify({ model, max_tokens: maxTokens, temperature: 0, messages });
   try {
-    const res = execFileSync("curl", [
-      "-sS", "--max-time", "90",
-      "-H", "Content-Type: application/json",
-      "-H", `Authorization: Bearer ${apiKey}`,
-      "-d", "@-",
-      `${base}/chat/completions`,
-    ], { input: body, encoding: "utf-8" });
-    const raw = JSON.parse(res).choices[0].message.content.trim()
+    // fetch(), not execFileSync curl — a synchronous child process blocks
+    // the whole event loop for the request's duration, which made
+    // scene-by-scene review structurally impossible to overlap even when
+    // called from concurrent workers. fetch() lets the reviewWorker pool
+    // above actually run requests in parallel.
+    const res = await fetch(`${base}/chat/completions`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+      body,
+      signal: AbortSignal.timeout(90000),
+    });
+    const json = await res.json();
+    if (!res.ok || !json.choices?.[0]?.message) {
+      return { error: `API call failed: ${res.status} ${JSON.stringify(json).slice(0, 300)}` };
+    }
+    const raw = json.choices[0].message.content.trim()
       .replace(/^```json\s*/, "").replace(/^```\s*/, "").replace(/\s*```$/, "").trim();
     return JSON.parse(raw);
   } catch (e) {
@@ -147,7 +155,7 @@ async function reviewFrame(framePath, voiceoverText, frameIndex, totalFrames, ti
       { type: "image_url", image_url: { url: `data:image/png;base64,${imageData}` } },
     ],
   }];
-  const result = callGemini(apiKey, messages);
+  const result = await callGemini(apiKey, messages);
   if (!result.error) {
     result.frame_index = frameIndex;
     result.time_seconds = time;
@@ -257,17 +265,44 @@ async function main() {
 
   try {
     // ── PHASE 1: Scene-level review ──
+    // Frame extraction (local ffmpeg, cheap) stays sequential; the Gemini
+    // calls (network round-trips, ~2-5s each) used to run one at a time in
+    // this same loop — up to 20 beats meant up to 20 serial round-trips
+    // (~40-100s) for scene review alone, every correction-loop attempt.
+    // callGemini now uses fetch() instead of a blocking execFileSync curl,
+    // so these can actually overlap; SCENE_REVIEW_CONCURRENCY caps how many
+    // run at once (conservative default — this hits the same Gemini API
+    // key/quota as the whole-video review and the visual-plan call).
     console.log("\n═══ PHASE 1: SCENE-BY-SCENE REVIEW ═══\n");
+    const voTexts = [];
     for (let i = 0; i < beatTimes.length; i++) {
       const t = beatTimes[i];
       const framePath = join(work, `beat-${String(i).padStart(2, "0")}.png`);
       extractFrameAtTime(video, t, framePath);
       framePaths.push(framePath);
+      voTexts.push(srtCues.length ? getVoiceoverAtTime(srtCues, t) : "(no SRT available)");
+    }
 
-      const voText = srtCues.length ? getVoiceoverAtTime(srtCues, t) : "(no SRT available)";
+    const SCENE_REVIEW_CONCURRENCY = 4;
+    const sceneResultsByIndex = new Array(beatTimes.length);
+    let nextIndex = 0;
+    async function reviewWorker() {
+      while (nextIndex < beatTimes.length) {
+        const i = nextIndex++;
+        sceneResultsByIndex[i] = await reviewFrame(
+          framePaths[i], voTexts[i], i, beatTimes.length, beatTimes[i], apiKey, bible
+        );
+      }
+    }
+    await Promise.all(
+      Array.from({ length: Math.min(SCENE_REVIEW_CONCURRENCY, beatTimes.length) }, reviewWorker)
+    );
+
+    for (let i = 0; i < beatTimes.length; i++) {
+      const t = beatTimes[i];
+      const voText = voTexts[i];
+      const result = sceneResultsByIndex[i];
       console.log(`  [${i + 1}/${beatTimes.length}] t=${t.toFixed(1)}s — VO: "${voText.slice(0, 60)}..."`);
-
-      const result = await reviewFrame(framePath, voText, i, beatTimes.length, t, apiKey, bible);
       sceneResults.push(result);
 
       if (result.error) {

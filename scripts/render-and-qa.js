@@ -20,10 +20,12 @@ import { spawn } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync } from "node:fs";
 import { join, dirname, basename, extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+import { bundle } from "@remotion/bundler";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const RENDER_JS = join(ROOT, "src", "skills", "remotion-render", "render.js");
+const REMOTION_ROOT_JSX = join(ROOT, "src", "skills", "remotion-render", "Root.jsx");
 const VIDEO_REVIEW_JS = join(__dirname, "video-review.js");
 const FRAME_AUDIT_JS = join(__dirname, "frame-audit.js");
 const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
@@ -336,6 +338,22 @@ async function main() {
     }
     console.log("No render.js processes were spawned.");
     process.exit(0);
+  }
+
+  // render.js already supports a pre-built bundle via REMOTION_SERVE_URL
+  // (it just never got one) — every renderOne() call spawned render.js as
+  // a fresh child process with that env var unset, so it re-ran
+  // @remotion/bundler's bundle() + selectComposition() from scratch on
+  // every single render (~14s combined, observed in production logs).
+  // The bundle is identical across every video and every correction-loop
+  // attempt in this process — only the plan/inputProps differ — so build
+  // it once here and let every child inherit it via process.env (spawn()
+  // inherits the parent env by default).
+  if (work.length && !process.env.REMOTION_SERVE_URL) {
+    const bundleStart = Date.now();
+    console.log("[render-and-qa] pre-bundling Remotion composition once for this run...");
+    process.env.REMOTION_SERVE_URL = await bundle({ entryPoint: REMOTION_ROOT_JSX, onProgress: () => {} });
+    console.log(`[render-and-qa] pre-bundle done: ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
   }
 
   let rendered = 0;
