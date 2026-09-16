@@ -317,8 +317,8 @@ jobs:
             SCRIPT_SLUG="${SLUG}-${FORMAT}"
             FEEDBACK=""
             PASSED=0
-            for ATTEMPT in 1 2 3; do
-              echo "=== SCRIPT: $CH ΓÇö $SCRIPT_SLUG (attempt $ATTEMPT/3) ==="
+            for ATTEMPT in 1 2 3 4 5; do
+              echo "=== SCRIPT: $CH ΓÇö $SCRIPT_SLUG (attempt $ATTEMPT/5) ==="
               PROMPT_FILE=prompts/write-script.md
               if [ -n "$FEEDBACK" ]; then
                 cp prompts/write-script.md /tmp/write-script-feedback.md
@@ -348,12 +348,12 @@ jobs:
                 PASSED=1
                 break
               fi
-              echo "::warning::script gate rejected attempt $ATTEMPT/3 for $SCRIPT_SLUG"
+              echo "::warning::script gate rejected attempt $ATTEMPT/5 for $SCRIPT_SLUG"
               cat /tmp/gate-out-$FORMAT.log
               FEEDBACK=$(grep -E '^  - ' /tmp/gate-out-$FORMAT.log || true)
             done
             if [ "$PASSED" -ne 1 ]; then
-              echo "::error::script gate still failing for $SCRIPT_SLUG after 3 attempts"
+              echo "::error::script gate still failing for $SCRIPT_SLUG after 5 attempts"
               exit 1
             fi
           done

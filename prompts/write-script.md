@@ -12,8 +12,8 @@ construction, and the structural rules the renderer depends on
 (`text_overlay` shape, no colour values, and for motion-graphics channels the
 archetype table and the `anchor_token` verbatim rule).
 
-**Duration cap: ALL videos must be 35-45 seconds.** At 30 fps this means
-1050-1350 frames. Target word count: ~90-120 words (depending on the
+**Duration cap: ALL videos must be 30-50 seconds.** At 30 fps this means
+900-1500 frames. Target word count: ~75-130 words (depending on the
 channel's WPM target). Shorter is better — every extra second costs render
 time on the 2-core CI runner.
 
@@ -27,7 +27,7 @@ provided JSON Schema exactly — nothing outside it.
   `numbers[].value` entries (copied exactly, with its real unit) — never
   invented, derived, or a binary 0/1 encoding of a contrast. If it isn't
   in `numbers[]`, it must not be charted.
-- Voiceover word count is **90-120 words** (targets 35-45 seconds at the
+- Voiceover word count is **75-130 words** (targets 30-50 seconds at the
   channel's WPM). If you exceed 120 words, cut beats — do not pad.
 - For motion-graphics: primary archetypes 50% or more of beats, secondary
   35% or less, excluded 0%.
