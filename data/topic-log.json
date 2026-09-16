@@ -1688,9 +1688,14 @@
           "topic": "Inside Kawasaki's New 8-Axis Robot for Physical AI Applications",
           "slug": "kawasaki-rl030n-8dof-physical-ai-robot-platform",
           "reserved_at": "2026-09-16T10:32:53.834Z"
+        },
+        {
+          "topic": "South Korea Bets $1 Billion on Physical AI for Factories",
+          "slug": "south-korea-1-billion-physical-ai-factories",
+          "reserved_at": "2026-09-16T22:48:26.265Z"
         }
       ],
-      "last_generated": "2026-09-16T10:32:53.834Z"
+      "last_generated": "2026-09-16T22:48:26.265Z"
     },
     "49": {
       "channel_name": "Wander Budget",
