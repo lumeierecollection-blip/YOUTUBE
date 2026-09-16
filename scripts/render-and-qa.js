@@ -30,7 +30,7 @@ const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
 const VISUAL_QA_JS = join(__dirname, "gate-visual-qa.js");
 const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 const GEMINI_PLAN_JS = join(__dirname, "gemini-visual-plan.js");
-const MAX_CORRECTION_LOOPS = 1;  // perf: skip correction loop (each = full re-render ~25min)
+const MAX_CORRECTION_LOOPS = 2;  // 2 attempts: initial + 1 correction (each ~4min for shorts)
 
 function parseArgs(argv) {
   const flag = (name) => {

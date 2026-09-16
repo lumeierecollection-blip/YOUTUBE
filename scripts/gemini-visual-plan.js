@@ -50,28 +50,49 @@ function parseSrt(srtText) {
   }).filter(Boolean);
 }
 
-function callGemini(apiKey, prompt, maxTokens = 2000) {
+function callGemini(apiKey, prompt, maxTokens = 4000) {
   const base = "https://generativelanguage.googleapis.com/v1beta/openai";
   const model = "gemini-3.5-flash-lite";
   const body = JSON.stringify({
     model, max_tokens: maxTokens, temperature: 0.2,
     messages: [{ role: "user", content: prompt }],
   });
-  try {
-    const res = execFileSync("curl", [
-      "-sS", "--max-time", "120",
-      "-H", "Content-Type: application/json",
-      "-H", `Authorization: Bearer ${apiKey}`,
-      "-d", "@-",
-      `${base}/chat/completions`,
-    ], { input: body, encoding: "utf-8" });
-    const raw = JSON.parse(res).choices[0].message.content.trim()
-      .replace(/^```json\s*/, "").replace(/^```\s*/, "").replace(/\s*```$/, "").trim();
-    return JSON.parse(raw);
-  } catch (e) {
-    console.error(`Gemini API error: ${String(e.message).slice(0, 300)}`);
-    return null;
+
+  // Retry up to 2 times on JSON parse failure (truncated response)
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const res = execFileSync("curl", [
+        "-sS", "--max-time", "120",
+        "-H", "Content-Type: application/json",
+        "-H", `Authorization: Bearer ${apiKey}`,
+        "-d", "@-",
+        `${base}/chat/completions`,
+      ], { input: body, encoding: "utf-8" });
+
+      const parsed = JSON.parse(res);
+      if (!parsed.choices || !parsed.choices[0] || !parsed.choices[0].message) {
+        console.error(`Gemini API: unexpected response structure (attempt ${attempt})`);
+        continue;
+      }
+
+      const raw = parsed.choices[0].message.content.trim()
+        .replace(/^```json\s*/, "").replace(/^```\s*/, "").replace(/\s*```$/, "").trim();
+
+      // Try to parse the JSON
+      const plan = JSON.parse(raw);
+      if (plan && plan.beats) return plan;
+
+      console.error(`Gemini API: response missing "beats" key (attempt ${attempt})`);
+    } catch (e) {
+      const msg = String(e.message || e).slice(0, 300);
+      console.error(`Gemini API error (attempt ${attempt}): ${msg}`);
+      if (attempt < 2) {
+        // Wait before retry
+        execFileSync("sleep", ["2"]);
+      }
+    }
   }
+  return null;
 }
 
 function buildPlanPrompt(sentences, corrections) {
@@ -118,9 +139,12 @@ MECHANISM SELECTION — choose based on what the sentence IS DOING:
 
 CONTINUITY RULES:
 - NEVER repeat the same mechanism more than 2 times in a row.
+- Use AT LEAST 4 different mechanisms across the video. Variety keeps the viewer engaged.
 - Consider what carries forward: if beat 2 shows a money amount, and beat 3 shows it being consumed, mark "carries_forward" so the visual system knows to keep the object.
 - The first beat MUST be a strong hook.
 - The last beat should be a clear CTA or payoff.
+
+CRITICAL: Do NOT default to headline-only typography for every beat. The viewer must SEE the idea, not just READ it. Use mechanisms that create visual representations of the concepts.
 
 SCRIPT SENTENCES:
 ${sentenceList}
