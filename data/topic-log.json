@@ -973,9 +973,14 @@
           "topic": "The $2.5M Karen Kane Accounting Embezzlement Scheme",
           "slug": "karen-kane-accounting-embezzlement-case",
           "reserved_at": "2026-09-15T17:55:34.131Z"
+        },
+        {
+          "topic": "The $200M Praetorian Group Bitcoin Ponzi Scheme Sentencing",
+          "slug": "praetorian-group-bitcoin-ponzi-sentencing",
+          "reserved_at": "2026-09-16T09:03:44.610Z"
         }
       ],
-      "last_generated": "2026-09-15T17:55:34.131Z"
+      "last_generated": "2026-09-16T09:03:44.610Z"
     },
     "27": {
       "channel_name": "Trial Files",
