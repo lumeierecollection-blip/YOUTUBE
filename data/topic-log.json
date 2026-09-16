@@ -412,9 +412,14 @@
           "topic": "Massachusetts Court Blocks Rent Control Ballot Measure",
           "slug": "massachusetts-court-blocks-rent-control-ballot-measure",
           "reserved_at": "2026-09-16T18:27:19.466Z"
+        },
+        {
+          "topic": "When Police Can Search Your Bedroom During a Voluntary Apartment Entry",
+          "slug": "state-v-woods-implied-consent-protective-sweep",
+          "reserved_at": "2026-09-16T22:44:49.035Z"
         }
       ],
-      "last_generated": "2026-09-16T18:27:19.466Z"
+      "last_generated": "2026-09-16T22:44:49.035Z"
     },
     "3": {
       "channel_name": "AI Tested",
