@@ -993,9 +993,14 @@
           "topic": "The $200M Praetorian Group Bitcoin Ponzi Scheme Sentencing",
           "slug": "praetorian-group-bitcoin-ponzi-sentencing",
           "reserved_at": "2026-09-16T09:03:44.610Z"
+        },
+        {
+          "topic": "The $450 Million Linqto Pre-IPO Investment Fraud Scheme",
+          "slug": "linqto-450m-pre-ipo-fraud-scheme",
+          "reserved_at": "2026-09-16T09:47:48.747Z"
         }
       ],
-      "last_generated": "2026-09-16T09:03:44.610Z"
+      "last_generated": "2026-09-16T09:47:48.747Z"
     },
     "27": {
       "channel_name": "Trial Files",
