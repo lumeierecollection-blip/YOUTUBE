@@ -6,6 +6,17 @@
     "uploaded_at": "2026-09-16T09:12:12.601Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-16T10:12:12.601Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-17T10:50:45.970Z"
+  },
+  {
+    "video_id": "0fpN01gJ_YY",
+    "channel_id": "9",
+    "title": "India and Pakistan Naval Vessels Collide in Arabian Sea",
+    "uploaded_at": "2026-09-17T10:50:44.329Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-17T11:50:44.329Z",
     "privacy_status": "private",
     "cancelled": false
   }
