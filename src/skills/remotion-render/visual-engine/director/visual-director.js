@@ -770,7 +770,19 @@ export function direct(cues, options) {
       scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
     }
 
-    const displayText = directive?.visual_headline || text;
+    // NEVER render the raw voiceover sentence as on-screen text: it is a
+    // word-for-word caption (Visual Bible rule 2), it overflows the safe
+    // width (frame-audit margin bleed), and it reads as transcript slop.
+    // Gemini's short visual_headline is the intended text; when a beat has
+    // no directive (plan shorter than the SRT) or no headline, condense the
+    // sentence to a punchy fragment (first clause, capped at 6 words) rather
+    // than dumping the whole sentence.
+    const condense = (s) => {
+      const clause = String(s).split(/[,;:—-]| - /)[0].trim();
+      const words = clause.split(/\s+/).filter(Boolean);
+      return (words.length > 6 ? words.slice(0, 6).join(" ") : clause).replace(/[.!?]+$/, "");
+    };
+    const displayText = directive?.visual_headline || condense(text);
 
     const transition = i === 0
       ? "CUT"

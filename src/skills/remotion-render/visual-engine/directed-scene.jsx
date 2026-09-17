@@ -124,7 +124,7 @@ function layoutWords(words, maxW, maxH) {
   const ems = words.map((w) => emW(w) + 0.28);
   const totalEm = ems.reduce((a, b) => a + b, 0);
   const singleSz = Math.min(MAX_SZ, maxW / totalEm, maxH / LH);
-  if (singleSz >= MIN_SZ) return { rows: [words], size: Math.max(MIN_SZ, singleSz) };
+  if (singleSz >= MIN_SZ) return { rows: [words], size: singleSz };
   const mid = Math.ceil(words.length / 2);
   const row1 = words.slice(0, mid);
   const row2 = words.slice(mid);
@@ -132,12 +132,25 @@ function layoutWords(words, maxW, maxH) {
   const em2 = row2.reduce((s, w) => s + emW(w) + 0.28, 0);
   const widestEm = Math.max(em1, em2);
   const sz2 = Math.min(MAX_SZ, maxW / widestEm, maxH / (LH * 2));
-  return { rows: [row1, row2], size: Math.max(MIN_SZ, sz2) };
+  // FIT WINS OVER THE MIN-SIZE FLOOR. The old Math.max(MIN_SZ, sz2) forced
+  // 28px even when the text needed a smaller size to fit maxW, so an
+  // over-long line rendered past the safe width and bled into the margin
+  // probe (frame-audit). Cap the size at the value that actually fits
+  // (maxW/widestEm) so the line can NEVER exceed maxW; keep an 18px lower
+  // bound for legibility. In practice text reaching here is already a short
+  // condensed headline (see visual-director condense()), so the fit size is
+  // comfortably large — this is the safety net that guarantees no overflow.
+  const size = Math.min(Math.max(18, sz2), maxW / widestEm);
+  return { rows: [row1, row2], size };
 }
 
 function fitFontSize(text, maxW, maxSz, minSz) {
+  // Fit wins over the min-size floor (same rule as layoutWords): the size
+  // is never allowed to exceed the value that fits maxW, so a long label
+  // can't overflow its box. The floor only applies when it still fits.
   const em = emW(text);
-  return Math.max(minSz || MIN_SZ, Math.min(maxSz || MAX_SZ, maxW / Math.max(0.5, em)));
+  const fit = maxW / Math.max(0.5, em);
+  return Math.min(fit, Math.max(minSz || 18, Math.min(maxSz || MAX_SZ, fit)));
 }
 
 function findObj(objects, ...hints) {
