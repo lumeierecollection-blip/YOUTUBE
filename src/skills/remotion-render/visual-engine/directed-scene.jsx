@@ -805,13 +805,6 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
           reading={labelP > 0.2 ? (magnitude.label || "") : ""}
           readingOpacity={labelP}
           ed={ed} font={font} />
-        {labelP > 0.5 && (
-          <text x={SAFE_W / 2} y={SAFE_H * 0.86} textAnchor="middle"
-            fontFamily={`${font}, sans-serif`} fontWeight={600}
-            fontSize={18} fill={ed.text} opacity={labelP * 0.55}>
-            {beat.original_text || beat.text || ""}
-          </text>
-        )}
       </svg>
     );
   }
@@ -898,14 +891,6 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
         </text>
       )}
 
-      {/* Context label below baseline */}
-      {labelP > 0.1 && (
-        <text x={SAFE_W / 2} y={baseline + 44} textAnchor="middle"
-          fontFamily={`${font}, sans-serif`} fontWeight={600}
-          fontSize={18} fill={ed.text} opacity={labelP * 0.6}>
-          {beat.original_text || beat.text || ""}
-        </text>
-      )}
     </svg>
   );
 }
@@ -1068,15 +1053,6 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
         </>
       )}
 
-      {/* Context narration below the bar */}
-      {groundP > 0.5 && (
-        <text x={24} y={barY + barH + 52}
-          fontFamily={`${font}, sans-serif`} fontWeight={500}
-          fontSize={16} fill={ed.text}
-          opacity={ease(clamp01((groundP - 0.5) / 0.4)) * 0.6}>
-          {beat.original_text || ""}
-        </text>
-      )}
     </svg>
   );
 }
