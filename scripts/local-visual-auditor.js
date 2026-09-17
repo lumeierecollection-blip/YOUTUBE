@@ -26,7 +26,7 @@
  * remains scripts/frame-audit.js. Never throws into the pipeline.
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync } from "node:fs";
-import { join, dirname, basename } from "node:path";
+import { join, dirname, basename, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync, spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
@@ -229,7 +229,9 @@ function auditPlanCompliance(plan, manifest) {
  * is GOOD narrative emphasis is a semantic judgment and is deliberately NOT
  * decided here — that stays with Gemini's post-render review.
  */
-function auditTypography(manifest, plan, srtCues) {
+// Exported so scripts/test-scene-text-audit.mjs can drive it with the real
+// manifest from a failing run instead of needing a video to re-render.
+export function auditTypography(manifest, plan, srtCues) {
   if (!manifest) return { ok: false, note: "no render manifest" };
   const beats = manifest.beats || [];
   const pBeats = plan?.beats || [];
@@ -240,7 +242,32 @@ function auditTypography(manifest, plan, srtCues) {
   const phraseCounts = new Map();
 
   beats.forEach((b, i) => {
-    const raw = (b.text || []).join(" ");
+    // ENGINE VOCABULARY — a hard structural failure, checked on every beat
+    // whether or not it draws narrative text. These are strings like
+    // "EXPECTED" / "REALITY" / "CONSUMED" that named the mechanism to the
+    // viewer. render.js tags them role:"banned" in on_screen_text rather
+    // than dropping them, precisely so this check can see them.
+    for (const t of b.banned_text || []) {
+      issues.push({ owner: "PLAN_COMPLIANCE", beat: i, problem: `"${t}" is internal mechanism vocabulary rendered as a section label — must never reach the screen` });
+    }
+
+    // The narrative-typography contract applies to role:"narrative" strings.
+    // `text` (TypographyScene's centred phrase) stays the primary source;
+    // `narrative_text` adds the labels object-first scenes draw, which the
+    // manifest used to omit entirely — the blindness that let a two-headline
+    // STATE_CHANGE beat report "0 violations" in run 35261545735.
+    const narrativeStrings = (b.narrative_text && b.narrative_text.length)
+      ? b.narrative_text
+      : (b.text || []);
+
+    // A beat drawing TWO OR MORE narrative strings is the stacked
+    // headline+subhead structure narrative typography prohibits, no matter
+    // which mechanism drew it.
+    if (narrativeStrings.length > 1) {
+      issues.push({ owner: "PLAN_COMPLIANCE", beat: i, problem: `beat draws ${narrativeStrings.length} narrative lines (${narrativeStrings.map((s) => `"${s}"`).join(", ")}) — one thought per beat, never a headline + supporting line` });
+    }
+
+    const raw = narrativeStrings.join(" ");
     const phrase = toSingleLine(raw);
     if (!phrase) { run = 0; perBeat.push({ index: i, hasText: false }); return; }
     textBeats++; run++; longestTextRun = Math.max(longestTextRun, run);
@@ -253,11 +280,11 @@ function auditTypography(manifest, plan, srtCues) {
     // would have stacked it — that is the mechanical multi-line signal.
     const onelineSize = safeW / Math.max(0.5, estimateEmWidth(phrase));
     const wouldWrap = onelineSize < TYPO_MIN_READABLE_PX;
-    const multiLine = /[\r\n]/.test(raw) || (b.text || []).length > 1;
+    const multiLine = /[\r\n]/.test(raw) || narrativeStrings.length > 1;
     const headline = isHeadlineLike(phrase);
     const transcript = isTranscriptLike(phrase, narration);
 
-    if (multiLine) issues.push({ owner: "PLAN_COMPLIANCE", beat: i, problem: `typography rendered as ${(b.text || []).length} text blocks — must be ONE line` });
+    if (multiLine) issues.push({ owner: "PLAN_COMPLIANCE", beat: i, problem: `typography rendered as ${narrativeStrings.length} text blocks — must be ONE line` });
     if (wouldWrap) issues.push({ owner: "DIRECTION_QUALITY", beat: i, problem: `phrase needs ${onelineSize.toFixed(0)}px to fit one line (below the ${TYPO_MIN_READABLE_PX}px readable floor) — phrase is too long, rewrite shorter` });
     if (wc > TYPO_HARD_MAX_WORDS) issues.push({ owner: "DIRECTION_QUALITY", beat: i, problem: `${wc} words exceeds the ${TYPO_HARD_MAX_WORDS}-word cap — this is narration, not emphasis` });
     else if (wc > TYPO_TARGET_MAX_WORDS) issues.push({ owner: "DIRECTION_QUALITY", beat: i, problem: `${wc} words is above the ${TYPO_TARGET_MAX_WORDS}-word target` });
@@ -464,4 +491,12 @@ async function main() {
   process.exit(0);
 }
 
-main().catch((e) => { console.error("local-visual-auditor error (non-fatal):", e.message); process.exit(0); });
+// Only run the CLI when invoked directly. Without this guard, importing
+// auditTypography() for a test immediately executed main() and exited on
+// the missing --video argument, so the audit rules could not be tested
+// without first producing a real MP4.
+const invokedDirectly = process.argv[1] &&
+  fileURLToPath(import.meta.url) === resolve(process.argv[1]);
+if (invokedDirectly) {
+  main().catch((e) => { console.error("local-visual-auditor error (non-fatal):", e.message); process.exit(0); });
+}

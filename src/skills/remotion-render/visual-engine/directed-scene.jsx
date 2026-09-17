@@ -6,6 +6,10 @@ import {
   fitSingleLine, estimateEmWidth,
   TYPO_SAFE_WIDTH_FRACTION, TYPO_LINE_HEIGHT,
 } from "../visual/narrative-typography.js";
+import {
+  ensureTextContrast, contrastRatio,
+  TEXT_TARGET_CONTRAST, ACCENT_TEXT_TARGET_CONTRAST,
+} from "../visual/scene-text.js";
 
 const CANVAS_W = 1080;
 const CANVAS_H = 1920;
@@ -95,6 +99,26 @@ function editorialColors(colors, rawPalette) {
     .filter((c) => c !== colors.accent && contrastRatio(c, bgColor) >= SUBDUED_MARGIN)
     .sort((a, b) => lum(a) - lum(b));
   const safeSubdued = subduedCandidates[0] || brightest;
+
+  // TEXT ROLES vs FILL ROLES — these are not interchangeable.
+  //
+  // `accent` stays exactly as the channel declared it: it fills bars,
+  // rules and strike-throughs, which are large solid areas whose sampled
+  // colour is their real colour.
+  //
+  // `accentText` is the same hue raised until it clears
+  // ACCENT_TEXT_TARGET_CONTRAST, because a GLYPH's sampled colour is not
+  // its fill colour — anti-aliased edges and yuv420p chroma subsampling
+  // pull it down by up to ~22% (see ANTIALIAS_SAMPLE_RATIO). Run
+  // 35261545735 failed the gate on exactly this: ch2's declared #F5536B is
+  // 5.74:1 flat and PASSES, but the same fill sampled 4.47:1 as a headline
+  // glyph and 5.60:1 as a larger one. Giving glyphs headroom fixes the
+  // render; relaxing the gate would only hide it.
+  const accentText = ensureTextContrast(colors.accent, bgColor, ACCENT_TEXT_TARGET_CONTRAST);
+  // Quiet text (eyebrows, ticks, units) is de-emphasised by COLOUR, never
+  // by alpha — a translucent bright fill is what produced the 2.30:1
+  // rgb(77,77,87) violation. Validated to the same glyph-aware target.
+  const quietText = ensureTextContrast(safeSubdued, bgColor, TEXT_TARGET_CONTRAST);
   return {
     bg: bgColor,
     depth: sorted[1] || sorted[0],
@@ -102,7 +126,9 @@ function editorialColors(colors, rawPalette) {
     text: brightest,
     textDark: sorted[0],
     accent: colors.accent,
-    subdued: safeSubdued,
+    accentText,
+    subdued: quietText,
+    quiet: quietText,
   };
 }
 
@@ -228,7 +254,7 @@ function FuelGauge({ cx, cy, r, fill, label, reading, readingOpacity, ed, font }
       {reading && (
         <text x={cx} y={cy + r * 0.45} textAnchor="middle"
           fontFamily={`${font}, monospace`} fontWeight={900}
-          fontSize={Math.min(72, r * 0.38)} fill={ed.accent}
+          fontSize={Math.min(72, r * 0.38)} fill={ed.accentText}
           fontVariantNumeric="tabular-nums" opacity={readingOpacity ?? 1}>{reading}</text>
       )}
       {label && (
@@ -317,7 +343,7 @@ function StatisticCallout({ x, y, value, label, source, ed, font, highlighted, o
       {label && (
         <text x={x + 18} y={labelY}
           fontFamily={`${font}, sans-serif`} fontWeight={500}
-          fontSize={20} fill={ed.text} opacity={0.55}>{label}</text>
+          fontSize={20} fill={ed.quiet}>{label}</text>
       )}
     </g>
   );
@@ -631,13 +657,19 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
         );
       })}
 
-      {/* REALITY label — below the strips */}
-      {revealP > 0.5 && (
+      {/* Label for what the strips reveal.
+          The `|| "THE REAL PICTURE"` fallback is GONE: an invented headline
+          standing in for missing plan content is fabricated on-screen text,
+          and it is a section label besides. If the plan gave no label, the
+          strips carry the beat unlabelled. Solid ed.quiet — the old
+          constant 0.55 multiplier meant this never reached full opacity at
+          any point in the beat. */}
+      {revealP > 0.5 && beneathObj.label && (
         <text x={24} y={stripsTop + stripCount * (stripH + stripGap) + 36}
           fontFamily={`${font}, sans-serif`} fontWeight={600}
-          fontSize={18} fill={ed.text}
-          opacity={ease(clamp01((revealP - 0.5) / 0.3)) * 0.55}>
-          {beneathObj.label || "THE REAL PICTURE"}
+          fontSize={18} fill={ed.quiet}
+          opacity={ease(clamp01((revealP - 0.5) / 0.3))}>
+          {beneathObj.label}
         </text>
       )}
     </svg>
@@ -738,7 +770,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
         <text x={colBX + colW / 2} y={baseline - colBH - 16}
           textAnchor="middle"
           fontFamily={`${font}, sans-serif`} fontWeight={900}
-          fontSize={szB} fill={ed.accent}
+          fontSize={szB} fill={ed.accentText}
           fontVariantNumeric="tabular-nums" opacity={growP}>
           {labelB}
         </text>
@@ -769,7 +801,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
             <text x={gapCenterX} y={(tallerTop + shorterTop) / 2 + 6}
               textAnchor="middle"
               fontFamily={`${font}, sans-serif`} fontWeight={900}
-              fontSize={36} fill={ed.accent}
+              fontSize={36} fill={ed.accentText}
               fontVariantNumeric="tabular-nums" opacity={diffP}>
               {diffLabel}
             </text>
@@ -893,7 +925,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
       {magText && fillH > 24 && (
         <text x={colX + colW / 2} y={colTop - 14} textAnchor="middle"
           fontFamily={`${font}, sans-serif`} fontWeight={900}
-          fontSize={magSz} fill={ed.accent}
+          fontSize={magSz} fill={ed.accentText}
           fontVariantNumeric="tabular-nums" opacity={growP}>
           {magText}
         </text>
@@ -935,7 +967,7 @@ function BreakdownScene({ beat, p, local, ed, font, scene }) {
           <g opacity={ease(clamp01((breakP - 0.55) / 0.3)) * 0.75}>
             <text x={SAFE_W / 2} y={SAFE_H * 0.52} textAnchor="middle"
               fontFamily={`${font}, sans-serif`} fontWeight={900}
-              fontSize={80} fill={ed.accent} letterSpacing={10}
+              fontSize={80} fill={ed.accentText} letterSpacing={10}
               transform={`rotate(-6, ${SAFE_W / 2}, ${SAFE_H * 0.52})`}>
               BROKEN
             </text>
@@ -1023,7 +1055,7 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
       {/* THE FIGURE — the dominant visual */}
       <text x={24} y={figureBaseY}
         fontFamily={`${font}, sans-serif`} fontWeight={900}
-        fontSize={heroSz} fill={ed.accent}
+        fontSize={heroSz} fill={ed.accentText}
         fontVariantNumeric="tabular-nums"
         opacity={enterP}>
         {label}
@@ -1033,7 +1065,7 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
       {ctxLabel && (
         <text x={24} y={figureBaseY + ctxSz + 4}
           fontFamily={`${font}, sans-serif`} fontWeight={500}
-          fontSize={ctxSz} fill={ed.text} opacity={enterP * 0.6}>
+          fontSize={ctxSz} fill={ed.quiet} opacity={enterP}>
           {ctxLabel}
         </text>
       )}
@@ -1111,16 +1143,13 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
       {/* CAUSE: raw text in upper canvas, no container */}
       <text x={24} y={SAFE_H * 0.08}
         fontFamily={`${font}, sans-serif`} fontWeight={700}
-        fontSize={causeSz} fill={ed.text} opacity={causeP * 0.75}>
+        fontSize={causeSz} fill={ed.quiet} opacity={causeP}>
         {causeLabel.length > 28 ? causeLabel.slice(0, 28) + "…" : causeLabel}
       </text>
 
-      {/* Eyebrow label for cause */}
-      <text x={24} y={SAFE_H * 0.08 - causeSz * 0.18}
-        fontFamily={`${font}, monospace`} fontWeight={500}
-        fontSize={11} fill={ed.subdued} letterSpacing={4}>
-        CAUSE
-      </text>
+      {/* No "CAUSE" eyebrow. The arrow connector below already states the
+          causal relation visually; the word only named the mechanism for
+          the viewer (see scene-text.js ENGINE_VOCABULARY). */}
 
       {/* CONNECTOR: vertical line drawing itself downward */}
       {connectP > 0 && (
@@ -1145,14 +1174,10 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
 
       {/* EFFECT: large, accent colored, rises from lower canvas */}
       <g opacity={effectP} transform={`translate(0, ${(1 - effectP) * 28})`}>
-        <text x={24} y={effectTopY - 14}
-          fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={11} fill={ed.accent} opacity={0.6} letterSpacing={4}>
-          RESULT
-        </text>
+        {/* No "RESULT" eyebrow — same reason as the removed "CAUSE". */}
         <text x={24} y={effectTopY}
           fontFamily={`${font}, sans-serif`} fontWeight={900}
-          fontSize={effectSz} fill={ed.accent}>
+          fontSize={effectSz} fill={ed.accentText}>
           {effectLabel.length > 32 ? effectLabel.slice(0, 32) + "…" : effectLabel}
         </text>
         {/* Accent rule below effect text — grounds it */}
@@ -1188,7 +1213,6 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
   const vesselY = SAFE_H * 0.10;
 
   // Drain: from full at top, draining to (1 - fillRatio) * vesselH remaining
-  const remaining = (1 - fillRatio);  // what's left after consumption
   const drained = fillRatio;          // what's consumed
   // Fill starts at full, drains: currentFill = 1 - drainP * drained (shrinks top-down)
   const currentFillRatio = 1 - drainP * drained;
@@ -1200,13 +1224,10 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
   const labelX = vesselX + vesselW + 40;
   const labelY = SAFE_H * 0.42;
 
-  // Drain speed annotation: "< 1 MONTH"
-  const speedLabel = consumed.context || scene.subject || "";
-
-  // Tick marks on the vessel at 25/50/75/100%
-  const ticks = [0, 0.25, 0.5, 0.75, 1.0].map(t => ({
+  // Unlabelled scale marks at quarters of the vessel. No `pct` field any
+  // more — nothing prints a numeral (see the tick block below).
+  const ticks = [0, 0.25, 0.5, 0.75, 1.0].map((t) => ({
     y: vesselY + vesselH * (1 - t),
-    pct: Math.round(t * 100),
   }));
 
   return (
@@ -1221,17 +1242,23 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
       <rect x={vesselX + 2} y={currentFillY} width={vesselW - 4} height={currentFillH}
         fill={ed.accent} opacity={0.82} />
 
-      {/* Tick marks to the left of the vessel */}
+      {/* Unlabelled scale marks.
+          The numerals are GONE, for two independent reasons.
+          (1) GROUNDING: they were `Math.round(t * 100)%` against a
+              `consumed.final_state.fill` that comes from the visual plan,
+              not from research. Printing 0/25/50/75/100% axis labels and a
+              "% LEFT" readout presents a model-chosen proportion as a
+              measured statistic — the same fabricated-figure violation
+              already removed from SurfaceBeneathScene.
+          (2) GEOMETRY: anchored "end" at x=vesselX-18=6, "100%" extended
+              to roughly x=-24 — off the safe rect and off the frame, which
+              is the edgeBleed row the slop-check flagged. Run 35261545735
+              frame-02 shows the digits clipped, leaving bare "%" marks.
+          The drain still communicates proportion visually, which is this
+          mechanism's actual job; it just no longer asserts a number. */}
       {ticks.map((t, i) => (
-        <g key={i}>
-          <line x1={vesselX - 14} y1={t.y} x2={vesselX - 2} y2={t.y}
-            stroke={ed.text} strokeWidth={1.5} opacity={0.3} />
-          <text x={vesselX - 18} y={t.y + 5} textAnchor="end"
-            fontFamily={`${font}, monospace`} fontWeight={400}
-            fontSize={11} fill={ed.subdued}>
-            {t.pct}%
-          </text>
-        </g>
+        <line key={i} x1={vesselX - 14} y1={t.y} x2={vesselX - 2} y2={t.y}
+          stroke={ed.quiet} strokeWidth={1.5} />
       ))}
 
       {/* Drain level line: horizontal marker showing current fill */}
@@ -1240,37 +1267,28 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
           stroke={ed.accent} strokeWidth={2} opacity={0.6} />
       )}
 
-      {/* Consumed amount: large raw text, right of vessel */}
+      {/* Consumed amount, right of the vessel.
+          The "CONSUMED" eyebrow is GONE: it was a hardcoded engine-
+          vocabulary section label (see scene-text.js ENGINE_VOCABULARY),
+          and the draining vessel beside it already says "consumed".
+          The sub-line is GONE too: it was `consumed.context ||
+          scene.subject`, and scene.subject is a raw topic fragment, which
+          in run 35261545735 printed the meaningless "officers two" under
+          the figure in translucent ed.text. A label that can render a
+          sentence fragment is not a label. */}
       <g opacity={labelP} transform={`translate(0, ${(1 - labelP) * 24})`}>
-        <text x={labelX} y={SAFE_H * 0.20}
-          fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={12} fill={ed.subdued} letterSpacing={4}>
-          CONSUMED
-        </text>
         <text x={labelX} y={SAFE_H * 0.20 + labelSz * LH}
           fontFamily={`${font}, sans-serif`} fontWeight={900}
-          fontSize={labelSz} fill={ed.accent}
+          fontSize={labelSz} fill={ed.accentText}
           fontVariantNumeric="tabular-nums">
           {consumedLabel}
         </text>
-        {speedLabel && (
-          <text x={labelX} y={SAFE_H * 0.20 + labelSz * LH + 28}
-            fontFamily={`${font}, sans-serif`} fontWeight={500}
-            fontSize={16} fill={ed.text} opacity={0.55}>
-            {speedLabel}
-          </text>
-        )}
       </g>
 
-      {/* Remaining label near the bottom of the vessel */}
-      {drainP > 0.7 && (
-        <text x={vesselX + vesselW / 2} y={vesselY + vesselH + 24}
-          textAnchor="middle"
-          fontFamily={`${font}, monospace`} fontWeight={600}
-          fontSize={14} fill={ed.text} opacity={ease(clamp01((drainP - 0.7) / 0.3))}>
-          {`${Math.round(remaining * 100)}% LEFT`}
-        </text>
-      )}
+      {/* The "N% LEFT" readout is deliberately absent — same grounding
+          reason as the scale numerals above. `fillRatio` still drives the
+          drain geometry, which shows the proportion without claiming it
+          was measured. */}
     </svg>
   );
 }
@@ -1297,17 +1315,24 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
 
   const expLabel = expected.label || "";
   const actLabel = actual.label || "";
-  // Before: relatively large but muted — it's being displaced
-  const expSz = fitFontSize(expLabel, SAFE_W - 48, Math.min(72, SAFE_H * 0.22), 24);
-  // After: larger, more prominent — this is the truth
-  const actSz = fitFontSize(actLabel, SAFE_W - 48, Math.min(96, SAFE_H * 0.30), 28);
+  // LABELS, NOT HEADLINES.
+  //
+  // These were 72px/900-weight and 96px/900-weight, which made this
+  // mechanism a two-headline text slide: run 35261545735 frame-01 rendered
+  // "The Full Encounter" over "Final Two Seconds" with three section
+  // labels and NO object at all — typography standing in for a visual,
+  // which is the one thing narrative typography must never do. The
+  // displacement below is now carried by the two state BARS; the strings
+  // label them at a size that reads as annotation, not as the beat.
+  const expSz = fitFontSize(expLabel, SAFE_W - 48, Math.min(40, SAFE_H * 0.085), 22);
+  const actSz = fitFontSize(actLabel, SAFE_W - 48, Math.min(48, SAFE_H * 0.10), 24);
 
   // Before text: upper canvas
   const beforeY = SAFE_H * 0.10;
   const beforeBaseY = beforeY + expSz * LH;
 
-  // Strike-through: sweeps across the "before" text at mid-height
-  const strikeY = beforeY + expSz * LH * 0.5;
+  // Strike-through: sweeps across the expected BAR at its mid-height
+  const strikeY = beforeY + expSz * 1.6 * 0.5;
 
   // Divide line: at mid-canvas
   const divideY = SAFE_H * 0.50;
@@ -1319,16 +1344,17 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
       style={{ position: "absolute", left: S.left, top: S.top }}>
 
-      {/* BEFORE STATE: raw text, upper canvas, muted */}
-      <g opacity={showExpected * (1 - strikeP * 0.35)}>
-        <text x={24} y={beforeY - 14}
-          fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={11} fill={ed.subdued} letterSpacing={4}>
-          EXPECTED
-        </text>
-        <text x={24} y={beforeBaseY}
-          fontFamily={`${font}, sans-serif`} fontWeight={700}
-          fontSize={expSz} fill={ed.text} opacity={showExpected * 0.7}>
+      {/* EXPECTED STATE: a full-width bar — the thing being displaced.
+          Its label is drawn in ed.quiet at FULL opacity. The old version
+          used ed.text at 0.7 inside a 0.65 group = 0.455 effective, which
+          composited to rgb(77,77,87) = 2.30:1 and failed the gate. Alpha
+          here animates the ENTRANCE only and settles at 1. */}
+      <g opacity={showExpected}>
+        <rect x={24} y={beforeY} width={(SAFE_W - 48) * showExpected} height={expSz * 1.6}
+          fill="none" stroke={ed.quiet} strokeWidth={2} />
+        <text x={38} y={beforeY + expSz * 1.6 * 0.5 + expSz * 0.34}
+          fontFamily={`${font}, sans-serif`} fontWeight={600}
+          fontSize={expSz} fill={ed.quiet}>
           {expLabel}
         </text>
       </g>
@@ -1345,34 +1371,23 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
           fill={ed.accent} opacity={divideP * 0.75} />
       )}
 
-      {/* AFTER STATE: rises from below, accent colored, larger */}
+      {/* ACTUAL STATE: a solid accent bar rising from below — this is the
+          displacement made visible, and it is what carries the beat. The
+          label rides on it in accent-validated text. */}
+      {/* Text stays on the PAGE ground, never knocked out of the bar:
+          frame-audit models glyph contrast against the frame's dominant
+          background, so dark knockout text on a bright bar measures as a
+          near-black glyph on a near-black ground and fails a gate it
+          should pass. The bar is a visual element beside the label. */}
       <g opacity={showActual} transform={`translate(0, ${(1 - showActual) * 32})`}>
-        <text x={24} y={afterY}
-          fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={11} fill={ed.accent} opacity={0.55} letterSpacing={4}>
-          REALITY
-        </text>
-        <text x={24} y={afterY + actSz * LH}
-          fontFamily={`${font}, sans-serif`} fontWeight={900}
-          fontSize={actSz} fill={ed.accent}>
+        <rect x={24} y={afterY} width={(SAFE_W - 48) * showActual} height={10}
+          fill={ed.accent} />
+        <text x={24} y={afterY + 10 + actSz * 1.25}
+          fontFamily={`${font}, sans-serif`} fontWeight={800}
+          fontSize={actSz} fill={ed.accentText}>
           {actLabel}
         </text>
-        {/* Accent rule below after text */}
-        <rect x={24} y={afterY + actSz * LH + 12}
-          width={showActual * 56} height={3}
-          fill={ed.accent} opacity={0.55} />
       </g>
-
-      {/* Footer annotation */}
-      {showActual > 0.5 && (
-        <text x={24} y={SAFE_H * 0.97}
-          fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={11} fill={ed.text}
-          opacity={ease(clamp01((showActual - 0.5) / 0.4)) * 0.35}
-          letterSpacing={3}>
-          EXPECTED → ACTUAL
-        </text>
-      )}
     </svg>
   );
 }

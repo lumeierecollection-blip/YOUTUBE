@@ -142,7 +142,41 @@ export function isHeadlineLike(phrase) {
   if (HEADLINE_OPENERS.test(norm) && !hasPredicate(norm)) return true;
   // A multi-word topic-noun phrase with no predicate is a section label.
   if (n >= 2 && TOPIC_NOUNS.test(norm) && !hasPredicate(norm)) return true;
+  // SHOUTED CAPS is a headline register, regardless of grammar.
+  //
+  // Run 35261545735's first attempt planned "SCOTUS SMASHES THE RULE" and
+  // this function passed it, because it HAS a predicate ("smashes") and so
+  // escaped both rules above. Grammar was the wrong test on its own: a
+  // tabloid headline is a well-formed sentence set in caps. Narrative
+  // typography is the narrator's emphasis, and emphasis is carried by
+  // weight and colour, not by shouting.
+  //
+  // Acronyms are the thing to protect. A phrase is only "shouted" when it
+  // is ALL caps across several words; a caps token sitting inside normal
+  // sentence case ("What SCOTUS actually said") is an acronym and fine.
+  if (isShoutedCaps(phrase)) return true;
   return false;
+}
+
+/**
+ * Is the phrase set in all-caps across enough words to read as a headline
+ * rather than as an acronym? Uses the RAW phrase — normaliseForMatch()
+ * lowercases, which destroys the signal.
+ */
+export function isShoutedCaps(phrase) {
+  const raw = toSingleLine(phrase);
+  if (!raw) return false;
+  const tokens = words(raw)
+    .map((w) => w.replace(/[^\p{L}\p{N}]/gu, ""))
+    .filter((w) => w.length > 0);
+  if (tokens.length < 3) return false;          // "STOP." / "NOT GUILTY" are emphasis
+  const alpha = tokens.filter((w) => /\p{L}/u.test(w));
+  if (alpha.length < 3) return false;
+  // Single letters and 2-3 char tokens are too weak a signal on their own.
+  const meaningful = alpha.filter((w) => w.length >= 3);
+  if (meaningful.length < 3) return false;
+  const upper = meaningful.filter((w) => w === w.toUpperCase());
+  return upper.length === meaningful.length;
 }
 
 /**

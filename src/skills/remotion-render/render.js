@@ -42,6 +42,7 @@ import { narrationSections } from "../../utils/script-narration.js";
 // Visual Director — semantic treatment selection pipeline.
 // Replaces the old TYPE → VISUAL alternation with meaning-driven treatments.
 import { direct } from "./visual-engine/director/visual-director.js";
+import { sceneTextInventory } from "./visual/scene-text.js";
 
 
 
@@ -731,13 +732,27 @@ async function main() {
           .map((o) => o.label).filter((l) => l && String(l).trim());
         const camera = (scene.shots || []).map((s) => s.camera).filter(Boolean);
         const mechanism = b.treatment || scene.mechanism || null;
-        // `text` records the NARRATIVE TYPOGRAPHY actually drawn on screen —
-        // only beats that route to TypographyScene. Object-first mechanisms
-        // keep beat.text available for internal label logic but do NOT render
-        // it as a centred phrase, so counting it as on-screen text would make
-        // the auditor read every beat as a text beat and mis-measure the
-        // typography frequency / monoculture rules (Bible TYP-10).
+        // `renders_typography` means "this beat routes to TypographyScene and
+        // is subject to the full one-line narrative contract". It does NOT
+        // mean "this beat is the only kind that draws text".
+        //
+        // That conflation was a real QA hole. The previous version recorded
+        // `text: []` for every object-first mechanism on the theory that only
+        // TypographyScene draws strings — but those scenes draw plenty.
+        // Run 35261545735 reported 5 of 6 beats text-free while STATE_CHANGE
+        // was rendering two headline-weight lines plus three section labels
+        // and VISIBLE_CONSUMPTION a label, a figure and a sub-line. The local
+        // auditor's typography checks therefore skipped exactly the beats
+        // that were violating them and reported "0 violations".
+        //
+        // `on_screen_text` now carries what each scene ACTUALLY draws, taken
+        // from the same TEXT_SURFACES declaration the renderer reads, so the
+        // two cannot drift. Roles let the auditor apply the right rule:
+        // "narrative" strings owe the phrase contract, "value" strings are
+        // figures and are exempt from the word budget, "banned" strings are
+        // engine vocabulary that must never have reached the screen.
         const rendersTypography = mechanism === "TYPOGRAPHY" || !OBJECT_FIRST_MECHANISMS.has(mechanism);
+        const onScreenText = sceneTextInventory(mechanism, scene, b.text);
         return {
           index: i,
           beat_id: b.beat_id,
@@ -748,6 +763,10 @@ async function main() {
           mechanism,
           renders_typography: rendersTypography,
           text: rendersTypography ? [b.text].filter((t) => t && String(t).trim()) : [],
+          on_screen_text: onScreenText,
+          draws_text: onScreenText.length > 0,
+          narrative_text: onScreenText.filter((t) => t.role === "narrative").map((t) => t.text),
+          banned_text: onScreenText.filter((t) => t.role === "banned").map((t) => t.text),
           objects: objectLabels,
           camera: [...new Set(camera)],
           carries_forward: b.carries_forward || null,
