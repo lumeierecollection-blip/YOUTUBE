@@ -1143,9 +1143,14 @@
           "topic": "The $47 Million Capital Funding ASAP Affinity Fraud Scheme",
           "slug": "capital-funding-asap-47m-affinity-fraud",
           "reserved_at": "2026-09-17T00:00:07.309Z"
+        },
+        {
+          "topic": "The $37 Million Lorven Funds Temple Ponzi Scheme",
+          "slug": "lorven-funds-37m-temple-ponzi-scheme",
+          "reserved_at": "2026-09-17T00:21:31.327Z"
         }
       ],
-      "last_generated": "2026-09-17T00:00:07.309Z"
+      "last_generated": "2026-09-17T00:21:31.327Z"
     },
     "27": {
       "channel_name": "Trial Files",
