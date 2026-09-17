@@ -10,19 +10,27 @@
  */
 
 import { readFileSync, existsSync } from "fs";
-import { join, dirname } from "path";
+import { join, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 
-const WPM_TARGET = { "cinematic-documentary": 135, "motion-graphics": 155, minimal: 165 };
+// Exported so scripts/test-word-budget.mjs can recompute the word range the
+// write-script prompt must advertise. The prompt used to state a flat
+// "75-130 words" for every channel, which is BELOW this gate's floor for
+// motion-graphics (78) and minimal (83) and ABOVE its ceiling for
+// cinematic-documentary (112) — so a model that obeyed the prompt failed
+// SCR-16 deterministically. Channels 1 and 48 failed this way in runs
+// 35211514030 and 35266860427 (62, 64, 57 words). If these numbers change,
+// that test fails and the prompt has to be updated with them.
+export const WPM_TARGET = { "cinematic-documentary": 135, "motion-graphics": 155, minimal: 165 };
 // Midpoint of render.js's clamp ranges, used only to sanity-check pacing —
 // actual duration is decided later by the real voiceover audio length.
 const FORMAT_MIDPOINT_MINUTES = { shorts: 40 / 60, longform: (2 + 12) / 2 };
 // Duration cap: all videos target 30-50 seconds (wide window - model oscillates)
 // Render.js clamps final duration to the actual voiceover length anyway.
-const DURATION_RANGE_SECONDS = { shorts: { min: 30, max: 50 }, longform: { min: 30, max: 50 } };
+export const DURATION_RANGE_SECONDS = { shorts: { min: 30, max: 50 }, longform: { min: 30, max: 50 } };
 const HEX_COLOR = /#[0-9a-fA-F]{3}\b|#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{8}\b/g;
 
 function loadChannel(channelId) {
@@ -226,4 +234,10 @@ function main() {
   console.log(`Script gate PASSED for ${channelId}/${scriptSlug}${majors.length ? ` (${majors.length} warning(s))` : ""}.`);
 }
 
-main();
+// Only run the CLI when invoked directly. Importing this file for its
+// exported gate constants (scripts/test-word-budget.mjs) previously executed
+// main() and exited on the missing arguments — the same import side-effect
+// that made local-visual-auditor.js untestable.
+const invokedDirectly = process.argv[1] &&
+  fileURLToPath(import.meta.url) === resolve(process.argv[1]);
+if (invokedDirectly) main();

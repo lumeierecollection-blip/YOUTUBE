@@ -13,9 +13,17 @@ construction, and the structural rules the renderer depends on
 archetype table and the `anchor_token` verbatim rule).
 
 **Duration cap: ALL videos must be 30-50 seconds.** At 30 fps this means
-900-1500 frames. Target word count: ~75-130 words (depending on the
-channel's WPM target). Shorter is better — every extra second costs render
-time on the 2-core CI runner.
+900-1500 frames.
+
+**Voiceover word count: 83-112 words. This is a hard gate, not a guideline.**
+The gate converts your word count to a duration using the channel's
+words-per-minute target and REJECTS the script if it falls outside 30-50
+seconds. 83-112 is the range that is safe for every channel's WPM, so
+staying inside it always passes; going under 83 fails just as hard as going
+over. Aim for the middle (~95 words) rather than either edge.
+
+Do NOT write short to save render time. A script under 83 words is rejected
+and the whole channel produces nothing that day.
 
 Write the full script now: `channel_id`, `topic_slug`, `format`, `hook`,
 `sections[]`, and `sources_used`. Return `structured_output` matching the
@@ -27,8 +35,10 @@ provided JSON Schema exactly — nothing outside it.
   `numbers[].value` entries (copied exactly, with its real unit) — never
   invented, derived, or a binary 0/1 encoding of a contrast. If it isn't
   in `numbers[]`, it must not be charted.
-- Voiceover word count is **75-130 words** (targets 30-50 seconds at the
-  channel's WPM). If you exceed 120 words, cut beats — do not pad.
+- Voiceover word count is **83-112 words** — count it. Under 83 or over 112
+  is a BLOCKER (SCR-16) and the script is rejected. If you are over, cut
+  beats; if you are under, the hook and the consequence both need real
+  sentences — do not pad with filler, but do not ship 60 words either.
 - For motion-graphics: primary archetypes 50% or more of beats, secondary
   35% or less, excluded 0%.
 - `sources_used` has 2 or more URLs that actually appear in the research's
