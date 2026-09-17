@@ -1586,9 +1586,14 @@
           "topic": "Intergenerational Workplace Communication: The 2026 Skill Gap",
           "slug": "intergenerational-workplace-communication-2026",
           "reserved_at": "2026-09-17T00:22:46.628Z"
+        },
+        {
+          "topic": "Why Time Management Fails in the 2026 Permanent Sprint",
+          "slug": "time-management-fails-2026-permanent-sprint",
+          "reserved_at": "2026-09-17T00:45:48.314Z"
         }
       ],
-      "last_generated": "2026-09-17T00:22:46.628Z"
+      "last_generated": "2026-09-17T00:45:48.314Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
