@@ -1,10 +1,22 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame, Easing, staticFile } from "remotion";
-// Audio comes from @remotion/media, matching motion-graphics.jsx. `staged`
-// from render.js is a BOOLEAN flag, not a path — stageAudio() copies the
-// voiceover to ./vo.mp3 and audio.js static-imports it, so currentAudio is
-// the actual bundled source.
-import { Audio } from "@remotion/media";
+// Audio comes from remotion CORE, not @remotion/media.
+//
+// The first version of this imported { Audio } from "@remotion/media",
+// copying motion-graphics.jsx. Run 35270296837 then failed every render
+// with `TypeError: Cannot read properties of undefined (reading
+// '_currentValue')` — a React context read against an undefined context,
+// which is what happens when a satellite package resolves its own copy of
+// remotion and looks for a context the mounted provider never created.
+// motion-graphics.jsx gets away with it because DirectedShorts is the
+// default engine and that path is effectively unexercised.
+//
+// remotion's core Audio is version-locked with the provider that mounts the
+// context, so it cannot desynchronise.
+//
+// `staged` from render.js is a BOOLEAN flag, not a path: stageAudio()
+// copies the voiceover to ./vo.mp3 and audio.js static-imports it, so
+// currentAudio is the actual bundled source.
+import { AbsoluteFill, useCurrentFrame, Easing, staticFile, Audio } from "remotion";
 import { currentAudio } from "../audio.js";
 import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
