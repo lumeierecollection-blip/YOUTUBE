@@ -17,6 +17,17 @@
     "uploaded_at": "2026-09-16T09:59:26.511Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-16T10:59:26.511Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-17T10:59:20.422Z"
+  },
+  {
+    "video_id": "9hlGZOF1S_Y",
+    "channel_id": "44",
+    "title": "Cross-Functional Collaboration: The 2026 Skill Defending…",
+    "uploaded_at": "2026-09-17T10:59:18.604Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-17T11:59:18.604Z",
     "privacy_status": "private",
     "cancelled": false
   }
