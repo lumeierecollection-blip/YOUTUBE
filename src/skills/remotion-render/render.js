@@ -708,6 +708,13 @@ async function main() {
   // path carries per-beat structure; other compositions skip it.
   if (componentId === "DirectedShorts" && Array.isArray(sentencePlan?.beats)) {
     const fps = 30;
+    // Mechanisms that render their own object-first scene (directed-scene.jsx
+    // MechanismScene switch). Anything else falls through to TypographyScene.
+    const OBJECT_FIRST_MECHANISMS = new Set([
+      "SURFACE_AND_BENEATH", "PROPORTIONAL_OBJECTS", "PHYSICAL_GROWTH",
+      "STRUCTURAL_BREAKDOWN", "EVIDENCE_FIGURE", "ACTION_CONSEQUENCE",
+      "VISIBLE_CONSUMPTION", "STATE_CHANGE",
+    ]);
     const manifest = {
       video: basename(outputPath),
       format,
@@ -723,6 +730,14 @@ async function main() {
         const objectLabels = (scene.objects || [])
           .map((o) => o.label).filter((l) => l && String(l).trim());
         const camera = (scene.shots || []).map((s) => s.camera).filter(Boolean);
+        const mechanism = b.treatment || scene.mechanism || null;
+        // `text` records the NARRATIVE TYPOGRAPHY actually drawn on screen —
+        // only beats that route to TypographyScene. Object-first mechanisms
+        // keep beat.text available for internal label logic but do NOT render
+        // it as a centred phrase, so counting it as on-screen text would make
+        // the auditor read every beat as a text beat and mis-measure the
+        // typography frequency / monoculture rules (Bible TYP-10).
+        const rendersTypography = mechanism === "TYPOGRAPHY" || !OBJECT_FIRST_MECHANISMS.has(mechanism);
         return {
           index: i,
           beat_id: b.beat_id,
@@ -730,8 +745,9 @@ async function main() {
           duration_frames: b.duration_frames,
           start_sec: +((b.start_frame || 0) / fps).toFixed(2),
           duration_sec: +((b.duration_frames || 0) / fps).toFixed(2),
-          mechanism: b.treatment || scene.mechanism || null,
-          text: [b.text].filter((t) => t && String(t).trim()),
+          mechanism,
+          renders_typography: rendersTypography,
+          text: rendersTypography ? [b.text].filter((t) => t && String(t).trim()) : [],
           objects: objectLabels,
           camera: [...new Set(camera)],
           carries_forward: b.carries_forward || null,

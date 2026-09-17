@@ -19,9 +19,73 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
+import {
+  condenseToPhrase, validateNarrativePhrase, wordCount, toSingleLine,
+  TYPO_TARGET_MAX_WORDS, TYPO_HARD_MAX_WORDS, TYPO_MOMENTS, TYPO_MAX_BEAT_SHARE,
+} from "../src/skills/remotion-render/visual/narrative-typography.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
+
+/**
+ * Enforce the narrative-typography contract on a returned plan, in place.
+ *
+ * Deterministic repair, not advice: any phrase that will go on screen is
+ * normalised to ONE line within the word budget, and the reasons it was
+ * out of contract are recorded so the post-render review and the local
+ * auditor can attribute the failure. Semantic quality ("is this a GOOD
+ * piece of emphasis?") stays with Gemini — this only fixes what is
+ * measurable.
+ */
+function enforceTypographyContract(beats, sentences) {
+  const repaired = [];
+  const violations = [];
+  let textBeats = 0;
+
+  beats.forEach((b, i) => {
+    const narration = sentences[i]?.text || null;
+    const td = b.typography_direction && typeof b.typography_direction === "object"
+      ? b.typography_direction : null;
+    const hasText = !!(td?.phrase) || b.mechanism === "TYPOGRAPHY"
+      || (b.direction?.typography && String(b.direction.typography).toLowerCase() !== "none");
+    if (!hasText) {
+      // A beat with no on-screen text must not carry a stale phrase.
+      b.typography_direction = null;
+      return;
+    }
+    textBeats++;
+
+    const source = td?.phrase || b.visual_headline || b.direction?.typography || "";
+    const check = validateNarrativePhrase(source, { narration });
+    const finalPhrase = check.ok ? toSingleLine(source) : check.normalized;
+
+    if (!check.ok || finalPhrase !== toSingleLine(source)) {
+      repaired.push({ index: i, before: toSingleLine(source), after: finalPhrase, reasons: check.reasons });
+    }
+    if (!check.ok) violations.push({ index: i, reasons: check.reasons });
+
+    // The renderer draws beat.text / visual_headline, so both carry the
+    // corrected single-line phrase.
+    b.visual_headline = finalPhrase;
+    b.typography_direction = {
+      phrase: finalPhrase,
+      why: td?.why || null,
+      moment: TYPO_MOMENTS.includes(td?.moment) ? td.moment : "statement",
+      single_line: true,
+      not_a_headline: true,
+      not_a_transcript: true,
+      relation_to_visual: td?.relation_to_visual || null,
+      enforced: !check.ok ? check.reasons : undefined,
+    };
+    if (b.direction) b.direction.typography = finalPhrase;
+  });
+
+  return {
+    textBeats,
+    textBeatShare: beats.length ? textBeats / beats.length : 0,
+    repaired, violations,
+  };
+}
 
 function arg(name, fallback = null) {
   const i = process.argv.indexOf(`--${name}`);
@@ -138,8 +202,51 @@ THE MECHANISMS split into two families. Read this before choosing:
   - STRUCTURAL_BREAKDOWN: Something deteriorates or breaks down.
 
   TEXT-FORWARD (the frame is dominated by words/a number) — USE SPARINGLY:
-  - TYPOGRAPHY: The words themselves ARE the point (hooks, conclusions, CTAs). Punchy headline only.
+  - TYPOGRAPHY: NARRATIVE EMPHASIS — one short spoken thought, centred. See below.
   - EVIDENCE_FIGURE: A specific number/statistic is presented as evidence.
+
+NARRATIVE TYPOGRAPHY — READ THIS BEFORE WRITING ANY TYPOGRAPHY BEAT.
+
+Typography is NARRATIVE EMPHASIS, NOT HEADLINE DESIGN. The narrator explains,
+the visual demonstrates, the typography EMPHASISES — the three layers must not
+repeat each other. A typography beat should make the viewer think "what is the
+narrator saying? — oh, I see what the visual is showing me."
+
+It must NEVER look like: a news headline, an article title, a presentation
+slide, a title card, a lower third, a subtitle/caption track, a paragraph, a
+thumbnail, or a section heading.
+
+HARD RULES (a plan that breaks these is rejected before rendering):
+- ONE LINE. Never two lines, never a headline + subheadline, never stacked
+  text, never a title + supporting sentence. If the phrase will not fit on one
+  line, WRITE A SHORTER PHRASE — do not expect the renderer to shrink it.
+- 2-7 WORDS. 8-9 is unusual. More than ${TYPO_HARD_MAX_WORDS} words is narration, not emphasis.
+- ONE THOUGHT, centred in the frame.
+- NEVER the narration verbatim, and never a near-restatement of it. Typography
+  is not a transcript and not subtitles.
+- NO generic headline/topic labels: "The Problem", "The Solution", "The Hidden
+  Cost", "Why This Happens", "The Psychology Behind It", "Financial Mistakes",
+  "Consumer Behavior" — these are prohibited unless the phrase genuinely
+  functions as spoken narrative emphasis.
+- The phrase animates as ONE object. Do not ask for word-by-word/karaoke reveal.
+
+GOOD (narrative emphasis):   "Why does this keep happening?" · "You barely
+notice it." · "One purchase at a time." · "Do I need it?" · "$34 MILLION" ·
+"Need it — or want it?"
+BAD (headline/subtitle):     "The Hidden Psychological Cost Of Modern Consumer
+Behavior" · "THE SHOCKING TRUTH ABOUT WHY PEOPLE KEEP SPENDING" · "Most people
+don't realize how much money they're losing every month"
+
+TYPOGRAPHY IS SELECTIVE, NOT THE DEFAULT. The rhythm is:
+HOOK (one centred line) -> VISUAL STORYTELLING (no text) -> RE-HOOK (one line
+at a real turn in the narration) -> VISUAL CONSEQUENCE -> maybe a KEY FACT
+("$34 MILLION") -> back to visual storytelling.
+Do NOT put typography in every beat. TEXT -> TEXT -> TEXT -> TEXT is a failure.
+
+ANTI-LAZINESS: typography is NOT the fallback for a beat you could not think
+of a visual for. If you cannot think of a visual, that is not permission to put
+a big sentence in the centre of the screen — think harder about the object, the
+action, the consequence, the document, the map, the environment.
 
 THE GRAPH / NUMBER RULE (this is what makes videos feel generic — obey it):
 - A number appearing in a sentence is NOT a reason to reach for EVIDENCE_FIGURE. Ask
@@ -200,6 +307,17 @@ strongest visual event first; mechanism is only the closest EXECUTION mapping fo
 the renderer, and the post-render review will check whether the render actually
 delivered your directed event.
 
+FOR EVERY BEAT THAT PUTS TEXT ON SCREEN (mechanism TYPOGRAPHY, or any beat whose
+direction.typography is not "none") you MUST fill "typography_direction":
+  phrase              the EXACT short phrase, one line, 2-7 words
+  why                 why this phrase matters to the narration
+  moment              one of: ${TYPO_MOMENTS.join(" | ")}
+  single_line         must be true
+  not_a_headline      must be true — confirm it is narrative emphasis, not a title/label
+  not_a_transcript    must be true — confirm it is not the narration restated
+  relation_to_visual  how the phrase relates to (and does NOT merely describe) the visual
+For beats with NO on-screen text, set "typography_direction": null.
+
 SCRIPT SENTENCES:
 ${sentenceList}
 ${correctionBlock}
@@ -221,6 +339,15 @@ Respond ONLY with JSON (no markdown fences):
       },
       "carries_forward": "<object/concept that persists into the next beat, or null>",
       "emotional_weight": "<calm|building|sharp|heavy|urgent>",
+      "typography_direction": {
+        "phrase": "<exact one-line phrase, 2-7 words — or omit this whole object if the beat has no text>",
+        "why": "<why this phrase matters to the narration>",
+        "moment": "<hook|re_hook|key_fact|contradiction|question|statement>",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "<how it relates to the visual scene without describing it>"
+      },
       "direction": {
         "narrative_purpose": "<what this beat must accomplish in the argument>",
         "subject": "<the specific thing on screen — never 'a chart'/'text'>",
@@ -303,6 +430,24 @@ function main() {
     console.error("Failed to get visual plan from Gemini.");
     process.exit(1);
   }
+
+  // ── ENFORCE THE NARRATIVE-TYPOGRAPHY CONTRACT ─────────────────────────
+  // The prose rules above are not trusted on their own. Every phrase the
+  // plan puts on screen is normalised to a single line inside the word
+  // budget, and blocking violations (headline/topic label, transcript
+  // restatement, over-cap length) are reported and repaired here so the
+  // renderer and the manifest both carry the corrected phrase.
+  const typoReport = enforceTypographyContract(plan.beats, sentences);
+  if (typoReport.repaired.length) {
+    console.warn(`::warning::narrative-typography: repaired ${typoReport.repaired.length} phrase(s)`);
+    for (const r of typoReport.repaired) {
+      console.warn(`  beat ${r.index}: "${r.before}" -> "${r.after}"  (${r.reasons.join("; ")})`);
+    }
+  }
+  if (typoReport.textBeatShare > TYPO_MAX_BEAT_SHARE) {
+    console.warn(`::warning::narrative-typography: ${Math.round(typoReport.textBeatShare * 100)}% of beats carry on-screen text (max ${Math.round(TYPO_MAX_BEAT_SHARE * 100)}%) — typography should be selective, not the default`);
+  }
+  console.log(`Narrative typography: ${typoReport.textBeats}/${plan.beats.length} text beats, ${typoReport.repaired.length} repaired, ${typoReport.violations.length} violation(s)`);
 
   const result = {
     generatedAt: new Date().toISOString(),

@@ -213,14 +213,20 @@ function planBeatAtTime(planBeats, srtCues, t) {
 
 function directionSummary(beat) {
   const d = beat?.direction || {};
+  const td = beat?.typography_direction || null;
   const parts = [];
   if (d.subject) parts.push(`subject: ${d.subject}`);
   if (d.action_start || d.action_end) parts.push(`change: ${d.action_start || "?"} -> ${d.action_end || "?"}`);
   if (d.camera) parts.push(`camera: ${d.camera}`);
   if (d.motion) parts.push(`motion: ${d.motion}`);
-  if (d.typography) parts.push(`text: ${d.typography}`);
+  // Narrative typography is stated as an explicit directed phrase + the
+  // narrative moment it serves, so the review can check BEHAVIOUR (emphasis
+  // vs headline), not just whether some text appeared.
+  if (td?.phrase) parts.push(`directed phrase: "${td.phrase}" (${td.moment || "statement"}; narrative emphasis, ONE line, centred)`);
+  else if (d.typography && String(d.typography).toLowerCase() !== "none") parts.push(`text: ${d.typography}`);
+  else parts.push("text: none (this beat must carry NO on-screen text)");
   if (d.muted_read) parts.push(`muted-read: ${d.muted_read}`);
-  if (!parts.length && beat?.visual_headline) parts.push(`headline: ${beat.visual_headline} (${beat.mechanism || "?"})`);
+  if (!parts.length && beat?.visual_headline) parts.push(`phrase: ${beat.visual_headline} (${beat.mechanism || "?"})`);
   return parts.join(" | ") || "(no direction)";
 }
 
@@ -250,14 +256,38 @@ For each frame decide:
     QA                 — safe-area/contrast/legibility defect.
 - correction: one concrete instruction to fix it, addressed to the owner.
 
-Also judge the whole sequence: is it template monoculture (same headline/chart language repeated)? Does the visual argument stay continuous?
+NARRATIVE TYPOGRAPHY — judge BEHAVIOUR, not looks. Do NOT ask "does the text
+look good?". For every frame with on-screen text ask: does it behave as
+NARRATIVE EMPHASIS according to the direction — ONE short centred line (2-7
+words) that emphasises what the narrator is saying while the visual
+independently demonstrates the idea? Or does it behave as PROHIBITED headline/
+subtitle typography? Set typography_behaviour per frame to exactly one of:
+  NARRATIVE_EMPHASIS  — correct: one centred line, emphasis, works with the visual
+  HEADLINE            — a section/article/topic title or label ("The Problem",
+                        "The Psychology Behind It"), or a title+subtitle structure
+  SUBTITLE            — the narration verbatim or merely restated; a caption track
+  MULTI_LINE          — two or more lines / stacked text / headline+subhead
+  DESCRIBES_VISUAL    — text that just labels what is already on screen
+  UNMOTIVATED         — text present with no narrative reason to emphasise anything
+  NONE                — no on-screen text in this frame (correct when none was directed)
+Anything other than NARRATIVE_EMPHASIS or NONE is a failure: owner
+DIRECTION_QUALITY when the PLAN asked for it, PLAN_COMPLIANCE when the plan
+directed a proper phrase but the render produced something else (wrong text,
+extra text, stacked lines, or text where none was directed).
+
+Also judge the whole sequence: is it template monoculture (same headline/chart
+language repeated)? Is typography being used as a DEFAULT treatment rather than
+selective emphasis (text in most beats, TEXT->TEXT->TEXT runs)? Does the visual
+argument stay continuous?
 
 Respond ONLY with JSON (no fences):
 {
   "beat_compliance": [
-    { "frame": <int>, "directed": "<short>", "observed": "<short>", "compliance": "MATCH|PARTIAL|FAIL", "failure_owner": "<one of the above or null>", "correction": "<short or null>" }
+    { "frame": <int>, "directed": "<short>", "observed": "<short>", "compliance": "MATCH|PARTIAL|FAIL", "typography_behaviour": "<one of the labels above>", "failure_owner": "<one of the owners or null>", "correction": "<short or null>" }
   ],
   "monoculture": true|false,
+  "typography_is_default_treatment": true|false,
+  "typography_notes": "<one sentence on how typography behaved across the video>",
   "continuity_ok": true|false,
   "dominant_failure_owner": "<the owner responsible for the most/worst misses, or null>",
   "overall_compliance": "MATCH|PARTIAL|FAIL",
@@ -536,9 +566,12 @@ async function main() {
         console.log(`  Overall compliance: ${planCompliance.overall_compliance || "?"}  monoculture: ${planCompliance.monoculture}  continuity_ok: ${planCompliance.continuity_ok}`);
         console.log(`  Dominant failure owner: ${planCompliance.dominant_failure_owner || "none"}`);
         console.log(`  ${planCompliance.summary || ""}`);
+        if (planCompliance.typography_notes) console.log(`  Typography: ${planCompliance.typography_notes}${planCompliance.typography_is_default_treatment ? " [USED AS DEFAULT TREATMENT]" : ""}`);
         for (const b of (planCompliance.beat_compliance || [])) {
           if (b.compliance && b.compliance !== "MATCH") {
-            console.log(`    frame ${b.frame}: ${b.compliance} [${b.failure_owner || "?"}] directed="${b.directed}" observed="${b.observed}" → ${b.correction || ""}`);
+            const tb = b.typography_behaviour && !["NARRATIVE_EMPHASIS", "NONE"].includes(b.typography_behaviour)
+              ? ` typo=${b.typography_behaviour}` : "";
+            console.log(`    frame ${b.frame}: ${b.compliance} [${b.failure_owner || "?"}]${tb} directed="${b.directed}" observed="${b.observed}" → ${b.correction || ""}`);
           }
         }
       }
@@ -593,7 +626,14 @@ async function main() {
     // render didn't execute the direction; monoculture) is NEEDS_IMPROVEMENT:
     // it drives the correction loop with an owner-tagged instruction, but a
     // technically-sound, factually-honest video still ships after retries.
-    const monoculture = wholeResult.headline_test?.monoculture || planCompliance?.monoculture;
+    // A frame whose typography behaved as a headline / subtitle / stacked
+    // block is a prohibited visual language, not a taste issue — surface it
+    // as its own reason so the correction is specific.
+    const typoBad = (planCompliance?.beat_compliance || []).filter(
+      (b) => b.typography_behaviour && !["NARRATIVE_EMPHASIS", "NONE"].includes(b.typography_behaviour)
+    );
+    const monoculture = wholeResult.headline_test?.monoculture || planCompliance?.monoculture
+      || planCompliance?.typography_is_default_treatment;
     const compBeats = planCompliance?.beat_compliance || [];
     const factualMiss = compBeats.find((b) => b.failure_owner === "CONTENT_FACTUAL" && b.compliance === "FAIL");
     const complianceOwner = planCompliance?.dominant_failure_owner || null;
@@ -610,9 +650,13 @@ async function main() {
       pipelineVerdict = "REJECTED";
       pipelineReason = `CONTENT_FACTUAL — fabricated/unsupported on-screen content: ${factualMiss.observed || factualMiss.correction || "see plan-compliance"}`;
       correctionOwner = "CONTENT_FACTUAL";
+    } else if (typoBad.length) {
+      pipelineVerdict = "NEEDS_IMPROVEMENT";
+      pipelineReason = `NARRATIVE_TYPOGRAPHY — ${typoBad.length} frame(s) behaved as ${[...new Set(typoBad.map((b) => b.typography_behaviour))].join("/")} instead of narrative emphasis`;
+      correctionOwner = typoBad[0].failure_owner || "DIRECTION_QUALITY";
     } else if (monoculture) {
       pipelineVerdict = "NEEDS_IMPROVEMENT";
-      pipelineReason = `TEMPLATE_MONOCULTURE${wholeResult.headline_test?.percent ? ` — ${wholeResult.headline_test.percent}% headline-dominated beats` : ""}`;
+      pipelineReason = `TEMPLATE_MONOCULTURE${wholeResult.headline_test?.percent ? ` — ${wholeResult.headline_test.percent}% headline-dominated beats` : ""}${planCompliance?.typography_is_default_treatment ? " (typography used as default treatment)" : ""}`;
       correctionOwner = complianceOwner || "DIRECTION_QUALITY";
     } else if (complianceFail) {
       pipelineVerdict = "NEEDS_IMPROVEMENT";

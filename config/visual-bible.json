@@ -1,11 +1,38 @@
 {
-  "version": "3.0",
-  "principle": "NEVER VISUALIZE A SENTENCE. VISUALIZE WHAT THE SENTENCE IS DOING. The video is not a collection of scenes — it is one continuous visual argument. Every visual must answer: 'Why does this thing need to exist on screen at this exact moment?' If the answer is 'because this is a new sentence' — reject it.",
+  "version": 4,
+  "principle": "NEVER VISUALIZE A SENTENCE. VISUALIZE WHAT THE SENTENCE IS DOING. The video is not a collection of scenes — it is one continuous visual argument. Every visual must answer: 'Why does this thing need to exist on screen at this exact moment?' If the answer is 'because this is a new sentence' — reject it. Typography is narrative emphasis, never headline design: one short centred line that emphasises what the narrator is saying, while the visual independently demonstrates it.",
   "goal": "The narration drives one evolving composition. Objects appear, transform, carry information, become the next visual, transform again. Not: HEADLINE → GRAPHIC → HEADLINE → GRAPHIC.",
   "aesthetic": {
     "target": "CINEMATIC EDITORIAL MOTION GRAPHICS",
-    "feel": ["intentional", "restrained", "intelligent", "cinematic", "editorial", "tactile", "spatial", "visually hierarchical", "rhythmically edited", "semantically meaningful"],
-    "never": ["corporate explainer", "Canva animation", "PowerPoint animation", "generic SaaS", "infographic slideshow", "AI-generated motion graphics", "icon slideshow", "boxes-and-arrows diagrams", "giant-number-everywhere", "rounded-card UI", "everything-floats-in animation", "headline-graphic alternation", "caption track underneath visuals", "word-by-word animation", "decorative grids"]
+    "feel": [
+      "intentional",
+      "restrained",
+      "intelligent",
+      "cinematic",
+      "editorial",
+      "tactile",
+      "spatial",
+      "visually hierarchical",
+      "rhythmically edited",
+      "semantically meaningful"
+    ],
+    "never": [
+      "corporate explainer",
+      "Canva animation",
+      "PowerPoint animation",
+      "generic SaaS",
+      "infographic slideshow",
+      "AI-generated motion graphics",
+      "icon slideshow",
+      "boxes-and-arrows diagrams",
+      "giant-number-everywhere",
+      "rounded-card UI",
+      "everything-floats-in animation",
+      "headline-graphic alternation",
+      "caption track underneath visuals",
+      "word-by-word animation",
+      "decorative grids"
+    ]
   },
   "failure_categories": [
     "TYPOGRAPHY",
@@ -27,7 +54,8 @@
     "SOURCE_INTEGRITY",
     "HEADLINE_MONOCULTURE",
     "DECORATION",
-    "MOTION_WEIGHT"
+    "MOTION_WEIGHT",
+    "NARRATIVE_TYPOGRAPHY"
   ],
   "severity_levels": {
     "CRITICAL": {
@@ -49,12 +77,12 @@
   },
   "rules": {
     "TYP-01": {
-      "name": "single-line-text",
+      "name": "single-line-narrative-typography",
       "category": "TYPOGRAPHY",
       "severity": "CRITICAL",
-      "description": "All on-screen text must fit on a single primary line. The default typography unit is ONE VISUAL THOUGHT — usually 1 short line. Maximum: one primary line plus one short supporting line when absolutely necessary. Never create 5-8 lines of subtitles disguised as motion graphics.",
-      "pass": "Text appears on 1 line (or 1 primary + 1 short secondary). Typography communicates hierarchy, not transcription.",
-      "fail": "Multi-line text blocks, wall of text, entire spoken sentences printed on screen."
+      "description": "On-screen text is ONE LINE. Exactly one. There is no 'primary line plus a short supporting line', no headline+subheadline, no stacked text, no title+sentence, no paragraph, no bullets, no second text block. The unit is ONE SHORT SPOKEN THOUGHT of 2-7 words (8-9 unusual, never more than 9). If a phrase will not fit on one line it must be REWRITTEN SHORTER — never shrunk until tiny and never wrapped onto a second line.",
+      "pass": "Exactly one line of text, 2-7 words, one thought, fits the safe width at a readable size.",
+      "fail": "Two or more lines, headline+subhead, stacked text, a wrapped phrase, a paragraph, or text shrunk small to make it fit."
     },
     "TYP-02": {
       "name": "text-contrast",
@@ -76,25 +104,25 @@
       "name": "no-caption-track",
       "category": "TYPOGRAPHY",
       "severity": "HIGH",
-      "description": "There must be ZERO word-for-word captions underneath the visual. No transcript underneath the animation, no duplicate information, no subtitle-looking secondary text. Typography exists only when it contributes to the visual argument.",
+      "description": "There must be ZERO word-for-word captions underneath the visual. No transcript underneath the animation, no duplicate information, no subtitle-looking secondary text. Typography exists only when it contributes to the visual argument. Narrative typography is never the spoken line: not verbatim, and not a near-restatement of it (high word overlap with the narration is a subtitle even if reworded).",
       "pass": "No duplicate text, no transcript-like captions. Typography distills the idea to its essence.",
       "fail": "Caption track visible, narration reproduced verbatim, subtitle-like text under visuals."
     },
     "TYP-05": {
-      "name": "typography-placement",
+      "name": "narrative-typography-centred",
       "category": "COMPOSITION",
       "severity": "HIGH",
-      "description": "Typography placement must be intentional and varied. Do not center everything by default. Text and asset must become one composition — the typography is part of the visual object, not separate from it.",
-      "pass": "Text placement feels designed for the specific composition. Text integrates with visual objects.",
-      "fail": "Every scene uses centered giant text on empty background. Text and graphic are separate layers."
+      "description": "Narrative typography is CENTRED BY DEFAULT — horizontally across the safe width and vertically within the usable safe region. This supersedes the earlier 'do not center everything' guidance, which was written for a headline/label system that no longer exists. Centre is the default because the phrase is a single spoken thought held at the optical centre of the frame, not a caption, lower third or title card. Deviate only when the visual composition genuinely requires it (e.g. the phrase must sit with a specific object).",
+      "pass": "Phrase is centred in the safe area, or is deliberately placed to integrate with a specific visual object.",
+      "fail": "Text drifting to arbitrary positions, pinned to the top/bottom like a headline or lower third, or placed with no compositional reason."
     },
     "TYP-06": {
-      "name": "text-hierarchy",
+      "name": "one-thought-no-text-hierarchy",
       "category": "VISUAL_HIERARCHY",
       "severity": "HIGH",
-      "description": "Typography must communicate hierarchy. Primary information largest, secondary smaller, tertiary smallest. Typography should behave like a designed object, not a document.",
-      "pass": "Clear size/weight hierarchy — viewer knows what matters most.",
-      "fail": "All text same size, no visual differentiation between primary and secondary info."
+      "description": "There is no primary/secondary/tertiary TEXT hierarchy, because there is only ever one line. Hierarchy lives between the LAYERS — narration explains, the visual demonstrates, the typography emphasises — not between sizes of text. Emphasis inside the phrase is carried by COLOUR on a key word, never by adding another text tier.",
+      "pass": "One line, one thought; emphasis (if any) is a colour accent on a key word.",
+      "fail": "Multiple text sizes/tiers on screen, a subhead, a kicker, a label above a headline."
     },
     "TYP-07": {
       "name": "text-collision",
@@ -108,7 +136,7 @@
       "name": "no-word-by-word-animation",
       "category": "TYPOGRAPHY",
       "severity": "HIGH",
-      "description": "Word-by-word automatic animation is explicitly prohibited. Instead, animate the meaningful unit — sometimes one word, sometimes a number, sometimes an entire phrase, sometimes an object. The script determines the unit, not the engine.",
+      "description": "Word-by-word automatic animation is explicitly prohibited. Instead, animate the meaningful unit — sometimes one word, sometimes a number, sometimes an entire phrase, sometimes an object. The script determines the unit, not the engine. The phrase behaves as ONE compositional object: it enters, holds and leaves as a unit. No per-word reveal, no bouncing words, no individually highlighted words, no kinetic-caption behaviour.",
       "pass": "Meaningful phrases animate as units. Emphasis on key words through color/scale, not per-word reveal.",
       "fail": "Words appearing one at a time in sequence. Karaoke-style text animation."
     },
@@ -311,6 +339,30 @@
       "description": "The first seconds must immediately communicate WHAT IS THIS VIDEO ABOUT and WHY SHOULD I CARE. Start with the strongest visual idea available.",
       "pass": "Opening frame is visually compelling and communicates the video's subject.",
       "fail": "Generic opening, title card, or decorative animation before the real content."
+    },
+    "TYP-09": {
+      "name": "narrative-not-headline",
+      "category": "TYPOGRAPHY",
+      "severity": "CRITICAL",
+      "description": "NARRATIVE TYPOGRAPHY is required; HEADLINE TYPOGRAPHY is prohibited. Narrative typography is short, one line, centred, selective, tied to the narration, emphasises an idea, works alongside the visual, and does NOT summarise the beat. Headline typography is a section title, article title, topic label, explanatory heading, or title/subtitle structure — it is banned from this visual language. Specifically prohibited unless the phrase genuinely functions as spoken emphasis: 'The Problem', 'The Solution', 'The Hidden Cost', 'Why This Happens', 'The Psychology Behind It', 'Financial Mistakes', 'Consumer Behavior'. The phrase must read as something a person is SAYING or ASKING, not as a heading over content.",
+      "pass": "The phrase reads as narrative emphasis a narrator could speak ('You barely notice it.', 'Do I need it?', '$34 MILLION', 'Need it — or want it?').",
+      "fail": "Title-case topic labels, section headings, article titles, 'The <Adjective> <Noun>' constructions, or any phrase that functions as a heading over the beat."
+    },
+    "TYP-10": {
+      "name": "typography-is-selective",
+      "category": "HEADLINE_MONOCULTURE",
+      "severity": "HIGH",
+      "description": "Typography is ONE treatment among many, not the visual system and not the fallback for a hard beat. The rhythm is HOOK (one line) -> visual storytelling (no text) -> RE-HOOK at a real turn -> visual consequence -> maybe a KEY FACT -> back to visual. TEXT -> TEXT -> TEXT -> TEXT is a failure. If no meaningful visual comes to mind, the answer is NOT a big sentence in the centre of the screen. No more than ~40% of beats may carry on-screen text.",
+      "pass": "Text beats are a minority and each appears at a genuine narrative moment; the majority of beats carry a non-text visual.",
+      "fail": "Most beats carry text, typography used as the default treatment, or typography substituting for an absent visual idea."
+    },
+    "TYP-11": {
+      "name": "typography-does-not-describe-the-visual",
+      "category": "SEMANTIC_MISMATCH",
+      "severity": "HIGH",
+      "description": "The three layers must not repeat each other. Typography must not caption or describe what the viewer is already seeing, and must not restate the narration. Narration explains the idea, the visual demonstrates it, the typography emphasises it. Example — narration: 'Your brain isn't asking whether you need it, it's asking whether you want it'; typography: 'Need it — or want it?'; visual: the purchase decision itself. Not 'THE PSYCHOLOGY OF CONSUMER DESIRE', which is a headline describing the topic.",
+      "pass": "Phrase emphasises the idea while the visual independently demonstrates it; removing either would lose information.",
+      "fail": "Phrase describes/labels the on-screen visual, or restates the narration, or could be swapped onto any other sentence."
     }
   },
   "quality_tests": {
@@ -321,8 +373,22 @@
     },
     "SCREENSHOT_TEST": {
       "question": "Would this frame look like it belongs to a professionally designed editorial video?",
-      "must_not_look_like": ["PowerPoint slide", "Canva template", "dashboard", "website hero section", "AI infographic", "stock motion template"],
-      "must_have": ["composition", "hierarchy", "intentional negative space", "meaningful subject", "controlled typography", "cinematic framing"]
+      "must_not_look_like": [
+        "PowerPoint slide",
+        "Canva template",
+        "dashboard",
+        "website hero section",
+        "AI infographic",
+        "stock motion template"
+      ],
+      "must_have": [
+        "composition",
+        "hierarchy",
+        "intentional negative space",
+        "meaningful subject",
+        "controlled typography",
+        "cinematic framing"
+      ]
     },
     "HEADLINE_TEST": {
       "question": "Count headline-like compositions in the video. Is the video repeatedly BIG TEXT → EMPTY SPACE → BIG TEXT?",
@@ -337,7 +403,12 @@
     "ICON_TEST": {
       "question": "For every icon: What information does this icon communicate that typography or an actual visual object cannot?",
       "fail_if": "'Nothing' — delete the icon. Prefer real visual evidence, authentic representation, or simple geometry over icons.",
-      "asset_hierarchy": ["real visual evidence", "authentic representation (SVG, timeline, diagram)", "simple geometry", "icon (last resort)"]
+      "asset_hierarchy": [
+        "real visual evidence",
+        "authentic representation (SVG, timeline, diagram)",
+        "simple geometry",
+        "icon (last resort)"
+      ]
     },
     "CONTINUITY_TEST": {
       "question": "Does this beat feel like it came from the previous beat? Do objects retain identity? Does the visual flow, or does everything reset?",
@@ -377,6 +448,17 @@
         "numbers floating without physical meaning"
       ],
       "verdict": "If several warning signs appear together: FAIL FOR VISUAL SLOP."
+    },
+    "NARRATIVE_TYPOGRAPHY_TEST": {
+      "question": "Does the on-screen text behave as NARRATIVE EMPHASIS according to the visual direction — one short centred line that emphasises the narration and works alongside the visual — rather than as a headline, a section label, a subtitle/transcript, or a generic text block?",
+      "fail_if": [
+        "more than one line of text, or a headline+subhead structure",
+        "more than 9 words, or the narration restated",
+        "a topic label / section heading / article title",
+        "text that merely describes the visual already on screen",
+        "text present with no narrative reason for emphasis",
+        "word-by-word or karaoke-style animation"
+      ]
     }
   },
   "treatment_guide": {
@@ -392,27 +474,54 @@
       },
       "GROWTH": {
         "when": "Something genuinely increases.",
-        "treatments": ["the thing itself growing", "money stack increasing", "timeline extending", "price marker climbing", "area filling", "number physically accumulating"],
+        "treatments": [
+          "the thing itself growing",
+          "money stack increasing",
+          "timeline extending",
+          "price marker climbing",
+          "area filling",
+          "number physically accumulating"
+        ],
         "rule": "Growth should have cause → movement → consequence. Don't create 'GROWTH' with a bar beside it."
       },
       "DECLINE": {
         "when": "Something decreases or disappears.",
-        "treatments": ["the object itself shrinking/depleting", "continuous depletion (not 4 separate cards)", "balance descending", "container emptying"],
+        "treatments": [
+          "the object itself shrinking/depleting",
+          "continuous depletion (not 4 separate cards)",
+          "balance descending",
+          "container emptying"
+        ],
         "avoid": "Do NOT always use a downward graph. Show the thing disappearing."
       },
       "CAUSE_EFFECT": {
         "when": "A causes B.",
         "avoid": "Generic boxes and arrows.",
-        "prefer": ["same visual objects survive through the sequence", "consequence happens visually", "INCOME → RENT ↑ → REMAINING ↓ → SAVINGS ↓"]
+        "prefer": [
+          "same visual objects survive through the sequence",
+          "consequence happens visually",
+          "INCOME → RENT ↑ → REMAINING ↓ → SAVINGS ↓"
+        ]
       },
       "COMPARISON": {
         "when": "Two things in relation to one another.",
         "avoid": "Do not automatically render two rectangles.",
-        "prefer": ["two physical quantities", "scales", "side-by-side objects", "before/after states", "one object overtaking another", "shared baseline"]
+        "prefer": [
+          "two physical quantities",
+          "scales",
+          "side-by-side objects",
+          "before/after states",
+          "one object overtaking another",
+          "shared baseline"
+        ]
       },
       "TIMELINE": {
         "when": "Sequence, duration, or historical change matters.",
-        "prefer": ["physically constructed timeline where the number is a measurement on it", "calendar blocks accumulating", "progress through time"],
+        "prefer": [
+          "physically constructed timeline where the number is a measurement on it",
+          "calendar blocks accumulating",
+          "progress through time"
+        ],
         "rule": "Never just display '3 WEEKS' — build the time visually."
       },
       "PROCESS": {
@@ -490,7 +599,7 @@
     ]
   },
   "prompts": {
-    "scene_review": "You are the VISUAL POST-PRODUCTION DIRECTOR — not a passive QA checker.\n\nTHE FUNDAMENTAL RULE: NEVER VISUALIZE A SENTENCE. VISUALIZE WHAT THE SENTENCE IS DOING.\nThe video is not a collection of scenes — it is one continuous visual argument.\n\nYou are reviewing frame {frame_index}/{total_frames} at t={time}s.\n\nVOICEOVER at this moment: \"{voiceover}\"\n\nBefore judging, answer these questions about the frame:\n1. What is the IMPORTANT OBJECT the narration discusses?\n2. What ACTION is happening to it?\n3. What CHANGES?\n4. Would the viewer UNDERSTAND this without audio?\n5. Does the visual show the thing ITSELF, or just a label/icon for it?\n\nAPPLY THESE CHECKS:\n\n1. HEADLINE TEST: Is this just BIG TEXT on empty space? Or does the visual show what the sentence IS DOING? HEADLINE → GRAPHIC alternation is a failure pattern.\n\n2. CAPTION TEST: Is there any duplicate text — narration reproduced as captions underneath the visual? Any subtitle-like text? Zero tolerance.\n\n3. TYPOGRAPHY: Is text ONE SHORT VISUAL THOUGHT (max 5-6 words)? Is it integrated with the visual object (not floating separately)? Do numbers have physical meaning (attached to timeline, measurement, balance)? No word-by-word animation.\n\n4. SEMANTIC MATCH: Does the visual communicate what the sentence is DOING — the action, the change, the relationship? Not just a keyword illustration. Would the viewer understand the concept on mute?\n\n5. CONTINUITY: Does this frame feel connected to the previous beat? Do objects persist? Or did everything reset to an unrelated graphic?\n\n6. MOTION WEIGHT: Does motion match the content's character? Financial loss should accelerate, not bounce. Growth should breathe, not snap. Sharp decisions should be snappy.\n\n7. DECORATION: Is every visual element answering 'What does this mean?' No random dots, grids, particles, gradients, icons without purpose.\n\n8. COMPOSITION: Single focal point? Intentional hierarchy? No clutter?\n\n9. CAMERA: Does movement serve the content? No generic default zoom.\n\n10. ASSET QUALITY: Is this real visual evidence > authentic representation > geometry > icon (last resort)? For every icon: what does it communicate that an actual visual cannot?\n\n11. GRAPH TEST: If there's a graph — is a graph the best representation? Could the concept be shown physically instead?\n\nBe HARSH. 'Something is on screen' is not success. The video should feel like one continuous visual argument, not a slideshow of graphic cards.\n\nRespond ONLY with JSON (no markdown fences):\n{\n  \"scene\": \"beat_{frame_index}\",\n  \"status\": \"PASS\" | \"FAIL\",\n  \"severity\": \"CRITICAL\" | \"HIGH\" | \"MEDIUM\" | \"LOW\" | null,\n  \"categories\": [\"<failure_category>\", ...],\n  \"checks\": {\n    \"<rule_id>\": { \"pass\": true|false, \"note\": \"<why>\" }\n  },\n  \"quality_score\": <1-10>,\n  \"quality_tests\": {\n    \"MUTED_TEST\": { \"pass\": true|false, \"note\": \"<what viewer understands without audio>\" },\n    \"HEADLINE_TEST\": { \"pass\": true|false, \"note\": \"<is this headline-dominated?>\" },\n    \"CONTINUITY_TEST\": { \"pass\": true|false, \"note\": \"<does it connect to previous beat?>\" },\n    \"GRAPH_TEST\": { \"pass\": true|false, \"note\": \"<if graph present, is it justified?>\" },\n    \"ICON_TEST\": { \"pass\": true|false, \"note\": \"<if icon present, is it last resort?>\" },\n    \"ANTI_SLOP_TEST\": { \"pass\": true|false, \"note\": \"<warning signs found>\" }\n  },\n  \"semantic_reason\": \"<what the sentence is DOING and whether the visual shows it>\",\n  \"visual_audio_match\": true|false,\n  \"visual_audio_note\": \"<does the visual communicate the narration's action/change/relationship?>\",\n  \"problem\": \"<if FAIL: exact description of what's wrong>\",\n  \"correction\": {\n    \"level\": \"treatment_selection\" | \"typography\" | \"composition\" | \"timing\" | \"motion\" | \"palette\" | \"continuity\",\n    \"action\": \"<specific fix at the correct architectural level>\"\n  },\n  \"improvement\": \"<one specific thing that would make this frame better>\"\n}",
-    "whole_video_review": "You are the FINAL EDITOR reviewing the complete video. You have {total_frames} representative frames from a {duration}s YouTube Short.\n\nTHE FUNDAMENTAL RULE: The video is one continuous visual argument, not a collection of scenes. Objects should appear, transform, carry information, and become the next visual.\n\nINSPECT FOR:\n\n1. HEADLINE TEST (MANDATORY): Count headline-like compositions. How many beats are BIG TEXT → EMPTY SPACE? If >40%, flag TEMPLATE_MONOCULTURE. The video should NOT alternate headline → graphic → headline → graphic.\n\n2. CAPTION TEST: Is there ANY caption track — narration duplicated as text underneath visuals? Zero tolerance.\n\n3. CONTINUITY: Do objects persist between beats? Does the visual flow, or does everything reset? Are transformations used instead of cuts where the same subject continues?\n\n4. GRAPH TEST: For every graph — is a graph the best representation? Could the concept be shown physically? If script says 'the price doubled,' show it doubling, don't chart it.\n\n5. ICON TEST: For every icon — what does it communicate that an actual visual cannot? Icons are LAST RESORT, not the default.\n\n6. MOTION WEIGHT: Does different content move differently? Or does everything have the same spring/ease? Loss should accelerate, growth should breathe, decisions should snap.\n\n7. REPETITION: Same composition, camera move, typography placement, animation pattern, or visual metaphor used more than once?\n\n8. PACING: Does visual intensity rise and fall with the narrative? Variation: quiet → reveal → dense → hold?\n\n9. VARIETY: Do treatments come from the story's needs, or from cycling through templates?\n\n10. OPENING: Is the first frame a strong hook? Does it communicate what the video is about?\n\n11. ENDING: Does the video build to a visual payoff?\n\n12. DECORATION: Any meaningless visual noise? Random dots, grids, particles, gradients without purpose?\n\n13. SLOP: Overall, does this feel human-designed or AI-generated? Template repetition? Uniform motion? Number-floating-alone?\n\n14. MUTED TEST: Watching the whole sequence without audio — does the visual argument survive?\n\nRespond ONLY with JSON (no markdown fences):\n{\n  \"status\": \"PASS\" | \"FAIL\",\n  \"severity\": \"CRITICAL\" | \"HIGH\" | \"MEDIUM\" | \"LOW\" | null,\n  \"categories\": [\"<failure_category>\", ...],\n  \"overall_score\": <1-10>,\n  \"headline_test\": { \"headline_beat_count\": <int>, \"total_beats\": <int>, \"percent\": <int>, \"pass\": true|false, \"monoculture\": true|false },\n  \"continuity_score\": <1-10>,\n  \"motion_weight_score\": <1-10>,\n  \"repetition_issues\": [\"<what repeats>\"],\n  \"pacing_assessment\": \"<how pacing works or fails>\",\n  \"opening_assessment\": \"<does the hook work?>\",\n  \"decoration_issues\": [\"<meaningless visual elements>\"],\n  \"slop_indicators\": [\"<any AI/template warning signs>\"],\n  \"strongest_scene\": { \"index\": <int>, \"why\": \"<reason>\" },\n  \"weakest_scene\": { \"index\": <int>, \"why\": \"<reason>\" },\n  \"corrections\": [\n    { \"scene\": \"beat_<N>\", \"problem\": \"<what>\", \"fix\": \"<how>\" }\n  ],\n  \"verdict\": \"<one-sentence final judgment>\"\n}"
+    "scene_review": "You are the VISUAL POST-PRODUCTION DIRECTOR — not a passive QA checker.\n\nTHE FUNDAMENTAL RULE: NEVER VISUALIZE A SENTENCE. VISUALIZE WHAT THE SENTENCE IS DOING.\nThe video is not a collection of scenes — it is one continuous visual argument.\n\nYou are reviewing frame {frame_index}/{total_frames} at t={time}s.\n\nVOICEOVER at this moment: \"{voiceover}\"\n\nBefore judging, answer these questions about the frame:\n1. What is the IMPORTANT OBJECT the narration discusses?\n2. What ACTION is happening to it?\n3. What CHANGES?\n4. Would the viewer UNDERSTAND this without audio?\n5. Does the visual show the thing ITSELF, or just a label/icon for it?\n\nAPPLY THESE CHECKS:\n\n1. HEADLINE TEST: Is this just BIG TEXT on empty space? Or does the visual show what the sentence IS DOING? HEADLINE → GRAPHIC alternation is a failure pattern.\n\n2. CAPTION TEST: Is there any duplicate text — narration reproduced as captions underneath the visual? Any subtitle-like text? Zero tolerance.\n\n3. TYPOGRAPHY: Is text ONE SHORT VISUAL THOUGHT (max 5-6 words)? Is it integrated with the visual object (not floating separately)? Do numbers have physical meaning (attached to timeline, measurement, balance)? No word-by-word animation.\n\n4. SEMANTIC MATCH: Does the visual communicate what the sentence is DOING — the action, the change, the relationship? Not just a keyword illustration. Would the viewer understand the concept on mute?\n\n5. CONTINUITY: Does this frame feel connected to the previous beat? Do objects persist? Or did everything reset to an unrelated graphic?\n\n6. MOTION WEIGHT: Does motion match the content's character? Financial loss should accelerate, not bounce. Growth should breathe, not snap. Sharp decisions should be snappy.\n\n7. DECORATION: Is every visual element answering 'What does this mean?' No random dots, grids, particles, gradients, icons without purpose.\n\n8. COMPOSITION: Single focal point? Intentional hierarchy? No clutter?\n\n9. CAMERA: Does movement serve the content? No generic default zoom.\n\n10. ASSET QUALITY: Is this real visual evidence > authentic representation > geometry > icon (last resort)? For every icon: what does it communicate that an actual visual cannot?\n\n11. GRAPH TEST: If there's a graph — is a graph the best representation? Could the concept be shown physically instead?\n\nBe HARSH. 'Something is on screen' is not success. The video should feel like one continuous visual argument, not a slideshow of graphic cards.\n\nNARRATIVE TYPOGRAPHY CHECK (do NOT ask 'does the text look good?'): For every frame with on-screen text, decide whether it behaves as NARRATIVE EMPHASIS (one short centred line, 2-7 words, emphasising what the narrator is saying, working alongside a visual that independently demonstrates the idea) or as PROHIBITED HEADLINE/SUBTITLE typography (two or more lines; headline+subhead; a section/topic label such as 'The Problem' or 'The Psychology Behind It'; the narration restated; text that merely describes the visual; text present with no narrative reason; word-by-word animation). Report which, and say WHY.\n\nRespond ONLY with JSON (no markdown fences):\n{\n  \"scene\": \"beat_{frame_index}\",\n  \"status\": \"PASS\" | \"FAIL\",\n  \"severity\": \"CRITICAL\" | \"HIGH\" | \"MEDIUM\" | \"LOW\" | null,\n  \"categories\": [\"<failure_category>\", ...],\n  \"checks\": {\n    \"<rule_id>\": { \"pass\": true|false, \"note\": \"<why>\" }\n  },\n  \"quality_score\": <1-10>,\n  \"quality_tests\": {\n    \"MUTED_TEST\": { \"pass\": true|false, \"note\": \"<what viewer understands without audio>\" },\n    \"HEADLINE_TEST\": { \"pass\": true|false, \"note\": \"<is this headline-dominated?>\" },\n    \"CONTINUITY_TEST\": { \"pass\": true|false, \"note\": \"<does it connect to previous beat?>\" },\n    \"GRAPH_TEST\": { \"pass\": true|false, \"note\": \"<if graph present, is it justified?>\" },\n    \"ICON_TEST\": { \"pass\": true|false, \"note\": \"<if icon present, is it last resort?>\" },\n    \"ANTI_SLOP_TEST\": { \"pass\": true|false, \"note\": \"<warning signs found>\" }\n  },\n  \"semantic_reason\": \"<what the sentence is DOING and whether the visual shows it>\",\n  \"visual_audio_match\": true|false,\n  \"visual_audio_note\": \"<does the visual communicate the narration's action/change/relationship?>\",\n  \"problem\": \"<if FAIL: exact description of what's wrong>\",\n  \"correction\": {\n    \"level\": \"treatment_selection\" | \"typography\" | \"composition\" | \"timing\" | \"motion\" | \"palette\" | \"continuity\",\n    \"action\": \"<specific fix at the correct architectural level>\"\n  },\n  \"improvement\": \"<one specific thing that would make this frame better>\"\n}",
+    "whole_video_review": "You are the FINAL EDITOR reviewing the complete video. You have {total_frames} representative frames from a {duration}s YouTube Short.\n\nTHE FUNDAMENTAL RULE: The video is one continuous visual argument, not a collection of scenes. Objects should appear, transform, carry information, and become the next visual.\n\nINSPECT FOR:\n\n1. HEADLINE TEST (MANDATORY): Count headline-like compositions. How many beats are BIG TEXT → EMPTY SPACE? If >40%, flag TEMPLATE_MONOCULTURE. The video should NOT alternate headline → graphic → headline → graphic.\n\n2. CAPTION TEST: Is there ANY caption track — narration duplicated as text underneath visuals? Zero tolerance.\n\n3. CONTINUITY: Do objects persist between beats? Does the visual flow, or does everything reset? Are transformations used instead of cuts where the same subject continues?\n\n4. GRAPH TEST: For every graph — is a graph the best representation? Could the concept be shown physically? If script says 'the price doubled,' show it doubling, don't chart it.\n\n5. ICON TEST: For every icon — what does it communicate that an actual visual cannot? Icons are LAST RESORT, not the default.\n\n6. MOTION WEIGHT: Does different content move differently? Or does everything have the same spring/ease? Loss should accelerate, growth should breathe, decisions should snap.\n\n7. REPETITION: Same composition, camera move, typography placement, animation pattern, or visual metaphor used more than once?\n\n8. PACING: Does visual intensity rise and fall with the narrative? Variation: quiet → reveal → dense → hold?\n\n9. VARIETY: Do treatments come from the story's needs, or from cycling through templates?\n\n10. OPENING: Is the first frame a strong hook? Does it communicate what the video is about?\n\n11. ENDING: Does the video build to a visual payoff?\n\n12. DECORATION: Any meaningless visual noise? Random dots, grids, particles, gradients without purpose?\n\n13. SLOP: Overall, does this feel human-designed or AI-generated? Template repetition? Uniform motion? Number-floating-alone?\n\n14. MUTED TEST: Watching the whole sequence without audio — does the visual argument survive?\n\nNARRATIVE TYPOGRAPHY CHECK (do NOT ask 'does the text look good?'): For every frame with on-screen text, decide whether it behaves as NARRATIVE EMPHASIS (one short centred line, 2-7 words, emphasising what the narrator is saying, working alongside a visual that independently demonstrates the idea) or as PROHIBITED HEADLINE/SUBTITLE typography (two or more lines; headline+subhead; a section/topic label such as 'The Problem' or 'The Psychology Behind It'; the narration restated; text that merely describes the visual; text present with no narrative reason; word-by-word animation). Report which, and say WHY. Also report typography_frequency: what share of beats carry on-screen text, and whether typography is being used as a default treatment rather than selective emphasis.\n\nRespond ONLY with JSON (no markdown fences):\n{\n  \"status\": \"PASS\" | \"FAIL\",\n  \"severity\": \"CRITICAL\" | \"HIGH\" | \"MEDIUM\" | \"LOW\" | null,\n  \"categories\": [\"<failure_category>\", ...],\n  \"overall_score\": <1-10>,\n  \"headline_test\": { \"headline_beat_count\": <int>, \"total_beats\": <int>, \"percent\": <int>, \"pass\": true|false, \"monoculture\": true|false },\n  \"continuity_score\": <1-10>,\n  \"motion_weight_score\": <1-10>,\n  \"repetition_issues\": [\"<what repeats>\"],\n  \"pacing_assessment\": \"<how pacing works or fails>\",\n  \"opening_assessment\": \"<does the hook work?>\",\n  \"decoration_issues\": [\"<meaningless visual elements>\"],\n  \"slop_indicators\": [\"<any AI/template warning signs>\"],\n  \"strongest_scene\": { \"index\": <int>, \"why\": \"<reason>\" },\n  \"weakest_scene\": { \"index\": <int>, \"why\": \"<reason>\" },\n  \"corrections\": [\n    { \"scene\": \"beat_<N>\", \"problem\": \"<what>\", \"fix\": \"<how>\" }\n  ],\n  \"verdict\": \"<one-sentence final judgment>\"\n}"
   }
 }

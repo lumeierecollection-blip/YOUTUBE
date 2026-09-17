@@ -43,6 +43,11 @@ const rawBeats = [
   { mechanism: "PHYSICAL_GROWTH", text: "$100M FAKE REVENUE", figure: "$100M" },
   { mechanism: "EVIDENCE_FIGURE", text: "$283.3M RESTITUTION ORDER", figure: "$283.3M" },
   { mechanism: "ACTION_CONSEQUENCE", text: "CAASTLE LIQUIDATION" },
+  // Narrative-typography probes: a good short phrase, and a deliberately
+  // over-long one that the renderer must condense onto ONE centred line
+  // rather than stacking into two rows.
+  { mechanism: "TYPOGRAPHY", text: "Need it — or want it?" },
+  { mechanism: "TYPOGRAPHY", text: "Most people don't realize how much money they're losing every single month" },
 ];
 
 const beats = rawBeats.map((b, i) => ({
@@ -89,6 +94,10 @@ const targets = [
   { name: "beat3-end-1", frame: growthStart + BEAT_FRAMES - 2 },
   { name: "beat2-3-boundary-before", frame: growthStart - 1 },
   { name: "beat0-start+5", frame: 5 },
+  // Narrative typography: short phrase, and the over-long phrase (must be
+  // ONE condensed centred line, never two stacked rows).
+  { name: "typo-short-mid", frame: 6 * BEAT_FRAMES + Math.floor(BEAT_FRAMES / 2) },
+  { name: "typo-overlong-mid", frame: 7 * BEAT_FRAMES + Math.floor(BEAT_FRAMES / 2) },
 ];
 
 for (const t of targets) {

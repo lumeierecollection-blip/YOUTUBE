@@ -2,6 +2,10 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, Easing } from "remotion";
 import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
+import {
+  fitSingleLine, estimateEmWidth,
+  TYPO_SAFE_WIDTH_FRACTION, TYPO_LINE_HEIGHT,
+} from "../visual/narrative-typography.js";
 
 const CANVAS_W = 1080;
 const CANVAS_H = 1920;
@@ -113,36 +117,17 @@ function editorialColors(colors, rawPalette) {
 // cores composite to ~rgb(71) on #000 (2.2:1) — below AA. A solid subdued
 // colour has opaque cores that measure at the colour's own luminance.
 
-const LH = 1.18;
+// LH/emW now come from visual/narrative-typography.js so the planner, the
+// renderer and the local auditor all measure text the same way.
+const LH = TYPO_LINE_HEIGHT;
 const MAX_SZ = 140;
 const MIN_SZ = 28;
-const WIDE = new Set("MWQ@%".split(""));
-const NARROW = new Set("IJ1.,';:!|-".split(""));
-const emW = (s) => [...String(s)].reduce((w, c) => w + (WIDE.has(c) ? 0.88 : NARROW.has(c) ? 0.3 : 0.62), 0);
+const emW = estimateEmWidth;
 
-function layoutWords(words, maxW, maxH) {
-  const ems = words.map((w) => emW(w) + 0.28);
-  const totalEm = ems.reduce((a, b) => a + b, 0);
-  const singleSz = Math.min(MAX_SZ, maxW / totalEm, maxH / LH);
-  if (singleSz >= MIN_SZ) return { rows: [words], size: singleSz };
-  const mid = Math.ceil(words.length / 2);
-  const row1 = words.slice(0, mid);
-  const row2 = words.slice(mid);
-  const em1 = row1.reduce((s, w) => s + emW(w) + 0.28, 0);
-  const em2 = row2.reduce((s, w) => s + emW(w) + 0.28, 0);
-  const widestEm = Math.max(em1, em2);
-  const sz2 = Math.min(MAX_SZ, maxW / widestEm, maxH / (LH * 2));
-  // FIT WINS OVER THE MIN-SIZE FLOOR. The old Math.max(MIN_SZ, sz2) forced
-  // 28px even when the text needed a smaller size to fit maxW, so an
-  // over-long line rendered past the safe width and bled into the margin
-  // probe (frame-audit). Cap the size at the value that actually fits
-  // (maxW/widestEm) so the line can NEVER exceed maxW; keep an 18px lower
-  // bound for legibility. In practice text reaching here is already a short
-  // condensed headline (see visual-director condense()), so the fit size is
-  // comfortably large — this is the safety net that guarantees no overflow.
-  const size = Math.min(Math.max(18, sz2), maxW / widestEm);
-  return { rows: [row1, row2], size };
-}
+// layoutWords() — the old 1-or-2-row layout — is deliberately GONE. Its
+// two-row fallback produced the "headline + supporting line" structure that
+// narrative typography prohibits. TypographyScene now uses fitSingleLine(),
+// which guarantees exactly one line and condenses instead of shrinking.
 
 function fitFontSize(text, maxW, maxSz, minSz) {
   // Fit wins over the min-size floor (same rule as layoutWords): the size
@@ -456,21 +441,24 @@ function DocumentPage({ x, y, w, h, title, lineCount, highlight, torn, ed, font 
 
 function TypographyScene({ beat, p, local, ed, font, scene }) {
   const ease = easeFor(scene.mechanism, beat.emotional_weight);
-  const headline = beat.text || "";
-  if (!headline) return null;
+  const phrase = beat.text || "";
+  if (!phrase) return null;
 
-  const allWords = headline.split(/\s+/);
-  // Fit to 0.8 of the safe width, not 0.9. layoutWords' emW width estimate
-  // omits the per-word marginRight (size*0.22) and the 1.04x emphasis
-  // scale, so the RENDERED line runs wider than estimated. With
-  // whiteSpace:nowrap + overflow:visible below, that residual used to bleed
-  // past the 840px safe width into frame-audit's right-margin probe (x>=940)
-  // — an intermittent "content leaking into margins" failure on longer
-  // headlines (ch9/ch44). The conservative target keeps the rendered line
-  // clear of the 892px bleed threshold even when the estimate is off.
-  const { rows, size } = layoutWords(allWords, SAFE_W * 0.8, SAFE_H * 0.48);
+  // NARRATIVE TYPOGRAPHY, not headline typography. The renderer's guarantee:
+  // exactly ONE line, centred in the safe area, always inside the safe width.
+  // fitSingleLine() (visual/narrative-typography.js) picks a size that cannot
+  // make the line wider than the budget, and when a phrase would only fit by
+  // shrinking below the readable floor it CONDENSES the phrase instead — the
+  // direction's "rewrite rather than shrink until tiny" rule. The previous
+  // implementation called layoutWords(), which fell back to TWO stacked rows
+  // (headline + supporting line) for anything long; that structure is exactly
+  // what this visual language prohibits, so it is gone.
+  const fit = fitSingleLine(phrase, SAFE_W * TYPO_SAFE_WIDTH_FRACTION, SAFE_H * 0.42);
+  const size = fit.size;
+  const line = fit.text;
+  if (!line) return null;
   const emphSet = new Set((scene.typography?.emphasis_words || []).map((w) => w.toLowerCase()));
-  const isQuestion = scene.typography?.style === "question";
+  const isQuestion = scene.typography?.style === "question" || /\?\s*$/.test(line);
   const isImperative = scene.typography?.style === "imperative";
 
   // enterP still drives the slide-up entrance transform below — that's
@@ -488,46 +476,53 @@ function TypographyScene({ beat, p, local, ed, font, scene }) {
   const enterP = ease(clamp01(local / 14));
   const holdP = clamp01((local - 14) / 20);
 
-  // Anchor to top-third: gives the vertical canvas room to breathe below
-  const anchorY = S.top + SAFE_H * 0.22;
-
   return (
+    // CENTRED BY DEFAULT — horizontally across the safe width and vertically
+    // within the usable safe region. Narrative emphasis sits at the optical
+    // centre of the frame; it is not a lower third, a title card or a
+    // top-anchored headline. The whole phrase translates as ONE object
+    // (TYP-08: no per-word/karaoke animation) — emphasis is carried by
+    // colour, never by animating individual words independently.
     <div style={{
-      position: "absolute", left: S.left, width: SAFE_W,
-      top: anchorY,
-      transform: `translateY(${(1 - enterP) * size * 0.35}px)`,
+      position: "absolute",
+      left: S.left, width: SAFE_W,
+      top: S.top, height: SAFE_H,
+      display: "flex", alignItems: "center", justifyContent: "center",
+      transform: `translateY(${(1 - enterP) * size * 0.28}px)`,
     }}>
-      {rows.map((row, ri) => (
-        <div key={ri} style={{
-          whiteSpace: "nowrap", overflow: "visible",
+      <div style={{
+        display: "flex", flexDirection: "column", alignItems: "center",
+        maxWidth: SAFE_W * TYPO_SAFE_WIDTH_FRACTION,
+      }}>
+        <div style={{
+          // nowrap + a fitted size = one line that cannot wrap or overflow.
+          whiteSpace: "nowrap",
+          textAlign: "center",
           fontFamily: `${font}, sans-serif`,
           fontWeight: isImperative ? 900 : 800,
-          fontSize: size, lineHeight: LH,
+          fontSize: size, lineHeight: TYPO_LINE_HEIGHT,
           letterSpacing: -size * 0.022,
           fontStyle: isQuestion ? "italic" : "normal",
+          color: ed.text,
         }}>
-          {row.map((word, wi) => {
+          {line.split(" ").map((word, wi, arr) => {
             const isEmph = emphSet.has(word.toLowerCase().replace(/[^a-z0-9]/g, ""));
-            const emphScale = isEmph && holdP > 0 ? 1 + holdP * 0.04 : 1;
             return (
-              <span key={wi} style={{
-                display: "inline-block", marginRight: size * 0.22,
-                color: isEmph ? ed.accent : ed.text,
-                transform: `scale(${emphScale})`,
-                transformOrigin: "bottom left",
-              }}>{word}</span>
+              <span key={wi} style={{ color: isEmph ? ed.accent : ed.text }}>
+                {word}{wi < arr.length - 1 ? " " : ""}
+              </span>
             );
           })}
         </div>
-      ))}
-      {/* Accent rule below text — grounds it without boxing it */}
-      {holdP > 0.3 && (
-        <div style={{
-          marginTop: size * 0.4,
-          width: `${holdP * 48}px`, height: 3,
-          background: ed.accent, opacity: 0.7,
-        }} />
-      )}
+        {/* Accent rule under the phrase — grounds it without boxing it. */}
+        {holdP > 0.3 && (
+          <div style={{
+            marginTop: size * 0.34,
+            width: `${holdP * 48}px`, height: 3,
+            background: ed.accent, opacity: 0.7,
+          }} />
+        )}
+      </div>
     </div>
   );
 }

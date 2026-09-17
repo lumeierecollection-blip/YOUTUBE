@@ -211,6 +211,10 @@ async function qaOne(runId, rendered, planPath) {
     if (planPath && existsSync(planPath)) laArgs.push("--plan", planPath);
     const manifestPath = outputPath.replace(/\.mp4$/, "-manifest.json");
     if (existsSync(manifestPath)) laArgs.push("--manifest", manifestPath);
+    // The SRT lets the auditor measure transcript-likeness (is the on-screen
+    // phrase just the narration restated?) without a vision model.
+    const laSrt = join(dirname(audio), basename(audio, extname(audio)) + ".srt");
+    if (existsSync(laSrt)) laArgs.push("--srt", laSrt);
     await runChild("node", [LOCAL_AUDITOR_JS, ...laArgs], { label: `qa/local-audit ${basename(outputPath)}` });
     localAudit = readJsonSafe(outputPath.replace(/\.mp4$/, "-local-audit.json"));
   }

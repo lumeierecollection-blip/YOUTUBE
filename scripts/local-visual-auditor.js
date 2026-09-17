@@ -31,6 +31,11 @@ import { fileURLToPath } from "node:url";
 import { execFileSync, spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import sharp from "sharp";
+import {
+  wordCount, estimateEmWidth, isHeadlineLike, isTranscriptLike, toSingleLine,
+  TYPO_TARGET_MAX_WORDS, TYPO_HARD_MAX_WORDS, TYPO_MAX_CHARS,
+  TYPO_MIN_READABLE_PX, TYPO_SAFE_WIDTH_FRACTION, TYPO_MAX_BEAT_SHARE,
+} from "../src/skills/remotion-render/visual/narrative-typography.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -215,6 +220,84 @@ function auditPlanCompliance(plan, manifest) {
   };
 }
 
+/* ── NARRATIVE TYPOGRAPHY checks (mechanical only) ───────────────────── */
+
+/**
+ * Everything here is objectively measurable from the render manifest: line
+ * count, word/char budget, whether the phrase would have had to wrap, how
+ * often text appears, and whether the same phrase repeats. Whether a phrase
+ * is GOOD narrative emphasis is a semantic judgment and is deliberately NOT
+ * decided here — that stays with Gemini's post-render review.
+ */
+function auditTypography(manifest, plan, srtCues) {
+  if (!manifest) return { ok: false, note: "no render manifest" };
+  const beats = manifest.beats || [];
+  const pBeats = plan?.beats || [];
+  const safeW = (manifest.width || 1080) * 0.78 * TYPO_SAFE_WIDTH_FRACTION; // safe width * budget
+  const issues = [];
+  const perBeat = [];
+  let textBeats = 0, longestTextRun = 0, run = 0;
+  const phraseCounts = new Map();
+
+  beats.forEach((b, i) => {
+    const raw = (b.text || []).join(" ");
+    const phrase = toSingleLine(raw);
+    if (!phrase) { run = 0; perBeat.push({ index: i, hasText: false }); return; }
+    textBeats++; run++; longestTextRun = Math.max(longestTextRun, run);
+
+    const narration = srtCues?.[i]?.text || null;
+    const wc = wordCount(phrase);
+    const chars = phrase.length;
+    // Would this phrase have needed more than one line? If the size required
+    // to fit it on one line falls under the readable floor, the old renderer
+    // would have stacked it — that is the mechanical multi-line signal.
+    const onelineSize = safeW / Math.max(0.5, estimateEmWidth(phrase));
+    const wouldWrap = onelineSize < TYPO_MIN_READABLE_PX;
+    const multiLine = /[\r\n]/.test(raw) || (b.text || []).length > 1;
+    const headline = isHeadlineLike(phrase);
+    const transcript = isTranscriptLike(phrase, narration);
+
+    if (multiLine) issues.push({ owner: "PLAN_COMPLIANCE", beat: i, problem: `typography rendered as ${(b.text || []).length} text blocks — must be ONE line` });
+    if (wouldWrap) issues.push({ owner: "DIRECTION_QUALITY", beat: i, problem: `phrase needs ${onelineSize.toFixed(0)}px to fit one line (below the ${TYPO_MIN_READABLE_PX}px readable floor) — phrase is too long, rewrite shorter` });
+    if (wc > TYPO_HARD_MAX_WORDS) issues.push({ owner: "DIRECTION_QUALITY", beat: i, problem: `${wc} words exceeds the ${TYPO_HARD_MAX_WORDS}-word cap — this is narration, not emphasis` });
+    else if (wc > TYPO_TARGET_MAX_WORDS) issues.push({ owner: "DIRECTION_QUALITY", beat: i, problem: `${wc} words is above the ${TYPO_TARGET_MAX_WORDS}-word target` });
+    if (chars > TYPO_MAX_CHARS) issues.push({ owner: "DIRECTION_QUALITY", beat: i, problem: `${chars} chars exceeds the ${TYPO_MAX_CHARS}-char single-line budget` });
+    if (headline) issues.push({ owner: "DIRECTION_QUALITY", beat: i, problem: `"${phrase}" reads as a headline/topic label, not narrative emphasis` });
+    if (transcript) issues.push({ owner: "DIRECTION_QUALITY", beat: i, problem: `"${phrase}" reads as a transcript/subtitle of the narration` });
+
+    const key = phrase.toLowerCase();
+    phraseCounts.set(key, (phraseCounts.get(key) || 0) + 1);
+    perBeat.push({ index: i, hasText: true, phrase, words: wc, chars, wouldWrap, multiLine, headline, transcript });
+  });
+
+  const repeatedPhrases = [...phraseCounts.entries()].filter(([, n]) => n > 1).map(([p, n]) => ({ phrase: p, count: n }));
+  for (const r of repeatedPhrases) {
+    issues.push({ owner: "DIRECTION_QUALITY", beat: null, problem: `phrase "${r.phrase}" repeats ${r.count}x — typography monoculture` });
+  }
+
+  const textBeatShare = beats.length ? textBeats / beats.length : 0;
+  if (textBeatShare > TYPO_MAX_BEAT_SHARE) {
+    issues.push({ owner: "DIRECTION_QUALITY", beat: null, problem: `${Math.round(textBeatShare * 100)}% of beats carry on-screen text (max ${Math.round(TYPO_MAX_BEAT_SHARE * 100)}%) — typography must be selective, not the default treatment` });
+  }
+  if (longestTextRun >= 4) {
+    issues.push({ owner: "DIRECTION_QUALITY", beat: null, problem: `${longestTextRun} consecutive text beats — TEXT->TEXT->TEXT reads as a slideshow, not visual storytelling` });
+  }
+
+  return {
+    ok: true,
+    textBeats, totalBeats: beats.length,
+    textBeatShare: +textBeatShare.toFixed(2),
+    longestTextRun,
+    multiLineBeats: perBeat.filter((b) => b.multiLine).length,
+    wouldWrapBeats: perBeat.filter((b) => b.wouldWrap).length,
+    headlineLikeBeats: perBeat.filter((b) => b.headline).length,
+    transcriptLikeBeats: perBeat.filter((b) => b.transcript).length,
+    repeatedPhrases,
+    perBeat,
+    issues,
+  };
+}
+
 /* ── AUDIO checks (ffmpeg) ───────────────────────────────────────────── */
 
 // ffmpeg writes ebur128/silencedetect stats to STDERR, so capture it via
@@ -272,7 +355,7 @@ function updateChannelFingerprint(channelId, planComp) {
 
 /* ── RISK aggregation ────────────────────────────────────────────────── */
 
-function assessRisk(technical, visual, planComp, audio, channel) {
+function assessRisk(technical, visual, planComp, audio, channel, typo) {
   const reasons = [];
   let score = 0;
   // technical (these are also the frame-audit hard gate's domain; here they feed risk)
@@ -296,15 +379,29 @@ function assessRisk(technical, visual, planComp, audio, channel) {
   if (audio.maxSilenceSec >= 3) { score += 8; reasons.push(`${audio.maxSilenceSec}s silence`); }
   // channel outlier
   if (channel.outlier) { score += 10; reasons.push(`text-forward ${channel.thisTextForwardPct}% vs channel avg ${channel.recentAvgTextForwardPct}%`); }
+  // narrative typography — structural violations are the heaviest because a
+  // two-line/headline/subtitle frame is exactly the visual language we banned
+  if (typo?.ok) {
+    if (typo.multiLineBeats) { score += 30; reasons.push(`${typo.multiLineBeats} multi-line typography beat(s)`); }
+    if (typo.headlineLikeBeats) { score += 18; reasons.push(`${typo.headlineLikeBeats} headline-like phrase(s)`); }
+    if (typo.transcriptLikeBeats) { score += 18; reasons.push(`${typo.transcriptLikeBeats} transcript-like phrase(s)`); }
+    if (typo.wouldWrapBeats) { score += 12; reasons.push(`${typo.wouldWrapBeats} phrase(s) too long for one readable line`); }
+    if (typo.textBeatShare > TYPO_MAX_BEAT_SHARE) { score += 15; reasons.push(`${Math.round(typo.textBeatShare * 100)}% text beats (max ${Math.round(TYPO_MAX_BEAT_SHARE * 100)}%)`); }
+    if (typo.longestTextRun >= 4) { score += 10; reasons.push(`${typo.longestTextRun} consecutive text beats`); }
+    if (typo.repeatedPhrases?.length) { score += 8; reasons.push(`${typo.repeatedPhrases.length} repeated phrase(s)`); }
+  }
 
   const level = score >= 30 ? "HIGH" : score >= 12 ? "MEDIUM" : "LOW";
   return { score, level, reasons };
 }
 
 // Which specific beats can code NOT confidently judge → send only these to Gemini.
-function uncertainBeats(planComp, visual) {
+function uncertainBeats(planComp, visual, typo) {
   const set = new Set();
-  if (planComp.ok) for (const iss of planComp.issues) if (iss.beat != null) set.add(iss.beat);
+  if (planComp?.ok) for (const iss of planComp.issues) if (iss.beat != null) set.add(iss.beat);
+  // A typography beat the code flagged is exactly the kind Gemini must judge
+  // semantically (is this emphasis or a headline?), so escalate just those.
+  if (typo?.ok) for (const iss of typo.issues) if (iss.beat != null) set.add(iss.beat);
   return [...set].sort((a, b) => a - b);
 }
 
@@ -326,17 +423,28 @@ async function main() {
   const frames = technical.error ? [] : await sampleFrames(video, technical.durationSec || 60, 24);
   const visual = auditVisual(frames);
   const planComp = auditPlanCompliance(plan, manifest);
+  let srtCues = [];
+  const srtFile = resolveIn(arg("srt"));
+  if (srtFile) {
+    try {
+      srtCues = readFileSync(srtFile, "utf-8").replace(/\r\n/g, "\n").split(/\n\n+/).map((blk) => {
+        const lines = blk.trim().split("\n");
+        return lines.length >= 3 ? { text: lines.slice(2).join(" ") } : null;
+      }).filter(Boolean);
+    } catch { /* srt optional */ }
+  }
+  const typo = auditTypography(manifest, plan, srtCues);
   const audio = auditAudio(video, technical.hasAudio);
   const channel = updateChannelFingerprint(channelId, planComp);
-  const risk = assessRisk(technical, visual, planComp, audio, channel);
-  const uncertain = uncertainBeats(planComp, visual);
+  const risk = assessRisk(technical, visual, planComp, audio, channel, typo);
+  const uncertain = uncertainBeats(planComp, visual, typo);
   const geminiRequired = risk.level !== "LOW" || uncertain.length > 0;
 
   const report = {
     generatedAt: new Date().toISOString(),
     video: basename(video),
     channel: channelId || null,
-    technical, visual, plan_compliance: planComp, audio, channel_history: channel,
+    technical, visual, plan_compliance: planComp, typography: typo, audio, channel_history: channel,
     risk, gemini_required: geminiRequired, uncertain_beats: uncertain,
   };
 
@@ -347,6 +455,7 @@ async function main() {
   console.log(`  Video: ${report.video}  ${technical.width}x${technical.height} @ ${technical.fps}fps  ${technical.durationSec}s  audio:${technical.hasAudio}`);
   if (visual.ok) console.log(`  Visual: meanLuma=${visual.meanLuma} motion=${visual.meanMotion} black=${visual.blackFrameCount} staticRun=${visual.maxStaticRunSec}s changes=${visual.sceneChanges} dupPairs=${visual.nearDuplicatePairs}`);
   if (planComp.ok) console.log(`  Plan: beats ${planComp.beatCountRender}/${planComp.beatCountPlan} textFwd=${planComp.textForwardPct}% distinct=${planComp.distinctMechanisms} run=${planComp.longestMechanismRun} mono=${planComp.monoculture} issues=${planComp.issues.length}`);
+  if (typo.ok) console.log(`  Typography: ${typo.textBeats}/${typo.totalBeats} text beats (${Math.round(typo.textBeatShare * 100)}%) run=${typo.longestTextRun} multiline=${typo.multiLineBeats} headline=${typo.headlineLikeBeats} transcript=${typo.transcriptLikeBeats} tooLong=${typo.wouldWrapBeats} repeated=${typo.repeatedPhrases.length} issues=${typo.issues.length}`);
   if (audio.hasAudio) console.log(`  Audio: LUFS=${audio.integratedLufs ?? "?"} peak=${audio.truePeakDb ?? "?"}dB clip=${!!audio.clipping} silence=${audio.maxSilenceSec ?? 0}s`);
   if (channel.ok) console.log(`  Channel: textFwd ${channel.thisTextForwardPct}% (avg ${channel.recentAvgTextForwardPct ?? "n/a"}%) outlier=${!!channel.outlier}`);
   console.log(`  RISK: ${risk.level} (${risk.score})  ${risk.reasons.join("; ") || "clean"}`);
