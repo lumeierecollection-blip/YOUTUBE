@@ -36,6 +36,12 @@ import {
   TYPO_TARGET_MAX_WORDS, TYPO_HARD_MAX_WORDS, TYPO_MAX_CHARS,
   TYPO_MIN_READABLE_PX, TYPO_SAFE_WIDTH_FRACTION, TYPO_MAX_BEAT_SHARE,
 } from "../src/skills/remotion-render/visual/narrative-typography.js";
+import {
+  isFigureShaped, labelFit, MIN_LABEL_PX,
+} from "../src/skills/remotion-render/visual/scene-text.js";
+
+/** Mechanism name for a manifest beat, for readable issue text. */
+const mechLabel = (b) => b.mechanism || "object-first";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -249,6 +255,39 @@ export function auditTypography(manifest, plan, srtCues) {
     // than dropping them, precisely so this check can see them.
     for (const t of b.banned_text || []) {
       issues.push({ owner: "PLAN_COMPLIANCE", beat: i, problem: `"${t}" is internal mechanism vocabulary rendered as a section label — must never reach the screen` });
+    }
+
+    // FIGURE SLOTS MUST CONTAIN FIGURES.
+    //
+    // A mechanism with a magnitude slot (EVIDENCE_FIGURE's value,
+    // VISIBLE_CONSUMPTION's amount, PHYSICAL_GROWTH's magnitude) expects
+    // "$34 MILLION" or "70%" — a number with an optional unit. Run
+    // 35264622891 put the sentence "Reshaping employer liability
+    // everywhere" in PHYSICAL_GROWTH's magnitude slot; it could only be
+    // drawn at ~13px, and a 13px accent glyph measured 3.92:1 no matter how
+    // much contrast headroom the colour had.
+    //
+    // This is DIRECTION_QUALITY, not a render bug, and it is deliberately
+    // NOT repaired in the renderer: condensing the phrase to fit would make
+    // this direction permanently acceptable and the quality would never
+    // improve. The render fails, Gemini gets told which slot and why.
+    for (const t of b.on_screen_text || []) {
+      if (t.role !== "value") continue;
+      if (isFigureShaped(t.text)) continue;
+      issues.push({ owner: "DIRECTION_QUALITY", beat: i, problem: `"${t.text}" was written into the ${mechLabel(b)} figure slot (${t.source}), but it is prose, not a measured figure — that slot needs a number with an optional unit ("$34 MILLION", "70%", "2 seconds")` });
+    }
+
+    // UNREADABLE LABELS.
+    //
+    // Any on-screen string that cannot be drawn at MIN_LABEL_PX in the
+    // space its slot allows is too long for that slot. Reported, never
+    // silently shrunk — a glyph small enough to fail the contrast gate is
+    // not a colour problem.
+    for (const t of b.on_screen_text || []) {
+      if (t.role === "banned") continue;          // already reported above
+      const fit = labelFit(t.text, safeW, 180, MIN_LABEL_PX);
+      if (fit.readable) continue;
+      issues.push({ owner: "DIRECTION_QUALITY", beat: i, problem: `"${t.text}" needs ${fit.required.toFixed(0)}px to fit its slot, below the ${MIN_LABEL_PX}px readable floor — too long to be drawn legibly, shorten the phrase` });
     }
 
     // The narrative-typography contract applies to role:"narrative" strings.

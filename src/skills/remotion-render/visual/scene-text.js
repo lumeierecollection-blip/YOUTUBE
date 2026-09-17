@@ -93,31 +93,43 @@ export const TEXT_AA_FLOOR = 4.5;
  * Measured anti-aliasing loss between a text fill's FLAT colour and what
  * the frame-audit samples from the encoded MP4.
  *
- * Run 35261545735 gave two readings of the SAME fill (#F5536B, flat 5.74:1
- * against the ch2 ground) in one video: frame-02 sampled rgb(200,82,110) =
- * 4.47:1 and frame-03 sampled 5.60:1. The gate collects glyph pixels by
- * threshold, so a smaller/lighter glyph contributes proportionally more
- * anti-aliased edge pixels and reads darker; 4.47/5.74 = 0.778 is the worst
- * observed ratio. yuv420p chroma subsampling compounds it on saturated
- * reds against near-black.
+ * The gate collects glyph pixels by threshold, so a smaller or lighter
+ * glyph contributes proportionally more anti-aliased edge pixels and reads
+ * darker. yuv420p chroma subsampling compounds it on saturated reds against
+ * near-black.
+ *
+ * MEASURED, not estimated. Three samples of the SAME fill (#F5536B, flat
+ * 5.78:1 against the ch2 ground) across runs 35261545735 and 35264622891:
+ *
+ *   rgb(200,82,110) -> 4.47:1   ratio 0.772
+ *   rgb(197,79,117) -> 4.34:1   ratio 0.750
+ *   rgb(182,78,106) -> 3.92:1   ratio 0.677   <- worst
+ *
+ * The first pass of this constant used 0.778, taken from the single sample
+ * available at the time. That was optimistic: run 35264622891 then sampled
+ * 0.677 and frame-03 failed again at 3.92:1. The value below is the worst
+ * of all three, so the budget is derived from the worst real observation
+ * rather than the first one.
  *
  * This is why a fill that is exactly AA-compliant when measured flat still
  * fails the gate: it has no headroom for its own edges. We give text real
  * headroom instead of relaxing the gate — the render genuinely gets more
  * legible, and the threshold the gate enforces is untouched.
  */
-export const ANTIALIAS_SAMPLE_RATIO = 0.778;
+export const ANTIALIAS_SAMPLE_RATIO = 0.677;
 
 /** Flat contrast a text fill needs so its SAMPLED value still clears AA. */
 export const TEXT_TARGET_CONTRAST = +(TEXT_AA_FLOOR / ANTIALIAS_SAMPLE_RATIO).toFixed(2); // 5.78
 
 /**
  * Accent text is the most exposed case: saturated hue, and the mechanisms
- * use it for the one line that carries the beat. A little more headroom
- * than the derived minimum so a channel whose declared accent sits right at
- * the boundary does not ship a render that depends on glyph size.
+ * use it for the one line that carries the beat. The derived minimum is
+ * 4.5/0.677 = 6.65; this adds margin on top so a channel whose declared
+ * accent sits near the boundary does not ship a render whose pass/fail
+ * depends on how large one glyph happened to be. At 7.5 the worst observed
+ * sampling still lands at ~5.1:1.
  */
-export const ACCENT_TEXT_TARGET_CONTRAST = 6.5;
+export const ACCENT_TEXT_TARGET_CONTRAST = 7.5;
 
 /**
  * Raise a text colour until it clears `target` against the ground, by
@@ -154,6 +166,92 @@ export function ensureTextContrast(hex, bgHex, target = TEXT_TARGET_CONTRAST) {
   return best;
 }
 
+/* ── Readable size floors ────────────────────────────────────────────── */
+
+/**
+ * The smallest a scene LABEL may be drawn, in 1080-wide composition px.
+ *
+ * Lower than narrative typography's 34px floor because labels are
+ * secondary, but it IS a floor: the old fitFontSize() let "fit win over the
+ * min-size floor" so that a long string could never overflow its box, which
+ * meant an over-long label silently became unreadable instead of being
+ * shortened. Run 35264622891 frame-03 put the 39-character prose phrase
+ * "Reshaping employer liability everywhere" into GrowthScene's numeric
+ * magnitude slot; it shrank to roughly 13px, and a 13px accent glyph loses
+ * so much to anti-aliasing that it measured 3.92:1 no matter how much
+ * contrast headroom the colour had. Colour cannot rescue a glyph that small
+ * — the text has to be shorter.
+ */
+export const MIN_LABEL_PX = 28;
+
+/**
+ * Below this size, a saturated accent glyph loses so much to anti-aliasing
+ * that no colour headroom saves it. This is a REPORTING threshold, not an
+ * automatic colour swap: a label this small means the phrase is wrong, and
+ * swapping its colour would hide that.
+ */
+export const MIN_ACCENT_TEXT_PX = 34;
+
+/** Rough per-character em width, matched to narrative-typography's model. */
+function emWidth(text) {
+  let w = 0;
+  for (const ch of String(text)) {
+    if (/[ilIjft.,:;'`|!]/.test(ch)) w += 0.30;
+    else if (/[A-Z0-9%$]/.test(ch)) w += 0.62;
+    else if (/[mwMW@]/.test(ch)) w += 0.88;
+    else w += 0.52;
+  }
+  return Math.max(0.5, w);
+}
+
+/**
+ * The size a label WOULD need to fit `maxW`, and whether that is readable.
+ *
+ * This MEASURES; it deliberately does not repair. The first version of this
+ * function condensed the text — dropped trailing words until prose fitted
+ * whatever slot it had been put in. That was the wrong owner: it would have
+ * made the renderer silently rescue bad direction, so a model could keep
+ * putting a 39-character sentence in a numeric magnitude slot forever and
+ * nothing would ever fail. Lazy direction has to be INVALID, not
+ * accommodated, and truncating a thought mid-sentence is its own defect.
+ *
+ * So: the renderer draws what it was given, the auditor reports an
+ * unreadable label as DIRECTION_QUALITY, and the phrase gets fixed where it
+ * was written.
+ */
+export function labelFit(text, maxW, maxSz, minSz = MIN_LABEL_PX) {
+  const line = String(text == null ? "" : text).replace(/\s+/g, " ").trim();
+  if (!line) return { size: 0, readable: true, required: 0 };
+  const required = Math.min(maxSz, maxW / emWidth(line));
+  return {
+    size: required,
+    required,
+    readable: required >= Math.min(minSz, maxSz),
+  };
+}
+
+/**
+ * Does this string look like a FIGURE (a measured value) rather than prose?
+ *
+ * Mechanical only: mechanisms with a magnitude/figure slot expect something
+ * like "$34 MILLION", "3.2x", "70%", "2 seconds" — a number with an
+ * optional unit. Run 35264622891 put "Reshaping employer liability
+ * everywhere" there, which is a sentence, and the render had no way to draw
+ * it. Whether a given figure is the RIGHT one is Gemini's judgment; whether
+ * it is figure-SHAPED is measurable, so it belongs here.
+ */
+export function isFigureShaped(text) {
+  const line = String(text == null ? "" : text).trim();
+  if (!line) return false;
+  if (!/\d/.test(line)) return false;            // a figure contains a number
+  if (wordsOf(line).length > 4) return false;    // a sentence is not a figure
+  return true;
+}
+
+function wordsOf(text) {
+  return String(text).trim().split(/\s+/).filter(Boolean);
+}
+
 /* ── Engine vocabulary ───────────────────────────────────────────────── */
 
 /**
@@ -175,6 +273,8 @@ export const ENGINE_VOCABULARY = new Set([
   // 35261545735; "result" is the one the first test pass caught missing.
   "result", "outcome", "consequence", "total", "remaining", "left",
   "the real picture", "key fact", "takeaway",
+  // Stamped over a bar that already fractures (BreakdownScene).
+  "broken", "fractured", "collapsed",
 ]);
 
 /** Normalise a label for vocabulary matching: strip arrows, punctuation, case. */
@@ -235,6 +335,12 @@ export const TEXT_SURFACES = {
   ],
   PHYSICAL_GROWTH: [
     { source: "objects.subject.label", role: "narrative" },
+    // The magnitude slot. Declared because GrowthScene DRAWS it (magText =
+    // magnitude.label): the first version of this map omitted it, so the
+    // manifest would not have reported the prose-in-a-figure-slot defect
+    // that made run 35264622891 fail — the declaration has to match what
+    // the scene actually draws or the audit is blind again.
+    { source: "objects.magnitude.label", role: "value" },
     { source: "axis.ticks", role: "quiet" },
   ],
   PROPORTIONAL_OBJECTS: [{ source: "objects.*.label", role: "value" }],

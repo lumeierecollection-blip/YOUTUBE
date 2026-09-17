@@ -162,5 +162,168 @@ section("7. Every declared text surface is well-formed");
   }
 }
 
+/* ── Static guards on the renderer source ──────────────────────────────
+ *
+ * These exist because the same two defects kept coming back in DIFFERENT
+ * scenes, and each time they were found by reading a failed render's
+ * frames rather than by a test. Run 35261545735 fixed the SVG
+ * `fill={ed.accent}` text nodes; run 35264622891 then failed at 3.92:1 on
+ * an HTML `style={{ color: ed.accent }}` span the first sweep never looked
+ * at. A source-scanning test is crude, but it fails in CI in a second
+ * instead of costing a six-minute render to discover.
+ * ─────────────────────────────────────────────────────────────────────── */
+
+import { readFileSync as _read } from "node:fs";
+
+/**
+ * Components that draw onto a LIGHT sheet (a receipt, a document page)
+ * rather than onto the near-black page ground. Brightening a fill there
+ * would REDUCE contrast, so the page-ground rules do not apply.
+ */
+const LIGHT_SHEET_COMPONENTS = new Set(["ReceiptSheet", "DocumentPage"]);
+
+/**
+ * The renderer's lines with every comment blanked out, so a guard can never
+ * fire on prose ABOUT a defect instead of the defect.
+ *
+ * Prefix matching was not enough: a multi-line `{/* ... *\/}` JSX comment has
+ * continuation lines that start with neither `//` nor `*`, and the comments
+ * documenting the removed "THE REAL PICTURE" fallback and the removed
+ * .toUpperCase() both tripped their own guards. Blanking tracks block state
+ * instead of guessing from the first character. Indices are preserved so
+ * reported line numbers still match the file.
+ */
+function codeLines(path) {
+  const raw = _read(path, "utf8").split("\n");
+  let inBlock = false;
+  return raw.map((line) => {
+    let out = "";
+    let i = 0;
+    while (i < line.length) {
+      if (inBlock) {
+        const end = line.indexOf("*/", i);
+        if (end === -1) { i = line.length; break; }
+        inBlock = false;
+        i = end + 2;
+        continue;
+      }
+      const lineComment = line.indexOf("//", i);
+      const blockStart = line.indexOf("/*", i);
+      if (blockStart !== -1 && (lineComment === -1 || blockStart < lineComment)) {
+        out += line.slice(i, blockStart);
+        inBlock = true;
+        i = blockStart + 2;
+        continue;
+      }
+      if (lineComment !== -1) { out += line.slice(i, lineComment); break; }
+      out += line.slice(i);
+      break;
+    }
+    return out;
+  });
+}
+
+const RENDERER = "src/skills/remotion-render/visual-engine/directed-scene.jsx";
+
+/**
+ * Scan directed-scene.jsx for TEXT lines matching `predicate`, skipping
+ * comments and anything inside a light-sheet component.
+ *
+ * Resolving the enclosing component by scanning back to the nearest
+ * `function Name(` is what keeps the light-sheet exemption honest — the
+ * alternative was a blanket suppression that would also have hidden real
+ * page-ground defects.
+ */
+function textOffenders(predicate) {
+  const lines = codeLines(RENDERER);
+  const enclosing = (i) => {
+    for (let j = i; j >= 0; j--) {
+      const m = lines[j].match(/^function\s+([A-Za-z0-9_]+)\s*\(/);
+      if (m) return m[1];
+    }
+    return null;
+  };
+  const out = [];
+  lines.forEach((line, i) => {
+    // TEXT-BEARING lines. `<span>`/`color:` must be here, not just SVG
+    // attributes: the first version of this filter required
+    // <text|fontSize|fontFamily, so the HTML span that actually caused run
+    // 35264622891's 3.92:1 failure was skipped and the guard passed while
+    // the bug was present. A negative test (reintroduce the bug, expect a
+    // FAIL) is the only reason that was caught.
+    if (!/<text|fontSize|fontFamily|<span|color:/.test(line)) return;
+    if (LIGHT_SHEET_COMPONENTS.has(enclosing(i))) return;         // light ground
+    if (predicate(line)) out.push(`line ${i + 1}: ${line.trim().slice(0, 80)}`);
+  });
+  return out;
+}
+
+section("8. No page-ground text keeps a constant sub-1 alpha");
+{
+  const offenders = textOffenders((line) => {
+    const m = line.match(/opacity=\{([^}]*)\}/);
+    if (!m) return false;
+    // A trailing "* 0.NN", or a bare "0.NN", never settles at 1.
+    return /\*\s*0\.\d+\s*$/.test(m[1]) || /^\s*0\.\d+\s*$/.test(m[1]);
+  });
+  ok(offenders.length === 0,
+    `no page-ground <text> carries a constant sub-1 alpha (found ${offenders.length}):\n      ${offenders.join("\n      ")}`);
+}
+
+section("9. No glyph is filled with the raw, unvalidated accent");
+{
+  const offenders = textOffenders((line) =>
+    // HTML text colour inside a real JSX style block. An object property
+    // `color:` that defines a BAR fill is not text and must not match.
+    (/style=\{\{/.test(line) && /color:\s*[^,}]*\bed\.accent\b(?!Text)/.test(line)) ||
+    // SVG glyph fill.
+    /fill=\{ed\.accent\}/.test(line));
+  ok(offenders.length === 0,
+    `every glyph uses ed.accentText, not ed.accent (found ${offenders.length}):\n      ${offenders.join("\n      ")}`);
+}
+
+section("10. The recalibrated anti-alias budget covers every observed sample");
+{
+  // Every real sample of #F5536B against the ch2 ground, across both runs.
+  const OBSERVED_CONTRASTS = [4.47, 4.34, 3.92];
+  const flat = contrastRatio(ACCENT, BG);
+  const ratios = OBSERVED_CONTRASTS.map((s) => s / flat);
+  const worst = Math.min(...ratios);
+  ok(ANTIALIAS_SAMPLE_RATIO <= worst + 1e-9,
+    `ANTIALIAS_SAMPLE_RATIO (${ANTIALIAS_SAMPLE_RATIO}) is no more optimistic than the worst observed loss (${worst.toFixed(3)})`);
+
+  const derived = ensureTextContrast(ACCENT, BG, ACCENT_TEXT_TARGET_CONTRAST);
+  for (const r of ratios) {
+    ok(contrastRatio(derived, BG) * r >= TEXT_AA_FLOOR,
+      `derived accent still clears AA at observed loss ratio ${r.toFixed(3)}`);
+  }
+}
+
+section("11. The renderer neither invents nor shouts on-screen content");
+{
+  const lines = codeLines(RENDERER);
+  const invented = [];
+  const shouted = [];
+  lines.forEach((line, i) => {
+    // A `|| "SOME LABEL"` fallback substitutes invented content for missing
+    // plan data: "GASOLINE", "REPORTED FIGURE", "DATA", "THE REAL PICTURE"
+    // all shipped this way.
+    if (/\|\|\s*"[A-Z][A-Z .\/]{3,}"/.test(line)) {
+      invented.push(`line ${i + 1}: ${line.trim().slice(0, 78)}`);
+    }
+    // .toUpperCase() on a plan value manufactures the shouted-caps register
+    // TYP-09 bans, and does it AFTER the plan-time contract has run, so
+    // isHeadlineLike() can never see it. The DocumentPage `title` prop is
+    // the one exception: caps there is part of the drawn object.
+    if (/\.toUpperCase\(\)/.test(line) && !/title=\{/.test(line)) {
+      shouted.push(`line ${i + 1}: ${line.trim().slice(0, 78)}`);
+    }
+  });
+  ok(invented.length === 0,
+    `no invented fallback on-screen content (found ${invented.length}):\n      ${invented.join("\n      ")}`);
+  ok(shouted.length === 0,
+    `no .toUpperCase() shouting plan values (found ${shouted.length}):\n      ${shouted.join("\n      ")}`);
+}
+
 console.log(`\n${passed} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);

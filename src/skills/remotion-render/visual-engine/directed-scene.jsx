@@ -375,12 +375,16 @@ function BudgetBar({ x, y, w, h, segments, broken, consumed, ed, font }) {
               <>
                 <text x={segX + (isConsumed ? growW : segW) / 2} y={y + h / 2 - 2} textAnchor="middle"
                   fontFamily={`${font}, sans-serif`} fontWeight={800}
-                  fontSize={Math.min(22, segW * 0.22)} fill={ed.text} opacity={opacity * 0.85}>
+                  fontSize={Math.min(22, segW * 0.22)} fill={ed.text} opacity={opacity}>
                   {seg.label}
                 </text>
+                {/* Solid ed.quiet, not ed.text at 0.65. These labels sit on
+                    the page ground over a 0.3-alpha bar, so the constant
+                    multiplier put them in the same failure class as the
+                    2.30:1 violation (COL-24). */}
                 <text x={segX + (isConsumed ? growW : segW) / 2} y={y + h / 2 + 18} textAnchor="middle"
                   fontFamily={`${font}, sans-serif`} fontWeight={600}
-                  fontSize={Math.min(16, segW * 0.16)} fill={ed.text} opacity={opacity * 0.65}>
+                  fontSize={Math.min(16, segW * 0.16)} fill={ed.quiet} opacity={opacity}>
                   {seg.pct}
                 </text>
               </>
@@ -534,7 +538,12 @@ function TypographyScene({ beat, p, local, ed, font, scene }) {
           {line.split(" ").map((word, wi, arr) => {
             const isEmph = emphSet.has(word.toLowerCase().replace(/[^a-z0-9]/g, ""));
             return (
-              <span key={wi} style={{ color: isEmph ? ed.accent : ed.text }}>
+              // ed.accentText, not ed.accent: this is a GLYPH, so it needs
+              // headroom for its own anti-aliased edges. This span is HTML
+              // rather than SVG, which is why it survived the first sweep of
+              // `fill={ed.accent}` text nodes — run 35264622891 frame-03
+              // still sampled rgb(182,78,106) = 3.92:1 from exactly here.
+              <span key={wi} style={{ color: isEmph ? ed.accentText : ed.text }}>
                 {word}{wi < arr.length - 1 ? " " : ""}
               </span>
             );
@@ -612,11 +621,17 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
 
       {/* SURFACE: official figure as large raw text — no card */}
       <g transform={`translate(0, ${surfSlideY})`} opacity={enterP * (1 - revealP * 0.5)}>
-        <text x={24} y={SAFE_H * 0.08}
-          fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={12} fill={ed.subdued} letterSpacing={5}>
-          {(scene.subject || "REPORTED FIGURE").toUpperCase()}
-        </text>
+        {/* No "REPORTED FIGURE" fallback and no .toUpperCase(): the first
+            invents on-screen content, the second manufactures the
+            shouted-caps headline register TYP-09 bans from a normally-cased
+            plan value. Drawn only when the plan supplied a subject. */}
+        {scene.subject && (
+          <text x={24} y={SAFE_H * 0.08}
+            fontFamily={`${font}, monospace`} fontWeight={500}
+            fontSize={12} fill={ed.subdued} letterSpacing={5}>
+            {scene.subject}
+          </text>
+        )}
         <text x={24} y={SAFE_H * 0.08 + surfSz * LH}
           fontFamily={`${font}, sans-serif`} fontWeight={900}
           fontSize={surfSz} fill={ed.text} fontVariantNumeric="tabular-nums">
@@ -699,8 +714,12 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
   const labelB = (b.label && b.label !== "B") ? b.label : fallbackB;
   const rawNameA = a.context || a.role || "";
   const rawNameB = b.context || b.role || "";
-  const nameA = (rawNameA && rawNameA !== labelA) ? rawNameA.toUpperCase().slice(0, 20) : "";
-  const nameB = (rawNameB && rawNameB !== labelB) ? rawNameB.toUpperCase().slice(0, 20) : "";
+  // Neither uppercased nor truncated: .toUpperCase() manufactures the
+  // shouted-caps register TYP-09 bans out of a normally-cased plan value,
+  // and .slice(0, 20) cuts mid-word. A name too long for its column is
+  // DIRECTION_QUALITY and the auditor says so.
+  const nameA = (rawNameA && rawNameA !== labelA) ? rawNameA : "";
+  const nameB = (rawNameB && rawNameB !== labelB) ? rawNameB : "";
 
   const parseNum = (label, ctx) => {
     const fromLabel = parseFloat(String(label).replace(/[^0-9.]/g, ""));
@@ -839,9 +858,12 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
     return (
       <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
         style={{ position: "absolute", left: S.left, top: S.top }}>
+        {/* No "GASOLINE" fallback on `label`: an invented label for
+            whatever the topic happens to be is fabricated on-screen
+            content. If the plan gave no label, the gauge reads unlabelled. */}
         <FuelGauge
           cx={SAFE_W / 2} cy={SAFE_H * 0.44} r={SAFE_W * 0.40}
-          fill={growP * 0.90} label={subject.label || "GASOLINE"}
+          fill={growP * 0.90} label={subject.label || ""}
           reading={labelP > 0.2 ? (magnitude.label || "") : ""}
           readingOpacity={labelP}
           ed={ed} font={font} />
@@ -870,7 +892,18 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
   // GENERIC: vertical tower rising from baseline at the bottom.
   // The tower IS the growth. Its height encodes the value.
   const magText = magnitude.label || "";
-  const subText = (subject.label || scene.subject || "").toUpperCase().slice(0, 24);
+  // No .toUpperCase() and no .slice(24).
+  //
+  // The uppercase was the renderer MANUFACTURING the shouted-caps register
+  // narrative typography bans (TYP-09): run 35264622891 rendered
+  // "EMPLOYEES PROVE" from a normally-cased label, so a phrase could be
+  // clean in the plan and a headline on screen, and isHeadlineLike() could
+  // never catch it because it only ever sees the plan.
+  //
+  // The slice truncated mid-word at 24 chars, which mangles content rather
+  // than shortening it. A label too long for its slot is DIRECTION_QUALITY
+  // and the auditor reports it; the renderer does not quietly cut it.
+  const subText = subject.label || scene.subject || "";
 
   const colW = SAFE_W * 0.44;
   const colX = (SAFE_W - colW) / 2;
@@ -963,16 +996,11 @@ function BreakdownScene({ beat, p, local, ed, font, scene }) {
         {/* Bar spans full safe width, tall enough to be the hero */}
         <BudgetBar x={0} y={SAFE_H * 0.16} w={SAFE_W} h={120}
           segments={segments} broken={breakP} ed={ed} font={font} />
-        {breakP > 0.55 && (
-          <g opacity={ease(clamp01((breakP - 0.55) / 0.3)) * 0.75}>
-            <text x={SAFE_W / 2} y={SAFE_H * 0.52} textAnchor="middle"
-              fontFamily={`${font}, sans-serif`} fontWeight={900}
-              fontSize={80} fill={ed.accentText} letterSpacing={10}
-              transform={`rotate(-6, ${SAFE_W / 2}, ${SAFE_H * 0.52})`}>
-              BROKEN
-            </text>
-          </g>
-        )}
+        {/* The "BROKEN" stamp is GONE. It named the mechanism over the top
+            of the mechanism — the bar visibly fractures, so the word added
+            nothing a viewer could not already see, which is the TYP-14
+            test. It also carried a settled 0.75 alpha at 80px, the same
+            translucent-text defect as COL-24. */}
       </svg>
     );
   }
@@ -1045,12 +1073,16 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
       style={{ position: "absolute", left: S.left, top: S.top }}>
-      {/* Source eyebrow */}
-      <text x={24} y={figureTopY - 16}
-        fontFamily={`${font}, monospace`} fontWeight={500}
-        fontSize={12} fill={ed.subdued} letterSpacing={5}>
-        {(scene.subject || "").toUpperCase() || "DATA"}
-      </text>
+      {/* Source eyebrow. No "DATA" fallback (invented content) and no
+          .toUpperCase() (manufactured shouting) — same reasons as the
+          removed "REPORTED FIGURE" and "GASOLINE" fallbacks. */}
+      {scene.subject && (
+        <text x={24} y={figureTopY - 16}
+          fontFamily={`${font}, monospace`} fontWeight={500}
+          fontSize={12} fill={ed.subdued} letterSpacing={5}>
+          {scene.subject}
+        </text>
+      )}
 
       {/* THE FIGURE — the dominant visual */}
       <text x={24} y={figureBaseY}
