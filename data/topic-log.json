@@ -1123,9 +1123,14 @@
           "topic": "The $64M Croft and Frost SEC Offering Fraud Scheme",
           "slug": "croft-frost-64m-offering-fraud-scheme",
           "reserved_at": "2026-09-16T23:38:57.722Z"
+        },
+        {
+          "topic": "The $47 Million Capital Funding ASAP Affinity Fraud Scheme",
+          "slug": "capital-funding-asap-47m-affinity-fraud",
+          "reserved_at": "2026-09-17T00:00:07.309Z"
         }
       ],
-      "last_generated": "2026-09-16T23:38:57.722Z"
+      "last_generated": "2026-09-17T00:00:07.309Z"
     },
     "27": {
       "channel_name": "Trial Files",
