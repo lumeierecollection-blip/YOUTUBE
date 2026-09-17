@@ -1661,9 +1661,14 @@
           "topic": "Immersive Learning: Why On-the-Job Practice Beats Training Rooms in 2026",
           "slug": "immersive-learning-workflow-practice-2026",
           "reserved_at": "2026-09-17T19:51:45.840Z"
+        },
+        {
+          "topic": "The Risk-Reward Trap: Why Leaders Fail at Decision Quality in 2026",
+          "slug": "risk-reward-trap-leadership-decision-2026",
+          "reserved_at": "2026-09-17T20:37:02.848Z"
         }
       ],
-      "last_generated": "2026-09-17T19:51:45.841Z"
+      "last_generated": "2026-09-17T20:37:02.849Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
