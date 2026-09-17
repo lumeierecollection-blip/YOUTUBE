@@ -467,9 +467,14 @@
           "topic": "Supreme Court Rules on Montgomery v. Caribe Transport II Employment Rights",
           "slug": "montgomery-v-caribe-transport-employment-ruling",
           "reserved_at": "2026-09-17T00:42:28.106Z"
+        },
+        {
+          "topic": "DOJ Declares Title VII Disparate Impact Liability Unconstitutional",
+          "slug": "doj-title-vii-disparate-impact-unconstitutional",
+          "reserved_at": "2026-09-17T01:06:41.990Z"
         }
       ],
-      "last_generated": "2026-09-17T00:42:28.106Z"
+      "last_generated": "2026-09-17T01:06:41.990Z"
     },
     "3": {
       "channel_name": "AI Tested",
