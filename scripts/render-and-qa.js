@@ -183,7 +183,7 @@ async function renderOne(channelId, scriptPath, format) {
 
 /* ── QA ──────────────────────────────────────────────────────────── */
 
-async function qaOne(runId, rendered) {
+async function qaOne(runId, rendered, planPath) {
   const { outputPath, channelId, scriptPath, audio } = rendered;
   const reviewDir = join(ROOT, "data", "audit", "render-review", runId, basename(outputPath, ".mp4"));
   mkdirSync(reviewDir, { recursive: true });
@@ -210,6 +210,9 @@ async function qaOne(runId, rendered) {
     const srtArg = existsSync(srtPath) ? srtPath : "";
     const reviewArgs = ["--video", outputPath, "--script", scriptPath, "--channel", String(channelId), "--fix"];
     if (srtArg) reviewArgs.push("--srt", srtArg);
+    // Pass the authoritative visual plan so the review runs plan-compliance
+    // (directed vs rendered), not a vague "looks good" pass.
+    if (planPath && existsSync(planPath)) reviewArgs.push("--plan", planPath);
     geminiReviewPromise = runChild("node", [GEMINI_REVIEW_JS, ...reviewArgs], {
       label: `qa/gemini-review ${basename(outputPath)}`,
     });
@@ -270,7 +273,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     console.log(`\n=== ATTEMPT ${attempt}/${MAX_CORRECTION_LOOPS}: ${basename(scriptPath)} ===`);
 
     // Step 1: Gemini plans (or re-plans with corrections)
-    await geminiPlan(channelId, scriptPath, correctionsPath);
+    const planPath = await geminiPlan(channelId, scriptPath, correctionsPath);
 
     // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL)
     const result = await renderOne(channelId, scriptPath, format);
@@ -286,8 +289,8 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
 
     lastResult = result;
 
-    // Step 3: QA (frame extraction + audit + Gemini review)
-    const qa = await qaOne(runId, result);
+    // Step 3: QA (frame extraction + audit + Gemini plan-compliance review)
+    const qa = await qaOne(runId, result, planPath);
 
     // Wait for all background QA tasks to finish before checking Gemini verdict
     await Promise.all([qa.slopCheckPromise, qa.visionQaPromise, qa.geminiReviewPromise].filter(Boolean));
@@ -310,7 +313,8 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
         // environments without a Gemini key don't start blocking publishes.
         pipelineVerdict = report.pipelineVerdict || "UNKNOWN";
         geminiVerdict = report.wholeVideoResult?.verdict || report.pipelineReason || pipelineVerdict;
-        console.log(`Gemini verdict (attempt ${attempt}): ${pipelineVerdict} — ${geminiVerdict}`);
+        const owner = report.correctionOwner ? ` [owner: ${report.correctionOwner}]` : "";
+        console.log(`Gemini verdict (attempt ${attempt}): ${pipelineVerdict} — ${geminiVerdict}${owner}`);
       } catch {}
     }
 

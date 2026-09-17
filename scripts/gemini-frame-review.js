@@ -196,6 +196,86 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
   return callGemini(apiKey, [{ role: "user", content }], 1600);
 }
 
+/* ── Plan-compliance review — intended (director) vs actual (render) ──── */
+
+// Map a frame time to the plan beat that governs it. Plan beats align 1:1
+// with SRT sentences (index i = sentence i), so the beat for time t is the
+// one whose cue window contains t.
+function planBeatAtTime(planBeats, srtCues, t) {
+  if (!planBeats || !srtCues.length) return null;
+  let idx = srtCues.findIndex((c) => t >= c.start && t <= c.end + 0.3);
+  if (idx < 0) {
+    // nearest cue start
+    idx = srtCues.reduce((best, c, i) => Math.abs(c.start - t) < Math.abs(srtCues[best].start - t) ? i : best, 0);
+  }
+  return planBeats[idx] || null;
+}
+
+function directionSummary(beat) {
+  const d = beat?.direction || {};
+  const parts = [];
+  if (d.subject) parts.push(`subject: ${d.subject}`);
+  if (d.action_start || d.action_end) parts.push(`change: ${d.action_start || "?"} -> ${d.action_end || "?"}`);
+  if (d.camera) parts.push(`camera: ${d.camera}`);
+  if (d.motion) parts.push(`motion: ${d.motion}`);
+  if (d.typography) parts.push(`text: ${d.typography}`);
+  if (d.muted_read) parts.push(`muted-read: ${d.muted_read}`);
+  if (!parts.length && beat?.visual_headline) parts.push(`headline: ${beat.visual_headline} (${beat.mechanism || "?"})`);
+  return parts.join(" | ") || "(no direction)";
+}
+
+// The heart of the closed loop: Gemini directed each beat, now it sees the
+// actual frames and reports, per beat, whether the render EXECUTED that
+// direction — classifying each miss by OWNER so corrections route to the
+// right place instead of a vague "looks bad".
+async function reviewPlanCompliance(framePaths, beatTimes, srtCues, planBeats, apiKey) {
+  const step = Math.max(1, Math.floor(framePaths.length / 8));
+  const selected = [0];
+  for (let i = step; i < framePaths.length - 1; i += step) selected.push(i);
+  selected.push(framePaths.length - 1);
+  const unique = [...new Set(selected)].sort((a, b) => a - b).slice(0, 10);
+
+  const prompt = `You are the VISUAL DIRECTOR reviewing whether the render EXECUTED your direction.
+For each frame you are given the DIRECTION you wrote for that beat and the ACTUAL rendered frame.
+Do NOT judge whether the video "looks good" in the abstract. Judge COMPLIANCE and assign an OWNER for every miss.
+
+For each frame decide:
+- observed: what the frame ACTUALLY shows (one line).
+- compliance: MATCH (render delivered the directed event) | PARTIAL (some of it) | FAIL (it did not).
+- failure_owner (only when not MATCH), exactly one of:
+    DIRECTION_QUALITY  — the DIRECTION itself was lazy/generic (e.g. it just asked for a chart or the text); fix by re-directing.
+    PLAN_COMPLIANCE    — the direction was good but the render did NOT execute it (directed a growing document stack, got a generic bar); fix the implementation.
+    RENDER_TECHNICAL   — a technical rendering defect (empty, broken, cut off).
+    CONTENT_FACTUAL    — the frame shows a fabricated/incorrect number, label, or claim not supported by the script.
+    QA                 — safe-area/contrast/legibility defect.
+- correction: one concrete instruction to fix it, addressed to the owner.
+
+Also judge the whole sequence: is it template monoculture (same headline/chart language repeated)? Does the visual argument stay continuous?
+
+Respond ONLY with JSON (no fences):
+{
+  "beat_compliance": [
+    { "frame": <int>, "directed": "<short>", "observed": "<short>", "compliance": "MATCH|PARTIAL|FAIL", "failure_owner": "<one of the above or null>", "correction": "<short or null>" }
+  ],
+  "monoculture": true|false,
+  "continuity_ok": true|false,
+  "dominant_failure_owner": "<the owner responsible for the most/worst misses, or null>",
+  "overall_compliance": "MATCH|PARTIAL|FAIL",
+  "summary": "<one sentence: did the render execute the direction, and if not, whose fault>"
+}`;
+
+  const content = [{ type: "text", text: prompt }];
+  for (const idx of unique) {
+    const t = beatTimes[idx];
+    const beat = planBeatAtTime(planBeats, srtCues, t);
+    const vo = srtCues.length ? getVoiceoverAtTime(srtCues, t) : "(no SRT)";
+    const imageData = readFileSync(framePaths[idx]).toString("base64");
+    content.push({ type: "text", text: `\n--- Frame ${idx + 1} at t=${t.toFixed(1)}s\nVO: "${vo.slice(0, 90)}"\nDIRECTED: ${directionSummary(beat)} ---` });
+    content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${imageData}` } });
+  }
+  return callGemini(apiKey, [{ role: "user", content }], 2000);
+}
+
 function categorizeResult(result, bible) {
   if (result.error) return { tier: "ERROR", blocking: false };
   const status = result.status || (result.quality_score >= 6 ? "PASS" : "FAIL");
@@ -227,6 +307,7 @@ async function main() {
   const scriptPath = arg("script");
   const srtPath = arg("srt");
   const channelId = arg("channel");
+  const planPath = arg("plan");
   const fixMode = process.argv.includes("--fix");
 
   if (!videoPath || !scriptPath) {
@@ -254,6 +335,24 @@ async function main() {
     console.log(`SRT loaded: ${srtCues.length} cues`);
   } else {
     console.warn("No SRT file — voiceover text unavailable for visual-audio alignment checks.");
+  }
+
+  // The AUTHORITATIVE visual direction (data/visual-plans/.../*-visual-plan.json).
+  // When present, the post-render review becomes a PLAN-COMPLIANCE check —
+  // did the rendered video execute the directed visual event? — instead of a
+  // vague "does this look good?". Absent (older plans, or planning skipped),
+  // it falls back to the whole-video Bible review only.
+  let planBeats = null;
+  const planFile = planPath && existsSync(planPath) ? planPath
+    : (planPath && existsSync(join(ROOT, planPath)) ? join(ROOT, planPath) : null);
+  if (planFile) {
+    try {
+      const plan = JSON.parse(readFileSync(planFile, "utf-8"));
+      planBeats = Array.isArray(plan.beats) ? plan.beats : null;
+      if (planBeats) console.log(`Visual plan loaded: ${planBeats.length} directed beats (plan-compliance review enabled)`);
+    } catch (e) {
+      console.warn(`Could not load visual plan ${planFile}: ${e.message}`);
+    }
   }
 
   const duration = getVideoDuration(video);
@@ -425,6 +524,26 @@ async function main() {
       }
     }
 
+    // ── PHASE 3: Plan-compliance review (intended vs actual) ──
+    let planCompliance = null;
+    if (planBeats && framePaths.length) {
+      console.log("\n═══ PHASE 3: PLAN-COMPLIANCE (directed vs rendered) ═══\n");
+      planCompliance = await reviewPlanCompliance(framePaths, beatTimes, srtCues, planBeats, apiKey);
+      if (planCompliance.error) {
+        console.log(`  Plan-compliance review ERROR: ${planCompliance.error}`);
+        planCompliance = null;
+      } else {
+        console.log(`  Overall compliance: ${planCompliance.overall_compliance || "?"}  monoculture: ${planCompliance.monoculture}  continuity_ok: ${planCompliance.continuity_ok}`);
+        console.log(`  Dominant failure owner: ${planCompliance.dominant_failure_owner || "none"}`);
+        console.log(`  ${planCompliance.summary || ""}`);
+        for (const b of (planCompliance.beat_compliance || [])) {
+          if (b.compliance && b.compliance !== "MATCH") {
+            console.log(`    frame ${b.frame}: ${b.compliance} [${b.failure_owner || "?"}] directed="${b.directed}" observed="${b.observed}" → ${b.correction || ""}`);
+          }
+        }
+      }
+    }
+
     // ── Build report ──
     const avgScore = sceneResults.filter((r) => r.quality_score).length > 0
       ? (sceneResults.reduce((s, r) => s + (r.quality_score || 0), 0) / sceneResults.filter((r) => r.quality_score).length).toFixed(1)
@@ -464,21 +583,49 @@ async function main() {
     // This is NOT a weakening of QA: genuinely broken frames still hard-block
     // via criticalCount, and the frame-audit pixel gate (qa.gatePass in
     // render-and-qa.js) is an independent hard gate on top of this.
-    const monoculture = wholeResult.headline_test?.monoculture;
+    //
+    // PLAN-COMPLIANCE adds a third dimension on top of the two tiers: it
+    // classifies each miss by OWNER so the correction is routed, not just
+    // "video bad". CONTENT_FACTUAL (a fabricated number/label/claim on
+    // screen) is the ONE new HARD reject — the repo's no-fabrication rule
+    // means such a frame must never publish, exactly like a broken frame.
+    // Every other owner (DIRECTION_QUALITY = lazy plan; PLAN_COMPLIANCE =
+    // render didn't execute the direction; monoculture) is NEEDS_IMPROVEMENT:
+    // it drives the correction loop with an owner-tagged instruction, but a
+    // technically-sound, factually-honest video still ships after retries.
+    const monoculture = wholeResult.headline_test?.monoculture || planCompliance?.monoculture;
+    const compBeats = planCompliance?.beat_compliance || [];
+    const factualMiss = compBeats.find((b) => b.failure_owner === "CONTENT_FACTUAL" && b.compliance === "FAIL");
+    const complianceOwner = planCompliance?.dominant_failure_owner || null;
+    const complianceFail = planCompliance && planCompliance.overall_compliance && planCompliance.overall_compliance !== "MATCH";
+
     let pipelineVerdict = "APPROVED";
     let pipelineReason = "Meets Visual Bible standards.";
+    let correctionOwner = null;
     if (criticalCount > 0) {
       pipelineVerdict = "REJECTED";
       pipelineReason = `${criticalCount} CRITICAL per-frame failure(s)`;
+      correctionOwner = "RENDER_TECHNICAL";
+    } else if (factualMiss) {
+      pipelineVerdict = "REJECTED";
+      pipelineReason = `CONTENT_FACTUAL — fabricated/unsupported on-screen content: ${factualMiss.observed || factualMiss.correction || "see plan-compliance"}`;
+      correctionOwner = "CONTENT_FACTUAL";
     } else if (monoculture) {
       pipelineVerdict = "NEEDS_IMPROVEMENT";
-      pipelineReason = `TEMPLATE_MONOCULTURE — ${wholeResult.headline_test.percent}% headline-dominated beats`;
+      pipelineReason = `TEMPLATE_MONOCULTURE${wholeResult.headline_test?.percent ? ` — ${wholeResult.headline_test.percent}% headline-dominated beats` : ""}`;
+      correctionOwner = complianceOwner || "DIRECTION_QUALITY";
+    } else if (complianceFail) {
+      pipelineVerdict = "NEEDS_IMPROVEMENT";
+      pipelineReason = `PLAN_COMPLIANCE ${planCompliance.overall_compliance} — ${planCompliance.summary || "render did not execute the direction"}`;
+      correctionOwner = complianceOwner || "PLAN_COMPLIANCE";
     } else if (highCount > Math.floor(beatTimes.length * 0.3)) {
       pipelineVerdict = "NEEDS_IMPROVEMENT";
       pipelineReason = `${highCount} HIGH issues across ${beatTimes.length} frames`;
+      correctionOwner = "PLAN_COMPLIANCE";
     } else if (wholeResult.status === "FAIL" && (wholeResult.severity === "CRITICAL" || wholeResult.severity === "HIGH")) {
       pipelineVerdict = "NEEDS_IMPROVEMENT";
       pipelineReason = `Whole-video review flagged ${wholeResult.severity} issues`;
+      correctionOwner = "DIRECTION_QUALITY";
     }
 
     const record = {
@@ -490,6 +637,8 @@ async function main() {
       totalFrames: beatTimes.length,
       pipelineVerdict,
       pipelineReason,
+      correctionOwner,
+      planCompliance,
       summary: {
         critical: criticalCount,
         high: highCount,
@@ -513,6 +662,14 @@ async function main() {
           severity: r.severity,
         })),
         ...(wholeResult.corrections || []),
+        // Plan-compliance corrections carry the owner so the re-plan
+        // instruction is specific ("you directed X, the render showed Y").
+        ...compBeats.filter((b) => b.compliance && b.compliance !== "MATCH" && b.correction).map((b) => ({
+          scene: `frame_${b.frame}`,
+          owner: b.failure_owner,
+          problem: `directed "${b.directed}" but rendered "${b.observed}"`,
+          fix: b.correction,
+        })),
       ] : [],
     };
 
@@ -529,6 +686,7 @@ async function main() {
     console.log(`  Avg quality: ${avgScore}/10`);
     console.log(`  Pass rate: ${record.summary.passRate}`);
     console.log(`  Whole-video: ${wholeResult.status || "ERROR"} (${wholeResult.overall_score || "?"}/10)`);
+    if (planCompliance) console.log(`  Plan-compliance: ${planCompliance.overall_compliance || "?"} (owner: ${correctionOwner || "none"})`);
     console.log(`  Report: ${outFile}`);
     console.log(`\n  VERDICT: ${pipelineVerdict} — ${pipelineReason}`);
 

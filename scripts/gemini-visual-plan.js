@@ -168,6 +168,38 @@ DISTRIBUTION RULES (a plan that violates these will be rejected downstream):
 - Use carries_forward when an object continues (a sum shown, then consumed) so the visual
   argument flows rather than resetting each beat.
 
+YOU ARE A DIRECTOR, NOT A TEMPLATE PICKER. For every beat you must write real
+direction — describe the visual EVENT, not "which template". The "direction"
+block below is the AUTHORITATIVE intent: after the video renders, you will be
+shown the actual frames and asked whether they executed exactly this direction,
+so make it specific and answerable. Lazy direction ("show a graph of the
+numbers", "display the text") is structurally invalid — fill every field
+concretely:
+- subject: the specific thing on screen (a stack of Medicare claim forms; a fuel
+  pump display; a shredded 2020 budget) — NOT "a chart" or "text".
+- environment: where this lives (dim archival desk; clean data void; a kitchen counter).
+- action_start / action_end: the visual STATE at the beat's start and at its end —
+  what physically changes across the ~4s (one claim form -> a towering stack).
+- camera: what the camera does (hold; slow push-in on the total; track back as the
+  stack grows; orbit).
+- motion: how things move and with what weight (claims land faster and heavier;
+  a number ticks up then slams; a bar cracks and shards fall).
+- typography: the ONLY text on screen and where (e.g. "$34 MILLION", upper third) —
+  never the sentence.
+- sound: the semantic accent this beat wants (paper impacts; a lock snap; silence).
+- consequence: what the viewer should FEEL/understand from the visual event.
+- muted_read: what a viewer with NO audio would understand from this beat alone.
+- why_visual: why THIS visual represents THIS narration and could not be swapped
+  onto any other sentence.
+- graph_justified: true ONLY if the beat is genuinely about quantitative
+  comparison/trend/measurement AND no physical form communicates it better;
+  otherwise false. If false, you may not choose EVIDENCE_FIGURE as a bar/graph.
+
+DO NOT pick a familiar mechanism merely because it is easy to render. Direct the
+strongest visual event first; mechanism is only the closest EXECUTION mapping for
+the renderer, and the post-render review will check whether the render actually
+delivered your directed event.
+
 SCRIPT SENTENCES:
 ${sentenceList}
 ${correctionBlock}
@@ -176,8 +208,8 @@ Respond ONLY with JSON (no markdown fences):
   "beats": [
     {
       "index": 0,
-      "visual_headline": "<SHORT 1-line text — NOT the transcript>",
-      "mechanism": "<mechanism name>",
+      "visual_headline": "<SHORT on-screen text — NOT the transcript, max 5-6 words>",
+      "mechanism": "<closest execution mechanism from the families above>",
       "reason": "<what the sentence is DOING and why this mechanism shows it>",
       "emphasis_words": ["<key words to highlight>"],
       "objects": {
@@ -187,8 +219,23 @@ Respond ONLY with JSON (no markdown fences):
         "cause": "<for ACTION_CONSEQUENCE: cause label>",
         "effect": "<for ACTION_CONSEQUENCE: effect label>"
       },
-      "carries_forward": "<what object/concept from this beat should persist into the next beat, or null>",
-      "emotional_weight": "<calm|building|sharp|heavy|urgent>"
+      "carries_forward": "<object/concept that persists into the next beat, or null>",
+      "emotional_weight": "<calm|building|sharp|heavy|urgent>",
+      "direction": {
+        "narrative_purpose": "<what this beat must accomplish in the argument>",
+        "subject": "<the specific thing on screen — never 'a chart'/'text'>",
+        "environment": "<where it lives>",
+        "action_start": "<visual state at beat start>",
+        "action_end": "<visual state at beat end>",
+        "camera": "<hold|push_in|pull_back|track|orbit|tilt — what it does>",
+        "motion": "<how things move and with what weight>",
+        "typography": "<the only on-screen text and its position, or 'none'>",
+        "sound": "<semantic sound accent, or 'silence'>",
+        "consequence": "<what the viewer should feel/understand>",
+        "muted_read": "<what a viewer with no audio understands from this beat>",
+        "why_visual": "<why this visual is specific to THIS narration>",
+        "graph_justified": false
+      }
     }
   ]
 }`;
@@ -242,15 +289,14 @@ function main() {
 
   console.log(`Requesting visual plan from Gemini for ${sentences.length} beats...`);
   const prompt = buildPlanPrompt(sentences, corrections);
-  // Fixed at 4000 regardless of beat count used to truncate mid-JSON on
-  // longer scripts (observed in production: a 51-beat shorts script came
-  // back as "Unexpected end of JSON input" / a snapped property name a few
-  // hundred beats in) — each beat's JSON object runs well over 4000/14
-  // tokens once headline+reason+objects are filled in, so bigger scripts
-  // need proportionally more room. Capped at 8192 (safe ceiling for this
-  // model tier); a script needing more beats than that fits is a pacing
-  // problem in the script/caption split, not something to fix here.
-  const maxTokens = Math.min(8192, 1500 + sentences.length * 130);
+  // Token budget scales with beat count so the JSON never truncates
+  // mid-object (a 51-beat script once came back as "Unexpected end of JSON
+  // input"). Each beat now carries the full director "direction" block
+  // (~13 fields), so the per-beat budget is much larger than the old
+  // headline-only estimate — ~440 tokens/beat plus headroom, capped at
+  // 12288. A script needing more beats than that fits is a pacing problem
+  // in the script/caption split, not something to fix here.
+  const maxTokens = Math.min(12288, 1500 + sentences.length * 440);
   const plan = callGemini(apiKey, prompt, maxTokens);
 
   if (!plan || !plan.beats) {
