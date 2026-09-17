@@ -738,9 +738,14 @@
           "topic": "Timor-Leste and Indonesia Push to Resolve Their Final Land Border Disputes",
           "slug": "timor-leste-indonesia-land-border-dispute-2026",
           "reserved_at": "2026-09-16T11:16:02.288Z"
+        },
+        {
+          "topic": "India and Pakistan Naval Vessels Collide in Arabian Sea",
+          "slug": "india-pakistan-arabian-sea-naval-collision",
+          "reserved_at": "2026-09-17T10:41:07.252Z"
         }
       ],
-      "last_generated": "2026-09-16T11:16:02.288Z"
+      "last_generated": "2026-09-17T10:41:07.252Z"
     },
     "10": {
       "channel_name": "Double Cross",
