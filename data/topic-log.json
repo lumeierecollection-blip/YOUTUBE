@@ -1611,9 +1611,14 @@
           "topic": "Why Time Management Fails in the 2026 Permanent Sprint",
           "slug": "time-management-fails-2026-permanent-sprint",
           "reserved_at": "2026-09-17T00:45:48.314Z"
+        },
+        {
+          "topic": "Knowledge Hiding: How Mindful Communication Breaks Down Team Silos",
+          "slug": "knowledge-hiding-mindful-communication-silos",
+          "reserved_at": "2026-09-17T01:35:38.647Z"
         }
       ],
-      "last_generated": "2026-09-17T00:45:48.314Z"
+      "last_generated": "2026-09-17T01:35:38.647Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
