@@ -1183,9 +1183,14 @@
           "topic": "The $34.8M Medicare Orthotic Brace Health Care Fraud Sentencing",
           "slug": "34-8m-medicare-orthotic-brace-health-fraud",
           "reserved_at": "2026-09-17T00:44:13.235Z"
+        },
+        {
+          "topic": "The Virginia Broker Who Stole $2.5M and Told Bankruptcy Court He Had 34 Cents",
+          "slug": "jihoon-park-25m-broker-bankruptcy-fraud",
+          "reserved_at": "2026-09-17T01:21:32.528Z"
         }
       ],
-      "last_generated": "2026-09-17T00:44:13.235Z"
+      "last_generated": "2026-09-17T01:21:32.529Z"
     },
     "27": {
       "channel_name": "Trial Files",
