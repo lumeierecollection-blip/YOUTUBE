@@ -43,6 +43,45 @@ import {
 /** Mechanism name for a manifest beat, for readable issue text. */
 const mechLabel = (b) => b.mechanism || "object-first";
 
+/**
+ * Owners Gemini can actually act on by re-planning, and the instruction that
+ * tells it HOW to act. Anything not listed here is engineering work and must
+ * not be sent to the planner.
+ */
+const GEMINI_FIXABLE = {
+  DIRECTION_QUALITY:
+    "Rewrite this beat's DIRECTION so the problem cannot occur: choose a " +
+    "different phrase, figure, or mechanism. Do not restate the same idea " +
+    "more briefly — decide something different.",
+  PLAN_COMPLIANCE:
+    "The plan asked for a structure the visual language forbids. Re-plan " +
+    "this beat so the structure is impossible: one narrative line per beat, " +
+    "no section labels, no mechanism names on screen.",
+};
+
+/**
+ * Turn the auditor's owner-tagged issues into planner corrections.
+ *
+ * Shape matches what gemini-visual-plan.js's buildPlanPrompt() already
+ * reads: { scene, problem, fix }. `owner` and `beat` ride along so the
+ * correction loop can decide whether an attempt is worth spending.
+ */
+function buildCorrections(planComp, typo) {
+  const all = [...(planComp?.issues || []), ...(typo?.issues || [])];
+  const out = [];
+  const seen = new Set();
+  for (const iss of all) {
+    const fix = GEMINI_FIXABLE[iss.owner];
+    if (!fix) continue;                     // RENDER_TECHNICAL etc. — not Gemini's
+    const scene = iss.beat != null ? `beat ${iss.beat}` : "whole video";
+    const key = `${scene}|${iss.problem}`;
+    if (seen.has(key)) continue;            // the same defect can surface twice
+    seen.add(key);
+    out.push({ owner: iss.owner, beat: iss.beat, scene, problem: iss.problem, fix });
+  }
+  return out;
+}
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 
@@ -546,6 +585,23 @@ async function main() {
     // exit code, so the auditor stays advisory for everything EXCEPT defects
     // that make a video unpublishable on their face.
     blockers: [audio.blocker].filter(Boolean),
+    // CORRECTIONS FOR GEMINI — in the shape gemini-visual-plan.js's
+    // --corrections flag already consumes ({ scene, problem, fix }).
+    //
+    // This auditor was producing precise, owner-tagged findings and NOTHING
+    // consumed them. The correction loop only ever fed Gemini its own prose
+    // verdict, so the mechanical facts — "this phrase is prose in a figure
+    // slot", "this beat draws two narrative lines", "this label cannot be
+    // drawn legibly" — never reached the thing that could fix them, and the
+    // defects were instead fixed by hand in the renderer. That is backwards:
+    // the renderer should not learn to accommodate bad direction.
+    //
+    // Only Gemini-FIXABLE owners are included. DIRECTION_QUALITY and
+    // PLAN_COMPLIANCE are both answered by re-planning the beat.
+    // RENDER_TECHNICAL is deliberately excluded — Gemini cannot fix a
+    // renderer bug by rewriting a phrase, and sending it would invite it to
+    // work around one.
+    corrections: buildCorrections(planComp, typo),
   };
 
   const outPath = arg("out") || video.replace(/\.mp4$/, "-local-audit.json");

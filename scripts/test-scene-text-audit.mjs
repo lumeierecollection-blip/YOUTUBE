@@ -126,5 +126,57 @@ console.log("4. A clean video still passes");
   ok(r.issues.length === 0, `no issues on a compliant video (got ${r.issues.length}: ${r.issues.map((i) => i.problem).join(" | ")})`);
 }
 
+console.log("5. The auditor emits corrections Gemini can act on");
+{
+  // Every finding here is from a real failing render. The point of this
+  // section is that they reach the PLANNER, not just a log line: the
+  // auditor was producing precise owner-tagged issues and the correction
+  // loop fed Gemini only its own prose verdict, so nothing actionable ever
+  // arrived and the defects got fixed by hand in the renderer instead.
+  const beats = [
+    // ch2 attempt 1: a shouted headline in the typography slot.
+    { index: 0, mechanism: "TYPOGRAPHY", text: ["SCOTUS SMASHES THE RULE"],
+      on_screen_text: [{ text: "SCOTUS SMASHES THE RULE", role: "narrative", source: "beat.text" }],
+      draws_text: true, narrative_text: ["SCOTUS SMASHES THE RULE"], banned_text: [] },
+    // ch2 beat 1: two stacked narrative lines.
+    { index: 1, mechanism: "STATE_CHANGE", text: [],
+      on_screen_text: [
+        { text: "The Full Encounter", role: "narrative", source: "objects.expected.label" },
+        { text: "Final Two Seconds", role: "narrative", source: "objects.actual.label" }],
+      draws_text: true, narrative_text: ["The Full Encounter", "Final Two Seconds"], banned_text: [] },
+    // ch44: prose written into a numeric magnitude slot.
+    { index: 2, mechanism: "PHYSICAL_GROWTH", text: [],
+      on_screen_text: [{ text: "Reshaping employer liability everywhere", role: "value", source: "objects.magnitude.label" }],
+      draws_text: true, narrative_text: [], banned_text: [] },
+    // engine vocabulary reaching the screen.
+    { index: 3, mechanism: "STATE_CHANGE", text: [],
+      on_screen_text: [], draws_text: true, narrative_text: [], banned_text: ["EXPECTED"] },
+  ];
+  const r = auditTypography({ width: 1080, height: 1920, beats }, { beats: [] }, null);
+
+  // Owners Gemini can act on by re-planning. RENDER_TECHNICAL must never be
+  // forwarded — it would invite a workaround instead of an engineering fix.
+  const FIXABLE = new Set(["DIRECTION_QUALITY", "PLAN_COMPLIANCE"]);
+  const forwarded = r.issues.filter((i) => FIXABLE.has(i.owner));
+  ok(forwarded.length > 0, "the auditor produces Gemini-fixable corrections");
+  ok(r.issues.every((i) => i.owner !== "RENDER_TECHNICAL"),
+    "no RENDER_TECHNICAL issue is in the set that would be forwarded");
+
+  const has = (re) => forwarded.some((i) => re.test(i.problem));
+  ok(has(/headline\/topic label/), "the shouted headline is reported");
+  ok(has(/2 narrative lines/), "the stacked-narrative beat is reported");
+  ok(has(/prose, not a measured figure/), "prose in a figure slot is reported");
+  ok(has(/internal mechanism vocabulary/), "engine vocabulary is reported");
+  ok(has(/typography must be selective/), "over-use of text is reported");
+
+  // A correction is only useful if it names WHERE and quotes WHAT.
+  const figure = forwarded.find((i) => /measured figure/.test(i.problem));
+  ok(figure.beat === 2, "the figure-slot correction names the beat");
+  ok(/PHYSICAL_GROWTH/.test(figure.problem), "...names the mechanism");
+  ok(/objects\.magnitude\.label/.test(figure.problem), "...names the exact slot");
+  ok(/Reshaping employer liability everywhere/.test(figure.problem), "...quotes the offending text");
+  ok(/\$34 MILLION|70%|2 seconds/.test(figure.problem), "...and shows the expected shape");
+}
+
 console.log(`\n${passed} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);

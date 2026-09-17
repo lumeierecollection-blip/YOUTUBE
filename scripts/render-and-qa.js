@@ -17,7 +17,7 @@
  */
 import "dotenv/config";
 import { spawn } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync } from "node:fs";
 import { join, dirname, basename, extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { bundle } from "@remotion/bundler";
@@ -33,7 +33,18 @@ const VISUAL_QA_JS = join(__dirname, "gate-visual-qa.js");
 const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 const GEMINI_PLAN_JS = join(__dirname, "gemini-visual-plan.js");
 const LOCAL_AUDITOR_JS = join(__dirname, "local-visual-auditor.js");
-const MAX_CORRECTION_LOOPS = 2;  // 2 attempts: initial + 1 correction (each ~4min for shorts)
+// 3 attempts: initial + 2 corrections. Was 2 (initial + ONE correction),
+// which meant Gemini got a single chance to respond and then the video
+// shipped whatever it said — run 35266860427 ended "attempt 2/2,
+// verdict=severe template monoculture and AI-generated slop" with qa=PASS.
+// One round is not a loop. Each attempt is ~2-4 min for shorts, and the
+// six-channel workflow ran 15-17 min at two attempts, so three keeps it
+// inside the 30-minute budget.
+//
+// Attempts are only SPENT when there is something actionable to change: if
+// the merge produces no corrections, the loop stops instead of re-rolling
+// the planner with no instruction.
+const MAX_CORRECTION_LOOPS = 3;
 
 function readJsonSafe(p) {
   try { return existsSync(p) ? JSON.parse(readFileSync(p, "utf-8")) : null; } catch { return null; }
@@ -274,6 +285,51 @@ async function qaOne(runId, rendered, planPath) {
   return { outputPath, gatePass, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise, localAudit, geminiNeeded, blockers };
 }
 
+/* ── Correction merge ────────────────────────────────────────────── */
+
+/**
+ * Write the corrections file the next planning attempt consumes.
+ *
+ * gemini-visual-plan.js reads `review.corrections` (falling back to
+ * `review.wholeVideoResult.corrections`), so the merged file keeps that
+ * shape and the planner needs no changes.
+ *
+ * Returns the path, or null when there is nothing actionable — in which case
+ * the caller must NOT spend another attempt, since re-planning with no
+ * instruction just re-rolls the dice.
+ */
+function writeMergedCorrections(runId, channelId, scriptPath, geminiReportPath, localAudit, attempt) {
+  const fromGemini = (() => {
+    if (!geminiReportPath || !existsSync(geminiReportPath)) return [];
+    try {
+      const r = JSON.parse(readFileSync(geminiReportPath, "utf-8"));
+      return r.corrections || r.wholeVideoResult?.corrections || [];
+    } catch { return []; }
+  })();
+  const fromAuditor = localAudit?.corrections || [];
+
+  // Auditor findings first: they are specific and measured, and the planner
+  // prompt lists corrections in order.
+  const merged = [...fromAuditor, ...fromGemini];
+  if (!merged.length) return null;
+
+  const dir = join(ROOT, "data", "audit", "corrections", String(runId));
+  mkdirSync(dir, { recursive: true });
+  const out = join(dir, `${basename(scriptPath, extname(scriptPath))}-attempt${attempt}.json`);
+  writeFileSync(out, JSON.stringify({
+    generatedAt: new Date().toISOString(),
+    channel: channelId,
+    attempt,
+    sources: { auditor: fromAuditor.length, gemini: fromGemini.length },
+    corrections: merged,
+  }, null, 2) + "\n");
+
+  const byOwner = merged.reduce((a, c) => { a[c.owner || "GEMINI"] = (a[c.owner || "GEMINI"] || 0) + 1; return a; }, {});
+  console.log(`[corrections] ${merged.length} for next attempt (auditor ${fromAuditor.length}, gemini ${fromGemini.length}) ${JSON.stringify(byOwner)}`);
+  for (const c of merged.slice(0, 8)) console.log(`   ${c.scene || c.beat}: ${c.problem}`.slice(0, 160));
+  return out;
+}
+
 /* ── Gemini review report lookup ─────────────────────────────────── */
 
 function findGeminiReviewReport(channelId, scriptPath) {
@@ -402,9 +458,37 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       };
     }
 
-    // Not approved — feed corrections back and re-render
-    console.log(`Gemini says ${pipelineVerdict} — feeding corrections back for attempt ${attempt + 1}`);
-    correctionsPath = geminiReport;
+    // Not approved — feed corrections back and re-render.
+    //
+    // The corrections handed to the planner are the UNION of:
+    //   - Gemini's own review corrections (semantic judgment), and
+    //   - the local auditor's owner-tagged findings (mechanical facts).
+    //
+    // The auditor's findings used to go nowhere. It was measuring exactly the
+    // things Gemini needed in order to change its mind — "this phrase is
+    // prose in a figure slot", "this beat draws two narrative lines", "this
+    // label cannot be drawn legibly at any size" — and the loop fed back only
+    // Gemini's own prose verdict, so the concrete defects were never stated
+    // to the thing that could fix them. They got fixed by hand in the
+    // renderer instead, which teaches the renderer to tolerate bad direction
+    // and lets the direction stay bad.
+    //
+    // Only DIRECTION_QUALITY and PLAN_COMPLIANCE are forwarded (see
+    // GEMINI_FIXABLE in local-visual-auditor.js). RENDER_TECHNICAL stays out:
+    // Gemini cannot fix a renderer bug by rewriting a phrase, and asking it
+    // to would produce a workaround instead of a fix.
+    const nextCorrections = writeMergedCorrections(runId, channelId, scriptPath, geminiReport, qa.localAudit, attempt);
+    if (!nextCorrections) {
+      // Nothing concrete to change. Re-planning here would just re-roll the
+      // planner's randomness and burn ~3 minutes, so accept this render and
+      // report the verdict honestly rather than pretending a retry happened.
+      console.log(`Gemini says ${pipelineVerdict} but produced no actionable corrections — not spending another attempt.`);
+      return {
+        skipped: false, ok: true, outputPath: result.outputPath, attempt,
+        geminiVerdict, qaGatePass: qa.gatePass, unresolvedVerdict: pipelineVerdict,
+      };
+    }
+    correctionsPath = nextCorrections;
     if (existsSync(result.outputPath)) {
       try { rmSync(result.outputPath); } catch {}
     }
