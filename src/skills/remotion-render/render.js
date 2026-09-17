@@ -668,8 +668,23 @@ async function main() {
 
   // DirectedShorts expects { plan } as input prop.
   // All other compositions expect the legacy prop bag.
+  // DirectedShorts MUST receive the staged voiceover and the underscore
+  // flag, exactly like every other composition.
+  //
+  // It did not, and that is how the default short-form engine shipped
+  // SILENT VIDEOS. This branch passed `{ plan }` only, so ttsAudioPath and
+  // hasUnderscore never reached the component, and DirectedScene had no
+  // <Audio> element to use them with. Run 35266860427 measured the result
+  // on both channels that rendered: audio:true (Remotion still writes an
+  // AAC track) but LUFS -70 and silence spanning the entire duration —
+  // 41.4s of 41.4s, 57.7s of 57.7s. No narration, no music, no kalimba.
+  //
+  // stageAudio() above refuses to render "a silent video" and validates the
+  // mp3 exists; the check was live and passing while this branch threw the
+  // staged path away. The local auditor did report the silence, but silence
+  // was only a RISK factor, not a gate, so QA passed it.
   const props = (componentId === "DirectedShorts")
-    ? { plan: sentencePlan }
+    ? { plan: sentencePlan, ttsAudioPath: staged, hasUnderscore }
     : {
         channelId: channel.channel_id,
         style: channel.style,

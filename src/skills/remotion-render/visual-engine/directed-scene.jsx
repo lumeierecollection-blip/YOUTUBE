@@ -1,5 +1,11 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame, Easing } from "remotion";
+import { AbsoluteFill, useCurrentFrame, Easing, staticFile } from "remotion";
+// Audio comes from @remotion/media, matching motion-graphics.jsx. `staged`
+// from render.js is a BOOLEAN flag, not a path — stageAudio() copies the
+// voiceover to ./vo.mp3 and audio.js static-imports it, so currentAudio is
+// the actual bundled source.
+import { Audio } from "@remotion/media";
+import { currentAudio } from "../audio.js";
 import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
 import {
@@ -1515,7 +1521,12 @@ function MechanismScene({ beat, p, local, ed, font, scene }) {
    - Camera motion reduced to intentional levels (rule 15)
    ══════════════════════════════════════════════════════════════════════ */
 
-export function DirectedScene({ plan }) {
+/** Linear amplitude for a dBFS level (same helper as motion-graphics.jsx). */
+function dbToVolume(db) {
+  return Math.pow(10, db / 20);
+}
+
+export function DirectedScene({ plan, ttsAudioPath, hasUnderscore }) {
   const frame = useCurrentFrame();
   const colors = paletteRoles(plan.palette);
   const ed = editorialColors(colors, plan.palette);
@@ -1540,6 +1551,20 @@ export function DirectedScene({ plan }) {
 
   return (
     <AbsoluteFill style={{ backgroundColor: ed.bg }}>
+      {/* LAYERED AUDIO IDENTITY — the layer this composition never had.
+          Ordering follows the authoritative table in
+          src/skills/music-sourcing/SKILL.md:
+            VOICE    EdgeTTS narration, unity gain, always primary
+            KALIMBA  underscore bed, -24 dBFS, looped, always beneath voice
+          The kalimba renders only when public/music/underscore.mp3 is
+          present, so a missing bed degrades to voice-only rather than
+          failing the render. SFX/AMBIENCE are scheduled per-beat elsewhere
+          and are not part of this root bed. */}
+      {hasUnderscore ? (
+        <Audio src={staticFile("music/underscore.mp3")} volume={dbToVolume(-24)} loop />
+      ) : null}
+      {ttsAudioPath ? <Audio src={currentAudio} /> : null}
+
       {/* Previous beat echo — fading out during the transition only */}
       {showPrevEcho && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: prevEchoOpacity }}>

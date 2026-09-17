@@ -374,8 +374,15 @@ function ffmpegStderr(afilter) {
   return (r.stderr || "") + (r.stdout || "");
 }
 let video_ref = null;
-function auditAudio(video, hasAudio) {
-  if (!hasAudio) return { ok: true, hasAudio: false, note: "no audio stream" };
+function auditAudio(video, hasAudio, durationSec = 0) {
+  // No audio stream at all is the same defect as a silent one, and blocks too.
+  if (!hasAudio) {
+    return {
+      ok: true, hasAudio: false, note: "no audio stream",
+      effectivelySilent: true,
+      blocker: "no audio stream at all — no audible narration",
+    };
+  }
   video_ref = video;
   const res = { ok: true, hasAudio: true };
   try {
@@ -392,6 +399,28 @@ function auditAudio(video, hasAudio) {
     res.longSilenceCount = sil.filter((s) => s >= 1.5).length;
     res.maxSilenceSec = sil.length ? Math.max(...sil) : 0;
   } catch { /* silencedetect optional */ }
+
+  // EFFECTIVELY SILENT — a blocking condition, not a risk score.
+  //
+  // Run 35266860427 rendered two videos whose audio track existed
+  // (audio:true) but carried nothing: LUFS -70 with silence spanning the
+  // whole duration (41.4s of 41.4s, 57.7s of 57.7s), because
+  // DirectedShorts was never handed the voiceover. Silence only added 8
+  // points to a risk score, so both videos reported qa=PASS and were
+  // treated as shippable. A video nobody can hear is not shippable at any
+  // risk level, so this is reported as a blocker for the QA gate.
+  //
+  // -50 LUFS is far below any real speech (-16 to -23 typical) and below
+  // room tone, so it cannot fire on a quiet-but-real mix.
+  const SILENT_LUFS = -50;
+  res.effectivelySilent =
+    (res.integratedLufs != null && res.integratedLufs <= SILENT_LUFS) ||
+    (res.maxSilenceSec != null && durationSec > 0 &&
+      res.maxSilenceSec >= durationSec * 0.98);
+  if (res.effectivelySilent) {
+    res.blocker = `video is effectively silent (LUFS=${res.integratedLufs ?? "?"}, ` +
+      `${res.maxSilenceSec ?? "?"}s silence of ${durationSec}s) — no audible narration`;
+  }
   return res;
 }
 
@@ -500,7 +529,7 @@ async function main() {
     } catch { /* srt optional */ }
   }
   const typo = auditTypography(manifest, plan, srtCues);
-  const audio = auditAudio(video, technical.hasAudio);
+  const audio = auditAudio(video, technical.hasAudio, technical.durationSec);
   const channel = updateChannelFingerprint(channelId, planComp);
   const risk = assessRisk(technical, visual, planComp, audio, channel, typo);
   const uncertain = uncertainBeats(planComp, visual, typo);
@@ -512,6 +541,11 @@ async function main() {
     channel: channelId || null,
     technical, visual, plan_compliance: planComp, typography: typo, audio, channel_history: channel,
     risk, gemini_required: geminiRequired, uncertain_beats: uncertain,
+    // Objective, catastrophic conditions that must block the ship regardless
+    // of risk score. render-and-qa.js reads this alongside the frame-audit
+    // exit code, so the auditor stays advisory for everything EXCEPT defects
+    // that make a video unpublishable on their face.
+    blockers: [audio.blocker].filter(Boolean),
   };
 
   const outPath = arg("out") || video.replace(/\.mp4$/, "-local-audit.json");
@@ -523,6 +557,7 @@ async function main() {
   if (planComp.ok) console.log(`  Plan: beats ${planComp.beatCountRender}/${planComp.beatCountPlan} textFwd=${planComp.textForwardPct}% distinct=${planComp.distinctMechanisms} run=${planComp.longestMechanismRun} mono=${planComp.monoculture} issues=${planComp.issues.length}`);
   if (typo.ok) console.log(`  Typography: ${typo.textBeats}/${typo.totalBeats} text beats (${Math.round(typo.textBeatShare * 100)}%) run=${typo.longestTextRun} multiline=${typo.multiLineBeats} headline=${typo.headlineLikeBeats} transcript=${typo.transcriptLikeBeats} tooLong=${typo.wouldWrapBeats} repeated=${typo.repeatedPhrases.length} issues=${typo.issues.length}`);
   if (audio.hasAudio) console.log(`  Audio: LUFS=${audio.integratedLufs ?? "?"} peak=${audio.truePeakDb ?? "?"}dB clip=${!!audio.clipping} silence=${audio.maxSilenceSec ?? 0}s`);
+  for (const b of report.blockers) console.log(`  BLOCKER: ${b}`);
   if (channel.ok) console.log(`  Channel: textFwd ${channel.thisTextForwardPct}% (avg ${channel.recentAvgTextForwardPct ?? "n/a"}%) outlier=${!!channel.outlier}`);
   console.log(`  RISK: ${risk.level} (${risk.score})  ${risk.reasons.join("; ") || "clean"}`);
   console.log(`  → gemini_required: ${geminiRequired}${uncertain.length ? `  uncertain beats: [${uncertain.join(", ")}]` : ""}`);

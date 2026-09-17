@@ -253,7 +253,25 @@ async function qaOne(runId, rendered, planPath) {
     label: `qa/slop-check ${basename(outputPath)}`,
   });
 
-  return { outputPath, gatePass: audit.code === 0, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise, localAudit, geminiNeeded };
+  // THE HARD GATE = objective frame-audit AND no objective blocker.
+  //
+  // frame-audit stays the primary gate, but it only looks at PIXELS, so a
+  // video with perfect frames and no audible audio passed it. Run
+  // 35266860427 shipped exactly that on two channels: 4/4 frames, LUFS -70,
+  // silence for the full duration, qa=PASS. The auditor had already measured
+  // it; silence was just 8 points on an advisory risk score.
+  //
+  // `localAudit.blockers` is deliberately narrow — objective conditions that
+  // make a video unpublishable on its face (currently: effectively silent).
+  // Subjective quality stays with Gemini and the correction loop; this is not
+  // a quality bar, it is a "nobody can watch this" bar.
+  const blockers = localAudit?.blockers || [];
+  for (const b of blockers) {
+    console.error(`[qa/BLOCKER ${basename(outputPath)}] ${b}`);
+  }
+  const gatePass = audit.code === 0 && blockers.length === 0;
+
+  return { outputPath, gatePass, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise, localAudit, geminiNeeded, blockers };
 }
 
 /* ── Gemini review report lookup ─────────────────────────────────── */
