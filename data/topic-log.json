@@ -1808,9 +1808,14 @@
           "topic": "Inside Jeollabuk-do's Dark Factory: How AI Designs Plants in Three Hours",
           "slug": "jeollabuk-do-dark-factory-ai-plant-design",
           "reserved_at": "2026-09-17T00:01:57.785Z"
+        },
+        {
+          "topic": "How P&G and Siemens Scale AI Quality Inspection Across Global Plants",
+          "slug": "pg-siemens-ai-quality-inspection-cockpit",
+          "reserved_at": "2026-09-17T00:23:07.445Z"
         }
       ],
-      "last_generated": "2026-09-17T00:01:57.785Z"
+      "last_generated": "2026-09-17T00:23:07.445Z"
     },
     "49": {
       "channel_name": "Wander Budget",
