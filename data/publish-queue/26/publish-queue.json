@@ -6,6 +6,17 @@
     "uploaded_at": "2026-09-16T10:42:06.874Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-16T11:42:06.874Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-17T10:56:44.998Z"
+  },
+  {
+    "video_id": "9osxZYyodu4",
+    "channel_id": "26",
+    "title": "The $35M Swiftarc Capital Ponzi Scheme and Travis Kelce's…",
+    "uploaded_at": "2026-09-17T10:56:43.225Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-17T11:56:43.224Z",
     "privacy_status": "private",
     "cancelled": false
   }
