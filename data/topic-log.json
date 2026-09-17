@@ -1913,9 +1913,14 @@
           "topic": "Lumafield Quality Agent: CT Scans Catch Defects Humans Can't See",
           "slug": "lumafield-quality-agent-ct-defect-detection",
           "reserved_at": "2026-09-17T01:36:26.614Z"
+        },
+        {
+          "topic": "PwC Outlook: Global Manufacturers to Double Automation",
+          "slug": "pwc-global-industrial-manufacturing-outlook-automation-2030",
+          "reserved_at": "2026-09-17T19:52:17.034Z"
         }
       ],
-      "last_generated": "2026-09-17T01:36:26.615Z"
+      "last_generated": "2026-09-17T19:52:17.034Z"
     },
     "49": {
       "channel_name": "Wander Budget",
