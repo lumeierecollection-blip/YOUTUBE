@@ -50,6 +50,17 @@
     "uploaded_at": "2026-09-16T10:40:38.179Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-16T11:40:38.178Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-17T10:52:00.219Z"
+  },
+  {
+    "video_id": "C5P8dPPxUG0",
+    "channel_id": "2",
+    "title": "Chicago Can Force Landlords to Pay $10K Relocation Fees",
+    "uploaded_at": "2026-09-17T10:51:58.767Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-17T11:51:58.767Z",
     "privacy_status": "private",
     "cancelled": false
   }
