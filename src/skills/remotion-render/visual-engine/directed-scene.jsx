@@ -447,7 +447,15 @@ function TypographyScene({ beat, p, local, ed, font, scene }) {
   if (!headline) return null;
 
   const allWords = headline.split(/\s+/);
-  const { rows, size } = layoutWords(allWords, SAFE_W * 0.9, SAFE_H * 0.48);
+  // Fit to 0.8 of the safe width, not 0.9. layoutWords' emW width estimate
+  // omits the per-word marginRight (size*0.22) and the 1.04x emphasis
+  // scale, so the RENDERED line runs wider than estimated. With
+  // whiteSpace:nowrap + overflow:visible below, that residual used to bleed
+  // past the 840px safe width into frame-audit's right-margin probe (x>=940)
+  // — an intermittent "content leaking into margins" failure on longer
+  // headlines (ch9/ch44). The conservative target keeps the rendered line
+  // clear of the 892px bleed threshold even when the estimate is off.
+  const { rows, size } = layoutWords(allWords, SAFE_W * 0.8, SAFE_H * 0.48);
   const emphSet = new Set((scene.typography?.emphasis_words || []).map((w) => w.toLowerCase()));
   const isQuestion = scene.typography?.style === "question";
   const isImperative = scene.typography?.style === "imperative";
