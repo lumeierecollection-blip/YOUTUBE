@@ -497,9 +497,14 @@
           "topic": "Florida Supreme Court Expands Workers' Comp for Workplace Assaults",
           "slug": "florida-supreme-court-workplace-assaults-workers-comp",
           "reserved_at": "2026-09-17T19:24:55.459Z"
+        },
+        {
+          "topic": "When Landlords Lose Evictions for Failing to Prove Notice",
+          "slug": "oconnor-v-scott-eviction-notice-proof",
+          "reserved_at": "2026-09-17T19:47:50.007Z"
         }
       ],
-      "last_generated": "2026-09-17T19:24:55.460Z"
+      "last_generated": "2026-09-17T19:47:50.008Z"
     },
     "3": {
       "channel_name": "AI Tested",
