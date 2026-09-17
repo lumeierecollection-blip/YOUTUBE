@@ -17,6 +17,8 @@ data/renders/**/*.webm
 data/renders/**/*-visual-report.json
 data/renders/**/*-image-gaps.json
 data/renders/**/*-image-credits.json
+data/renders/**/*-manifest.json
+data/renders/**/*-local-audit.json
 data/research/**/topic-log.json
 *.tmp
 *.bak

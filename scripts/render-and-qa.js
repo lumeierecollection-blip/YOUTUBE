@@ -32,7 +32,12 @@ const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
 const VISUAL_QA_JS = join(__dirname, "gate-visual-qa.js");
 const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 const GEMINI_PLAN_JS = join(__dirname, "gemini-visual-plan.js");
+const LOCAL_AUDITOR_JS = join(__dirname, "local-visual-auditor.js");
 const MAX_CORRECTION_LOOPS = 2;  // 2 attempts: initial + 1 correction (each ~4min for shorts)
+
+function readJsonSafe(p) {
+  try { return existsSync(p) ? JSON.parse(readFileSync(p, "utf-8")) : null; } catch { return null; }
+}
 
 function parseArgs(argv) {
   const flag = (name) => {
@@ -195,8 +200,28 @@ async function qaOne(runId, rendered, planPath) {
   }
   const audit = await runChild("node", [FRAME_AUDIT_JS, reviewDir], { label: `qa/audit ${basename(outputPath)}` });
 
+  // LOCAL VISUAL AUDITOR — deterministic, free checks (black/static/motion,
+  // manifest vs plan compliance, monoculture, audio, channel fingerprint).
+  // It produces a RISK level and whether a Gemini semantic review is even
+  // needed. This is the cost lever for scaling to many channels: an
+  // objectively-clean, low-risk video does NOT pay for a vision-model pass.
+  let localAudit = null;
+  if (audit.code === 0) {
+    const laArgs = ["--video", outputPath, "--channel", String(channelId)];
+    if (planPath && existsSync(planPath)) laArgs.push("--plan", planPath);
+    const manifestPath = outputPath.replace(/\.mp4$/, "-manifest.json");
+    if (existsSync(manifestPath)) laArgs.push("--manifest", manifestPath);
+    await runChild("node", [LOCAL_AUDITOR_JS, ...laArgs], { label: `qa/local-audit ${basename(outputPath)}` });
+    localAudit = readJsonSafe(outputPath.replace(/\.mp4$/, "-local-audit.json"));
+  }
+  // Gemini runs ONLY when the local auditor cannot clear the video on its own
+  // (risk not LOW, or specific uncertain beats). If the local report is
+  // missing (auditor errored), fall back to running Gemini so we never ship a
+  // video that nothing semantically reviewed.
+  const geminiNeeded = !localAudit || localAudit.gemini_required !== false;
+
   let visionQaPromise;
-  if (audit.code === 0 && process.env.VISION_API_KEY) {
+  if (audit.code === 0 && geminiNeeded && process.env.VISION_API_KEY) {
     const chId = `ch-${String(channelId).padStart(2, "0")}`;
     visionQaPromise = runChild("node", [VISUAL_QA_JS, "--channel", chId, "--video", outputPath], {
       label: `qa/vision ${basename(outputPath)}`,
@@ -205,7 +230,7 @@ async function qaOne(runId, rendered, planPath) {
 
   let geminiReviewPromise;
   const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.VISION_API_KEY;
-  if (audit.code === 0 && geminiKey) {
+  if (audit.code === 0 && geminiNeeded && geminiKey) {
     const srtPath = join(dirname(audio), basename(audio, extname(audio)) + ".srt");
     const srtArg = existsSync(srtPath) ? srtPath : "";
     const reviewArgs = ["--video", outputPath, "--script", scriptPath, "--channel", String(channelId), "--fix"];
@@ -216,13 +241,15 @@ async function qaOne(runId, rendered, planPath) {
     geminiReviewPromise = runChild("node", [GEMINI_REVIEW_JS, ...reviewArgs], {
       label: `qa/gemini-review ${basename(outputPath)}`,
     });
+  } else if (audit.code === 0 && !geminiNeeded) {
+    console.log(`[qa] local auditor cleared ${basename(outputPath)} (risk ${localAudit.risk?.level}) — skipping Gemini review`);
   }
 
   const slopCheckPromise = runChild("node", [SLOP_CHECK_JS, outputPath, channelId, scriptPath, audio], {
     label: `qa/slop-check ${basename(outputPath)}`,
   });
 
-  return { outputPath, gatePass: audit.code === 0, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise };
+  return { outputPath, gatePass: audit.code === 0, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise, localAudit, geminiNeeded };
 }
 
 /* ── Gemini review report lookup ─────────────────────────────────── */
@@ -295,7 +322,15 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // Wait for all background QA tasks to finish before checking Gemini verdict
     await Promise.all([qa.slopCheckPromise, qa.visionQaPromise, qa.geminiReviewPromise].filter(Boolean));
 
-    // Step 4: Check Gemini verdict
+    // Step 4: verdict. If the local auditor cleared the video (LOW risk, no
+    // uncertain beats), Gemini was not run — that IS the approval; ship it
+    // without spending a correction attempt.
+    if (qa.geminiNeeded === false && qa.gatePass) {
+      const lvl = qa.localAudit?.risk?.level || "LOW";
+      console.log(`Local auditor cleared (risk ${lvl}) — approved without Gemini.`);
+      return { skipped: false, ok: true, outputPath: result.outputPath, attempt, geminiVerdict: `LOCAL_AUDIT_${lvl}`, qaGatePass: qa.gatePass };
+    }
+
     const geminiReport = findGeminiReviewReport(channelId, scriptPath);
     let pipelineVerdict = "UNKNOWN";
     let geminiVerdict = "UNKNOWN";

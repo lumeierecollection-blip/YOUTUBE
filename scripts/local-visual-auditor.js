@@ -1,0 +1,358 @@
+#!/usr/bin/env node
+/**
+ * local-visual-auditor.js — deterministic, free QA that runs on EVERY video
+ * so an expensive vision model does not have to.
+ *
+ * The economics for scaling to many channels: most QA questions are things
+ * MATH can answer (black frames, static/frozen sections, motion, safe-area,
+ * plan compliance, monoculture, audio levels). Only genuine visual-SEMANTIC
+ * judgment ("does this visual communicate the intended meaning?") needs
+ * Gemini. This auditor does all the deterministic checks locally and emits a
+ * RISK assessment plus the specific UNCERTAIN beats — so render-and-qa.js can
+ * skip the Gemini review entirely on low-risk videos and, when it does call
+ * Gemini, only send the beats the code could not confidently judge.
+ *
+ * Inputs (all optional except --video):
+ *   --video <mp4>       the rendered video
+ *   --plan <json>       the authoritative visual plan (director intent)
+ *   --manifest <json>   render.js's per-beat manifest (what was actually built)
+ *   --srt <srt>         caption timing (beat windows)
+ *   --channel <id>      channel id (for the visual fingerprint history)
+ *   --out <json>        report path (default: alongside the video)
+ *
+ * Output: a JSON report { technical, visual, plan_compliance, audio,
+ * channel_history, risk, gemini_required, uncertain_beats } and a console
+ * summary. Exit code is always 0 — this is advisory; the hard technical gate
+ * remains scripts/frame-audit.js. Never throws into the pipeline.
+ */
+import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync } from "node:fs";
+import { join, dirname, basename } from "node:path";
+import { fileURLToPath } from "node:url";
+import { execFileSync, spawnSync } from "node:child_process";
+import { tmpdir } from "node:os";
+import sharp from "sharp";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = join(__dirname, "..");
+
+const compositorPkg = process.platform === "win32"
+  ? "@remotion/compositor-win32-x64-msvc" : "@remotion/compositor-linux-x64-gnu";
+const binExt = process.platform === "win32" ? ".exe" : "";
+const FFMPEG_MIN = join(ROOT, "src", "skills", "remotion-render", "node_modules", compositorPkg, `ffmpeg${binExt}`);
+const ffmpegStatic = join(ROOT, "node_modules", "ffmpeg-static", `ffmpeg${binExt}`);
+const FFMPEG = existsSync(ffmpegStatic) ? ffmpegStatic : FFMPEG_MIN;
+const FFPROBE = join(dirname(FFMPEG_MIN), `ffprobe${binExt}`);
+
+// Safe area for shorts (mirrors src/skills/remotion-render/layout/slots.js).
+const SAFE = { top: 288, bottom: 1248, left: 48, right: 888, W: 1080, H: 1920 };
+// Mechanisms whose frame is dominated by a number/chart/words.
+const TEXT_FORWARD = new Set(["TYPOGRAPHY", "EVIDENCE_FIGURE"]);
+const GRAPH_MECHANISMS = new Set(["EVIDENCE_FIGURE", "DATA_CHART"]);
+
+function arg(name, fallback = null) {
+  const i = process.argv.indexOf(`--${name}`);
+  if (i > -1 && process.argv[i + 1]) return process.argv[i + 1];
+  return fallback;
+}
+function readJson(p) {
+  try { return p && existsSync(p) ? JSON.parse(readFileSync(p, "utf-8")) : null; } catch { return null; }
+}
+function resolveIn(p) {
+  if (!p) return null;
+  return existsSync(p) ? p : (existsSync(join(ROOT, p)) ? join(ROOT, p) : null);
+}
+
+/* ── ffprobe / ffmpeg helpers ────────────────────────────────────────── */
+
+function probe(video) {
+  try {
+    const out = execFileSync(FFPROBE, [
+      "-v", "error", "-show_entries",
+      "stream=codec_type,width,height,r_frame_rate:format=duration",
+      "-of", "json", video,
+    ], { encoding: "utf-8" });
+    const j = JSON.parse(out);
+    const v = (j.streams || []).find((s) => s.codec_type === "video") || {};
+    const a = (j.streams || []).find((s) => s.codec_type === "audio") || null;
+    const [n, d] = String(v.r_frame_rate || "30/1").split("/").map(Number);
+    return {
+      width: v.width || null, height: v.height || null,
+      fps: d ? +(n / d).toFixed(2) : null,
+      durationSec: +parseFloat(j.format?.duration || 0).toFixed(2),
+      hasAudio: !!a,
+    };
+  } catch (e) {
+    return { error: String(e.message).slice(0, 200) };
+  }
+}
+
+// Extract N evenly-spaced frames (inset past the fade boundaries) as small
+// grayscale buffers for hashing/luminance/motion — cheap, deterministic.
+async function sampleFrames(video, durationSec, n = 24) {
+  const work = join(tmpdir(), `lva-${Date.now()}`);
+  mkdirSync(work, { recursive: true });
+  const inset = Math.min(0.4, durationSec * 0.05);
+  const lo = inset, hi = Math.max(lo + 0.1, durationSec - inset);
+  const frames = [];
+  for (let i = 0; i < n; i++) {
+    const t = n === 1 ? (lo + hi) / 2 : lo + ((hi - lo) * i) / (n - 1);
+    const png = join(work, `f${String(i).padStart(2, "0")}.png`);
+    try {
+      execFileSync(FFMPEG, ["-hide_banner", "-loglevel", "error", "-ss", t.toFixed(3),
+        "-i", video, "-frames:v", "1", "-vf", "scale=64:114", "-y", png], {});
+      const { data } = await sharp(png).grayscale().raw().toBuffer({ resolveWithObject: true });
+      frames.push({ i, t: +t.toFixed(2), data, w: 64, h: 114 });
+    } catch { /* skip unreadable frame */ }
+  }
+  try { rmSync(work, { recursive: true, force: true }); } catch {}
+  return frames;
+}
+
+function meanLuma(f) { let s = 0; for (let i = 0; i < f.data.length; i++) s += f.data[i]; return s / f.data.length / 255; }
+// 8x8 average-hash from the 64x114 gray buffer (downsample by block mean).
+function aHash(f) {
+  const bw = Math.floor(f.w / 8), bh = Math.floor(f.h / 8), cells = [];
+  for (let by = 0; by < 8; by++) for (let bx = 0; bx < 8; bx++) {
+    let s = 0, c = 0;
+    for (let y = by * bh; y < (by + 1) * bh; y++) for (let x = bx * bw; x < (bx + 1) * bw; x++) { s += f.data[y * f.w + x]; c++; }
+    cells.push(s / Math.max(1, c));
+  }
+  const mean = cells.reduce((a, b) => a + b, 0) / cells.length;
+  return cells.map((v) => (v >= mean ? 1 : 0));
+}
+function hamming(a, b) { let d = 0; for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) d++; return d; }
+function frameDiff(a, b) { let s = 0; for (let i = 0; i < a.data.length; i++) s += Math.abs(a.data[i] - b.data[i]); return s / a.data.length / 255; }
+
+/* ── VISUAL checks ───────────────────────────────────────────────────── */
+
+function auditVisual(frames) {
+  if (frames.length < 2) return { ok: false, note: "too few frames sampled" };
+  const lumas = frames.map(meanLuma);
+  const hashes = frames.map(aHash);
+  const blackFrames = frames.filter((f, i) => lumas[i] < 0.02).map((f) => f.t);
+  // motion: mean consecutive frame diff
+  let motionSum = 0, changes = 0, staticRun = 0, maxStaticRun = 0;
+  for (let i = 1; i < frames.length; i++) {
+    const d = frameDiff(frames[i - 1], frames[i]);
+    motionSum += d;
+    const hd = hamming(hashes[i - 1], hashes[i]);
+    if (hd >= 12) changes++;           // large composition change
+    if (hd <= 2 && d < 0.02) { staticRun++; maxStaticRun = Math.max(maxStaticRun, staticRun); } else staticRun = 0;
+  }
+  const meanMotion = motionSum / (frames.length - 1);
+  // near-duplicate non-adjacent frames (repeated imagery)
+  let dupPairs = 0;
+  for (let i = 0; i < hashes.length; i++) for (let j = i + 2; j < hashes.length; j++) if (hamming(hashes[i], hashes[j]) <= 2) dupPairs++;
+  const secPerFrame = frames.length > 1 ? (frames[frames.length - 1].t - frames[0].t) / (frames.length - 1) : 0;
+  return {
+    ok: true,
+    meanLuma: +(lumas.reduce((a, b) => a + b, 0) / lumas.length).toFixed(3),
+    blackFrames,
+    blackFrameCount: blackFrames.length,
+    meanMotion: +meanMotion.toFixed(4),
+    lowMotion: meanMotion < 0.012,
+    sceneChanges: changes,
+    maxStaticRunSec: +(maxStaticRun * secPerFrame).toFixed(2),
+    nearDuplicatePairs: dupPairs,
+  };
+}
+
+/* ── PLAN-COMPLIANCE checks (manifest vs plan — deterministic) ───────── */
+
+function norm(s) { return String(s || "").toLowerCase().replace(/[^a-z0-9]/g, ""); }
+
+function auditPlanCompliance(plan, manifest) {
+  if (!manifest) return { ok: false, note: "no render manifest" };
+  const mBeats = manifest.beats || [];
+  const pBeats = plan?.beats || [];
+  const issues = [];
+
+  // beat count parity
+  if (pBeats.length && mBeats.length !== pBeats.length) {
+    issues.push({ owner: "PLAN_COMPLIANCE", beat: null, problem: `beat count mismatch: plan ${pBeats.length} vs render ${mBeats.length}` });
+  }
+
+  // per-beat typography presence + graph justification
+  for (let i = 0; i < mBeats.length; i++) {
+    const m = mBeats[i];
+    const p = pBeats[i];
+    const dir = p?.direction || {};
+    // typography: if the director named specific on-screen text, it should appear
+    if (dir.typography && dir.typography !== "none" && dir.typography.length <= 40) {
+      const want = norm(dir.typography);
+      const got = (m.text || []).map(norm).join(" ");
+      // only assert when the directed text is a short specific token (a number/label)
+      if (want && want.length >= 2 && /[0-9$%]/.test(dir.typography) && !got.includes(want)) {
+        issues.push({ owner: "PLAN_COMPLIANCE", beat: i, problem: `directed text "${dir.typography}" not found on screen (rendered "${(m.text || []).join(" ") || "∅"}")` });
+      }
+    }
+    // graph justification: a chart mechanism where the director said graph not justified
+    if (p && dir.graph_justified === false && GRAPH_MECHANISMS.has(m.mechanism)) {
+      issues.push({ owner: "DIRECTION_QUALITY", beat: i, problem: `mechanism ${m.mechanism} is a chart but graph_justified=false — lazy/graph fallback` });
+    }
+  }
+
+  // MONOCULTURE — deterministic, from manifest mechanisms
+  const mechs = mBeats.map((b) => b.mechanism).filter(Boolean);
+  const total = mechs.length || 1;
+  const textForward = mechs.filter((m) => TEXT_FORWARD.has(m)).length;
+  const distinct = new Set(mechs).size;
+  let maxRun = 0, run = 1;
+  for (let i = 1; i < mechs.length; i++) { if (mechs[i] === mechs[i - 1]) { run++; maxRun = Math.max(maxRun, run); } else run = 1; }
+  maxRun = Math.max(maxRun, mechs.length ? 1 : 0);
+  const textForwardPct = Math.round((textForward / total) * 100);
+  const monoculture = textForwardPct > 45 || distinct < 4 || maxRun > 3;
+  if (monoculture) {
+    issues.push({ owner: "DIRECTION_QUALITY", beat: null, problem: `monoculture: ${textForwardPct}% text-forward, ${distinct} distinct mechanisms, longest run ${maxRun}` });
+  }
+
+  return {
+    ok: true,
+    beatCountPlan: pBeats.length, beatCountRender: mBeats.length,
+    textForwardPct, distinctMechanisms: distinct, longestMechanismRun: maxRun, monoculture,
+    mechanismDistribution: mechs.reduce((o, m) => (o[m] = (o[m] || 0) + 1, o), {}),
+    issues,
+  };
+}
+
+/* ── AUDIO checks (ffmpeg) ───────────────────────────────────────────── */
+
+// ffmpeg writes ebur128/silencedetect stats to STDERR, so capture it via
+// spawnSync (execFileSync only returns stdout).
+function ffmpegStderr(afilter) {
+  const r = spawnSync(FFMPEG, ["-hide_banner", "-nostats", "-i", video_ref,
+    "-af", afilter, "-f", "null", "-"], { encoding: "utf-8", maxBuffer: 32 * 1024 * 1024 });
+  return (r.stderr || "") + (r.stdout || "");
+}
+let video_ref = null;
+function auditAudio(video, hasAudio) {
+  if (!hasAudio) return { ok: true, hasAudio: false, note: "no audio stream" };
+  video_ref = video;
+  const res = { ok: true, hasAudio: true };
+  try {
+    const out = ffmpegStderr("ebur128=peak=true");
+    const I = out.match(/I:\s*(-?\d+(?:\.\d+)?)\s*LUFS/g);
+    const peak = out.match(/Peak:\s*(-?\d+(?:\.\d+)?)\s*dBFS/g);
+    if (I?.length) res.integratedLufs = +I[I.length - 1].match(/(-?\d+(?:\.\d+)?)/)[0];
+    if (peak?.length) res.truePeakDb = +peak[peak.length - 1].match(/(-?\d+(?:\.\d+)?)/)[0];
+    res.clipping = res.truePeakDb != null && res.truePeakDb > -0.1;
+  } catch (e) { res.loudnessError = String(e.message).slice(0, 120); }
+  try {
+    const out = ffmpegStderr("silencedetect=noise=-45dB:d=1.5");
+    const sil = (out.match(/silence_duration:\s*(\d+(?:\.\d+)?)/g) || []).map((s) => +s.match(/(\d+(?:\.\d+)?)/)[0]);
+    res.longSilenceCount = sil.filter((s) => s >= 1.5).length;
+    res.maxSilenceSec = sil.length ? Math.max(...sil) : 0;
+  } catch { /* silencedetect optional */ }
+  return res;
+}
+
+/* ── CHANNEL fingerprint (rolling history) ───────────────────────────── */
+
+const STATS_PATH = join(ROOT, "data", "audit", "channel-visual-stats.json");
+
+function updateChannelFingerprint(channelId, planComp) {
+  if (!channelId || !planComp?.ok) return { ok: false };
+  let store = readJson(STATS_PATH) || {};
+  const key = String(channelId);
+  const hist = store[key] || { videos: [] };
+  const entry = {
+    date: new Date().toISOString().slice(0, 10),
+    textForwardPct: planComp.textForwardPct,
+    distinctMechanisms: planComp.distinctMechanisms,
+    mechanismDistribution: planComp.mechanismDistribution,
+  };
+  const recent = hist.videos.slice(-9); // last 9 before this one
+  const avgTextFwd = recent.length ? Math.round(recent.reduce((s, v) => s + (v.textForwardPct || 0), 0) / recent.length) : null;
+  const outlier = avgTextFwd != null && Math.abs(planComp.textForwardPct - avgTextFwd) > 30;
+  hist.videos = [...recent, entry].slice(-10);
+  store[key] = hist;
+  try { mkdirSync(dirname(STATS_PATH), { recursive: true }); writeFileSync(STATS_PATH, JSON.stringify(store, null, 2) + "\n"); } catch {}
+  return { ok: true, recentAvgTextForwardPct: avgTextFwd, thisTextForwardPct: planComp.textForwardPct, outlier };
+}
+
+/* ── RISK aggregation ────────────────────────────────────────────────── */
+
+function assessRisk(technical, visual, planComp, audio, channel) {
+  const reasons = [];
+  let score = 0;
+  // technical (these are also the frame-audit hard gate's domain; here they feed risk)
+  if (technical.width && (technical.width < 720 || technical.height < 1280)) { score += 40; reasons.push(`resolution ${technical.width}x${technical.height} below 720x1280`); }
+  if (visual.ok && visual.blackFrameCount > 0) { score += 25; reasons.push(`${visual.blackFrameCount} black frame(s)`); }
+  // Coarse sampling (~24 frames): a single static gap spans several seconds,
+  // so only a genuinely long frozen stretch counts.
+  if (visual.ok && visual.maxStaticRunSec >= 6) { score += 20; reasons.push(`static/frozen ${visual.maxStaticRunSec}s`); }
+  if (visual.ok && visual.lowMotion) { score += 12; reasons.push(`low motion (${visual.meanMotion})`); }
+  if (visual.ok && visual.nearDuplicatePairs >= 6) { score += 10; reasons.push(`${visual.nearDuplicatePairs} near-duplicate frame pairs`); }
+  // plan compliance
+  if (planComp.ok) {
+    const impl = planComp.issues.filter((x) => x.owner === "PLAN_COMPLIANCE").length;
+    const dir = planComp.issues.filter((x) => x.owner === "DIRECTION_QUALITY").length;
+    if (impl) { score += 15 * Math.min(2, impl); reasons.push(`${impl} plan-compliance issue(s)`); }
+    if (planComp.monoculture) { score += 20; reasons.push(`monoculture (${planComp.textForwardPct}% text-forward)`); }
+    else if (dir) { score += 8; reasons.push(`${dir} direction-quality flag(s)`); }
+  }
+  // audio
+  if (audio.clipping) { score += 10; reasons.push("audio clipping"); }
+  if (audio.maxSilenceSec >= 3) { score += 8; reasons.push(`${audio.maxSilenceSec}s silence`); }
+  // channel outlier
+  if (channel.outlier) { score += 10; reasons.push(`text-forward ${channel.thisTextForwardPct}% vs channel avg ${channel.recentAvgTextForwardPct}%`); }
+
+  const level = score >= 30 ? "HIGH" : score >= 12 ? "MEDIUM" : "LOW";
+  return { score, level, reasons };
+}
+
+// Which specific beats can code NOT confidently judge → send only these to Gemini.
+function uncertainBeats(planComp, visual) {
+  const set = new Set();
+  if (planComp.ok) for (const iss of planComp.issues) if (iss.beat != null) set.add(iss.beat);
+  return [...set].sort((a, b) => a - b);
+}
+
+/* ── main ────────────────────────────────────────────────────────────── */
+
+async function main() {
+  const videoArg = arg("video");
+  if (!videoArg) { console.error("Usage: local-visual-auditor.js --video <mp4> [--plan p] [--manifest m] [--channel id] [--out r]"); process.exit(2); }
+  const video = resolveIn(videoArg);
+  if (!video) { console.error(`Video not found: ${videoArg}`); process.exit(2); }
+
+  const plan = readJson(resolveIn(arg("plan")));
+  let manifestPath = resolveIn(arg("manifest"));
+  if (!manifestPath) { const g = video.replace(/\.mp4$/, "-manifest.json"); if (existsSync(g)) manifestPath = g; }
+  const manifest = readJson(manifestPath);
+  const channelId = arg("channel");
+
+  const technical = probe(video);
+  const frames = technical.error ? [] : await sampleFrames(video, technical.durationSec || 60, 24);
+  const visual = auditVisual(frames);
+  const planComp = auditPlanCompliance(plan, manifest);
+  const audio = auditAudio(video, technical.hasAudio);
+  const channel = updateChannelFingerprint(channelId, planComp);
+  const risk = assessRisk(technical, visual, planComp, audio, channel);
+  const uncertain = uncertainBeats(planComp, visual);
+  const geminiRequired = risk.level !== "LOW" || uncertain.length > 0;
+
+  const report = {
+    generatedAt: new Date().toISOString(),
+    video: basename(video),
+    channel: channelId || null,
+    technical, visual, plan_compliance: planComp, audio, channel_history: channel,
+    risk, gemini_required: geminiRequired, uncertain_beats: uncertain,
+  };
+
+  const outPath = arg("out") || video.replace(/\.mp4$/, "-local-audit.json");
+  try { mkdirSync(dirname(outPath), { recursive: true }); writeFileSync(outPath, JSON.stringify(report, null, 2) + "\n"); } catch {}
+
+  console.log("\n═══ LOCAL VISUAL AUDITOR ═══");
+  console.log(`  Video: ${report.video}  ${technical.width}x${technical.height} @ ${technical.fps}fps  ${technical.durationSec}s  audio:${technical.hasAudio}`);
+  if (visual.ok) console.log(`  Visual: meanLuma=${visual.meanLuma} motion=${visual.meanMotion} black=${visual.blackFrameCount} staticRun=${visual.maxStaticRunSec}s changes=${visual.sceneChanges} dupPairs=${visual.nearDuplicatePairs}`);
+  if (planComp.ok) console.log(`  Plan: beats ${planComp.beatCountRender}/${planComp.beatCountPlan} textFwd=${planComp.textForwardPct}% distinct=${planComp.distinctMechanisms} run=${planComp.longestMechanismRun} mono=${planComp.monoculture} issues=${planComp.issues.length}`);
+  if (audio.hasAudio) console.log(`  Audio: LUFS=${audio.integratedLufs ?? "?"} peak=${audio.truePeakDb ?? "?"}dB clip=${!!audio.clipping} silence=${audio.maxSilenceSec ?? 0}s`);
+  if (channel.ok) console.log(`  Channel: textFwd ${channel.thisTextForwardPct}% (avg ${channel.recentAvgTextForwardPct ?? "n/a"}%) outlier=${!!channel.outlier}`);
+  console.log(`  RISK: ${risk.level} (${risk.score})  ${risk.reasons.join("; ") || "clean"}`);
+  console.log(`  → gemini_required: ${geminiRequired}${uncertain.length ? `  uncertain beats: [${uncertain.join(", ")}]` : ""}`);
+  console.log(`  Report: ${outPath}`);
+  process.exit(0);
+}
+
+main().catch((e) => { console.error("local-visual-auditor error (non-fatal):", e.message); process.exit(0); });

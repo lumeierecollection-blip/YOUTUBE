@@ -698,6 +698,51 @@ async function main() {
   console.log(`Output: ${outputPath}`);
 
   await renderVideo(componentId, outputPath, frames, props, scale);
+
+  // RENDER MANIFEST — the objective record of what the renderer ACTUALLY put
+  // on screen per beat (mechanism, on-screen text, object labels, camera,
+  // timing). Written next to the .mp4 so the local-visual-auditor can do
+  // plan-compliance and monoculture checks deterministically — comparing the
+  // director's intent (visual-plan.json) against what was built — instead of
+  // paying a vision model to re-derive it from pixels. Only the DirectedShorts
+  // path carries per-beat structure; other compositions skip it.
+  if (componentId === "DirectedShorts" && Array.isArray(sentencePlan?.beats)) {
+    const fps = 30;
+    const manifest = {
+      video: basename(outputPath),
+      format,
+      fps,
+      width: 1080,
+      height: 1920,
+      renderScale: scale,
+      totalFrames: frames,
+      durationSec: +(frames / fps).toFixed(2),
+      generatedAt: new Date().toISOString(),
+      beats: sentencePlan.beats.map((b, i) => {
+        const scene = b.scene || {};
+        const objectLabels = (scene.objects || [])
+          .map((o) => o.label).filter((l) => l && String(l).trim());
+        const camera = (scene.shots || []).map((s) => s.camera).filter(Boolean);
+        return {
+          index: i,
+          beat_id: b.beat_id,
+          start_frame: b.start_frame,
+          duration_frames: b.duration_frames,
+          start_sec: +((b.start_frame || 0) / fps).toFixed(2),
+          duration_sec: +((b.duration_frames || 0) / fps).toFixed(2),
+          mechanism: b.treatment || scene.mechanism || null,
+          text: [b.text].filter((t) => t && String(t).trim()),
+          objects: objectLabels,
+          camera: [...new Set(camera)],
+          carries_forward: b.carries_forward || null,
+        };
+      }),
+    };
+    const manifestPath = outputPath.replace(/\.mp4$/, "-manifest.json");
+    writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+    console.log(`Render manifest: ${manifest.beats.length} beats -> ${manifestPath}`);
+  }
+
   process.exit(0);
 }
 
