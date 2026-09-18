@@ -2038,9 +2038,14 @@
           "topic": "Inside HysataFab: AI-Optimized Electrolyzer Manufacturing",
           "slug": "hysatafab-ai-optimized-electrolyzer-manufacturing",
           "reserved_at": "2026-09-18T01:07:25.561Z"
+        },
+        {
+          "topic": "Rockwell Automation FactoryTalk ResilientEdge for Autonomous Plants",
+          "slug": "rockwell-automation-factorytalk-resilient-edge",
+          "reserved_at": "2026-09-18T07:05:49.706Z"
         }
       ],
-      "last_generated": "2026-09-18T01:07:25.562Z"
+      "last_generated": "2026-09-18T07:05:49.706Z"
     },
     "49": {
       "channel_name": "Wander Budget",
