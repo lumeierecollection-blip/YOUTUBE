@@ -173,6 +173,37 @@ function isRateLimitError(errorText) {
 }
 
 /**
+ * A PER-DAY quota, as opposed to a per-minute window.
+ *
+ * isRateLimitError() waits 65s to clear a per-minute limit, which is right
+ * for tokens-per-minute but pointless for a daily cap: the quota resets at
+ * midnight Pacific, not in a minute. Run 35295839490 spent 65s twice per
+ * stage per channel waiting out
+ * "GenerateRequestsPerDayPerProjectPerModel-FreeTier, quotaValue 500" —
+ * about 6 wasted minutes across three channels to arrive at the same
+ * failure. Fail fast and say the real reason instead.
+ */
+function isDailyQuotaError(errorText) {
+  return /PerDayPerProject|free_tier_requests|GenerateRequestsPerDay/i.test(errorText || "");
+}
+
+/**
+ * A model that cannot be used AT ALL from here — not a transient fault.
+ *
+ * Every failover model configured in daily-pipeline-v2.yml
+ * (opencode/mimo-v2.5-free, opencode/glm-5-free) returns
+ * {"type":"FreeTierError","message":"OpenCode's free tier can only be used
+ * from within OpenCode"} with statusCode 403 and isRetryable false. So the
+ * redundancy the pipeline appears to have is fictitious: all three chains
+ * are one live model plus a model that can never answer. Retrying it spends
+ * two attempts and two waits to learn something permanent, so it is skipped
+ * with an explicit warning that the chain has no real failover.
+ */
+function isDeadModel(errorText) {
+  return /FreeTierError|can only be used from within OpenCode|"statusCode":\s*40[13]/i.test(errorText || "");
+}
+
+/**
  * A provider-side fault, as opposed to anything the model or the prompt did
  * wrong. These are transient and carry no information the model could act
  * on, so exhausting the model chain on them throws away a whole channel's
@@ -533,6 +564,22 @@ Do your research and reasoning silently — do not quote, paste, or summarize se
         lastError = `[${model}] attempt ${attempt}/${maxRetries}: ${result.error}`;
         if (isProviderFault(result.error)) providerFaultSeen = true;
         console.error(lastError);
+
+        // A model that can never answer from here is not worth a second
+        // attempt or a wait. Say so loudly: if this is the failover, the
+        // chain has no real redundancy and the next failure is terminal.
+        if (isDeadModel(result.error)) {
+          console.error(`::warning::${model} is UNUSABLE from this environment (403 / free-tier restriction), not a transient fault — skipping it. This chain has no working failover.`);
+          break;
+        }
+
+        // A DAILY cap does not clear by waiting. Stop retrying it and name
+        // the real reason rather than sleeping 65s twice to rediscover it.
+        if (isDailyQuotaError(result.error)) {
+          console.error(`::warning::${model} has exhausted its PER-DAY quota (resets at midnight Pacific) — waiting will not help, skipping remaining attempts.`);
+          break;
+        }
+
         if (attempt < maxRetries) {
           // Cerebras rate limits appear to be account-wide (both models hit
           // the identical error at the same time), so this is a per-minute
