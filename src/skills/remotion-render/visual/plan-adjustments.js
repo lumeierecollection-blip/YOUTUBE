@@ -161,6 +161,18 @@ export function applyAdjustments(plan, adjustments) {
   const applied = [];
   const rejected = [];
 
+  // LENGTH INVARIANT — captured before anything is touched.
+  //
+  // Video duration is set by the VOICEOVER, not by the visual plan
+  // (render.js computeDurationFrames: frames = audioSeconds * fps +
+  // AUDIO_TAIL_FRAMES). Enforcement only ever rewrites how a beat is SHOWN —
+  // its mechanism, its phrase, its object labels — so it must never change
+  // the beat count or any timing field. Asserting it here rather than
+  // reasoning about it means a future directive that tried to add, drop or
+  // retime a beat fails loudly instead of silently changing how long every
+  // video runs.
+  const lengthBefore = lengthSignature(next);
+
   for (const adj of adjustments || []) {
     const bad = validateDirective(adj, beats.length);
     if (bad) { rejected.push({ adj, reason: bad }); continue; }
@@ -247,7 +259,39 @@ export function applyAdjustments(plan, adjustments) {
         rejected.push({ adj, reason: `no applier for "${adj.directive}"` });
     }
   }
+  // The invariant is not optional: if any directive changed the beat count
+  // or a timing field, the edited plan is discarded rather than rendered.
+  // A shorter or longer video is a worse outcome than an unenforced
+  // rejection.
+  const lengthAfter = lengthSignature(next);
+  if (lengthAfter !== lengthBefore) {
+    return {
+      plan,                       // the ORIGINAL, untouched
+      applied: [],
+      rejected: [{
+        adj: null,
+        reason: `enforcement would have changed video length (${lengthBefore} -> ${lengthAfter}) — edits discarded`,
+      }],
+      lengthViolation: true,
+    };
+  }
+
   return { plan: next, applied, rejected };
+}
+
+/**
+ * A stable fingerprint of everything that determines how long the video is.
+ *
+ * Beat count plus every timing field present on the beats. Compared as a
+ * string so an added, removed, reordered or retimed beat all show up.
+ */
+function lengthSignature(plan) {
+  const beats = plan?.beats || [];
+  const timing = beats.map((b) => [
+    b.start_frame ?? "", b.duration_frames ?? "",
+    b.start_sec ?? "", b.duration_sec ?? "",
+  ].join(":"));
+  return `${beats.length}|${timing.join(",")}|${plan?.totalFrames ?? ""}|${plan?.durationSec ?? ""}`;
 }
 
 /**

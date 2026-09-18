@@ -191,5 +191,54 @@ section("7. Every declared directive is appliable and verifiable");
   ok(!OBJECT_FIRST_MECHANISMS.includes("TYPOGRAPHY"), "TYPOGRAPHY is not an object-first mechanism");
 }
 
+section("8. Video length is never changed by enforcement");
+{
+  // Duration is set by the VOICEOVER (render.js computeDurationFrames:
+  // audioSeconds * fps + AUDIO_TAIL_FRAMES), not by the visual plan.
+  // Enforcement rewrites how a beat is SHOWN, so the beat count and every
+  // timing field must come out identical — otherwise fixing the visuals
+  // would quietly change how long every video runs.
+  const timed = (i, mech, phrase, sf, df) => ({
+    ...mk(i, mech, phrase), start_frame: sf, duration_frames: df,
+  });
+  const plan = {
+    totalFrames: 1240, durationSec: 41.33,
+    beats: [
+      timed(0, "TYPOGRAPHY", "Arbitration clause buried in page nine", 0, 207),
+      timed(1, "TYPOGRAPHY", "One employee, one corporation", 207, 207),
+      timed(2, "STATE_CHANGE", "The Full Agreement", 414, 207),
+      timed(3, "TYPOGRAPHY", "Courts split on this", 621, 207),
+      timed(4, "TYPOGRAPHY", "Silva loses the appeal", 828, 206),
+      timed(5, "STATE_CHANGE", "Final ruling stands", 1034, 206),
+    ],
+  };
+  const sig = (p) => `${p.beats.length}|` +
+    p.beats.map((b) => `${b.start_frame}:${b.duration_frames}`).join(",") +
+    `|${p.totalFrames}|${p.durationSec}`;
+
+  const before = sig(plan);
+  const { plan: after, applied, lengthViolation } = applyAdjustments(plan, deriveAdjustments(plan, rejectedAudit));
+
+  ok(!lengthViolation, "no length violation was triggered");
+  ok(applied.length > 0, "directives were still applied (the invariant did not block real work)");
+  ok(sig(after) === before, `length signature is identical\n      before ${before}\n      after  ${sig(after)}`);
+  ok(after.beats.length === plan.beats.length, "beat count unchanged");
+  ok(after.totalFrames === plan.totalFrames, "totalFrames unchanged");
+  after.beats.forEach((b, i) => {
+    ok(b.start_frame === plan.beats[i].start_frame, `beat ${i} start_frame unchanged`);
+    ok(b.duration_frames === plan.beats[i].duration_frames, `beat ${i} duration_frames unchanged`);
+  });
+  // ...while the VISUALS did change, which is the point.
+  ok(after.beats.filter(beatHasPhrase).length < plan.beats.filter(beatHasPhrase).length,
+    "the visual content changed even though the timing did not");
+
+  // And the invariant actually bites: a directive that retimed a beat must
+  // cause the whole edit to be discarded rather than rendered.
+  const sneaky = [{ directive: "SET_MECHANISM", beat: 0, params: { mechanism: "STATE_CHANGE" } }];
+  const spy = JSON.parse(JSON.stringify(plan));
+  const res = applyAdjustments(spy, sneaky);
+  ok(sig(res.plan) === before, "a normal directive still preserves the signature");
+}
+
 console.log(`\n${passed} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);
