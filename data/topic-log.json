@@ -270,9 +270,14 @@
           "topic": "How Financial Outlook Shapes Where We Cut Spending in 2026",
           "slug": "financial-outlook-spending-cuts-2026",
           "reserved_at": "2026-09-18T10:15:08.324Z"
+        },
+        {
+          "topic": "Monarch Money's New 2026 Tier Split and Pricing Changes",
+          "slug": "monarch-money-2026-tier-split-pricing",
+          "reserved_at": "2026-09-18T19:24:55.067Z"
         }
       ],
-      "last_generated": "2026-09-18T10:15:08.324Z"
+      "last_generated": "2026-09-18T19:24:55.067Z"
     },
     "2": {
       "channel_name": "Legal Brief",
