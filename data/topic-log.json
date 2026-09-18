@@ -2043,9 +2043,14 @@
           "topic": "Rockwell Automation FactoryTalk ResilientEdge for Autonomous Plants",
           "slug": "rockwell-automation-factorytalk-resilient-edge",
           "reserved_at": "2026-09-18T07:05:49.706Z"
+        },
+        {
+          "topic": "Samsung's New AI Robotics Unit for Sub-2nm Chip Plant Automation",
+          "slug": "samsung-ai-robotics-unit-chip-plant-automation",
+          "reserved_at": "2026-09-18T07:33:36.542Z"
         }
       ],
-      "last_generated": "2026-09-18T07:05:49.706Z"
+      "last_generated": "2026-09-18T07:33:36.542Z"
     },
     "49": {
       "channel_name": "Wander Budget",
