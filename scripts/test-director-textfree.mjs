@@ -69,5 +69,36 @@ console.log("3. Enforcement math holds end to end");
   ok(n / beats.length <= 0.4, `text-beat share ${Math.round((n / beats.length) * 100)}% is within the 40% cap`);
 }
 
+console.log("4. The director does not refill labels that enforcement cleared");
+{
+  // The last leak, and the fourth instance of the same `||` fallback bug.
+  // applyDirective() defaulted label_a/label_b/cause/effect to "EXPECTED"/
+  // "ACTUAL"/"CAUSE"/"EFFECT", surface/beneath to "REALITY", and the
+  // proportional pair to "A"/"B". So REMOVE_TYPOGRAPHY cleared a label, the
+  // fallback put a banned word straight back, and the manifest counted it as
+  // narrative text — runs 35293642808 and 35317469026 applied and VERIFIED
+  // every directive while the auditor measured an unchanged text-beat share
+  // on all three attempts (57/57/57 ch1, 44/44/44 ch44).
+  const visualPlan = { beats: [
+    { index: 0, mechanism: "TYPOGRAPHY", visual_headline: "Scripted leaders lose the room",
+      typography_direction: { phrase: "Scripted leaders lose the room" }, objects: {} },
+    { index: 1, mechanism: "STATE_CHANGE", visual_headline: "", typography_direction: null, objects: { label_a: "", label_b: "" } },
+    { index: 2, mechanism: "ACTION_CONSEQUENCE", visual_headline: "", typography_direction: null, objects: { cause: "", effect: "" } },
+    { index: 3, mechanism: "SURFACE_AND_BENEATH", visual_headline: "", typography_direction: null, objects: { label_a: "", label_b: "" } },
+  ] };
+  const { beats } = direct(cues, { seed: 7, visualPlan });
+
+  const BANNED = /^(EXPECTED|ACTUAL|CAUSE|EFFECT|REALITY|A|B)$/;
+  for (const b of beats) {
+    for (const o of (b.scene && b.scene.objects) || []) {
+      ok(!BANNED.test(String(o.label).trim()),
+        `no banned/placeholder label reintroduced (got ${JSON.stringify(o.label)} on ${b.scene.mechanism})`);
+    }
+  }
+  const textBeats = beats.filter((b) => textOf(b)).length;
+  ok(textBeats === 1, `only the beat that kept its phrase carries text (got ${textBeats})`);
+  ok(textOf(beats[0]) === "Scripted leaders lose the room", "that beat's phrase is intact");
+}
+
 console.log(`\n${passed} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);

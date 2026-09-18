@@ -495,7 +495,19 @@ export function deriveAdjustments(plan, localAudit) {
   // Mechanism monoculture. Aim for a distinct count that is achievable:
   // never more than the beat count, and never more than the vocabulary.
   const distinctNow = new Set(beats.map(beatMechanism).filter(Boolean)).size;
-  const target = Math.min(beats.length, ALL_MECHANISMS.length, Math.max(4, Math.ceil(beats.length * 0.7)));
+  // Ask only for what the swap pool can actually deliver.
+  //
+  // This asked for ceil(beats * 0.7) — 7 on a 9-beat video — and
+  // DIVERSIFY_MECHANISMS reported NOT VERIFIED on ch44 twice in run
+  // 35317469026 ("6 distinct mechanisms, asked for 7", then 5). The swap
+  // only moves beats onto mechanisms not already in use, so the reachable
+  // ceiling is the distinct count now plus the unused pool — never the
+  // whole vocabulary. Demanding more produces a permanent NOT VERIFIED,
+  // which is noise that hides real enforcement failures.
+  const inUse = new Set(beats.map(beatMechanism).filter(Boolean));
+  const unusedPool = ALL_MECHANISMS.filter((m) => !inUse.has(m)).length;
+  const reachable = Math.min(beats.length, inUse.size + unusedPool);
+  const target = Math.max(2, Math.min(reachable, Math.max(4, Math.ceil(beats.length * 0.7))));
   if (comp?.monoculture === true || distinctNow < target) {
     out.push({
       directive: "DIVERSIFY_MECHANISMS",

@@ -558,9 +558,19 @@ function applyDirective(directive, originalText, index, totalBeats, prevScene) {
   switch (mechanism) {
     case "STATE_CHANGE":
       scene.objects = [
-        { id: "expected", label: objs.label_a || "EXPECTED", material, role: "the expected state", appearance: "clean_text",
+        // NO "EXPECTED"/"ACTUAL"/"CAUSE"/"EFFECT" FALLBACKS.
+        //
+        // These || defaults resurrected the exact engine vocabulary deleted
+        // from directed-scene.jsx, and they defeated enforcement:
+        // REMOVE_TYPOGRAPHY clears label_a/label_b to "", the fallback put a
+        // banned word back, and the manifest counted it as narrative text.
+        // So runs 35293642808 and 35317469026 applied and VERIFIED the
+        // directives while the auditor measured an identical text-beat share
+        // on every attempt — 57/57/57 on ch1, 44/44/44 on ch44. An empty
+        // label now stays empty and the scene renders unlabelled.
+        { id: "expected", label: objs.label_a || "", material, role: "the expected state", appearance: "clean_text",
           initial_state: { scale: 1, opacity: 1, position: "center" }, final_state: { scale: 0.7, opacity: 0.3, position: "top", struck: true } },
-        { id: "actual", label: objs.label_b || "ACTUAL", material, role: "the actual state", appearance: "emphasized_text",
+        { id: "actual", label: objs.label_b || "", material, role: "the actual state", appearance: "emphasized_text",
           initial_state: { scale: 0, opacity: 0, position: "center" }, final_state: { scale: 1, opacity: 1, position: "center" } },
       ];
       scene.shots = [
@@ -586,9 +596,9 @@ function applyDirective(directive, originalText, index, totalBeats, prevScene) {
 
     case "ACTION_CONSEQUENCE":
       scene.objects = [
-        { id: "cause", label: objs.cause || "CAUSE", material, role: "the cause", appearance: "solid_block",
+        { id: "cause", label: objs.cause || "", material, role: "the cause", appearance: "solid_block",
           initial_state: { scale: 1, opacity: 1, position: "upper" }, final_state: { scale: 1, opacity: 0.6, position: "upper" } },
-        { id: "effect", label: objs.effect || "EFFECT", material, role: "the consequence", appearance: "emergent",
+        { id: "effect", label: objs.effect || "", material, role: "the consequence", appearance: "emergent",
           initial_state: { scale: 0, opacity: 0, position: "lower" }, final_state: { scale: 1, opacity: 1, position: "lower" } },
       ];
       scene.shots = [
@@ -633,8 +643,14 @@ function applyDirective(directive, originalText, index, totalBeats, prevScene) {
 
     case "SURFACE_AND_BENEATH": {
       const surfHeadlineParts = headline.split(/\bvs\.?\b|\bbut\b|\bhides?\b|\bbeneath\b/i);
-      const surfLabel = objs.label_a || (surfHeadlineParts[0] || "").trim() || subject.toUpperCase().slice(0, 20);
-      const beneathLabel = objs.label_b || (surfHeadlineParts[1] || "").trim() || "REALITY";
+      // Splitting the headline is a legitimate derivation — it is the
+      // director's own phrase. The FINAL fallbacks were not: a
+      // subject.toUpperCase().slice(0, 20) manufactures shouted, mid-word
+      // text (TYP-09), and "REALITY" is engine vocabulary. Both also
+      // defeated REMOVE_TYPOGRAPHY by refilling a label the enforcement had
+      // just cleared. An empty label stays empty.
+      const surfLabel = objs.label_a || (surfHeadlineParts[0] || "").trim();
+      const beneathLabel = objs.label_b || (surfHeadlineParts[1] || "").trim();
       scene.objects = [
         { id: "surface", label: surfLabel, context: subject, material: "document", role: "the surface claim", appearance: "statistic_callout",
           initial_state: { scale: 1, opacity: 1, position: "center" }, final_state: { scale: 0.6, opacity: 0.5, position: "top" } },
@@ -652,8 +668,11 @@ function applyDirective(directive, originalText, index, totalBeats, prevScene) {
 
     case "PROPORTIONAL_OBJECTS": {
       const headlineParts = headline.split(/\bvs\.?\b/i);
-      const labelA = objs.label_a || (headlineParts[0] || "").trim() || "A";
-      const labelB = objs.label_b || (headlineParts[1] || "").trim() || "B";
+      // No "A"/"B" placeholders: a bar labelled "A" tells the viewer
+      // nothing, and it refilled labels that REMOVE_TYPOGRAPHY had cleared,
+      // keeping the beat counted as a text beat.
+      const labelA = objs.label_a || (headlineParts[0] || "").trim();
+      const labelB = objs.label_b || (headlineParts[1] || "").trim();
       scene.objects = [
         { id: "amount_a", label: labelA, context: labelA, material, role: "first quantity", appearance: "filled_area",
           initial_state: { scale: 0, opacity: 0 }, final_state: { scale: 1, opacity: 1, position: "left" } },
