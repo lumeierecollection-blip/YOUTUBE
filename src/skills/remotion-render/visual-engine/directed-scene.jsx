@@ -76,7 +76,16 @@ function beatAt(plan, frame) {
   let i = 0;
   while (i < beats.length - 1 && frame >= beats[i + 1].start_frame) i++;
   const b = beats[i];
-  const p = clamp01((frame - b.start_frame) / Math.max(1, b.duration_frames));
+  // A missing or zero duration must not silently produce NaN.
+  //
+  // Math.max(1, undefined) is NaN, so p became NaN, every entrance alpha
+  // resolved to ~0.13, and the whole composed layer rendered at 13% of its
+  // declared colour with no error anywhere. A pixel bisection found it; two
+  // readings of this line did not. Defaulting to 1 keeps a malformed beat
+  // visible instead of nearly invisible.
+  const dur = Number.isFinite(b.duration_frames) && b.duration_frames > 0
+    ? b.duration_frames : 1;
+  const p = clamp01((frame - b.start_frame) / dur);
   const local = frame - b.start_frame;
   const prev = i > 0 ? beats[i - 1] : null;
   return { beat: b, p, local, prev, beatIndex: i };

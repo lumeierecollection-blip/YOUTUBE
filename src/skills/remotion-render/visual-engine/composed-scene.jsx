@@ -45,8 +45,13 @@ const ease = (t) => Easing.bezier(0.22, 0.9, 0.3, 1)(clamp01(t));
  * frame auditor samples 82% through each beat for the same reason.
  */
 function motionState(motion, p) {
-  const enter = ease(clamp01(p / 0.22));
-  const act = ease(clamp01((p - 0.2) / 0.55));   // the primitive's own action
+  // Defend against a non-finite p. clamp01(NaN) is NaN, not 0 or 1, so a
+  // NaN progress silently dimmed every composed object to ~13% rather than
+  // failing — found by pixel bisection, not by reading the code. A broken
+  // progress now renders SETTLED (fully opaque) instead of nearly invisible.
+  const prog = Number.isFinite(p) ? p : 1;
+  const enter = ease(clamp01(prog / 0.22));
+  const act = ease(clamp01((prog - 0.2) / 0.55));   // the primitive's own action
   const s = { enter, act, opacity: enter, dy: 0, scale: 1, fill: 1, strike: 0, shed: 0 };
 
   switch (motion) {
