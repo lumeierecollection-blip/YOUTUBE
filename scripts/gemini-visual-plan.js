@@ -335,6 +335,10 @@ it cannot build, so there is no value in naming a part that is not listed.
 
 ${VOCABULARY}
 
+Only "kind" is required. Add "count" ONLY to a countable primitive, and
+"label" ONLY to a labelable one — the vocabulary above says which is which.
+Omit any field you do not need rather than sending a placeholder.
+
 Rules that are enforced, not advisory:
 - A scene must cover at least 35% of the frame. A beat carrying one text
   line and nothing else is REJECTED — that is the single defect this
@@ -374,7 +378,8 @@ Respond ONLY with JSON (no markdown fences):
       },
       "composition": {
         "objects": [
-          { "kind": "<primitive>", "count": 1, "anchor": "<anchor>", "motion": "<motion>", "label": "<short label or omit>", "emphasis": false }
+          { "kind": "<primitive>", "anchor": "<anchor>", "motion": "<motion>" },
+          { "kind": "<countable primitive>", "count": 12, "anchor": "<anchor>", "motion": "<motion>", "label": "<short label>", "emphasis": true }
         ]
       },
       "carries_forward": "<object/concept that persists into the next beat, or null>",

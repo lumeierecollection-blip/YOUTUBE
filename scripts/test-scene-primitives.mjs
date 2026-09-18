@@ -17,7 +17,7 @@
 import {
   PRIMITIVES, ANCHORS, MOTIONS, ASPECT,
   isPrimitive, isMotion, primitiveNames,
-  validateScene, estimateCoverage, layoutScene, objectRect,
+  validateScene, estimateCoverage, layoutScene, objectRect, normalizeScene,
   vocabularyDigest, MIN_SCENE_COVERAGE, MAX_SCENE_COVERAGE,
   SAFE, SAFE_W, SAFE_H,
 } from "../src/skills/remotion-render/visual/scene-primitives.js";
@@ -79,7 +79,7 @@ section("3. Unbuildable declarations are rejected with an actionable reason");
     [{ objects: [{ kind: "cinematic_vibes" }] }, /unknown primitive/, "an invented primitive"],
     [{ objects: [{ kind: "grid", count: 5 }, { kind: "field" }] }, /not countable/, "count on a non-countable"],
     [{ objects: [{ kind: "vessel", count: 99 }, { kind: "field" }] }, /exceeds max/, "count over the max"],
-    [{ objects: [{ kind: "field" }, { kind: "grid" }, { kind: "arrow", label: "x" }] }, /cannot carry a label/, "label on an unlabelable primitive"],
+    [{ objects: [{ kind: "field" }, { kind: "grid", count: 5 }] }, /not countable but count is 5/, "a count above 1 on a non-countable"],
     [{ objects: [{ kind: "field" }, { kind: "grid", anchor: "outer_space" }] }, /unknown anchor/, "an invented anchor"],
     [{ objects: [{ kind: "field" }, { kind: "grid", motion: "explode" }] }, /unknown motion/, "an invented motion"],
     [{ objects: [{ kind: "field" }, { kind: "grid", scale: 9 }] }, /scale must be/, "an out-of-range scale"],
@@ -164,6 +164,45 @@ section("6. The vocabulary is internally consistent");
   for (const kind of primitiveNames()) ok(digest.includes(kind), `digest advertises ${kind}`);
   for (const m of MOTIONS) ok(digest.includes(m), `digest advertises motion ${m}`);
   ok(digest.includes(String((MIN_SCENE_COVERAGE * 100).toFixed(0))), "digest states the coverage floor");
+}
+
+section("7. Harmless redundancy is a WARNING, never a rejection");
+{
+  // Run 35356611503 rejected 0/6 beats in the first CI test of this path,
+  // and every rejection was cosmetic: the prompt's JSON example showed
+  // every field on every object, so the model sent count:1 and a label on
+  // `field`. Neither changes what is drawn. A contract that fails on a
+  // harmless extra key is too brittle to survive a model paraphrasing it.
+  const realWorld = [
+    ["count:1 + label on field", { objects: [
+      { kind: "field", count: 1, label: "Ground" },
+      { kind: "stack", count: 10, label: "Courts", emphasis: true }] }],
+    ["count:1 on grid", { objects: [{ kind: "field" }, { kind: "grid", count: 1, label: "Workforce" }] }],
+    ["count:1 on counter", { objects: [{ kind: "field" }, { kind: "grid" }, { kind: "counter", count: 1, label: "3x" }] }],
+    ["label on rule", { objects: [{ kind: "field" }, { kind: "grid" }, { kind: "rule", label: "divider" }] }],
+  ];
+  for (const [name, scene] of realWorld) {
+    const r = validateScene(scene);
+    ok(r.ok, `${name} is accepted (errors: ${r.errors.join("; ")})`);
+    ok(r.warnings.length > 0, `${name} still reports what was dropped`);
+  }
+
+  // Normalisation must actually remove the field, not just tolerate it.
+  const { scene: norm, dropped } = normalizeScene({ objects: [{ kind: "field", count: 1, label: "x" }] });
+  ok(norm.objects[0].count === undefined, "redundant count is stripped");
+  ok(norm.objects[0].label === undefined, "undrawable label is stripped");
+  ok(dropped.length === 2, "both drops are reported");
+  // The input must not be mutated — the planner keeps its own copy.
+  const input = { objects: [{ kind: "field", count: 1 }] };
+  normalizeScene(input);
+  ok(input.objects[0].count === 1, "normalizeScene does not mutate its input");
+
+  // And the strictness that MATTERS survives: a count above 1 means the
+  // model wanted several and would get one.
+  ok(!validateScene({ objects: [{ kind: "field" }, { kind: "grid", count: 5 }] }).ok,
+    "count:5 on a non-countable is still an error");
+  ok(!validateScene({ objects: [{ kind: "figure", label: "one line" }] }).ok,
+    "the coverage floor still rejects a text-only beat");
 }
 
 console.log(`\n${passed} passed, ${failed} failed`);

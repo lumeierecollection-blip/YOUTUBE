@@ -347,9 +347,50 @@ export function estimateCoverage(objects) {
  * plan-adjustments.js. Nothing here is silently repaired — a scene the
  * system quietly "fixes" is how enforcement became invisible before.
  */
-export function validateScene(scene) {
+/**
+ * Strip fields a primitive cannot use but which change nothing.
+ *
+ * `count: 1` on a non-countable is a no-op — one of a thing is one of a
+ * thing. A `label` on a primitive that draws no label simply is not drawn.
+ * Neither alters the intended output, so neither should reject a beat.
+ *
+ * This distinction was learned expensively. The prompt's JSON example
+ * showed every field on every object, so the model put `count: 1` and a
+ * label on `field`, and the validator rejected 0/6 beats in run
+ * 35356611503 — a 100% fallback rate caused by cosmetic redundancy, not by
+ * a single genuine composition error. The prompt example is fixed too, but
+ * a contract that fails on a harmless extra key is too brittle to survive
+ * a model's paraphrasing.
+ *
+ * What stays an ERROR is anything that changes the intent: `count: 5` on a
+ * non-countable means the model wanted five and would get one.
+ */
+export function normalizeScene(scene) {
+  const objects = (scene && scene.objects) || [];
+  const dropped = [];
+  const cleaned = objects.map((o, i) => {
+    if (!o || typeof o !== "object") return o;
+    const spec = PRIMITIVES[o.kind];
+    if (!spec) return o;
+    const out = { ...o };
+    if (out.count !== undefined && !spec.countable && out.count === 1) {
+      delete out.count;
+      dropped.push(`objects[${i}]: dropped redundant count:1 on "${o.kind}" (not countable)`);
+    }
+    if (out.label !== undefined && out.label !== null && !spec.labelable) {
+      delete out.label;
+      dropped.push(`objects[${i}]: dropped label on "${o.kind}" (draws no label)`);
+    }
+    return out;
+  });
+  return { scene: { ...scene, objects: cleaned }, dropped };
+}
+
+export function validateScene(rawScene) {
+  // Normalise first: harmless redundancy becomes a warning, never a reject.
+  const { scene, dropped } = normalizeScene(rawScene);
   const errors = [];
-  const warnings = [];
+  const warnings = [...dropped];
   const objects = (scene && scene.objects) || [];
 
   if (!scene || typeof scene !== "object") {
@@ -379,7 +420,9 @@ export function validateScene(scene) {
       if (!Number.isInteger(o.count) || o.count < 1) {
         errors.push(`${at}: count must be a positive integer`);
       } else if (!spec.countable) {
-        errors.push(`${at}: "${o.kind}" is not countable — drop count`);
+        // count:1 was already normalised away; anything above 1 is a real
+        // mismatch between what was asked for and what would be drawn.
+        errors.push(`${at}: "${o.kind}" is not countable but count is ${o.count} — only one is ever drawn, so use a countable primitive (block, stack, bar, silhouette) or drop count`);
       } else if (o.count > spec.maxCount) {
         errors.push(`${at}: count ${o.count} exceeds max ${spec.maxCount} for "${o.kind}"`);
       }
@@ -387,8 +430,11 @@ export function validateScene(scene) {
     if (o.scale !== undefined && (typeof o.scale !== "number" || o.scale < 0.2 || o.scale > 2)) {
       errors.push(`${at}: scale must be a number between 0.2 and 2`);
     }
+    // A label on an unlabelable primitive was already normalised away; if
+    // one survives here the primitive table and the normaliser disagree,
+    // which is a bug worth surfacing rather than a direction error.
     if (o.label !== undefined && o.label !== null && !spec.labelable) {
-      errors.push(`${at}: "${o.kind}" cannot carry a label`);
+      errors.push(`${at}: "${o.kind}" cannot carry a label and normalisation did not strip it`);
     }
   });
 
