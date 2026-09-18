@@ -120,6 +120,11 @@ function parseSrt(srtText) {
   }).filter(Boolean);
 }
 
+function sleepSync(ms) {
+  const end = Date.now() + ms;
+  while (Date.now() < end) { /* busy-wait — cross-platform, no 'sleep' binary needed */ }
+}
+
 function callGemini(apiKey, prompt, maxTokens) {
   const base = "https://generativelanguage.googleapis.com/v1beta/openai";
   const model = "gemini-3.5-flash-lite";
@@ -128,11 +133,11 @@ function callGemini(apiKey, prompt, maxTokens) {
     messages: [{ role: "user", content: prompt }],
   });
 
-  // Retry up to 2 times on JSON parse failure (truncated response)
-  for (let attempt = 1; attempt <= 2; attempt++) {
+  // Retry up to 3 times on JSON parse failure (truncated response)
+  for (let attempt = 1; attempt <= 3; attempt++) {
     try {
       const res = execFileSync("curl", [
-        "-sS", "--max-time", "120",
+        "-sS", "--max-time", "180",
         "-H", "Content-Type: application/json",
         "-H", `Authorization: Bearer ${apiKey}`,
         "-d", "@-",
@@ -156,9 +161,41 @@ function callGemini(apiKey, prompt, maxTokens) {
     } catch (e) {
       const msg = String(e.message || e).slice(0, 300);
       console.error(`Gemini API error (attempt ${attempt}): ${msg}`);
-      if (attempt < 2) {
-        // Wait before retry
-        execFileSync("sleep", ["2"]);
+
+      // Attempt to salvage truncated JSON — Gemini sometimes cuts off mid-response
+      if (raw && raw.includes('"beats"')) {
+        try {
+          // Find the last complete beat object (ending with })
+          const lastBrace = raw.lastIndexOf('}');
+          if (lastBrace > 0) {
+            // Count open/close braces to find incomplete objects
+            let depth = 0;
+            let lastCompleteBeat = -1;
+            for (let i = 0; i < raw.length; i++) {
+              if (raw[i] === '{') depth++;
+              if (raw[i] === '}') {
+                depth--;
+                // A beat object closes at depth 1 (inside beats array)
+                if (depth === 1) lastCompleteBeat = i;
+              }
+            }
+            if (lastCompleteBeat > 0) {
+              const salvaged = raw.slice(0, lastCompleteBeat + 1) + ']}';
+              const plan = JSON.parse(salvaged);
+              if (plan && plan.beats && plan.beats.length > 0) {
+                console.error(`Salvaged ${plan.beats.length} beats from truncated response`);
+                return plan;
+              }
+            }
+          }
+        } catch (salvageErr) {
+          console.error(`Salvage failed: ${String(salvageErr.message).slice(0, 100)}`);
+        }
+      }
+
+      if (attempt < 3) {
+        // Wait before retry — exponential backoff
+        sleepSync(2000 * attempt);
       }
     }
   }
@@ -290,8 +327,10 @@ shown the actual frames and asked whether they executed exactly this direction,
 so make it specific and answerable. Lazy direction ("show a graph of the
 numbers", "display the text") is structurally invalid — fill every field
 concretely:
-- subject: the specific thing on screen (a stack of Medicare claim forms; a fuel
-  pump display; a shredded 2020 budget) — NOT "a chart" or "text".
+- subject: what the composition primitives LITERALLY show on screen (e.g. "A gauge
+  showing 3.4%", "Two bars labelled Annual and Core", "A stack of 3 blocks") —
+  NOT a real-world scene description. The renderer draws abstract shapes, not
+  photographs.
 - environment: where this lives (dim archival desk; clean data void; a kitchen counter).
 - action_start / action_end: the visual STATE at the beat's start and at its end —
   what physically changes across the ~4s (one claim form -> a towering stack).
@@ -314,6 +353,14 @@ DO NOT pick a familiar mechanism merely because it is easy to render. Direct the
 strongest visual event first; mechanism is only the closest EXECUTION mapping for
 the renderer, and the post-render review will check whether the render actually
 delivered your directed event.
+
+CRITICAL: The direction.subject MUST describe what the composition primitives
+will literally show on screen — NOT a real-world scene that cannot be rendered.
+For example, if composition uses {kind: "gauge", label: "3.4%"}, then direction.subject
+must be "A gauge showing 3.4%" — NOT "A digital economic gauge showing a cooling
+temperature". The renderer draws abstract primitives, not photographs. The review
+compares direction.subject against what the primitives actually render, so a
+direction that describes a real-world scene will always FAIL plan-compliance.
 
 FOR EVERY BEAT THAT PUTS TEXT ON SCREEN (mechanism TYPOGRAPHY, or any beat whose
 direction.typography is not "none") you MUST fill "typography_direction":
@@ -348,14 +395,25 @@ Rules that are enforced, not advisory:
   stops objects reading as though they float in a void.
 - "emphasis: true" marks the ONE object carrying the beat. Everything else
   is structure. Do not mark several.
-- "label" only where a thing needs naming. Labels are annotation; the
+- "label" only where a thing NEEDS naming. Labels are annotation; the
   objects carry the meaning. A scene where every object is labelled is a
-  text slide with extra steps.
+  text slide with extra steps. MOST OBJECTS SHOULD HAVE NO LABEL — let the
+  visual shape, size, and motion communicate. Labels are LAST RESORT, not
+  the default.
 - "count" must be a real quantity from the narration where one exists — 12
   plants, 8 states, 3 filings. It is a visible number, so an invented count
   is an invented fact.
 - Vary the composition across beats. Six beats that all declare the same
   objects is the template monoculture this replaces.
+
+LABEL MINIMALISM (the #1 source of DESCRIBES_VISUAL rejections):
+- NEVER label an object that is visually self-explanatory (a gauge shows
+  its reading, a bar's length IS the data, a stack's height IS the quantity).
+- ONLY label when the object would be ambiguous without text (e.g., two
+  identical-looking bars that represent different categories).
+- A composition with labels on every object WILL be rejected as "DESCRIBES_VISUAL".
+- Prefer: shape + size + motion + position to communicate meaning.
+- The visual headline IS the text — not the object labels.
 
 SCRIPT SENTENCES:
 ${sentenceList}
@@ -395,7 +453,7 @@ Respond ONLY with JSON (no markdown fences):
       },
       "direction": {
         "narrative_purpose": "<what this beat must accomplish in the argument>",
-        "subject": "<the specific thing on screen — never 'a chart'/'text'>",
+        "subject": "<LITERALLY what the composition primitives show — not a real-world scene>",
         "environment": "<where it lives>",
         "action_start": "<visual state at beat start>",
         "action_end": "<visual state at beat end>",
@@ -465,10 +523,10 @@ function main() {
   // mid-object (a 51-beat script once came back as "Unexpected end of JSON
   // input"). Each beat now carries the full director "direction" block
   // (~13 fields), so the per-beat budget is much larger than the old
-  // headline-only estimate — ~440 tokens/beat plus headroom, capped at
-  // 12288. A script needing more beats than that fits is a pacing problem
+  // headline-only estimate — ~600 tokens/beat plus headroom, capped at
+  // 16384. A script needing more beats than that fits is a pacing problem
   // in the script/caption split, not something to fix here.
-  const maxTokens = Math.min(12288, 1500 + sentences.length * 440);
+  const maxTokens = Math.min(16384, 2000 + sentences.length * 600);
   const plan = callGemini(apiKey, prompt, maxTokens);
 
   if (!plan || !plan.beats) {

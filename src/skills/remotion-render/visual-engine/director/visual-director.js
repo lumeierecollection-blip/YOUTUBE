@@ -18,6 +18,7 @@
 
 import { condenseToPhrase, TYPO_TARGET_MAX_WORDS } from "../../visual/narrative-typography.js";
 import { validateScene } from "../../visual/scene-primitives.js";
+import { narrativeObjectIds } from "../../visual/scene-text.js";
 
 const STOP = new Set(`a an the and or but of to in on at for with from by is are was were be been being
   it its this that these those as if then than so not no you your they them their he she his her we our us i
@@ -852,6 +853,25 @@ export function direct(cues, options) {
       : deliberatelyTextFree
         ? ""
         : condenseToPhrase(text, TYPO_TARGET_MAX_WORDS);
+
+    // TEXT-FREE MEANS THE SCENE DRAWS NO NARRATIVE STRING.
+    //
+    // Clearing only the typography phrase was not enough. A beat directed
+    // text-free still had its mechanism draw expected/actual (or
+    // cause/effect) labels, because those live on scene.objects rather than
+    // in typography_direction. Gemini saw the result and reported "text
+    // incorrectly inserted into intermediate beats that specifically
+    // directed no on-screen text" with headline=4 (run 35356611503) — it
+    // asked for silence on those beats and the renderer talked over it.
+    //
+    // Value-role labels (a figure, a magnitude) are left alone: they are
+    // data, not a phrase, and a chart may still label its bar.
+    if (deliberatelyTextFree && Array.isArray(scene.objects)) {
+      const narrativeIds = new Set(narrativeObjectIds(scene.mechanism));
+      for (const o of scene.objects) {
+        if (o && narrativeIds.has(o.id) && o.label) o.label = "";
+      }
+    }
 
     const transition = i === 0
       ? "CUT"

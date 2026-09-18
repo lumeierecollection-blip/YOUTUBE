@@ -103,11 +103,11 @@ function computeBeatTimes(srtCues, duration) {
   if (srtCues.length) {
     for (const cue of srtCues) {
       const mid = (cue.start + Math.min(cue.end, duration)) / 2;
-      times.push(Math.max(0.5, Math.min(duration - 0.3, mid)));
+      times.push(Math.max(0.5, Math.min(duration - 0.5, mid)));
     }
   } else {
     const interval = Math.max(1, duration / 12);
-    for (let t = 0.7; t < duration - 0.3; t += interval) times.push(t);
+    for (let t = 0.7; t < duration - 0.5; t += interval) times.push(t);
   }
   times.sort((a, b) => a - b);
   const unique = [times[0]];

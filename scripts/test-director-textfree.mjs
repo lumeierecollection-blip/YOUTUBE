@@ -16,6 +16,7 @@
  *   node scripts/test-director-textfree.mjs
  */
 import { direct } from "../src/skills/remotion-render/visual-engine/director/visual-director.js";
+import { sceneTextInventory } from "../src/skills/remotion-render/visual/scene-text.js";
 
 let failed = 0, passed = 0;
 const ok = (c, m) => { if (c) passed++; else { failed++; console.log(`  FAIL  ${m}`); } };
@@ -98,6 +99,46 @@ console.log("4. The director does not refill labels that enforcement cleared");
   const textBeats = beats.filter((b) => textOf(b)).length;
   ok(textBeats === 1, `only the beat that kept its phrase carries text (got ${textBeats})`);
   ok(textOf(beats[0]) === "Scripted leaders lose the room", "that beat's phrase is intact");
+}
+
+console.log("5. A text-free beat draws no NARRATIVE label either");
+{
+  // Clearing the typography phrase was not enough. A beat Gemini directed
+  // text-free still had its mechanism draw expected/actual (or cause/effect)
+  // labels, because those live on scene.objects rather than in
+  // typography_direction. Gemini reported exactly that in run 35356611503:
+  // "Text was incorrectly inserted into intermediate beats that
+  // specifically directed no on-screen text", headline=4. It asked for
+  // silence and the renderer talked over it.
+  const visualPlan = { beats: [
+    { index: 0, mechanism: "TYPOGRAPHY", visual_headline: "Document everything",
+      typography_direction: { phrase: "Document everything" }, objects: {} },
+    { index: 1, mechanism: "STATE_CHANGE", visual_headline: "", typography_direction: null,
+      objects: { label_a: "Divided courts", label_b: "Unanimous ruling" } },
+    { index: 2, mechanism: "ACTION_CONSEQUENCE", visual_headline: "", typography_direction: null,
+      objects: { cause: "Filing made", effect: "Claim denied" } },
+    { index: 3, mechanism: "EVIDENCE_FIGURE", visual_headline: "", typography_direction: null,
+      objects: { figure: "31.35M" } },
+  ] };
+  const { beats } = direct(cues, { seed: 2, visualPlan });
+
+  const inv = (b) => sceneTextInventory(b.scene.mechanism, b.scene, b.text);
+  const narrative = (b) => inv(b).filter((t) => t.role === "narrative" && t.text).map((t) => t.text);
+  const values = (b) => inv(b).filter((t) => t.role === "value" && t.text).map((t) => t.text);
+
+  ok(narrative(beats[0]).length === 1, "the directed beat keeps its phrase");
+  for (const i of [1, 2, 3]) {
+    ok(narrative(beats[i]).length === 0,
+      `text-free beat ${i} draws no narrative string (got ${JSON.stringify(narrative(beats[i]))})`);
+  }
+  ok(beats.filter((b) => narrative(b).length).length === 1, "exactly one beat carries narrative text");
+
+  // A FIGURE is data, not a phrase, and must survive a text-free beat —
+  // the first version of this fix cleared it because EVIDENCE_FIGURE's
+  // object id carries both a value and a narrative surface.
+  ok(values(beats[3]).some((v) => v.includes("31.35M")),
+    `the measured figure survives and counts as value (got ${JSON.stringify(values(beats[3]))})`);
+  ok(narrative(beats[3]).length === 0, "...and is not counted as a narrative phrase");
 }
 
 console.log(`\n${passed} passed, ${failed} failed`);

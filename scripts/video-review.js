@@ -151,7 +151,7 @@ function beatSettledTimes(manifestPath, count, durSec) {
     // inside its own settled span rather than on a boundary.
     const pad = Math.min(0.3, b.duration_sec * 0.15);
     const t = Math.min(Math.max(b.start_sec + b.duration_sec * 0.82, b.start_sec + pad), end - pad);
-    times.push(Math.max(0, Math.min(t, durSec - 0.05)));
+    times.push(Math.max(0.1, Math.min(t, durSec - 0.2)));
   }
   return times;
 }
@@ -174,7 +174,7 @@ for (let i = 0; i < n; i++) {
   const rawT = settledTimes
     ? settledTimes[i]
     : (n === 1 ? (lo + hi) / 2 : lo + ((hi - lo) * i) / (n - 1));
-  const t = Math.max(0, Math.min(rawT, meta.durSec - 0.05));
+  const t = Math.max(0.1, Math.min(rawT, meta.durSec - 0.2));
   const name = `frame-${String(i).padStart(2, '0')}.png`;
   const path = join(outDir, name);
   const ok = extractFrame(ffmpeg, video, path, t);

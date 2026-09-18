@@ -325,8 +325,15 @@ export const TEXT_SURFACES = {
     { source: "axis.ticks", role: "quiet" },
   ],
   EVIDENCE_FIGURE: [
-    { source: "objects.figure.value", role: "value" },
-    { source: "objects.figure.label", role: "narrative" },
+    // The drawn object is { id: "figure", label: <the number> } — see
+    // applyDirective's EVIDENCE_FIGURE case. This previously declared
+    // `figure.value` as the value and `figure.label` as narrative, which is
+    // backwards: `value` is not a field the scene builds, and `label` holds
+    // the figure itself. So a beat's measured number was counted as a
+    // narrative phrase, inflating the text-beat share and making a
+    // text-free beat look like it still carried a headline.
+    { source: "objects.figure.label", role: "value" },
+    { source: "objects.figure.context", role: "narrative" },
     { source: "objects.figure.source", role: "quiet" },
   ],
   ACTION_CONSEQUENCE: [
@@ -354,6 +361,38 @@ export const TEXT_SURFACES = {
 /** Every mechanism that draws at least one "narrative"-role string. */
 export function drawsNarrativeText(mechanism) {
   return (TEXT_SURFACES[mechanism] || []).some((s) => s.role === "narrative");
+}
+
+/**
+ * The object ids whose labels render as NARRATIVE text for a mechanism.
+ *
+ * Needed because "this beat has no on-screen text" has to mean the scene
+ * draws no narrative string — not merely that the typography phrase is
+ * empty. Gemini directed several beats text-free and the mechanism drew its
+ * expected/actual labels regardless, which it then reported as "text
+ * incorrectly inserted into intermediate beats that specifically directed
+ * no on-screen text" (run 35356611503, headline=4).
+ *
+ * Derived from TEXT_SURFACES so it cannot drift from what the renderer
+ * actually draws. Value-role ids (a figure, a magnitude) are NOT included:
+ * those are data, and a chart may still label its bar.
+ */
+export function narrativeObjectIds(mechanism) {
+  const surfaces = TEXT_SURFACES[mechanism] || [];
+  const idOf = (s) => {
+    const m = /^objects\.([^.]+)\./.exec(s.source);
+    return m ? m[1] : null;
+  };
+  // An id that ALSO carries a value surface is not narrative-only, and must
+  // survive: EVIDENCE_FIGURE declares both objects.figure.value (the number,
+  // which IS the evidence) and objects.figure.label. Clearing by id alone
+  // deleted the figure itself — caught by checking the inventory after the
+  // change rather than by assuming the first version was right.
+  const valueIds = new Set(surfaces.filter((s) => s.role === "value").map(idOf).filter(Boolean));
+  return surfaces
+    .filter((s) => s.role === "narrative")
+    .map(idOf)
+    .filter((id) => id && id !== "*" && !valueIds.has(id));
 }
 
 /**
