@@ -29,6 +29,9 @@ import {
   condenseToPhrase, validateNarrativePhrase, wordCount, toSingleLine,
   TYPO_TARGET_MAX_WORDS, TYPO_HARD_MAX_WORDS, TYPO_MOMENTS, TYPO_MAX_BEAT_SHARE,
 } from "../src/skills/remotion-render/visual/narrative-typography.js";
+import {
+  compactCapabilityDigest, compileScene, isMechanismBased, mechanismToCapability,
+} from "../src/skills/remotion-render/visual/capability-compiler.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -216,12 +219,14 @@ function buildPlanPrompt(sentences, corrections) {
       `\n\nAdjust your plan to address every correction above.\n`;
   }
 
+  const CAPABILITIES = compactCapabilityDigest();
+
   return `You are the VISUAL DIRECTOR for a YouTube Shorts video (vertical 1080x1920, ~60s).
 
 THE FUNDAMENTAL RULE: Never visualize a sentence. Visualize what the sentence is DOING.
 The video is not a collection of scenes — it is one continuous visual argument.
 
-For each sentence, answer these questions BEFORE choosing the treatment:
+For each sentence, answer these questions BEFORE choosing visual events:
 - What is the IMPORTANT OBJECT in this sentence?
 - What ACTION happens to it?
 - What CHANGES?
@@ -235,20 +240,42 @@ VISUAL HEADLINE RULES:
 - Numbers must have physical meaning — don't just float "22.4 WEEKS" alone.
 - Example: Transcript "Only forty-seven percent of Americans can handle a four-hundred-dollar emergency" → Visual headline: "47% CAN'T COVER $400"
 
-THE MECHANISMS split into two families. Read this before choosing:
+## VISUAL CAPABILITIES — what you compose from
 
-  OBJECT-FIRST (a visual object is the hero; text only labels it) — PREFER THESE:
-  - STATE_CHANGE: Something expected is contrasted with something actual (before/after).
-  - ACTION_CONSEQUENCE: A causes B — show the chain of cause and effect.
-  - PHYSICAL_GROWTH: Something increases — show the thing itself growing.
-  - VISIBLE_CONSUMPTION: Something is depleted — show it disappearing.
-  - SURFACE_AND_BENEATH: Official truth hides a deeper reality — show the reveal.
-  - PROPORTIONAL_OBJECTS: Two quantities compared — show relative scale.
-  - STRUCTURAL_BREAKDOWN: Something deteriorates or breaks down.
+Instead of picking a mechanism, you describe VISUAL EVENTS. The system maps your events to buildable primitives.
 
-  TEXT-FORWARD (the frame is dominated by words/a number) — USE SPARINGLY:
-  - TYPOGRAPHY: NARRATIVE EMPHASIS — one short spoken thought, centred. See below.
-  - EVIDENCE_FIGURE: A specific number/statistic is presented as evidence.
+${CAPABILITIES}
+
+## HOW TO COMPOSE
+
+For each beat, declare:
+1. "visual_events": what happens visually (the EVENTS, not the template)
+2. "capabilities": which capabilities you're using (for validation)
+3. "composition": the specific primitives on screen (REQUIRED)
+
+The "visual_events" field is your creative direction. The "composition" field is
+what the viewer literally sees. Compose it from the primitive vocabulary above;
+the system builds exactly what you declare and rejects anything it cannot build.
+
+Rules that are enforced, not advisory:
+- A scene must cover at least 35% of the frame. A beat carrying one text
+  line and nothing else is REJECTED — that is the single defect this
+  vocabulary exists to remove. Reach the floor with real objects (a grid, a
+  field, a stack with a real count, documents), never by enlarging text.
+- Declare "field" FIRST when you want depth; it is the ground plane and
+  stops objects reading as though they float in a void.
+- "emphasis: true" marks the ONE object carrying the beat. Everything else
+  is structure. Do not mark several.
+- "label" only where a thing NEEDS naming. Labels are annotation; the
+  objects carry the meaning. A scene where every object is labelled is a
+  text slide with extra steps. MOST OBJECTS SHOULD HAVE NO LABEL — let the
+  visual shape, size, and motion communicate. Labels are LAST RESORT, not
+  the default.
+- "count" must be a real quantity from the narration where one exists — 12
+  plants, 8 states, 3 filings. It is a visible number, so an invented count
+  is an invented fact.
+- Vary the composition across beats. Six beats that all declare the same
+  objects is the template monoculture this replaces.
 
 NARRATIVE TYPOGRAPHY — READ THIS BEFORE WRITING ANY TYPOGRAPHY BEAT.
 
@@ -294,28 +321,28 @@ a big sentence in the centre of the screen — think harder about the object, th
 action, the consequence, the document, the map, the environment.
 
 THE GRAPH / NUMBER RULE (this is what makes videos feel generic — obey it):
-- A number appearing in a sentence is NOT a reason to reach for EVIDENCE_FIGURE. Ask
+- A number appearing in a sentence is NOT a reason to reach for evidence. Ask
   what the number MEANS and show that: "$1,400 drained per year" is money leaving a
-  wallet (VISIBLE_CONSUMPTION), "gas up 24.6%" is a pump price climbing (PHYSICAL_GROWTH),
-  "50% vs 66%" is two things of different size (PROPORTIONAL_OBJECTS).
+  wallet (depletion), "gas up 24.6%" is a pump price climbing (growth),
+  "50% vs 66%" is two things of different size (comparison).
 - Reach for a chart/bar/figure ONLY when the sentence is genuinely ABOUT quantitative
   comparison, trend, or measurement AND no physical/spatial form communicates it better.
 - If removing the narration would leave only a floating number or a headline, the visual
-  is decorative — pick an object-first mechanism instead.
+  is decorative — pick an object-first event instead.
 
 THE MUTED TEST: for every beat, if the viewer had no audio, would the visual still carry
 real information — an object, a change, a comparison, a consequence? If it would look
 identical under almost any other sentence, it is monoculture. Reject it and re-choose.
 
 DISTRIBUTION RULES (a plan that violates these will be rejected downstream):
-- Across the whole video, AT MOST ~1 in 3 beats may be TEXT-FORWARD (TYPOGRAPHY +
-  EVIDENCE_FIGURE combined). The majority MUST be object-first mechanisms.
-- TYPOGRAPHY is for the opening hook and the closing CTA — typically 2 beats total,
+- Across the whole video, AT MOST ~1 in 3 beats may be TEXT-FORWARD (typographic_emphasis
+  + evidence combined). The majority MUST be object-first visual events.
+- typographic_emphasis is for the opening hook and the closing CTA — typically 2 beats total,
   rarely more. Do not use it for ordinary statements; find what the statement SHOWS.
-- NEVER repeat the same mechanism more than twice in a row, and do not alternate
+- NEVER repeat the same visual event more than twice in a row, and do not alternate
   headline/figure/headline/figure — that reads as one template on repeat.
-- Use AT LEAST 5 distinct mechanisms across the video, drawn mostly from the object-first
-  family. Consecutive beats should differ in VISUAL FORM, not just in mechanism name.
+- Use AT LEAST 5 distinct visual events across the video, drawn mostly from the object-first
+  family. Consecutive beats should differ in VISUAL FORM, not just in event name.
 - The first beat MUST be a strong hook; the last beat a clear CTA or payoff.
 - Use carries_forward when an object continues (a sum shown, then consumed) so the visual
   argument flows rather than resetting each beat.
@@ -347,10 +374,10 @@ concretely:
   onto any other sentence.
 - graph_justified: true ONLY if the beat is genuinely about quantitative
   comparison/trend/measurement AND no physical form communicates it better;
-  otherwise false. If false, you may not choose EVIDENCE_FIGURE as a bar/graph.
+  otherwise false. If false, you may not choose evidence as a bar/graph.
 
-DO NOT pick a familiar mechanism merely because it is easy to render. Direct the
-strongest visual event first; mechanism is only the closest EXECUTION mapping for
+DO NOT pick a familiar event merely because it is easy to render. Direct the
+strongest visual event first; capabilities are only the closest EXECUTION mapping for
 the renderer, and the post-render review will check whether the render actually
 delivered your directed event.
 
@@ -362,7 +389,7 @@ temperature". The renderer draws abstract primitives, not photographs. The revie
 compares direction.subject against what the primitives actually render, so a
 direction that describes a real-world scene will always FAIL plan-compliance.
 
-FOR EVERY BEAT THAT PUTS TEXT ON SCREEN (mechanism TYPOGRAPHY, or any beat whose
+FOR EVERY BEAT THAT PUTS TEXT ON SCREEN (typographic_emphasis capability, or any beat whose
 direction.typography is not "none") you MUST fill "typography_direction":
   phrase              the EXACT short phrase, one line, 2-7 words
   why                 why this phrase matters to the narration
@@ -373,48 +400,6 @@ direction.typography is not "none") you MUST fill "typography_direction":
   relation_to_visual  how the phrase relates to (and does NOT merely describe) the visual
 For beats with NO on-screen text, set "typography_direction": null.
 
-## COMPOSITION — what is actually on screen (REQUIRED on every beat)
-
-The "mechanism" field says what KIND of idea the beat is. "composition" says
-what the viewer literally sees, and it is what gets rendered. Compose it from
-these parts; the system builds exactly what you declare and rejects anything
-it cannot build, so there is no value in naming a part that is not listed.
-
-${VOCABULARY}
-
-Only "kind" is required. Add "count" ONLY to a countable primitive, and
-"label" ONLY to a labelable one — the vocabulary above says which is which.
-Omit any field you do not need rather than sending a placeholder.
-
-Rules that are enforced, not advisory:
-- A scene must cover at least 35% of the frame. A beat carrying one text
-  line and nothing else is REJECTED — that is the single defect this
-  vocabulary exists to remove. Reach the floor with real objects (a grid, a
-  field, a stack with a real count, documents), never by enlarging text.
-- Declare "field" FIRST when you want depth; it is the ground plane and
-  stops objects reading as though they float in a void.
-- "emphasis: true" marks the ONE object carrying the beat. Everything else
-  is structure. Do not mark several.
-- "label" only where a thing NEEDS naming. Labels are annotation; the
-  objects carry the meaning. A scene where every object is labelled is a
-  text slide with extra steps. MOST OBJECTS SHOULD HAVE NO LABEL — let the
-  visual shape, size, and motion communicate. Labels are LAST RESORT, not
-  the default.
-- "count" must be a real quantity from the narration where one exists — 12
-  plants, 8 states, 3 filings. It is a visible number, so an invented count
-  is an invented fact.
-- Vary the composition across beats. Six beats that all declare the same
-  objects is the template monoculture this replaces.
-
-LABEL MINIMALISM (the #1 source of DESCRIBES_VISUAL rejections):
-- NEVER label an object that is visually self-explanatory (a gauge shows
-  its reading, a bar's length IS the data, a stack's height IS the quantity).
-- ONLY label when the object would be ambiguous without text (e.g., two
-  identical-looking bars that represent different categories).
-- A composition with labels on every object WILL be rejected as "DESCRIBES_VISUAL".
-- Prefer: shape + size + motion + position to communicate meaning.
-- The visual headline IS the text — not the object labels.
-
 SCRIPT SENTENCES:
 ${sentenceList}
 ${correctionBlock}
@@ -424,15 +409,22 @@ Respond ONLY with JSON (no markdown fences):
     {
       "index": 0,
       "visual_headline": "<SHORT on-screen text — NOT the transcript, max 5-6 words>",
-      "mechanism": "<closest execution mechanism from the families above>",
-      "reason": "<what the sentence is DOING and why this mechanism shows it>",
+      "reason": "<what the sentence is DOING and why this visual shows it>",
       "emphasis_words": ["<key words to highlight>"],
+      "visual_events": [
+        {
+          "type": "<growth|depletion|comparison|revelation|structure_break|accumulation|population|evidence|contrast|causation>",
+          "label": "<optional label for the event>",
+          "magnitude": "<optional number/value if applicable>"
+        }
+      ],
+      "capabilities": ["<list of capabilities used: growth, depletion, comparison, etc.>"],
       "objects": {
-        "label_a": "<for STATE_CHANGE: expected label>",
-        "label_b": "<for STATE_CHANGE: actual label>",
-        "figure": "<for EVIDENCE_FIGURE: the number>",
-        "cause": "<for ACTION_CONSEQUENCE: cause label>",
-        "effect": "<for ACTION_CONSEQUENCE: effect label>"
+        "label_a": "<for contrast: before label>",
+        "label_b": "<for contrast: after label>",
+        "figure": "<for evidence: the number>",
+        "cause": "<for causation: cause label>",
+        "effect": "<for causation: effect label>"
       },
       "composition": {
         "objects": [
@@ -552,6 +544,44 @@ function main() {
   }
   console.log(`Narrative typography: ${typoReport.textBeats}/${plan.beats.length} text beats, ${typoReport.repaired.length} repaired, ${typoReport.violations.length} violation(s)`);
 
+  // ── COMPILE CAPABILITY-BASED DIRECTIVES ─────────────────────────────
+  // Convert Gemini's creative visual specification into buildable scenes.
+  // This is where the capability compiler validates and normalizes.
+  const compilationReport = [];
+  for (const b of plan.beats) {
+    // Backward compatibility: convert mechanism-based to capability-based
+    if (isMechanismBased(b) && !b.visual_events) {
+      const converted = mechanismToCapability(b);
+      if (converted) {
+        b.visual_events = converted.visual_events;
+        b.capabilities = converted.capabilities;
+      }
+    }
+
+    // Compile the directive into a validated scene
+    const { scene, warnings, errors } = compileScene(
+      b,
+      sentences[b.index]?.text || "",
+      b.index,
+      plan.beats.length
+    );
+
+    if (errors.length) {
+      compilationReport.push({ beat: b.index, errors, warnings });
+    }
+    if (warnings.length) {
+      for (const w of warnings) {
+        console.warn(`::warning::beat ${b.index} compilation: ${w}`);
+      }
+    }
+
+    // Attach compiled scene if available
+    if (scene) {
+      b.compiledScene = scene;
+    }
+  }
+  console.log(`Capability compilation: ${compilationReport.length} issue(s) across ${plan.beats.length} beats`);
+
   // COMPOSITION VALIDATION — at plan time, before anything renders.
   //
   // A declaration the renderer cannot build is worth nothing, and an
@@ -599,20 +629,26 @@ function main() {
     beats: plan.beats,
     composedBeats,
     compositionIssues,
-    mechanismDistribution: {},
+    compilationReport,
+    capabilityDistribution: {},
   };
 
+  // Track capability usage instead of mechanism distribution
   for (const b of plan.beats) {
-    result.mechanismDistribution[b.mechanism] = (result.mechanismDistribution[b.mechanism] || 0) + 1;
+    const caps = b.capabilities || [];
+    for (const cap of caps) {
+      result.capabilityDistribution[cap] = (result.capabilityDistribution[cap] || 0) + 1;
+    }
   }
 
   writeFileSync(outPath, JSON.stringify(result, null, 2) + "\n");
   console.log(`Visual plan written: ${outPath}`);
   console.log(`  Beats: ${plan.beats.length}`);
-  console.log(`  Mechanisms: ${JSON.stringify(result.mechanismDistribution)}`);
+  console.log(`  Capabilities: ${JSON.stringify(result.capabilityDistribution)}`);
 
   for (const b of plan.beats) {
-    console.log(`  [${b.index}] ${b.mechanism}: "${b.visual_headline}" — ${b.reason}`);
+    const caps = (b.capabilities || []).join(", ");
+    console.log(`  [${b.index}] ${caps || "typography"}: "${b.visual_headline}" — ${b.reason}`);
   }
 }
 

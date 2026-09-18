@@ -242,11 +242,13 @@ function auditPlanCompliance(plan, manifest) {
     }
   }
 
-  // MONOCULTURE — deterministic, from manifest mechanisms
+  // MONOCULTURE — deterministic, from manifest mechanisms/capabilities
   const mechs = mBeats.map((b) => b.mechanism).filter(Boolean);
+  const caps = mBeats.map((b) => b.capabilities || []).flat().filter(Boolean);
   const total = mechs.length || 1;
   const textForward = mechs.filter((m) => TEXT_FORWARD.has(m)).length;
   const distinct = new Set(mechs).size;
+  const distinctCaps = new Set(caps).size;
   let maxRun = 0, run = 1;
   for (let i = 1; i < mechs.length; i++) { if (mechs[i] === mechs[i - 1]) { run++; maxRun = Math.max(maxRun, run); } else run = 1; }
   maxRun = Math.max(maxRun, mechs.length ? 1 : 0);
@@ -259,8 +261,9 @@ function auditPlanCompliance(plan, manifest) {
   return {
     ok: true,
     beatCountPlan: pBeats.length, beatCountRender: mBeats.length,
-    textForwardPct, distinctMechanisms: distinct, longestMechanismRun: maxRun, monoculture,
+    textForwardPct, distinctMechanisms: distinct, distinctCapabilities: distinctCaps, longestMechanismRun: maxRun, monoculture,
     mechanismDistribution: mechs.reduce((o, m) => (o[m] = (o[m] || 0) + 1, o), {}),
+    capabilityDistribution: caps.reduce((o, c) => (o[c] = (o[c] || 0) + 1, o), {}),
     issues,
   };
 }

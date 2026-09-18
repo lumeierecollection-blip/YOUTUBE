@@ -226,7 +226,15 @@ function directionSummary(beat) {
   else if (d.typography && String(d.typography).toLowerCase() !== "none") parts.push(`text: ${d.typography}`);
   else parts.push("text: none (this beat must carry NO on-screen text)");
   if (d.muted_read) parts.push(`muted-read: ${d.muted_read}`);
-  if (!parts.length && beat?.visual_headline) parts.push(`phrase: ${beat.visual_headline} (${beat.mechanism || "?"})`);
+  // Capability-based: show visual events and capabilities
+  if (beat?.visual_events?.length) {
+    const events = beat.visual_events.map(e => e.type).join(", ");
+    parts.push(`visual_events: ${events}`);
+  }
+  if (beat?.capabilities?.length) {
+    parts.push(`capabilities: ${beat.capabilities.join(", ")}`);
+  }
+  if (!parts.length && beat?.visual_headline) parts.push(`phrase: ${beat.visual_headline} (${beat.mechanism || beat.capabilities?.join(",") || "?"})`);
   return parts.join(" | ") || "(no direction)";
 }
 

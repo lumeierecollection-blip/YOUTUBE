@@ -19,6 +19,7 @@
 import { condenseToPhrase, TYPO_TARGET_MAX_WORDS } from "../../visual/narrative-typography.js";
 import { validateScene } from "../../visual/scene-primitives.js";
 import { narrativeObjectIds } from "../../visual/scene-text.js";
+import { compileScene, isMechanismBased, mechanismToCapability } from "../../visual/capability-compiler.js";
 
 const STOP = new Set(`a an the and or but of to in on at for with from by is are was were be been being
   it its this that these those as if then than so not no you your they them their he she his her we our us i
@@ -796,6 +797,20 @@ export function direct(cues, options) {
     if (directive && directive.mechanism) {
       scene = applyDirective(directive, text, i, cues.length, prevScene);
       scene = randomizeScene(scene, rng);
+    } else if (directive && directive.visual_events) {
+      // CAPABILITY-BASED DIRECTIVE: compile into a scene
+      const { scene: compiledScene, warnings: compileWarnings } = compileScene(
+        directive, text, i, cues.length
+      );
+      if (compiledScene) {
+        scene = randomizeScene(compiledScene, rng);
+      } else {
+        // Fallback to deterministic classifier if compilation fails
+        scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
+        if (compileWarnings.length) {
+          warnings.push(...compileWarnings.map(w => `beat ${i}: ${w}`));
+        }
+      }
     } else {
       scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
     }
