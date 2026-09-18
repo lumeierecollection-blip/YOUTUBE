@@ -6,6 +6,17 @@
     "uploaded_at": "2026-09-18T10:41:45.299Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-18T11:41:45.299Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-18T22:24:06.167Z"
+  },
+  {
+    "video_id": "GNo3pn_gN6w",
+    "channel_id": "48",
+    "title": "Semicon Taiwan 2026: Ultrashort-Pulse Lasers Build AI Chip…",
+    "uploaded_at": "2026-09-18T22:24:04.933Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-18T23:24:04.933Z",
     "privacy_status": "private",
     "cancelled": false
   }
