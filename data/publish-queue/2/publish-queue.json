@@ -61,6 +61,17 @@
     "uploaded_at": "2026-09-17T10:51:58.767Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-17T11:51:58.767Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-18T10:27:52.443Z"
+  },
+  {
+    "video_id": "hcZuavX7OBI",
+    "channel_id": "2",
+    "title": "Can Rent Authorities Decide Questions of Landlord Title?",
+    "uploaded_at": "2026-09-18T10:27:50.223Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-18T11:27:50.223Z",
     "privacy_status": "private",
     "cancelled": false
   }
