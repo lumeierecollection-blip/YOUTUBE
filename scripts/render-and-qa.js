@@ -207,7 +207,16 @@ async function qaOne(runId, rendered, planPath) {
   const { outputPath, channelId, scriptPath, audio } = rendered;
   const reviewDir = join(ROOT, "data", "audit", "render-review", runId, basename(outputPath, ".mp4"));
   mkdirSync(reviewDir, { recursive: true });
-  const review = await runChild("node", [VIDEO_REVIEW_JS, outputPath, "--frames", "4", "--out", reviewDir], {
+  // Pass the render manifest so frames are sampled at BEAT-SETTLED times
+  // rather than evenly across the video. Evenly-spaced sampling lands inside
+  // a beat's entrance fade regularly, and the gate then measures a
+  // half-faded glyph as a contrast failure (ch44 1.86:1, ch48 1.71:1 — both
+  // the accent at roughly a third opacity, not illegible text). Optional:
+  // video-review.js falls back to even spacing when it is absent.
+  const renderManifest = outputPath.replace(/\.mp4$/, "-manifest.json");
+  const reviewArgs = [VIDEO_REVIEW_JS, outputPath, "--frames", "4", "--out", reviewDir];
+  if (existsSync(renderManifest)) reviewArgs.push("--manifest", renderManifest);
+  const review = await runChild("node", reviewArgs, {
     label: `qa/review ${basename(outputPath)}`,
   });
   if (review.code !== 0) {

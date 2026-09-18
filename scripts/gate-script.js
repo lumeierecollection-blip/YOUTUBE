@@ -91,7 +91,19 @@ function main() {
     for (const b of allBeats.filter((x) => x.archetype === "PROGRESS")) {
       const n = b.data?.series?.length || 0;
       if (n < 2) {
-        blockers.push(`SCR-04: PROGRESS beat in section "${b.sectionId}" ("${b.text}") has ${n} series point(s), needs >=2.`);
+        // Name the way OUT, not just the violation. SCR-04 and SCR-05 pull in
+        // opposite directions when the research yielded a single number:
+        // "needs >=2 points" invites the model to invent a second one, and
+        // SCR-05 then rejects it for not tracing to the research. Channels 44
+        // and 48 died in that loop in run 35293642808, fabricating
+        // "Standard baseline"=0 / "Baseline retention"=39 to reach two
+        // points. Inventing a statistic is a hard-rule violation
+        // (CLAUDE.md), so the escape hatch has to be stated here.
+        blockers.push(
+          `SCR-04: PROGRESS beat in section "${b.sectionId}" ("${b.text}") has ${n} series point(s), needs >=2. ` +
+          `Do NOT invent a second point (no "baseline"=0, no zero rows, no made-up comparison) — SCR-05 will reject it. ` +
+          `If the research only supports ONE number for this beat, change the archetype to HERO_NUMBER instead.`
+        );
       }
     }
 
@@ -102,7 +114,15 @@ function main() {
         for (const point of b.data?.series || []) {
           const matches = [...knownValues].some((v) => Math.abs(v - point.value) < 1e-9);
           if (!matches) {
-            blockers.push(`SCR-05: series point "${point.label}"=${point.value} in section "${b.sectionId}" doesn't match any research.numbers[].value.`);
+            // Show what IS available. The model was being told its value was
+            // wrong without being shown the legal set, so it guessed again —
+            // the same information gap that made ajv's enum errors useless.
+            const available = [...knownValues].slice(0, 12).join(", ");
+            blockers.push(
+              `SCR-05: series point "${point.label}"=${point.value} in section "${b.sectionId}" doesn't match any research.numbers[].value. ` +
+              `Use only these researched values: [${available}${knownValues.size > 12 ? ", …" : ""}]. ` +
+              `If none of them fit this beat, use HERO_NUMBER with a single real number, or drop the chart — never invent a value to fill a series.`
+            );
           }
         }
       }
@@ -179,9 +199,22 @@ function main() {
   const durationRange = DURATION_RANGE_SECONDS[script.format] || DURATION_RANGE_SECONDS.shorts;
   const impliedSeconds = (totalWords / targetWpm) * 60;
   if (impliedSeconds < durationRange.min || impliedSeconds > durationRange.max) {
+    // Report the fix in WORDS, which is what the model controls.
+    //
+    // This used to say only "~27s duration — outside 30-50s target", leaving
+    // the model to reverse-engineer a word count from a duration it never
+    // sees. It guessed low over and over: channel 44 produced 70, 67 then 61
+    // words and channel 48 produced 76, 74 then 53 in run 35293642808, every
+    // one of them under the floor it was never told.
+    const minWords = Math.ceil((durationRange.min * targetWpm) / 60);
+    const maxWords = Math.floor((durationRange.max * targetWpm) / 60);
+    const delta = totalWords < minWords
+      ? `ADD at least ${minWords - totalWords} more words`
+      : `CUT at least ${totalWords - maxWords} words`;
     blockers.push(
-      `SCR-16: ${totalWords} words implies ~${impliedSeconds.toFixed(0)}s duration — outside ${durationRange.min}-${durationRange.max}s target. ` +
-      `Adjust voiceover length to fit the 30-50 second cap.`
+      `SCR-16: ${totalWords} words implies ~${impliedSeconds.toFixed(0)}s duration — outside the ${durationRange.min}-${durationRange.max}s target. ` +
+      `This channel needs ${minWords}-${maxWords} words of voiceover (at ${targetWpm} wpm): ${delta}. ` +
+      `Count the words in every section's voiceover and hit that range — shorter is NOT safer, under ${minWords} fails exactly like over ${maxWords}.`
     );
   }
 

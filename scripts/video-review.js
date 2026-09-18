@@ -17,7 +17,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { dirname, basename, join, resolve, extname } from 'node:path';
 
 const require = createRequire(import.meta.url);
@@ -33,15 +33,16 @@ function resolveFfmpeg() {
 }
 
 function parseArgs(argv) {
-  const args = { video: null, frames: 8, out: null };
+  const args = { video: null, frames: 8, out: null, manifest: null };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--frames') args.frames = parseInt(argv[++i], 10) || 8;
     else if (a === '--out') args.out = argv[++i];
+    else if (a === '--manifest') args.manifest = argv[++i];
     else if (!a.startsWith('-')) args.video = a;
   }
   if (!args.video) {
-    console.error('Usage: node scripts/video-review.js <video.mp4> [--frames N] [--out DIR]');
+    console.error('Usage: node scripts/video-review.js <video.mp4> [--frames N] [--out DIR] [--manifest render-manifest.json]');
     process.exit(2);
   }
   if (!existsSync(args.video)) {
@@ -113,6 +114,54 @@ mkdirSync(outDir, { recursive: true });
 
 const n = Math.max(1, Math.min(24, args.frames));
 const frames = [];
+
+/**
+ * BEAT-SETTLED sampling times, when a render manifest is available.
+ *
+ * The inset below already avoids the video's own fade-in and tail for
+ * exactly this reason — an endpoint frame is guaranteed low-opacity and
+ * false-triggers the pixel audit. But it only avoids the VIDEO's fades, not
+ * each BEAT's entrance, and evenly-spaced sampling lands inside one
+ * regularly: ch44 measured a headline at 1.86:1 (glyph rgb(67,62,116)) and
+ * ch48 at 1.71:1 (glyph rgb(53,53,53)), both of which are the accent
+ * composited at roughly a third of full opacity mid-fade — not illegible
+ * text, a frame caught mid-animation.
+ *
+ * Sampling at 82% through each beat measures the SETTLED composition: past
+ * every entrance ramp in directed-scene.jsx (the latest starts at p=0.55
+ * and completes by p≈0.83) and before the outgoing crossfade. Same frame
+ * count, same 4.5:1 threshold — this changes WHEN the gate looks, not what
+ * it demands, so a genuinely dim fill still fails.
+ */
+function beatSettledTimes(manifestPath, count, durSec) {
+  let beats;
+  try {
+    const m = JSON.parse(readFileSync(manifestPath, 'utf-8'));
+    beats = (m.beats || []).filter((b) => typeof b.start_sec === 'number' && typeof b.duration_sec === 'number' && b.duration_sec > 0);
+  } catch { return null; }
+  if (!beats.length) return null;
+
+  // Spread the requested frames across beats; with more frames than beats,
+  // some beats get sampled more than once at different settle points.
+  const times = [];
+  for (let i = 0; i < count; i++) {
+    const b = beats[Math.min(beats.length - 1, Math.floor((i * beats.length) / count))];
+    const end = b.start_sec + b.duration_sec;
+    // 82% through, then held off both edges so a very short beat still lands
+    // inside its own settled span rather than on a boundary.
+    const pad = Math.min(0.3, b.duration_sec * 0.15);
+    const t = Math.min(Math.max(b.start_sec + b.duration_sec * 0.82, b.start_sec + pad), end - pad);
+    times.push(Math.max(0, Math.min(t, durSec - 0.05)));
+  }
+  return times;
+}
+
+const settledTimes = args.manifest ? beatSettledTimes(args.manifest, n, meta.durSec) : null;
+if (args.manifest && !settledTimes) {
+  console.log('  (manifest unusable — falling back to evenly-spaced sampling)');
+} else if (settledTimes) {
+  console.log(`  sampling ${n} BEAT-SETTLED frames (82% through each beat)`);
+}
 // Sample within an inset window, never at t=0 or the final frame. The
 // composition fades in over its first ~3 frames and the last beat can be
 // mid-exit at the tail, so the extreme endpoints are guaranteed
@@ -122,7 +171,9 @@ const inset = Math.min(0.4, meta.durSec * 0.05);
 const lo = inset;
 const hi = Math.max(lo, meta.durSec - inset);
 for (let i = 0; i < n; i++) {
-  const rawT = n === 1 ? (lo + hi) / 2 : lo + ((hi - lo) * i) / (n - 1);
+  const rawT = settledTimes
+    ? settledTimes[i]
+    : (n === 1 ? (lo + hi) / 2 : lo + ((hi - lo) * i) / (n - 1));
   const t = Math.max(0, Math.min(rawT, meta.durSec - 0.05));
   const name = `frame-${String(i).padStart(2, '0')}.png`;
   const path = join(outDir, name);
