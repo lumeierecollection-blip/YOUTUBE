@@ -28,6 +28,17 @@
     "uploaded_at": "2026-09-17T10:59:18.604Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-17T11:59:18.604Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-18T10:39:47.199Z"
+  },
+  {
+    "video_id": "X8xjyq3UmPc",
+    "channel_id": "44",
+    "title": "Psychological Safety: The 2026 Leadership Metric That…",
+    "uploaded_at": "2026-09-18T10:39:44.985Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-18T11:39:44.985Z",
     "privacy_status": "private",
     "cancelled": false
   }
