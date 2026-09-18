@@ -21,6 +21,10 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync,
 import { join, dirname, basename, extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { bundle } from "@remotion/bundler";
+import {
+  deriveAdjustments, applyAdjustments, verifyAdjustments,
+  isKnownDirective, describeDirective,
+} from "../src/skills/remotion-render/visual/plan-adjustments.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -285,6 +289,71 @@ async function qaOne(runId, rendered, planPath) {
   return { outputPath, gatePass, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise, localAudit, geminiNeeded, blockers };
 }
 
+/* ── Enforcement: the system makes the changes ───────────────────── */
+
+/**
+ * Apply the mandated changes to the plan file, in place, and verify they
+ * held. Returns { planPath, appliedCount, failures }.
+ *
+ * Gemini decides WHAT must change; this decides nothing and enforces
+ * everything. Two sources of directives:
+ *
+ *   - derived from the local auditor's MEASURED violations (no model): a
+ *     text-beat share over the cap, mechanism monoculture, a beat drawing
+ *     two narrative lines. These are arithmetic and so are their fixes.
+ *   - Gemini's own structured `adjustments`, for the judgment calls that
+ *     carry a VALUE (which phrase, which figure). The system never invents
+ *     such a value itself — that would be fabricated on-screen content.
+ *
+ * Every applied directive is re-checked against the resulting plan. A
+ * directive that did not take effect is reported, not assumed, because
+ * silently rendering a plan that still contains the rejected defect is
+ * exactly what "Gemini rates but nothing changes" looked like.
+ */
+function enforceAdjustments(planPath, localAudit, geminiReportPath, attempt) {
+  const empty = { planPath, appliedCount: 0, failures: [] };
+  if (!planPath || !existsSync(planPath)) return empty;
+
+  let plan;
+  try { plan = JSON.parse(readFileSync(planPath, "utf-8")); } catch { return empty; }
+
+  const derived = deriveAdjustments(plan, localAudit);
+
+  let fromGemini = [];
+  if (geminiReportPath && existsSync(geminiReportPath)) {
+    try {
+      const r = JSON.parse(readFileSync(geminiReportPath, "utf-8"));
+      fromGemini = (r.adjustments || []).filter((a) => a && isKnownDirective(a.directive));
+    } catch { /* report unreadable — derived directives still apply */ }
+  }
+
+  const all = [...derived, ...fromGemini];
+  if (!all.length) return empty;
+
+  const { plan: next, applied, rejected } = applyAdjustments(plan, all);
+  const { failures } = verifyAdjustments(next, applied);
+
+  console.log(`[enforce] ${applied.length} directive(s) applied (auditor ${derived.length}, gemini ${fromGemini.length})`);
+  for (const a of applied) console.log(`   APPLIED  ${describeDirective(a)}`);
+  for (const r of rejected) console.warn(`   REJECTED ${r.adj?.directive || "?"} — ${r.reason}`);
+  for (const f of failures) {
+    // `impossible` means the demand exceeded what the plan can express (six
+    // distinct mechanisms in a three-beat video). That is a bad directive,
+    // not a failed application, and it must not read as an enforcement bug.
+    const tag = f.impossible ? "UNSATISFIABLE" : "NOT VERIFIED";
+    console.warn(`   ${tag} ${f.adj?.directive} — ${f.reason}`);
+  }
+
+  if (!applied.length) return empty;
+
+  // Write the edited plan next to the original so the attempt that renders
+  // it is inspectable afterwards, then point the plan at it.
+  const out = planPath.replace(/\.json$/, `-enforced-attempt${attempt}.json`);
+  writeFileSync(out, JSON.stringify(next, null, 2) + "\n");
+  console.log(`[enforce] edited plan -> ${basename(out)}`);
+  return { planPath: out, appliedCount: applied.length, failures };
+}
+
 /* ── Correction merge ────────────────────────────────────────────── */
 
 /**
@@ -344,6 +413,11 @@ function findGeminiReviewReport(channelId, scriptPath) {
 
 async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride) {
   let correctionsPath = null;
+  // When directives were enforced on the previous attempt, this holds the
+  // EDITED plan. The next attempt renders it directly rather than asking
+  // Gemini for a fresh plan, which would discard the enforced changes — the
+  // point is that the change is MADE, not re-negotiated.
+  let enforcedPlanPath = null;
   let lastResult = null;
 
   // Pre-bundle once per VIDEO, reused across this video's correction-loop
@@ -377,8 +451,15 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
   for (let attempt = 1; attempt <= MAX_CORRECTION_LOOPS; attempt++) {
     console.log(`\n=== ATTEMPT ${attempt}/${MAX_CORRECTION_LOOPS}: ${basename(scriptPath)} ===`);
 
-    // Step 1: Gemini plans (or re-plans with corrections)
-    const planPath = await geminiPlan(channelId, scriptPath, correctionsPath);
+    // Step 1: render the ENFORCED plan when the previous attempt produced
+    // one; otherwise Gemini plans (or re-plans with prose corrections).
+    let planPath;
+    if (enforcedPlanPath && existsSync(enforcedPlanPath)) {
+      planPath = enforcedPlanPath;
+      console.log(`Rendering ENFORCED plan from attempt ${attempt - 1}: ${basename(planPath)}`);
+    } else {
+      planPath = await geminiPlan(channelId, scriptPath, correctionsPath);
+    }
 
     // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL)
     const result = await renderOne(channelId, scriptPath, format);
@@ -477,17 +558,41 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // GEMINI_FIXABLE in local-visual-auditor.js). RENDER_TECHNICAL stays out:
     // Gemini cannot fix a renderer bug by rewriting a phrase, and asking it
     // to would produce a workaround instead of a fix.
+    // STEP 4a — ENFORCE. Gemini said what is wrong; the SYSTEM makes the
+    // change to the plan and proves it stuck.
+    //
+    // This runs BEFORE any re-prompt. Re-prompting alone was the old
+    // behaviour and it does not converge: run 35271777426 fed 28 then 38
+    // corrections into two further planning passes and the auditor's issue
+    // count went 12 -> 19 -> 16, every attempt REJECTED. A model handed its
+    // own complaint re-rolls the dice; it does not enforce anything.
+    //
+    // Objective violations become directives with no model involved (a
+    // text-beat share over 40% is arithmetic, and so is the fix). Gemini's
+    // own structured adjustments are applied alongside them, and anything
+    // that fails to verify is reported rather than assumed.
+    const enforced = enforceAdjustments(planPath, qa.localAudit, geminiReport, attempt);
+
+    // Prose corrections still go to the planner, but only for the beats the
+    // directives could NOT settle — the value judgments (which phrase, which
+    // figure) that the system must not invent for itself.
     const nextCorrections = writeMergedCorrections(runId, channelId, scriptPath, geminiReport, qa.localAudit, attempt);
-    if (!nextCorrections) {
-      // Nothing concrete to change. Re-planning here would just re-roll the
-      // planner's randomness and burn ~3 minutes, so accept this render and
-      // report the verdict honestly rather than pretending a retry happened.
+
+    if (!enforced.appliedCount && !nextCorrections) {
+      // Nothing concrete to change, and nothing enforced. Re-planning here
+      // would just re-roll the planner's randomness and burn ~3 minutes, so
+      // accept this render and report the verdict honestly rather than
+      // pretending a retry happened.
       console.log(`Gemini says ${pipelineVerdict} but produced no actionable corrections — not spending another attempt.`);
       return {
         skipped: false, ok: true, outputPath: result.outputPath, attempt,
         geminiVerdict, qaGatePass: qa.gatePass, unresolvedVerdict: pipelineVerdict,
       };
     }
+    // When directives were enforced, the NEXT attempt renders the edited
+    // plan directly instead of asking Gemini for a fresh one — the changes
+    // are already made, and re-planning would discard them.
+    enforcedPlanPath = enforced.appliedCount ? enforced.planPath : null;
     correctionsPath = nextCorrections;
     if (existsSync(result.outputPath)) {
       try { rmSync(result.outputPath); } catch {}

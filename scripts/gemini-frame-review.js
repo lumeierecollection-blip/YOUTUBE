@@ -698,6 +698,17 @@ async function main() {
         sceneResults.flatMap((r) => r.categories || [])
           .concat(wholeResult.categories || [])
       )],
+      // MACHINE-APPLICABLE DIRECTIVES (Bible REV-01).
+      //
+      // The system applies and verifies these; Gemini only states them. They
+      // are emitted regardless of fixMode, because a rejection the pipeline
+      // cannot act on is the failure mode this exists to close — run
+      // 35271777426 rejected six attempts in prose and shipped both videos
+      // unchanged.
+      adjustments: [
+        ...(wholeResult.adjustments || []),
+        ...(planCompliance?.adjustments || []),
+      ].filter((a) => a && typeof a.directive === "string"),
       corrections: fixMode ? [
         ...sceneResults.filter((r) => r.correction?.action).map((r) => ({
           scene: r.scene || `beat_${r.frame_index}`,
