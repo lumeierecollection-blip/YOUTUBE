@@ -2013,9 +2013,14 @@
           "topic": "Toyota to Deploy 400,000 In-House Humanoid Robots Across Global Factories",
           "slug": "toyota-400000-in-house-humanoid-robots-global-factories",
           "reserved_at": "2026-09-18T00:04:18.301Z"
+        },
+        {
+          "topic": "Inside HysataFab: AI-Optimized Electrolyzer Manufacturing",
+          "slug": "hysatafab-ai-optimized-electrolyzer-manufacturing",
+          "reserved_at": "2026-09-18T01:07:25.561Z"
         }
       ],
-      "last_generated": "2026-09-18T00:04:18.301Z"
+      "last_generated": "2026-09-18T01:07:25.562Z"
     },
     "49": {
       "channel_name": "Wander Budget",
