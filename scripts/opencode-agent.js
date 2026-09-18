@@ -411,6 +411,7 @@ const PROVIDER_ENV = {
   groq: ["GROQ_API_KEY"],
   mistral: ["MISTRAL_API_KEY"],
   cerebras: ["CEREBRAS_API_KEY"],
+  openrouter: ["OPENROUTER_API_KEY"],
 };
 
 /**
