@@ -172,6 +172,24 @@ function isRateLimitError(errorText) {
   return /token_quota_exceeded|tokens per minute|rate.?limit|429|ContextOverflowError/i.test(errorText || "");
 }
 
+/**
+ * A provider-side fault, as opposed to anything the model or the prompt did
+ * wrong. These are transient and carry no information the model could act
+ * on, so exhausting the model chain on them throws away a whole channel's
+ * day for a reason that had nothing to do with the content.
+ *
+ * Real failures this covers: opencode/glm-5-free returned
+ * `{"name":"UnknownError","data":{"message":"Unexpected server error"}}`
+ * on both attempts in runs 35266860427 (channels 9 and 48) and 35290591724
+ * (channel 26). In each case the primary had already spent its attempts on
+ * a fixable schema error, the failover 500'd twice, and prep died with
+ * "All models failed" — three separate channels lost to a dead failover
+ * rather than to a bad script.
+ */
+function isProviderFault(errorText) {
+  return /UnknownError|Unexpected server error|5\d\d\s|Internal Server Error|Bad Gateway|Service Unavailable|ECONNRESET|ETIMEDOUT|socket hang up/i.test(errorText || "");
+}
+
 // Real failure: gpt-oss-120b produced otherwise-valid JSON but overshot a
 // maxLength constraint by a few characters, forcing a retry that then hit
 // the rate limit and failed the whole run. Models count characters
@@ -401,6 +419,55 @@ async function main() {
   const ajv = new Ajv({ allErrors: true, strict: false });
   const validate = ajv.compile(schema);
 
+  /**
+   * Turn ajv errors into something a model can actually act on.
+   *
+   * ajv.errorsText() renders an enum violation as
+   *   "data/sections/0/beats/0/visual/strategy must be equal to one of the
+   *    allowed values"
+   * which names neither the value that was wrong nor the values that are
+   * right. That message was being pasted straight into the corrective retry
+   * prompt, so the model was told it had failed and given no information to
+   * fix it — it re-guessed, burned both attempts, and the stage then failed
+   * over to a model that was returning provider 500s, killing prep outright.
+   * Channels 9 and 48 died this way on visual/strategy in runs 35266860427
+   * and 35290591724.
+   *
+   * Enum errors now carry the offending value and the full allowed list;
+   * every other error keeps ajv's wording plus the offending value.
+   */
+  function explainValidationErrors(errors, data) {
+    const at = (instancePath) => {
+      if (!instancePath) return data;
+      let node = data;
+      for (const seg of instancePath.split("/").slice(1)) {
+        if (node == null) return undefined;
+        node = node[/^\d+$/.test(seg) ? Number(seg) : seg.replace(/~1/g, "/").replace(/~0/g, "~")];
+      }
+      return node;
+    };
+    const show = (v) => {
+      if (v === undefined) return "undefined";
+      const s = typeof v === "string" ? JSON.stringify(v) : JSON.stringify(v);
+      return s && s.length > 80 ? s.slice(0, 77) + '..."' : s;
+    };
+    return (errors || []).map((e) => {
+      const where = e.instancePath || "(root)";
+      const got = show(at(e.instancePath));
+      if (e.keyword === "enum") {
+        const allowed = (e.params?.allowedValues || []).join(", ");
+        return `${where}: got ${got}, which is not allowed. Use EXACTLY one of: ${allowed}`;
+      }
+      if (e.keyword === "required") {
+        return `${where}: missing required property "${e.params?.missingProperty}"`;
+      }
+      if (e.keyword === "additionalProperties") {
+        return `${where}: unexpected property "${e.params?.additionalProperty}" — remove it`;
+      }
+      return `${where}: ${e.message} (got ${got})`;
+    }).join("; ");
+  }
+
   // The first live runs against Cerebras showed two real problems, both
   // token-budget related on a free tier that's tighter than expected:
   // (1) the model quoted entire fetched search-result blocks into its
@@ -437,13 +504,34 @@ Do your research and reasoning silently — do not quote, paste, or summarize se
     : "";
 
   let lastError = null;
-  for (const model of models) {
+  // A provider fault is not a verdict on the content, so the chain gets one
+  // more full pass when every model died of infrastructure rather than of
+  // anything a different prompt would fix. Without this, a dead failover
+  // model took three channels' prep down in two runs (see isProviderFault).
+  let providerFaultSeen = false;
+  const chain = [...models, ...models];      // second pass is gated below
+  let announcedSecondPass = false;
+
+  for (let ci = 0; ci < chain.length; ci++) {
+    const model = chain[ci];
+    if (ci >= models.length) {
+      // Second pass runs the WHOLE chain again, and only when the first pass
+      // ended on infrastructure. A content error is not worth re-running:
+      // the same prompt would produce the same rejection.
+      if (!providerFaultSeen) break;
+      if (!announcedSecondPass) {
+        announcedSecondPass = true;
+        console.error("All models failed on provider faults — retrying the whole chain once (infrastructure, not content).");
+        await sleep(15000);
+      }
+    }
     let promptText = `${basePrompt}${inputBlock}${schemaInstruction}`;
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       const result = runOnce({ model, agent, promptText });
       logTokenUsage({ model, agent, task: taskLabel, channelId, videoId, cost: result.cost, usage: result.usage, ok: result.ok });
       if (!result.ok) {
         lastError = `[${model}] attempt ${attempt}/${maxRetries}: ${result.error}`;
+        if (isProviderFault(result.error)) providerFaultSeen = true;
         console.error(lastError);
         if (attempt < maxRetries) {
           // Cerebras rate limits appear to be account-wide (both models hit
@@ -458,12 +546,13 @@ Do your research and reasoning silently — do not quote, paste, or summarize se
       }
       const valid = validate(result.data);
       if (!valid) {
-        lastError = `[${model}] attempt ${attempt}/${maxRetries}: schema validation failed: ${ajv.errorsText(validate.errors)}`;
+        const detail = explainValidationErrors(validate.errors, result.data);
+        lastError = `[${model}] attempt ${attempt}/${maxRetries}: schema validation failed: ${detail}`;
         console.error(lastError);
         // Retry without re-searching: the model already has what it needs,
         // and a second research pass would spend quota re-fetching the same
         // ground just to fix a formatting/validation problem.
-        promptText = `${basePrompt}${inputBlock}${schemaInstruction}\n\nYour previous response failed schema validation with these errors: ${ajv.errorsText(validate.errors)}. Fix ONLY those problems and respond again with the corrected JSON object. Do not run any new searches — reuse what you already found.`;
+        promptText = `${basePrompt}${inputBlock}${schemaInstruction}\n\nYour previous response failed schema validation with these errors: ${detail}. Fix ONLY those problems and respond again with the corrected JSON object. Do not run any new searches — reuse what you already found.`;
         continue;
       }
       console.log(JSON.stringify({

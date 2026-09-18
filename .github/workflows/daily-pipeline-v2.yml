@@ -350,7 +350,18 @@ jobs:
               fi
               echo "::warning::script gate rejected attempt $ATTEMPT/5 for $SCRIPT_SLUG"
               cat /tmp/gate-out-$FORMAT.log
-              FEEDBACK=$(grep -E '^  - ' /tmp/gate-out-$FORMAT.log || true)
+              # ACCUMULATE the violations, do not replace them.
+              #
+              # This used to be a plain assignment, so each attempt saw only
+              # the PREVIOUS attempt's failures and was free to re-break what
+              # an earlier attempt had already fixed. Channel 1 oscillated
+              # exactly that way in run 35289507647: SCR-16 (131 words), then
+              # SCR-03 + SCR-05, then SCR-04 — five attempts, a different
+              # gate each time, never the union. Carrying every violation
+              # forward makes the model satisfy all of them at once.
+              NEW_FEEDBACK=$(grep -E '^  - ' /tmp/gate-out-$FORMAT.log || true)
+              FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$NEW_FEEDBACK" \
+                | grep -E '^  - ' | sort -u || true)
             done
             if [ "$PASSED" -ne 1 ]; then
               echo "::error::script gate still failing for $SCRIPT_SLUG after 5 attempts"

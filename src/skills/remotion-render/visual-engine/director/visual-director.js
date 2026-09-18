@@ -786,10 +786,27 @@ export function direct(cues, options) {
     // the shared narrative-typography budget so the phrase recorded on the
     // beat (and therefore in the render manifest the auditor reads) is the
     // same single-line phrase the renderer will actually draw.
+    // A DIRECTED beat with no phrase is deliberately TEXT-FREE.
+    //
+    // The old fallback ran condenseToPhrase(text) whenever no phrase was
+    // directed, which substituted the narration sentence. That silently
+    // defeated the whole enforcement path: run 35290591724 applied and
+    // verified "at most 2 beats carry text" three times and the auditor kept
+    // measuring 4/6, because clearing typography_direction made this line
+    // put the transcript back on screen. A directive that the render undoes
+    // is not enforcement.
+    //
+    // The fallback is still correct for an UNDIRECTED beat — no plan at all
+    // means the deterministic classifier chose the scene and a condensed
+    // phrase is the best available text. The distinction is whether Gemini
+    // directed this beat, not whether a phrase happens to be present.
     const directed = directive?.typography_direction?.phrase || directive?.visual_headline;
+    const deliberatelyTextFree = !!directive && !directed;
     const displayText = directed
       ? condenseToPhrase(directed, TYPO_TARGET_MAX_WORDS)
-      : condenseToPhrase(text, TYPO_TARGET_MAX_WORDS);
+      : deliberatelyTextFree
+        ? ""
+        : condenseToPhrase(text, TYPO_TARGET_MAX_WORDS);
 
     const transition = i === 0
       ? "CUT"
