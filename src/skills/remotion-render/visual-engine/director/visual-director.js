@@ -17,6 +17,7 @@
  */
 
 import { condenseToPhrase, TYPO_TARGET_MAX_WORDS } from "../../visual/narrative-typography.js";
+import { validateScene } from "../../visual/scene-primitives.js";
 
 const STOP = new Set(`a an the and or but of to in on at for with from by is are was were be been being
   it its this that these those as if then than so not no you your they them their he she his her we our us i
@@ -796,6 +797,31 @@ export function direct(cues, options) {
       scene = randomizeScene(scene, rng);
     } else {
       scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
+    }
+
+    // COMPOSITION — what the viewer literally sees, when Gemini declared it.
+    //
+    // A valid composition is carried onto the beat and ComposedScene draws
+    // it instead of one of the nine hardcoded mechanism scenes. Those nine
+    // were the entire visual language and all drew text plus a shape on a
+    // flat ground, which is why sixteen of sixteen Gemini verdicts blamed
+    // RENDER_TECHNICAL for "template monoculture".
+    //
+    // Validated HERE as well as at plan time, not because the planner is
+    // untrusted but because this is the last point before pixels: an
+    // unbuildable declaration must fall back to the old mechanism scene
+    // rather than render nothing. Silently rendering nothing is how the
+    // silent-video defect happened.
+    if (directive && directive.composition) {
+      const v = validateScene(directive.composition);
+      if (v.ok) {
+        scene.composition = directive.composition;
+        scene.compositionCoverage = v.coverage;
+      } else {
+        warnings.push(
+          `beat ${i}: composition rejected (${v.errors[0]}) — falling back to mechanism ${scene.mechanism}`
+        );
+      }
     }
 
     // NARRATIVE TYPOGRAPHY, not a caption. The on-screen phrase is never the

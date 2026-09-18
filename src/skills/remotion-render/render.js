@@ -785,6 +785,20 @@ async function main() {
           objects: objectLabels,
           camera: [...new Set(camera)],
           carries_forward: b.carries_forward || null,
+          // COMPOSITION — what was actually drawn from primitives, and how
+          // much of the frame it covers. The auditor reads this to tell a
+          // composed beat from one that fell back to a mechanism scene, and
+          // coverage is the measurable form of the "floating text in a
+          // void" defect that sixteen Gemini verdicts kept reporting.
+          composed: !!scene.composition,
+          composition: scene.composition
+            ? (scene.composition.objects || []).map((o) => ({
+                kind: o.kind, count: o.count || 1,
+                anchor: o.anchor || "center", motion: o.motion || "appear",
+                emphasis: !!o.emphasis, labelled: !!(o.label && String(o.label).trim()),
+              }))
+            : null,
+          coverage: typeof scene.compositionCoverage === "number" ? scene.compositionCoverage : null,
         };
       }),
     };

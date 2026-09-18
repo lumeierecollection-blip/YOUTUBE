@@ -141,7 +141,7 @@ function Blocks({ obj, rect, ed, m, accent }) {
         y={rect.y + r * (bh + gap) + drop}
         width={Math.max(2, bw)} height={Math.max(2, bh)}
         rx={2}
-        fill={gone ? ed.quiet : (accent ? ed.accent : ed.surface)}
+        fill={gone ? ed.quiet : (accent ? ed.accentText : ed.surface)}
         opacity={gone ? 0.35 : 1} />
     );
   }
@@ -152,16 +152,24 @@ function Stack({ obj, rect, ed, m, accent }) {
   const n = Math.max(1, Math.min(24, obj.count || 1));
   const gap = 5;
   const bh = (rect.h - gap * (n - 1)) / n;
-  const shown = Math.round(n * (m.fill === 1 ? 1 : Math.max(m.fill, m.act || 1)));
+  // How many blocks are "filled in" — only motions that drive a LEVEL
+  // reduce it. The previous expression tried to infer that from m.fill and
+  // m.act and got it wrong: every block took the dimmed branch, so a
+  // 12-block stack rendered at 0.12 opacity. Measured from the pixels —
+  // [45,29,42] is exactly #f87e90 composited at 0.12 over the ground, which
+  // is what localised it after reading the code twice did not.
+  const LEVEL_MOTIONS = new Set(["fill", "drain", "count", "reveal"]);
+  const level = LEVEL_MOTIONS.has(obj.motion) ? m.fill : 1;
+  const shown = Math.max(1, Math.round(n * level));
   const items = [];
   for (let i = 0; i < n; i++) {
     const fromBottom = n - 1 - i;
-    const visible = fromBottom < Math.max(1, shown);
+    const visible = fromBottom < shown;
     items.push(
       <rect key={i}
         x={rect.x} y={rect.y + i * (bh + gap)}
         width={rect.w} height={Math.max(2, bh)} rx={2}
-        fill={accent ? ed.accent : ed.surface}
+        fill={accent ? ed.accentText : ed.surface}
         opacity={visible ? 1 : 0.12} />
     );
   }
@@ -182,7 +190,7 @@ function Bars({ obj, rect, ed, m, accent }) {
         <rect x={rect.x} y={rect.y + i * (bh + gap)} width={rect.w} height={Math.max(2, bh)}
           fill={ed.depth} opacity={0.5} />
         <rect x={rect.x} y={rect.y + i * (bh + gap)} width={Math.max(2, w)} height={Math.max(2, bh)}
-          fill={i === 0 && accent ? ed.accent : ed.surface} opacity={i === 0 ? 1 : 0.8} />
+          fill={i === 0 && accent ? ed.accentText : ed.surface} opacity={i === 0 ? 1 : 0.8} />
       </g>
     );
   }
@@ -202,9 +210,9 @@ function Vessel({ obj, rect, ed, m, accent }) {
       <rect x={rect.x} y={rect.y} width={rect.w} height={rect.h}
         fill="none" stroke={ed.quiet} strokeWidth={3} />
       <rect x={rect.x + 3} y={rect.y + (rect.h - fh)} width={rect.w - 6} height={Math.max(0, fh - 3)}
-        fill={accent ? ed.accent : ed.surface} />
+        fill={accent ? ed.accentText : ed.surface} />
       <line x1={rect.x - 10} y1={rect.y + (rect.h - fh)} x2={rect.x + rect.w + 10} y2={rect.y + (rect.h - fh)}
-        stroke={accent ? ed.accent : ed.surface} strokeWidth={3} />
+        stroke={accent ? ed.accentText : ed.surface} strokeWidth={3} />
     </g>
   );
 }
@@ -249,7 +257,7 @@ function Grid({ obj, rect, ed, m, accent }) {
     cells.push(<rect key={i}
       x={rect.x + c * (cw + gap)} y={rect.y + r * (ch + gap)}
       width={Math.max(1, cw)} height={Math.max(1, ch)} rx={1}
-      fill={on ? (accent ? ed.accent : ed.surface) : ed.depth}
+      fill={on ? (accent ? ed.accentText : ed.surface) : ed.depth}
       opacity={on ? 1 : 0.55} />);
   }
   return <g opacity={m.enter} transform={`translate(0,${m.dy})`}>{cells}</g>;
@@ -270,7 +278,7 @@ function Gauges({ obj, rect, ed, m, accent }) {
         <path d={`M ${arc(a0)} A ${r} ${r} 0 ${Math.PI * 1.5 > Math.PI ? 1 : 0} 1 ${arc(a0 + Math.PI * 1.5)}`}
           fill="none" stroke={ed.depth} strokeWidth={r * 0.22} strokeLinecap="round" />
         <path d={`M ${arc(a0)} A ${r} ${r} 0 ${a1 - a0 > Math.PI ? 1 : 0} 1 ${arc(a1)}`}
-          fill="none" stroke={accent ? ed.accent : ed.surface} strokeWidth={r * 0.22} strokeLinecap="round" />
+          fill="none" stroke={accent ? ed.accentText : ed.surface} strokeWidth={r * 0.22} strokeLinecap="round" />
       </g>
     );
   }
@@ -297,9 +305,9 @@ function Silhouettes({ obj, rect, ed, m, accent }) {
     const gone = i >= shedIdx;
     items.push(
       <g key={i} opacity={gone ? 0.25 : 1} transform={gone ? `translate(0,${m.shed * 90})` : undefined}>
-        <circle cx={x} cy={y + hh * 0.16} r={hh * 0.15} fill={gone ? ed.quiet : (accent ? ed.accent : ed.surface)} />
+        <circle cx={x} cy={y + hh * 0.16} r={hh * 0.15} fill={gone ? ed.quiet : (accent ? ed.accentText : ed.surface)} />
         <rect x={x - hh * 0.17} y={y + hh * 0.34} width={hh * 0.34} height={hh * 0.58} rx={hh * 0.12}
-          fill={gone ? ed.quiet : (accent ? ed.accent : ed.surface)} />
+          fill={gone ? ed.quiet : (accent ? ed.accentText : ed.surface)} />
       </g>
     );
   }

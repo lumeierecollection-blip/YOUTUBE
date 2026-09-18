@@ -19,6 +19,12 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
+// The vocabulary is GENERATED into the prompt from scene-primitives.js, never
+// restated by hand. Hand-maintained duplicates are what put three
+// conflicting word budgets in three files and cost two channels their runs.
+import {
+  vocabularyDigest, validateScene,
+} from "../src/skills/remotion-render/visual/scene-primitives.js";
 import {
   condenseToPhrase, validateNarrativePhrase, wordCount, toSingleLine,
   TYPO_TARGET_MAX_WORDS, TYPO_HARD_MAX_WORDS, TYPO_MOMENTS, TYPO_MAX_BEAT_SHARE,
@@ -158,6 +164,8 @@ function callGemini(apiKey, prompt, maxTokens) {
   }
   return null;
 }
+
+const VOCABULARY = vocabularyDigest();
 
 function buildPlanPrompt(sentences, corrections) {
   const sentenceList = sentences.map((s, i) =>
@@ -318,6 +326,33 @@ direction.typography is not "none") you MUST fill "typography_direction":
   relation_to_visual  how the phrase relates to (and does NOT merely describe) the visual
 For beats with NO on-screen text, set "typography_direction": null.
 
+## COMPOSITION — what is actually on screen (REQUIRED on every beat)
+
+The "mechanism" field says what KIND of idea the beat is. "composition" says
+what the viewer literally sees, and it is what gets rendered. Compose it from
+these parts; the system builds exactly what you declare and rejects anything
+it cannot build, so there is no value in naming a part that is not listed.
+
+${VOCABULARY}
+
+Rules that are enforced, not advisory:
+- A scene must cover at least 35% of the frame. A beat carrying one text
+  line and nothing else is REJECTED — that is the single defect this
+  vocabulary exists to remove. Reach the floor with real objects (a grid, a
+  field, a stack with a real count, documents), never by enlarging text.
+- Declare "field" FIRST when you want depth; it is the ground plane and
+  stops objects reading as though they float in a void.
+- "emphasis: true" marks the ONE object carrying the beat. Everything else
+  is structure. Do not mark several.
+- "label" only where a thing needs naming. Labels are annotation; the
+  objects carry the meaning. A scene where every object is labelled is a
+  text slide with extra steps.
+- "count" must be a real quantity from the narration where one exists — 12
+  plants, 8 states, 3 filings. It is a visible number, so an invented count
+  is an invented fact.
+- Vary the composition across beats. Six beats that all declare the same
+  objects is the template monoculture this replaces.
+
 SCRIPT SENTENCES:
 ${sentenceList}
 ${correctionBlock}
@@ -336,6 +371,11 @@ Respond ONLY with JSON (no markdown fences):
         "figure": "<for EVIDENCE_FIGURE: the number>",
         "cause": "<for ACTION_CONSEQUENCE: cause label>",
         "effect": "<for ACTION_CONSEQUENCE: effect label>"
+      },
+      "composition": {
+        "objects": [
+          { "kind": "<primitive>", "count": 1, "anchor": "<anchor>", "motion": "<motion>", "label": "<short label or omit>", "emphasis": false }
+        ]
       },
       "carries_forward": "<object/concept that persists into the next beat, or null>",
       "emotional_weight": "<calm|building|sharp|heavy|urgent>",
@@ -449,12 +489,53 @@ function main() {
   }
   console.log(`Narrative typography: ${typoReport.textBeats}/${plan.beats.length} text beats, ${typoReport.repaired.length} repaired, ${typoReport.violations.length} violation(s)`);
 
+  // COMPOSITION VALIDATION — at plan time, before anything renders.
+  //
+  // A declaration the renderer cannot build is worth nothing, and an
+  // unbuildable directive that still "applies" is the failure mode this
+  // pipeline already had (REMOVE_TYPOGRAPHY applied, verified, and was
+  // silently undone). So each beat's composition is checked here and the
+  // errors become corrections for the next planning pass — which is where
+  // RENDER_TECHNICAL finally becomes actionable instead of a verdict nobody
+  // can act on.
+  const compositionIssues = [];
+  let composedBeats = 0;
+  for (const b of plan.beats) {
+    if (!b.composition || !Array.isArray(b.composition.objects) || !b.composition.objects.length) {
+      compositionIssues.push({
+        beat: b.index,
+        problem: "no composition declared — the beat has nothing to render but text",
+        fix: "declare composition.objects using the primitive vocabulary; a scene must cover at least 35% of the frame",
+      });
+      continue;
+    }
+    const v = validateScene(b.composition);
+    b.compositionCoverage = v.coverage;
+    b.compositionValid = v.ok;
+    if (!v.ok) {
+      for (const e of v.errors) {
+        compositionIssues.push({ beat: b.index, problem: e, fix: "re-compose this beat from the declared primitives" });
+      }
+    } else {
+      composedBeats++;
+    }
+    for (const w of v.warnings) {
+      console.warn(`::warning::beat ${b.index} composition: ${w}`);
+    }
+  }
+  console.log(`Composition: ${composedBeats}/${plan.beats.length} beats buildable, ${compositionIssues.length} issue(s)`);
+  for (const i of compositionIssues.slice(0, 10)) {
+    console.warn(`  beat ${i.beat}: ${i.problem}`);
+  }
+
   const result = {
     generatedAt: new Date().toISOString(),
     channel: channelId,
     iteration: corrections?.length ? "correction" : "initial",
     totalBeats: plan.beats.length,
     beats: plan.beats,
+    composedBeats,
+    compositionIssues,
     mechanismDistribution: {},
   };
 

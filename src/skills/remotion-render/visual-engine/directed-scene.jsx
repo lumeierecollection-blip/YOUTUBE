@@ -18,6 +18,7 @@ import React from "react";
 // currentAudio is the actual bundled source.
 import { AbsoluteFill, useCurrentFrame, Easing, staticFile, Audio } from "remotion";
 import { currentAudio } from "../audio.js";
+import { ComposedScene } from "./composed-scene.jsx";
 import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
 import {
@@ -1591,8 +1592,25 @@ export function DirectedScene({ plan, ttsAudioPath, hasUnderscore }) {
       )}
 
       {/* Current beat */}
+      {/* A declared COMPOSITION wins over the hardcoded mechanism scenes.
+          Those nine scenes were the whole visual language and every one
+          drew text plus a shape on a flat ground, which is what sixteen of
+          sixteen Gemini verdicts called "template monoculture". A beat with
+          a valid composition is drawn from primitives instead; a beat
+          without one still falls back, so this cannot blank a frame. */}
       <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: tOpacity }}>
-        {isTypographyOnly ? (
+        {scene.composition ? (
+          <>
+            <ComposedScene scene={scene.composition} p={p} ed={ed} font={plan.fonts.primary} />
+            {/* Narrative typography still layers over the composition when
+                the beat earned a phrase — the text emphasises, the objects
+                carry the meaning. */}
+            {isTypographyOnly && (
+              <TypographyScene beat={beat} p={p} local={local}
+                ed={ed} font={plan.fonts.primary} scene={scene} />
+            )}
+          </>
+        ) : isTypographyOnly ? (
           <TypographyScene beat={beat} p={p} local={local}
             ed={ed} font={plan.fonts.primary} scene={scene} />
         ) : (
