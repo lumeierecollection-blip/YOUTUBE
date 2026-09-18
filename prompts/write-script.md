@@ -12,17 +12,17 @@ construction, and the structural rules the renderer depends on
 (`text_overlay` shape, no colour values, and for motion-graphics channels the
 archetype table and the `anchor_token` verbatim rule).
 
-**Duration cap: ALL videos must be 30-50 seconds.** At 30 fps this means
-900-1500 frames.
+**Duration cap: ALL videos must be 30-45 seconds.** At 30 fps this means
+900-1350 frames.
 
-**Voiceover word count: 83-112 words. This is a hard gate, not a guideline.**
+**Voiceover word count: 76-93 words. This is a hard gate, not a guideline.**
 The gate converts your word count to a duration using the channel's
-words-per-minute target and REJECTS the script if it falls outside 30-50
-seconds. 83-112 is the range that is safe for every channel's WPM, so
-staying inside it always passes; going under 83 fails just as hard as going
-over. Aim for the middle (~95 words) rather than either edge.
+words-per-minute target and the actual TTS delivery rate, then REJECTS the
+script if it falls outside 30-45 seconds. 76-93 is the range that is safe
+for every channel's voice, so staying inside it always passes; going under
+76 fails just as hard as going over 93. Aim for the middle (~85 words).
 
-Do NOT write short to save render time. A script under 83 words is rejected
+Do NOT write short to save render time. A script under 76 words is rejected
 and the whole channel produces nothing that day.
 
 Write the full script now: `channel_id`, `topic_slug`, `format`, `hook`,
@@ -35,7 +35,7 @@ provided JSON Schema exactly — nothing outside it.
   `numbers[].value` entries (copied exactly, with its real unit) — never
   invented, derived, or a binary 0/1 encoding of a contrast. If it isn't
   in `numbers[]`, it must not be charted.
-- Voiceover word count is **83-112 words** — count it. Under 83 or over 112
+- Voiceover word count is **76-93 words** — count it. Under 76 or over 93
   is a BLOCKER (SCR-16) and the script is rejected. If you are over, cut
   beats; if you are under, the hook and the consequence both need real
   sentences — do not pad with filler, but do not ship 60 words either.

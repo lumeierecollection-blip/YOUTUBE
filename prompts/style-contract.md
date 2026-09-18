@@ -41,10 +41,12 @@ reveal lands, closing type) in the context JSON — follow those, not a
 generic structure.
 
 Target voiceover word counts (spoken text only):
-- `shorts`: **83–112 words. This is a gate, and BOTH ends fail.**
-  Under 83 is rejected exactly as hard as over 112 — a short script does
+- `shorts`: **76–93 words. This is a gate, and BOTH ends fail.**
+  Under 76 is rejected exactly as hard as over 93 — a short script does
   not "play safe", it fails the duration gate (SCR-16) and the channel
-  produces nothing that day. Aim for the middle, around 95 words.
+  produces nothing that day. Aim for the middle, around 85 words.
+  The gate converts words to seconds at the ACTUAL spoken rate (EdgeTTS
+  runs 8% slower than nominal), so the 30–45s target is real, not nominal.
   Every sentence must hook, escalate, or pay off — but do NOT hit that
   standard by writing less. Cut filler and replace it with substance, so
   the word count stays inside the range.

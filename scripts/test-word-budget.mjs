@@ -26,7 +26,7 @@
  */
 
 import { readFileSync } from "node:fs";
-import { WPM_TARGET, DURATION_RANGE_SECONDS } from "./gate-script.js";
+import { WPM_TARGET, DURATION_RANGE_SECONDS, TTS_RATE_FACTOR, effectiveWpm } from "./gate-script.js";
 
 let failed = 0;
 let passed = 0;
@@ -51,13 +51,17 @@ const text = PROMPTS.map((f) => readFileSync(f, "utf8")).join("\n");
 /* ── What the gate actually allows, per style ────────────────────────── */
 
 const { min: minSec, max: maxSec } = DURATION_RANGE_SECONDS.shorts;
-const perStyle = Object.entries(WPM_TARGET).map(([style, wpm]) => ({
-  style,
-  wpm,
-  // gate: impliedSeconds = words / wpm * 60, must be within [min, max]
-  lo: Math.ceil(minSec * wpm / 60),
-  hi: Math.floor(maxSec * wpm / 60),
-}));
+const perStyle = Object.entries(WPM_TARGET).map(([style, wpm]) => {
+  // EFFECTIVE wpm, not nominal. EdgeTTS delivers at rate=-8% (tts.js), so
+  // the nominal figure under-predicts duration by ~9% — ch48 passed at a
+  // predicted 49.9s and rendered 55.49s in run 35319923732.
+  const eff = effectiveWpm(style);
+  return {
+    style, wpm, eff,
+    lo: Math.ceil((minSec * eff) / 60),
+    hi: Math.floor((maxSec * eff) / 60),
+  };
+});
 
 // The range that satisfies every style at once.
 const safeLo = Math.max(...perStyle.map((s) => s.lo));

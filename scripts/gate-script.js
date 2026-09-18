@@ -30,7 +30,28 @@ export const WPM_TARGET = { "cinematic-documentary": 135, "motion-graphics": 155
 const FORMAT_MIDPOINT_MINUTES = { shorts: 40 / 60, longform: (2 + 12) / 2 };
 // Duration cap: all videos target 30-50 seconds (wide window - model oscillates)
 // Render.js clamps final duration to the actual voiceover length anyway.
-export const DURATION_RANGE_SECONDS = { shorts: { min: 30, max: 50 }, longform: { min: 30, max: 50 } };
+export const DURATION_RANGE_SECONDS = { shorts: { min: 30, max: 45 }, longform: { min: 30, max: 45 } };
+
+/**
+ * EdgeTTS speaks slower than the nominal WPM, so the nominal figure
+ * under-predicts duration and the gate passed videos that overran.
+ *
+ * src/utils/tts.js delivers every voiceover at `rate=-8%` ("slower, measured
+ * documentary pace"), and no channel overrides it. The gate was converting
+ * words to seconds at the NOMINAL wpm, which is ~9% optimistic: 129 words
+ * was predicted at 49.9s and ch48 actually rendered at 55.49s in run
+ * 35319923732 — inside the gate, outside the target.
+ *
+ * Applying the rate here makes the gate's prediction match what the
+ * renderer will actually produce, so the 30-45s target is real rather than
+ * nominal.
+ */
+export const TTS_RATE_FACTOR = 0.92;
+
+/** Effective words-per-minute for a channel style, as actually spoken. */
+export function effectiveWpm(style) {
+  return (WPM_TARGET[style] || 150) * TTS_RATE_FACTOR;
+}
 const HEX_COLOR = /#[0-9a-fA-F]{3}\b|#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{8}\b/g;
 
 function loadChannel(channelId) {
@@ -197,7 +218,10 @@ function main() {
   // Voiceover duration = totalWords / WPM; frame count = duration * FPS.
   // At 30 fps: 30s = 900 frames, 50s = 1500 frames.
   const durationRange = DURATION_RANGE_SECONDS[script.format] || DURATION_RANGE_SECONDS.shorts;
-  const impliedSeconds = (totalWords / targetWpm) * 60;
+  // Effective, not nominal: see TTS_RATE_FACTOR. Using the nominal wpm here
+  // is what let ch48 pass at a predicted 49.9s and render at 55.49s.
+  const spokenWpm = effectiveWpm(channel.style);
+  const impliedSeconds = (totalWords / spokenWpm) * 60;
   if (impliedSeconds < durationRange.min || impliedSeconds > durationRange.max) {
     // Report the fix in WORDS, which is what the model controls.
     //
@@ -206,8 +230,8 @@ function main() {
     // sees. It guessed low over and over: channel 44 produced 70, 67 then 61
     // words and channel 48 produced 76, 74 then 53 in run 35293642808, every
     // one of them under the floor it was never told.
-    const minWords = Math.ceil((durationRange.min * targetWpm) / 60);
-    const maxWords = Math.floor((durationRange.max * targetWpm) / 60);
+    const minWords = Math.ceil((durationRange.min * spokenWpm) / 60);
+    const maxWords = Math.floor((durationRange.max * spokenWpm) / 60);
     const delta = totalWords < minWords
       ? `ADD at least ${minWords - totalWords} more words`
       : `CUT at least ${totalWords - maxWords} words`;
