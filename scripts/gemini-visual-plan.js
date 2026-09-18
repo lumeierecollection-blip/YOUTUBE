@@ -153,7 +153,7 @@ function callGemini(apiKey, prompt, maxTokens) {
         continue;
       }
 
-      const raw = parsed.choices[0].message.content.trim()
+      var raw = parsed.choices[0].message.content.trim()
         .replace(/^```json\s*/, "").replace(/^```\s*/, "").replace(/\s*```$/, "").trim();
 
       // Try to parse the JSON
@@ -166,7 +166,7 @@ function callGemini(apiKey, prompt, maxTokens) {
       console.error(`Gemini API error (attempt ${attempt}): ${msg}`);
 
       // Attempt to salvage truncated JSON — Gemini sometimes cuts off mid-response
-      if (raw && raw.includes('"beats"')) {
+      if (typeof raw !== 'undefined' && raw && raw.includes('"beats"')) {
         try {
           // Find the last complete beat object (ending with })
           const lastBrace = raw.lastIndexOf('}');

@@ -272,15 +272,50 @@ function extractJson(text) {
     if (parsed) return parsed;
   }
 
+  // 2b. Incomplete fence — model started ```json but got truncated before closing ```.
+  // Try to salvage by finding the opening fence and parsing everything after it.
+  const incompleteFence = trimmed.match(/```(?:json)?\s*([\s\S]*?)$/);
+  if (incompleteFence && incompleteFence[1]) {
+    const content = incompleteFence[1].trim();
+    const parsed = tryParse(content);
+    if (parsed) return parsed;
+    // Try brace salvage on the incomplete fence content
+    const salvaged = salvageIncompleteJson(content);
+    if (salvaged) return salvaged;
+  }
+
   // 3. Widest brace span, then progressively earlier openings — handles
   // prose that happens to contain a "{" before the real object starts.
   const end = trimmed.lastIndexOf("}");
-  if (end === -1) return null;
+  if (end === -1) {
+    // No closing brace — try to salvage truncated JSON
+    return salvageIncompleteJson(trimmed);
+  }
   let start = trimmed.indexOf("{");
   while (start !== -1 && start < end) {
     const parsed = tryParse(trimmed.slice(start, end + 1));
     if (parsed) return parsed;
     start = trimmed.indexOf("{", start + 1);
+  }
+  return null;
+}
+
+/**
+ * Attempt to salvage truncated JSON by finding the last complete top-level
+ * object. Works for models that generate valid JSON but run out of tokens
+ * before finishing (e.g., incomplete arrays or nested objects).
+ */
+function salvageIncompleteJson(text) {
+  const lastBrace = text.lastIndexOf("}");
+  if (lastBrace <= 0) return null;
+  
+  // Try progressively shorter substrings ending at each closing brace
+  for (let i = lastBrace; i >= 0; i--) {
+    if (text[i] === "}") {
+      const candidate = text.slice(0, i + 1);
+      const parsed = tryParse(candidate);
+      if (parsed) return parsed;
+    }
   }
   return null;
 }
