@@ -245,9 +245,14 @@
           "topic": "WalletHub 2026 Data: Why Unexpected Expenses Break Your Budget",
           "slug": "wallets-hub-2026-unexpected-expenses-budget",
           "reserved_at": "2026-09-17T19:47:38.170Z"
+        },
+        {
+          "topic": "The 100-Envelope Challenge: Can It Build a $5000 Emergency Fund",
+          "slug": "100-envelope-challenge-emergency-fund-2026",
+          "reserved_at": "2026-09-18T00:04:12.158Z"
         }
       ],
-      "last_generated": "2026-09-17T19:47:38.170Z"
+      "last_generated": "2026-09-18T00:04:12.158Z"
     },
     "2": {
       "channel_name": "Legal Brief",
