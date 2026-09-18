@@ -36,6 +36,8 @@
  * picks from the declared object-first set rather than inventing one.
  */
 
+
+import { drawsNarrativeText } from "./scene-text.js";
 /* ── Mechanism vocabulary ────────────────────────────────────────────── */
 
 /** Mechanisms that render an object-first scene (no narrative phrase). */
@@ -51,6 +53,20 @@ export const OBJECT_FIRST_MECHANISMS = [
 ];
 
 export const ALL_MECHANISMS = ["TYPOGRAPHY", ...OBJECT_FIRST_MECHANISMS];
+
+/**
+ * Mechanisms that draw NO narrative-role text — their strings are figures
+ * and units (role "value"/"quiet" in scene-text.js TEXT_SURFACES), which
+ * are data rather than a phrase.
+ *
+ * Derived from TEXT_SURFACES rather than listed by hand, so adding a
+ * narrative surface to a mechanism automatically removes it from the set a
+ * text-free beat can be moved to.
+ */
+export const TEXT_FREE_MECHANISMS = OBJECT_FIRST_MECHANISMS.filter((m) => !drawsNarrativeText(m));
+
+/** Object-label keys that render as narrative text rather than as data. */
+const NARRATIVE_OBJECT_KEYS = ["label_a", "label_b", "cause", "effect", "surface", "beneath"];
 
 /* ── Directive vocabulary ────────────────────────────────────────────── */
 
@@ -139,10 +155,27 @@ export function beatHasPhrase(b) {
   return String(phrase).trim().length > 0;
 }
 
+/**
+ * Remove every NARRATIVE string from a beat — the typography phrase AND the
+ * object labels that render as a phrase.
+ *
+ * Clearing only the phrase was not enough. Six of the nine mechanisms draw
+ * narrative strings from objects.*.label, so a beat moved off TYPOGRAPHY
+ * kept its two state labels and stayed a text beat under another name: run
+ * 35293642808 applied REMOVE_TYPOGRAPHY on three consecutive attempts and
+ * the auditor measured an identical text-beat share every time (67% ch2,
+ * 100% ch9, 60% ch26). Figures and units are left alone — those are data,
+ * not a phrase.
+ */
 function clearBeatPhrase(b) {
   b.typography_direction = null;
   b.visual_headline = "";
   if (b.scene && b.scene.typography) b.scene.typography = null;
+  if (b.objects) {
+    for (const key of NARRATIVE_OBJECT_KEYS) {
+      if (b.objects[key]) b.objects[key] = "";
+    }
+  }
 }
 
 /* ── Apply ───────────────────────────────────────────────────────────── */
@@ -191,9 +224,12 @@ export function applyAdjustments(plan, adjustments) {
       case "REMOVE_TYPOGRAPHY": {
         const b = beats[adj.beat];
         clearBeatPhrase(b);
-        // A TYPOGRAPHY beat with no phrase would render nothing at all, so
-        // it also needs a mechanism that can carry the beat visually.
-        if (beatMechanism(b) === "TYPOGRAPHY") {
+        // Move the beat onto a mechanism DESIGNED to carry itself without a
+        // phrase. Emptying STATE_CHANGE's two labels leaves a scene built
+        // around labels with nothing in them; a text-free mechanism draws
+        // the idea with objects instead. Covers TYPOGRAPHY too, which would
+        // otherwise render nothing at all.
+        if (drawsNarrativeText(beatMechanism(b))) {
           setBeatMechanism(b, pickObjectFirst(beats, adj.beat));
         }
         applied.push(adj);
@@ -302,19 +338,44 @@ function lengthSignature(plan) {
  * no randomness, so the same rejection always produces the same plan.
  */
 function pickObjectFirst(beats, skipIndex) {
-  const counts = new Map(OBJECT_FIRST_MECHANISMS.map((m) => [m, 0]));
+  // Only mechanisms that draw NO narrative-role text qualify.
+  //
+  // "Object-first" was the wrong filter: six of the nine mechanisms still
+  // draw narrative strings from objects.*.label (STATE_CHANGE's two state
+  // labels, ACTION_CONSEQUENCE's cause/effect, and so on), so a beat moved
+  // off TYPOGRAPHY kept carrying text under a different name. That is why
+  // run 35293642808 applied REMOVE_TYPOGRAPHY across three attempts and the
+  // auditor measured an identical text-beat share every time — 67% on ch2,
+  // 100% on ch9, 60% on ch26, never moving. Clearing the phrase is not
+  // enough; the beat has to land on a mechanism whose text is data.
+  const candidates = TEXT_FREE_MECHANISMS.length ? TEXT_FREE_MECHANISMS : OBJECT_FIRST_MECHANISMS;
+  const counts = new Map(candidates.map((m) => [m, 0]));
   beats.forEach((b, i) => {
     if (i === skipIndex) return;
     const m = beatMechanism(b);
     if (counts.has(m)) counts.set(m, counts.get(m) + 1);
   });
-  let best = OBJECT_FIRST_MECHANISMS[0];
+  let best = candidates[0];
   let bestN = Infinity;
-  for (const m of OBJECT_FIRST_MECHANISMS) {
+  for (const m of candidates) {
     const n = counts.get(m);
     if (n < bestN) { bestN = n; best = m; }
   }
   return best;
+}
+
+/**
+ * Also strip the narrative-role object labels a mechanism would draw.
+ *
+ * clearBeatPhrase() only removes the typography phrase. A STATE_CHANGE beat
+ * whose label_a/label_b survive is still a two-narrative-line beat, which is
+ * the violation REMOVE_TYPOGRAPHY was issued to fix.
+ */
+function clearNarrativeObjectLabels(b) {
+  if (!b.objects) return;
+  for (const key of NARRATIVE_OBJECT_KEYS) {
+    if (b.objects[key]) b.objects[key] = "";
+  }
 }
 
 /* ── Verify ──────────────────────────────────────────────────────────── */

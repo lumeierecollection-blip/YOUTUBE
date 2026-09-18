@@ -18,7 +18,7 @@
 import {
   DIRECTIVES, ALL_MECHANISMS, OBJECT_FIRST_MECHANISMS,
   isKnownDirective, validateDirective,
-  deriveAdjustments, applyAdjustments, verifyAdjustments,
+  deriveAdjustments, applyAdjustments, verifyAdjustments, TEXT_FREE_MECHANISMS,
   beatHasPhrase, describeDirective,
 } from "../src/skills/remotion-render/visual/plan-adjustments.js";
 
@@ -238,6 +238,48 @@ section("8. Video length is never changed by enforcement");
   const spy = JSON.parse(JSON.stringify(plan));
   const res = applyAdjustments(spy, sneaky);
   ok(sig(res.plan) === before, "a normal directive still preserves the signature");
+}
+
+section("9. Removing text moves the beat to a mechanism that needs none");
+{
+  // Clearing the PHRASE was not enough. Six of the nine mechanisms draw
+  // narrative strings from objects.*.label, so a beat moved off TYPOGRAPHY
+  // kept its two state labels and stayed a text beat under another name.
+  // Run 35293642808 applied REMOVE_TYPOGRAPHY on three consecutive attempts
+  // and the auditor measured an identical text-beat share every time: 67%
+  // on ch2, 100% on ch9, 60% on ch26 — never moving.
+  const withObjs = (i, m, ph, objects) => ({
+    index: i, mechanism: m, visual_headline: ph || "",
+    typography_direction: ph ? { phrase: ph } : null, objects,
+  });
+  const plan = { beats: [
+    withObjs(0, "TYPOGRAPHY", "Border settled after ninety years", {}),
+    withObjs(1, "STATE_CHANGE", null, { label_a: "Disputed Chaco", label_b: "Agreed Border" }),
+    withObjs(2, "ACTION_CONSEQUENCE", null, { cause: "Treaty signed", effect: "Troops withdraw" }),
+    withObjs(3, "SURFACE_AND_BENEATH", null, { surface: "Public accord", beneath: "Private terms" }),
+  ] };
+
+  const adj = [1, 2, 3].map((b) => ({ directive: "REMOVE_TYPOGRAPHY", beat: b }));
+  const { plan: after, applied } = applyAdjustments(plan, adj);
+  ok(verifyAdjustments(after, applied).ok, "all removals verify");
+
+  for (const i of [1, 2, 3]) {
+    const b = after.beats[i];
+    ok(TEXT_FREE_MECHANISMS.includes(b.mechanism),
+      `beat ${i} landed on a text-free mechanism (got ${b.mechanism})`);
+    const labels = Object.entries(b.objects || {})
+      .filter(([k]) => ["label_a", "label_b", "cause", "effect", "surface", "beneath"].includes(k))
+      .map(([, v]) => v);
+    ok(labels.every((v) => !String(v).trim()), `beat ${i} has no narrative object labels left`);
+  }
+  ok(after.beats[0].visual_headline === "Border settled after ninety years",
+    "the beat that kept its text is untouched");
+
+  // TEXT_FREE_MECHANISMS must be derived, not hand-listed — adding a
+  // narrative surface to a mechanism should drop it from the set.
+  ok(TEXT_FREE_MECHANISMS.length > 0, "at least one text-free mechanism exists to move beats onto");
+  ok(!TEXT_FREE_MECHANISMS.includes("STATE_CHANGE"), "STATE_CHANGE is not text-free (it draws two labels)");
+  ok(!TEXT_FREE_MECHANISMS.includes("TYPOGRAPHY"), "TYPOGRAPHY is not text-free");
 }
 
 console.log(`\n${passed} passed, ${failed} failed`);
