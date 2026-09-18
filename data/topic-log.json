@@ -542,9 +542,14 @@
           "topic": "Can a Reduced Bonus Be ADA and FMLA Retaliation? The Steidle Ruling",
           "slug": "steidle-v-usli-ada-fmla-retaliation",
           "reserved_at": "2026-09-18T00:20:35.190Z"
+        },
+        {
+          "topic": "Can Landlords Use Minimum Income Rules to Exclude Housing Vouchers?",
+          "slug": "landlords-minimum-income-rules-housing-vouchers",
+          "reserved_at": "2026-09-18T01:03:05.188Z"
         }
       ],
-      "last_generated": "2026-09-18T00:20:35.190Z"
+      "last_generated": "2026-09-18T01:03:05.188Z"
     },
     "3": {
       "channel_name": "AI Tested",
