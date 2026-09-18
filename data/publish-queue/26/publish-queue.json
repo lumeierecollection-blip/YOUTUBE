@@ -17,6 +17,17 @@
     "uploaded_at": "2026-09-17T10:56:43.225Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-17T11:56:43.224Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-18T10:35:36.602Z"
+  },
+  {
+    "video_id": "9NkjtQsR7qo",
+    "channel_id": "26",
+    "title": "The $1.9 Billion Tricolor Auto Lender Double-Pledging Fraud",
+    "uploaded_at": "2026-09-18T10:35:35.271Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-18T11:35:35.271Z",
     "privacy_status": "private",
     "cancelled": false
   }
