@@ -17,20 +17,38 @@
  */
 import "dotenv/config";
 import { spawn } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync } from "node:fs";
 import { join, dirname, basename, extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+import { bundle } from "@remotion/bundler";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const RENDER_JS = join(ROOT, "src", "skills", "remotion-render", "render.js");
+const REMOTION_ROOT_JSX = join(ROOT, "src", "skills", "remotion-render", "Root.jsx");
 const VIDEO_REVIEW_JS = join(__dirname, "video-review.js");
 const FRAME_AUDIT_JS = join(__dirname, "frame-audit.js");
 const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
 const VISUAL_QA_JS = join(__dirname, "gate-visual-qa.js");
 const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 const GEMINI_PLAN_JS = join(__dirname, "gemini-visual-plan.js");
-const MAX_CORRECTION_LOOPS = 2;  // 2 attempts: initial + 1 correction (each ~4min for shorts)
+const LOCAL_AUDITOR_JS = join(__dirname, "local-visual-auditor.js");
+// 3 attempts: initial + 2 corrections. Was 2 (initial + ONE correction),
+// which meant Gemini got a single chance to respond and then the video
+// shipped whatever it said — run 35266860427 ended "attempt 2/2,
+// verdict=severe template monoculture and AI-generated slop" with qa=PASS.
+// One round is not a loop. Each attempt is ~2-4 min for shorts, and the
+// six-channel workflow ran 15-17 min at two attempts, so three keeps it
+// inside the 30-minute budget.
+//
+// Attempts are only SPENT when there is something actionable to change: if
+// the merge produces no corrections, the loop stops instead of re-rolling
+// the planner with no instruction.
+const MAX_CORRECTION_LOOPS = 3;
+
+function readJsonSafe(p) {
+  try { return existsSync(p) ? JSON.parse(readFileSync(p, "utf-8")) : null; } catch { return null; }
+}
 
 function parseArgs(argv) {
   const flag = (name) => {
@@ -53,11 +71,22 @@ function loadChannelIds(override) {
 }
 
 function findScripts(channelId) {
+  // data/research/<channelId>/*-script.json is committed to git and never
+  // pruned, so a fresh checkout on every CI run sees every script this
+  // channel has ever written — not just today's. data/tts/**/*.mp3 is
+  // gitignored (never committed), so today's freshly-downloaded prep
+  // artifact is the ONLY script with matching audio. Filtering on that
+  // here — before geminiPlan() runs — is what actually skips the stale
+  // backlog, instead of discovering "no audio" only after paying for a
+  // full Gemini visual-plan call per leftover file (seen in production:
+  // 21 of 22 committed scripts for channel 1 were history, each still
+  // triggering a real API call and burning render-job wall-clock time).
   const dir = join(ROOT, "data", "research", channelId);
   if (!existsSync(dir)) return [];
   return readdirSync(dir)
     .filter((f) => f.endsWith("-script.json"))
-    .map((f) => join(dir, f));
+    .map((f) => join(dir, f))
+    .filter((scriptPath) => existsSync(audioPathFor(channelId, scriptPath)));
 }
 
 function planWork({ channelOverride, scriptOverride }) {
@@ -170,7 +199,7 @@ async function renderOne(channelId, scriptPath, format) {
 
 /* ── QA ──────────────────────────────────────────────────────────── */
 
-async function qaOne(runId, rendered) {
+async function qaOne(runId, rendered, planPath) {
   const { outputPath, channelId, scriptPath, audio } = rendered;
   const reviewDir = join(ROOT, "data", "audit", "render-review", runId, basename(outputPath, ".mp4"));
   mkdirSync(reviewDir, { recursive: true });
@@ -182,8 +211,32 @@ async function qaOne(runId, rendered) {
   }
   const audit = await runChild("node", [FRAME_AUDIT_JS, reviewDir], { label: `qa/audit ${basename(outputPath)}` });
 
+  // LOCAL VISUAL AUDITOR — deterministic, free checks (black/static/motion,
+  // manifest vs plan compliance, monoculture, audio, channel fingerprint).
+  // It produces a RISK level and whether a Gemini semantic review is even
+  // needed. This is the cost lever for scaling to many channels: an
+  // objectively-clean, low-risk video does NOT pay for a vision-model pass.
+  let localAudit = null;
+  if (audit.code === 0) {
+    const laArgs = ["--video", outputPath, "--channel", String(channelId)];
+    if (planPath && existsSync(planPath)) laArgs.push("--plan", planPath);
+    const manifestPath = outputPath.replace(/\.mp4$/, "-manifest.json");
+    if (existsSync(manifestPath)) laArgs.push("--manifest", manifestPath);
+    // The SRT lets the auditor measure transcript-likeness (is the on-screen
+    // phrase just the narration restated?) without a vision model.
+    const laSrt = join(dirname(audio), basename(audio, extname(audio)) + ".srt");
+    if (existsSync(laSrt)) laArgs.push("--srt", laSrt);
+    await runChild("node", [LOCAL_AUDITOR_JS, ...laArgs], { label: `qa/local-audit ${basename(outputPath)}` });
+    localAudit = readJsonSafe(outputPath.replace(/\.mp4$/, "-local-audit.json"));
+  }
+  // Gemini runs ONLY when the local auditor cannot clear the video on its own
+  // (risk not LOW, or specific uncertain beats). If the local report is
+  // missing (auditor errored), fall back to running Gemini so we never ship a
+  // video that nothing semantically reviewed.
+  const geminiNeeded = !localAudit || localAudit.gemini_required !== false;
+
   let visionQaPromise;
-  if (audit.code === 0 && process.env.VISION_API_KEY) {
+  if (audit.code === 0 && geminiNeeded && process.env.VISION_API_KEY) {
     const chId = `ch-${String(channelId).padStart(2, "0")}`;
     visionQaPromise = runChild("node", [VISUAL_QA_JS, "--channel", chId, "--video", outputPath], {
       label: `qa/vision ${basename(outputPath)}`,
@@ -192,21 +245,89 @@ async function qaOne(runId, rendered) {
 
   let geminiReviewPromise;
   const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.VISION_API_KEY;
-  if (audit.code === 0 && geminiKey) {
+  if (audit.code === 0 && geminiNeeded && geminiKey) {
     const srtPath = join(dirname(audio), basename(audio, extname(audio)) + ".srt");
     const srtArg = existsSync(srtPath) ? srtPath : "";
     const reviewArgs = ["--video", outputPath, "--script", scriptPath, "--channel", String(channelId), "--fix"];
     if (srtArg) reviewArgs.push("--srt", srtArg);
+    // Pass the authoritative visual plan so the review runs plan-compliance
+    // (directed vs rendered), not a vague "looks good" pass.
+    if (planPath && existsSync(planPath)) reviewArgs.push("--plan", planPath);
     geminiReviewPromise = runChild("node", [GEMINI_REVIEW_JS, ...reviewArgs], {
       label: `qa/gemini-review ${basename(outputPath)}`,
     });
+  } else if (audit.code === 0 && !geminiNeeded) {
+    console.log(`[qa] local auditor cleared ${basename(outputPath)} (risk ${localAudit.risk?.level}) — skipping Gemini review`);
   }
 
   const slopCheckPromise = runChild("node", [SLOP_CHECK_JS, outputPath, channelId, scriptPath, audio], {
     label: `qa/slop-check ${basename(outputPath)}`,
   });
 
-  return { outputPath, gatePass: audit.code === 0, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise };
+  // THE HARD GATE = objective frame-audit AND no objective blocker.
+  //
+  // frame-audit stays the primary gate, but it only looks at PIXELS, so a
+  // video with perfect frames and no audible audio passed it. Run
+  // 35266860427 shipped exactly that on two channels: 4/4 frames, LUFS -70,
+  // silence for the full duration, qa=PASS. The auditor had already measured
+  // it; silence was just 8 points on an advisory risk score.
+  //
+  // `localAudit.blockers` is deliberately narrow — objective conditions that
+  // make a video unpublishable on its face (currently: effectively silent).
+  // Subjective quality stays with Gemini and the correction loop; this is not
+  // a quality bar, it is a "nobody can watch this" bar.
+  const blockers = localAudit?.blockers || [];
+  for (const b of blockers) {
+    console.error(`[qa/BLOCKER ${basename(outputPath)}] ${b}`);
+  }
+  const gatePass = audit.code === 0 && blockers.length === 0;
+
+  return { outputPath, gatePass, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise, localAudit, geminiNeeded, blockers };
+}
+
+/* ── Correction merge ────────────────────────────────────────────── */
+
+/**
+ * Write the corrections file the next planning attempt consumes.
+ *
+ * gemini-visual-plan.js reads `review.corrections` (falling back to
+ * `review.wholeVideoResult.corrections`), so the merged file keeps that
+ * shape and the planner needs no changes.
+ *
+ * Returns the path, or null when there is nothing actionable — in which case
+ * the caller must NOT spend another attempt, since re-planning with no
+ * instruction just re-rolls the dice.
+ */
+function writeMergedCorrections(runId, channelId, scriptPath, geminiReportPath, localAudit, attempt) {
+  const fromGemini = (() => {
+    if (!geminiReportPath || !existsSync(geminiReportPath)) return [];
+    try {
+      const r = JSON.parse(readFileSync(geminiReportPath, "utf-8"));
+      return r.corrections || r.wholeVideoResult?.corrections || [];
+    } catch { return []; }
+  })();
+  const fromAuditor = localAudit?.corrections || [];
+
+  // Auditor findings first: they are specific and measured, and the planner
+  // prompt lists corrections in order.
+  const merged = [...fromAuditor, ...fromGemini];
+  if (!merged.length) return null;
+
+  const dir = join(ROOT, "data", "audit", "corrections", String(runId));
+  mkdirSync(dir, { recursive: true });
+  const out = join(dir, `${basename(scriptPath, extname(scriptPath))}-attempt${attempt}.json`);
+  writeFileSync(out, JSON.stringify({
+    generatedAt: new Date().toISOString(),
+    channel: channelId,
+    attempt,
+    sources: { auditor: fromAuditor.length, gemini: fromGemini.length },
+    corrections: merged,
+  }, null, 2) + "\n");
+
+  const byOwner = merged.reduce((a, c) => { a[c.owner || "GEMINI"] = (a[c.owner || "GEMINI"] || 0) + 1; return a; }, {});
+  console.log(`[corrections] ${merged.length} for next attempt (auditor ${fromAuditor.length}, gemini ${fromGemini.length}) ${JSON.stringify(byOwner)}`);
+  for (const c of merged.slice(0, 8)) console.log(`   ${c.scene || c.beat}: ${c.problem}`.slice(0, 160));
+  return out;
 }
 
 /* ── Gemini review report lookup ─────────────────────────────────── */
@@ -225,12 +346,39 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
   let correctionsPath = null;
   let lastResult = null;
 
+  // Pre-bundle once per VIDEO, reused across this video's correction-loop
+  // attempts (render.js already honors REMOTION_SERVE_URL when set — see
+  // renderVideo()). Scoped per-video, not per-run: src/skills/remotion-
+  // render/audio.js does `import voiceover from "./vo.mp3"`, a static
+  // webpack import, so the bundle bakes in whichever audio file is staged
+  // at bundle time. Bundling once for the whole run (the first version of
+  // this change) broke every render with "Can't resolve './vo.mp3'"
+  // because nothing had staged any audio yet — caught by the real GH
+  // Actions test, not locally. Audio doesn't change between attempt 1 and
+  // 2 of the SAME video, so this still eliminates the redundant re-bundle
+  // exactly where it mattered (a REJECTED video's retry), without
+  // reusing a bundle across videos whose audio differs.
+  const audioForBundle = audioPathFor(channelId, scriptPath);
+  if (existsSync(audioForBundle)) {
+    const voTarget = join(ROOT, "src", "skills", "remotion-render", "vo.mp3");
+    mkdirSync(dirname(voTarget), { recursive: true });
+    copyFileSync(audioForBundle, voTarget);
+    const bundleStart = Date.now();
+    console.log(`[render-and-qa] pre-bundling for ${basename(scriptPath)}...`);
+    try {
+      process.env.REMOTION_SERVE_URL = await bundle({ entryPoint: REMOTION_ROOT_JSX, onProgress: () => {} });
+      console.log(`[render-and-qa] pre-bundle done: ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
+    } catch (e) {
+      console.warn(`[render-and-qa] pre-bundle failed, falling back to per-attempt bundling: ${e.message}`);
+      delete process.env.REMOTION_SERVE_URL;
+    }
+  }
 
   for (let attempt = 1; attempt <= MAX_CORRECTION_LOOPS; attempt++) {
     console.log(`\n=== ATTEMPT ${attempt}/${MAX_CORRECTION_LOOPS}: ${basename(scriptPath)} ===`);
 
     // Step 1: Gemini plans (or re-plans with corrections)
-    await geminiPlan(channelId, scriptPath, correctionsPath);
+    const planPath = await geminiPlan(channelId, scriptPath, correctionsPath);
 
     // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL)
     const result = await renderOne(channelId, scriptPath, format);
@@ -246,24 +394,60 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
 
     lastResult = result;
 
-    // Step 3: QA (frame extraction + audit + Gemini review)
-    const qa = await qaOne(runId, result);
+    // Step 3: QA (frame extraction + audit + Gemini plan-compliance review)
+    const qa = await qaOne(runId, result, planPath);
 
     // Wait for all background QA tasks to finish before checking Gemini verdict
     await Promise.all([qa.slopCheckPromise, qa.visionQaPromise, qa.geminiReviewPromise].filter(Boolean));
 
-    // Step 4: Check Gemini verdict
+    // Step 4: verdict. If the local auditor cleared the video (LOW risk, no
+    // uncertain beats), Gemini was not run — that IS the approval; ship it
+    // without spending a correction attempt.
+    if (qa.geminiNeeded === false && qa.gatePass) {
+      const lvl = qa.localAudit?.risk?.level || "LOW";
+      console.log(`Local auditor cleared (risk ${lvl}) — approved without Gemini.`);
+      return { skipped: false, ok: true, outputPath: result.outputPath, attempt, geminiVerdict: `LOCAL_AUDIT_${lvl}`, qaGatePass: qa.gatePass };
+    }
+
     const geminiReport = findGeminiReviewReport(channelId, scriptPath);
+    let pipelineVerdict = "UNKNOWN";
     let geminiVerdict = "UNKNOWN";
     if (geminiReport) {
       try {
         const report = JSON.parse(readFileSync(geminiReport, "utf-8"));
-        geminiVerdict = report.wholeVideoResult?.verdict || report.verdict || "UNKNOWN";
-        console.log(`Gemini verdict (attempt ${attempt}): ${geminiVerdict}`);
+        // pipelineVerdict is the Visual Bible's own computed decision
+        // (APPROVED/NEEDS_IMPROVEMENT/REJECTED — see gemini-frame-review.js).
+        // wholeVideoResult.verdict is Gemini's free-text "one-sentence final
+        // judgment" from the whole_video_review prompt and is display-only —
+        // it is NEVER the literal string "APPROVED", so gating on it (the
+        // previous behavior) meant a REJECTED Bible review still shipped
+        // once the unrelated frame-audit pixel check passed. UNKNOWN (no
+        // report, or review skipped/errored) is treated as passable so
+        // environments without a Gemini key don't start blocking publishes.
+        pipelineVerdict = report.pipelineVerdict || "UNKNOWN";
+        geminiVerdict = report.wholeVideoResult?.verdict || report.pipelineReason || pipelineVerdict;
+        const owner = report.correctionOwner ? ` [owner: ${report.correctionOwner}]` : "";
+        console.log(`Gemini verdict (attempt ${attempt}): ${pipelineVerdict} — ${geminiVerdict}${owner}`);
       } catch {}
     }
 
-    if (geminiVerdict === "APPROVED" || attempt === MAX_CORRECTION_LOOPS) {
+    // The HARD ship/no-ship gate is qa.gatePass — the OBJECTIVE frame-audit
+    // (WCAG text contrast, safe-area margins, edge-bleed, non-empty frame).
+    // That is what "genuinely broken frame" means and it is measured from
+    // pixels, not opinion. The Gemini pipelineVerdict is a SUBJECTIVE quality
+    // assessment (monoculture, "not cinematic enough", per-scene HIGH/CRITICAL
+    // style notes) and it drives the CORRECTION LOOP — a non-APPROVED verdict
+    // triggers a re-plan + re-render — but it does NOT permanently discard a
+    // frame-audit-clean video once retries are exhausted. Reason: the scene
+    // reviewer flags headline-dominance as a per-scene CRITICAL, so folding
+    // its verdict into the hard gate meant any stylistically-imperfect video
+    // was zeroed out and the channel posted nothing that day. A production
+    // system must post its daily upload (private-first, delayed public, human
+    // review window) when the frame is objectively sound; persistent
+    // monoculture is addressed by the plan prompt + scene design, not by
+    // withholding the upload. Objectively-broken frames still never ship —
+    // qa.gatePass is false for them regardless of the Gemini verdict.
+    if (pipelineVerdict === "APPROVED" || attempt === MAX_CORRECTION_LOOPS) {
       return {
         skipped: false,
         ok: true,
@@ -274,9 +458,37 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       };
     }
 
-    // Not approved — feed corrections back
-    console.log(`Gemini says ${geminiVerdict} — feeding corrections back for attempt ${attempt + 1}`);
-    correctionsPath = geminiReport;
+    // Not approved — feed corrections back and re-render.
+    //
+    // The corrections handed to the planner are the UNION of:
+    //   - Gemini's own review corrections (semantic judgment), and
+    //   - the local auditor's owner-tagged findings (mechanical facts).
+    //
+    // The auditor's findings used to go nowhere. It was measuring exactly the
+    // things Gemini needed in order to change its mind — "this phrase is
+    // prose in a figure slot", "this beat draws two narrative lines", "this
+    // label cannot be drawn legibly at any size" — and the loop fed back only
+    // Gemini's own prose verdict, so the concrete defects were never stated
+    // to the thing that could fix them. They got fixed by hand in the
+    // renderer instead, which teaches the renderer to tolerate bad direction
+    // and lets the direction stay bad.
+    //
+    // Only DIRECTION_QUALITY and PLAN_COMPLIANCE are forwarded (see
+    // GEMINI_FIXABLE in local-visual-auditor.js). RENDER_TECHNICAL stays out:
+    // Gemini cannot fix a renderer bug by rewriting a phrase, and asking it
+    // to would produce a workaround instead of a fix.
+    const nextCorrections = writeMergedCorrections(runId, channelId, scriptPath, geminiReport, qa.localAudit, attempt);
+    if (!nextCorrections) {
+      // Nothing concrete to change. Re-planning here would just re-roll the
+      // planner's randomness and burn ~3 minutes, so accept this render and
+      // report the verdict honestly rather than pretending a retry happened.
+      console.log(`Gemini says ${pipelineVerdict} but produced no actionable corrections — not spending another attempt.`);
+      return {
+        skipped: false, ok: true, outputPath: result.outputPath, attempt,
+        geminiVerdict, qaGatePass: qa.gatePass, unresolvedVerdict: pipelineVerdict,
+      };
+    }
+    correctionsPath = nextCorrections;
     if (existsSync(result.outputPath)) {
       try { rmSync(result.outputPath); } catch {}
     }

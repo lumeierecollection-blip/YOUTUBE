@@ -4,12 +4,22 @@
 # Architecture: each channel has its own independent lane — discover → research
 # → script → TTS → thumbnail → render → publish — all within one workflow.
 # fail-fast: false means one channel's failure never cancels the others.
+#
+# SUPERSEDED by daily-pipeline-v2.yml (prep/render split) as of the
+# 2026-09 architecture change described in CLAUDE.md. This monolith has
+# been failing 100% of the time at the "Discover topic" step for every
+# channel in every recent scheduled run (verified via `gh run view`), and
+# because it shared v2's cron ("0 6 * * *") and its channel set, it was
+# also racing v2 for the same data/topic-log.json push on every firing —
+# a second source of the "Push conflict — retrying" churn seen in v2's
+# Reserve topic step. Schedule trigger removed so it stops firing and
+# racing; workflow_dispatch is left in case anyone needs to run this
+# specific lane by hand. Delete the file outright once v2 has proven
+# stable for a while.
 
 name: Daily Pipeline — Autonomous
 
 on:
-  schedule:
-    - cron: "0 6 * * *"
   workflow_dispatch:
     inputs:
       dry_run:

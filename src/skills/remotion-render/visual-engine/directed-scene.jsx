@@ -1,7 +1,33 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame, Easing } from "remotion";
+// Audio comes from remotion CORE, not @remotion/media.
+//
+// The first version of this imported { Audio } from "@remotion/media",
+// copying motion-graphics.jsx. Run 35270296837 then failed every render
+// with `TypeError: Cannot read properties of undefined (reading
+// '_currentValue')` — a React context read against an undefined context,
+// which is what happens when a satellite package resolves its own copy of
+// remotion and looks for a context the mounted provider never created.
+// motion-graphics.jsx gets away with it because DirectedShorts is the
+// default engine and that path is effectively unexercised.
+//
+// remotion's core Audio is version-locked with the provider that mounts the
+// context, so it cannot desynchronise.
+//
+// `staged` from render.js is a BOOLEAN flag, not a path: stageAudio()
+// copies the voiceover to ./vo.mp3 and audio.js static-imports it, so
+// currentAudio is the actual bundled source.
+import { AbsoluteFill, useCurrentFrame, Easing, staticFile, Audio } from "remotion";
+import { currentAudio } from "../audio.js";
 import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
+import {
+  fitSingleLine, estimateEmWidth,
+  TYPO_SAFE_WIDTH_FRACTION, TYPO_LINE_HEIGHT,
+} from "../visual/narrative-typography.js";
+import {
+  ensureTextContrast, contrastRatio,
+  TEXT_TARGET_CONTRAST, ACCENT_TEXT_TARGET_CONTRAST,
+} from "../visual/scene-text.js";
 
 const CANVAS_W = 1080;
 const CANVAS_H = 1920;
@@ -62,56 +88,98 @@ function editorialColors(colors, rawPalette) {
     const [r, g, b] = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
     return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   };
+  // TRUE WCAG 2.1 relative-luminance contrast — the SAME formula the render
+  // gate (scripts/frame-audit.js, COL-23) measures with. The previous
+  // simplified (0.299R+.587G+.114B)/255 ratio disagreed with WCAG by enough
+  // that a "subdued" it rated >=4.5 measured only ~4.1 WCAG at the gate, so
+  // de-emphasized labels drawn in ed.subdued failed frame-audit on some
+  // channels (ch2: glyph rgb(116,116,137), 4.10:1). Selecting subdued with
+  // this formula and a safety margin keeps ed.subdued genuinely legible.
+  const chan = (c) => (c / 255 <= 0.03928 ? c / 255 / 12.92 : Math.pow((c / 255 + 0.055) / 1.055, 2.4));
+  const relLum = (h) => {
+    const [r, g, b] = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+    return 0.2126 * chan(r) + 0.7152 * chan(g) + 0.0722 * chan(b);
+  };
   const contrastRatio = (a, b) => {
-    const la = lum(a) + 0.05, lb = lum(b) + 0.05;
-    return la > lb ? la / lb : lb / la;
+    const [hi, lo] = [relLum(a), relLum(b)].sort((p, q) => q - p);
+    return (hi + 0.05) / (lo + 0.05);
   };
   const all = [...rawPalette.primary, ...rawPalette.secondary];
   const sorted = [...all].sort((a, b) => lum(a) - lum(b));
   const bgColor = sorted[0];
-  const subdued = all.find((c) => {
-    return contrastRatio(c, bgColor) >= 4.5 && lum(c) < 0.7 && c !== colors.accent;
-  }) || sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.6))];
-  const safeSubdued = contrastRatio(subdued, bgColor) >= 4.5
-    ? subdued : (all.find((c) => contrastRatio(c, bgColor) >= 4.5) || sorted[sorted.length - 1]);
+  const brightest = sorted[sorted.length - 1];
+  // Margin over the 4.5 AA floor absorbs anti-aliasing (thin-glyph cores
+  // measure a touch below the flat colour). Prefer the DIMMEST palette
+  // colour that still clears the margin so subdued stays de-emphasized;
+  // if nothing does, fall back to the brightest colour (always legible).
+  const SUBDUED_MARGIN = 5.5;
+  const subduedCandidates = all
+    .filter((c) => c !== colors.accent && contrastRatio(c, bgColor) >= SUBDUED_MARGIN)
+    .sort((a, b) => lum(a) - lum(b));
+  const safeSubdued = subduedCandidates[0] || brightest;
+
+  // TEXT ROLES vs FILL ROLES — these are not interchangeable.
+  //
+  // `accent` stays exactly as the channel declared it: it fills bars,
+  // rules and strike-throughs, which are large solid areas whose sampled
+  // colour is their real colour.
+  //
+  // `accentText` is the same hue raised until it clears
+  // ACCENT_TEXT_TARGET_CONTRAST, because a GLYPH's sampled colour is not
+  // its fill colour — anti-aliased edges and yuv420p chroma subsampling
+  // pull it down by up to ~22% (see ANTIALIAS_SAMPLE_RATIO). Run
+  // 35261545735 failed the gate on exactly this: ch2's declared #F5536B is
+  // 5.74:1 flat and PASSES, but the same fill sampled 4.47:1 as a headline
+  // glyph and 5.60:1 as a larger one. Giving glyphs headroom fixes the
+  // render; relaxing the gate would only hide it.
+  const accentText = ensureTextContrast(colors.accent, bgColor, ACCENT_TEXT_TARGET_CONTRAST);
+  // Quiet text (eyebrows, ticks, units) is de-emphasised by COLOUR, never
+  // by alpha — a translucent bright fill is what produced the 2.30:1
+  // rgb(77,77,87) violation. Validated to the same glyph-aware target.
+  const quietText = ensureTextContrast(safeSubdued, bgColor, TEXT_TARGET_CONTRAST);
   return {
     bg: bgColor,
     depth: sorted[1] || sorted[0],
-    surface: sorted[sorted.length - 1],
-    text: sorted[sorted.length - 1],
+    surface: brightest,
+    text: brightest,
     textDark: sorted[0],
     accent: colors.accent,
-    subdued: safeSubdued,
+    accentText,
+    subdued: quietText,
+    quiet: quietText,
   };
 }
 
 /* ── Text layout ────────────────────────────────────────────────────── */
 
-const LH = 1.18;
+// De-emphasized labels (eyebrows, annotations) are drawn in ed.subdued at
+// FULL opacity, never in translucent ed.text. paletteRoles guarantees
+// ed.subdued clears WCAG AA 4.5:1 against the channel ground. Translucent
+// white was the old approach and it failed frame-audit (COL-23) on
+// near-black channels: a thin, small, letter-spaced monospace glyph at
+// even 0.62 opacity never reaches full pixel coverage, so its anti-aliased
+// cores composite to ~rgb(71) on #000 (2.2:1) — below AA. A solid subdued
+// colour has opaque cores that measure at the colour's own luminance.
+
+// LH/emW now come from visual/narrative-typography.js so the planner, the
+// renderer and the local auditor all measure text the same way.
+const LH = TYPO_LINE_HEIGHT;
 const MAX_SZ = 140;
 const MIN_SZ = 28;
-const WIDE = new Set("MWQ@%".split(""));
-const NARROW = new Set("IJ1.,';:!|-".split(""));
-const emW = (s) => [...String(s)].reduce((w, c) => w + (WIDE.has(c) ? 0.88 : NARROW.has(c) ? 0.3 : 0.62), 0);
+const emW = estimateEmWidth;
 
-function layoutWords(words, maxW, maxH) {
-  const ems = words.map((w) => emW(w) + 0.28);
-  const totalEm = ems.reduce((a, b) => a + b, 0);
-  const singleSz = Math.min(MAX_SZ, maxW / totalEm, maxH / LH);
-  if (singleSz >= MIN_SZ) return { rows: [words], size: Math.max(MIN_SZ, singleSz) };
-  const mid = Math.ceil(words.length / 2);
-  const row1 = words.slice(0, mid);
-  const row2 = words.slice(mid);
-  const em1 = row1.reduce((s, w) => s + emW(w) + 0.28, 0);
-  const em2 = row2.reduce((s, w) => s + emW(w) + 0.28, 0);
-  const widestEm = Math.max(em1, em2);
-  const sz2 = Math.min(MAX_SZ, maxW / widestEm, maxH / (LH * 2));
-  return { rows: [row1, row2], size: Math.max(MIN_SZ, sz2) };
-}
+// layoutWords() — the old 1-or-2-row layout — is deliberately GONE. Its
+// two-row fallback produced the "headline + supporting line" structure that
+// narrative typography prohibits. TypographyScene now uses fitSingleLine(),
+// which guarantees exactly one line and condenses instead of shrinking.
 
 function fitFontSize(text, maxW, maxSz, minSz) {
+  // Fit wins over the min-size floor (same rule as layoutWords): the size
+  // is never allowed to exceed the value that fits maxW, so a long label
+  // can't overflow its box. The floor only applies when it still fits.
   const em = emW(text);
-  return Math.max(minSz || MIN_SZ, Math.min(maxSz || MAX_SZ, maxW / Math.max(0.5, em)));
+  const fit = maxW / Math.max(0.5, em);
+  return Math.min(fit, Math.max(minSz || 18, Math.min(maxSz || MAX_SZ, fit)));
 }
 
 function findObj(objects, ...hints) {
@@ -204,13 +272,13 @@ function FuelGauge({ cx, cy, r, fill, label, reading, readingOpacity, ed, font }
       {reading && (
         <text x={cx} y={cy + r * 0.45} textAnchor="middle"
           fontFamily={`${font}, monospace`} fontWeight={900}
-          fontSize={Math.min(72, r * 0.38)} fill={ed.accent}
+          fontSize={Math.min(72, r * 0.38)} fill={ed.accentText}
           fontVariantNumeric="tabular-nums" opacity={readingOpacity ?? 1}>{reading}</text>
       )}
       {label && (
         <text x={cx} y={cy + r * 0.65} textAnchor="middle"
           fontFamily={`${font}, sans-serif`} fontWeight={600}
-          fontSize={22} fill={ed.text} opacity={0.5}
+          fontSize={22} fill={ed.subdued}
           letterSpacing={4}>{label}</text>
       )}
     </g>
@@ -284,7 +352,7 @@ function StatisticCallout({ x, y, value, label, source, ed, font, highlighted, o
       {source && (
         <text x={x + 18} y={y + 16}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={13} fill={ed.text} opacity={0.5} letterSpacing={3}>{source}</text>
+          fontSize={13} fill={ed.subdued} letterSpacing={3}>{source}</text>
       )}
       <text x={x + 18} y={valueY}
         fontFamily={`${font}, sans-serif`} fontWeight={900}
@@ -293,7 +361,7 @@ function StatisticCallout({ x, y, value, label, source, ed, font, highlighted, o
       {label && (
         <text x={x + 18} y={labelY}
           fontFamily={`${font}, sans-serif`} fontWeight={500}
-          fontSize={20} fill={ed.text} opacity={0.55}>{label}</text>
+          fontSize={20} fill={ed.quiet}>{label}</text>
       )}
     </g>
   );
@@ -325,12 +393,16 @@ function BudgetBar({ x, y, w, h, segments, broken, consumed, ed, font }) {
               <>
                 <text x={segX + (isConsumed ? growW : segW) / 2} y={y + h / 2 - 2} textAnchor="middle"
                   fontFamily={`${font}, sans-serif`} fontWeight={800}
-                  fontSize={Math.min(22, segW * 0.22)} fill={ed.text} opacity={opacity * 0.85}>
+                  fontSize={Math.min(22, segW * 0.22)} fill={ed.text} opacity={opacity}>
                   {seg.label}
                 </text>
+                {/* Solid ed.quiet, not ed.text at 0.65. These labels sit on
+                    the page ground over a 0.3-alpha bar, so the constant
+                    multiplier put them in the same failure class as the
+                    2.30:1 violation (COL-24). */}
                 <text x={segX + (isConsumed ? growW : segW) / 2} y={y + h / 2 + 18} textAnchor="middle"
                   fontFamily={`${font}, sans-serif`} fontWeight={600}
-                  fontSize={Math.min(16, segW * 0.16)} fill={ed.text} opacity={opacity * 0.65}>
+                  fontSize={Math.min(16, segW * 0.16)} fill={ed.quiet} opacity={opacity}>
                   {seg.pct}
                 </text>
               </>
@@ -417,60 +489,93 @@ function DocumentPage({ x, y, w, h, title, lineCount, highlight, torn, ed, font 
 
 function TypographyScene({ beat, p, local, ed, font, scene }) {
   const ease = easeFor(scene.mechanism, beat.emotional_weight);
-  const headline = beat.text || "";
-  if (!headline) return null;
+  const phrase = beat.text || "";
+  if (!phrase) return null;
 
-  const allWords = headline.split(/\s+/);
-  const { rows, size } = layoutWords(allWords, SAFE_W * 0.9, SAFE_H * 0.48);
+  // NARRATIVE TYPOGRAPHY, not headline typography. The renderer's guarantee:
+  // exactly ONE line, centred in the safe area, always inside the safe width.
+  // fitSingleLine() (visual/narrative-typography.js) picks a size that cannot
+  // make the line wider than the budget, and when a phrase would only fit by
+  // shrinking below the readable floor it CONDENSES the phrase instead — the
+  // direction's "rewrite rather than shrink until tiny" rule. The previous
+  // implementation called layoutWords(), which fell back to TWO stacked rows
+  // (headline + supporting line) for anything long; that structure is exactly
+  // what this visual language prohibits, so it is gone.
+  const fit = fitSingleLine(phrase, SAFE_W * TYPO_SAFE_WIDTH_FRACTION, SAFE_H * 0.42);
+  const size = fit.size;
+  const line = fit.text;
+  if (!line) return null;
   const emphSet = new Set((scene.typography?.emphasis_words || []).map((w) => w.toLowerCase()));
-  const isQuestion = scene.typography?.style === "question";
+  const isQuestion = scene.typography?.style === "question" || /\?\s*$/.test(line);
   const isImperative = scene.typography?.style === "imperative";
 
+  // enterP still drives the slide-up entrance transform below — that's
+  // real motion, not a duplicate of the beat crossfade. Its old partner
+  // fadeOut (and the matching one in every other scene in this file) used
+  // to ALSO multiply this container's opacity, stacking with the outer
+  // per-beat tOpacity crossfade in DirectedScene. Two independent fades
+  // compounding multiplicatively (e.g. 0.08 outer x 0.03 scene-level ≈
+  // 0.003 combined) produced the near-black frames confirmed by real pixel
+  // sampling of production QA frames and reproduced in isolation via
+  // scripts/diag-render-frames.mjs (frame at local=1 of a beat: combined
+  // opacity 0.003, pure black; local=75 mid-beat: opacity 1, renders
+  // correctly). DirectedScene's tOpacity is the single beat-transition
+  // fade now; every scene renders at full opacity internally.
   const enterP = ease(clamp01(local / 14));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
   const holdP = clamp01((local - 14) / 20);
 
-  // Anchor to top-third: gives the vertical canvas room to breathe below
-  const anchorY = S.top + SAFE_H * 0.22;
-
   return (
+    // CENTRED BY DEFAULT — horizontally across the safe width and vertically
+    // within the usable safe region. Narrative emphasis sits at the optical
+    // centre of the frame; it is not a lower third, a title card or a
+    // top-anchored headline. The whole phrase translates as ONE object
+    // (TYP-08: no per-word/karaoke animation) — emphasis is carried by
+    // colour, never by animating individual words independently.
     <div style={{
-      position: "absolute", left: S.left, width: SAFE_W,
-      top: anchorY,
-      opacity: enterP * (1 - fadeOut),
-      transform: `translateY(${(1 - enterP) * size * 0.35}px)`,
+      position: "absolute",
+      left: S.left, width: SAFE_W,
+      top: S.top, height: SAFE_H,
+      display: "flex", alignItems: "center", justifyContent: "center",
+      transform: `translateY(${(1 - enterP) * size * 0.28}px)`,
     }}>
-      {rows.map((row, ri) => (
-        <div key={ri} style={{
-          whiteSpace: "nowrap", overflow: "visible",
+      <div style={{
+        display: "flex", flexDirection: "column", alignItems: "center",
+        maxWidth: SAFE_W * TYPO_SAFE_WIDTH_FRACTION,
+      }}>
+        <div style={{
+          // nowrap + a fitted size = one line that cannot wrap or overflow.
+          whiteSpace: "nowrap",
+          textAlign: "center",
           fontFamily: `${font}, sans-serif`,
           fontWeight: isImperative ? 900 : 800,
-          fontSize: size, lineHeight: LH,
+          fontSize: size, lineHeight: TYPO_LINE_HEIGHT,
           letterSpacing: -size * 0.022,
           fontStyle: isQuestion ? "italic" : "normal",
+          color: ed.text,
         }}>
-          {row.map((word, wi) => {
+          {line.split(" ").map((word, wi, arr) => {
             const isEmph = emphSet.has(word.toLowerCase().replace(/[^a-z0-9]/g, ""));
-            const emphScale = isEmph && holdP > 0 ? 1 + holdP * 0.04 : 1;
             return (
-              <span key={wi} style={{
-                display: "inline-block", marginRight: size * 0.22,
-                color: isEmph ? ed.accent : ed.text,
-                transform: `scale(${emphScale})`,
-                transformOrigin: "bottom left",
-              }}>{word}</span>
+              // ed.accentText, not ed.accent: this is a GLYPH, so it needs
+              // headroom for its own anti-aliased edges. This span is HTML
+              // rather than SVG, which is why it survived the first sweep of
+              // `fill={ed.accent}` text nodes — run 35264622891 frame-03
+              // still sampled rgb(182,78,106) = 3.92:1 from exactly here.
+              <span key={wi} style={{ color: isEmph ? ed.accentText : ed.text }}>
+                {word}{wi < arr.length - 1 ? " " : ""}
+              </span>
             );
           })}
         </div>
-      ))}
-      {/* Accent rule below text — grounds it without boxing it */}
-      {holdP > 0.3 && (
-        <div style={{
-          marginTop: size * 0.4,
-          width: `${holdP * 48}px`, height: 3,
-          background: ed.accent, opacity: 0.7,
-        }} />
-      )}
+        {/* Accent rule under the phrase — grounds it without boxing it. */}
+        {holdP > 0.3 && (
+          <div style={{
+            marginTop: size * 0.34,
+            width: `${holdP * 48}px`, height: 3,
+            background: ed.accent, opacity: 0.7,
+          }} />
+        )}
+      </div>
     </div>
   );
 }
@@ -500,18 +605,23 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
   const beneathObj = beneath !== surface ? beneath : (objs[1] || {});
 
   const surfaceLabel = surface.label || beat.visual_headline || "";
-  const matCats = {
-    money: ["HOUSING COSTS", "FOOD & ESSENTIALS", "TRANSPORT"],
-    fuel:  ["GASOLINE", "ENERGY BILLS", "TRANSPORT"],
-    food:  ["GROCERIES", "DINING", "PRODUCE"],
-    housing: ["RENT", "UTILITIES", "INSURANCE"],
-  };
-  const categories = beneathObj.categories || matCats[scene.material] || ["SEGMENT 1", "SEGMENT 2", "SEGMENT 3"];
+  // Only render category LABELS the plan actually supplied (from real
+  // researched breakdown data). This scene must never invent category names
+  // or statistics: it used to fall back to hard-coded budgeting categories
+  // (nonsensical on a fraud/geopolitics channel) or generic "SEGMENT 1/2/3",
+  // and it printed fabricated "88% / 76% / 64%" percentages derived from a
+  // layout constant — invented numbers presented as data, which violates
+  // the repo's no-fabrication rule (CLAUDE.md). Absent real categories the
+  // reveal is drawn as unlabeled magnitude strips (a qualitative "there is
+  // more beneath the headline" gesture that asserts no specific figure).
+  const realCategories = Array.isArray(beneathObj.categories) && beneathObj.categories.length
+    ? beneathObj.categories.slice(0, 3)
+    : null;
+  const stripCount = realCategories ? realCategories.length : 3;
 
   const enterP = ease(clamp01(p / 0.22));
   // revealP: surface slides up, reality slides up from below
   const revealP = ease(clamp01((p - 0.30) / 0.38));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   // Official figure: large text, anchored to upper canvas
   const surfSz = fitFontSize(surfaceLabel, SAFE_W * 0.82, 120, 36);
@@ -519,21 +629,27 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
   const surfSlideY = -revealP * SAFE_H * 0.18;
 
   // Reality items: full-width strips descending from midpoint
-  const stripH = Math.min(90, (SAFE_H * 0.52) / Math.max(1, categories.length + 0.5));
+  const stripH = Math.min(90, (SAFE_H * 0.52) / Math.max(1, stripCount + 0.5));
   const stripGap = 14;
   const stripsTop = SAFE_H * 0.46;
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
 
       {/* SURFACE: official figure as large raw text — no card */}
       <g transform={`translate(0, ${surfSlideY})`} opacity={enterP * (1 - revealP * 0.5)}>
-        <text x={24} y={SAFE_H * 0.08}
-          fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={12} fill={ed.text} opacity={0.45} letterSpacing={5}>
-          {(scene.subject || "REPORTED FIGURE").toUpperCase()}
-        </text>
+        {/* No "REPORTED FIGURE" fallback and no .toUpperCase(): the first
+            invents on-screen content, the second manufactures the
+            shouted-caps headline register TYP-09 bans from a normally-cased
+            plan value. Drawn only when the plan supplied a subject. */}
+        {scene.subject && (
+          <text x={24} y={SAFE_H * 0.08}
+            fontFamily={`${font}, monospace`} fontWeight={500}
+            fontSize={12} fill={ed.subdued} letterSpacing={5}>
+            {scene.subject}
+          </text>
+        )}
         <text x={24} y={SAFE_H * 0.08 + surfSz * LH}
           fontFamily={`${font}, sans-serif`} fontWeight={900}
           fontSize={surfSz} fill={ed.text} fontVariantNumeric="tabular-nums">
@@ -549,41 +665,44 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
           stroke={ed.accent} strokeWidth={3} opacity={revealP * 0.6} />
       )}
 
-      {/* REALITY: full-width strips — no rounded corners, just raw shapes */}
-      {revealP > 0 && categories.map((cat, i) => {
+      {/* REALITY: descending full-width strips of decreasing length — a
+          qualitative "layers beneath the surface" visual. Strip length
+          encodes relative magnitude only; NO numeric percentage is drawn
+          (that would be a fabricated statistic). A label is drawn only when
+          the plan supplied a real one. */}
+      {revealP > 0 && Array.from({ length: stripCount }).map((_, i) => {
+        const cat = realCategories ? realCategories[i] : null;
         const catP = ease(clamp01((revealP - i * 0.14) / 0.4));
         const stripY = stripsTop + i * (stripH + stripGap);
-        // Vary the fill width per category to show relative magnitude
         const fillRatio = 0.88 - i * 0.12;
         return (
           <g key={i} opacity={catP}>
-            {/* Strip background: full-width, raw rectangle */}
             <rect x={0} y={stripY} width={SAFE_W * fillRatio * catP} height={stripH}
               fill={ed.accent} opacity={i === 0 ? 0.9 : 0.6 - i * 0.1} />
-            {/* Label integrated into strip */}
-            <text x={18} y={stripY + stripH * 0.62}
-              fontFamily={`${font}, sans-serif`} fontWeight={700}
-              fontSize={Math.min(22, stripH * 0.38)} fill={ed.bg} opacity={catP}>
-              {cat}
-            </text>
-            {/* Percentage at right edge */}
-            <text x={SAFE_W * fillRatio * catP - 16} y={stripY + stripH * 0.62}
-              textAnchor="end"
-              fontFamily={`${font}, monospace`} fontWeight={800}
-              fontSize={Math.min(18, stripH * 0.32)} fill={ed.bg} opacity={catP * 0.9}>
-              {`${Math.round((fillRatio) * 100)}%`}
-            </text>
+            {cat && (
+              <text x={18} y={stripY + stripH * 0.62}
+                fontFamily={`${font}, sans-serif`} fontWeight={700}
+                fontSize={Math.min(22, stripH * 0.38)} fill={ed.bg} opacity={catP}>
+                {cat}
+              </text>
+            )}
           </g>
         );
       })}
 
-      {/* REALITY label — below the strips */}
-      {revealP > 0.5 && (
-        <text x={24} y={stripsTop + categories.length * (stripH + stripGap) + 36}
+      {/* Label for what the strips reveal.
+          The `|| "THE REAL PICTURE"` fallback is GONE: an invented headline
+          standing in for missing plan content is fabricated on-screen text,
+          and it is a section label besides. If the plan gave no label, the
+          strips carry the beat unlabelled. Solid ed.quiet — the old
+          constant 0.55 multiplier meant this never reached full opacity at
+          any point in the beat. */}
+      {revealP > 0.5 && beneathObj.label && (
+        <text x={24} y={stripsTop + stripCount * (stripH + stripGap) + 36}
           fontFamily={`${font}, sans-serif`} fontWeight={600}
-          fontSize={18} fill={ed.text}
-          opacity={ease(clamp01((revealP - 0.5) / 0.3)) * 0.55}>
-          {beneathObj.label || "THE REAL PICTURE"}
+          fontSize={18} fill={ed.quiet}
+          opacity={ease(clamp01((revealP - 0.5) / 0.3))}>
+          {beneathObj.label}
         </text>
       )}
     </svg>
@@ -606,17 +725,19 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
   const fallbackA = parts[0]?.trim() || "?";
   const fallbackB = parts[1]?.trim() || "?";
 
-  const enterP = ease(clamp01(p / 0.18));
   const growP = ease(clamp01((p - 0.12) / 0.52));
   const diffP = ease(clamp01((p - 0.70) / 0.22));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   const labelA = (a.label && a.label !== "A") ? a.label : fallbackA;
   const labelB = (b.label && b.label !== "B") ? b.label : fallbackB;
   const rawNameA = a.context || a.role || "";
   const rawNameB = b.context || b.role || "";
-  const nameA = (rawNameA && rawNameA !== labelA) ? rawNameA.toUpperCase().slice(0, 20) : "";
-  const nameB = (rawNameB && rawNameB !== labelB) ? rawNameB.toUpperCase().slice(0, 20) : "";
+  // Neither uppercased nor truncated: .toUpperCase() manufactures the
+  // shouted-caps register TYP-09 bans out of a normally-cased plan value,
+  // and .slice(0, 20) cuts mid-word. A name too long for its column is
+  // DIRECTION_QUALITY and the auditor says so.
+  const nameA = (rawNameA && rawNameA !== labelA) ? rawNameA : "";
+  const nameB = (rawNameB && rawNameB !== labelB) ? rawNameB : "";
 
   const parseNum = (label, ctx) => {
     const fromLabel = parseFloat(String(label).replace(/[^0-9.]/g, ""));
@@ -651,7 +772,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * enterP }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
 
       {/* Column A (shorter/first value) */}
       {colAH > 0 && (
@@ -672,7 +793,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
       <text x={colAX + colW / 2} y={baseline + 28}
         textAnchor="middle"
         fontFamily={`${font}, monospace`} fontWeight={600}
-        fontSize={nameSize} fill={ed.text} opacity={0.5} letterSpacing={2}>
+        fontSize={nameSize} fill={ed.subdued} letterSpacing={2}>
         {nameA || "A"}
       </text>
 
@@ -686,7 +807,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
         <text x={colBX + colW / 2} y={baseline - colBH - 16}
           textAnchor="middle"
           fontFamily={`${font}, sans-serif`} fontWeight={900}
-          fontSize={szB} fill={ed.accent}
+          fontSize={szB} fill={ed.accentText}
           fontVariantNumeric="tabular-nums" opacity={growP}>
           {labelB}
         </text>
@@ -695,7 +816,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
       <text x={colBX + colW / 2} y={baseline + 28}
         textAnchor="middle"
         fontFamily={`${font}, monospace`} fontWeight={600}
-        fontSize={nameSize} fill={ed.text} opacity={0.5} letterSpacing={2}>
+        fontSize={nameSize} fill={ed.subdued} letterSpacing={2}>
         {nameB || "B"}
       </text>
 
@@ -717,7 +838,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
             <text x={gapCenterX} y={(tallerTop + shorterTop) / 2 + 6}
               textAnchor="middle"
               fontFamily={`${font}, sans-serif`} fontWeight={900}
-              fontSize={36} fill={ed.accent}
+              fontSize={36} fill={ed.accentText}
               fontVariantNumeric="tabular-nums" opacity={diffP}>
               {diffLabel}
             </text>
@@ -747,7 +868,6 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
 
   const growP = ease(clamp01((p - 0.06) / 0.56));
   const labelP = ease(clamp01((p - 0.50) / 0.32));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   const isFuel = scene.material === "fuel" || subject.appearance === "fuel_gauge";
   const isFood = scene.material === "food" || subject.appearance === "receipt";
@@ -755,20 +875,16 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
   if (isFuel) {
     return (
       <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-        style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+        style={{ position: "absolute", left: S.left, top: S.top }}>
+        {/* No "GASOLINE" fallback on `label`: an invented label for
+            whatever the topic happens to be is fabricated on-screen
+            content. If the plan gave no label, the gauge reads unlabelled. */}
         <FuelGauge
           cx={SAFE_W / 2} cy={SAFE_H * 0.44} r={SAFE_W * 0.40}
-          fill={growP * 0.90} label={subject.label || "GASOLINE"}
+          fill={growP * 0.90} label={subject.label || ""}
           reading={labelP > 0.2 ? (magnitude.label || "") : ""}
           readingOpacity={labelP}
           ed={ed} font={font} />
-        {labelP > 0.5 && (
-          <text x={SAFE_W / 2} y={SAFE_H * 0.86} textAnchor="middle"
-            fontFamily={`${font}, sans-serif`} fontWeight={600}
-            fontSize={18} fill={ed.text} opacity={labelP * 0.55}>
-            {beat.original_text || beat.text || ""}
-          </text>
-        )}
       </svg>
     );
   }
@@ -781,7 +897,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
     ];
     return (
       <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-        style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+        style={{ position: "absolute", left: S.left, top: S.top }}>
         <g opacity={growP}>
           <ReceiptSheet x={SAFE_W * 0.10} y={SAFE_H * 0.04} w={SAFE_W * 0.80} h={SAFE_H * 0.76}
             items={items} total="$39.65" growth={labelP > 0.3 ? (magnitude.label || "32%") : null}
@@ -794,7 +910,18 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
   // GENERIC: vertical tower rising from baseline at the bottom.
   // The tower IS the growth. Its height encodes the value.
   const magText = magnitude.label || "";
-  const subText = (subject.label || scene.subject || "").toUpperCase().slice(0, 24);
+  // No .toUpperCase() and no .slice(24).
+  //
+  // The uppercase was the renderer MANUFACTURING the shouted-caps register
+  // narrative typography bans (TYP-09): run 35264622891 rendered
+  // "EMPLOYEES PROVE" from a normally-cased label, so a phrase could be
+  // clean in the plan and a headline on screen, and isHeadlineLike() could
+  // never catch it because it only ever sees the plan.
+  //
+  // The slice truncated mid-word at 24 chars, which mangles content rather
+  // than shortening it. A label too long for its slot is DIRECTION_QUALITY
+  // and the auditor reports it; the renderer does not quietly cut it.
+  const subText = subject.label || scene.subject || "";
 
   const colW = SAFE_W * 0.44;
   const colX = (SAFE_W - colW) / 2;
@@ -808,13 +935,13 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * ease(clamp01(p / 0.06)) }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
 
       {/* Eyebrow — what is growing */}
       {subText && (
         <text x={SAFE_W / 2} y={SAFE_H * 0.07} textAnchor="middle"
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={14} fill={ed.text} opacity={0.5} letterSpacing={4}>
+          fontSize={14} fill={ed.subdued} letterSpacing={4}>
           {subText}
         </text>
       )}
@@ -838,7 +965,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
               stroke={ed.text} strokeWidth={1} opacity={0.2} />
             <text x={colX - 26} y={ty + 5} textAnchor="end"
               fontFamily={`${font}, monospace`} fontWeight={400}
-              fontSize={12} fill={ed.text} opacity={0.3}>
+              fontSize={12} fill={ed.subdued}>
               {`${Math.round(t * 100)}%`}
             </text>
           </g>
@@ -849,20 +976,12 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
       {magText && fillH > 24 && (
         <text x={colX + colW / 2} y={colTop - 14} textAnchor="middle"
           fontFamily={`${font}, sans-serif`} fontWeight={900}
-          fontSize={magSz} fill={ed.accent}
+          fontSize={magSz} fill={ed.accentText}
           fontVariantNumeric="tabular-nums" opacity={growP}>
           {magText}
         </text>
       )}
 
-      {/* Context label below baseline */}
-      {labelP > 0.1 && (
-        <text x={SAFE_W / 2} y={baseline + 44} textAnchor="middle"
-          fontFamily={`${font}, sans-serif`} fontWeight={600}
-          fontSize={18} fill={ed.text} opacity={labelP * 0.6}>
-          {beat.original_text || beat.text || ""}
-        </text>
-      )}
     </svg>
   );
 }
@@ -875,8 +994,6 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
 
 function BreakdownScene({ beat, p, local, ed, font, scene }) {
   const ease = easeFor("STRUCTURAL_BREAKDOWN", beat.emotional_weight);
-  const fadeOut = clamp01((p - 0.92) / 0.08);
-  const buildP = ease(clamp01(p / 0.18));
   const breakP = ease(clamp01((p - 0.28) / 0.52));
   const isBudget = scene.material === "money" || /budget|fifty|thirty|twenty|50.30.20/i.test(beat.text);
 
@@ -888,25 +1005,20 @@ function BreakdownScene({ beat, p, local, ed, font, scene }) {
     ];
     return (
       <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-        style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * buildP }}>
+        style={{ position: "absolute", left: S.left, top: S.top }}>
         <text x={24} y={SAFE_H * 0.09}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={13} fill={ed.text} opacity={0.45} letterSpacing={5}>
+          fontSize={13} fill={ed.subdued} letterSpacing={5}>
           50 / 30 / 20 RULE
         </text>
         {/* Bar spans full safe width, tall enough to be the hero */}
         <BudgetBar x={0} y={SAFE_H * 0.16} w={SAFE_W} h={120}
           segments={segments} broken={breakP} ed={ed} font={font} />
-        {breakP > 0.55 && (
-          <g opacity={ease(clamp01((breakP - 0.55) / 0.3)) * 0.75}>
-            <text x={SAFE_W / 2} y={SAFE_H * 0.52} textAnchor="middle"
-              fontFamily={`${font}, sans-serif`} fontWeight={900}
-              fontSize={80} fill={ed.accent} letterSpacing={10}
-              transform={`rotate(-6, ${SAFE_W / 2}, ${SAFE_H * 0.52})`}>
-              BROKEN
-            </text>
-          </g>
-        )}
+        {/* The "BROKEN" stamp is GONE. It named the mechanism over the top
+            of the mechanism — the bar visibly fractures, so the word added
+            nothing a viewer could not already see, which is the TYP-14
+            test. It also carried a settled 0.75 alpha at 80px, the same
+            translucent-text defect as COL-24. */}
       </svg>
     );
   }
@@ -914,7 +1026,7 @@ function BreakdownScene({ beat, p, local, ed, font, scene }) {
   const subject = scene.subject || "CPI";
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * buildP }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
       {/* DocumentPage takes nearly the full canvas height — it IS the visual */}
       <DocumentPage x={SAFE_W * 0.06} y={SAFE_H * 0.04} w={SAFE_W * 0.88} h={SAFE_H * 0.80}
         title={subject.toUpperCase()} lineCount={12} highlight={breakP < 0.35}
@@ -938,7 +1050,6 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
 
   const enterP = ease(clamp01(p / 0.28));
   const groundP = ease(clamp01((p - 0.35) / 0.30));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   if (isFood) {
     const items = [
@@ -947,7 +1058,7 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
     ];
     return (
       <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-        style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+        style={{ position: "absolute", left: S.left, top: S.top }}>
         <g opacity={enterP}>
           <ReceiptSheet x={SAFE_W * 0.08} y={SAFE_H * 0.04} w={SAFE_W * 0.84} h={SAFE_H * 0.76}
             items={items} total={label || "32%"} growth={label}
@@ -979,18 +1090,22 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
-      {/* Source eyebrow */}
-      <text x={24} y={figureTopY - 16}
-        fontFamily={`${font}, monospace`} fontWeight={500}
-        fontSize={12} fill={ed.text} opacity={enterP * 0.45} letterSpacing={5}>
-        {(scene.subject || "").toUpperCase() || "DATA"}
-      </text>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
+      {/* Source eyebrow. No "DATA" fallback (invented content) and no
+          .toUpperCase() (manufactured shouting) — same reasons as the
+          removed "REPORTED FIGURE" and "GASOLINE" fallbacks. */}
+      {scene.subject && (
+        <text x={24} y={figureTopY - 16}
+          fontFamily={`${font}, monospace`} fontWeight={500}
+          fontSize={12} fill={ed.subdued} letterSpacing={5}>
+          {scene.subject}
+        </text>
+      )}
 
       {/* THE FIGURE — the dominant visual */}
       <text x={24} y={figureBaseY}
         fontFamily={`${font}, sans-serif`} fontWeight={900}
-        fontSize={heroSz} fill={ed.accent}
+        fontSize={heroSz} fill={ed.accentText}
         fontVariantNumeric="tabular-nums"
         opacity={enterP}>
         {label}
@@ -1000,7 +1115,7 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
       {ctxLabel && (
         <text x={24} y={figureBaseY + ctxSz + 4}
           fontFamily={`${font}, sans-serif`} fontWeight={500}
-          fontSize={ctxSz} fill={ed.text} opacity={enterP * 0.6}>
+          fontSize={ctxSz} fill={ed.quiet} opacity={enterP}>
           {ctxLabel}
         </text>
       )}
@@ -1019,24 +1134,15 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
             <>
               <text x={barX} y={barY + barH + 22}
                 fontFamily={`${font}, monospace`} fontWeight={400}
-                fontSize={12} fill={ed.text} opacity={0.35}>0</text>
+                fontSize={12} fill={ed.subdued}>0</text>
               <text x={barX + barW} y={barY + barH + 22} textAnchor="end"
                 fontFamily={`${font}, monospace`} fontWeight={400}
-                fontSize={12} fill={ed.text} opacity={0.35}>100%</text>
+                fontSize={12} fill={ed.subdued}>100%</text>
             </>
           )}
         </>
       )}
 
-      {/* Context narration below the bar */}
-      {groundP > 0.5 && (
-        <text x={24} y={barY + barH + 52}
-          fontFamily={`${font}, sans-serif`} fontWeight={500}
-          fontSize={16} fill={ed.text}
-          opacity={ease(clamp01((groundP - 0.5) / 0.4)) * 0.6}>
-          {beat.original_text || ""}
-        </text>
-      )}
     </svg>
   );
 }
@@ -1058,7 +1164,6 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
   const causeP = ease(clamp01(p / 0.28));
   const connectP = ease(clamp01((p - 0.18) / 0.28));
   const effectP = ease(clamp01((p - 0.42) / 0.32));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   const causeLabel = cause.label || beat.original_text || "";
   const effectLabel = effect.label || "";
@@ -1083,21 +1188,18 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
 
       {/* CAUSE: raw text in upper canvas, no container */}
       <text x={24} y={SAFE_H * 0.08}
         fontFamily={`${font}, sans-serif`} fontWeight={700}
-        fontSize={causeSz} fill={ed.text} opacity={causeP * 0.75}>
+        fontSize={causeSz} fill={ed.quiet} opacity={causeP}>
         {causeLabel.length > 28 ? causeLabel.slice(0, 28) + "…" : causeLabel}
       </text>
 
-      {/* Eyebrow label for cause */}
-      <text x={24} y={SAFE_H * 0.08 - causeSz * 0.18}
-        fontFamily={`${font}, monospace`} fontWeight={500}
-        fontSize={11} fill={ed.text} opacity={causeP * 0.4} letterSpacing={4}>
-        CAUSE
-      </text>
+      {/* No "CAUSE" eyebrow. The arrow connector below already states the
+          causal relation visually; the word only named the mechanism for
+          the viewer (see scene-text.js ENGINE_VOCABULARY). */}
 
       {/* CONNECTOR: vertical line drawing itself downward */}
       {connectP > 0 && (
@@ -1122,14 +1224,10 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
 
       {/* EFFECT: large, accent colored, rises from lower canvas */}
       <g opacity={effectP} transform={`translate(0, ${(1 - effectP) * 28})`}>
-        <text x={24} y={effectTopY - 14}
-          fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={11} fill={ed.accent} opacity={0.6} letterSpacing={4}>
-          RESULT
-        </text>
+        {/* No "RESULT" eyebrow — same reason as the removed "CAUSE". */}
         <text x={24} y={effectTopY}
           fontFamily={`${font}, sans-serif`} fontWeight={900}
-          fontSize={effectSz} fill={ed.accent}>
+          fontSize={effectSz} fill={ed.accentText}>
           {effectLabel.length > 32 ? effectLabel.slice(0, 32) + "…" : effectLabel}
         </text>
         {/* Accent rule below effect text — grounds it */}
@@ -1155,10 +1253,8 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
   const fillRatio = consumed.final_state?.fill || 0.62;
   const consumedLabel = consumed.label || `${Math.round(fillRatio * 100)}%`;
 
-  const buildP = ease(clamp01(p / 0.12));
   const drainP = ease(clamp01((p - 0.12) / 0.48));
   const labelP = ease(clamp01((p - 0.55) / 0.28));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   // Vessel: tall rectangle, left-anchored, 80% of canvas height
   const vesselX = 24;
@@ -1167,7 +1263,6 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
   const vesselY = SAFE_H * 0.10;
 
   // Drain: from full at top, draining to (1 - fillRatio) * vesselH remaining
-  const remaining = (1 - fillRatio);  // what's left after consumption
   const drained = fillRatio;          // what's consumed
   // Fill starts at full, drains: currentFill = 1 - drainP * drained (shrinks top-down)
   const currentFillRatio = 1 - drainP * drained;
@@ -1179,18 +1274,15 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
   const labelX = vesselX + vesselW + 40;
   const labelY = SAFE_H * 0.42;
 
-  // Drain speed annotation: "< 1 MONTH"
-  const speedLabel = consumed.context || scene.subject || "";
-
-  // Tick marks on the vessel at 25/50/75/100%
-  const ticks = [0, 0.25, 0.5, 0.75, 1.0].map(t => ({
+  // Unlabelled scale marks at quarters of the vessel. No `pct` field any
+  // more — nothing prints a numeral (see the tick block below).
+  const ticks = [0, 0.25, 0.5, 0.75, 1.0].map((t) => ({
     y: vesselY + vesselH * (1 - t),
-    pct: Math.round(t * 100),
   }));
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: (1 - fadeOut) * buildP }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
 
       {/* Vessel outline — no fill, just border */}
       <rect x={vesselX} y={vesselY} width={vesselW} height={vesselH}
@@ -1200,17 +1292,23 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
       <rect x={vesselX + 2} y={currentFillY} width={vesselW - 4} height={currentFillH}
         fill={ed.accent} opacity={0.82} />
 
-      {/* Tick marks to the left of the vessel */}
+      {/* Unlabelled scale marks.
+          The numerals are GONE, for two independent reasons.
+          (1) GROUNDING: they were `Math.round(t * 100)%` against a
+              `consumed.final_state.fill` that comes from the visual plan,
+              not from research. Printing 0/25/50/75/100% axis labels and a
+              "% LEFT" readout presents a model-chosen proportion as a
+              measured statistic — the same fabricated-figure violation
+              already removed from SurfaceBeneathScene.
+          (2) GEOMETRY: anchored "end" at x=vesselX-18=6, "100%" extended
+              to roughly x=-24 — off the safe rect and off the frame, which
+              is the edgeBleed row the slop-check flagged. Run 35261545735
+              frame-02 shows the digits clipped, leaving bare "%" marks.
+          The drain still communicates proportion visually, which is this
+          mechanism's actual job; it just no longer asserts a number. */}
       {ticks.map((t, i) => (
-        <g key={i}>
-          <line x1={vesselX - 14} y1={t.y} x2={vesselX - 2} y2={t.y}
-            stroke={ed.text} strokeWidth={1.5} opacity={0.3} />
-          <text x={vesselX - 18} y={t.y + 5} textAnchor="end"
-            fontFamily={`${font}, monospace`} fontWeight={400}
-            fontSize={11} fill={ed.text} opacity={0.3}>
-            {t.pct}%
-          </text>
-        </g>
+        <line key={i} x1={vesselX - 14} y1={t.y} x2={vesselX - 2} y2={t.y}
+          stroke={ed.quiet} strokeWidth={1.5} />
       ))}
 
       {/* Drain level line: horizontal marker showing current fill */}
@@ -1219,37 +1317,28 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
           stroke={ed.accent} strokeWidth={2} opacity={0.6} />
       )}
 
-      {/* Consumed amount: large raw text, right of vessel */}
+      {/* Consumed amount, right of the vessel.
+          The "CONSUMED" eyebrow is GONE: it was a hardcoded engine-
+          vocabulary section label (see scene-text.js ENGINE_VOCABULARY),
+          and the draining vessel beside it already says "consumed".
+          The sub-line is GONE too: it was `consumed.context ||
+          scene.subject`, and scene.subject is a raw topic fragment, which
+          in run 35261545735 printed the meaningless "officers two" under
+          the figure in translucent ed.text. A label that can render a
+          sentence fragment is not a label. */}
       <g opacity={labelP} transform={`translate(0, ${(1 - labelP) * 24})`}>
-        <text x={labelX} y={SAFE_H * 0.20}
-          fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={12} fill={ed.text} opacity={0.45} letterSpacing={4}>
-          CONSUMED
-        </text>
         <text x={labelX} y={SAFE_H * 0.20 + labelSz * LH}
           fontFamily={`${font}, sans-serif`} fontWeight={900}
-          fontSize={labelSz} fill={ed.accent}
+          fontSize={labelSz} fill={ed.accentText}
           fontVariantNumeric="tabular-nums">
           {consumedLabel}
         </text>
-        {speedLabel && (
-          <text x={labelX} y={SAFE_H * 0.20 + labelSz * LH + 28}
-            fontFamily={`${font}, sans-serif`} fontWeight={500}
-            fontSize={16} fill={ed.text} opacity={0.55}>
-            {speedLabel}
-          </text>
-        )}
       </g>
 
-      {/* Remaining label near the bottom of the vessel */}
-      {drainP > 0.7 && (
-        <text x={vesselX + vesselW / 2} y={vesselY + vesselH + 24}
-          textAnchor="middle"
-          fontFamily={`${font}, monospace`} fontWeight={600}
-          fontSize={14} fill={ed.text} opacity={ease(clamp01((drainP - 0.7) / 0.3)) * 0.5}>
-          {`${Math.round(remaining * 100)}% LEFT`}
-        </text>
-      )}
+      {/* The "N% LEFT" readout is deliberately absent — same grounding
+          reason as the scale numerals above. `fillRatio` still drives the
+          drain geometry, which shows the proportion without claiming it
+          was measured. */}
     </svg>
   );
 }
@@ -1273,21 +1362,27 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
   const strikeP = ease(clamp01((p - 0.26) / 0.22));
   const divideP = ease(clamp01((p - 0.36) / 0.14));
   const showActual = ease(clamp01((p - 0.44) / 0.32));
-  const fadeOut = clamp01((p - 0.92) / 0.08);
 
   const expLabel = expected.label || "";
   const actLabel = actual.label || "";
-  // Before: relatively large but muted — it's being displaced
-  const expSz = fitFontSize(expLabel, SAFE_W - 48, Math.min(72, SAFE_H * 0.22), 24);
-  // After: larger, more prominent — this is the truth
-  const actSz = fitFontSize(actLabel, SAFE_W - 48, Math.min(96, SAFE_H * 0.30), 28);
+  // LABELS, NOT HEADLINES.
+  //
+  // These were 72px/900-weight and 96px/900-weight, which made this
+  // mechanism a two-headline text slide: run 35261545735 frame-01 rendered
+  // "The Full Encounter" over "Final Two Seconds" with three section
+  // labels and NO object at all — typography standing in for a visual,
+  // which is the one thing narrative typography must never do. The
+  // displacement below is now carried by the two state BARS; the strings
+  // label them at a size that reads as annotation, not as the beat.
+  const expSz = fitFontSize(expLabel, SAFE_W - 48, Math.min(40, SAFE_H * 0.085), 22);
+  const actSz = fitFontSize(actLabel, SAFE_W - 48, Math.min(48, SAFE_H * 0.10), 24);
 
   // Before text: upper canvas
   const beforeY = SAFE_H * 0.10;
   const beforeBaseY = beforeY + expSz * LH;
 
-  // Strike-through: sweeps across the "before" text at mid-height
-  const strikeY = beforeY + expSz * LH * 0.5;
+  // Strike-through: sweeps across the expected BAR at its mid-height
+  const strikeY = beforeY + expSz * 1.6 * 0.5;
 
   // Divide line: at mid-canvas
   const divideY = SAFE_H * 0.50;
@@ -1297,18 +1392,19 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
 
   return (
     <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}
-      style={{ position: "absolute", left: S.left, top: S.top, opacity: 1 - fadeOut }}>
+      style={{ position: "absolute", left: S.left, top: S.top }}>
 
-      {/* BEFORE STATE: raw text, upper canvas, muted */}
-      <g opacity={showExpected * (1 - strikeP * 0.35)}>
-        <text x={24} y={beforeY - 14}
-          fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={11} fill={ed.text} opacity={showExpected * 0.35} letterSpacing={4}>
-          EXPECTED
-        </text>
-        <text x={24} y={beforeBaseY}
-          fontFamily={`${font}, sans-serif`} fontWeight={700}
-          fontSize={expSz} fill={ed.text} opacity={showExpected * 0.7}>
+      {/* EXPECTED STATE: a full-width bar — the thing being displaced.
+          Its label is drawn in ed.quiet at FULL opacity. The old version
+          used ed.text at 0.7 inside a 0.65 group = 0.455 effective, which
+          composited to rgb(77,77,87) = 2.30:1 and failed the gate. Alpha
+          here animates the ENTRANCE only and settles at 1. */}
+      <g opacity={showExpected}>
+        <rect x={24} y={beforeY} width={(SAFE_W - 48) * showExpected} height={expSz * 1.6}
+          fill="none" stroke={ed.quiet} strokeWidth={2} />
+        <text x={38} y={beforeY + expSz * 1.6 * 0.5 + expSz * 0.34}
+          fontFamily={`${font}, sans-serif`} fontWeight={600}
+          fontSize={expSz} fill={ed.quiet}>
           {expLabel}
         </text>
       </g>
@@ -1325,34 +1421,23 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
           fill={ed.accent} opacity={divideP * 0.75} />
       )}
 
-      {/* AFTER STATE: rises from below, accent colored, larger */}
+      {/* ACTUAL STATE: a solid accent bar rising from below — this is the
+          displacement made visible, and it is what carries the beat. The
+          label rides on it in accent-validated text. */}
+      {/* Text stays on the PAGE ground, never knocked out of the bar:
+          frame-audit models glyph contrast against the frame's dominant
+          background, so dark knockout text on a bright bar measures as a
+          near-black glyph on a near-black ground and fails a gate it
+          should pass. The bar is a visual element beside the label. */}
       <g opacity={showActual} transform={`translate(0, ${(1 - showActual) * 32})`}>
-        <text x={24} y={afterY}
-          fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={11} fill={ed.accent} opacity={0.55} letterSpacing={4}>
-          REALITY
-        </text>
-        <text x={24} y={afterY + actSz * LH}
-          fontFamily={`${font}, sans-serif`} fontWeight={900}
-          fontSize={actSz} fill={ed.accent}>
+        <rect x={24} y={afterY} width={(SAFE_W - 48) * showActual} height={10}
+          fill={ed.accent} />
+        <text x={24} y={afterY + 10 + actSz * 1.25}
+          fontFamily={`${font}, sans-serif`} fontWeight={800}
+          fontSize={actSz} fill={ed.accentText}>
           {actLabel}
         </text>
-        {/* Accent rule below after text */}
-        <rect x={24} y={afterY + actSz * LH + 12}
-          width={showActual * 56} height={3}
-          fill={ed.accent} opacity={0.55} />
       </g>
-
-      {/* Footer annotation */}
-      {showActual > 0.5 && (
-        <text x={24} y={SAFE_H * 0.97}
-          fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={11} fill={ed.text}
-          opacity={ease(clamp01((showActual - 0.5) / 0.4)) * 0.35}
-          letterSpacing={3}>
-          EXPECTED → ACTUAL
-        </text>
-      )}
     </svg>
   );
 }
@@ -1448,7 +1533,12 @@ function MechanismScene({ beat, p, local, ed, font, scene }) {
    - Camera motion reduced to intentional levels (rule 15)
    ══════════════════════════════════════════════════════════════════════ */
 
-export function DirectedScene({ plan }) {
+/** Linear amplitude for a dBFS level (same helper as motion-graphics.jsx). */
+function dbToVolume(db) {
+  return Math.pow(10, db / 20);
+}
+
+export function DirectedScene({ plan, ttsAudioPath, hasUnderscore }) {
   const frame = useCurrentFrame();
   const colors = paletteRoles(plan.palette);
   const ed = editorialColors(colors, plan.palette);
@@ -1458,32 +1548,36 @@ export function DirectedScene({ plan }) {
   const tOpacity = transitionOpacity(beat, local, beatIndex);
 
   const prevScene = prev?.scene || {};
+  // Brief crossfade echo only: the outgoing beat lingers for the ~12-frame
+  // transition and is gone once the incoming beat settles. This is the
+  // ONLY cross-beat layer. A previous version also re-rendered the whole
+  // prior scene at 0.22 opacity for the ENTIRE duration of any beat with
+  // carries_forward set — two full compositions (both headlines included)
+  // stacked for seconds at a time. Real QA frames showed the result as
+  // muddy double-exposed text (e.g. a prior beat's headline printed across
+  // the current beat's chart), which both hurt legibility and inflated the
+  // whole-video reviewer's "headline monoculture" reading. carries_forward
+  // is honored through the crossfade continuity, not a persistent overlay.
   const showPrevEcho = prev && local < TRANSITION_FRAMES && beatIndex > 0;
   const prevEchoOpacity = showPrevEcho ? clamp01(1 - local / TRANSITION_FRAMES) * 0.4 : 0;
 
-  // carries_forward: when the current beat explicitly inherits a visual object
-  // from the prior beat, that object persists at reduced opacity throughout.
-  // This differs from the transition echo (which is always brief).
-  const carriesForward = beat.carries_forward;
-  const showPersistent = carriesForward && prev && !showPrevEcho && beatIndex > 0;
-  const persistOpacity = showPersistent ? 0.22 : 0;
-
   return (
     <AbsoluteFill style={{ backgroundColor: ed.bg }}>
-      {/* Persistent carry-forward: prior beat's visual lingers at low opacity */}
-      {showPersistent && (
-        <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: persistOpacity, pointerEvents: "none" }}>
-          {prevScene.mechanism === "TYPOGRAPHY" ? (
-            <TypographyScene beat={prev} p={1} local={prev.duration_frames}
-              ed={ed} font={plan.fonts.primary} scene={prevScene} />
-          ) : (
-            <MechanismScene beat={prev} p={1} local={prev.duration_frames}
-              ed={ed} font={plan.fonts.primary} scene={prevScene} />
-          )}
-        </div>
-      )}
+      {/* LAYERED AUDIO IDENTITY — the layer this composition never had.
+          Ordering follows the authoritative table in
+          src/skills/music-sourcing/SKILL.md:
+            VOICE    EdgeTTS narration, unity gain, always primary
+            KALIMBA  underscore bed, -24 dBFS, looped, always beneath voice
+          The kalimba renders only when public/music/underscore.mp3 is
+          present, so a missing bed degrades to voice-only rather than
+          failing the render. SFX/AMBIENCE are scheduled per-beat elsewhere
+          and are not part of this root bed. */}
+      {hasUnderscore ? (
+        <Audio src={staticFile("music/underscore.mp3")} volume={dbToVolume(-24)} loop />
+      ) : null}
+      {ttsAudioPath ? <Audio src={currentAudio} /> : null}
 
-      {/* Previous beat echo — fading out during transition */}
+      {/* Previous beat echo — fading out during the transition only */}
       {showPrevEcho && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: prevEchoOpacity }}>
           {prevScene.mechanism === "TYPOGRAPHY" ? (

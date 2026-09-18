@@ -16,6 +16,8 @@
  * The test: mute the audio. Can you still understand the idea?
  */
 
+import { condenseToPhrase, TYPO_TARGET_MAX_WORDS } from "../../visual/narrative-typography.js";
+
 const STOP = new Set(`a an the and or but of to in on at for with from by is are was were be been being
   it its this that these those as if then than so not no you your they them their he she his her we our us i
   do does did done have has had will would can could should may might must about into over under after before
@@ -763,14 +765,31 @@ export function direct(cues, options) {
     let scene;
     const directive = plan?.[i];
 
-    if (directive && directive.mechanism && directive.visual_headline) {
+    // A directed beat is honoured on its MECHANISM alone. It must NOT also
+    // require a visual_headline: under narrative typography a beat is often
+    // deliberately text-free (pure visual storytelling), and the old
+    // `&& directive.visual_headline` guard silently dropped exactly those
+    // beats into the deterministic classifier — which could then re-label
+    // them as typography. That made typography the fallback for text-free
+    // direction, the opposite of the intent (Bible TYP-10).
+    if (directive && directive.mechanism) {
       scene = applyDirective(directive, text, i, cues.length, prevScene);
       scene = randomizeScene(scene, rng);
     } else {
       scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
     }
 
-    const displayText = directive?.visual_headline || text;
+    // NARRATIVE TYPOGRAPHY, not a caption. The on-screen phrase is never the
+    // raw voiceover sentence (that is a word-for-word subtitle — Bible TYP-04
+    // — and it overflows the safe width). Gemini's directed phrase is the
+    // intent; both it and the no-directive fallback are normalised through
+    // the shared narrative-typography budget so the phrase recorded on the
+    // beat (and therefore in the render manifest the auditor reads) is the
+    // same single-line phrase the renderer will actually draw.
+    const directed = directive?.typography_direction?.phrase || directive?.visual_headline;
+    const displayText = directed
+      ? condenseToPhrase(directed, TYPO_TARGET_MAX_WORDS)
+      : condenseToPhrase(text, TYPO_TARGET_MAX_WORDS);
 
     const transition = i === 0
       ? "CUT"

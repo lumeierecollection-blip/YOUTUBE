@@ -5,6 +5,30 @@ Music for the whole-video ducked underscore bed — distinct from the
 per-beat SFX system (`sfx-sourcing/`), which is short one-shot cues, not
 a continuous bed.
 
+## Audio identity — the role hierarchy (authoritative spec)
+
+The mix has five roles, layered so the narration is always primary and the
+kalimba is a subtle organic texture, never a hammer:
+
+| Role | Source | Level | Behaviour |
+|---|---|---|---|
+| VOICE | EdgeTTS narration (`vo.mp3`) | unity (0 dBFS ref) | Always primary; everything else sits under it. |
+| MUSIC / KALIMBA | underscore bed (`public/music/underscore.mp3`) | −24 dBFS, looped | Emotional foundation. The designated track IS the Pixabay **"Kalimba"** underscore — subtle, sparse, warm, plucked. It stays beneath the voice at all times; it is not per-beat and must not compete with narration. |
+| SFX | `sfx-sourcing/` one-shots, scheduled by `visual/sound-design.js` | −30 to −38 dBFS by role | Semantic emphasis on real visual events only (a stack landing, a lock snap), capped at MAX_EVENTS_PER_BEAT with MIN_GAP_FRAMES — silence is the default. |
+| AMBIENCE | (optional bed, same slot as underscore) | under voice | Environmental continuity where a channel wants it. |
+
+Wiring (already implemented — see `render.js` `hasUnderscore` +
+`compositions/motion-graphics.jsx`): the kalimba bed renders only when
+`public/music/underscore.mp3` exists, at a conservative static −24 dBFS
+under the unity-gain voice. The visual-direction system must not push the
+music: a beat's `direction.sound` requests a semantic SFX accent (or
+`silence`), never a change to the music bed.
+
+**The one manual step to bring the kalimba back:** commit the Pixabay
+"Kalimba" MP3 to `public/music/underscore.mp3` (and the fetch-skill's
+fixed path). Automated fetch is blocked by Cloudflare Turnstile (see
+below); everything downstream already works with the file present.
+
 ## Status: automated fetch does not complete — needs one manual download
 
 `fetch-underscore.mjs` gets all the way to a real, chosen, license-

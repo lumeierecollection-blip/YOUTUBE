@@ -17,6 +17,8 @@ data/renders/**/*.webm
 data/renders/**/*-visual-report.json
 data/renders/**/*-image-gaps.json
 data/renders/**/*-image-credits.json
+data/renders/**/*-manifest.json
+data/renders/**/*-local-audit.json
 data/research/**/topic-log.json
 *.tmp
 *.bak
@@ -24,6 +26,13 @@ data/research/**/topic-log.json
 .env.local
 config/creds/
 youtubetokens.txt
+# Local plaintext OAuth client-id/secret scratch file — must NEVER be
+# tracked. Untracked and absent from history as of this rule; ignored so a
+# broad `git add` can't sweep it in. Real credentials belong only in GitHub
+# Actions secrets (CHANNEL_NN_CLIENT_ID / _CLIENT_SECRET / _REFRESH_TOKEN),
+# materialized to config/creds/ at run time (also ignored, above).
+Oauth.txt
+oauth.txt
 src/skills/remotion-render/vo.mp3
 src/skills/remotion-render/verify-out/
 src/skills/remotion-render/out/
@@ -51,6 +60,9 @@ data/asset-library/raw/
 # deliberately kept out of data/research/ so a hand-written fixture can never
 # be mistaken for a gate-passed research artifact.
 data/audit/visual-tests/
+# Scratch stills from scripts/diag-render-frames.mjs (render-layer
+# regression tool) — per-run output, never source.
+data/audit/diag-frames/
 
 # Short single-beat clips from qa-scripts/render-clip.mjs — same per-run
 # output convention as the full renders above.

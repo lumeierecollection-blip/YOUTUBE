@@ -42,6 +42,7 @@ import { narrationSections } from "../../utils/script-narration.js";
 // Visual Director — semantic treatment selection pipeline.
 // Replaces the old TYPE → VISUAL alternation with meaning-driven treatments.
 import { direct } from "./visual-engine/director/visual-director.js";
+import { sceneTextInventory } from "./visual/scene-text.js";
 
 
 
@@ -667,8 +668,23 @@ async function main() {
 
   // DirectedShorts expects { plan } as input prop.
   // All other compositions expect the legacy prop bag.
+  // DirectedShorts MUST receive the staged voiceover and the underscore
+  // flag, exactly like every other composition.
+  //
+  // It did not, and that is how the default short-form engine shipped
+  // SILENT VIDEOS. This branch passed `{ plan }` only, so ttsAudioPath and
+  // hasUnderscore never reached the component, and DirectedScene had no
+  // <Audio> element to use them with. Run 35266860427 measured the result
+  // on both channels that rendered: audio:true (Remotion still writes an
+  // AAC track) but LUFS -70 and silence spanning the entire duration —
+  // 41.4s of 41.4s, 57.7s of 57.7s. No narration, no music, no kalimba.
+  //
+  // stageAudio() above refuses to render "a silent video" and validates the
+  // mp3 exists; the check was live and passing while this branch threw the
+  // staged path away. The local auditor did report the silence, but silence
+  // was only a RISK factor, not a gate, so QA passed it.
   const props = (componentId === "DirectedShorts")
-    ? { plan: sentencePlan }
+    ? { plan: sentencePlan, ttsAudioPath: staged, hasUnderscore }
     : {
         channelId: channel.channel_id,
         style: channel.style,
@@ -698,6 +714,85 @@ async function main() {
   console.log(`Output: ${outputPath}`);
 
   await renderVideo(componentId, outputPath, frames, props, scale);
+
+  // RENDER MANIFEST — the objective record of what the renderer ACTUALLY put
+  // on screen per beat (mechanism, on-screen text, object labels, camera,
+  // timing). Written next to the .mp4 so the local-visual-auditor can do
+  // plan-compliance and monoculture checks deterministically — comparing the
+  // director's intent (visual-plan.json) against what was built — instead of
+  // paying a vision model to re-derive it from pixels. Only the DirectedShorts
+  // path carries per-beat structure; other compositions skip it.
+  if (componentId === "DirectedShorts" && Array.isArray(sentencePlan?.beats)) {
+    const fps = 30;
+    // Mechanisms that render their own object-first scene (directed-scene.jsx
+    // MechanismScene switch). Anything else falls through to TypographyScene.
+    const OBJECT_FIRST_MECHANISMS = new Set([
+      "SURFACE_AND_BENEATH", "PROPORTIONAL_OBJECTS", "PHYSICAL_GROWTH",
+      "STRUCTURAL_BREAKDOWN", "EVIDENCE_FIGURE", "ACTION_CONSEQUENCE",
+      "VISIBLE_CONSUMPTION", "STATE_CHANGE",
+    ]);
+    const manifest = {
+      video: basename(outputPath),
+      format,
+      fps,
+      width: 1080,
+      height: 1920,
+      renderScale: scale,
+      totalFrames: frames,
+      durationSec: +(frames / fps).toFixed(2),
+      generatedAt: new Date().toISOString(),
+      beats: sentencePlan.beats.map((b, i) => {
+        const scene = b.scene || {};
+        const objectLabels = (scene.objects || [])
+          .map((o) => o.label).filter((l) => l && String(l).trim());
+        const camera = (scene.shots || []).map((s) => s.camera).filter(Boolean);
+        const mechanism = b.treatment || scene.mechanism || null;
+        // `renders_typography` means "this beat routes to TypographyScene and
+        // is subject to the full one-line narrative contract". It does NOT
+        // mean "this beat is the only kind that draws text".
+        //
+        // That conflation was a real QA hole. The previous version recorded
+        // `text: []` for every object-first mechanism on the theory that only
+        // TypographyScene draws strings — but those scenes draw plenty.
+        // Run 35261545735 reported 5 of 6 beats text-free while STATE_CHANGE
+        // was rendering two headline-weight lines plus three section labels
+        // and VISIBLE_CONSUMPTION a label, a figure and a sub-line. The local
+        // auditor's typography checks therefore skipped exactly the beats
+        // that were violating them and reported "0 violations".
+        //
+        // `on_screen_text` now carries what each scene ACTUALLY draws, taken
+        // from the same TEXT_SURFACES declaration the renderer reads, so the
+        // two cannot drift. Roles let the auditor apply the right rule:
+        // "narrative" strings owe the phrase contract, "value" strings are
+        // figures and are exempt from the word budget, "banned" strings are
+        // engine vocabulary that must never have reached the screen.
+        const rendersTypography = mechanism === "TYPOGRAPHY" || !OBJECT_FIRST_MECHANISMS.has(mechanism);
+        const onScreenText = sceneTextInventory(mechanism, scene, b.text);
+        return {
+          index: i,
+          beat_id: b.beat_id,
+          start_frame: b.start_frame,
+          duration_frames: b.duration_frames,
+          start_sec: +((b.start_frame || 0) / fps).toFixed(2),
+          duration_sec: +((b.duration_frames || 0) / fps).toFixed(2),
+          mechanism,
+          renders_typography: rendersTypography,
+          text: rendersTypography ? [b.text].filter((t) => t && String(t).trim()) : [],
+          on_screen_text: onScreenText,
+          draws_text: onScreenText.length > 0,
+          narrative_text: onScreenText.filter((t) => t.role === "narrative").map((t) => t.text),
+          banned_text: onScreenText.filter((t) => t.role === "banned").map((t) => t.text),
+          objects: objectLabels,
+          camera: [...new Set(camera)],
+          carries_forward: b.carries_forward || null,
+        };
+      }),
+    };
+    const manifestPath = outputPath.replace(/\.mp4$/, "-manifest.json");
+    writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+    console.log(`Render manifest: ${manifest.beats.length} beats -> ${manifestPath}`);
+  }
+
   process.exit(0);
 }
 
