@@ -72,6 +72,17 @@
     "uploaded_at": "2026-09-18T10:27:50.223Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-18T11:27:50.223Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-18T22:18:07.916Z"
+  },
+  {
+    "video_id": "ojKY-f4RzDE",
+    "channel_id": "2",
+    "title": "Can States Impose Minimum Wage on Voluntary Detention Work…",
+    "uploaded_at": "2026-09-18T22:18:05.691Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-18T23:18:05.690Z",
     "privacy_status": "private",
     "cancelled": false
   }
