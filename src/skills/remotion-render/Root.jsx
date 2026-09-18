@@ -3,6 +3,7 @@ import { compositions as cinematicDocumentary } from "./compositions/cinematic-d
 import { compositions as minimal } from "./compositions/minimal.jsx";
 import { compositions as motionGraphics } from "./compositions/motion-graphics.jsx";
 import { compositions as directedScene } from "./visual-engine/directed-scene.jsx";
+import { compositions as composePreview } from "./ComposePreview.jsx";
 
 function RemotionRoot() {
   return (
@@ -11,6 +12,7 @@ function RemotionRoot() {
       {minimal.map(c => <Composition key={c.id} {...c} />)}
       {motionGraphics.map(c => <Composition key={c.id} {...c} />)}
       {directedScene.map(c => <Composition key={c.id} {...c} />)}
+      {composePreview.map(c => <Composition key={c.id} {...c} />)}
     </>
   );
 }
