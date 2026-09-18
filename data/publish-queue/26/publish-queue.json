@@ -28,6 +28,17 @@
     "uploaded_at": "2026-09-18T10:35:35.271Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-18T11:35:35.271Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-18T22:21:21.618Z"
+  },
+  {
+    "video_id": "N4troZ-0gjk",
+    "channel_id": "26",
+    "title": "The $69M Arizona Addiction Treatment Clinic Medicaid Fraud…",
+    "uploaded_at": "2026-09-18T22:21:19.518Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-18T23:21:19.518Z",
     "privacy_status": "private",
     "cancelled": false
   }
