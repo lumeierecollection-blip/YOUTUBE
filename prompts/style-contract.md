@@ -41,12 +41,13 @@ reveal lands, closing type) in the context JSON — follow those, not a
 generic structure.
 
 Target voiceover word counts (spoken text only):
-- `shorts`: 90–130 words (HARD CAP: 55 seconds). At motion-graphics WPM
-  this lands 35–50s. Never exceed 130 words — a short that runs over 55s
-  loses retention. Pack maximum information density into fewer words: every
-  sentence must either hook, escalate, or pay off. Cut filler ruthlessly.
-  Every word fights for its place. If removing a sentence doesn't hurt the
-  argument, the sentence shouldn't be there.
+- `shorts`: **83–112 words. This is a gate, and BOTH ends fail.**
+  Under 83 is rejected exactly as hard as over 112 — a short script does
+  not "play safe", it fails the duration gate (SCR-16) and the channel
+  produces nothing that day. Aim for the middle, around 95 words.
+  Every sentence must hook, escalate, or pay off — but do NOT hit that
+  standard by writing less. Cut filler and replace it with substance, so
+  the word count stays inside the range.
 - `longform`: match the `script_template`'s section count — a 5-section
   longform lands about 700–950 words at the style's WPM.
 Count the voiceover words before finishing; if you're outside the range,

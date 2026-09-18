@@ -34,8 +34,19 @@ const ok = (cond, msg) => {
   if (cond) { passed++; } else { failed++; console.log(`  FAIL  ${msg}`); }
 };
 
-const PROMPT = "prompts/write-script.md";
-const text = readFileSync(PROMPT, "utf8");
+// EVERY prompt the script stage sees. write-script.md is the user prompt;
+// style-contract.md is appended as the SYSTEM prompt
+// (--append-system-prompt-file in daily-pipeline-v2.yml) and so carries at
+// least as much weight.
+//
+// Checking only write-script.md was not enough. style-contract.md held a
+// THIRD budget — "shorts: 90–130 words (HARD CAP: 55 seconds)... pack
+// maximum information density into fewer words... cut filler ruthlessly" —
+// so after write-script.md was fixed the model still drifted short: ch48
+// went 71 -> 61 -> 48 words in run 35317469026 while the gate was telling
+// it to ADD words. Three sources of truth, two of them wrong.
+const PROMPTS = ["prompts/write-script.md", "prompts/style-contract.md"];
+const text = PROMPTS.map((f) => readFileSync(f, "utf8")).join("\n");
 
 /* ── What the gate actually allows, per style ────────────────────────── */
 
@@ -64,8 +75,18 @@ ok(safeLo < safeHi,
 console.log("2. The prompt advertises a range, and it is the safe one");
 {
   // Every "NN-MM words" pair the prompt states.
-  const ranges = [...text.matchAll(/(\d{2,3})\s*-\s*(\d{2,3})\s*words/g)]
-    .map((m) => [Number(m[1]), Number(m[2])]);
+  // EN DASH, not just hyphen. Both prompts write "83–112 words" with
+  // U+2013, so a hyphen-only pattern matched NOTHING in style-contract.md
+  // and this section silently checked an empty list — the guard passed
+  // while a conflicting "90–130 words (HARD CAP: 55 seconds)" budget sat in
+  // the system prompt. Caught only by reintroducing the bad budget and
+  // watching the test still pass.
+  //
+  // Ranges over 200 are longform section-word counts (e.g. 700–950), not a
+  // shorts voiceover budget, so they are excluded rather than compared.
+  const ranges = [...text.matchAll(/(\d{2,3})\s*[-–—]\s*(\d{2,4})\s*words/g)]
+    .map((m) => [Number(m[1]), Number(m[2])])
+    .filter(([, hi]) => hi <= 200);
   ok(ranges.length > 0, "the prompt states a word range at all");
 
   for (const [lo, hi] of ranges) {
@@ -84,6 +105,13 @@ console.log("2. The prompt advertises a range, and it is the safe one");
 
 console.log("3. The prompt does not push the model toward the failing edge");
 {
+  // Any phrasing that makes a SHORT script feel like the safe choice.
+  // "into fewer words" and "cut filler ruthlessly" survived in the system
+  // prompt after write-script.md was fixed, and ch48 still drifted
+  // 71 -> 61 -> 48 words while the gate told it to ADD words.
+  for (const bias of [/into fewer words/i, /cut filler ruthlessly/i, /every word fights/i]) {
+    ok(!bias.test(text), `no short-bias phrasing matching ${bias} in any script prompt`);
+  }
   ok(!/shorter is better/i.test(text),
     '"Shorter is better" is gone — it biased the model below the gate floor');
   ok(/hard gate|BLOCKER/i.test(text),
