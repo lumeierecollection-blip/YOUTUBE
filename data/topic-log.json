@@ -2118,9 +2118,14 @@
           "topic": "How NVIDIA and Palantir Automate the 1.3-Million-Part AI Supply Chain",
           "slug": "nvidia-palantir-autonomous-ai-supply-chain-infrastructure",
           "reserved_at": "2026-09-18T10:19:11.614Z"
+        },
+        {
+          "topic": "Semicon Taiwan 2026: Ultrashort-Pulse Lasers Build AI Chip Cooling",
+          "slug": "semicon-taiwan-ultrashort-pulse-laser-chip-cooling",
+          "reserved_at": "2026-09-18T22:12:16.623Z"
         }
       ],
-      "last_generated": "2026-09-18T10:19:11.614Z"
+      "last_generated": "2026-09-18T22:12:16.623Z"
     },
     "49": {
       "channel_name": "Wander Budget",
