@@ -1323,9 +1323,14 @@
           "topic": "SafeMoon CEO Braden Karony's 100-Month Prison Sentence for Crypto Fraud",
           "slug": "safemoon-ceo-braden-karony-crypto-fraud-sentencing",
           "reserved_at": "2026-09-18T01:05:35.966Z"
+        },
+        {
+          "topic": "The $1.9 Billion Tricolor Auto Lender Double-Pledging Fraud",
+          "slug": "tricolor-1-9b-auto-lender-double-pledging-fraud",
+          "reserved_at": "2026-09-18T10:16:50.641Z"
         }
       ],
-      "last_generated": "2026-09-18T01:05:35.967Z"
+      "last_generated": "2026-09-18T10:16:50.641Z"
     },
     "27": {
       "channel_name": "Trial Files",
