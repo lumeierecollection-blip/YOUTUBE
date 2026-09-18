@@ -250,9 +250,14 @@
           "topic": "The 100-Envelope Challenge: Can It Build a $5000 Emergency Fund",
           "slug": "100-envelope-challenge-emergency-fund-2026",
           "reserved_at": "2026-09-18T00:04:12.158Z"
+        },
+        {
+          "topic": "Why Debt Management Competes With Cash Flow In 2026",
+          "slug": "debt-management-competes-with-cash-flow-2026",
+          "reserved_at": "2026-09-18T01:02:58.469Z"
         }
       ],
-      "last_generated": "2026-09-18T00:04:12.158Z"
+      "last_generated": "2026-09-18T01:02:58.469Z"
     },
     "2": {
       "channel_name": "Legal Brief",
