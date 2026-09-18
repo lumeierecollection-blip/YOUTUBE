@@ -8,5 +8,15 @@
     "go_public_at": "2026-09-16T12:24:42.606Z",
     "privacy_status": "private",
     "cancelled": true
+  },
+  {
+    "video_id": "eMGUt0lrReE",
+    "channel_id": "1",
+    "title": "How Financial Outlook Shapes Where We Cut Spending in 2026",
+    "uploaded_at": "2026-09-18T10:26:42.615Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-18T11:26:42.614Z",
+    "privacy_status": "private",
+    "cancelled": true
   }
 ]
