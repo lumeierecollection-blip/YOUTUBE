@@ -39,6 +39,17 @@
     "uploaded_at": "2026-09-18T10:39:44.985Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-18T11:39:44.985Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-18T22:21:08.846Z"
+  },
+  {
+    "video_id": "7w3dCwjVtRI",
+    "channel_id": "44",
+    "title": "LinkedIn 2026 Report: Mastering Stakeholder Management",
+    "uploaded_at": "2026-09-18T22:21:07.207Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-18T23:21:07.206Z",
     "privacy_status": "private",
     "cancelled": false
   }
