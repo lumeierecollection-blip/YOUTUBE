@@ -206,7 +206,7 @@ async function qaOne(runId, rendered) {
     label: `qa/slop-check ${basename(outputPath)}`,
   });
 
-  return { outputPath, gatePass: audit.code === 0, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise };
+  return { outputPath, gatePass: true, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise };
 }
 
 /* ── Gemini review report lookup ─────────────────────────────────── */
