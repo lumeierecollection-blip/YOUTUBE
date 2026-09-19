@@ -2829,18 +2829,18 @@
       "id": 49,
       "niche": "Space Facts, Analogies, Theories & Myth Debunks",
       "style": "motion-graphics",
-      "visual_engine": "voxel",
+      "visual_engine": "vox",
       "bg_mode": "black",
       "asset_treatment": "color",
       "channel_name": "Cosmic Voxels",
-      "handle": "@cosmicvoxels",
+      "handle": "@cosmicvox",
       "tts_voice": "en-US-AndrewNeural",
       "font": "Space Grotesk",
       "estimated_rpm": "8-15",
       "google_account": "UNASSIGNED-49",
       "channel_id": "ch-49",
       "youtube_credentials_path": "config/creds/ch-49.json",
-      "description": "Weird space facts, cosmic analogies, and mind-bending theories — told through miniature voxel universes. Planets, black holes, and orbital systems you can almost touch.",
+      "description": "Weird space facts, cosmic analogies, and mind-bending theories — told through miniature vox universes. Planets, black holes, and orbital systems you can almost touch.",
       "content_pillars": [
         "weird space facts",
         "scale comparisons",
@@ -2858,7 +2858,7 @@
         "black hole",
         "cosmos",
         "space theories",
-        "voxel space"
+        "vox space"
       ],
       "colors": {
         "primary": "#05051A",
@@ -2869,7 +2869,7 @@
       "target_audience": "Science/space enthusiasts 18-45",
       "tone": "awe-inspiring-playful",
       "thumbnail_spec": {
-        "style": "voxel-cosmic",
+        "style": "vox-cosmic",
         "text_max_words": 4,
         "baseHue": 336.9,
         "accentHue": 276.9,
@@ -2895,9 +2895,9 @@
         "avg_section_length": "2-3 min"
       },
       "visual_spec": {
-        "color_grade": "deep space blues/purples with warm star highlights, voxel miniature aesthetic",
+        "color_grade": "deep space blues/purples with warm star highlights, vox miniature aesthetic",
         "b_roll_sources": [
-          "custom voxel 3D renders",
+          "custom vox 3D renders",
           "NASA public domain 4K",
           "ESA imagery",
           "Pixabay/Pexels space footage"
@@ -2914,12 +2914,12 @@
           "zoom-through-space",
           "parallax-shift",
           "cross-dissolve-cosmic",
-          "voxel-morph"
+          "vox-morph"
         ]
       },
       "creds_secret_prefix": "CHANNEL_49",
       "visual_identity": {
-        "philosophy": "Miniature physical cosmos — camera moves through a tactile voxel universe. Strong spatial depth, object interaction, environmental storytelling. Scale communicated visually, not through text.",
+        "philosophy": "Miniature physical cosmos — camera moves through a tactile vox universe. Strong spatial depth, object interaction, environmental storytelling. Scale communicated visually, not through text.",
         "environments": [
           "planetary surfaces",
           "orbital systems",
@@ -2977,7 +2977,7 @@
       "id": 50,
       "niche": "Brain, Psychology & Human Behavior",
       "style": "motion-graphics",
-      "visual_engine": "voxel",
+      "visual_engine": "vox",
       "bg_mode": "black",
       "asset_treatment": "color",
       "channel_name": "Mind Mechanics",
@@ -2988,7 +2988,7 @@
       "google_account": "UNASSIGNED-50",
       "channel_id": "ch-50",
       "youtube_credentials_path": "config/creds/ch-50.json",
-      "description": "Why your brain does what it does. Cognitive biases, memory tricks, perception illusions, and the hidden mechanics of human behavior — shown through miniature voxel worlds.",
+      "description": "Why your brain does what it does. Cognitive biases, memory tricks, perception illusions, and the hidden mechanics of human behavior — shown through miniature vox worlds.",
       "content_pillars": [
         "cognitive biases explained",
         "memory and perception",
@@ -3017,7 +3017,7 @@
       "target_audience": "Curious adults 18-45 interested in psychology",
       "tone": "insightful-curious-friendly",
       "thumbnail_spec": {
-        "style": "voxel-psychology",
+        "style": "vox-psychology",
         "text_max_words": 4,
         "baseHue": 281.7,
         "accentHue": 330,
@@ -3043,9 +3043,9 @@
         "avg_section_length": "2-3 min"
       },
       "visual_spec": {
-        "color_grade": "dark neural pathways with pink/purple synaptic highlights, voxel miniature aesthetic",
+        "color_grade": "dark neural pathways with pink/purple synaptic highlights, vox miniature aesthetic",
         "b_roll_sources": [
-          "custom voxel 3D renders",
+          "custom vox 3D renders",
           "neural pathway animations",
           "brain scan imagery",
           "psychology experiment recreations"
@@ -3062,12 +3062,12 @@
           "synapse-fire",
           "neural-morph",
           "thought-transition",
-          "voxel-reshape"
+          "vox-reshape"
         ]
       },
       "creds_secret_prefix": "CHANNEL_50",
       "visual_identity": {
-        "philosophy": "Miniature psychology worlds — camera moves through voxel environments that physically demonstrate mental processes. Characters show behaviors, environments metaphorize internal states. Cause shown through visible actions.",
+        "philosophy": "Miniature psychology worlds — camera moves through vox environments that physically demonstrate mental processes. Characters show behaviors, environments metaphorize internal states. Cause shown through visible actions.",
         "environments": [
           "neural pathway landscapes",
           "memory palace corridors",
