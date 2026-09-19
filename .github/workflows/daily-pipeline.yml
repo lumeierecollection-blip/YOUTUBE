@@ -17,6 +17,9 @@ on:
       channel_override:
         description: "Process specific channel ID only (leave empty for all)"
         required: false
+      channel_list:
+        description: "Comma-separated list of channel IDs to process (e.g. 1,2,9,26,44,48). Overrides channel_override if set."
+        required: false
 
 env:
   NODE_VERSION: "22"
@@ -123,7 +126,14 @@ jobs:
       - name: Build discovery context
         run: |
           CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
-          if [ -n "$CHANNEL_OVERRIDE" ]; then
+          CHANNEL_LIST="${{ github.event.inputs.channel_list }}"
+          if [ -n "$CHANNEL_LIST" ]; then
+            # Convert comma-separated list to JSON array and filter channels
+            node scripts/build-discovery-context.js | jq --arg ids "$CHANNEL_LIST" '
+              ($ids | split(",") | map(. | gsub("^\\s+|\\s+$"; "") | tonumber)) as $allowed |
+              .channels = [.channels[] | select(.id as $id | $allowed | index($id))]
+            ' > /tmp/context.json
+          elif [ -n "$CHANNEL_OVERRIDE" ]; then
             node scripts/build-discovery-context.js --channel "$CHANNEL_OVERRIDE" > /tmp/context.json
           else
             node scripts/build-discovery-context.js > /tmp/context.json
@@ -501,6 +511,7 @@ jobs:
   # ============================================================
   render:
     needs: research-and-script
+    if: always() && (needs.research-and-script.result == 'success' || needs.research-and-script.result == 'failure')
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -597,7 +608,7 @@ jobs:
   # ============================================================
   publish:
     needs: render
-    if: ${{ github.event.inputs.dry_run != 'true' }}
+    if: always() && needs.render.result == 'success' && github.event.inputs.dry_run != 'true'
     runs-on: ubuntu-latest
     # contents: write so the publish queue (data/publish-queue/) can be
     # committed back — the queue must persist across runs for process-queue
