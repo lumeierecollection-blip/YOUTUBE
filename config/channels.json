@@ -387,6 +387,86 @@
       "creds_secret_prefix": "CHANNEL_04"
     },
     {
+      "id": 5,
+      "niche": "Music Theory & Composition",
+      "style": "motion-graphics",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Harmony",
+      "handle": "@harmony",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-26",
+      "channel_id": "ch-26",
+      "youtube_credentials_path": "config/creds/ch-26.json",
+      "description": "Why music moves us. Harmonic progressions, rhythm patterns, and the physics of sound.",
+      "content_pillars": [
+        "harmonic progressions",
+        "rhythm patterns",
+        "acoustics",
+        "music psychology",
+        "composition techniques"
+      ],
+      "tags": [
+        "music theory",
+        "harmony",
+        "composition",
+        "sound"
+      ],
+      "colors": {
+        "primary": "#0D0A1A",
+        "secondary": "#1A1530",
+        "accent": "#F39C12",
+        "bg": "#070510"
+      },
+      "target_audience": "Music enthusiasts 18-40",
+      "tone": "passionate-educational",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Harmony unique visual approach"
+      }
+    },
+    {
+      "id": 6,
+      "niche": "Game Theory & Strategy",
+      "style": "minimal",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Nash",
+      "handle": "@nash",
+      "tts_voice": "en-US-AndrewNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-30",
+      "channel_id": "ch-30",
+      "youtube_credentials_path": "config/creds/ch-30.json",
+      "description": "Strategic thinking in everyday life. How humans make decisions when outcomes depend on others choices.",
+      "content_pillars": [
+        "strategic thinking",
+        "decision theory",
+        "nash equilibrium",
+        "evolutionary games",
+        "negotiation"
+      ],
+      "tags": [
+        "game theory",
+        "strategy",
+        "decision making",
+        "competition"
+      ],
+      "colors": {
+        "primary": "#0A0A14",
+        "secondary": "#141428",
+        "accent": "#3498DB",
+        "bg": "#05050A"
+      },
+      "target_audience": "Analytical thinkers 20-50",
+      "tone": "contemplative-precise",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Nash unique visual approach"
+      }
+    },
+    {
       "id": 7,
       "niche": "Business Case Studies (How Companies Failed)",
       "style": "cinematic-documentary",
@@ -473,6 +553,46 @@
         ]
       },
       "creds_secret_prefix": "CHANNEL_07"
+    },
+    {
+      "id": 8,
+      "niche": "Cognitive Science & Mind",
+      "style": "minimal",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Synapse",
+      "handle": "@synapse",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-50",
+      "channel_id": "ch-50",
+      "youtube_credentials_path": "config/creds/ch-50.json",
+      "description": "How the mind works. Perception, attention, memory, and the computational models of cognition.",
+      "content_pillars": [
+        "perception",
+        "attention",
+        "memory",
+        "computational models",
+        "cognitive architecture"
+      ],
+      "tags": [
+        "cognitive science",
+        "mind",
+        "perception",
+        "memory"
+      ],
+      "colors": {
+        "primary": "#0A0A14",
+        "secondary": "#141428",
+        "accent": "#8E44AD",
+        "bg": "#05050A"
+      },
+      "target_audience": "Science enthusiasts 18-50",
+      "tone": "contemplative-precise",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Synapse unique visual approach"
+      }
     },
     {
       "id": 9,
@@ -576,6 +696,46 @@
       }
     },
     {
+      "id": 10,
+      "niche": "Linguistics & Language",
+      "style": "motion-graphics",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Word Lab",
+      "handle": "@wordlab",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-31",
+      "channel_id": "ch-31",
+      "youtube_credentials_path": "config/creds/ch-31.json",
+      "description": "How language shapes thought. Etymology, grammar patterns, and the evolution of human communication.",
+      "content_pillars": [
+        "etymology",
+        "language evolution",
+        "grammar patterns",
+        "sociolinguistics",
+        "language acquisition"
+      ],
+      "tags": [
+        "linguistics",
+        "language",
+        "etymology",
+        "communication"
+      ],
+      "colors": {
+        "primary": "#1A0A14",
+        "secondary": "#331528",
+        "accent": "#E91E63",
+        "bg": "#0D050A"
+      },
+      "target_audience": "Language enthusiasts 18-45",
+      "tone": "playful-educational",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Word Lab unique visual approach"
+      }
+    },
+    {
       "id": 11,
       "niche": "Space & Astronomy Exploration",
       "style": "cinematic-documentary",
@@ -665,6 +825,206 @@
       "creds_secret_prefix": "CHANNEL_11"
     },
     {
+      "id": 12,
+      "niche": "Behavioral Economics",
+      "style": "minimal",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Rational",
+      "handle": "@rational",
+      "tts_voice": "en-US-AndrewNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-35",
+      "channel_id": "ch-35",
+      "youtube_credentials_path": "config/creds/ch-35.json",
+      "description": "Why people make irrational financial decisions. Market psychology, loss aversion, and economic behavior.",
+      "content_pillars": [
+        "market psychology",
+        "loss aversion",
+        "economic behavior",
+        "financial decision-making",
+        "nudge theory"
+      ],
+      "tags": [
+        "behavioral economics",
+        "economics",
+        "psychology",
+        "finance"
+      ],
+      "colors": {
+        "primary": "#0A0A14",
+        "secondary": "#141428",
+        "accent": "#F1C40F",
+        "bg": "#05050A"
+      },
+      "target_audience": "Financially curious 20-50",
+      "tone": "contemplative-precise",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Rational unique visual approach"
+      }
+    },
+    {
+      "id": 13,
+      "niche": "Materials Science",
+      "style": "motion-graphics",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Matter",
+      "handle": "@matter",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-39",
+      "channel_id": "ch-39",
+      "youtube_credentials_path": "config/creds/ch-39.json",
+      "description": "The stuff the world is made of. Material properties, nanotechnology, and the engineering of matter.",
+      "content_pillars": [
+        "material properties",
+        "nanotechnology",
+        "material engineering",
+        "smart materials",
+        "material science"
+      ],
+      "tags": [
+        "materials science",
+        "nanotechnology",
+        "engineering",
+        "matter"
+      ],
+      "colors": {
+        "primary": "#0D0D0D",
+        "secondary": "#1A1A1A",
+        "accent": "#E67E22",
+        "bg": "#070707"
+      },
+      "target_audience": "Science enthusiasts 18-45",
+      "tone": "playful-technical",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Matter unique visual approach"
+      }
+    },
+    {
+      "id": 14,
+      "niche": "Botany & Plant Science",
+      "style": "motion-graphics",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Photosyn",
+      "handle": "@photosyn",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-44",
+      "channel_id": "ch-44",
+      "youtube_credentials_path": "config/creds/ch-44.json",
+      "description": "The hidden life of plants. Photosynthesis, plant communication, and the ecology of green life.",
+      "content_pillars": [
+        "photosynthesis",
+        "plant communication",
+        "ecology",
+        "botanical evolution",
+        "plant biology"
+      ],
+      "tags": [
+        "botany",
+        "plants",
+        "photosynthesis",
+        "ecology"
+      ],
+      "colors": {
+        "primary": "#001A00",
+        "secondary": "#003300",
+        "accent": "#2ECC71",
+        "bg": "#000D00"
+      },
+      "target_audience": "Nature enthusiasts 18-45",
+      "tone": "gentle-educational",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Photosyn unique visual approach"
+      }
+    },
+    {
+      "id": 15,
+      "niche": "Sociology & Society",
+      "style": "minimal",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Fabric",
+      "handle": "@fabric",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-46",
+      "channel_id": "ch-46",
+      "youtube_credentials_path": "config/creds/ch-46.json",
+      "description": "How societies form, function, and fracture. Social structures, cultural trends, and collective behavior.",
+      "content_pillars": [
+        "social structures",
+        "cultural trends",
+        "collective behavior",
+        "social movements",
+        "sociological theory"
+      ],
+      "tags": [
+        "sociology",
+        "society",
+        "culture",
+        "social behavior"
+      ],
+      "colors": {
+        "primary": "#0A0A14",
+        "secondary": "#141428",
+        "accent": "#9B59B6",
+        "bg": "#05050A"
+      },
+      "target_audience": "Socially aware adults 18-50",
+      "tone": "contemplative-analytical",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Fabric unique visual approach"
+      }
+    },
+    {
+      "id": 16,
+      "niche": "Geology & Earth Science",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Stratum",
+      "handle": "@stratum",
+      "tts_voice": "en-US-AndrewNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-47",
+      "channel_id": "ch-47",
+      "youtube_credentials_path": "config/creds/ch-47.json",
+      "description": "The deep history of our planet. Rock formations, mineral deposits, and the geological forces that shape continents.",
+      "content_pillars": [
+        "rock formations",
+        "mineral deposits",
+        "geological forces",
+        "stratigraphy",
+        "plate tectonics"
+      ],
+      "tags": [
+        "geology",
+        "earth science",
+        "rocks",
+        "minerals"
+      ],
+      "colors": {
+        "primary": "#1A1500",
+        "secondary": "#332A00",
+        "accent": "#D4A017",
+        "bg": "#0D0B00"
+      },
+      "target_audience": "Earth science enthusiasts 18-55",
+      "tone": "epic-factual",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Stratum unique visual approach"
+      }
+    },
+    {
       "id": 17,
       "niche": "Epic History",
       "style": "cinematic-documentary",
@@ -751,6 +1111,326 @@
         ]
       },
       "creds_secret_prefix": "CHANNEL_17"
+    },
+    {
+      "id": 18,
+      "niche": "Ergonomics & Human Factors",
+      "style": "motion-graphics",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Fit",
+      "handle": "@fit",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-48",
+      "channel_id": "ch-48",
+      "youtube_credentials_path": "config/creds/ch-48.json",
+      "description": "Designing for the human body. Ergonomics, human factors, and the science of comfortable productivity.",
+      "content_pillars": [
+        "ergonomic design",
+        "human factors",
+        "workplace optimization",
+        "body mechanics",
+        "product design"
+      ],
+      "tags": [
+        "ergonomics",
+        "human factors",
+        "design",
+        "workplace"
+      ],
+      "colors": {
+        "primary": "#0D0D1A",
+        "secondary": "#1A1A33",
+        "accent": "#1ABC9C",
+        "bg": "#07070D"
+      },
+      "target_audience": "Design & health enthusiasts 18-45",
+      "tone": "practical-educational",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Fit unique visual approach"
+      }
+    },
+    {
+      "id": 19,
+      "niche": "Astrophysics & Stars",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Stellar",
+      "handle": "@stellar",
+      "tts_voice": "en-US-GuyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-49",
+      "channel_id": "ch-49",
+      "youtube_credentials_path": "config/creds/ch-49.json",
+      "description": "The life and death of stars. Stellar evolution, neutron stars, and the cosmic cycle of matter.",
+      "content_pillars": [
+        "stellar evolution",
+        "neutron stars",
+        "cosmic matter cycle",
+        "star formation",
+        "supernovae"
+      ],
+      "tags": [
+        "astrophysics",
+        "stars",
+        "stellar",
+        "cosmos"
+      ],
+      "colors": {
+        "primary": "#05051A",
+        "secondary": "#0A0A33",
+        "accent": "#F1C40F",
+        "bg": "#03030D"
+      },
+      "target_audience": "Space enthusiasts 18-55",
+      "tone": "awe-inspiring",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Stellar unique visual approach"
+      }
+    },
+    {
+      "id": 20,
+      "niche": "Deep Ocean & Marine Life",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Abyssal",
+      "handle": "@abyssal",
+      "tts_voice": "en-US-GuyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-20",
+      "channel_id": "ch-20",
+      "youtube_credentials_path": "config/creds/ch-20.json",
+      "description": "The deep ocean is the last unexplored frontier. Bioluminescent creatures, hydrothermal vents, and the physics of pressure.",
+      "content_pillars": [
+        "deep sea creatures",
+        "bioluminescence",
+        "ocean trenches",
+        "hydrothermal vents",
+        "pressure physics"
+      ],
+      "tags": [
+        "deep ocean",
+        "marine life",
+        "bioluminescence",
+        "ocean trenches"
+      ],
+      "colors": {
+        "primary": "#001428",
+        "secondary": "#002850",
+        "accent": "#00BFFF",
+        "bg": "#000A14"
+      },
+      "target_audience": "Ocean enthusiasts 18-45",
+      "tone": "mysterious-awe",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Abyssal unique visual approach"
+      }
+    },
+    {
+      "id": 21,
+      "niche": "Ancient History & Civilizations",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Echoes",
+      "handle": "@echoes",
+      "tts_voice": "en-US-AndrewNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-21",
+      "channel_id": "ch-21",
+      "youtube_credentials_path": "config/creds/ch-21.json",
+      "description": "Lost civilizations, ancient engineering, and the rise and fall of empires. Archaeology meets storytelling.",
+      "content_pillars": [
+        "ancient engineering",
+        "lost cities",
+        "empire rise and fall",
+        "archaeological discoveries",
+        "ancient daily life"
+      ],
+      "tags": [
+        "ancient history",
+        "civilizations",
+        "archaeology",
+        "lost cities"
+      ],
+      "colors": {
+        "primary": "#1A0F00",
+        "secondary": "#332200",
+        "accent": "#D4A017",
+        "bg": "#0D0800"
+      },
+      "target_audience": "History enthusiasts 18-60",
+      "tone": "epic-narrative",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Echoes unique visual approach"
+      }
+    },
+    {
+      "id": 22,
+      "niche": "Psychology & Behavior",
+      "style": "motion-graphics",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Mind Lab",
+      "handle": "@mindlab",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-22",
+      "channel_id": "ch-22",
+      "youtube_credentials_path": "config/creds/ch-22.json",
+      "description": "Why people do what they do. Cognitive biases, decision-making, and the hidden forces shaping behavior.",
+      "content_pillars": [
+        "cognitive biases",
+        "decision-making",
+        "social psychology",
+        "behavioral economics",
+        "emotional intelligence"
+      ],
+      "tags": [
+        "psychology",
+        "cognitive bias",
+        "human behavior",
+        "decision making"
+      ],
+      "colors": {
+        "primary": "#1A0A2E",
+        "secondary": "#2D1B4E",
+        "accent": "#9B59B6",
+        "bg": "#0D0517"
+      },
+      "target_audience": "Curious adults 18-45",
+      "tone": "insightful-curious",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Mind Lab unique visual approach"
+      }
+    },
+    {
+      "id": 23,
+      "niche": "Quantum Physics & Reality",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Quanta",
+      "handle": "@quanta",
+      "tts_voice": "en-US-GuyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-23",
+      "channel_id": "ch-23",
+      "youtube_credentials_path": "config/creds/ch-23.json",
+      "description": "The strange rules governing reality at the smallest scale. Quantum mechanics made visual and intuitive.",
+      "content_pillars": [
+        "quantum mechanics",
+        "wave-particle duality",
+        "entanglement",
+        "superposition",
+        "quantum computing"
+      ],
+      "tags": [
+        "quantum physics",
+        "quantum mechanics",
+        "reality",
+        "physics"
+      ],
+      "colors": {
+        "primary": "#0A0A1A",
+        "secondary": "#151530",
+        "accent": "#00D4FF",
+        "bg": "#050510"
+      },
+      "target_audience": "Science enthusiasts 18-50",
+      "tone": "awe-inspiring",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Quanta unique visual approach"
+      }
+    },
+    {
+      "id": 24,
+      "niche": "Culinary Science",
+      "style": "motion-graphics",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Flavor Lab",
+      "handle": "@flavorlab",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-24",
+      "channel_id": "ch-24",
+      "youtube_credentials_path": "config/creds/ch-24.json",
+      "description": "The chemistry and physics behind cooking. Why certain flavor combinations work, and the science of taste.",
+      "content_pillars": [
+        "food chemistry",
+        "Maillard reaction",
+        "fermentation",
+        "flavor pairing",
+        "cooking physics"
+      ],
+      "tags": [
+        "culinary science",
+        "food chemistry",
+        "cooking",
+        "flavor"
+      ],
+      "colors": {
+        "primary": "#1A0500",
+        "secondary": "#330A00",
+        "accent": "#FF6B35",
+        "bg": "#0D0300"
+      },
+      "target_audience": "Food enthusiasts 18-45",
+      "tone": "playful-educational",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Flavor Lab unique visual approach"
+      }
+    },
+    {
+      "id": 25,
+      "niche": "Architecture & Design",
+      "style": "minimal",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Form",
+      "handle": "@form",
+      "tts_voice": "en-US-AndrewNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-25",
+      "channel_id": "ch-25",
+      "youtube_credentials_path": "config/creds/ch-25.json",
+      "description": "How buildings shape human experience. Structural innovation, spatial design, and architectural philosophy.",
+      "content_pillars": [
+        "structural engineering",
+        "spatial design",
+        "architectural movements",
+        "sustainable design",
+        "urban architecture"
+      ],
+      "tags": [
+        "architecture",
+        "design",
+        "buildings",
+        "structural engineering"
+      ],
+      "colors": {
+        "primary": "#0A0A0A",
+        "secondary": "#1A1A1A",
+        "accent": "#E74C3C",
+        "bg": "#050505"
+      },
+      "target_audience": "Design enthusiasts 20-50",
+      "tone": "contemplative",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Form unique visual approach"
+      }
     },
     {
       "id": 26,
@@ -852,6 +1532,126 @@
           "RELATION"
         ],
         "excluded": []
+      }
+    },
+    {
+      "id": 27,
+      "niche": "Climate Science",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Climate Now",
+      "handle": "@climatenow",
+      "tts_voice": "en-US-GuyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-27",
+      "channel_id": "ch-27",
+      "youtube_credentials_path": "config/creds/ch-27.json",
+      "description": "The science behind climate change. Data visualizations, weather systems, and environmental feedback loops.",
+      "content_pillars": [
+        "climate data",
+        "weather systems",
+        "feedback loops",
+        "environmental science",
+        "carbon cycle"
+      ],
+      "tags": [
+        "climate science",
+        "weather",
+        "environment",
+        "climate change"
+      ],
+      "colors": {
+        "primary": "#001A00",
+        "secondary": "#003300",
+        "accent": "#2ECC71",
+        "bg": "#000D00"
+      },
+      "target_audience": "Environmentally conscious 18-50",
+      "tone": "urgent-factual",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Climate Now unique visual approach"
+      }
+    },
+    {
+      "id": 28,
+      "niche": "Mythology & Folklore",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Mythos",
+      "handle": "@mythos",
+      "tts_voice": "en-US-AndrewNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-28",
+      "channel_id": "ch-28",
+      "youtube_credentials_path": "config/creds/ch-28.json",
+      "description": "Stories humans tell to explain the world. Gods, heroes, and the cultural roots of modern narratives.",
+      "content_pillars": [
+        "world mythology",
+        "creation myths",
+        "hero journeys",
+        "cultural folklore",
+        "mythological symbolism"
+      ],
+      "tags": [
+        "mythology",
+        "folklore",
+        "legends",
+        "gods"
+      ],
+      "colors": {
+        "primary": "#1A0505",
+        "secondary": "#330A0A",
+        "accent": "#C0392B",
+        "bg": "#0D0303"
+      },
+      "target_audience": "Story enthusiasts 18-55",
+      "tone": "epic-narrative",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Mythos unique visual approach"
+      }
+    },
+    {
+      "id": 29,
+      "niche": "Biotechnology",
+      "style": "motion-graphics",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Gene Lab",
+      "handle": "@genelab",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-29",
+      "channel_id": "ch-29",
+      "youtube_credentials_path": "config/creds/ch-29.json",
+      "description": "The technology rewriting life itself. CRISPR, synthetic biology, and the future of medicine.",
+      "content_pillars": [
+        "CRISPR",
+        "synthetic biology",
+        "gene therapy",
+        "biotech ethics",
+        "medical innovation"
+      ],
+      "tags": [
+        "biotechnology",
+        "CRISPR",
+        "genetics",
+        "medicine"
+      ],
+      "colors": {
+        "primary": "#001A1A",
+        "secondary": "#003333",
+        "accent": "#1ABC9C",
+        "bg": "#000D0D"
+      },
+      "target_audience": "Science enthusiasts 18-45",
+      "tone": "forward-looking",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Gene Lab unique visual approach"
       }
     },
     {
@@ -1031,6 +1831,126 @@
       "creds_secret_prefix": "CHANNEL_31"
     },
     {
+      "id": 32,
+      "niche": "Neuroscience & Brain",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Neural",
+      "handle": "@neural",
+      "tts_voice": "en-US-GuyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-32",
+      "channel_id": "ch-32",
+      "youtube_credentials_path": "config/creds/ch-32.json",
+      "description": "The brain decoded. Neural pathways, consciousness, memory formation, and the physical basis of thought.",
+      "content_pillars": [
+        "neural pathways",
+        "consciousness",
+        "memory formation",
+        "brain plasticity",
+        "cognitive neuroscience"
+      ],
+      "tags": [
+        "neuroscience",
+        "brain",
+        "consciousness",
+        "neural"
+      ],
+      "colors": {
+        "primary": "#0D001A",
+        "secondary": "#1A0033",
+        "accent": "#8E44AD",
+        "bg": "#07000D"
+      },
+      "target_audience": "Science enthusiasts 18-50",
+      "tone": "awe-inspiring",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Neural unique visual approach"
+      }
+    },
+    {
+      "id": 33,
+      "niche": "Cryptography & Security",
+      "style": "motion-graphics",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Cipher",
+      "handle": "@cipher",
+      "tts_voice": "en-US-AndrewNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-33",
+      "channel_id": "ch-33",
+      "youtube_credentials_path": "config/creds/ch-33.json",
+      "description": "The art of secret communication. Encryption, code-breaking, and the math behind digital security.",
+      "content_pillars": [
+        "encryption",
+        "code-breaking",
+        "digital security",
+        "cryptography history",
+        "mathematical ciphers"
+      ],
+      "tags": [
+        "cryptography",
+        "encryption",
+        "security",
+        "codes"
+      ],
+      "colors": {
+        "primary": "#001A0D",
+        "secondary": "#00331A",
+        "accent": "#27AE60",
+        "bg": "#000D07"
+      },
+      "target_audience": "Tech enthusiasts 18-45",
+      "tone": "mysterious-educational",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Cipher unique visual approach"
+      }
+    },
+    {
+      "id": 34,
+      "niche": "Volcanology & Earth Forces",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Magma",
+      "handle": "@magma",
+      "tts_voice": "en-US-GuyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-34",
+      "channel_id": "ch-34",
+      "youtube_credentials_path": "config/creds/ch-34.json",
+      "description": "The violent forces shaping our planet. Volcanic eruptions, tectonic plates, and the geology of destruction.",
+      "content_pillars": [
+        "volcanic eruptions",
+        "tectonic plates",
+        "geological hazards",
+        "magma dynamics",
+        "earth formation"
+      ],
+      "tags": [
+        "volcanology",
+        "volcanoes",
+        "geology",
+        "tectonic"
+      ],
+      "colors": {
+        "primary": "#1A0500",
+        "secondary": "#330A00",
+        "accent": "#E74C3C",
+        "bg": "#0D0300"
+      },
+      "target_audience": "Earth science enthusiasts 18-55",
+      "tone": "dramatic-factual",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Magma unique visual approach"
+      }
+    },
+    {
       "id": 35,
       "niche": "Real Engineering — Cinematic Tech Deep Dives",
       "style": "cinematic-documentary",
@@ -1119,6 +2039,126 @@
       "creds_secret_prefix": "CHANNEL_35"
     },
     {
+      "id": 36,
+      "niche": "Astrophotography & Space Imaging",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Pixel Cosmos",
+      "handle": "@pixelcosmos",
+      "tts_voice": "en-US-GuyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-36",
+      "channel_id": "ch-36",
+      "youtube_credentials_path": "config/creds/ch-36.json",
+      "description": "How we capture the cosmos. Telescope technology, image processing, and the art of space photography.",
+      "content_pillars": [
+        "telescope technology",
+        "image processing",
+        "space photography",
+        "deep sky imaging",
+        "astrophotography techniques"
+      ],
+      "tags": [
+        "astrophotography",
+        "space imaging",
+        "telescope",
+        "cosmos"
+      ],
+      "colors": {
+        "primary": "#05051A",
+        "secondary": "#0A0A33",
+        "accent": "#9B59B6",
+        "bg": "#03030D"
+      },
+      "target_audience": "Photography & space enthusiasts 18-50",
+      "tone": "artistic-technical",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Pixel Cosmos unique visual approach"
+      }
+    },
+    {
+      "id": 37,
+      "niche": "Urban Planning & Cities",
+      "style": "motion-graphics",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Grid",
+      "handle": "@grid",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-37",
+      "channel_id": "ch-37",
+      "youtube_credentials_path": "config/creds/ch-37.json",
+      "description": "How cities work and why they fail. Infrastructure, transportation, zoning, and the future of urban life.",
+      "content_pillars": [
+        "infrastructure",
+        "transportation",
+        "zoning",
+        "urban design",
+        "city planning"
+      ],
+      "tags": [
+        "urban planning",
+        "cities",
+        "infrastructure",
+        "transportation"
+      ],
+      "colors": {
+        "primary": "#0D0D1A",
+        "secondary": "#1A1A33",
+        "accent": "#3498DB",
+        "bg": "#07070D"
+      },
+      "target_audience": "Urban enthusiasts 18-45",
+      "tone": "analytical-creative",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Grid unique visual approach"
+      }
+    },
+    {
+      "id": 38,
+      "niche": "Paleontology & Fossils",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Strata",
+      "handle": "@strata",
+      "tts_voice": "en-US-AndrewNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-38",
+      "channel_id": "ch-38",
+      "youtube_credentials_path": "config/creds/ch-38.json",
+      "description": "Life on Earth before us. Fossil records, extinction events, and the deep time of geological history.",
+      "content_pillars": [
+        "fossil records",
+        "extinction events",
+        "geological time",
+        "prehistoric life",
+        "paleoclimate"
+      ],
+      "tags": [
+        "paleontology",
+        "fossils",
+        "prehistoric",
+        "extinction"
+      ],
+      "colors": {
+        "primary": "#1A1500",
+        "secondary": "#332A00",
+        "accent": "#D4A017",
+        "bg": "#0D0B00"
+      },
+      "target_audience": "Science enthusiasts 18-55",
+      "tone": "epic-narrative",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Strata unique visual approach"
+      }
+    },
+    {
       "id": 39,
       "niche": "Medical Case Studies — ER Mysteries",
       "style": "cinematic-documentary",
@@ -1205,6 +2245,166 @@
         ]
       },
       "creds_secret_prefix": "CHANNEL_39"
+    },
+    {
+      "id": 40,
+      "niche": "Philosophy & Ethics",
+      "style": "minimal",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Logos",
+      "handle": "@logos",
+      "tts_voice": "en-US-AndrewNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-40",
+      "channel_id": "ch-40",
+      "youtube_credentials_path": "config/creds/ch-40.json",
+      "description": "Questions humans have asked for millennia. Ethics, existence, knowledge, and the nature of reality.",
+      "content_pillars": [
+        "ethics",
+        "existentialism",
+        "epistemology",
+        "philosophy of mind",
+        "moral philosophy"
+      ],
+      "tags": [
+        "philosophy",
+        "ethics",
+        "existence",
+        "reality"
+      ],
+      "colors": {
+        "primary": "#0A0A14",
+        "secondary": "#141428",
+        "accent": "#ECF0F1",
+        "bg": "#05050A"
+      },
+      "target_audience": "Intellectually curious 18-55",
+      "tone": "contemplative-profound",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Logos unique visual approach"
+      }
+    },
+    {
+      "id": 41,
+      "niche": "Oceanography & Marine Science",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Tidal",
+      "handle": "@tidal",
+      "tts_voice": "en-US-GuyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-41",
+      "channel_id": "ch-41",
+      "youtube_credentials_path": "config/creds/ch-41.json",
+      "description": "Ocean currents, marine ecosystems, and the physics of water. How oceans regulate our planet.",
+      "content_pillars": [
+        "ocean currents",
+        "marine ecosystems",
+        "ocean physics",
+        "tidal patterns",
+        "marine conservation"
+      ],
+      "tags": [
+        "oceanography",
+        "marine science",
+        "oceans",
+        "water"
+      ],
+      "colors": {
+        "primary": "#001428",
+        "secondary": "#002850",
+        "accent": "#00CED1",
+        "bg": "#000A14"
+      },
+      "target_audience": "Ocean enthusiasts 18-50",
+      "tone": "awe-inspiring",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Tidal unique visual approach"
+      }
+    },
+    {
+      "id": 42,
+      "niche": "Acoustics & Sound Science",
+      "style": "motion-graphics",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Waveform",
+      "handle": "@waveform",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-42",
+      "channel_id": "ch-42",
+      "youtube_credentials_path": "config/creds/ch-42.json",
+      "description": "The physics of sound. Resonance, frequency, echo, and how sound shapes human experience.",
+      "content_pillars": [
+        "resonance",
+        "frequency",
+        "acoustic engineering",
+        "sound perception",
+        "vibration physics"
+      ],
+      "tags": [
+        "acoustics",
+        "sound",
+        "physics",
+        "frequency"
+      ],
+      "colors": {
+        "primary": "#0D0A1A",
+        "secondary": "#1A1533",
+        "accent": "#F1C40F",
+        "bg": "#07050D"
+      },
+      "target_audience": "Music & science enthusiasts 18-45",
+      "tone": "playful-technical",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Waveform unique visual approach"
+      }
+    },
+    {
+      "id": 43,
+      "niche": "Forensic Science",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Trace",
+      "handle": "@trace",
+      "tts_voice": "en-US-AndrewNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-43",
+      "channel_id": "ch-43",
+      "youtube_credentials_path": "config/creds/ch-43.json",
+      "description": "How science solves crimes. DNA analysis, ballistics, trace evidence, and criminalistics.",
+      "content_pillars": [
+        "DNA analysis",
+        "ballistics",
+        "trace evidence",
+        "criminalistics",
+        "forensic chemistry"
+      ],
+      "tags": [
+        "forensic science",
+        "crime",
+        "DNA",
+        "investigation"
+      ],
+      "colors": {
+        "primary": "#0A0A0A",
+        "secondary": "#1A1A1A",
+        "accent": "#E74C3C",
+        "bg": "#050505"
+      },
+      "target_audience": "True crime & science fans 18-50",
+      "tone": "tense-factual",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Trace unique visual approach"
+      }
     },
     {
       "id": 44,
@@ -1305,6 +2505,46 @@
           "TERM_DEFINE"
         ],
         "excluded": []
+      }
+    },
+    {
+      "id": 45,
+      "niche": "Aerodynamics & Flight",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Lift",
+      "handle": "@lift",
+      "tts_voice": "en-US-GuyNeural",
+      "font": "Inter",
+      "google_account": "UNASSIGNED-45",
+      "channel_id": "ch-45",
+      "youtube_credentials_path": "config/creds/ch-45.json",
+      "description": "How things fly. Aerodynamics, lift, drag, and the engineering of flight from birds to jets.",
+      "content_pillars": [
+        "aerodynamics",
+        "lift and drag",
+        "flight engineering",
+        "aviation history",
+        "bird flight"
+      ],
+      "tags": [
+        "aerodynamics",
+        "flight",
+        "aviation",
+        "engineering"
+      ],
+      "colors": {
+        "primary": "#0A0A1A",
+        "secondary": "#141433",
+        "accent": "#3498DB",
+        "bg": "#05050D"
+      },
+      "target_audience": "Aviation enthusiasts 18-50",
+      "tone": "technical-dramatic",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Lift unique visual approach"
       }
     },
     {
@@ -1877,1246 +3117,6 @@
         "sound_identity": "Soft neural crackles, thought bubble pops, heartbeat rhythms, synapse sparkles. Never compete with voice.",
         "thumbnail_identity": "Voxel brain/character scene with bold psychology fact text. Pink/purple neural highlights. Dark background.",
         "what_never": "Generic floating brain icon. Repetitive brain diagrams. Text-heavy explainers. Stock photo psychology. Clinical sterile environments."
-      }
-    },
-    {
-      "id": 20,
-      "niche": "Deep Ocean & Marine Life",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Abyssal",
-      "handle": "@abyssal",
-      "tts_voice": "en-US-GuyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-20",
-      "channel_id": "ch-20",
-      "youtube_credentials_path": "config/creds/ch-20.json",
-      "description": "The deep ocean is the last unexplored frontier. Bioluminescent creatures, hydrothermal vents, and the physics of pressure.",
-      "content_pillars": [
-        "deep sea creatures",
-        "bioluminescence",
-        "ocean trenches",
-        "hydrothermal vents",
-        "pressure physics"
-      ],
-      "tags": [
-        "deep ocean",
-        "marine life",
-        "bioluminescence",
-        "ocean trenches"
-      ],
-      "colors": {
-        "primary": "#001428",
-        "secondary": "#002850",
-        "accent": "#00BFFF",
-        "bg": "#000A14"
-      },
-      "target_audience": "Ocean enthusiasts 18-45",
-      "tone": "mysterious-awe",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Abyssal unique visual approach"
-      }
-    },
-    {
-      "id": 21,
-      "niche": "Ancient History & Civilizations",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Echoes",
-      "handle": "@echoes",
-      "tts_voice": "en-US-AndrewNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-21",
-      "channel_id": "ch-21",
-      "youtube_credentials_path": "config/creds/ch-21.json",
-      "description": "Lost civilizations, ancient engineering, and the rise and fall of empires. Archaeology meets storytelling.",
-      "content_pillars": [
-        "ancient engineering",
-        "lost cities",
-        "empire rise and fall",
-        "archaeological discoveries",
-        "ancient daily life"
-      ],
-      "tags": [
-        "ancient history",
-        "civilizations",
-        "archaeology",
-        "lost cities"
-      ],
-      "colors": {
-        "primary": "#1A0F00",
-        "secondary": "#332200",
-        "accent": "#D4A017",
-        "bg": "#0D0800"
-      },
-      "target_audience": "History enthusiasts 18-60",
-      "tone": "epic-narrative",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Echoes unique visual approach"
-      }
-    },
-    {
-      "id": 22,
-      "niche": "Psychology & Behavior",
-      "style": "motion-graphics",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Mind Lab",
-      "handle": "@mindlab",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-22",
-      "channel_id": "ch-22",
-      "youtube_credentials_path": "config/creds/ch-22.json",
-      "description": "Why people do what they do. Cognitive biases, decision-making, and the hidden forces shaping behavior.",
-      "content_pillars": [
-        "cognitive biases",
-        "decision-making",
-        "social psychology",
-        "behavioral economics",
-        "emotional intelligence"
-      ],
-      "tags": [
-        "psychology",
-        "cognitive bias",
-        "human behavior",
-        "decision making"
-      ],
-      "colors": {
-        "primary": "#1A0A2E",
-        "secondary": "#2D1B4E",
-        "accent": "#9B59B6",
-        "bg": "#0D0517"
-      },
-      "target_audience": "Curious adults 18-45",
-      "tone": "insightful-curious",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Mind Lab unique visual approach"
-      }
-    },
-    {
-      "id": 23,
-      "niche": "Quantum Physics & Reality",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Quanta",
-      "handle": "@quanta",
-      "tts_voice": "en-US-GuyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-23",
-      "channel_id": "ch-23",
-      "youtube_credentials_path": "config/creds/ch-23.json",
-      "description": "The strange rules governing reality at the smallest scale. Quantum mechanics made visual and intuitive.",
-      "content_pillars": [
-        "quantum mechanics",
-        "wave-particle duality",
-        "entanglement",
-        "superposition",
-        "quantum computing"
-      ],
-      "tags": [
-        "quantum physics",
-        "quantum mechanics",
-        "reality",
-        "physics"
-      ],
-      "colors": {
-        "primary": "#0A0A1A",
-        "secondary": "#151530",
-        "accent": "#00D4FF",
-        "bg": "#050510"
-      },
-      "target_audience": "Science enthusiasts 18-50",
-      "tone": "awe-inspiring",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Quanta unique visual approach"
-      }
-    },
-    {
-      "id": 24,
-      "niche": "Culinary Science",
-      "style": "motion-graphics",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Flavor Lab",
-      "handle": "@flavorlab",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-24",
-      "channel_id": "ch-24",
-      "youtube_credentials_path": "config/creds/ch-24.json",
-      "description": "The chemistry and physics behind cooking. Why certain flavor combinations work, and the science of taste.",
-      "content_pillars": [
-        "food chemistry",
-        "Maillard reaction",
-        "fermentation",
-        "flavor pairing",
-        "cooking physics"
-      ],
-      "tags": [
-        "culinary science",
-        "food chemistry",
-        "cooking",
-        "flavor"
-      ],
-      "colors": {
-        "primary": "#1A0500",
-        "secondary": "#330A00",
-        "accent": "#FF6B35",
-        "bg": "#0D0300"
-      },
-      "target_audience": "Food enthusiasts 18-45",
-      "tone": "playful-educational",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Flavor Lab unique visual approach"
-      }
-    },
-    {
-      "id": 25,
-      "niche": "Architecture & Design",
-      "style": "minimal",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Form",
-      "handle": "@form",
-      "tts_voice": "en-US-AndrewNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-25",
-      "channel_id": "ch-25",
-      "youtube_credentials_path": "config/creds/ch-25.json",
-      "description": "How buildings shape human experience. Structural innovation, spatial design, and architectural philosophy.",
-      "content_pillars": [
-        "structural engineering",
-        "spatial design",
-        "architectural movements",
-        "sustainable design",
-        "urban architecture"
-      ],
-      "tags": [
-        "architecture",
-        "design",
-        "buildings",
-        "structural engineering"
-      ],
-      "colors": {
-        "primary": "#0A0A0A",
-        "secondary": "#1A1A1A",
-        "accent": "#E74C3C",
-        "bg": "#050505"
-      },
-      "target_audience": "Design enthusiasts 20-50",
-      "tone": "contemplative",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Form unique visual approach"
-      }
-    },
-    {
-      "id": 26,
-      "niche": "Music Theory & Composition",
-      "style": "motion-graphics",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Harmony",
-      "handle": "@harmony",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-26",
-      "channel_id": "ch-26",
-      "youtube_credentials_path": "config/creds/ch-26.json",
-      "description": "Why music moves us. Harmonic progressions, rhythm patterns, and the physics of sound.",
-      "content_pillars": [
-        "harmonic progressions",
-        "rhythm patterns",
-        "acoustics",
-        "music psychology",
-        "composition techniques"
-      ],
-      "tags": [
-        "music theory",
-        "harmony",
-        "composition",
-        "sound"
-      ],
-      "colors": {
-        "primary": "#0D0A1A",
-        "secondary": "#1A1530",
-        "accent": "#F39C12",
-        "bg": "#070510"
-      },
-      "target_audience": "Music enthusiasts 18-40",
-      "tone": "passionate-educational",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Harmony unique visual approach"
-      }
-    },
-    {
-      "id": 27,
-      "niche": "Climate Science",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Climate Now",
-      "handle": "@climatenow",
-      "tts_voice": "en-US-GuyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-27",
-      "channel_id": "ch-27",
-      "youtube_credentials_path": "config/creds/ch-27.json",
-      "description": "The science behind climate change. Data visualizations, weather systems, and environmental feedback loops.",
-      "content_pillars": [
-        "climate data",
-        "weather systems",
-        "feedback loops",
-        "environmental science",
-        "carbon cycle"
-      ],
-      "tags": [
-        "climate science",
-        "weather",
-        "environment",
-        "climate change"
-      ],
-      "colors": {
-        "primary": "#001A00",
-        "secondary": "#003300",
-        "accent": "#2ECC71",
-        "bg": "#000D00"
-      },
-      "target_audience": "Environmentally conscious 18-50",
-      "tone": "urgent-factual",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Climate Now unique visual approach"
-      }
-    },
-    {
-      "id": 28,
-      "niche": "Mythology & Folklore",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Mythos",
-      "handle": "@mythos",
-      "tts_voice": "en-US-AndrewNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-28",
-      "channel_id": "ch-28",
-      "youtube_credentials_path": "config/creds/ch-28.json",
-      "description": "Stories humans tell to explain the world. Gods, heroes, and the cultural roots of modern narratives.",
-      "content_pillars": [
-        "world mythology",
-        "creation myths",
-        "hero journeys",
-        "cultural folklore",
-        "mythological symbolism"
-      ],
-      "tags": [
-        "mythology",
-        "folklore",
-        "legends",
-        "gods"
-      ],
-      "colors": {
-        "primary": "#1A0505",
-        "secondary": "#330A0A",
-        "accent": "#C0392B",
-        "bg": "#0D0303"
-      },
-      "target_audience": "Story enthusiasts 18-55",
-      "tone": "epic-narrative",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Mythos unique visual approach"
-      }
-    },
-    {
-      "id": 29,
-      "niche": "Biotechnology",
-      "style": "motion-graphics",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Gene Lab",
-      "handle": "@genelab",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-29",
-      "channel_id": "ch-29",
-      "youtube_credentials_path": "config/creds/ch-29.json",
-      "description": "The technology rewriting life itself. CRISPR, synthetic biology, and the future of medicine.",
-      "content_pillars": [
-        "CRISPR",
-        "synthetic biology",
-        "gene therapy",
-        "biotech ethics",
-        "medical innovation"
-      ],
-      "tags": [
-        "biotechnology",
-        "CRISPR",
-        "genetics",
-        "medicine"
-      ],
-      "colors": {
-        "primary": "#001A1A",
-        "secondary": "#003333",
-        "accent": "#1ABC9C",
-        "bg": "#000D0D"
-      },
-      "target_audience": "Science enthusiasts 18-45",
-      "tone": "forward-looking",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Gene Lab unique visual approach"
-      }
-    },
-    {
-      "id": 30,
-      "niche": "Game Theory & Strategy",
-      "style": "minimal",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Nash",
-      "handle": "@nash",
-      "tts_voice": "en-US-AndrewNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-30",
-      "channel_id": "ch-30",
-      "youtube_credentials_path": "config/creds/ch-30.json",
-      "description": "Strategic thinking in everyday life. How humans make decisions when outcomes depend on others choices.",
-      "content_pillars": [
-        "strategic thinking",
-        "decision theory",
-        "nash equilibrium",
-        "evolutionary games",
-        "negotiation"
-      ],
-      "tags": [
-        "game theory",
-        "strategy",
-        "decision making",
-        "competition"
-      ],
-      "colors": {
-        "primary": "#0A0A14",
-        "secondary": "#141428",
-        "accent": "#3498DB",
-        "bg": "#05050A"
-      },
-      "target_audience": "Analytical thinkers 20-50",
-      "tone": "contemplative-precise",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Nash unique visual approach"
-      }
-    },
-    {
-      "id": 31,
-      "niche": "Linguistics & Language",
-      "style": "motion-graphics",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Word Lab",
-      "handle": "@wordlab",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-31",
-      "channel_id": "ch-31",
-      "youtube_credentials_path": "config/creds/ch-31.json",
-      "description": "How language shapes thought. Etymology, grammar patterns, and the evolution of human communication.",
-      "content_pillars": [
-        "etymology",
-        "language evolution",
-        "grammar patterns",
-        "sociolinguistics",
-        "language acquisition"
-      ],
-      "tags": [
-        "linguistics",
-        "language",
-        "etymology",
-        "communication"
-      ],
-      "colors": {
-        "primary": "#1A0A14",
-        "secondary": "#331528",
-        "accent": "#E91E63",
-        "bg": "#0D050A"
-      },
-      "target_audience": "Language enthusiasts 18-45",
-      "tone": "playful-educational",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Word Lab unique visual approach"
-      }
-    },
-    {
-      "id": 32,
-      "niche": "Neuroscience & Brain",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Neural",
-      "handle": "@neural",
-      "tts_voice": "en-US-GuyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-32",
-      "channel_id": "ch-32",
-      "youtube_credentials_path": "config/creds/ch-32.json",
-      "description": "The brain decoded. Neural pathways, consciousness, memory formation, and the physical basis of thought.",
-      "content_pillars": [
-        "neural pathways",
-        "consciousness",
-        "memory formation",
-        "brain plasticity",
-        "cognitive neuroscience"
-      ],
-      "tags": [
-        "neuroscience",
-        "brain",
-        "consciousness",
-        "neural"
-      ],
-      "colors": {
-        "primary": "#0D001A",
-        "secondary": "#1A0033",
-        "accent": "#8E44AD",
-        "bg": "#07000D"
-      },
-      "target_audience": "Science enthusiasts 18-50",
-      "tone": "awe-inspiring",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Neural unique visual approach"
-      }
-    },
-    {
-      "id": 33,
-      "niche": "Cryptography & Security",
-      "style": "motion-graphics",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Cipher",
-      "handle": "@cipher",
-      "tts_voice": "en-US-AndrewNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-33",
-      "channel_id": "ch-33",
-      "youtube_credentials_path": "config/creds/ch-33.json",
-      "description": "The art of secret communication. Encryption, code-breaking, and the math behind digital security.",
-      "content_pillars": [
-        "encryption",
-        "code-breaking",
-        "digital security",
-        "cryptography history",
-        "mathematical ciphers"
-      ],
-      "tags": [
-        "cryptography",
-        "encryption",
-        "security",
-        "codes"
-      ],
-      "colors": {
-        "primary": "#001A0D",
-        "secondary": "#00331A",
-        "accent": "#27AE60",
-        "bg": "#000D07"
-      },
-      "target_audience": "Tech enthusiasts 18-45",
-      "tone": "mysterious-educational",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Cipher unique visual approach"
-      }
-    },
-    {
-      "id": 34,
-      "niche": "Volcanology & Earth Forces",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Magma",
-      "handle": "@magma",
-      "tts_voice": "en-US-GuyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-34",
-      "channel_id": "ch-34",
-      "youtube_credentials_path": "config/creds/ch-34.json",
-      "description": "The violent forces shaping our planet. Volcanic eruptions, tectonic plates, and the geology of destruction.",
-      "content_pillars": [
-        "volcanic eruptions",
-        "tectonic plates",
-        "geological hazards",
-        "magma dynamics",
-        "earth formation"
-      ],
-      "tags": [
-        "volcanology",
-        "volcanoes",
-        "geology",
-        "tectonic"
-      ],
-      "colors": {
-        "primary": "#1A0500",
-        "secondary": "#330A00",
-        "accent": "#E74C3C",
-        "bg": "#0D0300"
-      },
-      "target_audience": "Earth science enthusiasts 18-55",
-      "tone": "dramatic-factual",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Magma unique visual approach"
-      }
-    },
-    {
-      "id": 35,
-      "niche": "Behavioral Economics",
-      "style": "minimal",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Rational",
-      "handle": "@rational",
-      "tts_voice": "en-US-AndrewNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-35",
-      "channel_id": "ch-35",
-      "youtube_credentials_path": "config/creds/ch-35.json",
-      "description": "Why people make irrational financial decisions. Market psychology, loss aversion, and economic behavior.",
-      "content_pillars": [
-        "market psychology",
-        "loss aversion",
-        "economic behavior",
-        "financial decision-making",
-        "nudge theory"
-      ],
-      "tags": [
-        "behavioral economics",
-        "economics",
-        "psychology",
-        "finance"
-      ],
-      "colors": {
-        "primary": "#0A0A14",
-        "secondary": "#141428",
-        "accent": "#F1C40F",
-        "bg": "#05050A"
-      },
-      "target_audience": "Financially curious 20-50",
-      "tone": "contemplative-precise",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Rational unique visual approach"
-      }
-    },
-    {
-      "id": 36,
-      "niche": "Astrophotography & Space Imaging",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Pixel Cosmos",
-      "handle": "@pixelcosmos",
-      "tts_voice": "en-US-GuyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-36",
-      "channel_id": "ch-36",
-      "youtube_credentials_path": "config/creds/ch-36.json",
-      "description": "How we capture the cosmos. Telescope technology, image processing, and the art of space photography.",
-      "content_pillars": [
-        "telescope technology",
-        "image processing",
-        "space photography",
-        "deep sky imaging",
-        "astrophotography techniques"
-      ],
-      "tags": [
-        "astrophotography",
-        "space imaging",
-        "telescope",
-        "cosmos"
-      ],
-      "colors": {
-        "primary": "#05051A",
-        "secondary": "#0A0A33",
-        "accent": "#9B59B6",
-        "bg": "#03030D"
-      },
-      "target_audience": "Photography & space enthusiasts 18-50",
-      "tone": "artistic-technical",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Pixel Cosmos unique visual approach"
-      }
-    },
-    {
-      "id": 37,
-      "niche": "Urban Planning & Cities",
-      "style": "motion-graphics",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Grid",
-      "handle": "@grid",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-37",
-      "channel_id": "ch-37",
-      "youtube_credentials_path": "config/creds/ch-37.json",
-      "description": "How cities work and why they fail. Infrastructure, transportation, zoning, and the future of urban life.",
-      "content_pillars": [
-        "infrastructure",
-        "transportation",
-        "zoning",
-        "urban design",
-        "city planning"
-      ],
-      "tags": [
-        "urban planning",
-        "cities",
-        "infrastructure",
-        "transportation"
-      ],
-      "colors": {
-        "primary": "#0D0D1A",
-        "secondary": "#1A1A33",
-        "accent": "#3498DB",
-        "bg": "#07070D"
-      },
-      "target_audience": "Urban enthusiasts 18-45",
-      "tone": "analytical-creative",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Grid unique visual approach"
-      }
-    },
-    {
-      "id": 38,
-      "niche": "Paleontology & Fossils",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Strata",
-      "handle": "@strata",
-      "tts_voice": "en-US-AndrewNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-38",
-      "channel_id": "ch-38",
-      "youtube_credentials_path": "config/creds/ch-38.json",
-      "description": "Life on Earth before us. Fossil records, extinction events, and the deep time of geological history.",
-      "content_pillars": [
-        "fossil records",
-        "extinction events",
-        "geological time",
-        "prehistoric life",
-        "paleoclimate"
-      ],
-      "tags": [
-        "paleontology",
-        "fossils",
-        "prehistoric",
-        "extinction"
-      ],
-      "colors": {
-        "primary": "#1A1500",
-        "secondary": "#332A00",
-        "accent": "#D4A017",
-        "bg": "#0D0B00"
-      },
-      "target_audience": "Science enthusiasts 18-55",
-      "tone": "epic-narrative",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Strata unique visual approach"
-      }
-    },
-    {
-      "id": 39,
-      "niche": "Materials Science",
-      "style": "motion-graphics",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Matter",
-      "handle": "@matter",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-39",
-      "channel_id": "ch-39",
-      "youtube_credentials_path": "config/creds/ch-39.json",
-      "description": "The stuff the world is made of. Material properties, nanotechnology, and the engineering of matter.",
-      "content_pillars": [
-        "material properties",
-        "nanotechnology",
-        "material engineering",
-        "smart materials",
-        "material science"
-      ],
-      "tags": [
-        "materials science",
-        "nanotechnology",
-        "engineering",
-        "matter"
-      ],
-      "colors": {
-        "primary": "#0D0D0D",
-        "secondary": "#1A1A1A",
-        "accent": "#E67E22",
-        "bg": "#070707"
-      },
-      "target_audience": "Science enthusiasts 18-45",
-      "tone": "playful-technical",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Matter unique visual approach"
-      }
-    },
-    {
-      "id": 40,
-      "niche": "Philosophy & Ethics",
-      "style": "minimal",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Logos",
-      "handle": "@logos",
-      "tts_voice": "en-US-AndrewNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-40",
-      "channel_id": "ch-40",
-      "youtube_credentials_path": "config/creds/ch-40.json",
-      "description": "Questions humans have asked for millennia. Ethics, existence, knowledge, and the nature of reality.",
-      "content_pillars": [
-        "ethics",
-        "existentialism",
-        "epistemology",
-        "philosophy of mind",
-        "moral philosophy"
-      ],
-      "tags": [
-        "philosophy",
-        "ethics",
-        "existence",
-        "reality"
-      ],
-      "colors": {
-        "primary": "#0A0A14",
-        "secondary": "#141428",
-        "accent": "#ECF0F1",
-        "bg": "#05050A"
-      },
-      "target_audience": "Intellectually curious 18-55",
-      "tone": "contemplative-profound",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Logos unique visual approach"
-      }
-    },
-    {
-      "id": 41,
-      "niche": "Oceanography & Marine Science",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Tidal",
-      "handle": "@tidal",
-      "tts_voice": "en-US-GuyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-41",
-      "channel_id": "ch-41",
-      "youtube_credentials_path": "config/creds/ch-41.json",
-      "description": "Ocean currents, marine ecosystems, and the physics of water. How oceans regulate our planet.",
-      "content_pillars": [
-        "ocean currents",
-        "marine ecosystems",
-        "ocean physics",
-        "tidal patterns",
-        "marine conservation"
-      ],
-      "tags": [
-        "oceanography",
-        "marine science",
-        "oceans",
-        "water"
-      ],
-      "colors": {
-        "primary": "#001428",
-        "secondary": "#002850",
-        "accent": "#00CED1",
-        "bg": "#000A14"
-      },
-      "target_audience": "Ocean enthusiasts 18-50",
-      "tone": "awe-inspiring",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Tidal unique visual approach"
-      }
-    },
-    {
-      "id": 42,
-      "niche": "Acoustics & Sound Science",
-      "style": "motion-graphics",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Waveform",
-      "handle": "@waveform",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-42",
-      "channel_id": "ch-42",
-      "youtube_credentials_path": "config/creds/ch-42.json",
-      "description": "The physics of sound. Resonance, frequency, echo, and how sound shapes human experience.",
-      "content_pillars": [
-        "resonance",
-        "frequency",
-        "acoustic engineering",
-        "sound perception",
-        "vibration physics"
-      ],
-      "tags": [
-        "acoustics",
-        "sound",
-        "physics",
-        "frequency"
-      ],
-      "colors": {
-        "primary": "#0D0A1A",
-        "secondary": "#1A1533",
-        "accent": "#F1C40F",
-        "bg": "#07050D"
-      },
-      "target_audience": "Music & science enthusiasts 18-45",
-      "tone": "playful-technical",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Waveform unique visual approach"
-      }
-    },
-    {
-      "id": 43,
-      "niche": "Forensic Science",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Trace",
-      "handle": "@trace",
-      "tts_voice": "en-US-AndrewNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-43",
-      "channel_id": "ch-43",
-      "youtube_credentials_path": "config/creds/ch-43.json",
-      "description": "How science solves crimes. DNA analysis, ballistics, trace evidence, and criminalistics.",
-      "content_pillars": [
-        "DNA analysis",
-        "ballistics",
-        "trace evidence",
-        "criminalistics",
-        "forensic chemistry"
-      ],
-      "tags": [
-        "forensic science",
-        "crime",
-        "DNA",
-        "investigation"
-      ],
-      "colors": {
-        "primary": "#0A0A0A",
-        "secondary": "#1A1A1A",
-        "accent": "#E74C3C",
-        "bg": "#050505"
-      },
-      "target_audience": "True crime & science fans 18-50",
-      "tone": "tense-factual",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Trace unique visual approach"
-      }
-    },
-    {
-      "id": 44,
-      "niche": "Botany & Plant Science",
-      "style": "motion-graphics",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Photosyn",
-      "handle": "@photosyn",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-44",
-      "channel_id": "ch-44",
-      "youtube_credentials_path": "config/creds/ch-44.json",
-      "description": "The hidden life of plants. Photosynthesis, plant communication, and the ecology of green life.",
-      "content_pillars": [
-        "photosynthesis",
-        "plant communication",
-        "ecology",
-        "botanical evolution",
-        "plant biology"
-      ],
-      "tags": [
-        "botany",
-        "plants",
-        "photosynthesis",
-        "ecology"
-      ],
-      "colors": {
-        "primary": "#001A00",
-        "secondary": "#003300",
-        "accent": "#2ECC71",
-        "bg": "#000D00"
-      },
-      "target_audience": "Nature enthusiasts 18-45",
-      "tone": "gentle-educational",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Photosyn unique visual approach"
-      }
-    },
-    {
-      "id": 45,
-      "niche": "Aerodynamics & Flight",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Lift",
-      "handle": "@lift",
-      "tts_voice": "en-US-GuyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-45",
-      "channel_id": "ch-45",
-      "youtube_credentials_path": "config/creds/ch-45.json",
-      "description": "How things fly. Aerodynamics, lift, drag, and the engineering of flight from birds to jets.",
-      "content_pillars": [
-        "aerodynamics",
-        "lift and drag",
-        "flight engineering",
-        "aviation history",
-        "bird flight"
-      ],
-      "tags": [
-        "aerodynamics",
-        "flight",
-        "aviation",
-        "engineering"
-      ],
-      "colors": {
-        "primary": "#0A0A1A",
-        "secondary": "#141433",
-        "accent": "#3498DB",
-        "bg": "#05050D"
-      },
-      "target_audience": "Aviation enthusiasts 18-50",
-      "tone": "technical-dramatic",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Lift unique visual approach"
-      }
-    },
-    {
-      "id": 46,
-      "niche": "Sociology & Society",
-      "style": "minimal",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Fabric",
-      "handle": "@fabric",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-46",
-      "channel_id": "ch-46",
-      "youtube_credentials_path": "config/creds/ch-46.json",
-      "description": "How societies form, function, and fracture. Social structures, cultural trends, and collective behavior.",
-      "content_pillars": [
-        "social structures",
-        "cultural trends",
-        "collective behavior",
-        "social movements",
-        "sociological theory"
-      ],
-      "tags": [
-        "sociology",
-        "society",
-        "culture",
-        "social behavior"
-      ],
-      "colors": {
-        "primary": "#0A0A14",
-        "secondary": "#141428",
-        "accent": "#9B59B6",
-        "bg": "#05050A"
-      },
-      "target_audience": "Socially aware adults 18-50",
-      "tone": "contemplative-analytical",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Fabric unique visual approach"
-      }
-    },
-    {
-      "id": 47,
-      "niche": "Geology & Earth Science",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Stratum",
-      "handle": "@stratum",
-      "tts_voice": "en-US-AndrewNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-47",
-      "channel_id": "ch-47",
-      "youtube_credentials_path": "config/creds/ch-47.json",
-      "description": "The deep history of our planet. Rock formations, mineral deposits, and the geological forces that shape continents.",
-      "content_pillars": [
-        "rock formations",
-        "mineral deposits",
-        "geological forces",
-        "stratigraphy",
-        "plate tectonics"
-      ],
-      "tags": [
-        "geology",
-        "earth science",
-        "rocks",
-        "minerals"
-      ],
-      "colors": {
-        "primary": "#1A1500",
-        "secondary": "#332A00",
-        "accent": "#D4A017",
-        "bg": "#0D0B00"
-      },
-      "target_audience": "Earth science enthusiasts 18-55",
-      "tone": "epic-factual",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Stratum unique visual approach"
-      }
-    },
-    {
-      "id": 48,
-      "niche": "Ergonomics & Human Factors",
-      "style": "motion-graphics",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Fit",
-      "handle": "@fit",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-48",
-      "channel_id": "ch-48",
-      "youtube_credentials_path": "config/creds/ch-48.json",
-      "description": "Designing for the human body. Ergonomics, human factors, and the science of comfortable productivity.",
-      "content_pillars": [
-        "ergonomic design",
-        "human factors",
-        "workplace optimization",
-        "body mechanics",
-        "product design"
-      ],
-      "tags": [
-        "ergonomics",
-        "human factors",
-        "design",
-        "workplace"
-      ],
-      "colors": {
-        "primary": "#0D0D1A",
-        "secondary": "#1A1A33",
-        "accent": "#1ABC9C",
-        "bg": "#07070D"
-      },
-      "target_audience": "Design & health enthusiasts 18-45",
-      "tone": "practical-educational",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Fit unique visual approach"
-      }
-    },
-    {
-      "id": 49,
-      "niche": "Astrophysics & Stars",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Stellar",
-      "handle": "@stellar",
-      "tts_voice": "en-US-GuyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-49",
-      "channel_id": "ch-49",
-      "youtube_credentials_path": "config/creds/ch-49.json",
-      "description": "The life and death of stars. Stellar evolution, neutron stars, and the cosmic cycle of matter.",
-      "content_pillars": [
-        "stellar evolution",
-        "neutron stars",
-        "cosmic matter cycle",
-        "star formation",
-        "supernovae"
-      ],
-      "tags": [
-        "astrophysics",
-        "stars",
-        "stellar",
-        "cosmos"
-      ],
-      "colors": {
-        "primary": "#05051A",
-        "secondary": "#0A0A33",
-        "accent": "#F1C40F",
-        "bg": "#03030D"
-      },
-      "target_audience": "Space enthusiasts 18-55",
-      "tone": "awe-inspiring",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Stellar unique visual approach"
-      }
-    },
-    {
-      "id": 50,
-      "niche": "Cognitive Science & Mind",
-      "style": "minimal",
-      "bg_mode": "black",
-      "asset_treatment": "color",
-      "channel_name": "Synapse",
-      "handle": "@synapse",
-      "tts_voice": "en-US-JennyNeural",
-      "font": "Inter",
-      "google_account": "UNASSIGNED-50",
-      "channel_id": "ch-50",
-      "youtube_credentials_path": "config/creds/ch-50.json",
-      "description": "How the mind works. Perception, attention, memory, and the computational models of cognition.",
-      "content_pillars": [
-        "perception",
-        "attention",
-        "memory",
-        "computational models",
-        "cognitive architecture"
-      ],
-      "tags": [
-        "cognitive science",
-        "mind",
-        "perception",
-        "memory"
-      ],
-      "colors": {
-        "primary": "#0A0A14",
-        "secondary": "#141428",
-        "accent": "#8E44AD",
-        "bg": "#05050A"
-      },
-      "target_audience": "Science enthusiasts 18-50",
-      "tone": "contemplative-precise",
-      "estimated_rpm": "5-10",
-      "visual_identity": {
-        "philosophy": "Synapse unique visual approach"
       }
     }
   ]
