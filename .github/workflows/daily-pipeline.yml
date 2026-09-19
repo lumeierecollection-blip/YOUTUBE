@@ -377,7 +377,7 @@ jobs:
               PROMPT_FILE=prompts/write-script.md
               if [ -n "$FEEDBACK" ]; then
                 cp prompts/write-script.md /tmp/write-script-feedback.md
-                printf '\n\n## Quality gate rejected your previous script\n\n%s\n\nRewrite the FULL script JSON now, fixing exactly the problems above. Keep everything the gate did not flag identical — same research grounding, same sources_used, same structure. Return only the JSON object.\n' "$FEEDBACK" >> /tmp/write-script-feedback.md
+                printf '\n\n## Quality gate rejected your previous script\n\n%s\n\n## How to fix\n\n- SCR-03 (anchor_token): For EACH section, write the voiceover FIRST, then pick anchor_token from words that appear VERBATIM in that voiceover. Do NOT invent anchor tokens.\n- SCR-04 (PROGRESS points): PROGRESS beats need >=2 series points from numbers[]. Use at least 2 real research numbers.\n- SCR-05 (series values): Every series point value must be copied exactly from research.numbers[].value — no invented, derived, or calculated values.\n\nRewrite the FULL script JSON now, fixing exactly the problems above. Keep everything the gate did not flag identical — same research grounding, same sources_used, same structure. Return only the JSON object.\n' "$FEEDBACK" >> /tmp/write-script-feedback.md
                 PROMPT_FILE=/tmp/write-script-feedback.md
               fi
               set +e

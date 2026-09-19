@@ -18,10 +18,20 @@ provided JSON Schema exactly — nothing outside it.
 
 ## Before you finish
 
+- **anchor_token MUST be a word or phrase that appears VERBATIM in that
+  section's voiceover text.** After writing each section's voiceover, pick
+  the anchor_token FROM the voiceover words you just wrote — do not invent
+  it. Example: if voiceover says "Housing costs consume thirty-four point
+  nine percent", valid anchors are "thirty-four point nine", "percent",
+  "Housing costs". Invalid: "modification", "essentials", "allocate" (if
+  those words don't appear in the voiceover). Write the voiceover FIRST,
+  then extract the anchor from it.
 - Every value in any beat's `data.series` is one of the research's real
   `numbers[].value` entries (copied exactly, with its real unit) — never
   invented, derived, or a binary 0/1 encoding of a contrast. If it isn't
   in `numbers[]`, it must not be charted.
+- **PROGRESS beats need >=2 series points.** A PROGRESS beat with only 1
+  point is rejected. Use at least 2 real numbers from `numbers[]`.
 - Voiceover word count is inside the format range in the style contract.
 - For motion-graphics: primary archetypes 50% or more of beats, secondary
   35% or less, excluded 0%.
