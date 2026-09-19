@@ -189,4 +189,4 @@ function main() {
   }
 }
 
-const _entry = process.argv[1] || ""; if (_entry.includes("visual-beat-grouper")) { main(); }
+if (process.argv[1] && process.argv[1].includes("visual-beat-grouper.js") && !process.argv[1].includes("__tests__")) { main(); }
