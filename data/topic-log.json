@@ -70,9 +70,14 @@
           "topic": "The Pay-What-You-Can Grocery Model: How Real Stores Make It Work",
           "slug": "pay-what-you-can-grocery-model",
           "reserved_at": "2026-08-31T12:16:45.227Z"
+        },
+        {
+          "topic": "How 2026 Inflation Shapes Your 50/30/20 Budget Breakdown",
+          "slug": "2026-inflation-50-30-20-budget",
+          "reserved_at": "2026-09-19T09:27:12.326Z"
         }
       ],
-      "last_generated": "2026-09-12T14:35:59.801Z"
+      "last_generated": "2026-09-19T09:27:12.326Z"
     },
     "2": {
       "channel_name": "Legal Brief",
@@ -157,9 +162,14 @@
           "topic": "The 'Consent to Search' Trap: What Police Won't Tell You",
           "slug": "consent-search-trap-traffic-stops",
           "reserved_at": "2026-08-31T12:16:45.229Z"
+        },
+        {
+          "topic": "Supreme Court Rules on Marijuana and Gun Rights",
+          "slug": "supreme-court-marijuana-gun-rights-ruling",
+          "reserved_at": "2026-09-19T09:27:12.329Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.123Z"
+      "last_generated": "2026-09-19T09:27:12.329Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -184,9 +194,14 @@
           "topic": "Claude 4 vs GPT-5: Head-to-Head on Real Coding Projects",
           "slug": "claude-4-vs-gpt5-coding-test",
           "reserved_at": "2026-08-31T12:16:45.230Z"
+        },
+        {
+          "topic": "Artificial Analysis Intelligence Index v4.3 Tested",
+          "slug": "artificial-analysis-intelligence-index-v4-3",
+          "reserved_at": "2026-09-19T09:27:12.329Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.124Z"
+      "last_generated": "2026-09-19T09:27:12.329Z"
     },
     "4": {
       "channel_name": "Hidden Past",
@@ -221,9 +236,14 @@
           "topic": "The Lost Colony of Roanoke: What therecent digs actually revealed",
           "slug": "roanoke-lost-colony-recent-digs",
           "reserved_at": "2026-08-31T12:16:45.230Z"
+        },
+        {
+          "topic": "New Evidence Found for Hidden Chambers in Tut's Tomb",
+          "slug": "new-evidence-hidden-chambers-tuts-tomb",
+          "reserved_at": "2026-09-19T09:27:12.330Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.124Z"
+      "last_generated": "2026-09-19T09:27:12.330Z"
     },
     "5": {
       "channel_name": "Force of Nature",
@@ -260,9 +280,14 @@
           "topic": "The WeWork Fallout: How SoftBank's Vision Fund Lost $18 Billion",
           "slug": "softbank-vision-fund-wework-loss",
           "reserved_at": "2026-08-31T12:16:45.231Z"
+        },
+        {
+          "topic": "Why Nidec Is Pulling Out of Cambodia Over Border Frictions",
+          "slug": "nidec-exit-cambodia-border-conflict",
+          "reserved_at": "2026-09-19T09:27:12.330Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.125Z"
+      "last_generated": "2026-09-19T09:27:12.330Z"
     },
     "8": {
       "channel_name": "Mind Decoded",
@@ -293,9 +318,14 @@
           "topic": "The Nile Water Wars: Why Ethiopia and Egypt Are on the Brink",
           "slug": "nile-water-wars-ethiopia-egypt",
           "reserved_at": "2026-08-31T12:16:45.231Z"
+        },
+        {
+          "topic": "South China Sea Ramming Incident at Spratly Islands",
+          "slug": "south-china-sea-ramming-spratly-islands",
+          "reserved_at": "2026-09-19T09:27:12.331Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.125Z"
+      "last_generated": "2026-09-19T09:27:12.331Z"
     },
     "10": {
       "channel_name": "Double Cross",
@@ -383,9 +413,14 @@
           "topic": "The Fall of Carthage: Rome'sRival That Almost Won",
           "slug": "fall-of-carthage-rival-almost-won",
           "reserved_at": "2026-08-31T12:16:45.232Z"
+        },
+        {
+          "topic": "600-Year-Old Chimú Funerary Platform Discovered in Peru",
+          "slug": "600-year-old-chimu-funerary-platform-peru",
+          "reserved_at": "2026-09-19T09:27:12.331Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.126Z"
+      "last_generated": "2026-09-19T09:27:12.331Z"
     },
     "18": {
       "channel_name": "Brief History",
@@ -575,9 +610,14 @@
           "topic": "The Hyperloop Promise: Why Elon Musk's Transit Dream Keeps Collapsing",
           "slug": "hyperloop-promise-musk-transit-collapse",
           "reserved_at": "2026-08-31T12:16:45.234Z"
+        },
+        {
+          "topic": "What Caused the September 2026 UK Air Traffic Outage",
+          "slug": "september-2026-uk-air-traffic-outage-report",
+          "reserved_at": "2026-09-19T09:27:12.332Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.129Z"
+      "last_generated": "2026-09-19T09:27:12.332Z"
     },
     "36": {
       "channel_name": "Terminal Tactics",
@@ -671,9 +711,14 @@
           "topic": "The Feynman Technique: Learning by Teaching in the Age of AI",
           "slug": "feynman-technique-learning-teaching-ai",
           "reserved_at": "2026-08-31T12:16:45.235Z"
+        },
+        {
+          "topic": "How AI Reshapes Hiring and Career Strategy in 2026",
+          "slug": "how-ai-reshapes-hiring-career-strategy-2026",
+          "reserved_at": "2026-09-19T09:27:12.332Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.130Z"
+      "last_generated": "2026-09-19T09:27:12.332Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
@@ -704,9 +749,14 @@
           "topic": "The 'Greatest Weakness' Question: Why Your Answer Still Fails in 2026",
           "slug": "greatest-weakness-question-still-fails",
           "reserved_at": "2026-08-31T12:16:45.236Z"
+        },
+        {
+          "topic": "Why Structured Interview Scoring Dominates in 2026",
+          "slug": "structured-interview-scoring-trends-2026",
+          "reserved_at": "2026-09-19T09:27:12.333Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.131Z"
+      "last_generated": "2026-09-19T09:27:12.333Z"
     },
     "47": {
       "channel_name": "Medicare Navigator",
@@ -758,9 +808,14 @@
           "topic": "Inside a Battery Gigafactory: How Tesla Makes 4680 Cells",
           "slug": "battery-gigafactory-tesla-4680-cells",
           "reserved_at": "2026-08-31T12:16:45.236Z"
+        },
+        {
+          "topic": "FAA Targets Compressor Wear Failures in Jet Engines",
+          "slug": "faa-compressor-wear-directive-jet-engines",
+          "reserved_at": "2026-09-19T09:27:12.333Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.132Z"
+      "last_generated": "2026-09-19T09:27:12.333Z"
     },
     "49": {
       "channel_name": "Wander Budget",
