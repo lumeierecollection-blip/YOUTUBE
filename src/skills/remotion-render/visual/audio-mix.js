@@ -17,7 +17,14 @@
  */
 
 import { Audio, Sequence, staticFile } from "remotion";
-import { dbToVolume } from "@remotion/media";
+
+/**
+ * Convert dBFS to linear volume for Remotion's <Audio volume={...} />.
+ * 0 dB = 1.0, -6 dB ≈ 0.5, -20 dB = 0.1, etc.
+ */
+function dbToVolume(db) {
+  return Math.pow(10, db / 20);
+}
 
 /**
  * Kalimba background bed.
