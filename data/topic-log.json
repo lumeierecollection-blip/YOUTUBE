@@ -100,9 +100,14 @@
           "topic": "Why Traditional Budget Rules Fail for Six-Figure Households",
           "slug": "traditional-budget-rules-fail-six-figures",
           "reserved_at": "2026-09-19T10:21:13.704Z"
+        },
+        {
+          "topic": "The New 60/30/10 Budgeting Rule Sweeping Households",
+          "slug": "the-new-60-30-10-budgeting-rule",
+          "reserved_at": "2026-09-19T11:07:30.881Z"
         }
       ],
-      "last_generated": "2026-09-19T10:21:13.705Z"
+      "last_generated": "2026-09-19T11:07:30.881Z"
     },
     "2": {
       "channel_name": "Legal Brief",
@@ -202,9 +207,14 @@
           "topic": "Supreme Court Rules on Police Warrantless Home Entry for Aid",
           "slug": "supreme-court-warrantless-home-entry-ruling",
           "reserved_at": "2026-09-19T10:01:15.917Z"
+        },
+        {
+          "topic": "Supreme Court Rejects Trump Mail Ballot Postal Rules",
+          "slug": "supreme-court-rejects-trump-mail-ballot-rules",
+          "reserved_at": "2026-09-19T11:07:30.882Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.917Z"
+      "last_generated": "2026-09-19T11:07:30.882Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -244,9 +254,14 @@
           "topic": "GPT-6 Astra vs Claude Fable 5.1 in AI Benchmarks",
           "slug": "gpt6-astra-vs-claude-fable-benchmark",
           "reserved_at": "2026-09-19T10:01:15.917Z"
+        },
+        {
+          "topic": "LongevityBench: Small AI Models Beat Frontier LLMs",
+          "slug": "longevitybench-small-ai-models-beat-frontier-llms",
+          "reserved_at": "2026-09-19T11:07:30.882Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.917Z"
+      "last_generated": "2026-09-19T11:07:30.882Z"
     },
     "4": {
       "channel_name": "Hidden Past",
@@ -296,9 +311,14 @@
           "topic": "World's Oldest Deep-Sea Shipwreck Found in the Mediterranean",
           "slug": "oldest-deep-sea-shipwreck-mediterranean",
           "reserved_at": "2026-09-19T10:01:15.918Z"
+        },
+        {
+          "topic": "What Arendt's Right to Have Rights Means Today",
+          "slug": "arendt-right-to-have-rights-historical-roots",
+          "reserved_at": "2026-09-19T11:07:30.883Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.918Z"
+      "last_generated": "2026-09-19T11:07:30.883Z"
     },
     "5": {
       "channel_name": "Force of Nature",
@@ -345,9 +365,14 @@
           "topic": "Wendy's Operator Meritage Hospitality Files Chapter 11",
           "slug": "meritage-wendys-chapter-11-bankruptcy",
           "reserved_at": "2026-09-19T10:01:15.919Z"
+        },
+        {
+          "topic": "How WeWork and SoftBank Lost Billions on Unicorns",
+          "slug": "wework-softbank-unicorn-collapse-postmortem",
+          "reserved_at": "2026-09-19T11:07:30.884Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.919Z"
+      "last_generated": "2026-09-19T11:07:30.884Z"
     },
     "8": {
       "channel_name": "Mind Decoded",
@@ -388,9 +413,14 @@
           "topic": "India and China Agree on Eight-Point Border Delimitation",
           "slug": "india-china-eight-point-border-consensus",
           "reserved_at": "2026-09-19T10:01:15.921Z"
+        },
+        {
+          "topic": "The Cambodia-Thailand Boundary Pillar No. 9 Dispute",
+          "slug": "cambodia-thailand-boundary-pillar-dispute",
+          "reserved_at": "2026-09-19T11:07:30.884Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.921Z"
+      "last_generated": "2026-09-19T11:07:30.884Z"
     },
     "10": {
       "channel_name": "Double Cross",
@@ -426,9 +456,14 @@
           "topic": "JWST Discovers Hidden Exoplanet Beta Pictoris d",
           "slug": "jwst-discovers-beta-pictoris-d-planet",
           "reserved_at": "2026-09-19T10:01:15.922Z"
+        },
+        {
+          "topic": "JWST Confirms Water Vapor on Distant Exoplanets",
+          "slug": "jwst-confirms-water-vapor-exoplanets",
+          "reserved_at": "2026-09-19T11:07:30.885Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.922Z"
+      "last_generated": "2026-09-19T11:07:30.885Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
@@ -498,9 +533,14 @@
           "topic": "Bolivia and Paraguay Settle Final Chaco War Border",
           "slug": "bolivia-paraguay-chaco-border-settled",
           "reserved_at": "2026-09-19T10:01:15.922Z"
+        },
+        {
+          "topic": "The Shaksgam Valley Gambit in Sino-Pakistani Ties",
+          "slug": "shaksgam-valley-gambit-sino-pakistani-ties",
+          "reserved_at": "2026-09-19T11:07:30.885Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.922Z"
+      "last_generated": "2026-09-19T11:07:30.885Z"
     },
     "18": {
       "channel_name": "Brief History",
@@ -670,9 +710,14 @@
           "topic": "Genetic Genealogy Exonerations and Cold Case Reversals",
           "slug": "genetic-genealogy-cold-case-justice-reversals",
           "reserved_at": "2026-09-19T10:01:15.924Z"
+        },
+        {
+          "topic": "Overturning Wrongful Convictions Through DNA Evidence",
+          "slug": "overturning-wrongful-convictions-dna-evidence",
+          "reserved_at": "2026-09-19T11:07:30.886Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.924Z"
+      "last_generated": "2026-09-19T11:07:30.886Z"
     },
     "32": {
       "channel_name": "Machine Anatomy",
@@ -730,9 +775,14 @@
           "topic": "Software Defect Caused UK Air Traffic Control Meltdown",
           "slug": "uk-air-traffic-control-software-glitch-report",
           "reserved_at": "2026-09-19T10:01:15.925Z"
+        },
+        {
+          "topic": "FAA Issues Directives for 476 Boeing 737 MAX Jets",
+          "slug": "faa-directives-boeing-737-max-jets",
+          "reserved_at": "2026-09-19T11:07:30.887Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.925Z"
+      "last_generated": "2026-09-19T11:07:30.887Z"
     },
     "36": {
       "channel_name": "Terminal Tactics",
@@ -780,9 +830,14 @@
           "topic": "Boy's Lead Poisoning Traced to Curtain Weight Chain",
           "slug": "lead-poisoning-curtain-weight-medical-mystery",
           "reserved_at": "2026-09-19T10:01:15.926Z"
+        },
+        {
+          "topic": "Diagnosing Rare Hereditary Angioedema in the ER",
+          "slug": "diagnosing-rare-hereditary-angioedema-er",
+          "reserved_at": "2026-09-19T11:07:30.887Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.926Z"
+      "last_generated": "2026-09-19T11:07:30.887Z"
     },
     "40": {
       "channel_name": "MedBrief",
@@ -841,9 +896,14 @@
           "topic": "AI Reshapes Long-Horizon Coding and Engineering Tasks",
           "slug": "android-bench-2-ai-coding-skills-strategy",
           "reserved_at": "2026-09-19T10:01:15.926Z"
+        },
+        {
+          "topic": "What LinkedIn's 2026 Skills Report Reveals About AI",
+          "slug": "linkedin-2026-skills-report-ai-workforce",
+          "reserved_at": "2026-09-19T11:07:30.888Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.926Z"
+      "last_generated": "2026-09-19T11:07:30.888Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
@@ -889,9 +949,14 @@
           "topic": "Why Structured Interview Scoring Dominates Tech Hiring",
           "slug": "structured-interview-scoring-recruiting-trends",
           "reserved_at": "2026-09-19T10:01:15.927Z"
+        },
+        {
+          "topic": "Why Soft Skills Dominate Tech Interviews in 2026",
+          "slug": "why-soft-skills-dominate-tech-interviews",
+          "reserved_at": "2026-09-19T11:07:30.888Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.927Z"
+      "last_generated": "2026-09-19T11:07:30.888Z"
     },
     "47": {
       "channel_name": "Medicare Navigator",
@@ -963,9 +1028,14 @@
           "topic": "MLPerf Inference v6.1 Introduces Agentic Workloads",
           "slug": "mlperf-inference-v6-1-manufacturing-ai",
           "reserved_at": "2026-09-19T10:01:15.928Z"
+        },
+        {
+          "topic": "UBTech Opens World First Humanoid Robot Smart Factory",
+          "slug": "ubtech-opens-humanoid-robot-smart-factory",
+          "reserved_at": "2026-09-19T11:07:30.889Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.928Z"
+      "last_generated": "2026-09-19T11:07:30.889Z"
     },
     "49": {
       "channel_name": "Wander Budget",
