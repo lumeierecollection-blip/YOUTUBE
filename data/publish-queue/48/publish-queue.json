@@ -17,6 +17,17 @@
     "uploaded_at": "2026-09-18T22:24:04.933Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-18T23:24:04.933Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-19T10:15:52.871Z"
+  },
+  {
+    "video_id": "gy--XxqHojg",
+    "channel_id": "48",
+    "title": "Inside SMA's New 60 GW Gigawatt Inverter Factory in Germany",
+    "uploaded_at": "2026-09-19T10:15:51.719Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-19T11:15:51.719Z",
     "privacy_status": "private",
     "cancelled": false
   }
