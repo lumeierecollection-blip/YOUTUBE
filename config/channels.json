@@ -2829,7 +2829,7 @@
       "id": 49,
       "niche": "Space Facts, Analogies, Theories & Myth Debunks",
       "style": "motion-graphics",
-      "visual_engine": "vox",
+      "visual_engine": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "color",
       "channel_name": "Cosmic Voxels",
@@ -2971,13 +2971,14 @@
         "sound_identity": "Deep bass rumbles, cosmic whooshes, stellar crackles, rocket thrust, radio static. Never compete with voice.",
         "thumbnail_identity": "Voxel planet/rocket/cosmic scene with bold space fact text. Deep blues/purples. Dramatic lighting.",
         "what_never": "Generic starfield backgrounds. Flat 2D icons. Text-heavy frames. Floating brain icons. Repetitive rocket launches."
-      }
+      },
+      "_comment": "TODO: switch visual_engine to \"vox\" once vox renderer is implemented (see docs/PROVIDER-STATUS.md)"
     },
     {
       "id": 50,
       "niche": "Brain, Psychology & Human Behavior",
       "style": "motion-graphics",
-      "visual_engine": "vox",
+      "visual_engine": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "color",
       "channel_name": "Mind Mechanics",
@@ -3117,7 +3118,8 @@
         "sound_identity": "Soft neural crackles, thought bubble pops, heartbeat rhythms, synapse sparkles. Never compete with voice.",
         "thumbnail_identity": "Voxel brain/character scene with bold psychology fact text. Pink/purple neural highlights. Dark background.",
         "what_never": "Generic floating brain icon. Repetitive brain diagrams. Text-heavy explainers. Stock photo psychology. Clinical sterile environments."
-      }
+      },
+      "_comment": "TODO: switch visual_engine to \"vox\" once vox renderer is implemented (see docs/PROVIDER-STATUS.md)"
     }
   ]
 }
