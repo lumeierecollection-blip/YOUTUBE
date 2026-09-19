@@ -134,6 +134,9 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
         lastErr = null;
         break;
       } catch (err) {
+        // Capture stderr for diagnostics — execSync puts it in err.stderr
+        const stderr = err.stderr ? err.stderr.toString().trim() : "(no stderr)";
+        console.error(`TTS command failed: ${cmd}\nstderr: ${stderr}`);
         lastErr = err;
       }
     }
