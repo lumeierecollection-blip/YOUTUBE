@@ -85,9 +85,14 @@
           "topic": "The Martin Lewis-Backed 1p Savings Challenge Trends for 2026",
           "slug": "martin-lewis-1p-savings-challenge-2026",
           "reserved_at": "2026-09-19T09:48:57.145Z"
+        },
+        {
+          "topic": "How the September 2026 Fed Rate Hike Reshapes Your Budget",
+          "slug": "september-2026-fed-rate-hike-budget",
+          "reserved_at": "2026-09-19T10:01:15.914Z"
         }
       ],
-      "last_generated": "2026-09-19T09:48:57.146Z"
+      "last_generated": "2026-09-19T10:01:15.914Z"
     },
     "2": {
       "channel_name": "Legal Brief",
@@ -182,9 +187,14 @@
           "topic": "The UK Renters Rights Act 2025 Abolishes Section 21",
           "slug": "uk-renters-rights-act-abolishes-section-21",
           "reserved_at": "2026-09-19T09:48:57.146Z"
+        },
+        {
+          "topic": "Supreme Court Rules on Police Warrantless Home Entry for Aid",
+          "slug": "supreme-court-warrantless-home-entry-ruling",
+          "reserved_at": "2026-09-19T10:01:15.917Z"
         }
       ],
-      "last_generated": "2026-09-19T09:48:57.146Z"
+      "last_generated": "2026-09-19T10:01:15.917Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -219,9 +229,14 @@
           "topic": "Grok Voice Transcribe 2.0 vs Whisper Large v3 Tested",
           "slug": "grok-voice-transcribe-2-0-vs-whisper-test",
           "reserved_at": "2026-09-19T09:48:57.196Z"
+        },
+        {
+          "topic": "GPT-6 Astra vs Claude Fable 5.1 in AI Benchmarks",
+          "slug": "gpt6-astra-vs-claude-fable-benchmark",
+          "reserved_at": "2026-09-19T10:01:15.917Z"
         }
       ],
-      "last_generated": "2026-09-19T09:48:57.196Z"
+      "last_generated": "2026-09-19T10:01:15.917Z"
     },
     "4": {
       "channel_name": "Hidden Past",
@@ -266,9 +281,14 @@
           "topic": "600-Year-Old Chimu Funerary Platform Found in Peru",
           "slug": "600-year-old-chimu-funerary-platform-peru-dig",
           "reserved_at": "2026-09-19T09:48:57.196Z"
+        },
+        {
+          "topic": "World's Oldest Deep-Sea Shipwreck Found in the Mediterranean",
+          "slug": "oldest-deep-sea-shipwreck-mediterranean",
+          "reserved_at": "2026-09-19T10:01:15.918Z"
         }
       ],
-      "last_generated": "2026-09-19T09:48:57.196Z"
+      "last_generated": "2026-09-19T10:01:15.918Z"
     },
     "5": {
       "channel_name": "Force of Nature",
@@ -310,9 +330,14 @@
           "topic": "Why Nidec Is Pulling Out of Cambodia Over Border Frictions",
           "slug": "nidec-exit-cambodia-border-conflict",
           "reserved_at": "2026-09-19T09:27:12.330Z"
+        },
+        {
+          "topic": "Wendy's Operator Meritage Hospitality Files Chapter 11",
+          "slug": "meritage-wendys-chapter-11-bankruptcy",
+          "reserved_at": "2026-09-19T10:01:15.919Z"
         }
       ],
-      "last_generated": "2026-09-19T09:27:12.330Z"
+      "last_generated": "2026-09-19T10:01:15.919Z"
     },
     "8": {
       "channel_name": "Mind Decoded",
@@ -348,9 +373,14 @@
           "topic": "South China Sea Ramming Incident at Spratly Islands",
           "slug": "south-china-sea-ramming-spratly-islands",
           "reserved_at": "2026-09-19T09:27:12.331Z"
+        },
+        {
+          "topic": "India and China Agree on Eight-Point Border Delimitation",
+          "slug": "india-china-eight-point-border-consensus",
+          "reserved_at": "2026-09-19T10:01:15.921Z"
         }
       ],
-      "last_generated": "2026-09-19T09:27:12.331Z"
+      "last_generated": "2026-09-19T10:01:15.921Z"
     },
     "10": {
       "channel_name": "Double Cross",
@@ -381,9 +411,14 @@
           "topic": "James Webb Just Found Water on a Planet That Shouldn't Exist",
           "slug": "jwst-water-rocky-planet-red-dwarf",
           "reserved_at": "2026-08-31T12:16:45.232Z"
+        },
+        {
+          "topic": "JWST Discovers Hidden Exoplanet Beta Pictoris d",
+          "slug": "jwst-discovers-beta-pictoris-d-planet",
+          "reserved_at": "2026-09-19T10:01:15.922Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.126Z"
+      "last_generated": "2026-09-19T10:01:15.922Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
@@ -448,9 +483,14 @@
           "topic": "Ancient Roman Military Camp Linked to Marcus Aurelius",
           "slug": "roman-military-camp-marcus-aurelius-slovakia",
           "reserved_at": "2026-09-19T09:48:57.197Z"
+        },
+        {
+          "topic": "Bolivia and Paraguay Settle Final Chaco War Border",
+          "slug": "bolivia-paraguay-chaco-border-settled",
+          "reserved_at": "2026-09-19T10:01:15.922Z"
         }
       ],
-      "last_generated": "2026-09-19T09:48:57.197Z"
+      "last_generated": "2026-09-19T10:01:15.922Z"
     },
     "18": {
       "channel_name": "Brief History",
@@ -523,9 +563,14 @@
           "topic": "Wirecard: The $2 Billion Accounting Fraud That Fooled Regulators",
           "slug": "wirecard-2-billion-fraud-regulators",
           "reserved_at": "2026-08-31T12:16:45.233Z"
+        },
+        {
+          "topic": "CBI Books Reliance Capital and Anil Ambani in LIC Fraud",
+          "slug": "cbi-reliance-capital-anil-ambani-fraud",
+          "reserved_at": "2026-09-19T10:01:15.923Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.127Z"
+      "last_generated": "2026-09-19T10:01:15.923Z"
     },
     "27": {
       "channel_name": "Trial Files",
@@ -573,9 +618,14 @@
           "topic": "Genetic Genealogy Resolves 40-Year Cold Case",
           "slug": "genetic-genealogy-resolves-40-year-cold-case",
           "reserved_at": "2026-09-19T09:48:57.219Z"
+        },
+        {
+          "topic": "Bronx Sexual Assault Cold Case Solved After 20 Years",
+          "slug": "bronx-cold-case-genetic-genealogy-conviction",
+          "reserved_at": "2026-09-19T10:01:15.924Z"
         }
       ],
-      "last_generated": "2026-09-19T09:48:57.219Z"
+      "last_generated": "2026-09-19T10:01:15.924Z"
     },
     "31": {
       "channel_name": "Justice Denied",
@@ -605,9 +655,14 @@
           "topic": "Ervin Harris Exonerated After 42 Years in Prison",
           "slug": "ervin-harris-exonerated-after-42-years",
           "reserved_at": "2026-09-19T09:48:57.219Z"
+        },
+        {
+          "topic": "Genetic Genealogy Exonerations and Cold Case Reversals",
+          "slug": "genetic-genealogy-cold-case-justice-reversals",
+          "reserved_at": "2026-09-19T10:01:15.924Z"
         }
       ],
-      "last_generated": "2026-09-19T09:48:57.219Z"
+      "last_generated": "2026-09-19T10:01:15.924Z"
     },
     "32": {
       "channel_name": "Machine Anatomy",
@@ -660,9 +715,14 @@
           "topic": "Phononic Subsurfaces: Cutting Jet Fuel Usage",
           "slug": "phononic-subsurfaces-jet-fuel-efficiency",
           "reserved_at": "2026-09-19T09:48:57.220Z"
+        },
+        {
+          "topic": "Software Defect Caused UK Air Traffic Control Meltdown",
+          "slug": "uk-air-traffic-control-software-glitch-report",
+          "reserved_at": "2026-09-19T10:01:15.925Z"
         }
       ],
-      "last_generated": "2026-09-19T09:48:57.220Z"
+      "last_generated": "2026-09-19T10:01:15.925Z"
     },
     "36": {
       "channel_name": "Terminal Tactics",
@@ -705,9 +765,14 @@
           "topic": "The Patient Who Couldn't Stop Glowing: A Radiology Mystery",
           "slug": "patient-cant-stop-glowing-radiology-mystery",
           "reserved_at": "2026-08-31T12:16:45.235Z"
+        },
+        {
+          "topic": "Boy's Lead Poisoning Traced to Curtain Weight Chain",
+          "slug": "lead-poisoning-curtain-weight-medical-mystery",
+          "reserved_at": "2026-09-19T10:01:15.926Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.129Z"
+      "last_generated": "2026-09-19T10:01:15.926Z"
     },
     "40": {
       "channel_name": "MedBrief",
@@ -761,9 +826,14 @@
           "topic": "How AI Reshapes Hiring and Career Strategy in 2026",
           "slug": "how-ai-reshapes-hiring-career-strategy-2026",
           "reserved_at": "2026-09-19T09:27:12.332Z"
+        },
+        {
+          "topic": "AI Reshapes Long-Horizon Coding and Engineering Tasks",
+          "slug": "android-bench-2-ai-coding-skills-strategy",
+          "reserved_at": "2026-09-19T10:01:15.926Z"
         }
       ],
-      "last_generated": "2026-09-19T09:27:12.332Z"
+      "last_generated": "2026-09-19T10:01:15.926Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
@@ -804,9 +874,14 @@
           "topic": "Why Behavioral Interview Questions Still Dominate",
           "slug": "behavioral-interview-questions-star-method",
           "reserved_at": "2026-09-19T09:48:57.220Z"
+        },
+        {
+          "topic": "Why Structured Interview Scoring Dominates Tech Hiring",
+          "slug": "structured-interview-scoring-recruiting-trends",
+          "reserved_at": "2026-09-19T10:01:15.927Z"
         }
       ],
-      "last_generated": "2026-09-19T09:48:57.220Z"
+      "last_generated": "2026-09-19T10:01:15.927Z"
     },
     "47": {
       "channel_name": "Medicare Navigator",
@@ -831,9 +906,14 @@
           "topic": "Medicare's Hidden Penalty: How Late Enrollment Costs You Thousands",
           "slug": "medicare-hidden-penalty-late-enrollment",
           "reserved_at": "2026-08-31T12:16:45.236Z"
+        },
+        {
+          "topic": "Medicare 2026 Open Enrollment and Premium Changes",
+          "slug": "medicare-open-enrollment-supplement-guide",
+          "reserved_at": "2026-09-19T10:01:15.927Z"
         }
       ],
-      "last_generated": "2026-09-06T09:54:18.131Z"
+      "last_generated": "2026-09-19T10:01:15.927Z"
     },
     "48": {
       "channel_name": "Factory Floor",
@@ -868,9 +948,14 @@
           "topic": "Toyota to Deploy 400000 Humanoid Robots",
           "slug": "toyota-deploys-400000-humanoid-robots",
           "reserved_at": "2026-09-19T09:48:57.221Z"
+        },
+        {
+          "topic": "MLPerf Inference v6.1 Introduces Agentic Workloads",
+          "slug": "mlperf-inference-v6-1-manufacturing-ai",
+          "reserved_at": "2026-09-19T10:01:15.928Z"
         }
       ],
-      "last_generated": "2026-09-19T09:48:57.221Z"
+      "last_generated": "2026-09-19T10:01:15.928Z"
     },
     "49": {
       "channel_name": "Wander Budget",
