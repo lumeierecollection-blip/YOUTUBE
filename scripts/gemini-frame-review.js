@@ -149,7 +149,7 @@ async function reviewFrame(framePath, voiceoverText, frameIndex, totalFrames, ti
 async function reviewFrameBatch(frames, totalFrames, bible) {
   if (!frames.length) return [];
 
-  const BATCH_SIZE = 5;
+  const BATCH_SIZE = 10;
   const results = [];
 
   for (let b = 0; b < frames.length; b += BATCH_SIZE) {
@@ -195,11 +195,20 @@ async function reviewFrameBatch(frames, totalFrames, bible) {
     const batchResult = await callGemini([{ role: "user", content }], { maxTokens: 2000 });
 
     if (batchResult.error) {
-      // If batch fails, fall back to individual calls for this batch
-      console.warn(`  Batch ${Math.floor(b / BATCH_SIZE) + 1} failed: ${batchResult.error} — falling back to individual calls`);
-      for (const f of batch) {
-        const individual = await reviewFrame(f.path, f.voiceover, f.index, totalFrames, f.time, null, bible);
-        results.push(individual);
+      // Retry batch once instead of falling back to N individual calls
+      console.warn(`  Batch ${Math.floor(b / BATCH_SIZE) + 1} failed: ${batchResult.error} — retrying once`);
+      const retryResult = await callGemini([{ role: "user", content }], { maxTokens: 2000 });
+      if (retryResult.error) {
+        console.warn(`  Batch ${Math.floor(b / BATCH_SIZE) + 1} retry failed — skipping ${batch.length} frames`);
+        continue;
+      }
+      const retryItems = Array.isArray(retryResult) ? retryResult : [retryResult];
+      for (let i = 0; i < batch.length; i++) {
+        const item = retryItems[i] || { error: "Missing from retry response" };
+        item.frame_index = batch[i].index;
+        item.time_seconds = batch[i].time;
+        item.voiceover_text = batch[i].voiceover;
+        results.push(item);
       }
       continue;
     }
