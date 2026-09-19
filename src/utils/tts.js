@@ -119,7 +119,7 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
     const args =
       `--voice "${voice}" ` +
       `--rate="${rate}" --pitch="${pitch}" ` +
-      `--text-file "${tmpTextPath}" ` +
+      `--file "${tmpTextPath}" ` +
       `--write-media "${audioPath}" ` +
       `--write-subtitles "${srtPath}"`;
 
