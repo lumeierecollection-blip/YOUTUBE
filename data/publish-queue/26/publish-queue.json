@@ -39,6 +39,17 @@
     "uploaded_at": "2026-09-18T22:21:19.518Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-18T23:21:19.518Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-19T10:14:48.851Z"
+  },
+  {
+    "video_id": "Jf8qCXHpNqY",
+    "channel_id": "26",
+    "title": "Andrew Spaventa's $74M Pre-IPO Boiler Room Scam and Hidden…",
+    "uploaded_at": "2026-09-19T10:14:47.713Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-19T11:14:47.713Z",
     "privacy_status": "private",
     "cancelled": false
   }
