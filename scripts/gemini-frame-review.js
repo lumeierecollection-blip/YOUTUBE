@@ -19,6 +19,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync } from "node
 import { join, dirname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
+import { callGemini } from "../src/lib/gemini-client.js";
 import { tmpdir } from "node:os";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -109,26 +110,6 @@ function computeBeatTimes(srtCues, duration) {
   return unique.slice(0, 20);
 }
 
-function callGemini(apiKey, messages, maxTokens = 1200) {
-  const base = "https://generativelanguage.googleapis.com/v1beta/openai";
-  const model = "gemini-3.5-flash-lite";
-  const body = JSON.stringify({ model, max_tokens: maxTokens, temperature: 0, messages });
-  try {
-    const res = execFileSync("curl", [
-      "-sS", "--max-time", "90",
-      "-H", "Content-Type: application/json",
-      "-H", `Authorization: Bearer ${apiKey}`,
-      "-d", "@-",
-      `${base}/chat/completions`,
-    ], { input: body, encoding: "utf-8" });
-    const raw = JSON.parse(res).choices[0].message.content.trim()
-      .replace(/^```json\s*/, "").replace(/^```\s*/, "").replace(/\s*```$/, "").trim();
-    return JSON.parse(raw);
-  } catch (e) {
-    return { error: `API call failed: ${String(e.message).slice(0, 300)}` };
-  }
-}
-
 function buildScenePrompt(bible, frameIndex, totalFrames, time, voiceover) {
   return bible.prompts.scene_review
     .replace("{frame_index}", String(frameIndex))
@@ -147,13 +128,94 @@ async function reviewFrame(framePath, voiceoverText, frameIndex, totalFrames, ti
       { type: "image_url", image_url: { url: `data:image/png;base64,${imageData}` } },
     ],
   }];
-  const result = callGemini(apiKey, messages);
+  const result = callGemini(messages);
   if (!result.error) {
     result.frame_index = frameIndex;
     result.time_seconds = time;
     result.voiceover_text = voiceoverText;
   }
   return result;
+}
+
+/**
+ * Batched frame review — sends multiple frames in one Gemini call.
+ * Reduces API overhead from N calls to ceil(N/BATCH_SIZE) calls.
+ *
+ * @param {Array<{path: string, index: number, time: number, voiceover: string}>} frames
+ * @param {number} totalFrames
+ * @param {Object} bible
+ * @returns {Promise<Array<Object>>} Array of results, one per frame
+ */
+async function reviewFrameBatch(frames, totalFrames, bible) {
+  if (!frames.length) return [];
+
+  const BATCH_SIZE = 5;
+  const results = [];
+
+  for (let b = 0; b < frames.length; b += BATCH_SIZE) {
+    const batch = frames.slice(b, b + BATCH_SIZE);
+
+    // Build a single prompt for the batch
+    const batchDescription = batch.map((f, i) =>
+      `Frame ${f.index + 1}/${totalFrames} at t=${f.time.toFixed(1)}s — VO: "${f.voiceover.slice(0, 80)}"`
+    ).join("\n");
+
+    const prompt =
+      `You are reviewing ${batch.length} frames from one video. ` +
+      `For EACH frame, provide a separate JSON object in an array.\n\n` +
+      `Frames:\n${batchDescription}\n\n` +
+      `Answer ONLY with a JSON array, no prose, no markdown fences:\n` +
+      `[\n` +
+      `  {\n` +
+      `    "frame_index": <number>,\n` +
+      `    "time_seconds": <number>,\n` +
+      `    "status": "PASS"|"FAIL",\n` +
+      `    "quality_score": <1-10>,\n` +
+      `    "problem": "<one sentence if FAIL, else empty>",\n` +
+      `    "correction": { "action": "<what to fix>" },\n` +
+      `    "visual_audio_match": true|false,\n` +
+      `    "visual_audio_note": "<if mismatch, why>"\n` +
+      `  },\n` +
+      `  ...\n` +
+      `]\n\n` +
+      `Rules:\n` +
+      `- Each frame must have its own object.\n` +
+      `- frame_index must match the frame number above.\n` +
+      `- quality_score: 1=terrible, 10=perfect.\n` +
+      `- Be harsh but fair. Flag real problems, not style preferences.`;
+
+    // Build content with text + all images in batch
+    const content = [{ type: "text", text: prompt }];
+    for (const f of batch) {
+      const imageData = readFileSync(f.path).toString("base64");
+      content.push({ type: "text", text: `\n--- Frame ${f.index + 1} at t=${f.time.toFixed(1)}s ---` });
+      content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${imageData}` } });
+    }
+
+    const batchResult = await callGemini([{ role: "user", content }], { maxTokens: 2000 });
+
+    if (batchResult.error) {
+      // If batch fails, fall back to individual calls for this batch
+      console.warn(`  Batch ${Math.floor(b / BATCH_SIZE) + 1} failed: ${batchResult.error} — falling back to individual calls`);
+      for (const f of batch) {
+        const individual = await reviewFrame(f.path, f.voiceover, f.index, totalFrames, f.time, null, bible);
+        results.push(individual);
+      }
+      continue;
+    }
+
+    // Parse batch result — should be an array
+    const items = Array.isArray(batchResult) ? batchResult : [batchResult];
+    for (let i = 0; i < batch.length; i++) {
+      const item = items[i] || { error: "Missing from batch response" };
+      item.frame_index = batch[i].index;
+      item.time_seconds = batch[i].time;
+      item.voiceover_text = batch[i].voiceover;
+      results.push(item);
+    }
+  }
+
+  return results;
 }
 
 async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible) {
@@ -177,7 +239,7 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
     content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${imageData}` } });
   }
 
-  return callGemini(apiKey, [{ role: "user", content }], 1600);
+  return callGemini([{ role: "user", content }], { maxTokens: 1600 });
 }
 
 function categorizeResult(result, bible) {
@@ -256,18 +318,25 @@ async function main() {
   let passCount = 0;
 
   try {
-    // ── PHASE 1: Scene-level review ──
-    console.log("\n═══ PHASE 1: SCENE-BY-SCENE REVIEW ═══\n");
+    // ── PHASE 1: Scene-level review (BATCHED) ──
+    console.log("\n═══ PHASE 1: SCENE-BY-SCENE REVIEW (BATCHED) ═══\n");
+
+    // Extract all frames first
+    const frameData = [];
     for (let i = 0; i < beatTimes.length; i++) {
       const t = beatTimes[i];
       const framePath = join(work, `beat-${String(i).padStart(2, "0")}.png`);
       extractFrameAtTime(video, t, framePath);
       framePaths.push(framePath);
-
       const voText = srtCues.length ? getVoiceoverAtTime(srtCues, t) : "(no SRT available)";
+      frameData.push({ path: framePath, index: i, time: t, voiceover: voText });
       console.log(`  [${i + 1}/${beatTimes.length}] t=${t.toFixed(1)}s — VO: "${voText.slice(0, 60)}..."`);
+    }
 
-      const result = await reviewFrame(framePath, voText, i, beatTimes.length, t, apiKey, bible);
+    // Batch review: 5 frames per call instead of 1
+    const batchResults = await reviewFrameBatch(frameData, beatTimes.length, bible);
+
+    for (const result of batchResults) {
       sceneResults.push(result);
 
       if (result.error) {

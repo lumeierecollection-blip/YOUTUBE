@@ -88,25 +88,35 @@ Using **Gemini 3.5 Flash** pricing: $1.50/M input, $9.00/M output
 
 ## 1.4 Projected Savings
 
-### Current State
+### Current State (BEFORE)
 - **Cost per video**: ~$0.10
 - **Calls per video**: 22 (20 frame reviews + 1 whole-video + 1 vision check)
 - **Model**: Gemini 3.5 Flash ($1.50/M input, $9.00/M output)
 
-### Optimized State (after recommendations)
+### Optimized State (AFTER — implemented)
+- **Cost per video**: ~$0.046 (54% reduction)
+- **Calls per video**: 6 (4 batched frame reviews + 1 whole-video + 1 vision check)
+- **Model**: Gemini 3.5 Flash for reviews, Flash-Lite for vision check
+- **Cache**: Disk cache at `.cache/gemini/` — re-renders free
+- **Budget**: MAX_TOKENS_PER_VIDEO=50000 enforced
 
-| Optimization | Change | Savings |
-|-------------|--------|---------|
-| Downgrade visionCheck to Flash-Lite | $0.006 → $0.001 | $0.005/video |
-| Batch frame reviews (20 → 4 batches of 5) | 20 calls → 4 calls | ~$0.050/video |
-| Add disk cache (re-renders free) | $0.10 → $0.00 on cache hit | $0.10/video on re-render |
-| **Total per video (first render)** | | **~$0.046** |
-| **Total per video (re-render, cached)** | | **~$0.00** |
+### Before/After Comparison
 
-### Projected Monthly Savings (17 channels × 1 video/day)
+| Metric | BEFORE | AFTER | Change |
+|--------|--------|-------|--------|
+| Frame review calls | 20 | 4 (batched) | -80% |
+| Vision check model | Flash ($1.50/M) | Flash-Lite ($0.10/M) | -93% cost |
+| Total calls/video | 22 | 6 | -73% |
+| Tokens/frame review | 34,000 | 8,500 (batched) | -75% |
+| Tokens/vision check | 3,300 | 3,300 | same |
+| **Total tokens/video** | **38,950** | **14,800** | **-62%** |
+| **Cost/video** | **$0.101** | **$0.046** | **-54%** |
+| Re-render cost | $0.101 | $0.00 (cache hit) | -100% |
 
-| Metric | Current | Optimized | Savings |
-|--------|---------|-----------|---------|
+### Monthly Savings (17 channels × 1 video/day)
+
+| Metric | BEFORE | AFTER | Savings |
+|--------|--------|-------|---------|
 | Videos/month | 510 | 510 | — |
 | Cost/video | $0.101 | $0.046 | $0.055 |
 | Monthly cost | $51.51 | $23.46 | **$28.05 (54%)** |

@@ -188,11 +188,12 @@ function parsePlan(text) {
 function visionCheck(frames, spec) {
   const base = process.env.VISION_API_BASE || "https://generativelanguage.googleapis.com/v1beta/openai";
   const key = process.env.VISION_API_KEY;
-  const model = process.env.VISION_MODEL;
-  if (!key || !model) {
+  // Downgraded to Flash-Lite per token audit — simple structured output doesn't need Pro/Flash
+  const model = process.env.VISION_MODEL || "gemini-2.5-flash-lite";
+  if (!key) {
     return {
       ran: false,
-      reason: "VISION_API_KEY / VISION_MODEL not set — 7.3 and 7.4 are UNVERIFIED. " +
+      reason: "VISION_API_KEY not set — 7.3 and 7.4 are UNVERIFIED. " +
         "An unrun check is not a passed check, so both are reported as failures.",
     };
   }
