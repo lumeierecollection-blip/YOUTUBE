@@ -1846,9 +1846,14 @@
           "topic": "LinkedIn 2026 Report: Mastering Stakeholder Management",
           "slug": "linkedin-2026-stakeholder-management",
           "reserved_at": "2026-09-18T22:12:18.178Z"
+        },
+        {
+          "topic": "The 50% AI Quality Control Gap: Evaluating Output Beats Generating It",
+          "slug": "ai-quality-control-evaluating-output",
+          "reserved_at": "2026-09-19T09:59:35.693Z"
         }
       ],
-      "last_generated": "2026-09-18T22:12:18.178Z"
+      "last_generated": "2026-09-19T09:59:35.693Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
