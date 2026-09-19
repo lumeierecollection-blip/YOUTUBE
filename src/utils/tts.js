@@ -105,16 +105,21 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   const rate = settings.rate || "-8%"; // slower = more natural documentary pacing
   const pitch = settings.pitch || "+2Hz"; // slight warmth
 
+  // Write text to a temp file to avoid shell escaping issues with special
+  // characters (Unicode, quotes, etc.) in the inline --text argument.
+  const tmpTextPath = join(outputDir, `${topic}-tts-input.txt`);
+  writeFileSync(tmpTextPath, fullText);
+
   try {
-    // edge-tts --voice en-US-GuyNeural --rate=-8% --pitch=+2Hz --text "..." --write-media output.mp3
+
+    // edge-tts --voice en-US-GuyNeural --rate=-8% --pitch=+2Hz --text-file input.txt --write-media output.mp3
     // Rate/pitch MUST use --flag=value (not "--flag value"): argparse treats a
     // leading "-" value like "-8%" as an unrecognized option unless it's glued
     // on with "=", since "-8%" isn't a pure negative number token.
-    const escapedText = fullText.replace(/"/g, '\\"').replace(/\n/g, " ");
     const args =
       `--voice "${voice}" ` +
       `--rate="${rate}" --pitch="${pitch}" ` +
-      `--text "${escapedText}" ` +
+      `--text-file "${tmpTextPath}" ` +
       `--write-media "${audioPath}" ` +
       `--write-subtitles "${srtPath}"`;
 
@@ -132,12 +137,16 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
         lastErr = err;
       }
     }
+    // Clean up temp file
+    try { unlinkSync(tmpTextPath); } catch {}
     if (lastErr) throw lastErr;
     console.log(`TTS audio saved: ${audioPath}`);
     console.log(`TTS subtitles saved: ${srtPath}`);
     console.log(`Delivery: voice=${voice} rate=${rate} pitch=${pitch}`);
     return audioPath;
   } catch (err) {
+    // Clean up temp file on error too
+    try { unlinkSync(tmpTextPath); } catch {}
     // Remove whatever the failed attempt left behind — a partial or
     // zero-length mp3/srt is exactly the kind of artifact that looks real
     // and isn't (T1.6). Never leave one sitting next to the topic's other
