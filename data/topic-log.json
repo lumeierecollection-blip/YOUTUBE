@@ -115,9 +115,14 @@
           "topic": "Is the 50/30/20 Budget Rule Outdated in 2026? How Inflation Shifts Math",
           "slug": "is-the-50-30-20-budget-rule-outdated-in-2026",
           "reserved_at": "2026-09-19T18:12:59.609Z"
+        },
+        {
+          "topic": "Can Anthropic's New Claude Money Tool Actually Fix Your Budget?",
+          "slug": "claude-money-ai-budgeting-tool-review",
+          "reserved_at": "2026-09-19T20:46:56.218Z"
         }
       ],
-      "last_generated": "2026-09-19T18:12:59.609Z"
+      "last_generated": "2026-09-19T20:46:56.218Z"
     },
     "2": {
       "channel_name": "Legal Brief",
