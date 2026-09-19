@@ -97,6 +97,10 @@ const EROSION_RE = /\b(erodes?|destroys?|diminish\w*|shrink\w*|declin\w*|deterio
 const DEPLETION_RE = /\b(deplet\w*|exhaust\w*|drain\w*|run(?:s|ning)?\s+out|consum\w*|empty|empties|nothing\s+(?:left|for)|swallow\w*|leaving\s+(?:almost\s+)?nothing)\b/i;
 const ACTION_RE = /\b(recalculat\w*|adjust\w*|stop\s+\w+|must\s+\w+|need\s+to|subscrib\w*|start\s+\w+)\b/i;
 const COMPARE_RE = /\b(higher\s+than|lower\s+than|more\s+than|less\s+than|compared\s+to|versus|vs\.?|while\b.*\b(?:down|up)\b|instead\s+of)\b/i;
+const TEMPORAL_RE = /\b(first|then|next|finally|after\s+that|before\s+that|initially|eventually|subsequently|meanwhile|in\s+the\s+end|at\s+last)\b/i;
+const SCALE_RE = /\b(massive|tiny|enormous|huge|vast|immense|colossal|microscopic|gigantic|miniature|enormity|scale|magnitude)\b/i;
+const NAMED_ENTITY_RE = /\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\b/g;
+const EMOTION_RE = /\b(shock\w*|alarm\w*|outrage\w*|disgust\w*|fury|rage|horror|terror|panic|despair|grief|sorrow|joy|delight|wonder|awe|amazement)\b/i;
 
 /* ── Scene construction ────────────────────────────────────────────── */
 
@@ -522,6 +526,114 @@ function buildScene(text, index, totalBeats, prevScene) {
     return scene;
   }
 
+  // TEMPORAL/SEQUENCE: first, then, finally — a process unfolds.
+  // Visual mechanism: objects appear in sequence, building a timeline.
+  if (TEMPORAL_RE.test(t) && cw.length > 3) {
+    const temporalMatch = TEMPORAL_RE.exec(t);
+    scene.narrative_role = "process";
+    scene.mechanism = "PROCESS";
+    scene.reason = `"${temporalMatch[1]}" — showing a sequence unfold step by step`;
+
+    scene.objects = [
+      {
+        id: "step",
+        label: cw.slice(0, 3).join(" "),
+        material,
+        role: "the current step",
+        appearance: "solid_block",
+        initial_state: { scale: 0, opacity: 0, position: "left" },
+        final_state: { scale: 1, opacity: 1, position: "center" },
+      },
+      {
+        id: "progress",
+        label: "",
+        material: "abstract",
+        role: "the timeline/progress indicator",
+        appearance: "thin_line",
+        initial_state: { width: 0, opacity: 0.5, position: "bottom" },
+        final_state: { width: 1, opacity: 0.5, position: "bottom" },
+      },
+    ];
+
+    scene.shots = [
+      { phase: 0, phaseDuration: 0.3, camera: "hold", focus: "progress", action: "timeline appears" },
+      { phase: 0.3, phaseDuration: 0.5, camera: "hold", focus: "step", action: "current step materializes" },
+      { phase: 0.8, phaseDuration: 0.2, camera: "hold", focus: "step", action: "step holds — viewer absorbs it" },
+    ];
+
+    scene.typography = { role: "caption", style: "annotation", emphasis_words: [temporalMatch[1]] };
+    return scene;
+  }
+
+  // SCALE/SIZE: massive, tiny, enormous — emphasize magnitude.
+  // Visual mechanism: show the subject at dramatically different scales.
+  if (SCALE_RE.test(t) && nums.length > 0) {
+    const scaleMatch = SCALE_RE.exec(t);
+    scene.narrative_role = "scale";
+    scene.mechanism = "SCALE_COMPARISON";
+    scene.reason = `"${scaleMatch[1]}" — showing ${nums[0].raw} at dramatic scale`;
+
+    scene.objects = [
+      {
+        id: "small_ref",
+        label: "reference",
+        material: "abstract",
+        role: "the small reference point",
+        appearance: "small_block",
+        initial_state: { scale: 1, opacity: 0.5, position: "bottom_right" },
+        final_state: { scale: 1, opacity: 0.5, position: "bottom_right" },
+      },
+      {
+        id: "scaled_thing",
+        label: nums[0].raw,
+        material,
+        role: "the thing at scale",
+        appearance: "solid_block",
+        initial_state: { scale: 0.1, opacity: 0, position: "center" },
+        final_state: { scale: 2, opacity: 1, position: "center" },
+      },
+    ];
+
+    scene.shots = [
+      { phase: 0, phaseDuration: 0.2, camera: "hold", focus: "small_ref", action: "small reference established" },
+      { phase: 0.2, phaseDuration: 0.6, camera: "pull_back", focus: "scaled_thing", action: "the scaled thing grows massively — camera pulls back" },
+      { phase: 0.8, phaseDuration: 0.2, camera: "hold", focus: "both", action: "viewer sees the dramatic scale difference" },
+    ];
+
+    scene.typography = { role: "caption", style: "emphasis", emphasis_words: [scaleMatch[1], nums[0].raw] };
+    return scene;
+  }
+
+  // EMOTION: shocking, alarming — emotional emphasis.
+  // Visual mechanism: show the emotional weight through composition.
+  if (EMOTION_RE.test(t) && index > 0) {
+    const emotionMatch = EMOTION_RE.exec(t);
+    scene.narrative_role = "emotional";
+    scene.mechanism = "STATEMENT";
+    scene.reason = `"${emotionMatch[1]}" — the emotional weight of the statement is what must land`;
+
+    scene.objects = [
+      {
+        id: "emphasis",
+        label: cw.slice(0, 3).join(" "),
+        material,
+        role: "the emotional core",
+        appearance: "emphasized_text",
+        initial_state: { scale: 0.8, opacity: 0, position: "center" },
+        final_state: { scale: 1.2, opacity: 1, position: "center" },
+      },
+    ];
+
+    scene.shots = [
+      { phase: 0, phaseDuration: 0.3, camera: "hold", focus: "emphasis", action: "emotional weight builds" },
+      { phase: 0.3, phaseDuration: 0.4, camera: "push_in", focus: "emphasis", action: "camera pushes in — emphasis intensifies" },
+      { phase: 0.7, phaseDuration: 0.3, camera: "hold", focus: "emphasis", action: "the weight settles" },
+    ];
+
+    scene.typography = { role: "primary", style: "emphasis", emphasis_words: [emotionMatch[1]] };
+    return scene;
+  }
+
   // FALLBACK: the words are the visual. No objects, no pretend-graphics.
   scene.narrative_role = index === 0 ? "hook" : "statement";
   scene.mechanism = "TYPOGRAPHY";
@@ -767,6 +879,13 @@ export function direct(cues, options) {
       scene = applyDirective(directive, text, i, cues.length, prevScene);
       scene = randomizeScene(scene, rng);
     } else {
+      // No Gemini/OpenCode directive — use fallback with warning
+      if (i === 0 || !plan) {
+        // Only warn once (at start) if no plan exists at all
+        if (!plan) {
+          warnings.push("No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.");
+        }
+      }
       scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
     }
 
