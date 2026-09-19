@@ -566,9 +566,9 @@ jobs:
         run: |
           CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
           if [ -n "$CHANNEL_OVERRIDE" ]; then
-            node scripts/render-and-qa.js --channel "$CHANNEL_OVERRIDE"
+            node scripts/render-and-qa-enhanced.js --channel "$CHANNEL_OVERRIDE"
           else
-            node scripts/render-and-qa.js
+            node scripts/render-and-qa-enhanced.js
           fi
 
       - name: Upload review frames
