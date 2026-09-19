@@ -90,9 +90,14 @@
           "topic": "How the September 2026 Fed Rate Hike Reshapes Your Budget",
           "slug": "september-2026-fed-rate-hike-budget",
           "reserved_at": "2026-09-19T10:01:15.914Z"
+        },
+        {
+          "topic": "Monarch Money vs YNAB: Which Post-Mint App Wins in Late 2026",
+          "slug": "monarch-money-vs-ynab-late-2026",
+          "reserved_at": "2026-09-19T10:12:22.498Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.914Z"
+      "last_generated": "2026-09-19T10:12:22.498Z"
     },
     "2": {
       "channel_name": "Legal Brief",
