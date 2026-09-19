@@ -1,16 +1,19 @@
 // render-and-qa-enhanced.js — OpenCode as primary thinker, Gemini as challenger
 //
-// NEW FLOW:
+// FLOW:
 //   1. OpenCode generates visual intent (primary creative thinker)
-//   2. Gemini challenges the intent (semantic reviewer/judge)
-//   3. If NEEDS_CHANGE, apply deltas and re-challenge (max 1 iteration)
-//   4. Render with Remotion
-//   5. Compare execution vs intent (deterministic)
-//   6. Gemini final review ONLY if confidence gate triggers (risk-based)
+//   2. Confidence gate: if >=80% beats are high-confidence, skip Gemini challenge
+//   3. Gemini challenges the intent only when confidence is mixed/low
+//   4. If NEEDS_CHANGE, apply deltas and re-challenge (max 1 iteration)
+//   5. Render with Remotion
+//   6. Compare execution vs intent (deterministic)
+//   7. Gemini final review ONLY if post-render audit is MEDIUM/HIGH risk
 //
-// OLD FLOW (removed):
-//   Gemini generates plan → render → Gemini reviews → loop
-//   This used 2+ Gemini calls per video. New flow uses 0-1.
+// TOKEN BUDGET:
+//   Normal video (high confidence + NORMAL audit): 0 Gemini calls
+//   Challenged video: 1 Gemini call (challenge only)
+//   Risky video: 1-2 Gemini calls (challenge + post-render review)
+//   Old flow: 2+ Gemini calls per video (plan + review)
 import "dotenv/config";
 import { spawn } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync } from "node:fs";
@@ -22,9 +25,6 @@ const ROOT = join(__dirname, "..");
 
 // ── Script paths ──
 const RENDER_JS = join(ROOT, "src", "skills", "remotion-render", "render.js");
-const VIDEO_REVIEW_JS = join(__dirname, "video-review.js");
-const FRAME_AUDIT_JS = join(__dirname, "frame-audit.js");
-const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
 const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 const OPENCODE_INTENT_JS = join(__dirname, "opencode-visual-intent.js");
 const GEMINI_CHALLENGER_JS = join(__dirname, "gemini-visual-challenger.js");
@@ -59,7 +59,7 @@ function run(cmd, args, label) {
   });
 }
 
-// ── NEW: OpenCode generates visual intent (primary thinker) ──
+// ── OpenCode generates visual intent (PRIMARY THINKER) ──
 async function opencodeIntent(channelId, scriptPath) {
   const intentDir = join(ROOT, "data", "visual-intents", channelId);
   mkdirSync(intentDir, { recursive: true });
@@ -75,7 +75,27 @@ async function opencodeIntent(channelId, scriptPath) {
   return code === 0 && existsSync(intentPath) ? intentPath : null;
 }
 
-// ── NEW: Gemini challenges the intent (challenger/judge) ──
+// ── Confidence gate: skip Gemini challenge if intent is high-confidence ──
+function shouldSkipChallenge(intentPath) {
+  try {
+    const intent = JSON.parse(readFileSync(intentPath, "utf-8"));
+    const beats = intent.beats || [];
+    if (!beats.length) return false;
+    const highCount = beats.filter(b => b.confidence === "high").length;
+    const highRatio = highCount / beats.length;
+    // Skip Gemini challenge if >=80% of beats are high-confidence
+    if (highRatio >= 0.8) {
+      console.log("Confidence gate: " + highCount + "/" + beats.length + " high (" + Math.round(highRatio*100) + "%) — skipping Gemini challenge");
+      return true;
+    }
+    console.log("Confidence gate: " + highCount + "/" + beats.length + " high (" + Math.round(highRatio*100) + "%) — Gemini challenge needed");
+    return false;
+  } catch {
+    return false;
+  }
+}
+
+// ── Gemini challenges the intent (CHALLENGER/JUDGE) ──
 async function geminiChallenge(channelId, scriptPath, intentPath) {
   const key = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
   if (!key) { console.log("No Gemini key — skipping challenge (intent stands)."); return { verdict: "MATCH", deltas: [] }; }
@@ -98,14 +118,14 @@ async function geminiChallenge(channelId, scriptPath, intentPath) {
   }
 }
 
-// ── NEW: Apply deltas to intent ──
+// ── Apply deltas to intent ──
 function applyDeltas(intentPath, deltas) {
   if (!deltas.length) return intentPath;
   const intent = JSON.parse(readFileSync(intentPath, "utf-8"));
   for (const delta of deltas) {
     const beat = intent.beats.find(b => b.index === delta.beat_index);
     if (beat && beat[delta.field] !== undefined) {
-      console.log(`  Applying delta [${delta.beat_index}] ${delta.field}: "${beat[delta.field]}" → "${delta.suggested}"`);
+      console.log("  Applying delta [" + delta.beat_index + "] " + delta.field + ": \"" + beat[delta.field] + "\" -> \"" + delta.suggested + "\"");
       beat[delta.field] = delta.suggested;
     }
   }
@@ -165,8 +185,6 @@ async function renderOne(channelId, scriptPath, format) {
 // ── QA: local audit + risk-based Gemini review ──
 async function qaOne(runId, rendered) {
   const { outputPath, channelId, scriptPath, audio } = rendered;
-  const reviewDir = join(ROOT, "data", "audit", "render-review", runId, basename(outputPath, ".mp4"));
-  mkdirSync(reviewDir, { recursive: true });
 
   // Local deterministic audit (no Gemini tokens)
   let risk = "UNKNOWN";
@@ -202,7 +220,7 @@ function findGeminiReview(ch, sp) {
   return f.length ? join(dir, f[0]) : null;
 }
 
-// ── NEW: Main render loop with OpenCode-first architecture ──
+// ── Main render loop with OpenCode-first architecture ──
 async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride) {
   let intentPath = null;
   let lastResult = null;
@@ -219,19 +237,24 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       }
     }
 
-    // Step 2: Gemini challenges the intent (CHALLENGER/JUDGE)
-    const challenge = await geminiChallenge(channelId, scriptPath, intentPath);
+    // Step 2: Confidence gate — skip Gemini if intent is high-confidence
+    let challenge = { verdict: "MATCH", deltas: [] };
+    if (shouldSkipChallenge(intentPath)) {
+      console.log("Confidence gate PASSED — proceeding without Gemini challenge");
+    } else {
+      // Step 3: Gemini challenges the intent (CHALLENGER/JUDGE)
+      challenge = await geminiChallenge(channelId, scriptPath, intentPath);
 
-    if (challenge.verdict === "NEEDS_CHANGE" && challenge.deltas.length && attempt <= 2) {
-      console.log(`Gemini found ${challenge.deltas.length} issue(s) — applying deltas`);
-      intentPath = applyDeltas(intentPath, challenge.deltas);
-      // Re-challenge on next iteration (max 1 delta round)
-      continue;
+      if (challenge.verdict === "NEEDS_CHANGE" && challenge.deltas.length && attempt <= 2) {
+        console.log("Gemini found " + challenge.deltas.length + " issue(s) — applying deltas");
+        intentPath = applyDeltas(intentPath, challenge.deltas);
+        continue;
+      }
     }
 
-    console.log(`Gemini verdict: ${challenge.verdict} (score: ${challenge.score || "N/A"})`);
+    console.log("Gemini verdict: " + challenge.verdict + " (score: " + (challenge.score || "N/A") + ")");
 
-    // Step 3: Convert intent to visual-plan.json and render
+    // Step 4: Convert intent to visual-plan.json and render
     const planDir = join(ROOT, "data", "visual-plans", channelId);
     mkdirSync(planDir, { recursive: true });
     const planPath = join(planDir, basename(scriptPath, ".json") + "-visual-plan.json");
@@ -246,13 +269,13 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     }
     lastResult = result;
 
-    // Step 4: Compare execution vs intent (deterministic)
+    // Step 5: Compare execution vs intent (deterministic)
     const comparisonDir = join(ROOT, "data", "audit", "execution-comparison", runId);
     mkdirSync(comparisonDir, { recursive: true });
     const comparisonPath = join(comparisonDir, basename(result.outputPath, ".mp4") + "-comparison.json");
     await run("node", [EXECUTION_COMPARATOR_JS, "--intent", intentPath, "--video", result.outputPath, "--out", comparisonPath], "compare/" + channelId);
 
-    // Step 5: QA (local audit + risk-based Gemini review)
+    // Step 6: QA (local audit + risk-based Gemini review)
     const qa = await qaOne(runId, result);
     if (qa.geminiReviewPromise) await qa.geminiReviewPromise;
 
@@ -274,11 +297,12 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
         localAuditRisk: qa.risk,
         intentFile: intentPath,
         challengeVerdict: challenge.verdict,
+        geminiCallsUsed: challenge.verdict === "MATCH" ? 0 : 1,
       };
     }
 
     console.log("Not approved — retrying with fresh intent");
-    intentPath = null; // Force new intent generation on next attempt
+    intentPath = null;
     try { rmSync(result.outputPath); } catch {}
   }
 
@@ -317,12 +341,14 @@ async function main() {
   }
 
   let rendered = 0, failed = 0; const results = [];
+  let totalGeminiCalls = 0;
   for (const { channelId: ch, scriptPath: sp } of work) {
     const r = await renderWithCorrectionLoop(ch, sp, fmt(sp), runId, outOverride);
     if (r.skipped) continue;
     if (!r.ok) { failed++; continue; }
     rendered++; results.push(r);
-    console.log("  Done: " + basename(r.outputPath) + " attempt=" + r.attempt + " verdict=" + r.geminiVerdict + " risk=" + (r.localAuditRisk||"?"));
+    totalGeminiCalls += (r.geminiCallsUsed || 0);
+    console.log("  Done: " + basename(r.outputPath) + " attempt=" + r.attempt + " verdict=" + r.geminiVerdict + " risk=" + (r.localAuditRisk||"?") + " gemini=" + (r.geminiCallsUsed||0));
   }
 
   const qaFailed = results.filter(r => !r.qaGatePass);
@@ -330,7 +356,8 @@ async function main() {
 
   const ok = rendered - qaFailed.length;
   console.log("\n=== SUMMARY === rendered=" + rendered + " failed=" + failed + " qaFailed=" + qaFailed.length + " successful=" + ok);
-  for (const r of results) console.log("  " + basename(r.outputPath||"?") + ": risk=" + (r.localAuditRisk||"?") + " verdict=" + r.geminiVerdict + " qa=" + (r.qaGatePass?"PASS":"FAIL") + " intent=" + (r.challengeVerdict||"?"));
+  console.log("=== GEMINI USAGE === " + totalGeminiCalls + " call(s) for " + rendered + " video(s) (avg " + (rendered ? (totalGeminiCalls/rendered).toFixed(1) : 0) + " per video)");
+  for (const r of results) console.log("  " + basename(r.outputPath||"?") + ": risk=" + (r.localAuditRisk||"?") + " verdict=" + r.geminiVerdict + " qa=" + (r.qaGatePass?"PASS":"FAIL") + " gemini=" + (r.geminiCallsUsed||0));
 
   if (ok === 0) { console.error("0 videos passed QA."); process.exit(1); }
 }
