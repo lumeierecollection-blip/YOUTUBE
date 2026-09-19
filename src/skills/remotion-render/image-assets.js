@@ -1,20 +1,29 @@
 /**
- * Image asset resolution for IMAGE_BEAT scenes — PART 5/6 of the
- * motion-graphics rebuild layered on top of the existing broll.js system.
+ * Image asset resolution for IMAGE_BEAT scenes.
  *
- * Two sources, tried in order per cue:
- *   1. data/asset-library/index.json (asset-sourcing skill — rembg-treated
- *      cutouts/full-bleeds with real license + attribution) via select.js.
- *   2. The legacy hand-curated b-roll-manifest-<channelId>.json fixtures
- *      (broll.js) — untreated raw photos, rendered full-bleed as before.
+ * RULE (world.txt Part 1.3):
+ *   "The content layer decides what to show. The library only provides the file."
  *
- * Both are plain file reads. No network, no rembg, nothing at render time
- * — see select.js's header for why that boundary matters.
+ * The content layer (visual director) decides which assets are needed.
+ * This module only resolves them to file paths. It must never force
+ * a library match when the content layer didn't request one.
+ *
+ * Sources, tried in order per cue:
+ *   1. data/asset-library/index.json (asset-sourcing skill) via lookupAsset()
+ *   2. The legacy hand-curated broll-manifest-<channelId>.json fixtures
+ *
+ * Both are plain file reads. No network, no rembg, nothing at render time.
  */
 import { resolveBrollFiles } from "./broll.js";
-import { selectAsset, loadAssetManifest } from "../asset-sourcing/select.js";
+import { loadAssetManifest, lookupAsset } from "../asset-sourcing/select.js";
 
 /**
+ * Resolve image assets for beats. The content layer specifies which assets
+ * are needed; this module returns file paths.
+ *
+ * @param {Array} cues - Array of cue objects with {id?, text?, channelId?}
+ * @param {string} channelId - Channel ID for scoping
+ * @param {string} topicSlug - Topic slug for legacy broll
  * @returns {Array<{path: string, treatment: "cutout"|"fullbleed", mode: string|null, credit: string|null}>}
  */
 export function resolveImageAssets(cues, channelId, topicSlug) {
@@ -25,39 +34,23 @@ export function resolveImageAssets(cues, channelId, topicSlug) {
   const seenPaths = new Set();
 
   for (const cue of cues) {
-    const asset = selectAsset(channelId, cue, { manifest });
-    if (asset && !seenPaths.has(asset.publicPath)) {
-      out.push({
-        path: asset.publicPath,
-        treatment: asset.treatment,
-        mode: asset.mode || null,
-        credit: asset.attribution || null,
-      });
-      seenPaths.add(asset.publicPath);
-    }
-  }
-
-  // Broaden-and-retry: none of this section's own cues matched anything in
-  // the asset-library manifest. Before giving up on the manifest entirely,
-  // retry once against the video's overall topic (topicSlug, already a
-  // parameter here) — a broader term than any single cue phrase, on the
-  // theory that a topic-relevant photo beats no photo. Still routed through
-  // select.js's own keyword-overlap match (never a blind first-asset
-  // guess), and still per-channel scoped.
-  if (out.length === 0 && topicSlug) {
-    const broadCue = String(topicSlug).replace(/[-_]+/g, " ").trim();
-    if (broadCue) {
-      const asset = selectAsset(channelId, broadCue, { manifest });
-      if (asset && !seenPaths.has(asset.publicPath)) {
+    // NEW: If the content layer specified an asset ID, look it up directly
+    if (cue.id) {
+      const asset = lookupAsset(cue.id, { manifest });
+      if (asset && !seenPaths.has(asset.path)) {
         out.push({
-          path: asset.publicPath,
+          path: asset.path,
           treatment: asset.treatment,
-          mode: asset.mode || null,
-          credit: asset.attribution || null,
+          mode: null,
+          credit: asset.credit,
         });
-        seenPaths.add(asset.publicPath);
+        seenPaths.add(asset.path);
       }
+      continue;
     }
+
+    // LEGACY: If the content layer only provided text, fall back to broll
+    // (the old keyword-matching path is deprecated — see select.js)
   }
 
   // Legacy fixture manifests are untreated raw photos — always rendered

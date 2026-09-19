@@ -1,11 +1,12 @@
 /**
- * select.js — PART 5's render-time half: "Selection at render time is a
- * plain file read — no live API calls in daily-pipeline.yml's hot path."
+ * select.js — Asset lookup: given a specific asset ID, return the file path.
  *
- * Pure — no network, no child_process, no rembg. Reads the manifest
- * fetch-library.js built offline and picks the best keyword match for a
- * given channel. This is what render.js calls, mirroring how broll.js's
- * resolveBrollFiles already works for the hand-curated fixture manifests.
+ * The content layer (beat generator / visual director) decides WHAT asset is
+ * needed. This module only provides the file path. It must never return a
+ * design decision based on what the library has.
+ *
+ * NEW RULE (world.txt Part 1.3):
+ *   "The content layer decides what to show. The library only provides the file."
  */
 import { readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -15,15 +16,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "..", "..");
 const MANIFEST_PATH = join(ROOT, "data", "asset-library", "index.json");
 
-const STOPWORDS = new Set(["a", "an", "the", "of", "and", "or", "for", "with", "on", "in", "to", "is", "are"]);
-
-function keywordsOf(text) {
-  return String(text || "")
-    .toLowerCase()
-    .split(/[^a-z0-9]+/)
-    .filter((w) => w.length >= 3 && !STOPWORDS.has(w));
-}
-
+/**
+ * Load the asset manifest from disk.
+ * Returns { version, assets } or empty manifest if not found.
+ */
 export function loadAssetManifest() {
   if (!existsSync(MANIFEST_PATH)) return { version: 1, assets: [] };
   try {
@@ -34,15 +30,73 @@ export function loadAssetManifest() {
 }
 
 /**
- * Pick the manifest entry for `channelId` whose query/id best overlaps the
- * cue text's keywords. Returns null (never a wrong-topic guess) when there
- * is no entry for this channel or no keyword overlap at all — matching
- * broll.js's "an unmatched cue resolves to nothing" rule.
+ * Look up an asset by its ID. Returns the file path or null.
+ * This is the PREFERRED way to use the library — the content layer
+ * specifies the asset ID, and this function returns the file path.
+ *
+ * @param {string} assetId - The asset's unique ID
+ * @param {Object} opts
+ * @param {Object} [opts.manifest] - Pre-loaded manifest (optional)
+ * @returns {{path: string, treatment: string, credit: string|null} | null}
+ */
+export function lookupAsset(assetId, { manifest = null } = {}) {
+  const lib = manifest || loadAssetManifest();
+  const asset = lib.assets.find((a) => a.id === assetId);
+  if (!asset) return null;
+  return {
+    path: asset.publicPath,
+    treatment: asset.treatment,
+    credit: asset.attribution || null,
+  };
+}
+
+/**
+ * Look up multiple assets by their IDs. Returns an array of results.
+ *
+ * @param {string[]} assetIds - Array of asset IDs
+ * @param {Object} opts
+ * @param {Object} [opts.manifest] - Pre-loaded manifest (optional)
+ * @returns {Array<{path: string, treatment: string, credit: string|null}>}
+ */
+export function lookupAssets(assetIds, { manifest = null } = {}) {
+  const lib = manifest || loadAssetManifest();
+  const out = [];
+  const seen = new Set();
+  for (const id of assetIds) {
+    const asset = lib.assets.find((a) => a.id === id);
+    if (asset && !seen.has(asset.publicPath)) {
+      out.push({
+        path: asset.publicPath,
+        treatment: asset.treatment,
+        credit: asset.attribution || null,
+      });
+      seen.add(asset.publicPath);
+    }
+  }
+  return out;
+}
+
+/**
+ * DEPRECATED — keyword-overlap matching.
+ *
+ * This function decides WHAT to show based on what the library has,
+ * which is backwards. Use lookupAsset() instead: the content layer
+ * specifies the asset ID, and the library returns the file path.
+ *
+ * Kept for backward compatibility during migration. Will be removed
+ * once all callers use lookupAsset().
  */
 export function selectAsset(channelId, cueText, { manifest = null } = {}) {
   const lib = manifest || loadAssetManifest();
   const pool = lib.assets.filter((a) => a.channelId === channelId);
   if (!pool.length) return null;
+
+  const STOPWORDS = new Set(["a", "an", "the", "of", "and", "or", "for", "with", "on", "in", "to", "is", "are"]);
+  const keywordsOf = (text) =>
+    String(text || "")
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter((w) => w.length >= 3 && !STOPWORDS.has(w));
 
   const cueWords = new Set(keywordsOf(cueText));
   if (!cueWords.size) return null;

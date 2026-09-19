@@ -14,6 +14,7 @@ import { Audio } from "@remotion/media";
 import { makeCircle, makeRect } from "@remotion/shapes";
 import { measureText, fitTextOnNLines, HEADLINE_FONT, fontStyleFor, needsFixedSlots, reserveCounterWidth } from "../layout/measure.js";
 import { currentAudio } from "../audio.js";
+import { KalimbaBed, SfxPalette } from "../visual/audio-mix.js";
 import "../wait-for-fonts.js";
 import { TemplateScene } from "./template-scene.jsx";
 import { resolveFontFamily } from "./visual.js";
@@ -1023,20 +1024,16 @@ function MotionGraphicsShorts({
       {mg ? (
         <MotionGraphicsContent mg={mg} colors={colors} fontFamily={fontFamily} showCaptions={showCaptions} />
       ) : null}
-      {/* music-sourcing/SKILL.md's whole-video underscore bed — distinct
-          from the sound-design events above (short one-shot cues, not a
-          continuous track). Static gain staging (a fixed, low level for
-          the ENTIRE bed), not dynamic sidechain ducking: this pipeline
-          has no VO-amplitude analysis to react to, and a fixed level well
-          under both the voiceover and the sound events (-24dB here against
-          the -20 to -30dB targets in sound-design.js's ROLE_GAIN_DB, itself
-          already under the voiceover) reads as "present but never
-          competing" without that added machinery.
-          hasUnderscore comes from render.js checking whether
-          the committed public/music/underscore.mp3 actually exists —
-          optional, so no static import (that would break the bundle on
-          any checkout that hasn't fetched a track). */}
-      {hasUnderscore ? <Audio src={staticFile("music/underscore.mp3")} volume={dbToVolume(-24)} loop /> : null}
+      {/* Kalimba background bed (world.txt) — replaces the old underscore.
+          Volume: −24 dB, fade in/out 0.5s, loops seamlessly.
+          The kalimba bed is the ONLY continuous audio under the narration;
+          short one-shot SFX come from mg.soundtrack (sound-design.js). */}
+      <KalimbaBed
+        totalFrames={mg?.totalFrames || 30 * 60}
+        fps={30}
+        volumeDb={-24}
+        hasUnderscore={hasUnderscore}
+      />
       {ttsAudioPath ? <Audio src={currentAudio} /> : null}
     </AbsoluteFill>
   );
