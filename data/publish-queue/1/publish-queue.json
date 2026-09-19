@@ -28,5 +28,15 @@
     "go_public_at": "2026-09-18T23:15:54.040Z",
     "privacy_status": "private",
     "cancelled": true
+  },
+  {
+    "video_id": "WkjK78pT7tE",
+    "channel_id": "1",
+    "title": "Why High Inflation Mindsets Ruin Beginner Budgets in 2026",
+    "uploaded_at": "2026-09-19T10:07:31.641Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-19T11:07:31.641Z",
+    "privacy_status": "private",
+    "cancelled": true
   }
 ]
