@@ -1584,6 +1584,300 @@
         ],
         "excluded": []
       }
+    },
+    {
+      "id": 49,
+      "niche": "Space Facts, Analogies, Theories & Myth Debunks",
+      "style": "motion-graphics",
+      "visual_engine": "voxel",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Cosmic Voxels",
+      "handle": "@cosmicvoxels",
+      "tts_voice": "en-US-AndrewNeural",
+      "font": "Space Grotesk",
+      "estimated_rpm": "8-15",
+      "google_account": "UNASSIGNED-49",
+      "channel_id": "ch-49",
+      "youtube_credentials_path": "config/creds/ch-49.json",
+      "description": "Weird space facts, cosmic analogies, and mind-bending theories — told through miniature voxel universes. Planets, black holes, and orbital systems you can almost touch.",
+      "content_pillars": [
+        "weird space facts",
+        "scale comparisons",
+        "cosmic analogies",
+        "what-if space scenarios",
+        "astronomy misconceptions debunked",
+        "planetary physics",
+        "stellar phenomena",
+        "black holes and exoplanets",
+        "cosmic distances and gravity"
+      ],
+      "tags": [
+        "space facts",
+        "astronomy",
+        "black hole",
+        "cosmos",
+        "space theories",
+        "voxel space"
+      ],
+      "colors": {
+        "primary": "#05051A",
+        "secondary": "#0A0A30",
+        "accent": "#818CF8",
+        "bg": "#020210"
+      },
+      "target_audience": "Science/space enthusiasts 18-45",
+      "tone": "awe-inspiring-playful",
+      "thumbnail_spec": {
+        "style": "voxel-cosmic",
+        "text_max_words": 4,
+        "baseHue": 336.9,
+        "accentHue": 276.9,
+        "text_font": "Space Grotesk Bold"
+      },
+      "sfx_profile": {
+        "music_style": "ambient cosmic with deep bass, ethereal pads, subtle electronic textures",
+        "primary_sfx": [
+          "deep-space-rumble",
+          "whoosh-cosmic",
+          "star-twinkle",
+          "rocket-thrust",
+          "sonar-ping"
+        ],
+        "music_bpm": "50-70",
+        "silence_technique": "3 second silence before major cosmic reveal"
+      },
+      "script_template": {
+        "hook_type": "curiosity-gap",
+        "section_count": 5,
+        "reveal_placement": "55-65% through video",
+        "closing_type": "philosophical",
+        "avg_section_length": "2-3 min"
+      },
+      "visual_spec": {
+        "color_grade": "deep space blues/purples with warm star highlights, voxel miniature aesthetic",
+        "b_roll_sources": [
+          "custom voxel 3D renders",
+          "NASA public domain 4K",
+          "ESA imagery",
+          "Pixabay/Pexels space footage"
+        ],
+        "camera_angles": [
+          "orbital fly-through",
+          "planet close-up",
+          "galaxy wide",
+          "scale comparison zoom",
+          "star field tracking"
+        ],
+        "pacing": "slow-build with awe-inspiring reveals",
+        "transitions": [
+          "zoom-through-space",
+          "parallax-shift",
+          "cross-dissolve-cosmic",
+          "voxel-morph"
+        ]
+      },
+      "creds_secret_prefix": "CHANNEL_49",
+      "visual_identity": {
+        "philosophy": "Miniature physical cosmos — camera moves through a tactile voxel universe. Strong spatial depth, object interaction, environmental storytelling. Scale communicated visually, not through text.",
+        "environments": [
+          "planetary surfaces",
+          "orbital systems",
+          "asteroid fields",
+          "black hole accretion disks",
+          "nebula clouds",
+          "rocket launch pads",
+          "space station interiors"
+        ],
+        "object_vocabulary": [
+          "planets",
+          "moons",
+          "rockets",
+          "spacecraft",
+          "stars",
+          "black holes",
+          "asteroids",
+          "comets",
+          "satellites",
+          "orbital rings",
+          "gas clouds",
+          "space debris"
+        ],
+        "materials": [
+          "rocky asteroid surfaces",
+          "metallic spacecraft hulls",
+          "glowing star plasma",
+          "transparent cockpit glass",
+          "dusty lunar regolith",
+          "ice comet tails"
+        ],
+        "camera_language": [
+          "slow orbital drift",
+          "dramatic fly-by",
+          "scale zoom from human to cosmic",
+          "first-person cockpit view",
+          "orbital insertion",
+          "gravity slingshot"
+        ],
+        "motion_language": [
+          "orbital rotation",
+          "asteroid tumble",
+          "rocket thrust plume",
+          "comet trajectory",
+          "gravitational lensing",
+          "stellar wind particle drift"
+        ],
+        "typography": "ONE SHORT VISUAL THOUGHT max 5 words. Numbers with physical meaning. No transcript. No subtitles.",
+        "sound_identity": "Deep bass rumbles, cosmic whooshes, stellar crackles, rocket thrust, radio static. Never compete with voice.",
+        "thumbnail_identity": "Voxel planet/rocket/cosmic scene with bold space fact text. Deep blues/purples. Dramatic lighting.",
+        "what_never": "Generic starfield backgrounds. Flat 2D icons. Text-heavy frames. Floating brain icons. Repetitive rocket launches."
+      }
+    },
+    {
+      "id": 50,
+      "niche": "Brain, Psychology & Human Behavior",
+      "style": "motion-graphics",
+      "visual_engine": "voxel",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Mind Mechanics",
+      "handle": "@mindmechanics",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Inter",
+      "estimated_rpm": "5-9",
+      "google_account": "UNASSIGNED-50",
+      "channel_id": "ch-50",
+      "youtube_credentials_path": "config/creds/ch-50.json",
+      "description": "Why your brain does what it does. Cognitive biases, memory tricks, perception illusions, and the hidden mechanics of human behavior — shown through miniature voxel worlds.",
+      "content_pillars": [
+        "cognitive biases explained",
+        "memory and perception",
+        "dopamine and reward loops",
+        "habits and emotional responses",
+        "social behavior and decision-making",
+        "stress, fear, loneliness, motivation",
+        "psychological illusions",
+        "neuroscience-backed explanations",
+        "psychology myths debunked"
+      ],
+      "tags": [
+        "psychology",
+        "brain",
+        "cognitive bias",
+        "human behavior",
+        "neuroscience",
+        "mental health"
+      ],
+      "colors": {
+        "primary": "#0A0A1A",
+        "secondary": "#151530",
+        "accent": "#F472B6",
+        "bg": "#050510"
+      },
+      "target_audience": "Curious adults 18-45 interested in psychology",
+      "tone": "insightful-curious-friendly",
+      "thumbnail_spec": {
+        "style": "voxel-psychology",
+        "text_max_words": 4,
+        "baseHue": 281.7,
+        "accentHue": 330,
+        "text_font": "Inter Bold"
+      },
+      "sfx_profile": {
+        "music_style": "ambient cerebral, soft electronic pulses, subtle piano underscore",
+        "primary_sfx": [
+          "neuron-spark",
+          "synapse-fire",
+          "thought-bubble",
+          "heartbeat-soft",
+          "clock-tick"
+        ],
+        "music_bpm": "70-90",
+        "silence_technique": "2 second silence before psychological insight reveal"
+      },
+      "script_template": {
+        "hook_type": "contrarian",
+        "section_count": 5,
+        "reveal_placement": "50-60% through video",
+        "closing_type": "reflection",
+        "avg_section_length": "2-3 min"
+      },
+      "visual_spec": {
+        "color_grade": "dark neural pathways with pink/purple synaptic highlights, voxel miniature aesthetic",
+        "b_roll_sources": [
+          "custom voxel 3D renders",
+          "neural pathway animations",
+          "brain scan imagery",
+          "psychology experiment recreations"
+        ],
+        "camera_angles": [
+          "neural pathway fly-through",
+          "brain cross-section",
+          "character behavior scene",
+          "mental process visualization",
+          "cause-and-effect demonstration"
+        ],
+        "pacing": "moderate with insight-driven reveals",
+        "transitions": [
+          "synapse-fire",
+          "neural-morph",
+          "thought-transition",
+          "voxel-reshape"
+        ]
+      },
+      "creds_secret_prefix": "CHANNEL_50",
+      "visual_identity": {
+        "philosophy": "Miniature psychology worlds — camera moves through voxel environments that physically demonstrate mental processes. Characters show behaviors, environments metaphorize internal states. Cause shown through visible actions.",
+        "environments": [
+          "neural pathway landscapes",
+          "memory palace corridors",
+          "decision-making crossroads",
+          "dopamine reward circuits",
+          "stress response environments",
+          "social interaction spaces",
+          "attention spotlight stages"
+        ],
+        "object_vocabulary": [
+          "neurons",
+          "synapses",
+          "thought bubbles",
+          "memory blocks",
+          "decision forks",
+          "reward tokens",
+          "stress barriers",
+          "attention spotlights",
+          "emotional auras",
+          "habit loops"
+        ],
+        "materials": [
+          "neural tissue texture",
+          "synaptic gap glow",
+          "memory crystal surfaces",
+          "thought bubble transparency",
+          "emotional color washes",
+          "decision path marble"
+        ],
+        "camera_language": [
+          "neural fly-through",
+          "brain interior orbit",
+          "character observation",
+          "mental process zoom",
+          "cause-to-consequence pan",
+          "before/after behavior comparison"
+        ],
+        "motion_language": [
+          "synapse firing",
+          "neural pathway lighting",
+          "memory block stacking",
+          "decision fork branching",
+          "emotional wave spreading",
+          "habit loop cycling"
+        ],
+        "typography": "ONE SHORT VISUAL THOUGHT max 5 words. Key insight number. No transcript. No subtitles.",
+        "sound_identity": "Soft neural crackles, thought bubble pops, heartbeat rhythms, synapse sparkles. Never compete with voice.",
+        "thumbnail_identity": "Voxel brain/character scene with bold psychology fact text. Pink/purple neural highlights. Dark background.",
+        "what_never": "Generic floating brain icon. Repetitive brain diagrams. Text-heavy explainers. Stock photo psychology. Clinical sterile environments."
+      }
     }
   ]
 }
