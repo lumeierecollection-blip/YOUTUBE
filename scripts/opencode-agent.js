@@ -172,6 +172,10 @@ function isRateLimitError(errorText) {
   return /token_quota_exceeded|tokens per minute|rate.?limit|429|ContextOverflowError/i.test(errorText || "");
 }
 
+function isPaymentRequiredError(errorText) {
+  return /402|payment.?required|payment_required/i.test(errorText);
+}
+
 // Real failure: gpt-oss-120b produced otherwise-valid JSON but overshot a
 // maxLength constraint by a few characters, forcing a retry that then hit
 // the rate limit and failed the whole run. Models count characters
@@ -450,6 +454,13 @@ Do your research and reasoning silently — do not quote, paste, or summarize se
           // the identical error at the same time), so this is a per-minute
           // window to wait out, not something a shorter pause or a
           // different model escapes. 65s to clear a 60s window with margin.
+          // Fail fast on billing errors — do not retry, do not fall through
+          if (isPaymentRequiredError(result.error)) {
+            console.error("CEREBRAS_BILLING_REQUIRED — top up at cloud.cerebras.ai before rendering.");
+            console.error("Preflight failed: " + result.error.slice(0, 200));
+            process.exit(1);
+          }
+
           const waitMs = isRateLimitError(result.error) ? 65000 : 3000;
           console.error(`Waiting ${waitMs / 1000}s before retrying...`);
           await sleep(waitMs);
