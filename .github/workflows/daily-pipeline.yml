@@ -128,11 +128,11 @@ jobs:
           CHANNEL_OVERRIDE="${{ github.event.inputs.channel_override }}"
           CHANNEL_LIST="${{ github.event.inputs.channel_list }}"
           if [ -n "$CHANNEL_LIST" ]; then
-            # Convert comma-separated list to JSON array and filter channels
             node scripts/build-discovery-context.js | jq --arg ids "$CHANNEL_LIST" '
-              ($ids | split(",") | map(. | gsub("^\\s+|\\s+$"; "") | tonumber)) as $allowed |
-              .channels = [.channels[] | select(.id as $id | $allowed | index($id))]
+              ($ids | split(",") | map(gsub("^\\s+|\\s+$"; ""))) as $allowed |
+              .channels = [.channels[] | select(.channel_id as $cid | $allowed | index($cid))]
             ' > /tmp/context.json
+            echo "Filtered to $(jq '.channels | length' /tmp/context.json) channel(s): $CHANNEL_LIST"
           elif [ -n "$CHANNEL_OVERRIDE" ]; then
             node scripts/build-discovery-context.js --channel "$CHANNEL_OVERRIDE" > /tmp/context.json
           else
