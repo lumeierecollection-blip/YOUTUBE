@@ -21,6 +21,7 @@
       "channel_id": "ch-01",
       "youtube_credentials_path": "config/creds/ch-01.json",
       "stay_private": true,
+      "skip_thumbnail_upload": true,
       "description": "Simple budgeting strategies for real people. No jargon, no get-rich-quick. Just proven systems to take control of your money.",
       "content_pillars": [
         "50/30/20 budget breakdowns",
@@ -123,6 +124,7 @@
       "google_account": "CH2",
       "channel_id": "ch-02",
       "youtube_credentials_path": "config/creds/ch-02.json",
+      "skip_thumbnail_upload": true,
       "description": "Your constitutional rights explained in plain English. What to do during traffic stops, police encounters, and legal situations.",
       "content_pillars": [
         "constitutional rights explained",
@@ -486,6 +488,7 @@
       "google_account": "UNASSIGNED-9",
       "channel_id": "ch-09",
       "youtube_credentials_path": "config/creds/ch-09.json",
+      "skip_thumbnail_upload": true,
       "description": "How borders shape power, conflict, and wealth. Geographic explanations of the world's most complex geopolitical situations.",
       "content_pillars": [
         "border conflict explainers",
@@ -763,6 +766,7 @@
       "google_account": "UNASSIGNED-26",
       "channel_id": "ch-26",
       "youtube_credentials_path": "config/creds/ch-26.json",
+      "skip_thumbnail_upload": true,
       "description": "Inside the biggest financial frauds, heists, and scams in history. Money trails animated, Ponzi schemes decoded, and criminals exposed.",
       "content_pillars": [
         "Ponzi scheme breakdowns",
@@ -1216,6 +1220,7 @@
       "google_account": "UNASSIGNED-44",
       "channel_id": "ch-44",
       "youtube_credentials_path": "config/creds/ch-44.json",
+      "skip_thumbnail_upload": true,
       "description": "High-value professional skills explained through animation. Communication, leadership, productivity, and career strategy.",
       "content_pillars": [
         "communication skill breakdowns",
@@ -1494,6 +1499,7 @@
       "google_account": "UNASSIGNED-48",
       "channel_id": "ch-48",
       "youtube_credentials_path": "config/creds/ch-48.json",
+      "skip_thumbnail_upload": true,
       "description": "How things are actually made. Factory processes, manufacturing technology, and industrial supply chains — 3D animated explainers.",
       "content_pillars": [
         "factory process animations",

@@ -271,7 +271,7 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
   const topicHint = basename(videoPath, extname(videoPath));
   const scriptSlug = topicSlugFromVideo(topicHint);
   const seo = loadSeoMetadata(channelId, scriptSlug);
-  const thumb = findThumbnail(channelId, scriptSlug);
+  const thumb = channel.skip_thumbnail_upload ? null : findThumbnail(channelId, scriptSlug);
   if (!seo) console.log(`  WARNING: no SEO metadata for "${scriptSlug}" - using fallback title/description.`);
   if (!thumb) console.log(`  WARNING: no thumbnail for "${scriptSlug}" - YouTube will pick a frame.`);
 
@@ -312,8 +312,13 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
   console.log(`  Uploaded: ${videoId}`);
 
   if (thumb) {
-    const thumbUrl = await setThumbnail(token, videoId, thumb);
-    console.log(`  Thumbnail: ${thumbUrl || "set"}`);
+    try {
+      const thumbUrl = await setThumbnail(token, videoId, thumb);
+      console.log(`  Thumbnail: ${thumbUrl || "set"}`);
+    } catch (err) {
+      console.log(`  WARNING: thumbnail upload skipped — ${err.message}`);
+      console.log(`  To enable: verify the YouTube channel at studio.youtube.com → Settings → Channel → Feature eligibility`);
+    }
   }
 
   const delayHours = channel.publish_delay_hours ?? 1;
