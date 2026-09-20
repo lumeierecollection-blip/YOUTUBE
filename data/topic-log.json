@@ -2173,9 +2173,14 @@
           "topic": "Inside SMA's New 60 GW Gigawatt Inverter Factory in Germany",
           "slug": "sma-60gw-gigawatt-factory-germany-inverters",
           "reserved_at": "2026-09-19T10:00:26.254Z"
+        },
+        {
+          "topic": "Hirebotics Line-Tracking Cobots and Linear Rails at IMTS 2026",
+          "slug": "hirebotics-line-tracking-cobots-linear-rails-imts-2026",
+          "reserved_at": "2026-09-20T10:21:04.744Z"
         }
       ],
-      "last_generated": "2026-09-19T10:00:26.254Z"
+      "last_generated": "2026-09-20T10:21:04.744Z"
     },
     "49": {
       "channel_name": "Wander Budget",
