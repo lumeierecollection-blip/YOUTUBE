@@ -1398,9 +1398,14 @@
           "topic": "Andrew Spaventa's $74M Pre-IPO Boiler Room Scam and Hidden Fees",
           "slug": "andrew-spaventa-74m-pre-ipo-boiler-room",
           "reserved_at": "2026-09-19T09:58:50.684Z"
+        },
+        {
+          "topic": "Gotbit's $23M Crypto Wash Trading Scam and 2026 SEC Final Judgment",
+          "slug": "gotbit-23m-crypto-wash-trading-sec-judgment",
+          "reserved_at": "2026-09-20T10:19:36.219Z"
         }
       ],
-      "last_generated": "2026-09-19T09:58:50.684Z"
+      "last_generated": "2026-09-20T10:19:36.219Z"
     },
     "27": {
       "channel_name": "Trial Files",
