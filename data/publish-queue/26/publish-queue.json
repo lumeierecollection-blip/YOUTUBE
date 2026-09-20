@@ -50,6 +50,17 @@
     "uploaded_at": "2026-09-19T10:14:47.713Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-19T11:14:47.713Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-20T10:36:01.330Z"
+  },
+  {
+    "video_id": "rCzW_ablIkE",
+    "channel_id": "26",
+    "title": "Gotbit's $23M Crypto Wash Trading Scam and 2026 SEC Final…",
+    "uploaded_at": "2026-09-20T10:35:59.011Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-20T11:35:59.011Z",
     "privacy_status": "private",
     "cancelled": false
   }
