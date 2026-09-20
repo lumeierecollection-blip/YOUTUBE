@@ -28,6 +28,17 @@
     "uploaded_at": "2026-09-19T10:15:51.719Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-19T11:15:51.719Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-20T10:43:41.558Z"
+  },
+  {
+    "video_id": "VXZzNUQSv14",
+    "channel_id": "48",
+    "title": "Hirebotics Line-Tracking Cobots and Linear Rails at IMTS…",
+    "uploaded_at": "2026-09-20T10:43:39.803Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-20T11:43:39.803Z",
     "privacy_status": "private",
     "cancelled": false
   }
