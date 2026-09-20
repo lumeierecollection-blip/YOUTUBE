@@ -50,6 +50,17 @@
     "uploaded_at": "2026-09-18T22:21:07.207Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-18T23:21:07.206Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-20T10:40:11.321Z"
+  },
+  {
+    "video_id": "0XlJTsYJ8nY",
+    "channel_id": "44",
+    "title": "The 20% Earnings Boost: Why Open-Ended Questions Dominate…",
+    "uploaded_at": "2026-09-20T10:40:09.656Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-20T11:40:09.656Z",
     "privacy_status": "private",
     "cancelled": false
   }
