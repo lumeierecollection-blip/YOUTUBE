@@ -38,5 +38,15 @@
     "go_public_at": "2026-09-19T11:07:31.641Z",
     "privacy_status": "private",
     "cancelled": true
+  },
+  {
+    "video_id": "Uo7MOuFK11I",
+    "channel_id": "1",
+    "title": "Using Credit Cards for Groceries: The 2026 Affordability…",
+    "uploaded_at": "2026-09-20T10:27:45.951Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-20T11:27:45.951Z",
+    "privacy_status": "private",
+    "cancelled": true
   }
 ]
