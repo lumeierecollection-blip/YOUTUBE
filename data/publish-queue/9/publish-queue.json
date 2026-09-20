@@ -39,6 +39,17 @@
     "uploaded_at": "2026-09-19T10:08:53.745Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-19T11:08:53.745Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-09-20T10:34:19.570Z"
+  },
+  {
+    "video_id": "bvKFLasknVo",
+    "channel_id": "9",
+    "title": "UN Map Redraws Aksai Chin and Kalapani Boundaries",
+    "uploaded_at": "2026-09-20T10:34:18.070Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-09-20T11:34:18.070Z",
     "privacy_status": "private",
     "cancelled": false
   }
