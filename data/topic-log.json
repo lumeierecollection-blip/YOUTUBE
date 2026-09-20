@@ -602,9 +602,14 @@
           "topic": "Can States Impose Minimum Wage on Voluntary Detention Work Programs?",
           "slug": "geo-group-state-minimum-wage-detention-work",
           "reserved_at": "2026-09-18T22:08:07.047Z"
+        },
+        {
+          "topic": "Do Single-Employee Corporations Qualify for FAA Exemption?",
+          "slug": "silva-v-schmidt-baking-corporation-faa-exemption",
+          "reserved_at": "2026-09-20T10:17:39.754Z"
         }
       ],
-      "last_generated": "2026-09-18T22:08:07.047Z"
+      "last_generated": "2026-09-20T10:17:39.754Z"
     },
     "3": {
       "channel_name": "AI Tested",
