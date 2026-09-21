@@ -1,9 +1,0 @@
-{
-  "voice": "en-GB-RyanNeural",
-  "segments": 14,
-  "total_words": 466,
-  "text_file": "/home/user/YOUTUBE/data/tts/4/great-fire-of-london-script-vo-text.txt",
-  "audio_output": "/home/user/YOUTUBE/data/tts/4/great-fire-of-london-script-vo.mp3",
-  "generated_at": "2026-08-08T18:27:31.220Z",
-  "status": "pending_tts"
-}
