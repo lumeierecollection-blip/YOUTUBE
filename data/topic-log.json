@@ -125,9 +125,14 @@
           "topic": "Why Traditional Budget Rules Fail for Middle-Class Families",
           "slug": "traditional-budget-rules-fail-middle-class-2026",
           "reserved_at": "2026-09-21T22:34:11.189Z"
+        },
+        {
+          "topic": "Classic 50/30/20 Budget Rules Fail for Households Making $100K",
+          "slug": "classic-50-30-20-budget-rules-fail-100k",
+          "reserved_at": "2026-09-21T23:10:57.806Z"
         }
       ],
-      "last_generated": "2026-09-21T22:34:11.189Z"
+      "last_generated": "2026-09-21T23:10:57.806Z"
     },
     "2": {
       "channel_name": "Legal Brief",
@@ -252,9 +257,14 @@
           "topic": "Supreme Court Rejects Birthright Citizenship Executive Order",
           "slug": "supreme-court-rejects-birthright-citizenship-ruling",
           "reserved_at": "2026-09-21T22:34:11.189Z"
+        },
+        {
+          "topic": "What a Missing Citation Reveals About SCOTUS Birthright Rulings",
+          "slug": "missing-citation-scotus-birthright-decision",
+          "reserved_at": "2026-09-21T23:10:57.807Z"
         }
       ],
-      "last_generated": "2026-09-21T22:34:11.189Z"
+      "last_generated": "2026-09-21T23:10:57.807Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -304,9 +314,14 @@
           "topic": "Grok 4.7 vs Claude Fable 5.1: Real Coding Benchmark Showdown",
           "slug": "grok-4-7-vs-claude-fable-5-1-coding-showdown",
           "reserved_at": "2026-09-21T22:34:11.190Z"
+        },
+        {
+          "topic": "Grok 4.7 Tested: Benchmarks Reveal Wide Gap to Claude and GPT-6",
+          "slug": "grok-4-7-benchmarks-reveal-gap-claude-gpt6",
+          "reserved_at": "2026-09-21T23:10:57.808Z"
         }
       ],
-      "last_generated": "2026-09-21T22:34:11.190Z"
+      "last_generated": "2026-09-21T23:10:57.808Z"
     },
     "4": {
       "channel_name": "Hidden Past",
@@ -361,9 +376,14 @@
           "topic": "What Arendt's Right to Have Rights Means Today",
           "slug": "arendt-right-to-have-rights-historical-roots",
           "reserved_at": "2026-09-19T11:07:30.883Z"
+        },
+        {
+          "topic": "NASA's Mars Discovery Reveals Complex Water Systems in Jezero",
+          "slug": "nasa-mars-discovery-complex-water-systems",
+          "reserved_at": "2026-09-21T23:10:57.809Z"
         }
       ],
-      "last_generated": "2026-09-19T11:07:30.883Z"
+      "last_generated": "2026-09-21T23:10:57.809Z"
     },
     "5": {
       "channel_name": "Harmony",
@@ -501,9 +521,14 @@
           "topic": "The WTO 2026 Report and Global Trade Prisoner's Dilemma",
           "slug": "wto-2026-trade-report-prisoners-dilemma",
           "reserved_at": "2026-09-21T22:46:18.620Z"
+        },
+        {
+          "topic": "Europe Prepares for Wider Conflict as Belarus Conducts Drills",
+          "slug": "europe-prepares-wider-conflict-belarus-drills",
+          "reserved_at": "2026-09-21T23:10:57.810Z"
         }
       ],
-      "last_generated": "2026-09-21T22:46:18.620Z"
+      "last_generated": "2026-09-21T23:10:57.810Z"
     },
     "10": {
       "channel_name": "Word Lab",
@@ -555,9 +580,14 @@
           "topic": "JWST Discovers Giant Planet RX J0534 b Around an M-Dwarf Star",
           "slug": "jwst-discovers-giant-planet-rx-j0534-b",
           "reserved_at": "2026-09-21T22:34:11.191Z"
+        },
+        {
+          "topic": "JWST and Keck Confirm Elias 2-24 b as Youngest Known Planet",
+          "slug": "jwst-keck-confirm-elias-2-24-b-youngest-planet",
+          "reserved_at": "2026-09-21T23:10:57.810Z"
         }
       ],
-      "last_generated": "2026-09-21T22:34:11.191Z"
+      "last_generated": "2026-09-21T23:10:57.810Z"
     },
     "12": {
       "channel_name": "Rational",
@@ -723,9 +753,14 @@
           "topic": "Bitcoin Latinum: The $16 Million Crypto Fraud Scheme",
           "slug": "bitcoin-latinum-16-million-crypto-fraud",
           "reserved_at": "2026-09-19T11:31:13.465Z"
+        },
+        {
+          "topic": "Felix and Paul Studios Files for Bankruptcy with $34.5M Debt",
+          "slug": "felix-paul-studios-bankruptcy-liabilities",
+          "reserved_at": "2026-09-21T23:10:57.811Z"
         }
       ],
-      "last_generated": "2026-09-19T11:31:13.465Z"
+      "last_generated": "2026-09-21T23:10:57.811Z"
     },
     "27": {
       "channel_name": "Trial Files",
@@ -778,9 +813,14 @@
           "topic": "Bronx Sexual Assault Cold Case Solved After 20 Years",
           "slug": "bronx-cold-case-genetic-genealogy-conviction",
           "reserved_at": "2026-09-19T10:01:15.924Z"
+        },
+        {
+          "topic": "How Genetic Genealogy Is Transforming Cold Case Identifications",
+          "slug": "genetic-genealogy-transforming-cold-case-ids",
+          "reserved_at": "2026-09-21T23:10:57.812Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.924Z"
+      "last_generated": "2026-09-21T23:10:57.812Z"
     },
     "31": {
       "channel_name": "Justice Denied",
@@ -885,9 +925,14 @@
           "topic": "FAA Issues Directives for 476 Boeing 737 MAX Jets",
           "slug": "faa-directives-boeing-737-max-jets",
           "reserved_at": "2026-09-19T11:07:30.887Z"
+        },
+        {
+          "topic": "Scientists Track 27 Years of Blazar Jets Blasting Earth",
+          "slug": "scientists-track-27-years-blazar-jets-earth",
+          "reserved_at": "2026-09-21T23:10:57.812Z"
         }
       ],
-      "last_generated": "2026-09-19T11:07:30.887Z"
+      "last_generated": "2026-09-21T23:10:57.812Z"
     },
     "36": {
       "channel_name": "Terminal Tactics",
@@ -1096,9 +1141,14 @@
           "topic": "Medicare 2026 Open Enrollment and Premium Changes",
           "slug": "medicare-open-enrollment-supplement-guide",
           "reserved_at": "2026-09-19T10:01:15.927Z"
+        },
+        {
+          "topic": "Medicare Open Enrollment Changes and What Seniors Must Switch",
+          "slug": "medicare-open-enrollment-changes-seniors",
+          "reserved_at": "2026-09-21T23:10:57.813Z"
         }
       ],
-      "last_generated": "2026-09-19T10:01:15.927Z"
+      "last_generated": "2026-09-21T23:10:57.813Z"
     },
     "48": {
       "channel_name": "Factory Floor",
