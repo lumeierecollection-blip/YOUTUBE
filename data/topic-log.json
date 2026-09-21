@@ -290,9 +290,14 @@
           "topic": "Using Credit Cards for Groceries: The 2026 Affordability Squeeze",
           "slug": "using-credit-cards-for-groceries-2026",
           "reserved_at": "2026-09-20T10:17:37.762Z"
+        },
+        {
+          "topic": "The 2026 Ipsos Survey: Why Half of Americans Struggle to Save",
+          "slug": "2026-ipsos-survey-why-americans-struggle-to-save",
+          "reserved_at": "2026-09-21T11:26:05.638Z"
         }
       ],
-      "last_generated": "2026-09-20T10:17:37.763Z"
+      "last_generated": "2026-09-21T11:26:05.638Z"
     },
     "2": {
       "channel_name": "Legal Brief",
