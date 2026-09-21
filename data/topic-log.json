@@ -1018,9 +1018,14 @@
           "topic": "UN Map Redraws Aksai Chin and Kalapani Boundaries",
           "slug": "un-cartographic-resolution-aksai-chin-kalapani",
           "reserved_at": "2026-09-20T10:19:21.690Z"
+        },
+        {
+          "topic": "North Korea's DMZ Border Fortification and Landmine Crisis",
+          "slug": "north-korea-dmz-border-fortification-landmines",
+          "reserved_at": "2026-09-21T11:28:20.126Z"
         }
       ],
-      "last_generated": "2026-09-20T10:19:21.690Z"
+      "last_generated": "2026-09-21T11:28:20.127Z"
     },
     "10": {
       "channel_name": "Double Cross",
