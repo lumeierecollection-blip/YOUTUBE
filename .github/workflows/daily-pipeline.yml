@@ -603,6 +603,28 @@ jobs:
           path: data/renders/
           retention-days: 7
 
+      - name: Upload to YouTube (private)
+        if: success()
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          # Find the most recent mp4 in data/renders/
+          MP4=$(find data/renders/ -name "*.mp4" -type f -printf '%T@ %p\n' 2>/dev/null | sort -rn | head -1 | cut -d' ' -f2-)
+          if [ -z "$MP4" ]; then
+            echo "WARNING: No mp4 found to upload. Skipping."
+            exit 0
+          fi
+          if [ -z "$YT_CLIENT_ID" ] || [ -z "$YT_CLIENT_SECRET" ] || [ -z "$YT_REFRESH_TOKEN" ]; then
+            echo "WARNING: YouTube credentials not set. Skipping upload."
+            exit 0
+          fi
+          node scripts/youtube-upload.cjs \
+            --file "$MP4" \
+            --title "$(basename "$MP4" .mp4)" \
+            --channel "${{ env.CHANNEL_OVERRIDE || '1' }}"
+
   # ============================================================
   # PHASE 4: Publish to YouTube
   # ============================================================
@@ -841,3 +863,25 @@ jobs:
           echo "Research+Script: ${{ needs.research-and-script.result }}"
           echo "Render: ${{ needs.render.result }}"
           echo "Publish: ${{ needs.publish.result }}"
+
+  # ============================================================
+  # PHASE 6: Self-heal on failure
+  # ============================================================
+  self-heal:
+    needs: [discover-topics, research-and-script, render, publish]
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Self-heal on failure
+        run: node scripts/self-heal.cjs

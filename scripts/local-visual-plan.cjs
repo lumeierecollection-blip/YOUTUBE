@@ -124,8 +124,8 @@ function assignMechanism(text, index, totalBeats) {
     if (re.test(lower)) return mech;
   }
 
-  // Default: TYPOGRAPHY (but capped at 20% — caller handles capping)
-  return "TYPOGRAPHY";
+  // Default: ACTION_CONSEQUENCE (TYPOGRAPHY is assigned deliberately, not as default)
+  return "ACTION_CONSEQUENCE";
 }
 
 /* ── Visual Headline Generator ────────────────────────────────────── */
@@ -161,15 +161,16 @@ function generateHeadline(text, mechanism, number, subject) {
 function capMechanisms(beats) {
   const total = beats.length;
   const maxPct = 0.40;
-  const typoMaxPct = 0.20;
 
-  // Count current distribution
+  // Count current distribution (excluding TYPOGRAPHY which is handled separately)
   const counts = {};
   for (const b of beats) {
-    counts[b.mechanism] = (counts[b.mechanism] || 0) + 1;
+    if (b.mechanism !== "TYPOGRAPHY") {
+      counts[b.mechanism] = (counts[b.mechanism] || 0) + 1;
+    }
   }
 
-  // Check if any mechanism exceeds cap
+  // Check if any non-TYPOGRAPHY mechanism exceeds 40% cap
   let changed = true;
   let iterations = 0;
   while (changed && iterations < 10) {
@@ -177,10 +178,8 @@ function capMechanisms(beats) {
     iterations++;
     for (const [mech, count] of Object.entries(counts)) {
       const pct = count / total;
-      const limit = mech === "TYPOGRAPHY" ? typoMaxPct : maxPct;
-      if (pct > limit) {
-        const excess = Math.ceil(count - total * limit);
-        // Reassign excess to ACTION_CONSEQUENCE
+      if (pct > maxPct) {
+        const excess = Math.ceil(count - total * maxPct);
         let reassigned = 0;
         for (const b of beats) {
           if (reassigned >= excess) break;
@@ -193,6 +192,64 @@ function capMechanisms(beats) {
         counts[mech] -= reassigned;
         counts["ACTION_CONSEQUENCE"] = (counts["ACTION_CONSEQUENCE"] || 0) + reassigned;
         changed = true;
+      }
+    }
+  }
+
+  return beats;
+}
+
+/* ── Typography Rules ────────────────────────────────────────────── */
+
+function applyTypographyRules(beats) {
+  const total = beats.length;
+  const TYPO_MAX = 2;
+
+  // Rule A: Hook (beat 0) is always TYPOGRAPHY
+  if (total > 0) {
+    beats[0].mechanism = "TYPOGRAPHY";
+    beats[0].reason = "Rule A: hook is always TYPOGRAPHY";
+  }
+
+  // Rule B: CTA (last beat) is always TYPOGRAPHY
+  if (total > 1) {
+    beats[total - 1].mechanism = "TYPOGRAPHY";
+    beats[total - 1].reason = "Rule B: CTA is always TYPOGRAPHY";
+  }
+
+  // Count TYPOGRAPHY beats
+  let typoCount = beats.filter(b => b.mechanism === "TYPOGRAPHY").length;
+
+  // Rule D: TYPOGRAPHY never exceeds 2 regardless of length
+  if (typoCount > TYPO_MAX) {
+    // Reassign extras (keep hook and CTA, reassign middle ones)
+    let reassigned = 0;
+    for (let i = 1; i < total - 1 && typoCount > TYPO_MAX; i++) {
+      if (beats[i].mechanism === "TYPOGRAPHY") {
+        beats[i].mechanism = "ACTION_CONSEQUENCE";
+        beats[i].reason = "Reassigned from TYPOGRAPHY (max 2 allowed)";
+        typoCount--;
+        reassigned++;
+      }
+    }
+  }
+
+  // Rule C: If only 1 TYPOGRAPHY beat (short video), one additional may become TYPOGRAPHY
+  // only if the sentence has no concrete subject and no action — pure abstract claim
+  if (typoCount < 2 && total > 2) {
+    for (let i = 1; i < total - 1; i++) {
+      if (typoCount >= 2) break;
+      if (beats[i].mechanism !== "TYPOGRAPHY") {
+        // Check if this beat has no concrete subject and no action
+        const text = beats[i].original_text || beats[i].visual_headline || "";
+        const subject = extractSubject(text);
+        const action = extractAction(text);
+        // Pure abstract claim: no action, and subject is generic
+        if (!action && /^(difference|result|recommendation|advice|standard|number|amount)$/i.test(subject)) {
+          beats[i].mechanism = "TYPOGRAPHY";
+          beats[i].reason = "Rule C: pure abstract claim — no concrete subject/action";
+          typoCount++;
+        }
       }
     }
   }
@@ -291,6 +348,7 @@ function buildBeat(cue, mechanism, headline, reason, number) {
 
   return {
     index: cue.index,
+    mechanism,
     visual_headline: headline,
     reason,
     emphasis_words: emphasisWords,
@@ -373,22 +431,47 @@ function main() {
     return buildBeat(cue, mechanism, headline, reason, number);
   });
 
-  // Cap mechanisms
+  // Apply typography rules (hook/CTA always TYPOGRAPHY, max 2)
+  beats = applyTypographyRules(beats);
+
+  // Cap non-TYPOGRAPHY mechanisms at 40%
   beats = capMechanisms(beats);
 
-  // Log distribution
+  // Log distribution in specified format
   const dist = {};
   for (const b of beats) dist[b.mechanism] = (dist[b.mechanism] || 0) + 1;
-  console.log("Mechanism distribution:", JSON.stringify(dist));
+  const distStr = Object.entries(dist)
+    .sort((a, b) => b[1] - a[1])
+    .map(([mech, count]) => `${mech}:${count}`)
+    .join(" ");
+  console.log(`[local-plan] ${beats.length} beats: ${distStr}`);
 
-  // Check TYPOGRAPHY cap
+  // Validate TYPOGRAPHY count (must be 1–2)
   const typoCount = dist.TYPOGRAPHY || 0;
-  const typoPct = ((typoCount / beats.length) * 100).toFixed(0);
-  if (+typoPct > 20) {
-    console.warn(`WARNING: ${typoPct}% typography exceeds 20% cap — reassigning excess.`);
+  if (typoCount < 1 || typoCount > 2) {
+    console.warn(`WARNING: TYPOGRAPHY count ${typoCount} violates rule (must be 1–2) — adjusting.`);
+    // If 0, force hook to TYPOGRAPHY
+    if (typoCount === 0 && beats.length > 0) {
+      beats[0].mechanism = "TYPOGRAPHY";
+      beats[0].reason = "Forced TYPOGRAPHY on hook (was 0)";
+      dist.TYPOGRAPHY = 1;
+      dist[beats[0].mechanism === "TYPOGRAPHY" ? "ACTION_CONSEQUENCE" : beats[0].mechanism] =
+        (dist[beats[0].mechanism === "TYPOGRAPHY" ? "ACTION_CONSEQUENCE" : beats[0].mechanism] || 1) - 1;
+    }
+    // If >2, reassign extras
+    if (typoCount > 2) {
+      let toReassign = typoCount - 2;
+      for (let i = 1; i < beats.length - 1 && toReassign > 0; i++) {
+        if (beats[i].mechanism === "TYPOGRAPHY") {
+          beats[i].mechanism = "ACTION_CONSEQUENCE";
+          beats[i].reason = "Adjusted: TYPOGRAPHY exceeded max 2";
+          toReassign--;
+        }
+      }
+    }
   }
 
-  // Check all mechanisms cap
+  // Final validation: no mechanism over 40%
   for (const [mech, count] of Object.entries(dist)) {
     const pct = ((count / beats.length) * 100).toFixed(0);
     if (+pct > 40) {
