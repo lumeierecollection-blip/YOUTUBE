@@ -73,3 +73,4 @@ data/audit/
 logs/
 data/tts/
 data/research/1/*manifest*.json
+data/visual-plans/**/*.json

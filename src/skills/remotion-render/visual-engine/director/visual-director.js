@@ -635,12 +635,12 @@ function buildScene(text, index, totalBeats, prevScene) {
     return scene;
   }
 
-  // FALLBACK: the words are the visual. No objects, no pretend-graphics.
-  scene.narrative_role = index === 0 ? "hook" : "statement";
-  scene.mechanism = "TYPOGRAPHY";
-  scene.reason = "no physical mechanism detected — the sentence itself communicates the idea";
-  scene.typography = { role: "primary", style: "kinetic", emphasis_words: cw.slice(0, 2) };
-  return scene;
+  // No mechanism matched — this is an error, not a fallback.
+  // The plan (Gemini or local) should have assigned one.
+  throw new Error(
+    `Cannot visualize beat ${index}: "${text}". ` +
+    `No mechanism matched. The plan should have assigned one.`
+  );
 }
 
 /* ── Gemini directive → scene ─────────────────────────────────────── */
@@ -895,14 +895,12 @@ export function direct(cues, options) {
       scene = applyDirective(norm, text, i, cues.length, prevScene);
       scene = randomizeScene(scene, rng);
     } else {
-      // No Gemini/OpenCode directive — use fallback with warning
-      if (i === 0 || !plan) {
-        // Only warn once (at start) if no plan exists at all
-        if (!plan) {
-          warnings.push("No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.");
-        }
-      }
-      scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
+      // No directive with mechanism+visual_headline — this is an error.
+      // The plan should have provided a valid mechanism for every beat.
+      throw new Error(
+        `Beat ${i} has no valid mechanism: "${text}". ` +
+        `The plan must assign a mechanism and visual_headline to every beat.`
+      );
     }
 
     const displayText = norm?.visual_headline || directive?.visual_headline || text;

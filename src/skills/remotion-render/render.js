@@ -487,6 +487,7 @@ async function main() {
       c.durationInFrames = Math.max(12, (cues[i + 1] ? cues[i + 1].startFrame : c.endFrame) - c.startFrame);
     });
 
+    // ── Visual Plan: Gemini → local fallback → hard gate ───────────────
     let visualPlan = null;
     let planPath = join(ROOT, "data", "visual-plans", channelId, basename(scriptPath, ".json") + "-visual-plan.json");
     const planCandidates = [
@@ -497,12 +498,74 @@ async function main() {
     for (const p of planCandidates) {
       if (existsSync(p)) { planPath = p; break; }
     }
+
+    // Try existing plan file first
     if (existsSync(planPath)) {
       try {
         visualPlan = JSON.parse(readFileSync(planPath, "utf-8"));
         console.log(`Visual plan loaded: ${planPath} (${visualPlan.totalBeats} beats, iteration: ${visualPlan.iteration})`);
       } catch (e) {
         console.warn(`Failed to load visual plan ${planPath}: ${e.message}`);
+        visualPlan = null;
+      }
+    }
+
+    // If no plan, try Gemini, then local fallback
+    if (!visualPlan || !visualPlan.beats || visualPlan.beats.length === 0) {
+      const srtPath = findSrtPath(ttsAudioPath);
+      let geminiFailed = null;
+      let localFailed = null;
+
+      // Try Gemini first
+      try {
+        const geminiPlanJs = join(ROOT, "scripts", "gemini-visual-plan.js");
+        const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.VISION_API_KEY;
+        if (geminiKey && existsSync(geminiPlanJs)) {
+          mkdirSync(dirname(planPath), { recursive: true });
+          const args = ["node", geminiPlanJs, "--script", scriptPath, "--channel", channelId, "--out", planPath];
+          if (srtPath) args.push("--srt", srtPath);
+          execSync(args.join(" "), { cwd: ROOT, encoding: "utf-8", timeout: 60000, stdio: "pipe" });
+          if (existsSync(planPath)) {
+            visualPlan = JSON.parse(readFileSync(planPath, "utf-8"));
+            console.log("Plan source: gemini");
+          } else {
+            geminiFailed = "plan file not created";
+          }
+        } else {
+          geminiFailed = geminiKey ? "gemini-visual-plan.js not found" : "no GEMINI_API_KEY";
+        }
+      } catch (e) {
+        geminiFailed = e.message;
+      }
+
+      // If Gemini failed, try local fallback
+      if (!visualPlan || !visualPlan.beats || visualPlan.beats.length === 0) {
+        try {
+          const localPlanCjs = join(ROOT, "scripts", "local-visual-plan.cjs");
+          if (srtPath && existsSync(localPlanCjs)) {
+            mkdirSync(dirname(planPath), { recursive: true });
+            const args = ["node", localPlanCjs, "--srt", srtPath, "--channel", channelId, "--out", planPath];
+            execSync(args.join(" "), { cwd: ROOT, encoding: "utf-8", timeout: 30000, stdio: "pipe" });
+            if (existsSync(planPath)) {
+              visualPlan = JSON.parse(readFileSync(planPath, "utf-8"));
+              console.log("Plan source: local");
+            } else {
+              localFailed = "plan file not created";
+            }
+          } else {
+            localFailed = !srtPath ? "no SRT file" : "local-visual-plan.cjs not found";
+          }
+        } catch (e) {
+          localFailed = e.message;
+        }
+      }
+
+      // Hard gate: if both failed, exit
+      if (!visualPlan || !visualPlan.beats || visualPlan.beats.length === 0) {
+        console.error(`No visual plan at ${planPath}.`);
+        console.error(`Gemini failed: ${geminiFailed || "unknown"}. Local failed: ${localFailed || "unknown"}.`);
+        console.error("Run gemini-visual-plan.js or local-visual-plan.cjs first.");
+        process.exit(1);
       }
     }
 
