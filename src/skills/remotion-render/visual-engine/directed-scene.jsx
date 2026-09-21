@@ -57,7 +57,7 @@ function beatAt(plan, frame) {
 
 /* ── Editorial palette ──────────────────────────────────────────────── */
 
-function editorialColors(colors, rawPalette) {
+function editorialColors(colors, rawPalette, bgMode) {
   const lum = (h) => {
     const [r, g, b] = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
     return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
@@ -68,7 +68,8 @@ function editorialColors(colors, rawPalette) {
   };
   const all = [...rawPalette.primary, ...rawPalette.secondary];
   const sorted = [...all].sort((a, b) => lum(a) - lum(b));
-  const bgColor = sorted[0];
+  const isWhite = bgMode === "white";
+  const bgColor = isWhite ? "#FFFFFF" : sorted[0];
   const subdued = all.find((c) => {
     return contrastRatio(c, bgColor) >= 4.5 && lum(c) < 0.7 && c !== colors.accent;
   }) || sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.6))];
@@ -78,7 +79,7 @@ function editorialColors(colors, rawPalette) {
     bg: bgColor,
     depth: sorted[1] || sorted[0],
     surface: sorted[sorted.length - 1],
-    text: sorted[sorted.length - 1],
+    text: isWhite ? sorted[0] : sorted[sorted.length - 1],
     textDark: sorted[0],
     accent: colors.accent,
     subdued: safeSubdued,
@@ -1270,7 +1271,7 @@ function MechanismScene({ beat, p, local, ed, font, scene }) {
 export function DirectedScene({ plan }) {
   const frame = useCurrentFrame();
   const colors = paletteRoles(plan.palette);
-  const ed = editorialColors(colors, plan.palette);
+  const ed = editorialColors(colors, plan.palette, plan.bgMode);
   const { beat, p, local, prev, beatIndex } = beatAt(plan, frame);
   const scene = beat.scene || {};
   const isTypographyOnly = scene.mechanism === "TYPOGRAPHY";
