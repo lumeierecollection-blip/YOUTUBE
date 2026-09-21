@@ -532,6 +532,9 @@ jobs:
         working-directory: src/skills/remotion-render
         run: npm ci
 
+      - name: Install OpenCode
+        run: npm install -g opencode-ai
+
       # upload-artifact@v4 strips the least common ancestor of multi-path
       # uploads: the research job uploads data/research/<ch>/, data/tts/<ch>/
       # and data/thumbnails/<ch>/, so the artifact root is "data" and the
