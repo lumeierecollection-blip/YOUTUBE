@@ -607,9 +607,14 @@
           "topic": "Do Single-Employee Corporations Qualify for FAA Exemption?",
           "slug": "silva-v-schmidt-baking-corporation-faa-exemption",
           "reserved_at": "2026-09-20T10:17:39.754Z"
+        },
+        {
+          "topic": "Can State Laws Override Title VII Religious Accommodations?",
+          "slug": "doe-v-hochul-title-vii-religious-accommodation",
+          "reserved_at": "2026-09-21T11:25:55.422Z"
         }
       ],
-      "last_generated": "2026-09-20T10:17:39.754Z"
+      "last_generated": "2026-09-21T11:25:55.422Z"
     },
     "3": {
       "channel_name": "AI Tested",
