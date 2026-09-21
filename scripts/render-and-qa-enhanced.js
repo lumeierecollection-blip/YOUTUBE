@@ -222,6 +222,10 @@ function findGeminiReview(ch, sp) {
 
 // ── Main render loop with OpenCode-first architecture ──
 async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride) {
+  // Skip scripts without audio — don't waste intent generation on incomplete pipelines
+  const audio = audioFor(channelId, scriptPath);
+  if (!existsSync(audio)) { console.warn("No VO at " + audio + " — skipping."); return { skipped: true }; }
+
   let intentPath = null;
   let lastResult = null;
 

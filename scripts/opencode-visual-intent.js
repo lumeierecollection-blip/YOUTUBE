@@ -174,7 +174,15 @@ async function callOpenCode(prompt, maxTokens) {
       return null;
     }
 
-    const parsed = JSON.parse(output.slice(jsonStart));
+    // Find matching closing brace to avoid trailing content
+    let depth = 0;
+    let jsonEnd = -1;
+    for (let i = jsonStart; i < output.length; i++) {
+      if (output[i] === "{") depth++;
+      else if (output[i] === "}") { depth--; if (depth === 0) { jsonEnd = i; break; } }
+    }
+    const jsonStr = jsonEnd > jsonStart ? output.slice(jsonStart, jsonEnd + 1) : output.slice(jsonStart);
+    const parsed = JSON.parse(jsonStr);
     const intent = parsed.structured_output;
     if (intent?.beats) {
       console.log(`  OpenCode: generated intent with ${intent.beats.length} beats`);
