@@ -366,16 +366,28 @@
       "last_generated": "2026-09-19T11:07:30.883Z"
     },
     "5": {
-      "channel_name": "Force of Nature",
-      "niche": "Natural Disaster / Volcano Stories",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Harmony",
+      "niche": "Music Theory & Composition",
+      "used_topics": [
+        {
+          "topic": "Formant-Informed Harmony: A Structural Model of Chords",
+          "slug": "formant-informed-harmony-structural-model",
+          "reserved_at": "2026-09-21T22:46:18.617Z"
+        }
+      ],
+      "last_generated": "2026-09-21T22:46:18.617Z"
     },
     "6": {
-      "channel_name": "The War Room",
-      "niche": "Military History & Strategy",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Nash",
+      "niche": "Game Theory & Strategy",
+      "used_topics": [
+        {
+          "topic": "Random Rewards Enrich Classic Game Theory Models",
+          "slug": "random-rewards-enrich-game-theory",
+          "reserved_at": "2026-09-21T22:46:18.619Z"
+        }
+      ],
+      "last_generated": "2026-09-21T22:46:18.619Z"
     },
     "7": {
       "channel_name": "Dead Companies",
@@ -420,10 +432,16 @@
       "last_generated": "2026-09-19T11:07:30.884Z"
     },
     "8": {
-      "channel_name": "Mind Decoded",
-      "niche": "Psychology (Why We Do What We Do)",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Synapse",
+      "niche": "Cognitive Science & Mind",
+      "used_topics": [
+        {
+          "topic": "Ventral Hippocampus Overlaps Support Rapid Fear Memory",
+          "slug": "ventral-hippocampus-fear-memory",
+          "reserved_at": "2026-09-21T22:46:18.620Z"
+        }
+      ],
+      "last_generated": "2026-09-21T22:46:18.620Z"
     },
     "9": {
       "channel_name": "Border Lines",
@@ -478,15 +496,26 @@
           "topic": "Lebanese Army and Israeli Forces Standoff Over Deir Mimas Border Post",
           "slug": "lebanese-army-israeli-forces-deir-mimas-standoff",
           "reserved_at": "2026-09-19T18:12:59.674Z"
+        },
+        {
+          "topic": "The WTO 2026 Report and Global Trade Prisoner's Dilemma",
+          "slug": "wto-2026-trade-report-prisoners-dilemma",
+          "reserved_at": "2026-09-21T22:46:18.620Z"
         }
       ],
-      "last_generated": "2026-09-19T18:12:59.674Z"
+      "last_generated": "2026-09-21T22:46:18.620Z"
     },
     "10": {
-      "channel_name": "Double Cross",
-      "niche": "Betrayal/Revenge Stories",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Word Lab",
+      "niche": "Linguistics & Language",
+      "used_topics": [
+        {
+          "topic": "How Hand Gestures Influence Brain Grammar Processing",
+          "slug": "gestures-influence-brain-grammar-processing",
+          "reserved_at": "2026-09-21T22:46:18.621Z"
+        }
+      ],
+      "last_generated": "2026-09-21T22:46:18.621Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
@@ -531,10 +560,16 @@
       "last_generated": "2026-09-21T22:34:11.191Z"
     },
     "12": {
-      "channel_name": "Abyssal Archive",
-      "niche": "Marine Biology & Deep Ocean Science",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Rational",
+      "niche": "Behavioral Economics",
+      "used_topics": [
+        {
+          "topic": "The True Economic Value of Behavioral Policy Nudges",
+          "slug": "true-economic-value-behavioral-nudges",
+          "reserved_at": "2026-09-21T22:46:18.621Z"
+        }
+      ],
+      "last_generated": "2026-09-21T22:46:18.621Z"
     },
     "13": {
       "channel_name": "Fossil Frontier",
