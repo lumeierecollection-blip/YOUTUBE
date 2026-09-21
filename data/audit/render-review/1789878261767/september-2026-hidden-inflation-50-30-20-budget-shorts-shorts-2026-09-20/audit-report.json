@@ -1,0 +1,118 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789878261767\\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\\frame-00.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789878261767\\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\\frame-01.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 7.364689903642482,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789878261767\\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\\frame-02.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.006237599206349207,
+      "captionContrast": 5.429822612742107,
+      "headlineContrast": 5.711394516823782,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789878261767\\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\\frame-03.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 14.280913186315884,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789878261767\\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\\frame-04.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789878261767\\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\\frame-05.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789878261767\\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\\frame-06.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789878261767\\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\\frame-07.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789878261767\\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\\frame-08.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 4.029496192421915,
+      "pass": false,
+      "violations": [
+        "headline contrast 4.03:1 < 4.5:1 (glyph rgb(68,132,101) on bg rgb(15,23,41))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789878261767\\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\\frame-09.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

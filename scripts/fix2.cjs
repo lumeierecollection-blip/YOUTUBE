@@ -1,0 +1,1 @@
+const fs=require('fs');const p='C:/Users/user/YOUTUBE/src/skills/remotion-render/render.js';let c=fs.readFileSync(p,'utf8');c=c.replace('bgMode: channel.bg_mode ? channel.bg_mode : \" "\black,','bgMode: channel.bg_mode ? channel.bg_mode : \black\,');fs.writeFileSync(p,c,'utf8');console.log('Fixed'); 

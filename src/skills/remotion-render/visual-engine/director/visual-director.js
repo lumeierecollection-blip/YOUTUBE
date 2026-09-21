@@ -1,3 +1,4 @@
+import { interpretBeat } from "../beat-interpreter.js";
 /**
  * VISUAL DIRECTOR — scene-based decision engine.
  *
@@ -824,21 +825,11 @@ function makeRng(seed) {
 }
 
 const TRANSITIONS = ["CUT", "DISSOLVE", "WIPE_LEFT", "WIPE_RIGHT", "PUSH_UP", "FADE"];
-const CAMERA_ALTS = {
-  hold: ["hold", "slow_drift", "micro_pull"],
-  push_in: ["push_in", "slow_zoom", "drift_in"],
-  pull_back: ["pull_back", "slow_zoom_out", "drift_out"],
-  widen: ["widen", "pull_back", "expand"],
-  tilt_down: ["tilt_down", "pan_down", "drift_down"],
-  push_past: ["push_past", "dolly_through", "push_in"],
-};
 
 function randomizeScene(scene, rng) {
   for (const shot of scene.shots) {
     const jitter = (rng() - 0.5) * 0.08;
     shot.phaseDuration = Math.max(0.1, Math.min(0.9, shot.phaseDuration + jitter));
-    const alts = CAMERA_ALTS[shot.camera];
-    if (alts) shot.camera = alts[Math.floor(rng() * alts.length)];
   }
   for (const obj of scene.objects || []) {
     if (obj.initial_state?.position === "center") {

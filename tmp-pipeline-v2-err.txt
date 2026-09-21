@@ -1,0 +1,96 @@
+WARN: can't tell shorts/longform from C:\Users\user\YOUTUBE\data\research\1\automatic-savings-vs-willpower-script.json — defaulting to longform
+[plan 1/automatic-savings-vs-willpower-script.json] No sentences found in script/SRT.
+Gemini planning failed — will use default director.
+WARN: no voiceover audio at C:\Users\user\YOUTUBE\data\tts\1\automatic-savings-vs-willpower-script-vo.mp3 — skipping render for C:\Users\user\YOUTUBE\data\research\1\automatic-savings-vs-willpower-script.json
+[plan 1/debt-snowball-vs-debt-avalanche-shorts-script.json] Gemini API unavailable (Gemini API hard error (400): Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items.properties[8].value': Proto field is not repeating, cannot start list.
+Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items) — falling back to OpenCode agent...
+[plan 1/debt-snowball-vs-debt-avalanche-shorts-script.json]   OpenCode fallback stderr: [google/gemini-2.5-flash] attempt 1/2: opencode exited 1: {"type":"error","timestamp":1789878270093,"sessionID":"ses_f42f11815ffenTXLgDK7oIyb58","error":{"name":"APIError","data":{"message":"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.","statusCode":404,"isRetryable":false,"responseHeaders":{"alt-svc":"h3=\":443\"; ma=2592000,h3
+[plan 1/debt-snowball-vs-debt-avalanche-shorts-script.json]   OpenCode fallback: no output
+Failed to get visual plan from both Gemini and OpenCode.
+Gemini planning failed — will use default director.
+WARN: no voiceover audio at C:\Users\user\YOUTUBE\data\tts\1\debt-snowball-vs-debt-avalanche-shorts-script-vo.mp3 — skipping render for C:\Users\user\YOUTUBE\data\research\1\debt-snowball-vs-debt-avalanche-shorts-script.json
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Gemini API unavailable (Gemini API hard error (400): Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items.properties[8].value': Proto field is not repeating, cannot start list.
+Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items) — falling back to OpenCode agent...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   OpenCode fallback stderr: [google/gemini-2.5-flash] attempt 1/2: opencode exited 1: {"type":"error","timestamp":1789878287293,"sessionID":"ses_f42f0d29dffe4WVAQBSn2j6mKS","error":{"name":"APIError","data":{"message":"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.","statusCode":404,"isRetryable":false,"responseHeaders":{"alt-svc":"h3=\":443\"; ma=2592000,h3
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   OpenCode fallback: no output
+Failed to get visual plan from both Gemini and OpenCode.
+Gemini planning failed — will use default director.
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] WARN: 2 frame(s) failed audit — contrast violations logged but render kept (warn-only).
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 13684 (session total: 13684/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for e582347e975d... (hits: 0, misses: 1)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 10272 (session total: 23956/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 9aaae3177378... (hits: 0, misses: 2)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 11127 (session total: 35083/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for f808fab0ad12... (hits: 0, misses: 3)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Gemini API unavailable (Gemini API hard error (400): Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items.properties[8].value': Proto field is not repeating, cannot start list.
+Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items) — falling back to OpenCode agent...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   OpenCode fallback stderr: [google/gemini-2.5-flash] attempt 1/2: opencode exited 1: {"type":"error","timestamp":1789878531143,"sessionID":"ses_f42ed1e65ffe9RyxOol5IGsrsc","error":{"name":"APIError","data":{"message":"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.","statusCode":404,"isRetryable":false,"responseHeaders":{"alt-svc":"h3=\":443\"; ma=2592000,h3
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   OpenCode fallback: no output
+Failed to get visual plan from both Gemini and OpenCode.
+Gemini planning failed — will use default director.
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] WARN: 2 frame(s) failed audit — contrast violations logged but render kept (warn-only).
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 13684 (session total: 13684/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 92d8142a26bc... (hits: 0, misses: 1)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 10271 (session total: 23955/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 14eff60194e8... (hits: 0, misses: 2)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 11125 (session total: 35080/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 868d7123b42e... (hits: 0, misses: 3)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Gemini API unavailable (Gemini API hard error (400): Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items.properties[8].value': Proto field is not repeating, cannot start list.
+Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items) — falling back to OpenCode agent...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   OpenCode fallback stderr: [google/gemini-2.5-flash] attempt 1/2: opencode exited 1: {"type":"error","timestamp":1789878768819,"sessionID":"ses_f42e97a8dffeg68gWzBMugo82Q","error":{"name":"APIError","data":{"message":"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.","statusCode":404,"isRetryable":false,"responseHeaders":{"alt-svc":"h3=\":443\"; ma=2592000,h3
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   OpenCode fallback: no output
+Failed to get visual plan from both Gemini and OpenCode.
+Gemini planning failed — will use default director.
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] WARN: 2 frame(s) failed audit — contrast violations logged but render kept (warn-only).
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 12664 (session total: 12664/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for a110309e9e3b... (hits: 0, misses: 1)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 10271 (session total: 22935/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 7ed70529f0cc... (hits: 0, misses: 2)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 11120 (session total: 34055/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for edc3f98b51c6... (hits: 0, misses: 3)
+WARN: can't tell shorts/longform from C:\Users\user\YOUTUBE\data\research\1\pay-frequency-budgeting-script.json — defaulting to longform
+[plan 1/pay-frequency-budgeting-script.json] No sentences found in script/SRT.
+Gemini planning failed — will use default director.
+WARN: no voiceover audio at C:\Users\user\YOUTUBE\data\tts\1\pay-frequency-budgeting-script-vo.mp3 — skipping render for C:\Users\user\YOUTUBE\data\research\1\pay-frequency-budgeting-script.json
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Gemini API unavailable (Gemini API hard error (400): Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items.properties[8].value': Proto field is not repeating, cannot start list.
+Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items) — falling back to OpenCode agent...
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json]   OpenCode fallback stderr: [google/gemini-2.5-flash] attempt 1/2: opencode exited 1: {"type":"error","timestamp":1789879003339,"sessionID":"ses_f42e5e655ffeiO8GBRk1cU6aIn","error":{"name":"APIError","data":{"message":"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.","statusCode":404,"isRetryable":false,"responseHeaders":{"alt-svc":"h3=\":443\"; ma=2592000,h3
+  OpenCode fallback: no output
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Failed to get visual plan from both Gemini and OpenCode.
+Gemini planning failed — will use default director.
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] WARNING: directed video clamped from 85.1s to 60.0s — script too long for shorts.
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] WARN: 1 frame(s) failed audit — contrast violations logged but render kept (warn-only).
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 13689 (session total: 13689/50000)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for efc5d13ab226... (hits: 0, misses: 1)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 13734 (session total: 27423/50000)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 79097e2b87d6... (hits: 0, misses: 2)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 12275 (session total: 39698/50000)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 6de4fade672d... (hits: 0, misses: 3)
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Gemini API unavailable (Gemini API hard error (400): Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items.properties[8].value': Proto field is not repeating, cannot start list.
+Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items) — falling back to OpenCode agent...
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json]   OpenCode fallback stderr: [google/gemini-2.5-flash] attempt 1/2: opencode exited 1: {"type":"error","timestamp":1789879253704,"sessionID":"ses_f42e21478ffex0t20VECEHYMNh","error":{"name":"APIError","data":{"message":"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.","statusCode":404,"isRetryable":false,"responseHeaders":{"alt-svc":"h3=\":443\"; ma=2592000,h3
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json]   OpenCode fallback: no output
+Failed to get visual plan from both Gemini and OpenCode.
+Gemini planning failed — will use default director.
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] WARNING: directed video clamped from 85.1s to 60.0s — script too long for shorts.
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] WARN: 1 frame(s) failed audit — contrast violations logged but render kept (warn-only).
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 12415 (session total: 12415/50000)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 81820d06fe3c... (hits: 0, misses: 1)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 13733 (session total: 26148/50000)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 20bee22dd632... (hits: 0, misses: 2)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 12277 (session total: 38425/50000)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 01e0e8309ec4... (hits: 0, misses: 3)
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Gemini API unavailable (Gemini API hard error (400): Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items.properties[8].value': Proto field is not repeating, cannot start list.
+Invalid JSON payload received. Unknown name "type" at 'generation_config.response_schema.properties[0].value.items) — falling back to OpenCode agent...
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json]   OpenCode fallback stderr: [google/gemini-2.5-flash] attempt 1/2: opencode exited 1: {"type":"error","timestamp":1789879495983,"sessionID":"ses_f42de6176fferxuUGLGG9suPyO","error":{"name":"APIError","data":{"message":"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.","statusCode":404,"isRetryable":false,"responseHeaders":{"alt-svc":"h3=\":443\"; ma=2592000,h3
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json]   OpenCode fallback: no output
+Failed to get visual plan from both Gemini and OpenCode.
+Gemini planning failed — will use default director.
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] WARNING: directed video clamped from 85.1s to 60.0s — script too long for shorts.
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] WARN: 1 frame(s) failed audit — contrast violations logged but render kept (warn-only).
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 13686 (session total: 13686/50000)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for f6db53375b79... (hits: 0, misses: 1)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 13735 (session total: 27421/50000)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for c497b02c75d3... (hits: 0, misses: 2)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 12274 (session total: 39695/50000)
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for bcdca2a5f84a... (hits: 0, misses: 3)

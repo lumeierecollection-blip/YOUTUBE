@@ -1,0 +1,91 @@
+{
+  "channel_id": "1",
+  "channel_name": "Money Mind",
+  "topic": "Emergency fund bigger than you think 2026",
+  "topic_slug": "emergency-fund-bigger-than-you-think-2026",
+  "format": "shorts",
+  "hook": "Think three months of expenses is enough? For most families that number is dangerously low.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:06",
+      "word_count": 16,
+      "voiceover": "Think three months of expenses is enough? For most families that number is dangerously low.",
+      "visual_cue": "Text on white",
+      "sfx_cue": "",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "3 months is not enough",
+        "font": "Inter",
+        "size": "80px",
+        "color": "#22C55E",
+        "bg": "#FFFFFF",
+        "animation": "word-by-word"
+      },
+      "transition_out": "Hard cut",
+      "pacing_notes": "",
+      "research_sources": []
+    },
+    {
+      "id": "proof",
+      "timing": "0:06-0:20",
+      "word_count": 30,
+      "voiceover": "The standard advice says save three months. But the average job search now takes five months, and rent alone can wipe out a month of savings in a week.",
+      "visual_cue": "White background",
+      "sfx_cue": "",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "5 months job search",
+        "font": "Inter"
+      },
+      "transition_out": "",
+      "pacing_notes": "",
+      "research_sources": []
+    },
+    {
+      "id": "reveal",
+      "timing": "0:20-0:35",
+      "word_count": 30,
+      "voiceover": "When you add healthcare, car repairs, and a single emergency room visit, that three month cushion disappears before you even find a new job.",
+      "visual_cue": "",
+      "sfx_cue": "",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "One ER visit wipes it"
+      },
+      "transition_out": "",
+      "pacing_notes": "",
+      "research_sources": []
+    },
+    {
+      "id": "evidence",
+      "timing": "0:35-0:50",
+      "word_count": 30,
+      "voiceover": "Financial planners now recommend six to nine months of bare-bones expenses, not three, especially if you are freelancing or supporting a family.",
+      "visual_cue": "",
+      "sfx_cue": "",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "6 to 9 months"
+      },
+      "transition_out": "",
+      "pacing_notes": "",
+      "research_sources": []
+    },
+    {
+      "id": "close",
+      "timing": "0:50-0:58",
+      "word_count": 15,
+      "voiceover": "Start with one extra month this year. That single month is the difference between panic and stability.",
+      "visual_cue": "",
+      "sfx_cue": "",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "One extra month"
+      },
+      "transition_out": "",
+      "pacing_notes": "",
+      "research_sources": []
+    }
+  ]
+}

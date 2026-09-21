@@ -1,0 +1,685 @@
+
+=== ATTEMPT 1/3: emergency-fund-bigger-than-you-think-2026-shorts-script.json ===
+=== GEMINI PLAN: 1 — emergency-fund-bigger-than-you-think-2026-shorts-script.json ===
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] SRT loaded: 9 sentences
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Requesting visual plan from Gemini for 9 beats...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Visual ratio: 44% (4/9 visual-only beats)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Narrative typography: 4/9 text beats, 3 repaired, 3 violation(s)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Capability compilation: 7 issue(s) across 9 beats
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Composition: 0/9 beats buildable, 29 issue(s)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Visual plan written: C:\Users\user\YOUTUBE\data\visual-plans\1\emergency-fund-bigger-than-you-think-2026-shorts-script-visual-plan.json
+  Beats: 9
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   Capabilities: {"typographic_emphasis":3,"structure_break":1,"comparison":3,"depletion":2,"revelation":1,"population":1,"contrast":1,"evidence":1,"causation":1,"accumulation":2,"growth":1}
+  [0] typographic_emphasis, structure_break: "3 MONTHS ISN'T ENOUGH" — Establishes the hook by showing a standard savings buffer snapping under pressure.
+  [1] comparison, depletion: "22.4 WEEKS SEARCH" — Visually compares the short savings buffer against the actual long duration of modern job hunts.
+  [2] typographic_emphasis, revelation: "DIG DEEPER" — Transitions the narrative focus from macro averages to the startling reality of micro-savings.
+  [3] population, depletion: "45% RUN OUT IN 1 MONTH" — Presents survey data showing near-immediate depletion of job seeker funds.
+  [4] contrast: "" — Summarizes the precarious position of modern consumers on the brink of financial collapse.
+  [5] comparison, evidence: "THE HIDDEN GAP" — Compares median versus mean unemployment duration to expose hidden skew.
+  [6] causation, accumulation: "MASSIVE HIDDEN DELAYS" — Connects the statistical gap to specialized workers facing prolonged hiring friction.
+  [7] growth, comparison: "UPGRADE TO 6-12 MONTHS" — Contrasts the inadequate standard fund with the robust 6 to 12 month recommendation.
+  [8] typographic_emphasis, accumulation: "SECURE YOUR BUFFER TODAY" — Delivers the final call to action, cementing the upgraded buffer as permanent protection.
+=== RENDER: 1 — emergency-fund-bigger-than-you-think-2026-shorts-script.json (shorts) ===
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] B-roll: 0/4 sections have real imagery
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Directed SRT: C:\Users\user\YOUTUBE\data\tts\1\emergency-fund-bigger-than-you-think-2026-shorts-script-vo.srt
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Visual plan loaded: C:\Users\user\YOUTUBE\data\visual-plans\1\emergency-fund-bigger-than-you-think-2026-shorts-script-visual-plan.json (9 beats, iteration: initial)
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Directed plan: 9 cues -> 9 beats, 1735f
+  treatments: PROPORTIONAL_OBJECTS:3 SURFACE_AND_BENEATH:2 PHYSICAL_GROWTH:2 STRUCTURAL_BREAKDOWN:1 ACTION_CONSEQUENCE:1
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   [d0] STRUCTURAL_BREAKDOWN — Establishes the hook by showing a standard savings buffer snapping under pressure.
+  [d1] PROPORTIONAL_OBJECTS — Visually compares the short savings buffer against the actual long duration of modern job hunts.
+  [d2] SURFACE_AND_BENEATH — Transitions the narrative focus from macro averages to the startling reality of micro-savings.
+  [d3] PROPORTIONAL_OBJECTS — Presents survey data showing near-immediate depletion of job seeker funds.
+  [d4] SURFACE_AND_BENEATH — Summarizes the precarious position of modern consumers on the brink of financial collapse.
+  [d5] PROPORTIONAL_OBJECTS — Compares median versus mean unemployment duration to expose hidden skew.
+  [d6] ACTION_CONSEQUENCE — Connects the statistical gap to specialized workers facing prolonged hiring friction.
+  [d7] PHYSICAL_GROWTH — Contrasts the inadequate standard fund with the robust 6 to 12 month recommendation.
+  [d8] PHYSICAL_GROWTH — Delivers the final call to action, cementing the upgraded buffer as permanent protection.
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Image credits: 0 attribution(s) -> C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-image-credits.json
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Rendering: DirectedShorts (1735 frames)
+Output: C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[profile] bundling...
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] bundle(): 3.3s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] selectComposition(): 3.0s
+[2D] rendering without WebGL (no chromiumOptions.gl)
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 0/1735 frames (0.0%) 0.00 fps  elapsed=7.1s  ETA=?s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 32/1735 frames (1.8%) 2.65 fps  elapsed=12.1s  ETA=644s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 80/1735 frames (4.6%) 4.68 fps  elapsed=17.1s  ETA=354s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 128/1735 frames (7.4%) 5.78 fps  elapsed=22.1s  ETA=278s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 174/1735 frames (10.0%) 6.40 fps  elapsed=27.2s  ETA=244s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 229/1735 frames (13.2%) 7.09 fps  elapsed=32.3s  ETA=212s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 280/1735 frames (16.1%) 7.50 fps  elapsed=37.3s  ETA=194s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 333/1735 frames (19.2%) 7.86 fps  elapsed=42.4s  ETA=178s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 388/1735 frames (22.4%) 8.18 fps  elapsed=47.4s  ETA=165s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 444/1735 frames (25.6%) 8.47 fps  elapsed=52.5s  ETA=153s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 499/1735 frames (28.8%) 8.68 fps  elapsed=57.5s  ETA=142s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 553/1735 frames (31.9%) 8.84 fps  elapsed=62.6s  ETA=134s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 607/1735 frames (35.0%) 8.98 fps  elapsed=67.6s  ETA=126s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 662/1735 frames (38.2%) 9.11 fps  elapsed=72.7s  ETA=118s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 714/1735 frames (41.2%) 9.19 fps  elapsed=77.7s  ETA=111s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 766/1735 frames (44.1%) 9.26 fps  elapsed=82.7s  ETA=105s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 817/1735 frames (47.1%) 9.31 fps  elapsed=87.7s  ETA=99s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 868/1735 frames (50.0%) 9.36 fps  elapsed=92.8s  ETA=93s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 920/1735 frames (53.0%) 9.40 fps  elapsed=97.9s  ETA=87s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 976/1735 frames (56.3%) 9.48 fps  elapsed=102.9s  ETA=80s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1031/1735 frames (59.4%) 9.54 fps  elapsed=108.0s  ETA=74s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1086/1735 frames (62.6%) 9.60 fps  elapsed=113.1s  ETA=68s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1141/1735 frames (65.8%) 9.66 fps  elapsed=118.2s  ETA=62s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1195/1735 frames (68.9%) 9.70 fps  elapsed=123.2s  ETA=56s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1251/1735 frames (72.1%) 9.75 fps  elapsed=128.3s  ETA=50s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1305/1735 frames (75.2%) 9.79 fps  elapsed=133.3s  ETA=44s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1359/1735 frames (78.3%) 9.82 fps  elapsed=138.3s  ETA=38s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1414/1735 frames (81.5%) 9.86 fps  elapsed=143.4s  ETA=33s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1468/1735 frames (84.6%) 9.89 fps  elapsed=148.5s  ETA=27s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1519/1735 frames (87.6%) 9.90 fps  elapsed=153.5s  ETA=22s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1574/1735 frames (90.7%) 9.92 fps  elapsed=158.7s  ETA=16s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1627/1735 frames (93.8%) 9.94 fps  elapsed=163.7s  ETA=11s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1680/1735 frames (96.8%) 9.95 fps  elapsed=168.8s  ETA=6s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1734/1735 frames (99.9%) 9.97 fps  elapsed=174.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.96 fps  elapsed=174.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.85 fps  elapsed=176.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.82 fps  elapsed=176.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.79 fps  elapsed=177.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.76 fps  elapsed=177.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.73 fps  elapsed=178.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.70 fps  elapsed=178.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.68 fps  elapsed=179.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.65 fps  elapsed=179.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.62 fps  elapsed=180.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.59 fps  elapsed=180.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.57 fps  elapsed=181.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.54 fps  elapsed=181.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.51 fps  elapsed=182.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.48 fps  elapsed=182.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.46 fps  elapsed=183.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.43 fps  elapsed=184.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.40 fps  elapsed=184.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.38 fps  elapsed=185.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.35 fps  elapsed=185.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.33 fps  elapsed=186.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.30 fps  elapsed=186.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.28 fps  elapsed=187.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.25 fps  elapsed=187.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.22 fps  elapsed=188.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.20 fps  elapsed=188.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.17 fps  elapsed=189.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.15 fps  elapsed=189.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.12 fps  elapsed=190.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.10 fps  elapsed=190.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.08 fps  elapsed=191.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.05 fps  elapsed=191.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.03 fps  elapsed=192.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.00 fps  elapsed=192.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.98 fps  elapsed=193.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.95 fps  elapsed=193.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.93 fps  elapsed=194.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.91 fps  elapsed=194.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.88 fps  elapsed=195.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.86 fps  elapsed=195.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.84 fps  elapsed=196.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.81 fps  elapsed=196.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.79 fps  elapsed=197.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.77 fps  elapsed=197.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Rendered: C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4  (1735 frames in 197.9s, avg 8.77 fps)
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=0.000s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-00.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=6.431s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-01.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=12.862s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-02.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=19.293s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-03.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=25.724s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-04.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=32.156s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-05.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=38.587s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-06.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=45.018s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-07.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=51.449s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-08.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=57.780s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-09.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] contact sheet: C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\contact-sheet.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+video     : C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] duration  : 57.88s  1080x1920 @ 30fps
+frames    : 10 (C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20)
+manifest  : C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\manifest.json
+
+Next step: actually LOOK at the frames (and contact sheet) before confirming anything.
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-00.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-01.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-02.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.532%  capContrast=5.30:1  headlineContrast=5.74:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-03.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=7.36:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-04.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.625%  capContrast=5.09:1  headlineContrast=5.88:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-05.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-06.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.626%  capContrast=5.09:1  headlineContrast=6.17:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-07.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=8.69:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-08.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=8.83:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-09.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+frame-audit: 10/10 frames passed. Report: C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\audit-report.json
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Visual Bible v3.0 loaded — 33 rules, 20 failure categories
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] SRT loaded: 9 cues
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Video duration: 57.88s
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Sampling 17 frames at beat points
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+═══ PHASE 1: SCENE-BY-SCENE REVIEW (BATCHED) ═══
+
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [1/17] t=0.5s — VO: "Your 3 month emergency fund is completely broken for 2026 jo..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [2/17] t=5.3s — VO: "Your 3 month emergency fund is completely broken for 2026 jo..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [3/17] t=10.1s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [4/17] t=15.0s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [5/17] t=17.5s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [6/17] t=19.8s — VO: "Dig deeper and the numbers get scary...."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [7/17] t=24.6s — VO: "United Way NCA survey data reveals that 45 percent of job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [8/17] t=28.6s — VO: "United Way NCA survey data reveals that 45 percent of job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [9/17] t=29.4s — VO: "Most people are living on the absolute edge...."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [10/17] t=32.2s — VO: "Most people are living on the absolute edge. The median dura..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [11/17] t=34.3s — VO: "The median duration of unemployment sits at 10.3 weeks, but ..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [12/17] t=39.1s — VO: "The median duration of unemployment sits at 10.3 weeks, but ..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [13/17] t=43.9s — VO: "That gap proves specialized workers face massive hidden dela..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [14/17] t=46.0s — VO: "That gap proves specialized workers face massive hidden dela..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [15/17] t=48.7s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [16/17] t=53.6s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [17/17] t=54.7s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/vision emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+section-7 QA — ch-01 — emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[qa/vision emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   ok      7.1
+  ok      7.2
+  ok      7.3
+  ok      7.4
+  REJECT  7.5
+  ok      7.6
+
+  7.5 / 7.6: no plan supplied, so neither could be checked. Section 7 requires both.
+
+VERDICT: REJECTED. Section 7: a human must be notified and there is no automatic retry.
+record: data/audit/visual-qa/ch-01-emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.json
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]     ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]     ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: Visual shows placeholder text 'SEGMENT 1', 'SEGMENT 2', 'SEGMENT 3' with random percentages instead of the expected United Way NCA survey data mentioned in the narration.
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: Screen is completely blank dark navy background while voiceover is actively delivering a key statistic about median duration of unemployment.
+    ✓ PASS (score: ?/10)
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+
+═══ PHASE 2: WHOLE-VIDEO REVIEW ═══
+
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   Overall score: ?/10
+  Status: FAIL
+  Verdict: The video relies too heavily on static card templates and repeated minimalist text cards, violating continuity and visual storytelling rules.
+  Weakest: Frame 5 — Completely blank card composition displaying redundant text 'DIG DEEPER' with no visual argument.
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+═══ GEMINI VISUAL DIRECTOR — FINAL VERDICT ═══
+  Bible: v3.0 (33 rules)
+  Frames reviewed: 17
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   CRITICAL: 0  HIGH: 0  PASS: 11
+  Avg quality: N/A/10
+  Pass rate: 65%
+  Whole-video: FAIL (?/10)
+  Report: C:\Users\user\YOUTUBE\data\audit\gemini-review\1-emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20-2026-09-20.json
+
+  VERDICT: APPROVED — video meets Visual Bible standards.
+Gemini verdict (attempt 1): The video relies too heavily on static card templates and repeated minimalist text cards, violating continuity and visual storytelling rules.
+Gemini says The video relies too heavily on static card templates and repeated minimalist text cards, violating continuity and visual storytelling rules. — feeding corrections back for attempt 2
+
+=== ATTEMPT 2/3: emergency-fund-bigger-than-you-think-2026-shorts-script.json ===
+=== GEMINI PLAN: 1 — emergency-fund-bigger-than-you-think-2026-shorts-script.json ===
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] SRT loaded: 9 sentences
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Requesting visual plan from Gemini for 9 beats...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Visual ratio: 44% (4/9 visual-only beats)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Narrative typography: 4/9 text beats, 3 repaired, 3 violation(s)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Capability compilation: 7 issue(s) across 9 beats
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Composition: 0/9 beats buildable, 29 issue(s)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Visual plan written: C:\Users\user\YOUTUBE\data\visual-plans\1\emergency-fund-bigger-than-you-think-2026-shorts-script-visual-plan.json
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   Beats: 9
+  Capabilities: {"typographic_emphasis":3,"structure_break":1,"comparison":3,"depletion":2,"revelation":1,"population":1,"contrast":1,"evidence":1,"causation":1,"accumulation":2,"growth":1}
+  [0] typographic_emphasis, structure_break: "3 MONTHS ISN'T ENOUGH" — Establishes the hook by showing a standard savings buffer snapping under pressure.
+  [1] comparison, depletion: "22.4 WEEKS SEARCH" — Visually compares the short savings buffer against the actual long duration of modern job hunts.
+  [2] typographic_emphasis, revelation: "DIG DEEPER" — Transitions the narrative focus from macro averages to the startling reality of micro-savings.
+  [3] population, depletion: "45% RUN OUT IN 1 MONTH" — Presents survey data showing near-immediate depletion of job seeker funds.
+  [4] contrast: "" — Summarizes the precarious position of modern consumers on the brink of financial collapse.
+  [5] comparison, evidence: "THE HIDDEN GAP" — Compares median versus mean unemployment duration to expose hidden skew.
+  [6] causation, accumulation: "MASSIVE HIDDEN DELAYS" — Connects the statistical gap to specialized workers facing prolonged hiring friction.
+  [7] growth, comparison: "UPGRADE TO 6-12 MONTHS" — Contrasts the inadequate standard fund with the robust 6 to 12 month recommendation.
+  [8] typographic_emphasis, accumulation: "SECURE YOUR BUFFER TODAY" — Delivers the final call to action, cementing the upgraded buffer as permanent protection.
+=== RENDER: 1 — emergency-fund-bigger-than-you-think-2026-shorts-script.json (shorts) ===
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] B-roll: 0/4 sections have real imagery
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Directed SRT: C:\Users\user\YOUTUBE\data\tts\1\emergency-fund-bigger-than-you-think-2026-shorts-script-vo.srt
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Visual plan loaded: C:\Users\user\YOUTUBE\data\visual-plans\1\emergency-fund-bigger-than-you-think-2026-shorts-script-visual-plan.json (9 beats, iteration: initial)
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Directed plan: 9 cues -> 9 beats, 1735f
+  treatments: PROPORTIONAL_OBJECTS:3 SURFACE_AND_BENEATH:2 PHYSICAL_GROWTH:2 STRUCTURAL_BREAKDOWN:1 ACTION_CONSEQUENCE:1
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   [d0] STRUCTURAL_BREAKDOWN — Establishes the hook by showing a standard savings buffer snapping under pressure.
+  [d1] PROPORTIONAL_OBJECTS — Visually compares the short savings buffer against the actual long duration of modern job hunts.
+  [d2] SURFACE_AND_BENEATH — Transitions the narrative focus from macro averages to the startling reality of micro-savings.
+  [d3] PROPORTIONAL_OBJECTS — Presents survey data showing near-immediate depletion of job seeker funds.
+  [d4] SURFACE_AND_BENEATH — Summarizes the precarious position of modern consumers on the brink of financial collapse.
+  [d5] PROPORTIONAL_OBJECTS — Compares median versus mean unemployment duration to expose hidden skew.
+  [d6] ACTION_CONSEQUENCE — Connects the statistical gap to specialized workers facing prolonged hiring friction.
+  [d7] PHYSICAL_GROWTH — Contrasts the inadequate standard fund with the robust 6 to 12 month recommendation.
+  [d8] PHYSICAL_GROWTH — Delivers the final call to action, cementing the upgraded buffer as permanent protection.
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Image credits: 0 attribution(s) -> C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-image-credits.json
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Rendering: DirectedShorts (1735 frames)
+Output: C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] bundling...
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] bundle(): 3.0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] selectComposition(): 3.2s
+[2D] rendering without WebGL (no chromiumOptions.gl)
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 0/1735 frames (0.0%) 0.00 fps  elapsed=7.2s  ETA=?s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 36/1735 frames (2.1%) 2.93 fps  elapsed=12.3s  ETA=581s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 88/1735 frames (5.1%) 5.08 fps  elapsed=17.3s  ETA=324s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 136/1735 frames (7.8%) 6.08 fps  elapsed=22.4s  ETA=263s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 183/1735 frames (10.5%) 6.67 fps  elapsed=27.4s  ETA=233s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 239/1735 frames (13.8%) 7.36 fps  elapsed=32.5s  ETA=203s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 294/1735 frames (16.9%) 7.85 fps  elapsed=37.5s  ETA=184s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 349/1735 frames (20.1%) 8.21 fps  elapsed=42.5s  ETA=169s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 405/1735 frames (23.3%) 8.52 fps  elapsed=47.5s  ETA=156s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 462/1735 frames (26.6%) 8.78 fps  elapsed=52.6s  ETA=145s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 515/1735 frames (29.7%) 8.94 fps  elapsed=57.6s  ETA=137s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 568/1735 frames (32.7%) 9.05 fps  elapsed=62.7s  ETA=129s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 617/1735 frames (35.6%) 9.11 fps  elapsed=67.8s  ETA=123s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 672/1735 frames (38.7%) 9.22 fps  elapsed=72.9s  ETA=115s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 718/1735 frames (41.4%) 9.22 fps  elapsed=77.9s  ETA=110s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 770/1735 frames (44.4%) 9.28 fps  elapsed=83.0s  ETA=104s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 826/1735 frames (47.6%) 9.39 fps  elapsed=88.0s  ETA=97s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 880/1735 frames (50.7%) 9.45 fps  elapsed=93.1s  ETA=90s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 935/1735 frames (53.9%) 9.53 fps  elapsed=98.1s  ETA=84s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 991/1735 frames (57.1%) 9.60 fps  elapsed=103.2s  ETA=77s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1048/1735 frames (60.4%) 9.68 fps  elapsed=108.3s  ETA=71s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1103/1735 frames (63.6%) 9.73 fps  elapsed=113.4s  ETA=65s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1158/1735 frames (66.7%) 9.77 fps  elapsed=118.5s  ETA=59s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1212/1735 frames (69.9%) 9.81 fps  elapsed=123.6s  ETA=53s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1268/1735 frames (73.1%) 9.86 fps  elapsed=128.6s  ETA=47s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1323/1735 frames (76.3%) 9.90 fps  elapsed=133.7s  ETA=42s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1377/1735 frames (79.4%) 9.93 fps  elapsed=138.7s  ETA=36s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1432/1735 frames (82.5%) 9.96 fps  elapsed=143.8s  ETA=30s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1490/1735 frames (85.9%) 10.01 fps  elapsed=148.9s  ETA=24s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1545/1735 frames (89.0%) 10.04 fps  elapsed=153.9s  ETA=19s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1599/1735 frames (92.2%) 10.06 fps  elapsed=158.9s  ETA=14s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1649/1735 frames (95.0%) 10.06 fps  elapsed=163.9s  ETA=9s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1703/1735 frames (98.2%) 10.08 fps  elapsed=169.0s  ETA=3s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1734/1735 frames (99.9%) 10.08 fps  elapsed=172.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.07 fps  elapsed=172.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.95 fps  elapsed=174.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.92 fps  elapsed=174.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.89 fps  elapsed=175.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.87 fps  elapsed=175.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.84 fps  elapsed=176.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.81 fps  elapsed=176.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.78 fps  elapsed=177.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.75 fps  elapsed=177.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.72 fps  elapsed=178.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.70 fps  elapsed=179.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.67 fps  elapsed=179.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.64 fps  elapsed=180.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.61 fps  elapsed=180.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.58 fps  elapsed=181.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.56 fps  elapsed=181.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.53 fps  elapsed=182.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.50 fps  elapsed=182.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.48 fps  elapsed=183.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.45 fps  elapsed=183.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.42 fps  elapsed=184.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.40 fps  elapsed=184.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.37 fps  elapsed=185.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.35 fps  elapsed=185.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.32 fps  elapsed=186.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.29 fps  elapsed=186.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.27 fps  elapsed=187.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.24 fps  elapsed=187.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.22 fps  elapsed=188.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.19 fps  elapsed=188.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.17 fps  elapsed=189.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.14 fps  elapsed=189.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.12 fps  elapsed=190.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.09 fps  elapsed=190.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.07 fps  elapsed=191.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.04 fps  elapsed=191.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.02 fps  elapsed=192.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.00 fps  elapsed=192.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.97 fps  elapsed=193.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.95 fps  elapsed=193.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.92 fps  elapsed=194.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.90 fps  elapsed=195.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.90 fps  elapsed=195.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Rendered: C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4  (1735 frames in 195.1s, avg 8.89 fps)
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=0.000s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-00.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=6.431s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-01.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=12.862s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-02.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=19.293s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-03.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=25.724s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-04.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=32.156s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-05.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=38.587s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-06.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=45.018s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-07.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=51.449s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-08.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=57.780s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-09.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] contact sheet: C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\contact-sheet.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+video     : C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+duration  : 57.88s  1080x1920 @ 30fps
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] frames    : 10 (C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20)
+manifest  : C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\manifest.json
+
+Next step: actually LOOK at the frames (and contact sheet) before confirming anything.
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-00.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-01.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-02.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.542%  capContrast=5.53:1  headlineContrast=5.78:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-03.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=7.06:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-04.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.388%  capContrast=5.39:1  headlineContrast=6.48:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-05.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-06.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.626%  capContrast=5.64:1  headlineContrast=6.39:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] FAIL  frame-07.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=4.12:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]      VIOLATION: headline contrast 4.12:1 < 4.5:1 (glyph rgb(115,121,140) on bg rgb(15,23,41))
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-08.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=9.22:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-09.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+frame-audit: 9/10 frames passed. Report: C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\audit-report.json
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Visual Bible v3.0 loaded — 33 rules, 20 failure categories
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] SRT loaded: 9 cues
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Video duration: 57.88s
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Sampling 17 frames at beat points
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+═══ PHASE 1: SCENE-BY-SCENE REVIEW (BATCHED) ═══
+
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [1/17] t=0.5s — VO: "Your 3 month emergency fund is completely broken for 2026 jo..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [2/17] t=5.3s — VO: "Your 3 month emergency fund is completely broken for 2026 jo..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [3/17] t=10.1s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [4/17] t=15.0s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [5/17] t=17.5s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [6/17] t=19.8s — VO: "Dig deeper and the numbers get scary...."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [7/17] t=24.6s — VO: "United Way NCA survey data reveals that 45 percent of job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [8/17] t=28.6s — VO: "United Way NCA survey data reveals that 45 percent of job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [9/17] t=29.4s — VO: "Most people are living on the absolute edge...."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [10/17] t=32.2s — VO: "Most people are living on the absolute edge. The median dura..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [11/17] t=34.3s — VO: "The median duration of unemployment sits at 10.3 weeks, but ..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [12/17] t=39.1s — VO: "The median duration of unemployment sits at 10.3 weeks, but ..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [13/17] t=43.9s — VO: "That gap proves specialized workers face massive hidden dela..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [14/17] t=46.0s — VO: "That gap proves specialized workers face massive hidden dela..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [15/17] t=48.7s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [16/17] t=53.6s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [17/17] t=54.7s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/vision emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+section-7 QA — ch-01 — emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[qa/vision emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   ok      7.1
+  ok      7.2
+  ok      7.3
+  ok      7.4
+  REJECT  7.5
+  ok      7.6
+
+  7.5 / 7.6: no plan supplied, so neither could be checked. Section 7 requires both.
+
+VERDICT: REJECTED. Section 7: a human must be notified and there is no automatic retry.
+record: data/audit/visual-qa/ch-01-emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.json
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]     ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: undefined
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+
+═══ PHASE 2: WHOLE-VIDEO REVIEW ═══
+
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   Overall score: ?/10
+  Status: FAIL
+  Verdict: The video suffers from severe template monoculture and repetitive, generic chart layouts that fail to maintain continuous visual storytelling.
+  Weakest: Frame 5 — A plain typography screen reading 'DIG DEEPER' that completely disrupts the flow and adds no substantive visual information.
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+═══ GEMINI VISUAL DIRECTOR — FINAL VERDICT ═══
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   Bible: v3.0 (33 rules)
+  Frames reviewed: 17
+  CRITICAL: 0  HIGH: 0  PASS: 8
+  Avg quality: N/A/10
+  Pass rate: 47%
+  Whole-video: FAIL (?/10)
+  Report: C:\Users\user\YOUTUBE\data\audit\gemini-review\1-emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20-2026-09-20.json
+
+  VERDICT: APPROVED — video meets Visual Bible standards.
+Gemini verdict (attempt 2): The video suffers from severe template monoculture and repetitive, generic chart layouts that fail to maintain continuous visual storytelling.
+Gemini says The video suffers from severe template monoculture and repetitive, generic chart layouts that fail to maintain continuous visual storytelling. — feeding corrections back for attempt 3
+
+=== ATTEMPT 3/3: emergency-fund-bigger-than-you-think-2026-shorts-script.json ===
+=== GEMINI PLAN: 1 — emergency-fund-bigger-than-you-think-2026-shorts-script.json ===
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] SRT loaded: 9 sentences
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Requesting visual plan from Gemini for 9 beats...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Visual ratio: 44% (4/9 visual-only beats)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Narrative typography: 4/9 text beats, 3 repaired, 3 violation(s)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Capability compilation: 7 issue(s) across 9 beats
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Composition: 0/9 beats buildable, 29 issue(s)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Visual plan written: C:\Users\user\YOUTUBE\data\visual-plans\1\emergency-fund-bigger-than-you-think-2026-shorts-script-visual-plan.json
+  Beats: 9
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   Capabilities: {"typographic_emphasis":3,"structure_break":1,"comparison":3,"depletion":2,"revelation":1,"population":1,"contrast":1,"evidence":1,"causation":1,"accumulation":2,"growth":1}
+  [0] typographic_emphasis, structure_break: "3 MONTHS ISN'T ENOUGH" — Establishes the hook by showing a standard savings buffer snapping under pressure.
+  [1] comparison, depletion: "22.4 WEEKS SEARCH" — Visually compares the short savings buffer against the actual long duration of modern job hunts.
+  [2] typographic_emphasis, revelation: "DIG DEEPER" — Transitions the narrative focus from macro averages to the startling reality of micro-savings.
+  [3] population, depletion: "45% RUN OUT IN 1 MONTH" — Presents survey data showing near-immediate depletion of job seeker funds.
+  [4] contrast: "" — Summarizes the precarious position of modern consumers on the brink of financial collapse.
+  [5] comparison, evidence: "THE HIDDEN GAP" — Compares median versus mean unemployment duration to expose hidden skew.
+  [6] causation, accumulation: "MASSIVE HIDDEN DELAYS" — Connects the statistical gap to specialized workers facing prolonged hiring friction.
+  [7] growth, comparison: "UPGRADE TO 6-12 MONTHS" — Contrasts the inadequate standard fund with the robust 6 to 12 month recommendation.
+  [8] typographic_emphasis, accumulation: "SECURE YOUR BUFFER TODAY" — Delivers the final call to action, cementing the upgraded buffer as permanent protection.
+=== RENDER: 1 — emergency-fund-bigger-than-you-think-2026-shorts-script.json (shorts) ===
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] B-roll: 0/4 sections have real imagery
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Directed SRT: C:\Users\user\YOUTUBE\data\tts\1\emergency-fund-bigger-than-you-think-2026-shorts-script-vo.srt
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Visual plan loaded: C:\Users\user\YOUTUBE\data\visual-plans\1\emergency-fund-bigger-than-you-think-2026-shorts-script-visual-plan.json (9 beats, iteration: initial)
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Directed plan: 9 cues -> 9 beats, 1735f
+  treatments: PROPORTIONAL_OBJECTS:3 SURFACE_AND_BENEATH:2 PHYSICAL_GROWTH:2 STRUCTURAL_BREAKDOWN:1 ACTION_CONSEQUENCE:1
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   [d0] STRUCTURAL_BREAKDOWN — Establishes the hook by showing a standard savings buffer snapping under pressure.
+  [d1] PROPORTIONAL_OBJECTS — Visually compares the short savings buffer against the actual long duration of modern job hunts.
+  [d2] SURFACE_AND_BENEATH — Transitions the narrative focus from macro averages to the startling reality of micro-savings.
+  [d3] PROPORTIONAL_OBJECTS — Presents survey data showing near-immediate depletion of job seeker funds.
+  [d4] SURFACE_AND_BENEATH — Summarizes the precarious position of modern consumers on the brink of financial collapse.
+  [d5] PROPORTIONAL_OBJECTS — Compares median versus mean unemployment duration to expose hidden skew.
+  [d6] ACTION_CONSEQUENCE — Connects the statistical gap to specialized workers facing prolonged hiring friction.
+  [d7] PHYSICAL_GROWTH — Contrasts the inadequate standard fund with the robust 6 to 12 month recommendation.
+  [d8] PHYSICAL_GROWTH — Delivers the final call to action, cementing the upgraded buffer as permanent protection.
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Image credits: 0 attribution(s) -> C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-image-credits.json
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Rendering: DirectedShorts (1735 frames)
+Output: C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] bundling...
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] bundle(): 3.0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] selectComposition(): 1.6s
+[2D] rendering without WebGL (no chromiumOptions.gl)
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 0/1735 frames (0.0%) 0.00 fps  elapsed=5.9s  ETA=?s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 29/1735 frames (1.7%) 2.65 fps  elapsed=10.9s  ETA=643s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 80/1735 frames (4.6%) 5.01 fps  elapsed=16.0s  ETA=330s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 131/1735 frames (7.6%) 6.23 fps  elapsed=21.0s  ETA=258s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 181/1735 frames (10.4%) 6.93 fps  elapsed=26.1s  ETA=224s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 238/1735 frames (13.7%) 7.62 fps  elapsed=31.2s  ETA=196s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 296/1735 frames (17.1%) 8.15 fps  elapsed=36.3s  ETA=177s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 350/1735 frames (20.2%) 8.45 fps  elapsed=41.4s  ETA=164s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 407/1735 frames (23.5%) 8.75 fps  elapsed=46.5s  ETA=152s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 462/1735 frames (26.6%) 8.96 fps  elapsed=51.5s  ETA=142s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 516/1735 frames (29.7%) 9.12 fps  elapsed=56.6s  ETA=134s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 571/1735 frames (32.9%) 9.27 fps  elapsed=61.6s  ETA=126s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 627/1735 frames (36.1%) 9.42 fps  elapsed=66.6s  ETA=118s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 683/1735 frames (39.4%) 9.53 fps  elapsed=71.6s  ETA=110s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 737/1735 frames (42.5%) 9.61 fps  elapsed=76.7s  ETA=104s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 793/1735 frames (45.7%) 9.70 fps  elapsed=81.7s  ETA=97s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 845/1735 frames (48.7%) 9.74 fps  elapsed=86.8s  ETA=91s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 895/1735 frames (51.6%) 9.75 fps  elapsed=91.8s  ETA=86s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 945/1735 frames (54.5%) 9.75 fps  elapsed=96.9s  ETA=81s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1001/1735 frames (57.7%) 9.82 fps  elapsed=102.0s  ETA=75s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1052/1735 frames (60.6%) 9.83 fps  elapsed=107.0s  ETA=69s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1102/1735 frames (63.5%) 9.83 fps  elapsed=112.2s  ETA=64s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1156/1735 frames (66.6%) 9.86 fps  elapsed=117.2s  ETA=59s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1204/1735 frames (69.4%) 9.84 fps  elapsed=122.4s  ETA=54s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1250/1735 frames (72.0%) 9.80 fps  elapsed=127.5s  ETA=49s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1299/1735 frames (74.9%) 9.80 fps  elapsed=132.5s  ETA=44s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1355/1735 frames (78.1%) 9.85 fps  elapsed=137.6s  ETA=39s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1412/1735 frames (81.4%) 9.90 fps  elapsed=142.6s  ETA=33s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1469/1735 frames (84.7%) 9.95 fps  elapsed=147.7s  ETA=27s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1524/1735 frames (87.8%) 9.98 fps  elapsed=152.7s  ETA=21s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1581/1735 frames (91.1%) 10.02 fps  elapsed=157.7s  ETA=15s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1634/1735 frames (94.2%) 10.04 fps  elapsed=162.7s  ETA=10s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1690/1735 frames (97.4%) 10.07 fps  elapsed=167.8s  ETA=4s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1734/1735 frames (99.9%) 10.08 fps  elapsed=172.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.07 fps  elapsed=172.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.96 fps  elapsed=174.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.93 fps  elapsed=174.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.90 fps  elapsed=175.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.87 fps  elapsed=175.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.84 fps  elapsed=176.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.81 fps  elapsed=176.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.79 fps  elapsed=177.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.76 fps  elapsed=177.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.73 fps  elapsed=178.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.70 fps  elapsed=178.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.67 fps  elapsed=179.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.65 fps  elapsed=179.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.62 fps  elapsed=180.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.59 fps  elapsed=180.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.56 fps  elapsed=181.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.54 fps  elapsed=181.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.51 fps  elapsed=182.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.48 fps  elapsed=183.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.46 fps  elapsed=183.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.43 fps  elapsed=184.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.40 fps  elapsed=184.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.38 fps  elapsed=185.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.35 fps  elapsed=185.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.32 fps  elapsed=186.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.30 fps  elapsed=186.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.27 fps  elapsed=187.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.25 fps  elapsed=187.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.22 fps  elapsed=188.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.20 fps  elapsed=188.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.17 fps  elapsed=189.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.15 fps  elapsed=189.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.12 fps  elapsed=190.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.10 fps  elapsed=190.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.07 fps  elapsed=191.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.05 fps  elapsed=191.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.02 fps  elapsed=192.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.00 fps  elapsed=192.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.98 fps  elapsed=193.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.95 fps  elapsed=193.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.93 fps  elapsed=194.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.90 fps  elapsed=194.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.89 fps  elapsed=195.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Rendered: C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4  (1735 frames in 195.2s, avg 8.89 fps)
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=0.000s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-00.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=6.431s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-01.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=12.862s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-02.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=19.293s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-03.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=25.724s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-04.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=32.156s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-05.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=38.587s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-06.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=45.018s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-07.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=51.449s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-08.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=57.780s  C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-09.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] contact sheet: C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\contact-sheet.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+video     : C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] duration  : 57.88s  1080x1920 @ 30fps
+frames    : 10 (C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20)
+manifest  : C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\manifest.json
+
+Next step: actually LOOK at the frames (and contact sheet) before confirming anything.
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-00.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-01.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-02.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.531%  capContrast=5.21:1  headlineContrast=5.64:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-03.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=7.19:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-04.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.625%  capContrast=5.05:1  headlineContrast=5.88:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-05.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-06.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.632%  capContrast=5.30:1  headlineContrast=5.20:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-07.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=8.68:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-08.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=8.83:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-09.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+frame-audit: 10/10 frames passed. Report: C:\Users\user\YOUTUBE\data\audit\render-review\1789883104710\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\audit-report.json
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Visual Bible v3.0 loaded — 33 rules, 20 failure categories
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] SRT loaded: 9 cues
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Video duration: 57.88s
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Sampling 17 frames at beat points
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+═══ PHASE 1: SCENE-BY-SCENE REVIEW (BATCHED) ═══
+
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [1/17] t=0.5s — VO: "Your 3 month emergency fund is completely broken for 2026 jo..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [2/17] t=5.3s — VO: "Your 3 month emergency fund is completely broken for 2026 jo..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [3/17] t=10.1s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [4/17] t=15.0s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [5/17] t=17.5s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [6/17] t=19.8s — VO: "Dig deeper and the numbers get scary...."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [7/17] t=24.6s — VO: "United Way NCA survey data reveals that 45 percent of job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [8/17] t=28.6s — VO: "United Way NCA survey data reveals that 45 percent of job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [9/17] t=29.4s — VO: "Most people are living on the absolute edge...."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [10/17] t=32.2s — VO: "Most people are living on the absolute edge. The median dura..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [11/17] t=34.3s — VO: "The median duration of unemployment sits at 10.3 weeks, but ..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [12/17] t=39.1s — VO: "The median duration of unemployment sits at 10.3 weeks, but ..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [13/17] t=43.9s — VO: "That gap proves specialized workers face massive hidden dela..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [14/17] t=46.0s — VO: "That gap proves specialized workers face massive hidden dela..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [15/17] t=48.7s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [16/17] t=53.6s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [17/17] t=54.7s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/vision emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+section-7 QA — ch-01 — emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[qa/vision emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   ok      7.1
+  ok      7.2
+  ok      7.3
+  ok      7.4
+  REJECT  7.5
+  ok      7.6
+
+  7.5 / 7.6: no plan supplied, so neither could be checked. Section 7 requires both.
+
+VERDICT: REJECTED. Section 7: a human must be notified and there is no automatic retry.
+record: data/audit/visual-qa/ch-01-emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.json
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]     ✓ PASS (score: ?/10)
+    ✓ PASS (score: 7/10)
+    AUDIO MISMATCH: undefined
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]     ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: undefined
+    ERROR: Missing from retry response
+    ERROR: Missing from retry response
+    ERROR: Missing from retry response
+    ERROR: Missing from retry response
+    ERROR: Missing from retry response
+    ERROR: Missing from retry response
+
+═══ PHASE 2: WHOLE-VIDEO REVIEW ═══
+
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   Overall score: ?/10
+  Status: FAIL
+  Verdict: The video suffers from heavy template monoculture and lacks a continuous visual argument, relying on repetitive floating card elements instead of smooth transformations.
+  Weakest: Frame 5 — Unengaging typography slide with minimal visual storytelling or context.
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+═══ GEMINI VISUAL DIRECTOR — FINAL VERDICT ═══
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   Bible: v3.0 (33 rules)
+  Frames reviewed: 17
+  CRITICAL: 0  HIGH: 0  PASS: 11
+  Avg quality: 7.0/10
+  Pass rate: 65%
+  Whole-video: FAIL (?/10)
+  Report: C:\Users\user\YOUTUBE\data\audit\gemini-review\1-emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20-2026-09-20.json
+
+  VERDICT: APPROVED — video meets Visual Bible standards.
+Gemini verdict (attempt 3): The video suffers from heavy template monoculture and lacks a continuous visual argument, relying on repetitive floating card elements instead of smooth transformations.
+  Completed: attempt 3/3, verdict=The video suffers from heavy template monoculture and lacks a continuous visual argument, relying on repetitive floating card elements instead of smooth transformations.
+
+=== SUMMARY === rendered=1 renderFailed=0 qaFailed=0 successful=1
+  emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4: attempts=3 verdict=The video suffers from heavy template monoculture and lacks a continuous visual argument, relying on repetitive floating card elements instead of smooth transformations. qa=PASS

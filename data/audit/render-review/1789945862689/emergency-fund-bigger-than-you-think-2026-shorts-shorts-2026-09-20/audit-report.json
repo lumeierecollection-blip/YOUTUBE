@@ -1,0 +1,121 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789945862689\\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\\frame-00.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 13.827105014131286,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789945862689\\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\\frame-01.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 4.050829044768574,
+      "pass": false,
+      "violations": [
+        "headline contrast 4.05:1 < 4.5:1 (glyph rgb(66,133,97) on bg rgb(15,23,41))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789945862689\\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\\frame-02.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 9.139893892864006,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789945862689\\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\\frame-03.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789945862689\\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\\frame-04.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 14.680361448815676,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789945862689\\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\\frame-05.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789945862689\\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\\frame-06.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.006460813492063492,
+      "captionContrast": 5.194841085638254,
+      "headlineContrast": 6.082537730130746,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789945862689\\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\\frame-07.png",
+      "bg": "rgb(25,33,50)",
+      "flatness": 46.37226213277675,
+      "marginForegroundFraction": 0.247320692497939,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": false,
+      "violations": [
+        "bg not flat in top-margin (blurred stddev 32.6 > 14 — survives blur, looks like a real gradient, not grain)",
+        "content leaking into margins (24.73% > 0.1%)"
+      ]
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789945862689\\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\\frame-08.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 9.129121477865908,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\user\\YOUTUBE\\data\\audit\\render-review\\1789945862689\\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\\frame-09.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 10.873004286876672,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

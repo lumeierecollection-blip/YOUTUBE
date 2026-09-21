@@ -513,6 +513,7 @@ async function main() {
       fonts: viSpec
         ? { primary: viSpec.typography_primary, secondary: viSpec.typography_secondary }
         : { primary: "DM Sans", secondary: "Noto Serif" },
+      bgMode: channel.bg_mode ? channel.bg_mode : "black",
     };
 
     frames = beats.length ? beats[beats.length - 1].start_frame + beats[beats.length - 1].duration_frames : 300;

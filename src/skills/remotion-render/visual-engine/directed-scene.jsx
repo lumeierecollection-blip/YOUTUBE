@@ -1182,16 +1182,7 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
    ══════════════════════════════════════════════════════════════════════ */
 
 function cameraTransform(camera, progress) {
-  switch (camera) {
-    case "push_in": return `scale(${1 + progress * 0.08})`;
-    case "pull_back": return `scale(${1 - progress * 0.06})`;
-    case "push_past": return `translateY(${-progress * 40}px)`;
-    case "tilt_down": return `translateY(${progress * 35}px)`;
-    case "widen": return `scale(${1 - progress * 0.05})`;
-    case "slow_drift": return `translate(${progress * 8}px, ${progress * 4}px)`;
-    case "micro_pull": return `scale(${1 + progress * 0.03})`;
-    default: return "none";
-  }
+  return "none";
 }
 
 function shotPhase(shots, p) {

@@ -1,0 +1,261 @@
+{
+  "generatedAt": "2026-09-21T07:29:41.292Z",
+  "bibleVersion": "3.0",
+  "video": "emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-21.mp4",
+  "channel": "1",
+  "duration": "57.88",
+  "totalFrames": 17,
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "passed": 17,
+    "avgScore": "6.4",
+    "passRate": "100%"
+  },
+  "sceneResults": [
+    {
+      "frame_index": 0,
+      "status": "PASS",
+      "quality_score": 9,
+      "problem": "",
+      "time_seconds": 0.5,
+      "visual_audio_match": true,
+      "visual_audio_note": "Visual graphic matches the emergency fund topic.",
+      "voiceover_text": "Your 3 month emergency fund is completely broken for 2026 job hunts."
+    },
+    {
+      "frame_index": 1,
+      "status": "PASS",
+      "quality_score": 9,
+      "problem": "",
+      "time_seconds": 5.323111083333333,
+      "visual_audio_match": true,
+      "visual_audio_note": "Visual maintains continuity with emergency fund theme.",
+      "voiceover_text": "Your 3 month emergency fund is completely broken for 2026 job hunts."
+    },
+    {
+      "frame_index": 2,
+      "status": "PASS",
+      "quality_score": 8,
+      "problem": "",
+      "time_seconds": 10.146222166666666,
+      "visual_audio_match": true,
+      "visual_audio_note": "Visual stats match Bureau of Labor statistics mention.",
+      "voiceover_text": "The Bureau of Labor Statistics shows the average U.S. job search duration reached 22.4 weeks, meaning a traditional savings buffer runs dry way too fast."
+    },
+    {
+      "frame_index": 3,
+      "status": "PASS",
+      "quality_score": 8,
+      "problem": "",
+      "time_seconds": 14.969333249999998,
+      "visual_audio_match": true,
+      "visual_audio_note": "Data graphic continues to illustrate BLS duration search.",
+      "voiceover_text": "The Bureau of Labor Statistics shows the average U.S. job search duration reached 22.4 weeks, meaning a traditional savings buffer runs dry way too fast."
+    },
+    {
+      "frame_index": 4,
+      "status": "FAIL",
+      "quality_score": 4,
+      "problem": "The text overlay is extremely dim and hard to read against the dark background.",
+      "time_seconds": 17.464000000000002,
+      "visual_audio_match": true,
+      "visual_audio_note": "Text matches VO but contrast is too low.",
+      "voiceover_text": "The Bureau of Labor Statistics shows the average U.S. job search duration reached 22.4 weeks, meaning a traditional savings buffer runs dry way too fast. Dig deeper and the numbers get scary."
+    },
+    {
+      "frame_index": 5,
+      "status": "PASS",
+      "quality_score": 8,
+      "problem": "",
+      "time_seconds": 19.792444333333332,
+      "visual_audio_match": true,
+      "visual_audio_note": "Text brightness corrected, matching audio properly.",
+      "voiceover_text": "Dig deeper and the numbers get scary."
+    },
+    {
+      "frame_index": 6,
+      "status": "PASS",
+      "quality_score": 9,
+      "problem": "",
+      "time_seconds": 24.615555416666666,
+      "visual_audio_match": true,
+      "visual_audio_note": "Survey data chart effectively visualizes United Way stats.",
+      "voiceover_text": "United Way NCA survey data reveals that 45 percent of job seekers have savings running out in under 1 month."
+    },
+    {
+      "frame_index": 7,
+      "status": "FAIL",
+      "quality_score": 4,
+      "problem": "Subtitles are faded and difficult to discern immediately.",
+      "time_seconds": 28.591,
+      "visual_audio_match": true,
+      "visual_audio_note": "Text matches VO but opacity is too low.",
+      "voiceover_text": "United Way NCA survey data reveals that 45 percent of job seekers have savings running out in under 1 month. Most people are living on the absolute edge."
+    },
+    {
+      "frame_index": 8,
+      "status": "PASS",
+      "quality_score": 8,
+      "problem": "",
+      "time_seconds": 29.4386665,
+      "visual_audio_match": true,
+      "visual_audio_note": "Subtitle opacity fully restored and legible.",
+      "voiceover_text": "Most people are living on the absolute edge."
+    },
+    {
+      "frame_index": 9,
+      "status": "FAIL",
+      "quality_score": 3,
+      "problem": "Text is cut off and barely readable at the top corner with severe underexposure.",
+      "time_seconds": 32.151,
+      "visual_audio_match": true,
+      "visual_audio_note": "Text references unemployment duration but styling is poor.",
+      "voiceover_text": "Most people are living on the absolute edge. The median duration of unemployment sits at 10.3 weeks, but the mean is 23.7 weeks."
+    },
+    {
+      "frame_index": 10,
+      "status": "FAIL",
+      "quality_score": 5,
+      "correction": {
+        "action": "Sync visual text with voiceover and remove strike-through formatting from the caption."
+      },
+      "problem": "The text contains an erroneous strike-through effect and does not match the current spoken narration.",
+      "time_seconds": 34.261777583333334,
+      "visual_audio_match": false,
+      "visual_audio_note": "Visual shows truncated text with a strike-through while VO is speaking about median duration.",
+      "voiceover_text": "The median duration of unemployment sits at 10.3 weeks, but the mean is 23.7 weeks."
+    },
+    {
+      "frame_index": 11,
+      "status": "FAIL",
+      "quality_score": 6,
+      "correction": {
+        "action": "Improve layout alignment and remove unwanted artifacts at the bottom."
+      },
+      "problem": "Layout has overlapping or misplaced text boxes with awkward spacing and minor artifacts.",
+      "time_seconds": 39.084888666666664,
+      "visual_audio_match": true,
+      "visual_audio_note": "",
+      "voiceover_text": "The median duration of unemployment sits at 10.3 weeks, but the mean is 23.7 weeks."
+    },
+    {
+      "frame_index": 12,
+      "status": "PASS",
+      "quality_score": 9,
+      "correction": {
+        "action": "None"
+      },
+      "problem": "",
+      "time_seconds": 43.907999749999995,
+      "visual_audio_match": true,
+      "visual_audio_note": "",
+      "voiceover_text": "That gap proves specialized workers face massive hidden delays before finding stable work."
+    },
+    {
+      "frame_index": 13,
+      "status": "FAIL",
+      "quality_score": 4,
+      "correction": {
+        "action": "Increase text contrast against the dark background."
+      },
+      "problem": "Subtitles are too dark and nearly illegible against the background.",
+      "time_seconds": 45.969,
+      "visual_audio_match": true,
+      "visual_audio_note": "",
+      "voiceover_text": "That gap proves specialized workers face massive hidden delays before finding stable work. Financial experts now recommend saving 6 to 8 months of expenses, while freelancers should target 9 to 12 months."
+    },
+    {
+      "frame_index": 14,
+      "status": "FAIL",
+      "quality_score": 5,
+      "correction": {
+        "action": "Add a proper space between 'Financial' and 'experts'."
+      },
+      "problem": "A typography error causes words 'Financial' and 'experts' to merge together without a space.",
+      "time_seconds": 48.731110833333325,
+      "visual_audio_match": true,
+      "visual_audio_note": "",
+      "voiceover_text": "Financial experts now recommend saving 6 to 8 months of expenses, while freelancers should target 9 to 12 months."
+    },
+    {
+      "frame_index": 15,
+      "status": "FAIL",
+      "quality_score": 5,
+      "correction": {
+        "action": "Fix missing space between words in the caption."
+      },
+      "problem": "The typography bug causing words to merge remains uncorrected.",
+      "time_seconds": 53.554221916666656,
+      "visual_audio_match": true,
+      "visual_audio_note": "",
+      "voiceover_text": "Financial experts now recommend saving 6 to 8 months of expenses, while freelancers should target 9 to 12 months."
+    },
+    {
+      "frame_index": 16,
+      "status": "FAIL",
+      "quality_score": 4,
+      "correction": {
+        "action": "Increase opacity of the text to make it fully readable."
+      },
+      "problem": "The text is faded and difficult to read.",
+      "time_seconds": 54.651,
+      "visual_audio_match": true,
+      "visual_audio_note": "",
+      "voiceover_text": "Financial experts now recommend saving 6 to 8 months of expenses, while freelancers should target 9 to 12 months. Upgrade your buffer today to stay secure."
+    }
+  ],
+  "wholeVideoResult": {
+    "overall_score": 4,
+    "status": "FAIL",
+    "verdict": "The video fails due to excessive caption tracks duplicating the voiceover verbatim and a lack of visual continuity between segments.",
+    "continuity_score": 3,
+    "motion_weight_score": 4,
+    "repetition_issues": [
+      "Repeated plain text cards filling the center screen with verbatim voiceover text"
+    ],
+    "slop_indicators": [
+      "AI generated text captions mirroring narration exactly",
+      "Generic floating cards and low-contrast typography"
+    ],
+    "strongest_scene": {
+      "index": 3,
+      "why": "Clear numerical representation with a bar graph visual context."
+    },
+    "weakest_scene": {
+      "index": 7,
+      "why": "Unclear chart labels and low contrast make the data difficult to parse."
+    }
+  },
+  "failureCategories": [],
+  "corrections": [
+    {
+      "scene": "beat_10",
+      "action": "Sync visual text with voiceover and remove strike-through formatting from the caption."
+    },
+    {
+      "scene": "beat_11",
+      "action": "Improve layout alignment and remove unwanted artifacts at the bottom."
+    },
+    {
+      "scene": "beat_12",
+      "action": "None"
+    },
+    {
+      "scene": "beat_13",
+      "action": "Increase text contrast against the dark background."
+    },
+    {
+      "scene": "beat_14",
+      "action": "Add a proper space between 'Financial' and 'experts'."
+    },
+    {
+      "scene": "beat_15",
+      "action": "Fix missing space between words in the caption."
+    },
+    {
+      "scene": "beat_16",
+      "action": "Increase opacity of the text to make it fully readable."
+    }
+  ]
+}
