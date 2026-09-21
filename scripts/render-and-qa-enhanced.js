@@ -28,6 +28,7 @@ const RENDER_JS = join(ROOT, "src", "skills", "remotion-render", "render.js");
 const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 const OPENCODE_INTENT_JS = join(__dirname, "opencode-visual-intent.js");
 const GEMINI_CHALLENGER_JS = join(__dirname, "gemini-visual-challenger.js");
+const LOCAL_PLAN_JS = join(__dirname, "local-visual-plan.cjs");
 const EXECUTION_COMPARATOR_JS = join(__dirname, "execution-comparator.js");
 const LOCAL_AUDIT_JS = join(__dirname, "local-audit.js");
 const MAX_ATTEMPTS = 4;
@@ -57,6 +58,20 @@ function run(cmd, args, label) {
     c.stderr.on("data", d => { se += d; process.stderr.write("[" + label + "] " + d); });
     c.on("close", code => r({ code, stdout: so, stderr: se }));
   });
+}
+
+// ── Local visual plan fallback (rule-based, no API) ──
+async function localPlanFallback(channelId, scriptPath) {
+  const planDir = join(ROOT, "data", "visual-plans", channelId);
+  mkdirSync(planDir, { recursive: true });
+  const planPath = join(planDir, basename(scriptPath, ".json") + "-visual-plan.json");
+  const audio = audioFor(channelId, scriptPath);
+  const srtPath = join(dirname(audio), basename(audio, extname(audio)) + ".srt");
+
+  const args = [LOCAL_PLAN_JS, "--srt", srtPath, "--channel", channelId, "--out", planPath];
+  console.log("=== LOCAL PLAN FALLBACK: " + channelId + " — " + basename(scriptPath) + " ===");
+  const { code } = await run("node", args, "local-plan/" + channelId);
+  return code === 0 && existsSync(planPath) ? planPath : null;
 }
 
 // ── OpenCode generates visual intent (PRIMARY THINKER) ──
@@ -233,17 +248,27 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     console.log("\n=== ATTEMPT " + attempt + "/" + MAX_ATTEMPTS + ": " + basename(scriptPath) + " ===");
 
     // Step 1: OpenCode generates visual intent (PRIMARY THINKER)
+    let usedLocalPlan = false;
     if (!intentPath) {
       intentPath = await opencodeIntent(channelId, scriptPath);
       if (!intentPath) {
-        console.error("Failed to generate visual intent from OpenCode.");
-        return { skipped: false, ok: false };
+        // Fallback to local rule-based plan
+        console.log("OpenCode intent failed — falling back to local plan");
+        const localPlanPath = await localPlanFallback(channelId, scriptPath);
+        if (!localPlanPath) {
+          console.error("Failed to generate visual intent from OpenCode and local plan fallback also failed.");
+          return { skipped: false, ok: false };
+        }
+        intentPath = localPlanPath;
+        usedLocalPlan = true;
       }
     }
 
-    // Step 2: Confidence gate — skip Gemini if intent is high-confidence
+    // Step 2: Confidence gate — skip Gemini if intent is high-confidence or local plan
     let challenge = { verdict: "MATCH", deltas: [] };
-    if (shouldSkipChallenge(intentPath)) {
+    if (usedLocalPlan) {
+      console.log("Local plan used — skipping Gemini challenge");
+    } else if (shouldSkipChallenge(intentPath)) {
       console.log("Confidence gate PASSED — proceeding without Gemini challenge");
     } else {
       // Step 3: Gemini challenges the intent (CHALLENGER/JUDGE)
@@ -258,11 +283,13 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
 
     console.log("Gemini verdict: " + challenge.verdict + " (score: " + (challenge.score || "N/A") + ")");
 
-    // Step 4: Convert intent to visual-plan.json and render
+    // Step 4: Convert intent to visual-plan.json and render (skip if local plan already written)
     const planDir = join(ROOT, "data", "visual-plans", channelId);
     mkdirSync(planDir, { recursive: true });
     const planPath = join(planDir, basename(scriptPath, ".json") + "-visual-plan.json");
-    intentToVisualPlan(intentPath, planPath);
+    if (!usedLocalPlan) {
+      intentToVisualPlan(intentPath, planPath);
+    }
 
     const result = await renderOne(channelId, scriptPath, format);
     if (result.skipped) return { skipped: true };
