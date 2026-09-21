@@ -42,6 +42,7 @@ import { narrationSections } from "../../utils/script-narration.js";
 // Visual Director — semantic treatment selection pipeline.
 // Replaces the old TYPE → VISUAL alternation with meaning-driven treatments.
 import { direct } from "./visual-engine/director/visual-director.js";
+import { interpretPlan } from "./visual-engine/beat-interpreter.js";
 
 
 
@@ -487,7 +488,15 @@ async function main() {
     });
 
     let visualPlan = null;
-    const planPath = join(ROOT, "data", "visual-plans", channelId, basename(scriptPath, ".json") + "-visual-plan.json");
+    let planPath = join(ROOT, "data", "visual-plans", channelId, basename(scriptPath, ".json") + "-visual-plan.json");
+    const planCandidates = [
+      planPath,
+      join(ROOT, "data", "visual-plans", String(channel.id), basename(scriptPath, ".json") + "-visual-plan.json"),
+      join(ROOT, "data", "visual-plans", channel.channel_id, basename(scriptPath, ".json") + "-visual-plan.json"),
+    ];
+    for (const p of planCandidates) {
+      if (existsSync(p)) { planPath = p; break; }
+    }
     if (existsSync(planPath)) {
       try {
         visualPlan = JSON.parse(readFileSync(planPath, "utf-8"));
@@ -497,7 +506,19 @@ async function main() {
       }
     }
 
-    const { beats, warnings, distribution } = direct(cues, { visualPlan });
+    // Wire interpreter: if plan is minimal (kind/subject), expand via interpretPlan
+    let interpretedPlan = visualPlan;
+    if (visualPlan?.beats?.[0]?.kind) {
+      try {
+        const sentences = cues.map(c => ({ text: c.text, start: c.startFrame/30, end: c.endFrame/30 }));
+        const interpreted = interpretPlan(visualPlan.beats, sentences);
+        interpretedPlan = { ...visualPlan, beats: interpreted.directives, distribution: interpreted.distribution };
+        console.log(`Interpreted plan: ${interpreted.directives.length} directives`);
+      } catch (e) {
+        console.warn(`interpretPlan failed: ${e.message}`);
+      }
+    }
+    const { beats, warnings, distribution } = direct(cues, { visualPlan: interpretedPlan });
 
     let viSpec = null;
     try {

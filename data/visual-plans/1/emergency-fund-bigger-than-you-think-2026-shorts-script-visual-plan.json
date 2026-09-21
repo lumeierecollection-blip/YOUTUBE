@@ -1,0 +1,1064 @@
+{
+  "generatedAt": "2026-09-21T13:44:25.822Z",
+  "channel": "1",
+  "iteration": "initial",
+  "totalBeats": 9,
+  "beats": [
+    {
+      "index": 0,
+      "visual_headline": "Is 3 months enough?",
+      "reason": "Challenges the foundational assumption of emergency savings using a questioning hook.",
+      "emphasis_words": [
+        "3 MONTHS",
+        "ENOUGH?"
+      ],
+      "visual_events": [
+        {
+          "type": "comparison",
+          "label": "3 months vs reality",
+          "magnitude": "3"
+        }
+      ],
+      "capabilities": [
+        "comparison"
+      ],
+      "objects": {
+        "label_a": "Traditional 3 Months",
+        "label_b": "Actual Need"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "none"
+          },
+          {
+            "kind": "bar",
+            "count": 3,
+            "anchor": "left",
+            "motion": "slide_in",
+            "label": "3 Months",
+            "emphasis": false
+          },
+          {
+            "kind": "bar",
+            "count": 6,
+            "anchor": "right",
+            "motion": "slide_in",
+            "label": "Reality",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": "The two comparative blocks",
+      "emotional_weight": "urgent",
+      "typography_direction": {
+        "phrase": "Is 3 months enough?",
+        "why": "Hooks the viewer by challenging conventional financial wisdom",
+        "moment": "hook",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "Poses the exact question that the comparative bars on screen visualize"
+      },
+      "direction": {
+        "narrative_purpose": "Hook the viewer with the core question of the video",
+        "subject": "Two side-by-side bars representing 3 months and a larger unknown duration",
+        "environment": "clean data void",
+        "action_start": "Bars appear at equal baseline",
+        "action_end": "Right bar towers over the left bar",
+        "camera": "push_in",
+        "motion": "bars slide up firmly",
+        "typography": "Is 3 months enough?",
+        "sound": "subtle sharp impact",
+        "consequence": "Viewer questions whether their savings are sufficient",
+        "muted_read": "Standard savings may fall short of actual need",
+        "why_visual": "Comparison directly illustrates the inadequacy of the standard 3-month rule",
+        "graph_justified": true
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "Challenges the foundational assumption of emergency savings using a questioning hook.",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "appear"
+          },
+          {
+            "kind": "bar",
+            "anchor": "left",
+            "motion": "appear",
+            "count": 1,
+            "scale": 1,
+            "label": ""
+          },
+          {
+            "kind": "bar",
+            "anchor": "right",
+            "motion": "appear",
+            "count": 1,
+            "scale": 0.6,
+            "label": ""
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "compositionCoverage": 0.562,
+      "compositionValid": false
+    },
+    {
+      "index": 1,
+      "visual_headline": "DANGEROUSLY LOW",
+      "reason": "Demonstrates the precariousness of family savings funds being too small.",
+      "emphasis_words": [
+        "DANGEROUSLY",
+        "LOW"
+      ],
+      "visual_events": [
+        {
+          "type": "depletion",
+          "label": "Low savings buffer",
+          "magnitude": "3"
+        }
+      ],
+      "capabilities": [
+        "depletion"
+      ],
+      "objects": {
+        "figure": "3"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "none"
+          },
+          {
+            "kind": "stack",
+            "count": 3,
+            "anchor": "center",
+            "motion": "shake",
+            "label": "Buffer",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": "The low stack of blocks",
+      "emotional_weight": "heavy",
+      "typography_direction": null,
+      "direction": {
+        "narrative_purpose": "Show that the standard number leaves families vulnerable",
+        "subject": "A precarious stack of three blocks trembling slightly",
+        "environment": "clean data void",
+        "action_start": "A short stack stands upright",
+        "action_end": "The stack wobbles under invisible pressure",
+        "camera": "hold",
+        "motion": "gentle unstable oscillation",
+        "typography": "none",
+        "sound": "low rumble",
+        "consequence": "Viewer perceives the fragility of a 3-month cushion",
+        "muted_read": "A three-unit stack is structurally unstable",
+        "why_visual": "A trembling small stack physically embodies the concept of a dangerously low safety net",
+        "graph_justified": false
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "Demonstrates the precariousness of family savings funds being too small.",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "appear"
+          },
+          {
+            "kind": "vessel",
+            "anchor": "center",
+            "motion": "drain",
+            "scale": 1.2,
+            "label": "Low savings buffer"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "compositionCoverage": 0.533,
+      "compositionValid": false
+    },
+    {
+      "index": 2,
+      "visual_headline": "THE STANDARD ADVICE",
+      "reason": "Establishes the baseline rule that everyone has been told to follow.",
+      "emphasis_words": [
+        "STANDARD",
+        "ADVICE"
+      ],
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "Three standard units",
+          "magnitude": "3"
+        }
+      ],
+      "capabilities": [
+        "accumulation"
+      ],
+      "objects": {
+        "figure": "3"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "none"
+          },
+          {
+            "kind": "block",
+            "count": 3,
+            "anchor": "center",
+            "motion": "stack_neatly",
+            "label": "3 Months",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": "The neat stack of 3 blocks",
+      "emotional_weight": "calm",
+      "typography_direction": null,
+      "direction": {
+        "narrative_purpose": "Clearly present the accepted rule before dismantling it",
+        "subject": "Three uniform blocks stacking neatly into a pillar",
+        "environment": "clean data void",
+        "action_start": "Blocks float separately",
+        "action_end": "Blocks snap together into a neat column of three",
+        "camera": "hold",
+        "motion": "precise, orderly snapping into place",
+        "typography": "none",
+        "sound": "clean click",
+        "consequence": "Viewer recognizes the familiar 3-month rule",
+        "muted_read": "Three distinct units form a standard baseline",
+        "why_visual": "Neat accumulation mirrors the tidy, conventional financial advice given by experts",
+        "graph_justified": false
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "Establishes the baseline rule that everyone has been told to follow.",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "fill",
+            "count": 10,
+            "scale": 1,
+            "label": "Three standard units"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "compositionCoverage": 0.395,
+      "compositionValid": false
+    },
+    {
+      "index": 3,
+      "visual_headline": "Job searches now take 5 months",
+      "reason": "Contrasts the standard 3-month savings with the actual 5-month job search duration.",
+      "emphasis_words": [
+        "5 MONTHS"
+      ],
+      "visual_events": [
+        {
+          "type": "growth",
+          "label": "Duration extends to 5",
+          "magnitude": "5"
+        }
+      ],
+      "capabilities": [
+        "growth",
+        "comparison"
+      ],
+      "objects": {
+        "figure": "5"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "none"
+          },
+          {
+            "kind": "bar",
+            "count": 3,
+            "anchor": "left",
+            "motion": "hold",
+            "label": "Savings",
+            "emphasis": false
+          },
+          {
+            "kind": "bar",
+            "count": 5,
+            "anchor": "right",
+            "motion": "extend",
+            "label": "Job Search",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": "The two bars showing the mismatch",
+      "emotional_weight": "building",
+      "typography_direction": {
+        "phrase": "Job searches now take 5 months",
+        "why": "Highlights the critical mismatch between savings and reality",
+        "moment": "re_hook",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "Provides context for the expanding bar on screen"
+      },
+      "direction": {
+        "narrative_purpose": "Introduce the timeline gap that breaks the standard advice",
+        "subject": "A bar representing savings paired with a second bar stretching longer to 5 units",
+        "environment": "clean data void",
+        "action_start": "Both bars start at 3 units",
+        "action_end": "The right bar grows past the left, reaching 5",
+        "camera": "pull_back",
+        "motion": "steady upward growth of the search duration bar",
+        "typography": "Job searches now take 5 months",
+        "sound": "stretching hum",
+        "consequence": "Viewer realizes job hunts outlast traditional savings",
+        "muted_read": "The required duration exceeds the saved duration",
+        "why_visual": "Growth of the timeline bar directly visualizes the 5-month reality",
+        "graph_justified": true
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "Contrasts the standard 3-month savings with the actual 5-month job search duration.",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "grow",
+            "count": 6,
+            "scale": 1,
+            "label": "Duration extends to 5"
+          },
+          {
+            "kind": "figure",
+            "anchor": "upper_third",
+            "motion": "appear",
+            "label": "5"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "compositionCoverage": 0.554,
+      "compositionValid": false
+    },
+    {
+      "index": 4,
+      "visual_headline": "RENT WIPES IT OUT",
+      "reason": "Shows how quickly housing costs consume a month of savings.",
+      "emphasis_words": [
+        "RENT",
+        "WEEK"
+      ],
+      "visual_events": [
+        {
+          "type": "depletion",
+          "label": "Rent drains savings fast",
+          "magnitude": "1"
+        }
+      ],
+      "capabilities": [
+        "depletion"
+      ],
+      "objects": {
+        "figure": "1"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "none"
+          },
+          {
+            "kind": "block",
+            "count": 1,
+            "anchor": "center",
+            "motion": "dissolve",
+            "label": "1 Month Rent",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": null,
+      "emotional_weight": "sharp",
+      "typography_direction": null,
+      "direction": {
+        "narrative_purpose": "Demonstrate the burn rate of modern rent expenses",
+        "subject": "A single solid block rapidly shrinking to nothing",
+        "environment": "clean data void",
+        "action_start": "A full block representing a month of savings",
+        "action_end": "The block disintegrates into fine particles within seconds",
+        "camera": "hold",
+        "motion": "rapid dissolving from bottom up",
+        "typography": "none",
+        "sound": "whoosh fading out",
+        "consequence": "Viewer feels the shocking speed at which rent destroys cash reserves",
+        "muted_read": "A full unit of savings is consumed instantly",
+        "why_visual": "Depletion animation captures the literal disappearance of funds to rent",
+        "graph_justified": false
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "Shows how quickly housing costs consume a month of savings.",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "appear"
+          },
+          {
+            "kind": "vessel",
+            "anchor": "center",
+            "motion": "drain",
+            "scale": 1.2,
+            "label": "Rent drains savings fast"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "compositionCoverage": 0.381,
+      "compositionValid": false
+    },
+    {
+      "index": 5,
+      "visual_headline": "EMERGENCIES PILE UP",
+      "reason": "Accumulates multiple unexpected life costs stacking on top of each other.",
+      "emphasis_words": [
+        "HEALTHCARE",
+        "REPAIRS",
+        "ER"
+      ],
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "Multiple emergency costs",
+          "magnitude": "3"
+        }
+      ],
+      "capabilities": [
+        "accumulation"
+      ],
+      "objects": {
+        "figure": "3"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "none"
+          },
+          {
+            "kind": "block",
+            "count": 3,
+            "anchor": "center",
+            "motion": "stack_heavy",
+            "label": "Emergencies",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": "The heavy pile of emergency blocks",
+      "emotional_weight": "heavy",
+      "typography_direction": null,
+      "direction": {
+        "narrative_purpose": "Show compounding financial shocks",
+        "subject": "Three distinct heavy blocks landing on top of each other in rapid succession",
+        "environment": "clean data void",
+        "action_start": "Empty space",
+        "action_end": "A heavy 3-block tower stands under stress",
+        "camera": "push_in",
+        "motion": "heavy, weighted drops with impact shakes",
+        "typography": "none",
+        "sound": "triple thud",
+        "consequence": "Viewer understands how multiple crises compound financial pressure",
+        "muted_read": "Multiple distinct burdens accumulate into a heavy stack",
+        "why_visual": "Accumulation accurately represents multiple expenses piling onto one budget",
+        "graph_justified": false
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "Accumulates multiple unexpected life costs stacking on top of each other.",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "fill",
+            "count": 10,
+            "scale": 1,
+            "label": "Multiple emergency costs"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "compositionCoverage": 0.395,
+      "compositionValid": false
+    },
+    {
+      "index": 6,
+      "visual_headline": "CUSHION DISAPPEARS",
+      "reason": "Breaks the structural integrity of the 3-month cushion under accumulated weight.",
+      "emphasis_words": [
+        "DISAPPEARS"
+      ],
+      "visual_events": [
+        {
+          "type": "structure_break",
+          "label": "Cushion shatters",
+          "magnitude": "3"
+        }
+      ],
+      "capabilities": [
+        "structure_break"
+      ],
+      "objects": {
+        "figure": "3"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "none"
+          },
+          {
+            "kind": "block",
+            "count": 3,
+            "anchor": "center",
+            "motion": "shatter",
+            "label": "3-Month Cushion",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": null,
+      "emotional_weight": "urgent",
+      "typography_direction": null,
+      "direction": {
+        "narrative_purpose": "Visually destroy the old standard cushion to prove it fails",
+        "subject": "A structured 3-block tower cracking and breaking apart into shards",
+        "environment": "clean data void",
+        "action_start": "An intact 3-block tower",
+        "action_end": "The tower fractures down the middle and collapses outward",
+        "camera": "orbit",
+        "motion": "sharp fracture lines followed by outward scattering",
+        "typography": "none",
+        "sound": "glass break and crash",
+        "consequence": "Viewer sees the inevitable failure of a 3-month cushion",
+        "muted_read": "The three-unit structure shatters completely",
+        "why_visual": "Structure break demonstrates the catastrophic failure of insufficient savings",
+        "graph_justified": false
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "Breaks the structural integrity of the 3-month cushion under accumulated weight.",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "appear"
+          },
+          {
+            "kind": "block",
+            "anchor": "center",
+            "motion": "fall",
+            "count": 8,
+            "scale": 1,
+            "label": "Cushion shatters"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "compositionCoverage": 0.395,
+      "compositionValid": false
+    },
+    {
+      "index": 7,
+      "visual_headline": "6 to 9 months bare-bones",
+      "reason": "Rebuilds a robust, expanded savings target matching modern planner recommendations.",
+      "emphasis_words": [
+        "6 TO 9 MONTHS"
+      ],
+      "visual_events": [
+        {
+          "type": "growth",
+          "label": "Expanded savings target",
+          "magnitude": "9"
+        }
+      ],
+      "capabilities": [
+        "growth"
+      ],
+      "objects": {
+        "figure": "9"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "none"
+          },
+          {
+            "kind": "bar",
+            "count": 9,
+            "anchor": "center",
+            "motion": "grow_tall",
+            "label": "New Target",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": "The tall 9-unit bar",
+      "emotional_weight": "building",
+      "typography_direction": {
+        "phrase": "6 to 9 months bare-bones",
+        "why": "Introduces the new standard for financial security",
+        "moment": "key_fact",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "Matches the newly elevated target bar on screen"
+      },
+      "direction": {
+        "narrative_purpose": "Establish the new required standard of 6 to 9 months",
+        "subject": "A robust column growing upward to a solid 9-unit height",
+        "environment": "clean data void",
+        "action_start": "A baseline stub",
+        "action_end": "A tall, stable column reaching 9 units high",
+        "camera": "pull_back",
+        "motion": "smooth, confident upward scaling",
+        "typography": "6 to 9 months bare-bones",
+        "sound": "rising chime",
+        "consequence": "Viewer learns the correct modern savings target",
+        "muted_read": "The safety target has significantly increased in size",
+        "why_visual": "Growth visualizes the expanded accumulation required by modern planners",
+        "graph_justified": true
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "Rebuilds a robust, expanded savings target matching modern planner recommendations.",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "grow",
+            "count": 6,
+            "scale": 1,
+            "label": "Expanded savings target"
+          },
+          {
+            "kind": "figure",
+            "anchor": "upper_third",
+            "motion": "appear",
+            "label": "9"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "compositionCoverage": 0.513,
+      "compositionValid": false
+    },
+    {
+      "index": 8,
+      "visual_headline": "Difference between panic and stability",
+      "reason": "Provides an actionable starting step bridging the gap between panic and stability.",
+      "emphasis_words": [
+        "ONE EXTRA MONTH",
+        "STABILITY"
+      ],
+      "visual_events": [
+        {
+          "type": "contrast",
+          "label": "Panic vs Stability",
+          "magnitude": "1"
+        }
+      ],
+      "capabilities": [
+        "contrast"
+      ],
+      "objects": {
+        "label_a": "Panic",
+        "label_b": "Stability",
+        "figure": "1"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "none"
+          },
+          {
+            "kind": "block",
+            "count": 1,
+            "anchor": "center",
+            "motion": "solidify",
+            "label": "+1 Month",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "typography_direction": {
+        "phrase": "Difference between panic and stability",
+        "why": "Delivers the core emotional takeaway and CTA",
+        "moment": "key_fact",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "Summarizes the stable block anchoring the screen",
+        "enforced": [
+          "reads as a transcript/subtitle of the narration"
+        ]
+      },
+      "direction": {
+        "narrative_purpose": "Conclude with a simple, actionable first step toward financial peace",
+        "subject": "A single solid, glowing block locking firmly into the center",
+        "environment": "clean data void",
+        "action_start": "Floating loose fragments",
+        "action_end": "A single unwavering, solid block sits anchored in place",
+        "camera": "hold",
+        "motion": "firm lock into center frame",
+        "typography": "Difference between panic and stability",
+        "sound": "satisfying solid lock",
+        "consequence": "Viewer feels empowered to save just one extra month",
+        "muted_read": "One single foundational unit creates absolute stability",
+        "why_visual": "Contrast and solidification represent turning vulnerability into stability",
+        "graph_justified": false
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "Provides an actionable starting step bridging the gap between panic and stability.",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "appear"
+          },
+          {
+            "kind": "block",
+            "anchor": "upper_third",
+            "motion": "strike",
+            "scale": 0.8,
+            "label": ""
+          },
+          {
+            "kind": "block",
+            "anchor": "lower_third",
+            "motion": "rise",
+            "scale": 1,
+            "label": ""
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "compositionCoverage": 0.381,
+      "compositionValid": false
+    }
+  ],
+  "composedBeats": 0,
+  "compositionIssues": [
+    {
+      "beat": 0,
+      "problem": "objects[0]: unknown motion \"none\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 0,
+      "problem": "objects[1]: unknown motion \"slide_in\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 0,
+      "problem": "objects[2]: unknown motion \"slide_in\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 1,
+      "problem": "objects[0]: unknown motion \"none\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 1,
+      "problem": "objects[1]: unknown motion \"shake\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 2,
+      "problem": "objects[0]: unknown motion \"none\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 2,
+      "problem": "objects[1]: unknown motion \"stack_neatly\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 3,
+      "problem": "objects[0]: unknown motion \"none\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 3,
+      "problem": "objects[2]: unknown motion \"extend\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 4,
+      "problem": "objects[0]: unknown motion \"none\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 4,
+      "problem": "objects[1]: unknown motion \"dissolve\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 5,
+      "problem": "objects[0]: unknown motion \"none\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 5,
+      "problem": "objects[1]: unknown motion \"stack_heavy\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 6,
+      "problem": "objects[0]: unknown motion \"none\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 6,
+      "problem": "objects[1]: unknown motion \"shatter\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 7,
+      "problem": "objects[0]: unknown motion \"none\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 7,
+      "problem": "objects[1]: unknown motion \"grow_tall\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 8,
+      "problem": "objects[0]: unknown motion \"none\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    },
+    {
+      "beat": 8,
+      "problem": "objects[1]: unknown motion \"solidify\" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold",
+      "fix": "re-compose this beat from the declared primitives"
+    }
+  ],
+  "compilationReport": [
+    {
+      "beat": 0,
+      "errors": [
+        "scene covers only 13% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 13% is below minimum 35% — adding ground plane"
+      ]
+    },
+    {
+      "beat": 1,
+      "errors": [
+        "scene covers only 23% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 23% is below minimum 35% — adding ground plane"
+      ]
+    },
+    {
+      "beat": 4,
+      "errors": [
+        "scene covers only 23% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 23% is below minimum 35% — adding ground plane"
+      ]
+    },
+    {
+      "beat": 6,
+      "errors": [
+        "scene covers only 8% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 8% is below minimum 35% — adding ground plane"
+      ]
+    },
+    {
+      "beat": 8,
+      "errors": [
+        "scene covers only 5% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 5% is below minimum 35% — adding ground plane"
+      ]
+    }
+  ],
+  "capabilityDistribution": {
+    "comparison": 2,
+    "depletion": 2,
+    "accumulation": 2,
+    "growth": 2,
+    "structure_break": 1,
+    "contrast": 1
+  }
+}

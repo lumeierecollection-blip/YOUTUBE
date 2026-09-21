@@ -865,9 +865,34 @@ export function direct(cues, options) {
 
     let scene;
     const directive = plan?.[i];
+    // Normalize capability-based beats (Gemini) to mechanism-based directives
+    let norm = directive;
+    if (directive && !directive.mechanism && directive.capabilities) {
+      const capMap = {
+        comparison: "PROPORTIONAL_OBJECTS",
+        depletion: "VISIBLE_CONSUMPTION",
+        accumulation: "EVIDENCE_FIGURE",
+        growth: "PHYSICAL_GROWTH",
+        structure_break: "SURFACE_AND_BENEATH",
+        contrast: "STATE_CHANGE",
+        revelation: "SURFACE_AND_BENEATH",
+        evidence: "EVIDENCE_FIGURE",
+        causation: "ACTION_CONSEQUENCE",
+        population: "PROPORTIONAL_OBJECTS",
+      };
+      const cap = directive.capabilities[0];
+      const mech = capMap[cap] || cap.toUpperCase();
+      norm = {
+        ...directive,
+        mechanism: mech,
+        visual_headline: directive.visual_headline || directive.direction?.typography || text.slice(0,40),
+        objects: directive.objects || { label_a: "A", label_b: "B" },
+        reason: directive.reason || "Gemini-directed: " + mech,
+      };
+    }
 
-    if (directive && directive.mechanism && directive.visual_headline) {
-      scene = applyDirective(directive, text, i, cues.length, prevScene);
+    if (norm && norm.mechanism && norm.visual_headline) {
+      scene = applyDirective(norm, text, i, cues.length, prevScene);
       scene = randomizeScene(scene, rng);
     } else {
       // No Gemini/OpenCode directive — use fallback with warning
@@ -880,7 +905,7 @@ export function direct(cues, options) {
       scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
     }
 
-    const displayText = directive?.visual_headline || text;
+    const displayText = norm?.visual_headline || directive?.visual_headline || text;
 
     const transition = i === 0
       ? "CUT"
