@@ -120,9 +120,14 @@
           "topic": "Can Anthropic's New Claude Money Tool Actually Fix Your Budget?",
           "slug": "claude-money-ai-budgeting-tool-review",
           "reserved_at": "2026-09-19T20:46:56.218Z"
+        },
+        {
+          "topic": "Why Traditional Budget Rules Fail for Middle-Class Families",
+          "slug": "traditional-budget-rules-fail-middle-class-2026",
+          "reserved_at": "2026-09-21T22:34:11.189Z"
         }
       ],
-      "last_generated": "2026-09-19T20:46:56.218Z"
+      "last_generated": "2026-09-21T22:34:11.189Z"
     },
     "2": {
       "channel_name": "Legal Brief",
@@ -242,9 +247,14 @@
           "topic": "Chicago Appeals Court Upholds $10K Tenant Relocation Assistance Rule",
           "slug": "chicago-appeals-court-upholds-tenant-relocation-rule",
           "reserved_at": "2026-09-19T18:12:59.612Z"
+        },
+        {
+          "topic": "Supreme Court Rejects Birthright Citizenship Executive Order",
+          "slug": "supreme-court-rejects-birthright-citizenship-ruling",
+          "reserved_at": "2026-09-21T22:34:11.189Z"
         }
       ],
-      "last_generated": "2026-09-19T18:12:59.612Z"
+      "last_generated": "2026-09-21T22:34:11.189Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -289,9 +299,14 @@
           "topic": "LongevityBench: Small AI Models Beat Frontier LLMs",
           "slug": "longevitybench-small-ai-models-beat-frontier-llms",
           "reserved_at": "2026-09-19T11:07:30.882Z"
+        },
+        {
+          "topic": "Grok 4.7 vs Claude Fable 5.1: Real Coding Benchmark Showdown",
+          "slug": "grok-4-7-vs-claude-fable-5-1-coding-showdown",
+          "reserved_at": "2026-09-21T22:34:11.190Z"
         }
       ],
-      "last_generated": "2026-09-19T11:07:30.882Z"
+      "last_generated": "2026-09-21T22:34:11.190Z"
     },
     "4": {
       "channel_name": "Hidden Past",
@@ -506,9 +521,14 @@
           "topic": "JWST Confirms Water Vapor on Distant Exoplanets",
           "slug": "jwst-confirms-water-vapor-exoplanets",
           "reserved_at": "2026-09-19T11:07:30.885Z"
+        },
+        {
+          "topic": "JWST Discovers Giant Planet RX J0534 b Around an M-Dwarf Star",
+          "slug": "jwst-discovers-giant-planet-rx-j0534-b",
+          "reserved_at": "2026-09-21T22:34:11.191Z"
         }
       ],
-      "last_generated": "2026-09-19T11:07:30.885Z"
+      "last_generated": "2026-09-21T22:34:11.191Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
