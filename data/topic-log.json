@@ -1352,9 +1352,14 @@
           "topic": "Brain plasticity and its impact on anxiety",
           "slug": "brain-plasticity-anxiety",
           "reserved_at": "2026-09-22T19:24:15.529Z"
+        },
+        {
+          "topic": "Neural pathways modulate conscious experience",
+          "slug": "neural-pathways-conscious-experience",
+          "reserved_at": "2026-09-22T20:21:31.149Z"
         }
       ],
-      "last_generated": "2026-09-22T19:24:15.530Z"
+      "last_generated": "2026-09-22T20:21:31.150Z"
     },
     "33": {
       "channel_name": "Cipher",
