@@ -1513,9 +1513,14 @@
           "topic": "Medicare Open Enrollment Changes and What Seniors Must Switch",
           "slug": "medicare-open-enrollment-changes-seniors",
           "reserved_at": "2026-09-21T23:10:57.813Z"
+        },
+        {
+          "topic": "Medicare Part A vs B explainers, 2026: Key Changes and Considerations",
+          "slug": "medicare-part-a-vs-b-explain-2026",
+          "reserved_at": "2026-09-22T18:36:17.765Z"
         }
       ],
-      "last_generated": "2026-09-21T23:10:57.813Z"
+      "last_generated": "2026-09-22T18:36:17.765Z"
     },
     "48": {
       "channel_name": "Factory Floor",
