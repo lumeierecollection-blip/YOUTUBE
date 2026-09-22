@@ -1251,9 +1251,14 @@
           "topic": "Gene editing tools advance with CRISPR-Cas15",
           "slug": "crispr-cas15-advanced",
           "reserved_at": "2026-09-22T20:20:42.664Z"
+        },
+        {
+          "topic": "CRISPR gene editing for treating sickle cell disease",
+          "slug": "crispr-sickle-cell-disease",
+          "reserved_at": "2026-09-22T20:41:03.457Z"
         }
       ],
-      "last_generated": "2026-09-22T20:20:42.664Z"
+      "last_generated": "2026-09-22T20:41:03.457Z"
     },
     "30": {
       "channel_name": "Cold Case DNA",
