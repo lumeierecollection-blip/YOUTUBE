@@ -1414,9 +1414,14 @@
           "topic": "Quantum Resistant Public-Key Cryptography Explained",
           "slug": "quantum-resistance-crypto-explained",
           "reserved_at": "2026-09-22T20:58:18.755Z"
+        },
+        {
+          "topic": "Quantum-Resistant Cryptography: State of the Art",
+          "slug": "quantum-resistant-cryptography-state-of-the-art",
+          "reserved_at": "2026-09-22T21:14:40.177Z"
         }
       ],
-      "last_generated": "2026-09-22T20:58:18.755Z"
+      "last_generated": "2026-09-22T21:14:40.178Z"
     },
     "34": {
       "channel_name": "Magma",
