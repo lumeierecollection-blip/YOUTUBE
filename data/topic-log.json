@@ -435,9 +435,14 @@
           "topic": "Random Rewards Enrich Classic Game Theory Models",
           "slug": "random-rewards-enrich-game-theory",
           "reserved_at": "2026-09-21T22:46:18.619Z"
+        },
+        {
+          "topic": "Foundation models break classical Nash equilibrium",
+          "slug": "foundation-models-break-nash-equilibrium",
+          "reserved_at": "2026-09-22T09:32:46.487Z"
         }
       ],
-      "last_generated": "2026-09-21T22:46:18.619Z"
+      "last_generated": "2026-09-22T09:32:46.487Z"
     },
     "7": {
       "channel_name": "Dead Companies",
