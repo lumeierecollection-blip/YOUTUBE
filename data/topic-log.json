@@ -745,10 +745,16 @@
       "last_generated": "2026-09-19T11:07:30.885Z"
     },
     "18": {
-      "channel_name": "Brief History",
-      "niche": "OverSimplified Style — History",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Fit",
+      "niche": "Ergonomics & Human Factors",
+      "used_topics": [
+        {
+          "topic": "Improving workplace ergonomics for employees with musculoskeletal disorders",
+          "slug": "improvement-workplace-ergonomics-musculoskeletal-disorders",
+          "reserved_at": "2026-09-22T16:12:27.508Z"
+        }
+      ],
+      "last_generated": "2026-09-22T16:12:27.508Z"
     },
     "19": {
       "channel_name": "Frontline Archives",
