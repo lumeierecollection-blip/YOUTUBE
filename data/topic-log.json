@@ -1404,9 +1404,14 @@
           "topic": "Math Behind Post-Quantum Cryptography",
           "slug": "post-quantum-cryptography",
           "reserved_at": "2026-09-22T20:20:55.060Z"
+        },
+        {
+          "topic": "Quantum Resistant Public-Key Cryptography Explained",
+          "slug": "quantum-resistance-crypto-explained",
+          "reserved_at": "2026-09-22T20:58:18.755Z"
         }
       ],
-      "last_generated": "2026-09-22T20:20:55.061Z"
+      "last_generated": "2026-09-22T20:58:18.755Z"
     },
     "34": {
       "channel_name": "Magma",
