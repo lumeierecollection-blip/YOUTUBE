@@ -1141,9 +1141,14 @@
           "topic": "gene editing with CRISPR",
           "slug": "gene-editing-with-crispr",
           "reserved_at": "2026-09-22T18:44:41.230Z"
+        },
+        {
+          "topic": "CRISPR Gene Editing Advances for Rare Diseases (forbes, 2022)",
+          "slug": "crispr-gene-editing-rare-diseases",
+          "reserved_at": "2026-09-22T19:04:26.920Z"
         }
       ],
-      "last_generated": "2026-09-22T18:44:41.231Z"
+      "last_generated": "2026-09-22T19:04:26.920Z"
     },
     "30": {
       "channel_name": "Cold Case DNA",
