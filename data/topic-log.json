@@ -795,9 +795,14 @@
           "topic": "Lava flows in Yellowstone",
           "slug": "lava-in-yellowstone",
           "reserved_at": "2026-09-22T17:30:52.788Z"
+        },
+        {
+          "topic": "Plate tectonics - Ongoing Mexico earthquake activity 2023",
+          "slug": "mexico-earthquake-activity-2023",
+          "reserved_at": "2026-09-22T18:02:54.719Z"
         }
       ],
-      "last_generated": "2026-09-22T17:30:52.788Z"
+      "last_generated": "2026-09-22T18:02:54.719Z"
     },
     "17": {
       "channel_name": "Epoch Chronicles",
