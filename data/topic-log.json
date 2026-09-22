@@ -1692,9 +1692,14 @@
           "topic": "Harmonic analysis and pitch class relationships in acoustic music theory",
           "slug": "harmonic-analysis-for-music-theory",
           "reserved_at": "2026-09-22T20:26:55.413Z"
+        },
+        {
+          "topic": "The Science of Music - How Sound Waves Affect Our Emotions",
+          "slug": "music-science",
+          "reserved_at": "2026-09-22T21:41:47.567Z"
         }
       ],
-      "last_generated": "2026-09-22T20:26:55.413Z"
+      "last_generated": "2026-09-22T21:41:47.567Z"
     },
     "43": {
       "channel_name": "Trace",
