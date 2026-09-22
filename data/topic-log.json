@@ -726,10 +726,16 @@
       "last_generated": "2026-09-22T17:18:43.014Z"
     },
     "15": {
-      "channel_name": "Earth Signal",
-      "niche": "Climate Science & Earth Systems",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Fabric",
+      "niche": "Sociology & Society",
+      "used_topics": [
+        {
+          "topic": "New study on collective behavior in social movements",
+          "slug": "collective-behavior-in-social-movements",
+          "reserved_at": "2026-09-22T17:28:46.742Z"
+        }
+      ],
+      "last_generated": "2026-09-22T17:28:46.742Z"
     },
     "16": {
       "channel_name": "Stratum",
