@@ -1916,9 +1916,14 @@
           "topic": "recent discovery of exoplanets with conditions similar to Earth",
           "slug": "exoplanets-discovery-earth-conditions",
           "reserved_at": "2026-09-22T20:38:02.320Z"
+        },
+        {
+          "topic": "black holes and exoplanets are being detected more frequently, what does this mean?",
+          "slug": "exoplanet-detections-black-holes",
+          "reserved_at": "2026-09-22T21:19:05.715Z"
         }
       ],
-      "last_generated": "2026-09-22T20:38:02.320Z"
+      "last_generated": "2026-09-22T21:19:05.715Z"
     },
     "50": {
       "channel_name": "Mind Mechanics",
