@@ -1,4 +1,3 @@
-import { interpretBeat } from "../beat-interpreter.js";
 /**
  * VISUAL DIRECTOR — scene-based decision engine.
  *
@@ -16,6 +15,11 @@ import { interpretBeat } from "../beat-interpreter.js";
  *
  * The test: mute the audio. Can you still understand the idea?
  */
+
+import { condenseToPhrase, TYPO_TARGET_MAX_WORDS } from "../../visual/narrative-typography.js";
+import { validateScene } from "../../visual/scene-primitives.js";
+import { narrativeObjectIds } from "../../visual/scene-text.js";
+import { compileScene, isMechanismBased, mechanismToCapability } from "../../visual/capability-compiler.js";
 
 const STOP = new Set(`a an the and or but of to in on at for with from by is are was were be been being
   it its this that these those as if then than so not no you your they them their he she his her we our us i
@@ -98,10 +102,6 @@ const EROSION_RE = /\b(erodes?|destroys?|diminish\w*|shrink\w*|declin\w*|deterio
 const DEPLETION_RE = /\b(deplet\w*|exhaust\w*|drain\w*|run(?:s|ning)?\s+out|consum\w*|empty|empties|nothing\s+(?:left|for)|swallow\w*|leaving\s+(?:almost\s+)?nothing)\b/i;
 const ACTION_RE = /\b(recalculat\w*|adjust\w*|stop\s+\w+|must\s+\w+|need\s+to|subscrib\w*|start\s+\w+)\b/i;
 const COMPARE_RE = /\b(higher\s+than|lower\s+than|more\s+than|less\s+than|compared\s+to|versus|vs\.?|while\b.*\b(?:down|up)\b|instead\s+of)\b/i;
-const TEMPORAL_RE = /\b(first|then|next|finally|after\s+that|before\s+that|initially|eventually|subsequently|meanwhile|in\s+the\s+end|at\s+last)\b/i;
-const SCALE_RE = /\b(massive|tiny|enormous|huge|vast|immense|colossal|microscopic|gigantic|miniature|enormity|scale|magnitude)\b/i;
-const NAMED_ENTITY_RE = /\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\b/g;
-const EMOTION_RE = /\b(shock\w*|alarm\w*|outrage\w*|disgust\w*|fury|rage|horror|terror|panic|despair|grief|sorrow|joy|delight|wonder|awe|amazement)\b/i;
 
 /* ── Scene construction ────────────────────────────────────────────── */
 
@@ -527,120 +527,12 @@ function buildScene(text, index, totalBeats, prevScene) {
     return scene;
   }
 
-  // TEMPORAL/SEQUENCE: first, then, finally — a process unfolds.
-  // Visual mechanism: objects appear in sequence, building a timeline.
-  if (TEMPORAL_RE.test(t) && cw.length > 3) {
-    const temporalMatch = TEMPORAL_RE.exec(t);
-    scene.narrative_role = "process";
-    scene.mechanism = "PROCESS";
-    scene.reason = `"${temporalMatch[1]}" — showing a sequence unfold step by step`;
-
-    scene.objects = [
-      {
-        id: "step",
-        label: cw.slice(0, 3).join(" "),
-        material,
-        role: "the current step",
-        appearance: "solid_block",
-        initial_state: { scale: 0, opacity: 0, position: "left" },
-        final_state: { scale: 1, opacity: 1, position: "center" },
-      },
-      {
-        id: "progress",
-        label: "",
-        material: "abstract",
-        role: "the timeline/progress indicator",
-        appearance: "thin_line",
-        initial_state: { width: 0, opacity: 0.5, position: "bottom" },
-        final_state: { width: 1, opacity: 0.5, position: "bottom" },
-      },
-    ];
-
-    scene.shots = [
-      { phase: 0, phaseDuration: 0.3, camera: "hold", focus: "progress", action: "timeline appears" },
-      { phase: 0.3, phaseDuration: 0.5, camera: "hold", focus: "step", action: "current step materializes" },
-      { phase: 0.8, phaseDuration: 0.2, camera: "hold", focus: "step", action: "step holds — viewer absorbs it" },
-    ];
-
-    scene.typography = { role: "caption", style: "annotation", emphasis_words: [temporalMatch[1]] };
-    return scene;
-  }
-
-  // SCALE/SIZE: massive, tiny, enormous — emphasize magnitude.
-  // Visual mechanism: show the subject at dramatically different scales.
-  if (SCALE_RE.test(t) && nums.length > 0) {
-    const scaleMatch = SCALE_RE.exec(t);
-    scene.narrative_role = "scale";
-    scene.mechanism = "SCALE_COMPARISON";
-    scene.reason = `"${scaleMatch[1]}" — showing ${nums[0].raw} at dramatic scale`;
-
-    scene.objects = [
-      {
-        id: "small_ref",
-        label: "reference",
-        material: "abstract",
-        role: "the small reference point",
-        appearance: "small_block",
-        initial_state: { scale: 1, opacity: 0.5, position: "bottom_right" },
-        final_state: { scale: 1, opacity: 0.5, position: "bottom_right" },
-      },
-      {
-        id: "scaled_thing",
-        label: nums[0].raw,
-        material,
-        role: "the thing at scale",
-        appearance: "solid_block",
-        initial_state: { scale: 0.1, opacity: 0, position: "center" },
-        final_state: { scale: 2, opacity: 1, position: "center" },
-      },
-    ];
-
-    scene.shots = [
-      { phase: 0, phaseDuration: 0.2, camera: "hold", focus: "small_ref", action: "small reference established" },
-      { phase: 0.2, phaseDuration: 0.6, camera: "pull_back", focus: "scaled_thing", action: "the scaled thing grows massively — camera pulls back" },
-      { phase: 0.8, phaseDuration: 0.2, camera: "hold", focus: "both", action: "viewer sees the dramatic scale difference" },
-    ];
-
-    scene.typography = { role: "caption", style: "emphasis", emphasis_words: [scaleMatch[1], nums[0].raw] };
-    return scene;
-  }
-
-  // EMOTION: shocking, alarming — emotional emphasis.
-  // Visual mechanism: show the emotional weight through composition.
-  if (EMOTION_RE.test(t) && index > 0) {
-    const emotionMatch = EMOTION_RE.exec(t);
-    scene.narrative_role = "emotional";
-    scene.mechanism = "STATEMENT";
-    scene.reason = `"${emotionMatch[1]}" — the emotional weight of the statement is what must land`;
-
-    scene.objects = [
-      {
-        id: "emphasis",
-        label: cw.slice(0, 3).join(" "),
-        material,
-        role: "the emotional core",
-        appearance: "emphasized_text",
-        initial_state: { scale: 0.8, opacity: 0, position: "center" },
-        final_state: { scale: 1.2, opacity: 1, position: "center" },
-      },
-    ];
-
-    scene.shots = [
-      { phase: 0, phaseDuration: 0.3, camera: "hold", focus: "emphasis", action: "emotional weight builds" },
-      { phase: 0.3, phaseDuration: 0.4, camera: "push_in", focus: "emphasis", action: "camera pushes in — emphasis intensifies" },
-      { phase: 0.7, phaseDuration: 0.3, camera: "hold", focus: "emphasis", action: "the weight settles" },
-    ];
-
-    scene.typography = { role: "primary", style: "emphasis", emphasis_words: [emotionMatch[1]] };
-    return scene;
-  }
-
-  // No mechanism matched — this is an error, not a fallback.
-  // The plan (Gemini or local) should have assigned one.
-  throw new Error(
-    `Cannot visualize beat ${index}: "${text}". ` +
-    `No mechanism matched. The plan should have assigned one.`
-  );
+  // FALLBACK: the words are the visual. No objects, no pretend-graphics.
+  scene.narrative_role = index === 0 ? "hook" : "statement";
+  scene.mechanism = "TYPOGRAPHY";
+  scene.reason = "no physical mechanism detected — the sentence itself communicates the idea";
+  scene.typography = { role: "primary", style: "kinetic", emphasis_words: cw.slice(0, 2) };
+  return scene;
 }
 
 /* ── Gemini directive → scene ─────────────────────────────────────── */
@@ -669,9 +561,19 @@ function applyDirective(directive, originalText, index, totalBeats, prevScene) {
   switch (mechanism) {
     case "STATE_CHANGE":
       scene.objects = [
-        { id: "expected", label: objs.label_a || "EXPECTED", material, role: "the expected state", appearance: "clean_text",
+        // NO "EXPECTED"/"ACTUAL"/"CAUSE"/"EFFECT" FALLBACKS.
+        //
+        // These || defaults resurrected the exact engine vocabulary deleted
+        // from directed-scene.jsx, and they defeated enforcement:
+        // REMOVE_TYPOGRAPHY clears label_a/label_b to "", the fallback put a
+        // banned word back, and the manifest counted it as narrative text.
+        // So runs 35293642808 and 35317469026 applied and VERIFIED the
+        // directives while the auditor measured an identical text-beat share
+        // on every attempt — 57/57/57 on ch1, 44/44/44 on ch44. An empty
+        // label now stays empty and the scene renders unlabelled.
+        { id: "expected", label: objs.label_a || "", material, role: "the expected state", appearance: "clean_text",
           initial_state: { scale: 1, opacity: 1, position: "center" }, final_state: { scale: 0.7, opacity: 0.3, position: "top", struck: true } },
-        { id: "actual", label: objs.label_b || "ACTUAL", material, role: "the actual state", appearance: "emphasized_text",
+        { id: "actual", label: objs.label_b || "", material, role: "the actual state", appearance: "emphasized_text",
           initial_state: { scale: 0, opacity: 0, position: "center" }, final_state: { scale: 1, opacity: 1, position: "center" } },
       ];
       scene.shots = [
@@ -697,9 +599,9 @@ function applyDirective(directive, originalText, index, totalBeats, prevScene) {
 
     case "ACTION_CONSEQUENCE":
       scene.objects = [
-        { id: "cause", label: objs.cause || "CAUSE", material, role: "the cause", appearance: "solid_block",
+        { id: "cause", label: objs.cause || "", material, role: "the cause", appearance: "solid_block",
           initial_state: { scale: 1, opacity: 1, position: "upper" }, final_state: { scale: 1, opacity: 0.6, position: "upper" } },
-        { id: "effect", label: objs.effect || "EFFECT", material, role: "the consequence", appearance: "emergent",
+        { id: "effect", label: objs.effect || "", material, role: "the consequence", appearance: "emergent",
           initial_state: { scale: 0, opacity: 0, position: "lower" }, final_state: { scale: 1, opacity: 1, position: "lower" } },
       ];
       scene.shots = [
@@ -744,8 +646,14 @@ function applyDirective(directive, originalText, index, totalBeats, prevScene) {
 
     case "SURFACE_AND_BENEATH": {
       const surfHeadlineParts = headline.split(/\bvs\.?\b|\bbut\b|\bhides?\b|\bbeneath\b/i);
-      const surfLabel = objs.label_a || (surfHeadlineParts[0] || "").trim() || subject.toUpperCase().slice(0, 20);
-      const beneathLabel = objs.label_b || (surfHeadlineParts[1] || "").trim() || "REALITY";
+      // Splitting the headline is a legitimate derivation — it is the
+      // director's own phrase. The FINAL fallbacks were not: a
+      // subject.toUpperCase().slice(0, 20) manufactures shouted, mid-word
+      // text (TYP-09), and "REALITY" is engine vocabulary. Both also
+      // defeated REMOVE_TYPOGRAPHY by refilling a label the enforcement had
+      // just cleared. An empty label stays empty.
+      const surfLabel = objs.label_a || (surfHeadlineParts[0] || "").trim();
+      const beneathLabel = objs.label_b || (surfHeadlineParts[1] || "").trim();
       scene.objects = [
         { id: "surface", label: surfLabel, context: subject, material: "document", role: "the surface claim", appearance: "statistic_callout",
           initial_state: { scale: 1, opacity: 1, position: "center" }, final_state: { scale: 0.6, opacity: 0.5, position: "top" } },
@@ -763,8 +671,11 @@ function applyDirective(directive, originalText, index, totalBeats, prevScene) {
 
     case "PROPORTIONAL_OBJECTS": {
       const headlineParts = headline.split(/\bvs\.?\b/i);
-      const labelA = objs.label_a || (headlineParts[0] || "").trim() || "A";
-      const labelB = objs.label_b || (headlineParts[1] || "").trim() || "B";
+      // No "A"/"B" placeholders: a bar labelled "A" tells the viewer
+      // nothing, and it refilled labels that REMOVE_TYPOGRAPHY had cleared,
+      // keeping the beat counted as a text beat.
+      const labelA = objs.label_a || (headlineParts[0] || "").trim();
+      const labelB = objs.label_b || (headlineParts[1] || "").trim();
       scene.objects = [
         { id: "amount_a", label: labelA, context: labelA, material, role: "first quantity", appearance: "filled_area",
           initial_state: { scale: 0, opacity: 0 }, final_state: { scale: 1, opacity: 1, position: "left" } },
@@ -825,11 +736,21 @@ function makeRng(seed) {
 }
 
 const TRANSITIONS = ["CUT", "DISSOLVE", "WIPE_LEFT", "WIPE_RIGHT", "PUSH_UP", "FADE"];
+const CAMERA_ALTS = {
+  hold: ["hold", "slow_drift", "micro_pull"],
+  push_in: ["push_in", "slow_zoom", "drift_in"],
+  pull_back: ["pull_back", "slow_zoom_out", "drift_out"],
+  widen: ["widen", "pull_back", "expand"],
+  tilt_down: ["tilt_down", "pan_down", "drift_down"],
+  push_past: ["push_past", "dolly_through", "push_in"],
+};
 
 function randomizeScene(scene, rng) {
   for (const shot of scene.shots) {
     const jitter = (rng() - 0.5) * 0.08;
     shot.phaseDuration = Math.max(0.1, Math.min(0.9, shot.phaseDuration + jitter));
+    const alts = CAMERA_ALTS[shot.camera];
+    if (alts) shot.camera = alts[Math.floor(rng() * alts.length)];
   }
   for (const obj of scene.objects || []) {
     if (obj.initial_state?.position === "center") {
@@ -865,45 +786,107 @@ export function direct(cues, options) {
 
     let scene;
     const directive = plan?.[i];
-    // Normalize capability-based beats (Gemini) to mechanism-based directives
-    let norm = directive;
-    if (directive && !directive.mechanism && directive.capabilities) {
-      const capMap = {
-        comparison: "PROPORTIONAL_OBJECTS",
-        depletion: "VISIBLE_CONSUMPTION",
-        accumulation: "EVIDENCE_FIGURE",
-        growth: "PHYSICAL_GROWTH",
-        structure_break: "SURFACE_AND_BENEATH",
-        contrast: "STATE_CHANGE",
-        revelation: "SURFACE_AND_BENEATH",
-        evidence: "EVIDENCE_FIGURE",
-        causation: "ACTION_CONSEQUENCE",
-        population: "PROPORTIONAL_OBJECTS",
-      };
-      const cap = directive.capabilities[0];
-      const mech = capMap[cap] || cap.toUpperCase();
-      norm = {
-        ...directive,
-        mechanism: mech,
-        visual_headline: directive.visual_headline || directive.direction?.typography || text.slice(0,40),
-        objects: directive.objects || { label_a: "A", label_b: "B" },
-        reason: directive.reason || "Gemini-directed: " + mech,
-      };
-    }
 
-    if (norm && norm.mechanism && norm.visual_headline) {
-      scene = applyDirective(norm, text, i, cues.length, prevScene);
+    // A directed beat is honoured on its MECHANISM alone. It must NOT also
+    // require a visual_headline: under narrative typography a beat is often
+    // deliberately text-free (pure visual storytelling), and the old
+    // `&& directive.visual_headline` guard silently dropped exactly those
+    // beats into the deterministic classifier — which could then re-label
+    // them as typography. That made typography the fallback for text-free
+    // direction, the opposite of the intent (Bible TYP-10).
+    if (directive && directive.mechanism) {
+      scene = applyDirective(directive, text, i, cues.length, prevScene);
       scene = randomizeScene(scene, rng);
-    } else {
-      // No directive with mechanism+visual_headline — this is an error.
-      // The plan should have provided a valid mechanism for every beat.
-      throw new Error(
-        `Beat ${i} has no valid mechanism: "${text}". ` +
-        `The plan must assign a mechanism and visual_headline to every beat.`
+    } else if (directive && directive.visual_events) {
+      // CAPABILITY-BASED DIRECTIVE: compile into a scene
+      const { scene: compiledScene, warnings: compileWarnings } = compileScene(
+        directive, text, i, cues.length
       );
+      if (compiledScene) {
+        scene = randomizeScene(compiledScene, rng);
+      } else {
+        // Fallback to deterministic classifier if compilation fails
+        scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
+        if (compileWarnings.length) {
+          warnings.push(...compileWarnings.map(w => `beat ${i}: ${w}`));
+        }
+      }
+    } else {
+      scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
     }
 
-    const displayText = norm?.visual_headline || directive?.visual_headline || text;
+    // COMPOSITION — what the viewer literally sees, when Gemini declared it.
+    //
+    // A valid composition is carried onto the beat and ComposedScene draws
+    // it instead of one of the nine hardcoded mechanism scenes. Those nine
+    // were the entire visual language and all drew text plus a shape on a
+    // flat ground, which is why sixteen of sixteen Gemini verdicts blamed
+    // RENDER_TECHNICAL for "template monoculture".
+    //
+    // Validated HERE as well as at plan time, not because the planner is
+    // untrusted but because this is the last point before pixels: an
+    // unbuildable declaration must fall back to the old mechanism scene
+    // rather than render nothing. Silently rendering nothing is how the
+    // silent-video defect happened.
+    if (directive && directive.composition) {
+      const v = validateScene(directive.composition);
+      if (v.ok) {
+        scene.composition = directive.composition;
+        scene.compositionCoverage = v.coverage;
+      } else {
+        warnings.push(
+          `beat ${i}: composition rejected (${v.errors[0]}) — falling back to mechanism ${scene.mechanism}`
+        );
+      }
+    }
+
+    // NARRATIVE TYPOGRAPHY, not a caption. The on-screen phrase is never the
+    // raw voiceover sentence (that is a word-for-word subtitle — Bible TYP-04
+    // — and it overflows the safe width). Gemini's directed phrase is the
+    // intent; both it and the no-directive fallback are normalised through
+    // the shared narrative-typography budget so the phrase recorded on the
+    // beat (and therefore in the render manifest the auditor reads) is the
+    // same single-line phrase the renderer will actually draw.
+    // A DIRECTED beat with no phrase is deliberately TEXT-FREE.
+    //
+    // The old fallback ran condenseToPhrase(text) whenever no phrase was
+    // directed, which substituted the narration sentence. That silently
+    // defeated the whole enforcement path: run 35290591724 applied and
+    // verified "at most 2 beats carry text" three times and the auditor kept
+    // measuring 4/6, because clearing typography_direction made this line
+    // put the transcript back on screen. A directive that the render undoes
+    // is not enforcement.
+    //
+    // The fallback is still correct for an UNDIRECTED beat — no plan at all
+    // means the deterministic classifier chose the scene and a condensed
+    // phrase is the best available text. The distinction is whether Gemini
+    // directed this beat, not whether a phrase happens to be present.
+    const directed = directive?.typography_direction?.phrase || directive?.visual_headline;
+    const deliberatelyTextFree = !!directive && !directed;
+    const displayText = directed
+      ? condenseToPhrase(directed, TYPO_TARGET_MAX_WORDS)
+      : deliberatelyTextFree
+        ? ""
+        : condenseToPhrase(text, TYPO_TARGET_MAX_WORDS);
+
+    // TEXT-FREE MEANS THE SCENE DRAWS NO NARRATIVE STRING.
+    //
+    // Clearing only the typography phrase was not enough. A beat directed
+    // text-free still had its mechanism draw expected/actual (or
+    // cause/effect) labels, because those live on scene.objects rather than
+    // in typography_direction. Gemini saw the result and reported "text
+    // incorrectly inserted into intermediate beats that specifically
+    // directed no on-screen text" with headline=4 (run 35356611503) — it
+    // asked for silence on those beats and the renderer talked over it.
+    //
+    // Value-role labels (a figure, a magnitude) are left alone: they are
+    // data, not a phrase, and a chart may still label its bar.
+    if (deliberatelyTextFree && Array.isArray(scene.objects)) {
+      const narrativeIds = new Set(narrativeObjectIds(scene.mechanism));
+      for (const o of scene.objects) {
+        if (o && narrativeIds.has(o.id) && o.label) o.label = "";
+      }
+    }
 
     const transition = i === 0
       ? "CUT"

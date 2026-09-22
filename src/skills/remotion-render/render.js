@@ -42,7 +42,7 @@ import { narrationSections } from "../../utils/script-narration.js";
 // Visual Director — semantic treatment selection pipeline.
 // Replaces the old TYPE → VISUAL alternation with meaning-driven treatments.
 import { direct } from "./visual-engine/director/visual-director.js";
-import { interpretPlan } from "./visual-engine/beat-interpreter.js";
+import { sceneTextInventory } from "./visual/scene-text.js";
 
 
 
@@ -203,7 +203,7 @@ function getAudioDurationSeconds(audioPath) {
 
 function computeDurationFrames(script, style, format, audioPath) {
   const clamp = format === "shorts" ? SHORTS_CLAMP : LONGFORM_CLAMP;
-  const fps = 30;
+  const fps = 30
 
   // Prefer the real voiceover length so audio is never truncated.
   const audioSeconds = audioPath ? getAudioDurationSeconds(audioPath) : null;
@@ -313,10 +313,16 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
     }
   };
 
-  console.log(`[profile] bundling...`);
-  const bundleStart = Date.now();
-  const serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgress: () => {} });
-  console.log(`[profile] bundle(): ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
+  let serveUrl;
+  if (process.env.REMOTION_SERVE_URL) {
+    serveUrl = process.env.REMOTION_SERVE_URL;
+    console.log(`[profile] using pre-built bundle`);
+  } else {
+    console.log(`[profile] bundling...`);
+    const bundleStart = Date.now();
+    serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgress: () => {} });
+    console.log(`[profile] bundle(): ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
+  }
 
   const compStart = Date.now();
   const composition = await selectComposition({
@@ -346,11 +352,11 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
     inputProps: props,
     outputLocation: outputPath,
     ...browserOpts,
-    imageFormat: "png",                 // lossless intermediates
-    crf: 16,                            // below the h264 default
+    imageFormat: process.env.RENDER_IMAGE_FORMAT || "jpeg",                 // faster than png
+    crf: parseInt(process.env.RENDER_CRF, 10) || 22,                       // faster encoding than 16
     pixelFormat: "yuv420p",             // required for wide playback
     ...glOpts,
-    concurrency: Math.max(2, Math.min(4, os.cpus().length)),
+    concurrency: Math.max(2, Math.min(parseInt(process.env.RENDER_CONCURRENCY, 10) || 8, os.cpus().length)),
     audioBitrate: "192k",
     scale,
     onProgress: throttledProgress,
@@ -409,7 +415,7 @@ function loadTemplateEngine(channel) {
 
 async function main() {
   const [format, channelId, scriptPath, ttsAudioPath, scaleArg] = process.argv.slice(2);
-  const scale = scaleArg ? parseFloat(scaleArg) : 1.0;
+  const scale = scaleArg ? parseFloat(scaleArg) : (process.env.RENDER_SCALE ? parseFloat(process.env.RENDER_SCALE) : 1.0);
 
   if (!format || !channelId || !scriptPath) {
     console.error("Usage: node render.js <shorts|longform> <channel-id> <script-path> [tts-audio-path] [scale]");
@@ -487,101 +493,18 @@ async function main() {
       c.durationInFrames = Math.max(12, (cues[i + 1] ? cues[i + 1].startFrame : c.endFrame) - c.startFrame);
     });
 
-    // ── Visual Plan: Gemini → local fallback → hard gate ───────────────
     let visualPlan = null;
-    let planPath = join(ROOT, "data", "visual-plans", channelId, basename(scriptPath, ".json") + "-visual-plan.json");
-    const planCandidates = [
-      planPath,
-      join(ROOT, "data", "visual-plans", String(channel.id), basename(scriptPath, ".json") + "-visual-plan.json"),
-      join(ROOT, "data", "visual-plans", channel.channel_id, basename(scriptPath, ".json") + "-visual-plan.json"),
-    ];
-    for (const p of planCandidates) {
-      if (existsSync(p)) { planPath = p; break; }
-    }
-
-    // Try existing plan file first
+    const planPath = join(ROOT, "data", "visual-plans", channelId, basename(scriptPath, ".json") + "-visual-plan.json");
     if (existsSync(planPath)) {
       try {
         visualPlan = JSON.parse(readFileSync(planPath, "utf-8"));
         console.log(`Visual plan loaded: ${planPath} (${visualPlan.totalBeats} beats, iteration: ${visualPlan.iteration})`);
       } catch (e) {
         console.warn(`Failed to load visual plan ${planPath}: ${e.message}`);
-        visualPlan = null;
       }
     }
 
-    // If no plan, try Gemini, then local fallback
-    if (!visualPlan || !visualPlan.beats || visualPlan.beats.length === 0) {
-      const srtPath = findSrtPath(ttsAudioPath);
-      let geminiFailed = null;
-      let localFailed = null;
-
-      // Try Gemini first
-      try {
-        const geminiPlanJs = join(ROOT, "scripts", "gemini-visual-plan.js");
-        const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.VISION_API_KEY;
-        if (geminiKey && existsSync(geminiPlanJs)) {
-          mkdirSync(dirname(planPath), { recursive: true });
-          const args = ["node", geminiPlanJs, "--script", scriptPath, "--channel", channelId, "--out", planPath];
-          if (srtPath) args.push("--srt", srtPath);
-          execSync(args.join(" "), { cwd: ROOT, encoding: "utf-8", timeout: 60000, stdio: "pipe" });
-          if (existsSync(planPath)) {
-            visualPlan = JSON.parse(readFileSync(planPath, "utf-8"));
-            console.log("Plan source: gemini");
-          } else {
-            geminiFailed = "plan file not created";
-          }
-        } else {
-          geminiFailed = geminiKey ? "gemini-visual-plan.js not found" : "no GEMINI_API_KEY";
-        }
-      } catch (e) {
-        geminiFailed = e.message;
-      }
-
-      // If Gemini failed, try local fallback
-      if (!visualPlan || !visualPlan.beats || visualPlan.beats.length === 0) {
-        try {
-          const localPlanCjs = join(ROOT, "scripts", "local-visual-plan.cjs");
-          if (srtPath && existsSync(localPlanCjs)) {
-            mkdirSync(dirname(planPath), { recursive: true });
-            const args = ["node", localPlanCjs, "--srt", srtPath, "--channel", channelId, "--out", planPath];
-            execSync(args.join(" "), { cwd: ROOT, encoding: "utf-8", timeout: 30000, stdio: "pipe" });
-            if (existsSync(planPath)) {
-              visualPlan = JSON.parse(readFileSync(planPath, "utf-8"));
-              console.log("Plan source: local");
-            } else {
-              localFailed = "plan file not created";
-            }
-          } else {
-            localFailed = !srtPath ? "no SRT file" : "local-visual-plan.cjs not found";
-          }
-        } catch (e) {
-          localFailed = e.message;
-        }
-      }
-
-      // Hard gate: if both failed, exit
-      if (!visualPlan || !visualPlan.beats || visualPlan.beats.length === 0) {
-        console.error(`No visual plan at ${planPath}.`);
-        console.error(`Gemini failed: ${geminiFailed || "unknown"}. Local failed: ${localFailed || "unknown"}.`);
-        console.error("Run gemini-visual-plan.js or local-visual-plan.cjs first.");
-        process.exit(1);
-      }
-    }
-
-    // Wire interpreter: if plan is minimal (kind/subject), expand via interpretPlan
-    let interpretedPlan = visualPlan;
-    if (visualPlan?.beats?.[0]?.kind) {
-      try {
-        const sentences = cues.map(c => ({ text: c.text, start: c.startFrame/30, end: c.endFrame/30 }));
-        const interpreted = interpretPlan(visualPlan.beats, sentences);
-        interpretedPlan = { ...visualPlan, beats: interpreted.directives, distribution: interpreted.distribution };
-        console.log(`Interpreted plan: ${interpreted.directives.length} directives`);
-      } catch (e) {
-        console.warn(`interpretPlan failed: ${e.message}`);
-      }
-    }
-    const { beats, warnings, distribution } = direct(cues, { visualPlan: interpretedPlan });
+    const { beats, warnings, distribution } = direct(cues, { visualPlan });
 
     let viSpec = null;
     try {
@@ -597,7 +520,6 @@ async function main() {
       fonts: viSpec
         ? { primary: viSpec.typography_primary, secondary: viSpec.typography_secondary }
         : { primary: "DM Sans", secondary: "Noto Serif" },
-      bgMode: channel.bg_mode ? channel.bg_mode : "black",
     };
 
     frames = beats.length ? beats[beats.length - 1].start_frame + beats[beats.length - 1].duration_frames : 300;
@@ -746,8 +668,23 @@ async function main() {
 
   // DirectedShorts expects { plan } as input prop.
   // All other compositions expect the legacy prop bag.
+  // DirectedShorts MUST receive the staged voiceover and the underscore
+  // flag, exactly like every other composition.
+  //
+  // It did not, and that is how the default short-form engine shipped
+  // SILENT VIDEOS. This branch passed `{ plan }` only, so ttsAudioPath and
+  // hasUnderscore never reached the component, and DirectedScene had no
+  // <Audio> element to use them with. Run 35266860427 measured the result
+  // on both channels that rendered: audio:true (Remotion still writes an
+  // AAC track) but LUFS -70 and silence spanning the entire duration —
+  // 41.4s of 41.4s, 57.7s of 57.7s. No narration, no music, no kalimba.
+  //
+  // stageAudio() above refuses to render "a silent video" and validates the
+  // mp3 exists; the check was live and passing while this branch threw the
+  // staged path away. The local auditor did report the silence, but silence
+  // was only a RISK factor, not a gate, so QA passed it.
   const props = (componentId === "DirectedShorts")
-    ? { plan: sentencePlan }
+    ? { plan: sentencePlan, ttsAudioPath: staged, hasUnderscore }
     : {
         channelId: channel.channel_id,
         style: channel.style,
@@ -777,6 +714,99 @@ async function main() {
   console.log(`Output: ${outputPath}`);
 
   await renderVideo(componentId, outputPath, frames, props, scale);
+
+  // RENDER MANIFEST — the objective record of what the renderer ACTUALLY put
+  // on screen per beat (mechanism, on-screen text, object labels, camera,
+  // timing). Written next to the .mp4 so the local-visual-auditor can do
+  // plan-compliance and monoculture checks deterministically — comparing the
+  // director's intent (visual-plan.json) against what was built — instead of
+  // paying a vision model to re-derive it from pixels. Only the DirectedShorts
+  // path carries per-beat structure; other compositions skip it.
+  if (componentId === "DirectedShorts" && Array.isArray(sentencePlan?.beats)) {
+    const fps = 30;
+    // Mechanisms that render their own object-first scene (directed-scene.jsx
+    // MechanismScene switch). Anything else falls through to TypographyScene.
+    const OBJECT_FIRST_MECHANISMS = new Set([
+      "SURFACE_AND_BENEATH", "PROPORTIONAL_OBJECTS", "PHYSICAL_GROWTH",
+      "STRUCTURAL_BREAKDOWN", "EVIDENCE_FIGURE", "ACTION_CONSEQUENCE",
+      "VISIBLE_CONSUMPTION", "STATE_CHANGE",
+    ]);
+    const manifest = {
+      video: basename(outputPath),
+      format,
+      fps,
+      width: 1080,
+      height: 1920,
+      renderScale: scale,
+      totalFrames: frames,
+      durationSec: +(frames / fps).toFixed(2),
+      generatedAt: new Date().toISOString(),
+      beats: sentencePlan.beats.map((b, i) => {
+        const scene = b.scene || {};
+        const objectLabels = (scene.objects || [])
+          .map((o) => o.label).filter((l) => l && String(l).trim());
+        const camera = (scene.shots || []).map((s) => s.camera).filter(Boolean);
+        const mechanism = b.treatment || scene.mechanism || null;
+        // `renders_typography` means "this beat routes to TypographyScene and
+        // is subject to the full one-line narrative contract". It does NOT
+        // mean "this beat is the only kind that draws text".
+        //
+        // That conflation was a real QA hole. The previous version recorded
+        // `text: []` for every object-first mechanism on the theory that only
+        // TypographyScene draws strings — but those scenes draw plenty.
+        // Run 35261545735 reported 5 of 6 beats text-free while STATE_CHANGE
+        // was rendering two headline-weight lines plus three section labels
+        // and VISIBLE_CONSUMPTION a label, a figure and a sub-line. The local
+        // auditor's typography checks therefore skipped exactly the beats
+        // that were violating them and reported "0 violations".
+        //
+        // `on_screen_text` now carries what each scene ACTUALLY draws, taken
+        // from the same TEXT_SURFACES declaration the renderer reads, so the
+        // two cannot drift. Roles let the auditor apply the right rule:
+        // "narrative" strings owe the phrase contract, "value" strings are
+        // figures and are exempt from the word budget, "banned" strings are
+        // engine vocabulary that must never have reached the screen.
+        const rendersTypography = mechanism === "TYPOGRAPHY" || !OBJECT_FIRST_MECHANISMS.has(mechanism);
+        const onScreenText = sceneTextInventory(mechanism, scene, b.text);
+        return {
+          index: i,
+          beat_id: b.beat_id,
+          start_frame: b.start_frame,
+          duration_frames: b.duration_frames,
+          start_sec: +((b.start_frame || 0) / fps).toFixed(2),
+          duration_sec: +((b.duration_frames || 0) / fps).toFixed(2),
+          mechanism,
+          renders_typography: rendersTypography,
+          text: rendersTypography ? [b.text].filter((t) => t && String(t).trim()) : [],
+          on_screen_text: onScreenText,
+          draws_text: onScreenText.length > 0,
+          narrative_text: onScreenText.filter((t) => t.role === "narrative").map((t) => t.text),
+          banned_text: onScreenText.filter((t) => t.role === "banned").map((t) => t.text),
+          objects: objectLabels,
+          camera: [...new Set(camera)],
+          carries_forward: b.carries_forward || null,
+          // COMPOSITION — what was actually drawn from primitives, and how
+          // much of the frame it covers. The auditor reads this to tell a
+          // composed beat from one that fell back to a mechanism scene, and
+          // coverage is the measurable form of the "floating text in a
+          // void" defect that sixteen Gemini verdicts kept reporting.
+          composed: !!scene.composition,
+          composition: scene.composition
+            ? (scene.composition.objects || []).map((o) => ({
+                kind: o.kind, count: o.count || 1,
+                anchor: o.anchor || "center", motion: o.motion || "appear",
+                emphasis: !!o.emphasis, labelled: !!(o.label && String(o.label).trim()),
+              }))
+            : null,
+          coverage: typeof scene.compositionCoverage === "number" ? scene.compositionCoverage : null,
+        };
+      }),
+    };
+    const manifestPath = outputPath.replace(/\.mp4$/, "-manifest.json");
+    writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+    console.log(`Render manifest: ${manifest.beats.length} beats -> ${manifestPath}`);
+  }
+
   process.exit(0);
 }
 

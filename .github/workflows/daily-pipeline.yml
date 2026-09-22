@@ -1,8 +1,12 @@
-# YouTube Automation — Fully Autonomous Daily Pipeline
+# DEPRECATED — V1 pipeline. Superseded by daily-pipeline-v2.yml.
+# Kept for reference only. The V2 pipeline is the active daily workflow.
+# See daily-pipeline-v2.yml for the current render path.
+
+# YouTube Automation — Fully Autonomous Daily Pipeline (V1 — DEPRECATED)
 # Runs daily, picks fresh topics, researches, scripts, renders, publishes
 # No manual intervention required after initial setup
 
-name: Daily Pipeline — Autonomous
+name: "[DEPRECATED] Daily Pipeline — V1"
 
 on:
   schedule:
