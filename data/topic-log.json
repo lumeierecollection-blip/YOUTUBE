@@ -1042,10 +1042,16 @@
       "last_generated": "2026-09-22T17:04:53.647Z"
     },
     "34": {
-      "channel_name": "Build Smart",
-      "niche": "Practical Engineering — Science Demonstrations",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Magma",
+      "niche": "Volcanology & Earth Forces",
+      "used_topics": [
+        {
+          "topic": "Magma channel - Volcanic Eruptions in the Philippines",
+          "slug": "volcanic-eruptions-in-the-philippines",
+          "reserved_at": "2026-09-22T17:15:30.642Z"
+        }
+      ],
+      "last_generated": "2026-09-22T17:15:30.642Z"
     },
     "35": {
       "channel_name": "The Engineering Archive",
