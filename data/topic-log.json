@@ -482,9 +482,14 @@
           "topic": "How WeWork and SoftBank Lost Billions on Unicorns",
           "slug": "wework-softbank-unicorn-collapse-postmortem",
           "reserved_at": "2026-09-19T11:07:30.884Z"
+        },
+        {
+          "topic": "Gordon Companies: How a Botched SAP Software System Destroyed a Retailer",
+          "slug": "gordon-companies-sap-software-bankruptcy-2026",
+          "reserved_at": "2026-09-22T09:34:37.826Z"
         }
       ],
-      "last_generated": "2026-09-19T11:07:30.884Z"
+      "last_generated": "2026-09-22T09:34:37.827Z"
     },
     "8": {
       "channel_name": "Synapse",
