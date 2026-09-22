@@ -428,9 +428,14 @@
           "topic": "Why Duration Cues Beat Intensity in Complex Rhythms",
           "slug": "duration-cues-beat-intensity-complex-rhythms",
           "reserved_at": "2026-09-22T09:29:37.363Z"
+        },
+        {
+          "topic": "Formant-Informed Harmony",
+          "slug": "formant-informed-harmony",
+          "reserved_at": "2026-09-22T16:33:52.555Z"
         }
       ],
-      "last_generated": "2026-09-22T09:29:37.363Z"
+      "last_generated": "2026-09-22T16:33:52.555Z"
     },
     "6": {
       "channel_name": "Nash",
