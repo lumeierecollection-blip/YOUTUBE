@@ -1540,9 +1540,14 @@
           "topic": "Why do ocean currents behave differently during monsoons?",
           "slug": "why-ocean-currents-behave-differently-during-monsoons",
           "reserved_at": "2026-09-22T17:54:54.288Z"
+        },
+        {
+          "topic": "Great Barrier Reef Conservation",
+          "slug": "great-barrier-reef-conservation-now",
+          "reserved_at": "2026-09-22T19:53:02.307Z"
         }
       ],
-      "last_generated": "2026-09-22T17:54:54.289Z"
+      "last_generated": "2026-09-22T19:53:02.308Z"
     },
     "42": {
       "channel_name": "NutriDecode",
