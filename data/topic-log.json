@@ -709,9 +709,14 @@
           "topic": "topic1-for-channel13",
           "slug": "topic1-slug-for-channel13",
           "reserved_at": "2026-09-22T17:19:06.872Z"
+        },
+        {
+          "topic": "New guidelines on carbon capture in the US announced today",
+          "slug": "carbon-capture-gui",
+          "reserved_at": "2026-09-22T17:38:29.777Z"
         }
       ],
-      "last_generated": "2026-09-22T17:19:06.873Z"
+      "last_generated": "2026-09-22T17:38:29.777Z"
     },
     "14": {
       "channel_name": "Photosyn",
