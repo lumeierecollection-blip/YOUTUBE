@@ -744,9 +744,14 @@
           "topic": "Material Science Study Reveals New Properties of Nanomaterials",
           "slug": "nanomaterials-new-properties-for-cosmetics-solar-energy",
           "reserved_at": "2026-09-22T18:23:45.315Z"
+        },
+        {
+          "topic": "Nanocrystals' Unique optical properties lead to potential breakthroughs in display tech",
+          "slug": "nanocrystals-display-advancements",
+          "reserved_at": "2026-09-22T18:25:27.729Z"
         }
       ],
-      "last_generated": "2026-09-22T18:23:45.315Z"
+      "last_generated": "2026-09-22T18:25:27.729Z"
     },
     "14": {
       "channel_name": "Photosyn",
