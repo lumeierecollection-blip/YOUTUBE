@@ -941,9 +941,14 @@
           "topic": "Flavor Lab - Food chemistry: Study on Maillard reaction's impact on food quality",
           "slug": "food-chemistry-maillard-reaction-impact-on-food-quality-2026",
           "reserved_at": "2026-09-22T16:34:56.040Z"
+        },
+        {
+          "topic": "Maillard Reaction Optimization Techniques in Flavor Chemistry",
+          "slug": "maillard-reaction-optimization-flavor-chemistry",
+          "reserved_at": "2026-09-22T18:19:05.099Z"
         }
       ],
-      "last_generated": "2026-09-22T16:34:56.040Z"
+      "last_generated": "2026-09-22T18:19:05.100Z"
     },
     "25": {
       "channel_name": "On The Record",
