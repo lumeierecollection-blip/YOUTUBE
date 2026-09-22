@@ -1150,10 +1150,16 @@
       "last_generated": "2026-09-22T17:24:20.454Z"
     },
     "37": {
-      "channel_name": "Byte Brief",
-      "niche": "Fireship Style — Tech News & Explainers",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Grid",
+      "niche": "Urban Planning & Cities",
+      "used_topics": [
+        {
+          "topic": "Laws on tenant notice periods in the US vary drastically from state to state",
+          "slug": "tenant-notice-periods-us",
+          "reserved_at": "2026-09-22T17:32:12.646Z"
+        }
+      ],
+      "last_generated": "2026-09-22T17:32:12.646Z"
     },
     "38": {
       "channel_name": "Tech Pulse",
