@@ -1596,9 +1596,14 @@
           "topic": "Lead Poisoning in Children",
           "slug": "lead-poisoning-children",
           "reserved_at": "2026-09-22T19:43:42.477Z"
+        },
+        {
+          "topic": "Rare Congenital Heart Defects Re-Evaluated",
+          "slug": "rare-congenital-heart-defects-radiologyupdate",
+          "reserved_at": "2026-09-22T21:06:38.867Z"
         }
       ],
-      "last_generated": "2026-09-22T19:43:42.478Z"
+      "last_generated": "2026-09-22T21:06:38.867Z"
     },
     "40": {
       "channel_name": "Logos",
