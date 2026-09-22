@@ -1052,9 +1052,14 @@
           "topic": "Feedback Loops in Climate Science: Understanding the Role of Greenhouse Gases",
           "slug": "feedback-loops-climate-science",
           "reserved_at": "2026-09-22T16:42:35.385Z"
+        },
+        {
+          "topic": "Rising global temperatures to impact weather patterns",
+          "slug": "rising-temperatures-extreme-weather",
+          "reserved_at": "2026-09-22T18:31:30.993Z"
         }
       ],
-      "last_generated": "2026-09-22T16:42:35.386Z"
+      "last_generated": "2026-09-22T18:31:30.993Z"
     },
     "28": {
       "channel_name": "Mythos",
