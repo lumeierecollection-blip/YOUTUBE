@@ -344,9 +344,14 @@
           "topic": "Grok 4.7 Pricing Breakdown: Real Token Costs Tested",
           "slug": "grok-4-7-pricing-and-token-costs-tested",
           "reserved_at": "2026-09-22T09:27:48.469Z"
+        },
+        {
+          "topic": "Claude Fable 5.1 Tested: Benchmarks Reveal Wide Gap to GPT-6",
+          "slug": "claude-fable-5-1-benchmarks-reveal-gap-gpt6",
+          "reserved_at": "2026-09-22T17:41:19.128Z"
         }
       ],
-      "last_generated": "2026-09-22T09:27:48.469Z"
+      "last_generated": "2026-09-22T17:41:19.128Z"
     },
     "4": {
       "channel_name": "Hidden Past",
