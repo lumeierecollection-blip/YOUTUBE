@@ -1,290 +1,228 @@
 #!/usr/bin/env node
 /**
- * Self-Heal — scoped self-healing loop for the render pipeline.
+ * Self-heal — runs as the last job of daily-pipeline-v2.yml when any job
+ * failed (`if: failure()`).
  *
- * Runs when the workflow fails. Reads failure logs, classifies errors,
- * and fixes only CREATION_ERROR in allowed paths. RENDER_ERROR is logged
- * and the human is expected to fix it.
+ * What it does:
+ *   1. Pulls the logs of every failed job in THIS run from the GitHub API
+ *      (the job logs are complete even while the run itself is still open).
+ *   2. Classifies the first real failure into a known class.
+ *   3. If a fixer exists for that class AND every file it changed is in
+ *      ALLOWED_PATHS (and none is in FORBIDDEN_PATHS), commits, pushes, and
+ *      re-dispatches the workflow — at most MAX_RETRIGGERS_PER_HOUR times.
+ *   4. Otherwise writes data/ci-runs/blocked-<class>.txt with the exact
+ *      error lines and exits non-zero. The workflow uploads data/ci-runs/.
  *
- * Allowed paths (only these may be modified):
- *   - scripts/local-visual-plan.cjs
- *   - scripts/gemini-visual-plan.js
- *   - src/skills/remotion-render/visual-engine/beat-interpreter.js
- *   - src/skills/remotion-render/visual-engine/director/visual-director.js
- *   - config/visual-identity.json (only bg_mode and colors.bg fields)
+ * Where the guarantee stops — stated plainly: no automatic fixer is
+ * implemented yet for any class. Every failure seen on this pipeline so far
+ * (dependency conflicts, model output, render crashes) needed a root-cause
+ * change a regex rewrite can't make safely, and the rules for this job are
+ * "fix the root cause or block — never substitute a default, skip a step,
+ * or silence a check". So today this job diagnoses and blocks; it never
+ * edits code. FIXERS is the extension point, and the scope guard and
+ * retrigger cap below are enforced for anything added to it.
  *
- * Loop behavior:
- *   attempt = 1
- *   while attempt <= 3:
- *     run daily-pipeline.yml
- *     if success: exit 0
- *     if attempt == 3: exit 1
- *     read failure logs
- *     classify:
- *       CREATION_ERROR → fix in allowed paths, retry
- *       RENDER_ERROR → log to data/self-heal/, exit 1
- *       INFRASTRUCTURE → retry once, then exit
- *       UPLOAD_ERROR → log credentials issue, exit 1
- *     attempt += 1
+ * Env: GH_TOKEN (actions:read + contents:write), GITHUB_REPOSITORY,
+ *      GITHUB_RUN_ID, GITHUB_REF_NAME.
  */
 
-const { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } = require("node:fs");
-const { join, dirname, basename } = require("node:path");
-const { execSync } = require("node:child_process");
+const { writeFileSync, mkdirSync } = require("node:fs");
+const { join } = require("node:path");
+const { execFileSync } = require("node:child_process");
 
 const ROOT = join(__dirname, "..");
-const SELF_HEAL_DIR = join(ROOT, "data", "self-heal");
-const ATTEMPT_FILE = join(SELF_HEAL_DIR, "attempt-count.txt");
-const MAX_ATTEMPTS = 3;
+const OUT_DIR = join(ROOT, "data", "ci-runs");
+const WORKFLOW = "daily-pipeline-v2.yml";
+const MAX_RETRIGGERS_PER_HOUR = 5;
 
-/* ── Allowed Paths ────────────────────────────────────────────────── */
+/* ── Scope ────────────────────────────────────────────────────────── */
 
 const ALLOWED_PATHS = [
+  "scripts/render-and-qa.js",
   "scripts/local-visual-plan.cjs",
   "scripts/gemini-visual-plan.js",
+  "scripts/ollama-client.cjs",
   "src/skills/remotion-render/visual-engine/beat-interpreter.js",
   "src/skills/remotion-render/visual-engine/director/visual-director.js",
-  "config/visual-identity.json", // only bg_mode and colors.bg fields
+  ".github/workflows/daily-pipeline-v2.yml",
+  "package.json", // dependencies and overrides only — see packageJsonChangeIsScoped()
+  "config/priority-channels.json",
 ];
 
-const FORBIDDEN_PATHS = [
-  "src/skills/remotion-render/*.jsx",
-  "src/skills/remotion-render/compositions/*",
-  "src/skills/remotion-render/styles/*",
-  "src/skills/remotion-render/visual/*",
-  "src/skills/remotion-render/render.js",
-  ".github/workflows/*",
+const FORBIDDEN_PATTERNS = [
+  /^src\/skills\/remotion-render\/.*\.jsx$/,
+  /^src\/skills\/remotion-render\/.*\.tsx$/,
+  /^src\/skills\/remotion-render\/Root\.jsx$/,
+  /^src\/skills\/remotion-render\/index\.ts$/,
+  /(^|\/)(primitives?|scenes?|layout|captions?|styles?)(\/|\.|-)/i,
+  /^public\//,
+  /^src\/skills\/remotion-render\/public\//,
+  /^config\/channels\.json$/,
 ];
 
-/* ── Error Classification ─────────────────────────────────────────── */
-
-function classifyError(logContent) {
-  const lower = logContent.toLowerCase();
-
-  // CREATION_ERROR — fixable by the self-heal agent
-  if (lower.includes("no physical mechanism detected")) return "CREATION_ERROR";
-  if (lower.includes("no visual plan loaded")) return "CREATION_ERROR";
-  if (lower.includes("typography count") && lower.includes("violates")) return "CREATION_ERROR";
-  if (lower.includes("zero beats in plan")) return "CREATION_ERROR";
-  if (lower.includes("invalid json in plan")) return "CREATION_ERROR";
-  if (lower.includes("cannot visualize beat")) return "CREATION_ERROR";
-  if (lower.includes("beat") && lower.includes("no valid mechanism")) return "CREATION_ERROR";
-  if (lower.includes("mechanism") && lower.includes("exceeds 40%")) return "CREATION_ERROR";
-  if (lower.includes("typography") && lower.includes("exceeds")) return "CREATION_ERROR";
-
-  // RENDER_ERROR — not fixable by this agent
-  if (lower.includes("ffmpeg") && lower.includes("mux")) return "RENDER_ERROR";
-  if (lower.includes("remotion") && lower.includes("frame")) return "RENDER_ERROR";
-  if (lower.includes("missing font")) return "RENDER_ERROR";
-  if (lower.includes("canvas dimensions")) return "RENDER_ERROR";
-  if (lower.includes(".jsx")) return "RENDER_ERROR";
-  if (lower.includes("rendermedia") && lower.includes("error")) return "RENDER_ERROR";
-  if (lower.includes("bundle") && lower.includes("error")) return "RENDER_ERROR";
-
-  // INFRASTRUCTURE — retry once
-  if (lower.includes("timeout")) return "INFRASTRUCTURE";
-  if (lower.includes("rate limit")) return "INFRASTRUCTURE";
-  if (lower.includes("econnreset") || lower.includes("econnrefused")) return "INFRASTRUCTURE";
-  if (lower.includes("out of memory")) return "INFRASTRUCTURE";
-
-  // UPLOAD_ERROR — credentials issue
-  if (lower.includes("upload") && lower.includes("fail")) return "UPLOAD_ERROR";
-  if (lower.includes("oauth") && lower.includes("token")) return "UPLOAD_ERROR";
-  if (lower.includes("youtube") && lower.includes("403")) return "UPLOAD_ERROR";
-
-  // Default to RENDER_ERROR (safe default: don't touch the renderer)
-  return "RENDER_ERROR";
+function scopeViolations(files) {
+  const bad = [];
+  for (const f of files) {
+    if (FORBIDDEN_PATTERNS.some((re) => re.test(f))) bad.push(`${f} (forbidden)`);
+    else if (!ALLOWED_PATHS.includes(f)) bad.push(`${f} (not in allowed list)`);
+    else if (f === "package.json" && !packageJsonChangeIsScoped()) bad.push(`${f} (changed outside dependencies/overrides)`);
+  }
+  return bad;
 }
 
-/* ── Fix CREATION_ERROR ───────────────────────────────────────────── */
-
-function fixCreationError(errorType, logContent) {
-  console.log(`Attempting to fix: ${errorType}`);
-
-  // Read the current plan generator
-  const planPath = join(ROOT, "scripts", "local-visual-plan.cjs");
-  if (!existsSync(planPath)) {
-    console.error("local-visual-plan.cjs not found");
-    return false;
-  }
-
-  const planCode = readFileSync(planPath, "utf-8");
-
-  // Fix based on error type
-  if (errorType === "CREATION_ERROR" && logContent.includes("typography")) {
-    // Fix typography rules
-    console.log("Fixing typography rules...");
-
-    // Check if the hook/CTA rules are present
-    if (!planCode.includes("Rule A: hook is always TYPOGRAPHY")) {
-      console.error("Typography rules not found in plan generator");
-      return false;
-    }
-
-    // The rules are already there, so this might be a distribution issue
-    // Log the issue and return false to indicate we can't auto-fix
-    console.log("Typography rules present but distribution violated — manual fix needed");
-    return false;
-  }
-
-  if (errorType === "CREATION_ERROR" && logContent.includes("no valid mechanism")) {
-    // Fix mechanism assignment
-    console.log("Fixing mechanism assignment...");
-
-    // Check if the assignMechanism function has the right defaults
-    if (planCode.includes('return "TYPOGRAPHY"')) {
-      console.log("Found TYPOGRAPHY default — changing to ACTION_CONSEQUENCE");
-      // This is already fixed in our latest version
-    }
-
-    console.log("Mechanism assignment looks correct — manual investigation needed");
-    return false;
-  }
-
-  console.log(`No auto-fix available for: ${errorType}`);
-  return false;
+function packageJsonChangeIsScoped() {
+  const before = JSON.parse(git(["show", "HEAD:package.json"]));
+  const after = JSON.parse(require("node:fs").readFileSync(join(ROOT, "package.json"), "utf-8"));
+  for (const k of ["dependencies", "devDependencies", "overrides"]) { delete before[k]; delete after[k]; }
+  return JSON.stringify(before) === JSON.stringify(after);
 }
 
-/* ── Attempt Tracking ─────────────────────────────────────────────── */
+/* ── Classification ───────────────────────────────────────────────── */
 
-function getAttemptCount() {
-  try {
-    if (existsSync(ATTEMPT_FILE)) {
-      return parseInt(readFileSync(ATTEMPT_FILE, "utf-8").trim()) || 0;
-    }
-  } catch {}
-  return 0;
+// First match wins; ordered from most to least specific.
+const CLASSES = [
+  ["remotion-version-conflict", /_currentValue|Invalid hook call|more than one copy of React/i],
+  ["no-visual-plan", /No visual plan at|no visual plan loaded/i],
+  ["beat-without-mechanism", /Beat \d+ has no mechanism/],
+  ["plan-caps", /Plan rejected:|violates the 1–2 rule|exceeds 40%/],
+  ["silent-video", /silence detection failed|no audio stream/i],
+  ["duration-drift", /drifts [\d.]+s \(max/],
+  ["empty-frame", /beat-0 frame is [\d.]+ KB|empty-frame/i],
+  ["prep-model-output", /All models failed|could not extract valid JSON|schema validation failed/],
+  ["ollama-server", /address already in use|Ollama at .* not reachable|model .* not present/],
+  ["missing-prep-artifact", /Artifact not found for name: prep-/],
+  ["timeout", /exceeded the maximum execution time|The job running on runner .* has exceeded/i],
+  ["tts", /TTS failed after/],
+  ["upload", /Publish to YouTube|invalid_grant|quotaExceeded/i],
+];
+
+function classify(log) {
+  for (const [name, re] of CLASSES) {
+    const m = log.match(re);
+    if (m) return { name, match: m[0] };
+  }
+  return { name: "unclassified", match: null };
 }
 
-function setAttemptCount(count) {
-  mkdirSync(SELF_HEAL_DIR, { recursive: true });
-  writeFileSync(ATTEMPT_FILE, String(count));
+// Extension point: { [className]: () => boolean /* true if files changed */ }.
+// Deliberately empty — see header.
+const FIXERS = {};
+
+/* ── GitHub helpers ───────────────────────────────────────────────── */
+
+function gh(args, opts = {}) {
+  return execFileSync("gh", args, { cwd: ROOT, encoding: "utf-8", maxBuffer: 256 * 1024 * 1024, ...opts });
+}
+function git(args) {
+  return execFileSync("git", args, { cwd: ROOT, encoding: "utf-8" });
+}
+
+function failedJobLogs(repo, runId) {
+  const jobs = JSON.parse(gh(["api", `repos/${repo}/actions/runs/${runId}/jobs?per_page=100`, "--paginate", "--jq", ".jobs"]).trim() || "[]");
+  const failed = jobs.filter((j) => j.conclusion === "failure" && j.name !== "self-heal");
+  const logs = [];
+  for (const j of failed) {
+    let text = "";
+    try { text = gh(["api", `repos/${repo}/actions/jobs/${j.id}/logs`]); } catch (e) { text = `(could not fetch log: ${e.message})`; }
+    logs.push({ name: j.name, text });
+  }
+  return logs;
+}
+
+function errorLines(text) {
+  return text.split("\n")
+    .filter((l) => /##\[error\]|::error::|Error:|TypeError|All models failed|failed/i.test(l))
+    .map((l) => l.replace(/^\S+Z /, ""))
+    .slice(0, 40);
+}
+
+function recentSelfHealDispatches(repo) {
+  const since = new Date(Date.now() - 3600 * 1000).toISOString();
+  const runs = JSON.parse(gh(["api", `repos/${repo}/actions/workflows/${WORKFLOW}/runs?event=workflow_dispatch&created=>=${since}&per_page=100`, "--jq", "[.workflow_runs[] | select(.actor.login == \"github-actions[bot]\")] | length"]).trim() || "0");
+  return runs;
 }
 
 /* ── Main ─────────────────────────────────────────────────────────── */
 
-async function main() {
-  console.log("=== SELF-HEAL AGENT ===");
-
-  // Ensure self-heal directory exists
-  mkdirSync(SELF_HEAL_DIR, { recursive: true });
-
-  // Check attempt count
-  let attempt = getAttemptCount();
-  if (attempt >= MAX_ATTEMPTS) {
-    console.log(`Max attempts (${MAX_ATTEMPTS}) reached. Writing diagnosis and exiting.`);
-    writeFileSync(
-      join(SELF_HEAL_DIR, `blocked-${new Date().toISOString().slice(0, 10)}.txt`),
-      `Self-heal stopped after ${MAX_ATTEMPTS} attempts.\nManual intervention required.\n`
-    );
-    process.exit(1);
-  }
-
-  attempt++;
-  setAttemptCount(attempt);
-  console.log(`Attempt ${attempt}/${MAX_ATTEMPTS}`);
-
-  // Find recent failure logs
-  const logDirs = [
-    join(ROOT, "data", "audit", "render-review"),
-    join(ROOT, "data", "renders"),
-    join(ROOT, "logs"),
-  ];
-
-  let failureLog = "";
-  for (const dir of logDirs) {
-    if (!existsSync(dir)) continue;
-    const files = readdirSync(dir)
-      .filter((f) => f.endsWith(".log") || f.endsWith(".txt") || f.endsWith(".json"))
-      .sort()
-      .reverse();
-    for (const file of files.slice(0, 5)) {
-      const content = readFileSync(join(dir, file), "utf-8");
-      if (content.toLowerCase().includes("error") || content.toLowerCase().includes("fail")) {
-        failureLog += `\n--- ${file} ---\n${content}\n`;
-      }
-    }
-  }
-
-  if (!failureLog) {
-    console.log("No failure logs found. Cannot classify error.");
-    console.log("This might be a fresh failure — check the workflow run logs.");
-    process.exit(1);
-  }
-
-  // Classify the error
-  const errorType = classifyError(failureLog);
-  console.log(`Error classified as: ${errorType}`);
-
-  // Handle based on type
-  switch (errorType) {
-    case "CREATION_ERROR":
-      const fixed = fixCreationError(errorType, failureLog);
-      if (fixed) {
-        console.log("Fix applied. Committing and re-dispatching workflow...");
-        // Commit changes
-        try {
-          execSync("git add -A", { cwd: ROOT });
-          execSync(`git commit -m "self-heal: fix ${errorType}" --allow-empty`, { cwd: ROOT });
-          // Re-dispatch workflow
-          execSync("gh workflow run daily-pipeline.yml --ref claude/visual-rebuild-from-5f91e75", {
-            cwd: ROOT,
-            env: { ...process.env, GH_TOKEN: process.env.GITHUB_TOKEN },
-          });
-          console.log("Workflow re-dispatched.");
-        } catch (e) {
-          console.error(`Failed to commit/dispatch: ${e.message}`);
-        }
-      } else {
-        console.log("Could not auto-fix. Writing diagnosis...");
-        writeFileSync(
-          join(SELF_HEAL_DIR, `diagnosis-${new Date().toISOString().slice(0, 10)}.txt`),
-          `Error: ${errorType}\n\nLog excerpt:\n${failureLog.slice(0, 2000)}\n\nAuto-fix not available for this specific error.\n`
-        );
-      }
-      break;
-
-    case "RENDER_ERROR":
-      console.log("RENDER_ERROR detected — cannot fix. Writing diagnosis...");
-      writeFileSync(
-        join(SELF_HEAL_DIR, `blocked-${new Date().toISOString().slice(0, 10)}.txt`),
-        `RENDER_ERROR detected. Self-heal agent cannot modify renderer.\n\nError: ${errorType}\n\nLog excerpt:\n${failureLog.slice(0, 2000)}\n\nManual intervention required.\n`
-      );
-      process.exit(1);
-      break;
-
-    case "INFRASTRUCTURE":
-      if (attempt < 2) {
-        console.log("INFRASTRUCTURE error — retrying once...");
-        // Just exit and let the workflow retry
-      } else {
-        console.log("INFRASTRUCTURE error persisted — giving up.");
-        writeFileSync(
-          join(SELF_HEAL_DIR, `blocked-${new Date().toISOString().slice(0, 10)}.txt`),
-          `INFRASTRUCTURE error persisted after 2 attempts.\n\nLog excerpt:\n${failureLog.slice(0, 2000)}\n`
-        );
-        process.exit(1);
-      }
-      break;
-
-    case "UPLOAD_ERROR":
-      console.log("UPLOAD_ERROR — credentials issue. Cannot auto-fix.");
-      writeFileSync(
-        join(SELF_HEAL_DIR, `blocked-${new Date().toISOString().slice(0, 10)}.txt`),
-        `UPLOAD_ERROR — check YouTube credentials.\n\nLog excerpt:\n${failureLog.slice(0, 2000)}\n`
-      );
-      process.exit(1);
-      break;
-
-    default:
-      console.log(`Unknown error type: ${errorType}`);
-      process.exit(1);
-  }
-
-  console.log("Self-heal complete.");
+function writeBlocker(cls, body) {
+  mkdirSync(OUT_DIR, { recursive: true });
+  const file = join(OUT_DIR, `blocked-${cls}.txt`);
+  writeFileSync(file, body);
+  console.log(`Wrote ${file}`);
 }
 
-main().catch((err) => {
-  console.error(`Self-heal failed: ${err.message}`);
-  process.exit(1);
-});
+function main() {
+  const repo = process.env.GITHUB_REPOSITORY;
+  const runId = process.env.GITHUB_RUN_ID;
+  const ref = process.env.GITHUB_REF_NAME;
+  if (!repo || !runId) {
+    console.error("self-heal runs inside GitHub Actions only (GITHUB_REPOSITORY / GITHUB_RUN_ID unset).");
+    process.exit(2);
+  }
+
+  console.log(`=== SELF-HEAL: run ${runId} on ${ref} ===`);
+  const logs = failedJobLogs(repo, runId);
+  if (!logs.length) {
+    console.log("No failed jobs found — nothing to diagnose.");
+    return;
+  }
+
+  // Classify on the first failed job whose log matches a known class.
+  let cls = { name: "unclassified", match: null };
+  let source = logs[0];
+  for (const l of logs) {
+    const c = classify(l.text);
+    if (c.name !== "unclassified") { cls = c; source = l; break; }
+  }
+  console.log(`Failed jobs: ${logs.map((l) => l.name).join(", ")}`);
+  console.log(`Classified as: ${cls.name}${cls.match ? ` (matched "${cls.match}")` : ""} in ${source.name}`);
+
+  const fixer = FIXERS[cls.name];
+  const report = [
+    `Run: https://github.com/${repo}/actions/runs/${runId}`,
+    `Class: ${cls.name}`,
+    `Matched: ${cls.match || "(none)"}`,
+    `Failed jobs: ${logs.map((l) => l.name).join(", ")}`,
+    "",
+    `Error lines from ${source.name}:`,
+    ...errorLines(source.text),
+    "",
+  ];
+
+  if (!fixer) {
+    report.push("No automatic fixer exists for this class. Nothing was modified.");
+    writeBlocker(cls.name, report.join("\n") + "\n");
+    process.exit(1);
+  }
+
+  const changed = fixer();
+  const files = git(["diff", "--name-only"]).split("\n").filter(Boolean);
+  if (!changed || !files.length) {
+    report.push("Fixer ran but changed nothing.");
+    writeBlocker(cls.name, report.join("\n") + "\n");
+    process.exit(1);
+  }
+  const bad = scopeViolations(files);
+  if (bad.length) {
+    git(["checkout", "--", "."]);
+    report.push("Fix required files outside the allowed scope — reverted, nothing committed:", ...bad.map((b) => `  ${b}`));
+    writeBlocker(cls.name, report.join("\n") + "\n");
+    process.exit(1);
+  }
+  const recent = recentSelfHealDispatches(repo);
+  if (recent >= MAX_RETRIGGERS_PER_HOUR) {
+    git(["checkout", "--", "."]);
+    report.push(`Retrigger cap reached (${recent} self-heal dispatches in the last hour, max ${MAX_RETRIGGERS_PER_HOUR}).`);
+    writeBlocker("retrigger-cap", report.join("\n") + "\n");
+    process.exit(1);
+  }
+
+  git(["add", "--", ...files]);
+  git(["-c", "user.name=pipeline-bot", "-c", "user.email=pipeline@youtube-automation.local",
+    "commit", "-m", `self-heal: ${cls.name} (run ${runId})`]);
+  git(["push", "origin", `HEAD:${ref}`]);
+  gh(["workflow", "run", WORKFLOW, "--ref", ref]);
+  console.log(`Committed ${files.join(", ")} and re-dispatched ${WORKFLOW} on ${ref}.`);
+}
+
+main();

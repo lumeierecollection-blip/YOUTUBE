@@ -802,17 +802,21 @@ export function direct(cues, options) {
       const { scene: compiledScene, warnings: compileWarnings } = compileScene(
         directive, text, i, cues.length
       );
-      if (compiledScene) {
-        scene = randomizeScene(compiledScene, rng);
-      } else {
-        // Fallback to deterministic classifier if compilation fails
-        scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
-        if (compileWarnings.length) {
-          warnings.push(...compileWarnings.map(w => `beat ${i}: ${w}`));
-        }
+      if (!compiledScene) {
+        throw new Error(
+          `Beat ${i} has no mechanism: its capability directive did not compile` +
+          `${compileWarnings.length ? ` (${compileWarnings.join("; ")})` : ""}. Plan: ${JSON.stringify(directive)}`
+        );
       }
+      scene = randomizeScene(compiledScene, rng);
     } else {
-      scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
+      // No directive for this beat. There is no regex classifier to fall back
+      // to: TYPOGRAPHY or any other mechanism is only rendered when the plan
+      // sets it. The planners (scripts/*-visual-plan.*) must cover every cue.
+      throw new Error(
+        `Beat ${i} has no mechanism. Plan: ${JSON.stringify(directive ?? null)} ` +
+        `(${plan ? `plan has ${plan.length} beats for ${cues.length} cues` : "no visual plan loaded"})`
+      );
     }
 
     // COMPOSITION — what the viewer literally sees, when Gemini declared it.

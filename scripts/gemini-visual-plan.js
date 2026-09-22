@@ -19,6 +19,7 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
+import { createRequire } from "node:module";
 // The vocabulary is GENERATED into the prompt from scene-primitives.js, never
 // restated by hand. Hand-maintained duplicates are what put three
 // conflicting word budgets in three files and cost two channels their runs.
@@ -33,6 +34,8 @@ import {
   compactCapabilityDigest, compileScene, isMechanismBased, mechanismToCapability,
 } from "../src/skills/remotion-render/visual/capability-compiler.js";
 import { callGemini as callGeminiApi } from "../src/lib/gemini-client.js";
+
+const { enforceCaps, describe: describeMechanisms, TYPOGRAPHY } = createRequire(import.meta.url)("./plan-caps.cjs");
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -624,6 +627,42 @@ async function main() {
     console.warn(`  beat ${i.beat}: ${i.problem}`);
   }
 
+  // ── CAPS: TYPOGRAPHY 1–2, NO MECHANISM OVER 40% ──────────────────────
+  // Applied here, before the plan is written, not in the QA correction loop
+  // (which --skip-qa bypasses). A beat's effective mechanism is the one the
+  // director will render: its explicit `mechanism`, else the mechanism its
+  // capability directive compiles to. A beat with neither cannot be
+  // directed, so the plan is rejected rather than handed to the renderer.
+  const effective = plan.beats.map((b) => b.mechanism || b.compiledScene?.mechanism || null);
+  const undirectable = effective.map((m, i) => (m ? -1 : i)).filter((i) => i >= 0);
+  if (undirectable.length) {
+    console.error(`Plan rejected: beat(s) ${undirectable.join(", ")} compile to no mechanism.`);
+    process.exit(1);
+  }
+  let capped;
+  try {
+    capped = enforceCaps(effective);
+  } catch (e) {
+    console.error(`Plan rejected: ${e.message}`);
+    process.exit(1);
+  }
+  for (const c of capped.changes) {
+    const b = plan.beats[c.beat];
+    // Setting `mechanism` routes this beat through applyDirective() with the
+    // capped mechanism instead of the capability compiler.
+    b.mechanism = c.to;
+    b.cap_reassigned = { from: c.from, why: c.why };
+    if (c.to === TYPOGRAPHY) {
+      // A TYPOGRAPHY beat with no phrase would render an empty frame.
+      const phrase = b.typography_direction?.phrase || b.visual_headline
+        || (sentences[c.beat]?.text || "").split(/\s+/).slice(0, 6).join(" ");
+      b.visual_headline = b.visual_headline || phrase;
+      b.typography_direction = { ...(b.typography_direction || {}), phrase };
+    }
+    console.log(`[caps] beat ${c.beat}: ${c.from} -> ${c.to} (${c.why})`);
+  }
+  console.log(`Mechanisms after caps: ${describeMechanisms(capped.mechanisms)}`);
+
   const result = {
     generatedAt: new Date().toISOString(),
     channel: channelId,
@@ -634,6 +673,7 @@ async function main() {
     compositionIssues,
     compilationReport,
     capabilityDistribution: {},
+    mechanismDistribution: describeMechanisms(capped.mechanisms),
   };
 
   // Track capability usage instead of mechanism distribution

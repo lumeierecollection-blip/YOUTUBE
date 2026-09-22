@@ -17,7 +17,7 @@
  */
 import "dotenv/config";
 import { spawn } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync, statSync } from "node:fs";
 import { join, dirname, basename, extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { bundle } from "@remotion/bundler";
@@ -228,61 +228,58 @@ async function renderOne(channelId, scriptPath, format) {
 
 /* ── Silence Detection ───────────────────────────────────────────── */
 
+async function probeDuration(path, streamSelector) {
+  const args = ["-v", "error"];
+  if (streamSelector) args.push("-select_streams", streamSelector, "-show_entries", "stream=duration");
+  else args.push("-show_entries", "format=duration");
+  args.push("-of", "default=noprint_wrappers=1:nokey=1", path);
+  const r = await runChild("ffprobe", args, { label: "probe" });
+  if (r.code !== 0) return { ok: false, error: `ffprobe exited ${r.code}: ${r.stderr.trim().slice(0, 300)}` };
+  const v = parseFloat(r.stdout.trim().split("\n")[0]);
+  return { ok: true, value: Number.isFinite(v) ? v : 0, raw: r.stdout.trim() };
+}
+
 async function detectSilence(videoPath, audioPath) {
-  // Get audio duration
-  let audioDuration = 0;
-  try {
-    const dur = await runChild("ffprobe", [
-      "-v", "error", "-show_entries", "format=duration",
-      "-of", "default=noprint_wrappers=1:nokey=1", audioPath,
-    ], { label: "silence/probe-audio" });
-    if (dur.code === null || dur.code !== 0) {
-      console.warn("ffprobe not available — skipping silence detection.");
-      return { ok: true, gaps: [] };
-    }
-    audioDuration = parseFloat(dur.stdout.trim()) || 0;
-  } catch {
-    console.warn("ffprobe not available — skipping silence detection.");
-    return { ok: true, gaps: [] };
+  // No "skipping" branches: a missing ffmpeg/ffprobe is a broken runner, and
+  // a check that silently passes is how six silent videos would have shipped.
+  const audio = await probeDuration(audioPath);
+  if (!audio.ok) return { ok: false, gaps: [], reason: `cannot probe voiceover: ${audio.error}` };
+  const audioDuration = audio.value;
+  if (audioDuration <= 0) return { ok: false, gaps: [], reason: `voiceover ${audioPath} has zero duration` };
+
+  const stream = await probeDuration(videoPath, "a:0");
+  if (!stream.ok || !stream.raw) {
+    return { ok: false, gaps: [], reason: `rendered video has no audio stream (${stream.error || "ffprobe returned nothing"})` };
   }
 
-  if (audioDuration <= 0) return { ok: true, gaps: [] };
+  const r = await runChild("ffmpeg", [
+    "-hide_banner", "-nostats", "-i", videoPath,
+    "-af", "silencedetect=noise=-40dB:d=0.5",
+    "-f", "null", "-",
+  ], { label: "silence/detect" });
+  if (r.code !== 0) return { ok: false, gaps: [], reason: `ffmpeg silencedetect exited ${r.code}` };
 
-  // Detect silence gaps > 0.5s using ffmpeg silencedetect
-  let code, stdout;
-  try {
-    ({ code, stdout } = await runChild("ffmpeg", [
-      "-i", videoPath,
-      "-af", "silencedetect=noise=-40dB:d=0.5",
-      "-f", "null", "-",
-    ], { label: "silence/detect" }));
-  } catch {
-    console.warn("ffmpeg not available — skipping silence detection.");
-    return { ok: true, gaps: [] };
-  }
-
-  if (code === null) {
-    console.warn("ffmpeg not available — skipping silence detection.");
-    return { ok: true, gaps: [] };
-  }
-
-  // Parse silencedetect output for silence_start/silence_end
+  // silencedetect reports on STDERR. The previous version parsed stdout
+  // only, so it could never see a gap and passed every video — including
+  // DirectedShorts renders that had no voiceover at all.
+  const out = `${r.stdout}\n${r.stderr}`;
   const gaps = [];
-  const lines = stdout.split("\n");
   let silenceStart = null;
-  for (const line of lines) {
-    const startMatch = line.match(/silence_start:\s*([\d.]+)/);
+  for (const line of out.split("\n")) {
+    const startMatch = line.match(/silence_start:\s*(-?[\d.]+)/);
     const endMatch = line.match(/silence_end:\s*([\d.]+)/);
-    if (startMatch) silenceStart = parseFloat(startMatch[1]);
+    if (startMatch) silenceStart = Math.max(0, parseFloat(startMatch[1]));
     if (endMatch && silenceStart !== null) {
       const silenceEnd = parseFloat(endMatch[1]);
-      const gapDuration = silenceEnd - silenceStart;
-      // Only flag gaps inside the narration window (0 to audio duration)
-      if (silenceStart < audioDuration && gapDuration > 0.5) {
-        gaps.push({ start: silenceStart, end: silenceEnd, duration: gapDuration });
+      if (silenceStart < audioDuration && silenceEnd - silenceStart > 0.5) {
+        gaps.push({ start: silenceStart, end: silenceEnd, duration: silenceEnd - silenceStart });
       }
       silenceStart = null;
     }
+  }
+  // Silence that runs to end-of-stream has a start and no end.
+  if (silenceStart !== null && silenceStart < audioDuration && audioDuration - silenceStart > 0.5) {
+    gaps.push({ start: silenceStart, end: audioDuration, duration: audioDuration - silenceStart });
   }
 
   if (gaps.length > 0) {
@@ -290,10 +287,60 @@ async function detectSilence(videoPath, audioPath) {
     for (const g of gaps) {
       console.error(`  ${g.start.toFixed(2)}s — ${g.end.toFixed(2)}s (${g.duration.toFixed(2)}s)`);
     }
-    return { ok: false, gaps };
+    return { ok: false, gaps, reason: `${gaps.length} silence gap(s)` };
+  }
+  return { ok: true, gaps: [] };
+}
+
+/* ── Render verification (runs with or without --skip-qa) ────────── */
+
+const MAX_DURATION_DRIFT_S = 1;
+const MIN_BEAT0_FRAME_BYTES = 15 * 1024;
+
+function firstCueMidpoint(srtPath) {
+  if (!existsSync(srtPath)) return null;
+  const m = readFileSync(srtPath, "utf-8").match(/(\d+):(\d+):(\d+)[,.](\d+)\s*-->\s*(\d+):(\d+):(\d+)[,.](\d+)/);
+  if (!m) return null;
+  const t = (h, mi, se, ms) => +h * 3600 + +mi * 60 + +se + +ms / 1000;
+  return (t(m[1], m[2], m[3], m[4]) + t(m[5], m[6], m[7], m[8])) / 2;
+}
+
+async function verifyRender(videoPath, audioPath) {
+  const problems = [];
+
+  const video = await probeDuration(videoPath);
+  const audio = await probeDuration(audioPath);
+  if (!video.ok || !audio.ok) {
+    problems.push(`cannot probe durations: ${video.error || audio.error}`);
+  } else {
+    const drift = Math.abs(video.value - audio.value);
+    console.log(`[verify] video ${video.value.toFixed(2)}s, voiceover ${audio.value.toFixed(2)}s, drift ${drift.toFixed(2)}s`);
+    if (drift > MAX_DURATION_DRIFT_S) {
+      problems.push(`video ${video.value.toFixed(2)}s vs voiceover ${audio.value.toFixed(2)}s drifts ${drift.toFixed(2)}s (max ${MAX_DURATION_DRIFT_S}s)`);
+    }
   }
 
-  return { ok: true, gaps: [] };
+  // Beat 0 is sampled at the middle of the first caption cue — after its
+  // entrance, before its exit — and written as PNG so a flat/empty frame
+  // compresses to almost nothing.
+  const srtPath = join(dirname(audioPath), basename(audioPath, extname(audioPath)) + ".srt");
+  const at = firstCueMidpoint(srtPath) ?? 1;
+  const framePath = videoPath.replace(/\.mp4$/, "-beat0.png");
+  const grab = await runChild("ffmpeg", [
+    "-hide_banner", "-loglevel", "error", "-y", "-ss", at.toFixed(3), "-i", videoPath,
+    "-frames:v", "1", framePath,
+  ], { label: "verify/beat0" });
+  if (grab.code !== 0 || !existsSync(framePath)) {
+    problems.push(`could not extract beat-0 frame at ${at.toFixed(2)}s`);
+  } else {
+    const bytes = statSync(framePath).size;
+    console.log(`[verify] beat-0 frame @${at.toFixed(2)}s: ${(bytes / 1024).toFixed(1)} KB`);
+    if (bytes <= MIN_BEAT0_FRAME_BYTES) {
+      problems.push(`beat-0 frame is ${(bytes / 1024).toFixed(1)} KB (must be > 15 KB) — near-empty frame`);
+    }
+  }
+
+  return { ok: problems.length === 0, problems };
 }
 
 /* ── QA ──────────────────────────────────────────────────────────── */
@@ -565,6 +612,15 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       planPath = await geminiPlan(channelId, scriptPath, correctionsPath);
     }
 
+    // No plan, no render. Rendering without one used to hand the director
+    // nothing and let its regex classifier invent the visuals.
+    const plan = planPath ? readJsonSafe(planPath) : null;
+    if (!plan || !Array.isArray(plan.beats) || plan.beats.length === 0) {
+      console.error(`::error::No visual plan at ${planPath || "(planner returned none)"}. Run the planner first.`);
+      return { skipped: false, ok: false };
+    }
+    console.log(`Visual plan: ${basename(planPath)} (source ${plan.source || "gemini"}, ${plan.beats.length} beats)`);
+
     // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL)
     const result = await renderOne(channelId, scriptPath, format);
     if (result.skipped) return { skipped: true };
@@ -582,11 +638,21 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // Step 2b: Silence detection — fail if narration window has gaps > 0.5s
     const silenceCheck = await detectSilence(result.outputPath, result.audio);
     if (!silenceCheck.ok) {
-      console.error(`::error::silence detection failed for ${basename(result.outputPath)} — ${silenceCheck.gaps.length} gap(s)`);
+      console.error(`::error::silence detection failed for ${basename(result.outputPath)} — ${silenceCheck.reason}`);
       if (existsSync(result.outputPath)) {
         try { rmSync(result.outputPath); } catch {}
       }
-      continue;
+      return { skipped: false, ok: false };
+    }
+
+    // Step 2b': duration and beat-0 frame. Hard gates, independent of QA.
+    const verify = await verifyRender(result.outputPath, result.audio);
+    if (!verify.ok) {
+      for (const p of verify.problems) console.error(`::error::verify ${basename(result.outputPath)}: ${p}`);
+      if (existsSync(result.outputPath)) {
+        try { rmSync(result.outputPath); } catch {}
+      }
+      return { skipped: false, ok: false };
     }
 
     // Step 2c: Skip QA when --skip-qa is set (local dev without ffmpeg)

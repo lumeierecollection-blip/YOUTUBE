@@ -1,12 +1,18 @@
-﻿# YouTube Automation ΓÇö Optimized Daily Pipeline (v2)
-# Split into 2 stages for faster turnaround:
-#   Stage 1 (prep): Discover ΓåÆ Research ΓåÆ Script ΓåÆ TTS ΓåÆ Thumbnail ΓåÆ SEO
-#   Stage 2 (render): Download artifacts ΓåÆ Render + QA ΓåÆ Publish
+# YouTube Automation — Daily Pipeline (v2)
 #
-# This decouples lightweight model calls from heavy CPU render work,
-# reducing timeout risks and allowing independent resource allocation.
+# Scope: ONLY the channels in config/priority-channels.json (the six approved
+# for publishing). Other channels are deferred until that file changes.
+#
+#   setup  → channel matrix from config/priority-channels.json
+#   prep   → Discover → Reserve → Research → Script → TTS → Thumbnail → SEO
+#   render → Plan → Render → silence/duration/frame gates → Publish (private)
+#   self-heal (on failure) → diagnose the failed jobs, block or fix in scope
+#
+# Budget: every job has timeout-minutes: 18; the whole run should finish in
+# under 20 minutes. Concurrency cancels an older run on the same ref, so runs
+# never pile up (the previous 50-channel runs took 5+ hours).
 
-name: Daily Pipeline ΓÇö Optimized v2
+name: Daily Pipeline — Optimized v2
 
 on:
   schedule:
@@ -14,29 +20,41 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "Dry run (no publish)"
+        description: "Dry run (render, but no publish)"
         type: boolean
         default: false
-      channel_override:
-        description: "Run only these channels (comma-separated IDs, e.g. '1,2,9,26,44,48')"
-        required: false
+      channels:
+        description: "Comma-separated channel IDs — must be priority channels"
+        type: string
+        default: "1,2,9,26,44,48"
+
+concurrency:
+  group: daily-pipeline-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   NODE_VERSION: "22"
   PYTHON_VERSION: "3.11"
-  OPENCODE_MODELS_RESEARCH: "ollama/llama3.2:3b"
-  OPENCODE_MODELS_REASONING: "ollama/llama3.2:3b"
-  OPENCODE_MODELS: "ollama/llama3.2:3b"
+  OLLAMA_MODEL: "qwen2.5:7b"
+  OLLAMA_URL: "http://127.0.0.1:11434"
+  # Ollama's default context is 4096 tokens; the research/script prompts are
+  # longer, and a truncated prompt is how llama3.2 ended up answering
+  # "To print Hello World in Python…". opencode.json declares 16384 to match.
+  OLLAMA_CONTEXT_LENGTH: "16384"
+  OPENCODE_MODELS_RESEARCH: "ollama/qwen2.5:7b"
+  OPENCODE_MODELS_REASONING: "ollama/qwen2.5:7b"
+  OPENCODE_MODELS: "ollama/qwen2.5:7b"
   OPENCODE_ENABLE_EXA: "1"
   RENDER_SCALE: "0.75"
   RENDER_CONCURRENCY: "4"
 
 jobs:
   # ============================================================
-  # SETUP: build the channel matrix
+  # SETUP: channel matrix from config/priority-channels.json
   # ============================================================
   setup:
     runs-on: ubuntu-latest
+    timeout-minutes: 18
     outputs:
       matrix: ${{ steps.channels.outputs.matrix }}
     steps:
@@ -44,119 +62,118 @@ jobs:
 
       - id: channels
         name: Build channel matrix
+        env:
+          REQUESTED: ${{ github.event.inputs.channels }}
         run: |
-          OVERRIDE="${{ github.event.inputs.channel_override }}"
-          NORM_IDS=""
-          if [ -n "$OVERRIDE" ]; then
-            NORM_IDS=$(echo "$OVERRIDE" | tr ',' '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//' | sed 's/^[a-zA-Z-]*//' | sed 's/^0*//' | tr '\n' ',' | sed 's/,$//')
-          fi
-
           MATRIX=$(node -e "
             const fs = require('fs');
-            const data = JSON.parse(fs.readFileSync('config/channels.json', 'utf-8'));
-            const channels = data.channels || data;
-            const ids = process.argv[1] ? process.argv[1].split(',').filter(Boolean) : [];
-            const list = ids.length
-              ? channels.filter(c => ids.includes(String(c.id)))
-              : channels.filter(c => !c.paused);
-            console.log(JSON.stringify({include: list.map(c => ({channel_id: String(c.id)}))}));
-          " "$NORM_IDS")
-
-          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
-          COUNT=$(echo "$MATRIX" | node -e "
-            let d=''; process.stdin.setEncoding('utf8');
-            process.stdin.on('data',c=>d+=c).on('end',()=>console.log(JSON.parse(d).include.length));
+            const priority = JSON.parse(fs.readFileSync('config/priority-channels.json', 'utf-8')).channels.map(String);
+            const req = (process.env.REQUESTED || '').split(',').map(s => s.trim().replace(/^ch-?/i, '').replace(/^0+/, '')).filter(Boolean);
+            const ids = req.length ? req : priority;
+            const notPriority = ids.filter(id => !priority.includes(id));
+            if (notPriority.length) {
+              console.error('Not priority channels: ' + notPriority.join(',') + ' (priority: ' + priority.join(',') + ')');
+              process.exit(1);
+            }
+            console.log(JSON.stringify({ include: ids.map(id => ({ channel_id: id })) }));
           ")
-          echo "Channels in this run: $COUNT"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+          echo "Channels in this run: $MATRIX"
 
   # ============================================================
-  # STAGE 1: PREP ΓÇö Discover, Research, Script, TTS, Thumbnail, SEO
-  # Lightweight model calls only. Fast (~2-5 min per channel).
+  # STAGE 1: PREP
   # ============================================================
   prep:
     needs: setup
     runs-on: ubuntu-latest
+    timeout-minutes: 18
     permissions:
       contents: write
     strategy:
       matrix: ${{ fromJson(needs.setup.outputs.matrix) }}
-      max-parallel: 2
+      max-parallel: 6
       fail-fast: false
-    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
 
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      # ΓöÇΓöÇ Cache npm dependencies ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
-      - name: Cache npm modules
-        uses: actions/cache@v4
-        id: npm-cache
-        with:
-          path: ~/.npm
-          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            npm-${{ runner.os }}-
-
-      - name: Install dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm ci
-
-      - name: Restore node_modules from cache
-        if: steps.npm-cache.outputs.cache-hit == 'true'
-        run: npm ci --prefer-offline
-
-      # ΓöÇΓöÇ Cache pip packages ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Cache pip packages
         uses: actions/cache@v4
-        id: pip-cache
         with:
           path: ~/.cache/pip
-          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            pip-${{ runner.os }}-
+          key: pip-${{ runner.os }}-edge-tts
 
       - name: Install EdgeTTS
         run: pip install --quiet edge-tts
 
-      # ΓöÇΓöÇ Cache OpenCode CLI ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Cache OpenCode CLI
-        uses: actions/cache@v4
         id: opencode-cache
+        uses: actions/cache@v4
         with:
-          path: ~/.local/share/opencode
-          key: opencode-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            opencode-${{ runner.os }}-
+          path: ~/.opencode-cli
+          key: opencode-cli-${{ runner.os }}-v1
 
-      - name: Install OpenCode
-        run: npm install -g opencode-ai
+      - name: Install OpenCode (cache miss only)
+        if: steps.opencode-cache.outputs.cache-hit != 'true'
+        run: npm install --prefix ~/.opencode-cli --no-audit --no-fund opencode-ai
 
-      # ── Cache Ollama models ────────────────────────────────────────────
+      - name: Put OpenCode on PATH
+        run: echo "$HOME/.opencode-cli/node_modules/.bin" >> "$GITHUB_PATH"
+
+      # ── Ollama ─────────────────────────────────────────────────────────
       - name: Cache Ollama models
         uses: actions/cache@v4
         with:
           path: ~/.ollama/models
-          key: ollama-llama3.2-3b
+          key: ollama-${{ runner.os }}-qwen2.5-7b
 
       - name: Install Ollama
-        run: |
-          curl -fsSL https://ollama.com/install.sh | sh
+        run: curl -fsSL https://ollama.com/install.sh | sh
 
       - name: Start Ollama and pull model
         run: |
-          pkill ollama || true; sleep 1; ollama serve &
-          sleep 5
-          ollama pull llama3.2:3b
-          curl -s http://localhost:11434/api/tags | head -5
+          # install.sh registers and starts a systemd service on :11434. The
+          # old step then ran a second `ollama serve` on the same port, which
+          # died with "bind: address already in use" in every prep job. Run
+          # exactly one server, ours, reading models from the cached dir.
+          sudo systemctl stop ollama 2>/dev/null || true
+          sudo systemctl disable ollama 2>/dev/null || true
+          sudo pkill -f "ollama serve" 2>/dev/null || true
+          mkdir -p "$HOME/.ollama/models"
+          OLLAMA_MODELS="$HOME/.ollama/models" OLLAMA_HOST=127.0.0.1:11434 \
+            OLLAMA_CONTEXT_LENGTH="$OLLAMA_CONTEXT_LENGTH" \
+            nohup ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf "$OLLAMA_URL/api/tags" >/dev/null && break; sleep 1; done
+          OLLAMA_HOST=127.0.0.1:11434 ollama pull "$OLLAMA_MODEL"
+          node scripts/ollama-client.cjs --check --model "$OLLAMA_MODEL" --timeout 60 \
+            || { echo "--- ollama.log ---"; tail -50 /tmp/ollama.log; exit 1; }
 
-      # ΓöÇΓöÇ Stage A: discover topic for THIS channel ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      # ── Stage A: discover topics for THIS channel ──────────────────────
       - name: Discover topic
         id: discover
         env:
@@ -190,62 +207,64 @@ jobs:
             cat /tmp/topics-raw.json
             exit 1
           fi
-
           jq '.structured_output' /tmp/topics-raw.json > /tmp/topics.json
-          jq '{
-            topic: .topics[0].topic,
-            slug:  .topics[0].slug,
-            angle: .topics[0].angle,
-            pillar: .topics[0].pillar,
-            why_now: .topics[0].why_now
-          }' /tmp/topics.json > /tmp/channel-topic.json
+          echo "Discovered $(jq '.topics | length' /tmp/topics.json) candidate topic(s)"
 
-          echo "cost_discover=$(jq -r '.total_cost_usd' /tmp/topics-raw.json)" >> "$GITHUB_STEP_SUMMARY"
-
-      # ΓöÇΓöÇ Reserve topic with retry loop ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      # ── Reserve the first NON-duplicate topic ─────────────────────────
       - name: Reserve topic
         id: reserve
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           CH="${{ matrix.channel_id }}"
-          TOPIC=$(jq -r '.topic' /tmp/channel-topic.json)
-          SLUG=$(jq -r  '.slug'  /tmp/channel-topic.json)
-
           git config user.name  "pipeline-bot"
           git config user.email "pipeline@youtube-automation.local"
+          COUNT=$(jq '.topics | length' /tmp/topics.json)
 
+          # Discovery returns several candidates. Only reserving topics[0]
+          # turned every duplicate into a skipped channel (30 of 50 in run
+          # 35763687213); walk the list and take the first non-duplicate.
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
             git rebase "origin/${{ github.ref_name }}"
 
-            set +e
-            node scripts/reserve-topic-single.js "$CH" "$TOPIC" "$SLUG"
-            RESERVE_EXIT=$?
-            set -e
+            RESERVED=0
+            for IDX in $(seq 0 $((COUNT - 1))); do
+              TOPIC=$(jq -r ".topics[$IDX].topic" /tmp/topics.json)
+              SLUG=$(jq -r ".topics[$IDX].slug" /tmp/topics.json)
+              set +e
+              node scripts/reserve-topic-single.js "$CH" "$TOPIC" "$SLUG"
+              RESERVE_EXIT=$?
+              set -e
+              if [ "$RESERVE_EXIT" -eq 2 ]; then
+                echo "Candidate $IDX is a duplicate — trying the next one"
+                continue
+              fi
+              if [ "$RESERVE_EXIT" -ne 0 ]; then
+                echo "::error::Topic reservation error for channel $CH"
+                exit 1
+              fi
+              jq ".topics[$IDX] | {topic, slug, angle, pillar, why_now}" /tmp/topics.json > /tmp/channel-topic.json
+              RESERVED=1
+              break
+            done
 
-            if [ "$RESERVE_EXIT" -eq 2 ]; then
-              echo "::warning::Channel $CH ΓÇö topic is a duplicate; skipping this channel today"
+            if [ "$RESERVED" -ne 1 ]; then
+              echo "::warning::Channel $CH — all $COUNT candidate topics are duplicates; skipping this channel today"
               echo "skip=true" >> "$GITHUB_OUTPUT"
               exit 0
-            fi
-            if [ "$RESERVE_EXIT" -ne 0 ]; then
-              echo "::error::Topic reservation error for channel $CH"
-              exit 1
             fi
 
             git add data/topic-log.json
             if git diff --staged --quiet; then
               break
             fi
-            git commit -m "topic: ch-$CH $SLUG"
-
+            git commit -m "topic: ch-$CH $(jq -r .slug /tmp/channel-topic.json)"
             if git push origin "${{ github.ref_name }}"; then
               break
             fi
-
             if [ "$attempt" -lt 5 ]; then
-              echo "Push conflict ΓÇö retrying ($attempt/5) ..."
+              echo "Push conflict — retrying ($attempt/5) ..."
               git reset --hard HEAD~1
               sleep $((attempt * 3))
             else
@@ -260,14 +279,9 @@ jobs:
         run: |
           CH="${{ matrix.channel_id }}"
           mkdir -p data/research/$CH data/tts/$CH data/thumbnails/$CH
+          echo "FORMATS=shorts" >> "$GITHUB_ENV"
 
-      - name: Determine today's formats
-        if: steps.reserve.outputs.skip != 'true'
-        run: |
-          # Cap all videos at 35-45 seconds for <30 min render on 2-core runner
-          echo "FORMATS=shorts" >> "$GITHUB_ENV" 
-
-      # ΓöÇΓöÇ Stage B: research ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      # ── Stage B: research ──────────────────────────────────────────────
       - name: Research topic
         if: steps.reserve.outputs.skip != 'true'
         env:
@@ -280,7 +294,7 @@ jobs:
           SLUG=$(jq -r  '.slug'  /tmp/channel-topic.json)
           TOPIC=$(jq -r '.topic' /tmp/channel-topic.json)
           ANGLE=$(jq -r '.angle' /tmp/channel-topic.json)
-          echo "=== RESEARCH: $CH ΓÇö $SLUG ==="
+          echo "=== RESEARCH: $CH — $SLUG ==="
 
           set +e
           jq -n --arg t "$TOPIC" --arg a "$ANGLE" \
@@ -309,7 +323,6 @@ jobs:
           jq '.structured_output' /tmp/research-raw.json > "data/research/$CH/$SLUG.json"
           cp /tmp/research-raw.json "data/research/$CH/.agent-raw.json"
 
-      # ΓöÇΓöÇ Gate research ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Gate research
         if: steps.reserve.outputs.skip != 'true'
         run: |
@@ -317,7 +330,7 @@ jobs:
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
           node scripts/gate-research.js "$CH" "$SLUG"
 
-      # ΓöÇΓöÇ Stage C: script (per format, gate-feedback retry) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      # ── Stage C: script (gate-feedback retry) ──────────────────────────
       - name: Write script
         if: steps.reserve.outputs.skip != 'true'
         env:
@@ -339,11 +352,11 @@ jobs:
             FEEDBACK=""
             PASSED=0
             for ATTEMPT in 1 2 3 4 5; do
-              echo "=== SCRIPT: $CH ΓÇö $SCRIPT_SLUG (attempt $ATTEMPT/5) ==="
+              echo "=== SCRIPT: $CH — $SCRIPT_SLUG (attempt $ATTEMPT/5) ==="
               PROMPT_FILE=prompts/write-script.md
               if [ -n "$FEEDBACK" ]; then
                 cp prompts/write-script.md /tmp/write-script-feedback.md
-                printf '\n\n## Quality gate rejected your previous script\n\n%s\n\nRewrite the FULL script JSON now, fixing exactly the problems above. Keep everything the gate did not flag identical ΓÇö same research grounding, same sources_used, same structure. Return only the JSON object.\n' "$FEEDBACK" >> /tmp/write-script-feedback.md
+                printf '\n\n## Quality gate rejected your previous script\n\n%s\n\nRewrite the FULL script JSON now, fixing exactly the problems above. Keep everything the gate did not flag identical — same research grounding, same sources_used, same structure. Return only the JSON object.\n' "$FEEDBACK" >> /tmp/write-script-feedback.md
                 PROMPT_FILE=/tmp/write-script-feedback.md
               fi
               set +e
@@ -371,15 +384,7 @@ jobs:
               fi
               echo "::warning::script gate rejected attempt $ATTEMPT/5 for $SCRIPT_SLUG"
               cat /tmp/gate-out-$FORMAT.log
-              # ACCUMULATE the violations, do not replace them.
-              #
-              # This used to be a plain assignment, so each attempt saw only
-              # the PREVIOUS attempt's failures and was free to re-break what
-              # an earlier attempt had already fixed. Channel 1 oscillated
-              # exactly that way in run 35289507647: SCR-16 (131 words), then
-              # SCR-03 + SCR-05, then SCR-04 — five attempts, a different
-              # gate each time, never the union. Carrying every violation
-              # forward makes the model satisfy all of them at once.
+              # Accumulate violations across attempts (see run 35289507647).
               NEW_FEEDBACK=$(grep -E '^  - ' /tmp/gate-out-$FORMAT.log || true)
               FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$NEW_FEEDBACK" \
                 | grep -E '^  - ' | sort -u || true)
@@ -390,7 +395,7 @@ jobs:
             fi
           done
 
-      # ΓöÇΓöÇ Stage D: TTS voiceover ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      # ── Stage D: TTS voiceover ─────────────────────────────────────────
       - name: Generate TTS voiceover
         if: steps.reserve.outputs.skip != 'true'
         run: |
@@ -399,29 +404,29 @@ jobs:
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
           for FORMAT in $FORMATS; do
             SCRIPT_SLUG="${SLUG}-${FORMAT}"
-            echo "=== TTS: $CH ΓÇö $SCRIPT_SLUG ==="
             SCRIPT="data/research/$CH/${SCRIPT_SLUG}-script.json"
-            if [ -f "$SCRIPT" ]; then
-              TTS_OK=0
-              for tts_try in 1 2 3; do
-                if node src/utils/tts.js "$CH" "$SCRIPT"; then
-                  TTS_OK=1; break
-                fi
-                if [ "$tts_try" -lt 3 ]; then
-                  echo "TTS attempt $tts_try failed ΓÇö retrying in 15s..."
-                  sleep 15
-                fi
-              done
-              if [ "$TTS_OK" -ne 1 ]; then
-                echo "::error::TTS failed after 3 attempts for $SCRIPT_SLUG"
-                exit 1
+            if [ ! -f "$SCRIPT" ]; then
+              echo "::error::Script not found: $SCRIPT"
+              exit 1
+            fi
+            echo "=== TTS: $CH — $SCRIPT_SLUG ==="
+            TTS_OK=0
+            for tts_try in 1 2 3; do
+              if node src/utils/tts.js "$CH" "$SCRIPT"; then
+                TTS_OK=1; break
               fi
-            else
-              echo "WARN: Script not found ΓÇö skipping TTS for $SCRIPT_SLUG"
+              if [ "$tts_try" -lt 3 ]; then
+                echo "TTS attempt $tts_try failed — retrying in 15s..."
+                sleep 15
+              fi
+            done
+            if [ "$TTS_OK" -ne 1 ]; then
+              echo "::error::TTS failed after 3 attempts for $SCRIPT_SLUG"
+              exit 1
             fi
           done
 
-      # ΓöÇΓöÇ Stage E: Thumbnail ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      # ── Stage E: Thumbnail ─────────────────────────────────────────────
       - name: Generate thumbnail
         if: steps.reserve.outputs.skip != 'true'
         run: |
@@ -429,126 +434,167 @@ jobs:
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
           for FORMAT in $FORMATS; do
             SCRIPT_SLUG="${SLUG}-${FORMAT}"
-            echo "=== THUMBNAIL: $CH ΓÇö $SCRIPT_SLUG ==="
             SCRIPT="data/research/$CH/${SCRIPT_SLUG}-script.json"
-            if [ -f "$SCRIPT" ]; then
-              node src/skills/thumbnail-maker/generate.js "$CH" "$SCRIPT" || echo "WARN: thumbnail spec failed"
-              node src/skills/thumbnail-maker/render-thumb.js "$CH" "$SCRIPT_SLUG" || echo "WARN: thumbnail render failed"
-            else
-              echo "WARN: Script not found ΓÇö skipping thumbnail for $SCRIPT_SLUG"
-            fi
+            echo "=== THUMBNAIL: $CH — $SCRIPT_SLUG ==="
+            node src/skills/thumbnail-maker/generate.js "$CH" "$SCRIPT" || echo "WARN: thumbnail spec failed"
+            node src/skills/thumbnail-maker/render-thumb.js "$CH" "$SCRIPT_SLUG" || echo "WARN: thumbnail render failed"
           done
 
-      # ΓöÇΓöÇ Stage F: SEO + metadata ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      # ── Stage F: SEO + metadata ────────────────────────────────────────
       - name: Generate SEO + metadata
         if: steps.reserve.outputs.skip != 'true'
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
           TOPIC=$(jq -r '.topic' /tmp/channel-topic.json)
-          echo "=== METADATA: $CH ΓÇö $SLUG ==="
+          echo "=== METADATA: $CH — $SLUG ==="
           jq -n --arg t "$TOPIC" --arg s "$SLUG" '{topic:$t, slug:$s}' \
             > "data/research/$CH/next-topic.json"
           node src/utils/pipeline.js "$CH" --step 5 || echo "WARN: metadata generation had issues"
 
-      # ΓöÇΓöÇ Upload prep artifacts for render stage ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      # ── Prep status + artifact (ALWAYS uploaded) ───────────────────────
+      # A channel that skipped (all candidates duplicate) still uploads an
+      # artifact carrying {"skipped": true}, so its render job can see WHY
+      # there is nothing to render instead of failing on a missing artifact.
+      - name: Write prep status
+        if: always()
+        run: |
+          CH="${{ matrix.channel_id }}"
+          mkdir -p data/prep-status
+          if [ "${{ steps.reserve.outputs.skip }}" = "true" ]; then
+            echo '{"skipped": true, "reason": "duplicate-topic"}' > "data/prep-status/$CH.json"
+          else
+            echo "{\"skipped\": false, \"prep\": \"${{ job.status }}\"}" > "data/prep-status/$CH.json"
+          fi
+          cat "data/prep-status/$CH.json"
+
       - name: Upload prep artifacts
-        if: steps.reserve.outputs.skip != 'true' && always()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: prep-${{ matrix.channel_id }}-${{ github.run_id }}
           path: |
+            data/prep-status/
             data/research/${{ matrix.channel_id }}/
             data/tts/${{ matrix.channel_id }}/
             data/thumbnails/${{ matrix.channel_id }}/
-            data/visual-plans/
           retention-days: 1
 
   # ============================================================
-  # STAGE 2: RENDER ΓÇö Download artifacts, render, QA, publish
-  # Heavy CPU compute. Independent timeout and resource allocation.
+  # STAGE 2: RENDER
   # ============================================================
   render:
     needs: [setup, prep]
     if: ${{ !cancelled() && needs.prep.result != 'cancelled' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 18
     permissions:
       contents: write
     strategy:
       matrix: ${{ fromJson(needs.setup.outputs.matrix) }}
-      max-parallel: 2
+      max-parallel: 6
       fail-fast: false
-    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: npm
 
-      # ΓöÇΓöÇ Cache npm modules for render deps ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
-      - name: Cache npm modules
+      - name: Cache node_modules
+        id: node-modules
         uses: actions/cache@v4
-        id: npm-cache
         with:
-          path: ~/.npm
-          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            npm-${{ runner.os }}-
+            ${{ runner.os }}-node-
 
-      - name: Install dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
 
-      - name: Restore node_modules from cache
-        if: steps.npm-cache.outputs.cache-hit == 'true'
-        run: npm ci --prefer-offline
+      - name: Verify a single Remotion version
+        run: |
+          # The frame-0 "_currentValue" crash came from mixed remotion copies.
+          V=$(find node_modules src/skills/remotion-render/node_modules -path '*/node_modules/remotion/package.json' -exec node -p "require('./{}').version" \; | sort -u)
+          echo "remotion versions installed: $V"
+          [ "$(echo "$V" | wc -l)" -eq 1 ] || { echo "::error::more than one remotion version installed"; exit 1; }
 
-      # ΓöÇΓöÇ Download prep artifacts ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Download prep artifacts
         uses: actions/download-artifact@v4
         with:
           name: prep-${{ matrix.channel_id }}-${{ github.run_id }}
           path: data/
 
-      # ΓöÇΓöÇ Setup Chrome for Remotion ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      - name: Check prep status
+        id: status
+        run: |
+          CH="${{ matrix.channel_id }}"
+          F="data/prep-status/$CH.json"
+          if [ ! -f "$F" ]; then
+            echo "::error::prep artifact for channel $CH has no status file"
+            exit 1
+          fi
+          cat "$F"
+          if [ "$(jq -r .skipped "$F")" = "true" ]; then
+            echo "::notice::Channel $CH skipped in prep ($(jq -r .reason "$F")) — nothing to render"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Ensure ffmpeg/ffprobe
+        if: steps.status.outputs.skip != 'true'
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+          ffmpeg -version | head -1
+
       - uses: browser-actions/setup-chrome@v1
+        if: steps.status.outputs.skip != 'true'
         with:
           chrome-version: stable
 
-      - name: Cache render node_modules
+      - name: Cache Remotion Chrome
+        if: steps.status.outputs.skip != 'true'
         uses: actions/cache@v4
-        id: render-npm-cache
         with:
-          path: src/skills/remotion-render/node_modules
-          key: render-npm-${{ runner.os }}-${{ hashFiles('src/skills/remotion-render/package-lock.json') }}
-          restore-keys: render-npm-${{ runner.os }}-
+          path: ~/.cache/remotion
+          key: remotion-chrome-${{ runner.os }}
 
-      - name: Install Remotion dependencies
-        if: steps.render-npm-cache.outputs.cache-hit != 'true'
-        working-directory: src/skills/remotion-render
-        run: npm ci
-
-      - name: Restore render node_modules
-        if: steps.render-npm-cache.outputs.cache-hit == 'true'
-        working-directory: src/skills/remotion-render
-        run: npm ci --prefer-offline
-
-      # ΓöÇΓöÇ Render + QA ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
-      - name: Render + QA
+      - name: Render + verify
+        if: steps.status.outputs.skip != 'true'
         env:
           RENDER_PROGRESS_MS: 10000
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           VISION_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           VISION_MODEL: gemini-3.5-flash-lite
-          RENDER_SCALE: ${{ env.RENDER_SCALE }}
-          RENDER_CONCURRENCY: ${{ env.RENDER_CONCURRENCY }}
+        # --skip-qa skips only the Gemini review/correction loop. The hard
+        # gates (plan present, caps, voiceover audible, duration, beat-0
+        # frame) run regardless — see render-and-qa.js.
         run: node scripts/render-and-qa.js --channel "${{ matrix.channel_id }}" --skip-qa
 
-      # ΓöÇΓöÇ Publish ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      - name: Upload rendered video
+        if: always() && steps.status.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-${{ matrix.channel_id }}-${{ github.run_id }}
+          path: |
+            data/renders/${{ matrix.channel_id }}/
+            data/visual-plans/${{ matrix.channel_id }}/
+          retention-days: 7
+
+      # ── Publish (private) ──────────────────────────────────────────────
       - name: Materialize OAuth credentials
-        if: github.event.inputs.dry_run != 'true'
+        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
         env:
           CH01_CLIENT_ID:       ${{ secrets.CHANNEL_01_CLIENT_ID }}
           CH01_CLIENT_SECRET:   ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
@@ -570,44 +616,32 @@ jobs:
           CH48_REFRESH_TOKEN:   ${{ secrets.CHANNEL_48_REFRESH_TOKEN }}
         run: |
           mkdir -p config/creds
-          CH="${{ matrix.channel_id }}"
-          P=$(printf '%02d' "$CH")
-          CLIENT_ID_VAR="CH${P}_CLIENT_ID"
-          CLIENT_SECRET_VAR="CH${P}_CLIENT_SECRET"
-          REFRESH_TOKEN_VAR="CH${P}_REFRESH_TOKEN"
+          P=$(printf '%02d' "${{ matrix.channel_id }}")
           node -e "
             const fs = require('fs');
             const p = '${P}';
-            const data = JSON.parse(fs.readFileSync('config/channels.json', 'utf-8'));
-            const channels = data.channels || data;
-            const c = channels.find(ch => String(ch.id).padStart(2,'0') === p);
             const clientId     = process.env['CH' + p + '_CLIENT_ID'];
             const clientSecret = process.env['CH' + p + '_CLIENT_SECRET'];
             const refreshToken = process.env['CH' + p + '_REFRESH_TOKEN'];
-            if (clientId && clientSecret && refreshToken) {
-              fs.writeFileSync(
-                'config/creds/ch-' + p + '.json',
-                JSON.stringify({client_id:clientId, client_secret:clientSecret, refresh_token:refreshToken}, null, 2)
-              );
-              console.log('Credentials materialized for channel ' + p);
-            } else {
-              console.log('No credentials configured for channel ' + p + ' ΓÇö will skip publish');
+            if (!(clientId && clientSecret && refreshToken)) {
+              console.error('::error::No credentials configured for priority channel ' + p);
+              process.exit(1);
             }
+            fs.writeFileSync('config/creds/ch-' + p + '.json',
+              JSON.stringify({client_id:clientId, client_secret:clientSecret, refresh_token:refreshToken}, null, 2));
+            console.log('Credentials materialized for channel ' + p);
           "
 
-      - name: Publish to YouTube
-        if: github.event.inputs.dry_run != 'true'
-        run: |
-          CH="${{ matrix.channel_id }}"
-          echo "=== PUBLISH: $CH ==="
-          node src/skills/youtube-publish/run.js "$CH"
+      - name: Publish to YouTube (private)
+        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        run: node src/skills/youtube-publish/run.js "${{ matrix.channel_id }}"
 
       - name: Process publish queue
-        if: github.event.inputs.dry_run != 'true'
-        run: node src/skills/youtube-publish/run.js process-queue || true
+        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        run: node src/skills/youtube-publish/run.js process-queue
 
       - name: Commit publish queue
-        if: github.event.inputs.dry_run != 'true'
+        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -616,7 +650,7 @@ jobs:
           git config user.email "lumeierecollection-blip@users.noreply.github.com"
           git add data/publish-queue
           if git diff --cached --quiet; then
-            echo "Publish queue unchanged ΓÇö nothing to commit."
+            echo "Publish queue unchanged — nothing to commit."
             exit 0
           fi
           git commit -m "publish-queue: ch-$CH $(date -u +%F) [run ${{ github.run_id }}]"
@@ -628,27 +662,13 @@ jobs:
               break
             fi
             if [ "$attempt" -lt 5 ]; then
-              echo "Push conflict ΓÇö retrying ($attempt/5) ..."
-              git reset HEAD~1
-              git add data/publish-queue
-              git diff --cached --quiet || git commit -m "publish-queue: ch-$CH $(date -u +%F) [run ${{ github.run_id }}]"
+              echo "Push conflict — retrying ($attempt/5) ..."
               sleep $((attempt * 2))
             else
-              echo "::warning::Could not push publish-queue for channel $CH after 5 attempts"
+              echo "::error::Could not push publish-queue for channel $CH after 5 attempts"
+              exit 1
             fi
           done
-
-      # ΓöÇΓöÇ Upload render artifacts ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
-      - name: Upload render artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: render-${{ matrix.channel_id }}-${{ github.run_id }}
-          path: |
-            data/renders/${{ matrix.channel_id }}/
-            data/audit/render-review/
-            data/audit/gemini-review/
-          retention-days: 7
 
   # ============================================================
   # LOG RESULTS
@@ -657,19 +677,47 @@ jobs:
     needs: [setup, prep, render]
     if: always()
     runs-on: ubuntu-latest
+    timeout-minutes: 18
     steps:
-      - uses: actions/checkout@v4
-
       - name: Generate run report
         run: |
           echo "=== PIPELINE RUN REPORT ==="
           echo "Run ID:    ${{ github.run_id }}"
           echo "Triggered: ${{ github.event_name }}"
           echo "Dry Run:   ${{ github.event.inputs.dry_run || 'false' }}"
-          echo "Channels:  ${{ github.event.inputs.channel_override || 'ALL' }}"
-          echo "Date:      $(date -u)"
-          echo ""
-          echo "=== STATUS ==="
-          echo "Setup:            ${{ needs.setup.result }}"
-          echo "Prep:             ${{ needs.prep.result }}"
-          echo "Render:           ${{ needs.render.result }}"
+          echo "Channels:  ${{ github.event.inputs.channels || 'priority set' }}"
+          echo "Setup:     ${{ needs.setup.result }}"
+          echo "Prep:      ${{ needs.prep.result }}"
+          echo "Render:    ${{ needs.render.result }}"
+
+  # ============================================================
+  # SELF-HEAL (only when something failed)
+  # ============================================================
+  self-heal:
+    needs: [setup, prep, render]
+    if: failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    permissions:
+      actions: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Self-heal on failure
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/self-heal.cjs
+
+      - name: Upload self-heal diagnosis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: self-heal-${{ github.run_id }}
+          path: data/ci-runs/
+          if-no-files-found: ignore
+          retention-days: 7

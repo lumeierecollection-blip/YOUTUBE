@@ -1,5 +1,7 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, Easing } from "remotion";
+import { Audio } from "@remotion/media";
+import { currentAudio } from "../audio.js";
 import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
 
@@ -1259,7 +1261,7 @@ function MechanismScene({ beat, p, local, ed, font, scene }) {
    - Camera motion reduced to intentional levels (rule 15)
    ══════════════════════════════════════════════════════════════════════ */
 
-export function DirectedScene({ plan }) {
+export function DirectedScene({ plan, ttsAudioPath }) {
   const frame = useCurrentFrame();
   const colors = paletteRoles(plan.palette);
   const ed = editorialColors(colors, plan.palette, plan.bgMode);
@@ -1274,6 +1276,10 @@ export function DirectedScene({ plan }) {
 
   return (
     <AbsoluteFill style={{ backgroundColor: ed.bg }}>
+      {/* Voiceover. render.js stages it as ./vo.mp3 and passes ttsAudioPath;
+          without this element every DirectedShorts render was silent
+          (enforceAudioTrack only adds an empty AAC track). */}
+      {ttsAudioPath ? <Audio src={currentAudio} /> : null}
       {/* Previous beat echo — fading out during transition */}
       {showPrevEcho && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: prevEchoOpacity }}>
