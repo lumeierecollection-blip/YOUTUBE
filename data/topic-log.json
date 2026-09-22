@@ -929,9 +929,14 @@
           "topic": "Workplace optimization reduces musculoskeletal disorders in sedentary jobs",
           "slug": "improvement-workplace-ergonomics-musculoskeletal-disorders",
           "reserved_at": "2026-09-22T19:13:19.786Z"
+        },
+        {
+          "topic": "Ergonomic design and workplace safety for employees with musculoskeletal disorders.",
+          "slug": "ergonomic-design-workplace-safety-musculoskeletal-disorders",
+          "reserved_at": "2026-09-22T19:15:59.965Z"
         }
       ],
-      "last_generated": "2026-09-22T19:13:19.787Z"
+      "last_generated": "2026-09-22T19:15:59.965Z"
     },
     "19": {
       "channel_name": "Stellar",
