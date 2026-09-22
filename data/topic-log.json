@@ -956,10 +956,16 @@
       "last_generated": "2026-09-22T18:19:05.100Z"
     },
     "25": {
-      "channel_name": "On The Record",
-      "niche": "Real-life Family Court Content",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Form",
+      "niche": "Architecture & Design",
+      "used_topics": [
+        {
+          "topic": "The new US labor law affects workers",
+          "slug": "new-us-labor-law-affects-workers",
+          "reserved_at": "2026-09-22T18:22:39.184Z"
+        }
+      ],
+      "last_generated": "2026-09-22T18:22:39.184Z"
     },
     "26": {
       "channel_name": "Fraud Files",
