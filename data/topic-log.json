@@ -1264,9 +1264,14 @@
           "topic": "Cryptography & Security: Math Behind Quantum Resistance",
           "slug": "math-behind-quantum-resistance",
           "reserved_at": "2026-09-22T17:04:53.647Z"
+        },
+        {
+          "topic": "New CCM rules",
+          "slug": "new-ccm-rules",
+          "reserved_at": "2026-09-22T19:07:29.930Z"
         }
       ],
-      "last_generated": "2026-09-22T17:04:53.647Z"
+      "last_generated": "2026-09-22T19:07:29.930Z"
     },
     "34": {
       "channel_name": "Magma",
