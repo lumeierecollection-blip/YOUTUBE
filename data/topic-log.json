@@ -1727,9 +1727,14 @@
           "topic": "The Science of Music - How Sound Waves Affect Our Emotions",
           "slug": "music-science",
           "reserved_at": "2026-09-22T21:41:47.567Z"
+        },
+        {
+          "topic": "Resonance in Acoustic Engineering",
+          "slug": "resonance-acoustic-engineering",
+          "reserved_at": "2026-09-22T22:29:32.294Z"
         }
       ],
-      "last_generated": "2026-09-22T21:41:47.567Z"
+      "last_generated": "2026-09-22T22:29:32.294Z"
     },
     "43": {
       "channel_name": "Trace",
