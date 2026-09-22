@@ -1607,9 +1607,14 @@
           "topic": "Resonance Frequency Analysis",
           "slug": "resonance-frequency-analysis",
           "reserved_at": "2026-09-22T19:54:07.253Z"
+        },
+        {
+          "topic": "Harmonic analysis and pitch class relationships in acoustic music theory",
+          "slug": "harmonic-analysis-for-music-theory",
+          "reserved_at": "2026-09-22T20:26:55.413Z"
         }
       ],
-      "last_generated": "2026-09-22T19:54:07.253Z"
+      "last_generated": "2026-09-22T20:26:55.413Z"
     },
     "43": {
       "channel_name": "Trace",
