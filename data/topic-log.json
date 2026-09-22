@@ -998,9 +998,14 @@
           "topic": "The new US labor law affects workers",
           "slug": "new-us-labor-law-affects-workers",
           "reserved_at": "2026-09-22T18:22:39.184Z"
+        },
+        {
+          "topic": "Structural Integrity in Parametric Architecture",
+          "slug": "structural-integrity-in-parametric-architecture",
+          "reserved_at": "2026-09-22T18:42:58.765Z"
         }
       ],
-      "last_generated": "2026-09-22T18:22:39.184Z"
+      "last_generated": "2026-09-22T18:42:58.765Z"
     },
     "26": {
       "channel_name": "Fraud Files",
