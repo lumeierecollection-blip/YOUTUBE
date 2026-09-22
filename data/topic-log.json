@@ -1241,9 +1241,14 @@
           "topic": "Gene editing could revolutionize medicine, but what are the risks?",
           "slug": "gene-editing-revolutionize-medicine",
           "reserved_at": "2026-09-22T19:58:23.539Z"
+        },
+        {
+          "topic": "Gene editing tools advance with CRISPR-Cas15",
+          "slug": "crispr-cas15-advanced",
+          "reserved_at": "2026-09-22T20:20:42.664Z"
         }
       ],
-      "last_generated": "2026-09-22T19:58:23.539Z"
+      "last_generated": "2026-09-22T20:20:42.664Z"
     },
     "30": {
       "channel_name": "Cold Case DNA",
