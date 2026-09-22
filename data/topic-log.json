@@ -1851,9 +1851,14 @@
           "topic": "What cosmic analogies can explain the behavior of binary star systems?",
           "slug": "binary-star-systems-cosmic-analogies",
           "reserved_at": "2026-09-22T18:49:04.037Z"
+        },
+        {
+          "topic": "recent discovery of exoplanets with conditions similar to Earth",
+          "slug": "exoplanets-discovery-earth-conditions",
+          "reserved_at": "2026-09-22T20:38:02.320Z"
         }
       ],
-      "last_generated": "2026-09-22T18:49:04.037Z"
+      "last_generated": "2026-09-22T20:38:02.320Z"
     },
     "50": {
       "channel_name": "Mind Mechanics",
