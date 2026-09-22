@@ -885,10 +885,16 @@
       "last_generated": "2026-09-22T10:17:17.445Z"
     },
     "27": {
-      "channel_name": "Trial Files",
-      "niche": "Courtroom Analysis & Trial Breakdowns",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Climate Now",
+      "niche": "Climate Science",
+      "used_topics": [
+        {
+          "topic": "Feedback Loops in Climate Science: Understanding the Role of Greenhouse Gases",
+          "slug": "feedback-loops-climate-science",
+          "reserved_at": "2026-09-22T16:42:35.385Z"
+        }
+      ],
+      "last_generated": "2026-09-22T16:42:35.386Z"
     },
     "28": {
       "channel_name": "The Control Room",
