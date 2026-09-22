@@ -946,9 +946,14 @@
           "topic": "Recent breakthrough in stellar evolution detection",
           "slug": "stellar-evolution-detection",
           "reserved_at": "2026-09-22T17:48:00.786Z"
+        },
+        {
+          "topic": "The Implications of Neutron Star Mergers on the Universe",
+          "slug": "neutron-star-merger-implications",
+          "reserved_at": "2026-09-22T19:24:57.512Z"
         }
       ],
-      "last_generated": "2026-09-22T17:48:00.786Z"
+      "last_generated": "2026-09-22T19:24:57.512Z"
     },
     "20": {
       "channel_name": "Abyssal",
