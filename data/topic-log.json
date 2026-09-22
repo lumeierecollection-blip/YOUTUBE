@@ -416,9 +416,14 @@
           "topic": "The 2,200-Year-Old Danube Shipwreck With 500 Iron Bars",
           "slug": "danube-shipwreck-ancient-iron-cargo",
           "reserved_at": "2026-09-22T09:28:02.204Z"
+        },
+        {
+          "topic": "The Voynich Manuscript: New Evidence for its Mysterious Origins",
+          "slug": "voynich-manuscript-new-evidenceorigins",
+          "reserved_at": "2026-09-22T17:44:30.438Z"
         }
       ],
-      "last_generated": "2026-09-22T09:28:02.205Z"
+      "last_generated": "2026-09-22T17:44:30.438Z"
     },
     "5": {
       "channel_name": "Harmony",
