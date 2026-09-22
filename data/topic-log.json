@@ -739,9 +739,14 @@
           "topic": "New guidelines on carbon capture in the US announced today",
           "slug": "carbon-capture-gui",
           "reserved_at": "2026-09-22T17:38:29.777Z"
+        },
+        {
+          "topic": "Material Science Study Reveals New Properties of Nanomaterials",
+          "slug": "nanomaterials-new-properties-for-cosmetics-solar-energy",
+          "reserved_at": "2026-09-22T18:23:45.315Z"
         }
       ],
-      "last_generated": "2026-09-22T17:38:29.777Z"
+      "last_generated": "2026-09-22T18:23:45.315Z"
     },
     "14": {
       "channel_name": "Photosyn",
