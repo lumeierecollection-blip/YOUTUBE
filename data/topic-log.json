@@ -1301,10 +1301,16 @@
       "last_generated": null
     },
     "43": {
-      "channel_name": "Fit Science Lab",
-      "niche": "Home Fitness & Recovery Science",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Trace",
+      "niche": "Forensic Science",
+      "used_topics": [
+        {
+          "topic": "Ballistics Analysis Reveals New Clues in 2021 Shooting",
+          "slug": "ballistics-analysis-2021-shooting-reveals-new-clues",
+          "reserved_at": "2026-09-22T18:03:44.400Z"
+        }
+      ],
+      "last_generated": "2026-09-22T18:03:44.400Z"
     },
     "44": {
       "channel_name": "Skill Stack",
