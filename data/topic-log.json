@@ -1645,9 +1645,14 @@
           "topic": "Great Barrier Reef Conservation",
           "slug": "great-barrier-reef-conservation-now",
           "reserved_at": "2026-09-22T19:53:02.307Z"
+        },
+        {
+          "topic": "Ocean currents play role in 2023 North Atlantic hurricane recovery",
+          "slug": "ocean-currents-play-role-in-2023-north-atlantic-hurricane-re",
+          "reserved_at": "2026-09-22T21:17:55.369Z"
         }
       ],
-      "last_generated": "2026-09-22T19:53:02.308Z"
+      "last_generated": "2026-09-22T21:17:55.369Z"
     },
     "42": {
       "channel_name": "Waveform",
