@@ -1430,9 +1430,14 @@
           "topic": "Recently-updated telescope technology for astrophotography.",
           "slug": "updated-telescope-technology",
           "reserved_at": "2026-09-22T19:23:57.035Z"
+        },
+        {
+          "topic": "Improved telescope technology enables sharper galaxy images",
+          "slug": "telescope-technology-enables-sharper-galaxy-images-2026",
+          "reserved_at": "2026-09-22T19:51:40.923Z"
         }
       ],
-      "last_generated": "2026-09-22T19:23:57.035Z"
+      "last_generated": "2026-09-22T19:51:40.923Z"
     },
     "37": {
       "channel_name": "Grid",
