@@ -1381,10 +1381,16 @@
       "last_generated": "2026-09-22T18:07:38.905Z"
     },
     "45": {
-      "channel_name": "Channel Decoded",
-      "niche": "Marketing Strategy & Channel Breakdowns",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Lift",
+      "niche": "Aerodynamics & Flight",
+      "used_topics": [
+        {
+          "topic": "Bird wing shape breaks aerodynamics paradigm",
+          "slug": "bird-wing-shape-breaks-aerodynamics-paradigm",
+          "reserved_at": "2026-09-22T18:20:17.668Z"
+        }
+      ],
+      "last_generated": "2026-09-22T18:20:17.669Z"
     },
     "46": {
       "channel_name": "Interview Insider",
