@@ -1216,9 +1216,14 @@
           "topic": "CRISPR Gene Editing Advances for Rare Diseases (forbes, 2022)",
           "slug": "crispr-gene-editing-rare-diseases",
           "reserved_at": "2026-09-22T19:04:26.920Z"
+        },
+        {
+          "topic": "Gene editing could revolutionize medicine, but what are the risks?",
+          "slug": "gene-editing-revolutionize-medicine",
+          "reserved_at": "2026-09-22T19:58:23.539Z"
         }
       ],
-      "last_generated": "2026-09-22T19:04:26.920Z"
+      "last_generated": "2026-09-22T19:58:23.539Z"
     },
     "30": {
       "channel_name": "Cold Case DNA",
