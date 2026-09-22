@@ -142,6 +142,9 @@ function runChild(cmd, args, { label }) {
       process.stderr.write(`[${label}] ${d}`);
     });
     child.on("close", (code) => resolve({ code, stdout, stderr }));
+    child.on("error", (err) => {
+      resolve({ code: null, stdout, stderr: `${stderr}\n${err.message}` });
+    });
   });
 }
 
@@ -232,7 +235,7 @@ async function detectSilence(videoPath, audioPath) {
       "-v", "error", "-show_entries", "format=duration",
       "-of", "default=noprint_wrappers=1:nokey=1", audioPath,
     ], { label: "silence/probe-audio" });
-    if (dur.code !== 0) {
+    if (dur.code === null || dur.code !== 0) {
       console.warn("ffprobe not available — skipping silence detection.");
       return { ok: true, gaps: [] };
     }
@@ -253,6 +256,11 @@ async function detectSilence(videoPath, audioPath) {
       "-f", "null", "-",
     ], { label: "silence/detect" }));
   } catch {
+    console.warn("ffmpeg not available — skipping silence detection.");
+    return { ok: true, gaps: [] };
+  }
+
+  if (code === null) {
     console.warn("ffmpeg not available — skipping silence detection.");
     return { ok: true, gaps: [] };
   }
