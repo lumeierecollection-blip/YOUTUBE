@@ -663,10 +663,16 @@
       "last_generated": null
     },
     "14": {
-      "channel_name": "Quantum Canvas",
-      "niche": "Physics & Cosmology Explainers",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Photosyn",
+      "niche": "Botany & Plant Science",
+      "used_topics": [
+        {
+          "topic": "New research reveals crucial role of anthocyanins in plant communication",
+          "slug": "anthocyanins-in-plant-communication",
+          "reserved_at": "2026-09-22T15:58:40.662Z"
+        }
+      ],
+      "last_generated": "2026-09-22T15:58:40.663Z"
     },
     "15": {
       "channel_name": "Earth Signal",
