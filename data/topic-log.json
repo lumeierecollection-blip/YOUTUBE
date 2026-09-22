@@ -1486,9 +1486,14 @@
           "topic": "Diagnosing Rare Hereditary Angioedema in the ER",
           "slug": "diagnosing-rare-hereditary-angioedema-er",
           "reserved_at": "2026-09-19T11:07:30.887Z"
+        },
+        {
+          "topic": "Lead Poisoning in Children",
+          "slug": "lead-poisoning-children",
+          "reserved_at": "2026-09-22T19:43:42.477Z"
         }
       ],
-      "last_generated": "2026-09-19T11:07:30.887Z"
+      "last_generated": "2026-09-22T19:43:42.478Z"
     },
     "40": {
       "channel_name": "MedBrief",
