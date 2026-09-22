@@ -1634,9 +1634,14 @@
           "topic": "latest DNA analysis techniques",
           "slug": "latest-dna-analysis-techniques",
           "reserved_at": "2026-09-22T20:01:55.560Z"
+        },
+        {
+          "topic": "Dna Evidence Analysis",
+          "slug": "dna-evidence-analysis",
+          "reserved_at": "2026-09-22T20:39:36.216Z"
         }
       ],
-      "last_generated": "2026-09-22T20:01:55.561Z"
+      "last_generated": "2026-09-22T20:39:36.216Z"
     },
     "44": {
       "channel_name": "Skill Stack",
