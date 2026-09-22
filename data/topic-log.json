@@ -763,10 +763,16 @@
       "last_generated": null
     },
     "20": {
-      "channel_name": "QuickLearn",
-      "niche": "CrashCourse Style — Education",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Abyssal",
+      "niche": "Deep Ocean & Marine Life",
+      "used_topics": [
+        {
+          "topic": "Deep sea creatures study reveals new species of giant squid",
+          "slug": "giant-squid-marina-trench-study",
+          "reserved_at": "2026-09-22T16:20:46.660Z"
+        }
+      ],
+      "last_generated": "2026-09-22T16:20:46.660Z"
     },
     "21": {
       "channel_name": "Lunar Frequencies",
