@@ -1029,9 +1029,14 @@
           "topic": "Quantum Computing Advantages Over Classical Computing",
           "slug": "quantum-computing-advantages",
           "reserved_at": "2026-09-22T19:06:11.118Z"
+        },
+        {
+          "topic": "Quantum entanglement and superposition: Latest research on its implications",
+          "slug": "quantum-entanglement-and-superposition-latest-research-on-it",
+          "reserved_at": "2026-09-22T19:42:05.959Z"
         }
       ],
-      "last_generated": "2026-09-22T19:06:11.118Z"
+      "last_generated": "2026-09-22T19:42:05.960Z"
     },
     "24": {
       "channel_name": "Flavor Lab",
