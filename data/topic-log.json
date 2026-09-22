@@ -1673,9 +1673,14 @@
           "topic": "ethics of artificial consciousness",
           "slug": "ethics-of-artificial-consciousness",
           "reserved_at": "2026-09-22T22:10:54.345Z"
+        },
+        {
+          "topic": "The Ethics of AI Development in the Digital Age",
+          "slug": "ethics-of-ai-development-in-the-digital-age",
+          "reserved_at": "2026-09-22T22:15:06.867Z"
         }
       ],
-      "last_generated": "2026-09-22T22:10:54.345Z"
+      "last_generated": "2026-09-22T22:15:06.868Z"
     },
     "41": {
       "channel_name": "Tidal",
