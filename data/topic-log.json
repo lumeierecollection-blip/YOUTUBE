@@ -1618,9 +1618,14 @@
           "topic": "Existentialism and Identity: A Study by Jean-Paul Sartre",
           "slug": "existence-and-identity-sartre",
           "reserved_at": "2026-09-22T20:14:18.990Z"
+        },
+        {
+          "topic": "Pillars of existence: A philosophical inquiry",
+          "slug": "existence-pillars",
+          "reserved_at": "2026-09-22T21:14:35.122Z"
         }
       ],
-      "last_generated": "2026-09-22T20:14:18.990Z"
+      "last_generated": "2026-09-22T21:14:35.123Z"
     },
     "41": {
       "channel_name": "Tidal",
