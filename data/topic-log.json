@@ -1104,10 +1104,16 @@
       "last_generated": "2026-09-22T18:35:56.175Z"
     },
     "29": {
-      "channel_name": "Global Crime Files",
-      "niche": "International & Unreported Crime",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Gene Lab",
+      "niche": "Biotechnology",
+      "used_topics": [
+        {
+          "topic": "gene editing with CRISPR",
+          "slug": "gene-editing-with-crispr",
+          "reserved_at": "2026-09-22T18:44:41.230Z"
+        }
+      ],
+      "last_generated": "2026-09-22T18:44:41.231Z"
     },
     "30": {
       "channel_name": "Cold Case DNA",
