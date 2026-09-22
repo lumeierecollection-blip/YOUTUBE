@@ -1498,9 +1498,14 @@
           "topic": "faa-directives-boeing-737-max-jets Phosphorescent 8/2026 US Airline Disaster",
           "slug": "faa-directives-boeing-737-max-jets",
           "reserved_at": "2026-09-22T19:44:40.536Z"
+        },
+        {
+          "topic": "How the UK Air Traffic Control Meltdown Reveals Widespread Software Vulnerabilities",
+          "slug": "september-2026-uk-air-traffic-control-software-glitch-report",
+          "reserved_at": "2026-09-22T21:31:00.710Z"
         }
       ],
-      "last_generated": "2026-09-22T19:44:40.536Z"
+      "last_generated": "2026-09-22T21:31:00.711Z"
     },
     "36": {
       "channel_name": "Pixel Cosmos",
