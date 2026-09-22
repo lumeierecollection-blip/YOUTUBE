@@ -863,9 +863,14 @@
           "topic": "Deep sea creatures study reveals new species of giant squid",
           "slug": "giant-squid-marina-trench-study",
           "reserved_at": "2026-09-22T16:20:46.660Z"
+        },
+        {
+          "topic": "Glowing Deep-Sea Fish Found in the Mariana Trench",
+          "slug": "glowing-deep-sea-fish-trench",
+          "reserved_at": "2026-09-22T17:53:09.002Z"
         }
       ],
-      "last_generated": "2026-09-22T16:20:46.660Z"
+      "last_generated": "2026-09-22T17:53:09.002Z"
     },
     "21": {
       "channel_name": "Echoes",
