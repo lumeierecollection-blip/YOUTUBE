@@ -1567,9 +1567,14 @@
           "topic": "Benefits and drawbacks of prioritizing pedestrian infrastructure in urban planning",
           "slug": "pedestrian-infrastructure-urban-planning",
           "reserved_at": "2026-09-22T21:29:19.773Z"
+        },
+        {
+          "topic": "Urban design and its impact on public health",
+          "slug": "urban-design-and-public-health",
+          "reserved_at": "2026-09-22T21:53:20.203Z"
         }
       ],
-      "last_generated": "2026-09-22T21:29:19.773Z"
+      "last_generated": "2026-09-22T21:53:20.203Z"
     },
     "38": {
       "channel_name": "Strata",
