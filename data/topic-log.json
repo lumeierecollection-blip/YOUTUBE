@@ -433,9 +433,14 @@
           "topic": "Formant-Informed Harmony",
           "slug": "formant-informed-harmony",
           "reserved_at": "2026-09-22T16:33:52.555Z"
+        },
+        {
+          "topic": "The psychological impact of tempo changes on listener perception",
+          "slug": "tempo-fluctuations-electronic-music-perception",
+          "reserved_at": "2026-09-22T17:27:17.814Z"
         }
       ],
-      "last_generated": "2026-09-22T16:33:52.555Z"
+      "last_generated": "2026-09-22T17:27:17.814Z"
     },
     "6": {
       "channel_name": "Nash",
