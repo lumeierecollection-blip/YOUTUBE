@@ -1584,9 +1584,14 @@
           "topic": "New fossil discovery in Mexico",
           "slug": "new-fossil-discovery-mexico",
           "reserved_at": "2026-09-22T19:33:55.615Z"
+        },
+        {
+          "topic": "Fossil record from Burgess Shale shows evidence of rapid evolution in Cambrian organisms",
+          "slug": "burgess-shale-fossil-record",
+          "reserved_at": "2026-09-22T21:47:08.932Z"
         }
       ],
-      "last_generated": "2026-09-22T19:33:55.615Z"
+      "last_generated": "2026-09-22T21:47:08.932Z"
     },
     "39": {
       "channel_name": "Case File Medicine",
