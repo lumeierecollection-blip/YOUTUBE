@@ -976,9 +976,14 @@
           "topic": "Maillard Reaction Optimization Techniques in Flavor Chemistry",
           "slug": "maillard-reaction-optimization-flavor-chemistry",
           "reserved_at": "2026-09-22T18:19:05.099Z"
+        },
+        {
+          "topic": "The Maillard Reaction's Impact on Food Quality in Culinary Science",
+          "slug": "maillard-reaction-impact-on-food-quality-2026",
+          "reserved_at": "2026-09-22T18:41:29.190Z"
         }
       ],
-      "last_generated": "2026-09-22T18:19:05.100Z"
+      "last_generated": "2026-09-22T18:41:29.190Z"
     },
     "25": {
       "channel_name": "Form",
