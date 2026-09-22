@@ -1695,9 +1695,14 @@
           "topic": "Ocean currents play role in 2023 North Atlantic hurricane recovery",
           "slug": "ocean-currents-play-role-in-2023-north-atlantic-hurricane-re",
           "reserved_at": "2026-09-22T21:17:55.369Z"
+        },
+        {
+          "topic": "Tidal Currents and Global Climate Models",
+          "slug": "tidal-currents-global-climate-models",
+          "reserved_at": "2026-09-22T22:12:24.574Z"
         }
       ],
-      "last_generated": "2026-09-22T21:17:55.369Z"
+      "last_generated": "2026-09-22T22:12:24.575Z"
     },
     "42": {
       "channel_name": "Waveform",
