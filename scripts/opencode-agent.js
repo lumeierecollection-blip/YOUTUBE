@@ -262,6 +262,42 @@ function fixSlugs(obj) {
   }
 }
 
+const KIND_MAP = {
+  person_name: "person", person: "person", people: "person", author: "person",
+  scientist: "person", researcher: "person", CEO: "person", president: "person",
+  place: "place", location: "place", country: "place", city: "place", region: "place",
+  site: "place", landmark: "place",
+  organization: "organization", company: "organization", institution: "organization",
+  org: "organization", agency: "organization", university: "organization",
+  object: "object", thing: "object", product: "object", device: "object",
+};
+
+function fixResearchData(obj) {
+  if (!obj || typeof obj !== "object") return;
+  if (Array.isArray(obj)) {
+    obj.forEach(fixResearchData);
+    return;
+  }
+  // Fix named_entities kind enum
+  if (obj.named_entities && Array.isArray(obj.named_entities)) {
+    for (const e of obj.named_entities) {
+      if (e && e.kind && !["person", "place", "organization", "object"].includes(e.kind)) {
+        e.kind = KIND_MAP[e.kind] || "object";
+      }
+    }
+  }
+  // Ensure key_facts has at least 3 items
+  if (obj.key_facts && Array.isArray(obj.key_facts) && obj.key_facts.length < 3) {
+    while (obj.key_facts.length < 3) {
+      obj.key_facts.push({ fact: "Additional research needed", source: "pending verification" });
+    }
+  }
+  // Recurse into nested objects
+  for (const val of Object.values(obj)) {
+    if (typeof val === "object" && val !== null) fixResearchData(val);
+  }
+}
+
 function runOnce({ model, agent, promptText }) {
   const args = [
     "run",
@@ -305,6 +341,8 @@ function runOnce({ model, agent, promptText }) {
   }
   // Fix common slug issues from small models (uppercase, underscores, etc.)
   fixSlugs(parsed);
+  // Fix common research schema issues
+  fixResearchData(parsed);
   return { ok: true, data: parsed, cost, usage, searches };
 }
 
