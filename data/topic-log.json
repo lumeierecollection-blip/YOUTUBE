@@ -549,9 +549,14 @@
           "topic": "Perceptual Learning Theory and Expertise in Cognitive Neuroscience",
           "slug": "perceptual-learning-theory-expertise",
           "reserved_at": "2026-09-22T17:14:27.481Z"
+        },
+        {
+          "topic": "Ventral Hippocampus plays a critical role in rapid fear memory formation",
+          "slug": "ventral-hippocampus-fear-memory",
+          "reserved_at": "2026-09-22T17:58:15.772Z"
         }
       ],
-      "last_generated": "2026-09-22T17:14:27.481Z"
+      "last_generated": "2026-09-22T17:58:15.772Z"
     },
     "9": {
       "channel_name": "Border Lines",
