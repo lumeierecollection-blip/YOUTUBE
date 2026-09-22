@@ -1803,9 +1803,14 @@
           "topic": "Bird wing shape breaks aerodynamics paradigm",
           "slug": "bird-wing-shape-breaks-aerodynamics-paradigm",
           "reserved_at": "2026-09-22T18:20:17.668Z"
+        },
+        {
+          "topic": "Recent studies on the lift dynamics of bird wings",
+          "slug": "recent-studies-on-bird-wing-lift-dynamics",
+          "reserved_at": "2026-09-22T21:56:44.118Z"
         }
       ],
-      "last_generated": "2026-09-22T18:20:17.669Z"
+      "last_generated": "2026-09-22T21:56:44.118Z"
     },
     "46": {
       "channel_name": "Interview Insider",
