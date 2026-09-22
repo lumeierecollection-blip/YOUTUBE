@@ -1056,9 +1056,14 @@
           "topic": "The Maillard Reaction's Impact on Food Quality in Culinary Science",
           "slug": "maillard-reaction-impact-on-food-quality-2026",
           "reserved_at": "2026-09-22T18:41:29.190Z"
+        },
+        {
+          "topic": "Flavor Lab - Optimization of Flavor Compounds based on Maillard Reaction Kinetics",
+          "slug": "flavor-compound-blending-maillard-reaction-2026",
+          "reserved_at": "2026-09-22T19:45:18.212Z"
         }
       ],
-      "last_generated": "2026-09-22T18:41:29.190Z"
+      "last_generated": "2026-09-22T19:45:18.212Z"
     },
     "25": {
       "channel_name": "Form",
