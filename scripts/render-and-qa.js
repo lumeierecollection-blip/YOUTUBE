@@ -64,6 +64,7 @@ function parseArgs(argv) {
     scriptOverride: flag("--script"),
     outputOverride: flag("--output"),
     dryRun: argv.includes("--dry-run"),
+    skipQA: argv.includes("--skip-qa"),
   };
 }
 
@@ -514,7 +515,7 @@ function findGeminiReviewReport(channelId, scriptPath) {
 
 /* ── Correction loop ─────────────────────────────────────────────── */
 
-async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride) {
+async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride, skipQA) {
   let correctionsPath = null;
   // When directives were enforced on the previous attempt, this holds the
   // EDITED plan. The next attempt renders it directly rather than asking
@@ -586,6 +587,12 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
         try { rmSync(result.outputPath); } catch {}
       }
       continue;
+    }
+
+    // Step 2c: Skip QA when --skip-qa is set (local dev without ffmpeg)
+    if (skipQA) {
+      console.log(`--skip-qa: skipping QA for ${basename(result.outputPath)}`);
+      return { skipped: false, ok: true, outputPath: result.outputPath, attempt: 1, geminiVerdict: "SKIP_QA", qaGatePass: true };
     }
 
     // Step 3: QA (frame extraction + audit + Gemini plan-compliance review)
@@ -725,7 +732,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
 /* ── Main ────────────────────────────────────────────────────────── */
 
 async function main() {
-  const { channelOverride, scriptOverride, outputOverride, dryRun } = parseArgs(process.argv.slice(2));
+  const { channelOverride, scriptOverride, outputOverride, dryRun, skipQA } = parseArgs(process.argv.slice(2));
   const runId = process.env.GITHUB_RUN_ID || String(Date.now());
   const work = planWork({ channelOverride, scriptOverride });
 
@@ -752,7 +759,7 @@ async function main() {
 
   for (const { channelId, scriptPath } of work) {
     const format = formatFromScriptPath(scriptPath);
-    const result = await renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride);
+    const result = await renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride, skipQA);
     if (result.skipped) continue;
     if (!result.ok) {
       renderFailed++;
