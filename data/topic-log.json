@@ -1618,10 +1618,16 @@
       "last_generated": "2026-09-22T18:49:04.037Z"
     },
     "50": {
-      "channel_name": "Gadget Kitchen",
-      "niche": "Air Fryer & Kitchen Gadget Reviews",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Mind Mechanics",
+      "niche": "Brain, Psychology & Human Behavior",
+      "used_topics": [
+        {
+          "topic": "dopamine loops affect stress responses",
+          "slug": "dopamine-loops-affect-stress-responses",
+          "reserved_at": "2026-09-22T18:50:20.209Z"
+        }
+      ],
+      "last_generated": "2026-09-22T18:50:20.209Z"
     }
   }
 }
