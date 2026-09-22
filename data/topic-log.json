@@ -787,10 +787,16 @@
       "last_generated": "2026-09-22T16:24:29.217Z"
     },
     "22": {
-      "channel_name": "Panel Pulse",
-      "niche": "Manhwa/Webtoon Recaps",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Mind Lab",
+      "niche": "Psychology & Behavior",
+      "used_topics": [
+        {
+          "topic": "Cognitive biases affect decision-making in a predictable way",
+          "slug": "cognitive-biases-affect-decision-making-in-a-predictable-way",
+          "reserved_at": "2026-09-22T16:27:51.198Z"
+        }
+      ],
+      "last_generated": "2026-09-22T16:27:51.198Z"
     },
     "23": {
       "channel_name": "C-Drama Decoded",
