@@ -1272,9 +1272,14 @@
           "topic": "Recent breakthroughs in brain plasticity",
           "slug": "recent-breakthroughs-in-brain-plasticity",
           "reserved_at": "2026-09-22T19:03:19.243Z"
+        },
+        {
+          "topic": "Brain plasticity and its impact on anxiety",
+          "slug": "brain-plasticity-anxiety",
+          "reserved_at": "2026-09-22T19:24:15.529Z"
         }
       ],
-      "last_generated": "2026-09-22T19:03:19.243Z"
+      "last_generated": "2026-09-22T19:24:15.530Z"
     },
     "33": {
       "channel_name": "Cipher",
