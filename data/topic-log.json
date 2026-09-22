@@ -418,9 +418,14 @@
           "topic": "Formant-Informed Harmony: A Structural Model of Chords",
           "slug": "formant-informed-harmony-structural-model",
           "reserved_at": "2026-09-21T22:46:18.617Z"
+        },
+        {
+          "topic": "Why Duration Cues Beat Intensity in Complex Rhythms",
+          "slug": "duration-cues-beat-intensity-complex-rhythms",
+          "reserved_at": "2026-09-22T09:29:37.363Z"
         }
       ],
-      "last_generated": "2026-09-21T22:46:18.617Z"
+      "last_generated": "2026-09-22T09:29:37.363Z"
     },
     "6": {
       "channel_name": "Nash",
