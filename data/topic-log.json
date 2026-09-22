@@ -1235,10 +1235,16 @@
       "last_generated": "2026-09-19T11:07:30.886Z"
     },
     "32": {
-      "channel_name": "Machine Anatomy",
-      "niche": "3D Industrial Animation Explainers",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Neural",
+      "niche": "Neuroscience & Brain",
+      "used_topics": [
+        {
+          "topic": "Recent breakthroughs in brain plasticity",
+          "slug": "recent-breakthroughs-in-brain-plasticity",
+          "reserved_at": "2026-09-22T19:03:19.243Z"
+        }
+      ],
+      "last_generated": "2026-09-22T19:03:19.243Z"
     },
     "33": {
       "channel_name": "Cipher",
