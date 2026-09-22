@@ -1530,9 +1530,14 @@
           "topic": "New telescope technology for astrophotography",
           "slug": "new-telescope-technology-for-astrophotography",
           "reserved_at": "2026-09-22T21:33:45.970Z"
+        },
+        {
+          "topic": "New NASA study on the impact of space debris on Earth's orbit",
+          "slug": "nasa-space-debris-study-2026",
+          "reserved_at": "2026-09-22T21:36:03.875Z"
         }
       ],
-      "last_generated": "2026-09-22T21:33:45.970Z"
+      "last_generated": "2026-09-22T21:36:03.875Z"
     },
     "37": {
       "channel_name": "Grid",
