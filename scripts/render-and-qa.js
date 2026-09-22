@@ -225,25 +225,37 @@ async function renderOne(channelId, scriptPath, format) {
 /* ── Silence Detection ───────────────────────────────────────────── */
 
 async function detectSilence(videoPath, audioPath) {
-  const FFPROBE = "ffprobe";
   // Get audio duration
   let audioDuration = 0;
   try {
-    const dur = await runChild(FFPROBE, [
+    const dur = await runChild("ffprobe", [
       "-v", "error", "-show_entries", "format=duration",
       "-of", "default=noprint_wrappers=1:nokey=1", audioPath,
     ], { label: "silence/probe-audio" });
+    if (dur.code !== 0) {
+      console.warn("ffprobe not available — skipping silence detection.");
+      return { ok: true, gaps: [] };
+    }
     audioDuration = parseFloat(dur.stdout.trim()) || 0;
-  } catch {}
+  } catch {
+    console.warn("ffprobe not available — skipping silence detection.");
+    return { ok: true, gaps: [] };
+  }
 
   if (audioDuration <= 0) return { ok: true, gaps: [] };
 
   // Detect silence gaps > 0.5s using ffmpeg silencedetect
-  const { code, stdout } = await runChild("ffmpeg", [
-    "-i", videoPath,
-    "-af", "silencedetect=noise=-40dB:d=0.5",
-    "-f", "null", "-",
-  ], { label: "silence/detect" });
+  let code, stdout;
+  try {
+    ({ code, stdout } = await runChild("ffmpeg", [
+      "-i", videoPath,
+      "-af", "silencedetect=noise=-40dB:d=0.5",
+      "-f", "null", "-",
+    ], { label: "silence/detect" }));
+  } catch {
+    console.warn("ffmpeg not available — skipping silence detection.");
+    return { ok: true, gaps: [] };
+  }
 
   // Parse silencedetect output for silence_start/silence_end
   const gaps = [];
