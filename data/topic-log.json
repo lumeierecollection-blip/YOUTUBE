@@ -825,9 +825,14 @@
           "topic": "Plate tectonics - Ongoing Mexico earthquake activity 2023",
           "slug": "mexico-earthquake-activity-2023",
           "reserved_at": "2026-09-22T18:02:54.719Z"
+        },
+        {
+          "topic": "Plate tectonics - 6.2 earthquake in Anchorage 2025",
+          "slug": "anchorage-2025-earthquake-plate-tectonics",
+          "reserved_at": "2026-09-22T18:41:45.682Z"
         }
       ],
-      "last_generated": "2026-09-22T18:02:54.719Z"
+      "last_generated": "2026-09-22T18:41:45.682Z"
     },
     "17": {
       "channel_name": "Epoch Chronicles",
