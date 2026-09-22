@@ -839,10 +839,16 @@
       "last_generated": "2026-09-22T16:12:27.508Z"
     },
     "19": {
-      "channel_name": "Frontline Archives",
-      "niche": "HistoryMarche Style — Military History",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Stellar",
+      "niche": "Astrophysics & Stars",
+      "used_topics": [
+        {
+          "topic": "Recent breakthrough in stellar evolution detection",
+          "slug": "stellar-evolution-detection",
+          "reserved_at": "2026-09-22T17:48:00.786Z"
+        }
+      ],
+      "last_generated": "2026-09-22T17:48:00.786Z"
     },
     "20": {
       "channel_name": "Abyssal",
