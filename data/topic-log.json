@@ -440,9 +440,14 @@
           "topic": "Foundation models break classical Nash equilibrium",
           "slug": "foundation-models-break-nash-equilibrium",
           "reserved_at": "2026-09-22T09:32:46.487Z"
+        },
+        {
+          "topic": "Nash Equilibrium and Dynamic Games Break the Foundations of Artificial Intelligence",
+          "slug": "nash-equilibrium-dynamic-games-ai",
+          "reserved_at": "2026-09-22T15:26:36.329Z"
         }
       ],
-      "last_generated": "2026-09-22T09:32:46.487Z"
+      "last_generated": "2026-09-22T15:26:36.329Z"
     },
     "7": {
       "channel_name": "Dead Companies",
