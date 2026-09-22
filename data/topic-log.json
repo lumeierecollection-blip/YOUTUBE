@@ -1258,10 +1258,16 @@
       "last_generated": null
     },
     "41": {
-      "channel_name": "Mind & Body Files",
-      "niche": "Health & Psychology — Kurzgesagt Style",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Tidal",
+      "niche": "Oceanography & Marine Science",
+      "used_topics": [
+        {
+          "topic": "Why do ocean currents behave differently during monsoons?",
+          "slug": "why-ocean-currents-behave-differently-during-monsoons",
+          "reserved_at": "2026-09-22T17:54:54.288Z"
+        }
+      ],
+      "last_generated": "2026-09-22T17:54:54.289Z"
     },
     "42": {
       "channel_name": "NutriDecode",
