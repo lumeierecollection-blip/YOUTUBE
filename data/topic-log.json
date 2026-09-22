@@ -1579,9 +1579,14 @@
           "topic": "Ballistics Analysis Reveals New Clues in 2021 Shooting",
           "slug": "ballistics-analysis-2021-shooting-reveals-new-clues",
           "reserved_at": "2026-09-22T18:03:44.400Z"
+        },
+        {
+          "topic": "latest DNA analysis techniques",
+          "slug": "latest-dna-analysis-techniques",
+          "reserved_at": "2026-09-22T20:01:55.560Z"
         }
       ],
-      "last_generated": "2026-09-22T18:03:44.400Z"
+      "last_generated": "2026-09-22T20:01:55.561Z"
     },
     "44": {
       "channel_name": "Skill Stack",
