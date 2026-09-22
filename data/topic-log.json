@@ -845,9 +845,14 @@
           "topic": "Plate tectonics - New Yellowstone Fault System Study Reveals Insights into Earth's Geology",
           "slug": "yellowstone-fault-system-study",
           "reserved_at": "2026-09-22T18:52:52.246Z"
+        },
+        {
+          "topic": "Plate tectonics - Study suggests earthquakes may trigger massive volcanic eruptions.",
+          "slug": "plate-tectonics-volcanic-eruption",
+          "reserved_at": "2026-09-22T18:58:37.888Z"
         }
       ],
-      "last_generated": "2026-09-22T18:52:52.246Z"
+      "last_generated": "2026-09-22T18:58:37.888Z"
     },
     "17": {
       "channel_name": "Epoch Chronicles",
