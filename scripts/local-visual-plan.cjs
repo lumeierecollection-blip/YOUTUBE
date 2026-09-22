@@ -292,8 +292,8 @@ function buildBeat(cue, mechanism, headline, reason, number) {
         { label_a: "EXPECTED", label_b: "ACTUAL" },
       );
       compositionObjects.push(
-        { kind: "field", anchor: "center", motion: "static", label: "EXPECTED", emphasis: false },
-        { kind: "field", anchor: "center", motion: "fade_in", label: "ACTUAL", emphasis: true },
+        { kind: "field", anchor: "center", motion: "hold", label: "EXPECTED", emphasis: false },
+        { kind: "field", anchor: "center", motion: "appear", label: "ACTUAL", emphasis: true },
       );
       break;
     case "EVIDENCE_FIGURE":
@@ -305,41 +305,41 @@ function buildBeat(cue, mechanism, headline, reason, number) {
     case "ACTION_CONSEQUENCE":
       objects.push({ cause: "CAUSE", effect: "EFFECT" });
       compositionObjects.push(
-        { kind: "block", anchor: "upper", motion: "static", label: "CAUSE", emphasis: false },
-        { kind: "block", anchor: "lower", motion: "slide_in", label: "EFFECT", emphasis: true },
+        { kind: "block", anchor: "upper_third", motion: "hold", label: "CAUSE", emphasis: false },
+        { kind: "block", anchor: "lower_third", motion: "rise", label: "EFFECT", emphasis: true },
       );
       break;
     case "PHYSICAL_GROWTH":
       objects.push({ figure: number || headline });
       compositionObjects.push(
         { kind: "block", anchor: "center", motion: "grow", label: headline, emphasis: true },
-        { kind: "field", anchor: "beside_subject", motion: "fade_in", label: number || "", emphasis: false },
+        { kind: "field", anchor: "right", motion: "appear", label: number || "", emphasis: false },
       );
       break;
     case "VISIBLE_CONSUMPTION":
       objects.push({ figure: number || headline });
       compositionObjects.push(
-        { kind: "stack", anchor: "center", motion: "static", label: "total", emphasis: false },
-        { kind: "block", anchor: "overlay", motion: "shrink", label: number || headline, emphasis: true },
+        { kind: "stack", anchor: "center", motion: "hold", label: "total", emphasis: false, scale: 1.2, count: 4 },
+        { kind: "block", anchor: "center", motion: "drain", label: number || headline, emphasis: true, scale: 2.0 },
       );
       break;
     case "SURFACE_AND_BENEATH":
       objects.push({ label_a: "CLAIM", label_b: "REALITY" });
       compositionObjects.push(
-        { kind: "field", anchor: "top", motion: "static", label: "CLAIM", emphasis: false },
-        { kind: "field", anchor: "center", motion: "slide_in", label: "REALITY", emphasis: true },
+        { kind: "field", anchor: "top", motion: "hold", label: "CLAIM", emphasis: false },
+        { kind: "field", anchor: "center", motion: "rise", label: "REALITY", emphasis: true },
       );
       break;
     case "PROPORTIONAL_OBJECTS":
       objects.push({ label_a: "A", label_b: "B" });
       compositionObjects.push(
-        { kind: "bar", anchor: "left", motion: "grow", label: "A", emphasis: false },
-        { kind: "bar", anchor: "right", motion: "grow", label: "B", emphasis: true },
+        { kind: "bar", anchor: "left", motion: "grow", label: "A", emphasis: false, scale: 1.5, count: 3 },
+        { kind: "bar", anchor: "right", motion: "grow", label: "B", emphasis: true, scale: 1.5, count: 3 },
       );
       break;
     default: // TYPOGRAPHY
       compositionObjects.push(
-        { kind: "field", anchor: "center", motion: "fade_in", label: headline, emphasis: true },
+        { kind: "grid", anchor: "center", motion: "appear", label: headline, emphasis: true },
       );
       break;
   }
