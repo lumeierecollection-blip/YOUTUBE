@@ -745,9 +745,14 @@
           "topic": "Plate tectonics - 2023 Pacific Ring of Fire earthquake, 7.4 magnitude, 2023-04-20",
           "slug": "pacific-ring-of-fire-earthquake",
           "reserved_at": "2026-09-22T16:06:16.207Z"
+        },
+        {
+          "topic": "Lava flows in Yellowstone",
+          "slug": "lava-in-yellowstone",
+          "reserved_at": "2026-09-22T17:30:52.788Z"
         }
       ],
-      "last_generated": "2026-09-22T16:06:16.208Z"
+      "last_generated": "2026-09-22T17:30:52.788Z"
     },
     "17": {
       "channel_name": "Epoch Chronicles",
