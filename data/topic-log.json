@@ -1719,9 +1719,14 @@
           "topic": "Dna Evidence Analysis",
           "slug": "dna-evidence-analysis",
           "reserved_at": "2026-09-22T20:39:36.216Z"
+        },
+        {
+          "topic": "Evidence analysis in firearms cases",
+          "slug": "evidence-analysis-firearms-cases",
+          "reserved_at": "2026-09-22T21:46:04.711Z"
         }
       ],
-      "last_generated": "2026-09-22T20:39:36.216Z"
+      "last_generated": "2026-09-22T21:46:04.711Z"
     },
     "44": {
       "channel_name": "Skill Stack",
