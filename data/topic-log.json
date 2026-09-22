@@ -465,9 +465,14 @@
           "topic": "AI research to enhance game theory",
           "slug": "game-theory-ai-impact",
           "reserved_at": "2026-09-22T16:34:09.748Z"
+        },
+        {
+          "topic": "Nash Equilibrium and Dynamic Games Improve AI Decision Making?",
+          "slug": "nash-equilibrium-dynamic-games-ai",
+          "reserved_at": "2026-09-22T17:40:53.095Z"
         }
       ],
-      "last_generated": "2026-09-22T16:34:09.749Z"
+      "last_generated": "2026-09-22T17:40:53.096Z"
     },
     "7": {
       "channel_name": "Dead Companies",
