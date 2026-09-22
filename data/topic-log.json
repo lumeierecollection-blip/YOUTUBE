@@ -1092,9 +1092,14 @@
           "topic": "Rising global temperatures to impact weather patterns",
           "slug": "rising-temperatures-extreme-weather",
           "reserved_at": "2026-09-22T18:31:30.993Z"
+        },
+        {
+          "topic": "2026 IPCC Climate Reports Accelerate Global Transition to Renewable Energy Technologies",
+          "slug": "ipcc-climate-proposal-2026",
+          "reserved_at": "2026-09-22T18:53:17.901Z"
         }
       ],
-      "last_generated": "2026-09-22T18:31:30.993Z"
+      "last_generated": "2026-09-22T18:53:17.901Z"
     },
     "28": {
       "channel_name": "Mythos",
