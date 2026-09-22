@@ -151,7 +151,7 @@ jobs:
 
       - name: Start Ollama and pull model
         run: |
-          ollama serve &
+          pkill ollama || true; sleep 1; ollama serve &
           sleep 5
           ollama pull llama3.2:3b
           curl -s http://localhost:11434/api/tags | head -5
@@ -175,7 +175,7 @@ jobs:
             --search-budget 2 \
             --agent pipeline-research \
             --model "$OPENCODE_MODELS_RESEARCH" \
-            --task-label discover-topics \
+            --task-label discover-topics --max-retries 4 \
             > /tmp/topics-raw.json 2> /tmp/topics-err.log
           AGENT_EXIT=$?
           set -e
@@ -291,7 +291,7 @@ jobs:
                 --schema-file schemas/research.json \
                 --agent pipeline-research \
                 --model "$OPENCODE_MODELS_RESEARCH" \
-                --task-label research --channel-id "$CH" --video-id "$SLUG" \
+                --task-label research --max-retries 4 --channel-id "$CH" --video-id "$SLUG" \
                 > /tmp/research-raw.json 2> /tmp/research-err.log
           AGENT_EXIT=$?
           set -e
