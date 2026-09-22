@@ -1853,9 +1853,14 @@
           "topic": "Bird flight: the hidden science behind lift",
           "slug": "bird-flight-hidden-science-lift",
           "reserved_at": "2026-09-22T22:53:30.237Z"
+        },
+        {
+          "topic": "Aerodynamic effects of yaw on fighter jets",
+          "slug": "aerodynamic-effects-of-yaw-on-fighter-jets",
+          "reserved_at": "2026-09-22T22:57:15.303Z"
         }
       ],
-      "last_generated": "2026-09-22T22:53:30.237Z"
+      "last_generated": "2026-09-22T22:57:15.303Z"
     },
     "46": {
       "channel_name": "Interview Insider",
