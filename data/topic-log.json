@@ -922,10 +922,16 @@
       "last_generated": "2026-09-22T18:02:13.865Z"
     },
     "23": {
-      "channel_name": "C-Drama Decoded",
-      "niche": "English-dubbed Chinese Dramas",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Quanta",
+      "niche": "Quantum Physics & Reality",
+      "used_topics": [
+        {
+          "topic": "Quantum Entanglement Study 2024",
+          "slug": "quantum-entanglement-study-2024",
+          "reserved_at": "2026-09-22T18:12:31.352Z"
+        }
+      ],
+      "last_generated": "2026-09-22T18:12:31.352Z"
     },
     "24": {
       "channel_name": "Flavor Lab",
