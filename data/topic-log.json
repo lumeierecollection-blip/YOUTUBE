@@ -1547,9 +1547,14 @@
           "topic": "Urban design innovations in infrastructure projects",
           "slug": "urban-design-innovations-in-infrastructure-projects",
           "reserved_at": "2026-09-22T20:58:54.262Z"
+        },
+        {
+          "topic": "Benefits and drawbacks of prioritizing pedestrian infrastructure in urban planning",
+          "slug": "pedestrian-infrastructure-urban-planning",
+          "reserved_at": "2026-09-22T21:29:19.773Z"
         }
       ],
-      "last_generated": "2026-09-22T20:58:54.262Z"
+      "last_generated": "2026-09-22T21:29:19.773Z"
     },
     "38": {
       "channel_name": "Strata",
