@@ -1377,9 +1377,14 @@
           "topic": " Neural Pathways and Brain Plasticity",
           "slug": "neural-pathways-and-brain-plasticity",
           "reserved_at": "2026-09-22T20:53:28.754Z"
+        },
+        {
+          "topic": "The neural basis of memory formation",
+          "slug": "neural-basis-of-memory-formation",
+          "reserved_at": "2026-09-22T21:02:08.412Z"
         }
       ],
-      "last_generated": "2026-09-22T20:53:28.754Z"
+      "last_generated": "2026-09-22T21:02:08.412Z"
     },
     "33": {
       "channel_name": "Cipher",
