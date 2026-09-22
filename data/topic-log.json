@@ -2058,9 +2058,14 @@
           "topic": "Dopamine's Role in Habit Formation (2022}",
           "slug": "dopamines-role-in-habit-formation",
           "reserved_at": "2026-09-22T22:19:36.821Z"
+        },
+        {
+          "topic": "The impact of confirmation bias on decision-making",
+          "slug": "confirmation-bias-decision-making",
+          "reserved_at": "2026-09-22T23:16:51.242Z"
         }
       ],
-      "last_generated": "2026-09-22T22:19:36.822Z"
+      "last_generated": "2026-09-22T23:16:51.242Z"
     }
   }
 }
