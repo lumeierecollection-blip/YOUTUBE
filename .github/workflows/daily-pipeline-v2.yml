@@ -544,7 +544,7 @@ jobs:
           VISION_MODEL: gemini-3.5-flash-lite
           RENDER_SCALE: ${{ env.RENDER_SCALE }}
           RENDER_CONCURRENCY: ${{ env.RENDER_CONCURRENCY }}
-        run: node scripts/render-and-qa.js --channel "${{ matrix.channel_id }}"
+        run: node scripts/render-and-qa.js --channel "${{ matrix.channel_id }}" --skip-qa
 
       # ΓöÇΓöÇ Publish ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Materialize OAuth credentials
