@@ -240,6 +240,28 @@ function extractJson(text) {
   return null;
 }
 
+function fixSlugs(obj) {
+  if (!obj || typeof obj !== "object") return;
+  if (Array.isArray(obj)) {
+    obj.forEach(fixSlugs);
+    return;
+  }
+  for (const [key, val] of Object.entries(obj)) {
+    if (key === "slug" && typeof val === "string") {
+      obj[key] = val
+        .toLowerCase()
+        .replace(/_/g, "-")
+        .replace(/[^a-z0-9-]/g, "")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "")
+        .slice(0, 60);
+      if (obj[key].length < 8) obj[key] = obj[key].padEnd(8, "x");
+    } else if (typeof val === "object" && val !== null) {
+      fixSlugs(val);
+    }
+  }
+}
+
 function runOnce({ model, agent, promptText }) {
   const args = [
     "run",
@@ -281,6 +303,8 @@ function runOnce({ model, agent, promptText }) {
   if (!parsed) {
     return { ok: false, error: `could not extract valid JSON from model output: ${text.slice(0, 500)}` };
   }
+  // Fix common slug issues from small models (uppercase, underscores, etc.)
+  fixSlugs(parsed);
   return { ok: true, data: parsed, cost, usage, searches };
 }
 
