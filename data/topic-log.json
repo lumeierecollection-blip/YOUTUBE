@@ -1606,10 +1606,16 @@
       "last_generated": "2026-09-19T17:40:18.396Z"
     },
     "49": {
-      "channel_name": "Wander Budget",
-      "niche": "Budget Adventure Travel",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Cosmic Voxels",
+      "niche": "Space Facts, Analogies, Theories & Myth Debunks",
+      "used_topics": [
+        {
+          "topic": "What cosmic analogies can explain the behavior of binary star systems?",
+          "slug": "binary-star-systems-cosmic-analogies",
+          "reserved_at": "2026-09-22T18:49:04.037Z"
+        }
+      ],
+      "last_generated": "2026-09-22T18:49:04.037Z"
     },
     "50": {
       "channel_name": "Gadget Kitchen",
