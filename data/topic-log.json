@@ -1020,10 +1020,16 @@
       "last_generated": null
     },
     "33": {
-      "channel_name": "Built to Last",
-      "niche": "Engineering Case Studies — Infrastructure",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Cipher",
+      "niche": "Cryptography & Security",
+      "used_topics": [
+        {
+          "topic": "Cryptography & Security: Math Behind Quantum Resistance",
+          "slug": "math-behind-quantum-resistance",
+          "reserved_at": "2026-09-22T17:04:53.647Z"
+        }
+      ],
+      "last_generated": "2026-09-22T17:04:53.647Z"
     },
     "34": {
       "channel_name": "Build Smart",
