@@ -45,61 +45,25 @@
                                                                      }
                                                  }
                                   },
-                     "groq":  {
-                                  "npm":  "@ai-sdk/openai-compatible",
-                                  "name":  "Groq",
-                                  "options":  {
-                                                  "baseURL":  "https://api.groq.com/openai/v1"
-                                              },
-                                  "env":  [
-                                              "GROQ_API_KEY"
-                                          ],
-                                  "models":  {
-                                                 "llama-3.3-70b-versatile":  {
-                                                                                 "name":  "Llama 3.3 70B Versatile (Groq)",
-                                                                                 "tool_call":  true,
-                                                                                 "limit":  {
-                                                                                               "output":  32768,
-                                                                                               "context":  128000
-                                                                                           }
-                                                                             },
-                                                 "mixtral-8x7b-32768":  {
-                                                                            "name":  "Mixtral 8x7B 32K (Groq)",
-                                                                            "tool_call":  true,
-                                                                            "limit":  {
-                                                                                          "output":  32768,
-                                                                                          "context":  32768
-                                                                                      }
-                                                                        }
-                                             }
-                              },
-                     "mistral":  {
-                                     "npm":  "@ai-sdk/openai-compatible",
-                                     "name":  "Mistral",
-                                     "options":  {
-                                                     "baseURL":  "https://api.mistral.ai/v1"
-                                                 },
-                                     "env":  [
-                                                 "MISTRAL_API_KEY"
-                                             ],
-                                     "models":  {
-                                                    "mistral-large-latest":  {
-                                                                                 "name":  "Mistral Large Latest",
-                                                                                 "tool_call":  true,
-                                                                                 "limit":  {
-                                                                                               "output":  32768,
-                                                                                               "context":  128000
-                                                                                           }
-                                                                             },
-                                                    "mistral-small-latest":  {
-                                                                                 "name":  "Mistral Small Latest",
-                                                                                 "tool_call":  true,
-                                                                                 "limit":  {
-                                                                                               "output":  32768,
-                                                                                               "context":  128000
-                                                                                           }
-                                                                             }
-                                                }
-                                 }
+                     "ollama":  {
+                                    "npm":  "@ai-sdk/openai-compatible",
+                                    "name":  "Ollama",
+                                    "options":  {
+                                                    "baseURL":  "http://localhost:11434/v1"
+                                                },
+                                    "env":  [
+                                                "OLLAMA_API_KEY"
+                                            ],
+                                    "models":  {
+                                                   "llama3.2:3b":  {
+                                                                       "name":  "Llama 3.2 3B (Ollama)",
+                                                                       "tool_call":  true,
+                                                                       "limit":  {
+                                                                                     "output":  8192,
+                                                                                     "context":  131072
+                                                                                 }
+                                                                   }
+                                               }
+                                }
                  }
 }

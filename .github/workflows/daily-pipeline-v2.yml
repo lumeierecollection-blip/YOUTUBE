@@ -24,9 +24,9 @@ on:
 env:
   NODE_VERSION: "22"
   PYTHON_VERSION: "3.11"
-  OPENCODE_MODELS_RESEARCH: "groq/llama-3.3-70b-versatile,groq/mixtral-8x7b-32768,mistral/mistral-large-latest"
-  OPENCODE_MODELS_REASONING: "groq/llama-3.3-70b-versatile,groq/mixtral-8x7b-32768,mistral/mistral-large-latest"
-  OPENCODE_MODELS: "groq/llama-3.3-70b-versatile,groq/mixtral-8x7b-32768,mistral/mistral-large-latest"
+  OPENCODE_MODELS_RESEARCH: "ollama/llama3.2:3b"
+  OPENCODE_MODELS_REASONING: "ollama/llama3.2:3b"
+  OPENCODE_MODELS: "ollama/llama3.2:3b"
   OPENCODE_ENABLE_EXA: "1"
   RENDER_SCALE: "0.75"
   RENDER_CONCURRENCY: "4"
@@ -138,6 +138,24 @@ jobs:
       - name: Install OpenCode
         run: npm install -g opencode-ai
 
+      # ── Cache Ollama models ────────────────────────────────────────────
+      - name: Cache Ollama models
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-llama3.2-3b
+
+      - name: Install Ollama
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+
+      - name: Start Ollama and pull model
+        run: |
+          ollama serve &
+          sleep 5
+          ollama pull llama3.2:3b
+          curl -s http://localhost:11434/api/tags | head -5
+
       # ΓöÇΓöÇ Stage A: discover topic for THIS channel ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
       - name: Discover topic
         id: discover
@@ -145,8 +163,6 @@ jobs:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: |
           set -u
           CH="${{ matrix.channel_id }}"
@@ -258,8 +274,6 @@ jobs:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: |
           set -u
           CH="${{ matrix.channel_id }}"
@@ -310,8 +324,6 @@ jobs:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: |
           set -euo pipefail
           CH="${{ matrix.channel_id }}"
