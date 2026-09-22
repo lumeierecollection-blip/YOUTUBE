@@ -1182,10 +1182,16 @@
       "last_generated": "2026-09-22T17:32:12.646Z"
     },
     "38": {
-      "channel_name": "Tech Pulse",
-      "niche": "TechLinked Style — Tech News",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Strata",
+      "niche": "Paleontology & Fossils",
+      "used_topics": [
+        {
+          "topic": "New study reveals ancient climate change clues in Australian fossil record",
+          "slug": "ancient-climate-change-clues-australian-fossil-record",
+          "reserved_at": "2026-09-22T17:41:26.919Z"
+        }
+      ],
+      "last_generated": "2026-09-22T17:41:26.919Z"
     },
     "39": {
       "channel_name": "Case File Medicine",
