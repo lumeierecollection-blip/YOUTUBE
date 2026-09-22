@@ -1668,9 +1668,14 @@
           "topic": "Pillars of existence: A philosophical inquiry",
           "slug": "existence-pillars",
           "reserved_at": "2026-09-22T21:14:35.122Z"
+        },
+        {
+          "topic": "ethics of artificial consciousness",
+          "slug": "ethics-of-artificial-consciousness",
+          "reserved_at": "2026-09-22T22:10:54.345Z"
         }
       ],
-      "last_generated": "2026-09-22T21:14:35.123Z"
+      "last_generated": "2026-09-22T22:10:54.345Z"
     },
     "41": {
       "channel_name": "Tidal",
