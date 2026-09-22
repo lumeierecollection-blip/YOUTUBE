@@ -1705,9 +1705,14 @@
           "topic": "Tidal Currents and Global Climate Models",
           "slug": "tidal-currents-global-climate-models",
           "reserved_at": "2026-09-22T22:12:24.574Z"
+        },
+        {
+          "topic": "Breakthrough in Ocean Current Research Could Change Climate Forecast",
+          "slug": "ocean-currents-change-climate-forecast",
+          "reserved_at": "2026-09-22T22:29:59.145Z"
         }
       ],
-      "last_generated": "2026-09-22T22:12:24.575Z"
+      "last_generated": "2026-09-22T22:29:59.145Z"
     },
     "42": {
       "channel_name": "Waveform",
