@@ -2068,9 +2068,14 @@
           "topic": "The impact of confirmation bias on decision-making",
           "slug": "confirmation-bias-decision-making",
           "reserved_at": "2026-09-22T23:16:51.242Z"
+        },
+        {
+          "topic": "The impact of dopamine on decision-making during times of stress",
+          "slug": "dopamine-decision-making-stress",
+          "reserved_at": "2026-09-22T23:21:17.610Z"
         }
       ],
-      "last_generated": "2026-09-22T23:16:51.242Z"
+      "last_generated": "2026-09-22T23:21:17.610Z"
     }
   }
 }
