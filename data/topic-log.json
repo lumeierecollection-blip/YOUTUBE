@@ -773,9 +773,14 @@
           "topic": "New study on collective behavior in social movements",
           "slug": "collective-behavior-in-social-movements",
           "reserved_at": "2026-09-22T17:28:46.742Z"
+        },
+        {
+          "topic": "Rent control and tenant rights, 2026",
+          "slug": "rent-control-and-tenant-rights-2026",
+          "reserved_at": "2026-09-22T18:00:41.193Z"
         }
       ],
-      "last_generated": "2026-09-22T17:28:46.742Z"
+      "last_generated": "2026-09-22T18:00:41.194Z"
     },
     "16": {
       "channel_name": "Stratum",
