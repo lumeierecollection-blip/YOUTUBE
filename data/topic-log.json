@@ -962,9 +962,14 @@
           "topic": "How Genetic Genealogy Is Transforming Cold Case Identifications",
           "slug": "genetic-genealogy-transforming-cold-case-ids",
           "reserved_at": "2026-09-21T23:10:57.812Z"
+        },
+        {
+          "topic": "GEDmatch Investigations: Case Breakdowns of DNA Genealogy in Cold Cases",
+          "slug": "gedmatch-dna-genealogy-cold-case-investigations",
+          "reserved_at": "2026-09-22T16:52:16.565Z"
         }
       ],
-      "last_generated": "2026-09-21T23:10:57.812Z"
+      "last_generated": "2026-09-22T16:52:16.565Z"
     },
     "31": {
       "channel_name": "Justice Denied",
