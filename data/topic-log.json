@@ -524,9 +524,14 @@
           "topic": "Attention and Memory Interplay",
           "slug": "attention-memory-play",
           "reserved_at": "2026-09-22T16:50:41.938Z"
+        },
+        {
+          "topic": "Perceptual Learning Theory and Expertise in Cognitive Neuroscience",
+          "slug": "perceptual-learning-theory-expertise",
+          "reserved_at": "2026-09-22T17:14:27.481Z"
         }
       ],
-      "last_generated": "2026-09-22T16:50:41.938Z"
+      "last_generated": "2026-09-22T17:14:27.481Z"
     },
     "9": {
       "channel_name": "Border Lines",
