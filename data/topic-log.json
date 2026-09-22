@@ -775,10 +775,16 @@
       "last_generated": "2026-09-22T16:20:46.660Z"
     },
     "21": {
-      "channel_name": "Lunar Frequencies",
-      "niche": "Soundscapes for Sleep & Healing",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Echoes",
+      "niche": "Ancient History & Civilizations",
+      "used_topics": [
+        {
+          "topic": "The role of the Roman Senate in the development of the Roman Constitution, 509-59 BCE",
+          "slug": "roman-senate-roman-constitution",
+          "reserved_at": "2026-09-22T16:24:29.217Z"
+        }
+      ],
+      "last_generated": "2026-09-22T16:24:29.217Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
