@@ -334,9 +334,14 @@
           "topic": "GPT-6 Astra vs Claude Fable 5.1: Real Coding Benchmark Showdown",
           "slug": "grok-4-7-vs-claude-fable-5-1-coding-showdown",
           "reserved_at": "2026-09-21T23:36:13.793Z"
+        },
+        {
+          "topic": "Grok 4.7 Pricing Breakdown: Real Token Costs Tested",
+          "slug": "grok-4-7-pricing-and-token-costs-tested",
+          "reserved_at": "2026-09-22T09:27:48.469Z"
         }
       ],
-      "last_generated": "2026-09-21T23:36:13.793Z"
+      "last_generated": "2026-09-22T09:27:48.469Z"
     },
     "4": {
       "channel_name": "Hidden Past",
