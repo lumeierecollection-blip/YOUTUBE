@@ -859,9 +859,14 @@
           "topic": "Improving workplace ergonomics for employees with musculoskeletal disorders",
           "slug": "improvement-workplace-ergonomics-musculoskeletal-disorders",
           "reserved_at": "2026-09-22T16:12:27.508Z"
+        },
+        {
+          "topic": "Improving postural ergonomic guidelines for software engineers",
+          "slug": "improving-postural-ergonomic-guidelines-software-engineers",
+          "reserved_at": "2026-09-22T18:19:58.440Z"
         }
       ],
-      "last_generated": "2026-09-22T16:12:27.508Z"
+      "last_generated": "2026-09-22T18:19:58.440Z"
     },
     "19": {
       "channel_name": "Stellar",
