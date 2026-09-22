@@ -968,9 +968,14 @@
           "topic": "Glowing Deep-Sea Fish Found in the Mariana Trench",
           "slug": "glowing-deep-sea-fish-trench",
           "reserved_at": "2026-09-22T17:53:09.002Z"
+        },
+        {
+          "topic": "Deep sea creatures in the Mariana Trench revealed new insights into giant squid behavior",
+          "slug": "mariana-trench-giant-squid-insights",
+          "reserved_at": "2026-09-22T19:26:55.475Z"
         }
       ],
-      "last_generated": "2026-09-22T17:53:09.002Z"
+      "last_generated": "2026-09-22T19:26:55.475Z"
     },
     "21": {
       "channel_name": "Echoes",
