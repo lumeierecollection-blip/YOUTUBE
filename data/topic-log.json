@@ -1769,9 +1769,14 @@
           "topic": "DNA analysis of firearms recovered from crime scene",
           "slug": "dna-analysis-firearms-crime-scene",
           "reserved_at": "2026-09-22T22:34:32.731Z"
+        },
+        {
+          "topic": "Forensic analysis reveals consistent gunshot residue on perpetrator's hand",
+          "slug": "gunshot-residue-perpetrator-hand",
+          "reserved_at": "2026-09-22T22:41:18.319Z"
         }
       ],
-      "last_generated": "2026-09-22T22:34:32.731Z"
+      "last_generated": "2026-09-22T22:41:18.320Z"
     },
     "44": {
       "channel_name": "Skill Stack",
