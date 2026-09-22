@@ -24,9 +24,9 @@ on:
 env:
   NODE_VERSION: "22"
   PYTHON_VERSION: "3.11"
-  OPENCODE_MODELS_RESEARCH: "ollama/llama3.1:8b"
-  OPENCODE_MODELS_REASONING: "ollama/llama3.1:8b"
-  OPENCODE_MODELS: "ollama/llama3.1:8b"
+  OPENCODE_MODELS_RESEARCH: "ollama/llama3.2:3b"
+  OPENCODE_MODELS_REASONING: "ollama/llama3.2:3b"
+  OPENCODE_MODELS: "ollama/llama3.2:3b"
   OPENCODE_ENABLE_EXA: "1"
   RENDER_SCALE: "0.75"
   RENDER_CONCURRENCY: "4"
@@ -143,7 +143,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.ollama/models
-          key: ollama-llama3.1-8b
+          key: ollama-llama3.2-3b
 
       - name: Install Ollama
         run: |
@@ -153,7 +153,7 @@ jobs:
         run: |
           ollama serve &
           sleep 5
-          ollama pull llama3.1:8b
+          ollama pull llama3.2:3b
           curl -s http://localhost:11434/api/tags | head -5
 
       # ΓöÇΓöÇ Stage A: discover topic for THIS channel ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
@@ -354,7 +354,7 @@ jobs:
                     --schema-file "$SCHEMA" \
                     --agent pipeline-script \
                     --model "$OPENCODE_MODELS_REASONING" \
-                    --task-label write-script --channel-id "$CH" --video-id "$SCRIPT_SLUG" \
+                    --task-label write-script --max-retries 4 --channel-id "$CH" --video-id "$SCRIPT_SLUG" \
                     > /tmp/script-raw-$FORMAT.json 2> /tmp/script-err-$FORMAT.log
               AGENT_EXIT=$?
               set -e
