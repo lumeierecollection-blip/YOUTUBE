@@ -1436,9 +1436,14 @@
           "topic": "recently discovered new volcano eruption in Hawaii",
           "slug": "recent-hawaii-volcano-eruption",
           "reserved_at": "2026-09-22T19:11:41.234Z"
+        },
+        {
+          "topic": "Magma-induced Lahars: A Hazard of Volcanic Activity",
+          "slug": "magma-induced-lahars",
+          "reserved_at": "2026-09-22T21:23:41.317Z"
         }
       ],
-      "last_generated": "2026-09-22T19:11:41.234Z"
+      "last_generated": "2026-09-22T21:23:41.317Z"
     },
     "35": {
       "channel_name": "The Engineering Archive",
