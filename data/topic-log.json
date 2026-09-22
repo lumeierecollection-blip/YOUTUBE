@@ -1281,9 +1281,14 @@
           "topic": "Magma channel - Volcanic Eruptions in the Philippines",
           "slug": "volcanic-eruptions-in-the-philippines",
           "reserved_at": "2026-09-22T17:15:30.642Z"
+        },
+        {
+          "topic": "recently discovered new volcano eruption in Hawaii",
+          "slug": "recent-hawaii-volcano-eruption",
+          "reserved_at": "2026-09-22T19:11:41.234Z"
         }
       ],
-      "last_generated": "2026-09-22T17:15:30.642Z"
+      "last_generated": "2026-09-22T19:11:41.234Z"
     },
     "35": {
       "channel_name": "The Engineering Archive",
