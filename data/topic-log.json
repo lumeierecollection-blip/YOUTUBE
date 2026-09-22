@@ -989,9 +989,14 @@
           "topic": "Quantum Entanglement Study 2024",
           "slug": "quantum-entanglement-study-2024",
           "reserved_at": "2026-09-22T18:12:31.352Z"
+        },
+        {
+          "topic": "Quantum Computing Advantages Over Classical Computing",
+          "slug": "quantum-computing-advantages",
+          "reserved_at": "2026-09-22T19:06:11.118Z"
         }
       ],
-      "last_generated": "2026-09-22T18:12:31.352Z"
+      "last_generated": "2026-09-22T19:06:11.118Z"
     },
     "24": {
       "channel_name": "Flavor Lab",
