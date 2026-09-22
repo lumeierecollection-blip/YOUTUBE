@@ -686,10 +686,16 @@
       "last_generated": null
     },
     "16": {
-      "channel_name": "Battle Cartography",
-      "niche": "Kings & Generals Style — Military History",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Stratum",
+      "niche": "Geology & Earth Science",
+      "used_topics": [
+        {
+          "topic": "Plate tectonics - 2023 Pacific Ring of Fire earthquake, 7.4 magnitude, 2023-04-20",
+          "slug": "pacific-ring-of-fire-earthquake",
+          "reserved_at": "2026-09-22T16:06:16.207Z"
+        }
+      ],
+      "last_generated": "2026-09-22T16:06:16.208Z"
     },
     "17": {
       "channel_name": "Epoch Chronicles",
