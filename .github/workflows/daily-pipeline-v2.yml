@@ -371,13 +371,23 @@ jobs:
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
           STYLE=$(node scripts/channel-style.js "$CH")
-          if [ "$STYLE" = "motion-graphics" ]; then
-            SCHEMA="schemas/script.mg.json"
-          else
-            SCHEMA="schemas/script.section.json"
-          fi
           for FORMAT in $FORMATS; do
             SCRIPT_SLUG="${SLUG}-${FORMAT}"
+            # Motion-graphics SHORTS render through DirectedShorts, which
+            # builds visuals from the SRT + visual plan and never reads
+            # sections[].beats — so the writer isn't asked for beats, and the
+            # style contract is cut before its beat/section-schema chapters.
+            # (CHECK-REGISTER.md: SCR-03/04/05/06/07/15 scope.)
+            CONTRACT=prompts/style-contract.md
+            if [ "$STYLE" = "motion-graphics" ] && [ "$FORMAT" = "shorts" ] && [ "${USE_LEGACY_3D:-}" != "true" ]; then
+              SCHEMA="schemas/script.directed.json"
+              awk '/^## If you were given the motion-graphics beat schema/{exit} {print}' prompts/style-contract.md > /tmp/style-contract-directed.md
+              CONTRACT=/tmp/style-contract-directed.md
+            elif [ "$STYLE" = "motion-graphics" ]; then
+              SCHEMA="schemas/script.mg.json"
+            else
+              SCHEMA="schemas/script.section.json"
+            fi
             FEEDBACK=""
             PASSED=0
             for ATTEMPT in 1 2 3 4 5; do
@@ -392,7 +402,7 @@ jobs:
               node scripts/build-script-context.js "$CH" "$SLUG" --format "$FORMAT" \
                 | node scripts/ollama-agent.js \
                     --prompt-file "$PROMPT_FILE" \
-                    --append-system-prompt-file prompts/style-contract.md \
+                    --append-system-prompt-file "$CONTRACT" \
                     --schema-file "$SCHEMA" \
                     --agent pipeline-script \
                     --model "$OPENCODE_MODELS_REASONING" \

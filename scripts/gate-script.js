@@ -64,8 +64,18 @@ function main() {
   const majors = [];
   const sections = script.sections || [];
   const isMg = channel.style === "motion-graphics";
+  // Beat checks apply only where the render path READS sections[].beats.
+  // Motion-graphics shorts render through DirectedShorts (render.js
+  // getCompositionForStyle, unless USE_LEGACY_3D=true), which builds its
+  // visuals from the SRT + visual plan and never reads beats; those scripts
+  // are written against schemas/script.directed.json, which has no beats.
+  // Grounding checks (SCR-08, SCR-12..14) still apply to every script.
+  const readsBeats = isMg && !(script.format === "shorts" && process.env.USE_LEGACY_3D !== "true");
+  if (isMg && !readsBeats) {
+    console.log("SCR-03/04/05/06/07/15: not applicable — DirectedShorts does not read sections[].beats (CHECK-REGISTER.md scope note).");
+  }
 
-  if (isMg) {
+  if (readsBeats) {
     const allBeats = sections.flatMap((s) => (s.beats || []).map((b) => ({ ...b, sectionId: s.id, voiceover: s.voiceover })));
 
     // SCR-03 — anchor_token appears verbatim in its section's voiceover.

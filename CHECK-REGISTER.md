@@ -413,6 +413,18 @@ constrains what the *script* is allowed to contain, it does not yet change
 what `mg-package.js` does with it; see `schemas/script.mg.json`'s header
 note on that gap).
 
+**3.10.3 - SCR-03/04/05/06/07/15 apply only where the render path reads
+`sections[].beats`.** Motion-graphics shorts render through DirectedShorts
+(`render.js` `getCompositionForStyle`, unless `USE_LEGACY_3D=true`), which
+builds its visuals from the SRT and the visual plan and never reads beats.
+Those scripts are written against `schemas/script.directed.json` (the MG
+schema with `beats` removed) and `gate-script.js` reports the six beat checks
+as not applicable for them. They still apply in full to motion-graphics
+longform and to the legacy 3D path. Grounding checks are unchanged for every
+script: SCR-08 and SCR-12..SCR-14. Decided 2026-09-23 after qwen2.5:3b spent
+the whole prep budget failing SCR-03/04 on beats this path would discard
+(run 35827307256, channels 44 and 48).
+
 **3.10.2 â€” SCR-01 and SCR-10 are honest approximations, not full
 implementations.** Read the check's Method column before trusting its
 State â€” `gate-research.js` and `gate-script.js` both document, inline, the
