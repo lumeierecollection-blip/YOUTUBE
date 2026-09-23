@@ -427,17 +427,19 @@ async function main() {
   // 16384. A script needing more beats than that fits is a pacing problem
   // in the script/caption split, not something to fix here.
   const maxTokens = Math.min(16384, 2000 + sentences.length * 600);
-  let geminiResult = await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2 });
+  let geminiResult = normalizePlanResponse(
+    await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2 }));
 
-  // The Gemini client returns {content: "..."} where content is a JSON string.
-  // Parse it to get the actual plan object.
-  if (geminiResult?.content && typeof geminiResult.content === "string") {
-    try {
-      const parsed = JSON.parse(geminiResult.content);
-      if (parsed?.beats) geminiResult = parsed;
-    } catch {
-      // Content was not valid JSON — keep as-is, will trigger fallback
-    }
+  // CI runs showed Gemini intermittently answering without a top-level
+  // "beats" key (a bare array, a wrapper key, or JSON behind prose). The
+  // client caches whatever it got, so a plain retry would replay the same
+  // bad answer — the one retry below bypasses the cache and restates the
+  // required shape. Still no beats after that → exit 1, nothing invented.
+  if (!geminiResult?.beats) {
+    console.error(`Gemini plan attempt 1 had no 'beats' — got: ${describeShape(geminiResult)}. Retrying once uncached.`);
+    const strict = prompt + "\n\nReturn ONLY one JSON object whose top-level key is \"beats\" (an array with exactly " + sentences.length + " entries, one per sentence, in order). No prose, no markdown fences, no other top-level keys.";
+    geminiResult = normalizePlanResponse(
+      await callGeminiApi([{ role: "user", content: strict }], { maxTokens, temperature: 0.2, noCache: true }));
   }
 
   // No OpenCode fallback here any more: OpenCode isn't installed in the
@@ -446,7 +448,7 @@ async function main() {
   // the local planner and logs that it did.
   const plan = geminiResult?.beats ? geminiResult : null;
   if (!plan || !plan.beats) {
-    console.error(`Gemini plan failed: ${geminiResult?.error || "response had no 'beats'"}`);
+    console.error(`Gemini plan failed: ${geminiResult?.error || "response had no 'beats' — got: " + describeShape(geminiResult)}`);
     process.exit(1);
   }
 
@@ -682,3 +684,27 @@ main().catch((e) => {
   console.error(`Fatal error: ${e.message}`);
   process.exit(1);
 });
+
+// Accepts the shapes Gemini has actually returned for a plan and maps each
+// to {beats:[...]}; anything else is returned untouched so the caller fails.
+function normalizePlanResponse(r) {
+  if (!r || r.error) return r;
+  if (Array.isArray(r)) return { beats: r };
+  if (Array.isArray(r.beats)) return r;
+  if (typeof r.content === "string") {
+    const m = r.content.match(/[\[{][\s\S]*[\]}]/);
+    if (m) { try { return normalizePlanResponse(JSON.parse(m[0])); } catch { /* fall through */ } }
+    return r;
+  }
+  for (const v of Object.values(r)) {
+    if (v && typeof v === "object" && !Array.isArray(v) && Array.isArray(v.beats)) return v;
+  }
+  return r;
+}
+
+function describeShape(r) {
+  if (!r) return String(r);
+  if (r.error) return "error " + String(r.error).slice(0, 200);
+  if (typeof r.content === "string") return "text " + JSON.stringify(r.content.slice(0, 200));
+  return (Array.isArray(r) ? "array" : "object keys [" + Object.keys(r).join(",") + "]");
+}

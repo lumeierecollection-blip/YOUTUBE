@@ -211,30 +211,17 @@ async function geminiPlan(channelId, scriptPath, correctionsPath) {
       }
       return planPath;
     }
-    console.warn("Gemini planning failed — trying local fallback.");
+    console.error("::error::Gemini planning failed — no plan, no render.");
   } else {
-    console.log("No Gemini API key — trying local plan generator.");
+    console.error("::error::No Gemini API key — cannot plan visuals.");
   }
 
-  // Step 2: Local fallback — rule-based plan from SRT, no API needed
-  const LOCAL_PLAN_CJS = join(__dirname, "local-visual-plan.cjs");
-  if (existsSync(srtPath) && existsSync(LOCAL_PLAN_CJS)) {
-    console.log(`=== LOCAL PLAN: ${channelId} — ${basename(scriptPath)} ===`);
-    const { code } = await runChild("node", [
-      LOCAL_PLAN_CJS,
-      "--srt", srtPath,
-      "--channel", channelId,
-      "--out", planPath,
-    ], { label: `local-plan ${channelId}/${basename(scriptPath)}` });
-    if (code === 0 && existsSync(planPath)) {
-      return planPath;
-    }
-    console.warn("Local plan generator failed.");
-  } else {
-    if (!existsSync(srtPath)) console.warn("No SRT file for local plan generator.");
-    if (!existsSync(LOCAL_PLAN_CJS)) console.warn("local-visual-plan.cjs not found.");
-  }
-
+  // The rule-based local planner (scripts/local-visual-plan.cjs) used to run
+  // here as a fallback. It is no longer called: QA run 35916464573 showed its
+  // plans are generic placeholders ("CAUSE/EFFECT", "EXPECTED/ACTUAL" boxes,
+  // caption text) that the per-beat frame review rejects 6/6 every time, and
+  // the challenger approved them anyway. A failed Gemini plan now fails the
+  // channel honestly instead of rendering a text-card video.
   return null;
 }
 
