@@ -1,9 +1,34 @@
+/**
+ * BEAT ROUTING — what this file can draw, and what it refuses to.
+ * (docs/AI-DECISION-AUDIT.md: before this, every Gemini beat — mechanism
+ * "CAPABILITY" — fell through MechanismScene's `default:` to TypographyScene,
+ * so 0 of 31 Gemini beats reached the screen as anything but a text line.)
+ *
+ *   scene.composition present   → ComposedScene (visual-engine/composed-scene.jsx,
+ *                                 the primitive renderer from main; draws the
+ *                                 scene-primitives.js vocabulary)
+ *   mechanism "CAPABILITY"      → ComposedScene over the compiled scene's
+ *                                 primitive objects (capability-compiler.js
+ *                                 emits kind/anchor/motion/count/scale/label)
+ *   mechanism "TYPOGRAPHY"      → TypographyScene (hook / CTA)
+ *   SURFACE_AND_BENEATH, PROPORTIONAL_OBJECTS, PHYSICAL_GROWTH,
+ *   STRUCTURAL_BREAKDOWN, EVIDENCE_FIGURE, ACTION_CONSEQUENCE,
+ *   VISIBLE_CONSUMPTION, STATE_CHANGE → their MechanismScene case
+ *   anything else, or CAPABILITY with no objects → THROWS
+ *   ("No renderer for mechanism …"). No silent text fallback.
+ *
+ * Primitives available (visual/scene-primitives.js PRIMITIVES): block,
+ * stack, bar, vessel, document, grid, gauge, figure, counter, silhouette,
+ * arrow, rule, field.
+ */
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, Easing } from "remotion";
 import { Audio } from "@remotion/media";
 import { currentAudio } from "../audio.js";
 import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
+import { ComposedScene } from "./composed-scene.jsx";
+import { ensureTextContrast, TEXT_TARGET_CONTRAST, ACCENT_TEXT_TARGET_CONTRAST } from "../visual/scene-text.js";
 
 const CANVAS_W = 1080;
 const CANVAS_H = 1920;
@@ -77,14 +102,21 @@ function editorialColors(colors, rawPalette, bgMode) {
   }) || sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.6))];
   const safeSubdued = contrastRatio(subdued, bgColor) >= 4.5
     ? subdued : (all.find((c) => contrastRatio(c, bgColor) >= 4.5) || sorted[sorted.length - 1]);
+  // ComposedScene (composed-scene.jsx) also needs accentText and quiet:
+  // glyph colours raised until they clear the text-contrast targets against
+  // THIS background (scene-text.js), same as main's editorialColors.
+  // On a white ground the fill roles flip to the dark end of the palette —
+  // the brightest palette colour as "surface" would be invisible on white.
   return {
     bg: bgColor,
     depth: sorted[1] || sorted[0],
-    surface: sorted[sorted.length - 1],
+    surface: isWhite ? sorted[0] : sorted[sorted.length - 1],
     text: isWhite ? sorted[0] : sorted[sorted.length - 1],
     textDark: sorted[0],
     accent: colors.accent,
+    accentText: ensureTextContrast(colors.accent, bgColor, ACCENT_TEXT_TARGET_CONTRAST),
     subdued: safeSubdued,
+    quiet: ensureTextContrast(safeSubdued, bgColor, TEXT_TARGET_CONTRAST),
   };
 }
 
@@ -1235,8 +1267,15 @@ function MechanismScene({ beat, p, local, ed, font, scene }) {
     case "STATE_CHANGE":
       content = <StateChangeScene {...props} />;
       break;
-    default:
+    case "TYPOGRAPHY":
       content = <TypographyScene {...props} />;
+      break;
+    default:
+      // Was `content = <TypographyScene/>`: an unknown mechanism silently
+      // became a text card. Now it stops the render and names the beat.
+      throw new Error(
+        `No renderer for mechanism "${scene.mechanism}". Plan beat: ${JSON.stringify(beat).slice(0, 600)}`
+      );
   }
 
   return (
@@ -1248,6 +1287,29 @@ function MechanismScene({ beat, p, local, ed, font, scene }) {
       {content}
     </div>
   );
+}
+
+/**
+ * One router for a beat's visual — used for the current beat and for the
+ * fading echo of the previous one, so both follow the same rules (see the
+ * BEAT ROUTING note at the top of this file).
+ */
+function BeatBody({ beat, p, local, ed, font, scene }) {
+  if (scene.composition) {
+    return <ComposedScene scene={scene.composition} p={p} ed={ed} font={font} />;
+  }
+  if (scene.mechanism === "CAPABILITY") {
+    if (!Array.isArray(scene.objects) || scene.objects.length === 0) {
+      throw new Error(
+        `No renderer for mechanism "CAPABILITY" without primitive objects. Plan beat: ${JSON.stringify(beat).slice(0, 600)}`
+      );
+    }
+    return <ComposedScene scene={{ objects: scene.objects }} p={p} ed={ed} font={font} />;
+  }
+  if (scene.mechanism === "TYPOGRAPHY") {
+    return <TypographyScene beat={beat} p={p} local={local} ed={ed} font={font} scene={scene} />;
+  }
+  return <MechanismScene beat={beat} p={p} local={local} ed={ed} font={font} scene={scene} />;
 }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -1283,25 +1345,15 @@ export function DirectedScene({ plan, ttsAudioPath }) {
       {/* Previous beat echo — fading out during transition */}
       {showPrevEcho && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: prevEchoOpacity }}>
-          {prevScene.mechanism === "TYPOGRAPHY" ? (
-            <TypographyScene beat={prev} p={1} local={prev.duration_frames}
-              ed={ed} font={plan.fonts.primary} scene={prevScene} />
-          ) : (
-            <MechanismScene beat={prev} p={1} local={prev.duration_frames}
-              ed={ed} font={plan.fonts.primary} scene={prevScene} />
-          )}
+          <BeatBody beat={prev} p={1} local={prev.duration_frames}
+            ed={ed} font={plan.fonts.primary} scene={prevScene} />
         </div>
       )}
 
       {/* Current beat */}
       <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: tOpacity }}>
-        {isTypographyOnly ? (
-          <TypographyScene beat={beat} p={p} local={local}
-            ed={ed} font={plan.fonts.primary} scene={scene} />
-        ) : (
-          <MechanismScene beat={beat} p={p} local={local}
-            ed={ed} font={plan.fonts.primary} scene={scene} />
-        )}
+        <BeatBody beat={beat} p={p} local={local}
+          ed={ed} font={plan.fonts.primary} scene={scene} />
       </div>
     </AbsoluteFill>
   );

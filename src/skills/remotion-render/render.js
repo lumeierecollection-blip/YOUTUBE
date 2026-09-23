@@ -514,6 +514,11 @@ async function main() {
 
     sentencePlan = {
       beats,
+      // The channel's configured ground. This was never passed, so
+      // editorialColors() always took the darkest palette colour and
+      // bg_mode "white" channels (1, 9, 44) rendered dark navy
+      // (docs/AI-DECISION-AUDIT.md).
+      bgMode: channel.bg_mode || "black",
       palette: viSpec
         ? { primary: viSpec.primary_palette, secondary: viSpec.secondary_palette }
         : { primary: ["#0F172A", "#1E293B", "#22C55E", "#FAFAFA"], secondary: ["#16A34A", "#94A3B8", "#F8FAFC"] },

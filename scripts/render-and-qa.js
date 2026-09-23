@@ -16,7 +16,7 @@
  *   node scripts/render-and-qa.js --dry-run [--channel <id>] [--script <path>]
  */
 import "dotenv/config";
-import { spawn } from "node:child_process";
+import { spawn, execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync, statSync } from "node:fs";
 import { join, dirname, basename, extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -356,7 +356,14 @@ function firstCueMidpoint(srtPath) {
   return (t(m[1], m[2], m[3], m[4]) + t(m[5], m[6], m[7], m[8])) / 2;
 }
 
-async function verifyRender(videoPath, audioPath) {
+function channelBgMode(channelId) {
+  try {
+    const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
+    return (data.channels || data).find((c) => String(c.id) === String(channelId))?.bg_mode || null;
+  } catch { return null; }
+}
+
+async function verifyRender(videoPath, audioPath, channelId) {
   const problems = [];
 
   const video = await probeDuration(videoPath);
@@ -388,6 +395,20 @@ async function verifyRender(videoPath, audioPath) {
     console.log(`[verify] beat-0 frame @${at.toFixed(2)}s: ${(bytes / 1024).toFixed(1)} KB`);
     if (bytes <= MIN_BEAT0_FRAME_BYTES) {
       problems.push(`beat-0 frame is ${(bytes / 1024).toFixed(1)} KB (must be > 15 KB) — near-empty frame`);
+    }
+    // White ground, measured: a bg_mode "white" channel's beat-0 frame must
+    // have a top-left 100×100 crop averaging > 240. Channels 1, 9 and 44
+    // were configured white and rendered dark navy on every run
+    // (docs/AI-DECISION-AUDIT.md) — nothing measured it.
+    if (channelBgMode(channelId) === "white") {
+      try {
+        const raw = execFileSync("ffmpeg", ["-v", "error", "-i", framePath, "-vf", "crop=100:100:0:0", "-f", "rawvideo", "-pix_fmt", "gray", "-"]);
+        const mean = raw.reduce((a, b) => a + b, 0) / raw.length;
+        console.log(`[verify] white ground: top-left 100x100 mean ${mean.toFixed(1)} (must be > 240)`);
+        if (mean <= 240) problems.push(`bg_mode is "white" but the top-left 100x100 of beat 0 averages ${mean.toFixed(1)} (must be > 240)`);
+      } catch (e) {
+        problems.push(`could not measure the white ground: ${e.message}`);
+      }
     }
   }
 
@@ -726,7 +747,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     }
 
     // Step 2b': duration and beat-0 frame. Hard gates, independent of QA.
-    const verify = await verifyRender(result.outputPath, result.audio);
+    const verify = await verifyRender(result.outputPath, result.audio, channelId);
     if (!verify.ok) {
       for (const p of verify.problems) console.error(`::error::verify ${basename(result.outputPath)}: ${p}`);
       if (existsSync(result.outputPath)) {
