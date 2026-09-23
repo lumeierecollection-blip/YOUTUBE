@@ -1836,9 +1836,14 @@
           "topic": "The Impact of AI on Remote Work Trends in 2026",
           "slug": "ai-remote-work-2026",
           "reserved_at": "2026-09-22T20:56:15.262Z"
+        },
+        {
+          "topic": "AI in action: Inside the 2026 AI Negotiation Challenge",
+          "slug": "ai-negotiation-challenge-2026",
+          "reserved_at": "2026-09-23T11:12:02.517Z"
         }
       ],
-      "last_generated": "2026-09-23T06:36:56.164Z"
+      "last_generated": "2026-09-23T11:12:02.518Z"
     },
     "45": {
       "channel_name": "Lift",
