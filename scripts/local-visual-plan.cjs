@@ -255,7 +255,11 @@ function buildBeat(cue, mechanism, headline, reason, number) {
     visual_events: [{ type: eventMap[mechanism] || "evidence", label: headline }],
     capabilities: capMap[mechanism] || ["evidence"],
     objects: objects[0] || {},
-    composition: compositionObjects.length ? { objects: compositionObjects } : null,
+    // Local plans render their MECHANISM scenes. The hand-written
+    // compositionObjects below were never validated and failed the 35%
+    // coverage floor at render time (6% on ch-1 and ch-48, run 35835281167);
+    // composed scenes are Gemini's vocabulary, not this rule-based planner's.
+    composition: null,
     carries_forward: null,
     emotional_weight: "calm",
     typography_direction: {

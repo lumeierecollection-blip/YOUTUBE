@@ -18,7 +18,6 @@ import "dotenv/config";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { spawnSync } from "node:child_process";
 import { createRequire } from "node:module";
 // The vocabulary is GENERATED into the prompt from scene-primitives.js, never
 // restated by hand. Hand-maintained duplicates are what put three
@@ -378,84 +377,6 @@ Respond ONLY with JSON (no markdown fences):
 }`;
 }
 
-/**
- * OpenCode fallback — when Gemini API is unavailable, use the OpenCode agent
- * (Cerebras or other provider) to generate the visual plan.
- * Calls opencode-agent.js with the visual planning prompt and schema.
- */
-async function callOpenCodeFallback(prompt, maxTokens) {
-  const agentScript = join(ROOT, "scripts", "opencode-agent.js");
-  const schemaFile = join(ROOT, "schemas", "visual-plan.json");
-  const agent = "pipeline-visual-plan";
-
-  // Get model from environment (same as pipeline uses)
-  const model = process.env.OPENCODE_MODELS?.split(",")[0] || "cerebras/gpt-oss-120b";
-
-  console.log(`  OpenCode fallback: agent=${agent}, model=${model}`);
-
-  try {
-    // Write prompt to a temp file (opencode-agent.js reads via --prompt-file)
-    const { mkdtempSync, rmSync } = await import("node:fs");
-    const { tmpdir } = await import("node:os");
-    const tmpDir = mkdtempSync(join(tmpdir(), "visual-plan-"));
-    const promptFile = join(tmpDir, "prompt.txt");
-    writeFileSync(promptFile, prompt, "utf-8");
-
-    const result = spawnSync("node", [
-      agentScript,
-      "--prompt-file", promptFile,
-      "--schema-file", schemaFile,
-      "--agent", agent,
-      "--model", model,
-      "--max-retries", "2",
-    ], {
-      encoding: "utf-8",
-      timeout: 5 * 60 * 1000,
-      env: process.env,
-      maxBuffer: 16 * 1024 * 1024,
-    });
-
-    // Clean up temp file
-    try { rmSync(tmpDir, { recursive: true }); } catch {}
-
-    if (result.error) {
-      console.error(`  OpenCode fallback spawn error: ${result.error.message}`);
-      return null;
-    }
-
-    if (result.stderr) {
-      console.error(`  OpenCode fallback stderr: ${result.stderr.slice(0, 500)}`);
-    }
-
-    // Parse the output — opencode-agent.js returns {"structured_output": ...}
-    const output = result.stdout?.trim();
-    if (!output) {
-      console.error("  OpenCode fallback: no output");
-      return null;
-    }
-
-    // Find the JSON in the output (may have log lines before it)
-    const jsonStart = output.lastIndexOf("{");
-    if (jsonStart === -1) {
-      console.error("  OpenCode fallback: no JSON found in output");
-      return null;
-    }
-
-    const parsed = JSON.parse(output.slice(jsonStart));
-    const plan = parsed.structured_output;
-    if (plan?.beats) {
-      console.log(`  OpenCode fallback: generated plan with ${plan.beats.length} beats`);
-      return plan;
-    }
-
-    console.error("  OpenCode fallback: response missing 'beats' key");
-    return null;
-  } catch (e) {
-    console.error(`  OpenCode fallback error: ${e.message}`);
-    return null;
-  }
-}
-
 async function main() {
   const scriptPath = arg("script");
   const srtPath = arg("srt");
@@ -519,16 +440,13 @@ async function main() {
     }
   }
 
-  // ── OpenCode fallback when Gemini is unavailable ──────────────────
-  if (geminiResult?.error || !geminiResult?.beats) {
-    const geminiErr = geminiResult?.error || "missing 'beats' key";
-    console.warn(`Gemini API unavailable (${geminiErr}) — falling back to OpenCode agent...`);
-    geminiResult = await callOpenCodeFallback(prompt, maxTokens);
-  }
-
+  // No OpenCode fallback here any more: OpenCode isn't installed in the
+  // render job, so it only ever failed with ENOENT and buried Gemini's real
+  // error. A failed Gemini plan exits non-zero; render-and-qa.js then runs
+  // the local planner and logs that it did.
   const plan = geminiResult?.beats ? geminiResult : null;
   if (!plan || !plan.beats) {
-    console.error("Failed to get visual plan from both Gemini and OpenCode.");
+    console.error(`Gemini plan failed: ${geminiResult?.error || "response had no 'beats'"}`);
     process.exit(1);
   }
 
@@ -597,6 +515,23 @@ async function main() {
   // errors become corrections for the next planning pass — which is where
   // RENDER_TECHNICAL finally becomes actionable instead of a verdict nobody
   // can act on.
+  // Vocabulary synonyms Gemini keeps using, mapped to the primitive
+  // vocabulary's own words (scene-primitives.js MOTIONS/ANCHORS). Run
+  // 35835281167 rejected 15 compositions at render time for exactly these:
+  // motion "static"/"none", anchor "ground". Only exact synonyms are mapped;
+  // anything else still fails validation.
+  const MOTION_SYNONYMS = { static: "hold", none: "hold", still: "hold", fixed: "hold", idle: "hold",
+    growth: "grow", fade_in: "appear", fadein: "appear", slide_up: "rise", slide_down: "fall" };
+  const ANCHOR_SYNONYMS = { ground: "bottom", floor: "bottom", middle: "center", centre: "center" };
+  for (const b of plan.beats) {
+    for (const o of b.composition?.objects || []) {
+      const m = String(o.motion || "").toLowerCase();
+      const a = String(o.anchor || "").toLowerCase();
+      if (MOTION_SYNONYMS[m]) { console.log(`[vocab] beat ${b.index}: motion "${o.motion}" -> "${MOTION_SYNONYMS[m]}"`); o.motion = MOTION_SYNONYMS[m]; }
+      if (ANCHOR_SYNONYMS[a]) { console.log(`[vocab] beat ${b.index}: anchor "${o.anchor}" -> "${ANCHOR_SYNONYMS[a]}"`); o.anchor = ANCHOR_SYNONYMS[a]; }
+    }
+  }
+
   const compositionIssues = [];
   let composedBeats = 0;
   for (const b of plan.beats) {
@@ -624,7 +559,7 @@ async function main() {
   }
   console.log(`Composition: ${composedBeats}/${plan.beats.length} beats buildable, ${compositionIssues.length} issue(s)`);
   for (const i of compositionIssues.slice(0, 10)) {
-    console.warn(`  beat ${i.beat}: ${i.problem}`);
+    console.warn(`  beat ${i.beat}: ${String(i.problem).split(" — ")[0]}`);
   }
 
   // ── CAPS: TYPOGRAPHY 1–2, NO MECHANISM OVER 40% ──────────────────────
@@ -693,6 +628,23 @@ async function main() {
   }
   composedBeats = plan.beats.filter((b) => b.composition && b.compositionValid).length;
 
+  // A composition that still fails validation is removed HERE, at plan
+  // time, with its reason recorded on the beat (composition_dropped) and
+  // counted in the plan. The beat renders its mechanism scene by plan
+  // decision. Previously the renderer discovered the same thing at render
+  // time and fell back silently mid-render.
+  const dropped = [];
+  for (const b of plan.beats) {
+    if (b.composition && b.compositionValid === false) {
+      const reasons = compositionIssues.filter((i) => i.beat === b.index).map((i) => String(i.problem).split(" — ")[0]);
+      b.composition_dropped = { reasons, coverage: b.compositionCoverage ?? null };
+      b.composition = null;
+      dropped.push(b.index);
+      console.log(`[plan] beat ${b.index}: composition dropped at plan time (${reasons[0] || "invalid"}) — renders its mechanism scene`);
+    }
+  }
+  if (dropped.length) console.log(`[plan] ${dropped.length} composition(s) dropped at plan time: beats ${dropped.join(", ")}`);
+
   const result = {
     generatedAt: new Date().toISOString(),
     channel: channelId,
@@ -704,6 +656,7 @@ async function main() {
     compilationReport,
     capabilityDistribution: {},
     mechanismDistribution: describeMechanisms(capped.mechanisms),
+    compositionsDropped: dropped,
   };
 
   // Track capability usage instead of mechanism distribution

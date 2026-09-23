@@ -404,7 +404,16 @@ async function main() {
         if (!validate(data)) problems.push(`schema validation failed: ${ajv.errorsText(validate.errors)}`);
         if (allowedUrls) {
           const bad = citedUrls(data).filter((u) => !allowedUrls.has(normUrl(u)));
-          if (bad.length) problems.push(`cites URL(s) that no search returned: ${bad.slice(0, 5).join(", ")}`);
+          if (bad.length) {
+            // Name the allowed URLs, in the log (to tell a model invention
+            // from an extraction mismatch — ch-26 in run 35835281167 was
+            // rejected 4x on a plausible justice.gov URL) and in the feedback,
+            // so the model can copy one exactly instead of reconstructing it.
+            const allowed = [...allowedUrls];
+            log(`[grounding] rejected: ${bad.slice(0, 5).join(" , ")}`);
+            log(`[grounding] allowed (${allowed.length}): ${allowed.join(" , ")}`);
+            problems.push(`cites URL(s) that no search returned: ${bad.slice(0, 5).join(", ")}. Use ONLY these URLs, copied character for character: ${allowed.join(" ; ")}`);
+          }
         }
         // Discovery: at least one candidate must survive the same duplicate
         // check Reserve applies (src/utils/topic-log.cjs), or the channel is
