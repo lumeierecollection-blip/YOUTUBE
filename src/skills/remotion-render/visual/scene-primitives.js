@@ -46,6 +46,8 @@
  *              INVALID rather than merely discouraged.
  */
 
+import { ICON_NAMES, isIcon } from "./icon-set.js";
+
 /* ── Canvas and safe area (mirrors layout/slots.js) ──────────────────── */
 
 export const CANVAS_W = 1080;
@@ -144,6 +146,16 @@ export const PRIMITIVES = {
               note: "a number that rolls up or down" },
   silhouette: { area: 0.150, countable: true, maxCount: 20, labelable: true,
               note: "a human/object outline; population, crowd, scale" },
+  // The one primitive that depicts WHAT the sentence is about. Every other
+  // primitive is abstract geometry, and QA run 35933424177 rejected 11/11
+  // non-typography beats on ch-1 and ch-26 for exactly that ("abstract
+  // blocks and a city label rather than showing the grocery store"). The
+  // vendored Lucide set (public/icons, MOTION-GRAPHICS-MANUAL §A4) existed
+  // the whole time with nothing drawing it. `icon` names one of those files;
+  // an unknown name is an error, never a fallback (§A4.7). maxCount 3 is
+  // §A4.6's "maximum three on screen".
+  icon:     { area: 0.160, countable: true,  maxCount: 3,  labelable: true,
+              note: "a pictogram of a real thing (truck, gavel, coins, factory...); set \"icon\" to a name from ICONS" },
   arrow:    { area: 0.040, countable: true,  maxCount: 8,  labelable: false,
               note: "directional connector between objects" },
   rule:     { area: 0.015, countable: true,  maxCount: 6,  labelable: false,
@@ -165,7 +177,7 @@ export function isPrimitive(kind) {
 export const ASPECT = {
   block: 1.4, stack: 0.45, bar: 3.2, vessel: 0.55, document: 0.72,
   grid: 1.1, gauge: 1, figure: 2.6, counter: 2.2, silhouette: 0.45,
-  arrow: 1, rule: 12, field: 1.6,
+  arrow: 1, rule: 12, field: 1.6, icon: 1,
 };
 
 /**
@@ -427,6 +439,9 @@ export function validateScene(rawScene) {
         errors.push(`${at}: count ${o.count} exceeds max ${spec.maxCount} for "${o.kind}"`);
       }
     }
+    if (o.kind === "icon" && !isIcon(o.icon)) {
+      errors.push(`${at}: icon "${o.icon}" is not in the vendored set — use one of the ICONS names exactly`);
+    }
     if (o.scale !== undefined && (typeof o.scale !== "number" || o.scale < 0.2 || o.scale > 2)) {
       errors.push(`${at}: scale must be a number between 0.2 and 2`);
     }
@@ -474,6 +489,7 @@ export function vocabularyDigest() {
   }
   lines.push("", `ANCHORS: ${Object.keys(ANCHORS).join(", ")}`);
   lines.push(`MOTIONS: ${MOTIONS.join(", ")}`);
+  lines.push("", `ICONS (for kind "icon", field "icon"): ${ICON_NAMES.join(", ")}`);
   lines.push("", `A scene must cover at least ${(MIN_SCENE_COVERAGE * 100).toFixed(0)}% of the frame.`);
   return lines.join("\n");
 }

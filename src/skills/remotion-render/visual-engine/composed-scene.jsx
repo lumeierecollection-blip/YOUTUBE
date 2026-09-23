@@ -31,6 +31,7 @@ import {
   PRIMITIVES, layoutScene,
 } from "../visual/scene-primitives.js";
 import { fitSingleLine, TYPO_LINE_HEIGHT } from "../visual/narrative-typography.js";
+import { ICON_SET } from "../visual/icon-set.js";
 
 const clamp01 = (t) => Math.max(0, Math.min(1, t));
 const ease = (t) => Easing.bezier(0.22, 0.9, 0.3, 1)(clamp01(t));
@@ -319,6 +320,41 @@ function Silhouettes({ obj, rect, ed, m, accent }) {
   return <g opacity={m.enter} transform={`translate(0,${m.dy})`}>{items}</g>;
 }
 
+/**
+ * icon — a vendored Lucide pictogram (MOTION-GRAPHICS-MANUAL §A4), drawn
+ * from its own geometry so stroke and colour obey the manual:
+ *  - §A4.3: apparent stroke 6-12 px at 1080 wide, so the stroke-width
+ *    attribute is recomputed from the rendered size (target 10 px).
+ *  - §A4.5: text colour by default, accent only on the emphasis object.
+ * validateScene() rejects an unknown icon name before render; if one still
+ * arrives here it throws rather than drawing a substitute.
+ */
+function Icons({ obj, rect, ed, m, accent }) {
+  const els = ICON_SET[obj.icon];
+  if (!els) throw new Error(`No icon "${obj.icon}" in the vendored set`);
+  const n = Math.max(1, Math.min(3, obj.count || 1));
+  const cw = rect.w / n;
+  const size = Math.min(cw * 0.9, rect.h) * (m.scale === 1 ? 1 : m.scale);
+  const stroke = (10 * 24) / Math.max(1, size);   // §A4.3: 10 px apparent
+  const color = accent ? ed.accentText : ed.text;
+  const shedIdx = n - Math.round(m.shed * n);
+  const items = [];
+  for (let i = 0; i < n; i++) {
+    const x = rect.x + cw * i + (cw - size) / 2;
+    const y = rect.y + (rect.h - size) / 2;
+    const gone = i >= shedIdx;
+    items.push(
+      <g key={i} opacity={gone ? 0.25 : 1}
+        transform={`translate(${x},${y + (gone ? m.shed * 90 : 0)}) scale(${size / 24})`}
+        fill="none" stroke={gone ? ed.quiet : color} strokeWidth={stroke}
+        strokeLinecap="round" strokeLinejoin="round">
+        {els.map(([tag, attrs], k) => React.createElement(tag, { key: k, ...attrs }))}
+      </g>
+    );
+  }
+  return <g opacity={m.enter} transform={`translate(0,${m.dy})`}>{items}</g>;
+}
+
 function Arrows({ obj, rect, ed, m }) {
   const n = Math.max(1, Math.min(8, obj.count || 1));
   const items = [];
@@ -372,7 +408,7 @@ function Numeral({ obj, rect, ed, m, font, accent }) {
 const DRAW_SVG = {
   field: Field, block: Blocks, stack: Stack, bar: Bars, vessel: Vessel,
   document: Documents, grid: Grid, gauge: Gauges, silhouette: Silhouettes,
-  arrow: Arrows, rule: Rules,
+  arrow: Arrows, rule: Rules, icon: Icons,
 };
 const DRAW_HTML = { figure: Numeral, counter: Numeral };
 
