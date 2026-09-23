@@ -33,6 +33,9 @@ import { readFileSync, appendFileSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import Ajv from "ajv";
+import { createRequire } from "node:module";
+
+const topicLog = createRequire(import.meta.url)("../src/utils/topic-log.cjs");
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -256,6 +259,7 @@ async function main() {
   const searchBudget = Math.max(0, Number(args["search-budget"]) || 2);
   const taskLabel = args["task-label"] || "task";
   const minDomains = Number(args["min-source-domains"]) || 0;
+  const rejectDupFor = typeof args["reject-duplicates-for"] === "string" ? args["reject-duplicates-for"] : null;
   const models = String(args.model || "").split(",").map((m) => m.trim()).filter(Boolean);
   if (!promptFile || !schemaFile || !models.length) {
     log("Usage: node scripts/ollama-agent.js --prompt-file <p> --schema-file <s> --model ollama/<name> [--agent pipeline-research|pipeline-script] [--search-budget N] [--append-system-prompt-file <p>] [--max-retries N]");
@@ -371,6 +375,16 @@ async function main() {
         if (allowedUrls) {
           const bad = citedUrls(data).filter((u) => !allowedUrls.has(normUrl(u)));
           if (bad.length) problems.push(`cites URL(s) that no search returned: ${bad.slice(0, 5).join(", ")}`);
+        }
+        // Discovery: at least one candidate must survive the same duplicate
+        // check Reserve applies (src/utils/topic-log.cjs), or the channel is
+        // skipped. Run 35827307256 skipped 4 of 6 channels with three
+        // duplicate candidates each; the model is now told which ones.
+        if (rejectDupFor && Array.isArray(data.topics)) {
+          const dups = data.topics.filter((t) => t?.topic && topicLog.isDuplicate(rejectDupFor, t.topic));
+          if (dups.length === data.topics.length) {
+            problems.push(`every candidate duplicates a topic this channel already covered: ${dups.map((t) => `"${t.topic}"`).join(", ")}. Choose different subjects from the search results, not rewordings of these or of recent_topics`);
+          }
         }
         // Same threshold as gate-research SCR-02, checked here so the model
         // gets a retry with the reason instead of the stage failing later.

@@ -184,7 +184,7 @@ jobs:
           cat /tmp/context.json | node scripts/ollama-agent.js \
             --prompt-file prompts/discover-topics.md \
             --append-system-prompt-file prompts/discover-candidates.md \
-            --min-items topics=3 \
+            --min-items topics=3 --reject-duplicates-for "$CH" \
             --schema-file schemas/topics.json \
             --search-budget 2 \
             --agent pipeline-research \
@@ -253,6 +253,14 @@ jobs:
               exit 0
             fi
 
+            # Dry runs check for duplicates but never push the reservation.
+            # Pushing it made every debug run consume topics for 90 days
+            # (11 were burned this way during the CI loop).
+            if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+              echo "Dry run: \"$(jq -r .slug /tmp/channel-topic.json)\" passed the duplicate check; reservation not pushed"
+              break
+            fi
+
             git add data/topic-log.json
             if git diff --staged --quiet; then
               break
@@ -271,6 +279,10 @@ jobs:
             fi
           done
           echo "skip=false" >> "$GITHUB_OUTPUT"
+          echo "slug=$(jq -r .slug /tmp/channel-topic.json)" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event.inputs.dry_run }}" != "true" ]; then
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: "Render-only: use latest committed script"
         if: github.event.inputs.render_only == 'true'
@@ -503,6 +515,29 @@ jobs:
             data/tts/${{ matrix.channel_id }}/
             data/thumbnails/${{ matrix.channel_id }}/
           retention-days: 1
+
+      # A reservation whose video never gets made is released, so a failed
+      # or cancelled prep doesn't block that topic for 90 days.
+      - name: Release topic reservation (prep failed)
+        if: (failure() || cancelled()) && steps.reserve.outputs.pushed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG="${{ steps.reserve.outputs.slug }}"
+          git config user.name  "pipeline-bot"
+          git config user.email "pipeline@youtube-automation.local"
+          git stash --include-untracked -q || true
+          for attempt in 1 2 3 4 5; do
+            git fetch -q origin "${{ github.ref_name }}"
+            git reset -q --hard "origin/${{ github.ref_name }}"
+            node scripts/release-topic.js "$CH" "$SLUG"
+            git add data/topic-log.json
+            if git diff --staged --quiet; then break; fi
+            git commit -q -m "topic: release ch-$CH $SLUG (prep failed, run ${{ github.run_id }})"
+            if git push -q origin "HEAD:${{ github.ref_name }}"; then break; fi
+            sleep $((attempt * 3))
+          done
 
   # ============================================================
   # STAGE 2: RENDER
