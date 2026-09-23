@@ -1861,9 +1861,14 @@
           "topic": "AI-Enhanced Salary Negotiations and Their Impact on Social Class",
           "slug": "ai-enhanced-salary-negotiations-and-their-impact-on-social",
           "reserved_at": "2026-09-23T06:11:32.424Z"
+        },
+        {
+          "topic": "AI-Enhanced-Salary-Negotiations",
+          "slug": "ai-enhanced-salary-negotiations-2026",
+          "reserved_at": "2026-09-23T06:28:55.477Z"
         }
       ],
-      "last_generated": "2026-09-23T06:11:32.424Z"
+      "last_generated": "2026-09-23T06:28:55.477Z"
     },
     "45": {
       "channel_name": "Lift",
