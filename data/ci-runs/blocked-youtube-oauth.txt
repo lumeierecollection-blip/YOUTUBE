@@ -1,0 +1,33 @@
+BLOCKER: YouTube upload — every priority channel's OAuth refresh token is
+expired or revoked. Needs the channel owner; cannot be fixed from CI.
+
+Run: https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/35852731846
+     (first publishing run, dry_run=false, all six channels stay_private)
+
+What passed: 6/6 prep, 6/6 render, every render gate (silence, duration,
+beat-0 frame) — e.g. ch-26 drift 0.02s, frame-0 38.6 KB; ch-9 drift 0.04s,
+frame-0 59.9 KB.
+
+What failed, identically on all six (step "Publish to YouTube (private)"):
+  [YOUTUBE-PUBLISH] ERROR: OAuth token exchange failed: invalid_grant —
+  Token has been expired or revoked.
+Nothing was uploaded (no video ID / private link in any job).
+
+Evidence for the cause (not confirmed — needs the Google Cloud console):
+  gh secret list: CHANNEL_01/02/09/26/44/48_REFRESH_TOKEN all set
+  2026-09-14T10:53–10:54Z, nine days before this run. Google expires
+  refresh tokens after 7 days for OAuth apps whose consent screen is in
+  "Testing" publishing status. All six failing together fits that.
+
+To fix (owner):
+  1. Re-authorize the six channels and refresh the secrets.
+     scripts/oauth-setup.js exists on main (not on this branch): it opens a
+     browser tab per channel, captures each refresh token and writes the
+     CHANNEL_XX_* secrets with gh. It reads Oauth.txt (client_id,
+     client_secret) from the repo root.
+  2. To stop it recurring every 7 days: set the OAuth consent screen to
+     "In production" in Google Cloud Console.
+Then re-run daily-pipeline-v2.yml with dry_run=false.
+
+Not done because of this: replacing main (the owner made that conditional
+on the publishing run succeeding).
