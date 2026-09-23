@@ -98,14 +98,14 @@ async function fetchWithTimeout(url, init, timeoutS) {
 
 /* ── Ollama ───────────────────────────────────────────────────────── */
 
-async function chat(model, messages, format, label, temperature = 0.2) {
+async function chat(model, messages, format, label, temperature = 0.2, seed = undefined) {
   const t0 = Date.now();
   const res = await fetchWithTimeout(`${OLLAMA_URL}/api/chat`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
       model, messages, format, stream: false,
-      options: { temperature, num_ctx: NUM_CTX },
+      options: { temperature, num_ctx: NUM_CTX, ...(seed !== undefined ? { seed } : {}) },
     }),
   }, CALL_TIMEOUT_S);
   const body = await res.text();
@@ -414,7 +414,11 @@ async function main() {
       try {
         // Retries raise the temperature: at 0.2 the same context gave byte-identical
         // rejected answers four times in a row (ch-48, run 35829223604).
-        r = await chat(model, messages, schema, `${taskLabel}/answer attempt ${attempt}/${maxRetries}`, Math.min(0.9, 0.2 + 0.25 * (attempt - 1)));
+        r = await chat(model, messages, schema, `${taskLabel}/answer attempt ${attempt}/${maxRetries}`, Math.min(0.9, 0.2 + 0.25 * (attempt - 1)),
+          // A fresh seed per retry: under schema-constrained output the same
+          // context produced byte-identical rejected answers even as the
+          // temperature rose (ch-44, 4x 610 tokens, run 35846219455).
+          attempt > 1 ? Math.floor(Math.random() * 2 ** 31) : undefined);
       } catch (e) {
         lastError = `[${spec}] attempt ${attempt}/${maxRetries}: ${e.message}`;
         log(lastError);
@@ -463,7 +467,8 @@ async function main() {
           const domainSource = Array.isArray(data.key_facts) ? data.key_facts.map((f) => f?.source_url).filter(Boolean) : citedUrls(data);
           const domains = new Set(domainSource.map((u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return null; } }).filter(Boolean));
           if (domains.size < minDomains) {
-            problems.push(`cites only ${domains.size} distinct source domain(s) (${[...domains].join(", ") || "none"}); at least ${minDomains} different sites from the search results are required`);
+            const available = [...new Set([...(allowedUrls || [])].map((u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return null; } }).filter(Boolean))];
+            problems.push(`cites only ${domains.size} distinct source domain(s) (${[...domains].join(", ") || "none"}); at least ${minDomains} different sites are required. The search results came from: ${available.join(", ")} — take at least one key fact from a DIFFERENT site in that list, citing its URL exactly`);
           }
         }
       }
