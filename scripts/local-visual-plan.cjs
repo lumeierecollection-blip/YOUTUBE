@@ -237,10 +237,10 @@ function buildBeat(cue, mechanism, headline, reason, number) {
         { kind: "bar", anchor: "right", motion: "grow", label: "B", emphasis: true, scale: 1.5, count: 3 },
       );
       break;
-    default: // TYPOGRAPHY
-      compositionObjects.push(
-        { kind: "grid", anchor: "center", motion: "appear", label: headline, emphasis: true },
-      );
+    default: // TYPOGRAPHY — the type IS the scene; no composition.
+      // A one-box grid here covered ~32% of the frame, failed the 35%
+      // composition floor on every hook, and the renderer then fell back to
+      // the typography scene anyway (run 35833174133).
       break;
   }
 
@@ -255,7 +255,7 @@ function buildBeat(cue, mechanism, headline, reason, number) {
     visual_events: [{ type: eventMap[mechanism] || "evidence", label: headline }],
     capabilities: capMap[mechanism] || ["evidence"],
     objects: objects[0] || {},
-    composition: { objects: compositionObjects },
+    composition: compositionObjects.length ? { objects: compositionObjects } : null,
     carries_forward: null,
     emotional_weight: "calm",
     typography_direction: {

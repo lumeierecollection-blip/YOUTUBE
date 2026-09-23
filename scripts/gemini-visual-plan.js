@@ -676,6 +676,23 @@ async function main() {
   }
   console.log(`Mechanisms after caps: ${describeMechanisms(capped.mechanisms)}`);
 
+  // A TYPOGRAPHY beat renders the typography scene; a composition on it is
+  // never drawn. Cap-reassigned hooks kept Gemini's composition, which then
+  // failed the coverage floor at render time and was "rejected — falling
+  // back to mechanism" (ch-48 beat 0, run 35833174133). Drop it here, and
+  // drop its issues from the report.
+  capped.mechanisms.forEach((m, i) => {
+    if (m === TYPOGRAPHY && plan.beats[i].composition) {
+      plan.beats[i].composition = null;
+      plan.beats[i].compositionValid = null;
+    }
+  });
+  const typoBeats = new Set(capped.mechanisms.map((m, i) => (m === TYPOGRAPHY ? plan.beats[i].index ?? i : -1)));
+  for (let k = compositionIssues.length - 1; k >= 0; k--) {
+    if (typoBeats.has(compositionIssues[k].beat)) compositionIssues.splice(k, 1);
+  }
+  composedBeats = plan.beats.filter((b) => b.composition && b.compositionValid).length;
+
   const result = {
     generatedAt: new Date().toISOString(),
     channel: channelId,

@@ -624,7 +624,7 @@ jobs:
 
       - name: Verify a single Remotion version
         run: |
-          # The frame-0 "_currentValue" crash came from mixed remotion copies.
+          # The frame-0 AudioForRendering crash came from mixed remotion copies.
           V=$(find node_modules src/skills/remotion-render/node_modules -path '*/node_modules/remotion/package.json' -exec node -p "require('./{}').version" \; | sort -u)
           echo "remotion versions installed: $V"
           [ "$(echo "$V" | wc -l)" -eq 1 ] || { echo "::error::more than one remotion version installed"; exit 1; }

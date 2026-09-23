@@ -174,6 +174,32 @@ async function geminiPlan(channelId, scriptPath, correctionsPath) {
     console.log(`=== GEMINI PLAN: ${channelId} — ${basename(scriptPath)} ===`);
     const { code } = await runChild("node", args, { label: `plan ${channelId}/${basename(scriptPath)}` });
     if (code === 0 && existsSync(planPath)) {
+      // Compositions the renderer cannot build (under the 35% coverage
+      // floor, unknown primitives) used to be discovered at render time and
+      // "fall back to mechanism" there (run 35833174133: ch-26, ch-44).
+      // The planner already lists them; hand them straight back to Gemini
+      // ONCE, at plan time. Whatever is still invalid after that stays in
+      // the plan and is reported by the renderer — not hidden.
+      const first = readJsonSafe(planPath);
+      const issues = first?.compositionIssues || [];
+      if (issues.length && !correctionsPath) {
+        const corrDir = join(ROOT, "data", "audit", "corrections", process.env.GITHUB_RUN_ID || "local");
+        mkdirSync(corrDir, { recursive: true });
+        const corrFile = join(corrDir, `${basename(scriptPath, ".json")}-composition.json`);
+        writeFileSync(corrFile, JSON.stringify({ corrections: issues }, null, 2) + "\n");
+        console.log(`[plan] ${issues.length} unbuildable composition issue(s) — re-planning once with them as corrections`);
+        const firstCopy = planPath.replace(/\.json$/, "-first.json");
+        copyFileSync(planPath, firstCopy);
+        const retry = await runChild("node", [...args, "--corrections", corrFile], { label: `plan-fix ${channelId}/${basename(scriptPath)}` });
+        const second = retry.code === 0 ? readJsonSafe(planPath) : null;
+        const remaining = second?.compositionIssues?.length;
+        if (second && remaining < issues.length) {
+          console.log(`[plan] composition issues ${issues.length} → ${remaining} after the corrective pass`);
+        } else {
+          copyFileSync(firstCopy, planPath);
+          console.log(`[plan] corrective pass did not reduce composition issues (${issues.length} → ${remaining ?? "failed"}); keeping the first plan`);
+        }
+      }
       return planPath;
     }
     console.warn("Gemini planning failed — trying local fallback.");
