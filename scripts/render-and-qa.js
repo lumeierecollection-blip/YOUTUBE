@@ -238,11 +238,17 @@ async function renderOne(channelId, scriptPath, format) {
     return { skipped: false, ok: false };
   }
   console.log(`=== RENDER: ${channelId} — ${basename(scriptPath)} (${format}) ===`);
-  const { code } = await runChild(
-    "node",
-    [RENDER_JS, format, channelId, relative(ROOT, scriptPath), relative(ROOT, audio)],
-    { label: `render ${channelId}/${basename(scriptPath)}` }
-  );
+  const args = [RENDER_JS, format, channelId, relative(ROOT, scriptPath), relative(ROOT, audio)];
+  const label = `render ${channelId}/${basename(scriptPath)}`;
+  let { code, stderr, stdout } = await runChild("node", args, { label });
+  // One retry, ONLY when Chrome never came up. That is the runner, not the
+  // video: run 35842024112 lost ch-48 to "Timed out after 25000 ms while
+  // trying to connect to the browser" with every other gate green. Any
+  // other render failure is not retried.
+  if (code !== 0 && /trying to connect to the browser/i.test(`${stderr}\n${stdout}`)) {
+    console.warn(`::warning::${label}: browser failed to launch — retrying the render once`);
+    ({ code } = await runChild("node", args, { label: `${label} (retry)` }));
+  }
   if (code !== 0) return { skipped: false, ok: false };
   const outputPath = expectedOutputPath(channelId, scriptPath, format);
   if (!existsSync(outputPath)) {
