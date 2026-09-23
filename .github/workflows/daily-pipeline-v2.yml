@@ -27,6 +27,10 @@ on:
         description: "Comma-separated channel IDs — must be priority channels"
         type: string
         default: "1,2,9,26,44,48"
+      render_only:
+        description: "DEBUG: skip discover/research/script; render the channel's latest committed script (never publishes)"
+        type: boolean
+        default: false
 
 concurrency:
   group: daily-pipeline-${{ github.ref }}
@@ -133,6 +137,7 @@ jobs:
         run: pip install --quiet edge-tts
 
       - name: Cache OpenCode CLI
+        if: github.event.inputs.render_only != 'true'
         id: opencode-cache
         uses: actions/cache@v4
         with:
@@ -140,23 +145,27 @@ jobs:
           key: opencode-cli-${{ runner.os }}-v1
 
       - name: Install OpenCode (cache miss only)
-        if: steps.opencode-cache.outputs.cache-hit != 'true'
+        if: steps.opencode-cache.outputs.cache-hit != 'true' && github.event.inputs.render_only != 'true'
         run: npm install --prefix ~/.opencode-cli --no-audit --no-fund opencode-ai
 
       - name: Put OpenCode on PATH
+        if: github.event.inputs.render_only != 'true'
         run: echo "$HOME/.opencode-cli/node_modules/.bin" >> "$GITHUB_PATH"
 
       # ── Ollama ─────────────────────────────────────────────────────────
       - name: Cache Ollama models
+        if: github.event.inputs.render_only != 'true'
         uses: actions/cache@v4
         with:
           path: ~/.ollama/models
           key: ollama-${{ runner.os }}-qwen2.5-7b
 
       - name: Install Ollama
+        if: github.event.inputs.render_only != 'true'
         run: curl -fsSL https://ollama.com/install.sh | sh
 
       - name: Start Ollama and pull model
+        if: github.event.inputs.render_only != 'true'
         run: |
           # install.sh registers and starts a systemd service on :11434. The
           # old step then ran a second `ollama serve` on the same port, which
@@ -176,6 +185,7 @@ jobs:
 
       # ── Stage A: discover topics for THIS channel ──────────────────────
       - name: Discover topic
+        if: github.event.inputs.render_only != 'true'
         id: discover
         env:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
@@ -213,6 +223,7 @@ jobs:
 
       # ── Reserve the first NON-duplicate topic ─────────────────────────
       - name: Reserve topic
+        if: github.event.inputs.render_only != 'true'
         id: reserve
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -275,6 +286,25 @@ jobs:
           done
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
+      - name: "Render-only: use latest committed script"
+        if: github.event.inputs.render_only == 'true'
+        run: |
+          # DEBUG path — exercises render with a script that already exists
+          # in git, so render failures can be fixed while prep is blocked.
+          # Never publishes (every publish step is gated on render_only).
+          CH="${{ matrix.channel_id }}"
+          # checkout is depth 1; history (no blobs) is needed to find "latest".
+          git fetch -q --unshallow --filter=blob:none origin "${{ github.ref_name }}"
+          SCRIPT=$(git log --format= --name-only --diff-filter=AM -- "data/research/$CH/*-shorts-script.json" \
+            | grep -v '^$' | while read -r f; do [ -f "$f" ] && echo "$f" && break; done)
+          if [ -z "$SCRIPT" ]; then
+            echo "::error::render_only: no committed shorts script for channel $CH"
+            exit 1
+          fi
+          SLUG=$(basename "$SCRIPT" -shorts-script.json)
+          echo "render_only: channel $CH → $SCRIPT"
+          jq -n --arg s "$SLUG" '{slug:$s, topic:$s}' > /tmp/channel-topic.json
+
       - name: Ensure output directories
         if: steps.reserve.outputs.skip != 'true'
         run: |
@@ -284,7 +314,7 @@ jobs:
 
       # ── Stage B: research ──────────────────────────────────────────────
       - name: Research topic
-        if: steps.reserve.outputs.skip != 'true'
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
         env:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
@@ -325,7 +355,7 @@ jobs:
           cp /tmp/research-raw.json "data/research/$CH/.agent-raw.json"
 
       - name: Gate research
-        if: steps.reserve.outputs.skip != 'true'
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
@@ -333,7 +363,7 @@ jobs:
 
       # ── Stage C: script (gate-feedback retry) ──────────────────────────
       - name: Write script
-        if: steps.reserve.outputs.skip != 'true'
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
         env:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
@@ -429,7 +459,7 @@ jobs:
 
       # ── Stage E: Thumbnail ─────────────────────────────────────────────
       - name: Generate thumbnail
-        if: steps.reserve.outputs.skip != 'true'
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
@@ -443,7 +473,7 @@ jobs:
 
       # ── Stage F: SEO + metadata ────────────────────────────────────────
       - name: Generate SEO + metadata
-        if: steps.reserve.outputs.skip != 'true'
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
@@ -602,7 +632,7 @@ jobs:
 
       # ── Publish (private) ──────────────────────────────────────────────
       - name: Materialize OAuth credentials
-        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
         env:
           CH01_CLIENT_ID:       ${{ secrets.CHANNEL_01_CLIENT_ID }}
           CH01_CLIENT_SECRET:   ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
@@ -641,15 +671,15 @@ jobs:
           "
 
       - name: Publish to YouTube (private)
-        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
         run: node src/skills/youtube-publish/run.js "${{ matrix.channel_id }}"
 
       - name: Process publish queue
-        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
         run: node src/skills/youtube-publish/run.js process-queue
 
       - name: Commit publish queue
-        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
