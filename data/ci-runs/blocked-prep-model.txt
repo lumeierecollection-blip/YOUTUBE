@@ -1,0 +1,38 @@
+BLOCKER: prep model (TASK 5) — qwen2.5:7b via OpenCode on a CPU runner
+cannot finish a single Discover call inside the 20-minute budget.
+
+Runs:
+  35800003908 (iteration 1) — all 6 prep jobs cancelled by the 18-min job
+    timeout inside "Discover topic"; one opencode call was allowed 15 min.
+  35803176381 (iteration 2) — per-call cap 300s; every Discover call on
+    every channel timed out: attempts 1/4, 2/4, 3/4 each "timed out after
+    300s", then the job was cancelled at 18 min.
+
+Ollama request log, prep (1), run 35803176381:
+  [GIN] 00:45:23 | 200 | 1m33s | POST /v1/chat/completions   (n_tokens = 3047)
+  [GIN] 00:48:46 | 500 | 4m54s | POST /v1/chat/completions   (n_tokens = 6148, killed by 300s cap)
+  [GIN] 00:48:55 | 200 | 3.55s | POST /v1/chat/completions
+  [GIN] 00:53:49 | 500 | 4m56s | POST /v1/chat/completions   (killed by 300s cap)
+prep (44): same shape — 1m4s (n_tokens = 2205), then 4m56s (n_tokens = 7172), killed.
+
+What this shows:
+  - Ollama itself is healthy: single server, no port conflict, model loaded,
+    warm-up 6.0–8.6s, no prompt truncation (truncated = 0).
+  - Our own prompt for Discover is 6,770–9,454 chars (~2–2.5k tokens).
+    OpenCode's system prompt + tool definitions take each main request to
+    6–7k tokens. qwen2.5:7b on the 4-vCPU runner processes ~30–40 tok/s,
+    so one main request with a websearch round-trip runs past 5 minutes.
+  - Discover, Research and Script each need at least two main requests
+    (tool call, then answer), so prep needs well over the 18-min job budget.
+
+Tried:
+  1. llama3.2:3b → qwen2.5:7b, context 4096 → 16384, single Ollama server.
+  2. Per-call timeout 900s → 300s with elapsed-time logging.
+
+Not tried (each changes a constraint the task set — needs a decision):
+  a. Call Ollama directly with JSON-schema-constrained output and call the
+     Exa search endpoint directly (keeps qwen2.5:7b and source grounding;
+     drops OpenCode's system prompt from every request).
+  b. A hosted provider through OpenCode (Groq/Cerebras keys are configured).
+  c. A smaller local model (qwen2.5:3b).
+  d. A larger time budget.
