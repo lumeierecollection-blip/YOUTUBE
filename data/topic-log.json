@@ -2019,9 +2019,14 @@
           "topic": "Inside UBTech's New 2026 Humanoid Robot Smart Factory",
           "slug": "liuzhou-ubtech-10000-unit-humanoid-factory",
           "reserved_at": "2026-09-19T17:40:18.396Z"
+        },
+        {
+          "topic": "humanoid-robots-in-manufacturing",
+          "slug": "humanoid-robots-manufacturing",
+          "reserved_at": "2026-09-23T06:14:23.293Z"
         }
       ],
-      "last_generated": "2026-09-19T17:40:18.396Z"
+      "last_generated": "2026-09-23T06:14:23.293Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
