@@ -180,11 +180,21 @@ Rules that are enforced, not advisory:
   stops objects reading as though they float in a void.
 - "emphasis: true" marks the ONE object carrying the beat. Everything else
   is structure. Do not mark several.
-- "label" only where a thing NEEDS naming. Labels are annotation; the
-  objects carry the meaning. A scene where every object is labelled is a
-  text slide with extra steps. MOST OBJECTS SHOULD HAVE NO LABEL — let the
-  visual shape, size, and motion communicate. Labels are LAST RESORT, not
-  the default.
+- The primitives are abstract shapes, so an unlabelled block cannot tell
+  the viewer WHAT it is. The frame review asks "would a viewer with the
+  sound off get this sentence's point from what is drawn?" — in QA run
+  35916464573 every unlabelled-block beat failed it ("abstract blocks do
+  not represent the Strait of Hormuz"), and the one beat that passed was a
+  bar labelled with the sentence's subject against a 0-100% scale.
+  So: the "emphasis" object ALWAYS carries a 1-3 word "label" naming the
+  specific thing, place, group, or quantity from THIS sentence ("Hormuz",
+  "Tenants", "$2M fine", "9 years"). When the sentence relates two things
+  (A vs B, A causes B, A moves to B), label both, so the relation reads
+  without sound. Structure (field, grid, rule, background stacks) stays
+  unlabelled. At most 3 labels per beat. A label is a name or a number
+  taken from the sentence — never a headline, never a sentence fragment,
+  never a generic word like "CAUSE", "EFFECT", "EXPECTED", "ACTUAL",
+  "RESEARCH", "TERMS", "MATRIX".
 - "count" must be a real quantity from the narration where one exists — 12
   plants, 8 states, 3 filings. It is a visible number, so an invented count
   is an invented fact.
