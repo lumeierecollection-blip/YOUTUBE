@@ -185,6 +185,33 @@ function normUrl(u) {
   return String(u).trim().replace(/[.,;]+$/, "").replace(/#.*$/, "").replace(/\/+$/, "");
 }
 
+// Identity of a URL for the grounding check: host lower-cased without a
+// leading "www.", scheme ignored, path + query kept. ch-48 cited
+// "humanoidsdaily.com/news/…" for the search's "www.humanoidsdaily.com/news/…"
+// — the same page — and was rejected 4x (run 35844131396).
+function urlKey(u) {
+  try {
+    const x = new URL(normUrl(u));
+    return `${x.hostname.toLowerCase().replace(/^www\./, "")}${x.pathname.replace(/\/+$/, "")}${x.search}`;
+  } catch {
+    return normUrl(u).toLowerCase();
+  }
+}
+
+// Replace every cited *url field with the exact URL the search returned
+// (so the research file stores what was actually searched), and collect
+// any that match no search result.
+function canonicaliseCitedUrls(obj, byKey, bad) {
+  if (Array.isArray(obj)) { obj.forEach((v) => canonicaliseCitedUrls(v, byKey, bad)); return; }
+  if (!obj || typeof obj !== "object") return;
+  for (const [k, v] of Object.entries(obj)) {
+    if (typeof v === "string" && /(^|_)url$/i.test(k)) {
+      const exact = byKey.get(urlKey(v));
+      if (exact) obj[k] = exact; else bad.push(v);
+    } else if (v && typeof v === "object") canonicaliseCitedUrls(v, byKey, bad);
+  }
+}
+
 /* ── Output checks ────────────────────────────────────────────────── */
 
 function extractJson(text) {
@@ -403,7 +430,9 @@ async function main() {
         normaliseSlugs(data);
         if (!validate(data)) problems.push(`schema validation failed: ${ajv.errorsText(validate.errors)}`);
         if (allowedUrls) {
-          const bad = citedUrls(data).filter((u) => !allowedUrls.has(normUrl(u)));
+          const byKey = new Map([...allowedUrls].map((u) => [urlKey(u), u]));
+          const bad = [];
+          canonicaliseCitedUrls(data, byKey, bad);
           if (bad.length) {
             // Name the allowed URLs, in the log (to tell a model invention
             // from an extraction mismatch — ch-26 in run 35835281167 was
