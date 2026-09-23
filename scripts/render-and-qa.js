@@ -36,6 +36,15 @@ const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
 const VISUAL_QA_JS = join(__dirname, "gate-visual-qa.js");
 const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 const GEMINI_PLAN_JS = join(__dirname, "gemini-visual-plan.js");
+const CHALLENGER_JS = join(__dirname, "gemini-visual-challenger.js");
+
+async function challengePlan(channelId, planPath, srtPath, tag) {
+  const out = planPath.replace(/\.json$/, `-challenge${tag}.json`);
+  const { code } = await runChild("node", [
+    CHALLENGER_JS, "--plan", planPath, "--srt", srtPath, "--channel", String(channelId), "--out", out,
+  ], { label: `challenger ${channelId}` });
+  return { code, review: readJsonSafe(out) };
+}
 const LOCAL_AUDITOR_JS = join(__dirname, "local-visual-auditor.js");
 // 3 attempts: initial + 2 corrections. Was 2 (initial + ONE correction),
 // which meant Gemini got a single chance to respond and then the video
@@ -663,6 +672,35 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     }
     console.log(`Visual plan: ${basename(planPath)} (source ${plan.source || "gemini"}, ${plan.beats.length} beats)`);
 
+    // Step 1b: CHALLENGER — a second AI checks the plan against the script's
+    // sentences before anything renders. A rejection (MISMATCH or
+    // CONTRADICTION) gets ONE re-plan with the rejected beats as
+    // corrections; a second rejection fails the video. A challenger that
+    // can't run fails the video too — it is never skipped.
+    const srtPath = join(dirname(audioPathFor(channelId, scriptPath)), basename(audioPathFor(channelId, scriptPath), ".mp3") + ".srt");
+    let challenge = await challengePlan(channelId, planPath, srtPath, "");
+    if (challenge.code === 1) {
+      const blocking = (challenge.review?.beats || []).filter((b) => b.verdict === "MISMATCH" || b.verdict === "CONTRADICTION");
+      const corrFile = planPath.replace(/\.json$/, "-challenger-corrections.json");
+      writeFileSync(corrFile, JSON.stringify({ corrections: blocking.map((b) => ({
+        beat: b.beat_index,
+        problem: `${b.verdict}: ${b.reason} (sentence: "${b.sentence}")`,
+        fix: "re-plan this beat so its subject, change and on-screen text show exactly what the sentence says — no claim the sentence does not make",
+      })) }, null, 2) + "\n");
+      console.log(`[challenger] ${blocking.length} blocking beat(s) — re-planning once with them as corrections`);
+      planPath = await geminiPlan(channelId, scriptPath, corrFile);
+      const replanned = planPath ? readJsonSafe(planPath) : null;
+      if (!replanned?.beats?.length) {
+        console.error(`::error::re-plan after challenger rejection produced no plan`);
+        return { skipped: false, ok: false };
+      }
+      challenge = await challengePlan(channelId, planPath, srtPath, "-2");
+    }
+    if (challenge.code !== 0) {
+      console.error(`::error::challenger ${challenge.code === 1 ? "rejected the plan twice" : "could not run"} for ${basename(scriptPath)} — not rendering`);
+      return { skipped: false, ok: false };
+    }
+
     // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL)
     const result = await renderOne(channelId, scriptPath, format);
     if (result.skipped) return { skipped: true };
@@ -694,6 +732,22 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       if (existsSync(result.outputPath)) {
         try { rmSync(result.outputPath); } catch {}
       }
+      return { skipped: false, ok: false };
+    }
+
+    // Step 2b'': PER-BEAT FRAME CHECK — one frame at every beat's midpoint,
+    // each judged by Gemini against its own sentence. More than one beat
+    // that doesn't visually match fails the video. Runs with or without
+    // --skip-qa; a check that can't run fails the video.
+    const beatCheck = await runChild("node", [
+      GEMINI_REVIEW_JS, "--beat-check",
+      "--video", result.outputPath,
+      "--manifest", result.outputPath.replace(/\.mp4$/, "-manifest.json"),
+      "--srt", srtPath,
+      "--out", result.outputPath.replace(/\.mp4$/, "-beat-check.json"),
+    ], { label: `beat-check ${channelId}/${basename(scriptPath)}` });
+    if (beatCheck.code !== 0) {
+      console.error(`::error::beat check ${beatCheck.code === 1 ? "FAILED — frames do not match their sentences" : "could not run"} for ${basename(result.outputPath)}`);
       return { skipped: false, ok: false };
     }
 

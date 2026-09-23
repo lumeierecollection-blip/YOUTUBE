@@ -693,18 +693,25 @@ jobs:
           path: ~/.cache/remotion
           key: remotion-chrome-${{ runner.os }}
 
-      - name: Render + verify
+      - name: Render + QA
         if: steps.status.outputs.skip != 'true'
         env:
           RENDER_PROGRESS_MS: 10000
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # gemini-client rotates across up to three keys on 429/5xx; the
+          # planner, the challenger and the per-beat frame check all use it.
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           VISION_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           VISION_MODEL: gemini-3.5-flash-lite
-        # --skip-qa skips only the Gemini review/correction loop. The hard
-        # gates (plan present, caps, voiceover audible, duration, beat-0
-        # frame) run regardless — see render-and-qa.js.
-        run: node scripts/render-and-qa.js --channel "${{ matrix.channel_id }}" --skip-qa
+        # QA is ON. --skip-qa was on every CI run until docs/AI-DECISION-AUDIT.md
+        # showed 0 of 31 Gemini beats reached the screen while every gate
+        # passed. The challenger (plan vs script) and the per-beat frame check
+        # (frame vs sentence) now run on every video; so does the Gemini
+        # review/correction loop.
+        run: node scripts/render-and-qa.js --channel "${{ matrix.channel_id }}"
 
       - name: Upload rendered video
         if: always() && steps.status.outputs.skip != 'true'

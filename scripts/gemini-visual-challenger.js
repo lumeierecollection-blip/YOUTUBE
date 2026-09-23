@@ -88,7 +88,108 @@ Respond ONLY with JSON (no markdown fences):
 }`;
 }
 
+/* ── V2 plan mode ─────────────────────────────────────────────────────
+ *
+ *   node scripts/gemini-visual-challenger.js --plan <visual-plan.json> \
+ *        --srt <vo.srt> --channel <id> --out <review.json>
+ *
+ * Reviews the V2 visual plan (scripts/gemini-visual-plan.js /
+ * local-visual-plan.cjs output) beat by beat against the sentence it is
+ * for — plan beat i ↔ SRT cue i, the same pairing the director uses.
+ *
+ * Exit 0 = plan approved. Exit 1 = plan rejected (any MISMATCH or
+ * CONTRADICTION beat; each is printed). Exit 3 = the review could not be
+ * obtained or parsed. Nothing here ever defaults to approval: the intent
+ * mode below used to return verdict "MATCH" on a parse error or an empty
+ * response, which turns a Gemini outage into a pass.
+ */
+function srtSentences(srtPath) {
+  return readFileSync(srtPath, "utf-8").replace(/\r/g, "").split(/\n\n+/)
+    .map((b) => b.trim().split("\n")).filter((l) => l.length >= 3)
+    .map((l) => l.slice(2).join(" "));
+}
+
+function describeBeat(b) {
+  const events = (b.visual_events || []).map((e) => [e.type, e.label, e.magnitude].filter(Boolean).join(" ")).join("; ");
+  const d = b.direction || {};
+  return [
+    `mechanism: ${b.mechanism || b.compiledScene?.mechanism || "?"}${(b.capabilities || []).length ? ` (${b.capabilities.join(", ")})` : ""}`,
+    `on-screen text: "${b.typography_direction?.phrase || b.visual_headline || ""}"`,
+    d.subject ? `subject: ${d.subject}` : null,
+    d.action_start || d.action_end ? `change: ${d.action_start || "?"} -> ${d.action_end || "?"}` : null,
+    events ? `visual events: ${events}` : null,
+  ].filter(Boolean).join(" | ");
+}
+
+async function planMode() {
+  const planPath = arg("plan");
+  const srtPath = arg("srt");
+  const channelId = arg("channel");
+  const outPath = arg("out");
+  if (!planPath || !srtPath || !outPath) {
+    console.error("Usage: gemini-visual-challenger.js --plan <plan.json> --srt <vo.srt> --channel <id> --out <review.json>");
+    process.exit(2);
+  }
+  const plan = JSON.parse(readFileSync(planPath, "utf-8"));
+  const sentences = srtSentences(srtPath);
+  const beats = plan.beats || [];
+  let niche = "general";
+  try {
+    const cfg = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
+    niche = (cfg.channels || cfg).find((c) => String(c.id) === String(channelId))?.niche || niche;
+  } catch {}
+
+  const lines = beats.map((b, i) => `[${i}] SENTENCE: "${sentences[i] ?? "(no sentence)"}"\n    PLAN: ${describeBeat(b)}`).join("\n");
+  const prompt = `You are the CHECKER for a YouTube Short's visual plan (channel niche: ${niche}).
+Another system read the narration and planned what appears on screen for each sentence.
+Judge every beat against ITS OWN sentence only.
+
+Verdicts per beat:
+- "OK": a viewer with no audio would understand the sentence's point from the plan's subject, change and on-screen text.
+- "WEAK": related to the sentence but generic — it would fit many sentences.
+- "MISMATCH": the visual is about something the sentence does not say, or conveys nothing of it.
+- "CONTRADICTION": the subject, change or on-screen text states or implies something that contradicts the sentence's factual claim (e.g. text says "recovered" when the sentence says "stolen"; a number that differs from the sentence's number).
+
+Be strict about CONTRADICTION and MISMATCH — those block the video. WEAK does not block.
+
+BEATS:
+${lines}
+
+Respond ONLY with JSON:
+{"beats":[{"beat_index":<n>,"verdict":"OK"|"WEAK"|"MISMATCH"|"CONTRADICTION","reason":"<one sentence>"}],"summary":"<one sentence>"}
+Return exactly one entry per beat, beat_index 0..${beats.length - 1}.`;
+
+  console.log(`Challenging V2 plan: ${beats.length} beats vs ${sentences.length} sentences (${planPath})`);
+  const result = await callGemini([{ role: "user", content: prompt }], { maxTokens: 2048, temperature: 0 });
+  if (result?.error) {
+    console.error(`::error::challenger unavailable: ${result.error}`);
+    process.exit(3);
+  }
+  const verdicts = Array.isArray(result?.beats) ? result.beats : null;
+  if (!verdicts || verdicts.length !== beats.length) {
+    console.error(`::error::challenger returned ${verdicts ? verdicts.length : "no"} beat verdict(s) for ${beats.length} beats: ${JSON.stringify(result).slice(0, 300)}`);
+    process.exit(3);
+  }
+  const blocking = verdicts.filter((v) => v.verdict === "MISMATCH" || v.verdict === "CONTRADICTION");
+  const review = {
+    reviewedAt: new Date().toISOString(),
+    source: "gemini-challenger/plan",
+    plan: planPath,
+    approved: blocking.length === 0,
+    beats: verdicts.map((v) => ({ ...v, sentence: sentences[v.beat_index] ?? null })),
+    summary: result.summary || "",
+  };
+  writeFileSync(outPath, JSON.stringify(review, null, 2) + "\n");
+  for (const v of verdicts) console.log(`[challenger] beat ${v.beat_index}: ${v.verdict} — ${v.reason}`);
+  if (blocking.length) {
+    console.error(`::error::challenger rejected the plan: ${blocking.map((v) => `beat ${v.beat_index} ${v.verdict}`).join(", ")}`);
+    process.exit(1);
+  }
+  console.log(`[challenger] plan approved (${verdicts.filter((v) => v.verdict === "WEAK").length} weak beat(s), none blocking)`);
+}
+
 async function main() {
+  if (arg("plan")) return planMode();
   const intentPath = arg("intent");
   const scriptPath = arg("script");
   const channelId = arg("channel");
@@ -126,21 +227,21 @@ async function main() {
     try {
       review = JSON.parse(result.content);
     } catch {
-      console.error("Failed to parse Gemini response as JSON");
-      review = { verdict: "MATCH", overall_score: 7, strengths: [], weaknesses: ["parse error"], deltas: [], summary: "Could not parse review" };
+      // No default verdict: an unreadable review is not an approval.
+      console.error(`::error::challenger response is not JSON: ${result.content.slice(0, 300)}`);
+      process.exit(3);
     }
-  } else if (result?.beats) {
-    // Already parsed
+  } else if (result?.verdict) {
     review = result;
   } else {
-    console.error("Gemini returned no content");
-    review = { verdict: "MATCH", overall_score: 7, strengths: [], weaknesses: ["no response"], deltas: [], summary: "No response from reviewer" };
+    console.error(`::error::challenger returned no review: ${JSON.stringify(result).slice(0, 300)}`);
+    process.exit(3);
   }
 
   const output = {
     reviewedAt: new Date().toISOString(),
     source: "gemini-challenger",
-    verdict: review.verdict || "MATCH",
+    verdict: review.verdict,
     overall_score: review.overall_score || 7,
     strengths: review.strengths || [],
     weaknesses: review.weaknesses || [],

@@ -277,7 +277,91 @@ function categorizeResult(result, bible) {
   return { tier: "PASS", blocking: false, criticalRuleFails, highRuleFails };
 }
 
+/* ── Per-beat check ──────────────────────────────────────────────────
+ *
+ *   node scripts/gemini-frame-review.js --beat-check --video <mp4> \
+ *        --manifest <render-manifest.json> --srt <vo.srt> [--out <json>]
+ *
+ * One frame at the MIDPOINT of every beat (timings from the render
+ * manifest render.js writes), each paired with that beat's sentence (SRT
+ * cue i ↔ beat i), sent to Gemini in one call. For each: does this frame
+ * visually correspond to this sentence — YES or NO?
+ *
+ * Exit 0 = at most 1 beat NO. Exit 1 = more than 1 beat NO (listed).
+ * Exit 3 = the check could not run (no key, no answer, unreadable answer,
+ * wrong number of verdicts). Nothing defaults to a pass — the full review
+ * below exits 0 "SKIPPED" when no key is set, which is how a missing check
+ * looked like a passing one.
+ */
+async function beatCheck() {
+  const videoPath = arg("video");
+  const manifestPath = arg("manifest");
+  const srtPath = arg("srt");
+  const outPath = arg("out");
+  if (!videoPath || !manifestPath || !srtPath) {
+    console.error("Usage: gemini-frame-review.js --beat-check --video <mp4> --manifest <manifest.json> --srt <vo.srt> [--out <json>]");
+    process.exit(2);
+  }
+  if (!getApiKey()) {
+    console.error("::error::beat check cannot run: no Gemini API key");
+    process.exit(3);
+  }
+  const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+  const cues = parseSrt(readFileSync(srtPath, "utf-8").replace(/\r\n/g, "\n"));
+  const beats = manifest.beats || [];
+  if (!beats.length) {
+    console.error("::error::beat check: manifest has no beats");
+    process.exit(3);
+  }
+  const work = join(tmpdir(), `beat-check-${Date.now()}`);
+  mkdirSync(work, { recursive: true });
+  const content = [{
+    type: "text",
+    text: `You are checking a finished YouTube Short, beat by beat. For each beat you get the narration sentence spoken during it and ONE frame from the middle of that beat.
+Question for every beat: does this frame VISUALLY correspond to this sentence — would a viewer with the sound off get the sentence's point from what is drawn?
+Answer NO when the frame is only a line of text restating or labelling the sentence with no visual that shows its idea, when the frame is blank, or when what is drawn is unrelated to the sentence.
+Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_is_shown":"<what the frame actually contains>","reason":"<one sentence>"}]} — exactly one entry per beat, beat_index 0..${beats.length - 1}.`,
+  }];
+  try {
+    beats.forEach((b, i) => {
+      const mid = (b.start_sec ?? 0) + (b.duration_sec ?? 0) / 2;
+      const framePath = join(work, `beat-${String(i).padStart(2, "0")}.png`);
+      extractFrameAtTime(videoPath, mid, framePath);
+      const sentence = cues[i]?.text ?? "(no sentence)";
+      content.push({ type: "text", text: `Beat ${i} (frame at ${mid.toFixed(2)}s). Sentence: "${sentence}"` });
+      content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(framePath).toString("base64")}` } });
+    });
+    console.log(`[beat-check] ${beats.length} beat frames extracted at midpoints — asking Gemini`);
+    const result = await callGemini([{ role: "user", content }], { maxTokens: 2048, temperature: 0, noCache: true });
+    if (result?.error) {
+      console.error(`::error::beat check unavailable: ${result.error}`);
+      process.exit(3);
+    }
+    const verdicts = Array.isArray(result?.beats) ? result.beats : null;
+    if (!verdicts || verdicts.length !== beats.length) {
+      console.error(`::error::beat check returned ${verdicts ? verdicts.length : "no"} verdict(s) for ${beats.length} beats: ${JSON.stringify(result).slice(0, 300)}`);
+      process.exit(3);
+    }
+    for (const v of verdicts) {
+      console.log(`[beat-check] beat ${v.beat_index}: ${v.matches} — shows: ${v.what_is_shown} — ${v.reason}`);
+    }
+    const failing = verdicts.filter((v) => String(v.matches).toUpperCase() !== "YES");
+    if (outPath) {
+      writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, beats: verdicts.map((v) => ({ ...v, sentence: cues[v.beat_index]?.text ?? null })), failing: failing.map((v) => v.beat_index) }, null, 2) + "\n");
+    }
+    if (failing.length > 1) {
+      console.error(`::error::beat check failed: ${failing.length}/${beats.length} beats do not visually match their sentence — beats ${failing.map((v) => v.beat_index).join(", ")}`);
+      process.exit(1);
+    }
+    console.log(`[beat-check] PASS: ${beats.length - failing.length}/${beats.length} beats match their sentence`);
+    process.exit(0);
+  } finally {
+    rmSync(work, { recursive: true, force: true });
+  }
+}
+
 async function main() {
+  if (process.argv.includes("--beat-check")) return beatCheck();
   const videoPath = arg("video");
   const scriptPath = arg("script");
   const srtPath = arg("srt");
