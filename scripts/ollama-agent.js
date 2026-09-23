@@ -201,14 +201,14 @@ function urlKey(u) {
 // Replace every cited *url field with the exact URL the search returned
 // (so the research file stores what was actually searched), and collect
 // any that match no search result.
-function canonicaliseCitedUrls(obj, byKey, bad) {
-  if (Array.isArray(obj)) { obj.forEach((v) => canonicaliseCitedUrls(v, byKey, bad)); return; }
+function canonicaliseCitedUrls(obj, byKey, bad, ids = new Map()) {
+  if (Array.isArray(obj)) { obj.forEach((v) => canonicaliseCitedUrls(v, byKey, bad, ids)); return; }
   if (!obj || typeof obj !== "object") return;
   for (const [k, v] of Object.entries(obj)) {
     if (typeof v === "string" && /(^|_)url$/i.test(k)) {
-      const exact = byKey.get(urlKey(v));
+      const exact = ids.get(v.trim().replace(/^\[|\]$/g, "").toUpperCase()) || byKey.get(urlKey(v));
       if (exact) obj[k] = exact; else bad.push(v);
-    } else if (v && typeof v === "object") canonicaliseCitedUrls(v, byKey, bad);
+    } else if (v && typeof v === "object") canonicaliseCitedUrls(v, byKey, bad, ids);
   }
 }
 
@@ -365,6 +365,7 @@ async function main() {
     // 1–2. Search, when this agent may.
     let searches = [];
     let allowedUrls = null;
+    let sourceIds = new Map();
     if (canSearch) {
       // Discover and research build their queries from the input (channel
       // pillars; reserved topic + angle). A model-planned query call cost
@@ -401,8 +402,18 @@ async function main() {
         continue;
       }
       allowedUrls = new Set(searches.flatMap((s) => s.urls));
-      const results = searches.map((s, i) => `### Search ${i + 1}: ${s.query}\n\n${s.text}`).join("\n\n");
-      messages.push({ role: "user", content: `## SEARCH RESULTS\n\n${results}\n\nThese are the only sources available. Any source_url you give MUST be one of the URLs shown above, copied exactly.` });
+      // Every result URL gets a short source id (S1, S2, ...) and the model
+      // cites the id, which canonicaliseCitedUrls maps back to the exact URL.
+      // qwen2.5:3b could not copy long URLs: ch-26 extended a justice.gov
+      // URL with an invented "-20260921203418.991.html" suffix on all 4
+      // attempts, in two separate runs (35835281167, 35916464573).
+      sourceIds = new Map([...allowedUrls].map((u, i) => [`S${i + 1}`, u]));
+      const idOf = new Map([...sourceIds].map(([id, u]) => [u, id]));
+      const results = searches.map((s, i) => {
+        const text = s.text.replace(/^(\s*URL:\s*)(\S+)/gim, (m, pre, u) => (idOf.has(normUrl(u)) ? `${pre}${u}   [source id: ${idOf.get(normUrl(u))}]` : m));
+        return `### Search ${i + 1}: ${s.query}\n\n${text}`;
+      }).join("\n\n");
+      messages.push({ role: "user", content: `## SEARCH RESULTS\n\n${results}\n\nThese are the only sources available. In every *_url field write the source id of the result you used (for example "S2"), not the URL — the id is replaced with that result's exact URL.` });
     }
 
     // 3. Structured answer, validated, with feedback retries.
@@ -436,7 +447,7 @@ async function main() {
         if (allowedUrls) {
           const byKey = new Map([...allowedUrls].map((u) => [urlKey(u), u]));
           const bad = [];
-          canonicaliseCitedUrls(data, byKey, bad);
+          canonicaliseCitedUrls(data, byKey, bad, sourceIds);
           if (bad.length) {
             // Name the allowed URLs, in the log (to tell a model invention
             // from an extraction mismatch — ch-26 in run 35835281167 was
@@ -445,7 +456,7 @@ async function main() {
             const allowed = [...allowedUrls];
             log(`[grounding] rejected: ${bad.slice(0, 5).join(" , ")}`);
             log(`[grounding] allowed (${allowed.length}): ${allowed.join(" , ")}`);
-            problems.push(`cites URL(s) that no search returned: ${bad.slice(0, 5).join(", ")}. Use ONLY these URLs, copied character for character: ${allowed.join(" ; ")}`);
+            problems.push(`cites URL(s) that no search returned: ${bad.slice(0, 5).join(", ")}. In *_url fields write ONLY one of these source ids: ${[...sourceIds.keys()].join(", ")}`);
           }
         }
         // Discovery: at least one candidate must survive the same duplicate
