@@ -41,6 +41,7 @@ const EXA_URL = process.env.EXA_MCP_URL || "https://mcp.exa.ai/mcp";
 const CALL_TIMEOUT_S = Number(process.env.PREP_CALL_TIMEOUT_S || process.env.OPENCODE_CALL_TIMEOUT_S) || 300;
 const NUM_CTX = Number(process.env.OLLAMA_CONTEXT_LENGTH) || 16384;
 const SEARCH_AGENTS = new Set(["pipeline-research"]);
+const SEARCH_TEXT_MAX = Number(process.env.SEARCH_TEXT_MAX) || 3000; // chars per query
 
 function parseArgs(argv) {
   const out = {};
@@ -122,6 +123,11 @@ async function exaSearch(query, { numResults = 4, contextMaxCharacters = 900 } =
     }
   }
   if (!text.trim()) throw new Error(`exa returned no text for "${query}": ${raw.slice(0, 300)}`);
+  // Exa's contextMaxCharacters did not bound the payload: run 35825042889's
+  // answer prompt reached 7,395 tokens and the first call timed out at 300s.
+  // Cap what the model reads; URLs are taken from the capped text, so the
+  // model can only cite what it was actually shown.
+  if (text.length > SEARCH_TEXT_MAX) text = text.slice(0, SEARCH_TEXT_MAX);
   const urls = [...text.matchAll(/https?:\/\/[^\s)\]"'>]+/g)].map((m) => normUrl(m[0]));
   log(`[exa] "${query}" → ${urls.length} URL(s) in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
   return { query, text: text.trim(), urls: [...new Set(urls)] };

@@ -183,6 +183,7 @@ jobs:
           set +e
           cat /tmp/context.json | node scripts/ollama-agent.js \
             --prompt-file prompts/discover-topics.md \
+            --append-system-prompt-file prompts/discover-candidates.md \
             --schema-file schemas/topics.json \
             --search-budget 2 \
             --agent pipeline-research \
