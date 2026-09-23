@@ -1160,9 +1160,14 @@
           "topic": "The Mastermind Behind the $500 Million cryptocurrency Ponzi Scheme",
           "slug": "500m-ponzi-scheme",
           "reserved_at": "2026-09-22T16:47:12.565Z"
+        },
+        {
+          "topic": "EvilTokens cybercrime service disruption",
+          "slug": "eviltokens-cybercrime-service-takedown",
+          "reserved_at": "2026-09-23T11:12:09.171Z"
         }
       ],
-      "last_generated": "2026-09-23T06:28:19.337Z"
+      "last_generated": "2026-09-23T11:12:09.171Z"
     },
     "27": {
       "channel_name": "Climate Now",
