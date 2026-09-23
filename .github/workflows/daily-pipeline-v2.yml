@@ -184,6 +184,7 @@ jobs:
           cat /tmp/context.json | node scripts/ollama-agent.js \
             --prompt-file prompts/discover-topics.md \
             --append-system-prompt-file prompts/discover-candidates.md \
+            --min-items topics=3 \
             --schema-file schemas/topics.json \
             --search-budget 2 \
             --agent pipeline-research \
@@ -321,7 +322,7 @@ jobs:
                 --schema-file schemas/research.json \
                 --agent pipeline-research \
                 --model "$OPENCODE_MODELS_RESEARCH" \
-                --task-label research --max-retries 4 --channel-id "$CH" --video-id "$SLUG" \
+                --task-label research --max-retries 4 --min-source-domains 2 --channel-id "$CH" --video-id "$SLUG" \
                 > /tmp/research-raw.json 2> >(tee /tmp/research-err.log >&2)
           AGENT_EXIT=$?
           set -e

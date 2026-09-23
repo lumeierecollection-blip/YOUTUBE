@@ -42,6 +42,25 @@ const CALL_TIMEOUT_S = Number(process.env.PREP_CALL_TIMEOUT_S || process.env.OPE
 const NUM_CTX = Number(process.env.OLLAMA_CONTEXT_LENGTH) || 16384;
 const SEARCH_AGENTS = new Set(["pipeline-research"]);
 const SEARCH_TEXT_MAX = Number(process.env.SEARCH_TEXT_MAX) || 3000; // chars per query
+const SEARCH_RESULT_CHARS = Number(process.env.SEARCH_RESULT_CHARS) || 600; // chars per result
+
+// Exa's text is a sequence of result blocks, each starting "Title:". Keep
+// every block's header lines (Title/URL/date) and trim its body, so all
+// results — and all their URLs — survive the size cap.
+function capPerResult(text, perResult, total) {
+  let blocks = text.split(/\n(?=Title:)/);
+  if (blocks.length < 2) blocks = text.split(/\n(?=URL:)/);
+  if (blocks.length < 2) return text.slice(0, total); // unrecognised layout: overall cap only
+  const out = [];
+  let used = 0;
+  for (const b of blocks) {
+    const clipped = b.length > perResult ? `${b.slice(0, perResult)}…` : b;
+    if (used + clipped.length > total && out.length) break;
+    out.push(clipped);
+    used += clipped.length;
+  }
+  return out.join("\n");
+}
 
 function parseArgs(argv) {
   const out = {};
@@ -127,7 +146,9 @@ async function exaSearch(query, { numResults = 4, contextMaxCharacters = 900 } =
   // answer prompt reached 7,395 tokens and the first call timed out at 300s.
   // Cap what the model reads; URLs are taken from the capped text, so the
   // model can only cite what it was actually shown.
-  if (text.length > SEARCH_TEXT_MAX) text = text.slice(0, SEARCH_TEXT_MAX);
+  // Capped PER RESULT, not per query: slicing the whole payload kept only
+  // the first result (1 URL per search, run 35826622422).
+  text = capPerResult(text, SEARCH_RESULT_CHARS, SEARCH_TEXT_MAX);
   const urls = [...text.matchAll(/https?:\/\/[^\s)\]"'>]+/g)].map((m) => normUrl(m[0]));
   log(`[exa] "${query}" → ${urls.length} URL(s) in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
   return { query, text: text.trim(), urls: [...new Set(urls)] };
@@ -234,6 +255,7 @@ async function main() {
   const maxRetries = Math.max(1, Number(args["max-retries"]) || 3);
   const searchBudget = Math.max(0, Number(args["search-budget"]) || 2);
   const taskLabel = args["task-label"] || "task";
+  const minDomains = Number(args["min-source-domains"]) || 0;
   const models = String(args.model || "").split(",").map((m) => m.trim()).filter(Boolean);
   if (!promptFile || !schemaFile || !models.length) {
     log("Usage: node scripts/ollama-agent.js --prompt-file <p> --schema-file <s> --model ollama/<name> [--agent pipeline-research|pipeline-script] [--search-budget N] [--append-system-prompt-file <p>] [--max-retries N]");
@@ -248,6 +270,20 @@ async function main() {
   const basePrompt = readFileSync(promptFile, "utf-8");
   const system = args["append-system-prompt-file"] ? readFileSync(args["append-system-prompt-file"], "utf-8") : "";
   const schema = JSON.parse(readFileSync(schemaFile, "utf-8"));
+  // --min-items path=N tightens one array's minItems for this call, in both
+  // the constrained-output schema and validation. Discovery uses it to
+  // require several candidates: asked in prose, qwen2.5:3b still returned
+  // one, and one duplicate candidate skipped the channel (run 35826622422).
+  if (typeof args["min-items"] === "string") {
+    const [path, n] = args["min-items"].split("=");
+    let node = schema;
+    for (const key of path.split(".")) node = node?.properties?.[key];
+    if (!node || node.type !== "array") {
+      log(`--min-items: ${path} is not an array in ${schemaFile}`);
+      process.exit(2);
+    }
+    node.minItems = Math.max(node.minItems || 0, Number(n));
+  }
   const ajv = new Ajv({ allErrors: true, strict: false });
   const validate = ajv.compile(schema);
   const input = readStdin().trim();
@@ -335,6 +371,14 @@ async function main() {
         if (allowedUrls) {
           const bad = citedUrls(data).filter((u) => !allowedUrls.has(normUrl(u)));
           if (bad.length) problems.push(`cites URL(s) that no search returned: ${bad.slice(0, 5).join(", ")}`);
+        }
+        // Same threshold as gate-research SCR-02, checked here so the model
+        // gets a retry with the reason instead of the stage failing later.
+        if (minDomains > 0) {
+          const domains = new Set(citedUrls(data).map((u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return null; } }).filter(Boolean));
+          if (domains.size < minDomains) {
+            problems.push(`cites only ${domains.size} distinct source domain(s) (${[...domains].join(", ") || "none"}); at least ${minDomains} different sites from the search results are required`);
+          }
         }
       }
       if (!problems.length) {
