@@ -49,7 +49,7 @@ env:
   OPENCODE_MODELS_REASONING: "ollama/qwen2.5:7b"
   OPENCODE_MODELS: "ollama/qwen2.5:7b"
   OPENCODE_ENABLE_EXA: "1"
-  OPENCODE_CALL_TIMEOUT_S: "300"
+  PREP_CALL_TIMEOUT_S: "300"
   RENDER_SCALE: "0.75"
   RENDER_CONCURRENCY: "4"
 
@@ -136,22 +136,6 @@ jobs:
       - name: Install EdgeTTS
         run: pip install --quiet edge-tts
 
-      - name: Cache OpenCode CLI
-        if: github.event.inputs.render_only != 'true'
-        id: opencode-cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.opencode-cli
-          key: opencode-cli-${{ runner.os }}-v1
-
-      - name: Install OpenCode (cache miss only)
-        if: steps.opencode-cache.outputs.cache-hit != 'true' && github.event.inputs.render_only != 'true'
-        run: npm install --prefix ~/.opencode-cli --no-audit --no-fund opencode-ai
-
-      - name: Put OpenCode on PATH
-        if: github.event.inputs.render_only != 'true'
-        run: echo "$HOME/.opencode-cli/node_modules/.bin" >> "$GITHUB_PATH"
-
       # ── Ollama ─────────────────────────────────────────────────────────
       - name: Cache Ollama models
         if: github.event.inputs.render_only != 'true'
@@ -197,7 +181,7 @@ jobs:
           node scripts/build-discovery-context.js --channel "$CH" > /tmp/context.json
 
           set +e
-          cat /tmp/context.json | node scripts/opencode-agent.js \
+          cat /tmp/context.json | node scripts/ollama-agent.js \
             --prompt-file prompts/discover-topics.md \
             --schema-file schemas/topics.json \
             --search-budget 2 \
@@ -331,7 +315,7 @@ jobs:
           jq -n --arg t "$TOPIC" --arg a "$ANGLE" \
                 --arg s "$SLUG"  --arg c "$CH" \
                 '{topic:$t, angle:$a, slug:$s, channel_id:$c}' \
-            | node scripts/opencode-agent.js \
+            | node scripts/ollama-agent.js \
                 --prompt-file prompts/research.md \
                 --schema-file schemas/research.json \
                 --agent pipeline-research \
@@ -392,7 +376,7 @@ jobs:
               fi
               set +e
               node scripts/build-script-context.js "$CH" "$SLUG" --format "$FORMAT" \
-                | node scripts/opencode-agent.js \
+                | node scripts/ollama-agent.js \
                     --prompt-file "$PROMPT_FILE" \
                     --append-system-prompt-file prompts/style-contract.md \
                     --schema-file "$SCHEMA" \

@@ -117,13 +117,29 @@ function git(args) {
   return execFileSync("git", args, { cwd: ROOT, encoding: "utf-8" });
 }
 
-function failedJobLogs(repo, runId) {
-  const jobs = JSON.parse(gh(["api", `repos/${repo}/actions/runs/${runId}/jobs?per_page=100`, "--paginate", "--jq", ".jobs"]).trim() || "[]");
+async function api(path, raw = false) {
+  // Direct fetch, not `gh api`: gh refuses to print a response containing
+  // terminal escape sequences, and job logs are full of them — every log
+  // came back as a fetch error and nothing classified (run 35817394030).
+  const res = await fetch(`https://api.github.com/${path}`, {
+    headers: { authorization: `Bearer ${process.env.GH_TOKEN}`, accept: "application/vnd.github+json" },
+    redirect: "follow",
+  });
+  if (!res.ok) throw new Error(`GET ${path} → ${res.status}`);
+  return raw ? res.text() : res.json();
+}
+
+async function failedJobLogs(repo, runId) {
+  const { jobs = [] } = await api(`repos/${repo}/actions/runs/${runId}/jobs?per_page=100`);
   const failed = jobs.filter((j) => j.conclusion === "failure" && j.name !== "self-heal");
   const logs = [];
   for (const j of failed) {
-    let text = "";
-    try { text = gh(["api", `repos/${repo}/actions/jobs/${j.id}/logs`]); } catch (e) { text = `(could not fetch log: ${e.message})`; }
+    let text;
+    try {
+      text = (await api(`repos/${repo}/actions/jobs/${j.id}/logs`, true)).replace(/\u001b\[[0-9;?]*[a-zA-Z]/g, "");
+    } catch (e) {
+      text = `(could not fetch log: ${e.message})`;
+    }
     logs.push({ name: j.name, text });
   }
   return logs;
@@ -151,7 +167,7 @@ function writeBlocker(cls, body) {
   console.log(`Wrote ${file}`);
 }
 
-function main() {
+async function main() {
   const repo = process.env.GITHUB_REPOSITORY;
   const runId = process.env.GITHUB_RUN_ID;
   const ref = process.env.GITHUB_REF_NAME;
@@ -161,7 +177,7 @@ function main() {
   }
 
   console.log(`=== SELF-HEAL: run ${runId} on ${ref} ===`);
-  const logs = failedJobLogs(repo, runId);
+  const logs = await failedJobLogs(repo, runId);
   if (!logs.length) {
     console.log("No failed jobs found — nothing to diagnose.");
     return;
@@ -225,4 +241,7 @@ function main() {
   console.log(`Committed ${files.join(", ")} and re-dispatched ${WORKFLOW} on ${ref}.`);
 }
 
-main();
+main().catch((e) => {
+  console.error(`self-heal crashed: ${e.stack || e.message}`);
+  process.exit(1);
+});

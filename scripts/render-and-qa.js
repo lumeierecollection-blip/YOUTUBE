@@ -239,6 +239,28 @@ async function probeDuration(path, streamSelector) {
   return { ok: true, value: Number.isFinite(v) ? v : 0, raw: r.stdout.trim() };
 }
 
+async function silenceSpans(path, endAt) {
+  const r = await runChild("ffmpeg", [
+    "-hide_banner", "-nostats", "-i", path,
+    "-af", "silencedetect=noise=-40dB:d=0.5",
+    "-f", "null", "-",
+  ], { label: "silence/detect" });
+  if (r.code !== 0) return { ok: false, error: `ffmpeg silencedetect exited ${r.code} on ${path}` };
+  // silencedetect reports on STDERR — the old version parsed stdout only
+  // and so could never see a gap.
+  const spans = [];
+  let start = null;
+  for (const line of `${r.stdout}\n${r.stderr}`.split("\n")) {
+    const sm = line.match(/silence_start:\s*(-?[\d.]+)/);
+    const em = line.match(/silence_end:\s*([\d.]+)/);
+    if (sm) start = Math.max(0, parseFloat(sm[1]));
+    if (em && start !== null) { spans.push({ start, end: parseFloat(em[1]) }); start = null; }
+  }
+  // Silence that runs to end-of-stream has a start and no end.
+  if (start !== null) spans.push({ start, end: endAt });
+  return { ok: true, spans: spans.map((g) => ({ ...g, duration: g.end - g.start })) };
+}
+
 async function detectSilence(videoPath, audioPath) {
   // No "skipping" branches: a missing ffmpeg/ffprobe is a broken runner, and
   // a check that silently passes is how six silent videos would have shipped.
@@ -252,42 +274,30 @@ async function detectSilence(videoPath, audioPath) {
     return { ok: false, gaps: [], reason: `rendered video has no audio stream (${stream.error || "ffprobe returned nothing"})` };
   }
 
-  const r = await runChild("ffmpeg", [
-    "-hide_banner", "-nostats", "-i", videoPath,
-    "-af", "silencedetect=noise=-40dB:d=0.5",
-    "-f", "null", "-",
-  ], { label: "silence/detect" });
-  if (r.code !== 0) return { ok: false, gaps: [], reason: `ffmpeg silencedetect exited ${r.code}` };
+  // A SKIP is silence in the video that the voiceover itself doesn't have.
+  // The voiceover legitimately pauses ~1s between paragraphs (tts.js joins
+  // them with blank lines), so "any gap > 0.5s" flagged every sentence
+  // boundary — run 35817394030 rejected both renders on exactly those.
+  const vid = await silenceSpans(videoPath, audioDuration);
+  if (!vid.ok) return { ok: false, gaps: [], reason: vid.error };
+  const src = await silenceSpans(audioPath, audioDuration);
+  if (!src.ok) return { ok: false, gaps: [], reason: src.error };
 
-  // silencedetect reports on STDERR. The previous version parsed stdout
-  // only, so it could never see a gap and passed every video — including
-  // DirectedShorts renders that had no voiceover at all.
-  const out = `${r.stdout}\n${r.stderr}`;
-  const gaps = [];
-  let silenceStart = null;
-  for (const line of out.split("\n")) {
-    const startMatch = line.match(/silence_start:\s*(-?[\d.]+)/);
-    const endMatch = line.match(/silence_end:\s*([\d.]+)/);
-    if (startMatch) silenceStart = Math.max(0, parseFloat(startMatch[1]));
-    if (endMatch && silenceStart !== null) {
-      const silenceEnd = parseFloat(endMatch[1]);
-      if (silenceStart < audioDuration && silenceEnd - silenceStart > 0.5) {
-        gaps.push({ start: silenceStart, end: silenceEnd, duration: silenceEnd - silenceStart });
-      }
-      silenceStart = null;
-    }
-  }
-  // Silence that runs to end-of-stream has a start and no end.
-  if (silenceStart !== null && silenceStart < audioDuration && audioDuration - silenceStart > 0.5) {
-    gaps.push({ start: silenceStart, end: audioDuration, duration: audioDuration - silenceStart });
-  }
+  const START_TOL = 0.4;   // s — mux/encode offset between the two
+  const EXTRA_TOL = 0.3;   // s — how much longer than the source pause is still the same pause
+  const gaps = vid.spans.filter((g) => {
+    if (g.start >= audioDuration - 0.1 || g.duration <= 0.5) return false;
+    const match = src.spans.find((s) => Math.abs(s.start - g.start) <= START_TOL && g.duration <= s.duration + EXTRA_TOL);
+    return !match;
+  });
+  console.log(`[silence] voiceover pauses ${src.spans.length}, video pauses ${vid.spans.length}, unmatched ${gaps.length}`);
 
   if (gaps.length > 0) {
-    console.error(`::error::${gaps.length} silence gap(s) > 0.5s detected inside narration window:`);
+    console.error(`::error::${gaps.length} silence gap(s) in the video with no matching pause in the voiceover:`);
     for (const g of gaps) {
       console.error(`  ${g.start.toFixed(2)}s — ${g.end.toFixed(2)}s (${g.duration.toFixed(2)}s)`);
     }
-    return { ok: false, gaps, reason: `${gaps.length} silence gap(s)` };
+    return { ok: false, gaps, reason: `${gaps.length} unmatched silence gap(s)` };
   }
   return { ok: true, gaps: [] };
 }

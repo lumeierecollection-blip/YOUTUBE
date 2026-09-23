@@ -633,7 +633,20 @@ async function main() {
   // director will render: its explicit `mechanism`, else the mechanism its
   // capability directive compiles to. A beat with neither cannot be
   // directed, so the plan is rejected rather than handed to the renderer.
-  const effective = plan.beats.map((b) => b.mechanism || b.compiledScene?.mechanism || null);
+  // compileScene() labels every capability-built scene "CAPABILITY" — a
+  // placeholder, not what the beat shows. Counting that label made 6 of 7
+  // beats one "mechanism" and the cap then forced them onto legacy scenes
+  // (run 35817394030, ch-2). A capability beat is identified by its primary
+  // capability instead.
+  const effectiveOf = (b) => {
+    if (b.mechanism) return b.mechanism;
+    const m = b.compiledScene?.mechanism;
+    if (!m) return null;
+    if (m !== "CAPABILITY") return m;
+    const cap = (b.capabilities || [])[0] || b.visual_events?.[0]?.type;
+    return cap ? `CAPABILITY:${cap}` : null;
+  };
+  const effective = plan.beats.map(effectiveOf);
   const undirectable = effective.map((m, i) => (m ? -1 : i)).filter((i) => i >= 0);
   if (undirectable.length) {
     console.error(`Plan rejected: beat(s) ${undirectable.join(", ")} compile to no mechanism.`);
