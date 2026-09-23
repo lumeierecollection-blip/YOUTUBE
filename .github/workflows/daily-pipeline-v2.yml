@@ -425,30 +425,47 @@ jobs:
                 # so the audio is generated here and its SRT end is checked.
                 if [ "$FORMAT" = "shorts" ]; then
                   SCRIPT_FILE="data/research/$CH/${SCRIPT_SLUG}-script.json"
-                  TTS_DONE=0
-                  for tts_try in 1 2 3; do
-                    if node src/utils/tts.js "$CH" "$SCRIPT_FILE"; then TTS_DONE=1; break; fi
-                    sleep 15
-                  done
-                  if [ "$TTS_DONE" -ne 1 ]; then
-                    echo "::error::TTS failed after 3 attempts for $SCRIPT_SLUG"
-                    exit 1
-                  fi
-                  VO_SRT="data/tts/$CH/${SCRIPT_SLUG}-script-vo.srt"
-                  VO_END=$(node -e "
-                    const t=require('fs').readFileSync(process.argv[1],'utf8').match(/\d+:\d+:\d+[,.]\d+(?=\s*\r?\n)/g)||[];
-                    const [h,m,s]=(t.pop()||'0:0:0,0').replace(',','.').split(':');
-                    console.log((+h*3600+ +m*60+ +s).toFixed(2));" "$VO_SRT")
-                  echo "Voiceover length: ${VO_END}s (Short limit 58s)"
-                  if awk "BEGIN{exit !($VO_END > 58)}"; then
-                    # A concrete word ceiling, from this script's own measured
-                    # words-per-second — "cut to N%" didn't move qwen2.5:3b
-                    # (ch-48: 70s, 66s, 64s, 90s in run 35837564720).
+                  FITS=0
+                  # Up to 3 measure → trim rounds. Trimming only DELETES whole
+                  # sentences (scripts/fit-short.js — hook and payoff kept);
+                  # qwen2.5:3b never converged on a length when asked to
+                  # rewrite (ch-48 70/66/64/90s, ch-9 68/60/75s).
+                  for FIT in 1 2 3; do
+                    TTS_DONE=0
+                    for tts_try in 1 2 3; do
+                      if node src/utils/tts.js "$CH" "$SCRIPT_FILE"; then TTS_DONE=1; break; fi
+                      sleep 15
+                    done
+                    if [ "$TTS_DONE" -ne 1 ]; then
+                      echo "::error::TTS failed after 3 attempts for $SCRIPT_SLUG"
+                      exit 1
+                    fi
+                    VO_SRT="data/tts/$CH/${SCRIPT_SLUG}-script-vo.srt"
+                    VO_END=$(node -e "
+                      const t=require('fs').readFileSync(process.argv[1],'utf8').match(/\d+:\d+:\d+[,.]\d+(?=\s*\r?\n)/g)||[];
+                      const [h,m,s]=(t.pop()||'0:0:0,0').replace(',','.').split(':');
+                      console.log((+h*3600+ +m*60+ +s).toFixed(2));" "$VO_SRT")
+                    echo "Voiceover length: ${VO_END}s (Short limit 58s)"
+                    if ! awk "BEGIN{exit !($VO_END > 58)}"; then FITS=1; break; fi
+                    # Word ceiling from this script's own measured words/second.
                     WORDS=$(node -e "const s=require('./'+process.argv[1]);console.log((s.sections||[]).map(x=>x.voiceover||'').join(' ').split(/\s+/).filter(Boolean).length)" "$SCRIPT_FILE")
                     MAXW=$(awk "BEGIN{printf \"%d\", $WORDS*52/$VO_END}")
-                    echo "::warning::voiceover ${VO_END}s (${WORDS} words) is too long for a Short — rewriting to <= ${MAXW} words ($ATTEMPT/5)"
                     rm -f "data/tts/$CH/${SCRIPT_SLUG}-script-vo."*
-                    FEEDBACK=$( { printf '%s\n' "$FEEDBACK" | grep -v '  - LENGTH:'; printf '  - LENGTH: your voiceover is %s words and runs %ss; a Short must finish inside 58s. Rewrite it to AT MOST %s words in total across all sections (count them). Keep every sourced fact you keep worded exactly as before.\n' "$WORDS" "$VO_END" "$MAXW"; } | grep -E '^  - ' | sort -u)
+                    echo "::warning::voiceover ${VO_END}s (${WORDS} words) is over the Short limit — removing sentences to <= ${MAXW} words (fit $FIT/3)"
+                    if ! node scripts/fit-short.js "$SCRIPT_FILE" "$MAXW"; then break; fi
+                    if ! node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then
+                      echo "::warning::script gate rejected the trimmed script"
+                      cat /tmp/gate-out-$FORMAT.log
+                      break
+                    fi
+                  done
+                  if [ "$FITS" -ne 1 ]; then
+                    # Trimming couldn't fit it (hook + payoff alone too long,
+                    # or the trimmed script failed the gate): ask for a
+                    # shorter script with a concrete word ceiling.
+                    rm -f "data/tts/$CH/${SCRIPT_SLUG}-script-vo."*
+                    GATE_LINES=$(grep -E '^  - ' /tmp/gate-out-$FORMAT.log || true)
+                    FEEDBACK=$( { printf '%s\n%s\n' "$FEEDBACK" "$GATE_LINES" | grep -v '  - LENGTH:'; printf '  - LENGTH: your voiceover is %s words and runs %ss; a Short must finish inside 58s. Rewrite it to AT MOST %s words in total across all sections (count them). Keep every sourced fact you keep worded exactly as before.\n' "$WORDS" "$VO_END" "$MAXW"; } | grep -E '^  - ' | sort -u)
                     continue
                   fi
                 fi

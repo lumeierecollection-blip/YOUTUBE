@@ -428,7 +428,11 @@ async function main() {
         // Same threshold as gate-research SCR-02, checked here so the model
         // gets a retry with the reason instead of the stage failing later.
         if (minDomains > 0) {
-          const domains = new Set(citedUrls(data).map((u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return null; } }).filter(Boolean));
+          // Counted over key_facts[].source_url when present — exactly what
+          // gate-research SCR-02 counts. Counting every cited URL let ch-2
+          // pass here on a numbers[] domain and fail the gate (run 35840782030).
+          const domainSource = Array.isArray(data.key_facts) ? data.key_facts.map((f) => f?.source_url).filter(Boolean) : citedUrls(data);
+          const domains = new Set(domainSource.map((u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return null; } }).filter(Boolean));
           if (domains.size < minDomains) {
             problems.push(`cites only ${domains.size} distinct source domain(s) (${[...domains].join(", ") || "none"}); at least ${minDomains} different sites from the search results are required`);
           }
