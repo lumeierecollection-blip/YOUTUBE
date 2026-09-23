@@ -441,10 +441,14 @@ jobs:
                     console.log((+h*3600+ +m*60+ +s).toFixed(2));" "$VO_SRT")
                   echo "Voiceover length: ${VO_END}s (Short limit 58s)"
                   if awk "BEGIN{exit !($VO_END > 58)}"; then
-                    PCT=$(awk "BEGIN{printf \"%d\", 52/$VO_END*100}")
-                    echo "::warning::voiceover ${VO_END}s is too long for a Short — rewriting ($ATTEMPT/5)"
+                    # A concrete word ceiling, from this script's own measured
+                    # words-per-second — "cut to N%" didn't move qwen2.5:3b
+                    # (ch-48: 70s, 66s, 64s, 90s in run 35837564720).
+                    WORDS=$(node -e "const s=require('./'+process.argv[1]);console.log((s.sections||[]).map(x=>x.voiceover||'').join(' ').split(/\s+/).filter(Boolean).length)" "$SCRIPT_FILE")
+                    MAXW=$(awk "BEGIN{printf \"%d\", $WORDS*52/$VO_END}")
+                    echo "::warning::voiceover ${VO_END}s (${WORDS} words) is too long for a Short — rewriting to <= ${MAXW} words ($ATTEMPT/5)"
                     rm -f "data/tts/$CH/${SCRIPT_SLUG}-script-vo."*
-                    FEEDBACK=$(printf '%s\n  - LENGTH: the narration runs %ss when spoken; a Short must finish inside 58s. Cut the voiceover to about %s%% of its current length, keeping every sourced fact you keep worded exactly as before.\n' "$FEEDBACK" "$VO_END" "$PCT" | grep -E '^  - ' | sort -u)
+                    FEEDBACK=$( { printf '%s\n' "$FEEDBACK" | grep -v '  - LENGTH:'; printf '  - LENGTH: your voiceover is %s words and runs %ss; a Short must finish inside 58s. Rewrite it to AT MOST %s words in total across all sections (count them). Keep every sourced fact you keep worded exactly as before.\n' "$WORDS" "$VO_END" "$MAXW"; } | grep -E '^  - ' | sort -u)
                     continue
                   fi
                 fi

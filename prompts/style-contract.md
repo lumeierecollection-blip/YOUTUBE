@@ -41,9 +41,11 @@ reveal lands, closing type) in the context JSON — follow those, not a
 generic structure.
 
 Target voiceover word counts (spoken text only):
-- `shorts`: 90–130 words (HARD CAP: 55 seconds). At motion-graphics WPM
-  this lands 35–50s. Never exceed 130 words — a short that runs over 55s
-  loses retention. Pack maximum information density into fewer words: every
+- `shorts`: 70–90 words (HARD CAP: 90 words). The narration voice speaks
+  slower than the WPM table suggests — measured at about 1.7 words per
+  second including the pause between sections — so 90 words is already
+  ~53s, and anything over ~100 words runs past the 60-second Short and
+  gets cut off mid-sentence. Pack maximum information density into fewer words: every
   sentence must either hook, escalate, or pay off. Cut filler ruthlessly.
   Every word fights for its place. If removing a sentence doesn't hurt the
   argument, the sentence shouldn't be there.
