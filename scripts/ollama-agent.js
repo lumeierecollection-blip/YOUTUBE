@@ -95,7 +95,7 @@ async function chat(model, messages, format, label) {
 
 /* ── Exa search (same hosted endpoint as OpenCode's websearch tool) ── */
 
-async function exaSearch(query, { numResults = 6, contextMaxCharacters = 1200 } = {}) {
+async function exaSearch(query, { numResults = 4, contextMaxCharacters = 900 } = {}) {
   const t0 = Date.now();
   const res = await fetchWithTimeout(EXA_URL, {
     method: "POST",

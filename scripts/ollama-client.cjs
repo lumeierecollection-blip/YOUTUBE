@@ -2,15 +2,15 @@
 /**
  * Minimal Ollama client for the prep stage.
  *
- * The pipeline's model calls go through OpenCode (opencode.json's "ollama"
- * provider → OLLAMA_URL/v1). This module is what the workflow uses to make
+ * The prep stages' model calls go through scripts/ollama-agent.js (direct
+ * /api/chat). This module is what the workflow uses to make
  * sure that server is actually up, has the model, and has it loaded, before
  * the first stage starts — so a dead or half-started server fails in its own
  * step with its own error instead of surfacing as "All models failed" three
  * stages later.
  *
  * CLI:
- *   node scripts/ollama-client.cjs --check [--model qwen2.5:7b] [--timeout 60]
+ *   node scripts/ollama-client.cjs --check [--model qwen2.5:3b] [--timeout 60]
  *     waits for /api/tags, verifies the model is pulled, sends one warm-up
  *     generation (loads the weights into memory). Exit 0 = ready.
  *
@@ -18,7 +18,7 @@
  *   const { generate, waitForServer } = require("./ollama-client.cjs");
  */
 
-const DEFAULT_MODEL = process.env.OLLAMA_MODEL || "qwen2.5:7b";
+const DEFAULT_MODEL = process.env.OLLAMA_MODEL || "qwen2.5:3b";
 const OLLAMA_URL = (process.env.OLLAMA_URL || "http://127.0.0.1:11434").replace(/\/$/, "");
 
 async function request(path, body, timeoutMs = 120000) {

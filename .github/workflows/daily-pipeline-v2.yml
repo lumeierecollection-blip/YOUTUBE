@@ -39,15 +39,15 @@ concurrency:
 env:
   NODE_VERSION: "22"
   PYTHON_VERSION: "3.11"
-  OLLAMA_MODEL: "qwen2.5:7b"
+  OLLAMA_MODEL: "qwen2.5:3b"
   OLLAMA_URL: "http://127.0.0.1:11434"
   # Ollama's default context is 4096 tokens; the research/script prompts are
   # longer, and a truncated prompt is how llama3.2 ended up answering
   # "To print Hello World in Python…". opencode.json declares 16384 to match.
   OLLAMA_CONTEXT_LENGTH: "16384"
-  OPENCODE_MODELS_RESEARCH: "ollama/qwen2.5:7b"
-  OPENCODE_MODELS_REASONING: "ollama/qwen2.5:7b"
-  OPENCODE_MODELS: "ollama/qwen2.5:7b"
+  OPENCODE_MODELS_RESEARCH: "ollama/qwen2.5:3b"
+  OPENCODE_MODELS_REASONING: "ollama/qwen2.5:3b"
+  OPENCODE_MODELS: "ollama/qwen2.5:3b"
   OPENCODE_ENABLE_EXA: "1"
   PREP_CALL_TIMEOUT_S: "300"
   RENDER_SCALE: "0.75"
@@ -142,7 +142,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.ollama/models
-          key: ollama-${{ runner.os }}-qwen2.5-7b
+          key: ollama-${{ runner.os }}-qwen2.5-3b
 
       - name: Install Ollama
         if: github.event.inputs.render_only != 'true'
