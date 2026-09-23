@@ -286,12 +286,11 @@ function fixResearchData(obj) {
       }
     }
   }
-  // Ensure key_facts has at least 3 items
-  if (obj.key_facts && Array.isArray(obj.key_facts) && obj.key_facts.length < 3) {
-    while (obj.key_facts.length < 3) {
-      obj.key_facts.push({ fact: "Additional research needed", source: "pending verification" });
-    }
-  }
+  // key_facts is NOT padded. This used to push placeholder facts ("Additional
+  // research needed" / "pending verification") until there were 3, which let
+  // un-sourced filler pass the research quality bar — a direct violation of
+  // "no fact that didn't come from a fetched source". Too few facts now fails
+  // validation and the stage retries or fails, as it should.
   // Recurse into nested objects
   for (const val of Object.values(obj)) {
     if (typeof val === "object" && val !== null) fixResearchData(val);
@@ -309,15 +308,23 @@ function runOnce({ model, agent, promptText }) {
   args.push(promptText);
 
   const env = { ...process.env, OPENCODE_ENABLE_EXA: process.env.OPENCODE_ENABLE_EXA || "1" };
+  // Per-call ceiling. 15 min was the default, which on a CPU-only runner let
+  // one stuck call eat a whole job's budget with nothing logged.
+  const timeoutS = Number(process.env.OPENCODE_CALL_TIMEOUT_S) || 15 * 60;
+  const t0 = Date.now();
   const result = spawnSync("opencode", args, {
     encoding: "utf-8",
     env,
     maxBuffer: 64 * 1024 * 1024,
-    timeout: 15 * 60 * 1000,
+    timeout: timeoutS * 1000,
   });
+  const elapsedS = ((Date.now() - t0) / 1000).toFixed(1);
+  console.error(`[${model}] opencode run finished in ${elapsedS}s (exit ${result.status ?? result.error?.code ?? "?"}, prompt ${promptText.length} chars)`);
 
   if (result.error) {
-    return { ok: false, error: `spawn failed: ${result.error.message}` };
+    const why = result.error.code === "ETIMEDOUT" ? `timed out after ${timeoutS}s` : result.error.message;
+    const tail = [result.stderr, result.stdout].filter(Boolean).join(" | ").slice(-1500);
+    return { ok: false, error: `spawn failed: ${why}${tail ? ` — last output: ${tail}` : ""}` };
   }
   if (result.status !== 0) {
     // opencode reports API/provider errors as a {"type":"error",...} event

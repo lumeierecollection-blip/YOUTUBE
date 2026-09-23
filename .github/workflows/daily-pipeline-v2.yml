@@ -45,6 +45,7 @@ env:
   OPENCODE_MODELS_REASONING: "ollama/qwen2.5:7b"
   OPENCODE_MODELS: "ollama/qwen2.5:7b"
   OPENCODE_ENABLE_EXA: "1"
+  OPENCODE_CALL_TIMEOUT_S: "300"
   RENDER_SCALE: "0.75"
   RENDER_CONCURRENCY: "4"
 
@@ -193,7 +194,7 @@ jobs:
             --agent pipeline-research \
             --model "$OPENCODE_MODELS_RESEARCH" \
             --task-label discover-topics --max-retries 4 \
-            > /tmp/topics-raw.json 2> /tmp/topics-err.log
+            > /tmp/topics-raw.json 2> >(tee /tmp/topics-err.log >&2)
           AGENT_EXIT=$?
           set -e
 
@@ -306,7 +307,7 @@ jobs:
                 --agent pipeline-research \
                 --model "$OPENCODE_MODELS_RESEARCH" \
                 --task-label research --max-retries 4 --channel-id "$CH" --video-id "$SLUG" \
-                > /tmp/research-raw.json 2> /tmp/research-err.log
+                > /tmp/research-raw.json 2> >(tee /tmp/research-err.log >&2)
           AGENT_EXIT=$?
           set -e
 
@@ -368,7 +369,7 @@ jobs:
                     --agent pipeline-script \
                     --model "$OPENCODE_MODELS_REASONING" \
                     --task-label write-script --max-retries 4 --channel-id "$CH" --video-id "$SCRIPT_SLUG" \
-                    > /tmp/script-raw-$FORMAT.json 2> /tmp/script-err-$FORMAT.log
+                    > /tmp/script-raw-$FORMAT.json 2> >(tee /tmp/script-err-$FORMAT.log >&2)
               AGENT_EXIT=$?
               set -e
               if [ "$AGENT_EXIT" -ne 0 ]; then
@@ -451,6 +452,13 @@ jobs:
           jq -n --arg t "$TOPIC" --arg s "$SLUG" '{topic:$t, slug:$s}' \
             > "data/research/$CH/next-topic.json"
           node src/utils/pipeline.js "$CH" --step 5 || echo "WARN: metadata generation had issues"
+
+      - name: Ollama request log
+        if: always()
+        run: |
+          # One line per model request: status, duration, endpoint. Plus any
+          # prompt-truncation warnings. This is where prep time actually goes.
+          grep -E "\[GIN\]|truncat|error|level=WARN" /tmp/ollama.log | tail -60 || echo "(no ollama log)"
 
       # ── Prep status + artifact (ALWAYS uploaded) ───────────────────────
       # A channel that skipped (all candidates duplicate) still uploads an
