@@ -66,9 +66,14 @@ in the video matches a pause in the source voiceover).
   made by hand from the logs.
 
 ## Not yet done
-- **The publishing run.** This green run was a dry run. A run with
-  `dry_run=false` (private uploads to all six channels) has not been
-  triggered — it needs the owner's explicit go-ahead.
+- **Uploads — blocked on OAuth.** The publishing run
+  ([35852731846](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/35852731846),
+  `dry_run=false`, all six channels set to `stay_private: true` first)
+  passed 6/6 prep and 6/6 render with every gate green, then every upload
+  failed with `invalid_grant — Token has been expired or revoked`. Nothing
+  was uploaded. All six refresh tokens were set 2026-09-14; Google expires
+  refresh tokens after 7 days for OAuth apps in "Testing" status. Details
+  and the fix: `data/ci-runs/blocked-youtube-oauth.txt`.
 - **Replacing `main`.** Per the owner's decision, `main` is replaced with
   this branch only after green; that is a separate step.
 
