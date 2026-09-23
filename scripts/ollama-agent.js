@@ -170,6 +170,35 @@ function citedUrls(obj, out = []) {
   return out;
 }
 
+/**
+ * Queries for the stages whose input already says what to search for.
+ * Returns null for any other stage (the model plans those queries).
+ *   discover-topics: two of the channel's content pillars, rotated by day
+ *     so consecutive days search different pillars, each with the year.
+ *   research: the reserved topic, then the topic with its angle.
+ */
+function derivedQueries(taskLabel, inputText, budget) {
+  let input;
+  try { input = JSON.parse(inputText); } catch { return null; }
+  const year = new Date().getUTCFullYear();
+  if (taskLabel === "discover-topics") {
+    const ch = (input.channels || [])[0];
+    const pillars = ch?.content_pillars || [];
+    if (!pillars.length) return null;
+    const day = Math.floor(Date.now() / 86400000);
+    const picks = [];
+    for (let i = 0; i < Math.min(budget, pillars.length); i++) picks.push(pillars[(day + i) % pillars.length]);
+    return picks.map((p) => `${p} ${year} news`);
+  }
+  if (taskLabel === "research") {
+    if (!input.topic) return null;
+    const qs = [input.topic];
+    if (input.angle) qs.push(`${input.topic} ${input.angle}`.slice(0, 200));
+    return qs.slice(0, Math.max(1, budget));
+  }
+  return null;
+}
+
 function lengthReminders(schema, path = "", out = []) {
   if (!schema || typeof schema !== "object") return out;
   if (schema.type === "string" && (schema.minLength || schema.maxLength || schema.pattern)) {
@@ -242,17 +271,26 @@ async function main() {
     let searches = [];
     let allowedUrls = null;
     if (canSearch) {
-      const qSchema = { type: "object", required: ["queries"], properties: { queries: { type: "array", minItems: 1, maxItems: searchBudget, items: { type: "string", minLength: 3 } } } };
-      messages.push({ role: "user", content: `Before answering, list up to ${searchBudget} web search queries that will find current, specific, citable sources for this task. Respond ONLY with {"queries": [...]}.` });
-      let queries = [];
-      try {
-        const r = await chat(model, messages, qSchema, `${taskLabel}/queries`);
-        queries = (extractJson(r.content)?.queries || []).slice(0, searchBudget);
-        messages.push({ role: "assistant", content: r.content });
-      } catch (e) {
-        lastError = `[${spec}] query planning failed: ${e.message}`;
-        log(lastError);
-        continue;
+      // Discover and research build their queries from the input (channel
+      // pillars; reserved topic + angle). A model-planned query call cost
+      // 15–77s per stage on the runner and produced weak queries ("money
+      // trail animations recent" for a crypto-fraud channel, run
+      // 35825042889). Other stages still ask the model.
+      let queries = derivedQueries(taskLabel, input, searchBudget);
+      if (queries) {
+        log(`[${taskLabel}] queries from input: ${queries.map((q) => `"${q}"`).join(", ")}`);
+      } else {
+        const qSchema = { type: "object", required: ["queries"], properties: { queries: { type: "array", minItems: 1, maxItems: searchBudget, items: { type: "string", minLength: 3 } } } };
+        messages.push({ role: "user", content: `Before answering, list up to ${searchBudget} web search queries that will find current, specific, citable sources for this task. Respond ONLY with {"queries": [...]}.` });
+        try {
+          const r = await chat(model, messages, qSchema, `${taskLabel}/queries`);
+          queries = (extractJson(r.content)?.queries || []).slice(0, searchBudget);
+          messages.push({ role: "assistant", content: r.content });
+        } catch (e) {
+          lastError = `[${spec}] query planning failed: ${e.message}`;
+          log(lastError);
+          continue;
+        }
       }
       if (!queries.length) {
         lastError = `[${spec}] model produced no search queries`;
