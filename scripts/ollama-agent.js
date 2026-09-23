@@ -98,14 +98,14 @@ async function fetchWithTimeout(url, init, timeoutS) {
 
 /* ── Ollama ───────────────────────────────────────────────────────── */
 
-async function chat(model, messages, format, label) {
+async function chat(model, messages, format, label, temperature = 0.2) {
   const t0 = Date.now();
   const res = await fetchWithTimeout(`${OLLAMA_URL}/api/chat`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
       model, messages, format, stream: false,
-      options: { temperature: 0.2, num_ctx: NUM_CTX },
+      options: { temperature, num_ctx: NUM_CTX },
     }),
   }, CALL_TIMEOUT_S);
   const body = await res.text();
@@ -118,7 +118,21 @@ async function chat(model, messages, format, label) {
 
 /* ── Exa search (same hosted endpoint as OpenCode's websearch tool) ── */
 
-async function exaSearch(query, { numResults = 4, contextMaxCharacters = 900 } = {}) {
+// Six prep jobs search at once. When Exa pushes back it answers fast (0.1s)
+// with a short non-result message whose links looked like "2 URLs" — ch-48
+// then had no real sources and the model invented URLs (run 35829223604).
+// A reply with no result entries is an error here, and it is retried.
+async function exaSearch(query, opts = {}) {
+  const waits = [0, 5000, 15000];
+  let last;
+  for (let i = 0; i < waits.length; i++) {
+    if (waits[i]) await new Promise((r) => setTimeout(r, waits[i]));
+    try { return await exaSearchOnce(query, opts); } catch (e) { last = e; log(`[exa] "${query}" attempt ${i + 1}/${waits.length}: ${e.message}`); }
+  }
+  throw last;
+}
+
+async function exaSearchOnce(query, { numResults = 4, contextMaxCharacters = 900 } = {}) {
   const t0 = Date.now();
   const res = await fetchWithTimeout(EXA_URL, {
     method: "POST",
@@ -135,16 +149,24 @@ async function exaSearch(query, { numResults = 4, contextMaxCharacters = 900 } =
     ? [raw]
     : raw.split("\n").filter((l) => l.startsWith("data:")).map((l) => l.slice(5).trim());
   let text = "";
+  let isError = false;
   for (const p of payloads) {
     try {
       const j = JSON.parse(p);
       if (j.error) throw new Error(`exa error: ${JSON.stringify(j.error).slice(0, 300)}`);
+      if (j.result?.isError) isError = true;
       for (const c of j.result?.content || []) if (c.type === "text") text += c.text + "\n";
     } catch (e) {
       if (String(e.message).startsWith("exa error")) throw e;
     }
   }
   if (!text.trim()) throw new Error(`exa returned no text for "${query}": ${raw.slice(0, 300)}`);
+  if (isError) throw new Error(`exa tool error: ${text.trim().slice(0, 300)}`);
+  // Only result entries count — each carries a "URL:" line. Anything else
+  // (a notice, a limit message) is not a search result.
+  if (!/^\s*URL:\s*\S+/im.test(text)) {
+    throw new Error(`exa reply has no result entries: ${text.trim().replace(/\s+/g, " ").slice(0, 300)}`);
+  }
   // Exa's contextMaxCharacters did not bound the payload: run 35825042889's
   // answer prompt reached 7,395 tokens and the first call timed out at 300s.
   // Cap what the model reads; URLs are taken from the capped text, so the
@@ -152,7 +174,9 @@ async function exaSearch(query, { numResults = 4, contextMaxCharacters = 900 } =
   // Capped PER RESULT, not per query: slicing the whole payload kept only
   // the first result (1 URL per search, run 35826622422).
   text = capPerResult(text, SEARCH_RESULT_CHARS, SEARCH_TEXT_MAX);
-  const urls = [...text.matchAll(/https?:\/\/[^\s)\]"'>]+/g)].map((m) => normUrl(m[0]));
+  // Citable URLs are the result entries' own URL lines — not links that
+  // happen to appear inside a page's text.
+  const urls = [...text.matchAll(/^\s*URL:\s*(\S+)/gim)].map((m) => normUrl(m[1]));
   log(`[exa] "${query}" → ${urls.length} URL(s) in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
   return { query, text: text.trim(), urls: [...new Set(urls)] };
 }
@@ -212,7 +236,11 @@ function derivedQueries(taskLabel, inputText, budget) {
     const day = Math.floor(Date.now() / 86400000);
     const picks = [];
     for (let i = 0; i < Math.min(budget, pillars.length); i++) picks.push(pillars[(day + i) % pillars.length]);
-    return picks.map((p) => `${p} ${year} news`);
+    // Month + year, not just year: "<pillar> 2026 news" kept returning the
+    // same established stories the channel had already covered, and ch-2
+    // exhausted four attempts on duplicates (run 35829223604).
+    const month = new Date().toLocaleString("en-US", { month: "long", timeZone: "UTC" });
+    return picks.map((p) => `${p} news ${month} ${year}`);
   }
   if (taskLabel === "research") {
     if (!input.topic) return null;
@@ -357,7 +385,9 @@ async function main() {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       let r;
       try {
-        r = await chat(model, messages, schema, `${taskLabel}/answer attempt ${attempt}/${maxRetries}`);
+        // Retries raise the temperature: at 0.2 the same context gave byte-identical
+        // rejected answers four times in a row (ch-48, run 35829223604).
+        r = await chat(model, messages, schema, `${taskLabel}/answer attempt ${attempt}/${maxRetries}`, Math.min(0.9, 0.2 + 0.25 * (attempt - 1)));
       } catch (e) {
         lastError = `[${spec}] attempt ${attempt}/${maxRetries}: ${e.message}`;
         log(lastError);

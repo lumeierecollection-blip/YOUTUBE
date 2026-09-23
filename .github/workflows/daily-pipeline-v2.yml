@@ -186,7 +186,7 @@ jobs:
             --append-system-prompt-file prompts/discover-candidates.md \
             --min-items topics=3 --reject-duplicates-for "$CH" \
             --schema-file schemas/topics.json \
-            --search-budget 2 \
+            --search-budget 3 \
             --agent pipeline-research \
             --model "$OPENCODE_MODELS_RESEARCH" \
             --task-label discover-topics --max-retries 4 \
