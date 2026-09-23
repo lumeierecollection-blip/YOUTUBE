@@ -150,6 +150,8 @@ Verdicts per beat:
 - "MISMATCH": the visual is about something the sentence does not say, or conveys nothing of it.
 - "CONTRADICTION": the subject, change or on-screen text states or implies something that contradicts the sentence's factual claim (e.g. text says "recovered" when the sentence says "stolen"; a number that differs from the sentence's number).
 
+You judge the PLAN against the SENTENCE — never the sentence against the world. Treat every sentence as true as written. Do not use your own knowledge to say a sentence is factually wrong: the narration is checked against its sources elsewhere, and a re-plan cannot change it. A CONTRADICTION is only ever the plan disagreeing with its own sentence.
+
 Be strict about CONTRADICTION and MISMATCH — those block the video. WEAK does not block.
 
 BEATS:

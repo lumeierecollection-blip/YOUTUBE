@@ -436,7 +436,11 @@ async function main() {
   // headline-only estimate — ~600 tokens/beat plus headroom, capped at
   // 16384. A script needing more beats than that fits is a pacing problem
   // in the script/caption split, not something to fix here.
-  const maxTokens = Math.min(16384, 2000 + sentences.length * 600);
+  // Raised from 600/beat: QA run 35931611864 got '{ "beats": [...' that
+  // would not parse on 4 of 6 channels (5-6 beats, 5000-5600 tokens) — the
+  // answer is cut off at the budget. describeShape() logs the answer's
+  // length and tail so a cut-off is visible in the log, not guessed.
+  const maxTokens = Math.min(16384, 2000 + sentences.length * 1500);
   let geminiResult = normalizePlanResponse(
     await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2 }));
 
@@ -715,6 +719,6 @@ function normalizePlanResponse(r) {
 function describeShape(r) {
   if (!r) return String(r);
   if (r.error) return "error " + String(r.error).slice(0, 200);
-  if (typeof r.content === "string") return "text " + JSON.stringify(r.content.slice(0, 200));
+  if (typeof r.content === "string") return `text (${r.content.length} chars) ${JSON.stringify(r.content.slice(0, 120))} ... ends ${JSON.stringify(r.content.slice(-120))}`;
   return (Array.isArray(r) ? "array" : "object keys [" + Object.keys(r).join(",") + "]");
 }
