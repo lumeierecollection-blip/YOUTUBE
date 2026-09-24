@@ -217,7 +217,14 @@ registerObject("national border line", (props) => {
   // given, which put ch-09 16px below the safe rect on a measured frame. The
   // box is the contract; a border reads as enclosing by sitting outside the
   // FILL, not outside its own bounds.
-  const d = territoryPath(x, y, w, h, 3);
+  //
+  // Was seed 3 here against seed 7 in "territory fill" above -- two DIFFERENT
+  // fabricated polygons, so a template compositing both (ch-09's
+  // core_objects does exactly that) drew a border that did not enclose its
+  // own fill. Same seed as the fill now: still a placeholder, but at least
+  // an internally consistent one. Found auditing this file for
+  // docs/MAP-AUDIT.md; not otherwise related to the map-engine rebuild.
+  const d = territoryPath(x, y, w, h, 7);
   // The border DRAWS itself, which is the one motion ch-09's references name
   // as carrying a real factual change.
   return (
