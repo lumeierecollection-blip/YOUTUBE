@@ -776,6 +776,37 @@ function escapeStrayControlCharsInStrings(text) {
   return out;
 }
 
+// The second common LLM-JSON defect, distinct from the one above: a comma
+// immediately before a closing `]`/`}`, which every major model occasionally
+// emits when it lists items and stops without deleting the last separator.
+// Strict JSON forbids it ("Unexpected token ']'" is V8's error for exactly
+// this). Same string-aware walk as escapeStrayControlCharsInStrings so a
+// comma that happens to sit inside a string value (part of real text, not
+// JSON structure) is never touched.
+function stripTrailingCommasOutsideStrings(text) {
+  let out = "";
+  let inString = false;
+  let escaped = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inString) {
+      out += ch;
+      if (escaped) escaped = false;
+      else if (ch === "\\") escaped = true;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') { inString = true; out += ch; continue; }
+    if (ch === ",") {
+      let j = i + 1;
+      while (j < text.length && /\s/.test(text[j])) j++;
+      if (text[j] === "]" || text[j] === "}") continue; // drop this comma
+    }
+    out += ch;
+  }
+  return out;
+}
+
 // Accepts the shapes Gemini has actually returned for a plan and maps each
 // to {beats:[...]}; anything else is returned untouched so the caller fails.
 //
@@ -785,11 +816,22 @@ function escapeStrayControlCharsInStrings(text) {
 // never having sent JSON at all. Measured on CI run 36011611536: ch-1 and
 // ch-2's retry both got real, complete-looking `{"beats": [...` text back
 // (10971 and 13447 chars) and were still reported as no-beats. The actual
-// parse errors were never logged, so there was nothing to fix. Now a parse
-// failure is retried once against a control-character-sanitized copy (the
-// one failure mode this can actually repair without inventing content --
-// see escapeStrayControlCharsInStrings above), and if it still fails, the
-// real SyntaxError is attached to the result so describeShape can show it.
+// parse errors were never logged, so there was nothing to fix.
+//
+// Now a parse failure retries against a chain of safe, targeted repairs --
+// each one fixes a specific, well-known LLM-JSON defect and cannot change
+// the meaning of text that was already valid. Run 36016703842 (after the
+// first repair shipped) showed the SECOND defect this chain now also
+// covers: ch-9's retry got 13480 real chars back and still failed with
+// "Unexpected token ']'" -- a trailing comma the control-char pass doesn't
+// touch. If every repair fails, the real SyntaxError is attached so
+// describeShape can show it instead of an indistinguishable "no beats".
+const JSON_REPAIRS = [
+  (text) => text,
+  escapeStrayControlCharsInStrings,
+  (text) => stripTrailingCommasOutsideStrings(escapeStrayControlCharsInStrings(text)),
+];
+
 function normalizePlanResponse(r) {
   if (!r || r.error) return r;
   if (Array.isArray(r)) return { beats: r };
@@ -797,15 +839,15 @@ function normalizePlanResponse(r) {
   if (typeof r.content === "string") {
     const m = r.content.match(/[\[{][\s\S]*[\]}]/);
     if (m) {
-      try {
-        return normalizePlanResponse(JSON.parse(m[0]));
-      } catch (e1) {
+      let lastError = null;
+      for (const repair of JSON_REPAIRS) {
         try {
-          return normalizePlanResponse(JSON.parse(escapeStrayControlCharsInStrings(m[0])));
-        } catch (e2) {
-          return { ...r, _parseError: `${e2.message} (also failed pre-sanitize: ${e1.message})` };
+          return normalizePlanResponse(JSON.parse(repair(m[0])));
+        } catch (e) {
+          lastError = e;
         }
       }
+      return { ...r, _parseError: lastError.message };
     }
     return r;
   }

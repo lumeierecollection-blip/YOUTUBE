@@ -1,0 +1,73 @@
+Category: research-citation-quality (prep stage, "Research topic" step)
+First seen: CI run 36016703842 (2026-09-24), channels 44 and 48
+Also present: CI run 36011611536 (implied by earlier passes on other channels; not previously isolated)
+
+EXACT ERRORS
+
+ch-44 (channel 44, topic "The Importance of Clear and Crisp Writing in the AI Era"):
+  All models failed. Last error: [ollama/qwen2.5:3b] attempt 4/4: cites URL(s) that
+  no search returned: https://www.acrolinx.com/blog/how-to-write-clearly-with-generative-ai/S1,
+  https://www.hindustantimes.com/technology/the-articulation-deficit-where-ai-adoption-
+  actually-fails-101790244895870.html/S6, https://newsletter.eng-leadership.com/p/
+  clear-writing-is-becoming-a-superpower/S7. In *_url fields write ONLY one of these
+  source ids: S1, S2, S3, S4, S5, S6, S7, S8
+
+ch-48 (channel 48, topic "Humanoid Robots in Manufacturing"):
+  All models failed. Last error: [ollama/qwen2.5:3b] attempt 4/4: cites only 1 distinct
+  source domain(s) (reuters.com); at least 2 different sites are required. The search
+  results came from: reuters.com, mckinsey.com, forbes.com, doi.org, link.springer.com,
+  english.scio.gov.cn, thehumanoid.ai — take at least one key fact from a DIFFERENT
+  site in that list, citing its URL exactly
+
+COMMAND THAT PRODUCED IT
+
+The "Research topic" step of .github/workflows/daily-pipeline-v2.yml's prep job,
+which drives scripts/ollama-agent.js against OPENCODE_MODELS_REASONING=ollama/qwen2.5:3b
+(a 3B-parameter local model run on the GitHub Actions runner's CPU) with Exa search
+results as context.
+
+WHAT WAS TRIED
+
+Nothing changed. scripts/ollama-agent.js is not in the set of files this session was
+authorized to modify for the map/motion end-to-end prompt (only render/QA/planner
+scripts and docs are). Diagnosis only:
+
+- ch-44: the model consistently appends the source id directly onto the real URL
+  ("...generative-ai/S1" instead of citing the URL and separately writing "S1"), on
+  all 4 retries, despite the retry prompt explicitly restating the correct source-id
+  list each time. This is a formatting/instruction-following failure, not a content
+  problem — the underlying facts and URLs it found are real (Exa did return them).
+- ch-48: the model cites only the first-listed domain (reuters.com) on every one of
+  4 attempts even after the retry feedback names the exact problem and lists 6 other
+  available domains verbatim. This is the model failing to act on explicit corrective
+  feedback, not a search-coverage problem — enough distinct domains were available.
+
+HYPOTHESIS
+
+qwen2.5:3b (run locally on CPU, per the "Blocked models" history already documented
+in this repo -- other local models were previously swapped in/out for budget/quality
+reasons, see git log for scripts/ollama-agent.js and the OPENCODE_MODELS_REASONING
+env var history in .github/workflows/daily-pipeline-v2.yml) is too weak to reliably
+self-correct a structured-citation format on these two topics within 4 attempts, even
+though the retry loop's feedback is specific and correct. This looks like a model-
+capability ceiling, not a prompt-wording bug — but a human should verify that
+hypothesis; a different model choice or an automatic normalization step (strip a
+trailing "/S\d+" suffix from a cited URL and treat it as the separate source id
+before validating) might resolve ch-44's failure mode specifically without touching
+which model runs. ch-48's failure looks harder to route around without either a
+better model or relaxing the 2-distinct-domain requirement, which is a content-
+quality gate this session was not authorized to loosen.
+
+WHAT A HUMAN NEEDS TO DO
+
+1. Decide whether scripts/ollama-agent.js is in scope for a future session to modify
+   (it wasn't authorized for this one).
+2. Either: swap OPENCODE_MODELS_REASONING to a stronger local/remote model for the
+   research step, or add the URL-suffix normalization described above, or accept
+   these two topics reservations release back to the topic pool and let discovery
+   pick different ones next run.
+3. Re-run with the change and confirm ch-44 / ch-48 clear the research gate.
+
+Not blocking the rest of the loop -- continuing with the other failure categories
+from this same run (see the commit history on claude/visual-rebuild-from-5f91e75 for
+what was fixed this iteration).
