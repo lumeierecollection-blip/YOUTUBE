@@ -162,16 +162,45 @@ Respond ONLY with JSON:
 Return exactly one entry per beat, beat_index 0..${beats.length - 1}.`;
 
   console.log(`Challenging V2 plan: ${beats.length} beats vs ${sentences.length} sentences (${planPath})`);
-  const result = await callGemini([{ role: "user", content: prompt }], { maxTokens: 2048, temperature: 0 });
+  let result = await callGemini([{ role: "user", content: prompt }], { maxTokens: 2048, temperature: 0 });
+  // All 3 keys failing is usually the provider returning 503 "high demand"
+  // for that instant, not a real outage -- QA run 36011611536 saw exactly
+  // this on ch-44, and the SAME planner-side retry-once-uncached pattern
+  // (gemini-visual-plan.js) already exists for the identical failure mode
+  // one step earlier in the pipeline. One retry here, uncached so it isn't
+  // just replaying the same 503 from cache.
+  if (result?.error) {
+    console.error(`::warning::challenger first attempt failed (${String(result.error).slice(0, 150)}); retrying once uncached`);
+    result = await callGemini([{ role: "user", content: prompt }], { maxTokens: 2048, temperature: 0, noCache: true });
+  }
   if (result?.error) {
     console.error(`::error::challenger unavailable: ${result.error}`);
     process.exit(3);
   }
-  const verdicts = Array.isArray(result?.beats) ? result.beats : null;
-  if (!verdicts || verdicts.length !== beats.length) {
-    console.error(`::error::challenger returned ${verdicts ? verdicts.length : "no"} beat verdict(s) for ${beats.length} beats: ${JSON.stringify(result).slice(0, 300)}`);
+  const rawVerdicts = Array.isArray(result?.beats) ? result.beats : null;
+  // A strict `.length !== beats.length` check rejected an otherwise-usable
+  // response outright the moment Gemini added one stray extra entry (QA run
+  // 36011611536, ch-48: 7 verdicts for 6 beats, indices 0..5 all present and
+  // judged correctly, plus one out-of-range or duplicate extra). What the
+  // render actually needs is one verdict per REAL beat index; an extra one
+  // is noise to drop, not a reason to throw the whole review away and fail
+  // the channel. Missing an index that's actually needed is still fatal.
+  const byIndex = new Map();
+  for (const v of rawVerdicts || []) {
+    if (Number.isInteger(v?.beat_index) && v.beat_index >= 0 && v.beat_index < beats.length && !byIndex.has(v.beat_index)) {
+      byIndex.set(v.beat_index, v);
+    }
+  }
+  const extra = (rawVerdicts?.length || 0) - byIndex.size;
+  if (extra > 0) {
+    console.warn(`::warning::challenger returned ${rawVerdicts.length} verdicts for ${beats.length} beats — dropped ${extra} out-of-range/duplicate entr${extra === 1 ? "y" : "ies"}, kept one per real beat index`);
+  }
+  const missing = Array.from({ length: beats.length }, (_, i) => i).filter((i) => !byIndex.has(i));
+  if (!rawVerdicts || missing.length) {
+    console.error(`::error::challenger returned ${rawVerdicts ? byIndex.size : "no"} usable beat verdict(s) for ${beats.length} beats (missing index ${missing.join(", ")}): ${JSON.stringify(result).slice(0, 300)}`);
     process.exit(3);
   }
+  const verdicts = Array.from({ length: beats.length }, (_, i) => byIndex.get(i));
   const blocking = verdicts.filter((v) => v.verdict === "MISMATCH" || v.verdict === "CONTRADICTION");
   const review = {
     reviewedAt: new Date().toISOString(),

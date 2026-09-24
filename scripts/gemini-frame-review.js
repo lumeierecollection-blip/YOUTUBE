@@ -320,6 +320,7 @@ async function beatCheck() {
     text: `You are checking a finished YouTube Short, beat by beat. For each beat you get the narration sentence spoken during it and ONE frame from the middle of that beat.
 Question for every beat: does this frame VISUALLY correspond to this sentence — would a viewer with the sound off get the sentence's point from what is drawn?
 Answer NO when the frame is only a line of text restating or labelling the sentence with no visual that shows its idea, when the frame is blank, or when what is drawn is unrelated to the sentence.
+EXCEPTION: a beat marked "[TYPOGRAPHY]" below is a kinetic-text hook or CTA beat BY DESIGN — it is supposed to be text only, with no accompanying drawing. For those beats only, judge whether the on-screen text itself captures the sentence's point; do not answer NO merely because there is no separate visual.
 Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_is_shown":"<what the frame actually contains>","reason":"<one sentence>"}]} — exactly one entry per beat, beat_index 0..${beats.length - 1}.`,
   }];
   try {
@@ -328,7 +329,8 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
       const framePath = join(work, `beat-${String(i).padStart(2, "0")}.png`);
       extractFrameAtTime(videoPath, mid, framePath);
       const sentence = cues[i]?.text ?? "(no sentence)";
-      content.push({ type: "text", text: `Beat ${i} (frame at ${mid.toFixed(2)}s). Sentence: "${sentence}"` });
+      const tag = b.mechanism === "TYPOGRAPHY" ? " [TYPOGRAPHY]" : "";
+      content.push({ type: "text", text: `Beat ${i}${tag} (frame at ${mid.toFixed(2)}s). Sentence: "${sentence}"` });
       content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(framePath).toString("base64")}` } });
     });
     console.log(`[beat-check] ${beats.length} beat frames extracted at midpoints — asking Gemini`);

@@ -218,6 +218,12 @@ Rules that are enforced, not advisory:
   A map draws its own label; the label must be the place, not a headline.
   Cities, provinces outside the US and invented regions are NOT drawable —
   a map whose label is not a country or US state is rejected.
+  HYPHENS ARE ONLY FOR THOSE FIVE MAP NAMES. Every other LIBRARY name is
+  space-separated, exactly as printed in the LIBRARY list below — "process
+  arrow", not "process-arrow"; "case file folder", not "case-file-folder";
+  "gauge dial", not "gauge-dial". Copy the spelling from LIBRARY verbatim;
+  do not hyphenate a name because the map names nearby are hyphenated. A
+  name validateScene rejects drops that beat's whole composition.
   The "emphasis" object ALWAYS carries a 1-3 word "label" naming the
   specific thing, place, group, or quantity from THIS sentence ("Hormuz",
   "Tenants", "$2M fine", "9 years"). When the sentence relates two things
@@ -732,15 +738,75 @@ main().catch((e) => {
   process.exit(1);
 });
 
+// Gemini's structured-JSON output frequently carries a literal control
+// character (newline, tab) inside a string value -- valid as text, invalid
+// as JSON, where the spec requires \n / \t. A long "reason" or narrative
+// field is exactly where the model is prone to this. Walks the text with a
+// small string-aware state machine and escapes control characters found
+// INSIDE a string literal only; everything outside a string (the
+// insignificant whitespace JSON already allows between tokens) is left
+// untouched, so this cannot turn valid JSON into something different.
+function escapeStrayControlCharsInStrings(text) {
+  let out = "";
+  let inString = false;
+  let escaped = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    const code = text.charCodeAt(i);
+    if (inString) {
+      if (escaped) {
+        out += ch;
+        escaped = false;
+      } else if (ch === "\\") {
+        out += ch;
+        escaped = true;
+      } else if (ch === '"') {
+        out += ch;
+        inString = false;
+      } else if (code < 0x20) {
+        out += code === 0x0a ? "\\n" : code === 0x0d ? "\\r" : code === 0x09 ? "\\t" : `\\u${code.toString(16).padStart(4, "0")}`;
+      } else {
+        out += ch;
+      }
+    } else {
+      if (ch === '"') inString = true;
+      out += ch;
+    }
+  }
+  return out;
+}
+
 // Accepts the shapes Gemini has actually returned for a plan and maps each
 // to {beats:[...]}; anything else is returned untouched so the caller fails.
+//
+// PART: when the embedded JSON fails to parse, this used to swallow the
+// exception and fall through silently, so every parse failure surfaced to
+// the caller as the generic "no beats" -- indistinguishable from Gemini
+// never having sent JSON at all. Measured on CI run 36011611536: ch-1 and
+// ch-2's retry both got real, complete-looking `{"beats": [...` text back
+// (10971 and 13447 chars) and were still reported as no-beats. The actual
+// parse errors were never logged, so there was nothing to fix. Now a parse
+// failure is retried once against a control-character-sanitized copy (the
+// one failure mode this can actually repair without inventing content --
+// see escapeStrayControlCharsInStrings above), and if it still fails, the
+// real SyntaxError is attached to the result so describeShape can show it.
 function normalizePlanResponse(r) {
   if (!r || r.error) return r;
   if (Array.isArray(r)) return { beats: r };
   if (Array.isArray(r.beats)) return r;
   if (typeof r.content === "string") {
     const m = r.content.match(/[\[{][\s\S]*[\]}]/);
-    if (m) { try { return normalizePlanResponse(JSON.parse(m[0])); } catch { /* fall through */ } }
+    if (m) {
+      try {
+        return normalizePlanResponse(JSON.parse(m[0]));
+      } catch (e1) {
+        try {
+          return normalizePlanResponse(JSON.parse(escapeStrayControlCharsInStrings(m[0])));
+        } catch (e2) {
+          return { ...r, _parseError: `${e2.message} (also failed pre-sanitize: ${e1.message})` };
+        }
+      }
+    }
     return r;
   }
   for (const v of Object.values(r)) {
@@ -752,6 +818,9 @@ function normalizePlanResponse(r) {
 function describeShape(r) {
   if (!r) return String(r);
   if (r.error) return "error " + String(r.error).slice(0, 200);
-  if (typeof r.content === "string") return `text (${r.content.length} chars) ${JSON.stringify(r.content.slice(0, 120))} ... ends ${JSON.stringify(r.content.slice(-120))}`;
+  if (typeof r.content === "string") {
+    const parseNote = r._parseError ? ` [JSON parse failed: ${r._parseError}]` : "";
+    return `text (${r.content.length} chars)${parseNote} ${JSON.stringify(r.content.slice(0, 120))} ... ends ${JSON.stringify(r.content.slice(-120))}`;
+  }
   return (Array.isArray(r) ? "array" : "object keys [" + Object.keys(r).join(",") + "]");
 }
