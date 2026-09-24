@@ -1,0 +1,78 @@
+Category: gemini-503-upstream-availability (planner / challenger / beat-check —
+  all three Gemini-calling steps, whichever runs first in a given channel)
+Seen in: CI runs 36011611536, 36016703842, 36019916391 (2026-09-24, three
+  consecutive dry_run iterations on claude/visual-rebuild-from-5f91e75)
+
+PATTERN
+
+Every failure across all three runs that was not one of the specific code
+bugs already fixed this session (hyphenated library_shape names, the
+JSON-parse-swallowing bug, the challenger verdict-count check, the
+TYPOGRAPHY frame-check exemption) traces to the same upstream signal:
+
+  [{"error":{"code":503,"message":"This model is currently experiencing
+  high demand. Spikes in demand are usually temporary. Please try again
+  later.","status":"UNAVAILABLE"}}]
+
+...returned by generativelanguage.googleapis.com for VISION_MODEL=
+gemini-3.5-flash-lite. Run 36019916391 (the most recent) shows this
+saturating ALL THREE rotated API keys on BOTH the first attempt and the
+uncached retry, for 5 of 6 channels (1, 2, 9, 26, 48) — not a brief blip
+that a second attempt rides out, but sustained overload across a ~90-
+second window per channel, repeated across three separate CI runs spread
+over about 25 minutes of wall time.
+
+WHAT WAS TRIED
+
+- scripts/gemini-visual-plan.js already retries once, uncached, after all
+  3 keys fail once (pre-existing pattern, not new this session).
+- This session added the same retry-once-uncached pattern to
+  scripts/gemini-visual-challenger.js (previously it had none) — reduced
+  but did not eliminate 503-caused failures at that step.
+- Two real parsing/validation bugs that were producing FALSE "no plan"
+  reports (masking themselves as this same category) were found and fixed
+  this session: silently-swallowed JSON parse errors (control chars and
+  trailing commas inside Gemini's own JSON), and an overly strict
+  challenger verdict-count check. Both confirmed fixed by run 36016703842
+  showing the real, different errors instead.
+- No further retry/backoff logic was added to src/lib/gemini-client.js
+  (the shared client all three scripts call through) — that file is
+  outside this session's authorized file set for this task, and adding
+  a longer backoff or more attempts there would affect every caller, not
+  just this pipeline's V2 render path.
+
+HYPOTHESIS
+
+This is provider-side capacity, not a bug in this repo. gemini-3.5-flash-
+lite appears to be under sustained load at the time these three runs
+executed (a ~25-minute window on 2026-09-24). More retries from this
+codebase cannot fix a saturated upstream model; each retry against an
+already-overloaded endpoint mostly just extends the run's wall time
+(these three runs took 16-20 minutes each, with 60-90s of that per
+channel spent on 503 retries alone) without improving the odds.
+
+WHAT A HUMAN NEEDS TO DO
+
+One of:
+1. Re-run at a different time, when gemini-3.5-flash-lite isn't under
+   heavy demand (the simplest fix — this is exactly what the 503 message
+   itself suggests: "temporary... try again later").
+2. Authorize widening this session's file scope to src/lib/gemini-client.js
+   so a longer backoff / more retry attempts can be added at the shared
+   client level, benefiting all three call sites at once.
+3. Consider whether VISION_MODEL should have a configured fallback tier
+   (e.g., a non-"lite" Gemini model, or a different provider) for the
+   planner/challenger/beat-check steps specifically, the same way
+   OPENCODE_MODELS already documents a primary/failover pair elsewhere in
+   this repo's daily pipeline (see CLAUDE.md's "Two provider facts" note
+   on the discover/research/write-script stages, which is a different
+   pipeline but the same design pattern).
+
+NOT BLOCKING THE SESSION'S OTHER WORK, but it does mean 5 of 6 channels'
+render steps cannot be exercised right now regardless of further code
+changes in this repo, since none of them get past planning. Continuing to
+re-trigger CI runs against a live, sustained upstream outage would just
+consume more CI minutes for the same result — pausing the trigger loop
+here rather than doing that. Re-run manually (or ask this session to
+re-trigger) once there's reason to think gemini-3.5-flash-lite's load has
+eased.
