@@ -19,6 +19,8 @@ One wrapper, `BuildIn`, around any drawing. It needs no knowledge of the drawing
 
 Drawings that already build keep their own animation, and the wrapper passes them through (`build: "own"`). The wrapper replaces ComposedScene's generic fade for library shapes only; abstract primitives keep `motionState`.
 
+**Assemble ordering rule, added after review:** "child *i* of *n*" above is not simply DOM order. Decorative children — light-sweeps, glows, shadow overlays, anything that isn't a structural part of the object — are excluded from the assemble index entirely and render last, after every structural child has appeared. Without this rule, a drawing whose first declared child happens to be decorative (courthouse column's light-sweep rectangle is the case that surfaced this: it's declared before the pediment) would assemble backwards — the decoration floating alone on screen before any structure exists. `courthouse column`'s structural sequence is therefore pediment → entablature → shaft → flutes → base, with its light-sweep rectangle appearing only after the base, not as step 1.
+
 ## 3. Which build each drawing gets
 
 Only the drawings that do not already build are assigned. Everything else is `own`.
@@ -39,7 +41,7 @@ Only the drawings that do not already build are assigned. Everything else is `ow
 | component part | assemble | made of distinct parts: parts arriving in order reads as it being put together |
 | concept node | draw | line-led: its identity is strokes (a rule, a dial, an arc), so the stroke growing IS the build |
 | conveyor belt | assemble | made of distinct parts: parts arriving in order reads as it being put together |
-| courthouse column | assemble | made of distinct parts: parts arriving in order reads as it being put together |
+| courthouse column | assemble | made of distinct parts: pediment, entablature, shaft, flutes, base. Its light-sweep child is decorative, not structural — excluded from the index, rendered last (see the assemble ordering rule above), so the sequence is pediment → entablature → shaft → flutes → base → sweep, not sweep first |
 | cross section | draw | line-led: its identity is strokes (a rule, a dial, an arc), so the stroke growing IS the build |
 | cursor pointer | grow | a single solid figure: it grows from its base anchor instead of fading in |
 | desk edge | sweep | a flat surface (photo, screen, sheet, ground): a mask wipe reveals it the way a print or scan arrives |
@@ -77,7 +79,7 @@ Only the drawings that do not already build are assigned. Everything else is `ow
 | cave cross section | sweep | a flat surface (photo, screen, sheet, ground): a mask wipe reveals it the way a print or scan arrives |
 | cave entrance | assemble | made of distinct parts: parts arriving in order reads as it being put together |
 | cave worker | grow | a single solid figure: it grows from its base anchor instead of fading in |
-| earth globe | grow | a single solid figure: it grows from its base anchor instead of fading in |
+| earth globe | assemble | not a single solid figure: 2 circles + 4 meridian ellipses + 3 parallel ellipses + 1 landmass path — a graticule under construction, not a mass inflating. Sequence: outer circle → meridians in order → parallels in order → landmass last |
 | eyeless leech | grow | a single solid figure: it grows from its base anchor instead of fading in |
 | gas cloud | grow | a single solid figure: it grows from its base anchor instead of fading in |
 | hydrothermal vent | assemble | made of distinct parts: parts arriving in order reads as it being put together |
@@ -94,7 +96,7 @@ Only the drawings that do not already build are assigned. Everything else is `ow
 
 **Keep their own build (`own`):** answer frame, application window, archival map sheet, bacteria colony, balance sheet, bank statement, benchmark bar, calendar grid, cash notes, checklist rule, constitutional text, court document, depth scale, dna helix, ecosystem web, enrollment form, evidence exhibit, family tree, galaxy spiral, handwritten letter, lab bench, latency trace, link path, load curve, map-label, map-markers, map-outline, map-region-highlight, map-route, money trail, national border line, output transcript, phone showing a budgeting app, pill dose, plan comparison rows, press headline, process arrow, prompt field, receipt, red string, stacked layer, state map, stepped platform, supply route, territory fill, timeline rule, vital trace, wire node.
 
-Totals: draw 12, assemble 25, sweep 14, grow 15, own 48.
+Totals: draw 12, assemble 26, sweep 14, grow 14, own 48. (Revised after review: earth globe moved from grow to assemble — see §3 and the corrections note below.)
 
 ## 4. What changes in the renderer
 
@@ -116,3 +118,12 @@ Totals: draw 12, assemble 25, sweep 14, grow 15, own 48.
 - **draw** on a drawing made mostly of fills (few strokes) reads as a fade. The assignment avoids this by putting fill-heavy drawings on sweep, grow or assemble, but a few may need a second look once rendered.
 - **assemble** relies on top-level child order. A drawing that returns one `<g>` wrapping everything has a single child, so it would assemble all at once. The wrapper would then descend one level, and this should be checked per drawing during implementation.
 - None of this has been rendered. Each build needs a CI artifact review before anyone claims it looks right.
+
+## Corrections from review (2026-09-24)
+
+Two changes made before implementation, from a read-through of the assignment table against the actual drawing code:
+
+1. **Assemble ordering rule added.** "Child *i* of *n*" was underspecified — it needed to say decorative children (light-sweeps, glows, shadow overlays) are excluded from the index and always render last. Without it, `courthouse column` would have assembled its decorative light-sweep first, before any structure existed. See §2's added rule and §3's updated `courthouse column` row.
+2. **`earth globe` reassigned grow → assemble.** It's a graticule (2 circles + 4 meridians + 3 parallels + 1 landmass), not a single solid figure, so it belongs with the other constructed-from-parts drawings, not the inflating-mass ones.
+
+No other assignment in §3 changed. Still not implemented.
