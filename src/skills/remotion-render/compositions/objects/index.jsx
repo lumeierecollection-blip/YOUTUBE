@@ -6,6 +6,9 @@ import "./library.jsx";
 // The natural-world set: caves, creatures, chemistry, light and depth. Added
 // because the library had no cave and returned a legal document for one.
 import "./nature.jsx";
+// The map family: real Natural Earth borders, built on screen (maps.jsx).
+import "./maps.jsx";
+import { legacyMap } from "./maps.jsx";
 
 // Re-exported so every existing importer of ./objects/index.jsx keeps working.
 export { registerObject, hasObject, knownObjects, ObjectShape } from "./registry.js";
@@ -187,7 +190,14 @@ function territoryPath(x, y, w, h, seed) {
   return pts.map((pt, i) => `${i ? "L" : "M"}${pt[0].toFixed(1)},${pt[1].toFixed(1)}`).join(" ") + " Z";
 }
 
-registerObject("territory fill", ({ box, colors, p }) => {
+// territory fill / national border line: with a real region (a validated
+// label, through ComposedScene) they draw with the map engine. The seeded
+// polygon below is kept ONLY for the older template-scene path, which passes
+// no region; it is a placeholder, not geography (docs/MAP-AUDIT.md).
+registerObject("territory fill", (props) => {
+  const real = legacyMap("territory fill", props);
+  if (real) return real;
+  const { box, colors, p } = props;
   const { x, y, w, h } = box;
   const d = territoryPath(x, y, w, h, 7);
   return (
@@ -198,7 +208,10 @@ registerObject("territory fill", ({ box, colors, p }) => {
   );
 });
 
-registerObject("national border line", ({ box, colors, p }) => {
+registerObject("national border line", (props) => {
+  const real = legacyMap("national border line", props);
+  if (real) return real;
+  const { box, colors, p } = props;
   const { x, y, w, h } = box;
   // Was w*1.24, h*1.24 -- a border drawn a quarter larger than the box it was
   // given, which put ch-09 16px below the safe rect on a measured frame. The

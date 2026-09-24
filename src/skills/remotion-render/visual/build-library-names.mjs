@@ -18,7 +18,7 @@ import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const OBJ_DIR = join(HERE, "..", "compositions", "objects");
-const FILES = ["index.jsx", "library.jsx", "nature.jsx"];
+const FILES = ["index.jsx", "library.jsx", "nature.jsx", "maps.jsx"];
 const OUT = join(HERE, "library-names.js");
 
 const names = new Set();

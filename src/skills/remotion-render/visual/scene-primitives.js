@@ -48,6 +48,22 @@
 
 import { isIcon } from "./icon-set.js";
 import { LIBRARY_NAMES, isLibraryName } from "./library-names.js";
+import { resolveRegion, resolveRoute } from "./geo-regions.js";
+
+/**
+ * library_shape names that draw a real map (compositions/objects/maps.jsx).
+ * Their `label` IS the region — validated here against the Natural Earth
+ * data, so a plan can never reach the renderer with a map of nowhere. The
+ * four legacy names are included because through ComposedScene they draw
+ * with the same engine; without a region they would fall back to the old
+ * placeholder polygon, which is exactly what docs/MAP-AUDIT.md rejected.
+ */
+export const MAP_ROUTE_DRAWINGS = ["map-route", "supply route"];
+export const MAP_DRAWINGS = [
+  "map-outline", "map-region-highlight", "map-markers", "map-label",
+  "state map", "territory fill", "national border line",
+  ...MAP_ROUTE_DRAWINGS,
+];
 
 /* ── Canvas and safe area (mirrors layout/slots.js) ──────────────────── */
 
@@ -449,6 +465,8 @@ export function validateScene(rawScene) {
     if (o.count !== undefined) {
       if (!Number.isInteger(o.count) || o.count < 1) {
         errors.push(`${at}: count must be a positive integer`);
+      } else if (o.kind === "library_shape" && o.name === "map-markers") {
+        if (o.count > 30) errors.push(`${at}: map-markers count ${o.count} exceeds max 30`);
       } else if (!spec.countable) {
         // count:1 was already normalised away; anything above 1 is a real
         // mismatch between what was asked for and what would be drawn.
@@ -459,6 +477,11 @@ export function validateScene(rawScene) {
     }
     if (o.kind === "library_shape" && !isLibraryName(o.name)) {
       errors.push(`${at}: library_shape name "${o.name}" is not in the object library — use one of: ${LIBRARY_NAMES.join(", ")}`);
+    }
+    if (o.kind === "library_shape" && MAP_ROUTE_DRAWINGS.includes(o.name) && !resolveRoute(o.label)) {
+      errors.push(`${at}: "${o.name}" label must be "<region> → <region>" with both ends real countries or US states (got "${o.label ?? ""}")`);
+    } else if (o.kind === "library_shape" && MAP_DRAWINGS.includes(o.name) && !MAP_ROUTE_DRAWINGS.includes(o.name) && !resolveRegion(o.label)) {
+      errors.push(`${at}: "${o.name}" label must be the region's name — a country or US state in the Natural Earth data, spelled as the narration says it (got "${o.label ?? ""}"); no border is invented for anything else`);
     }
     if (o.kind === "icon" && !isIcon(o.icon)) {
       errors.push(`${at}: icon "${o.icon}" is not in the vendored set — use one of the ICONS names exactly`);

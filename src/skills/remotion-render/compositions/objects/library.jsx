@@ -1,5 +1,6 @@
 import React from "react";
 import { registerObject } from "./registry.js";
+import { legacyMap } from "./maps.jsx";
 
 /**
  * THE OBJECT LIBRARY — every noun any channel's `core_objects` names.
@@ -228,7 +229,13 @@ registerObject("archival map sheet", ({ box, colors, p }) => {
   );
 });
 
-registerObject("state map", ({ box, colors, p }) => {
+// state map / supply route: with a real region (or "A → B" route) they draw
+// with the map engine (maps.jsx). The hand-made shape below is kept ONLY for
+// the older template-scene path, which passes no region (docs/MAP-AUDIT.md).
+registerObject("state map", (props) => {
+  const real = legacyMap("state map", props);
+  if (real) return real;
+  const { box, colors, p } = props;
   const { x, y, w, h } = box;
   const d = `M${x + w * 0.14},${y + h * 0.2} L${x + w * 0.72},${y + h * 0.14} L${x + w * 0.86},${y + h * 0.42}
              L${x + w * 0.78},${y + h * 0.8} L${x + w * 0.3},${y + h * 0.86} L${x + w * 0.1},${y + h * 0.56} Z`;
@@ -2034,7 +2041,10 @@ registerObject("resource site marker", ({ box, colors, p }) => {
   );
 });
 
-registerObject("supply route", ({ box, colors, p }) => {
+registerObject("supply route", (props) => {
+  const real = legacyMap("supply route", props);
+  if (real) return real;
+  const { box, colors, p } = props;
   const { x, y, w, h } = box;
   const m = Math.max(5, w * 0.035);
   const d = `M${x + m},${y + h * 0.78} Q${x + w * 0.3},${y + h * 0.2} ${x + w * 0.58},${y + h * 0.52} T${x + w - m},${y + h * 0.24}`;

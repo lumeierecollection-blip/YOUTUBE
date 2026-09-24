@@ -32,7 +32,10 @@ export const knownObjects = () => Object.keys(OBJECTS).sort();
 const uidFor = (name, box) =>
   `${name.replace(/[^a-z0-9]+/gi, "")}${Math.round(box.w)}x${Math.round(box.h)}`;
 
-export function ObjectShape({ name, box, colors, p = 1 }) {
+// `params` carries per-object inputs a drawing may need beyond box/colours/p
+// (the map family reads `label`, `count`, `font`). Drawings that take none
+// ignore it, so every existing call site is unchanged.
+export function ObjectShape({ name, box, colors, p = 1, params = {} }) {
   const fn = OBJECTS[name];
   if (!fn) {
     throw new Error(
@@ -40,5 +43,5 @@ export function ObjectShape({ name, box, colors, p = 1 }) {
       `Section 3's no-fallback rule applies here too: a scene must not quietly omit its subject.`
     );
   }
-  return fn({ box, colors, p, uid: uidFor(name, box) });
+  return fn({ ...params, box, colors, p, uid: uidFor(name, box) });
 }

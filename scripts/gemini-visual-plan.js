@@ -203,11 +203,21 @@ Rules that are enforced, not advisory:
   To DRAW the sentence's subject, use "library_shape" with a "name" from
   the LIBRARY list (exact spelling): a court ruling -> "courthouse column"
   or "court document"; money moving -> "money trail" or "cash notes"; a
-  place -> "territory fill", "state map" or "resource site marker"; a
   process -> "concept node", "link path", "process arrow". Pair it with
   the abstract primitives that carry the quantity or relation. If nothing
   in LIBRARY fits, compose from the abstract primitives alone — never
   invent a name.
+  PLACES are real maps drawn from real borders. When the sentence is about a
+  country or a US state, use one of these, and set "label" to that place's
+  name exactly as the narration says it (e.g. "Venezuela", "Florida"):
+    "map-region-highlight" — the region outlined, then filled (default)
+    "map-markers"          — the region plus "count" markers (a real number
+                             from the sentence: 12 sites, 5 raids)
+    "map-route"            — movement between two places; label "A → B"
+    "map-outline" / "map-label" — the region without the fill
+  A map draws its own label; the label must be the place, not a headline.
+  Cities, provinces outside the US and invented regions are NOT drawable —
+  a map whose label is not a country or US state is rejected.
   The "emphasis" object ALWAYS carries a 1-3 word "label" naming the
   specific thing, place, group, or quantity from THIS sentence ("Hormuz",
   "Tenants", "$2M fine", "9 years"). When the sentence relates two things

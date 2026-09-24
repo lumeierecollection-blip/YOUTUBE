@@ -28,7 +28,7 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, Easing } from "remotion";
 import {
   SAFE, SAFE_W, SAFE_H, CANVAS_W, CANVAS_H,
-  PRIMITIVES, layoutScene,
+  PRIMITIVES, layoutScene, MAP_DRAWINGS,
 } from "../visual/scene-primitives.js";
 import { fitSingleLine, TYPO_LINE_HEIGHT } from "../visual/narrative-typography.js";
 import { ICON_SET } from "../visual/icon-set.js";
@@ -395,7 +395,7 @@ function relLum(hex) {
     .map((c) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)));
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
-function LibraryShape({ obj, rect, ed, m, p }) {
+function LibraryShape({ obj, rect, ed, m, p, font }) {
   const light = relLum(ed.bg) > 0.5;
   const colors = {
     ground: ed.bg,
@@ -409,7 +409,8 @@ function LibraryShape({ obj, rect, ed, m, p }) {
   return (
     <g opacity={m.enter}
       transform={`translate(0,${m.dy}) translate(${cx},${cy}) scale(${s}) translate(${-cx},${-cy})`}>
-      <ObjectShape name={obj.name} box={rect} colors={colors} p={Number.isFinite(p) ? p : 1} />
+      <ObjectShape name={obj.name} box={rect} colors={colors} p={Number.isFinite(p) ? p : 1}
+        params={{ label: obj.label, count: obj.count, font }} />
     </g>
   );
 }
@@ -511,7 +512,10 @@ export function ComposedScene({ scene, p, ed, font }) {
     }
     // Labels are HTML so they use the same text pipeline as narrative
     // typography (one line, fitted, validated colour).
-    if (PRIMITIVES[obj.kind]?.labelable && obj.label && !Html) {
+    // A map draws its own label on a leader line (maps.jsx); a second label
+    // under the slot would repeat it.
+    const drawsOwnLabel = obj.kind === "library_shape" && MAP_DRAWINGS.includes(obj.name);
+    if (PRIMITIVES[obj.kind]?.labelable && obj.label && !Html && !drawsOwnLabel) {
       htmlParts.push(<Label key={`l${i}`} text={obj.label} rect={rect} ed={ed} font={font} m={m} accent={accent} />);
     }
   });
