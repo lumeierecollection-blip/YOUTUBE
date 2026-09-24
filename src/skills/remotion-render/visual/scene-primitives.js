@@ -46,7 +46,7 @@
  *              INVALID rather than merely discouraged.
  */
 
-import { ICON_NAMES, isIcon } from "./icon-set.js";
+import { isIcon } from "./icon-set.js";
 
 /* ── Canvas and safe area (mirrors layout/slots.js) ──────────────────── */
 
@@ -146,7 +146,14 @@ export const PRIMITIVES = {
               note: "a number that rolls up or down" },
   silhouette: { area: 0.150, countable: true, maxCount: 20, labelable: true,
               note: "a human/object outline; population, crowd, scale" },
-  // The one primitive that depicts WHAT the sentence is about. Every other
+  // DEPRECATED: replaced by editorial primitives. Do not use in new plans.
+  // The owner reviewed the first icon render and rejected the direction:
+  // Lucide icons read as a UI kit, not editorial motion graphics. The
+  // drawing code and validation stay so cached plans that name an icon
+  // still render; `deprecated: true` keeps it out of vocabularyDigest(),
+  // so the planner is never offered it.
+  //
+  // Original rationale — the one primitive that depicts WHAT the sentence is about. Every other
   // primitive is abstract geometry, and QA run 35933424177 rejected 11/11
   // non-typography beats on ch-1 and ch-26 for exactly that ("abstract
   // blocks and a city label rather than showing the grocery store"). The
@@ -154,7 +161,7 @@ export const PRIMITIVES = {
   // the whole time with nothing drawing it. `icon` names one of those files;
   // an unknown name is an error, never a fallback (§A4.7). maxCount 3 is
   // §A4.6's "maximum three on screen".
-  icon:     { area: 0.160, countable: true,  maxCount: 3,  labelable: true,
+  icon:     { area: 0.160, countable: true,  maxCount: 3,  labelable: true, deprecated: true,
               note: "a pictogram of a real thing (truck, gavel, coins, factory...); set \"icon\" to a name from ICONS" },
   arrow:    { area: 0.040, countable: true,  maxCount: 8,  labelable: false,
               note: "directional connector between objects" },
@@ -483,13 +490,13 @@ export function validateScene(rawScene) {
 export function vocabularyDigest() {
   const lines = ["PRIMITIVES (kind — what it is):"];
   for (const [kind, s] of Object.entries(PRIMITIVES)) {
+    if (s.deprecated) continue;
     const c = s.countable ? `, count 1-${s.maxCount}` : "";
     const l = s.labelable ? ", labelable" : "";
     lines.push(`  ${kind} — ${s.note}${c}${l}`);
   }
   lines.push("", `ANCHORS: ${Object.keys(ANCHORS).join(", ")}`);
   lines.push(`MOTIONS: ${MOTIONS.join(", ")}`);
-  lines.push("", `ICONS (for kind "icon", field "icon"): ${ICON_NAMES.join(", ")}`);
   lines.push("", `A scene must cover at least ${(MIN_SCENE_COVERAGE * 100).toFixed(0)}% of the frame.`);
   return lines.join("\n");
 }

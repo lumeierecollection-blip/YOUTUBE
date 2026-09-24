@@ -164,7 +164,7 @@ Instead of picking a mechanism, you describe VISUAL EVENTS. The system maps your
 
 ${CAPABILITIES}
 
-## PRIMITIVE VOCABULARY — the only kinds, anchors, motions and icons the renderer builds
+## PRIMITIVE VOCABULARY — the only kinds, anchors and motions the renderer builds
 
 ${VOCABULARY}
 
@@ -194,18 +194,8 @@ Rules that are enforced, not advisory:
   35916464573 every unlabelled-block beat failed it ("abstract blocks do
   not represent the Strait of Hormuz"), and the one beat that passed was a
   bar labelled with the sentence's subject against a 0-100% scale.
-  QA run 35933424177 then rejected labelled blocks too ("a green block
-  and the label 'Wake Forest' instead of depicting the mobile grocery
-  store"): a label names the thing but nothing DRAWS it. The "icon"
-  primitive draws it — a pictogram from the ICONS list (truck, gavel,
-  coins, factory, users, ...). So: the "emphasis" object is an "icon"
-  whose "icon" field is the ICONS name that best depicts this sentence's
-  subject or action (a mobile grocery -> "truck"; a sentencing -> "gavel";
-  a seizure of money -> "coins" or "banknote"; arrests -> "users" beside
-  a "lock"). Use the ICONS names exactly; an unlisted name is rejected.
-  Only when no listed icon fits the subject may the emphasis object be
-  another primitive. Abstract primitives (bar, stack, grid, gauge) then
-  carry the quantity or relation around the icon.
+  Do not select icons. Describe the subject as a data relationship: what
+  quantity, what comparison, what process, what location.
   The "emphasis" object ALWAYS carries a 1-3 word "label" naming the
   specific thing, place, group, or quantity from THIS sentence ("Hormuz",
   "Tenants", "$2M fine", "9 years"). When the sentence relates two things
@@ -300,9 +290,8 @@ numbers", "display the text") is structurally invalid — fill every field
 concretely:
 - subject: what the composition primitives LITERALLY show on screen (e.g. "A gauge
   showing 3.4%", "Two bars labelled Annual and Core", "A stack of 3 blocks") —
-  NOT a real-world scene description. The renderer draws abstract shapes and
-  line pictograms (icons), not photographs — "A truck icon labelled Wake
-  Forest beside 3 stacks", not "a grocery van parked on a street".
+  NOT a real-world scene description. The renderer draws abstract shapes, not
+  photographs.
 - environment: where this lives (dim archival desk; clean data void; a kitchen counter).
 - action_start / action_end: the visual STATE at the beat's start and at its end —
   what physically changes across the ~4s (one claim form -> a towering stack).
@@ -374,8 +363,7 @@ Respond ONLY with JSON (no markdown fences):
       "composition": {
         "objects": [
           { "kind": "<primitive>", "anchor": "<anchor>", "motion": "<motion>" },
-          { "kind": "<countable primitive>", "count": 12, "anchor": "<anchor>", "motion": "<motion>", "label": "<short label>" },
-          { "kind": "icon", "icon": "<exact name from ICONS>", "anchor": "<anchor>", "motion": "<motion>", "label": "<short label>", "emphasis": true }
+          { "kind": "<countable primitive>", "count": 12, "anchor": "<anchor>", "motion": "<motion>", "label": "<short label>", "emphasis": true }
         ]
       },
       "carries_forward": "<object/concept that persists into the next beat, or null>",
