@@ -124,6 +124,10 @@ function parseSrt(srtText) {
 // names — run 35933424177 dropped 5/6 ch-1 compositions for invented words
 // like motion "converge".
 const VOCABULARY = vocabularyDigest();
+{
+  const lib = VOCABULARY.split("\n").find((l) => l.startsWith("LIBRARY"));
+  console.log(`[vocab] library_shape exposes ${lib ? lib.split(" | ").length : 0} drawings to the planner`);
+}
 
 function buildPlanPrompt(sentences, corrections) {
   const sentenceList = sentences.map((s, i) =>
@@ -196,6 +200,14 @@ Rules that are enforced, not advisory:
   bar labelled with the sentence's subject against a 0-100% scale.
   Do not select icons. Describe the subject as a data relationship: what
   quantity, what comparison, what process, what location.
+  To DRAW the sentence's subject, use "library_shape" with a "name" from
+  the LIBRARY list (exact spelling): a court ruling -> "courthouse column"
+  or "court document"; money moving -> "money trail" or "cash notes"; a
+  place -> "territory fill", "state map" or "resource site marker"; a
+  process -> "concept node", "link path", "process arrow". Pair it with
+  the abstract primitives that carry the quantity or relation. If nothing
+  in LIBRARY fits, compose from the abstract primitives alone — never
+  invent a name.
   The "emphasis" object ALWAYS carries a 1-3 word "label" naming the
   specific thing, place, group, or quantity from THIS sentence ("Hormuz",
   "Tenants", "$2M fine", "9 years"). When the sentence relates two things
@@ -363,7 +375,8 @@ Respond ONLY with JSON (no markdown fences):
       "composition": {
         "objects": [
           { "kind": "<primitive>", "anchor": "<anchor>", "motion": "<motion>" },
-          { "kind": "<countable primitive>", "count": 12, "anchor": "<anchor>", "motion": "<motion>", "label": "<short label>", "emphasis": true }
+          { "kind": "<countable primitive>", "count": 12, "anchor": "<anchor>", "motion": "<motion>", "label": "<short label>" },
+          { "kind": "library_shape", "name": "<exact name from LIBRARY>", "anchor": "<anchor>", "motion": "<motion>", "label": "<short label>", "emphasis": true }
         ]
       },
       "carries_forward": "<object/concept that persists into the next beat, or null>",

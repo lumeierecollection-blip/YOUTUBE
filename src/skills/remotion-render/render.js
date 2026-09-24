@@ -798,7 +798,7 @@ async function main() {
           composed: !!scene.composition,
           composition: scene.composition
             ? (scene.composition.objects || []).map((o) => ({
-                kind: o.kind, count: o.count || 1, ...(o.kind === "icon" ? { icon: o.icon } : {}),
+                kind: o.kind, count: o.count || 1, ...(o.kind === "icon" ? { icon: o.icon } : {}), ...(o.kind === "library_shape" ? { name: o.name } : {}),
                 anchor: o.anchor || "center", motion: o.motion || "appear",
                 emphasis: !!o.emphasis, labelled: !!(o.label && String(o.label).trim()),
               }))

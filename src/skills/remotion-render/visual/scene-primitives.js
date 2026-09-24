@@ -47,6 +47,7 @@
  */
 
 import { isIcon } from "./icon-set.js";
+import { LIBRARY_NAMES, isLibraryName } from "./library-names.js";
 
 /* ── Canvas and safe area (mirrors layout/slots.js) ──────────────────── */
 
@@ -167,6 +168,16 @@ export const PRIMITIVES = {
               note: "directional connector between objects" },
   rule:     { area: 0.015, countable: true,  maxCount: 6,  labelable: false,
               note: "a dividing line; structure, not decoration" },
+  // An editorial drawing from the procedural object library
+  // (compositions/objects/*.jsx — a courthouse column, a territory fill, a
+  // money trail, a concept node). `name` must be one of LIBRARY_NAMES; an
+  // unknown name is a validation error listing the valid names, never a
+  // default drawing. Added because every other primitive is abstract
+  // geometry and the frame review rejected all of it as not depicting the
+  // sentence (QA run 35933424177); the library was already written to
+  // "draw the thing, not a labelled box" and ComposedScene could not reach it.
+  library_shape: { area: 0.200, countable: false, labelable: true,
+              note: "an editorial drawing of a real thing, place or process; set \"name\" to one of LIBRARY" },
   field:    { area: 0.450, countable: false, labelable: false,
               note: "a textured ground plane — depth so objects are not floating in void" },
 };
@@ -184,7 +195,7 @@ export function isPrimitive(kind) {
 export const ASPECT = {
   block: 1.4, stack: 0.45, bar: 3.2, vessel: 0.55, document: 0.72,
   grid: 1.1, gauge: 1, figure: 2.6, counter: 2.2, silhouette: 0.45,
-  arrow: 1, rule: 12, field: 1.6, icon: 1,
+  arrow: 1, rule: 12, field: 1.6, icon: 1, library_shape: 1,
 };
 
 /**
@@ -446,6 +457,9 @@ export function validateScene(rawScene) {
         errors.push(`${at}: count ${o.count} exceeds max ${spec.maxCount} for "${o.kind}"`);
       }
     }
+    if (o.kind === "library_shape" && !isLibraryName(o.name)) {
+      errors.push(`${at}: library_shape name "${o.name}" is not in the object library — use one of: ${LIBRARY_NAMES.join(", ")}`);
+    }
     if (o.kind === "icon" && !isIcon(o.icon)) {
       errors.push(`${at}: icon "${o.icon}" is not in the vendored set — use one of the ICONS names exactly`);
     }
@@ -497,6 +511,7 @@ export function vocabularyDigest() {
   }
   lines.push("", `ANCHORS: ${Object.keys(ANCHORS).join(", ")}`);
   lines.push(`MOTIONS: ${MOTIONS.join(", ")}`);
+  lines.push("", `LIBRARY (for kind "library_shape", field "name", exact spelling): ${LIBRARY_NAMES.join(" | ")}`);
   lines.push("", `A scene must cover at least ${(MIN_SCENE_COVERAGE * 100).toFixed(0)}% of the frame.`);
   return lines.join("\n");
 }

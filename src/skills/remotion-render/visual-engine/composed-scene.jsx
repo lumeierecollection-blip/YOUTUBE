@@ -32,6 +32,26 @@ import {
 } from "../visual/scene-primitives.js";
 import { fitSingleLine, TYPO_LINE_HEIGHT } from "../visual/narrative-typography.js";
 import { ICON_SET } from "../visual/icon-set.js";
+import { ObjectShape, knownObjects } from "../compositions/objects/index.jsx";
+import { LIBRARY_NAMES } from "../visual/library-names.js";
+
+// The planner validates library_shape names against LIBRARY_NAMES, a list
+// generated from the registerObject() calls. If that list and the live
+// registry ever disagree, a validated plan could name a drawing that does
+// not exist (or miss one that does). Checked once, when this module loads,
+// and loud: this is the one-time log line for what the library exposes.
+{
+  const live = knownObjects();
+  const missing = LIBRARY_NAMES.filter((n) => !live.includes(n));
+  const extra = live.filter((n) => !LIBRARY_NAMES.includes(n));
+  if (missing.length || extra.length) {
+    throw new Error(
+      `library-names.js is out of step with the object registry — run visual/build-library-names.mjs. ` +
+      `missing from registry: [${missing.join(", ")}]; not in library-names.js: [${extra.join(", ")}]`
+    );
+  }
+  console.log(`[composed-scene] library_shape: ${live.length} drawings available`);
+}
 
 const clamp01 = (t) => Math.max(0, Math.min(1, t));
 const ease = (t) => Easing.bezier(0.22, 0.9, 0.3, 1)(clamp01(t));
@@ -355,6 +375,45 @@ function Icons({ obj, rect, ed, m, accent }) {
   return <g opacity={m.enter} transform={`translate(0,${m.dy})`}>{items}</g>;
 }
 
+/**
+ * library_shape — one drawing from the procedural object library
+ * (compositions/objects/*.jsx), drawn unchanged into the rect the layout
+ * assigned. The drawings keep their own stroke weights; only the palette is
+ * translated, from this renderer's contrast-validated roles to the
+ * library's (palette-roles.js vocabulary), using no colour that is not
+ * already in `ed`:
+ *   ground   = ed.bg            onGround = ed.text (validated against bg)
+ *   accent   = ed.accentText    (validated against bg)
+ *   paper/ink: a light ground uses bg as paper and text as ink (sheets read
+ *   by their outline, as on ch-01); a dark ground inverts that.
+ * An unknown name throws inside ObjectShape — no substitute drawing.
+ */
+function relLum(hex) {
+  const h = String(hex || "").replace("#", "");
+  if (h.length !== 6) return 1;
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255)
+    .map((c) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+function LibraryShape({ obj, rect, ed, m, p }) {
+  const light = relLum(ed.bg) > 0.5;
+  const colors = {
+    ground: ed.bg,
+    onGround: ed.text,
+    accent: ed.accentText,
+    paper: light ? ed.bg : ed.text,
+    ink: light ? ed.text : ed.bg,
+  };
+  const s = m.scale === 1 ? 1 : m.scale;
+  const cx = rect.x + rect.w / 2, cy = rect.y + rect.h / 2;
+  return (
+    <g opacity={m.enter}
+      transform={`translate(0,${m.dy}) translate(${cx},${cy}) scale(${s}) translate(${-cx},${-cy})`}>
+      <ObjectShape name={obj.name} box={rect} colors={colors} p={Number.isFinite(p) ? p : 1} />
+    </g>
+  );
+}
+
 function Arrows({ obj, rect, ed, m }) {
   const n = Math.max(1, Math.min(8, obj.count || 1));
   const items = [];
@@ -408,7 +467,7 @@ function Numeral({ obj, rect, ed, m, font, accent }) {
 const DRAW_SVG = {
   field: Field, block: Blocks, stack: Stack, bar: Bars, vessel: Vessel,
   document: Documents, grid: Grid, gauge: Gauges, silhouette: Silhouettes,
-  arrow: Arrows, rule: Rules, icon: Icons,
+  arrow: Arrows, rule: Rules, icon: Icons, library_shape: LibraryShape,
 };
 const DRAW_HTML = { figure: Numeral, counter: Numeral };
 
@@ -438,7 +497,7 @@ export function ComposedScene({ scene, p, ed, font }) {
     const Html = DRAW_HTML[obj.kind];
 
     if (Svg) {
-      svgParts.push(<Svg key={`s${i}`} obj={obj} rect={rect} ed={ed} m={m} accent={accent} font={font} />);
+      svgParts.push(<Svg key={`s${i}`} obj={obj} rect={rect} ed={ed} m={m} p={p} accent={accent} font={font} />);
       if (m.strike > 0) {
         svgParts.push(
           <line key={`k${i}`} x1={rect.x} y1={rect.y + rect.h / 2}
