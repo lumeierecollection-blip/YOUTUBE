@@ -1478,9 +1478,14 @@
           "topic": "Ronald Spektor's $16M Coinbase Phishing Scam and Prison Sentence",
           "slug": "ronald-spektor-16m-coinbase-phishing-sentencing",
           "reserved_at": "2026-09-24T10:47:25.616Z"
+        },
+        {
+          "topic": "The $16 Million Bitcoin Latinum Crypto Fraud Scheme",
+          "slug": "bitcoin-latinum-16m-crypto-fraud",
+          "reserved_at": "2026-09-25T10:51:44.406Z"
         }
       ],
-      "last_generated": "2026-09-24T10:47:25.616Z"
+      "last_generated": "2026-09-25T10:51:44.407Z"
     },
     "27": {
       "channel_name": "Trial Files",
