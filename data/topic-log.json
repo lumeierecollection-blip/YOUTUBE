@@ -2298,9 +2298,14 @@
           "topic": "Redwood Study: Why 98% of Manufacturing AI Projects Stall",
           "slug": "redwood-software-manufacturing-ai-automation-outlook-2026",
           "reserved_at": "2026-09-24T10:50:56.935Z"
+        },
+        {
+          "topic": "KUKA AMP: The Open Orchestration Platform for Physical AI",
+          "slug": "kuka-amp-open-orchestration-platform-physical-ai",
+          "reserved_at": "2026-09-25T10:53:55.578Z"
         }
       ],
-      "last_generated": "2026-09-24T10:50:56.935Z"
+      "last_generated": "2026-09-25T10:53:55.578Z"
     },
     "49": {
       "channel_name": "Wander Budget",
