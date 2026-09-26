@@ -2328,9 +2328,14 @@
           "topic": "KUKA AMP: The Open Orchestration Platform for Physical AI",
           "slug": "kuka-amp-open-orchestration-platform-physical-ai",
           "reserved_at": "2026-09-25T10:53:55.578Z"
+        },
+        {
+          "topic": "Rockwell Automation Singapore Plant: Multi-Agent AI Quality Control",
+          "slug": "rockwell-singapore-ai-quality-control",
+          "reserved_at": "2026-09-26T10:34:15.096Z"
         }
       ],
-      "last_generated": "2026-09-25T10:53:55.578Z"
+      "last_generated": "2026-09-26T10:34:15.096Z"
     },
     "49": {
       "channel_name": "Wander Budget",
