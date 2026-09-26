@@ -1498,9 +1498,14 @@
           "topic": "The $16 Million Bitcoin Latinum Crypto Fraud Scheme",
           "slug": "bitcoin-latinum-16m-crypto-fraud",
           "reserved_at": "2026-09-25T10:51:44.406Z"
+        },
+        {
+          "topic": "The $24M Dallas Real Estate Investment Fraud Sentencing",
+          "slug": "dallas-real-estate-investment-fraud-sentencing",
+          "reserved_at": "2026-09-26T10:32:11.970Z"
         }
       ],
-      "last_generated": "2026-09-25T10:51:44.407Z"
+      "last_generated": "2026-09-26T10:32:11.970Z"
     },
     "27": {
       "channel_name": "Trial Files",
