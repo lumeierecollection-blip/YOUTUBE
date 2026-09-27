@@ -67,6 +67,15 @@ function mediaDuration(file) {
   return m ? +m[1] * 3600 + +m[2] * 60 + +m[3] : null;
 }
 
+// The video's REAL pixel size. CI renders at renderScale 0.75 (810x1440),
+// not the manifest's 1080x1920 design size; ffmpeg's stream line is the
+// source of truth.
+function videoSize(file) {
+  const r = spawnSync(FFMPEG, ["-hide_banner", "-i", file], { encoding: "utf8" });
+  const m = String(r.stderr || "").match(/Video:.*?(\d{2,5})x(\d{2,5})/);
+  return m ? { w: +m[1], h: +m[2] } : null;
+}
+
 function extractPng(video, t, out) {
   const r = spawnSync(FFMPEG, ["-y", "-hide_banner", "-loglevel", "error", "-ss", t.toFixed(3), "-i", video, "-frames:v", "1", out]);
   return r.status === 0 && existsSync(out);
@@ -108,7 +117,18 @@ async function main() {
   const plan = JSON.parse(readFileSync(planPath, "utf8"));
   const cues = parseSrt(readFileSync(srtPath, "utf8"));
   const beats = manifest.beats || [];
-  const W = manifest.width || 1080, H = manifest.height || 1920;
+  // Design-space frame (the check's rule is written in 1080x1920 terms)…
+  const DW = manifest.width || 1080, DH = manifest.height || 1920;
+  // …sampled in the video's actual pixels. Run 36341568734: the crops used
+  // design coordinates on an 810x1440 video, so the "centre" 200x200 sat at
+  // x440 y860 — below the centred hook text — and read as empty on every
+  // video. Every crop's position AND size is now scaled design -> actual.
+  const actual = videoSize(video);
+  const sx = actual ? actual.w / DW : (manifest.renderScale || 1);
+  const sy = actual ? actual.h / DH : (manifest.renderScale || 1);
+  const W = Math.round(DW * sx), H = Math.round(DH * sy);
+  const cw = Math.round(200 * sx), ch = Math.round(200 * sy);
+  const kw = Math.round(100 * sx), kh = Math.round(100 * sy);
   const { LIBRARY_NAMES } = await import(pathToFileURL(join(ROOT, "src", "skills", "remotion-render", "visual", "library-names.js")).href);
 
   const checks = [];
@@ -124,8 +144,8 @@ async function main() {
     if (!extractPng(video, t, png)) { sizeBad.push(`beat ${i}: frame at ${t.toFixed(2)}s could not be extracted`); centerBad.push(`beat ${i}: no frame`); return; }
     const bytes = statSync(png).size;
     if (bytes <= MIN_FRAME_BYTES) sizeBad.push(`beat ${i}: ${(bytes / 1024).toFixed(1)} KB`);
-    const center = cropMean(video, t, 200, 200, Math.floor((W - 200) / 2), Math.floor((H - 200) / 2));
-    const corner = cropMean(video, t, 100, 100, 0, 0);
+    const center = cropMean(video, t, cw, ch, Math.floor((W - cw) / 2), Math.floor((H - ch) / 2));
+    const corner = cropMean(video, t, kw, kh, 0, 0);
     if (center === null || corner === null) centerBad.push(`beat ${i}: crop failed`);
     else if (Math.abs(center - corner) <= MIN_CENTER_DIFF) centerBad.push(`beat ${i}: centre ${center.toFixed(1)} vs corner ${corner.toFixed(1)}`);
   });
