@@ -348,6 +348,17 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
       console.error(`::error::beat check unavailable: ${result.error}`);
       process.exit(3);
     }
+    // gemini-client returns {content: "<raw text>"} when the model's JSON
+    // did not parse as-is -- CI run 36328141701 ch-9: a complete 6-verdict
+    // answer wrapped in a ```json fence was reported as "no verdict(s)" and
+    // failed a render whose first check had passed 6/6. Unwrap the fence
+    // (or take the outermost {...}) and parse; anything still unparseable
+    // stays a failure exactly as before.
+    if (result && !Array.isArray(result.beats) && typeof result.content === "string") {
+      const text = result.content.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
+      const a = text.indexOf("{"), b = text.lastIndexOf("}");
+      try { if (a >= 0 && b > a) result = JSON.parse(text.slice(a, b + 1)); } catch {}
+    }
     const verdicts = Array.isArray(result?.beats) ? result.beats : null;
     if (!verdicts || verdicts.length !== beats.length) {
       console.error(`::error::beat check returned ${verdicts ? verdicts.length : "no"} verdict(s) for ${beats.length} beats: ${JSON.stringify(result).slice(0, 300)}`);

@@ -429,6 +429,16 @@ export function normalizeScene(scene) {
   const dropped = [];
   const cleaned = objects.map((o, i) => {
     if (!o || typeof o !== "object") return o;
+    // {kind:"library_shape", name:"field"}: the model put a PRIMITIVE kind in
+    // the drawing-name slot (CI run 36328141701 ch-9, 5 of 6 beats dropped).
+    // Unambiguous when the name is a primitive and not also a drawing; done
+    // first so the label/count rules below apply to the real kind.
+    if (o.kind === "library_shape" && typeof o.name === "string" && PRIMITIVES[o.name] &&
+        o.name !== "library_shape" && !isLibraryName(o.name)) {
+      const { name, ...rest } = o;
+      o = { ...rest, kind: name };
+      dropped.push(`objects[${i}]: library_shape name "${name}" is a primitive kind -> kind "${name}"`);
+    }
     const spec = PRIMITIVES[o.kind];
     if (!spec) return o;
     const out = { ...o };
