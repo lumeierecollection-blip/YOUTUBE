@@ -110,6 +110,7 @@ async function main() {
       if (s.key && !process.env[s.key]) { reasons.push(`${s.name}: ${s.key} not set`); console.log(`[fetch] ${s.name} "${concept}" → skip (${s.key} not set)`); continue; }
       if (requests >= MAX_REQUESTS) { reasons.push(`request budget (${MAX_REQUESTS}) spent`); console.log(`[fetch] ${s.name} "${concept}" → skip (budget of ${MAX_REQUESTS} requests spent)`); continue; }
       requests++;
+      console.log(`[fetch] ${s.name} query "${query}"`);
       let cands;
       try {
         cands = await mods[s.name].search(query, { count: 6 });
@@ -124,8 +125,12 @@ async function main() {
         continue;
       }
       const why = [];
-      for (const c of cands || []) {
+      for (let c of cands || []) {
         if (!c || !c.license) continue;               // adapters null out disallowed licenses
+        // Wikimedia originals are often SVG/TIFF/PDF; Commons' raster
+        // thumbnail of the SAME file is used then (run 36354137756: every
+        // Wikimedia candidate on 4 channels was "miss (format)").
+        if (!OK_EXT.test(c.downloadUrl || "") && c.thumbUrl && OK_EXT.test(c.thumbUrl)) c = { ...c, downloadUrl: c.thumbUrl };
         if (!OK_EXT.test(c.downloadUrl || "")) { why.push("format"); continue; }
         if (c.width && c.width < MIN_WIDTH) { why.push("too small"); continue; }
         const v = verify(c, concept, query);

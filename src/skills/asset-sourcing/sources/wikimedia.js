@@ -22,6 +22,11 @@ export function parseWikimediaResponse(json) {
       sourceApi: "wikimedia",
       sourceUrl: `https://commons.wikimedia.org/wiki/${encodeURIComponent(page.title || "")}`,
       downloadUrl: info.url,
+      // Commons renders every file (SVG maps, TIFF/PDF scans) to a raster
+      // thumbnail at the requested iiurlwidth. Recorded so a consumer that
+      // needs JPEG/PNG can use it instead of rejecting the file's format.
+      thumbUrl: info.thumburl || null,
+      mime: info.mime || null,
       title: page.title || "",
       // extmetadata is already requested, so ImageDescription costs nothing
       // extra and is the only real description Commons gives us.
