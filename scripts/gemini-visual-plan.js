@@ -33,6 +33,7 @@ import {
   compactCapabilityDigest, compileScene, isMechanismBased, mechanismToCapability,
 } from "../src/skills/remotion-render/visual/capability-compiler.js";
 import { callGemini as callGeminiApi } from "../src/lib/gemini-client.js";
+import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-names.js";
 
 const { enforceCaps, describe: describeMechanisms, TYPOGRAPHY } = createRequire(import.meta.url)("./plan-caps.cjs");
 
@@ -129,13 +130,39 @@ const VOCABULARY = vocabularyDigest();
   console.log(`[vocab] library_shape exposes ${lib ? lib.split(" | ").length : 0} drawings to the planner`);
 }
 
+// Subject-appropriate drawings per priority channel, ALL taken from the
+// library registry (checked below at load — a misspelt or invented name
+// throws before any prompt is built). Shown to the planner ahead of the full
+// LIBRARY list so it sees the options that depict ITS niche's subjects.
+// Why: run 36343146799 — ch-1 had "phone showing a budgeting app" for a
+// sentence about finance apps and picked "date marker"; ch-9 had the maps for
+// a border war and picked "case file folder". Other channels get the full
+// list only.
+const NICHE_DRAWINGS = {
+  "1": ["phone showing a budgeting app", "calculator", "ledger notebook", "bank statement", "receipt", "balance sheet", "cash notes", "calendar grid", "plan comparison rows", "clock face"],
+  "2": ["court document", "legal document", "case file folder", "courthouse column", "evidence exhibit", "gavel", "constitutional text", "enrollment form", "handwritten letter", "prison window"],
+  "9": ["map-region-highlight", "map-route", "map-markers", "map-outline", "national border line", "territory fill", "earth globe", "satellite terrain", "archival map sheet", "stone monument", "supply route"],
+  "26": ["money trail", "cash notes", "bank statement", "balance sheet", "red string", "evidence exhibit", "share price line", "stock ticker tape", "office tower", "pinned photograph", "receipt", "supply route"],
+  "44": ["figure silhouette", "office tower", "application window", "prompt field", "output transcript", "answer frame", "question line", "handwritten letter", "cursor pointer", "checklist rule", "clock face"],
+  "48": ["conveyor belt", "robot arm", "gear train", "machine housing", "component part", "bolt joint", "blueprint sheet", "cross section", "gauge dial", "product silhouette", "checklist rule", "scale bar"],
+};
+for (const [ch, names] of Object.entries(NICHE_DRAWINGS)) {
+  const bad = names.filter((n) => !LIBRARY_NAMES.includes(n));
+  if (bad.length) throw new Error(`NICHE_DRAWINGS ch-${ch}: not in the object library: ${bad.join(", ")}`);
+}
+
 // REFERENCE: docs/MOTION-GRAPHICS-SPEC.md defines the target beat (2-4 s,
 // one drawing, build -> hold -> caption -> hold; 8-12 beats; forbidden
 // list). NOT yet applied to the prompt below -- its §0 lists where today's
 // output differs. Change this prompt toward that spec, not away from it.
 // (Pointed to from here, not from the prompt text: Gemini cannot open a
 // repo file, so a path inside the prompt would do nothing.)
-function buildPlanPrompt(sentences, corrections) {
+function buildPlanPrompt(sentences, corrections, channelId) {
+  const niche = NICHE_DRAWINGS[String(channelId ?? "").replace(/^ch-?0*/i, "")];
+  const nicheBlock = niche
+    ? `- THIS CHANNEL'S SUBJECT DRAWINGS (from the LIBRARY; check these first,
+  then the full LIBRARY list below): ${niche.map((n) => `"${n}"`).join(", ")}.`
+    : "";
   const sentenceList = sentences.map((s, i) =>
     `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`
   ).join("\n");
@@ -183,36 +210,41 @@ ${VOCABULARY}
 For each beat, declare:
 1. "visual_events": what happens visually (the EVENTS, not the template)
 2. "capabilities": which capabilities you're using (for validation)
-3. "composition": the specific primitives on screen (REQUIRED)
+3. "composition": the ONE drawing on screen (REQUIRED for VISUAL beats; omit for TYPOGRAPHY beats)
 
 The "visual_events" field is your creative direction. The "composition" field is
-what the viewer literally sees. Compose it from the primitive vocabulary above;
-the system builds exactly what you declare and rejects anything it cannot build.
+what the viewer literally sees: one LIBRARY drawing of the sentence's subject
+(plus a counter only for a number the sentence names). The system builds
+exactly what you declare and rejects anything it cannot build.
 
 Rules that are enforced, not advisory:
-- A scene must cover at least 35% of the frame. A beat carrying one text
-  line and nothing else is REJECTED — that is the single defect this
-  vocabulary exists to remove. Reach the floor with real objects (a grid, a
-  field, a stack with a real count, documents), never by enlarging text.
-- Declare "field" FIRST when you want depth; it is the ground plane and
-  stops objects reading as though they float in a void.
-- "emphasis: true" marks the ONE object carrying the beat. Everything else
-  is structure. Do not mark several.
-- The primitives are abstract shapes, so an unlabelled block cannot tell
-  the viewer WHAT it is. The frame review asks "would a viewer with the
-  sound off get this sentence's point from what is drawn?" — in QA run
-  35916464573 every unlabelled-block beat failed it ("abstract blocks do
-  not represent the Strait of Hormuz"), and the one beat that passed was a
-  bar labelled with the sentence's subject against a 0-100% scale.
-  Do not select icons. Describe the subject as a data relationship: what
-  quantity, what comparison, what process, what location.
-  To DRAW the sentence's subject, use "library_shape" with a "name" from
-  the LIBRARY list (exact spelling): a court ruling -> "courthouse column"
-  or "court document"; money moving -> "money trail" or "cash notes"; a
-  process -> "concept node", "link path", "process arrow". Pair it with
-  the abstract primitives that carry the quantity or relation. If nothing
-  in LIBRARY fits, compose from the abstract primitives alone — never
-  invent a name.
+- ONE DRAWING PER VISUAL BEAT. "composition.objects" holds exactly ONE
+  "library_shape" — the drawing of the sentence's subject — plus, only when
+  the sentence names a number, ONE "counter" whose label is that number
+  exactly as the narration says it ("$14.99", "70 years"). Nothing else:
+  no "field", no "grid", no bars, blocks, stacks, vessels, arrows, rules or
+  nodes beside the drawing. The drawing is laid out to fill the frame; do
+  not add objects to fill space.
+- THE DRAWING DEPICTS THE SUBJECT. For every VISUAL beat, the drawing you
+  choose must depict the sentence's SUBJECT — not its number, not its
+  category, not the idea of "evidence". If the sentence is about a phone
+  app, choose the drawing of a phone app. If the sentence is about a
+  border, choose the map. Do not choose a folder, a document, or a concept
+  node to represent something that is not a folder, a document, or a
+  concept.
+- NO MATCH -> TYPOGRAPHY. If no drawing in the LIBRARY depicts the
+  subject, make that beat TYPOGRAPHY: "capabilities": ["typographic_emphasis"],
+  a filled "typography_direction", and no "composition". Do not substitute
+  an unrelated drawing, and never fall back to abstract primitives.
+${nicheBlock}
+- "emphasis: true" goes on the drawing. It ALWAYS carries a 1-3 word
+  "label" naming the specific thing, place, group, or quantity from THIS
+  sentence ("Hormuz", "Tenants", "Monarch Money"). A label is a name or a
+  number taken from the sentence — never a headline, never a sentence
+  fragment, never a generic word like "CAUSE", "EFFECT", "EXPECTED",
+  "ACTUAL", "RESEARCH", "TERMS", "MATRIX".
+- Use "library_shape" with a "name" from the LIBRARY list, spelled exactly;
+  never invent a name.
   PLACES are real maps drawn from real borders. When the sentence is about a
   country or a US state, use one of these, and set "label" to that place's
   name exactly as the narration says it (e.g. "Venezuela", "Florida"):
@@ -230,20 +262,12 @@ Rules that are enforced, not advisory:
   "gauge dial", not "gauge-dial". Copy the spelling from LIBRARY verbatim;
   do not hyphenate a name because the map names nearby are hyphenated. A
   name validateScene rejects drops that beat's whole composition.
-  The "emphasis" object ALWAYS carries a 1-3 word "label" naming the
-  specific thing, place, group, or quantity from THIS sentence ("Hormuz",
-  "Tenants", "$2M fine", "9 years"). When the sentence relates two things
-  (A vs B, A causes B, A moves to B), label both, so the relation reads
-  without sound. Structure (field, grid, rule, background stacks) stays
-  unlabelled. At most 3 labels per beat. A label is a name or a number
-  taken from the sentence — never a headline, never a sentence fragment,
-  never a generic word like "CAUSE", "EFFECT", "EXPECTED", "ACTUAL",
-  "RESEARCH", "TERMS", "MATRIX".
 - "count" must be a real quantity from the narration where one exists — 12
   plants, 8 states, 3 filings. It is a visible number, so an invented count
   is an invented fact.
-- Vary the composition across beats. Six beats that all declare the same
-  objects is the template monoculture this replaces.
+- Vary the drawing across beats: the same drawing on every beat is the
+  template monoculture this replaces — but never trade the subject's own
+  drawing for an unrelated one just to vary.
 
 NARRATIVE TYPOGRAPHY — READ THIS BEFORE WRITING ANY TYPOGRAPHY BEAT.
 
@@ -283,10 +307,10 @@ at a real turn in the narration) -> VISUAL CONSEQUENCE -> maybe a KEY FACT
 ("$34 MILLION") -> back to visual storytelling.
 Do NOT put typography in every beat. TEXT -> TEXT -> TEXT -> TEXT is a failure.
 
-ANTI-LAZINESS: typography is NOT the fallback for a beat you could not think
-of a visual for. If you cannot think of a visual, that is not permission to put
-a big sentence in the centre of the screen — think harder about the object, the
-action, the consequence, the document, the map, the environment.
+ANTI-LAZINESS: typography is NOT the fallback for a beat you did not look
+for a drawing for — search the LIBRARY for the sentence's subject first. But
+when no drawing depicts the subject, TYPOGRAPHY is the right answer and an
+unrelated drawing is the wrong one.
 
 THE GRAPH / NUMBER RULE (this is what makes videos feel generic — obey it):
 - A number appearing in a sentence is NOT a reason to reach for evidence. Ask
@@ -349,13 +373,13 @@ strongest visual event first; capabilities are only the closest EXECUTION mappin
 the renderer, and the post-render review will check whether the render actually
 delivered your directed event.
 
-CRITICAL: The direction.subject MUST describe what the composition primitives
-will literally show on screen — NOT a real-world scene that cannot be rendered.
-For example, if composition uses {kind: "gauge", label: "3.4%"}, then direction.subject
-must be "A gauge showing 3.4%" — NOT "A digital economic gauge showing a cooling
-temperature". The renderer draws abstract primitives, not photographs. The review
-compares direction.subject against what the primitives actually render, so a
-direction that describes a real-world scene will always FAIL plan-compliance.
+CRITICAL: The direction.subject MUST describe what the composition will
+literally show on screen — NOT a real-world scene that cannot be rendered.
+If the composition is {kind: "library_shape", name: "phone showing a budgeting
+app", label: "Monarch Money"}, direction.subject is "A phone showing a budgeting
+app labelled Monarch Money" — NOT "a person happily managing money at home".
+The renderer draws the LIBRARY drawing, not photographs; the review compares
+direction.subject against what actually renders.
 
 FOR EVERY BEAT THAT PUTS TEXT ON SCREEN (typographic_emphasis capability, or any beat whose
 direction.typography is not "none") you MUST fill "typography_direction":
@@ -396,9 +420,8 @@ Respond ONLY with JSON (no markdown fences):
       },
       "composition": {
         "objects": [
-          { "kind": "<primitive>", "anchor": "<anchor>", "motion": "<motion>" },
-          { "kind": "<countable primitive>", "count": 12, "anchor": "<anchor>", "motion": "<motion>", "label": "<short label>" },
-          { "kind": "library_shape", "name": "<exact name from LIBRARY>", "anchor": "<anchor>", "motion": "<motion>", "label": "<short label>", "emphasis": true }
+          { "kind": "library_shape", "name": "<exact LIBRARY name of the drawing that depicts this sentence's subject>", "anchor": "center", "motion": "<motion>", "label": "<1-3 word name from the sentence>", "emphasis": true },
+          { "kind": "counter", "label": "<the number exactly as said — ONLY if the sentence names one; otherwise omit this object>", "anchor": "top_right", "motion": "appear" }
         ]
       },
       "carries_forward": "<object/concept that persists into the next beat, or null>",
@@ -473,7 +496,7 @@ async function main() {
   }
 
   console.log(`Requesting visual plan from Gemini for ${sentences.length} beats...`);
-  const prompt = buildPlanPrompt(sentences, corrections);
+  const prompt = buildPlanPrompt(sentences, corrections, channelId);
   // Token budget scales with beat count so the JSON never truncates
   // mid-object (a 51-beat script once came back as "Unexpected end of JSON
   // input"). Each beat now carries the full director "direction" block
@@ -600,7 +623,7 @@ async function main() {
       compositionIssues.push({
         beat: b.index,
         problem: "no composition declared — the beat has nothing to render but text",
-        fix: "declare composition.objects using the primitive vocabulary; a scene must cover at least 35% of the frame",
+        fix: "declare ONE library_shape that depicts this sentence's subject (plus a counter only for a number the sentence names), or make the beat TYPOGRAPHY if no drawing depicts it",
       });
       continue;
     }
