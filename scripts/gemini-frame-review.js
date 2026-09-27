@@ -334,7 +334,16 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
       content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(framePath).toString("base64")}` } });
     });
     console.log(`[beat-check] ${beats.length} beat frames extracted at midpoints — asking Gemini`);
-    const result = await callGemini([{ role: "user", content }], { maxTokens: 2048, temperature: 0, noCache: true });
+    let result = await callGemini([{ role: "user", content }], { maxTokens: 2048, temperature: 0, noCache: true });
+    // One retry on a TRANSPORT failure only (no verdicts came back at all) --
+    // the same retry-once pattern the planner and challenger already have.
+    // CI run 36326675679 ch-2: a single `curl: (28) timed out after 90002 ms
+    // with 0 bytes received` failed an otherwise-complete render. A NO
+    // verdict is never retried: that is the check working, not an outage.
+    if (result?.error) {
+      console.error(`::warning::beat check call failed (${String(result.error).slice(0, 150)}); retrying once`);
+      result = await callGemini([{ role: "user", content }], { maxTokens: 2048, temperature: 0, noCache: true });
+    }
     if (result?.error) {
       console.error(`::error::beat check unavailable: ${result.error}`);
       process.exit(3);
