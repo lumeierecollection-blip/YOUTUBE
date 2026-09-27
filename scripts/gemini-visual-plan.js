@@ -129,6 +129,12 @@ const VOCABULARY = vocabularyDigest();
   console.log(`[vocab] library_shape exposes ${lib ? lib.split(" | ").length : 0} drawings to the planner`);
 }
 
+// REFERENCE: docs/MOTION-GRAPHICS-SPEC.md defines the target beat (2-4 s,
+// one drawing, build -> hold -> caption -> hold; 8-12 beats; forbidden
+// list). NOT yet applied to the prompt below -- its §0 lists where today's
+// output differs. Change this prompt toward that spec, not away from it.
+// (Pointed to from here, not from the prompt text: Gemini cannot open a
+// repo file, so a path inside the prompt would do nothing.)
 function buildPlanPrompt(sentences, corrections) {
   const sentenceList = sentences.map((s, i) =>
     `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`
