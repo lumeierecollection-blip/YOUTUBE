@@ -516,15 +516,17 @@ async function main() {
   // answer is cut off at the budget. describeShape() logs the answer's
   // length and tail so a cut-off is visible in the log, not guessed.
   const maxTokens = Math.min(16384, 2000 + sentences.length * 1500);
-  let geminiResult = normalizePlanResponse(
-    await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2 }));
+  const forced = String(process.env.FORCE_PLANNER || "").toLowerCase();
+  let geminiResult = forced === "ollama"
+    ? { error: "FORCE_PLANNER=ollama (Gemini skipped on purpose)" }
+    : normalizePlanResponse(await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2 }));
 
   // CI runs showed Gemini intermittently answering without a top-level
   // "beats" key (a bare array, a wrapper key, or JSON behind prose). The
   // client caches whatever it got, so a plain retry would replay the same
   // bad answer — the one retry below bypasses the cache and restates the
-  // required shape. Still no beats after that → exit 1, nothing invented.
-  if (!geminiResult?.beats) {
+  // required shape. Still no beats after that → Ollama, then exit 1.
+  if (!geminiResult?.beats && forced !== "ollama") {
     console.error(`Gemini plan attempt 1 had no 'beats' — got: ${describeShape(geminiResult)}. Retrying once uncached.`);
     const strict = prompt + "\n\nReturn ONLY one JSON object whose top-level key is \"beats\" (an array with exactly " + sentences.length + " entries, one per sentence, in order). No prose, no markdown fences, no other top-level keys.";
     geminiResult = normalizePlanResponse(
@@ -535,9 +537,29 @@ async function main() {
   // render job, so it only ever failed with ENOENT and buried Gemini's real
   // error. A failed Gemini plan exits non-zero; render-and-qa.js then runs
   // the local planner and logs that it did.
+  // PLANNER FALLBACK CHAIN: Gemini -> Ollama (local, OLLAMA_PLAN_MODEL,
+  // default qwen2.5:7b). Reached on anything that left Gemini without beats:
+  // HTTP 429 / 503, a curl timeout, or JSON still unparseable after the
+  // repairs + the uncached retry. There is NO third, rule-based link:
+  // scripts/local-visual-plan.cjs was retired (render-and-qa.js: QA run
+  // 35916464573 rejected its placeholder plans 6/6) and does not emit the
+  // VISUAL/TYPE real-asset schema — data/ci-runs/blocked-planner-local-fallback.txt.
+  if (!geminiResult?.beats) {
+    const why = geminiResult?.error || "response had no 'beats' — got: " + describeShape(geminiResult);
+    console.error(`[planner] gemini failed: ${String(why).slice(0, 240)}, falling to ollama`);
+    const o = await callOllamaPlan(prompt, maxTokens);
+    if (o.error) {
+      console.error(`[planner] ollama failed: ${o.error} — no further fallback`);
+    } else {
+      geminiResult = normalizePlanResponse({ content: o.content });
+      if (geminiResult?.beats) console.log(`[planner] plan from ollama (${o.model}, ${o.seconds}s)`);
+      else console.error(`[planner] ollama answer had no 'beats': ${describeShape(geminiResult)} — no further fallback`);
+    }
+  }
+
   const plan = geminiResult?.beats ? geminiResult : null;
   if (!plan || !plan.beats) {
-    console.error(`Gemini plan failed: ${geminiResult?.error || "response had no 'beats' — got: " + describeShape(geminiResult)}`);
+    console.error(`Visual plan failed (gemini, then ollama): ${geminiResult?.error || "no 'beats' — got: " + describeShape(geminiResult)}`);
     process.exit(1);
   }
 
@@ -963,6 +985,32 @@ function normalizePlanResponse(r) {
     if (v && typeof v === "object" && !Array.isArray(v) && Array.isArray(v.beats)) return v;
   }
   return r;
+}
+
+// Ollama's OpenAI-compatible endpoint. The render job does not start an
+// Ollama server today, so in CI this reports "unavailable" — logged, never
+// silent. Timeout generous: a 7B model on a CPU runner is slow.
+async function callOllamaPlan(prompt, maxTokens) {
+  const host = (process.env.OLLAMA_HOST || "http://127.0.0.1:11434").replace(/\/$/, "");
+  const model = process.env.OLLAMA_PLAN_MODEL || "qwen2.5:7b";
+  const t0 = Date.now();
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), Number(process.env.OLLAMA_PLAN_TIMEOUT_MS || 900000));
+  try {
+    const res = await fetch(`${host}/v1/chat/completions`, {
+      method: "POST", headers: { "Content-Type": "application/json" }, signal: ctrl.signal,
+      body: JSON.stringify({ model, messages: [{ role: "user", content: prompt }], temperature: 0.2, max_tokens: maxTokens, response_format: { type: "json_object" } }),
+    });
+    if (!res.ok) return { error: `HTTP ${res.status} from ${host} (${model})` };
+    const j = await res.json();
+    const content = j?.choices?.[0]?.message?.content;
+    if (!content) return { error: `empty answer from ${model}` };
+    return { content, model, seconds: ((Date.now() - t0) / 1000).toFixed(0) };
+  } catch (e) {
+    return { error: `unavailable at ${host} (${e.name === "AbortError" ? "timed out" : e.cause?.code || e.message})` };
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 function describeShape(r) {
