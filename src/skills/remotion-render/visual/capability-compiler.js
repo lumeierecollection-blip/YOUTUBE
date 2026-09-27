@@ -326,6 +326,8 @@ export function compileScene(directive, text, index, totalBeats) {
 
   // Step 5: Validate the scene
   const validation = validateScene(scene);
+  // Render what was validated (normalised names/labels), not the raw input.
+  if (validation.scene?.objects) scene.objects = validation.scene.objects;
   if (!validation.ok) {
     errors.push(...validation.errors);
   }

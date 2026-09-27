@@ -835,7 +835,7 @@ export function direct(cues, options) {
     if (directive && directive.composition) {
       const v = validateScene(directive.composition);
       if (v.ok) {
-        scene.composition = directive.composition;
+        scene.composition = v.scene || directive.composition;
         scene.compositionCoverage = v.coverage;
       } else {
         warnings.push(

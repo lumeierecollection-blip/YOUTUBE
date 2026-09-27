@@ -599,6 +599,9 @@ async function main() {
       continue;
     }
     const v = validateScene(b.composition);
+    // Persist the normalised scene (e.g. "earth-globe" -> "earth globe") so
+    // the plan file, the challenger and the renderer all see what was checked.
+    if (v.scene) b.composition = v.scene;
     b.compositionCoverage = v.coverage;
     b.compositionValid = v.ok;
     if (!v.ok) {

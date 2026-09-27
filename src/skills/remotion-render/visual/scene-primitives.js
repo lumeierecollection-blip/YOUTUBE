@@ -411,6 +411,19 @@ export function estimateCoverage(objects) {
  * What stays an ERROR is anything that changes the intent: `count: 5` on a
  * non-countable means the model wanted five and would get one.
  */
+// The library names mostly use spaces ("earth globe") but five use hyphens
+// ("map-markers"), and Gemini writes whichever it likes: across CI runs
+// 36323786443 / 36325040366 / 36326675679, 8 of the 10 library_shape names
+// rejected as "not in the object library" were real names hyphenated
+// ("earth-globe", "court-document", "archival-map-sheet"). Each rejection
+// dropped the whole composition to its generic mechanism scene -- the
+// "abstract blocks" the beat check then failed. A name is rewritten only
+// when it equals exactly one library name after ignoring case and
+// -/_/space separators (no two library names collide under this); a
+// genuinely invented name ("structure_break") still fails validation.
+const canonicalLibraryName = (s) => s.toLowerCase().replace(/[-_\s]+/g, " ").trim();
+const LIBRARY_BY_CANONICAL = new Map(LIBRARY_NAMES.map((n) => [canonicalLibraryName(n), n]));
+
 export function normalizeScene(scene) {
   const objects = (scene && scene.objects) || [];
   const dropped = [];
@@ -426,6 +439,13 @@ export function normalizeScene(scene) {
     if (out.label !== undefined && out.label !== null && !spec.labelable) {
       delete out.label;
       dropped.push(`objects[${i}]: dropped label on "${o.kind}" (draws no label)`);
+    }
+    if (out.kind === "library_shape" && typeof out.name === "string" && !isLibraryName(out.name)) {
+      const canonical = LIBRARY_BY_CANONICAL.get(canonicalLibraryName(out.name));
+      if (canonical) {
+        dropped.push(`objects[${i}]: library_shape name "${out.name}" -> "${canonical}" (same name, different separators)`);
+        out.name = canonical;
+      }
     }
     return out;
   });
@@ -515,7 +535,10 @@ export function validateScene(rawScene) {
     warnings.push("every object is labelled — labels should mark the few that need naming, not all of them");
   }
 
-  return { ok: errors.length === 0, errors, warnings, coverage };
+  // `scene` is the NORMALISED scene the checks above ran on; callers that
+  // render or persist the composition must use it, not their raw input,
+  // or a rewritten library name validates here and misses at render time.
+  return { ok: errors.length === 0, errors, warnings, coverage, scene };
 }
 
 /**
