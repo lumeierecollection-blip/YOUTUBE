@@ -160,8 +160,9 @@ for (const [ch, names] of Object.entries(NICHE_DRAWINGS)) {
 function buildPlanPrompt(sentences, corrections, channelId) {
   const niche = NICHE_DRAWINGS[String(channelId ?? "").replace(/^ch-?0*/i, "")];
   const nicheBlock = niche
-    ? `- THIS CHANNEL'S SUBJECT DRAWINGS (from the LIBRARY; check these first,
-  then the full LIBRARY list below): ${niche.map((n) => `"${n}"`).join(", ")}.`
+    ? `- DRAWINGS OFTEN USEFUL ON THIS CHANNEL (from the LIBRARY). Each is ONLY
+  correct when the sentence's subject IS that object — this list is not a
+  menu of props for the topic: ${niche.map((n) => `"${n}"`).join(", ")}.`
     : "";
   const sentenceList = sentences.map((s, i) =>
     `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`
@@ -232,6 +233,22 @@ Rules that are enforced, not advisory:
   border, choose the map. Do not choose a folder, a document, or a concept
   node to represent something that is not a folder, a document, or a
   concept.
+- NAME THE SUBJECT FIRST. For every beat write "sentence_subject": the one
+  concrete thing the sentence is about — a person, a group of people, a
+  place, a physical object, an app, a machine ("an 87-year-old tenant",
+  "protest tents", "the YNAB app", "the Cambodia-Thailand border"). Then
+  choose the drawing that IS that thing. People -> "figure silhouette".
+  A country or region -> the map drawings. A phone app -> "phone showing a
+  budgeting app". Test: would a viewer, seeing only the drawing, name the
+  same thing? If not, it is the wrong drawing.
+- THE CHANNEL'S TOPIC IS NOT THE SUBJECT. A legal channel's story about
+  protesters is about protesters, not about court documents; a finance
+  channel's sentence about an app is about the app, not a ledger. Never
+  pick a drawing because it fits the channel's category.
+- ABSTRACT SENTENCES HAVE NO DRAWABLE SUBJECT. "A critical step towards
+  peace", "trust plays a critical role", "tracking is made easy" name no
+  person, place or object — write "sentence_subject": null and make the
+  beat TYPOGRAPHY.
 - NO MATCH -> TYPOGRAPHY. If no drawing in the LIBRARY depicts the
   subject, make that beat TYPOGRAPHY: "capabilities": ["typographic_emphasis"],
   a filled "typography_direction", and no "composition". Do not substitute
@@ -401,6 +418,7 @@ Respond ONLY with JSON (no markdown fences):
     {
       "index": 0,
       "visual_headline": "<SHORT on-screen text — NOT the transcript, max 5-6 words>",
+      "sentence_subject": "<the one concrete person/place/object/app the sentence is about, or null if the sentence names none (then this beat is TYPOGRAPHY)>",
       "reason": "<what the sentence is DOING and why this visual shows it>",
       "emphasis_words": ["<key words to highlight>"],
       "visual_events": [
