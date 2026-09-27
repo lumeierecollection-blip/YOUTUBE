@@ -656,6 +656,7 @@ async function main() {
     }
   }
 
+  const planRuleIssues = [];
   // ── BUILD EACH BEAT'S COMPOSITION FROM ITS FIELDS (real-asset pipeline) ──
   // The model no longer composes. A VISUAL beat is { concept, asset_query,
   // fallback_drawing, caption, number }; its composition is built here as
@@ -689,9 +690,31 @@ async function main() {
       delete b.composition;
     }
     console.log(`[plan] beat ${b.index}: VISUAL concept="${String(b.concept || "").slice(0, 70)}" query="${b.asset_query || ""}" fallback="${b.fallback_drawing || "-"}"`);
+    // The prompt's own rules, fed back to the corrective (plan-fix) pass
+    // when broken — run 36357817392 ch-1: concepts "a financial benchmark
+    // bar", "a case file folder and balance sheet", "a vessel of cash notes
+    // draining" (drawing names, not photos) and fallback "vessel" (a
+    // primitive, not a LIBRARY drawing).
+    const conceptText = ` ${String(b.concept || "").toLowerCase()} `;
+    // Only names that exist SOLELY as drawings — diagram shapes and
+    // primitives. Library names that are ordinary objects ("receipt",
+    // "calculator", "conveyor belt") are fine in a photo concept.
+    const DRAWING_ONLY = ["benchmark bar", "concept node", "link path", "process arrow", "benefit rule", "checklist rule",
+      "timeline rule", "load curve", "progress arc", "latency trace", "question line", "answer frame", "plan comparison rows",
+      "stacked layer", "scale bar", "depth scale", "wire node", "vital trace", "date marker", "evidence tube", "resource site marker",
+      "vessel", "gauge", "silhouette", "infographic", "diagram", "icon", "grid of", "node graph", "map sheet"];
+    const named = DRAWING_ONLY.filter((n) => conceptText.includes(` ${n}`));
+    if (named.length) {
+      planRuleIssues.push({ beat: b.index, problem: `concept names a drawing/primitive (${named.slice(0, 3).join(", ")}), not something a camera could photograph`,
+        fix: "rewrite \"concept\" and \"asset_query\" as a real photograph of where this happens; keep drawings only in \"fallback_drawing\"" });
+    }
+    if (b.fallback_drawing && !LIBRARY_NAMES.includes(String(b.fallback_drawing).trim())) {
+      planRuleIssues.push({ beat: b.index, problem: `fallback_drawing "${b.fallback_drawing}" is not a LIBRARY drawing`,
+        fix: "set \"fallback_drawing\" to an exact LIBRARY name that depicts the same subject" });
+    }
   }
 
-  const compositionIssues = [];
+  const compositionIssues = [...planRuleIssues];
   let composedBeats = 0;
   for (const b of plan.beats) {
     if (!b.composition || !Array.isArray(b.composition.objects) || !b.composition.objects.length) {
