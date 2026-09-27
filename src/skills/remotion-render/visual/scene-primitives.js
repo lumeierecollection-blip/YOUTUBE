@@ -411,6 +411,12 @@ export const MAX_SCENE_COVERAGE = 0.92;
  * The damping is intentionally pessimistic: it is better to reject a scene
  * that would have been fine than to ship another empty one.
  */
+export function measuredCoverage(objects) {
+  const placed = layoutScene(objects || []).filter((r) => r.obj.kind !== "field" && !r.rect.overlay);
+  const area = placed.reduce((s, r) => s + r.rect.w * r.rect.h, 0);
+  return +Math.min(1, area / (SAFE_W * SAFE_H)).toFixed(3);
+}
+
 export function estimateCoverage(objects) {
   let sum = 0;
   for (const o of objects || []) {
@@ -503,7 +509,29 @@ export function normalizeScene(scene) {
     }
     return out;
   });
-  return { scene: { ...scene, objects: cleaned }, dropped };
+  // ONE DRAWING PER BEAT (docs/MOTION-GRAPHICS-SPEC.md §2). The `field`
+  // ground plane is the grid panel behind every composed scene — dropped
+  // always. When the scene has a library drawing, it keeps exactly that
+  // drawing (the emphasis one, else the first) plus one counter/figure
+  // carrying a number; the bars/arrows/nodes paired with it are dropped. A
+  // scene with NO library drawing keeps its primitives (only the panel is
+  // dropped) — that is a planner miss the loop must see, not hide.
+  let objs = cleaned;
+  const fields = objs.filter((o) => o && o.kind === "field");
+  if (fields.length) {
+    objs = objs.filter((o) => !(o && o.kind === "field"));
+    dropped.push(`dropped ${fields.length} "field" ground plane(s) (one drawing per beat, no panel)`);
+  }
+  const libs = objs.filter((o) => o && o.kind === "library_shape");
+  if (libs.length) {
+    const keep = libs.find((o) => o.emphasis) || libs[0];
+    const num = objs.find((o) => o && (o.kind === "counter" || o.kind === "figure") && /\d/.test(String(o.label ?? "")));
+    const kept = num ? [keep, num] : [keep];
+    const gone = objs.filter((o) => !kept.includes(o));
+    if (gone.length) dropped.push(`dropped ${gone.length} object(s) paired with "${keep.name}": ${gone.map((o) => (o && o.name) || (o && o.kind)).join(", ")} (one drawing per beat)`);
+    objs = kept;
+  }
+  return { scene: { ...scene, objects: objs }, dropped };
 }
 
 export function validateScene(rawScene) {
@@ -571,7 +599,14 @@ export function validateScene(rawScene) {
     }
   });
 
-  const coverage = estimateCoverage(objects);
+  // Coverage is MEASURED from the layout layoutScene() actually produces
+  // (sum of each placed object's rect / the layout area; the field panel
+  // and the counter overlay excluded), not the old fixed-area estimate. The
+  // estimate gave a lone library drawing 18% (area 0.2) while the portrait
+  // layout draws it 908 x 908 = 68% of the area, so every one-drawing scene
+  // was rejected for "empty frame". The 35% floor itself is unchanged, and
+  // a genuinely small scene (one rule, one arrow) still fails it.
+  const coverage = measuredCoverage(objects);
   if (objects.length && coverage < MIN_SCENE_COVERAGE) {
     errors.push(
       `scene covers only ${(coverage * 100).toFixed(0)}% of the frame (minimum ${(MIN_SCENE_COVERAGE * 100).toFixed(0)}%) — ` +

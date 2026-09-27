@@ -336,13 +336,8 @@ export function compileScene(directive, text, index, totalBeats) {
   // Step 6: Ensure minimum coverage
   if (allObjects.length > 0 && validation.coverage < MIN_SCENE_COVERAGE) {
     warnings.push(
-      `Scene coverage ${(validation.coverage * 100).toFixed(0)}% is below minimum ${(MIN_SCENE_COVERAGE * 100).toFixed(0)}% — adding ground plane`
+      `Scene coverage ${(validation.coverage * 100).toFixed(0)}% is below minimum ${(MIN_SCENE_COVERAGE * 100).toFixed(0)}% — NOT adding a ground plane (one drawing per beat; the field panel is no longer drawn)`
     );
-    scene.objects.unshift({
-      kind: "field",
-      anchor: "center",
-      motion: "appear",
-    });
   }
 
   return { scene, warnings, errors };
