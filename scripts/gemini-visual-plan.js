@@ -763,9 +763,20 @@ async function main() {
   // back to mechanism" (ch-48 beat 0, run 35833174133). Drop it here, and
   // drop its issues from the report.
   capped.mechanisms.forEach((m, i) => {
-    if (m === TYPOGRAPHY && plan.beats[i].composition) {
-      plan.beats[i].composition = null;
-      plan.beats[i].compositionValid = null;
+    const b = plan.beats[i];
+    if (m === TYPOGRAPHY && b.composition) {
+      b.composition = null;
+      b.compositionValid = null;
+    }
+    // Keep `kind` in step with the capped mechanism, so the asset resolver
+    // does not put a photo on a beat that renders as typography (the hook
+    // is always TYPOGRAPHY), and a TYPE beat the cap moved to a legacy
+    // mechanism (which draws abstract geometry) fails loudly instead.
+    if (m === TYPOGRAPHY) {
+      b.kind = "TYPE";
+    } else if (b.kind === "TYPE") {
+      console.warn(`::warning::[plan] beat ${b.index}: TYPE reassigned to ${m} by the TYPOGRAPHY cap — it has no concept, so asset resolution will fail it`);
+      b.kind = "VISUAL";
     }
   });
   const typoBeats = new Set(capped.mechanisms.map((m, i) => (m === TYPOGRAPHY ? plan.beats[i].index ?? i : -1)));
