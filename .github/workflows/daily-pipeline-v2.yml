@@ -706,6 +706,12 @@ jobs:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           VISION_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           VISION_MODEL: gemini-3.5-flash-lite
+          # Real-asset fetcher (scripts/fetch-assets.cjs). Unset secrets are
+          # empty and that source is skipped with a logged reason —
+          # data/ci-runs/blocked-asset-api-keys.txt.
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
         # QA is ON. --skip-qa was on every CI run until docs/AI-DECISION-AUDIT.md
         # showed 0 of 31 Gemini beats reached the screen while every gate
         # passed. The challenger (plan vs script) and the per-beat frame check
@@ -752,6 +758,7 @@ jobs:
           path: |
             data/renders/${{ matrix.channel_id }}/
             data/visual-plans/${{ matrix.channel_id }}/
+            src/skills/remotion-render/public/asset-library/manifest.json
           retention-days: 7
 
       # ── Publish (private) ──────────────────────────────────────────────

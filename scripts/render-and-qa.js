@@ -20,6 +20,7 @@ import { spawn, execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync, statSync } from "node:fs";
 import { join, dirname, basename, extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 import { bundle } from "@remotion/bundler";
 import {
   deriveAdjustments, applyAdjustments, verifyAdjustments,
@@ -138,9 +139,9 @@ function expectedOutputPath(channelId, scriptPath, format) {
   return join(ROOT, "data", "renders", channelId, `${slug}-${format}-${timestamp}.mp4`);
 }
 
-function runChild(cmd, args, { label }) {
+function runChild(cmd, args, { label, env }) {
   return new Promise((resolve) => {
-    const child = spawn(cmd, args, { cwd: ROOT, stdio: ["ignore", "pipe", "pipe"] });
+    const child = spawn(cmd, args, { cwd: ROOT, stdio: ["ignore", "pipe", "pipe"], env: env ? { ...process.env, ...env } : process.env });
     let stdout = "";
     let stderr = "";
     child.stdout.on("data", (d) => {
@@ -227,7 +228,7 @@ async function geminiPlan(channelId, scriptPath, correctionsPath) {
 
 /* ── Render ──────────────────────────────────────────────────────── */
 
-async function renderOne(channelId, scriptPath, format) {
+async function renderOne(channelId, scriptPath, format, planPath) {
   const audio = audioPathFor(channelId, scriptPath);
   if (!existsSync(audio)) {
     console.error(`::error::no voiceover audio at ${audio} — cannot render ${scriptPath}`);
@@ -236,14 +237,17 @@ async function renderOne(channelId, scriptPath, format) {
   console.log(`=== RENDER: ${channelId} — ${basename(scriptPath)} (${format}) ===`);
   const args = [RENDER_JS, format, channelId, relative(ROOT, scriptPath), relative(ROOT, audio)];
   const label = `render ${channelId}/${basename(scriptPath)}`;
-  let { code, stderr, stdout } = await runChild("node", args, { label });
+  // The plan render.js must draw (the asset-resolved plan). Without this it
+  // read the canonical plan path, so enforced correction plans never rendered.
+  const env = planPath ? { VISUAL_PLAN_PATH: planPath } : undefined;
+  let { code, stderr, stdout } = await runChild("node", args, { label, env });
   // One retry, ONLY when Chrome never came up. That is the runner, not the
   // video: run 35842024112 lost ch-48 to "Timed out after 25000 ms while
   // trying to connect to the browser" with every other gate green. Any
   // other render failure is not retried.
   if (code !== 0 && /trying to connect to the browser/i.test(`${stderr}\n${stdout}`)) {
     console.warn(`::warning::${label}: browser failed to launch — retrying the render once`);
-    ({ code } = await runChild("node", args, { label: `${label} (retry)` }));
+    ({ code } = await runChild("node", args, { label: `${label} (retry)`, env }));
   }
   if (code !== 0) return { skipped: false, ok: false };
   const outputPath = expectedOutputPath(channelId, scriptPath, format);
@@ -693,6 +697,99 @@ function frameReviewVerdict(geminiReport) {
   return { pass: true, reason: `APPROVED — whole-video ${whole.status || "?"}${score}` };
 }
 
+/* ── Real-asset resolution (fetch before render) ─────────────────── */
+
+// For every VISUAL beat: a manifest asset matching its concept/asset_query
+// -> a `photo` composition (+ the beat's counter); else its fallback drawing
+// (the composition gemini-visual-plan.js built); else the render FAILS with
+// the beat and concept. Unmatched concepts are fetched first
+// (scripts/fetch-assets.cjs). The resolved plan is written next to the plan
+// and is what render.js renders (VISUAL_PLAN_PATH).
+const FETCH_ASSETS_CJS = join(__dirname, "fetch-assets.cjs");
+const ASSET_MANIFEST = join(ROOT, "src", "skills", "remotion-render", "public", "asset-library", "manifest.json");
+const MOVEMENTS = ["push", "drift-left", "drift-right", "reveal-left", "reveal-right"];
+
+function channelTopic(channelId) {
+  try {
+    const cfg = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
+    const ch = (cfg.channels || cfg).find((c) => String(c.id ?? c.channel_id).replace(/^ch-?0*/i, "") === String(channelId).replace(/^ch-?0*/i, ""));
+    return ch?.niche || null;
+  } catch { return null; }
+}
+function findAsset(manifest, beat) {
+  const norm = (x) => String(x || "").trim().toLowerCase();
+  const c = norm(beat.concept), q = norm(beat.asset_query);
+  return (manifest.assets || []).find((a) =>
+    (a.concepts || []).some((x) => norm(x) === c) || (q && (a.asset_queries || []).some((x) => norm(x) === q)));
+}
+function variantFor(concept) {
+  const t = String(concept || "").toLowerCase();
+  if (/\b(screenshot|screen|app interface|dashboard|website)\b/.test(t)) return "screenshot";
+  if (/\b(chart|graph)\b/.test(t)) return "chart";
+  if (/\b(document|letter|filing|form|contract|certificate|report page)\b/.test(t)) return "document";
+  return "photo";
+}
+// Deterministic: the same concept always gets the same movement.
+function movementFor(concept) {
+  const h = createHash("sha1").update(String(concept || "")).digest();
+  return MOVEMENTS[h[0] % MOVEMENTS.length];
+}
+
+async function resolveAssets(channelId, planPath) {
+  const plan = readJsonSafe(planPath);
+  if (!plan?.beats?.length) return { ok: false, reason: `no plan at ${planPath}` };
+  const visual = plan.beats.filter((b) => b.kind === "VISUAL");
+  const typeBeats = plan.beats.filter((b) => b.kind === "TYPE").length;
+  let manifest = readJsonSafe(ASSET_MANIFEST) || { assets: [] };
+  let fetchedNew = 0;
+  const wanted = visual.filter((b) => b.concept && !findAsset(manifest, b))
+    .map((b) => ({ beat: b.index, concept: b.concept, asset_query: b.asset_query || b.concept }));
+  if (wanted.length) {
+    const tmpIn = planPath.replace(/\.json$/, "-asset-requests.json");
+    const tmpOut = planPath.replace(/\.json$/, "-asset-results.json");
+    writeFileSync(tmpIn, JSON.stringify(wanted, null, 2) + "\n");
+    const topic = channelTopic(channelId);
+    const f = await runChild("node", [FETCH_ASSETS_CJS, "--in", tmpIn, "--out", tmpOut, ...(topic ? ["--topic", topic] : [])],
+      { label: `assets ${channelId}` });
+    if (f.code !== 0) return { ok: false, reason: `fetch-assets.cjs exited ${f.code}` };
+    manifest = readJsonSafe(ASSET_MANIFEST) || { assets: [] };
+    fetchedNew = (readJsonSafe(tmpOut)?.resolved || []).length;
+  }
+  const counts = { photo: 0, drawing: 0, type: typeBeats };
+  for (const b of visual) {
+    const asset = b.concept ? findAsset(manifest, b) : null;
+    const counter = (b.composition?.objects || []).find((o) => o.kind === "counter");
+    if (asset) {
+      const movement = movementFor(b.concept);
+      const photo = { kind: "photo", asset: asset.local_path, variant: variantFor(b.concept), movement,
+        anchor: "center", motion: "appear", label: b.caption || undefined, emphasis: true };
+      b.fallback_composition = b.composition;
+      b.composition = { objects: counter ? [photo, counter] : [photo] };
+      b.asset = { id: asset.id, source: asset.source, source_url: asset.source_url, license: asset.license, attribution: asset.attribution };
+      counts.photo++;
+      console.log(`[assets] beat ${b.index} photo ${asset.id} (${asset.license}) movement=${movement} variant=${photo.variant} — "${b.concept}"`);
+    } else if ((b.composition?.objects || []).some((o) => o.kind === "library_shape")) {
+      counts.drawing++;
+      const d = b.composition.objects.find((o) => o.kind === "library_shape").name;
+      console.log(`[assets] "${b.concept || "(no concept)"}" unresolved → fallback_drawing "${d}" (beat ${b.index})`);
+    } else {
+      console.error(`::error::[assets] beat ${b.index}: no real asset and no valid fallback_drawing for "${b.concept || "(no concept)"}" — not rendering`);
+      return { ok: false, reason: `beat ${b.index} unresolved` };
+    }
+  }
+  // A beat that is neither VISUAL nor TYPE came from a path that does not
+  // speak this schema (e.g. an old cached plan) — refuse rather than guess.
+  const other = plan.beats.filter((b) => b.kind !== "VISUAL" && b.kind !== "TYPE");
+  if (other.length) {
+    console.error(`::error::[assets] beat(s) ${other.map((b) => b.index).join(", ")} have no kind (VISUAL/TYPE) — not rendering`);
+    return { ok: false, reason: "beats without kind" };
+  }
+  const out = planPath.replace(/\.json$/, "-resolved.json");
+  writeFileSync(out, JSON.stringify(plan, null, 2) + "\n");
+  console.log(`[assets] resolved ${basename(planPath)}: photo ${counts.photo}, drawing ${counts.drawing}, type ${counts.type}`);
+  return { ok: true, planPath: out, counts, fetchedNew };
+}
+
 /* ── Correction loop ─────────────────────────────────────────────── */
 
 async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride, skipQA) {
@@ -790,8 +887,26 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       console.error(`::error::challenger ${challengerFailure} for ${basename(scriptPath)} — rendering for the backup audit only`);
     }
 
-    // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL)
-    const result = await renderOne(channelId, scriptPath, format);
+    // Step 1c: resolve real assets (fetch before render). A beat with no real
+    // asset and no fallback drawing fails the video here.
+    const resolvedAssets = await resolveAssets(channelId, planPath);
+    if (!resolvedAssets.ok) {
+      console.error(`::error::asset resolution failed for ${basename(scriptPath)}: ${resolvedAssets.reason}`);
+      return { skipped: false, ok: false };
+    }
+    planPath = resolvedAssets.planPath;
+    // Remotion copies public/ into the bundle when it is BUILT, and the
+    // bundle was built before this attempt. Newly fetched images are not in
+    // it, so staticFile() would 404 — rebuild it with them.
+    if (resolvedAssets.fetchedNew > 0 && process.env.REMOTION_SERVE_URL) {
+      const t0 = Date.now();
+      process.env.REMOTION_SERVE_URL = await bundle({ entryPoint: REMOTION_ROOT_JSX, publicDir: join(dirname(REMOTION_ROOT_JSX), "public"), onProgress: () => {} });
+      console.log(`[assets] re-bundled with ${resolvedAssets.fetchedNew} new asset(s): ${((Date.now() - t0) / 1000).toFixed(1)}s`);
+    }
+
+    // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL) — the
+    // resolved plan, passed explicitly (VISUAL_PLAN_PATH).
+    const result = await renderOne(channelId, scriptPath, format, planPath);
     if (result.skipped) return { skipped: true };
     if (!result.ok) return { skipped: false, ok: false };
 

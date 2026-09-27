@@ -25,7 +25,7 @@
 
 import os from "os";
 import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync, readdirSync } from "fs";
-import { join, dirname, basename, extname } from "path";
+import { join, dirname, basename, extname, isAbsolute } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 import { createRequire } from "module";
@@ -496,7 +496,13 @@ async function main() {
     });
 
     let visualPlan = null;
-    const planPath = join(ROOT, "data", "visual-plans", channelId, basename(scriptPath, ".json") + "-visual-plan.json");
+    // VISUAL_PLAN_PATH (set by render-and-qa.js) is the plan to render: the
+    // asset-resolved plan, or a correction attempt's enforced plan. Without
+    // it this always read the canonical file, so every "enforced" correction
+    // attempt re-rendered the ORIGINAL plan unchanged.
+    const planPath = process.env.VISUAL_PLAN_PATH
+      ? (isAbsolute(process.env.VISUAL_PLAN_PATH) ? process.env.VISUAL_PLAN_PATH : join(ROOT, process.env.VISUAL_PLAN_PATH))
+      : join(ROOT, "data", "visual-plans", channelId, basename(scriptPath, ".json") + "-visual-plan.json");
     if (existsSync(planPath)) {
       try {
         visualPlan = JSON.parse(readFileSync(planPath, "utf-8"));
