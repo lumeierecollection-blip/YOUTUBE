@@ -471,7 +471,19 @@ async function main() {
             const allowed = [...allowedUrls];
             log(`[grounding] rejected: ${bad.slice(0, 5).join(" , ")}`);
             log(`[grounding] allowed (${allowed.length}): ${allowed.join(" , ")}`);
-            problems.push(`cites URL(s) that no search returned: ${bad.slice(0, 5).join(", ")}. In *_url fields write ONLY one of these source ids: ${[...sourceIds.keys()].join(", ")}`);
+            // Several VALID ids crammed into one field ("S1, S2, S3, S6") is a
+            // different mistake from citing an unknown URL, and the generic
+            // message below told the model its real ids were URLs "no search
+            // returned" -- it repeated the same answer 4/4 (CI run
+            // 36328141701 ch-1). Still rejected (which of the four states
+            // the fact is not ours to guess); the feedback now says why.
+            const multi = bad.filter((v) => {
+              const parts = String(v).split(/[\s,;/&]+|\band\b/i).filter(Boolean);
+              return parts.length > 1 && parts.every((p) => sourceIds.has(p.replace(/^\[|\]$/g, "").toUpperCase()));
+            });
+            const unknown = bad.filter((v) => !multi.includes(v));
+            if (multi.length) problems.push(`each source_url holds exactly ONE source id, but you wrote several in one field: ${multi.slice(0, 3).map((v) => `"${v}"`).join(", ")}. Give that fact the single id of the source that states it, or split it into one key_fact per source`);
+            if (unknown.length) problems.push(`cites URL(s) that no search returned: ${unknown.slice(0, 5).join(", ")}. In *_url fields write ONLY one of these source ids: ${[...sourceIds.keys()].join(", ")}`);
           }
         }
         // Discovery: at least one candidate must survive the same duplicate
