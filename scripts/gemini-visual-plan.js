@@ -257,10 +257,11 @@ Rules that are enforced, not advisory:
 - If no photo can plausibly show the sentence (a purely abstract statement:
   "this is a step towards peace"), set "kind": "TYPE" and use kinetic
   typography: "capabilities": ["typographic_emphasis"] and a filled
-  "typography_direction". TYPE is allowed on AT MOST ${typoMax} beat(s) in
-  this ${sentences.length}-beat video, counting the hook (beat 0 is always
-  TYPE); every other beat is VISUAL. A TYPE beat past that limit is turned
-  into an abstract mechanism scene and fails the render.
+  "typography_direction". In this ${sentences.length}-beat video TYPE is
+  allowed ONLY on ${typoMax >= 2 ? `beat 0 (the hook) and beat ${sentences.length - 1} (the closing line)` : "beat 0 (the hook)"}.
+  EVERY other beat — ${typoMax >= 2 ? `beats 1 to ${sentences.length - 2}` : `beats 1 to ${sentences.length - 1}`} — MUST be "kind": "VISUAL" with
+  a concept, even an abstract sentence: photograph where it happens. A TYPE
+  beat anywhere else is removed by the system and fails the render.
 ${nicheBlock}
 - FALLBACK MAPS. PLACES are real maps drawn from real borders. When the
   fallback for a place is a map, use one of these, and set "caption" to
