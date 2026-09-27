@@ -555,6 +555,15 @@ export function vocabularyDigest() {
     const l = s.labelable ? ", labelable" : "";
     lines.push(`  ${kind} — ${s.note}${c}${l}`);
   }
+  // Stated outright because the per-kind lines above only mark what IS
+  // countable, and the planner read silence as permission: CI runs
+  // 36323786443..36326675679 dropped 6 compositions for `count` on
+  // library_shape (2-8) or grid (4-6), each falling back to its generic
+  // mechanism scene. Generated from the same table the validator uses.
+  const countable = Object.entries(PRIMITIVES).filter(([, s]) => s.countable && !s.deprecated).map(([k]) => k);
+  lines.push("", `"count" is valid ONLY on: ${countable.join(", ")} (and library_shape "map-markers"). ` +
+    `On every other kind -- including library_shape and grid -- omit "count"; one is drawn. ` +
+    `To show several of something, use a countable kind with "count", beside a single library_shape if needed.`);
   lines.push("", `ANCHORS: ${Object.keys(ANCHORS).join(", ")}`);
   lines.push(`MOTIONS: ${MOTIONS.join(", ")}`);
   lines.push("", `LIBRARY (for kind "library_shape", field "name", exact spelling): ${LIBRARY_NAMES.join(" | ")}`);
