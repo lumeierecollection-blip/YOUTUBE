@@ -17,7 +17,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, basename, join, resolve, extname } from 'node:path';
 
 const require = createRequire(import.meta.url);
@@ -33,11 +33,17 @@ function resolveFfmpeg() {
 }
 
 function parseArgs(argv) {
-  const args = { video: null, frames: 8, out: null };
+  const args = { video: null, frames: 8, out: null, manifest: null };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--frames') args.frames = parseInt(argv[++i], 10) || 8;
     else if (a === '--out') args.out = argv[++i];
+    // render-and-qa.js has passed --manifest since 1267e15, but it was never
+    // parsed here: the manifest path fell through to the positional branch
+    // below and REPLACED args.video, so ffmpeg probed a .json and every QA
+    // review failed "could not read Duration" (CI run 36323786443, ch-9,
+    // all 3 attempts, after beat-check had passed 6/6).
+    else if (a === '--manifest') args.manifest = argv[++i];
     else if (!a.startsWith('-')) args.video = a;
   }
   if (!args.video) {
@@ -111,10 +117,35 @@ const outDir = args.out
   : join(dirname(video), '..', '_review', basename(video, extname(video)));
 mkdirSync(outDir, { recursive: true });
 
+// Beat-settled sample times from the render manifest (render.js's
+// beats[].start_sec / duration_sec, the same fields the beat check reads):
+// 60% into each chosen beat, past its entrance fade. n beats are picked
+// evenly across the video. Missing/unreadable manifest -> even spacing, as
+// before; that is logged, not silent.
+function beatSettledTimes(manifestPath, n) {
+  if (!manifestPath) return null;
+  try {
+    const beats = JSON.parse(readFileSync(manifestPath, 'utf8')).beats || [];
+    if (!beats.length) throw new Error('manifest has no beats');
+    const count = Math.min(n, beats.length);
+    const times = [];
+    for (let i = 0; i < count; i++) {
+      const b = beats[count === 1 ? 0 : Math.round((i * (beats.length - 1)) / (count - 1))];
+      times.push((b.start_sec ?? 0) + (b.duration_sec ?? 0) * 0.6);
+    }
+    return times;
+  } catch (e) {
+    console.warn(`manifest ${manifestPath} unusable (${e.message}) — sampling evenly instead`);
+    return null;
+  }
+}
+
 const n = Math.max(1, Math.min(24, args.frames));
+const settled = beatSettledTimes(args.manifest, n);
+const sampleCount = settled ? settled.length : n;
 const frames = [];
-for (let i = 0; i < n; i++) {
-  const rawT = n === 1 ? 0 : (meta.durSec * i) / (n - 1);
+for (let i = 0; i < sampleCount; i++) {
+  const rawT = settled ? settled[i] : n === 1 ? 0 : (meta.durSec * i) / (n - 1);
   const t = Math.max(0, Math.min(rawT, meta.durSec - 0.1));
   const name = `frame-${String(i).padStart(2, '0')}.png`;
   const path = join(outDir, name);
@@ -125,12 +156,12 @@ for (let i = 0; i < n; i++) {
 
 const failed = frames.filter((f) => !f.ok);
 if (failed.length) {
-  console.error(`${failed.length}/${n} frames failed to extract — review is incomplete, treat as NOT reviewed.`);
+  console.error(`${failed.length}/${sampleCount} frames failed to extract — review is incomplete, treat as NOT reviewed.`);
   process.exit(1);
 }
 
 let contactSheet = null;
-if (n > 1) {
+if (sampleCount > 1) {
   contactSheet = buildContactSheet(ffmpeg, outDir, frames, meta.w, meta.h);
   if (contactSheet) console.log(`contact sheet: ${contactSheet}`);
 }
@@ -152,6 +183,6 @@ writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
 
 console.log(`\nvideo     : ${video}`);
 console.log(`duration  : ${meta.durSec.toFixed(2)}s  ${meta.w}x${meta.h} @ ${meta.fps}fps`);
-console.log(`frames    : ${n} (${outDir})`);
+console.log(`frames    : ${sampleCount} (${outDir})`);
 console.log(`manifest  : ${manifestPath}`);
 console.log(`\nNext step: actually LOOK at the frames (and contact sheet) before confirming anything.`);
