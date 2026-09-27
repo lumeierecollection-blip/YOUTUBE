@@ -83,6 +83,21 @@ function verify(c, concept, query) {
   return { ok: true, why: `matches ${hits.join(", ")}` };
 }
 
+// Query back-off. Openverse (and often Commons) require EVERY term to match,
+// so a 5-word query returns nothing: run 36355665493 missed every generic
+// concept on Openverse — probed live, "lease renewal rent increase notice"
+// -> 0 results, "rent increase notice" -> 7. Shorter forms are tried ONLY
+// when a search returns zero results, and a candidate is verified against
+// the query that actually found it.
+function queriesFor(query) {
+  const words = String(query || "").split(/\s+/).filter(Boolean);
+  const key = words.filter((w) => w.length >= 3 && !STOP.has(w.toLowerCase()));
+  const out = [words.join(" ")];
+  if (key.length > 3) out.push(key.slice(0, 3).join(" "));
+  if (key.length > 2) out.push(key.slice(0, 2).join(" "));
+  return [...new Set(out.filter(Boolean))];
+}
+
 function loadManifest() {
   try { return JSON.parse(readFileSync(MANIFEST, "utf8")); } catch { return { version: 1, assets: [] }; }
 }
@@ -109,21 +124,28 @@ async function main() {
       if (done) break;
       if (s.key && !process.env[s.key]) { reasons.push(`${s.name}: ${s.key} not set`); console.log(`[fetch] ${s.name} "${concept}" → skip (${s.key} not set)`); continue; }
       if (requests >= MAX_REQUESTS) { reasons.push(`request budget (${MAX_REQUESTS}) spent`); console.log(`[fetch] ${s.name} "${concept}" → skip (budget of ${MAX_REQUESTS} requests spent)`); continue; }
-      requests++;
-      console.log(`[fetch] ${s.name} query "${query}"`);
-      let cands;
-      try {
-        cands = await mods[s.name].search(query, { count: 6 });
-      } catch (e) {
-        const msg = String(e && e.message || e);
-        if (/HTTP (401|403)\b/.test(msg)) {
-          console.error(`::error::[fetch] ${s.name} rejected the request (${msg}) — fix the ${s.key || "source"} credential; not skipping`);
-          process.exit(1);
+      let cands = [], usedQuery = query, failed = false;
+      for (const q of queriesFor(query)) {
+        if (requests >= MAX_REQUESTS) break;
+        requests++;
+        usedQuery = q;
+        console.log(`[fetch] ${s.name} query "${q}"`);
+        try {
+          cands = await mods[s.name].search(q, { count: 6 });
+        } catch (e) {
+          const msg = String(e && e.message || e);
+          if (/HTTP (401|403)\b/.test(msg)) {
+            console.error(`::error::[fetch] ${s.name} rejected the request (${msg}) — fix the ${s.key || "source"} credential; not skipping`);
+            process.exit(1);
+          }
+          reasons.push(`${s.name}: ${msg.slice(0, 120)}`);
+          console.log(`[fetch] ${s.name} "${concept}" → miss (error: ${msg.slice(0, 120)})`);
+          failed = true;
+          break;
         }
-        reasons.push(`${s.name}: ${msg.slice(0, 120)}`);
-        console.log(`[fetch] ${s.name} "${concept}" → miss (error: ${msg.slice(0, 120)})`);
-        continue;
+        if ((cands || []).length) break;          // results: evaluate them; else back off
       }
+      if (failed) continue;
       const why = [];
       for (let c of cands || []) {
         if (!c || !c.license) continue;               // adapters null out disallowed licenses
@@ -133,7 +155,7 @@ async function main() {
         if (!OK_EXT.test(c.downloadUrl || "") && c.thumbUrl && OK_EXT.test(c.thumbUrl)) c = { ...c, downloadUrl: c.thumbUrl };
         if (!OK_EXT.test(c.downloadUrl || "")) { why.push("format"); continue; }
         if (c.width && c.width < MIN_WIDTH) { why.push("too small"); continue; }
-        const v = verify(c, concept, query);
+        const v = verify(c, concept, usedQuery);
         if (!v.ok) { why.push(v.why); continue; }
         const hash = createHash("sha1").update(c.downloadUrl).digest("hex").slice(0, 10);
         const id = `${s.name}-${hash}`;
@@ -163,6 +185,7 @@ async function main() {
         }
         if (!entry.concepts.includes(concept)) entry.concepts.push(concept);
         if (!(entry.asset_queries || (entry.asset_queries = [])).includes(query)) entry.asset_queries.push(query);
+        if (usedQuery !== query && !entry.asset_queries.includes(usedQuery)) entry.asset_queries.push(usedQuery);
         resolved.push({ beat: w.beat, concept, asset_id: id, local_path: rel, source: s.name, license: entry.license, verified: v.why });
         console.log(`[fetch] ${s.name} "${concept}" → hit (${id}, ${entry.license}; ${v.why}; ${statSync(abs).size} B)`);
         done = true;

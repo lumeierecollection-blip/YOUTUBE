@@ -788,6 +788,14 @@ async function main() {
     } else if (b.kind === "TYPE") {
       console.warn(`::warning::[plan] beat ${b.index}: TYPE reassigned to ${m} by the TYPOGRAPHY cap — it has no concept, so asset resolution will fail it`);
       b.kind = "VISUAL";
+      // Raised as a composition issue so render-and-qa's plan-fix pass asks
+      // the model for a VISUAL beat with a real concept, instead of the
+      // resolver failing the whole channel (run 36355665493 ch-1 beat 4).
+      compositionIssues.push({
+        beat: b.index,
+        problem: `TYPE beyond this video's TYPOGRAPHY limit (${capped.mechanisms.filter((x) => x === TYPOGRAPHY).length}) — the cap reassigned it`,
+        fix: "make this beat \"kind\": \"VISUAL\" with a photographable \"concept\", an \"asset_query\" and a LIBRARY \"fallback_drawing\" of the same subject",
+      });
     }
   });
   const typoBeats = new Set(capped.mechanisms.map((m, i) => (m === TYPOGRAPHY ? plan.beats[i].index ?? i : -1)));
