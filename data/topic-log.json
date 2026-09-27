@@ -1518,9 +1518,14 @@
           "topic": "The $24M Dallas Real Estate Investment Fraud Sentencing",
           "slug": "dallas-real-estate-investment-fraud-sentencing",
           "reserved_at": "2026-09-26T10:32:11.970Z"
+        },
+        {
+          "topic": "The $105M Fake Semi-Truck Ponzi Scheme and Kristopher Lunsford's Arrest",
+          "slug": "kristopher-lunsford-105m-fake-truck-ponzi",
+          "reserved_at": "2026-09-27T11:03:26.433Z"
         }
       ],
-      "last_generated": "2026-09-26T10:32:11.970Z"
+      "last_generated": "2026-09-27T11:03:26.433Z"
     },
     "27": {
       "channel_name": "Trial Files",
