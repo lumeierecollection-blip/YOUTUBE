@@ -667,6 +667,11 @@ async function main() {
     const kind = String(b.kind || (b.concept ? "VISUAL" : "")).toUpperCase();
     if (kind === "TYPE") {
       b.kind = "TYPE";
+      // An explicit TYPOGRAPHY mechanism. Without it a TYPE beat compiled to
+      // "CAPABILITY" with no objects, which BeatBody cannot render (it
+      // throws), and the TYPOGRAPHY cap never counted it — it only ever saw
+      // the hook. With it, the cap limits TYPE beats for real.
+      b.mechanism = TYPOGRAPHY;
       delete b.composition;
       if (!Array.isArray(b.capabilities) || !b.capabilities.includes("typographic_emphasis")) {
         b.capabilities = ["typographic_emphasis", ...(Array.isArray(b.capabilities) ? b.capabilities : [])];
@@ -783,9 +788,10 @@ async function main() {
     // does not put a photo on a beat that renders as typography (the hook
     // is always TYPOGRAPHY), and a TYPE beat the cap moved to a legacy
     // mechanism (which draws abstract geometry) fails loudly instead.
+    const movedFromTypo = capped.changes.some((c) => c.beat === i && c.from === TYPOGRAPHY && c.to !== TYPOGRAPHY);
     if (m === TYPOGRAPHY) {
       b.kind = "TYPE";
-    } else if (b.kind === "TYPE") {
+    } else if (b.kind === "TYPE" && movedFromTypo) {
       console.warn(`::warning::[plan] beat ${b.index}: TYPE reassigned to ${m} by the TYPOGRAPHY cap — it has no concept, so asset resolution will fail it`);
       b.kind = "VISUAL";
       // Raised as a composition issue so render-and-qa's plan-fix pass asks
