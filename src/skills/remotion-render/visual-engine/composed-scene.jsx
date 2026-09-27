@@ -395,14 +395,31 @@ function relLum(hex) {
     .map((c) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)));
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
+// Blend two #rrggbb colours: t=0 -> a, t=1 -> b. Derives a shade from the
+// channel's own palette (ed.bg / ed.text); no new colour is introduced.
+function mixHex(a, b, t) {
+  const pa = String(a || "").replace("#", ""), pb = String(b || "").replace("#", "");
+  if (pa.length !== 6 || pb.length !== 6) return a;
+  const ch = (h, i) => parseInt(h.slice(i, i + 2), 16);
+  return "#" + [0, 2, 4].map((i) => Math.round(ch(pa, i) + (ch(pb, i) - ch(pa, i)) * t)
+    .toString(16).padStart(2, "0")).join("");
+}
+
 function LibraryShape({ obj, rect, ed, m, p, font }) {
   const light = relLum(ed.bg) > 0.5;
+  // Paper drawings fill with `paper` and stroke with `ink` (1.5 px at
+  // ~0.3 opacity, drawn in the library). paper used to be ed.bg on light
+  // channels: a white page on a white ground, visible only as that faint
+  // stroke — the ch-1 ledger in run 36343146799 read as empty. paper is now
+  // the ground tinted toward the text colour (a low-opacity fill, on BOTH
+  // grounds), and ink is the text colour on both, so strokes and ruled
+  // lines contrast with the tinted page on white and on dark channels.
   const colors = {
     ground: ed.bg,
     onGround: ed.text,
     accent: ed.accentText,
-    paper: light ? ed.bg : ed.text,
-    ink: light ? ed.text : ed.bg,
+    paper: mixHex(ed.bg, ed.text, light ? 0.10 : 0.16),
+    ink: ed.text,
   };
   const s = m.scale === 1 ? 1 : m.scale;
   const cx = rect.x + rect.w / 2, cy = rect.y + rect.h / 2;
