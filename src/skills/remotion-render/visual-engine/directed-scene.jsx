@@ -29,6 +29,7 @@ import { KalimbaBed, SfxPalette } from "../visual/audio-mix.js";
 import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
 import { ComposedScene } from "./composed-scene.jsx";
+import { LayeredScene } from "./layered-scene.jsx";
 import { ensureTextContrast, TEXT_TARGET_CONTRAST, ACCENT_TEXT_TARGET_CONTRAST } from "../visual/scene-text.js";
 
 const CANVAS_W = 1080;
@@ -1303,6 +1304,11 @@ function MechanismScene({ beat, p, local, ed, font, scene }) {
  * BEAT ROUTING note at the top of this file).
  */
 function BeatBody({ beat, p, local, ed, font, scene }) {
+  // A layered beat (real-asset pipeline) is a composed moving frame: base
+  // photo/drawing + texture + overlay + kinetic type (layered-scene.jsx).
+  if (Array.isArray(scene.layers) && scene.layers.length) {
+    return <LayeredScene layers={scene.layers} p={p} local={local} fps={30} ed={ed} font={font} uid={beat.beat_id || "b"} />;
+  }
   if (scene.composition) {
     return <ComposedScene scene={scene.composition} p={p} ed={ed} font={font} local={local} fps={30} />;
   }

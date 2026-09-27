@@ -158,6 +158,8 @@ for (const [ch, names] of Object.entries(NICHE_DRAWINGS)) {
 // (Pointed to from here, not from the prompt text: Gemini cannot open a
 // repo file, so a path inside the prompt would do nothing.)
 function buildPlanPrompt(sentences, corrections, channelId) {
+  // Same formula as plan-caps.cjs capLimits(): TYPOGRAPHY <= min(2, floor(0.4n)).
+  const typoMax = Math.min(2, Math.max(1, Math.floor(sentences.length * 0.4)));
   const niche = NICHE_DRAWINGS[String(channelId ?? "").replace(/^ch-?0*/i, "")];
   const nicheBlock = niche
     ? `- DRAWINGS OFTEN USEFUL ON THIS CHANNEL (from the LIBRARY). Each is ONLY
@@ -238,6 +240,13 @@ Rules that are enforced, not advisory:
   exactly from the LIBRARY list.
 - Do not choose a drawing as the primary visual. Do not name a drawing in
   "concept".
+- A concept is something a CAMERA could photograph, or a real screenshot.
+  NEVER an illustration, diagram, icon, silhouette, gauge, infographic,
+  "map sheet", "node graph", "grid of tiles" or anything "representing" an
+  idea — those do not exist as photos and will not be found. For an idea,
+  photograph where it happens: not "a gauge showing rising tension" but
+  "soldiers at the Cambodia-Thailand border checkpoint"; not "a checklist
+  of career steps" but "a person writing notes at a desk with a laptop".
 - "caption": 1-3 words naming the subject from THIS sentence ("Monarch
   Money", "Puerta del Sol", "A321neo") — shown under the image. Never a
   headline, never a generic word ("CAUSE", "RESEARCH", "MATRIX").
@@ -248,8 +257,10 @@ Rules that are enforced, not advisory:
 - If no photo can plausibly show the sentence (a purely abstract statement:
   "this is a step towards peace"), set "kind": "TYPE" and use kinetic
   typography: "capabilities": ["typographic_emphasis"] and a filled
-  "typography_direction". TYPE is allowed on AT MOST 2 beats — the hook
-  and at most one more; every other beat is VISUAL.
+  "typography_direction". TYPE is allowed on AT MOST ${typoMax} beat(s) in
+  this ${sentences.length}-beat video, counting the hook (beat 0 is always
+  TYPE); every other beat is VISUAL. A TYPE beat past that limit is turned
+  into an abstract mechanism scene and fails the render.
 ${nicheBlock}
 - FALLBACK MAPS. PLACES are real maps drawn from real borders. When the
   fallback for a place is a map, use one of these, and set "caption" to

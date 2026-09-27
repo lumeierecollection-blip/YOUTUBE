@@ -825,6 +825,9 @@ async function main() {
           // composed beat from one that fell back to a mechanism scene, and
           // coverage is the measurable form of the "floating text in a
           // void" defect that sixteen Gemini verdicts kept reporting.
+          layers: Array.isArray(scene.layers)
+            ? scene.layers.map((l) => ({ role: l.role, kind: l.kind, ...(l.asset ? { asset: l.asset } : {}), ...(l.name ? { name: l.name } : {}), ...(l.motion ? { motion: l.motion } : {}), ...(l.style ? { style: l.style } : {}) }))
+            : null,
           composed: !!scene.composition,
           composition: scene.composition
             ? (scene.composition.objects || []).map((o) => ({

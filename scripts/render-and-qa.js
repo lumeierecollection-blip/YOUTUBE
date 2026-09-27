@@ -708,6 +708,24 @@ function frameReviewVerdict(geminiReport) {
 const FETCH_ASSETS_CJS = join(__dirname, "fetch-assets.cjs");
 const ASSET_MANIFEST = join(ROOT, "src", "skills", "remotion-render", "public", "asset-library", "manifest.json");
 const MOVEMENTS = ["push", "drift-left", "drift-right", "reveal-left", "reveal-right"];
+// Base-layer camera moves for layered beats (layered-scene.jsx).
+const BASE_MOTIONS = ["push", "push-slow", "drift-left", "drift-right"];
+const hashByte = (s, i = 0) => createHash("sha1").update(String(s || "")).digest()[i];
+
+// The layered frame for a VISUAL beat: base (photo, or the fallback
+// drawing) + grain texture + the named number + the kinetic phrase.
+// Everything deterministic from the beat's own fields.
+function layersFor(b, base) {
+  const layers = [base, { role: "texture", kind: "grain" }];
+  const num = b.number == null ? "" : String(b.number).trim();
+  if (num && /\d/.test(num)) layers.push({ role: "overlay", kind: "number", text: num });
+  const phrase = String(b.typography_direction?.phrase || b.caption || "").trim();
+  if (phrase) {
+    const style = base.kind === "photo" && hashByte(b.concept, 1) % 2 === 0 ? "mask" : "slam";
+    layers.push({ role: "type", kind: "kinetic", text: phrase, style });
+  }
+  return layers;
+}
 
 function channelTopic(channelId) {
   try {
@@ -766,11 +784,15 @@ async function resolveAssets(channelId, planPath) {
       b.fallback_composition = b.composition;
       b.composition = { objects: counter ? [photo, counter] : [photo] };
       b.asset = { id: asset.id, source: asset.source, source_url: asset.source_url, license: asset.license, attribution: asset.attribution };
+      b.layers = layersFor(b, { role: "base", kind: "photo", asset: asset.local_path, variant: photo.variant, motion: BASE_MOTIONS[hashByte(b.concept) % BASE_MOTIONS.length] });
+      console.log(`[layers] beat ${b.index}: ${b.layers.map((l) => l.role + ":" + (l.kind === "photo" ? "photo/" + l.motion : l.kind === "kinetic" ? "type/" + l.style : l.kind)).join(" + ")}`);
       counts.photo++;
       console.log(`[assets] beat ${b.index} photo ${asset.id} (${asset.license}) movement=${movement} variant=${photo.variant} — "${b.concept}"`);
     } else if ((b.composition?.objects || []).some((o) => o.kind === "library_shape")) {
       counts.drawing++;
       const d = b.composition.objects.find((o) => o.kind === "library_shape").name;
+      b.layers = layersFor(b, { role: "base", kind: "drawing", name: d, label: b.caption || undefined, motion: BASE_MOTIONS[hashByte(b.concept) % BASE_MOTIONS.length] });
+      console.log(`[layers] beat ${b.index}: ${b.layers.map((l) => l.role + ":" + (l.kind === "drawing" ? "drawing/" + l.name : l.kind === "kinetic" ? "type/" + l.style : l.kind)).join(" + ")}`);
       console.log(`[assets] "${b.concept || "(no concept)"}" unresolved → fallback_drawing "${d}" (beat ${b.index})`);
     } else {
       console.error(`::error::[assets] beat ${b.index}: no real asset and no valid fallback_drawing for "${b.concept || "(no concept)"}" — not rendering`);

@@ -832,6 +832,12 @@ export function direct(cues, options) {
     // unbuildable declaration must fall back to the old mechanism scene
     // rather than render nothing. Silently rendering nothing is how the
     // silent-video defect happened.
+    // Layers are built by the asset resolver (render-and-qa.js) from resolved
+    // real assets; they carry through untouched and take precedence over the
+    // composition in BeatBody.
+    if (directive && Array.isArray(directive.layers) && directive.layers.length) {
+      scene.layers = directive.layers;
+    }
     if (directive && directive.composition) {
       const v = validateScene(directive.composition);
       if (v.ok) {
