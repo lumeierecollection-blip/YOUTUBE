@@ -315,9 +315,14 @@
           "topic": "How YNAB's New Plan Reset Feature Fixes Stale Budgets",
           "slug": "ynab-september-2026-plan-reset-feature",
           "reserved_at": "2026-09-26T10:30:26.956Z"
+        },
+        {
+          "topic": "Moneko 4.0 Update: How Merchant Logos and iOS Capture Change Budgeting",
+          "slug": "moneko-4-0-update-merchant-logos-ios-capture",
+          "reserved_at": "2026-09-27T11:01:46.764Z"
         }
       ],
-      "last_generated": "2026-09-26T10:30:26.956Z"
+      "last_generated": "2026-09-27T11:01:46.764Z"
     },
     "2": {
       "channel_name": "Legal Brief",
