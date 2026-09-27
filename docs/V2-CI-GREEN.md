@@ -1,95 +1,87 @@
-# V2 CI Green Run — 6 Channels
-Date: 2026-09-23
+# V2 CI Green Run — 6 Channels, QA on
+Date: 2026-09-27
 Branch: claude/visual-rebuild-from-5f91e75
-HEAD: 3e96e96 (fix(research): fresh seed per retry; domain feedback names the available sites)
+HEAD: 1ae6efb (fix(qa,plan): parse fenced beat-check JSON; primitive kind in library_shape name)
+
+Supersedes the 2026-09-23 record (run 35847628790, HEAD 3e96e96 — still in
+this file's git history). That run was green with **QA off** (`--skip-qa`).
+This one is green with the challenger, the per-beat frame check and the
+Gemini review/correction loop all running on every video.
 
 ## Run
-- URL: https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/35847628790
-- Run ID: 35847628790
-- Mode: `dry_run=true` — rendered and verified, **not published** (see "Not yet done")
-- Duration: 18m07s (10:14:22 → 10:32:29 UTC)
-- Attempts: 16 full-pipeline iterations + 2 render-only debug runs
-- Conclusion: `success` — setup, 6/6 prep, 6/6 render, log-results; self-heal skipped (nothing failed)
+- URL: https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/36331165614
+- Run ID: 36331165614
+- Mode: `dry_run=true` — rendered and verified, **not published**
+- Duration: 22m29s (15:52:47 → 16:15:16 UTC)
+- Iterations this session: 6 (runs 36323786443, 36325040366, 36326675679,
+  36328141701, 36329825213, 36331165614)
+- Conclusion: `success` — setup, 6/6 prep, 6/6 render, log-results;
+  self-heal skipped
 
 ## Per-channel results
 
-Measured from the run's own logs and its `rendered-<ch>-35847628790` artifacts.
+Measured from the run's own log and its `rendered-<ch>-36331165614` artifacts.
+Every channel used 3/3 correction attempts (see "Where the guarantees stop");
+the beat-check column lists attempts 1, 2, 3 — the shipped video is attempt 3.
 
-| Ch | MP4 size | Video dur | Audio dur | Drift | Plan source | TYPO | Max mech | Frame-0 | Pass |
-|----|----------|-----------|-----------|-------|-------------|------|----------|---------|------|
-| 1  | 951 KB   | 31.59s | 31.61s | 0.01s | local  | 2 | 25% | 41.6 KB | ✓ |
-| 2  | 1,641 KB | 56.19s | 56.21s | 0.02s | Gemini | 1 | 17% | 51.9 KB | ✓ |
-| 9  | 1,091 KB | 36.82s | 36.82s | 0.01s | Gemini | 1 | 17% | 41.3 KB | ✓ |
-| 26 | 1,412 KB | 48.55s | 48.55s | 0.00s | Gemini | 1 | 29% | 45.0 KB | ✓ |
-| 44 | 1,641 KB | 55.19s | 55.20s | 0.01s | Gemini | 1 | 14% | 44.9 KB | ✓ |
-| 48 | 1,755 KB | 53.72s | 53.74s | 0.02s | local  | 2 | 33% | 29.6 KB | ✓ |
-
-Every channel also passed the silence gate with 0 unmatched gaps (every pause
-in the video matches a pause in the source voiceover).
-
-"local" = Gemini's plan call failed (quota/format) and the rule-based
-`scripts/local-visual-plan.cjs` planned the video; this is logged in the run.
+| Ch | MP4 size | Video dur | Audio dur | Drift | Plan source | Beat check (att. 1,2,3) | Comps dropped | Frame-0 | Silence gate | Whole-video review | Pass |
+|----|----------|-----------|-----------|-------|-------------|------|---|---------|---|------|------|
+| 1  | 1,899 KB | 46.44s | 46.46s | 0.02s | Gemini | 7/7, 7/7, 7/7 | 0 | 41.1 KB | 7/7 pauses, 0 unmatched | 3/10 | ✓ |
+| 2  | 1,287 KB | 38.66s | 38.64s | 0.02s | Gemini | 5/5, 5/5, 4/5 | 1 | 56.5 KB | 4/4, 0 unmatched | 3/10 | ✓ |
+| 9  | 1,769 KB | 47.32s | 47.35s | 0.03s | Gemini | 5/5, 5/5, 5/5 | 1 | 51.4 KB | 5/5, 0 unmatched | 2/10 | ✓ |
+| 26 | 1,685 KB | 52.78s | 52.80s | 0.02s | Gemini | 6/6, 6/6, 6/6 | 0 | 42.7 KB | 6/6, 0 unmatched | 2/10 | ✓ |
+| 44 | 2,033 KB | 42.82s | 42.82s | 0.00s | Gemini | 6/6, 6/6, 6/6 | 0 | 50.1 KB | 2/2, 0 unmatched | 3/10 | ✓ |
+| 48 | 2,282 KB | 55.08s | 55.08s | 0.00s | Gemini | 9/9, 8/9, 8/9 | 2 | 46.2 KB | 9/9, 0 unmatched | 2/10 | ✓ |
 
 ## Log defects
-- Zero across all checks, over the complete logs of all 15 jobs (13,809 lines):
-  `no physical mechanism` 0 · `No visual plan loaded` 0 · `empty-frame` 0 ·
-  `not in allowed` 0 · `regex fallback` 0 · `_currentValue` 0 ·
-  `composition rejected` 0.
+Over the complete log (20,521 lines):
+`No visual plan loaded` 0 · `regex fallback` 0 · `no physical mechanism` 0 ·
+`empty-frame` 0 · `not in allowed` 0 · `composition rejected` 0 ·
+`_currentValue` 0 · `probe failed` 0 · `skip-qa` 0.
+
+`MODULE_NOT_FOUND` 18 — every one is `scripts/local-visual-auditor.js`
+(see below). It fails safe: with no local report, render-and-qa.js runs the
+Gemini review instead of skipping it.
+
+## Frames actually looked at
+`docs/v2-ci-green-36331165614-frames.png` — 3 frames per channel (30%, 55%,
+80% of runtime) extracted from the downloaded artifacts, ch 1, 2, 9 (top),
+26, 44, 48 (bottom). What they show:
+- No blank/black frames; text legible; each channel in its own
+  `channels.json` palette; each frame carries a real drawing tied to its
+  sentence (courthouse column, calendar grid, gauge, document, figures).
+- **The visuals are weak.** Everything is abstract diagram language —
+  grids, bars, blocks, labels — confined to a square panel with large empty
+  areas above and below in the 9:16 frame. This matches the Gemini
+  whole-video review, which scored every video 2–3/10 (template
+  monoculture, dead space, "abstract graphical slop").
 
 ## Where the guarantees stop — read before trusting the table
-- **Gemini compositions dropped at plan time.** On the four Gemini-planned
-  channels most of Gemini's composed scenes still failed validation after
-  synonym mapping, and were removed at plan time with the reason recorded on
-  the beat (`composition_dropped`) and counted in the plan
-  (`compositionsDropped`): ch-2 5, ch-9 4, ch-26 1, ch-44 6. Those beats
-  render the director's mechanism scenes. This is a plan-time decision, not a
-  render-time fallback — but it means Gemini's richer compositions mostly
-  are not on screen yet.
-- **Sentence trimming.** A Short whose measured voiceover runs over 58s has
-  whole sentences deleted (`scripts/fit-short.js` — hook and payoff kept,
-  nothing added or reworded) before it is re-gated and re-measured.
-- **Script beat gates are scoped.** SCR-03/04/05/06/07/15 do not apply to
-  DirectedShorts channels (CHECK-REGISTER.md 3.10.3, decided by the user).
-- **Model quality.** Prep runs `qwen2.5:3b` locally (user's decision after
-  7B could not fit the budget on CPU runners). Topics and scripts are
-  grounded and gated, but visibly weaker: ch-2's slug degenerated to
-  `traffic-stop-scripts-now-now-now-…`, and some topics echo a content
-  pillar rather than a specific story.
-- **Frame check covers beat 0 only**, as specified; other beats are not
-  size-checked.
-
-## Self-heal
-- Triggered: yes, on every failing iteration; it now reads the failed jobs'
-  logs, classifies them, and writes `data/ci-runs/blocked-<class>.txt`.
-- Files changed by self-heal: none. No automatic fixer exists
-  (see the header of `scripts/self-heal.cjs`); every fix in this loop was
-  made by hand from the logs.
-
-## Not yet done
-- **Uploads — blocked on OAuth.** The publishing run
-  ([35852731846](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/35852731846),
-  `dry_run=false`, all six channels set to `stay_private: true` first)
-  passed 6/6 prep and 6/6 render with every gate green, then every upload
-  failed with `invalid_grant — Token has been expired or revoked`. Nothing
-  was uploaded. All six refresh tokens were set 2026-09-14; Google expires
-  refresh tokens after 7 days for OAuth apps in "Testing" status. Details
-  and the fix: `data/ci-runs/blocked-youtube-oauth.txt`.
-- **Replacing `main`.** Per the owner's decision, `main` is replaced with
-  this branch only after green; that is a separate step.
-
-## What the human must verify
-- Open each of the six private uploads on YouTube (after the publishing run).
-- Confirm: white background (ch-1, ch-9, ch-44 are `bg_mode: white`; ch-2,
-  ch-26, ch-48 are `black`), distinct beats, the typography hook works, and
-  narration is audible for the full video.
-- **Auto-public timing — check before publishing.** Each upload is queued to
-  go public at upload time + `publish_delay_hours`
-  (`src/skills/youtube-publish/run.js`), and the `process-queue` step of
-  any later workflow run flips due entries public. In `config/channels.json`
-  none of the six channels sets `publish_delay_hours` (default: **1 hour**);
-  only ch-1 sets `stay_private: true`. So uploads on ch-2, 9, 26, 44 and 48
-  go public at the first workflow run that starts an hour or more after
-  upload (for example the next 06:00 UTC cron once this is on `main`). If
-  every video must be reviewed first, set `stay_private: true` or a longer
-  `publish_delay_hours` on those channels before the publishing run.
-- If good: flip to public.
+- **Green means the repo's HARD gates passed, not that the videos are good.**
+  The hard gates are the objective frame audit, the per-beat check, the
+  challenger, the silence gate and duration drift. The Gemini whole-video
+  verdict is deliberately NOT a hard gate (render-and-qa.js:805-820): it
+  drives up to 3 correction attempts, then a frame-audit-clean video ships.
+  All six hit 3/3 attempts and shipped with a failing review.
+- **`pipelineVerdict` is never computed on this branch.** Every "Gemini
+  verdict (attempt N)" logs UNKNOWN. main's gemini-frame-review.js computes
+  APPROVED / NEEDS_IMPROVEMENT / REJECTED (incl. a CONTENT_FACTUAL hard
+  reject for fabricated on-screen content, via a plan-compliance review that
+  this branch also lacks). Effect here: the correction loop can never exit
+  early on APPROVED, and there is no fabricated-content check at the video
+  stage. Note that even on main, a REJECTED video ships once retries run out.
+- **`scripts/local-visual-auditor.js` is missing on this branch** (exists
+  only on main). render-and-qa.js calls it on every QA pass.
+- **The beat check tolerates one NO** (`failing.length > 1` fails). Ch-2
+  attempt 3 (4/5) and ch-48 attempts 2-3 (8/9) passed with one mismatched beat.
+- **The beat check is noisy.** Across the session, near-identical renders
+  flipped between 1/5 and 5/5 NO. A green run is partly luck until the
+  planner stops producing abstract beats.
+- **Compositions still drop at plan time** (4 in this run): an invented
+  drawing name ("lease agreement"), unknown motions ("accumulate"), and map
+  labels that are not a country/state name. Those beats render their
+  generic mechanism scene.
+- **Not published.** YouTube OAuth is still blocked
+  (`data/ci-runs/blocked-youtube-oauth.txt`).
+- **Model quality.** Prep runs `qwen2.5:3b` locally; ch-1 research failed
+  4 of 6 iterations on citation formatting before passing in the last two.

@@ -1,3 +1,15 @@
+STATUS 2026-09-27 (session youtube-ae): PARTLY ADDRESSED — ch-1 research
+passed in runs 36329825213 and 36331165614 (6/6 prep both times).
+  - Case 1 (URL with the source id glued on, ".../S1"): fixed in 2666ad5 —
+    accepted only when the id exists AND the prefix is that id's URL.
+  - New case (several valid ids in one field, "S1, S2, S3, S6"): still
+    rejected; retry feedback now names the real mistake (b71c60b).
+  - Case 2 (ch-48 single domain): not changed; the 2-domain rule stands.
+  - Still a real ceiling: run 36326675679 ch-1 cited nber.org/papers/w16205,
+    a URL no search returned (search had the .pdf) — correctly rejected.
+    qwen2.5:3b remains the limit here; a stronger research model is the
+    human decision this file already asks for.
+-----------------------------------------------------------------------
 Category: research-citation-quality (prep stage, "Research topic" step)
 First seen: CI run 36016703842 (2026-09-24), channels 44 and 48
 Also present: CI run 36011611536 (implied by earlier passes on other channels; not previously isolated)

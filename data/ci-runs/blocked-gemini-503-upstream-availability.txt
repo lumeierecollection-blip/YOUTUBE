@@ -1,3 +1,10 @@
+STATUS 2026-09-27 (session youtube-ae): NOT RECURRING — zero 503s across
+six dry runs (36323786443 .. 36331165614). The remaining Gemini transport
+failure is a 90s curl timeout with 0 bytes (planner ch-26, beat check
+ch-2/ch-44); the beat check now retries once (39ea337), matching the
+planner and challenger. Option 3 below (a VISION_MODEL fallback tier) is
+still the durable fix and still needs a human decision.
+-----------------------------------------------------------------------
 Category: gemini-503-upstream-availability (planner / challenger / beat-check —
   all three Gemini-calling steps, whichever runs first in a given channel)
 Seen in: CI runs 36011611536, 36016703842, 36019916391 (2026-09-24, three
