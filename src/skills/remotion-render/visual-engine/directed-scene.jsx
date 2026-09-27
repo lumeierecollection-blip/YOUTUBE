@@ -1304,7 +1304,7 @@ function MechanismScene({ beat, p, local, ed, font, scene }) {
  */
 function BeatBody({ beat, p, local, ed, font, scene }) {
   if (scene.composition) {
-    return <ComposedScene scene={scene.composition} p={p} ed={ed} font={font} />;
+    return <ComposedScene scene={scene.composition} p={p} ed={ed} font={font} local={local} fps={30} />;
   }
   if (scene.mechanism === "CAPABILITY") {
     if (!Array.isArray(scene.objects) || scene.objects.length === 0) {

@@ -226,7 +226,18 @@ export const PRIMITIVES = {
               note: "an editorial drawing of a real thing, place or process; set \"name\" to one of LIBRARY" },
   field:    { area: 0.450, countable: false, labelable: false,
               note: "a textured ground plane — depth so objects are not floating in void" },
+  // A real, fetched image (visual/primitives/photo.jsx). `asset` is a path
+  // under the Remotion public dir from public/asset-library/manifest.json.
+  // resolvedOnly: the planner never declares one (it describes a `concept`);
+  // the asset resolver in render-and-qa.js writes it, so it is kept out of
+  // vocabularyDigest() like a deprecated primitive.
+  photo:    { area: 0.600, countable: false, labelable: true, resolvedOnly: true,
+              note: "a real photograph / screenshot / document / chart from the asset library" },
 };
+
+export const PHOTO_VARIANTS = ["photo", "screenshot", "document", "chart"];
+export const PHOTO_MOVEMENTS = ["push", "drift-left", "drift-right", "reveal-left", "reveal-right"];
+const PHOTO_ASSET_RE = /^asset-library\/[A-Za-z0-9._\/-]+\.(jpe?g|png|webp)$/i;
 
 export function isPrimitive(kind) {
   return Object.prototype.hasOwnProperty.call(PRIMITIVES, kind);
@@ -241,7 +252,7 @@ export function isPrimitive(kind) {
 export const ASPECT = {
   block: 1.4, stack: 0.45, bar: 3.2, vessel: 0.55, document: 0.72,
   grid: 1.1, gauge: 1, figure: 2.6, counter: 2.2, silhouette: 0.45,
-  arrow: 1, rule: 12, field: 1.6, icon: 1, library_shape: 1,
+  arrow: 1, rule: 12, field: 1.6, icon: 1, library_shape: 1, photo: 0.75,
 };
 
 /**
@@ -522,13 +533,15 @@ export function normalizeScene(scene) {
     objs = objs.filter((o) => !(o && o.kind === "field"));
     dropped.push(`dropped ${fields.length} "field" ground plane(s) (one drawing per beat, no panel)`);
   }
-  const libs = objs.filter((o) => o && o.kind === "library_shape");
+  // A real photo outranks a drawing: a scene that has one keeps the photo.
+  const photos = objs.filter((o) => o && o.kind === "photo");
+  const libs = photos.length ? photos : objs.filter((o) => o && o.kind === "library_shape");
   if (libs.length) {
     const keep = libs.find((o) => o.emphasis) || libs[0];
     const num = objs.find((o) => o && (o.kind === "counter" || o.kind === "figure") && /\d/.test(String(o.label ?? "")));
     const kept = num ? [keep, num] : [keep];
     const gone = objs.filter((o) => !kept.includes(o));
-    if (gone.length) dropped.push(`dropped ${gone.length} object(s) paired with "${keep.name}": ${gone.map((o) => (o && o.name) || (o && o.kind)).join(", ")} (one drawing per beat)`);
+    if (gone.length) dropped.push(`dropped ${gone.length} object(s) paired with "${keep.name || keep.asset}": ${gone.map((o) => (o && o.name) || (o && o.kind)).join(", ")} (one drawing per beat)`);
     objs = kept;
   }
   return { scene: { ...scene, objects: objs }, dropped };
@@ -575,6 +588,17 @@ export function validateScene(rawScene) {
         errors.push(`${at}: "${o.kind}" is not countable but count is ${o.count} — only one is ever drawn, so use a countable primitive (block, stack, bar, silhouette) or drop count`);
       } else if (o.count > spec.maxCount) {
         errors.push(`${at}: count ${o.count} exceeds max ${spec.maxCount} for "${o.kind}"`);
+      }
+    }
+    if (o.kind === "photo") {
+      if (typeof o.asset !== "string" || !PHOTO_ASSET_RE.test(o.asset) || o.asset.split("/").includes("..")) {
+        errors.push(`${at}: photo "asset" must be an asset-library/… image path from the manifest (got ${JSON.stringify(o.asset)})`);
+      }
+      if (o.variant !== undefined && !PHOTO_VARIANTS.includes(o.variant)) {
+        errors.push(`${at}: photo variant "${o.variant}" — use one of: ${PHOTO_VARIANTS.join(", ")}`);
+      }
+      if (o.movement !== undefined && !PHOTO_MOVEMENTS.includes(o.movement)) {
+        errors.push(`${at}: photo movement "${o.movement}" — use one of: ${PHOTO_MOVEMENTS.join(", ")}`);
       }
     }
     if (o.kind === "library_shape" && !isLibraryName(o.name)) {
@@ -639,7 +663,7 @@ export function validateScene(rawScene) {
 export function vocabularyDigest() {
   const lines = ["PRIMITIVES (kind — what it is):"];
   for (const [kind, s] of Object.entries(PRIMITIVES)) {
-    if (s.deprecated) continue;
+    if (s.deprecated || s.resolvedOnly) continue;
     const c = s.countable ? `, count 1-${s.maxCount}` : "";
     const l = s.labelable ? ", labelable" : "";
     lines.push(`  ${kind} — ${s.note}${c}${l}`);

@@ -34,6 +34,7 @@ import { fitSingleLine, TYPO_LINE_HEIGHT } from "../visual/narrative-typography.
 import { ICON_SET } from "../visual/icon-set.js";
 import { ObjectShape, knownObjects } from "../compositions/objects/index.jsx";
 import { LIBRARY_NAMES } from "../visual/library-names.js";
+import { Photo } from "../visual/primitives/photo.jsx";
 
 // The planner validates library_shape names against LIBRARY_NAMES, a list
 // generated from the registerObject() calls. If that list and the live
@@ -492,7 +493,14 @@ const DRAW_SVG = {
   document: Documents, grid: Grid, gauge: Gauges, silhouette: Silhouettes,
   arrow: Arrows, rule: Rules, icon: Icons, library_shape: LibraryShape,
 };
-const DRAW_HTML = { figure: Numeral, counter: Numeral };
+const DRAW_HTML = { figure: Numeral, counter: Numeral, photo: Photo };
+
+// What a composed beat may contain (docs/MOTION-GRAPHICS-SPEC.md; the real
+// asset pipeline): a real photo OR a library drawing, plus a number. The
+// asset resolver (render-and-qa.js) writes every VISUAL beat as one of
+// those; anything else reaching the renderer is a resolution bug, and it
+// throws rather than drawing an abstract primitive or plain text instead.
+const RENDERABLE = new Set(["photo", "library_shape", "counter", "figure"]);
 
 /* ── The scene ───────────────────────────────────────────────────────── */
 
@@ -504,8 +512,12 @@ const DRAW_HTML = { figure: Numeral, counter: Numeral };
  * floating in a void. `accent` marks the ONE object carrying the beat;
  * everything else is structure.
  */
-export function ComposedScene({ scene, p, ed, font }) {
+export function ComposedScene({ scene, p, ed, font, local = 0, fps = 30 }) {
   const objects = (scene && scene.objects) || [];
+  const stray = objects.filter((o) => o && !RENDERABLE.has(o.kind));
+  if (stray.length) {
+    throw new Error(`ComposedScene: unresolved object(s) ${stray.map((o) => o.kind).join(", ")} — a composed beat must be a photo or a library drawing (plus a counter); the asset resolver should have resolved it or failed the render`);
+  }
   const svgParts = [];
   const htmlParts = [];
 
@@ -530,14 +542,15 @@ export function ComposedScene({ scene, p, ed, font }) {
       }
     }
     if (Html) {
-      htmlParts.push(<Html key={`h${i}`} obj={obj} rect={rect} ed={ed} m={m} accent={accent} font={font} />);
+      htmlParts.push(<Html key={`h${i}`} obj={obj} rect={rect} ed={ed} m={m} accent={accent} font={font} p={p} local={local} fps={fps} />);
     }
     // Labels are HTML so they use the same text pipeline as narrative
     // typography (one line, fitted, validated colour).
     // A map draws its own label on a leader line (maps.jsx); a second label
     // under the slot would repeat it.
     const drawsOwnLabel = obj.kind === "library_shape" && MAP_DRAWINGS.includes(obj.name);
-    if (PRIMITIVES[obj.kind]?.labelable && obj.label && !Html && !drawsOwnLabel) {
+    // A photo's label is its caption bar, under the image.
+    if (PRIMITIVES[obj.kind]?.labelable && obj.label && (!Html || obj.kind === "photo") && !drawsOwnLabel) {
       htmlParts.push(<Label key={`l${i}`} text={obj.label} rect={rect} ed={ed} font={font} m={m} accent={accent} />);
     }
   });
