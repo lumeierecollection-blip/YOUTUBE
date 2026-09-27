@@ -26,31 +26,39 @@ function dbToVolume(db) {
   return Math.pow(10, db / 20);
 }
 
+// Per-video rotation: render.js calls pickKalimbaTrack(channel, script)
+// and passes `src`. Re-exported so callers import one audio module.
+export { KALIMBA_TRACKS, pickKalimbaTrack } from "./kalimba-pool.js";
+
 /**
  * Kalimba background bed.
  *
- * Plays a single kalimba track under the entire video.
- * Volume: −22 to −26 dB (never competes with narration).
- * Fade in/out: 0.5s each.
- * Ducking: −6 dB under any SFX for the duration of that effect.
- *
- * If the video exceeds the track length, loop it seamlessly.
+ * Plays ONE track from the rotation pool (public/music/kalimba/, chosen by
+ * pickKalimbaTrack) under the entire video at −24 dB below full scale —
+ * the tracks are loudness-normalised to −16 LUFS so that gain means the
+ * same thing on every track. Fades in over the first 15 frames and out
+ * over the last 15. Loops if the video outlasts the track.
+ * (No ducking under SFX — an earlier comment here claimed it; the code
+ * never did it.)
  *
  * @param {Object} opts
  * @param {number} opts.totalFrames - Total video frames
  * @param {number} opts.fps - Frames per second
+ * @param {string} [opts.src] - staticFile path from pickKalimbaTrack().file.
+ *   Omitted only by the legacy MotionGraphics path, which keeps its old
+ *   single bed (audio/kalimba.mp3 — no recorded source/license).
  * @param {number} [opts.volumeDb=-24] - Target volume in dBFS
  * @param {boolean} [opts.hasUnderscore=true] - Whether to play kalimba
  */
-export function KalimbaBed({ totalFrames, fps, volumeDb = -24, hasUnderscore = true }) {
+export function KalimbaBed({ totalFrames, fps, src, volumeDb = -24, hasUnderscore = true }) {
   if (!hasUnderscore) return null;
 
-  const fadeInFrames = Math.round(0.5 * fps);
-  const fadeOutFrames = Math.round(0.5 * fps);
+  const fadeInFrames = 15;
+  const fadeOutFrames = 15;
 
   return (
     <Audio
-      src={staticFile("audio/kalimba.mp3")}
+      src={staticFile(src || "audio/kalimba.mp3")}
       volume={(f) => {
         // Fade in
         if (f < fadeInFrames) {

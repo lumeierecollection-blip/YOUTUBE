@@ -22,9 +22,10 @@
  * arrow, rule, field.
  */
 import React from "react";
-import { AbsoluteFill, useCurrentFrame, Easing } from "remotion";
+import { AbsoluteFill, useCurrentFrame, useVideoConfig, Easing } from "remotion";
 import { Audio } from "@remotion/media";
 import { currentAudio } from "../audio.js";
+import { KalimbaBed } from "../visual/audio-mix.js";
 import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
 import { ComposedScene } from "./composed-scene.jsx";
@@ -1325,6 +1326,7 @@ function BeatBody({ beat, p, local, ed, font, scene }) {
 
 export function DirectedScene({ plan, ttsAudioPath }) {
   const frame = useCurrentFrame();
+  const { durationInFrames, fps } = useVideoConfig();
   const colors = paletteRoles(plan.palette);
   const ed = editorialColors(colors, plan.palette, plan.bgMode);
   const { beat, p, local, prev, beatIndex } = beatAt(plan, frame);
@@ -1342,6 +1344,9 @@ export function DirectedScene({ plan, ttsAudioPath }) {
           without this element every DirectedShorts render was silent
           (enforceAudioTrack only adds an empty AAC track). */}
       {ttsAudioPath ? <Audio src={currentAudio} /> : null}
+      {/* Kalimba bed — the per-video track render.js picked (kalimba-pool.js),
+          -24 dB, 15-frame fades, looped. Absent plan.kalimba = no bed. */}
+      {plan.kalimba ? <KalimbaBed totalFrames={durationInFrames} fps={fps} src={plan.kalimba} /> : null}
       {/* Previous beat echo — fading out during transition */}
       {showPrevEcho && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: prevEchoOpacity }}>

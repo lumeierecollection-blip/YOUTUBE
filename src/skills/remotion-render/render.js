@@ -43,6 +43,7 @@ import { narrationSections } from "../../utils/script-narration.js";
 // Replaces the old TYPE → VISUAL alternation with meaning-driven treatments.
 import { direct } from "./visual-engine/director/visual-director.js";
 import { sceneTextInventory } from "./visual/scene-text.js";
+import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
 
 
 
@@ -320,7 +321,7 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
   } else {
     console.log(`[profile] bundling...`);
     const bundleStart = Date.now();
-    serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgress: () => {} });
+    serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), publicDir: join(__dirname, "public"), onProgress: () => {} });
     console.log(`[profile] bundle(): ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
   }
 
@@ -526,6 +527,13 @@ async function main() {
         ? { primary: viSpec.typography_primary, secondary: viSpec.typography_secondary }
         : { primary: "DM Sans", secondary: "Noto Serif" },
     };
+
+    // Kalimba bed: one track per video from the rotation pool, chosen
+    // deterministically from channel + script filename (kalimba-pool.js).
+    // DirectedShorts played the voiceover only until this — no bed at all.
+    const kal = pickKalimbaTrack(channel.channel_id ?? channelId, basename(scriptPath));
+    sentencePlan.kalimba = kal.file;
+    console.log(`[audio] ${kal.name} (from ${kal.count} tracks)`);
 
     frames = beats.length ? beats[beats.length - 1].start_frame + beats[beats.length - 1].duration_frames : 300;
     const ceiling = (format === "shorts" ? SHORTS_CLAMP : LONGFORM_CLAMP)[1];

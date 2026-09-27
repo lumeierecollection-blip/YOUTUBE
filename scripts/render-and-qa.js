@@ -724,7 +724,10 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     const bundleStart = Date.now();
     console.log(`[render-and-qa] pre-bundling for ${basename(scriptPath)}...`);
     try {
-      process.env.REMOTION_SERVE_URL = await bundle({ entryPoint: REMOTION_ROOT_JSX, onProgress: () => {} });
+      // publicDir explicit: without it Remotion resolves public/ from the
+      // process cwd (the repo root), not the Remotion project where the
+      // staticFile() assets live (music/kalimba/, sfx/, asset-library/).
+      process.env.REMOTION_SERVE_URL = await bundle({ entryPoint: REMOTION_ROOT_JSX, publicDir: join(dirname(REMOTION_ROOT_JSX), "public"), onProgress: () => {} });
       console.log(`[render-and-qa] pre-bundle done: ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
     } catch (e) {
       console.warn(`[render-and-qa] pre-bundle failed, falling back to per-attempt bundling: ${e.message}`);
