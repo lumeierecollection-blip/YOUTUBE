@@ -15,6 +15,7 @@ const ALLOWED = [
   "CC-BY-4.0",
   "PEXELS", // Pexels License — free for commercial use, no attribution required
   "UNSPLASH", // Unsplash License — free for commercial use, no attribution required
+  "PIXABAY", // Pixabay Content License — free for commercial use, no attribution required
 ];
 
 const NORMALIZE = new Map([
@@ -32,6 +33,8 @@ const NORMALIZE = new Map([
   ["cc-by-4.0", "CC-BY-4.0"],
   ["pexels license", "PEXELS"],
   ["unsplash license", "UNSPLASH"],
+  ["pixabay license", "PIXABAY"],
+  ["pixabay content license", "PIXABAY"],
 ]);
 
 export function normalizeLicense(raw) {
