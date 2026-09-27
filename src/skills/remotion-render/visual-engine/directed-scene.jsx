@@ -470,9 +470,16 @@ function TypographyScene({ beat, p, local, ed, font, scene }) {
   const holdP = clamp01((local - 14) / 20);
 
   return (
+    // Centred on the whole 1080x1920 canvas, both axes. It sat at
+    // top: S.top + SAFE_H * 0.18 (upper third), which left the frame
+    // centre empty on every hook beat — local-audit.cjs frames-centered
+    // failed beat 0 on all six videos of run 36339935779. Only the
+    // container's alignment changed; font, size, colour, timing and the
+    // row layout are as before.
     <div style={{
-      position: "absolute", left: S.left, width: SAFE_W,
-      top: S.top + SAFE_H * 0.18,
+      position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H,
+      display: "flex", flexDirection: "column",
+      justifyContent: "center", alignItems: "center", textAlign: "center",
       fontFamily: `${font}, sans-serif`, fontWeight: isImperative ? 900 : 800,
       fontSize: size, lineHeight: LH, letterSpacing: -size * 0.02,
       opacity: enterP * (1 - fadeOut),
