@@ -201,12 +201,27 @@ function urlKey(u) {
 // Replace every cited *url field with the exact URL the search returned
 // (so the research file stores what was actually searched), and collect
 // any that match no search result.
+// qwen2.5:3b writes BOTH forms it was offered, glued together: the real URL
+// with the source id appended ("https://www.nerdwallet.com/.../S1"), on all
+// 4 retries despite the corrective feedback (CI run 36323786443 ch-1; run
+// 36016703842 ch-44 -- data/ci-runs/blocked-research-citation-quality.txt).
+// Accepted ONLY when the two halves agree: the id must exist and the prefix
+// must be that same id's returned URL. "<url of S2>/S1", an unknown id, or a
+// prefix no search returned all still go to `bad` and are rejected, so this
+// cannot admit a URL that this run's searches did not return.
+function idSuffixedUrl(v, ids) {
+  const m = /^(.+?)[\/#\s]*\[?(S\d+)\]?$/i.exec(v.trim());
+  if (!m) return null;
+  const url = ids.get(m[2].toUpperCase());
+  return url && urlKey(m[1]) === urlKey(url) ? url : null;
+}
+
 function canonicaliseCitedUrls(obj, byKey, bad, ids = new Map()) {
   if (Array.isArray(obj)) { obj.forEach((v) => canonicaliseCitedUrls(v, byKey, bad, ids)); return; }
   if (!obj || typeof obj !== "object") return;
   for (const [k, v] of Object.entries(obj)) {
     if (typeof v === "string" && /(^|_)url$/i.test(k)) {
-      const exact = ids.get(v.trim().replace(/^\[|\]$/g, "").toUpperCase()) || byKey.get(urlKey(v));
+      const exact = ids.get(v.trim().replace(/^\[|\]$/g, "").toUpperCase()) || byKey.get(urlKey(v)) || idSuffixedUrl(v, ids);
       if (exact) obj[k] = exact; else bad.push(v);
     } else if (v && typeof v === "object") canonicaliseCitedUrls(v, byKey, bad, ids);
   }
