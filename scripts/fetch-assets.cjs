@@ -155,6 +155,13 @@ async function main() {
         if (!OK_EXT.test(c.downloadUrl || "") && c.thumbUrl && OK_EXT.test(c.thumbUrl)) c = { ...c, downloadUrl: c.thumbUrl };
         if (!OK_EXT.test(c.downloadUrl || "")) { why.push("format"); continue; }
         if (c.width && c.width < MIN_WIDTH) { why.push("too small"); continue; }
+        // A rendered PDF/DjVu page is a document scan, not a photograph:
+        // run 36355665493 accepted a thesis cover page for "an automated
+        // assembly line with robotic arms" because the page's text matched.
+        // Accepted only when the concept itself is a document.
+        if (/pdf|djvu/i.test(c.mime || "") || /\.(pdf|djvu)(\?|$|\/)/i.test(c.sourceUrl || "")) {
+          if (!/\b(document|report|filing|letter|form|hearing|record|statement|paper|page|publication|treaty)\b/i.test(concept)) { why.push("document scan for a non-document concept"); continue; }
+        }
         const v = verify(c, concept, usedQuery);
         if (!v.ok) { why.push(v.why); continue; }
         const hash = createHash("sha1").update(c.downloadUrl).digest("hex").slice(0, 10);

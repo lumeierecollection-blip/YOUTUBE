@@ -71,7 +71,9 @@ function BaseLayer({ layer, p, local, fps, ed, font }) {
   return (
     <div style={{ position: "absolute", left: -SAFE.left, top: -SAFE.top, width: 1080, height: 1920, filter: `blur(${blur.toFixed(2)}px)`,
       transform: `translate(${cam.tx}px, ${dy}px) scale(${cam.scale})`, transformOrigin: `${SAFE.left + SAFE_W / 2}px ${SAFE.top + SAFE_H / 2}px` }}>
-      <ComposedScene scene={{ objects: [{ kind: "library_shape", name: layer.name, anchor: "center", motion: "appear", label: layer.label, emphasis: true }] }}
+      {/* No label here: the type layer carries the words. Passing it drew a
+          second, clipped copy beside the type band (run 36355665493 ch-48). */}
+      <ComposedScene scene={{ objects: [{ kind: "library_shape", name: layer.name, anchor: "center", motion: "appear", emphasis: true }] }}
         p={1} ed={ed} font={font} local={local} fps={fps} />
     </div>
   );
