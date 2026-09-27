@@ -71,12 +71,42 @@ export const CANVAS_W = 1080;
 export const CANVAS_H = 1920;
 
 /**
- * The shorts safe rect. Asymmetric on purpose — YouTube's action buttons run
- * down the right edge, so content sits left of true centre.
+ * The composed-scene layout area: the 9:16 margin spec — 15% top, 15%
+ * bottom, 8% left, 8% right — so an 84% x 70% inner area (908 x 1344 on
+ * 1080 x 1920).
+ *
+ * Was {48, 888, 288, 1248} (840 x 960): a near-square box in the upper
+ * middle that left 672 px (35% of the frame height) empty below every
+ * composed scene — the "small square with big empty areas" every Gemini
+ * whole-video review of run 36331165614 complained about, and why
+ * local-audit.cjs's centre-content check found the frame centre empty.
+ *
+ * TRADEOFF, decided by the spec rather than here: the old right edge sat
+ * at 888 because YouTube Shorts' action buttons run down the right edge;
+ * 994 puts the right ~90 px of content under that column. Only the
+ * composed scene reads this rect — typography and mechanism scenes keep
+ * compositions/layout-constants.js's SAFE, unchanged.
  */
-export const SAFE = { left: 48, right: 888, top: 288, bottom: 1248 };
-export const SAFE_W = SAFE.right - SAFE.left;   // 840
-export const SAFE_H = SAFE.bottom - SAFE.top;   // 960
+export const SAFE = {
+  left: Math.round(CANVAS_W * 0.08),        // 86
+  right: Math.round(CANVAS_W * 0.92),       // 994
+  top: Math.round(CANVAS_H * 0.15),         // 288
+  bottom: Math.round(CANVAS_H * 0.85),      // 1632
+};
+export const SAFE_W = SAFE.right - SAFE.left;   // 908
+export const SAFE_H = SAFE.bottom - SAFE.top;   // 1344
+
+/**
+ * Counter overlay slot: top-right, 5% in from the right and top edges,
+ * 6% of the frame height tall. Used only when a counter/figure shares the
+ * scene with a drawing — a number that IS the beat keeps a full slot.
+ */
+export const COUNTER_OVERLAY = {
+  h: Math.round(CANVAS_H * 0.06),                       // 115
+  w: 300,
+  right: Math.round(CANVAS_W * 0.95),                   // 1026
+  top: Math.round(CANVAS_H * 0.05),                     // 96
+};
 
 /* ── Anchors ─────────────────────────────────────────────────────────── */
 
@@ -274,12 +304,21 @@ export function primitiveNames() {
 export function layoutScene(objects) {
   const list = objects || [];
   const ground = list.filter((o) => o && o.kind === "field");
-  const placeable = list.filter((o) => o && o.kind !== "field" && PRIMITIVES[o.kind]);
+  const isNumber = (o) => o.kind === "counter" || o.kind === "figure";
+  const all = list.filter((o) => o && o.kind !== "field" && PRIMITIVES[o.kind]);
+  // A counter/figure that shares the scene with a drawing is an overlay in
+  // the top-right corner (COUNTER_OVERLAY); one that is the only thing in
+  // the scene IS the beat and keeps a full slot.
+  const hasDrawing = all.some((o) => !isNumber(o));
+  const overlays = hasDrawing ? all.filter(isNumber) : [];
+  const placeable = all.filter((o) => !overlays.includes(o));
 
   const n = placeable.length;
   // Arrangement: keep it coarse. More than 6 objects in one frame is
-  // clutter, and the validator warns about it separately.
-  const cols = n <= 1 ? 1 : n <= 2 ? 2 : n <= 4 ? 2 : 3;
+  // clutter, and the validator warns about it separately. PORTRAIT: the
+  // area is 908 x 1344, so two objects stack (1 col x 2 rows) instead of
+  // sitting side by side at ~49% width each, and 3-6 use 2 columns.
+  const cols = n <= 2 ? 1 : n <= 6 ? 2 : 3;
   const rows = Math.max(1, Math.ceil(n / cols));
   const pad = 18;
   const slotW = (SAFE_W - pad * (cols - 1)) / cols;
@@ -333,6 +372,11 @@ export function layoutScene(objects) {
     const y = best.y + (availH - h) / 2;
     out.push({ obj: o, rect: { x, y, w, h }, slot: best.i });
   }
+
+  overlays.forEach((o, k) => {
+    const { w, h, right, top } = COUNTER_OVERLAY;
+    out.push({ obj: o, rect: { x: right - w, y: top + k * (h + 8), w, h, overlay: true }, slot: null });
+  });
 
   // Preserve declaration order for z-index.
   const order = new Map(list.map((o, i) => [o, i]));

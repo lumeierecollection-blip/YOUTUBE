@@ -448,13 +448,18 @@ function Rules({ obj, rect, ed, m }) {
 function Numeral({ obj, rect, ed, m, font, accent }) {
   const raw = String(obj.label == null ? "" : obj.label).trim();
   if (!raw) return null;
-  const fit = fitSingleLine(raw, rect.w * 1.2, rect.h);
+  // Top-right overlay (layoutScene COUNTER_OVERLAY): stays inside its slot
+  // and right-aligns to the 5% edge instead of overhanging it by 20%.
+  const overlay = !!rect.overlay;
+  const boxW = overlay ? rect.w : rect.w * 1.2;
+  const fit = fitSingleLine(raw, boxW, rect.h);
   return (
     <div style={{
       position: "absolute",
       left: rect.x, top: rect.y,
-      width: rect.w * 1.2, height: rect.h,
+      width: boxW, height: rect.h,
       display: "flex", alignItems: "center",
+      justifyContent: overlay ? "flex-end" : undefined,
       opacity: m.enter,
       color: accent ? ed.accentText : ed.text,
       font: `900 ${Math.max(fit.size, 64)}px ${font}, sans-serif`,
