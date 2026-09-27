@@ -25,7 +25,7 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig, Easing } from "remotion";
 import { Audio } from "@remotion/media";
 import { currentAudio } from "../audio.js";
-import { KalimbaBed } from "../visual/audio-mix.js";
+import { KalimbaBed, SfxPalette } from "../visual/audio-mix.js";
 import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
 import { ComposedScene } from "./composed-scene.jsx";
@@ -1347,6 +1347,8 @@ export function DirectedScene({ plan, ttsAudioPath }) {
       {/* Kalimba bed — the per-video track render.js picked (kalimba-pool.js),
           -24 dB, 15-frame fades, looped. Absent plan.kalimba = no bed. */}
       {plan.kalimba ? <KalimbaBed totalFrames={durationInFrames} fps={fps} src={plan.kalimba} /> : null}
+      {/* SFX — semantic triggers only (sound-design.js semanticSfxEvents). */}
+      {Array.isArray(plan.sfx) && plan.sfx.length ? <SfxPalette events={plan.sfx} /> : null}
       {/* Previous beat echo — fading out during transition */}
       {showPrevEcho && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: prevEchoOpacity }}>

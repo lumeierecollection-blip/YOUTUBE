@@ -44,6 +44,7 @@ import { narrationSections } from "../../utils/script-narration.js";
 import { direct } from "./visual-engine/director/visual-director.js";
 import { sceneTextInventory } from "./visual/scene-text.js";
 import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
+import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
 
 
 
@@ -534,6 +535,21 @@ async function main() {
     const kal = pickKalimbaTrack(channel.channel_id ?? channelId, basename(scriptPath));
     sentencePlan.kalimba = kal.file;
     console.log(`[audio] ${kal.name} (from ${kal.count} tracks)`);
+
+    // SFX: only the semantic trigger table (sound-design.js). A trigger
+    // whose file is missing FAILS the render — it is never skipped.
+    const sfx = semanticSfxEvents(beats);
+    for (const e of sfx.events) {
+      const onDisk = join(__dirname, "public", SEMANTIC_SFX_DIR, e.file);
+      if (!existsSync(onDisk)) {
+        console.error(`::error::[sfx] ${e.file} (trigger ${e.trigger}, beat ${e.beat}) not found at ${onDisk} — refusing to render`);
+        process.exit(1);
+      }
+      console.log(`[sfx] ${e.file} at beat ${e.beat} (${e.reason}) frame ${e.atFrame}`);
+    }
+    for (const w of sfx.warnings) console.warn(`::warning::${w}`);
+    console.log(`[sfx] ${sfx.events.length} fired`);
+    sentencePlan.sfx = sfx.events;
 
     frames = beats.length ? beats[beats.length - 1].start_frame + beats[beats.length - 1].duration_frames : 300;
     const ceiling = (format === "shorts" ? SHORTS_CLAMP : LONGFORM_CLAMP)[1];

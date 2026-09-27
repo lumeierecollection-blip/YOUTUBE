@@ -1,0 +1,27 @@
+BLOCKER (partial, Fix 5): sub-drop.mp3 — no CC0 source found.
+
+The brief asks for five SFX files, CC0 only, from Pixabay SFX or Mixkit.
+Four were sourced (see src/skills/remotion-render/public/sfx/CREDITS.md).
+sub-drop.mp3 ("low frequency sine sweep, 0.4s, only on hook if dramatic")
+was not.
+
+Tried (2026-09-27):
+  - Pixabay: Pixabay Content License is not CC0; pages also sit behind a
+    Cloudflare challenge (curl HTTP 403) with no direct file URL.
+  - Mixkit: Mixkit License is not CC0.
+  - OpenGameArt web search for "sub drop" / "bass drop" / "low boom" CC0:
+    only general packs (100 CC0 SFX, 80 CC0 RPG SFX, …), none a sub-drop.
+  - Kenney CC0 packs already in the repo: no sweep; impacts only.
+  - Not done on purpose: synthesising a sine sweep. CLAUDE.md forbids a
+    sound effect that didn't come from an actual fetched/searched source.
+
+Impact on the pipeline: none today. The trigger table has no sub-drop row,
+so no render references the file and nothing fails.
+
+Human action to unblock (one of):
+  1. Supply a CC0 sub-drop file (e.g. from freesound.org, filtered to CC0,
+     which needs a logged-in account to download) at
+     src/skills/remotion-render/public/sfx/sub-drop.mp3 and add it to
+     CREDITS.md; then decide what "dramatic hook" means as a trigger.
+  2. Or allow synthesised SFX explicitly, which would change CLAUDE.md's
+     hard rule.

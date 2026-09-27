@@ -77,83 +77,40 @@ export function KalimbaBed({ totalFrames, fps, src, volumeDb = -24, hasUnderscor
 }
 
 /**
- * Fixed SFX palette from world.txt.
+ * SFX palette — four files, fired only by semantic triggers.
  *
- * | Effect       | Fires on                           | Volume |
- * |--------------|------------------------------------|--------|
- * | whoosh       | Every transition between beats     | −14 dB |
- * | impact       | HOOK beat landing                  | −10 dB |
- * | tick         | Each word in TYPE beat (numbers)   | −18 dB |
- * | reveal       | VISUAL beat onset                  | −12 dB |
- * | number-count | QUANTIFY beat where number animates| −16 dB |
+ * DirectedShorts passes events from sound-design.js semanticSfxEvents():
+ *   {trigger, file, db, atFrame}   file relative to sfx/ in the Remotion
+ *   public dir (impact.mp3, reveal.mp3, number-count.mp3, whoosh.mp3).
+ *
+ * The table this replaced fired a whoosh on EVERY transition, a reveal on
+ * every visual beat and a tick per word, pointing at audio/sfx/*.wav files
+ * that did not exist. Legacy callers that still pass {role} (the
+ * MotionGraphics path via sfx-palette.js) are mapped onto the same four
+ * files at the trigger-table volumes; "tick" has no file and is dropped.
  *
  * @param {Object} opts
- * @param {Array} opts.events - [{role, atFrame, reason}]
- * @param {number} opts.fps - Frames per second
+ * @param {Array} opts.events - [{file, db, atFrame, trigger}] or legacy [{role, atFrame}]
  */
-export function SfxPalette({ events = [], fps }) {
-  const VOLUME_DB = {
-    whoosh: -14,
-    impact: -10,
-    tick: -18,
-    reveal: -12,
-    "number-count": -16,
-  };
+const LEGACY_ROLE = {
+  impact:         { file: "impact.mp3",       db: -10 },
+  reveal:         { file: "reveal.mp3",       db: -12 },
+  "number-count": { file: "number-count.mp3", db: -16 },
+  whoosh:         { file: "whoosh.mp3",       db: -14 },
+};
 
-  const FILE_MAP = {
-    whoosh: "audio/sfx/whoosh.wav",
-    impact: "audio/sfx/impact.wav",
-    tick: "audio/sfx/tick.wav",
-    reveal: "audio/sfx/reveal.wav",
-    "number-count": "audio/sfx/number-count.wav",
-  };
-
+export function SfxPalette({ events = [] }) {
   return events.map((event, i) => {
-    const file = FILE_MAP[event.role];
-    const volumeDb = VOLUME_DB[event.role] ?? -14;
-
-    if (!file) {
-      console.warn(`[audio-mix] Unknown SFX role: ${event.role}`);
+    const spec = event.file ? event : LEGACY_ROLE[event.role];
+    if (!spec) {
+      console.warn(`[audio-mix] no SFX file for role "${event.role}" — not played`);
       return null;
     }
-
+    const tag = event.trigger || event.role;
     return (
-      <Sequence
-        key={`sfx-${event.role}-${i}`}
-        from={event.atFrame}
-        layout="none"
-        name={`sfx:${event.role}`}
-      >
-        <Audio src={staticFile(file)} volume={dbToVolume(volumeDb)} />
+      <Sequence key={`sfx-${tag}-${i}`} from={event.atFrame} layout="none" name={`sfx:${tag}`}>
+        <Audio src={staticFile(`sfx/${spec.file}`)} volume={dbToVolume(spec.db)} />
       </Sequence>
     );
   });
-}
-
-/**
- * Check if required SFX files exist.
- * Returns {missing: string[]} — empty if all present.
- */
-export function checkSfxFiles() {
-  const required = [
-    "audio/sfx/whoosh.wav",
-    "audio/sfx/impact.wav",
-    "audio/sfx/tick.wav",
-    "audio/sfx/reveal.wav",
-    "audio/sfx/number-count.wav",
-    "audio/kalimba.mp3",
-  ];
-
-  // In Node.js (non-Remotion context), check file existence
-  if (typeof window === "undefined") {
-    const fs = require("node:fs");
-    const path = require("node:path");
-    const missing = required.filter((f) => {
-      const fullPath = path.join(process.cwd(), "public", f);
-      return !fs.existsSync(fullPath);
-    });
-    return { missing };
-  }
-
-  return { missing: [] };
 }
