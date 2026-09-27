@@ -211,60 +211,49 @@ ${VOCABULARY}
 For each beat, declare:
 1. "visual_events": what happens visually (the EVENTS, not the template)
 2. "capabilities": which capabilities you're using (for validation)
-3. "composition": the ONE drawing on screen (REQUIRED for VISUAL beats; omit for TYPOGRAPHY beats)
+3. "kind", "concept", "asset_query", "fallback_drawing", "caption", "number"
 
-The "visual_events" field is your creative direction. The "composition" field is
-what the viewer literally sees: one LIBRARY drawing of the sentence's subject
-(plus a counter only for a number the sentence names). The system builds
-exactly what you declare and rejects anything it cannot build.
+The "visual_events" field is your creative direction. What the viewer literally
+sees is a REAL image found from your "concept" / "asset_query" (or, only if none
+is found, your "fallback_drawing"), captioned, with a counter for a named number.
+The system builds that composition itself.
 
 Rules that are enforced, not advisory:
-- ONE DRAWING PER VISUAL BEAT. "composition.objects" holds exactly ONE
-  "library_shape" — the drawing of the sentence's subject — plus, only when
-  the sentence names a number, ONE "counter" whose label is that number
-  exactly as the narration says it ("$14.99", "70 years"). Nothing else:
-  no "field", no "grid", no bars, blocks, stacks, vessels, arrows, rules or
-  nodes beside the drawing. The drawing is laid out to fill the frame; do
-  not add objects to fill space.
-- THE DRAWING DEPICTS THE SUBJECT. For every VISUAL beat, the drawing you
-  choose must depict the sentence's SUBJECT — not its number, not its
-  category, not the idea of "evidence". If the sentence is about a phone
-  app, choose the drawing of a phone app. If the sentence is about a
-  border, choose the map. Do not choose a folder, a document, or a concept
-  node to represent something that is not a folder, a document, or a
-  concept.
-- NAME THE SUBJECT FIRST. For every beat write "sentence_subject": the one
-  concrete thing the sentence is about — a person, a group of people, a
-  place, a physical object, an app, a machine ("an 87-year-old tenant",
-  "protest tents", "the YNAB app", "the Cambodia-Thailand border"). Then
-  choose the drawing that IS that thing. People -> "figure silhouette".
-  A country or region -> the map drawings. A phone app -> "phone showing a
-  budgeting app". Test: would a viewer, seeing only the drawing, name the
-  same thing? If not, it is the wrong drawing.
-- THE CHANNEL'S TOPIC IS NOT THE SUBJECT. A legal channel's story about
-  protesters is about protesters, not about court documents; a finance
-  channel's sentence about an app is about the app, not a ledger. Never
-  pick a drawing because it fits the channel's category.
-- ABSTRACT SENTENCES HAVE NO DRAWABLE SUBJECT. "A critical step towards
-  peace", "trust plays a critical role", "tracking is made easy" name no
-  person, place or object — write "sentence_subject": null and make the
-  beat TYPOGRAPHY.
-- NO MATCH -> TYPOGRAPHY. If no drawing in the LIBRARY depicts the
-  subject, make that beat TYPOGRAPHY: "capabilities": ["typographic_emphasis"],
-  a filled "typography_direction", and no "composition". Do not substitute
-  an unrelated drawing, and never fall back to abstract primitives.
+- EVERY BEAT IS "kind": "VISUAL" OR "kind": "TYPE".
+- VISUAL beats show a REAL image — a photograph, screenshot, real chart,
+  real map or real document — fetched from stock/archive libraries by the
+  system. For every VISUAL beat, describe in "concept" what a real
+  photograph or screenshot would show. Describe the real thing in words a
+  stock photo search would find ("a Boeing 787 Dreamliner airliner in
+  flight", "protesters with signs in the Puerta del Sol, Madrid", "a person
+  checking a budgeting app on a smartphone"). Name real people, places,
+  companies and products exactly as the sentence names them.
+- In "asset_query", give 3-6 words that would work as a stock photo search
+  query ("Boeing 787 Dreamliner", "Puerta del Sol protest Madrid",
+  "budgeting app smartphone").
+- In "fallback_drawing", name a LIBRARY drawing that would stand in if no
+  real asset is found. It is used ONLY when the fetch fails. It must depict
+  the same subject — a person -> "figure silhouette", a country -> a map
+  drawing, a phone app -> "phone showing a budgeting app". Copy the name
+  exactly from the LIBRARY list.
+- Do not choose a drawing as the primary visual. Do not name a drawing in
+  "concept".
+- "caption": 1-3 words naming the subject from THIS sentence ("Monarch
+  Money", "Puerta del Sol", "A321neo") — shown under the image. Never a
+  headline, never a generic word ("CAUSE", "RESEARCH", "MATRIX").
+- "number": the number the sentence names, exactly as said ("$14.99",
+  "500 aircraft"), or null. It becomes a counter over the image. Never
+  invent one.
+- Do NOT write a "composition" — the system builds it from the fields above.
+- If no photo can plausibly show the sentence (a purely abstract statement:
+  "this is a step towards peace"), set "kind": "TYPE" and use kinetic
+  typography: "capabilities": ["typographic_emphasis"] and a filled
+  "typography_direction". TYPE is allowed on AT MOST 2 beats — the hook
+  and at most one more; every other beat is VISUAL.
 ${nicheBlock}
-- "emphasis: true" goes on the drawing. It ALWAYS carries a 1-3 word
-  "label" naming the specific thing, place, group, or quantity from THIS
-  sentence ("Hormuz", "Tenants", "Monarch Money"). A label is a name or a
-  number taken from the sentence — never a headline, never a sentence
-  fragment, never a generic word like "CAUSE", "EFFECT", "EXPECTED",
-  "ACTUAL", "RESEARCH", "TERMS", "MATRIX".
-- Use "library_shape" with a "name" from the LIBRARY list, spelled exactly;
-  never invent a name.
-  PLACES are real maps drawn from real borders. When the sentence is about a
-  country or a US state, use one of these, and set "label" to that place's
-  name exactly as the narration says it (e.g. "Venezuela", "Florida"):
+- FALLBACK MAPS. PLACES are real maps drawn from real borders. When the
+  fallback for a place is a map, use one of these, and set "caption" to
+  that place's name exactly as the narration says it (e.g. "Venezuela"):
     "map-region-highlight" — the region outlined, then filled (default)
     "map-markers"          — the region plus "count" markers (a real number
                              from the sentence: 12 sites, 5 raids)
@@ -436,12 +425,12 @@ Respond ONLY with JSON (no markdown fences):
         "cause": "<for causation: cause label>",
         "effect": "<for causation: effect label>"
       },
-      "composition": {
-        "objects": [
-          { "kind": "library_shape", "name": "<exact LIBRARY name of the drawing that depicts this sentence's subject>", "anchor": "center", "motion": "<motion>", "label": "<1-3 word name from the sentence>", "emphasis": true },
-          { "kind": "counter", "label": "<the number exactly as said — ONLY if the sentence names one; otherwise omit this object>", "anchor": "top_right", "motion": "appear" }
-        ]
-      },
+      "kind": "<VISUAL | TYPE>",
+      "concept": "<VISUAL: what a real photograph/screenshot would show, in stock-search words; TYPE: null>",
+      "asset_query": "<VISUAL: 3-6 word stock photo search query; TYPE: null>",
+      "fallback_drawing": "<VISUAL: exact LIBRARY name depicting the same subject, used only if no real asset is found; TYPE: null>",
+      "caption": "<1-3 word name of the subject from this sentence>",
+      "number": "<the number exactly as the sentence says it, or null>",
       "carries_forward": "<object/concept that persists into the next beat, or null>",
       "emotional_weight": "<calm|building|sharp|heavy|urgent>",
       "typography_direction": {
@@ -634,6 +623,36 @@ async function main() {
     }
   }
 
+  // ── BUILD EACH BEAT'S COMPOSITION FROM ITS FIELDS (real-asset pipeline) ──
+  // The model no longer composes. A VISUAL beat is { concept, asset_query,
+  // fallback_drawing, caption, number }; its composition is built here as
+  // the fallback drawing (+ a counter for a named number). The asset
+  // resolver in render-and-qa.js replaces the drawing with a real photo when
+  // the concept resolves. A composition the model wrote anyway is ignored.
+  // A TYPE beat gets no composition and the typographic_emphasis capability.
+  for (const b of plan.beats) {
+    const kind = String(b.kind || (b.concept ? "VISUAL" : "")).toUpperCase();
+    if (kind === "TYPE") {
+      b.kind = "TYPE";
+      delete b.composition;
+      if (!Array.isArray(b.capabilities) || !b.capabilities.includes("typographic_emphasis")) {
+        b.capabilities = ["typographic_emphasis", ...(Array.isArray(b.capabilities) ? b.capabilities : [])];
+      }
+      continue;
+    }
+    b.kind = "VISUAL";
+    const caption = b.caption == null ? undefined : String(b.caption).trim() || undefined;
+    const number = b.number == null ? null : String(b.number).trim();
+    if (b.fallback_drawing) {
+      const objects = [{ kind: "library_shape", name: String(b.fallback_drawing).trim(), anchor: "center", motion: "appear", label: caption, emphasis: true }];
+      if (number && /\d/.test(number)) objects.push({ kind: "counter", label: number, anchor: "top_right", motion: "appear" });
+      b.composition = { objects };
+    } else {
+      delete b.composition;
+    }
+    console.log(`[plan] beat ${b.index}: VISUAL concept="${String(b.concept || "").slice(0, 70)}" query="${b.asset_query || ""}" fallback="${b.fallback_drawing || "-"}"`);
+  }
+
   const compositionIssues = [];
   let composedBeats = 0;
   for (const b of plan.beats) {
@@ -641,7 +660,7 @@ async function main() {
       compositionIssues.push({
         beat: b.index,
         problem: "no composition declared — the beat has nothing to render but text",
-        fix: "declare ONE library_shape that depicts this sentence's subject (plus a counter only for a number the sentence names), or make the beat TYPOGRAPHY if no drawing depicts it",
+        fix: "give this VISUAL beat a real-image \"concept\", an \"asset_query\" and a \"fallback_drawing\" copied exactly from LIBRARY that depicts the same subject — or make it \"kind\": \"TYPE\" (at most 2 TYPE beats)",
       });
       continue;
     }
