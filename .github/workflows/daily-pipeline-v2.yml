@@ -713,6 +713,37 @@ jobs:
         # review/correction loop.
         run: node scripts/render-and-qa.js --channel "${{ matrix.channel_id }}"
 
+      # Backup QA (scripts/local-audit.cjs): a video an AI stage failed is
+      # queued for a human, never uploaded. The queues live on the runner, so
+      # they are uploaded as an artifact or they would vanish with the job.
+      - name: QA counts
+        if: always() && steps.status.outputs.skip != 'true'
+        run: |
+          if [ -f data/renders/qa-counts.json ]; then
+            A=$(jq -r '.approved' data/renders/qa-counts.json)
+          else
+            A=0; echo "::warning::render-and-qa.js wrote no qa-counts.json (it did not reach its summary)"
+          fi
+          R=$(ls data/renders/approved-review/*.json 2>/dev/null | wc -l)
+          J=$(ls data/renders/rejected/*.json 2>/dev/null | wc -l)
+          echo "Approved: $A · Approved-review: $R · Rejected: $J"
+          echo "### Channel ${{ matrix.channel_id }} — Approved: $A · Approved-review: $R · Rejected: $J" >> "$GITHUB_STEP_SUMMARY"
+          for f in data/renders/approved-review/*.json data/renders/rejected/*.json; do
+            [ -f "$f" ] && echo "  $f: $(jq -c '{verdict, failed_stage, reason}' "$f")"
+          done
+          true
+
+      - name: Upload QA review queues
+        if: always() && steps.status.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-queues-${{ matrix.channel_id }}-${{ github.run_id }}
+          path: |
+            data/renders/approved-review/
+            data/renders/rejected/
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: Upload rendered video
         if: always() && steps.status.outputs.skip != 'true'
         uses: actions/upload-artifact@v4

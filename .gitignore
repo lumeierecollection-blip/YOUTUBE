@@ -74,3 +74,9 @@ logs/
 data/tts/
 data/research/1/*manifest*.json
 data/visual-plans/**/*.json
+
+# Backup-QA human queues (scripts/local-audit.cjs via render-and-qa.js).
+# Already covered by data/renders/ above; listed explicitly so the intent
+# survives if that broader rule is ever narrowed.
+data/renders/approved-review/
+data/renders/rejected/

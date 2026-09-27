@@ -619,6 +619,80 @@ function findGeminiReviewReport(channelId, scriptPath) {
   return files.length ? join(reportDir, files[0]) : null;
 }
 
+/* ── Backup QA: local deterministic audit ────────────────────────── */
+
+// When an AI stage (challenger, Gemini frame review, beat check) FAILS or
+// cannot produce a verdict, the video is not simply lost: the rule-based
+// scripts/local-audit.cjs decides which human queue it goes to. Neither
+// queue is uploaded. local-pass -> data/renders/approved-review/ (a human
+// looks when available); local-fail -> data/renders/rejected/. The video
+// is NEVER counted as approved here: publish still only sees videos that
+// passed every AI stage.
+const LOCAL_AUDIT_CJS = join(__dirname, "local-audit.cjs");
+const APPROVED_REVIEW_DIR = join(ROOT, "data", "renders", "approved-review");
+const REJECTED_DIR = join(ROOT, "data", "renders", "rejected");
+
+async function backupAudit({ stage, reason, videoPath, planPath, srtPath, audio, channelId }) {
+  const stem = basename(videoPath, ".mp4");
+  const reportPath = videoPath.replace(/\.mp4$/, "-backup-audit.json");
+  const la = await runChild("node", [LOCAL_AUDIT_CJS,
+    "--video", videoPath,
+    "--manifest", videoPath.replace(/\.mp4$/, "-manifest.json"),
+    "--plan", planPath || "",
+    "--srt", srtPath || "",
+    "--audio", audio || "",
+    "--out", reportPath,
+  ], { label: `backup-qa ${channelId}/${stem}` });
+  const report = readJsonSafe(reportPath);
+  const localPass = la.code === 0 && report?.pass === true;
+  const failedChecks = (report?.checks || []).filter((c) => !c.pass).map((c) => `${c.id}: ${c.detail}`);
+  const dest = localPass ? APPROVED_REVIEW_DIR : REJECTED_DIR;
+  mkdirSync(dest, { recursive: true });
+  // MOVE, not copy: a queued video must not stay where the upload/publish
+  // steps look for approved renders.
+  if (existsSync(videoPath)) {
+    copyFileSync(videoPath, join(dest, `${stem}.mp4`));
+    try { rmSync(videoPath); } catch {}
+  }
+  const marker = {
+    verdict: localPass ? "local-pass" : "local-fail",
+    failed_stage: stage,
+    reason: String(reason || "").slice(0, 500),
+    channel: String(channelId),
+    local_audit: la.code === 2 ? "could not run" : failedChecks.length ? failedChecks : "all checks passed",
+    at: new Date().toISOString(),
+  };
+  writeFileSync(join(dest, `${stem}.json`), JSON.stringify(marker, null, 2) + "\n");
+  console.log(`[backup-qa] ${stage} failed (${marker.reason.slice(0, 160)}) -> local audit ${marker.verdict} -> ${relative(ROOT, dest)}/${stem}.mp4 (NOT uploaded)`);
+  return { skipped: false, ok: false, queued: localPass ? "approved-review" : "rejected" };
+}
+
+// Frame review PASS = gemini-frame-review.js's own "VERDICT: APPROVED".
+// That script prints its verdict but never saves it (the report has no
+// pipelineVerdict, so this loop logged UNKNOWN), so the same rule is
+// re-applied here to the fields it DOES save: no CRITICAL frame, no
+// template monoculture, HIGH issues <= 30% of frames, and no whole-video
+// FAIL of CRITICAL/HIGH severity. No report at all = could not run.
+function frameReviewVerdict(geminiReport) {
+  const report = geminiReport ? readJsonSafe(geminiReport) : null;
+  if (!report) return { pass: false, error: true, reason: "Gemini frame review produced no report" };
+  if (report.pipelineVerdict) {
+    return { pass: report.pipelineVerdict === "APPROVED", reason: `${report.pipelineVerdict} — ${report.pipelineReason || ""}` };
+  }
+  const critical = report.summary?.critical ?? 0;
+  const high = report.summary?.high ?? 0;
+  const frames = report.totalFrames ?? 0;
+  const whole = report.wholeVideoResult || {};
+  const score = whole.overall_score != null ? ` ${whole.overall_score}/10` : "";
+  if (critical > 0) return { pass: false, reason: `REJECTED — ${critical} CRITICAL frame(s)` };
+  if (whole.headline_test?.monoculture) return { pass: false, reason: `REJECTED — TEMPLATE_MONOCULTURE ${whole.headline_test.percent ?? "?"}% headline-dominated` };
+  if (high > Math.floor(frames * 0.3)) return { pass: false, reason: `NEEDS_IMPROVEMENT — ${high} HIGH issues across ${frames} frames` };
+  if (whole.status === "FAIL" && (whole.severity === "CRITICAL" || whole.severity === "HIGH")) {
+    return { pass: false, reason: `NEEDS_IMPROVEMENT — whole-video FAIL (${whole.severity})${score}` };
+  }
+  return { pass: true, reason: `APPROVED — whole-video ${whole.status || "?"}${score}` };
+}
+
 /* ── Correction loop ─────────────────────────────────────────────── */
 
 async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride, skipQA) {
@@ -704,9 +778,13 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       }
       challenge = await challengePlan(channelId, planPath, srtPath, "-2");
     }
+    // A challenger failure still fails the video. It is rendered only so
+    // the backup audit can queue it for a human (approved-review/ or
+    // rejected/) instead of losing it; it can never be approved or uploaded.
+    let challengerFailure = null;
     if (challenge.code !== 0) {
-      console.error(`::error::challenger ${challenge.code === 1 ? "rejected the plan twice" : "could not run"} for ${basename(scriptPath)} — not rendering`);
-      return { skipped: false, ok: false };
+      challengerFailure = challenge.code === 1 ? "rejected the plan twice" : "could not run";
+      console.error(`::error::challenger ${challengerFailure} for ${basename(scriptPath)} — rendering for the backup audit only`);
     }
 
     // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL)
@@ -743,6 +821,11 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       return { skipped: false, ok: false };
     }
 
+    const backupArgs = { planPath, srtPath, audio: result.audio, channelId, videoPath: result.outputPath };
+    if (challengerFailure) {
+      return backupAudit({ ...backupArgs, stage: "challenger", reason: challengerFailure });
+    }
+
     // Step 2b'': PER-BEAT FRAME CHECK — one frame at every beat's midpoint,
     // each judged by Gemini against its own sentence. More than one beat
     // that doesn't visually match fails the video. Runs with or without
@@ -755,8 +838,10 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       "--out", result.outputPath.replace(/\.mp4$/, "-beat-check.json"),
     ], { label: `beat-check ${channelId}/${basename(scriptPath)}` });
     if (beatCheck.code !== 0) {
-      console.error(`::error::beat check ${beatCheck.code === 1 ? "FAILED — frames do not match their sentences" : "could not run"} for ${basename(result.outputPath)}`);
-      return { skipped: false, ok: false };
+      const why = beatCheck.code === 1 ? "FAILED — frames do not match their sentences" : "could not run";
+      console.error(`::error::beat check ${why} for ${basename(result.outputPath)}`);
+      const bc = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-beat-check.json"));
+      return backupAudit({ ...backupArgs, stage: "beat-check", reason: bc?.failing ? `${why}: beats ${bc.failing.join(", ")}` : why });
     }
 
     // Step 2c: Skip QA when --skip-qa is set (local dev without ffmpeg)
@@ -818,15 +903,20 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // monoculture is addressed by the plan prompt + scene design, not by
     // withholding the upload. Objectively-broken frames still never ship —
     // qa.gatePass is false for them regardless of the Gemini verdict.
-    if (pipelineVerdict === "APPROVED" || attempt === MAX_CORRECTION_LOOPS) {
-      return {
-        skipped: false,
-        ok: true,
-        outputPath: result.outputPath,
-        attempt,
-        geminiVerdict,
-        qaGatePass: qa.gatePass,
-      };
+    // Frame review verdict (see frameReviewVerdict). PASS ships as before.
+    // A review that could not run, or one still failing after the last
+    // correction attempt, now goes to the backup audit and a human queue
+    // instead of shipping -- a failing review used to be approved outright
+    // once attempts ran out. A frame-audit (pixel gate) failure is
+    // unchanged: returned with qaGatePass false and removed by main().
+    const fr = frameReviewVerdict(geminiReport);
+    console.log(`[frame-review] attempt ${attempt}: ${fr.pass ? "PASS" : fr.error ? "ERROR" : "FAIL"} — ${fr.reason}`);
+    if (fr.pass || !qa.gatePass) {
+      if (fr.pass || attempt === MAX_CORRECTION_LOOPS || fr.error) {
+        return { skipped: false, ok: true, outputPath: result.outputPath, attempt, geminiVerdict, qaGatePass: qa.gatePass && fr.pass };
+      }
+    } else if (fr.error || attempt === MAX_CORRECTION_LOOPS) {
+      return backupAudit({ ...backupArgs, stage: "frame-review", reason: fr.reason });
     }
 
     // Not approved — feed corrections back and re-render.
@@ -873,11 +963,10 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       // would just re-roll the planner's randomness and burn ~3 minutes, so
       // accept this render and report the verdict honestly rather than
       // pretending a retry happened.
-      console.log(`Gemini says ${pipelineVerdict} but produced no actionable corrections — not spending another attempt.`);
-      return {
-        skipped: false, ok: true, outputPath: result.outputPath, attempt,
-        geminiVerdict, qaGatePass: qa.gatePass, unresolvedVerdict: pipelineVerdict,
-      };
+      console.log(`Frame review ${fr.reason} but produced no actionable corrections — not spending another attempt.`);
+      // Used to ship as ok:true. The review did not pass, so it is a
+      // frame-review failure like any other: backup audit + human queue.
+      return backupAudit({ ...backupArgs, stage: "frame-review", reason: `${fr.reason} (no actionable corrections)` });
     }
     // When directives were enforced, the NEXT attempt renders the edited
     // plan directly instead of asking Gemini for a fresh one — the changes
@@ -926,14 +1015,16 @@ async function main() {
   let rendered = 0;
   let renderFailed = 0;
   const results = [];
+  const queued = { "approved-review": 0, rejected: 0 };
 
   for (const { channelId, scriptPath } of work) {
     const format = formatFromScriptPath(scriptPath);
     const result = await renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride, skipQA);
     if (result.skipped) continue;
+    if (result.queued) queued[result.queued]++;
     if (!result.ok) {
       renderFailed++;
-      console.error(`::error::render failed for ${scriptPath}`);
+      console.error(`::error::render failed for ${scriptPath}${result.queued ? ` (queued: ${result.queued})` : ""}`);
       continue;
     }
     rendered++;
@@ -962,6 +1053,12 @@ async function main() {
   for (const r of results) {
     console.log(`  ${basename(r.outputPath || "?")}: attempts=${r.attempt} verdict=${r.geminiVerdict} qa=${r.qaGatePass ? "PASS" : "FAIL"}`);
   }
+  // Read by the workflow's "QA counts" step. approved = passed every AI
+  // stage (the only videos publish sees); the other two are human queues.
+  const counts = { approved: successfulCount, "approved-review": queued["approved-review"], rejected: queued.rejected };
+  mkdirSync(join(ROOT, "data", "renders"), { recursive: true });
+  writeFileSync(join(ROOT, "data", "renders", "qa-counts.json"), JSON.stringify(counts) + "\n");
+  console.log(`Approved: ${counts.approved} · Approved-review: ${counts["approved-review"]} · Rejected: ${counts.rejected}`);
 
   if (successfulCount === 0) {
     console.error("::error::0 videos successfully rendered and passed QA - nothing for publish to upload.");
