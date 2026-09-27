@@ -807,6 +807,44 @@ function stripTrailingCommasOutsideStrings(text) {
   return out;
 }
 
+// The third defect, seen on CI run 36323786443 (ch-2, both attempts): an
+// object key whose OPENING quote is missing -- `graph_justified": true`
+// where `"graph_justified": true` was meant ("Expected double-quoted
+// property name"). Also covers a key with no quotes at all. Only fires
+// outside a string, directly after `{` or `,` (the only places a key can
+// start), and only when the bare identifier is followed by `:` -- so a
+// value like `true` / `false` / `null` in an array is never touched, and
+// valid JSON (where the key already starts with `"`) passes through as-is.
+function quoteBareKeysOutsideStrings(text) {
+  let out = "";
+  let inString = false;
+  let escaped = false;
+  let lastSignificant = "";
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inString) {
+      out += ch;
+      if (escaped) escaped = false;
+      else if (ch === "\\") escaped = true;
+      else if (ch === '"') { inString = false; lastSignificant = '"'; }
+      continue;
+    }
+    if ((lastSignificant === "{" || lastSignificant === ",") && /[A-Za-z_]/.test(ch)) {
+      const m = /^([A-Za-z_][A-Za-z0-9_]*)("?)(\s*):/.exec(text.slice(i));
+      if (m) {
+        out += `"${m[1]}"${m[3]}:`;
+        i += m[0].length - 1;
+        lastSignificant = ":";
+        continue;
+      }
+    }
+    if (ch === '"') inString = true;
+    if (!/\s/.test(ch)) lastSignificant = ch;
+    out += ch;
+  }
+  return out;
+}
+
 // Accepts the shapes Gemini has actually returned for a plan and maps each
 // to {beats:[...]}; anything else is returned untouched so the caller fails.
 //
@@ -830,6 +868,7 @@ const JSON_REPAIRS = [
   (text) => text,
   escapeStrayControlCharsInStrings,
   (text) => stripTrailingCommasOutsideStrings(escapeStrayControlCharsInStrings(text)),
+  (text) => quoteBareKeysOutsideStrings(stripTrailingCommasOutsideStrings(escapeStrayControlCharsInStrings(text))),
 ];
 
 function normalizePlanResponse(r) {
