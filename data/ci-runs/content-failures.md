@@ -52,3 +52,9 @@ in the **gutter between laid-out objects**: the portrait slot grid from
 is background (ch-26 beats 1 and 3: 3.1 / 4.0 vs 0.0; ch-48 beat 1: 4.2 vs
 0.0, threshold > 5). That's a composition-layout outcome. It was not
 changed: layout is outside the categories cleared for this loop.
+
+## Run 36390736594 — ch 9 (geography-demographics-shaping-china)
+- Challenger rejected the plan twice: beat 1 CONTRADICTION, beat 4 CONTRADICTION.
+- Cause is the script, not the plan: it says China's population declines by
+  "25 million" in one sentence and "250 million" in another. Not fixed in
+  the render path — a plan cannot reconcile two figures the script states.
