@@ -238,6 +238,12 @@ the sentence itself as tiny body text. You write only these fields:
                   person doing something, a place, a chart or an idea.
                   Name brands/products exactly when the sentence does
                   ("Boeing 787"). null if no object fits.
+                  Prefer the physical object the sentence ITSELF names
+                  (bills, a phone, a court, a jet) — the frame is checked
+                  against the sentence literally. Use a symbolic object
+                  only when the sentence names none. NEVER an "icon",
+                  "symbol", "sign", "graphic", "chart", "spreadsheet" or
+                  "screen" — those come back as clip-art, not photos.
   "abstract_shape": "petals" | "swoosh" | "hairline" | "none"
 
 Worked example (from the reference). Sentence: "Liquid Death went from

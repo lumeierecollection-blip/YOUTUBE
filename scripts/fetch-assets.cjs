@@ -162,6 +162,11 @@ async function main() {
         if (/pdf|djvu/i.test(c.mime || "") || /\.(pdf|djvu)(\?|$|\/)/i.test(c.sourceUrl || "")) {
           if (!/\b(document|report|filing|letter|form|hearing|record|statement|paper|page|publication|treaty)\b/i.test(concept)) { why.push("document scan for a non-document concept"); continue; }
         }
+        // Photographs only. Commons/Openverse hold many illustrations; run
+        // 36363896460 ch-1 got a cartoon for "stack of bills" and a
+        // traffic-light pictogram for "warning sign icon". The source's own
+        // text saying it is an icon/cartoon/illustration/logo rejects it.
+        if (/\b(icon|icons|pictogram|cartoon|clip ?art|clipart|illustration|vector|logo|emblem|diagram|infographic|drawing|comic|emoji|symbol|coat of arms|flag of)\b/i.test(sourceTextOf(c))) { why.push("not a photograph (source text: icon/cartoon/illustration/logo)"); continue; }
         const v = verify(c, concept, usedQuery);
         if (!v.ok) { why.push(v.why); continue; }
         const hash = createHash("sha1").update(c.downloadUrl).digest("hex").slice(0, 10);

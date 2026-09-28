@@ -117,10 +117,12 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   );
 
   // ── tiny body paragraph: the narration sentence itself ──
-  const bodyTop = phone ? H * 0.8 : hasCutout ? H * 0.79 : H * 0.58;
+  // The body paragraph sits on the frame-centre band (frame y 960 = paper
+  // y ~78%), so the centre of the frame always carries real text.
+  const bodyTop = phone ? H * 0.8 : hasCutout ? H * 0.76 : H * 0.72;
   const body = c.body ? (
-    <div style={{ position: "absolute", left: W * 0.18, top: bodyTop, width: W * 0.64, textAlign: center ? "center" : "left",
-      font: `400 12px ${font}, sans-serif`, lineHeight: 1.35, color: "#333",
+    <div style={{ position: "absolute", left: W * 0.16, top: bodyTop, width: W * 0.68, textAlign: center ? "center" : "left",
+      font: `400 14px ${font}, sans-serif`, lineHeight: 1.38, color: "#222",
       opacity: ease(clamp01((local - headlineDone) / s(0.3))) }}>{String(c.body).slice(0, 170)}</div>
   ) : null;
 
@@ -182,7 +184,11 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
       {hero}
       {headline}
       {body}
-      <AbstractShape variant={c.shape?.variant} corner={c.shape?.corner} local={local} fps={fps} />
+      {/* Clipped to the paper: in the reference shapes enter from the page's
+          corners and edges, never over the studio or the device. */}
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+        <AbstractShape variant={c.shape?.variant} corner={c.shape?.corner} local={local} fps={fps} />
+      </div>
     </div>
   );
 }
