@@ -1079,7 +1079,9 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     const srtPath = join(dirname(audioPathFor(channelId, scriptPath)), basename(audioPathFor(channelId, scriptPath), ".mp3") + ".srt");
     let challenge = await challengePlan(channelId, planPath, srtPath, "");
     if (challenge.code === 1) {
-      const firstPlanPath = planPath, firstReview = challenge.review;
+      // A snapshot, not a path: geminiPlan() writes the re-plan to the SAME
+      // file (…-visual-plan.json), so the first plan must be kept in memory.
+      const firstPlan = readJsonSafe(planPath), firstReview = challenge.review;
       const blocking = (challenge.review?.beats || []).filter((b) => b.verdict === "MISMATCH" || b.verdict === "CONTRADICTION");
       const corrFile = planPath.replace(/\.json$/, "-challenger-corrections.json");
       writeFileSync(corrFile, JSON.stringify({ corrections: blocking.map((b) => ({
@@ -1104,7 +1106,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       // blocked by both reviews still fails the video.
       const isBlock = (v) => v.verdict === "MISMATCH" || v.verdict === "CONTRADICTION";
       if (challenge.code === 1 && firstReview?.beats && challenge.review?.beats) {
-        const firstPlan = readJsonSafe(firstPlanPath), merged = readJsonSafe(planPath);
+        const merged = readJsonSafe(planPath);
         const passedFirst = new Set(firstReview.beats.filter((v) => !isBlock(v)).map((v) => v.beat_index));
         const blocked2 = challenge.review.beats.filter(isBlock).map((v) => v.beat_index);
         const sameShape = firstPlan?.beats?.length && firstPlan.beats.length === merged?.beats?.length;
