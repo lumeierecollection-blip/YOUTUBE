@@ -240,6 +240,17 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
     .replace("{duration}", duration.toFixed(1));
 
   const content = [{ type: "text", text: prompt }];
+  // REFERENCE STYLE (docs/REFERENCE-STYLE.md): three frames of the supplied
+  // reference video, sent first as the target look. The review now judges
+  // "does this look like it came from the reference, and does each frame
+  // show content related to its sentence" — per the owner's brief.
+  const refFrames = ["f0005.png", "f0027.png", "f0045.png"]
+    .map((f) => join(ROOT, "docs", "reference-examples", f)).filter((p) => existsSync(p));
+  if (refFrames.length) {
+    content.push({ type: "text", text: "\n=== REFERENCE STYLE — the target look for this channel. These three frames are from the reference video. The video under review should look like it came from the same video: white studio with soft leaf shadows, one flat white paper page, a vertical wordmark to its left, a dark editing-timeline device below; on the paper an italic lead-in, a bold grotesk headline, a grayscale object cutout (or a phone mockup) and black abstract shapes. Judge each frame's STYLE against these, and its CONTENT against its voiceover line. The reference's own restraint (one object, typography, white space) is the standard — do not score it as a defect when a frame matches it. ===" });
+    for (const f of refFrames) content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(f).toString("base64")}` } });
+    content.push({ type: "text", text: "\n=== FRAMES UNDER REVIEW ===" });
+  }
   for (const idx of unique) {
     const imageData = readFileSync(framePaths[idx]).toString("base64");
     const t = beatTimes[idx];
