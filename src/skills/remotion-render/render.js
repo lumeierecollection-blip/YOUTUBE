@@ -45,6 +45,8 @@ import { direct } from "./visual-engine/director/visual-director.js";
 import { sceneTextInventory } from "./visual/scene-text.js";
 import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
 import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
+import { shapeLayout } from "./visual/shape-geometry.js";
+import { headlineLayout, captionSize } from "./visual/paper-text.js";
 
 
 
@@ -849,6 +851,14 @@ async function main() {
           // Paper style: the planner's visual type for this beat, as drawn
           // (a CUTOUT that failed isolation is recorded as TYPE).
           visual_type: b.scene?.paper?.visual_type || null,
+          // Paper style: the abstract shape's rendered box (paper coords),
+          // from the same shapeLayout() the renderer draws with — the audit
+          // (shapes-clear-of-text) checks it stays in the VISUAL zone.
+          shape_box: b.scene?.paper ? (shapeLayout(b.scene.paper.shape?.variant, b.scene.paper.shape?.corner, b.scene.paper.visual_type)?.box || null) : null,
+          // ...and its text sizes (paper-text.js, the renderer's own numbers):
+          // how thick this beat's real text strokes can be.
+          headline_size: b.scene?.paper ? headlineLayout(b.scene.paper).size : null,
+          caption_size: b.scene?.paper && Array.isArray(b.spoken) ? captionSize(b.spoken) : null,
           renders_typography: rendersTypography,
           text: rendersTypography ? [b.text].filter((t) => t && String(t).trim()) : [],
           on_screen_text: onScreenText,

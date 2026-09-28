@@ -1364,8 +1364,10 @@ export function DirectedScene({ plan, ttsAudioPath }) {
       {/* SFX — semantic triggers only (sound-design.js semanticSfxEvents). */}
       {Array.isArray(plan.sfx) && plan.sfx.length ? <SfxPalette events={plan.sfx} /> : null}
       {/* Reference paper style (docs/REFERENCE-STYLE.md): the whole frame is
-          PaperVideo — static studio, rail, paper and timeline device; only
-          the paper's content changes per beat. */}
+          PaperVideo — static studio and paper (no rail, no timeline device);
+          only the paper's content changes per beat. Nothing below renders in
+          paper mode, so composed-scene / photo.jsx (rectangular photos, other
+          styles) can never draw on the paper. */}
       {plan.paper ? <PaperVideo plan={plan} /> : null}
       {/* Previous beat echo — fading out during transition */}
       {!plan.paper && showPrevEcho && (

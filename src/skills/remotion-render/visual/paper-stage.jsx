@@ -12,15 +12,19 @@
  *     from an edge with a slight rotation, then drifts (CUTOUT); or a
  *     system-drawn COUNTER / BAR / PIE / LINE / GAUGE / MAP (primitives/).
  *     No phone mockup and no rectangular photo.
- *   - a thin ring draws around the cutout; a dot grid fades in behind it;
- *     design-tool selection handles frame the headline
- *   - a black petal / swoosh / hairline shape (abstract-shape.jsx)
- *   - the sentence itself as the tiny body paragraph (real text, never
- *     invented filler)
+ *   - a thin ring draws around the cutout; a dot grid fades in behind it
+ *   - a black petal / swoosh / hairline shape (abstract-shape.jsx), behind
+ *     the visual
+ *   - the word-level caption (paper-caption.jsx)
+ *
+ * THE ZONE MAP (paper-layout.js ZONES) — the same on every beat, nothing
+ * crosses between zones: the visual (and the shape) in VISUAL, the lead-in
+ * + headline block in HEADLINE (sized to fit it), the caption in CAPTION.
+ * Checked on rendered frames by local-audit.cjs shapes-clear-of-text.
  */
 import React from "react";
 import { Img, staticFile, Easing } from "remotion";
-import { PAPER, PAPER_INNER, INK, INK_SOFT, PAPER_FILL, PAPER_EDGE_SHADOW } from "./paper-layout.js";
+import { PAPER, PAPER_INNER, ZONES, INK, INK_SOFT, PAPER_FILL, PAPER_EDGE_SHADOW } from "./paper-layout.js";
 import { AbstractShape } from "./abstract-shape.jsx";
 import { Counter } from "./primitives/counter.jsx";
 import { BarChart } from "./primitives/bar-chart.jsx";
@@ -29,6 +33,7 @@ import { LineChart } from "./primitives/line-chart.jsx";
 import { Gauge } from "./primitives/gauge.jsx";
 import { PaperMap } from "./primitives/map.jsx";
 import { PaperCaption } from "./paper-caption.jsx";
+import { headlineLayout, HEADLINE_ZONE_PAD } from "./paper-text.js";
 
 const clamp01 = (v) => Math.max(0, Math.min(1, Number.isFinite(v) ? v : 1));
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
@@ -58,18 +63,6 @@ function fmt(n, { dec, comma }) {
   return comma ? Number(s).toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }) : s;
 }
 
-function fitSize(text, width, max, min) {
-  return Math.round(Math.max(min, Math.min(max, width / Math.max(1, String(text).length * 0.56))));
-}
-// The fit contract: the size at which the LONGEST word still fits the
-// width (bold grotesk, uppercase ~0.68 em per character, lowercase ~0.58).
-// Applied after fitSize and allowed to go under its minimum - a word that
-// runs off the inner box is a fit failure, a smaller word is not.
-function fitLongestWord(text, width, size, upper) {
-  const longest = Math.max(1, ...String(text || "").split(/\s+/).map((w) => w.length));
-  return Math.min(size, Math.floor(width / (longest * (upper ? 0.68 : 0.58))));
-}
-
 // The paper's inner content box (paper-layout.js PAPER_INNER), exposed to
 // everything drawn on the paper. Primitives also take it as a `bounds` prop.
 export const PaperBounds = React.createContext(PAPER_INNER);
@@ -80,30 +73,21 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   const outT = clamp01((dur - local) / s(0.2));
   const vis = inT * outT;
   const blur = (1 - inT) * 6;
-  const hasCutout = !!c.cutout?.asset;
-  // No phone mockups: a cutout is the rembg-isolated object (PNG + alpha).
-  const vtype = String(c.visual_type || (hasCutout ? "CUTOUT" : "TYPE")).toUpperCase();
-  const chart = ["COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP"].includes(vtype) && c.data ? vtype : null;
-  const center = c.layout === "center" || (!hasCutout && !chart);
+  // Headline layout (paper-text.js — the same numbers render.js records in
+  // the manifest): the block sized to fit the HEADLINE zone and centred in it.
+  const HL = headlineLayout(c);
+  const { hasCutout, vtype, chart, center, words, upper, lead, textLeft, textWidth } = HL;
+  const hSize = HL.size;
+  const headlineTop = HL.top;
   const W = PAPER.w, H = PAPER.h;
   const B = PAPER_INNER;
+  const ZV = ZONES.VISUAL, ZH = ZONES.HEADLINE, ZC = ZONES.CAPTION;
 
   // ── headline, word by word (grey -> black), emphasis pops 8% ──
-  const words = String(c.headline || "").split(/\s+/).filter(Boolean);
   const hStart = s(0.35), hStep = s(0.2);
-  const upper = words.length <= 3;
   const align = center ? "center" : "left";
-  // Headline block inside the inner box (fit contract), 4 px clear of it.
-  const textLeft = center ? B.x + 4 : B.x + 22;
-  const textWidth = center ? B.w - 8 : B.w - 44;
-  const hSize = fitLongestWord(c.headline, textWidth,
-    !hasCutout && !chart ? fitSize(c.headline, textWidth * 0.93, 84, 34) : fitSize(c.headline, textWidth * 0.86, 56, 26), upper);
-  // Visual on top (y 8-50%), headline under it (55%), the word-level
-  // caption under that (76%) - the page is filled top to bottom. A TYPE beat's
-  // headline sits higher and larger.
-  const headlineTop = hasCutout || chart ? H * 0.55 : H * 0.34;
-  const captionTop = H * 0.76;
-  const lead = String(c.lead_in || "").trim();
+  // Caption in the CAPTION zone, where it has always sat (paper y 76%).
+  const captionTop = Math.max(ZC.y + HEADLINE_ZONE_PAD, H * 0.76);
   const emph = String(c.emphasis_word || "").toLowerCase().replace(/[^a-z0-9]/g, "");
   const headlineDone = hStart + words.length * hStep + s(0.2);
 
@@ -121,7 +105,7 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   const headline = (
     <div style={{ position: "absolute", left: textLeft, top: headlineTop, width: textWidth, textAlign: align }}>
       {lead ? (
-        <div style={{ font: `italic 400 ${Math.round(hSize * 0.42 + 8)}px ${SERIF}`, color: INK, marginBottom: 6,
+        <div style={{ font: `italic 400 ${HL.leadSize}px ${SERIF}`, color: INK, marginBottom: 6,
           opacity: ease(clamp01((local - s(0.1)) / s(0.25))) }}>{lead}</div>
       ) : null}
       {numText ? (
@@ -157,23 +141,27 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
       opacity: ease(clamp01((local - headlineDone) / s(0.3))) }}>{String(c.body).slice(0, 170)}</div>
   ) : null;
 
-  // ── cutout: the isolated object, on the paper ──
+  // ── cutout: the isolated object, in the VISUAL zone ──
   let hero = null, ring = null, grid = null;
   if (hasCutout) {
     const enterT = ease(clamp01((local - s(0.15)) / s(0.3)));
     const from = c.cutout.enter || "bottom";
-    const off = (1 - enterT) * 0.35;
-    const dx = from === "left" ? -W * off : from === "right" ? W * off : 0;
-    const dy = from === "top" ? -H * off : from === "bottom" ? H * off : 0;
+    // It rises / slides a short way INTO place, inside the visual zone (it
+    // used to travel 35% of the page, up through the headline and caption).
+    const off = (1 - enterT) * 36;
+    const dx = from === "left" ? -off : from === "right" ? off : 0;
+    const dy = from === "top" ? -off * 0.6 : from === "bottom" ? off : 0;
     const drift = 0.015 * W * clamp01((local - s(0.45)) / Math.max(1, dur - s(0.45)));
     const rot = (1 - enterT) * -6;
     {
-      // Fit contract: the cutout is drawn "contain" in a square box, so its
-      // alpha bounds are inside the box. The box is at most 0.55 of the
-      // inner height and the inner width, and placed so box + drift +
-      // drop shadow (~30 px right/down) stay inside the inner box.
-      const cw = Math.min(W * 0.56, B.h * 0.55, B.w - 60);
-      const cx = Math.min(B.x + B.w - cw - 40, (W - cw) / 2 + (center ? 0 : W * 0.06)), cy = Math.max(B.y + 20, H * 0.1);
+      // Zone map + fit contract: the cutout is drawn "contain" in a square
+      // box, so its alpha bounds are inside the box. The box is centred in
+      // the visual zone (12 px high, for the drop shadow below it), at most
+      // 293 px, and placed so box + drift + drop shadow (~30 px right/down)
+      // and the ring around it stay inside the zone.
+      const cw = Math.min(W * 0.56, ZV.h - 64, ZV.w - 80);
+      const cx = Math.min(ZV.x + ZV.w - cw - 40, (W - cw) / 2 + (center ? 0 : W * 0.06));
+      const cy = ZV.y + ZV.h / 2 - 12 - cw / 2;
       hero = (
         <div style={{ position: "absolute", left: cx + dx + drift, top: cy + dy, width: cw, height: cw,
           transform: `rotate(${rot}deg)`, opacity: enterT, filter: "drop-shadow(10px 16px 14px rgba(0,0,0,0.28))" }}>
@@ -200,10 +188,9 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
     }
   }
 
-  // System-built data viz, on the paper in its ink (visual zone above the
-  // headline). Drawn, never fetched.
-  // Fit contract: the visual's bounds are a sub-box of the inner box.
-  const zone = { x: B.x + 4, y: Math.max(B.y + 4, H * 0.08), w: B.w - 8, h: H * 0.42 };
+  // System-built data viz, on the paper in its ink, in the VISUAL zone
+  // (4 px clear of its edges). Drawn, never fetched.
+  const zone = { x: ZV.x + 4, y: ZV.y + 4, w: ZV.w - 8, h: ZV.h - 8 };
   const vizProps = { data: c.data, bounds: zone, local, dur, fps, font };
   const viz = chart === "COUNTER" ? <Counter {...vizProps} />
     : chart === "BAR" ? <BarChart {...vizProps} />
@@ -215,15 +202,15 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
 
   return (
     <div style={{ position: "absolute", inset: 0, opacity: vis, filter: `blur(${blur.toFixed(2)}px)` }}>
+      {/* The shape first: behind the visual, in a corner of the VISUAL zone. */}
+      <AbstractShape variant={c.shape?.variant} corner={c.shape?.corner} visualType={vtype} local={local} fps={fps} />
       {viz}
       {grid}
       {ring}
       {hero}
       {headline}
       {body}
-      <PaperCaption words={c.spoken} local={local} fps={fps} emphasis={c.emphasis_word} top={captionTop} bounds={B} />
-      {/* Inside the inner box (fit contract) - not clipped, drawn to fit. */}
-      <AbstractShape variant={c.shape?.variant} corner={c.shape?.corner} local={local} fps={fps} bounds={B} />
+      <PaperCaption words={c.spoken} local={local} fps={fps} emphasis={c.emphasis_word} top={captionTop} bounds={ZC} />
     </div>
   );
 }

@@ -19,7 +19,8 @@
  * fitSize-style shrinking keeps long words inside the paper.
  */
 import React from "react";
-import { PAPER, PAPER_INNER, INK } from "./paper-layout.js";
+import { PAPER, ZONES, INK } from "./paper-layout.js";
+import { captionSize } from "./paper-text.js";
 
 const SERIF = "'Playfair Display', Georgia, serif";
 const norm = (w) => String(w || "").toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -37,7 +38,7 @@ function chunk(words, maxChars) {
   return out;
 }
 
-export function PaperCaption({ words, local, fps = 30, emphasis, top, bounds = PAPER_INNER }) {
+export function PaperCaption({ words, local, fps = 30, emphasis, top, bounds = ZONES.CAPTION }) {
   if (!Array.isArray(words) || !words.length) {
     throw new Error("PaperCaption: beat has no word timings — the plan must be regenerated with the voiceover's word boundaries");
   }
@@ -46,8 +47,8 @@ export function PaperCaption({ words, local, fps = 30, emphasis, top, bounds = P
   // it; a word too long for a row shrinks the caption (italic serif, ~0.52
   // em per character, plus the emphasis word's 1.08 pop).
   const width = bounds.w - 8;
-  const longest = Math.max(1, ...words.map((w) => String(w.text).length));
-  const size = Math.min(26, Math.floor(width / (longest * 0.52 * 1.08)));
+  // paper-text.js captionSize(): the same number render.js records.
+  const size = captionSize(words, width);
   const perRow = Math.floor(width / (size * 0.5));
   const chunks = chunk(words, perRow * 2);
   // The chunk on screen: the last one whose first word has been spoken.

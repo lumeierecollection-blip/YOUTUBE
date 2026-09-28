@@ -164,6 +164,130 @@ async function fitCheck(video, beats, DW, DH) {
   return { bad, checked };
 }
 
+// ── shapes-clear-of-text ─────────────────────────────────────────────
+// The abstract shapes are drawn in the same ink as the text, so a colour
+// test cannot tell them apart. What does: a shape is THICKER than any text
+// stroke (a petal is ~70 px wide, a swoosh stroke >= 13 px, while the
+// boldest headline stem is a small fraction of the font size), or it is a
+// thin line LONGER than any glyph, or it CROSSES a zone boundary (text is
+// laid out inside its zone; a shape lives in the visual zone). In the
+// HEADLINE and CAPTION zones, every solid-ink connected component is
+// measured; one that is too thick, a long thin line, or touching the zone's
+// edge is shape ink over text and fails the beat. Also: the manifest's
+// shape_box (the renderer's own placement) must lie inside the VISUAL
+// zone and within 220 x 220.
+const SHAPE_INK = 110;          // luma below this = solid ink (text or shape)
+// The thickest a text stroke can be scales with its font size: its half-
+// width (the largest inscribed radius of a glyph) is at most
+// TEXT_RADIUS_PER_EM x the font size + TEXT_RADIUS_PAD px. Calibrated on
+// rendered frames of run 36397373831 ch-44: the thickest glyph ink measured
+// was the tail junction of the "Q" in a 51 px bold headline, radius 6.22 px
+// = 0.122 em; plain stems 0.105 em. Each beat's real sizes come from the
+// manifest (render.js headline_size / caption_size, from paper-text.js).
+const TEXT_RADIUS_PER_EM = 0.15;
+const TEXT_RADIUS_PAD = 1.5;
+const THIN_LONG_EXTENT = 110;   // design px: a line at least this long ...
+const THIN_LONG_WIDTH = 4;      // ... whose mean width (area / length) is under this
+const SHAPE_BOX_MAX = 220;
+
+function inkComponents(buf, w, h) {
+  const n = w * h, dark = new Uint8Array(n);
+  for (let i = 0; i < n; i++) dark[i] = buf[i] < SHAPE_INK ? 1 : 0;
+  // Chamfer (3-4) distance from each ink pixel to the nearest non-ink pixel;
+  // outside the crop counts as non-ink.
+  const INF = 1 << 28, d = new Int32Array(n);
+  for (let i = 0; i < n; i++) d[i] = dark[i] ? INF : 0;
+  const at = (x, y) => (x < 0 || y < 0 || x >= w || y >= h ? 0 : d[y * w + x]);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const i = y * w + x; if (!dark[i]) continue;
+    d[i] = Math.min(d[i], at(x - 1, y) + 3, at(x, y - 1) + 3, at(x - 1, y - 1) + 4, at(x + 1, y - 1) + 4);
+  }
+  for (let y = h - 1; y >= 0; y--) for (let x = w - 1; x >= 0; x--) {
+    const i = y * w + x; if (!dark[i]) continue;
+    d[i] = Math.min(d[i], at(x + 1, y) + 3, at(x, y + 1) + 3, at(x + 1, y + 1) + 4, at(x - 1, y + 1) + 4);
+  }
+  // 8-connected components.
+  const label = new Int32Array(n), comps = [], stack = [];
+  for (let i = 0; i < n; i++) {
+    if (!dark[i] || label[i]) continue;
+    const c = { x1: w, y1: h, x2: -1, y2: -1, count: 0, radius: 0 };
+    label[i] = comps.length + 1; stack.push(i);
+    while (stack.length) {
+      const j = stack.pop(), x = j % w, y = (j - x) / w;
+      c.count++; c.radius = Math.max(c.radius, d[j] / 3);
+      if (x < c.x1) c.x1 = x; if (x > c.x2) c.x2 = x; if (y < c.y1) c.y1 = y; if (y > c.y2) c.y2 = y;
+      for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+        const xx = x + dx, yy = y + dy;
+        if (xx < 0 || yy < 0 || xx >= w || yy >= h) continue;
+        const k = yy * w + xx;
+        if (dark[k] && !label[k]) { label[k] = comps.length + 1; stack.push(k); }
+      }
+    }
+    comps.push(c);
+  }
+  return comps;
+}
+
+async function shapesCheck(video, beats, DW, DH, debug = false) {
+  const { PAPER, ZONES, boxInside } = await import(pathToFileURL(join(ROOT, "src", "skills", "remotion-render", "visual", "paper-layout.js")).href);
+  const actual = videoSize(video);
+  const sx = actual ? actual.w / DW : 1, sy = actual ? actual.h / DH : 1, s = (sx + sy) / 2;
+  const bad = [];
+  let checked = 0;
+  const zoneCrop = (Z) => ({
+    x: Math.round((PAPER.x + Z.x) * sx) + 1, y: Math.round((PAPER.y + Z.y) * sy) + 1,
+    w: Math.round(Z.w * sx) - 2, h: Math.round(Z.h * sy) - 2,
+  });
+  const toPaper = (Z, c, k) => {
+    const X = (v) => Math.round((v + 1) / sx + Z.x), Y = (v) => Math.round((v + 1) / sy + Z.y);
+    return `${X(c.x1)},${Y(c.y1)},${X(c.x2)},${Y(c.y2)}`;
+  };
+  beats.forEach((b, i) => {
+    // Geometry: where the renderer put the shape (render.js shape_box).
+    if (b.shape_box) {
+      const sb = b.shape_box;
+      if (!boxInside(sb, ZONES.VISUAL, 0.5) || sb.w > SHAPE_BOX_MAX + 0.5 || sb.h > SHAPE_BOX_MAX + 0.5) {
+        const msg = `[shapes] beat ${i}: shape box (${Math.round(sb.x)},${Math.round(sb.y)},${Math.round(sb.x + sb.w)},${Math.round(sb.y + sb.h)}) is outside the visual zone or over ${SHAPE_BOX_MAX}x${SHAPE_BOX_MAX}`;
+        console.log(msg); bad.push(msg.replace(/^\[shapes\] /, "")); return;
+      }
+    }
+    for (const share of [0.5, 0.85]) {
+      const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share;
+      let failed = null;
+      // Legacy manifests without sizes are read at the largest sizes the
+      // renderer can draw (84 px headline, 26 px caption).
+      const maxRadius = {
+        headline: TEXT_RADIUS_PER_EM * (Number(b.headline_size) || 84) + TEXT_RADIUS_PAD,
+        caption: TEXT_RADIUS_PER_EM * (Number(b.caption_size) || 26) * 1.08 + TEXT_RADIUS_PAD,
+      };
+      for (const [name, Z] of [["headline", ZONES.HEADLINE], ["caption", ZONES.CAPTION]]) {
+        const cr = zoneCrop(Z);
+        const buf = grayCrop(video, t, cr.w, cr.h, cr.x, cr.y);
+        if (!buf) { failed = `beat ${i}: ${name} zone at ${t.toFixed(2)}s could not be read`; break; }
+        const comps = inkComponents(buf, cr.w, cr.h);
+        // Text ink bounds, for the report.
+        const tb = comps.reduce((a, c) => ({ x1: Math.min(a.x1, c.x1), y1: Math.min(a.y1, c.y1), x2: Math.max(a.x2, c.x2), y2: Math.max(a.y2, c.y2) }), { x1: cr.w, y1: cr.h, x2: -1, y2: -1 });
+        for (const c of comps) {
+          const radius = c.radius / s, ext = Math.max(c.x2 - c.x1 + 1, c.y2 - c.y1 + 1) / s, width = c.count / (s * s) / Math.max(1, ext);
+          const crossing = c.y1 === 0 || c.y2 === cr.h - 1;
+          const why = radius > maxRadius[name] ? `ink ${(radius * 2).toFixed(1)} px thick (this beat's ${name} text strokes are at most ${(maxRadius[name] * 2).toFixed(1)})`
+            : ext >= THIN_LONG_EXTENT && width < THIN_LONG_WIDTH ? `a thin line ${ext.toFixed(0)} px long`
+            : crossing ? `ink crossing the ${name} zone's ${c.y1 === 0 ? "top" : "bottom"} edge`
+            : null;
+          if (debug) console.log(`[shapes-debug] beat ${i} ${Math.round(share * 100)}% ${name}: comp (${toPaper(Z, c)}) radius ${radius.toFixed(2)} extent ${ext.toFixed(0)} width ${width.toFixed(1)} n ${c.count}${why ? "  <== " + why : ""}`);
+          if (why && !failed) {
+            failed = `[shapes] beat ${i}: shape pixels inside the ${name} zone at ${Math.round(share * 100)}% — ${why}; component (${toPaper(Z, c)}), text ink (${tb.x2 >= 0 ? toPaper(Z, tb) : "none"})`;
+          }
+        }
+        if (failed) break;
+      }
+      checked++;
+      if (failed) { console.log(failed.startsWith("[shapes]") ? failed : `[shapes] ${failed}`); bad.push(failed.replace(/^\[shapes\] /, "")); break; }
+    }
+  });
+  return { bad, checked };
+}
+
 function parseSrt(text) {
   const toSec = (ts) => { const [h, m, rest] = ts.split(":"); return +h * 3600 + +m * 60 + +rest.replace(",", "."); };
   return text.replace(/\r/g, "").split(/\n\s*\n/).map((block) => {
@@ -176,16 +300,22 @@ function parseSrt(text) {
 }
 
 async function main() {
-  if (process.argv.includes("--fit-only")) {
+  // Per-render paper checks (render-and-qa.js runs this on EVERY paper
+  // render): frames-fit-paper and shapes-clear-of-text. --fit-only is the
+  // old name of the same mode.
+  if (process.argv.includes("--paper-only") || process.argv.includes("--fit-only")) {
     const video = arg("video"), manifestPath = arg("manifest");
     if (!video || !existsSync(video) || !manifestPath || !existsSync(manifestPath)) {
       console.error(`[fit] cannot run — need --video and --manifest (${video}, ${manifestPath})`);
       process.exit(2);
     }
     const m = JSON.parse(readFileSync(manifestPath, "utf8"));
-    const { bad, checked } = await fitCheck(video, m.beats || [], m.width || 1080, m.height || 1920);
-    console.log(`[fit] frames-fit-paper ${bad.length ? "FAIL" : "PASS"} — ${checked} frame(s) of ${(m.beats || []).length} beat(s)${bad.length ? `, ${bad.length} beat(s) outside the inner box` : ", every content bbox inside the paper's inner box"}`);
-    process.exit(bad.length ? 1 : 0);
+    const beats = m.beats || [];
+    const fit = await fitCheck(video, beats, m.width || 1080, m.height || 1920);
+    console.log(`[fit] frames-fit-paper ${fit.bad.length ? "FAIL" : "PASS"} — ${fit.checked} frame(s) of ${beats.length} beat(s)${fit.bad.length ? `, ${fit.bad.length} beat(s) outside the inner box` : ", every content bbox inside the paper's inner box"}`);
+    const sh = await shapesCheck(video, beats, m.width || 1080, m.height || 1920, process.argv.includes("--debug"));
+    console.log(`[shapes] shapes-clear-of-text ${sh.bad.length ? "FAIL" : "PASS"} — ${sh.checked} frame(s) of ${beats.length} beat(s)${sh.bad.length ? `, ${sh.bad.length} beat(s) with shape ink in the headline/caption zone` : ", no shape ink in the headline or caption zone"}`);
+    process.exit(fit.bad.length || sh.bad.length ? 1 : 0);
   }
   const video = arg("video"), manifestPath = arg("manifest"), planPath = arg("plan");
   const srtPath = arg("srt"), audio = arg("audio"), out = arg("out");
@@ -248,6 +378,8 @@ async function main() {
   if (beats.some((b) => b.visual_type)) {
     const fit = await fitCheck(video, beats, DW, DH);
     add("frames-fit-paper", fit.bad, `${fit.checked} frame(s): every content bbox inside the paper's inner box`);
+    const sh = await shapesCheck(video, beats, DW, DH);
+    add("shapes-clear-of-text", sh.bad, `${sh.checked} frame(s): no shape ink in the headline or caption zone`);
   }
 
   const durBad = [];
