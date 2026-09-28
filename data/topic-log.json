@@ -140,9 +140,14 @@
           "topic": "money-mindset-shifts",
           "slug": "money-mindset-shifts-2026",
           "reserved_at": "2026-09-23T11:10:47.788Z"
+        },
+        {
+          "topic": "behavioral-economics-and-money-mindset",
+          "slug": "behavioral-economics-and-money-mindset",
+          "reserved_at": "2026-09-28T20:25:17.922Z"
         }
       ],
-      "last_generated": "2026-09-23T11:10:47.789Z"
+      "last_generated": "2026-09-28T20:25:17.922Z"
     },
     "2": {
       "channel_name": "Legal Brief",
