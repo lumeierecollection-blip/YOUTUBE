@@ -211,6 +211,14 @@ export function resetTokenUsage() {
 
 // ── Core API call ─────────────────────────────────────────────────
 
+// Provider-wide outage: when EVERY key fails with an overload / rate / quota
+// / timeout error, wait and cycle the keys again (20 s, then 45 s) before
+// giving up. Run 36422387281: key 1 over its daily quota and keys 2-3 "503
+// This model is currently experiencing high demand" — every caller retried
+// at once into the same wall and all six channels failed with no plan. A
+// hard error (400/401/403) or a success is returned at once, as before.
+const OUTAGE = /\b(429|500|502|503|504|UNAVAILABLE|RESOURCE_EXHAUSTED|high demand|overloaded|quota|timed out|timeout)\b/i;
+
 /**
  * Make a chat completion call to Gemini via OpenAI-compatible endpoint.
  *
@@ -222,6 +230,18 @@ export function resetTokenUsage() {
  * @returns {Promise<Object>} Parsed JSON response or { error: string }
  */
 export async function callGemini(messages, opts = {}) {
+  let r = await callGeminiOnce(messages, opts);
+  for (const waitMs of [20000, 45000]) {
+    if (!r?.error || !/keys failed/.test(String(r.error)) || !OUTAGE.test(String(r.error))) break;
+    console.error(`[gemini-client] every key failed (${String(r.error).slice(0, 160)}) — waiting ${waitMs / 1000}s, then all keys again`);
+    await sleep(waitMs);
+    keyIndex = 0;
+    r = await callGeminiOnce(messages, opts);
+  }
+  return r;
+}
+
+async function callGeminiOnce(messages, opts = {}) {
   const {
     maxTokens = 1200,
     temperature = 0,
