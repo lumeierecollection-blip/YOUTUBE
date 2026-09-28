@@ -16,7 +16,7 @@
  *   node scripts/render-and-qa.js --dry-run [--channel <id>] [--script <path>]
  */
 import "dotenv/config";
-import { spawn, execFileSync } from "node:child_process";
+import { spawn, spawnSync, execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync, statSync } from "node:fs";
 import { join, dirname, basename, extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -778,37 +778,72 @@ function movementFor(concept) {
 }
 
 // ── Reference paper style: cutouts + per-beat paper content ──────────
-// A fetched image becomes a grayscale PNG (+15% contrast) in
-// public/cutouts/. rembg is not installed on the CI runner (treat.js needs
-// a local venv), so the object is NOT segmented. Instead: a photo whose
-// corners are plain near-white is drawn as a cutout with multiply blending
-// (its white background vanishes into the white paper); any other photo
-// is shown inside a phone mockup — both are how the reference shows images.
+// Only a CUTOUT beat fetches. Its object is searched as "<object> isolated
+// white background", segmented with rembg (scripts/isolate-cutout.py), made
+// grayscale, and saved as a PNG with alpha in public/cutouts/. A result
+// whose mask covers < 15% (or is still a rectangle) is discarded and the
+// next result fetched; after 3 failures the beat becomes TYPE. There is no
+// phone mockup and no rectangular photo path.
 const CUTOUT_DIR = join(ROOT, "src", "skills", "remotion-render", "public", "cutouts");
 const CUTOUT_MANIFEST = join(CUTOUT_DIR, "manifest.json");
-const MAX_CUTOUTS = 20;
-let rembgNoted = false;
+const ISOLATE_PY = join(ROOT, "scripts", "isolate-cutout.py");
+const CUTOUT_SUFFIX = "isolated white background";
+const CUTOUT_TRIES = 3;
+const PYTHON = process.env.PYTHON || (process.platform === "win32" ? "python" : "python3");
 
 async function makeCutout(asset) {
-  const { default: sharp } = await import("sharp");
   mkdirSync(CUTOUT_DIR, { recursive: true });
   const out = join(CUTOUT_DIR, `${asset.id}.png`);
   const src = join(ROOT, "src", "skills", "remotion-render", "public", asset.local_path);
-  if (!rembgNoted) { console.log("[cutout] rembg missing, using plain grayscale"); rembgNoted = true; }
-  const img = sharp(src).rotate().grayscale();
-  const { data, info } = await img.clone().resize(200, 200, { fit: "fill" }).raw().toBuffer({ resolveWithObject: true });
-  const patch = (x0, y0) => { const v = []; for (let y = y0; y < y0 + 18; y++) for (let x = x0; x < x0 + 18; x++) v.push(data[(y * info.width + x) * info.channels]); const m = v.reduce((a, b) => a + b, 0) / v.length; const sd = Math.sqrt(v.reduce((a, b) => a + (b - m) ** 2, 0) / v.length); return { m, sd }; };
-  const corners = [patch(0, 0), patch(182, 0), patch(0, 182), patch(182, 182)];
-  const plain = corners.every((c) => c.m > 232 && c.sd < 12);
-  if (!existsSync(out)) await img.linear(1.15, -128 * 0.15).png().toFile(out);
-  const mode = plain ? "cutout" : "phone";
+  const r = spawnSync(PYTHON, [ISOLATE_PY, src, out], { encoding: "utf8", maxBuffer: 1 << 20 });
+  const line = String(r.stdout || "").trim().split(/\r?\n/).pop() || "";
+  let res;
+  try { res = JSON.parse(line); } catch { res = { ok: false, why: `isolate-cutout.py gave no result (exit ${r.status}): ${String(r.stderr || "").slice(-200)}` }; }
+  if (/rembg unavailable/.test(res.why || "")) throw new Error(`rembg is required for cutouts and is not installed: ${res.why}`);
+  if (!res.ok || !existsSync(out)) return { ok: false, why: res.why || "no output" };
   const man = readJsonSafe(CUTOUT_MANIFEST) || { version: 1, cutouts: [] };
-  if (!man.cutouts.find((c) => c.id === asset.id)) {
-    man.cutouts.push({ id: asset.id, subject: (asset.concepts || [])[0] || null, local_path: `cutouts/${asset.id}.png`, mode,
-      source: asset.source, source_url: asset.source_url, license: asset.license, attribution: asset.attribution, segmented: false });
-    writeFileSync(CUTOUT_MANIFEST, JSON.stringify(man, null, 2) + "\n");
+  man.cutouts = (man.cutouts || []).filter((c) => c.id !== asset.id);
+  man.cutouts.push({ id: asset.id, subject: (asset.concepts || [])[0] || null, local_path: `cutouts/${asset.id}.png`,
+    source: asset.source, source_url: asset.source_url, license: asset.license, attribution: asset.attribution,
+    segmented: true, coverage: res.coverage, rect_fill: res.rect_fill });
+  writeFileSync(CUTOUT_MANIFEST, JSON.stringify(man, null, 2) + "\n");
+  return { ok: true, cutout: { asset: `cutouts/${asset.id}.png`, mode: "cutout", coverage: res.coverage } };
+}
+
+// One CUTOUT beat: up to 3 results, each isolated and checked.
+async function cutoutFor(channelId, planPath, b, stats) {
+  const object = String(b.data?.object || b.cutout_query || "").trim();
+  const norm = (x) => String(x || "").trim().toLowerCase();
+  const tried = new Set();
+  let fetched = 0;
+  for (let attempt = 1; attempt <= CUTOUT_TRIES; attempt++) {
+    let manifest = readJsonSafe(ASSET_MANIFEST) || { assets: [] };
+    let asset = (manifest.assets || []).find((a) => !tried.has(a.id) && (a.concepts || []).some((x) => norm(x) === norm(object)));
+    if (!asset) {
+      const tmpIn = planPath.replace(/\.json$/, `-cutout-${b.index}-requests.json`), tmpOut = planPath.replace(/\.json$/, `-cutout-${b.index}-results.json`);
+      writeFileSync(tmpIn, JSON.stringify([{ beat: b.index, concept: object, asset_query: object, suffix: CUTOUT_SUFFIX, exclude: [...tried] }], null, 2) + "\n");
+      const topic = channelTopic(channelId);
+      const f = await runChild("node", [FETCH_ASSETS_CJS, "--in", tmpIn, "--out", tmpOut, ...(topic ? ["--topic", topic] : [])], { label: `cutout ${channelId} b${b.index}` });
+      if (f.code !== 0) throw new Error(`fetch-assets.cjs exited ${f.code}`);
+      const hit = (readJsonSafe(tmpOut)?.resolved || [])[0];
+      if (!hit) { console.log(`[cutout] "${object} ${CUTOUT_SUFFIX}" no (further) verified result`); break; }
+      fetched++;
+      manifest = readJsonSafe(ASSET_MANIFEST) || { assets: [] };
+      asset = manifest.assets.find((a) => a.id === hit.asset_id);
+      if (!asset) break;
+    }
+    tried.add(asset.id);
+    const r = await makeCutout(asset);
+    if (r.ok) {
+      console.log(`[cutout] beat ${b.index} "${object}": ${asset.id} isolated (alpha ${(r.cutout.coverage * 100).toFixed(1)}%, ${asset.license})`);
+      return { cutout: r.cutout, asset, fetched };
+    }
+    stats.discarded++;
+    console.log(`[cutout] beat ${b.index} "${object}": ${asset.id} discarded (${r.why}) — try ${attempt}/${CUTOUT_TRIES}`);
   }
-  return { asset: `cutouts/${asset.id}.png`, mode };
+  stats.converted++;
+  console.log(`[cutout] "${object} ${CUTOUT_SUFFIX}" failed isolation, converted beat ${b.index} to TYPE`);
+  return { cutout: null, asset: null, fetched };
 }
 
 function paperContentFor(b, sentence, cutout) {
@@ -897,45 +932,34 @@ async function resolveAssets(channelId, planPath) {
   return { ok: true, planPath: out, counts, fetchedNew };
 }
 
-// Paper-style plans: fetch each beat's cutout_query, build paper content.
-// An unresolved cutout makes a typography-only paper beat — never a drawing,
-// never a mechanism scene.
+// Paper-style plans: only CUTOUT beats fetch (cutoutFor); COUNTER / BAR /
+// PIE / LINE / GAUGE / MAP are drawn from the plan's checked data; TYPE is
+// typography. A failed cutout becomes TYPE — never a drawing, a photo
+// rectangle or a mechanism scene.
 async function resolvePaper(channelId, planPath, plan) {
-  let manifest = readJsonSafe(ASSET_MANIFEST) || { assets: [] };
-  const asBeat = (b) => ({ ...b, concept: b.cutout_query, asset_query: b.cutout_query });
-  const wanted = plan.beats.filter((b) => b.cutout_query && !findAsset(manifest, asBeat(b))).slice(0, MAX_CUTOUTS)
-    .map((b) => ({ beat: b.index, concept: b.cutout_query, asset_query: b.cutout_query }));
   let fetchedNew = 0;
-  if (wanted.length) {
-    const tmpIn = planPath.replace(/\.json$/, "-asset-requests.json"), tmpOut = planPath.replace(/\.json$/, "-asset-results.json");
-    writeFileSync(tmpIn, JSON.stringify(wanted, null, 2) + "\n");
-    const topic = channelTopic(channelId);
-    const f = await runChild("node", [FETCH_ASSETS_CJS, "--in", tmpIn, "--out", tmpOut, ...(topic ? ["--topic", topic] : [])], { label: `assets ${channelId}` });
-    if (f.code !== 0) return { ok: false, reason: `fetch-assets.cjs exited ${f.code}` };
-    manifest = readJsonSafe(ASSET_MANIFEST) || { assets: [] };
-    fetchedNew = (readJsonSafe(tmpOut)?.resolved || []).length;
-  }
-  const counts = { editorial: 0, type: 0, cutouts: 0, unresolved: 0 };
+  const stats = { discarded: 0, converted: 0 };
+  const counts = { editorial: 0, type: 0, cutouts: 0, unresolved: 0, by_type: {} };
   for (const b of plan.beats) {
-    const asset = b.cutout_query ? findAsset(manifest, asBeat(b)) : null;
-    let cutout = null;
-    if (asset) {
-      try { cutout = await makeCutout(asset); fetchedNew++; } catch (e) { console.warn(`::warning::[cutout] ${asset.id}: ${e.message}`); }
+    let cutout = null, asset = null;
+    if (String(b.visual_type || "").toUpperCase() === "CUTOUT") {
+      try {
+        const r = await cutoutFor(channelId, planPath, b, stats);
+        cutout = r.cutout; asset = r.asset; fetchedNew += r.fetched + (r.cutout ? 1 : 0);
+      } catch (e) { return { ok: false, reason: `[cutout] beat ${b.index}: ${e.message}` }; }
+      if (!cutout) { b.visual_type = "TYPE"; b.data = null; b.cutout_query = null; counts.unresolved++; }
     }
-    // body = the narration sentence; PaperVideo fills it from the beat's cue.
     b.paper = paperContentFor(b, null, cutout);
+    if (asset) b.asset = { id: asset.id, source: asset.source, source_url: asset.source_url, license: asset.license, attribution: asset.attribution };
+    counts.by_type[b.paper.visual_type] = (counts.by_type[b.paper.visual_type] || 0) + 1;
     if (b.paper.kind === "TYPE") counts.type++; else counts.editorial++;
-    if (cutout) {
-      counts.cutouts++;
-      console.log(`[paper] beat ${b.index} ${b.paper.kind}: cutout ${asset.id} (${cutout.mode}, ${asset.license}) shape=${b.paper.shape.variant} — "${b.cutout_query}"`);
-    } else {
-      if (b.cutout_query) counts.unresolved++;
-      console.log(`[paper] beat ${b.index} ${b.paper.kind}: ${b.cutout_query ? `"${b.cutout_query}" unresolved → ` : ""}typography-only paper beat, shape=${b.paper.shape.variant}`);
-    }
+    if (cutout) counts.cutouts++;
+    console.log(`[paper] beat ${b.index} ${b.paper.kind} ${b.paper.visual_type} ${JSON.stringify(b.paper.data || {})} shape=${b.paper.shape.variant}`);
   }
+  plan.cutout_stats = stats;
   const out = planPath.replace(/\.json$/, "-resolved.json");
   writeFileSync(out, JSON.stringify(plan, null, 2) + "\n");
-  console.log(`[paper] resolved ${basename(planPath)}: editorial ${counts.editorial}, type ${counts.type}, cutouts ${counts.cutouts}, unresolved ${counts.unresolved}`);
+  console.log(`[paper] resolved ${basename(planPath)}: ${Object.entries(counts.by_type).map(([k, v]) => `${k} ${v}`).join(", ")}; cutouts discarded ${stats.discarded}, converted to TYPE ${stats.converted}`);
   return { ok: true, planPath: out, counts, fetchedNew };
 }
 

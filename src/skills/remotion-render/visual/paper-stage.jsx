@@ -8,8 +8,10 @@
  *   - italic lead-in, then headline words landing one at a time — grey,
  *     then black; the emphasis word scales 8% for 0.3 s
  *   - a named number rolls up from 0 over the first 40% of the beat
- *   - a grayscale cutout enters from an edge with a slight rotation, then
- *     drifts; or a phone mockup holding a grayscale photo slides in
+ *   - the planner's visual type: a rembg-isolated grayscale cutout enters
+ *     from an edge with a slight rotation, then drifts (CUTOUT); or a
+ *     system-drawn COUNTER / BAR / PIE / LINE / GAUGE / MAP (primitives/).
+ *     No phone mockup and no rectangular photo.
  *   - a thin ring draws around the cutout; a dot grid fades in behind it;
  *     design-tool selection handles frame the headline
  *   - a black petal / swoosh / hairline shape (abstract-shape.jsx)
@@ -66,8 +68,7 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   const vis = inT * outT;
   const blur = (1 - inT) * 6;
   const hasCutout = !!c.cutout?.asset;
-  // No phone mockups (owner's correction): a cutout is the isolated object.
-  const phone = false;
+  // No phone mockups: a cutout is the rembg-isolated object (PNG + alpha).
   const vtype = String(c.visual_type || (hasCutout ? "CUTOUT" : "TYPE")).toUpperCase();
   const chart = ["COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP"].includes(vtype) && c.data ? vtype : null;
   const center = c.layout === "center" || (!hasCutout && !chart);
@@ -133,14 +134,14 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   // ── tiny body paragraph: the narration sentence itself ──
   // The body paragraph sits on the frame-centre band (frame y 960 = paper
   // y ~78%), so the centre of the frame always carries real text.
-  const bodyTop = phone ? H * 0.8 : hasCutout ? H * 0.76 : H * 0.72;
+  const bodyTop = hasCutout ? H * 0.76 : H * 0.72;
   const body = c.body ? (
     <div style={{ position: "absolute", left: W * 0.16, top: bodyTop, width: W * 0.68, textAlign: center ? "center" : "left",
       font: `400 14px ${font}, sans-serif`, lineHeight: 1.38, color: "#222",
       opacity: ease(clamp01((local - headlineDone) / s(0.3))) }}>{String(c.body).slice(0, 170)}</div>
   ) : null;
 
-  // ── cutout / phone mockup ──
+  // ── cutout: the isolated object, on the paper ──
   let hero = null, ring = null, grid = null;
   if (hasCutout) {
     const enterT = ease(clamp01((local - s(0.15)) / s(0.3)));
@@ -156,7 +157,7 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
       hero = (
         <div style={{ position: "absolute", left: cx + dx + drift, top: cy + dy, width: cw, height: cw,
           transform: `rotate(${rot}deg)`, opacity: enterT, filter: "drop-shadow(10px 16px 14px rgba(0,0,0,0.28))" }}>
-          <Img src={staticFile(c.cutout.asset)} style={{ width: "100%", height: "100%", objectFit: "contain", mixBlendMode: "multiply", filter: "grayscale(1) contrast(1.15)" }} />
+          <Img src={staticFile(c.cutout.asset)} style={{ width: "100%", height: "100%", objectFit: "contain", filter: "grayscale(1) contrast(1.15)" }} />
         </div>
       );
       if (c.ring) {

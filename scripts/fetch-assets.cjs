@@ -6,7 +6,12 @@
  * before rendering (render.js itself never touches the network — AST-13).
  *
  *   node scripts/fetch-assets.cjs --in <concepts.json> --out <result.json> [--topic finance]
- *     concepts.json: [{ "beat": 1, "concept": "...", "asset_query": "..." }]
+ *     concepts.json: [{ "beat": 1, "concept": "...", "asset_query": "...",
+ *                       "suffix": "isolated white background", "exclude": ["<asset id>"] }]
+ *     suffix  - appended to every search (a CUTOUT asks for "<object> isolated
+ *               white background"); verification is against the object alone.
+ *     exclude - asset ids already tried and discarded (failed isolation), so
+ *               the next result is fetched instead.
  *
  * Sources, in order: Pexels -> Wikimedia -> Unsplash -> Pixabay -> Openverse
  * (the per-source adapters in src/skills/asset-sourcing/sources/). A source
@@ -123,6 +128,8 @@ async function main() {
 
   for (const w of wanted) {
     const concept = String(w.concept || "").trim(), query = String(w.asset_query || w.concept || "").trim();
+    const suffix = String(w.suffix || "").trim();
+    const exclude = new Set(Array.isArray(w.exclude) ? w.exclude : []);
     if (!concept) continue;
     const reasons = [];
     let done = false;
@@ -136,9 +143,10 @@ async function main() {
         if (requests >= MAX_REQUESTS) break;
         requests++;
         usedQuery = q;
-        console.log(`[fetch] ${s.name} query "${q}"`);
+        const sq = suffix ? `${q} ${suffix}` : q;
+        console.log(`[fetch] ${s.name} query "${sq}"`);
         try {
-          cands = await mods[s.name].search(q, { count: 6 });
+          cands = await mods[s.name].search(sq, { count: 6 });
         } catch (e) {
           const msg = String(e && e.message || e);
           if (/HTTP (401|403)\b/.test(msg)) {
@@ -174,10 +182,15 @@ async function main() {
         // traffic-light pictogram for "warning sign icon". The source's own
         // text saying it is an icon/cartoon/illustration/logo rejects it.
         if (/\b(icon|icons|pictogram|cartoon|clip ?art|clipart|illustration|vector|logo|emblem|diagram|infographic|drawing|comic|emoji|symbol|coat of arms|flag of)\b/i.test(sourceTextOf(c))) { why.push("not a photograph (source text: icon/cartoon/illustration/logo)"); continue; }
+        // A cutout is a physical object, never a screen: a phone/monitor/app
+        // screenshot is rejected unless the object itself is a device.
+        if (suffix && /\b(screenshot|screen ?shot|mock ?up|mockup|app screen|user interface|ui|website|web page|homepage)\b/i.test(sourceTextOf(c))
+          && !/\b(phone|screen|monitor|laptop|tablet|computer)\b/i.test(concept)) { why.push("a screen/mockup, not an object"); continue; }
         const v = verify(c, concept, usedQuery);
         if (!v.ok) { why.push(v.why); continue; }
         const hash = createHash("sha1").update(c.downloadUrl).digest("hex").slice(0, 10);
         const id = `${s.name}-${hash}`;
+        if (exclude.has(id)) { why.push("already tried (failed isolation)"); continue; }
         const rel = `asset-library/${s.name}/${hash}.jpg`;
         const abs = join(PUBLIC, rel);
         try {

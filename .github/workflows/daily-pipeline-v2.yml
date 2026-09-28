@@ -692,6 +692,29 @@ jobs:
         with:
           chrome-version: stable
 
+      # rembg isolates CUTOUT objects (scripts/isolate-cutout.py). Required:
+      # a cutout that cannot be isolated becomes TYPE, and a missing rembg
+      # fails the video rather than pasting a rectangular photo.
+      - uses: actions/setup-python@v5
+        if: steps.status.outputs.skip != 'true'
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Cache rembg (pip + u2net model)
+        if: steps.status.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.u2net
+          key: rembg-${{ runner.os }}-v1
+
+      - name: Install rembg
+        if: steps.status.outputs.skip != 'true'
+        run: |
+          pip install --quiet "rembg[cpu]" pillow
+          python -c "from rembg import new_session; new_session('u2net'); print('rembg ready')"
+
       - name: Cache Remotion Chrome
         if: steps.status.outputs.skip != 'true'
         uses: actions/cache@v4
