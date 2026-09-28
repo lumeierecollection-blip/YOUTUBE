@@ -1,7 +1,8 @@
 /**
  * PIE — a donut whose primary segment sweeps open from 0 to its percentage
  * over the first 50% of the beat; the remainder fills in after, light grey.
- * The centre holds the percentage (rolling) and its label.
+ * The centre holds the sentence's percentage (from the first frame) and its
+ * label.
  */
 import React from "react";
 import { INK, LIGHT, SERIF, buildT } from "./viz-common.js";
@@ -33,7 +34,9 @@ export function PieChart({ data, bounds: zone, local, dur, font }) {
         {a1 > 0.001 ? <path d={arc(cx, cy, r, 0, Math.min(a1, full - 0.0001))} fill="none" stroke={INK} strokeWidth={sw} /> : null}
       </svg>
       <div style={{ position: "absolute", left: cx - r, top: cy - r * 0.35, width: r * 2, textAlign: "center" }}>
-        <div style={{ font: `700 ${Math.round(r * 0.46)}px ${font}, sans-serif`, color: INK, lineHeight: 1 }}>{Math.round(pct * t)}%</div>
+        {/* The sentence's figure from the first frame; only the ring sweeps
+            (a rolling label reads as a wrong statistic mid-sweep). */}
+        <div style={{ font: `700 ${Math.round(r * 0.46)}px ${font}, sans-serif`, color: INK, lineHeight: 1 }}>{pct}%</div>
         {data.label ? <div style={{ font: `italic 400 ${Math.round(r * 0.13 + 8)}px ${SERIF}`, color: INK, marginTop: 6 }}>{data.label}</div> : null}
       </div>
     </div>

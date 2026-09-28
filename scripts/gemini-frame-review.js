@@ -227,7 +227,42 @@ async function reviewFrameBatch(frames, totalFrames, bible) {
   return results;
 }
 
-async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible) {
+// ── Paper style: the rubric tests that contradict the owner's spec ────
+// config/visual-bible.json predates the paper style. Three of its whole-
+// video tests fail what the owner explicitly REQUIRES of this style:
+//   "2. CAPTION TEST ... ANY caption track ... Zero tolerance"  vs the
+//      required word-level caption synced to the voice (fix(captions));
+//   "4. GRAPH TEST ... Could the concept be shown physically? ... don't
+//      chart it"  vs the required system-drawn counter/bar/pie/line/gauge/
+//      map for a sentence that names a number or a place (feat(viz));
+//   "12. DECORATION ... Random dots, grids"  vs the reference video's own
+//      dot grid, ring and black corner accents (the style to match).
+// Reviews kept failing paper videos on exactly these (runs 36390736594,
+// 36393233270, 36405739332: "caption duplicating the narration", "floating
+// standalone numbers", "squiggly lines"). For a paper-style video ONLY
+// (its render manifest has visual_type beats) those three tests are
+// restated to the owner's spec; every other test — headline, continuity,
+// motion, repetition, pacing, variety, opening, ending, slop, muted — and
+// every threshold is unchanged. A test string that no longer matches is
+// reported, not silently skipped.
+const PAPER_RUBRIC = [
+  ["2. CAPTION TEST: Is there ANY caption track — narration duplicated as text underneath visuals? Zero tolerance.",
+    "2. CAPTION TEST: This style REQUIRES (channel owner) a word-by-word caption of the narration in the lower part of the page, building in time with the voice — a frame mid-sentence shows only the words spoken so far (e.g. 'Two Alexandria', 'We'll'). That caption is not a defect, not duplication and not a fragment: never list it in slop_indicators, repetition_issues, decoration_issues or corrections. Flag only OTHER text that repeats the narration."],
+  ["4. GRAPH TEST: For every graph — is a graph the best representation? Could the concept be shown physically? If script says 'the price doubled,' show it doubling, don't chart it.",
+    "4. GRAPH TEST: This style draws a sentence's own figure as a simple black-ink counter / bar / pie / line / gauge, and a place it names as a map (channel owner's design) — do not ask for a physical object instead. Judge whether the figure shown is the sentence's figure. A counter or bar grows from 0 to its value early in its beat, so an early frame can show a partly-grown number: that is the animation, not a wrong statistic."],
+  ["12. DECORATION: Any meaningless visual noise? Random dots, grids, particles, gradients without purpose?",
+    "12. DECORATION: Any meaningless visual noise — particles, gradients, clutter? (Not noise in this style: the thin ring and faint dot grid behind a cutout, and one black petal / swoosh / hairline accent in an empty corner of the visual area — the reference video uses exactly these.)"],
+];
+function paperRubric(prompt) {
+  let out = prompt;
+  for (const [from, to] of PAPER_RUBRIC) {
+    if (out.includes(from)) out = out.replace(from, to);
+    else console.warn(`::warning::[review] paper rubric: the bible no longer contains "${from.slice(0, 60)}..." — test not restated`);
+  }
+  return out;
+}
+
+async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible, paperStyle = false) {
   const step = Math.max(1, Math.floor(framePaths.length / 8));
   const selected = [];
   selected.push(0);
@@ -235,7 +270,9 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
   selected.push(framePaths.length - 1);
   const unique = [...new Set(selected)].sort((a, b) => a - b).slice(0, 10);
 
-  const prompt = bible.prompts.whole_video_review
+  const base = paperStyle ? paperRubric(bible.prompts.whole_video_review) : bible.prompts.whole_video_review;
+  if (paperStyle) console.log("[review] paper style: caption / graph / decoration tests restated to the owner's spec");
+  const prompt = base
     .replace("{total_frames}", String(unique.length))
     .replace("{duration}", duration.toFixed(1));
 
@@ -535,7 +572,11 @@ async function main() {
 
     // ── PHASE 2: Whole-video review ──
     console.log("\n═══ PHASE 2: WHOLE-VIDEO REVIEW ═══\n");
-    const wholeResult = await reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible);
+    // Paper style = the render manifest next to the video has visual_type
+    // beats (render.js writes <video>-manifest.json).
+    let paperStyle = false;
+    try { paperStyle = (JSON.parse(readFileSync(video.replace(/\.mp4$/, "-manifest.json"), "utf-8")).beats || []).some((b) => b.visual_type); } catch {}
+    const wholeResult = await reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible, paperStyle);
 
     if (wholeResult.error) {
       console.log(`  Whole-video review ERROR: ${wholeResult.error}`);

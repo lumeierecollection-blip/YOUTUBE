@@ -6,12 +6,12 @@
  *   swoosh   a thick black arc sweeping across a corner (drawn over 0.4 s)
  *   hairline two thin curves (drawn over 0.4 s)
  *
- * Placement is shape-geometry.js shapeLayout(): a corner of the VISUAL zone
- * only (paper-layout.js ZONES), inside a box of at most 220 x 220 paper px
- * (150 x 150 behind a chart, counter or map), scaled down to fit or not
- * drawn. A shape never enters the headline or caption zone, so it cannot
- * cross text. PaperContent draws it BEHIND the visual (the cutout or chart
- * sits on top of it). Run 36397373831 ch-44: a swoosh crossed the caption
+ * Placement is shape-geometry.js shapeLayout(): an empty corner of the
+ * VISUAL zone only (paper-layout.js ZONES), inside a box of at most 220 x 220
+ * paper px, scaled down to fit or not drawn — and never on a chart /
+ * counter / gauge / map beat, whose visual leaves no empty corner. A shape
+ * never enters the headline or caption zone, so it cannot cross text.
+ * PaperContent draws it BEHIND the visual (the cutout sits on top of it). Run 36397373831 ch-44: a swoosh crossed the caption
  * "for securing" and another cut through "Leveraging information ...
  * advantage" when shapes were placed at the page corners with no knowledge
  * of the text.

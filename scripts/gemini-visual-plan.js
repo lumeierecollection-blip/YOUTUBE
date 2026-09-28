@@ -221,6 +221,24 @@ export function cutoutNamedInSentence(object, sentence) {
   return { ok: false, why: `CUTOUT "${object}" is not named in the sentence (a cutout shows the literal object the sentence names)` };
 }
 
+// ── The lead-in comes from the beat's own sentence ────────────────────
+// Run 36405739332 ch-48 put the REFERENCE's example lead-ins on its own
+// beats ("watch how", "they are selling", "to the tagline", "by being
+// impossible DIGITAL TWIN 10%") — words its narration never says. A
+// lead-in's content words must all be in the sentence (same crude stem as
+// the cutout gate); function words are free. An ungrounded lead-in is
+// dropped, never rewritten (nothing on screen the source did not say).
+const LEAD_FUNCTION = new Set(["a", "an", "the", "of", "to", "for", "in", "on", "at", "by", "and", "or", "but", "so", "as", "is", "are",
+  "was", "were", "be", "been", "it", "its", "this", "that", "these", "those", "how", "what", "why", "with", "from", "into", "over",
+  "than", "then", "they", "we", "you", "our", "their", "your", "i", "he", "she", "his", "her", "them", "us", "who", "which", "will",
+  "can", "not", "no", "just", "now", "all", "more", "most"]);
+export function leadInFromSentence(lead, sentence) {
+  const sent = String(sentence || "").replace(/\$/g, " dollar ").split(/[^A-Za-z0-9']+/).filter(Boolean).map(stemWord);
+  const words = String(lead || "").split(/\s+/).map((w) => w.toLowerCase().replace(/[^a-z0-9']/g, "")).filter(Boolean);
+  const content = words.filter((w) => !LEAD_FUNCTION.has(w));
+  return content.every((w) => { const st = stemWord(w); return sent.some((t) => stemMatch(st, t)); });
+}
+
 export function checkVisual(b, sentence) {
   const t = String(b.visual_type || "").toUpperCase();
   const d = b.data || {};
@@ -316,16 +334,26 @@ ${CAPABILITIES}
 
 ${REFERENCE_STYLE}
 
+(The lead-ins quoted above — "watch how", "went from", "they are selling",
+"to the tagline", "by being impossible" — are the REFERENCE video's own
+words about ITS sentences. Never reuse them: a lead-in here is taken from
+this beat's sentence.)
+
 ## HOW TO WRITE A BEAT (the whole output shape — no mechanisms, drawings or maps)
 
 Every beat is shown on the SAME white paper: an italic serif lead-in, a
 bold grotesk headline typing on word by word, ONE grayscale object cutout
 fetched from photo libraries, sometimes a black petal / swoosh shape, and
-the sentence itself as tiny body text. You write only these fields:
+the narration as a word-by-word caption at the bottom (the system adds
+it). You write only these fields:
 
   "kind": "EDITORIAL" | "TYPE"
-  "lead_in":      2-4 word italic serif lead-in, lowercase ("watch how",
-                  "they are selling", "went from") — or null
+  "lead_in":      2-4 words FROM THIS BEAT'S OWN SENTENCE that lead into the
+                  headline, lowercase (sentence "... went from three million
+                  dollars to a 1.4 billion dollar brand" -> "went from three
+                  million to"). Never another sentence's words, never a stock
+                  phrase. Or null. (Enforced: a lead-in whose words are not
+                  in its sentence is dropped.)
   "headline":     2-4 words, NEVER a full sentence ("LIQUID DEATH",
                   "REBELLION", "wild influencer collabs"). UPPERCASE for a
                   punchline, lowercase bold for a phrase.
@@ -550,7 +578,7 @@ Respond ONLY with JSON (no markdown fences):
         "effect": "<for causation: effect label>"
       },
       "kind": "<EDITORIAL | TYPE>",
-      "lead_in": "<2-4 word italic lead-in, lowercase, or null>",
+      "lead_in": "<2-4 words from this beat's own sentence, lowercase, or null>",
       "headline": "<2-4 words, never a full sentence>",
       "emphasis_word": "<one headline word, or null>",
       "visual_type": "<CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | TYPE>",
@@ -790,11 +818,27 @@ async function main() {
   // resolver in render-and-qa.js replaces the drawing with a real photo when
   // the concept resolves. A composition the model wrote anyway is ignored.
   // A TYPE beat gets no composition and the typographic_emphasis capability.
+  let lastPercentType = null;
   for (const b of plan.beats) {
     // visual_type (planner's choice), checked against the sentence.
     if (b.visual_type !== undefined) {
-      const v = checkVisual(b, sentences[b.index]?.text || sentences[plan.beats.indexOf(b)]?.text || "");
+      const sentenceText = sentences[b.index]?.text || sentences[plan.beats.indexOf(b)]?.text || "";
+      const v = checkVisual(b, sentenceText);
       if (v.why) console.warn(`::warning::[plan] beat ${b.index}: ${b.visual_type} -> TYPE (${v.why})`);
+      // Variety: a percentage is drawn as a PIE or a GAUGE — the same figure
+      // and label either way. Run 36405739332 ch-48 drew gauge after gauge
+      // and the review called it "excessive reuse of the exact same gauge".
+      // When the previous percentage beat used this type, use the other.
+      if ((v.type === "PIE" || v.type === "GAUGE") && lastPercentType === v.type) {
+        const other = v.type === "PIE" ? "GAUGE" : "PIE";
+        console.log(`[plan] beat ${b.index}: ${v.type} -> ${other} (variety: the previous percentage beat was also a ${v.type})`);
+        v.type = other;
+      }
+      if (v.type === "PIE" || v.type === "GAUGE") lastPercentType = v.type;
+      if (b.lead_in && !leadInFromSentence(b.lead_in, sentenceText)) {
+        console.warn(`::warning::[plan] beat ${b.index}: lead-in "${b.lead_in}" is not from its sentence — dropped`);
+        b.lead_in = null;
+      }
       b.visual_type = v.type;
       b.data = v.data;
       b.kind = v.type === "TYPE" ? "TYPE" : "EDITORIAL";
@@ -1165,11 +1209,56 @@ function quoteBareKeysOutsideStrings(text) {
 // "Unexpected token ']'" -- a trailing comma the control-char pass doesn't
 // touch. If every repair fails, the real SyntaxError is attached so
 // describeShape can show it instead of an indistinguishable "no beats".
+// Run 36405739332 ch-44: both attempts failed every repair with "Expected
+// double-quoted property name" (line 39 col 9 of 11k chars) — a property
+// name that is not a double-quoted string or a bare word: a // or /* */
+// comment, or a 'single-quoted' key. The raw text was never logged, so the
+// final failure now reports the text around the parse position.
+function stripCommentsOutsideStrings(text) {
+  let out = "", inString = false, escaped = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inString) {
+      out += ch;
+      if (escaped) escaped = false;
+      else if (ch === "\\") escaped = true;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') { inString = true; out += ch; continue; }
+    if (ch === "/" && text[i + 1] === "/") { while (i < text.length && text[i] !== "\n") i++; out += "\n"; continue; }
+    if (ch === "/" && text[i + 1] === "*") { const end = text.indexOf("*/", i + 2); i = end < 0 ? text.length : end + 1; continue; }
+    out += ch;
+  }
+  return out;
+}
+function quoteSingleQuotedKeysOutsideStrings(text) {
+  let out = "", inString = false, escaped = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inString) {
+      out += ch;
+      if (escaped) escaped = false;
+      else if (ch === "\\") escaped = true;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') { inString = true; out += ch; continue; }
+    if (ch === "'") {
+      const m = /^'([^'"\\\n]{1,64})'(\s*):/.exec(text.slice(i));
+      if (m) { out += `"${m[1]}"${m[2]}:`; i += m[0].length - 1; continue; }
+    }
+    out += ch;
+  }
+  return out;
+}
 const JSON_REPAIRS = [
   (text) => text,
   escapeStrayControlCharsInStrings,
   (text) => stripTrailingCommasOutsideStrings(escapeStrayControlCharsInStrings(text)),
   (text) => quoteBareKeysOutsideStrings(stripTrailingCommasOutsideStrings(escapeStrayControlCharsInStrings(text))),
+  (text) => quoteSingleQuotedKeysOutsideStrings(quoteBareKeysOutsideStrings(stripTrailingCommasOutsideStrings(
+    escapeStrayControlCharsInStrings(stripCommentsOutsideStrings(text))))),
 ];
 
 function normalizePlanResponse(r) {
@@ -1179,15 +1268,18 @@ function normalizePlanResponse(r) {
   if (typeof r.content === "string") {
     const m = r.content.match(/[\[{][\s\S]*[\]}]/);
     if (m) {
-      let lastError = null;
+      let lastError = null, lastText = m[0];
       for (const repair of JSON_REPAIRS) {
         try {
-          return normalizePlanResponse(JSON.parse(repair(m[0])));
+          lastText = repair(m[0]);
+          return normalizePlanResponse(JSON.parse(lastText));
         } catch (e) {
           lastError = e;
         }
       }
-      return { ...r, _parseError: lastError.message };
+      const pos = Number((String(lastError?.message || "").match(/position (\d+)/) || [])[1]);
+      const near = Number.isFinite(pos) ? ` near ${JSON.stringify(lastText.slice(Math.max(0, pos - 90), pos + 40))}` : "";
+      return { ...r, _parseError: `${lastError.message}${near}` };
     }
     return r;
   }

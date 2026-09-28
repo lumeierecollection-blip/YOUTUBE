@@ -1,7 +1,8 @@
 /**
  * GAUGE — a semicircular arc filling from 0 to the sentence's percentage
- * over the first 40% of the beat, on a light-grey track; the current value
- * types in under the arc in the headline font, the label in caption font.
+ * over the first 40% of the beat, on a light-grey track; the sentence's value
+ * sits under the arc from the first frame (headline font), the label in
+ * caption font.
  */
 import React from "react";
 import { INK, LIGHT, SERIF, buildT } from "./viz-common.js";
@@ -26,7 +27,10 @@ export function Gauge({ data, bounds: zone, local, dur, font }) {
         {a > 0.001 ? <path d={`M${sx},${sy} A${r},${r} 0 0 1 ${fx},${fy}`} fill="none" stroke={INK} strokeWidth={sw} strokeLinecap="round" /> : null}
       </svg>
       <div style={{ position: "absolute", left: cx - r, top: cy + sw * 0.4, width: r * 2, textAlign: "center" }}>
-        <div style={{ font: `700 ${Math.round(r * 0.38)}px ${font}, sans-serif`, color: INK, lineHeight: 1 }}>{Math.round(pct * t)}%</div>
+        {/* The sentence's figure from the first frame; only the arc sweeps.
+            A rolling label showed "26%" in a frame sampled mid-sweep while
+            the voiceover said 50% (run 36405739332 ch-48 review). */}
+        <div style={{ font: `700 ${Math.round(r * 0.38)}px ${font}, sans-serif`, color: INK, lineHeight: 1 }}>{pct}%</div>
         {data.label ? <div style={{ font: `italic 400 ${Math.round(r * 0.1 + 10)}px ${SERIF}`, color: INK, marginTop: 6 }}>{data.label}</div> : null}
       </div>
     </div>

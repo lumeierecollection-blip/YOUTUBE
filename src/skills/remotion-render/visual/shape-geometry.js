@@ -5,18 +5,20 @@
  * renderer actually used.
  *
  * Each shape is defined once for the TOP-LEFT corner, growing toward +x/+y
- * from a local origin; the other corners mirror it. It is placed ONLY in a
- * corner of ZONES.VISUAL (paper-layout.js) — never the headline or caption
- * zone — inside a box of at most 220 x 220 paper px (150 x 150 on a chart /
- * counter / map beat, where it sits behind data). A shape bigger than that
- * is scaled down to fit (aspect kept); if that would take it under 35% of
- * its size it is not drawn at all.
+ * from a local origin; the other corners mirror it. It is placed ONLY in an
+ * EMPTY corner of ZONES.VISUAL (paper-layout.js) — never the headline or
+ * caption zone — inside a box of at most 220 x 220 paper px. A shape bigger
+ * than that is scaled down to fit (aspect kept); if that would take it under
+ * 35% of its size it is not drawn at all.
+ * A chart / counter / gauge / map beat draws NO shape: its visual spans the
+ * whole zone, so it has no empty corner. Run 36405739332 ch-48: the review
+ * called the hairlines beside its gauges and counter "meaningless squiggly
+ * lines next to the circular gauges".
  */
 import { PAPER, ZONES, clampToZone, boxInside } from "./paper-layout.js";
 
 const W = PAPER.w;
 export const SHAPE_MAX = 220;
-export const SHAPE_MAX_ON_DATA = 150;
 const INSET = 6;
 const MIN_SCALE = 0.35;
 const DATA_TYPES = ["COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP"];
@@ -89,7 +91,7 @@ export function shapeGeometry(variant) {
 }
 
 export function shapeMaxSize(visualType) {
-  return DATA_TYPES.includes(String(visualType || "").toUpperCase()) ? SHAPE_MAX_ON_DATA : SHAPE_MAX;
+  return DATA_TYPES.includes(String(visualType || "").toUpperCase()) ? 0 : SHAPE_MAX;
 }
 
 /**
@@ -100,7 +102,7 @@ export function shapeMaxSize(visualType) {
  */
 export function shapeLayout(variant, corner = "tr", visualType = null, zone = ZONES.VISUAL) {
   const g = shapeGeometry(variant);
-  if (!g) return null;
+  if (!g || shapeMaxSize(visualType) <= 0) return null;
   const limit = Math.min(shapeMaxSize(visualType), zone.w - 2 * INSET, zone.h - 2 * INSET);
   const b = g.bbox;
   const scale = Math.min(1, limit / b.w, limit / b.h);
