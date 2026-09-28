@@ -209,8 +209,11 @@ function urlKey(u) {
 // must be that same id's returned URL. "<url of S2>/S1", an unknown id, or a
 // prefix no search returned all still go to `bad` and are rejected, so this
 // cannot admit a URL that this run's searches did not return.
+// Also the query-string form "<url>?source_id=S1" / "&source_id:S7" (CI run
+// 36498049819 ch-2, 4/4 attempts) — same rule: the prefix must be that id's
+// own returned URL.
 function idSuffixedUrl(v, ids) {
-  const m = /^(.+?)[\/#\s]*\[?(S\d+)\]?$/i.exec(v.trim());
+  const m = /^(.+?)(?:[?&]source_?id[=:]\s*|[\/#\s]*)\[?(S\d+)\]?$/i.exec(v.trim());
   if (!m) return null;
   const url = ids.get(m[2].toUpperCase());
   return url && urlKey(m[1]) === urlKey(url) ? url : null;
