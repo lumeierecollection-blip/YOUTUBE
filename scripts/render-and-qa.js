@@ -689,7 +689,15 @@ function frameReviewVerdict(geminiReport) {
   const whole = report.wholeVideoResult || {};
   const score = whole.overall_score != null ? ` ${whole.overall_score}/10` : "";
   if (critical > 0) return { pass: false, reason: `REJECTED — ${critical} CRITICAL frame(s)` };
-  if (whole.headline_test?.monoculture) return { pass: false, reason: `REJECTED — TEMPLATE_MONOCULTURE ${whole.headline_test.percent ?? "?"}% headline-dominated` };
+  // Reference paper style: the owner redefined this review as "does the
+  // video look like it came from the reference video" (the reviewer now
+  // sees three reference frames and answers reference_match). There, the
+  // reference IS headline-led by design, so reference_match REPLACES the
+  // monoculture headline test; CRITICAL frames, HIGH-issue share and a
+  // failing whole-video severity still reject exactly as before.
+  const refMatch = String(whole.reference_match || "").toUpperCase();
+  if (refMatch === "NO") return { pass: false, reason: `REJECTED — does not match the reference style: ${whole.reference_reason || ""}`.trim() };
+  if (refMatch !== "YES" && whole.headline_test?.monoculture) return { pass: false, reason: `REJECTED — TEMPLATE_MONOCULTURE ${whole.headline_test.percent ?? "?"}% headline-dominated` };
   if (high > Math.floor(frames * 0.3)) return { pass: false, reason: `NEEDS_IMPROVEMENT — ${high} HIGH issues across ${frames} frames` };
   if (whole.status === "FAIL" && (whole.severity === "CRITICAL" || whole.severity === "HIGH")) {
     return { pass: false, reason: `NEEDS_IMPROVEMENT — whole-video FAIL (${whole.severity})${score}` };
