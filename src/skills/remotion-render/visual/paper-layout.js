@@ -16,6 +16,16 @@ export const PAPER = { x: 278, y: 497, w: 524, h: 926 };
 // on the (centred) paper: 497 + (926 - 284) / 2 = 818.
 export const RAIL = { x: 214, y: 818, w: 45, h: 284 };
 
+// THE FIT CONTRACT — every element drawn on the paper (cutout, headline,
+// caption, chart, map, abstract shape) has its rendered bounding box inside
+// this inner box, in PAPER coordinates. The owner's contract states a 60 px
+// margin on a 780 x 1320 paper; this paper is 524 x 926 (measured, and its
+// size is not to change), so the same proportion is used: 60 * 524/780 =
+// 40 px on every side. Checked on rendered frames by local-audit.cjs
+// frames-fit-paper (4 px tolerance).
+export const PAPER_MARGIN = 40;
+export const PAPER_INNER = { x: PAPER_MARGIN, y: PAPER_MARGIN, w: PAPER.w - 2 * PAPER_MARGIN, h: PAPER.h - 2 * PAPER_MARGIN };
+
 export const INK = "#0A0A0A";           // text / shapes
 export const INK_SOFT = "#9A9A9A";      // not-yet-typed words, light words
 export const PAPER_FILL = "#FFFFFF";

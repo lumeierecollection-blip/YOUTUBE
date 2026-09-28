@@ -13,7 +13,8 @@ function arc(cx, cy, r, a0, a1) {
   return `M${x0},${y0} A${r},${r} 0 ${a1 - a0 > Math.PI ? 1 : 0} 1 ${x1},${y1}`;
 }
 
-export function PieChart({ data, zone, local, dur, font }) {
+// Fit contract: drawn inside `bounds` (ring radius + stroke < half the box).
+export function PieChart({ data, bounds: zone, local, dur, font }) {
   const pct = Math.max(0, Math.min(100, Number(data?.percent)));
   if (!Number.isFinite(pct) || pct <= 0) return null;
   const r = Math.min(zone.w, zone.h) * 0.36;

@@ -8,7 +8,8 @@ import React from "react";
 import { parseQuantity, rollQuantity } from "./quantity.js";
 import { INK, MID, SERIF, clamp01, buildT } from "./viz-common.js";
 
-export function LineChart({ data, zone, local, dur, fps = 30, font }) {
+// Fit contract: drawn inside `bounds`; end labels anchor inward.
+export function LineChart({ data, bounds: zone, local, dur, fps = 30, font }) {
   const pts = (data?.points || []).map((p) => ({ ...p, q: parseQuantity(p.value) })).filter((p) => p.q);
   if (pts.length < 2) return null;
   const pad = 30;

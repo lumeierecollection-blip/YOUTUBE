@@ -20,7 +20,7 @@
  */
 import React from "react";
 import { Img, staticFile, Easing } from "remotion";
-import { PAPER, INK, INK_SOFT, PAPER_FILL, PAPER_EDGE_SHADOW } from "./paper-layout.js";
+import { PAPER, PAPER_INNER, INK, INK_SOFT, PAPER_FILL, PAPER_EDGE_SHADOW } from "./paper-layout.js";
 import { AbstractShape } from "./abstract-shape.jsx";
 import { Counter } from "./primitives/counter.jsx";
 import { BarChart } from "./primitives/bar-chart.jsx";
@@ -61,6 +61,18 @@ function fmt(n, { dec, comma }) {
 function fitSize(text, width, max, min) {
   return Math.round(Math.max(min, Math.min(max, width / Math.max(1, String(text).length * 0.56))));
 }
+// The fit contract: the size at which the LONGEST word still fits the
+// width (bold grotesk, uppercase ~0.68 em per character, lowercase ~0.58).
+// Applied after fitSize and allowed to go under its minimum - a word that
+// runs off the inner box is a fit failure, a smaller word is not.
+function fitLongestWord(text, width, size, upper) {
+  const longest = Math.max(1, ...String(text || "").split(/\s+/).map((w) => w.length));
+  return Math.min(size, Math.floor(width / (longest * (upper ? 0.68 : 0.58))));
+}
+
+// The paper's inner content box (paper-layout.js PAPER_INNER), exposed to
+// everything drawn on the paper. Primitives also take it as a `bounds` prop.
+export const PaperBounds = React.createContext(PAPER_INNER);
 
 export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" }) {
   const s = (sec) => sec * fps;
@@ -74,12 +86,18 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   const chart = ["COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP"].includes(vtype) && c.data ? vtype : null;
   const center = c.layout === "center" || (!hasCutout && !chart);
   const W = PAPER.w, H = PAPER.h;
+  const B = PAPER_INNER;
 
   // ── headline, word by word (grey -> black), emphasis pops 8% ──
   const words = String(c.headline || "").split(/\s+/).filter(Boolean);
   const hStart = s(0.35), hStep = s(0.2);
-  const hSize = !hasCutout && !chart ? fitSize(c.headline, W * 0.78, 84, 34) : fitSize(c.headline, W * 0.72, 56, 26);
   const upper = words.length <= 3;
+  const align = center ? "center" : "left";
+  // Headline block inside the inner box (fit contract), 4 px clear of it.
+  const textLeft = center ? B.x + 4 : B.x + 22;
+  const textWidth = center ? B.w - 8 : B.w - 44;
+  const hSize = fitLongestWord(c.headline, textWidth,
+    !hasCutout && !chart ? fitSize(c.headline, textWidth * 0.93, 84, 34) : fitSize(c.headline, textWidth * 0.86, 56, 26), upper);
   // Visual on top (y 8-50%), headline under it (55%), the word-level
   // caption under that (76%) - the page is filled top to bottom. A TYPE beat's
   // headline sits higher and larger.
@@ -99,10 +117,6 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   // Numbers are drawn by the visual (COUNTER/BAR/PIE/LINE/GAUGE); a number in
   // the headline still rolls in place. No separate number line.
   const numText = null;
-
-  const align = center ? "center" : "left";
-  const textLeft = center ? W * 0.08 : W * 0.12;
-  const textWidth = center ? W * 0.84 : W * 0.76;
 
   const headline = (
     <div style={{ position: "absolute", left: textLeft, top: headlineTop, width: textWidth, textAlign: align }}>
@@ -154,8 +168,12 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
     const drift = 0.015 * W * clamp01((local - s(0.45)) / Math.max(1, dur - s(0.45)));
     const rot = (1 - enterT) * -6;
     {
-      const cw = W * 0.56;
-      const cx = (W - cw) / 2 + (center ? 0 : W * 0.06), cy = H * 0.1;
+      // Fit contract: the cutout is drawn "contain" in a square box, so its
+      // alpha bounds are inside the box. The box is at most 0.55 of the
+      // inner height and the inner width, and placed so box + drift +
+      // drop shadow (~30 px right/down) stay inside the inner box.
+      const cw = Math.min(W * 0.56, B.h * 0.55, B.w - 60);
+      const cx = Math.min(B.x + B.w - cw - 40, (W - cw) / 2 + (center ? 0 : W * 0.06)), cy = Math.max(B.y + 20, H * 0.1);
       hero = (
         <div style={{ position: "absolute", left: cx + dx + drift, top: cy + dy, width: cw, height: cw,
           transform: `rotate(${rot}deg)`, opacity: enterT, filter: "drop-shadow(10px 16px 14px rgba(0,0,0,0.28))" }}>
@@ -184,8 +202,9 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
 
   // System-built data viz, on the paper in its ink (visual zone above the
   // headline). Drawn, never fetched.
-  const zone = { x: W * 0.08, y: H * 0.08, w: W * 0.84, h: H * 0.42 };
-  const vizProps = { data: c.data, zone, local, dur, fps, font };
+  // Fit contract: the visual's bounds are a sub-box of the inner box.
+  const zone = { x: B.x + 4, y: Math.max(B.y + 4, H * 0.08), w: B.w - 8, h: H * 0.42 };
+  const vizProps = { data: c.data, bounds: zone, local, dur, fps, font };
   const viz = chart === "COUNTER" ? <Counter {...vizProps} />
     : chart === "BAR" ? <BarChart {...vizProps} />
     : chart === "PIE" ? <PieChart {...vizProps} />
@@ -202,12 +221,9 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
       {hero}
       {headline}
       {body}
-      <PaperCaption words={c.spoken} local={local} fps={fps} emphasis={c.emphasis_word} top={captionTop} />
-      {/* Clipped to the paper: in the reference shapes enter from the page's
-          corners and edges, never over the studio or the device. */}
-      <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-        <AbstractShape variant={c.shape?.variant} corner={c.shape?.corner} local={local} fps={fps} />
-      </div>
+      <PaperCaption words={c.spoken} local={local} fps={fps} emphasis={c.emphasis_word} top={captionTop} bounds={B} />
+      {/* Inside the inner box (fit contract) - not clipped, drawn to fit. */}
+      <AbstractShape variant={c.shape?.variant} corner={c.shape?.corner} local={local} fps={fps} bounds={B} />
     </div>
   );
 }

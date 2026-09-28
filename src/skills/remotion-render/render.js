@@ -573,7 +573,7 @@ async function main() {
     if (beats.some((b) => b.scene && b.scene.paper)) {
       sentencePlan.paper = true;
       sentencePlan.railText = String(channel.name || channel.channel_name || "").toUpperCase();
-      console.log(`[paper] reference paper style, rail "${sentencePlan.railText}", ${beats.filter((b) => b.scene?.paper?.cutout?.asset).length}/${beats.length} beats with a cutout`);
+      console.log(`[paper] reference paper style (no channel name on screen), ${beats.filter((b) => b.scene?.paper?.cutout?.asset).length}/${beats.length} beats with a cutout`);
     }
     console.log(`[audio] ${kal.name} (from ${kal.count} tracks)`);
 

@@ -34,6 +34,15 @@
  *                     0.28 = 2x the reference's OWN maximum spread (its 79
  *                     frames sit at 0.026-0.140 from their mean); the old
  *                     dark-style frames measured 1.79-1.82.
+ *   frames-fit-paper  (paper-style videos) every beat frame's rendered
+ *                     content - every pixel on the paper darker than luma
+ *                     200 - has its bounding box inside the paper's inner
+ *                     content box (paper-layout.js PAPER_INNER), 4 px
+ *                     tolerance. Sampled at 50% and 85% of each beat.
+ *                     Also run on EVERY render, not only as a backup:
+ *                     `--fit-only --video <mp4> --manifest <json>` exits 1
+ *                     when any beat fails, and render-and-qa.js fails the
+ *                     render.
  *
  * Usage:
  *   node scripts/local-audit.cjs --video <mp4> --manifest <render-manifest.json>
@@ -108,6 +117,53 @@ function lumaHist(png) {
   return h.map((x) => x / r.stdout.length);
 }
 
+// ── frames-fit-paper ─────────────────────────────────────────────────
+const FIT_TOL = 4;          // px, in the video's own pixels — do not raise
+const FIT_INK = 200;        // luma below this is content, not paper
+const FIT_MIN_RUN = 2;      // a row/column counts with >= 2 content pixels (h264 noise)
+function grayCrop(video, t, w, h, x, y) {
+  const r = spawnSync(FFMPEG, ["-hide_banner", "-loglevel", "error", "-ss", t.toFixed(3), "-i", video,
+    "-frames:v", "1", "-vf", `crop=${w}:${h}:${x}:${y},format=gray`, "-f", "rawvideo", "-"], { maxBuffer: 1 << 26 });
+  return r.status === 0 && r.stdout && r.stdout.length === w * h ? r.stdout : null;
+}
+async function fitCheck(video, beats, DW, DH) {
+  const { PAPER, PAPER_INNER } = await import(pathToFileURL(join(ROOT, "src", "skills", "remotion-render", "visual", "paper-layout.js")).href);
+  const actual = videoSize(video);
+  const sx = actual ? actual.w / DW : 1, sy = actual ? actual.h / DH : 1;
+  // The paper, in video pixels, inset 2 px from its edge (anti-aliasing and
+  // the paper's own drop shadow are not content).
+  const px = Math.round(PAPER.x * sx) + 2, py = Math.round(PAPER.y * sy) + 2;
+  const pw = Math.round(PAPER.w * sx) - 4, ph = Math.round(PAPER.h * sy) - 4;
+  // The inner box, relative to that crop.
+  const ix0 = PAPER_INNER.x * sx - 2, iy0 = PAPER_INNER.y * sy - 2;
+  const ix1 = (PAPER_INNER.x + PAPER_INNER.w) * sx - 2, iy1 = (PAPER_INNER.y + PAPER_INNER.h) * sy - 2;
+  const bad = [];
+  let checked = 0;
+  beats.forEach((b, i) => {
+    for (const share of [0.5, 0.85]) {
+      const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share;
+      const buf = grayCrop(video, t, pw, ph, px, py);
+      if (!buf) { bad.push(`beat ${i}: frame at ${t.toFixed(2)}s could not be read`); return; }
+      checked++;
+      const rows = new Array(ph).fill(0), cols = new Array(pw).fill(0);
+      for (let y = 0; y < ph; y++) for (let x = 0; x < pw; x++) if (buf[y * pw + x] < FIT_INK) { rows[y]++; cols[x]++; }
+      const ry = rows.map((n, k) => (n >= FIT_MIN_RUN ? k : -1)).filter((k) => k >= 0);
+      const cx = cols.map((n, k) => (n >= FIT_MIN_RUN ? k : -1)).filter((k) => k >= 0);
+      if (!ry.length || !cx.length) continue;          // empty paper: nothing to overflow
+      const x1 = cx[0], x2 = cx[cx.length - 1], y1 = ry[0], y2 = ry[ry.length - 1];
+      if (x1 < ix0 - FIT_TOL || y1 < iy0 - FIT_TOL || x2 > ix1 + FIT_TOL || y2 > iy1 + FIT_TOL) {
+        // Reported in PAPER design coordinates (inner box 40..484 x 40..886).
+        const d = (v, s) => Math.round((v + 2) / s);
+        const msg = `[fit] beat ${i}: content bbox (${d(x1, sx)},${d(y1, sy)},${d(x2, sx)},${d(y2, sy)}) exceeds paper inner box (${PAPER_INNER.x},${PAPER_INNER.y},${PAPER_INNER.x + PAPER_INNER.w},${PAPER_INNER.y + PAPER_INNER.h}) at ${Math.round(share * 100)}%`;
+        console.log(msg);
+        bad.push(msg.replace(/^\[fit\] /, ""));
+        break;
+      }
+    }
+  });
+  return { bad, checked };
+}
+
 function parseSrt(text) {
   const toSec = (ts) => { const [h, m, rest] = ts.split(":"); return +h * 3600 + +m * 60 + +rest.replace(",", "."); };
   return text.replace(/\r/g, "").split(/\n\s*\n/).map((block) => {
@@ -120,6 +176,17 @@ function parseSrt(text) {
 }
 
 async function main() {
+  if (process.argv.includes("--fit-only")) {
+    const video = arg("video"), manifestPath = arg("manifest");
+    if (!video || !existsSync(video) || !manifestPath || !existsSync(manifestPath)) {
+      console.error(`[fit] cannot run — need --video and --manifest (${video}, ${manifestPath})`);
+      process.exit(2);
+    }
+    const m = JSON.parse(readFileSync(manifestPath, "utf8"));
+    const { bad, checked } = await fitCheck(video, m.beats || [], m.width || 1080, m.height || 1920);
+    console.log(`[fit] frames-fit-paper ${bad.length ? "FAIL" : "PASS"} — ${checked} frame(s) of ${(m.beats || []).length} beat(s)${bad.length ? `, ${bad.length} beat(s) outside the inner box` : ", every content bbox inside the paper's inner box"}`);
+    process.exit(bad.length ? 1 : 0);
+  }
   const video = arg("video"), manifestPath = arg("manifest"), planPath = arg("plan");
   const srtPath = arg("srt"), audio = arg("audio"), out = arg("out");
   const missing = [["video", video], ["manifest", manifestPath], ["plan", planPath], ["srt", srtPath], ["audio", audio]]
@@ -178,12 +245,21 @@ async function main() {
   add("frames-centered", centerBad, `${beats.length}/${beats.length} beats have centre content`);
   add("frames-match-reference", ref ? refBad : ["data/reference/reference-histogram.json missing"], `${beats.length}/${beats.length} beat frames within L1 ${REF_L1_MAX} of the reference`);
 
+  if (beats.some((b) => b.visual_type)) {
+    const fit = await fitCheck(video, beats, DW, DH);
+    add("frames-fit-paper", fit.bad, `${fit.checked} frame(s): every content bbox inside the paper's inner box`);
+  }
+
   const durBad = [];
   if (cues.length !== beats.length) durBad.push(`${beats.length} beats vs ${cues.length} SRT cues`);
   beats.forEach((b, i) => {
     const c = cues[i];
     if (!c) return;
-    const want = c.end - c.start;
+    // render.js times a beat from its cue's start to the NEXT cue's start
+    // (the last beat: to its own end) - how it READS the cue, not a looser
+    // rule. The word-timed SRT (tts_words.py) ends a cue at its last word,
+    // so cue.end - cue.start is shorter than the beat by the pause after it.
+    const want = (cues[i + 1] ? cues[i + 1].start : c.end) - c.start;
     if (Math.abs((b.duration_sec ?? 0) - want) > DURATION_TOL) durBad.push(`beat ${i}: ${b.duration_sec}s vs cue ${want.toFixed(2)}s`);
   });
   add("beat-durations", durBad, `every beat within ±${DURATION_TOL}s of its cue`);

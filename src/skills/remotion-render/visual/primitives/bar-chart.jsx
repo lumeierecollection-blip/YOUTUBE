@@ -9,7 +9,9 @@ import React from "react";
 import { parseQuantity, rollQuantity } from "./quantity.js";
 import { INK, MID, SERIF, buildT } from "./viz-common.js";
 
-export function BarChart({ data, zone, local, dur, font }) {
+// Fit contract: drawn inside `bounds`; value and label text shrink to the
+// bar's slot width so neither runs past the box.
+export function BarChart({ data, bounds: zone, local, dur, font }) {
   const bars = (data?.bars || []).map((b) => ({ ...b, q: parseQuantity(b.value) })).filter((b) => b.q);
   if (!bars.length) return null;
   const max = Math.max(...bars.map((b) => b.q.magnitude)) || 1;
@@ -18,6 +20,7 @@ export function BarChart({ data, zone, local, dur, font }) {
   const baseY = zone.y + valueH + plotH;
   const slot = zone.w / bars.length;
   const bw = Math.min(110, slot * 0.56);
+  const fitTo = (txt, max, em) => Math.max(10, Math.min(max, Math.floor((slot * 0.94) / (Math.max(1, String(txt).length) * em))));
   const primary = bars.reduce((a, b, i) => (b.q.magnitude > bars[a].q.magnitude ? i : a), 0);
   return (
     <svg width={zone.x + zone.w} height={zone.y + zone.h} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
@@ -29,8 +32,8 @@ export function BarChart({ data, zone, local, dur, font }) {
         return (
           <g key={i}>
             <rect x={x} y={baseY - h} width={bw} height={h} fill={i === primary ? INK : MID} />
-            <text x={x + bw / 2} y={baseY - h - 12} textAnchor="middle" style={{ font: `700 26px ${font}, sans-serif` }} fill={INK}>{rollQuantity(b.q, t)}</text>
-            <text x={x + bw / 2} y={baseY + 30} textAnchor="middle" style={{ font: `italic 400 20px ${SERIF}` }} fill={INK}>{b.label}</text>
+            <text x={x + bw / 2} y={baseY - h - 12} textAnchor="middle" style={{ font: `700 ${fitTo(rollQuantity(b.q, 1), 26, 0.62)}px ${font}, sans-serif` }} fill={INK}>{rollQuantity(b.q, t)}</text>
+            <text x={x + bw / 2} y={baseY + 30} textAnchor="middle" style={{ font: `italic 400 ${fitTo(b.label, 20, 0.5)}px ${SERIF}` }} fill={INK}>{b.label}</text>
           </g>
         );
       })}

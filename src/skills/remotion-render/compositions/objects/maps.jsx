@@ -285,10 +285,14 @@ function MapBuild({ box, colors, p, uid, font, target, fill, markers, route, lab
 
 /* ── The five drawings ──────────────────────────────────────────────────── */
 
-const regionDrawing = (name, opts) => ({ box, colors, p, uid, label, font }) => {
+// labelOutside: the caller draws the label itself (the paper-style MAP
+// primitive fits it inside the paper's inner box; the engine's label is
+// clipped to the map box, which cut long names such as "United Arab
+// Emirates"). Default off: every other caller is unchanged.
+const regionDrawing = (name, opts) => ({ box, colors, p, uid, label, font, labelOutside }) => {
   const target = regionOrThrow(label, name);
   return <MapBuild box={box} colors={colors} p={p} uid={uid} font={font}
-    target={target} labelText={String(label).trim()} {...opts} />;
+    target={target} labelText={labelOutside ? null : String(label).trim()} {...opts} />;
 };
 
 registerObject("map-outline", regionDrawing("map-outline", { fill: false }));

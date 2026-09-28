@@ -1133,6 +1133,22 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     }
 
     const backupArgs = { planPath, srtPath, audio: result.audio, channelId, videoPath: result.outputPath };
+
+    // Step 2b''': FIT CHECK (paper style) — every beat's rendered content
+    // inside the paper's inner content box (local-audit.cjs
+    // frames-fit-paper, 4 px tolerance). Deterministic, on every render. A
+    // beat outside the box fails the render; the video goes to the backup
+    // audit, which runs the same check and rejects it.
+    const manifestPath = result.outputPath.replace(/\.mp4$/, "-manifest.json");
+    if ((readJsonSafe(manifestPath)?.beats || []).some((b) => b.visual_type)) {
+      const fit = await runChild("node", [LOCAL_AUDIT_CJS, "--fit-only", "--video", result.outputPath, "--manifest", manifestPath],
+        { label: `fit ${channelId}/${basename(scriptPath)}` });
+      if (fit.code !== 0) {
+        console.error(`::error::fit check ${fit.code === 1 ? "FAILED — content outside the paper's inner box" : "could not run"} for ${basename(result.outputPath)}`);
+        return backupAudit({ ...backupArgs, stage: "fit-check", reason: fit.code === 1 ? "content outside the paper's inner content box" : "fit check could not run" });
+      }
+    }
+
     if (challengerFailure) {
       return backupAudit({ ...backupArgs, stage: "challenger", reason: challengerFailure });
     }

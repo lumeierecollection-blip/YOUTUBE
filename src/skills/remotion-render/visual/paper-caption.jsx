@@ -19,7 +19,7 @@
  * fitSize-style shrinking keeps long words inside the paper.
  */
 import React from "react";
-import { PAPER, INK } from "./paper-layout.js";
+import { PAPER, PAPER_INNER, INK } from "./paper-layout.js";
 
 const SERIF = "'Playfair Display', Georgia, serif";
 const norm = (w) => String(w || "").toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -37,13 +37,17 @@ function chunk(words, maxChars) {
   return out;
 }
 
-export function PaperCaption({ words, local, fps = 30, emphasis, top }) {
+export function PaperCaption({ words, local, fps = 30, emphasis, top, bounds = PAPER_INNER }) {
   if (!Array.isArray(words) || !words.length) {
     throw new Error("PaperCaption: beat has no word timings — the plan must be regenerated with the voiceover's word boundaries");
   }
-  const W = PAPER.w, H = PAPER.h;
-  const width = W * 0.84;
-  const size = 26;
+  const H = PAPER.h;
+  // Fit contract: the caption's box is the inner box's width, 4 px clear of
+  // it; a word too long for a row shrinks the caption (italic serif, ~0.52
+  // em per character, plus the emphasis word's 1.08 pop).
+  const width = bounds.w - 8;
+  const longest = Math.max(1, ...words.map((w) => String(w.text).length));
+  const size = Math.min(26, Math.floor(width / (longest * 0.52 * 1.08)));
   const perRow = Math.floor(width / (size * 0.5));
   const chunks = chunk(words, perRow * 2);
   // The chunk on screen: the last one whose first word has been spoken.
@@ -56,7 +60,7 @@ export function PaperCaption({ words, local, fps = 30, emphasis, top }) {
   const emph = norm(emphasis);
   const hold = Math.round(0.3 * fps);
   return (
-    <div style={{ position: "absolute", left: (W - width) / 2, top: top ?? H * 0.7, width, textAlign: "center",
+    <div style={{ position: "absolute", left: bounds.x + 4, top: top ?? H * 0.7, width, textAlign: "center",
       font: `italic 500 ${size}px ${SERIF}`, color: INK, lineHeight: 1.3 }}>
       {cur.map((w, i) => {
         const since = local - w.from;

@@ -7,12 +7,14 @@ import React from "react";
 import { parseQuantity, rollQuantity } from "./quantity.js";
 import { INK, SERIF, buildT } from "./viz-common.js";
 
-export function Counter({ data, zone, local, dur, font }) {
+// Fit contract: drawn inside `bounds` (a sub-box of the paper's inner box);
+// the number is sized so its full (final) width fits, the label wraps.
+export function Counter({ data, bounds: zone, local, dur, font }) {
   const q = parseQuantity(data?.value);
   if (!q) return null;
   const t = buildT(local, dur, 0.4);
   const full = rollQuantity(q, 1);
-  const size = Math.round(Math.min(zone.h * 0.42, (zone.w * 0.95) / Math.max(3, full.length * 0.56)));
+  const size = Math.round(Math.min(zone.h * 0.42, (zone.w * 0.92) / Math.max(3, full.length * 0.62)));
   return (
     <div style={{ position: "absolute", left: zone.x, top: zone.y, width: zone.w, height: zone.h, display: "flex",
       flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
@@ -20,6 +22,7 @@ export function Counter({ data, zone, local, dur, font }) {
         fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>{rollQuantity(q, t)}</div>
       {data.label ? (
         <div style={{ marginTop: size * 0.18, font: `italic 400 ${Math.round(size * 0.22 + 10)}px ${SERIF}`, color: INK,
+          maxWidth: zone.w, textAlign: "center",
           opacity: buildT(local, dur, 0.2, dur * 0.3) }}>{data.label}</div>
       ) : null}
     </div>

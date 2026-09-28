@@ -6,7 +6,8 @@
 import React from "react";
 import { INK, LIGHT, SERIF, buildT } from "./viz-common.js";
 
-export function Gauge({ data, zone, local, dur, font }) {
+// Fit contract: drawn inside `bounds` (arc + value + label, see r).
+export function Gauge({ data, bounds: zone, local, dur, font }) {
   const pct = Math.max(0, Math.min(100, Number(data?.percent)));
   if (!Number.isFinite(pct)) return null;
   const r = Math.min(zone.w * 0.42, zone.h * 0.6);
