@@ -69,7 +69,7 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   const hStart = s(0.35), hStep = s(0.2);
   const hSize = !hasCutout ? fitSize(c.headline, W * 0.78, 84, 34) : fitSize(c.headline, W * 0.72, 60, 28);
   const upper = words.length <= 3;
-  const headlineTop = phone ? H * 0.8 : hasCutout ? H * 0.13 : H * 0.4;
+  const headlineTop = phone ? H * 0.57 : hasCutout ? H * 0.13 : H * 0.4;
   const lead = String(c.lead_in || "").trim();
   const emph = String(c.emphasis_word || "").toLowerCase().replace(/[^a-z0-9]/g, "");
   const headlineDone = hStart + words.length * hStep + s(0.2);
@@ -77,7 +77,11 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   // ── number roll (first 40% of the beat) ──
   const num = parseNumber(c.number);
   const rollT = clamp01(local / (dur * 0.4));
-  const numText = num ? `${num.pre}${fmt(num.value * ease(rollT), num)}${num.post}` : null;
+  const rolled = (n) => `${n.pre}${fmt(n.value * ease(rollT), n)}${n.post}`;
+  // A number already in the headline rolls IN PLACE (no duplicate line —
+  // run 36362576442 printed "273" above "276 ARRESTS").
+  const numInHeadline = !!num && words.some((w) => /\d/.test(w));
+  const numText = num && !numInHeadline ? rolled(num) : null;
 
   const align = center ? "center" : "left";
   const textLeft = center ? W * 0.08 : W * 0.12;
@@ -104,7 +108,7 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
           return (
             <span key={i} style={{ display: "inline-block", marginRight: hSize * 0.24, opacity: a,
               color: black >= 1 ? INK : INK_SOFT, transform: `translateY(${(1 - a) * hSize * 0.35}px) scale(${pop})`,
-              transformOrigin: "left bottom" }}>{w}</span>
+              transformOrigin: "left bottom" }}>{numInHeadline && /\d/.test(w) && parseNumber(w) ? rolled(parseNumber(w)) : w}</span>
           );
         })}
       </div>
@@ -113,10 +117,10 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   );
 
   // ── tiny body paragraph: the narration sentence itself ──
-  const bodyTop = phone ? H * 0.9 : hasCutout ? H * 0.79 : H * 0.58;
+  const bodyTop = phone ? H * 0.8 : hasCutout ? H * 0.79 : H * 0.58;
   const body = c.body ? (
     <div style={{ position: "absolute", left: W * 0.18, top: bodyTop, width: W * 0.64, textAlign: center ? "center" : "left",
-      font: `400 11px ${font}, sans-serif`, lineHeight: 1.35, color: "#555",
+      font: `400 12px ${font}, sans-serif`, lineHeight: 1.35, color: "#333",
       opacity: ease(clamp01((local - headlineDone) / s(0.3))) }}>{String(c.body).slice(0, 170)}</div>
   ) : null;
 
@@ -131,9 +135,9 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
     const drift = 0.015 * W * clamp01((local - s(0.45)) / Math.max(1, dur - s(0.45)));
     const rot = (1 - enterT) * -6;
     if (phone) {
-      const pw = W * 0.46, phh = pw * 2.05;
+      const pw = W * 0.4, phh = pw * 2.0;
       hero = (
-        <div style={{ position: "absolute", left: (W - pw) / 2 + dx + drift, top: H * 0.1 + dy, width: pw, height: phh,
+        <div style={{ position: "absolute", left: (W - pw) / 2 + dx + drift, top: H * 0.07 + dy, width: pw, height: phh,
           transform: `rotate(${rot}deg)`, opacity: enterT, borderRadius: pw * 0.14, backgroundColor: INK, padding: pw * 0.045,
           boxShadow: "12px 18px 30px rgba(0,0,0,0.28)", boxSizing: "border-box" }}>
           <div style={{ width: "100%", height: "100%", borderRadius: pw * 0.1, overflow: "hidden", position: "relative", backgroundColor: "#222" }}>

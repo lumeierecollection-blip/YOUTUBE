@@ -18,7 +18,7 @@ function frondPath(len, bend, leaflets = 16) {
   for (let i = 1; i <= leaflets; i++) {
     const t = i / (leaflets + 1);
     const x = len * t, y = bend * 4 * t * (1 - t);
-    const size = len * 0.34 * Math.sin(Math.PI * Math.min(1, t * 1.15));
+    const size = len * 0.3 * Math.sin(Math.PI * Math.min(1, t * 1.15));
     for (const side of [-1, 1]) {
       const ang = side * (0.95 - 0.35 * t);            // leaflets sweep back along the stem
       const ex = x + Math.cos(ang) * size * 0.35, ey = y + Math.sin(ang) * size;
@@ -36,14 +36,14 @@ export function StudioBG({ children }) {
     <AbsoluteFill style={{ backgroundColor: STUDIO_BG }}>
       <svg width={w} height={h} style={{ position: "absolute", inset: 0 }}>
         <defs>
-          <filter id="frond-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="16" /></filter>
+          <filter id="frond-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="20" /></filter>
         </defs>
         {/* top-right frond, falling down-left across the corner */}
-        <g filter="url(#frond-blur)" opacity={0.26} transform={`translate(${w + 60},-40) rotate(128)`}>
+        <g filter="url(#frond-blur)" opacity={0.18} transform={`translate(${w + 60},-40) rotate(128)`}>
           <path d={frondPath(820, 90)} fill="#000" />
         </g>
         {/* left frond, reaching in from the edge at mid-height (darker, as measured) */}
-        <g filter="url(#frond-blur)" opacity={0.34} transform={`translate(-80,${h * 0.36}) rotate(18)`}>
+        <g filter="url(#frond-blur)" opacity={0.25} transform={`translate(-80,${h * 0.36}) rotate(18)`}>
           <path d={frondPath(700, -70, 14)} fill="#000" />
         </g>
         {/* faint lower-right frond */}

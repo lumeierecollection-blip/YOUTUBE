@@ -110,6 +110,17 @@ function srtSentences(srtPath) {
 }
 
 function describeBeat(b) {
+  // Reference paper style: what the viewer sees IS these fields (PaperVideo
+  // draws them), so the challenger judges them — not the unused mechanism.
+  if (b.kind === "EDITORIAL" || (b.kind === "TYPE" && b.headline !== undefined)) {
+    return [
+      `${b.kind === "TYPE" ? "typography-only page" : "editorial page"}`,
+      b.lead_in ? `italic lead-in: "${b.lead_in}"` : null,
+      `headline: "${b.headline || ""}"`,
+      b.number ? `number: ${b.number}` : null,
+      b.cutout_query ? `grayscale photo cutout of: ${b.cutout_query}` : null,
+    ].filter(Boolean).join(" | ");
+  }
   const events = (b.visual_events || []).map((e) => [e.type, e.label, e.magnitude].filter(Boolean).join(" ")).join("; ");
   const d = b.direction || {};
   return [

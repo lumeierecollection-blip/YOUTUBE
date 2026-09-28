@@ -508,6 +508,14 @@ async function main() {
   // client caches whatever it got, so a plain retry would replay the same
   // bad answer — the one retry below bypasses the cache and restates the
   // required shape. Still no beats after that → Ollama, then exit 1.
+  // One beat per sentence, exactly: run 36362576442 ch-26 returned 5 beats
+  // for 4 sentences and every beat after the first shifted onto the wrong
+  // line (the challenger caught it). A count mismatch gets the same single
+  // strict, uncached retry as a missing "beats"; still wrong -> exit 1.
+  if (geminiResult?.beats && geminiResult.beats.length !== sentences.length && forced !== "ollama") {
+    console.error(`Gemini plan attempt 1 has ${geminiResult.beats.length} beats for ${sentences.length} sentences. Retrying once uncached.`);
+    geminiResult = { error: `beat count ${geminiResult.beats.length} != ${sentences.length} sentences` };
+  }
   if (!geminiResult?.beats && forced !== "ollama") {
     console.error(`Gemini plan attempt 1 had no 'beats' — got: ${describeShape(geminiResult)}. Retrying once uncached.`);
     const strict = prompt + "\n\nReturn ONLY one JSON object whose top-level key is \"beats\" (an array with exactly " + sentences.length + " entries, one per sentence, in order). No prose, no markdown fences, no other top-level keys.";
@@ -539,6 +547,10 @@ async function main() {
     }
   }
 
+  if (geminiResult?.beats && geminiResult.beats.length !== sentences.length) {
+    console.error(`Visual plan failed: ${geminiResult.beats.length} beats for ${sentences.length} sentences after the retry — not padding or trimming it`);
+    process.exit(1);
+  }
   const plan = geminiResult?.beats ? geminiResult : null;
   if (!plan || !plan.beats) {
     console.error(`Visual plan failed (gemini, then ollama): ${geminiResult?.error || "no 'beats' — got: " + describeShape(geminiResult)}`);

@@ -18,15 +18,15 @@ function rng(seed) {
 
 export function TimelineFooter({ seed = "0", progress = 0 }) {
   const { w, h } = DEVICE;
-  const pad = 26, top = 58, trackH = 22, gap = 7;
+  const pad = 26, top = 60, trackH = 13, gap = 10;
   const innerW = w - pad * 2;
   const r = rng(seed);
-  const colors = [TIMELINE.purple, TIMELINE.violet, TIMELINE.purple, TIMELINE.violet, TIMELINE.green, TIMELINE.green];
+  const colors = [TIMELINE.purple, TIMELINE.violet, TIMELINE.purple, TIMELINE.violet, TIMELINE.purple, TIMELINE.violet, TIMELINE.green, TIMELINE.green, TIMELINE.green];
   const tracks = colors.map((c, t) => {
     const clips = [];
     let x = r() * 30;
     while (x < innerW - 20) {
-      const cw = 14 + r() * (t < 4 ? 70 : 34);
+      const cw = 10 + r() * (t < 6 ? 44 : 22);
       if (r() > 0.28) clips.push({ x, w: Math.min(cw, innerW - x), c });
       x += cw + 4 + r() * 26;
     }
