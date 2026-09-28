@@ -1079,6 +1079,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     const srtPath = join(dirname(audioPathFor(channelId, scriptPath)), basename(audioPathFor(channelId, scriptPath), ".mp3") + ".srt");
     let challenge = await challengePlan(channelId, planPath, srtPath, "");
     if (challenge.code === 1) {
+      const firstPlanPath = planPath, firstReview = challenge.review;
       const blocking = (challenge.review?.beats || []).filter((b) => b.verdict === "MISMATCH" || b.verdict === "CONTRADICTION");
       const corrFile = planPath.replace(/\.json$/, "-challenger-corrections.json");
       writeFileSync(corrFile, JSON.stringify({ corrections: blocking.map((b) => ({
@@ -1094,6 +1095,29 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
         return { skipped: false, ok: false };
       }
       challenge = await challengePlan(channelId, planPath, srtPath, "-2");
+      // A second rejection is usually a DIFFERENT beat: the re-plan fixed the
+      // rejected beats but rewrote beats that had passed (run 36416582506:
+      // ch-1 beat 0 then beat 4; ch-44 beat 5 then beat 9). Every beat the
+      // second review blocks but the first review passed is restored from
+      // the first plan (verdicts are per beat, against its own sentence);
+      // the merged plan is challenged AGAIN and must pass outright. A beat
+      // blocked by both reviews still fails the video.
+      const isBlock = (v) => v.verdict === "MISMATCH" || v.verdict === "CONTRADICTION";
+      if (challenge.code === 1 && firstReview?.beats && challenge.review?.beats) {
+        const firstPlan = readJsonSafe(firstPlanPath), merged = readJsonSafe(planPath);
+        const passedFirst = new Set(firstReview.beats.filter((v) => !isBlock(v)).map((v) => v.beat_index));
+        const blocked2 = challenge.review.beats.filter(isBlock).map((v) => v.beat_index);
+        const sameShape = firstPlan?.beats?.length && firstPlan.beats.length === merged?.beats?.length;
+        if (sameShape && blocked2.length && blocked2.every((i) => passedFirst.has(i))) {
+          for (const i of blocked2) merged.beats[i] = firstPlan.beats[i];
+          const mergedPath = planPath.replace(/\.json$/, "-merged.json");
+          writeFileSync(mergedPath, JSON.stringify(merged, null, 2) + "\n");
+          console.log(`[challenger] beat(s) ${blocked2.join(", ")} passed the first review and failed the second — restored from the first plan; challenging the merged plan`);
+          const third = await challengePlan(channelId, mergedPath, srtPath, "-3");
+          if (third.code === 0) { planPath = mergedPath; challenge = third; }
+          else console.log(`[challenger] the merged plan was rejected too (exit ${third.code})`);
+        }
+      }
     }
     // A challenger failure still fails the video. It is rendered only so
     // the backup audit can queue it for a human (approved-review/ or

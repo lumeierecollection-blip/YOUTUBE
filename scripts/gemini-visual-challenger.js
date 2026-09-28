@@ -113,12 +113,23 @@ function describeBeat(b) {
   // Reference paper style: what the viewer sees IS these fields (PaperVideo
   // draws them), so the challenger judges them — not the unused mechanism.
   if (b.kind === "EDITORIAL" || (b.kind === "TYPE" && b.headline !== undefined)) {
+    // The drawn visual too (visual_type + its checked data). Run 36416582506
+    // ch-1: a beat whose COUNTER draws "$2,600" was rejected as "the headline
+    // omits the $2600 figure" — the challenger was never shown the counter.
+    const d = b.data || {};
+    const vt = String(b.visual_type || "").toUpperCase();
+    const visual = vt === "COUNTER" ? `counter drawn on the page: ${d.value}${d.label ? ` (${d.label})` : ""}`
+      : vt === "PIE" || vt === "GAUGE" ? `${vt.toLowerCase()} chart drawn on the page: ${d.percent}%${d.label ? ` (${d.label})` : ""}`
+      : vt === "BAR" ? `bar chart drawn on the page: ${(d.bars || []).map((x) => `${x.label} ${x.value}`).join(", ")}`
+      : vt === "LINE" ? `line chart drawn on the page: ${(d.points || []).map((x) => `${x.label} ${x.value}`).join(" -> ")}`
+      : vt === "MAP" ? `map drawn on the page: ${d.place}`
+      : b.cutout_query ? `grayscale photo cutout of: ${b.cutout_query}` : null;
     return [
-      `${b.kind === "TYPE" ? "typography-only page" : "editorial page"}`,
+      `${b.kind === "TYPE" || vt === "TYPE" ? "typography-only page" : "editorial page"}`,
       b.lead_in ? `italic lead-in: "${b.lead_in}"` : null,
       `headline: "${b.headline || ""}"`,
-      b.number ? `number: ${b.number}` : null,
-      b.cutout_query ? `grayscale photo cutout of: ${b.cutout_query}` : null,
+      visual,
+      !visual && b.number ? `number: ${b.number}` : null,
     ].filter(Boolean).join(" | ");
   }
   const events = (b.visual_events || []).map((e) => [e.type, e.label, e.magnitude].filter(Boolean).join(" ")).join("; ");

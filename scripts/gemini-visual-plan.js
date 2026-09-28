@@ -368,7 +368,11 @@ it). You write only these fields:
                   in its sentence is dropped.)
   "headline":     2-4 words, NEVER a full sentence ("LIQUID DEATH",
                   "REBELLION", "wild influencer collabs"). UPPERCASE for a
-                  punchline, lowercase bold for a phrase.
+                  punchline, lowercase bold for a phrase. Its words come
+                  from the sentence, and it says only what the sentence
+                  says: never add a claim, promise or judgement it does not
+                  make ("GUARANTEED", "BEST", "FAILS", "BREAKS DOWN") — a
+                  checker rejects the plan for that.
   "emphasis_word": one word of the headline to pop, or null
   "visual_type":  ONE of CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | TYPE
                   — what the paper shows. The system draws it; only CUTOUT
