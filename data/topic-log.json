@@ -1856,9 +1856,14 @@
           "topic": "AI in action: Inside the 2026 AI Negotiation Challenge",
           "slug": "ai-negotiation-challenge-2026",
           "reserved_at": "2026-09-23T11:12:02.517Z"
+        },
+        {
+          "topic": "AI Negotiation Tactics in 2026",
+          "slug": "ai-negotiation-tactics-2026",
+          "reserved_at": "2026-09-28T20:24:00.652Z"
         }
       ],
-      "last_generated": "2026-09-23T11:12:02.518Z"
+      "last_generated": "2026-09-28T20:24:00.652Z"
     },
     "45": {
       "channel_name": "Lift",
