@@ -200,7 +200,17 @@ async function geminiPlan(channelId, scriptPath, correctionsPath) {
       if (issues.length && first?.source === "ollama") {
         console.log(`[plan] ${issues.length} composition issue(s) on an ollama plan — reported, no corrective re-plan (CPU cost)`);
       }
-      if (issues.length && !correctionsPath && first?.source !== "ollama") {
+      // Not on a paper plan either: an EDITORIAL beat is drawn by PaperVideo
+      // from its own fields and has no composition (gemini-visual-plan.js
+      // deletes it), so these issues cannot change what renders. In run
+      // 36478456863 this re-plan, judged on composition-issue count alone,
+      // replaced ch-2's gate-passing MAP beat and dropped ch-26's
+      // gate-passing CUTOUT (it kept the first plan, 2 -> 2 issues).
+      const paperPlan = (first?.beats || []).some((b) => b.kind === "EDITORIAL" || b.headline !== undefined);
+      if (issues.length && paperPlan) {
+        console.log(`[plan] ${issues.length} composition issue(s) on a paper plan — not used by the paper renderer; no corrective re-plan`);
+      }
+      if (issues.length && !correctionsPath && first?.source !== "ollama" && !paperPlan) {
         const corrDir = join(ROOT, "data", "audit", "corrections", process.env.GITHUB_RUN_ID || "local");
         mkdirSync(corrDir, { recursive: true });
         const corrFile = join(corrDir, `${basename(scriptPath, ".json")}-composition.json`);

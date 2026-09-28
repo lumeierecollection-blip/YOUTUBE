@@ -33,7 +33,7 @@ import {
   compactCapabilityDigest, compileScene, isMechanismBased, mechanismToCapability,
 } from "../src/skills/remotion-render/visual/capability-compiler.js";
 import { callGemini as callGeminiApi } from "../src/lib/gemini-client.js";
-import { forcedOllama, callOllamaOnly } from "../src/lib/llm.js";
+import { forcedOllama, callOllamaOnly, callLLM, isProviderError } from "../src/lib/llm.js";
 import { createRequire as createRequireGroq } from "node:module";
 const { callGroq } = createRequireGroq(import.meta.url)("./groq-client.cjs");
 import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-names.js";
@@ -170,6 +170,28 @@ const TYPE_CAPABILITY = { CUTOUT: "revelation", COUNTER: "evidence", BAR: "compa
 function sentenceNumbers(text) {
   return new Set((String(text || "").match(/\d[\d,]*(?:\.\d+)?/g) || []).map((n) => Number(n.replace(/,/g, ""))));
 }
+// What a beat's sentence can ground, for the gate-repair prompt: its
+// numbers (years and counts under 2 are not counter values), whether it
+// states a percentage, and any known place (resolveRegion, 1-3 word spans).
+export function groundedOptions(sentence) {
+  const text = String(sentence || "");
+  const nums = [...sentenceNumbers(text)];
+  const counts = nums.filter((n) => n >= 2 && !(Number.isInteger(n) && n >= 1000 && n <= 2099));
+  const pct = (text.match(/(\d[\d,]*(?:\.\d+)?)\s*(?:%|percent\b)/gi) || []).map((m) => Number(m.replace(/[^\d.]/g, ""))).filter((n) => n > 0 && n <= 100);
+  const words = text.split(/[^A-Za-z.'-]+/).filter(Boolean);
+  const places = new Set();
+  for (let i = 0; i < words.length; i++) for (let k = 3; k >= 1; k--) {
+    const span = words.slice(i, i + k).join(" ").replace(/[.]$/, "");
+    if (k <= words.length - i && /^[A-Z]/.test(span) && resolveRegion(span)) places.add(span);
+  }
+  const allowed = ["TYPE", "CUTOUT"];
+  if (counts.length) allowed.push("COUNTER");
+  if (pct.length) allowed.push("PIE", "GAUGE");
+  if (nums.length >= 2) allowed.push("BAR", "LINE");
+  if (places.size) allowed.push("MAP");
+  return { counts, percents: pct, places: [...places], allowed };
+}
+
 function numIn(v, nums) {
   const m = String(v ?? "").match(/\d[\d,]*(?:\.\d+)?/);
   return m ? nums.has(Number(m[0].replace(/,/g, ""))) : false;
@@ -284,7 +306,12 @@ export function checkVisual(b, sentence) {
   }
   if (t === "PIE" || t === "GAUGE") {
     const pct = Number(String(d.percent ?? "").replace(/[^\d.]/g, ""));
-    return Number.isFinite(pct) && pct > 0 && pct <= 100 && nums.has(pct) ? { type: t, data: { percent: pct, label: d.label || null } } : bad(`${t} percent "${d.percent}" is not a 0-100 figure from the sentence`);
+    // The figure must be a PERCENTAGE the sentence states ("40%", "40
+    // percent"), not any number in it: "increasing in 2 jurisdictions"
+    // passed as a 2% gauge before this (found 2026-09-28 testing the gate
+    // repair) — a claim the sentence does not make.
+    const statedPct = groundedOptions(sentence).percents;
+    return Number.isFinite(pct) && pct > 0 && pct <= 100 && statedPct.includes(pct) ? { type: t, data: { percent: pct, label: d.label || null } } : bad(`${t} percent "${d.percent}" is not a percentage the sentence states`);
   }
   if (t === "BAR") {
     const bars = (Array.isArray(d.bars) ? d.bars : []).slice(0, 5);
@@ -845,6 +872,66 @@ async function main() {
       const a = String(o.anchor || "").toLowerCase();
       if (MOTION_SYNONYMS[m]) { console.log(`[vocab] beat ${b.index}: motion "${o.motion}" -> "${MOTION_SYNONYMS[m]}"`); o.motion = MOTION_SYNONYMS[m]; }
       if (ANCHOR_SYNONYMS[a]) { console.log(`[vocab] beat ${b.index}: anchor "${o.anchor}" -> "${ANCHOR_SYNONYMS[a]}"`); o.anchor = ANCHOR_SYNONYMS[a]; }
+    }
+  }
+
+  // ── GATE REPAIR: one second chance for gate-rejected visuals ─────────
+  // Run 36478456863 (ch-2/26/48): 11 of 17 rendered beats were planned as a
+  // CUTOUT/COUNTER/chart, and checkVisual turned 6 of them into TYPE — each
+  // rejection correct (a GAUGE "100" or BAR values the sentence never says,
+  // a CUTOUT of an object it never names). With the TYPE beats the planner
+  // chose itself, 12/17 beats rendered as typography. The prompt already
+  // states these rules; the model breaks them anyway. So the rejected beats
+  // go back ONCE, each with its exact rejection and the options its
+  // sentence can actually ground (groundedOptions). Every answer goes
+  // through the SAME checkVisual below — the gate is not loosened; an
+  // answer that still fails is TYPE, as before. Not on a local-model plan
+  // (another CPU-bound call), and not under FORCE_PLANNER=ollama.
+  if (planSource !== "ollama" && !forcedOllama()) {
+    const rejected = [];
+    for (const b of plan.beats) {
+      if (b.visual_type === undefined) continue;
+      const sentenceText = sentences[b.index]?.text || sentences[plan.beats.indexOf(b)]?.text || "";
+      const v = checkVisual(b, sentenceText);
+      if (v.why) rejected.push({ b, sentenceText, why: v.why, asked: String(b.visual_type).toUpperCase(), opts: groundedOptions(sentenceText) });
+    }
+    const worth = rejected;
+    if (worth.length) {
+      const lines = worth.map((r) => `Beat ${r.b.index}. Sentence: "${r.sentenceText}"
+  Rejected: ${r.asked} — ${r.why}
+  Numbers you may use: ${r.opts.counts.join(", ") || "none"} | Percentages: ${r.opts.percents.join(", ") || "none"} | Known places: ${r.opts.places.join(", ") || "none"}
+  Allowed visual_type: ${r.opts.allowed.join(", ")}`).join("\n\n");
+      const repairPrompt = `A code check rejected the visuals below. Replace each one with a visual_type and data that PASS the check, using ONLY what the sentence itself says.
+
+The check (it runs on your answer):
+- CUTOUT {"object": "..."}: ONE physical object whose words appear literally in the sentence. Copy the words. A topic, an idea, a company or a person is not an object. If the sentence names no physical object, do not use CUTOUT.
+- COUNTER {"value": "...", "label": "..."}: value is one of "Numbers you may use", written as in the sentence.
+- PIE / GAUGE {"percent": n, "label": "..."}: n is one of the listed percentages.
+- BAR {"bars": [{"label","value"}]} / LINE {"points": [{"label","value"}]}: every value is a number in the sentence; LINE needs 2+.
+- MAP {"place": "..."}: one of the listed known places.
+- TYPE {}: when nothing above fits. TYPE is the honest answer for a sentence with no number, no percentage, no place and no physical object.
+
+${lines}
+
+Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>","data":{...}}]} — one entry per beat above.`;
+      const t0 = Date.now();
+      const ans = await callLLM([{ role: "user", content: repairPrompt }], { maxTokens: 1500, temperature: 0 }, "plan-repair");
+      const got = isProviderError(ans) ? [] : (Array.isArray(ans?.beats) ? ans.beats : Array.isArray(ans) ? ans : []);
+      let fixed = 0;
+      for (const r of worth) {
+        const a = got.find((x) => Number(x?.index) === r.b.index);
+        if (!a) { console.log(`[plan-repair] beat ${r.b.index}: ${r.asked} rejected, no replacement returned -> TYPE`); continue; }
+        const cand = { visual_type: a.visual_type, data: a.data || {} };
+        const v = checkVisual(cand, r.sentenceText);
+        const t = String(a.visual_type || "").toUpperCase();
+        if (!v.why && v.type !== "TYPE") {
+          r.b.visual_type = v.type; r.b.data = v.data; fixed++;
+          console.log(`[plan-repair] beat ${r.b.index}: ${r.asked} -> ${v.type} ${JSON.stringify(v.data)} (passed the gate)`);
+        } else {
+          console.log(`[plan-repair] beat ${r.b.index}: ${r.asked} -> ${t || "?"}${v.why ? ` still rejected (${v.why})` : " (TYPE)"}`);
+        }
+      }
+      console.log(`[plan-repair] ${fixed}/${worth.length} rejected visual(s) replaced with a grounded one (${((Date.now() - t0) / 1000).toFixed(0)}s${isProviderError(ans) ? `, model: ${ans.error}` : ""})`);
     }
   }
 
