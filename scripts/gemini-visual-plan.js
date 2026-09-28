@@ -712,7 +712,7 @@ async function main() {
   if (forced) {
     console.error("[planner] ollama (FORCE_PLANNER=ollama — Gemini not called)");
   } else {
-    geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2 }));
+    geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2, tag: "planner" }));
     if (geminiResult?.source === "gemini" && geminiResult.error) {
       geminiFailure = geminiResult.error;
     } else if (!okBeats(geminiResult)) {
@@ -720,7 +720,7 @@ async function main() {
       // "beats" key, or with a beat count that shifts every beat onto the
       // wrong line (run 36362576442 ch-26). One strict, uncached retry.
       console.error(`Gemini plan attempt 1 ${geminiResult?.beats ? `has ${geminiResult.beats.length} beats for ${sentences.length} sentences` : `had no 'beats' — got: ${describeShape(geminiResult)}`}. Retrying once uncached.`);
-      geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2, noCache: true }));
+      geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2, noCache: true, tag: "planner" }));
       if (geminiResult?.source === "gemini" && geminiResult.error) geminiFailure = geminiResult.error;
       else if (!okBeats(geminiResult)) geminiFailure = geminiResult?.beats ? `beat count ${geminiResult.beats.length} != ${sentences.length}` : "no_beats";
     }

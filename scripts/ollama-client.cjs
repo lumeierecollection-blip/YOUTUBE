@@ -140,7 +140,9 @@ async function callOllama(messages, opts = {}) {
   const { maxTokens = 1200, temperature = 0 } = opts;
   const timeoutMs = Number(opts.timeoutMs || process.env.OLLAMA_TIMEOUT_MS || 1800000);
   const { prompt, images } = await messagesToPrompt(messages);
-  const model = images.length ? VISION_MODEL() : TEXT_MODEL();
+  // opts.ollamaModel: a caller-chosen local model (the challenger uses
+  // qwen2.5:14b); otherwise vision for frames, text for the rest.
+  const model = opts.ollamaModel || (images.length ? VISION_MODEL() : TEXT_MODEL());
   // Context: prompt (~3.2 chars/token) + images + the answer, rounded up.
   const promptTokens = Math.ceil(prompt.length / 3.2) + images.length * 400;
   const numCtx = Math.min(32768, Math.max(4096, Math.ceil((promptTokens + maxTokens + 256) / 1024) * 1024));
@@ -149,6 +151,7 @@ async function callOllama(messages, opts = {}) {
     const r = await request("/api/generate", {
       model, prompt, images: images.length ? images : undefined, format: "json", stream: false,
       options: { temperature, num_predict: maxTokens, num_ctx: numCtx },
+      ...(opts.keepAlive !== undefined ? { keep_alive: opts.keepAlive } : {}),
     }, timeoutMs);
     console.error(`[ollama] ${model}: ${r.prompt_eval_count ?? "?"} prompt + ${r.eval_count ?? "?"} answer tokens, ${images.length} image(s), ctx ${numCtx}, ${((Date.now() - t0) / 1000).toFixed(0)}s`);
     if (!String(r.response || "").trim()) return { source: "ollama", error: "empty_answer", detail: `${model} returned nothing`, model };

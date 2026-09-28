@@ -56,4 +56,4 @@ runs:
           node scripts/ollama-client.cjs --check --model "$m" --timeout 120 \
             || { echo "--- ollama.log ---"; tail -50 /tmp/ollama.log; exit 1; }
         done
-        nproc; free -g | head -2
+        nproc; free -g | head -2; df -h / | tail -1

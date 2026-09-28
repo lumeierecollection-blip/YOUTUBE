@@ -9,10 +9,10 @@
  * FAILURE CONTRACT — Gemini is tried once per request; the CALLER then falls
  * back to local Ollama (src/lib/llm.js). Every failure returns an object
  * { source: "gemini", error: <kind>, detail } instead of retrying:
- *   429 / quota / rate limit   -> "quota_exhausted" at once. A spent quota
- *                                 resets in ~24 h, not seconds: no retry, no
- *                                 other key (run 36422387281 failed all six
- *                                 channels waiting on one).
+ *   429 / quota / rate limit   -> the NEXT key (each has its own quota);
+ *                                 "quota_exhausted" only after every key
+ *                                 returned it. No waiting: a spent quota
+ *                                 resets in ~24 h, not seconds.
  *   503 / other 5xx / timeout  -> ONE retry after 5 s, then "unavailable".
  *   400 / 401 / 403            -> "hard_error".
  *   an answer with no message  -> "bad_response".
@@ -267,8 +267,16 @@ export async function callGemini(messages, opts = {}) {
   const baseUrl = "https://generativelanguage.googleapis.com/v1beta/openai";
   const body = JSON.stringify({ model, max_tokens: maxTokens, temperature, messages });
 
-  for (let attempt = 1; attempt <= 2; attempt++) {
+  // 429 / quota rotates through every configured key (each key has its own
+  // quota); quota_exhausted is returned only after EVERY key returned it.
+  // 503 keeps its one retry after 5 s. Run 36431582306 fell to Ollama on
+  // every channel while two of three keys still had quota.
+  const tag = opts.tag || "gemini";
+  const tried = new Set();
+  let unavailableRetried = false;
+  for (;;) {
     let kind = null, detail = "";
+    tried.add(keyIndex);
     try {
       const res = execFileSync("curl", [
         "-sS", "--max-time", String(REQUEST_TIMEOUT_S),
@@ -317,6 +325,7 @@ export async function callGemini(messages, opts = {}) {
         if (ck && !result.error) {
           cacheSet(ck, result);
         }
+        console.error(`[${tag}] gemini key ${keyIndex + 1}/${keys.length} answered`);
         return result;
       } else {
         kind = "bad_response";
@@ -327,15 +336,25 @@ export async function callGemini(messages, opts = {}) {
       kind = classify(0, detail) || "unavailable";
     }
 
-    if (kind === "unavailable" && attempt === 1) {
-      console.error(`[gemini-client] unavailable (${detail.slice(0, 160)}) — one retry in 5 s`);
+    if (kind === "quota_exhausted") {
+      const next = keys.findIndex((_, i) => !tried.has(i));
+      if (next >= 0) {
+        console.error(`[gemini] key ${keyIndex + 1} exhausted, trying key ${next + 1}`);
+        keyIndex = next;
+        continue;
+      }
+      console.error(`[gemini] all keys exhausted, falling to ollama`);
+      return fail(kind, detail);
+    }
+    if (kind === "unavailable" && !unavailableRetried) {
+      unavailableRetried = true;
+      console.error(`[gemini-client] key ${keyIndex + 1} unavailable (${detail.slice(0, 160)}) — one retry in 5 s`);
       await sleep(5000);
       continue;
     }
-    console.error(`[gemini-client] ${kind}: ${detail.slice(0, 200)}`);
+    console.error(`[gemini-client] key ${keyIndex + 1} ${kind}: ${detail.slice(0, 200)}`);
     return fail(kind, detail);
   }
-  return fail("unavailable", "retry exhausted");
 }
 
 // ── Synchronous variant (for scripts that can't use async) ────────

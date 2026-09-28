@@ -46,7 +46,7 @@ export async function callLLM(messages, opts = {}, tag = "llm") {
     console.error(`[${tag}] ollama (FORCE_PLANNER=ollama — Gemini not called)`);
     return callOllamaOnly(messages, opts, tag);
   }
-  const r = await callGemini(messages, opts);
+  const r = await callGemini(messages, { ...opts, tag });
   if (!(r && r.source === "gemini" && r.error)) return r;
   console.error(`[${tag}] gemini: ${r.error} → ollama${r.detail ? ` (${String(r.detail).slice(0, 120)})` : ""}`);
   return callOllamaOnly(messages, opts, tag);

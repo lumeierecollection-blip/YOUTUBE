@@ -720,8 +720,9 @@ jobs:
         if: steps.status.outputs.skip != 'true'
         uses: ./.github/actions/ollama
         with:
-          models: "qwen2.5:7b qwen2.5vl:3b"
-          cache-key: ollama-${{ runner.os }}-qwen2.5-7b+qwen2.5vl-3b
+          # + qwen2.5:14b for the challenger only (planner 7b, vision 3b).
+          models: "qwen2.5:7b qwen2.5vl:3b qwen2.5:14b"
+          cache-key: ollama-${{ runner.os }}-qwen2.5-7b+qwen2.5vl-3b+qwen2.5-14b
 
       - name: Render + QA
         if: steps.status.outputs.skip != 'true'
@@ -731,6 +732,7 @@ jobs:
           # routes EVERY model call to Ollama; Gemini is never called.
           OLLAMA_TEXT_MODEL: qwen2.5:7b
           OLLAMA_VISION_MODEL: qwen2.5vl:3b
+          OLLAMA_CHALLENGER_MODEL: qwen2.5:14b
           FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
           # render-and-qa.js's own wall-clock budget, inside the 100-min job.
           RENDER_QA_BUDGET_MIN: "92"

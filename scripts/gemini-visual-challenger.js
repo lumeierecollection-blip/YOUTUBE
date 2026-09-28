@@ -187,7 +187,9 @@ Return exactly one entry per beat, beat_index 0..${beats.length - 1}.`;
   // Gemini first; on any Gemini failure (quota_exhausted, unavailable, ...)
   // the same prompt goes to local Ollama (src/lib/llm.js) — no Gemini
   // retry. Both failing is "could not run" (exit 3), never an approval.
-  const result = await callLLM([{ role: "user", content: prompt }], { maxTokens: 2048, temperature: 0 }, "challenger");
+  // Local fallback on qwen2.5:14b (7b gave nonsense verdicts in run 36431582306);
+  // unloaded right after answering so its ~10 GB is free for rendering.
+  const result = await callLLM([{ role: "user", content: prompt }], { maxTokens: 2048, temperature: 0, ollamaModel: process.env.OLLAMA_CHALLENGER_MODEL || "qwen2.5:14b", keepAlive: 0 }, "challenger");
   if (isProviderError(result)) {
     console.error(`::error::challenger unavailable: ${result.source} ${result.error}${result.detail ? ` (${String(result.detail).slice(0, 160)})` : ""}`);
     process.exit(3);
@@ -266,7 +268,7 @@ async function main() {
 
   console.log(`Challenging visual intent (${intent.beats.length} beats)...`);
   const prompt = buildChallengerPrompt(intent, scriptText, channelConfig);
-  const result = await callLLM([{ role: "user", content: prompt }], { maxTokens: 4096, temperature: 0.3 }, "challenger");
+  const result = await callLLM([{ role: "user", content: prompt }], { maxTokens: 4096, temperature: 0.3, ollamaModel: process.env.OLLAMA_CHALLENGER_MODEL || "qwen2.5:14b", keepAlive: 0 }, "challenger");
 
   let review;
   if (result?.content && typeof result.content === "string") {
