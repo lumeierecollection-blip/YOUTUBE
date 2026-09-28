@@ -194,7 +194,13 @@ async function geminiPlan(channelId, scriptPath, correctionsPath) {
       // the plan and is reported by the renderer — not hidden.
       const first = readJsonSafe(planPath);
       const issues = first?.compositionIssues || [];
-      if (issues.length && !correctionsPath) {
+      // Not on a local-model plan: the corrective pass costs another 10-25
+      // min on a CPU runner and in run 36431582306 mostly changed nothing
+      // ("1 -> 1"). The issues stay in the plan and are reported, as before.
+      if (issues.length && first?.source === "ollama") {
+        console.log(`[plan] ${issues.length} composition issue(s) on an ollama plan — reported, no corrective re-plan (CPU cost)`);
+      }
+      if (issues.length && !correctionsPath && first?.source !== "ollama") {
         const corrDir = join(ROOT, "data", "audit", "corrections", process.env.GITHUB_RUN_ID || "local");
         mkdirSync(corrDir, { recursive: true });
         const corrFile = join(corrDir, `${basename(scriptPath, ".json")}-composition.json`);
