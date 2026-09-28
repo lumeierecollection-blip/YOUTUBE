@@ -16,7 +16,7 @@ import "dotenv/config";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { callGemini } from "../src/lib/gemini-client.js";
+import { callLLM, isProviderError } from "../src/lib/llm.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -184,19 +184,12 @@ Respond ONLY with JSON:
 Return exactly one entry per beat, beat_index 0..${beats.length - 1}.`;
 
   console.log(`Challenging V2 plan: ${beats.length} beats vs ${sentences.length} sentences (${planPath})`);
-  let result = await callGemini([{ role: "user", content: prompt }], { maxTokens: 2048, temperature: 0 });
-  // All 3 keys failing is usually the provider returning 503 "high demand"
-  // for that instant, not a real outage -- QA run 36011611536 saw exactly
-  // this on ch-44, and the SAME planner-side retry-once-uncached pattern
-  // (gemini-visual-plan.js) already exists for the identical failure mode
-  // one step earlier in the pipeline. One retry here, uncached so it isn't
-  // just replaying the same 503 from cache.
-  if (result?.error) {
-    console.error(`::warning::challenger first attempt failed (${String(result.error).slice(0, 150)}); retrying once uncached`);
-    result = await callGemini([{ role: "user", content: prompt }], { maxTokens: 2048, temperature: 0, noCache: true });
-  }
-  if (result?.error) {
-    console.error(`::error::challenger unavailable: ${result.error}`);
+  // Gemini first; on any Gemini failure (quota_exhausted, unavailable, ...)
+  // the same prompt goes to local Ollama (src/lib/llm.js) — no Gemini
+  // retry. Both failing is "could not run" (exit 3), never an approval.
+  const result = await callLLM([{ role: "user", content: prompt }], { maxTokens: 2048, temperature: 0 }, "challenger");
+  if (isProviderError(result)) {
+    console.error(`::error::challenger unavailable: ${result.source} ${result.error}${result.detail ? ` (${String(result.detail).slice(0, 160)})` : ""}`);
     process.exit(3);
   }
   const rawVerdicts = Array.isArray(result?.beats) ? result.beats : null;
@@ -273,7 +266,7 @@ async function main() {
 
   console.log(`Challenging visual intent (${intent.beats.length} beats)...`);
   const prompt = buildChallengerPrompt(intent, scriptText, channelConfig);
-  const result = await callGemini([{ role: "user", content: prompt }], { maxTokens: 4096, temperature: 0.3 });
+  const result = await callLLM([{ role: "user", content: prompt }], { maxTokens: 4096, temperature: 0.3 }, "challenger");
 
   let review;
   if (result?.content && typeof result.content === "string") {

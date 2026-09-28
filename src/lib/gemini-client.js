@@ -6,14 +6,19 @@
  *   GEMINI_API_KEY_2
  *   GEMINI_API_KEY_3
  *
- * On rate-limit (429), transient server error (5xx), or network timeout:
- *   → rotate to the next key and retry.
- *
- * On hard error (400, 401, 403 on a well-formed request):
- *   → fail fast, no rotation.
- *
- * If all keys are exhausted:
- *   → throw with message "All N Gemini keys failed; last error: <message>".
+ * FAILURE CONTRACT — Gemini is tried once per request; the CALLER then falls
+ * back to local Ollama (src/lib/llm.js). Every failure returns an object
+ * { source: "gemini", error: <kind>, detail } instead of retrying:
+ *   429 / quota / rate limit   -> "quota_exhausted" at once. A spent quota
+ *                                 resets in ~24 h, not seconds: no retry, no
+ *                                 other key (run 36422387281 failed all six
+ *                                 channels waiting on one).
+ *   503 / other 5xx / timeout  -> ONE retry after 5 s, then "unavailable".
+ *   400 / 401 / 403            -> "hard_error".
+ *   an answer with no message  -> "bad_response".
+ *   token budget spent         -> "budget_exhausted".
+ *   FORCE_PLANNER=ollama       -> "forced_off", and no request is made.
+ * A success returns the parsed JSON content (or { content }) as before.
  *
  * Disk cache at .cache/gemini/ — key = SHA256(model + prompt + schema).
  * TTL: 30 days. Makes re-renders free.
@@ -211,13 +216,18 @@ export function resetTokenUsage() {
 
 // ── Core API call ─────────────────────────────────────────────────
 
-// Provider-wide outage: when EVERY key fails with an overload / rate / quota
-// / timeout error, wait and cycle the keys again (20 s, then 45 s) before
-// giving up. Run 36422387281: key 1 over its daily quota and keys 2-3 "503
-// This model is currently experiencing high demand" — every caller retried
-// at once into the same wall and all six channels failed with no plan. A
-// hard error (400/401/403) or a success is returned at once, as before.
-const OUTAGE = /\b(429|500|502|503|504|UNAVAILABLE|RESOURCE_EXHAUSTED|high demand|overloaded|quota|timed out|timeout)\b/i;
+const QUOTA_RE = /quota|RESOURCE_EXHAUSTED|rate.?limit|PerDayPerProject|tokens per minute/i;
+const UNAVAILABLE_RE = /UNAVAILABLE|high demand|overloaded|ETIMEDOUT|ECONNRESET|socket hang up|timed? ?out|curl/i;
+
+function classify(statusCode, msg) {
+  const code = Number(statusCode) || 0;
+  if (code === 429 || QUOTA_RE.test(msg || "")) return "quota_exhausted";
+  if (code >= 500 && code < 600) return "unavailable";
+  if (code === 400 || code === 401 || code === 403) return "hard_error";
+  if (UNAVAILABLE_RE.test(msg || "")) return "unavailable";
+  return null;
+}
+const fail = (error, detail) => ({ source: "gemini", error, detail: String(detail || "").slice(0, 300) });
 
 /**
  * Make a chat completion call to Gemini via OpenAI-compatible endpoint.
@@ -227,21 +237,9 @@ const OUTAGE = /\b(429|500|502|503|504|UNAVAILABLE|RESOURCE_EXHAUSTED|high deman
  * @param {number} [opts.maxTokens=1200]
  * @param {number} [opts.temperature=0]
  * @param {string} [opts.model="gemini-3.5-flash-lite"]
- * @returns {Promise<Object>} Parsed JSON response or { error: string }
+ * @returns {Promise<Object>} Parsed JSON response, or { source: "gemini", error, detail }
  */
 export async function callGemini(messages, opts = {}) {
-  let r = await callGeminiOnce(messages, opts);
-  for (const waitMs of [20000, 45000]) {
-    if (!r?.error || !/keys failed/.test(String(r.error)) || !OUTAGE.test(String(r.error))) break;
-    console.error(`[gemini-client] every key failed (${String(r.error).slice(0, 160)}) — waiting ${waitMs / 1000}s, then all keys again`);
-    await sleep(waitMs);
-    keyIndex = 0;
-    r = await callGeminiOnce(messages, opts);
-  }
-  return r;
-}
-
-async function callGeminiOnce(messages, opts = {}) {
   const {
     maxTokens = 1200,
     temperature = 0,
@@ -249,7 +247,15 @@ async function callGeminiOnce(messages, opts = {}) {
     noCache = false,
   } = opts;
 
-  if (!keys) keys = collectKeys();
+  if (String(process.env.FORCE_PLANNER || "").toLowerCase() === "ollama") {
+    console.error("[gemini-client] FORCE_PLANNER=ollama — no Gemini request made");
+    return fail("forced_off", "FORCE_PLANNER=ollama");
+  }
+  try {
+    if (!keys) keys = collectKeys();
+  } catch (e) {
+    return fail("no_key", e.message);
+  }
 
   // Check disk cache first (skip if noCache is set)
   const ck = noCache ? null : cacheKey(model, messages, maxTokens, temperature);
@@ -259,57 +265,39 @@ async function callGeminiOnce(messages, opts = {}) {
   }
 
   const baseUrl = "https://generativelanguage.googleapis.com/v1beta/openai";
-  const totalKeys = keys.length;
-  let lastError = null;
+  const body = JSON.stringify({ model, max_tokens: maxTokens, temperature, messages });
 
-  // Try each key once
-  for (let attempt = 0; attempt < totalKeys; attempt++) {
-    const apiKey = currentKey();
-    const body = JSON.stringify({ model, max_tokens: maxTokens, temperature, messages });
-
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    let kind = null, detail = "";
     try {
       const res = execFileSync("curl", [
         "-sS", "--max-time", String(REQUEST_TIMEOUT_S),
         "-H", "Content-Type: application/json",
-        "-H", `Authorization: Bearer ${apiKey}`,
+        "-H", `Authorization: Bearer ${currentKey()}`,
         "-d", "@-",
         `${baseUrl}/chat/completions`,
       ], { input: body, encoding: "utf-8", timeout: (REQUEST_TIMEOUT_S + 10) * 1000 });
 
-      const parsed = JSON.parse(res);
+      let parsed = JSON.parse(res);
+      // The API sometimes wraps its error in an array: [{"error": {...}}]
+      // (run 36422387281: '503 ... high demand' came back this way).
+      if (Array.isArray(parsed) && parsed[0] && parsed[0].error) parsed = parsed[0];
 
       // Track token usage (budget enforcement)
       if (parsed.usage) {
         try {
           trackTokens(parsed.usage);
         } catch (e) {
-          return { error: e.message };
+          return fail("budget_exhausted", e.message);
         }
       }
 
-      // Check for API-level errors
       if (parsed.error) {
         const statusCode = parsed.error.code || parsed.error.status || 0;
-        const errorMsg = parsed.error.message || JSON.stringify(parsed.error);
-
-        if (isRetryable(statusCode, errorMsg)) {
-          lastError = `[key ${keyIndex + 1}/${totalKeys}] ${statusCode}: ${errorMsg.slice(0, 200)}`;
-          console.error(`[gemini-client] Retryable error on key ${keyIndex + 1}: ${errorMsg.slice(0, 150)}`);
-          if (advanceKey()) {
-            await sleep(RETRY_DELAY_MS);
-            continue;
-          }
-          break; // All keys exhausted
-        }
-
-        if (isHardError(statusCode)) {
-          // Hard error — fail fast, no rotation
-          return { error: `Gemini API hard error (${statusCode}): ${errorMsg.slice(0, 300)}` };
-        }
-      }
-
-      // Success — extract content
-      if (parsed.choices && parsed.choices[0] && parsed.choices[0].message) {
+        detail = `${statusCode}: ${parsed.error.message || JSON.stringify(parsed.error)}`;
+        kind = classify(statusCode, detail) || "bad_response";
+      } else if (parsed.choices && parsed.choices[0] && parsed.choices[0].message) {
+        // Success — extract content
         const content = parsed.choices[0].message.content;
         let result;
         if (typeof content === "string") {
@@ -330,35 +318,24 @@ async function callGeminiOnce(messages, opts = {}) {
           cacheSet(ck, result);
         }
         return result;
+      } else {
+        kind = "bad_response";
+        detail = `unexpected response shape: ${JSON.stringify(parsed).slice(0, 240)}`;
       }
-
-      // Unexpected response shape
-      lastError = `[key ${keyIndex + 1}/${totalKeys}] unexpected response shape: ${JSON.stringify(parsed).slice(0, 200)}`;
-      console.error(`[gemini-client] ${lastError}`);
-      if (advanceKey()) {
-        await sleep(RETRY_DELAY_MS);
-        continue;
-      }
-      break;
-
     } catch (e) {
-      const msg = String(e.message || e);
-      if (isRetryable(0, msg)) {
-        lastError = `[key ${keyIndex + 1}/${totalKeys}] network error: ${msg.slice(0, 200)}`;
-        console.error(`[gemini-client] Network error on key ${keyIndex + 1}: ${msg.slice(0, 150)}`);
-        if (advanceKey()) {
-          await sleep(RETRY_DELAY_MS);
-          continue;
-        }
-        break;
-      }
-      // Non-retryable network error
-      return { error: `Gemini API call failed: ${msg.slice(0, 300)}` };
+      detail = String(e.message || e);
+      kind = classify(0, detail) || "unavailable";
     }
-  }
 
-  // All keys exhausted
-  return { error: `All ${totalKeys} Gemini keys failed; last error: ${lastError || "unknown"}` };
+    if (kind === "unavailable" && attempt === 1) {
+      console.error(`[gemini-client] unavailable (${detail.slice(0, 160)}) — one retry in 5 s`);
+      await sleep(5000);
+      continue;
+    }
+    console.error(`[gemini-client] ${kind}: ${detail.slice(0, 200)}`);
+    return fail(kind, detail);
+  }
+  return fail("unavailable", "retry exhausted");
 }
 
 // ── Synchronous variant (for scripts that can't use async) ────────

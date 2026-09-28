@@ -8,9 +8,12 @@
 #   render → Plan → Render → silence/duration/frame gates → Publish (private)
 #   self-heal (on failure) → diagnose the failed jobs, block or fix in scope
 #
-# Budget: every job has timeout-minutes: 18; the whole run should finish in
-# under 20 minutes. Concurrency cancels an older run on the same ref, so runs
-# never pile up (the previous 50-channel runs took 5+ hours).
+# Budget: every job has timeout-minutes: 18, except render: 100 — a CEILING
+# for the local-model path, not a target. Every model call goes to Gemini
+# first and to local Ollama when Gemini cannot answer (src/lib/llm.js), and a
+# 7B / 3B model on a CPU runner needs far more than 18 minutes; a render that
+# Gemini answers still finishes in ~10-15 min. Concurrency cancels an older
+# run on the same ref, so runs never pile up.
 
 name: Daily Pipeline — Optimized v2
 
@@ -31,6 +34,10 @@ on:
         description: "DEBUG: skip discover/research/script; render the channel's latest committed script (never publishes)"
         type: boolean
         default: false
+      force_planner:
+        description: "'ollama' = answer EVERY model call with local Ollama; Gemini is never called (the fallback test)"
+        type: string
+        default: ""
 
 concurrency:
   group: daily-pipeline-${{ github.ref }}
@@ -137,35 +144,14 @@ jobs:
         run: pip install --quiet edge-tts
 
       # ── Ollama ─────────────────────────────────────────────────────────
-      - name: Cache Ollama models
+      # .github/actions/ollama: one server per job, the only place one is
+      # started (the "address already in use" fix), models from the cache.
+      - name: Ollama (prep model)
         if: github.event.inputs.render_only != 'true'
-        uses: actions/cache@v4
+        uses: ./.github/actions/ollama
         with:
-          path: ~/.ollama/models
-          key: ollama-${{ runner.os }}-qwen2.5-3b
-
-      - name: Install Ollama
-        if: github.event.inputs.render_only != 'true'
-        run: curl -fsSL https://ollama.com/install.sh | sh
-
-      - name: Start Ollama and pull model
-        if: github.event.inputs.render_only != 'true'
-        run: |
-          # install.sh registers and starts a systemd service on :11434. The
-          # old step then ran a second `ollama serve` on the same port, which
-          # died with "bind: address already in use" in every prep job. Run
-          # exactly one server, ours, reading models from the cached dir.
-          sudo systemctl stop ollama 2>/dev/null || true
-          sudo systemctl disable ollama 2>/dev/null || true
-          sudo pkill -f "ollama serve" 2>/dev/null || true
-          mkdir -p "$HOME/.ollama/models"
-          OLLAMA_MODELS="$HOME/.ollama/models" OLLAMA_HOST=127.0.0.1:11434 \
-            OLLAMA_CONTEXT_LENGTH="$OLLAMA_CONTEXT_LENGTH" \
-            nohup ollama serve > /tmp/ollama.log 2>&1 &
-          for i in $(seq 1 30); do curl -sf "$OLLAMA_URL/api/tags" >/dev/null && break; sleep 1; done
-          OLLAMA_HOST=127.0.0.1:11434 ollama pull "$OLLAMA_MODEL"
-          node scripts/ollama-client.cjs --check --model "$OLLAMA_MODEL" --timeout 60 \
-            || { echo "--- ollama.log ---"; tail -50 /tmp/ollama.log; exit 1; }
+          models: ${{ env.OLLAMA_MODEL }}
+          cache-key: ollama-${{ runner.os }}-qwen2.5-3b
 
       # ── Stage A: discover topics for THIS channel ──────────────────────
       - name: Discover topic
@@ -617,7 +603,8 @@ jobs:
     # status" (no artifact) — honestly, and only that channel.
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    # A ceiling for the local-model path (see the header), not a target.
+    timeout-minutes: 100
     permissions:
       contents: write
     strategy:
@@ -724,13 +711,32 @@ jobs:
           path: ~/.cache/remotion
           key: remotion-chrome-${{ runner.os }}
 
+      # The local models behind every model call (src/lib/llm.js): Gemini
+      # first, Ollama when Gemini cannot answer — or Ollama only with
+      # force_planner=ollama. qwen2.5:7b answers the text calls (planner,
+      # challenger); qwen2.5vl:3b answers the calls that carry frames (beat
+      # check, frame reviews, section-7 QA) — qwen2.5:7b cannot see images.
+      - name: Ollama (text + vision models)
+        if: steps.status.outputs.skip != 'true'
+        uses: ./.github/actions/ollama
+        with:
+          models: "qwen2.5:7b qwen2.5vl:3b"
+          cache-key: ollama-${{ runner.os }}-qwen2.5-7b+qwen2.5vl-3b
+
       - name: Render + QA
         if: steps.status.outputs.skip != 'true'
         env:
           RENDER_PROGRESS_MS: 10000
+          # Local fallback (scripts/ollama-client.cjs). force_planner=ollama
+          # routes EVERY model call to Ollama; Gemini is never called.
+          OLLAMA_TEXT_MODEL: qwen2.5:7b
+          OLLAMA_VISION_MODEL: qwen2.5vl:3b
+          FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
+          # render-and-qa.js's own wall-clock budget, inside the 100-min job.
+          RENDER_QA_BUDGET_MIN: "92"
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          # gemini-client rotates across up to three keys on 429/5xx; the
-          # planner, the challenger and the per-beat frame check all use it.
+          # gemini-client makes ONE attempt (429 -> quota_exhausted at once,
+          # 503 -> one retry after 5 s); any failure goes to Ollama.
           GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
           GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
           GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}

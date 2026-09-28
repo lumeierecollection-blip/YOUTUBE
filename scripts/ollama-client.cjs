@@ -1,25 +1,44 @@
 #!/usr/bin/env node
 /**
- * Minimal Ollama client for the prep stage.
+ * Ollama client — the local fallback for every Gemini call, and the prep
+ * stage's readiness check.
  *
- * The prep stages' model calls go through scripts/ollama-agent.js (direct
- * /api/chat). This module is what the workflow uses to make
- * sure that server is actually up, has the model, and has it loaded, before
- * the first stage starts — so a dead or half-started server fails in its own
- * step with its own error instead of surfacing as "All models failed" three
- * stages later.
+ * callOllama(messages, opts) takes EXACTLY what callGemini(messages, opts)
+ * takes (OpenAI-style messages; string content or [{type:"text"}|
+ * {type:"image_url"}] parts) and returns what it returns: the model's
+ * parsed JSON object, or { content } when the answer is not JSON, or
+ * { source: "ollama", error, detail } on failure. The caller sends the SAME
+ * prompt, so the answer has the same schema whichever provider produced it
+ * (src/lib/llm.js routes between them).
+ *
+ *   endpoint  POST $OLLAMA_URL/api/generate (default http://127.0.0.1:11434)
+ *   format    "json" (JSON-constrained decoding)
+ *   models    text:   $OLLAMA_TEXT_MODEL   (default qwen2.5:7b)
+ *             images: $OLLAMA_VISION_MODEL (default qwen2.5vl:3b) — a
+ *             request carrying frames goes to a vision model, because
+ *             qwen2.5:7b cannot see images; a review answered by a model
+ *             that cannot see the frames would not be a review.
+ *
+ * Images are downscaled (long side $OLLAMA_IMAGE_MAX, default 512 px, JPEG)
+ * before they are sent: CPU inference cost grows with pixels, and the
+ * frame reviews send 6-13 frames per call. In the prompt each image is
+ * announced where it sat ("[image 3]") so a frame keeps its caption.
+ *
+ * Where this stops: a 7B / 3B model on a CPU runner is slower and weaker
+ * than Gemini. The pipeline's gates (checkVisual, the challenger, the beat
+ * check, the reviews) judge its output exactly as they judge Gemini's.
  *
  * CLI:
- *   node scripts/ollama-client.cjs --check [--model qwen2.5:3b] [--timeout 60]
+ *   node scripts/ollama-client.cjs --check [--model qwen2.5:7b] [--timeout 60]
  *     waits for /api/tags, verifies the model is pulled, sends one warm-up
  *     generation (loads the weights into memory). Exit 0 = ready.
- *
- * Module:
- *   const { generate, waitForServer } = require("./ollama-client.cjs");
  */
 
 const DEFAULT_MODEL = process.env.OLLAMA_MODEL || "qwen2.5:3b";
 const OLLAMA_URL = (process.env.OLLAMA_URL || "http://127.0.0.1:11434").replace(/\/$/, "");
+const TEXT_MODEL = () => process.env.OLLAMA_TEXT_MODEL || "qwen2.5:7b";
+const VISION_MODEL = () => process.env.OLLAMA_VISION_MODEL || "qwen2.5vl:3b";
+const IMAGE_MAX = () => Number(process.env.OLLAMA_IMAGE_MAX || 512);
 
 async function request(path, body, timeoutMs = 120000) {
   const ctrl = new AbortController();
@@ -53,9 +72,73 @@ async function waitForServer(timeoutS = 60) {
   throw new Error(`Ollama at ${OLLAMA_URL} not reachable after ${timeoutS}s: ${last?.message}`);
 }
 
-async function generate(prompt, { model = DEFAULT_MODEL, format, options } = {}) {
-  const r = await request("/api/generate", { model, prompt, stream: false, format, options }, 600000);
+async function generate(prompt, { model = DEFAULT_MODEL, format, options, images } = {}) {
+  const r = await request("/api/generate", { model, prompt, images, stream: false, format, options }, 600000);
   return r.response;
+}
+
+// ── The Gemini-shaped call ─────────────────────────────────────────
+
+async function shrink(b64) {
+  try {
+    const sharp = require("sharp");
+    const out = await sharp(Buffer.from(b64, "base64"))
+      .resize({ width: IMAGE_MAX(), height: IMAGE_MAX(), fit: "inside", withoutEnlargement: true })
+      .jpeg({ quality: 85 }).toBuffer();
+    return out.toString("base64");
+  } catch {
+    return b64;
+  }
+}
+
+// OpenAI-style messages -> one prompt + its images, in order.
+async function messagesToPrompt(messages) {
+  const parts = [], images = [];
+  for (const m of messages || []) {
+    const content = typeof m.content === "string" ? [{ type: "text", text: m.content }] : (m.content || []);
+    for (const c of content) {
+      if (c && c.type === "text") parts.push(String(c.text));
+      else if (c && c.type === "image_url") {
+        const url = String(c.image_url?.url || "");
+        images.push(await shrink(url.replace(/^data:[^;]+;base64,/, "")));
+        parts.push(`[image ${images.length}]`);
+      }
+    }
+  }
+  return { prompt: parts.join("\n"), images };
+}
+
+function parseAnswer(text) {
+  const cleaned = String(text || "").trim()
+    .replace(/^```json\s*/, "").replace(/^```\s*/, "").replace(/\s*```$/, "").trim();
+  try {
+    return JSON.parse(cleaned);
+  } catch {
+    return { content: String(text || "") };
+  }
+}
+
+async function callOllama(messages, opts = {}) {
+  const { maxTokens = 1200, temperature = 0 } = opts;
+  const timeoutMs = Number(opts.timeoutMs || process.env.OLLAMA_TIMEOUT_MS || 1800000);
+  const { prompt, images } = await messagesToPrompt(messages);
+  const model = images.length ? VISION_MODEL() : TEXT_MODEL();
+  // Context: prompt (~3.2 chars/token) + images + the answer, rounded up.
+  const promptTokens = Math.ceil(prompt.length / 3.2) + images.length * 400;
+  const numCtx = Math.min(32768, Math.max(4096, Math.ceil((promptTokens + maxTokens + 256) / 1024) * 1024));
+  const t0 = Date.now();
+  try {
+    const r = await request("/api/generate", {
+      model, prompt, images: images.length ? images : undefined, format: "json", stream: false,
+      options: { temperature, num_predict: maxTokens, num_ctx: numCtx },
+    }, timeoutMs);
+    console.error(`[ollama] ${model}: ${r.prompt_eval_count ?? "?"} prompt + ${r.eval_count ?? "?"} answer tokens, ${images.length} image(s), ctx ${numCtx}, ${((Date.now() - t0) / 1000).toFixed(0)}s`);
+    if (!String(r.response || "").trim()) return { source: "ollama", error: "empty_answer", detail: `${model} returned nothing`, model };
+    return parseAnswer(r.response);
+  } catch (e) {
+    const timedOut = e.name === "AbortError";
+    return { source: "ollama", error: timedOut ? "timed_out" : "failed", detail: timedOut ? `no answer from ${model} in ${timeoutMs / 1000}s` : String(e.cause?.code || e.message || e).slice(0, 300), model };
+  }
 }
 
 async function check(model, timeoutS) {
@@ -69,7 +152,7 @@ async function check(model, timeoutS) {
   console.log(`Ollama ready: ${OLLAMA_URL}, model ${model}, warm-up ${((Date.now() - t0) / 1000).toFixed(1)}s → "${String(out).trim()}"`);
 }
 
-module.exports = { generate, waitForServer, DEFAULT_MODEL, OLLAMA_URL };
+module.exports = { generate, waitForServer, callOllama, messagesToPrompt, DEFAULT_MODEL, OLLAMA_URL };
 
 if (require.main === module) {
   const argv = process.argv.slice(2);

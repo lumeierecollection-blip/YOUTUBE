@@ -33,6 +33,7 @@ import {
   compactCapabilityDigest, compileScene, isMechanismBased, mechanismToCapability,
 } from "../src/skills/remotion-render/visual/capability-compiler.js";
 import { callGemini as callGeminiApi } from "../src/lib/gemini-client.js";
+import { forcedOllama, callOllamaOnly } from "../src/lib/llm.js";
 import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-names.js";
 import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
 
@@ -678,7 +679,7 @@ async function main() {
     }
   }
 
-  console.log(`Requesting visual plan from Gemini for ${sentences.length} beats...`);
+  console.log(`Requesting visual plan for ${sentences.length} beats (${forcedOllama() ? "ollama only: FORCE_PLANNER=ollama" : "gemini, ollama if gemini cannot answer"})...`);
   const prompt = buildPlanPrompt(sentences, corrections, channelId);
   // Token budget scales with beat count so the JSON never truncates
   // mid-object (a 51-beat script once came back as "Unexpected end of JSON
@@ -692,53 +693,49 @@ async function main() {
   // answer is cut off at the budget. describeShape() logs the answer's
   // length and tail so a cut-off is visible in the log, not guessed.
   const maxTokens = Math.min(16384, 2000 + sentences.length * 1500);
-  const forced = String(process.env.FORCE_PLANNER || "").toLowerCase();
-  let geminiResult = forced === "ollama"
-    ? { error: "FORCE_PLANNER=ollama (Gemini skipped on purpose)" }
-    : normalizePlanResponse(await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2 }));
-
-  // CI runs showed Gemini intermittently answering without a top-level
-  // "beats" key (a bare array, a wrapper key, or JSON behind prose). The
-  // client caches whatever it got, so a plain retry would replay the same
-  // bad answer — the one retry below bypasses the cache and restates the
-  // required shape. Still no beats after that → Ollama, then exit 1.
-  // One beat per sentence, exactly: run 36362576442 ch-26 returned 5 beats
-  // for 4 sentences and every beat after the first shifted onto the wrong
-  // line (the challenger caught it). A count mismatch gets the same single
-  // strict, uncached retry as a missing "beats"; still wrong -> exit 1.
-  if (geminiResult?.beats && geminiResult.beats.length !== sentences.length && forced !== "ollama") {
-    console.error(`Gemini plan attempt 1 has ${geminiResult.beats.length} beats for ${sentences.length} sentences. Retrying once uncached.`);
-    geminiResult = { error: `beat count ${geminiResult.beats.length} != ${sentences.length} sentences` };
-  }
-  if (!geminiResult?.beats && forced !== "ollama") {
-    console.error(`Gemini plan attempt 1 had no 'beats' — got: ${describeShape(geminiResult)}. Retrying once uncached.`);
-    const strict = prompt + "\n\nReturn ONLY one JSON object whose top-level key is \"beats\" (an array with exactly " + sentences.length + " entries, one per sentence, in order). No prose, no markdown fences, no other top-level keys.";
-    geminiResult = normalizePlanResponse(
-      await callGeminiApi([{ role: "user", content: strict }], { maxTokens, temperature: 0.2, noCache: true }));
-  }
-
-  // No OpenCode fallback here any more: OpenCode isn't installed in the
-  // render job, so it only ever failed with ENOENT and buried Gemini's real
-  // error. A failed Gemini plan exits non-zero; render-and-qa.js then runs
-  // the local planner and logs that it did.
-  // PLANNER FALLBACK CHAIN: Gemini -> Ollama (local, OLLAMA_PLAN_MODEL,
-  // default qwen2.5:7b). Reached on anything that left Gemini without beats:
-  // HTTP 429 / 503, a curl timeout, or JSON still unparseable after the
-  // repairs + the uncached retry. There is NO third, rule-based link:
-  // scripts/local-visual-plan.cjs was retired (render-and-qa.js: QA run
-  // 35916464573 rejected its placeholder plans 6/6) and does not emit the
-  // VISUAL/TYPE real-asset schema — data/ci-runs/blocked-planner-local-fallback.txt.
-  if (!geminiResult?.beats) {
-    const why = geminiResult?.error || "response had no 'beats' — got: " + describeShape(geminiResult);
-    console.error(`[planner] gemini failed: ${String(why).slice(0, 240)}, falling to ollama`);
-    const o = await callOllamaPlan(prompt, maxTokens);
-    if (o.error) {
-      console.error(`[planner] ollama failed: ${o.error} — no further fallback`);
-    } else {
-      geminiResult = normalizePlanResponse({ content: o.content });
-      if (geminiResult?.beats) console.log(`[planner] plan from ollama (${o.model}, ${o.seconds}s)`);
-      else console.error(`[planner] ollama answer had no 'beats': ${describeShape(geminiResult)} — no further fallback`);
+  // PROVIDERS: Gemini first, local Ollama (qwen2.5:7b via
+  // scripts/ollama-client.cjs, /api/generate, format "json") when Gemini
+  // cannot answer — the SAME prompt, so the plan has the same schema.
+  //   - FORCE_PLANNER=ollama: Gemini is never called.
+  //   - Gemini quota_exhausted / unavailable / any provider error: straight
+  //     to Ollama (a spent quota resets in ~24 h; it is not retried).
+  //   - Gemini answered but without usable beats (a bare array, prose, a
+  //     wrong beat count): the one strict, uncached retry to Gemini, as
+  //     before — then Ollama.
+  //   - Ollama gets the same one strict retry for a wrong beat count.
+  // There is no rule-based third link (scripts/local-visual-plan.cjs was
+  // retired — data/ci-runs/blocked-planner-local-fallback.txt).
+  const forced = forcedOllama();
+  const strictPrompt = prompt + "\n\nReturn ONLY one JSON object whose top-level key is \"beats\" (an array with exactly " + sentences.length + " entries, one per sentence, in order). No prose, no markdown fences, no other top-level keys.";
+  const okBeats = (r) => Array.isArray(r?.beats) && r.beats.length === sentences.length;
+  let geminiResult = null, geminiFailure = null, planSource = "gemini";
+  if (forced) {
+    console.error("[planner] ollama (FORCE_PLANNER=ollama — Gemini not called)");
+  } else {
+    geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2 }));
+    if (geminiResult?.source === "gemini" && geminiResult.error) {
+      geminiFailure = geminiResult.error;
+    } else if (!okBeats(geminiResult)) {
+      // CI runs showed Gemini intermittently answering without a top-level
+      // "beats" key, or with a beat count that shifts every beat onto the
+      // wrong line (run 36362576442 ch-26). One strict, uncached retry.
+      console.error(`Gemini plan attempt 1 ${geminiResult?.beats ? `has ${geminiResult.beats.length} beats for ${sentences.length} sentences` : `had no 'beats' — got: ${describeShape(geminiResult)}`}. Retrying once uncached.`);
+      geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2, noCache: true }));
+      if (geminiResult?.source === "gemini" && geminiResult.error) geminiFailure = geminiResult.error;
+      else if (!okBeats(geminiResult)) geminiFailure = geminiResult?.beats ? `beat count ${geminiResult.beats.length} != ${sentences.length}` : "no_beats";
     }
+  }
+  if (forced || geminiFailure) {
+    planSource = "ollama";
+    if (geminiFailure) console.error(`[planner] gemini: ${geminiFailure} → ollama${geminiResult?.detail ? ` (${String(geminiResult.detail).slice(0, 120)})` : ""}`);
+    const t0 = Date.now();
+    geminiResult = normalizePlanResponse(await callOllamaOnly([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2 }, "planner"));
+    if (!okBeats(geminiResult) && !(geminiResult?.source === "ollama" && geminiResult.error)) {
+      console.error(`[planner] ollama plan ${geminiResult?.beats ? `has ${geminiResult.beats.length} beats for ${sentences.length} sentences` : `had no 'beats' — got: ${describeShape(geminiResult)}`} — one strict retry`);
+      geminiResult = normalizePlanResponse(await callOllamaOnly([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2 }, "planner"));
+    }
+    if (okBeats(geminiResult)) console.log(`[planner] plan from ollama (${process.env.OLLAMA_TEXT_MODEL || "qwen2.5:7b"}, ${((Date.now() - t0) / 1000).toFixed(0)}s)`);
+    else console.error(`[planner] ollama gave no usable plan: ${describeShape(geminiResult)} — no further fallback`);
   }
 
   if (geminiResult?.beats && geminiResult.beats.length !== sentences.length) {
@@ -1071,6 +1068,8 @@ async function main() {
   const result = {
     generatedAt: new Date().toISOString(),
     channel: channelId,
+    // Which provider wrote the plan (render-and-qa.js logs it).
+    source: planSource,
     iteration: corrections?.length ? "correction" : "initial",
     totalBeats: plan.beats.length,
     beats: plan.beats,
@@ -1330,32 +1329,6 @@ function normalizePlanResponse(r) {
     if (v && typeof v === "object" && !Array.isArray(v) && Array.isArray(v.beats)) return v;
   }
   return r;
-}
-
-// Ollama's OpenAI-compatible endpoint. The render job does not start an
-// Ollama server today, so in CI this reports "unavailable" — logged, never
-// silent. Timeout generous: a 7B model on a CPU runner is slow.
-async function callOllamaPlan(prompt, maxTokens) {
-  const host = (process.env.OLLAMA_HOST || "http://127.0.0.1:11434").replace(/\/$/, "");
-  const model = process.env.OLLAMA_PLAN_MODEL || "qwen2.5:7b";
-  const t0 = Date.now();
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), Number(process.env.OLLAMA_PLAN_TIMEOUT_MS || 900000));
-  try {
-    const res = await fetch(`${host}/v1/chat/completions`, {
-      method: "POST", headers: { "Content-Type": "application/json" }, signal: ctrl.signal,
-      body: JSON.stringify({ model, messages: [{ role: "user", content: prompt }], temperature: 0.2, max_tokens: maxTokens, response_format: { type: "json_object" } }),
-    });
-    if (!res.ok) return { error: `HTTP ${res.status} from ${host} (${model})` };
-    const j = await res.json();
-    const content = j?.choices?.[0]?.message?.content;
-    if (!content) return { error: `empty answer from ${model}` };
-    return { content, model, seconds: ((Date.now() - t0) / 1000).toFixed(0) };
-  } catch (e) {
-    return { error: `unavailable at ${host} (${e.name === "AbortError" ? "timed out" : e.cause?.code || e.message})` };
-  } finally {
-    clearTimeout(timer);
-  }
 }
 
 function describeShape(r) {

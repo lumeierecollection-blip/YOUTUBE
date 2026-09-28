@@ -169,9 +169,11 @@ async function geminiPlan(channelId, scriptPath, correctionsPath) {
   const audio = audioPathFor(channelId, scriptPath);
   const srtPath = join(dirname(audio), basename(audio, extname(audio)) + ".srt");
 
-  // Step 1: Try Gemini if API key available
+  // Step 1: the planner — Gemini, or local Ollama when Gemini cannot answer
+  // (src/lib/llm.js / gemini-visual-plan.js). It runs when EITHER is
+  // configured: a missing Gemini key is not a reason to skip planning.
   const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.VISION_API_KEY;
-  if (geminiKey) {
+  if (geminiKey || process.env.OLLAMA_URL) {
     const args = [
       GEMINI_PLAN_JS,
       "--script", relative(ROOT, scriptPath),
@@ -181,7 +183,7 @@ async function geminiPlan(channelId, scriptPath, correctionsPath) {
     if (existsSync(srtPath)) args.push("--srt", srtPath);
     if (correctionsPath && existsSync(correctionsPath)) args.push("--corrections", correctionsPath);
 
-    console.log(`=== GEMINI PLAN: ${channelId} — ${basename(scriptPath)} ===`);
+    console.log(`=== VISUAL PLAN: ${channelId} — ${basename(scriptPath)} ===`);
     const { code } = await runChild("node", args, { label: `plan ${channelId}/${basename(scriptPath)}` });
     if (code === 0 && existsSync(planPath)) {
       // Compositions the renderer cannot build (under the 35% coverage
@@ -212,9 +214,9 @@ async function geminiPlan(channelId, scriptPath, correctionsPath) {
       }
       return planPath;
     }
-    console.error("::error::Gemini planning failed — no plan, no render.");
+    console.error("::error::Visual planning failed (gemini, then ollama) — no plan, no render.");
   } else {
-    console.error("::error::No Gemini API key — cannot plan visuals.");
+    console.error("::error::No Gemini key and no Ollama server (OLLAMA_URL) — cannot plan visuals.");
   }
 
   // The rule-based local planner (scripts/local-visual-plan.cjs) used to run
@@ -462,7 +464,7 @@ async function qaOne(runId, rendered, planPath) {
   const geminiNeeded = !localAudit || localAudit.gemini_required !== false;
 
   let visionQaPromise;
-  if (audit.code === 0 && geminiNeeded && process.env.VISION_API_KEY) {
+  if (audit.code === 0 && geminiNeeded && (process.env.VISION_API_KEY || process.env.OLLAMA_URL)) {
     const chId = `ch-${String(channelId).padStart(2, "0")}`;
     visionQaPromise = runChild("node", [VISUAL_QA_JS, "--channel", chId, "--video", outputPath], {
       label: `qa/vision ${basename(outputPath)}`,
@@ -470,8 +472,9 @@ async function qaOne(runId, rendered, planPath) {
   }
 
   let geminiReviewPromise;
+  // The frame review runs with Gemini OR the local Ollama vision model.
   const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.VISION_API_KEY;
-  if (audit.code === 0 && geminiNeeded && geminiKey) {
+  if (audit.code === 0 && geminiNeeded && (geminiKey || process.env.OLLAMA_URL)) {
     const srtPath = join(dirname(audio), basename(audio, extname(audio)) + ".srt");
     const srtArg = existsSync(srtPath) ? srtPath : "";
     const reviewArgs = ["--video", outputPath, "--script", scriptPath, "--channel", String(channelId), "--fix"];

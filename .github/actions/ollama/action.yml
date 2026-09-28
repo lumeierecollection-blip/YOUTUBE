@@ -1,0 +1,59 @@
+name: "Ollama: one server, cached models"
+description: >
+  Install Ollama, restore its model cache, start exactly ONE server on
+  127.0.0.1:11434, then pull and warm each model. GitHub Actions jobs run on
+  separate VMs, so one server cannot be shared by the whole workflow: every
+  job that calls a model runs this action once, and this is the only place
+  a server is started. install.sh also registers and starts a systemd
+  service on :11434; it is stopped first — the second `ollama serve` on the
+  same port is what died with "bind: address already in use" in earlier
+  prep jobs.
+inputs:
+  models:
+    description: "Space-separated model tags to pull and warm"
+    required: true
+  cache-key:
+    description: "actions/cache key for ~/.ollama/models — must name every model"
+    required: true
+  context-length:
+    description: "Server default context (requests may set their own num_ctx)"
+    required: false
+    default: "16384"
+  max-loaded:
+    description: "OLLAMA_MAX_LOADED_MODELS — 1 keeps a 16 GB runner clear for rendering"
+    required: false
+    default: "1"
+runs:
+  using: composite
+  steps:
+    - name: Cache Ollama models
+      uses: actions/cache@v4
+      with:
+        path: ~/.ollama/models
+        key: ${{ inputs.cache-key }}
+
+    - name: Install Ollama
+      shell: bash
+      run: command -v ollama >/dev/null 2>&1 || curl -fsSL https://ollama.com/install.sh | sh
+
+    - name: Start one Ollama server; pull and warm the models
+      shell: bash
+      env:
+        MODELS: ${{ inputs.models }}
+        CTX: ${{ inputs.context-length }}
+        MAX_LOADED: ${{ inputs.max-loaded }}
+      run: |
+        sudo systemctl stop ollama 2>/dev/null || true
+        sudo systemctl disable ollama 2>/dev/null || true
+        sudo pkill -f "ollama serve" 2>/dev/null || true
+        mkdir -p "$HOME/.ollama/models"
+        OLLAMA_MODELS="$HOME/.ollama/models" OLLAMA_HOST=127.0.0.1:11434 \
+          OLLAMA_CONTEXT_LENGTH="$CTX" OLLAMA_MAX_LOADED_MODELS="$MAX_LOADED" OLLAMA_KEEP_ALIVE=30m \
+          nohup ollama serve > /tmp/ollama.log 2>&1 &
+        for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+        for m in $MODELS; do
+          OLLAMA_HOST=127.0.0.1:11434 ollama pull "$m"
+          node scripts/ollama-client.cjs --check --model "$m" --timeout 120 \
+            || { echo "--- ollama.log ---"; tail -50 /tmp/ollama.log; exit 1; }
+        done
+        nproc; free -g | head -2

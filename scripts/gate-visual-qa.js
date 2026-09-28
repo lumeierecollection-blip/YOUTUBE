@@ -185,15 +185,53 @@ function parsePlan(text) {
   };
 }
 
+// Local fallback (the same one every model call uses — src/lib/llm.js):
+// the section-7 vision checks go to a local Ollama VISION model when Gemini
+// cannot answer (quota_exhausted / unavailable / any error) or under
+// FORCE_PLANNER=ollama. Synchronous like the rest of this script: frames
+// are shrunk with ffmpeg (long side 512 px, JPEG) and posted with curl to
+// /api/generate, format "json", with the SAME prompt.
+function ollamaVision(framePaths, prompt) {
+  const url = (process.env.OLLAMA_URL || "http://127.0.0.1:11434").replace(/\/$/, "");
+  const model = process.env.OLLAMA_VISION_MODEL || "qwen2.5vl:3b";
+  const work = join(tmpdir(), `vqa-ollama-${process.pid}`);
+  mkdirSync(work, { recursive: true });
+  try {
+    const images = framePaths.slice(0, 6).map((pth, i) => {
+      const out = join(work, `f${i}.jpg`);
+      try {
+        execFileSync(FFMPEG, ["-y", "-hide_banner", "-loglevel", "error", "-i", pth,
+          "-vf", "scale=512:512:force_original_aspect_ratio=decrease", "-q:v", "4", out]);
+        return readFileSync(out).toString("base64");
+      } catch {
+        return readFileSync(pth).toString("base64");
+      }
+    });
+    const body = JSON.stringify({ model, prompt, images, format: "json", stream: false,
+      options: { temperature: 0, num_predict: 400, num_ctx: 8192 } });
+    const t0 = Date.now();
+    const res = execFileSync("curl", ["-sS", "--max-time", "900", "-H", "Content-Type: application/json",
+      "-d", "@-", `${url}/api/generate`], { input: body, encoding: "utf-8", maxBuffer: 1 << 26 });
+    const r = JSON.parse(res);
+    console.error(`[ollama] ${model}: ${r.prompt_eval_count ?? "?"} prompt + ${r.eval_count ?? "?"} answer tokens, ${images.length} image(s), ${((Date.now() - t0) / 1000).toFixed(0)}s`);
+    return { ran: true, ...JSON.parse(String(r.response || "").trim()) };
+  } catch (e) {
+    return { ran: false, reason: `local vision model ${model} at ${url} failed: ${String(e.stderr || e.message).trim().slice(0, 200)}` };
+  } finally {
+    try { rmSync(work, { recursive: true, force: true }); } catch {}
+  }
+}
+
 function visionCheck(frames, spec) {
   const base = process.env.VISION_API_BASE || "https://generativelanguage.googleapis.com/v1beta/openai";
   const key = process.env.VISION_API_KEY;
   // Downgraded to Flash-Lite per token audit — simple structured output doesn't need Pro/Flash
   const model = process.env.VISION_MODEL || "gemini-2.5-flash-lite";
-  if (!key) {
+  const forced = String(process.env.FORCE_PLANNER || "").toLowerCase() === "ollama";
+  if (!key && !process.env.OLLAMA_URL) {
     return {
       ran: false,
-      reason: "VISION_API_KEY not set — 7.3 and 7.4 are UNVERIFIED. " +
+      reason: "neither VISION_API_KEY nor OLLAMA_URL set — 7.3 and 7.4 are UNVERIFIED. " +
         "An unrun check is not a passed check, so both are reported as failures.",
     };
   }
@@ -212,6 +250,10 @@ function visionCheck(frames, spec) {
     `${spec.core_objects.join(", ")}?\n` +
     `Report only what is visible. If the frames are abstract shapes and text, ` +
     `say so and answer false.`;
+  if (forced || !key) {
+    console.error(`[vision-qa] ollama (${forced ? "FORCE_PLANNER=ollama — Gemini not called" : "no VISION_API_KEY"})`);
+    return ollamaVision(framePaths, prompt);
+  }
   const imageContent = framePaths.slice(0, 6).map((p) => ({
     type: "image_url",
     image_url: { url: `data:image/png;base64,${readFileSync(p).toString("base64")}` },
@@ -235,11 +277,22 @@ function visionCheck(frames, spec) {
       "-d", "@-", `${base.replace(/\/$/, "")}/chat/completions`],
       { input: body, encoding: "utf-8" });
   } catch (e) {
-    return {
-      ran: false,
-      reason: `vision endpoint ${base} could not be reached: ${String(e.stderr || e.message).trim().slice(0, 200)}`,
-    };
+    console.error(`[vision-qa] gemini: unavailable → ollama (${String(e.stderr || e.message).trim().slice(0, 120)})`);
+    return ollamaVision(framePaths, prompt);
   }
+  // Gemini answered with an error (429 quota / 503 overload, sometimes
+  // wrapped in an array): no Gemini retry — the local model answers.
+  try {
+    let pj = JSON.parse(res);
+    if (Array.isArray(pj) && pj[0]?.error) pj = pj[0];
+    if (pj.error) {
+      const code = Number(pj.error.code) || 0;
+      const kind = code === 429 || /quota|RESOURCE_EXHAUSTED|rate.?limit/i.test(pj.error.message || "") ? "quota_exhausted"
+        : code >= 500 ? "unavailable" : "hard_error";
+      console.error(`[vision-qa] gemini: ${kind} → ollama (${String(pj.error.message || "").slice(0, 120)})`);
+      return ollamaVision(framePaths, prompt);
+    }
+  } catch {}
   let raw;
   try {
     raw = JSON.parse(res).choices[0].message.content.trim()

@@ -19,7 +19,10 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync } from "node
 import { join, dirname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
-import { callGemini } from "../src/lib/gemini-client.js";
+// Every model call goes through src/lib/llm.js: Gemini first, local Ollama
+// (a vision model — these calls carry frames) when Gemini cannot answer,
+// or Ollama only under FORCE_PLANNER=ollama. Transitions are logged.
+import { callLLM, isProviderError, llmConfigured } from "../src/lib/llm.js";
 import { tmpdir } from "node:os";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -139,7 +142,7 @@ async function reviewFrame(framePath, voiceoverText, frameIndex, totalFrames, ti
       { type: "image_url", image_url: { url: `data:image/png;base64,${imageData}` } },
     ],
   }];
-  const result = callGemini(messages);
+  const result = await callLLM(messages, {}, "reviewer");
   if (!result.error) {
     result.frame_index = frameIndex;
     result.time_seconds = time;
@@ -203,25 +206,17 @@ async function reviewFrameBatch(frames, totalFrames, bible) {
       content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${imageData}` } });
     }
 
-    const batchResult = await callGemini([{ role: "user", content }], { maxTokens: 2000 });
-
-    if (batchResult.error) {
-      // Retry batch once instead of falling back to N individual calls
-      console.warn(`  Batch ${Math.floor(b / BATCH_SIZE) + 1} failed: ${batchResult.error} — retrying once`);
-      const retryResult = await callGemini([{ role: "user", content }], { maxTokens: 2000 });
-      if (retryResult.error) {
-        console.warn(`  Batch ${Math.floor(b / BATCH_SIZE) + 1} retry failed — skipping ${batch.length} frames`);
-        continue;
-      }
-      const retryItems = Array.isArray(retryResult) ? retryResult : [retryResult];
-      for (let i = 0; i < batch.length; i++) {
-        const item = retryItems[i] || { error: "Missing from retry response" };
-        item.frame_index = batch[i].index;
-        item.time_seconds = batch[i].time;
-        item.voiceover_text = batch[i].voiceover;
-        results.push(item);
-      }
+    // Gemini, or Ollama when Gemini cannot answer (no Gemini retry).
+    let batchResult = await callLLM([{ role: "user", content }], { maxTokens: 2000 }, "reviewer");
+    if (isProviderError(batchResult)) {
+      console.warn(`  Batch ${Math.floor(b / BATCH_SIZE) + 1} failed (${batchResult.source} ${batchResult.error}) — skipping ${batch.length} frames`);
       continue;
+    }
+    // JSON-mode local models answer an object; the array the prompt asks
+    // for is then its one array-valued field ({"frames": [...]}).
+    if (!Array.isArray(batchResult) && batchResult && typeof batchResult === "object") {
+      const arr = Object.values(batchResult).find((v) => Array.isArray(v));
+      if (arr) batchResult = arr;
     }
 
     // Parse batch result — should be an array
@@ -307,7 +302,7 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
     content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${imageData}` } });
   }
 
-  return callGemini([{ role: "user", content }], { maxTokens: 1600 });
+  return callLLM([{ role: "user", content }], { maxTokens: 1600 }, "reviewer");
 }
 
 function categorizeResult(result, bible) {
@@ -361,8 +356,8 @@ async function beatCheck() {
     console.error("Usage: gemini-frame-review.js --beat-check --video <mp4> --manifest <manifest.json> --srt <vo.srt> [--out <json>]");
     process.exit(2);
   }
-  if (!getApiKey()) {
-    console.error("::error::beat check cannot run: no Gemini API key");
+  if (!llmConfigured()) {
+    console.error("::error::beat check cannot run: no Gemini key and no Ollama server configured");
     process.exit(3);
   }
   const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
@@ -401,19 +396,14 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
       content.push({ type: "text", text: `Beat ${i}${tag} (frame at ${mid.toFixed(2)}s). Sentence: "${sentence}"` });
       content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(framePath).toString("base64")}` } });
     });
-    console.log(`[beat-check] ${beats.length} beat frames extracted at midpoints — asking Gemini`);
-    let result = await callGemini([{ role: "user", content }], { maxTokens: 2048, temperature: 0, noCache: true });
-    // One retry on a TRANSPORT failure only (no verdicts came back at all) --
-    // the same retry-once pattern the planner and challenger already have.
-    // CI run 36326675679 ch-2: a single `curl: (28) timed out after 90002 ms
-    // with 0 bytes received` failed an otherwise-complete render. A NO
-    // verdict is never retried: that is the check working, not an outage.
-    if (result?.error) {
-      console.error(`::warning::beat check call failed (${String(result.error).slice(0, 150)}); retrying once`);
-      result = await callGemini([{ role: "user", content }], { maxTokens: 2048, temperature: 0, noCache: true });
-    }
-    if (result?.error) {
-      console.error(`::error::beat check unavailable: ${result.error}`);
+    console.log(`[beat-check] ${beats.length} beat frames extracted at midpoints — asking the model`);
+    // Gemini, or Ollama (a vision model) when Gemini cannot answer — the
+    // fallback replaces the old Gemini transport retry. Both failing is
+    // "could not run" (exit 3). A NO verdict is never retried: that is the
+    // check working, not an outage.
+    let result = await callLLM([{ role: "user", content }], { maxTokens: 2048, temperature: 0, noCache: true }, "beat-check");
+    if (isProviderError(result)) {
+      console.error(`::error::beat check unavailable: ${result.source} ${result.error}${result.detail ? ` (${String(result.detail).slice(0, 160)})` : ""}`);
       process.exit(3);
     }
     // gemini-client returns {content: "<raw text>"} when the model's JSON
@@ -464,9 +454,9 @@ async function main() {
   }
 
   const apiKey = getApiKey();
-  if (!apiKey) {
-    console.error("No Gemini API key found (GEMINI_API_KEY / GOOGLE_GENERATIVE_AI_API_KEY / VISION_API_KEY)");
-    console.error("Gemini visual director review SKIPPED — set an API key to enable.");
+  if (!llmConfigured()) {
+    console.error("No Gemini key and no Ollama server configured (GEMINI_API_KEY / OLLAMA_URL)");
+    console.error("Visual director review SKIPPED — configure a model to enable.");
     process.exit(0);
   }
 
