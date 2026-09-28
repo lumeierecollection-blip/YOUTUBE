@@ -80,12 +80,13 @@ export function shapeGeometry(variant) {
     return { kind: "swoosh", p0, p1, p2, sw, bbox: bboxOf(quad(p0, p1, p2), sw / 2) };
   }
   if (v === "hairline") {
-    // Two thin curves, a corner accent (they used to cross the whole page).
-    const curves = [
-      [[0, 60], [70, 10], [140, 110], [220, 40]],
-      [[0, 130], [60, 90], [150, 170], [220, 115]],
-    ];
-    return { kind: "hairline", curves, sw: 2, bbox: bboxOf(curves.flatMap((c) => cubic(...c)), 1.5) };
+    // NOT DRAWN. The reference's hairline is a thin curve CROSSING THE PAGE;
+    // confined to a 220 x 220 corner (the zone rule) it became two small
+    // squiggles, and the reviews named exactly that as noise: "meaningless
+    // squiggly abstract lines" (run 36405739332 ch-48), "random floating
+    // black line accents" (run 36411079375 ch-9). A hairline beat has no
+    // shape; petals and swoosh still read as the reference's accents.
+    return null;
   }
   return null;
 }

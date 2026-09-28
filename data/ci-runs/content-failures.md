@@ -58,3 +58,13 @@ changed: layout is outside the categories cleared for this loop.
 - Cause is the script, not the plan: it says China's population declines by
   "25 million" in one sentence and "250 million" in another. Not fixed in
   the render path — a plan cannot reconcile two figures the script states.
+
+## Run 36411079375 — ch 9 (ethiopia-tigray-conflict-sept-2026)
+- Whole-video review FAIL (HIGH) 4/10 on all three attempts; every other
+  check passed (fit, shapes-clear-of-text, beat check 6/6).
+- Cause is the script from the prep model: sentence 4 reads "Fighting
+  intensity has reached 1 times", and three of six sentences repeat
+  "armed groups and federal troops clashing". The planner drew the "1
+  times" as a counter ("1x"), which the review called nonsensical.
+- Render-side response (commit after this run): a counter under 2 with no
+  scale word becomes TYPE; the script's wording is not changed here.

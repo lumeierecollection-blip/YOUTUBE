@@ -261,7 +261,19 @@ export function checkVisual(b, sentence) {
     const place = String(d.place || "").trim();
     return place && resolveRegion(place) ? { type: t, data: { place } } : bad(`MAP place "${place}" is not a known region`);
   }
-  if (t === "COUNTER") return numIn(d.value, nums) ? { type: t, data: { value: String(d.value), label: d.label || null } } : bad(`COUNTER value "${d.value}" is not in the sentence`);
+  if (t === "COUNTER") {
+    if (!numIn(d.value, nums)) return bad(`COUNTER value "${d.value}" is not in the sentence`);
+    // A count under 2 with no scale word ("1x", "1") rolls 0 -> 1 and shows
+    // nothing: run 36411079375 ch-9 drew "1x intensity level" from a script
+    // line "Fighting intensity has reached 1 times" and the review called the
+    // "0x counter nonsensical". Percentages and scaled figures ("1.4
+    // billion") are unaffected.
+    const vs = String(d.value), m = vs.match(/\d[\d,]*(?:\.\d+)?/);
+    const n = m ? Number(m[0].replace(/,/g, "")) : NaN;
+    const scaled = m ? /^\s*(thousand|million|billion|trillion|bn|mn|k|m|b)\b/i.test(vs.slice(m.index + m[0].length)) : false;
+    if (n < 2 && !scaled && !vs.includes("%")) return bad(`COUNTER value "${d.value}" is a count of ${n}: a 0 -> ${n} roll shows no figure`);
+    return { type: t, data: { value: vs, label: d.label || null } };
+  }
   if (t === "PIE" || t === "GAUGE") {
     const pct = Number(String(d.percent ?? "").replace(/[^\d.]/g, ""));
     return Number.isFinite(pct) && pct > 0 && pct <= 100 && nums.has(pct) ? { type: t, data: { percent: pct, label: d.label || null } } : bad(`${t} percent "${d.percent}" is not a 0-100 figure from the sentence`);
