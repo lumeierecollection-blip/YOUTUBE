@@ -2388,9 +2388,14 @@
           "topic": "Inside the Global 5-Million Robot Milestone: IFR World Robotics",
           "slug": "ifr-world-robotics-5-million-robots-milestone",
           "reserved_at": "2026-09-27T11:05:28.574Z"
+        },
+        {
+          "topic": "Inside FactoryLens: How NVIDIA Omniverse Powers Industrial Digital Twins",
+          "slug": "visual-components-factorylens-nvidia-omniverse-digital-twins",
+          "reserved_at": "2026-09-28T12:36:03.646Z"
         }
       ],
-      "last_generated": "2026-09-27T11:05:28.574Z"
+      "last_generated": "2026-09-28T12:36:03.646Z"
     },
     "49": {
       "channel_name": "Wander Budget",
