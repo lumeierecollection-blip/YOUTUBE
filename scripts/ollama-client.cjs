@@ -40,22 +40,40 @@ const TEXT_MODEL = () => process.env.OLLAMA_TEXT_MODEL || "qwen2.5:7b";
 const VISION_MODEL = () => process.env.OLLAMA_VISION_MODEL || "qwen2.5vl:3b";
 const IMAGE_MAX = () => Number(process.env.OLLAMA_IMAGE_MAX || 512);
 
-async function request(path, body, timeoutMs = 120000) {
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
-  try {
-    const res = await fetch(`${OLLAMA_URL}${path}`, {
+// node:http, not fetch(): Node's fetch (undici) aborts any response whose
+// headers take longer than 300 s (UND_ERR_HEADERS_TIMEOUT), and a
+// non-streamed /api/generate sends its headers only when the answer is
+// complete — run 36428496329 lost every plan to it (qwen2.5:7b on a CPU
+// runner takes longer than 5 minutes). The only limit here is timeoutMs.
+const http = require("node:http");
+const https = require("node:https");
+function request(path, body, timeoutMs = 120000) {
+  return new Promise((resolve, reject) => {
+    const url = new URL(`${OLLAMA_URL}${path}`);
+    const payload = body ? JSON.stringify(body) : null;
+    const req = (url.protocol === "https:" ? https : http).request(url, {
       method: body ? "POST" : "GET",
-      headers: body ? { "content-type": "application/json" } : undefined,
-      body: body ? JSON.stringify(body) : undefined,
-      signal: ctrl.signal,
+      headers: body ? { "content-type": "application/json", "content-length": Buffer.byteLength(payload) } : undefined,
+    }, (res) => {
+      const chunks = [];
+      res.on("data", (c) => chunks.push(c));
+      res.on("end", () => {
+        clearTimeout(timer);
+        const text = Buffer.concat(chunks).toString("utf8");
+        if (res.statusCode < 200 || res.statusCode >= 300) return reject(new Error(`${path} → HTTP ${res.statusCode}: ${text.slice(0, 300)}`));
+        try { resolve(text ? JSON.parse(text) : {}); } catch (e) { reject(new Error(`${path} → unparseable answer: ${text.slice(0, 200)}`)); }
+      });
+      res.on("error", (e) => { clearTimeout(timer); reject(e); });
     });
-    const text = await res.text();
-    if (!res.ok) throw new Error(`${path} → HTTP ${res.status}: ${text.slice(0, 300)}`);
-    return text ? JSON.parse(text) : {};
-  } finally {
-    clearTimeout(timer);
-  }
+    const timer = setTimeout(() => {
+      const e = new Error(`${path} → no answer in ${Math.round(timeoutMs / 1000)} s`);
+      e.name = "AbortError";
+      req.destroy(e);
+    }, timeoutMs);
+    req.on("error", (e) => { clearTimeout(timer); reject(e); });
+    if (payload) req.write(payload);
+    req.end();
+  });
 }
 
 async function waitForServer(timeoutS = 60) {
