@@ -870,7 +870,10 @@ function paperContentFor(b, sentence, cutout) {
     ring: !!cutout && h[2] % 3 !== 0,
     ringDotted: h[3] % 2 === 0,
     grid: !!cutout && h[4] % 3 === 0,
-    select: h[5] % 4 === 0,
+    // No design-tool selection handles: three whole-video reviews in runs
+    // 36390736594/36393233270 (ch 26, 44, 48) read them as "leftover editing
+    // UI artifacts" and failed the video on them.
+    select: false,
     layout: h[6] % 3 === 0 ? "center" : "left",
   };
 }

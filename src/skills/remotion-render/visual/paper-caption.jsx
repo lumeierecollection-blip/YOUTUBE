@@ -11,7 +11,7 @@
  *   - words are grouped into lines of up to 2 rows (a chunk); a chunk is
  *     replaced by the next when its first word is spoken; the last chunk
  *     holds 0.4 s after the last word ends, then clears;
- *   - reference caption zone (paper y ~70-86%), caption font (italic
+ *   - caption zone (paper y ~76-92%), caption font (italic
  *     serif), ink colour. No background box.
  *
  * Where this stops: chunks are split by a fixed word count and at sentence
@@ -60,7 +60,7 @@ export function PaperCaption({ words, local, fps = 30, emphasis, top }) {
       font: `italic 500 ${size}px ${SERIF}`, color: INK, lineHeight: 1.3 }}>
       {cur.map((w, i) => {
         const since = local - w.from;
-        if (since < 0) return <span key={i} style={{ display: "inline-block", marginRight: size * 0.28, opacity: 0 }}>{w.text}</span>;
+        if (since < 0) return <span key={i} style={{ display: "inline-block", marginRight: size * 0.34, opacity: 0 }}>{w.text}</span>;
         const e = Math.min(1, since / 3);
         let scale = 0.86 + 0.14 * e;
         const ty = 8 * (1 - e);
@@ -71,7 +71,7 @@ export function PaperCaption({ words, local, fps = 30, emphasis, top }) {
           else if (t >= 4 + hold && t < 8 + hold) scale = 1.08 - 0.08 * ((t - 4 - hold) / 4);
         }
         return (
-          <span key={i} style={{ display: "inline-block", marginRight: size * 0.28, opacity: 1,
+          <span key={i} style={{ display: "inline-block", marginRight: size * 0.34, opacity: 1,
             transform: `translateY(${ty.toFixed(2)}px) scale(${scale.toFixed(4)})`, transformOrigin: "center bottom",
             fontWeight: emph && norm(w.text).includes(emph) ? 700 : 500 }}>{w.text}</span>
         );

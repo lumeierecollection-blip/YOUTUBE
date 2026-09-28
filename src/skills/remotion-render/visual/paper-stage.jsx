@@ -80,11 +80,11 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   const hStart = s(0.35), hStep = s(0.2);
   const hSize = !hasCutout && !chart ? fitSize(c.headline, W * 0.78, 84, 34) : fitSize(c.headline, W * 0.72, 56, 26);
   const upper = words.length <= 3;
-  // Visual on top (y 5-45%), headline under it, the word-level caption
-  // under that in the reference caption zone (y ~68%+). A TYPE beat's
+  // Visual on top (y 8-50%), headline under it (55%), the word-level
+  // caption under that (76%) - the page is filled top to bottom. A TYPE beat's
   // headline sits higher and larger.
-  const headlineTop = hasCutout || chart ? H * 0.48 : H * 0.3;
-  const captionTop = H * 0.68;
+  const headlineTop = hasCutout || chart ? H * 0.55 : H * 0.34;
+  const captionTop = H * 0.76;
   const lead = String(c.lead_in || "").trim();
   const emph = String(c.emphasis_word || "").toLowerCase().replace(/[^a-z0-9]/g, "");
   const headlineDone = hStart + words.length * hStep + s(0.2);
@@ -154,8 +154,8 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
     const drift = 0.015 * W * clamp01((local - s(0.45)) / Math.max(1, dur - s(0.45)));
     const rot = (1 - enterT) * -6;
     {
-      const cw = W * 0.5;
-      const cx = (W - cw) / 2 + (center ? 0 : W * 0.06), cy = H * 0.05;
+      const cw = W * 0.56;
+      const cx = (W - cw) / 2 + (center ? 0 : W * 0.06), cy = H * 0.1;
       hero = (
         <div style={{ position: "absolute", left: cx + dx + drift, top: cy + dy, width: cw, height: cw,
           transform: `rotate(${rot}deg)`, opacity: enterT, filter: "drop-shadow(10px 16px 14px rgba(0,0,0,0.28))" }}>
@@ -184,7 +184,7 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
 
   // System-built data viz, on the paper in its ink (visual zone above the
   // headline). Drawn, never fetched.
-  const zone = { x: W * 0.08, y: H * 0.05, w: W * 0.84, h: H * 0.4 };
+  const zone = { x: W * 0.08, y: H * 0.08, w: W * 0.84, h: H * 0.42 };
   const vizProps = { data: c.data, zone, local, dur, fps, font };
   const viz = chart === "COUNTER" ? <Counter {...vizProps} />
     : chart === "BAR" ? <BarChart {...vizProps} />
