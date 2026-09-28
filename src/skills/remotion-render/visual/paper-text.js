@@ -29,7 +29,10 @@ export function fitLongestWord(text, width, size, upper) {
 // Height of the lead-in + headline block (greedy wrap like the browser's,
 // plus 0.2 em for glyphs that overhang the 1.04 line box).
 export function headlineBlock(words, lead, size, width, upper) {
-  const em = upper ? 0.68 : 0.58;
+  // Wider than fitLongestWord's estimate on purpose: under-counting lines
+  // pushes the block across the zone edge (shapes-clear-of-text fails it);
+  // over-counting only makes the headline a little smaller.
+  const em = upper ? 0.72 : 0.62;
   let lines = words.length ? 1 : 0, used = 0;
   for (const w of words) {
     const ww = (w.length * em + 0.24) * size;
