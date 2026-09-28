@@ -33,7 +33,10 @@ export const INK = "#0B0B0C";
 export const INK_SOFT = "#8E8E93";
 export const MID = "#A7A7AD";
 export const LIGHT = "#DADADF";
-export const STUDIO = "#F3F1EC";      // off-white studio ground
+// Off-white studio ground: luma ~244, so with soft-light grain (mean-
+// neutral) the white-ground verify (> 240 in the top-left corner) holds —
+// run 36498049819 ch-44 measured 232.7 with #F3F1EC + multiply grain.
+export const STUDIO = "#F6F4F0";
 export const SANS = "Inter";
 export const SERIF = "'Playfair Display', Georgia, serif";
 

@@ -993,6 +993,10 @@ async function resolveCanvas(channelId, planPath, plan) {
     if (r.ok) {
       entities.resolved.push(`${ent.type} "${ent.name}" -> ${r.asset} (attempt ${r.attempt ?? "cache"}, ${r.license})`);
       console.log(`[entity] ${ent.type} "${ent.name}" resolved: ${r.asset} — ${r.page_title || ""} (${r.license}${r.cached ? ", cached" : `, attempt ${r.attempt}`})`);
+      // A NEW file under public/ is not in the pre-built bundle: count it, so
+      // render-and-qa re-bundles (run 36498049819 ch-1: "Error loading image
+      // .../entities/orgs/federal-reserve.jpg" — the bundle predated it).
+      if (!r.cached) fetchedNew++;
       return { asset: r.asset, entity: ent.name, kind: ent.type, credit: r.credit, source_url: r.source_url, license: r.license };
     }
     entities.fell_back.push(`${ent.type} "${ent.name}": ${r.why}`);

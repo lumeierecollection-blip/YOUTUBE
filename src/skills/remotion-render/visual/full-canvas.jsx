@@ -555,7 +555,7 @@ export function CanvasVideo({ plan }) {
       {layers}
       {/* grain: a noise tile re-seeded (offset) every frame */}
       <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${staticFile("fx/grain.png")})`, backgroundSize: "256px 256px",
-        backgroundPosition: `${(frame * 97) % 256}px ${(frame * 57) % 256}px`, opacity: 0.07, mixBlendMode: "multiply", pointerEvents: "none" }} />
+        backgroundPosition: `${(frame * 97) % 256}px ${(frame * 57) % 256}px`, opacity: 0.1, mixBlendMode: "soft-light", pointerEvents: "none" }} />
       <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} />
     </StudioBG>
   );
