@@ -144,8 +144,11 @@ async function callOllama(messages, opts = {}) {
   // qwen2.5:14b); otherwise vision for frames, text for the rest.
   const model = opts.ollamaModel || (images.length ? VISION_MODEL() : TEXT_MODEL());
   // Context: prompt (~3.2 chars/token) + images + the answer, rounded up.
-  const promptTokens = Math.ceil(prompt.length / 3.2) + images.length * 400;
-  const numCtx = Math.min(32768, Math.max(4096, Math.ceil((promptTokens + maxTokens + 256) / 1024) * 1024));
+  // Images cost far more than 400 tokens each on the vision model: run
+  // 36445183210's beat check (6 frames) needed 6152 tokens against a 6144
+  // context and was refused. ~1000 per image, and 25% headroom overall.
+  const promptTokens = Math.ceil(prompt.length / 3.2) + images.length * 1000;
+  const numCtx = Math.min(32768, Math.max(8192, Math.ceil(((promptTokens + maxTokens) * 1.25 + 256) / 1024) * 1024));
   const t0 = Date.now();
   try {
     const r = await request("/api/generate", {
