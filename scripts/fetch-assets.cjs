@@ -139,14 +139,32 @@ async function main() {
       if (requests >= MAX_REQUESTS) { reasons.push(`request budget (${MAX_REQUESTS}) spent`); console.log(`[fetch] ${s.name} "${concept}" → skip (budget of ${MAX_REQUESTS} requests spent)`); continue; }
       let cands = [], usedQuery = query, failed = false;
       const why = [];
-      queryLoop: for (const q of queriesFor(query)) {
+      // With a suffix (a CUTOUT), the "<object> isolated white background"
+      // searches come first; the bare object is searched only after they
+      // found nothing verified on this source. Run 36390736594: Commons and
+      // Openverse (the only sources with keys configured) do not tag
+      // photos "isolated white background", so the template alone returned
+      // document scans or nothing for 22 of 24 cutouts. rembg does the
+      // isolating either way, and verification is against the whole object.
+      const searches = suffix
+        ? [...queriesFor(query).map((q) => ({ q, sq: `${q} ${suffix}` })), ...queriesFor(query).map((q) => ({ q, sq: q }))]
+        : queriesFor(query).map((q) => ({ q, sq: q }));
+      queryLoop: for (const { q, sq } of searches) {
         if (requests >= MAX_REQUESTS) break;
         requests++;
         usedQuery = q;
-        const sq = suffix ? `${q} ${suffix}` : q;
         console.log(`[fetch] ${s.name} query "${sq}"`);
         try {
-          cands = await mods[s.name].search(sq, { count: 6 });
+          try {
+            cands = await mods[s.name].search(sq, { count: 6 });
+          } catch (e) {
+            // Commons rate-limits bursts (HTTP 429 on 5 of 8 ch-26 cutouts in
+            // run 36390736594): wait and retry once, then treat as a miss.
+            if (!/HTTP 429/.test(String(e && e.message || e))) throw e;
+            console.log(`[fetch] ${s.name} 429 — waiting 5 s and retrying once`);
+            await new Promise((r) => setTimeout(r, 5000));
+            cands = await mods[s.name].search(sq, { count: 6 });
+          }
         } catch (e) {
           const msg = String(e && e.message || e);
           if (/HTTP (401|403)\b/.test(msg)) {

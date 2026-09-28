@@ -284,8 +284,13 @@ the sentence itself as tiny body text. You write only these fields:
   "data":         the visual's data, by type (numbers EXACTLY as the
                   sentence says them — a number the sentence does not say
                   is rejected and the beat becomes TYPE):
-    CUTOUT   {"object": "aluminum drink can"}   ONE isolatable physical
-             object — never a scene, person, screen, chart or idea
+    CUTOUT   {"object": "drink can"}   ONE isolatable physical object —
+             never a scene, person, screen, chart or idea. Its plain
+             common name, 1-2 words, something you could photograph on a
+             table: "gavel", "handcuffs", "padlock", "gear", "calculator",
+             "coins", "microchip". No adjectives ("advanced", "digital",
+             "vintage", "official"), no documents, certificates, covers,
+             sketches, doors or machines too large to isolate.
     COUNTER  {"value": "1.4 billion", "label": "brand value"}
     BAR      {"bars": [{"label": "2019", "value": "3 million"}, {"label": "2024", "value": "1.4 billion"}]}
     PIE      {"percent": 25, "label": "of global oil"}
