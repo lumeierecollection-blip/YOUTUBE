@@ -609,7 +609,13 @@ jobs:
   # ============================================================
   render:
     needs: [setup, prep]
-    if: ${{ !cancelled() && needs.prep.result != 'cancelled' }}
+    # !cancelled() stops renders when the RUN is cancelled. It no longer
+    # also requires needs.prep.result != 'cancelled': that is the matrix's
+    # AGGREGATE result, so one prep leg hitting its 18-min timeout
+    # (run 36367836941, ch-2 research) skipped every channel's render. A
+    # channel whose own prep died still fails its render leg at "Check prep
+    # status" (no artifact) — honestly, and only that channel.
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 18
     permissions:
