@@ -1195,9 +1195,14 @@
           "topic": "white-collar-crime-profiles",
           "slug": "lunsford-105m-ponzi-scheme-profile",
           "reserved_at": "2026-09-28T20:24:26.345Z"
+        },
+        {
+          "topic": "Kristopher Lunsford Ponzi Scheme",
+          "slug": "kristopher-lunsford-105m-ponzi-scheme",
+          "reserved_at": "2026-09-28T21:17:10.025Z"
         }
       ],
-      "last_generated": "2026-09-28T20:24:26.345Z"
+      "last_generated": "2026-09-28T21:17:10.025Z"
     },
     "27": {
       "channel_name": "Climate Now",
