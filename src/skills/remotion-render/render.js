@@ -514,6 +514,34 @@ async function main() {
 
     const { beats, warnings, distribution } = direct(cues, { visualPlan });
 
+    // Paper style: word-level captions from the voiceover's REAL word
+    // timings (tts.js -> <base>-vo-words.json, Edge WordBoundary, same
+    // synthesis as the mp3 and this SRT). Each beat gets the words whose
+    // start falls inside it, in frames relative to the beat. No timings, or
+    // a beat with no words, fails the render — the captions are never
+    // modelled and never shown all at once.
+    if (beats.some((b) => b.scene?.paper)) {
+      const wordsPath = ttsAudioPath.replace(/\.mp3$/, "-words.json");
+      let spoken = null;
+      try { spoken = JSON.parse(readFileSync(wordsPath, "utf-8")).words; } catch {}
+      if (!Array.isArray(spoken) || !spoken.length) {
+        console.error(`[captions] no word timings at ${wordsPath} — cannot build word-level captions, aborting.`);
+        process.exit(1);
+      }
+      beats.forEach((b, i) => {
+        const end = b.start_frame + b.duration_frames;
+        b.spoken = spoken
+          .map((w) => ({ text: w.text, from: Math.round(w.start * FPS) - b.start_frame, to: Math.round(w.end * FPS) - b.start_frame, abs: Math.round(w.start * FPS) }))
+          .filter((w) => w.abs >= (i === 0 ? -Infinity : b.start_frame) && (i === beats.length - 1 || w.abs < end))
+          .map(({ abs, ...w }) => ({ ...w, from: Math.max(0, w.from) }));
+        if (!b.spoken.length) {
+          console.error(`[captions] beat ${i} ("${String(b.original_text || "").slice(0, 60)}") has no timed words — failing the render.`);
+          process.exit(1);
+        }
+      });
+      console.log(`[captions] ${spoken.length} timed words across ${beats.length} beats (${wordsPath})`);
+    }
+
     let viSpec = null;
     try {
       const vi = JSON.parse(readFileSync(join(ROOT, "config", "visual-identity.json"), "utf-8")).channels || {};

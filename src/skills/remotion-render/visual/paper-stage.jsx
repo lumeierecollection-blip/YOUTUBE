@@ -28,6 +28,7 @@ import { PieChart } from "./primitives/pie-chart.jsx";
 import { LineChart } from "./primitives/line-chart.jsx";
 import { Gauge } from "./primitives/gauge.jsx";
 import { PaperMap } from "./primitives/map.jsx";
+import { PaperCaption } from "./paper-caption.jsx";
 
 const clamp01 = (v) => Math.max(0, Math.min(1, Number.isFinite(v) ? v : 1));
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
@@ -77,12 +78,13 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   // ── headline, word by word (grey -> black), emphasis pops 8% ──
   const words = String(c.headline || "").split(/\s+/).filter(Boolean);
   const hStart = s(0.35), hStep = s(0.2);
-  const hSize = !hasCutout ? fitSize(c.headline, W * 0.78, 84, 34) : fitSize(c.headline, W * 0.72, 60, 28);
+  const hSize = !hasCutout && !chart ? fitSize(c.headline, W * 0.78, 84, 34) : fitSize(c.headline, W * 0.72, 56, 26);
   const upper = words.length <= 3;
-  // Headline BELOW the object (a layout the reference uses — "wild
-  // influencer collabs" under the phone), so real content sits on the
-  // frame-centre band (frame y 960 = paper y ~78%).
-  const headlineTop = hasCutout || chart ? H * 0.66 : H * 0.62;
+  // Visual on top (y 5-45%), headline under it, the word-level caption
+  // under that in the reference caption zone (y ~68%+). A TYPE beat's
+  // headline sits higher and larger.
+  const headlineTop = hasCutout || chart ? H * 0.48 : H * 0.3;
+  const captionTop = H * 0.68;
   const lead = String(c.lead_in || "").trim();
   const emph = String(c.emphasis_word || "").toLowerCase().replace(/[^a-z0-9]/g, "");
   const headlineDone = hStart + words.length * hStep + s(0.2);
@@ -152,8 +154,8 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
     const drift = 0.015 * W * clamp01((local - s(0.45)) / Math.max(1, dur - s(0.45)));
     const rot = (1 - enterT) * -6;
     {
-      const cw = W * 0.56;
-      const cx = (W - cw) / 2 + (center ? 0 : W * 0.06), cy = H * 0.1;
+      const cw = W * 0.5;
+      const cx = (W - cw) / 2 + (center ? 0 : W * 0.06), cy = H * 0.05;
       hero = (
         <div style={{ position: "absolute", left: cx + dx + drift, top: cy + dy, width: cw, height: cw,
           transform: `rotate(${rot}deg)`, opacity: enterT, filter: "drop-shadow(10px 16px 14px rgba(0,0,0,0.28))" }}>
@@ -182,7 +184,7 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
 
   // System-built data viz, on the paper in its ink (visual zone above the
   // headline). Drawn, never fetched.
-  const zone = { x: W * 0.08, y: H * 0.07, w: W * 0.84, h: H * 0.54 };
+  const zone = { x: W * 0.08, y: H * 0.05, w: W * 0.84, h: H * 0.4 };
   const vizProps = { data: c.data, zone, local, dur, fps, font };
   const viz = chart === "COUNTER" ? <Counter {...vizProps} />
     : chart === "BAR" ? <BarChart {...vizProps} />
@@ -200,6 +202,7 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
       {hero}
       {headline}
       {body}
+      <PaperCaption words={c.spoken} local={local} fps={fps} emphasis={c.emphasis_word} top={captionTop} />
       {/* Clipped to the paper: in the reference shapes enter from the page's
           corners and edges, never over the studio or the device. */}
       <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>

@@ -987,6 +987,20 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
   // exactly where it mattered (a REJECTED video's retry), without
   // reusing a bundle across videos whose audio differs.
   const audioForBundle = audioPathFor(channelId, scriptPath);
+  // Word-level captions need the real per-word timings of THIS voiceover
+  // (<base>-vo-words.json, written by tts.js in the same synthesis as the mp3
+  // and SRT). A voiceover from before that existed has none: it is
+  // re-synthesized — mp3, SRT and words together — before planning, so the
+  // plan is built on the SRT the words belong to. Never modelled timings.
+  const wordsFile = audioForBundle.replace(/\.mp3$/, "-words.json");
+  if (existsSync(audioForBundle) && !existsSync(wordsFile)) {
+    console.log(`[captions] no word timings for ${basename(audioForBundle)} — regenerating the voiceover with word boundaries`);
+    const t = await runChild("node", [join(ROOT, "src", "utils", "tts.js"), String(channelId), relative(ROOT, scriptPath)], { label: `tts ${channelId}` });
+    if (t.code !== 0 || !existsSync(wordsFile)) {
+      console.error(`::error::[captions] ${basename(scriptPath)}: no word timings (tts.js exited ${t.code}) — not rendering`);
+      return { skipped: false, ok: false };
+    }
+  }
   if (existsSync(audioForBundle)) {
     const voTarget = join(ROOT, "src", "skills", "remotion-render", "vo.mp3");
     mkdirSync(dirname(voTarget), { recursive: true });

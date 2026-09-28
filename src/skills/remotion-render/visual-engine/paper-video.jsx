@@ -36,7 +36,7 @@ export function PaperVideo({ plan }) {
             text, and the reviewer (run 36369197918 ch-2) read it as "verbatim
             caption tracks" — a subtitle of the voiceover. The reference's body
             copy is not the narration, and filler text would be invented. */}
-        {content ? <PaperContent key={i} c={{ ...content, body: null }} local={local} dur={beat.duration_frames} fps={fps} /> : null}
+        {content ? <PaperContent key={i} c={{ ...content, body: null, spoken: beat.spoken }} local={local} dur={beat.duration_frames} fps={fps} /> : null}
       </Paper>
       <TimelineFooter seed={plan.railText || "0"} progress={frame / Math.max(1, durationInFrames - 1)} />
     </StudioBG>

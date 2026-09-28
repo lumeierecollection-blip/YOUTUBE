@@ -2,7 +2,8 @@
  * TTS Utility — Generates voiceover audio using EdgeTTS (free, no provider key).
  *
  * Usage: node src/utils/tts.js <channel-id> [script-path]
- * Output: data/tts/<channel-id>/<topic>-vo.mp3 (+ matching .srt subtitles)
+ * Output: data/tts/<channel-id>/<topic>-vo.mp3 (+ matching .srt subtitles and
+ *         <topic>-vo-words.json: real per-word timings, Edge WordBoundary)
  *
  * Natural narration settings so the voiceover does NOT sound robotic:
  *  - rate:  -8%  (slower, measured documentary pace)
@@ -101,6 +102,7 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   // Try edge-tts
   const audioPath = join(outputDir, `${topic}-vo.mp3`);
   const srtPath = join(outputDir, `${topic}-vo.srt`);
+  const wordsPath = join(outputDir, `${topic}-vo-words.json`);
 
   const rate = settings.rate || "-8%"; // slower = more natural documentary pacing
   const pitch = settings.pitch || "+2Hz"; // slight warmth
@@ -112,31 +114,31 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
 
   try {
 
-    // edge-tts --voice en-US-GuyNeural --rate=-8% --pitch=+2Hz --text-file input.txt --write-media output.mp3
-    // Rate/pitch MUST use --flag=value (not "--flag value"): argparse treats a
-    // leading "-" value like "-8%" as an unrecognized option unless it's glued
-    // on with "=", since "-8%" isn't a pure negative number token.
+    // One synthesis (src/utils/tts_words.py, the edge_tts Python API) writes
+    // the mp3, the sentence SRT and the per-word timings from the same audio.
+    // The CLI can only write sentence-level subtitles, and the word-level
+    // captions need the real time each word is spoken.
+    // Rate/pitch use --flag=value: argparse treats "-8%" as an option otherwise.
+    const helper = join(ROOT, "src", "utils", "tts_words.py");
     const args =
       `--voice "${voice}" ` +
       `--rate="${rate}" --pitch="${pitch}" ` +
       `--file "${tmpTextPath}" ` +
-      `--write-media "${audioPath}" ` +
-      `--write-subtitles "${srtPath}"`;
-
-    // Prefer `edge-tts` CLI; fall back to `python -m edge_tts` (CLI may be off
-    // PATH). A real interpreter can be pinned per channel via channel.tts_python.
-    const python = settings.python || "python";
-    const cmds = [`edge-tts ${args}`, `${python} -m edge_tts ${args}`];
+      `--mp3 "${audioPath}" --srt "${srtPath}" --words "${wordsPath}"`;
+    // A real interpreter can be pinned per channel via channel.tts_python.
+    const pythons = [...new Set([settings.python, process.platform === "win32" ? "python" : "python3", "python"].filter(Boolean))];
+    const cmds = pythons.map((py) => `${py} "${helper}" ${args}`);
     let lastErr = null;
     for (const cmd of cmds) {
       try {
-        execSync(cmd, { stdio: "pipe", timeout: 120000 });
+        execSync(cmd, { stdio: "pipe", timeout: 180000 });
         lastErr = null;
         break;
       } catch (err) {
         // Capture stderr for diagnostics — execSync puts it in err.stderr
         const stderr = err.stderr ? err.stderr.toString().trim() : "(no stderr)";
-        console.error(`TTS command failed: ${cmd}\nstderr: ${stderr}`);
+        console.error(`TTS command failed: ${cmd}
+stderr: ${stderr}`);
         lastErr = err;
       }
     }
@@ -145,6 +147,7 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
     if (lastErr) throw lastErr;
     console.log(`TTS audio saved: ${audioPath}`);
     console.log(`TTS subtitles saved: ${srtPath}`);
+    console.log(`TTS word timings saved: ${wordsPath}`);
     console.log(`Delivery: voice=${voice} rate=${rate} pitch=${pitch}`);
     return audioPath;
   } catch (err) {
@@ -154,7 +157,7 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
     // zero-length mp3/srt is exactly the kind of artifact that looks real
     // and isn't (T1.6). Never leave one sitting next to the topic's other
     // files where a later step might mistake it for real output.
-    for (const partial of [audioPath, srtPath]) {
+    for (const partial of [audioPath, srtPath, wordsPath]) {
       if (existsSync(partial)) {
         try {
           unlinkSync(partial);
