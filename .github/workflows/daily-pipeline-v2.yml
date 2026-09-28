@@ -8,8 +8,10 @@
 #   render → Plan → Render → silence/duration/frame gates → Publish (private)
 #   self-heal (on failure) → diagnose the failed jobs, block or fix in scope
 #
-# Budget: every job has timeout-minutes: 18, except render: 100 — a CEILING
-# for the local-model path, not a target. Every model call goes to Gemini
+# Budget: every job's timeout is the dispatch input timeout_minutes (default
+# 20 — fast iteration; production passes 90 so a local-model run can
+# finish). Each model call is capped at a share of it (JOB_TIMEOUT_MIN in
+# scripts/ollama-client.cjs: plan 40%, challenger 15%, vision 20%). Every model call goes to Gemini
 # first and to local Ollama when Gemini cannot answer (src/lib/llm.js), and a
 # 7B / 3B model on a CPU runner needs far more than 18 minutes; a render that
 # Gemini answers still finishes in ~10-15 min. Concurrency cancels an older
@@ -34,6 +36,10 @@ on:
         description: "DEBUG: skip discover/research/script; render the channel's latest committed script (never publishes)"
         type: boolean
         default: false
+      timeout_minutes:
+        description: "Every job's timeout in minutes (20 = iteration; 90 = production, room for the local-model fallback)"
+        type: string
+        default: "20"
       force_planner:
         description: "'ollama' = answer EVERY model call with local Ollama; Gemini is never called (the fallback test)"
         type: string
@@ -66,7 +72,7 @@ jobs:
   # ============================================================
   setup:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
     outputs:
       matrix: ${{ steps.channels.outputs.matrix }}
     steps:
@@ -98,7 +104,7 @@ jobs:
   prep:
     needs: setup
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
     permissions:
       contents: write
     strategy:
@@ -603,8 +609,7 @@ jobs:
     # status" (no artifact) — honestly, and only that channel.
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
-    # A ceiling for the local-model path (see the header), not a target.
-    timeout-minutes: 100
+    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
     permissions:
       contents: write
     strategy:
@@ -736,8 +741,9 @@ jobs:
           # Second tier of the chain (Gemini → Groq → Ollama): scripts/groq-client.cjs.
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
-          # render-and-qa.js's own wall-clock budget, inside the 100-min job.
-          RENDER_QA_BUDGET_MIN: "92"
+          # The job budget: render-and-qa.js stops correction attempts inside
+          # it, and every model call is capped at a share of it.
+          JOB_TIMEOUT_MIN: ${{ github.event.inputs.timeout_minutes || '20' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # gemini-client makes ONE attempt (429 -> quota_exhausted at once,
           # 503 -> one retry after 5 s); any failure goes to Ollama.
@@ -887,7 +893,7 @@ jobs:
     needs: [setup, prep, render]
     if: always()
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
     steps:
       - name: Generate run report
         run: |
@@ -907,7 +913,7 @@ jobs:
     needs: [setup, prep, render]
     if: failure()
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
     permissions:
       actions: write
       contents: write

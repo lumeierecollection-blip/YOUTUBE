@@ -136,10 +136,21 @@ function parseAnswer(text) {
   }
 }
 
+// Per-call cap = a share of the job's budget (JOB_TIMEOUT_MIN, set by the
+// workflow): plan 40%, challenger 15%, vision 20%. A 20-min job caps a
+// plan call at 8 min; a 90-min job at 36. Without JOB_TIMEOUT_MIN
+// (local runs) the cap is OLLAMA_TIMEOUT_MS or 30 min.
+const CAP_SHARE = { plan: 0.4, challenger: 0.15, vision: 0.2 };
+function callCapMs(kind) {
+  const job = Number(process.env.JOB_TIMEOUT_MIN || 0);
+  if (!job) return Number(process.env.OLLAMA_TIMEOUT_MS || 1800000);
+  return Math.round(job * 60000 * (CAP_SHARE[kind] || CAP_SHARE.vision));
+}
+
 async function callOllama(messages, opts = {}) {
   const { maxTokens = 1200, temperature = 0 } = opts;
-  const timeoutMs = Number(opts.timeoutMs || process.env.OLLAMA_TIMEOUT_MS || 1800000);
   const { prompt, images } = await messagesToPrompt(messages);
+  const timeoutMs = Number(opts.timeoutMs || callCapMs(opts.capKind || (images.length ? "vision" : "plan")));
   // opts.ollamaModel: a caller-chosen local model (the challenger uses
   // qwen2.5:14b); otherwise vision for frames, text for the rest.
   const model = opts.ollamaModel || (images.length ? VISION_MODEL() : TEXT_MODEL());
@@ -176,7 +187,7 @@ async function check(model, timeoutS) {
   console.log(`Ollama ready: ${OLLAMA_URL}, model ${model}, warm-up ${((Date.now() - t0) / 1000).toFixed(1)}s → "${String(out).trim()}"`);
 }
 
-module.exports = { generate, waitForServer, callOllama, messagesToPrompt, DEFAULT_MODEL, OLLAMA_URL };
+module.exports = { generate, waitForServer, callOllama, messagesToPrompt, callCapMs, DEFAULT_MODEL, OLLAMA_URL };
 
 if (require.main === module) {
   const argv = process.argv.slice(2);

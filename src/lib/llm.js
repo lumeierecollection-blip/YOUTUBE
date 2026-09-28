@@ -45,8 +45,24 @@ export async function callOllamaOnly(messages, opts = {}, tag = "llm") {
 
 // Groq, then Ollama if Groq cannot answer. Used by callLLM and by callers
 // (the planner) that run their own Gemini step.
+// opts.groqBatch = { messages: [msgs, msgs, ...], merge(answers) }: Groq's
+// vision models take at most 5 images per request, so a caller sending more
+// frames supplies the same request split into <= 5-image parts and a merge.
+// Groq gets ceil(N/5) calls; Gemini and Ollama always get the ONE full call.
+async function callGroqBatched(opts, tag) {
+  const parts = opts.groqBatch.messages;
+  console.error(`[${tag}] groq: ${parts.length} batch(es) of <= ${groq.MAX_IMAGES} frames`);
+  const answers = [];
+  for (const m of parts) {
+    const g = await groq.callGroq(m, opts);
+    if (isProviderError(g)) return g;
+    answers.push(g);
+  }
+  return opts.groqBatch.merge(answers);
+}
+
 export async function callGroqThenOllama(messages, opts = {}, tag = "llm") {
-  const g = await groq.callGroq(messages, opts);
+  const g = opts.groqBatch ? await callGroqBatched(opts, tag) : await groq.callGroq(messages, opts);
   if (!isProviderError(g)) return g;
   console.error(`[${tag}] groq: ${g.error} → ollama${g.detail ? ` (${String(g.detail).slice(0, 120)})` : ""}`);
   return callOllamaOnly(messages, opts, tag);

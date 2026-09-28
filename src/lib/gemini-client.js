@@ -239,6 +239,52 @@ const fail = (error, detail) => ({ source: "gemini", error, detail: String(detai
  * @param {string} [opts.model="gemini-3.5-flash-lite"]
  * @returns {Promise<Object>} Parsed JSON response, or { source: "gemini", error, detail }
  */
+// ── Key → project diagnostic ──────────────────────────────────────
+// Same project = shared quota; different projects = separate quota. The
+// OAuth tokeninfo endpoint cannot answer this — these are API keys, not
+// access tokens — but a Google API that is NOT enabled for a key's project
+// answers "... has not been used in project <number> before or it is
+// disabled", which names the project. Each key is probed once (a tiny
+// request to a few rarely-enabled APIs), the numbers are cached in
+// .cache/gemini/projects.json by a hash of the key, and every process logs
+//   [gemini] key N project: <number>
+// Only the project number is logged — never a key.
+let projectsLogged = false;
+function projectOf(key) {
+  const probes = [
+    ["https://vision.googleapis.com/v1/images:annotate", "{}"],
+    ["https://language.googleapis.com/v1/documents:analyzeSentiment", "{}"],
+    ["https://translation.googleapis.com/language/translate/v2", "{}"],
+    ["https://speech.googleapis.com/v1/speech:recognize", "{}"],
+  ];
+  for (const [url, body] of probes) {
+    try {
+      const res = execFileSync("curl", ["-sS", "--max-time", "8", "-H", "Content-Type: application/json",
+        "-d", body, `${url}?key=${encodeURIComponent(key)}`], { encoding: "utf-8", timeout: 12000 });
+      const m = res.match(/projects?[\/ ](\d{6,})/i);
+      if (m) return m[1];
+    } catch {}
+  }
+  return "unknown (every probed API is enabled for this key's project, or the probe failed)";
+}
+function logKeyProjects() {
+  if (projectsLogged) return;
+  projectsLogged = true;
+  try {
+    const file = join(CACHE_DIR, "projects.json");
+    const cache = existsSync(file) ? JSON.parse(readFileSync(file, "utf-8")) : {};
+    let changed = false;
+    keys.forEach((k, i) => {
+      const h = createHash("sha256").update(k).digest("hex").slice(0, 16);
+      if (!cache[h]) { cache[h] = projectOf(k); changed = true; }
+      console.error(`[gemini] key ${i + 1} project: ${cache[h]}`);
+    });
+    if (changed) { mkdirSync(CACHE_DIR, { recursive: true }); writeFileSync(file, JSON.stringify(cache, null, 2)); }
+  } catch (e) {
+    console.error(`[gemini] key project diagnostic failed: ${e.message}`);
+  }
+}
+
 export async function callGemini(messages, opts = {}) {
   const {
     maxTokens = 1200,
@@ -256,6 +302,7 @@ export async function callGemini(messages, opts = {}) {
   } catch (e) {
     return fail("no_key", e.message);
   }
+  logKeyProjects();
 
   // Check disk cache first (skip if noCache is set)
   const ck = noCache ? null : cacheKey(model, messages, maxTokens, temperature);

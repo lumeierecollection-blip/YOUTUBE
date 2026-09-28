@@ -654,7 +654,8 @@ const LOCAL_AUDIT_CJS = join(__dirname, "local-audit.cjs");
 // minus ~1.7 min of setup before this step (measured) and ~1.3 min of QA
 // counts and uploads after it.
 const PROCESS_T0 = Date.now();
-const RENDER_QA_BUDGET_MS = Number(process.env.RENDER_QA_BUDGET_MIN || 15) * 60000;
+// Default: the job's timeout (JOB_TIMEOUT_MIN) less ~5 min of setup and uploads.
+const RENDER_QA_BUDGET_MS = Number(process.env.RENDER_QA_BUDGET_MIN || Math.max(5, Number(process.env.JOB_TIMEOUT_MIN || 20) - 5)) * 60000;
 const APPROVED_REVIEW_DIR = join(ROOT, "data", "renders", "approved-review");
 const REJECTED_DIR = join(ROOT, "data", "renders", "rejected");
 

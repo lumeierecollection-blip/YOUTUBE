@@ -747,10 +747,10 @@ async function main() {
     // The strict one-beat-per-sentence instruction goes on the FIRST local
     // call: in run 36431582306 qwen2.5:7b answered the plain prompt with ONE
     // beat on every channel, so each paid a second 10-25 min call.
-    geminiResult = normalizePlanResponse(await callOllamaOnly([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2 }, "planner"));
+    geminiResult = normalizePlanResponse(await callOllamaOnly([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2, capKind: "plan" }, "planner"));
     if (!okBeats(geminiResult) && !(geminiResult?.source === "ollama" && geminiResult.error)) {
       console.error(`[planner] ollama plan ${geminiResult?.beats ? `has ${geminiResult.beats.length} beats for ${sentences.length} sentences` : `had no 'beats' — got: ${describeShape(geminiResult)}`} — one strict retry`);
-      geminiResult = normalizePlanResponse(await callOllamaOnly([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2 }, "planner"));
+      geminiResult = normalizePlanResponse(await callOllamaOnly([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2, capKind: "plan" }, "planner"));
     }
     if (okBeats(geminiResult)) console.log(`[planner] plan from ollama (${process.env.OLLAMA_TEXT_MODEL || "qwen2.5:7b"}, ${((Date.now() - t0) / 1000).toFixed(0)}s)`);
     else console.error(`[planner] ollama gave no usable plan: ${describeShape(geminiResult)} — no further fallback`);

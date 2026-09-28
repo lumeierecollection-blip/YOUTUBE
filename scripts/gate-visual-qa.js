@@ -210,7 +210,9 @@ function ollamaVision(framePaths, prompt) {
     const body = JSON.stringify({ model, prompt, images, format: "json", stream: false,
       options: { temperature: 0, num_predict: 400, num_ctx: 8192 } });
     const t0 = Date.now();
-    const res = execFileSync("curl", ["-sS", "--max-time", "900", "-H", "Content-Type: application/json",
+    // Capped at 20% of the job budget (JOB_TIMEOUT_MIN), like every vision call.
+    const maxS = String(Math.round(Number(process.env.JOB_TIMEOUT_MIN || 75) * 60 * 0.2));
+    const res = execFileSync("curl", ["-sS", "--max-time", maxS, "-H", "Content-Type: application/json",
       "-d", "@-", `${url}/api/generate`], { input: body, encoding: "utf-8", maxBuffer: 1 << 26 });
     const r = JSON.parse(res);
     console.error(`[ollama] ${model}: ${r.prompt_eval_count ?? "?"} prompt + ${r.eval_count ?? "?"} answer tokens, ${images.length} image(s), ${((Date.now() - t0) / 1000).toFixed(0)}s`);

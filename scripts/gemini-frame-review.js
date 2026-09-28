@@ -207,7 +207,20 @@ async function reviewFrameBatch(frames, totalFrames, bible) {
     }
 
     // Gemini, or Ollama when Gemini cannot answer (no Gemini retry).
-    let batchResult = await callLLM([{ role: "user", content }], { maxTokens: 2000 }, "reviewer");
+    // Groq: the same request split into <= 5-frame parts, answers joined in
+    // frame order; Gemini and Ollama get the one call.
+    const asArray = (x) => (Array.isArray(x) ? x : x && typeof x === "object" ? (Object.values(x).find((v) => Array.isArray(v)) || [x]) : []);
+    const groqBatch = batch.length > 5 ? {
+      messages: [batch.slice(0, 5), batch.slice(5)].filter((g) => g.length).map((g) => [{ role: "user", content: [
+        { type: "text", text: prompt.replace(`reviewing ${batch.length} frames`, `reviewing ${g.length} frames`) },
+        ...g.flatMap((f) => [
+          { type: "text", text: `\n--- Frame ${f.index + 1} at t=${f.time.toFixed(1)}s ---` },
+          { type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(f.path).toString("base64")}` } },
+        ]),
+      ] }]),
+      merge: (answers) => answers.flatMap(asArray),
+    } : undefined;
+    let batchResult = await callLLM([{ role: "user", content }], { maxTokens: 2000, groqBatch }, "reviewer");
     if (isProviderError(batchResult)) {
       console.warn(`  Batch ${Math.floor(b / BATCH_SIZE) + 1} failed (${batchResult.source} ${batchResult.error}) — skipping ${batch.length} frames`);
       continue;
@@ -294,15 +307,62 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
     for (const f of refFrames) content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(f).toString("base64")}` } });
     content.push({ type: "text", text: "\n=== FRAMES UNDER REVIEW ===" });
   }
+  const head = content.slice(0, 2);            // rubric + reference note (text)
+  const framePartsList = [];
   for (const idx of unique) {
     const imageData = readFileSync(framePaths[idx]).toString("base64");
     const t = beatTimes[idx];
     const vo = srtCues.length ? getVoiceoverAtTime(srtCues, t) : "(no SRT)";
-    content.push({ type: "text", text: `\n--- Frame ${idx + 1}/${unique.length} at t=${t.toFixed(1)}s | VO: "${vo.slice(0, 80)}" ---` });
-    content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${imageData}` } });
+    const parts = [
+      { type: "text", text: `\n--- Frame ${idx + 1}/${unique.length} at t=${t.toFixed(1)}s | VO: "${vo.slice(0, 80)}" ---` },
+      { type: "image_url", image_url: { url: `data:image/png;base64,${imageData}` } },
+    ];
+    framePartsList.push(parts);
+    content.push(...parts);
   }
 
-  return callLLM([{ role: "user", content }], { maxTokens: 1600 }, "reviewer");
+  // Groq takes at most 5 images per request: 1 reference frame + 4 review
+  // frames per batch, merged at the WORST verdict (lowest score, FAIL / NO
+  // wins, issues concatenated). Where this stops: each Groq batch sees part
+  // of the video, so its continuity and repetition calls are per batch.
+  // Gemini and Ollama still get the one full call.
+  const refMid = refFrames.length ? { type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(refFrames[Math.floor(refFrames.length / 2)]).toString("base64")}` } } : null;
+  const perBatch = refMid ? 4 : 5;
+  const nBatches = Math.ceil(framePartsList.length / perBatch);
+  const groqBatch = (refFrames.length + framePartsList.length) > 5 ? {
+    messages: Array.from({ length: nBatches }, (_, k) => [{ role: "user", content: [
+      ...head,
+      ...(refMid ? [refMid, { type: "text", text: `\n=== FRAMES UNDER REVIEW (part ${k + 1} of ${nBatches} of the video; one reference frame shown above) ===` }] : []),
+      ...framePartsList.slice(k * perBatch, (k + 1) * perBatch).flat(),
+    ] }]),
+    merge: (answers) => {
+      const ok = answers.filter((x) => x && typeof x === "object");
+      const nums = (key) => ok.map((x) => Number(x[key])).filter(Number.isFinite);
+      const min = (key) => (nums(key).length ? Math.min(...nums(key)) : undefined);
+      const cat = (key) => ok.flatMap((x) => (Array.isArray(x[key]) ? x[key] : []));
+      const sev = ["LOW", "MEDIUM", "HIGH", "CRITICAL"];
+      const worstSev = ok.map((x) => String(x.severity || "").toUpperCase()).filter((v) => sev.includes(v)).sort((x, y) => sev.indexOf(y) - sev.indexOf(x))[0] || null;
+      const refs = ok.map((x) => String(x.reference_match || "").toUpperCase());
+      const ht = ok.map((x) => x.headline_test).filter(Boolean);
+      return {
+        ...ok[0],
+        status: ok.some((x) => String(x.status).toUpperCase() === "FAIL") ? "FAIL" : (ok[0]?.status || "PASS"),
+        severity: worstSev,
+        overall_score: min("overall_score"),
+        continuity_score: min("continuity_score"),
+        motion_weight_score: min("motion_weight_score"),
+        reference_match: refs.includes("NO") ? "NO" : refs.length && refs.every((v) => v === "YES") ? "YES" : ok[0]?.reference_match,
+        reference_reason: ok.map((x) => x.reference_reason).filter(Boolean).join(" | "),
+        headline_test: ht.length ? { ...ht[0], monoculture: ht.some((h) => h.monoculture), pass: ht.every((h) => h.pass !== false) } : ok[0]?.headline_test,
+        categories: [...new Set(cat("categories"))],
+        repetition_issues: cat("repetition_issues"), decoration_issues: cat("decoration_issues"),
+        slop_indicators: cat("slop_indicators"), corrections: cat("corrections"),
+        verdict: ok.map((x) => x.verdict).filter(Boolean).join(" | "),
+      };
+    },
+  } : undefined;
+
+  return callLLM([{ role: "user", content }], { maxTokens: 1600, groqBatch }, "reviewer");
 }
 
 function categorizeResult(result, bible) {
@@ -380,6 +440,9 @@ EXCEPTION: a beat marked "[DATA: COUNTER|BAR|PIE|LINE|GAUGE]" below shows the se
 A word-by-word caption of the narration near the bottom of the page is present on every beat BY DESIGN; ignore it when judging, and judge the rest of the page.
 Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_is_shown":"<what the frame actually contains>","reason":"<one sentence>"}]} — exactly one entry per beat, beat_index 0..${beats.length - 1}.`,
   }];
+  // Each beat's parts (label + frame), kept apart so a Groq request can carry
+  // at most 5 frames (callLLM's groqBatch); Gemini and Ollama get one call.
+  const beatParts = [];
   try {
     beats.forEach((b, i) => {
       const mid = (b.start_sec ?? 0) + (b.duration_sec ?? 0) / 2;
@@ -393,15 +456,30 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
       const tag = b.mechanism === "TYPOGRAPHY" || vt === "TYPE" ? " [TYPOGRAPHY]"
         : ["COUNTER", "BAR", "PIE", "LINE", "GAUGE"].includes(vt) ? ` [DATA: ${vt}]`
         : vt === "MAP" ? " [MAP]" : "";
-      content.push({ type: "text", text: `Beat ${i}${tag} (frame at ${mid.toFixed(2)}s). Sentence: "${sentence}"` });
-      content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(framePath).toString("base64")}` } });
+      const parts = [
+        { type: "text", text: `Beat ${i}${tag} (frame at ${mid.toFixed(2)}s). Sentence: "${sentence}"` },
+        { type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(framePath).toString("base64")}` } },
+      ];
+      beatParts.push(parts);
+      content.push(...parts);
     });
+    const intro = content[0].text;
+    const groqBatch = beats.length > 5 ? {
+      messages: Array.from({ length: Math.ceil(beats.length / 5) }, (_, k) => {
+        const idx = Array.from({ length: Math.min(5, beats.length - k * 5) }, (_, j) => k * 5 + j);
+        return [{ role: "user", content: [
+          { type: "text", text: intro.replace(/exactly one entry per beat, beat_index 0\.\.\d+\./, `exactly one entry per beat BELOW (this is part ${k + 1} of the video), beat_index ${idx[0]}..${idx[idx.length - 1]}.`) },
+          ...idx.flatMap((i) => beatParts[i]),
+        ] }];
+      }),
+      merge: (answers) => ({ beats: answers.flatMap((a) => (Array.isArray(a?.beats) ? a.beats : [])) }),
+    } : undefined;
     console.log(`[beat-check] ${beats.length} beat frames extracted at midpoints — asking the model`);
     // Gemini, or Ollama (a vision model) when Gemini cannot answer — the
     // fallback replaces the old Gemini transport retry. Both failing is
     // "could not run" (exit 3). A NO verdict is never retried: that is the
     // check working, not an outage.
-    let result = await callLLM([{ role: "user", content }], { maxTokens: 2048, temperature: 0, noCache: true }, "beat-check");
+    let result = await callLLM([{ role: "user", content }], { maxTokens: 2048, temperature: 0, noCache: true, groqBatch }, "beat-check");
     if (isProviderError(result)) {
       console.error(`::error::beat check unavailable: ${result.source} ${result.error}${result.detail ? ` (${String(result.detail).slice(0, 160)})` : ""}`);
       process.exit(3);

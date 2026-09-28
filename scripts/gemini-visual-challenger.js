@@ -190,7 +190,7 @@ Return exactly one entry per beat, beat_index 0..${beats.length - 1}.`;
   // Fallbacks: Groq llama-3.3-70b-versatile, then local qwen2.5:14b (7b gave
   // nonsense verdicts in run 36431582306);
   // unloaded right after answering so its ~10 GB is free for rendering.
-  const result = await callLLM([{ role: "user", content: prompt }], { maxTokens: 2048, temperature: 0, groqModel: process.env.GROQ_CHALLENGER_MODEL || "llama-3.3-70b-versatile", ollamaModel: process.env.OLLAMA_CHALLENGER_MODEL || "qwen2.5:14b", keepAlive: 0 }, "challenger");
+  const result = await callLLM([{ role: "user", content: prompt }], { maxTokens: 2048, temperature: 0, groqModel: process.env.GROQ_CHALLENGER_MODEL || "llama-3.3-70b-versatile", ollamaModel: process.env.OLLAMA_CHALLENGER_MODEL || "qwen2.5:14b", keepAlive: 0, capKind: "challenger" }, "challenger");
   if (isProviderError(result)) {
     console.error(`::error::challenger unavailable: ${result.source} ${result.error}${result.detail ? ` (${String(result.detail).slice(0, 160)})` : ""}`);
     process.exit(3);
@@ -269,7 +269,7 @@ async function main() {
 
   console.log(`Challenging visual intent (${intent.beats.length} beats)...`);
   const prompt = buildChallengerPrompt(intent, scriptText, channelConfig);
-  const result = await callLLM([{ role: "user", content: prompt }], { maxTokens: 4096, temperature: 0.3, groqModel: process.env.GROQ_CHALLENGER_MODEL || "llama-3.3-70b-versatile", ollamaModel: process.env.OLLAMA_CHALLENGER_MODEL || "qwen2.5:14b", keepAlive: 0 }, "challenger");
+  const result = await callLLM([{ role: "user", content: prompt }], { maxTokens: 4096, temperature: 0.3, groqModel: process.env.GROQ_CHALLENGER_MODEL || "llama-3.3-70b-versatile", ollamaModel: process.env.OLLAMA_CHALLENGER_MODEL || "qwen2.5:14b", keepAlive: 0, capKind: "challenger" }, "challenger");
 
   let review;
   if (result?.content && typeof result.content === "string") {
