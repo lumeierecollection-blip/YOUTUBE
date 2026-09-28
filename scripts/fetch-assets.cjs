@@ -76,7 +76,9 @@ function verify(c, concept, query) {
   if (!text.trim()) return { ok: false, why: "source returned no text to verify against" };
   const terms = keyTerms(query);
   const hits = terms.filter((t) => text.includes(stem(t)));
-  const need = Math.max(1, Math.ceil(terms.length / 2));
+  // A short (backed-off) query must match in full: "silver coins" accepted
+  // on "silver" alone would admit any silver object. Longer queries: half.
+  const need = terms.length <= 2 ? Math.max(1, terms.length) : Math.ceil(terms.length / 2);
   if (hits.length < need) return { ok: false, why: `source text matches ${hits.length}/${terms.length} query terms (need ${need})` };
   const missing = properNames(concept).filter((n) => !text.includes(stem(n)));
   if (missing.length) return { ok: false, why: `source text lacks the name(s) ${missing.join(", ")}` };
@@ -92,9 +94,13 @@ function verify(c, concept, query) {
 function queriesFor(query) {
   const words = String(query || "").split(/\s+/).filter(Boolean);
   const key = words.filter((w) => w.length >= 3 && !STOP.has(w.toLowerCase()));
+  // Keep the TRAILING terms: in "wooden judge gavel" / "stack of silver
+  // coins" the head noun is last. Keeping the first terms (as before) backed
+  // "wooden judge gavel" off to "wooden judge" and never searched "gavel"
+  // (run 36366136239: gavel, megaphone, coins, combat boots all missed).
   const out = [words.join(" ")];
-  if (key.length > 3) out.push(key.slice(0, 3).join(" "));
-  if (key.length > 2) out.push(key.slice(0, 2).join(" "));
+  if (key.length > 2) out.push(key.slice(-2).join(" "));
+  if (key.length > 1) out.push(key.slice(-1).join(" "));
   return [...new Set(out.filter(Boolean))];
 }
 
@@ -125,7 +131,8 @@ async function main() {
       if (s.key && !process.env[s.key]) { reasons.push(`${s.name}: ${s.key} not set`); console.log(`[fetch] ${s.name} "${concept}" → skip (${s.key} not set)`); continue; }
       if (requests >= MAX_REQUESTS) { reasons.push(`request budget (${MAX_REQUESTS}) spent`); console.log(`[fetch] ${s.name} "${concept}" → skip (budget of ${MAX_REQUESTS} requests spent)`); continue; }
       let cands = [], usedQuery = query, failed = false;
-      for (const q of queriesFor(query)) {
+      const why = [];
+      queryLoop: for (const q of queriesFor(query)) {
         if (requests >= MAX_REQUESTS) break;
         requests++;
         usedQuery = q;
@@ -143,10 +150,10 @@ async function main() {
           failed = true;
           break;
         }
-        if ((cands || []).length) break;          // results: evaluate them; else back off
-      }
-      if (failed) continue;
-      const why = [];
+        // Evaluate THIS query's candidates; back off to the next (shorter)
+        // query when none verifies, not only when there were zero results —
+        // run 36366136239: "wooden judge gavel" returned results that all
+        // failed verification and "gavel" alone was never searched.
       for (let c of cands || []) {
         if (!c || !c.license) continue;               // adapters null out disallowed licenses
         // Wikimedia originals are often SVG/TIFF/PDF; Commons' raster
@@ -201,8 +208,10 @@ async function main() {
         resolved.push({ beat: w.beat, concept, asset_id: id, local_path: rel, source: s.name, license: entry.license, verified: v.why });
         console.log(`[fetch] ${s.name} "${concept}" → hit (${id}, ${entry.license}; ${v.why}; ${statSync(abs).size} B)`);
         done = true;
-        break;
+        break queryLoop;
       }
+      }
+      if (failed) continue;
       if (!done) {
         const summary = why.length ? [...new Set(why)].slice(0, 3).join("; ") : "no licensed results";
         reasons.push(`${s.name}: ${summary}`);
