@@ -27,17 +27,29 @@ export function PieChart({ data, bounds: zone, local, dur, font }) {
   const a1 = (pct / 100) * full * t;
   const restStart = (pct / 100) * full;
   const restEnd = restStart + (1 - pct / 100) * full * rest;
+  // The centre text — value + the label as it wraps — must end inside
+  // `bounds`: the label shrinks until it does (0.55 em per character of
+  // italic serif, 1.4 em lines; the gauge lesson of run 36414021961).
+  const label = data?.label ? String(data.label) : "";
+  const valueSize = Math.round(r * 0.46);
+  const textTop = cy - r * 0.35;
+  let labelSize = Math.round(r * 0.13 + 8);
+  while (label && labelSize > 10) {
+    const lines = Math.max(1, Math.ceil((label.length * 0.55 * labelSize) / (r * 2)));
+    if (textTop + valueSize + 6 + lines * labelSize * 1.4 <= zone.y + zone.h - 8) break;
+    labelSize -= 1;
+  }
   return (
     <div style={{ position: "absolute", inset: 0 }}>
       <svg width={zone.x + zone.w} height={zone.y + zone.h} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
         {rest > 0 && pct < 100 ? <path d={arc(cx, cy, r, restStart, Math.min(restEnd, full - 0.0001))} fill="none" stroke={LIGHT} strokeWidth={sw} /> : null}
         {a1 > 0.001 ? <path d={arc(cx, cy, r, 0, Math.min(a1, full - 0.0001))} fill="none" stroke={INK} strokeWidth={sw} /> : null}
       </svg>
-      <div style={{ position: "absolute", left: cx - r, top: cy - r * 0.35, width: r * 2, textAlign: "center" }}>
+      <div style={{ position: "absolute", left: cx - r, top: textTop, width: r * 2, textAlign: "center" }}>
         {/* The sentence's figure from the first frame; only the ring sweeps
             (a rolling label reads as a wrong statistic mid-sweep). */}
-        <div style={{ font: `700 ${Math.round(r * 0.46)}px ${font}, sans-serif`, color: INK, lineHeight: 1 }}>{pct}%</div>
-        {data.label ? <div style={{ font: `italic 400 ${Math.round(r * 0.13 + 8)}px ${SERIF}`, color: INK, marginTop: 6 }}>{data.label}</div> : null}
+        <div style={{ font: `700 ${valueSize}px ${font}, sans-serif`, color: INK, lineHeight: 1 }}>{pct}%</div>
+        {label ? <div style={{ font: `italic 400 ${labelSize}px ${SERIF}`, color: INK, marginTop: 6, lineHeight: 1.4 }}>{label}</div> : null}
       </div>
     </div>
   );
