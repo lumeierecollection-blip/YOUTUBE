@@ -186,7 +186,10 @@ async function main() {
         // screenshot is rejected unless the object itself is a device.
         if (suffix && /\b(screenshot|screen ?shot|mock ?up|mockup|app screen|user interface|ui|website|web page|homepage)\b/i.test(sourceTextOf(c))
           && !/\b(phone|screen|monitor|laptop|tablet|computer)\b/i.test(concept)) { why.push("a screen/mockup, not an object"); continue; }
-        const v = verify(c, concept, usedQuery);
+        // A cutout is verified against the WHOLE object, not the backed-off
+        // search: run 36388470508 ch-44 searched "glass" for "magnifying
+        // glass", verified on "glass" alone, and drew a goblet.
+        const v = verify(c, concept, suffix ? query : usedQuery);
         if (!v.ok) { why.push(v.why); continue; }
         const hash = createHash("sha1").update(c.downloadUrl).digest("hex").slice(0, 10);
         const id = `${s.name}-${hash}`;

@@ -179,7 +179,12 @@ export function checkVisual(b, sentence) {
   if (!VISUAL_TYPES.includes(t)) return bad(`unknown visual_type "${b.visual_type}"`);
   if (t === "TYPE") return { type: "TYPE", data: null };
   if (t === "CUTOUT") {
-    const obj = String(d.object || b.cutout_query || "").trim();
+    // A cutout is a photographed physical object: "scale of justice icon",
+    // "padlock icon", "document cutout" (run 36388470508) searched for the
+    // word "icon"/"cutout", and the fetcher rejects icons by design.
+    const obj = String(d.object || b.cutout_query || "")
+      .replace(/\b(icons?|symbols?|illustrations?|graphics?|cutouts?|clip ?art|vectors?|logos?|emojis?|pictograms?|drawings?|isolated|white background|png)\b/gi, " ")
+      .replace(/\s+/g, " ").trim();
     return obj ? { type: t, data: { object: obj } } : bad("CUTOUT without an object");
   }
   if (t === "MAP") {

@@ -846,6 +846,9 @@ async function main() {
           start_sec: +((b.start_frame || 0) / fps).toFixed(2),
           duration_sec: +((b.duration_frames || 0) / fps).toFixed(2),
           mechanism,
+          // Paper style: the planner's visual type for this beat, as drawn
+          // (a CUTOUT that failed isolation is recorded as TYPE).
+          visual_type: b.scene?.paper?.visual_type || null,
           renders_typography: rendersTypography,
           text: rendersTypography ? [b.text].filter((t) => t && String(t).trim()) : [],
           on_screen_text: onScreenText,

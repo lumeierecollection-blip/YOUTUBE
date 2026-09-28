@@ -332,6 +332,8 @@ async function beatCheck() {
 Question for every beat: does this frame VISUALLY correspond to this sentence — would a viewer with the sound off get the sentence's point from what is drawn?
 Answer NO when the frame is only a line of text restating or labelling the sentence with no visual that shows its idea, when the frame is blank, or when what is drawn is unrelated to the sentence.
 EXCEPTION: a beat marked "[TYPOGRAPHY]" below is a kinetic-text hook or CTA beat BY DESIGN — it is supposed to be text only, with no accompanying drawing. For those beats only, judge whether the on-screen text itself captures the sentence's point; do not answer NO merely because there is no separate visual.
+EXCEPTION: a beat marked "[DATA: COUNTER|BAR|PIE|LINE|GAUGE]" below shows the sentence's own figure as a drawn number, chart or gauge BY DESIGN — the drawn figure IS the visual. Answer YES when the figure shown is the sentence's figure and its label fits the sentence; answer NO when the figure is wrong, missing, or unrelated. A beat marked "[MAP]" shows the place the sentence names; answer NO if the place is wrong or unreadable.
+A word-by-word caption of the narration near the bottom of the page is present on every beat BY DESIGN; ignore it when judging, and judge the rest of the page.
 Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_is_shown":"<what the frame actually contains>","reason":"<one sentence>"}]} — exactly one entry per beat, beat_index 0..${beats.length - 1}.`,
   }];
   try {
@@ -340,7 +342,13 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
       const framePath = join(work, `beat-${String(i).padStart(2, "0")}.png`);
       extractFrameAtTime(videoPath, mid, framePath);
       const sentence = cues[i]?.text ?? "(no sentence)";
-      const tag = b.mechanism === "TYPOGRAPHY" ? " [TYPOGRAPHY]" : "";
+      // Paper style: a TYPE beat is typography by design (the planner's rule:
+      // an abstract claim with no number, place or object), the same
+      // exception as a TYPOGRAPHY mechanism beat.
+      const vt = String(b.visual_type || "").toUpperCase();
+      const tag = b.mechanism === "TYPOGRAPHY" || vt === "TYPE" ? " [TYPOGRAPHY]"
+        : ["COUNTER", "BAR", "PIE", "LINE", "GAUGE"].includes(vt) ? ` [DATA: ${vt}]`
+        : vt === "MAP" ? " [MAP]" : "";
       content.push({ type: "text", text: `Beat ${i}${tag} (frame at ${mid.toFixed(2)}s). Sentence: "${sentence}"` });
       content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(framePath).toString("base64")}` } });
     });

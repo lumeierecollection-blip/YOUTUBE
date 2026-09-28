@@ -842,7 +842,10 @@ async function cutoutFor(channelId, planPath, b, stats) {
     console.log(`[cutout] beat ${b.index} "${object}": ${asset.id} discarded (${r.why}) — try ${attempt}/${CUTOUT_TRIES}`);
   }
   stats.converted++;
-  console.log(`[cutout] "${object} ${CUTOUT_SUFFIX}" failed isolation, converted beat ${b.index} to TYPE`);
+  // The two reasons are logged apart: "failed isolation" only when a result
+  // was actually isolated and discarded; otherwise no source had one.
+  if (tried.size) console.log(`[cutout] "${object} ${CUTOUT_SUFFIX}" failed isolation, converted beat ${b.index} to TYPE`);
+  else { stats.not_found = (stats.not_found || 0) + 1; console.log(`[cutout] "${object} ${CUTOUT_SUFFIX}" no verified result, converted beat ${b.index} to TYPE`); }
   return { cutout: null, asset: null, fetched };
 }
 
