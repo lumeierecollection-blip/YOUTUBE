@@ -728,6 +728,8 @@ jobs:
           # + qwen2.5:14b for the challenger only (planner 7b, vision 3b).
           models: "qwen2.5:7b qwen2.5vl:3b qwen2.5:14b"
           cache-key: ollama-${{ runner.os }}-qwen2.5-7b+qwen2.5vl-3b+qwen2.5-14b
+          # Nothing stays resident: the render, rembg and Chromium need the RAM.
+          unload-after-warm: "true"
 
       - name: Render + QA
         if: steps.status.outputs.skip != 'true'

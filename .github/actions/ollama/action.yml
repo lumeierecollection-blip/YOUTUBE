@@ -23,6 +23,15 @@ inputs:
     description: "OLLAMA_MAX_LOADED_MODELS — 1 keeps a 16 GB runner clear for rendering"
     required: false
     default: "1"
+  unload-after-warm:
+    description: >
+      "true" = unload each model from RAM right after its warm-up check, so
+      it is only resident while a fallback call is using it. The render job
+      needs this: run 36478456863 kept qwen2.5:14b resident (~9-10 GB, 30 m
+      keep-alive) on the 15 GB runner, and ch1/9/44 lost the runner
+      ("received a shutdown signal", exit 143) the moment rembg started.
+    required: false
+    default: "false"
 runs:
   using: composite
   steps:
@@ -42,6 +51,7 @@ runs:
         MODELS: ${{ inputs.models }}
         CTX: ${{ inputs.context-length }}
         MAX_LOADED: ${{ inputs.max-loaded }}
+        UNLOAD: ${{ inputs.unload-after-warm }}
       run: |
         sudo systemctl stop ollama 2>/dev/null || true
         sudo systemctl disable ollama 2>/dev/null || true
@@ -55,5 +65,9 @@ runs:
           OLLAMA_HOST=127.0.0.1:11434 ollama pull "$m"
           node scripts/ollama-client.cjs --check --model "$m" --timeout 120 \
             || { echo "--- ollama.log ---"; tail -50 /tmp/ollama.log; exit 1; }
+          if [ "$UNLOAD" = "true" ]; then
+            curl -sf http://127.0.0.1:11434/api/generate -d "{\"model\":\"$m\",\"keep_alive\":0}" >/dev/null && echo "unloaded $m after warm-up" || echo "::warning::could not unload $m"
+          fi
         done
+        OLLAMA_HOST=127.0.0.1:11434 ollama ps || true
         nproc; free -g | head -2; df -h / | tail -1
