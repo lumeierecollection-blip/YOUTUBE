@@ -1,0 +1,21 @@
+BLOCKER: true object cutouts (the reference's main image treatment) need
+background removal and isolated-object sources, neither available in CI.
+
+Measured, run 36372511785: 17 fetched images across 4 channels; 2 had
+plain-white corners and were drawn as cutouts (multiply blend); the other
+15 were shown in phone mockups — a reference element, but the reference
+shows OBJECTS as cutouts.
+
+Why:
+  - rembg runs only from a local Python venv (src/skills/asset-sourcing/
+    treat.js); the render job does not install it. Logged each run:
+    "[cutout] rembg missing, using plain grayscale".
+  - The keyless sources (Wikimedia, Openverse) rarely hold objects on
+    plain backgrounds; Pexels / Unsplash / Pixabay, which do, have no keys
+    (blocked-asset-api-keys.txt).
+
+Human action (either or both):
+  1. Allow installing background removal in the render job (pip rembg +
+     its ~170 MB model, cached; or @imgly/background-removal-node) — CPU
+     time per image is seconds; 20 cutouts/run max.
+  2. Add the stock-photo API keys.
