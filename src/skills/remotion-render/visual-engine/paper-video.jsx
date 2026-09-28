@@ -1,10 +1,12 @@
 /**
  * PaperVideo — the reference style (docs/REFERENCE-STYLE.md), whole video.
  *
- * Static camera, as measured: the studio, the branding rail, the paper and
- * the timeline device are placed ONCE and never move or cut. Only the
- * paper's content changes per beat (PaperContent builds and clears on the
- * same page); the timeline playhead travels across the whole video.
+ * Static camera, as measured: the studio, the branding rail and the paper
+ * are placed ONCE and never move or cut; the paper is centred in the 9:16
+ * frame. Only the paper's content changes per beat (PaperContent builds and
+ * clears on the same page). No timeline footer, no phone wrapper, no pasted
+ * rectangular photo: a beat shows a system-drawn visual, an isolated
+ * cutout, or type.
  *
  * Each beat's content is `beat.scene.paper`, built by the asset resolver
  * in render-and-qa.js from the plan and resolved cutouts. No mechanism
@@ -14,7 +16,6 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { StudioBG } from "../visual/studio-bg.jsx";
 import { BrandingRail } from "../visual/branding-rail.jsx";
-import { TimelineFooter } from "../visual/timeline-footer.jsx";
 import { Paper, PaperContent } from "../visual/paper-stage.jsx";
 
 export function PaperVideo({ plan }) {
@@ -38,7 +39,6 @@ export function PaperVideo({ plan }) {
             copy is not the narration, and filler text would be invented. */}
         {content ? <PaperContent key={i} c={{ ...content, body: null, spoken: beat.spoken }} local={local} dur={beat.duration_frames} fps={fps} /> : null}
       </Paper>
-      <TimelineFooter seed={plan.railText || "0"} progress={frame / Math.max(1, durationInFrames - 1)} />
     </StudioBG>
   );
 }

@@ -6,22 +6,21 @@
  */
 export const CANVAS = { w: 1080, h: 1920 };
 
-// Paper: x 148-428, y 128-622 at 576x1024.
-export const PAPER = { x: 278, y: 240, w: 524, h: 926 };
+// Paper: size measured (x 148-428, 280x494 at 576x1024). Its y is NOT the
+// reference's: with the timeline device removed (owner's correction) the
+// paper is centred in the 9:16 canvas with equal top/bottom margins
+// ((1920 - 926) / 2 = 497).
+export const PAPER = { x: 278, y: 497, w: 524, h: 926 };
 // Branding rail "MY EDIT": x 114-138, y 293-444 — left of the paper,
-// rotated 90deg counter-clockwise (reads bottom to top).
-export const RAIL = { x: 214, y: 549, w: 45, h: 284 };
-// Timeline device: x 70-491, y 651-838.
-export const DEVICE = { x: 131, y: 1221, w: 790, h: 350 };
+// rotated 90deg counter-clockwise (reads bottom to top). Vertically centred
+// on the (centred) paper: 497 + (926 - 284) / 2 = 818.
+export const RAIL = { x: 214, y: 818, w: 45, h: 284 };
 
 export const INK = "#0A0A0A";           // text / shapes
 export const INK_SOFT = "#9A9A9A";      // not-yet-typed words, light words
 export const PAPER_FILL = "#FFFFFF";
 export const PAPER_EDGE_SHADOW = "#A4A4A5";
 export const STUDIO_BG = "#FFFFFF";
-export const DEVICE_FILL = "#292929";
-// The only colour in the reference frame: the editing timeline's clips.
-export const TIMELINE = { purple: "#802080", violet: "#602080", green: "#60C000", wave: "#39C6E6" };
 
 // Average reference beat ≈ 2.5 s (16 beats in 39.6 s).
 export const REFERENCE_BEAT_SEC = 2.5;
