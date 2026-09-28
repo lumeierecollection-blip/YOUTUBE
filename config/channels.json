@@ -14,7 +14,7 @@
       "asset_treatment": "color",
       "channel_name": "Money Mind",
       "handle": "@moneymind",
-      "tts_voice": "en-US-JennyNeural",
+      "tts_voice": "en-US-AriaNeural",
       "font": "Inter",
       "estimated_rpm": "8-15",
       "google_account": "CH1",
@@ -41,7 +41,8 @@
         "primary": "#0F172A",
         "secondary": "#1E293B",
         "accent": "#22C55E",
-        "bg": "#0A1020"
+        "bg": "#0A1020",
+        "canvas_accent": "#1B7A4D"
       },
       "target_audience": "Adults 18-40 seeking financial control",
       "tone": "friendly-encouraging",
@@ -118,7 +119,7 @@
       "asset_treatment": "bw",
       "channel_name": "Legal Brief",
       "handle": "@legalbrief",
-      "tts_voice": "en-US-BrianNeural",
+      "tts_voice": "en-US-GuyNeural",
       "font": "DM Sans",
       "estimated_rpm": "10-18",
       "google_account": "CH2",
@@ -145,7 +146,8 @@
         "primary": "#1A1A2E",
         "secondary": "#16213E",
         "accent": "#F5536B",
-        "bg": "#0F0F1A"
+        "bg": "#0F0F1A",
+        "canvas_accent": "#8B1E1E"
       },
       "target_audience": "Adults 18-55 wanting legal awareness",
       "tone": "authoritative-empowering",
@@ -603,7 +605,7 @@
       "asset_treatment": "color",
       "channel_name": "Border Lines",
       "handle": "@borderlines",
-      "tts_voice": "en-US-EricNeural",
+      "tts_voice": "en-US-GuyNeural",
       "font": "Roboto Condensed",
       "estimated_rpm": "8-14",
       "google_account": "UNASSIGNED-9",
@@ -630,7 +632,8 @@
         "primary": "#0A1A2E",
         "secondary": "#152A40",
         "accent": "#3B82F6",
-        "bg": "#050F1A"
+        "bg": "#050F1A",
+        "canvas_accent": "#1E3A5F"
       },
       "target_audience": "News-aware adults 20-55",
       "tone": "analytical-authoritative",
@@ -1442,7 +1445,7 @@
       "asset_treatment": "bw",
       "channel_name": "Fraud Files",
       "handle": "@fraudfiles",
-      "tts_voice": "en-US-ChristopherNeural",
+      "tts_voice": "en-US-GuyNeural",
       "font": "JetBrains Mono",
       "estimated_rpm": "8-15",
       "google_account": "UNASSIGNED-26",
@@ -1470,7 +1473,8 @@
         "primary": "#0A0A1A",
         "secondary": "#151530",
         "accent": "#22C55E",
-        "bg": "#050510"
+        "bg": "#050510",
+        "canvas_accent": "#6B2A6B"
       },
       "target_audience": "True crime/business enthusiasts 20-50",
       "tone": "investigative-conspiratorial",
@@ -2417,7 +2421,7 @@
       "asset_treatment": "color",
       "channel_name": "Skill Stack",
       "handle": "@skillstack",
-      "tts_voice": "en-US-EmmaNeural",
+      "tts_voice": "en-US-AriaNeural",
       "font": "Inter",
       "estimated_rpm": "12-25",
       "google_account": "UNASSIGNED-44",
@@ -2444,7 +2448,8 @@
         "primary": "#0F172A",
         "secondary": "#1E293B",
         "accent": "#A78BFA",
-        "bg": "#0A1020"
+        "bg": "#0A1020",
+        "canvas_accent": "#B8860B"
       },
       "target_audience": "Working professionals 22-50",
       "tone": "insightful-empowering",
@@ -2737,7 +2742,7 @@
       "asset_treatment": "bw",
       "channel_name": "Factory Floor",
       "handle": "@factoryfloor",
-      "tts_voice": "en-US-ChristopherNeural",
+      "tts_voice": "en-US-GuyNeural",
       "font": "Fira Sans",
       "estimated_rpm": "15-35",
       "google_account": "UNASSIGNED-48",
@@ -2764,7 +2769,8 @@
         "primary": "#0A0F1A",
         "secondary": "#152030",
         "accent": "#F97316",
-        "bg": "#050A10"
+        "bg": "#050A10",
+        "canvas_accent": "#4A5568"
       },
       "target_audience": "Engineering/business enthusiasts 20-55",
       "tone": "technical-authoritative",

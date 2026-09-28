@@ -11,6 +11,13 @@ spoken word, in the audio actually written) - not a model of speech rate.
 The SRT is built from those same words, grouped into the input's
 sentences, so the SRT cues, the word timings and the mp3 cannot disagree.
 
+--display-file (optional): the WRITTEN text, when --file is the spoken
+form (src/utils/tts-normalize.js: "50%" -> "fifty percent"). The audio and
+the word timings come from --file; each SRT sentence cue takes its text from
+the same-numbered sentence of the display file, so the planner still reads
+"50%". If the two split into different sentence counts, the cues keep the
+spoken text and a warning is printed - never a misaligned cue.
+
 Where this stops: sentences are split from the input text with a regex
 (terminal . ! ? followed by space, minus common abbreviations such as
 "U.S." and "Dr."), not by the service's own sentence boundaries (Edge
@@ -71,8 +78,10 @@ def main():
     p = argparse.ArgumentParser()
     for k in ("voice", "rate", "pitch", "file", "mp3", "srt", "words"):
         p.add_argument(f"--{k}", required=True)
+    p.add_argument("--display-file", dest="display_file", default=None)
     a = p.parse_args()
     text = open(a.file, encoding="utf-8").read()
+    display = open(a.display_file, encoding="utf-8").read() if a.display_file else None
     words = asyncio.run(synth(a, text))
     if not words:
         print("tts_words: the service returned no WordBoundary events", file=sys.stderr)
@@ -88,12 +97,20 @@ def main():
         while si < len(spans) - 1 and at >= spans[si][1]:
             si += 1
         w["sentence"] = si
+    shown, shown_spans = text, spans
+    if display is not None:
+        dspans = sentence_spans(display)
+        if len(dspans) == len(spans):
+            shown, shown_spans = display, dspans
+        else:
+            print(f"tts_words: WARNING display text has {len(dspans)} sentences, spoken text {len(spans)} - SRT cues use the spoken text", file=sys.stderr)
     cues = []
     for i, (s0, s1) in enumerate(spans):
         ws = [w for w in words if w["sentence"] == i]
         if not ws:
             continue
-        cues.append({"text": re.sub(r"\s+", " ", text[s0:s1]).strip(), "start": ws[0]["start"], "end": ws[-1]["end"]})
+        d0, d1 = shown_spans[i]
+        cues.append({"text": re.sub(r"\s+", " ", shown[d0:d1]).strip(), "start": ws[0]["start"], "end": ws[-1]["end"]})
     with open(a.srt, "w", encoding="utf-8") as f:
         for i, c in enumerate(cues):
             f.write(f"{i + 1}\n{ts(c['start'])} --> {ts(c['end'])}\n{c['text']}\n\n")

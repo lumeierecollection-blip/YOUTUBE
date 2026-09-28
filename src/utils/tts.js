@@ -5,12 +5,17 @@
  * Output: data/tts/<channel-id>/<topic>-vo.mp3 (+ matching .srt subtitles and
  *         <topic>-vo-words.json: real per-word timings, Edge WordBoundary)
  *
- * Natural narration settings so the voiceover does NOT sound robotic:
- *  - rate:  -8%  (slower, measured documentary pace)
- *  - pitch: +2Hz (slight warmth)
- * Per-channel overrides can be set via channel.tts_rate / channel.tts_pitch
- * in channels.json; EdgeTTS voices per channel live in channel.tts_voice.
+ * Delivery: rate +0%, pitch +0Hz — the voice's own natural pace. The old
+ * -8% / +2Hz defaults were removed 2026-09-29 (owner: reset any deviation).
+ * Per-channel overrides can still be set via channel.tts_rate /
+ * channel.tts_pitch in channels.json; voices live in channel.tts_voice.
  * Default voice: en-US-GuyNeural
+ *
+ * Written text -> spoken text: everything sent to the engine goes through
+ * speakable() (src/utils/tts-normalize.js), so "50/30/20" is said as
+ * "fifty, thirty, twenty", never "fifty slash thirty slash twenty". The
+ * WRITTEN text goes to tts_words.py as --display-file, and the SRT sentence
+ * cues keep it: the planner's gates read digits from those cues.
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync } from "fs";
@@ -18,6 +23,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 import { narrationSections } from "./script-narration.js";
+import { speakable } from "./tts-normalize.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -104,13 +110,18 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   const srtPath = join(outputDir, `${topic}-vo.srt`);
   const wordsPath = join(outputDir, `${topic}-vo-words.json`);
 
-  const rate = settings.rate || "-8%"; // slower = more natural documentary pacing
-  const pitch = settings.pitch || "+2Hz"; // slight warmth
+  const rate = settings.rate || "+0%";
+  const pitch = settings.pitch || "+0Hz";
 
   // Write text to a temp file to avoid shell escaping issues with special
   // characters (Unicode, quotes, etc.) in the inline --text argument.
+  // The engine gets the SPOKEN text; the written text is the display file.
+  const spokenText = segments.map((s) => speakable(s.text)).join("\n\n");
   const tmpTextPath = join(outputDir, `${topic}-tts-input.txt`);
-  writeFileSync(tmpTextPath, fullText);
+  const displayPath = join(outputDir, `${topic}-tts-display.txt`);
+  writeFileSync(tmpTextPath, spokenText);
+  writeFileSync(displayPath, fullText);
+  writeFileSync(join(outputDir, `${topic}-vo-spoken.txt`), spokenText);
 
   try {
 
@@ -123,7 +134,7 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
     const args =
       `--voice "${voice}" ` +
       `--rate="${rate}" --pitch="${pitch}" ` +
-      `--file "${tmpTextPath}" ` +
+      `--file "${tmpTextPath}" --display-file "${displayPath}" ` +
       `--mp3 "${audioPath}" --srt "${srtPath}" --words "${wordsPath}"`;
     // A real interpreter can be pinned per channel via channel.tts_python.
     const pythons = [...new Set([settings.python, process.platform === "win32" ? "python" : "python3", "python"].filter(Boolean))];
@@ -142,8 +153,9 @@ stderr: ${stderr}`);
         lastErr = err;
       }
     }
-    // Clean up temp file
+    // Clean up temp files
     try { unlinkSync(tmpTextPath); } catch {}
+    try { unlinkSync(displayPath); } catch {}
     if (lastErr) throw lastErr;
     console.log(`TTS audio saved: ${audioPath}`);
     console.log(`TTS subtitles saved: ${srtPath}`);
@@ -151,8 +163,9 @@ stderr: ${stderr}`);
     console.log(`Delivery: voice=${voice} rate=${rate} pitch=${pitch}`);
     return audioPath;
   } catch (err) {
-    // Clean up temp file on error too
+    // Clean up temp files on error too
     try { unlinkSync(tmpTextPath); } catch {}
+    try { unlinkSync(displayPath); } catch {}
     // Remove whatever the failed attempt left behind — a partial or
     // zero-length mp3/srt is exactly the kind of artifact that looks real
     // and isn't (T1.6). Never leave one sitting next to the topic's other
