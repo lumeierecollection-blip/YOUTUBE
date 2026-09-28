@@ -14,7 +14,12 @@ A result is NOT usable when:
   - it covers more than 90% (nothing was removed - the photo is still a
     rectangle), or
   - the mask fills more than 92% of its own bounding box (a rectangle was
-    isolated: a phone screen, a monitor, a framed print, a book cover).
+    isolated: a phone screen, a monitor, a framed print, a book cover), or
+  - the mask runs along the photo's own border for more than 20% of any
+    side: the object is cut off by the photo's frame, or the background was
+    only partly removed. Run 36397373831 ch-44 drew both - a padlock
+    collage kept as a whole rectangular photo (rect_fill under 0.92 because
+    of a few holes) and a magnifier with two straight photo-edge sides.
 Where this stops: these are geometric tests on the mask. A rectangular
 object that is genuinely the subject (a banknote seen flat) is rejected
 too; an irregular object that is the wrong subject is not caught here - the
@@ -51,13 +56,26 @@ def main():
         if bbox:
             bw, bh = bbox[2] - bbox[0], bbox[3] - bbox[1]
             rect_fill = solid / float(max(1, bw * bh))
-        res = {"ok": True, "coverage": round(coverage, 4), "rect_fill": round(rect_fill, 4), "why": ""}
+        # Opaque share of each image border (top, bottom, left, right).
+        px = alpha.load()
+        def edge(points):
+            pts = list(points)
+            return sum(1 for (x, y) in pts if px[x, y] >= 128) / float(max(1, len(pts)))
+        edges = {
+            "top": edge((x, 0) for x in range(w)), "bottom": edge((x, h - 1) for x in range(w)),
+            "left": edge((0, y) for y in range(h)), "right": edge((w - 1, y) for y in range(h)),
+        }
+        worst = max(edges, key=edges.get)
+        res = {"ok": True, "coverage": round(coverage, 4), "rect_fill": round(rect_fill, 4),
+               "edge_touch": round(edges[worst], 4), "why": ""}
         if coverage < 0.15:
             res.update(ok=False, why=f"alpha covers {coverage:.1%} (< 15%)")
         elif coverage > 0.90:
             res.update(ok=False, why=f"alpha covers {coverage:.1%} (> 90%): background not removed")
         elif rect_fill > 0.92:
             res.update(ok=False, why=f"isolated shape fills {rect_fill:.1%} of its box: a rectangle (screen/print), not an object")
+        elif edges[worst] > 0.20:
+            res.update(ok=False, why=f"mask runs along {edges[worst]:.0%} of the photo's {worst} edge: object cut off by the frame / background not removed")
         if res["ok"]:
             grey = ImageEnhance.Contrast(rgba.convert("L")).enhance(1.15)
             cut = Image.merge("LA", (grey, alpha))
