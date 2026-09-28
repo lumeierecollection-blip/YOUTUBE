@@ -34,6 +34,7 @@ import {
 } from "../src/skills/remotion-render/visual/capability-compiler.js";
 import { callGemini as callGeminiApi } from "../src/lib/gemini-client.js";
 import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-names.js";
+import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
 
 const { enforceCaps, describe: describeMechanisms, TYPOGRAPHY } = createRequire(import.meta.url)("./plan-caps.cjs");
 
@@ -157,6 +158,50 @@ for (const [ch, names] of Object.entries(NICHE_DRAWINGS)) {
   if (bad.length) throw new Error(`NICHE_DRAWINGS ch-${ch}: not in the object library: ${bad.join(", ")}`);
 }
 
+// ── VISUAL TYPE: the planner picks it, code checks its data ──────────
+// CLAUDE.md hard rule: nothing on screen that the source did not say. Every
+// number a chart draws must appear in the sentence; a map's place must be a
+// real region; a cutout must name one object. Anything else becomes TYPE.
+export const VISUAL_TYPES = ["CUTOUT", "COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP", "TYPE"];
+const TYPE_CAPABILITY = { CUTOUT: "revelation", COUNTER: "evidence", BAR: "comparison", PIE: "population", LINE: "growth", GAUGE: "accumulation", MAP: "contrast" };
+function sentenceNumbers(text) {
+  return new Set((String(text || "").match(/\d[\d,]*(?:\.\d+)?/g) || []).map((n) => Number(n.replace(/,/g, ""))));
+}
+function numIn(v, nums) {
+  const m = String(v ?? "").match(/\d[\d,]*(?:\.\d+)?/);
+  return m ? nums.has(Number(m[0].replace(/,/g, ""))) : false;
+}
+export function checkVisual(b, sentence) {
+  const t = String(b.visual_type || "").toUpperCase();
+  const d = b.data || {};
+  const nums = sentenceNumbers(sentence);
+  const bad = (why) => ({ type: "TYPE", data: null, why });
+  if (!VISUAL_TYPES.includes(t)) return bad(`unknown visual_type "${b.visual_type}"`);
+  if (t === "TYPE") return { type: "TYPE", data: null };
+  if (t === "CUTOUT") {
+    const obj = String(d.object || b.cutout_query || "").trim();
+    return obj ? { type: t, data: { object: obj } } : bad("CUTOUT without an object");
+  }
+  if (t === "MAP") {
+    const place = String(d.place || "").trim();
+    return place && resolveRegion(place) ? { type: t, data: { place } } : bad(`MAP place "${place}" is not a known region`);
+  }
+  if (t === "COUNTER") return numIn(d.value, nums) ? { type: t, data: { value: String(d.value), label: d.label || null } } : bad(`COUNTER value "${d.value}" is not in the sentence`);
+  if (t === "PIE" || t === "GAUGE") {
+    const pct = Number(String(d.percent ?? "").replace(/[^\d.]/g, ""));
+    return Number.isFinite(pct) && pct > 0 && pct <= 100 && nums.has(pct) ? { type: t, data: { percent: pct, label: d.label || null } } : bad(`${t} percent "${d.percent}" is not a 0-100 figure from the sentence`);
+  }
+  if (t === "BAR") {
+    const bars = (Array.isArray(d.bars) ? d.bars : []).slice(0, 5);
+    return bars.length && bars.every((x) => numIn(x.value, nums)) ? { type: t, data: { bars: bars.map((x) => ({ label: String(x.label || ""), value: String(x.value) })) } } : bad("BAR values not all in the sentence");
+  }
+  if (t === "LINE") {
+    const pts = (Array.isArray(d.points) ? d.points : []).slice(0, 8);
+    return pts.length >= 2 && pts.every((x) => numIn(x.value, nums)) ? { type: t, data: { points: pts.map((x) => ({ label: String(x.label || ""), value: String(x.value) })) } } : bad("LINE needs 2+ points, all from the sentence");
+  }
+  return bad("unhandled");
+}
+
 // REFERENCE: docs/MOTION-GRAPHICS-SPEC.md defines the target beat (2-4 s,
 // one drawing, build -> hold -> caption -> hold; 8-12 beats; forbidden
 // list). NOT yet applied to the prompt below -- its §0 lists where today's
@@ -228,34 +273,37 @@ the sentence itself as tiny body text. You write only these fields:
                   "REBELLION", "wild influencer collabs"). UPPERCASE for a
                   punchline, lowercase bold for a phrase.
   "emphasis_word": one word of the headline to pop, or null
-  "number":       the number the sentence names, exactly as said ("$14.99",
-                  "1.4 billion"), or null — it rolls up on the paper
-  "cutout_query": 2-4 words naming ONE isolatable physical object that
-                  stands for the sentence's subject — something that can be
-                  photographed alone on a plain background: "silver dollar
-                  coin", "aluminum drink can", "human skull", "megaphone",
-                  "gavel", "passenger jet", "smartphone". NOT a scene, a
-                  person doing something, a place, a chart or an idea.
-                  Name brands/products exactly when the sentence does
-                  ("Boeing 787"). null if no object fits.
-                  Prefer the physical object the sentence ITSELF names
-                  (bills, a phone, a court, a jet) — the frame is checked
-                  against the sentence literally. Use a symbolic object
-                  only when the sentence names none. NEVER an "icon",
-                  "symbol", "sign", "graphic", "chart", "spreadsheet" or
-                  "screen" — those come back as clip-art, not photos.
+  "visual_type":  ONE of CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | TYPE
+                  — what the paper shows. The system draws it; only CUTOUT
+                  fetches a photo.
+  "data":         the visual's data, by type (numbers EXACTLY as the
+                  sentence says them — a number the sentence does not say
+                  is rejected and the beat becomes TYPE):
+    CUTOUT   {"object": "aluminum drink can"}   ONE isolatable physical
+             object — never a scene, person, screen, chart or idea
+    COUNTER  {"value": "1.4 billion", "label": "brand value"}
+    BAR      {"bars": [{"label": "2019", "value": "3 million"}, {"label": "2024", "value": "1.4 billion"}]}
+    PIE      {"percent": 25, "label": "of global oil"}
+    LINE     {"points": [{"label": "2019", "value": "3 million"}, {"label": "2024", "value": "1.4 billion"}]}
+    GAUGE    {"percent": 88, "label": "feel financial stress"}
+    MAP      {"place": "Iran"}   a country or US state named in the sentence
+    TYPE     {} — kinetic typography only
   "abstract_shape": "petals" | "swoosh" | "hairline" | "none"
 
 Worked example (from the reference). Sentence: "Liquid Death went from
 three million dollars to a 1.4 billion dollar brand."
-  { "kind": "EDITORIAL", "lead_in": "went from", "headline": "billion dollar brand",
-    "emphasis_word": "brand", "number": "1.4", "cutout_query": "briefcase full of cash",
-    "abstract_shape": "hairline" }
+  { "kind": "EDITORIAL", "visual_type": "COUNTER", "lead_in": "went from three million to",
+    "headline": "billion dollar brand", "emphasis_word": "brand",
+    "data": {"value": "1.4 billion", "label": "brand value"}, "abstract_shape": "hairline" }
 
 Rules that are enforced, not advisory:
-- Every EDITORIAL beat animates on the paper: its headline types on, and it
-  has a cutout_query, a number or an abstract_shape. A beat with none of
-  those is not EDITORIAL — make it TYPE.
+- Choose the visual type that most directly shows what the sentence is
+  about. If the sentence names a number, use COUNTER, BAR, PIE, LINE, or
+  GAUGE. If the sentence names a place, use MAP. If the sentence names a
+  physical object, use CUTOUT. If the sentence is an abstract claim with
+  no number, no place, and no object, use TYPE.
+- BAR/LINE need two or more numbers the sentence says; PIE/GAUGE need a
+  percentage it says. Otherwise COUNTER (one number) or TYPE.
 - About 80% of beats are EDITORIAL.
 - TYPE beats are typography-only on the paper (no cutout). In this
   ${sentences.length}-beat video TYPE is allowed ONLY on ${typoMax >= 2 ? `beat 0 (the hook) and beat ${sentences.length - 1} (the closing line)` : "beat 0 (the hook)"}; every other beat is EDITORIAL.
@@ -416,8 +464,8 @@ Respond ONLY with JSON (no markdown fences):
       "lead_in": "<2-4 word italic lead-in, lowercase, or null>",
       "headline": "<2-4 words, never a full sentence>",
       "emphasis_word": "<one headline word, or null>",
-      "number": "<the number exactly as the sentence says it, or null>",
-      "cutout_query": "<EDITORIAL: 2-4 words, ONE isolatable physical object; TYPE: null>",
+      "visual_type": "<CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | TYPE>",
+      "data": { "<fields for the visual_type, see above>": "..." },
       "abstract_shape": "<petals | swoosh | hairline | none>",
       "carries_forward": "<object/concept that persists into the next beat, or null>",
       "emotional_weight": "<calm|building|sharp|heavy|urgent>",
@@ -654,6 +702,16 @@ async function main() {
   // the concept resolves. A composition the model wrote anyway is ignored.
   // A TYPE beat gets no composition and the typographic_emphasis capability.
   for (const b of plan.beats) {
+    // visual_type (planner's choice), checked against the sentence.
+    if (b.visual_type !== undefined) {
+      const v = checkVisual(b, sentences[b.index]?.text || sentences[plan.beats.indexOf(b)]?.text || "");
+      if (v.why) console.warn(`::warning::[plan] beat ${b.index}: ${b.visual_type} -> TYPE (${v.why})`);
+      b.visual_type = v.type;
+      b.data = v.data;
+      b.kind = v.type === "TYPE" ? "TYPE" : "EDITORIAL";
+      b.cutout_query = v.type === "CUTOUT" ? v.data.object : null;
+      if (v.type !== "TYPE") b.capabilities = [TYPE_CAPABILITY[v.type]];
+    }
     const kind = String(b.kind || (b.headline ? "EDITORIAL" : b.concept ? "VISUAL" : "")).toUpperCase();
     // Reference paper style: an EDITORIAL beat is drawn by PaperVideo from
     // its own fields (headline, cutout, shape) — it has no composition.
@@ -661,7 +719,7 @@ async function main() {
       b.kind = "EDITORIAL";
       delete b.composition;
       if (!Array.isArray(b.capabilities) || !b.capabilities.length) b.capabilities = [b.number ? "evidence" : "revelation"];
-      console.log(`[plan] beat ${b.index}: EDITORIAL lead="${b.lead_in || ""}" headline="${b.headline || ""}" cutout="${b.cutout_query || "-"}" shape=${b.abstract_shape || "-"}${b.number ? ` number=${b.number}` : ""}`);
+      console.log(`[plan] beat ${b.index}: EDITORIAL ${b.visual_type || "?"} ${JSON.stringify(b.data || {})} lead="${b.lead_in || ""}" headline="${b.headline || ""}" shape=${b.abstract_shape || "-"}`);
       continue;
     }
     if (kind === "TYPE") {
