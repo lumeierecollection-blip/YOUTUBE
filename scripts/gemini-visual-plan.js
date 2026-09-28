@@ -727,14 +727,14 @@ async function main() {
       else if (!okBeats(geminiResult)) geminiFailure = geminiResult?.beats ? `beat count ${geminiResult.beats.length} != ${sentences.length}` : "no_beats";
     }
   }
-  // Second tier: Groq (llama-3.3-70b-versatile), the same strict prompt.
+  // Second tier: Groq ($GROQ_TEXT_MODEL, default openai/gpt-oss-120b), the same strict prompt.
   if (!forced && geminiFailure) {
     console.error(`[planner] gemini: ${geminiFailure} → groq${geminiResult?.detail ? ` (${String(geminiResult.detail).slice(0, 120)})` : ""}`);
     const t0 = Date.now();
     const g = normalizePlanResponse(await callGroq([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2 }));
     if (okBeats(g)) {
       geminiResult = g; geminiFailure = null; planSource = "groq";
-      console.log(`[planner] plan from groq (${process.env.GROQ_TEXT_MODEL || "llama-3.3-70b-versatile"}, ${((Date.now() - t0) / 1000).toFixed(0)}s)`);
+      console.log(`[planner] plan from groq (${process.env.GROQ_TEXT_MODEL || "openai/gpt-oss-120b"}, ${((Date.now() - t0) / 1000).toFixed(0)}s)`);
     } else {
       const why = g?.source === "groq" && g.error ? g.error : g?.beats ? `beat count ${g.beats.length} != ${sentences.length}` : "no_beats";
       console.error(`[planner] groq: ${why} → ollama${g?.detail ? ` (${String(g.detail).slice(0, 120)})` : ""}`);

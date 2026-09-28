@@ -22,7 +22,7 @@ import { execFileSync } from "node:child_process";
 // Every model call goes through src/lib/llm.js: Gemini first, local Ollama
 // (a vision model — these calls carry frames) when Gemini cannot answer,
 // or Ollama only under FORCE_PLANNER=ollama. Transitions are logged.
-import { callLLM, isProviderError, llmConfigured } from "../src/lib/llm.js";
+import { callLLM, isProviderError, llmConfigured, GROQ_MAX_IMAGES } from "../src/lib/llm.js";
 import { tmpdir } from "node:os";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -207,11 +207,12 @@ async function reviewFrameBatch(frames, totalFrames, bible) {
     }
 
     // Gemini, or Ollama when Gemini cannot answer (no Gemini retry).
-    // Groq: the same request split into <= 5-frame parts, answers joined in
-    // frame order; Gemini and Ollama get the one call.
+    // Groq: the same request split into parts of <= GROQ_MAX_IMAGES frames,
+    // answers joined in frame order; Gemini and Ollama get the one call.
     const asArray = (x) => (Array.isArray(x) ? x : x && typeof x === "object" ? (Object.values(x).find((v) => Array.isArray(v)) || [x]) : []);
-    const groqBatch = batch.length > 5 ? {
-      messages: [batch.slice(0, 5), batch.slice(5)].filter((g) => g.length).map((g) => [{ role: "user", content: [
+    const cap = GROQ_MAX_IMAGES;
+    const groqBatch = batch.length > cap ? {
+      messages: Array.from({ length: Math.ceil(batch.length / cap) }, (_, k) => batch.slice(k * cap, (k + 1) * cap)).map((g) => [{ role: "user", content: [
         { type: "text", text: prompt.replace(`reviewing ${batch.length} frames`, `reviewing ${g.length} frames`) },
         ...g.flatMap((f) => [
           { type: "text", text: `\n--- Frame ${f.index + 1} at t=${f.time.toFixed(1)}s ---` },
@@ -321,18 +322,19 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
     content.push(...parts);
   }
 
-  // Groq takes at most 5 images per request: 1 reference frame + 4 review
-  // frames per batch, merged at the WORST verdict (lowest score, FAIL / NO
+  // Groq takes at most GROQ_MAX_IMAGES images per request: 1 reference
+  // frame + (cap - 1) review frames per batch, merged at the WORST verdict (lowest score, FAIL / NO
   // wins, issues concatenated). Where this stops: each Groq batch sees part
   // of the video, so its continuity and repetition calls are per batch.
   // Gemini and Ollama still get the one full call.
   const refMid = refFrames.length ? { type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(refFrames[Math.floor(refFrames.length / 2)]).toString("base64")}` } } : null;
-  const perBatch = refMid ? 4 : 5;
+  const perBatch = refMid && GROQ_MAX_IMAGES > 1 ? GROQ_MAX_IMAGES - 1 : GROQ_MAX_IMAGES;
+  const useRef = refMid && GROQ_MAX_IMAGES > 1;
   const nBatches = Math.ceil(framePartsList.length / perBatch);
-  const groqBatch = (refFrames.length + framePartsList.length) > 5 ? {
+  const groqBatch = (refFrames.length + framePartsList.length) > GROQ_MAX_IMAGES ? {
     messages: Array.from({ length: nBatches }, (_, k) => [{ role: "user", content: [
       ...head,
-      ...(refMid ? [refMid, { type: "text", text: `\n=== FRAMES UNDER REVIEW (part ${k + 1} of ${nBatches} of the video; one reference frame shown above) ===` }] : []),
+      ...(useRef ? [refMid, { type: "text", text: `\n=== FRAMES UNDER REVIEW (part ${k + 1} of ${nBatches} of the video; one reference frame shown above) ===` }] : []),
       ...framePartsList.slice(k * perBatch, (k + 1) * perBatch).flat(),
     ] }]),
     merge: (answers) => {
@@ -441,7 +443,8 @@ A word-by-word caption of the narration near the bottom of the page is present o
 Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_is_shown":"<what the frame actually contains>","reason":"<one sentence>"}]} — exactly one entry per beat, beat_index 0..${beats.length - 1}.`,
   }];
   // Each beat's parts (label + frame), kept apart so a Groq request can carry
-  // at most 5 frames (callLLM's groqBatch); Gemini and Ollama get one call.
+  // at most GROQ_MAX_IMAGES frames (callLLM's groqBatch); Gemini and Ollama
+  // get one call.
   const beatParts = [];
   try {
     beats.forEach((b, i) => {
@@ -464,15 +467,17 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
       content.push(...parts);
     });
     const intro = content[0].text;
-    const groqBatch = beats.length > 5 ? {
-      messages: Array.from({ length: Math.ceil(beats.length / 5) }, (_, k) => {
-        const idx = Array.from({ length: Math.min(5, beats.length - k * 5) }, (_, j) => k * 5 + j);
+    const cap = GROQ_MAX_IMAGES;
+    const groqBatch = beats.length > cap ? {
+      messages: Array.from({ length: Math.ceil(beats.length / cap) }, (_, k) => {
+        const idx = Array.from({ length: Math.min(cap, beats.length - k * cap) }, (_, j) => k * cap + j);
         return [{ role: "user", content: [
           { type: "text", text: intro.replace(/exactly one entry per beat, beat_index 0\.\.\d+\./, `exactly one entry per beat BELOW (this is part ${k + 1} of the video), beat_index ${idx[0]}..${idx[idx.length - 1]}.`) },
           ...idx.flatMap((i) => beatParts[i]),
         ] }];
       }),
-      merge: (answers) => ({ beats: answers.flatMap((a) => (Array.isArray(a?.beats) ? a.beats : [])) }),
+      // qwen3.8-27b sometimes answers the bare array instead of {beats:[...]}.
+      merge: (answers) => ({ beats: answers.flatMap((a) => (Array.isArray(a?.beats) ? a.beats : Array.isArray(a) ? a : [])) }),
     } : undefined;
     console.log(`[beat-check] ${beats.length} beat frames extracted at midpoints — asking the model`);
     // Gemini, or Ollama (a vision model) when Gemini cannot answer — the

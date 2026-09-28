@@ -225,16 +225,18 @@ function ollamaVision(framePaths, prompt) {
 }
 
 // Second tier (Gemini → Groq → Ollama): Groq's vision model, synchronous
-// like the rest of this script, at most 5 images. Any Groq failure falls
+// like the rest of this script, at most GROQ_MAX_IMAGES images (default 3,
+// qwen/qwen3.8-27b's limit) — the first frames; the rest are not seen. Any Groq failure falls
 // to the local Ollama vision model.
 function groqThenOllama(framePaths, prompt) {
   const key = process.env.GROQ_API_KEY;
-  const model = process.env.GROQ_VISION_MODEL || "llama-3.2-90b-vision-preview";
+  const model = process.env.GROQ_VISION_MODEL || "qwen/qwen3.8-27b";
+  const cap = Math.max(1, Number(process.env.GROQ_MAX_IMAGES || 3));
   let why = "no_key";
   if (key) {
     const body = JSON.stringify({ model, temperature: 0, max_tokens: 400, response_format: { type: "json_object" },
       messages: [{ role: "user", content: [{ type: "text", text: prompt },
-        ...framePaths.slice(0, 5).map((p) => ({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(p).toString("base64")}` } }))] }] });
+        ...framePaths.slice(0, cap).map((p) => ({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(p).toString("base64")}` } }))] }] });
     try {
       const res = execFileSync("curl", ["-sS", "--max-time", "120", "-H", "Content-Type: application/json",
         "-H", `Authorization: Bearer ${key}`, "-d", "@-", "https://api.groq.com/openai/v1/chat/completions"],
@@ -245,7 +247,7 @@ function groqThenOllama(framePaths, prompt) {
         why = /rate.?limit|quota|tokens per/i.test(pj.error.message || "") || code === 429 ? "quota_exhausted" : code >= 500 ? "unavailable" : "hard_error";
       } else {
         const raw = String(pj.choices?.[0]?.message?.content || "").trim().replace(/^```json/, "").replace(/^```/, "").replace(/```$/, "").trim();
-        console.error(`[groq] ${model}: vision-qa, ${Math.min(5, framePaths.length)} image(s)`);
+        console.error(`[groq] ${model}: vision-qa, ${Math.min(cap, framePaths.length)} image(s)`);
         return { ran: true, ...JSON.parse(raw) };
       }
     } catch (e) {

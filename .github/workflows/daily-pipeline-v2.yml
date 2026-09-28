@@ -740,6 +740,13 @@ jobs:
           OLLAMA_CHALLENGER_MODEL: qwen2.5:14b
           # Second tier of the chain (Gemini → Groq → Ollama): scripts/groq-client.cjs.
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # The models this account's key can call (GET /openai/v1/models);
+          # llama-3.3-70b / llama-3.2-90b-vision answer 404 on it.
+          # qwen3.8-27b takes at most 3 images per request.
+          GROQ_TEXT_MODEL: openai/gpt-oss-120b
+          GROQ_CHALLENGER_MODEL: openai/gpt-oss-120b
+          GROQ_VISION_MODEL: qwen/qwen3.8-27b
+          GROQ_MAX_IMAGES: "3"
           FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
           # The job budget: render-and-qa.js stops correction attempts inside
           # it, and every model call is capped at a share of it.

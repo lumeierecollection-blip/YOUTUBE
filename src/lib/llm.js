@@ -46,15 +46,29 @@ export async function callOllamaOnly(messages, opts = {}, tag = "llm") {
 // Groq, then Ollama if Groq cannot answer. Used by callLLM and by callers
 // (the planner) that run their own Gemini step.
 // opts.groqBatch = { messages: [msgs, msgs, ...], merge(answers) }: Groq's
-// vision models take at most 5 images per request, so a caller sending more
-// frames supplies the same request split into <= 5-image parts and a merge.
-// Groq gets ceil(N/5) calls; Gemini and Ollama always get the ONE full call.
+// vision models take a fixed number of images per request (GROQ_MAX_IMAGES,
+// exported below as GROQ_MAX_IMAGES), so a caller sending more frames
+// supplies the same request split into parts of at most that many images and
+// a merge. Groq gets ceil(N/cap) calls; Gemini and Ollama get the ONE call.
+export const GROQ_MAX_IMAGES = groq.MAX_IMAGES;
 async function callGroqBatched(opts, tag) {
   const parts = opts.groqBatch.messages;
   console.error(`[${tag}] groq: ${parts.length} batch(es) of <= ${groq.MAX_IMAGES} frames`);
   const answers = [];
-  for (const m of parts) {
-    const g = await groq.callGroq(m, opts);
+  // Pacing, not a retry of a failed provider: the account allows 8000
+  // tokens/min per model and one 3-image part is ~2400, so the parts of one
+  // request run into the per-minute window. A 429 that names a wait of
+  // <= 60 s ("try again in 12.3s") waits that long and sends the SAME part
+  // once more; a longer wait, a 413 (one part bigger than the window), or a
+  // second 429 on the part falls to Ollama as before.
+  for (const [i, m] of parts.entries()) {
+    let g = await groq.callGroq(m, opts);
+    const wait = g?.error === "quota_exhausted" && !/^413/.test(g.detail || "") ? Number((String(g.detail).match(/try again in (?:(\d+)m)?([\d.]+)s/) || []).slice(1).reduce((t, v, k) => t + (Number(v) || 0) * (k ? 1 : 60), 0)) : 0;
+    if (wait > 0 && wait <= 60) {
+      console.error(`[${tag}] groq: part ${i + 1}/${parts.length} rate-limited, pacing ${wait.toFixed(1)}s`);
+      await new Promise((r) => setTimeout(r, Math.ceil(wait * 1000) + 500));
+      g = await groq.callGroq(m, opts);
+    }
     if (isProviderError(g)) return g;
     answers.push(g);
   }

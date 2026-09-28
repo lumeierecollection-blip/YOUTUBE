@@ -15,21 +15,28 @@
  * One attempt per request — no retry: the caller falls to Ollama.
  *
  *   endpoint  https://api.groq.com/openai/v1/chat/completions
- *   models    text $GROQ_TEXT_MODEL (default llama-3.3-70b-versatile)
- *             images $GROQ_VISION_MODEL (default llama-3.2-90b-vision-preview)
+ *   models    text $GROQ_TEXT_MODEL (default openai/gpt-oss-120b)
+ *             images $GROQ_VISION_MODEL (default qwen/qwen3.8-27b)
  *   format    response_format { type: "json_object" }
  *
- * Where this stops: Groq's vision models accept at most 5 images per
- * request. A call carrying more frames (the beat check sends one per beat,
- * the whole-video review up to 13) is not sent — it returns "hard_error"
- * (too_many_images) and the caller falls to Ollama.
+ * The llama-3.3-70b-versatile / llama-3.2-90b-vision-preview defaults were
+ * replaced 2026-09-28: the account's key answers 404 model_not_found for
+ * both. GET /openai/v1/models on that key lists gpt-oss-120b/20b (text) and
+ * qwen/qwen3.8-27b (text + image); both answered a json_object call with 200.
+ *
+ * Where this stops: a Groq vision model takes a fixed number of images per
+ * request — qwen/qwen3.8-27b answers "400 ... supports up to 3 images".
+ * GROQ_MAX_IMAGES (default 3) must match GROQ_VISION_MODEL. Callers with
+ * more frames split them (src/lib/llm.js groqBatch); a single call over the
+ * cap is not sent — "hard_error" (too_many_images), the caller falls to
+ * Ollama.
  */
 const https = require("node:https");
 
 const ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
-const TEXT_MODEL = () => process.env.GROQ_TEXT_MODEL || "llama-3.3-70b-versatile";
-const VISION_MODEL = () => process.env.GROQ_VISION_MODEL || "llama-3.2-90b-vision-preview";
-const MAX_IMAGES = 5;
+const TEXT_MODEL = () => process.env.GROQ_TEXT_MODEL || "openai/gpt-oss-120b";
+const VISION_MODEL = () => process.env.GROQ_VISION_MODEL || "qwen/qwen3.8-27b";
+const MAX_IMAGES = Math.max(1, Number(process.env.GROQ_MAX_IMAGES || 3));
 
 const fail = (error, detail) => ({ source: "groq", error, detail: String(detail || "").slice(0, 300) });
 
@@ -38,7 +45,11 @@ function post(body, key, timeoutMs) {
     const payload = JSON.stringify(body);
     const req = https.request(ENDPOINT, {
       method: "POST",
-      headers: { "content-type": "application/json", authorization: `Bearer ${key}`, "content-length": Buffer.byteLength(payload) },
+      // A fresh connection per request: with Node's default keep-alive agent
+      // the SECOND request in a process reused a socket Groq had closed and
+      // died with "read ECONNRESET" (seen 2026-09-28 on every 2nd batch).
+      agent: false,
+      headers: { connection: "close", "content-type": "application/json", authorization: `Bearer ${key}`, "content-length": Buffer.byteLength(payload) },
     }, (res) => {
       const chunks = [];
       res.on("data", (c) => chunks.push(c));
@@ -83,7 +94,10 @@ async function callGroq(messages, opts = {}) {
     const msg = parsed?.error?.message || res.text.slice(0, 200);
     const kind = res.status === 429 || /rate.?limit|quota|tokens per/i.test(msg) ? "quota_exhausted"
       : res.status >= 500 ? "unavailable" : "hard_error";
-    return fail(kind, `${res.status} ${model}: ${msg}`);
+    // The wait hint sits at the END of Groq's 429 message; keep it past the
+    // 300-char detail cut so the batch pacer (src/lib/llm.js) can read it.
+    const hint = (msg.match(/try again in [\dm.]+s/i) || [""])[0];
+    return fail(kind, `${res.status} ${model}: ${hint ? `[${hint}] ` : ""}${msg}`);
   }
   const content = parsed?.choices?.[0]?.message?.content;
   if (typeof content !== "string") return fail("bad_response", `${model}: no message in the answer`);
