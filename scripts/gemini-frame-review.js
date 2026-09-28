@@ -93,15 +93,26 @@ function getVideoDuration(video) {
 
 function computeBeatTimes(srtCues, duration) {
   const times = [];
-  const interval = Math.max(1, duration / 12);
-  for (let t = 0.5; t < duration - 0.3; t += interval) {
-    times.push(t);
+  // SAMPLING (not what is judged): one frame per beat, taken 65% of the way
+  // through it — when its page is built. This sampled a uniform grid plus
+  // every cue's start + 0.1 s: the first frames of each beat, while the page
+  // fades in, the headline has not typed, a counter is still near 0 and the
+  // caption shows its first word. Reviews then reported exactly that as the
+  // video: "incomplete text fragments ('Two Alexandria', 'We'll')", "nearly
+  // blank white pages", "counting up to 1938 via random numbers like 1009"
+  // (runs 36405739332 ch-2, 36419295509 ch-2 / ch-48). Every beat is still
+  // reviewed, against the same rubric. Without cues: the uniform grid.
+  if (srtCues.length) {
+    srtCues.forEach((cue, i) => {
+      const end = srtCues[i + 1] ? srtCues[i + 1].start : Math.max(cue.end, duration);
+      const t = cue.start + 0.65 * Math.max(0, end - cue.start);
+      if (t < duration - 0.3) times.push(t);
+    });
+  } else {
+    const interval = Math.max(1, duration / 12);
+    for (let t = 0.5; t < duration - 0.3; t += interval) times.push(t);
   }
-  for (const cue of srtCues) {
-    if (!times.some((t) => Math.abs(t - cue.start) < 0.5)) {
-      times.push(cue.start + 0.1);
-    }
-  }
+  if (!times.length) times.push(Math.max(0.5, duration / 2));
   times.sort((a, b) => a - b);
   const unique = [times[0]];
   for (let i = 1; i < times.length; i++) {

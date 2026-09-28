@@ -272,6 +272,11 @@ export function checkVisual(b, sentence) {
     const n = m ? Number(m[0].replace(/,/g, "")) : NaN;
     const scaled = m ? /^\s*(thousand|million|billion|trillion|bn|mn|k|m|b)\b/i.test(vs.slice(m.index + m[0].length)) : false;
     if (n < 2 && !scaled && !vs.includes("%")) return bad(`COUNTER value "${d.value}" is a count of ${n}: a 0 -> ${n} roll shows no figure`);
+    // A year is a date, not a quantity: rolling 0 -> 1938 showed "1009" and
+    // "366" mid-roll and the review called them wrong figures (run
+    // 36419295509 ch-2: FLSA 1938, OSHA 1970, ADA 1990). The headline keeps
+    // the year.
+    if (/^\s*(1[0-9]{3}|20[0-9]{2})s?\s*$/.test(vs)) return bad(`COUNTER value "${d.value}" is a year: a date, not a count to roll up`);
     return { type: t, data: { value: vs, label: d.label || null } };
   }
   if (t === "PIE" || t === "GAUGE") {
@@ -424,7 +429,9 @@ CUTOUT. Use COUNTER, BAR, PIE, LINE, GAUGE, MAP, or TYPE.
 The object must be ONE object, not a scene: "money on a table" is a scene,
 "stack of bills" is an object; "camera" is an object, "camera lens
 close-up" is fine, "camera in a room" is a scene. Never a person, a
-screen, a chart, an icon or a drawing.
+screen, a chart, an icon or a drawing — and never something too large to
+isolate from a photo: a building, factory, room, street or landscape (run
+36419295509 spent three tries on "factory building").
 
 Rules that are enforced, not advisory:
 - Choose the visual type that most directly shows what the sentence is
@@ -1248,6 +1255,26 @@ function stripCommentsOutsideStrings(text) {
   }
   return out;
 }
+// Run 36419295509 ch-48 (now visible thanks to the logged context): a
+// literal backslash-n BETWEEN two properties — `"building",\n      "typo…` —
+// outside any string. Outside strings, \n \r \t become plain whitespace.
+function unescapeStrayEscapesOutsideStrings(text) {
+  let out = "", inString = false, escaped = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inString) {
+      out += ch;
+      if (escaped) escaped = false;
+      else if (ch === "\\") escaped = true;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') { inString = true; out += ch; continue; }
+    if (ch === "\\" && "nrt".includes(text[i + 1] || "")) { out += " "; i++; continue; }
+    out += ch;
+  }
+  return out;
+}
 function quoteSingleQuotedKeysOutsideStrings(text) {
   let out = "", inString = false, escaped = false;
   for (let i = 0; i < text.length; i++) {
@@ -1274,7 +1301,7 @@ const JSON_REPAIRS = [
   (text) => stripTrailingCommasOutsideStrings(escapeStrayControlCharsInStrings(text)),
   (text) => quoteBareKeysOutsideStrings(stripTrailingCommasOutsideStrings(escapeStrayControlCharsInStrings(text))),
   (text) => quoteSingleQuotedKeysOutsideStrings(quoteBareKeysOutsideStrings(stripTrailingCommasOutsideStrings(
-    escapeStrayControlCharsInStrings(stripCommentsOutsideStrings(text))))),
+    escapeStrayControlCharsInStrings(stripCommentsOutsideStrings(unescapeStrayEscapesOutsideStrings(text)))))),
 ];
 
 function normalizePlanResponse(r) {
