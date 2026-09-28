@@ -642,9 +642,10 @@ function findGeminiReviewReport(channelId, scriptPath) {
 // passed every AI stage.
 const LOCAL_AUDIT_CJS = join(__dirname, "local-audit.cjs");
 // Wall-clock budget for this process: the render job's 18-minute timeout
-// minus ~2 min of setup before this step and ~1.5 min of uploads after it.
+// minus ~1.7 min of setup before this step (measured) and ~1.3 min of QA
+// counts and uploads after it.
 const PROCESS_T0 = Date.now();
-const RENDER_QA_BUDGET_MS = Number(process.env.RENDER_QA_BUDGET_MIN || 14) * 60000;
+const RENDER_QA_BUDGET_MS = Number(process.env.RENDER_QA_BUDGET_MIN || 15) * 60000;
 const APPROVED_REVIEW_DIR = join(ROOT, "data", "renders", "approved-review");
 const REJECTED_DIR = join(ROOT, "data", "renders", "rejected");
 
@@ -1068,6 +1069,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       return { skipped: false, ok: false };
     }
     console.log(`Visual plan: ${basename(planPath)} (source ${plan.source || "gemini"}, ${plan.beats.length} beats)`);
+    const planReadyAt = Date.now();
 
     // Step 1b: CHALLENGER — a second AI checks the plan against the script's
     // sentences before anything renders. A rejection (MISMATCH or
@@ -1301,17 +1303,6 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // text-beat share over 40% is arithmetic, and so is the fix). Gemini's
     // own structured adjustments are applied alongside them, and anything
     // that fails to verify is reported rather than assumed.
-    // TIME BUDGET. The render job has an 18-minute timeout; run 36397373831
-    // ch-48 was cancelled by it in the middle of attempt 3, so its video
-    // never reached the backup audit or a queue. An attempt takes about as
-    // long as the last one did; when another would not finish inside the
-    // budget, this failure goes to the backup audit now instead.
-    const attemptMs = Date.now() - attemptStartedAt;
-    if (Date.now() - PROCESS_T0 + attemptMs > RENDER_QA_BUDGET_MS) {
-      console.log(`[budget] attempt ${attempt} took ${(attemptMs / 60000).toFixed(1)} min; another would pass the ${(RENDER_QA_BUDGET_MS / 60000).toFixed(0)}-min budget — no further attempt`);
-      return backupAudit({ ...backupArgs, stage: "frame-review", reason: `${fr.reason} (time budget: no further attempt)` });
-    }
-
     const enforced = enforceAdjustments(planPath, qa.localAudit, geminiReport, attempt);
 
     // Prose corrections still go to the planner, but only for the beats the
@@ -1328,6 +1319,23 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       // Used to ship as ok:true. The review did not pass, so it is a
       // frame-review failure like any other: backup audit + human queue.
       return backupAudit({ ...backupArgs, stage: "frame-review", reason: `${fr.reason} (no actionable corrections)` });
+    }
+
+    // TIME BUDGET. The render job has an 18-minute timeout; run 36397373831
+    // ch-48 was cancelled by it in the middle of attempt 3, so its video
+    // never reached the backup audit or a queue. When another attempt would
+    // not finish inside the budget, this failure goes to the backup audit
+    // now instead. The next attempt is estimated from THIS attempt's work
+    // after its plan was ready (challenger, assets, render, checks, review)
+    // — plus planning time only if it must re-plan (no enforced plan).
+    // Run 36414021961 ch-26: estimating it as the whole first attempt
+    // (7.1 min, planning and cutout fetching included) refused a retry that
+    // would have fit.
+    const postPlanMs = Date.now() - planReadyAt;
+    const nextMs = postPlanMs + (enforced.appliedCount ? 0 : planReadyAt - attemptStartedAt);
+    if (Date.now() - PROCESS_T0 + nextMs > RENDER_QA_BUDGET_MS) {
+      console.log(`[budget] attempt ${attempt + 1} would take ~${(nextMs / 60000).toFixed(1)} min at ${((Date.now() - PROCESS_T0) / 60000).toFixed(1)} min in; that passes the ${(RENDER_QA_BUDGET_MS / 60000).toFixed(0)}-min budget — no further attempt`);
+      return backupAudit({ ...backupArgs, stage: "frame-review", reason: `${fr.reason} (time budget: no further attempt)` });
     }
     // When directives were enforced, the NEXT attempt renders the edited
     // plan directly instead of asking Gemini for a fresh one — the changes
