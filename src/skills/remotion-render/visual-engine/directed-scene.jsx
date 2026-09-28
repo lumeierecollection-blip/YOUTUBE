@@ -30,6 +30,7 @@ import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
 import { ComposedScene } from "./composed-scene.jsx";
 import { LayeredScene } from "./layered-scene.jsx";
+import { PaperVideo } from "./paper-video.jsx";
 import { ensureTextContrast, TEXT_TARGET_CONTRAST, ACCENT_TEXT_TARGET_CONTRAST } from "../visual/scene-text.js";
 
 const CANVAS_W = 1080;
@@ -1362,19 +1363,25 @@ export function DirectedScene({ plan, ttsAudioPath }) {
       {plan.kalimba ? <KalimbaBed totalFrames={durationInFrames} fps={fps} src={plan.kalimba} /> : null}
       {/* SFX — semantic triggers only (sound-design.js semanticSfxEvents). */}
       {Array.isArray(plan.sfx) && plan.sfx.length ? <SfxPalette events={plan.sfx} /> : null}
+      {/* Reference paper style (docs/REFERENCE-STYLE.md): the whole frame is
+          PaperVideo — static studio, rail, paper and timeline device; only
+          the paper's content changes per beat. */}
+      {plan.paper ? <PaperVideo plan={plan} /> : null}
       {/* Previous beat echo — fading out during transition */}
-      {showPrevEcho && (
+      {!plan.paper && showPrevEcho && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: prevEchoOpacity }}>
           <BeatBody beat={prev} p={1} local={prev.duration_frames}
             ed={ed} font={plan.fonts.primary} scene={prevScene} />
         </div>
       )}
 
-      {/* Current beat */}
-      <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: tOpacity }}>
-        <BeatBody beat={beat} p={p} local={local}
-          ed={ed} font={plan.fonts.primary} scene={scene} />
-      </div>
+      {/* Current beat (not in paper mode — PaperVideo draws the whole frame) */}
+      {!plan.paper && (
+        <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: tOpacity }}>
+          <BeatBody beat={beat} p={p} local={local}
+            ed={ed} font={plan.fonts.primary} scene={scene} />
+        </div>
+      )}
     </AbsoluteFill>
   );
 }

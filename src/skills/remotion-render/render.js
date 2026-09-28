@@ -540,6 +540,13 @@ async function main() {
     // DirectedShorts played the voiceover only until this — no bed at all.
     const kal = pickKalimbaTrack(channel.channel_id ?? channelId, basename(scriptPath));
     sentencePlan.kalimba = kal.file;
+    // Reference paper style (docs/REFERENCE-STYLE.md) when the resolved plan
+    // carries paper content; the rail shows the channel's own name.
+    if (beats.some((b) => b.scene && b.scene.paper)) {
+      sentencePlan.paper = true;
+      sentencePlan.railText = String(channel.name || channel.channel_name || "").toUpperCase();
+      console.log(`[paper] reference paper style, rail "${sentencePlan.railText}", ${beats.filter((b) => b.scene?.paper?.cutout?.asset).length}/${beats.length} beats with a cutout`);
+    }
     console.log(`[audio] ${kal.name} (from ${kal.count} tracks)`);
 
     // SFX: only the semantic trigger table (sound-design.js). A trigger
@@ -825,6 +832,10 @@ async function main() {
           // composed beat from one that fell back to a mechanism scene, and
           // coverage is the measurable form of the "floating text in a
           // void" defect that sixteen Gemini verdicts kept reporting.
+          paper: scene.paper
+            ? { kind: scene.paper.kind, cutout: scene.paper.cutout ? { asset: scene.paper.cutout.asset, mode: scene.paper.cutout.mode } : null,
+                shape: scene.paper.shape?.variant || "none", number: !!scene.paper.number, headline_words: String(scene.paper.headline || "").split(/\s+/).filter(Boolean).length }
+            : null,
           layers: Array.isArray(scene.layers)
             ? scene.layers.map((l) => ({ role: l.role, kind: l.kind, ...(l.asset ? { asset: l.asset } : {}), ...(l.name ? { name: l.name } : {}), ...(l.motion ? { motion: l.motion } : {}), ...(l.style ? { style: l.style } : {}) }))
             : null,

@@ -80,3 +80,6 @@ data/visual-plans/**/*.json
 # survives if that broader rule is ever narrowed.
 data/renders/approved-review/
 data/renders/rejected/
+
+# Reference-video frame samples (regenerate: ffmpeg -i data/reference/style.mp4 -vf fps=2 data/reference/frames/f%04d.png)
+data/reference/frames/

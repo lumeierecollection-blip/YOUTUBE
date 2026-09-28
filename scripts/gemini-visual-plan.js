@@ -39,6 +39,12 @@ const { enforceCaps, describe: describeMechanisms, TYPOGRAPHY } = createRequire(
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
+// The reference style (docs/REFERENCE-STYLE.md, extracted from the supplied
+// reference video) is embedded verbatim in the planner prompt.
+const REFERENCE_STYLE = (() => {
+  try { return readFileSync(join(ROOT, "docs", "REFERENCE-STYLE.md"), "utf-8"); }
+  catch { throw new Error("docs/REFERENCE-STYLE.md is missing — the planner prompt embeds it"); }
+})();
 
 /**
  * Enforce the narrative-typography contract on a returned plan, in place.
@@ -204,88 +210,51 @@ Instead of picking a mechanism, you describe VISUAL EVENTS. The system maps your
 
 ${CAPABILITIES}
 
-## PRIMITIVE VOCABULARY — the only kinds, anchors and motions the renderer builds
+## THE REFERENCE STYLE — every frame must look like this
 
-${VOCABULARY}
+${REFERENCE_STYLE}
 
-## HOW TO COMPOSE
+## HOW TO WRITE A BEAT (the whole output shape — no mechanisms, drawings or maps)
 
-For each beat, declare:
-1. "visual_events": what happens visually (the EVENTS, not the template)
-2. "capabilities": which capabilities you're using (for validation)
-3. "kind", "concept", "asset_query", "fallback_drawing", "caption", "number"
+Every beat is shown on the SAME white paper: an italic serif lead-in, a
+bold grotesk headline typing on word by word, ONE grayscale object cutout
+fetched from photo libraries, sometimes a black petal / swoosh shape, and
+the sentence itself as tiny body text. You write only these fields:
 
-The "visual_events" field is your creative direction. What the viewer literally
-sees is a REAL image found from your "concept" / "asset_query" (or, only if none
-is found, your "fallback_drawing"), captioned, with a counter for a named number.
-The system builds that composition itself.
+  "kind": "EDITORIAL" | "TYPE"
+  "lead_in":      2-4 word italic serif lead-in, lowercase ("watch how",
+                  "they are selling", "went from") — or null
+  "headline":     2-4 words, NEVER a full sentence ("LIQUID DEATH",
+                  "REBELLION", "wild influencer collabs"). UPPERCASE for a
+                  punchline, lowercase bold for a phrase.
+  "emphasis_word": one word of the headline to pop, or null
+  "number":       the number the sentence names, exactly as said ("$14.99",
+                  "1.4 billion"), or null — it rolls up on the paper
+  "cutout_query": 2-4 words naming ONE isolatable physical object that
+                  stands for the sentence's subject — something that can be
+                  photographed alone on a plain background: "silver dollar
+                  coin", "aluminum drink can", "human skull", "megaphone",
+                  "gavel", "passenger jet", "smartphone". NOT a scene, a
+                  person doing something, a place, a chart or an idea.
+                  Name brands/products exactly when the sentence does
+                  ("Boeing 787"). null if no object fits.
+  "abstract_shape": "petals" | "swoosh" | "hairline" | "none"
+
+Worked example (from the reference). Sentence: "Liquid Death went from
+three million dollars to a 1.4 billion dollar brand."
+  { "kind": "EDITORIAL", "lead_in": "went from", "headline": "billion dollar brand",
+    "emphasis_word": "brand", "number": "1.4", "cutout_query": "briefcase full of cash",
+    "abstract_shape": "hairline" }
 
 Rules that are enforced, not advisory:
-- EVERY BEAT IS "kind": "VISUAL" OR "kind": "TYPE".
-- VISUAL beats show a REAL image — a photograph, screenshot, real chart,
-  real map or real document — fetched from stock/archive libraries by the
-  system. For every VISUAL beat, describe in "concept" what a real
-  photograph or screenshot would show. Describe the real thing in words a
-  stock photo search would find ("a Boeing 787 Dreamliner airliner in
-  flight", "protesters with signs in the Puerta del Sol, Madrid", "a person
-  checking a budgeting app on a smartphone"). Name real people, places,
-  companies and products exactly as the sentence names them.
-- In "asset_query", give 3-6 words that would work as a stock photo search
-  query ("Boeing 787 Dreamliner", "Puerta del Sol protest Madrid",
-  "budgeting app smartphone").
-- In "fallback_drawing", name a LIBRARY drawing that would stand in if no
-  real asset is found. It is used ONLY when the fetch fails. It must depict
-  the same subject — a person -> "figure silhouette", a country -> a map
-  drawing, a phone app -> "phone showing a budgeting app". Copy the name
-  exactly from the LIBRARY list.
-- Do not choose a drawing as the primary visual. Do not name a drawing in
-  "concept".
-- A concept is something a CAMERA could photograph, or a real screenshot.
-  NEVER an illustration, diagram, icon, silhouette, gauge, infographic,
-  "map sheet", "node graph", "grid of tiles" or anything "representing" an
-  idea — those do not exist as photos and will not be found. For an idea,
-  photograph where it happens: not "a gauge showing rising tension" but
-  "soldiers at the Cambodia-Thailand border checkpoint"; not "a checklist
-  of career steps" but "a person writing notes at a desk with a laptop".
-- "caption": 1-3 words naming the subject from THIS sentence ("Monarch
-  Money", "Puerta del Sol", "A321neo") — shown under the image. Never a
-  headline, never a generic word ("CAUSE", "RESEARCH", "MATRIX").
-- "number": the number the sentence names, exactly as said ("$14.99",
-  "500 aircraft"), or null. It becomes a counter over the image. Never
-  invent one.
-- Do NOT write a "composition" — the system builds it from the fields above.
-- If no photo can plausibly show the sentence (a purely abstract statement:
-  "this is a step towards peace"), set "kind": "TYPE" and use kinetic
-  typography: "capabilities": ["typographic_emphasis"] and a filled
-  "typography_direction". In this ${sentences.length}-beat video TYPE is
-  allowed ONLY on ${typoMax >= 2 ? `beat 0 (the hook) and beat ${sentences.length - 1} (the closing line)` : "beat 0 (the hook)"}.
-  EVERY other beat — ${typoMax >= 2 ? `beats 1 to ${sentences.length - 2}` : `beats 1 to ${sentences.length - 1}`} — MUST be "kind": "VISUAL" with
-  a concept, even an abstract sentence: photograph where it happens. A TYPE
-  beat anywhere else is removed by the system and fails the render.
-${nicheBlock}
-- FALLBACK MAPS. PLACES are real maps drawn from real borders. When the
-  fallback for a place is a map, use one of these, and set "caption" to
-  that place's name exactly as the narration says it (e.g. "Venezuela"):
-    "map-region-highlight" — the region outlined, then filled (default)
-    "map-markers"          — the region plus "count" markers (a real number
-                             from the sentence: 12 sites, 5 raids)
-    "map-route"            — movement between two places; label "A → B"
-    "map-outline" / "map-label" — the region without the fill
-  A map draws its own label; the label must be the place, not a headline.
-  Cities, provinces outside the US and invented regions are NOT drawable —
-  a map whose label is not a country or US state is rejected.
-  HYPHENS ARE ONLY FOR THOSE FIVE MAP NAMES. Every other LIBRARY name is
-  space-separated, exactly as printed in the LIBRARY list below — "process
-  arrow", not "process-arrow"; "case file folder", not "case-file-folder";
-  "gauge dial", not "gauge-dial". Copy the spelling from LIBRARY verbatim;
-  do not hyphenate a name because the map names nearby are hyphenated. A
-  name validateScene rejects drops that beat's whole composition.
-- "count" must be a real quantity from the narration where one exists — 12
-  plants, 8 states, 3 filings. It is a visible number, so an invented count
-  is an invented fact.
-- Vary the drawing across beats: the same drawing on every beat is the
-  template monoculture this replaces — but never trade the subject's own
-  drawing for an unrelated one just to vary.
+- Every EDITORIAL beat animates on the paper: its headline types on, and it
+  has a cutout_query, a number or an abstract_shape. A beat with none of
+  those is not EDITORIAL — make it TYPE.
+- About 80% of beats are EDITORIAL.
+- TYPE beats are typography-only on the paper (no cutout). In this
+  ${sentences.length}-beat video TYPE is allowed ONLY on ${typoMax >= 2 ? `beat 0 (the hook) and beat ${sentences.length - 1} (the closing line)` : "beat 0 (the hook)"}; every other beat is EDITORIAL.
+- For a TYPE beat set "capabilities": ["typographic_emphasis"] and fill
+  "typography_direction" with the headline as its phrase.
 
 NARRATIVE TYPOGRAPHY — READ THIS BEFORE WRITING ANY TYPOGRAPHY BEAT.
 
@@ -437,12 +406,13 @@ Respond ONLY with JSON (no markdown fences):
         "cause": "<for causation: cause label>",
         "effect": "<for causation: effect label>"
       },
-      "kind": "<VISUAL | TYPE>",
-      "concept": "<VISUAL: what a real photograph/screenshot would show, in stock-search words; TYPE: null>",
-      "asset_query": "<VISUAL: 3-6 word stock photo search query; TYPE: null>",
-      "fallback_drawing": "<VISUAL: exact LIBRARY name depicting the same subject, used only if no real asset is found; TYPE: null>",
-      "caption": "<1-3 word name of the subject from this sentence>",
+      "kind": "<EDITORIAL | TYPE>",
+      "lead_in": "<2-4 word italic lead-in, lowercase, or null>",
+      "headline": "<2-4 words, never a full sentence>",
+      "emphasis_word": "<one headline word, or null>",
       "number": "<the number exactly as the sentence says it, or null>",
+      "cutout_query": "<EDITORIAL: 2-4 words, ONE isolatable physical object; TYPE: null>",
+      "abstract_shape": "<petals | swoosh | hairline | none>",
       "carries_forward": "<object/concept that persists into the next beat, or null>",
       "emotional_weight": "<calm|building|sharp|heavy|urgent>",
       "typography_direction": {
@@ -666,7 +636,16 @@ async function main() {
   // the concept resolves. A composition the model wrote anyway is ignored.
   // A TYPE beat gets no composition and the typographic_emphasis capability.
   for (const b of plan.beats) {
-    const kind = String(b.kind || (b.concept ? "VISUAL" : "")).toUpperCase();
+    const kind = String(b.kind || (b.headline ? "EDITORIAL" : b.concept ? "VISUAL" : "")).toUpperCase();
+    // Reference paper style: an EDITORIAL beat is drawn by PaperVideo from
+    // its own fields (headline, cutout, shape) — it has no composition.
+    if (kind === "EDITORIAL") {
+      b.kind = "EDITORIAL";
+      delete b.composition;
+      if (!Array.isArray(b.capabilities) || !b.capabilities.length) b.capabilities = [b.number ? "evidence" : "revelation"];
+      console.log(`[plan] beat ${b.index}: EDITORIAL lead="${b.lead_in || ""}" headline="${b.headline || ""}" cutout="${b.cutout_query || "-"}" shape=${b.abstract_shape || "-"}${b.number ? ` number=${b.number}` : ""}`);
+      continue;
+    }
     if (kind === "TYPE") {
       b.kind = "TYPE";
       // An explicit TYPOGRAPHY mechanism. Without it a TYPE beat compiled to
@@ -718,6 +697,7 @@ async function main() {
   const compositionIssues = [...planRuleIssues];
   let composedBeats = 0;
   for (const b of plan.beats) {
+    if (b.kind === "EDITORIAL") continue;   // drawn by PaperVideo, not composed
     if (!b.composition || !Array.isArray(b.composition.objects) || !b.composition.objects.length) {
       compositionIssues.push({
         beat: b.index,
@@ -815,6 +795,11 @@ async function main() {
     const movedFromTypo = capped.changes.some((c) => c.beat === i && c.from === TYPOGRAPHY && c.to !== TYPOGRAPHY);
     if (m === TYPOGRAPHY) {
       b.kind = "TYPE";
+    } else if (b.kind === "TYPE" && movedFromTypo && plan.beats.some((x) => x.headline !== undefined)) {
+      // Paper style: an over-cap TYPE beat simply becomes a typography-only
+      // EDITORIAL paper beat — nothing is invented and nothing fails.
+      console.warn(`::warning::[plan] beat ${b.index}: TYPE over the cap -> typography-only EDITORIAL paper beat`);
+      b.kind = "EDITORIAL";
     } else if (b.kind === "TYPE" && movedFromTypo) {
       console.warn(`::warning::[plan] beat ${b.index}: TYPE reassigned to ${m} by the TYPOGRAPHY cap — it has no concept, so asset resolution will fail it`);
       b.kind = "VISUAL";

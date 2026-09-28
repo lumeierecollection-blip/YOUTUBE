@@ -753,9 +753,66 @@ function movementFor(concept) {
   return MOVEMENTS[h[0] % MOVEMENTS.length];
 }
 
+// ── Reference paper style: cutouts + per-beat paper content ──────────
+// A fetched image becomes a grayscale PNG (+15% contrast) in
+// public/cutouts/. rembg is not installed on the CI runner (treat.js needs
+// a local venv), so the object is NOT segmented. Instead: a photo whose
+// corners are plain near-white is drawn as a cutout with multiply blending
+// (its white background vanishes into the white paper); any other photo
+// is shown inside a phone mockup — both are how the reference shows images.
+const CUTOUT_DIR = join(ROOT, "src", "skills", "remotion-render", "public", "cutouts");
+const CUTOUT_MANIFEST = join(CUTOUT_DIR, "manifest.json");
+const MAX_CUTOUTS = 20;
+let rembgNoted = false;
+
+async function makeCutout(asset) {
+  const { default: sharp } = await import("sharp");
+  mkdirSync(CUTOUT_DIR, { recursive: true });
+  const out = join(CUTOUT_DIR, `${asset.id}.png`);
+  const src = join(ROOT, "src", "skills", "remotion-render", "public", asset.local_path);
+  if (!rembgNoted) { console.log("[cutout] rembg missing, using plain grayscale"); rembgNoted = true; }
+  const img = sharp(src).rotate().grayscale();
+  const { data, info } = await img.clone().resize(200, 200, { fit: "fill" }).raw().toBuffer({ resolveWithObject: true });
+  const patch = (x0, y0) => { const v = []; for (let y = y0; y < y0 + 18; y++) for (let x = x0; x < x0 + 18; x++) v.push(data[(y * info.width + x) * info.channels]); const m = v.reduce((a, b) => a + b, 0) / v.length; const sd = Math.sqrt(v.reduce((a, b) => a + (b - m) ** 2, 0) / v.length); return { m, sd }; };
+  const corners = [patch(0, 0), patch(182, 0), patch(0, 182), patch(182, 182)];
+  const plain = corners.every((c) => c.m > 232 && c.sd < 12);
+  if (!existsSync(out)) await img.linear(1.15, -128 * 0.15).png().toFile(out);
+  const mode = plain ? "cutout" : "phone";
+  const man = readJsonSafe(CUTOUT_MANIFEST) || { version: 1, cutouts: [] };
+  if (!man.cutouts.find((c) => c.id === asset.id)) {
+    man.cutouts.push({ id: asset.id, subject: (asset.concepts || [])[0] || null, local_path: `cutouts/${asset.id}.png`, mode,
+      source: asset.source, source_url: asset.source_url, license: asset.license, attribution: asset.attribution, segmented: false });
+    writeFileSync(CUTOUT_MANIFEST, JSON.stringify(man, null, 2) + "\n");
+  }
+  return { asset: `cutouts/${asset.id}.png`, mode };
+}
+
+function paperContentFor(b, sentence, cutout) {
+  const h = createHash("sha1").update(String(b.headline || b.caption || b.index)).digest();
+  const shapes = ["petals", "swoosh", "hairline", "none"];
+  const want = String(b.abstract_shape || "").toLowerCase();
+  const variant = ["petals", "leaf", "swoosh", "ribbon", "hairline", "none"].includes(want) ? want : shapes[h[0] % shapes.length];
+  return {
+    kind: b.kind === "TYPE" ? "TYPE" : "EDITORIAL",
+    lead_in: b.lead_in || null,
+    headline: b.headline || b.caption || "",
+    emphasis_word: b.emphasis_word || null,
+    number: b.number && /\d/.test(String(b.number)) ? String(b.number) : null,
+    body: sentence || null,
+    cutout: cutout || null,
+    shape: { variant, corner: ["tl", "tr", "bl", "br"][h[1] % 4] },
+    ring: !!cutout && cutout.mode === "cutout" && h[2] % 3 !== 0,
+    ringDotted: h[3] % 2 === 0,
+    grid: !!cutout && h[4] % 3 === 0,
+    select: h[5] % 4 === 0,
+    layout: h[6] % 3 === 0 ? "center" : "left",
+  };
+}
+
 async function resolveAssets(channelId, planPath) {
   const plan = readJsonSafe(planPath);
   if (!plan?.beats?.length) return { ok: false, reason: `no plan at ${planPath}` };
+  if (plan.beats.some((b) => b.kind === "EDITORIAL" || b.headline !== undefined)) return resolvePaper(channelId, planPath, plan);
   const visual = plan.beats.filter((b) => b.kind === "VISUAL");
   const typeBeats = plan.beats.filter((b) => b.kind === "TYPE").length;
   let manifest = readJsonSafe(ASSET_MANIFEST) || { assets: [] };
@@ -809,6 +866,48 @@ async function resolveAssets(channelId, planPath) {
   const out = planPath.replace(/\.json$/, "-resolved.json");
   writeFileSync(out, JSON.stringify(plan, null, 2) + "\n");
   console.log(`[assets] resolved ${basename(planPath)}: photo ${counts.photo}, drawing ${counts.drawing}, type ${counts.type}`);
+  return { ok: true, planPath: out, counts, fetchedNew };
+}
+
+// Paper-style plans: fetch each beat's cutout_query, build paper content.
+// An unresolved cutout makes a typography-only paper beat — never a drawing,
+// never a mechanism scene.
+async function resolvePaper(channelId, planPath, plan) {
+  let manifest = readJsonSafe(ASSET_MANIFEST) || { assets: [] };
+  const asBeat = (b) => ({ ...b, concept: b.cutout_query, asset_query: b.cutout_query });
+  const wanted = plan.beats.filter((b) => b.cutout_query && !findAsset(manifest, asBeat(b))).slice(0, MAX_CUTOUTS)
+    .map((b) => ({ beat: b.index, concept: b.cutout_query, asset_query: b.cutout_query }));
+  let fetchedNew = 0;
+  if (wanted.length) {
+    const tmpIn = planPath.replace(/\.json$/, "-asset-requests.json"), tmpOut = planPath.replace(/\.json$/, "-asset-results.json");
+    writeFileSync(tmpIn, JSON.stringify(wanted, null, 2) + "\n");
+    const topic = channelTopic(channelId);
+    const f = await runChild("node", [FETCH_ASSETS_CJS, "--in", tmpIn, "--out", tmpOut, ...(topic ? ["--topic", topic] : [])], { label: `assets ${channelId}` });
+    if (f.code !== 0) return { ok: false, reason: `fetch-assets.cjs exited ${f.code}` };
+    manifest = readJsonSafe(ASSET_MANIFEST) || { assets: [] };
+    fetchedNew = (readJsonSafe(tmpOut)?.resolved || []).length;
+  }
+  const counts = { editorial: 0, type: 0, cutouts: 0, unresolved: 0 };
+  for (const b of plan.beats) {
+    const asset = b.cutout_query ? findAsset(manifest, asBeat(b)) : null;
+    let cutout = null;
+    if (asset) {
+      try { cutout = await makeCutout(asset); fetchedNew++; } catch (e) { console.warn(`::warning::[cutout] ${asset.id}: ${e.message}`); }
+    }
+    // body = the narration sentence; PaperVideo fills it from the beat's cue.
+    b.paper = paperContentFor(b, null, cutout);
+    if (b.paper.kind === "TYPE") counts.type++; else counts.editorial++;
+    if (cutout) {
+      counts.cutouts++;
+      console.log(`[paper] beat ${b.index} ${b.paper.kind}: cutout ${asset.id} (${cutout.mode}, ${asset.license}) shape=${b.paper.shape.variant} — "${b.cutout_query}"`);
+    } else {
+      if (b.cutout_query) counts.unresolved++;
+      console.log(`[paper] beat ${b.index} ${b.paper.kind}: ${b.cutout_query ? `"${b.cutout_query}" unresolved → ` : ""}typography-only paper beat, shape=${b.paper.shape.variant}`);
+    }
+  }
+  const out = planPath.replace(/\.json$/, "-resolved.json");
+  writeFileSync(out, JSON.stringify(plan, null, 2) + "\n");
+  console.log(`[paper] resolved ${basename(planPath)}: editorial ${counts.editorial}, type ${counts.type}, cutouts ${counts.cutouts}, unresolved ${counts.unresolved}`);
   return { ok: true, planPath: out, counts, fetchedNew };
 }
 
