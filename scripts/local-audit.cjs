@@ -28,6 +28,12 @@
  *                     TYPOGRAPHY, or CAPABILITY:<first capability> — the same
  *                     key the planner's mechanismDistribution uses)
  *   av-duration       audio within 1s of video
+ *   frames-match-reference  every beat frame's luma histogram (16 bins,
+ *                     144x256) is within L1 0.28 of the reference video's
+ *                     mean histogram (data/reference/reference-histogram.json).
+ *                     0.28 = 2x the reference's OWN maximum spread (its 79
+ *                     frames sit at 0.026-0.140 from their mean); the old
+ *                     dark-style frames measured 1.79-1.82.
  *
  * Usage:
  *   node scripts/local-audit.cjs --video <mp4> --manifest <render-manifest.json>
@@ -92,6 +98,16 @@ function cropMean(video, t, w, h, x, y) {
   return s / buf.length;
 }
 
+const REF_HIST = join(ROOT, "data", "reference", "reference-histogram.json");
+const REF_L1_MAX = 0.28;
+function lumaHist(png) {
+  const r = spawnSync(FFMPEG, ["-loglevel", "error", "-i", png, "-vf", "scale=144:256,format=gray", "-f", "rawvideo", "-"], { maxBuffer: 1 << 24 });
+  if (r.status !== 0 || !r.stdout || !r.stdout.length) return null;
+  const h = new Array(16).fill(0);
+  for (const v of r.stdout) h[Math.min(15, v >> 4)]++;
+  return h.map((x) => x / r.stdout.length);
+}
+
 function parseSrt(text) {
   const toSec = (ts) => { const [h, m, rest] = ts.split(":"); return +h * 3600 + +m * 60 + +rest.replace(",", "."); };
   return text.replace(/\r/g, "").split(/\n\s*\n/).map((block) => {
@@ -137,12 +153,20 @@ async function main() {
   // Frames: one per beat, at its midpoint.
   const work = join(tmpdir(), `local-audit-${process.pid}`);
   mkdirSync(work, { recursive: true });
-  const sizeBad = [], centerBad = [];
+  const sizeBad = [], centerBad = [], refBad = [];
+  let ref = null;
+  try { ref = JSON.parse(readFileSync(REF_HIST, "utf8")).mean; } catch { /* reported below */ }
   beats.forEach((b, i) => {
     const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) / 2;
     const png = join(work, `beat-${i}.png`);
     if (!extractPng(video, t, png)) { sizeBad.push(`beat ${i}: frame at ${t.toFixed(2)}s could not be extracted`); centerBad.push(`beat ${i}: no frame`); return; }
     const bytes = statSync(png).size;
+    if (ref) {
+      const h = lumaHist(png);
+      const l1 = h ? h.reduce((a, v, k) => a + Math.abs(v - ref[k]), 0) : null;
+      if (l1 === null) refBad.push(`beat ${i}: histogram failed`);
+      else if (l1 > REF_L1_MAX) refBad.push(`beat ${i}: L1 ${l1.toFixed(3)} > ${REF_L1_MAX}`);
+    }
     if (bytes <= MIN_FRAME_BYTES) sizeBad.push(`beat ${i}: ${(bytes / 1024).toFixed(1)} KB`);
     const center = cropMean(video, t, cw, ch, Math.floor((W - cw) / 2), Math.floor((H - ch) / 2));
     const corner = cropMean(video, t, kw, kh, 0, 0);
@@ -152,6 +176,7 @@ async function main() {
   try { rmSync(work, { recursive: true, force: true }); } catch {}
   add("frames-nonempty", sizeBad, `${beats.length}/${beats.length} beat frames > 15 KB`);
   add("frames-centered", centerBad, `${beats.length}/${beats.length} beats have centre content`);
+  add("frames-match-reference", ref ? refBad : ["data/reference/reference-histogram.json missing"], `${beats.length}/${beats.length} beat frames within L1 ${REF_L1_MAX} of the reference`);
 
   const durBad = [];
   if (cues.length !== beats.length) durBad.push(`${beats.length} beats vs ${cues.length} SRT cues`);
