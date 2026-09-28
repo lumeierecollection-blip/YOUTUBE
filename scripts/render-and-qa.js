@@ -317,9 +317,17 @@ async function detectSilence(videoPath, audioPath) {
 
   const START_TOL = 0.4;   // s — mux/encode offset between the two
   const EXTRA_TOL = 0.3;   // s — how much longer than the source pause is still the same pause
+  // A video silence is legitimate when it lies INSIDE a voiceover pause.
+  // The old test also required it to START within 0.4 s of the pause, which
+  // assumed nothing plays during pauses; with the kalimba bed, the bed can
+  // cover the start of a pause and then decay, so the video's silence begins
+  // later — run 36369197918 ch-1: VO pause 29.19-30.28, video silence
+  // 29.65-30.32, flagged "unmatched". Containment keeps the rule's purpose:
+  // silence while the narration is SPEAKING (a dropout) lies inside no
+  // pause and still fails.
   const gaps = vid.spans.filter((g) => {
     if (g.start >= audioDuration - 0.1 || g.duration <= 0.5) return false;
-    const match = src.spans.find((s) => Math.abs(s.start - g.start) <= START_TOL && g.duration <= s.duration + EXTRA_TOL);
+    const match = src.spans.find((s) => g.start >= s.start - START_TOL && g.end <= s.end + EXTRA_TOL);
     return !match;
   });
   console.log(`[silence] voiceover pauses ${src.spans.length}, video pauses ${vid.spans.length}, unmatched ${gaps.length}`);
