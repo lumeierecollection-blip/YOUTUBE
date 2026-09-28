@@ -247,7 +247,7 @@ async function reviewFrameBatch(frames, totalFrames, bible) {
   return results;
 }
 
-// ── Paper style: the rubric tests that contradict the owner's spec ────
+// ── Full-canvas style (was: paper style): the rubric tests that contradict the owner's spec ──
 // config/visual-bible.json predates the paper style. Three of its whole-
 // video tests fail what the owner explicitly REQUIRES of this style:
 //   "2. CAPTION TEST ... ANY caption track ... Zero tolerance"  vs the
@@ -267,11 +267,11 @@ async function reviewFrameBatch(frames, totalFrames, bible) {
 // reported, not silently skipped.
 const PAPER_RUBRIC = [
   ["2. CAPTION TEST: Is there ANY caption track — narration duplicated as text underneath visuals? Zero tolerance.",
-    "2. CAPTION TEST: This style REQUIRES (channel owner) a word-by-word caption of the narration in the lower part of the page, building in time with the voice — a frame mid-sentence shows only the words spoken so far (e.g. 'Two Alexandria', 'We'll'). That caption is not a defect, not duplication and not a fragment: never list it in slop_indicators, repetition_issues, decoration_issues or corrections. Flag only OTHER text that repeats the narration."],
+    "2. CAPTION TEST: This style REQUIRES (channel owner) a word-by-word caption of the narration in the lower part of the frame, building in time with the voice — a frame mid-sentence shows only the words spoken so far. That caption is not a defect, not duplication and not a fragment: never list it in slop_indicators, repetition_issues, decoration_issues or corrections. Flag only OTHER text that repeats the narration."],
   ["4. GRAPH TEST: For every graph — is a graph the best representation? Could the concept be shown physically? If script says 'the price doubled,' show it doubling, don't chart it.",
-    "4. GRAPH TEST: This style draws a sentence's own figure as a simple black-ink counter / bar / pie / line / gauge, and a place it names as a map (channel owner's design) — do not ask for a physical object instead. Judge whether the figure shown is the sentence's figure. A counter or bar grows from 0 to its value early in its beat, so an early frame can show a partly-grown number: that is the animation, not a wrong statistic."],
+    "4. GRAPH TEST: This style draws a sentence's own figure as a full-frame chart — bars, a donut, a line, a half-circle gauge, a map, or one big number — with the primary value in the channel's accent colour (channel owner's design). Judge whether the figure shown is the sentence's figure. A counter or bar grows from 0 to its value early in its beat, so an early frame can show a partly-grown number: that is the animation, not a wrong statistic."],
   ["12. DECORATION: Any meaningless visual noise? Random dots, grids, particles, gradients without purpose?",
-    "12. DECORATION: Any meaningless visual noise — particles, gradients, clutter? (Not noise in this style: the thin ring and faint dot grid behind a cutout, and one black petal / swoosh / hairline accent in an empty corner of the visual area — the reference video uses exactly these.)"],
+    "12. DECORATION: Any meaningless visual noise — particles, clutter, gradients without purpose? (Not noise in this style: the off-white studio ground with soft leaf shadows and a faint film grain, and the dark gradient that keeps white type readable over a full-frame photo.)"],
 ];
 function paperRubric(prompt) {
   let out = prompt;
@@ -291,23 +291,19 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
   const unique = [...new Set(selected)].sort((a, b) => a - b).slice(0, 10);
 
   const base = paperStyle ? paperRubric(bible.prompts.whole_video_review) : bible.prompts.whole_video_review;
-  if (paperStyle) console.log("[review] paper style: caption / graph / decoration tests restated to the owner's spec");
+  if (paperStyle) console.log("[review] full-canvas style: caption / graph / decoration tests restated to the owner's spec");
   const prompt = base
     .replace("{total_frames}", String(unique.length))
     .replace("{duration}", duration.toFixed(1));
 
   const content = [{ type: "text", text: prompt }];
-  // REFERENCE STYLE (docs/REFERENCE-STYLE.md): three frames of the supplied
-  // reference video, sent first as the target look. The review now judges
-  // "does this look like it came from the reference, and does each frame
-  // show content related to its sentence" — per the owner's brief.
-  const refFrames = ["f0005.png", "f0027.png", "f0045.png"]
-    .map((f) => join(ROOT, "docs", "reference-examples", f)).filter((p) => existsSync(p));
-  if (refFrames.length) {
-    content.push({ type: "text", text: "\n=== REFERENCE STYLE — the target look for this channel. These three frames are from the reference video. The video under review should look like it came from the same video: white studio with soft leaf shadows, one flat white paper page; on the paper an italic lead-in, a bold grotesk headline, a grayscale isolated object cutout OR a simple black-ink chart / counter / gauge / map drawn on the paper, a word-by-word caption synced to the narration, and black abstract shapes. (Deliberate differences from the reference, not to be penalized: the timeline device below the paper, the vertical wordmark and phone mockups are removed, and the paper is centred in the frame. The word-by-word caption of the narration near the bottom of the page is REQUIRED on every beat by the channel owner: do not count it as caption duplication, subtitles, redundancy or slop, and do not lower any score for it; judge everything else.) Judge each frame's STYLE against these, and its CONTENT against its voiceover line. Reject a frame if the photo shown is not literally about what its headline names: a photographed object that is a metaphor or a generic stock object for the topic (a camera for strategy, bills for a foundation) is a CRITICAL defect. The reference's own restraint (one object, typography, white space) is the standard — do not score it as a defect when a frame matches it. In the headline test, a frame laid out like the reference (italic lead-in + headline + object cutout on the paper) is NOT headline-dominated. Score overall_score on how close the video is to the reference style AND how well each frame matches its line: indistinguishable in style from the reference with on-topic content = 7 or more. ALSO add these two keys to your JSON: \"reference_match\": \"YES\" or \"NO\" (does this video look like it came from the reference video?) and \"reference_reason\": one sentence. ===" });
-    for (const f of refFrames) content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(f).toString("base64")}` } });
-    content.push({ type: "text", text: "\n=== FRAMES UNDER REVIEW ===" });
-  }
+  // FULL-CANVAS STYLE (owner's rebuild, 2026-09-29). The paper reference
+  // video and its three frames are no longer sent: the video is judged
+  // against the owner's full-canvas spec, stated here in text. There is no
+  // reference_match any more (render-and-qa.js frameReviewVerdict).
+  const refFrames = [];
+  content.push({ type: "text", text: "\n=== THE STYLE — full-canvas editorial motion graphics (Bloomberg / NYT / Vox / Johnny Harris). Every beat is composed for the WHOLE 1080x1920 frame on an off-white studio ground: there is NO paper, NO card, NO container, and nothing shrunk into a small central area. Each beat is one of: TYPE-FULL (a statement or ONE big number filling the frame), DATA-FULL (the chart IS the composition — bars ~60% of the frame height, a donut or half-circle gauge across the frame, a full-width line, a map), SCENE-FULL (a real photograph edge to edge with type over it, or one isolated object large on the studio), PROCESS-FULL (2-3 labelled nodes with thick arrows). The channel's accent colour marks only the primary value / the arrow / the number that matters. Beats transform into each other (slides, match cuts, a persisted element). The word-by-word caption of the narration near the bottom is REQUIRED on every beat by the channel owner: do not count it as caption duplication, subtitles, redundancy or slop, and do not lower any score for it. Judge each frame's CONTENT against its voiceover line. Reject a frame if a photo shown is not literally about what its sentence names: a generic stock image standing in for a named person, place or organization, or an object that is a metaphor for the topic, is a CRITICAL defect. A card, a paper page, a framed panel or a small centred composition with empty frame around it is a HIGH defect. In the headline test, a TYPE-FULL beat is headline-led by design; the video is headline-dominated only when most beats are type with no chart, photo, object or process. Score overall_score on how well the video realises this style AND how well each frame matches its line. ===" });
+  content.push({ type: "text", text: "\n=== FRAMES UNDER REVIEW ===" });
   const head = content.slice(0, 2);            // rubric + reference note (text)
   const framePartsList = [];
   for (const idx of unique) {
@@ -658,8 +654,10 @@ async function main() {
     console.log("\n═══ PHASE 2: WHOLE-VIDEO REVIEW ═══\n");
     // Paper style = the render manifest next to the video has visual_type
     // beats (render.js writes <video>-manifest.json).
+    // Full-canvas videos (their render manifest carries beats[].canvas) get
+    // the restated rubric; the variable keeps its old name.
     let paperStyle = false;
-    try { paperStyle = (JSON.parse(readFileSync(video.replace(/\.mp4$/, "-manifest.json"), "utf-8")).beats || []).some((b) => b.visual_type); } catch {}
+    try { paperStyle = (JSON.parse(readFileSync(video.replace(/\.mp4$/, "-manifest.json"), "utf-8")).beats || []).some((b) => b.canvas); } catch {}
     const wholeResult = await reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible, paperStyle);
 
     if (wholeResult.error) {

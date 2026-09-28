@@ -43,12 +43,9 @@ const { enforceCaps, describe: describeMechanisms, TYPOGRAPHY } = createRequire(
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
-// The reference style (docs/REFERENCE-STYLE.md, extracted from the supplied
-// reference video) is embedded verbatim in the planner prompt.
-const REFERENCE_STYLE = (() => {
-  try { return readFileSync(join(ROOT, "docs", "REFERENCE-STYLE.md"), "utf-8"); }
-  catch { throw new Error("docs/REFERENCE-STYLE.md is missing — the planner prompt embeds it"); }
-})();
+// docs/REFERENCE-STYLE.md (the paper reference) is no longer embedded: the
+// full-canvas rebuild (2026-09-29) replaced the paper style; the prompt
+// states the full-canvas grammar itself.
 
 /**
  * Enforce the narrative-typography contract on a returned plan, in place.
@@ -165,8 +162,30 @@ for (const [ch, names] of Object.entries(NICHE_DRAWINGS)) {
 // CLAUDE.md hard rule: nothing on screen that the source did not say. Every
 // number a chart draws must appear in the sentence; a map's place must be a
 // real region; a cutout must name one object. Anything else becomes TYPE.
-export const VISUAL_TYPES = ["CUTOUT", "COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP", "TYPE"];
-const TYPE_CAPABILITY = { CUTOUT: "revelation", COUNTER: "evidence", BAR: "comparison", PIE: "population", LINE: "growth", GAUGE: "accumulation", MAP: "contrast" };
+export const VISUAL_TYPES = ["PHOTO", "CUTOUT", "COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP", "PROCESS", "TYPE"];
+const TYPE_CAPABILITY = { PHOTO: "revelation", CUTOUT: "revelation", COUNTER: "evidence", BAR: "comparison", PIE: "population", LINE: "growth", GAUGE: "accumulation", MAP: "contrast", PROCESS: "causation" };
+
+// ── named entities: only what the sentence NAMES ─────────────────────
+// Each entity's name must appear in its sentence: every content word of the
+// name (the same crude stem as the cutout / lead-in gates). An entity the
+// sentence does not name is dropped — its photo would be a claim the
+// narration never makes.
+export function entityNamedInSentence(name, sentence) {
+  const sent = String(sentence || "").replace(/\$/g, " dollar ").split(/[^A-Za-z0-9']+/).filter(Boolean).map(stemWord);
+  const words = String(name || "").split(/[^A-Za-z0-9']+/).map((w) => w.toLowerCase()).filter((w) => w && !LEAD_FUNCTION.has(w) && !["inc", "corp", "co", "llc", "ltd", "plc"].includes(w));
+  return words.length > 0 && words.every((w) => { const st = stemWord(w); return sent.some((t) => stemMatch(st, t)); });
+}
+export function checkEntities(list, sentence) {
+  const kept = [], dropped = [];
+  for (const e of Array.isArray(list) ? list : []) {
+    const type = String(e?.type || "").toLowerCase();
+    const name = String(e?.name || "").trim();
+    if (!name || !["person", "place", "organization"].includes(type)) { dropped.push(`${type || "?"} "${name}": no type/name`); continue; }
+    if (!entityNamedInSentence(name, sentence)) { dropped.push(`${type} "${name}": not named in the sentence`); continue; }
+    if (!kept.some((k) => k.name.toLowerCase() === name.toLowerCase())) kept.push({ type, name });
+  }
+  return { kept, dropped };
+}
 function sentenceNumbers(text) {
   return new Set((String(text || "").match(/\d[\d,]*(?:\.\d+)?/g) || []).map((n) => Number(n.replace(/,/g, ""))));
 }
@@ -189,6 +208,9 @@ export function groundedOptions(sentence) {
   if (pct.length) allowed.push("PIE", "GAUGE");
   if (nums.length >= 2) allowed.push("BAR", "LINE");
   if (places.size) allowed.push("MAP");
+  allowed.push("PROCESS");
+  const proper = text.split(/\s+/).slice(1).some((w) => /^[A-Z][a-z]+/.test(w.replace(/^[^A-Za-z]+/, "")));
+  if (proper) allowed.push("PHOTO");
   return { counts, percents: pct, places: [...places], allowed };
 }
 
@@ -259,7 +281,10 @@ const LEAD_FUNCTION = new Set(["a", "an", "the", "of", "to", "for", "in", "on", 
   "can", "not", "no", "just", "now", "all", "more", "most"]);
 export function leadInFromSentence(lead, sentence) {
   const sent = String(sentence || "").replace(/\$/g, " dollar ").split(/[^A-Za-z0-9']+/).filter(Boolean).map(stemWord);
-  const words = String(lead || "").split(/\s+/).map((w) => w.toLowerCase().replace(/[^a-z0-9']/g, "")).filter(Boolean);
+  // Split exactly like the sentence (hyphens and slashes separate words), so
+  // "stay-or-pay" in a lead-in matches "stay-or-pay" in the sentence — it was
+  // collapsed to "stayorpay" and never matched (found 2026-09-29).
+  const words = String(lead || "").split(/[^A-Za-z0-9']+/).map((w) => w.toLowerCase()).filter(Boolean);
   const content = words.filter((w) => !LEAD_FUNCTION.has(w));
   return content.every((w) => { const st = stemWord(w); return sent.some((t) => stemMatch(st, t)); });
 }
@@ -271,6 +296,22 @@ export function checkVisual(b, sentence) {
   const bad = (why) => ({ type: "TYPE", data: null, why });
   if (!VISUAL_TYPES.includes(t)) return bad(`unknown visual_type "${b.visual_type}"`);
   if (t === "TYPE") return { type: "TYPE", data: null };
+  if (t === "PHOTO") {
+    const ent = String(d.entity || "").trim();
+    if (!ent) return bad("PHOTO without an entity");
+    if (!entityNamedInSentence(ent, sentence)) return bad(`PHOTO entity "${ent}" is not named in the sentence`);
+    const listed = (Array.isArray(b.named_entities) ? b.named_entities : []).find((e) => String(e?.name || "").trim().toLowerCase() === ent.toLowerCase());
+    const type = String(listed?.type || d.entity_type || "").toLowerCase();
+    if (!["person", "place", "organization"].includes(type)) return bad(`PHOTO entity "${ent}" has no type (person / place / organization) in named_entities`);
+    return { type: t, data: { entity: ent, entity_type: type } };
+  }
+  if (t === "PROCESS") {
+    const nodes = (Array.isArray(d.nodes) ? d.nodes : []).map((n) => String(n?.label ?? n ?? "").trim()).filter(Boolean).slice(0, 3);
+    if (nodes.length < 2) return bad("PROCESS needs 2-3 nodes");
+    const off = nodes.find((n) => n.split(/\s+/).length > 3 || !leadInFromSentence(n, sentence));
+    if (off) return bad(`PROCESS node "${off}" is not 1-3 words from the sentence`);
+    return { type: t, data: { nodes } };
+  }
   if (t === "CUTOUT") {
     // A cutout is a photographed physical object: "scale of justice icon",
     // "padlock icon", "document cutout" (run 36388470508) searched for the
@@ -377,60 +418,102 @@ Instead of picking a mechanism, you describe VISUAL EVENTS. The system maps your
 
 ${CAPABILITIES}
 
-## THE REFERENCE STYLE — every frame must look like this
+## THE STYLE — full-canvas editorial motion graphics (NO paper, NO cards)
 
-${REFERENCE_STYLE}
+Every beat is designed for the WHOLE 1080x1920 frame on an off-white
+studio ground (soft shadows). There is no container, no card, no page:
+the composition IS the frame, and it transforms from beat to beat
+(Bloomberg / NYT / Vox / Johnny Harris). Clean, minimal, editorial. Each
+beat is ONE of four compositions — the system draws it from your fields:
 
-(The lead-ins quoted above — "watch how", "went from", "they are selling",
-"to the tagline", "by being impossible" — are the REFERENCE video's own
-words about ITS sentences. Never reuse them: a lead-in here is taken from
-this beat's sentence.)
+  TYPE-FULL     the statement fills the frame (huge, stacked), or ONE
+                number at 300-500 px with a small label (visual_type TYPE
+                or COUNTER). Hooks, emphasis, turns, the close.
+  DATA-FULL     the chart IS the composition: bars ~60% of the frame
+                height, a donut across the frame, a line across the full
+                width, a gauge as a half circle across the frame, a map
+                (visual_type BAR / PIE / LINE / GAUGE / MAP).
+  SCENE-FULL    a REAL photograph fills the frame, headline over it
+                (visual_type PHOTO — a named person, place or organization;
+                or CUTOUT — one physical object, large on the studio).
+  PROCESS-FULL  2-3 labelled nodes with thick arrows drawing between them
+                (visual_type PROCESS) — cause, effect, sequence, flow.
 
-## HOW TO WRITE A BEAT (the whole output shape — no mechanisms, drawings or maps)
+Transitions between beats, the word caption at the bottom, grain and the
+camera are added by the system.
 
-Every beat is shown on the SAME white paper: an italic serif lead-in, a
-bold grotesk headline typing on word by word, ONE grayscale object cutout
-fetched from photo libraries, sometimes a black petal / swoosh shape, and
-the narration as a word-by-word caption at the bottom (the system adds
-it). You write only these fields:
+## HOW TO WRITE A BEAT
 
   "kind": "EDITORIAL" | "TYPE"
-  "lead_in":      2-4 words FROM THIS BEAT'S OWN SENTENCE that lead into the
-                  headline, lowercase (sentence "... went from three million
-                  dollars to a 1.4 billion dollar brand" -> "went from three
-                  million to"). Never another sentence's words, never a stock
-                  phrase. Or null. (Enforced: a lead-in whose words are not
-                  in its sentence is dropped.)
-  "headline":     2-4 words, NEVER a full sentence ("LIQUID DEATH",
-                  "REBELLION", "wild influencer collabs"). UPPERCASE for a
-                  punchline, lowercase bold for a phrase. Its words come
-                  from the sentence, and it says only what the sentence
-                  says: never add a claim, promise or judgement it does not
-                  make ("GUARANTEED", "BEST", "FAILS", "BREAKS DOWN") — a
-                  checker rejects the plan for that.
-  "emphasis_word": one word of the headline to pop, or null
-  "visual_type":  ONE of CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | TYPE
-                  — what the paper shows. The system draws it; only CUTOUT
-                  fetches a photo.
-  "data":         the visual's data, by type (numbers EXACTLY as the
-                  sentence says them — a number the sentence does not say
-                  is rejected and the beat becomes TYPE):
+  "canvas_composition": "TYPE-FULL" | "DATA-FULL" | "SCENE-FULL" | "PROCESS-FULL"
+                  (it must agree with visual_type as listed above; the
+                  system derives it from the CHECKED visual_type)
+  "lead_in":      2-4 words FROM THIS BEAT'S OWN SENTENCE, lowercase, shown
+                  small above the headline. Or null. (Enforced: a lead-in
+                  whose words are not in its sentence is dropped.)
+  "headline":     2-6 words, NEVER a full sentence. Its words come from the
+                  sentence, and it says only what the sentence says: never
+                  add a claim, promise or judgement it does not make
+                  ("GUARANTEED", "BEST", "FAILS") — a checker rejects that.
+  "emphasis_word": one word of the headline, or null
+  "visual_type":  ONE of PHOTO | CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | TYPE
+  "data":         by type (numbers EXACTLY as the sentence says them — a
+                  number the sentence does not say is rejected and the beat
+                  becomes TYPE):
+    PHOTO    {"entity": "David Einhorn"}  a person, place or organization
+             the sentence NAMES, exactly as it appears in "named_entities".
+             The system fetches a real, verified photo of THAT entity; if
+             none exists the beat is drawn as TYPE — never a stand-in.
     CUTOUT   {"object": "drink can"}   ONE physical object THE SENTENCE
-             NAMES — see "CUTOUT RULE" below. "object" is the cutout query.
+             NAMES — see "CUTOUT RULE" below.
     COUNTER  {"value": "1.4 billion", "label": "brand value"}
     BAR      {"bars": [{"label": "2019", "value": "3 million"}, {"label": "2024", "value": "1.4 billion"}]}
     PIE      {"percent": 25, "label": "of global oil"}
     LINE     {"points": [{"label": "2019", "value": "3 million"}, {"label": "2024", "value": "1.4 billion"}]}
     GAUGE    {"percent": 88, "label": "feel financial stress"}
     MAP      {"place": "Iran"}   a country or US state named in the sentence
-    TYPE     {} — kinetic typography only
-  "abstract_shape": "petals" | "swoosh" | "hairline" | "none"
+    PROCESS  {"nodes": ["higher rates", "rent", "savings"]}  2-3 nodes of
+             1-3 words each, every word FROM THE SENTENCE, in the order the
+             sentence gives the cause -> effect / sequence.
+    TYPE     {} — full-frame typography only
+  "named_entities": every person, place and organization the sentence
+                  NAMES, as written in it, with its FULL name ("Tesla, Inc."
+                  not "Tesla", "Federal Reserve" not "the Fed" when the
+                  sentence says "Federal Reserve"):
+                  [{"type": "person"|"place"|"organization", "name": "..."}]
+                  — [] when it names none. Never an entity it does not name.
+  "motion_tier":  "micro" | "medium" | "major". Most beats "medium". EXACTLY
+                  2 or 3 beats in the video are "major": the hook (beat 0),
+                  the pivot (the turn in the argument), and/or the close.
+                  "micro" for a quiet beat that should hold still.
+  "camera_focus": optional, 1-2 events moving the camera THROUGH the
+                  information: [{"at_percent": 0.4, "target": "number"},
+                  {"at_percent": 0.75, "target": "full"}]. targets: number,
+                  chart, headline, photo, left, right, top, bottom, node0,
+                  node1, node2, full. Omit for a single slow push.
+  "persists_from": the index of the PREVIOUS beat when this beat continues
+                  its element (the same number, chart or photo carried on
+                  and transformed), else null.
+  "match_cut_prev": true when this beat shares its subject or number with
+                  the previous beat and that element should stay fixed in
+                  place across the cut, else false.
 
-Worked example (from the reference). Sentence: "Liquid Death went from
-three million dollars to a 1.4 billion dollar brand."
-  { "kind": "EDITORIAL", "visual_type": "COUNTER", "lead_in": "went from three million to",
-    "headline": "billion dollar brand", "emphasis_word": "brand",
-    "data": {"value": "1.4 billion", "label": "brand value"}, "abstract_shape": "hairline" }
+Worked example. Sentence: "Liquid Death went from three million dollars to
+a 1.4 billion dollar brand."
+  { "kind": "EDITORIAL", "canvas_composition": "DATA-FULL", "visual_type": "BAR",
+    "lead_in": "went from", "headline": "billion dollar brand", "emphasis_word": "billion",
+    "data": {"bars": [{"label": "before", "value": "three million"}, {"label": "now", "value": "1.4 billion"}]},
+    "named_entities": [{"type": "organization", "name": "Liquid Death"}],
+    "motion_tier": "medium", "camera_focus": [{"at_percent": 0.5, "target": "chart"}],
+    "persists_from": null, "match_cut_prev": false }
+
+PHOTO RULE (enforced in code): "entity" must be one of this beat's
+named_entities, and its name must appear in the sentence. Use PHOTO when
+the sentence is ABOUT a named person, place or organization (what they
+did, where it happened) — the viewer should SEE them. At least one beat
+should be a PHOTO when the script names anyone or anywhere. A number in
+the same sentence may still be better as COUNTER/BAR: choose what the
+sentence is about.
 
 CUTOUT RULE (enforced in code: an object the sentence does not name turns
 the beat into TYPE).
@@ -440,43 +523,29 @@ sentence. Not an idea related to the sentence. The thing itself.
   Sentence: "Before signing, do a background check."
     "background check"           -> REJECT. It's an idea.
     "magnifying glass document"  -> REJECT. It's a metaphor.
-    "fingerprint card"           -> REJECT here: neither word is in the
-                                    sentence. This sentence names no object
-                                    you can photograph -> TYPE.
-  Sentence: "The company spent $2 billion on the deal."   (it names a
-  number, so COUNTER comes first; IF it were a cutout:)
-    "money"                          -> REJECT. Too vague.
-    "corporate acquisition contract" -> REJECT. An idea.
-    "stack of hundred dollar bills"  -> ACCEPT. The literal object ($).
-  Sentence: "She signed the agreement in the Miami office."
-    "Miami skyline"               -> REJECT. Not in the sentence.
-    "signature on contract paper" -> ACCEPT. The literal action-object.
-  Sentence: "Robotic arms now weld 40% of the frames."  -> a number: GAUGE
-  or COUNTER first; "robotic arm" would be a valid cutout.
-If no object in the sentence can be photographed in isolation — because the
-sentence is about an idea, a process, or an abstraction — do not use
-CUTOUT. Use COUNTER, BAR, PIE, LINE, GAUGE, MAP, or TYPE.
-The object must be ONE object, not a scene: "money on a table" is a scene,
-"stack of bills" is an object; "camera" is an object, "camera lens
-close-up" is fine, "camera in a room" is a scene. Never a person, a
-screen, a chart, an icon or a drawing — and never something too large to
-isolate from a photo: a building, factory, room, street or landscape (run
-36419295509 spent three tries on "factory building").
+  Sentence: "The company spent $2 billion on the deal."  -> COUNTER first;
+    "stack of hundred dollar bills"  -> would be a valid cutout.
+  Sentence: "Robotic arms now weld 40% of the frames."  -> GAUGE or COUNTER
+  first; "robotic arm" would be a valid cutout.
+The object must be ONE object, never a person (use PHOTO for a named
+person), a screen, a chart, an icon or a drawing, and never something too
+large to isolate: a building, factory, room, street or landscape.
+
+PROCESS RULE (enforced in code): every node's words are in the sentence,
+and the sentence really describes a cause -> effect, a sequence or a flow
+("higher rates raise rent, and rent cuts savings"). Not for a list.
 
 Rules that are enforced, not advisory:
 - Choose the visual type that most directly shows what the sentence is
-  about. If the sentence names a number, use COUNTER, BAR, PIE, LINE, or
-  GAUGE. If the sentence names a place, use MAP. If the sentence names a
-  physical object, use CUTOUT. If the sentence is an abstract claim with
-  no number, no place, and no object, use TYPE.
+  about: a number -> COUNTER, BAR, PIE, LINE or GAUGE; a named person,
+  place or organization -> PHOTO (or MAP for a country / US state); a
+  physical object -> CUTOUT; a cause/effect or sequence -> PROCESS; an
+  abstract claim with none of these -> TYPE.
 - BAR/LINE need two or more numbers the sentence says; PIE/GAUGE need a
   percentage it says. Otherwise COUNTER (one number) or TYPE.
-- About 80% of beats are EDITORIAL.
-- visual_type TYPE (typography only on the paper) is RIGHT for any beat
-  whose sentence names no number, no place and no photographable object —
-  do not force a cutout or chart onto an abstract sentence. (The "kind"
-  TYPE, the kinetic hook/closer, is limited to ${typoMax >= 2 ? `beat 0 and beat ${sentences.length - 1}` : "beat 0"}; the system
-  turns any other TYPE beat into a typography-only EDITORIAL beat.)
+- VARY the compositions: never the same composition three beats in a row.
+- The "kind" TYPE, the kinetic hook/closer, is limited to ${typoMax >= 2 ? `beat 0 and beat ${sentences.length - 1}` : "beat 0"}; the system
+  turns any other TYPE beat into a typography-only EDITORIAL beat.
 - For a TYPE beat set "capabilities": ["typographic_emphasis"] and fill
   "typography_direction" with the headline as its phrase.
 
@@ -634,9 +703,14 @@ Respond ONLY with JSON (no markdown fences):
       "lead_in": "<2-4 words from this beat's own sentence, lowercase, or null>",
       "headline": "<2-4 words, never a full sentence>",
       "emphasis_word": "<one headline word, or null>",
-      "visual_type": "<CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | TYPE>",
+      "canvas_composition": "<TYPE-FULL | DATA-FULL | SCENE-FULL | PROCESS-FULL>",
+      "visual_type": "<PHOTO | CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | TYPE>",
       "data": { "<fields for the visual_type, see above>": "..." },
-      "abstract_shape": "<petals | swoosh | hairline | none>",
+      "named_entities": [{ "type": "<person | place | organization>", "name": "<as named in the sentence>" }],
+      "motion_tier": "<micro | medium | major>",
+      "camera_focus": [{ "at_percent": 0.4, "target": "<number | chart | headline | photo | left | right | top | bottom | node0 | node1 | node2 | full>" }],
+      "persists_from": null,
+      "match_cut_prev": false,
       "carries_forward": "<object/concept that persists into the next beat, or null>",
       "emotional_weight": "<calm|building|sharp|heavy|urgent>",
       "typography_direction": {
@@ -909,11 +983,13 @@ The check (it runs on your answer):
 - PIE / GAUGE {"percent": n, "label": "..."}: n is one of the listed percentages.
 - BAR {"bars": [{"label","value"}]} / LINE {"points": [{"label","value"}]}: every value is a number in the sentence; LINE needs 2+.
 - MAP {"place": "..."}: one of the listed known places.
+- PHOTO {"entity": "..."}: a person, place or organization the sentence NAMES, written as in the sentence; add it to "named_entities" too.
+- PROCESS {"nodes": ["...", "..."]}: 2-3 nodes of 1-3 words each, every word from the sentence (a cause -> effect or sequence).
 - TYPE {}: when nothing above fits. TYPE is the honest answer for a sentence with no number, no percentage, no place and no physical object.
 
 ${lines}
 
-Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>","data":{...}}]} — one entry per beat above.`;
+Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>","data":{...},"named_entities":[{"type":"person|place|organization","name":"..."}]}]} — one entry per beat above.`;
       const t0 = Date.now();
       const ans = await callLLM([{ role: "user", content: repairPrompt }], { maxTokens: 1500, temperature: 0 }, "plan-repair");
       const got = isProviderError(ans) ? [] : (Array.isArray(ans?.beats) ? ans.beats : Array.isArray(ans) ? ans : []);
@@ -921,11 +997,12 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       for (const r of worth) {
         const a = got.find((x) => Number(x?.index) === r.b.index);
         if (!a) { console.log(`[plan-repair] beat ${r.b.index}: ${r.asked} rejected, no replacement returned -> TYPE`); continue; }
-        const cand = { visual_type: a.visual_type, data: a.data || {} };
+        const cand = { visual_type: a.visual_type, data: a.data || {}, named_entities: [...(r.b.named_entities || []), ...(Array.isArray(a.named_entities) ? a.named_entities : [])] };
         const v = checkVisual(cand, r.sentenceText);
         const t = String(a.visual_type || "").toUpperCase();
         if (!v.why && v.type !== "TYPE") {
           r.b.visual_type = v.type; r.b.data = v.data; fixed++;
+          if (v.type === "PHOTO") r.b.named_entities = cand.named_entities;
           console.log(`[plan-repair] beat ${r.b.index}: ${r.asked} -> ${v.type} ${JSON.stringify(v.data)} (passed the gate)`);
         } else {
           console.log(`[plan-repair] beat ${r.b.index}: ${r.asked} -> ${t || "?"}${v.why ? ` still rejected (${v.why})` : " (TYPE)"}`);
@@ -1169,6 +1246,51 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
     }
   }
   if (dropped.length) console.log(`[plan] ${dropped.length} composition(s) dropped at plan time: beats ${dropped.join(", ")}`);
+
+  // ── FULL-CANVAS FIELDS, checked (2026-09-29) ─────────────────────────
+  //   named_entities   only entities the sentence names (checkEntities)
+  //   motion_tier      micro | medium | major; 2-3 "major" per video (1-3
+  //                    under 4 beats): extra majors -> medium (latest first,
+  //                    keeping the hook and the close); too few -> the hook,
+  //                    then the close, then the widest composition change
+  //   camera_focus     <= 2 events, at_percent 0.05-0.9, a known target
+  //   persists_from    only the PREVIOUS beat's index; match_cut_prev boolean
+  //   canvas_composition  recorded as the planner wrote it; the renderer
+  //                    derives the composition from the CHECKED visual_type
+  {
+    const TARGETS = new Set(["number", "chart", "data", "headline", "text", "photo", "subject", "left", "right", "top", "bottom", "node0", "node1", "node2", "full"]);
+    const n = plan.beats.length;
+    for (const [i, b] of plan.beats.entries()) {
+      const sentenceText = sentences[b.index]?.text || sentences[i]?.text || "";
+      const ce = checkEntities(b.named_entities, sentenceText);
+      for (const why of ce.dropped) console.warn(`::warning::[plan] beat ${b.index}: named entity ${why} — dropped`);
+      b.named_entities = ce.kept;
+      if (!["micro", "medium", "major"].includes(b.motion_tier)) b.motion_tier = "medium";
+      b.camera_focus = (Array.isArray(b.camera_focus) ? b.camera_focus : [])
+        .map((f) => ({ at_percent: Math.max(0.05, Math.min(0.9, Number(f?.at_percent))), target: String(f?.target || "").toLowerCase() }))
+        .filter((f) => Number.isFinite(f.at_percent) && TARGETS.has(f.target)).slice(0, 2);
+      if (!b.camera_focus.length) b.camera_focus = null;
+      b.persists_from = Number(b.persists_from) === i - 1 && i > 0 ? i - 1 : null;
+      b.match_cut_prev = !!b.match_cut_prev && i > 0;
+    }
+    const lo = n >= 4 ? 2 : 1;
+    let majors = plan.beats.map((b, i) => (b.motion_tier === "major" ? i : -1)).filter((i) => i >= 0);
+    const keep = new Set([0, n - 1]);
+    while (majors.length > 3) {
+      const drop = [...majors].reverse().find((i) => !keep.has(i)) ?? majors[majors.length - 1];
+      plan.beats[drop].motion_tier = "medium";
+      console.log(`[plan] beat ${drop}: motion_tier major -> medium (at most 3 major beats)`);
+      majors = majors.filter((i) => i !== drop);
+    }
+    for (const i of [0, n - 1, Math.floor(n / 2)]) {
+      if (majors.length >= lo) break;
+      if (i >= 0 && i < n && plan.beats[i].motion_tier !== "major") {
+        plan.beats[i].motion_tier = "major"; majors.push(i);
+        console.log(`[plan] beat ${i}: motion_tier -> major (a video has ${lo}-3 major beats)`);
+      }
+    }
+    console.log(`[plan] motion tiers: ${plan.beats.map((b) => ({ micro: "·", medium: "m", major: "M" })[b.motion_tier]).join("")} (${majors.length} major); entities: ${plan.beats.reduce((a, b) => a + b.named_entities.length, 0)}; camera focus on ${plan.beats.filter((b) => b.camera_focus).length} beat(s)`);
+  }
 
   const result = {
     generatedAt: new Date().toISOString(),

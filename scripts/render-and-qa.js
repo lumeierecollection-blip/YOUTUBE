@@ -21,6 +21,9 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync,
 import { join, dirname, basename, extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
+import { createRequire as createRequireEntity } from "node:module";
+import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layout.js";
+const { resolveEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 import { bundle } from "@remotion/bundler";
 import {
   deriveAdjustments, applyAdjustments, verifyAdjustments,
@@ -200,7 +203,7 @@ async function geminiPlan(channelId, scriptPath, correctionsPath) {
       if (issues.length && first?.source === "ollama") {
         console.log(`[plan] ${issues.length} composition issue(s) on an ollama plan — reported, no corrective re-plan (CPU cost)`);
       }
-      // Not on a paper plan either: an EDITORIAL beat is drawn by PaperVideo
+      // Not on a paper/canvas plan either: an EDITORIAL beat is drawn by CanvasVideo
       // from its own fields and has no composition (gemini-visual-plan.js
       // deletes it), so these issues cannot change what renders. In run
       // 36478456863 this re-plan, judged on composition-issue count alone,
@@ -730,15 +733,13 @@ function frameReviewVerdict(geminiReport) {
   const whole = report.wholeVideoResult || {};
   const score = whole.overall_score != null ? ` ${whole.overall_score}/10` : "";
   if (critical > 0) return { pass: false, reason: `REJECTED — ${critical} CRITICAL frame(s)` };
-  // Reference paper style: the owner redefined this review as "does the
-  // video look like it came from the reference video" (the reviewer now
-  // sees three reference frames and answers reference_match). There, the
-  // reference IS headline-led by design, so reference_match REPLACES the
-  // monoculture headline test; CRITICAL frames, HIGH-issue share and a
-  // failing whole-video severity still reject exactly as before.
-  const refMatch = String(whole.reference_match || "").toUpperCase();
-  if (refMatch === "NO") return { pass: false, reason: `REJECTED — does not match the reference style: ${whole.reference_reason || ""}`.trim() };
-  if (refMatch !== "YES" && whole.headline_test?.monoculture) return { pass: false, reason: `REJECTED — TEMPLATE_MONOCULTURE ${whole.headline_test.percent ?? "?"}% headline-dominated` };
+  // Full-canvas style (2026-09-29): there is no reference video any more
+  // (the paper reference was replaced by the owner's full-canvas spec, which
+  // the reviewer gets as text), so the reference_match rule is gone and the
+  // monoculture headline test applies again, as it did before the paper.
+  // CRITICAL frames, HIGH-issue share and a failing whole-video severity
+  // reject exactly as before.
+  if (whole.headline_test?.monoculture) return { pass: false, reason: `REJECTED — TEMPLATE_MONOCULTURE ${whole.headline_test.percent ?? "?"}% headline-dominated` };
   if (high > Math.floor(frames * 0.3)) return { pass: false, reason: `NEEDS_IMPROVEMENT — ${high} HIGH issues across ${frames} frames` };
   if (whole.status === "FAIL" && (whole.severity === "CRITICAL" || whole.severity === "HIGH")) {
     return { pass: false, reason: `NEEDS_IMPROVEMENT — whole-video FAIL (${whole.severity})${score}` };
@@ -802,7 +803,7 @@ function movementFor(concept) {
   return MOVEMENTS[h[0] % MOVEMENTS.length];
 }
 
-// ── Reference paper style: cutouts + per-beat paper content ──────────
+// ── Cutouts (SCENE-FULL object beats) ─────────────────────────────────
 // Only a CUTOUT beat fetches. Its object is searched as "<object> isolated
 // white background", segmented with rembg (scripts/isolate-cutout.py), made
 // grayscale, and saved as a PNG with alpha in public/cutouts/. A result
@@ -846,7 +847,7 @@ async function makeCutout(asset) {
     source: asset.source, source_url: asset.source_url, license: asset.license, attribution: asset.attribution,
     segmented: true, coverage: res.coverage, rect_fill: res.rect_fill, edge_touch: res.edge_touch, not_object: res.not_object, transparent });
   writeFileSync(CUTOUT_MANIFEST, JSON.stringify(man, null, 2) + "\n");
-  // isolated + transparent are REQUIRED by the renderer (paper-stage.jsx
+  // isolated + transparent are REQUIRED by the renderer (full-canvas.jsx
   // throws "[cutout] isolation failed, no alpha mask" without them).
   return { ok: true, cutout: { asset: `cutouts/${asset.id}.png`, mode: "cutout", isolated: true, transparent: +transparent.toFixed(4),
     coverage: res.coverage, rect_fill: res.rect_fill, edge_touch: res.edge_touch, not_object: res.not_object } };
@@ -891,39 +892,35 @@ async function cutoutFor(channelId, planPath, b, stats) {
   return { cutout: null, asset: null, fetched };
 }
 
-function paperContentFor(b, sentence, cutout) {
-  const h = createHash("sha1").update(String(b.headline || b.caption || b.index)).digest();
-  const shapes = ["petals", "swoosh", "hairline", "none"];
-  const want = String(b.abstract_shape || "").toLowerCase();
-  const variant = ["petals", "leaf", "swoosh", "ribbon", "hairline", "none"].includes(want) ? want : shapes[h[0] % shapes.length];
-  return {
-    kind: b.kind === "TYPE" ? "TYPE" : "EDITORIAL",
+// Full-canvas content for one beat (visual/full-canvas.jsx draws it; there
+// is no paper). The composition follows from the CHECKED visual type
+// (canvas-layout.js compositionFor): a CUTOUT or PHOTO that could not be
+// resolved is drawn as TYPE-FULL, never as a stand-in image.
+function canvasContentFor(b, { cutout = null, photo = null } = {}) {
+  let vt = String(b.visual_type || "TYPE").toUpperCase();
+  if ((vt === "CUTOUT" && !cutout) || (vt === "PHOTO" && !photo)) vt = "TYPE";
+  const c = {
+    visual_type: vt,
+    data: vt === "TYPE" ? null : b.data || null,
     lead_in: b.lead_in || null,
     headline: b.headline || b.caption || "",
     emphasis_word: b.emphasis_word || null,
-    // The planner's visual type and its checked data (checkVisual). A CUTOUT
-    // whose object could not be isolated is drawn as TYPE.
-    visual_type: b.visual_type === "CUTOUT" && !cutout ? "TYPE" : (b.visual_type || (cutout ? "CUTOUT" : "TYPE")),
-    data: b.data || null,
-    number: b.number && /\d/.test(String(b.number)) ? String(b.number) : null,
-    body: sentence || null,
-    cutout: cutout || null,
-    shape: { variant, corner: ["tl", "tr", "bl", "br"][h[1] % 4] },
-    ring: !!cutout && h[2] % 3 !== 0,
-    ringDotted: h[3] % 2 === 0,
-    grid: !!cutout && h[4] % 3 === 0,
-    // No design-tool selection handles: three whole-video reviews in runs
-    // 36390736594/36393233270 (ch 26, 44, 48) read them as "leftover editing
-    // UI artifacts" and failed the video on them.
-    select: false,
-    layout: h[6] % 3 === 0 ? "center" : "left",
+    cutout: vt === "CUTOUT" ? cutout : null,
+    photo: vt === "PHOTO" ? photo : null,
+    motion_tier: ["micro", "medium", "major"].includes(b.motion_tier) ? b.motion_tier : "medium",
+    camera_focus: Array.isArray(b.camera_focus) ? b.camera_focus.slice(0, 2) : null,
+    persists_from: Number.isInteger(b.persists_from) ? b.persists_from : null,
+    match_cut_prev: !!b.match_cut_prev,
+    named_entities: Array.isArray(b.named_entities) ? b.named_entities : [],
   };
+  c.composition = compositionFor(vt, !!(c.photo || c.cutout));
+  return c;
 }
 
 async function resolveAssets(channelId, planPath) {
   const plan = readJsonSafe(planPath);
   if (!plan?.beats?.length) return { ok: false, reason: `no plan at ${planPath}` };
-  if (plan.beats.some((b) => b.kind === "EDITORIAL" || b.headline !== undefined)) return resolvePaper(channelId, planPath, plan);
+  if (plan.beats.some((b) => b.kind === "EDITORIAL" || b.headline !== undefined)) return resolveCanvas(channelId, planPath, plan);
   const visual = plan.beats.filter((b) => b.kind === "VISUAL");
   const typeBeats = plan.beats.filter((b) => b.kind === "TYPE").length;
   let manifest = readJsonSafe(ASSET_MANIFEST) || { assets: [] };
@@ -980,34 +977,78 @@ async function resolveAssets(channelId, planPath) {
   return { ok: true, planPath: out, counts, fetchedNew };
 }
 
-// Paper-style plans: only CUTOUT beats fetch (cutoutFor); COUNTER / BAR /
-// PIE / LINE / GAUGE / MAP are drawn from the plan's checked data; TYPE is
-// typography. A failed cutout becomes TYPE — never a drawing, a photo
-// rectangle or a mechanism scene.
-async function resolvePaper(channelId, planPath, plan) {
+// Full-canvas plans. CUTOUT beats fetch and isolate an object (cutoutFor);
+// PHOTO beats resolve a named person / place / organization to a verified
+// Wikimedia photo (scripts/entity-assets.cjs); COUNTER / BAR / PIE / LINE /
+// GAUGE / MAP / PROCESS are drawn from the plan's checked data; TYPE is
+// typography. An unresolved CUTOUT or PHOTO becomes TYPE-FULL — never a
+// generic photo (CLAUDE.md: real, verified photos only for named entities).
+async function resolveCanvas(channelId, planPath, plan) {
   let fetchedNew = 0;
   const stats = { discarded: 0, converted: 0 };
-  const counts = { editorial: 0, type: 0, cutouts: 0, unresolved: 0, by_type: {} };
+  const counts = { by_comp: {}, cutouts: 0, photos: 0, entity_fallbacks: 0 };
+  const entities = { resolved: [], fell_back: [] };
+  const photoFor = async (ent) => {
+    const r = await resolveEntity({ type: ent.type, name: ent.name, context: channelTopic(channelId) || "" });
+    if (r.ok) {
+      entities.resolved.push(`${ent.type} "${ent.name}" -> ${r.asset} (attempt ${r.attempt ?? "cache"}, ${r.license})`);
+      console.log(`[entity] ${ent.type} "${ent.name}" resolved: ${r.asset} — ${r.page_title || ""} (${r.license}${r.cached ? ", cached" : `, attempt ${r.attempt}`})`);
+      return { asset: r.asset, entity: ent.name, kind: ent.type, credit: r.credit, source_url: r.source_url, license: r.license };
+    }
+    entities.fell_back.push(`${ent.type} "${ent.name}": ${r.why}`);
+    console.log(`[entity] ${ent.type} "${ent.name}" fell back to typography: ${r.why}${(r.attempts || []).length ? " — " + r.attempts.join(" | ") : ""}`);
+    return null;
+  };
   for (const b of plan.beats) {
-    let cutout = null, asset = null;
-    if (String(b.visual_type || "").toUpperCase() === "CUTOUT") {
+    let cutout = null, asset = null, photo = null;
+    const vt = String(b.visual_type || "").toUpperCase();
+    if (vt === "CUTOUT") {
       try {
         const r = await cutoutFor(channelId, planPath, b, stats);
         cutout = r.cutout; asset = r.asset; fetchedNew += r.fetched + (r.cutout ? 1 : 0);
       } catch (e) { return { ok: false, reason: `[cutout] beat ${b.index}: ${e.message}` }; }
-      if (!cutout) { b.visual_type = "TYPE"; b.data = null; b.cutout_query = null; counts.unresolved++; }
+    } else if (vt === "PHOTO") {
+      const ent = (b.named_entities || []).find((e) => e.name === b.data?.entity) || { type: b.data?.entity_type || "person", name: b.data?.entity };
+      if (ent?.name) photo = await photoFor(ent);
+      if (!photo) counts.entity_fallbacks++;
     }
-    b.paper = paperContentFor(b, null, cutout);
+    b.canvas = canvasContentFor(b, { cutout, photo });
     if (asset) b.asset = { id: asset.id, source: asset.source, source_url: asset.source_url, license: asset.license, attribution: asset.attribution };
-    counts.by_type[b.paper.visual_type] = (counts.by_type[b.paper.visual_type] || 0) + 1;
-    if (b.paper.kind === "TYPE") counts.type++; else counts.editorial++;
-    if (cutout) counts.cutouts++;
-    console.log(`[paper] beat ${b.index} ${b.paper.kind} ${b.paper.visual_type} ${JSON.stringify(b.paper.data || {})} shape=${b.paper.shape.variant}`);
+    if (photo) b.asset = { id: photo.asset, source: "wikimedia", source_url: photo.source_url, license: photo.license, attribution: photo.credit };
+  }
+  // A script that names an entity shows at least one real photo of one
+  // (owner's stop condition): when the plan resolved none, the first TYPE-FULL
+  // beat (not the hook) whose sentence names a resolvable entity becomes
+  // SCENE-FULL with that photo.
+  if (!plan.beats.some((b) => b.canvas.photo)) {
+    for (const b of plan.beats.slice(1)) {
+      if (b.canvas.composition !== "TYPE-FULL" || b.canvas.data?.value) continue;
+      let done = false;
+      for (const ent of b.named_entities || []) {
+        const photo = await photoFor(ent);
+        if (photo) {
+          b.visual_type = "PHOTO"; b.data = { entity: ent.name, entity_type: ent.type };
+          b.canvas = canvasContentFor(b, { photo });
+          b.asset = { id: photo.asset, source: "wikimedia", source_url: photo.source_url, license: photo.license, attribution: photo.credit };
+          console.log(`[entity] beat ${b.index}: no PHOTO beat resolved — "${ent.name}" shown here (TYPE-FULL -> SCENE-FULL)`);
+          done = true; break;
+        }
+      }
+      if (done) break;
+    }
+  }
+  for (const b of plan.beats) {
+    const k = b.canvas.composition;
+    counts.by_comp[k] = (counts.by_comp[k] || 0) + 1;
+    if (b.canvas.cutout) counts.cutouts++;
+    if (b.canvas.photo) counts.photos++;
+    console.log(`[canvas] beat ${b.index} ${k} ${b.canvas.visual_type} ${JSON.stringify(b.canvas.data || {})} tier=${b.canvas.motion_tier}${b.canvas.camera_focus ? ` camera=${b.canvas.camera_focus.map((f) => `${f.target}@${f.at_percent}`).join(",")}` : ""}${b.canvas.persists_from !== null ? ` persists_from=${b.canvas.persists_from}` : ""}${b.canvas.match_cut_prev ? " match_cut" : ""}`);
   }
   plan.cutout_stats = stats;
+  plan.entity_report = entities;
   const out = planPath.replace(/\.json$/, "-resolved.json");
   writeFileSync(out, JSON.stringify(plan, null, 2) + "\n");
-  console.log(`[paper] resolved ${basename(planPath)}: ${Object.entries(counts.by_type).map(([k, v]) => `${k} ${v}`).join(", ")}; cutouts discarded ${stats.discarded}, converted to TYPE ${stats.converted}`);
+  console.log(`[canvas] resolved ${basename(planPath)}: ${Object.entries(counts.by_comp).map(([k, v]) => `${k} ${v}`).join(", ")}; photos ${counts.photos}, cutouts ${counts.cutouts}; entities resolved ${entities.resolved.length}, fell back ${entities.fell_back.length}`);
   return { ok: true, planPath: out, counts, fetchedNew };
 }
 
@@ -1204,19 +1245,21 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
 
     const backupArgs = { planPath, srtPath, audio: result.audio, channelId, videoPath: result.outputPath };
 
-    // Step 2b''': PAPER CHECKS (paper style), on every render — local-
-    // audit.cjs frames-fit-paper (every beat's content inside the paper's
-    // inner box, 4 px tolerance) and shapes-clear-of-text (no abstract-shape
-    // ink in the headline or caption zone; the shape inside the visual
-    // zone). Deterministic. A failing beat fails the render; the video goes
-    // to the backup audit, which runs the same checks and rejects it.
+    // Step 2b''': CANVAS CHECKS (full-canvas style), on every render —
+    // local-audit.cjs --canvas-only: canvas-fit (every element box inside the
+    // 1080x1920 frame's safe area; no two text boxes overlapping; no element
+    // in the caption band), canvas-coverage (each beat's rendered content
+    // spans >= 60% of the frame height), canvas-accent (the channel accent
+    // appears in at least one beat), motion-tiers (2-3 major beats).
+    // Deterministic. A failing check fails the render; the video goes to the
+    // backup audit, which runs the same checks and rejects it.
     const manifestPath = result.outputPath.replace(/\.mp4$/, "-manifest.json");
-    if ((readJsonSafe(manifestPath)?.beats || []).some((b) => b.visual_type)) {
-      const fit = await runChild("node", [LOCAL_AUDIT_CJS, "--paper-only", "--video", result.outputPath, "--manifest", manifestPath],
-        { label: `paper-checks ${channelId}/${basename(scriptPath)}` });
+    if ((readJsonSafe(manifestPath)?.beats || []).some((b) => b.canvas)) {
+      const fit = await runChild("node", [LOCAL_AUDIT_CJS, "--canvas-only", "--video", result.outputPath, "--manifest", manifestPath],
+        { label: `canvas-checks ${channelId}/${basename(scriptPath)}` });
       if (fit.code !== 0) {
-        console.error(`::error::paper checks ${fit.code === 1 ? "FAILED — content outside the inner box, or shape ink over text" : "could not run"} for ${basename(result.outputPath)}`);
-        return backupAudit({ ...backupArgs, stage: "paper-checks", reason: fit.code === 1 ? "frames-fit-paper / shapes-clear-of-text failed" : "paper checks could not run" });
+        console.error(`::error::canvas checks ${fit.code === 1 ? "FAILED" : "could not run"} for ${basename(result.outputPath)}`);
+        return backupAudit({ ...backupArgs, stage: "canvas-checks", reason: fit.code === 1 ? "canvas-fit / canvas-coverage / canvas-accent / motion-tiers failed" : "canvas checks could not run" });
       }
     }
 

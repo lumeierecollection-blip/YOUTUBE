@@ -9,7 +9,7 @@
  */
 import React from "react";
 import { AbsoluteFill } from "remotion";
-import { CANVAS, STUDIO_BG } from "./paper-layout.js";
+import { FRAME as CANVAS, STUDIO as STUDIO_BG } from "./canvas-layout.js";
 
 // One frond: leaflets along a quadratic stem from (0,0) toward (len,0),
 // curving by `bend`. Returns SVG path data for all leaflets.
@@ -30,11 +30,14 @@ function frondPath(len, bend, leaflets = 16) {
   return parts.join(" ");
 }
 
-export function StudioBG({ children }) {
+// `color`: the ground (default the off-white studio, canvas-layout.js). `drift`: seconds of
+// slow shadow movement (full-canvas micro motion) — 0 keeps it static.
+export function StudioBG({ children, color = STUDIO_BG, drift = 0 }) {
   const { w, h } = CANVAS;
+  const dx = Math.sin(drift * 0.21) * 26, dy = Math.cos(drift * 0.17) * 18;
   return (
-    <AbsoluteFill style={{ backgroundColor: STUDIO_BG }}>
-      <svg width={w} height={h} style={{ position: "absolute", inset: 0 }}>
+    <AbsoluteFill style={{ backgroundColor: color }}>
+      <svg width={w} height={h} style={{ position: "absolute", inset: 0, transform: `translate(${dx.toFixed(2)}px, ${dy.toFixed(2)}px)` }}>
         <defs>
           <filter id="frond-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="20" /></filter>
         </defs>

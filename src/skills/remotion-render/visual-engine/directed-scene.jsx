@@ -30,7 +30,7 @@ import { paletteRoles } from "../visual/palette-roles.js";
 import { SAFE_SHORTS } from "../layout/slots.js";
 import { ComposedScene } from "./composed-scene.jsx";
 import { LayeredScene } from "./layered-scene.jsx";
-import { PaperVideo } from "./paper-video.jsx";
+import { CanvasVideo } from "../visual/full-canvas.jsx";
 import { ensureTextContrast, TEXT_TARGET_CONTRAST, ACCENT_TEXT_TARGET_CONTRAST } from "../visual/scene-text.js";
 
 const CANVAS_W = 1080;
@@ -1363,22 +1363,22 @@ export function DirectedScene({ plan, ttsAudioPath }) {
       {plan.kalimba ? <KalimbaBed totalFrames={durationInFrames} fps={fps} src={plan.kalimba} /> : null}
       {/* SFX — semantic triggers only (sound-design.js semanticSfxEvents). */}
       {Array.isArray(plan.sfx) && plan.sfx.length ? <SfxPalette events={plan.sfx} /> : null}
-      {/* Reference paper style (docs/REFERENCE-STYLE.md): the whole frame is
-          PaperVideo — static studio and paper (no rail, no timeline device);
-          only the paper's content changes per beat. Nothing below renders in
-          paper mode, so composed-scene / photo.jsx (rectangular photos, other
-          styles) can never draw on the paper. */}
-      {plan.paper ? <PaperVideo plan={plan} /> : null}
+      {/* Full-canvas style (visual/full-canvas.jsx): the whole frame is
+          CanvasVideo — no paper, no card; every beat composed for 1080x1920.
+          The paper stage was removed from the render path (2026-09-29). A
+          plan still marked paper is refused rather than drawn some other way. */}
+      {plan.paper ? (() => { throw new Error("paper-style plans are no longer rendered (the paper stage was removed) — re-resolve the plan to canvas content"); })() : null}
+      {plan.canvas ? <CanvasVideo plan={plan} /> : null}
       {/* Previous beat echo — fading out during transition */}
-      {!plan.paper && showPrevEcho && (
+      {!plan.canvas && showPrevEcho && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: prevEchoOpacity }}>
           <BeatBody beat={prev} p={1} local={prev.duration_frames}
             ed={ed} font={plan.fonts.primary} scene={prevScene} />
         </div>
       )}
 
-      {/* Current beat (not in paper mode — PaperVideo draws the whole frame) */}
-      {!plan.paper && (
+      {/* Current beat (not in canvas mode — CanvasVideo draws the whole frame) */}
+      {!plan.canvas && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: tOpacity }}>
           <BeatBody beat={beat} p={p} local={local}
             ed={ed} font={plan.fonts.primary} scene={scene} />

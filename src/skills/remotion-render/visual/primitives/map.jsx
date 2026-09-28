@@ -23,9 +23,9 @@ import { INK, clamp01, buildT } from "./viz-common.js";
 const FEATHER = 0.06;
 const EM = 0.6;
 
-function fitLabel(text, width) {
+function fitLabel(text, width, maxSize = 40) {
   const one = Math.floor(width / (Math.max(1, text.length) * EM));
-  if (one >= 22 || !text.includes(" ")) return { lines: [text], size: Math.min(40, one) };
+  if (one >= 22 || !text.includes(" ")) return { lines: [text], size: Math.min(maxSize, one) };
   // Two lines, split at the space nearest the middle.
   const mid = text.length / 2;
   let cut = -1;
@@ -35,14 +35,16 @@ function fitLabel(text, width) {
   return { lines, size: Math.min(40, Math.floor(width / (longest * EM))) };
 }
 
-export function PaperMap({ data, bounds, local, dur, font }) {
+// accent / ground / labelMax: the full-canvas renderer draws the highlight
+// in the channel's accent on its off-white studio ground (defaults: paper).
+export function PaperMap({ data, bounds, local, dur, font, accent = INK, ground = "#FFFFFF", labelMax = 40 }) {
   if (!data?.place) return null;
-  const colors = { ground: "#FFFFFF", onGround: INK, accent: INK, paper: "#E7E8EA", ink: INK };
+  const colors = { ground, onGround: INK, accent, paper: "#E7E8EA", ink: INK };
   // The map engine animates over its own progress 0..1; run it over the
   // first 60% of the beat, then hold the finished map.
   const p = clamp01(local / Math.max(1, dur * 0.6));
   const place = String(data.place).trim();
-  const label = fitLabel(place, bounds.w - 8);
+  const label = fitLabel(place, bounds.w - 8, labelMax);
   const labelH = label.lines.length * label.size * 1.1 + 12;
   const map = { x: bounds.x, y: bounds.y, w: bounds.w, h: bounds.h - labelH };
   const id = `pm-${place.replace(/[^a-z0-9]/gi, "")}`;

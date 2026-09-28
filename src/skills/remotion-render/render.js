@@ -45,8 +45,7 @@ import { direct } from "./visual-engine/director/visual-director.js";
 import { sceneTextInventory } from "./visual/scene-text.js";
 import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
 import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
-import { shapeLayout } from "./visual/shape-geometry.js";
-import { headlineLayout, captionSize } from "./visual/paper-text.js";
+import { canvasLayout, contentBounds } from "./visual/canvas-layout.js";
 
 
 
@@ -522,7 +521,7 @@ async function main() {
     // start falls inside it, in frames relative to the beat. No timings, or
     // a beat with no words, fails the render — the captions are never
     // modelled and never shown all at once.
-    if (beats.some((b) => b.scene?.paper)) {
+    if (beats.some((b) => b.scene?.canvas)) {
       const wordsPath = ttsAudioPath.replace(/\.mp3$/, "-words.json");
       let spoken = null;
       try { spoken = JSON.parse(readFileSync(wordsPath, "utf-8")).words; } catch {}
@@ -570,12 +569,20 @@ async function main() {
     // DirectedShorts played the voiceover only until this — no bed at all.
     const kal = pickKalimbaTrack(channel.channel_id ?? channelId, basename(scriptPath));
     sentencePlan.kalimba = kal.file;
-    // Reference paper style (docs/REFERENCE-STYLE.md) when the resolved plan
-    // carries paper content; the rail shows the channel's own name.
+    // Full-canvas style (visual/full-canvas.jsx) when the resolved plan
+    // carries canvas content. The accent colour lives in channels.json
+    // (colors.canvas_accent — CLAUDE.md: colour never in a script); a channel
+    // without one renders its primary values in ink.
     if (beats.some((b) => b.scene && b.scene.paper)) {
-      sentencePlan.paper = true;
-      sentencePlan.railText = String(channel.name || channel.channel_name || "").toUpperCase();
-      console.log(`[paper] reference paper style (no channel name on screen), ${beats.filter((b) => b.scene?.paper?.cutout?.asset).length}/${beats.length} beats with a cutout`);
+      console.error("::error::[canvas] the resolved plan carries paper content — the paper stage was removed; re-resolve the plan");
+      process.exit(1);
+    }
+    if (beats.some((b) => b.scene && b.scene.canvas)) {
+      sentencePlan.canvas = true;
+      sentencePlan.accent = channel.colors?.canvas_accent || null;
+      const comps = {};
+      for (const b of beats) { const k = canvasLayout(b.scene.canvas).composition; comps[k] = (comps[k] || 0) + 1; }
+      console.log(`[canvas] full-canvas style, accent ${sentencePlan.accent || "(none — ink)"}; ${Object.entries(comps).map(([k, v]) => `${k} ${v}`).join(", ")}`);
     }
     console.log(`[audio] ${kal.name} (from ${kal.count} tracks)`);
 
@@ -810,6 +817,8 @@ async function main() {
       width: 1080,
       height: 1920,
       renderScale: scale,
+      // Full-canvas: the channel accent the renderer drew with (local-audit canvas-accent).
+      accent: sentencePlan.accent || null,
       totalFrames: frames,
       durationSec: +(frames / fps).toFixed(2),
       generatedAt: new Date().toISOString(),
@@ -848,17 +857,26 @@ async function main() {
           start_sec: +((b.start_frame || 0) / fps).toFixed(2),
           duration_sec: +((b.duration_frames || 0) / fps).toFixed(2),
           mechanism,
-          // Paper style: the planner's visual type for this beat, as drawn
-          // (a CUTOUT that failed isolation is recorded as TYPE).
-          visual_type: b.scene?.paper?.visual_type || null,
-          // Paper style: the abstract shape's rendered box (paper coords),
-          // from the same shapeLayout() the renderer draws with — the audit
-          // (shapes-clear-of-text) checks it stays in the VISUAL zone.
-          shape_box: b.scene?.paper ? (shapeLayout(b.scene.paper.shape?.variant, b.scene.paper.shape?.corner, b.scene.paper.visual_type)?.box || null) : null,
-          // ...and its text sizes (paper-text.js, the renderer's own numbers):
-          // how thick this beat's real text strokes can be.
-          headline_size: b.scene?.paper ? headlineLayout(b.scene.paper).size : null,
-          caption_size: b.scene?.paper && Array.isArray(b.spoken) ? captionSize(b.spoken) : null,
+          // Full-canvas style: the visual type as drawn (a CUTOUT / PHOTO that
+          // could not be resolved is recorded as TYPE), its composition, and
+          // every element box from canvasLayout() — the renderer's own numbers,
+          // which the audit (local-audit.cjs canvas-fit / canvas-coverage)
+          // checks against the 1080x1920 frame.
+          visual_type: b.scene?.canvas?.visual_type || null,
+          canvas: b.scene?.canvas ? (() => {
+            const L = canvasLayout(b.scene.canvas);
+            const flat = {};
+            for (const [k, v] of Object.entries(L.boxes)) {
+              if (k === "bottom") continue;
+              if (Array.isArray(v)) v.forEach((n, j) => { flat[`${k}${j}`] = { x: n.x, y: n.y, w: n.w, h: n.h }; });
+              else if (v && "x" in v) flat[k] = { x: v.x, y: v.y, w: v.w, h: v.h };
+            }
+            const c = b.scene.canvas;
+            return { composition: L.composition, hero: L.hero, boxes: flat, content: contentBounds(L), motion_tier: c.motion_tier || "medium",
+              camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
+              photo: c.photo ? { asset: c.photo.asset, entity: c.photo.entity || null, kind: c.photo.kind || null } : null,
+              accent_used: ["DATA-FULL", "PROCESS-FULL"].includes(L.composition) || (L.composition === "TYPE-FULL" && (!!L.boxes.number || /\d/.test(String(c.headline || "")))) };
+          })() : null,
           renders_typography: rendersTypography,
           text: rendersTypography ? [b.text].filter((t) => t && String(t).trim()) : [],
           on_screen_text: onScreenText,
@@ -873,10 +891,7 @@ async function main() {
           // composed beat from one that fell back to a mechanism scene, and
           // coverage is the measurable form of the "floating text in a
           // void" defect that sixteen Gemini verdicts kept reporting.
-          paper: scene.paper
-            ? { kind: scene.paper.kind, cutout: scene.paper.cutout ? { asset: scene.paper.cutout.asset, mode: scene.paper.cutout.mode } : null,
-                shape: scene.paper.shape?.variant || "none", number: !!scene.paper.number, headline_words: String(scene.paper.headline || "").split(/\s+/).filter(Boolean).length }
-            : null,
+          paper: null,
           layers: Array.isArray(scene.layers)
             ? scene.layers.map((l) => ({ role: l.role, kind: l.kind, ...(l.asset ? { asset: l.asset } : {}), ...(l.name ? { name: l.name } : {}), ...(l.motion ? { motion: l.motion } : {}), ...(l.style ? { style: l.style } : {}) }))
             : null,

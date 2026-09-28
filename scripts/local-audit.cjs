@@ -44,6 +44,26 @@
  *                     when any beat fails, and render-and-qa.js fails the
  *                     render.
  *
+ *   FULL-CANVAS videos (2026-09-29; the paper checks above apply only to
+ *   the retired paper style and are not run on them — frames-match-reference
+ *   compared every frame with the WHITE-PAPER reference, which a full-bleed
+ *   photo beat fails by construction):
+ *   canvas-fit        every element box the renderer placed (manifest
+ *                     beats[].canvas.boxes, canvas-layout.js) is inside the
+ *                     frame less 48 px (a full-bleed photo is the frame);
+ *                     no two text boxes overlap; nothing but a photo enters
+ *                     the caption band (y 1450-1610)
+ *   canvas-coverage   each beat's RENDERED content (pixels darker than luma
+ *                     170 or with chroma > 45, above the caption band) spans
+ *                     >= 60% of the frame height — measured on the frames,
+ *                     at 55% and 90% of the beat, the larger counted
+ *   canvas-accent     the channel accent (manifest.accent) covers >= 0.2% of
+ *                     the frame in at least one beat (RGB distance < 40)
+ *   motion-tiers      every beat has a tier; 2-3 beats are "major" (1-3 when
+ *                     the video has fewer than 4 beats)
+ *   `--canvas-only --video <mp4> --manifest <json>` runs these four on
+ *   every render (render-and-qa.js) and exits 1 on a failure.
+ *
  * Usage:
  *   node scripts/local-audit.cjs --video <mp4> --manifest <render-manifest.json>
  *     --plan <visual-plan.json> --srt <vo.srt> --audio <vo.mp3> [--out <json>]
@@ -288,6 +308,103 @@ async function shapesCheck(video, beats, DW, DH, debug = false) {
   return { bad, checked };
 }
 
+// ── full-canvas checks ───────────────────────────────────────────────
+const SAFE_INSET = 48, CAPTION_Y0 = 1450, CAPTION_Y1 = 1610, COVER_MIN = 0.6;
+const TEXT_BOXES = ["kicker", "headline", "statement", "number", "label"];
+function rgbFrame(video, t, w, h) {
+  const r = spawnSync(FFMPEG, ["-hide_banner", "-loglevel", "error", "-ss", t.toFixed(3), "-i", video,
+    "-frames:v", "1", "-vf", `scale=${w}:${h},format=rgb24`, "-f", "rawvideo", "-"], { maxBuffer: 1 << 27 });
+  return r.status === 0 && r.stdout && r.stdout.length === w * h * 3 ? r.stdout : null;
+}
+function canvasFit(beats) {
+  const bad = [];
+  const inter = (a, b) => a.x < b.x + b.w - 2 && b.x < a.x + a.w - 2 && a.y < b.y + b.h - 2 && b.y < a.y + a.h - 2;
+  beats.forEach((b, i) => {
+    const boxes = b.canvas?.boxes;
+    if (!boxes) { bad.push(`beat ${i}: no canvas boxes in the manifest`); return; }
+    for (const [k, v] of Object.entries(boxes)) {
+      if (k === "photo") continue;
+      if (v.x < SAFE_INSET - 0.5 || v.y < SAFE_INSET - 0.5 || v.x + v.w > 1080 - SAFE_INSET + 0.5 || v.y + v.h > 1920 - SAFE_INSET + 0.5) {
+        bad.push(`beat ${i}: ${k} box (${v.x},${v.y},${v.x + v.w},${v.y + v.h}) leaves the frame's safe area`);
+      }
+      if (v.y + v.h > CAPTION_Y0 + 0.5 && v.y < CAPTION_Y1) bad.push(`beat ${i}: ${k} box (y ${v.y}-${v.y + v.h}) enters the caption band`);
+    }
+    const texts = Object.entries(boxes).filter(([k]) => TEXT_BOXES.includes(k));
+    for (let a = 0; a < texts.length; a++) for (let c = a + 1; c < texts.length; c++) {
+      if (inter(texts[a][1], texts[c][1])) bad.push(`beat ${i}: text boxes ${texts[a][0]} and ${texts[c][0]} overlap`);
+    }
+  });
+  return bad;
+}
+function canvasCoverage(video, beats) {
+  const W = 216, H = 384;                          // 1/5 scale: rows are 5 design px
+  const capRow = Math.floor((CAPTION_Y0 / 1920) * H);
+  const bad = [], spans = [];
+  beats.forEach((b, i) => {
+    let best = 0;
+    for (const share of [0.55, 0.9]) {
+      const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share;
+      const buf = rgbFrame(video, t, W, H);
+      if (!buf) continue;
+      let first = -1, last = -1;
+      for (let y = 0; y < capRow; y++) {
+        let n = 0;
+        for (let x = 0; x < W; x++) {
+          const o = (y * W + x) * 3, r = buf[o], g = buf[o + 1], bl = buf[o + 2];
+          const l = 0.299 * r + 0.587 * g + 0.114 * bl;
+          if (l < 170 || Math.max(r, g, bl) - Math.min(r, g, bl) > 45) n++;
+        }
+        if (n >= 2) { if (first < 0) first = y; last = y; }
+      }
+      if (first >= 0) best = Math.max(best, (last - first + 1) / H);
+    }
+    spans.push(best);
+    if (best < COVER_MIN) bad.push(`beat ${i} (${b.canvas?.composition || "?"}): content spans ${(best * 100).toFixed(0)}% of the frame height (< ${COVER_MIN * 100}%)`);
+  });
+  return { bad, spans };
+}
+function canvasAccent(video, beats, accent) {
+  if (!accent) return { bad: ["the manifest names no accent colour (channels.json colors.canvas_accent)"], best: 0 };
+  const [ar, ag, ab] = [1, 3, 5].map((k) => parseInt(accent.slice(k, k + 2), 16));
+  const W = 216, H = 384;
+  let best = 0, where = -1;
+  beats.forEach((b, i) => {
+    const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * 0.7;
+    const buf = rgbFrame(video, t, W, H);
+    if (!buf) return;
+    let n = 0;
+    for (let o = 0; o < buf.length; o += 3) {
+      const d = Math.hypot(buf[o] - ar, buf[o + 1] - ag, buf[o + 2] - ab);
+      if (d < 40) n++;
+    }
+    const f = n / (W * H);
+    if (f > best) { best = f; where = i; }
+  });
+  return { bad: best >= 0.002 ? [] : [`accent ${accent} covers at most ${(best * 100).toFixed(2)}% of any beat frame (need 0.2% in one)`], best, where };
+}
+function motionTiers(beats) {
+  const bad = [];
+  const tiers = beats.map((b) => b.canvas?.motion_tier);
+  tiers.forEach((t, i) => { if (!["micro", "medium", "major"].includes(t)) bad.push(`beat ${i}: no motion tier`); });
+  const major = tiers.filter((t) => t === "major").length;
+  const lo = beats.length >= 4 ? 2 : 1;
+  if (major < lo || major > 3) bad.push(`${major} major-motion beat(s) (need ${lo}-3)`);
+  return { bad, major, medium: tiers.filter((t) => t === "medium").length };
+}
+async function canvasChecks(video, m) {
+  const beats = m.beats || [];
+  const out = [];
+  const fit = canvasFit(beats);
+  out.push({ id: "canvas-fit", pass: !fit.length, detail: fit.length ? fit.join("; ") : `${beats.length} beat(s): every element inside the safe area, no text overlap, caption band clear` });
+  const cov = canvasCoverage(video, beats);
+  out.push({ id: "canvas-coverage", pass: !cov.bad.length, detail: cov.bad.length ? cov.bad.join("; ") : `every beat's content spans >= 60% of the frame height (min ${(Math.min(...cov.spans) * 100).toFixed(0)}%)` });
+  const acc = canvasAccent(video, beats, m.accent);
+  out.push({ id: "canvas-accent", pass: !acc.bad.length, detail: acc.bad.length ? acc.bad.join("; ") : `accent ${m.accent} in beat ${acc.where} (${(acc.best * 100).toFixed(1)}% of the frame)` });
+  const mt = motionTiers(beats);
+  out.push({ id: "motion-tiers", pass: !mt.bad.length, detail: mt.bad.length ? mt.bad.join("; ") : `${mt.major} major, ${mt.medium} medium, all beats micro` });
+  return out;
+}
+
 function parseSrt(text) {
   const toSec = (ts) => { const [h, m, rest] = ts.split(":"); return +h * 3600 + +m * 60 + +rest.replace(",", "."); };
   return text.replace(/\r/g, "").split(/\n\s*\n/).map((block) => {
@@ -303,6 +420,17 @@ async function main() {
   // Per-render paper checks (render-and-qa.js runs this on EVERY paper
   // render): frames-fit-paper and shapes-clear-of-text. --fit-only is the
   // old name of the same mode.
+  if (process.argv.includes("--canvas-only")) {
+    const video = arg("video"), manifestPath = arg("manifest");
+    if (!video || !existsSync(video) || !manifestPath || !existsSync(manifestPath)) {
+      console.error(`[canvas] cannot run — need --video and --manifest (${video}, ${manifestPath})`);
+      process.exit(2);
+    }
+    const m = JSON.parse(readFileSync(manifestPath, "utf8"));
+    const res = await canvasChecks(video, m);
+    for (const c of res) console.log(`[canvas] ${c.pass ? "PASS" : "FAIL"} ${c.id} — ${c.detail}`);
+    process.exit(res.every((c) => c.pass) ? 0 : 1);
+  }
   if (process.argv.includes("--paper-only") || process.argv.includes("--fit-only")) {
     const video = arg("video"), manifestPath = arg("manifest");
     if (!video || !existsSync(video) || !manifestPath || !existsSync(manifestPath)) {
@@ -373,9 +501,12 @@ async function main() {
   try { rmSync(work, { recursive: true, force: true }); } catch {}
   add("frames-nonempty", sizeBad, `${beats.length}/${beats.length} beat frames > 15 KB`);
   add("frames-centered", centerBad, `${beats.length}/${beats.length} beats have centre content`);
-  add("frames-match-reference", ref ? refBad : ["data/reference/reference-histogram.json missing"], `${beats.length}/${beats.length} beat frames within L1 ${REF_L1_MAX} of the reference`);
+  const canvasVideo = beats.some((b) => b.canvas);
+  if (canvasVideo) {
+    for (const c of await canvasChecks(video, manifest)) checks.push(c);
+  } else add("frames-match-reference", ref ? refBad : ["data/reference/reference-histogram.json missing"], `${beats.length}/${beats.length} beat frames within L1 ${REF_L1_MAX} of the reference`);
 
-  if (beats.some((b) => b.visual_type)) {
+  if (!canvasVideo && beats.some((b) => b.visual_type)) {
     const fit = await fitCheck(video, beats, DW, DH);
     add("frames-fit-paper", fit.bad, `${fit.checked} frame(s): every content bbox inside the paper's inner box`);
     const sh = await shapesCheck(video, beats, DW, DH);

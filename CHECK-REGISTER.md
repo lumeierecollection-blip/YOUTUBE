@@ -77,6 +77,7 @@ never `L7` or `Â§3.1`.
 | `PLN` | the plan renderer — the pure function from a structured plan to pixels, and the aborts that stop it emitting a frame nobody can read | `src/skills/remotion-render/compositions/template-scene.jsx` + `visual/palette-roles.js` (per render — see §3.16) |
 | `OBJ` | the procedural object library — every noun a channel's `core_objects` names, and the box each drawing is bound to | `src/skills/remotion-render/qa-scripts/audit-object-bounds.mjs` (per change to a drawing — see §3.17) |
 | `MOT2` | the beat engine — visual intent, actor persistence, kinetic typography, and whether a video moves at all | `src/skills/remotion-render/visual-engine/qa/motion-checks.mjs` (per render — see §3.18) |
+| `CNV` | full-canvas composition — the frame-filling beat grammar that replaced the paper stage (2026-09-29), named-entity photos, spoken-form TTS | `scripts/local-audit.cjs --canvas-only` (per render) + `scripts/gemini-visual-plan.js` / `scripts/entity-assets.cjs` / `src/utils/tts-normalize.js` (per plan / per voiceover — see §3.19) |
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 
 ---
@@ -3007,6 +3008,39 @@ delete `SemanticScene` has NOT been carried out: it still renders every channel
 in production, and deleting it before the replacement ships would leave the
 daily cron with nothing to run.
 
+
+## 3.19 `CNV` — full-canvas composition (the paper stage removed, 2026-09-29)
+
+The owner replaced the paper stage (a small white page in the middle of the
+frame, the same three zones on every beat) with full-canvas editorial motion
+graphics: every beat is composed for the whole 1080x1920 frame as TYPE-FULL,
+DATA-FULL, SCENE-FULL or PROCESS-FULL (`visual/canvas-layout.js`,
+`visual/full-canvas.jsx`). The paper-only checks in `local-audit.cjs`
+(`frames-fit-paper`, `shapes-clear-of-text`, `frames-match-reference`) are
+not run on a canvas video: the first two measure the paper's zones, and the
+third compares every frame with the WHITE-PAPER reference histogram, which a
+full-bleed photo beat fails by construction. They are replaced, not
+loosened: the same questions (does everything fit, is text clear, does the
+video look like the target style) are asked of the frame instead of the page.
+
+| ID | Check | Method | T | Sev | Stage |
+|---|---|---|---|---|---|
+| CNV-01 | `canvas-fit` — every element box the renderer placed (manifest `beats[].canvas.boxes`, from `canvasLayout()`) is inside the frame less 48 px (a full-bleed photo is the frame); no two text boxes overlap; nothing but a photo enters the caption band (y 1450-1610) | manifest geometry | 3 | BLOCKER | per render |
+| CNV-02 | `canvas-coverage` — each beat's rendered content (luma < 170 or chroma > 45, above the caption band) spans >= 60% of the frame height, at 55% / 90% of the beat | ffmpeg frames | 3 | BLOCKER | per render |
+| CNV-03 | `canvas-accent` — the channel accent (`channels.json colors.canvas_accent`) covers >= 0.2% of the frame in at least one beat | ffmpeg frames | 3 | MAJOR | per render |
+| CNV-04 | `motion-tiers` — every beat has a tier; 2-3 are `major` (1-3 under 4 beats); the planner caps / fills the count before render | manifest | 1 | MAJOR | per plan + per render |
+| CNV-05 | Named entities — a `named_entities` entry, and a PHOTO beat's entity, must be named in its own sentence (`entityNamedInSentence`); others are dropped / the beat becomes TYPE | plan gate | 1 | BLOCKER | per plan |
+| CNV-06 | Entity photos — a PHOTO is a free-licensed JPEG on Wikimedia Commons, >= 500 px short side, whose Wikipedia page title or Commons file name names the entity; charts / maps / logos / scans / people-shots (for places and organizations) are refused; after 3 attempts the beat is TYPE-FULL, never a generic stand-in (CLAUDE.md hard rule) | `scripts/entity-assets.cjs` | 2 | BLOCKER | per render |
+| CNV-07 | PROCESS nodes — 2-3 nodes, each 1-3 words from the sentence | plan gate | 1 | BLOCKER | per plan |
+| CNV-08 | Spoken-form TTS — every string sent to the engine goes through `speakable()` (no "slash", no raw `%` / `$` / `/` / `&`); the SRT cues keep the written text so the plan gates still read digits; 21 cases in `scripts/test-tts-normalize.mjs` | unit test + code path | 1 | MAJOR | per voiceover |
+| CNV-09 | No paper stage — `plan.paper` is refused by `DirectedScene` and by `render.js` (the paper modules are deleted, `DEL`-style: `paper-stage.jsx`, `paper-video.jsx`, `paper-caption.jsx`, `abstract-shape.jsx`, `shape-geometry.js`, `paper-text.js`, `branding-rail.jsx`) | code path | 1 | BLOCKER | per render |
+
+Where these stop: CNV-01 checks the renderer's OWN layout numbers (text
+widths are estimated from character counts, not measured glyphs); CNV-02
+counts any dark or saturated pixel as content, so it cannot tell a
+composition from stray ink — it proves the frame is used, not that it is
+used well; that judgement stays with the whole-video review, whose rubric
+now states the full-canvas grammar instead of sending the paper reference.
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 

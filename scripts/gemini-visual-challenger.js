@@ -110,23 +110,25 @@ function srtSentences(srtPath) {
 }
 
 function describeBeat(b) {
-  // Reference paper style: what the viewer sees IS these fields (PaperVideo
-  // draws them), so the challenger judges them — not the unused mechanism.
+  // Full-canvas style: what the viewer sees IS these fields (CanvasVideo
+  // draws them, filling the frame), so the challenger judges them — not the
+  // unused mechanism. The drawn visual too (visual_type + its checked data):
+  // run 36416582506 ch-1 rejected a beat for "omitting" a figure its counter
+  // drew, because the challenger was never shown the counter.
   if (b.kind === "EDITORIAL" || (b.kind === "TYPE" && b.headline !== undefined)) {
-    // The drawn visual too (visual_type + its checked data). Run 36416582506
-    // ch-1: a beat whose COUNTER draws "$2,600" was rejected as "the headline
-    // omits the $2600 figure" — the challenger was never shown the counter.
     const d = b.data || {};
     const vt = String(b.visual_type || "").toUpperCase();
-    const visual = vt === "COUNTER" ? `counter drawn on the page: ${d.value}${d.label ? ` (${d.label})` : ""}`
-      : vt === "PIE" || vt === "GAUGE" ? `${vt.toLowerCase()} chart drawn on the page: ${d.percent}%${d.label ? ` (${d.label})` : ""}`
-      : vt === "BAR" ? `bar chart drawn on the page: ${(d.bars || []).map((x) => `${x.label} ${x.value}`).join(", ")}`
-      : vt === "LINE" ? `line chart drawn on the page: ${(d.points || []).map((x) => `${x.label} ${x.value}`).join(" -> ")}`
-      : vt === "MAP" ? `map drawn on the page: ${d.place}`
-      : b.cutout_query ? `grayscale photo cutout of: ${b.cutout_query}` : null;
+    const visual = vt === "COUNTER" ? `one big number filling the frame: ${d.value}${d.label ? ` (${d.label})` : ""}`
+      : vt === "PIE" || vt === "GAUGE" ? `full-frame ${vt === "PIE" ? "donut" : "half-circle gauge"}: ${d.percent}%${d.label ? ` (${d.label})` : ""}`
+      : vt === "BAR" ? `full-frame bar chart: ${(d.bars || []).map((x) => `${x.label} ${x.value}`).join(", ")}`
+      : vt === "LINE" ? `full-width line chart: ${(d.points || []).map((x) => `${x.label} ${x.value}`).join(" -> ")}`
+      : vt === "MAP" ? `full-frame map: ${d.place}`
+      : vt === "PHOTO" ? `real photograph of ${d.entity} (${d.entity_type || "entity"}) filling the frame`
+      : vt === "PROCESS" ? `process diagram: ${(d.nodes || []).join(" -> ")}`
+      : b.cutout_query ? `isolated photo cutout, large on the frame, of: ${b.cutout_query}` : null;
     return [
-      `${b.kind === "TYPE" || vt === "TYPE" ? "typography-only page" : "editorial page"}`,
-      b.lead_in ? `italic lead-in: "${b.lead_in}"` : null,
+      `${b.kind === "TYPE" || vt === "TYPE" ? "full-frame typography" : "full-canvas beat"}`,
+      b.lead_in ? `lead-in: "${b.lead_in}"` : null,
       `headline: "${b.headline || ""}"`,
       visual,
       !visual && b.number ? `number: ${b.number}` : null,

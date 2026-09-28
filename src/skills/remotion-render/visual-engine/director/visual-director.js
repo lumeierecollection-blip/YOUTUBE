@@ -838,10 +838,10 @@ export function direct(cues, options) {
     if (directive && Array.isArray(directive.layers) && directive.layers.length) {
       scene.layers = directive.layers;
     }
-    // Reference paper style: the beat's paper content (built by the asset
-    // resolver) carries through untouched; PaperVideo draws it.
-    if (directive && directive.paper) {
-      scene.paper = directive.paper;
+    // Full-canvas style: the beat's canvas content (built by the asset
+    // resolver) carries through untouched; CanvasVideo draws it.
+    if (directive && directive.canvas) {
+      scene.canvas = directive.canvas;
     }
     if (directive && directive.composition) {
       const v = validateScene(directive.composition);
