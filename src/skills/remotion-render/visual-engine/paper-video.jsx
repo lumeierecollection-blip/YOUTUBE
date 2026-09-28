@@ -32,8 +32,11 @@ export function PaperVideo({ plan }) {
     <StudioBG>
       <BrandingRail text={plan.railText} />
       <Paper>
-        {/* The tiny body paragraph is the narration sentence itself (the cue). */}
-        {content ? <PaperContent key={i} c={{ ...content, body: content.body || beat.original_text || null }} local={local} dur={beat.duration_frames} fps={fps} /> : null}
+        {/* No body paragraph. The narration sentence was used as the tiny body
+            text, and the reviewer (run 36369197918 ch-2) read it as "verbatim
+            caption tracks" — a subtitle of the voiceover. The reference's body
+            copy is not the narration, and filler text would be invented. */}
+        {content ? <PaperContent key={i} c={{ ...content, body: null }} local={local} dur={beat.duration_frames} fps={fps} /> : null}
       </Paper>
       <TimelineFooter seed={plan.railText || "0"} progress={frame / Math.max(1, durationInFrames - 1)} />
     </StudioBG>
