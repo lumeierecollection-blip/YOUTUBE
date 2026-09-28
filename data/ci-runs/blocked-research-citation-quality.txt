@@ -83,3 +83,10 @@ WHAT A HUMAN NEEDS TO DO
 Not blocking the rest of the loop -- continuing with the other failure categories
 from this same run (see the commit history on claude/visual-rebuild-from-5f91e75 for
 what was fixed this iteration).
+
+## 2026-09-28 — run 36445183210: ch 26 and ch 44 failed at prep (NOT fixed in this run)
+The research gate rejected qwen2.5:3b's output after 4/4 attempts on both:
+- ch 44: "cites URL(s) that no search returned" (apa.org 2025 report, fastcompany.com)
+- ch 26: "cites URL(s) that no search returned" (foxla.com, nbclosangeles.com)
+The gate is right: the model cited URLs no search produced. Owner's call:
+address prep after the Gemini → Groq → Ollama chain is stable.

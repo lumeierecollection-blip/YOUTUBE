@@ -733,6 +733,8 @@ jobs:
           OLLAMA_TEXT_MODEL: qwen2.5:7b
           OLLAMA_VISION_MODEL: qwen2.5vl:3b
           OLLAMA_CHALLENGER_MODEL: qwen2.5:14b
+          # Second tier of the chain (Gemini → Groq → Ollama): scripts/groq-client.cjs.
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
           # render-and-qa.js's own wall-clock budget, inside the 100-min job.
           RENDER_QA_BUDGET_MIN: "92"

@@ -34,6 +34,8 @@ import {
 } from "../src/skills/remotion-render/visual/capability-compiler.js";
 import { callGemini as callGeminiApi } from "../src/lib/gemini-client.js";
 import { forcedOllama, callOllamaOnly } from "../src/lib/llm.js";
+import { createRequire as createRequireGroq } from "node:module";
+const { callGroq } = createRequireGroq(import.meta.url)("./groq-client.cjs");
 import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-names.js";
 import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
 
@@ -725,9 +727,22 @@ async function main() {
       else if (!okBeats(geminiResult)) geminiFailure = geminiResult?.beats ? `beat count ${geminiResult.beats.length} != ${sentences.length}` : "no_beats";
     }
   }
+  // Second tier: Groq (llama-3.3-70b-versatile), the same strict prompt.
+  if (!forced && geminiFailure) {
+    console.error(`[planner] gemini: ${geminiFailure} → groq${geminiResult?.detail ? ` (${String(geminiResult.detail).slice(0, 120)})` : ""}`);
+    const t0 = Date.now();
+    const g = normalizePlanResponse(await callGroq([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2 }));
+    if (okBeats(g)) {
+      geminiResult = g; geminiFailure = null; planSource = "groq";
+      console.log(`[planner] plan from groq (${process.env.GROQ_TEXT_MODEL || "llama-3.3-70b-versatile"}, ${((Date.now() - t0) / 1000).toFixed(0)}s)`);
+    } else {
+      const why = g?.source === "groq" && g.error ? g.error : g?.beats ? `beat count ${g.beats.length} != ${sentences.length}` : "no_beats";
+      console.error(`[planner] groq: ${why} → ollama${g?.detail ? ` (${String(g.detail).slice(0, 120)})` : ""}`);
+      geminiResult = g;
+    }
+  }
   if (forced || geminiFailure) {
     planSource = "ollama";
-    if (geminiFailure) console.error(`[planner] gemini: ${geminiFailure} → ollama${geminiResult?.detail ? ` (${String(geminiResult.detail).slice(0, 120)})` : ""}`);
     const t0 = Date.now();
     // The strict one-beat-per-sentence instruction goes on the FIRST local
     // call: in run 36431582306 qwen2.5:7b answered the plain prompt with ONE

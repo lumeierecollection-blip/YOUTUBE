@@ -222,13 +222,45 @@ function ollamaVision(framePaths, prompt) {
   }
 }
 
+// Second tier (Gemini → Groq → Ollama): Groq's vision model, synchronous
+// like the rest of this script, at most 5 images. Any Groq failure falls
+// to the local Ollama vision model.
+function groqThenOllama(framePaths, prompt) {
+  const key = process.env.GROQ_API_KEY;
+  const model = process.env.GROQ_VISION_MODEL || "llama-3.2-90b-vision-preview";
+  let why = "no_key";
+  if (key) {
+    const body = JSON.stringify({ model, temperature: 0, max_tokens: 400, response_format: { type: "json_object" },
+      messages: [{ role: "user", content: [{ type: "text", text: prompt },
+        ...framePaths.slice(0, 5).map((p) => ({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(p).toString("base64")}` } }))] }] });
+    try {
+      const res = execFileSync("curl", ["-sS", "--max-time", "120", "-H", "Content-Type: application/json",
+        "-H", `Authorization: Bearer ${key}`, "-d", "@-", "https://api.groq.com/openai/v1/chat/completions"],
+        { input: body, encoding: "utf-8", maxBuffer: 1 << 26 });
+      const pj = JSON.parse(res);
+      if (pj.error) {
+        const code = Number(pj.error.code) || 0;
+        why = /rate.?limit|quota|tokens per/i.test(pj.error.message || "") || code === 429 ? "quota_exhausted" : code >= 500 ? "unavailable" : "hard_error";
+      } else {
+        const raw = String(pj.choices?.[0]?.message?.content || "").trim().replace(/^```json/, "").replace(/^```/, "").replace(/```$/, "").trim();
+        console.error(`[groq] ${model}: vision-qa, ${Math.min(5, framePaths.length)} image(s)`);
+        return { ran: true, ...JSON.parse(raw) };
+      }
+    } catch (e) {
+      why = "unavailable";
+    }
+  }
+  console.error(`[vision-qa] groq: ${why} → ollama`);
+  return ollamaVision(framePaths, prompt);
+}
+
 function visionCheck(frames, spec) {
   const base = process.env.VISION_API_BASE || "https://generativelanguage.googleapis.com/v1beta/openai";
   const key = process.env.VISION_API_KEY;
   // Downgraded to Flash-Lite per token audit — simple structured output doesn't need Pro/Flash
   const model = process.env.VISION_MODEL || "gemini-2.5-flash-lite";
   const forced = String(process.env.FORCE_PLANNER || "").toLowerCase() === "ollama";
-  if (!key && !process.env.OLLAMA_URL) {
+  if (!key && !process.env.GROQ_API_KEY && !process.env.OLLAMA_URL) {
     return {
       ran: false,
       reason: "neither VISION_API_KEY nor OLLAMA_URL set — 7.3 and 7.4 are UNVERIFIED. " +
@@ -250,9 +282,13 @@ function visionCheck(frames, spec) {
     `${spec.core_objects.join(", ")}?\n` +
     `Report only what is visible. If the frames are abstract shapes and text, ` +
     `say so and answer false.`;
-  if (forced || !key) {
-    console.error(`[vision-qa] ollama (${forced ? "FORCE_PLANNER=ollama — Gemini not called" : "no VISION_API_KEY"})`);
+  if (forced) {
+    console.error("[vision-qa] ollama (FORCE_PLANNER=ollama — Gemini and Groq not called)");
     return ollamaVision(framePaths, prompt);
+  }
+  if (!key) {
+    console.error("[vision-qa] gemini: no_key → groq");
+    return groqThenOllama(framePaths, prompt);
   }
   const imageContent = framePaths.slice(0, 6).map((p) => ({
     type: "image_url",
@@ -277,8 +313,8 @@ function visionCheck(frames, spec) {
       "-d", "@-", `${base.replace(/\/$/, "")}/chat/completions`],
       { input: body, encoding: "utf-8" });
   } catch (e) {
-    console.error(`[vision-qa] gemini: unavailable → ollama (${String(e.stderr || e.message).trim().slice(0, 120)})`);
-    return ollamaVision(framePaths, prompt);
+    console.error(`[vision-qa] gemini: unavailable → groq (${String(e.stderr || e.message).trim().slice(0, 120)})`);
+    return groqThenOllama(framePaths, prompt);
   }
   // Gemini answered with an error (429 quota / 503 overload, sometimes
   // wrapped in an array): no Gemini retry — the local model answers.
@@ -289,8 +325,8 @@ function visionCheck(frames, spec) {
       const code = Number(pj.error.code) || 0;
       const kind = code === 429 || /quota|RESOURCE_EXHAUSTED|rate.?limit/i.test(pj.error.message || "") ? "quota_exhausted"
         : code >= 500 ? "unavailable" : "hard_error";
-      console.error(`[vision-qa] gemini: ${kind} → ollama (${String(pj.error.message || "").slice(0, 120)})`);
-      return ollamaVision(framePaths, prompt);
+      console.error(`[vision-qa] gemini: ${kind} → groq (${String(pj.error.message || "").slice(0, 120)})`);
+      return groqThenOllama(framePaths, prompt);
     }
   } catch {}
   let raw;
