@@ -805,13 +805,30 @@ async function makeCutout(asset) {
   try { res = JSON.parse(line); } catch { res = { ok: false, why: `isolate-cutout.py gave no result (exit ${r.status}): ${String(r.stderr || "").slice(-200)}` }; }
   if (/rembg unavailable/.test(res.why || "")) throw new Error(`rembg is required for cutouts and is not installed: ${res.why}`);
   if (!res.ok || !existsSync(out)) return { ok: false, why: res.why || "no output" };
+  // Independent check of the file that will be drawn: it must carry an
+  // alpha channel with at least 15% of its pixels transparent. Otherwise it
+  // is (nearly) a solid rectangle - discarded like any failed isolation.
+  let transparent = 0;
+  try {
+    const { default: sharp } = await import("sharp");
+    const meta = await sharp(out).metadata();
+    if (!meta.hasAlpha) return { ok: false, why: "[cutout] isolation failed, no alpha mask (the PNG has no alpha channel)" };
+    const { data, info } = await sharp(out).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+    let clear = 0;
+    for (let i = info.channels - 1; i < data.length; i += info.channels) if (data[i] < 128) clear++;
+    transparent = clear / Math.max(1, info.width * info.height);
+  } catch (e) { return { ok: false, why: `[cutout] could not read the isolated PNG: ${e.message}` }; }
+  if (transparent < 0.15) return { ok: false, why: `[cutout] isolation failed, no alpha mask (${(transparent * 100).toFixed(0)}% transparent, need 15%)` };
   const man = readJsonSafe(CUTOUT_MANIFEST) || { version: 1, cutouts: [] };
   man.cutouts = (man.cutouts || []).filter((c) => c.id !== asset.id);
   man.cutouts.push({ id: asset.id, subject: (asset.concepts || [])[0] || null, local_path: `cutouts/${asset.id}.png`,
     source: asset.source, source_url: asset.source_url, license: asset.license, attribution: asset.attribution,
-    segmented: true, coverage: res.coverage, rect_fill: res.rect_fill });
+    segmented: true, coverage: res.coverage, rect_fill: res.rect_fill, edge_touch: res.edge_touch, not_object: res.not_object, transparent });
   writeFileSync(CUTOUT_MANIFEST, JSON.stringify(man, null, 2) + "\n");
-  return { ok: true, cutout: { asset: `cutouts/${asset.id}.png`, mode: "cutout", coverage: res.coverage } };
+  // isolated + transparent are REQUIRED by the renderer (paper-stage.jsx
+  // throws "[cutout] isolation failed, no alpha mask" without them).
+  return { ok: true, cutout: { asset: `cutouts/${asset.id}.png`, mode: "cutout", isolated: true, transparent: +transparent.toFixed(4),
+    coverage: res.coverage, rect_fill: res.rect_fill, edge_touch: res.edge_touch, not_object: res.not_object } };
 }
 
 // One CUTOUT beat: up to 3 results, each isolated and checked.
@@ -839,7 +856,7 @@ async function cutoutFor(channelId, planPath, b, stats) {
     tried.add(asset.id);
     const r = await makeCutout(asset);
     if (r.ok) {
-      console.log(`[cutout] beat ${b.index} "${object}": ${asset.id} isolated (alpha ${(r.cutout.coverage * 100).toFixed(1)}%, ${asset.license})`);
+      console.log(`[cutout] beat ${b.index} "${object}": ${asset.id} isolated (alpha ${(r.cutout.coverage * 100).toFixed(1)}%, transparent ${(r.cutout.transparent * 100).toFixed(0)}% of the cut-out, not-the-object ${((r.cutout.not_object || 0) * 100).toFixed(0)}%, edge ${((r.cutout.edge_touch || 0) * 100).toFixed(0)}%, ${asset.license})`);
       return { cutout: r.cutout, asset, fetched };
     }
     stats.discarded++;
@@ -1139,18 +1156,19 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
 
     const backupArgs = { planPath, srtPath, audio: result.audio, channelId, videoPath: result.outputPath };
 
-    // Step 2b''': FIT CHECK (paper style) — every beat's rendered content
-    // inside the paper's inner content box (local-audit.cjs
-    // frames-fit-paper, 4 px tolerance). Deterministic, on every render. A
-    // beat outside the box fails the render; the video goes to the backup
-    // audit, which runs the same check and rejects it.
+    // Step 2b''': PAPER CHECKS (paper style), on every render — local-
+    // audit.cjs frames-fit-paper (every beat's content inside the paper's
+    // inner box, 4 px tolerance) and shapes-clear-of-text (no abstract-shape
+    // ink in the headline or caption zone; the shape inside the visual
+    // zone). Deterministic. A failing beat fails the render; the video goes
+    // to the backup audit, which runs the same checks and rejects it.
     const manifestPath = result.outputPath.replace(/\.mp4$/, "-manifest.json");
     if ((readJsonSafe(manifestPath)?.beats || []).some((b) => b.visual_type)) {
-      const fit = await runChild("node", [LOCAL_AUDIT_CJS, "--fit-only", "--video", result.outputPath, "--manifest", manifestPath],
-        { label: `fit ${channelId}/${basename(scriptPath)}` });
+      const fit = await runChild("node", [LOCAL_AUDIT_CJS, "--paper-only", "--video", result.outputPath, "--manifest", manifestPath],
+        { label: `paper-checks ${channelId}/${basename(scriptPath)}` });
       if (fit.code !== 0) {
-        console.error(`::error::fit check ${fit.code === 1 ? "FAILED — content outside the paper's inner box" : "could not run"} for ${basename(result.outputPath)}`);
-        return backupAudit({ ...backupArgs, stage: "fit-check", reason: fit.code === 1 ? "content outside the paper's inner content box" : "fit check could not run" });
+        console.error(`::error::paper checks ${fit.code === 1 ? "FAILED — content outside the inner box, or shape ink over text" : "could not run"} for ${basename(result.outputPath)}`);
+        return backupAudit({ ...backupArgs, stage: "paper-checks", reason: fit.code === 1 ? "frames-fit-paper / shapes-clear-of-text failed" : "paper checks could not run" });
       }
     }
 

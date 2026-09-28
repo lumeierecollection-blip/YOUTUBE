@@ -171,6 +171,56 @@ function numIn(v, nums) {
   const m = String(v ?? "").match(/\d[\d,]*(?:\.\d+)?/);
   return m ? nums.has(Number(m[0].replace(/,/g, ""))) : false;
 }
+// ── CUTOUT must name an object the sentence names ────────────────────
+// Owner's rule: a cutout shows the literal object the sentence is about —
+// not its topic, not a metaphor. Run 36397373831 ch-44 drew a camera for
+// "strategic advantage", bills for "the foundation", a gavel for
+// "negotiation tactics". The gate: after dropping a container phrase
+// ("stack of") and anything from the first preposition on ("signature ON
+// contract paper"), the object's head noun must appear in the sentence — or
+// the word just before it (a compound: "dollar bills" for "$2 billion"),
+// unless that word is a proper name ("Miami skyline" for "... in the Miami
+// office" is rejected: the skyline is not in the sentence). Words match on
+// a crude stem: signature/signed -> sign, bills -> bill, a shared prefix of
+// 5+ letters (robot/robotic). "$" reads as "dollar".
+// Where this stops: it proves the object's NAME is in the sentence, not that
+// the thing is photographable ("background check" passes it — the prompt,
+// the fetch, rembg and the beat check catch that), and it rejects inferred
+// objects the sentence does not name ("fingerprint card" for "do a
+// background check").
+const CUTOUT_CONTAINERS = new Set(["stack", "pile", "piece", "pieces", "pair", "set", "group", "bunch", "bundle", "roll", "sheet", "box", "handful", "row", "stacks", "piles"]);
+const CUTOUT_PREPOSITIONS = new Set(["on", "in", "with", "at", "from", "by", "for", "of", "under", "over", "near", "beside", "against", "inside", "into", "onto", "showing"]);
+const CUTOUT_FILLER = new Set(["a", "an", "the", "single", "small", "large", "big", "old", "new", "close", "closeup", "up", "view", "photo", "isolated", "white", "background", "object", "item", "thing", "and"]);
+function stemWord(w) {
+  let x = String(w || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  for (const suf of ["ations", "ation", "atures", "ature", "ments", "ment", "ings", "ing", "ers", "er", "ies", "es", "ed"]) {
+    if (x.length - suf.length >= 4 && x.endsWith(suf)) return x.slice(0, -suf.length);
+  }
+  // A plain plural: arms -> arm, keys -> key (not glass -> glas).
+  if (x.length >= 4 && x.endsWith("s") && !x.endsWith("ss")) return x.slice(0, -1);
+  return x;
+}
+function stemMatch(a, b) {
+  if (!a || !b) return false;
+  if (a === b) return true;
+  const [short, long] = a.length <= b.length ? [a, b] : [b, a];
+  return short.length >= 5 && long.startsWith(short);
+}
+export function cutoutNamedInSentence(object, sentence) {
+  const raw = String(sentence || "").replace(/\$/g, " dollar ");
+  const toks = raw.split(/[^A-Za-z0-9']+/).filter(Boolean);
+  const sent = toks.map((t, i) => ({ stem: stemWord(t), proper: i > 0 && /^[A-Z]/.test(t) && !/^[A-Z]+$/.test(t) }));
+  let words = String(object || "").split(/\s+/).map((w) => w.replace(/[^A-Za-z0-9'-]/g, "")).filter(Boolean);
+  if (words.length > 2 && CUTOUT_CONTAINERS.has(words[0].toLowerCase()) && words[1].toLowerCase() === "of") words = words.slice(2);
+  const cut = words.findIndex((w) => CUTOUT_PREPOSITIONS.has(w.toLowerCase()));
+  const np = (cut >= 0 ? words.slice(0, cut) : words).filter((w) => !CUTOUT_FILLER.has(w.toLowerCase()));
+  if (!np.length) return { ok: false, why: `CUTOUT "${object}" names no object` };
+  const head = stemWord(np[np.length - 1]), mod = np.length > 1 ? stemWord(np[np.length - 2]) : null;
+  if (sent.some((t) => stemMatch(head, t.stem))) return { ok: true, matched: np[np.length - 1] };
+  if (mod && sent.some((t) => !t.proper && stemMatch(mod, t.stem))) return { ok: true, matched: np[np.length - 2] };
+  return { ok: false, why: `CUTOUT "${object}" is not named in the sentence (a cutout shows the literal object the sentence names)` };
+}
+
 export function checkVisual(b, sentence) {
   const t = String(b.visual_type || "").toUpperCase();
   const d = b.data || {};
@@ -185,7 +235,9 @@ export function checkVisual(b, sentence) {
     const obj = String(d.object || b.cutout_query || "")
       .replace(/\b(icons?|symbols?|illustrations?|graphics?|cutouts?|clip ?art|vectors?|logos?|emojis?|pictograms?|drawings?|isolated|white background|png)\b/gi, " ")
       .replace(/\s+/g, " ").trim();
-    return obj ? { type: t, data: { object: obj } } : bad("CUTOUT without an object");
+    if (!obj) return bad("CUTOUT without an object");
+    const named = cutoutNamedInSentence(obj, sentence);
+    return named.ok ? { type: t, data: { object: obj } } : bad(named.why);
   }
   if (t === "MAP") {
     const place = String(d.place || "").trim();
@@ -284,13 +336,8 @@ the sentence itself as tiny body text. You write only these fields:
   "data":         the visual's data, by type (numbers EXACTLY as the
                   sentence says them — a number the sentence does not say
                   is rejected and the beat becomes TYPE):
-    CUTOUT   {"object": "drink can"}   ONE isolatable physical object —
-             never a scene, person, screen, chart or idea. Its plain
-             common name, 1-2 words, something you could photograph on a
-             table: "gavel", "handcuffs", "padlock", "gear", "calculator",
-             "coins", "microchip". No adjectives ("advanced", "digital",
-             "vintage", "official"), no documents, certificates, covers,
-             sketches, doors or machines too large to isolate.
+    CUTOUT   {"object": "drink can"}   ONE physical object THE SENTENCE
+             NAMES — see "CUTOUT RULE" below. "object" is the cutout query.
     COUNTER  {"value": "1.4 billion", "label": "brand value"}
     BAR      {"bars": [{"label": "2019", "value": "3 million"}, {"label": "2024", "value": "1.4 billion"}]}
     PIE      {"percent": 25, "label": "of global oil"}
@@ -306,6 +353,35 @@ three million dollars to a 1.4 billion dollar brand."
     "headline": "billion dollar brand", "emphasis_word": "brand",
     "data": {"value": "1.4 billion", "label": "brand value"}, "abstract_shape": "hairline" }
 
+CUTOUT RULE (enforced in code: an object the sentence does not name turns
+the beat into TYPE).
+If the beat's visual type is CUTOUT, "object" (the cutout query) must name
+an object that appears literally in the sentence. Not the topic of the
+sentence. Not an idea related to the sentence. The thing itself.
+  Sentence: "Before signing, do a background check."
+    "background check"           -> REJECT. It's an idea.
+    "magnifying glass document"  -> REJECT. It's a metaphor.
+    "fingerprint card"           -> REJECT here: neither word is in the
+                                    sentence. This sentence names no object
+                                    you can photograph -> TYPE.
+  Sentence: "The company spent $2 billion on the deal."   (it names a
+  number, so COUNTER comes first; IF it were a cutout:)
+    "money"                          -> REJECT. Too vague.
+    "corporate acquisition contract" -> REJECT. An idea.
+    "stack of hundred dollar bills"  -> ACCEPT. The literal object ($).
+  Sentence: "She signed the agreement in the Miami office."
+    "Miami skyline"               -> REJECT. Not in the sentence.
+    "signature on contract paper" -> ACCEPT. The literal action-object.
+  Sentence: "Robotic arms now weld 40% of the frames."  -> a number: GAUGE
+  or COUNTER first; "robotic arm" would be a valid cutout.
+If no object in the sentence can be photographed in isolation — because the
+sentence is about an idea, a process, or an abstraction — do not use
+CUTOUT. Use COUNTER, BAR, PIE, LINE, GAUGE, MAP, or TYPE.
+The object must be ONE object, not a scene: "money on a table" is a scene,
+"stack of bills" is an object; "camera" is an object, "camera lens
+close-up" is fine, "camera in a room" is a scene. Never a person, a
+screen, a chart, an icon or a drawing.
+
 Rules that are enforced, not advisory:
 - Choose the visual type that most directly shows what the sentence is
   about. If the sentence names a number, use COUNTER, BAR, PIE, LINE, or
@@ -315,8 +391,11 @@ Rules that are enforced, not advisory:
 - BAR/LINE need two or more numbers the sentence says; PIE/GAUGE need a
   percentage it says. Otherwise COUNTER (one number) or TYPE.
 - About 80% of beats are EDITORIAL.
-- TYPE beats are typography-only on the paper (no cutout). In this
-  ${sentences.length}-beat video TYPE is allowed ONLY on ${typoMax >= 2 ? `beat 0 (the hook) and beat ${sentences.length - 1} (the closing line)` : "beat 0 (the hook)"}; every other beat is EDITORIAL.
+- visual_type TYPE (typography only on the paper) is RIGHT for any beat
+  whose sentence names no number, no place and no photographable object —
+  do not force a cutout or chart onto an abstract sentence. (The "kind"
+  TYPE, the kinetic hook/closer, is limited to ${typoMax >= 2 ? `beat 0 and beat ${sentences.length - 1}` : "beat 0"}; the system
+  turns any other TYPE beat into a typography-only EDITORIAL beat.)
 - For a TYPE beat set "capabilities": ["typographic_emphasis"] and fill
   "typography_direction" with the headline as its phrase.
 

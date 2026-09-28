@@ -144,6 +144,11 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   // ── cutout: the isolated object, in the VISUAL zone ──
   let hero = null, ring = null, grid = null;
   if (hasCutout) {
+    // Hard rule: only an image the resolver isolated (rembg alpha mask,
+    // >= 15% of its pixels transparent) is ever drawn — never a rectangle.
+    if (!(c.cutout.isolated === true && Number(c.cutout.transparent) >= 0.15)) {
+      throw new Error(`[cutout] isolation failed, no alpha mask (${c.cutout.asset}) — the resolver must convert this beat to TYPE`);
+    }
     const enterT = ease(clamp01((local - s(0.15)) / s(0.3)));
     const from = c.cutout.enter || "bottom";
     // It rises / slides a short way INTO place, inside the visual zone (it
