@@ -20,6 +20,12 @@ import React from "react";
 import { Img, staticFile, Easing } from "remotion";
 import { PAPER, INK, INK_SOFT, PAPER_FILL, PAPER_EDGE_SHADOW } from "./paper-layout.js";
 import { AbstractShape } from "./abstract-shape.jsx";
+import { Counter } from "./primitives/counter.jsx";
+import { BarChart } from "./primitives/bar-chart.jsx";
+import { PieChart } from "./primitives/pie-chart.jsx";
+import { LineChart } from "./primitives/line-chart.jsx";
+import { Gauge } from "./primitives/gauge.jsx";
+import { PaperMap } from "./primitives/map.jsx";
 
 const clamp01 = (v) => Math.max(0, Math.min(1, Number.isFinite(v) ? v : 1));
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
@@ -60,8 +66,11 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   const vis = inT * outT;
   const blur = (1 - inT) * 6;
   const hasCutout = !!c.cutout?.asset;
-  const phone = hasCutout && c.cutout.mode === "phone";
-  const center = c.layout === "center" || !hasCutout;
+  // No phone mockups (owner's correction): a cutout is the isolated object.
+  const phone = false;
+  const vtype = String(c.visual_type || (hasCutout ? "CUTOUT" : "TYPE")).toUpperCase();
+  const chart = ["COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP"].includes(vtype) && c.data ? vtype : null;
+  const center = c.layout === "center" || (!hasCutout && !chart);
   const W = PAPER.w, H = PAPER.h;
 
   // ── headline, word by word (grey -> black), emphasis pops 8% ──
@@ -72,7 +81,7 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   // Headline BELOW the object (a layout the reference uses — "wild
   // influencer collabs" under the phone), so real content sits on the
   // frame-centre band (frame y 960 = paper y ~78%).
-  const headlineTop = phone ? H * 0.64 : hasCutout ? H * 0.66 : H * 0.62;
+  const headlineTop = hasCutout || chart ? H * 0.66 : H * 0.62;
   const lead = String(c.lead_in || "").trim();
   const emph = String(c.emphasis_word || "").toLowerCase().replace(/[^a-z0-9]/g, "");
   const headlineDone = hStart + words.length * hStep + s(0.2);
@@ -84,7 +93,9 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   // A number already in the headline rolls IN PLACE (no duplicate line —
   // run 36362576442 printed "273" above "276 ARRESTS").
   const numInHeadline = !!num && words.some((w) => /\d/.test(w));
-  const numText = num && !numInHeadline ? rolled(num) : null;
+  // Numbers are drawn by the visual (COUNTER/BAR/PIE/LINE/GAUGE); a number in
+  // the headline still rolls in place. No separate number line.
+  const numText = null;
 
   const align = center ? "center" : "left";
   const textLeft = center ? W * 0.08 : W * 0.12;
@@ -139,19 +150,7 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
     const dy = from === "top" ? -H * off : from === "bottom" ? H * off : 0;
     const drift = 0.015 * W * clamp01((local - s(0.45)) / Math.max(1, dur - s(0.45)));
     const rot = (1 - enterT) * -6;
-    if (phone) {
-      const pw = W * 0.4, phh = pw * 2.0;
-      hero = (
-        <div style={{ position: "absolute", left: (W - pw) / 2 + dx + drift, top: H * 0.07 + dy, width: pw, height: phh,
-          transform: `rotate(${rot}deg)`, opacity: enterT, borderRadius: pw * 0.14, backgroundColor: INK, padding: pw * 0.045,
-          boxShadow: "12px 18px 30px rgba(0,0,0,0.28)", boxSizing: "border-box" }}>
-          <div style={{ width: "100%", height: "100%", borderRadius: pw * 0.1, overflow: "hidden", position: "relative", backgroundColor: "#222" }}>
-            <Img src={staticFile(c.cutout.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(1) contrast(1.15)" }} />
-            <div style={{ position: "absolute", top: pw * 0.04, left: "50%", width: pw * 0.3, height: pw * 0.07, marginLeft: -pw * 0.15, borderRadius: 99, backgroundColor: INK }} />
-          </div>
-        </div>
-      );
-    } else {
+    {
       const cw = W * 0.56;
       const cx = (W - cw) / 2 + (center ? 0 : W * 0.06), cy = H * 0.1;
       hero = (
@@ -180,8 +179,21 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
     }
   }
 
+  // System-built data viz, on the paper in its ink (visual zone above the
+  // headline). Drawn, never fetched.
+  const zone = { x: W * 0.08, y: H * 0.07, w: W * 0.84, h: H * 0.54 };
+  const vizProps = { data: c.data, zone, local, dur, fps, font };
+  const viz = chart === "COUNTER" ? <Counter {...vizProps} />
+    : chart === "BAR" ? <BarChart {...vizProps} />
+    : chart === "PIE" ? <PieChart {...vizProps} />
+    : chart === "LINE" ? <LineChart {...vizProps} />
+    : chart === "GAUGE" ? <Gauge {...vizProps} />
+    : chart === "MAP" ? <PaperMap {...vizProps} />
+    : null;
+
   return (
     <div style={{ position: "absolute", inset: 0, opacity: vis, filter: `blur(${blur.toFixed(2)}px)` }}>
+      {viz}
       {grid}
       {ring}
       {hero}

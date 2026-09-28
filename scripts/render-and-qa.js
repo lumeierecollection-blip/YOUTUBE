@@ -821,11 +821,15 @@ function paperContentFor(b, sentence, cutout) {
     lead_in: b.lead_in || null,
     headline: b.headline || b.caption || "",
     emphasis_word: b.emphasis_word || null,
+    // The planner's visual type and its checked data (checkVisual). A CUTOUT
+    // whose object could not be isolated is drawn as TYPE.
+    visual_type: b.visual_type === "CUTOUT" && !cutout ? "TYPE" : (b.visual_type || (cutout ? "CUTOUT" : "TYPE")),
+    data: b.data || null,
     number: b.number && /\d/.test(String(b.number)) ? String(b.number) : null,
     body: sentence || null,
     cutout: cutout || null,
     shape: { variant, corner: ["tl", "tr", "bl", "br"][h[1] % 4] },
-    ring: !!cutout && cutout.mode === "cutout" && h[2] % 3 !== 0,
+    ring: !!cutout && h[2] % 3 !== 0,
     ringDotted: h[3] % 2 === 0,
     grid: !!cutout && h[4] % 3 === 0,
     select: h[5] % 4 === 0,
