@@ -343,7 +343,16 @@ export function checkVisual(b, sentence) {
     // 36419295509 ch-2: FLSA 1938, OSHA 1970, ADA 1990). The headline keeps
     // the year.
     if (/^\s*(1[0-9]{3}|20[0-9]{2})s?\s*$/.test(vs)) return bad(`COUNTER value "${d.value}" is a year: a date, not a count to roll up`);
-    return { type: t, data: { value: vs, label: d.label || null } };
+    // The figure as the SENTENCE writes it — its currency sign and scale
+    // word / letter included. Run 36498049819 ch-26 drew a bare "352" beside
+    // "hit five blockchains" where the sentence said "$352 million": the
+    // planner's value had dropped the unit. The sentence's own expression
+    // around the same number replaces a shorter value (never a longer one).
+    const numRaw = m[0];
+    const esc = numRaw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const around = String(sentence || "").match(new RegExp(`([$€£]\\s?)?${esc}(\\s?(?:%|percent\\b|thousand\\b|million\\b|billion\\b|trillion\\b|[kKmMbB]\\b))?`));
+    const value = around && around[0].trim().length > vs.replace(/\s+/g, " ").trim().length ? around[0].trim() : vs;
+    return { type: t, data: { value, label: d.label || null } };
   }
   if (t === "PIE" || t === "GAUGE") {
     const pct = Number(String(d.percent ?? "").replace(/[^\d.]/g, ""));

@@ -28,6 +28,8 @@ export const COMP = { x: 64, y: 100, w: 952, h: 1320 };
 export const CAPTION = { x: 64, y: 1450, w: 880, h: 160 };
 export const COMPOSITIONS = ["TYPE-FULL", "DATA-FULL", "SCENE-FULL", "PROCESS-FULL"];
 export const TRANSITION_SEC = 0.5;
+// TYPE-FULL's closing rule sits on the composition region's bottom edge.
+export const RULE_Y = 1390;
 
 export const INK = "#0B0B0C";
 export const INK_SOFT = "#8E8E93";
@@ -128,9 +130,12 @@ export function canvasLayout(c) {
       const n = splitNumber(c.data.value);
       const nf = fitText(n.big, COMP.w, { max: 460, min: 160, maxLines: 1 });
       const hd = c.headline ? fitText(c.headline, COMP.w, { max: 96, min: 44, maxLines: 2, upper: true }) : null;
-      let y = 230;
+      // Spans the frame (canvas-coverage >= 60%): headline from y 160, the
+      // rule at the bottom of the composition region (run 36498049819 ch-48:
+      // headline at 230 + rule at 1330 measured 57-58%).
+      let y = 160;
       if (hd) { boxes.headline = { ...box(COMP.x, y, COMP.w, hd.lines.length * hd.size * 1.05), size: hd.size, lines: hd.lines, upper: true }; y += hd.lines.length * hd.size * 1.05 + 70; }
-      boxes.number = { ...box(COMP.x, Math.max(y, 520), COMP.w, nf.size * 0.95), size: nf.size, text: n.big };
+      boxes.number = { ...box(COMP.x, hd ? Math.max(y, 520) : 200, COMP.w, nf.size * 0.95), size: nf.size, text: n.big };
       y = boxes.number.y + boxes.number.h + 24;
       const label = [n.scale, c.data.label].filter(Boolean).join(" ");
       if (label) {
@@ -138,7 +143,7 @@ export function canvasLayout(c) {
         boxes.label = { ...box(COMP.x, y, COMP.w, lf.lines.length * lf.size * 1.15), size: lf.size, lines: lf.lines };
         y += lf.lines.length * lf.size * 1.15;
       }
-      boxes.rule = box(540 - 90, Math.max(y + 60, 1330), 180, 14);
+      boxes.rule = box(540 - 90, Math.max(y + 60, RULE_Y), 180, 14);
       hero = "number";
     } else {
       // The statement fills 70-90% of the width, stacked large.
@@ -148,11 +153,15 @@ export function canvasLayout(c) {
       const blockH = st.lines.length * st.size * 0.98;
       if (c?.lead_in) {
         const k = fitText(c.lead_in, COMP.w, { max: 48, min: 28, maxLines: 1 });
-        boxes.kicker = { ...box(COMP.x, 200, COMP.w, k.size * 1.3), size: k.size, lines: k.lines };
+        boxes.kicker = { ...box(COMP.x, 150, COMP.w, k.size * 1.3), size: k.size, lines: k.lines };
       }
-      const top = Math.max(boxes.kicker ? 320 : 240, 800 - blockH / 2);
+      // With a kicker at 150 the frame is spanned already, so the statement
+      // is centred; without one it starts no lower than y 200, so kicker/
+      // statement top -> rule bottom (1404) is >= 60% of the frame height.
+      const centred = 780 - blockH / 2;
+      const top = boxes.kicker ? Math.max(260, centred) : Math.min(200, Math.max(160, centred));
       boxes.statement = { ...box(COMP.x + COMP.w * 0.03, top, COMP.w * 0.94, blockH), size: st.size, lines: st.lines, upper };
-      boxes.rule = box(COMP.x + COMP.w * 0.03, Math.max(top + blockH + 70, 1330), 180, 14);
+      boxes.rule = box(COMP.x + COMP.w * 0.03, Math.max(top + blockH + 70, RULE_Y), 180, 14);
       hero = "statement";
     }
   } else if (comp === "DATA-FULL") {
