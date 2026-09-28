@@ -69,7 +69,10 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
   const hStart = s(0.35), hStep = s(0.2);
   const hSize = !hasCutout ? fitSize(c.headline, W * 0.78, 84, 34) : fitSize(c.headline, W * 0.72, 60, 28);
   const upper = words.length <= 3;
-  const headlineTop = phone ? H * 0.57 : hasCutout ? H * 0.13 : H * 0.4;
+  // Headline BELOW the object (a layout the reference uses — "wild
+  // influencer collabs" under the phone), so real content sits on the
+  // frame-centre band (frame y 960 = paper y ~78%).
+  const headlineTop = phone ? H * 0.64 : hasCutout ? H * 0.66 : H * 0.62;
   const lead = String(c.lead_in || "").trim();
   const emph = String(c.emphasis_word || "").toLowerCase().replace(/[^a-z0-9]/g, "");
   const headlineDone = hStart + words.length * hStep + s(0.2);
@@ -150,7 +153,7 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
       );
     } else {
       const cw = W * 0.56;
-      const cx = (W - cw) / 2 + (center ? 0 : W * 0.06), cy = H * 0.3;
+      const cx = (W - cw) / 2 + (center ? 0 : W * 0.06), cy = H * 0.1;
       hero = (
         <div style={{ position: "absolute", left: cx + dx + drift, top: cy + dy, width: cw, height: cw,
           transform: `rotate(${rot}deg)`, opacity: enterT, filter: "drop-shadow(10px 16px 14px rgba(0,0,0,0.28))" }}>
@@ -172,7 +175,7 @@ export function PaperContent({ c, local = 0, dur = 75, fps = 30, font = "Inter" 
     if (c.grid) {
       const gT = clamp01((local - s(0.2)) / s(0.4));
       const dots = [];
-      for (let gy = 0; gy < 6; gy++) for (let gx = 0; gx < 5; gx++) dots.push(<circle key={`${gx}-${gy}`} cx={W * 0.2 + gx * W * 0.15} cy={H * 0.26 + gy * H * 0.07} r={1.6} fill="#8a8a8a" />);
+      for (let gy = 0; gy < 6; gy++) for (let gx = 0; gx < 5; gx++) dots.push(<circle key={`${gx}-${gy}`} cx={W * 0.2 + gx * W * 0.15} cy={H * 0.08 + gy * H * 0.07} r={1.6} fill="#8a8a8a" />);
       grid = <svg width={W} height={H} style={{ position: "absolute", inset: 0, opacity: gT * 0.9 }}>{dots}</svg>;
     }
   }

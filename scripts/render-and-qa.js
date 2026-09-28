@@ -691,6 +691,14 @@ function frameReviewVerdict(geminiReport) {
   if (report.pipelineVerdict) {
     return { pass: report.pipelineVerdict === "APPROVED", reason: `${report.pipelineVerdict} — ${report.pipelineReason || ""}` };
   }
+  // A whole-video review that did not produce a result (status ERROR or
+  // missing) is a review that did not run — NOT a pass. Run 36370967090
+  // ch-1: "Whole-video: ERROR (?/10)" was approved because only FAIL
+  // rejected. It now counts as an error (backup audit), like a missing report.
+  const wstat = String(report.wholeVideoResult?.status || "").toUpperCase();
+  if (wstat !== "PASS" && wstat !== "FAIL") {
+    return { pass: false, error: true, reason: `whole-video review produced no verdict (status ${wstat || "missing"})` };
+  }
   const critical = report.summary?.critical ?? 0;
   const high = report.summary?.high ?? 0;
   const frames = report.totalFrames ?? 0;
