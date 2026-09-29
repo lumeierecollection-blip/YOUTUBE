@@ -61,7 +61,13 @@
  *                     the frame in at least one beat (RGB distance < 40)
  *   motion-tiers      every beat has a tier; 2-3 beats are "major" (1-3 when
  *                     the video has fewer than 4 beats)
- *   `--canvas-only --video <mp4> --manifest <json>` runs these four on
+ *   canvas-type       the typography rebuild's rules on the manifest boxes:
+ *                     nothing centred, sentence-case headlines, two type roles
+ *                     in most beats, no composition twice in a row, dark beats
+ *                     (>= 1, <= 2, never consecutive).
+ *   canvas-texture    paper grain on every beat and dark beats really dark,
+ *                     measured on rendered pixels.
+ *   `--canvas-only --video <mp4> --manifest <json>` runs these six on
  *   every render (render-and-qa.js) and exits 1 on a failure.
  *
  * Usage:
@@ -310,7 +316,7 @@ async function shapesCheck(video, beats, DW, DH, debug = false) {
 
 // ── full-canvas checks ───────────────────────────────────────────────
 const SAFE_INSET = 48, CAPTION_Y0 = 1450, CAPTION_Y1 = 1610, COVER_MIN = 0.6;
-const TEXT_BOXES = ["kicker", "headline", "statement", "number", "label"];
+const TEXT_BOXES = ["kicker", "headline", "statement", "number", "label", "emphasis"];
 function rgbFrame(video, t, w, h) {
   const r = spawnSync(FFMPEG, ["-hide_banner", "-loglevel", "error", "-ss", t.toFixed(3), "-i", video,
     "-frames:v", "1", "-vf", `scale=${w}:${h},format=rgb24`, "-f", "rawvideo", "-"], { maxBuffer: 1 << 27 });
@@ -344,17 +350,25 @@ function canvasCoverage(video, beats) {
   const bad = [], spans = [];
   beats.forEach((b, i) => {
     let best = 0;
+    // A full-bleed photo is the whole frame by construction.
+    if (b.canvas?.photo) { spans.push(1); return; }
     for (const share of [0.55, 0.9]) {
       const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share;
       const buf = rgbFrame(video, t, W, H);
       if (!buf) continue;
+      // The ground is read from the frame's own empty bottom-left corner: a
+      // dark beat (#0E0E0E) is content where it is LIGHT, a light beat where
+      // it is dark — "darker than 170" alone read a whole dark frame as content.
+      let g0 = 0;
+      for (let yy = H - 12; yy < H - 4; yy++) for (let xx = 4; xx < 12; xx++) { const o = (yy * W + xx) * 3; g0 += 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; }
+      g0 /= 64;
       let first = -1, last = -1;
       for (let y = 0; y < capRow; y++) {
         let n = 0;
         for (let x = 0; x < W; x++) {
           const o = (y * W + x) * 3, r = buf[o], g = buf[o + 1], bl = buf[o + 2];
           const l = 0.299 * r + 0.587 * g + 0.114 * bl;
-          if (l < 170 || Math.max(r, g, bl) - Math.min(r, g, bl) > 45) n++;
+          if (Math.abs(l - g0) > 74 || Math.max(r, g, bl) - Math.min(r, g, bl) > 45) n++;
         }
         if (n >= 4) { if (first < 0) first = y; last = y; }
       }
@@ -393,6 +407,82 @@ function motionTiers(beats) {
   if (major < lo || major > 3) bad.push(`${major} major-motion beat(s) (need ${lo}-3)`);
   return { bad, major, medium: tiers.filter((t) => t === "medium").length };
 }
+// ── typography rebuild checks ─────────────────────────────────────────
+const TYPE_TEXT = ["headline", "statement", "number", "emphasis"];
+const ROLE_OF = (k) => k.replace(/\d+$/, "");
+/**
+ * canvas-type: what the brief's stop condition asks of the type system, read
+ * from the boxes the renderer placed (manifest beats[].canvas):
+ *   - nothing centred (headline / statement / number / emphasis are left- or
+ *     right-aligned, and none sits on the frame's centre line),
+ *   - headlines are sentence case, never all-caps,
+ *   - at least two type roles in most beats (>= 60% of them),
+ *   - no composition type twice in a row,
+ *   - dark beats: at least one in a video of 4+ beats, at most two, never
+ *     consecutive.
+ */
+function canvasType(beats) {
+  const bad = [];
+  const roleSets = [];
+  beats.forEach((b, i) => {
+    const c = b.canvas;
+    if (!c) return;
+    const roles = new Set();
+    for (const [k, v] of Object.entries(c.boxes || {})) {
+      if (k === "photo" || k === "chart" || k === "cutout" || ROLE_OF(k) === "nodes") continue;
+      const r = v.role || null;
+      if (r && r !== "rule") roles.add(r);
+      if (TYPE_TEXT.includes(ROLE_OF(k))) {
+        if (v.align === "center") bad.push(`beat ${i}: ${k} is centred`);
+        else if (!v.align && !v.rotate) bad.push(`beat ${i}: ${k} has no alignment`);
+        if (!v.rotate && Math.abs(v.x + v.w / 2 - 540) < 24 && v.w < 700) bad.push(`beat ${i}: ${k} sits on the frame's centre line`);
+      }
+    }
+    // a chart's own figures / labels are the data role too
+    if (["DATA-FULL", "PROCESS-FULL"].includes(c.composition)) roles.add("data");
+    roleSets.push(roles.size);
+    const h = c.headline_text;
+    if (h) {
+      const letters = h.replace(/[^A-Za-z]/g, "");
+      if (letters.length >= 6 && letters === letters.toUpperCase()) bad.push(`beat ${i}: headline "${h}" is all caps`);
+    }
+    if (i > 0 && beats[i - 1].canvas && beats[i - 1].canvas.composition === c.composition) bad.push(`beat ${i}: ${c.composition} twice in a row`);
+  });
+  const two = roleSets.filter((n) => n >= 2).length;
+  if (roleSets.length && two / roleSets.length < 0.6) bad.push(`only ${two}/${roleSets.length} beats show two type roles (need 60%)`);
+  const dark = beats.map((b) => !!b.canvas?.dark);
+  const nd = dark.filter(Boolean).length;
+  if (beats.length >= 4 && nd < 1) bad.push("no dark beat in the video");
+  if (nd > 2) bad.push(`${nd} dark beats (at most 2)`);
+  dark.forEach((d, i) => { if (d && dark[i + 1]) bad.push(`dark beats ${i} and ${i + 1} are consecutive`); });
+  return { bad, two, n: roleSets.length, dark: nd };
+}
+// canvas-texture: paper grain on every beat and the dark beats really dark,
+// measured on rendered pixels (a bottom-left patch below the caption band, where
+// nothing but the ground and the vignette lives).
+function canvasTexture(video, beats) {
+  const bad = [];
+  const W = 540, H = 960;
+  let grainMin = Infinity;
+  beats.forEach((b, i) => {
+    if (b.canvas?.photo) return;
+    const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * 0.7;
+    const buf = rgbFrame(video, t, W, H);
+    if (!buf) return;
+    let sum = 0, sum2 = 0, n = 0;
+    const x0 = 24, y0 = H - 70;
+    for (let y = y0; y < y0 + 40; y++) for (let x = x0; x < x0 + 40; x++) {
+      const o = (y * W + x) * 3, l = 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2];
+      sum += l; sum2 += l * l; n++;
+    }
+    const mean = sum / n, sd = Math.sqrt(Math.max(0, sum2 / n - mean * mean));
+    if (b.canvas?.dark && mean > 60) bad.push(`beat ${i} is marked dark but its ground is luma ${mean.toFixed(0)}`);
+    if (!b.canvas?.dark && mean < 200) bad.push(`beat ${i}: the studio ground reads luma ${mean.toFixed(0)} (< 200)`);
+    grainMin = Math.min(grainMin, sd);
+    if (sd < 0.6) bad.push(`beat ${i}: no paper grain in the ground patch (luma sd ${sd.toFixed(2)} < 0.6)`);
+  });
+  return { bad, grainMin };
+}
 async function canvasChecks(video, m) {
   const beats = m.beats || [];
   const out = [];
@@ -402,6 +492,10 @@ async function canvasChecks(video, m) {
   out.push({ id: "canvas-coverage", pass: !cov.bad.length, detail: cov.bad.length ? cov.bad.join("; ") : `every beat's content spans >= 60% of the frame height (min ${(Math.min(...cov.spans) * 100).toFixed(0)}%)` });
   const acc = canvasAccent(video, beats, m.accent);
   out.push({ id: "canvas-accent", pass: !acc.bad.length, detail: acc.bad.length ? acc.bad.join("; ") : `accent ${m.accent} in beat ${acc.where} (${(acc.best * 100).toFixed(1)}% of the frame)` });
+  const ty = canvasType(beats);
+  out.push({ id: "canvas-type", pass: !ty.bad.length, detail: ty.bad.length ? ty.bad.join("; ") : `nothing centred, sentence-case headlines, ${ty.two}/${ty.n} beats with two type roles, no repeated composition, ${ty.dark} dark beat(s)` });
+  const tx = canvasTexture(video, beats);
+  out.push({ id: "canvas-texture", pass: !tx.bad.length, detail: tx.bad.length ? tx.bad.join("; ") : `paper grain on every beat (min luma sd ${tx.grainMin === Infinity ? "n/a" : tx.grainMin.toFixed(2)}), dark beats dark` });
   const mt = motionTiers(beats);
   out.push({ id: "motion-tiers", pass: !mt.bad.length, detail: mt.bad.length ? mt.bad.join("; ") : `${mt.major} major, ${mt.medium} medium, all beats micro` });
   return out;

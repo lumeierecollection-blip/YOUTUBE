@@ -45,7 +45,7 @@ import { direct } from "./visual-engine/director/visual-director.js";
 import { sceneTextInventory } from "./visual/scene-text.js";
 import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
 import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
-import { canvasLayout, contentBounds } from "./visual/canvas-layout.js";
+import { canvasLayout, canvasManifest, normalizeCanvas } from "./visual/canvas-layout.js";
 
 
 
@@ -581,7 +581,7 @@ async function main() {
       sentencePlan.canvas = true;
       sentencePlan.accent = channel.colors?.canvas_accent || null;
       const comps = {};
-      for (const b of beats) { const k = canvasLayout(b.scene.canvas).composition; comps[k] = (comps[k] || 0) + 1; }
+      beats.forEach((b, bi) => { const k = canvasLayout(normalizeCanvas(b.scene.canvas, bi)).composition; comps[k] = (comps[k] || 0) + 1; });
       console.log(`[canvas] full-canvas style, accent ${sentencePlan.accent || "(none — ink)"}; ${Object.entries(comps).map(([k, v]) => `${k} ${v}`).join(", ")}`);
     }
     console.log(`[audio] ${kal.name} (from ${kal.count} tracks)`);
@@ -863,20 +863,7 @@ async function main() {
           // which the audit (local-audit.cjs canvas-fit / canvas-coverage)
           // checks against the 1080x1920 frame.
           visual_type: b.scene?.canvas?.visual_type || null,
-          canvas: b.scene?.canvas ? (() => {
-            const L = canvasLayout(b.scene.canvas);
-            const flat = {};
-            for (const [k, v] of Object.entries(L.boxes)) {
-              if (k === "bottom") continue;
-              if (Array.isArray(v)) v.forEach((n, j) => { flat[`${k}${j}`] = { x: n.x, y: n.y, w: n.w, h: n.h }; });
-              else if (v && "x" in v) flat[k] = { x: v.x, y: v.y, w: v.w, h: v.h };
-            }
-            const c = b.scene.canvas;
-            return { composition: L.composition, hero: L.hero, boxes: flat, content: contentBounds(L), motion_tier: c.motion_tier || "medium",
-              camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
-              photo: c.photo ? { asset: c.photo.asset, entity: c.photo.entity || null, kind: c.photo.kind || null } : null,
-              accent_used: ["DATA-FULL", "PROCESS-FULL"].includes(L.composition) || (L.composition === "TYPE-FULL" && (!!L.boxes.number || /\d/.test(String(c.headline || "")))) };
-          })() : null,
+          canvas: b.scene?.canvas ? canvasManifest(b.scene.canvas, i) : null,
           renders_typography: rendersTypography,
           text: rendersTypography ? [b.text].filter((t) => t && String(t).trim()) : [],
           on_screen_text: onScreenText,

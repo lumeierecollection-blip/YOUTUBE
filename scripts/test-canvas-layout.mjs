@@ -4,7 +4,10 @@
 // every box inside the frame less 48 px, nothing but a photo in the caption
 // band (CNV-01). A layout that only passes when the planner writes a headline
 // fails here, not in CI (runs 36498049819 / 36504143080).
-import { canvasLayout, contentBounds } from "../src/skills/remotion-render/visual/canvas-layout.js";
+// Since the typography rebuild it also checks the grid rules (canvas-layout.js):
+// no centred text, every text box anchored to a column edge on the side it is
+// aligned to, no two text boxes overlapping, both variants (left / right).
+import { canvasLayout, contentBounds, GRID, cellsOf } from "../src/skills/remotion-render/visual/canvas-layout.js";
 
 const heads = [
   { name: "no header", h: {} },
@@ -28,13 +31,16 @@ const bodies = [
   { visual_type: "CUTOUT", cutout: { asset: "c.png", isolated: true, transparent: 0.5 } },
 ];
 let fail = 0;
-for (const b of bodies) for (const { name, h } of heads) {
-  const c = { ...b, ...(b.visual_type === "TYPE" && !h.headline ? {} : h) };
+const colStarts = GRID.cols.map((c) => c[0]), colEnds = GRID.cols.map((c) => c[1]);
+const TEXT = ["kicker", "headline", "statement", "number", "label", "emphasis"];
+for (const variant of [0, 1]) for (const b of bodies) for (const { name, h } of heads) {
+  const c = { ...b, variant, ...(b.visual_type === "TYPE" && !h.headline ? {} : h) };
   const L = canvasLayout(c);
   const cb = contentBounds(L);
   const span = cb ? cb.h / 1920 : 0;
   const bad = [];
   if (span < 0.61) bad.push(`span ${(span * 100).toFixed(1)}%`);
+  if (!cb) bad.push("no content");
   for (const [k, v] of Object.entries(L.boxes)) {
     if (k === "bottom" || k === "photo") continue;
     for (const x of Array.isArray(v) ? v : [v]) {
@@ -43,7 +49,23 @@ for (const b of bodies) for (const { name, h } of heads) {
       if (x.y + x.h > 1450.5 && x.y < 1610) bad.push(`${k} enters the caption band (y ${x.y}-${x.y + x.h})`);
     }
   }
-  const label = `${L.composition} ${b.visual_type}${b.data?.nodes ? `/${b.data.nodes.length}` : ""} [${name}]`;
+  // Grid rules: text is never centred, is anchored to a column edge on the
+  // side it is aligned to, and text boxes do not overlap.
+  const texts = Object.entries(L.boxes).filter(([k, v]) => TEXT.includes(k) && v && "x" in v);
+  for (const [k, v] of texts) {
+    if (v.align === "center") bad.push(`${k} is centred`);
+    if (!v.align) bad.push(`${k} has no alignment`);
+    if (k === "label") continue;                                   // attaches to its data
+    if (v.rotate) continue;
+    const onEdge = v.align === "right" ? colEnds.includes(v.x + v.w) || v.x + v.w === 1032 : colStarts.includes(v.x);
+    if (!onEdge) bad.push(`${k} (${v.x}..${v.x + v.w}) is not anchored to a column edge (${v.align}-aligned)`);
+    if (Math.abs(v.x + v.w / 2 - 540) < 20 && v.w < 700) bad.push(`${k} sits on the frame's centre line`);
+  }
+  for (let i = 0; i < texts.length; i++) for (let j = i + 1; j < texts.length; j++) {
+    const a = texts[i][1], d = texts[j][1];
+    if (a.x < d.x + d.w - 2 && d.x < a.x + a.w - 2 && a.y < d.y + d.h - 2 && d.y < a.y + a.h - 2) bad.push(`text boxes ${texts[i][0]} and ${texts[j][0]} overlap`);
+  }
+  const label = `${L.composition} ${b.visual_type}${b.data?.nodes ? `/${b.data.nodes.length}` : ""} v${variant} [${name}]`;
   if (bad.length) { fail++; console.log(`FAIL ${label}: ${bad.join("; ")}`); } else console.log(`ok   ${label}: span ${(span * 100).toFixed(1)}%`);
 }
 console.log(fail ? `${fail} FAILED` : "all pass");

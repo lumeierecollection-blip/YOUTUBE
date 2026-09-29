@@ -196,25 +196,28 @@ export const PERCENT_SCALE = 0.8;       // "%": never larger than the numeral
 /**
  * Slot layout of a number of `size` px: one slot per character of the FINAL
  * string, at that character's own advance — so a counting number never moves.
- * Returns { slots: [{ch, x, w, kind}], width } where kind is digit | sep |
- * pre | suffix | percent, x measured from the number's left edge.
+ * Returns { slots: [{ch, x, w, kind, size}], width } where kind is digit | sep |
+ * pre | suffix | percent | post, x measured from the number's left edge.
+ * `margin` (1 = exact advances) is only for fitting; drawing uses 1.
  */
-export function numberSlots(parts, size, { weight = 700 } = {}) {
+export function numberSlots(parts, size, { weight = 700, margin = 1 } = {}) {
   const fam = numberFamily(size);
-  const adv = (ch, sz) => advanceEm(ch, fam, weight) * sz * MARGIN;
+  const adv = (ch, sz) => advanceEm(ch, fam, weight) * sz * margin;
   const slots = [];
   let x = 0;
   const push = (ch, sz, kind) => { const w = adv(ch, sz) + ROLE_NUMBER.tracking * sz; slots.push({ ch, x, w, kind, size: sz }); x += w; };
   for (const ch of parts.pre || "") push(ch, size * (ch === "$" || /[€£¥]/.test(ch) ? SUPERSCRIPT_SCALE : 1), "pre");
   for (const ch of parts.digits || "") push(ch, size, /[,.]/.test(ch) ? "sep" : "digit");
-  if (parts.suffix) push(parts.suffix, size * SUFFIX_SCALE, "suffix");
-  if (parts.percent) push("%", size * PERCENT_SCALE, "percent");
+  // A small gap before "M" / "%": Fraunces' "4" and "7" carry long bars that
+  // otherwise touch the next glyph at tracking -0.04 em (seen on "34%").
+  if (parts.suffix) { x += size * 0.03; push(parts.suffix, size * SUFFIX_SCALE, "suffix"); }
+  if (parts.percent) { x += size * 0.05; push("%", size * PERCENT_SCALE, "percent"); }
   for (const ch of parts.post || "") push(ch, size * 0.6, "post");
   return { slots, width: x };
 }
 /** Largest numeral size (step 4) in the number band whose slots fit `width`; below the band only when it must. */
 export function fitNumber(parts, width, { max = ROLE_NUMBER.sizeBand[1], min = 120 } = {}) {
-  for (let s = max; s >= min; s -= 4) if (numberSlots(parts, s).width <= width) return { size: s, inBand: s >= ROLE_NUMBER.sizeBand[0] };
+  for (let s = max; s >= min; s -= 4) if (numberSlots(parts, s, { margin: MARGIN }).width <= width) return { size: s, inBand: s >= ROLE_NUMBER.sizeBand[0] };
   return { size: min, inBand: false };
 }
 /** Emphasis word: the largest size in 240-600 that fits `width`; null when the word is not an emphasis candidate. */
