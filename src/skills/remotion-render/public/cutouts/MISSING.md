@@ -1,0 +1,254 @@
+# Cutouts that could not be fetched
+
+Each of these failed three different queries (the attempts are logged in
+`data/cutout-library-log.jsonl`). A missing cutout is NOT replaced by a drawing:
+the beat draws no concept visual for it (the number and label alone), or a
+cutout of the same category when one exists. Re-run
+`node scripts/build-cutout-library.mjs --only <name>` after adding a key or a
+query.
+
+## bank-building
+
+- "bank building isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "classical bank building isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "bank facade columns white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## bank-statement
+
+- "bank statement paper isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "financial statement document isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "printed account statement sheet isolated": 0 candidate(s), none passed the licence / keyword / size filter
+
+## broken-chain
+
+- "broken chain isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "chain link broken isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "snapped metal chain white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## business-person
+
+- "businessman in suit isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "business woman standing isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "executive in suit full body white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## calendar
+
+- "desk calendar isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "paper calendar page isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "wall calendar white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## checkmark
+
+- "3d check mark isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "green checkmark object isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "tick mark sign white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## city-skyline
+
+- "city skyline isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "skyline buildings silhouette isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "downtown skyscrapers isolated": 0 candidate(s), none passed the licence / keyword / size filter
+
+## clock-face
+
+- "clock face isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "wall clock isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "analog clock white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## coin-stack
+
+- "stack of coins isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "pile of gold coins isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "coins stacked isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+
+## contract
+
+- "signed contract paper isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "contract document with pen isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "agreement paper signature white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## courthouse
+
+- "courthouse building isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "court building with columns isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "neoclassical courthouse white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## credit-card
+
+- "credit card isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "plastic payment card isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "debit card single isolated": 0 candidate(s), none passed the licence / keyword / size filter
+
+## crosshair
+
+- "crosshair target isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "rifle scope crosshair isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "target sight object white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## dollar-bill
+
+- "one hundred dollar bill isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "us dollar banknote isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "paper money dollar bill single isolated": 0 candidate(s), none passed the licence / keyword / size filter
+
+## dollar-sign
+
+- "gold dollar sign symbol isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "3d dollar sign sculpture isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "dollar sign metal letter isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+
+## downward-arrow
+
+- "3d downward arrow isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "red arrow pointing down isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "decline arrow going down white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## evidence-tag
+
+- "evidence tag isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "forensic evidence marker isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "evidence bag label white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## factory
+
+- "factory building isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "industrial plant with chimney isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "factory smokestacks white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## flag-america
+
+- "american flag isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "small us flag isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "usa flag waving white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## gavel
+
+- "judge gavel isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "wooden gavel isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "court gavel and block white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## globe
+
+- "globe isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "desk world globe isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "earth globe white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## government-building
+
+- "government building isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "capitol building isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "federal building columns white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## group-people
+
+- "group of people standing isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "team of people isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "business team standing white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## handshake
+
+- "handshake isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "two hands shaking isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "business handshake white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## hourglass
+
+- "hourglass isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "sand timer hourglass isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "hourglass sand white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## key
+
+- "key isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "brass key isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "old metal key white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## magnifying-glass
+
+- "magnifying glass isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "magnifier lens isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "magnifying glass handle white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## map-pin
+
+- "map pin isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "3d location pin marker isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "red push pin white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## office-tower
+
+- "office tower skyscraper isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "glass skyscraper isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "corporate office building white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## padlock
+
+- "padlock isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "metal padlock closed isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "security lock white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## person-silhouette
+
+- "person standing isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "man standing full length white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "woman standing full body isolated": 0 candidate(s), none passed the licence / keyword / size filter
+
+## person-walking
+
+- "person walking isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "man walking full body white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "woman walking isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+
+## radar
+
+- "radar dish antenna isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "radar screen isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "satellite radar dish white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## scales
+
+- "scales of justice isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "justice scale statue isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "legal balance scales white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## scientist
+
+- "scientist in lab coat isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "researcher in white coat isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "laboratory scientist standing white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## shield
+
+- "metal shield isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "security shield object isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "protection shield white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## stamp-approved
+
+- "approved rubber stamp isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "approved stamp mark on paper isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "rubber stamp approved white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## upward-arrow
+
+- "3d upward arrow isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "red arrow pointing up isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "growth arrow going up white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## wallet
+
+- "open wallet with cash isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "leather wallet with dollar bills isolated": 0 candidate(s), none passed the licence / keyword / size filter
+- "wallet full of money white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## warning-triangle
+
+- "warning triangle sign isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "road warning triangle isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "hazard caution triangle sign white background": 0 candidate(s), none passed the licence / keyword / size filter
+
+## worker
+
+- "industrial worker hard hat isolated white background": 0 candidate(s), none passed the licence / keyword / size filter
+- "construction worker isolated on white": 0 candidate(s), none passed the licence / keyword / size filter
+- "factory worker standing isolated": 0 candidate(s), none passed the licence / keyword / size filter
