@@ -24,7 +24,7 @@ export function candidateText(c) {
  *    checks and the human contact-sheet review are what remain);
  *  - it is large enough to cut out at retina size.
  */
-export function judgeCandidate(c, spec, { minSide = 900 } = {}) {
+export function judgeCandidate(c, spec, { minSide = 900, query = "" } = {}) {
   if (!isAllowedLicense(c.license)) return { ok: false, why: `licence ${c.license || "unknown"} is not on the allowlist` };
   const text = candidateText(c);
   if (UNSAFE.test(text)) return { ok: false, why: "unsafe words in the source text" };
@@ -32,11 +32,59 @@ export function judgeCandidate(c, spec, { minSide = 900 } = {}) {
   if (c.mime && !/^image\/(jpeg|png|webp)$/.test(c.mime)) return { ok: false, why: `${c.mime} is not a bitmap photograph` };
   const longest = Math.max(Number(c.width) || 0, Number(c.height) || 0);
   if (longest && longest < minSide) return { ok: false, why: `${longest}px is under ${minSide}px` };
-  const words = new Set(text.split(/[^a-z0-9]+/).filter(Boolean));
-  const hit = (spec.words || []).some((w) => (/\s/.test(w) ? text.includes(w) : words.has(w)));
   if (!text.trim()) return { ok: true, why: "no source text (ranked last)", rank: 2 };
-  if (!hit) return { ok: false, why: "the source's words share no keyword with the spec" };
-  return { ok: true, why: "keyword match", rank: 0 };
+  // Rejected only when the source's words (title, description, tags) share NO word with the query or the
+  // spec's keywords — case, plurals and prefixes ("A courthouse in Ohio", "Courthouses") do not matter.
+  const have = new Set(words(text));
+  const want = new Set([...words(query), ...(spec.words || []).flatMap((w) => words(w))]);
+  const hit = [...want].some((w) => have.has(w));
+  if (!hit) return { ok: false, why: "the source's words share no word with the query" };
+  return { ok: true, why: "word match", rank: words(query).every((w) => have.has(w)) ? 0 : 1 };
+}
+
+const STOP = new Set(["the", "and", "with", "for", "from", "that", "this", "are", "its", "was", "photo", "image", "file", "jpg", "png", "jpeg"]);
+/** Lower-case words of >= 3 letters, plural-folded ("coins" -> "coin"), minus stop words. */
+export function words(text) {
+  return String(text || "").toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 3 && !STOP.has(w)).map((w) => (w.length > 3 && w.endsWith("s") && !w.endsWith("ss") ? w.slice(0, -1) : w));
+}
+
+/**
+ * Wait-and-retry for HTTP 429, per source (the caller keeps one `state` for the run):
+ *   429 -> "[cutouts] <src>: 429, waiting 30s", sleep 30 s, retry once;
+ *   429 again -> sleep 60 s, retry once more;
+ *   a third consecutive 429 -> "rate-limited, disabling for this run" (the source is `dead`);
+ *   403 (or 401) is a block, not a rate limit: the source is disabled at once.
+ * Any success resets the count. Returns fn()'s value, or throws the last error when the source is
+ * disabled or the error is not a rate limit.
+ */
+export async function withBackoff(state, source, fn, { sleep = (ms) => new Promise((r) => setTimeout(r, ms)), log = console.warn } = {}) {
+  state.dead = state.dead || new Set();
+  state.streak = state.streak || {};
+  for (;;) {
+    if (state.dead.has(source)) throw Object.assign(new Error(`${source} is disabled for this run`), { disabled: true });
+    try {
+      const v = await fn();
+      state.streak[source] = 0;
+      return v;
+    } catch (e) {
+      const m = String(e?.message || e);
+      if (/HTTP (401|403)\b/.test(m)) {
+        state.dead.add(source);
+        log(`[cutouts] ${source}: blocked (${m.slice(0, 60)}) — disabling for this run`);
+        throw e;
+      }
+      if (!/HTTP 429\b/.test(m)) throw e;
+      state.streak[source] = (state.streak[source] || 0) + 1;
+      if (state.streak[source] >= 3) {
+        state.dead.add(source);
+        log(`[cutouts] ${source}: rate-limited, disabling for this run`);
+        throw e;
+      }
+      const wait = state.streak[source] === 1 ? 30 : 60;
+      log(`[cutouts] ${source}: 429, waiting ${wait}s`);
+      await sleep(wait * 1000);
+    }
+  }
 }
 
 /** Candidates worth trying, best first: keyword matches, then the wordless; larger first; deduplicated by URL. */
@@ -66,9 +114,8 @@ export function creditsMarkdown(index) {
 Real photographs of physical objects, isolated onto transparent PNGs by
 \`scripts/build-cutout-library.mjs\` (rembg u2net, then the geometric checks in
 \`scripts/cutout_lib.py\`). Every licence is on the allowlist in
-\`src/skills/asset-sourcing/licenses.js\` (public domain, CC0, CC-BY, or the
-Pexels / Unsplash / Pixabay licences — all free for commercial use). CC-BY
-requires the attribution below.
+\`src/skills/asset-sourcing/licenses.js\` (public domain, CC0, CC-BY — all free for commercial use). CC-BY requires the
+attribution below.
 
 ${sourceNote(index)}
 

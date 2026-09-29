@@ -1,7 +1,7 @@
 {
  "version": 1,
  "min_side_px": 900,
- "note": "41 cutouts: the brief lists 41 names (it says 42). Flags: rect_ok = a genuinely rectangular object (a banknote, a card, a sheet) may fill its bounding box; grounded = the object may rest on / touch the bottom edge of the photo (a building, a standing person); multi = several connected parts are one object (a skyline, a coin stack).",
+ "note": "41 cutouts: the brief lists 41 names (it says 42). Flags: rect_ok = a genuinely rectangular object (a banknote, a card, a sheet) may fill its bounding box; grounded = the object may rest on / touch the bottom edge of the photo (a building, a standing person); multi = several connected parts are one object (a skyline, a coin stack). Queries are plain object names (Commons search reads file names and descriptions); the builder adds nothing but a bitmap filter for Wikimedia.",
  "specs": [
   {
    "name": "dollar-bill",
@@ -15,9 +15,9 @@
     "money"
    ],
    "queries": [
-    "one hundred dollar bill isolated white background",
-    "us dollar banknote isolated on white",
-    "paper money dollar bill single isolated"
+    "dollar bill",
+    "one dollar bill",
+    "us banknote"
    ],
    "rect_ok": true
   },
@@ -31,9 +31,9 @@
     "currency"
    ],
    "queries": [
-    "gold dollar sign symbol isolated white background",
-    "3d dollar sign sculpture isolated",
-    "dollar sign metal letter isolated on white"
+    "dollar sign",
+    "dollar symbol",
+    "dollar sign sculpture"
    ]
   },
   {
@@ -46,9 +46,9 @@
     "money"
    ],
    "queries": [
-    "stack of coins isolated white background",
-    "pile of gold coins isolated",
-    "coins stacked isolated on white"
+    "stack of coins",
+    "coin stack",
+    "pile of coins"
    ],
    "multi": true
   },
@@ -62,9 +62,9 @@
     "bills"
    ],
    "queries": [
-    "open wallet with cash isolated white background",
-    "leather wallet with dollar bills isolated",
-    "wallet full of money white background"
+    "wallet",
+    "open wallet",
+    "wallet with money"
    ],
    "multi": true
   },
@@ -80,9 +80,9 @@
     "financial"
    ],
    "queries": [
-    "bank statement paper isolated white background",
-    "financial statement document isolated on white",
-    "printed account statement sheet isolated"
+    "bank statement",
+    "account statement",
+    "financial statement"
    ],
    "rect_ok": true
   },
@@ -96,9 +96,9 @@
     "payment"
    ],
    "queries": [
-    "credit card isolated white background",
-    "plastic payment card isolated on white",
-    "debit card single isolated"
+    "credit card",
+    "debit card",
+    "payment card"
    ],
    "rect_ok": true
   },
@@ -114,9 +114,9 @@
     "people"
    ],
    "queries": [
-    "person standing isolated white background",
-    "man standing full length white background",
-    "woman standing full body isolated"
+    "person silhouette",
+    "man silhouette",
+    "woman standing"
    ],
    "grounded": true
   },
@@ -131,9 +131,9 @@
     "walk"
    ],
    "queries": [
-    "person walking isolated white background",
-    "man walking full body white background",
-    "woman walking isolated on white"
+    "person walking",
+    "man walking",
+    "woman walking"
    ],
    "grounded": true
   },
@@ -149,9 +149,9 @@
     "executive"
    ],
    "queries": [
-    "businessman in suit isolated white background",
-    "business woman standing isolated",
-    "executive in suit full body white background"
+    "businessman",
+    "businesswoman",
+    "man in suit"
    ],
    "grounded": true
   },
@@ -166,9 +166,9 @@
     "together"
    ],
    "queries": [
-    "group of people standing isolated white background",
-    "team of people isolated on white",
-    "business team standing white background"
+    "group of people",
+    "crowd of people",
+    "people standing together"
    ],
    "grounded": true,
    "multi": true
@@ -185,9 +185,9 @@
     "chemist"
    ],
    "queries": [
-    "scientist in lab coat isolated white background",
-    "researcher in white coat isolated",
-    "laboratory scientist standing white background"
+    "scientist",
+    "researcher in lab coat",
+    "laboratory scientist"
    ],
    "grounded": true
   },
@@ -203,9 +203,9 @@
     "engineer"
    ],
    "queries": [
-    "industrial worker hard hat isolated white background",
-    "construction worker isolated on white",
-    "factory worker standing isolated"
+    "construction worker",
+    "factory worker",
+    "worker with hard hat"
    ],
    "grounded": true
   },
@@ -221,9 +221,9 @@
     "judicial"
    ],
    "queries": [
-    "courthouse building isolated white background",
-    "court building with columns isolated",
-    "neoclassical courthouse white background"
+    "courthouse",
+    "county courthouse",
+    "court building"
    ],
    "grounded": true
   },
@@ -239,9 +239,9 @@
     "columns"
    ],
    "queries": [
-    "government building isolated white background",
-    "capitol building isolated on white",
-    "federal building columns white background"
+    "government building",
+    "capitol building",
+    "town hall"
    ],
    "grounded": true
   },
@@ -256,9 +256,9 @@
     "finance"
    ],
    "queries": [
-    "bank building isolated white background",
-    "classical bank building isolated",
-    "bank facade columns white background"
+    "bank building",
+    "bank branch",
+    "old bank"
    ],
    "grounded": true
   },
@@ -274,9 +274,9 @@
     "industry"
    ],
    "queries": [
-    "factory building isolated white background",
-    "industrial plant with chimney isolated",
-    "factory smokestacks white background"
+    "factory",
+    "industrial plant",
+    "smokestacks"
    ],
    "grounded": true
   },
@@ -291,9 +291,9 @@
     "corporate"
    ],
    "queries": [
-    "office tower skyscraper isolated white background",
-    "glass skyscraper isolated on white",
-    "corporate office building white background"
+    "office tower",
+    "skyscraper",
+    "office building"
    ],
    "grounded": true
   },
@@ -309,9 +309,9 @@
     "downtown"
    ],
    "queries": [
-    "city skyline isolated white background",
-    "skyline buildings silhouette isolated on white",
-    "downtown skyscrapers isolated"
+    "city skyline",
+    "skyline",
+    "downtown skyscrapers"
    ],
    "grounded": true,
    "multi": true
@@ -328,9 +328,9 @@
     "signature"
    ],
    "queries": [
-    "signed contract paper isolated white background",
-    "contract document with pen isolated",
-    "agreement paper signature white background"
+    "contract",
+    "signed contract",
+    "agreement document"
    ],
    "rect_ok": true
   },
@@ -344,9 +344,9 @@
     "rubber"
    ],
    "queries": [
-    "approved rubber stamp isolated white background",
-    "approved stamp mark on paper isolated",
-    "rubber stamp approved white background"
+    "approved stamp",
+    "rubber stamp",
+    "approved"
    ]
   },
   {
@@ -360,9 +360,9 @@
     "law"
    ],
    "queries": [
-    "judge gavel isolated white background",
-    "wooden gavel isolated on white",
-    "court gavel and block white background"
+    "gavel",
+    "judge gavel",
+    "wooden gavel"
    ]
   },
   {
@@ -376,9 +376,9 @@
     "legal"
    ],
    "queries": [
-    "scales of justice isolated white background",
-    "justice scale statue isolated",
-    "legal balance scales white background"
+    "scales of justice",
+    "justice scale",
+    "balance scale"
    ]
   },
   {
@@ -392,9 +392,9 @@
     "forensic"
    ],
    "queries": [
-    "evidence tag isolated white background",
-    "forensic evidence marker isolated",
-    "evidence bag label white background"
+    "evidence tag",
+    "evidence marker",
+    "evidence bag"
    ],
    "rect_ok": true
   },
@@ -409,9 +409,9 @@
     "rising"
    ],
    "queries": [
-    "3d upward arrow isolated white background",
-    "red arrow pointing up isolated on white",
-    "growth arrow going up white background"
+    "upward arrow",
+    "arrow up",
+    "rising arrow"
    ]
   },
   {
@@ -425,9 +425,9 @@
     "falling"
    ],
    "queries": [
-    "3d downward arrow isolated white background",
-    "red arrow pointing down isolated on white",
-    "decline arrow going down white background"
+    "downward arrow",
+    "arrow down",
+    "falling arrow"
    ]
   },
   {
@@ -441,9 +441,9 @@
     "hazard"
    ],
    "queries": [
-    "warning triangle sign isolated white background",
-    "road warning triangle isolated on white",
-    "hazard caution triangle sign white background"
+    "warning triangle",
+    "warning sign",
+    "caution sign"
    ]
   },
   {
@@ -457,9 +457,9 @@
     "correct"
    ],
    "queries": [
-    "3d check mark isolated white background",
-    "green checkmark object isolated on white",
-    "tick mark sign white background"
+    "check mark",
+    "checkmark",
+    "tick mark"
    ]
   },
   {
@@ -473,9 +473,9 @@
     "break"
    ],
    "queries": [
-    "broken chain isolated white background",
-    "chain link broken isolated on white",
-    "snapped metal chain white background"
+    "broken chain",
+    "chain link",
+    "snapped chain"
    ]
   },
   {
@@ -489,9 +489,9 @@
     "agreement"
    ],
    "queries": [
-    "handshake isolated white background",
-    "two hands shaking isolated on white",
-    "business handshake white background"
+    "handshake",
+    "shaking hands",
+    "two hands shaking"
    ]
   },
   {
@@ -505,9 +505,9 @@
     "hands"
    ],
    "queries": [
-    "clock face isolated white background",
-    "wall clock isolated on white",
-    "analog clock white background"
+    "clock face",
+    "wall clock",
+    "analog clock"
    ]
   },
   {
@@ -521,9 +521,9 @@
     "schedule"
    ],
    "queries": [
-    "desk calendar isolated white background",
-    "paper calendar page isolated on white",
-    "wall calendar white background"
+    "calendar",
+    "desk calendar",
+    "wall calendar"
    ],
    "rect_ok": true
   },
@@ -538,9 +538,9 @@
     "timer"
    ],
    "queries": [
-    "hourglass isolated white background",
-    "sand timer hourglass isolated on white",
-    "hourglass sand white background"
+    "hourglass",
+    "sand timer",
+    "sandglass"
    ]
   },
   {
@@ -554,9 +554,9 @@
     "lens"
    ],
    "queries": [
-    "magnifying glass isolated white background",
-    "magnifier lens isolated on white",
-    "magnifying glass handle white background"
+    "magnifying glass",
+    "magnifier",
+    "hand lens"
    ]
   },
   {
@@ -570,9 +570,9 @@
     "safe"
    ],
    "queries": [
-    "padlock isolated white background",
-    "metal padlock closed isolated on white",
-    "security lock white background"
+    "padlock",
+    "lock",
+    "latch"
    ]
   },
   {
@@ -586,9 +586,9 @@
     "metal"
    ],
    "queries": [
-    "key isolated white background",
-    "brass key isolated on white",
-    "old metal key white background"
+    "door key",
+    "house key",
+    "brass key"
    ]
   },
   {
@@ -602,9 +602,9 @@
     "badge"
    ],
    "queries": [
-    "metal shield isolated white background",
-    "security shield object isolated on white",
-    "protection shield white background"
+    "shield",
+    "metal shield",
+    "security shield"
    ]
   },
   {
@@ -618,9 +618,9 @@
     "sight"
    ],
    "queries": [
-    "crosshair target isolated white background",
-    "rifle scope crosshair isolated",
-    "target sight object white background"
+    "crosshair",
+    "target sight",
+    "gun sight"
    ]
   },
   {
@@ -634,9 +634,9 @@
     "antenna"
    ],
    "queries": [
-    "radar dish antenna isolated white background",
-    "radar screen isolated on white",
-    "satellite radar dish white background"
+    "radar",
+    "radar dish",
+    "radar antenna"
    ]
   },
   {
@@ -650,9 +650,9 @@
     "sphere"
    ],
    "queries": [
-    "globe isolated white background",
-    "desk world globe isolated on white",
-    "earth globe white background"
+    "globe",
+    "terrestrial globe",
+    "world globe"
    ]
   },
   {
@@ -666,9 +666,9 @@
     "push"
    ],
    "queries": [
-    "map pin isolated white background",
-    "3d location pin marker isolated on white",
-    "red push pin white background"
+    "map pin",
+    "push pin",
+    "location marker"
    ]
   },
   {
@@ -684,9 +684,9 @@
     "stripes"
    ],
    "queries": [
-    "american flag isolated white background",
-    "small us flag isolated on white",
-    "usa flag waving white background"
+    "american flag",
+    "us flag",
+    "flag of the united states"
    ],
    "rect_ok": true
   }

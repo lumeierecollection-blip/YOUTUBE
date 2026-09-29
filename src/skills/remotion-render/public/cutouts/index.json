@@ -18,22 +18,6 @@
       "built_at": "2026-09-29T22:14:23.306Z"
     },
     {
-      "name": "coin-stack",
-      "category": "money",
-      "file": "cutouts/coin-stack.png",
-      "width": 1024,
-      "height": 996,
-      "bytes": 484184,
-      "source": "wikimedia",
-      "license": "CC0",
-      "attribution": "Gary Lee Todd, Ph.D. via Wikimedia Commons",
-      "source_url": "https://commons.wikimedia.org/wiki/File%3AStack%20Mould%20for%20Copper%20Coins%2002.jpg",
-      "query": "stack of coins isolated white background",
-      "coverage": 0.4052,
-      "optimised": "pngquant",
-      "built_at": "2026-09-29T22:14:34.385Z"
-    },
-    {
       "name": "wallet",
       "category": "money",
       "file": "cutouts/wallet.png",
@@ -82,22 +66,6 @@
       "built_at": "2026-09-29T22:15:30.791Z"
     },
     {
-      "name": "key",
-      "category": "process",
-      "file": "cutouts/key.png",
-      "width": 885,
-      "height": 854,
-      "bytes": 267356,
-      "source": "openverse",
-      "license": "CC0",
-      "attribution": "Openverse (rawpixel)",
-      "source_url": "https://www.rawpixel.com/image/11797075/pendant",
-      "query": "old metal key white background",
-      "coverage": 0.2572,
-      "optimised": "pngquant",
-      "built_at": "2026-09-29T22:15:40.568Z"
-    },
-    {
       "name": "globe",
       "category": "process",
       "file": "cutouts/globe.png",
@@ -127,7 +95,7 @@
       "name": "bank-statement",
       "attempts": [
         "\"bank statement paper isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"financial statement document isolated on white\": wikimedia rejected — the object covers 1.4% of the photo (< 12%)",
+        "\"financial statement document isolated on white\": wikimedia rejected \u2014 the object covers 1.4% of the photo (< 12%)",
         "\"printed account statement sheet isolated\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },

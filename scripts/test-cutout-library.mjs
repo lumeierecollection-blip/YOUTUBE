@@ -20,7 +20,7 @@ const specs = JSON.parse(readFileSync(join(ROOT, "scripts", "cutout-specs.json")
 eq("41 specs (the brief lists 41 names)", specs.length, 41);
 eq("every spec has 3 queries and keywords", specs.filter((s) => s.queries.length !== 3 || !s.words.length).map((s) => s.name), []);
 eq("names are unique kebab-case", specs.filter((s, i) => !/^[a-z]+(-[a-z]+)*$/.test(s.name) || specs.findIndex((x) => x.name === s.name) !== i).map((s) => s.name), []);
-eq("every query asks for a photograph on a plain ground", specs.flatMap((s) => s.queries.filter((q) => !/isolated|white background|cut out/.test(q)).map(() => s.name)), []);
+eq("every query is a plain object name (no stock-photo phrasing)", specs.flatMap((s) => s.queries.filter((q) => /isolated|white background|cut ?out|\bpng\b|studio/i.test(q)).map(() => s.name)), []);
 const BRIEF = "dollar-bill dollar-sign coin-stack wallet bank-statement credit-card person-silhouette person-walking business-person group-people scientist worker courthouse government-building bank-building factory office-tower city-skyline contract stamp-approved gavel scales evidence-tag upward-arrow downward-arrow warning-triangle checkmark broken-chain handshake clock-face calendar hourglass magnifying-glass padlock key shield crosshair radar globe map-pin flag-america".split(" ");
 eq("exactly the brief's names", specs.map((s) => s.name), BRIEF);
 
@@ -35,8 +35,45 @@ eq("no keyword in the source's words is refused", lib.judgeCandidate(cand({ titl
 eq("a wordless candidate is allowed but ranked last", [lib.judgeCandidate(cand({}), spec).ok, lib.judgeCandidate(cand({}), spec).rank], [true, 2]);
 eq("too small is refused", lib.judgeCandidate(cand({ title: "dollar bill", width: 600, height: 400 }), spec).ok, false);
 eq("unsafe words are refused", lib.judgeCandidate(cand({ title: "nude dollar bill" }), spec).ok, false);
-const sl = lib.shortlist([cand({ downloadUrl: "a", title: "cash", width: 1000, height: 900 }), cand({ downloadUrl: "b", title: "", width: 5000, height: 4000 }), cand({ downloadUrl: "c", title: "dollar bill", width: 2000, height: 1500 }), cand({ downloadUrl: "c", title: "dollar bill" })], spec);
+const sl = lib.shortlist([cand({ downloadUrl: "a", title: "cash", width: 1000, height: 900 }), cand({ downloadUrl: "b", title: "", width: 5000, height: 4000 }), cand({ downloadUrl: "c", title: "dollar bill", width: 2000, height: 1500 }), cand({ downloadUrl: "c", title: "dollar bill" })], spec, { query: "dollar bill" });
 eq("shortlist: keyword matches first (larger first), the wordless last, no duplicates", sl.map((c) => c.downloadUrl), ["c", "a", "b"]);
+// The looser keyword filter: case, plurals and prefixes do not matter; only NO shared word rejects.
+const court = specs.find((x) => x.name === "courthouse");
+eq("'A courthouse in Ohio' matches the query 'courthouse'", lib.judgeCandidate(cand({ title: "A Courthouse in Ohio" }), court, { query: "courthouse" }).ok, true);
+eq("'Courthouses of Texas' (plural) matches", lib.judgeCandidate(cand({ title: "Courthouses of Texas" }), court, { query: "courthouse" }).ok, true);
+eq("a description that shares a word matches", lib.judgeCandidate(cand({ title: "IMG_2041.jpg", sourceText: { description: "The old county court building" } }), court, { query: "court building" }).ok, true);
+eq("no shared word is still rejected", lib.judgeCandidate(cand({ title: "Sunset over the harbour" }), court, { query: "courthouse" }).ok, false);
+eq("words(): folds case and plurals, drops stop words", lib.words("The Coins, stacked"), ["coin", "stacked"]);
+
+// 429 is a wait, not a quit.
+const bo = async (errors) => {
+  const state = {}, logs = [], sleeps = [];
+  let i = 0;
+  const fn = async () => { const e = errors[i++]; if (e) throw new Error(e); return "ok"; };
+  let out, err = null;
+  try { out = await lib.withBackoff(state, "wikimedia", fn, { sleep: async (ms) => sleeps.push(ms / 1000), log: (m) => logs.push(m) }); } catch (e) { err = e.message; }
+  return { out, err, sleeps, logs, dead: [...(state.dead || [])], calls: i };
+};
+let r = await bo(["HTTP 429 Too Many Requests"]);
+eq("one 429: waits 30 s, retries, succeeds", [r.out, r.sleeps, r.logs, r.dead], ["ok", [30], ["[cutouts] wikimedia: 429, waiting 30s"], []]);
+r = await bo(["HTTP 429 x", "HTTP 429 x"]);
+eq("two 429s: waits 30 s then 60 s, then succeeds", [r.out, r.sleeps, r.calls], ["ok", [30, 60], 3]);
+r = await bo(["HTTP 429 x", "HTTP 429 x", "HTTP 429 x"]);
+eq("three consecutive 429s: stops asking the source and says so", [r.out, r.dead, r.logs.at(-1)], [undefined, ["wikimedia"], "[cutouts] wikimedia: rate-limited, disabling for this run"]);
+r = await bo(["HTTP 403 Forbidden"]);
+eq("403 is a block: disabled at once, no waiting", [r.sleeps, r.dead, r.calls], [[], ["wikimedia"], 1]);
+r = await bo(["HTTP 500 boom"]);
+eq("another error is not retried or disabling", [r.sleeps, r.dead, r.err], [[], [], "HTTP 500 boom"]);
+{
+  const state = {}, sleeps = [];
+  const seq = ["HTTP 429 x", null, "HTTP 429 x", null, "HTTP 429 x", null];
+  let k = 0;
+  const fn = async () => { const e = seq[k++]; if (e) throw new Error(e); return "ok"; };
+  const vals = [];
+  for (let n = 0; n < 3; n++) vals.push(await lib.withBackoff(state, "openverse", fn, { sleep: async (ms) => sleeps.push(ms / 1000), log: () => {} }));
+  eq("a success resets the streak (429s that are not consecutive never disable)", [vals, sleeps, [...(state.dead || [])]], [["ok", "ok", "ok"], [30, 30, 30], []]);
+}
+
 let idx = { cutouts: [], missing: [] };
 idx = lib.upsert(idx, { name: "gavel", source: "pexels", license: "PEXELS", attribution: "Photo by A | B", source_url: "https://x", query: "q" });
 idx = lib.markMissing(idx, "radar", ["a", "b"]);
