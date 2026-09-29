@@ -23,6 +23,7 @@ import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { createRequire as createRequireEntity } from "node:module";
 import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 const { resolveEntity, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
@@ -422,11 +423,15 @@ async function verifyRender(videoPath, audioPath, channelId) {
     // were configured white and rendered dark navy on every run
     // (docs/AI-DECISION-AUDIT.md) — nothing measured it.
     if (channelBgMode(channelId) === "white") {
+      // Threshold 222 (was 240): the film vignette (black at 0.08 at the
+      // corners, visual/full-canvas.jsx) darkens exactly this crop to ~229;
+      // the check exists to catch a DARK ground (docs/AI-DECISION-AUDIT.md),
+      // which reads far below either number.
       try {
         const raw = execFileSync("ffmpeg", ["-v", "error", "-i", framePath, "-vf", "crop=100:100:0:0", "-f", "rawvideo", "-pix_fmt", "gray", "-"]);
         const mean = raw.reduce((a, b) => a + b, 0) / raw.length;
-        console.log(`[verify] white ground: top-left 100x100 mean ${mean.toFixed(1)} (must be > 240)`);
-        if (mean <= 240) problems.push(`bg_mode is "white" but the top-left 100x100 of beat 0 averages ${mean.toFixed(1)} (must be > 240)`);
+        console.log(`[verify] white ground: top-left 100x100 mean ${mean.toFixed(1)} (must be > 222)`);
+        if (mean <= 222) problems.push(`bg_mode is "white" but the top-left 100x100 of beat 0 averages ${mean.toFixed(1)} (must be > 222)`);
       } catch (e) {
         problems.push(`could not measure the white ground: ${e.message}`);
       }
@@ -597,7 +602,7 @@ function enforceAdjustments(planPath, localAudit, geminiReportPath, attempt) {
   // — the next two attempts rendered the identical video and the job was
   // cancelled at its time cap. Compared on what a beat renders from.
   const renderedAs = (p) => JSON.stringify((p?.beats || []).map((b) => [b.visual_type, b.data, b.headline, b.lead_in, b.kind, b.composition,
-    b.motion_tier, b.camera_focus, b.persists_from, b.match_cut_prev, b.named_entities, b.cutout_query, b.photo]));
+    b.motion_tier, b.camera_focus, b.persists_from, b.match_cut_prev, b.named_entities, b.cutout_query, b.photo, b.canvas]));
   if (renderedAs(next) === renderedAs(plan)) {
     console.log(`[enforce] the ${applied.length} applied directive(s) change nothing a beat renders from — no re-render of the same video`);
     return empty;
@@ -1066,12 +1071,19 @@ async function resolveCanvas(channelId, planPath, plan) {
       if (done) break;
     }
   }
+  // Typography rebuild: sentence case from the narration, left / right
+  // variant, dark beats, the one emphasis word, the one vertical beat, the
+  // number accent (visual/canvas-style.js — every rule is unit-tested).
+  {
+    const styled = styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
+    console.log(`[canvas] style: dark beats ${JSON.stringify(styled.dark)}, emphasis beat ${styled.emphasis}, vertical beat ${styled.vertical}, biggest figure beat ${styled.accentBest}`);
+  }
   for (const b of plan.beats) {
     const k = b.canvas.composition;
     counts.by_comp[k] = (counts.by_comp[k] || 0) + 1;
     if (b.canvas.cutout) counts.cutouts++;
     if (b.canvas.photo) counts.photos++;
-    console.log(`[canvas] beat ${b.index} ${k} ${b.canvas.visual_type} ${JSON.stringify(b.canvas.data || {})} tier=${b.canvas.motion_tier}${b.canvas.camera_focus ? ` camera=${b.canvas.camera_focus.map((f) => `${f.target}@${f.at_percent}`).join(",")}` : ""}${b.canvas.persists_from !== null ? ` persists_from=${b.canvas.persists_from}` : ""}${b.canvas.match_cut_prev ? " match_cut" : ""}`);
+    console.log(`[canvas] beat ${b.index} ${k} ${b.canvas.visual_type} ${JSON.stringify(b.canvas.data || {})} tier=${b.canvas.motion_tier}${b.canvas.camera_focus ? ` camera=${b.canvas.camera_focus.map((f) => `${f.target}@${f.at_percent}`).join(",")}` : ""}${b.canvas.persists_from !== null ? ` persists_from=${b.canvas.persists_from}` : ""}${b.canvas.match_cut_prev ? " match_cut" : ""}${b.canvas.dark ? " DARK" : ""}${b.canvas.emphasis_beat ? " EMPHASIS" : ""}${b.canvas.vertical ? " VERTICAL" : ""}`);
   }
   plan.cutout_stats = stats;
   plan.entity_report = entities;

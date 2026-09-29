@@ -415,3 +415,30 @@ export function canvasManifest(raw, idx) {
     number_snaps: L.boxes.number ? !L.boxes.number.parts?.isQuantity : null,
   };
 }
+
+/**
+ * The channel accent, lightened for a dark beat. Several accents (navy
+ * #1E3A5F, steel #4A5568, law red #8B1E1E) are too close to #0E0E0E to read
+ * there; this keeps the hue and lifts the lightness to `minL`. Derived from
+ * the configured colour (channels.json colors.canvas_accent), not a new one.
+ */
+export function liftAccent(hex, minL = 0.6) {
+  const m = /^#?([0-9a-f]{6})$/i.exec(String(hex || ""));
+  if (!m) return hex;
+  const n = parseInt(m[1], 16);
+  const r = ((n >> 16) & 255) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min;
+  let h = 0, s = 0;
+  const l = (max + min) / 2;
+  if (d) {
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    h = max === r ? (g - b) / d + (g < b ? 6 : 0) : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    h /= 6;
+  }
+  // Keep the accent's own saturation (steel stays a grey-blue), only avoid a fully grey lift.
+  const L = Math.max(l, minL), S = Math.min(1, Math.max(s, 0.12));
+  const q = L < 0.5 ? L * (1 + S) : L + S - L * S, p = 2 * L - q;
+  const f = (t) => { t = (t + 1) % 1; return t < 1 / 6 ? p + (q - p) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? p + (q - p) * (2 / 3 - t) * 6 : p; };
+  const hx = (v) => Math.round(v * 255).toString(16).padStart(2, "0");
+  return `#${hx(f(h + 1 / 3))}${hx(f(h))}${hx(f(h - 1 / 3))}`;
+}

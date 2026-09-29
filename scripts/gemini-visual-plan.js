@@ -1235,6 +1235,9 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
   let lastPercentType = null;
   const figuresShown = new Map();
   for (const b of plan.beats) {
+    // The sentence this beat narrates: the resolver rebuilds the headline's
+    // sentence case from its casing (visual/typography.js sentenceCase).
+    b.narration = sentences[b.index]?.text || sentences[plan.beats.indexOf(b)]?.text || "";
     // visual_type (planner's choice), checked against the sentence.
     if (b.visual_type !== undefined) {
       const sentenceText = sentences[b.index]?.text || sentences[plan.beats.indexOf(b)]?.text || "";

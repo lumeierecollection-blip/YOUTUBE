@@ -60,6 +60,7 @@ const beatsSpec = [
   { text: "The rule breaks.", c: { visual_type: "TYPE", headline: "The rule breaks", lead_in: "so", vertical: true, motion_tier: "medium" } },
 ];
 const { compositionFor } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
+const { assignDark } = await import("../src/skills/remotion-render/visual/canvas-style.js");
 const beats = beatsSpec.map((b, i) => {
   const words = b.text.split(" ");
   const per = (D - 20) / words.length;
@@ -72,6 +73,9 @@ const beats = beatsSpec.map((b, i) => {
     words: [],
   };
 });
+// The real dark-beat rule (canvas-style.js assignDark), applied to the test plan.
+const darkAt = assignDark(beats.map((b) => b.scene.canvas));
+console.log(`dark beats: ${JSON.stringify(darkAt)}`);
 const plan = { canvas: true, accent, beats, palette: { primary: ["#0F172A", "#1E293B", "#22C55E", "#FAFAFA"], secondary: [] }, fonts: { primary: "Inter", secondary: "Inter" } };
 writeFileSync(join(out, "plan.json"), JSON.stringify(plan, null, 2));
 

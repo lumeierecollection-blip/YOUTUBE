@@ -479,7 +479,10 @@ function canvasTexture(video, beats) {
     if (b.canvas?.dark && mean > 60) bad.push(`beat ${i} is marked dark but its ground is luma ${mean.toFixed(0)}`);
     if (!b.canvas?.dark && mean < 200) bad.push(`beat ${i}: the studio ground reads luma ${mean.toFixed(0)} (< 200)`);
     grainMin = Math.min(grainMin, sd);
-    if (sd < 0.6) bad.push(`beat ${i}: no paper grain in the ground patch (luma sd ${sd.toFixed(2)} < 0.6)`);
+    // Measured (2026-09-29): grain at the brief's 0.055 opacity reads sd ~1 on
+    // a lossless half-scale still and ~0.5-0.8 after h264 (a dark ground is the
+    // lowest); a flat ground with no grain reads ~0. 0.35 separates them.
+    if (sd < 0.35) bad.push(`beat ${i}: no paper grain in the ground patch (luma sd ${sd.toFixed(2)} < 0.35)`);
   });
   return { bad, grainMin };
 }
@@ -596,8 +599,14 @@ async function main() {
   });
   try { rmSync(work, { recursive: true, force: true }); } catch {}
   add("frames-nonempty", sizeBad, `${beats.length}/${beats.length} beat frames > 15 KB`);
-  add("frames-centered", centerBad, `${beats.length}/${beats.length} beats have centre content`);
   const canvasVideo = beats.some((b) => b.canvas);
+  // Paper videos put their content in the centre of the frame, and this check
+  // asks for it. A full-canvas beat is composed asymmetrically on a grid with
+  // deliberate empty cells (the typography brief: "Empty cells are
+  // intentional"): its centre may be empty by design, so canvas-coverage
+  // (content spans >= 60% of the frame height) and canvas-type (nothing
+  // centred, two roles a beat) judge it instead.
+  if (!canvasVideo) add("frames-centered", centerBad, `${beats.length}/${beats.length} beats have centre content`);
   if (canvasVideo) {
     for (const c of await canvasChecks(video, manifest)) checks.push(c);
   } else add("frames-match-reference", ref ? refBad : ["data/reference/reference-histogram.json missing"], `${beats.length}/${beats.length} beat frames within L1 ${REF_L1_MAX} of the reference`);
