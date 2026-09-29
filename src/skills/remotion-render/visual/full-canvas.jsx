@@ -56,6 +56,7 @@ import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, Easing 
 import { StudioBG } from "./studio-bg.jsx";
 import { parseQuantity, rollQuantity } from "./primitives/quantity.js";
 import { PaperMap, CenteredMap } from "./primitives/map.jsx";
+import { iconElements } from "./concept-visuals.js";
 import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
@@ -258,6 +259,46 @@ function Emphasis({ b, color, local, fps }) {
       <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, font: roleFont(ROLE_EMPHASIS, b.size), lineHeight: `${b.h}px`, letterSpacing: roleTracking(ROLE_EMPHASIS, b.size),
         color, whiteSpace: "nowrap", textAlign: b.align, fontOpticalSizing: "auto", transform: `scale(${scale.toFixed(4)})`, transformOrigin: b.align === "right" ? "right center" : "left center" }}>{b.text}</div>
     </HeroEl>
+  );
+}
+
+/**
+ * A concept token (concept-visuals.js): a Lucide icon drawn large, its
+ * strokes drawing on (pathLength 1) as the narrator reaches the concept, then
+ * floating a few px so the frame is never still. The stroke is recomputed at
+ * video scale (manual A4.3): ~4.5% of the icon's size, 8-16 px. Growth rises,
+ * decline sinks; everything else drifts.
+ */
+const TOKEN_IDLE = { growth: -1, gain: -1, decline: 1, loss: 1 };
+function ConceptToken({ b, color, local, fps, at, i = 0 }) {
+  const els = iconElements(b.icon);
+  const t = local - at * fps;
+  if (!els || t <= 0) return null;
+  const draw = easeOut(clamp01(t / (0.75 * fps)));
+  const pop = easeOut(clamp01(t / (0.45 * fps)));
+  const k = b.size / 24;
+  const sw = Math.max(8, Math.min(16, b.size * 0.045)) / k;
+  const dir = TOKEN_IDLE[b.kind] || 0;
+  const sec = t / fps;
+  const idleY = dir ? dir * (Math.sin(sec * 2.4) * 0.5 + 0.5) * 9 : Math.sin(sec * 1.7 + i * 1.9) * 5;
+  return (
+    <svg viewBox="0 0 24 24" width={b.size} height={b.size} fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round"
+      style={{ position: "absolute", left: b.x, top: b.y, overflow: "visible", color, opacity: clamp01(pop * 1.4), transformOrigin: "50% 50%",
+        transform: `translateY(${idleY.toFixed(2)}px) scale(${lerp(0.84, 1, pop).toFixed(4)})` }}>
+      {els.map(([tag, attrs], j) => React.createElement(tag, draw >= 1 ? { key: j, ...attrs } : { key: j, ...attrs, pathLength: 1, strokeDasharray: 1, strokeDashoffset: (1 - draw).toFixed(4) }))}
+    </svg>
+  );
+}
+function ConceptTokens({ L, local, fps, accent }) {
+  const th = useTheme();
+  return (
+    <>
+      {[0, 1].map((i) => {
+        const b = L.boxes[`token${i}`];
+        if (!b) return null;
+        return <ConceptToken key={i} b={b} i={i} local={local} fps={fps} at={0.3 + i * 0.4} color={b.tint === "accent" ? accent : th.ink} />;
+      })}
+    </>
   );
 }
 
@@ -814,6 +855,7 @@ function BeatCanvas({ beat, idx, local, fps, accent, hero, bodyOnly = false }) {
           <div style={{ position: "absolute", inset: 0, transformOrigin: `${zoom ? zoom.ox : 540}px ${zoom ? zoom.oy : 960}px`,
             transform: `scale(${zoom ? (1 + (zoom.k - 1) * easeInOut(clamp01(local / Math.max(1, dur)))).toFixed(4) : 1})` }}>
             <Comp c={c} L={L} idx={idx} local={local} dur={dur} fps={fps} accent={accent} spoken={beat.spoken} part="body" />
+            <ConceptTokens L={L} local={local} fps={fps} accent={accent} />
           </div>
         </div>
         {bodyOnly ? null : <Comp c={c} L={L} idx={idx} local={local} dur={dur} fps={fps} accent={accent} spoken={beat.spoken} part="header" />}

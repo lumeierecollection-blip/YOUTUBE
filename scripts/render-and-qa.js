@@ -25,6 +25,7 @@ import { createRequire as createRequireEntity } from "node:module";
 import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
+import { assignConceptTokens } from "./concept-plan.js";
 import { checkVisual, figureKey } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
@@ -1125,6 +1126,13 @@ async function resolveCanvas(channelId, planPath, plan) {
   {
     const styled = styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
     console.log(`[canvas] style: dark beats ${JSON.stringify(styled.dark)}, emphasis beat ${styled.emphasis}, vertical beat ${styled.vertical}, biggest figure beat ${styled.accentBest}`);
+  }
+  // Fix 1: every named concept gets a visual — the tokens each beat draws,
+  // chosen now that its composition is final (scripts/concept-plan.js).
+  {
+    const rep = assignConceptTokens(plan.beats, console.log);
+    console.log(`[concept] ${rep.withToken}/${plan.beats.length} beats draw a concept token, ${rep.none} name no concept, ${rep.noRoom} had no room`);
+    plan.concept_report = rep;
   }
   for (const b of plan.beats) {
     const k = b.canvas.composition;

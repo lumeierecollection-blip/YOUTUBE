@@ -35,7 +35,7 @@ function parseIcon(name, svg) {
     const tag = m[1];
     if (!ALLOWED.has(tag)) throw new Error(`${name}.svg: unsupported element <${tag}>`);
     const attrs = {};
-    const ar = /([a-zA-Z-]+)="([^"]*)"/g;
+    const ar = /([a-zA-Z][a-zA-Z0-9-]*)="([^"]*)"/g;
     let a;
     while ((a = ar.exec(m[2]))) attrs[a[1]] = a[2];
     els.push([tag, attrs]);

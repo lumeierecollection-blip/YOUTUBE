@@ -40,6 +40,7 @@ import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-name
 import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequire(import.meta.url)("./entity-assets.cjs");
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
+import { planConcepts } from "./concept-plan.js";
 import { compositionFor, splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { flowNodes, FLOW_WORDS, listItemsOf, timelineOf, compareOf, documentNameOf, moneyObjectOf, quantitiesOf, statedPercentsOf, knownPlacesOf } from "./canvas-grounding.js";
 
@@ -649,6 +650,20 @@ vignette and the camera are added by the system.
                   sentence says "Federal Reserve"):
                   [{"type": "person"|"place"|"organization", "name": "..."}]
                   — [] when it names none. Never an entity it does not name.
+  "concepts":     every CONCRETE THING the sentence names that a picture can
+                  show, in the order it says them, each {"word": <the word AS
+                  WRITTEN in the sentence>, "kind": <one kind>}. Kinds — money:
+                  money currency bill coin receipt statement; who: person group
+                  organization company; where: place building city country
+                  region; when: time date year deadline duration; papers:
+                  document contract filing ruling law; things: vehicle machine
+                  tool weapon product; movement: trade flow transfer growth
+                  decline loss gain; alarm: warning risk danger alert; between
+                  parties: agreement deal partnership conflict. Every word MUST
+                  appear in the sentence — a concept the sentence does not name
+                  is dropped by a code check, never shown. The system draws the
+                  two most important as large animated icons next to the number
+                  and the label. [] when the sentence names nothing concrete.
   "motion_tier":  "micro" | "medium" | "major". Most beats "medium". EXACTLY
                   2 or 3 beats in the video are "major": the hook (beat 0),
                   the pivot (the turn in the argument), and/or the close.
@@ -880,6 +895,7 @@ Respond ONLY with JSON (no markdown fences):
       "visual_type": "<PHOTO | CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | LIST | TIMELINE | COMPARE | DOCUMENT | MONEY | TYPE>",
       "data": { "<fields for the visual_type, see above>": "..." },
       "named_entities": [{ "type": "<person | place | organization>", "name": "<as named in the sentence>" }],
+      "concepts": [{ "word": "<a word of the sentence>", "kind": "<money | person | place | time | document | loss | warning | deal | ...>" }],
       "motion_tier": "<micro | medium | major>",
       "camera_focus": [{ "at_percent": 0.4, "target": "<number | chart | headline | photo | left | right | top | bottom | node0 | node1 | node2 | full>" }],
       "persists_from": null,
@@ -1333,6 +1349,10 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
   // resolver in render-and-qa.js replaces the drawing with a real photo when
   // the concept resolves. A composition the model wrote anyway is ignored.
   // A TYPE beat gets no composition and the typographic_emphasis capability.
+  // Fix 1: every beat's concepts — the sentence's own words the lexicon (and
+  // the model, when grounded) name — before the visuals are checked.
+  for (const b of plan.beats) b.narration = sentences[b.index]?.text || sentences[plan.beats.indexOf(b)]?.text || "";
+  planConcepts(plan.beats, (m) => console.log(m));
   let lastPercentType = null;
   const figuresShown = new Map();
   for (const b of plan.beats) {
