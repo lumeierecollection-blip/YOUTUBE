@@ -42,7 +42,10 @@ Run it:
   vs 28.5 s per 180 frames (+25%). `plan.hero_shadow === false` turns it off.
 - Unit tests, all passing: `test-typography` (35), `test-canvas-layout` (162
   layouts), `test-canvas-style` (18), `test-canvas-grounding` (30),
-  `test-composition-rotation` (11), `test-plan-gates` (33), `test-tts-normalize`.
+  `test-composition-rotation` (11), `test-plan-gates` (33), `test-tts-normalize`,
+  and `test-resolver-canvas` (the resolver on a synthetic plan: sentence case,
+  rotation on resolved canvases, dark beats, a DOCUMENT with no obtainable scan
+  falling back to typography). The six `scripts/__tests__` suites also pass.
 
 ## NOT verified
 

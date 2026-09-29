@@ -18,7 +18,7 @@
 import "dotenv/config";
 import { spawn, spawnSync, execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync, statSync } from "node:fs";
-import { join, dirname, basename, extname, relative } from "node:path";
+import { join, dirname, basename, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { createRequire as createRequireEntity } from "node:module";
@@ -1619,7 +1619,11 @@ async function main() {
   }
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+// Only as the CLI: importing the module (scripts/test-resolver-canvas.mjs) runs nothing.
+export { resolveAssets, canvasContentFor };
+if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
+  main().catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
+}
