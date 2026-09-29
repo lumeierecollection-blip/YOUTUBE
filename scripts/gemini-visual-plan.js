@@ -175,6 +175,9 @@ export function entityNamedInSentence(name, sentence) {
   const words = String(name || "").split(/[^A-Za-z0-9']+/).map((w) => w.toLowerCase()).filter((w) => w && !LEAD_FUNCTION.has(w) && !["inc", "corp", "co", "llc", "ltd", "plc"].includes(w));
   return words.length > 0 && words.every((w) => { const st = stemWord(w); return sent.some((t) => stemMatch(st, t)); });
 }
+// Words that state a flow: cause -> effect, a result, a sequence.
+const FLOW_WORDS = /\b(caus(e|es|ed|ing)|lead(s|ing)? to|led to|result(s|ed|ing)? in|so that|therefore|because|drives?|drove|trigger(s|ed)?|raises?|raised|cuts?|reduc(e|es|ed)|increas(e|es|ed)|boosts?|pushe[sd]?|forces?|forced|turns? into|becomes?|then|after|before|until|followed by|feeds?|fuels?|sparks?|prompt(s|ed)?|means?|which (makes|leads|raises|cuts))\b|->|→/i;
+
 export function checkEntities(list, sentence) {
   const kept = [], dropped = [];
   for (const e of Array.isArray(list) ? list : []) {
@@ -310,6 +313,11 @@ export function checkVisual(b, sentence) {
     if (nodes.length < 2) return bad("PROCESS needs 2-3 nodes");
     const off = nodes.find((n) => n.split(/\s+/).length > 3 || !leadInFromSentence(n, sentence));
     if (off) return bad(`PROCESS node "${off}" is not 1-3 words from the sentence`);
+    // The sentence must STATE a flow — a cause, a result, a sequence. Run
+    // 36504143080 ch-2 drew "rights -> civilians -> protected" and "police
+    // encounters -> legal boundaries" for sentences with no flow in them, and
+    // the beat check rightly called them abstract circles.
+    if (!FLOW_WORDS.test(String(sentence || ""))) return bad("PROCESS: the sentence states no cause, result or sequence");
     return { type: t, data: { nodes } };
   }
   if (t === "CUTOUT") {

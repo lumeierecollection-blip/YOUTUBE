@@ -415,6 +415,11 @@ function cameraAt(c, L, local, dur, fps) {
   let cam = { s: 1, x: 0, y: 0 };
   if (focus.length) {
     const keys = [...focus].sort((a, b) => a.at_percent - b.at_percent);
+    // A push held to the end crops the rest of the composition (run
+    // 36504143080 ch-44: a gauge beat framed at 49%). The camera settles back
+    // on the full frame by 80-90% of the beat unless the plan already did.
+    const last = keys[keys.length - 1];
+    if (String(last.target).toLowerCase() !== "full") keys.push({ at_percent: Math.min(0.9, Math.max(0.8, Number(last.at_percent) + 0.3)), target: "full" });
     for (const k of keys) {
       const start = clamp01(Number(k.at_percent)) * dur;
       const t = easeInOut(clamp01((local - start) / (0.7 * fps)));

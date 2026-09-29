@@ -24,6 +24,9 @@ import { createHash } from "node:crypto";
 import { createRequire as createRequireEntity } from "node:module";
 import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layout.js";
 const { resolveEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
+import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
+// Institution names that exist in every country (see resolveCanvas).
+const GENERIC_INSTITUTION = /^(the\s+)?(supreme court|high court|constitutional court|federal court|court of appeals?|parliament|congress|senate|house of (representatives|commons|lords)|national assembly|central bank|reserve bank|treasury|ministry of [a-z ]+|department of [a-z ]+|police|army|navy|air force|government|cabinet|election commission|human rights commission|national human rights commission)$/i;
 import { bundle } from "@remotion/bundler";
 import {
   deriveAdjustments, applyAdjustments, verifyAdjustments,
@@ -903,7 +906,9 @@ function canvasContentFor(b, { cutout = null, photo = null } = {}) {
     visual_type: vt,
     data: vt === "TYPE" ? null : b.data || null,
     lead_in: b.lead_in || null,
-    headline: b.headline || b.caption || "",
+    // An empty headline left a TYPE-FULL beat blank (run 36504143080 ch-44
+    // beat 6, 1% of the frame): the planner's own on-screen phrase fills it.
+    headline: b.headline || b.caption || b.visual_headline || b.typography_direction?.phrase || "",
     emphasis_word: b.emphasis_word || null,
     cutout: vt === "CUTOUT" ? cutout : null,
     photo: vt === "PHOTO" ? photo : null,
@@ -1012,7 +1017,23 @@ async function resolveCanvas(channelId, planPath, plan) {
         cutout = r.cutout; asset = r.asset; fetchedNew += r.fetched + (r.cutout ? 1 : 0);
       } catch (e) { return { ok: false, reason: `[cutout] beat ${b.index}: ${e.message}` }; }
     } else if (vt === "PHOTO") {
-      const ent = (b.named_entities || []).find((e) => e.name === b.data?.entity) || { type: b.data?.entity_type || "person", name: b.data?.entity };
+      let ent = (b.named_entities || []).find((e) => e.name === b.data?.entity) || { type: b.data?.entity_type || "person", name: b.data?.entity };
+      // A generic institution name ("Supreme Court", "Parliament", "the
+      // central bank") names a DIFFERENT building in every country: run
+      // 36504143080 ch-2 showed the US Supreme Court for an Indian story.
+      // It is qualified with the one country the script names, or refused.
+      if (ent?.name && GENERIC_INSTITUTION.test(String(ent.name).trim())) {
+        const countries = [...new Set(plan.beats.flatMap((x) => (x.named_entities || []).filter((e) => e.type === "place").map((e) => e.name))
+          .filter((n) => resolveRegionName(n)))];
+        if (countries.length === 1) {
+          const q = `${String(ent.name).replace(/^the\s+/i, "")} of ${countries[0]}`;
+          console.log(`[entity] "${ent.name}" is a generic institution name — resolving "${q}" (the script's one country)`);
+          ent = { ...ent, name: q };
+        } else {
+          console.log(`[entity] "${ent.name}" is a generic institution name and the script names ${countries.length ? `${countries.length} countries (${countries.join(", ")})` : "no country"} — not resolved (it would show some country's ${ent.name}); typography`);
+          ent = null;
+        }
+      }
       if (ent?.name) photo = await photoFor(ent);
       if (!photo) counts.entity_fallbacks++;
     }

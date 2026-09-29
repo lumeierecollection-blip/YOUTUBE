@@ -30,6 +30,8 @@ export const COMPOSITIONS = ["TYPE-FULL", "DATA-FULL", "SCENE-FULL", "PROCESS-FU
 export const TRANSITION_SEC = 0.5;
 // TYPE-FULL's closing rule sits on the composition region's bottom edge.
 export const RULE_Y = 1390;
+// Where a data / process / object composition starts when it has no header.
+export const CONTENT_TOP = 180;
 
 export const INK = "#0B0B0C";
 export const INK_SOFT = "#8E8E93";
@@ -166,7 +168,10 @@ export function canvasLayout(c) {
     }
   } else if (comp === "DATA-FULL") {
     Object.assign(boxes, header(c, COMP.y + 4, 60));
-    const top = Math.max(boxes.bottom + 40, 230);
+    // Content starts at y >= 180 with or without a header, and every chart
+    // reaches the composition region's bottom (scripts/test-canvas-layout.mjs:
+    // without a headline PIE spanned 51%, GAUGE 43%, LINE 59%).
+    const top = Math.max(boxes.bottom + 40, CONTENT_TOP);
     if (vt === "BAR") {
       const bars = c?.data?.bars || [];
       const longLabel = bars.some((b) => String(b.label || "").length > 12);
@@ -178,18 +183,18 @@ export function canvasLayout(c) {
       }
     } else if (vt === "PIE") {
       const r = 440;
-      boxes.chart = { ...box(540 - r, Math.max(top + 20, 300), 2 * r, 2 * r), r };
-      boxes.label = box(COMP.x, boxes.chart.y + 2 * r + 36, COMP.w, 60);
+      boxes.chart = { ...box(540 - r, top + 20, 2 * r, 2 * r), r };
+      boxes.label = box(COMP.x, Math.max(boxes.chart.y + 2 * r + 36, 1330), COMP.w, 60);
     } else if (vt === "GAUGE") {
       const r = 470;
-      const cy = Math.max(top + r + 40, 1000);
+      const cy = top + r + 30;
       boxes.chart = { ...box(540 - r, cy - r, 2 * r, r + 60), r, cy };
       boxes.number = box(COMP.x, cy + 50, COMP.w, 220);
-      boxes.label = box(COMP.x, cy + 290, COMP.w, 60);
+      boxes.label = box(COMP.x, Math.max(cy + 290, 1330), COMP.w, 60);
     } else if (vt === "LINE") {
-      boxes.chart = box(COMP.x + 20, top + 40, COMP.w - 40, 1400 - top - 40);
+      boxes.chart = box(COMP.x + 20, top, COMP.w - 40, 1400 - top);
     } else if (vt === "MAP") {
-      boxes.chart = box(24, top, 1032, 1410 - top);
+      boxes.chart = box(SAFE.x, top, SAFE.w, 1410 - top);
     } else {
       boxes.chart = box(COMP.x, top, COMP.w, 1400 - top);
     }
@@ -205,19 +210,20 @@ export function canvasLayout(c) {
       hero = "photo";
     } else {
       Object.assign(boxes, header(c, COMP.y + 20, 88));
-      const top = Math.max(boxes.bottom + 30, 330);
-      const side = Math.min(COMP.w, 1400 - top);
-      boxes.cutout = box(540 - side / 2, top, side, side);
+      const top = Math.max(boxes.bottom + 30, CONTENT_TOP + 20);
+      // The object's box runs to the composition region's bottom (drawn
+      // "contain": a tall object fills it, a wide one is centred in it).
+      boxes.cutout = box(COMP.x, top, COMP.w, 1400 - top);
       hero = "cutout";
     }
   } else if (comp === "PROCESS-FULL") {
     Object.assign(boxes, header(c, COMP.y + 4, 60));
     const nodes = (c?.data?.nodes || []).slice(0, 3);
-    const top = Math.max(boxes.bottom + 40, 260);
+    const top = Math.max(boxes.bottom + 40, CONTENT_TOP);
     if (nodes.length === 2) {
       const d = 380;
       boxes.nodes = [
-        { ...box(90, top + 40, d, d), label: nodes[0] },
+        { ...box(90, top, d, d), label: nodes[0] },
         { ...box(1080 - 90 - d, 1400 - d, d, d), label: nodes[1] },
       ];
     } else {
