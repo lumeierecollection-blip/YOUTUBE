@@ -80,291 +80,321 @@
       "coverage": 0.7173,
       "optimised": "pngquant",
       "built_at": "2026-09-29T22:15:50.207Z"
+    },
+    {
+      "name": "coin-stack",
+      "category": "money",
+      "file": "cutouts/coin-stack.png",
+      "width": 1024,
+      "height": 996,
+      "bytes": 484184,
+      "source": "wikimedia",
+      "license": "CC0",
+      "attribution": "Gary Lee Todd, Ph.D. via Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File%3AStack%20Mould%20for%20Copper%20Coins%2002.jpg",
+      "query": "stack of coins",
+      "coverage": 0.4052,
+      "optimised": "pngquant",
+      "built_at": "2026-09-29T22:34:39.081Z"
+    },
+    {
+      "name": "bank-statement",
+      "category": "money",
+      "file": "cutouts/bank-statement.png",
+      "width": 539,
+      "height": 1024,
+      "bytes": 384831,
+      "source": "wikimedia",
+      "license": "PD",
+      "attribution": "Union Colony of Colorado, compiler via Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File%3ABank%20statements%2C%20deposit%20slips%20and%20other%20account%20information%20-%20DPLA%20-%20c12b511a310b9e37181321ae4f0abf8b%20(page%2021).jpg",
+      "query": "bank statement",
+      "coverage": 0.8359,
+      "optimised": "pngquant",
+      "built_at": "2026-09-29T22:34:47.917Z"
     }
   ],
   "missing": [
     {
       "name": "dollar-sign",
       "attempts": [
-        "\"gold dollar sign symbol isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"3d dollar sign sculpture isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"dollar sign metal letter isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter"
-      ]
-    },
-    {
-      "name": "bank-statement",
-      "attempts": [
-        "\"bank statement paper isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"financial statement document isolated on white\": wikimedia rejected \u2014 the object covers 1.4% of the photo (< 12%)",
-        "\"printed account statement sheet isolated\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"dollar sign\": wikimedia rejected — the object covers 3.2% of the photo (< 12%)",
+        "\"dollar sign\": wikimedia rejected — the object covers 6.2% of the photo (< 12%)",
+        "\"dollar sign\": wikimedia rejected — the object covers 0.0% of the photo (< 12%)",
+        "\"dollar sign\": wikimedia rejected — the object covers 0.1% of the photo (< 12%)",
+        "\"dollar sign\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"dollar sign\": wikimedia rejected — the object covers 1.7% of the photo (< 12%)",
+        "\"dollar symbol\": wikimedia rejected — the object covers 4.6% of the photo (< 12%)",
+        "\"dollar symbol\": wikimedia rejected — the object covers 3.2% of the photo (< 12%)",
+        "\"dollar symbol\": wikimedia rejected — the object covers 1.7% of the photo (< 12%)",
+        "\"dollar sign sculpture\": 2 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "credit-card",
       "attempts": [
-        "\"credit card isolated white background\": 1 candidate(s), none passed the licence / keyword / size filter",
-        "\"plastic payment card isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"debit card single isolated\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"credit card\": download failed (wikimedia: HTTP 429 Too many requests - please contact noc@wikimedia.or)",
+        "\"credit card\": download failed (wikimedia: wikimedia is disabled for this run)",
+        "\"credit card\": download failed (wikimedia: wikimedia is disabled for this run)",
+        "\"credit card\": download failed (wikimedia: wikimedia is disabled for this run)",
+        "\"debit card\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"payment card\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "person-silhouette",
       "attempts": [
-        "\"person standing isolated white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"man standing full length white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"woman standing full body isolated\": 1 candidate(s), none passed the licence / keyword / size filter"
+        "\"person silhouette\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"man silhouette\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"woman standing\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "person-walking",
       "attempts": [
-        "\"person walking isolated white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"person walking isolated white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"man walking full body white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"woman walking isolated on white\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"woman walking isolated on white\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)"
+        "\"person walking\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"man walking\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"woman walking\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "business-person",
       "attempts": [
-        "\"businessman in suit isolated white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"business woman standing isolated\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"business woman standing isolated\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"executive in suit full body white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"businessman\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"businesswoman\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"man in suit\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "group-people",
       "attempts": [
-        "\"group of people standing isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"team of people isolated on white\": 4 candidate(s), none passed the licence / keyword / size filter",
-        "\"business team standing white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"business team standing white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)"
+        "\"group of people\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"crowd of people\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"people standing together\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "scientist",
       "attempts": [
-        "\"scientist in lab coat isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"researcher in white coat isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"laboratory scientist standing white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"scientist\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"researcher in lab coat\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"laboratory scientist\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "worker",
       "attempts": [
-        "\"industrial worker hard hat isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"construction worker isolated on white\": 5 candidate(s), none passed the licence / keyword / size filter",
-        "\"factory worker standing isolated\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"construction worker\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"factory worker\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"worker with hard hat\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "courthouse",
       "attempts": [
-        "\"courthouse building isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"court building with columns isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"neoclassical courthouse white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"courthouse\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"county courthouse\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"court building\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "government-building",
       "attempts": [
-        "\"government building isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"capitol building isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"federal building columns white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"government building\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"capitol building\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"town hall\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "bank-building",
       "attempts": [
-        "\"bank building isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"classical bank building isolated\": 6 candidate(s), none passed the licence / keyword / size filter",
-        "\"bank facade columns white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"bank building\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"bank branch\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"old bank\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "factory",
       "attempts": [
-        "\"factory building isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"industrial plant with chimney isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"factory smokestacks white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"factory\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"industrial plant\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"smokestacks\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "office-tower",
       "attempts": [
-        "\"office tower skyscraper isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"glass skyscraper isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"corporate office building white background\": 8 candidate(s), none passed the licence / keyword / size filter"
+        "\"office tower\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"skyscraper\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"office building\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "city-skyline",
       "attempts": [
-        "\"city skyline isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"skyline buildings silhouette isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"downtown skyscrapers isolated\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"downtown skyscrapers isolated\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)"
+        "\"city skyline\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"skyline\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"downtown skyscrapers\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "contract",
       "attempts": [
-        "\"signed contract paper isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"contract document with pen isolated\": 2 candidate(s), none passed the licence / keyword / size filter",
-        "\"agreement paper signature white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"contract\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"signed contract\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"agreement document\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "stamp-approved",
       "attempts": [
-        "\"approved rubber stamp isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"approved stamp mark on paper isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"rubber stamp approved white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"approved stamp\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"rubber stamp\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"approved\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "gavel",
       "attempts": [
-        "\"judge gavel isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"wooden gavel isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"court gavel and block white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"gavel\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"judge gavel\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"wooden gavel\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "scales",
       "attempts": [
-        "\"scales of justice isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"justice scale statue isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"legal balance scales white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"scales of justice\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"justice scale\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"balance scale\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "evidence-tag",
       "attempts": [
-        "\"evidence tag isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"forensic evidence marker isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"evidence bag label white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"evidence tag\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"evidence marker\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"evidence bag\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "upward-arrow",
       "attempts": [
-        "\"3d upward arrow isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"red arrow pointing up isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"growth arrow going up white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"upward arrow\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"arrow up\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"rising arrow\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "downward-arrow",
       "attempts": [
-        "\"3d downward arrow isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"red arrow pointing down isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"decline arrow going down white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"downward arrow\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"arrow down\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"falling arrow\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "warning-triangle",
       "attempts": [
-        "\"warning triangle sign isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"road warning triangle isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"hazard caution triangle sign white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"warning triangle\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"warning sign\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"caution sign\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "checkmark",
       "attempts": [
-        "\"3d check mark isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"green checkmark object isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"tick mark sign white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"check mark\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"checkmark\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"tick mark\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "broken-chain",
       "attempts": [
-        "\"broken chain isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"chain link broken isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"snapped metal chain white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)"
+        "\"broken chain\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"chain link\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"snapped chain\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "handshake",
       "attempts": [
-        "\"handshake isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"two hands shaking isolated on white\": 1 candidate(s), none passed the licence / keyword / size filter",
-        "\"business handshake white background\": 1 candidate(s), none passed the licence / keyword / size filter"
+        "\"handshake\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"shaking hands\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"two hands shaking\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "calendar",
       "attempts": [
-        "\"desk calendar isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"paper calendar page isolated on white\": 1 candidate(s), none passed the licence / keyword / size filter",
-        "\"wall calendar white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"calendar\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"desk calendar\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"wall calendar\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "magnifying-glass",
       "attempts": [
-        "\"magnifying glass isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"magnifier lens isolated on white\": 1 candidate(s), none passed the licence / keyword / size filter",
-        "\"magnifying glass handle white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"magnifying glass\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"magnifier\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"hand lens\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "padlock",
       "attempts": [
-        "\"padlock isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"metal padlock closed isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"security lock white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"security lock white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"security lock white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)"
+        "\"padlock\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"lock\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"latch\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "key",
+      "attempts": [
+        "\"door key\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"house key\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"brass key\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "shield",
       "attempts": [
-        "\"metal shield isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"security shield object isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"protection shield white background\": 4 candidate(s), none passed the licence / keyword / size filter"
+        "\"shield\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"metal shield\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"security shield\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "crosshair",
       "attempts": [
-        "\"crosshair target isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"rifle scope crosshair isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"target sight object white background\": 1 candidate(s), none passed the licence / keyword / size filter"
+        "\"crosshair\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"target sight\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"gun sight\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "radar",
       "attempts": [
-        "\"radar dish antenna isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"radar screen isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"satellite radar dish white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"radar\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"radar dish\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"radar antenna\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "map-pin",
       "attempts": [
-        "\"map pin isolated white background\": 1 candidate(s), none passed the licence / keyword / size filter",
-        "\"3d location pin marker isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"red push pin white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+        "\"map pin\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"push pin\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"location marker\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     },
     {
       "name": "flag-america",
       "attempts": [
-        "\"american flag isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"small us flag isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
-        "\"usa flag waving white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"usa flag waving white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"usa flag waving white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"usa flag waving white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"usa flag waving white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
-        "\"usa flag waving white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)"
+        "\"american flag\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"us flag\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"flag of the united states\": 0 candidate(s), none passed the licence / keyword / size filter"
       ]
     }
   ]
