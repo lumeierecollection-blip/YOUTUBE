@@ -1235,9 +1235,14 @@
           "topic": "22-year-old's $245 million crypto heist",
           "slug": "22-year-old-245m-crypto-heist-guilty-plea",
           "reserved_at": "2026-09-29T22:02:58.951Z"
+        },
+        {
+          "topic": "CFTC Fraud Charges Target $950M Cash FX Ponzi Scheme",
+          "slug": "cftc-950m-cash-forex-ponzi-scheme",
+          "reserved_at": "2026-09-29T22:16:26.182Z"
         }
       ],
-      "last_generated": "2026-09-29T22:02:58.951Z"
+      "last_generated": "2026-09-29T22:16:26.182Z"
     },
     "27": {
       "channel_name": "Climate Now",
