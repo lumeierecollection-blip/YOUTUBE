@@ -1931,9 +1931,14 @@
           "topic": "The 90-10 Rule",
           "slug": "90-10-rule-leadership",
           "reserved_at": "2026-09-29T22:02:31.555Z"
+        },
+        {
+          "topic": "communication skill breakdowns",
+          "slug": "communication-skills-breakdowns",
+          "reserved_at": "2026-09-29T22:15:05.011Z"
         }
       ],
-      "last_generated": "2026-09-29T22:02:31.555Z"
+      "last_generated": "2026-09-29T22:15:05.011Z"
     },
     "45": {
       "channel_name": "Lift",
