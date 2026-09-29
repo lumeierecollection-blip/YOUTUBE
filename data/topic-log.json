@@ -160,9 +160,14 @@
           "topic": "The impact of the September 2026 Fed rate hike on debt",
           "slug": "impact-sept-2026-fed-rate-hike-debt",
           "reserved_at": "2026-09-29T22:19:33.347Z"
+        },
+        {
+          "topic": "New debt payoff strategies in light of the September 2026 Fed rate hike",
+          "slug": "new-debt-payoff-strategies-2026",
+          "reserved_at": "2026-09-29T22:49:30.931Z"
         }
       ],
-      "last_generated": "2026-09-29T22:37:51.656Z"
+      "last_generated": "2026-09-29T22:49:30.931Z"
     },
     "2": {
       "channel_name": "Legal Brief",
