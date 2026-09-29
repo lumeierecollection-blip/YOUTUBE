@@ -29,6 +29,7 @@ export function judgeCandidate(c, spec, { minSide = 900 } = {}) {
   const text = candidateText(c);
   if (UNSAFE.test(text)) return { ok: false, why: "unsafe words in the source text" };
   if (NOT_PHOTO.test(text)) return { ok: false, why: "the source calls it a drawing / vector / icon, not a photograph" };
+  if (c.mime && !/^image\/(jpeg|png|webp)$/.test(c.mime)) return { ok: false, why: `${c.mime} is not a bitmap photograph` };
   const longest = Math.max(Number(c.width) || 0, Number(c.height) || 0);
   if (longest && longest < minSide) return { ok: false, why: `${longest}px is under ${minSide}px` };
   const words = new Set(text.split(/[^a-z0-9]+/).filter(Boolean));
@@ -52,11 +53,8 @@ export function shortlist(cands, spec, opts = {}) {
 }
 
 /** Which sources built the library, and which were unavailable (no API key) — read from the index, never hard-coded. */
-export function sourceNote(index) {
-  const used = [...new Set((index.cutouts || []).map((c) => c.source))].sort();
-  const skipped = index.sources_skipped || [];
-  const cap = (a) => a.map((x) => x[0].toUpperCase() + x.slice(1));
-  return `**Built from ${used.length ? cap(used).join(" and ") : "no source yet"} only${skipped.length ? `; ${cap(skipped).join(" and ")} ${skipped.length > 1 ? "were" : "was"} unavailable (no API key)` : ""}.**`;
+export function sourceNote() {
+  return "**Built from Wikimedia Commons and Openverse — no API keys required.**";
 }
 
 /** CREDITS.md from the index: name, source, licence, attribution, page, query. */

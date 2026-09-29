@@ -45,7 +45,7 @@ on:
         type: string
         default: ""
       build_cutouts:
-        description: "Also build the concept-cutout library (real stock photos isolated with rembg -> src/skills/remotion-render/public/cutouts/, committed to this branch). Needs the PEXELS / PIXABAY / UNSPLASH secrets."
+        description: "Also build the concept-cutout library (real stock photos isolated with rembg -> src/skills/remotion-render/public/cutouts/, committed to this branch). No API keys needed (Wikimedia Commons + Openverse)."
         type: boolean
         default: false
 
@@ -104,8 +104,8 @@ jobs:
 
   # ============================================================
   # CUTOUTS (only with -f build_cutouts=true): the concept-cutout library.
-  # scripts/build-cutout-library.mjs searches Pexels / Pixabay / Unsplash /
-  # Openverse / Wikimedia for each of the 41 objects in scripts/cutout-specs.json,
+  # scripts/build-cutout-library.mjs searches Wikimedia Commons and Openverse
+  # (no API keys) for each of the 41 objects in scripts/cutout-specs.json,
   # isolates the photograph with rembg (u2net), checks the mask
   # (scripts/cutout_lib.py) and commits the PNGs, CREDITS.md and MISSING.md to
   # this branch. It runs beside the pipeline, not before it: the run that builds
@@ -147,24 +147,10 @@ jobs:
           python -c "from rembg import new_session; new_session('u2net'); print('rembg ready')"
           sudo apt-get update -qq && sudo apt-get install -y -qq pngquant
 
-      - name: Which stock sources have a key
-        env:
-          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
-          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-        run: |
-          for k in PEXELS_API_KEY PIXABAY_API_KEY UNSPLASH_ACCESS_KEY; do
-            if [ -n "${!k}" ]; then echo "$k: set"; else echo "::warning::$k is not set — that source is skipped"; fi
-          done
-
       - name: Validation tests (masks, builder offline)
         run: node scripts/test-cutout-library.mjs --rembg
 
       - name: Build the cutout library
-        env:
-          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
-          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
         run: node scripts/build-cutout-library.mjs
 
       - name: Contact sheet

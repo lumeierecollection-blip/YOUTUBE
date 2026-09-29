@@ -7,7 +7,7 @@
  *   node scripts/build-cutout-library.mjs [--only dollar-bill,gavel] [--force] [--tries 6]
  *
  * For each spec in scripts/cutout-specs.json (41 names, 3 queries each):
- *   1. search Pexels, Pixabay, Unsplash, Openverse and Wikimedia with the query
+ *   1. search Wikimedia Commons and Openverse (both keyless) with the query
  *      (asset-sourcing/sources/*), keep licences on the allowlist, drop anything
  *      the source calls a drawing / vector / icon, keep keyword matches first;
  *   2. download the largest results (>= 900 px), and for each: rembg u2net ->
@@ -25,10 +25,10 @@
  * a photograph without a licence is refused), isolated and checked the same way.
  * For photographs you supply yourself, and for testing the whole pipeline offline.
  *
- * Needs network access to those hosts and PEXELS_API_KEY / PIXABAY_API_KEY /
- * UNSPLASH_ACCESS_KEY (a source with no key is skipped, as in asset-sourcing);
- * a GitHub Actions runner has both (the daily-pipeline-v2 `cutouts` job); an
- * interactive session behind an egress allowlist does not.
+ * Needs network access to commons.wikimedia.org and api.openverse.org; NO API key
+ * is read. A GitHub Actions runner has that (the daily-pipeline-v2 `cutouts` job);
+ * an interactive session behind an egress allowlist does not.
+ * --dry-run: search every spec's queries and report the counts; download nothing.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, appendFileSync, copyFileSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -36,9 +36,6 @@ import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import sharp from "sharp";
-import * as pexels from "../src/skills/asset-sourcing/sources/pexels.js";
-import * as pixabay from "../src/skills/asset-sourcing/sources/pixabay.js";
-import * as unsplash from "../src/skills/asset-sourcing/sources/unsplash.js";
 import * as openverse from "../src/skills/asset-sourcing/sources/openverse.js";
 import * as wikimedia from "../src/skills/asset-sourcing/sources/wikimedia.js";
 import { downloadFile } from "../src/skills/asset-sourcing/http.js";
@@ -55,28 +52,19 @@ const only = arg("only") ? arg("only").split(",") : null;
 const force = process.argv.includes("--force");
 const tries = Number(arg("tries", 6));
 const fromDir = arg("from-dir");
-const SOURCES = { pexels, pixabay, unsplash, openverse, wikimedia };
-const KEYS = { pexels: "PEXELS_API_KEY", pixabay: "PIXABAY_API_KEY", unsplash: "UNSPLASH_ACCESS_KEY" };
-// Default: the keyed sources that have a key. Openverse / Wikimedia (no key) only with --sources openverse,wikimedia.
-const optIn = arg("sources") ? arg("sources").split(",") : [];
+// Keyless sources only: Wikimedia Commons and Openverse. No API key is read, no key-required source is ever asked.
+const SOURCES = { wikimedia, openverse };
 const skippedNoKey = [];
-for (const name of Object.keys(SOURCES)) {
-  if (KEYS[name] && !process.env[KEYS[name]]) { console.warn(`[cutouts] ${name}: no key, skipped`); skippedNoKey.push(name); delete SOURCES[name]; }
-  else if (!KEYS[name] && !optIn.includes(name)) delete SOURCES[name];
-}
-console.log(`[cutouts] sources this run: ${Object.keys(SOURCES).join(", ") || "none"}`);
-if (!Object.keys(SOURCES).length && !fromDir) {
-  // Never "succeed" with nothing to search: an empty library must not be committed as if it were a result.
-  console.error("::error::[cutouts] no source has an API key (PEXELS_API_KEY / PIXABAY_API_KEY / UNSPLASH_ACCESS_KEY are all empty in this job). Are the secrets set as REPOSITORY secrets for this repo (not environment / Dependabot / Codespaces secrets)?");
-  process.exit(2);
-}
+const dryRun = process.argv.includes("--dry-run");
+console.log(`[cutouts] sources this run: ${Object.keys(SOURCES).join(", ")}${dryRun ? " (dry run: search only, nothing downloaded or written)" : ""}`);
+/** Commons' file search wants the object, not stock-photo phrasing; ask for bitmaps (jpg / png), not SVG / PDF. */
+const queryFor = (source, q) => (source === "wikimedia" ? `${q.replace(/\b(isolated( on white)?|white background|studio photo cut out|on white)\b/gi, "").replace(/\s+/g, " ").trim()} filetype:bitmap` : q);
 const dead = new Set();       // sources that answered 401 / 403 / 429 this run: not asked again
 
 const { specs, min_side_px: MIN_SIDE } = JSON.parse(readFileSync(join(ROOT, "scripts", "cutout-specs.json"), "utf8"));
 mkdirSync(OUT, { recursive: true });
 mkdirSync(dirname(LOG), { recursive: true });
 let index = existsSync(INDEX) ? JSON.parse(readFileSync(INDEX, "utf8")) : { version: 1, cutouts: [], missing: [] };
-index.sources_skipped = skippedNoKey;
 const log = (o) => appendFileSync(LOG, JSON.stringify({ at: new Date().toISOString(), ...o }) + "\n");
 const save = () => {
   writeFileSync(INDEX, JSON.stringify(index, null, 2) + "\n");
@@ -86,7 +74,7 @@ const save = () => {
 
 async function searchAll(query) {
   const res = await Promise.all(Object.entries(SOURCES).filter(([n]) => !dead.has(n)).map(async ([name, mod]) => {
-    try { return await mod.search(query, { count: 8 }); }
+    try { return await mod.search(queryFor(name, query), { count: 8 }); }
     catch (e) {
       const m = String(e.message || e);
       if (/HTTP (401|403|429)/.test(m)) { dead.add(name); console.warn(`[cutouts] ${name} refused (${m.slice(0, 60)}) — not asked again this run`); }
@@ -115,12 +103,14 @@ function optimise(file) {
 const work = join(tmpdir(), `cutout-raw-${process.pid}`);
 mkdirSync(work, { recursive: true });
 let made = 0, skipped = 0, missing = 0;
+const dry = [];
 for (const spec of specs) {
   if (only && !only.includes(spec.name)) continue;
   const file = join(OUT, `${spec.name}.png`);
   if (existsSync(file) && !force && index.cutouts.some((c) => c.name === spec.name)) { skipped++; continue; }
   const attempts = [];
   let done = false;
+  if (dryRun) { /* search only */ }
   // A source of candidates: the network (each query in turn) or a directory of photographs you supply.
   const rounds = fromDir ? [null] : spec.queries;
   for (const query of rounds) {
@@ -137,11 +127,16 @@ for (const spec of specs) {
       list = shortlist(found, spec, { minSide: MIN_SIDE }).slice(0, tries);
       console.log(`[cutouts] ${spec.name}: "${query}" -> ${found.length} candidates, ${list.length} worth trying`);
       if (!list.length) attempts.push(`"${query}": ${found.length} candidate(s), none passed the licence / keyword / size filter`);
+      if (dryRun) {
+        const by = (arr) => Object.entries(arr.reduce((m, c) => ((m[c.sourceApi] = (m[c.sourceApi] || 0) + 1), m), {})).map(([k, v]) => `${k} ${v}`).join(", ") || "none";
+        dry.push({ name: spec.name, query, found: found.length, worth: list.length, foundBy: by(found), worthBy: by(list) });
+        continue;
+      }
     }
     for (const [k, c] of list.entries()) {
       const raw = c.localPath || join(work, `${spec.name}-${k}.img`);
       if (!c.localPath) {
-        try { await downloadFile(c.downloadUrl, raw, { timeoutMs: 60000 }); }
+        try { await downloadFile(c.thumbUrl || c.downloadUrl, raw, { timeoutMs: 60000 }); }
         catch (e) { attempts.push(`"${query}": download failed (${c.sourceApi}: ${String(e.message).slice(0, 60)})`); continue; }
       }
       const meta = await sharp(raw).metadata().catch(() => null);
@@ -158,15 +153,23 @@ for (const spec of specs) {
       made++; done = true; break;
     }
   }
-  if (!done) {
+  if (!done && !dryRun) {
     rmSync(file, { force: true });
     index = markMissing(index, spec.name, attempts.slice(-12));
     missing++;
     console.warn(`[cutouts] ${spec.name}: MISSING after ${fromDir ? "the supplied photograph" : `${spec.queries.length} queries`}`);
   }
-  save();                        // after every cutout: a timeout keeps the work done so far
+  if (!dryRun) save();           // after every cutout: a timeout keeps the work done so far
 }
 rmSync(work, { recursive: true, force: true });
+if (dryRun) {
+  const names = [...new Set(dry.map((d) => d.name))];
+  const hit = names.filter((n) => dry.some((d) => d.name === n && d.worth > 0));
+  console.log(`[cutouts] dry run: ${names.length} specs x ${dry.length} queries searched against ${Object.keys(SOURCES).join(" + ")}`);
+  console.log(`[cutouts] dry run: ${hit.length}/${names.length} specs have >= 1 candidate that passes the licence / keyword / size filters; without: ${names.filter((n) => !hit.includes(n)).join(", ") || "none"}`);
+  for (const d of dry) console.log(`[cutouts]   ${d.name} | "${d.query}" | found ${d.found} (${d.foundBy}) | worth trying ${d.worth} (${d.worthBy})`);
+  process.exit(0);
+}
 save();
 console.log(`[cutouts] done: ${made} made, ${skipped} already present, ${missing} missing; ${index.cutouts.length}/${specs.length} in the library`);
 process.exit(0);
