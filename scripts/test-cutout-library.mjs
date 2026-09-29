@@ -74,6 +74,21 @@ eq("another error is not retried or disabling", [r.sleeps, r.dead, r.err], [[], 
   eq("a success resets the streak (429s that are not consecutive never disable)", [vals, sleeps, [...(state.dead || [])]], [["ok", "ok", "ok"], [30, 30, 30], []]);
 }
 
+// A download refused by one image host must not disable the search API (run 36639904169: a Flickr 403 killed Openverse).
+eq("hostOf", [lib.hostOf("https://live.staticflickr.com/1/2.jpg"), lib.hostOf("nonsense")], ["live.staticflickr.com", "unknown"]);
+{
+  const state = {};
+  await lib.withBackoff(state, "download:live.staticflickr.com", async () => { throw new Error("HTTP 403 Forbidden"); }, { log: () => {} }).catch(() => {});
+  const ok = await lib.withBackoff(state, "openverse", async () => "results", { log: () => {} });
+  eq("a 403 on an image host disables that host only; the search source still answers", [[...state.dead], ok], [["download:live.staticflickr.com"], "results"]);
+}
+{
+  let t = 0; const slept = [];
+  const pace = lib.makePacer(1500, { now: () => t, sleep: async (ms) => { slept.push(ms); t += ms; } });
+  await pace("wikimedia", async () => {}); t += 400; await pace("wikimedia", async () => {}); await pace("openverse", async () => {});
+  eq("the pacer keeps 1.5 s between calls under one key and none between keys", slept, [1100]);
+}
+
 let idx = { cutouts: [], missing: [] };
 idx = lib.upsert(idx, { name: "gavel", source: "pexels", license: "PEXELS", attribution: "Photo by A | B", source_url: "https://x", query: "q" });
 idx = lib.markMissing(idx, "radar", ["a", "b"]);

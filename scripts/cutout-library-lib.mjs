@@ -150,3 +150,17 @@ export function markMissing(index, name, attempts) {
   const missing = (index.missing || []).filter((m) => m.name !== name).concat({ name, attempts });
   return { ...index, missing };
 }
+
+/** The host of a URL (the key a DOWNLOAD is rate-limited / blocked under: one Flickr host refusing an image must not disable the search API). */
+export const hostOf = (url) => { try { return new URL(url).hostname; } catch { return "unknown"; } };
+
+/** A minimum gap between calls under one key (a search API or an image host): waits, then runs. `now` / `sleep` are injectable for tests. */
+export function makePacer(minMs, { now = () => Date.now(), sleep = (ms) => new Promise((r) => setTimeout(r, ms)) } = {}) {
+  const last = {};
+  return async (key, fn) => {
+    const wait = last[key] === undefined ? 0 : last[key] + minMs - now();
+    if (wait > 0) await sleep(wait);
+    last[key] = now();
+    return fn();
+  };
+}

@@ -39,7 +39,7 @@ import sharp from "sharp";
 import * as openverse from "../src/skills/asset-sourcing/sources/openverse.js";
 import * as wikimedia from "../src/skills/asset-sourcing/sources/wikimedia.js";
 import { downloadFile } from "../src/skills/asset-sourcing/http.js";
-import { shortlist, creditsMarkdown, missingMarkdown, upsert, markMissing, withBackoff } from "./cutout-library-lib.mjs";
+import { shortlist, creditsMarkdown, missingMarkdown, upsert, markMissing, withBackoff, hostOf, makePacer } from "./cutout-library-lib.mjs";
 import { isAllowedLicense, normalizeLicense } from "../src/skills/asset-sourcing/licenses.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -59,6 +59,8 @@ const dryRun = process.argv.includes("--dry-run");
 console.log(`[cutouts] sources this run: ${Object.keys(SOURCES).join(", ")}${dryRun ? " (dry run: search only, nothing downloaded or written)" : ""}`);
 /** Commons' file search wants the object, not stock-photo phrasing; ask for bitmaps (jpg / png), not SVG / PDF. */
 const queryFor = (source, q) => (source === "wikimedia" ? `${q.replace(/\b(isolated( on white)?|white background|studio photo cut out|on white)\b/gi, "").replace(/\s+/g, " ").trim()} filetype:bitmap` : q);
+// Commons throttles bursts: one call per source / host at most every 1.5 s.
+const pace = makePacer(1500);
 const backoff = { dead: new Set(), streak: {} };   // per-source 429 streaks; 403 / three 429s in a row disable a source for the run
 
 const { specs, min_side_px: MIN_SIDE } = JSON.parse(readFileSync(join(ROOT, "scripts", "cutout-specs.json"), "utf8"));
@@ -74,7 +76,7 @@ const save = () => {
 
 async function searchAll(query) {
   const res = await Promise.all(Object.entries(SOURCES).filter(([n]) => !backoff.dead.has(n)).map(async ([name, mod]) => {
-    try { return await withBackoff(backoff, name, () => mod.search(queryFor(name, query), { count: 8 })); }
+    try { return await withBackoff(backoff, name, () => pace(name, () => mod.search(queryFor(name, query), { count: 8, thumbWidth: 1280 }))); }
     catch (e) {
       if (!e.disabled && !/HTTP (401|403|429)/.test(String(e.message))) console.warn(`[cutouts] ${name} failed for "${query}": ${String(e.message).slice(0, 100)}`);
       return [];
@@ -134,7 +136,7 @@ for (const spec of specs) {
     for (const [k, c] of list.entries()) {
       const raw = c.localPath || join(work, `${spec.name}-${k}.img`);
       if (!c.localPath) {
-        try { await withBackoff(backoff, c.sourceApi, () => downloadFile(c.thumbUrl || c.downloadUrl, raw, { timeoutMs: 60000 })); }
+        try { const dl = c.thumbUrl || c.downloadUrl, hk = `download:${hostOf(dl)}`; await withBackoff(backoff, hk, () => pace(hk, () => downloadFile(dl, raw, { timeoutMs: 60000 }))); }
         catch (e) { attempts.push(`"${query}": download failed (${c.sourceApi}: ${String(e.message).slice(0, 60)})`); continue; }
       }
       const meta = await sharp(raw).metadata().catch(() => null);
