@@ -2418,9 +2418,14 @@
           "topic": "Inside FactoryLens: How NVIDIA Omniverse Powers Industrial Digital Twins",
           "slug": "visual-components-factorylens-nvidia-omniverse-digital-twins",
           "reserved_at": "2026-09-28T12:36:03.646Z"
+        },
+        {
+          "topic": "Siemens SINUMERIK MTR: 6-Axis Robots Meet Machine Tool Accuracy",
+          "slug": "siemens-sinumerik-mtr-machine-tool-robot",
+          "reserved_at": "2026-09-29T11:51:47.644Z"
         }
       ],
-      "last_generated": "2026-09-28T12:36:03.646Z"
+      "last_generated": "2026-09-29T11:51:47.645Z"
     },
     "49": {
       "channel_name": "Wander Budget",
