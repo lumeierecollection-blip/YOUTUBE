@@ -150,9 +150,14 @@
           "topic": "the-impact-of-the-june-2026-fed-rate-hike-on-the-50-30-20-budget-rule",
           "slug": "the-impact-of-the-june-2026-fed-rate-hike-on-the-50-30-20",
           "reserved_at": "2026-09-28T21:19:09.125Z"
+        },
+        {
+          "topic": "saving-challenges",
+          "slug": "cost-of-living-saving-challenges-2026",
+          "reserved_at": "2026-09-29T22:03:59.376Z"
         }
       ],
-      "last_generated": "2026-09-28T21:19:09.125Z"
+      "last_generated": "2026-09-29T22:03:59.376Z"
     },
     "2": {
       "channel_name": "Legal Brief",
