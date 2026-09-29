@@ -686,9 +686,14 @@
           "topic": "The-Naga-Kuki-Conflict",
           "slug": "the-naga-kuki-conflict-now",
           "reserved_at": "2026-09-29T22:02:53.254Z"
+        },
+        {
+          "topic": "Iranian Aviation Sanctions",
+          "slug": "iranian-aviation-sanctions-2026-09-08",
+          "reserved_at": "2026-09-29T22:18:02.483Z"
         }
       ],
-      "last_generated": "2026-09-29T22:02:53.254Z"
+      "last_generated": "2026-09-29T22:18:02.483Z"
     },
     "10": {
       "channel_name": "Word Lab",
