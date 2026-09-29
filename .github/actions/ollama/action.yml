@@ -32,6 +32,17 @@ inputs:
       ("received a shutdown signal", exit 143) the moment rembg started.
     required: false
     default: "false"
+  background:
+    description: >
+      "true" = start the server, then pull + check the models in the
+      BACKGROUND and return at once; later steps get OLLAMA_READY_FILE, and
+      scripts/ollama-client.cjs (and gate-visual-qa.js) wait for it before a
+      local call. The render job needs this: 17 GB of fallback models took
+      ~6 of its 20 minutes before anything rendered, and ch-9 / ch-44 were
+      cancelled at the cap (run 36500636962). Gemini and Groq answer first;
+      the local models are only the last tier.
+    required: false
+    default: "false"
 runs:
   using: composite
   steps:
@@ -52,6 +63,7 @@ runs:
         CTX: ${{ inputs.context-length }}
         MAX_LOADED: ${{ inputs.max-loaded }}
         UNLOAD: ${{ inputs.unload-after-warm }}
+        BACKGROUND: ${{ inputs.background }}
       run: |
         sudo systemctl stop ollama 2>/dev/null || true
         sudo systemctl disable ollama 2>/dev/null || true
@@ -61,13 +73,27 @@ runs:
           OLLAMA_CONTEXT_LENGTH="$CTX" OLLAMA_MAX_LOADED_MODELS="$MAX_LOADED" OLLAMA_KEEP_ALIVE=30m \
           nohup ollama serve > /tmp/ollama.log 2>&1 &
         for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+        rm -f /tmp/ollama-ready /tmp/ollama-failed
+        cat > /tmp/ollama-pull.sh <<'PULL'
+        set -u
         for m in $MODELS; do
-          OLLAMA_HOST=127.0.0.1:11434 ollama pull "$m"
+          OLLAMA_HOST=127.0.0.1:11434 ollama pull "$m" || { echo "pull failed: $m" > /tmp/ollama-failed; exit 1; }
           node scripts/ollama-client.cjs --check --model "$m" --timeout 120 \
-            || { echo "--- ollama.log ---"; tail -50 /tmp/ollama.log; exit 1; }
+            || { echo "--- ollama.log ---"; tail -50 /tmp/ollama.log; echo "check failed: $m" > /tmp/ollama-failed; exit 1; }
           if [ "$UNLOAD" = "true" ]; then
             curl -sf http://127.0.0.1:11434/api/generate -d "{\"model\":\"$m\",\"keep_alive\":0}" >/dev/null && echo "unloaded $m after warm-up" || echo "::warning::could not unload $m"
           fi
         done
         OLLAMA_HOST=127.0.0.1:11434 ollama ps || true
+        touch /tmp/ollama-ready
+        PULL
+        sed -i 's/^        //' /tmp/ollama-pull.sh
+        export MODELS UNLOAD
+        if [ "$BACKGROUND" = "true" ]; then
+          nohup bash /tmp/ollama-pull.sh > /tmp/ollama-pull.log 2>&1 &
+          echo "OLLAMA_READY_FILE=/tmp/ollama-ready" >> "$GITHUB_ENV"
+          echo "Ollama server up; models pulling in the background (/tmp/ollama-pull.log)"
+        else
+          bash /tmp/ollama-pull.sh || exit 1
+        fi
         nproc; free -g | head -2; df -h / | tail -1

@@ -72,7 +72,14 @@ function TypeFull({ c, L, local, dur, fps, accent, part = "body" }) {
     const q = parseQuantity(c.data?.value);
     const t = m.build(0.4, m.s(0.25));
     const shown = q ? rollQuantity(q, t).replace(/\s*(thousand|million|billion|trillion)$/i, "").replace(/(\d)\s+([kKmMbB])$/, "$1$2") : B.number.text;
-    if (part === "header") return B.headline ? <Lines b={B.headline} color={INK} weight={800} upper local={local} fps={fps} m={m} stagger /> : null;
+    // The closing rule is pinned with the header: a major 1.15 zoom carried
+    // it into the caption band (run 36500636962 ch-2).
+    if (part === "header") return (
+      <>
+        {B.headline ? <Lines b={B.headline} color={INK} weight={800} upper local={local} fps={fps} m={m} stagger /> : null}
+        <Rule b={B.rule} t={m.build(0.3, m.s(0.6))} />
+      </>
+    );
     return (
       <>
         <HeroEl name="number" b={B.number}>
@@ -82,7 +89,6 @@ function TypeFull({ c, L, local, dur, fps, accent, part = "body" }) {
             transform: `translateY(${(t >= 1 ? m.jitter() : (1 - t) * 60).toFixed(2)}px) scale(${(m.breathe * (major ? lerp(0.6, 1, t) : 1)).toFixed(4)})` }}>{shown}</div>
         </HeroEl>
         {B.label ? <Lines b={B.label} color={INK} weight={500} local={local - m.s(0.5)} fps={fps} m={m} /> : null}
-        <Rule b={B.rule} t={m.build(0.3, m.s(0.6))} />
       </>
     );
   }
@@ -90,7 +96,12 @@ function TypeFull({ c, L, local, dur, fps, accent, part = "body" }) {
   const words = st.lines.map((l) => l.split(" "));
   let wi = 0;
   const emph = String(c.emphasis_word || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-  if (part === "header") return B.kicker ? <div style={{ position: "absolute", left: B.kicker.x + B.kicker.w * 0.03, top: B.kicker.y, width: B.kicker.w, font: `italic 500 ${B.kicker.size}px ${SERIF}`, color: INK_SOFT, opacity: m.build(0.2) }}>{B.kicker.lines[0]}</div> : null;
+  if (part === "header") return (
+    <>
+      {B.kicker ? <div style={{ position: "absolute", left: B.kicker.x + B.kicker.w * 0.03, top: B.kicker.y, width: B.kicker.w, font: `italic 600 ${B.kicker.size}px ${SERIF}`, color: INK, opacity: m.build(0.2) }}>{B.kicker.lines[0]}</div> : null}
+      <Rule b={B.rule} t={m.build(0.3, m.s(0.5))} />
+    </>
+  );
   return (
     <>
       <HeroEl name="statement" b={st}>
@@ -117,7 +128,6 @@ function TypeFull({ c, L, local, dur, fps, accent, part = "body" }) {
           ))}
         </div>
       </HeroEl>
-      <Rule b={B.rule} t={m.build(0.3, m.s(0.5))} />
     </>
   );
 }

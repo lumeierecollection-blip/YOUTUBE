@@ -192,6 +192,14 @@ function parsePlan(text) {
 // are shrunk with ffmpeg (long side 512 px, JPEG) and posted with curl to
 // /api/generate, format "json", with the SAME prompt.
 function ollamaVision(framePaths, prompt) {
+  // Background model pull (see ollama-client.cjs waitForModels): wait for it,
+  // synchronously, like the rest of this script — at most 6 minutes.
+  const rf = process.env.OLLAMA_READY_FILE;
+  if (rf) {
+    const t0 = Date.now();
+    while (!existsSync(rf) && !existsSync(rf.replace(/ready$/, "failed")) && Date.now() - t0 < 360000) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 3000);
+    if (!existsSync(rf)) return { ran: false, why: `ollama models not ready (${existsSync(rf.replace(/ready$/, "failed")) ? "pull failed" : "still pulling after 360s"})` };
+  }
   const url = (process.env.OLLAMA_URL || "http://127.0.0.1:11434").replace(/\/$/, "");
   const model = process.env.OLLAMA_VISION_MODEL || "qwen2.5vl:3b";
   const work = join(tmpdir(), `vqa-ollama-${process.pid}`);

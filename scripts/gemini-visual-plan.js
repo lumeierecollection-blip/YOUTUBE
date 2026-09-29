@@ -978,6 +978,28 @@ async function main() {
       const v = checkVisual(b, sentenceText);
       if (v.why) rejected.push({ b, sentenceText, why: v.why, asked: String(b.visual_type).toUpperCase(), opts: groundedOptions(sentenceText) });
     }
+    // Variety: a video that is mostly typography is rejected by the review
+    // (TEMPLATE_MONOCULTURE — run 36500636962 ch-26 71-85%, ch-44 80-90%).
+    // When over 40% of beats are type (TYPE, or one big COUNTER), each pure
+    // TYPE beat between the hook and the close is offered back too, with what
+    // its sentence can ground. The same gate judges the answer; a sentence
+    // that grounds nothing stays TYPE — nothing is invented to fill the frame.
+    {
+      const n = plan.beats.length;
+      const vtOf = (b) => String(b.visual_type || "TYPE").toUpperCase();
+      const typeish = plan.beats.filter((b) => ["TYPE", "COUNTER"].includes(vtOf(b))).length;
+      if (n >= 4 && typeish / n > 0.4) {
+        let added = 0;
+        for (const [i, b] of plan.beats.entries()) {
+          if (i === 0 || i === n - 1 || vtOf(b) !== "TYPE" || rejected.some((r) => r.b === b)) continue;
+          const sentenceText = sentences[b.index]?.text || sentences[i]?.text || "";
+          rejected.push({ b, sentenceText, asked: "TYPE", opts: groundedOptions(sentenceText),
+            why: `${Math.round((100 * typeish) / n)}% of this video is typography — show this sentence as a PROCESS, a figure, a named entity's PHOTO or a MAP if it grounds one; TYPE only if it grounds none` });
+          added++;
+        }
+        if (added) console.log(`[plan-repair] ${typeish}/${n} beats are typography — ${added} TYPE beat(s) offered back for a grounded visual`);
+      }
+    }
     const worth = rejected;
     if (worth.length) {
       const lines = worth.map((r) => `Beat ${r.b.index}. Sentence: "${r.sentenceText}"

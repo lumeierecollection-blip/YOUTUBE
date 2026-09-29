@@ -337,7 +337,9 @@ function canvasFit(beats) {
   return bad;
 }
 function canvasCoverage(video, beats) {
-  const W = 216, H = 384;                          // 1/5 scale: rows are 5 design px
+  // Half scale: at 1/5 a thin italic kicker blurred into the ground and was
+  // not counted (run 36500636962 ch-2) — more pixels, a more accurate span.
+  const W = 540, H = 960;                          // 1/2 scale: rows are 2 design px
   const capRow = Math.floor((CAPTION_Y0 / 1920) * H);
   const bad = [], spans = [];
   beats.forEach((b, i) => {
@@ -354,7 +356,7 @@ function canvasCoverage(video, beats) {
           const l = 0.299 * r + 0.587 * g + 0.114 * bl;
           if (l < 170 || Math.max(r, g, bl) - Math.min(r, g, bl) > 45) n++;
         }
-        if (n >= 2) { if (first < 0) first = y; last = y; }
+        if (n >= 4) { if (first < 0) first = y; last = y; }
       }
       if (first >= 0) best = Math.max(best, (last - first + 1) / H);
     }

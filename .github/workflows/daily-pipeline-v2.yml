@@ -730,6 +730,9 @@ jobs:
           cache-key: ollama-${{ runner.os }}-qwen2.5-7b+qwen2.5vl-3b+qwen2.5-14b
           # Nothing stays resident: the render, rembg and Chromium need the RAM.
           unload-after-warm: "true"
+          # Pull in the background: the job renders while 17 GB download
+          # (the local models are the LAST tier — Gemini, then Groq, first).
+          background: "true"
 
       - name: Render + QA
         if: steps.status.outputs.skip != 'true'

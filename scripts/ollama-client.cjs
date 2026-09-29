@@ -147,10 +147,31 @@ function callCapMs(kind) {
   return Math.round(job * 60000 * (CAP_SHARE[kind] || CAP_SHARE.vision));
 }
 
+// Models pulled in the background (.github/actions/ollama background: true)
+// are not usable until /tmp/ollama-ready exists: a local call waits for it,
+// inside its own time cap. A failed pull fails the call at once.
+async function waitForModels(maxMs) {
+  const f = process.env.OLLAMA_READY_FILE;
+  if (!f) return { ok: true, waited: 0 };
+  const fs = require("node:fs");
+  const t0 = Date.now();
+  while (!fs.existsSync(f)) {
+    if (fs.existsSync(f.replace(/ready$/, "failed"))) return { ok: false, why: `background model pull failed: ${fs.readFileSync(f.replace(/ready$/, "failed"), "utf8").trim()}` };
+    if (Date.now() - t0 > maxMs) return { ok: false, why: `models still pulling after ${Math.round(maxMs / 1000)}s` };
+    await new Promise((r) => setTimeout(r, 3000));
+  }
+  const waited = Date.now() - t0;
+  if (waited > 3000) console.error(`[ollama] waited ${Math.round(waited / 1000)}s for the background model pull`);
+  return { ok: true, waited };
+}
+
 async function callOllama(messages, opts = {}) {
   const { maxTokens = 1200, temperature = 0 } = opts;
   const { prompt, images } = await messagesToPrompt(messages);
-  const timeoutMs = Number(opts.timeoutMs || callCapMs(opts.capKind || (images.length ? "vision" : "plan")));
+  const cap = Number(opts.timeoutMs || callCapMs(opts.capKind || (images.length ? "vision" : "plan")));
+  const ready = await waitForModels(cap * 0.6);
+  if (!ready.ok) return { source: "ollama", error: "not_ready", detail: ready.why };
+  const timeoutMs = Math.max(30000, cap - ready.waited);
   // opts.ollamaModel: a caller-chosen local model (the challenger uses
   // qwen2.5:14b); otherwise vision for frames, text for the rest.
   const model = opts.ollamaModel || (images.length ? VISION_MODEL() : TEXT_MODEL());
@@ -187,7 +208,7 @@ async function check(model, timeoutS) {
   console.log(`Ollama ready: ${OLLAMA_URL}, model ${model}, warm-up ${((Date.now() - t0) / 1000).toFixed(1)}s → "${String(out).trim()}"`);
 }
 
-module.exports = { generate, waitForServer, callOllama, messagesToPrompt, callCapMs, DEFAULT_MODEL, OLLAMA_URL };
+module.exports = { waitForModels, generate, waitForServer, callOllama, messagesToPrompt, callCapMs, DEFAULT_MODEL, OLLAMA_URL };
 
 if (require.main === module) {
   const argv = process.argv.slice(2);
