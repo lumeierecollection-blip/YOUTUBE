@@ -1,0 +1,403 @@
+{
+  "version": 1,
+  "cutouts": [
+    {
+      "name": "dollar-bill",
+      "category": "money",
+      "file": "cutouts/dollar-bill.png",
+      "width": 1024,
+      "height": 437,
+      "bytes": 335368,
+      "source": "wikimedia",
+      "license": "PD",
+      "attribution": "United States Treasury via Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File%3AU.S.%20hundred%20dollar%20bill%2C%201999.jpg",
+      "query": "one hundred dollar bill isolated white background",
+      "coverage": 0.8439,
+      "optimised": "pngquant",
+      "built_at": "2026-09-29T22:14:23.306Z"
+    },
+    {
+      "name": "coin-stack",
+      "category": "money",
+      "file": "cutouts/coin-stack.png",
+      "width": 1024,
+      "height": 996,
+      "bytes": 484184,
+      "source": "wikimedia",
+      "license": "CC0",
+      "attribution": "Gary Lee Todd, Ph.D. via Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File%3AStack%20Mould%20for%20Copper%20Coins%2002.jpg",
+      "query": "stack of coins isolated white background",
+      "coverage": 0.4052,
+      "optimised": "pngquant",
+      "built_at": "2026-09-29T22:14:34.385Z"
+    },
+    {
+      "name": "wallet",
+      "category": "money",
+      "file": "cutouts/wallet.png",
+      "width": 1024,
+      "height": 636,
+      "bytes": 196261,
+      "source": "wikimedia",
+      "license": "CC-BY-2.0",
+      "attribution": "Jernej Furman from Slovenia via Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File%3ATravel%20budget%20concpet%20with%20small%20airplane%20and%20wallet%20full%20of%20money%20on%20blue%20and%20pink%20background%20(52136479830).jpg",
+      "query": "wallet full of money white background",
+      "coverage": 0.1686,
+      "optimised": "pngquant",
+      "built_at": "2026-09-29T22:14:47.710Z"
+    },
+    {
+      "name": "clock-face",
+      "category": "process",
+      "file": "cutouts/clock-face.png",
+      "width": 443,
+      "height": 622,
+      "bytes": 106994,
+      "source": "openverse",
+      "license": "CC0",
+      "attribution": "Openverse (rawpixel)",
+      "source_url": "https://www.rawpixel.com/image/5903183/photo-image-background-public-domain-vintage",
+      "query": "analog clock white background",
+      "coverage": 0.2097,
+      "optimised": "pngquant",
+      "built_at": "2026-09-29T22:15:25.304Z"
+    },
+    {
+      "name": "hourglass",
+      "category": "process",
+      "file": "cutouts/hourglass.png",
+      "width": 640,
+      "height": 1024,
+      "bytes": 219106,
+      "source": "openverse",
+      "license": "CC0",
+      "attribution": "Openverse (rawpixel)",
+      "source_url": "https://www.rawpixel.com/image/6484511/png-sticker-vintage",
+      "query": "hourglass sand white background",
+      "coverage": 0.2936,
+      "optimised": "pngquant",
+      "built_at": "2026-09-29T22:15:30.791Z"
+    },
+    {
+      "name": "key",
+      "category": "process",
+      "file": "cutouts/key.png",
+      "width": 885,
+      "height": 854,
+      "bytes": 267356,
+      "source": "openverse",
+      "license": "CC0",
+      "attribution": "Openverse (rawpixel)",
+      "source_url": "https://www.rawpixel.com/image/11797075/pendant",
+      "query": "old metal key white background",
+      "coverage": 0.2572,
+      "optimised": "pngquant",
+      "built_at": "2026-09-29T22:15:40.568Z"
+    },
+    {
+      "name": "globe",
+      "category": "process",
+      "file": "cutouts/globe.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 566029,
+      "source": "openverse",
+      "license": "CC0",
+      "attribution": "Openverse (rawpixel)",
+      "source_url": "https://www.rawpixel.com/image/6288219/png-sticker-vintage",
+      "query": "earth globe white background",
+      "coverage": 0.7173,
+      "optimised": "pngquant",
+      "built_at": "2026-09-29T22:15:50.207Z"
+    }
+  ],
+  "missing": [
+    {
+      "name": "dollar-sign",
+      "attempts": [
+        "\"gold dollar sign symbol isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"3d dollar sign sculpture isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"dollar sign metal letter isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "bank-statement",
+      "attempts": [
+        "\"bank statement paper isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"financial statement document isolated on white\": wikimedia rejected — the object covers 1.4% of the photo (< 12%)",
+        "\"printed account statement sheet isolated\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "credit-card",
+      "attempts": [
+        "\"credit card isolated white background\": 1 candidate(s), none passed the licence / keyword / size filter",
+        "\"plastic payment card isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"debit card single isolated\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "person-silhouette",
+      "attempts": [
+        "\"person standing isolated white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"man standing full length white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"woman standing full body isolated\": 1 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "person-walking",
+      "attempts": [
+        "\"person walking isolated white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"person walking isolated white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"man walking full body white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"woman walking isolated on white\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"woman walking isolated on white\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)"
+      ]
+    },
+    {
+      "name": "business-person",
+      "attempts": [
+        "\"businessman in suit isolated white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"business woman standing isolated\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"business woman standing isolated\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"executive in suit full body white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "group-people",
+      "attempts": [
+        "\"group of people standing isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"team of people isolated on white\": 4 candidate(s), none passed the licence / keyword / size filter",
+        "\"business team standing white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"business team standing white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)"
+      ]
+    },
+    {
+      "name": "scientist",
+      "attempts": [
+        "\"scientist in lab coat isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"researcher in white coat isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"laboratory scientist standing white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "worker",
+      "attempts": [
+        "\"industrial worker hard hat isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"construction worker isolated on white\": 5 candidate(s), none passed the licence / keyword / size filter",
+        "\"factory worker standing isolated\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "courthouse",
+      "attempts": [
+        "\"courthouse building isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"court building with columns isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"neoclassical courthouse white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "government-building",
+      "attempts": [
+        "\"government building isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"capitol building isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"federal building columns white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "bank-building",
+      "attempts": [
+        "\"bank building isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"classical bank building isolated\": 6 candidate(s), none passed the licence / keyword / size filter",
+        "\"bank facade columns white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "factory",
+      "attempts": [
+        "\"factory building isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"industrial plant with chimney isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"factory smokestacks white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "office-tower",
+      "attempts": [
+        "\"office tower skyscraper isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"glass skyscraper isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"corporate office building white background\": 8 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "city-skyline",
+      "attempts": [
+        "\"city skyline isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"skyline buildings silhouette isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"downtown skyscrapers isolated\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"downtown skyscrapers isolated\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)"
+      ]
+    },
+    {
+      "name": "contract",
+      "attempts": [
+        "\"signed contract paper isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"contract document with pen isolated\": 2 candidate(s), none passed the licence / keyword / size filter",
+        "\"agreement paper signature white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "stamp-approved",
+      "attempts": [
+        "\"approved rubber stamp isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"approved stamp mark on paper isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"rubber stamp approved white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "gavel",
+      "attempts": [
+        "\"judge gavel isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"wooden gavel isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"court gavel and block white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "scales",
+      "attempts": [
+        "\"scales of justice isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"justice scale statue isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"legal balance scales white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "evidence-tag",
+      "attempts": [
+        "\"evidence tag isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"forensic evidence marker isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"evidence bag label white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "upward-arrow",
+      "attempts": [
+        "\"3d upward arrow isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"red arrow pointing up isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"growth arrow going up white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "downward-arrow",
+      "attempts": [
+        "\"3d downward arrow isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"red arrow pointing down isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"decline arrow going down white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "warning-triangle",
+      "attempts": [
+        "\"warning triangle sign isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"road warning triangle isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"hazard caution triangle sign white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "checkmark",
+      "attempts": [
+        "\"3d check mark isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"green checkmark object isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"tick mark sign white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "broken-chain",
+      "attempts": [
+        "\"broken chain isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"chain link broken isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"snapped metal chain white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)"
+      ]
+    },
+    {
+      "name": "handshake",
+      "attempts": [
+        "\"handshake isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"two hands shaking isolated on white\": 1 candidate(s), none passed the licence / keyword / size filter",
+        "\"business handshake white background\": 1 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "calendar",
+      "attempts": [
+        "\"desk calendar isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"paper calendar page isolated on white\": 1 candidate(s), none passed the licence / keyword / size filter",
+        "\"wall calendar white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "magnifying-glass",
+      "attempts": [
+        "\"magnifying glass isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"magnifier lens isolated on white\": 1 candidate(s), none passed the licence / keyword / size filter",
+        "\"magnifying glass handle white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "padlock",
+      "attempts": [
+        "\"padlock isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"metal padlock closed isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"security lock white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"security lock white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"security lock white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)"
+      ]
+    },
+    {
+      "name": "shield",
+      "attempts": [
+        "\"metal shield isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"security shield object isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"protection shield white background\": 4 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "crosshair",
+      "attempts": [
+        "\"crosshair target isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"rifle scope crosshair isolated\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"target sight object white background\": 1 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "radar",
+      "attempts": [
+        "\"radar dish antenna isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"radar screen isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"satellite radar dish white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "map-pin",
+      "attempts": [
+        "\"map pin isolated white background\": 1 candidate(s), none passed the licence / keyword / size filter",
+        "\"3d location pin marker isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"red push pin white background\": 0 candidate(s), none passed the licence / keyword / size filter"
+      ]
+    },
+    {
+      "name": "flag-america",
+      "attempts": [
+        "\"american flag isolated white background\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"small us flag isolated on white\": 0 candidate(s), none passed the licence / keyword / size filter",
+        "\"usa flag waving white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"usa flag waving white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"usa flag waving white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"usa flag waving white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"usa flag waving white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)",
+        "\"usa flag waving white background\": download failed (openverse: HTTP 403 Forbidden downloading https://live.staticflickr.com)"
+      ]
+    }
+  ]
+}
