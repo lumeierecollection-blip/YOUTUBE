@@ -83,3 +83,5 @@ data/renders/rejected/
 
 # Reference-video frame samples (regenerate: ffmpeg -i data/reference/style.mp4 -vf fps=2 data/reference/frames/f%04d.png)
 data/reference/frames/
+
+__pycache__/

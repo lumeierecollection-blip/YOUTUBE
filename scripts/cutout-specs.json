@@ -1,0 +1,694 @@
+{
+ "version": 1,
+ "min_side_px": 900,
+ "note": "41 cutouts: the brief lists 41 names (it says 42). Flags: rect_ok = a genuinely rectangular object (a banknote, a card, a sheet) may fill its bounding box; grounded = the object may rest on / touch the bottom edge of the photo (a building, a standing person); multi = several connected parts are one object (a skyline, a coin stack).",
+ "specs": [
+  {
+   "name": "dollar-bill",
+   "category": "money",
+   "words": [
+    "dollar",
+    "bill",
+    "banknote",
+    "currency",
+    "cash",
+    "money"
+   ],
+   "queries": [
+    "one hundred dollar bill isolated white background",
+    "us dollar banknote isolated on white",
+    "paper money dollar bill single isolated"
+   ],
+   "rect_ok": true
+  },
+  {
+   "name": "dollar-sign",
+   "category": "money",
+   "words": [
+    "dollar",
+    "sign",
+    "symbol",
+    "currency"
+   ],
+   "queries": [
+    "gold dollar sign symbol isolated white background",
+    "3d dollar sign sculpture isolated",
+    "dollar sign metal letter isolated on white"
+   ]
+  },
+  {
+   "name": "coin-stack",
+   "category": "money",
+   "words": [
+    "coin",
+    "coins",
+    "stack",
+    "money"
+   ],
+   "queries": [
+    "stack of coins isolated white background",
+    "pile of gold coins isolated",
+    "coins stacked isolated on white"
+   ],
+   "multi": true
+  },
+  {
+   "name": "wallet",
+   "category": "money",
+   "words": [
+    "wallet",
+    "cash",
+    "money",
+    "bills"
+   ],
+   "queries": [
+    "open wallet with cash isolated white background",
+    "leather wallet with dollar bills isolated",
+    "wallet full of money white background"
+   ],
+   "multi": true
+  },
+  {
+   "name": "bank-statement",
+   "category": "money",
+   "words": [
+    "statement",
+    "bank",
+    "document",
+    "paper",
+    "finance",
+    "financial"
+   ],
+   "queries": [
+    "bank statement paper isolated white background",
+    "financial statement document isolated on white",
+    "printed account statement sheet isolated"
+   ],
+   "rect_ok": true
+  },
+  {
+   "name": "credit-card",
+   "category": "money",
+   "words": [
+    "credit",
+    "card",
+    "debit",
+    "payment"
+   ],
+   "queries": [
+    "credit card isolated white background",
+    "plastic payment card isolated on white",
+    "debit card single isolated"
+   ],
+   "rect_ok": true
+  },
+  {
+   "name": "person-silhouette",
+   "category": "people",
+   "words": [
+    "person",
+    "man",
+    "woman",
+    "silhouette",
+    "standing",
+    "people"
+   ],
+   "queries": [
+    "person standing isolated white background",
+    "man standing full length white background",
+    "woman standing full body isolated"
+   ],
+   "grounded": true
+  },
+  {
+   "name": "person-walking",
+   "category": "people",
+   "words": [
+    "walking",
+    "person",
+    "man",
+    "woman",
+    "walk"
+   ],
+   "queries": [
+    "person walking isolated white background",
+    "man walking full body white background",
+    "woman walking isolated on white"
+   ],
+   "grounded": true
+  },
+  {
+   "name": "business-person",
+   "category": "people",
+   "words": [
+    "business",
+    "businessman",
+    "businesswoman",
+    "suit",
+    "professional",
+    "executive"
+   ],
+   "queries": [
+    "businessman in suit isolated white background",
+    "business woman standing isolated",
+    "executive in suit full body white background"
+   ],
+   "grounded": true
+  },
+  {
+   "name": "group-people",
+   "category": "people",
+   "words": [
+    "group",
+    "people",
+    "team",
+    "crowd",
+    "together"
+   ],
+   "queries": [
+    "group of people standing isolated white background",
+    "team of people isolated on white",
+    "business team standing white background"
+   ],
+   "grounded": true,
+   "multi": true
+  },
+  {
+   "name": "scientist",
+   "category": "people",
+   "words": [
+    "scientist",
+    "researcher",
+    "lab",
+    "laboratory",
+    "coat",
+    "chemist"
+   ],
+   "queries": [
+    "scientist in lab coat isolated white background",
+    "researcher in white coat isolated",
+    "laboratory scientist standing white background"
+   ],
+   "grounded": true
+  },
+  {
+   "name": "worker",
+   "category": "people",
+   "words": [
+    "worker",
+    "construction",
+    "industrial",
+    "hard hat",
+    "helmet",
+    "engineer"
+   ],
+   "queries": [
+    "industrial worker hard hat isolated white background",
+    "construction worker isolated on white",
+    "factory worker standing isolated"
+   ],
+   "grounded": true
+  },
+  {
+   "name": "courthouse",
+   "category": "places",
+   "words": [
+    "courthouse",
+    "court",
+    "house",
+    "building",
+    "columns",
+    "judicial"
+   ],
+   "queries": [
+    "courthouse building isolated white background",
+    "court building with columns isolated",
+    "neoclassical courthouse white background"
+   ],
+   "grounded": true
+  },
+  {
+   "name": "government-building",
+   "category": "places",
+   "words": [
+    "government",
+    "capitol",
+    "building",
+    "parliament",
+    "federal",
+    "columns"
+   ],
+   "queries": [
+    "government building isolated white background",
+    "capitol building isolated on white",
+    "federal building columns white background"
+   ],
+   "grounded": true
+  },
+  {
+   "name": "bank-building",
+   "category": "places",
+   "words": [
+    "bank",
+    "building",
+    "columns",
+    "financial",
+    "finance"
+   ],
+   "queries": [
+    "bank building isolated white background",
+    "classical bank building isolated",
+    "bank facade columns white background"
+   ],
+   "grounded": true
+  },
+  {
+   "name": "factory",
+   "category": "places",
+   "words": [
+    "factory",
+    "plant",
+    "industrial",
+    "chimney",
+    "smokestack",
+    "industry"
+   ],
+   "queries": [
+    "factory building isolated white background",
+    "industrial plant with chimney isolated",
+    "factory smokestacks white background"
+   ],
+   "grounded": true
+  },
+  {
+   "name": "office-tower",
+   "category": "places",
+   "words": [
+    "office",
+    "tower",
+    "skyscraper",
+    "building",
+    "corporate"
+   ],
+   "queries": [
+    "office tower skyscraper isolated white background",
+    "glass skyscraper isolated on white",
+    "corporate office building white background"
+   ],
+   "grounded": true
+  },
+  {
+   "name": "city-skyline",
+   "category": "places",
+   "words": [
+    "city",
+    "skyline",
+    "skyscrapers",
+    "urban",
+    "buildings",
+    "downtown"
+   ],
+   "queries": [
+    "city skyline isolated white background",
+    "skyline buildings silhouette isolated on white",
+    "downtown skyscrapers isolated"
+   ],
+   "grounded": true,
+   "multi": true
+  },
+  {
+   "name": "contract",
+   "category": "documents",
+   "words": [
+    "contract",
+    "agreement",
+    "document",
+    "signed",
+    "paper",
+    "signature"
+   ],
+   "queries": [
+    "signed contract paper isolated white background",
+    "contract document with pen isolated",
+    "agreement paper signature white background"
+   ],
+   "rect_ok": true
+  },
+  {
+   "name": "stamp-approved",
+   "category": "documents",
+   "words": [
+    "stamp",
+    "approved",
+    "approval",
+    "rubber"
+   ],
+   "queries": [
+    "approved rubber stamp isolated white background",
+    "approved stamp mark on paper isolated",
+    "rubber stamp approved white background"
+   ]
+  },
+  {
+   "name": "gavel",
+   "category": "documents",
+   "words": [
+    "gavel",
+    "judge",
+    "court",
+    "hammer",
+    "law"
+   ],
+   "queries": [
+    "judge gavel isolated white background",
+    "wooden gavel isolated on white",
+    "court gavel and block white background"
+   ]
+  },
+  {
+   "name": "scales",
+   "category": "documents",
+   "words": [
+    "scales",
+    "justice",
+    "law",
+    "balance",
+    "legal"
+   ],
+   "queries": [
+    "scales of justice isolated white background",
+    "justice scale statue isolated",
+    "legal balance scales white background"
+   ]
+  },
+  {
+   "name": "evidence-tag",
+   "category": "documents",
+   "words": [
+    "evidence",
+    "tag",
+    "label",
+    "marker",
+    "forensic"
+   ],
+   "queries": [
+    "evidence tag isolated white background",
+    "forensic evidence marker isolated",
+    "evidence bag label white background"
+   ],
+   "rect_ok": true
+  },
+  {
+   "name": "upward-arrow",
+   "category": "process",
+   "words": [
+    "arrow",
+    "up",
+    "upward",
+    "growth",
+    "rising"
+   ],
+   "queries": [
+    "3d upward arrow isolated white background",
+    "red arrow pointing up isolated on white",
+    "growth arrow going up white background"
+   ]
+  },
+  {
+   "name": "downward-arrow",
+   "category": "process",
+   "words": [
+    "arrow",
+    "down",
+    "downward",
+    "decline",
+    "falling"
+   ],
+   "queries": [
+    "3d downward arrow isolated white background",
+    "red arrow pointing down isolated on white",
+    "decline arrow going down white background"
+   ]
+  },
+  {
+   "name": "warning-triangle",
+   "category": "process",
+   "words": [
+    "warning",
+    "triangle",
+    "sign",
+    "caution",
+    "hazard"
+   ],
+   "queries": [
+    "warning triangle sign isolated white background",
+    "road warning triangle isolated on white",
+    "hazard caution triangle sign white background"
+   ]
+  },
+  {
+   "name": "checkmark",
+   "category": "process",
+   "words": [
+    "check",
+    "checkmark",
+    "tick",
+    "approved",
+    "correct"
+   ],
+   "queries": [
+    "3d check mark isolated white background",
+    "green checkmark object isolated on white",
+    "tick mark sign white background"
+   ]
+  },
+  {
+   "name": "broken-chain",
+   "category": "process",
+   "words": [
+    "chain",
+    "broken",
+    "link",
+    "links",
+    "break"
+   ],
+   "queries": [
+    "broken chain isolated white background",
+    "chain link broken isolated on white",
+    "snapped metal chain white background"
+   ]
+  },
+  {
+   "name": "handshake",
+   "category": "process",
+   "words": [
+    "handshake",
+    "hands",
+    "shake",
+    "deal",
+    "agreement"
+   ],
+   "queries": [
+    "handshake isolated white background",
+    "two hands shaking isolated on white",
+    "business handshake white background"
+   ]
+  },
+  {
+   "name": "clock-face",
+   "category": "process",
+   "words": [
+    "clock",
+    "time",
+    "watch",
+    "face",
+    "hands"
+   ],
+   "queries": [
+    "clock face isolated white background",
+    "wall clock isolated on white",
+    "analog clock white background"
+   ]
+  },
+  {
+   "name": "calendar",
+   "category": "process",
+   "words": [
+    "calendar",
+    "date",
+    "month",
+    "planner",
+    "schedule"
+   ],
+   "queries": [
+    "desk calendar isolated white background",
+    "paper calendar page isolated on white",
+    "wall calendar white background"
+   ],
+   "rect_ok": true
+  },
+  {
+   "name": "hourglass",
+   "category": "process",
+   "words": [
+    "hourglass",
+    "sand",
+    "time",
+    "glass",
+    "timer"
+   ],
+   "queries": [
+    "hourglass isolated white background",
+    "sand timer hourglass isolated on white",
+    "hourglass sand white background"
+   ]
+  },
+  {
+   "name": "magnifying-glass",
+   "category": "process",
+   "words": [
+    "magnifying",
+    "glass",
+    "magnifier",
+    "search",
+    "lens"
+   ],
+   "queries": [
+    "magnifying glass isolated white background",
+    "magnifier lens isolated on white",
+    "magnifying glass handle white background"
+   ]
+  },
+  {
+   "name": "padlock",
+   "category": "process",
+   "words": [
+    "padlock",
+    "lock",
+    "locked",
+    "security",
+    "safe"
+   ],
+   "queries": [
+    "padlock isolated white background",
+    "metal padlock closed isolated on white",
+    "security lock white background"
+   ]
+  },
+  {
+   "name": "key",
+   "category": "process",
+   "words": [
+    "key",
+    "keys",
+    "lock",
+    "brass",
+    "metal"
+   ],
+   "queries": [
+    "key isolated white background",
+    "brass key isolated on white",
+    "old metal key white background"
+   ]
+  },
+  {
+   "name": "shield",
+   "category": "process",
+   "words": [
+    "shield",
+    "security",
+    "protection",
+    "protect",
+    "badge"
+   ],
+   "queries": [
+    "metal shield isolated white background",
+    "security shield object isolated on white",
+    "protection shield white background"
+   ]
+  },
+  {
+   "name": "crosshair",
+   "category": "process",
+   "words": [
+    "crosshair",
+    "target",
+    "scope",
+    "aim",
+    "sight"
+   ],
+   "queries": [
+    "crosshair target isolated white background",
+    "rifle scope crosshair isolated",
+    "target sight object white background"
+   ]
+  },
+  {
+   "name": "radar",
+   "category": "process",
+   "words": [
+    "radar",
+    "scan",
+    "sonar",
+    "screen",
+    "antenna"
+   ],
+   "queries": [
+    "radar dish antenna isolated white background",
+    "radar screen isolated on white",
+    "satellite radar dish white background"
+   ]
+  },
+  {
+   "name": "globe",
+   "category": "process",
+   "words": [
+    "globe",
+    "world",
+    "earth",
+    "map",
+    "sphere"
+   ],
+   "queries": [
+    "globe isolated white background",
+    "desk world globe isolated on white",
+    "earth globe white background"
+   ]
+  },
+  {
+   "name": "map-pin",
+   "category": "process",
+   "words": [
+    "pin",
+    "map",
+    "marker",
+    "location",
+    "push"
+   ],
+   "queries": [
+    "map pin isolated white background",
+    "3d location pin marker isolated on white",
+    "red push pin white background"
+   ]
+  },
+  {
+   "name": "flag-america",
+   "category": "process",
+   "words": [
+    "flag",
+    "american",
+    "america",
+    "usa",
+    "us",
+    "stars",
+    "stripes"
+   ],
+   "queries": [
+    "american flag isolated white background",
+    "small us flag isolated on white",
+    "usa flag waving white background"
+   ],
+   "rect_ok": true
+  }
+ ]
+}

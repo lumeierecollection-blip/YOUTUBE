@@ -82,7 +82,8 @@ const beats = beatsSpec.map((b, i) => {
   // The concept tokens the resolver would hand this beat (concept-visuals.js).
   const ct = conceptTokens(b.text, { beat: { composition: c.composition, visual_type: c.visual_type, photo: c.photo }, numberShowsCurrency: /[$€£¥₹]/.test(c.data?.value || "") });
   c.concepts = ct.concepts.map(({ word, kind }) => ({ word, kind }));
-  c.tokens = ct.tokens;
+  // Drawn icon tokens are retired (the brief wants photographic PNG cutouts); --icon-tokens draws them for layout debugging only.
+  c.tokens = process.argv.includes("--icon-tokens") ? ct.tokens : [];
   return {
     beat_id: `t${i}`, start_frame: i * D, duration_frames: D, text: b.text, original_text: b.text,
     scene: { mechanism: "TYPOGRAPHY", canvas: c },

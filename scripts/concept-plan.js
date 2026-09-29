@@ -30,12 +30,31 @@ export function planConcepts(beats, log = () => {}) {
   return beats;
 }
 
+/**
+ * Drawn line icons (Lucide) are RETIRED as concept visuals: the owner's brief
+ * (2026-09-29, "real PNG cutouts, not drawn icons") wants photographs of the
+ * objects, isolated onto transparent PNGs (public/cutouts/, built by
+ * scripts/build-cutout-library.mjs). Until that library exists a beat draws no
+ * concept visual — the number and label alone — rather than a drawing. The
+ * icon path below is kept only so the layout mechanics stay tested
+ * (`enabled: true`, tests only); it is not reachable from the pipeline.
+ */
+export const ICON_TOKENS_ENABLED = false;
+
 /** The tokens each resolved beat draws; sets beat.canvas.concepts / .tokens. Returns a report. */
-export function assignConceptTokens(beats, log = () => {}) {
+export function assignConceptTokens(beats, log = () => {}, { enabled = ICON_TOKENS_ENABLED } = {}) {
   const report = { withToken: 0, none: 0, noRoom: 0, beats: [] };
   beats.forEach((b, i) => {
     const c = b.canvas;
     if (!c) return;
+    if (!enabled) {
+      c.concepts = (Array.isArray(b.concepts) ? b.concepts : []).map(({ word, kind }) => ({ word, kind }));
+      c.tokens = [];
+      report.none++;
+      log(`[concept] beat ${i} ${c.composition}: ${c.concepts.length ? c.concepts.map((x) => `"${x.word}"→${x.kind}`).join(", ") : "no concept named"} — no visual yet (the PNG cutout library is not built)`);
+      report.beats.push({ beat: i, composition: c.composition, tokens: [], concepts: c.concepts.length });
+      return;
+    }
     const sentence = b.narration || "";
     const concepts = Array.isArray(b.concepts) && b.concepts.length ? b.concepts : mergeConcepts(sentence, { namedEntities: b.named_entities });
     const numberShowsCurrency = CURRENCY.test(String(c.data?.value ?? "")) || (String(c.visual_type).toUpperCase() === "COUNTER" && CURRENCY.test(sentence));
