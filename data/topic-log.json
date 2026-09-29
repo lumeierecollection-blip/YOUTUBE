@@ -312,9 +312,14 @@
           "topic": "NLRB Reinstates Employer-Friendly Standard for Offensive Worker Conduct",
           "slug": "nlrb-reinstates-employer-friendly-standard-offensive-worker",
           "reserved_at": "2026-09-28T21:19:34.449Z"
+        },
+        {
+          "topic": "police-encounter-laws",
+          "slug": "police-encounter-laws-now",
+          "reserved_at": "2026-09-29T22:04:20.038Z"
         }
       ],
-      "last_generated": "2026-09-28T21:19:34.450Z"
+      "last_generated": "2026-09-29T22:04:20.038Z"
     },
     "3": {
       "channel_name": "AI Tested",
