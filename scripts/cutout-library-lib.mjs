@@ -51,6 +51,14 @@ export function shortlist(cands, spec, opts = {}) {
   return out.map((x) => x.c);
 }
 
+/** Which sources built the library, and which were unavailable (no API key) — read from the index, never hard-coded. */
+export function sourceNote(index) {
+  const used = [...new Set((index.cutouts || []).map((c) => c.source))].sort();
+  const skipped = index.sources_skipped || [];
+  const cap = (a) => a.map((x) => x[0].toUpperCase() + x.slice(1));
+  return `**Built from ${used.length ? cap(used).join(" and ") : "no source yet"} only${skipped.length ? `; ${cap(skipped).join(" and ")} ${skipped.length > 1 ? "were" : "was"} unavailable (no API key)` : ""}.**`;
+}
+
 /** CREDITS.md from the index: name, source, licence, attribution, page, query. */
 export function creditsMarkdown(index) {
   const rows = (index.cutouts || []).slice().sort((a, b) => a.name.localeCompare(b.name));
@@ -63,6 +71,8 @@ Real photographs of physical objects, isolated onto transparent PNGs by
 \`src/skills/asset-sourcing/licenses.js\` (public domain, CC0, CC-BY, or the
 Pexels / Unsplash / Pixabay licences — all free for commercial use). CC-BY
 requires the attribution below.
+
+${sourceNote(index)}
 
 | Cutout | Source | Licence | Attribution | Page | Query that found it |
 |---|---|---|---|---|---|

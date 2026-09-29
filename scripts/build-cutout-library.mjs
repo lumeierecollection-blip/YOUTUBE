@@ -56,12 +56,22 @@ const force = process.argv.includes("--force");
 const tries = Number(arg("tries", 6));
 const fromDir = arg("from-dir");
 const SOURCES = { pexels, pixabay, unsplash, openverse, wikimedia };
+const KEYS = { pexels: "PEXELS_API_KEY", pixabay: "PIXABAY_API_KEY", unsplash: "UNSPLASH_ACCESS_KEY" };
+// Default: the keyed sources that have a key. Openverse / Wikimedia (no key) only with --sources openverse,wikimedia.
+const optIn = arg("sources") ? arg("sources").split(",") : [];
+const skippedNoKey = [];
+for (const name of Object.keys(SOURCES)) {
+  if (KEYS[name] && !process.env[KEYS[name]]) { console.warn(`[cutouts] ${name}: no key, skipped`); skippedNoKey.push(name); delete SOURCES[name]; }
+  else if (!KEYS[name] && !optIn.includes(name)) delete SOURCES[name];
+}
+console.log(`[cutouts] sources this run: ${Object.keys(SOURCES).join(", ") || "none"}`);
 const dead = new Set();       // sources that answered 401 / 403 / 429 this run: not asked again
 
 const { specs, min_side_px: MIN_SIDE } = JSON.parse(readFileSync(join(ROOT, "scripts", "cutout-specs.json"), "utf8"));
 mkdirSync(OUT, { recursive: true });
 mkdirSync(dirname(LOG), { recursive: true });
 let index = existsSync(INDEX) ? JSON.parse(readFileSync(INDEX, "utf8")) : { version: 1, cutouts: [], missing: [] };
+index.sources_skipped = skippedNoKey;
 const log = (o) => appendFileSync(LOG, JSON.stringify({ at: new Date().toISOString(), ...o }) + "\n");
 const save = () => {
   writeFileSync(INDEX, JSON.stringify(index, null, 2) + "\n");
