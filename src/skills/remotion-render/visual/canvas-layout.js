@@ -139,7 +139,10 @@ export function canvasLayout(c) {
       if (hd) { boxes.headline = { ...box(COMP.x, y, COMP.w, hd.lines.length * hd.size * 1.05), size: hd.size, lines: hd.lines, upper: true }; y += hd.lines.length * hd.size * 1.05 + 70; }
       boxes.number = { ...box(COMP.x, hd ? Math.max(y, 520) : 200, COMP.w, nf.size * 0.95), size: nf.size, text: n.big };
       y = boxes.number.y + boxes.number.h + 24;
-      const label = [n.scale, c.data.label].filter(Boolean).join(" ");
+      // The scale word once: run 36509937804 ch-26 drew "million million
+      // Ponzi scheme" (value "$127 million", label "million Ponzi scheme").
+      const lab = String(c.data.label || "").trim();
+      const label = n.scale && lab.toLowerCase().startsWith(n.scale.toLowerCase()) ? lab : [n.scale, lab].filter(Boolean).join(" ");
       if (label) {
         const lf = fitText(label, COMP.w, { max: 64, min: 36, maxLines: 2 });
         boxes.label = { ...box(COMP.x, y, COMP.w, lf.lines.length * lf.size * 1.15), size: lf.size, lines: lf.lines };

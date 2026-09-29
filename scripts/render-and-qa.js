@@ -591,6 +591,18 @@ function enforceAdjustments(planPath, localAudit, geminiReportPath, attempt) {
 
   if (!applied.length) return empty;
 
+  // An edit the renderer never reads is no change. Run 36509937804 ch-9:
+  // DIVERSIFY_MECHANISMS "applied" (and did not even verify) to a
+  // full-canvas plan, whose beats render from visual_type / data / headline
+  // — the next two attempts rendered the identical video and the job was
+  // cancelled at its time cap. Compared on what a beat renders from.
+  const renderedAs = (p) => JSON.stringify((p?.beats || []).map((b) => [b.visual_type, b.data, b.headline, b.lead_in, b.kind, b.composition,
+    b.motion_tier, b.camera_focus, b.persists_from, b.match_cut_prev, b.named_entities, b.cutout_query, b.photo]));
+  if (renderedAs(next) === renderedAs(plan)) {
+    console.log(`[enforce] the ${applied.length} applied directive(s) change nothing a beat renders from — no re-render of the same video`);
+    return empty;
+  }
+
   // Write the edited plan next to the original so the attempt that renders
   // it is inspectable afterwards, then point the plan at it.
   const out = planPath.replace(/\.json$/, `-enforced-attempt${attempt}.json`);

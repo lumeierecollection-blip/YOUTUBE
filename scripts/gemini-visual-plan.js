@@ -179,6 +179,51 @@ export function entityNamedInSentence(name, sentence) {
 // Words that state a flow: cause -> effect, a result, a sequence.
 const FLOW_WORDS = /\b(caus(e|es|ed|ing)|lead(s|ing)? to|led to|result(s|ed|ing)? in|so that|therefore|because|drives?|drove|trigger(s|ed)?|raises?|raised|cuts?|reduc(e|es|ed)|increas(e|es|ed)|boosts?|pushe[sd]?|forces?|forced|turns? into|becomes?|then|after|before|until|followed by|builds? (?:on|upon)|built (?:on|upon)|feeds?|fuels?|sparks?|prompt(s|ed)?|means?|which (makes|leads|raises|cuts))\b|->|→/i;
 
+// The two sides of a flow the sentence STATES, as PROCESS nodes built only
+// from its own words: the content-word run just before the flow word (the
+// cause) and the first one after it (the effect), 1-3 words each.
+// "Failure to do so can lead to legal repercussions" -> ["Failure", "legal
+// repercussions"]; "X happened because Y" -> [Y, X]. Runs 36504143080 ..
+// 36509937804: the model's PROCESS nodes were paraphrases ("markets",
+// "raw data", "self-defense claim") the gate rightly refused, and the beat
+// fell back to typography although the sentence stated its flow. Returns
+// null when either side has no content word — nothing is invented.
+const FLOW_AUX = new Set(["can", "could", "will", "would", "may", "might", "must", "should", "shall", "do", "does", "did", "has", "have",
+  "had", "is", "are", "was", "were", "be", "been", "being", "also", "often", "directly", "ultimately", "eventually", "quickly", "not", "only",
+  "which", "that", "this", "these", "those", "it", "they", "so", "such", "very", "even", "still", "already", "actually", "really", "one"]);
+export function flowNodes(sentence) {
+  const text = String(sentence || "");
+  // Every flow word in the sentence, first to last; the first that has a
+  // content word on both sides wins.
+  const all = new RegExp(FLOW_WORDS.source, "gi");
+  for (const m of text.matchAll(all)) {
+    const n = flowAt(text, m);
+    if (n) return n;
+  }
+  return null;
+}
+function flowAt(text, m) {
+  const before = text.slice(0, m.index), after = text.slice(m.index + m[0].length);
+  const toks = (s) => s.split(/[^A-Za-z0-9'$%-]+/).filter(Boolean);
+  // LEAD_FUNCTION is declared further down; read at call time.
+  const stop = (w) => LEAD_FUNCTION.has(w) || FLOW_AUX.has(w) || /^(when|while|if|about|up|out|down|off|each|every|some|any|there|here|across|through|among|between|within|without|during|against|under|toward|towards|per|via|like|around|behind|beyond|after|before|since|until|onto|upon|while|where|whose|whom)$/.test(w);
+  const ok = (w) => !stop(w.toLowerCase()) && /[A-Za-z]{3,}|\d/.test(w);
+  const firstRun = (ws) => {
+    const out = [];
+    for (const w of ws) { if (ok(w)) { out.push(w); if (out.length === 3) break; } else if (out.length) break; }
+    return out;
+  };
+  const lastRun = (ws) => firstRun([...ws].reverse()).reverse();
+  // Clause edges: only the clause around the flow word counts.
+  const left = lastRun(toks(before.split(/[,;:.!?]/).pop() || ""));
+  const right = firstRun(toks((after.split(/[,;:.!?]/)[0]) || ""));
+  if (!left.length || !right.length) return null;
+  let nodes = [left.join(" "), right.join(" ")];
+  if (/^(because|after)$/i.test(m[0].trim())) nodes = nodes.reverse();
+  if (nodes[0].toLowerCase() === nodes[1].toLowerCase()) return null;
+  return nodes;
+}
+
 // The figure a checked visual draws, as a comparable key ("$388M" and
 // "$388 million" -> "388000000"), or null for a visual without one figure.
 export function figureKey(v) {
@@ -237,7 +282,7 @@ function sentenceNumbers(text) {
 export function groundedOptions(sentence) {
   const text = String(sentence || "");
   const nums = [...sentenceNumbers(text)];
-  const counts = nums.filter((n) => n >= 2 && !(Number.isInteger(n) && n >= 1000 && n <= 2099));
+  const counts = nums.filter((n) => n >= 2 && !(Number.isInteger(n) && n >= 1000 && n <= 2099) && !isIdentifierNumber(String(n), text));
   const pct = (text.match(/(\d[\d,]*(?:\.\d+)?)\s*(?:%|percent\b)/gi) || []).map((m) => Number(m.replace(/[^\d.]/g, ""))).filter((n) => n > 0 && n <= 100);
   const words = text.split(/[^A-Za-z.'-]+/).filter(Boolean);
   const places = new Set();
@@ -254,6 +299,23 @@ export function groundedOptions(sentence) {
   const proper = text.split(/\s+/).slice(1).some((w) => /^[A-Z][a-z]+/.test(w.replace(/^[^A-Za-z]+/, "")));
   if (proper) allowed.push("PHOTO");
   return { counts, percents: pct, places: [...places], allowed };
+}
+
+// "Article 10", "Section 357-A", "Rule 10b-5", "Resolution 2231", "No. 7",
+// "Phase 2": the number is a name. True when the value carries a letter
+// suffix ("357-A") or the sentence writes the number right after such a word.
+const ID_WORDS = /\b(article|articles|section|sections|sec\.?|rule|rules|chapter|clause|title|amendment|resolution|regulation|order|act|bill|case|docket|no\.?|number|#|part|schedule|phase|stage|level|tier|form|flight|route|highway|interstate|model|version|article\s+no\.?|paragraph|para|subsection|item|exhibit|appendix|annex|protocol)\s*$/i;
+export function isIdentifierNumber(value, sentence) {
+  const v = String(value || "").trim();
+  if (/^\d+[-–]?[A-Za-z]{1,2}$/.test(v) && !/^\d+\s*(k|m|b|bn|mn|x)$/i.test(v)) return true;
+  const m = v.match(/\d[\d,]*(?:\.\d+)?/);
+  if (!m) return false;
+  const esc = m[0].replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const re = new RegExp(`(^|[^\\d.,])${esc}(?![\\d,])`, "g");
+  const text = String(sentence || "");
+  let hit, any = false, allId = true;
+  while ((hit = re.exec(text))) { any = true; if (!ID_WORDS.test(text.slice(0, hit.index + hit[1].length))) allId = false; }
+  return any && allId;
 }
 
 function numIn(v, nums) {
@@ -394,6 +456,9 @@ export function checkVisual(b, sentence) {
     // 36419295509 ch-2: FLSA 1938, OSHA 1970, ADA 1990). The headline keeps
     // the year.
     if (/^\s*(1[0-9]{3}|20[0-9]{2})s?\s*$/.test(vs)) return bad(`COUNTER value "${d.value}" is a year: a date, not a count to roll up`);
+    // A number that NAMES something is not a quantity: run 36509937804 ch-9
+    // rolled 0 -> 10 for "Article 10", ch-2 drew "357-A" for "Section 357-A".
+    if (isIdentifierNumber(vs, sentence)) return bad(`COUNTER value "${d.value}" is an identifier (an article / section / rule number), not a count`);
     // The figure as the SENTENCE writes it — its currency sign and scale
     // word / letter included. Run 36498049819 ch-26 drew a bare "352" beside
     // "hit five blockchains" where the sentence said "$352 million": the
@@ -416,6 +481,10 @@ export function checkVisual(b, sentence) {
   }
   if (t === "BAR") {
     const bars = (Array.isArray(d.bars) ? d.bars : []).slice(0, 5);
+    // One bar compares nothing: run 36509937804 ch-48 drew a lone "500
+    // million" bar (canvas-coverage 53%). It is the sentence's one figure —
+    // drawn as that figure, through the COUNTER gate.
+    if (bars.length === 1) return checkVisual({ visual_type: "COUNTER", data: { value: bars[0]?.value, label: bars[0]?.label } }, sentence);
     return bars.length && bars.every((x) => numIn(x.value, nums)) ? { type: t, data: { bars: bars.map((x) => ({ label: String(x.label || ""), value: String(x.value) })) } } : bad("BAR values not all in the sentence");
   }
   if (t === "LINE") {
@@ -1103,7 +1172,16 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
         // draws is refused here.
         const fk = figureKey(v0);
         const clash = fk && plan.beats.find((x) => x !== r.b && figureKey(checkVisual(x, sentences[x.index]?.text || "")) === fk);
-        const v = clash ? { type: "TYPE", data: null, why: `the figure is already drawn in beat ${clash.index}` } : v0;
+        let v = clash ? { type: "TYPE", data: null, why: `the figure is already drawn in beat ${clash.index}` } : v0;
+        // A PHOTO answer needs a real photo exactly like a planned one: run
+        // 36509937804 ch-26 ("Kristopher Lunsford") and ch-44 ("Mike James
+        // Ross") passed here, had no free photo, and fell back to type at
+        // render time — after the repair could have chosen something else.
+        if (!v.why && v.type === "PHOTO") {
+          const q = qualifyEntity({ type: v.data.entity_type, name: v.data.entity }, countries);
+          const pr = q.ent ? await resolveEntity({ type: q.ent.type, name: q.ent.name }) : { ok: false, why: q.note };
+          if (!pr.ok) v = { type: "TYPE", data: null, why: `no verified photo of ${v.data.entity} (${String(pr.why).slice(0, 120)})` };
+        }
         const t = String(a.visual_type || "").toUpperCase();
         if (!v.why && v.type !== "TYPE") {
           r.b.visual_type = v.type; r.b.data = v.data; fixed++;
@@ -1114,6 +1192,35 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
         }
       }
       console.log(`[plan-repair] ${fixed}/${worth.length} rejected visual(s) replaced with a grounded one (${((Date.now() - t0) / 1000).toFixed(0)}s${isProviderError(ans) ? `, model: ${ans.error}` : ""})`);
+    }
+  }
+
+  // ── FLOW -> PROCESS, deterministically ──────────────────────────────
+  // A beat still TYPE (after the repair) whose sentence STATES a flow is
+  // drawn as that flow: flowNodes() takes both nodes from the sentence's own
+  // words around its flow word, so the PROCESS gate below passes by
+  // construction and nothing is invented. Only while the video is over 40%
+  // typography, and never the hook or the close (their type is the point).
+  // Runs 36504143080 .. 36509937804: every TEMPLATE_MONOCULTURE rejection
+  // had flow sentences drawn as type because the model paraphrased the nodes.
+  {
+    const n = plan.beats.length;
+    const vtOf = (b) => String(b.visual_type || "TYPE").toUpperCase();
+    const typeish = () => plan.beats.filter((b) => {
+      const st = sentences[b.index]?.text || "";
+      return vtOf(b) === "TYPE" || vtOf(b) === "COUNTER" || (b.visual_type !== undefined && checkVisual(b, st).why);
+    }).length;
+    for (const [i, b] of plan.beats.entries()) {
+      if (n < 4 || typeish() / n <= 0.4) break;
+      if (i === 0 || i === n - 1 || b.visual_type === undefined) continue;
+      const st = sentences[b.index]?.text || sentences[i]?.text || "";
+      if (vtOf(b) !== "TYPE" && !checkVisual(b, st).why) continue;
+      const nodes = flowNodes(st);
+      if (!nodes) continue;
+      const cand = { visual_type: "PROCESS", data: { nodes } };
+      if (checkVisual(cand, st).why) continue;
+      console.log(`[plan-flow] beat ${b.index}: ${vtOf(b)} -> PROCESS ${JSON.stringify(nodes)} (the sentence states this flow)`);
+      b.visual_type = "PROCESS"; b.data = { nodes };
     }
   }
 
@@ -1442,7 +1549,8 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
   }
 }
 
-main().catch((e) => {
+// Only as the CLI: importing the module (tests of the gates) runs nothing.
+if (process.argv[1] && fileURLToPath(import.meta.url) === (await import("node:path")).resolve(process.argv[1])) main().catch((e) => {
   console.error(`Fatal error: ${e.message}`);
   process.exit(1);
 });

@@ -86,7 +86,10 @@ async function fileInfo(fileTitle) {
 const NOT_A_PHOTO = /\b(figure|fig|chart|graph|diagram|maps?|locator|logo|seal|flag|coat of arms|emblem|table|infographic|scan|page|pdf|signature|icon|poster|cover|report|trends?|statistics|screenshot|banknote|note|stamp|coin|ceramic|pottery|artifact|artefact|museum|louvre|manuscript|painting|drawing|engraving|sculpture|statue|relief|mosaic)\b/i;
 const BUILDING = /\b(building|headquarters|hq|offices?|tower|campus|exterior|facade|façade|entrance|plaza|cent(?:er|re))\b/i;
 // People in the file name: a group or portrait shot is not a photo of an organization or place.
-const PEOPLE = /\b(group|executives?|team|staff|meeting|portrait|people|ceo|founder|delegation|visit|with)\b/i;
+// Run 36509937804 ch-9: "Pakistan Navy" resolved to "US Navy 090820-N-...
+// Chief of Naval Operations (CNO) Adm. Gary Roughead, middle, inspects
+// Pakistan Navy sailors during a welcoming ceremony" — a US admiral.
+const PEOPLE = /\b(group|executives?|team|staff|meeting|portrait|people|ceo|founder|delegation|visits?|with|inspects?|inspection|sailors|soldiers|troops|officers?|officials?|adm|admiral|gen|general|chief|president|minister|secretary|ceremony|welcom\w*|crew|members|students|workers|visitors|audience|crowd|middle|left|right|poses?|posing|shakes?|speaks?|speech|addresses|attends?|during)\b/i;
 // A place photo should be OF the place: a skyline, a view, a street.
 const SCENIC = /\b(skyline|aerial|downtown|view|panorama|city|cityscape|landscape|coast|harbou?r|port|strait|river|bridge|square|street|night|sunset|beach|mountains?|satellite|from space)\b/i;
 
@@ -180,13 +183,43 @@ async function attempts(type, name, context) {
   return { tried };
 }
 
+// A bare acronym names different organizations in different places: run
+// 36509937804 ch-2 resolved "NHRC" (India's National Human Rights
+// Commission in the script) to a photo of QATAR's NHRC building, because the
+// Commons file name contained "NHRC". So an acronym is resolved only through
+// this table of unambiguous expansions; any other acronym is refused (the
+// beat takes another grounded visual). The table is deliberately short:
+// only names whose expansion does not depend on the story's country.
+const ACRONYMS = {
+  SEC: "U.S. Securities and Exchange Commission", DOJ: "United States Department of Justice",
+  FBI: "Federal Bureau of Investigation", IRS: "Internal Revenue Service", FTC: "Federal Trade Commission",
+  CFTC: "Commodity Futures Trading Commission", FDIC: "Federal Deposit Insurance Corporation",
+  NLRB: "National Labor Relations Board", EEOC: "Equal Employment Opportunity Commission",
+  CFPB: "Consumer Financial Protection Bureau", FINRA: "Financial Industry Regulatory Authority",
+  FDA: "Food and Drug Administration", CDC: "Centers for Disease Control and Prevention",
+  NASA: "NASA", FCC: "Federal Communications Commission", FAA: "Federal Aviation Administration",
+  DEA: "Drug Enforcement Administration", CIA: "Central Intelligence Agency",
+  IMF: "International Monetary Fund", WTO: "World Trade Organization", NATO: "NATO",
+  UN: "United Nations", EU: "European Union", ECB: "European Central Bank", OPEC: "OPEC",
+  WHO: "World Health Organization", SEBI: "Securities and Exchange Board of India", RBI: "Reserve Bank of India",
+};
+function expandName(type, name) {
+  const bare = String(name || "").trim().replace(/^the\s+/i, "").replace(/\./g, "");
+  if (type !== "organization" || !/^[A-Z&]{2,6}s?$/.test(bare)) return { name };
+  const full = ACRONYMS[bare.replace(/s$/, "")] || ACRONYMS[bare];
+  return full ? { name: full, note: `acronym "${bare}" -> "${full}"` } : { refuse: `"${bare}" is an acronym with no unambiguous expansion (it names different organizations in different countries)` };
+}
+
 async function resolveEntity({ type, name, context = "" }) {
   type = DIR[type] ? type : "organization";
   const key = `${type}:${String(name).trim().toLowerCase()}`;
   const man = loadManifest();
   const cached = (man.entities || []).find((e) => e.key === key);
   if (cached && existsSync(join(PUBLIC, cached.asset))) return { ok: true, ...cached, cached: true };
-  const r = await attempts(type, name, context);
+  const ex = expandName(type, name);
+  if (ex.refuse) return { ok: false, why: `no verified photo of ${type} "${name}": ${ex.refuse}`, attempts: [] };
+  const r = await attempts(type, ex.name, context);
+  if (ex.note && r.tried) r.tried.unshift(ex.note);
   if (!r.info) return { ok: false, why: `no verified photo of ${type} "${name}" in 3 attempts`, attempts: r.tried };
   // Download the 1400 px rendition and store it as JPEG.
   const ctl = new AbortController();
@@ -237,7 +270,7 @@ function qualifyEntity(ent, countries = []) {
   return { ent: null, note: `"${ent.name}" is a generic institution name and the script names ${cs.length ? `${cs.length} countries (${cs.join(", ")})` : "no country"} — not resolved (it would show some country's ${ent.name})` };
 }
 
-module.exports = { resolveEntity, titleMatches, checkFile, qualifyEntity, GENERIC_INSTITUTION };
+module.exports = { resolveEntity, titleMatches, checkFile, qualifyEntity, expandName, GENERIC_INSTITUTION };
 
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };
