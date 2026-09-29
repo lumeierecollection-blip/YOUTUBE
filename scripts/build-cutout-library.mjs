@@ -65,6 +65,11 @@ for (const name of Object.keys(SOURCES)) {
   else if (!KEYS[name] && !optIn.includes(name)) delete SOURCES[name];
 }
 console.log(`[cutouts] sources this run: ${Object.keys(SOURCES).join(", ") || "none"}`);
+if (!Object.keys(SOURCES).length && !fromDir) {
+  // Never "succeed" with nothing to search: an empty library must not be committed as if it were a result.
+  console.error("::error::[cutouts] no source has an API key (PEXELS_API_KEY / PIXABAY_API_KEY / UNSPLASH_ACCESS_KEY are all empty in this job). Are the secrets set as REPOSITORY secrets for this repo (not environment / Dependabot / Codespaces secrets)?");
+  process.exit(2);
+}
 const dead = new Set();       // sources that answered 401 / 403 / 429 this run: not asked again
 
 const { specs, min_side_px: MIN_SIDE } = JSON.parse(readFileSync(join(ROOT, "scripts", "cutout-specs.json"), "utf8"));
