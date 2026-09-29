@@ -160,9 +160,14 @@
           "topic": "The impact of the September 2026 Fed rate hike on debt",
           "slug": "impact-sept-2026-fed-rate-hike-debt",
           "reserved_at": "2026-09-29T22:19:33.347Z"
+        },
+        {
+          "topic": "The impact of 2026 inflation on 50/30/20 budgeting",
+          "slug": "inflation-and-50-30-20-budget",
+          "reserved_at": "2026-09-29T22:37:51.656Z"
         }
       ],
-      "last_generated": "2026-09-29T22:19:33.347Z"
+      "last_generated": "2026-09-29T22:37:51.656Z"
     },
     "2": {
       "channel_name": "Legal Brief",
