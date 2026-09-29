@@ -282,7 +282,17 @@ function paperRubric(prompt) {
   return out;
 }
 
-async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible, paperStyle = false) {
+// What each full-canvas beat IS, for the frame label (the reviewer read a
+// big number or a gauge as "headline-dominated" — run 36504143080 ch-1 75%).
+function compositionLabel(b) {
+  const c = b?.canvas, vt = String(b?.visual_type || "").toUpperCase();
+  if (!c) return "";
+  const what = { COUNTER: "one big number (the sentence's figure — a data beat)", BAR: "bar chart", PIE: "donut chart", LINE: "line chart", GAUGE: "gauge", MAP: "map",
+    PROCESS: "process diagram", PHOTO: `photograph of ${c.photo?.entity || "a named entity"}`, CUTOUT: "photographed object", TYPE: "typography" }[vt] || vt.toLowerCase();
+  return ` | beat: ${c.composition} — ${what}`;
+}
+
+async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible, paperStyle = false, manifestBeats = []) {
   const step = Math.max(1, Math.floor(framePaths.length / 8));
   const selected = [];
   selected.push(0);
@@ -302,7 +312,7 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
   // against the owner's full-canvas spec, stated here in text. There is no
   // reference_match any more (render-and-qa.js frameReviewVerdict).
   const refFrames = [];
-  content.push({ type: "text", text: "\n=== THE STYLE — full-canvas editorial motion graphics (Bloomberg / NYT / Vox / Johnny Harris). Every beat is composed for the WHOLE 1080x1920 frame on an off-white studio ground: there is NO paper, NO card, NO container, and nothing shrunk into a small central area. Each beat is one of: TYPE-FULL (a statement or ONE big number filling the frame), DATA-FULL (the chart IS the composition — bars ~60% of the frame height, a donut or half-circle gauge across the frame, a full-width line, a map), SCENE-FULL (a real photograph edge to edge with type over it, or one isolated object large on the studio), PROCESS-FULL (2-3 labelled nodes with thick arrows). The channel's accent colour marks only the primary value / the arrow / the number that matters. Beats transform into each other (slides, match cuts, a persisted element). The word-by-word caption of the narration near the bottom is REQUIRED on every beat by the channel owner: do not count it as caption duplication, subtitles, redundancy or slop, and do not lower any score for it. Judge each frame's CONTENT against its voiceover line. Reject a frame if a photo shown is not literally about what its sentence names: a generic stock image standing in for a named person, place or organization, or an object that is a metaphor for the topic, is a CRITICAL defect. A card, a paper page, a framed panel or a small centred composition with empty frame around it is a HIGH defect. In the headline test, a TYPE-FULL beat is headline-led by design; the video is headline-dominated only when most beats are type with no chart, photo, object or process. Score overall_score on how well the video realises this style AND how well each frame matches its line. ===" });
+  content.push({ type: "text", text: "\n=== THE STYLE — full-canvas editorial motion graphics (Bloomberg / NYT / Vox / Johnny Harris). Every beat is composed for the WHOLE 1080x1920 frame on an off-white studio ground: there is NO paper, NO card, NO container, and nothing shrunk into a small central area. Each beat is one of: TYPE-FULL (a statement or ONE big number filling the frame), DATA-FULL (the chart IS the composition — bars ~60% of the frame height, a donut or half-circle gauge across the frame, a full-width line, a map), SCENE-FULL (a real photograph edge to edge with type over it, or one isolated object large on the studio), PROCESS-FULL (2-3 labelled nodes with thick arrows). The channel's accent colour marks only the primary value / the arrow / the number that matters. Beats transform into each other (slides, match cuts, a persisted element). The word-by-word caption of the narration near the bottom is REQUIRED on every beat by the channel owner: do not count it as caption duplication, subtitles, redundancy or slop, and do not lower any score for it. Judge each frame's CONTENT against its voiceover line. Reject a frame if a photo shown is not literally about what its sentence names: a generic stock image standing in for a named person, place or organization, or an object that is a metaphor for the topic, is a CRITICAL defect. A card, a paper page, a framed panel or a small centred composition with empty frame around it is a HIGH defect. In the headline test, a TYPE-FULL typography beat is headline-led by design; a beat labelled as a big number, chart, gauge, map, process or photograph is a VISUAL beat, not a headline beat; the video is headline-dominated only when most beats are typography with no chart, number, photo, object or process. Score overall_score on how well the video realises this style AND how well each frame matches its line. ===" });
   content.push({ type: "text", text: "\n=== FRAMES UNDER REVIEW ===" });
   const head = content.slice(0, 2);            // rubric + reference note (text)
   const framePartsList = [];
@@ -311,7 +321,7 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
     const t = beatTimes[idx];
     const vo = srtCues.length ? getVoiceoverAtTime(srtCues, t) : "(no SRT)";
     const parts = [
-      { type: "text", text: `\n--- Frame ${idx + 1}/${unique.length} at t=${t.toFixed(1)}s | VO: "${vo.slice(0, 80)}" ---` },
+      { type: "text", text: `\n--- Frame ${idx + 1}/${unique.length} at t=${t.toFixed(1)}s | VO: "${vo.slice(0, 80)}"${compositionLabel(manifestBeats.find((b) => t >= (b.start_sec ?? 0) && t < (b.start_sec ?? 0) + (b.duration_sec ?? 0)))} ---` },
       { type: "image_url", image_url: { url: `data:image/png;base64,${imageData}` } },
     ];
     framePartsList.push(parts);
@@ -659,9 +669,9 @@ async function main() {
     // beats (render.js writes <video>-manifest.json).
     // Full-canvas videos (their render manifest carries beats[].canvas) get
     // the restated rubric; the variable keeps its old name.
-    let paperStyle = false;
-    try { paperStyle = (JSON.parse(readFileSync(video.replace(/\.mp4$/, "-manifest.json"), "utf-8")).beats || []).some((b) => b.canvas); } catch {}
-    const wholeResult = await reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible, paperStyle);
+    let paperStyle = false, manifestBeats = [];
+    try { manifestBeats = JSON.parse(readFileSync(video.replace(/\.mp4$/, "-manifest.json"), "utf-8")).beats || []; paperStyle = manifestBeats.some((b) => b.canvas); } catch {}
+    const wholeResult = await reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible, paperStyle, manifestBeats);
 
     if (wholeResult.error) {
       console.log(`  Whole-video review ERROR: ${wholeResult.error}`);

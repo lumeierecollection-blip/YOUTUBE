@@ -219,7 +219,25 @@ async function resolveEntity({ type, name, context = "" }) {
   return { ok: true, ...entry };
 }
 
-module.exports = { resolveEntity, titleMatches, checkFile };
+// Institution names that exist in every country ("Supreme Court",
+// "Parliament", "the central bank"): each names a DIFFERENT building per
+// country — run 36504143080 ch-2 showed the US Supreme Court for an Indian
+// story. qualifyEntity() turns one into "<name> of <country>" when the
+// script names exactly one country (the caller passes the countries it
+// recognises), else refuses it (null) so the beat is not given some other
+// country's photo.
+const GENERIC_INSTITUTION = /^(the\s+)?(supreme court|high court|constitutional court|federal court|court of appeals?|parliament|congress|senate|house of (representatives|commons|lords)|national assembly|central bank|reserve bank|treasury|ministry of [a-z ]+|department of [a-z ]+|police|army|navy|air force|government|cabinet|election commission|human rights commission|national human rights commission)$/i;
+function qualifyEntity(ent, countries = []) {
+  if (!ent?.name || !GENERIC_INSTITUTION.test(String(ent.name).trim())) return { ent, note: null };
+  const cs = [...new Set(countries)];
+  if (cs.length === 1) {
+    const name = `${String(ent.name).trim().replace(/^the\s+/i, "")} of ${cs[0]}`;
+    return { ent: { ...ent, name }, note: `"${ent.name}" is a generic institution name — resolving "${name}" (the script's one country)` };
+  }
+  return { ent: null, note: `"${ent.name}" is a generic institution name and the script names ${cs.length ? `${cs.length} countries (${cs.join(", ")})` : "no country"} — not resolved (it would show some country's ${ent.name})` };
+}
+
+module.exports = { resolveEntity, titleMatches, checkFile, qualifyEntity, GENERIC_INSTITUTION };
 
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };

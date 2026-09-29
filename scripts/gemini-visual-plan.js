@@ -38,6 +38,7 @@ import { createRequire as createRequireGroq } from "node:module";
 const { callGroq } = createRequireGroq(import.meta.url)("./groq-client.cjs");
 import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-names.js";
 import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
+const { resolveEntity, qualifyEntity } = createRequire(import.meta.url)("./entity-assets.cjs");
 
 const { enforceCaps, describe: describeMechanisms, TYPOGRAPHY } = createRequire(import.meta.url)("./plan-caps.cjs");
 
@@ -980,11 +981,28 @@ async function main() {
   // (another CPU-bound call), and not under FORCE_PLANNER=ollama.
   if (planSource !== "ollama" && !forcedOllama()) {
     const rejected = [];
+    // A PHOTO is only as good as the photo that exists: each PHOTO entity is
+    // resolved NOW (scripts/entity-assets.cjs, cached for the render). No
+    // verified photo -> the beat goes to the repair with that reason, while a
+    // grounded alternative can still be chosen (run 36504143080 ch-26: all six
+    // PHOTO beats fell back to type at render time -> 100% typography).
+    const countries = plan.beats.flatMap((x) => (Array.isArray(x.named_entities) ? x.named_entities : []).filter((e) => String(e?.type).toLowerCase() === "place").map((e) => e.name)).filter((n) => resolveRegion(n));
     for (const b of plan.beats) {
       if (b.visual_type === undefined) continue;
       const sentenceText = sentences[b.index]?.text || sentences[plan.beats.indexOf(b)]?.text || "";
       const v = checkVisual(b, sentenceText);
-      if (v.why) rejected.push({ b, sentenceText, why: v.why, asked: String(b.visual_type).toUpperCase(), opts: groundedOptions(sentenceText) });
+      if (v.why) { rejected.push({ b, sentenceText, why: v.why, asked: String(b.visual_type).toUpperCase(), opts: groundedOptions(sentenceText) }); continue; }
+      if (v.type === "PHOTO") {
+        const q = qualifyEntity({ type: v.data.entity_type, name: v.data.entity }, countries);
+        const r = q.ent ? await resolveEntity({ type: q.ent.type, name: q.ent.name }) : { ok: false, why: q.note };
+        if (r.ok) console.log(`[plan-photo] beat ${b.index}: ${v.data.entity_type} "${v.data.entity}" has a verified photo (${r.asset})`);
+        else {
+          console.log(`[plan-photo] beat ${b.index}: ${v.data.entity_type} "${v.data.entity}" — no verified photo (${String(r.why).slice(0, 140)})`);
+          const opts = groundedOptions(sentenceText);
+          opts.allowed = opts.allowed.filter((t) => t !== "PHOTO");
+          rejected.push({ b, sentenceText, asked: "PHOTO", opts, why: `no real, verified photo of ${v.data.entity} exists — choose another visual the sentence grounds` });
+        }
+      }
     }
     // Variety: a video that is mostly typography is rejected by the review
     // (TEMPLATE_MONOCULTURE — run 36500636962 ch-26 71-85%, ch-44 80-90%).
