@@ -38,7 +38,10 @@ import { createRequire as createRequireGroq } from "node:module";
 const { callGroq } = createRequireGroq(import.meta.url)("./groq-client.cjs");
 import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-names.js";
 import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
-const { resolveEntity, qualifyEntity } = createRequire(import.meta.url)("./entity-assets.cjs");
+const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequire(import.meta.url)("./entity-assets.cjs");
+import { enforceRotation, candidatesFor } from "./composition-rotation.js";
+import { compositionFor, splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { flowNodes, FLOW_WORDS, listItemsOf, timelineOf, compareOf, documentNameOf, moneyObjectOf, quantitiesOf, statedPercentsOf, knownPlacesOf } from "./canvas-grounding.js";
 
 const { enforceCaps, describe: describeMechanisms, TYPOGRAPHY } = createRequire(import.meta.url)("./plan-caps.cjs");
 
@@ -163,8 +166,9 @@ for (const [ch, names] of Object.entries(NICHE_DRAWINGS)) {
 // CLAUDE.md hard rule: nothing on screen that the source did not say. Every
 // number a chart draws must appear in the sentence; a map's place must be a
 // real region; a cutout must name one object. Anything else becomes TYPE.
-export const VISUAL_TYPES = ["PHOTO", "CUTOUT", "COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP", "PROCESS", "TYPE"];
-const TYPE_CAPABILITY = { PHOTO: "revelation", CUTOUT: "revelation", COUNTER: "evidence", BAR: "comparison", PIE: "population", LINE: "growth", GAUGE: "accumulation", MAP: "contrast", PROCESS: "causation" };
+export const VISUAL_TYPES = ["PHOTO", "CUTOUT", "COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP", "PROCESS", "LIST", "TIMELINE", "COMPARE", "DOCUMENT", "MONEY", "TYPE"];
+const TYPE_CAPABILITY = { PHOTO: "revelation", CUTOUT: "revelation", COUNTER: "evidence", BAR: "comparison", PIE: "population", LINE: "growth", GAUGE: "accumulation", MAP: "contrast", PROCESS: "causation",
+  LIST: "evidence", TIMELINE: "growth", COMPARE: "comparison", DOCUMENT: "revelation", MONEY: "evidence" };
 
 // ── named entities: only what the sentence NAMES ─────────────────────
 // Each entity's name must appear in its sentence: every content word of the
@@ -176,53 +180,10 @@ export function entityNamedInSentence(name, sentence) {
   const words = String(name || "").split(/[^A-Za-z0-9']+/).map((w) => w.toLowerCase()).filter((w) => w && !LEAD_FUNCTION.has(w) && !["inc", "corp", "co", "llc", "ltd", "plc"].includes(w));
   return words.length > 0 && words.every((w) => { const st = stemWord(w); return sent.some((t) => stemMatch(st, t)); });
 }
-// Words that state a flow: cause -> effect, a result, a sequence.
-const FLOW_WORDS = /\b(caus(e|es|ed|ing)|lead(s|ing)? to|led to|result(s|ed|ing)? in|so that|therefore|because|drives?|drove|trigger(s|ed)?|raises?|raised|cuts?|reduc(e|es|ed)|increas(e|es|ed)|boosts?|pushe[sd]?|forces?|forced|turns? into|becomes?|then|after|before|until|followed by|builds? (?:on|upon)|built (?:on|upon)|feeds?|fuels?|sparks?|prompt(s|ed)?|means?|which (makes|leads|raises|cuts))\b|->|→/i;
-
-// The two sides of a flow the sentence STATES, as PROCESS nodes built only
-// from its own words: the content-word run just before the flow word (the
-// cause) and the first one after it (the effect), 1-3 words each.
-// "Failure to do so can lead to legal repercussions" -> ["Failure", "legal
-// repercussions"]; "X happened because Y" -> [Y, X]. Runs 36504143080 ..
-// 36509937804: the model's PROCESS nodes were paraphrases ("markets",
-// "raw data", "self-defense claim") the gate rightly refused, and the beat
-// fell back to typography although the sentence stated its flow. Returns
-// null when either side has no content word — nothing is invented.
-const FLOW_AUX = new Set(["can", "could", "will", "would", "may", "might", "must", "should", "shall", "do", "does", "did", "has", "have",
-  "had", "is", "are", "was", "were", "be", "been", "being", "also", "often", "directly", "ultimately", "eventually", "quickly", "not", "only",
-  "which", "that", "this", "these", "those", "it", "they", "so", "such", "very", "even", "still", "already", "actually", "really", "one"]);
-export function flowNodes(sentence) {
-  const text = String(sentence || "");
-  // Every flow word in the sentence, first to last; the first that has a
-  // content word on both sides wins.
-  const all = new RegExp(FLOW_WORDS.source, "gi");
-  for (const m of text.matchAll(all)) {
-    const n = flowAt(text, m);
-    if (n) return n;
-  }
-  return null;
-}
-function flowAt(text, m) {
-  const before = text.slice(0, m.index), after = text.slice(m.index + m[0].length);
-  const toks = (s) => s.split(/[^A-Za-z0-9'$%-]+/).filter(Boolean);
-  // LEAD_FUNCTION is declared further down; read at call time.
-  const stop = (w) => LEAD_FUNCTION.has(w) || FLOW_AUX.has(w) || /^(when|while|if|about|up|out|down|off|each|every|some|any|there|here|across|through|among|between|within|without|during|against|under|toward|towards|per|via|like|around|behind|beyond|after|before|since|until|onto|upon|while|where|whose|whom)$/.test(w);
-  const ok = (w) => !stop(w.toLowerCase()) && /[A-Za-z]{3,}|\d/.test(w);
-  const firstRun = (ws) => {
-    const out = [];
-    for (const w of ws) { if (ok(w)) { out.push(w); if (out.length === 3) break; } else if (out.length) break; }
-    return out;
-  };
-  const lastRun = (ws) => firstRun([...ws].reverse()).reverse();
-  // Clause edges: only the clause around the flow word counts.
-  const left = lastRun(toks(before.split(/[,;:.!?]/).pop() || ""));
-  const right = firstRun(toks((after.split(/[,;:.!?]/)[0]) || ""));
-  if (!left.length || !right.length) return null;
-  let nodes = [left.join(" "), right.join(" ")];
-  if (/^(because|after)$/i.test(m[0].trim())) nodes = nodes.reverse();
-  if (nodes[0].toLowerCase() === nodes[1].toLowerCase()) return null;
-  return nodes;
-}
+// Words that state a flow, and the nodes it connects, live in
+// canvas-grounding.js (shared with the composition rotation); re-exported so
+// the planner's tests keep importing flowNodes from here.
+export { flowNodes };
 
 // The figure a checked visual draws, as a comparable key ("$388M" and
 // "$388 million" -> "388000000"), or null for a visual without one figure.
@@ -295,7 +256,12 @@ export function groundedOptions(sentence) {
   if (pct.length) allowed.push("PIE", "GAUGE");
   if (nums.length >= 2) allowed.push("BAR", "LINE");
   if (places.size) allowed.push("MAP");
-  allowed.push("PROCESS");
+  if (FLOW_WORDS.test(text)) allowed.push("PROCESS");
+  if (listItemsOf(text)) allowed.push("LIST");
+  if (timelineOf(text)) allowed.push("TIMELINE");
+  if (compareOf(text)) allowed.push("COMPARE");
+  if (documentNameOf(text)) allowed.push("DOCUMENT");
+  if (moneyObjectOf(text)) allowed.push("MONEY");
   const proper = text.split(/\s+/).slice(1).some((w) => /^[A-Z][a-z]+/.test(w.replace(/^[^A-Za-z]+/, "")));
   if (proper) allowed.push("PHOTO");
   return { counts, percents: pct, places: [...places], allowed };
@@ -423,6 +389,35 @@ export function checkVisual(b, sentence) {
     if (!FLOW_WORDS.test(String(sentence || ""))) return bad("PROCESS: the sentence states no cause, result or sequence");
     return { type: t, data: { nodes } };
   }
+  // The compositions read from the sentence itself (canvas-grounding.js): a
+  // LIST / TIMELINE / COMPARE / DOCUMENT / MONEY beat is valid exactly when the
+  // sentence states one, and its data is THE EXTRACTOR'S — a slice of the
+  // sentence — whatever the model wrote. The model chooses the type; it cannot
+  // put words on screen the sentence does not say.
+  if (t === "LIST") {
+    const li = listItemsOf(sentence);
+    return li ? { type: t, data: { items: li.items, lead: li.lead || null } } : bad("LIST: the sentence states no enumeration of 3-5 short items");
+  }
+  if (t === "TIMELINE") {
+    const tl = timelineOf(sentence);
+    if (!tl) return bad("TIMELINE: the sentence states fewer than two dated events");
+    const yr = (x) => Number((String(x).match(/(?:19|20)\d{2}/) || [0])[0]);
+    return { type: t, data: { markers: [...tl].sort((a, c) => yr(a.date) - yr(c.date)) } };
+  }
+  if (t === "COMPARE") {
+    const cmp = compareOf(sentence);
+    return cmp ? { type: t, data: { a: cmp.a, b: cmp.b, relation: cmp.relation, subject: cmp.subject } } : bad("COMPARE: the sentence sets no two figures against each other");
+  }
+  if (t === "DOCUMENT") {
+    const name = documentNameOf(sentence);
+    return name ? { type: t, data: { name } } : bad("DOCUMENT: the sentence names no legal instrument or case");
+  }
+  if (t === "MONEY") {
+    const object = moneyObjectOf(sentence);
+    if (!object) return bad("MONEY: the sentence names no money object (cash, coins, a receipt, a currency)");
+    const fig = quantitiesOf(sentence).find((q) => /[$€£₹]|\b(?:thousand|million|billion|trillion)\b/i.test(q.value));
+    return { type: t, data: { object, value: fig ? fig.value : null } };
+  }
   if (t === "CUTOUT") {
     // A cutout is a photographed physical object: "scale of justice icon",
     // "padlock icon", "document cutout" (run 36388470508) searched for the
@@ -451,13 +446,14 @@ export function checkVisual(b, sentence) {
     const n = m ? Number(m[0].replace(/,/g, "")) : NaN;
     const scaled = m ? /^\s*(thousand|million|billion|trillion|bn|mn|k|m|b)\b/i.test(vs.slice(m.index + m[0].length)) : false;
     if (n < 2 && !scaled && !vs.includes("%")) return bad(`COUNTER value "${d.value}" is a count of ${n}: a 0 -> ${n} roll shows no figure`);
-    // A year is a date, not a quantity: rolling 0 -> 1938 showed "1009" and
+    // A year is a date, not a quantity. Rolling 0 -> 1938 showed "1009" and
     // "366" mid-roll and the review called them wrong figures (run
-    // 36419295509 ch-2: FLSA 1938, OSHA 1970, ADA 1990). The headline keeps
-    // the year.
-    if (/^\s*(1[0-9]{3}|20[0-9]{2})s?\s*$/.test(vs)) return bad(`COUNTER value "${d.value}" is a year: a date, not a count to roll up`);
-    // A number that NAMES something is not a quantity: run 36509937804 ch-9
-    // rolled 0 -> 10 for "Article 10", ch-2 drew "357-A" for "Section 357-A".
+    // 36419295509 ch-2), so a year was refused. The renderer now SNAPS a year in
+    // (numberParts isQuantity=false: 0.15 s, scale from 0.92) instead of
+    // counting it, so a year is a legitimate hero number — "1938" over "the year
+    // the law passed". An identifier ("Article 10") is still refused:
+    // a number that NAMES something is not a quantity (run 36509937804 ch-9
+    // rolled 0 -> 10 for "Article 10", ch-2 drew "357-A" for "Section 357-A").
     if (isIdentifierNumber(vs, sentence)) return bad(`COUNTER value "${d.value}" is an identifier (an article / section / rule number), not a count`);
     // The figure as the SENTENCE writes it — its currency sign and scale
     // word / letter included. Run 36498049819 ch-26 drew a bare "352" beside
@@ -550,33 +546,68 @@ ${CAPABILITIES}
 ## THE STYLE — full-canvas editorial motion graphics (NO paper, NO cards)
 
 Every beat is designed for the WHOLE 1080x1920 frame on an off-white
-studio ground (soft shadows). There is no container, no card, no page:
-the composition IS the frame, and it transforms from beat to beat
-(Bloomberg / NYT / Vox / Johnny Harris). Clean, minimal, editorial. Each
-beat is ONE of four compositions — the system draws it from your fields:
+studio ground (soft shadows, paper grain, a film vignette; every 4th-5th
+beat inverts to near-black). There is no container, no card, no page: the
+composition IS the frame, and it transforms from beat to beat (Financial
+Times x high-end documentary x contemporary magazine). Type is a serif
+headline (sentence case, never all caps), an oversized numeral and a small
+sans data label; layouts are ASYMMETRIC — nothing is centred; empty space
+is part of the composition.
 
-  TYPE-FULL     the statement fills the frame (huge, stacked), or ONE
-                number at 300-500 px with a small label (visual_type TYPE
-                or COUNTER). Hooks, emphasis, turns, the close.
-  DATA-FULL     the chart IS the composition: bars ~60% of the frame
-                height, a donut across the frame, a line across the full
-                width, a gauge as a half circle across the frame, a map
-                (visual_type BAR / PIE / LINE / GAUGE / MAP).
-  SCENE-FULL    a REAL photograph fills the frame, headline over it
-                (visual_type PHOTO — a named person, place or organization;
-                or CUTOUT — one physical object, large on the studio).
-  PROCESS-FULL  2-3 labelled nodes with thick arrows drawing between them
-                (visual_type PROCESS) — cause, effect, sequence, flow.
+Each beat is ONE of thirteen compositions. The system draws it from your
+"visual_type" and "data". THE SAME COMPOSITION NEVER APPEARS TWICE IN A ROW:
+the system enforces it, replacing a repeat with what the sentence grounds —
+so pick the composition that fits THIS sentence, and prefer the specific one
+(a timeline, a comparison, a list) to the generic (a statement).
 
-Transitions between beats, the word caption at the bottom, grain and the
-camera are added by the system.
+  TYPE-FULL         the statement, huge, on one side. visual_type TYPE.
+                    Hooks, emphasis, turns, the close.
+                    "Nobody saw it coming."
+  TYPE-SPLIT        the statement in two halves, opposite corners. TYPE
+                    (the system alternates it with TYPE-FULL).
+  NUMBER-FULL       ONE hero number at 260-420 px with a small label.
+                    visual_type COUNTER.  "The fraud cost $105 million."
+  DATA-FULL         the chart IS the composition. BAR / PIE / LINE / GAUGE.
+                    "Needs take 50%, wants 30%, savings 20%."
+  SCENE-FULL        a REAL photograph fills the frame, a named person or a
+                    place, or ONE physical object large. PHOTO / CUTOUT.
+                    "David Einhorn shorted the stock."
+  ARCHITECTURE      a real photo of a building — PHOTO of an institution or
+                    address; the system detects that the picture shows one.
+                    "The Federal Reserve raised rates."
+  DOCUMENT          a real scan of a NAMED legal instrument or case, the
+                    headline as a highlighted callout. visual_type DOCUMENT.
+                    "The Dodd-Frank Act reshaped banking."
+  MONEY             a real photo of currency / coins / a receipt with the
+                    sentence's figure over it. visual_type MONEY.
+                    "They paid in cash." / "It cost $2 billion."
+  MAP-CENTERED      the map fills the frame, labelled at the region. MAP —
+                    a country or US state the sentence names.
+                    "In Iran, prices rose."
+  PROCESS-FULL      2-3 nodes with thick arrows. PROCESS — a stated cause ->
+                    effect or sequence. "Higher rates raise rent."
+  TIMELINE          2-4 dated events on a vertical line. TIMELINE — the
+                    sentence gives dates with what happened.
+                    "The law passed in 2019 and was repealed in 2024."
+  COMPARISON-SPLIT  the frame cut on a diagonal, value A / value B. COMPARE —
+                    "vs", "versus", "compared to", "than", "from X to Y".
+                    "Renters pay 42% of income versus 31% for owners."
+  LIST-BUILD        an enumeration, one item at a time as it is spoken.
+                    LIST — "X, Y, and Z" (3-5 short items).
+                    "The tiers are basic, standard, and premium."
+
+For LIST / TIMELINE / COMPARE / DOCUMENT / MONEY the system READS the data
+from the sentence (you set "data": {}): the beat is valid only if the
+sentence really states one, and only the sentence's own words are shown.
+
+Transitions between beats, the word caption at the bottom, grain, the
+vignette and the camera are added by the system.
 
 ## HOW TO WRITE A BEAT
 
   "kind": "EDITORIAL" | "TYPE"
-  "canvas_composition": "TYPE-FULL" | "DATA-FULL" | "SCENE-FULL" | "PROCESS-FULL"
-                  (it must agree with visual_type as listed above; the
-                  system derives it from the CHECKED visual_type)
+  "canvas_composition": one of the thirteen above (the system derives it
+                  from the CHECKED visual_type; yours is informational)
   "lead_in":      2-4 words FROM THIS BEAT'S OWN SENTENCE, lowercase, shown
                   small above the headline. Or null. (Enforced: a lead-in
                   whose words are not in its sentence is dropped.)
@@ -585,7 +616,7 @@ camera are added by the system.
                   add a claim, promise or judgement it does not make
                   ("GUARANTEED", "BEST", "FAILS") — a checker rejects that.
   "emphasis_word": one word of the headline, or null
-  "visual_type":  ONE of PHOTO | CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | TYPE
+  "visual_type":  ONE of PHOTO | CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | LIST | TIMELINE | COMPARE | DOCUMENT | MONEY | TYPE
   "data":         by type (numbers EXACTLY as the sentence says them — a
                   number the sentence does not say is rejected and the beat
                   becomes TYPE):
@@ -604,6 +635,13 @@ camera are added by the system.
     PROCESS  {"nodes": ["higher rates", "rent", "savings"]}  2-3 nodes of
              1-3 words each, every word FROM THE SENTENCE, in the order the
              sentence gives the cause -> effect / sequence.
+    LIST     {}   the sentence enumerates 3-5 short items (read from it)
+    TIMELINE {}   the sentence gives 2+ dated events (read from it)
+    COMPARE  {}   the sentence sets two figures against each other
+    DOCUMENT {}   the sentence names a legal instrument / case; a real scan
+                  is fetched, else the beat is drawn as TYPE
+    MONEY    {}   the sentence names a money object or an amount; a real
+                  photo is fetched, else the beat is drawn as TYPE
     TYPE     {} — full-frame typography only
   "named_entities": every person, place and organization the sentence
                   NAMES, as written in it, with its FULL name ("Tesla, Inc."
@@ -666,13 +704,19 @@ and the sentence really describes a cause -> effect, a sequence or a flow
 
 Rules that are enforced, not advisory:
 - Choose the visual type that most directly shows what the sentence is
-  about: a number -> COUNTER, BAR, PIE, LINE or GAUGE; a named person,
-  place or organization -> PHOTO (or MAP for a country / US state); a
-  physical object -> CUTOUT; a cause/effect or sequence -> PROCESS; an
-  abstract claim with none of these -> TYPE.
+  about: a number -> COUNTER, BAR, PIE, LINE or GAUGE; two figures set
+  against each other -> COMPARE; dated events -> TIMELINE; an enumeration ->
+  LIST; a named person, place or organization -> PHOTO (or MAP for a
+  country / US state); a named law, treaty or case -> DOCUMENT; an amount or
+  a money object -> MONEY; a physical object -> CUTOUT; a cause/effect or
+  sequence -> PROCESS; an abstract claim with none of these -> TYPE.
 - BAR/LINE need two or more numbers the sentence says; PIE/GAUGE need a
   percentage it says. Otherwise COUNTER (one number) or TYPE.
-- VARY the compositions: never the same composition three beats in a row.
+- NEVER the same composition twice in a row (enforced: a repeat is replaced
+  with what the sentence grounds). Prefer the specific composition — a
+  timeline, comparison, list, map, process — to a statement.
+- Headlines are written in sentence case ("Trucking entrepreneur
+  indicted"), never in capitals; the system sets the case from the sentence.
 - The "kind" TYPE, the kinetic hook/closer, is limited to ${typoMax >= 2 ? `beat 0 and beat ${sentences.length - 1}` : "beat 0"}; the system
   turns any other TYPE beat into a typography-only EDITORIAL beat.
 - For a TYPE beat set "capabilities": ["typographic_emphasis"] and fill
@@ -694,7 +738,7 @@ HARD RULES (a plan that breaks these is rejected before rendering):
   text, never a title + supporting sentence. If the phrase will not fit on one
   line, WRITE A SHORTER PHRASE — do not expect the renderer to shrink it.
 - 2-7 WORDS. 8-9 is unusual. More than ${TYPO_HARD_MAX_WORDS} words is narration, not emphasis.
-- ONE THOUGHT, centred in the frame.
+- ONE THOUGHT. (Layouts are asymmetric; nothing is centred.)
 - NEVER the narration verbatim, and never a near-restatement of it. Typography
   is not a transcript and not subtitles.
 - NO generic headline/topic labels: "The Problem", "The Solution", "The Hidden
@@ -711,7 +755,7 @@ Behavior" · "THE SHOCKING TRUTH ABOUT WHY PEOPLE KEEP SPENDING" · "Most people
 don't realize how much money they're losing every month"
 
 TYPOGRAPHY IS SELECTIVE, NOT THE DEFAULT. The rhythm is:
-HOOK (one centred line) -> VISUAL STORYTELLING (no text) -> RE-HOOK (one line
+HOOK (one line) -> VISUAL STORYTELLING (no text) -> RE-HOOK (one line
 at a real turn in the narration) -> VISUAL CONSEQUENCE -> maybe a KEY FACT
 ("$34 MILLION") -> back to visual storytelling.
 Do NOT put typography in every beat. TEXT -> TEXT -> TEXT -> TEXT is a failure.
@@ -832,8 +876,8 @@ Respond ONLY with JSON (no markdown fences):
       "lead_in": "<2-4 words from this beat's own sentence, lowercase, or null>",
       "headline": "<2-4 words, never a full sentence>",
       "emphasis_word": "<one headline word, or null>",
-      "canvas_composition": "<TYPE-FULL | DATA-FULL | SCENE-FULL | PROCESS-FULL>",
-      "visual_type": "<PHOTO | CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | TYPE>",
+      "canvas_composition": "<one of the thirteen compositions>",
+      "visual_type": "<PHOTO | CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | LIST | TIMELINE | COMPARE | DOCUMENT | MONEY | TYPE>",
       "data": { "<fields for the visual_type, see above>": "..." },
       "named_entities": [{ "type": "<person | place | organization>", "name": "<as named in the sentence>" }],
       "motion_tier": "<micro | medium | major>",
@@ -1090,6 +1134,7 @@ async function main() {
   // through the SAME checkVisual below — the gate is not loosened; an
   // answer that still fails is TYPE, as before. Not on a local-model plan
   // (another CPU-bound call), and not under FORCE_PLANNER=ollama.
+  const imageView = new Map();      // beat index -> what its resolved photo shows (person / building / scene)
   if (planSource !== "ollama" && !forcedOllama()) {
     const rejected = [];
     // A PHOTO is only as good as the photo that exists: each PHOTO entity is
@@ -1098,6 +1143,20 @@ async function main() {
     // grounded alternative can still be chosen (run 36504143080 ch-26: all six
     // PHOTO beats fell back to type at render time -> 100% typography).
     const countries = plan.beats.flatMap((x) => (Array.isArray(x.named_entities) ? x.named_entities : []).filter((e) => String(e?.type).toLowerCase() === "place").map((e) => e.name)).filter((n) => resolveRegion(n));
+    // DOCUMENT and MONEY need a real image exactly as PHOTO does: a scan of the
+    // named instrument, a photograph of the money object. Resolved now; without
+    // one the beat goes to the repair with that reason (and the type removed
+    // from its allowed list) — never a stand-in image.
+    const needImage = async (b, v, sentenceText) => {
+      const r = v.type === "DOCUMENT" ? await resolveDocument({ name: v.data.name }) : await resolveMoney({ query: v.data.object });
+      const what = v.type === "DOCUMENT" ? `the document "${v.data.name}"` : `"${v.data.object}"`;
+      if (r.ok) { console.log(`[plan-image] beat ${b.index}: ${v.type} ${what} has a real ${v.type === "DOCUMENT" ? "scan" : "photo"} (${r.asset})`); return true; }
+      console.log(`[plan-image] beat ${b.index}: ${v.type} ${what} — no real image (${String(r.why).slice(0, 140)})`);
+      const opts = groundedOptions(sentenceText);
+      opts.allowed = opts.allowed.filter((t) => t !== v.type);
+      rejected.push({ b, sentenceText, asked: v.type, opts, why: `no real ${v.type === "DOCUMENT" ? "scan" : "photo"} of ${what} exists — choose another visual the sentence grounds` });
+      return false;
+    };
     for (const b of plan.beats) {
       if (b.visual_type === undefined) continue;
       const sentenceText = sentences[b.index]?.text || sentences[plan.beats.indexOf(b)]?.text || "";
@@ -1106,13 +1165,15 @@ async function main() {
       if (v.type === "PHOTO") {
         const q = qualifyEntity({ type: v.data.entity_type, name: v.data.entity }, countries);
         const r = q.ent ? await resolveEntity({ type: q.ent.type, name: q.ent.name }) : { ok: false, why: q.note };
-        if (r.ok) console.log(`[plan-photo] beat ${b.index}: ${v.data.entity_type} "${v.data.entity}" has a verified photo (${r.asset})`);
+        if (r.ok) { imageView.set(b.index, r.view || "scene"); console.log(`[plan-photo] beat ${b.index}: ${v.data.entity_type} "${v.data.entity}" has a verified photo (${r.asset}, view ${r.view || "scene"})`); }
         else {
           console.log(`[plan-photo] beat ${b.index}: ${v.data.entity_type} "${v.data.entity}" — no verified photo (${String(r.why).slice(0, 140)})`);
           const opts = groundedOptions(sentenceText);
           opts.allowed = opts.allowed.filter((t) => t !== "PHOTO");
           rejected.push({ b, sentenceText, asked: "PHOTO", opts, why: `no real, verified photo of ${v.data.entity} exists — choose another visual the sentence grounds` });
         }
+      } else if (v.type === "DOCUMENT" || v.type === "MONEY") {
+        await needImage(b, v, sentenceText);
       }
     }
     // Variety: a video that is mostly typography is rejected by the review
@@ -1152,6 +1213,7 @@ The check (it runs on your answer):
 - BAR {"bars": [{"label","value"}]} / LINE {"points": [{"label","value"}]}: every value is a number in the sentence; LINE needs 2+.
 - MAP {"place": "..."}: one of the listed known places.
 - PHOTO {"entity": "..."}: a person, place or organization the sentence NAMES, written as in the sentence; add it to "named_entities" too.
+- LIST / TIMELINE / COMPARE / DOCUMENT / MONEY: {} — the system reads the data from the sentence; choose one only when "Allowed visual_type" lists it.
 - PROCESS {"nodes": ["...", "..."]}: 2-3 nodes of 1-3 words each, every word from the sentence (a cause -> effect or sequence).
 - TYPE {}: when nothing above fits. TYPE is the honest answer for a sentence with no number, no percentage, no place and no physical object.
 
@@ -1222,6 +1284,45 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       console.log(`[plan-flow] beat ${b.index}: ${vtOf(b)} -> PROCESS ${JSON.stringify(nodes)} (the sentence states this flow)`);
       b.visual_type = "PROCESS"; b.data = { nodes };
     }
+  }
+
+  // ── NO REPEAT: never the same composition twice in a row ─────────────
+  // (composition-rotation.js). A repeat is broken with what the SENTENCE
+  // grounds — a timeline, a comparison, a list, a process, a map, a stated
+  // percentage, a hero figure — and finally TYPE-SPLIT / TYPE-FULL; every
+  // alternative goes through the same checkVisual. A repeat nothing can break
+  // is logged and kept, never hidden.
+  {
+    const sentOf = (b, i) => sentences[b.index]?.text || sentences[i]?.text || "";
+    const effective = (i) => {
+      const b = plan.beats[i];
+      const v = b.visual_type === undefined ? { type: "TYPE" } : checkVisual(b, sentOf(b, i));
+      return v;
+    };
+    const compOf = (i) => {
+      const b = plan.beats[i], v = effective(i);
+      const image = ["PHOTO", "CUTOUT", "DOCUMENT", "MONEY"].includes(v.type);
+      return compositionFor(v.type, image, { view: imageView.get(b.index) === "building" ? "building" : null, split: b.type_layout === "split" && !!splitHeadline(b.headline) });
+    };
+    const figureOthers = (i) => plan.beats.map((_, j) => (j === i ? null : figureKey(effective(j))));
+    const rot = enforceRotation(plan.beats.length, {
+      compositionOf: compOf,
+      candidates: (i) => candidatesFor({ sentence: sentOf(plan.beats[i], i), headline: plan.beats[i].headline || "" }),
+      accept: (i, alt) => {
+        const b = plan.beats[i];
+        const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, sentOf(b, i));
+        if (v.why || v.type !== alt.visual_type) return false;
+        const fk = figureKey(v);
+        return !(fk && figureOthers(i).includes(fk));
+      },
+      apply: (i, alt) => {
+        const b = plan.beats[i], v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, sentOf(b, i));
+        b.visual_type = v.type; b.data = v.data;
+        if (alt.extra?.split) b.type_layout = "split"; else delete b.type_layout;
+      },
+      log: (m) => console.log(m),
+    });
+    if (rot.changes.length) console.log(`[plan] composition rotation: ${rot.changes.filter((c) => c.resolved).length} repeat(s) broken, ${rot.repeats.length} left (${plan.beats.map((_, i) => compOf(i)).join(", ")})`);
   }
 
   const planRuleIssues = [];

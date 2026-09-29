@@ -39,25 +39,36 @@ if (!existsSync(VO)) {
 mkdirSync(out, { recursive: true });
 
 const FPS = 30, D = 90;
-// Every composition, each role, both anchoring variants (a beat's index
+// Every composition, each type role, both anchoring variants (a beat's index
 // decides left / right: even = left), the snap-in year, the one emphasis word
-// and the one vertical beat. Headlines are sentence case, as the resolver
-// hands them over (typography.js sentenceCase).
+// and the one vertical beat — in an order that never repeats a composition on
+// consecutive beats, as the planner guarantees (composition-rotation.js), so
+// the audit's canvas-type rotation check runs on this video too. Headlines
+// are sentence case, as the resolver hands them over. The PHOTO / ARCHITECTURE /
+// DOCUMENT / MONEY beats use a repo fixture photo (Wikimedia is not reachable
+// from every environment) and say so on screen.
+const fx = (view, entity) => ({ asset: photo, entity, kind: "place", view, credit: "Repo test fixture photo" });
 const beatsSpec = [
   { text: "Why does the fifty thirty twenty rule break now?", c: { visual_type: "TYPE", headline: "Why the 50/30/20 rule breaks", lead_in: "a budget rule", motion_tier: "major" } },
   { text: "The fraud cost investors one hundred five million dollars.", c: { visual_type: "COUNTER", data: { value: "$105M", label: "lost by investors" }, headline: "Investor losses", motion_tier: "medium" } },
   { text: "Needs take fifty percent, wants thirty, savings twenty.", c: { visual_type: "BAR", data: { bars: [{ label: "needs", value: "50%" }, { label: "wants", value: "30%" }, { label: "savings", value: "20%" }] }, headline: "Where the money goes", lead_in: "the split", motion_tier: "medium" } },
-  { text: "Housing alone is thirty four percent of income.", c: { visual_type: "PIE", data: { percent: 34, label: "of income on housing" }, headline: "Housing share", motion_tier: "medium", camera_focus: [{ at_percent: 0.45, target: "number" }] } },
+  { text: "The law passed in twenty nineteen and was repealed in twenty twenty four.", c: { visual_type: "TIMELINE", data: { markers: [{ date: "2019", label: "the law passed" }, { date: "2024", label: "was repealed" }] }, headline: "The wage law", motion_tier: "medium" } },
   { text: "Forty five percent of renters are cost burdened.", c: { visual_type: "GAUGE", data: { percent: 45, label: "renters cost-burdened" }, headline: "Cost burden", motion_tier: "medium" } },
-  { text: "Rates went from two to four point five percent.", c: { visual_type: "LINE", data: { points: [{ label: "2022", value: "2%" }, { label: "2024", value: "3.5%" }, { label: "2026", value: "4.5%" }] }, headline: "The rate climb", motion_tier: "medium", camera_focus: [{ at_percent: 0.35, target: "chart" }, { at_percent: 0.75, target: "full" }] } },
-  { text: "Test fixture photo, standing in for an entity photo.", c: { visual_type: "PHOTO", data: { entity: "test fixture" }, photo: { asset: photo, entity: "Test fixture", kind: "place", credit: "Repo test fixture photo" }, headline: "Photo beat (fixture)", motion_tier: "major" } },
+  { text: "The three tiers are basic, standard, and premium.", c: { visual_type: "LIST", data: { items: ["basic", "standard", "premium"], lead: "The three tiers are" }, headline: "Three tiers", motion_tier: "medium" } },
+  { text: "Test fixture photo, standing in for a named person.", c: { visual_type: "PHOTO", data: { entity: "test fixture" }, photo: fx("person", "Test fixture"), headline: "Photo beat (fixture)", motion_tier: "major" } },
   { text: "Higher rates raise rent, and rent cuts savings.", c: { visual_type: "PROCESS", data: { nodes: ["higher rates", "rent", "savings"] }, headline: "The chain", motion_tier: "major" } },
   { text: "In Iran, prices rose again.", c: { visual_type: "MAP", data: { place: "Iran" }, headline: "Prices rose", motion_tier: "micro" } },
-  { text: "Two rules now matter most.", c: { visual_type: "PROCESS", data: { nodes: ["save first", "then spend"] }, headline: "The fix", motion_tier: "medium", match_cut_prev: true } },
-  { text: "It was a one hundred twenty seven million dollar Ponzi scheme.", c: { visual_type: "COUNTER", data: { value: "$127 million", label: "million Ponzi scheme" }, headline: "Trucking entrepreneur indicted", motion_tier: "medium" } },
+  { text: "Renters pay forty two percent of income versus thirty one percent for owners.", c: { visual_type: "COMPARE", data: { a: { value: "42%", label: "income" }, b: { value: "31%", label: "owners" }, relation: "vs" }, headline: "Who pays more", motion_tier: "medium" } },
+  { text: "Trucking entrepreneur indicted for fraud.", c: { visual_type: "TYPE", composition: "TYPE-SPLIT", headline: "Trucking entrepreneur indicted for fraud", motion_tier: "medium" } },
+  { text: "The fraud cost investors one hundred five million dollars.", c: { visual_type: "MONEY", data: { value: "$105M", object: "United States dollar banknotes" }, photo: fx("money", null), headline: "Money beat (fixture photo)", motion_tier: "medium" } },
+  { text: "Test fixture photo, standing in for a named building.", c: { visual_type: "PHOTO", composition: "ARCHITECTURE", data: { entity: "test fixture" }, photo: fx("building", "Test building"), headline: "Architecture beat (fixture)", motion_tier: "medium" } },
+  { text: "The Dodd-Frank Act reshaped banking.", c: { visual_type: "DOCUMENT", data: { name: "Dodd-Frank Act" }, photo: fx("document", "Dodd-Frank Act"), headline: "The act reshaped banking (fixture)", motion_tier: "medium" } },
   { text: "The law passed in nineteen thirty eight.", c: { visual_type: "COUNTER", data: { value: "1938", label: "the year the law passed" }, headline: "The wage law", motion_tier: "medium" } },
   { text: "Rates will cut into savings.", c: { visual_type: "TYPE", headline: "Rates will cut savings", emphasis_word: "cut", emphasis_beat: true, motion_tier: "medium" } },
+  { text: "Housing alone is thirty four percent of income.", c: { visual_type: "PIE", data: { percent: 34, label: "of income on housing" }, headline: "Housing share", motion_tier: "medium", camera_focus: [{ at_percent: 0.45, target: "number" }] } },
   { text: "The rule breaks.", c: { visual_type: "TYPE", headline: "The rule breaks", lead_in: "so", vertical: true, motion_tier: "medium" } },
+  { text: "Two rules now matter most.", c: { visual_type: "PROCESS", data: { nodes: ["save first", "then spend"] }, headline: "The fix", motion_tier: "medium" } },
+  { text: "Rates went from two to four point five percent.", c: { visual_type: "LINE", data: { points: [{ label: "2022", value: "2%" }, { label: "2024", value: "3.5%" }, { label: "2026", value: "4.5%" }] }, headline: "The rate climb", motion_tier: "medium", camera_focus: [{ at_percent: 0.35, target: "chart" }, { at_percent: 0.75, target: "full" }] } },
 ];
 const { compositionFor } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
 const { assignDark } = await import("../src/skills/remotion-render/visual/canvas-style.js");
@@ -65,7 +76,8 @@ const beats = beatsSpec.map((b, i) => {
   const words = b.text.split(" ");
   const per = (D - 20) / words.length;
   const c = { ...b.c };
-  c.composition = compositionFor(c.visual_type, !!c.photo);
+  c.composition = c.composition || compositionFor(c.visual_type, !!(c.photo || c.cutout), { view: c.photo?.view });
+  c.beat_total = beatsSpec.length;
   return {
     beat_id: `t${i}`, start_frame: i * D, duration_frames: D, text: b.text, original_text: b.text,
     scene: { mechanism: "TYPOGRAPHY", canvas: c },
@@ -85,8 +97,11 @@ const props = { plan, ttsAudioPath: null };
 const composition = await selectComposition({ serveUrl, id: "DirectedShorts", inputProps: props, browserExecutable });
 composition.durationInFrames = beats.length * D;
 const shots = [];
-beats.forEach((b, i) => { for (const pct of [0.12, 0.3, 0.65, 0.95]) shots.push([i, pct, b.start_frame + Math.round(b.duration_frames * pct)]); });
-for (const [i, pct, frame] of shots) {
+// --beats 8,9 renders only those beats; --moments 0.05,0.1 chooses the moments (fractions of a beat).
+const only = arg("beats") ? arg("beats").split(",").map(Number) : null;
+const moments = arg("moments") ? arg("moments").split(",").map(Number) : [0.12, 0.3, 0.65, 0.95];
+beats.forEach((b, i) => { if (only && !only.includes(i)) return; for (const pct of moments) shots.push([i, pct, b.start_frame + Math.round(b.duration_frames * pct)]); });
+for (const [i, pct, frame] of process.argv.includes("--video-only") ? [] : shots) {
   const file = join(out, `beat-${i}-${Math.round(pct * 100)}.png`);
   await renderStill({ serveUrl, composition, frame, output: file, inputProps: props, scale: 0.5, browserExecutable });
 }

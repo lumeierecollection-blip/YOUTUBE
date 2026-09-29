@@ -141,12 +141,16 @@ function anchorOf(region) {
 
 /* ── The engine ─────────────────────────────────────────────────────────── */
 
-function MapBuild({ box, colors, p, uid, font, target, fill, markers, route, labelText }) {
+// pad: the margin of the view around the region (default 0.38 = the region
+// fills ~57% of the box); labelAtRegion: the label is drawn AT the region, in
+// `font`, with a ground-coloured halo (MAP-CENTERED), not on a leader line
+// at the box's edge.
+function MapBuild({ box, colors, p, uid, font, target, fill, markers, route, labelText, pad, labelAtRegion, labelSize, ctxStroke = 0.3, ctxWidth = 1.5, fillAlpha = 0.38 }) {
   const P = Number.isFinite(p) ? p : 1;
   const region = GEO_REGIONS[target];
   const routeRegions = route ? route.map((id) => GEO_REGIONS[id]) : null;
   const frames = routeRegions ? routeRegions.map((r) => r.frame) : [region.frame];
-  const { project, viewBounds } = makeView(frames, box);
+  const { project, viewBounds } = makeView(frames, box, Number.isFinite(pad) ? pad : 0.38);
 
   const tOutline = easeOut(seg(P, 0.0, 0.15));
   const tFill = easeOut(seg(P, 0.12, 0.24));
@@ -175,7 +179,7 @@ function MapBuild({ box, colors, p, uid, font, target, fill, markers, route, lab
       parts.push(
         <path key={`n-${id}-${i}`} d={ringPath(ring, project)} pathLength={1}
           fill={colors.onGround} fillOpacity={0.05 * tOutline}
-          stroke={colors.onGround} strokeOpacity={0.3} strokeWidth={1.5} strokeLinejoin="round"
+          stroke={colors.onGround} strokeOpacity={ctxStroke} strokeWidth={ctxWidth} strokeLinejoin="round"
           strokeDasharray={1} strokeDashoffset={1 - tOutline} />
       )
     )
@@ -195,7 +199,7 @@ function MapBuild({ box, colors, p, uid, font, target, fill, markers, route, lab
     GEO_REGIONS[target].rings.forEach((ring, i) =>
       parts.push(
         <path key={`f-${i}`} d={ringPath(ring, project)} clipPath={`url(#${sweepId})`}
-          fill={colors.accent} fillOpacity={0.38} stroke="none" />
+          fill={colors.accent} fillOpacity={fillAlpha} stroke="none" />
       )
     );
   }
@@ -249,8 +253,20 @@ function MapBuild({ box, colors, p, uid, font, target, fill, markers, route, lab
     routeEnd = b;
   }
 
+  // 5a. MAP-CENTERED: the label sits at the region itself.
+  if (labelText && labelAtRegion) {
+    const at = project(anchorOf(region));
+    const fontSize = labelSize || Math.max(48, Math.min(96, box.w * 0.09));
+    const shown = labelText.slice(0, Math.round(labelText.length * tType)) || (tType > 0 ? labelText.slice(0, 1) : "");
+    if (shown) parts.push(
+      <text key="label-at" x={at[0]} y={at[1]} textAnchor="middle" dominantBaseline="central" fill={colors.onGround}
+        fontFamily={`${font || "sans-serif"}, serif`} fontWeight={700} fontSize={fontSize} letterSpacing={-fontSize * 0.02}
+        stroke={colors.ground} strokeWidth={fontSize * 0.16} strokeLinejoin="round" paintOrder="stroke">{shown}</text>
+    );
+  }
+
   // 5. Leader line, then the label types on.
-  if (labelText) {
+  if (labelText && !labelAtRegion) {
     const anchorPt = routeEnd || project(anchorOf(region));
     const fontSize = Math.max(28, Math.min(56, box.w * 0.075));
     const above = anchorPt[1] - box.y > box.h / 2;
@@ -289,9 +305,9 @@ function MapBuild({ box, colors, p, uid, font, target, fill, markers, route, lab
 // primitive fits it inside the paper's inner box; the engine's label is
 // clipped to the map box, which cut long names such as "United Arab
 // Emirates"). Default off: every other caller is unchanged.
-const regionDrawing = (name, opts) => ({ box, colors, p, uid, label, font, labelOutside }) => {
+const regionDrawing = (name, opts) => ({ box, colors, p, uid, label, font, labelOutside, pad, labelAtRegion, labelSize, ctxStroke, ctxWidth, fillAlpha }) => {
   const target = regionOrThrow(label, name);
-  return <MapBuild box={box} colors={colors} p={p} uid={uid} font={font}
+  return <MapBuild box={box} colors={colors} p={p} uid={uid} font={font} pad={pad} labelAtRegion={labelAtRegion} labelSize={labelSize} ctxStroke={ctxStroke} ctxWidth={ctxWidth} fillAlpha={fillAlpha}
     target={target} labelText={labelOutside ? null : String(label).trim()} {...opts} />;
 };
 

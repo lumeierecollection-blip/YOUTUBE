@@ -325,17 +325,23 @@ function rgbFrame(video, t, w, h) {
 function canvasFit(beats) {
   const bad = [];
   const inter = (a, b) => a.x < b.x + b.w - 2 && b.x < a.x + a.w - 2 && a.y < b.y + b.h - 2 && b.y < a.y + a.h - 2;
+  // A full-bleed photo, the centred map and the diagonal split shape bleed to
+  // the frame edge by design; every other box stays inside the safe area.
+  const BLEEDS = new Set(["photo", "map", "split"]);
+  const TEXT_ROLES = new Set(["headline", "number", "data", "emphasis"]);
   beats.forEach((b, i) => {
     const boxes = b.canvas?.boxes;
     if (!boxes) { bad.push(`beat ${i}: no canvas boxes in the manifest`); return; }
     for (const [k, v] of Object.entries(boxes)) {
-      if (k === "photo") continue;
+      if (BLEEDS.has(k) || v.role === "shape") continue;
       if (v.x < SAFE_INSET - 0.5 || v.y < SAFE_INSET - 0.5 || v.x + v.w > 1080 - SAFE_INSET + 0.5 || v.y + v.h > 1920 - SAFE_INSET + 0.5) {
         bad.push(`beat ${i}: ${k} box (${v.x},${v.y},${v.x + v.w},${v.y + v.h}) leaves the frame's safe area`);
       }
       if (v.y + v.h > CAPTION_Y0 + 0.5 && v.y < CAPTION_Y1) bad.push(`beat ${i}: ${k} box (y ${v.y}-${v.y + v.h}) enters the caption band`);
     }
-    const texts = Object.entries(boxes).filter(([k]) => TEXT_BOXES.includes(k));
+    // Text overlap, by type role (so a list item, a timeline label or a split
+    // value counts as well as the classic headline / number boxes).
+    const texts = Object.entries(boxes).filter(([k, v]) => TEXT_ROLES.has(v.role) || TEXT_BOXES.includes(k.replace(/\d+$/, "")));
     for (let a = 0; a < texts.length; a++) for (let c = a + 1; c < texts.length; c++) {
       if (inter(texts[a][1], texts[c][1])) bad.push(`beat ${i}: text boxes ${texts[a][0]} and ${texts[c][0]} overlap`);
     }
@@ -447,6 +453,10 @@ function canvasType(beats) {
       if (letters.length >= 6 && letters === letters.toUpperCase()) bad.push(`beat ${i}: headline "${h}" is all caps`);
     }
     if (i > 0 && beats[i - 1].canvas && beats[i - 1].canvas.composition === c.composition) bad.push(`beat ${i}: ${c.composition} twice in a row`);
+    // Headline motion: one per beat, never the same two beats in a row, never a fade.
+    const hm = c.headline_motion, pm = i > 0 ? beats[i - 1].canvas?.headline_motion : null;
+    if (hm === "fade") bad.push(`beat ${i}: the headline fades (headlines never fade)`);
+    if (hm && pm && hm === pm) bad.push(`beat ${i}: headline motion "${hm}" twice in a row`);
   });
   const two = roleSets.filter((n) => n >= 2).length;
   if (roleSets.length && two / roleSets.length < 0.6) bad.push(`only ${two}/${roleSets.length} beats show two type roles (need 60%)`);

@@ -3013,8 +3013,10 @@ daily cron with nothing to run.
 
 The owner replaced the paper stage (a small white page in the middle of the
 frame, the same three zones on every beat) with full-canvas editorial motion
-graphics: every beat is composed for the whole 1080x1920 frame as TYPE-FULL,
-DATA-FULL, SCENE-FULL or PROCESS-FULL (`visual/canvas-layout.js`,
+graphics: every beat is composed for the whole 1080x1920 frame as one of
+thirteen compositions — TYPE-FULL, TYPE-SPLIT, NUMBER-FULL, DATA-FULL,
+SCENE-FULL, ARCHITECTURE, DOCUMENT, MONEY, MAP-CENTERED, PROCESS-FULL,
+TIMELINE, COMPARISON-SPLIT, LIST-BUILD (`visual/canvas-layout.js`,
 `visual/full-canvas.jsx`). The paper-only checks in `local-audit.cjs`
 (`frames-fit-paper`, `shapes-clear-of-text`, `frames-match-reference`) are
 not run on a canvas video: the first two measure the paper's zones, and the
@@ -3035,8 +3037,46 @@ video look like the target style) are asked of the frame instead of the page.
 | CNV-08 | Spoken-form TTS — every string sent to the engine goes through `speakable()` (no "slash", no raw `%` / `$` / `/` / `&`); the SRT cues keep the written text so the plan gates still read digits; 21 cases in `scripts/test-tts-normalize.mjs` | unit test + code path | 1 | MAJOR | per voiceover |
 | CNV-09 | No paper stage — `plan.paper` is refused by `DirectedScene` and by `render.js` (the paper modules are deleted, `DEL`-style: `paper-stage.jsx`, `paper-video.jsx`, `paper-caption.jsx`, `abstract-shape.jsx`, `shape-geometry.js`, `paper-text.js`, `branding-rail.jsx`) | code path | 1 | BLOCKER | per render |
 
-Where these stop: CNV-01 checks the renderer's OWN layout numbers (text
-widths are estimated from character counts, not measured glyphs); CNV-02
+### 3.19.1 The typography rebuild (2026-09-29)
+
+The owner then replaced the type system — one grotesk at different sizes —
+with an editorial serif / sans system (`visual/typography.js`: Fraunces for
+headlines, hero numerals and the one emphasis word; Inter for data labels and
+the caption), an asymmetric 3x4 grid (`visual/canvas-layout.js`), per-role
+motion, a texture layer (paper grain, 80 px shadow, vignette, dark beats) and
+a thirteen-composition vocabulary with a no-repeat rule. The audit changes:
+
+| ID | Check | Method | T | Sev | Stage |
+|---|---|---|---|---|---|
+| CNV-10 | `canvas-type` — nothing centred (headline / statement / number / emphasis are left- or right-aligned and none sits on the frame's centre line); headlines are sentence case (never all-caps); >= 60% of beats show two type roles; **no composition twice in a row**; dark beats: >= 1 in a video of 4+ beats, <= 2, never consecutive | manifest (roles + alignment) | 3 | BLOCKER | per render |
+| CNV-11 | `canvas-texture` — the studio ground reads luma >= 200 on a light beat and < 60 on a dark one; paper grain present on every non-photo beat (luma sd of a ground patch >= 0.35 — measured: grain at 0.055 opacity reads ~1 on a lossless still, 0.5-0.8 after h264, flat ground ~0) | ffmpeg frames | 3 | MAJOR | per render |
+| CNV-12 | No-repeat rule at plan time and again at resolve time (`scripts/composition-rotation.js`): a repeat is replaced by what the SENTENCE grounds (timeline, comparison, list, process, map, stated percentage, hero figure, TYPE-SPLIT); each alternative goes through the same `checkVisual`; a repeat nothing can break is logged (`[plan] beat N could not avoid repeating beat N-1 type`) and kept; the hook and the last real photo are never given up. 11 cases in `scripts/test-composition-rotation.mjs` | unit test + plan / resolve log | 1 | MAJOR | per plan + per render |
+| CNV-13 | LIST / TIMELINE / COMPARE / DOCUMENT / MONEY are valid only when the sentence states one (`scripts/canvas-grounding.js`); the on-screen data is the extractor's — a slice of the sentence — whatever the model wrote. DOCUMENT and MONEY also need a real fetched image (`entity-assets.cjs resolveDocument / resolveMoney`); none -> the beat is TYPE, never a stand-in. 30 cases in `scripts/test-canvas-grounding.mjs` and 33 in `scripts/test-plan-gates.mjs` | plan gate + unit tests | 1 | BLOCKER | per plan |
+| CNV-14 | Type system — two families only; roles, size bands, sentence-case rebuild from the narration, number slots (Fraunces has no `tnum`), measured advance widths (`scripts/gen-type-metrics.py`); 35 cases in `scripts/test-typography.mjs` | unit test | 1 | MAJOR | per change |
+
+Changed rules (the intent stays, the rule now matches the design):
+`frames-centered` (content at the frame's centre) runs for paper videos only —
+the grid leaves empty cells on purpose; the white-ground verify threshold is
+> 222 (was 240) because the 0.08 vignette darkens exactly the crop it
+measures; `canvas-coverage` reads content against the frame's own ground so a
+dark beat is not 100% "content" (CNV-02); `canvas-fit` exempts what bleeds by
+design (a full-bleed photo, the centred map, the diagonal split) and judges
+text overlap by type role, nested boxes included (CNV-01).
+
+Where these stop: CNV-10's "two roles" counts roles the layout placed, not
+legibility; the "sentence case" check reads the headline the layout drew, so a
+proper noun the narration writes in capitals is accepted. CNV-13's extractors
+are pattern readers: a list in a subordinate clause, "the spring of 2019", or a
+comparison with no keyword is not found — the beat stays typography, the safe
+direction (a miss costs variety, never truth). The DOCUMENT resolver does no
+OCR, so a DOCUMENT beat never claims to highlight a passage of the scan: its
+callout highlights the beat's own headline. The live Wikimedia lookups
+(documents, money, building detection) could not be reached from the
+development container; only their file-name filters are unit-tested.
+
+Where the first set stops: CNV-01 checks the renderer's OWN layout numbers (text
+widths are measured from the fonts' advance tables, kerning ignored, not from
+rendered glyphs); CNV-02
 counts any dark or saturated pixel as content, so it cannot tell a
 composition from stray ink — it proves the frame is used, not that it is
 used well; that judgement stays with the whole-video review, whose rubric

@@ -50,3 +50,14 @@ provided JSON Schema exactly — nothing outside it.
   comprehensive guide for success") are at most a third of the script —
   they can only be drawn as plain text. Never invent a figure or a name to
   meet this: use what the research gives you.
+- **Shape a sentence so it can be SHOWN, when the research already gives
+  you the shape.** The video draws a comparison ("42% of income versus 31%
+  for owners"), a dated sequence ("the law passed in 2019 and was repealed
+  in 2024" — each date with what happened), and an enumeration ("basic,
+  standard, and premium") as their own compositions, and no two beats in a
+  row may look alike. So when `key_facts` / `numbers` contain two figures to
+  set against each other, dated events, or a list, state them that way — the
+  keyword ("versus", "than", "from X to Y"), the years with their events, the
+  items separated by commas — instead of burying them in one long clause.
+  This changes how a real fact is worded, never which facts there are: do
+  not add a comparison, a date or a list the research does not give you.

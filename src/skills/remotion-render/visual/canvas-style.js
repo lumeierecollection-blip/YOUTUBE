@@ -25,7 +25,7 @@ const CHANGE_WORDS = /\b(ris(?:e|es|en|ing)|rose|fall(?:s|ing|en)?|fell|drop(?:s
 
 const isMap = (c) => String(c.visual_type).toUpperCase() === "MAP";
 /** A beat that can carry the inverted ground: type, chart or process — not a photo, map or cutout. */
-const darkEligible = (c) => !c.photo && !c.cutout && !isMap(c) && ["TYPE-FULL", "DATA-FULL", "PROCESS-FULL"].includes(c.composition);
+const darkEligible = (c) => !c.photo && !c.cutout && !isMap(c) && ["TYPE-FULL", "TYPE-SPLIT", "NUMBER-FULL", "DATA-FULL", "PROCESS-FULL", "LIST-BUILD", "TIMELINE"].includes(c.composition);
 
 /** Which beats are dark: the 4th (else 5th) beat, then the 4th / 5th after it, at most two, never consecutive. */
 export function assignDark(canvases) {
@@ -105,6 +105,7 @@ export function styleCanvases(canvases, narrations = []) {
     if (c.headline) c.headline = sentenceCase(c.headline, src);
     if (c.lead_in) c.lead_in = sentenceCase(c.lead_in, src);
     c.beat_index = i;
+    c.beat_total = canvases.length;          // the folio ("03 / 08") on a beat with no lead-in
     c.variant = i;
   });
   const emphasis = assignEmphasis(canvases);

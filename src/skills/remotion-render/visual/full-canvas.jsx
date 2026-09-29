@@ -55,9 +55,9 @@ import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, Easing } from "remotion";
 import { StudioBG } from "./studio-bg.jsx";
 import { parseQuantity, rollQuantity } from "./primitives/quantity.js";
-import { PaperMap } from "./primitives/map.jsx";
+import { PaperMap, CenteredMap } from "./primitives/map.jsx";
 import {
-  FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, SANS, TRANSITION_SEC,
+  FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
 } from "./canvas-layout.js";
 import {
@@ -101,7 +101,7 @@ const HEADLINE_MOTIONS = ROLE_HEADLINE.motions;
 export const headlineMotionFor = (idx) => HEADLINE_MOTIONS[((idx % 3) + 3) % 3];
 
 /** ROLE_HEADLINE: Fraunces, sentence case, left/right anchored. */
-function Headline({ b, color, local, fps, m, idx, at = 0, motion, shadow = false, major = false, hero = false }) {
+function Headline({ b, color, local, fps, m, idx, at = 0, motion, shadow = false, halo = null, major = false, hero = false }) {
   if (!b || !b.lines?.length) return null;
   const kind = major ? "words" : motion || headlineMotionFor(idx);
   const t0 = local - at * fps;
@@ -111,7 +111,7 @@ function Headline({ b, color, local, fps, m, idx, at = 0, motion, shadow = false
   const n = b.lines.length;
   const lineW = (l) => measure(l, b.size, { family: ROLE_HEADLINE.family, weight: ROLE_HEADLINE.weight, tracking: ROLE_HEADLINE.tracking });
   const common = { font, lineHeight: `${lh}px`, letterSpacing: roleTracking(ROLE_HEADLINE, b.size), color, whiteSpace: "nowrap",
-    textShadow: shadow ? "0 4px 28px rgba(0,0,0,0.55)" : "none", fontOpticalSizing: "auto" };
+    textShadow: shadow ? "0 4px 28px rgba(0,0,0,0.55)" : halo ? `0 0 22px ${halo}, 0 0 9px ${halo}, 0 0 3px ${halo}` : "none", fontOpticalSizing: "auto" };
   let content;
   if (kind === "mask-reveal") {
     // A shape sweeps across each line, revealing it: the text shows behind a
@@ -268,20 +268,26 @@ const Rule = ({ b, t, color }) => {
   return <div style={{ position: "absolute", left: b.x + (b.anchor === "right" ? b.w - w : 0), top: b.y, width: w, height: b.h, backgroundColor: color }} />;
 };
 
+// The header every composition with a compact top shares: the hairline rule,
+// the lead-in / folio as a small data label, the headline. Pinned outside the
+// camera, so a push or a major zoom never crops it.
+function HeaderBlock({ B, th, local, fps, m, idx, tl, halo = null }) {
+  return (
+    <>
+      <Rule b={B.rule} t={m.build(0.3, m.s(0.1))} color={th.ink} />
+      {B.kicker ? <DataLabel b={B.kicker} color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
+      {B.headline ? <Headline b={B.headline} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} halo={halo} /> : null}
+    </>
+  );
+}
+
 // ── TYPE-FULL ─────────────────────────────────────────────────────────
 function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const m = useMotion(c, local, dur, fps);
   const th = useTheme();
   const B = L.boxes, tl = timeline(c, B);
   const major = m.tier === "major";
-  const ruleT = m.build(0.3, m.s(0.1));
-  if (part === "header") return (
-    <>
-      <Rule b={B.rule} t={ruleT} color={th.ink} />
-      {B.kicker ? <DataLabel b={B.kicker} color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
-      {B.headline ? <Headline b={B.headline} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} /> : null}
-    </>
-  );
+  if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
   if (B.number) {
     const q = parseQuantity(c.data?.value);
     const count = easeOut(clamp01((local - tl.numberAt * fps) / Math.max(1, dur * 0.6)));
@@ -307,7 +313,8 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       </HeroEl>
     );
   }
-  return <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} major={major} hero />;
+  // TYPE-SPLIT: the second half lands 0.5 s after the first (the header's headline).
+  return <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={B.headline ? 0.5 : tl.headlineAt} major={major} hero />;
 }
 
 // ── DATA-FULL ─────────────────────────────────────────────────────────
@@ -319,13 +326,7 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const m = useMotion(c, local, dur, fps);
   const th = useTheme();
   const B = L.boxes, vt = String(c.visual_type).toUpperCase(), d = c.data || {}, tl = timeline(c, B);
-  if (part === "header") return (
-    <>
-      <Rule b={B.rule} t={m.build(0.3, m.s(0.1))} color={th.ink} />
-      {B.kicker ? <DataLabel b={B.kicker} color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
-      {B.headline ? <Headline b={B.headline} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} /> : null}
-    </>
-  );
+  if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
   let chart = null;
   const ch = B.chart;
   // The percentage the donut / gauge shows counts with its arc: 60% of the beat, ease-out.
@@ -426,8 +427,6 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
         })}
       </svg>
     );
-  } else if (vt === "MAP") {
-    chart = <PaperMap data={d} bounds={ch} local={local} dur={dur} font={SANS} accent={accent} ground={th.dark ? "#0E0E0E" : STUDIO} labelMax={84} />;
   }
   return (
     <>
@@ -439,30 +438,66 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
 }
 
 // ── SCENE-FULL ────────────────────────────────────────────────────────
-function SceneFull({ c, L, local, dur, fps, idx, part = "body" }) {
+// Text colour on the accent (the DOCUMENT callout's highlighter band).
+const onAccent = (hex) => {
+  const m = /^#?([0-9a-f]{6})$/i.exec(String(hex || ""));
+  if (!m) return "#FFFFFF";
+  const n = parseInt(m[1], 16), lin = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
+  const L = 0.2126 * lin((n >> 16) & 255) + 0.7152 * lin((n >> 8) & 255) + 0.0722 * lin(n & 255);
+  return L > 0.35 ? "#0B0B0C" : "#FFFFFF";
+};
+
+function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const m = useMotion(c, local, dur, fps);
   const th = useTheme();
   const B = L.boxes, tl = timeline(c, B);
   if (c.photo) {
+    const comp = L.composition;
     const push = m.tier === "micro" ? 0.02 : 0.035;
-    const scale = 1 + push * clamp01(local / Math.max(1, dur));
+    const p01 = clamp01(local / Math.max(1, dur));
+    // SCENE-FULL: a slow push. ARCHITECTURE: a tilt up the facade (the frame
+    // is scaled 1.28 and travels from the base to the top over the beat).
+    // DOCUMENT: a slow scroll down the page. MONEY: a slow push.
+    const scale = comp === "ARCHITECTURE" ? 1.28 : comp === "DOCUMENT" ? 1.06 : 1 + push * p01;
+    const ty = comp === "ARCHITECTURE" ? lerp(7, -7, easeInOut(p01)) : comp === "DOCUMENT" ? lerp(0, -2.5, p01) : 0;
     // Major: the photo expands from a small circle to the whole frame.
     const iris = m.tier === "major" ? easeInOut(clamp01(local / m.s(0.9))) : 1;
     const R = lerp(160, 1200, iris);
-    if (part === "header") return (
-      <>
-        <Rule b={B.rule} t={m.build(0.3, m.s(0.2))} color="#FFFFFF" />
-        {B.kicker ? <DataLabel b={B.kicker} color="#FFFFFF" local={local} fps={fps} at={tl.labelAt + 0.3} shadow /> : null}
-        <Headline b={B.headline} color="#FFFFFF" local={local} fps={fps} m={m} idx={idx} at={0.3} shadow />
-        {c.photo.credit ? <div style={{ position: "absolute", left: L_EDGE, top: 1416, font: dataFont(20, 500), color: "rgba(255,255,255,0.72)", maxWidth: 700, textAlign: "left" }}>{c.photo.credit}</div> : null}
-      </>
-    );
+    if (part === "header") {
+      const hb = B.headline;
+      // DOCUMENT: the headline is a callout — a highlighter band in the accent draws behind each line.
+      const band = comp === "DOCUMENT" && hb && hb.lines?.length ? (
+        <>
+          {hb.lines.map((l, i) => {
+            const lw = measure(l, hb.size, { family: ROLE_HEADLINE.family, weight: ROLE_HEADLINE.weight, tracking: ROLE_HEADLINE.tracking }) + 40;
+            const t = easeOut(clamp01((local - (0.15 + i * 0.08) * fps) / (0.4 * fps)));
+            const lh = hb.size * ROLE_HEADLINE.lineHeight;
+            return <div key={i} style={{ position: "absolute", left: hb.align === "right" ? hb.x + hb.w - lw : hb.x - 20, top: hb.y + i * lh + lh * 0.06, width: lw * t, height: lh * 0.9,
+              backgroundColor: accent, opacity: 0.94, transformOrigin: hb.align === "right" ? "right center" : "left center" }} />;
+          })}
+        </>
+      ) : null;
+      return (
+        <>
+          <Rule b={B.rule} t={m.build(0.3, m.s(0.2))} color="#FFFFFF" />
+          {B.kicker ? <DataLabel b={B.kicker} color="#FFFFFF" local={local} fps={fps} at={tl.labelAt + 0.3} shadow /> : null}
+          {band}
+          <Headline b={B.headline} color={comp === "DOCUMENT" ? onAccent(accent) : "#FFFFFF"} local={local} fps={fps} m={m} idx={idx} at={0.3} shadow={comp !== "DOCUMENT"} />
+          {B.number && c.data?.value ? <NumberHero b={B.number} q={parseQuantity(c.data.value)} t={easeOut(clamp01((local - 0.5 * fps) / Math.max(1, dur * 0.6)))} local={local} fps={fps} at={0.5} color="#FFFFFF" m={m} hero={false} /> : null}
+          {c.photo.credit ? <div style={{ position: "absolute", left: L_EDGE, top: 1416, font: dataFont(20, 500), color: "rgba(255,255,255,0.72)", maxWidth: 700, textAlign: "left" }}>{c.photo.credit}</div> : null}
+        </>
+      );
+    }
+    const veil = comp === "MONEY" ? "linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.30) 36%, rgba(0,0,0,0.22) 58%, rgba(0,0,0,0.80) 100%)"
+      : comp === "DOCUMENT" ? "linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.05) 62%, rgba(0,0,0,0.70) 100%)"
+      : "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0) 44%, rgba(0,0,0,0.18) 58%, rgba(0,0,0,0.78) 100%)";
     return (
       <HeroEl name="photo" b={B.photo}>
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", clipPath: iris < 1 ? `circle(${R.toFixed(0)}px at 540px 820px)` : "none" }}>
-          <Img src={staticFile(c.photo.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: c.photo.position || "50% 30%",
-            transform: `scale(${scale.toFixed(4)})`, filter: "saturate(0.92) contrast(1.05)" }} />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0) 44%, rgba(0,0,0,0.18) 58%, rgba(0,0,0,0.78) 100%)" }} />
+          <Img src={staticFile(c.photo.asset)} style={{ width: "100%", height: "100%", objectFit: "cover",
+            objectPosition: c.photo.position || (comp === "DOCUMENT" ? "50% 0%" : comp === "ARCHITECTURE" ? "50% 50%" : "50% 30%"),
+            transform: `translateY(${ty.toFixed(2)}%) scale(${scale.toFixed(4)})`, filter: comp === "DOCUMENT" ? "none" : "saturate(0.92) contrast(1.05)" }} />
+          <div style={{ position: "absolute", inset: 0, background: veil }} />
         </div>
       </HeroEl>
     );
@@ -473,13 +508,7 @@ function SceneFull({ c, L, local, dur, fps, idx, part = "body" }) {
     throw new Error(`[cutout] isolation failed, no alpha mask (${c.cutout?.asset}) — the resolver must convert this beat to TYPE`);
   }
   const cu = B.cutout, t = m.build(0.35, m.s(0.1));
-  if (part === "header") return (
-    <>
-      <Rule b={B.rule} t={m.build(0.3, m.s(0.1))} color={th.ink} />
-      {B.kicker ? <DataLabel b={B.kicker} color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
-      {B.headline ? <Headline b={B.headline} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} /> : null}
-    </>
-  );
+  if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
   return (
     <HeroEl name="cutout" b={cu}>
       <div style={{ position: "absolute", left: cu.x, top: cu.y + (1 - t) * 120, width: cu.w, height: cu.h, opacity: t,
@@ -499,13 +528,7 @@ function ProcessFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const nodeT = (i) => m.build(0.18, m.s(0.15) + i * dur * 0.26);
   const arrowT = (i) => m.build(0.2, m.s(0.3) + i * dur * 0.26);
   const center = (n) => [n.x + n.w / 2, n.y + n.h / 2];
-  if (part === "header") return (
-    <>
-      <Rule b={B.rule} t={m.build(0.3, m.s(0.1))} color={th.ink} />
-      {B.kicker ? <DataLabel b={B.kicker} color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
-      {B.headline ? <Headline b={B.headline} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} /> : null}
-    </>
-  );
+  if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
   const nodeFill = th.dark ? "#1B1B1D" : "#FFFFFF";
   return (
     <HeroEl name="nodes" b={{ x: 0, y: nodes[0]?.y || 0, w: FRAME.w, h: 1400 - (nodes[0]?.y || 0) }}>
@@ -553,15 +576,148 @@ function ProcessFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   );
 }
 
+// ── MAP-CENTERED ──────────────────────────────────────────────────────
+// The map fills the frame, zoomed on the region, the region named at the
+// region (primitives/map.jsx CenteredMap).
+function MapCentered({ c, L, local, dur, fps, accent, idx, part = "body" }) {
+  const m = useMotion(c, local, dur, fps);
+  const th = useTheme();
+  const B = L.boxes, tl = timeline(c, B);
+  // The header floats over the map's linework: a ground-coloured halo lifts it off.
+  if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} halo={th.dark ? DARK_BG : STUDIO} />;
+  return (
+    <HeroEl name="map" b={B.map}>
+      <CenteredMap data={c.data} bounds={B.map} local={local} dur={dur} font={SERIF_FAMILY_NAME} accent={accent} ground={th.dark ? DARK_BG : STUDIO} ink={th.ink} />
+    </HeroEl>
+  );
+}
+const SERIF_FAMILY_NAME = "Fraunces";
+
+// When each list item / timeline marker appears: as the narrator says it
+// (the item's first word found in the beat's spoken words, in order), else
+// evenly across the first 60% of the beat.
+function appearTimes(firstWords, spoken, dur, fps) {
+  const norm = (w) => String(w || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  let from = 0;
+  const last = Math.max(0, dur - fps * 0.6);
+  return firstWords.map((fw, i) => {
+    const key = norm(fw);
+    const hit = key ? (spoken || []).findIndex((w, k) => k >= from && norm(w.text) === key) : -1;
+    if (hit >= 0) { from = hit + 1; return Math.min(last, Math.max(Math.round(fps * 0.5), spoken[hit].from - 3)); }
+    return Math.min(last, Math.round(fps * 0.6 + (i * dur * 0.6) / Math.max(1, firstWords.length)));
+  });
+}
+
+// ── LIST-BUILD ────────────────────────────────────────────────────────
+// Items accumulate in a column, each as the narrator says it: a hairline
+// draws, its index numeral snaps in, the item (ROLE_DATA) fades up.
+function ListBuild({ c, L, local, dur, fps, accent, idx, spoken, part = "body" }) {
+  const m = useMotion(c, local, dur, fps);
+  const th = useTheme();
+  const B = L.boxes, tl = timeline(c, B);
+  if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
+  const items = B.items || [];
+  const times = appearTimes(items.map((it) => String(it.label).split(/\s+/)[0]), spoken, dur, fps);
+  return (
+    <HeroEl name="items" b={{ x: L_EDGE, y: items[0]?.rule?.y ?? 470, w: R_EDGE - L_EDGE, h: BOTTOM_EDGE - (items[0]?.rule?.y ?? 470) }}>
+      {items.map((it, i) => {
+        const t0 = times[i], t = local - t0;
+        if (t < 0) return null;
+        const snap = lerp(0.92, 1, easeOut(clamp01(t / (0.15 * fps))));
+        const last = i === items.length - 1;
+        return (
+          <React.Fragment key={i}>
+            <Rule b={it.rule} t={easeOut(clamp01(t / (0.3 * fps)))} color={th.ink} />
+            <div style={{ position: "absolute", left: it.index.x, top: it.index.y, width: it.index.w, height: it.index.h, textAlign: it.index.align, font: roleFont(ROLE_NUMBER, 120),
+              lineHeight: "120px", color: last ? accent : th.mid, transform: `scale(${snap.toFixed(4)})`, transformOrigin: it.index.align === "right" ? "right center" : "left center", fontOpticalSizing: "auto" }}>{it.index.text}</div>
+            <DataLabel b={it} color={th.ink} local={local} fps={fps} at={(t0 + 0.1 * fps) / fps} />
+          </React.Fragment>
+        );
+      })}
+      <Rule b={B.end} t={items.length && local >= times[items.length - 1] + 0.3 * fps ? easeOut(clamp01((local - times[items.length - 1] - 0.3 * fps) / (0.4 * fps))) : 0} color={th.ink} />
+    </HeroEl>
+  );
+}
+const BOTTOM_EDGE = 1400;
+
+// ── TIMELINE ──────────────────────────────────────────────────────────
+// A vertical line draws down the frame; each dated event lands on it in turn:
+// the dot pops, the date snaps in (a date is not a quantity, it does not
+// count), its label fades up. The latest date is the accent.
+function Timeline({ c, L, local, dur, fps, accent, idx, spoken, part = "body" }) {
+  const m = useMotion(c, local, dur, fps);
+  const th = useTheme();
+  const B = L.boxes, tl = timeline(c, B);
+  if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
+  const mk = B.markers || [];
+  const times = appearTimes(mk.map(() => ""), spoken, dur, fps);
+  const drawT = easeOut(clamp01((local - 0.1 * fps) / Math.max(1, dur * 0.55)));
+  const line = B.line;
+  return (
+    <HeroEl name="markers" b={{ x: L_EDGE, y: line.y, w: R_EDGE - L_EDGE, h: line.h }}>
+      <div style={{ position: "absolute", left: line.x, top: line.y, width: line.w, height: line.h * drawT, backgroundColor: th.ink }} />
+      {mk.map((mm, i) => {
+        const t = local - times[i];
+        if (t < 0) return null;
+        const pop = easeOut(clamp01(t / (0.2 * fps)));
+        const snap = lerp(0.92, 1, easeOut(clamp01(t / (0.15 * fps))));
+        const newest = i === mk.length - 1;
+        return (
+          <React.Fragment key={i}>
+            <div style={{ position: "absolute", left: mm.dot.x, top: mm.dot.y, width: mm.dot.w, height: mm.dot.h, borderRadius: "50%", backgroundColor: newest ? accent : th.ink, transform: `scale(${pop.toFixed(3)})` }} />
+            <div style={{ position: "absolute", left: mm.date.x, top: mm.date.y, width: mm.date.w, height: mm.date.h, textAlign: mm.date.align, whiteSpace: "nowrap",
+              font: roleFont(ROLE_NUMBER, mm.date.size), lineHeight: `${mm.date.h}px`, letterSpacing: roleTracking(ROLE_NUMBER, mm.date.size), color: newest ? accent : th.ink,
+              transform: `scale(${snap.toFixed(4)})`, transformOrigin: mm.date.align === "right" ? "right center" : "left center", fontOpticalSizing: "auto" }}>{mm.date.text}</div>
+            <DataLabel b={mm.label} color={th.ink} local={local} fps={fps} at={(times[i] + 0.15 * fps) / fps} />
+          </React.Fragment>
+        );
+      })}
+    </HeroEl>
+  );
+}
+
+// ── COMPARISON-SPLIT ──────────────────────────────────────────────────
+// The frame is cut on a diagonal: value A on the studio, value B on the dark
+// half. Both count up together; the larger figure is the accent (for a
+// from-to change, the "after" value).
+function ComparisonSplit({ c, L, local, dur, fps, accent, idx, part = "body" }) {
+  const m = useMotion(c, local, dur, fps);
+  const th = useTheme();
+  const B = L.boxes, tl = timeline(c, B), d = c.data || {};
+  if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
+  const qa = parseQuantity(d.a?.value), qb = parseQuantity(d.b?.value);
+  const bigger = d.relation === "from-to" || !qa || !qb || qb.magnitude >= qa.magnitude ? "b" : "a";
+  const wipe = easeInOut(clamp01(local / (0.5 * fps)));
+  const count = (delay) => easeOut(clamp01((local - (tl.numberAt + delay) * fps) / Math.max(1, dur * 0.6)));
+  const sp = B.split;
+  const darkAccent = liftAccent(accent);
+  return (
+    <>
+      <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0, clipPath: `inset(0 0 0 ${(100 * (1 - wipe)).toFixed(2)}%)` }}>
+        <polygon points={`${sp.x0},0 ${FRAME.w},0 ${FRAME.w},${FRAME.h} ${sp.x1},${FRAME.h}`} fill={DARK_BG} />
+      </svg>
+      <NumberHero b={B.numberA} q={qa} t={count(0)} local={local} fps={fps} at={tl.numberAt} color={bigger === "a" ? accent : th.ink} m={m} hero={false} />
+      <NumberHero b={B.numberB} q={qb} t={count(0.25)} local={local} fps={fps} at={tl.numberAt + 0.25} color={bigger === "b" ? darkAccent : "#F2F0EB"} m={m} hero={false} />
+      {B.labelA ? <DataLabel b={B.labelA} color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
+      {B.labelB ? <DataLabel b={B.labelB} color="#F2F0EB" local={local} fps={fps} at={tl.labelAt + 0.25} /> : null}
+    </>
+  );
+}
+
 // ── hero element (match cuts / persisted elements) ────────────────────
 // A soft, large, very low-opacity shadow under the primary element (the
 // number, the chart, the statement): it suggests the element is a physical
 // object on the studio surface. Pure black at 0.06, blur 80 px. Not a photo
 // (full-bleed) and not a cutout (which carries its own shadow).
 const HERO_SHADOW = "drop-shadow(0 34px 80px rgba(0,0,0,0.06))";
+// plan.hero_shadow === false turns it off (the blur is a full-frame filter on
+// every frame; the switch exists so its render cost can be measured and, if a
+// CI time cap demands it, dropped without a code change).
+const ShadowOn = React.createContext(true);
 function HeroEl({ name, b, children }) {
   const ctx = React.useContext(Hero);
-  const lit = name !== "photo" && name !== "cutout";
+  const shadowOn = React.useContext(ShadowOn);
+  const lit = shadowOn && name !== "photo" && name !== "cutout";
   if (!ctx || !ctx.from || ctx.name !== name || !b) return lit ? <div style={{ position: "absolute", inset: 0, filter: HERO_SHADOW }}>{children}</div> : children;
   // Start exactly on the previous beat's hero box, settle into this one.
   const t = easeInOut(ctx.t);
@@ -615,7 +771,7 @@ function cameraAt(c, L, local, dur, fps) {
 // hero still fits the safe width: 1.15 for a narrow statement, less for a chart
 // that already spans the frame.
 export function majorZoom(L) {
-  if (L.composition === "SCENE-FULL") return null;
+  if (["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "MAP-CENTERED", "COMPARISON-SPLIT"].includes(L.composition)) return null;
   const h = L.boxes[L.hero] || null;
   const st = L.boxes.statement;
   if (st && st.rotate) return null;
@@ -632,13 +788,19 @@ const themeFor = (c, onPhoto) => (onPhoto ? { ink: "#FFFFFF", soft: "rgba(255,25
   : c.dark ? { ink: "#F2F0EB", soft: "#9A9A9F", mid: "#6E6E73", track: "#2B2B2E", dark: true, photo: false }
   : { ink: INK, soft: INK_SOFT, mid: MID, track: LIGHT, dark: false, photo: false });
 
+const COMPONENTS = {
+  "TYPE-FULL": TypeFull, "TYPE-SPLIT": TypeFull, "NUMBER-FULL": TypeFull, "DATA-FULL": DataFull, "PROCESS-FULL": ProcessFull,
+  "SCENE-FULL": SceneFull, "ARCHITECTURE": SceneFull, "DOCUMENT": SceneFull, "MONEY": SceneFull,
+  "MAP-CENTERED": MapCentered, "LIST-BUILD": ListBuild, "TIMELINE": Timeline, "COMPARISON-SPLIT": ComparisonSplit,
+};
+
 function BeatCanvas({ beat, idx, local, fps, accent, hero, bodyOnly = false }) {
   const c = normalizeCanvas(beat.scene.canvas, idx);
   const dur = beat.duration_frames;
   const L = canvasLayout(c);
   const cam = cameraAt(c, L, local, dur, fps);
-  const Comp = L.composition === "DATA-FULL" ? DataFull : L.composition === "SCENE-FULL" ? SceneFull : L.composition === "PROCESS-FULL" ? ProcessFull : TypeFull;
-  const theme = themeFor(c, L.composition === "SCENE-FULL" && !!c.photo);
+  const Comp = COMPONENTS[L.composition] || TypeFull;
+  const theme = themeFor(c, ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"].includes(L.composition) && !!c.photo);
   if (c.dark && !c.photo) accent = liftAccent(accent);
   const zoom = (c.motion_tier || "medium") === "major" ? majorZoom(L) : null;
   return (
@@ -651,10 +813,10 @@ function BeatCanvas({ beat, idx, local, fps, accent, hero, bodyOnly = false }) {
         <div style={{ position: "absolute", inset: 0, transformOrigin: "540px 960px", transform: `translate(${cam.x.toFixed(1)}px, ${cam.y.toFixed(1)}px) scale(${cam.s.toFixed(4)})` }}>
           <div style={{ position: "absolute", inset: 0, transformOrigin: `${zoom ? zoom.ox : 540}px ${zoom ? zoom.oy : 960}px`,
             transform: `scale(${zoom ? (1 + (zoom.k - 1) * easeInOut(clamp01(local / Math.max(1, dur)))).toFixed(4) : 1})` }}>
-            <Comp c={c} L={L} idx={idx} local={local} dur={dur} fps={fps} accent={accent} part="body" />
+            <Comp c={c} L={L} idx={idx} local={local} dur={dur} fps={fps} accent={accent} spoken={beat.spoken} part="body" />
           </div>
         </div>
-        {bodyOnly ? null : <Comp c={c} L={L} idx={idx} local={local} dur={dur} fps={fps} accent={accent} part="header" />}
+        {bodyOnly ? null : <Comp c={c} L={L} idx={idx} local={local} dur={dur} fps={fps} accent={accent} spoken={beat.spoken} part="header" />}
       </Hero.Provider>
     </Theme.Provider>
   );
@@ -662,7 +824,7 @@ function BeatCanvas({ beat, idx, local, fps, accent, hero, bodyOnly = false }) {
 
 // ── captions (outside the camera; never move with it) ─────────────────
 const norm = (w) => String(w || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-function CanvasCaption({ words, local, fps, emphasis, onPhoto, dark, align }) {
+function CanvasCaption({ words, local, fps, emphasis, onPhoto, dark, align, blend = false }) {
   if (!Array.isArray(words) || !words.length) throw new Error("CanvasCaption: beat has no word timings — the voiceover's word boundaries are required");
   const size = Math.min(58, Math.floor(CAPTION.w / (Math.max(1, ...words.map((w) => String(w.text).length)) * 0.62)));
   const perChunk = Math.max(8, Math.floor((CAPTION.w / (size * 0.55)) * 2));
@@ -683,14 +845,15 @@ function CanvasCaption({ words, local, fps, emphasis, onPhoto, dark, align }) {
   const ink = onPhoto || dark ? "#FFFFFF" : INK;
   return (
     <div style={{ position: "absolute", left: (align === "right" ? CAPTION_R : CAPTION).x, top: CAPTION.y, width: CAPTION.w, textAlign: align, font: `700 ${size}px ${SANS_STACK}`,
-      lineHeight: 1.18, color: dark && !onPhoto ? "#F2F0EB" : ink, textShadow: onPhoto ? "0 3px 18px rgba(0,0,0,0.7)" : "none" }}>
+      lineHeight: 1.18, color: blend ? "#FFFFFF" : dark && !onPhoto ? "#F2F0EB" : ink, textShadow: onPhoto ? "0 3px 18px rgba(0,0,0,0.7)" : "none",
+      mixBlendMode: blend ? "difference" : "normal" }}>
       {chunks[ci].map((w, i) => {
         const since = local - w.from;
         const e = clamp01(since / 3);
         const isE = emph && norm(w.text).includes(emph);
         return (
           <span key={i} style={{ display: "inline-block", marginRight: size * 0.28, opacity: since < 0 ? 0.28 : 1,
-            transform: `translateY(${(6 * (1 - e)).toFixed(1)}px)`, borderBottom: isE && since >= 0 ? `6px solid ${dark || onPhoto ? "#FFFFFF" : INK}` : "6px solid transparent" }}>{w.text}</span>
+            transform: `translateY(${(6 * (1 - e)).toFixed(1)}px)`, borderBottom: isE && since >= 0 ? `6px solid ${dark || onPhoto || blend ? "#FFFFFF" : INK}` : "6px solid transparent" }}>{w.text}</span>
         );
       })}
     </div>
@@ -712,7 +875,7 @@ export function CanvasVideo({ plan }) {
   const inT = prev && local < TR ? local / TR : 1;
   const c = normalizeCanvas(beat.scene.canvas, i);
   const cLayout = canvasLayout(c);
-  const onPhoto = cLayout.composition === "SCENE-FULL" && !!c.photo;
+  const onPhoto = ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"].includes(cLayout.composition) && !!c.photo;
 
   // Transition style at the boundary into this beat.
   let style = "slide";
@@ -773,6 +936,7 @@ export function CanvasVideo({ plan }) {
   );
 
   return (
+    <ShadowOn.Provider value={plan.hero_shadow !== false}>
     <StudioBG color={STUDIO} drift={frame / fps}>
       {layers}
       {/* Paper grain, on every beat: a noise tile re-seeded every frame (a new
@@ -783,8 +947,9 @@ export function CanvasVideo({ plan }) {
         transform: `scale(${frame % 2 ? -1 : 1}, ${(frame >> 1) % 2 ? -1 : 1})` }} />
       {/* Film vignette: black at 0.08 at the corners, clear inside 58% of the radius. */}
       <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse farthest-corner at 50% 50%, rgba(0,0,0,0) 58%, rgba(0,0,0,${VIGNETTE}) 100%)`, pointerEvents: "none" }} />
-      <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} />
+      <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} />
     </StudioBG>
+    </ShadowOn.Provider>
   );
 }
 

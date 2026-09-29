@@ -24,7 +24,10 @@ import { createHash } from "node:crypto";
 import { createRequire as createRequireEntity } from "node:module";
 import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
-const { resolveEntity, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
+import { enforceRotation, candidatesFor } from "./composition-rotation.js";
+import { checkVisual, figureKey } from "./gemini-visual-plan.js";
+import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
+const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
 import {
@@ -916,7 +919,7 @@ async function cutoutFor(channelId, planPath, b, stats) {
 // resolved is drawn as TYPE-FULL, never as a stand-in image.
 function canvasContentFor(b, { cutout = null, photo = null } = {}) {
   let vt = String(b.visual_type || "TYPE").toUpperCase();
-  if ((vt === "CUTOUT" && !cutout) || (vt === "PHOTO" && !photo)) vt = "TYPE";
+  if ((vt === "CUTOUT" && !cutout) || ((vt === "PHOTO" || vt === "DOCUMENT" || vt === "MONEY") && !photo)) vt = "TYPE";
   const c = {
     visual_type: vt,
     data: vt === "TYPE" ? null : b.data || null,
@@ -926,14 +929,15 @@ function canvasContentFor(b, { cutout = null, photo = null } = {}) {
     headline: b.headline || b.caption || b.visual_headline || b.typography_direction?.phrase || "",
     emphasis_word: b.emphasis_word || null,
     cutout: vt === "CUTOUT" ? cutout : null,
-    photo: vt === "PHOTO" ? photo : null,
+    photo: vt === "PHOTO" || vt === "DOCUMENT" || vt === "MONEY" ? photo : null,
     motion_tier: ["micro", "medium", "major"].includes(b.motion_tier) ? b.motion_tier : "medium",
     camera_focus: Array.isArray(b.camera_focus) ? b.camera_focus.slice(0, 2) : null,
     persists_from: Number.isInteger(b.persists_from) ? b.persists_from : null,
     match_cut_prev: !!b.match_cut_prev,
     named_entities: Array.isArray(b.named_entities) ? b.named_entities : [],
   };
-  c.composition = compositionFor(vt, !!(c.photo || c.cutout));
+  if (b.type_layout === "split") c.type_layout = "split";
+  c.composition = compositionFor(vt, !!(c.photo || c.cutout), { view: c.photo?.view, split: c.type_layout === "split" && !!splitHeadline(c.headline) });
   return c;
 }
 
@@ -1017,7 +1021,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       // render-and-qa re-bundles (run 36498049819 ch-1: "Error loading image
       // .../entities/orgs/federal-reserve.jpg" — the bundle predated it).
       if (!r.cached) fetchedNew++;
-      return { asset: r.asset, entity: ent.name, kind: ent.type, credit: r.credit, source_url: r.source_url, license: r.license };
+      return { asset: r.asset, entity: ent.name, kind: ent.type, view: r.view || "scene", credit: r.credit, source_url: r.source_url, license: r.license };
     }
     entities.fell_back.push(`${ent.type} "${ent.name}": ${r.why}`);
     console.log(`[entity] ${ent.type} "${ent.name}" fell back to typography: ${r.why}${(r.attempts || []).length ? " — " + r.attempts.join(" | ") : ""}`);
@@ -1046,9 +1050,53 @@ async function resolveCanvas(channelId, planPath, plan) {
       if (ent?.name) photo = await photoFor(ent);
       if (!photo) counts.entity_fallbacks++;
     }
+    if (vt === "DOCUMENT" || vt === "MONEY") {
+      // A real scan of the named instrument / a real photo of the money object;
+      // none found -> the beat is TYPE (never a stand-in).
+      const r = vt === "DOCUMENT" ? await resolveDocument({ name: b.data?.name }) : await resolveMoney({ query: b.data?.object });
+      if (r.ok) {
+        if (!r.cached) fetchedNew++;
+        photo = { asset: r.asset, entity: vt === "DOCUMENT" ? b.data.name : null, kind: vt.toLowerCase(), view: vt === "DOCUMENT" ? "document" : "money", credit: r.credit, source_url: r.source_url, license: r.license };
+        entities.resolved.push(`${vt.toLowerCase()} "${b.data?.name || b.data?.object}" -> ${r.asset} (attempt ${r.attempt ?? "cache"}, ${r.license})`);
+        console.log(`[entity] ${vt} "${b.data?.name || b.data?.object}" resolved: ${r.asset} — ${r.page_title || ""} (${r.license})`);
+      } else {
+        entities.fell_back.push(`${vt.toLowerCase()} "${b.data?.name || b.data?.object}": ${r.why}`);
+        console.log(`[entity] ${vt} "${b.data?.name || b.data?.object}" fell back to typography: ${r.why}${(r.attempts || []).length ? " — " + r.attempts.join(" | ") : ""}`);
+        counts.entity_fallbacks++;
+      }
+    }
     b.canvas = canvasContentFor(b, { cutout, photo });
     if (asset) b.asset = { id: asset.id, source: asset.source, source_url: asset.source_url, license: asset.license, attribution: asset.attribution };
     if (photo) b.asset = { id: photo.asset, source: "wikimedia", source_url: photo.source_url, license: photo.license, attribution: photo.credit };
+  }
+  // NO REPEAT, again, on what actually resolved (a real photo of a building is
+  // ARCHITECTURE; a DOCUMENT / MONEY / PHOTO with no image became TYPE): the
+  // same rule and alternatives as the planner (composition-rotation.js), the
+  // same gates (checkVisual). A beat holding a real photo is never given up
+  // while it is the video's last one — a script that names an entity shows one.
+  {
+    const narr = (b) => b.narration || "";
+    const imageBeats = () => plan.beats.filter((b) => b.canvas.photo).length;
+    const rot = enforceRotation(plan.beats.length, {
+      compositionOf: (i) => plan.beats[i].canvas.composition,
+      candidates: (i) => (plan.beats[i].canvas.photo && imageBeats() <= 1 ? [] : candidatesFor({ sentence: narr(plan.beats[i]), headline: plan.beats[i].canvas.headline || "" })),
+      accept: (i, alt) => {
+        const b = plan.beats[i];
+        const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, narr(b));
+        if (v.why || v.type !== alt.visual_type) return false;
+        const fk = figureKey(v);
+        return !(fk && plan.beats.some((x, j) => j !== i && figureKey(checkVisual(x, narr(x))) === fk));
+      },
+      apply: (i, alt) => {
+        const b = plan.beats[i];
+        const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, narr(b));
+        b.visual_type = v.type; b.data = v.data;
+        if (alt.extra?.split) b.type_layout = "split"; else delete b.type_layout;
+        b.canvas = canvasContentFor(b, {});
+      },
+      log: (m) => console.log(m.replace("[plan]", "[canvas]")),
+    });
+    if (rot.repeats.length) console.warn(`::warning::[canvas] composition repeats left after rotation: beats ${rot.repeats.join(", ")} (nothing else in their sentences is grounded)`);
   }
   // A script that names an entity shows at least one real photo of one
   // (owner's stop condition): when the plan resolved none, the first TYPE-FULL
@@ -1056,7 +1104,7 @@ async function resolveCanvas(channelId, planPath, plan) {
   // SCENE-FULL with that photo.
   if (!plan.beats.some((b) => b.canvas.photo)) {
     for (const b of plan.beats.slice(1)) {
-      if (b.canvas.composition !== "TYPE-FULL" || b.canvas.data?.value) continue;
+      if (!["TYPE-FULL", "TYPE-SPLIT"].includes(b.canvas.composition) || b.canvas.data?.value) continue;
       let done = false;
       for (const ent of b.named_entities || []) {
         const photo = await photoFor(ent);

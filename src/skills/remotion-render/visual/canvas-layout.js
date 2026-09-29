@@ -31,12 +31,33 @@
  * cell's edge and runs across as many columns as its text needs (typography.js
  * fitHeadline). "1-2 cells" is read as 1-2 grid ROWS deep.
  *
- * Compositions:
- *   TYPE-FULL     a statement, or one hero number, bottom / top anchored
- *   DATA-FULL     the chart is the composition
- *   SCENE-FULL    a real photo edge to edge (objectFit cover), type over it;
- *                 or an isolated object, large
- *   PROCESS-FULL  2-3 nodes across the frame, thick arrows
+ * Compositions (the planner never picks the same one twice in a row —
+ * composition-rotation.js — so the vocabulary has to be wide enough to
+ * alternate even when sentences ground nothing but text):
+ *   TYPE-FULL         a statement, bottom-anchored, on one side
+ *   TYPE-SPLIT        the statement split in two: first half top, second half
+ *                     bottom, on opposite sides
+ *   NUMBER-FULL       one hero number, its label above, the headline opposite
+ *   DATA-FULL         the chart is the composition (bar / donut / line / gauge)
+ *   SCENE-FULL        a real photo edge to edge (objectFit cover), type over it;
+ *                     or an isolated object, large
+ *   ARCHITECTURE      a real photo of a building (an institution or address),
+ *                     full-bleed, tilting up the facade
+ *   DOCUMENT          a real scan of a named legal instrument, full-bleed, the
+ *                     headline as a highlighted callout
+ *   MONEY             a real photo of currency / coins / a receipt, full-bleed,
+ *                     the sentence's figure over it
+ *   MAP-CENTERED      the map fills the frame, zoomed on the region, labelled
+ *                     at the region
+ *   PROCESS-FULL      2-3 nodes across the frame, thick arrows
+ *   TIMELINE          2-4 dated events on a vertical line spanning the frame
+ *   COMPARISON-SPLIT  the frame cut on a diagonal: value A / value B
+ *   LIST-BUILD        an enumeration, one item at a time as it is spoken
+ *
+ * NUMBER-FULL and TYPE-SPLIT are additions to the brief's list: a hero number
+ * is a different composition from a statement, and a split statement is a
+ * different one from a stacked statement — without them two text-only
+ * sentences in a row could not both satisfy the no-repeat rule.
  *
  * Where this stops: widths come from the fonts' measured advance tables
  * (type-metrics.js), kerning ignored, +3% margin — text is measured, not
@@ -64,7 +85,7 @@ export const COMP = { x: 48, y: 100, w: 984, h: 1320 };
 // left-aligned, or 64..944 right-aligned (CAPTION_R).
 export const CAPTION = { x: 48, y: 1450, w: 880, h: 160 };
 export const CAPTION_R = { x: 64, y: 1450, w: 880, h: 160 };
-export const COMPOSITIONS = ["TYPE-FULL", "DATA-FULL", "SCENE-FULL", "PROCESS-FULL"];
+export const COMPOSITIONS = ["TYPE-FULL", "TYPE-SPLIT", "NUMBER-FULL", "DATA-FULL", "SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "MAP-CENTERED", "PROCESS-FULL", "TIMELINE", "COMPARISON-SPLIT", "LIST-BUILD"];
 export const TRANSITION_SEC = 0.5;
 export const CONTENT_TOP = 180;
 
@@ -80,15 +101,29 @@ export const INK_ON_DARK = "#F2F0EB";
 export const SANS = "Inter";
 export { SERIF };
 
-const DATA_TYPES = ["BAR", "PIE", "LINE", "GAUGE", "MAP"];
+const DATA_TYPES = ["BAR", "PIE", "LINE", "GAUGE"];
 
-/** The composition a checked visual type is drawn as. */
-export function compositionFor(visualType, hasPhoto) {
+/**
+ * The composition a checked visual type is drawn as. `hasPhoto`: the image the
+ * type needs (photo, cutout, scan) was resolved — an unresolved one is drawn
+ * as typography, never as a stand-in. `extra.view === "building"`: a PHOTO
+ * whose real photo shows a building is ARCHITECTURE; `extra.split`: a TYPE
+ * beat drawn as TYPE-SPLIT.
+ */
+export function compositionFor(visualType, hasPhoto, extra = {}) {
   const t = String(visualType || "TYPE").toUpperCase();
-  if (t === "PHOTO" || t === "CUTOUT") return hasPhoto ? "SCENE-FULL" : "TYPE-FULL";
+  if (t === "PHOTO") return hasPhoto ? (extra.view === "building" ? "ARCHITECTURE" : "SCENE-FULL") : "TYPE-FULL";
+  if (t === "CUTOUT") return hasPhoto ? "SCENE-FULL" : "TYPE-FULL";
+  if (t === "DOCUMENT") return hasPhoto ? "DOCUMENT" : "TYPE-FULL";
+  if (t === "MONEY") return hasPhoto ? "MONEY" : "TYPE-FULL";
   if (t === "PROCESS") return "PROCESS-FULL";
+  if (t === "MAP") return "MAP-CENTERED";
+  if (t === "LIST") return "LIST-BUILD";
+  if (t === "TIMELINE") return "TIMELINE";
+  if (t === "COMPARE") return "COMPARISON-SPLIT";
   if (DATA_TYPES.includes(t)) return "DATA-FULL";
-  return "TYPE-FULL";                       // TYPE and COUNTER (a number with a label)
+  if (t === "COUNTER") return "NUMBER-FULL";
+  return extra.split ? "TYPE-SPLIT" : "TYPE-FULL";
 }
 
 // ── text measuring (Inter, measured advances) ─────────────────────────
@@ -188,6 +223,26 @@ function dataHeader(c, flip, { maxSize = 128, maxHeight = 250 } = {}) {
   return out;
 }
 
+const pad2 = (n) => String(n).padStart(2, "0");
+/** Section folio ("03 / 08"): page furniture, not a claim — the second type role on a beat that has no lead-in. */
+export const folioOf = (c) => (Number.isInteger(c?.beat_total) && c.beat_total > 0 ? `${pad2((c.beat_index ?? 0) + 1)} / ${pad2(c.beat_total)}` : null);
+
+/** Split a headline into two halves at the most natural break near its middle (>= 2 words), or null. */
+export function splitHeadline(text) {
+  const ws = String(text || "").trim().split(/\s+/).filter(Boolean);
+  if (ws.length < 2) return null;
+  const total = ws.join(" ").length;
+  let best = 1, bestScore = Infinity, acc = 0;
+  for (let k = 1; k < ws.length; k++) {
+    acc += ws[k - 1].length + 1;
+    let score = Math.abs(acc - (total - acc));
+    if (/[,;:\u2014-]$/.test(ws[k - 1])) score -= 6;                       // break after punctuation
+    if (/^(?:and|or|but|of|to|in|for|with|that|which|as|by|from|on)$/i.test(ws[k])) score -= 4;  // break before a connector
+    if (score < bestScore) { bestScore = score; best = k; }
+  }
+  return [ws.slice(0, best).join(" "), ws.slice(best).join(" ")];
+}
+
 /**
  * Every element box for one beat's canvas content `c`, in design px.
  * Returns { composition, boxes: {name: {x,y,w,h,...}}, hero } — hero is the
@@ -200,8 +255,18 @@ export function canvasLayout(c) {
   const boxes = {};
   let hero = null;
 
-  if (comp === "TYPE-FULL") {
-    if (vt === "COUNTER" && c?.data?.value) {
+  if (comp === "TYPE-FULL" || comp === "NUMBER-FULL" || comp === "TYPE-SPLIT") {
+    const folio = c?.lead_in ? null : folioOf(c);
+    const split = comp === "TYPE-SPLIT" ? splitHeadline(c?.headline) : null;
+    if (split) {
+      // The statement in two: the first half top, the second bottom, on opposite sides.
+      const opp = flip ? 0 : 1;
+      boxes.headline = headlineBox(split[0], { width: 640, y: TOP, flip, maxLines: 3, maxHeight: 380, max: 200 });
+      boxes.statement = headlineBox(split[1], { width: 760, bottom: BOTTOM, flip: opp, maxLines: 3, maxHeight: 420, max: 200 });
+      const kk = c?.lead_in || folio;
+      if (kk) boxes.kicker = dataBox(kk, { width: 300, size: 34, maxLines: 1, y: TOP + 10, flip: opp });
+      hero = "statement";
+    } else if (vt === "COUNTER" && c?.data?.value) {
       const parts = numberParts(c.data.value);
       const { size } = fitNumber(parts, R_EDGE - L_EDGE);
       const slots = numberSlots(parts, size);
@@ -246,7 +311,7 @@ export function canvasLayout(c) {
         const tw = Math.ceil(measure(st.lines[0] || "", st.size, { family: ROLE_HEADLINE.family, weight: ROLE_HEADLINE.weight, tracking: ROLE_HEADLINE.tracking }));
         const th = Math.round(st.size * ROLE_HEADLINE.lineHeight);
         boxes.rule = rule(1, TOP);
-        if (c?.lead_in) boxes.kicker = dataBox(c.lead_in, { width: 560, size: 34, maxLines: 1, y: TOP + 24, flip: 1 });
+        if (c?.lead_in || folio) boxes.kicker = dataBox(c.lead_in || folio, { width: 560, size: 34, maxLines: 1, y: TOP + 24, flip: 1 });
         boxes.statement = { ...box(L_EDGE, BOTTOM - tw, th, tw), size: st.size, lines: st.lines, align: "left", role: "headline", rotate: -90, textW: tw };
         hero = "statement";
       } else {
@@ -254,8 +319,8 @@ export function canvasLayout(c) {
         // as a small label) at the top: the empty middle is the composition.
         boxes.rule = rule(flip ? 0 : 1, TOP);
         let topLimit = 430;
-        if (c?.lead_in) {
-          boxes.kicker = dataBox(c.lead_in, { width: 640, size: 34, maxLines: 1, y: TOP + 30, flip: flip ? 0 : 1 });
+        if (c?.lead_in || folio) {
+          boxes.kicker = dataBox(c.lead_in || folio, { width: 640, size: 34, maxLines: 1, y: TOP + 30, flip: flip ? 0 : 1 });
           topLimit = boxes.kicker.y + boxes.kicker.h + 60;
         }
         boxes.statement = headlineBox(text, { width: 984, bottom: BOTTOM, flip, maxLines: 5, maxHeight: BOTTOM - topLimit, max: 260 });
@@ -309,19 +374,99 @@ export function canvasLayout(c) {
       }
     } else if (vt === "LINE") {
       boxes.chart = box(L_EDGE + 12, top, W - 24, BOTTOM - top);
-    } else if (vt === "MAP") {
-      boxes.chart = box(SAFE.x, top, SAFE.w, 1410 - top);
     } else {
       boxes.chart = box(L_EDGE, top, W, BOTTOM - top);
     }
-    hero = boxes.number && (vt === "PIE" || vt === "GAUGE") ? "chart" : "chart";
-  } else if (comp === "SCENE-FULL") {
+    hero = "chart";
+  } else if (comp === "MAP-CENTERED") {
+    // The map fills the frame above the caption row (it bleeds like a photo:
+    // its edges feather into the studio), zoomed on the region; the engine
+    // labels the region itself. The header floats over it.
+    Object.assign(boxes, dataHeader(c, flip));
+    if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);
+    boxes.map = box(0, 0, FRAME.w, 1440);
+    hero = "map";
+  } else if (comp === "LIST-BUILD") {
+    Object.assign(boxes, dataHeader(c, flip));
+    if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);
+    const items = (c?.data?.items || []).slice(0, 5);
+    const top = Math.max(boxes.bottom + 40, 470);
+    const rowH = (BOTTOM - top) / Math.max(1, items.length);
+    boxes.items = items.map((label, i) => {
+      const y = top + i * rowH;
+      const size = 46;
+      const f = fitText(String(label).toUpperCase(), 640, { max: size, min: ROLE_DATA.sizeBand[0], maxLines: 2, lineH: ROLE_DATA.lineHeight });
+      const w = Math.min(640, Math.max(...f.lines.map((l) => textWidth(l, f.size, false, 700)))) + 2;
+      const h = f.lines.length * f.size * ROLE_DATA.lineHeight;
+      // The index numeral sits on one side of the row, the item's text beside it; a hairline above.
+      const nw = 150;
+      const tx = flip ? R_EDGE - nw - 24 - w : L_EDGE + nw + 24;
+      return { ...box(tx, y + rowH * 0.5 - h / 2 + 30, w, h), size: f.size, lines: f.lines, align: flip ? "right" : "left", role: "data", upper: true, weight: 700, label, i,
+        index: { ...box(flip ? R_EDGE - nw : L_EDGE, y + 22, nw, 120), size: 120, text: String(i + 1).padStart(2, "0"), role: "number", align: flip ? "right" : "left" },
+        rule: { ...box(L_EDGE, y, R_EDGE - L_EDGE, 4), role: "rule", anchor: flip ? "right" : "left" } };
+    });
+    // The list closes on a hairline at the composition's bottom edge.
+    boxes.end = { ...box(L_EDGE, BOTTOM - 4, R_EDGE - L_EDGE, 4), role: "rule", anchor: flip ? "right" : "left" };
+    hero = "items";
+  } else if (comp === "TIMELINE") {
+    Object.assign(boxes, dataHeader(c, flip));
+    if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);
+    const mk = (c?.data?.markers || []).slice(0, 4);
+    const top = Math.max(boxes.bottom + 50, 480);
+    const rowH = (BOTTOM - top) / Math.max(1, mk.length);
+    const lineX = flip ? R_EDGE - 60 : L_EDGE + 60;
+    boxes.line = { ...box(lineX - 3, top, 6, BOTTOM - top), role: "rule" };
+    const size = Math.max(120, Math.min(260, Math.floor((rowH - 100) / ROLE_NUMBER.lineHeight)));
+    boxes.markers = mk.map((m, i) => {
+      const y = top + i * rowH;
+      const parts = numberParts(m.date);
+      const dText = String(m.date);
+      const dw = Math.min(760, Math.ceil(measure(dText, size, { family: "Fraunces", weight: ROLE_NUMBER.weight, tracking: ROLE_NUMBER.tracking })));
+      const dh = Math.round(size * ROLE_NUMBER.lineHeight);
+      const dx = flip ? lineX - 60 - dw : lineX + 60;
+      const lab = dataBox(m.label, { width: 640, size: 38, maxLines: 2, x: undefined, y: y + dh + 14, flip });
+      return { date: { ...box(dx, y + 10, dw, dh), size, text: dText, parts, align: flip ? "right" : "left", role: "number" },
+        label: { ...lab, x: flip ? lineX - 60 - lab.w : lineX + 60 },
+        dot: { ...box(lineX - 18, y + 10 + dh / 2 - 18, 36, 36), role: "rule" }, i };
+    });
+    hero = "markers";
+  } else if (comp === "COMPARISON-SPLIT") {
+    // The frame is cut on a diagonal (top-right to bottom-left): value A in
+    // the light half, value B in the dark half. Both numerals the same size.
+    const cmp = c?.data || {};
+    const lineAt = (y) => 700 - (440 * y) / 1920;
+    boxes.split = { ...box(0, 0, FRAME.w, FRAME.h), role: "shape", x0: 700, x1: 260 };
+    if (c?.headline) boxes.headline = headlineBox(c.headline, { width: 520, y: TOP, flip: 0, maxLines: 3, maxHeight: 400, max: 120 });
+    if (!c?.headline && !c?.lead_in && !cmp.subject) boxes.rule = rule(0, TOP);
+    const pa = numberParts(cmp.a?.value ?? ""), pb = numberParts(cmp.b?.value ?? "");
+    // A in the upper light half, B hung from the bottom of the dark half.
+    const wa = Math.floor(lineAt(900) - L_EDGE - 30), wb = Math.floor(R_EDGE - lineAt(1250) - 30);
+    const sz = Math.min(fitNumber(pa, wa, { max: 280, min: 110 }).size, fitNumber(pb, wb, { max: 280, min: 110 }).size);
+    const sa = numberSlots(pa, sz), sb = numberSlots(pb, sz);
+    const nh = Math.round(sz * ROLE_NUMBER.lineHeight);
+    boxes.numberA = { ...box(L_EDGE, 620, Math.ceil(sa.width), nh), size: sz, parts: pa, align: "left", role: "number", side: "a" };
+    boxes.numberB = { ...box(R_EDGE - Math.ceil(sb.width), BOTTOM - nh, Math.ceil(sb.width), nh), size: sz, parts: pb, align: "right", role: "number", side: "b" };
+    if (cmp.a?.label) boxes.labelA = dataBox(cmp.a.label, { width: Math.max(160, wa), size: 36, maxLines: 3, x: L_EDGE, y: boxes.numberA.y + nh + 24, flip: 0 });
+    if (cmp.b?.label) boxes.labelB = dataBox(cmp.b.label, { width: Math.max(160, wb), size: 36, maxLines: 3, bottom: boxes.numberB.y - 20, flip: 1 });
+    if (cmp.subject) boxes.kicker = dataBox(cmp.subject, { width: 480, size: 34, maxLines: 1, y: TOP + (boxes.headline ? boxes.headline.h + 24 : 0), flip: 0 });
+    hero = "numberA";
+  } else if (comp === "SCENE-FULL" || comp === "ARCHITECTURE" || comp === "DOCUMENT" || comp === "MONEY") {
     if (c?.photo) {
       boxes.photo = box(0, 0, FRAME.w, FRAME.h);
-      const kicker = c.photo.entity ? String(c.photo.entity) : null;
+      // The label over the picture: the entity / document named in the
+      // sentence; a MONEY beat has none (its picture is an object, not a name).
+      const kicker = comp !== "MONEY" && c.photo.entity ? String(c.photo.entity) : null;
       boxes.rule = rule(flip, TOP);
       if (kicker) boxes.kicker = dataBox(kicker, { width: 700, size: 36, maxLines: 1, y: TOP + 26, flip });
-      boxes.headline = headlineBox(c.headline || "", { width: 920, bottom: BOTTOM, flip, maxLines: 4, maxHeight: 700, max: 200 });
+      // MONEY: the sentence's figure, large, over the photograph.
+      if (comp === "MONEY" && c?.data?.value) {
+        const parts = numberParts(c.data.value);
+        const { size } = fitNumber(parts, R_EDGE - L_EDGE, { max: 300, min: 160 });
+        const slots = numberSlots(parts, size);
+        const nw = Math.min(R_EDGE - L_EDGE, Math.ceil(slots.width)), nh = Math.round(size * ROLE_NUMBER.lineHeight);
+        boxes.number = { ...box(anchorX(nw, flip), TOP + 60, nw, nh), size, parts, align: flip ? "right" : "left", role: "number", flip };
+      }
+      boxes.headline = { ...headlineBox(c.headline || "", { width: 920, bottom: BOTTOM, flip, maxLines: 4, maxHeight: comp === "MONEY" ? 520 : 700, max: 200 }), callout: comp === "DOCUMENT" };
       hero = "photo";
     } else {
       Object.assign(boxes, dataHeader(c, flip, { maxSize: 112 }));
@@ -356,13 +501,29 @@ export function canvasLayout(c) {
   return { composition: comp, boxes, hero, flip };
 }
 
+const isBox = (v) => v && typeof v === "object" && "x" in v && "y" in v && "w" in v && "h" in v;
+/**
+ * Every box of a layout as [name, box], nested ones included: an array
+ * ("items", "markers", "nodes") contributes "<name><i>" for each element and
+ * "<name><i>_<sub>" for each box inside it (an item's index numeral, a
+ * marker's date / label / dot). "bottom" is a layout coordinate, not a box.
+ */
+export function flattenBoxes(boxes) {
+  const out = [];
+  const walk = (name, v) => {
+    if (isBox(v)) out.push([name, v]);
+    if (v && typeof v === "object") for (const [sk, sv] of Object.entries(v)) if (isBox(sv)) out.push([`${name}_${sk}`, sv]);
+  };
+  for (const [k, v] of Object.entries(boxes || {})) {
+    if (k === "bottom") continue;
+    if (Array.isArray(v)) v.forEach((el, j) => walk(`${k}${j}`, el)); else walk(k, v);
+  }
+  return out;
+}
+
 /** Union box of every element (captions excluded). */
 export function contentBounds(layout) {
-  const all = [];
-  for (const [k, v] of Object.entries(layout.boxes || {})) {
-    if (k === "bottom") continue;
-    if (Array.isArray(v)) all.push(...v); else if (v && typeof v === "object" && "x" in v) all.push(v);
-  }
+  const all = flattenBoxes(layout.boxes).filter(([k, v]) => k !== "split" && v.role !== "shape").map(([, v]) => v);
   if (!all.length) return null;
   const x1 = Math.min(...all.map((b) => b.x)), y1 = Math.min(...all.map((b) => b.y));
   const x2 = Math.max(...all.map((b) => b.x + b.w)), y2 = Math.max(...all.map((b) => b.y + b.h));
@@ -377,12 +538,16 @@ export function focusBox(layout, target) {
   if (t === "number") return b.number || b.emphasis || b.statement || b.chart || null;
   if (t === "chart" || t === "data") return b.chart || b.number || null;
   if (t === "headline" || t === "text") return b.headline || b.statement || b.emphasis || null;
+  if (t === "map") return b.map ? { x: 140, y: 380, w: 800, h: 1000 } : null;
   if (t === "photo" || t === "subject") return b.photo ? { x: 140, y: 380, w: 800, h: 1000 } : b.cutout || null;
   if (t === "left") return { x: 0, y: 300, w: 640, h: 1100 };
   if (t === "right") return { x: 440, y: 300, w: 640, h: 1100 };
   if (t === "top") return { x: 0, y: 100, w: 1080, h: 900 };
   if (t === "bottom") return { x: 0, y: 700, w: 1080, h: 900 };
   if (/^node\s*\d$/.test(t) && Array.isArray(b.nodes)) return b.nodes[Number(t.slice(-1))] || null;
+  if (t === "items" || t === "markers") return Array.isArray(b[t]) && b[t].length ? contentBounds({ boxes: { [t]: b[t] } }) : null;
+  if (t === "a" || t === "value a") return b.numberA || null;
+  if (t === "b" || t === "value b") return b.numberB || null;
   return null;
 }
 
@@ -398,20 +563,24 @@ export function canvasManifest(raw, idx) {
   const L = canvasLayout(c);
   const flat = {};
   const meta = (n) => ({ x: n.x, y: n.y, w: n.w, h: n.h, role: n.role || null, align: n.align || null, rotate: n.rotate || null });
-  for (const [k, v] of Object.entries(L.boxes)) {
-    if (k === "bottom") continue;
-    if (Array.isArray(v)) v.forEach((n, j) => { flat[`${k}${j}`] = meta(n); });
-    else if (v && "x" in v) flat[k] = meta(v);
-  }
+  for (const [k, v] of flattenBoxes(L.boxes)) flat[k] = meta(v);
   const shown = (k) => (L.boxes[k]?.lines ? L.boxes[k].lines.join(" ") : L.boxes[k]?.text || null);
   return {
     composition: L.composition, hero: L.hero, boxes: flat, content: contentBounds(L), motion_tier: c.motion_tier || "medium",
     camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
-    photo: c.photo ? { asset: c.photo.asset, entity: c.photo.entity || null, kind: c.photo.kind || null } : null,
-    accent_used: ["DATA-FULL", "PROCESS-FULL"].includes(L.composition) || (L.composition === "TYPE-FULL" && (!!L.boxes.number || /\d/.test(String(c.headline || "")))),
+    photo: c.photo ? { asset: c.photo.asset, entity: c.photo.entity || null, kind: c.photo.kind || null, view: c.photo.view || null } : null,
+    // Where the accent is drawn: chart values / arrows, the hero number (unless the
+    // sentence is neutral: number_accent === false), the latest date, the last list
+    // index, the larger comparison value, the map's region, a document's callout band.
+    accent_used: ["DATA-FULL", "PROCESS-FULL", "TIMELINE", "LIST-BUILD", "COMPARISON-SPLIT", "MAP-CENTERED", "DOCUMENT"].includes(L.composition)
+      || ((L.composition === "NUMBER-FULL" || L.composition === "MONEY") && c.number_accent !== false && !!L.boxes.number),
     variant: c.variant, flip: L.flip, dark: !!c.dark, grain: true, vignette: true,
     headline_text: shown("headline") || shown("statement") || null, emphasis_text: shown("emphasis"),
-    headline_motion: ROLE_HEADLINE.motions[((idx % 3) + 3) % 3], vertical: !!c.vertical,
+    // The headline's entrance: the words fly in on a major TYPE-FULL statement,
+    // otherwise mask-reveal / slide-land / crop-open rotating on the beat index.
+    headline_motion: (c.motion_tier === "major" && L.composition === "TYPE-FULL" && L.boxes.statement && !L.boxes.statement.rotate) ? "words"
+      : L.boxes.headline || L.boxes.statement ? ROLE_HEADLINE.motions[((idx % 3) + 3) % 3] : null,
+    vertical: !!c.vertical,
     number_snaps: L.boxes.number ? !L.boxes.number.parts?.isQuantity : null,
   };
 }

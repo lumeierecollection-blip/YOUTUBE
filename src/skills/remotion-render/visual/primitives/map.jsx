@@ -84,4 +84,46 @@ export function PaperMap({ data, bounds, local, dur, font, accent = INK, ground 
   );
 }
 
+/**
+ * MAP-CENTERED: the map fills the frame (its edges feather into the ground,
+ * like a photo bleeding out of the studio), zoomed tight on the region
+ * (pad 0.12), the region's name set AT the region in the serif. The place was
+ * checked against the region data at plan time (checkVisual); a place with no
+ * border in the data never reaches here (regionOrThrow).
+ */
+export function CenteredMap({ data, bounds, local, dur, font, accent = INK, ground = "#F6F4F0", ink = INK }) {
+  if (!data?.place) return null;
+  const colors = { ground, onGround: ink, accent, paper: "#E7E8EA", ink };
+  const p = clamp01(local / Math.max(1, dur * 0.6));
+  const place = String(data.place).trim();
+  const id = `cm-${place.replace(/[^a-z0-9]/gi, "")}`;
+  const f = 9;
+  return (
+    <svg width={bounds.x + bounds.w} height={bounds.y + bounds.h} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
+      <defs>
+        <linearGradient id={`${id}-h`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#000" /><stop offset={`${f}%`} stopColor="#fff" />
+          <stop offset={`${100 - f}%`} stopColor="#fff" /><stop offset="100%" stopColor="#000" />
+        </linearGradient>
+        <linearGradient id={`${id}-v`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#000" /><stop offset={`${f}%`} stopColor="#fff" />
+          <stop offset={`${100 - f}%`} stopColor="#fff" /><stop offset="100%" stopColor="#000" />
+        </linearGradient>
+        <mask id={`${id}-mh`} maskUnits="userSpaceOnUse" x={bounds.x} y={bounds.y} width={bounds.w} height={bounds.h}>
+          <rect x={bounds.x} y={bounds.y} width={bounds.w} height={bounds.h} fill={`url(#${id}-h)`} />
+        </mask>
+        <mask id={`${id}-mv`} maskUnits="userSpaceOnUse" x={bounds.x} y={bounds.y} width={bounds.w} height={bounds.h}>
+          <rect x={bounds.x} y={bounds.y} width={bounds.w} height={bounds.h} fill={`url(#${id}-v)`} />
+        </mask>
+      </defs>
+      <g mask={`url(#${id}-mh)`}>
+        <g mask={`url(#${id}-mv)`}>
+          <ObjectShape name="map-region-highlight" box={bounds} colors={colors} p={p}
+            params={{ label: place, font, labelOutside: false, labelAtRegion: true, pad: 0.16, labelSize: 84, ctxStroke: 0.62, ctxWidth: 3, fillAlpha: 0.55 }} />
+        </g>
+      </g>
+    </svg>
+  );
+}
+
 export default PaperMap;

@@ -243,13 +243,155 @@ async function resolveEntity({ type, name, context = "" }) {
     await sharp(buf).rotate().resize({ width: 1400, height: 2000, fit: "inside", withoutEnlargement: true }).jpeg({ quality: 88 }).toFile(join(PUBLIC, rel));
   } catch (e) { return { ok: false, why: `image could not be decoded (${e.message})`, attempts: r.tried }; }
   const artist = (r.info.artist || "").slice(0, 80);
-  const entry = { key, type, entity: name, asset: rel, attempt: r.attempt, page_url: r.page, page_title: r.pageTitle, description: r.description,
+  const entry = { key, type, entity: name, asset: rel, attempt: r.attempt, page_url: r.page, page_title: r.pageTitle, file_title: r.info.title, view: viewOf(type, r.info.title), description: r.description,
     source_url: r.info.descurl || r.info.url, license: r.info.license, attribution: artist,
     credit: `Photo: ${artist ? `${artist} / ` : ""}Wikimedia Commons, ${r.info.license}`, fetched_at: new Date().toISOString() };
   man.entities = (man.entities || []).filter((e) => e.key !== key);
   man.entities.push(entry);
   saveManifest(man);
   return { ok: true, ...entry };
+}
+
+// What a resolved photo SHOWS, decided from its file name (never guessed from
+// pixels): "person" (a person's portrait), "building" (an institution's or a
+// place's building — drawn as ARCHITECTURE), else "scene". A file whose name
+// says nothing stays "scene": the safe reading, drawn as a plain full-bleed photo.
+const BUILDING_VIEW = /\b(building|headquarters|hq|offices?|tower|campus|exterior|facade|fa\u00e7ade|entrance|plaza|courthouse|court house|capitol|parliament|palace|hall|cathedral|castle|station|bank|ministry|embassy|library|university|museum|stadium|terminal|airport|bridge|dam|factory|plant|refinery|port)\b/i;
+function viewOf(type, fileTitle) {
+  if (type === "person") return "person";
+  return BUILDING_VIEW.test(String(fileTitle || "").replace(/[_-]/g, " ")) ? "building" : "scene";
+}
+
+// ── DOCUMENT: a real scan of a named legal instrument ────────────────
+// A Wikipedia page's lead image, or a Commons file whose name carries the
+// instrument's name AND reads as a document (act / treaty / page / scan ...),
+// as a JPEG / PNG scan or the first-page thumbnail Commons renders for a PDF.
+// Not a signing photo, a portrait, a logo or a map. No OCR happens here, so a
+// DOCUMENT beat never claims to highlight a passage of the scan: its callout
+// highlights the beat's own headline (full-canvas.jsx).
+const DOC_LIKE = /\b(act|treaty|constitution|declaration|amendment|charter|convention|agreement|accord|statute|code|ruling|decision|opinion|judgment|indictment|complaint|order|resolution|protocol|contract|memorandum|manuscript|document|page|scan|pdf|text|engrossed|original)\b/i;
+const DOC_REJECT = /\b(logo|seal|flag|coat of arms|emblem|map|locator|chart|graph|diagram|infographic|icon|screenshot|portrait|signs|signing|signed by|ceremony|president|speech|meeting|protest|rally|courthouse|building|statue|monument|crowd)\b/i;
+function checkDocFile(info) {
+  if (!info) return "no Commons file record";
+  const t = String(info.title || "").replace(/^File:/, "").replace(/[_-]/g, " ");
+  if (DOC_REJECT.test(t)) return `"${info.title}" is named like a portrait / signing / logo / map, not a document scan`;
+  if (!DOC_LIKE.test(t)) return `"${info.title}" is not named like a document`;
+  if (!/^(image\/(jpe?g|png|tiff)|application\/pdf)$/i.test(info.mime || "")) return `${info.mime} is not a scan`;
+  if (/non-?free|fair use/i.test(info.license || "")) return `licence "${info.license}" is not free`;
+  if (!info.license) return "no licence recorded";
+  if (Math.min(info.width || 0, info.height || 0) < MIN_SIDE) return `too small (${info.width}x${info.height})`;
+  return null;
+}
+async function documentAttempts(name) {
+  const tried = [];
+  // 1. The instrument's own Wikipedia page: its lead image, if it is a scan.
+  const s = await getJson(`${WIKI}/api/rest_v1/page/summary/${encodeURIComponent(name.replace(/ /g, "_"))}?redirect=true`);
+  if (s && !s._status && !s._error && s.type !== "disambiguation" && titleMatches(s.title, name) && s.originalimage?.source) {
+    const info = await fileInfo(decodeURIComponent(s.originalimage.source.split("/").pop()));
+    const bad = checkDocFile(info);
+    if (!bad) return { info, page: s.content_urls?.desktop?.page || `${WIKI}/wiki/${encodeURIComponent(s.title)}`, pageTitle: s.title, attempt: 1, tried };
+    tried.push(`1: lead image of "${s.title}": ${bad}`);
+  } else tried.push(`1: no usable Wikipedia page / lead image for "${name}"`);
+  // 2. Commons file search: a scan of it.
+  const cj = await getJson(`${COMMONS}?action=query&format=json&list=search&srnamespace=6&srlimit=12&srsearch=${encodeURIComponent(`"${name}"`)}`);
+  const nt = tokens(name);
+  for (const h of cj?.query?.search || []) {
+    const ft = tokens(h.title.replace(/^File:/, "").replace(/\.[a-z]+$/i, ""));
+    if (!nt.every((t) => ft.includes(t))) continue;
+    const info = await fileInfo(h.title);
+    const bad = checkDocFile(info);
+    if (!bad) return { info, page: info.descurl, pageTitle: h.title, attempt: 2, tried };
+    tried.push(`2: ${h.title}: ${bad}`);
+    if (tried.length > 6) break;
+  }
+  if (!tried.some((t) => t.startsWith("2:"))) tried.push(`2: no Commons file named for "${name}"`);
+  return { tried };
+}
+
+// ── MONEY: a real photo of a money object ────────────────────────────
+// A Commons photograph (JPEG, free licence, >= 500 px) whose file name is
+// about the object searched ("banknotes", "coins", "receipt") and reads as a
+// photograph of it, not a specimen scan, a hoard, an ancient coin or a
+// counterfeit. The picture illustrates the literal object the sentence names
+// (canvas-grounding.js moneyObjectOf): it is not a claim about which notes.
+const MONEY_REJECT = /\b(figure|fig|chart|graph|diagram|map|locator|logo|seal|flag|emblem|table|infographic|screenshot|icon|poster|cover|report|museum|louvre|manuscript|painting|drawing|engraving|sculpture|statue|relief|mosaic|ceramic|pottery|artifact|artefact|hoard|ancient|roman|greek|medieval|byzantine|counterfeit|forged|specimen|obverse|reverse|proof|commemorative|design|series|coat of arms|portrait|people|man|woman|crowd)\b/i;
+const MONEY_WORD = /\b(banknotes?|bank notes?|notes|bills|cash|currency|money|coins?|receipts?|cheques?|checks?|statement|euros?|dollars?|pounds?|rupees?)\b/i;
+function checkMoneyFile(info) {
+  if (!info) return "no Commons file record";
+  const t = String(info.title || "").replace(/^File:/, "").replace(/[_-]/g, " ");
+  if (MONEY_REJECT.test(t)) return `"${info.title}" is named like a specimen / ancient / diagram, not a photo of the object`;
+  if (!MONEY_WORD.test(t)) return `"${info.title}" is not named for a money object`;
+  if (!/^image\/jpe?g$/i.test(info.mime || "")) return `${info.mime} is not a photograph`;
+  if (/non-?free|fair use/i.test(info.license || "")) return `licence "${info.license}" is not free`;
+  if (!info.license) return "no licence recorded";
+  if (Math.min(info.width || 0, info.height || 0) < MIN_SIDE) return `too small (${info.width}x${info.height})`;
+  return null;
+}
+async function moneyAttempts(query) {
+  const tried = [];
+  for (const q of [query, `${query} photo`]) {
+    const cj = await getJson(`${COMMONS}?action=query&format=json&list=search&srnamespace=6&srlimit=15&srsearch=${encodeURIComponent(q)}`);
+    for (const h of cj?.query?.search || []) {
+      const info = await fileInfo(h.title);
+      const bad = checkMoneyFile(info);
+      if (!bad) return { info, page: info.descurl, pageTitle: h.title, attempt: q === query ? 1 : 2, tried };
+      tried.push(`${h.title}: ${bad}`);
+      if (tried.length > 10) break;
+    }
+  }
+  if (!tried.length) tried.push(`no Commons file for "${query}"`);
+  return { tried };
+}
+
+// Download, store as JPEG, record in the manifest — shared by the two
+// non-entity resolvers (the entity path above keeps its own copy).
+async function storeResolved(kind, key, name, r, subdir) {
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), 30000);
+  let buf;
+  for (let k = 0; k < 2 && !buf; k++) {
+    try {
+      const res = await fetch(r.info.thumb, { headers: { "user-agent": UA }, signal: ctl.signal });
+      if (!res.ok) { clearTimeout(timer); return { ok: false, why: `download failed (${res.status})`, attempts: r.tried }; }
+      buf = Buffer.from(await res.arrayBuffer());
+    } catch (e) { if (k === 1) { clearTimeout(timer); return { ok: false, why: `download failed (${e.message})`, attempts: r.tried }; } }
+  }
+  clearTimeout(timer);
+  const rel = `entities/${subdir}/${slug(name)}.jpg`;
+  mkdirSync(join(PUBLIC, "entities", subdir), { recursive: true });
+  try {
+    const sharp = require("sharp");
+    const meta = await sharp(buf).metadata();
+    if (Math.min(meta.width || 0, meta.height || 0) < MIN_SIDE) return { ok: false, why: `downloaded image too small (${meta.width}x${meta.height})`, attempts: r.tried };
+    await sharp(buf).rotate().flatten({ background: "#ffffff" }).resize({ width: 1400, height: 2000, fit: "inside", withoutEnlargement: true }).jpeg({ quality: 88 }).toFile(join(PUBLIC, rel));
+  } catch (e) { return { ok: false, why: `image could not be decoded (${e.message})`, attempts: r.tried }; }
+  const artist = (r.info.artist || "").slice(0, 80);
+  const entry = { key, type: kind, entity: name, asset: rel, attempt: r.attempt, page_url: r.page, page_title: r.pageTitle, file_title: r.info.title, view: kind === "document" ? "document" : "money",
+    source_url: r.info.descurl || r.info.url, license: r.info.license, attribution: artist,
+    credit: `Photo: ${artist ? `${artist} / ` : ""}Wikimedia Commons, ${r.info.license}`, fetched_at: new Date().toISOString() };
+  const man = loadManifest();
+  man.entities = (man.entities || []).filter((e) => e.key !== key);
+  man.entities.push(entry);
+  saveManifest(man);
+  return { ok: true, ...entry };
+}
+/** A real scan of a named legal instrument. -> { ok, asset, view: "document", ... } | { ok: false, why, attempts } */
+async function resolveDocument({ name }) {
+  const key = `document:${String(name).trim().toLowerCase()}`;
+  const cached = (loadManifest().entities || []).find((e) => e.key === key);
+  if (cached && existsSync(join(PUBLIC, cached.asset))) return { ok: true, ...cached, cached: true };
+  const r = await documentAttempts(String(name).trim());
+  if (!r.info) return { ok: false, why: `no real scan of the document "${name}" in 2 attempts`, attempts: r.tried };
+  return storeResolved("document", key, name, r, "documents");
+}
+/** A real photo of a money object (`query` from canvas-grounding.js moneyObjectOf). */
+async function resolveMoney({ query }) {
+  const key = `money:${String(query).trim().toLowerCase()}`;
+  const cached = (loadManifest().entities || []).find((e) => e.key === key);
+  if (cached && existsSync(join(PUBLIC, cached.asset))) return { ok: true, ...cached, cached: true };
+  const r = await moneyAttempts(String(query).trim());
+  if (!r.info) return { ok: false, why: `no real photo of "${query}" on Commons`, attempts: r.tried };
+  return storeResolved("money", key, query, r, "money");
 }
 
 // Institution names that exist in every country ("Supreme Court",
@@ -270,7 +412,7 @@ function qualifyEntity(ent, countries = []) {
   return { ent: null, note: `"${ent.name}" is a generic institution name and the script names ${cs.length ? `${cs.length} countries (${cs.join(", ")})` : "no country"} — not resolved (it would show some country's ${ent.name})` };
 }
 
-module.exports = { resolveEntity, titleMatches, checkFile, qualifyEntity, expandName, GENERIC_INSTITUTION };
+module.exports = { resolveEntity, resolveDocument, resolveMoney, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
 
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };
