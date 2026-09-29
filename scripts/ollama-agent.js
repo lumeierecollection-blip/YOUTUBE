@@ -213,7 +213,10 @@ function urlKey(u) {
 // 36498049819 ch-2, 4/4 attempts) — same rule: the prefix must be that id's
 // own returned URL.
 function idSuffixedUrl(v, ids) {
-  const m = /^(.+?)(?:[?&]source_?id[=:]\s*|[\/#\s]*)\[?(S\d+)\]?$/i.exec(v.trim());
+  // Any separator punctuation between the URL and the id, and around the id
+  // ("<url>|S2|" — CI run 36504143080 ch-48): the check below is what makes
+  // it safe, not the format.
+  const m = /^(.+?)(?:[?&]source_?id[=:]\s*|[\/#\s|,;:()\[\]-]*)\[?(S\d+)\]?[|\]\s.,;:)]*$/i.exec(v.trim());
   if (!m) return null;
   const url = ids.get(m[2].toUpperCase());
   return url && urlKey(m[1]) === urlKey(url) ? url : null;
