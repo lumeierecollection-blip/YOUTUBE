@@ -26,6 +26,7 @@ import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layo
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { assignConceptTokens } from "./concept-plan.js";
+import { assignCanvasAnimations } from "./anim-plan.js";
 import { checkVisual, figureKey } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
@@ -1133,6 +1134,14 @@ async function resolveCanvas(channelId, planPath, plan) {
     const rep = assignConceptTokens(plan.beats, console.log);
     console.log(`[concept] ${rep.withToken}/${plan.beats.length} beats draw a concept token, ${rep.none} name no concept, ${rep.noRoom} had no room`);
     plan.concept_report = rep;
+  }
+  // Fix 2: the animation of every element, on the final canvases (the beat's
+  // tokens, dark / vertical / emphasis styling are settled): scripts/anim-plan.js.
+  {
+    const run = assignCanvasAnimations(plan.beats, { seed: channelId, log: (m) => console.log(m) });
+    if (run.relaxed.length) console.warn(`[anim] relaxed: ${run.relaxed.join("; ")}`);
+    console.log(`[anim] ${Object.keys(run.used).length} distinct animations across ${plan.beats.length} beats`);
+    plan.recent_animations = run.recent;
   }
   for (const b of plan.beats) {
     const k = b.canvas.composition;

@@ -93,6 +93,9 @@ const beats = beatsSpec.map((b, i) => {
 // The real dark-beat rule (canvas-style.js assignDark), applied to the test plan.
 const darkAt = assignDark(beats.map((b) => b.scene.canvas));
 console.log(`dark beats: ${JSON.stringify(darkAt)}`);
+// The real animation planner (visual/animation-plan.js), on the test plan's final canvases.
+const { assignCanvasAnimations } = await import("./anim-plan.js");
+assignCanvasAnimations(beats.map((b) => ({ canvas: b.scene.canvas })), { seed: arg("seed", "qa"), log: (m) => console.log(m) });
 const plan = { canvas: true, accent, beats, palette: { primary: ["#0F172A", "#1E293B", "#22C55E", "#FAFAFA"], secondary: [] }, fonts: { primary: "Inter", secondary: "Inter" } };
 writeFileSync(join(out, "plan.json"), JSON.stringify(plan, null, 2));
 

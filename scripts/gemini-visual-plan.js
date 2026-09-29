@@ -41,6 +41,7 @@ import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequire(import.meta.url)("./entity-assets.cjs");
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { planConcepts } from "./concept-plan.js";
+import { previewAnimations } from "./anim-plan.js";
 import { compositionFor, splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { flowNodes, FLOW_WORDS, listItemsOf, timelineOf, compareOf, documentNameOf, moneyObjectOf, quantitiesOf, statedPercentsOf, knownPlacesOf } from "./canvas-grounding.js";
 
@@ -1339,6 +1340,16 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       log: (m) => console.log(m),
     });
     if (rot.changes.length) console.log(`[plan] composition rotation: ${rot.changes.filter((c) => c.resolved).length} repeat(s) broken, ${rot.repeats.length} left (${plan.beats.map((_, i) => compOf(i)).join(", ")})`);
+  }
+
+  // Fix 2: every element of every beat gets an animation (visual/animation-plan.js:
+  // one per element per beat, no family repeated on the same element in
+  // consecutive beats, the last three beats' animations removed from the
+  // choices). This is the plan's preview; the resolver re-runs it on the final
+  // canvases (scripts/anim-plan.js) and its choice is the one rendered.
+  {
+    const run = previewAnimations(plan.beats, { seed: channelId, log: (m) => console.log(m) });
+    if (run.relaxed.length) console.log(`[anim] relaxed: ${run.relaxed.join("; ")}`);
   }
 
   const planRuleIssues = [];

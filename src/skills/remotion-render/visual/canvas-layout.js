@@ -602,7 +602,9 @@ export function canvasManifest(raw, idx) {
     headline_text: shown("headline") || shown("statement") || null, emphasis_text: shown("emphasis"),
     // The headline's entrance: the words fly in on a major TYPE-FULL statement,
     // otherwise mask-reveal / slide-land / crop-open rotating on the beat index.
-    headline_motion: (c.motion_tier === "major" && L.composition === "TYPE-FULL" && L.boxes.statement && !L.boxes.statement.rotate) ? "words"
+    // Fix 2: c.anim (visual/animation-plan.js) names the animation of every element.
+    animations: c.anim || null,
+    headline_motion: c.anim?.headline ? c.anim.headline : (c.motion_tier === "major" && L.composition === "TYPE-FULL" && L.boxes.statement && !L.boxes.statement.rotate) ? "words"
       : L.boxes.headline || L.boxes.statement ? ROLE_HEADLINE.motions[((idx % 3) + 3) % 3] : null,
     vertical: !!c.vertical,
     number_snaps: L.boxes.number ? !L.boxes.number.parts?.isQuantity : null,

@@ -58,6 +58,9 @@ import { parseQuantity, rollQuantity } from "./primitives/quantity.js";
 import { PaperMap, CenteredMap } from "./primitives/map.jsx";
 import { iconElements } from "./concept-visuals.js";
 import {
+  animationById, entrance, exitState, unitOf, entranceSeconds, STAGGER, numberState, rollOffset, countValue, barState, pieState, lineState,
+} from "./animations.js";
+import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
 } from "./canvas-layout.js";
@@ -77,6 +80,104 @@ const Hero = React.createContext(null);
 // (texture layer) swaps them; a photo beat draws white on the picture.
 const Theme = React.createContext({ ink: INK, soft: INK_SOFT, mid: MID, track: LIGHT, dark: false, photo: false });
 const useTheme = () => React.useContext(Theme);
+// The beat's animation choices (animation-plan.js): { headline, number, label, chart, token0, exit, dur } or null (the pre-rebuild motion).
+const Anim = React.createContext(null);
+const useAnim = () => React.useContext(Anim);
+
+/** entrance() state -> CSS. */
+function styleOf(e, origin) {
+  const t = [];
+  if (e.dx || e.dy) t.push(`translate(${e.dx.toFixed(1)}px, ${e.dy.toFixed(1)}px)`);
+  if (e.rot) t.push(`rotate(${e.rot.toFixed(2)}deg)`);
+  if (e.s !== 1) t.push(`scale(${e.s.toFixed(4)})`);
+  return { opacity: e.o, transform: t.join(" ") || "none", filter: e.blur > 0.2 ? `blur(${e.blur.toFixed(1)}px)` : "none", transformOrigin: origin };
+}
+
+/**
+ * Text lines under the animation `id` (animations.js). `common` is the text
+ * style, `lh` the line height, `at` the start (s). Once every unit has landed
+ * the plain lines are returned, so the settled frame is the same text node it
+ * always was (no per-letter boxes, no lost kerning).
+ */
+function AnimLines({ id, lines, local, fps, at, lh, common, align, color, size }) {
+  const ts = (local - at * fps) / fps;
+  const side = align === "right" ? -1 : 1;
+  const origin = align === "right" ? "right center" : "left center";
+  const unit = unitOf(id);
+  const dur = animationById(id)?.dur ?? 0.5;
+  const nUnits = unit === "letter" ? lines.join("").length : unit === "word" ? lines.join(" ").split(" ").length : lines.length;
+  const total = entranceSeconds(id, Math.max(1, nUnits)) + (id === "TYPE_IN" ? 0.25 : 0);
+  const plain = lines.map((l, i) => <div key={i} style={{ height: lh, ...common, textAlign: align }}>{l}</div>);
+  if (ts >= total + 0.02) return plain;
+  const P = (t, d) => (d > 0 ? t / d : t >= 0 ? 1 : 0);
+  if (id === "LETTER_STAGGER" || id === "TYPE_IN") {
+    let ci = 0;
+    const typed = id === "TYPE_IN" ? Math.floor(Math.max(0, ts) / STAGGER.TYPE_IN) : 0;
+    return lines.map((l, i) => (
+      <div key={i} style={{ height: lh, ...common, textAlign: align }}>
+        {[...l].map((ch, k) => {
+          const idx = ci++;
+          if (ch === " ") return " ";
+          if (id === "TYPE_IN") {
+            const caret = idx === typed - 1 && ts < total ? (
+              <span style={{ position: "relative", display: "inline-block", width: 0 }}><span style={{ position: "absolute", left: 4, top: lh * 0.14, height: lh * 0.7, width: Math.max(4, size * 0.05), backgroundColor: color }} /></span>
+            ) : null;
+            return <React.Fragment key={k}><span style={{ display: "inline-block", opacity: idx < typed ? 1 : 0 }}>{ch}</span>{caret}</React.Fragment>;
+          }
+          return <span key={k} style={{ display: "inline-block", ...styleOf(entrance("FADE_LIFT", P(ts - idx * STAGGER.LETTER_STAGGER, 0.3), { side }), "50% 80%") }}>{ch}</span>;
+        })}
+      </div>
+    ));
+  }
+  if (id === "WORD_STAGGER") {
+    let wi = 0;
+    return lines.map((l, i) => {
+      const ws = l.split(" ");
+      return (
+        <div key={i} style={{ height: lh, ...common, textAlign: align }}>
+          {ws.map((w, k) => {
+            const idx = wi++;
+            return <React.Fragment key={k}><span style={{ display: "inline-block", ...styleOf(entrance("FADE_LIFT", P(ts - idx * STAGGER.WORD_STAGGER, dur), { side }), "50% 80%") }}>{w}</span>{k < ws.length - 1 ? " " : ""}</React.Fragment>;
+          })}
+        </div>
+      );
+    });
+  }
+  if (id === "RISE_FROM_BASE") {
+    return lines.map((l, i) => {
+      const e = entrance(id, P(ts - i * 0.07, dur), { side });
+      return <div key={i} style={{ height: lh, overflow: "hidden", ...common, textAlign: align }}><div style={{ transform: `translateY(${((e.rise ?? 0) * lh).toFixed(1)}px)` }}>{l}</div></div>;
+    });
+  }
+  if (id === "SPLIT_REVEAL") {
+    return lines.map((l, i) => {
+      const e = entrance("SLIDE_FROM_L", P(ts - i * 0.07, dur), { side });
+      const k = Math.max(0, -e.dx / 180);                          // 0 at rest, 1 at the start
+      const half = (clip, dir) => <div style={{ position: "absolute", left: 0, top: 0, width: "100%", height: lh, ...common, textAlign: align, clipPath: clip, opacity: clamp01(1 - k * 1.1), transform: `translateX(${(dir * 320 * k).toFixed(1)}px)` }}>{l}</div>;
+      return <div key={i} style={{ position: "relative", height: lh }}>{half("inset(0 0 50% 0)", -1)}{half("inset(50% 0 0 0)", 1)}</div>;
+    });
+  }
+  // Every other entrance is a state of the whole line: the lines follow each other 50 ms apart.
+  return lines.map((l, i) => (
+    <div key={i} style={{ height: lh, ...common, textAlign: align, ...styleOf(entrance(id, P(ts - i * 0.05, dur), { side }), origin) }}>{l}</div>
+  ));
+}
+
+/** A supporting element's exit (animations.js EXITS) over the last ~0.35 s of the beat: wraps `children`, positioned in frame px. */
+function ExitWrap({ name, b, local, fps, children }) {
+  const A = useAnim();
+  const ex = A?.exit;
+  if (!ex || ex.element !== name || !A.dur || !b) return children;
+  const d = animationById(ex.id)?.dur ?? 0.3;
+  const start = A.dur / fps - d - 0.08;
+  const t = local / fps - start;
+  const p = d > 0 ? t / d : t >= 0 ? 1 : 0;
+  if (p <= 0) return children;
+  const e = exitState(ex.id, p, { side: b.align === "right" ? -1 : 1 });
+  const cx = b.x + b.w / 2, cy = b.y + b.h / 2;
+  const clip = e.rx < 1 ? (b.align === "right" ? `inset(0 0 0 ${(b.x + b.w * (1 - e.rx)).toFixed(1)}px)` : `inset(0 ${(FRAME.w - (b.x + b.w * e.rx)).toFixed(1)}px 0 0)`) : "none";
+  return <div style={{ position: "absolute", inset: 0, ...styleOf(e, `${cx}px ${cy}px`), clipPath: clip }}>{children}</div>;
+}
 
 // ── motion helpers ────────────────────────────────────────────────────
 function useMotion(c, local, dur, fps) {
@@ -103,8 +204,11 @@ export const headlineMotionFor = (idx) => HEADLINE_MOTIONS[((idx % 3) + 3) % 3];
 
 /** ROLE_HEADLINE: Fraunces, sentence case, left/right anchored. */
 function Headline({ b, color, local, fps, m, idx, at = 0, motion, shadow = false, halo = null, major = false, hero = false }) {
+  const A = useAnim();
   if (!b || !b.lines?.length) return null;
-  const kind = major ? "words" : motion || headlineMotionFor(idx);
+  const aid = A?.headline || null;
+  const kind = aid ? (aid === "WORD_FLY" ? "words" : aid === "MASK_SWEEP" ? "mask-reveal" : aid === "CROP_OPEN" ? "crop-open" : aid === "SLIDE_LAND" ? "slide-land" : "anim")
+    : major ? "words" : motion || headlineMotionFor(idx);
   const t0 = local - at * fps;
   const right = b.align === "right";
   const lh = b.size * ROLE_HEADLINE.lineHeight;
@@ -157,6 +261,8 @@ function Headline({ b, color, local, fps, m, idx, at = 0, motion, shadow = false
         })}
       </div>
     ));
+  } else if (kind === "anim") {
+    content = <AnimLines id={aid} lines={b.lines} local={local} fps={fps} at={at} lh={lh} common={common} align={b.align} color={color} size={b.size} />;
   } else {
     // slide-land: slides in from 60 px off and settles.
     content = b.lines.map((l, i) => {
@@ -172,8 +278,22 @@ function Headline({ b, color, local, fps, m, idx, at = 0, motion, shadow = false
 }
 
 /** ROLE_DATA: Inter, uppercase label — fades in to 60% (0.25 s), settles to 100% (0.15 s), moves <= 4 px. */
-function DataLabel({ b, color, local, fps, at = 0.5, shadow = false }) {
+function DataLabel({ b, color, local, fps, at = 0.5, shadow = false, name = null }) {
+  const A = useAnim();
   if (!b || !b.lines?.length) return null;
+  const aid = name ? A?.[name] : null;
+  if (aid) {
+    const common = { font: roleFont(ROLE_DATA, b.size, b.weight || ROLE_DATA.weight), letterSpacing: roleTracking(ROLE_DATA, b.size), color, whiteSpace: "nowrap", textTransform: b.upper ? "uppercase" : "none",
+      textShadow: shadow ? "0 3px 16px rgba(0,0,0,0.6)" : "none" };
+    const lh = b.size * ROLE_DATA.lineHeight;
+    return (
+      <ExitWrap name={name} b={b} local={local} fps={fps}>
+        <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, textAlign: b.align }}>
+          <AnimLines id={aid} lines={b.lines} local={local} fps={fps} at={at} lh={lh} common={common} align={b.align} color={color} size={b.size} />
+        </div>
+      </ExitWrap>
+    );
+  }
   const t = local - at * fps;
   const a = t <= 0 ? 0 : t < 0.25 * fps ? 0.6 * easeOut(t / (0.25 * fps)) : 0.6 + 0.4 * easeOut(clamp01((t - 0.25 * fps) / (0.15 * fps)));
   const dy = 4 * (1 - easeOut(clamp01(t / (0.4 * fps))));
@@ -202,29 +322,39 @@ function rolledNumeric(q, t) {
  * snaps in instead of counting.
  */
 function NumberHero({ b, q, t, local, fps, at, color, m, hero = true, settled = true }) {
+  const A = useAnim();
+  const nid = A?.number || null;
   const slots = numberSlots(b.parts, b.size).slots;
   const size = b.size;
   const capEm = capHeightEm(size >= ROLE_NUMBER.largeFrom ? "Fraunces" : "Inter");
   const B = size * 0.8;                        // baseline inside the box (box = cap line -0.1 em .. baseline +0.1 em)
   const base = 0.862;                          // baseline offset in a line-height:1 box, em
-  const snap = !b.parts.isQuantity || !q;
+  // COUNT_UP / COUNT_DOWN count; ROLL_DIGIT rolls each digit; FLIP_CARD / SNAP_IN / SCALE_IMPACT show the figure and move it.
+  const fixed = nid === "FLIP_CARD" || nid === "SNAP_IN" || nid === "SCALE_IMPACT";
+  const snap = !b.parts.isQuantity || !q || fixed;
+  const roll = nid === "ROLL_DIGIT";
+  const dA = nid ? animationById(nid)?.dur ?? 0.5 : 0.15;
   const snapT = easeOut(clamp01((local - at * fps) / (0.15 * fps)));
   const started = local >= at * fps;
   if (!started) return null;
+  const secIn = (local - at * fps) / fps;
   const digitSlots = slots.map((s, i) => (s.kind === "digit" ? i : -1)).filter((i) => i >= 0);
-  const shown = snap ? null : rolledNumeric(q, t).replace(/[^0-9]/g, "");
-  const first = snap ? 0 : digitSlots.length - shown.length;       // index into digitSlots of the first displayed digit
+  const val = !snap && q ? countValue(nid === "COUNT_DOWN" ? "COUNT_DOWN" : "COUNT_UP", q.num, q.dec, clamp01(t)) : 0;
+  const shown = snap || roll ? null : (q.comma ? val.toLocaleString("en-US", { minimumFractionDigits: q.dec, maximumFractionDigits: q.dec }) : val.toFixed(q.dec)).replace(/[^0-9]/g, "");
+  const first = snap || roll ? 0 : Math.max(0, digitSlots.length - shown.length);       // index into digitSlots of the first displayed digit
   const fam = size >= ROLE_NUMBER.largeFrom ? SERIF : SANS_STACK;
   // The currency symbol travels with the first visible digit, so a counting
   // "$83M" never reads "$ 83M".
-  const preShift = snap || first <= 0 ? 0 : slots[digitSlots[first]].x - slots[digitSlots[0]].x;
+  const preShift = snap || roll || first <= 0 ? 0 : slots[digitSlots[first]].x - slots[digitSlots[0]].x;
+  const finalDigits = slots.filter((s) => s.kind === "digit").map((s) => s.ch);
   const glyphs = slots.map((s, i) => {
     let ch = s.ch, visible = true;
-    if (s.kind === "digit" && !snap) {
+    const gf = `${ROLE_NUMBER.weight} ${s.size}px ${s.size >= ROLE_NUMBER.largeFrom ? SERIF : SANS_STACK}`;
+    if (s.kind === "digit" && !snap && !roll) {
       const di = digitSlots.indexOf(i);
       visible = di >= first;
       ch = visible ? shown[di - first] : "";
-    } else if (s.kind === "sep" && !snap) {
+    } else if (s.kind === "sep" && !snap && !roll) {
       const di = digitSlots.filter((k) => k < i).length;            // digits to the left of the separator
       visible = di - 1 >= first && di >= 1;
       if (!visible) ch = "";
@@ -232,17 +362,31 @@ function NumberHero({ b, q, t, local, fps, at, color, m, hero = true, settled = 
     // Vertical: baseline of every glyph on B, except "$" (top on the cap line).
     const off = s.kind === "pre" ? capEm * (size - s.size) : 0;
     const top = B - base * s.size - off;
+    if (roll && s.kind === "digit") {
+      // An odometer wheel: this slot's digit scrolls to its target, right-most first.
+      const di = digitSlots.indexOf(i), kr = digitSlots.length - 1 - di, target = Number(s.ch) || 0;
+      const o = rollOffset(secIn / dA, kr, target), v = target + o, fl = Math.floor(v), fr = v - fl;
+      const cell = (n, y) => <span style={{ position: "absolute", left: 0, top: y * s.size, width: "100%", height: s.size, lineHeight: 1, textAlign: "center" }}>{n}</span>;
+      return (
+        <span key={i} style={{ position: "absolute", left: s.x, top, width: s.w, height: s.size, overflow: "hidden", font: gf, fontOpticalSizing: "auto", letterSpacing: 0, color }}>
+          {cell(fl % 10, -fr)}{cell((fl + 1) % 10, 1 - fr)}
+        </span>
+      );
+    }
     return (
       <span key={i} style={{ position: "absolute", left: s.x + (s.kind === "pre" ? preShift : 0), top, width: s.w, height: s.size, lineHeight: 1, textAlign: "center", whiteSpace: "nowrap",
-        font: `${ROLE_NUMBER.weight} ${s.size}px ${s.size >= ROLE_NUMBER.largeFrom ? SERIF : SANS_STACK}`, fontOpticalSizing: "auto",
+        font: gf, fontOpticalSizing: "auto",
         letterSpacing: 0, color }}>{visible ? ch : ""}</span>
     );
   });
   const osc = (t >= 1 || snap) && settled ? m.jitter() : 0;           // micro: position only, never the value
-  const sc = snap ? lerp(0.92, 1, snapT) : m.tier === "major" ? lerp(0.6, 1, easeOut(clamp01((local - at * fps) / (0.5 * fps)))) : 1;
+  // FLIP_CARD / SNAP_IN / SCALE_IMPACT: the figure itself moves (never its value).
+  const ns = fixed ? numberState(nid, secIn / Math.max(0.01, dA)) : null;
+  const sc = ns ? ns.s : snap ? lerp(0.92, 1, snapT) : m.tier === "major" ? lerp(0.6, 1, easeOut(clamp01((local - at * fps) / (0.5 * fps)))) : 1;
   const wrap = (
-    <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, transform: `translateY(${osc.toFixed(2)}px) scale(${(sc * m.breathe).toFixed(4)})`,
-      transformOrigin: b.align === "right" ? "right center" : "left center" }}>
+    <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h,
+      transform: `${ns && ns.rotX ? `perspective(1400px) rotateX(${ns.rotX.toFixed(2)}deg) ` : ""}translateY(${(osc + (ns ? ns.dy : 0)).toFixed(2)}px) scale(${(sc * m.breathe).toFixed(4)})`,
+      transformOrigin: b.align === "right" ? "right center" : "left center", opacity: ns ? ns.o : 1, filter: ns && ns.blur > 0.2 ? `blur(${ns.blur.toFixed(1)}px)` : "none" }}>
       {glyphs}
     </div>
   );
@@ -270,10 +414,12 @@ function Emphasis({ b, color, local, fps }) {
  * decline sinks; everything else drifts.
  */
 const TOKEN_IDLE = { growth: -1, gain: -1, decline: 1, loss: 1 };
-function ConceptToken({ b, color, local, fps, at, i = 0 }) {
+function ConceptToken({ b, color, local, fps, at, i = 0, name = `token${i}` }) {
+  const A = useAnim();
   const els = iconElements(b.icon);
   const t = local - at * fps;
   if (!els || t <= 0) return null;
+  const aid = A?.[name] || null;
   const draw = easeOut(clamp01(t / (0.75 * fps)));
   const pop = easeOut(clamp01(t / (0.45 * fps)));
   const k = b.size / 24;
@@ -281,12 +427,25 @@ function ConceptToken({ b, color, local, fps, at, i = 0 }) {
   const dir = TOKEN_IDLE[b.kind] || 0;
   const sec = t / fps;
   const idleY = dir ? dir * (Math.sin(sec * 2.4) * 0.5 + 0.5) * 9 : Math.sin(sec * 1.7 + i * 1.9) * 5;
-  return (
+  // The entrance the planner chose (animations.js); with none, the pre-rebuild pop.
+  const ent = aid ? entrance(aid, animationById(aid)?.dur ? sec / animationById(aid).dur : 1, { side: 1 }) : null;
+  const es = ent ? styleOf(ent, "50% 50%") : { opacity: clamp01(pop * 1.4), transform: `scale(${lerp(0.84, 1, pop).toFixed(4)})`, transformOrigin: "50% 50%", filter: "none" };
+  // Mask entrances reveal the icon by clipping; RISE_FROM_BASE lifts it out of its own box.
+  let clip = "none";
+  if (ent && aid === "MASK_SWEEP") clip = `inset(0 ${(100 * (1 - ent.rx)).toFixed(2)}% 0 0)`;
+  if (ent && aid === "SPLIT_REVEAL") clip = `inset(0 ${(50 * (1 - ent.rx)).toFixed(2)}% 0 ${(50 * (1 - ent.rx)).toFixed(2)}%)`;
+  const rise = ent && aid === "RISE_FROM_BASE" ? (ent.rise ?? 0) * b.size : 0;
+  const icon = (
     <svg viewBox="0 0 24 24" width={b.size} height={b.size} fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round"
-      style={{ position: "absolute", left: b.x, top: b.y, overflow: "visible", color, opacity: clamp01(pop * 1.4), transformOrigin: "50% 50%",
-        transform: `translateY(${idleY.toFixed(2)}px) scale(${lerp(0.84, 1, pop).toFixed(4)})` }}>
+      style={{ position: "absolute", left: aid === "RISE_FROM_BASE" ? 0 : b.x, top: aid === "RISE_FROM_BASE" ? 0 : b.y, overflow: "visible", color, ...es, clipPath: clip,
+        transform: `translateY(${(idleY + rise).toFixed(2)}px) ${es.transform === "none" ? "" : es.transform}` }}>
       {els.map(([tag, attrs], j) => React.createElement(tag, draw >= 1 ? { key: j, ...attrs } : { key: j, ...attrs, pathLength: 1, strokeDasharray: 1, strokeDashoffset: (1 - draw).toFixed(4) }))}
     </svg>
+  );
+  return (
+    <ExitWrap name={name} b={b} local={local} fps={fps}>
+      {aid === "RISE_FROM_BASE" && rise > 0.5 ? <div style={{ position: "absolute", left: b.x, top: b.y, width: b.size, height: b.size, overflow: "hidden" }}>{icon}</div> : aid === "RISE_FROM_BASE" ? <div style={{ position: "absolute", left: b.x, top: b.y, width: b.size, height: b.size }}>{icon}</div> : icon}
+    </ExitWrap>
   );
 }
 function ConceptTokens({ L, local, fps, accent }) {
@@ -316,7 +475,7 @@ function HeaderBlock({ B, th, local, fps, m, idx, tl, halo = null }) {
   return (
     <>
       <Rule b={B.rule} t={m.build(0.3, m.s(0.1))} color={th.ink} />
-      {B.kicker ? <DataLabel b={B.kicker} color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
+      {B.kicker ? <DataLabel b={B.kicker} name="kicker" color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
       {B.headline ? <Headline b={B.headline} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} halo={halo} /> : null}
     </>
   );
@@ -336,7 +495,7 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     return (
       <>
         <NumberHero b={B.number} q={q} t={count} local={local} fps={fps} at={tl.numberAt} color={numColor} m={m} />
-        {B.label ? <DataLabel b={B.label} color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
+        {B.label ? <DataLabel b={B.label} name="label" color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
       </>
     );
   }
@@ -372,75 +531,107 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const ch = B.chart;
   // The percentage the donut / gauge shows counts with its arc: 60% of the beat, ease-out.
   const count = easeOut(clamp01((local - tl.numberAt * fps) / Math.max(1, dur * 0.6)));
+  // The chart's animation (animations.js): BAR_GROW / PIE_SWEEP / LINE_DRAW are the pre-rebuild motions, drawn by the original code below; the others by
+  // barState / pieState / lineState. tb = the chart's own build progress 0..1 (micro beats build faster).
+  const A = useAnim();
+  const cid = A?.chart || null;
+  const modern = !!cid && !["BAR_GROW", "PIE_SWEEP", "LINE_DRAW"].includes(cid);
+  const tb = cid ? clamp01((local - 0.15 * fps) / ((animationById(cid)?.dur || 1) * fps * (m.tier === "micro" ? 0.6 : 1))) : 0;
+  const sec = local / fps;
+  const chartClip = modern ? `inset(${Math.max(0, ch.y - 44)}px 0 ${Math.max(0, FRAME.h - (ch.y + ch.h))}px 0)` : "none";
   if (vt === "BAR") {
     const bars = (d.bars || []).map((b) => ({ ...b, q: parseQuantity(b.value) })).filter((b) => b.q);
     const max = Math.max(...bars.map((b) => b.q.magnitude)) || 1;
     const primary = bars.reduce((a, b, i) => (b.q.magnitude > bars[a].q.magnitude ? i : a), 0);
+    const stOf = (i) => (modern ? barState(cid, tb, i, bars.length, { primary, sec }) : null);
+    const tOf = (i, st) => (st ? clamp01(st.grow) : m.build(0.45, i * (ch.orient === "h" ? 4 : 5)));
     if (ch.orient === "h") {
       const row = ch.h / Math.max(1, bars.length), th2 = row * 0.42;
+      const Wfull = (ch.w - 40);
       chart = (
-        <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }}>
+        <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0, clipPath: chartClip }}>
           {bars.map((b, i) => {
-            const t = m.build(0.45, i * 4);
+            const st = stOf(i), t = tOf(i, st);
             const y = ch.y + row * i + row * 0.36;
-            const w = Math.max(6, (b.q.magnitude / max) * (ch.w - 40) * t);
+            const wFinal = (b.q.magnitude / max) * Wfull;
+            const w = Math.max(6, wFinal * (st ? Math.min(st.grow, 1.1) : t));
+            const bx = st && st.from === "center" ? ch.x + wFinal / 2 - w / 2 : ch.x;
             const lsz = Math.min(ROLE_DATA.sizeBand[1] - 6, Math.floor(ch.w / Math.max(1, String(b.label).length * 0.62)));
             const inside = ch.x + w + 18 > ch.x + ch.w - 200;
+            const cx = ch.x + w / 2, cy = y + th2;
             return (
-              <g key={i} opacity={0.6 + 0.4 * t}>
+              <g key={i} opacity={st ? st.o : 0.6 + 0.4 * t} transform={st ? `translate(0 ${(st.dy * 0.4).toFixed(1)}) translate(${cx} ${cy}) scale(${st.pulse.toFixed(4)}) translate(${-cx} ${-cy})` : undefined}>
                 <text x={ch.x} y={y - 18} style={{ font: dataFont(Math.max(24, lsz)), letterSpacing: 0.4 }} fill={th.ink}>{String(b.label).toUpperCase()}</text>
-                <rect x={ch.x} y={y} width={w} height={th2} fill={i === primary ? accent : th.mid} />
-                <text x={Math.min(ch.x + w + 18, ch.x + ch.w - 10)} y={y + th2 * 0.72} textAnchor={inside ? "end" : "start"}
+                <rect x={bx} y={y} width={w} height={th2} fill={i === primary ? accent : th.mid} />
+                <text x={Math.min(bx + w + 18, ch.x + ch.w - 10)} y={y + th2 * 0.72} textAnchor={inside ? "end" : "start"}
                   style={{ font: dataFont(Math.round(th2 * 0.55), 800), letterSpacing: -1 }} fill={inside ? (th.dark ? "#0E0E0E" : "#fff") : th.ink}>{rollQuantity(b.q, t)}</text>
               </g>
             );
           })}
+          {modern && cid === "BAR_COMPARE" ? (() => {
+            const r = stOf(primary).ref;
+            return <line x1={ch.x + (bars[primary].q.magnitude / max) * Wfull} y1={ch.y} x2={ch.x + (bars[primary].q.magnitude / max) * Wfull} y2={ch.y + ch.h * r} stroke={th.ink} strokeWidth={4} strokeDasharray="14 12" opacity={0.7} />;
+          })() : null}
         </svg>
       );
     } else {
       const base = ch.baseline, plotTop = ch.y + 70, plotH = base - plotTop;
       const slot = ch.w / bars.length, bw = Math.min(300, slot * 0.64);
       chart = (
-        <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }}>
+        <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0, clipPath: chartClip }}>
           <line x1={ch.x} y1={base} x2={ch.x + ch.w} y2={base} stroke={th.ink} strokeWidth={4} />
           {bars.map((b, i) => {
-            const t = m.build(0.45, i * 5);
-            const h = Math.max(4, (b.q.magnitude / max) * plotH * t);
+            const st = stOf(i), t = tOf(i, st);
+            const Hf = (b.q.magnitude / max) * plotH;
+            const h = Math.max(4, Hf * (st ? Math.min(st.grow, 1.1) : t));
             const x = ch.x + slot * i + (slot - bw) / 2;
+            const yTop = st && st.from === "center" ? base - Hf / 2 - h / 2 : base - h;
             const vs = Math.min(96, Math.floor((slot * 0.96) / Math.max(1, rollQuantity(b.q, 1).length * 0.6)));
             const ls = Math.min(ROLE_DATA.sizeBand[1] - 6, Math.floor((slot * 0.96) / Math.max(1, String(b.label).length * 0.66)));
+            const cx = x + bw / 2;
             return (
-              <g key={i}>
-                <rect x={x} y={base - h} width={bw} height={h} fill={i === primary ? accent : th.mid} />
-                <text x={x + bw / 2} y={base - h - 22 + (t >= 1 ? m.jitter(i) : 0)} textAnchor="middle" style={{ font: dataFont(vs, 800), letterSpacing: -vs * 0.03 }} fill={th.ink}>{rollQuantity(b.q, t)}</text>
+              <g key={i} opacity={st ? st.o : 1} transform={st ? `translate(0 ${st.dy.toFixed(1)}) translate(${cx} ${base}) scale(${st.pulse.toFixed(4)}) translate(${-cx} ${-base})` : undefined}>
+                <rect x={x} y={yTop} width={bw} height={h} fill={i === primary ? accent : th.mid} />
+                <text x={x + bw / 2} y={yTop - 22 + (t >= 1 ? m.jitter(i) : 0)} textAnchor="middle" style={{ font: dataFont(vs, 800), letterSpacing: -vs * 0.03 }} fill={th.ink}>{rollQuantity(b.q, t)}</text>
                 <text x={x + bw / 2} y={base + 50} textAnchor="middle" opacity={0.6 + 0.4 * t} style={{ font: dataFont(Math.max(24, ls)), letterSpacing: 0.4 }} fill={th.ink}>{String(b.label).toUpperCase()}</text>
               </g>
             );
           })}
+          {modern && cid === "BAR_COMPARE" ? (() => {
+            const r = stOf(primary).ref;
+            return <line x1={ch.x} y1={base - plotH} x2={ch.x + ch.w * r} y2={base - plotH} stroke={th.ink} strokeWidth={4} strokeDasharray="14 12" opacity={0.7} />;
+          })() : null}
         </svg>
       );
     }
   } else if (vt === "PIE") {
-    const pct = Number(d.percent) || 0, t = count;
+    const pct = Number(d.percent) || 0;
+    const st = pieState(cid || "PIE_SWEEP", tb, count);
     const { r, cx, cy } = ch, sw = 110, rr = r - sw / 2;
     const C = 2 * Math.PI * rr;
+    const mid = (-90 + (360 * pct) / 200) * (Math.PI / 180);
     chart = (
-      <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }}>
-        <circle cx={cx} cy={cy} r={rr} fill="none" stroke={th.track} strokeWidth={sw} />
-        <circle cx={cx} cy={cy} r={rr} fill="none" stroke={accent} strokeWidth={sw} strokeDasharray={`${(C * pct / 100) * t} ${C}`} transform={`rotate(-90 ${cx} ${cy})`} />
+      <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }} opacity={st.o}>
+        <g transform={`translate(0 ${st.dy.toFixed(1)}) rotate(${st.rot.toFixed(2)} ${cx} ${cy}) translate(${cx} ${cy}) scale(${st.ringScale.toFixed(4)}) translate(${-cx} ${-cy})`}>
+          <circle cx={cx} cy={cy} r={rr} fill="none" stroke={th.track} strokeWidth={sw} />
+          <circle cx={cx} cy={cy} r={rr} fill="none" stroke={accent} strokeWidth={sw} strokeDasharray={`${(C * pct / 100) * st.arc} ${C}`} transform={`translate(${(Math.cos(mid) * st.explode).toFixed(1)} ${(Math.sin(mid) * st.explode).toFixed(1)}) rotate(-90 ${cx} ${cy})`} />
+        </g>
       </svg>
     );
   } else if (vt === "GAUGE") {
-    const pct = Number(d.percent) || 0, t = count;
+    const pct = Number(d.percent) || 0;
+    const st = pieState(cid || "PIE_SWEEP", tb, count);
     const r = ch.r, cx = 540, cy = ch.cy, sw = 96, rr = r - sw / 2;
     const arc = (p) => { const a = Math.PI * (1 - p); return [cx + rr * Math.cos(a), cy - rr * Math.sin(a)]; };
-    const [ex, ey] = arc(clamp01((pct / 100) * t));
+    const [ex, ey] = arc(clamp01((pct / 100) * st.arc));
     chart = (
-      <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }}>
-        <path d={`M ${cx - rr} ${cy} A ${rr} ${rr} 0 0 1 ${cx + rr} ${cy}`} fill="none" stroke={th.track} strokeWidth={sw} />
-        <path d={`M ${cx - rr} ${cy} A ${rr} ${rr} 0 0 1 ${ex.toFixed(2)} ${ey.toFixed(2)}`} fill="none" stroke={accent} strokeWidth={sw} />
-        <line x1={cx} y1={cy} x2={ex} y2={ey} stroke={th.ink} strokeWidth={10} strokeLinecap="round" />
-        <circle cx={cx} cy={cy} r={22} fill={th.ink} />
+      <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }} opacity={st.o}>
+        <g transform={`translate(0 ${st.dy.toFixed(1)}) translate(${cx} ${cy}) scale(${st.ringScale.toFixed(4)}) translate(${-cx} ${-cy})`}>
+          <path d={`M ${cx - rr} ${cy} A ${rr} ${rr} 0 0 1 ${cx + rr} ${cy}`} fill="none" stroke={th.track} strokeWidth={sw} />
+          <path d={`M ${cx - rr} ${cy} A ${rr} ${rr} 0 0 1 ${ex.toFixed(2)} ${ey.toFixed(2)}`} fill="none" stroke={accent} strokeWidth={sw} />
+          <line x1={cx} y1={cy} x2={ex} y2={ey} stroke={th.ink} strokeWidth={10} strokeLinecap="round" />
+          <circle cx={cx} cy={cy} r={22} fill={th.ink} />
+        </g>
       </svg>
     );
   } else if (vt === "LINE") {
@@ -450,16 +641,20 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     const base = ch.y + ch.h - 90;
     const py = (v) => base - ((v - min) / (max - min || 1)) * (ch.h - 260);
     const t = m.build(0.55, m.s(0.1));
+    const lsOf = (i) => (modern ? lineState(cid, tb, i, pts.length) : null);
+    const drawT = modern ? lsOf(0).draw : t;
     const path = pts.map((p, i) => `${i ? "L" : "M"} ${px(i).toFixed(1)} ${py(p.q.magnitude).toFixed(1)}`).join(" ");
     chart = (
       <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }}>
         <line x1={ch.x} y1={base} x2={ch.x + ch.w} y2={base} stroke={th.ink} strokeWidth={4} />
         {[0.33, 0.66].map((f) => <line key={f} x1={ch.x} y1={base - f * (ch.h - 260)} x2={ch.x + ch.w} y2={base - f * (ch.h - 260)} stroke={th.track} strokeWidth={2} />)}
-        <path d={path} fill="none" stroke={accent} strokeWidth={14} strokeLinejoin="round" strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - t} />
+        <path d={path} fill="none" stroke={accent} strokeWidth={14} strokeLinejoin="round" strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - drawT} />
         {pts.map((p, i) => {
-          const on = clamp01(t * (pts.length - 1) - i + 1);
+          const ls = lsOf(i);
+          const on = ls ? ls.dot : clamp01(t * (pts.length - 1) - i + 1);
+          const dy = ls ? ls.dropY : 0;
           return (
-            <g key={i} opacity={on}>
+            <g key={i} opacity={clamp01(on)} transform={ls ? `translate(0 ${dy.toFixed(1)}) translate(${px(i)} ${py(p.q.magnitude)}) scale(${(0.4 + 0.6 * Math.min(on, 1.3)).toFixed(3)}) translate(${-px(i)} ${-py(p.q.magnitude)})` : undefined}>
               <circle cx={px(i)} cy={py(p.q.magnitude)} r={20} fill={i === pts.length - 1 ? accent : th.ink} />
               <text x={px(i)} y={py(p.q.magnitude) - 44} textAnchor="middle" style={{ font: dataFont(72, 800), letterSpacing: -2 }} fill={th.ink}>{rollQuantity(p.q, 1)}</text>
               <text x={px(i)} y={base + 60} textAnchor="middle" style={{ font: dataFont(36), letterSpacing: 0.4 }} fill={th.ink}>{String(p.label).toUpperCase()}</text>
@@ -473,7 +668,7 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     <>
       <HeroEl name="chart" b={ch}>{chart}</HeroEl>
       {B.number && (vt === "PIE" || vt === "GAUGE") ? <NumberHero b={B.number} q={parseQuantity(`${d.percent}%`)} t={count} local={local} fps={fps} at={tl.numberAt} color={th.ink} m={m} hero={false} /> : null}
-      {B.label ? <DataLabel b={B.label} color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
+      {B.label ? <DataLabel b={B.label} name="label" color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
     </>
   );
 }
@@ -521,7 +716,7 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       return (
         <>
           <Rule b={B.rule} t={m.build(0.3, m.s(0.2))} color="#FFFFFF" />
-          {B.kicker ? <DataLabel b={B.kicker} color="#FFFFFF" local={local} fps={fps} at={tl.labelAt + 0.3} shadow /> : null}
+          {B.kicker ? <DataLabel b={B.kicker} name="kicker" color="#FFFFFF" local={local} fps={fps} at={tl.labelAt + 0.3} shadow /> : null}
           {band}
           <Headline b={B.headline} color={comp === "DOCUMENT" ? onAccent(accent) : "#FFFFFF"} local={local} fps={fps} m={m} idx={idx} at={0.3} shadow={comp !== "DOCUMENT"} />
           {B.number && c.data?.value ? <NumberHero b={B.number} q={parseQuantity(c.data.value)} t={easeOut(clamp01((local - 0.5 * fps) / Math.max(1, dur * 0.6)))} local={local} fps={fps} at={0.5} color="#FFFFFF" m={m} hero={false} /> : null}
@@ -846,6 +1041,7 @@ function BeatCanvas({ beat, idx, local, fps, accent, hero, bodyOnly = false }) {
   const zoom = (c.motion_tier || "medium") === "major" ? majorZoom(L) : null;
   return (
     <Theme.Provider value={theme}>
+      <Anim.Provider value={c.anim ? { ...c.anim, dur } : null}>
       <Hero.Provider value={hero}>
         {c.dark && !c.photo ? <div style={{ position: "absolute", inset: 0, backgroundColor: "#0E0E0E" }} /> : null}
         {/* The camera moves through the information (the body); the header —
@@ -860,6 +1056,7 @@ function BeatCanvas({ beat, idx, local, fps, accent, hero, bodyOnly = false }) {
         </div>
         {bodyOnly ? null : <Comp c={c} L={L} idx={idx} local={local} dur={dur} fps={fps} accent={accent} spoken={beat.spoken} part="header" />}
       </Hero.Provider>
+      </Anim.Provider>
     </Theme.Provider>
   );
 }
