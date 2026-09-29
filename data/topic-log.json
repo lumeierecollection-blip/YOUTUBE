@@ -2144,9 +2144,14 @@
           "topic": "supply-chain-visualizations",
           "slug": "flexport-supply-chain-visualizations-2026-09-29",
           "reserved_at": "2026-09-29T22:03:09.855Z"
+        },
+        {
+          "topic": "factory-process-animations",
+          "slug": "factory-process-animations-2026-09-29-1234567890-092926-09",
+          "reserved_at": "2026-09-29T22:18:34.582Z"
         }
       ],
-      "last_generated": "2026-09-29T22:03:09.855Z"
+      "last_generated": "2026-09-29T22:18:34.582Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
