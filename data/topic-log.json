@@ -155,9 +155,14 @@
           "topic": "saving-challenges",
           "slug": "cost-of-living-saving-challenges-2026",
           "reserved_at": "2026-09-29T22:03:59.376Z"
+        },
+        {
+          "topic": "The impact of the September 2026 Fed rate hike on debt",
+          "slug": "impact-sept-2026-fed-rate-hike-debt",
+          "reserved_at": "2026-09-29T22:19:33.347Z"
         }
       ],
-      "last_generated": "2026-09-29T22:03:59.376Z"
+      "last_generated": "2026-09-29T22:19:33.347Z"
     },
     "2": {
       "channel_name": "Legal Brief",
