@@ -1,7 +1,8 @@
 {
   "Inter": {
     "400": "Inter-400.woff2",
-    "700": "Inter-700.woff2"
+    "700": "Inter-700.woff2",
+    "400..800": "Inter-var.woff2"
   },
   "DM Sans": {
     "400": "DMSans-400.woff2",
@@ -39,5 +40,9 @@
   "Noto Serif": {
     "400": "NotoSerif-400.woff2",
     "700": "NotoSerif-700.woff2"
+  },
+  "Fraunces": {
+    "400..700": "Fraunces-var.woff2",
+    "400..700i": "Fraunces-var-italic.woff2"
   }
 }

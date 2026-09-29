@@ -2,8 +2,7 @@
 import { staticFile } from "remotion";
 
 /** All configured channel fonts as @font-face rules. */
-export const FONT_FACES = `@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/Inter-400.woff2")}") format("woff2");}
-@font-face{font-family:"Inter";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/Inter-700.woff2")}") format("woff2");}
+export const FONT_FACES = `@font-face{font-family:"Inter";font-style:normal;font-weight:400 800;font-display:swap;src:url("${staticFile("fonts/Inter-var.woff2")}") format("woff2");}
 @font-face{font-family:"DM Sans";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/DMSans-400.woff2")}") format("woff2");}
 @font-face{font-family:"DM Sans";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/DMSans-700.woff2")}") format("woff2");}
 @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/SpaceGrotesk-400.woff2")}") format("woff2");}
@@ -23,7 +22,9 @@ export const FONT_FACES = `@font-face{font-family:"Inter";font-style:normal;font
 @font-face{font-family:"Fira Sans";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/FiraSans-700.woff2")}") format("woff2");}
 @font-face{font-family:"Noto Serif";font-style:normal;font-weight:400;font-display:swap;src:url("${staticFile("fonts/NotoSerif-400.woff2")}") format("woff2");}
 @font-face{font-family:"Noto Serif";font-style:normal;font-weight:700;font-display:swap;src:url("${staticFile("fonts/NotoSerif-700.woff2")}") format("woff2");}
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:400 700;font-display:swap;src:url("${staticFile("fonts/Fraunces-var.woff2")}") format("woff2");}
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:400 700;font-display:swap;src:url("${staticFile("fonts/Fraunces-var-italic.woff2")}") format("woff2");}
 `;
 
 /** Family names of every font bundled above. */
-export const FONT_FAMILIES = ["Inter","DM Sans","Space Grotesk","Cormorant Garamond","Roboto Condensed","JetBrains Mono","Playfair Display","Nunito","Fira Sans","Noto Serif"];
+export const FONT_FAMILIES = ["Inter","DM Sans","Space Grotesk","Cormorant Garamond","Roboto Condensed","JetBrains Mono","Playfair Display","Nunito","Fira Sans","Noto Serif","Fraunces"];

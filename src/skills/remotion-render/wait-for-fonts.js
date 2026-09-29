@@ -19,6 +19,12 @@ if (typeof document !== "undefined") {
     document.fonts.load(`400 40px "${fam}"`),
     document.fonts.load(`700 40px "${fam}"`),
   ]);
+  // The type system's two variable families (visual/typography.js): the roles
+  // use weights between the ends, requested explicitly so the first frame
+  // never draws them in a fallback face.
+  for (const w of [500, 600, 800]) { loads.push(document.fonts.load(`${w} 40px "Inter"`)); }
+  for (const w of [500, 600]) { loads.push(document.fonts.load(`${w} 40px "Fraunces"`)); }
+  loads.push(document.fonts.load(`italic 600 40px "Fraunces"`));
   // Italic faces are requested separately — document.fonts.load() defaults to
   // normal style, so the setup-line italic serif (PART 3.4) needs its own
   // explicit request or it never resolves before the font gate/first frame.
