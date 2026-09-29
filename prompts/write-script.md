@@ -37,3 +37,16 @@ provided JSON Schema exactly — nothing outside it.
   35% or less, excluded 0%.
 - `sources_used` has 2 or more URLs that actually appear in the research's
   `key_facts`/`numbers`, and every one is used by something you wrote.
+- **Write figures in digits with their unit** in the voiceover ("$352
+  million", "34%", "10,000 robots", "6 levels") — the narrator's voice reads
+  them as words automatically, and the video can only chart a figure it can
+  read. (The anchor_token rule above still applies: an anchor copied from
+  such a sentence is copied as written, digits included.)
+- **The video must have something to SHOW.** At least half of the
+  voiceover sentences carry one of: a figure from `numbers[]`, a named
+  person / place / organization from the research, or an explicit cause ->
+  effect ("the hack drained ... which forced ..."). Sentences of pure
+  opinion or generic advice ("it is crucial to understand ...", "a
+  comprehensive guide for success") are at most a third of the script —
+  they can only be drawn as plain text. Never invent a figure or a name to
+  meet this: use what the research gives you.

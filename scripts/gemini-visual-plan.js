@@ -177,7 +177,21 @@ export function entityNamedInSentence(name, sentence) {
   return words.length > 0 && words.every((w) => { const st = stemWord(w); return sent.some((t) => stemMatch(st, t)); });
 }
 // Words that state a flow: cause -> effect, a result, a sequence.
-const FLOW_WORDS = /\b(caus(e|es|ed|ing)|lead(s|ing)? to|led to|result(s|ed|ing)? in|so that|therefore|because|drives?|drove|trigger(s|ed)?|raises?|raised|cuts?|reduc(e|es|ed)|increas(e|es|ed)|boosts?|pushe[sd]?|forces?|forced|turns? into|becomes?|then|after|before|until|followed by|feeds?|fuels?|sparks?|prompt(s|ed)?|means?|which (makes|leads|raises|cuts))\b|->|→/i;
+const FLOW_WORDS = /\b(caus(e|es|ed|ing)|lead(s|ing)? to|led to|result(s|ed|ing)? in|so that|therefore|because|drives?|drove|trigger(s|ed)?|raises?|raised|cuts?|reduc(e|es|ed)|increas(e|es|ed)|boosts?|pushe[sd]?|forces?|forced|turns? into|becomes?|then|after|before|until|followed by|builds? (?:on|upon)|built (?:on|upon)|feeds?|fuels?|sparks?|prompt(s|ed)?|means?|which (makes|leads|raises|cuts))\b|->|→/i;
+
+// The figure a checked visual draws, as a comparable key ("$388M" and
+// "$388 million" -> "388000000"), or null for a visual without one figure.
+export function figureKey(v) {
+  if (!v || v.type !== "COUNTER" && v.type !== "PIE" && v.type !== "GAUGE") return null;
+  const raw = v.type === "COUNTER" ? String(v.data?.value || "") : String(v.data?.percent ?? "");
+  const m = raw.match(/\d[\d,]*(?:\.\d+)?/);
+  if (!m) return null;
+  let n = Number(m[0].replace(/,/g, ""));
+  const rest = raw.slice(m.index + m[0].length).toLowerCase();
+  const sc = rest.match(/^\s*(thousand|million|billion|trillion|k|m|bn|b)\b/);
+  if (sc) n *= { thousand: 1e3, k: 1e3, million: 1e6, m: 1e6, billion: 1e9, bn: 1e9, b: 1e9, trillion: 1e12 }[sc[1]];
+  return `${v.type === "COUNTER" && !/%/.test(raw) ? "n" : "%"}${n}`;
+}
 
 export function checkEntities(list, sentence) {
   const kept = [], dropped = [];
@@ -190,8 +204,32 @@ export function checkEntities(list, sentence) {
   }
   return { kept, dropped };
 }
+// Numbers a sentence SPELLS ("six distinct levels", "forty-two", "three
+// million") are its figures as much as "6" is — run 36506838927 ch-44 said
+// "six distinct levels" and no chart gate could see it. Parsed, not guessed:
+// only number words, in a run, are read.
+const NUM_WORDS = { zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12,
+  thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50,
+  sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
+const NUM_SCALES = { hundred: 100, thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 };
+export function wordNumbers(text) {
+  const out = [];
+  const toks = String(text || "").toLowerCase().replace(/-/g, " ").split(/[^a-z]+/).filter(Boolean);
+  let cur = null, total = 0;
+  const flush = () => { if (cur !== null || total) out.push(total + (cur || 0)); cur = null; total = 0; };
+  for (const t of toks) {
+    if (t in NUM_WORDS) cur = (cur || 0) + NUM_WORDS[t];
+    else if (t === "hundred" && cur !== null) cur *= 100;
+    else if (t in NUM_SCALES && cur !== null) { total += cur * NUM_SCALES[t]; cur = null; }
+    else if (t === "and" && (cur !== null || total)) continue;
+    else flush();
+  }
+  flush();
+  return out.filter((n) => Number.isFinite(n) && n > 0);
+}
 function sentenceNumbers(text) {
-  return new Set((String(text || "").match(/\d[\d,]*(?:\.\d+)?/g) || []).map((n) => Number(n.replace(/,/g, ""))));
+  const digits = (String(text || "").match(/\d[\d,]*(?:\.\d+)?/g) || []).map((n) => Number(n.replace(/,/g, "")));
+  return new Set([...digits, ...wordNumbers(text)]);
 }
 // What a beat's sentence can ground, for the gate-repair prompt: its
 // numbers (years and counts under 2 are not counter values), whether it
@@ -220,7 +258,9 @@ export function groundedOptions(sentence) {
 
 function numIn(v, nums) {
   const m = String(v ?? "").match(/\d[\d,]*(?:\.\d+)?/);
-  return m ? nums.has(Number(m[0].replace(/,/g, ""))) : false;
+  if (m) return nums.has(Number(m[0].replace(/,/g, "")));
+  const w = wordNumbers(v);
+  return w.length > 0 && nums.has(w[0]);
 }
 // ── CUTOUT must name an object the sentence names ────────────────────
 // Owner's rule: a cutout shows the literal object the sentence is about —
@@ -343,7 +383,9 @@ export function checkVisual(b, sentence) {
     // line "Fighting intensity has reached 1 times" and the review called the
     // "0x counter nonsensical". Percentages and scaled figures ("1.4
     // billion") are unaffected.
-    const vs = String(d.value), m = vs.match(/\d[\d,]*(?:\.\d+)?/);
+    // A value in words ("six") is drawn as its figure ("6").
+    const vs0 = String(d.value);
+    const vs = /\d/.test(vs0) ? vs0 : (wordNumbers(vs0)[0] !== undefined ? String(wordNumbers(vs0)[0]) : vs0), m = vs.match(/\d[\d,]*(?:\.\d+)?/);
     const n = m ? Number(m[0].replace(/,/g, "")) : NaN;
     const scaled = m ? /^\s*(thousand|million|billion|trillion|bn|mn|k|m|b)\b/i.test(vs.slice(m.index + m[0].length)) : false;
     if (n < 2 && !scaled && !vs.includes("%")) return bad(`COUNTER value "${d.value}" is a count of ${n}: a 0 -> ${n} roll shows no figure`);
@@ -1055,7 +1097,13 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
         const a = got.find((x) => Number(x?.index) === r.b.index);
         if (!a) { console.log(`[plan-repair] beat ${r.b.index}: ${r.asked} rejected, no replacement returned -> TYPE`); continue; }
         const cand = { visual_type: a.visual_type, data: a.data || {}, named_entities: [...(r.b.named_entities || []), ...(Array.isArray(a.named_entities) ? a.named_entities : [])] };
-        const v = checkVisual(cand, r.sentenceText);
+        const v0 = checkVisual(cand, r.sentenceText);
+        // Repetition guard: run 36506838927 ch-26 — the repair turned five
+        // beats into the same "$388M" counter. A figure another beat already
+        // draws is refused here.
+        const fk = figureKey(v0);
+        const clash = fk && plan.beats.find((x) => x !== r.b && figureKey(checkVisual(x, sentences[x.index]?.text || "")) === fk);
+        const v = clash ? { type: "TYPE", data: null, why: `the figure is already drawn in beat ${clash.index}` } : v0;
         const t = String(a.visual_type || "").toUpperCase();
         if (!v.why && v.type !== "TYPE") {
           r.b.visual_type = v.type; r.b.data = v.data; fixed++;
@@ -1078,12 +1126,22 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
   // the concept resolves. A composition the model wrote anyway is ignored.
   // A TYPE beat gets no composition and the typographic_emphasis capability.
   let lastPercentType = null;
+  const figuresShown = new Map();
   for (const b of plan.beats) {
     // visual_type (planner's choice), checked against the sentence.
     if (b.visual_type !== undefined) {
       const sentenceText = sentences[b.index]?.text || sentences[plan.beats.indexOf(b)]?.text || "";
       const v = checkVisual(b, sentenceText);
       if (v.why) console.warn(`::warning::[plan] beat ${b.index}: ${b.visual_type} -> TYPE (${v.why})`);
+      // One figure, one beat: the same number drawn again is repetition, not
+      // information (the review failed ch-26 for five "$388M" counters).
+      {
+        const fk = figureKey(v);
+        if (fk && figuresShown.has(fk)) {
+          console.warn(`::warning::[plan] beat ${b.index}: ${v.type} repeats the figure of beat ${figuresShown.get(fk)} -> TYPE`);
+          v.type = "TYPE"; v.data = null;
+        } else if (fk) figuresShown.set(fk, b.index);
+      }
       // Variety: a percentage is drawn as a PIE or a GAUGE — the same figure
       // and label either way. Run 36405739332 ch-48 drew gauge after gauge
       // and the review called it "excessive reuse of the exact same gauge".
