@@ -165,9 +165,14 @@
           "topic": "New debt payoff strategies in light of the September 2026 Fed rate hike",
           "slug": "new-debt-payoff-strategies-2026",
           "reserved_at": "2026-09-29T22:49:30.931Z"
+        },
+        {
+          "topic": "budget-tool-reviews-2026",
+          "slug": "budget-tool-reviews-2026-2026-09-24-2026-09-26",
+          "reserved_at": "2026-09-30T08:28:00.026Z"
         }
       ],
-      "last_generated": "2026-09-29T22:49:30.931Z"
+      "last_generated": "2026-09-30T08:28:00.026Z"
     },
     "2": {
       "channel_name": "Legal Brief",
