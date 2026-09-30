@@ -1275,9 +1275,14 @@
           "topic": "Osogbo residents lost millions of Naira in food Ponzi scheme",
           "slug": "osogbo-food-scheme-sparks-panic",
           "reserved_at": "2026-09-29T22:45:45.283Z"
+        },
+        {
+          "topic": "crypto-fraud-investigations",
+          "slug": "crypto-fraud-investigations-2026-09-28",
+          "reserved_at": "2026-09-30T08:24:23.763Z"
         }
       ],
-      "last_generated": "2026-09-29T22:45:45.283Z"
+      "last_generated": "2026-09-30T08:24:23.763Z"
     },
     "27": {
       "channel_name": "Climate Now",
