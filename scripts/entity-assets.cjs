@@ -89,7 +89,7 @@ async function fileInfo(fileTitle) {
 // A file NAMED like a chart, map, logo, document scan or page is not a
 // photograph of the entity (run 2026-09-29 test: "Federal Reserve" matched
 // "Figure 4 Trends in Federal Reserve Bank Head Office Directors ... .jpg").
-const NOT_A_PHOTO = /\b(figure|fig|chart|graph|diagram|maps?|locator|logo|seal|flag|coat of arms|emblem|table|infographic|scan|page|pdf|signature|icon|poster|cover|report|trends?|statistics|screenshot|banknote|note|stamp|coin|ceramic|pottery|artifact|artefact|museum|louvre|manuscript|painting|drawing|engraving|sculpture|statue|relief|mosaic)\b/i;
+const NOT_A_PHOTO = /\b(figure|fig|chart|graph|diagram|maps?|locator|logo|seal|flag|coat of arms|emblem|table|infographic|scan|page|pdf|signature|icon|poster|cover|report|trends?|statistics|screenshot|banknote|note|stamp|coin|ceramic|pottery|artifact|artefact|museum|louvre|manuscript|painting|painted|drawing|drawn|sketch|illustration|caricature|cartoon|artwork|engraving|sculpture|statue|wax|figurine|relief|mosaic|mural|graffiti)\b/i;
 const BUILDING = /\b(building|headquarters|hq|offices?|tower|campus|exterior|facade|façade|entrance|plaza|cent(?:er|re))\b/i;
 // People in the file name: a group or portrait shot is not a photo of an organization or place.
 // Run 36509937804 ch-9: "Pakistan Navy" resolved to "US Navy 090820-N-...
@@ -101,7 +101,7 @@ const SCENIC = /\b(skyline|aerial|downtown|view|panorama|city|cityscape|landscap
 
 function checkFile(info) {
   if (!info) return "no Commons file record (the image is not on Wikimedia Commons)";
-  if (NOT_A_PHOTO.test(String(info.title || "").replace(/^File:/, "").replace(/[_-]/g, " "))) return `"${info.title}" is named like a chart / map / logo / document, not a photo`;
+  if (NOT_A_PHOTO.test(String(info.title || "").replace(/^File:/, "").replace(/[_-]/g, " "))) return `"${info.title}" is named like a chart / map / logo / document / artwork, not a photo`;
   if (!/^image\/jpe?g$/i.test(info.mime || "")) return `${info.mime} is not a photograph (SVG/PNG/GIF are logos, flags, maps)`;
   if (/non-?free|fair use/i.test(info.license || "")) return `licence "${info.license}" is not free`;
   if (!info.license) return "no licence recorded";
@@ -115,6 +115,17 @@ function titleMatches(title, name) {
   return nt.length > 0 && nt.every((t) => tt.includes(t));
 }
 
+// The Commons file name of an upload.wikimedia.org URL. The summary API now
+// appends "?utm_source=en.wikipedia.org&utm_campaign=api&..." to image URLs;
+// the old split("/").pop() kept that query string in the "file name", so
+// EVERY lead-image lookup failed with "no Commons file record" and people
+// fell through to the Commons search (found 2026-10-01, Jerome Powell).
+function fileNameOf(src) {
+  let path;
+  try { path = new URL(src).pathname; } catch { path = String(src).split(/[?#]/)[0]; }
+  return decodeURIComponent(path.split("/").pop());
+}
+
 async function leadImageOf(title, name) {
   const s = await getJson(`${WIKI}/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, "_"))}?redirect=true`);
   if (s?._status || s?._error) return { why: `no Wikipedia page "${title}" (${s._status || s._error})` };
@@ -122,7 +133,7 @@ async function leadImageOf(title, name) {
   if (!titleMatches(s.title, name)) return { why: `page "${s.title}" does not name "${name}"` };
   const src = s.originalimage?.source;
   if (!src) return { why: `page "${s.title}" has no lead image` };
-  const file = decodeURIComponent(src.split("/").pop());
+  const file = fileNameOf(src);
   const info = await fileInfo(file);
   const bad = checkFile(info);
   if (bad) return { why: `lead image of "${s.title}": ${bad}` };
@@ -206,7 +217,8 @@ async function personCandidates(name, context, max = 6) {
   const out = [], tried = [], seen = new Set();
   const add = (c, source) => { if (c.info && !seen.has(c.info.title)) { seen.add(c.info.title); out.push({ ...c, source }); } };
   let r = await leadImageOf(name, name);
-  if (r.info) add(r, "wikipedia lead image"); else tried.push(`wikipedia: ${r.why}`);
+  if (r.info) add(r, "wikipedia lead image");
+  else { tried.push(`wikipedia: ${r.why}`); console.log(`[fetch] ${name}: wikipedia no lead image (${r.why}), trying search / commons`); }
   const q = [name, context].filter(Boolean).join(" ");
   const sj = await getJson(`${WIKI}/w/api.php?action=query&list=search&format=json&srlimit=5&srsearch=${encodeURIComponent(q)}`);
   const hit = (sj?.query?.search || []).find((h) => titleMatches(h.title, name) && !/\(disambiguation\)/i.test(h.title) && h.title !== r.pageTitle);
@@ -398,7 +410,7 @@ async function documentAttempts(name) {
   // 1. The instrument's own Wikipedia page: its lead image, if it is a scan.
   const s = await getJson(`${WIKI}/api/rest_v1/page/summary/${encodeURIComponent(name.replace(/ /g, "_"))}?redirect=true`);
   if (s && !s._status && !s._error && s.type !== "disambiguation" && titleMatches(s.title, name) && s.originalimage?.source) {
-    const info = await fileInfo(decodeURIComponent(s.originalimage.source.split("/").pop()));
+    const info = await fileInfo(fileNameOf(s.originalimage.source));
     const bad = checkDocFile(info);
     if (!bad) return { info, page: s.content_urls?.desktop?.page || `${WIKI}/wiki/${encodeURIComponent(s.title)}`, pageTitle: s.title, attempt: 1, tried };
     tried.push(`1: lead image of "${s.title}": ${bad}`);

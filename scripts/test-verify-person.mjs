@@ -29,6 +29,8 @@ yes("the prompt names the person and asks the three questions", /Person: Jerome 
 // Candidate filters (file names, before any download).
 const info = (title, o = {}) => ({ title, mime: "image/jpeg", license: "Public domain", width: 900, height: 1200, ...o });
 yes("an official portrait JPEG passes the file check", E.checkFile(info("File:Jerome H. Powell, Federal Reserve Chair.jpg")) === null);
+yes("a painted portrait is refused", /artwork/.test(E.checkFile(info("File:Elon Musk, painted portrait DDC2289.jpg"))));
+yes("a caricature / statue / wax figure is refused", ["File:X caricature.jpg", "File:X statue.jpg", "File:X wax figure.jpg"].every((t) => E.checkFile(info(t))));
 yes("a file under 500 px is refused", /too small/.test(E.checkFile(info("File:X.jpg", { width: 300, height: 400 }))));
 yes("a non-free file is refused", /not free/.test(E.checkFile(info("File:X.jpg", { license: "Non-free fair use" }))));
 
