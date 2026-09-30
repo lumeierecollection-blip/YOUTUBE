@@ -2219,9 +2219,14 @@
           "topic": "digital-twins-industrial-manufacturing",
           "slug": "digital-twins-manufacturing",
           "reserved_at": "2026-09-30T08:26:15.591Z"
+        },
+        {
+          "topic": "quality-control-processes",
+          "slug": "quality-control-processes-2026-10-01-1234567890",
+          "reserved_at": "2026-09-30T22:19:37.169Z"
         }
       ],
-      "last_generated": "2026-09-30T08:26:15.591Z"
+      "last_generated": "2026-09-30T22:19:37.169Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
