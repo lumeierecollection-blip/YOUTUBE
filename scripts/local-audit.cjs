@@ -65,7 +65,7 @@
  *                     nothing centred, sentence-case headlines, two type roles
  *                     in most beats, no composition twice in a row, dark beats
  *                     (>= 1, <= 2, never consecutive).
- *   canvas-texture    paper grain on every beat and dark beats really dark,
+ *   canvas-ground     the studio ground reads light on every beat,
  *                     measured on rendered pixels.
  *   `--canvas-only --video <mp4> --manifest <json>` runs these six on
  *   every render (render-and-qa.js) and exits 1 on a failure.
@@ -424,8 +424,7 @@ const ROLE_OF = (k) => k.replace(/\d+$/, "");
  *   - headlines are sentence case, never all-caps,
  *   - at least two type roles in most beats (>= 60% of them),
  *   - no composition type twice in a row,
- *   - dark beats: at least one in a video of 4+ beats, at most two, never
- *     consecutive.
+ *   - (dark beats are retired)
  */
 function canvasType(beats) {
   const bad = [];
@@ -460,90 +459,24 @@ function canvasType(beats) {
   });
   const two = roleSets.filter((n) => n >= 2).length;
   if (roleSets.length && two / roleSets.length < 0.6) bad.push(`only ${two}/${roleSets.length} beats show two type roles (need 60%)`);
-  const dark = beats.map((b) => !!b.canvas?.dark);
-  const nd = dark.filter(Boolean).length;
-  if (beats.length >= 4 && nd < 1) bad.push("no dark beat in the video");
-  if (nd > 2) bad.push(`${nd} dark beats (at most 2)`);
-  dark.forEach((d, i) => { if (d && dark[i + 1]) bad.push(`dark beats ${i} and ${i + 1} are consecutive`); });
-  return { bad, two, n: roleSets.length, dark: nd };
+  return { bad, two, n: roleSets.length };
 }
-// canvas-texture: paper grain on every beat and the dark beats really dark,
-// measured on rendered pixels (a bottom-left patch below the caption band, where
-// nothing but the ground and the vignette lives).
-function canvasTexture(video, beats) {
+// canvas-ground: the studio ground reads light on every beat (a bottom-left patch below the caption
+// band, where nothing but the ground lives). The grain / dark-beat checks are gone with those experiments.
+function canvasGround(video, beats) {
   const bad = [];
   const W = 540, H = 960;
-  let grainMin = Infinity;
   beats.forEach((b, i) => {
     if (b.canvas?.photo) return;
     const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * 0.7;
     const buf = rgbFrame(video, t, W, H);
     if (!buf) return;
-    let sum = 0, sum2 = 0, n = 0;
-    const x0 = 24, y0 = H - 70;
-    for (let y = y0; y < y0 + 40; y++) for (let x = x0; x < x0 + 40; x++) {
-      const o = (y * W + x) * 3, l = 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2];
-      sum += l; sum2 += l * l; n++;
-    }
-    const mean = sum / n, sd = Math.sqrt(Math.max(0, sum2 / n - mean * mean));
-    if (b.canvas?.dark && mean > 60) bad.push(`beat ${i} is marked dark but its ground is luma ${mean.toFixed(0)}`);
-    if (!b.canvas?.dark && mean < 200) bad.push(`beat ${i}: the studio ground reads luma ${mean.toFixed(0)} (< 200)`);
-    grainMin = Math.min(grainMin, sd);
-    // Measured (2026-09-29): grain at the brief's 0.055 opacity reads sd ~1 on
-    // a lossless half-scale still and ~0.5-0.8 after h264 (a dark ground is the
-    // lowest); a flat ground with no grain reads ~0. 0.35 separates them.
-    if (sd < 0.35) bad.push(`beat ${i}: no paper grain in the ground patch (luma sd ${sd.toFixed(2)} < 0.35)`);
+    let sum = 0, n = 0;
+    for (let y = H - 70; y < H - 30; y++) for (let x = 24; x < 64; x++) { const o = (y * W + x) * 3; sum += 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; n++; }
+    const mean = sum / n;
+    if (mean < 200) bad.push(`beat ${i}: the studio ground reads luma ${mean.toFixed(0)} (< 200)`);
   });
-  return { bad, grainMin };
-}
-// ── animation checks (animation rebuild) ─────────────
-/**
- * animation-rules: every animated element of every beat has an animation from
- * the library; the same element never repeats a FAMILY on consecutive beats;
- * the elements of one beat use different families (text-like ones); the last
- * three beats' animations are not reused for the same element (reported, not
- * failed: the planner relaxes it for a narrow vocabulary and says so).
- */
-async function animationRules(beats) {
-  const A = await import("../src/skills/remotion-render/visual/animations.js");
-  const bad = [], notes = [], usedChart = new Set(), usedNumber = new Set();
-  const present = (c, role) => {
-    const b = c.boxes || {};
-    if (role === "headline") return !!(b.headline || b.statement);
-    if (role === "kicker") return !!b.kicker;
-    if (role === "label") return !!b.label;
-    if (role === "number") return !!b.number;
-    if (role === "chart") return !!b.chart;
-    return !!b[role];
-  };
-  const ROLES = ["headline", "kicker", "number", "label", "chart"];
-  const TEXTY = ["headline", "kicker", "label"];
-  const window = {};
-  beats.forEach((b, i) => {
-    const c = b.canvas || {}, an = c.animations;
-    if (!an) { bad.push(`beat ${i}: no animations recorded`); return; }
-    const fams = new Map();
-    for (const role of ROLES) {
-      if (!present(c, role)) continue;
-      const id = an[role];
-      if (!id || !A.isAnimation(id)) { bad.push(`beat ${i}: ${role} has no animation${id ? ` (unknown "${id}")` : ""}`); continue; }
-      const fam = A.familyOf(id);
-      const prev = i > 0 ? beats[i - 1].canvas?.animations?.[role] : null;
-      if (prev && A.familyOf(prev) === fam) bad.push(`beat ${i}: ${role} ${id} repeats the "${fam}" family of beat ${i - 1} (${prev})`);
-      const kind = role;
-      (window[kind] = window[kind] || []);
-      if (window[kind].slice(-3).some((w) => w.includes(id))) notes.push(`beat ${i} ${role} ${id} reused within 3 beats`);
-      if (TEXTY.includes(role)) {
-        if (fams.has(fam)) bad.push(`beat ${i}: ${role} and ${fams.get(fam)} share the "${fam}" family`);
-        fams.set(fam, role);
-      }
-      if (role === "chart") usedChart.add(id);
-      if (role === "number") usedNumber.add(id);
-    }
-    for (const kind of ["headline", "kicker", "label", "number", "chart"]) if (present(c, kind) && an[kind]) (window[kind] = window[kind] || []).push([an[kind]]);
-    if (an.exit && !present(c, an.exit.element)) bad.push(`beat ${i}: an exit is set on ${an.exit.element}, which the beat does not draw`);
-  });
-  return { bad, notes, charts: [...usedChart], numbers: [...usedNumber] };
+  return { bad };
 }
 async function canvasChecks(video, m) {
   const beats = m.beats || [];
@@ -555,9 +488,9 @@ async function canvasChecks(video, m) {
   const acc = canvasAccent(video, beats, m.accent);
   out.push({ id: "canvas-accent", pass: !acc.bad.length, detail: acc.bad.length ? acc.bad.join("; ") : `accent ${m.accent} in beat ${acc.where} (${(acc.best * 100).toFixed(1)}% of the frame)` });
   const ty = canvasType(beats);
-  out.push({ id: "canvas-type", pass: !ty.bad.length, detail: ty.bad.length ? ty.bad.join("; ") : `nothing centred, sentence-case headlines, ${ty.two}/${ty.n} beats with two type roles, no repeated composition, ${ty.dark} dark beat(s)` });
-  const tx = canvasTexture(video, beats);
-  out.push({ id: "canvas-texture", pass: !tx.bad.length, detail: tx.bad.length ? tx.bad.join("; ") : `paper grain on every beat (min luma sd ${tx.grainMin === Infinity ? "n/a" : tx.grainMin.toFixed(2)}), dark beats dark` });
+  out.push({ id: "canvas-type", pass: !ty.bad.length, detail: ty.bad.length ? ty.bad.join("; ") : `nothing centred, sentence-case headlines, ${ty.two}/${ty.n} beats with two type roles, no repeated composition` });
+  const tx = canvasGround(video, beats);
+  out.push({ id: "canvas-ground", pass: !tx.bad.length, detail: tx.bad.length ? tx.bad.join("; ") : "the studio ground reads light on every beat" });
   const mt = motionTiers(beats);
   const ar = await animationRules(beats);
   out.push({ id: "animation-rules", pass: !ar.bad.length, detail: ar.bad.length ? ar.bad.join("; ") : `every element animated, no family repeated on the same element in consecutive beats, distinct families within each beat${ar.notes.length ? ` (${ar.notes.length} reuse(s) inside the 3-beat window: ${ar.notes.slice(0, 3).join("; ")}${ar.notes.length > 3 ? "..." : ""})` : ""}; chart animations ${ar.charts.join("/") || "none"}, number animations ${ar.numbers.join("/") || "none"}` });

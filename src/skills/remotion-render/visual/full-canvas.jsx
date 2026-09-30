@@ -71,8 +71,6 @@ const clamp01 = (v) => Math.max(0, Math.min(1, Number.isFinite(v) ? v : 1));
 const easeOut = Easing.bezier(0.16, 1, 0.3, 1);
 const easeInOut = Easing.bezier(0.65, 0, 0.35, 1);
 const lerp = (a, b, t) => a + (b - a) * t;
-export const GRAIN_OPACITY = 0.055;   // brief: 0.03-0.06
-export const VIGNETTE = 0.08;
 const Hero = React.createContext(null);
 // The colours a beat's text and chart furniture are drawn in. A dark beat
 // (texture layer) swaps them; a photo beat draws white on the picture.
@@ -870,27 +868,19 @@ function ComparisonSplit({ c, L, local, dur, fps, accent, idx, part = "body" }) 
 }
 
 // ── hero element (match cuts / persisted elements) ────────────────────
-// A soft, large, very low-opacity shadow under the primary element (the
-// number, the chart, the statement): it suggests the element is a physical
-// object on the studio surface. Pure black at 0.06, blur 80 px. Not a photo
-// (full-bleed).
-const HERO_SHADOW = "drop-shadow(0 34px 80px rgba(0,0,0,0.06))";
-// plan.hero_shadow === false turns it off (the blur is a full-frame filter on
-// every frame; the switch exists so its render cost can be measured and, if a
-// CI time cap demands it, dropped without a code change).
-const ShadowOn = React.createContext(true);
+const ShadowOn = React.createContext(false);   // the hero drop-shadow experiment is retired (restrained studio ground)
 function HeroEl({ name, b, children }) {
   const ctx = React.useContext(Hero);
   const shadowOn = React.useContext(ShadowOn);
-  const lit = shadowOn && name !== "photo";
-  if (!ctx || !ctx.from || ctx.name !== name || !b) return lit ? <div style={{ position: "absolute", inset: 0, filter: HERO_SHADOW }}>{children}</div> : children;
+  const lit = false && shadowOn && name !== "photo";
+  if (!ctx || !ctx.from || ctx.name !== name || !b) return children;
   // Start exactly on the previous beat's hero box, settle into this one.
   const t = easeInOut(ctx.t);
   const sx = ctx.from.w / Math.max(1, b.w), sy = ctx.from.h / Math.max(1, b.h);
   const s = lerp(Math.min(sx, sy), 1, t);
   const dx = lerp(ctx.from.x + ctx.from.w / 2 - (b.x + b.w / 2), 0, t), dy = lerp(ctx.from.y + ctx.from.h / 2 - (b.y + b.h / 2), 0, t);
   return (
-    <div style={{ position: "absolute", inset: 0, filter: lit ? HERO_SHADOW : undefined, transformOrigin: `${b.x + b.w / 2}px ${b.y + b.h / 2}px`, transform: `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) scale(${s.toFixed(4)})` }}>
+    <div style={{ position: "absolute", inset: 0, transformOrigin: `${b.x + b.w / 2}px ${b.y + b.h / 2}px`, transform: `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) scale(${s.toFixed(4)})` }}>
       {children}
     </div>
   );
@@ -1103,17 +1093,9 @@ export function CanvasVideo({ plan }) {
   );
 
   return (
-    <ShadowOn.Provider value={plan.hero_shadow !== false}>
+    <ShadowOn.Provider value={false}>
     <StudioBG color={STUDIO} drift={frame / fps}>
       {layers}
-      {/* Paper grain, on every beat: a noise tile re-seeded every frame (a new
-          offset and a new mirror), multiplied into the studio ground at 0.055
-          (screened at 0.05 on a dark beat, where multiply would vanish). */}
-      <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${staticFile("fx/grain.png")})`, backgroundSize: "256px 256px",
-        backgroundPosition: `${(frame * 97) % 256}px ${(frame * 57) % 256}px`, opacity: c.dark ? 0.05 : GRAIN_OPACITY, mixBlendMode: c.dark ? "screen" : "multiply", pointerEvents: "none",
-        transform: `scale(${frame % 2 ? -1 : 1}, ${(frame >> 1) % 2 ? -1 : 1})` }} />
-      {/* Film vignette: black at 0.08 at the corners, clear inside 58% of the radius. */}
-      <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse farthest-corner at 50% 50%, rgba(0,0,0,0) 58%, rgba(0,0,0,${VIGNETTE}) 100%)`, pointerEvents: "none" }} />
       <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} />
     </StudioBG>
     </ShadowOn.Provider>

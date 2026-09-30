@@ -502,8 +502,7 @@ ${CAPABILITIES}
 ## THE STYLE — full-canvas editorial motion graphics (NO paper, NO cards)
 
 Every beat is designed for the WHOLE 1080x1920 frame on an off-white
-studio ground (soft shadows, paper grain, a film vignette; every 4th-5th
-beat inverts to near-black). There is no container, no card, no page: the
+studio ground (the soft window-blind shadows; no grain, no dark beats). There is no container, no card, no page: the
 composition IS the frame, and it transforms from beat to beat (Financial
 Times x high-end documentary x contemporary magazine). Type is a serif
 headline (sentence case, never all caps), an oversized numeral and a small

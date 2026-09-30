@@ -5,7 +5,7 @@
  *
  *   sentence case   headline / lead-in rebuilt from the narration's casing
  *   variant         beat index: left / right anchoring alternates beat by beat
- *   dark beats      near-black ground, light type: the 4th (or 5th) beat and,
+ *   dark beats      RETIRED (assignDark is kept, tested, and not called): the studio ground throughout. Was: the 4th (or 5th) beat and,
  *                   in a long video, the 4th / 5th after it; at most two, never
  *                   consecutive, never a photo / map / object beat
  *   emphasis        at most ONE beat's headline is one word filling the frame
@@ -110,7 +110,8 @@ export function styleCanvases(canvases, narrations = []) {
   });
   const emphasis = assignEmphasis(canvases);
   const vertical = assignVertical(canvases);
-  const dark = assignDark(canvases);
+  canvases.forEach((c) => { c.dark = false; });      // dark beats are retired: the off-white studio ground throughout
+  const dark = [];
   const accentBest = assignNumberAccent(canvases, narrations);
   return { dark, emphasis, vertical, accentBest };
 }

@@ -570,7 +570,7 @@ export function canvasManifest(raw, idx) {
     // index, the larger comparison value, the map's region, a document's callout band.
     accent_used: ["DATA-FULL", "PROCESS-FULL", "TIMELINE", "LIST-BUILD", "COMPARISON-SPLIT", "MAP-CENTERED", "DOCUMENT"].includes(L.composition)
       || ((L.composition === "NUMBER-FULL" || L.composition === "MONEY") && c.number_accent !== false && !!L.boxes.number),
-    variant: c.variant, flip: L.flip, dark: !!c.dark, grain: true, vignette: true,
+    variant: c.variant, flip: L.flip, dark: false,
     headline_text: shown("headline") || shown("statement") || null, emphasis_text: shown("emphasis"),
     // The headline's entrance: the words fly in on a major TYPE-FULL statement,
     // otherwise mask-reveal / slide-land / crop-open rotating on the beat index.
