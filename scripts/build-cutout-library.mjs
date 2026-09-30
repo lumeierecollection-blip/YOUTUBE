@@ -6,8 +6,8 @@
  *
  *   node scripts/build-cutout-library.mjs [--only dollar-bill,gavel] [--force] [--tries 6]
  *
- * For each spec in scripts/cutout-specs.json (41 names, 3 queries each):
- *   1. search Wikimedia Commons and Openverse (both keyless) with the query
+ * For each spec in scripts/cutout-specs.json (28 names, 3 queries each; 8 symbols are drawn and 5 are full-bleed scenes — see concept-classes.js):
+ *   1. search Pixabay (primary), then Unsplash (only for a spec Pixabay could not give) with the query
  *      (asset-sourcing/sources/*), keep licences on the allowlist, drop anything
  *      the source calls a drawing / vector / icon, keep keyword matches first;
  *   2. download the largest results (>= 900 px), and for each: rembg u2net ->
@@ -25,9 +25,10 @@
  * a photograph without a licence is refused), isolated and checked the same way.
  * For photographs you supply yourself, and for testing the whole pipeline offline.
  *
- * Needs network access to commons.wikimedia.org and api.openverse.org; NO API key
- * is read. A GitHub Actions runner has that (the daily-pipeline-v2 `cutouts` job);
- * an interactive session behind an egress allowlist does not.
+ * Needs PIXABAY_API_KEY and UNSPLASH_ACCESS_KEY in the environment (a missing one
+ * is logged and that source skipped; both missing exits 1 "no image source
+ * available") and network access to pixabay.com / api.unsplash.com — a GitHub
+ * Actions runner has both; an interactive session behind an egress allowlist does not.
  * --dry-run: search every spec's queries and report the counts; download nothing.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, appendFileSync, copyFileSync, statSync } from "node:fs";
@@ -36,8 +37,8 @@ import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import sharp from "sharp";
-import * as openverse from "../src/skills/asset-sourcing/sources/openverse.js";
-import * as wikimedia from "../src/skills/asset-sourcing/sources/wikimedia.js";
+import * as pixabay from "../src/skills/asset-sourcing/sources/pixabay.js";
+import * as unsplash from "../src/skills/asset-sourcing/sources/unsplash.js";
 import { downloadFile } from "../src/skills/asset-sourcing/http.js";
 import { shortlist, creditsMarkdown, missingMarkdown, upsert, markMissing, withBackoff, hostOf, makePacer } from "./cutout-library-lib.mjs";
 import { isAllowedLicense, normalizeLicense } from "../src/skills/asset-sourcing/licenses.js";
@@ -52,15 +53,31 @@ const only = arg("only") ? arg("only").split(",") : null;
 const force = process.argv.includes("--force");
 const tries = Number(arg("tries", 6));
 const fromDir = arg("from-dir");
-// Keyless sources only: Wikimedia Commons and Openverse. No API key is read, no key-required source is ever asked.
-const SOURCES = { wikimedia, openverse };
+// Sources, in order: Pixabay (primary), Unsplash (secondary — only asked for a spec Pixabay could not give).
+// Each needs a key from the environment; a source without one is logged and skipped. Pexels, Wikimedia Commons and
+// Openverse are not used (Pexels has paused new API keys; the other two returned the wrong objects for this project).
+const ORDER = ["pixabay", "unsplash"];
+const MODS = { pixabay, unsplash };
+const KEYS = { pixabay: "PIXABAY_API_KEY", unsplash: "UNSPLASH_ACCESS_KEY" };
+const SOURCES = {};
 const skippedNoKey = [];
+for (const name of ORDER) {
+  if (process.env[KEYS[name]]) SOURCES[name] = MODS[name];
+  else { console.warn(`[cutouts] ${name}: no key (${KEYS[name]}), skipped`); skippedNoKey.push(name); }
+}
 const dryRun = process.argv.includes("--dry-run");
-console.log(`[cutouts] sources this run: ${Object.keys(SOURCES).join(", ")}${dryRun ? " (dry run: search only, nothing downloaded or written)" : ""}`);
-/** Commons' file search wants the object, not stock-photo phrasing; ask for bitmaps (jpg / png), not SVG / PDF. */
-const queryFor = (source, q) => (source === "wikimedia" ? `${q.replace(/\b(isolated( on white)?|white background|studio photo cut out|on white)\b/gi, "").replace(/\s+/g, " ").trim()} filetype:bitmap` : q);
-// Commons throttles bursts: one call per source / host at most every 1.5 s.
-const pace = makePacer(1500);
+if (!Object.keys(SOURCES).length && !arg("from-dir")) {
+  console.error("::error::[cutouts] no image source available (PIXABAY_API_KEY and UNSPLASH_ACCESS_KEY are both missing in this environment)");
+  process.exit(1);
+}
+console.log(`[cutouts] sources this run: ${Object.keys(SOURCES).join(", ") || "none (--from-dir)"}${dryRun ? " (dry run: search only, nothing downloaded or written)" : ""}`);
+/** A stock-photo search reads best with "isolated" (one object on a plain ground); each query is tried with it first, then plain. */
+const variantsOf = (q) => [`${q} isolated`, q];
+// Pacing: Unsplash's free tier allows 50 requests / hour, so one call per 2 s; Pixabay and the image hosts are gentler.
+const PACE_MS = { pixabay: 700, unsplash: 2000 };
+const pace = (key, fn) => paceFor(key)(key, fn);
+const pacers = {};
+const paceFor = (key) => (pacers[key] ||= makePacer(PACE_MS[key] ?? 400));
 const backoff = { dead: new Set(), streak: {} };   // per-source 429 streaks; 403 / three 429s in a row disable a source for the run
 
 const { specs, min_side_px: MIN_SIDE } = JSON.parse(readFileSync(join(ROOT, "scripts", "cutout-specs.json"), "utf8"));
@@ -74,15 +91,13 @@ const save = () => {
   writeFileSync(join(OUT, "MISSING.md"), missingMarkdown(index));
 };
 
-async function searchAll(query) {
-  const res = await Promise.all(Object.entries(SOURCES).filter(([n]) => !backoff.dead.has(n)).map(async ([name, mod]) => {
-    try { return await withBackoff(backoff, name, () => pace(name, () => mod.search(queryFor(name, query), { count: 8, thumbWidth: 1280 }))); }
-    catch (e) {
-      if (!e.disabled && !/HTTP (401|403|429)/.test(String(e.message))) console.warn(`[cutouts] ${name} failed for "${query}": ${String(e.message).slice(0, 100)}`);
-      return [];
-    }
-  }));
-  return res.flat();
+async function searchOne(name, q) {
+  if (backoff.dead.has(name)) return [];
+  try { return await withBackoff(backoff, name, () => pace(name, () => SOURCES[name].search(q, { count: 12 }))); }
+  catch (e) {
+    if (!e.disabled && !/HTTP (401|403|429)/.test(String(e.message))) console.warn(`[cutouts] ${name} failed for "${q}": ${String(e.message).slice(0, 100)}`);
+    return [];
+  }
 }
 
 function isolate(src, out, spec) {
@@ -112,8 +127,9 @@ for (const spec of specs) {
   let done = false;
   if (dryRun) { /* search only */ }
   // A source of candidates: the network (each query in turn) or a directory of photographs you supply.
-  const rounds = fromDir ? [null] : spec.queries;
-  for (const query of rounds) {
+  const rounds = fromDir ? [{ query: null }] : Object.keys(SOURCES).flatMap((source) => spec.queries.flatMap((query) => variantsOf(query).map((q) => ({ source, query, q }))));
+  for (const { source, query, q } of rounds) {
+    if (!fromDir && backoff.dead.has(source)) continue;
     if (done) break;
     let list;
     if (fromDir) {
@@ -123,13 +139,13 @@ for (const spec of specs) {
       if (!meta?.license || !isAllowedLicense(meta.license)) { attempts.push(`${spec.name}.json has no allowed licence (${meta?.license || "none"})`); continue; }
       list = [{ sourceApi: "manual", localPath: join(fromDir, `${spec.name}.${ext}`), license: normalizeLicense(meta.license), attribution: meta.attribution || "", sourceUrl: meta.source_url || "" }];
     } else {
-      const found = await searchAll(query);
+      const found = await searchOne(source, q);
       list = shortlist(found, spec, { minSide: MIN_SIDE, query }).slice(0, tries);
-      console.log(`[cutouts] ${spec.name}: "${query}" -> ${found.length} candidates, ${list.length} worth trying`);
-      if (!list.length) attempts.push(`"${query}": ${found.length} candidate(s), none passed the licence / keyword / size filter`);
+      console.log(`[cutouts] ${spec.name}: ${source} "${q}" -> ${found.length} candidates, ${list.length} worth trying`);
+      if (!list.length) attempts.push(`${source} "${q}": ${found.length} candidate(s), none passed the licence / keyword / size filter`);
       if (dryRun) {
         const by = (arr) => Object.entries(arr.reduce((m, c) => ((m[c.sourceApi] = (m[c.sourceApi] || 0) + 1), m), {})).map(([k, v]) => `${k} ${v}`).join(", ") || "none";
-        dry.push({ name: spec.name, query, found: found.length, worth: list.length, foundBy: by(found), worthBy: by(list) });
+        dry.push({ name: spec.name, query: `${source} ${q}`, found: found.length, worth: list.length, foundBy: by(found), worthBy: by(list) });
         continue;
       }
     }
@@ -137,18 +153,18 @@ for (const spec of specs) {
       const raw = c.localPath || join(work, `${spec.name}-${k}.img`);
       if (!c.localPath) {
         try { const dl = c.thumbUrl || c.downloadUrl, hk = `download:${hostOf(dl)}`; await withBackoff(backoff, hk, () => pace(hk, () => downloadFile(dl, raw, { timeoutMs: 60000 }))); }
-        catch (e) { attempts.push(`"${query}": download failed (${c.sourceApi}: ${String(e.message).slice(0, 60)})`); continue; }
+        catch (e) { attempts.push(`${source} "${q}": download failed (${c.sourceApi}: ${String(e.message).slice(0, 60)})`); continue; }
       }
       const meta = await sharp(raw).metadata().catch(() => null);
-      if (!meta || Math.max(meta.width || 0, meta.height || 0) < MIN_SIDE) { attempts.push(`"${query}": ${c.sourceApi} image unreadable or under ${MIN_SIDE}px`); if (!c.localPath) rmSync(raw, { force: true }); continue; }
+      if (!meta || Math.max(meta.width || 0, meta.height || 0) < MIN_SIDE) { attempts.push(`${source} "${q}": image unreadable or under ${MIN_SIDE}px`); if (!c.localPath) rmSync(raw, { force: true }); continue; }
       const rep = isolate(raw, file, spec);
       log({ name: spec.name, query, source: c.sourceApi, url: c.sourceUrl, ok: rep.ok, why: rep.why, coverage: rep.coverage });
       if (!c.localPath) rmSync(raw, { force: true });
-      if (!rep.ok) { attempts.push(`${query ? `"${query}": ` : ""}${c.sourceApi} rejected — ${rep.why}`); continue; }
+      if (!rep.ok) { attempts.push(`${source ? `${source} "${q}": ` : ""}rejected — ${rep.why}`); continue; }
       const how = optimise(file);
       const m2 = await sharp(file).metadata();
       index = upsert(index, { name: spec.name, category: spec.category, file: `cutouts/${spec.name}.png`, width: m2.width, height: m2.height, bytes: statSync(file).size, source: c.sourceApi,
-        license: c.license, attribution: c.attribution, source_url: c.sourceUrl, query: query || "(supplied)", coverage: rep.coverage, optimised: how, built_at: new Date().toISOString() });
+        license: c.license, attribution: c.attribution, source_url: c.sourceUrl, query: q || "(supplied)", coverage: rep.coverage, optimised: how, built_at: new Date().toISOString() });
       console.log(`[cutouts] ${spec.name}: OK from ${c.sourceApi} (${c.license}), ${m2.width}x${m2.height}, ${(statSync(file).size / 1024).toFixed(0)} KB (${how})`);
       made++; done = true; break;
     }
@@ -157,7 +173,7 @@ for (const spec of specs) {
     rmSync(file, { force: true });
     index = markMissing(index, spec.name, attempts.slice(-12));
     missing++;
-    console.warn(`[cutouts] ${spec.name}: MISSING after ${fromDir ? "the supplied photograph" : `${spec.queries.length} queries`}`);
+    console.warn(`[cutouts] ${spec.name}: MISSING after ${fromDir ? "the supplied photograph" : `${spec.queries.length * 2} searches`}`);
   }
   if (!dryRun) save();           // after every cutout: a timeout keeps the work done so far
 }

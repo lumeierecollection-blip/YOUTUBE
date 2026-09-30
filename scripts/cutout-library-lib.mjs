@@ -96,13 +96,17 @@ export function shortlist(cands, spec, opts = {}) {
     const j = judgeCandidate(c, spec, opts);
     if (j.ok) out.push({ c, rank: j.rank });
   }
-  out.sort((a, b) => a.rank - b.rank || (Number(b.c.width) || 0) - (Number(a.c.width) || 0));
+  // Vertical or square photographs isolate better than wide scenes: prefer height >= 0.8 x width, then keyword rank, then size.
+  const tall = (c) => (Number(c.width) && Number(c.height) ? (Number(c.height) / Number(c.width) >= 0.8 ? 0 : 1) : 0);
+  out.sort((a, b) => a.rank - b.rank || tall(a.c) - tall(b.c) || (Number(b.c.width) || 0) - (Number(a.c.width) || 0));
   return out.map((x) => x.c);
 }
 
 /** Which sources built the library, and which were unavailable (no API key) — read from the index, never hard-coded. */
-export function sourceNote() {
-  return "**Built from Wikimedia Commons and Openverse — no API keys required.**";
+export function sourceNote(index = {}) {
+  const used = [...new Set((index.cutouts || []).map((c) => c.source))].sort();
+  const cap = (x) => x[0].toUpperCase() + x.slice(1);
+  return `**Built from ${used.length ? used.map(cap).join(" and ") : "Pixabay and Unsplash"} (Pixabay primary, Unsplash secondary). Pexels was unavailable (new API keys paused); Wikimedia Commons and Openverse were not used.**`;
 }
 
 /** CREDITS.md from the index: name, source, licence, attribution, page, query. */
