@@ -28,6 +28,7 @@ import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { assignCanvasAnimations } from "./anim-plan.js";
 import { checkVisual, figureKey } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { luma } from "../src/skills/remotion-render/visual/backgrounds.js";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
@@ -382,13 +383,6 @@ function firstCueMidpoint(srtPath) {
   return (t(m[1], m[2], m[3], m[4]) + t(m[5], m[6], m[7], m[8])) / 2;
 }
 
-function channelBgMode(channelId) {
-  try {
-    const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-    return (data.channels || data).find((c) => String(c.id) === String(channelId))?.bg_mode || null;
-  } catch { return null; }
-}
-
 async function verifyRender(videoPath, audioPath, channelId) {
   const problems = [];
 
@@ -422,27 +416,50 @@ async function verifyRender(videoPath, audioPath, channelId) {
     if (bytes <= MIN_BEAT0_FRAME_BYTES) {
       problems.push(`beat-0 frame is ${(bytes / 1024).toFixed(1)} KB (must be > 15 KB) — near-empty frame`);
     }
-    // White ground, measured: a bg_mode "white" channel's beat-0 frame must
-    // have a top-left 100×100 crop averaging > 240. Channels 1, 9 and 44
-    // were configured white and rendered dark navy on every run
-    // (docs/AI-DECISION-AUDIT.md) — nothing measured it.
-    if (channelBgMode(channelId) === "white") {
-      // Threshold 222 (was 240): the film vignette (black at 0.08 at the
-      // corners, visual/full-canvas.jsx) darkens exactly this crop to ~229;
-      // the check exists to catch a DARK ground (docs/AI-DECISION-AUDIT.md),
-      // which reads far below either number.
-      try {
-        const raw = execFileSync("ffmpeg", ["-v", "error", "-i", framePath, "-vf", "crop=100:100:0:0", "-f", "rawvideo", "-pix_fmt", "gray", "-"]);
-        const mean = raw.reduce((a, b) => a + b, 0) / raw.length;
-        console.log(`[verify] white ground: top-left 100x100 mean ${mean.toFixed(1)} (must be > 222)`);
-        if (mean <= 222) problems.push(`bg_mode is "white" but the top-left 100x100 of beat 0 averages ${mean.toFixed(1)} (must be > 222)`);
-      } catch (e) {
-        problems.push(`could not measure the white ground: ${e.message}`);
-      }
-    }
   }
+  problems.push(...measureGround(videoPath));
 
   return { ok: problems.length === 0, problems };
+}
+
+// Gradient ground, measured. Replaces the bg_mode "white" check (beat 0's
+// top-left > 222), which forced a near-white ground and would fail a photo
+// or dark hook — owner's spec 2026-09-30: a per-channel gradient
+// (visual/backgrounds.js), never solid white. On the first beat that shows
+// the bare ground (the manifest's canvas.ground "gradient"), at 60% of it:
+// the top-left corner (the gradient's 0% end at 160deg) must read as the
+// first stop and the bottom-right corner as the last (±12 luma: the leaf
+// shadows and compression), and the two must differ by >= 3 — a flat ground
+// fails. It still catches the old failure (a dark ground on a light channel:
+// docs/AI-DECISION-AUDIT.md). Where this stops: two 80x80 corners of one
+// frame; a shadow moved into the bottom-right corner would only darken it,
+// which this cannot tell apart from the gradient.
+function measureGround(videoPath) {
+  const manifestPath = videoPath.replace(/\.mp4$/, "-manifest.json");
+  let man = null;
+  try { man = JSON.parse(readFileSync(manifestPath, "utf-8")); } catch { return []; }
+  if (!Array.isArray(man?.ground)) return [];                    // not a canvas render
+  const beat = (man.beats || []).find((b) => b.canvas?.ground === "gradient");
+  if (!beat) { console.log("[verify] ground: every beat is a photo or the dark variant — gradient not measured"); return []; }
+  const at = beat.start_sec + beat.duration_sec * 0.6;
+  const framePath = videoPath.replace(/\.mp4$/, "-ground.png");
+  try {
+    execFileSync("ffmpeg", ["-v", "error", "-y", "-ss", at.toFixed(3), "-i", videoPath, "-frames:v", "1", framePath]);
+    const corner = (x, y) => {
+      const raw = execFileSync("ffmpeg", ["-v", "error", "-i", framePath, "-vf", `crop=iw*80/1080:ih*80/1920:${x}:${y}`, "-f", "rawvideo", "-pix_fmt", "gray", "-"]);
+      return raw.reduce((a, b) => a + b, 0) / raw.length;
+    };
+    const tl = corner("0", "0"), br = corner("iw-iw*80/1080", "ih-ih*80/1920");
+    const e0 = luma(man.ground[0]), e1 = luma(man.ground[man.ground.length - 1]);
+    console.log(`[verify] gradient ground (beat ${beat.index} @${at.toFixed(2)}s): top-left ${tl.toFixed(1)} (stop ${man.ground[0]} = ${e0.toFixed(1)}), bottom-right ${br.toFixed(1)} (stop ${man.ground[man.ground.length - 1]} = ${e1.toFixed(1)})`);
+    const out = [];
+    if (Math.abs(tl - e0) > 12) out.push(`ground top-left reads ${tl.toFixed(1)}; the gradient's first stop is ${e0.toFixed(1)} (±12)`);
+    if (Math.abs(br - e1) > 12) out.push(`ground bottom-right reads ${br.toFixed(1)}; the gradient's last stop is ${e1.toFixed(1)} (±12)`);
+    if (tl - br < 3) out.push(`ground is flat: top-left ${tl.toFixed(1)} vs bottom-right ${br.toFixed(1)} (a gradient differs by >= 3)`);
+    return out;
+  } catch (e) {
+    return [`could not measure the gradient ground: ${e.message}`];
+  }
 }
 
 /* ── QA ──────────────────────────────────────────────────────────── */
@@ -851,6 +868,9 @@ function canvasContentFor(b, { photo = null } = {}) {
     // scripts/anim-plan.js checks it against the video (POP_HARD on the hook /
     // CTA only, POP_LETTER once, POP_WORD_STACK only where it fits).
     text_entrance: b.text_entrance || null,
+    // "dark": the planner's one dramatic hook / CTA beat on the channel's
+    // gradient at 15% lightness; canvas-style.js assignEdgeDark decides.
+    ground: b.ground === "dark" ? "dark" : null,
   };
   if (b.type_layout === "split") c.type_layout = "split";
   c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: c.type_layout === "split" && !!splitHeadline(c.headline) });

@@ -588,7 +588,10 @@ export function canvasManifest(raw, idx) {
     // index, the larger comparison value, the map's region, a document's callout band.
     accent_used: ["DATA-FULL", "PROCESS-FULL", "TIMELINE", "LIST-BUILD", "COMPARISON-SPLIT", "MAP-CENTERED", "DOCUMENT"].includes(L.composition)
       || ((L.composition === "NUMBER-FULL" || L.composition === "MONEY") && c.number_accent !== false && !!L.boxes.number),
-    variant: c.variant, flip: L.flip, dark: false,
+    variant: c.variant, flip: L.flip, dark: !!c.dark && !c.photo,
+    // What is behind the beat: the channel's gradient (backgrounds.js), its
+    // one dark hook / CTA variant, or a full-bleed photo covering it.
+    ground: c.photo ? "photo" : c.dark ? "dark" : "gradient",
     headline_text: shown("headline") || shown("statement") || null, emphasis_text: shown("emphasis"),
     // The headline's entrance: the words fly in on a major TYPE-FULL statement,
     // otherwise mask-reveal / slide-land / crop-open rotating on the beat index.

@@ -461,13 +461,17 @@ function canvasType(beats) {
   if (roleSets.length && two / roleSets.length < 0.6) bad.push(`only ${two}/${roleSets.length} beats show two type roles (need 60%)`);
   return { bad, two, n: roleSets.length };
 }
-// canvas-ground: the studio ground reads light on every beat (a bottom-left patch below the caption
-// band, where nothing but the ground lives). The grain / dark-beat checks are gone with those experiments.
+// canvas-ground: the studio ground (the channel's gradient, visual/backgrounds.js) reads light on every
+// beat (a bottom-left patch below the caption band, where nothing but the ground lives). The one dark
+// hook / CTA beat (canvas.dark) and photo beats are not measured; more than one dark beat fails.
 function canvasGround(video, beats) {
   const bad = [];
   const W = 540, H = 960;
+  const dark = beats.map((b, i) => (b.canvas?.dark ? i : -1)).filter((i) => i >= 0);
+  if (dark.length > 1) bad.push(`${dark.length} dark beats (${dark.join(", ")}); at most one, the hook or the CTA`);
+  dark.filter((i) => i !== 0 && i !== beats.length - 1).forEach((i) => bad.push(`beat ${i}: dark ground off the hook / CTA`));
   beats.forEach((b, i) => {
-    if (b.canvas?.photo) return;
+    if (b.canvas?.photo || b.canvas?.dark) return;
     const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * 0.7;
     const buf = rgbFrame(video, t, W, H);
     if (!buf) return;

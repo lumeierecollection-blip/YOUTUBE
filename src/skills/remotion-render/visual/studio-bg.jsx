@@ -1,7 +1,8 @@
 /**
- * Studio background — the reference's white studio with soft palm-frond
- * shadows (docs/REFERENCE-STYLE.md: measured darkest luminance 169 on the
- * right, 109 on the left; static).
+ * Studio background — the channel's soft gradient wall (backgrounds.js,
+ * owner's spec 2026-09-30; it replaced the forced off-white) with soft
+ * palm-frond shadows over it (docs/REFERENCE-STYLE.md: measured darkest
+ * luminance 169 on the right, 109 on the left).
  *
  * The shadows are drawn procedurally (an SVG frond — a curved stem with
  * leaflets — heavily blurred), not taken from a photo: they are lighting
@@ -10,6 +11,7 @@
 import React from "react";
 import { AbsoluteFill } from "remotion";
 import { FRAME as CANVAS, STUDIO as STUDIO_BG } from "./canvas-layout.js";
+import { gradientCss } from "./backgrounds.js";
 
 // One frond: leaflets along a quadratic stem from (0,0) toward (len,0),
 // curving by `bend`. Returns SVG path data for all leaflets.
@@ -30,13 +32,15 @@ function frondPath(len, bend, leaflets = 16) {
   return parts.join(" ");
 }
 
-// `color`: the ground (default the off-white studio, canvas-layout.js). `drift`: seconds of
-// slow shadow movement (full-canvas micro motion) — 0 keeps it static.
-export function StudioBG({ children, color = STUDIO_BG, drift = 0 }) {
+// `stops`: the channel's gradient ground (backgrounds.js) — a static 160deg
+// gradient, never animated; the shadows overlay it. `color`: a solid ground,
+// only when no stops are given. `drift`: seconds of slow SHADOW movement
+// (full-canvas micro motion) — 0 keeps it static; the gradient never moves.
+export function StudioBG({ children, color = STUDIO_BG, stops = null, drift = 0 }) {
   const { w, h } = CANVAS;
   const dx = Math.sin(drift * 0.21) * 26, dy = Math.cos(drift * 0.17) * 18;
   return (
-    <AbsoluteFill style={{ backgroundColor: color }}>
+    <AbsoluteFill style={stops ? { backgroundColor: stops[stops.length - 1], backgroundImage: gradientCss(stops) } : { backgroundColor: color }}>
       <svg width={w} height={h} style={{ position: "absolute", inset: 0, transform: `translate(${dx.toFixed(2)}px, ${dy.toFixed(2)}px)` }}>
         <defs>
           <filter id="frond-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="20" /></filter>
