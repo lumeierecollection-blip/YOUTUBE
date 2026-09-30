@@ -2189,9 +2189,14 @@
           "topic": "tesla-semi-factory-tour",
           "slug": "tesla-semi-factory-tour",
           "reserved_at": "2026-09-29T22:45:25.967Z"
+        },
+        {
+          "topic": "digital-twins-industrial-manufacturing",
+          "slug": "digital-twins-manufacturing",
+          "reserved_at": "2026-09-30T08:26:15.591Z"
         }
       ],
-      "last_generated": "2026-09-29T22:45:25.967Z"
+      "last_generated": "2026-09-30T08:26:15.591Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
