@@ -347,9 +347,14 @@
           "topic": "traffic-stop-scripts",
           "slug": "traffic-stop-scripts-now-2026-reviews",
           "reserved_at": "2026-09-30T08:26:48.418Z"
+        },
+        {
+          "topic": "new-california-law-bans-electric-shock-gloves-2026",
+          "slug": "electric-shock-gloves-ban-2026",
+          "reserved_at": "2026-09-30T22:18:35.433Z"
         }
       ],
-      "last_generated": "2026-09-30T08:26:48.418Z"
+      "last_generated": "2026-09-30T22:18:35.433Z"
     },
     "3": {
       "channel_name": "AI Tested",
