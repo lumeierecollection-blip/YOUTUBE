@@ -64,6 +64,7 @@
  * rendered; the audit checks boxes against the frame, and canvas-coverage
  * checks the rendered pixels.
  */
+import { markWords, fitWords, fitNumberBleed } from "./kinetic.js";
 import {
   ROLE_HEADLINE, ROLE_NUMBER, ROLE_DATA, ROLE_EMPHASIS, SERIF, SANS_STACK, HEADLINE_FLOOR,
   fitHeadline, fitNumber, numberParts, numberSlots, measure, fitEmphasis, capHeightEm,
@@ -196,18 +197,29 @@ function dataBox(text, { width = 560, size = 40, maxLines = 2, x, y, flip = 0, b
   const bx = x ?? anchorX(w, flip);
   return { ...box(bx, bottom != null ? bottom - h : y, w, h), size: f.size, lines: f.lines, align: flip ? "right" : "left", role: "data", upper: true, weight };
 }
-/** A ROLE_HEADLINE block, left- or right-anchored; top at `y`, or bottom at `bottom`. */
-function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines = 4, maxHeight = Infinity, max = ROLE_HEADLINE.sizeBand[1] } = {}) {
-  const f = fitHeadline(text, width, { maxLines, maxHeight, max });
-  if (!f.lines.length) return { ...box(anchorX(0, flip), bottom != null ? bottom : y, 0, 0), size: f.size, lines: [], align: flip ? "right" : "left", role: "headline", inBand: false };
-  const w = Math.min(width, Math.max(...f.lines.map((l) => measure(l, f.size, { family: ROLE_HEADLINE.family, weight: ROLE_HEADLINE.weight, tracking: ROLE_HEADLINE.tracking })))) + 4;
-  const h = f.lines.length * f.size * ROLE_HEADLINE.lineHeight;
-  return { ...box(anchorX(w, flip), bottom != null ? bottom - h : y, w, h), size: f.size, lines: f.lines, align: flip ? "right" : "left", role: "headline", inBand: f.inBand };
+// The planner's emphasis words for the canvas being laid out (set by canvasLayout).
+let MARKS = [];
+/**
+ * A ROLE_HEADLINE block, left- or right-anchored; top at `y`, or bottom at
+ * `bottom`. Kinetic: the text is a list of words, each with its own weight
+ * (mixed 500 / 700 within the phrase) and a colour role; the fit is done on
+ * that layout (bold words are wider), and the box carries `words` with their
+ * measured x / y / width.
+ */
+function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines = 4, maxHeight = Infinity, max = ROLE_HEADLINE.sizeBand[1], marks = MARKS } = {}) {
+  const align = flip ? "right" : "left";
+  const words = markWords(text, marks);
+  const f = fitWords(words, width, { maxLines, maxHeight, max, min: 88, align });
+  if (!f.lines.length) return { ...box(anchorX(0, flip), bottom != null ? bottom : y, 0, 0), size: f.size, lines: [], words: [], align, role: "headline", inBand: false };
+  const w = Math.min(width, Math.ceil(f.width) + 4);
+  const h = f.height;
+  const lines = f.lines.map((ln) => ln.map((i) => f.words[i].text).join(" "));
+  return { ...box(anchorX(w, flip), bottom != null ? bottom - h : y, w, h), size: f.size, lines, rows: f.lines, words: f.words, align, role: "headline", inBand: f.size >= ROLE_HEADLINE.sizeBand[0] };
 }
 const rule = (flip, y = TOP, w = 96) => ({ ...box(anchorX(w, flip), y, w, 6), role: "rule", anchor: flip ? "right" : "left" });
 
 /** Kicker (lead-in) + headline at the top of a data / process / object beat. */
-function dataHeader(c, flip, { maxSize = 128, maxHeight = 250 } = {}) {
+function dataHeader(c, flip, { maxSize = 168, maxHeight = 300 } = {}) {
   const out = {};
   let y = TOP;
   if (c.lead_in) {
@@ -248,6 +260,7 @@ export function splitHeadline(text) {
  * element a camera push or a match cut targets.
  */
 export function canvasLayout(c) {
+  MARKS = Array.isArray(c?.emphasis_words) ? c.emphasis_words : c?.emphasis_word ? [c.emphasis_word] : [];
   const comp = c?.composition || compositionFor(c?.visual_type, !!c?.photo);
   const vt = String(c?.visual_type || "TYPE").toUpperCase();
   const flip = (Number(c?.variant) || 0) % 2 === 1 ? 1 : 0;
@@ -267,25 +280,30 @@ export function canvasLayout(c) {
       hero = "statement";
     } else if (vt === "COUNTER" && c?.data?.value) {
       const parts = numberParts(c.data.value);
-      const { size } = fitNumber(parts, R_EDGE - L_EDGE);
-      const slots = numberSlots(parts, size);
-      const nw = Math.min(R_EDGE - L_EDGE, Math.ceil(slots.width));
+      // Kinetic scale: as large as the frame allows. The digits are never
+      // cropped (a cropped digit misstates the figure); the trailing unit
+      // ("%", "M", "B") may run off the frame edge by up to half its width.
+      const roomH = BOTTOM - (c.headline ? TOP + 440 : TOP + 40) - 120;      // headline above, label between
+      const fit = fitNumberBleed((s) => numberSlots(parts, s), R_EDGE - L_EDGE, { max: Math.min(1100, Math.floor(roomH / ROLE_NUMBER.lineHeight)), min: 120 });
+      const size = fit.size;
+      const nw = Math.ceil(fit.width);
       const nh = Math.round(size * ROLE_NUMBER.lineHeight);
       // The scale word once ("$127 million" + label "million Ponzi scheme").
       const lab = String(c.data.label || "").trim();
       const label = parts.scaleWord && lab.toLowerCase().startsWith(parts.scaleWord) ? lab : [parts.scaleWord, lab].filter(Boolean).join(" ");
-      const nx = anchorX(nw, flip);
+      const nx = Math.max(L_EDGE, anchorX(nw, flip));
+      const bleed = Math.max(0, nx + nw - R_EDGE);      // wider than the frame: digits start at the left margin, the unit bleeds off the right
       if (!flip || !c.headline) {
         // headline top (or a hairline rule when there is none), the hero
         // number bottom, its label just above it
         if (c.headline) boxes.headline = headlineBox(c.headline, { width: 900, y: TOP, flip, maxLines: 3, maxHeight: 380, max: 200 });
         else boxes.rule = rule(flip, TOP);
-        boxes.number = { ...box(nx, BOTTOM - nh, nw, nh), size, parts, align: flip ? "right" : "left", role: "number", flip };
+        boxes.number = { ...box(nx, BOTTOM - nh, nw, nh), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
         if (label) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, x: nx, bottom: boxes.number.y - 28, flip });
       } else {
         // the hero number top, right-anchored; its label under it; the headline bottom-left
         boxes.rule = rule(0, TOP);
-        boxes.number = { ...box(nx, TOP + 60, nw, nh), size, parts, align: "right", role: "number", flip };
+        boxes.number = { ...box(nx, TOP + 60, nw, nh), size, parts, align: "right", role: "number", flip, bleed };
         if (label) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, y: boxes.number.y + nh + 28, flip });
         if (c.headline) boxes.headline = headlineBox(c.headline, { width: 900, bottom: BOTTOM, flip: 0, maxLines: 3, maxHeight: 420, max: 200 });
       }
@@ -322,7 +340,7 @@ export function canvasLayout(c) {
           boxes.kicker = dataBox(c.lead_in || folio, { width: 640, size: 34, maxLines: 1, y: TOP + 30, flip: flip ? 0 : 1 });
           topLimit = boxes.kicker.y + boxes.kicker.h + 60;
         }
-        boxes.statement = headlineBox(text, { width: 984, bottom: BOTTOM, flip, maxLines: 5, maxHeight: BOTTOM - topLimit, max: 260 });
+        boxes.statement = headlineBox(text, { width: 984, bottom: BOTTOM, flip, maxLines: 5, maxHeight: Math.min(1100, BOTTOM - topLimit), max: 360 });
         hero = "statement";
       }
     }
@@ -558,7 +576,7 @@ export function canvasManifest(raw, idx) {
   const c = normalizeCanvas(raw, idx);
   const L = canvasLayout(c);
   const flat = {};
-  const meta = (n) => ({ x: n.x, y: n.y, w: n.w, h: n.h, role: n.role || null, align: n.align || null, rotate: n.rotate || null });
+  const meta = (n) => ({ x: n.x, y: n.y, w: n.w, h: n.h, role: n.role || null, align: n.align || null, rotate: n.rotate || null, size: n.size || null, bleed: n.bleed || 0, parts: n.parts ? { isQuantity: !!n.parts.isQuantity, text: n.parts.text } : undefined });
   for (const [k, v] of flattenBoxes(L.boxes)) flat[k] = meta(v);
   const shown = (k) => (L.boxes[k]?.lines ? L.boxes[k].lines.join(" ") : L.boxes[k]?.text || null);
   return {
@@ -576,6 +594,8 @@ export function canvasManifest(raw, idx) {
     // otherwise mask-reveal / slide-land / crop-open rotating on the beat index.
     // Fix 2: c.anim (visual/animation-plan.js) names the animation of every element.
     animations: c.anim || null,
+    kinetic: c.kinetic || null,
+    words: Object.fromEntries(Object.entries(L.boxes).filter(([, b]) => b?.lines?.length).map(([k, b]) => [k, b.words ? b.words.map((w) => ({ t: w.text, weight: w.weight, accent: !!w.accent, emph: !!w.emph })) : b.lines.join(" ").split(" ").filter(Boolean).map((t) => ({ t }))])),
     headline_motion: c.anim?.headline ? c.anim.headline : (c.motion_tier === "major" && L.composition === "TYPE-FULL" && L.boxes.statement && !L.boxes.statement.rotate) ? "words"
       : L.boxes.headline || L.boxes.statement ? ROLE_HEADLINE.motions[((idx % 3) + 3) % 3] : null,
     vertical: !!c.vertical,

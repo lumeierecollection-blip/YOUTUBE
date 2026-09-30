@@ -53,6 +53,8 @@
 import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, Easing } from "remotion";
 import { StudioBG } from "./studio-bg.jsx";
+import { KineticText } from "./kinetic.jsx";
+import { scaleImpact as kScaleImpact, countProgress } from "./kinetic.js";
 import { parseQuantity, rollQuantity } from "./primitives/quantity.js";
 import { PaperMap, CenteredMap } from "./primitives/map.jsx";
 import {
@@ -89,92 +91,6 @@ function styleOf(e, origin) {
   return { opacity: e.o, transform: t.join(" ") || "none", filter: e.blur > 0.2 ? `blur(${e.blur.toFixed(1)}px)` : "none", transformOrigin: origin };
 }
 
-/**
- * Text lines under the animation `id` (animations.js). `common` is the text
- * style, `lh` the line height, `at` the start (s). Once every unit has landed
- * the plain lines are returned, so the settled frame is the same text node it
- * always was (no per-letter boxes, no lost kerning).
- */
-function AnimLines({ id, lines, local, fps, at, lh, common, align, color, size }) {
-  const ts = (local - at * fps) / fps;
-  const side = align === "right" ? -1 : 1;
-  const origin = align === "right" ? "right center" : "left center";
-  const unit = unitOf(id);
-  const dur = animationById(id)?.dur ?? 0.5;
-  const nUnits = unit === "letter" ? lines.join("").length : unit === "word" ? lines.join(" ").split(" ").length : lines.length;
-  const total = entranceSeconds(id, Math.max(1, nUnits)) + (id === "TYPE_IN" ? 0.25 : 0);
-  const plain = lines.map((l, i) => <div key={i} style={{ height: lh, ...common, textAlign: align }}>{l}</div>);
-  if (ts >= total + 0.02) return plain;
-  const P = (t, d) => (d > 0 ? t / d : t >= 0 ? 1 : 0);
-  if (id === "LETTER_STAGGER" || id === "TYPE_IN") {
-    let ci = 0;
-    const typed = id === "TYPE_IN" ? Math.floor(Math.max(0, ts) / STAGGER.TYPE_IN) : 0;
-    return lines.map((l, i) => (
-      <div key={i} style={{ height: lh, ...common, textAlign: align }}>
-        {[...l].map((ch, k) => {
-          const idx = ci++;
-          if (ch === " ") return " ";
-          if (id === "TYPE_IN") {
-            const caret = idx === typed - 1 && ts < total ? (
-              <span style={{ position: "relative", display: "inline-block", width: 0 }}><span style={{ position: "absolute", left: 4, top: lh * 0.14, height: lh * 0.7, width: Math.max(4, size * 0.05), backgroundColor: color }} /></span>
-            ) : null;
-            return <React.Fragment key={k}><span style={{ display: "inline-block", opacity: idx < typed ? 1 : 0 }}>{ch}</span>{caret}</React.Fragment>;
-          }
-          return <span key={k} style={{ display: "inline-block", ...styleOf(entrance("FADE_LIFT", P(ts - idx * STAGGER.LETTER_STAGGER, 0.3), { side }), "50% 80%") }}>{ch}</span>;
-        })}
-      </div>
-    ));
-  }
-  if (id === "WORD_STAGGER") {
-    let wi = 0;
-    return lines.map((l, i) => {
-      const ws = l.split(" ");
-      return (
-        <div key={i} style={{ height: lh, ...common, textAlign: align }}>
-          {ws.map((w, k) => {
-            const idx = wi++;
-            return <React.Fragment key={k}><span style={{ display: "inline-block", ...styleOf(entrance("FADE_LIFT", P(ts - idx * STAGGER.WORD_STAGGER, dur), { side }), "50% 80%") }}>{w}</span>{k < ws.length - 1 ? " " : ""}</React.Fragment>;
-          })}
-        </div>
-      );
-    });
-  }
-  if (id === "RISE_FROM_BASE") {
-    return lines.map((l, i) => {
-      const e = entrance(id, P(ts - i * 0.07, dur), { side });
-      return <div key={i} style={{ height: lh, overflow: "hidden", ...common, textAlign: align }}><div style={{ transform: `translateY(${((e.rise ?? 0) * lh).toFixed(1)}px)` }}>{l}</div></div>;
-    });
-  }
-  if (id === "SPLIT_REVEAL") {
-    return lines.map((l, i) => {
-      const e = entrance("SLIDE_FROM_L", P(ts - i * 0.07, dur), { side });
-      const k = Math.max(0, -e.dx / 180);                          // 0 at rest, 1 at the start
-      const half = (clip, dir) => <div style={{ position: "absolute", left: 0, top: 0, width: "100%", height: lh, ...common, textAlign: align, clipPath: clip, opacity: clamp01(1 - k * 1.1), transform: `translateX(${(dir * 320 * k).toFixed(1)}px)` }}>{l}</div>;
-      return <div key={i} style={{ position: "relative", height: lh }}>{half("inset(0 0 50% 0)", -1)}{half("inset(50% 0 0 0)", 1)}</div>;
-    });
-  }
-  // Every other entrance is a state of the whole line: the lines follow each other 50 ms apart.
-  return lines.map((l, i) => (
-    <div key={i} style={{ height: lh, ...common, textAlign: align, ...styleOf(entrance(id, P(ts - i * 0.05, dur), { side }), origin) }}>{l}</div>
-  ));
-}
-
-/** A supporting element's exit (animations.js EXITS) over the last ~0.35 s of the beat: wraps `children`, positioned in frame px. */
-function ExitWrap({ name, b, local, fps, children }) {
-  const A = useAnim();
-  const ex = A?.exit;
-  if (!ex || ex.element !== name || !A.dur || !b) return children;
-  const d = animationById(ex.id)?.dur ?? 0.3;
-  const start = A.dur / fps - d - 0.08;
-  const t = local / fps - start;
-  const p = d > 0 ? t / d : t >= 0 ? 1 : 0;
-  if (p <= 0) return children;
-  const e = exitState(ex.id, p, { side: b.align === "right" ? -1 : 1 });
-  const cx = b.x + b.w / 2, cy = b.y + b.h / 2;
-  const clip = e.rx < 1 ? (b.align === "right" ? `inset(0 0 0 ${(b.x + b.w * (1 - e.rx)).toFixed(1)}px)` : `inset(0 ${(FRAME.w - (b.x + b.w * e.rx)).toFixed(1)}px 0 0)`) : "none";
-  return <div style={{ position: "absolute", inset: 0, ...styleOf(e, `${cx}px ${cy}px`), clipPath: clip }}>{children}</div>;
-}
-
 // ── motion helpers ────────────────────────────────────────────────────
 function useMotion(c, local, dur, fps) {
   const tier = c.motion_tier || "medium";
@@ -185,122 +101,63 @@ function useMotion(c, local, dur, fps) {
   return { tier, s, build, breathe, jitter, fps, dur, local };
 }
 
-// Choreography: the headline lands first (0-0.5 s), the number counts from
-// 0.5 s, its label fades at 1.1-1.35 s. With no headline the number starts
-// at 0.15 s; with no number a label follows the headline at 0.5 s.
-function timeline(c, B) {
-  const hasHead = !!(B.headline || B.statement || B.emphasis);
-  const numberAt = hasHead ? 0.5 : 0.15;
-  return { headlineAt: 0, numberAt, labelAt: B.number ? numberAt + 0.6 : hasHead ? 0.5 : 0.15 };
+// Choreography, in fractions of the beat: a number enters first (0-0.4, counted
+// / impacted / rolled over that window); its label types on word by word
+// (0.4-0.5); the headline follows (0.5-0.85). With no number the headline
+// takes 0-0.4 and the kicker / label types on 0.4-0.6. Never stacked, never
+// simultaneous.
+function timeline(c, B, dur, fps) {
+  const sec = (f) => (f * dur) / fps;
+  const hasNum = !!B.number;
+  return { headlineAt: hasNum ? sec(0.5) : 0, numberAt: 0, labelAt: sec(0.4), splitAt: sec(0.3) };
 }
 
 // ── the four roles ────────────────────────────────────────────────────
 const HEADLINE_MOTIONS = ROLE_HEADLINE.motions;
 export const headlineMotionFor = (idx) => HEADLINE_MOTIONS[((idx % 3) + 3) % 3];
 
-/** ROLE_HEADLINE: Fraunces, sentence case, left/right anchored. */
-function Headline({ b, color, local, fps, m, idx, at = 0, motion, shadow = false, halo = null, major = false, hero = false }) {
+/**
+ * ROLE_HEADLINE, kinetic: every word its own event (kinetic.jsx). Mixed
+ * weight and colour per word; each word enters on its own frame with its own
+ * entrance, the emphasis word grows, the phrase resolves by 40% of the beat,
+ * holds, and exits word by word. `at` (s) is when the phrase starts.
+ */
+function Headline({ b, color, local, fps, m, idx, at = 0, shadow = false, halo = null, major = false, hero = false, accent = null }) {
   const A = useAnim();
   if (!b || !b.lines?.length) return null;
-  const aid = A?.headline || null;
-  const kind = aid ? (aid === "WORD_FLY" ? "words" : aid === "MASK_SWEEP" ? "mask-reveal" : aid === "CROP_OPEN" ? "crop-open" : aid === "SLIDE_LAND" ? "slide-land" : "anim")
-    : major ? "words" : motion || headlineMotionFor(idx);
-  const t0 = local - at * fps;
-  const right = b.align === "right";
-  const lh = b.size * ROLE_HEADLINE.lineHeight;
-  const font = roleFont(ROLE_HEADLINE, b.size);
-  const n = b.lines.length;
-  const lineW = (l) => measure(l, b.size, { family: ROLE_HEADLINE.family, weight: ROLE_HEADLINE.weight, tracking: ROLE_HEADLINE.tracking });
-  const common = { font, lineHeight: `${lh}px`, letterSpacing: roleTracking(ROLE_HEADLINE, b.size), color, whiteSpace: "nowrap",
-    textShadow: shadow ? "0 4px 28px rgba(0,0,0,0.55)" : halo ? `0 0 22px ${halo}, 0 0 9px ${halo}, 0 0 3px ${halo}` : "none", fontOpticalSizing: "auto" };
-  let content;
-  if (kind === "mask-reveal") {
-    // A shape sweeps across each line, revealing it: the text shows behind a
-    // travelling edge, and an ink bar trails that edge and closes up.
-    content = b.lines.map((l, i) => {
-      const t = easeInOut(clamp01((t0 - i * 0.07 * fps) / (0.5 * fps)));
-      const w = lineW(l);
-      const edge = t * w;
-      const bar = Math.max(0, (1 - t) * 0.22 * w);
-      const from = right ? w - edge : 0;
-      return (
-        <div key={i} style={{ position: "relative", height: lh, ...common, textAlign: b.align }}>
-          <span style={{ display: "inline-block", clipPath: right ? `inset(0 0 0 ${(100 * (1 - t)).toFixed(2)}%)` : `inset(0 ${(100 * (1 - t)).toFixed(2)}% 0 0)` }}>{l}</span>
-          {t > 0 && t < 1 ? <span style={{ position: "absolute", top: lh * 0.12, height: lh * 0.76, width: bar, backgroundColor: color,
-            [right ? "right" : "left"]: right ? Math.max(0, edge - bar) : Math.max(0, edge - bar) }} /> : null}
-        </div>
-      );
-    });
-  } else if (kind === "crop-open") {
-    // Starts cropped to one line, expands to reveal the whole phrase.
-    const t = easeInOut(clamp01(t0 / (0.6 * fps)));
-    if (n > 1) {
-      const shown = 1 + (n - 1) * t;
-      content = (
-        <div style={{ ...common, textAlign: b.align, clipPath: `inset(0 0 ${(100 * (1 - shown / n)).toFixed(2)}% 0)` }}>
-          {b.lines.map((l, i) => <div key={i} style={{ height: lh }}>{l}</div>)}
-        </div>
-      );
-    } else {
-      content = <div style={{ ...common, textAlign: b.align, clipPath: right ? `inset(0 0 0 ${(100 * (1 - t)).toFixed(2)}%)` : `inset(0 ${(100 * (1 - t)).toFixed(2)}% 0 0)` }}>{b.lines[0]}</div>;
-    }
-  } else if (kind === "words") {
-    // Major: the words fly in from scattered positions and reform.
-    let wi = 0;
-    content = b.lines.map((l, li) => (
-      <div key={li} style={{ height: lh, ...common, textAlign: b.align }}>
-        {l.split(" ").map((w, k) => {
-          const i = wi++;
-          const a = easeOut(clamp01((t0 - m.s(0.12) - i * m.s(0.16)) / m.s(0.45)));
-          const sx = Math.sin(i * 2.3) * 520 * (1 - a), sy = Math.cos(i * 1.7) * 700 * (1 - a), rot = (1 - a) * (i % 2 ? 24 : -18);
-          return <span key={k} style={{ display: "inline-block", marginRight: b.size * 0.22, opacity: a, transform: `translate(${sx.toFixed(1)}px, ${sy.toFixed(1)}px) rotate(${rot.toFixed(2)}deg)` }}>{w}</span>;
-        })}
-      </div>
-    ));
-  } else if (kind === "anim") {
-    content = <AnimLines id={aid} lines={b.lines} local={local} fps={fps} at={at} lh={lh} common={common} align={b.align} color={color} size={b.size} />;
-  } else {
-    // slide-land: slides in from 60 px off and settles.
-    content = b.lines.map((l, i) => {
-      const t = easeOut(clamp01((t0 - i * 0.06 * fps) / (0.45 * fps)));
-      const dx = (right ? 60 : -60) * (1 - t);
-      return <div key={i} style={{ height: lh, ...common, textAlign: b.align, transform: `translateX(${dx.toFixed(1)}px)` }}>{l}</div>;
-    });
-  }
+  const dur = A?.dur || m.dur || 90;
+  const start = at * fps, startFrac = start / dur;
+  const role = hero ? "statement" : "headline";
+  const resolveBy = Math.min(0.8, startFrac + 0.4);
+  // A header stays with its chart / list / photo until the cut; only a hero statement exits word by word.
   const box = (
-    <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, transform: `scale(${m.breathe.toFixed(4)})`, transformOrigin: right ? "right center" : "left center" }}>{content}</div>
+    <KineticText b={b} color={color} accent={accent || A?.accent || color} local={local} dur={dur} start={start} resolveBy={resolveBy} exitAt={hero ? Math.min(0.92, Math.max(0.7, resolveBy + 0.1)) : 9}
+      mode={A?.kinetic?.cross && hero ? "cross" : null} entrances={A?.kinetic?.entrances?.[role]} font={SERIF} lineHeight={b.size * ROLE_HEADLINE.lineHeight} tracking={roleTracking(ROLE_HEADLINE, b.size)}
+      seed={String(A?.kinetic?.seed || "")} beat={idx} />
   );
   return hero ? <HeroEl name="statement" b={b}>{box}</HeroEl> : box;
 }
 
-/** ROLE_DATA: Inter, uppercase label — fades in to 60% (0.25 s), settles to 100% (0.15 s), moves <= 4 px. */
-function DataLabel({ b, color, local, fps, at = 0.5, shadow = false, name = null }) {
+/**
+ * ROLE_DATA: Inter, uppercase label, typed on word by word (kinetic.jsx) from
+ * `at` seconds; the label window is 20% of the beat, so it never overlaps the
+ * number (0-0.4) it labels.
+ */
+function DataLabel({ b, color, local, fps, at = 0.5, shadow = false, name = null, accent = null }) {
   const A = useAnim();
   if (!b || !b.lines?.length) return null;
-  const aid = name ? A?.[name] : null;
-  if (aid) {
-    const common = { font: roleFont(ROLE_DATA, b.size, b.weight || ROLE_DATA.weight), letterSpacing: roleTracking(ROLE_DATA, b.size), color, whiteSpace: "nowrap", textTransform: b.upper ? "uppercase" : "none",
-      textShadow: shadow ? "0 3px 16px rgba(0,0,0,0.6)" : "none" };
-    const lh = b.size * ROLE_DATA.lineHeight;
-    return (
-      <ExitWrap name={name} b={b} local={local} fps={fps}>
-        <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, textAlign: b.align }}>
-          <AnimLines id={aid} lines={b.lines} local={local} fps={fps} at={at} lh={lh} common={common} align={b.align} color={color} size={b.size} />
-        </div>
-      </ExitWrap>
-    );
-  }
-  const t = local - at * fps;
-  const a = t <= 0 ? 0 : t < 0.25 * fps ? 0.6 * easeOut(t / (0.25 * fps)) : 0.6 + 0.4 * easeOut(clamp01((t - 0.25 * fps) / (0.15 * fps)));
-  const dy = 4 * (1 - easeOut(clamp01(t / (0.4 * fps))));
+  const dur = A?.dur || 90;
+  const start = at * fps, startFrac = start / dur;
+  const role = name === "kicker" ? "kicker" : "label";
   return (
-    <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, textAlign: b.align, font: roleFont(ROLE_DATA, b.size, b.weight || ROLE_DATA.weight),
-      lineHeight: ROLE_DATA.lineHeight, letterSpacing: roleTracking(ROLE_DATA, b.size), color, opacity: a, transform: `translateY(${dy.toFixed(2)}px)`,
-      textTransform: b.upper ? "uppercase" : "none", textShadow: shadow ? "0 3px 16px rgba(0,0,0,0.6)" : "none" }}>
-      {b.lines.map((l, i) => <div key={i} style={{ whiteSpace: "nowrap" }}>{l}</div>)}
+    <div style={{ textShadow: shadow ? "0 3px 16px rgba(0,0,0,0.6)" : "none" }}>
+      <KineticText b={{ ...b, x: b.x, w: b.w, h: b.h || b.size * ROLE_DATA.lineHeight * b.lines.length }} color={color} accent={accent || A?.accent || color} local={local} dur={dur} start={start}
+        resolveBy={Math.min(0.85, startFrac + 0.2)} exitAt={name ? Math.min(0.94, Math.max(0.7, startFrac + 0.3)) : 9} entrances={A?.kinetic?.entrances?.[role]} upper={!!b.upper}
+        font={SANS_STACK} lineHeight={b.size * ROLE_DATA.lineHeight} tracking={roleTracking(ROLE_DATA, b.size)} baseWeight={b.weight || ROLE_DATA.weight} beat={idx0(A)} seed={String(A?.kinetic?.seed || "")} />
     </div>
   );
 }
+const idx0 = (A) => A?.beat ?? 0;
 
 // The rolled numeric string of a quantity at fraction t: digits and its own
 // separators, worded as the narration says it.
@@ -329,7 +186,7 @@ function NumberHero({ b, q, t, local, fps, at, color, m, hero = true, settled = 
   const fixed = nid === "FLIP_CARD" || nid === "SNAP_IN" || nid === "SCALE_IMPACT";
   const snap = !b.parts.isQuantity || !q || fixed;
   const roll = nid === "ROLL_DIGIT";
-  const dA = nid ? animationById(nid)?.dur ?? 0.5 : 0.15;
+  const dA = nid === "ROLL_DIGIT" ? Math.max(0.3, (0.4 * (A?.dur || 90)) / fps) : nid === "SCALE_IMPACT" ? 0.5 : nid ? animationById(nid)?.dur ?? 0.5 : 0.15;
   const snapT = easeOut(clamp01((local - at * fps) / (0.15 * fps)));
   const started = local >= at * fps;
   if (!started) return null;
@@ -377,7 +234,7 @@ function NumberHero({ b, q, t, local, fps, at, color, m, hero = true, settled = 
   });
   const osc = (t >= 1 || snap) && settled ? m.jitter() : 0;           // micro: position only, never the value
   // FLIP_CARD / SNAP_IN / SCALE_IMPACT: the figure itself moves (never its value).
-  const ns = fixed ? numberState(nid, secIn / Math.max(0.01, dA)) : null;
+  const ns = fixed ? (nid === "SCALE_IMPACT" ? { o: 1, rotX: 0, dx: 0, dy: 0, blur: 0, s: kScaleImpact(secIn / dA) } : numberState(nid, secIn / Math.max(0.01, dA))) : null;
   const sc = ns ? ns.s : snap ? lerp(0.92, 1, snapT) : m.tier === "major" ? lerp(0.6, 1, easeOut(clamp01((local - at * fps) / (0.5 * fps)))) : 1;
   const wrap = (
     <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h,
@@ -426,12 +283,12 @@ function HeaderBlock({ B, th, local, fps, m, idx, tl, halo = null }) {
 function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const m = useMotion(c, local, dur, fps);
   const th = useTheme();
-  const B = L.boxes, tl = timeline(c, B);
+  const B = L.boxes, tl = timeline(c, B, dur, fps);
   const major = m.tier === "major";
   if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
   if (B.number) {
     const q = parseQuantity(c.data?.value);
-    const count = easeOut(clamp01((local - tl.numberAt * fps) / Math.max(1, dur * 0.6)));
+    const count = countProgress(local, dur, tl.numberAt * fps);
     const numColor = c.number_accent === false ? th.ink : accent;
     return (
       <>
@@ -455,7 +312,7 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     );
   }
   // TYPE-SPLIT: the second half lands 0.5 s after the first (the header's headline).
-  return <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={B.headline ? 0.5 : tl.headlineAt} major={major} hero />;
+  return <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={B.headline ? tl.splitAt : tl.headlineAt} major={major} hero accent={accent} />;
 }
 
 // ── DATA-FULL ─────────────────────────────────────────────────────────
@@ -466,12 +323,12 @@ const dataFont = (size, w = 600) => `${w} ${size}px ${SANS_STACK}`;
 function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const m = useMotion(c, local, dur, fps);
   const th = useTheme();
-  const B = L.boxes, vt = String(c.visual_type).toUpperCase(), d = c.data || {}, tl = timeline(c, B);
+  const B = L.boxes, vt = String(c.visual_type).toUpperCase(), d = c.data || {}, tl = timeline(c, B, dur, fps);
   if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
   let chart = null;
   const ch = B.chart;
   // The percentage the donut / gauge shows counts with its arc: 60% of the beat, ease-out.
-  const count = easeOut(clamp01((local - tl.numberAt * fps) / Math.max(1, dur * 0.6)));
+  const count = countProgress(local, dur, tl.numberAt * fps);
   // The chart's animation (animations.js): BAR_GROW / PIE_SWEEP / LINE_DRAW are the pre-rebuild motions, drawn by the original code below; the others by
   // barState / pieState / lineState. tb = the chart's own build progress 0..1 (micro beats build faster).
   const A = useAnim();
@@ -554,7 +411,7 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     chart = (
       <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }} opacity={st.o}>
         <g transform={`translate(0 ${st.dy.toFixed(1)}) rotate(${st.rot.toFixed(2)} ${cx} ${cy}) translate(${cx} ${cy}) scale(${st.ringScale.toFixed(4)}) translate(${-cx} ${-cy})`}>
-          <circle cx={cx} cy={cy} r={rr} fill="none" stroke={th.track} strokeWidth={sw} />
+          <circle cx={cx} cy={cy} r={rr} fill="none" stroke={th.mid} strokeWidth={sw} />
           <circle cx={cx} cy={cy} r={rr} fill="none" stroke={accent} strokeWidth={sw} strokeDasharray={`${(C * pct / 100) * st.arc} ${C}`} transform={`translate(${(Math.cos(mid) * st.explode).toFixed(1)} ${(Math.sin(mid) * st.explode).toFixed(1)}) rotate(-90 ${cx} ${cy})`} />
         </g>
       </svg>
@@ -568,7 +425,7 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     chart = (
       <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }} opacity={st.o}>
         <g transform={`translate(0 ${st.dy.toFixed(1)}) translate(${cx} ${cy}) scale(${st.ringScale.toFixed(4)}) translate(${-cx} ${-cy})`}>
-          <path d={`M ${cx - rr} ${cy} A ${rr} ${rr} 0 0 1 ${cx + rr} ${cy}`} fill="none" stroke={th.track} strokeWidth={sw} />
+          <path d={`M ${cx - rr} ${cy} A ${rr} ${rr} 0 0 1 ${cx + rr} ${cy}`} fill="none" stroke={th.mid} strokeWidth={sw} />
           <path d={`M ${cx - rr} ${cy} A ${rr} ${rr} 0 0 1 ${ex.toFixed(2)} ${ey.toFixed(2)}`} fill="none" stroke={accent} strokeWidth={sw} />
           <line x1={cx} y1={cy} x2={ex} y2={ey} stroke={th.ink} strokeWidth={10} strokeLinecap="round" />
           <circle cx={cx} cy={cy} r={22} fill={th.ink} />
@@ -627,7 +484,7 @@ const onAccent = (hex) => {
 function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const m = useMotion(c, local, dur, fps);
   const th = useTheme();
-  const B = L.boxes, tl = timeline(c, B);
+  const B = L.boxes, tl = timeline(c, B, dur, fps);
   if (c.photo) {
     const comp = L.composition;
     const push = m.tier === "micro" ? 0.02 : 0.035;
@@ -687,7 +544,7 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
 function ProcessFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const m = useMotion(c, local, dur, fps);
   const th = useTheme();
-  const B = L.boxes, nodes = B.nodes || [], tl = timeline(c, B);
+  const B = L.boxes, nodes = B.nodes || [], tl = timeline(c, B, dur, fps);
   const nodeT = (i) => m.build(0.18, m.s(0.15) + i * dur * 0.26);
   const arrowT = (i) => m.build(0.2, m.s(0.3) + i * dur * 0.26);
   const center = (n) => [n.x + n.w / 2, n.y + n.h / 2];
@@ -745,7 +602,7 @@ function ProcessFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
 function MapCentered({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const m = useMotion(c, local, dur, fps);
   const th = useTheme();
-  const B = L.boxes, tl = timeline(c, B);
+  const B = L.boxes, tl = timeline(c, B, dur, fps);
   // The header floats over the map's linework: a ground-coloured halo lifts it off.
   if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} halo={th.dark ? DARK_BG : STUDIO} />;
   return (
@@ -777,7 +634,7 @@ function appearTimes(firstWords, spoken, dur, fps) {
 function ListBuild({ c, L, local, dur, fps, accent, idx, spoken, part = "body" }) {
   const m = useMotion(c, local, dur, fps);
   const th = useTheme();
-  const B = L.boxes, tl = timeline(c, B);
+  const B = L.boxes, tl = timeline(c, B, dur, fps);
   if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
   const items = B.items || [];
   const times = appearTimes(items.map((it) => String(it.label).split(/\s+/)[0]), spoken, dur, fps);
@@ -810,7 +667,7 @@ const BOTTOM_EDGE = 1400;
 function Timeline({ c, L, local, dur, fps, accent, idx, spoken, part = "body" }) {
   const m = useMotion(c, local, dur, fps);
   const th = useTheme();
-  const B = L.boxes, tl = timeline(c, B);
+  const B = L.boxes, tl = timeline(c, B, dur, fps);
   if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
   const mk = B.markers || [];
   const times = appearTimes(mk.map(() => ""), spoken, dur, fps);
@@ -846,12 +703,12 @@ function Timeline({ c, L, local, dur, fps, accent, idx, spoken, part = "body" })
 function ComparisonSplit({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const m = useMotion(c, local, dur, fps);
   const th = useTheme();
-  const B = L.boxes, tl = timeline(c, B), d = c.data || {};
+  const B = L.boxes, tl = timeline(c, B, dur, fps), d = c.data || {};
   if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
   const qa = parseQuantity(d.a?.value), qb = parseQuantity(d.b?.value);
   const bigger = d.relation === "from-to" || !qa || !qb || qb.magnitude >= qa.magnitude ? "b" : "a";
   const wipe = easeInOut(clamp01(local / (0.5 * fps)));
-  const count = (delay) => easeOut(clamp01((local - (tl.numberAt + delay) * fps) / Math.max(1, dur * 0.6)));
+  const count = (delay) => countProgress(local, dur, (tl.numberAt + delay) * fps);
   const sp = B.split;
   const darkAccent = liftAccent(accent);
   return (
@@ -960,7 +817,7 @@ function BeatCanvas({ beat, idx, local, fps, accent, hero, bodyOnly = false }) {
   const zoom = (c.motion_tier || "medium") === "major" ? majorZoom(L) : null;
   return (
     <Theme.Provider value={theme}>
-      <Anim.Provider value={c.anim ? { ...c.anim, dur } : null}>
+      <Anim.Provider value={{ ...(c.anim || {}), dur, accent, kinetic: c.kinetic || null, beat: idx }}>
       <Hero.Provider value={hero}>
         {c.dark && !c.photo ? <div style={{ position: "absolute", inset: 0, backgroundColor: "#0E0E0E" }} /> : null}
         {/* The camera moves through the information (the body); the header —

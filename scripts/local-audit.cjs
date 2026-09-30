@@ -334,7 +334,7 @@ function canvasFit(beats) {
     if (!boxes) { bad.push(`beat ${i}: no canvas boxes in the manifest`); return; }
     for (const [k, v] of Object.entries(boxes)) {
       if (BLEEDS.has(k) || v.role === "shape") continue;
-      if (v.x < SAFE_INSET - 0.5 || v.y < SAFE_INSET - 0.5 || v.x + v.w > 1080 - SAFE_INSET + 0.5 || v.y + v.h > 1920 - SAFE_INSET + 0.5) {
+      if (v.x < SAFE_INSET - 0.5 || v.y < SAFE_INSET - 0.5 || v.x + v.w > 1080 - SAFE_INSET + 0.5 + (v.bleed || 0) || v.y + v.h > 1920 - SAFE_INSET + 0.5) {
         bad.push(`beat ${i}: ${k} box (${v.x},${v.y},${v.x + v.w},${v.y + v.h}) leaves the frame's safe area`);
       }
       if (v.y + v.h > CAPTION_Y0 + 0.5 && v.y < CAPTION_Y1) bad.push(`beat ${i}: ${k} box (y ${v.y}-${v.y + v.h}) enters the caption band`);
@@ -358,7 +358,7 @@ function canvasCoverage(video, beats) {
     let best = 0;
     // A full-bleed photo is the whole frame by construction.
     if (b.canvas?.photo) { spans.push(1); return; }
-    for (const share of [0.55, 0.9]) {
+    for (const share of (process.env.COV_SHARES ? process.env.COV_SHARES.split(",").map(Number) : [0.62, 0.9])) {   // every phrase landed; the late sample is where a list has built up
       const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share;
       const buf = rgbFrame(video, t, W, H);
       if (!buf) continue;
@@ -478,6 +478,50 @@ function canvasGround(video, beats) {
   });
   return { bad };
 }
+/**
+ * kinetic-rules: every word of a headline / statement / kicker / label has an
+ * entrance from the nine; no word has the same entrance as the word before it,
+ * and no word position repeats its entrance from the previous beat (per role
+ * group); at most three text elements on a beat; a year / article number never
+ * counts or rolls; a beat with a headline has mixed weights (a bold word) and
+ * exactly one accent word. Reports the entrance mix and number modes.
+ */
+async function kineticRules(beats) {
+  const K = await import("../src/skills/remotion-render/visual/kinetic.js");
+  const bad = [], used = {}, modes = new Set();
+  let prev = {};
+  beats.forEach((b, i) => {
+    const c = b.canvas || {}, k = c.kinetic, bx = c.boxes || {};
+    if (!k) { bad.push(`beat ${i}: no kinetic plan recorded`); return; }
+    const text = ["headline", "statement", "kicker", "label", "emphasis"].filter((r) => bx[r]).length + (bx.number ? 1 : 0);
+    if (text > 3) bad.push(`beat ${i}: ${text} text elements (max 3)`);
+    const cur = {};
+    for (const role of ["headline", "statement", "kicker", "label"]) {
+      if (!bx[role]) continue;
+      const list = k.entrances?.[role] || [], words = c.words?.[role] || [];
+      const g = role === "kicker" || role === "label" ? "label" : role;
+      if (list.length < words.length) bad.push(`beat ${i}: ${role} has ${words.length} words but ${list.length} entrances`);
+      list.forEach((e, j) => {
+        if (!K.ENTRANCES.includes(e)) bad.push(`beat ${i}: ${role} word ${j} entrance "${e}" is not one of the nine`);
+        if (j > 0 && e === list[j - 1]) bad.push(`beat ${i}: ${role} words ${j - 1}/${j} share "${e}"`);
+        if (prev[g] && prev[g][j] === e) bad.push(`beat ${i}: ${role} word ${j} repeats "${e}" from the previous beat`);
+        used[e] = (used[e] || 0) + 1;
+      });
+      cur[g] = list;
+      if (role === "headline" || role === "statement") {
+        if (!bx[role].rotate && words.length >= 2 && !words.some((w) => w.weight >= 700)) bad.push(`beat ${i}: ${role} has no bold word (weight is not mixed)`);
+        if (!bx[role].rotate && words.length >= 2 && !words.some((w) => w.accent || w.emph)) bad.push(`beat ${i}: ${role} has no accent/emphasis word`);
+      }
+    }
+    prev = cur;
+    if (bx.number) {
+      modes.add(k.number);
+      const q = bx.number.parts?.isQuantity;
+      if (q === false && (k.number === "count_up" || k.number === "flip_digits")) bad.push(`beat ${i}: a non-quantity number (${bx.number.parts?.text}) uses ${k.number}`);
+    }
+  });
+  return { bad, used, modes: [...modes] };
+}
 async function canvasChecks(video, m) {
   const beats = m.beats || [];
   const out = [];
@@ -492,8 +536,8 @@ async function canvasChecks(video, m) {
   const tx = canvasGround(video, beats);
   out.push({ id: "canvas-ground", pass: !tx.bad.length, detail: tx.bad.length ? tx.bad.join("; ") : "the studio ground reads light on every beat" });
   const mt = motionTiers(beats);
-  const ar = await animationRules(beats);
-  out.push({ id: "animation-rules", pass: !ar.bad.length, detail: ar.bad.length ? ar.bad.join("; ") : `every element animated, no family repeated on the same element in consecutive beats, distinct families within each beat${ar.notes.length ? ` (${ar.notes.length} reuse(s) inside the 3-beat window: ${ar.notes.slice(0, 3).join("; ")}${ar.notes.length > 3 ? "..." : ""})` : ""}; chart animations ${ar.charts.join("/") || "none"}, number animations ${ar.numbers.join("/") || "none"}` });
+  const kr = await kineticRules(beats);
+  out.push({ id: "kinetic-rules", pass: !kr.bad.length, detail: kr.bad.length ? kr.bad.slice(0, 8).join("; ") : `every word has its own entrance (${Object.keys(kr.used).length}/9 used: ${Object.entries(kr.used).map(([e, n]) => `${e}x${n}`).join(" ")}), none repeated along a line or at a position from the previous beat, <=3 text elements a beat; number modes ${kr.modes.join("/") || "none"}` });
   out.push({ id: "motion-tiers", pass: !mt.bad.length, detail: mt.bad.length ? mt.bad.join("; ") : `${mt.major} major, ${mt.medium} medium, all beats micro` });
   return out;
 }

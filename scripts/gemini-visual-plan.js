@@ -570,7 +570,7 @@ vignette and the camera are added by the system.
                   sentence, and it says only what the sentence says: never
                   add a claim, promise or judgement it does not make
                   ("GUARANTEED", "BEST", "FAILS") — a checker rejects that.
-  "emphasis_word": one word of the headline, or null
+  "emphasis_word": one word of the headline, or null — that word is set bold, grows on screen as it is spoken and takes the channel accent
   "visual_type":  ONE of PHOTO | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | LIST | TIMELINE | COMPARE | DOCUMENT | MONEY | TYPE
   "data":         by type (numbers EXACTLY as the sentence says them — a
                   number the sentence does not say is rejected and the beat

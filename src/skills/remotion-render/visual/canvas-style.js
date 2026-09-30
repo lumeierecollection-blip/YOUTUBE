@@ -109,7 +109,9 @@ export function styleCanvases(canvases, narrations = []) {
     c.variant = i;
   });
   const emphasis = assignEmphasis(canvases);
-  const vertical = assignVertical(canvases);
+  // The rotated whole-line beat is retired (kinetic typography: no text animates as a block); assignVertical is kept and tested.
+  canvases.forEach((c) => { c.vertical = false; });
+  const vertical = -1;
   canvases.forEach((c) => { c.dark = false; });      // dark beats are retired: the off-white studio ground throughout
   const dark = [];
   const accentBest = assignNumberAccent(canvases, narrations);

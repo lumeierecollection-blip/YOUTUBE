@@ -66,12 +66,11 @@ const beatsSpec = [
   { text: "The law passed in nineteen thirty eight.", c: { visual_type: "COUNTER", data: { value: "1938", label: "the year the law passed" }, headline: "The wage law", motion_tier: "medium" } },
   { text: "Rates will cut into savings.", c: { visual_type: "TYPE", headline: "Rates will cut savings", emphasis_word: "cut", emphasis_beat: true, motion_tier: "medium" } },
   { text: "Housing alone is thirty four percent of income.", c: { visual_type: "PIE", data: { percent: 34, label: "of income on housing" }, headline: "Housing share", motion_tier: "medium", camera_focus: [{ at_percent: 0.45, target: "number" }] } },
-  { text: "The rule breaks.", c: { visual_type: "TYPE", headline: "The rule breaks", lead_in: "so", vertical: true, motion_tier: "medium" } },
+  { text: "The rule breaks.", c: { visual_type: "TYPE", headline: "The rule breaks", lead_in: "so", motion_tier: "medium" } },
   { text: "Two rules now matter most.", c: { visual_type: "PROCESS", data: { nodes: ["save first", "then spend"] }, headline: "The fix", motion_tier: "medium" } },
   { text: "Rates went from two to four point five percent.", c: { visual_type: "LINE", data: { points: [{ label: "2022", value: "2%" }, { label: "2024", value: "3.5%" }, { label: "2026", value: "4.5%" }] }, headline: "The rate climb", motion_tier: "medium", camera_focus: [{ at_percent: 0.35, target: "chart" }, { at_percent: 0.75, target: "full" }] } },
 ];
 const { compositionFor } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
-const { assignDark } = await import("../src/skills/remotion-render/visual/canvas-style.js");
 const beats = beatsSpec.map((b, i) => {
   const words = b.text.split(" ");
   const per = (D - 20) / words.length;
@@ -85,9 +84,6 @@ const beats = beatsSpec.map((b, i) => {
     words: [],
   };
 });
-// The real dark-beat rule (canvas-style.js assignDark), applied to the test plan.
-const darkAt = assignDark(beats.map((b) => b.scene.canvas));
-console.log(`dark beats: ${JSON.stringify(darkAt)}`);
 // The real animation planner (visual/animation-plan.js), on the test plan's final canvases.
 const { assignCanvasAnimations } = await import("./anim-plan.js");
 assignCanvasAnimations(beats.map((b) => ({ canvas: b.scene.canvas })), { seed: arg("seed", "qa"), log: (m) => console.log(m) });

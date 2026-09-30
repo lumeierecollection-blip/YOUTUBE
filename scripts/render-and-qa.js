@@ -840,6 +840,7 @@ function canvasContentFor(b, { photo = null } = {}) {
     // beat 6, 1% of the frame): the planner's own on-screen phrase fills it.
     headline: b.headline || b.caption || b.visual_headline || b.typography_direction?.phrase || "",
     emphasis_word: b.emphasis_word || null,
+    emphasis_words: Array.isArray(b.emphasis_words) ? b.emphasis_words.filter((w) => typeof w === "string").slice(0, 3) : [],
     photo: vt === "PHOTO" || vt === "DOCUMENT" || vt === "MONEY" ? photo : null,
     motion_tier: ["micro", "medium", "major"].includes(b.motion_tier) ? b.motion_tier : "medium",
     camera_focus: Array.isArray(b.camera_focus) ? b.camera_focus.slice(0, 2) : null,
