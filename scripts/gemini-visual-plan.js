@@ -501,9 +501,9 @@ ${CAPABILITIES}
 
 ## THE STYLE — full-canvas editorial motion graphics (NO paper, NO cards)
 
-Every beat is designed for the WHOLE 1080x1920 frame on the channel's soft
-light gradient studio wall (static, soft shadows over it, dark type on it; no
-grain; at most one dark hook / close, see "ground"). There is no container, no card, no page: the
+Every beat is designed for the WHOLE 1080x1920 frame on a uniform white
+ground (one solid white on every beat: no shadows, no grain, no tint, no dark
+beats; dark type on it). There is no container, no card, no page: the
 composition IS the frame, and it transforms from beat to beat (Financial
 Times x high-end documentary x contemporary magazine). Type is a serif
 headline (sentence case, never all caps), an oversized numeral and a small
@@ -629,11 +629,6 @@ vignette and the camera are added by the system.
                                    video, a TYPE statement
                     POP_WORD_STACK words stack upward, then settle into the
                                    line — a TYPE statement of 2-5 words
-  "ground":       optional. "dark" puts ONE dramatic beat on the channel's
-                  gradient at 15% lightness with light type — only the hook
-                  (beat 0) or the close (last beat), never a photo or map
-                  beat, at most once a video. Omit otherwise.
-
 Worked example. Sentence: "Liquid Death went from three million dollars to
 a 1.4 billion dollar brand."
   { "kind": "EDITORIAL", "canvas_composition": "DATA-FULL", "visual_type": "BAR",
@@ -837,9 +832,7 @@ Respond ONLY with JSON (no markdown fences):
       "camera_focus": [{ "at_percent": 0.4, "target": "<number | chart | headline | photo | left | right | top | bottom | node0 | node1 | node2 | full>" }],
       "persists_from": null,
       "match_cut_prev": false,
-      "text_entrance": "<POP_SOFT | POP_HARD | POP_LETTER | POP_WORD_STACK, or omit>",
-      "ground": "<dark, or omit>",
-      "carries_forward": "<object/concept that persists into the next beat, or null>",
+      "text_entrance": "<POP_SOFT | POP_HARD | POP_LETTER | POP_WORD_STACK, or omit>",      "carries_forward": "<object/concept that persists into the next beat, or null>",
       "emotional_weight": "<calm|building|sharp|heavy|urgent>",
       "typography_direction": {
         "phrase": "<exact one-line phrase, 2-7 words — or omit this whole object if the beat has no text>",
@@ -1566,11 +1559,7 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       // Pop family only (visual/kinetic.js); the per-video limits are checked
       // on the final canvases by scripts/anim-plan.js.
       const te = String(b.text_entrance || "").toUpperCase().trim();
-      b.text_entrance = ["POP_STANDARD", "POP_SOFT", "POP_EMPHASIS", "POP_HARD", "POP_LETTER", "POP_WORD_STACK"].includes(te) ? te : null;
-      // Dark ground: hook / close only, once — decided on the final canvases
-      // (visual/canvas-style.js assignEdgeDark).
-      b.ground = String(b.ground || "").toLowerCase() === "dark" && (i === 0 || i === n - 1) ? "dark" : null;
-    }
+      b.text_entrance = ["POP_STANDARD", "POP_SOFT", "POP_EMPHASIS", "POP_HARD", "POP_LETTER", "POP_WORD_STACK"].includes(te) ? te : null;    }
     const lo = n >= 4 ? 2 : 1;
     let majors = plan.beats.map((b, i) => (b.motion_tier === "major" ? i : -1)).filter((i) => i >= 0);
     const keep = new Set([0, n - 1]);

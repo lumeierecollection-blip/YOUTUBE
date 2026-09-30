@@ -94,9 +94,9 @@ export const INK = "#0B0B0C";
 export const INK_SOFT = "#8E8E93";
 export const MID = "#A7A7AD";
 export const LIGHT = "#DADADF";
-// Off-white studio ground: luma ~244, so with soft-light grain (mean-
-// neutral) the white-ground verify (> 240 in the top-left corner) holds.
-export const STUDIO = "#F6F4F0";
+// The studio ground: uniform white, the one value in backgrounds.js (the
+// off-white #F6F4F0 and the per-channel gradients are gone).
+export { GROUND as STUDIO } from "./backgrounds.js";
 export const DARK_BG = "#0E0E0E";
 export const INK_ON_DARK = "#F2F0EB";
 export const SANS = "Inter";
@@ -165,7 +165,10 @@ const anchorX = (w, flip) => Math.round(flip ? R_EDGE - w : L_EDGE);
  * this, so they see the same layout.
  */
 export function normalizeCanvas(c, idx = 0) {
-  return { ...c, beat_index: Number.isInteger(c?.beat_index) ? c.beat_index : idx, variant: Number.isInteger(c?.variant) ? c.variant : idx };
+  // dark: always false — the ground is uniform white on every beat
+  // (backgrounds.js); a plan resolved while dark beats existed must not draw
+  // light ink on white.
+  return { ...c, beat_index: Number.isInteger(c?.beat_index) ? c.beat_index : idx, variant: Number.isInteger(c?.variant) ? c.variant : idx, dark: false };
 }
 
 // The cells a box touches: "c<col>r<row>" for every cell it overlaps by
@@ -588,10 +591,10 @@ export function canvasManifest(raw, idx) {
     // index, the larger comparison value, the map's region, a document's callout band.
     accent_used: ["DATA-FULL", "PROCESS-FULL", "TIMELINE", "LIST-BUILD", "COMPARISON-SPLIT", "MAP-CENTERED", "DOCUMENT"].includes(L.composition)
       || ((L.composition === "NUMBER-FULL" || L.composition === "MONEY") && c.number_accent !== false && !!L.boxes.number),
-    variant: c.variant, flip: L.flip, dark: !!c.dark && !c.photo,
-    // What is behind the beat: the channel's gradient (backgrounds.js), its
-    // one dark hook / CTA variant, or a full-bleed photo covering it.
-    ground: c.photo ? "photo" : c.dark ? "dark" : "gradient",
+    variant: c.variant, flip: L.flip, dark: false,
+    // What is behind the beat: the uniform white ground (backgrounds.js), or
+    // a full-bleed photo covering it for this beat.
+    ground: c.photo ? "photo" : "white",
     headline_text: shown("headline") || shown("statement") || null, emphasis_text: shown("emphasis"),
     // The headline's entrance: the words fly in on a major TYPE-FULL statement,
     // otherwise mask-reveal / slide-land / crop-open rotating on the beat index.

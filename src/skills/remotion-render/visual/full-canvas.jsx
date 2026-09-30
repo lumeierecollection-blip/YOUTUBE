@@ -1,11 +1,9 @@
 /**
  * CanvasVideo — full-canvas editorial motion graphics (owner's rebuild,
  * 2026-09-29). There is no paper and no card: every beat is composed for
- * the whole 1080x1920 frame on the channel's gradient studio wall
- * (backgrounds.js: two light low-saturation stops at 160deg, static, the
- * studio shadows over it, dark ink on it; a full-bleed photo covers it for
- * its beat; one hook / CTA may be the same gradient at 15% lightness with
- * light ink), on a 3x4 grid,
+ * the whole 1080x1920 frame on uniform white (backgrounds.js GROUND: one
+ * solid colour on every beat, no shadows, tint or dark beats; a full-bleed
+ * photo covers it for its own beat), on a 3x4 grid,
  * asymmetrically (canvas-layout.js). Type is one of four roles
  * (typography.js): a Fraunces headline, an oversized Fraunces numeral, an
  * Inter data label, and — once a video at most — one emphasis word.
@@ -60,7 +58,7 @@ import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, Easing 
 import { StudioBG } from "./studio-bg.jsx";
 import { KineticText } from "./kinetic.jsx";
 import { countProgress, numberPop, numberRoll, digitRoll, popState, NUMBER_POP_FRAMES } from "./kinetic.js";
-import { DEFAULT_GRADIENT, darkOf, gradientCss, gradientMid } from "./backgrounds.js";
+import { GROUND } from "./backgrounds.js";
 import { parseQuantity, rollQuantity } from "./primitives/quantity.js";
 import { PaperMap, CenteredMap } from "./primitives/map.jsx";
 import {
@@ -80,10 +78,6 @@ const easeOut = Easing.bezier(0.16, 1, 0.3, 1);
 const easeInOut = Easing.bezier(0.65, 0, 0.35, 1);
 const lerp = (a, b, t) => a + (b - a) * t;
 const Hero = React.createContext(null);
-// The channel's gradient stops (backgrounds.js; render.js puts them on the plan).
-const Ground = React.createContext(DEFAULT_GRADIENT);
-/** A solid stand-in for the ground under a beat (map halos, dot strokes): the gradient's midpoint, or the dark variant's. */
-const groundTone = (stops, dark) => gradientMid(dark ? darkOf(stops) : stops);
 // The colours a beat's text and chart furniture are drawn in. A dark beat
 // (texture layer) swaps them; a photo beat draws white on the picture.
 const Theme = React.createContext({ ink: INK, soft: INK_SOFT, mid: MID, track: LIGHT, dark: false, photo: false });
@@ -646,7 +640,7 @@ function MapCentered({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const th = useTheme();
   const B = L.boxes, tl = timeline(c, B, dur, fps);
   // The header floats over the map's linework: a ground-coloured halo lifts it off.
-  const tone = groundTone(React.useContext(Ground), th.dark);
+  const tone = th.dark ? DARK_BG : GROUND;
   if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} halo={tone} />;
   return (
     <HeroEl name="map" b={B.map}>
@@ -853,7 +847,6 @@ const PHOTO_COMPS = ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"];
 // local frame less its entry delays (transitionInto): the incoming beat's
 // text pops only once the transition has landed.
 function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent, hero, show = "all" }) {
-  const stops = React.useContext(Ground);
   const c = normalizeCanvas(beat.scene.canvas, idx);
   const dur = beat.duration_frames;
   const L = canvasLayout(c);
@@ -866,9 +859,6 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
     <Theme.Provider value={theme}>
       <Anim.Provider value={{ ...(c.anim || {}), dur, accent, kinetic: c.kinetic || null, beat: idx }}>
       <Hero.Provider value={hero}>
-        {/* The dark hook / CTA ground: the channel's gradient at 15% lightness,
-            static, covering the studio for this beat only. */}
-        {c.dark && !c.photo && show !== "header" ? <div style={{ position: "absolute", inset: 0, backgroundImage: gradientCss(darkOf(stops)) }} /> : null}
         {/* The camera moves through the information (the body); the header —
             rule, kicker and headline — stays pinned, so a push or a major zoom
             never crops it. */}
@@ -967,7 +957,6 @@ export function CanvasVideo({ plan }) {
   const { fps } = useVideoConfig();
   const beats = plan.beats || [];
   const accent = plan.accent || INK;
-  const stops = Array.isArray(plan.ground) && plan.ground.length >= 2 ? plan.ground : DEFAULT_GRADIENT;
   const i = Math.max(0, beats.findIndex((b) => frame >= b.start_frame && frame < b.start_frame + b.duration_frames));
   const beat = beats[i] || beats[beats.length - 1];
   beats.forEach((b, k) => { if (!b?.scene?.canvas) throw new Error(`CanvasVideo: beat ${k} has no canvas content — the asset resolver must build it`); });
@@ -1040,14 +1029,12 @@ export function CanvasVideo({ plan }) {
 
   return (
     <ShadowOn.Provider value={false}>
-    <Ground.Provider value={stops}>
-    {/* The channel's gradient wall, never a forced solid white; a full-bleed
-        photo beat covers it, the next beat shows it again. */}
-    <StudioBG stops={stops} drift={frame / fps}>
+    {/* Uniform white on every beat (backgrounds.js); a full-bleed photo beat
+        covers it, the next beat shows it again. */}
+    <StudioBG>
       {layers}
       <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} />
     </StudioBG>
-    </Ground.Provider>
     </ShadowOn.Provider>
   );
 }

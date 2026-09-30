@@ -65,8 +65,9 @@
  *                     nothing centred, sentence-case headlines, two type roles
  *                     in most beats, no composition twice in a row, dark beats
  *                     (>= 1, <= 2, never consecutive).
- *   canvas-ground     the studio ground reads light on every beat,
- *                     measured on rendered pixels.
+ *   canvas-ground     the ground reads uniform white (luma >= 245) on every
+ *                     non-photo beat and no beat is dark, measured on
+ *                     rendered pixels.
  *   `--canvas-only --video <mp4> --manifest <json>` runs these six on
  *   every render (render-and-qa.js) and exits 1 on a failure.
  *
@@ -461,24 +462,22 @@ function canvasType(beats) {
   if (roleSets.length && two / roleSets.length < 0.6) bad.push(`only ${two}/${roleSets.length} beats show two type roles (need 60%)`);
   return { bad, two, n: roleSets.length };
 }
-// canvas-ground: the studio ground (the channel's gradient, visual/backgrounds.js) reads light on every
-// beat (a bottom-left patch below the caption band, where nothing but the ground lives). The one dark
-// hook / CTA beat (canvas.dark) and photo beats are not measured; more than one dark beat fails.
+// canvas-ground: the ground is uniform white (visual/backgrounds.js) on every beat that is not a
+// full-bleed photo: a bottom-left patch below the caption band, where nothing but the ground lives,
+// reads luma >= 245. No beat may be dark.
 function canvasGround(video, beats) {
   const bad = [];
   const W = 540, H = 960;
-  const dark = beats.map((b, i) => (b.canvas?.dark ? i : -1)).filter((i) => i >= 0);
-  if (dark.length > 1) bad.push(`${dark.length} dark beats (${dark.join(", ")}); at most one, the hook or the CTA`);
-  dark.filter((i) => i !== 0 && i !== beats.length - 1).forEach((i) => bad.push(`beat ${i}: dark ground off the hook / CTA`));
+  beats.forEach((b, i) => { if (b.canvas?.dark) bad.push(`beat ${i}: dark ground (the ground is uniform white)`); });
   beats.forEach((b, i) => {
-    if (b.canvas?.photo || b.canvas?.dark) return;
+    if (b.canvas?.photo) return;
     const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * 0.7;
     const buf = rgbFrame(video, t, W, H);
     if (!buf) return;
     let sum = 0, n = 0;
     for (let y = H - 70; y < H - 30; y++) for (let x = 24; x < 64; x++) { const o = (y * W + x) * 3; sum += 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; n++; }
     const mean = sum / n;
-    if (mean < 200) bad.push(`beat ${i}: the studio ground reads luma ${mean.toFixed(0)} (< 200)`);
+    if (mean < 245) bad.push(`beat ${i}: the white ground reads luma ${mean.toFixed(0)} (< 245)`);
   });
   return { bad };
 }
@@ -546,7 +545,7 @@ async function canvasChecks(video, m) {
   const ty = canvasType(beats);
   out.push({ id: "canvas-type", pass: !ty.bad.length, detail: ty.bad.length ? ty.bad.join("; ") : `nothing centred, sentence-case headlines, ${ty.two}/${ty.n} beats with two type roles, no repeated composition` });
   const tx = canvasGround(video, beats);
-  out.push({ id: "canvas-ground", pass: !tx.bad.length, detail: tx.bad.length ? tx.bad.join("; ") : "the studio ground reads light on every beat" });
+  out.push({ id: "canvas-ground", pass: !tx.bad.length, detail: tx.bad.length ? tx.bad.join("; ") : "the ground reads uniform white on every non-photo beat" });
   const mt = motionTiers(beats);
   const kr = await kineticRules(beats);
   out.push({ id: "kinetic-rules", pass: !kr.bad.length, detail: kr.bad.length ? kr.bad.slice(0, 8).join("; ") : `every word pops in place (${Object.entries(kr.used).map(([e, n]) => `${e}x${n}`).join(" ")}), no slide / drop / sweep / blur entrance, <=3 text elements a beat; number modes ${kr.modes.join("/") || "none"}` });

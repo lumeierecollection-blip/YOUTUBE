@@ -71,7 +71,7 @@ const beatsSpec = [
   { text: "Housing alone is thirty four percent of income.", c: { visual_type: "PIE", data: { percent: 34, label: "of income on housing" }, headline: "Housing share", motion_tier: "medium", camera_focus: [{ at_percent: 0.45, target: "number" }] } },
   { text: "The rule breaks.", c: { visual_type: "TYPE", headline: "The rule breaks", lead_in: "so", motion_tier: "medium", text_entrance: "POP_WORD_STACK" } },
   { text: "Two rules now matter most.", c: { visual_type: "PROCESS", data: { nodes: ["save first", "then spend"] }, headline: "The fix", motion_tier: "medium" } },
-  { text: "Rates went from two to four point five percent.", c: { visual_type: "LINE", data: { points: [{ label: "2022", value: "2%" }, { label: "2024", value: "3.5%" }, { label: "2026", value: "4.5%" }] }, headline: "The rate climb", motion_tier: "medium", ground: "dark", camera_focus: [{ at_percent: 0.35, target: "chart" }, { at_percent: 0.75, target: "full" }] } },
+  { text: "Rates went from two to four point five percent.", c: { visual_type: "LINE", data: { points: [{ label: "2022", value: "2%" }, { label: "2024", value: "3.5%" }, { label: "2026", value: "4.5%" }] }, headline: "The rate climb", motion_tier: "medium", camera_focus: [{ at_percent: 0.35, target: "chart" }, { at_percent: 0.75, target: "full" }] } },
 ];
 const { compositionFor } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
 const beats = beatsSpec.map((b, i) => {
@@ -89,13 +89,10 @@ const beats = beatsSpec.map((b, i) => {
 });
 // The real animation planner (visual/animation-plan.js), on the test plan's final canvases.
 const { assignCanvasAnimations } = await import("./anim-plan.js");
-// The one dark hook / CTA ground the resolver allows (canvas-style.js), then the animations.
-const { assignEdgeDark } = await import("../src/skills/remotion-render/visual/canvas-style.js");
-console.log(`dark ground: beat ${assignEdgeDark(beats.map((b) => b.scene.canvas))}`);
 assignCanvasAnimations(beats.map((b) => ({ canvas: b.scene.canvas })), { seed: arg("seed", "qa"), log: (m) => console.log(m) });
-// --channel 1: that channel's gradient ground (visual/backgrounds.js), as render.js sets it.
-const { gradientStops } = await import("../src/skills/remotion-render/visual/backgrounds.js");
-const plan = { canvas: true, accent, ground: gradientStops(arg("channel", "1")), beats, palette: { primary: ["#0F172A", "#1E293B", "#22C55E", "#FAFAFA"], secondary: [] }, fonts: { primary: "Inter", secondary: "Inter" } };
+// The uniform white ground (visual/backgrounds.js), as render.js sets it.
+const { GROUND } = await import("../src/skills/remotion-render/visual/backgrounds.js");
+const plan = { canvas: true, accent, ground: GROUND, beats, palette: { primary: ["#0F172A", "#1E293B", "#22C55E", "#FAFAFA"], secondary: [] }, fonts: { primary: "Inter", secondary: "Inter" } };
 writeFileSync(join(out, "plan.json"), JSON.stringify(plan, null, 2));
 
 console.log("bundling...");

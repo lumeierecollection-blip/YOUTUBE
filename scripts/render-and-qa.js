@@ -28,7 +28,6 @@ import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { assignCanvasAnimations } from "./anim-plan.js";
 import { checkVisual, figureKey } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
-import { luma } from "../src/skills/remotion-render/visual/backgrounds.js";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
@@ -422,43 +421,44 @@ async function verifyRender(videoPath, audioPath, channelId) {
   return { ok: problems.length === 0, problems };
 }
 
-// Gradient ground, measured. Replaces the bg_mode "white" check (beat 0's
-// top-left > 222), which forced a near-white ground and would fail a photo
-// or dark hook — owner's spec 2026-09-30: a per-channel gradient
-// (visual/backgrounds.js), never solid white. On the first beat that shows
-// the bare ground (the manifest's canvas.ground "gradient"), at 60% of it:
-// the top-left corner (the gradient's 0% end at 160deg) must read as the
-// first stop and the bottom-right corner as the last (±12 luma: the leaf
-// shadows and compression), and the two must differ by >= 3 — a flat ground
-// fails. It still catches the old failure (a dark ground on a light channel:
-// docs/AI-DECISION-AUDIT.md). Where this stops: two 80x80 corners of one
-// frame; a shadow moved into the bottom-right corner would only darken it,
-// which this cannot tell apart from the gradient.
+// Uniform white ground, measured (owner's decision 2026-09-30; replaces the
+// bg_mode "white" beat-0 > 222 check and the short-lived gradient check).
+// On the first beat that shows the bare ground (manifest canvas.ground
+// "white"), at 60% of it: three 80x80 corner patches (top-left, top-right,
+// bottom-right — clear of the header, which starts at y 180, and of the
+// caption band, which ends at y 1610) must each read the ground colour
+// (visual/backgrounds.js GROUND) within 4 per RGB channel (h264 rounding),
+// and must match each other within 2 — any tint, gradient, vignette or
+// shadow fails. Where this stops: one frame, three corners.
 function measureGround(videoPath) {
   const manifestPath = videoPath.replace(/\.mp4$/, "-manifest.json");
   let man = null;
   try { man = JSON.parse(readFileSync(manifestPath, "utf-8")); } catch { return []; }
-  if (!Array.isArray(man?.ground)) return [];                    // not a canvas render
-  const beat = (man.beats || []).find((b) => b.canvas?.ground === "gradient");
-  if (!beat) { console.log("[verify] ground: every beat is a photo or the dark variant — gradient not measured"); return []; }
+  if (typeof man?.ground !== "string") return [];                // not a canvas render
+  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white");
+  if (!beat) { console.log("[verify] ground: every beat is a full-bleed photo — the white ground not measured"); return []; }
   const at = beat.start_sec + beat.duration_sec * 0.6;
   const framePath = videoPath.replace(/\.mp4$/, "-ground.png");
   try {
     execFileSync("ffmpeg", ["-v", "error", "-y", "-ss", at.toFixed(3), "-i", videoPath, "-frames:v", "1", framePath]);
-    const corner = (x, y) => {
-      const raw = execFileSync("ffmpeg", ["-v", "error", "-i", framePath, "-vf", `crop=iw*80/1080:ih*80/1920:${x}:${y}`, "-f", "rawvideo", "-pix_fmt", "gray", "-"]);
-      return raw.reduce((a, b) => a + b, 0) / raw.length;
+    const patch = (x, y) => {
+      const raw = execFileSync("ffmpeg", ["-v", "error", "-i", framePath, "-vf", `crop=iw*80/1080:ih*80/1920:${x}:${y}`, "-f", "rawvideo", "-pix_fmt", "rgb24", "-"]);
+      const s = [0, 0, 0];
+      for (let i = 0; i < raw.length; i += 3) { s[0] += raw[i]; s[1] += raw[i + 1]; s[2] += raw[i + 2]; }
+      return s.map((v) => v / (raw.length / 3));
     };
-    const tl = corner("0", "0"), br = corner("iw-iw*80/1080", "ih-ih*80/1920");
-    const e0 = luma(man.ground[0]), e1 = luma(man.ground[man.ground.length - 1]);
-    console.log(`[verify] gradient ground (beat ${beat.index} @${at.toFixed(2)}s): top-left ${tl.toFixed(1)} (stop ${man.ground[0]} = ${e0.toFixed(1)}), bottom-right ${br.toFixed(1)} (stop ${man.ground[man.ground.length - 1]} = ${e1.toFixed(1)})`);
+    const pts = { "top-left": patch("0", "0"), "top-right": patch("iw-iw*80/1080", "0"), "bottom-right": patch("iw-iw*80/1080", "ih-ih*80/1920") };
+    const want = [1, 3, 5].map((i) => parseInt(man.ground.slice(i, i + 2), 16));
+    const hex = (c) => "#" + c.map((v) => Math.round(v).toString(16).padStart(2, "0")).join("").toUpperCase();
+    console.log(`[verify] white ground (beat ${beat.index} @${at.toFixed(2)}s): ${Object.entries(pts).map(([k, c]) => `${k} ${hex(c)}`).join(", ")} (want ${man.ground})`);
     const out = [];
-    if (Math.abs(tl - e0) > 12) out.push(`ground top-left reads ${tl.toFixed(1)}; the gradient's first stop is ${e0.toFixed(1)} (±12)`);
-    if (Math.abs(br - e1) > 12) out.push(`ground bottom-right reads ${br.toFixed(1)}; the gradient's last stop is ${e1.toFixed(1)} (±12)`);
-    if (tl - br < 3) out.push(`ground is flat: top-left ${tl.toFixed(1)} vs bottom-right ${br.toFixed(1)} (a gradient differs by >= 3)`);
+    for (const [k, c] of Object.entries(pts)) if (c.some((v, i) => Math.abs(v - want[i]) > 4)) out.push(`ground ${k} reads ${hex(c)}, not the uniform ${man.ground}`);
+    const all = Object.values(pts);
+    const spread = Math.max(...[0, 1, 2].map((i) => Math.max(...all.map((c) => c[i])) - Math.min(...all.map((c) => c[i]))));
+    if (spread > 2) out.push(`ground is not uniform: the three corners differ by up to ${spread.toFixed(1)} per channel`);
     return out;
   } catch (e) {
-    return [`could not measure the gradient ground: ${e.message}`];
+    return [`could not measure the white ground: ${e.message}`];
   }
 }
 
@@ -868,9 +868,6 @@ function canvasContentFor(b, { photo = null } = {}) {
     // scripts/anim-plan.js checks it against the video (POP_HARD on the hook /
     // CTA only, POP_LETTER once, POP_WORD_STACK only where it fits).
     text_entrance: b.text_entrance || null,
-    // "dark": the planner's one dramatic hook / CTA beat on the channel's
-    // gradient at 15% lightness; canvas-style.js assignEdgeDark decides.
-    ground: b.ground === "dark" ? "dark" : null,
   };
   if (b.type_layout === "split") c.type_layout = "split";
   c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: c.type_layout === "split" && !!splitHeadline(c.headline) });

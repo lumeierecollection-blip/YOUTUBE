@@ -5,9 +5,7 @@
  *
  *   sentence case   headline / lead-in rebuilt from the narration's casing
  *   variant         beat index: left / right anchoring alternates beat by beat
- *   dark ground     one hook / CTA beat the planner marked (assignEdgeDark): the
- *                   channel's gradient at 15% lightness, light ink
- *   dark beats      RETIRED (assignDark is kept, tested, and not called). Was: the 4th (or 5th) beat and,
+ *   dark beats      RETIRED (assignDark is kept, tested, and not called): uniform white throughout. Was: the 4th (or 5th) beat and,
  *                   in a long video, the 4th / 5th after it; at most two, never
  *                   consecutive, never a photo / map / object beat
  *   emphasis        at most ONE beat's headline is one word filling the frame
@@ -45,22 +43,6 @@ export function assignDark(canvases) {
   }
   canvases.forEach((c, i) => { c.dark = picked.includes(i); });
   return picked;
-}
-
-/**
- * The dark gradient variant (backgrounds.js darkOf, owner's spec 2026-09-30):
- * at most ONE beat a video, only the hook (first beat) or the CTA (last), only
- * where the planner asked for it (`ground: "dark"`), and never a photo / map
- * beat. The hook wins when both ask. Returns the index, or -1.
- */
-export function assignEdgeDark(canvases) {
-  canvases.forEach((c) => { c.dark = false; });
-  const n = canvases.length;
-  for (const i of n > 1 ? [0, n - 1] : [0]) {
-    const c = canvases[i];
-    if (c && c.ground === "dark" && darkEligible(c)) { c.dark = true; return i; }
-  }
-  return -1;
 }
 
 /** At most one beat's headline becomes the emphasis word (a TYPE beat, not the hook, whose emphasis word fits the frame). */
@@ -130,11 +112,10 @@ export function styleCanvases(canvases, narrations = []) {
   // The rotated whole-line beat is retired (kinetic typography: no text animates as a block); assignVertical is kept and tested.
   canvases.forEach((c) => { c.vertical = false; });
   const vertical = -1;
-  // The old rhythm of dark mid-video beats stays retired (assignDark is kept
-  // and tested, not called). The one dark ground now allowed is a hook / CTA
-  // the planner marked, on the channel's gradient at 15% lightness.
-  const edge = assignEdgeDark(canvases);
-  const dark = edge >= 0 ? [edge] : [];
+  // No dark beats: the ground is uniform white on every beat (backgrounds.js).
+  // assignDark is kept and tested, not called.
+  canvases.forEach((c) => { c.dark = false; });
+  const dark = [];
   const accentBest = assignNumberAccent(canvases, narrations);
   return { dark, emphasis, vertical, accentBest };
 }

@@ -1,5 +1,5 @@
 // node scripts/test-canvas-style.mjs — the per-beat styling rules (visual/canvas-style.js).
-import { assignDark, assignEdgeDark, assignEmphasis, assignVertical, assignNumberAccent, styleCanvases, statesChange, DARK_MAX } from "../src/skills/remotion-render/visual/canvas-style.js";
+import { assignDark, assignEmphasis, assignVertical, assignNumberAccent, styleCanvases, statesChange, DARK_MAX } from "../src/skills/remotion-render/visual/canvas-style.js";
 
 let bad = 0;
 const yes = (name, cond, detail = "") => { if (!cond) bad++; console.log(`${cond ? "ok  " : "FAIL"} ${name}${detail ? " — " + detail : ""}`); };
@@ -24,16 +24,9 @@ const six = Array.from({ length: 6 }, () => T());
 assignDark(six);
 yes("the hook is never dark", six[0].dark === false);
 
-// The one dark hook / CTA ground (backgrounds.js darkOf): only where the planner asked, only the first or last beat, once.
-cs = [T(), D(), T({ ground: "dark" }), T()];
-yes("dark ground refused mid-video", assignEdgeDark(cs) === -1 && cs.every((c) => !c.dark));
-cs = [T({ ground: "dark" }), D(), T(), T({ ground: "dark" })];
-yes("hook and CTA both ask: only the hook is dark", assignEdgeDark(cs) === 0 && cs[0].dark && !cs[3].dark);
-cs = [P(), D(), T(), T({ ground: "dark" })];
-cs[0].ground = "dark";
-yes("a photo hook is never dark; the CTA takes it", assignEdgeDark(cs) === 3 && !cs[0].dark && cs[3].dark);
-cs = [T(), D(), T(), T()];
-yes("nobody asks: no dark beat", assignEdgeDark(cs) === -1 && styleCanvases(cs).dark.length === 0);
+// Uniform white: styleCanvases never makes a beat dark, even one a planner marked.
+cs = [T({ ground: "dark", dark: true }), D(), T(), T({ ground: "dark" })];
+yes("no beat is ever dark (uniform white)", styleCanvases(cs).dark.length === 0 && cs.every((c) => c.dark === false));
 
 // Emphasis: one word, from a TYPE beat, not the hook.
 cs = [T({ emphasis_word: "cut" }), D(), T({ emphasis_word: "cut" }), T({ emphasis_word: "savings" })];

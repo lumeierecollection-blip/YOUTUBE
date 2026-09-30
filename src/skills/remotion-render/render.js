@@ -46,7 +46,7 @@ import { sceneTextInventory } from "./visual/scene-text.js";
 import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
 import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
 import { canvasLayout, canvasManifest, normalizeCanvas } from "./visual/canvas-layout.js";
-import { gradientStops } from "./visual/backgrounds.js";
+import { GROUND } from "./visual/backgrounds.js";
 
 
 
@@ -581,10 +581,9 @@ async function main() {
     if (beats.some((b) => b.scene && b.scene.canvas)) {
       sentencePlan.canvas = true;
       sentencePlan.accent = channel.colors?.canvas_accent || null;
-      // The channel's gradient ground (visual/backgrounds.js) — never a
-      // forced solid white. Keyed by the numeric channel id.
-      sentencePlan.ground = gradientStops(channel.id ?? channel.channel_id);
-      console.log(`[canvas] ground: gradient ${sentencePlan.ground.join(" -> ")}`);
+      // Uniform white on every beat of every channel (visual/backgrounds.js).
+      sentencePlan.ground = GROUND;
+      console.log(`[canvas] ground: uniform ${GROUND}`);
       const comps = {};
       beats.forEach((b, bi) => { const k = canvasLayout(normalizeCanvas(b.scene.canvas, bi)).composition; comps[k] = (comps[k] || 0) + 1; });
       console.log(`[canvas] full-canvas style, accent ${sentencePlan.accent || "(none — ink)"}; ${Object.entries(comps).map(([k, v]) => `${k} ${v}`).join(", ")}`);
