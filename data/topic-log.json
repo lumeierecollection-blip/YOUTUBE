@@ -337,9 +337,14 @@
           "topic": "new-california-law-bans-officers-from-using-gloves-that-deliver-electric-shocks",
           "slug": "electric-shock-gloves-ban-2026",
           "reserved_at": "2026-09-29T22:47:08.426Z"
+        },
+        {
+          "topic": "traffic-stop-scripts",
+          "slug": "traffic-stop-scripts-now-2026-reviews",
+          "reserved_at": "2026-09-30T08:26:48.418Z"
         }
       ],
-      "last_generated": "2026-09-29T22:47:08.426Z"
+      "last_generated": "2026-09-30T08:26:48.418Z"
     },
     "3": {
       "channel_name": "AI Tested",
