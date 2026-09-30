@@ -72,18 +72,12 @@ const beatsSpec = [
 ];
 const { compositionFor } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
 const { assignDark } = await import("../src/skills/remotion-render/visual/canvas-style.js");
-const { conceptTokens } = await import("../src/skills/remotion-render/visual/concept-visuals.js");
 const beats = beatsSpec.map((b, i) => {
   const words = b.text.split(" ");
   const per = (D - 20) / words.length;
   const c = { ...b.c };
-  c.composition = c.composition || compositionFor(c.visual_type, !!(c.photo || c.cutout), { view: c.photo?.view });
+  c.composition = c.composition || compositionFor(c.visual_type, !!c.photo, { view: c.photo?.view });
   c.beat_total = beatsSpec.length;
-  // The concept tokens the resolver would hand this beat (concept-visuals.js).
-  const ct = conceptTokens(b.text, { beat: { composition: c.composition, visual_type: c.visual_type, photo: c.photo }, numberShowsCurrency: /[$€£¥₹]/.test(c.data?.value || "") });
-  c.concepts = ct.concepts.map(({ word, kind }) => ({ word, kind }));
-  // Drawn icon tokens are retired (the brief wants photographic PNG cutouts); --icon-tokens draws them for layout debugging only.
-  c.tokens = process.argv.includes("--icon-tokens") ? ct.tokens : [];
   return {
     beat_id: `t${i}`, start_frame: i * D, duration_frames: D, text: b.text, original_text: b.text,
     scene: { mechanism: "TYPOGRAPHY", canvas: c },

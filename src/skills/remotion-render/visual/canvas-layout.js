@@ -68,7 +68,6 @@ import {
   ROLE_HEADLINE, ROLE_NUMBER, ROLE_DATA, ROLE_EMPHASIS, SERIF, SANS_STACK, HEADLINE_FLOOR,
   fitHeadline, fitNumber, numberParts, numberSlots, measure, fitEmphasis, capHeightEm,
 } from "./typography.js";
-import { placeTokens } from "./token-layout.js";
 
 export const FRAME = { w: 1080, h: 1920 };
 export const SAFE = { x: 48, y: 48, w: 1080 - 96, h: 1920 - 96 };
@@ -106,7 +105,7 @@ const DATA_TYPES = ["BAR", "PIE", "LINE", "GAUGE"];
 
 /**
  * The composition a checked visual type is drawn as. `hasPhoto`: the image the
- * type needs (photo, cutout, scan) was resolved — an unresolved one is drawn
+ * type needs (photo, scan) was resolved — an unresolved one is drawn
  * as typography, never as a stand-in. `extra.view === "building"`: a PHOTO
  * whose real photo shows a building is ARCHITECTURE; `extra.split`: a TYPE
  * beat drawn as TYPE-SPLIT.
@@ -114,7 +113,6 @@ const DATA_TYPES = ["BAR", "PIE", "LINE", "GAUGE"];
 export function compositionFor(visualType, hasPhoto, extra = {}) {
   const t = String(visualType || "TYPE").toUpperCase();
   if (t === "PHOTO") return hasPhoto ? (extra.view === "building" ? "ARCHITECTURE" : "SCENE-FULL") : "TYPE-FULL";
-  if (t === "CUTOUT") return hasPhoto ? "SCENE-FULL" : "TYPE-FULL";
   if (t === "DOCUMENT") return hasPhoto ? "DOCUMENT" : "TYPE-FULL";
   if (t === "MONEY") return hasPhoto ? "MONEY" : "TYPE-FULL";
   if (t === "PROCESS") return "PROCESS-FULL";
@@ -250,12 +248,11 @@ export function splitHeadline(text) {
  * element a camera push or a match cut targets.
  */
 export function canvasLayout(c) {
-  const comp = c?.composition || compositionFor(c?.visual_type, !!(c?.photo || c?.cutout));
+  const comp = c?.composition || compositionFor(c?.visual_type, !!c?.photo);
   const vt = String(c?.visual_type || "TYPE").toUpperCase();
   const flip = (Number(c?.variant) || 0) % 2 === 1 ? 1 : 0;
   const boxes = {};
   let hero = null;
-  const tokens = Array.isArray(c?.tokens) ? c.tokens.filter((t) => t && t.icon).slice(0, 2) : [];
 
   if (comp === "TYPE-FULL" || comp === "NUMBER-FULL" || comp === "TYPE-SPLIT") {
     const folio = c?.lead_in ? null : folioOf(c);
@@ -325,9 +322,6 @@ export function canvasLayout(c) {
           boxes.kicker = dataBox(c.lead_in || folio, { width: 640, size: 34, maxLines: 1, y: TOP + 30, flip: flip ? 0 : 1 });
           topLimit = boxes.kicker.y + boxes.kicker.h + 60;
         }
-        // Room for the concept token(s) above the statement (a long statement
-        // gives up a little size for it, never the token its room).
-        if (tokens.length) topLimit += TOKEN_ROOM;
         boxes.statement = headlineBox(text, { width: 984, bottom: BOTTOM, flip, maxLines: 5, maxHeight: BOTTOM - topLimit, max: 260 });
         hero = "statement";
       }
@@ -474,13 +468,10 @@ export function canvasLayout(c) {
       boxes.headline = { ...headlineBox(c.headline || "", { width: 920, bottom: BOTTOM, flip, maxLines: 4, maxHeight: comp === "MONEY" ? 520 : 700, max: 200 }), callout: comp === "DOCUMENT" };
       hero = "photo";
     } else {
+      // No image resolved: the beat is typography (compositionFor never routes here without a photo).
       Object.assign(boxes, dataHeader(c, flip, { maxSize: 112 }));
       if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);
-      const top = Math.max(boxes.bottom + 60, CONTENT_TOP + 20);
-      // The object fills the far two thirds of the frame, on the side away
-      // from the headline; drawn "contain".
-      boxes.cutout = flip ? box(L_EDGE, top, 700, BOTTOM - top) : box(R_EDGE - 700, top, 700, BOTTOM - top);
-      hero = "cutout";
+      hero = "headline";
     }
   } else if (comp === "PROCESS-FULL") {
     Object.assign(boxes, dataHeader(c, flip));
@@ -503,26 +494,7 @@ export function canvasLayout(c) {
     }
     hero = "nodes";
   }
-  if (tokens.length && tokenComposition(comp, c)) placeConceptTokens(boxes, tokens, flip);
   return { composition: comp, boxes, hero, flip };
-}
-
-// The height a TYPE-FULL statement gives up so the token(s) above it have room.
-const TOKEN_ROOM = 300;
-// Compositions whose own picture is the visual (a real photo, the map, an isolated
-// object, the split's two numbers) draw no token.
-const tokenComposition = (comp, c) => !(c?.photo || c?.cutout) && comp !== "MAP-CENTERED" && comp !== "COMPARISON-SPLIT" && comp !== "SCENE-FULL" && comp !== "ARCHITECTURE" && comp !== "DOCUMENT" && comp !== "MONEY";
-const NOT_OBSTACLES = new Set(["photo", "map", "split", "cutout"]);
-
-/** Put the concept tokens in the free squares the composition leaves (token-layout.js); a token with no room is omitted. */
-function placeConceptTokens(boxes, tokens, flip) {
-  const occupied = flattenBoxes(boxes).filter(([k, v]) => !NOT_OBSTACLES.has(k) && v.role !== "shape").map(([, v]) => v);
-  const spots = placeTokens(occupied, tokens.length, { bounds: { x0: L_EDGE, y0: TOP, x1: R_EDGE, y1: BOTTOM }, flip });
-  tokens.forEach((t, i) => {
-    const p = spots[i];
-    if (!p) return;
-    boxes[`token${i}`] = { ...box(p.x, p.y, p.size, p.size), role: "token", size: p.size, icon: t.icon, tint: t.tint || "ink", kind: t.kind, word: t.word, rank: t.role || (i ? "secondary" : "primary") };
-  });
 }
 
 const isBox = (v) => v && typeof v === "object" && "x" in v && "y" in v && "w" in v && "h" in v;
@@ -563,7 +535,7 @@ export function focusBox(layout, target) {
   if (t === "chart" || t === "data") return b.chart || b.number || null;
   if (t === "headline" || t === "text") return b.headline || b.statement || b.emphasis || null;
   if (t === "map") return b.map ? { x: 140, y: 380, w: 800, h: 1000 } : null;
-  if (t === "photo" || t === "subject") return b.photo ? { x: 140, y: 380, w: 800, h: 1000 } : b.cutout || null;
+  if (t === "photo" || t === "subject") return b.photo ? { x: 140, y: 380, w: 800, h: 1000 } : null;
   if (t === "left") return { x: 0, y: 300, w: 640, h: 1100 };
   if (t === "right") return { x: 440, y: 300, w: 640, h: 1100 };
   if (t === "top") return { x: 0, y: 100, w: 1080, h: 900 };
@@ -608,10 +580,6 @@ export function canvasManifest(raw, idx) {
       : L.boxes.headline || L.boxes.statement ? ROLE_HEADLINE.motions[((idx % 3) + 3) % 3] : null,
     vertical: !!c.vertical,
     number_snaps: L.boxes.number ? !L.boxes.number.parts?.isQuantity : null,
-    // The concept tokens the renderer drew (kind / icon / word), and the ones the
-    // resolver chose but the composition had no room for.
-    tokens: Object.entries(L.boxes).filter(([k]) => /^token\d$/.test(k)).map(([, t]) => ({ kind: t.kind, icon: t.icon, word: t.word, rank: t.rank, size: t.size })),
-    tokens_wanted: Array.isArray(c.tokens) ? c.tokens.length : 0,
   };
 }
 

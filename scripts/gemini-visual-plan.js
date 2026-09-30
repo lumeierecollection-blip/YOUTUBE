@@ -40,7 +40,6 @@ import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-name
 import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequire(import.meta.url)("./entity-assets.cjs");
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
-import { planConcepts } from "./concept-plan.js";
 import { previewAnimations } from "./anim-plan.js";
 import { compositionFor, splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { flowNodes, FLOW_WORDS, listItemsOf, timelineOf, compareOf, documentNameOf, moneyObjectOf, quantitiesOf, statedPercentsOf, knownPlacesOf } from "./canvas-grounding.js";
@@ -167,9 +166,9 @@ for (const [ch, names] of Object.entries(NICHE_DRAWINGS)) {
 // ── VISUAL TYPE: the planner picks it, code checks its data ──────────
 // CLAUDE.md hard rule: nothing on screen that the source did not say. Every
 // number a chart draws must appear in the sentence; a map's place must be a
-// real region; a cutout must name one object. Anything else becomes TYPE.
-export const VISUAL_TYPES = ["PHOTO", "CUTOUT", "COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP", "PROCESS", "LIST", "TIMELINE", "COMPARE", "DOCUMENT", "MONEY", "TYPE"];
-const TYPE_CAPABILITY = { PHOTO: "revelation", CUTOUT: "revelation", COUNTER: "evidence", BAR: "comparison", PIE: "population", LINE: "growth", GAUGE: "accumulation", MAP: "contrast", PROCESS: "causation",
+// real region. Anything else becomes TYPE.
+export const VISUAL_TYPES = ["PHOTO", "COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP", "PROCESS", "LIST", "TIMELINE", "COMPARE", "DOCUMENT", "MONEY", "TYPE"];
+const TYPE_CAPABILITY = { PHOTO: "revelation", COUNTER: "evidence", BAR: "comparison", PIE: "population", LINE: "growth", GAUGE: "accumulation", MAP: "contrast", PROCESS: "causation",
   LIST: "evidence", TIMELINE: "growth", COMPARE: "comparison", DOCUMENT: "revelation", MONEY: "evidence" };
 
 // ── named entities: only what the sentence NAMES ─────────────────────
@@ -253,7 +252,7 @@ export function groundedOptions(sentence) {
     const span = words.slice(i, i + k).join(" ").replace(/[.]$/, "");
     if (k <= words.length - i && /^[A-Z]/.test(span) && resolveRegion(span)) places.add(span);
   }
-  const allowed = ["TYPE", "CUTOUT"];
+  const allowed = ["TYPE"];
   if (counts.length) allowed.push("COUNTER");
   if (pct.length) allowed.push("PIE", "GAUGE");
   if (nums.length >= 2) allowed.push("BAR", "LINE");
@@ -292,26 +291,7 @@ function numIn(v, nums) {
   const w = wordNumbers(v);
   return w.length > 0 && nums.has(w[0]);
 }
-// ── CUTOUT must name an object the sentence names ────────────────────
-// Owner's rule: a cutout shows the literal object the sentence is about —
-// not its topic, not a metaphor. Run 36397373831 ch-44 drew a camera for
-// "strategic advantage", bills for "the foundation", a gavel for
-// "negotiation tactics". The gate: after dropping a container phrase
-// ("stack of") and anything from the first preposition on ("signature ON
-// contract paper"), the object's head noun must appear in the sentence — or
-// the word just before it (a compound: "dollar bills" for "$2 billion"),
-// unless that word is a proper name ("Miami skyline" for "... in the Miami
-// office" is rejected: the skyline is not in the sentence). Words match on
-// a crude stem: signature/signed -> sign, bills -> bill, a shared prefix of
-// 5+ letters (robot/robotic). "$" reads as "dollar".
-// Where this stops: it proves the object's NAME is in the sentence, not that
-// the thing is photographable ("background check" passes it — the prompt,
-// the fetch, rembg and the beat check catch that), and it rejects inferred
-// objects the sentence does not name ("fingerprint card" for "do a
-// background check").
-const CUTOUT_CONTAINERS = new Set(["stack", "pile", "piece", "pieces", "pair", "set", "group", "bunch", "bundle", "roll", "sheet", "box", "handful", "row", "stacks", "piles"]);
-const CUTOUT_PREPOSITIONS = new Set(["on", "in", "with", "at", "from", "by", "for", "of", "under", "over", "near", "beside", "against", "inside", "into", "onto", "showing"]);
-const CUTOUT_FILLER = new Set(["a", "an", "the", "single", "small", "large", "big", "old", "new", "close", "closeup", "up", "view", "photo", "isolated", "white", "background", "object", "item", "thing", "and"]);
+// A crude word stem shared by the lead-in and headline gates (signature/signed -> sign, bills -> bill, a shared prefix of 5+ letters).
 function stemWord(w) {
   let x = String(w || "").toLowerCase().replace(/[^a-z0-9]/g, "");
   for (const suf of ["ations", "ation", "atures", "ature", "ments", "ment", "ings", "ing", "ers", "er", "ies", "es", "ed"]) {
@@ -327,21 +307,6 @@ function stemMatch(a, b) {
   const [short, long] = a.length <= b.length ? [a, b] : [b, a];
   return short.length >= 5 && long.startsWith(short);
 }
-export function cutoutNamedInSentence(object, sentence) {
-  const raw = String(sentence || "").replace(/\$/g, " dollar ");
-  const toks = raw.split(/[^A-Za-z0-9']+/).filter(Boolean);
-  const sent = toks.map((t, i) => ({ stem: stemWord(t), proper: i > 0 && /^[A-Z]/.test(t) && !/^[A-Z]+$/.test(t) }));
-  let words = String(object || "").split(/\s+/).map((w) => w.replace(/[^A-Za-z0-9'-]/g, "")).filter(Boolean);
-  if (words.length > 2 && CUTOUT_CONTAINERS.has(words[0].toLowerCase()) && words[1].toLowerCase() === "of") words = words.slice(2);
-  const cut = words.findIndex((w) => CUTOUT_PREPOSITIONS.has(w.toLowerCase()));
-  const np = (cut >= 0 ? words.slice(0, cut) : words).filter((w) => !CUTOUT_FILLER.has(w.toLowerCase()));
-  if (!np.length) return { ok: false, why: `CUTOUT "${object}" names no object` };
-  const head = stemWord(np[np.length - 1]), mod = np.length > 1 ? stemWord(np[np.length - 2]) : null;
-  if (sent.some((t) => stemMatch(head, t.stem))) return { ok: true, matched: np[np.length - 1] };
-  if (mod && sent.some((t) => !t.proper && stemMatch(mod, t.stem))) return { ok: true, matched: np[np.length - 2] };
-  return { ok: false, why: `CUTOUT "${object}" is not named in the sentence (a cutout shows the literal object the sentence names)` };
-}
-
 // ── The lead-in comes from the beat's own sentence ────────────────────
 // Run 36405739332 ch-48 put the REFERENCE's example lead-ins on its own
 // beats ("watch how", "they are selling", "to the tagline", "by being
@@ -419,17 +384,6 @@ export function checkVisual(b, sentence) {
     if (!object) return bad("MONEY: the sentence names no money object (cash, coins, a receipt, a currency)");
     const fig = quantitiesOf(sentence).find((q) => /[$€£₹]|\b(?:thousand|million|billion|trillion)\b/i.test(q.value));
     return { type: t, data: { object, value: fig ? fig.value : null } };
-  }
-  if (t === "CUTOUT") {
-    // A cutout is a photographed physical object: "scale of justice icon",
-    // "padlock icon", "document cutout" (run 36388470508) searched for the
-    // word "icon"/"cutout", and the fetcher rejects icons by design.
-    const obj = String(d.object || b.cutout_query || "")
-      .replace(/\b(icons?|symbols?|illustrations?|graphics?|cutouts?|clip ?art|vectors?|logos?|emojis?|pictograms?|drawings?|isolated|white background|png)\b/gi, " ")
-      .replace(/\s+/g, " ").trim();
-    if (!obj) return bad("CUTOUT without an object");
-    const named = cutoutNamedInSentence(obj, sentence);
-    return named.ok ? { type: t, data: { object: obj } } : bad(named.why);
   }
   if (t === "MAP") {
     const place = String(d.place || "").trim();
@@ -572,7 +526,7 @@ so pick the composition that fits THIS sentence, and prefer the specific one
   DATA-FULL         the chart IS the composition. BAR / PIE / LINE / GAUGE.
                     "Needs take 50%, wants 30%, savings 20%."
   SCENE-FULL        a REAL photograph fills the frame, a named person or a
-                    place, or ONE physical object large. PHOTO / CUTOUT.
+                    place. PHOTO.
                     "David Einhorn shorted the stock."
   ARCHITECTURE      a real photo of a building — PHOTO of an institution or
                     address; the system detects that the picture shows one.
@@ -618,7 +572,7 @@ vignette and the camera are added by the system.
                   add a claim, promise or judgement it does not make
                   ("GUARANTEED", "BEST", "FAILS") — a checker rejects that.
   "emphasis_word": one word of the headline, or null
-  "visual_type":  ONE of PHOTO | CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | LIST | TIMELINE | COMPARE | DOCUMENT | MONEY | TYPE
+  "visual_type":  ONE of PHOTO | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | LIST | TIMELINE | COMPARE | DOCUMENT | MONEY | TYPE
   "data":         by type (numbers EXACTLY as the sentence says them — a
                   number the sentence does not say is rejected and the beat
                   becomes TYPE):
@@ -626,8 +580,6 @@ vignette and the camera are added by the system.
              the sentence NAMES, exactly as it appears in "named_entities".
              The system fetches a real, verified photo of THAT entity; if
              none exists the beat is drawn as TYPE — never a stand-in.
-    CUTOUT   {"object": "drink can"}   ONE physical object THE SENTENCE
-             NAMES — see "CUTOUT RULE" below.
     COUNTER  {"value": "1.4 billion", "label": "brand value"}
     BAR      {"bars": [{"label": "2019", "value": "3 million"}, {"label": "2024", "value": "1.4 billion"}]}
     PIE      {"percent": 25, "label": "of global oil"}
@@ -651,20 +603,6 @@ vignette and the camera are added by the system.
                   sentence says "Federal Reserve"):
                   [{"type": "person"|"place"|"organization", "name": "..."}]
                   — [] when it names none. Never an entity it does not name.
-  "concepts":     every CONCRETE THING the sentence names that a picture can
-                  show, in the order it says them, each {"word": <the word AS
-                  WRITTEN in the sentence>, "kind": <one kind>}. Kinds — money:
-                  money currency bill coin receipt statement; who: person group
-                  organization company; where: place building city country
-                  region; when: time date year deadline duration; papers:
-                  document contract filing ruling law; things: vehicle machine
-                  tool weapon product; movement: trade flow transfer growth
-                  decline loss gain; alarm: warning risk danger alert; between
-                  parties: agreement deal partnership conflict. Every word MUST
-                  appear in the sentence — a concept the sentence does not name
-                  is dropped by a code check, never shown. The system draws the
-                  two most important as large animated icons next to the number
-                  and the label. [] when the sentence names nothing concrete.
   "motion_tier":  "micro" | "medium" | "major". Most beats "medium". EXACTLY
                   2 or 3 beats in the video are "major": the hook (beat 0),
                   the pivot (the turn in the argument), and/or the close.
@@ -698,22 +636,6 @@ should be a PHOTO when the script names anyone or anywhere. A number in
 the same sentence may still be better as COUNTER/BAR: choose what the
 sentence is about.
 
-CUTOUT RULE (enforced in code: an object the sentence does not name turns
-the beat into TYPE).
-If the beat's visual type is CUTOUT, "object" (the cutout query) must name
-an object that appears literally in the sentence. Not the topic of the
-sentence. Not an idea related to the sentence. The thing itself.
-  Sentence: "Before signing, do a background check."
-    "background check"           -> REJECT. It's an idea.
-    "magnifying glass document"  -> REJECT. It's a metaphor.
-  Sentence: "The company spent $2 billion on the deal."  -> COUNTER first;
-    "stack of hundred dollar bills"  -> would be a valid cutout.
-  Sentence: "Robotic arms now weld 40% of the frames."  -> GAUGE or COUNTER
-  first; "robotic arm" would be a valid cutout.
-The object must be ONE object, never a person (use PHOTO for a named
-person), a screen, a chart, an icon or a drawing, and never something too
-large to isolate: a building, factory, room, street or landscape.
-
 PROCESS RULE (enforced in code): every node's words are in the sentence,
 and the sentence really describes a cause -> effect, a sequence or a flow
 ("higher rates raise rent, and rent cuts savings"). Not for a list.
@@ -724,7 +646,7 @@ Rules that are enforced, not advisory:
   against each other -> COMPARE; dated events -> TIMELINE; an enumeration ->
   LIST; a named person, place or organization -> PHOTO (or MAP for a
   country / US state); a named law, treaty or case -> DOCUMENT; an amount or
-  a money object -> MONEY; a physical object -> CUTOUT; a cause/effect or
+  a money object -> MONEY; a cause/effect or
   sequence -> PROCESS; an abstract claim with none of these -> TYPE.
 - BAR/LINE need two or more numbers the sentence says; PIE/GAUGE need a
   percentage it says. Otherwise COUNTER (one number) or TYPE.
@@ -893,10 +815,9 @@ Respond ONLY with JSON (no markdown fences):
       "headline": "<2-4 words, never a full sentence>",
       "emphasis_word": "<one headline word, or null>",
       "canvas_composition": "<one of the thirteen compositions>",
-      "visual_type": "<PHOTO | CUTOUT | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | LIST | TIMELINE | COMPARE | DOCUMENT | MONEY | TYPE>",
+      "visual_type": "<PHOTO | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | LIST | TIMELINE | COMPARE | DOCUMENT | MONEY | TYPE>",
       "data": { "<fields for the visual_type, see above>": "..." },
       "named_entities": [{ "type": "<person | place | organization>", "name": "<as named in the sentence>" }],
-      "concepts": [{ "word": "<a word of the sentence>", "kind": "<money | person | place | time | document | loss | warning | deal | ...>" }],
       "motion_tier": "<micro | medium | major>",
       "camera_focus": [{ "at_percent": 0.4, "target": "<number | chart | headline | photo | left | right | top | bottom | node0 | node1 | node2 | full>" }],
       "persists_from": null,
@@ -1224,7 +1145,6 @@ async function main() {
       const repairPrompt = `A code check rejected the visuals below. Replace each one with a visual_type and data that PASS the check, using ONLY what the sentence itself says.
 
 The check (it runs on your answer):
-- CUTOUT {"object": "..."}: ONE physical object whose words appear literally in the sentence. Copy the words. A topic, an idea, a company or a person is not an object. If the sentence names no physical object, do not use CUTOUT.
 - COUNTER {"value": "...", "label": "..."}: value is one of "Numbers you may use", written as in the sentence.
 - PIE / GAUGE {"percent": n, "label": "..."}: n is one of the listed percentages.
 - BAR {"bars": [{"label","value"}]} / LINE {"points": [{"label","value"}]}: every value is a number in the sentence; LINE needs 2+.
@@ -1318,7 +1238,7 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
     };
     const compOf = (i) => {
       const b = plan.beats[i], v = effective(i);
-      const image = ["PHOTO", "CUTOUT", "DOCUMENT", "MONEY"].includes(v.type);
+      const image = ["PHOTO", "DOCUMENT", "MONEY"].includes(v.type);
       return compositionFor(v.type, image, { view: imageView.get(b.index) === "building" ? "building" : null, split: b.type_layout === "split" && !!splitHeadline(b.headline) });
     };
     const figureOthers = (i) => plan.beats.map((_, j) => (j === i ? null : figureKey(effective(j))));
@@ -1360,10 +1280,8 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
   // resolver in render-and-qa.js replaces the drawing with a real photo when
   // the concept resolves. A composition the model wrote anyway is ignored.
   // A TYPE beat gets no composition and the typographic_emphasis capability.
-  // Fix 1: every beat's concepts — the sentence's own words the lexicon (and
-  // the model, when grounded) name — before the visuals are checked.
+  // The sentence each beat narrates (the resolver rebuilds the headline's sentence case from it).
   for (const b of plan.beats) b.narration = sentences[b.index]?.text || sentences[plan.beats.indexOf(b)]?.text || "";
-  planConcepts(plan.beats, (m) => console.log(m));
   let lastPercentType = null;
   const figuresShown = new Map();
   for (const b of plan.beats) {
@@ -1401,7 +1319,6 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       b.visual_type = v.type;
       b.data = v.data;
       b.kind = v.type === "TYPE" ? "TYPE" : "EDITORIAL";
-      b.cutout_query = v.type === "CUTOUT" ? v.data.object : null;
       if (v.type !== "TYPE") b.capabilities = [TYPE_CAPABILITY[v.type]];
     }
     const kind = String(b.kind || (b.headline ? "EDITORIAL" : b.concept ? "VISUAL" : "")).toUpperCase();

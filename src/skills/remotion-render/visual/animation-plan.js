@@ -6,13 +6,13 @@
  *
  * The rules (the brief's):
  *   1. ONE animation per element per beat: headline, kicker, number, label,
- *      chart, each concept token, and at most one exit.
+ *      chart, and at most one exit.
  *   2. The same element type never repeats an animation FAMILY (animations.js:
  *      MASK_SWEEP and SPLIT_REVEAL are both "mask") on consecutive beats, and
  *      the last three beats' animations are removed from the choices — the
  *      rolling `recent_animations` window.
  *   3. Elements within one beat use different families (the headline slides,
- *      the label fades, the token scales...).
+ *      the label fades...).
  *   4. Within a video the least-used animation is preferred, so a video draws on
  *      the whole vocabulary; ties are broken by a hash of (seed, beat, element),
  *      so a plan is reproducible and two channels differ.
@@ -28,9 +28,8 @@ import { TEXT_ENTRANCES, EXITS, BAR, PIE, LINE, NUMBER, familyOf } from "./anima
 
 const ids = (list) => list.map((a) => a.id);
 const BLOCK_IN = ["FADE_LIFT", "BLUR_IN", "SLIDE_FROM_L", "SLIDE_FROM_R", "DROP_IN", "RISE_FROM_BASE", "SCALE_UP", "SCALE_PUNCH", "WHIP_IN", "CUT_IN"];
-const TOKEN_IN = ["FADE_LIFT", "BLUR_IN", "SLIDE_FROM_L", "SLIDE_FROM_R", "DROP_IN", "RISE_FROM_BASE", "SCALE_UP", "SCALE_PUNCH", "WHIP_IN", "CUT_IN", "MASK_SWEEP", "SPLIT_REVEAL"];
 const VERTICAL_IN = ["FADE_LIFT", "BLUR_IN", "MASK_SWEEP", "CUT_IN", "SCALE_UP"];
-const ROLE_LIST = ["headline", "kicker", "label", "token0", "token1"];   // text-like roles that share the family-per-beat rule
+const ROLE_LIST = ["headline", "kicker", "label"];   // text-like roles that share the family-per-beat rule
 
 /** FNV-1a, for a reproducible tie-break. */
 export function hash(str) {
@@ -54,7 +53,6 @@ export function allowedFor(role, item) {
       const c = Number(item[`${role}Chars`]) || 0, w = Number(item[`${role}Words`]) || 0;
       return [...BLOCK_IN, "TYPE_IN", "WORD_STAGGER", "MASK_SWEEP"].filter((id) => textOk(id, c, w));
     }
-    case "token0": case "token1": return TOKEN_IN;
     case "number": return item.quantity === false ? ["SNAP_IN", "FLIP_CARD", "SCALE_IMPACT", "ROLL_DIGIT"] : ids(NUMBER);
     case "chart":
       if (item.chart === "BAR") return ids(BAR);
@@ -69,23 +67,23 @@ export function allowedFor(role, item) {
 /**
  * items: [{ composition, headlineChars, headlineWords, kickerChars, labelChars,
  *           number: bool, quantity: bool, chart: "BAR"|"PIE"|"GAUGE"|"LINE"|null,
- *           tokens: 0..2, vertical, majorWords, last }]
- * Returns { beats: [{ headline?, kicker?, number?, label?, chart?, token0?, token1?, exit?: {element, id} }],
+ *           vertical, majorWords, last }]
+ * Returns { beats: [{ headline?, kicker?, number?, label?, chart?, exit?: {element, id} }],
  *           recent: [[ids of the last three beats, as of beat i]], relaxed: [strings], used: {id: count} }.
  */
 export function animationsFor(items, { seed = "", log = () => {} } = {}) {
   const beats = [], recent = [], relaxed = [];
   const used = {};
-  const usage = { headline: {}, kicker: {}, label: {}, token: {}, number: {}, chart: {}, exit: {} };
+  const usage = { headline: {}, kicker: {}, label: {}, number: {}, chart: {}, exit: {} };
   const prevFam = {};                                                    // role -> the family it used the last time it was drawn
-  const windowOf = { headline: [], kicker: [], label: [], token: [], number: [], chart: [], exit: [] };   // last three beats' ids per kind
-  const kindOf = (role) => (role.startsWith("token") ? "token" : role);
+  const windowOf = { headline: [], kicker: [], label: [], number: [], chart: [], exit: [] };   // last three beats' ids per kind
+  const kindOf = (role) => role;
   const bump = (kind, id) => { usage[kind][id] = (usage[kind][id] || 0) + 1; used[id] = (used[id] || 0) + 1; };
 
   items.forEach((item, i) => {
     const present = (r) => (r === "headline" ? !!(item.headlineChars || item.majorWords) : r === "kicker" ? !!item.kickerChars : r === "number" ? !!item.number
-      : r === "label" ? !!item.labelChars : r === "chart" ? !!item.chart : r === "token0" ? (item.tokens || 0) >= 1 : (item.tokens || 0) >= 2);
-    const roles = ["headline", "kicker", "number", "label", "chart", "token0", "token1"].filter(present);
+      : r === "label" ? !!item.labelChars : !!item.chart);
+    const roles = ["headline", "kicker", "number", "label", "chart"].filter(present);
     const out = {};
     // Candidates for a role, best first (least used in this video, then a reproducible hash). `window`: drop the last-three-beats ids.
     const cands = (role, useWindow) => {
@@ -129,7 +127,7 @@ export function animationsFor(items, { seed = "", log = () => {} } = {}) {
     // One exit, on a supporting element (never the hero), except on the last beat (no outgoing transition);
     // its family differs from its own element's entrance and from the last exit's.
     if (!item.last) {
-      const el = ["label", "kicker", "token1", "token0"].find((r) => out[r]);
+      const el = ["label", "kicker"].find((r) => out[r]);
       if (el) {
         const own = familyOf(out[el]), wnd = new Set(windowOf.exit.flat());
         const c = ids(EXITS).filter((id) => familyOf(id) !== own && familyOf(id) !== prevFam.exit && !wnd.has(id))
@@ -140,7 +138,7 @@ export function animationsFor(items, { seed = "", log = () => {} } = {}) {
     }
     // Commit to the windows.
     for (const kind of Object.keys(windowOf)) {
-      const got = kind === "token" ? [out.token0, out.token1].filter(Boolean) : kind === "exit" ? (out.exit ? [out.exit.id] : []) : out[kind] ? [out[kind]] : [];
+      const got = kind === "exit" ? (out.exit ? [out.exit.id] : []) : out[kind] ? [out[kind]] : [];
       if (!got.length) continue;        // an element that is absent is not a repeat
       windowOf[kind].push(got);
       if (windowOf[kind].length > 3) windowOf[kind].shift();
@@ -171,7 +169,6 @@ export function itemOf(c, L, { last = false } = {}) {
     number: isNum,
     quantity: isNum ? !!B.number.parts?.isQuantity : null,
     chart: L.composition === "DATA-FULL" && ["BAR", "PIE", "GAUGE", "LINE"].includes(vt) ? vt : null,
-    tokens: Object.keys(B).filter((k) => /^token\d$/.test(k)).length,
     vertical: !!(B.statement && B.statement.rotate),
     majorWords: (c.motion_tier === "major") && L.composition === "TYPE-FULL" && !!B.statement && !B.statement.rotate && !B.number && !B.emphasis,
     last,

@@ -25,7 +25,6 @@ import { createRequire as createRequireEntity } from "node:module";
 import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
-import { assignConceptTokens } from "./concept-plan.js";
 import { assignCanvasAnimations } from "./anim-plan.js";
 import { checkVisual, figureKey } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
@@ -607,7 +606,7 @@ function enforceAdjustments(planPath, localAudit, geminiReportPath, attempt) {
   // — the next two attempts rendered the identical video and the job was
   // cancelled at its time cap. Compared on what a beat renders from.
   const renderedAs = (p) => JSON.stringify((p?.beats || []).map((b) => [b.visual_type, b.data, b.headline, b.lead_in, b.kind, b.composition,
-    b.motion_tier, b.camera_focus, b.persists_from, b.match_cut_prev, b.named_entities, b.cutout_query, b.photo, b.canvas]));
+    b.motion_tier, b.camera_focus, b.persists_from, b.match_cut_prev, b.named_entities, b.photo, b.canvas]));
   if (renderedAs(next) === renderedAs(plan)) {
     console.log(`[enforce] the ${applied.length} applied directive(s) change nothing a beat renders from — no re-render of the same video`);
     return empty;
@@ -826,102 +825,13 @@ function movementFor(concept) {
   return MOVEMENTS[h[0] % MOVEMENTS.length];
 }
 
-// ── Cutouts (SCENE-FULL object beats) ─────────────────────────────────
-// Only a CUTOUT beat fetches. Its object is searched as "<object> isolated
-// white background", segmented with rembg (scripts/isolate-cutout.py), made
-// grayscale, and saved as a PNG with alpha in public/cutouts/. A result
-// whose mask covers < 15% (or is still a rectangle) is discarded and the
-// next result fetched; after 3 failures the beat becomes TYPE. There is no
-// phone mockup and no rectangular photo path.
-const CUTOUT_DIR = join(ROOT, "src", "skills", "remotion-render", "public", "cutouts");
-const CUTOUT_MANIFEST = join(CUTOUT_DIR, "manifest.json");
-const ISOLATE_PY = join(ROOT, "scripts", "isolate-cutout.py");
-const CUTOUT_SUFFIX = "isolated white background";
-const CUTOUT_TRIES = 3;
-const PYTHON = process.env.PYTHON || (process.platform === "win32" ? "python" : "python3");
-
-async function makeCutout(asset) {
-  mkdirSync(CUTOUT_DIR, { recursive: true });
-  const out = join(CUTOUT_DIR, `${asset.id}.png`);
-  const src = join(ROOT, "src", "skills", "remotion-render", "public", asset.local_path);
-  const r = spawnSync(PYTHON, [ISOLATE_PY, src, out], { encoding: "utf8", maxBuffer: 1 << 20 });
-  const line = String(r.stdout || "").trim().split(/\r?\n/).pop() || "";
-  let res;
-  try { res = JSON.parse(line); } catch { res = { ok: false, why: `isolate-cutout.py gave no result (exit ${r.status}): ${String(r.stderr || "").slice(-200)}` }; }
-  if (/rembg unavailable/.test(res.why || "")) throw new Error(`rembg is required for cutouts and is not installed: ${res.why}`);
-  if (!res.ok || !existsSync(out)) return { ok: false, why: res.why || "no output" };
-  // Independent check of the file that will be drawn: it must carry an
-  // alpha channel with at least 15% of its pixels transparent. Otherwise it
-  // is (nearly) a solid rectangle - discarded like any failed isolation.
-  let transparent = 0;
-  try {
-    const { default: sharp } = await import("sharp");
-    const meta = await sharp(out).metadata();
-    if (!meta.hasAlpha) return { ok: false, why: "[cutout] isolation failed, no alpha mask (the PNG has no alpha channel)" };
-    const { data, info } = await sharp(out).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
-    let clear = 0;
-    for (let i = info.channels - 1; i < data.length; i += info.channels) if (data[i] < 128) clear++;
-    transparent = clear / Math.max(1, info.width * info.height);
-  } catch (e) { return { ok: false, why: `[cutout] could not read the isolated PNG: ${e.message}` }; }
-  if (transparent < 0.15) return { ok: false, why: `[cutout] isolation failed, no alpha mask (${(transparent * 100).toFixed(0)}% transparent, need 15%)` };
-  const man = readJsonSafe(CUTOUT_MANIFEST) || { version: 1, cutouts: [] };
-  man.cutouts = (man.cutouts || []).filter((c) => c.id !== asset.id);
-  man.cutouts.push({ id: asset.id, subject: (asset.concepts || [])[0] || null, local_path: `cutouts/${asset.id}.png`,
-    source: asset.source, source_url: asset.source_url, license: asset.license, attribution: asset.attribution,
-    segmented: true, coverage: res.coverage, rect_fill: res.rect_fill, edge_touch: res.edge_touch, not_object: res.not_object, transparent });
-  writeFileSync(CUTOUT_MANIFEST, JSON.stringify(man, null, 2) + "\n");
-  // isolated + transparent are REQUIRED by the renderer (full-canvas.jsx
-  // throws "[cutout] isolation failed, no alpha mask" without them).
-  return { ok: true, cutout: { asset: `cutouts/${asset.id}.png`, mode: "cutout", isolated: true, transparent: +transparent.toFixed(4),
-    coverage: res.coverage, rect_fill: res.rect_fill, edge_touch: res.edge_touch, not_object: res.not_object } };
-}
-
-// One CUTOUT beat: up to 3 results, each isolated and checked.
-async function cutoutFor(channelId, planPath, b, stats) {
-  const object = String(b.data?.object || b.cutout_query || "").trim();
-  const norm = (x) => String(x || "").trim().toLowerCase();
-  const tried = new Set();
-  let fetched = 0;
-  for (let attempt = 1; attempt <= CUTOUT_TRIES; attempt++) {
-    let manifest = readJsonSafe(ASSET_MANIFEST) || { assets: [] };
-    let asset = (manifest.assets || []).find((a) => !tried.has(a.id) && (a.concepts || []).some((x) => norm(x) === norm(object)));
-    if (!asset) {
-      const tmpIn = planPath.replace(/\.json$/, `-cutout-${b.index}-requests.json`), tmpOut = planPath.replace(/\.json$/, `-cutout-${b.index}-results.json`);
-      writeFileSync(tmpIn, JSON.stringify([{ beat: b.index, concept: object, asset_query: object, suffix: CUTOUT_SUFFIX, exclude: [...tried] }], null, 2) + "\n");
-      const topic = channelTopic(channelId);
-      const f = await runChild("node", [FETCH_ASSETS_CJS, "--in", tmpIn, "--out", tmpOut, ...(topic ? ["--topic", topic] : [])], { label: `cutout ${channelId} b${b.index}` });
-      if (f.code !== 0) throw new Error(`fetch-assets.cjs exited ${f.code}`);
-      const hit = (readJsonSafe(tmpOut)?.resolved || [])[0];
-      if (!hit) { console.log(`[cutout] "${object} ${CUTOUT_SUFFIX}" no (further) verified result`); break; }
-      fetched++;
-      manifest = readJsonSafe(ASSET_MANIFEST) || { assets: [] };
-      asset = manifest.assets.find((a) => a.id === hit.asset_id);
-      if (!asset) break;
-    }
-    tried.add(asset.id);
-    const r = await makeCutout(asset);
-    if (r.ok) {
-      console.log(`[cutout] beat ${b.index} "${object}": ${asset.id} isolated (alpha ${(r.cutout.coverage * 100).toFixed(1)}%, transparent ${(r.cutout.transparent * 100).toFixed(0)}% of the cut-out, not-the-object ${((r.cutout.not_object || 0) * 100).toFixed(0)}%, edge ${((r.cutout.edge_touch || 0) * 100).toFixed(0)}%, ${asset.license})`);
-      return { cutout: r.cutout, asset, fetched };
-    }
-    stats.discarded++;
-    console.log(`[cutout] beat ${b.index} "${object}": ${asset.id} discarded (${r.why}) — try ${attempt}/${CUTOUT_TRIES}`);
-  }
-  stats.converted++;
-  // The two reasons are logged apart: "failed isolation" only when a result
-  // was actually isolated and discarded; otherwise no source had one.
-  if (tried.size) console.log(`[cutout] "${object} ${CUTOUT_SUFFIX}" failed isolation, converted beat ${b.index} to TYPE`);
-  else { stats.not_found = (stats.not_found || 0) + 1; console.log(`[cutout] "${object} ${CUTOUT_SUFFIX}" no verified result, converted beat ${b.index} to TYPE`); }
-  return { cutout: null, asset: null, fetched };
-}
-
 // Full-canvas content for one beat (visual/full-canvas.jsx draws it; there
 // is no paper). The composition follows from the CHECKED visual type
-// (canvas-layout.js compositionFor): a CUTOUT or PHOTO that could not be
+// (canvas-layout.js compositionFor): a PHOTO that could not be
 // resolved is drawn as TYPE-FULL, never as a stand-in image.
-function canvasContentFor(b, { cutout = null, photo = null } = {}) {
+function canvasContentFor(b, { photo = null } = {}) {
   let vt = String(b.visual_type || "TYPE").toUpperCase();
-  if ((vt === "CUTOUT" && !cutout) || ((vt === "PHOTO" || vt === "DOCUMENT" || vt === "MONEY") && !photo)) vt = "TYPE";
+  if (((vt === "PHOTO" || vt === "DOCUMENT" || vt === "MONEY") && !photo)) vt = "TYPE";
   const c = {
     visual_type: vt,
     data: vt === "TYPE" ? null : b.data || null,
@@ -930,7 +840,6 @@ function canvasContentFor(b, { cutout = null, photo = null } = {}) {
     // beat 6, 1% of the frame): the planner's own on-screen phrase fills it.
     headline: b.headline || b.caption || b.visual_headline || b.typography_direction?.phrase || "",
     emphasis_word: b.emphasis_word || null,
-    cutout: vt === "CUTOUT" ? cutout : null,
     photo: vt === "PHOTO" || vt === "DOCUMENT" || vt === "MONEY" ? photo : null,
     motion_tier: ["micro", "medium", "major"].includes(b.motion_tier) ? b.motion_tier : "medium",
     camera_focus: Array.isArray(b.camera_focus) ? b.camera_focus.slice(0, 2) : null,
@@ -939,7 +848,7 @@ function canvasContentFor(b, { cutout = null, photo = null } = {}) {
     named_entities: Array.isArray(b.named_entities) ? b.named_entities : [],
   };
   if (b.type_layout === "split") c.type_layout = "split";
-  c.composition = compositionFor(vt, !!(c.photo || c.cutout), { view: c.photo?.view, split: c.type_layout === "split" && !!splitHeadline(c.headline) });
+  c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: c.type_layout === "split" && !!splitHeadline(c.headline) });
   return c;
 }
 
@@ -1003,16 +912,15 @@ async function resolveAssets(channelId, planPath) {
   return { ok: true, planPath: out, counts, fetchedNew };
 }
 
-// Full-canvas plans. CUTOUT beats fetch and isolate an object (cutoutFor);
+// Full-canvas plans.
 // PHOTO beats resolve a named person / place / organization to a verified
 // Wikimedia photo (scripts/entity-assets.cjs); COUNTER / BAR / PIE / LINE /
 // GAUGE / MAP / PROCESS are drawn from the plan's checked data; TYPE is
-// typography. An unresolved CUTOUT or PHOTO becomes TYPE-FULL — never a
+// typography. An unresolved PHOTO becomes TYPE-FULL — never a
 // generic photo (CLAUDE.md: real, verified photos only for named entities).
 async function resolveCanvas(channelId, planPath, plan) {
   let fetchedNew = 0;
-  const stats = { discarded: 0, converted: 0 };
-  const counts = { by_comp: {}, cutouts: 0, photos: 0, entity_fallbacks: 0 };
+  const counts = { by_comp: {}, photos: 0, entity_fallbacks: 0 };
   const entities = { resolved: [], fell_back: [] };
   const photoFor = async (ent) => {
     const r = await resolveEntity({ type: ent.type, name: ent.name, context: channelTopic(channelId) || "" });
@@ -1030,14 +938,9 @@ async function resolveCanvas(channelId, planPath, plan) {
     return null;
   };
   for (const b of plan.beats) {
-    let cutout = null, asset = null, photo = null;
+    let photo = null;
     const vt = String(b.visual_type || "").toUpperCase();
-    if (vt === "CUTOUT") {
-      try {
-        const r = await cutoutFor(channelId, planPath, b, stats);
-        cutout = r.cutout; asset = r.asset; fetchedNew += r.fetched + (r.cutout ? 1 : 0);
-      } catch (e) { return { ok: false, reason: `[cutout] beat ${b.index}: ${e.message}` }; }
-    } else if (vt === "PHOTO") {
+    if (vt === "PHOTO") {
       let ent = (b.named_entities || []).find((e) => e.name === b.data?.entity) || { type: b.data?.entity_type || "person", name: b.data?.entity };
       // A generic institution name ("Supreme Court", "Parliament", "the
       // central bank") names a DIFFERENT building in every country: run
@@ -1067,8 +970,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         counts.entity_fallbacks++;
       }
     }
-    b.canvas = canvasContentFor(b, { cutout, photo });
-    if (asset) b.asset = { id: asset.id, source: asset.source, source_url: asset.source_url, license: asset.license, attribution: asset.attribution };
+    b.canvas = canvasContentFor(b, { photo });
     if (photo) b.asset = { id: photo.asset, source: "wikimedia", source_url: photo.source_url, license: photo.license, attribution: photo.credit };
   }
   // NO REPEAT, again, on what actually resolved (a real photo of a building is
@@ -1128,13 +1030,6 @@ async function resolveCanvas(channelId, planPath, plan) {
     const styled = styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
     console.log(`[canvas] style: dark beats ${JSON.stringify(styled.dark)}, emphasis beat ${styled.emphasis}, vertical beat ${styled.vertical}, biggest figure beat ${styled.accentBest}`);
   }
-  // Fix 1: every named concept gets a visual — the tokens each beat draws,
-  // chosen now that its composition is final (scripts/concept-plan.js).
-  {
-    const rep = assignConceptTokens(plan.beats, console.log);
-    console.log(`[concept] ${rep.withToken}/${plan.beats.length} beats draw a concept token, ${rep.none} name no concept, ${rep.noRoom} had no room`);
-    plan.concept_report = rep;
-  }
   // Fix 2: the animation of every element, on the final canvases (the beat's
   // tokens, dark / vertical / emphasis styling are settled): scripts/anim-plan.js.
   {
@@ -1146,15 +1041,13 @@ async function resolveCanvas(channelId, planPath, plan) {
   for (const b of plan.beats) {
     const k = b.canvas.composition;
     counts.by_comp[k] = (counts.by_comp[k] || 0) + 1;
-    if (b.canvas.cutout) counts.cutouts++;
     if (b.canvas.photo) counts.photos++;
     console.log(`[canvas] beat ${b.index} ${k} ${b.canvas.visual_type} ${JSON.stringify(b.canvas.data || {})} tier=${b.canvas.motion_tier}${b.canvas.camera_focus ? ` camera=${b.canvas.camera_focus.map((f) => `${f.target}@${f.at_percent}`).join(",")}` : ""}${b.canvas.persists_from !== null ? ` persists_from=${b.canvas.persists_from}` : ""}${b.canvas.match_cut_prev ? " match_cut" : ""}${b.canvas.dark ? " DARK" : ""}${b.canvas.emphasis_beat ? " EMPHASIS" : ""}${b.canvas.vertical ? " VERTICAL" : ""}`);
   }
-  plan.cutout_stats = stats;
   plan.entity_report = entities;
   const out = planPath.replace(/\.json$/, "-resolved.json");
   writeFileSync(out, JSON.stringify(plan, null, 2) + "\n");
-  console.log(`[canvas] resolved ${basename(planPath)}: ${Object.entries(counts.by_comp).map(([k, v]) => `${k} ${v}`).join(", ")}; photos ${counts.photos}, cutouts ${counts.cutouts}; entities resolved ${entities.resolved.length}, fell back ${entities.fell_back.length}`);
+  console.log(`[canvas] resolved ${basename(planPath)}: ${Object.entries(counts.by_comp).map(([k, v]) => `${k} ${v}`).join(", ")}; photos ${counts.photos}; entities resolved ${entities.resolved.length}, fell back ${entities.fell_back.length}`);
   return { ok: true, planPath: out, counts, fetchedNew };
 }
 

@@ -44,10 +44,6 @@ on:
         description: "'ollama' = answer EVERY model call with local Ollama; Gemini is never called (the fallback test)"
         type: string
         default: ""
-      build_cutouts:
-        description: "Also build the concept-cutout library (real stock photos isolated with rembg -> src/skills/remotion-render/public/cutouts/, committed to this branch). Needs the PIXABAY_API_KEY and UNSPLASH_ACCESS_KEY repository secrets."
-        type: boolean
-        default: false
 
 concurrency:
   group: daily-pipeline-${{ github.ref }}
@@ -101,98 +97,6 @@ jobs:
           ")
           echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
           echo "Channels in this run: $MATRIX"
-
-  # ============================================================
-  # CUTOUTS (only with -f build_cutouts=true): the concept-cutout library.
-  # scripts/build-cutout-library.mjs searches Pixabay (primary) and Unsplash
-  # (secondary; PIXABAY_API_KEY / UNSPLASH_ACCESS_KEY secrets) for each of the 28 objects in scripts/cutout-specs.json,
-  # isolates the photograph with rembg (u2net), checks the mask
-  # (scripts/cutout_lib.py) and commits the PNGs, CREDITS.md and MISSING.md to
-  # this branch. It runs beside the pipeline, not before it: the run that builds
-  # the library does not use it; the next one does. An interactive session behind
-  # an egress allowlist cannot reach those hosts — a runner can.
-  # ============================================================
-  cutouts:
-    if: ${{ github.event.inputs.build_cutouts == 'true' }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 90
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-
-      - name: Cache rembg (pip + u2net model)
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/pip
-            ~/.u2net
-          key: rembg-${{ runner.os }}-v1
-
-      - name: Install rembg, Pillow, pngquant
-        run: |
-          pip install --quiet "rembg[cpu]" pillow numpy
-          python -c "from rembg import new_session; new_session('u2net'); print('rembg ready')"
-          sudo apt-get update -qq && sudo apt-get install -y -qq pngquant
-
-      - name: Which image sources have a key
-        env:
-          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
-        run: |
-          for k in PIXABAY_API_KEY UNSPLASH_ACCESS_KEY; do
-            if [ -n "${!k}" ]; then echo "$k: set"; else echo "::warning::$k is not set — that source is skipped"; fi
-          done
-
-      - name: Validation tests (masks, builder offline)
-        run: node scripts/test-cutout-library.mjs --rembg
-
-      - name: Build the cutout library
-        env:
-          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
-        run: node scripts/build-cutout-library.mjs
-
-      - name: Contact sheet
-        run: node scripts/cutout-contact-sheet.mjs --out docs/cutout-contact-sheet.png
-
-      - name: Upload the library
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cutout-library-${{ github.run_id }}
-          path: |
-            src/skills/remotion-render/public/cutouts/
-            docs/cutout-contact-sheet.png
-            data/cutout-library-log.jsonl
-          if-no-files-found: ignore
-          retention-days: 30
-
-      - name: Commit the library to this branch
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/skills/remotion-render/public/cutouts docs/cutout-contact-sheet.png
-          if git diff --staged --quiet; then echo "nothing new to commit"; exit 0; fi
-          git commit -m "cutouts: build the concept-cutout library (run ${{ github.run_id }})"
-          for attempt in 1 2 3 4 5; do
-            if git push origin "HEAD:${{ github.ref_name }}"; then exit 0; fi
-            git pull --rebase origin "${{ github.ref_name }}" || true
-            sleep $((attempt * 3))
-          done
-          echo "::error::could not push the cutout library"; exit 1
 
   # ============================================================
   # STAGE 1: PREP
@@ -780,30 +684,16 @@ jobs:
         with:
           chrome-version: stable
 
-      # rembg isolates CUTOUT objects (scripts/isolate-cutout.py). Required:
-      # a cutout that cannot be isolated becomes TYPE, and a missing rembg
-      # fails the video rather than pasting a rectangular photo.
       - uses: actions/setup-python@v5
         if: steps.status.outputs.skip != 'true'
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Cache rembg (pip + u2net model)
-        if: steps.status.outputs.skip != 'true'
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/pip
-            ~/.u2net
-          key: rembg-${{ runner.os }}-v1
-
       # edge-tts too: a voiceover without word timings (from before
       # tts_words.py) is re-synthesized by render-and-qa.js before planning.
-      - name: Install rembg + edge-tts
+      - name: Install edge-tts
         if: steps.status.outputs.skip != 'true'
-        run: |
-          pip install --quiet "rembg[cpu]" pillow edge-tts
-          python -c "from rembg import new_session; new_session('u2net'); print('rembg ready')"
+        run: pip install --quiet edge-tts
 
       - name: Cache Remotion Chrome
         if: steps.status.outputs.skip != 'true'
@@ -824,7 +714,7 @@ jobs:
           # + qwen2.5:14b for the challenger only (planner 7b, vision 3b).
           models: "qwen2.5:7b qwen2.5vl:3b qwen2.5:14b"
           cache-key: ollama-${{ runner.os }}-qwen2.5-7b+qwen2.5vl-3b+qwen2.5-14b
-          # Nothing stays resident: the render, rembg and Chromium need the RAM.
+          # Nothing stays resident: the render and Chromium need the RAM.
           unload-after-warm: "true"
           # Pull in the background: the job renders while 17 GB download
           # (the local models are the LAST tier — Gemini, then Groq, first).

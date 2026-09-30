@@ -435,7 +435,7 @@ function canvasType(beats) {
     if (!c) return;
     const roles = new Set();
     for (const [k, v] of Object.entries(c.boxes || {})) {
-      if (k === "photo" || k === "chart" || k === "cutout" || ROLE_OF(k) === "nodes") continue;
+      if (k === "photo" || k === "chart" || ROLE_OF(k) === "nodes") continue;
       const r = v.role || null;
       if (r && r !== "rule") roles.add(r);
       if (TYPE_TEXT.includes(ROLE_OF(k))) {
@@ -496,29 +496,7 @@ function canvasTexture(video, beats) {
   });
   return { bad, grainMin };
 }
-// ── animation / concept-visual checks (animation rebuild) ─────────────
-const VISUAL_COMPOSITIONS = new Set(["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "MAP-CENTERED", "DATA-FULL", "PROCESS-FULL", "TIMELINE", "LIST-BUILD", "COMPARISON-SPLIT"]);
-const CONCEPT_MIN_SHARE = 0.75;
-/**
- * concept-visual: every beat shows something besides its number and its label —
- * a concept token, or a composition whose own picture is the visual (a real
- * photo, the map, a chart, a process, a timeline, a list, a comparison). A
- * beat whose sentence names nothing the lexicon knows and whose composition is
- * typography has none; that is reported per beat, never filled in (nothing is
- * drawn that the sentence did not name). Gate: 75% of beats (the brief asks
- * for every beat; a sentence with no concrete noun cannot be given one
- * without inventing it, so the strict count is in the detail).
- */
-function conceptVisual(beats) {
-  const missing = [];
-  beats.forEach((b, i) => {
-    const c = b.canvas || {};
-    const has = (c.tokens && c.tokens.length) || c.photo || VISUAL_COMPOSITIONS.has(c.composition) || Object.keys(c.boxes || {}).includes("cutout");
-    if (!has) missing.push(`beat ${i} (${c.composition || "?"}${c.tokens_wanted ? `, ${c.tokens_wanted} token(s) had no room` : ""})`);
-  });
-  const n = beats.length, ok = n - missing.length;
-  return { missing, ok, n, pass: n === 0 || ok / n >= CONCEPT_MIN_SHARE };
-}
+// ── animation checks (animation rebuild) ─────────────
 /**
  * animation-rules: every animated element of every beat has an animation from
  * the library; the same element never repeats a FAMILY on consecutive beats;
@@ -538,8 +516,8 @@ async function animationRules(beats) {
     if (role === "chart") return !!b.chart;
     return !!b[role];
   };
-  const ROLES = ["headline", "kicker", "number", "label", "chart", "token0", "token1"];
-  const TEXTY = ["headline", "kicker", "label", "token0", "token1"];
+  const ROLES = ["headline", "kicker", "number", "label", "chart"];
+  const TEXTY = ["headline", "kicker", "label"];
   const window = {};
   beats.forEach((b, i) => {
     const c = b.canvas || {}, an = c.animations;
@@ -552,7 +530,7 @@ async function animationRules(beats) {
       const fam = A.familyOf(id);
       const prev = i > 0 ? beats[i - 1].canvas?.animations?.[role] : null;
       if (prev && A.familyOf(prev) === fam) bad.push(`beat ${i}: ${role} ${id} repeats the "${fam}" family of beat ${i - 1} (${prev})`);
-      const kind = role.startsWith("token") ? "token" : role;
+      const kind = role;
       (window[kind] = window[kind] || []);
       if (window[kind].slice(-3).some((w) => w.includes(id))) notes.push(`beat ${i} ${role} ${id} reused within 3 beats`);
       if (TEXTY.includes(role)) {
@@ -563,7 +541,6 @@ async function animationRules(beats) {
       if (role === "number") usedNumber.add(id);
     }
     for (const kind of ["headline", "kicker", "label", "number", "chart"]) if (present(c, kind) && an[kind]) (window[kind] = window[kind] || []).push([an[kind]]);
-    const tk = [an.token0, an.token1].filter(Boolean); if (tk.length) (window.token = window.token || []).push(tk);
     if (an.exit && !present(c, an.exit.element)) bad.push(`beat ${i}: an exit is set on ${an.exit.element}, which the beat does not draw`);
   });
   return { bad, notes, charts: [...usedChart], numbers: [...usedNumber] };
@@ -582,8 +559,6 @@ async function canvasChecks(video, m) {
   const tx = canvasTexture(video, beats);
   out.push({ id: "canvas-texture", pass: !tx.bad.length, detail: tx.bad.length ? tx.bad.join("; ") : `paper grain on every beat (min luma sd ${tx.grainMin === Infinity ? "n/a" : tx.grainMin.toFixed(2)}), dark beats dark` });
   const mt = motionTiers(beats);
-  const cv = conceptVisual(beats);
-  out.push({ id: "concept-visual", pass: cv.pass, detail: cv.missing.length ? `${cv.ok}/${cv.n} beats show a concept visual besides the number and label (need ${CONCEPT_MIN_SHARE * 100}%); none: ${cv.missing.join(", ")}` : `${cv.n}/${cv.n} beats show a concept visual besides the number and label` });
   const ar = await animationRules(beats);
   out.push({ id: "animation-rules", pass: !ar.bad.length, detail: ar.bad.length ? ar.bad.join("; ") : `every element animated, no family repeated on the same element in consecutive beats, distinct families within each beat${ar.notes.length ? ` (${ar.notes.length} reuse(s) inside the 3-beat window: ${ar.notes.slice(0, 3).join("; ")}${ar.notes.length > 3 ? "..." : ""})` : ""}; chart animations ${ar.charts.join("/") || "none"}, number animations ${ar.numbers.join("/") || "none"}` });
   out.push({ id: "motion-tiers", pass: !mt.bad.length, detail: mt.bad.length ? mt.bad.join("; ") : `${mt.major} major, ${mt.medium} medium, all beats micro` });

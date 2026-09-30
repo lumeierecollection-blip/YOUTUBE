@@ -54,7 +54,7 @@ eq("MONEY: the object and the figure", checkVisual({ visual_type: "MONEY", data:
 eq("MONEY: no money object -> TYPE", checkVisual({ visual_type: "MONEY", data: {} }, "Rates rose sharply.").type, "TYPE");
 eq("COUNTER: a year is a hero number now (it snaps in)", checkVisual({ visual_type: "COUNTER", data: { value: "1938", label: "the year" } }, "The law passed in 1938.").type, "COUNTER");
 eq("COUNTER: an identifier is still refused", checkVisual({ visual_type: "COUNTER", data: { value: "10" } }, "Article 10 of the treaty was invoked.").type, "TYPE");
-eq("15 visual types", VISUAL_TYPES.length, 15);
+eq("14 visual types (CUTOUT is gone)", VISUAL_TYPES.length, 14);
 eq("groundedOptions offers COMPARE", groundedOptions("Renters pay 42% of income versus 31% for owners.").allowed.includes("COMPARE"), true);
 eq("groundedOptions offers TIMELINE", groundedOptions("The law passed in 2019 and was repealed in 2024.").allowed.includes("TIMELINE"), true);
 eq("a second date with no label is no timeline (nothing is invented)", groundedOptions("Rates rose in 2019 and 2024.").allowed.includes("TIMELINE"), false);

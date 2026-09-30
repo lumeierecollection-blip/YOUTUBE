@@ -35,7 +35,6 @@ const bodies = [
   { visual_type: "DOCUMENT", composition: "DOCUMENT", photo: { asset: "x.jpg", entity: "Dodd-Frank Act", view: "document" }, headline: "The act reshaped banking" },
   { visual_type: "MONEY", composition: "MONEY", photo: { asset: "x.jpg", entity: null, view: "money" }, headline: "The fraud cost investors", data: { value: "$105M" } },
   { visual_type: "MONEY", composition: "MONEY", photo: { asset: "x.jpg", entity: null, view: "money" }, headline: "They paid in cash" },
-  { visual_type: "CUTOUT", cutout: { asset: "c.png", isolated: true, transparent: 0.5 } },
   { visual_type: "LIST", data: { items: ["basic", "standard", "premium"], lead: "The three tiers are" } },
   { visual_type: "LIST", data: { items: ["needs", "wants", "savings", "debt", "taxes"] } },
   { visual_type: "TIMELINE", data: { markers: [{ date: "2019", label: "the law passed" }, { date: "2024", label: "it was repealed" }] } },

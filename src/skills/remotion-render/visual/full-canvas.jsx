@@ -8,8 +8,7 @@
  *
  *   TYPE-FULL     the statement, or one hero number with its label
  *   DATA-FULL     bars / donut / line / gauge / map filling the canvas
- *   SCENE-FULL    a real photo edge to edge (objectFit cover), type over it;
- *                 or an isolated object cutout, large, on the studio
+ *   SCENE-FULL    a real photo edge to edge (objectFit cover), type over it
  *   PROCESS-FULL  2-3 nodes, thick arrows drawing between them
  *
  * Motion has two axes.
@@ -56,7 +55,6 @@ import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, Easing 
 import { StudioBG } from "./studio-bg.jsx";
 import { parseQuantity, rollQuantity } from "./primitives/quantity.js";
 import { PaperMap, CenteredMap } from "./primitives/map.jsx";
-import { iconElements } from "./concept-visuals.js";
 import {
   animationById, entrance, exitState, unitOf, entranceSeconds, STAGGER, numberState, rollOffset, countValue, barState, pieState, lineState,
 } from "./animations.js";
@@ -80,7 +78,7 @@ const Hero = React.createContext(null);
 // (texture layer) swaps them; a photo beat draws white on the picture.
 const Theme = React.createContext({ ink: INK, soft: INK_SOFT, mid: MID, track: LIGHT, dark: false, photo: false });
 const useTheme = () => React.useContext(Theme);
-// The beat's animation choices (animation-plan.js): { headline, number, label, chart, token0, exit, dur } or null (the pre-rebuild motion).
+// The beat's animation choices (animation-plan.js): { headline, number, label, chart, exit, dur } or null (the pre-rebuild motion).
 const Anim = React.createContext(null);
 const useAnim = () => React.useContext(Anim);
 
@@ -406,61 +404,6 @@ function Emphasis({ b, color, local, fps }) {
   );
 }
 
-/**
- * A concept token (concept-visuals.js): a Lucide icon drawn large, its
- * strokes drawing on (pathLength 1) as the narrator reaches the concept, then
- * floating a few px so the frame is never still. The stroke is recomputed at
- * video scale (manual A4.3): ~4.5% of the icon's size, 8-16 px. Growth rises,
- * decline sinks; everything else drifts.
- */
-const TOKEN_IDLE = { growth: -1, gain: -1, decline: 1, loss: 1 };
-function ConceptToken({ b, color, local, fps, at, i = 0, name = `token${i}` }) {
-  const A = useAnim();
-  const els = iconElements(b.icon);
-  const t = local - at * fps;
-  if (!els || t <= 0) return null;
-  const aid = A?.[name] || null;
-  const draw = easeOut(clamp01(t / (0.75 * fps)));
-  const pop = easeOut(clamp01(t / (0.45 * fps)));
-  const k = b.size / 24;
-  const sw = Math.max(8, Math.min(16, b.size * 0.045)) / k;
-  const dir = TOKEN_IDLE[b.kind] || 0;
-  const sec = t / fps;
-  const idleY = dir ? dir * (Math.sin(sec * 2.4) * 0.5 + 0.5) * 9 : Math.sin(sec * 1.7 + i * 1.9) * 5;
-  // The entrance the planner chose (animations.js); with none, the pre-rebuild pop.
-  const ent = aid ? entrance(aid, animationById(aid)?.dur ? sec / animationById(aid).dur : 1, { side: 1 }) : null;
-  const es = ent ? styleOf(ent, "50% 50%") : { opacity: clamp01(pop * 1.4), transform: `scale(${lerp(0.84, 1, pop).toFixed(4)})`, transformOrigin: "50% 50%", filter: "none" };
-  // Mask entrances reveal the icon by clipping; RISE_FROM_BASE lifts it out of its own box.
-  let clip = "none";
-  if (ent && aid === "MASK_SWEEP") clip = `inset(0 ${(100 * (1 - ent.rx)).toFixed(2)}% 0 0)`;
-  if (ent && aid === "SPLIT_REVEAL") clip = `inset(0 ${(50 * (1 - ent.rx)).toFixed(2)}% 0 ${(50 * (1 - ent.rx)).toFixed(2)}%)`;
-  const rise = ent && aid === "RISE_FROM_BASE" ? (ent.rise ?? 0) * b.size : 0;
-  const icon = (
-    <svg viewBox="0 0 24 24" width={b.size} height={b.size} fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round"
-      style={{ position: "absolute", left: aid === "RISE_FROM_BASE" ? 0 : b.x, top: aid === "RISE_FROM_BASE" ? 0 : b.y, overflow: "visible", color, ...es, clipPath: clip,
-        transform: `translateY(${(idleY + rise).toFixed(2)}px) ${es.transform === "none" ? "" : es.transform}` }}>
-      {els.map(([tag, attrs], j) => React.createElement(tag, draw >= 1 ? { key: j, ...attrs } : { key: j, ...attrs, pathLength: 1, strokeDasharray: 1, strokeDashoffset: (1 - draw).toFixed(4) }))}
-    </svg>
-  );
-  return (
-    <ExitWrap name={name} b={b} local={local} fps={fps}>
-      {aid === "RISE_FROM_BASE" && rise > 0.5 ? <div style={{ position: "absolute", left: b.x, top: b.y, width: b.size, height: b.size, overflow: "hidden" }}>{icon}</div> : aid === "RISE_FROM_BASE" ? <div style={{ position: "absolute", left: b.x, top: b.y, width: b.size, height: b.size }}>{icon}</div> : icon}
-    </ExitWrap>
-  );
-}
-function ConceptTokens({ L, local, fps, accent }) {
-  const th = useTheme();
-  return (
-    <>
-      {[0, 1].map((i) => {
-        const b = L.boxes[`token${i}`];
-        if (!b) return null;
-        return <ConceptToken key={i} b={b} i={i} local={local} fps={fps} at={0.3 + i * 0.4} color={b.tint === "accent" ? accent : th.ink} />;
-      })}
-    </>
-  );
-}
-
 // A rule grows from its anchored side (left, or right when the beat is right-anchored).
 const Rule = ({ b, t, color }) => {
   if (!b || t <= 0) return null;
@@ -738,22 +681,8 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       </HeroEl>
     );
   }
-  // An isolated object, large on the studio. Hard rule: only an image the
-  // resolver isolated (rembg alpha mask, >= 15% transparent) — never a rectangle.
-  if (!(c.cutout?.isolated === true && Number(c.cutout.transparent) >= 0.15)) {
-    throw new Error(`[cutout] isolation failed, no alpha mask (${c.cutout?.asset}) — the resolver must convert this beat to TYPE`);
-  }
-  const cu = B.cutout, t = m.build(0.35, m.s(0.1));
-  if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
-  return (
-    <HeroEl name="cutout" b={cu}>
-      <div style={{ position: "absolute", left: cu.x, top: cu.y + (1 - t) * 120, width: cu.w, height: cu.h, opacity: t,
-        transform: `rotate(${((1 - t) * -5).toFixed(2)}deg) scale(${(m.breathe * (1 + 0.03 * clamp01(local / dur))).toFixed(4)})`,
-        filter: "drop-shadow(18px 30px 26px rgba(0,0,0,0.28))" }}>
-        <Img src={staticFile(c.cutout.asset)} style={{ width: "100%", height: "100%", objectFit: "contain", filter: "grayscale(1) contrast(1.12)" }} />
-      </div>
-    </HeroEl>
-  );
+  // No image resolved (compositionFor sends such a beat to TYPE-FULL, so this is a safety net): the header alone.
+  return part === "header" ? <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} /> : null;
 }
 
 // ── PROCESS-FULL ──────────────────────────────────────────────────────
@@ -944,7 +873,7 @@ function ComparisonSplit({ c, L, local, dur, fps, accent, idx, part = "body" }) 
 // A soft, large, very low-opacity shadow under the primary element (the
 // number, the chart, the statement): it suggests the element is a physical
 // object on the studio surface. Pure black at 0.06, blur 80 px. Not a photo
-// (full-bleed) and not a cutout (which carries its own shadow).
+// (full-bleed).
 const HERO_SHADOW = "drop-shadow(0 34px 80px rgba(0,0,0,0.06))";
 // plan.hero_shadow === false turns it off (the blur is a full-frame filter on
 // every frame; the switch exists so its render cost can be measured and, if a
@@ -953,7 +882,7 @@ const ShadowOn = React.createContext(true);
 function HeroEl({ name, b, children }) {
   const ctx = React.useContext(Hero);
   const shadowOn = React.useContext(ShadowOn);
-  const lit = shadowOn && name !== "photo" && name !== "cutout";
+  const lit = shadowOn && name !== "photo";
   if (!ctx || !ctx.from || ctx.name !== name || !b) return lit ? <div style={{ position: "absolute", inset: 0, filter: HERO_SHADOW }}>{children}</div> : children;
   // Start exactly on the previous beat's hero box, settle into this one.
   const t = easeInOut(ctx.t);
@@ -1051,7 +980,6 @@ function BeatCanvas({ beat, idx, local, fps, accent, hero, bodyOnly = false }) {
           <div style={{ position: "absolute", inset: 0, transformOrigin: `${zoom ? zoom.ox : 540}px ${zoom ? zoom.oy : 960}px`,
             transform: `scale(${zoom ? (1 + (zoom.k - 1) * easeInOut(clamp01(local / Math.max(1, dur)))).toFixed(4) : 1})` }}>
             <Comp c={c} L={L} idx={idx} local={local} dur={dur} fps={fps} accent={accent} spoken={beat.spoken} part="body" />
-            <ConceptTokens L={L} local={local} fps={fps} accent={accent} />
           </div>
         </div>
         {bodyOnly ? null : <Comp c={c} L={L} idx={idx} local={local} dur={dur} fps={fps} accent={accent} spoken={beat.spoken} part="header" />}

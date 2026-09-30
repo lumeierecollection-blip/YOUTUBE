@@ -57,8 +57,8 @@ ok("SCALE_IMPACT starts big", numberState("SCALE_IMPACT", 0.05).s > 1.5);
 ok("easings: bounce, back and elastic end on 1", [bounceOut(1), backOut(1), elasticOut(1)].every((v) => Math.abs(v - 1) < 1e-9));
 
 // The planner rules.
-const mk = (n, f) => Array.from({ length: n }, (_, i) => ({ composition: "TYPE-FULL", headlineChars: 24, headlineWords: 4, kickerChars: 12, kickerWords: 2, labelChars: 14, labelWords: 3, number: true, quantity: true, chart: null, tokens: 2, last: i === n - 1, ...(f ? f(i) : {}) }));
-const roles = ["headline", "kicker", "number", "label", "chart", "token0", "token1"];
+const mk = (n, f) => Array.from({ length: n }, (_, i) => ({ composition: "TYPE-FULL", headlineChars: 24, headlineWords: 4, kickerChars: 12, kickerWords: 2, labelChars: 14, labelWords: 3, number: true, quantity: true, chart: null, last: i === n - 1, ...(f ? f(i) : {}) }));
+const roles = ["headline", "kicker", "number", "label", "chart"];
 function checkRun(name, items, seed) {
   const run = animationsFor(items, { seed });
   const problems = [];
@@ -66,14 +66,14 @@ function checkRun(name, items, seed) {
     const it = items[i];
     // 1. one animation per element, every present element has one
     for (const r of roles) {
-      const present = r === "headline" ? it.headlineChars : r === "kicker" ? it.kickerChars : r === "label" ? it.labelChars : r === "number" ? it.number : r === "chart" ? it.chart : r === "token0" ? it.tokens >= 1 : it.tokens >= 2;
+      const present = r === "headline" ? it.headlineChars : r === "kicker" ? it.kickerChars : r === "label" ? it.labelChars : r === "number" ? it.number : it.chart;
       if (present && !b[r]) problems.push(`beat ${i}: ${r} has no animation`);
       if (!present && b[r]) problems.push(`beat ${i}: ${r} animated but absent`);
     }
     // 2. no family repeated on the same element in consecutive beats
     if (i > 0) for (const r of roles) if (b[r] && run.beats[i - 1][r] && familyOf(b[r]) === familyOf(run.beats[i - 1][r])) problems.push(`beat ${i}: ${r} family ${familyOf(b[r])} repeats`);
     // 3. text families distinct inside a beat
-    const fams = ["headline", "kicker", "label", "token0", "token1"].filter((r) => b[r]).map((r) => familyOf(b[r]));
+    const fams = ["headline", "kicker", "label"].filter((r) => b[r]).map((r) => familyOf(b[r]));
     if (new Set(fams).size !== fams.length) problems.push(`beat ${i}: text families collide ${fams}`);
     if (b.exit) { if (!b[b.exit.element]) problems.push(`beat ${i}: exit on an absent element`); if (familyOf(b.exit.id) === familyOf(b[b.exit.element])) problems.push(`beat ${i}: exit shares its element's family`); }
   });
@@ -81,10 +81,10 @@ function checkRun(name, items, seed) {
   return run;
 }
 checkRun("12 beats, every element", mk(12), "a");
-checkRun("12 beats, headlines only", mk(12, () => ({ kickerChars: 0, labelChars: 0, number: false, tokens: 0 })), "b");
+checkRun("12 beats, headlines only", mk(12, () => ({ kickerChars: 0, labelChars: 0, number: false })), "b");
 checkRun("chart/number beats", mk(10, (i) => ({ chart: ["BAR", "PIE", "LINE", "GAUGE"][i % 4], number: i % 2 === 0, quantity: i % 4 !== 0 })), "c");
 for (let k = 0; k < 20; k++) {
-  const items = mk(8 + (k % 5), (i) => ({ kickerChars: (i + k) % 3 ? 10 : 0, labelChars: (i * k) % 2 ? 12 : 0, number: (i + k) % 4 === 0, quantity: (i + k) % 8 !== 0, chart: (i + k) % 5 === 0 ? ["BAR", "PIE", "LINE", "GAUGE"][(i + k) % 4] : null, tokens: (i + k) % 3, headlineChars: 8 + ((i * 7 + k) % 40), headlineWords: 1 + ((i + k) % 6) }));
+  const items = mk(8 + (k % 5), (i) => ({ kickerChars: (i + k) % 3 ? 10 : 0, labelChars: (i * k) % 2 ? 12 : 0, number: (i + k) % 4 === 0, quantity: (i + k) % 8 !== 0, chart: (i + k) % 5 === 0 ? ["BAR", "PIE", "LINE", "GAUGE"][(i + k) % 4] : null, headlineChars: 8 + ((i * 7 + k) % 40), headlineWords: 1 + ((i + k) % 6) }));
   checkRun(`fuzz ${k}`, items, `seed${k}`);
 }
 // Reproducible, and different for different seeds.
