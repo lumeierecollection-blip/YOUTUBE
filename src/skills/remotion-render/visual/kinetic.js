@@ -13,15 +13,20 @@
  *   layout      layoutWords(): per-word measured widths (per weight), greedy
  *               wrap, left- or right-aligned lines; positions are relative to
  *               the block
- *   schedule    wordSchedule(): entrance stagger 4-8 frames, every word landed
- *               by 40% of the beat, clean hold to 70%, exit in the last 30%
- *   entrances   ENTRANCES (9), pickEntrances(): deterministic per word, never
- *               the same entrance at the same word position in two beats in a
- *               row, never twice in a row along a line
- *   emphasis    emphasisState(): scale to 1.15 in 4 frames, hold 6, settle to
- *               1.0 in 6; the colour is the accent through that window
- *   numbers     numberMode(): count_up (40% of the beat) / scale_impact /
- *               flip_digits; a year, article or section number never counts
+ *   schedule    wordSchedule(): each word pops 4-6 frames after the previous,
+ *               every word landed by 40% of the beat, clean hold to 70%, exit
+ *               in the last 30%
+ *   entrances   the POP family only (owner's spec 2026-09-30): text appears IN
+ *               PLACE from a smaller scale, a few px low, and settles. Nothing
+ *               slides in, drops in, wipes (mask sweep), blurs in, rotates in
+ *               or flies across the frame. popEntrances() gives each word its
+ *               pop: POP_EMPHASIS on the emphasis word, POP_STANDARD otherwise,
+ *               POP_SOFT on kickers / labels, POP_HARD on the hook / CTA, or the
+ *               beat's planned POP_LETTER / POP_WORD_STACK
+ *   numbers     numberMode(): "pop_roll" (the figure pops 1.3 -> 1.0 over 8
+ *               frames, fully formed, then its digit slots roll 0 -> value over
+ *               20 frames) or "pop" (a year, article or section number: pops,
+ *               never rolls)
  *
  * Where this stops (stated plainly, CLAUDE.md standing rule):
  *   - the entrance stagger is even across the phrase, not aligned to the
@@ -37,16 +42,34 @@ export const FPS = 30;
 export const WEIGHT_REGULAR = 500;
 export const WEIGHT_BOLD = 700;
 
-export const ENTRANCES = Object.freeze([
-  "slide_in_left", "slide_in_right", "drop_in", "rise_up", "scale_punch", "mask_sweep", "blur_in", "letter_stagger", "rotate_in",
-]);
-/** Frames each entrance takes to settle (letter_stagger: per letter, plus 0.9 frame per letter of stagger). */
-export const ENTRANCE_FRAMES = Object.freeze({
-  slide_in_left: 8, slide_in_right: 8, drop_in: 8, rise_up: 8, scale_punch: 8, mask_sweep: 9, blur_in: 10, letter_stagger: 6, rotate_in: 9,
+/**
+ * The pop family. Every one appears in place; they differ only in how far
+ * the scale travels and how long it takes to settle.
+ *   POP_STANDARD   0.92 -> 1.0, y +8 -> 0, 6 frames, ease-out with a slight
+ *                  overshoot settling exactly at frame 6 (most words)
+ *   POP_EMPHASIS   0.75 -> 1.08 -> 1.0 over 10 frames (the emphasis word)
+ *   POP_SOFT       0.95 -> 1.0, 4 frames (kickers, labels, captions)
+ *   POP_HARD       0.6 -> 1.15 -> 1.0 over 12 frames (hook and CTA only)
+ *   POP_LETTER     each letter pops (POP_STANDARD) 30 ms after the previous;
+ *                  at most one beat a video
+ *   POP_WORD_STACK each word pops (POP_STANDARD) one row above the previous,
+ *                  then the stack settles into the laid-out line
+ */
+export const ENTRANCES = Object.freeze(["POP_STANDARD", "POP_EMPHASIS", "POP_SOFT", "POP_HARD", "POP_LETTER", "POP_WORD_STACK"]);
+const POP = Object.freeze({
+  POP_STANDARD: { from: 0.92, peak: null, frames: 6, dy: 8 },
+  POP_EMPHASIS: { from: 0.75, peak: 1.08, frames: 10, dy: 8 },
+  POP_SOFT: { from: 0.95, peak: null, frames: 4, dy: 5 },
+  POP_HARD: { from: 0.6, peak: 1.15, frames: 12, dy: 8 },
+  NUMBER: { from: 1.3, peak: null, frames: 8, dy: 0 },
 });
+/** Frames each entrance takes to settle (POP_LETTER: per letter, plus 0.9 frame per letter of stagger). */
+export const ENTRANCE_FRAMES = Object.freeze({ POP_STANDARD: 6, POP_EMPHASIS: 10, POP_SOFT: 4, POP_HARD: 12, POP_LETTER: 6, POP_WORD_STACK: 6 });
 export const LETTER_GAP_FRAMES = 0.03 * FPS;   // letters 30 ms apart
-
-export const EMPHASIS = Object.freeze({ scale: 1.15, grow: 4, hold: 6, settle: 6 });
+export const NUMBER_POP_FRAMES = POP.NUMBER.frames;
+export const NUMBER_ROLL_FRAMES = 20;
+/** POP_WORD_STACK: frames the finished stack holds, then takes to settle into the line. */
+export const STACK_HOLD = 8, STACK_SETTLE = 12;
 
 // ── markup ────────────────────────────────────────────────────────────
 const TAG = /<(bold|accent|emph)>([\s\S]*?)<\/\1>/gi;
@@ -143,72 +166,75 @@ const hash = (s) => { let h = 2166136261; for (const ch of String(s)) { h ^= ch.
 export { hash as kineticHash };
 
 /**
- * One entrance per word, deterministic in (seed, beat, position). Constraints:
- * never the same as the word before it on this beat, and never the same as the
- * entrance this word POSITION had in the previous beat (`prev`, an array).
- * `history[i]` lists what position i has had earlier in the video; those are
- * avoided while an unused entrance is left (9 entrances, so a video of more
- * beats than that reuses only after every one has been seen at that position).
+ * One pop per word. `group` is "headline" (a headline or statement) or
+ * "label" (a kicker or data label). `style` is the beat's planned entrance
+ * (canvas.text_entrance), already checked. `edge` is true on the hook (first
+ * beat) and the CTA (last beat).
+ *   label words                      POP_SOFT
+ *   POP_LETTER / POP_WORD_STACK beat every headline word takes the beat's style
+ *   POP_HARD (hook / CTA)            every headline word pops hard
+ *   otherwise                        the emphasis word POP_EMPHASIS, the rest the
+ *                                    beat's style (POP_STANDARD by default)
+ * Deterministic: the same words and style give the same pops.
  */
-export function pickEntrances(n, { seed = "", beat = 0, prev = [], history = [] } = {}) {
-  const out = [];
-  for (let i = 0; i < n; i++) {
-    const start = hash(`${seed}|${beat}|${i}`) % ENTRANCES.length;
-    const used = history[i] || [];
-    // Prefer an entrance this position has not had in the video; when it has had them all, only the hard rules apply.
-    for (const strict of [true, false]) {
-      let pick = null;
-      for (let k = 0; k < ENTRANCES.length && !pick; k++) {
-        const e = ENTRANCES[(start + k) % ENTRANCES.length];
-        if (e !== out[i - 1] && e !== prev[i] && !(strict && used.includes(e))) pick = e;
-      }
-      if (pick) { out.push(pick); break; }
-      if (!strict) out.push(ENTRANCES[start]);
-    }
-  }
-  return out;
+export function popEntrances(words, { group = "headline", style = null, edge = false } = {}) {
+  const st = ENTRANCES.includes(style) ? style : edge ? "POP_HARD" : "POP_STANDARD";
+  return words.map((w) => {
+    if (group === "label") return "POP_SOFT";
+    if (st === "POP_LETTER" || st === "POP_WORD_STACK") return st;
+    if (st === "POP_HARD") return edge ? "POP_HARD" : "POP_STANDARD";
+    if (w && w.emph) return "POP_EMPHASIS";
+    return st;
+  });
+}
+
+/** An entrance name from an older plan (the nine block entrances) or none: the standard pop. */
+export const popName = (name) => (ENTRANCES.includes(name) ? name : "POP_STANDARD");
+// Ease-out-back with a small (~3%) overshoot that lands on exactly 1 at t = 1.
+const BACK = 0.9;
+const backOutSmall = (t) => 1 + (BACK + 1) * Math.pow(t - 1, 3) + BACK * Math.pow(t - 1, 2);
+
+/**
+ * The pop `f` frames after it starts: { s, dy, o, done }. Before the start
+ * the word has not appeared (o 0). Opacity is full by 45% of the pop, while
+ * the scale is still moving — the pop is the entrance, not a fade.
+ * "NUMBER" is the hero-number pop (1.3 -> 1.0 over 8 frames).
+ */
+export function popState(style, f) {
+  const P = POP[style] || POP.POP_STANDARD;
+  if (!(f > 0)) return { s: P.from, dy: P.dy, o: 0, done: false };
+  const t = clamp01(f / P.frames);
+  const o = clamp01(t * 2.2);
+  let s, prog;
+  if (P.peak) {
+    const k = 0.55;
+    if (t < k) { const e = easeOut(t / k); s = P.from + (P.peak - P.from) * e; prog = e; }
+    else { s = P.peak + (1 - P.peak) * easeInOut((t - k) / (1 - k)); prog = 1; }
+  } else { prog = backOutSmall(t); s = P.from + (1 - P.from) * prog; }
+  if (t >= 1) return { s: 1, dy: 0, o: 1, done: true };
+  return { s, dy: P.dy * (1 - prog), o, done: false };
 }
 
 /**
- * A word's entrance at `f` frames after its start: { dx, dy, s, rot, blur, o, reveal }.
- * `reveal` (0..1) is a left-to-right mask (mask_sweep); `o` is a 3-frame
- * coverage ramp on the moving entrances, so a word never pops at full size mid
- * -stroke: motion, not a fade, is the entrance. letter_stagger is per letter:
- * pass `letter` (index) and `letters` (count).
+ * A word's entrance at `f` frames after its start, in the renderer's shape
+ * { dx, dy, s, rot, blur, o, reveal } (dx / rot / blur always 0, reveal
+ * always 1: nothing slides, rotates, blurs or wipes). POP_LETTER is per
+ * letter: pass `letter` (index).
  */
 export function wordEntrance(name, f, { letter = 0 } = {}) {
-  const d = ENTRANCE_FRAMES[name] ?? 8;
-  const st = { dx: 0, dy: 0, s: 1, rot: 0, blur: 0, o: 1, reveal: 1 };
-  if (name === "letter_stagger") f = f - letter * LETTER_GAP_FRAMES;
-  if (f <= 0) return { ...st, o: 0, reveal: 0 };
-  const p = clamp01(f / d), e = easeOut(p), ramp = clamp01(f / 3);
-  switch (name) {
-    case "slide_in_left": return { ...st, dx: -40 * (1 - e), o: ramp };
-    case "slide_in_right": return { ...st, dx: 40 * (1 - e), o: ramp };
-    case "drop_in": return { ...st, dy: p < 0.7 ? lerp(-30, 2, easeOut(p / 0.7)) : lerp(2, 0, easeInOut((p - 0.7) / 0.3)), o: ramp };
-    case "rise_up": return { ...st, dy: 20 * (1 - e), o: ramp };
-    case "scale_punch": return { ...st, s: p < 0.6 ? lerp(0.8, 1.06, easeOut(p / 0.6)) : lerp(1.06, 1, easeInOut((p - 0.6) / 0.4)), o: ramp };
-    case "mask_sweep": return { ...st, reveal: easeInOut(p), dx: -8 * (1 - e) };
-    case "blur_in": return { ...st, blur: 10 * (1 - e), o: clamp01(f / 4) };
-    case "letter_stagger": return { ...st, dy: 14 * (1 - e), o: ramp };
-    case "rotate_in": return { ...st, rot: -6 * (1 - e), dy: 6 * (1 - e), o: ramp };
-    default: return st;
-  }
+  const n = popName(name);
+  const style = n === "POP_LETTER" || n === "POP_WORD_STACK" ? "POP_STANDARD" : n;
+  if (n === "POP_LETTER") f = f - letter * LETTER_GAP_FRAMES;
+  const p = popState(style, f);
+  return { dx: 0, dy: p.dy, s: p.s, rot: 0, blur: 0, o: p.o, reveal: 1 };
 }
-/** Frames a word's whole entrance takes (letter_stagger: the last letter's). */
-export const entranceFrames = (name, letters = 1) => (name === "letter_stagger" ? ENTRANCE_FRAMES[name] + Math.max(0, letters - 1) * LETTER_GAP_FRAMES : ENTRANCE_FRAMES[name] ?? 8);
+/** Frames a word's whole entrance takes (POP_LETTER: the last letter's). */
+export const entranceFrames = (name, letters = 1) => (popName(name) === "POP_LETTER" ? ENTRANCE_FRAMES.POP_LETTER + Math.max(0, letters - 1) * LETTER_GAP_FRAMES : ENTRANCE_FRAMES[popName(name)]);
 
-// ── emphasis ──────────────────────────────────────────────────────────
-/** Frames after the word lands: grow to 1.15 (4), hold (6), settle to 1.0 (6). `accent` is the colour mix 0..1 (1 through the window, easing back on settle). */
-export function emphasisState(f) {
-  const { scale, grow, hold, settle } = EMPHASIS;
-  if (f <= 0) return { s: 1, accent: 0 };
-  if (f < grow) { const p = easeOut(f / grow); return { s: lerp(1, scale, p), accent: p }; }
-  if (f < grow + hold) return { s: scale, accent: 1 };
-  if (f < grow + hold + settle) { const p = easeInOut((f - grow - hold) / settle); return { s: lerp(scale, 1, p), accent: 1 - p }; }
-  return { s: 1, accent: 0 };
+/** POP_WORD_STACK: 0..1 progress of the stack settling into the line, `f` frames after the first word, for `n` words whose last pops at `lastEnter`. */
+export function stackSettle(lastEnter, f) {
+  return easeInOut(clamp01((f - lastEnter - ENTRANCE_FRAMES.POP_STANDARD - STACK_HOLD) / STACK_SETTLE));
 }
-export const EMPHASIS_FRAMES = EMPHASIS.grow + EMPHASIS.hold + EMPHASIS.settle;
 
 // ── micro-motion ──────────────────────────────────────────────────────
 /** After landing: a 0.5% scale pulse and a 1 px drift, per-word phase, so no word sits frozen. */
@@ -219,8 +245,8 @@ export function microMotion(f, i = 0) {
 
 // ── timing ────────────────────────────────────────────────────────────
 /**
- * Frames (from the beat's start) for each of `n` words. Entrances stagger
- * 4-8 frames; every word has landed by 40% of the beat (`resolveBy`); the
+ * Frames (from the beat's start) for each of `n` words. Each word pops 4-6
+ * frames after the previous; every word has landed by 40% of the beat (`resolveBy`); the
  * phrase holds clean to 70%; each word then exits masked, 3 frames apart, so
  * the last one is gone by the beat's end. `start` is the beat-relative frame
  * of the first word (a second element starts later); `span` bounds the phrase
@@ -231,7 +257,7 @@ export function microMotion(f, i = 0) {
 export function wordSchedule(n, dur, { start = 0, resolveBy = 0.4, entrance = 8, exitAt = 0.7, exitFrames = 8 } = {}) {
   const lastLand = Math.max(start, dur * resolveBy - entrance);
   const room = n > 1 ? (lastLand - start) / (n - 1) : 0;
-  const stagger = n > 1 ? Math.max(1, Math.min(8, room)) : 0;
+  const stagger = n > 1 ? Math.max(1, Math.min(6, room)) : 0;
   const tight = n > 1 && room < 4;
   const enter = Array.from({ length: n }, (_, i) => start + i * stagger);
   // spread over the last stretch so the LAST word is gone exactly at the beat's end (never an empty tail)
@@ -247,25 +273,25 @@ export function wordExit(f, frames = 8) {
 }
 
 // ── numbers ───────────────────────────────────────────────────────────
-export const NUMBER_MODES = Object.freeze(["count_up", "scale_impact", "flip_digits"]);
+export const NUMBER_MODES = Object.freeze(["pop_roll", "pop"]);
 /**
- * How a number enters. A year, article or section number, or an identifier
- * ("357-A", "Section 12") is a label, not a quantity: it never counts and never
- * rolls — it lands with scale_impact. A quantity picks by beat, deterministically.
+ * How a number enters. Every number pops fully formed (1.3 -> 1.0 over 8
+ * frames). A quantity then rolls its digit slots from 0 to the value over 20
+ * frames ("pop_roll"). A year, article or section number, or an identifier
+ * ("357-A", "Section 12") is a label, not a quantity: it pops and never rolls
+ * ("pop").
  */
-export function numberMode(value, { beat = 0, seed = "", prev = null } = {}) {
+export function numberMode(value) {
   const p = numberParts(value);
   const s = String(value ?? "");
-  if (!p.isQuantity || /\b(section|article|rule|title|chapter|§)\b/i.test(s)) return "scale_impact";
-  const start = hash(`${seed}|n|${beat}`) % NUMBER_MODES.length;
-  for (let k = 0; k < NUMBER_MODES.length; k++) { const m = NUMBER_MODES[(start + k) % NUMBER_MODES.length]; if (m !== prev) return m; }
-  return NUMBER_MODES[start];
+  return !p.isQuantity || /\b(section|article|rule|title|chapter|§)\b/i.test(s) ? "pop" : "pop_roll";
 }
-/** scale_impact: 0.6 -> overshoot 1.4 -> 1.0 over p in 0..1. */
-export function scaleImpact(p) {
-  p = clamp01(p);
-  return p < 0.45 ? lerp(0.6, 1.4, easeOut(p / 0.45)) : lerp(1.4, 1, easeInOut((p - 0.45) / 0.55));
-}
+/** The number pop `f` frames after it starts: { s, o, done } (1.3 -> 1.0 over 8 frames, a slight settle below 1). */
+export const numberPop = (f) => popState("NUMBER", f);
+/** Roll progress 0..1 of a quantity `f` frames after its pop started: 0 until the pop settles, then eased over 20 frames. */
+export const numberRoll = (f) => easeOut(clamp01((f - NUMBER_POP_FRAMES) / NUMBER_ROLL_FRAMES));
+/** A digit slot's odometer value at roll progress `p`: slot `k` from the right starts 1.5 frames later than the one to its right, and turns 0 -> `target`. */
+export const digitRoll = (p, k = 0, target = 0) => target * clamp01((p * NUMBER_ROLL_FRAMES - k * 1.5) / Math.max(1, NUMBER_ROLL_FRAMES - k * 1.5));
 /** count_up progress: 0 -> 1 across the first 40% of the beat. */
 export const countProgress = (f, dur, at = 0) => easeOut(clamp01((f - at) / Math.max(1, dur * 0.4 - at)));
 

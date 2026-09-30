@@ -13,48 +13,77 @@
  * differs, and the resolver's is authoritative.
  */
 import { animationsFor, itemOf } from "../src/skills/remotion-render/visual/animation-plan.js";
-import { pickEntrances, numberMode } from "../src/skills/remotion-render/visual/kinetic.js";
-import { canvasLayout, normalizeCanvas, compositionFor, splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { popEntrances, numberMode, ENTRANCES } from "../src/skills/remotion-render/visual/kinetic.js";
+import { canvasLayout, normalizeCanvas, compositionFor, splitHeadline, TOP } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { ROLE_HEADLINE } from "../src/skills/remotion-render/visual/typography.js";
 
 const summary = (b) => Object.entries(b).map(([k, v]) => `${k}=${k === "exit" ? `${v.id}(${v.element})` : v}`).join(", ") || "(no animated element)";
 
-const NUM_ANIM = { count_up: "COUNT_UP", scale_impact: "SCALE_IMPACT", flip_digits: "ROLL_DIGIT" };
-const wordsIn = (b) => (b?.words ? b.words.length : String((b?.lines || []).join(" ")).split(" ").filter(Boolean).length);
+// The number's animation id, in animations.js's vocabulary: an odometer roll
+// after the pop, or the pop alone.
+const NUM_ANIM = { pop_roll: "ROLL_DIGIT", pop: "SNAP_IN" };
+const wordsOf = (b) => (b?.words ? b.words : String((b?.lines || []).join(" ")).split(" ").filter(Boolean).map((t) => ({ text: t })));
 
 /**
- * Kinetic type: one entrance per WORD (kinetic.js pickEntrances), chained
- * beat to beat so a word position never repeats its entrance in the next
- * beat and, while an unused one is left, never within the video; the number
- * mode (count_up / scale_impact / flip_digits; a year or article number never
- * counts); the hook (first beat) and CTA (last) as the cross-frame
- * composition. Text roles carry no block animation any more: the planner's
- * headline / kicker / label picks and text exits are dropped, the number pick
- * is replaced by the kinetic mode.
+ * The beat's statement entrance (canvas.text_entrance, from the planner),
+ * checked against the video: POP_HARD only on the hook (first beat) or the
+ * CTA (last) — which pop hard by default; POP_LETTER on one TYPE statement a
+ * video; POP_WORD_STACK only on a TYPE statement of 2-5 words whose stack
+ * (one row per word, rising from the last line) stays below the top margin.
+ * Anything refused is logged and becomes the default.
+ */
+function beatStyle(c, B, i, n, used, log) {
+  const want = String(c.text_entrance || "").toUpperCase();
+  const edge = i === 0 || i === n - 1;
+  if (!want) return null;
+  const why = !ENTRANCES.includes(want) ? "not a pop entrance"
+    : want === "POP_HARD" && !edge ? "POP_HARD is for the hook / CTA only"
+    : want === "POP_LETTER" && !B.statement ? "POP_LETTER needs a TYPE statement"
+    : want === "POP_LETTER" && used.letter ? "POP_LETTER is used at most once a video"
+    : want === "POP_WORD_STACK" && !B.statement ? "POP_WORD_STACK needs a TYPE statement"
+    : want === "POP_WORD_STACK" && !stackFits(B.statement) ? "the word stack would not fit the frame"
+    : null;
+  if (why) { log(`[kinetic] beat ${i}: text_entrance ${want} refused (${why})`); return null; }
+  if (want === "POP_LETTER") used.letter = true;
+  return want;
+}
+function stackFits(st) {
+  const n = wordsOf(st).length, lh = st.size * ROLE_HEADLINE.lineHeight;
+  const lastRow = st.y + ((st.rows || st.lines || []).length - 1) * lh;
+  return n >= 2 && n <= 5 && lastRow - (n - 1) * lh >= TOP;
+}
+
+/**
+ * Kinetic type, pop family only (kinetic.js popEntrances): the emphasis word
+ * pops with POP_EMPHASIS, other headline / statement words with the beat's
+ * style (POP_STANDARD by default, POP_HARD on the hook / CTA), kickers and
+ * labels POP_SOFT. A number pops then rolls (a year or article number pops
+ * and never rolls). The planner's block headline / kicker / label picks and
+ * text exits are dropped; the number pick is replaced by the pop mode.
  */
 export function assignKinetics(beats, { seed = "", log = () => {} } = {}) {
-  const prev = {}, history = {};
-  let prevMode = null;
+  const used = { letter: false };
   beats.forEach((b, i) => {
     const c = normalizeCanvas(b.canvas, i), L = canvasLayout(c), B = L.boxes;
-    const k = { seed, cross: (i === 0 || i === beats.length - 1) && !!B.statement && !B.number && !B.statement.rotate, entrances: {}, number: null };
-    const group = { headline: "headline", statement: "headline", kicker: "label", label: "label" };
+    const edge = i === 0 || i === beats.length - 1;
+    const style = beatStyle(c, B, i, beats.length, used, log);
+    const k = { seed, edge, style: style || (edge ? "POP_HARD" : "POP_STANDARD"), entrances: {}, number: null };
     for (const role of ["headline", "statement", "kicker", "label"]) {
       if (!B[role] || !B[role].lines?.length) continue;
-      const g = group[role] + (role === "statement" ? "S" : "");
-      const n = wordsIn(B[role]);
-      const hist = history[g] || (history[g] = []);
-      const picks = pickEntrances(n, { seed: `${seed}|${role}`, beat: i, prev: prev[g] || [], history: hist });
-      picks.forEach((e, j) => (hist[j] = [...(hist[j] || []), e]));
-      prev[g] = picks;
-      k.entrances[role] = picks;
+      const group = role === "kicker" || role === "label" ? "label" : "headline";
+      // POP_LETTER / POP_WORD_STACK are for the statement; a header headline on that beat pops standard.
+      const st = (style === "POP_LETTER" || style === "POP_WORD_STACK") && role !== "statement" ? null : style;
+      k.entrances[role] = popEntrances(wordsOf(B[role]), { group, style: st, edge });
     }
-    if (B.number) { k.number = numberMode(c.data?.value, { beat: i, seed, prev: prevMode }); prevMode = k.number; }
+    // A donut / gauge figure is its percent (data.percent, not data.value).
+    if (B.number) k.number = numberMode(c.data?.value ?? (c.data?.percent != null ? `${c.data.percent}%` : undefined));
     b.canvas.kinetic = k;
+    b.canvas.text_entrance = style;
     const anim = { ...(b.canvas.anim || {}) };
     for (const r of ["headline", "kicker", "label", "exit"]) delete anim[r];
     if (k.number) anim.number = NUM_ANIM[k.number];
     b.canvas.anim = anim;
-    log(`[kinetic] beat ${i}: ${Object.entries(k.entrances).map(([r, e]) => `${r}=[${e.join(",")}]`).join(" ") || "(no text)"}${k.number ? ` number=${k.number}` : ""}${k.cross ? " CROSS" : ""}`);
+    log(`[kinetic] beat ${i}: ${Object.entries(k.entrances).map(([r, e]) => `${r}=[${e.join(",")}]`).join(" ") || "(no text)"}${k.number ? ` number=${k.number}` : ""}${edge ? " EDGE" : ""}`);
   });
 }
 

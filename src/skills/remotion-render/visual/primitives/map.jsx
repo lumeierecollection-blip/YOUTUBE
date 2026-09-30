@@ -18,7 +18,8 @@
  */
 import React from "react";
 import { ObjectShape } from "../../compositions/objects/index.jsx";
-import { INK, clamp01, buildT } from "./viz-common.js";
+import { INK, clamp01 } from "./viz-common.js";
+import { popState } from "../kinetic.js";
 
 const FEATHER = 0.06;
 const EM = 0.6;
@@ -49,7 +50,9 @@ export function PaperMap({ data, bounds, local, dur, font, accent = INK, ground 
   const map = { x: bounds.x, y: bounds.y, w: bounds.w, h: bounds.h - labelH };
   const id = `pm-${place.replace(/[^a-z0-9]/gi, "")}`;
   const f = FEATHER * 100;
-  const lt = buildT(local, dur, 0.15, dur * 0.3);
+  // The place name pops in place (kinetic.js POP_SOFT) once the outline has drawn.
+  const ly = map.y + map.h + 8 + label.size * 0.85, lx = bounds.x + bounds.w / 2;
+  const lp = popState("POP_SOFT", local - dur * 0.3);
   return (
     <svg width={bounds.x + bounds.w} height={bounds.y + bounds.h} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
       <defs>
@@ -74,7 +77,8 @@ export function PaperMap({ data, bounds, local, dur, font, accent = INK, ground 
             params={{ label: place, font, labelOutside: true }} />
         </g>
       </g>
-      <text x={bounds.x + bounds.w / 2} textAnchor="middle" fill={INK} opacity={lt}
+      <text x={bounds.x + bounds.w / 2} textAnchor="middle" fill={INK} opacity={lp.o}
+        transform={`translate(${lx.toFixed(1)} ${(ly + lp.dy).toFixed(1)}) scale(${lp.s.toFixed(4)}) translate(${(-lx).toFixed(1)} ${(-ly).toFixed(1)})`}
         fontFamily={`${font || "sans-serif"}, sans-serif`} fontWeight={700} fontSize={label.size}>
         {label.lines.map((l, i) => (
           <tspan key={i} x={bounds.x + bounds.w / 2} y={map.y + map.h + 8 + label.size * (0.85 + i * 1.1)}>{l}</tspan>
@@ -119,7 +123,7 @@ export function CenteredMap({ data, bounds, local, dur, font, accent = INK, grou
       <g mask={`url(#${id}-mh)`}>
         <g mask={`url(#${id}-mv)`}>
           <ObjectShape name="map-region-highlight" box={bounds} colors={colors} p={p}
-            params={{ label: place, font, labelOutside: false, labelAtRegion: true, pad: 0.16, labelSize: 84, ctxStroke: 0.62, ctxWidth: 3, fillAlpha: 0.55 }} />
+            params={{ label: place, font, labelOutside: false, labelAtRegion: true, pad: 0.16, labelSize: 84, ctxStroke: 0.62, ctxWidth: 3, fillAlpha: 0.55, pFrames: Math.max(1, dur * 0.6) }} />
         </g>
       </g>
     </svg>

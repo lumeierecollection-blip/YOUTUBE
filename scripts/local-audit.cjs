@@ -479,47 +479,55 @@ function canvasGround(video, beats) {
   return { bad };
 }
 /**
- * kinetic-rules: every word of a headline / statement / kicker / label has an
- * entrance from the nine; no word has the same entrance as the word before it,
- * and no word position repeats its entrance from the previous beat (per role
- * group); at most three text elements on a beat; a year / article number never
- * counts or rolls; a beat with a headline has mixed weights (a bold word) and
- * exactly one accent word. Reports the entrance mix and number modes.
+ * kinetic-rules (pop family, owner's spec 2026-09-30): every word of a
+ * headline / statement / kicker / label has a POP entrance (visual/kinetic.js
+ * ENTRANCES — no slide, drop, mask sweep, blur or rotate); kickers and labels
+ * pop soft; the emphasis word pops with POP_EMPHASIS unless the whole beat
+ * pops hard / by letter / as a stack; POP_HARD only on the hook (first beat)
+ * or CTA (last); POP_LETTER on at most one beat; at most three text elements
+ * on a beat; a year / article number pops and never rolls; a beat with a
+ * headline has mixed weights (a bold word) and an accent word. Reports the
+ * entrance mix and number modes.
  */
 async function kineticRules(beats) {
   const K = await import("../src/skills/remotion-render/visual/kinetic.js");
   const bad = [], used = {}, modes = new Set();
-  let prev = {};
+  let letterBeats = 0;
   beats.forEach((b, i) => {
     const c = b.canvas || {}, k = c.kinetic, bx = c.boxes || {};
     if (!k) { bad.push(`beat ${i}: no kinetic plan recorded`); return; }
+    const edge = i === 0 || i === beats.length - 1;
     const text = ["headline", "statement", "kicker", "label", "emphasis"].filter((r) => bx[r]).length + (bx.number ? 1 : 0);
     if (text > 3) bad.push(`beat ${i}: ${text} text elements (max 3)`);
-    const cur = {};
+    let letter = false;
     for (const role of ["headline", "statement", "kicker", "label"]) {
       if (!bx[role]) continue;
       const list = k.entrances?.[role] || [], words = c.words?.[role] || [];
-      const g = role === "kicker" || role === "label" ? "label" : role;
+      const label = role === "kicker" || role === "label";
       if (list.length < words.length) bad.push(`beat ${i}: ${role} has ${words.length} words but ${list.length} entrances`);
+      const beatWide = list.some((e) => e === "POP_HARD" || e === "POP_LETTER" || e === "POP_WORD_STACK");
       list.forEach((e, j) => {
-        if (!K.ENTRANCES.includes(e)) bad.push(`beat ${i}: ${role} word ${j} entrance "${e}" is not one of the nine`);
-        if (j > 0 && e === list[j - 1]) bad.push(`beat ${i}: ${role} words ${j - 1}/${j} share "${e}"`);
-        if (prev[g] && prev[g][j] === e) bad.push(`beat ${i}: ${role} word ${j} repeats "${e}" from the previous beat`);
+        if (!K.ENTRANCES.includes(e)) bad.push(`beat ${i}: ${role} word ${j} entrance "${e}" is not a pop`);
+        if (label && e !== "POP_SOFT") bad.push(`beat ${i}: ${role} word ${j} pops ${e} (labels pop soft)`);
+        if (e === "POP_HARD" && !edge) bad.push(`beat ${i}: ${role} word ${j} pops hard off the hook / CTA`);
+        if (!label && !beatWide && words[j]?.emph && e !== "POP_EMPHASIS") bad.push(`beat ${i}: emphasis word "${words[j].t}" pops ${e}, not POP_EMPHASIS`);
+        if (e === "POP_LETTER") letter = true;
         used[e] = (used[e] || 0) + 1;
       });
-      cur[g] = list;
       if (role === "headline" || role === "statement") {
         if (!bx[role].rotate && words.length >= 2 && !words.some((w) => w.weight >= 700)) bad.push(`beat ${i}: ${role} has no bold word (weight is not mixed)`);
         if (!bx[role].rotate && words.length >= 2 && !words.some((w) => w.accent || w.emph)) bad.push(`beat ${i}: ${role} has no accent/emphasis word`);
       }
     }
-    prev = cur;
+    if (letter) letterBeats++;
     if (bx.number) {
       modes.add(k.number);
+      if (!K.NUMBER_MODES.includes(k.number)) bad.push(`beat ${i}: number mode "${k.number}" is not a pop`);
       const q = bx.number.parts?.isQuantity;
-      if (q === false && (k.number === "count_up" || k.number === "flip_digits")) bad.push(`beat ${i}: a non-quantity number (${bx.number.parts?.text}) uses ${k.number}`);
+      if (q === false && k.number === "pop_roll") bad.push(`beat ${i}: a non-quantity number (${bx.number.parts?.text}) rolls`);
     }
   });
+  if (letterBeats > 1) bad.push(`POP_LETTER on ${letterBeats} beats (at most one a video)`);
   return { bad, used, modes: [...modes] };
 }
 async function canvasChecks(video, m) {
@@ -537,7 +545,7 @@ async function canvasChecks(video, m) {
   out.push({ id: "canvas-ground", pass: !tx.bad.length, detail: tx.bad.length ? tx.bad.join("; ") : "the studio ground reads light on every beat" });
   const mt = motionTiers(beats);
   const kr = await kineticRules(beats);
-  out.push({ id: "kinetic-rules", pass: !kr.bad.length, detail: kr.bad.length ? kr.bad.slice(0, 8).join("; ") : `every word has its own entrance (${Object.keys(kr.used).length}/9 used: ${Object.entries(kr.used).map(([e, n]) => `${e}x${n}`).join(" ")}), none repeated along a line or at a position from the previous beat, <=3 text elements a beat; number modes ${kr.modes.join("/") || "none"}` });
+  out.push({ id: "kinetic-rules", pass: !kr.bad.length, detail: kr.bad.length ? kr.bad.slice(0, 8).join("; ") : `every word pops in place (${Object.entries(kr.used).map(([e, n]) => `${e}x${n}`).join(" ")}), no slide / drop / sweep / blur entrance, <=3 text elements a beat; number modes ${kr.modes.join("/") || "none"}` });
   out.push({ id: "motion-tiers", pass: !mt.bad.length, detail: mt.bad.length ? mt.bad.join("; ") : `${mt.major} major, ${mt.medium} medium, all beats micro` });
   return out;
 }

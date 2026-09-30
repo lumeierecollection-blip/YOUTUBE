@@ -847,6 +847,10 @@ function canvasContentFor(b, { photo = null } = {}) {
     persists_from: Number.isInteger(b.persists_from) ? b.persists_from : null,
     match_cut_prev: !!b.match_cut_prev,
     named_entities: Array.isArray(b.named_entities) ? b.named_entities : [],
+    // The planner's text entrance for the statement (a POP name or null);
+    // scripts/anim-plan.js checks it against the video (POP_HARD on the hook /
+    // CTA only, POP_LETTER once, POP_WORD_STACK only where it fits).
+    text_entrance: b.text_entrance || null,
   };
   if (b.type_layout === "split") c.type_layout = "split";
   c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: c.type_layout === "split" && !!splitHeadline(c.headline) });

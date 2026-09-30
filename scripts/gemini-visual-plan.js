@@ -617,6 +617,17 @@ vignette and the camera are added by the system.
   "match_cut_prev": true when this beat shares its subject or number with
                   the previous beat and that element should stay fixed in
                   place across the cut, else false.
+  "text_entrance": optional — how the statement's words appear. Every text
+                  entrance is a POP: the words appear in place and settle;
+                  nothing slides, drops, wipes, blurs or fades in. Omit for
+                  the default (each word pops, the emphasis word bigger; the
+                  hook and the close pop hard). Otherwise one of:
+                    POP_SOFT       a quiet beat
+                    POP_HARD       ONLY the hook (beat 0) or the close (last beat)
+                    POP_LETTER     letters pop one by one — AT MOST ONE beat a
+                                   video, a TYPE statement
+                    POP_WORD_STACK words stack upward, then settle into the
+                                   line — a TYPE statement of 2-5 words
 
 Worked example. Sentence: "Liquid Death went from three million dollars to
 a 1.4 billion dollar brand."
@@ -821,6 +832,7 @@ Respond ONLY with JSON (no markdown fences):
       "camera_focus": [{ "at_percent": 0.4, "target": "<number | chart | headline | photo | left | right | top | bottom | node0 | node1 | node2 | full>" }],
       "persists_from": null,
       "match_cut_prev": false,
+      "text_entrance": "<POP_SOFT | POP_HARD | POP_LETTER | POP_WORD_STACK, or omit>",
       "carries_forward": "<object/concept that persists into the next beat, or null>",
       "emotional_weight": "<calm|building|sharp|heavy|urgent>",
       "typography_direction": {
@@ -1545,6 +1557,10 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       if (!b.camera_focus.length) b.camera_focus = null;
       b.persists_from = Number(b.persists_from) === i - 1 && i > 0 ? i - 1 : null;
       b.match_cut_prev = !!b.match_cut_prev && i > 0;
+      // Pop family only (visual/kinetic.js); the per-video limits are checked
+      // on the final canvases by scripts/anim-plan.js.
+      const te = String(b.text_entrance || "").toUpperCase().trim();
+      b.text_entrance = ["POP_STANDARD", "POP_SOFT", "POP_EMPHASIS", "POP_HARD", "POP_LETTER", "POP_WORD_STACK"].includes(te) ? te : null;
     }
     const lo = n >= 4 ? 2 : 1;
     let majors = plan.beats.map((b, i) => (b.motion_tier === "major" ? i : -1)).filter((i) => i >= 0);

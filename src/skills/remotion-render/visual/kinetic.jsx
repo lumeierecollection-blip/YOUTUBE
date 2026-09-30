@@ -1,18 +1,21 @@
 /**
  * KineticText — the renderer for kinetic.js. A phrase is drawn word by word:
- * every word is its own inline box with its own weight, colour, entrance,
- * emphasis and exit. Lines are real inline text (the browser sets the spaces
- * and the kerning); a word that has not arrived has no width, a word that is
- * growing pushes its neighbours, so the line reflows as words arrive.
+ * every word is its own inline box with its own weight, colour, pop and exit.
+ * Lines are real inline text (the browser sets the spaces and the kerning).
  *
- * Never a whole-block fade or a block transform: the only transforms are per
- * word (and per letter for letter_stagger).
+ * Every word POPS IN PLACE (kinetic.js popState): its line is laid out at its
+ * final width from the first frame — a word that has not popped yet is
+ * invisible but already holds its place — so no word slides, and no line
+ * reflows or shifts as later words arrive. Never a whole-block fade or a block
+ * transform: the only transforms are per word (per letter for POP_LETTER).
+ *
+ * The hook / CTA "cross" mode (words flying 1100 px across the frame) is
+ * retired: those beats pop hard (POP_HARD) in place instead.
  */
 import React from "react";
 import {
-  FPS, wordEntrance, entranceFrames, emphasisState, microMotion, wordSchedule, wordExit, pickEntrances, ENTRANCE_FRAMES, EMPHASIS,
+  wordEntrance, entranceFrames, microMotion, wordSchedule, wordExit, popEntrances, popName, stackSettle, LETTER_GAP_FRAMES,
 } from "./kinetic.js";
-import { easeOut, easeInOut } from "./animations.js";
 
 const clamp01 = (v) => Math.max(0, Math.min(1, Number.isFinite(v) ? v : 1));
 const hex = (c) => { const m = /^#?([0-9a-f]{6})$/i.exec(String(c || "")); return m ? [0, 2, 4].map((i) => parseInt(m[1].slice(i, i + 2), 16)) : null; };
@@ -29,23 +32,16 @@ export function rowsOf(b, baseWeight = 500) {
   return (b.lines || []).map((l) => String(l).split(" ").filter(Boolean).map((t) => ({ text: t, weight: baseWeight, accent: false, emph: false })));
 }
 
-/** Per-word cross-frame motion for the hook / CTA: words travel across the frame; one is oversized on the way. */
-function crossState(i, f, big) {
-  const d = 18, p = clamp01(f / d);
-  if (f <= 0) return { dx: 0, dy: 0, s: 1, rot: 0, blur: 0, o: 0, reveal: 1 };
-  const side = i % 2 ? 1 : -1, e = easeOut(p);
-  return { dx: side * 1100 * (1 - e), dy: side * -60 * (1 - e), s: big ? 1 + 0.9 * Math.sin(Math.PI * Math.min(1, p * 1.05)) * (1 - p * 0.15) : 1, rot: side * 5 * (1 - e), blur: 0, o: clamp01(f / 2), reveal: 1 };
-}
-
 /**
  * b: a box { x, y, w, h, size, align, words?/rows? | lines }.
  * timing (frames from the beat's start): start, resolveBy, exitAt.
- * entrances: one name per word (pickEntrances); falls back to a deterministic pick.
- * mode "cross": the hook / CTA composition.
+ * entrances: one pop name per word (kinetic.js popEntrances, planned by
+ * scripts/anim-plan.js); missing or from an older plan -> computed here.
+ * group: "headline" | "label" (labels pop soft). edge: the hook / CTA beat.
  */
 export function KineticText({
-  b, color, accent, local, dur, entrances, start = 0, resolveBy = 0.4, exitAt = 0.7, mode = null, font, lineHeight, tracking = 0,
-  upper = false, baseWeight = 500, seed = "", beat = 0, family = "serif",
+  b, color, accent, local, dur, entrances, start = 0, resolveBy = 0.4, exitAt = 0.7, font, lineHeight, tracking = 0,
+  upper = false, baseWeight = 500, group = "headline", edge = false,
 }) {
   const rows = rowsOf(b, baseWeight);
   const flat = rows.flat();
@@ -53,9 +49,23 @@ export function KineticText({
   if (!n) return null;
   const right = b.align === "right";
   const lh = lineHeight ?? b.size * 0.95;
-  const ent = entrances && entrances.length >= n ? entrances : pickEntrances(n, { seed, beat });
-  const sched = wordSchedule(n, dur, { start, resolveBy, exitAt, entrance: mode === "cross" ? 18 : 8 });
-  const bigWord = mode === "cross" ? (flat.findIndex((w) => w.emph) >= 0 ? flat.findIndex((w) => w.emph) : flat.reduce((m, w, i) => (w.text.length > flat[m].text.length ? i : m), 0)) : -1;
+  const ent = (entrances && entrances.length >= n ? entrances : popEntrances(flat, { group, edge })).map(popName);
+  const letterBeat = ent.every((e) => e === "POP_LETTER");
+  const stack = ent.every((e) => e === "POP_WORD_STACK");
+  const sched = wordSchedule(n, dur, { start, resolveBy, exitAt, entrance: Math.max(...ent.map((e) => entranceFrames(e))) });
+  // POP_LETTER: the letters run on as one chain across the phrase, 30 ms
+  // apart (a word starts one letter-gap after the previous word's last letter).
+  if (letterBeat) {
+    let at = start;
+    flat.forEach((w, i) => { sched.enter[i] = at; at += ([...w.text].length + 1) * LETTER_GAP_FRAMES; });
+  }
+  // POP_WORD_STACK: word i pops one row above word i-1, all at the left (or
+  // right) edge, rising from the last line's row; once the last has settled
+  // and held, every word moves to its place in the laid-out lines. Final
+  // positions come from the kinetic layout (b.words x / y) when present,
+  // else they are estimated from the row's order — which only matters while
+  // the stack is moving: the settled frame is the real inline layout.
+  const settle = stack ? stackSettle(sched.enter[n - 1] - start, local - start) : 1;
   let wi = 0;
   return (
     <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h }}>
@@ -65,45 +75,46 @@ export function KineticText({
             const i = wi++;
             const f = local - sched.enter[i];
             const name = ent[i];
-            const started = f > 0;
             const nLet = [...w.text].length;
-            const landed = f >= (mode === "cross" ? 18 : entranceFrames(name, nLet)) + 0.5;
-            const em = w.emph ? emphasisState(f - (mode === "cross" ? 18 : entranceFrames(name, nLet))) : { s: 1, accent: 0 };
-            const arrive = started ? easeOut(clamp01(f / 6)) : 0;
-            const en = mode === "cross" ? crossState(i, f, i === bigWord) : wordEntrance(name, f);
-            const mm = landed ? microMotion(f, i) : { s: 1, dx: 0, dy: 0 };
+            const landed = f >= entranceFrames(name, nLet) + 0.5;
+            const en = wordEntrance(name, f);
+            const mm = landed && settle >= 1 ? microMotion(f, i) : { s: 1, dx: 0, dy: 0 };
             const fx = local - sched.exit[i];
             const ex = fx > 0 ? wordExit(fx, sched.exitFrames) : { dy: 0, clip: 0 };
             const gone = ex.clip >= 0.999;
-            // colour: an accent word takes the accent as its emphasis window opens; an emphasis-only word borrows it through the window
-            const mix = w.accent ? (w.emph ? clamp01((f - (mode === "cross" ? 18 : entranceFrames(name, nLet))) / EMPHASIS.grow) : 1) : em.accent;
-            const col = mixColor(color, accent || color, mix);
-            const scale = en.s * em.s * mm.s;
-            const naturalW = (w.w ?? 0) / 1.03;
+            // An accent word is the accent from the moment it pops.
+            const col = mixColor(color, accent || color, w.accent ? 1 : 0);
+            let sx = 0, sy = 0;
+            if (stack && settle < 1) {
+              const lastRow = (rows.length - 1) * lh;
+              const fx0 = Number.isFinite(w.x) ? w.x : 0, fy0 = Number.isFinite(w.y) ? w.y : li * lh;
+              const toX = right ? (Number.isFinite(w.w) ? b.w - w.w : 0) : 0;
+              sx = (toX - fx0) * (1 - settle);
+              sy = (lastRow - i * lh - fy0) * (1 - settle);
+            }
             const style = {
-              display: started ? "inline-block" : "none", position: "relative", verticalAlign: "top",
-              width: started && !(arrive >= 1 && em.s === 1) && naturalW ? naturalW * arrive * em.s : undefined,
-              visibility: started && !gone ? "visible" : "hidden",
-              transformOrigin: right ? "100% 60%" : "0% 60%",
-              transform: `translate(${(en.dx + mm.dx).toFixed(2)}px, ${(en.dy + mm.dy + ex.dy * lh).toFixed(2)}px) rotate(${en.rot.toFixed(2)}deg) scale(${scale.toFixed(4)})`,
-              filter: en.blur > 0.2 ? `blur(${en.blur.toFixed(1)}px)` : "none",
+              display: "inline-block", position: "relative", verticalAlign: "top",
+              visibility: f > 0 && !gone ? "visible" : "hidden",
+              transformOrigin: "50% 60%",
+              transform: `translate(${(sx + mm.dx).toFixed(2)}px, ${(sy + en.dy + mm.dy + ex.dy * lh).toFixed(2)}px) scale(${(en.s * mm.s).toFixed(4)})`,
               opacity: en.o,
-              clipPath: ex.clip > 0 ? `inset(0 0 ${(ex.clip * 100).toFixed(1)}% 0)` : en.reveal < 1 ? `inset(-10% ${((1 - en.reveal) * 100).toFixed(1)}% -10% -5%)` : "none",
+              clipPath: ex.clip > 0 ? `inset(0 0 ${(ex.clip * 100).toFixed(1)}% 0)` : "none",
               fontWeight: w.weight, color: col,
             };
-            if (name === "letter_stagger" && mode !== "cross" && f < entranceFrames(name, nLet) + 1 && fx <= 0) {
+            const sep = k > 0 ? " " : "";
+            if (name === "POP_LETTER" && fx <= 0 && f < entranceFrames(name, nLet) + 1) {
               return (
                 <React.Fragment key={k}>
-                  {k > 0 && started ? " " : ""}<span style={{ ...style, opacity: 1, transform: "none", clipPath: "none", width: undefined, display: started ? "inline-block" : "none" }}>
+                  {sep}<span style={{ ...style, opacity: 1, transform: "none", visibility: "visible" }}>
                     {[...w.text].map((ch, j) => {
-                      const s = wordEntrance("letter_stagger", f, { letter: j });
-                      return <span key={j} style={{ display: "inline-block", opacity: s.o, transform: `translateY(${s.dy.toFixed(2)}px)` }}>{ch}</span>;
+                      const s = wordEntrance("POP_LETTER", f, { letter: j });
+                      return <span key={j} style={{ display: "inline-block", opacity: s.o, transformOrigin: "50% 60%", transform: `translateY(${s.dy.toFixed(2)}px) scale(${s.s.toFixed(4)})` }}>{ch}</span>;
                     })}
                   </span>
                 </React.Fragment>
               );
             }
-            return <React.Fragment key={k}>{k > 0 && started ? " " : ""}<span style={style}>{w.text}</span></React.Fragment>;
+            return <React.Fragment key={k}>{sep}<span style={style}>{w.text}</span></React.Fragment>;
           })}
         </div>
       ))}

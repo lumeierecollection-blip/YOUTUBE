@@ -1,6 +1,7 @@
 import React from "react";
 import { registerObject } from "./registry.js";
 import { GEO_REGIONS, resolveRegion, resolveRoute } from "../../visual/geo-regions.js";
+import { popState } from "../../visual/kinetic.js";
 
 /**
  * THE MAP FAMILY — editorial maps built from real borders, built on screen.
@@ -145,7 +146,7 @@ function anchorOf(region) {
 // fills ~57% of the box); labelAtRegion: the label is drawn AT the region, in
 // `font`, with a ground-coloured halo (MAP-CENTERED), not on a leader line
 // at the box's edge.
-function MapBuild({ box, colors, p, uid, font, target, fill, markers, route, labelText, pad, labelAtRegion, labelSize, ctxStroke = 0.3, ctxWidth = 1.5, fillAlpha = 0.38 }) {
+function MapBuild({ box, colors, p, uid, font, target, fill, markers, route, labelText, pad, labelAtRegion, labelSize, pFrames, ctxStroke = 0.3, ctxWidth = 1.5, fillAlpha = 0.38 }) {
   const P = Number.isFinite(p) ? p : 1;
   const region = GEO_REGIONS[target];
   const routeRegions = route ? route.map((id) => GEO_REGIONS[id]) : null;
@@ -253,15 +254,19 @@ function MapBuild({ box, colors, p, uid, font, target, fill, markers, route, lab
     routeEnd = b;
   }
 
-  // 5a. MAP-CENTERED: the label sits at the region itself.
+  // 5a. MAP-CENTERED: the label sits at the region itself. It POPS in place
+  // (visual/kinetic.js POP_STANDARD) once the fill has swept — it used to
+  // type on letter by letter. `pFrames` converts the build progress to
+  // frames; without it the pop is timed at 90 frames per unit.
   if (labelText && labelAtRegion) {
     const at = project(anchorOf(region));
     const fontSize = labelSize || Math.max(48, Math.min(96, box.w * 0.09));
-    const shown = labelText.slice(0, Math.round(labelText.length * tType)) || (tType > 0 ? labelText.slice(0, 1) : "");
-    if (shown) parts.push(
+    const pop = popState("POP_STANDARD", (P - 0.39) * (pFrames || 90));
+    if (pop.o > 0) parts.push(
       <text key="label-at" x={at[0]} y={at[1]} textAnchor="middle" dominantBaseline="central" fill={colors.onGround}
         fontFamily={`${font || "sans-serif"}, serif`} fontWeight={700} fontSize={fontSize} letterSpacing={-fontSize * 0.02}
-        stroke={colors.ground} strokeWidth={fontSize * 0.16} strokeLinejoin="round" paintOrder="stroke">{shown}</text>
+        stroke={colors.ground} strokeWidth={fontSize * 0.16} strokeLinejoin="round" paintOrder="stroke" opacity={pop.o}
+        transform={`translate(${at[0].toFixed(1)} ${(at[1] + pop.dy).toFixed(1)}) scale(${pop.s.toFixed(4)}) translate(${(-at[0]).toFixed(1)} ${(-at[1]).toFixed(1)})`}>{labelText}</text>
     );
   }
 
@@ -305,9 +310,9 @@ function MapBuild({ box, colors, p, uid, font, target, fill, markers, route, lab
 // primitive fits it inside the paper's inner box; the engine's label is
 // clipped to the map box, which cut long names such as "United Arab
 // Emirates"). Default off: every other caller is unchanged.
-const regionDrawing = (name, opts) => ({ box, colors, p, uid, label, font, labelOutside, pad, labelAtRegion, labelSize, ctxStroke, ctxWidth, fillAlpha }) => {
+const regionDrawing = (name, opts) => ({ box, colors, p, uid, label, font, labelOutside, pad, labelAtRegion, labelSize, pFrames, ctxStroke, ctxWidth, fillAlpha }) => {
   const target = regionOrThrow(label, name);
-  return <MapBuild box={box} colors={colors} p={p} uid={uid} font={font} pad={pad} labelAtRegion={labelAtRegion} labelSize={labelSize} ctxStroke={ctxStroke} ctxWidth={ctxWidth} fillAlpha={fillAlpha}
+  return <MapBuild box={box} colors={colors} p={p} uid={uid} font={font} pad={pad} labelAtRegion={labelAtRegion} labelSize={labelSize} pFrames={pFrames} ctxStroke={ctxStroke} ctxWidth={ctxWidth} fillAlpha={fillAlpha}
     target={target} labelText={labelOutside ? null : String(label).trim()} {...opts} />;
 };
 

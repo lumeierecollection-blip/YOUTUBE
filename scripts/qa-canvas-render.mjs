@@ -12,7 +12,7 @@
  * timings (a test plan has no voiceover); everything else is the real path.
  */
 import { bundle } from "@remotion/bundler";
-import { selectComposition, renderStill, renderMedia } from "@remotion/renderer";
+import { selectComposition, renderStill, renderMedia, openBrowser } from "@remotion/renderer";
 import { mkdirSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -27,7 +27,10 @@ const accent = arg("accent", "#1B7A4D");
 // A repo fixture stands in for an entity photo (Wikimedia is not reachable
 // from every environment); the PHOTO beat is captioned as a fixture.
 const photo = arg("photo", "b-roll/ch-fixture/movile-centipede.jpg");
-const browserExecutable = findChrome();
+// --remotion-browser: Remotion's own headless shell instead of the system
+// Chrome (on a desktop where Chrome is already open, launching it headless
+// timed out connecting).
+const browserExecutable = process.argv.includes("--remotion-browser") ? null : findChrome();
 // audio.js statically imports ./vo.mp3 (git-ignored; render.js copies the real
 // voiceover there). A silent stub lets a test render bundle without one.
 const VO = join(RR, "vo.mp3");
@@ -59,14 +62,14 @@ const beatsSpec = [
   { text: "Higher rates raise rent, and rent cuts savings.", c: { visual_type: "PROCESS", data: { nodes: ["higher rates", "rent", "savings"] }, headline: "The chain", motion_tier: "major" } },
   { text: "In Iran, prices rose again.", c: { visual_type: "MAP", data: { place: "Iran" }, headline: "Prices rose", motion_tier: "micro" } },
   { text: "Renters pay forty two percent of income versus thirty one percent for owners.", c: { visual_type: "COMPARE", data: { a: { value: "42%", label: "income" }, b: { value: "31%", label: "owners" }, relation: "vs" }, headline: "Who pays more", motion_tier: "medium" } },
-  { text: "Trucking entrepreneur indicted for fraud.", c: { visual_type: "TYPE", composition: "TYPE-SPLIT", headline: "Trucking entrepreneur indicted for fraud", motion_tier: "medium" } },
+  { text: "Trucking entrepreneur indicted for fraud.", c: { visual_type: "TYPE", composition: "TYPE-SPLIT", headline: "Trucking entrepreneur indicted for fraud", motion_tier: "medium", text_entrance: "POP_LETTER" } },
   { text: "The fraud cost investors one hundred five million dollars.", c: { visual_type: "MONEY", data: { value: "$105M", object: "United States dollar banknotes" }, photo: fx("money", null), headline: "Money beat (fixture photo)", motion_tier: "medium" } },
   { text: "Test fixture photo, standing in for a named building.", c: { visual_type: "PHOTO", composition: "ARCHITECTURE", data: { entity: "test fixture" }, photo: fx("building", "Test building"), headline: "Architecture beat (fixture)", motion_tier: "medium" } },
   { text: "The Dodd-Frank Act reshaped banking.", c: { visual_type: "DOCUMENT", data: { name: "Dodd-Frank Act" }, photo: fx("document", "Dodd-Frank Act"), headline: "The act reshaped banking (fixture)", motion_tier: "medium" } },
   { text: "The law passed in nineteen thirty eight.", c: { visual_type: "COUNTER", data: { value: "1938", label: "the year the law passed" }, headline: "The wage law", motion_tier: "medium" } },
   { text: "Rates will cut into savings.", c: { visual_type: "TYPE", headline: "Rates will cut savings", emphasis_word: "cut", emphasis_beat: true, motion_tier: "medium" } },
   { text: "Housing alone is thirty four percent of income.", c: { visual_type: "PIE", data: { percent: 34, label: "of income on housing" }, headline: "Housing share", motion_tier: "medium", camera_focus: [{ at_percent: 0.45, target: "number" }] } },
-  { text: "The rule breaks.", c: { visual_type: "TYPE", headline: "The rule breaks", lead_in: "so", motion_tier: "medium" } },
+  { text: "The rule breaks.", c: { visual_type: "TYPE", headline: "The rule breaks", lead_in: "so", motion_tier: "medium", text_entrance: "POP_WORD_STACK" } },
   { text: "Two rules now matter most.", c: { visual_type: "PROCESS", data: { nodes: ["save first", "then spend"] }, headline: "The fix", motion_tier: "medium" } },
   { text: "Rates went from two to four point five percent.", c: { visual_type: "LINE", data: { points: [{ label: "2022", value: "2%" }, { label: "2024", value: "3.5%" }, { label: "2026", value: "4.5%" }] }, headline: "The rate climb", motion_tier: "medium", camera_focus: [{ at_percent: 0.35, target: "chart" }, { at_percent: 0.75, target: "full" }] } },
 ];
@@ -93,7 +96,14 @@ writeFileSync(join(out, "plan.json"), JSON.stringify(plan, null, 2));
 console.log("bundling...");
 const serveUrl = await bundle({ entryPoint: join(RR, "Root.jsx"), publicDir: join(RR, "public"), onProgress: () => {} });
 const props = { plan, ttsAudioPath: null };
-const composition = await selectComposition({ serveUrl, id: "DirectedShorts", inputProps: props, browserExecutable });
+// One browser for every still (each render otherwise launches its own, and a
+// launch that takes > 25 s on a loaded machine fails the whole run).
+let puppeteerInstance = null;
+for (let k = 0; k < 3 && !puppeteerInstance; k++) {
+  try { puppeteerInstance = await openBrowser("chrome", { browserExecutable }); } catch (e) { console.warn(`browser launch ${k + 1}/3 failed: ${e.message.slice(0, 120)}`); }
+}
+if (!puppeteerInstance) throw new Error("could not launch the headless browser (3 attempts)");
+const composition = await selectComposition({ serveUrl, id: "DirectedShorts", inputProps: props, browserExecutable, puppeteerInstance });
 composition.durationInFrames = beats.length * D;
 const shots = [];
 // --beats 8,9 renders only those beats; --moments 0.05,0.1 chooses the moments (fractions of a beat).
@@ -102,11 +112,11 @@ const moments = arg("moments") ? arg("moments").split(",").map(Number) : [0.12, 
 beats.forEach((b, i) => { if (only && !only.includes(i)) return; for (const pct of moments) shots.push([i, pct, b.start_frame + Math.round(b.duration_frames * pct)]); });
 for (const [i, pct, frame] of process.argv.includes("--video-only") ? [] : shots) {
   const file = join(out, `beat-${i}-${Math.round(pct * 100)}.png`);
-  await renderStill({ serveUrl, composition, frame, output: file, inputProps: props, scale: 0.5, browserExecutable });
+  await renderStill({ serveUrl, composition, frame, output: file, inputProps: props, scale: 0.5, browserExecutable, puppeteerInstance });
 }
 console.log(`stills: ${shots.length} in ${out}`);
 if (process.argv.includes("--video")) {
-  await renderMedia({ serveUrl, composition, codec: "h264", outputLocation: join(out, "canvas-test.mp4"), inputProps: props, scale: 0.5, concurrency: 2, browserExecutable });
+  await renderMedia({ serveUrl, composition, codec: "h264", outputLocation: join(out, "canvas-test.mp4"), inputProps: props, scale: 0.5, concurrency: 2, browserExecutable, puppeteerInstance });
   console.log(`video: ${join(out, "canvas-test.mp4")}`);
   // The same canvas fields render.js records, so local-audit.cjs --canvas-only can run on it.
   const { canvasManifest } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
@@ -115,3 +125,4 @@ if (process.argv.includes("--video")) {
     canvas: canvasManifest(b.scene.canvas, i) })) };
   writeFileSync(join(out, "canvas-test-manifest.json"), JSON.stringify(manifest, null, 2));
 }
+await puppeteerInstance.close({ silent: true });
