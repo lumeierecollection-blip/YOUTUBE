@@ -1300,9 +1300,14 @@
           "topic": "crypto-fraud-investigations",
           "slug": "crypto-fraud-investigations-2026-09-28",
           "reserved_at": "2026-09-30T08:24:23.763Z"
+        },
+        {
+          "topic": "Bitget Hack Heist Investigation",
+          "slug": "bitget-hack-investigation",
+          "reserved_at": "2026-09-30T22:19:41.997Z"
         }
       ],
-      "last_generated": "2026-09-30T08:24:23.763Z"
+      "last_generated": "2026-09-30T22:19:41.997Z"
     },
     "27": {
       "channel_name": "Climate Now",
