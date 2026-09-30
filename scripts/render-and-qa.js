@@ -934,6 +934,40 @@ async function resolveAssets(channelId, planPath) {
   return { ok: true, planPath: out, counts, fetchedNew };
 }
 
+/**
+ * A PHOTO beat of a named person whose portrait could not be verified
+ * (owner's rule 2026-09-30). The sentence decides the replacement:
+ *   a quote ("...", said / told / wrote ...)  TYPE, with the person's name as
+ *                                             the attribution (the lead-in)
+ *   an action                                 the first DATA / PROCESS
+ *                                             visual the sentence grounds
+ *                                             (candidatesFor + checkVisual —
+ *                                             the planner's own gate)
+ *   otherwise                                 TYPE
+ * Returns the visual type it chose.
+ */
+const FALLBACK_DATA = new Set(["COUNTER", "BAR", "PIE", "LINE", "GAUGE", "PROCESS", "TIMELINE", "COMPARE", "LIST", "MAP"]);
+function personFallback(b, ent) {
+  const sentence = b.narration || "";
+  if (/["“”]|\b(said|says|told|tells|wrote|writes|stated|states|announced|warned|argued|asked)\b/i.test(sentence)) {
+    b.visual_type = "TYPE"; b.data = null;
+    b.canvas = canvasContentFor(b, {});
+    b.canvas.lead_in = ent.name;
+    return "TYPE (quote, attributed)";
+  }
+  for (const alt of candidatesFor({ sentence, headline: b.headline || "" })) {
+    if (!FALLBACK_DATA.has(alt.visual_type)) continue;
+    const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, sentence);
+    if (v.why || v.type !== alt.visual_type) continue;
+    b.visual_type = v.type; b.data = v.data;
+    b.canvas = canvasContentFor(b, {});
+    return v.type;
+  }
+  b.visual_type = "TYPE"; b.data = null;
+  b.canvas = canvasContentFor(b, {});
+  return "TYPE";
+}
+
 // Full-canvas plans.
 // PHOTO beats resolve a named person / place / organization to a verified
 // Wikimedia photo (scripts/entity-assets.cjs); COUNTER / BAR / PIE / LINE /
@@ -943,11 +977,12 @@ async function resolveAssets(channelId, planPath) {
 async function resolveCanvas(channelId, planPath, plan) {
   let fetchedNew = 0;
   const counts = { by_comp: {}, photos: 0, entity_fallbacks: 0 };
-  const entities = { resolved: [], fell_back: [] };
+  const entities = { resolved: [], fell_back: [], rejected: [] };
   const photoFor = async (ent) => {
     const r = await resolveEntity({ type: ent.type, name: ent.name, context: channelTopic(channelId) || "" });
+    for (const why of r.rejected || []) entities.rejected.push(`${ent.name}: ${why}`);
     if (r.ok) {
-      entities.resolved.push(`${ent.type} "${ent.name}" -> ${r.asset} (attempt ${r.attempt ?? "cache"}, ${r.license})`);
+      entities.resolved.push(`${ent.type} "${ent.name}" -> ${r.asset} (attempt ${r.attempt ?? "cache"}, ${r.license}${r.verified_by ? `, verified by ${r.verified_by}` : ""})`);
       console.log(`[entity] ${ent.type} "${ent.name}" resolved: ${r.asset} — ${r.page_title || ""} (${r.license}${r.cached ? ", cached" : `, attempt ${r.attempt}`})`);
       // A NEW file under public/ is not in the pre-built bundle: count it, so
       // render-and-qa re-bundles (run 36498049819 ch-1: "Error loading image
@@ -994,6 +1029,17 @@ async function resolveCanvas(channelId, planPath, plan) {
     }
     b.canvas = canvasContentFor(b, { photo });
     if (photo) b.asset = { id: photo.asset, source: "wikimedia", source_url: photo.source_url, license: photo.license, attribution: photo.credit };
+    // A named person with no verified portrait (entity-assets.cjs ->
+    // verify-person-image.cjs rejected every candidate): the beat loses the
+    // photo — never a placeholder, silhouette or stand-in.
+    if (vt === "PHOTO" && !photo) {
+      const ent = (b.named_entities || []).find((e) => e.name === b.data?.entity) || { type: b.data?.entity_type || "person", name: b.data?.entity };
+      if (ent.type === "person" && ent.name) {
+        const to = personFallback(b, ent);
+        counts.person_fallbacks = (counts.person_fallbacks || []).concat(`beat ${b.index}: ${ent.name} -> ${to}`);
+        console.log(`[verify] no verified portrait for ${ent.name}, beat ${b.index} falls back to ${to}`);
+      }
+    }
   }
   // NO REPEAT, again, on what actually resolved (a real photo of a building is
   // ARCHITECTURE; a DOCUMENT / MONEY / PHOTO with no image became TYPE): the
@@ -1066,7 +1112,7 @@ async function resolveCanvas(channelId, planPath, plan) {
     if (b.canvas.photo) counts.photos++;
     console.log(`[canvas] beat ${b.index} ${k} ${b.canvas.visual_type} ${JSON.stringify(b.canvas.data || {})} tier=${b.canvas.motion_tier}${b.canvas.camera_focus ? ` camera=${b.canvas.camera_focus.map((f) => `${f.target}@${f.at_percent}`).join(",")}` : ""}${b.canvas.persists_from !== null ? ` persists_from=${b.canvas.persists_from}` : ""}${b.canvas.match_cut_prev ? " match_cut" : ""}${b.canvas.dark ? " DARK" : ""}${b.canvas.emphasis_beat ? " EMPHASIS" : ""}${b.canvas.vertical ? " VERTICAL" : ""}`);
   }
-  plan.entity_report = entities;
+  plan.entity_report = { ...entities, person_fallbacks: counts.person_fallbacks || [] };
   const out = planPath.replace(/\.json$/, "-resolved.json");
   writeFileSync(out, JSON.stringify(plan, null, 2) + "\n");
   console.log(`[canvas] resolved ${basename(planPath)}: ${Object.entries(counts.by_comp).map(([k, v]) => `${k} ${v}`).join(", ")}; photos ${counts.photos}; entities resolved ${entities.resolved.length}, fell back ${entities.fell_back.length}`);

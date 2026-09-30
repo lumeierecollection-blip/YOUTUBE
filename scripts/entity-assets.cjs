@@ -8,7 +8,13 @@
  *          source_url, page_url, license, attribution, credit }
  *      | { ok: false, why, attempts: [...] }
  *
- * Three attempts, each verified:
+ * A PERSON (resolvePerson, 2026-09-30): candidates from the Wikipedia lead
+ * image, a Wikipedia search's lead image, then Commons portraits — each must
+ * pass the identity check in verify-person-image.cjs (a face, the named
+ * person, a portrait) or it is rejected; no candidate passes -> ok:false.
+ * Stock photo APIs are never a source for a named person.
+ *
+ * Places and organizations — three attempts, each checked:
  *   1. the English Wikipedia page whose title IS the name (redirects
  *      followed, disambiguation pages refused): its lead image
  *   2. a Wikipedia search for the name (+ context words), first result whose
@@ -183,6 +189,50 @@ async function attempts(type, name, context) {
   return { tried };
 }
 
+/**
+ * A named PERSON's candidate photos, in source priority (owner's rule
+ * 2026-09-30: Wikipedia is the source; stock photo APIs are never used for a
+ * named person):
+ *   1. the lead image of the English Wikipedia page titled with the name
+ *   2. the lead image of the first Wikipedia search hit titled with the name
+ *   3. Wikimedia Commons files named for the person: "<name>" portrait,
+ *      "<name>" official photo, "<name>" — files at least 600 px on the
+ *      short side first
+ * Every candidate passes checkFile (a JPEG photograph under a free licence,
+ * >= 500 px on its short side). Returns up to `max` distinct candidates;
+ * each still has to pass the identity check (verify-person-image.cjs).
+ */
+async function personCandidates(name, context, max = 6) {
+  const out = [], tried = [], seen = new Set();
+  const add = (c, source) => { if (c.info && !seen.has(c.info.title)) { seen.add(c.info.title); out.push({ ...c, source }); } };
+  let r = await leadImageOf(name, name);
+  if (r.info) add(r, "wikipedia lead image"); else tried.push(`wikipedia: ${r.why}`);
+  const q = [name, context].filter(Boolean).join(" ");
+  const sj = await getJson(`${WIKI}/w/api.php?action=query&list=search&format=json&srlimit=5&srsearch=${encodeURIComponent(q)}`);
+  const hit = (sj?.query?.search || []).find((h) => titleMatches(h.title, name) && !/\(disambiguation\)/i.test(h.title) && h.title !== r.pageTitle);
+  if (hit) { r = await leadImageOf(hit.title, name); if (r.info) add(r, "wikipedia search lead image"); else tried.push(`wikipedia search: ${r.why}`); }
+  const nt = tokens(name);
+  const commons = [];
+  for (const suffix of [" portrait", " official photo", ""]) {
+    if (out.length + commons.length >= max) break;
+    const cj = await getJson(`${COMMONS}?action=query&format=json&list=search&srnamespace=6&srlimit=10&srsearch=${encodeURIComponent(`"${name}"${suffix}`)}`);
+    for (const h of cj?.query?.search || []) {
+      if (seen.has(h.title) || commons.some((c) => c.info.title === h.title)) continue;
+      const ft = tokens(h.title.replace(/^File:/, "").replace(/\.[a-z]+$/i, ""));
+      if (!nt.every((t) => ft.includes(t))) continue;
+      if (/\b(with|and|meets?|meeting|group)\b/i.test(h.title.replace(/[_-]/g, " "))) { tried.push(`commons: ${h.title}: not a portrait of one person`); continue; }
+      const info = await fileInfo(h.title);
+      const bad = checkFile(info);
+      if (bad) { tried.push(`commons: ${h.title}: ${bad}`); continue; }
+      commons.push({ info, page: info.descurl, pageTitle: h.title, description: "" });
+      if (out.length + commons.length >= max) break;
+    }
+  }
+  commons.sort((a, b) => (Math.min(b.info.width, b.info.height) >= 600) - (Math.min(a.info.width, a.info.height) >= 600));
+  commons.forEach((c) => add(c, "commons"));
+  return { candidates: out.slice(0, max), tried };
+}
+
 // A bare acronym names different organizations in different places: run
 // 36509937804 ch-2 resolved "NHRC" (India's National Human Rights
 // Commission in the script) to a photo of QATAR's NHRC building, because the
@@ -210,38 +260,99 @@ function expandName(type, name) {
   return full ? { name: full, note: `acronym "${bare}" -> "${full}"` } : { refuse: `"${bare}" is an acronym with no unambiguous expansion (it names different organizations in different countries)` };
 }
 
-async function resolveEntity({ type, name, context = "" }) {
-  type = DIR[type] ? type : "organization";
-  const key = `${type}:${String(name).trim().toLowerCase()}`;
-  const man = loadManifest();
-  const cached = (man.entities || []).find((e) => e.key === key);
-  if (cached && existsSync(join(PUBLIC, cached.asset))) return { ok: true, ...cached, cached: true };
-  const ex = expandName(type, name);
-  if (ex.refuse) return { ok: false, why: `no verified photo of ${type} "${name}": ${ex.refuse}`, attempts: [] };
-  const r = await attempts(type, ex.name, context);
-  if (ex.note && r.tried) r.tried.unshift(ex.note);
-  if (!r.info) return { ok: false, why: `no verified photo of ${type} "${name}" in 3 attempts`, attempts: r.tried };
-  // Download the 1400 px rendition and store it as JPEG.
+// Download a candidate's 1400 px rendition and store it as JPEG at `abs`.
+async function downloadTo(info, abs) {
   const ctl = new AbortController();
   const timer = setTimeout(() => ctl.abort(), 30000);
   let buf;
   // One more try on a cut-off transfer ("terminated"), the same file.
   for (let k = 0; k < 2 && !buf; k++) {
     try {
-      const res = await fetch(r.info.thumb, { headers: { "user-agent": UA }, signal: ctl.signal });
-      if (!res.ok) { clearTimeout(timer); return { ok: false, why: `download failed (${res.status})`, attempts: r.tried }; }
+      const res = await fetch(info.thumb, { headers: { "user-agent": UA }, signal: ctl.signal });
+      if (!res.ok) { clearTimeout(timer); return `download failed (${res.status})`; }
       buf = Buffer.from(await res.arrayBuffer());
-    } catch (e) { if (k === 1) { clearTimeout(timer); return { ok: false, why: `download failed (${e.message})`, attempts: r.tried }; } }
+    } catch (e) { if (k === 1) { clearTimeout(timer); return `download failed (${e.message})`; } }
   }
   clearTimeout(timer);
-  const rel = `entities/${DIR[type]}/${slug(name)}.jpg`;
-  mkdirSync(join(PUBLIC, "entities", DIR[type]), { recursive: true });
+  mkdirSync(join(abs, ".."), { recursive: true });
   try {
     const sharp = require("sharp");
     const meta = await sharp(buf).metadata();
-    if (Math.min(meta.width || 0, meta.height || 0) < MIN_SIDE) return { ok: false, why: `downloaded image too small (${meta.width}x${meta.height})`, attempts: r.tried };
-    await sharp(buf).rotate().resize({ width: 1400, height: 2000, fit: "inside", withoutEnlargement: true }).jpeg({ quality: 88 }).toFile(join(PUBLIC, rel));
-  } catch (e) { return { ok: false, why: `image could not be decoded (${e.message})`, attempts: r.tried }; }
+    if (Math.min(meta.width || 0, meta.height || 0) < MIN_SIDE) return `downloaded image too small (${meta.width}x${meta.height})`;
+    await sharp(buf).rotate().resize({ width: 1400, height: 2000, fit: "inside", withoutEnlargement: true }).jpeg({ quality: 88 }).toFile(abs);
+  } catch (e) { return `image could not be decoded (${e.message})`; }
+  return null;
+}
+
+/**
+ * A named person: the candidates in source priority (personCandidates), each
+ * downloaded and put through the identity check (verify-person-image.cjs:
+ * a visible face, the named person, a portrait). The first that passes is
+ * stored; every rejection is logged. None passes -> ok:false, and the caller
+ * draws the beat without a photo. A cached portrait is re-checked against
+ * verified.json (same source URL, < 30 days) before it is reused.
+ */
+async function resolvePerson(key, name, context, man, cached) {
+  const { verifyPersonImage } = require("./verify-person-image.cjs");
+  const rel = `entities/people/${slug(name)}.jpg`;
+  if (cached && existsSync(join(PUBLIC, cached.asset))) {
+    const v = await verifyPersonImage(join(PUBLIC, cached.asset), name, { sourceUrl: cached.source_url });
+    if (v.verdict === "match") return { ok: true, ...cached, cached: true, verified: v };
+    console.log(`[fetch] ${name}: cached portrait failed verification (${v.reason}), refetching`);
+    man.entities = (man.entities || []).filter((e) => e.key !== key);
+    saveManifest(man);
+  }
+  const { candidates, tried } = await personCandidates(name, context);
+  if (!candidates.length) {
+    console.log(`[fetch] ${name}: no Wikipedia lead image and no Commons portrait`);
+    return { ok: false, why: `no candidate photo of person "${name}"`, attempts: tried };
+  }
+  const rejected = [];
+  for (const [i, c] of candidates.entries()) {
+    console.log(`[fetch] ${name}: ${c.source}${c.source === "commons" ? ` candidate ${i + 1}` : ""} (${c.info.title})`);
+    const tmp = join(PUBLIC, "entities", "people", `.candidate-${slug(name)}.jpg`);
+    const bad = await downloadTo(c.info, tmp);
+    if (bad) { rejected.push(`${c.info.title}: ${bad}`); console.log(`[verify] rejected candidate for ${name}: ${bad}`); continue; }
+    const sourceUrl = c.info.descurl || c.info.url;
+    const v = await verifyPersonImage(tmp, name, { sourceUrl });
+    if (v.verdict !== "match") {
+      rejected.push(`${c.info.title}: ${v.reason}`);
+      console.log(`[verify] rejected candidate for ${name}: ${v.reason}`);
+      try { require("node:fs").unlinkSync(tmp); } catch {}
+      continue;
+    }
+    require("node:fs").renameSync(tmp, join(PUBLIC, rel));
+    console.log(`[fetch] ${name}: verified MATCH (${v.provider}), used`);
+    const artist = (c.info.artist || "").slice(0, 80);
+    const entry = { key, type: "person", entity: name, asset: rel, attempt: i + 1, source: c.source, page_url: c.page, page_title: c.pageTitle, file_title: c.info.title, view: "person", description: c.description || "",
+      source_url: sourceUrl, license: c.info.license, attribution: artist, verified_by: v.provider,
+      credit: `Photo: ${artist ? `${artist} / ` : ""}Wikimedia Commons, ${c.info.license}`, fetched_at: new Date().toISOString() };
+    man.entities = (man.entities || []).filter((e) => e.key !== key);
+    man.entities.push(entry);
+    saveManifest(man);
+    return { ok: true, ...entry, rejected };
+  }
+  console.log(`[fetch] ${name}: all ${candidates.length} candidate(s) rejected`);
+  return { ok: false, why: `no verified portrait of "${name}" (${candidates.length} candidate(s) rejected)`, attempts: [...tried, ...rejected], rejected };
+}
+
+async function resolveEntity({ type, name, context = "" }) {
+  type = DIR[type] ? type : "organization";
+  const key = `${type}:${String(name).trim().toLowerCase()}`;
+  const man = loadManifest();
+  const cached = (man.entities || []).find((e) => e.key === key);
+  // A named person is shown as that person or not at all: every person photo,
+  // cached or new, passes the identity check.
+  if (type === "person") return resolvePerson(key, String(name).trim(), context, man, cached);
+  if (cached && existsSync(join(PUBLIC, cached.asset))) return { ok: true, ...cached, cached: true };
+  const ex = expandName(type, name);
+  if (ex.refuse) return { ok: false, why: `no verified photo of ${type} "${name}": ${ex.refuse}`, attempts: [] };
+  const r = await attempts(type, ex.name, context);
+  if (ex.note && r.tried) r.tried.unshift(ex.note);
+  if (!r.info) return { ok: false, why: `no verified photo of ${type} "${name}" in 3 attempts`, attempts: r.tried };
+  const rel = `entities/${DIR[type]}/${slug(name)}.jpg`;
+  const bad = await downloadTo(r.info, join(PUBLIC, rel));
+  if (bad) return { ok: false, why: bad, attempts: r.tried };
   const artist = (r.info.artist || "").slice(0, 80);
   const entry = { key, type, entity: name, asset: rel, attempt: r.attempt, page_url: r.page, page_title: r.pageTitle, file_title: r.info.title, view: viewOf(type, r.info.title), description: r.description,
     source_url: r.info.descurl || r.info.url, license: r.info.license, attribution: artist,
@@ -412,7 +523,7 @@ function qualifyEntity(ent, countries = []) {
   return { ent: null, note: `"${ent.name}" is a generic institution name and the script names ${cs.length ? `${cs.length} countries (${cs.join(", ")})` : "no country"} — not resolved (it would show some country's ${ent.name})` };
 }
 
-module.exports = { resolveEntity, resolveDocument, resolveMoney, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
+module.exports = { resolveEntity, resolveDocument, resolveMoney, personCandidates, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
 
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };
