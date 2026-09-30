@@ -448,6 +448,7 @@ Answer NO when the frame is only a line of text restating or labelling the sente
 EXCEPTION: a beat marked "[TYPOGRAPHY]" below is a kinetic-text hook or CTA beat BY DESIGN — it is supposed to be text only, with no accompanying drawing. For those beats only, judge whether the on-screen text itself captures the sentence's point; do not answer NO merely because there is no separate visual.
 EXCEPTION: a beat marked "[DATA: COUNTER|BAR|PIE|LINE|GAUGE]" below shows the sentence's own figure as a drawn number, chart or gauge BY DESIGN — the drawn figure IS the visual. Answer YES when the figure shown is the sentence's figure and its label fits the sentence; answer NO when the figure is wrong, missing, or unrelated. A beat marked "[MAP]" shows the place the sentence names; answer NO if the place is wrong or unreadable.
 EXCEPTION: a beat marked "[PROCESS]" is a designed flow diagram BY DESIGN (labelled nodes joined by arrows): answer YES when its nodes and arrows show the cause -> effect or sequence the sentence states; answer NO when the sentence states no such flow or the nodes are not the sentence's steps. A beat marked "[PHOTO: <name>]" shows a real photograph of that named person, place or organization: answer NO if the photo is not of THAT entity (e.g. another country's court or building), or if the entity is not what the sentence is about.
+WRONG PERSON: if the frame shows a person, and the sentence names a specific person, check whether the face plausibly matches the named person. If the face is clearly a different person, or if the person is a child, or if the image is a scene where the person is not the subject, answer NO with reason "wrong-person" (those exact words first in the reason). A beat marked "[PHOTO OF PERSON: <name>]" is meant to show that person's portrait.
 A word-by-word caption of the narration near the bottom of the frame is present on every beat BY DESIGN; ignore it when judging, and judge the rest of the frame.
 Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_is_shown":"<what the frame actually contains>","reason":"<one sentence>"}]} — exactly one entry per beat, beat_index 0..${beats.length - 1}.`,
   }];
@@ -465,7 +466,9 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
       // an abstract claim with no number, place or object), the same
       // exception as a TYPOGRAPHY mechanism beat.
       const vt = String(b.visual_type || "").toUpperCase();
-      const tag = b.mechanism === "TYPOGRAPHY" || vt === "TYPE" ? " [TYPOGRAPHY]"
+      const personName = b.canvas?.photo?.kind === "person" ? String(b.canvas.photo.entity || b.data?.entity || "").slice(0, 60) : "";
+      const tag = personName ? ` [PHOTO OF PERSON: ${personName}]`
+        : b.mechanism === "TYPOGRAPHY" || vt === "TYPE" ? " [TYPOGRAPHY]"
         : ["COUNTER", "BAR", "PIE", "LINE", "GAUGE"].includes(vt) ? ` [DATA: ${vt}]`
         : vt === "MAP" ? " [MAP]"
         : vt === "PROCESS" ? " [PROCESS]"
@@ -520,8 +523,21 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
       console.log(`[beat-check] beat ${v.beat_index}: ${v.matches} — shows: ${v.what_is_shown} — ${v.reason}`);
     }
     const failing = verdicts.filter((v) => String(v.matches).toUpperCase() !== "YES");
+    // A wrong-person photo fails the WHOLE video, whatever else passed: a
+    // named person is shown as that person or not at all (owner's rule
+    // 2026-09-30). The one-NO tolerance below never covers it.
+    const wrongPerson = failing.filter((v) => /wrong[- ]person/i.test(String(v.reason || "")));
+    for (const v of wrongPerson) {
+      const b = beats[v.beat_index] || {};
+      const who = b.canvas?.photo?.entity || b.data?.entity || "(a named person)";
+      console.log(`[review] beat ${v.beat_index}: wrong-person photo for ${who}`);
+    }
     if (outPath) {
-      writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, beats: verdicts.map((v) => ({ ...v, sentence: cues[v.beat_index]?.text ?? null })), failing: failing.map((v) => v.beat_index) }, null, 2) + "\n");
+      writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, beats: verdicts.map((v) => ({ ...v, sentence: cues[v.beat_index]?.text ?? null })), failing: failing.map((v) => v.beat_index), wrong_person: wrongPerson.map((v) => v.beat_index) }, null, 2) + "\n");
+    }
+    if (wrongPerson.length) {
+      console.error(`::error::beat check failed: wrong-person photo on beat(s) ${wrongPerson.map((v) => v.beat_index).join(", ")} — the video cannot ship`);
+      process.exit(1);
     }
     if (failing.length > 1) {
       console.error(`::error::beat check failed: ${failing.length}/${beats.length} beats do not visually match their sentence — beats ${failing.map((v) => v.beat_index).join(", ")}`);

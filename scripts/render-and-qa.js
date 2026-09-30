@@ -711,7 +711,9 @@ const RENDER_QA_BUDGET_MS = Number(process.env.RENDER_QA_BUDGET_MIN || Math.max(
 const APPROVED_REVIEW_DIR = join(ROOT, "data", "renders", "approved-review");
 const REJECTED_DIR = join(ROOT, "data", "renders", "rejected");
 
-async function backupAudit({ stage, reason, videoPath, planPath, srtPath, audio, channelId }) {
+// forceReject: the failure is one the local audit may not overrule (a
+// wrong-person photo) — the video goes to rejected/ whatever the audit says.
+async function backupAudit({ stage, reason, videoPath, planPath, srtPath, audio, channelId, forceReject = false }) {
   const stem = basename(videoPath, ".mp4");
   const reportPath = videoPath.replace(/\.mp4$/, "-backup-audit.json");
   const la = await runChild("node", [LOCAL_AUDIT_CJS,
@@ -723,7 +725,7 @@ async function backupAudit({ stage, reason, videoPath, planPath, srtPath, audio,
     "--out", reportPath,
   ], { label: `backup-qa ${channelId}/${stem}` });
   const report = readJsonSafe(reportPath);
-  const localPass = la.code === 0 && report?.pass === true;
+  const localPass = !forceReject && la.code === 0 && report?.pass === true;
   const failedChecks = (report?.checks || []).filter((c) => !c.pass).map((c) => `${c.id}: ${c.detail}`);
   const dest = localPass ? APPROVED_REVIEW_DIR : REJECTED_DIR;
   mkdirSync(dest, { recursive: true });
@@ -1349,6 +1351,13 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       const why = beatCheck.code === 1 ? "FAILED — frames do not match their sentences" : "could not run";
       console.error(`::error::beat check ${why} for ${basename(result.outputPath)}`);
       const bc = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-beat-check.json"));
+      // A wrong-person photo is never rescued by the local audit into
+      // approved-review: the video is rejected (a named person is shown as
+      // that person or not at all).
+      if (bc?.wrong_person?.length) {
+        console.error(`::error::[review] wrong-person photo on beat(s) ${bc.wrong_person.join(", ")} — ${basename(result.outputPath)} rejected`);
+        return backupAudit({ ...backupArgs, stage: "beat-check", reason: `wrong-person photo on beat(s) ${bc.wrong_person.join(", ")}`, forceReject: true });
+      }
       return backupAudit({ ...backupArgs, stage: "beat-check", reason: bc?.failing ? `${why}: beats ${bc.failing.join(", ")}` : why });
     }
 
