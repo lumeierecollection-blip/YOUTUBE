@@ -938,36 +938,22 @@ async function resolveAssets(channelId, planPath) {
 
 /**
  * A PHOTO beat of a named person whose portrait could not be verified
- * (owner's rule 2026-09-30). The sentence decides the replacement:
- *   a quote ("...", said / told / wrote ...)  TYPE, with the person's name as
- *                                             the attribution (the lead-in)
- *   an action                                 the first DATA / PROCESS
- *                                             visual the sentence grounds
- *                                             (candidatesFor + checkVisual —
- *                                             the planner's own gate)
- *   otherwise                                 TYPE
- * Returns the visual type it chose.
+ * (owner's rules 2026-09-30 / 2026-10-02): the beat becomes TYPE with the
+ * person's name as the attribution (the lead-in), quote or not. Returns a
+ * label for the log.
  */
-const FALLBACK_DATA = new Set(["COUNTER", "BAR", "PIE", "LINE", "GAUGE", "PROCESS", "TIMELINE", "COMPARE", "LIST", "MAP"]);
+// Owner's rule (2026-10-02): no verified portrait -> TYPE, ALWAYS, carrying
+// the person's name as the attribution (the lead-in) — a quote attributed to
+// them, an action named by them. Never a silhouette or a generic photo in the
+// portrait slot, never an UNSURE candidate, and no longer a chart / process
+// stand-in (the previous "action -> first grounded DATA visual" branch).
 function personFallback(b, ent) {
   const sentence = b.narration || "";
-  if (/["“”]|\b(said|says|told|tells|wrote|writes|stated|states|announced|warned|argued|asked)\b/i.test(sentence)) {
-    b.visual_type = "TYPE"; b.data = null;
-    b.canvas = canvasContentFor(b, {});
-    b.canvas.lead_in = ent.name;
-    return "TYPE (quote, attributed)";
-  }
-  for (const alt of candidatesFor({ sentence, headline: b.headline || "" })) {
-    if (!FALLBACK_DATA.has(alt.visual_type)) continue;
-    const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, sentence);
-    if (v.why || v.type !== alt.visual_type) continue;
-    b.visual_type = v.type; b.data = v.data;
-    b.canvas = canvasContentFor(b, {});
-    return v.type;
-  }
+  const quote = /["“”]|\b(said|says|told|tells|wrote|writes|stated|states|announced|warned|argued|asked)\b/i.test(sentence);
   b.visual_type = "TYPE"; b.data = null;
   b.canvas = canvasContentFor(b, {});
-  return "TYPE";
+  b.canvas.lead_in = ent.name;
+  return quote ? "TYPE (quote, attributed)" : "TYPE (named)";
 }
 
 // Full-canvas plans.
@@ -1039,7 +1025,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       if (ent.type === "person" && ent.name) {
         const to = personFallback(b, ent);
         counts.person_fallbacks = (counts.person_fallbacks || []).concat(`beat ${b.index}: ${ent.name} -> ${to}`);
-        console.log(`[verify] no verified portrait for ${ent.name}, beat ${b.index} falls back to ${to}`);
+        console.log(`[verify] ch-${channelId} beat ${b.index}: no verified portrait for "${ent.name}", downgraded to TYPE (${to})`);
       }
     }
   }
