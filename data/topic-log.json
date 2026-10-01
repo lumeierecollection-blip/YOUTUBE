@@ -175,9 +175,14 @@
           "topic": "debt_snowball_vs_debt_avalanche_2026",
           "slug": "debt-snowball-vs-debt-avalanche-2026",
           "reserved_at": "2026-09-30T22:23:14.601Z"
+        },
+        {
+          "topic": "new-budgeting-strategies",
+          "slug": "new-budgeting-strategies-2026",
+          "reserved_at": "2026-10-01T18:34:10.431Z"
         }
       ],
-      "last_generated": "2026-09-30T22:23:14.601Z"
+      "last_generated": "2026-10-01T18:34:10.431Z"
     },
     "2": {
       "channel_name": "Legal Brief",
