@@ -2041,9 +2041,14 @@
           "topic": "Zombie Leadership: The Rising Threat in Organizations",
           "slug": "zombie-leadership-threat-44-12-34-56-2026-09-29-4",
           "reserved_at": "2026-09-30T22:22:18.546Z"
+        },
+        {
+          "topic": "AI and Negotiation: Insights from the 2026 AI Negotiation Challenge",
+          "slug": "ai-and-negotiation-insights-2026",
+          "reserved_at": "2026-10-01T18:33:52.549Z"
         }
       ],
-      "last_generated": "2026-09-30T22:22:18.547Z"
+      "last_generated": "2026-10-01T18:33:52.549Z"
     },
     "45": {
       "channel_name": "Lift",
