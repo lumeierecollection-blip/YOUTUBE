@@ -2299,9 +2299,14 @@
           "topic": "industrial-automation",
           "slug": "industrial-automation-trends-2026-10-01-1234567890-100126-10",
           "reserved_at": "2026-10-01T18:31:41.135Z"
+        },
+        {
+          "topic": "seg-solar-second-module-factory",
+          "slug": "seg-solar-second-module-factory",
+          "reserved_at": "2026-10-01T19:42:15.687Z"
         }
       ],
-      "last_generated": "2026-10-01T18:31:41.135Z"
+      "last_generated": "2026-10-01T19:42:15.688Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
