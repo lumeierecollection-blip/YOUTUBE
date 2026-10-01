@@ -746,9 +746,14 @@
           "topic": "Iran-US Sanctions and Oil Flows",
           "slug": "iran-us-sanctions-hormuz-oil",
           "reserved_at": "2026-09-30T22:19:55.364Z"
+        },
+        {
+          "topic": "Russia's War Financing and Budget Deficit",
+          "slug": "russia-war-financing-budget-deficit-20261001",
+          "reserved_at": "2026-10-01T18:32:33.582Z"
         }
       ],
-      "last_generated": "2026-09-30T22:19:55.364Z"
+      "last_generated": "2026-10-01T18:32:33.582Z"
     },
     "10": {
       "channel_name": "Word Lab",
