@@ -1340,9 +1340,14 @@
           "topic": "Money Trail Animations",
           "slug": "money-trail-animations-2026-10-01",
           "reserved_at": "2026-10-01T18:32:28.011Z"
+        },
+        {
+          "topic": "crypto-fraud-challenge",
+          "slug": "crypto-fraud-challenge-2026-10-01",
+          "reserved_at": "2026-10-01T19:41:20.974Z"
         }
       ],
-      "last_generated": "2026-10-01T18:32:28.011Z"
+      "last_generated": "2026-10-01T19:41:20.974Z"
     },
     "27": {
       "channel_name": "Climate Now",
