@@ -2091,9 +2091,14 @@
           "topic": "The Impact of AI on Negotiation Strategies in 2026",
           "slug": "ai-impact-on-negotiation-strategies-2026-1234567890-12345678",
           "reserved_at": "2026-10-01T19:41:08.190Z"
+        },
+        {
+          "topic": "Strategic Career Pivots in the Age of AI",
+          "slug": "strategic-career-pivots-age-of-ai",
+          "reserved_at": "2026-10-01T22:43:33.257Z"
         }
       ],
-      "last_generated": "2026-10-01T19:41:08.190Z"
+      "last_generated": "2026-10-01T22:43:33.257Z"
     },
     "45": {
       "channel_name": "Lift",
