@@ -2121,9 +2121,14 @@
           "topic": "McKinsey 2026 Survey: Closing the Enterprise Skills Gap",
           "slug": "mckinsey-2026-survey-closing-enterprise-skills-gap",
           "reserved_at": "2026-09-30T11:38:20.503Z"
+        },
+        {
+          "topic": "Building Agility and Resilience: The 2026 Leadership Priority",
+          "slug": "building-agility-resilience-2026-leadership-priority",
+          "reserved_at": "2026-10-01T12:08:06.232Z"
         }
       ],
-      "last_generated": "2026-09-30T11:38:20.503Z"
+      "last_generated": "2026-10-01T12:08:06.233Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
