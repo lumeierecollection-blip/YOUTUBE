@@ -372,9 +372,14 @@
           "topic": "tenant-rights-news-october-2026",
           "slug": "tenant-rights-news-october-2026",
           "reserved_at": "2026-10-01T18:35:03.302Z"
+        },
+        {
+          "topic": "hawaii-county-looks-to-dismiss-case-of-teen-hit-by-officer-car",
+          "slug": "hawaii-county-dismiss-case-teen-hit-by-officer-car",
+          "reserved_at": "2026-10-01T19:42:09.394Z"
         }
       ],
-      "last_generated": "2026-10-01T18:35:03.302Z"
+      "last_generated": "2026-10-01T19:42:09.394Z"
     },
     "3": {
       "channel_name": "AI Tested",
