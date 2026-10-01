@@ -554,7 +554,14 @@ export function focusBox(layout, target) {
   if (t === "full") return null;
   if (t === "number") return b.number || b.emphasis || b.statement || b.chart || null;
   if (t === "chart" || t === "data") return b.chart || b.number || null;
-  if (t === "headline" || t === "text") return b.headline || b.statement || b.emphasis || null;
+  // The camera moves only the BODY (full-canvas.jsx BeatCanvas); the header —
+  // rule, kicker, headline — is pinned. Framing b.headline therefore moved
+  // the body by the headline's offset: on TYPE-SPLIT (headline top, statement
+  // bottom) a 1.35x push "onto the headline" threw the statement to x -313,
+  // y 1337-1890 — off the left edge, over the captions, onto the ground the
+  // audit samples (run 36915319430 ch-26 beats 1 and 3: "ground luma 137",
+  // coverage 6%). "headline" / "text" now frame the body's own text.
+  if (t === "headline" || t === "text") return b.statement || b.emphasis || null;
   if (t === "map") return b.map ? { x: 140, y: 380, w: 800, h: 1000 } : null;
   if (t === "photo" || t === "subject") return b.photo ? { x: 140, y: 380, w: 800, h: 1000 } : null;
   if (t === "left") return { x: 0, y: 300, w: 640, h: 1100 };
