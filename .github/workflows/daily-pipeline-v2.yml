@@ -44,6 +44,10 @@ on:
         description: "'ollama' = answer EVERY model call with local Ollama; Gemini is never called (the fallback test)"
         type: string
         default: ""
+      build_cutouts:
+        description: "Also build the PNG cutout library (Pixabay, Unsplash fallback) and commit it to this branch"
+        type: boolean
+        default: false
 
 concurrency:
   group: daily-pipeline-${{ github.ref }}
@@ -67,6 +71,117 @@ env:
   RENDER_CONCURRENCY: "4"
 
 jobs:
+  # ============================================================
+  # CUTOUTS (only with -f build_cutouts=true): the PNG cutout library.
+  # Pixabay (primary) and Unsplash (fallback) only; each candidate goes
+  # rembg u2net -> geometric checks (scripts/cutout_lib.py) -> content
+  # verification by a vision model (scripts/verify-cutout-image.cjs) before
+  # it is saved. Commits the PNGs, CREDITS.md, MISSING.md and verified.json
+  # to this branch. Runs beside the pipeline; the renderer does NOT use the
+  # library yet (owner's plan: wired in a later session).
+  # Differs from the brief's job on purpose: the Remotion public dir
+  # (src/skills/remotion-render/public/cutouts, not ./public), 90 min (39
+  # names x queries x CPU rembg + Unsplash paced at 2 s does not fit 30),
+  # and a rebase-retry push (prep pushes topic commits to this branch).
+  # ============================================================
+  cutouts:
+    if: ${{ github.event.inputs.build_cutouts == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Cache rembg (pip + u2net model)
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.u2net
+          key: rembg-${{ runner.os }}-v1
+
+      - name: Install rembg, Pillow, pngquant
+        run: |
+          pip install --quiet "rembg[cpu]" pillow numpy
+          python -c "from rembg import new_session; new_session('u2net'); print('rembg ready')"
+          sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends pngquant
+
+      - name: Which keys are set
+        env:
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+        run: |
+          for k in PIXABAY_API_KEY UNSPLASH_ACCESS_KEY GROQ_API_KEY GEMINI_API_KEY_1; do
+            if [ -n "${!k}" ]; then echo "$k: set"; else echo "::warning::$k is not set"; fi
+          done
+
+      - name: Validation tests (specs, verifier, masks)
+        run: node scripts/test-cutout-library.mjs --rembg
+
+      - name: Build the cutout library
+        env:
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          # Content verification (verify-cutout-image.cjs): Groq -> Gemini.
+          # No Ollama in this job, so a cutout neither answers is rejected.
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_VISION_MODEL: qwen/qwen3.8-27b
+          GROQ_MAX_IMAGES: "3"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+        run: node scripts/build-cutout-library.mjs
+
+      - name: Contact sheet
+        if: always()
+        run: node scripts/cutout-contact-sheet.mjs --out docs/cutout-contact-sheet.png || true
+
+      - name: Upload the library
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cutout-library-${{ github.run_id }}
+          path: |
+            src/skills/remotion-render/public/cutouts/
+            docs/cutout-contact-sheet.png
+            data/cutout-library-log.jsonl
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Commit the library to this branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/skills/remotion-render/public/cutouts docs/cutout-contact-sheet.png
+          if git diff --staged --quiet; then echo "nothing new to commit"; exit 0; fi
+          git commit -m "chore: build cutout library (run ${{ github.run_id }})"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${{ github.ref_name }}"
+            git rebase "origin/${{ github.ref_name }}"
+            if git push origin "HEAD:${{ github.ref_name }}"; then exit 0; fi
+            echo "Push conflict — retrying ($attempt/5) ..."
+            sleep $((attempt * 3))
+          done
+          echo "::error::Could not push the cutout library after 5 attempts"
+          exit 1
+
   # ============================================================
   # SETUP: channel matrix from config/priority-channels.json
   # ============================================================

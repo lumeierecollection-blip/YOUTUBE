@@ -25,12 +25,15 @@ export function parsePixabayHit(hit) {
   };
 }
 
-export async function search(query, { count = 6 } = {}) {
+// orientation: "vertical" | "horizontal" | null (any) — only the cutout
+// library builder passes it; other callers keep Pixabay's default (all).
+export async function search(query, { count = 6, orientation = null } = {}) {
   const key = process.env.PIXABAY_API_KEY;
   if (!key) {
     console.warn("[asset-sourcing/pixabay] no PIXABAY_API_KEY set — skipping this source");
     return [];
   }
-  const json = await fetchJson(`${SEARCH}?key=${encodeURIComponent(key)}&q=${encodeURIComponent(query)}&image_type=photo&safesearch=true&per_page=${Math.max(3, count)}`);
+  const orient = orientation ? `&orientation=${encodeURIComponent(orientation)}` : "";
+  const json = await fetchJson(`${SEARCH}?key=${encodeURIComponent(key)}&q=${encodeURIComponent(query)}&image_type=photo${orient}&safesearch=true&per_page=${Math.max(3, count)}`);
   return (json.hits || []).map(parsePixabayHit).filter(Boolean);
 }

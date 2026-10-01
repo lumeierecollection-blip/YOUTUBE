@@ -1,0 +1,637 @@
+{
+  "version": 2,
+  "min_side_px": 900,
+  "note": "39 cutouts (owner's list, 2026-10-02). Was 28 (v1): the 13 names v1 excluded as drawn symbols / SCENE-FULL scenes are back as cutout candidates, since those systems were removed (ec1f24b); clock-face and hourglass are not on the owner's list. Symbols (arrows, checkmark, $, crosshair) and scenes (skyline, factory, tower, group) rarely survive rembg + the geometric checks + content verification — expect them in MISSING.md. Flags: rect_ok = a genuinely rectangular object may fill its bounding box; grounded = may rest on the photo's bottom edge; multi = several connected parts are one object. Queries are plain names; the builder tries each with ' isolated' first, then plain.",
+  "specs": [
+    {
+      "name": "dollar-bill",
+      "category": "money",
+      "words": [
+        "dollar",
+        "bill",
+        "banknote",
+        "currency",
+        "cash",
+        "money"
+      ],
+      "queries": [
+        "dollar bill",
+        "one dollar bill",
+        "us banknote"
+      ],
+      "rect_ok": true
+    },
+    {
+      "name": "dollar-sign",
+      "category": "money",
+      "words": [
+        "dollar",
+        "sign",
+        "symbol",
+        "money"
+      ],
+      "queries": [
+        "dollar sign",
+        "dollar symbol",
+        "3d dollar sign"
+      ]
+    },
+    {
+      "name": "coin-stack",
+      "category": "money",
+      "words": [
+        "coin",
+        "coins",
+        "stack",
+        "money"
+      ],
+      "queries": [
+        "stack of coins",
+        "coin stack",
+        "pile of coins"
+      ],
+      "multi": true
+    },
+    {
+      "name": "wallet",
+      "category": "money",
+      "words": [
+        "wallet",
+        "cash",
+        "money",
+        "bills"
+      ],
+      "queries": [
+        "wallet",
+        "open wallet",
+        "wallet with money"
+      ],
+      "multi": true
+    },
+    {
+      "name": "bank-statement",
+      "category": "money",
+      "words": [
+        "statement",
+        "bank",
+        "document",
+        "paper",
+        "finance",
+        "financial"
+      ],
+      "queries": [
+        "bank statement",
+        "account statement",
+        "financial statement"
+      ],
+      "rect_ok": true
+    },
+    {
+      "name": "credit-card",
+      "category": "money",
+      "words": [
+        "credit",
+        "card",
+        "debit",
+        "payment"
+      ],
+      "queries": [
+        "credit card",
+        "debit card",
+        "payment card"
+      ],
+      "rect_ok": true
+    },
+    {
+      "name": "person-silhouette",
+      "category": "people",
+      "words": [
+        "person",
+        "man",
+        "woman",
+        "silhouette",
+        "standing",
+        "people"
+      ],
+      "queries": [
+        "person silhouette",
+        "man silhouette",
+        "woman standing"
+      ],
+      "grounded": true
+    },
+    {
+      "name": "person-walking",
+      "category": "people",
+      "words": [
+        "walking",
+        "person",
+        "man",
+        "woman",
+        "walk"
+      ],
+      "queries": [
+        "person walking",
+        "man walking",
+        "woman walking"
+      ],
+      "grounded": true
+    },
+    {
+      "name": "business-person",
+      "category": "people",
+      "words": [
+        "business",
+        "businessman",
+        "businesswoman",
+        "suit",
+        "professional",
+        "executive"
+      ],
+      "queries": [
+        "businessman",
+        "businesswoman",
+        "man in suit"
+      ],
+      "grounded": true
+    },
+    {
+      "name": "group-people",
+      "category": "people",
+      "words": [
+        "group",
+        "people",
+        "team",
+        "crowd"
+      ],
+      "queries": [
+        "group of people",
+        "team standing",
+        "people standing together"
+      ],
+      "multi": true,
+      "grounded": true
+    },
+    {
+      "name": "scientist",
+      "category": "people",
+      "words": [
+        "scientist",
+        "researcher",
+        "lab",
+        "laboratory",
+        "coat",
+        "chemist"
+      ],
+      "queries": [
+        "scientist",
+        "researcher in lab coat",
+        "laboratory scientist"
+      ],
+      "grounded": true
+    },
+    {
+      "name": "worker",
+      "category": "people",
+      "words": [
+        "worker",
+        "construction",
+        "industrial",
+        "hard hat",
+        "helmet",
+        "engineer"
+      ],
+      "queries": [
+        "construction worker",
+        "factory worker",
+        "worker with hard hat"
+      ],
+      "grounded": true
+    },
+    {
+      "name": "courthouse",
+      "category": "places",
+      "words": [
+        "courthouse",
+        "court",
+        "house",
+        "building",
+        "columns",
+        "judicial"
+      ],
+      "queries": [
+        "courthouse",
+        "county courthouse",
+        "court building"
+      ],
+      "grounded": true
+    },
+    {
+      "name": "government-building",
+      "category": "place",
+      "words": [
+        "government",
+        "building",
+        "capitol",
+        "parliament"
+      ],
+      "queries": [
+        "government building",
+        "capitol building",
+        "parliament building"
+      ]
+    },
+    {
+      "name": "bank-building",
+      "category": "places",
+      "words": [
+        "bank",
+        "building",
+        "columns",
+        "financial",
+        "finance"
+      ],
+      "queries": [
+        "bank building",
+        "bank branch",
+        "old bank"
+      ],
+      "grounded": true
+    },
+    {
+      "name": "factory",
+      "category": "place",
+      "words": [
+        "factory",
+        "plant",
+        "industrial"
+      ],
+      "queries": [
+        "factory",
+        "factory building",
+        "industrial plant"
+      ]
+    },
+    {
+      "name": "office-tower",
+      "category": "place",
+      "words": [
+        "office",
+        "tower",
+        "skyscraper",
+        "building"
+      ],
+      "queries": [
+        "office tower",
+        "skyscraper",
+        "office building"
+      ]
+    },
+    {
+      "name": "city-skyline",
+      "category": "place",
+      "words": [
+        "city",
+        "skyline",
+        "skyscraper"
+      ],
+      "queries": [
+        "city skyline",
+        "skyline",
+        "downtown skyline"
+      ],
+      "multi": true,
+      "grounded": true
+    },
+    {
+      "name": "contract",
+      "category": "documents",
+      "words": [
+        "contract",
+        "agreement",
+        "document",
+        "signed",
+        "paper",
+        "signature"
+      ],
+      "queries": [
+        "contract",
+        "signed contract",
+        "agreement document"
+      ],
+      "rect_ok": true
+    },
+    {
+      "name": "stamp-approved",
+      "category": "documents",
+      "words": [
+        "stamp",
+        "approved",
+        "approval",
+        "rubber"
+      ],
+      "queries": [
+        "approved stamp",
+        "rubber stamp",
+        "approved"
+      ]
+    },
+    {
+      "name": "gavel",
+      "category": "documents",
+      "words": [
+        "gavel",
+        "judge",
+        "court",
+        "hammer",
+        "law"
+      ],
+      "queries": [
+        "gavel",
+        "judge gavel",
+        "wooden gavel"
+      ]
+    },
+    {
+      "name": "scales",
+      "category": "documents",
+      "words": [
+        "scales",
+        "justice",
+        "law",
+        "balance",
+        "legal"
+      ],
+      "queries": [
+        "scales of justice",
+        "justice scale",
+        "balance scale"
+      ]
+    },
+    {
+      "name": "evidence-tag",
+      "category": "documents",
+      "words": [
+        "evidence",
+        "tag",
+        "label",
+        "marker",
+        "forensic"
+      ],
+      "queries": [
+        "evidence tag",
+        "evidence marker",
+        "evidence bag"
+      ],
+      "rect_ok": true
+    },
+    {
+      "name": "upward-arrow",
+      "category": "symbol",
+      "words": [
+        "arrow",
+        "up",
+        "upward"
+      ],
+      "queries": [
+        "upward arrow",
+        "arrow up",
+        "3d arrow up"
+      ]
+    },
+    {
+      "name": "downward-arrow",
+      "category": "symbol",
+      "words": [
+        "arrow",
+        "down",
+        "downward"
+      ],
+      "queries": [
+        "downward arrow",
+        "arrow down",
+        "3d arrow down"
+      ]
+    },
+    {
+      "name": "warning-triangle",
+      "category": "symbol",
+      "words": [
+        "warning",
+        "triangle",
+        "sign",
+        "hazard"
+      ],
+      "queries": [
+        "warning triangle",
+        "warning sign",
+        "hazard triangle"
+      ]
+    },
+    {
+      "name": "checkmark",
+      "category": "symbol",
+      "words": [
+        "check",
+        "checkmark",
+        "tick"
+      ],
+      "queries": [
+        "checkmark",
+        "check mark",
+        "3d check mark"
+      ]
+    },
+    {
+      "name": "broken-chain",
+      "category": "object",
+      "words": [
+        "chain",
+        "broken",
+        "link"
+      ],
+      "queries": [
+        "broken chain",
+        "chain link broken",
+        "broken chain link"
+      ]
+    },
+    {
+      "name": "handshake",
+      "category": "process",
+      "words": [
+        "handshake",
+        "hands",
+        "shake",
+        "deal",
+        "agreement"
+      ],
+      "queries": [
+        "handshake",
+        "shaking hands",
+        "two hands shaking"
+      ]
+    },
+    {
+      "name": "calendar",
+      "category": "process",
+      "words": [
+        "calendar",
+        "date",
+        "month",
+        "planner",
+        "schedule"
+      ],
+      "queries": [
+        "calendar",
+        "desk calendar",
+        "wall calendar"
+      ],
+      "rect_ok": true
+    },
+    {
+      "name": "magnifying-glass",
+      "category": "process",
+      "words": [
+        "magnifying",
+        "glass",
+        "magnifier",
+        "search",
+        "lens"
+      ],
+      "queries": [
+        "magnifying glass",
+        "magnifier",
+        "hand lens"
+      ]
+    },
+    {
+      "name": "padlock",
+      "category": "process",
+      "words": [
+        "padlock",
+        "lock",
+        "locked",
+        "security",
+        "safe"
+      ],
+      "queries": [
+        "padlock",
+        "lock",
+        "latch"
+      ]
+    },
+    {
+      "name": "key",
+      "category": "process",
+      "words": [
+        "key",
+        "keys",
+        "lock",
+        "brass",
+        "metal"
+      ],
+      "queries": [
+        "door key",
+        "house key",
+        "brass key"
+      ]
+    },
+    {
+      "name": "shield",
+      "category": "process",
+      "words": [
+        "shield",
+        "security",
+        "protection",
+        "protect",
+        "badge"
+      ],
+      "queries": [
+        "shield",
+        "metal shield",
+        "security shield"
+      ]
+    },
+    {
+      "name": "crosshair",
+      "category": "symbol",
+      "words": [
+        "crosshair",
+        "target",
+        "scope",
+        "reticle"
+      ],
+      "queries": [
+        "crosshair",
+        "target crosshair",
+        "scope reticle"
+      ]
+    },
+    {
+      "name": "radar",
+      "category": "object",
+      "words": [
+        "radar",
+        "antenna",
+        "dish"
+      ],
+      "queries": [
+        "radar",
+        "radar antenna",
+        "radar dish"
+      ]
+    },
+    {
+      "name": "globe",
+      "category": "process",
+      "words": [
+        "globe",
+        "world",
+        "earth",
+        "map",
+        "sphere"
+      ],
+      "queries": [
+        "globe",
+        "terrestrial globe",
+        "world globe"
+      ]
+    },
+    {
+      "name": "map-pin",
+      "category": "process",
+      "words": [
+        "pin",
+        "map",
+        "marker",
+        "location",
+        "push"
+      ],
+      "queries": [
+        "map pin",
+        "push pin",
+        "location marker"
+      ]
+    },
+    {
+      "name": "flag-america",
+      "category": "process",
+      "words": [
+        "flag",
+        "american",
+        "america",
+        "usa",
+        "us",
+        "stars",
+        "stripes"
+      ],
+      "queries": [
+        "american flag",
+        "us flag",
+        "flag of the united states"
+      ],
+      "rect_ok": true
+    }
+  ]
+}
