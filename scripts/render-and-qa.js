@@ -1121,6 +1121,52 @@ async function resolveCanvas(channelId, planPath, plan) {
   return { ok: true, planPath: out, counts, fetchedNew };
 }
 
+/**
+ * Asset guard, run right before render: every image the plan references
+ * (canvas.photo.asset, relative to public/) must be IN the bundle the render
+ * will serve, or Chrome 404s it and Remotion cancels the whole render (run
+ * 36915319430 ch-2 hawaii-county.jpg; run 36906932610 ch-2 seattle.jpg,
+ * ch-48 dyno-nobel.jpg). Why it happened: the planner's photo verification
+ * downloads the entity photo AFTER the pre-bundle, so resolveCanvas finds it
+ * "cached", counts no new fetch, and the re-bundle guard never fires.
+ *
+ *   in public/, not in the bundle  -> re-bundle once (keeps the real photo)
+ *   still missing after that       -> the beat drops the photo and becomes
+ *                                     TYPE (never a stand-in image), logged
+ *                                     with channel, beat and asset
+ * A missing asset no longer crashes the run. Returns the plan path to render.
+ */
+async function guardPlanAssets(channelId, planPath) {
+  const plan = readJsonSafe(planPath);
+  if (!plan?.beats) return planPath;
+  const publicDir = join(dirname(REMOTION_ROOT_JSX), "public");
+  const refs = plan.beats.map((b, i) => ({ b, i, asset: b.canvas?.photo?.asset })).filter((r) => r.asset);
+  if (!refs.length) return planPath;
+  // render.js bundles per call when REMOTION_SERVE_URL is unset; that bundle
+  // copies public/ as it is then, so public/ is what counts.
+  const inBundle = (a) => existsSync(join(process.env.REMOTION_SERVE_URL || publicDir, process.env.REMOTION_SERVE_URL ? "public" : "", a));
+  let missing = refs.filter((r) => !inBundle(r.asset));
+  if (missing.length && process.env.REMOTION_SERVE_URL && missing.some((r) => existsSync(join(publicDir, r.asset)))) {
+    const t0 = Date.now();
+    process.env.REMOTION_SERVE_URL = await bundle({ entryPoint: REMOTION_ROOT_JSX, publicDir, onProgress: () => {} });
+    console.log(`[assets] ch-${channelId}: ${missing.length} plan asset(s) not in the bundle (${missing.map((r) => r.asset).join(", ")}) — re-bundled: ${((Date.now() - t0) / 1000).toFixed(1)}s`);
+    missing = refs.filter((r) => !inBundle(r.asset));
+  }
+  if (!missing.length) return planPath;
+  for (const { b, i, asset } of missing) {
+    console.warn(`::warning::[assets] ch-${channelId} beat ${i}: ${asset} is not in the render bundle (in public/: ${existsSync(join(publicDir, asset)) ? "yes" : "no"}) — photo -> TYPE`);
+    b.visual_type = "TYPE"; b.data = null; delete b.asset;
+    b.canvas = canvasContentFor(b, {});
+  }
+  // The downgraded beats need the same styling / animation pass resolveCanvas gave the rest.
+  styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
+  assignCanvasAnimations(plan.beats, { seed: channelId, log: () => {} });
+  // Written back to the same resolved plan: the render, the manifest and the
+  // audits must all see the beat as it was actually drawn.
+  writeFileSync(planPath, JSON.stringify(plan, null, 2) + "\n");
+  return planPath;
+}
+
 /* ── Correction loop ─────────────────────────────────────────────── */
 
 async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride, skipQA) {
@@ -1276,6 +1322,10 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       process.env.REMOTION_SERVE_URL = await bundle({ entryPoint: REMOTION_ROOT_JSX, publicDir: join(dirname(REMOTION_ROOT_JSX), "public"), onProgress: () => {} });
       console.log(`[assets] re-bundled with ${resolvedAssets.fetchedNew} new asset(s): ${((Date.now() - t0) / 1000).toFixed(1)}s`);
     }
+
+    // Step 1d: every image the plan references must be in the bundle
+    // (guardPlanAssets: re-bundle, else photo -> TYPE) — a 404 cancels the render.
+    planPath = await guardPlanAssets(channelId, planPath);
 
     // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL) — the
     // resolved plan, passed explicitly (VISUAL_PLAN_PATH).
@@ -1607,7 +1657,7 @@ async function main() {
 }
 
 // Only as the CLI: importing the module (scripts/test-resolver-canvas.mjs) runs nothing.
-export { resolveAssets, canvasContentFor };
+export { resolveAssets, canvasContentFor, guardPlanAssets };
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   main().catch((e) => {
     console.error(e);
