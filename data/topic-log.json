@@ -2061,9 +2061,14 @@
           "topic": "AI and Negotiation: Insights from the 2026 AI Negotiation Challenge",
           "slug": "ai-and-negotiation-insights-2026",
           "reserved_at": "2026-10-01T18:33:52.549Z"
+        },
+        {
+          "topic": "The Impact of AI on Negotiation Strategies in 2026",
+          "slug": "ai-impact-on-negotiation-strategies-2026-1234567890-12345678",
+          "reserved_at": "2026-10-01T19:41:08.190Z"
         }
       ],
-      "last_generated": "2026-10-01T18:33:52.549Z"
+      "last_generated": "2026-10-01T19:41:08.190Z"
     },
     "45": {
       "channel_name": "Lift",
