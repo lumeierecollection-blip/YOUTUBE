@@ -17,18 +17,18 @@ const eq = (name, got, want) => {
 
 // The specs: the brief's names, three queries each, valid flags.
 const specs = JSON.parse(readFileSync(join(ROOT, "scripts", "cutout-specs.json"), "utf8")).specs;
-eq("28 cutout specs (41 names in the brief - 8 drawn symbols - 5 scene photographs)", specs.length, 28);
-eq("every spec has 3 queries and keywords", specs.filter((s) => s.queries.length !== 3 || !s.words.length).map((s) => s.name), []);
+// v2 (owner's list, 2026-10-02): 39 names; the symbol / scene-photo classes of v1 were removed (ec1f24b).
+eq("39 cutout specs (owner's list, 2026-10-02)", specs.length, 39);
+eq("every spec has 2-3 queries and keywords", specs.filter((s) => s.queries.length < 2 || s.queries.length > 3 || !s.words.length).map((s) => s.name), []);
 eq("names are unique kebab-case", specs.filter((s, i) => !/^[a-z]+(-[a-z]+)*$/.test(s.name) || specs.findIndex((x) => x.name === s.name) !== i).map((s) => s.name), []);
 eq("every query is a plain object name (no stock-photo phrasing)", specs.flatMap((s) => s.queries.filter((q) => /isolated|white background|cut ?out|\bpng\b|studio/i.test(q)).map(() => s.name)), []);
-const { SYMBOLS, SCENE_FULL, classOf } = await import("../src/skills/remotion-render/visual/concept-classes.js");
-const names = specs.map((x) => x.name);
-eq("the three classes are disjoint", [...SYMBOLS, ...SCENE_FULL, ...names].length, new Set([...SYMBOLS, ...SCENE_FULL, ...names]).size);
-eq("8 symbols + 5 scene photographs + 28 cutouts = the brief's 41", SYMBOLS.length + SCENE_FULL.length + names.length, 41);
-eq("no symbol and no scene is a cutout spec", [...SYMBOLS, ...SCENE_FULL].filter((n) => names.includes(n)), []);
-eq("classOf", [classOf("dollar-sign", names), classOf("factory", names), classOf("gavel", names), classOf("nonsense", names)], ["symbol", "scene-full", "cutout", null]);
-eq("every symbol has a component", (await import("node:fs")).existsSync(join(ROOT, "src/skills/remotion-render/visual/symbols/index.jsx")) && SYMBOLS.every((n) => readFileSync(join(ROOT, "src/skills/remotion-render/visual/symbols/index.jsx"), "utf8").includes(`"${n}"`)), true);
-eq("symbols are filled shapes: no stroke, no filter, no shadow", (await import("node:fs")).readdirSync(join(ROOT, "src/skills/remotion-render/visual/symbols")).filter((f) => f.endsWith(".jsx") && f !== "index.jsx").filter((f) => /strokeWidth|filter=|drop-?shadow|boxShadow|<text/i.test(readFileSync(join(ROOT, "src/skills/remotion-render/visual/symbols", f), "utf8"))), []);
+
+// Content verification (scripts/verify-cutout-image.cjs): only MATCH is accepted; anything malformed is no answer.
+const { normalize: vNorm, promptFor: vPrompt } = (await import("node:module")).createRequire(import.meta.url)("./verify-cutout-image.cjs");
+eq("verifier: a WRONG answer is read as WRONG", vNorm({ seen: "a wooden box", verdict: "wrong" }), { verdict: "WRONG", seen: "a wooden box" });
+eq("verifier: an unknown verdict is no answer", vNorm({ seen: "coins", verdict: "MAYBE" }), null);
+eq("verifier: a verdict without 'seen' is no answer", vNorm({ verdict: "MATCH" }), null);
+eq("verifier: the prompt names the cutout and the compound-name cases", [vPrompt("coin-stack").includes("Name: coin-stack"), vPrompt("x").includes('"dollar-sign" must show the $ symbol')], [true, true]);
 
 // The builder's pure parts (no network).
 const lib = await import("./cutout-library-lib.mjs");

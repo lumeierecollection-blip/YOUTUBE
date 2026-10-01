@@ -6,13 +6,15 @@
  *
  *   node scripts/build-cutout-library.mjs [--only dollar-bill,gavel] [--force] [--tries 6]
  *
- * For each spec in scripts/cutout-specs.json (28 names, 3 queries each; 8 symbols are drawn and 5 are full-bleed scenes — see concept-classes.js):
+ * For each spec in scripts/cutout-specs.json (39 names, 2-3 queries each — owner's list 2026-10-02):
  *   1. search Pixabay (primary), then Unsplash (only for a spec Pixabay could not give) with the query
  *      (asset-sourcing/sources/*), keep licences on the allowlist, drop anything
  *      the source calls a drawing / vector / icon, keep keyword matches first;
  *   2. download the largest results (>= 900 px), and for each: rembg u2net ->
  *      scripts/cutout_lib.py (alpha >= 12%, no opaque pixel on all four edges,
  *      one object, not a rectangle unless the object is one, ...);
+ *   2b. content verification on the isolated PNG (scripts/verify-cutout-image.cjs): a vision model must
+ *      answer MATCH (CLOSE / WRONG / no answer reject); three rejected candidates -> MISSING.md;
  *   3. the first result that passes is cropped, optimised (pngquant when it is
  *      installed) and saved as <name>.png with its source, licence and
  *      attribution in index.json / CREDITS.md;
@@ -36,6 +38,7 @@ import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
+import { createRequire } from "node:module";
 import sharp from "sharp";
 import * as pixabay from "../src/skills/asset-sourcing/sources/pixabay.js";
 import * as unsplash from "../src/skills/asset-sourcing/sources/unsplash.js";
@@ -93,7 +96,11 @@ const save = () => {
 
 async function searchOne(name, q) {
   if (backoff.dead.has(name)) return [];
-  try { return await withBackoff(backoff, name, () => pace(name, () => SOURCES[name].search(q, { count: 12 }))); }
+  // Pixabay: 30 per page, vertical only (owner's spec 2026-10-02; CUTOUT_PIXABAY_ORIENTATION=all lifts it — a
+  // banknote, a card or a flag is a landscape photo and vertical-only will miss most of them).
+  const orient = (process.env.CUTOUT_PIXABAY_ORIENTATION || "vertical").toLowerCase();
+  const opts = name === "pixabay" ? { count: 30, orientation: orient === "all" ? null : orient } : { count: 12 };
+  try { return await withBackoff(backoff, name, () => pace(name, () => SOURCES[name].search(q, opts))); }
   catch (e) {
     if (!e.disabled && !/HTTP (401|403|429)/.test(String(e.message))) console.warn(`[cutouts] ${name} failed for "${q}": ${String(e.message).slice(0, 100)}`);
     return [];
@@ -117,20 +124,29 @@ function optimise(file) {
 
 const work = join(tmpdir(), `cutout-raw-${process.pid}`);
 mkdirSync(work, { recursive: true });
+// Content verification (scripts/verify-cutout-image.cjs): a vision model checks the isolated PNG is the named
+// object. Three rejected candidates for one name -> MISSING.md (owner's rule 2026-10-02).
+const { verifyCutoutImage } = createRequire(import.meta.url)("./verify-cutout-image.cjs");
+const MAX_VERIFY_REJECTS = 3;
+const verified = () => { try { return JSON.parse(readFileSync(join(OUT, "verified.json"), "utf8")); } catch { return {}; } };
+const summary = [];
 let made = 0, skipped = 0, missing = 0;
 const dry = [];
 for (const spec of specs) {
   if (only && !only.includes(spec.name)) continue;
   const file = join(OUT, `${spec.name}.png`);
-  if (existsSync(file) && !force && index.cutouts.some((c) => c.name === spec.name)) { skipped++; continue; }
+  // Skipped only when it exists AND its verification passed (verified.json): an unverified cutout is rebuilt.
+  if (existsSync(file) && !force && index.cutouts.some((c) => c.name === spec.name) && verified()[spec.name]?.verdict === "MATCH") { skipped++; continue; }
   const attempts = [];
-  let done = false;
+  const tally = { tried: 0, isolation: 0, verify: 0, accepted: 0 };
+  summary.push([spec.name, tally]);
+  let done = false, gaveUp = false;
   if (dryRun) { /* search only */ }
   // A source of candidates: the network (each query in turn) or a directory of photographs you supply.
   const rounds = fromDir ? [{ query: null }] : Object.keys(SOURCES).flatMap((source) => spec.queries.flatMap((query) => variantsOf(query).map((q) => ({ source, query, q }))));
   for (const { source, query, q } of rounds) {
     if (!fromDir && backoff.dead.has(source)) continue;
-    if (done) break;
+    if (done || gaveUp) break;
     let list;
     if (fromDir) {
       const ext = ["jpg", "jpeg", "png", "webp"].find((e) => existsSync(join(fromDir, `${spec.name}.${e}`)));
@@ -157,10 +173,37 @@ for (const spec of specs) {
       }
       const meta = await sharp(raw).metadata().catch(() => null);
       if (!meta || Math.max(meta.width || 0, meta.height || 0) < MIN_SIDE) { attempts.push(`${source} "${q}": image unreadable or under ${MIN_SIDE}px`); if (!c.localPath) rmSync(raw, { force: true }); continue; }
-      const rep = isolate(raw, file, spec);
+      // 2-3. rembg + geometric checks, into a temp file: nothing reaches <name>.png before it is verified.
+      tally.tried++;
+      const n = tally.tried;
+      const iso = join(work, `${spec.name}-${k}.png`);
+      const rep = isolate(raw, iso, spec);
       log({ name: spec.name, query, source: c.sourceApi, url: c.sourceUrl, ok: rep.ok, why: rep.why, coverage: rep.coverage });
       if (!c.localPath) rmSync(raw, { force: true });
-      if (!rep.ok) { attempts.push(`${source ? `${source} "${q}": ` : ""}rejected — ${rep.why}`); continue; }
+      if (!rep.ok) {
+        tally.isolation++;
+        console.log(`[cutout] ${spec.name}: ${c.sourceApi} candidate ${n}, isolation FAILED (${rep.why})`);
+        attempts.push(`${source ? `${source} "${q}": ` : ""}rejected — ${rep.why}`);
+        rmSync(iso, { force: true });
+        continue;
+      }
+      // 4. content verification on the isolated PNG that would render (scripts/verify-cutout-image.cjs).
+      const vr = await verifyCutoutImage(iso, spec.name, { sourceUrl: c.sourceUrl || c.downloadUrl || null });
+      if (vr.verdict !== "MATCH") {
+        tally.verify++;
+        console.log(`[cutout] ${spec.name}: ${c.sourceApi} candidate ${n}, isolation ok, verify FAILED (saw "${vr.seen}")`);
+        console.log(`[cutout] ${spec.name}: candidate rejected, saw "${vr.seen}"`);
+        attempts.push(`${source ? `${source} "${q}": ` : ""}verify ${vr.verdict} — saw "${vr.seen}"`);
+        rmSync(iso, { force: true });
+        if (tally.verify >= MAX_VERIFY_REJECTS) { gaveUp = true; break; }
+        console.log(`[cutout] ${spec.name}: trying next candidate`);
+        continue;
+      }
+      console.log(`[cutout] ${spec.name}: ${c.sourceApi} candidate ${n}, isolation ok, verify PASSED (saw "${vr.seen}")`);
+      // 5. all passed: save.
+      copyFileSync(iso, file);
+      rmSync(iso, { force: true });
+      tally.accepted = 1;
       const how = optimise(file);
       const m2 = await sharp(file).metadata();
       index = upsert(index, { name: spec.name, category: spec.category, file: `cutouts/${spec.name}.png`, width: m2.width, height: m2.height, bytes: statSync(file).size, source: c.sourceApi,
@@ -173,7 +216,7 @@ for (const spec of specs) {
     rmSync(file, { force: true });
     index = markMissing(index, spec.name, attempts.slice(-12));
     missing++;
-    console.warn(`[cutouts] ${spec.name}: MISSING after ${fromDir ? "the supplied photograph" : `${spec.queries.length * 2} searches`}`);
+    console.warn(`[cutouts] ${spec.name}: MISSING after ${gaveUp ? `${MAX_VERIFY_REJECTS} candidates rejected by content verification` : fromDir ? "the supplied photograph" : `${spec.queries.length * 2} searches`}`);
   }
   if (!dryRun) save();           // after every cutout: a timeout keeps the work done so far
 }
@@ -187,5 +230,8 @@ if (dryRun) {
   process.exit(0);
 }
 save();
-console.log(`[cutouts] done: ${made} made, ${skipped} already present, ${missing} missing; ${index.cutouts.length}/${specs.length} in the library`);
+for (const [name, t] of summary) {
+  console.log(`[cutout] ${name}: ${t.tried} candidates tried, ${t.isolation} rejected by isolation, ${t.verify} rejected by verification, ${t.accepted} accepted`);
+}
+console.log(`[cutouts] done: ${made} made, ${skipped} already present (verified), ${missing} missing; ${index.cutouts.length}/${specs.length} in the library`);
 process.exit(0);
