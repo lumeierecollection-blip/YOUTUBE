@@ -2309,9 +2309,14 @@
           "topic": "seg-solar-second-module-factory",
           "slug": "seg-solar-second-module-factory",
           "reserved_at": "2026-10-01T19:42:15.687Z"
+        },
+        {
+          "topic": "seeing-the-food-system-why-texas-needs-a-shared-map-of-food-commodity-flows",
+          "slug": "seeing-the-food-system-why-texas-needs-a-shared-map-of-food",
+          "reserved_at": "2026-10-01T22:42:20.987Z"
         }
       ],
-      "last_generated": "2026-10-01T19:42:15.688Z"
+      "last_generated": "2026-10-01T22:42:20.988Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
