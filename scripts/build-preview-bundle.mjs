@@ -33,6 +33,7 @@ const RAW = join(ROOT, "data", "preview", "raw");
 const OUT = join(ROOT, "data", "preview", "bundle");
 const FRAME_COUNT = 8;
 const CLIP_SECONDS = 6;
+const FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf";   // fonts-dejavu-core
 
 const log = (msg) => console.log(`[preview] ${msg}`);
 const run = (cmd, args) => execFileSync(cmd, args, { stdio: ["ignore", "pipe", "pipe"] }).toString();
@@ -128,8 +129,10 @@ function buildChannel(ch, src) {
   const frames = readdirSync(framesDir).filter((f) => f.endsWith(".png")).sort().map((f) => join(framesDir, f));
 
   const contact = join(OUT, `ch-${ch}-contact.png`);
-  run("montage", [...frames, "-tile", "4x2", "-geometry", "+6+6", "-background", "#1a1a1a",
-    "-title", `ch-${ch}  ${src.status}`, "-fill", "#dddddd", "-pointsize", "28", contact]);
+  // An explicit font file: ImageMagick's default font lookup returned (null)
+  // on the runner (run 36915319430). No font file -> sheet without a title.
+  const title = existsSync(FONT) ? ["-font", FONT, "-title", `ch-${ch}  ${src.status}`, "-fill", "#dddddd", "-pointsize", "28"] : [];
+  run("montage", [...frames, "-tile", "4x2", "-geometry", "+6+6", "-background", "#1a1a1a", ...title, contact]);
 
   log(`ch-${ch}: clip built (${clipSeconds.toFixed(1)}s), frames extracted (${frames.length}), contact sheet built`);
   return { duration, audio, size: statSync(src.path).size, clipSeconds, frames: frames.length };

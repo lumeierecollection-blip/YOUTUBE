@@ -902,7 +902,9 @@ jobs:
       # --no-install-recommends: with recommends this pulled 130 MB and a
       # slow Azure mirror ran it past the old 15-min timeout (run 36906932610).
       - name: Install ffmpeg and ImageMagick
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg imagemagick
+        # fonts-dejavu-core: without recommends no font is installed and
+        # montage's sheet title failed "unable to read font (null)" (run 36915319430).
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg imagemagick fonts-dejavu-core
 
       - name: Download rendered MP4s
         uses: actions/download-artifact@v4
