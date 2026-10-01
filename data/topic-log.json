@@ -761,9 +761,14 @@
           "topic": "Russia's War Financing and Budget Deficit",
           "slug": "russia-war-financing-budget-deficit-20261001",
           "reserved_at": "2026-10-01T18:32:33.582Z"
+        },
+        {
+          "topic": "Cambodia-Thailand Border Dispute",
+          "slug": "cambodia-thailand-border-dispute-20261001",
+          "reserved_at": "2026-10-01T19:40:05.331Z"
         }
       ],
-      "last_generated": "2026-10-01T18:32:33.582Z"
+      "last_generated": "2026-10-01T19:40:05.331Z"
     },
     "10": {
       "channel_name": "Word Lab",
