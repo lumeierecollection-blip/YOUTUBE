@@ -776,9 +776,14 @@
           "topic": "Cambodia-Thailand Border Dispute",
           "slug": "cambodia-thailand-border-dispute-20261001",
           "reserved_at": "2026-10-01T19:40:05.331Z"
+        },
+        {
+          "topic": "US Sanctions on Iran's Rail and Auto Sectors",
+          "slug": "us-sanctions-iran-rail-auto-sectors-20261001",
+          "reserved_at": "2026-10-01T22:40:53.253Z"
         }
       ],
-      "last_generated": "2026-10-01T19:40:05.331Z"
+      "last_generated": "2026-10-01T22:40:53.253Z"
     },
     "10": {
       "channel_name": "Word Lab",
