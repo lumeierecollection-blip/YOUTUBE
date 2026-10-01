@@ -2478,9 +2478,14 @@
           "topic": "Rockwell Automation's GenAI Maintenance Copilot Cuts Factory Downtime by 33%",
           "slug": "rockwell-automation-genai-maintenance-copilot-downtime",
           "reserved_at": "2026-09-30T11:39:40.903Z"
+        },
+        {
+          "topic": "Inside Hyundai's Metaplant: 2026 Assembly Plant of the Year",
+          "slug": "hyundai-metaplant-2026-assembly-plant-of-the-year",
+          "reserved_at": "2026-10-01T12:08:22.960Z"
         }
       ],
-      "last_generated": "2026-09-30T11:39:40.903Z"
+      "last_generated": "2026-10-01T12:08:22.960Z"
     },
     "49": {
       "channel_name": "Wander Budget",
