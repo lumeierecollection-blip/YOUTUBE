@@ -274,9 +274,16 @@ async function renderOne(channelId, scriptPath, format, planPath) {
   // other render failure is not retried.
   if (code !== 0 && /trying to connect to the browser/i.test(`${stderr}\n${stdout}`)) {
     console.warn(`::warning::${label}: browser failed to launch — retrying the render once`);
-    ({ code } = await runChild("node", args, { label: `${label} (retry)`, env }));
+    ({ code, stderr, stdout } = await runChild("node", args, { label: `${label} (retry)`, env }));
   }
-  if (code !== 0) return { skipped: false, ok: false };
+  if (code !== 0) {
+    // A crash after the encoder started can leave a partial MP4 at the output
+    // path: it goes to rejected/ with the crash reason, never left behind.
+    const partial = expectedOutputPath(channelId, scriptPath, format);
+    const tail = `${stderr || ""}\n${stdout || ""}`.trim().split("\n").filter(Boolean).slice(-1)[0] || "";
+    const q = existsSync(partial) ? await queueVideo({ verdict: "rejected", videoPath: partial, channelId, stage: "render", check: "crash", reason: `render.js exited ${code}: ${tail.slice(0, 300)}` }) : null;
+    return { skipped: false, ok: false, queued: q || undefined };
+  }
   const outputPath = expectedOutputPath(channelId, scriptPath, format);
   if (!existsSync(outputPath)) {
     console.error(`::error::render.js exited 0 but expected output not found: ${outputPath}`);
@@ -708,12 +715,53 @@ const LOCAL_AUDIT_CJS = join(__dirname, "local-audit.cjs");
 const PROCESS_T0 = Date.now();
 // Default: the job's timeout (JOB_TIMEOUT_MIN) less ~5 min of setup and uploads.
 const RENDER_QA_BUDGET_MS = Number(process.env.RENDER_QA_BUDGET_MIN || Math.max(5, Number(process.env.JOB_TIMEOUT_MIN || 20) - 5)) * 60000;
+const APPROVED_DIR = join(ROOT, "data", "renders", "approved");
 const APPROVED_REVIEW_DIR = join(ROOT, "data", "renders", "approved-review");
 const REJECTED_DIR = join(ROOT, "data", "renders", "rejected");
+const QUEUE_DIRS = { approved: APPROVED_DIR, "approved-review": APPROVED_REVIEW_DIR, rejected: REJECTED_DIR };
+
+/**
+ * The three queues (owner's rule, 2026-10-02): every channel that produces an
+ * MP4 lands in exactly ONE of them, and no finished video is deleted.
+ *   approved/         passed every check — the only queue publish reads
+ *   approved-review/  passed the local audit, failed an AI check
+ *   rejected/         failed the local audit, a deterministic gate, or crashed
+ * The MP4 is MOVED (it must not stay where the publish step used to look) and
+ * a companion <stem>.json is written:
+ *   { run_id, channel, verdict, failed_stage, failed_check, reason,
+ *     duration_s, queued_at, ...extra }
+ * The one MP4 still removed: a superseded correction attempt, whose path the
+ * next attempt re-renders to (logged as such) — the channel's final video is
+ * what lands in the queue.
+ */
+async function queueVideo({ verdict, videoPath, channelId, stage = null, check = null, reason = "", extra = {} }) {
+  if (!videoPath || !existsSync(videoPath)) return null;
+  const dest = QUEUE_DIRS[verdict];
+  const stem = basename(videoPath, ".mp4");
+  const pd = await probeDuration(videoPath).catch(() => null);
+  const duration = pd?.ok ? pd.value : null;
+  mkdirSync(dest, { recursive: true });
+  copyFileSync(videoPath, join(dest, `${stem}.mp4`));
+  try { rmSync(videoPath); } catch {}
+  const marker = {
+    run_id: process.env.GITHUB_RUN_ID || null,
+    channel: Number(channelId),
+    verdict,
+    failed_stage: stage,
+    failed_check: check,
+    reason: String(reason || "").slice(0, 500),
+    duration_s: Number.isFinite(duration) ? Math.round(duration * 10) / 10 : null,
+    queued_at: new Date().toISOString(),
+    ...extra,
+  };
+  writeFileSync(join(dest, `${stem}.json`), JSON.stringify(marker, null, 2) + "\n");
+  console.log(`[queue] ch-${channelId}: ${stem}.mp4 -> ${relative(ROOT, dest)}/ (${verdict}${stage ? `, failed ${stage}${check ? ` / ${check}` : ""}` : ""})`);
+  return verdict;
+}
 
 // forceReject: the failure is one the local audit may not overrule (a
 // wrong-person photo) — the video goes to rejected/ whatever the audit says.
-async function backupAudit({ stage, reason, videoPath, planPath, srtPath, audio, channelId, forceReject = false }) {
+async function backupAudit({ stage, reason, videoPath, planPath, srtPath, audio, channelId, forceReject = false, check = null }) {
   const stem = basename(videoPath, ".mp4");
   const reportPath = videoPath.replace(/\.mp4$/, "-backup-audit.json");
   const la = await runChild("node", [LOCAL_AUDIT_CJS,
@@ -727,25 +775,14 @@ async function backupAudit({ stage, reason, videoPath, planPath, srtPath, audio,
   const report = readJsonSafe(reportPath);
   const localPass = !forceReject && la.code === 0 && report?.pass === true;
   const failedChecks = (report?.checks || []).filter((c) => !c.pass).map((c) => `${c.id}: ${c.detail}`);
-  const dest = localPass ? APPROVED_REVIEW_DIR : REJECTED_DIR;
-  mkdirSync(dest, { recursive: true });
-  // MOVE, not copy: a queued video must not stay where the upload/publish
-  // steps look for approved renders.
-  if (existsSync(videoPath)) {
-    copyFileSync(videoPath, join(dest, `${stem}.mp4`));
-    try { rmSync(videoPath); } catch {}
-  }
-  const marker = {
-    verdict: localPass ? "local-pass" : "local-fail",
-    failed_stage: stage,
-    reason: String(reason || "").slice(0, 500),
-    channel: String(channelId),
-    local_audit: la.code === 2 ? "could not run" : failedChecks.length ? failedChecks : "all checks passed",
-    at: new Date().toISOString(),
-  };
-  writeFileSync(join(dest, `${stem}.json`), JSON.stringify(marker, null, 2) + "\n");
-  console.log(`[backup-qa] ${stage} failed (${marker.reason.slice(0, 160)}) -> local audit ${marker.verdict} -> ${relative(ROOT, dest)}/${stem}.mp4 (NOT uploaded)`);
-  return { skipped: false, ok: false, queued: localPass ? "approved-review" : "rejected" };
+  const verdict = localPass ? "approved-review" : "rejected";
+  const failedIds = (report?.checks || []).filter((c) => !c.pass).map((c) => c.id);
+  await queueVideo({ verdict, videoPath, channelId, stage, reason,
+    // failed_check: the gate's own failing check(s); for an AI stage, the local audit's failures when it rejected.
+    check: check || (failedIds.length ? failedIds.join(",") : null),
+    extra: { local_audit: la.code === 2 ? "could not run" : failedChecks.length ? failedChecks : "all checks passed" } });
+  console.log(`[backup-qa] ${stage} failed (${String(reason || "").slice(0, 160)}) -> local audit ${localPass ? "PASS" : "FAIL"} -> ${verdict} (NOT uploaded)`);
+  return { skipped: false, ok: false, queued: verdict };
 }
 
 // Frame review PASS = gemini-frame-review.js's own "VERDICT: APPROVED".
@@ -1317,7 +1354,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // resolved plan, passed explicitly (VISUAL_PLAN_PATH).
     const result = await renderOne(channelId, scriptPath, format, planPath);
     if (result.skipped) return { skipped: true };
-    if (!result.ok) return { skipped: false, ok: false };
+    if (!result.ok) return { skipped: false, ok: false, queued: result.queued || undefined };
 
     if (outputOverride && result.outputPath) {
       const outDir = dirname(outputOverride);
@@ -1332,20 +1369,17 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     const silenceCheck = await detectSilence(result.outputPath, result.audio);
     if (!silenceCheck.ok) {
       console.error(`::error::silence detection failed for ${basename(result.outputPath)} — ${silenceCheck.reason}`);
-      if (existsSync(result.outputPath)) {
-        try { rmSync(result.outputPath); } catch {}
-      }
-      return { skipped: false, ok: false };
+      // Queued, not deleted (owner's rule 2026-10-02).
+      const q = await queueVideo({ verdict: "rejected", videoPath: result.outputPath, channelId, stage: "silence-detect", check: "silence", reason: silenceCheck.reason });
+      return { skipped: false, ok: false, queued: q };
     }
 
     // Step 2b': duration and beat-0 frame. Hard gates, independent of QA.
     const verify = await verifyRender(result.outputPath, result.audio, channelId);
     if (!verify.ok) {
       for (const p of verify.problems) console.error(`::error::verify ${basename(result.outputPath)}: ${p}`);
-      if (existsSync(result.outputPath)) {
-        try { rmSync(result.outputPath); } catch {}
-      }
-      return { skipped: false, ok: false };
+      const q = await queueVideo({ verdict: "rejected", videoPath: result.outputPath, channelId, stage: "verify-render", check: "duration/beat-0 frame", reason: verify.problems.join("; ") });
+      return { skipped: false, ok: false, queued: q };
     }
 
     const backupArgs = { planPath, srtPath, audio: result.audio, channelId, videoPath: result.outputPath };
@@ -1364,7 +1398,9 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
         { label: `canvas-checks ${channelId}/${basename(scriptPath)}` });
       if (fit.code !== 0) {
         console.error(`::error::canvas checks ${fit.code === 1 ? "FAILED" : "could not run"} for ${basename(result.outputPath)}`);
-        return backupAudit({ ...backupArgs, stage: "canvas-checks", reason: fit.code === 1 ? "canvas-fit / canvas-coverage / canvas-accent / motion-tiers failed" : "canvas checks could not run" });
+        const failedIds = [...String(fit.stdout || "").matchAll(/\[canvas\] FAIL (\S+)/g)].map((m) => m[1]);
+        return backupAudit({ ...backupArgs, stage: "canvas-checks", check: failedIds.join(",") || null,
+          reason: fit.code === 1 ? `failed: ${failedIds.join(", ") || "see the canvas-checks log"}` : "canvas checks could not run" });
       }
     }
 
@@ -1466,7 +1502,10 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     console.log(`[frame-review] attempt ${attempt}: ${fr.pass ? "PASS" : fr.error ? "ERROR" : "FAIL"} — ${fr.reason}`);
     if (fr.pass || !qa.gatePass) {
       if (fr.pass || attempt === MAX_CORRECTION_LOOPS || fr.error) {
-        return { skipped: false, ok: true, outputPath: result.outputPath, attempt, geminiVerdict, qaGatePass: qa.gatePass && fr.pass };
+        // A failed pixel gate (or a failed / unrun review) used to return
+        // qaGatePass false and be DELETED by main(); it is queued now.
+        if (!(qa.gatePass && fr.pass)) return backupAudit({ ...backupArgs, stage: qa.gatePass ? "frame-review" : "frame-audit", reason: qa.gatePass ? fr.reason : "the frame audit (pixel gate) failed" });
+        return { skipped: false, ok: true, outputPath: result.outputPath, attempt, geminiVerdict, qaGatePass: true };
       }
     } else if (fr.error || attempt === MAX_CORRECTION_LOOPS) {
       return backupAudit({ ...backupArgs, stage: "frame-review", reason: fr.reason });
@@ -1543,8 +1582,10 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // are already made, and re-planning would discard them.
     enforcedPlanPath = enforced.appliedCount ? enforced.planPath : null;
     correctionsPath = nextCorrections;
+    // Superseded: the next attempt re-renders to this same path. The one MP4
+    // removed rather than queued — the channel's final video is what lands.
     if (existsSync(result.outputPath)) {
-      try { rmSync(result.outputPath); } catch {}
+      try { rmSync(result.outputPath); console.log(`[queue] ch-${channelId}: attempt ${attempt} superseded by attempt ${attempt + 1} (same output path) — removed, not queued`); } catch {}
     }
   }
 
@@ -1589,7 +1630,15 @@ async function main() {
 
   for (const { channelId, scriptPath } of work) {
     const format = formatFromScriptPath(scriptPath);
-    const result = await renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride, skipQA);
+    let result;
+    try {
+      result = await renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride, skipQA);
+    } catch (e) {
+      // A crash anywhere after the MP4 exists: it goes to rejected/ with the reason, never left behind.
+      console.error(`::error::render-and-qa crashed for ${scriptPath}: ${e?.stack || e}`);
+      const q = await queueVideo({ verdict: "rejected", videoPath: expectedOutputPath(channelId, scriptPath, format), channelId, stage: "crash", check: "exception", reason: String(e?.message || e) });
+      result = { skipped: false, ok: false, queued: q || undefined };
+    }
     if (result.skipped) continue;
     if (result.queued) queued[result.queued]++;
     if (!result.ok) {
@@ -1602,17 +1651,18 @@ async function main() {
     console.log(`  Completed: attempt ${result.attempt}/${MAX_CORRECTION_LOOPS}, verdict=${result.geminiVerdict}`);
   }
 
+  // Every QA-gate failure is queued inside the loop now (backupAudit). One
+  // that still arrives here is queued as rejected — never deleted.
   const qaFailed = results.filter((r) => !r.qaGatePass);
-
   for (const r of qaFailed) {
-    if (r.outputPath && existsSync(r.outputPath)) {
-      try {
-        rmSync(r.outputPath);
-        console.log(`Removed QA-failed video: ${r.outputPath}`);
-      } catch (e) {
-        console.warn(`Failed to remove QA-failed video ${r.outputPath}:`, e.message);
-      }
-    }
+    const q = await queueVideo({ verdict: "rejected", videoPath: r.outputPath, channelId: r.channelId ?? (r.outputPath || "").match(/renders[\\/](\d+)[\\/]/)?.[1], stage: "qa-gate", check: "qaGatePass", reason: `verdict ${r.geminiVerdict}` });
+    if (q) queued.rejected++;
+  }
+  // approved/: passed every check. publish (youtube-publish/run.js) reads this queue.
+  for (const r of results.filter((x) => x.qaGatePass)) {
+    const ch = (r.outputPath || "").match(/renders[\\/](\d+)[\\/]/)?.[1];
+    const q = await queueVideo({ verdict: "approved", videoPath: r.outputPath, channelId: ch, reason: `verdict ${r.geminiVerdict}`, extra: { attempts: r.attempt } });
+    if (q) r.outputPath = join(APPROVED_DIR, basename(r.outputPath));
   }
 
   const successfulCount = rendered - qaFailed.length;
@@ -1643,7 +1693,7 @@ async function main() {
 }
 
 // Only as the CLI: importing the module (scripts/test-resolver-canvas.mjs) runs nothing.
-export { resolveAssets, canvasContentFor, guardPlanAssets };
+export { resolveAssets, canvasContentFor, guardPlanAssets, queueVideo };
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   main().catch((e) => {
     console.error(e);

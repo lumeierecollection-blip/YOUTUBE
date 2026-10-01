@@ -894,8 +894,12 @@ jobs:
           J=$(ls data/renders/rejected/*.json 2>/dev/null | wc -l)
           echo "Approved: $A · Approved-review: $R · Rejected: $J"
           echo "### Channel ${{ matrix.channel_id }} — Approved: $A · Approved-review: $R · Rejected: $J" >> "$GITHUB_STEP_SUMMARY"
-          for f in data/renders/approved-review/*.json data/renders/rejected/*.json; do
-            [ -f "$f" ] && echo "  $f: $(jq -c '{verdict, failed_stage, reason}' "$f")"
+          for f in data/renders/approved/*.json data/renders/approved-review/*.json data/renders/rejected/*.json; do
+            [ -f "$f" ] && echo "  $f: $(jq -c '{verdict, failed_stage, failed_check, reason, duration_s}' "$f")"
+          done
+          # Nothing is deleted: an MP4 left in the channel's render dir is outside every queue.
+          for f in data/renders/${{ matrix.channel_id }}/*.mp4; do
+            [ -f "$f" ] && echo "::error::$f is in no queue (approved / approved-review / rejected)"
           done
           true
 
@@ -905,6 +909,7 @@ jobs:
         with:
           name: qa-queues-${{ matrix.channel_id }}-${{ github.run_id }}
           path: |
+            data/renders/approved/
             data/renders/approved-review/
             data/renders/rejected/
           if-no-files-found: ignore

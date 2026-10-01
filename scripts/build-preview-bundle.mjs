@@ -85,11 +85,14 @@ function collect() {
     } else {
       for (const f of files.filter((f) => f.endsWith(".mp4"))) {
         const marker = readJson(f.replace(/\.mp4$/, ".json"));
-        const verdict = marker?.verdict;
-        const why = marker?.failed_stage ? `, failed ${marker.failed_stage}` : "";
-        const status = verdict === "local-pass" ? `approved-review (queued for human${why})`
-          : verdict === "local-fail" ? `rejected${why}` : "queued (no marker)";
-        add(ch, { path: f, status, rank: verdict === "local-pass" ? 1 : 2 });
+        // Queue markers (render-and-qa.js queueVideo, 2026-10-02): approved /
+        // approved-review / rejected; local-pass / local-fail are the older names.
+        const v = { "local-pass": "approved-review", "local-fail": "rejected" }[marker?.verdict] || marker?.verdict;
+        const why = marker?.failed_stage ? `, failed ${marker.failed_stage}${marker.failed_check ? ` / ${marker.failed_check}` : ""}` : "";
+        const status = v === "approved" ? "approved"
+          : v === "approved-review" ? `approved-review (queued for human${why})`
+          : v === "rejected" ? `rejected${why}` : "queued (no marker)";
+        add(ch, { path: f, status, rank: v === "approved" ? 0 : v === "approved-review" ? 1 : 2 });
       }
     }
   }
