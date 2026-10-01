@@ -180,9 +180,14 @@
           "topic": "new-budgeting-strategies",
           "slug": "new-budgeting-strategies-2026",
           "reserved_at": "2026-10-01T18:34:10.431Z"
+        },
+        {
+          "topic": "behavioral-economics-study-2026",
+          "slug": "behavioral-economics-study-2026-10-01-2026-10-03",
+          "reserved_at": "2026-10-01T19:42:01.326Z"
         }
       ],
-      "last_generated": "2026-10-01T18:34:10.431Z"
+      "last_generated": "2026-10-01T19:42:01.326Z"
     },
     "2": {
       "channel_name": "Legal Brief",
