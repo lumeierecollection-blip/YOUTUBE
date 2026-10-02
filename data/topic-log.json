@@ -2519,9 +2519,14 @@
           "topic": "ubtech-factory-visits-and-output",
           "slug": "ubtech-factory-tour-output-2026-10-01-1234567890",
           "reserved_at": "2026-10-02T08:48:56.278Z"
+        },
+        {
+          "topic": "3d-animation-factory-visualization",
+          "slug": "3d-animation-cutting-technology-2026-10-01-1234567890",
+          "reserved_at": "2026-10-02T09:17:58.544Z"
         }
       ],
-      "last_generated": "2026-10-02T08:48:56.278Z"
+      "last_generated": "2026-10-02T09:17:58.544Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
