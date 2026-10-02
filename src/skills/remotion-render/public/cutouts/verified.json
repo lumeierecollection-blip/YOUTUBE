@@ -39,6 +39,24 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a hand making a peace sign"
+      },
+      "https://pixabay.com/photos/dollar-currency-money-us-dollar-2584988/": {
+        "verified_at": "2026-10-02T01:57:34.014Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a fan of one-dollar bills"
+      },
+      "https://pixabay.com/photos/dollar-currency-money-us-dollar-2584746/": {
+        "verified_at": "2026-10-02T01:57:39.491Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "one dollar bill"
+      },
+      "https://pixabay.com/photos/banner-header-usa-flag-dollar-2901649/": {
+        "verified_at": "2026-10-02T01:57:46.366Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a one dollar bill flag"
       }
     }
   },
@@ -70,7 +88,12 @@
         "verdict": "WRONG",
         "seen": "a brown hat and sunglasses"
       }
-    }
+    },
+    "verified_at": "2026-10-02T01:57:55.376Z",
+    "source_url": "https://pixabay.com/photos/wallet-leather-money-pay-494169/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "a leather wallet"
   },
   "bank-statement": {
     "rejected": {
@@ -91,6 +114,24 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a stack of pancakes"
+      },
+      "https://pixabay.com/photos/bank-bench-wood-seating-outdoors-2530422/": {
+        "verified_at": "2026-10-02T01:57:58.468Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a wooden bench"
+      },
+      "https://pixabay.com/photos/sculpture-bank-children-artwork-3641437/": {
+        "verified_at": "2026-10-02T01:58:01.188Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a stone statue of children kissing on a bench"
+      },
+      "https://pixabay.com/photos/bank-green-to-sit-park-bench-2571695/": {
+        "verified_at": "2026-10-02T01:58:04.757Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a green wooden bench"
       }
     }
   },
@@ -113,6 +154,18 @@
         "provider": "gemini",
         "verdict": "WRONG",
         "seen": "a pink rose with stem and leaves"
+      },
+      "https://pixabay.com/photos/credit-cards-denim-jeans-blue-jeans-1583534/": {
+        "verified_at": "2026-10-02T01:58:17.545Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a pile of credit cards"
+      },
+      "https://pixabay.com/photos/credit-card-machine-4577768/": {
+        "verified_at": "2026-10-02T01:58:35.006Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a credit card inserted into a payment terminal"
       }
     }
   },
@@ -219,7 +272,12 @@
         "verdict": "CLOSE",
         "seen": "a clock tower and clock"
       }
-    }
+    },
+    "verified_at": "2026-10-02T01:59:06.466Z",
+    "source_url": "https://pixabay.com/photos/courthouse-alabama-building-226689/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "a courthouse building with a clock tower and columns"
   },
   "government-building": {
     "rejected": {},
@@ -255,7 +313,12 @@
         "verdict": "CLOSE",
         "seen": "a modern glass skyscraper"
       }
-    }
+    },
+    "verified_at": "2026-10-02T01:59:17.445Z",
+    "source_url": "https://pixabay.com/photos/building-bank-architecture-50084/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "a bank building"
   },
   "factory": {
     "rejected": {
@@ -313,6 +376,18 @@
         "provider": "gemini",
         "verdict": "CLOSE",
         "seen": "a wax seal stamp"
+      },
+      "https://pixabay.com/photos/certificate-contract-document-proof-3177940/": {
+        "verified_at": "2026-10-02T01:59:21.123Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a rolled parchment scroll"
+      },
+      "https://pixabay.com/photos/shaking-hands-shake-hands-welcome-2730650/": {
+        "verified_at": "2026-10-02T01:59:25.527Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "two wooden mannequin figures shaking hands"
       }
     }
   },
@@ -329,6 +404,18 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a white and yellow orchid flower"
+      },
+      "https://pixabay.com/photos/stamp-secret-important-official-3406367/": {
+        "verified_at": "2026-10-02T01:59:40.440Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "wooden rubber stamp"
+      },
+      "https://pixabay.com/photos/bread-stamp-loaf-uzbekistan-198742/": {
+        "verified_at": "2026-10-02T01:59:48.672Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "wooden pin stamps"
       }
     }
   },
@@ -366,6 +453,18 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a golden statue of Lady Justice"
+      },
+      "https://pixabay.com/photos/lady-justice-jurisdiction-straight-677945/": {
+        "verified_at": "2026-10-02T01:59:59.955Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "Lady Justice statue holding scales"
+      },
+      "https://pixabay.com/photos/gavel-usa-flag-justice-judge-7534867/": {
+        "verified_at": "2026-10-02T02:00:17.316Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a judge's gavel and a wristwatch"
       }
     }
   },
@@ -388,6 +487,24 @@
         "provider": "gemini",
         "verdict": "WRONG",
         "seen": "graffiti on a wheelie bin"
+      },
+      "https://pixabay.com/photos/isolated-ladies-watch-tag-heuer-3737339/": {
+        "verified_at": "2026-10-02T02:00:33.994Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a metal wristwatch"
+      },
+      "https://pixabay.com/photos/no-tag-bat-2275132/": {
+        "verified_at": "2026-10-02T02:00:42.758Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a young woman portrait"
+      },
+      "https://pixabay.com/photos/sand-footprint-footstep-footprints-2547351/": {
+        "verified_at": "2026-10-02T02:00:46.850Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a shoe footprint in sand"
       }
     }
   },
@@ -425,6 +542,24 @@
         "provider": "gemini",
         "verdict": "WRONG",
         "seen": "an archer"
+      },
+      "https://pixabay.com/photos/transport-traffic-highway-4351185/": {
+        "verified_at": "2026-10-02T02:00:49.786Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a maintenance truck with a downward arrow traffic sign"
+      },
+      "https://pixabay.com/photos/sundial-copper-old-time-historical-2882294/": {
+        "verified_at": "2026-10-02T02:00:52.799Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "an armillary sphere sculpture"
+      },
+      "https://pixabay.com/photos/sculpture-monument-eros-statue-5758884/": {
+        "verified_at": "2026-10-02T02:00:59.081Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a large historic building"
       }
     }
   },
@@ -455,6 +590,12 @@
         "provider": "gemini",
         "verdict": "WRONG",
         "seen": "a horse head"
+      },
+      "https://pixabay.com/photos/online-form-computer-keyboard-hand-10142545/": {
+        "verified_at": "2026-10-02T02:01:14.240Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a laptop computer displaying an application form"
       }
     }
   },
@@ -471,6 +612,18 @@
         "provider": "groq",
         "verdict": "CLOSE",
         "seen": "a metal roller chain"
+      },
+      "https://pixabay.com/photos/caterpillar-chains-bulldozer-old-2659139/": {
+        "verified_at": "2026-10-02T02:01:22.229Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a rusty bulldozer"
+      },
+      "https://pixabay.com/photos/quartz-gemstone-minerals-rock-242354/": {
+        "verified_at": "2026-10-02T02:01:39.722Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "beaded bracelet in a geode"
       }
     }
   },
@@ -501,8 +654,19 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a man in a suit and hat"
+      },
+      "https://pixabay.com/photos/eye-female-funny-glass-holding-15699/": {
+        "verified_at": "2026-10-02T02:01:52.006Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a girl holding a magnifying glass"
       }
-    }
+    },
+    "verified_at": "2026-10-02T02:02:10.574Z",
+    "source_url": "https://pixabay.com/photos/magnifying-glass-photo-color-316049/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "a magnifying glass"
   },
   "padlock": {
     "rejected": {},
@@ -525,6 +689,24 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a metal door handle"
+      },
+      "https://pixabay.com/photos/key-keychain-old-metal-iron-629962/": {
+        "verified_at": "2026-10-02T02:02:17.547Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a bunch of keys"
+      },
+      "https://pixabay.com/photos/door-wall-lock-handle-house-3205108/": {
+        "verified_at": "2026-10-02T02:02:21.447Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a door handle with a keyhole"
+      },
+      "https://pixabay.com/photos/door-door-lock-a-ray-of-light-5384953/": {
+        "verified_at": "2026-10-02T02:02:25.913Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a metal door handle or latch"
       }
     }
   },
@@ -541,6 +723,24 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a person wearing a straw hat"
+      },
+      "https://pixabay.com/photos/computer-protection-umbrella-laptop-7774394/": {
+        "verified_at": "2026-10-02T02:02:45.802Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "red umbrella and laptop with binary code"
+      },
+      "https://pixabay.com/photos/knight-sword-medieval-shield-5830752/": {
+        "verified_at": "2026-10-02T02:02:53.271Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a man holding a sword"
+      },
+      "https://pixabay.com/photos/knight-sword-medieval-shield-5830758/": {
+        "verified_at": "2026-10-02T02:02:57.810Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a man holding a sword"
       }
     }
   },
@@ -563,6 +763,24 @@
         "provider": "gemini",
         "verdict": "WRONG",
         "seen": "a metal pole with multiple yellow directional signs"
+      },
+      "https://pixabay.com/photos/gun-weapon-war-pistol-shoot-ak-47-4244135/": {
+        "verified_at": "2026-10-02T02:03:03.082Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a gun part or rail"
+      },
+      "https://pixabay.com/photos/detection-perpetrator-crime-did-3783390/": {
+        "verified_at": "2026-10-02T02:03:07.635Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a person silhouette on a wooden walkway"
+      },
+      "https://pixabay.com/photos/drone-crosshair-flying-robot-6991760/": {
+        "verified_at": "2026-10-02T02:03:14.317Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a drone viewed through a crosshair scope"
       }
     }
   },
@@ -617,7 +835,12 @@
         "verdict": "CLOSE",
         "seen": "American flag and California state flag"
       }
-    }
+    },
+    "verified_at": "2026-10-02T02:04:01.812Z",
+    "source_url": "https://pixabay.com/photos/american-flag-us-flag-301164/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "an american flag"
   },
   "calendar": {
     "rejected": {
@@ -639,7 +862,12 @@
         "verdict": "WRONG",
         "seen": "mechanical clock movement"
       }
-    }
+    },
+    "verified_at": "2026-10-02T02:01:45.232Z",
+    "source_url": "https://pixabay.com/photos/aztecs-mexican-calendar-sundial-sun-74016/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "an astrological calendar"
   },
   "globe": {
     "rejected": {
@@ -660,7 +888,18 @@
         "provider": "gemini",
         "verdict": "CLOSE",
         "seen": "globe covered in virus spikes"
+      },
+      "https://pixabay.com/photos/christmas-isolated-celebration-1927861/": {
+        "verified_at": "2026-10-02T02:03:21.262Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a Christmas wreath"
       }
-    }
+    },
+    "verified_at": "2026-10-02T02:03:26.713Z",
+    "source_url": "https://pixabay.com/photos/globe-world-geography-continents-8840864/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "a globe"
   }
 }
