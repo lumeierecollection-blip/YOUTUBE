@@ -85,3 +85,8 @@ data/renders/rejected/
 data/reference/frames/
 
 __pycache__/
+
+# Cutouts are fetched and verified per run (scripts/fetch-cutout-once.cjs); nothing is kept.
+# The old library (public/cutouts/, incl. verified.json) is deleted and must not come back.
+src/skills/remotion-render/public/cutouts-live/
+src/skills/remotion-render/public/cutouts/
