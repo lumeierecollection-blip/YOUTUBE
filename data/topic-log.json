@@ -2344,9 +2344,14 @@
           "topic": "seeing-the-food-system-why-texas-needs-a-shared-map-of-food-commodity-flows",
           "slug": "seeing-the-food-system-why-texas-needs-a-shared-map-of-food",
           "reserved_at": "2026-10-01T22:42:20.987Z"
+        },
+        {
+          "topic": "mettlertoledo-foreign-material-inspection",
+          "slug": "mettlertoledo-foreign-material-inspection",
+          "reserved_at": "2026-10-02T00:56:42.067Z"
         }
       ],
-      "last_generated": "2026-10-01T22:42:20.988Z"
+      "last_generated": "2026-10-02T00:56:42.067Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
