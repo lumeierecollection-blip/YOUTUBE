@@ -452,9 +452,14 @@
           "topic": "2026-laws-impacting-housing-providers-in-maryland",
           "slug": "maryland-laws-impacting-housing-providers-20261002",
           "reserved_at": "2026-10-02T09:19:25.241Z"
+        },
+        {
+          "topic": "California's New Workplace Laws",
+          "slug": "california-new-workplace-laws-2026",
+          "reserved_at": "2026-10-02T09:57:33.378Z"
         }
       ],
-      "last_generated": "2026-10-02T09:19:25.241Z"
+      "last_generated": "2026-10-02T09:57:33.378Z"
     },
     "3": {
       "channel_name": "AI Tested",
