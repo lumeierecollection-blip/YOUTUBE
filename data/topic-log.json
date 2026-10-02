@@ -200,9 +200,14 @@
           "topic": "New self-hosted financial tool for budgeting",
           "slug": "self-hosted-budgeting-tool-2026",
           "reserved_at": "2026-10-02T02:41:13.400Z"
+        },
+        {
+          "topic": "50-30-20-budget-breaking-down-the-new-forecasted-budgeting-rule",
+          "slug": "50-30-20-budget-breaking-down-the-new-forecasted-budgeting",
+          "reserved_at": "2026-10-02T03:22:15.839Z"
         }
       ],
-      "last_generated": "2026-10-02T02:41:13.400Z"
+      "last_generated": "2026-10-02T03:22:15.840Z"
     },
     "2": {
       "channel_name": "Legal Brief",
