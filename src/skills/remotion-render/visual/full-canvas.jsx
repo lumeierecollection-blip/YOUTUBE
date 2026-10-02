@@ -270,7 +270,7 @@ function HeaderBlock({ B, th, local, fps, m, idx, tl, halo = null }) {
   return (
     <>
       <Rule b={B.rule} t={m.build(0.3, m.s(0.1))} color={th.ink} />
-      {B.kicker ? <DataLabel b={B.kicker} name="kicker" color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
+      {B.kicker ? <DataLabel b={B.kicker} name="kicker" color={B.kicker.muted ? th.soft : th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
       {B.headline ? <Headline b={B.headline} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} halo={halo} /> : null}
     </>
   );
@@ -1056,9 +1056,10 @@ function PopGroups({ beat, idx, fps, accent, state }) {
 
 // ── captions (outside the camera; never move with it) ─────────────────
 const norm = (w) => String(w || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-function CanvasCaption({ words, local, fps, emphasis, onPhoto, dark, align, blend = false }) {
+function CanvasCaption({ words, local, fps, emphasis, onPhoto, dark, align, blend = false, maxSize = 58 }) {
   if (!Array.isArray(words) || !words.length) throw new Error("CanvasCaption: beat has no word timings — the voiceover's word boundaries are required");
-  const size = Math.min(58, Math.floor(CAPTION.w / (Math.max(1, ...words.map((w) => String(w.text).length)) * 0.62)));
+  // maxSize 40 under a hero cutout (owner spec 2026-10-02: caption 32-40 px, type supports the object).
+  const size = Math.min(maxSize, Math.floor(CAPTION.w / (Math.max(1, ...words.map((w) => String(w.text).length)) * 0.62)));
   const perChunk = Math.max(8, Math.floor((CAPTION.w / (size * 0.55)) * 2));
   const chunks = [];
   let cur = [], chars = 0;
@@ -1117,7 +1118,7 @@ export function CanvasVideo({ plan }) {
     <StudioBG>
       {prev && local <= POP.OUT ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} /> : null}
       <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} />
-      <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} />
+      <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} maxSize={cLayout.boxes.cutout0 ? 40 : 58} />
     </StudioBG>
     </ShadowOn.Provider>
   );
