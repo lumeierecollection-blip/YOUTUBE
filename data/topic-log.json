@@ -2609,9 +2609,14 @@
           "topic": "anybotics-shift-platform",
           "slug": "anybotics-shift-platform-2026-10-01-1234567890-as",
           "reserved_at": "2026-10-02T11:10:08.424Z"
+        },
+        {
+          "topic": "drug-growth-authorities-drops-digital-drug-check-report-transparency-plan",
+          "slug": "drug-growth-authorities-drops-digital-drug-check-report",
+          "reserved_at": "2026-10-02T11:59:55.727Z"
         }
       ],
-      "last_generated": "2026-10-02T11:10:08.424Z"
+      "last_generated": "2026-10-02T11:59:55.728Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
