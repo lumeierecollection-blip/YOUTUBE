@@ -786,9 +786,14 @@
           "topic": "US Sanctions on Iran's Rail and Auto Sectors",
           "slug": "us-sanctions-iran-rail-auto-sectors-20261001",
           "reserved_at": "2026-10-01T22:40:53.253Z"
+        },
+        {
+          "topic": "Lebanon-Israel Border Talks",
+          "slug": "lebanon-israel-border-talks",
+          "reserved_at": "2026-10-02T00:55:00.023Z"
         }
       ],
-      "last_generated": "2026-10-01T22:40:53.253Z"
+      "last_generated": "2026-10-02T00:55:00.023Z"
     },
     "10": {
       "channel_name": "Word Lab",
