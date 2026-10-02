@@ -156,7 +156,9 @@ if (process.argv.includes("--rembg")) {
   put("gavel", "springtail-macro.jpg", { license: "CC0", attribution: "repo fixture", source_url: "https://example.invalid/f" });
   put("padlock", "water-scorpion.jpg", { license: "CC0" });
   put("globe", "flashlight-beam.jpg", { license: "all rights reserved" });
-  const b = spawnSync("node", [join(ROOT, "scripts", "build-cutout-library.mjs"), "--from-dir", join(w, "in"), "--only", "gavel,padlock,globe"], { encoding: "utf8", env: { ...process.env, CUTOUT_PYTHON: PY, CUTOUT_OUT_DIR: join(w, "out"), CUTOUT_LOG: join(w, "log.jsonl") } });
+  // CUTOUT_VERIFY_STUB: this offline test has no vision model; the builder
+  // honours the stub ONLY for an output dir outside the real library.
+  const b = spawnSync("node", [join(ROOT, "scripts", "build-cutout-library.mjs"), "--from-dir", join(w, "in"), "--only", "gavel,padlock,globe"], { encoding: "utf8", env: { ...process.env, CUTOUT_PYTHON: PY, CUTOUT_OUT_DIR: join(w, "out"), CUTOUT_LOG: join(w, "log.jsonl"), CUTOUT_VERIFY_STUB: "MATCH" } });
   const ix = existsSync(join(w, "out", "index.json")) ? JSON.parse(readFileSync(join(w, "out", "index.json"), "utf8")) : { cutouts: [], missing: [] };
   eq("builder --from-dir: the usable photograph became a PNG with alpha, credited", [ix.cutouts.map((c) => c.name), existsSync(join(w, "out", "gavel.png"))], [["gavel"], true]);
   eq("builder --from-dir: a photo the checks reject and an unlicensed one are MISSING, never drawn", ix.missing.map((m) => m.name).sort(), ["globe", "padlock"]);

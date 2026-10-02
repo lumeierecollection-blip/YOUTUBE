@@ -126,7 +126,14 @@ const work = join(tmpdir(), `cutout-raw-${process.pid}`);
 mkdirSync(work, { recursive: true });
 // Content verification (scripts/verify-cutout-image.cjs): a vision model checks the isolated PNG is the named
 // object. Three rejected candidates for one name -> MISSING.md (owner's rule 2026-10-02).
-const { verifyCutoutImage } = createRequire(import.meta.url)("./verify-cutout-image.cjs");
+const { verifyCutoutImage: verifyLive } = createRequire(import.meta.url)("./verify-cutout-image.cjs");
+// Test stub (scripts/test-cutout-library.mjs runs the builder offline, no
+// vision model): CUTOUT_VERIFY_STUB is honoured ONLY when the output dir is
+// not the real library, so it can never let an unverified cutout ship.
+const REAL_OUT = join(ROOT, "src", "skills", "remotion-render", "public", "cutouts");
+const STUB = process.env.CUTOUT_VERIFY_STUB && OUT !== REAL_OUT ? String(process.env.CUTOUT_VERIFY_STUB).toUpperCase() : null;
+if (process.env.CUTOUT_VERIFY_STUB && !STUB) console.warn("::warning::[cutouts] CUTOUT_VERIFY_STUB ignored: the output is the real library");
+const verifyCutoutImage = STUB ? async () => ({ verdict: STUB, seen: "(test stub)", provider: "stub", cached: false }) : verifyLive;
 const MAX_VERIFY_REJECTS = 3;
 const verified = () => { try { return JSON.parse(readFileSync(join(OUT, "verified.json"), "utf8")); } catch { return {}; } };
 const summary = [];
