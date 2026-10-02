@@ -2394,9 +2394,14 @@
           "topic": "medical-device-inspection",
           "slug": "fda-qmsr-medical-devices-2026-10-01-1234567890-100126-10",
           "reserved_at": "2026-10-02T01:24:51.083Z"
+        },
+        {
+          "topic": "navigating-fda-qmsr-in-2026",
+          "slug": "navigating-fda-qmsr-2026",
+          "reserved_at": "2026-10-02T02:03:40.043Z"
         }
       ],
-      "last_generated": "2026-10-02T01:24:51.083Z"
+      "last_generated": "2026-10-02T02:03:40.043Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
