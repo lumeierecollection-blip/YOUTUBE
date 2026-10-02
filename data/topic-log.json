@@ -467,9 +467,14 @@
           "topic": "California's New Workplace Laws",
           "slug": "california-new-workplace-laws-2026",
           "reserved_at": "2026-10-02T09:57:33.378Z"
+        },
+        {
+          "topic": "Noncitizen Voting Law",
+          "slug": "noncitizen-voting-law-constitution",
+          "reserved_at": "2026-10-02T11:11:47.572Z"
         }
       ],
-      "last_generated": "2026-10-02T09:57:33.378Z"
+      "last_generated": "2026-10-02T11:11:47.572Z"
     },
     "3": {
       "channel_name": "AI Tested",
