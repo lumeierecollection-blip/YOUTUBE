@@ -46,11 +46,27 @@ function main() {
         trending = (t.videos || []).slice(0, 5).map((v) => ({ title: v.title, tags: (v.tags || []).slice(0, 8), views: v.viewCount, velocity_per_day: v.velocity }));
       } catch { /* no trending feed for this channel */ }
       if (channelOverride) console.error(trending.length ? `[research] ch-${c.id}: trending topics loaded (${trending.length})` : `[research] ch-${c.id}: no trending feed, unseeded discovery`);
+      // focus_pillar: the pillar the channel's recent topics touch LEAST (ties
+      // rotate with the run number). The local discovery model kept
+      // re-proposing covered subjects — often the pillar name itself — until
+      // the duplicate gate failed prep (runs 36959124080 / 36976172356, ch-1,
+      // 2, 26, 48). Narrowing the search to the least-covered pillar steers it
+      // elsewhere; the duplicate gate itself is unchanged.
+      const pillars = c.content_pillars || [];
+      const sig = (s) => String(s || "").toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 4);
+      const recentWords = recent.map((u) => new Set(sig(`${u.topic} ${u.slug}`)));
+      const runN = Number(process.env.GITHUB_RUN_NUMBER || 0);
+      const scored = pillars.map((p, i) => ({ p, i, hits: recentWords.filter((ws) => sig(p).some((w) => ws.has(w))).length }));
+      const minHits = Math.min(...scored.map((s) => s.hits));
+      const least = scored.filter((s) => s.hits === minHits);
+      const focus = least.length ? least[runN % least.length].p : null;
+      if (channelOverride && focus) console.error(`[research] ch-${c.id}: focus pillar "${focus}" (${minHits} recent topic(s) touch it)`);
       return {
         channel_id: String(c.id),
         channel_name: c.channel_name,
         niche: c.niche,
-        content_pillars: c.content_pillars || [],
+        content_pillars: pillars,
+        ...(focus ? { focus_pillar: focus } : {}),
         tone: c.tone || "",
         style: c.style || "",
         recent_topics: recent.map((u) => ({ topic: u.topic, slug: u.slug })),

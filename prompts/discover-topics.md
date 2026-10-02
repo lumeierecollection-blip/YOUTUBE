@@ -34,6 +34,15 @@ contain: title, URL, publication date, and the returned text highlights.
 - `slug`: lowercase, hyphens only, 8–60 characters, derived from the topic.
 - `pillar`: the exact `content_pillars` string this topic falls under.
 
+## Focus pillar (when present)
+
+A channel may carry `focus_pillar`: the content pillar its recent topics
+have covered least. Choose that channel's topic inside `focus_pillar` (and
+set `pillar` to it), unless a `trending_this_week` topic fits another pillar
+better. A topic is a specific, dated event, study, ruling or change inside
+the pillar — never the pillar's own name or a rewording of it
+("industrial automation" is a pillar, not a topic).
+
 ## Trending this week (when present)
 
 A channel may carry `trending_this_week`: the top videos in its YouTube
