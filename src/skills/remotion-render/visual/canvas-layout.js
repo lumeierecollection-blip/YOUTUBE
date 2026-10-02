@@ -118,7 +118,10 @@ export const numberInk = (text, size) => {
   // A separator ("7382.85", "1,400") drops ~0.10 em below the baseline
   // (CI run 36950257339 ch-48: its tail crossed y 1340 by 30 px at size 302).
   const sep = /\d[.,]/.test(String(text ?? "")) ? 0.12 : 0;   // also a trailing "2," (CI run 36953236514 ch-48)
-  return Math.ceil(size * ((p.isQuantity === false ? 0.94 : 0.82) + sep));
+  // "%" (set at 0.8x on the baseline) drops its lower circle and slash ~0.1 em
+  // below it (CI run 36976172356 ch-44 GAUGE "50%": crossed y 1340 by ~25 px).
+  const pct = /%/.test(String(text ?? "")) && !sep ? 0.1 : 0;
+  return Math.ceil(size * ((p.isQuantity === false ? 0.94 : 0.82) + sep + pct));
 };
 // Fraunces descenders (g j p q y , ;) reach ~1.07 em below a line's top, past
 // a 0.95 (headline) or 0.90 (emphasis) line box: a text block anchored to a
