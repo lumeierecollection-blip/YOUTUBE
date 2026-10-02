@@ -2331,9 +2331,14 @@
           "topic": "The Impact of AI on the 90-10 Rule in 2026",
           "slug": "ai-impact-90-10-rule-2026",
           "reserved_at": "2026-10-02T10:35:02.222Z"
+        },
+        {
+          "topic": "The Impact of AI on Negotiation Techniques in High-Tech Industries in 2026",
+          "slug": "ai-impact-negotiation-techniques-tech-2026",
+          "reserved_at": "2026-10-02T12:02:54.208Z"
         }
       ],
-      "last_generated": "2026-10-02T10:35:02.223Z"
+      "last_generated": "2026-10-02T12:02:54.208Z"
     },
     "45": {
       "channel_name": "Lift",
