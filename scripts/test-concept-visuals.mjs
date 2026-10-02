@@ -21,7 +21,10 @@ eq("classes: cutout from the library, symbol drawn, scene and unbuilt cutout ski
 for (const variant of [0, 1]) {
   const L = canvasLayout({ visual_type: "TYPE", headline: "The court voided the contract", variant, beat_index: variant, beat_total: 6, concept_visuals: vis.visuals });
   const z = zoneReport(L), cb = contentBounds(L);
-  eq(`layout v${variant}: zones hold, primary 420 px, span >= 61%`, [z.ok, Math.max(L.boxes.cutout0.w, L.boxes.cutout0.h), cb.h / 1920 >= 0.61], [true, 420, true]);
+  // Hero cutout (owner's spec 2026-10-02): centred, >= 500 px longest side, centre y 980-1060, headline <= 140 px.
+  const h0 = L.boxes.cutout0, cx = h0.x + h0.w / 2, cy = h0.y + h0.h / 2;
+  eq(`layout v${variant}: zones hold, hero >= 500 px centred (x 540 +-80, y 980-1060), headline <= 140 px, span >= 59.5%`,
+    [z.ok, Math.max(h0.w, h0.h) >= 500, Math.abs(cx - 540) <= 80, cy >= 980 && cy <= 1061, L.boxes.statement.size <= 140, cb.h / 1920 >= 0.595], [true, true, true, true, true, true]);
 }
 console.log(bad ? `${bad} FAILED` : "all pass");
 process.exit(bad ? 1 : 0);

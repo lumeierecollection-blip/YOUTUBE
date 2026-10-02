@@ -337,7 +337,7 @@ function ConceptVisual({ b, local, fps, at, accent }) {
   if (b.class === "cutout" && b.asset) {
     return (
       <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...pop }}>
-        <Img src={staticFile(b.asset)} style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: b.align === "right" ? "100% 100%" : "0% 100%",
+        <Img src={staticFile(b.asset)} style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: b.align === "center" ? "50% 50%" : b.align === "right" ? "100% 100%" : "0% 100%",
           filter: "drop-shadow(2px 2px 20px rgba(0,0,0,0.15))" }} />
       </div>
     );
@@ -345,7 +345,7 @@ function ConceptVisual({ b, local, fps, at, accent }) {
   if (b.class === "symbol") {
     const s = Math.min(b.w, b.h);
     return (
-      <div style={{ position: "absolute", left: b.x, top: b.y + b.h - s, width: s, height: s, ...pop }}>
+      <div style={{ position: "absolute", left: b.align === "center" ? b.x + (b.w - s) / 2 : b.x, top: b.align === "center" ? b.y + (b.h - s) / 2 : b.y + b.h - s, width: s, height: s, ...pop }}>
         <Symbol name={b.concept} size={s} color={accent} />
       </div>
     );

@@ -405,25 +405,48 @@ export function canvasLayout(c) {
       } else {
         // A statement, bottom-anchored, on one side; a rule (and the lead-in
         // as a small label) at the top: the empty middle is the composition.
+        const cv = Array.isArray(c?.concept_visuals) ? c.concept_visuals.slice(0, 2) : [];
         boxes.rule = rule(flip ? 0 : 1, TOP);
         if (c?.lead_in || folio) {
-          boxes.kicker = dataBox(c.lead_in || folio, { width: 640, size: 34, maxLines: 1, y: TOP + 30, flip: flip ? 0 : 1 });
+          // With a hero cutout the kicker is small and muted (owner's spec 2026-10-02: 24-32 px).
+          boxes.kicker = { ...dataBox(c.lead_in || folio, { width: 640, size: cv.length ? 28 : 34, maxLines: 1, y: TOP + 30, flip: flip ? 0 : 1 }), muted: !!cv.length };
         }
-        const cv = Array.isArray(c?.concept_visuals) ? c.concept_visuals.slice(0, 3) : [];
         if (cv.length) {
-          // Concept visuals (concept-visuals.js): the statement takes the top
-          // zone, the visuals the middle — the primary 420 px on its longest
-          // side, bottom-anchored on the zone's edge, opposite the statement;
-          // up to two secondaries at 180 px stacked on the statement's side.
-          const sy = (boxes.kicker ? boxes.kicker.y + boxes.kicker.h : TOP + 6) + 40;
-          boxes.statement = headlineBox(text, { width: 984, y: sy, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - sy, max: 200 });
-          const fitBox = (v, longest) => { const r = (v.w || 1) / (v.h || 1); return r >= 1 ? [longest, Math.round(longest / r)] : [Math.round(longest * r), longest]; };
-          cv.forEach((v, i) => {
-            const [w, h] = fitBox(v, i === 0 ? 420 : 180);
-            const side = i === 0 ? (flip ? 0 : 1) : flip;
-            const y = i === 0 ? BOTTOM - h : BOTTOM - h - (i - 1) * (180 + 24);
-            boxes[`cutout${i}`] = { ...box(anchorX(w, side), y, w, h), role: "concept", concept: v.name, class: v.class, asset: v.asset || null, primary: i === 0, align: side ? "right" : "left" };
-          });
+          // THE CUTOUT IS THE HERO (owner's spec 2026-10-02): the object the
+          // sentence names is the subject; the type supports it.
+          //   top zone     kicker (28 px, muted) + headline (90-140 px serif)
+          //   middle zone  the cutout, centred on x 540, 500-700 px on its
+          //                longest side; two cutouts side by side (primary
+          //                left 500-700, secondary right 300-450), never stacked
+          //   bottom zone  the caption
+          // Vertical centre: as low as fits in 980-1060 (the spec's y 980
+          // +- 80): its ink must reach ~y 1272 for canvas-coverage. A wide
+          // object (a gavel, a banknote) grows past 700 px — up to 944 —
+          // until it is >= 450 px tall; never smaller than the spec.
+          const sy = (boxes.kicker ? boxes.kicker.y + boxes.kicker.h : TOP + 6) + 32;
+          boxes.statement = headlineBox(text, { width: 984, y: sy, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - sy, max: 140 });
+          const ar = (v) => Math.max(0.2, Math.min(5, (v.w || 1) / (v.h || 1)));
+          // fit: inside maxW x maxH; a wide object may widen up to `widen` px to reach minH.
+          const fit = (v, maxW, maxH, minH = 0, widen = maxW) => {
+            const r = ar(v);
+            let w = Math.min(maxW, maxH * r), h = w / r;
+            if (h < minH) { h = Math.min(maxH, minH); w = Math.min(widen, h * r); h = w / r; }
+            return [Math.round(w), Math.round(h)];
+          };
+          const centreY = (h) => Math.round(Math.max(980, Math.min(1060, BOTTOM - 10 - h / 2)));
+          // Two side by side only when each stays in its half and the pair is
+          // tall enough to fill the zone; otherwise the primary alone is the hero.
+          const pair = cv.length === 2 ? [fit(cv[0], 480, 640), fit(cv[1], 420, 450)] : null;
+          const pairOk = pair && Math.max(pair[0][1], pair[1][1]) >= 440 && pair[0][1] >= 300 && Math.max(pair[0][0], pair[0][1]) >= 480;
+          if (!pairOk) {
+            const [w, h] = fit(cv[0], 700, 640, 450, R_EDGE - L_EDGE);
+            boxes.cutout0 = { ...box(540 - w / 2, centreY(h) - h / 2, w, h), role: "concept", concept: cv[0].name, class: cv[0].class, asset: cv[0].asset || null, primary: true, align: "center" };
+          } else {
+            const [[w0, h0], [w1, h1]] = pair;
+            const cy = centreY(Math.max(h0, h1));
+            boxes.cutout0 = { ...box(48 + (492 - w0) / 2, cy - h0 / 2, w0, h0), role: "concept", concept: cv[0].name, class: cv[0].class, asset: cv[0].asset || null, primary: true, align: "center" };
+            boxes.cutout1 = { ...box(560 + (472 - w1) / 2, cy - h1 / 2, w1, h1), role: "concept", concept: cv[1].name, class: cv[1].class, asset: cv[1].asset || null, primary: false, align: "center" };
+          }
           hero = "cutout0";
         } else {
           // The statement is the body: the middle zone only (it used to rise to y 430, through the top zone).
