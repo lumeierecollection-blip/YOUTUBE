@@ -145,7 +145,7 @@ for (const spec of specs) {
   // Skipped only when it exists AND its verification passed (verified.json): an unverified cutout is rebuilt.
   if (existsSync(file) && !force && index.cutouts.some((c) => c.name === spec.name) && verified()[spec.name]?.verdict === "MATCH") { skipped++; continue; }
   const attempts = [];
-  const tally = { tried: 0, isolation: 0, verify: 0, accepted: 0 };
+  const tally = { tried: 0, isolation: 0, verify: 0, unverified: 0, accepted: 0 };
   summary.push([spec.name, tally]);
   let done = false, gaveUp = false;
   if (dryRun) { /* search only */ }
@@ -195,7 +195,21 @@ for (const spec of specs) {
         continue;
       }
       // 4. content verification on the isolated PNG that would render (scripts/verify-cutout-image.cjs).
-      const vr = await verifyCutoutImage(iso, spec.name, { sourceUrl: c.sourceUrl || c.downloadUrl || null });
+      let vr = await verifyCutoutImage(iso, spec.name, { sourceUrl: c.sourceUrl || c.downloadUrl || null });
+      // No provider answered (rate limit, budget, outage): not a judgment of
+      // the image. Retry twice after a pause; if still unanswered, skip the
+      // candidate WITHOUT counting it as a content rejection.
+      for (let r = 0; vr.verdict === "NONE" && r < 2; r++) {
+        await new Promise((res) => setTimeout(res, 20000));
+        vr = await verifyCutoutImage(iso, spec.name, { sourceUrl: c.sourceUrl || c.downloadUrl || null });
+      }
+      if (vr.verdict === "NONE") {
+        tally.unverified++;
+        console.log(`[cutout] ${spec.name}: ${c.sourceApi} candidate ${n}, isolation ok, verify UNAVAILABLE (no vision provider answered) — not saved, not counted as wrong`);
+        attempts.push(`${source ? `${source} "${q}": ` : ""}verifier unavailable (no vision provider answered)`);
+        rmSync(iso, { force: true });
+        continue;
+      }
       if (vr.verdict !== "MATCH") {
         tally.verify++;
         console.log(`[cutout] ${spec.name}: ${c.sourceApi} candidate ${n}, isolation ok, verify FAILED (saw "${vr.seen}")`);
@@ -238,7 +252,7 @@ if (dryRun) {
 }
 save();
 for (const [name, t] of summary) {
-  console.log(`[cutout] ${name}: ${t.tried} candidates tried, ${t.isolation} rejected by isolation, ${t.verify} rejected by verification, ${t.accepted} accepted`);
+  console.log(`[cutout] ${name}: ${t.tried} candidates tried, ${t.isolation} rejected by isolation, ${t.verify} rejected by verification, ${t.unverified} unverifiable (no provider), ${t.accepted} accepted`);
 }
 console.log(`[cutouts] done: ${made} made, ${skipped} already present (verified), ${missing} missing; ${index.cutouts.length}/${specs.length} in the library`);
 process.exit(0);

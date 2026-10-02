@@ -147,6 +147,10 @@ jobs:
           GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
           GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          # gemini-client caps a PROCESS at 50k tokens (sized for one video);
+          # the library is one process doing ~150 image checks (~1.5k each):
+          # run 36944700437 hit "budget_exhausted" mid-build.
+          MAX_TOKENS_PER_VIDEO: "600000"
         run: node scripts/build-cutout-library.mjs
 
       - name: Contact sheet

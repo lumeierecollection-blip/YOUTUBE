@@ -104,13 +104,20 @@ async function imageDataUrl(pngPath) {
 
 async function askProviders(messages) {
   const tried = [];
-  // 1. Groq (vision model).
+  // 1. Groq (vision model). Its free tier rate-limits per minute and says how
+  // long to wait ("try again in 16.9s"): wait that out (<= 30 s, twice) rather
+  // than reject — run 36944700437 lost 72 verifications to these 429s.
   try {
     const groq = require("./groq-client.cjs");
-    const g = await groq.callGroq(messages, { maxTokens: 200, temperature: 0 });
-    const v = normalize(g);
-    if (v) return { provider: "groq", v, tried };
-    tried.push(`groq: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
+    for (let k = 0; k < 3; k++) {
+      const g = await groq.callGroq(messages, { maxTokens: 200, temperature: 0 });
+      const v = normalize(g);
+      if (v) return { provider: "groq", v, tried };
+      const wait = Number((String(g?.detail || "").match(/try again in ([\d.]+)s/) || [])[1]);
+      if (g?.error === "quota_exhausted" && Number.isFinite(wait) && wait <= 30 && k < 2) { await new Promise((r) => setTimeout(r, (wait + 1) * 1000)); continue; }
+      tried.push(`groq: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
+      break;
+    }
   } catch (e) { tried.push(`groq: ${e.message}`); }
   // 2. Gemini flash-lite.
   try {
