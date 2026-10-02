@@ -94,11 +94,17 @@ const save = () => {
   writeFileSync(join(OUT, "MISSING.md"), missingMarkdown(index));
 };
 
-async function searchOne(name, q) {
+// Pixabay orientation per spec (owner's rule 2.4: vertical "for objects that
+// should be tall"): a standing person, a tower or a pin is shot tall; a
+// banknote, a card, a flag or a contract is shot wide, and vertical-only left
+// those names with nothing to try (run 36950257339: 23 still missing).
+// spec.orientation overrides; CUTOUT_PIXABAY_ORIENTATION overrides all.
+const TALL = new Set(["person-silhouette", "person-walking", "business-person", "scientist", "worker", "office-tower", "map-pin"]);
+const orientationOf = (spec) => (process.env.CUTOUT_PIXABAY_ORIENTATION || spec.orientation || (TALL.has(spec.name) ? "vertical" : "all")).toLowerCase();
+
+async function searchOne(name, q, spec = {}) {
   if (backoff.dead.has(name)) return [];
-  // Pixabay: 30 per page, vertical only (owner's spec 2026-10-02; CUTOUT_PIXABAY_ORIENTATION=all lifts it — a
-  // banknote, a card or a flag is a landscape photo and vertical-only will miss most of them).
-  const orient = (process.env.CUTOUT_PIXABAY_ORIENTATION || "vertical").toLowerCase();
+  const orient = orientationOf(spec);
   const opts = name === "pixabay" ? { count: 30, orientation: orient === "all" ? null : orient } : { count: 12 };
   try { return await withBackoff(backoff, name, () => pace(name, () => SOURCES[name].search(q, opts))); }
   catch (e) {
@@ -162,7 +168,7 @@ for (const spec of specs) {
       if (!meta?.license || !isAllowedLicense(meta.license)) { attempts.push(`${spec.name}.json has no allowed licence (${meta?.license || "none"})`); continue; }
       list = [{ sourceApi: "manual", localPath: join(fromDir, `${spec.name}.${ext}`), license: normalizeLicense(meta.license), attribution: meta.attribution || "", sourceUrl: meta.source_url || "" }];
     } else {
-      const found = await searchOne(source, q);
+      const found = await searchOne(source, q, spec);
       list = shortlist(found, spec, { minSide: MIN_SIDE, query }).slice(0, tries);
       console.log(`[cutouts] ${spec.name}: ${source} "${q}" -> ${found.length} candidates, ${list.length} worth trying`);
       if (!list.length) attempts.push(`${source} "${q}": ${found.length} candidate(s), none passed the licence / keyword / size filter`);
