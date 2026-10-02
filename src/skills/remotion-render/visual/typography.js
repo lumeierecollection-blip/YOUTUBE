@@ -225,7 +225,10 @@ export function fitEmphasis(word, width) {
   const w = stripPunct(String(word || ""));
   if (!w || w.length > EMPHASIS_MAX_CHARS || !/^\p{L}+$/u.test(w)) return null;
   const o = { family: ROLE_EMPHASIS.family, weight: ROLE_EMPHASIS.weight, tracking: ROLE_EMPHASIS.tracking };
-  for (let s = ROLE_EMPHASIS.sizeBand[1]; s >= EMPHASIS_FLOOR; s -= 4) if (measure(w, s, o) <= width) return { size: s, inBand: s >= ROLE_EMPHASIS.sizeBand[0] };
+  // Measure the word as it is drawn (sentence case, canvas-layout.js): fitting
+  // "task" and drawing "Task" ran the k 197 px off the frame (CI run 36995441688 ch-44 beat 2).
+  const shown = w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+  for (let s = ROLE_EMPHASIS.sizeBand[1]; s >= EMPHASIS_FLOOR; s -= 4) if (measure(shown, s, o) <= width) return { size: s, inBand: s >= ROLE_EMPHASIS.sizeBand[0] };
   return null;
 }
 
