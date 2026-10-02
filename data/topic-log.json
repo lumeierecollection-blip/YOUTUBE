@@ -2649,9 +2649,14 @@
           "topic": "drug-growth-authorities-drops-digital-drug-check-report-transparency-plan",
           "slug": "drug-growth-authorities-drops-digital-drug-check-report",
           "reserved_at": "2026-10-02T11:59:55.727Z"
+        },
+        {
+          "topic": "ai-powered-apqr-system",
+          "slug": "ai-powered-apqr-system-2026-10-02",
+          "reserved_at": "2026-10-02T14:38:15.131Z"
         }
       ],
-      "last_generated": "2026-10-02T11:59:55.728Z"
+      "last_generated": "2026-10-02T14:38:15.131Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
