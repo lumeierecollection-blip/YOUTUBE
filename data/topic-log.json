@@ -931,9 +931,14 @@
           "topic": "Eritrea-ethiopia-embassy-closure",
           "slug": "eritrea-ethiopia-embassy-closure-tensions",
           "reserved_at": "2026-10-02T11:11:12.945Z"
+        },
+        {
+          "topic": "US-forces-exit-Iraq impact on regional dynamics",
+          "slug": "us-forces-exit-iraq-impact",
+          "reserved_at": "2026-10-02T12:03:31.796Z"
         }
       ],
-      "last_generated": "2026-10-02T11:11:12.945Z"
+      "last_generated": "2026-10-02T12:03:31.796Z"
     },
     "10": {
       "channel_name": "Word Lab",
