@@ -8,5 +8,15 @@
     "go_public_at": "2026-10-01T23:56:33.660Z",
     "privacy_status": "private",
     "cancelled": true
+  },
+  {
+    "video_id": "yTU7ROhYZUA",
+    "channel_id": "48",
+    "title": "better-together-carmakers-join-forces-to-optimize-quality-s…",
+    "uploaded_at": "2026-10-02T10:54:30.413Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-02T11:54:30.413Z",
+    "privacy_status": "private",
+    "cancelled": true
   }
 ]
