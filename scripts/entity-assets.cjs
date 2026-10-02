@@ -46,7 +46,7 @@ const { join } = require("node:path");
 
 const ROOT = join(__dirname, "..");
 const PUBLIC = join(ROOT, "src", "skills", "remotion-render", "public");
-const DIR = { person: "people", place: "places", organization: "orgs" };
+const DIR = { person: "people", place: "places", building: "buildings", organization: "orgs" };
 const MANIFEST = join(PUBLIC, "entities", "manifest.json");
 const UA = "YOUTUBE-pipeline/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE; entity photos)";
 const WIKI = "https://en.wikipedia.org";
@@ -198,6 +198,54 @@ async function attempts(type, name, context) {
   }
   if (!tried.some((t) => t.startsWith("3:"))) tried.push(`3: no Commons file named for "${name}"`);
   return { tried };
+}
+
+/**
+ * A named PLACE, BUILDING or ORGANIZATION: candidate photos in source order
+ * (owner's scene-resolver spec 2026-10-02, task 2.3), each labelled with its
+ * source, for scripts/resolve-scene.cjs to download and verify one by one:
+ *   1. "wikipedia summary"  the lead image of the page titled with the name
+ *   2. "wikipedia search"   the lead image of the first search hit titled with it
+ *   3. "wikipedia page"     the page's own photos named as a view of it (a
+ *                           place: a skyline / view; a building or an
+ *                           organization: its building)
+ *   4. "wikimedia commons"  Commons files whose name holds every name token
+ * Every candidate passes checkFile (a JPEG photograph under a free licence,
+ * >= 500 px). Pixabay is the resolver's own last step, for places and
+ * buildings only.
+ */
+async function entityCandidates(type, name, context = "", max = 5) {
+  const out = [], tried = [], seen = new Set();
+  const add = (c, source) => { if (c?.info && !seen.has(c.info.title) && out.length < max) { seen.add(c.info.title); out.push({ ...c, source }); } };
+  const clean = (t) => t.replace(/[_-]/g, " ");
+  const nt = tokens(name);
+  let r = await leadImageOf(name, name);
+  if (r.info) add(r, "wikipedia summary"); else tried.push(`wikipedia summary: ${r.why}`);
+  const sj = await getJson(`${WIKI}/w/api.php?action=query&list=search&format=json&srlimit=5&srsearch=${encodeURIComponent([name, context].filter(Boolean).join(" "))}`);
+  const hit = (sj?.query?.search || []).find((h) => titleMatches(h.title, name) && !/\(disambiguation\)/i.test(h.title) && h.title !== r.pageTitle);
+  if (hit) { const s = await leadImageOf(hit.title, name); if (s.info) add(s, "wikipedia search"); else tried.push(`wikipedia search: ${s.why}`); }
+  else tried.push(`wikipedia search: no result titled with "${name}"`);
+  const page = r.pageTitle || hit?.title || name;
+  const ij = await getJson(`${WIKI}/w/api.php?action=query&format=json&prop=images&imlimit=50&titles=${encodeURIComponent(page)}&redirects=1`);
+  const files = Object.values(ij?.query?.pages || {})[0]?.images?.map((x) => x.title) || [];
+  const view = (f) => (type === "place" ? SCENIC.test(clean(f)) : BUILDING.test(clean(f)) || BUILDING_VIEW.test(clean(f)));
+  for (const f of files.filter((f) => /\.jpe?g$/i.test(f) && !NOT_A_PHOTO.test(clean(f)) && !PEOPLE.test(clean(f)) && view(f) && nt.some((t) => tokens(f).includes(t))).slice(0, 3)) {
+    const info = await fileInfo(f);
+    const bad = checkFile(info);
+    if (bad) tried.push(`wikipedia page: ${f}: ${bad}`); else add({ info, page: info.descurl, pageTitle: f, description: "" }, "wikipedia page");
+  }
+  const suffix = type === "organization" ? " headquarters" : "";
+  const cj = await getJson(`${COMMONS}?action=query&format=json&list=search&srnamespace=6&srlimit=10&srsearch=${encodeURIComponent(`"${name}"${suffix}`)}`);
+  for (const h of cj?.query?.search || []) {
+    if (out.length >= max) break;
+    const ft = tokens(h.title.replace(/^File:/, "").replace(/\.[a-z]+$/i, ""));
+    if (!nt.every((t) => ft.includes(t))) continue;
+    if (PEOPLE.test(clean(h.title))) { tried.push(`wikimedia commons: ${h.title}: a photo of people, not of the ${type}`); continue; }
+    const info = await fileInfo(h.title);
+    const bad = checkFile(info);
+    if (bad) tried.push(`wikimedia commons: ${h.title}: ${bad}`); else add({ info, page: info.descurl, pageTitle: h.title, description: "" }, "wikimedia commons");
+  }
+  return { candidates: out, tried };
 }
 
 /**
@@ -535,7 +583,7 @@ function qualifyEntity(ent, countries = []) {
   return { ent: null, note: `"${ent.name}" is a generic institution name and the script names ${cs.length ? `${cs.length} countries (${cs.join(", ")})` : "no country"} — not resolved (it would show some country's ${ent.name})` };
 }
 
-module.exports = { resolveEntity, resolveDocument, resolveMoney, personCandidates, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
+module.exports = { resolveEntity, resolveDocument, resolveMoney, personCandidates, entityCandidates, downloadTo, slug, PUBLIC, DIR, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
 
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };

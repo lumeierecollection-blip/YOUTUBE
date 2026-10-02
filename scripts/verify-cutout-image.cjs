@@ -86,7 +86,8 @@ async function imageDataUrl(pngPath) {
   return `data:image/jpeg;base64,${buf.toString("base64")}`;
 }
 
-async function askProviders(messages) {
+// `norm`: the answer parser (verify-place-image.cjs passes its own).
+async function askProviders(messages, norm = normalize) {
   const tried = [];
   // 1. Groq (vision model). Its free tier rate-limits per minute and says how
   // long to wait ("try again in 16.9s"): wait that out (<= 30 s, twice) rather
@@ -95,7 +96,7 @@ async function askProviders(messages) {
     const groq = require("./groq-client.cjs");
     for (let k = 0; k < 3; k++) {
       const g = await groq.callGroq(messages, { maxTokens: 200, temperature: 0 });
-      const v = normalize(g);
+      const v = norm(g);
       if (v) return { provider: "groq", v, tried };
       const wait = Number((String(g?.detail || "").match(/try again in ([\d.]+)s/) || [])[1]);
       if (g?.error === "quota_exhausted" && Number.isFinite(wait) && wait <= 30 && k < 2) { await new Promise((r) => setTimeout(r, (wait + 1) * 1000)); continue; }
@@ -107,7 +108,7 @@ async function askProviders(messages) {
   try {
     const { callGemini } = await import("../src/lib/gemini-client.js");
     const g = await callGemini(messages, { model: "gemini-3.5-flash-lite", maxTokens: 200, temperature: 0, noCache: true, tag: "verify-cutout" });
-    const v = normalize(g);
+    const v = norm(g);
     if (v) return { provider: "gemini", v, tried };
     tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
   } catch (e) { tried.push(`gemini: ${e.message}`); }
@@ -115,7 +116,7 @@ async function askProviders(messages) {
   try {
     const ollama = require("./ollama-client.cjs");
     const o = await ollama.callOllama(messages, { maxTokens: 200, temperature: 0 });
-    const v = normalize(o);
+    const v = norm(o);
     if (v) return { provider: "ollama", v, tried };
     tried.push(`ollama: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
   } catch (e) { tried.push(`ollama: ${e.message}`); }
@@ -136,7 +137,7 @@ async function verifyCutoutImage(pngPath, name) {
   return { ...v, provider };
 }
 
-module.exports = { verifyCutoutImage, normalize, promptFor };
+module.exports = { verifyCutoutImage, normalize, promptFor, askProviders, imageDataUrl };
 
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };

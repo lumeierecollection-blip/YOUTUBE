@@ -178,7 +178,7 @@ async function fetchOnce({ concept, name, channel, beat_index, spec }) {
   return null;
 }
 
-module.exports = { fetchCutoutForBeat, _resetRunCache: () => runCache.clear() };
+module.exports = { fetchCutoutForBeat, pixabay, wordsOf, _resetRunCache: () => runCache.clear() };
 
 if (require.main === module) {
   require("dotenv/config");
