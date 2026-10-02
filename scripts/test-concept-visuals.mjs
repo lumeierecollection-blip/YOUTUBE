@@ -12,7 +12,11 @@ const eq = (name, got, want) => { const ok = JSON.stringify(got) === JSON.string
 
 eq("a sentence that names nothing gets no concept", conceptsInSentence("He set up a meeting.", specs), []);
 eq("the gavel is found", conceptsInSentence("The judge's gavel came down.", specs).includes("gavel"), true);
-eq("one word, one concept ('bank')", conceptsInSentence("The bank warned savers.", specs).filter((n) => n.startsWith("bank")).length, 1);
+// An object concept needs its own name in the sentence: the institution "bank" is not a bank-building photo,
+// and "law" is not a gavel (CI run 37012196580 ch-2 beat 8 rendered a gavel for a credit law).
+eq("'bank' alone grounds no bank-building", conceptsInSentence("The bank warned savers.", specs).filter((n) => n.startsWith("bank")).length, 0);
+eq("'the bank building' grounds bank-building", conceptsInSentence("They sold the old bank building.", specs).includes("bank-building"), true);
+eq("a law grounds no gavel", [conceptsInSentence("The new credit law protects drivers.", specs).includes("gavel"), validateConcepts(["gavel"], "The new credit law protects drivers.", specs).concepts.includes("gavel")], [false, false]);
 eq("a rise is the upward arrow, a bare 'up' is not", [conceptsInSentence("Prices rose again.", specs).includes("upward-arrow"), conceptsInSentence("They set it up.", specs).includes("upward-arrow")], [true, false]);
 const v = validateConcepts(["gavel", "globe", "nonsense"], "The gavel fell.", specs);
 eq("planner concepts: ungrounded and unknown dropped", [v.concepts.includes("gavel"), v.concepts.includes("globe"), v.dropped.length], [true, false, 2]);

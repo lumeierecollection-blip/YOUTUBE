@@ -9,10 +9,14 @@
  *   SYMBOL  -> the drawn SVG (visual/symbols/)
  *   SCENE   -> nothing on its own (no generic scene-photo source), reported
  *
- * Grounding (CLAUDE.md): a concept is kept only when one of its trigger WORDS
- * is a word of the sentence — the planner may propose concepts, but a
- * proposal the sentence does not name is dropped, and nothing is added from
- * general knowledge. A sentence that names none gets no concept visual.
+ * Grounding (CLAUDE.md): a concept is kept only when the sentence NAMES it.
+ * A photographed object (a cutout) needs every word of its own name in the
+ * sentence ("gavel" needs "gavel"; "dollar-bill" needs "dollar" and "bill"):
+ * thematic words ("law" for a gavel) grounded a gavel on a sentence about a
+ * credit law, a symbol for the idea, not the object (CI run 37012196580 ch-2
+ * beat 8). A drawn symbol keeps its event words (SYMBOL_WORDS). The planner
+ * may propose concepts, but a proposal the sentence does not name is
+ * dropped, and nothing is added from general knowledge.
  *
  * Pure: no file access, so the renderer bundle can import it. Node callers
  * pass the specs (cutout-specs.json) and the library (index.json +
@@ -44,21 +48,23 @@ const ABSTRACT = new Set(["economy", "growth", "policy", "market", "markets", "i
 const words = (s) => new Set(String(s || "").toLowerCase().replace(/[$]/g, " dollar ").split(/[^a-z0-9]+/).filter(Boolean)
   .flatMap((w) => (w.length > 3 && w.endsWith("s") && !w.endsWith("ss") ? [w, w.slice(0, -1)] : [w])));
 
-/** The trigger words of one concept name. */
-export function triggersOf(name, specs = []) {
-  if (SYMBOL_WORDS[name]) return SYMBOL_WORDS[name];
-  const s = specs.find((x) => x.name === name);
-  return s ? [...new Set([...(s.words || []), ...String(name).split("-")])].filter((w) => w.length >= 3) : [];
+/** The words a sentence must contain to name a concept: a symbol's event words (any one), an object's own name (every part). */
+function namesIt(name, ws, specs) {
+  const has = (t) => ws.findIndex((w) => w === t || (w.length > 3 && w.endsWith("s") && w.slice(0, -1) === t));
+  if (SYMBOL_WORDS[name]) { const at = ws.findIndex((w) => SYMBOL_WORDS[name].includes(w)); return at; }
+  const parts = String(name).split("-").filter((w) => w.length >= 3);
+  if (!parts.length) return -1;
+  const at = parts.map(has);
+  return at.every((i) => i >= 0) ? Math.min(...at) : -1;
 }
 
-/** Concepts the sentence names, in the order their first trigger word appears. */
+/** Concepts the sentence names, in the order their first word appears. */
 export function conceptsInSentence(sentence, specs = []) {
   const ws = String(sentence || "").toLowerCase().replace(/[$]/g, " dollar ").split(/[^a-z0-9]+/).filter(Boolean);
   const names = [...new Set([...specs.map((s) => s.name), ...SYMBOLS])];
   const hits = [];
   for (const n of names) {
-    const tr = new Set(triggersOf(n, specs));
-    const at = ws.findIndex((w) => tr.has(w) || (w.length > 3 && w.endsWith("s") && tr.has(w.slice(0, -1))));
+    const at = namesIt(n, ws, specs);
     if (at >= 0) hits.push({ name: n, at });
   }
   // One sentence word names one concept: "bank" is a bank building OR a bank
@@ -93,7 +99,7 @@ export function validateConcepts(planned, sentence, specs = []) {
       dropped.push(`${n}: not a concept name and not an object the sentence names`);
       continue;
     }
-    if (!triggersOf(n, specs).some((w) => sw.has(w))) { dropped.push(`${n}: the sentence does not name it`); continue; }
+    if (namesIt(n, String(sentence || "").toLowerCase().replace(/[$]/g, " dollar ").split(/[^a-z0-9]+/).filter(Boolean), specs) < 0) { dropped.push(`${n}: the sentence does not name it`); continue; }
     if (!kept.includes(n)) kept.push(n);
   }
   const concepts = (kept.length ? kept : conceptsInSentence(sentence, specs)).slice(0, MAX_CONCEPTS);
