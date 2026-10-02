@@ -241,6 +241,9 @@ async function entityCandidates(type, name, context = "", max = 5) {
     const ft = tokens(h.title.replace(/^File:/, "").replace(/\.[a-z]+$/i, ""));
     if (!nt.every((t) => ft.includes(t))) continue;
     if (PEOPLE.test(clean(h.title))) { tried.push(`wikimedia commons: ${h.title}: a photo of people, not of the ${type}`); continue; }
+    // A place's file must be named as a VIEW of it: CI run 37031119023 ch-2 tried
+    // "Governor Wes Moore is Briefed ... Baltimore, Maryland" as "Maryland".
+    if (type === "place" && !SCENIC.test(clean(h.title))) { tried.push(`wikimedia commons: ${h.title}: not named as a view of the place`); continue; }
     const info = await fileInfo(h.title);
     const bad = checkFile(info);
     if (bad) tried.push(`wikimedia commons: ${h.title}: ${bad}`); else add({ info, page: info.descurl, pageTitle: h.title, description: "" }, "wikimedia commons");

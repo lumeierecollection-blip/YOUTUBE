@@ -34,6 +34,7 @@ import { inkOf } from "./cutout-ink.mjs";
 const { resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 const { fetchCutoutForBeat } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
 const { resolveSceneEntity, sceneEntities } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
+const { verifyPlaceImage } = createRequireEntity(import.meta.url)("./verify-place-image.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
 import {
@@ -1045,6 +1046,17 @@ async function resolveCanvas(channelId, planPath, plan) {
       // A real scan of the named instrument / a real photo of the money object;
       // none found -> the beat is TYPE (never a stand-in).
       const r = vt === "DOCUMENT" ? await resolveDocument({ name: b.data?.name }) : await resolveMoney({ query: b.data?.object });
+      // Every fetched photo is verified before use (owner's spec 2026-10-02, task 2.4). The
+      // document lookup matched "HOME Act" to a photo of people announcing a DIFFERENT act
+      // (CI run 37031119023 ch-2 beat 4); a file name is not what the image shows.
+      if (r.ok) {
+        const what = vt === "DOCUMENT" ? `the document "${b.data?.name}" (a scan or photograph of its pages)` : `${b.data?.object} (a photograph of it)`;
+        const v = await verifyPlaceImage(join(PUBLIC_DIR, r.asset), what);
+        console.log(`[resolve] ch-${channelId} beat ${b.index}: ${vt.toLowerCase()} "${b.data?.name || b.data?.object}"
+    → ${r.file_title || r.asset}
+    → verified ${v.verdict === "NONE" ? "UNAVAILABLE" : v.verdict} (${v.seen})`);
+        if (v.verdict !== "MATCH") { r.ok = false; r.why = `verifier: ${v.verdict} (${v.seen})`; r.attempts = []; }
+      }
       if (r.ok) {
         if (!r.cached) fetchedNew++;
         photo = { asset: r.asset, entity: vt === "DOCUMENT" ? b.data.name : null, kind: vt.toLowerCase(), view: vt === "DOCUMENT" ? "document" : "money", credit: r.credit, source_url: r.source_url, license: r.license };
@@ -1054,6 +1066,8 @@ async function resolveCanvas(channelId, planPath, plan) {
         entities.fell_back.push(`${vt.toLowerCase()} "${b.data?.name || b.data?.object}": ${r.why}`);
         console.log(`[entity] ${vt} "${b.data?.name || b.data?.object}" fell back to typography: ${r.why}${(r.attempts || []).length ? " — " + r.attempts.join(" | ") : ""}`);
         counts.entity_fallbacks++;
+        // A named instrument with no verified scan: its name card (task 4.3).
+        if (vt === "DOCUMENT" && b.data?.name && !edge) { b.name_card = { name: b.data.name, sub: keyPhraseOf(b, b.data.name) }; b.visual_type = "TYPE"; b.data = null; }
       }
     } else if (edge && vt === "PHOTO") {
       console.log(`[resolve] ch-${channelId} beat ${b.index}: the ${bi === 0 ? "hook" : "CTA"} stays typography (owner's spec), entity not fetched`);
@@ -1079,7 +1093,14 @@ async function resolveCanvas(channelId, planPath, plan) {
         }
         entities.fell_back.push(`beat ${b.index}: ${e0.type} "${e0.name}": ${r.why}`);
       }
-      if (!photo && real.length) {
+      // A country / US state with no verified photo is still shown as ITSELF: the drawn
+      // map (MAP-CENTERED, the region's real outline) — not a name card, never a stand-in.
+      const region = !photo && real.find((e) => e.type === "place" && resolveRegionName(e.name));
+      const mv = region ? checkVisual({ visual_type: "MAP", data: { place: region.name }, named_entities: b.named_entities }, b.narration || "") : null;
+      if (mv && !mv.why && mv.type === "MAP") {
+        b.visual_type = "MAP"; b.data = mv.data; delete b.type_layout;
+        console.log(`[resolve] ch-${channelId} beat ${b.index}: no verified photo of place "${region.name}" — rendering its map (MAP-CENTERED)`);
+      } else if (!photo && real.length) {
         b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
         b.name_card = { name: real[0].name, sub: keyPhraseOf(b, real[0].name) };
         counts.entity_fallbacks++;
