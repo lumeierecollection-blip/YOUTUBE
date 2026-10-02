@@ -507,9 +507,14 @@
           "topic": "NYC Rent Freeze Takes Effect",
           "slug": "nyc-rent-freeze-takes-effect-2026",
           "reserved_at": "2026-10-02T14:06:43.410Z"
+        },
+        {
+          "topic": "2026 Labor & Employment Law Developments",
+          "slug": "employment-law-changes-from-october-2026",
+          "reserved_at": "2026-10-02T14:38:26.898Z"
         }
       ],
-      "last_generated": "2026-10-02T14:06:43.411Z"
+      "last_generated": "2026-10-02T14:38:26.898Z"
     },
     "3": {
       "channel_name": "AI Tested",
