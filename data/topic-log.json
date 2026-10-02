@@ -1395,9 +1395,14 @@
           "topic": "slave-trade-money-trail",
           "slug": "city-of-london-slave-trade-money-trail",
           "reserved_at": "2026-10-02T01:24:58.956Z"
+        },
+        {
+          "topic": "osogbo-food-scheme",
+          "slug": "osogbo-food-scheme-sparks-panic-2026-10-01",
+          "reserved_at": "2026-10-02T02:00:42.350Z"
         }
       ],
-      "last_generated": "2026-10-02T01:24:58.956Z"
+      "last_generated": "2026-10-02T02:00:42.350Z"
     },
     "27": {
       "channel_name": "Climate Now",
