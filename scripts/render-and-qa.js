@@ -1216,13 +1216,19 @@ async function resolveCanvas(channelId, planPath, plan) {
       // TYPE-SPLIT beats are text-only too (TEMPLATE_MONOCULTURE, CI run
       // 36953236514); converted in step 3 only if a visual resolves.
       if (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || String(c.visual_type).toUpperCase() !== "TYPE") continue;
+      // The hook and the CTA stay TYPE (owner's spec 2026-10-02); a cutout on
+      // the hook also blocked the next beat's (no TYPE-FULL twice in a row).
+      if (bi === 0 || bi === plan.beats.length - 1) continue;
       const vc = validateConcepts(b.concepts, b.narration || "", CUTOUT_SPECS);
       // A generic person cutout on a beat that NAMES a person would read as
       // that person: people concepts are dropped there (the person stays on
       // the Wikipedia path, entity-assets.cjs).
       const namesPerson = (b.named_entities || []).some((e) => e.type === "person");
-      if (namesPerson && vc.concepts.some((n) => PEOPLE.has(n))) console.log(`[concepts] ch-${channelId} beat ${b.index}: names a person — generic people cutouts dropped (${vc.concepts.filter((n) => PEOPLE.has(n)).join(", ")})`);
+      // Free-form people words count as people too (a stock "man" on a beat naming a person).
       const PEOPLE_WORDS = /\b(man|men|woman|women|person|people|officer|official|ceo|leader|worker|workers|scientist|doctor|judge|lawyer|founder|president|minister)\b/;
+      const isPeople = (n) => PEOPLE.has(n) || PEOPLE_WORDS.test(n);
+      if (namesPerson && vc.concepts.some(isPeople)) console.log(`[concepts] ch-${channelId} beat ${b.index}: names a person — generic people cutouts dropped (${vc.concepts.filter(isPeople).join(", ")})`);
+      const names = (namesPerson ? vc.concepts.filter((n) => !isPeople(n)) : vc.concepts).slice(0, 3);
       if (names.length) wanted.push({ bi, b, names, from: vc.from });
     }
     // 2. Resolve: symbol drawn; cutout live -> library -> none; scene none.
@@ -1266,7 +1272,8 @@ async function resolveCanvas(channelId, planPath, plan) {
       if (!visuals.length) { stats.none++; continue; }
       const c = w.b.canvas;
       if (c.composition === "TYPE-SPLIT") {
-        if ([plan.beats[w.bi - 1], plan.beats[w.bi + 1]].some((n) => n?.canvas?.composition === "TYPE-FULL")) { stats.none++; continue; }
+        // A hero-cutout beat is not a plain statement: next to a TYPE-FULL it is
+        // not "TYPE-FULL twice" (local-audit canvas-type keys it as +HERO).
         c.composition = "TYPE-FULL"; delete c.type_layout;
         console.log(`[concepts] ch-${channelId} beat ${w.b.index}: TYPE-SPLIT -> TYPE-FULL concept beat`);
       }
