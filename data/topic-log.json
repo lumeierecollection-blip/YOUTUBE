@@ -2584,9 +2584,14 @@
           "topic": "better-together-carmakers-join-forces-to-optimize-quality-standards",
           "slug": "better-together-carmakers-join-forces-2026-10-01-1234567890",
           "reserved_at": "2026-10-02T10:30:27.967Z"
+        },
+        {
+          "topic": "anybotics-shift-platform",
+          "slug": "anybotics-shift-platform-2026-10-01-1234567890-as",
+          "reserved_at": "2026-10-02T11:10:08.424Z"
         }
       ],
-      "last_generated": "2026-10-02T10:30:27.967Z"
+      "last_generated": "2026-10-02T11:10:08.424Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
