@@ -891,9 +891,14 @@
           "topic": "Eritrea cuts ties with Ethiopia over Asmara embassy closure",
           "slug": "eritrea-cut-ties-with-ethiopia-asmara-embassy-closure",
           "reserved_at": "2026-10-02T07:37:53.640Z"
+        },
+        {
+          "topic": "Ethiopia's Border Conflict with Afar Region",
+          "slug": "ethiopia-border-conflict-afar",
+          "reserved_at": "2026-10-02T09:58:41.417Z"
         }
       ],
-      "last_generated": "2026-10-02T09:15:53.422Z"
+      "last_generated": "2026-10-02T09:58:41.417Z"
     },
     "10": {
       "channel_name": "Word Lab",
