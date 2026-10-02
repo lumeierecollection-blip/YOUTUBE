@@ -944,9 +944,9 @@ export function keepBodyInZone(L, cam, zoom, zk, photoBeat) {
 }
 
 // show: "all" | "body" | "header". bodyLocal / headerLocal are the beat's
-// local frame less its entry delays (transitionInto): the incoming beat's
+// local frame (PopGroups passes the settled frame — see the pop compositor): the incoming beat's
 // text pops only once the transition has landed.
-function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent, hero, show = "all" }) {
+function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent, hero, show = "all", still = false }) {
   const c = normalizeCanvas(beat.scene.canvas, idx);
   const dur = beat.duration_frames;
   const L = canvasLayout(c);
@@ -957,7 +957,8 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   const zk0 = zoom0 ? 1 + (zoom0.k - 1) * easeInOut(clamp01(bodyLocal / Math.max(1, dur))) : 1;
   // Zones: the camera and the major zoom move only as far as keeps the body inside its zone.
   const fitted = keepBodyInZone(L, cameraAt(c, L, bodyLocal, dur, fps), zoom0, zk0, !!c.photo && PHOTO_COMPS.includes(L.composition));
-  const cam = fitted.cam, zoom = zoom0, zk = fitted.zk;
+  // still: the pop-up compositor (PopGroups) — the camera is static, no push, no zoom.
+  const cam = still ? { s: 1, x: 0, y: 0 } : fitted.cam, zoom = zoom0, zk = still ? 1 : fitted.zk;
   return (
     <Theme.Provider value={theme}>
       <Anim.Provider value={{ ...(c.anim || {}), dur, accent, kinetic: c.kinetic || null, beat: idx }}>
@@ -980,38 +981,66 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   );
 }
 
-// SceneFull's major-tier iris: 0.9 s from a 160 px circle to the frame.
-const IRIS_SEC = 0.9;
-const irisBeat = (c, L) => !!c.photo && (c.motion_tier || "medium") === "major" && PHOTO_COMPS.includes(L.composition);
+// ── pop-up transitions (owner's spec 2026-10-02) ──────────────────────
+// A beat is shown as element GROUPS — the full-bleed photo (if any), the
+// top-zone group (headline), the middle-zone group (chart / map / number /
+// statement / cutout) — each rendered SETTLED (fully composed: no internal
+// draw, sweep, mask, roll or word-exit is ever on screen), clipped to its
+// zone band and popped IN PLACE about its own centre:
+//   arriving  frames 0-6: scale 0.94 -> 1.04 -> 1.00, opacity 0 -> 1
+//   leaving   frames 0-6 of the next beat: scale 1.00 -> 0.94, opacity 1 -> 0
+// Within a beat the groups arrive in order, 8 frames apart (photo, headline,
+// middle). Across a boundary the outgoing groups shrink and fade while the
+// incoming ones pop, so at the crossover (frame 4) the leaving group is at
+// ~40% and the arriving one at ~60%: the frame is never empty. Nothing moves
+// in space: no slide, wipe, mask, iris, flip, match cut or camera move.
+export const POP = Object.freeze({ IN: 6, OUT: 6, STAGGER: 8, START: 1, S0: 0.94, OVER: 1.04 });
+export function popInState(f) {
+  if (f < 0) return { o: 0, s: POP.S0 };
+  const o = clamp01(f / 5);
+  const s = f <= 4 ? POP.S0 + (POP.OVER - POP.S0) * easeOut(clamp01(f / 4)) : POP.OVER + (1 - POP.OVER) * easeInOut(clamp01((f - 4) / 2));
+  return { o, s: f >= POP.IN ? 1 : s };
+}
+export function popOutState(f) {
+  if (f <= 0) return { o: 1, s: 1 };
+  return { o: 1 - clamp01(f / 6.5), s: 1 - (1 - POP.S0) * clamp01(f / POP.OUT) };
+}
+// The bands the groups are clipped to (zones; the middle runs to the caption
+// row so a descender within ZONE_TOL is not cut).
+const BANDS = { top: [0, ZONES.top[1]], middle: [ZONES.middle[0], CAPTION.y - 10] };
+/** The element groups of a beat, in arrival order, with their pop pivots. */
+export function popGroups(c, L) {
+  const photo = !!c.photo && PHOTO_COMPS.includes(L.composition);
+  const groups = [];
+  if (photo) groups.push({ key: "photo", show: "body", clip: null, cx: 540, cy: 960 });
+  for (const [band, [y0, y1]] of Object.entries(BANDS)) {
+    const bs = flattenBoxes(L.boxes).filter(([k, b]) => b && b.w > 0 && b.h > 0 && k !== "photo" && b.role !== "shape" && b.y + b.h / 2 >= y0 && b.y + b.h / 2 < y1).map(([, b]) => b);
+    if (!bs.length) continue;
+    const x0 = Math.min(...bs.map((b) => b.x)), x1 = Math.max(...bs.map((b) => b.x + b.w));
+    const t0 = Math.min(...bs.map((b) => b.y)), t1 = Math.max(...bs.map((b) => b.y + b.h));
+    groups.push({ key: band, show: photo ? "header" : "all", clip: [y0, y1], cx: (x0 + x1) / 2, cy: (t0 + t1) / 2 });
+  }
+  return groups.map((g, i) => ({ ...g, at: i * POP.STAGGER }));
+}
+/** The frame a beat is drawn at: every element in, none leaving (word exits start at >= 70%). */
+const settleFrame = (dur) => Math.max(0, Math.min(dur - 1, Math.round(dur * 0.66)));
 
-/**
- * How beat k is entered. "cut" (the default): the previous beat pops out (a
- * fade and a 3% shrink) over the first 45% of the transition, then the new
- * beat's text pops in place — nothing slides (the old default slid the whole
- * incoming beat up 90 px, carrying its text in). "push" (photo -> photo) and
- * "flip" (a major chart beat) move only the body; the header pops once they
- * land. "match" / "persist" keep the hero element across the cut.
- * delay / headerDelay: frames the body's / header's entrances wait. The
- * header never pops while the outgoing beat is still visible.
- */
-function transitionInto(beats, k, fps) {
-  const TR = Math.round(TRANSITION_SEC * fps), GAP = Math.round(TR * 0.45);
-  const prev = k > 0 ? beats[k - 1] : null;
-  if (!prev) return { style: "none", delay: 0, headerDelay: 0, TR, GAP };
-  const c = normalizeCanvas(beats[k].scene.canvas, k), pc = normalizeCanvas(prev.scene.canvas, k - 1);
-  const pL = canvasLayout(pc), cL = canvasLayout(c);
-  let style = "cut";
-  if (c.match_cut_prev || Number.isInteger(c.persists_from)) style = Number.isInteger(c.persists_from) ? "persist" : "match";
-  else if (c.motion_tier === "major" && !pc.photo && (cL.composition === "DATA-FULL" || cL.composition === "PROCESS-FULL")) style = "flip";
-  else if (pc.photo && c.photo) style = "push";
-  // A match / persist needs a hero of the same kind on both sides.
-  if ((style === "match" || style === "persist") && pL.hero !== cL.hero) style = "cut";
-  const delay = style === "cut" || style === "persist" ? GAP : 0;
-  let headerDelay = style === "push" || style === "flip" ? TR : GAP;
-  // A major photo opens as an iris over the light ground: its white header
-  // waits until the photo fills the frame, or it would pop white-on-light.
-  if (irisBeat(c, cL)) headerDelay = Math.max(headerDelay, delay + Math.round(IRIS_SEC * fps));
-  return { style, pL, cL, TR, GAP, delay, headerDelay };
+function PopGroups({ beat, idx, fps, accent, state }) {
+  const c = normalizeCanvas(beat.scene.canvas, idx);
+  const L = canvasLayout(c);
+  const settled = settleFrame(beat.duration_frames);
+  return popGroups(c, L).map((g) => {
+    const p = state(g);
+    if (p.o <= 0.001) return null;
+    const clip = g.clip ? `inset(${g.clip[0]}px 0 ${FRAME.h - g.clip[1]}px 0)` : "none";
+    return (
+      <div key={`${idx}-${g.key}`} style={{ position: "absolute", inset: 0, clipPath: clip, opacity: p.o }}>
+        <div style={{ position: "absolute", inset: 0, transformOrigin: `${g.cx.toFixed(0)}px ${g.cy.toFixed(0)}px`, transform: `scale(${p.s.toFixed(4)})` }}>
+          <BeatCanvas beat={beat} idx={idx} bodyLocal={settled} headerLocal={settled} fps={fps} accent={accent} hero={null} show={g.show} still />
+        </div>
+      </div>
+    );
+  });
 }
 
 // ── captions (outside the camera; never move with it) ─────────────────
@@ -1065,77 +1094,18 @@ export function CanvasVideo({ plan }) {
   beats.forEach((b, k) => { if (!b?.scene?.canvas) throw new Error(`CanvasVideo: beat ${k} has no canvas content — the asset resolver must build it`); });
   const local = frame - beat.start_frame;
   const prev = i > 0 ? beats[i - 1] : null;
-  const tin = transitionInto(beats, i, fps);
-  const { style, TR, GAP } = tin;
-  const inT = prev && local < TR ? local / TR : 1;
   const c = normalizeCanvas(beat.scene.canvas, i);
   const cLayout = canvasLayout(c);
-  // The caption turns white-on-photo only once the photo is behind it: an
-  // iris (R = 160 + 1040 * open, centred at y 820) covers the caption's words
-  // (y ~1530, ~710-740 px away) at ~55% open.
-  const onPhoto = PHOTO_COMPS.includes(cLayout.composition) && !!c.photo
-    && (!irisBeat(c, cLayout) || easeInOut(clamp01((local - tin.delay) / (IRIS_SEC * fps))) >= 0.56);
-  const prevHeroBox = style === "match" || style === "persist" ? tin.pL.boxes[tin.pL.hero] : null;
-  const heroName = prev ? tin.cL.hero : null;
-
-  const e = easeInOut(clamp01(inT));
-  const eOut = easeInOut(clamp01(inT / 0.45));
-  const layers = [];
-  if (prev && inT < 1) {
-    const plocal = prev.duration_frames + local;
-    const ptin = transitionInto(beats, i - 1, fps);
-    const pb = { beat: prev, idx: i - 1, bodyLocal: plocal - ptin.delay, headerLocal: plocal - ptin.headerDelay, fps, accent, hero: null };
-    let outStyle = { opacity: 1 - eOut };
-    if (style === "cut") outStyle = { opacity: 1 - eOut, transform: `scale(${(1 - 0.03 * eOut).toFixed(4)})`, transformOrigin: "540px 860px" };
-    if (style === "push") outStyle = { opacity: 1, transform: `translateX(${(-FRAME.w * e).toFixed(1)}px)` };
-    if (style === "flip") outStyle = { opacity: e < 0.5 ? 1 : 0, transform: `perspective(2400px) rotateY(${(180 * Math.min(0.5, e)).toFixed(2)}deg)` };
-    if (style === "match" || style === "persist") outStyle = { opacity: 1 - clamp01(e * 2.5) };
-    layers.push(
-      <div key="out" style={{ position: "absolute", inset: 0, ...outStyle }}>
-        <BeatCanvas {...pb} />
-      </div>
-    );
-    if (style === "persist" && prevHeroBox) {
-      // The old hero stays, moving and scaling into the new hero's box as it fades.
-      const to = cLayout.boxes[cLayout.hero];
-      if (to) {
-        const s = lerp(1, Math.min(to.w / Math.max(1, prevHeroBox.w), to.h / Math.max(1, prevHeroBox.h)), e);
-        const dx = lerp(0, to.x + to.w / 2 - (prevHeroBox.x + prevHeroBox.w / 2), e), dy = lerp(0, to.y + to.h / 2 - (prevHeroBox.y + prevHeroBox.h / 2), e);
-        layers.push(
-          <div key="persist" style={{ position: "absolute", inset: 0, opacity: 1 - e, transformOrigin: `${prevHeroBox.x + prevHeroBox.w / 2}px ${prevHeroBox.y + prevHeroBox.h / 2}px`,
-            transform: `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) scale(${s.toFixed(4)})` }}>
-            <BeatCanvas {...pb} show="body" />
-          </div>
-        );
-      }
-    }
-  }
-  // The incoming beat: its body takes the transition (cut / persist: appears
-  // whole once the old beat is gone; push / flip: moves with it); its header
-  // is never inside a transition transform — it pops in place.
-  let inStyle = {};
-  if (prev && inT < 1) {
-    if (style === "cut" || style === "persist") inStyle = { opacity: local >= GAP ? 1 : 0 };
-    if (style === "push") inStyle = { transform: `translateX(${(FRAME.w * (1 - e)).toFixed(1)}px)` };
-    if (style === "flip") inStyle = { opacity: e >= 0.5 ? 1 : 0, transform: `perspective(2400px) rotateY(${(-180 * (1 - Math.max(0.5, e))).toFixed(2)}deg)` };
-  }
-  const hero = prev && inT < 1 && (style === "match" || style === "persist") && prevHeroBox ? { name: heroName, from: prevHeroBox, t: inT } : null;
-  const cb = { beat, idx: i, bodyLocal: local - tin.delay, headerLocal: local - tin.headerDelay, fps, accent, hero };
-  layers.push(
-    <div key="in" style={{ position: "absolute", inset: 0, ...inStyle }}>
-      <BeatCanvas {...cb} show="body" />
-    </div>,
-    <div key="in-header" style={{ position: "absolute", inset: 0 }}>
-      <BeatCanvas {...cb} show="header" />
-    </div>
-  );
-
+  const start = prev ? POP.START : 0;
+  // White caption only once the photo group has popped in behind it.
+  const onPhoto = PHOTO_COMPS.includes(cLayout.composition) && !!c.photo && local >= start + 3;
   return (
     <ShadowOn.Provider value={false}>
     {/* Uniform white on every beat (backgrounds.js); a full-bleed photo beat
         covers it, the next beat shows it again. */}
     <StudioBG>
-      {layers}
+      {prev && local <= POP.OUT ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} /> : null}
+      <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} />
       <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} />
     </StudioBG>
     </ShadowOn.Provider>

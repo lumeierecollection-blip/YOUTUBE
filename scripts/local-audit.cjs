@@ -596,6 +596,37 @@ async function zonesNoOverlap(video, beats) {
   return { bad };
 }
 
+/**
+ * pop-transitions (owner's spec 2026-10-02): across every beat boundary the
+ * composition replaces itself in place — no frame of the 10-frame window may
+ * be empty (the old "cut" left blank frames between beats). Every frame from
+ * the boundary to +10 must hold content above the caption row (>= 12 ink rows
+ * at 1/4 scale). Where it stops: element MOVEMENT (> 10 px) is not measured
+ * here — the compositor (full-canvas.jsx PopGroups) only scales elements in
+ * place about their own centre, with a static camera, by construction.
+ */
+function popTransitions(video, m) {
+  const bad = [];
+  const fps = m.fps || 30, W = 270, H = 480, capRow = Math.floor((CAPTION_Y0 / 1920) * H);
+  (m.beats || []).forEach((b, k) => {
+    if (k === 0) return;
+    const empty = [];
+    for (let f = 0; f <= 10; f++) {
+      const buf = rgbFrame(video, (b.start_sec ?? 0) + f / fps, W, H);
+      if (!buf) continue;
+      let rows = 0;
+      for (let y = 0; y < capRow; y++) {
+        let n = 0;
+        for (let x = 0; x < W; x++) { const o = (y * W + x) * 3; if (0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2] < 235) n++; }
+        if (n >= 3) rows++;
+      }
+      if (rows < 12) empty.push(f);
+    }
+    if (empty.length) bad.push(`beat ${k}: the composition is empty at boundary frame(s) ${empty.join(", ")}`);
+  });
+  return { bad };
+}
+
 async function canvasChecks(video, m) {
   const beats = m.beats || [];
   const out = [];
@@ -611,6 +642,8 @@ async function canvasChecks(video, m) {
   out.push({ id: "canvas-ground", pass: !tx.bad.length, detail: tx.bad.length ? tx.bad.join("; ") : "the ground reads uniform white on every non-photo beat" });
   const zn = await zonesNoOverlap(video, beats);
   out.push({ id: "zones-no-overlap", pass: !zn.bad.length, detail: zn.bad.length ? zn.bad.slice(0, 8).join("; ") : "every element in one zone, one element type per zone, no ink across a zone edge" });
+  const pt = popTransitions(video, m);
+  out.push({ id: "pop-transitions", pass: !pt.bad.length, detail: pt.bad.length ? pt.bad.slice(0, 6).join("; ") : "no empty frame across any beat boundary" });
   const mt = motionTiers(beats);
   const kr = await kineticRules(beats);
   out.push({ id: "kinetic-rules", pass: !kr.bad.length, detail: kr.bad.length ? kr.bad.slice(0, 8).join("; ") : `every word pops in place (${Object.entries(kr.used).map(([e, n]) => `${e}x${n}`).join(" ")}), no slide / drop / sweep / blur entrance, <=3 text elements a beat; number modes ${kr.modes.join("/") || "none"}` });
