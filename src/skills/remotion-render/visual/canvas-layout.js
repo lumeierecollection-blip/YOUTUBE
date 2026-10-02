@@ -144,7 +144,7 @@ export const COMP = { x: 48, y: 100, w: 984, h: 1320 };
 // left-aligned, or 64..944 right-aligned (CAPTION_R).
 export const CAPTION = { x: 48, y: 1450, w: 880, h: 160 };
 export const CAPTION_R = { x: 64, y: 1450, w: 880, h: 160 };
-export const COMPOSITIONS = ["TYPE-FULL", "TYPE-SPLIT", "NUMBER-FULL", "DATA-FULL", "SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "MAP-CENTERED", "PROCESS-FULL", "TIMELINE", "COMPARISON-SPLIT", "LIST-BUILD"];
+export const COMPOSITIONS = ["TYPE-FULL", "TYPE-SPLIT", "NUMBER-FULL", "DATA-FULL", "SCENE-FULL", "ARCHITECTURE", "PORTRAIT", "DOCUMENT", "MONEY", "MAP-CENTERED", "PROCESS-FULL", "TIMELINE", "COMPARISON-SPLIT", "LIST-BUILD"];
 export const TRANSITION_SEC = 0.5;
 export const CONTENT_TOP = TOP;
 
@@ -171,7 +171,10 @@ const DATA_TYPES = ["BAR", "PIE", "LINE", "GAUGE"];
  */
 export function compositionFor(visualType, hasPhoto, extra = {}) {
   const t = String(visualType || "TYPE").toUpperCase();
-  if (t === "PHOTO") return hasPhoto ? (extra.view === "building" ? "ARCHITECTURE" : "SCENE-FULL") : "TYPE-FULL";
+  // A person is a PORTRAIT (owner's scene-resolver spec 2026-10-02, task 3.2): the
+  // verified photo in the middle zone, the name above. A building / an
+  // organization's building is ARCHITECTURE and a place SCENE-FULL, full-bleed.
+  if (t === "PHOTO") return hasPhoto ? (extra.view === "person" ? "PORTRAIT" : extra.view === "building" ? "ARCHITECTURE" : "SCENE-FULL") : "TYPE-FULL";
   if (t === "DOCUMENT") return hasPhoto ? "DOCUMENT" : "TYPE-FULL";
   if (t === "MONEY") return hasPhoto ? "MONEY" : "TYPE-FULL";
   if (t === "PROCESS") return "PROCESS-FULL";
@@ -653,6 +656,24 @@ export function canvasLayout(c) {
     if (cmp.b?.label) boxes.labelB = dataBox(cmp.b.label, { width: Math.max(160, wb), size: 36, maxLines: 3, bottom: boxes.numberB.y - 20, flip: 1 });
     if (cmp.subject) boxes.kicker = dataBox(cmp.subject, { width: 480, size: 34, maxLines: 1, y: TOP + (boxes.headline ? boxes.headline.h + 24 : 0), flip: 0 });
     hero = "numberA";
+  } else if (comp === "PORTRAIT" && c?.photo) {
+    // A named person's VERIFIED portrait (owner's scene-resolver spec
+    // 2026-10-02, task 3.2): the name above it in the top zone (a lead-in
+    // small and muted over it), the portrait in the middle zone at its own
+    // aspect — not cropped to a circle or a square — 700-900 px on its longest
+    // side, centred; the caption (the quote) in the bottom zone.
+    boxes.rule = rule(flip ? 0 : 1, TOP);
+    if (c.lead_in) boxes.kicker = { ...dataBox(c.lead_in, { width: 640, size: 28, maxLines: 1, y: TOP + 30, flip: flip ? 0 : 1 }), muted: true };
+    const sy = (boxes.kicker ? boxes.kicker.y + boxes.kicker.h : TOP + 6) + 32;
+    boxes.headline = headlineBox(String(c.photo.entity || c.headline || ""), { width: 984, y: sy, flip, maxLines: 2, maxHeight: HEADER_MAX_Y - sy, max: 140 });
+    const r = Math.max(0.4, Math.min(2.5, (Number(c.photo.w) || 3) / (Number(c.photo.h) || 4)));
+    let h = 700, w = Math.round(h * r);
+    if (w > 900) { w = 900; h = Math.round(w / r); }
+    // Standing on the middle zone's floor (y 1330): a landscape photo centred at
+    // y 980 left the beat's content at 59.4% of the frame (canvas-coverage).
+    const y = 1330 - h;
+    boxes.portrait = { ...box(Math.round(540 - w / 2), y, w, h), role: "portrait", asset: c.photo.asset, align: "center" };
+    hero = "portrait";
   } else if (comp === "SCENE-FULL" || comp === "ARCHITECTURE" || comp === "DOCUMENT" || comp === "MONEY") {
     if (c?.photo) {
       boxes.photo = box(0, 0, FRAME.w, FRAME.h);
@@ -669,7 +690,13 @@ export function canvasLayout(c) {
         const nw = Math.min(R_EDGE - L_EDGE, Math.ceil(slots.width)), nh = Math.round(size * ROLE_NUMBER.lineHeight);
         boxes.number = { ...box(anchorX(nw, flip), TOP + 60, nw, nh), size, parts, align: flip ? "right" : "left", role: "number", flip };
       }
-      boxes.headline = { ...headlineBox(c.headline || "", { width: 920, bottom: BOTTOM, flip, maxLines: 4, maxHeight: comp === "MONEY" ? 520 : BOTTOM - BODY_TOP, max: 200 }), callout: comp === "DOCUMENT" };
+      if (comp === "SCENE-FULL" || comp === "ARCHITECTURE") {
+        // Full-bleed place / building (owner's spec 2026-10-02, task 3.1): the
+        // headline over the photo in the TOP zone, the caption in the bottom
+        // zone; the photo is the middle (it covers every zone).
+        const sy = (boxes.kicker ? boxes.kicker.y + boxes.kicker.h : TOP + 6) + 28;
+        boxes.headline = headlineBox(c.headline || "", { width: 920, y: sy, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - sy, max: 160 });
+      } else boxes.headline = { ...headlineBox(c.headline || "", { width: 920, bottom: BOTTOM, flip, maxLines: 4, maxHeight: comp === "MONEY" ? 520 : BOTTOM - BODY_TOP, max: 200 }), callout: comp === "DOCUMENT" };
       hero = "photo";
     } else {
       // No image resolved: the beat is typography (compositionFor never routes here without a photo).
@@ -826,7 +853,7 @@ export function canvasManifest(raw, idx) {
     variant: c.variant, flip: L.flip, dark: false,
     // What is behind the beat: the uniform white ground (backgrounds.js), or
     // a full-bleed photo covering it for this beat.
-    ground: c.photo ? "photo" : "white",
+    ground: c.photo && L.composition !== "PORTRAIT" ? "photo" : "white",
     headline_text: shown("headline") || shown("statement") || null, emphasis_text: shown("emphasis"),
     // The headline's entrance: the words fly in on a major TYPE-FULL statement,
     // otherwise mask-reveal / slide-land / crop-open rotating on the beat index.

@@ -295,6 +295,7 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     );
   }
   if (B.emphasis) return <Emphasis b={B.emphasis} color={th.ink} local={local} fps={fps} />;
+  if (B.portrait) return <Portrait b={B.portrait} local={local} fps={fps} at={tl.headlineAt + 0.3} />;
   const st = B.statement;
   if (st.rotate) {
     // The one vertical beat of a video (retired: canvas-style.js never sets
@@ -332,6 +333,18 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
  * accent (no shadow — symbols are flat by design). Both pop in place (the
  * pop family, kinetic.js POP_STANDARD) from the bottom edge they stand on.
  */
+// A named person's verified portrait (canvas-layout.js PORTRAIT): the photo at
+// its own aspect in its box (not a circle, not a square), a soft drop shadow,
+// popping in place from the floor it stands on.
+function Portrait({ b, local, fps, at }) {
+  const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 100%");
+  return (
+    <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...pop }}>
+      <Img src={staticFile(b.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", boxShadow: "0 14px 44px rgba(0,0,0,0.18)" }} />
+    </div>
+  );
+}
+
 function ConceptVisual({ b, local, fps, at, accent }) {
   const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 100%");
   if (b.class === "cutout" && b.asset && b.img) {
@@ -583,16 +596,15 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const B = L.boxes, tl = timeline(c, B, dur, fps);
   if (c.photo) {
     const comp = L.composition;
-    const push = m.tier === "micro" ? 0.02 : 0.035;
+    // Owner's spec 2026-10-02 (task 3.1): the photo drifts 2% across the beat.
+    const push = 0.02;
     const p01 = clamp01(local / Math.max(1, dur));
     // SCENE-FULL: a slow push. ARCHITECTURE: a tilt up the facade (the frame
     // is scaled 1.28 and travels from the base to the top over the beat).
     // DOCUMENT: a slow scroll down the page. MONEY: a slow push.
-    const scale = comp === "ARCHITECTURE" ? 1.28 : comp === "DOCUMENT" ? 1.06 : 1 + push * p01;
-    const ty = comp === "ARCHITECTURE" ? lerp(7, -7, easeInOut(p01)) : comp === "DOCUMENT" ? lerp(0, -2.5, p01) : 0;
-    // Major: the photo expands from a small circle to the whole frame.
-    const iris = m.tier === "major" ? easeInOut(clamp01(local / m.s(0.9))) : 1;
-    const R = lerp(160, 1200, iris);
+    const scale = comp === "DOCUMENT" ? 1.06 : 1 + push * p01;
+    const ty = comp === "DOCUMENT" ? lerp(0, -2.5, p01) : 0;
+    // (The major beat's circle reveal is gone: a mask is not a pop — owner's spec 2026-10-02.)
     if (part === "header") {
       const hb = B.headline;
       // DOCUMENT: the headline is a callout — a highlighter band in the accent draws behind each line.
@@ -623,10 +635,10 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     }
     const veil = comp === "MONEY" ? "linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.30) 36%, rgba(0,0,0,0.22) 58%, rgba(0,0,0,0.80) 100%)"
       : comp === "DOCUMENT" ? "linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.05) 62%, rgba(0,0,0,0.70) 100%)"
-      : "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0) 44%, rgba(0,0,0,0.18) 58%, rgba(0,0,0,0.78) 100%)";
+      : "rgba(0,0,0,0.35)";   // place / building (owner's spec 2026-10-02, task 3.1): a flat 0.35 overlay so the type reads
     return (
       <HeroEl name="photo" b={B.photo}>
-        <div style={{ position: "absolute", inset: 0, overflow: "hidden", clipPath: iris < 1 ? `circle(${R.toFixed(0)}px at 540px 820px)` : "none" }}>
+        <div style={{ position: "absolute", inset: 0, overflow: "hidden", }}>
           <Img src={staticFile(c.photo.asset)} style={{ width: "100%", height: "100%", objectFit: "cover",
             objectPosition: c.photo.position || (comp === "DOCUMENT" ? "50% 0%" : comp === "ARCHITECTURE" ? "50% 50%" : "50% 30%"),
             transform: `translateY(${ty.toFixed(2)}%) scale(${scale.toFixed(4)})`, filter: comp === "DOCUMENT" ? "none" : "saturate(0.92) contrast(1.05)" }} />
@@ -899,7 +911,7 @@ const themeFor = (c, onPhoto) => (onPhoto ? { ink: "#FFFFFF", soft: "rgba(255,25
   : { ink: INK, soft: INK_SOFT, mid: MID, track: LIGHT, dark: false, photo: false });
 
 const COMPONENTS = {
-  "TYPE-FULL": TypeFull, "TYPE-SPLIT": TypeFull, "NUMBER-FULL": TypeFull, "DATA-FULL": DataFull, "PROCESS-FULL": ProcessFull,
+  "TYPE-FULL": TypeFull, "TYPE-SPLIT": TypeFull, "NUMBER-FULL": TypeFull, "PORTRAIT": TypeFull, "DATA-FULL": DataFull, "PROCESS-FULL": ProcessFull,
   "SCENE-FULL": SceneFull, "ARCHITECTURE": SceneFull, "DOCUMENT": SceneFull, "MONEY": SceneFull,
   "MAP-CENTERED": MapCentered, "LIST-BUILD": ListBuild, "TIMELINE": Timeline, "COMPARISON-SPLIT": ComparisonSplit,
 };
@@ -1048,7 +1060,9 @@ export function popGroups(c, L) {
 // never show (CI run 36988420698 ch-48: a list beat at 34.8% coverage).
 const settleFrame = (dur, comp) => Math.max(0, Math.min(dur - 1, ["LIST-BUILD", "TIMELINE"].includes(comp) ? dur - 1 : Math.round(dur * 0.66)));
 
-function PopGroups({ beat, idx, fps, accent, state }) {
+// live: the beat's own frame — the full-bleed photo group is drawn at it (its 2% drift
+// runs across the beat); every other group is drawn settled.
+function PopGroups({ beat, idx, fps, accent, state, live = null }) {
   const c = normalizeCanvas(beat.scene.canvas, idx);
   const L = canvasLayout(c);
   const settled = settleFrame(beat.duration_frames, L.composition);
@@ -1059,7 +1073,7 @@ function PopGroups({ beat, idx, fps, accent, state }) {
     return (
       <div key={`${idx}-${g.key}`} style={{ position: "absolute", inset: 0, clipPath: clip, opacity: p.o }}>
         <div style={{ position: "absolute", inset: 0, transformOrigin: `${g.cx.toFixed(0)}px ${g.cy.toFixed(0)}px`, transform: `scale(${p.s.toFixed(4)})` }}>
-          <BeatCanvas beat={beat} idx={idx} bodyLocal={settled} headerLocal={settled} fps={fps} accent={accent} hero={null} show={g.show} still />
+          <BeatCanvas beat={beat} idx={idx} bodyLocal={g.key === "photo" && live != null ? Math.max(0, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={settled} fps={fps} accent={accent} hero={null} show={g.show} still />
         </div>
       </div>
     );
@@ -1128,8 +1142,8 @@ export function CanvasVideo({ plan }) {
     {/* Uniform white on every beat (backgrounds.js); a full-bleed photo beat
         covers it, the next beat shows it again. */}
     <StudioBG>
-      {prev && local <= POP.OUT ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} /> : null}
-      <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} />
+      {prev && local <= POP.OUT ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} live={prev.duration_frames - 1} /> : null}
+      <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} live={local} />
       <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} maxSize={cLayout.boxes.cutout0 ? 40 : 58} />
     </StudioBG>
     </ShadowOn.Provider>

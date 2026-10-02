@@ -92,6 +92,11 @@ const DURATION_TOL = 0.1;
 const AV_TOL = 1.0;
 const MAX_MECH_SHARE = 0.4;
 
+// A full-bleed photo beat covers the ground (and is exempt from the ground / coverage /
+// middle-zone pixel checks); a PORTRAIT holds a photo on the white ground and is checked
+// like any other beat (canvas-layout.js canvasManifest ground: "white").
+const fullBleed = (c) => !!c?.photo && c?.ground !== "white";
+
 function arg(name) {
   const i = process.argv.indexOf(`--${name}`);
   return i > -1 ? process.argv[i + 1] : null;
@@ -361,7 +366,7 @@ function canvasCoverage(video, beats) {
   beats.forEach((b, i) => {
     let best = 0;
     // A full-bleed photo is the whole frame by construction.
-    if (b.canvas?.photo) { spans.push(1); return; }
+    if (fullBleed(b.canvas)) { spans.push(1); return; }
     for (const share of (process.env.COV_SHARES ? process.env.COV_SHARES.split(",").map(Number) : [0.62, 0.9])) {   // every phrase landed; the late sample is where a list has built up
       const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share;
       const buf = rgbFrame(video, t, W, H);
@@ -485,7 +490,7 @@ function canvasGround(video, beats) {
   const W = 540, H = 960;
   beats.forEach((b, i) => { if (b.canvas?.dark) bad.push(`beat ${i}: dark ground (the ground is uniform white)`); });
   beats.forEach((b, i) => {
-    if (b.canvas?.photo) return;
+    if (fullBleed(b.canvas)) return;
     const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * 0.7;
     const buf = rgbFrame(video, t, W, H);
     if (!buf) return;
@@ -576,7 +581,7 @@ async function zonesNoOverlap(video, beats) {
     if (!c?.boxes) return;
     const zr = zoneReport({ composition: c.composition, boxes: c.boxes });
     if (!zr.ok) bad.push(`beat ${i} (${c.composition}): ${[...zr.spans, ...zr.clashes].join("; ")}`);
-    if (c.photo || Object.values(c.boxes).some((v) => v?.role === "shape")) return;
+    if (fullBleed(c) || Object.values(c.boxes).some((v) => v?.role === "shape")) return;
     for (const share of [0.3, 0.62, 0.9]) {
       const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share;
       const buf = rgbFrame(video, t, W, H);
@@ -640,7 +645,7 @@ function middleZoneFilled(video, beats) {
   const bad = [];
   const W = 270, H = 480, y0 = Math.floor((620 / 1920) * H), y1 = Math.ceil((1340 / 1920) * H);
   beats.forEach((b, i) => {
-    if (b.canvas?.photo) return;
+    if (fullBleed(b.canvas)) return;
     const map = b.canvas?.composition === "MAP-CENTERED";
     let best = 0;
     for (const share of [0.62, 0.9]) {
