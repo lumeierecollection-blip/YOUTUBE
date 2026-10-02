@@ -951,9 +951,14 @@
           "topic": "Eritrea-ethiopia-embassy-closure",
           "slug": "eritrea-ethiopia-embassy-closure-tensions",
           "reserved_at": "2026-10-02T11:11:12.945Z"
+        },
+        {
+          "topic": "Iran-US-sanctions-trade",
+          "slug": "iran-us-sanctions-trade-now",
+          "reserved_at": "2026-10-02T14:37:52.715Z"
         }
       ],
-      "last_generated": "2026-10-02T12:03:31.796Z"
+      "last_generated": "2026-10-02T14:37:52.716Z"
     },
     "10": {
       "channel_name": "Word Lab",
