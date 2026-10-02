@@ -26,10 +26,6 @@ query.
 - pixabay "broken chain": verify WRONG — saw "a rusty excavator"
 - pixabay "broken chain": verify WRONG — saw "beaded bracelet in a geode"
 
-## calendar
-
-- removed by re-verification (2026-10-02 rule "right or absent"): WRONG — saw "a decorative sun / astrological dial, not a calendar"
-
 ## checkmark
 
 - pixabay "checkmark isolated": 30 candidate(s), none passed the licence / keyword / size filter
@@ -40,10 +36,6 @@ query.
 - pixabay "checkmark": verify WRONG — saw "a laptop computer displaying an application form"
 - pixabay "check mark isolated": verify WRONG — saw "a hand holding a marker"
 - pixabay "check mark isolated": verify CLOSE — saw "a 3D character holding a giant checkmark"
-
-## city-skyline
-
-- removed by re-verification (2026-10-02 rule "right or absent"): WRONG — saw "a single tower, not a skyline"
 
 ## contract
 
@@ -59,11 +51,13 @@ query.
 - pixabay "credit card isolated": rejected — the mask runs along the photo's bottom edge for 60% of it (> 40%): cut by the frame
 - pixabay "credit card isolated": rejected — the mask runs along the photo's left edge for 57% of it (> 40%): cut by the frame
 - pixabay "credit card isolated": verify CLOSE — saw "a pile of credit cards"
-- pixabay "credit card isolated": verify CLOSE — saw "a credit card inserted into a payment terminal"
+- pixabay "credit card isolated": rejected — the largest solid region is 61% of what is visible (< 80%): more than one object / a scene
 - pixabay "credit card": rejected — the largest solid region is 30% of what is visible (< 80%): more than one object / a scene
 - pixabay "credit card": rejected — the largest solid region is 49% of what is visible (< 80%): more than one object / a scene
 - pixabay "credit card": rejected — the mask runs along the photo's left edge for 57% of it (> 40%): cut by the frame
 - pixabay "credit card": verify CLOSE — saw "a pile of credit cards"
+- pixabay "credit card": rejected — the largest solid region is 61% of what is visible (< 80%): more than one object / a scene
+- pixabay "credit card": verify CLOSE — saw "a credit card inserted into a payment terminal"
 
 ## crosshair
 
@@ -75,8 +69,8 @@ query.
 ## dollar-sign
 
 - pixabay "dollar sign isolated": verify WRONG — saw "a fan of one-dollar bills"
-- pixabay "dollar sign isolated": verify WRONG — saw "a man wearing a checkered headscarf and green sunglasses"
 - pixabay "dollar sign isolated": verify WRONG — saw "one dollar bill"
+- pixabay "dollar sign isolated": verify WRONG — saw "a one dollar bill flag"
 
 ## downward-arrow
 
@@ -95,15 +89,15 @@ query.
 
 ## factory
 
-- removed by re-verification (2026-10-02 rule "right or absent"): WRONG — saw "an assembly-line interior, not a factory"
-
-## government-building
-
-- removed by re-verification (2026-10-02 rule "right or absent"): WRONG — saw "a modern office block"
-
-## handshake
-
-- removed by re-verification (2026-10-02 rule "right or absent"): WRONG — saw "two wooden artist mannequins, not a handshake"
+- pixabay "factory isolated": rejected — the object covers 0.9% of the photo (< 12%)
+- pixabay "factory isolated": verify DIFFERENT — saw "hanging woman"
+- pixabay "factory isolated": verify DIFFERENT — saw "bundles of steel pipes"
+- pixabay "factory isolated": rejected — the object covers 10.5% of the photo (< 12%)
+- pixabay "factory isolated": rejected — the object covers 8.4% of the photo (< 12%)
+- pixabay "factory isolated": rejected — the object covers 0.1% of the photo (< 12%)
+- pixabay "factory": rejected — the object covers 0.9% of the photo (< 12%)
+- pixabay "factory": rejected — the object covers 10.5% of the photo (< 12%)
+- pixabay "factory": verify DIFFERENT — saw "bundles of steel pipes"
 
 ## key
 
@@ -122,11 +116,7 @@ query.
 - pixabay "map pin isolated": rejected — the object covers 6.1% of the photo (< 12%)
 - pixabay "map pin": rejected — the object covers 1.6% of the photo (< 12%)
 - pixabay "map pin": rejected — the object covers 0.6% of the photo (< 12%)
-- pixabay "map pin": verify WRONG — saw "a woman holding a megaphone"
-
-## padlock
-
-- removed by re-verification (2026-10-02 rule "right or absent"): WRONG — saw "mostly a rusty chain; the padlock is a small part"
+- pixabay "map pin": verify DIFFERENT — saw "planet Earth"
 
 ## person-walking
 

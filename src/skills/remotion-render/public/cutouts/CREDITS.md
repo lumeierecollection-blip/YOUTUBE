@@ -12,15 +12,20 @@ attribution below.
 |---|---|---|---|---|---|
 | bank-building | pixabay | PIXABAY | Image by Catonauts on Pixabay | <https://pixabay.com/photos/building-bank-architecture-50084/> | bank building isolated |
 | business-person | pixabay | PIXABAY | Image by michael_schueller on Pixabay | <https://pixabay.com/photos/manager-man-phone-businessman-suit-6060307/> | businessman isolated |
+| calendar | pixabay | PIXABAY | Image by Bellahu123 on Pixabay | <https://pixabay.com/photos/calendar-photo-calendar-december-7537223/> | calendar isolated |
+| city-skyline | pixabay | PIXABAY | Image by pixexid on Pixabay | <https://pixabay.com/photos/panorama-miami-city-skyline-2117310/> | city skyline isolated |
 | coin-stack | pixabay | PIXABAY | Image by PublicDomainPictures on Pixabay | <https://pixabay.com/photos/business-cash-coin-concept-credit-17965/> | stack of coins isolated |
 | courthouse | pixabay | PIXABAY | Image by 12019 on Pixabay | <https://pixabay.com/photos/courthouse-alabama-building-226689/> | courthouse isolated |
 | dollar-bill | pixabay | PIXABAY | Image by PublicDomainPictures on Pixabay | <https://pixabay.com/photos/money-currency-cash-dollar-dollars-19818/> | dollar bill isolated |
 | flag-america | pixabay | PIXABAY | Image by shawn1 on Pixabay | <https://pixabay.com/photos/american-flag-us-flag-301164/> | american flag isolated |
 | gavel | pixabay | PIXABAY | Image by sergeitokmakov on Pixabay | <https://pixabay.com/photos/gavel-justice-judge-courtroom-7499921/> | gavel isolated |
 | globe | pixabay | PIXABAY | Image by Archimar on Pixabay | <https://pixabay.com/photos/globe-world-geography-continents-8840864/> | globe isolated |
+| government-building | pixabay | PIXABAY | Image by jjjun on Pixabay | <https://pixabay.com/photos/tokyo-353818/> | government building isolated |
 | group-people | pixabay | PIXABAY | Image by knuckles_echidna on Pixabay | <https://pixabay.com/photos/family-happy-group-relationship-7040689/> | group of people isolated |
+| handshake | pixabay | PIXABAY | Image by GulArt on Pixabay | <https://pixabay.com/photos/shaking-hands-shake-hands-welcome-2730650/> | handshake isolated |
 | magnifying-glass | pixabay | PIXABAY | Image by PublicDomainPictures on Pixabay | <https://pixabay.com/photos/magnifying-glass-photo-color-316049/> | magnifying glass isolated |
 | office-tower | pixabay | PIXABAY | Image by solomonikvik on Pixabay | <https://pixabay.com/photos/dubai-skyscraper-architecture-urban-7237748/> | office tower isolated |
+| padlock | pixabay | PIXABAY | Image by ElenaBaca on Pixabay | <https://pixabay.com/photos/padlock-old-metal-closed-padlocks-5003455/> | padlock isolated |
 | person-silhouette | pixabay | PIXABAY | Image by Cacsh on Pixabay | <https://pixabay.com/photos/man-silhouette-model-balcony-view-5615240/> | person silhouette |
 | radar | pixabay | PIXABAY | Image by WikiImages on Pixabay | <https://pixabay.com/photos/radar-radar-dish-earth-station-63014/> | radar isolated |
 | upward-arrow | pixabay | PIXABAY | Image by Sir_Buhlak on Pixabay | <https://pixabay.com/photos/arrow-nature-direction-forest-4844205/> | arrow up isolated |

@@ -14,11 +14,12 @@
         "seen": "rolled-up dollar bills"
       }
     },
-    "verified_at": "2026-10-02T00:13:15.547Z",
+    "verified_at": "2026-10-02T09:14:00.531Z",
     "source_url": "https://pixabay.com/photos/money-currency-cash-dollar-dollars-19818/",
-    "provider": "gemini",
+    "provider": "groq",
     "verdict": "MATCH",
-    "seen": "twenty dollar bill"
+    "seen": "twenty dollar bill",
+    "prompt": "literal-recognizable"
   },
   "dollar-sign": {
     "rejected": {
@@ -62,11 +63,12 @@
   },
   "coin-stack": {
     "rejected": {},
-    "verified_at": "2026-10-02T00:13:35.168Z",
+    "verified_at": "2026-10-02T09:14:01.555Z",
     "source_url": "https://pixabay.com/photos/business-cash-coin-concept-credit-17965/",
-    "provider": "gemini",
+    "provider": "groq",
     "verdict": "MATCH",
-    "seen": "a stack of metal coins"
+    "seen": "stack of gold coins",
+    "prompt": "literal-recognizable"
   },
   "wallet": {
     "rejected": {
@@ -89,11 +91,12 @@
         "seen": "a brown hat and sunglasses"
       }
     },
-    "verified_at": "2026-10-02T01:57:55.376Z",
+    "verified_at": "2026-10-02T09:14:14.979Z",
     "source_url": "https://pixabay.com/photos/wallet-leather-money-pay-494169/",
     "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a leather wallet"
+    "seen": "open leather wallet",
+    "prompt": "literal-recognizable"
   },
   "bank-statement": {
     "rejected": {
@@ -184,11 +187,12 @@
         "seen": "a photo of a woman"
       }
     },
-    "verified_at": "2026-10-02T00:15:26.462Z",
+    "verified_at": "2026-10-02T09:14:03.342Z",
     "source_url": "https://pixabay.com/photos/man-silhouette-model-balcony-view-5615240/",
     "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a person silhouette"
+    "seen": "person silhouette",
+    "prompt": "literal-recognizable"
   },
   "person-walking": {
     "rejected": {
@@ -208,19 +212,21 @@
   },
   "business-person": {
     "rejected": {},
-    "verified_at": "2026-10-02T00:15:57.660Z",
+    "verified_at": "2026-10-02T09:14:04.504Z",
     "source_url": "https://pixabay.com/photos/manager-man-phone-businessman-suit-6060307/",
-    "provider": "groq",
+    "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a man in a business suit"
+    "seen": "man in a business suit holding a phone",
+    "prompt": "literal-recognizable"
   },
   "group-people": {
     "rejected": {},
-    "verified_at": "2026-10-02T00:16:33.603Z",
+    "verified_at": "2026-10-02T09:14:06.091Z",
     "source_url": "https://pixabay.com/photos/family-happy-group-relationship-7040689/",
     "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a group of people"
+    "seen": "a family group with a gift",
+    "prompt": "literal-recognizable"
   },
   "scientist": {
     "rejected": {
@@ -246,11 +252,12 @@
   },
   "worker": {
     "rejected": {},
-    "verified_at": "2026-10-02T00:17:09.630Z",
+    "verified_at": "2026-10-02T09:14:07.764Z",
     "source_url": "https://pixabay.com/photos/vehicle-man-safety-4717534/",
-    "provider": "groq",
+    "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a construction worker"
+    "seen": "construction worker",
+    "prompt": "literal-recognizable"
   },
   "courthouse": {
     "rejected": {
@@ -273,11 +280,12 @@
         "seen": "a clock tower and clock"
       }
     },
-    "verified_at": "2026-10-02T01:59:06.466Z",
+    "verified_at": "2026-10-02T09:14:16.272Z",
     "source_url": "https://pixabay.com/photos/courthouse-alabama-building-226689/",
     "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a courthouse building with a clock tower and columns"
+    "seen": "historical courthouse building with a clock tower",
+    "prompt": "literal-recognizable"
   },
   "government-building": {
     "rejected": {
@@ -288,11 +296,11 @@
         "seen": "a modern office block"
       }
     },
-    "verified_at": "2026-10-02T08:39:05.224Z",
-    "source_url": "https://pixabay.com/photos/house-building-architecture-modern-7783183/",
-    "provider": "human-review",
-    "verdict": "WRONG",
-    "seen": "a modern office block"
+    "verified_at": "2026-10-02T09:15:29.468Z",
+    "source_url": "https://pixabay.com/photos/tokyo-353818/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "Tokyo Metropolitan Government Building"
   },
   "bank-building": {
     "rejected": {
@@ -321,11 +329,12 @@
         "seen": "a modern glass skyscraper"
       }
     },
-    "verified_at": "2026-10-02T01:59:17.445Z",
+    "verified_at": "2026-10-02T09:14:18.015Z",
     "source_url": "https://pixabay.com/photos/building-bank-architecture-50084/",
     "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a bank building"
+    "seen": "bank building",
+    "prompt": "literal-recognizable"
   },
   "factory": {
     "rejected": {
@@ -346,6 +355,18 @@
         "provider": "human-review",
         "verdict": "WRONG",
         "seen": "an assembly-line interior, not a factory"
+      },
+      "https://pixabay.com/photos/woman-glimmzug-hangs-wire-rope-3214614/": {
+        "verified_at": "2026-10-02T09:15:35.978Z",
+        "provider": "gemini",
+        "verdict": "DIFFERENT",
+        "seen": "hanging woman"
+      },
+      "https://pixabay.com/photos/steel-pipes-steel-factory-6967964/": {
+        "verified_at": "2026-10-02T09:15:40.911Z",
+        "provider": "gemini",
+        "verdict": "DIFFERENT",
+        "seen": "bundles of steel pipes"
       }
     },
     "verified_at": "2026-10-02T08:39:05.224Z",
@@ -356,11 +377,12 @@
   },
   "office-tower": {
     "rejected": {},
-    "verified_at": "2026-10-02T00:19:08.643Z",
+    "verified_at": "2026-10-02T09:14:08.724Z",
     "source_url": "https://pixabay.com/photos/dubai-skyscraper-architecture-urban-7237748/",
-    "provider": "groq",
+    "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a tall skyscraper"
+    "seen": "office tower",
+    "prompt": "literal-recognizable"
   },
   "city-skyline": {
     "rejected": {
@@ -371,11 +393,11 @@
         "seen": "a single tower, not a skyline"
       }
     },
-    "verified_at": "2026-10-02T08:39:05.224Z",
-    "source_url": "https://pixabay.com/photos/germany-city-skyscrapers-frankfurt-7409782/",
-    "provider": "human-review",
-    "verdict": "WRONG",
-    "seen": "a single tower, not a skyline"
+    "verified_at": "2026-10-02T09:16:01.558Z",
+    "source_url": "https://pixabay.com/photos/panorama-miami-city-skyline-2117310/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "city skyline"
   },
   "contract": {
     "rejected": {
@@ -454,11 +476,12 @@
         "seen": "a stack of metal coins"
       }
     },
-    "verified_at": "2026-10-02T01:22:16.074Z",
+    "verified_at": "2026-10-02T09:14:12.205Z",
     "source_url": "https://pixabay.com/photos/gavel-justice-judge-courtroom-7499921/",
-    "provider": "groq",
+    "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a wooden gavel"
+    "seen": "wooden gavel with a sounding block",
+    "prompt": "literal-recognizable"
   },
   "scales": {
     "rejected": {
@@ -537,11 +560,12 @@
         "seen": "a wooden post with arrow signs"
       }
     },
-    "verified_at": "2026-10-02T00:22:39.001Z",
+    "verified_at": "2026-10-02T09:14:09.839Z",
     "source_url": "https://pixabay.com/photos/arrow-nature-direction-forest-4844205/",
-    "provider": "groq",
+    "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a round orange sign with a white upward arrow"
+    "seen": "upward arrow sign",
+    "prompt": "literal-recognizable"
   },
   "downward-arrow": {
     "rejected": {
@@ -585,11 +609,12 @@
   },
   "warning-triangle": {
     "rejected": {},
-    "verified_at": "2026-10-02T00:23:19.754Z",
+    "verified_at": "2026-10-02T09:14:11.030Z",
     "source_url": "https://pixabay.com/photos/sign-road-sign-try-your-brakes-road-1358288/",
     "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a triangle warning sign"
+    "seen": "road warning sign",
+    "prompt": "literal-recognizable"
   },
   "checkmark": {
     "rejected": {
@@ -656,11 +681,11 @@
         "seen": "two wooden artist mannequins, not a handshake"
       }
     },
-    "verified_at": "2026-10-02T08:39:05.224Z",
-    "source_url": "https://pixabay.com/photos/shake-hands-handshake-helping-hand-3147067/",
-    "provider": "human-review",
-    "verdict": "WRONG",
-    "seen": "two wooden artist mannequins, not a handshake"
+    "verified_at": "2026-10-02T09:17:52.559Z",
+    "source_url": "https://pixabay.com/photos/shaking-hands-shake-hands-welcome-2730650/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "two wooden mannequins shaking hands"
   },
   "magnifying-glass": {
     "rejected": {
@@ -689,11 +714,12 @@
         "seen": "a girl holding a magnifying glass"
       }
     },
-    "verified_at": "2026-10-02T02:02:10.574Z",
+    "verified_at": "2026-10-02T09:14:19.774Z",
     "source_url": "https://pixabay.com/photos/magnifying-glass-photo-color-316049/",
     "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a magnifying glass"
+    "seen": "ornate magnifying glass",
+    "prompt": "literal-recognizable"
   },
   "padlock": {
     "rejected": {
@@ -704,11 +730,11 @@
         "seen": "mostly a rusty chain; the padlock is a small part"
       }
     },
-    "verified_at": "2026-10-02T08:39:05.224Z",
-    "source_url": "https://pixabay.com/photos/padlock-costa-rica-locked-gate-7346959/",
-    "provider": "human-review",
-    "verdict": "WRONG",
-    "seen": "mostly a rusty chain; the padlock is a small part"
+    "verified_at": "2026-10-02T09:18:06.832Z",
+    "source_url": "https://pixabay.com/photos/padlock-old-metal-closed-padlocks-5003455/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "old rusty padlock"
   },
   "key": {
     "rejected": {
@@ -827,11 +853,12 @@
         "seen": "an airport control tower"
       }
     },
-    "verified_at": "2026-10-02T01:26:41.421Z",
+    "verified_at": "2026-10-02T09:14:13.435Z",
     "source_url": "https://pixabay.com/photos/radar-radar-dish-earth-station-63014/",
     "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a large radar dish"
+    "seen": "radar dish",
+    "prompt": "literal-recognizable"
   },
   "map-pin": {
     "rejected": {
@@ -846,6 +873,12 @@
         "provider": "gemini",
         "verdict": "WRONG",
         "seen": "a woman in green swimwear holding a balloon and megaphone"
+      },
+      "https://pixabay.com/photos/earth-space-world-globe-map-stars-7520535/": {
+        "verified_at": "2026-10-02T09:19:05.256Z",
+        "provider": "gemini",
+        "verdict": "DIFFERENT",
+        "seen": "planet Earth"
       }
     }
   },
@@ -870,11 +903,12 @@
         "seen": "American flag and California state flag"
       }
     },
-    "verified_at": "2026-10-02T02:04:01.812Z",
+    "verified_at": "2026-10-02T09:14:22.827Z",
     "source_url": "https://pixabay.com/photos/american-flag-us-flag-301164/",
     "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "an american flag"
+    "seen": "American flag",
+    "prompt": "literal-recognizable"
   },
   "calendar": {
     "rejected": {
@@ -903,11 +937,11 @@
         "seen": "a decorative sun / astrological dial, not a calendar"
       }
     },
-    "verified_at": "2026-10-02T08:39:05.224Z",
-    "source_url": "https://pixabay.com/photos/aztecs-mexican-calendar-sundial-sun-74016/",
-    "provider": "human-review",
-    "verdict": "WRONG",
-    "seen": "a decorative sun / astrological dial, not a calendar"
+    "verified_at": "2026-10-02T09:17:59.903Z",
+    "source_url": "https://pixabay.com/photos/calendar-photo-calendar-december-7537223/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "wall calendar"
   },
   "globe": {
     "rejected": {
@@ -936,10 +970,11 @@
         "seen": "a Christmas wreath"
       }
     },
-    "verified_at": "2026-10-02T02:03:26.713Z",
+    "verified_at": "2026-10-02T09:14:21.427Z",
     "source_url": "https://pixabay.com/photos/globe-world-geography-continents-8840864/",
     "provider": "gemini",
     "verdict": "MATCH",
-    "seen": "a globe"
+    "seen": "geographic globe",
+    "prompt": "literal-recognizable"
   }
 }
