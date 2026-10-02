@@ -1014,13 +1014,21 @@ export function popGroups(c, L) {
   const groups = [];
   if (photo) groups.push({ key: "photo", show: "body", clip: null, cx: 540, cy: 960 });
   for (const [band, [y0, y1]] of Object.entries(BANDS)) {
-    const bs = flattenBoxes(L.boxes).filter(([k, b]) => b && b.w > 0 && b.h > 0 && k !== "photo" && b.role !== "shape" && b.y + b.h / 2 >= y0 && b.y + b.h / 2 < y1).map(([, b]) => b);
-    if (!bs.length) continue;
+    const kb = flattenBoxes(L.boxes).filter(([k, b]) => b && b.w > 0 && b.h > 0 && k !== "photo" && b.role !== "shape" && b.y + b.h / 2 >= y0 && b.y + b.h / 2 < y1);
+    if (!kb.length) continue;
+    const bs = kb.map(([, b]) => b);
     const x0 = Math.min(...bs.map((b) => b.x)), x1 = Math.max(...bs.map((b) => b.x + b.w));
     const t0 = Math.min(...bs.map((b) => b.y)), t1 = Math.max(...bs.map((b) => b.y + b.h));
-    groups.push({ key: band, show: photo ? "header" : "all", clip: [y0, y1], cx: (x0 + x1) / 2, cy: (t0 + t1) / 2 });
+    // A group of only furniture (a rule, a kicker, a folio) is minor: it pops
+    // AFTER the group holding the real element, or the frame is near-empty
+    // until the statement arrives (CI run 36985423031 ch-44: frames 6-8 of
+    // two boundaries held only a hairline rule).
+    const major = kb.some(([k, b]) => !/^(rule|kicker|folio|end|line)/.test(k) && b.role !== "rule" && b.role !== "data");
+    groups.push({ key: band, show: photo ? "header" : "all", clip: [y0, y1], cx: (x0 + x1) / 2, cy: (t0 + t1) / 2, major });
   }
-  return groups.map((g, i) => ({ ...g, at: i * POP.STAGGER }));
+  // Arrival order: the photo, then major groups (top before middle), then minor ones.
+  const order = [...groups.filter((g) => g.key === "photo"), ...groups.filter((g) => g.key !== "photo" && g.major), ...groups.filter((g) => g.key !== "photo" && !g.major)];
+  return order.map((g, i) => ({ ...g, at: i * POP.STAGGER }));
 }
 /** The frame a beat is drawn at: every element in, none leaving (word exits start at >= 70%). */
 const settleFrame = (dur) => Math.max(0, Math.min(dur - 1, Math.round(dur * 0.66)));

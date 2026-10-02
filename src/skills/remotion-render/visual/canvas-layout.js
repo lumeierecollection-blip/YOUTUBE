@@ -121,7 +121,12 @@ export const numberInk = (text, size) => {
   // "%" (set at 0.8x on the baseline) drops its lower circle and slash ~0.1 em
   // below it (CI run 36976172356 ch-44 GAUGE "50%": crossed y 1340 by ~25 px).
   const pct = /%/.test(String(text ?? "")) && !sep ? 0.1 : 0;
-  return Math.ceil(size * ((p.isQuantity === false ? 0.94 : 0.82) + sep + pct));
+  // 0.94 for EVERY figure: with the static camera (pop compositor) a
+  // quantity's ink also ends 0.94 em below its box top ("50", size 518:
+  // CI run 36985423031 ch-1 crossed y 1340 by ~50 px). The earlier 0.82 for
+  // quantities was measured while the camera push still lifted the body.
+  void p;
+  return Math.ceil(size * (0.94 + sep + pct));
 };
 // Fraunces descenders (g j p q y , ;) reach ~1.07 em below a line's top, past
 // a 0.95 (headline) or 0.90 (emphasis) line box: a text block anchored to a
