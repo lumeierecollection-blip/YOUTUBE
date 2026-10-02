@@ -133,7 +133,9 @@ async function resolvePlaceScene(tag, type, name, context) {
 
 /** Resolve one named entity of a beat. Memoized per run (the same entity in two beats is fetched and verified once). */
 async function resolveSceneEntity({ channel, beatIndex, entity, context = "" }) {
-  const type = String(entity?.type || "").toLowerCase(), name = String(entity?.name || "").trim();
+  // "Ontario Landlord and Tenant Board (LTB)": a bracketed acronym is not part of the name
+  // any source files it under (CI run 37067332714 ch-2: every lookup missed).
+  const type = String(entity?.type || "").toLowerCase(), name = String(entity?.name || "").replace(/\s*\([^)]*\)/g, "").trim();
   const tag = `ch-${channel} beat ${beatIndex}: entity ${type} "${name}"`;
   if (!name || !["person", "place", "building", "organization"].includes(type)) return { ok: false, kind: type, why: "not a real-world entity type" };
   const key = `${type}:${name.toLowerCase()}`;

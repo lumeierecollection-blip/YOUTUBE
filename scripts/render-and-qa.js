@@ -448,7 +448,10 @@ function measureGround(videoPath) {
   let man = null;
   try { man = JSON.parse(readFileSync(manifestPath, "utf-8")); } catch { return []; }
   if (typeof man?.ground !== "string") return [];                // not a canvas render
-  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white");
+  // Not a beat whose layout draws a full-frame shape: COMPARISON-SPLIT's diagonal
+  // covers the top-right corner by design (CI run 37067332714 ch-2: beat 0 was one,
+  // and its corner read #0E0E0E as "the ground").
+  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white" && b.canvas?.composition !== "COMPARISON-SPLIT" && !Object.values(b.canvas?.boxes || {}).some((v) => v?.role === "shape"));
   if (!beat) { console.log("[verify] ground: every beat is a full-bleed photo — the white ground not measured"); return []; }
   const at = beat.start_sec + beat.duration_sec * 0.6;
   const framePath = videoPath.replace(/\.mp4$/, "-ground.png");
@@ -1102,7 +1105,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         console.log(`[resolve] ch-${channelId} beat ${b.index}: no verified photo of place "${region.name}" — rendering its map (MAP-CENTERED)`);
       } else if (!photo && real.length) {
         b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
-        b.name_card = { name: real[0].name, sub: keyPhraseOf(b, real[0].name) };
+        b.name_card = { name: real[0].name.replace(/\s*\([^)]*\)/g, "").trim(), sub: keyPhraseOf(b, real[0].name) };
         counts.entity_fallbacks++;
         console.log(`[resolve] ch-${channelId} beat ${b.index}: no verified photo of ${real.map((e) => `${e.type} "${e.name}"`).join(", ")} — rendering as TYPE with the name only ("${b.name_card.name}"${b.name_card.sub ? ` / "${b.name_card.sub}"` : ""})`);
       }
