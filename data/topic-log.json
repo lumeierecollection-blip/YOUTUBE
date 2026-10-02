@@ -492,9 +492,14 @@
           "topic": "us-immigration-policy-changes-2026",
           "slug": "us-immigration-policy-changes-2026",
           "reserved_at": "2026-10-02T12:29:30.557Z"
+        },
+        {
+          "topic": "California's Electric Shock Gloves Ban 2026",
+          "slug": "california-electric-shock-gloves-ban-2026",
+          "reserved_at": "2026-10-02T13:06:31.655Z"
         }
       ],
-      "last_generated": "2026-10-02T12:29:30.557Z"
+      "last_generated": "2026-10-02T13:06:31.656Z"
     },
     "3": {
       "channel_name": "AI Tested",
