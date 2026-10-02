@@ -215,9 +215,14 @@
           "topic": "50/30/20 budgeting rule and its impact in 2026",
           "slug": "50-30-20-budget-rule-impact-2026",
           "reserved_at": "2026-10-02T08:49:03.042Z"
+        },
+        {
+          "topic": "The behavioral economics study that proves saving money is harder than you think",
+          "slug": "behavioral-economics-study-saving-money",
+          "reserved_at": "2026-10-02T09:18:56.057Z"
         }
       ],
-      "last_generated": "2026-10-02T08:49:03.042Z"
+      "last_generated": "2026-10-02T09:18:56.057Z"
     },
     "2": {
       "channel_name": "Legal Brief",
