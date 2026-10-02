@@ -1425,9 +1425,14 @@
           "topic": "osogbo-food-scheme",
           "slug": "osogbo-food-scheme-sparks-panic-2026-10-01",
           "reserved_at": "2026-10-02T02:00:42.350Z"
+        },
+        {
+          "topic": "Ponzi scheme breakdowns",
+          "slug": "oxustech-ponzi-collapses-withdrawals-disabled",
+          "reserved_at": "2026-10-02T02:40:01.639Z"
         }
       ],
-      "last_generated": "2026-10-02T02:00:42.350Z"
+      "last_generated": "2026-10-02T02:40:01.639Z"
     },
     "27": {
       "channel_name": "Climate Now",
