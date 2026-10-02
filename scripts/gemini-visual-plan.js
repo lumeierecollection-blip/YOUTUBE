@@ -722,15 +722,20 @@ Rules that are enforced, not advisory:
   with what the sentence grounds). Prefer the specific composition — a
   timeline, comparison, list, map, process — to a statement.
 - VISUAL FIRST: this is motion graphics, not a typography reel. Of the
-  beats between the hook and the close, AT LEAST 60% are visual (a chart,
-  number, map, process, timeline, comparison, list or photo) and at most
-  40% are TYPE-FULL / TYPE-SPLIT; never two TYPE-FULL in a row. A sentence
-  that states a number, names a place or a person, describes a process or
-  compares two things IS a visual beat — choose that visual, never TYPE.
-  TYPE is only for an abstract claim with nothing to show. A sentence that
-  names a physical object (a gavel, a padlock, cash) also lists it in
-  "concepts", so the object is shown. (Enforced after planning: a TYPE beat
-  whose sentence grounds a visual is converted to it.)
+  beats between the hook and the close, AT LEAST 60% are visual and at most
+  40% are TYPE; never two TYPE-FULL in a row. For every content beat (not
+  the hook, not the CTA), decide in this order:
+    · the sentence names a number?            -> COUNTER / BAR / PIE / LINE / GAUGE (DATA-FULL)
+    · the sentence names a place?             -> MAP (MAP-CENTERED)
+    · the sentence names a person?            -> PHOTO of that person (SCENE-FULL)
+    · the sentence names a physical object?   -> list it in "concepts" (shown as a
+                                                 real isolated photograph of it)
+    · it describes a process or a cause?      -> PROCESS (PROCESS-FULL)
+    · it describes a change?                  -> LINE / BAR / COMPARE (DATA-FULL)
+    · only if none of the above apply:        TYPE-FULL
+  TYPE-FULL is the last choice, not the first. (Enforced: a plan under 60%
+  visual is sent back once; a TYPE beat whose sentence grounds a visual is
+  converted to it.)
 - Headlines are written in sentence case ("Trucking entrepreneur
   indicted"), never in capitals; the system sets the case from the sentence.
 - The "kind" TYPE, the kinetic hook/closer, is limited to ${typoMax >= 2 ? `beat 0 and beat ${sentences.length - 1}` : "beat 0"}; the system
@@ -1053,6 +1058,34 @@ async function main() {
   if (geminiResult?.beats && geminiResult.beats.length !== sentences.length) {
     console.error(`Visual plan failed: ${geminiResult.beats.length} beats for ${sentences.length} sentences after the retry — not padding or trimming it`);
     process.exit(1);
+  }
+  // ── VISUAL-FIRST RATIO (owner's spec 2026-10-02) ──────────────────────
+  // Content beats (not the hook, not the CTA): >= 60% visual. A beat is
+  // visual when its visual_type is not TYPE, or when it names an object in
+  // "concepts" (shown as an isolated photograph). Under 60%: the plan is
+  // rejected and the same provider is re-asked ONCE with the constraint
+  // emphasized; the better of the two plans is kept (the resolver then
+  // converts any TYPE beat whose sentence grounds a visual).
+  const visualRatio = (r) => {
+    const content = (r?.beats || []).slice(1, -1);
+    const vis = content.filter((b) => String(b.visual_type || "TYPE").toUpperCase() !== "TYPE" || (Array.isArray(b.concepts) && b.concepts.length)).length;
+    return { vis, type: content.length - vis, share: content.length ? vis / content.length : 1 };
+  };
+  if (okBeats(geminiResult) && sentences.length >= 4) {
+    let rr = visualRatio(geminiResult);
+    console.log(`[plan] beat ratio: ${rr.vis} visual / ${rr.type} type (${(rr.share * 100).toFixed(0)}% visual, ${rr.share >= 0.6 ? "passes" : "fails — re-asking once"})`);
+    if (rr.share < 0.6) {
+      const emph = prompt + `\n\nREJECTED: your plan made only ${(rr.share * 100).toFixed(0)}% of the content beats visual. At least 60% of the beats between the hook and the close MUST be visual (COUNTER, BAR, PIE, LINE, GAUGE, MAP, PROCESS, TIMELINE, COMPARE, LIST, PHOTO — or a TYPE beat that lists a named physical object in "concepts"). Walk the decision order for every content beat: a number, a place, a person, an object, a process, a change — TYPE only when none applies. Only what each sentence actually states.` + strictPrompt.slice(prompt.length);
+      const ask = planSource === "groq" ? () => callGroq([{ role: "user", content: emph }], { maxTokens, temperature: 0.2 })
+        : planSource === "ollama" ? () => callOllamaOnly([{ role: "user", content: emph }], { maxTokens, temperature: 0.2, capKind: "plan" }, "planner")
+        : () => callGeminiApi([{ role: "user", content: emph }], { maxTokens, temperature: 0.2, noCache: true, tag: "planner" });
+      const again = normalizePlanResponse(await ask());
+      if (okBeats(again)) {
+        const r2 = visualRatio(again);
+        console.log(`[plan] beat ratio after re-ask: ${r2.vis} visual / ${r2.type} type (${(r2.share * 100).toFixed(0)}% visual, ${r2.share >= 0.6 ? "passes" : "still under 60%"})`);
+        if (r2.share > rr.share) { geminiResult = again; rr = r2; }
+      } else console.error(`[plan] re-ask gave no usable plan — keeping the first (${(rr.share * 100).toFixed(0)}% visual)`);
+    }
   }
   const plan = geminiResult?.beats ? geminiResult : null;
   if (!plan || !plan.beats) {
