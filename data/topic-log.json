@@ -210,9 +210,14 @@
           "topic": "Rental Market Dynamics in 2026: Impact on Housing Costs",
           "slug": "rental-market-dynamics-2026-impact",
           "reserved_at": "2026-10-02T07:39:46.778Z"
+        },
+        {
+          "topic": "50/30/20 budgeting rule and its impact in 2026",
+          "slug": "50-30-20-budget-rule-impact-2026",
+          "reserved_at": "2026-10-02T08:49:03.042Z"
         }
       ],
-      "last_generated": "2026-10-02T07:39:46.778Z"
+      "last_generated": "2026-10-02T08:49:03.042Z"
     },
     "2": {
       "channel_name": "Legal Brief",
