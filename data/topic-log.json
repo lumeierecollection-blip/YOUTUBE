@@ -195,9 +195,14 @@
           "topic": "new budgeting tools and features for 2026",
           "slug": "new-budgeting-tools-2026",
           "reserved_at": "2026-10-02T02:03:52.854Z"
+        },
+        {
+          "topic": "New self-hosted financial tool for budgeting",
+          "slug": "self-hosted-budgeting-tool-2026",
+          "reserved_at": "2026-10-02T02:41:13.400Z"
         }
       ],
-      "last_generated": "2026-10-02T02:03:52.854Z"
+      "last_generated": "2026-10-02T02:41:13.400Z"
     },
     "2": {
       "channel_name": "Legal Brief",
