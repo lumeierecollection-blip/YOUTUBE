@@ -48,5 +48,15 @@
     "go_public_at": "2026-09-20T11:27:45.951Z",
     "privacy_status": "private",
     "cancelled": true
+  },
+  {
+    "video_id": "g8uPMV5O0M0",
+    "channel_id": "1",
+    "title": "Why Gen Z Feels More Financially Secure Than Boomers in 2026",
+    "uploaded_at": "2026-10-02T11:45:22.806Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-02T12:45:22.806Z",
+    "privacy_status": "private",
+    "cancelled": true
   }
 ]
