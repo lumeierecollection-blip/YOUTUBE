@@ -1,0 +1,108 @@
+/**
+ * Concepts -> visuals (owner's brief, 2026-10-02: "the PNGs exist but the
+ * renderer still draws nothing for them").
+ *
+ * A beat's sentence names things — money, a court, a padlock, a warning. A
+ * concept is one of the cutout library's names (scripts/cutout-specs.json),
+ * and maps to a class (concept-classes.js):
+ *   CUTOUT  -> the verified PNG public/cutouts/<name>.png
+ *   SYMBOL  -> the drawn SVG (visual/symbols/)
+ *   SCENE   -> nothing on its own (no generic scene-photo source), reported
+ *
+ * Grounding (CLAUDE.md): a concept is kept only when one of its trigger WORDS
+ * is a word of the sentence — the planner may propose concepts, but a
+ * proposal the sentence does not name is dropped, and nothing is added from
+ * general knowledge. A sentence that names none gets no concept visual.
+ *
+ * Pure: no file access, so the renderer bundle can import it. Node callers
+ * pass the specs (cutout-specs.json) and the library (index.json +
+ * verified.json) in.
+ *
+ * Where this stops: trigger words are a word list, not language
+ * understanding; a concept phrased in other words is missed, and a listed
+ * word used in another sense ("key" = important) can match. The symbol words
+ * are kept to unambiguous event verbs for that reason.
+ */
+import { SYMBOLS, SCENES, classOf } from "./concept-classes.js";
+
+// Symbols are drawn for an EVENT the sentence states, not for the bare shape
+// word: "up" / "cut" / "sign" alone are too common to mean an arrow.
+export const SYMBOL_WORDS = Object.freeze({
+  "upward-arrow": ["rise", "rises", "rose", "risen", "rising", "increase", "increased", "increases", "surge", "surged", "soar", "soared", "grew", "growth", "jump", "jumped", "climb", "climbed"],
+  "downward-arrow": ["fall", "falls", "fell", "fallen", "drop", "dropped", "drops", "decline", "declined", "plunge", "plunged", "slump", "slumped", "shrank", "decrease", "decreased"],
+  "warning-triangle": ["warning", "warned", "warns", "warn", "hazard", "danger", "dangerous"],
+  "checkmark": ["approved", "approves", "approval", "confirmed", "verified", "cleared"],
+  "crosshair": ["target", "targets", "targeted", "targeting"],
+  "radar": ["radar", "surveillance", "monitored", "monitoring"],
+  "broken-chain": ["breach", "breached", "severed", "disrupted", "disruption", "broken"],
+  "dollar-sign": ["dollar", "dollars", "usd"],
+});
+export const MAX_CONCEPTS = 3;    // one primary + up to two secondary
+
+const words = (s) => new Set(String(s || "").toLowerCase().replace(/[$]/g, " dollar ").split(/[^a-z0-9]+/).filter(Boolean)
+  .flatMap((w) => (w.length > 3 && w.endsWith("s") && !w.endsWith("ss") ? [w, w.slice(0, -1)] : [w])));
+
+/** The trigger words of one concept name. */
+export function triggersOf(name, specs = []) {
+  if (SYMBOL_WORDS[name]) return SYMBOL_WORDS[name];
+  const s = specs.find((x) => x.name === name);
+  return s ? [...new Set([...(s.words || []), ...String(name).split("-")])].filter((w) => w.length >= 3) : [];
+}
+
+/** Concepts the sentence names, in the order their first trigger word appears. */
+export function conceptsInSentence(sentence, specs = []) {
+  const ws = String(sentence || "").toLowerCase().replace(/[$]/g, " dollar ").split(/[^a-z0-9]+/).filter(Boolean);
+  const names = [...new Set([...specs.map((s) => s.name), ...SYMBOLS])];
+  const hits = [];
+  for (const n of names) {
+    const tr = new Set(triggersOf(n, specs));
+    const at = ws.findIndex((w) => tr.has(w) || (w.length > 3 && w.endsWith("s") && tr.has(w.slice(0, -1))));
+    if (at >= 0) hits.push({ name: n, at });
+  }
+  // One sentence word names one concept: "bank" is a bank building OR a bank
+  // statement, not both (the first in spec order keeps it).
+  const byWord = new Map();
+  for (const h of hits) if (!byWord.has(h.at)) byWord.set(h.at, h);
+  return [...byWord.values()].sort((a, b) => a.at - b.at).map((h) => h.name);
+}
+
+/**
+ * The planner's concepts, checked: a known name whose trigger word is in the
+ * sentence. Unknown or ungrounded proposals are dropped (and returned in
+ * `dropped`); when none survive, the sentence's own concepts are used.
+ */
+export function validateConcepts(planned, sentence, specs = []) {
+  const known = new Set([...specs.map((s) => s.name), ...SYMBOLS]);
+  const sw = words(sentence);
+  const kept = [], dropped = [];
+  for (const raw of Array.isArray(planned) ? planned : []) {
+    const n = String(raw || "").toLowerCase().trim();
+    if (!known.has(n)) { dropped.push(`${n}: not a concept name`); continue; }
+    if (!triggersOf(n, specs).some((w) => sw.has(w))) { dropped.push(`${n}: the sentence does not name it`); continue; }
+    if (!kept.includes(n)) kept.push(n);
+  }
+  const concepts = (kept.length ? kept : conceptsInSentence(sentence, specs)).slice(0, MAX_CONCEPTS);
+  return { concepts, dropped, from: kept.length ? "planner" : "sentence" };
+}
+
+/**
+ * Concepts -> drawable visuals. `library`: [{ name, file, width, height }]
+ * of VERIFIED cutouts only (index.json entries whose verified.json verdict is
+ * MATCH and whose PNG exists). A cutout name without a library entry, and a
+ * scene, draw nothing (reported in `skipped`). At most MAX_CONCEPTS; the
+ * first is the primary.
+ */
+export function visualsFor(concepts, library = []) {
+  const names = library.map((c) => c.name);
+  const out = [], skipped = [];
+  for (const n of concepts || []) {
+    const cls = classOf(n, names);
+    if (cls === "cutout") {
+      const c = library.find((x) => x.name === n);
+      out.push({ name: n, class: "cutout", asset: c.file, w: c.width || 1, h: c.height || 1 });
+    } else if (cls === "symbol") out.push({ name: n, class: "symbol", w: 1, h: 1 });
+    else skipped.push(`${n}: ${SCENES.includes(n) ? "scene (no scene-photo source)" : "no verified cutout in the library"}`);
+    if (out.length >= MAX_CONCEPTS) break;
+  }
+  return { visuals: out, skipped };
+}

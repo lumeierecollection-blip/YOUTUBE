@@ -61,6 +61,7 @@ import { countProgress, numberPop, numberRoll, digitRoll, popState, NUMBER_POP_F
 import { GROUND } from "./backgrounds.js";
 import { parseQuantity, rollQuantity } from "./primitives/quantity.js";
 import { PaperMap, CenteredMap } from "./primitives/map.jsx";
+import { Symbol } from "./symbols/index.jsx";
 import {
   animationById, entrance, exitState, unitOf, entranceSeconds, STAGGER, numberState, rollOffset, countValue, barState, pieState, lineState,
 } from "./animations.js";
@@ -302,8 +303,48 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       </HeroEl>
     );
   }
+  // Concept visuals (canvas-layout.js TYPE-FULL with concept_visuals): the
+  // statement in the top zone, the cutouts / symbols in the middle zone.
+  if (B.cutout0) {
+    return (
+      <>
+        <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} major={major} hero accent={accent} />
+        {[B.cutout0, B.cutout1, B.cutout2].filter(Boolean).map((v, i) => (
+          <ConceptVisual key={i} b={v} local={local} fps={fps} at={tl.headlineAt + 0.45 + i * 0.12} accent={accent} />
+        ))}
+      </>
+    );
+  }
   // TYPE-SPLIT: the second half lands 0.5 s after the first (the header's headline).
   return <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={B.headline ? tl.splitAt : tl.headlineAt} major={major} hero accent={accent} />;
+}
+
+/**
+ * One concept visual in its layout box (concept-visuals.js): a CUTOUT is the
+ * verified PNG (public/cutouts/), contained in the box, with a soft drop
+ * shadow (2 px, 20 px blur, 0.15); a SYMBOL is the drawn SVG in the channel
+ * accent (no shadow — symbols are flat by design). Both pop in place (the
+ * pop family, kinetic.js POP_STANDARD) from the bottom edge they stand on.
+ */
+function ConceptVisual({ b, local, fps, at, accent }) {
+  const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 100%");
+  if (b.class === "cutout" && b.asset) {
+    return (
+      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...pop }}>
+        <Img src={staticFile(b.asset)} style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: b.align === "right" ? "100% 100%" : "0% 100%",
+          filter: "drop-shadow(2px 2px 20px rgba(0,0,0,0.15))" }} />
+      </div>
+    );
+  }
+  if (b.class === "symbol") {
+    const s = Math.min(b.w, b.h);
+    return (
+      <div style={{ position: "absolute", left: b.x, top: b.y + b.h - s, width: s, height: s, ...pop }}>
+        <Symbol name={b.concept} size={s} color={accent} />
+      </div>
+    );
+  }
+  return null;
 }
 
 // ── DATA-FULL ─────────────────────────────────────────────────────────
@@ -862,21 +903,24 @@ export function keepBodyInZone(L, cam, zoom, zk, photoBeat) {
   if (photoBeat) return { cam, zk };
   const body = flattenBoxes(L.boxes).filter(([k, b]) => b && b.w > 0 && b.h > 0 && elementType(k, b) && !/^(kicker|headline)$/.test(k)).map(([, b]) => b);
   if (!body.length) return { cam, zk };
-  const x0 = Math.min(...body.map((b) => b.x)), y0 = Math.min(...body.map((b) => b.y));
-  const x1 = Math.max(...body.map((b) => b.x + b.w)), y1 = Math.max(...body.map((b) => b.y + b.h));
-  const zs = zonesOf({ x: x0, y: y0, w: x1 - x0, h: y1 - y0 });
-  if (!zs.length) return { cam, zk };
-  // The strict zone edges: ZONE_TOL is for layout border cases, not for the
-  // camera to spend (QA render 2026-10-02: a pushed timeline line reached
-  // y 1348 and the rendered pixels crossed the edge).
-  const lo = ZONES[zs[0]][0], hi = ZONES[zs[zs.length - 1]][1];
-  const left = Math.min(0, x0), right = Math.max(FRAME.w, x1);   // a bleeding unit may stay where the layout put it, no further
+  // Each box against ITS zone (a concept beat's body spans two: the statement
+  // top, the cutouts middle). The strict zone edges: ZONE_TOL is for layout
+  // border cases, not for the camera to spend (QA render 2026-10-02: a pushed
+  // timeline line reached y 1348 and the rendered pixels crossed the edge).
+  const limits = body.map((b) => {
+    const zs = zonesOf(b);
+    return zs.length ? { b, lo: ZONES[zs[0]][0], hi: ZONES[zs[zs.length - 1]][1], left: Math.min(0, b.x), right: Math.max(FRAME.w, b.x + b.w) } : null;
+  }).filter(Boolean);
+  if (!limits.length) return { cam, zk };
   const ox = zoom ? zoom.ox : 540, oy = zoom ? zoom.oy : 960;
   const at = (f) => {
     const s = 1 + (cam.s - 1) * f, tx = cam.x * f, ty = cam.y * f, k = 1 + (zk - 1) * f;
     const T = (px, py) => [((px - ox) * k + ox - 540) * s + 540 + tx, ((py - oy) * k + oy - 960) * s + 960 + ty];
-    const [ax, ay] = T(x0, y0), [bx, by] = T(x1, y1);
-    return { ok: ay >= lo && by <= hi && ax >= left - 0.5 && bx <= right + 0.5, s, tx, ty, k };
+    const ok = limits.every(({ b, lo, hi, left, right }) => {
+      const [ax, ay] = T(b.x, b.y), [bx, by] = T(b.x + b.w, b.y + b.h);
+      return ay >= lo - 0.5 && by <= hi + 0.5 && ax >= left - 0.5 && bx <= right + 0.5;
+    });
+    return { ok, s, tx, ty, k };
   };
   let f = 1;
   if (!at(1).ok) {

@@ -379,9 +379,27 @@ export function canvasLayout(c) {
         if (c?.lead_in || folio) {
           boxes.kicker = dataBox(c.lead_in || folio, { width: 640, size: 34, maxLines: 1, y: TOP + 30, flip: flip ? 0 : 1 });
         }
-        // The statement is the body: the middle zone only (it used to rise to y 430, through the top zone).
-        boxes.statement = headlineBox(text, { width: 984, bottom: BOTTOM, flip, maxLines: 5, maxHeight: BOTTOM - BODY_TOP, max: 360 });
-        hero = "statement";
+        const cv = Array.isArray(c?.concept_visuals) ? c.concept_visuals.slice(0, 3) : [];
+        if (cv.length) {
+          // Concept visuals (concept-visuals.js): the statement takes the top
+          // zone, the visuals the middle — the primary 420 px on its longest
+          // side, bottom-anchored on the zone's edge, opposite the statement;
+          // up to two secondaries at 180 px stacked on the statement's side.
+          const sy = (boxes.kicker ? boxes.kicker.y + boxes.kicker.h : TOP + 6) + 40;
+          boxes.statement = headlineBox(text, { width: 984, y: sy, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - sy, max: 200 });
+          const fitBox = (v, longest) => { const r = (v.w || 1) / (v.h || 1); return r >= 1 ? [longest, Math.round(longest / r)] : [Math.round(longest * r), longest]; };
+          cv.forEach((v, i) => {
+            const [w, h] = fitBox(v, i === 0 ? 420 : 180);
+            const side = i === 0 ? (flip ? 0 : 1) : flip;
+            const y = i === 0 ? BOTTOM - h : BOTTOM - h - (i - 1) * (180 + 24);
+            boxes[`cutout${i}`] = { ...box(anchorX(w, side), y, w, h), role: "concept", concept: v.name, class: v.class, asset: v.asset || null, primary: i === 0, align: side ? "right" : "left" };
+          });
+          hero = "cutout0";
+        } else {
+          // The statement is the body: the middle zone only (it used to rise to y 430, through the top zone).
+          boxes.statement = headlineBox(text, { width: 984, bottom: BOTTOM, flip, maxLines: 5, maxHeight: BOTTOM - BODY_TOP, max: 360 });
+          hero = "statement";
+        }
       }
     }
   } else if (comp === "DATA-FULL") {

@@ -28,6 +28,7 @@ import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { assignCanvasAnimations } from "./anim-plan.js";
 import { checkVisual, figureKey } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { validateConcepts, visualsFor } from "../src/skills/remotion-render/visual/concept-visuals.js";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
@@ -1004,6 +1005,18 @@ function personFallback(b, ent) {
 // GAUGE / MAP / PROCESS are drawn from the plan's checked data; TYPE is
 // typography. An unresolved PHOTO becomes TYPE-FULL — never a
 // generic photo (CLAUDE.md: real, verified photos only for named entities).
+// The cutout library the renderer may use: index.json entries whose PNG
+// exists AND whose content verification (verified.json) is MATCH — an
+// unverified cutout never renders.
+const CUTOUT_DIR = join(ROOT, "src", "skills", "remotion-render", "public", "cutouts");
+const CUTOUT_SPECS = readJsonSafe(join(ROOT, "scripts", "cutout-specs.json"))?.specs || [];
+function conceptLibrary() {
+  const index = readJsonSafe(join(CUTOUT_DIR, "index.json"))?.cutouts || [];
+  const verified = readJsonSafe(join(CUTOUT_DIR, "verified.json")) || {};
+  return index.filter((c) => verified[c.name]?.verdict === "MATCH" && existsSync(join(CUTOUT_DIR, `${c.name}.png`)))
+    .map((c) => ({ name: c.name, file: `cutouts/${c.name}.png`, width: c.width, height: c.height }));
+}
+
 async function resolveCanvas(channelId, planPath, plan) {
   let fetchedNew = 0;
   const counts = { by_comp: {}, photos: 0, entity_fallbacks: 0 };
@@ -1128,6 +1141,24 @@ async function resolveCanvas(channelId, planPath, plan) {
     const styled = styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
     console.log(`[canvas] style: dark beats ${JSON.stringify(styled.dark)}, emphasis beat ${styled.emphasis}, vertical beat ${styled.vertical}, biggest figure beat ${styled.accentBest}`);
   }
+  // Concept visuals (visual/concept-visuals.js): a plain TYPE-FULL statement
+  // beat shows what its sentence names — a verified cutout PNG or a drawn
+  // symbol — in the middle zone. Set before the animation pass, which lays
+  // the canvas out.
+  {
+    const lib = conceptLibrary();
+    for (const b of plan.beats) {
+      const c = b.canvas;
+      if (c.composition !== "TYPE-FULL" || c.emphasis_beat || c.vertical || String(c.visual_type).toUpperCase() !== "TYPE") continue;
+      const vc = validateConcepts(b.concepts, b.narration || "", CUTOUT_SPECS);
+      const { visuals, skipped } = visualsFor(vc.concepts, lib);
+      for (const s of skipped) console.log(`[concepts] ch-${channelId} beat ${b.index}: ${s}`);
+      if (!visuals.length) continue;
+      c.concept_visuals = visuals;
+      console.log(`[concepts] ch-${channelId} beat ${b.index}: ${visuals.map((v) => `${v.name} (${v.class})`).join(", ")} — from the ${vc.from}`);
+    }
+    console.log(`[concepts] library: ${lib.length} verified cutout(s); ${plan.beats.filter((b) => b.canvas.concept_visuals).length} beat(s) carry concept visuals`);
+  }
   // Fix 2: the animation of every element, on the final canvases (the beat's
   // tokens, dark / vertical / emphasis styling are settled): scripts/anim-plan.js.
   {
@@ -1168,7 +1199,11 @@ async function guardPlanAssets(channelId, planPath) {
   const plan = readJsonSafe(planPath);
   if (!plan?.beats) return planPath;
   const publicDir = join(dirname(REMOTION_ROOT_JSX), "public");
-  const refs = plan.beats.map((b, i) => ({ b, i, asset: b.canvas?.photo?.asset })).filter((r) => r.asset);
+  const refs = [
+    ...plan.beats.map((b, i) => ({ b, i, asset: b.canvas?.photo?.asset })).filter((r) => r.asset),
+    // concept cutouts (concept_visuals): a missing PNG drops that visual only
+    ...plan.beats.flatMap((b, i) => (b.canvas?.concept_visuals || []).filter((v) => v.asset).map((v) => ({ b, i, asset: v.asset, concept: v.name }))),
+  ];
   if (!refs.length) return planPath;
   // render.js bundles per call when REMOTION_SERVE_URL is unset; that bundle
   // copies public/ as it is then, so public/ is what counts.
@@ -1181,7 +1216,13 @@ async function guardPlanAssets(channelId, planPath) {
     missing = refs.filter((r) => !inBundle(r.asset));
   }
   if (!missing.length) return planPath;
-  for (const { b, i, asset } of missing) {
+  for (const { b, i, asset, concept } of missing) {
+    if (concept) {
+      console.warn(`::warning::[assets] ch-${channelId} beat ${i}: concept cutout ${asset} is not in the render bundle — "${concept}" dropped`);
+      b.canvas.concept_visuals = (b.canvas.concept_visuals || []).filter((v) => v.asset !== asset);
+      if (!b.canvas.concept_visuals.length) delete b.canvas.concept_visuals;
+      continue;
+    }
     console.warn(`::warning::[assets] ch-${channelId} beat ${i}: ${asset} is not in the render bundle (in public/: ${existsSync(join(publicDir, asset)) ? "yes" : "no"}) — photo -> TYPE`);
     b.visual_type = "TYPE"; b.data = null; delete b.asset;
     b.canvas = canvasContentFor(b, {});

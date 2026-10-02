@@ -37,6 +37,8 @@ import { forcedOllama, callOllamaOnly, callLLM, isProviderError } from "../src/l
 import { createRequire as createRequireGroq } from "node:module";
 const { callGroq } = createRequireGroq(import.meta.url)("./groq-client.cjs");
 import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-names.js";
+import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
+import { SYMBOLS as CONCEPT_SYMBOLS } from "../src/skills/remotion-render/visual/concept-classes.js";
 import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequire(import.meta.url)("./entity-assets.cjs");
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
@@ -48,6 +50,9 @@ const { enforceCaps, describe: describeMechanisms, TYPOGRAPHY } = createRequire(
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
+// The concept names (the cutout library's specs + the drawn symbols).
+const CUTOUT_SPECS = (() => { try { return JSON.parse(readFileSync(join(ROOT, "scripts", "cutout-specs.json"), "utf8")).specs || []; } catch { return []; } })();
+const CONCEPT_NAMES = [...new Set([...CUTOUT_SPECS.map((s) => s.name), ...CONCEPT_SYMBOLS])];
 // docs/REFERENCE-STYLE.md (the paper reference) is no longer embedded: the
 // full-canvas rebuild (2026-09-29) replaced the paper style; the prompt
 // states the full-canvas grammar itself.
@@ -663,6 +668,13 @@ vignette and the camera are added by the system.
   "match_cut_prev": true when this beat shares its subject or number with
                   the previous beat and that element should stay fixed in
                   place across the cut, else false.
+  "concepts":     up to 3 names from CONCEPTS that this beat's sentence NAMES
+                  with one of its own words (a gavel, a padlock, cash, a
+                  warning), most important first — [] when it names none.
+                  Never a concept the sentence does not say. On a TYPE beat
+                  the renderer shows them as real isolated photographs (or a
+                  drawn symbol for an arrow / warning / checkmark).
+                  CONCEPTS: ${CONCEPT_NAMES.join(", ")}
   "text_entrance": optional — how the statement's words appear. Every text
                   entrance is a POP: the words appear in place and settle;
                   nothing slides, drops, wipes, blurs or fades in. Omit for
@@ -881,6 +893,7 @@ Respond ONLY with JSON (no markdown fences):
       "caption_zone": "bottom",
       "persists_from": null,
       "match_cut_prev": false,
+      "concepts": ["<0-3 CONCEPTS names the sentence names>"],
       "text_entrance": "<POP_SOFT | POP_HARD | POP_LETTER | POP_WORD_STACK, or omit>",      "carries_forward": "<object/concept that persists into the next beat, or null>",
       "emotional_weight": "<calm|building|sharp|heavy|urgent>",
       "typography_direction": {
@@ -1610,6 +1623,12 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       const te = String(b.text_entrance || "").toUpperCase().trim();
       b.text_entrance = ["POP_STANDARD", "POP_SOFT", "POP_EMPHASIS", "POP_HARD", "POP_LETTER", "POP_WORD_STACK"].includes(te) ? te : null;
       checkZones(b);
+      // Concepts (visual/concept-visuals.js): only names the sentence names;
+      // an ungrounded proposal is dropped, an empty list falls back to the
+      // sentence's own concept words.
+      const vc = validateConcepts(b.concepts, sentenceText, CUTOUT_SPECS);
+      for (const why of vc.dropped) console.warn(`::warning::[plan] beat ${b.index}: concept ${why} — dropped`);
+      b.concepts = vc.concepts;
     }
     const lo = n >= 4 ? 2 : 1;
     let majors = plan.beats.map((b, i) => (b.motion_tier === "major" ? i : -1)).filter((i) => i >= 0);
