@@ -105,13 +105,20 @@ const bare = (w) => String(w).replace(/^[^\p{L}\p{N}$%]+|[^\p{L}\p{N}$%]+$/gu, "
 export function markWords(text, marks = []) {
   const tagged = /<(bold|accent|emph)>/i.test(String(text));
   const words = parseMarkup(text);
-  if (tagged || !words.length) return words;
+  if (!words.length) return words;
+  // Planner markup is kept — but only when it gives the line a bold word AND
+  // an accent word (kinetic-rules requires both; CI run 36956234025 ch-1
+  // beat 2 had markup with neither and the video was rejected). Otherwise the
+  // automatic marking below completes it.
+  if (tagged && words.some((w) => w.weight === WEIGHT_BOLD) && words.some((w) => w.accent || w.emph)) return words;
   const want = new Set((marks || []).map(bare).filter(Boolean));
   if (want.size) {
     words.forEach((w) => { if (want.has(bare(w.text))) { w.weight = WEIGHT_BOLD; w.accent = true; w.emph = true; } });
     if (words.some((w) => w.emph)) return words;
   }
-  const content = words.map((w, i) => ({ i, len: bare(w.text).length, ok: !FILLER.has(bare(w.text)) && /\p{L}|\d/u.test(w.text) })).filter((x) => x.ok).sort((a, b) => b.len - a.len || a.i - b.i);
+  let content = words.map((w, i) => ({ i, len: bare(w.text).length, ok: !FILLER.has(bare(w.text)) && /\p{L}|\d/u.test(w.text) })).filter((x) => x.ok).sort((a, b) => b.len - a.len || a.i - b.i);
+  // All filler words ("it is what it is"): the longest word still carries the emphasis.
+  if (!content.length) content = words.map((w, i) => ({ i, len: bare(w.text).length })).filter((x) => x.len > 0).sort((a, b) => b.len - a.len || a.i - b.i);
   if (!content.length) return words;
   const top = words[content[0].i];
   top.weight = WEIGHT_BOLD; top.accent = true; top.emph = true;
