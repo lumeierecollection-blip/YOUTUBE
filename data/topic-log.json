@@ -712,9 +712,14 @@
           "topic": "Tenants Breaking Leases Without Notice Must Pay Six Months Rent",
           "slug": "tenant-lease-termination-notice-compensation-ruling",
           "reserved_at": "2026-10-01T12:03:50.979Z"
+        },
+        {
+          "topic": "Tenant Privacy Rights Against Smart Locks and Biometric Entry",
+          "slug": "tenant-privacy-rights-smart-locks-biometric-entry",
+          "reserved_at": "2026-10-02T11:35:01.238Z"
         }
       ],
-      "last_generated": "2026-10-01T12:03:50.979Z"
+      "last_generated": "2026-10-02T11:35:01.238Z"
     },
     "3": {
       "channel_name": "AI Tested",
