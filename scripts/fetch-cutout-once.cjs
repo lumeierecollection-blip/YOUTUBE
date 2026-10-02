@@ -116,7 +116,9 @@ async function fetchOnce({ concept, name, channel, beat_index, spec }) {
       const url = h.largeImageURL || h.webformatURL;
       if (!url || seen.has(url)) continue;
       seen.add(url);
-      if (![...wordsOf(h.tags)].some((w) => want.has(w))) continue;          // the uploader's tags must name it
+      // The uploader's tags must name EVERY word of the concept: "bank" alone
+      // let piggy banks and coins in for "bank statement" (CI run 36988420698).
+      { const tags = new Set(wordsOf(h.tags)); if (![...wordsOf(concept)].every((w) => tags.has(w))) continue; }
       if (Math.max(h.imageWidth || 0, h.imageHeight || 0) < 900) continue;
       cands.push({ url, page: h.pageURL || "", user: h.user || "" });
       if (cands.length >= 5) break;

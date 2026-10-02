@@ -668,9 +668,12 @@ vignette and the camera are added by the system.
   "match_cut_prev": true when this beat shares its subject or number with
                   the previous beat and that element should stay fixed in
                   place across the cut, else false.
-  "concepts":     up to 3 names from CONCEPTS that this beat's sentence NAMES
-                  with one of its own words (a gavel, a padlock, cash, a
-                  warning), most important first — [] when it names none.
+  "concepts":     up to 3 PHYSICAL OBJECTS this beat's sentence NAMES, most
+                  important first — a name from CONCEPTS, or a 1-3 word noun
+                  phrase made of the sentence's own words ("solar panel",
+                  "shipping container", "oil tanker"); [] when it names none.
+                  Objects a camera can photograph — never an idea ("economy",
+                  "policy"), never a person.
                   Never a concept the sentence does not say. On a TYPE beat
                   the renderer shows them as real isolated photographs (or a
                   drawn symbol for an arrow / warning / checkmark).

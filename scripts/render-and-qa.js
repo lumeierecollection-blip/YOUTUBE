@@ -1222,7 +1222,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       // the Wikipedia path, entity-assets.cjs).
       const namesPerson = (b.named_entities || []).some((e) => e.type === "person");
       if (namesPerson && vc.concepts.some((n) => PEOPLE.has(n))) console.log(`[concepts] ch-${channelId} beat ${b.index}: names a person — generic people cutouts dropped (${vc.concepts.filter((n) => PEOPLE.has(n)).join(", ")})`);
-      const names = (namesPerson ? vc.concepts.filter((n) => !PEOPLE.has(n)) : vc.concepts).slice(0, 3);
+      const PEOPLE_WORDS = /\b(man|men|woman|women|person|people|officer|official|ceo|leader|worker|workers|scientist|doctor|judge|lawyer|founder|president|minister)\b/;
       if (names.length) wanted.push({ bi, b, names, from: vc.from });
     }
     // 2. Resolve: symbol drawn; cutout live -> library -> none; scene none.
@@ -1231,7 +1231,8 @@ async function resolveCanvas(channelId, planPath, plan) {
     for (const w of wanted) for (const name of w.names) {
       const cls = classOf(name, ALL);
       if (cls === "symbol") { results.set(`${w.bi}:${name}`, { name, class: "symbol", w: 1, h: 1 }); continue; }
-      if (cls !== "cutout") { console.log(`[cutout-live] ch-${channelId} beat ${w.b.index}: "${name}" is a scene (no scene-photo source), skipped`); continue; }
+      if (cls === "scene") { console.log(`[cutout-live] ch-${channelId} beat ${w.b.index}: "${name}" is a scene (no scene-photo source), skipped`); continue; }
+      // cls null = a free-form object the sentence names ("solar panel"): fetched live only.
       tasks.push({ w, name });
     }
     let next = 0;

@@ -1031,12 +1031,15 @@ export function popGroups(c, L) {
   return order.map((g, i) => ({ ...g, at: i * POP.STAGGER }));
 }
 /** The frame a beat is drawn at: every element in, none leaving (word exits start at >= 70%). */
-const settleFrame = (dur) => Math.max(0, Math.min(dur - 1, Math.round(dur * 0.66)));
+// LIST-BUILD / TIMELINE add items as the narrator reaches them (up to 0.6 s before
+// the end) and have no word exits: they settle at the last frame, or later items
+// never show (CI run 36988420698 ch-48: a list beat at 34.8% coverage).
+const settleFrame = (dur, comp) => Math.max(0, Math.min(dur - 1, ["LIST-BUILD", "TIMELINE"].includes(comp) ? dur - 1 : Math.round(dur * 0.66)));
 
 function PopGroups({ beat, idx, fps, accent, state }) {
   const c = normalizeCanvas(beat.scene.canvas, idx);
   const L = canvasLayout(c);
-  const settled = settleFrame(beat.duration_frames);
+  const settled = settleFrame(beat.duration_frames, L.composition);
   return popGroups(c, L).map((g) => {
     const p = state(g);
     if (p.o <= 0.001) return null;

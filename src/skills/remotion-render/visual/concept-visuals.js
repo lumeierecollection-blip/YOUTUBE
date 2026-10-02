@@ -37,7 +37,9 @@ export const SYMBOL_WORDS = Object.freeze({
   "broken-chain": ["breach", "breached", "severed", "disrupted", "disruption", "broken"],
   "dollar-sign": ["dollar", "dollars", "usd"],
 });
-export const MAX_CONCEPTS = 3;    // one primary + up to two secondary
+export const MAX_CONCEPTS = 3;
+// Not objects: a free-form concept containing one of these is dropped (a camera cannot photograph "economy").
+const ABSTRACT = new Set(["economy", "growth", "policy", "market", "markets", "impact", "strategy", "strategies", "plan", "law", "laws", "rights", "right", "risk", "crisis", "future", "change", "changes", "rule", "rules", "system", "process", "issue", "problem", "idea", "value", "trend", "trends", "debate", "conflict", "tension", "tensions", "security", "inflation", "demand", "supply", "cost", "costs", "price", "prices", "rate", "rates", "trust", "fraud", "scheme", "case", "decision", "ruling", "study", "report", "data", "research"]);    // one primary + up to two secondary
 
 const words = (s) => new Set(String(s || "").toLowerCase().replace(/[$]/g, " dollar ").split(/[^a-z0-9]+/).filter(Boolean)
   .flatMap((w) => (w.length > 3 && w.endsWith("s") && !w.endsWith("ss") ? [w, w.slice(0, -1)] : [w])));
@@ -77,7 +79,20 @@ export function validateConcepts(planned, sentence, specs = []) {
   const kept = [], dropped = [];
   for (const raw of Array.isArray(planned) ? planned : []) {
     const n = String(raw || "").toLowerCase().trim();
-    if (!known.has(n)) { dropped.push(`${n}: not a concept name`); continue; }
+    if (!known.has(n)) {
+      // A free-form object (owner's spec 2026-10-02: "the sentence names an
+      // object -> a cutout"): a 1-3 word noun phrase whose every word is a
+      // word of the sentence ("solar panel", "shipping container"). Fetched
+      // live and verified like any other; never a library name.
+      const fw = String(n).replace(/-/g, " ").split(/\s+/).filter(Boolean);
+      if (!fw.some((w) => ABSTRACT.has(w)) && fw.length >= 1 && fw.length <= 3 && fw.every((w) => /^[a-z][a-z'-]*$/.test(w)) && fw.filter((w) => w.length >= 3).length && fw.every((w) => w.length < 3 || sw.has(w) || (w.endsWith("s") && sw.has(w.slice(0, -1))))) {
+        const ff = fw.join(" ");
+        if (!kept.includes(ff)) kept.push(ff);
+        continue;
+      }
+      dropped.push(`${n}: not a concept name and not an object the sentence names`);
+      continue;
+    }
     if (!triggersOf(n, specs).some((w) => sw.has(w))) { dropped.push(`${n}: the sentence does not name it`); continue; }
     if (!kept.includes(n)) kept.push(n);
   }
