@@ -1385,9 +1385,14 @@
           "topic": "trace-fraud-money",
           "slug": "mastercard-feedzai-trace",
           "reserved_at": "2026-10-02T00:54:57.460Z"
+        },
+        {
+          "topic": "slave-trade-money-trail",
+          "slug": "city-of-london-slave-trade-money-trail",
+          "reserved_at": "2026-10-02T01:24:58.956Z"
         }
       ],
-      "last_generated": "2026-10-02T00:54:57.460Z"
+      "last_generated": "2026-10-02T01:24:58.956Z"
     },
     "27": {
       "channel_name": "Climate Now",
