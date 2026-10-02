@@ -1079,13 +1079,14 @@ async function resolveCanvas(channelId, planPath, plan) {
       const ents = await sceneEntities({ beat: b, sentence: b.narration || "", entityNamedInSentence });
       const real = ents.filter((e) => REAL.includes(e.type))
         .sort((x, y) => (y.name === b.data?.entity) - (x.name === b.data?.entity) || REAL.indexOf(x.type) - REAL.indexOf(y.type));
+      const named = [];   // real, resolvable names that found no verified photo: the name card's subject
       for (const e0 of real) {
         // A generic institution name ("Supreme Court", "the central bank") names a
         // different building in every country (run 36504143080 ch-2): qualified with
         // the script's one country, or refused.
         const q = e0.type === "organization" || e0.type === "building" ? qualifyEntity(e0, countries) : { ent: e0 };
         if (q.note) console.log(`[entity] ${q.note}`);
-        if (!q.ent?.name) { entities.fell_back.push(`${e0.type} "${e0.name}": ${q.note}`); continue; }
+        if (!q.ent?.name) { entities.fell_back.push(`${e0.type} "${e0.name}": ${q.note}`); named.push(e0); continue; }
         const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "" });
         if (r.ok) {
           photo = { ...r.photo, entity: e0.name };
@@ -1095,6 +1096,8 @@ async function resolveCanvas(channelId, planPath, plan) {
           break;
         }
         entities.fell_back.push(`beat ${b.index}: ${e0.type} "${e0.name}": ${r.why}`);
+        // A refused acronym ("AI", "ED") is not a name: no name card is made of it.
+        if (!r.refused) named.push(e0);
       }
       // A country / US state with no verified photo is still shown as ITSELF: the drawn
       // map (MAP-CENTERED, the region's real outline) — not a name card, never a stand-in.
@@ -1103,11 +1106,11 @@ async function resolveCanvas(channelId, planPath, plan) {
       if (mv && !mv.why && mv.type === "MAP") {
         b.visual_type = "MAP"; b.data = mv.data; delete b.type_layout;
         console.log(`[resolve] ch-${channelId} beat ${b.index}: no verified photo of place "${region.name}" — rendering its map (MAP-CENTERED)`);
-      } else if (!photo && real.length) {
+      } else if (!photo && named.length) {
         b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
-        b.name_card = { name: real[0].name.replace(/\s*\([^)]*\)/g, "").trim(), sub: keyPhraseOf(b, real[0].name) };
+        b.name_card = { name: named[0].name.replace(/\s*\([^)]*\)/g, "").trim(), sub: keyPhraseOf(b, named[0].name) };
         counts.entity_fallbacks++;
-        console.log(`[resolve] ch-${channelId} beat ${b.index}: no verified photo of ${real.map((e) => `${e.type} "${e.name}"`).join(", ")} — rendering as TYPE with the name only ("${b.name_card.name}"${b.name_card.sub ? ` / "${b.name_card.sub}"` : ""})`);
+        console.log(`[resolve] ch-${channelId} beat ${b.index}: no verified photo of ${named.map((e) => `${e.type} "${e.name}"`).join(", ")} — rendering as TYPE with the name only ("${b.name_card.name}"${b.name_card.sub ? ` / "${b.name_card.sub}"` : ""})`);
       }
     }
     b.canvas = canvasContentFor(b, { photo });

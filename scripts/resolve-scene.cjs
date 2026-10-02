@@ -73,7 +73,9 @@ async function resolvePersonScene(tag, name, context) {
 async function resolvePlaceScene(tag, type, name, context) {
   const lines = [];
   const ex = E.expandName(type, name);
-  if (ex.refuse) { lines.push(ex.refuse, `rendering as TYPE with the name only`); say(tag, lines); return { ok: false, kind: type, why: ex.refuse }; }
+  // An acronym with no unambiguous expansion is not a name anything can be looked up by
+  // ("AI", "ED" — CI run 37074911159): refused, and no name card is made of it.
+  if (ex.refuse) { lines.push(ex.refuse, `not a resolvable name — no photo, no name card`); say(tag, lines); return { ok: false, kind: type, why: ex.refuse, refused: true }; }
   const q = ex.name;
   if (ex.note) lines.push(ex.note);
   const dir = E.DIR[type] || "orgs";

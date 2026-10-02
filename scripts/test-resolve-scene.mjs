@@ -22,5 +22,9 @@ eq("no names in a typographic scene", R.properNames("Kinetic typography: the wor
 const r = await R.resolveSceneEntity({ channel: "t", beatIndex: 1, entity: { type: "object", name: "padlock" } });
 eq("an object is not resolved here (the cutout path fetches it)", [r.ok, r.why], [false, "not a real-world entity type"]);
 
+// An acronym with no unambiguous expansion ("AI", "ED" — CI run 37074911159) is refused before any lookup, flagged so no name card is made.
+const ai = await R.resolveSceneEntity({ channel: "t", beatIndex: 2, entity: { type: "organization", name: "AI" } });
+eq("a bare acronym is refused (no photo, no name card)", [ai.ok, ai.refused], [false, true]);
+
 console.log(bad ? `${bad} FAILED` : "all pass");
 process.exit(bad ? 1 : 0);

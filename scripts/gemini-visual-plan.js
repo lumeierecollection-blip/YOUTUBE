@@ -670,33 +670,16 @@ vignette and the camera are added by the system.
                   Do not describe what mechanism to use. Describe what the
                   scene literally shows.
 
-                  Examples:
-                    "Jerome Powell said rates will stay high." -> "A portrait
-                    of Jerome Powell, the Federal Reserve chairman, with a
-                    chart behind him showing rates rising."
-                    "The courthouse in Miami ruled against the company." ->
-                    "An exterior photograph of the Miami federal courthouse,
-                    shot from the street, with the ruling headline overlaid."
-                    "The average family saved $347 last year." -> "A large
-                    number — $347 — filling most of the frame, with a small
-                    label 'average family savings'."
-                    "Investigators found a padlock on the warehouse." -> "A
-                    close-up photo of a metal padlock, isolated on white,
-                    centered on the frame."
-                    "This changes everything." -> "The word 'EVERYTHING'
-                    scaled up to fill the frame, in bold serif, the letters
-                    slightly cracked."
+                  e.g. "A portrait of Jerome Powell, the Federal Reserve
+                  chairman" · "A large number — $347 — filling most of the
+                  frame, small label 'average family savings'" · "A close-up
+                  photo of a metal padlock, isolated on white, centered".
   "named_entities": everything the sentence NAMES that the scene shows, as
                   written in the sentence, with its FULL name ("Tesla, Inc."
                   not "Tesla", "Federal Reserve" not "the Fed" when the
-                  sentence says "Federal Reserve"). Each has a type:
-                    person        a named person ("Jerome Powell")
-                    place         a named city, region or country ("Miami, Florida")
-                    building      a named building ("Miami Federal Courthouse")
-                    organization  a named institution or company ("Federal Reserve")
-                    object        a physical object the sentence names ("padlock")
-                    number        a figure the sentence states ("$347")
+                  sentence says "Federal Reserve"; no bracketed acronym):
                   [{"type": "person"|"place"|"building"|"organization"|"object"|"number", "name": "..."}]
+                  object = a physical thing it names; number = a figure it states.
                   — [] when it names none. Never an entity it does not name.
   "motion_tier":  "micro" | "medium" | "major". Most beats "medium". EXACTLY
                   2 or 3 beats in the video are "major": the hook (beat 0),
@@ -731,8 +714,7 @@ vignette and the camera are added by the system.
                   Never a concept the sentence does not say. The LITERAL
                   object, never a symbol for the idea: "Equipping officers
                   with gloves" -> ["gloves"], not "shield" or
-                  "warning-triangle" (CI run 37010325344: symbols were all
-                  the planner offered, all dropped). On a TYPE beat
+                  "warning-triangle". On a TYPE beat
                   the renderer shows them as real isolated photographs (or a
                   drawn symbol for an arrow / warning / checkmark).
                   CONCEPTS: ${CONCEPT_NAMES.join(", ")}
