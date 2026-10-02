@@ -39,6 +39,17 @@
     "uploaded_at": "2026-09-20T10:43:39.803Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-20T11:43:39.803Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-10-02T11:55:16.895Z"
+  },
+  {
+    "video_id": "SNuo9exMw9I",
+    "channel_id": "48",
+    "title": "How 3D-Printed 2-Ton Tooling Dies Speed Up Aerospace…",
+    "uploaded_at": "2026-10-02T11:55:15.383Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-02T12:55:15.382Z",
     "privacy_status": "private",
     "cancelled": false
   }
