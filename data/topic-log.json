@@ -185,9 +185,14 @@
           "topic": "behavioral-economics-study-2026",
           "slug": "behavioral-economics-study-2026-10-01-2026-10-03",
           "reserved_at": "2026-10-01T19:42:01.326Z"
+        },
+        {
+          "topic": "the-impact-of-the-june-2026-fed-rate-hike-on-budgeting-strategies",
+          "slug": "impact-june-2026-fed-rate-hike-budgeting-strategies",
+          "reserved_at": "2026-10-02T01:25:21.013Z"
         }
       ],
-      "last_generated": "2026-10-01T19:42:01.326Z"
+      "last_generated": "2026-10-02T01:25:21.013Z"
     },
     "2": {
       "channel_name": "Legal Brief",
