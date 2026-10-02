@@ -117,10 +117,14 @@ export const numberInk = (text, size) => {
   const p = numberParts(String(text ?? ""));
   return Math.ceil(size * (p.isQuantity === false ? 0.94 : 0.82));
 };
-// Fraunces descenders (g p y) run ~0.1 em past a 0.95-line-height box: a
-// text block anchored to a zone's bottom edge sits this far above it
-// (CI run 36944700437: TYPE-FULL / TYPE-SPLIT statements crossed y 1340).
+// Fraunces descenders (g j p q y , ;) reach ~1.07 em below a line's top, past
+// a 0.95 (headline) or 0.90 (emphasis) line box: a text block anchored to a
+// zone's bottom edge sits (1.07 - lineHeight) em above it — ONLY when its last
+// line has a descender (CI runs 36944700437 / 36947929123: statements and an
+// emphasis word crossed y 1340; an offset on a line without descenders just
+// cost coverage).
 export const TEXT_DESC = 0.12;
+export const descOffset = (lastLine, size, lineHeight) => (/[gjpqy,;Q]/.test(String(lastLine || "")) ? Math.ceil(Math.max(0, 1.07 - lineHeight) * size) : 0);
 export const TOP = 130;          // row 0 top (150 -> 130: coverage headroom inside the zones, CI run 36944700437)
 export const BOTTOM = 1340;      // the body's bottom edge = the middle zone's bottom
 export const COMP = { x: 48, y: 100, w: 984, h: 1320 };
@@ -261,7 +265,7 @@ function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines =
   const h = f.height;
   const lines = f.lines.map((ln) => ln.map((i) => f.words[i].text).join(" "));
   // Bottom-anchored: the last line's descenders stay above `bottom` (TEXT_DESC).
-  const by = bottom != null ? bottom - h - Math.ceil(f.size * TEXT_DESC) : y;
+  const by = bottom != null ? bottom - h - descOffset(lines[lines.length - 1], f.size, ROLE_HEADLINE.lineHeight) : y;
   return { ...box(anchorX(w, flip), by, w, h), size: f.size, lines, rows: f.lines, words: f.words, align, role: "headline", inBand: f.size >= ROLE_HEADLINE.sizeBand[0] };
 }
 const rule = (flip, y = TOP, w = 96) => ({ ...box(anchorX(w, flip), y, w, 6), role: "rule", anchor: flip ? "right" : "left" });
@@ -353,7 +357,7 @@ export function canvasLayout(c) {
         else boxes.rule = rule(flip, TOP);
         const ink = numberInk(c.data.value, size);
         boxes.number = { ...box(nx, BOTTOM - ink, nw, ink), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
-        if (label) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, x: nx, bottom: boxes.number.y - 28, flip });
+        if (label) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, x: flip ? undefined : nx, bottom: boxes.number.y - 28, flip });   // right-anchored when the number is (it ran off the frame: CI run 36947929123 ch-44)
       } else {
         // the hero number in the top zone, its label under it; the headline at the middle zone's bottom
         boxes.rule = rule(flip, TOP);
@@ -374,7 +378,7 @@ export function canvasLayout(c) {
         const eh = Math.round(emph.size * ROLE_EMPHASIS.lineHeight);
         boxes.rule = rule(flip ? 0 : 1, TOP);
         if (text) boxes.headline = headlineBox(text, { width: 700, y: TOP + 40, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - TOP - 40, max: 120 });
-        boxes.emphasis = { ...box(anchorX(ew, flip ? 0 : 1), BOTTOM - eh - Math.ceil(emph.size * TEXT_DESC), ew, eh), size: emph.size, text: shown, align: flip ? "left" : "right", role: "emphasis" };
+        boxes.emphasis = { ...box(anchorX(ew, flip ? 0 : 1), BOTTOM - eh - descOffset(shown, emph.size, ROLE_EMPHASIS.lineHeight), ew, eh), size: emph.size, text: shown, align: flip ? "left" : "right", role: "emphasis" };
         hero = "emphasis";
       } else if (c?.vertical) {
         // One beat a video: the statement rotated 90 degrees along the left edge.

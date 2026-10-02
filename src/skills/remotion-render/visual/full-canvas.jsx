@@ -217,8 +217,12 @@ function NumberHero({ b, q, t, local, fps, at, color, m, hero = true, settled = 
       const di = digitSlots.indexOf(i), kr = digitSlots.length - 1 - di, target = Number(s.ch) || 0;
       const v = digitRoll(rp, kr, target), fl = Math.floor(v), fr = v - fl;
       const cell = (n, y) => <span style={{ position: "absolute", left: 0, top: y * s.size, width: "100%", height: s.size, lineHeight: 1, textAlign: "center" }}>{n}</span>;
+      // The wheel's window ends at the number box's bottom (+1% overshoot):
+      // a full-em window showed the next digit sliding up BELOW the box,
+      // across the zone edge (CI run 36947929123 ch-26 "42%": ink to y 1382).
+      const winH = Math.max(0, Math.min(s.size, b.h + size * 0.01 - top));
       return (
-        <span key={i} style={{ position: "absolute", left: s.x, top, width: s.w, height: s.size, overflow: "hidden", font: gf, fontOpticalSizing: "auto", letterSpacing: 0, color }}>
+        <span key={i} style={{ position: "absolute", left: s.x, top, width: s.w, height: winH, overflow: "hidden", font: gf, fontOpticalSizing: "auto", letterSpacing: 0, color }}>
           {cell(fl % 10, -fr)}{cell((fl + 1) % 10, 1 - fr)}
         </span>
       );
@@ -231,8 +235,10 @@ function NumberHero({ b, q, t, local, fps, at, color, m, hero = true, settled = 
   const osc = rp >= 1 && pop.done && settled ? m.jitter() : 0;           // micro: position only, never the value
   const wrap = (
     <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, opacity: pop.o,
-      transform: `translateY(${osc.toFixed(2)}px) scale(${(pop.s * m.breathe).toFixed(4)})`,
-      transformOrigin: b.align === "right" ? "right center" : "left center" }}>
+      transform: `translateY(${Math.min(0, osc).toFixed(2)}px) scale(${(pop.s * m.breathe).toFixed(4)})`,
+      // From the BOTTOM edge: the pop (1.3 -> 1.0) and the breathe grow the
+      // figure upward, never below a box that sits on a zone's edge.
+      transformOrigin: b.align === "right" ? "right bottom" : "left bottom" }}>
       {glyphs}
     </div>
   );
