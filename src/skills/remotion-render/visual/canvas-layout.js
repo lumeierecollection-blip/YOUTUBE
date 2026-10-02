@@ -442,8 +442,52 @@ export function canvasLayout(c) {
           const pair = cv.length === 2 ? [fit(cv[0], 480, 640), fit(cv[1], 420, 450)] : null;
           const pairOk = pair && Math.max(pair[0][1], pair[1][1]) >= 440 && pair[0][1] >= 300 && Math.max(pair[0][0], pair[0][1]) >= 480;
           if (!pairOk) {
-            const [w, h] = fit(cv[0], 700, 640, 450, R_EDGE - L_EDGE);
-            boxes.cutout0 = { ...box(540 - w / 2, centreY(h) - h / 2, w, h), role: "concept", concept: cv[0].name, class: cv[0].class, asset: cv[0].asset || null, primary: true, align: "center" };
+            // Sized and placed by the cutout's INK (v.ink, scripts/cutout-ink.mjs),
+            // not its PNG rectangle: the frame checks measure ink, and a PNG's
+            // transparent margin left a tilted banknote's ink 94 px short of
+            // its box (local QA render 2026-10-02). With no ink outline the
+            // rectangle's corners stand in. The box is the ink's box; `img` is
+            // the image rectangle relative to it.
+            // 12 px inside each margin: the 20 px drop shadow ran 4 px past R_EDGE on a full-width cutout.
+            const v = cv[0], r = ar(v), W = R_EDGE - L_EDGE - 24;
+            const pts = Array.isArray(v.ink?.pts) && v.ink.pts.length ? v.ink.pts : [[0, 0], [1, 0], [0, 1], [1, 1]];
+            // The ink's extent, the image `a` px wide, rotated `deg` (rising to the right) about its centre.
+            const ext = (a, deg) => {
+              const t = (deg * Math.PI) / 180, co = Math.cos(t), si = Math.sin(t), ih = a / r;
+              let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+              for (const [fx, fy] of pts) {
+                const px = (fx - 0.5) * a, py = (fy - 0.5) * ih, X = px * co + py * si, Y = -px * si + py * co;
+                x0 = Math.min(x0, X); x1 = Math.max(x1, X); y0 = Math.min(y0, Y); y1 = Math.max(y1, Y);
+              }
+              return { x0, x1, y0, y1, w: x1 - x0, h: y1 - y0 };
+            };
+            // 470 px of ink centred at most at y 1060 reaches y 1295; canvas-coverage needs ~1272.
+            const MIN_H = 470;
+            const u0 = ext(1, 0);
+            // Upright: the longest ink side up to 700 inside 984 x 640; a wide object widens to 984 to reach MIN_H.
+            let deg = 0, crop = false, a = Math.min(700 / Math.max(u0.w, u0.h), 640 / u0.h);
+            if (u0.h * a < MIN_H) a = Math.min(MIN_H / u0.h, W / u0.w, 640 / u0.h);
+            if (u0.h * a < MIN_H - 1) {
+              // Still under 470 px tall at full width: a door key was 378 px and
+              // the beat's content stopped at 57.9% of the frame (CI run
+              // 36999095271 ch-48 beat 2). A scene with a horizon (a skyline, a
+              // road) grows past the frame and is cropped at the sides, never
+              // tilted; an object is set on the smallest diagonal (12-30 deg)
+              // that reaches MIN_H. Never shrunk.
+              const LEVEL = /skyline|landscape|horizon|road|street|highway|bridge|train|river|coast|beach|mountain|field|crowd|city|town|village|harbou?r|port/;
+              if (LEVEL.test(String(v.name || ""))) { crop = true; a = MIN_H / u0.h; }
+              else for (const d of [12, 15, 18, 21, 24, 27, 30]) {
+                const u = ext(1, d);
+                deg = d; a = Math.min(W / u.w, 640 / u.h);
+                if (u.h * a >= MIN_H) break;
+              }
+            }
+            const e = ext(a, deg), ih = a / r, inkW = Math.min(W, e.w), cy = centreY(e.h);
+            const bx = Math.round(540 - inkW / 2), by = Math.round(cy - e.h / 2);
+            const icx = 540 - (e.x0 + e.x1) / 2, icy = cy - (e.y0 + e.y1) / 2;   // the image's centre: its ink centred on (540, cy)
+            boxes.cutout0 = { ...box(bx, by, Math.round(inkW), Math.round(e.h)), role: "concept", concept: v.name, class: v.class, asset: v.asset || null, primary: true, align: "center",
+              // [x, y, w, h] — an array, so flattenBoxes does not read it as an element box
+              img: [Math.round(icx - a / 2 - bx), Math.round(icy - ih / 2 - by), Math.round(a), Math.round(ih)], ...(deg ? { tilt: deg } : {}), ...(crop ? { crop } : {}) };
           } else {
             const [[w0, h0], [w1, h1]] = pair;
             const cy = centreY(Math.max(h0, h1));

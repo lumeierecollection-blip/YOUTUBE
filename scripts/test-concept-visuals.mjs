@@ -26,5 +26,20 @@ for (const variant of [0, 1]) {
   eq(`layout v${variant}: zones hold, hero >= 500 px centred (x 540 +-80, y 980-1060), headline <= 140 px, span >= 59.5%`,
     [z.ok, Math.max(h0.w, h0.h) >= 500, Math.abs(cx - 540) <= 80, cy >= 980 && cy <= 1061, L.boxes.statement.size <= 140, cb.h / 1920 >= 0.595], [true, true, true, true, true, true]);
 }
+// A wide object (a key, 2.5:1) is set on a diagonal: its INK box >= 470 px tall, centred, never shrunk (CI run 36999095271 ch-48 beat 2).
+// The ink here is a bar through the middle of the PNG (a transparent margin above and below), as a real cutout has.
+const bar = { pts: [[0.02, 0.3], [0.98, 0.3], [0.02, 0.7], [0.98, 0.7]] };
+for (const [r, ink] of [[2.5, null], [4, null], [2.5, bar]]) {
+  const L = canvasLayout({ visual_type: "TYPE", headline: "Keep a spare key", beat_index: 2, beat_total: 6, concept_visuals: [{ name: "key", class: "cutout", asset: "cutouts-live/48/2-key.png", w: 100 * r, h: 100, ink }] });
+  const h0 = L.boxes.cutout0, cx = h0.x + h0.w / 2, cy = h0.y + h0.h / 2, cb = contentBounds(L);
+  eq(`wide ${r}:1 cutout${ink ? " (ink margin)" : ""}: tilted, ink box >= 470 tall, <= 984 x 640, centred, ink reaches y >= 1290`,
+    [h0.tilt > 0 && h0.tilt <= 30, h0.h >= 470, h0.w <= 984 && h0.h <= 640, Math.abs(cx - 540) <= 80, cy >= 980 && cy <= 1061, h0.y + h0.h >= 1290, cb.h / 1920 >= 0.6, zoneReport(L).ok], [true, true, true, true, true, true, true, true]);
+}
+// A skyline is never tilted: cropped level across the full width.
+{
+  const L = canvasLayout({ visual_type: "TYPE", headline: "The skyline kept rising", beat_index: 2, beat_total: 6, concept_visuals: [{ name: "city-skyline", class: "cutout", asset: "cutouts/city-skyline.png", w: 1024, h: 280 }] });
+  const h0 = L.boxes.cutout0;
+  eq("skyline: level, cropped to the frame, ink box >= 470 tall", [!h0.tilt, !!h0.crop, h0.x >= 48 && h0.x + h0.w <= 1032, h0.h >= 470], [true, true, true, true]);
+}
 console.log(bad ? `${bad} FAILED` : "all pass");
 process.exit(bad ? 1 : 0);

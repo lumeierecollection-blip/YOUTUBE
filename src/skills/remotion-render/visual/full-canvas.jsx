@@ -334,6 +334,18 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
  */
 function ConceptVisual({ b, local, fps, at, accent }) {
   const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 100%");
+  if (b.class === "cutout" && b.asset && b.img) {
+    // The hero cutout (canvas-layout.js): the box is the ink's box; the image
+    // rectangle (b.img, relative to it) may be larger — transparent margin —
+    // and is rotated about its centre when the object is set on a diagonal.
+    // A cropped scene (b.crop) is clipped to the box at the sides.
+    return (
+      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, overflow: b.crop ? "hidden" : "visible", ...pop }}>
+        <Img src={staticFile(b.asset)} style={{ position: "absolute", left: b.img[0], top: b.img[1], width: b.img[2], height: b.img[3], maxWidth: "none",
+          transform: b.tilt ? `rotate(${-b.tilt}deg)` : undefined, filter: "drop-shadow(2px 2px 20px rgba(0,0,0,0.15))" }} />
+      </div>
+    );
+  }
   if (b.class === "cutout" && b.asset) {
     return (
       <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...pop }}>

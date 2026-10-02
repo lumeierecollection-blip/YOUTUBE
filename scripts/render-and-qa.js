@@ -30,6 +30,7 @@ import { checkVisual, figureKey } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
+import { inkOf } from "./cutout-ink.mjs";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 const { fetchCutoutForBeat } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
@@ -1263,7 +1264,12 @@ async function resolveCanvas(channelId, planPath, plan) {
       }
     };
     await Promise.all([worker(), worker(), worker()]);
-    const resolved = [...results.values()].filter((v) => v && v.class === "cutout").length;
+    // Each cutout's ink outline: the layout sizes, centres and tilts the hero by
+    // what a frame shows of it, not by the PNG rectangle (scripts/cutout-ink.mjs).
+    for (const v of results.values()) {
+      if (v?.class === "cutout" && v.asset && !v.ink) v.ink = await inkOf(join(dirname(CUTOUT_DIR), v.asset));
+    }
+    const resolved =[...results.values()].filter((v) => v && v.class === "cutout").length;
     if (Date.now() - T0 >= BUDGET_MS) console.log(`[cutout-live] ch-${channelId}: ${(BUDGET_MS / 60000).toFixed(0)}-minute budget reached, using ${resolved}/${tasks.length} resolved cutouts`);
     // 3. Attach, in beat order (the TYPE-SPLIT conversion sees its final neighbours).
     for (const w of wanted) {
