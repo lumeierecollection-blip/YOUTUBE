@@ -2359,9 +2359,14 @@
           "topic": "mettlertoledo-foreign-material-inspection",
           "slug": "mettlertoledo-foreign-material-inspection",
           "reserved_at": "2026-10-02T00:56:42.067Z"
+        },
+        {
+          "topic": "medical-device-inspection",
+          "slug": "fda-qmsr-medical-devices-2026-10-01-1234567890-100126-10",
+          "reserved_at": "2026-10-02T01:24:51.083Z"
         }
       ],
-      "last_generated": "2026-10-02T00:56:42.067Z"
+      "last_generated": "2026-10-02T01:24:51.083Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
