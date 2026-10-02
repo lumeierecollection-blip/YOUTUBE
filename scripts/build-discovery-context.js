@@ -37,6 +37,15 @@ function main() {
         .map((u) => (typeof u === "string" ? { topic: u, slug: topicLog.slugify(u), reserved_at: null } : u))
         .filter((u) => !u.reserved_at || Date.parse(u.reserved_at) >= cutoff);
 
+      // This week's trending videos in the channel's category (scripts/
+      // fetch-trending.cjs), top 5 by velocity: a topic SIGNAL for the
+      // discover prompt, never a source of facts. Absent -> unseeded.
+      let trending = [];
+      try {
+        const t = JSON.parse(readFileSync(join(ROOT, "data", "trending", `${c.id}.json`), "utf-8"));
+        trending = (t.videos || []).slice(0, 5).map((v) => ({ title: v.title, tags: (v.tags || []).slice(0, 8), views: v.viewCount, velocity_per_day: v.velocity }));
+      } catch { /* no trending feed for this channel */ }
+      if (channelOverride) console.error(trending.length ? `[research] ch-${c.id}: trending topics loaded (${trending.length})` : `[research] ch-${c.id}: no trending feed, unseeded discovery`);
       return {
         channel_id: String(c.id),
         channel_name: c.channel_name,
@@ -45,6 +54,7 @@ function main() {
         tone: c.tone || "",
         style: c.style || "",
         recent_topics: recent.map((u) => ({ topic: u.topic, slug: u.slug })),
+        ...(trending.length ? { trending_this_week: trending } : {}),
       };
     });
 

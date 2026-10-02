@@ -275,6 +275,24 @@ jobs:
           cache-key: ollama-${{ runner.os }}-qwen2.5-3b
 
       # ── Stage A: discover topics for THIS channel ──────────────────────
+      # ── Trending feed (YouTube Data API v3; scripts/fetch-trending.cjs) ──
+      # A topic signal for discovery, cached 12 h per channel across runs
+      # (the script checks fetched_at). Never fails the job: no key / 403 /
+      # 429 / quota -> unseeded discovery. VidIQ is not used (paid API plan).
+      - name: Restore trending cache
+        if: github.event.inputs.render_only != 'true'
+        uses: actions/cache@v4
+        with:
+          path: data/trending/
+          key: trending-${{ matrix.channel_id }}-${{ github.run_id }}
+          restore-keys: trending-${{ matrix.channel_id }}-
+
+      - name: Trending feed
+        if: github.event.inputs.render_only != 'true'
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node scripts/fetch-trending.cjs "${{ matrix.channel_id }}" || true
+
       - name: Discover topic
         if: github.event.inputs.render_only != 'true'
         id: discover
@@ -385,6 +403,11 @@ jobs:
               exit 1
             fi
           done
+          if [ -f "data/trending/$CH.json" ]; then
+            echo "[research] ch-$CH: trending topics loaded ($(jq '.videos[:5] | length' "data/trending/$CH.json")), chose: $(jq -r .topic /tmp/channel-topic.json)"
+          else
+            echo "[research] ch-$CH: no trending feed, chose (unseeded): $(jq -r .topic /tmp/channel-topic.json)"
+          fi
           echo "skip=false" >> "$GITHUB_OUTPUT"
           echo "slug=$(jq -r .slug /tmp/channel-topic.json)" >> "$GITHUB_OUTPUT"
           if [ "${{ github.event.inputs.dry_run }}" != "true" ]; then

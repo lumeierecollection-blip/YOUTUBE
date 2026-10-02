@@ -6,6 +6,11 @@ motion-graphics channels) its `concepts` archetype allocation. Everything you
 need is in that section — you have no web access, no file access, and nothing
 to ask the user for.
 
+`seo_keywords` (may be empty): the terms trending in this channel's YouTube
+category this week. Where one honestly describes what the research says, use
+that word in the title and the hook — a keyword spine. Never add a claim to
+fit a keyword; a keyword is wording, not a source.
+
 Follow the style contract in your system prompt exactly — it covers
 grounding (cite only from the research you were given), pacing, hook
 construction, and the structural rules the renderer depends on

@@ -34,6 +34,19 @@ contain: title, URL, publication date, and the returned text highlights.
 - `slug`: lowercase, hyphens only, 8–60 characters, derived from the topic.
 - `pillar`: the exact `content_pillars` string this topic falls under.
 
+## Trending this week (when present)
+
+A channel may carry `trending_this_week`: the top videos in its YouTube
+category over the last 7 days, ranked by views per day. These topics are
+producing views this week — when one of them fits the channel's
+`content_pillars`, pick it (or the specific angle inside it that fits the
+niche) and research it. When none fits, ignore the list and choose as
+usual.
+
+A trending title or tag is a SIGNAL of interest, never a fact. Everything
+the topic, `angle` and `why_now` claim must come from your own search
+results, exactly as above — never from the trending title itself.
+
 ## What to omit
 
 If you cannot ground a channel's topic in a real source after searching,
