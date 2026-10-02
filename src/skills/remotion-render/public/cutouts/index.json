@@ -375,8 +375,8 @@
       "name": "dollar-sign",
       "attempts": [
         "pixabay \"dollar sign isolated\": verify WRONG — saw \"a fan of one-dollar bills\"",
-        "pixabay \"dollar sign isolated\": verify WRONG — saw \"one dollar bill\"",
-        "pixabay \"dollar sign isolated\": verify WRONG — saw \"a one dollar bill flag\""
+        "pixabay \"dollar sign isolated\": verify WRONG — saw \"a man wearing a checkered headscarf and green sunglasses\"",
+        "pixabay \"dollar sign isolated\": verify WRONG — saw \"one dollar bill\""
       ]
     },
     {
@@ -396,13 +396,11 @@
         "pixabay \"credit card isolated\": rejected — the mask runs along the photo's bottom edge for 60% of it (> 40%): cut by the frame",
         "pixabay \"credit card isolated\": rejected — the mask runs along the photo's left edge for 57% of it (> 40%): cut by the frame",
         "pixabay \"credit card isolated\": verify CLOSE — saw \"a pile of credit cards\"",
-        "pixabay \"credit card isolated\": rejected — the largest solid region is 61% of what is visible (< 80%): more than one object / a scene",
+        "pixabay \"credit card isolated\": verify CLOSE — saw \"a credit card inserted into a payment terminal\"",
         "pixabay \"credit card\": rejected — the largest solid region is 30% of what is visible (< 80%): more than one object / a scene",
         "pixabay \"credit card\": rejected — the largest solid region is 49% of what is visible (< 80%): more than one object / a scene",
         "pixabay \"credit card\": rejected — the mask runs along the photo's left edge for 57% of it (> 40%): cut by the frame",
-        "pixabay \"credit card\": verify CLOSE — saw \"a pile of credit cards\"",
-        "pixabay \"credit card\": rejected — the largest solid region is 61% of what is visible (< 80%): more than one object / a scene",
-        "pixabay \"credit card\": verify CLOSE — saw \"a credit card inserted into a payment terminal\""
+        "pixabay \"credit card\": verify CLOSE — saw \"a pile of credit cards\""
       ]
     },
     {
@@ -430,11 +428,8 @@
       "attempts": [
         "pixabay \"contract isolated\": verify CLOSE — saw \"a rolled parchment scroll\"",
         "pixabay \"contract isolated\": rejected — the mask runs along the photo's right edge for 72% of it (> 40%): cut by the frame",
-        "pixabay \"contract isolated\": verify CLOSE — saw \"two wooden mannequin figures shaking hands\"",
-        "pixabay \"contract isolated\": rejected — the largest solid region is 40% of what is visible (< 80%): more than one object / a scene",
-        "pixabay \"contract isolated\": rejected — the largest solid region is 65% of what is visible (< 80%): more than one object / a scene",
-        "pixabay \"contract isolated\": rejected — the object covers 5.0% of the photo (< 12%)",
-        "pixabay \"contract\": verify CLOSE — saw \"a rolled parchment scroll\""
+        "pixabay \"contract isolated\": verify CLOSE — saw \"a wax seal stamp\"",
+        "pixabay \"contract isolated\": verify CLOSE — saw \"two wooden mannequin figures shaking hands\""
       ]
     },
     {
