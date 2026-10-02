@@ -1,0 +1,10 @@
+BLOCKER (2026-10-02): the trending feed (scripts/fetch-trending.cjs, YouTube
+Data API v3 chart=mostPopular) is built, wired and degrading correctly, but
+inactive: there is no YOUTUBE_API_KEY repo secret. Every prep logs
+  [trending] ch-<id>: YOUTUBE_API_KEY missing, falling back to unseeded research
+  [research] ch-<id>: no trending feed, chose (unseeded): <topic>
+VidIQ: no integration exists and no key; its API needs the paid Max plan —
+not used, not signed up for.
+Fix (owner): create an API key in a Google Cloud project with "YouTube Data
+API v3" enabled, then `gh secret set YOUTUBE_API_KEY`. Cost: 1 quota unit per
+channel per 12 h (6 of the 10,000 daily units).

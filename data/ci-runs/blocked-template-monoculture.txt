@@ -1,0 +1,21 @@
+BLOCKER (survived 5 iterations, 2026-10-02): the Gemini whole-video frame
+review rejects most videos as TEMPLATE_MONOCULTURE ("N% headline-dominated
+beats"), sending them to data/renders/approved-review/ (a human queue),
+not to approved/.
+
+Runs / channels:
+  36950257339  ch-2 62%, ch-26 67%
+  36953236514  ch-1 80% -> 9/10 on attempt 2; ch-2 83%; ch-26 67%/66%;
+               ch-44 100%
+  36956234025  ch-1 50%; ch-26 80%/80%; ch-48 66%/83%; ch-2 66% -> PASS
+  36959124080  ch-44 100% x3; ch-9 50%
+
+What was done: concept visuals (cutout PNGs / drawn symbols) on text-only
+TYPE beats, and TYPE-SPLIT beats that name a concept become concept beats
+(da308bb). They appear only when the sentence NAMES a concept word
+(grounding rule) — most beats of an essay-style script name none, so most
+beats stay typography. 23/39 cutouts exist.
+
+Not done (would change the content model, needs the owner): giving every
+text beat a visual whether or not the sentence names one; or lowering the
+reviewer's monoculture threshold. Neither is a code defect.

@@ -1,0 +1,15 @@
+BLOCKER (survived 5 iterations, 2026-10-02): topic discovery on the local
+3B model (ollama/qwen2.5:3b) proposes only topics the channel already
+covered; after 4 attempts "every candidate duplicates a topic this channel
+already covered" and prep fails (no video for the channel).
+
+Runs: 36947929123 ch-1; 36959124080 ch-2, ch-26, ch-48 (the topic logs
+filled up across today's six runs).
+Also seen: research citing a URL no search returned (36950257339 ch-9) and
+citing one domain where two are required (36947929123 ch-2) — both gates
+working as designed (CLAUDE.md grounding rule); not loosened.
+
+What would fix it (needs the owner): YOUTUBE_API_KEY (the trending feed —
+scripts/fetch-trending.cjs — gives discovery fresh, real topics to choose
+from; see blocked-trending-no-youtube-api-key.txt), or a stronger discovery
+model than qwen2.5:3b.

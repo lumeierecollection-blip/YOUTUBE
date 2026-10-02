@@ -31,3 +31,20 @@ Then re-run daily-pipeline-v2.yml with dry_run=false.
 
 Not done because of this: replacing main (the owner made that conditional
 on the publishing run succeeding).
+
+--- UPDATE 2026-10-02 (autonomous loop, runs 36947929123 .. 36959124080) ---
+Re-saved 2026-10-01 22:08: CHANNEL_01 / 02 / 48 (all three secrets) — these
+now upload: ch-1 uploaded private oB4a3oSiGUU (run 36950257339) and
+YirRzlBXmcA (run 36953236514); ch-2 uploaded private LdeqQMjrh18 (run
+36956234025); ch-48 uploaded knusFXg2nKU earlier (run 36936040495).
+Still failing:
+  ch-9  approved in run 36956234025, upload refused:
+        "invalid_client — The provided client secret is invalid."
+        CHANNEL_09_CLIENT_ID was re-saved 2026-10-01 but CLIENT_SECRET and
+        REFRESH_TOKEN are from 2026-09-14 — the three are from different
+        OAuth clients / grants.
+  ch-26 "invalid_client" (run 36936040495): CLIENT_SECRET + REFRESH_TOKEN
+        re-saved 2026-10-01, CLIENT_ID from 2026-09-14 — the mirror case.
+  ch-44 all three secrets from 2026-09-14 (> 7 days): expected invalid_grant.
+Fix (owner only): re-run the OAuth consent for ch-9 / ch-26 / ch-44 and
+save CLIENT_ID, CLIENT_SECRET and REFRESH_TOKEN together from ONE client.
