@@ -205,12 +205,16 @@ export function figureKey(v) {
   return `${v.type === "COUNTER" && !/%/.test(raw) ? "n" : "%"}${n}`;
 }
 
+// Entity types (owner's scene-resolver spec 2026-10-02): the real-world ones
+// are sourced from Wikipedia / Wikimedia, an object from Pixabay, a number is
+// drawn (scripts/resolve-scene.cjs).
+export const ENTITY_TYPES = ["person", "place", "building", "organization", "object", "number"];
 export function checkEntities(list, sentence) {
   const kept = [], dropped = [];
   for (const e of Array.isArray(list) ? list : []) {
     const type = String(e?.type || "").toLowerCase();
     const name = String(e?.name || "").trim();
-    if (!name || !["person", "place", "organization"].includes(type)) { dropped.push(`${type || "?"} "${name}": no type/name`); continue; }
+    if (!name || !ENTITY_TYPES.includes(type)) { dropped.push(`${type || "?"} "${name}": no type/name`); continue; }
     if (!entityNamedInSentence(name, sentence)) { dropped.push(`${type} "${name}": not named in the sentence`); continue; }
     if (!kept.some((k) => k.name.toLowerCase() === name.toLowerCase())) kept.push({ type, name });
   }
@@ -382,7 +386,7 @@ export function checkVisual(b, sentence) {
     if (!entityNamedInSentence(ent, sentence)) return bad(`PHOTO entity "${ent}" is not named in the sentence`);
     const listed = (Array.isArray(b.named_entities) ? b.named_entities : []).find((e) => String(e?.name || "").trim().toLowerCase() === ent.toLowerCase());
     const type = String(listed?.type || d.entity_type || "").toLowerCase();
-    if (!["person", "place", "organization"].includes(type)) return bad(`PHOTO entity "${ent}" has no type (person / place / organization) in named_entities`);
+    if (!["person", "place", "building", "organization"].includes(type)) return bad(`PHOTO entity "${ent}" has no type (person / place / building / organization) in named_entities`);
     return { type: t, data: { entity: ent, entity_type: type } };
   }
   if (t === "PROCESS") {
@@ -638,11 +642,61 @@ vignette and the camera are added by the system.
     MONEY    {}   the sentence names a money object or an amount; a real
                   photo is fetched, else the beat is drawn as TYPE
     TYPE     {} — full-frame typography only
-  "named_entities": every person, place and organization the sentence
-                  NAMES, as written in it, with its FULL name ("Tesla, Inc."
+  "scene_description": REQUIRED. For every beat, write a scene_description.
+                  Describe what a viewer should see on screen for this
+                  specific sentence.
+
+                  Rules:
+
+                  · Name the subject literally. If the sentence mentions
+                    Jerome Powell, describe Jerome Powell. If it mentions the
+                    Miami courthouse, describe the Miami courthouse.
+                  · If the sentence names a place, describe the place.
+                  · If the sentence names a person, describe that person's
+                    portrait or their action.
+                  · If the sentence names an object, describe the object.
+                  · If the sentence describes a number, describe a large
+                    number display.
+                  · If the sentence describes a process, describe the flow.
+                  · If the sentence is purely abstract (no person, place,
+                    object, number, or process), describe it as kinetic
+                    typography.
+
+                  Be specific about the location on screen: top, center,
+                  bottom, full-frame. Be specific about scale: small label,
+                  hero number, full-bleed. Be specific about mood: editorial,
+                  clinical, dramatic.
+
+                  Do not describe what mechanism to use. Describe what the
+                  scene literally shows.
+
+                  Examples:
+                    "Jerome Powell said rates will stay high." -> "A portrait
+                    of Jerome Powell, the Federal Reserve chairman, with a
+                    chart behind him showing rates rising."
+                    "The courthouse in Miami ruled against the company." ->
+                    "An exterior photograph of the Miami federal courthouse,
+                    shot from the street, with the ruling headline overlaid."
+                    "The average family saved $347 last year." -> "A large
+                    number — $347 — filling most of the frame, with a small
+                    label 'average family savings'."
+                    "Investigators found a padlock on the warehouse." -> "A
+                    close-up photo of a metal padlock, isolated on white,
+                    centered on the frame."
+                    "This changes everything." -> "The word 'EVERYTHING'
+                    scaled up to fill the frame, in bold serif, the letters
+                    slightly cracked."
+  "named_entities": everything the sentence NAMES that the scene shows, as
+                  written in the sentence, with its FULL name ("Tesla, Inc."
                   not "Tesla", "Federal Reserve" not "the Fed" when the
-                  sentence says "Federal Reserve"):
-                  [{"type": "person"|"place"|"organization", "name": "..."}]
+                  sentence says "Federal Reserve"). Each has a type:
+                    person        a named person ("Jerome Powell")
+                    place         a named city, region or country ("Miami, Florida")
+                    building      a named building ("Miami Federal Courthouse")
+                    organization  a named institution or company ("Federal Reserve")
+                    object        a physical object the sentence names ("padlock")
+                    number        a figure the sentence states ("$347")
+                  [{"type": "person"|"place"|"building"|"organization"|"object"|"number", "name": "..."}]
                   — [] when it names none. Never an entity it does not name.
   "motion_tier":  "micro" | "medium" | "major". Most beats "medium". EXACTLY
                   2 or 3 beats in the video are "major": the hook (beat 0),
@@ -907,7 +961,8 @@ Respond ONLY with JSON (no markdown fences):
       "canvas_composition": "<one of the thirteen compositions>",
       "visual_type": "<PHOTO | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | LIST | TIMELINE | COMPARE | DOCUMENT | MONEY | TYPE>",
       "data": { "<fields for the visual_type, see above>": "..." },
-      "named_entities": [{ "type": "<person | place | organization>", "name": "<as named in the sentence>" }],
+      "scene_description": "<what a viewer sees on screen for this sentence, in plain English: subject named literally, location on screen, scale, mood>",
+      "named_entities": [{ "type": "<person | place | building | organization | object | number>", "name": "<as named in the sentence>" }],
       "motion_tier": "<micro | medium | major>",
       "camera_focus": [{ "at_percent": 0.4, "target": "<number | chart | headline | photo | left | right | top | bottom | node0 | node1 | node2 | full>" }],
       "headline_zone": "<top | middle>",
@@ -1661,6 +1716,14 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       const ce = checkEntities(b.named_entities, sentenceText);
       for (const why of ce.dropped) console.warn(`::warning::[plan] beat ${b.index}: named entity ${why} — dropped`);
       b.named_entities = ce.kept;
+      // What the viewer should see, in the planner's words (owner's spec
+      // 2026-10-02). scripts/resolve-scene.cjs reads it with named_entities; a
+      // proper name it mentions is used only when the SENTENCE names it too.
+      b.scene_description = typeof b.scene_description === "string" && b.scene_description.trim() ? b.scene_description.trim().slice(0, 600) : null;
+      if (!b.scene_description) console.warn(`::warning::[plan] beat ${b.index}: no scene_description`);
+      // A named object is a concept: the cutout path fetches it (Pixabay, verified).
+      const objs = ce.kept.filter((e) => e.type === "object").map((e) => e.name.toLowerCase());
+      if (objs.length) b.concepts = [...new Set([...objs, ...(Array.isArray(b.concepts) ? b.concepts : [])])];
       if (!["micro", "medium", "major"].includes(b.motion_tier)) b.motion_tier = "medium";
       b.camera_focus = (Array.isArray(b.camera_focus) ? b.camera_focus : [])
         .map((f) => ({ at_percent: Math.max(0.05, Math.min(0.9, Number(f?.at_percent))), target: String(f?.target || "").toLowerCase() }))

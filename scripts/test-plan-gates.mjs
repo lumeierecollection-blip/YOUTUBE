@@ -3,7 +3,7 @@
 // numbers are not counters, a one-bar BAR is its figure; and the entity
 // resolver's acronym rule (scripts/entity-assets.cjs).
 import { createRequire } from "node:module";
-import { flowNodes, checkVisual, isIdentifierNumber, groundedOptions, VISUAL_TYPES } from "./gemini-visual-plan.js";
+import { flowNodes, checkVisual, isIdentifierNumber, groundedOptions, VISUAL_TYPES, checkEntities } from "./gemini-visual-plan.js";
 const { expandName } = createRequire(import.meta.url)("./entity-assets.cjs");
 
 let bad = 0;
@@ -59,6 +59,14 @@ eq("groundedOptions offers COMPARE", groundedOptions("Renters pay 42% of income 
 eq("groundedOptions offers TIMELINE", groundedOptions("The law passed in 2019 and was repealed in 2024.").allowed.includes("TIMELINE"), true);
 eq("a second date with no label is no timeline (nothing is invented)", groundedOptions("Rates rose in 2019 and 2024.").allowed.includes("TIMELINE"), false);
 eq("groundedOptions offers PROCESS only for a stated flow", groundedOptions("Rates rose sharply.").allowed.includes("PROCESS"), false);
+
+// Scene resolver entity types (owner's spec 2026-10-02): building / object / number are kept; each must be named in the sentence.
+{
+  const ce = checkEntities([{ type: "building", name: "Miami Federal Courthouse" }, { type: "object", name: "padlock" }, { type: "number", name: "$347" }, { type: "person", name: "Jerome Powell" }, { type: "object", name: "gavel" }, { type: "vehicle", name: "car" }],
+    "Jerome Powell said the Miami Federal Courthouse found a padlock worth $347.");
+  eq("checkEntities keeps building / object / number / person named in the sentence", ce.kept.map((e) => e.type + ":" + e.name), ["building:Miami Federal Courthouse", "object:padlock", "number:$347", "person:Jerome Powell"]);
+  eq("checkEntities drops an object the sentence does not name and an unknown type", ce.dropped.length, 2);
+}
 
 console.log(bad ? `${bad} FAILED` : "all pass");
 process.exit(bad ? 1 : 0);
