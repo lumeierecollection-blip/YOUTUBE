@@ -1,10 +1,45 @@
-# V2 — trending feed, PNG cutouts, five-iteration CI loop (2026-10-02)
+# V2 — trending feed, on-demand cutouts, CI loop (2026-10-02)
 
-Branch `claude/visual-rebuild-from-5f91e75`. Autonomous loop: push, trigger,
-watch, fix, repeat — five full pipeline runs. **Not green on 4 channels**:
-the best run approved 2 of 6. What remains is external (OAuth secrets, a
-missing API key, the local model's topic discovery) or a content-model
-decision (the AI reviewer's monoculture rule) — listed under *Blocked*.
+Branch `claude/visual-rebuild-from-5f91e75`. Seven full pipeline runs,
+operated autonomously (push, trigger, watch, fix, repeat).
+
+**Result: the target is met in run
+[36979111190](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/36979111190)
+(iteration 7): 5 of 6 channels approved or in approved-review** — ch-9
+approved; ch-1, ch-2, ch-26, ch-48 approved-review; ch-44 produced no video
+(discovery duplicates). No canvas or zone failure on any channel. Private
+uploads across the loop: ch-1 `oB4a3oSiGUU`, `YirRzlBXmcA`; ch-2
+`LdeqQMjrh18`. ch-9 was approved in iterations 4, 6 and 7, but its upload
+is refused (`invalid_client`) — see *Blocked*.
+
+## On-demand cutouts (iterations 6-7) — the primary path
+
+A pre-built library reused one PNG for every video. Each beat's cutout is
+now fetched for that beat before the render (`scripts/fetch-cutout-once.cjs`,
+ea1f452 / 71130d7): Pixabay "<concept> isolated", then "<concept>" (photo,
+safesearch) → the first 3 results whose tags name it → rembg u2net and the
+geometric checks → content verification of the isolated PNG (MATCH only) →
+`public/cutouts-live/<ch>/<beat>-<slug>.png` + a sidecar JSON. A failed live
+fetch falls back to the verified library PNG, then to type. Pixabay is paced
+at one request per 2 s for the whole process (a 429 waits 30 s and retries
+once); 3 fetches at a time; 4-minute budget per channel; per-run cache only.
+
+| Run | Channel | Live (verified MATCH) | Library | Symbols | Concept beats with no visual | Rendered frame |
+|---|---|---|---|---|---|---|
+| 36976172356 | ch-2 | courthouse, gavel (candidate 1 each) | 0 | 0 | 0 | — |
+| 36979111190 | ch-1 | worker | 0 | 2 | 1 | a hard-hatted construction worker — matches |
+| 36979111190 | ch-2 | gavel | 0 | 1 | 1 | a wooden gavel — matches |
+| 36979111190 | ch-26 | scientist (used on 3 beats) | 0 | 0 | 3 | a scientist in a protective suit — matches |
+
+No wrong object reached a frame in these runs, and no library fallback was
+needed. Person photos stay on the Wikipedia path and are verified per beat:
+Abiy Ahmed's lead image verified MATCH and used (ch-9); Youssef Rajji's
+candidates rejected NO_MATCH, so the beat was downgraded to type.
+
+## Earlier state (iterations 1-5)
+
+The first five runs approved at most 2 of 6; the sections below are from
+that point, updated where noted.
 
 ## Outcome per iteration
 
@@ -15,6 +50,8 @@ decision (the AI reviewer's monoculture rule) — listed under *Blocked*.
 | [36953236514](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/36953236514) | **approved, uploaded** `YirRzlBXmcA` | rejected: coverage | rejected: coverage | approved-review (AI) | approved-review (AI) | rejected: zones |
 | [36956234025](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/36956234025) | rejected: kinetic | **approved, uploaded** `LdeqQMjrh18` | **approved**, upload refused (OAuth) | approved-review (AI) | no plan (Gemini malformed JSON) | approved-review (AI) |
 | [36959124080](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/36959124080) | approved-review (AI) | prep: dup topics | approved-review (challenger) | prep: dup topics | approved-review (AI) | prep: dup topics |
+| [36976172356](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/36976172356) | prep: dup topics | approved-review (challenger) | **approved**, upload refused (OAuth) | prep: 6 ids in one citation | rejected: "%" crossed y 1340 | prep: dup topics |
+| [36979111190](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/36979111190) | approved-review (AI) | approved-review (beat check) | **approved**, upload refused (OAuth) | approved-review (AI) | prep: dup topics | approved-review (AI) |
 
 Iterations 4 and 5 had **no zone or coverage failure on any channel**. Every
 finished video landed in exactly one queue; no MP4 was deleted (the only
@@ -99,6 +136,9 @@ gavel + upward-arrow (approved, uploaded), ch-9 person-silhouette
 | 4ec181d | a "q" tail reaches 0.25 em past the line box; decimal separators descend |
 | da308bb | the camera lifted bottom-anchored content inside its zone (coverage); more concept beats |
 | 0a36e35 | headline markup with no bold / accent word failed kinetic-rules |
+| ea1f452, 71130d7 | on-demand per-beat cutouts, fetched before the render |
+| be5e33b | discovery steered to the least-covered content pillar (prep 3/6 → 5/6) |
+| 1b9b5a3 | a "%" drops ~0.1 em below the baseline |
 
 ## Blocked (data/ci-runs/)
 
