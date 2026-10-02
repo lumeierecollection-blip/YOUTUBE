@@ -94,6 +94,17 @@
     "uploaded_at": "2026-09-20T10:29:31.296Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-20T11:29:31.295Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-10-02T11:44:54.303Z"
+  },
+  {
+    "video_id": "hzWrCwET-hY",
+    "channel_id": "2",
+    "title": "Tenant Privacy Rights Against Smart Locks and Biometric…",
+    "uploaded_at": "2026-10-02T11:44:52.659Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-02T12:44:52.658Z",
     "privacy_status": "private",
     "cancelled": false
   }
