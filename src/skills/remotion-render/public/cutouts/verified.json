@@ -1,0 +1,546 @@
+{
+  "dollar-bill": {
+    "rejected": {
+      "https://pixabay.com/photos/dollar-money-the-globe-earth-green-1362242/": {
+        "verified_at": "2026-10-02T00:13:02.525Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a globe with a rolled dollar bill on top"
+      },
+      "https://pixabay.com/photos/money-dollar-finance-1974695/": {
+        "verified_at": "2026-10-02T00:13:08.285Z",
+        "provider": "groq",
+        "verdict": "CLOSE",
+        "seen": "rolled-up dollar bills"
+      }
+    },
+    "verified_at": "2026-10-02T00:13:15.547Z",
+    "source_url": "https://pixabay.com/photos/money-currency-cash-dollar-dollars-19818/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "twenty dollar bill"
+  },
+  "dollar-sign": {
+    "rejected": {
+      "https://pixabay.com/photos/carnival-mask-costume-people-1192396/": {
+        "verified_at": "2026-10-02T00:13:21.968Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a man wearing a checkered headscarf and green sunglasses"
+      },
+      "https://pixabay.com/photos/hand-glove-cold-winter-2686004/": {
+        "verified_at": "2026-10-02T00:13:26.255Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a black glove making a peace sign"
+      },
+      "https://pixabay.com/photos/glove-two-fingers-peace-sign-1838162/": {
+        "verified_at": "2026-10-02T00:13:30.016Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a hand making a peace sign"
+      }
+    }
+  },
+  "coin-stack": {
+    "rejected": {},
+    "verified_at": "2026-10-02T00:13:35.168Z",
+    "source_url": "https://pixabay.com/photos/business-cash-coin-concept-credit-17965/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "a stack of metal coins"
+  },
+  "wallet": {
+    "rejected": {
+      "https://pixabay.com/photos/frames-border-white-wall-picture-2576389/": {
+        "verified_at": "2026-10-02T00:13:40.126Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a framed poster with German text"
+      },
+      "https://pixabay.com/photos/gift-note-wallet-card-write-paper-4943193/": {
+        "verified_at": "2026-10-02T00:13:45.354Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a gift box with various items including a cardholder"
+      },
+      "https://pixabay.com/photos/shawl-hat-sunglasses-photo-wallet-2602137/": {
+        "verified_at": "2026-10-02T00:13:54.756Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a brown hat and sunglasses"
+      }
+    }
+  },
+  "bank-statement": {
+    "rejected": {
+      "https://pixabay.com/photos/skyline-skyscraper-city-ecb-3582110/": {
+        "verified_at": "2026-10-02T00:14:06.277Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a skyscraper"
+      },
+      "https://pixabay.com/photos/commercial-bank-technology-2397653/": {
+        "verified_at": "2026-10-02T00:14:11.124Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a modern bank building"
+      },
+      "https://pixabay.com/photos/food-pancake-butter-breakfast-2583241/": {
+        "verified_at": "2026-10-02T00:14:16.941Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a stack of pancakes"
+      }
+    }
+  },
+  "credit-card": {
+    "rejected": {
+      "https://pixabay.com/photos/frame-wreath-border-floral-peonies-4902804/": {
+        "verified_at": "2026-10-02T00:14:27.887Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a floral wreath"
+      },
+      "https://pixabay.com/photos/flowers-pink-spring-arrangement-4140815/": {
+        "verified_at": "2026-10-02T00:14:34.317Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "pink flowers on branches"
+      },
+      "https://pixabay.com/photos/flower-pink-rose-stem-5093586/": {
+        "verified_at": "2026-10-02T00:14:49.571Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a pink rose with stem and leaves"
+      }
+    }
+  },
+  "person-silhouette": {
+    "rejected": {
+      "https://pixabay.com/photos/man-hiker-standing-evening-person-21279/": {
+        "verified_at": "2026-10-02T00:15:01.186Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a photo of a person with a backpack"
+      },
+      "https://pixabay.com/photos/mati-woman-girl-portrait-look-3126225/": {
+        "verified_at": "2026-10-02T00:15:08.314Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a photo of a woman"
+      }
+    },
+    "verified_at": "2026-10-02T00:15:26.462Z",
+    "source_url": "https://pixabay.com/photos/man-silhouette-model-balcony-view-5615240/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "a person silhouette"
+  },
+  "person-walking": {
+    "rejected": {
+      "https://pixabay.com/photos/urban-walking-street-to-walk-city-4040673/": {
+        "verified_at": "2026-10-02T00:15:30.606Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a pair of legs wearing sneakers"
+      },
+      "https://pixabay.com/photos/pedestrian-crossing-sign-outdoors-1745453/": {
+        "verified_at": "2026-10-02T00:15:48.955Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a pedestrian crossing sign with a convict"
+      }
+    }
+  },
+  "business-person": {
+    "rejected": {},
+    "verified_at": "2026-10-02T00:15:57.660Z",
+    "source_url": "https://pixabay.com/photos/manager-man-phone-businessman-suit-6060307/",
+    "provider": "groq",
+    "verdict": "MATCH",
+    "seen": "a man in a business suit"
+  },
+  "group-people": {
+    "rejected": {},
+    "verified_at": "2026-10-02T00:16:33.603Z",
+    "source_url": "https://pixabay.com/photos/family-happy-group-relationship-7040689/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "a group of people"
+  },
+  "scientist": {
+    "rejected": {
+      "https://pixabay.com/photos/sculpture-ju-ming-einstein-652200/": {
+        "verified_at": "2026-10-02T00:16:38.695Z",
+        "provider": "groq",
+        "verdict": "CLOSE",
+        "seen": "a statue of a man"
+      },
+      "https://pixabay.com/photos/aerospace-ariadne-toulouse-4478250/": {
+        "verified_at": "2026-10-02T00:16:48.632Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a space rocket"
+      },
+      "https://pixabay.com/photos/science-scientist-test-tube-1336664/": {
+        "verified_at": "2026-10-02T00:17:00.613Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "gloved hand holding a test tube with a pipette"
+      }
+    }
+  },
+  "worker": {
+    "rejected": {},
+    "verified_at": "2026-10-02T00:17:09.630Z",
+    "source_url": "https://pixabay.com/photos/vehicle-man-safety-4717534/",
+    "provider": "groq",
+    "verdict": "MATCH",
+    "seen": "a construction worker"
+  },
+  "courthouse": {
+    "rejected": {
+      "https://pixabay.com/photos/buffalo-new-york-city-urban-92706/": {
+        "verified_at": "2026-10-02T00:17:27.608Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "modern office building"
+      },
+      "https://pixabay.com/photos/courthouse-old-building-patriotic-2184158/": {
+        "verified_at": "2026-10-02T00:17:31.438Z",
+        "provider": "groq",
+        "verdict": "CLOSE",
+        "seen": "a brick building"
+      },
+      "https://pixabay.com/photos/courthouse-clock-court-justice-3397618/": {
+        "verified_at": "2026-10-02T00:17:41.587Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a clock tower and clock"
+      }
+    }
+  },
+  "government-building": {
+    "rejected": {},
+    "verified_at": "2026-10-02T00:17:54.596Z",
+    "source_url": "https://pixabay.com/photos/house-building-architecture-modern-7783183/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "modern government building"
+  },
+  "bank-building": {
+    "rejected": {
+      "https://pixabay.com/photos/city-building-travel-city-view-7075860/": {
+        "verified_at": "2026-10-02T00:18:01.135Z",
+        "provider": "groq",
+        "verdict": "CLOSE",
+        "seen": "a modern skyscraper"
+      },
+      "https://pixabay.com/photos/euro-tower-skyscraper-downtown-2867936/": {
+        "verified_at": "2026-10-02T00:18:15.675Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a modern skyscraper"
+      },
+      "https://pixabay.com/photos/skyscraper-building-architecture-5012405/": {
+        "verified_at": "2026-10-02T00:18:21.807Z",
+        "provider": "groq",
+        "verdict": "CLOSE",
+        "seen": "a modern skyscraper"
+      }
+    }
+  },
+  "factory": {
+    "rejected": {
+      "https://pixabay.com/photos/technique-meter-old-industry-4226752/": {
+        "verified_at": "2026-10-02T00:18:40.275Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "an industrial gauge"
+      },
+      "https://pixabay.com/photos/darling-fireplace-clouds-cloudy-8748620/": {
+        "verified_at": "2026-10-02T00:18:43.544Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a brick chimney"
+      }
+    },
+    "verified_at": "2026-10-02T00:19:02.098Z",
+    "source_url": "https://pixabay.com/photos/engineer-engineering-4941329/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "factory assembly line"
+  },
+  "office-tower": {
+    "rejected": {},
+    "verified_at": "2026-10-02T00:19:08.643Z",
+    "source_url": "https://pixabay.com/photos/dubai-skyscraper-architecture-urban-7237748/",
+    "provider": "groq",
+    "verdict": "MATCH",
+    "seen": "a tall skyscraper"
+  },
+  "city-skyline": {
+    "rejected": {},
+    "verified_at": "2026-10-02T00:19:27.362Z",
+    "source_url": "https://pixabay.com/photos/germany-city-skyscrapers-frankfurt-7409782/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "a city skyline"
+  },
+  "contract": {
+    "rejected": {
+      "https://pixabay.com/photos/young-woman-studies-the-contract-2211234/": {
+        "verified_at": "2026-10-02T00:19:34.386Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a woman sitting in a chair reading a blue folder"
+      },
+      "https://pixabay.com/photos/young-woman-signs-the-contract-2211236/": {
+        "verified_at": "2026-10-02T00:19:44.773Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a woman writing on a clipboard"
+      },
+      "https://pixabay.com/photos/seal-sealing-wax-rubber-stamp-red-1463732/": {
+        "verified_at": "2026-10-02T00:20:01.879Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a wax seal stamp"
+      }
+    }
+  },
+  "stamp-approved": {
+    "rejected": {
+      "https://pixabay.com/photos/envelope-letter-gift-4943161/": {
+        "verified_at": "2026-10-02T00:20:08.891Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "envelopes with stamps"
+      },
+      "https://pixabay.com/photos/orchid-flower-blossom-bloom-white-2088922/": {
+        "verified_at": "2026-10-02T00:20:30.884Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a white and yellow orchid flower"
+      }
+    }
+  },
+  "gavel": {
+    "rejected": {
+      "https://pixabay.com/photos/crypto-bitcoin-regulation-gavel-7012631/": {
+        "verified_at": "2026-10-02T00:20:55.452Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a collection of cryptocurrency coins"
+      },
+      "https://pixabay.com/photos/crypto-bitcoin-blockchain-gavel-7021889/": {
+        "verified_at": "2026-10-02T00:20:59.066Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a stack of metal coins"
+      }
+    }
+  },
+  "scales": {
+    "rejected": {
+      "https://pixabay.com/photos/justice-law-judgment-trial-libra-6778953/": {
+        "verified_at": "2026-10-02T00:21:10.138Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "statue of Lady Justice"
+      },
+      "https://pixabay.com/photos/justice-statue-sculpture-bazaar-3362399/": {
+        "verified_at": "2026-10-02T00:21:20.664Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a golden statue of Lady Justice"
+      }
+    }
+  },
+  "evidence-tag": {
+    "rejected": {
+      "https://pixabay.com/photos/bush-curlew-curlew-bird-nature-7492904/": {
+        "verified_at": "2026-10-02T00:21:40.836Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a bird with long legs"
+      },
+      "https://pixabay.com/photos/marmalade-jam-bottle-tag-homemade-5444872/": {
+        "verified_at": "2026-10-02T00:21:44.719Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a jar of orange marmalade with a label"
+      },
+      "https://pixabay.com/photos/urban-graffiti-tag-garbage-bin-7885490/": {
+        "verified_at": "2026-10-02T00:21:56.303Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "graffiti on a wheelie bin"
+      }
+    }
+  },
+  "upward-arrow": {
+    "rejected": {
+      "https://pixabay.com/photos/forest-signpost-traffic-light-hike-5038517/": {
+        "verified_at": "2026-10-02T00:22:18.370Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a wooden post with arrow signs"
+      }
+    },
+    "verified_at": "2026-10-02T00:22:39.001Z",
+    "source_url": "https://pixabay.com/photos/arrow-nature-direction-forest-4844205/",
+    "provider": "groq",
+    "verdict": "MATCH",
+    "seen": "a round orange sign with a white upward arrow"
+  },
+  "downward-arrow": {
+    "rejected": {
+      "https://pixabay.com/photos/arrow-nature-direction-forest-4844205/": {
+        "verified_at": "2026-10-02T00:22:56.851Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "upward arrow sign"
+      },
+      "https://pixabay.com/photos/forest-signpost-traffic-light-hike-5038517/": {
+        "verified_at": "2026-10-02T00:23:02.566Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a wooden post with upward-pointing arrow signs"
+      },
+      "https://pixabay.com/photos/bhutan-archery-tradition-culture-2502777/": {
+        "verified_at": "2026-10-02T00:23:09.187Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "an archer"
+      }
+    }
+  },
+  "warning-triangle": {
+    "rejected": {},
+    "verified_at": "2026-10-02T00:23:19.754Z",
+    "source_url": "https://pixabay.com/photos/sign-road-sign-try-your-brakes-road-1358288/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "a triangle warning sign"
+  },
+  "checkmark": {
+    "rejected": {
+      "https://pixabay.com/photos/checklist-list-hand-pen-business-1919292/": {
+        "verified_at": "2026-10-02T00:23:27.085Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a hand holding a marker"
+      },
+      "https://pixabay.com/photos/successful-consent-check-mark-hook-2633707/": {
+        "verified_at": "2026-10-02T00:23:30.655Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a 3D character holding a giant checkmark"
+      },
+      "https://pixabay.com/photos/check-paint-horse-horse-animal-3467962/": {
+        "verified_at": "2026-10-02T00:23:37.277Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a horse head"
+      }
+    }
+  },
+  "broken-chain": {
+    "rejected": {
+      "https://pixabay.com/photos/technology-excavator-rust-2681820/": {
+        "verified_at": "2026-10-02T00:24:31.841Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a rusty excavator"
+      }
+    }
+  },
+  "handshake": {
+    "rejected": {},
+    "verified_at": "2026-10-02T00:24:41.903Z",
+    "source_url": "https://pixabay.com/photos/shake-hands-handshake-helping-hand-3147067/",
+    "provider": "groq",
+    "verdict": "MATCH",
+    "seen": "two wooden mannequins shaking hands"
+  },
+  "magnifying-glass": {
+    "rejected": {
+      "https://pixabay.com/photos/glass-globe-fot%C3%B3g%C3%B6mb-buda-castle-4112627/": {
+        "verified_at": "2026-10-02T00:25:08.601Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a hand holding a crystal ball"
+      }
+    }
+  },
+  "padlock": {
+    "rejected": {},
+    "verified_at": "2026-10-02T00:25:30.197Z",
+    "source_url": "https://pixabay.com/photos/padlock-costa-rica-locked-gate-7346959/",
+    "provider": "groq",
+    "verdict": "MATCH",
+    "seen": "a rusty padlock and chain"
+  },
+  "key": {
+    "rejected": {
+      "https://pixabay.com/photos/thumper-door-handle-old-2166500/": {
+        "verified_at": "2026-10-02T00:25:54.277Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a metal door knocker"
+      }
+    }
+  },
+  "shield": {
+    "rejected": {
+      "https://pixabay.com/photos/ireland-pennant-shield-field-992644/": {
+        "verified_at": "2026-10-02T00:26:19.863Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a stone wall with a painted emblem"
+      }
+    }
+  },
+  "crosshair": {
+    "rejected": {
+      "https://pixabay.com/photos/camera-photo-photography-vintage-5036220/": {
+        "verified_at": "2026-10-02T00:26:45.565Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a hand holding a digital camera"
+      }
+    }
+  },
+  "radar": {
+    "rejected": {
+      "https://pixabay.com/photos/control-tower-harbour-entrance-2418648/": {
+        "verified_at": "2026-10-02T00:27:10.661Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "an airport control tower"
+      }
+    }
+  },
+  "map-pin": {
+    "rejected": {
+      "https://pixabay.com/photos/pin-up-swimsuit-woman-megaphone-6656553/": {
+        "verified_at": "2026-10-02T00:27:34.117Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a woman holding a megaphone"
+      }
+    }
+  },
+  "flag-america": {
+    "rejected": {
+      "https://pixabay.com/photos/american-flag-us-flag-soldier-7523058/": {
+        "verified_at": "2026-10-02T00:28:04.019Z",
+        "provider": "groq",
+        "verdict": "CLOSE",
+        "seen": "a soldier kneeling next to an American flag"
+      }
+    }
+  }
+}
