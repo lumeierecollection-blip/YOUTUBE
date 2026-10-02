@@ -328,6 +328,42 @@ export function leadInFromSentence(lead, sentence) {
   return content.every((w) => { const st = stemWord(w); return sent.some((t) => stemMatch(st, t)); });
 }
 
+/**
+ * Zones (owner's rule, 2026-10-02; canvas-layout.js ZONES): the plan declares
+ * headline_zone / chart_zone / caption_zone per beat. Checked here:
+ *   caption_zone   always "bottom" (the renderer's caption band)
+ *   headline_zone  "top" | "middle"; chart_zone "top" | "middle"
+ *   a beat with a headline AND a chart / map / number: different zones —
+ *   the same zone is a REJECTED declaration
+ *   the swap (chart top, headline middle) only for COUNTER (NUMBER-FULL is
+ *   the one composition laid out both ways)
+ * A rejected or missing declaration is replaced by the canonical zones
+ * (headline top, chart middle, caption bottom) and logged — not re-asked:
+ * these beats have no re-plan loop of their own (the challenger's is the
+ * only one). The layout and local-audit zones-no-overlap enforce the zones
+ * whatever the plan says, so a bad declaration cannot render overlapping.
+ */
+const ZONE_CHART_TYPES = new Set(["COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP", "PROCESS", "LIST", "TIMELINE", "COMPARE"]);
+export function checkZones(b) {
+  const z = (v) => String(v || "").toLowerCase().trim();
+  const hz = z(b.headline_zone), cz = z(b.chart_zone), kz = z(b.caption_zone);
+  const vt = String(b.visual_type || "").toUpperCase();
+  const hasChart = ZONE_CHART_TYPES.has(vt), hasHead = !!String(b.headline || "").trim();
+  let why = null;
+  if (!hz || !cz || !kz) why = "zones missing";
+  else if (kz !== "bottom") why = `caption_zone "${kz}" (the caption is always bottom)`;
+  else if (![hz, cz].every((x) => x === "top" || x === "middle")) why = `headline_zone "${hz}" / chart_zone "${cz}" (bottom is the caption's)`;
+  else if (hasChart && hasHead && hz === cz) why = `REJECTED: headline and ${vt.toLowerCase()} both in the ${hz} zone`;
+  else if (hz === "middle" && cz === "top" && vt !== "COUNTER") why = `the swap (chart top, headline middle) is laid out only for COUNTER, not ${vt}`;
+  if (why) {
+    if (why !== "zones missing") console.warn(`::warning::[plan] beat ${b.index}: zones ${why} — set to headline top / chart middle / caption bottom`);
+    b.headline_zone = "top"; b.chart_zone = "middle"; b.caption_zone = "bottom";
+    return { ok: false, why };
+  }
+  b.headline_zone = hz; b.chart_zone = cz; b.caption_zone = "bottom";
+  return { ok: true, why: null };
+}
+
 export function checkVisual(b, sentence) {
   const t = String(b.visual_type || "").toUpperCase();
   const d = b.data || {};
@@ -612,6 +648,15 @@ vignette and the camera are added by the system.
                   {"at_percent": 0.75, "target": "full"}]. targets: number,
                   chart, headline, photo, left, right, top, bottom, node0,
                   node1, node2, full. Omit for a single slow push.
+  "headline_zone", "chart_zone", "caption_zone": REQUIRED. The frame is three
+                  stacked zones — "top" (y 0-620), "middle" (620-1340),
+                  "bottom" (1340-1920) — and each element lives in ONE zone.
+                  "caption_zone" is always "bottom" (the word caption lives
+                  there and nothing else may). A beat with a headline and a
+                  chart / map / number puts them in DIFFERENT zones: "top" +
+                  "middle" (the default), or for a COUNTER beat the number
+                  "top" and the headline "middle". Both in the same zone is a
+                  rejected plan. A beat with no chart: chart_zone "middle".
   "persists_from": the index of the PREVIOUS beat when this beat continues
                   its element (the same number, chart or photo carried on
                   and transformed), else null.
@@ -636,6 +681,7 @@ a 1.4 billion dollar brand."
     "data": {"bars": [{"label": "before", "value": "three million"}, {"label": "now", "value": "1.4 billion"}]},
     "named_entities": [{"type": "organization", "name": "Liquid Death"}],
     "motion_tier": "medium", "camera_focus": [{"at_percent": 0.5, "target": "chart"}],
+    "headline_zone": "top", "chart_zone": "middle", "caption_zone": "bottom",
     "persists_from": null, "match_cut_prev": false }
 
 PHOTO RULE (enforced in code): "entity" must be one of this beat's
@@ -830,6 +876,9 @@ Respond ONLY with JSON (no markdown fences):
       "named_entities": [{ "type": "<person | place | organization>", "name": "<as named in the sentence>" }],
       "motion_tier": "<micro | medium | major>",
       "camera_focus": [{ "at_percent": 0.4, "target": "<number | chart | headline | photo | left | right | top | bottom | node0 | node1 | node2 | full>" }],
+      "headline_zone": "<top | middle>",
+      "chart_zone": "<top | middle — different from headline_zone>",
+      "caption_zone": "bottom",
       "persists_from": null,
       "match_cut_prev": false,
       "text_entrance": "<POP_SOFT | POP_HARD | POP_LETTER | POP_WORD_STACK, or omit>",      "carries_forward": "<object/concept that persists into the next beat, or null>",
@@ -1559,7 +1608,9 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       // Pop family only (visual/kinetic.js); the per-video limits are checked
       // on the final canvases by scripts/anim-plan.js.
       const te = String(b.text_entrance || "").toUpperCase().trim();
-      b.text_entrance = ["POP_STANDARD", "POP_SOFT", "POP_EMPHASIS", "POP_HARD", "POP_LETTER", "POP_WORD_STACK"].includes(te) ? te : null;    }
+      b.text_entrance = ["POP_STANDARD", "POP_SOFT", "POP_EMPHASIS", "POP_HARD", "POP_LETTER", "POP_WORD_STACK"].includes(te) ? te : null;
+      checkZones(b);
+    }
     const lo = n >= 4 ? 2 : 1;
     let majors = plan.beats.map((b, i) => (b.motion_tier === "major" ? i : -1)).filter((i) => i >= 0);
     const keep = new Set([0, n - 1]);

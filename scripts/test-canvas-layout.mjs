@@ -7,7 +7,7 @@
 // Since the typography rebuild it also checks the grid rules (canvas-layout.js):
 // no centred text, every text box anchored to a column edge on the side it is
 // aligned to, no two text boxes overlapping, both variants (left / right).
-import { canvasLayout, contentBounds, flattenBoxes, GRID, cellsOf } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { canvasLayout, contentBounds, flattenBoxes, GRID, cellsOf, zoneReport } from "../src/skills/remotion-render/visual/canvas-layout.js";
 
 const heads = [
   { name: "no header", h: {} },
@@ -74,6 +74,9 @@ for (const variant of [0, 1]) for (const b of bodies) for (const { name, h } of 
     if (!onEdge) bad.push(`${k} (${v.x}..${v.x + v.w}) is not anchored to a column edge (${v.align}-aligned)`);
     if (Math.abs(v.x + v.w / 2 - 540) < 20 && v.w < 700) bad.push(`${k} sits on the frame's centre line`);
   }
+  // Three-zone separation (owner's rule 2026-10-02): no element spans two zones, no two element types share one.
+  const zr = zoneReport(L);
+  if (!zr.ok) bad.push(`zones: ${[...zr.spans, ...zr.clashes].join("; ")}`);
   for (let i = 0; i < texts.length; i++) for (let j = i + 1; j < texts.length; j++) {
     const a = texts[i][1], d = texts[j][1];
     if (a.x < d.x + d.w - 2 && d.x < a.x + a.w - 2 && a.y < d.y + d.h - 2 && d.y < a.y + a.h - 2) bad.push(`text boxes ${texts[i][0]} and ${texts[j][0]} overlap`);

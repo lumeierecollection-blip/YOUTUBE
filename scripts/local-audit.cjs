@@ -541,6 +541,56 @@ async function kineticRules(beats) {
   if (letterBeats > 1) bad.push(`POP_LETTER on ${letterBeats} beats (at most one a video)`);
   return { bad, used, modes: [...modes] };
 }
+/**
+ * zones-no-overlap (owner's rule, 2026-10-02): every beat stacks three zones
+ * (canvas-layout.js ZONES: top 0-620, middle 620-1340, bottom 1340-1920 —
+ * the caption's) and each element lives in exactly one; no two element types
+ * share a zone (a number may sit on the chart whose value it is). Two parts:
+ *   1. the renderer's own boxes (manifest beats[].canvas.boxes) through the
+ *      same zoneReport() the layout tests use;
+ *   2. the RENDERED frames, at 30 / 62 / 90% of each non-photo beat: no ink
+ *      (luma < 235 or chroma > 30 on the white ground) runs continuously
+ *      across a zone edge further than ZONE_TOL (8 px) on either side — what
+ *      the camera or an animation carries across the line, which the boxes
+ *      cannot show. A run in >= 3 columns fails.
+ * Where it stops: a full-bleed photo beat and a beat with a diagonal split
+ * shape (both cross every zone by design) get only part 1. Part 2 reads
+ * pixels, not element identity: it proves nothing crosses a zone edge, and
+ * with part 1 (one type per zone) that is the no-overlap rule.
+ */
+async function zonesNoOverlap(video, beats) {
+  const { zoneReport, ZONES, ZONE_TOL } = await import(require("node:url").pathToFileURL(join(__dirname, "..", "src", "skills", "remotion-render", "visual", "canvas-layout.js")).href);
+  const bad = [];
+  const W = 540, H = 960, sc = H / 1920;
+  const edges = [ZONES.top[1], ZONES.middle[1]];
+  const ch = channelOf(video);
+  beats.forEach((b, i) => {
+    const c = b.canvas;
+    if (!c?.boxes) return;
+    const zr = zoneReport({ composition: c.composition, boxes: c.boxes });
+    if (!zr.ok) bad.push(`beat ${i} (${c.composition}): ${[...zr.spans, ...zr.clashes].join("; ")}`);
+    if (c.photo || Object.values(c.boxes).some((v) => v?.role === "shape")) return;
+    for (const share of [0.3, 0.62, 0.9]) {
+      const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share;
+      const buf = rgbFrame(video, t, W, H);
+      if (!buf) continue;
+      const ink = (x, y) => { const o = (y * W + x) * 3, r = buf[o], g = buf[o + 1], bl = buf[o + 2]; return 0.299 * r + 0.587 * g + 0.114 * bl < 235 || Math.max(r, g, bl) - Math.min(r, g, bl) > 30; };
+      for (const e of edges) {
+        const y0 = Math.floor((e - ZONE_TOL - 1) * sc), y1 = Math.ceil((e + ZONE_TOL + 1) * sc);
+        let cols = 0;
+        for (let x = 0; x < W; x++) {
+          let run = true;
+          for (let y = y0; y <= y1 && run; y++) run = ink(x, y);
+          if (run) cols++;
+        }
+        console.log(`[zones] ch-${ch} beat ${i} @${(share * 100).toFixed(0)}% edge y${e}: ${cols} column(s) of ink cross it`);
+        if (cols >= 3) bad.push(`beat ${i} (${c.composition}) at ${(share * 100).toFixed(0)}%: ink crosses the zone edge at y ${e} in ${cols} columns (> ${ZONE_TOL} px each side)`);
+      }
+    }
+  });
+  return { bad };
+}
+
 async function canvasChecks(video, m) {
   const beats = m.beats || [];
   const out = [];
@@ -554,6 +604,8 @@ async function canvasChecks(video, m) {
   out.push({ id: "canvas-type", pass: !ty.bad.length, detail: ty.bad.length ? ty.bad.join("; ") : `nothing centred, sentence-case headlines, ${ty.two}/${ty.n} beats with two type roles, no repeated composition` });
   const tx = canvasGround(video, beats);
   out.push({ id: "canvas-ground", pass: !tx.bad.length, detail: tx.bad.length ? tx.bad.join("; ") : "the ground reads uniform white on every non-photo beat" });
+  const zn = await zonesNoOverlap(video, beats);
+  out.push({ id: "zones-no-overlap", pass: !zn.bad.length, detail: zn.bad.length ? zn.bad.slice(0, 8).join("; ") : "every element in one zone, one element type per zone, no ink across a zone edge" });
   const mt = motionTiers(beats);
   const kr = await kineticRules(beats);
   out.push({ id: "kinetic-rules", pass: !kr.bad.length, detail: kr.bad.length ? kr.bad.slice(0, 8).join("; ") : `every word pops in place (${Object.entries(kr.used).map(([e, n]) => `${e}x${n}`).join(" ")}), no slide / drop / sweep / blur entrance, <=3 text elements a beat; number modes ${kr.modes.join("/") || "none"}` });

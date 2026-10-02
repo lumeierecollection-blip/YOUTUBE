@@ -14,7 +14,7 @@
  */
 import { animationsFor, itemOf } from "../src/skills/remotion-render/visual/animation-plan.js";
 import { popEntrances, numberMode, ENTRANCES } from "../src/skills/remotion-render/visual/kinetic.js";
-import { canvasLayout, normalizeCanvas, compositionFor, splitHeadline, TOP } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { canvasLayout, normalizeCanvas, compositionFor, splitHeadline, TOP, BODY_TOP, ZONE_TOL } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { ROLE_HEADLINE } from "../src/skills/remotion-render/visual/typography.js";
 
 const summary = (b) => Object.entries(b).map(([k, v]) => `${k}=${k === "exit" ? `${v.id}(${v.element})` : v}`).join(", ") || "(no animated element)";
@@ -50,7 +50,10 @@ function beatStyle(c, B, i, n, used, log) {
 function stackFits(st) {
   const n = wordsOf(st).length, lh = st.size * ROLE_HEADLINE.lineHeight;
   const lastRow = st.y + ((st.rows || st.lines || []).length - 1) * lh;
-  return n >= 2 && n <= 5 && lastRow - (n - 1) * lh >= TOP;
+  // Zones: the stack rises from the statement's last row; it must stay in the
+  // statement's own zone (QA render 2026-10-02: a 3-word stack rose through
+  // y 620 into the headline's zone).
+  return n >= 2 && n <= 5 && lastRow - (n - 1) * lh >= Math.max(TOP, st.y >= BODY_TOP - ZONE_TOL ? BODY_TOP : TOP);
 }
 
 /**

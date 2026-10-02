@@ -907,6 +907,11 @@ function canvasContentFor(b, { photo = null } = {}) {
     // scripts/anim-plan.js checks it against the video (POP_HARD on the hook /
     // CTA only, POP_LETTER once, POP_WORD_STACK only where it fits).
     text_entrance: b.text_entrance || null,
+    // Zones (gemini-visual-plan.js checkZones; canvas-layout.js ZONES): only
+    // a COUNTER beat is laid out with the swap (number top, headline middle).
+    headline_zone: b.headline_zone === "middle" && b.chart_zone === "top" && vt === "COUNTER" ? "middle" : "top",
+    chart_zone: b.headline_zone === "middle" && b.chart_zone === "top" && vt === "COUNTER" ? "top" : "middle",
+    caption_zone: "bottom",
   };
   if (b.type_layout === "split") c.type_layout = "split";
   c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: c.type_layout === "split" && !!splitHeadline(c.headline) });

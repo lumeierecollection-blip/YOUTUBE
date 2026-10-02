@@ -67,6 +67,7 @@ import {
 import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
+  TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf,
 } from "./canvas-layout.js";
 import {
   ROLE_HEADLINE, ROLE_NUMBER, ROLE_DATA, ROLE_EMPHASIS, SERIF, SANS_STACK, roleFont, roleTracking, numberSlots, measure,
@@ -385,7 +386,10 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
         </svg>
       );
     } else {
-      const base = ch.baseline, plotTop = ch.y + 70, plotH = base - plotTop;
+      // plotTop: room above the tallest bar for its value label inside the
+      // chart box (at +70 the "50%" over the tallest bar rose through y 620
+      // into the headline's zone — QA render 2026-10-02).
+      const base = ch.baseline, plotTop = ch.y + 120, plotH = base - plotTop;
       const slot = ch.w / bars.length, bw = Math.min(300, slot * 0.64);
       chart = (
         <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0, clipPath: chartClip }}>
@@ -587,7 +591,7 @@ function ProcessFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
   const nodeFill = th.dark ? "#1B1B1D" : "#FFFFFF";
   return (
-    <HeroEl name="nodes" b={{ x: 0, y: nodes[0]?.y || 0, w: FRAME.w, h: 1400 - (nodes[0]?.y || 0) }}>
+    <HeroEl name="nodes" b={{ x: 0, y: nodes[0]?.y || 0, w: FRAME.w, h: BOTTOM - (nodes[0]?.y || 0) }}>
       <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }}>
         <defs>
           <marker id="pf-arrow" markerWidth="4" markerHeight="4" refX="2.2" refY="2" orient="auto" markerUnits="strokeWidth">
@@ -694,7 +698,7 @@ function ListBuild({ c, L, local, dur, fps, accent, idx, spoken, part = "body" }
     </HeroEl>
   );
 }
-const BOTTOM_EDGE = 1400;
+const BOTTOM_EDGE = BOTTOM;
 
 // ── TIMELINE ──────────────────────────────────────────────────────────
 // A vertical line draws down the frame; each dated event lands on it in turn:
@@ -779,7 +783,7 @@ function HeroEl({ name, b, children }) {
 }
 
 // ── camera ────────────────────────────────────────────────────────────
-function cameraAt(c, L, local, dur, fps) {
+export function cameraAt(c, L, local, dur, fps) {
   const tier = c.motion_tier || "medium";
   const focus = Array.isArray(c.camera_focus) ? c.camera_focus.filter((f) => Number.isFinite(Number(f?.at_percent))) : [];
   const toXf = (bx) => {
@@ -824,7 +828,7 @@ export function majorZoom(L) {
   if (st && st.rotate) return null;
   if (L.composition === "TYPE-FULL" && h && h.w) {
     const right = h.align === "right";
-    const oy = h.y + h.h > 1200 ? 1400 : h.y < 400 ? 180 : h.y + h.h / 2;
+    const oy = h.y + h.h > 1200 ? BOTTOM : h.y < 400 ? TOP : h.y + h.h / 2;
     return { k: Math.min(1.15, (R_EDGE - L_EDGE) / h.w), ox: right ? R_EDGE : L_EDGE, oy };
   }
   // A chart / process spanning the safe width: 1.05 keeps a 24 px margin at the end of the zoom.
@@ -843,6 +847,47 @@ const COMPONENTS = {
 
 const PHOTO_COMPS = ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"];
 
+/**
+ * Zones (canvas-layout.js ZONES): the body — every element the camera moves,
+ * i.e. all but the pinned header (kicker, headline) — must stay inside the
+ * zone it was laid out in (+-ZONE_TOL) and inside the frame. The camera push
+ * and the major zoom are scaled back by one factor f in [0, 1] (bisection)
+ * until it does. A body that fills its 720 px zone therefore gets almost no
+ * push: that is the cost of no element crossing into another's zone (it is
+ * how a chart crossed the headline and a node left the frame: runs
+ * 36915319430 ch-26, ch-9). A full-bleed photo is the ground, not a zoned
+ * element, and keeps its own motion.
+ */
+export function keepBodyInZone(L, cam, zoom, zk, photoBeat) {
+  if (photoBeat) return { cam, zk };
+  const body = flattenBoxes(L.boxes).filter(([k, b]) => b && b.w > 0 && b.h > 0 && elementType(k, b) && !/^(kicker|headline)$/.test(k)).map(([, b]) => b);
+  if (!body.length) return { cam, zk };
+  const x0 = Math.min(...body.map((b) => b.x)), y0 = Math.min(...body.map((b) => b.y));
+  const x1 = Math.max(...body.map((b) => b.x + b.w)), y1 = Math.max(...body.map((b) => b.y + b.h));
+  const zs = zonesOf({ x: x0, y: y0, w: x1 - x0, h: y1 - y0 });
+  if (!zs.length) return { cam, zk };
+  // The strict zone edges: ZONE_TOL is for layout border cases, not for the
+  // camera to spend (QA render 2026-10-02: a pushed timeline line reached
+  // y 1348 and the rendered pixels crossed the edge).
+  const lo = ZONES[zs[0]][0], hi = ZONES[zs[zs.length - 1]][1];
+  const left = Math.min(0, x0), right = Math.max(FRAME.w, x1);   // a bleeding unit may stay where the layout put it, no further
+  const ox = zoom ? zoom.ox : 540, oy = zoom ? zoom.oy : 960;
+  const at = (f) => {
+    const s = 1 + (cam.s - 1) * f, tx = cam.x * f, ty = cam.y * f, k = 1 + (zk - 1) * f;
+    const T = (px, py) => [((px - ox) * k + ox - 540) * s + 540 + tx, ((py - oy) * k + oy - 960) * s + 960 + ty];
+    const [ax, ay] = T(x0, y0), [bx, by] = T(x1, y1);
+    return { ok: ay >= lo && by <= hi && ax >= left - 0.5 && bx <= right + 0.5, s, tx, ty, k };
+  };
+  let f = 1;
+  if (!at(1).ok) {
+    let a = 0, b = 1;
+    for (let i = 0; i < 14; i++) { const m = (a + b) / 2; if (at(m).ok) a = m; else b = m; }
+    f = a;
+  }
+  const r = at(f);
+  return { cam: { s: r.s, x: r.tx, y: r.ty }, zk: r.k };
+}
+
 // show: "all" | "body" | "header". bodyLocal / headerLocal are the beat's
 // local frame less its entry delays (transitionInto): the incoming beat's
 // text pops only once the transition has landed.
@@ -850,11 +895,14 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   const c = normalizeCanvas(beat.scene.canvas, idx);
   const dur = beat.duration_frames;
   const L = canvasLayout(c);
-  const cam = cameraAt(c, L, bodyLocal, dur, fps);
   const Comp = COMPONENTS[L.composition] || TypeFull;
   const theme = themeFor(c, PHOTO_COMPS.includes(L.composition) && !!c.photo);
   if (c.dark && !c.photo) accent = liftAccent(accent);
-  const zoom = (c.motion_tier || "medium") === "major" ? majorZoom(L) : null;
+  const zoom0 = (c.motion_tier || "medium") === "major" ? majorZoom(L) : null;
+  const zk0 = zoom0 ? 1 + (zoom0.k - 1) * easeInOut(clamp01(bodyLocal / Math.max(1, dur))) : 1;
+  // Zones: the camera and the major zoom move only as far as keeps the body inside its zone.
+  const fitted = keepBodyInZone(L, cameraAt(c, L, bodyLocal, dur, fps), zoom0, zk0, !!c.photo && PHOTO_COMPS.includes(L.composition));
+  const cam = fitted.cam, zoom = zoom0, zk = fitted.zk;
   return (
     <Theme.Provider value={theme}>
       <Anim.Provider value={{ ...(c.anim || {}), dur, accent, kinetic: c.kinetic || null, beat: idx }}>
@@ -865,7 +913,7 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
         {show === "header" ? null : (
           <div style={{ position: "absolute", inset: 0, transformOrigin: "540px 960px", transform: `translate(${cam.x.toFixed(1)}px, ${cam.y.toFixed(1)}px) scale(${cam.s.toFixed(4)})` }}>
             <div style={{ position: "absolute", inset: 0, transformOrigin: `${zoom ? zoom.ox : 540}px ${zoom ? zoom.oy : 960}px`,
-              transform: `scale(${zoom ? (1 + (zoom.k - 1) * easeInOut(clamp01(bodyLocal / Math.max(1, dur)))).toFixed(4) : 1})` }}>
+              transform: `scale(${zk.toFixed(4)})` }}>
               <Comp c={c} L={L} idx={idx} local={bodyLocal} dur={dur} fps={fps} accent={accent} spoken={beat.spoken} part="body" />
             </div>
           </div>
