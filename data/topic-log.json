@@ -507,9 +507,14 @@
           "topic": "NYC Rent Freeze Takes Effect",
           "slug": "nyc-rent-freeze-takes-effect-2026",
           "reserved_at": "2026-10-02T14:06:43.410Z"
+        },
+        {
+          "topic": "Supreme Court Rulings Impacting Housing Providers in Maryland",
+          "slug": "maryland-laws-impacting-housing-providers-20261002",
+          "reserved_at": "2026-10-02T16:08:32.904Z"
         }
       ],
-      "last_generated": "2026-10-02T14:38:26.898Z"
+      "last_generated": "2026-10-02T16:08:32.904Z"
     },
     "3": {
       "channel_name": "AI Tested",
