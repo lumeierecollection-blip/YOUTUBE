@@ -1585,9 +1585,14 @@
           "topic": "pontiac-fraud-broke-ninety-millions-crypto-transaction",
           "slug": "pontiac-fraud-2026-10-01",
           "reserved_at": "2026-10-02T12:05:12.344Z"
+        },
+        {
+          "topic": "ed-arrests-two-in-rs-1417-crore-export-investment-money-laundering-case",
+          "slug": "ed-arrests-two-in-rs-1417-crore-export-investment-money-lau",
+          "reserved_at": "2026-10-02T14:39:24.124Z"
         }
       ],
-      "last_generated": "2026-10-02T12:05:12.344Z"
+      "last_generated": "2026-10-02T14:39:24.124Z"
     },
     "27": {
       "channel_name": "Climate Now",
