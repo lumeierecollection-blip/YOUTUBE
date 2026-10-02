@@ -2371,9 +2371,14 @@
           "topic": "The Impact of AI on Negotiation Techniques in High-Tech Industries in 2026",
           "slug": "ai-impact-negotiation-techniques-tech-2026",
           "reserved_at": "2026-10-02T12:02:54.208Z"
+        },
+        {
+          "topic": "The Human-Skills Gap at Work and How Communication is Learned",
+          "slug": "human-skills-gap-communication-learned",
+          "reserved_at": "2026-10-02T14:39:21.008Z"
         }
       ],
-      "last_generated": "2026-10-02T12:02:54.208Z"
+      "last_generated": "2026-10-02T14:39:21.008Z"
     },
     "45": {
       "channel_name": "Lift",
