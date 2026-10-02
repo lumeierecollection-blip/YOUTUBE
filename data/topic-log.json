@@ -2499,9 +2499,14 @@
           "topic": "augmented-reality-in-manufacturing",
           "slug": "boston-dynamics-spot-augmented-reality-manufacturing-2026-10",
           "reserved_at": "2026-10-02T07:37:25.040Z"
+        },
+        {
+          "topic": "ubtech-factory-visits-and-output",
+          "slug": "ubtech-factory-tour-output-2026-10-01-1234567890",
+          "reserved_at": "2026-10-02T08:48:56.278Z"
         }
       ],
-      "last_generated": "2026-10-02T07:37:25.041Z"
+      "last_generated": "2026-10-02T08:48:56.278Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
