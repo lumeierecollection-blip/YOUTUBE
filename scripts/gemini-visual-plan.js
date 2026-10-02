@@ -674,7 +674,11 @@ vignette and the camera are added by the system.
                   "shipping container", "oil tanker"); [] when it names none.
                   Objects a camera can photograph — never an idea ("economy",
                   "policy"), never a person.
-                  Never a concept the sentence does not say. On a TYPE beat
+                  Never a concept the sentence does not say. The LITERAL
+                  object, never a symbol for the idea: "Equipping officers
+                  with gloves" -> ["gloves"], not "shield" or
+                  "warning-triangle" (CI run 37010325344: symbols were all
+                  the planner offered, all dropped). On a TYPE beat
                   the renderer shows them as real isolated photographs (or a
                   drawn symbol for an arrow / warning / checkmark).
                   CONCEPTS: ${CONCEPT_NAMES.join(", ")}

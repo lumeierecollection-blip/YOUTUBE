@@ -19,6 +19,8 @@ const bodies = [
   { visual_type: "TYPE" },
   { visual_type: "TYPE", composition: "TYPE-SPLIT", headline: "Trucking entrepreneur indicted for fraud" },
   { visual_type: "TYPE", composition: "TYPE-SPLIT", headline: "Two words" },
+  // A last line with a descender: its lift pushed "with / gloves" (344 px) to y 600, across the zone edge (CI run 37010325344 ch-2 beat 3).
+  { visual_type: "TYPE", composition: "TYPE-SPLIT", headline: "Equipping officers with gloves" },
   { visual_type: "COUNTER", data: { value: "$352 million", label: "stolen in two blocks" } },
   { visual_type: "COUNTER", data: { value: "23", label: "countries" } },
   { visual_type: "COUNTER", data: { value: "1,400,000,000", label: "a very long number" } },

@@ -277,6 +277,12 @@ function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines =
   const lines = f.lines.map((ln) => ln.map((i) => f.words[i].text).join(" "));
   // Bottom-anchored: the last line's descenders stay above `bottom` (TEXT_DESC).
   const desc = bottom != null ? descOffset(lines[lines.length - 1], f.size, ROLE_HEADLINE.lineHeight) : 0;
+  // The descender lift counts against maxHeight: a 3-line TYPE-SPLIT half at
+  // 360 px rose to y 600, across the top/middle zone edge (CI run 37010325344
+  // ch-2 beat 3). Refit smaller until text + lift fits.
+  if (bottom != null && Number.isFinite(maxHeight) && h + desc > maxHeight && f.size > 88) {
+    return headlineBox(text, { width, y, bottom, flip, maxLines, maxHeight, max: Math.min(max, f.size - 4), marks });
+  }
   const by = bottom != null ? bottom - h - desc : y;
   // desc: how far the last line's descenders reach below the box (contentBounds counts it as content).
   return { ...box(anchorX(w, flip), by, w, h), size: f.size, lines, rows: f.lines, words: f.words, align, role: "headline", inBand: f.size >= ROLE_HEADLINE.sizeBand[0], desc };
