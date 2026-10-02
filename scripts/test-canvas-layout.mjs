@@ -34,6 +34,9 @@ const bodies = [
   { visual_type: "PROCESS", data: { nodes: ["sloppy communication", "sloppy thinking"] } },
   { visual_type: "PHOTO", photo: { asset: "x.jpg", entity: "Jerome Powell" }, headline: "The fed holds" },
   { visual_type: "PHOTO", composition: "ARCHITECTURE", photo: { asset: "x.jpg", entity: "Federal Reserve", view: "building" }, headline: "The fed holds" },
+  // A named entity with no verified photo: its name, large, with the sentence's figure under it (scene resolver task 4.3).
+  { visual_type: "TYPE", headline: "Savers moved more", name_card: { name: "Brad Klontz", sub: "12 percent" } },
+  { visual_type: "TYPE", headline: "The court ruled", name_card: { name: "Wilkie D. Ferguson Jr. United States Courthouse", sub: "" } },
   // A named person's portrait (scene resolver, 2026-10-02): tall and landscape photos.
   { visual_type: "PHOTO", composition: "PORTRAIT", photo: { asset: "x.jpg", entity: "Jerome Powell", view: "person", w: 1000, h: 1333 }, headline: "Powell holds" },
   { visual_type: "PHOTO", composition: "PORTRAIT", photo: { asset: "x.jpg", entity: "Christine Lagarde", view: "person", w: 1400, h: 900 }, headline: "Lagarde speaks" },

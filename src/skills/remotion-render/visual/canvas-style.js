@@ -50,7 +50,8 @@ export function assignEmphasis(canvases, maxW = 984) {
   canvases.forEach((c) => { c.emphasis_beat = false; });
   for (let i = 1; i < canvases.length; i++) {
     const c = canvases[i];
-    if (c.composition !== "TYPE-FULL" || String(c.visual_type).toUpperCase() !== "TYPE" || c.vertical || !c.headline || !c.emphasis_word) continue;
+    // A name card (a named entity with no verified photo) keeps its name: never the emphasis word.
+    if (c.composition !== "TYPE-FULL" || String(c.visual_type).toUpperCase() !== "TYPE" || c.vertical || c.name_card || !c.headline || !c.emphasis_word) continue;
     const w = String(c.emphasis_word).replace(/[^\p{L}]/gu, "");
     if (!w || !new RegExp(`\\b${w}\\b`, "i").test(c.headline) || !fitEmphasis(w, maxW)) continue;
     c.emphasis_beat = true;
@@ -69,7 +70,7 @@ export function assignVertical(canvases) {
   for (const i of order) {
     const c = canvases[i];
     const words = String(c.headline || "").trim().split(/\s+/).filter(Boolean);
-    if (c.composition !== "TYPE-FULL" || String(c.visual_type).toUpperCase() !== "TYPE" || c.emphasis_beat || c.dark || words.length < 1 || words.length > 3 || c.lead_in) continue;
+    if (c.composition !== "TYPE-FULL" || String(c.visual_type).toUpperCase() !== "TYPE" || c.emphasis_beat || c.name_card || c.dark || words.length < 1 || words.length > 3 || c.lead_in) continue;
     c.vertical = true;
     return i;
   }

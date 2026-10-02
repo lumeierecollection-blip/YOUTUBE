@@ -26,13 +26,14 @@ import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layo
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { assignCanvasAnimations } from "./anim-plan.js";
-import { checkVisual, figureKey } from "./gemini-visual-plan.js";
+import { checkVisual, figureKey, entityNamedInSentence } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
 import { inkOf } from "./cutout-ink.mjs";
-const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
+const { resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 const { fetchCutoutForBeat } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
+const { resolveSceneEntity, sceneEntities } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
 import {
@@ -918,6 +919,8 @@ function canvasContentFor(b, { photo = null } = {}) {
     caption_zone: "bottom",
   };
   if (b.type_layout === "split") c.type_layout = "split";
+  // A named entity with no verified photo (resolve-scene.cjs): its name, large (canvas-layout.js).
+  if (vt === "TYPE" && b.name_card?.name) c.name_card = b.name_card;
   c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: c.type_layout === "split" && !!splitHeadline(c.headline) });
   return c;
 }
@@ -982,26 +985,6 @@ async function resolveAssets(channelId, planPath) {
   return { ok: true, planPath: out, counts, fetchedNew };
 }
 
-/**
- * A PHOTO beat of a named person whose portrait could not be verified
- * (owner's rules 2026-09-30 / 2026-10-02): the beat becomes TYPE with the
- * person's name as the attribution (the lead-in), quote or not. Returns a
- * label for the log.
- */
-// Owner's rule (2026-10-02): no verified portrait -> TYPE, ALWAYS, carrying
-// the person's name as the attribution (the lead-in) — a quote attributed to
-// them, an action named by them. Never a silhouette or a generic photo in the
-// portrait slot, never an UNSURE candidate, and no longer a chart / process
-// stand-in (the previous "action -> first grounded DATA visual" branch).
-function personFallback(b, ent) {
-  const sentence = b.narration || "";
-  const quote = /["“”]|\b(said|says|told|tells|wrote|writes|stated|states|announced|warned|argued|asked)\b/i.test(sentence);
-  b.visual_type = "TYPE"; b.data = null;
-  b.canvas = canvasContentFor(b, {});
-  b.canvas.lead_in = ent.name;
-  return quote ? "TYPE (quote, attributed)" : "TYPE (named)";
-}
-
 // Full-canvas plans.
 // PHOTO beats resolve a named person / place / organization to a verified
 // Wikimedia photo (scripts/entity-assets.cjs); COUNTER / BAR / PIE / LINE /
@@ -1035,40 +1018,29 @@ async function resolveCanvas(channelId, planPath, plan) {
   let fetchedNew = 0;
   const counts = { by_comp: {}, photos: 0, entity_fallbacks: 0 };
   const entities = { resolved: [], fell_back: [], rejected: [] };
-  const photoFor = async (ent) => {
-    const r = await resolveEntity({ type: ent.type, name: ent.name, context: channelTopic(channelId) || "" });
-    for (const why of r.rejected || []) entities.rejected.push(`${ent.name}: ${why}`);
-    if (r.ok) {
-      entities.resolved.push(`${ent.type} "${ent.name}" -> ${r.asset} (attempt ${r.attempt ?? "cache"}, ${r.license}${r.verified_by ? `, verified by ${r.verified_by}` : ""})`);
-      console.log(`[entity] ${ent.type} "${ent.name}" resolved: ${r.asset} — ${r.page_title || ""} (${r.license}${r.cached ? ", cached" : `, attempt ${r.attempt}`})`);
-      // A NEW file under public/ is not in the pre-built bundle: count it, so
-      // render-and-qa re-bundles (run 36498049819 ch-1: "Error loading image
-      // .../entities/orgs/federal-reserve.jpg" — the bundle predated it).
-      if (!r.cached) fetchedNew++;
-      return { asset: r.asset, entity: ent.name, kind: ent.type, view: r.view || "scene", credit: r.credit, source_url: r.source_url, license: r.license };
-    }
-    entities.fell_back.push(`${ent.type} "${ent.name}": ${r.why}`);
-    console.log(`[entity] ${ent.type} "${ent.name}" fell back to typography: ${r.why}${(r.attempts || []).length ? " — " + r.attempts.join(" | ") : ""}`);
-    return null;
+  // THE SCENE RESOLVER (owner's spec 2026-10-02; scripts/resolve-scene.cjs).
+  // Every content beat that is not already a chart / map / process / list
+  // (those draw the sentence's own data) shows what it NAMES: a person as a
+  // verified PORTRAIT, a building or an organization's building as
+  // ARCHITECTURE, a place as SCENE-FULL — each from Wikipedia / Wikimedia
+  // first, verified, MATCH only. A named entity with no verified photo in any
+  // source becomes a NAME CARD (its name large, the sentence's figure or key
+  // phrase under it) — never a stand-in photo, never an empty middle zone.
+  // The hook and the CTA stay typography. Objects go to the cutout path below.
+  const REAL = ["person", "building", "organization", "place"];   // within a beat: a person first
+  const DRAWN = new Set(["COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP", "PROCESS", "LIST", "TIMELINE", "COMPARE"]);
+  const countries = plan.beats.flatMap((x) => (x.named_entities || []).filter((e) => e.type === "place").map((e) => e.name)).filter((n) => resolveRegionName(n));
+  const keyPhraseOf = (b, name) => {
+    const num = (b.named_entities || []).find((e) => e.type === "number")?.name || b.data?.value || null;
+    if (num) return String(num);
+    const h = String(b.headline || b.visual_headline || "").trim();
+    return h && h.toLowerCase() !== String(name).toLowerCase() ? h : "";
   };
-  for (const b of plan.beats) {
+  for (const [bi, b] of plan.beats.entries()) {
     let photo = null;
     const vt = String(b.visual_type || "").toUpperCase();
-    if (vt === "PHOTO") {
-      let ent = (b.named_entities || []).find((e) => e.name === b.data?.entity) || { type: b.data?.entity_type || "person", name: b.data?.entity };
-      // A generic institution name ("Supreme Court", "Parliament", "the
-      // central bank") names a DIFFERENT building in every country: run
-      // 36504143080 ch-2 showed the US Supreme Court for an Indian story.
-      // It is qualified with the one country the script names, or refused.
-      {
-        const countries = plan.beats.flatMap((x) => (x.named_entities || []).filter((e) => e.type === "place").map((e) => e.name)).filter((n) => resolveRegionName(n));
-        const q = qualifyEntity(ent, countries);
-        if (q.note) console.log(`[entity] ${q.note}`);
-        ent = q.ent;
-      }
-      if (ent?.name) photo = await photoFor(ent);
-      if (!photo) counts.entity_fallbacks++;
-    }
+    const edge = bi === 0 || bi === plan.beats.length - 1;
+    delete b.name_card;
     if (vt === "DOCUMENT" || vt === "MONEY") {
       // A real scan of the named instrument / a real photo of the money object;
       // none found -> the beat is TYPE (never a stand-in).
@@ -1083,20 +1055,39 @@ async function resolveCanvas(channelId, planPath, plan) {
         console.log(`[entity] ${vt} "${b.data?.name || b.data?.object}" fell back to typography: ${r.why}${(r.attempts || []).length ? " — " + r.attempts.join(" | ") : ""}`);
         counts.entity_fallbacks++;
       }
-    }
-    b.canvas = canvasContentFor(b, { photo });
-    if (photo) b.asset = { id: photo.asset, source: "wikimedia", source_url: photo.source_url, license: photo.license, attribution: photo.credit };
-    // A named person with no verified portrait (entity-assets.cjs ->
-    // verify-person-image.cjs rejected every candidate): the beat loses the
-    // photo — never a placeholder, silhouette or stand-in.
-    if (vt === "PHOTO" && !photo) {
-      const ent = (b.named_entities || []).find((e) => e.name === b.data?.entity) || { type: b.data?.entity_type || "person", name: b.data?.entity };
-      if (ent.type === "person" && ent.name) {
-        const to = personFallback(b, ent);
-        counts.person_fallbacks = (counts.person_fallbacks || []).concat(`beat ${b.index}: ${ent.name} -> ${to}`);
-        console.log(`[verify] ch-${channelId} beat ${b.index}: no verified portrait for "${ent.name}", downgraded to TYPE (${to})`);
+    } else if (edge && vt === "PHOTO") {
+      console.log(`[resolve] ch-${channelId} beat ${b.index}: the ${bi === 0 ? "hook" : "CTA"} stays typography (owner's spec), entity not fetched`);
+      b.visual_type = "TYPE"; b.data = null;
+    } else if (!edge && !DRAWN.has(vt)) {
+      const ents = await sceneEntities({ beat: b, sentence: b.narration || "", entityNamedInSentence });
+      const real = ents.filter((e) => REAL.includes(e.type))
+        .sort((x, y) => (y.name === b.data?.entity) - (x.name === b.data?.entity) || REAL.indexOf(x.type) - REAL.indexOf(y.type));
+      for (const e0 of real) {
+        // A generic institution name ("Supreme Court", "the central bank") names a
+        // different building in every country (run 36504143080 ch-2): qualified with
+        // the script's one country, or refused.
+        const q = e0.type === "organization" || e0.type === "building" ? qualifyEntity(e0, countries) : { ent: e0 };
+        if (q.note) console.log(`[entity] ${q.note}`);
+        if (!q.ent?.name) { entities.fell_back.push(`${e0.type} "${e0.name}": ${q.note}`); continue; }
+        const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "" });
+        if (r.ok) {
+          photo = { ...r.photo, entity: e0.name };
+          fetchedNew++;   // a new file under public/: the bundle is rebuilt (run 36498049819)
+          entities.resolved.push(`beat ${b.index}: ${e0.type} "${e0.name}" -> ${photo.asset} (${photo.source}, ${photo.license || "?"})`);
+          b.visual_type = "PHOTO"; b.data = { entity: e0.name, entity_type: e0.type };
+          break;
+        }
+        entities.fell_back.push(`beat ${b.index}: ${e0.type} "${e0.name}": ${r.why}`);
+      }
+      if (!photo && real.length) {
+        b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
+        b.name_card = { name: real[0].name, sub: keyPhraseOf(b, real[0].name) };
+        counts.entity_fallbacks++;
+        console.log(`[resolve] ch-${channelId} beat ${b.index}: no verified photo of ${real.map((e) => `${e.type} "${e.name}"`).join(", ")} — rendering as TYPE with the name only ("${b.name_card.name}"${b.name_card.sub ? ` / "${b.name_card.sub}"` : ""})`);
       }
     }
+    b.canvas = canvasContentFor(b, { photo });
+    if (photo) b.asset = { id: photo.asset, source: photo.source || "wikimedia", source_url: photo.source_url, license: photo.license, attribution: photo.credit };
   }
   // NO REPEAT, again, on what actually resolved (a real photo of a building is
   // ARCHITECTURE; a DOCUMENT / MONEY / PHOTO with no image became TYPE): the
@@ -1107,7 +1098,8 @@ async function resolveCanvas(channelId, planPath, plan) {
     const narr = (b) => b.narration || "";
     const imageBeats = () => plan.beats.filter((b) => b.canvas.photo).length;
     const rot = enforceRotation(plan.beats.length, {
-      compositionOf: (i) => plan.beats[i].canvas.composition,
+      // A name card is its own composition (as local-audit canvas-type keys it): never rotated into a split statement.
+      compositionOf: (i) => plan.beats[i].canvas.composition + (plan.beats[i].canvas.name_card ? "+NAME" : ""),
       candidates: (i) => (plan.beats[i].canvas.photo && imageBeats() <= 1 ? [] : candidatesFor({ sentence: narr(plan.beats[i]), headline: plan.beats[i].canvas.headline || "" })),
       accept: (i, alt) => {
         const b = plan.beats[i];
@@ -1142,7 +1134,8 @@ async function resolveCanvas(channelId, planPath, plan) {
     let converted = 0;
     for (let i = 1; i < n - 1; i++) {
       const b = plan.beats[i];
-      if (!isType(b)) continue;
+      // A name card stays a name card (owner's spec 2026-10-02, task 4.3: the entity's name and figure, not a chart).
+      if (!isType(b) || b.canvas.name_card) continue;
       for (const alt of candidatesFor({ sentence: narr(b), headline: b.canvas.headline || "" })) {
         if (["TYPE-FULL", "TYPE-SPLIT"].includes(alt.composition)) continue;
         const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, narr(b));
@@ -1163,27 +1156,8 @@ async function resolveCanvas(channelId, planPath, plan) {
     const share = content.length ? (content.length - typeN) / content.length : 1;
     console.log(`[visual-first] ch-${channelId}: ${converted} beat(s) converted; content beats ${content.length - typeN}/${content.length} visual (${(share * 100).toFixed(0)}%, target >= 60%)${share < 0.6 ? " — the remaining TYPE sentences ground no number, place or process" : ""}`);
   }
-  // A script that names an entity shows at least one real photo of one
-  // (owner's stop condition): when the plan resolved none, the first TYPE-FULL
-  // beat (not the hook) whose sentence names a resolvable entity becomes
-  // SCENE-FULL with that photo.
-  if (!plan.beats.some((b) => b.canvas.photo)) {
-    for (const b of plan.beats.slice(1)) {
-      if (!["TYPE-FULL", "TYPE-SPLIT"].includes(b.canvas.composition) || b.canvas.data?.value) continue;
-      let done = false;
-      for (const ent of b.named_entities || []) {
-        const photo = await photoFor(ent);
-        if (photo) {
-          b.visual_type = "PHOTO"; b.data = { entity: ent.name, entity_type: ent.type };
-          b.canvas = canvasContentFor(b, { photo });
-          b.asset = { id: photo.asset, source: "wikimedia", source_url: photo.source_url, license: photo.license, attribution: photo.credit };
-          console.log(`[entity] beat ${b.index}: no PHOTO beat resolved — "${ent.name}" shown here (TYPE-FULL -> SCENE-FULL)`);
-          done = true; break;
-        }
-      }
-      if (done) break;
-    }
-  }
+  // (The old "at least one photo" pass is gone: the scene resolver above already tries every
+  // content beat's named entities.)
   // Typography rebuild: sentence case from the narration, left / right
   // variant, dark beats, the one emphasis word, the one vertical beat, the
   // number accent (visual/canvas-style.js — every rule is unit-tested).
@@ -1211,7 +1185,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       const c = b.canvas;
       // TYPE-SPLIT beats are text-only too (TEMPLATE_MONOCULTURE, CI run
       // 36953236514); converted in step 3 only if a visual resolves.
-      if (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || String(c.visual_type).toUpperCase() !== "TYPE") continue;
+      if (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || c.name_card || String(c.visual_type).toUpperCase() !== "TYPE") continue;
       // The hook and the CTA stay TYPE (owner's spec 2026-10-02); a cutout on
       // the hook also blocked the next beat's (no TYPE-FULL twice in a row).
       if (bi === 0 || bi === plan.beats.length - 1) continue;
@@ -1311,7 +1285,7 @@ async function resolveCanvas(channelId, planPath, plan) {
     if (b.canvas.photo) counts.photos++;
     console.log(`[canvas] beat ${b.index} ${k} ${b.canvas.visual_type} ${JSON.stringify(b.canvas.data || {})} tier=${b.canvas.motion_tier}${b.canvas.camera_focus ? ` camera=${b.canvas.camera_focus.map((f) => `${f.target}@${f.at_percent}`).join(",")}` : ""}${b.canvas.persists_from !== null ? ` persists_from=${b.canvas.persists_from}` : ""}${b.canvas.match_cut_prev ? " match_cut" : ""}${b.canvas.dark ? " DARK" : ""}${b.canvas.emphasis_beat ? " EMPHASIS" : ""}${b.canvas.vertical ? " VERTICAL" : ""}`);
   }
-  plan.entity_report = { ...entities, person_fallbacks: counts.person_fallbacks || [] };
+  plan.entity_report = { ...entities, name_cards: plan.beats.filter((b) => b.name_card).map((b) => `beat ${b.index}: ${b.name_card.name}`) };
   const out = planPath.replace(/\.json$/, "-resolved.json");
   writeFileSync(out, JSON.stringify(plan, null, 2) + "\n");
   console.log(`[canvas] resolved ${basename(planPath)}: ${Object.entries(counts.by_comp).map(([k, v]) => `${k} ${v}`).join(", ")}; photos ${counts.photos}; entities resolved ${entities.resolved.length}, fell back ${entities.fell_back.length}`);

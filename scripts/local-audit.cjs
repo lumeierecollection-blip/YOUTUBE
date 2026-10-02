@@ -471,7 +471,8 @@ function canvasType(beats) {
       if (letters.length >= 6 && letters === letters.toUpperCase()) bad.push(`beat ${i}: headline "${h}" is all caps`);
     }
     // A TYPE-FULL beat with a hero cutout (boxes.cutout0) is its own composition: the object, not a statement.
-    const compKey = (x) => (x?.composition || "") + (x?.boxes?.cutout0 ? "+HERO" : "");
+    // A hero cutout and a name card (an entity's name over its figure) are their own compositions.
+    const compKey = (x) => (x?.composition || "") + (x?.boxes?.cutout0 ? "+HERO" : "") + (x?.boxes?.lead_phrase ? "+NAME" : "");
     if (i > 0 && beats[i - 1].canvas && compKey(beats[i - 1].canvas) === compKey(c)) bad.push(`beat ${i}: ${compKey(c)} twice in a row`);
     // Headline motion: one per beat, never the same two beats in a row, never a fade.
     const hm = c.headline_motion, pm = i > 0 ? beats[i - 1].canvas?.headline_motion : null;

@@ -322,6 +322,15 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       </>
     );
   }
+  // A name card (canvas-layout.js: a named entity with no verified photo): the name, then the key phrase under it.
+  if (B.lead_phrase) {
+    return (
+      <>
+        <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} major={major} hero accent={accent} />
+        <DataLabel b={B.lead_phrase} name="label" color={th.ink} local={local} fps={fps} at={tl.headlineAt + 0.4} />
+      </>
+    );
+  }
   // TYPE-SPLIT: the second half lands 0.5 s after the first (the header's headline).
   return <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={B.headline ? tl.splitAt : tl.headlineAt} major={major} hero accent={accent} />;
 }

@@ -423,7 +423,20 @@ export function canvasLayout(c) {
           // With a hero cutout the kicker is small and muted (owner's spec 2026-10-02: 24-32 px).
           boxes.kicker = { ...dataBox(c.lead_in || folio, { width: 640, size: cv.length ? 28 : 34, maxLines: 1, y: TOP + 30, flip: flip ? 0 : 1 }), muted: !!cv.length };
         }
-        if (cv.length) {
+        if (c?.name_card?.name && !cv.length) {
+          // A named person / place / building / organization with no verified
+          // photo in any source (owner's scene-resolver spec 2026-10-02, task
+          // 4.3): its NAME large in the middle zone, the sentence's number or
+          // key phrase below it — never a stand-in photo, and never an empty
+          // middle zone.
+          const sub = String(c.name_card.sub || "").trim();
+          const subBox = sub ? dataBox(sub, { width: 900, size: 40, maxLines: 2, bottom: BOTTOM, flip }) : null;
+          const floor = subBox ? subBox.y - 28 : BOTTOM;
+          boxes.statement = headlineBox(c.name_card.name, { width: 984, bottom: floor, flip, maxLines: 3, maxHeight: floor - BODY_TOP, max: 240 });
+          // "lead_" so the zone bookkeeping counts it as text (elementType ^lead).
+          if (subBox) boxes.lead_phrase = { ...subBox, role: "data" };
+          hero = "statement";
+        } else if (cv.length) {
           // THE CUTOUT IS THE HERO (owner's spec 2026-10-02): the object the
           // sentence names is the subject; the type supports it.
           //   top zone     kicker (28 px, muted) + headline (90-140 px serif)
