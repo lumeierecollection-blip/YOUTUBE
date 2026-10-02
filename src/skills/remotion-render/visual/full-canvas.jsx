@@ -918,6 +918,11 @@ export function keepBodyInZone(L, cam, zoom, zk, photoBeat) {
     return zs.length ? { b, lo: ZONES[zs[0]][0], hi: ZONES[zs[zs.length - 1]][1], left: Math.min(0, b.x), right: Math.max(FRAME.w, b.x + b.w) } : null;
   }).filter(Boolean);
   if (!limits.length) return { cam, zk };
+  // The body's bottom edge is pinned (it may rise <= 12 px): a push toward a
+  // top target lifted a bottom-anchored statement 140 px inside its zone and
+  // emptied the zone's bottom — canvas-coverage 56% (CI run 36953236514 ch-9).
+  const lowest = limits.reduce((a, l) => (l.b.y + l.b.h > a.b.y + a.b.h ? l : a), limits[0]);
+  const pinY = lowest.b.y + lowest.b.h;
   const ox = zoom ? zoom.ox : 540, oy = zoom ? zoom.oy : 960;
   const at = (f) => {
     const s = 1 + (cam.s - 1) * f, tx = cam.x * f, ty = cam.y * f, k = 1 + (zk - 1) * f;
@@ -925,7 +930,7 @@ export function keepBodyInZone(L, cam, zoom, zk, photoBeat) {
     const ok = limits.every(({ b, lo, hi, left, right }) => {
       const [ax, ay] = T(b.x, b.y), [bx, by] = T(b.x + b.w, b.y + b.h);
       return ay >= lo - 0.5 && by <= hi + 0.5 && ax >= left - 0.5 && bx <= right + 0.5;
-    });
+    }) && T(0, pinY)[1] >= pinY - 12;
     return { ok, s, tx, ty, k };
   };
   let f = 1;

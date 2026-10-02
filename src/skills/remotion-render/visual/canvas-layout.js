@@ -117,7 +117,7 @@ export const numberInk = (text, size) => {
   const p = numberParts(String(text ?? ""));
   // A separator ("7382.85", "1,400") drops ~0.10 em below the baseline
   // (CI run 36950257339 ch-48: its tail crossed y 1340 by 30 px at size 302).
-  const sep = /\d[.,]\d/.test(String(text ?? "")) ? 0.12 : 0;
+  const sep = /\d[.,]/.test(String(text ?? "")) ? 0.12 : 0;   // also a trailing "2," (CI run 36953236514 ch-48)
   return Math.ceil(size * ((p.isQuantity === false ? 0.94 : 0.82) + sep));
 };
 // Fraunces descenders (g j p q y , ;) reach ~1.07 em below a line's top, past

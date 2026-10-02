@@ -1147,9 +1147,15 @@ async function resolveCanvas(channelId, planPath, plan) {
   // the canvas out.
   {
     const lib = conceptLibrary();
-    for (const b of plan.beats) {
+    for (const [bi, b] of plan.beats.entries()) {
       const c = b.canvas;
-      if (c.composition !== "TYPE-FULL" || c.emphasis_beat || c.vertical || String(c.visual_type).toUpperCase() !== "TYPE") continue;
+      // TYPE-SPLIT beats are text-only too (the frame reviewer rejected whole
+      // videos as TEMPLATE_MONOCULTURE, 66-100% headline-dominated — CI run
+      // 36953236514): one whose sentence names a concept becomes a TYPE-FULL
+      // concept beat — unless a neighbour is TYPE-FULL (canvas-type forbids a
+      // composition twice in a row).
+      const splitOk = c.composition === "TYPE-SPLIT" && ![plan.beats[bi - 1], plan.beats[bi + 1]].some((n) => n?.canvas?.composition === "TYPE-FULL");
+      if (!(c.composition === "TYPE-FULL" || splitOk) || c.emphasis_beat || c.vertical || String(c.visual_type).toUpperCase() !== "TYPE") continue;
       const vc = validateConcepts(b.concepts, b.narration || "", CUTOUT_SPECS);
       // A generic person cutout (a man in a suit, a worker) on a beat that
       // NAMES a person would read as that person — the hard rule is a named
@@ -1161,6 +1167,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       const { visuals, skipped } = visualsFor(namesPerson ? vc.concepts.filter((n) => !PEOPLE.has(n)) : vc.concepts, lib);
       for (const s of skipped) console.log(`[concepts] ch-${channelId} beat ${b.index}: ${s}`);
       if (!visuals.length) continue;
+      if (c.composition === "TYPE-SPLIT") { c.composition = "TYPE-FULL"; delete c.type_layout; console.log(`[concepts] ch-${channelId} beat ${b.index}: TYPE-SPLIT -> TYPE-FULL concept beat`); }
       c.concept_visuals = visuals;
       console.log(`[concepts] ch-${channelId} beat ${b.index}: ${visuals.map((v) => `${v.name} (${v.class})`).join(", ")} — from the ${vc.from}`);
     }
