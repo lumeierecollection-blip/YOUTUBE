@@ -497,9 +497,14 @@
           "topic": "California's Electric Shock Gloves Ban 2026",
           "slug": "california-electric-shock-gloves-ban-2026",
           "reserved_at": "2026-10-02T13:06:31.655Z"
+        },
+        {
+          "topic": "new-california-law-prohibits-discrimination-on-the-BASEL-II-ratings",
+          "slug": "new-california-law-prohibits-discrimination-on-the-basel-ii",
+          "reserved_at": "2026-10-02T13:29:28.111Z"
         }
       ],
-      "last_generated": "2026-10-02T13:06:31.656Z"
+      "last_generated": "2026-10-02T13:29:28.111Z"
     },
     "3": {
       "channel_name": "AI Tested",
