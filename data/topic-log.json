@@ -1560,9 +1560,14 @@
           "topic": "export-investment-scam-affecting-36000-investors",
           "slug": "export-invest-scam-2026-10-02",
           "reserved_at": "2026-10-02T10:00:10.475Z"
+        },
+        {
+          "topic": "pontiac-fraud-broke-ninety-millions-crypto-transaction",
+          "slug": "pontiac-fraud-2026-10-01",
+          "reserved_at": "2026-10-02T12:05:12.344Z"
         }
       ],
-      "last_generated": "2026-10-02T10:00:10.475Z"
+      "last_generated": "2026-10-02T12:05:12.344Z"
     },
     "27": {
       "channel_name": "Climate Now",
