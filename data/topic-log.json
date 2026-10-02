@@ -392,9 +392,14 @@
           "topic": "new-york-city-rent-freeze-lawsuit",
           "slug": "nyc-rent-freeze-lawsuit-2026",
           "reserved_at": "2026-10-02T01:25:02.631Z"
+        },
+        {
+          "topic": "philadelphia-rental-fees",
+          "slug": "philadelphia-rental-fees-2026",
+          "reserved_at": "2026-10-02T02:01:28.388Z"
         }
       ],
-      "last_generated": "2026-10-02T01:25:02.631Z"
+      "last_generated": "2026-10-02T02:01:28.388Z"
     },
     "3": {
       "channel_name": "AI Tested",
