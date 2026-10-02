@@ -327,7 +327,7 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
 
 /**
  * One concept visual in its layout box (concept-visuals.js): a CUTOUT is the
- * verified PNG (public/cutouts/), contained in the box, with a soft drop
+ * verified PNG (public/cutouts-live/ or png-bank/), contained in the box, with a soft drop
  * shadow (2 px, 20 px blur, 0.15); a SYMBOL is the drawn SVG in the channel
  * accent (no shadow — symbols are flat by design). Both pop in place (the
  * pop family, kinetic.js POP_STANDARD) from the bottom edge they stand on.

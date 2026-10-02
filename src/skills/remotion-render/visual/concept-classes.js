@@ -2,8 +2,8 @@
  * How each concept is shown (owner's rules 2026-09-30 / 2026-10-02):
  *
  *   CUTOUT  a real photograph of an object isolated onto a transparent PNG
- *           (public/cutouts/<name>.png, built by scripts/build-cutout-library.mjs
- *           from Pixabay / Unsplash, content-verified, listed in index.json)
+ *           (fetched for the beat from Pixabay and content-verified,
+ *           scripts/fetch-cutout-once.cjs -> public/cutouts-live/; no library)
  *   SYMBOL  never a cutout, always drawn: a large monochrome shape in the
  *           channel accent (visual/symbols/) — the eight that cannot be
  *           photographed

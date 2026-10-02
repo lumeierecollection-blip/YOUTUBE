@@ -1008,10 +1008,12 @@ function personFallback(b, ent) {
 // GAUGE / MAP / PROCESS are drawn from the plan's checked data; TYPE is
 // typography. An unresolved PHOTO becomes TYPE-FULL — never a
 // generic photo (CLAUDE.md: real, verified photos only for named entities).
-// The cutout library the renderer may use: index.json entries whose PNG
-// exists AND whose content verification (verified.json) is MATCH — an
-// unverified cutout never renders.
-const CUTOUT_DIR = join(ROOT, "src", "skills", "remotion-render", "public", "cutouts");
+// Cutouts: the PNG bank (if a person supplies one), else a live Pixabay fetch
+// for the beat — each verified by a vision model before it is used. The old
+// library (public/cutouts/) is deleted (owner's rule 2026-10-02): it shipped a
+// sun dial as "calendar", a wooden box as "coin-stack", a stamp as
+// "magnifying-glass". A concept with no verified candidate renders without one.
+const PUBLIC_DIR = join(ROOT, "src", "skills", "remotion-render", "public");
 const CUTOUT_SPECS = readJsonSafe(join(ROOT, "scripts", "cutout-specs.json"))?.specs || [];
 // The curated PNG bank (owner's option, 2026-10-02): public/png-bank/<name>.png
 // (+ <name>.json metadata), supplied by a person — the FIRST source, ahead of
@@ -1027,13 +1029,6 @@ function bankCutout(name, concept) {
     return { name, class: "cutout", asset: `png-bank/${key}.png`, w: w || 1, h: h || 1, source: "bank", file: `${key}.png` };
   }
   return null;
-}
-
-function conceptLibrary() {
-  const index = readJsonSafe(join(CUTOUT_DIR, "index.json"))?.cutouts || [];
-  const verified = readJsonSafe(join(CUTOUT_DIR, "verified.json")) || {};
-  return index.filter((c) => verified[c.name]?.verdict === "MATCH" && existsSync(join(CUTOUT_DIR, `${c.name}.png`)))
-    .map((c) => ({ name: c.name, file: `cutouts/${c.name}.png`, width: c.width, height: c.height }));
 }
 
 async function resolveCanvas(channelId, planPath, plan) {
@@ -1199,17 +1194,17 @@ async function resolveCanvas(channelId, planPath, plan) {
   // Concept visuals (visual/concept-visuals.js): a text-only beat shows what
   // its sentence names. Cutouts are fetched FOR THIS BEAT before the render
   // (scripts/fetch-cutout-once.cjs: Pixabay -> rembg -> geometric checks ->
-  // content verification, MATCH only); a failed live fetch falls back to the
-  // verified library PNG of that name, then to type only. Symbols are drawn.
+  // content verification: LITERAL and recognizable only). A bank PNG is
+  // verified the same way before use. No library: a concept with no verified
+  // candidate renders without a cutout. Symbols are drawn.
   // Fetching never happens inside renderMedia: a slow network cannot time
   // the render out. Budget: 4 minutes a channel, 3 fetches at a time (the
   // fetcher's own token bucket keeps Pixabay <= 30 requests a minute).
   {
-    const lib = conceptLibrary();
     const ALL = CUTOUT_SPECS.map((s) => s.name);
     const PEOPLE = new Set(CUTOUT_SPECS.filter((s) => s.category === "people").map((s) => s.name));
     const T0 = Date.now(), BUDGET_MS = Number(process.env.CUTOUT_LIVE_BUDGET_MS || 4 * 60000);
-    const stats = { bank: 0, live: 0, library: 0, symbol: 0, none: 0, rejected: [] };
+    const stats = { bank: 0, live: 0, symbol: 0, none: 0, rejected: [] };
     // 1. Which beats, which concepts.
     const wanted = [];
     for (const [bi, b] of plan.beats.entries()) {
@@ -1232,7 +1227,8 @@ async function resolveCanvas(channelId, planPath, plan) {
       const names = (namesPerson ? vc.concepts.filter((n) => !isPeople(n)) : vc.concepts).slice(0, 3);
       if (names.length) wanted.push({ bi, b, names, from: vc.from });
     }
-    // 2. Resolve: symbol drawn; cutout live -> library -> none; scene none.
+    // 2. Resolve: symbol drawn; cutout bank (verified) -> live (verified) -> none; scene none.
+    const { verifyCutoutImage } = createRequireEntity(import.meta.url)("./verify-cutout-image.cjs");
     const results = new Map();   // `${bi}:${name}` -> visual | null
     const tasks = [];
     for (const w of wanted) for (const name of w.names) {
@@ -1249,17 +1245,17 @@ async function resolveCanvas(channelId, planPath, plan) {
         const spec = CUTOUT_SPECS.find((s) => s.name === name) || {};
         const concept = (spec.queries || [name.replace(/-/g, " ")])[0];
         let v = bankCutout(name, concept);
-        if (v) { console.log(`[cutout] "${concept}": using bank file ${v.file}`); results.set(`${w.bi}:${name}`, v); continue; }
-        console.log(`[cutout] "${concept}": not in bank, fetching live`);
+        if (v) {
+          // A person supplied it, but it is verified like any fetched PNG.
+          const vr = await verifyCutoutImage(join(PUBLIC_DIR, v.asset), concept);
+          if (vr.verdict === "MATCH") { Object.assign(v, { verdict: vr.literal, seen: vr.seen, source_url: `png-bank/${v.file}` }); console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": bank file ${v.file} ACCEPTED (${vr.literal}, saw "${vr.seen}")`); results.set(`${w.bi}:${name}`, v); continue; }
+          console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": bank file ${v.file} REJECTED (${vr.literal || vr.verdict}${vr.literal === "LITERAL" ? ", not recognizable" : ""}, saw "${vr.seen}")`);
+          v = null;
+        } else console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": not in bank, fetching live`);
         if (Date.now() - T0 < BUDGET_MS) {
-          const r = await fetchCutoutForBeat({ concept: (spec.queries || [name.replace(/-/g, " ")])[0], name, channel: channelId, beat_index: w.b.index, spec });
-          if (r) { v = { name, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: "live", source_url: r.source_url }; }
-        }
-        if (!v) {
-          const l = lib.find((x) => x.name === name);
-          if (l) { v = { name, class: "cutout", asset: l.file, w: l.width || 1, h: l.height || 1, source: "library" }; console.log(`[cutout-live] ch-${channelId} beat ${w.b.index}: falling back to library ${name}.png`); }
-          else console.log(`[cutout-live] ch-${channelId} beat ${w.b.index}: no cutout available for "${name}", TYPE only`);
-        }
+          const r = await fetchCutoutForBeat({ concept, name, channel: channelId, beat_index: w.b.index, spec });
+          if (r) { v = { name, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: "live", source_url: r.source_url, verdict: r.literal, seen: r.seen }; }
+        } else console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": ${(BUDGET_MS / 60000).toFixed(0)}-minute budget spent, not fetched — beat renders without a cutout`);
         results.set(`${w.bi}:${name}`, v);
       }
     };
@@ -1267,7 +1263,7 @@ async function resolveCanvas(channelId, planPath, plan) {
     // Each cutout's ink outline: the layout sizes, centres and tilts the hero by
     // what a frame shows of it, not by the PNG rectangle (scripts/cutout-ink.mjs).
     for (const v of results.values()) {
-      if (v?.class === "cutout" && v.asset && !v.ink) v.ink = await inkOf(join(dirname(CUTOUT_DIR), v.asset));
+      if (v?.class === "cutout" && v.asset && !v.ink) v.ink = await inkOf(join(PUBLIC_DIR, v.asset));
     }
     const resolved =[...results.values()].filter((v) => v && v.class === "cutout").length;
     if (Date.now() - T0 >= BUDGET_MS) console.log(`[cutout-live] ch-${channelId}: ${(BUDGET_MS / 60000).toFixed(0)}-minute budget reached, using ${resolved}/${tasks.length} resolved cutouts`);
@@ -1285,8 +1281,13 @@ async function resolveCanvas(channelId, planPath, plan) {
       }
       c.concept_visuals = visuals;
       console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${visuals.map((v) => `${v.name} (${v.class === "symbol" ? "symbol" : v.source})`).join(", ")} — from the ${w.from}`);
+      // Every rendered cutout: where it came from and what the verifier saw (owner's audit trail).
+      for (const v of visuals.filter((x) => x.class === "cutout")) {
+        console.log(`[cutout] ch-${channelId} beat ${w.b.index}: "${v.name}" from ${v.source === "live" ? "pixabay" : v.source}, verdict=${v.verdict}, seen="${v.seen}"`);
+        console.log(`[cutout] ch-${channelId} beat ${w.b.index}: source=${v.source_url || "?"}`);
+      }
     }
-    console.log(`[cutout-live] ch-${channelId}: ${stats.bank} from the bank, ${stats.live} live, ${stats.library} from the library, ${stats.symbol} symbol(s), ${stats.none} concept beat(s) with no visual; ${((Date.now() - T0) / 1000).toFixed(0)} s`);
+    console.log(`[cutout-live] ch-${channelId}: ${stats.bank} from the bank, ${stats.live} live, ${stats.symbol} symbol(s), ${stats.none} concept beat(s) with no visual; ${((Date.now() - T0) / 1000).toFixed(0)} s`);
     // Final visual-first ratio (owner spec 2026-10-02): a TYPE beat that shows a
     // named object (a concept cutout / symbol) counts as visual.
     {

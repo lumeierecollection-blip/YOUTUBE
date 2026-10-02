@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 cutout_lib.py - isolate a real photographed object onto a transparent PNG and
-decide whether the isolation is usable (the concept-cutout library,
-public/cutouts/, built by scripts/build-cutout-library.mjs).
+decide whether the isolation is usable (each beat's live cutout,
+scripts/fetch-cutout-once.cjs; the old public/cutouts/ library is deleted).
 
     python3 scripts/cutout_lib.py isolate <in.jpg> <out.png> [--rect-ok] [--grounded] [--multi] [--max-side 1024]
     python3 scripts/cutout_lib.py check   <cutout.png|in.jpg-mask...>   (reads an RGBA PNG, prints the report)

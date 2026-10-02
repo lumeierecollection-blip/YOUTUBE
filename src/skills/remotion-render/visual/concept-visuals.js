@@ -5,7 +5,7 @@
  * A beat's sentence names things — money, a court, a padlock, a warning. A
  * concept is one of the cutout library's names (scripts/cutout-specs.json),
  * and maps to a class (concept-classes.js):
- *   CUTOUT  -> the verified PNG public/cutouts/<name>.png
+ *   CUTOUT  -> a PNG fetched and verified for the beat (public/cutouts-live/)
  *   SYMBOL  -> the drawn SVG (visual/symbols/)
  *   SCENE   -> nothing on its own (no generic scene-photo source), reported
  *

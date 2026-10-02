@@ -72,10 +72,8 @@ const beatsSpec = [
   { text: "The rule breaks.", c: { visual_type: "TYPE", headline: "The rule breaks", lead_in: "so", motion_tier: "medium", text_entrance: "POP_WORD_STACK" } },
   { text: "Two rules now matter most.", c: { visual_type: "PROCESS", data: { nodes: ["save first", "then spend"] }, headline: "The fix", motion_tier: "medium" } },
   { text: "Rates went from two to four point five percent.", c: { visual_type: "LINE", data: { points: [{ label: "2022", value: "2%" }, { label: "2024", value: "3.5%" }, { label: "2026", value: "4.5%" }] }, headline: "The rate climb", motion_tier: "medium", camera_focus: [{ at_percent: 0.35, target: "chart" }, { at_percent: 0.75, target: "full" }] } },
-  // Hero cutouts from the verified library: a near-square object, and a wide scene (cropped level, never tilted).
-  { text: "Trade now spans the whole globe.", c: { visual_type: "TYPE", headline: "Trade spans the globe", lead_in: "worldwide", motion_tier: "medium", concept_visuals: [{ name: "globe", class: "cutout", asset: "cutouts/globe.png", w: 1024, h: 989 }] } },
-  { text: "The city skyline kept rising.", c: { visual_type: "TYPE", headline: "The skyline kept rising", lead_in: "downtown", motion_tier: "medium", concept_visuals: [{ name: "city-skyline", class: "cutout", asset: "cutouts/city-skyline.png", w: 1024, h: 280 }] } },
-  // --extra-beats <file.json>: more beats in this same { text, c } shape (e.g. a scratch cutout fixture).
+  // --extra-beats <file.json>: more beats in this same { text, c } shape — e.g. a hero-cutout beat
+  // whose concept_visuals point at a PNG fetched by scripts/fetch-cutout-once.cjs (there is no library).
   ...(arg("extra-beats") ? JSON.parse(readFileSync(arg("extra-beats"), "utf8")) : []),
 ];
 // Cutout ink outlines, as render-and-qa.js attaches them.
