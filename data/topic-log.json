@@ -382,9 +382,14 @@
           "topic": "supreme-court-rules-on-police-force-in-traffic-stops",
           "slug": "supreme-court-rules-on-police-force-in-traffic-stops-2026",
           "reserved_at": "2026-10-01T22:44:04.503Z"
+        },
+        {
+          "topic": "new-york-city-rent-freeze-lawsuit",
+          "slug": "nyc-rent-freeze-lawsuit-2026",
+          "reserved_at": "2026-10-02T01:25:02.631Z"
         }
       ],
-      "last_generated": "2026-10-02T00:55:22.926Z"
+      "last_generated": "2026-10-02T01:25:02.631Z"
     },
     "3": {
       "channel_name": "AI Tested",
