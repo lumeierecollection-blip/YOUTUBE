@@ -422,7 +422,36 @@ async function main() {
         log(lastError);
         continue;
       }
-      allowedUrls = new Set(searches.flatMap((s) => s.urls));
+      // Discovery: a result whose title is a topic this channel already
+      // covered is removed before the model reads it. qwen2.5:3b picked the
+      // same covered stories 4/4 attempts on ch-2 and ch-26 (CI runs
+      // 36995441688, 36999095271) even when told which ones were taken; it
+      // cannot choose a story it was never shown. The answer-side duplicate
+      // check below still runs.
+      if (rejectDupFor) {
+        let dropped = 0;
+        for (const s of searches) {
+          const blocks = s.text.split(/^(?=\s*Title:)/m);
+          const keep = blocks.filter((b) => {
+            const m = b.match(/^\s*Title:\s*(.+)$/m);
+            if (!m) return true;
+            const title = m[1].replace(/\s+[-|–—]\s+[^-|–—]{2,40}$/, "");   // " - Publisher" suffix
+            if (!topicLog.isDuplicate(rejectDupFor, title)) return true;
+            dropped++;
+            return false;
+          });
+          s.text = keep.join("").trim();
+          s.urls = [...new Set([...s.text.matchAll(/^\s*URL:\s*(\S+)/gim)].map((x) => normUrl(x[1])))];
+        }
+        if (dropped) log(`[discover] ${dropped} search result(s) dropped: already covered on channel ${rejectDupFor}`);
+        searches = searches.filter((s) => s.urls.length);
+        if (!searches.length) {
+          lastError = `[${spec}] every search result is a topic channel ${rejectDupFor} already covered`;
+          log(lastError);
+          continue;
+        }
+      }
+      allowedUrls =new Set(searches.flatMap((s) => s.urls));
       // Every result URL gets a short source id (S1, S2, ...) and the model
       // cites the id, which canonicaliseCitedUrls maps back to the exact URL.
       // qwen2.5:3b could not copy long URLs: ch-26 extended a justice.gov
