@@ -190,9 +190,14 @@
           "topic": "the-impact-of-the-june-2026-fed-rate-hike-on-budgeting-strategies",
           "slug": "impact-june-2026-fed-rate-hike-budgeting-strategies",
           "reserved_at": "2026-10-02T01:25:21.013Z"
+        },
+        {
+          "topic": "new budgeting tools and features for 2026",
+          "slug": "new-budgeting-tools-2026",
+          "reserved_at": "2026-10-02T02:03:52.854Z"
         }
       ],
-      "last_generated": "2026-10-02T01:25:21.013Z"
+      "last_generated": "2026-10-02T02:03:52.854Z"
     },
     "2": {
       "channel_name": "Legal Brief",
