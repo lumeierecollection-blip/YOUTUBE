@@ -816,9 +816,14 @@
           "topic": "Pakistan-occupied Kashmir",
           "slug": "pakistan-occupied-kashmir-elections-stability",
           "reserved_at": "2026-10-02T02:01:20.010Z"
+        },
+        {
+          "topic": "Ethiopia-Eritrea-conflict",
+          "slug": "ethiopia-eritrea-conflict",
+          "reserved_at": "2026-10-02T02:38:04.647Z"
         }
       ],
-      "last_generated": "2026-10-02T02:01:20.011Z"
+      "last_generated": "2026-10-02T02:38:04.648Z"
     },
     "10": {
       "channel_name": "Word Lab",
