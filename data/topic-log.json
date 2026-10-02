@@ -841,9 +841,14 @@
           "topic": "Ethiopia's-border-conflict-update",
           "slug": "ethiopia-border-conflict-update",
           "reserved_at": "2026-10-02T03:20:17.965Z"
+        },
+        {
+          "topic": "Eritrea- Ethiopia Diplomatic Tensions",
+          "slug": "eritrea-ethiopia-diplomatic-tensions-20261002",
+          "reserved_at": "2026-10-02T07:04:18.482Z"
         }
       ],
-      "last_generated": "2026-10-02T03:20:17.965Z"
+      "last_generated": "2026-10-02T07:04:18.482Z"
     },
     "10": {
       "channel_name": "Word Lab",
