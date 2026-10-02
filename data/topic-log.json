@@ -2719,9 +2719,14 @@
           "topic": "ai-powered-quality-control",
           "slug": "ai-powered-quality-control-2026-10-01-1234567890",
           "reserved_at": "2026-10-02T23:00:36.247Z"
+        },
+        {
+          "topic": "FDA GMP Violations",
+          "slug": "fda-gmp-violations-fresenius-kabi-2026-10-02",
+          "reserved_at": "2026-10-02T23:52:00.083Z"
         }
       ],
-      "last_generated": "2026-10-02T23:00:36.248Z"
+      "last_generated": "2026-10-02T23:52:00.084Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
