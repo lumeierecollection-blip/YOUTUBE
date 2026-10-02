@@ -627,6 +627,36 @@ function popTransitions(video, m) {
   return { bad };
 }
 
+/**
+ * middle-zone-filled (owner's spec 2026-10-02: "never render a beat where the
+ * middle zone is empty and the type is at the top and bottom"): on every
+ * non-photo beat, at 62% and 90%, at least 15% of the rows of y 620-1340
+ * hold content (ink, or a map's land tint). The beat passes on its fuller
+ * sample.
+ */
+function middleZoneFilled(video, beats) {
+  const bad = [];
+  const W = 270, H = 480, y0 = Math.floor((620 / 1920) * H), y1 = Math.ceil((1340 / 1920) * H);
+  beats.forEach((b, i) => {
+    if (b.canvas?.photo) return;
+    const map = b.canvas?.composition === "MAP-CENTERED";
+    let best = 0;
+    for (const share of [0.62, 0.9]) {
+      const buf = rgbFrame(video, (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share, W, H);
+      if (!buf) continue;
+      let rows = 0;
+      for (let y = y0; y < y1; y++) {
+        let n = 0;
+        for (let x = 0; x < W; x++) { const o = (y * W + x) * 3; const l = 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; if (l < (map ? 249 : 235)) n++; }
+        if (n >= 3) rows++;
+      }
+      best = Math.max(best, rows / (y1 - y0));
+    }
+    if (best < 0.15) bad.push(`beat ${i} (${b.canvas?.composition || "?"}): the middle zone is ${(best * 100).toFixed(0)}% filled (< 15%)`);
+  });
+  return { bad };
+}
+
 async function canvasChecks(video, m) {
   const beats = m.beats || [];
   const out = [];
@@ -642,6 +672,8 @@ async function canvasChecks(video, m) {
   out.push({ id: "canvas-ground", pass: !tx.bad.length, detail: tx.bad.length ? tx.bad.join("; ") : "the ground reads uniform white on every non-photo beat" });
   const zn = await zonesNoOverlap(video, beats);
   out.push({ id: "zones-no-overlap", pass: !zn.bad.length, detail: zn.bad.length ? zn.bad.slice(0, 8).join("; ") : "every element in one zone, one element type per zone, no ink across a zone edge" });
+  const mz = middleZoneFilled(video, beats);
+  out.push({ id: "middle-zone-filled", pass: !mz.bad.length, detail: mz.bad.length ? mz.bad.join("; ") : "every non-photo beat fills its middle zone" });
   const pt = popTransitions(video, m);
   out.push({ id: "pop-transitions", pass: !pt.bad.length, detail: pt.bad.length ? pt.bad.slice(0, 6).join("; ") : "no empty frame across any beat boundary" });
   const mt = motionTiers(beats);
