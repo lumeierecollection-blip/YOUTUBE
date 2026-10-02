@@ -487,9 +487,14 @@
           "topic": "California's New Noncitizen Voting Law",
           "slug": "noncitizen-voting-law-constitution",
           "reserved_at": "2026-10-02T11:59:39.671Z"
+        },
+        {
+          "topic": "us-immigration-policy-changes-2026",
+          "slug": "us-immigration-policy-changes-2026",
+          "reserved_at": "2026-10-02T12:29:30.557Z"
         }
       ],
-      "last_generated": "2026-10-02T11:59:39.671Z"
+      "last_generated": "2026-10-02T12:29:30.557Z"
     },
     "3": {
       "channel_name": "AI Tested",
