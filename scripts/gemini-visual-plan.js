@@ -721,6 +721,16 @@ Rules that are enforced, not advisory:
 - NEVER the same composition twice in a row (enforced: a repeat is replaced
   with what the sentence grounds). Prefer the specific composition — a
   timeline, comparison, list, map, process — to a statement.
+- VISUAL FIRST: this is motion graphics, not a typography reel. Of the
+  beats between the hook and the close, AT LEAST 60% are visual (a chart,
+  number, map, process, timeline, comparison, list or photo) and at most
+  40% are TYPE-FULL / TYPE-SPLIT; never two TYPE-FULL in a row. A sentence
+  that states a number, names a place or a person, describes a process or
+  compares two things IS a visual beat — choose that visual, never TYPE.
+  TYPE is only for an abstract claim with nothing to show. A sentence that
+  names a physical object (a gavel, a padlock, cash) also lists it in
+  "concepts", so the object is shown. (Enforced after planning: a TYPE beat
+  whose sentence grounds a visual is converted to it.)
 - Headlines are written in sentence case ("Trucking entrepreneur
   indicted"), never in capitals; the system sets the case from the sentence.
 - The "kind" TYPE, the kinetic hook/closer, is limited to ${typoMax >= 2 ? `beat 0 and beat ${sentences.length - 1}` : "beat 0"}; the system

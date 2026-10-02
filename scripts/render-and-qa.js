@@ -1115,6 +1115,42 @@ async function resolveCanvas(channelId, planPath, plan) {
     });
     if (rot.repeats.length) console.warn(`::warning::[canvas] composition repeats left after rotation: beats ${rot.repeats.join(", ")} (nothing else in their sentences is grounded)`);
   }
+  // VISUAL-FIRST (owner's spec 2026-10-02): of the content beats (not the
+  // hook, not the CTA), >= 60% visual and <= 40% TYPE; a sentence that names a
+  // number, place, process or comparison is a VISUAL beat. Every content TYPE
+  // beat whose OWN sentence grounds a visual (candidatesFor + checkVisual, the
+  // planner's gates — nothing is invented) is converted, unless that would put
+  // one composition twice in a row (canvas-type). A sentence that grounds
+  // nothing stays TYPE (it may still get a concept cutout below); the ratio
+  // is logged, and missed when the script is abstract.
+  {
+    const narr = (b) => b.narration || "";
+    const isType = (b) => ["TYPE-FULL", "TYPE-SPLIT"].includes(b.canvas.composition) && !b.canvas.photo;
+    const n = plan.beats.length;
+    let converted = 0;
+    for (let i = 1; i < n - 1; i++) {
+      const b = plan.beats[i];
+      if (!isType(b)) continue;
+      for (const alt of candidatesFor({ sentence: narr(b), headline: b.canvas.headline || "" })) {
+        if (["TYPE-FULL", "TYPE-SPLIT"].includes(alt.composition)) continue;
+        const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, narr(b));
+        if (v.why || v.type !== alt.visual_type) continue;
+        const fk = figureKey(v);
+        if (fk && plan.beats.some((x, j) => j !== i && figureKey(checkVisual(x, narr(x))) === fk)) continue;
+        if ([plan.beats[i - 1], plan.beats[i + 1]].some((x) => x?.canvas?.composition === alt.composition)) continue;
+        const was = b.canvas.composition;
+        b.visual_type = v.type; b.data = v.data; delete b.type_layout;
+        b.canvas = canvasContentFor(b, {});
+        converted++;
+        console.log(`[visual-first] ch-${channelId} beat ${b.index}: ${was} -> ${b.canvas.composition} ${v.type} (grounded in its sentence)`);
+        break;
+      }
+    }
+    const content = plan.beats.slice(1, n - 1);
+    const typeN = content.filter(isType).length;
+    const share = content.length ? (content.length - typeN) / content.length : 1;
+    console.log(`[visual-first] ch-${channelId}: ${converted} beat(s) converted; content beats ${content.length - typeN}/${content.length} visual (${(share * 100).toFixed(0)}%, target >= 60%)${share < 0.6 ? " — the remaining TYPE sentences ground no number, place or process" : ""}`);
+  }
   // A script that names an entity shows at least one real photo of one
   // (owner's stop condition): when the plan resolved none, the first TYPE-FULL
   // beat (not the hook) whose sentence names a resolvable entity becomes
