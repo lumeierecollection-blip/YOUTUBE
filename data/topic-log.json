@@ -976,9 +976,14 @@
           "topic": "Iran-US-sanctions-trade",
           "slug": "iran-us-sanctions-trade-now",
           "reserved_at": "2026-10-02T14:37:52.715Z"
+        },
+        {
+          "topic": "Eritrea's Border Closure with Ethiopia",
+          "slug": "eritrea-border-closure-now",
+          "reserved_at": "2026-10-02T23:00:10.221Z"
         }
       ],
-      "last_generated": "2026-10-02T14:37:52.716Z"
+      "last_generated": "2026-10-02T23:00:10.221Z"
     },
     "10": {
       "channel_name": "Word Lab",
