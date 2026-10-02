@@ -248,6 +248,12 @@
         "provider": "groq",
         "verdict": "CLOSE",
         "seen": "a modern skyscraper"
+      },
+      "https://pixabay.com/photos/skyscraper-frankfurt-building-2686582/": {
+        "verified_at": "2026-10-02T01:21:28.955Z",
+        "provider": "groq",
+        "verdict": "CLOSE",
+        "seen": "a modern glass skyscraper"
       }
     }
   },
@@ -340,7 +346,12 @@
         "verdict": "WRONG",
         "seen": "a stack of metal coins"
       }
-    }
+    },
+    "verified_at": "2026-10-02T01:22:16.074Z",
+    "source_url": "https://pixabay.com/photos/gavel-justice-judge-courtroom-7499921/",
+    "provider": "groq",
+    "verdict": "MATCH",
+    "seen": "a wooden gavel"
   },
   "scales": {
     "rejected": {
@@ -454,6 +465,12 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a rusty excavator"
+      },
+      "https://pixabay.com/photos/mechanical-part-axis-key-change-7187203/": {
+        "verified_at": "2026-10-02T01:23:35.295Z",
+        "provider": "groq",
+        "verdict": "CLOSE",
+        "seen": "a metal roller chain"
       }
     }
   },
@@ -472,6 +489,18 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a hand holding a crystal ball"
+      },
+      "https://pixabay.com/photos/glass-globe-christmas-3829547/": {
+        "verified_at": "2026-10-02T01:24:53.021Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a glass crystal ball"
+      },
+      "https://pixabay.com/photos/mystery-detective-night-sunglasses-3666222/": {
+        "verified_at": "2026-10-02T01:25:15.193Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a man in a suit and hat"
       }
     }
   },
@@ -490,6 +519,12 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a metal door knocker"
+      },
+      "https://pixabay.com/photos/key-lock-rustic-door-red-976349/": {
+        "verified_at": "2026-10-02T01:25:37.063Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a metal door handle"
       }
     }
   },
@@ -500,6 +535,12 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a stone wall with a painted emblem"
+      },
+      "https://pixabay.com/photos/people-man-alone-back-glass-2562872/": {
+        "verified_at": "2026-10-02T01:25:59.343Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a person wearing a straw hat"
       }
     }
   },
@@ -510,6 +551,18 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a hand holding a digital camera"
+      },
+      "https://pixabay.com/photos/soldier-army-war-gun-target-7657425/": {
+        "verified_at": "2026-10-02T01:26:25.072Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a soldier with face paint aiming a rifle"
+      },
+      "https://pixabay.com/photos/waypoint-signpost-way-direction-495684/": {
+        "verified_at": "2026-10-02T01:26:34.230Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a metal pole with multiple yellow directional signs"
       }
     }
   },
@@ -521,7 +574,12 @@
         "verdict": "WRONG",
         "seen": "an airport control tower"
       }
-    }
+    },
+    "verified_at": "2026-10-02T01:26:41.421Z",
+    "source_url": "https://pixabay.com/photos/radar-radar-dish-earth-station-63014/",
+    "provider": "gemini",
+    "verdict": "MATCH",
+    "seen": "a large radar dish"
   },
   "map-pin": {
     "rejected": {
@@ -530,6 +588,12 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a woman holding a megaphone"
+      },
+      "https://pixabay.com/photos/pin-up-swimsuit-woman-megaphone-6656562/": {
+        "verified_at": "2026-10-02T01:27:11.484Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a woman in green swimwear holding a balloon and megaphone"
       }
     }
   },
@@ -540,6 +604,62 @@
         "provider": "groq",
         "verdict": "CLOSE",
         "seen": "a soldier kneeling next to an American flag"
+      },
+      "https://pixabay.com/photos/chicago-american-flag-skyscraper-4071934/": {
+        "verified_at": "2026-10-02T01:27:35.173Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "a skyscraper with an American flag hanging on it"
+      },
+      "https://pixabay.com/photos/flag-flags-usa-america-american-4424866/": {
+        "verified_at": "2026-10-02T01:27:39.118Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "American flag and California state flag"
+      }
+    }
+  },
+  "calendar": {
+    "rejected": {
+      "https://pixabay.com/photos/christmas-advent-calendar-winter-754265/": {
+        "verified_at": "2026-10-02T01:23:57.329Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "Christmas stockings and candles"
+      },
+      "https://pixabay.com/photos/mug-work-desk-calendar-coffee-1129433/": {
+        "verified_at": "2026-10-02T01:24:08.854Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "a patterned mug"
+      },
+      "https://pixabay.com/photos/mechanical-calendar-mechanism-dial-5019173/": {
+        "verified_at": "2026-10-02T01:24:30.943Z",
+        "provider": "groq",
+        "verdict": "WRONG",
+        "seen": "mechanical clock movement"
+      }
+    }
+  },
+  "globe": {
+    "rejected": {
+      "https://pixabay.com/photos/bowling-play-globe-forges-sports-7667220/": {
+        "verified_at": "2026-10-02T01:26:46.568Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "multiple bowling balls"
+      },
+      "https://pixabay.com/photos/globe-planet-earth-glove-goddess-3762003/": {
+        "verified_at": "2026-10-02T01:26:50.613Z",
+        "provider": "gemini",
+        "verdict": "WRONG",
+        "seen": "a woman in costume"
+      },
+      "https://pixabay.com/photos/infected-world-globe-matrix-corona-5043969/": {
+        "verified_at": "2026-10-02T01:26:57.884Z",
+        "provider": "gemini",
+        "verdict": "CLOSE",
+        "seen": "globe covered in virus spikes"
       }
     }
   }

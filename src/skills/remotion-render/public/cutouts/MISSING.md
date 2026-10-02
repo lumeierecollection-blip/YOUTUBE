@@ -10,11 +10,11 @@ query.
 ## bank-building
 
 - pixabay "bank building isolated": rejected — the mask runs along the photo's left edge for 59% of it (> 40%): cut by the frame
-- pixabay "bank building isolated": verify CLOSE — saw "a modern skyscraper"
 - pixabay "bank building isolated": rejected — the object covers 2.0% of the photo (< 12%)
 - pixabay "bank building isolated": verify CLOSE — saw "a modern skyscraper"
 - pixabay "bank building isolated": rejected — the mask runs along the photo's left edge for 42% of it (> 40%): cut by the frame
 - pixabay "bank building isolated": verify CLOSE — saw "a modern skyscraper"
+- pixabay "bank building isolated": verify CLOSE — saw "a modern glass skyscraper"
 
 ## bank-statement
 
@@ -29,20 +29,20 @@ query.
 - pixabay "broken chain isolated": rejected — the object covers 0.1% of the photo (< 12%)
 - pixabay "broken chain isolated": rejected — the mask fills 99% of its bounding box (> 92%): a rectangle, not an object
 - pixabay "broken chain isolated": rejected — the object covers 4.8% of the photo (< 12%)
-- pixabay "broken chain isolated": verify NONE — saw "no vision provider answered"
+- pixabay "broken chain isolated": verify CLOSE — saw "a metal roller chain"
 - pixabay "broken chain isolated": rejected — the object covers 6.5% of the photo (< 12%)
 - pixabay "broken chain isolated": rejected — the object covers 3.5% of the photo (< 12%)
 - pixabay "broken chain": rejected — the object covers 0.1% of the photo (< 12%)
 - pixabay "broken chain": verify WRONG — saw "a rusty excavator"
 - pixabay "broken chain": rejected — the mask fills 99% of its bounding box (> 92%): a rectangle, not an object
-- pixabay "broken chain": verify NONE — saw "no vision provider answered"
+- pixabay "broken chain": verify CLOSE — saw "a metal roller chain"
 
 ## calendar
 
 - pixabay "calendar isolated": rejected — the object covers 0.0% of the photo (< 12%)
-- pixabay "calendar isolated": verify NONE — saw "no vision provider answered"
-- pixabay "calendar isolated": verify NONE — saw "no vision provider answered"
-- pixabay "calendar isolated": verify NONE — saw "no vision provider answered"
+- pixabay "calendar isolated": verify WRONG — saw "Christmas stockings and candles"
+- pixabay "calendar isolated": verify WRONG — saw "a patterned mug"
+- pixabay "calendar isolated": verify WRONG — saw "mechanical clock movement"
 
 ## checkmark
 
@@ -82,11 +82,11 @@ query.
 - pixabay "crosshair isolated": 30 candidate(s), none passed the licence / keyword / size filter
 - pixabay "crosshair": 0 candidate(s), none passed the licence / keyword / size filter
 - pixabay "target crosshair isolated": rejected — the object covers 6.2% of the photo (< 12%)
-- pixabay "target crosshair isolated": verify NONE — saw "no vision provider answered"
+- pixabay "target crosshair isolated": verify WRONG — saw "a soldier with face paint aiming a rifle"
 - pixabay "target crosshair isolated": rejected — the object covers 1.5% of the photo (< 12%)
 - pixabay "target crosshair isolated": rejected — the object covers 2.4% of the photo (< 12%)
+- pixabay "target crosshair isolated": verify WRONG — saw "a metal pole with multiple yellow directional signs"
 - pixabay "target crosshair isolated": verify WRONG — saw "a hand holding a digital camera"
-- pixabay "target crosshair isolated": verify NONE — saw "no vision provider answered"
 
 ## dollar-sign
 
@@ -120,28 +120,21 @@ query.
 - pixabay "american flag isolated": rejected — the mask runs along the photo's left edge for 53% of it (> 40%): cut by the frame
 - pixabay "american flag isolated": rejected — opaque pixels touch all four edges: the object is cropped, not isolated
 - pixabay "american flag isolated": verify CLOSE — saw "a soldier kneeling next to an American flag"
-- pixabay "american flag isolated": verify NONE — saw "no vision provider answered"
-- pixabay "american flag isolated": verify NONE — saw "no vision provider answered"
-
-## gavel
-
-- pixabay "gavel isolated": verify NONE — saw "no vision provider answered"
-- pixabay "gavel isolated": rejected — the object covers 7.4% of the photo (< 12%)
-- pixabay "gavel": verify WRONG — saw "a collection of cryptocurrency coins"
-- pixabay "gavel": verify WRONG — saw "a stack of metal coins"
+- pixabay "american flag isolated": verify CLOSE — saw "a skyscraper with an American flag hanging on it"
+- pixabay "american flag isolated": verify CLOSE — saw "American flag and California state flag"
 
 ## globe
 
-- pixabay "globe isolated": verify NONE — saw "no vision provider answered"
-- pixabay "globe isolated": verify NONE — saw "no vision provider answered"
-- pixabay "globe isolated": verify NONE — saw "no vision provider answered"
+- pixabay "globe isolated": verify WRONG — saw "multiple bowling balls"
+- pixabay "globe isolated": verify WRONG — saw "a woman in costume"
+- pixabay "globe isolated": verify CLOSE — saw "globe covered in virus spikes"
 
 ## key
 
-- pixabay "door key isolated": verify NONE — saw "no vision provider answered"
+- pixabay "door key isolated": verify WRONG — saw "a metal door knocker"
 - pixabay "door key isolated": rejected — the object covers 2.2% of the photo (< 12%)
 - pixabay "door key isolated": rejected — the object covers 5.5% of the photo (< 12%)
-- pixabay "door key isolated": verify NONE — saw "no vision provider answered"
+- pixabay "door key isolated": verify WRONG — saw "a metal door handle"
 - pixabay "door key isolated": rejected — the object covers 9.8% of the photo (< 12%)
 - pixabay "door key isolated": rejected — the object covers 2.4% of the photo (< 12%)
 - pixabay "door key": verify WRONG — saw "a metal door knocker"
@@ -151,8 +144,8 @@ query.
 - pixabay "magnifying glass isolated": rejected — the mask runs along the photo's bottom edge for 41% of it (> 40%): cut by the frame
 - pixabay "magnifying glass isolated": rejected — the largest solid region is 74% of what is visible (< 80%): more than one object / a scene
 - pixabay "magnifying glass isolated": verify WRONG — saw "a hand holding a crystal ball"
-- pixabay "magnifying glass isolated": verify NONE — saw "no vision provider answered"
-- pixabay "magnifying glass isolated": verify NONE — saw "no vision provider answered"
+- pixabay "magnifying glass isolated": verify WRONG — saw "a glass crystal ball"
+- pixabay "magnifying glass isolated": verify WRONG — saw "a man in a suit and hat"
 
 ## map-pin
 
@@ -160,7 +153,7 @@ query.
 - pixabay "map pin isolated": rejected — the object covers 0.6% of the photo (< 12%)
 - pixabay "map pin isolated": verify WRONG — saw "a woman holding a megaphone"
 - pixabay "map pin isolated": rejected — the largest solid region is 72% of what is visible (< 80%): more than one object / a scene
-- pixabay "map pin isolated": verify NONE — saw "no vision provider answered"
+- pixabay "map pin isolated": verify WRONG — saw "a woman in green swimwear holding a balloon and megaphone"
 - pixabay "map pin isolated": rejected — the object covers 6.1% of the photo (< 12%)
 - pixabay "map pin": rejected — the object covers 1.6% of the photo (< 12%)
 - pixabay "map pin": rejected — the object covers 0.6% of the photo (< 12%)
@@ -175,13 +168,6 @@ query.
 - pixabay "person walking isolated": rejected — the object covers 7.6% of the photo (< 12%)
 - pixabay "person walking isolated": verify CLOSE — saw "a pedestrian crossing sign with a convict"
 - pixabay "person walking": verify WRONG — saw "a pair of legs wearing sneakers"
-
-## radar
-
-- pixabay "radar isolated": verify NONE — saw "no vision provider answered"
-- pixabay "radar isolated": verify NONE — saw "no vision provider answered"
-- pixabay "radar isolated": rejected — the object covers 0.4% of the photo (< 12%)
-- pixabay "radar isolated": verify WRONG — saw "an airport control tower"
 
 ## scales
 
@@ -204,14 +190,14 @@ query.
 
 - pixabay "shield isolated": rejected — the object covers 0.0% of the photo (< 12%)
 - pixabay "shield isolated": rejected — the mask runs along the photo's right edge for 62% of it (> 40%): cut by the frame
-- pixabay "shield isolated": verify NONE — saw "no vision provider answered"
+- pixabay "shield isolated": verify WRONG — saw "a person wearing a straw hat"
 - pixabay "shield isolated": rejected — the object covers 9.7% of the photo (< 12%)
 - pixabay "shield isolated": rejected — the largest solid region is 68% of what is visible (< 80%): more than one object / a scene
 - pixabay "shield isolated": rejected — the mask fills 93% of its bounding box (> 92%): a rectangle, not an object
 - pixabay "shield": rejected — the object covers 0.0% of the photo (< 12%)
 - pixabay "shield": verify WRONG — saw "a stone wall with a painted emblem"
 - pixabay "shield": rejected — the mask runs along the photo's right edge for 62% of it (> 40%): cut by the frame
-- pixabay "shield": verify NONE — saw "no vision provider answered"
+- pixabay "shield": verify WRONG — saw "a person wearing a straw hat"
 
 ## stamp-approved
 
