@@ -901,9 +901,14 @@
           "topic": "Ethiopia's Border Conflict with Afar Region",
           "slug": "ethiopia-border-conflict-afar",
           "reserved_at": "2026-10-02T09:58:41.417Z"
+        },
+        {
+          "topic": "Ethiopia-occupied-kashmir-elections-stability",
+          "slug": "ethiopia-occupied-kashmir-elections-stability",
+          "reserved_at": "2026-10-02T10:32:51.431Z"
         }
       ],
-      "last_generated": "2026-10-02T09:58:41.417Z"
+      "last_generated": "2026-10-02T10:32:51.431Z"
     },
     "10": {
       "channel_name": "Word Lab",
