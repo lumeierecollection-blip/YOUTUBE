@@ -1610,9 +1610,14 @@
           "topic": "ed-arrests-two-in-rs-1417-crore-export-investment-money-laundering-case",
           "slug": "ed-arrests-two-in-rs-1417-crore-export-investment-money-lau",
           "reserved_at": "2026-10-02T14:39:24.124Z"
+        },
+        {
+          "topic": "export-investment-scam",
+          "slug": "export-investment-scam",
+          "reserved_at": "2026-10-02T23:00:12.399Z"
         }
       ],
-      "last_generated": "2026-10-02T14:39:24.124Z"
+      "last_generated": "2026-10-02T23:00:12.399Z"
     },
     "27": {
       "channel_name": "Climate Now",
