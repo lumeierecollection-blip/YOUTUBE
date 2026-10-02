@@ -133,6 +133,22 @@ jobs:
       - name: Validation tests (specs, verifier, masks)
         run: node scripts/test-cutout-library.mjs --rembg
 
+      # Right or absent: every library PNG re-checked with the current
+      # verifier (LITERAL + recognizable); a failure is deleted (and rebuilt
+      # by the next step under the same rule). An outage keeps, never wipes.
+      - name: Re-verify the library
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_VISION_MODEL: qwen/qwen3.8-27b
+          GROQ_MAX_IMAGES: "3"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          MAX_TOKENS_PER_VIDEO: "600000"
+        run: node scripts/reverify-cutout-library.mjs
+
       - name: Build the cutout library
         env:
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}

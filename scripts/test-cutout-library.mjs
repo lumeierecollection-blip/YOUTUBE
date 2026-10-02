@@ -25,10 +25,11 @@ eq("every query is a plain object name (no stock-photo phrasing)", specs.flatMap
 
 // Content verification (scripts/verify-cutout-image.cjs): only MATCH is accepted; anything malformed is no answer.
 const { normalize: vNorm, promptFor: vPrompt } = (await import("node:module")).createRequire(import.meta.url)("./verify-cutout-image.cjs");
-eq("verifier: a WRONG answer is read as WRONG", vNorm({ seen: "a wooden box", verdict: "wrong" }), { verdict: "WRONG", seen: "a wooden box" });
-eq("verifier: an unknown verdict is no answer", vNorm({ seen: "coins", verdict: "MAYBE" }), null);
-eq("verifier: a verdict without 'seen' is no answer", vNorm({ verdict: "MATCH" }), null);
-eq("verifier: the prompt names the cutout and the compound-name cases", [vPrompt("coin-stack").includes("Name: coin-stack"), vPrompt("x").includes('"dollar-sign" must show the $ symbol')], [true, true]);
+eq("verifier: LITERAL + recognizable is the only MATCH", vNorm({ seen: "a wall calendar", verdict: "literal", recognizable: true }).verdict, "MATCH");
+eq("verifier: FIGURATIVE rejects (a sun dial for calendar)", vNorm({ seen: "a sun dial", verdict: "FIGURATIVE", recognizable: false }).verdict, "FIGURATIVE");
+eq("verifier: LITERAL but not recognizable rejects", vNorm({ seen: "a tiny padlock", verdict: "LITERAL", recognizable: "NO" }).verdict, "UNRECOGNIZABLE");
+eq("verifier: an old MATCH/WRONG answer is no answer", vNorm({ seen: "coins", verdict: "MATCH" }), null);
+eq("verifier: the prompt names the concept and asks LITERAL / recognizable", [vPrompt("coin-stack").includes('Concept: "coin stack"'), vPrompt("x").includes("LITERAL"), vPrompt("x").includes("without")], [true, true, true]);
 
 // The builder's pure parts (no network).
 const lib = await import("./cutout-library-lib.mjs");

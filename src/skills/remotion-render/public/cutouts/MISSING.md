@@ -26,6 +26,10 @@ query.
 - pixabay "broken chain": verify WRONG — saw "a rusty excavator"
 - pixabay "broken chain": verify WRONG — saw "beaded bracelet in a geode"
 
+## calendar
+
+- removed by re-verification (2026-10-02 rule "right or absent"): WRONG — saw "a decorative sun / astrological dial, not a calendar"
+
 ## checkmark
 
 - pixabay "checkmark isolated": 30 candidate(s), none passed the licence / keyword / size filter
@@ -36,6 +40,10 @@ query.
 - pixabay "checkmark": verify WRONG — saw "a laptop computer displaying an application form"
 - pixabay "check mark isolated": verify WRONG — saw "a hand holding a marker"
 - pixabay "check mark isolated": verify CLOSE — saw "a 3D character holding a giant checkmark"
+
+## city-skyline
+
+- removed by re-verification (2026-10-02 rule "right or absent"): WRONG — saw "a single tower, not a skyline"
 
 ## contract
 
@@ -85,6 +93,18 @@ query.
 - pixabay "evidence tag isolated": verify WRONG — saw "a young woman portrait"
 - pixabay "evidence tag isolated": verify WRONG — saw "a shoe footprint in sand"
 
+## factory
+
+- removed by re-verification (2026-10-02 rule "right or absent"): WRONG — saw "an assembly-line interior, not a factory"
+
+## government-building
+
+- removed by re-verification (2026-10-02 rule "right or absent"): WRONG — saw "a modern office block"
+
+## handshake
+
+- removed by re-verification (2026-10-02 rule "right or absent"): WRONG — saw "two wooden artist mannequins, not a handshake"
+
 ## key
 
 - pixabay "door key isolated": rejected — the object covers 5.5% of the photo (< 12%)
@@ -103,6 +123,10 @@ query.
 - pixabay "map pin": rejected — the object covers 1.6% of the photo (< 12%)
 - pixabay "map pin": rejected — the object covers 0.6% of the photo (< 12%)
 - pixabay "map pin": verify WRONG — saw "a woman holding a megaphone"
+
+## padlock
+
+- removed by re-verification (2026-10-02 rule "right or absent"): WRONG — saw "mostly a rusty chain; the padlock is a small part"
 
 ## person-walking
 

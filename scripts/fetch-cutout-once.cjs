@@ -8,15 +8,16 @@
  *     -> { png_path, abs_path, source_url, license, verdict: "MATCH", seen, width, height } | null
  *
  * For the concept: search Pixabay ("<concept> isolated", then "<concept>";
- * image_type=photo, safesearch=true), keep the first 3 results whose tags
+ * image_type=photo, safesearch=true), keep the first 5 results whose tags
  * share a word with the concept, and for each in order: download the
  * largest size -> rembg u2net + the geometric checks (scripts/cutout_lib.py:
  * object >= 12% of the image, no opaque pixel on all four edges, one object,
  * real transparency) -> content verification of the ISOLATED PNG
- * (verify-cutout-image.cjs; only MATCH is accepted — CLOSE, WRONG and "no
+ * (verify-cutout-image.cjs: MATCH = LITERAL and recognizable without a label;
+ * FIGURATIVE, DIFFERENT, UNRECOGNIZABLE and "no
  * provider answered" all reject) -> saved to
  * public/cutouts-live/<channel>/<beat>-<slug>.png with a sidecar JSON.
- * All three rejected -> null (the caller falls back to the library, then to
+ * All five rejected -> null — never the second-best (the caller tries the bank/library, then
  * type).
  *
  * Pixabay pacing: one request per 2 s for the whole process (a shared
@@ -108,7 +109,7 @@ async function fetchOnce({ concept, name, channel, beat_index, spec }) {
   const want = new Set([...wordsOf(concept), ...wordsOf(name || "")]);
   const cands = [], seen = new Set();
   for (const q of [`${concept} isolated`, concept]) {
-    if (cands.length >= 3) break;
+    if (cands.length >= 5) break;
     const r = await pixabay(q, log);
     if (r.rate) return null;
     for (const h of r.hits) {
@@ -118,7 +119,7 @@ async function fetchOnce({ concept, name, channel, beat_index, spec }) {
       if (![...wordsOf(h.tags)].some((w) => want.has(w))) continue;          // the uploader's tags must name it
       if (Math.max(h.imageWidth || 0, h.imageHeight || 0) < 900) continue;
       cands.push({ url, page: h.pageURL || "", user: h.user || "" });
-      if (cands.length >= 3) break;
+      if (cands.length >= 5) break;
     }
   }
   if (!cands.length) { log(`no Pixabay candidate whose tags name it`); return null; }

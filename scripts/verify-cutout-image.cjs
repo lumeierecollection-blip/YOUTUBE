@@ -43,63 +43,49 @@ const CACHE = process.env.CUTOUT_VERIFIED_PATH || join(ROOT, "src", "skills", "r
 function loadCache() { try { return JSON.parse(readFileSync(CACHE, "utf8")); } catch { return {}; } }
 function saveCache(c) { mkdirSync(dirname(CACHE), { recursive: true }); writeFileSync(CACHE, JSON.stringify(c, null, 2) + "\n"); }
 
+// The owner's stricter prompt (2026-10-02): LITERAL / FIGURATIVE / DIFFERENT
+// plus "recognizable without a label". A sun dial passed the older
+// MATCH / CLOSE / WRONG prompt as "calendar".
 function promptFor(name) {
-  return `You are verifying an isolated object against a name.
+  const concept = String(name).replace(/-/g, " ");
+  return `You are verifying an isolated object against a concept.
 
-Name: ${name}
+Concept: "${concept}"
 
-Look at the image (transparent background, single object)
-and answer:
+Look at the image (transparent background, single object).
 
-1. What object does this image show?
-   Answer in one short phrase, e.g. "a wooden box",
-   "a stack of metal coins", "a postage stamp".
+Answer:
 
-2. Does that object match "${name}"?
-   MATCH — the image shows exactly the object the name
-           describes
-   CLOSE — the image shows a related object but not the
-           exact thing (e.g. a drawing of a coin for
-           "coin-stack")
-   WRONG — the image shows a different object
+1. What does this image show? (one short phrase)
+2. Is it literally the concept named, or a metaphor,
+   decoration, or a different object?
+   LITERAL — the exact object named
+   FIGURATIVE — related but not the literal object
+   DIFFERENT — unrelated
+3. Would a viewer recognize this as "${concept}" without
+   any label? YES or NO.
 
-3. Special cases for compound names:
-   - "person-silhouette" must be a silhouette, not a photo
-     of a person
-   - "business-person" must show business attire, not any
-     person
-   - "dollar-sign" must show the $ symbol, not a $5 bill
-   - "upward-arrow" must show an arrow, not any upward
-     motion
-   - "map-pin" must show a pin or marker, not a red ball
-   - "warning-triangle" must show a triangle warning sign,
-     not any warning
-
-   If the object fails the compound-name test, answer WRONG.
-
-4. Right or absent — answer WRONG when:
-   - it is a decorative, ornamental, antique, novelty, toy, figurine,
-     mannequin or symbolic VERSION of the thing (a sun dial for
-     "calendar", wooden mannequins for "handshake")
-   - the named object is only a small part of the image and something
-     else dominates (a chain with a tiny padlock for "padlock")
-   - a viewer would need the name to know what it is
-   Answer MATCH only when anyone would name the object at a glance.
-
-Return JSON only:
+Return JSON:
 {
-  "seen": "short phrase describing the object",
-  "verdict": "MATCH" | "CLOSE" | "WRONG"
+"seen": "...",
+"verdict": "LITERAL" | "FIGURATIVE" | "DIFFERENT",
+"recognizable": true | false
 }`;
 }
 
 // A well-formed answer, normalized; null when the model did not answer.
+// verdict: "MATCH" only for LITERAL AND recognizable; otherwise the model's
+// verdict (FIGURATIVE / DIFFERENT), or "UNRECOGNIZABLE" for a literal object
+// a viewer would not name unaided. Every caller accepts MATCH only.
 function normalize(a) {
   if (!a || typeof a !== "object" || a.error) return null;
-  const verdict = String(a.verdict || "").toUpperCase().trim();
+  const raw = String(a.verdict || "").toUpperCase().trim();
   const seen = String(a.seen || "").trim();
-  if (!["MATCH", "CLOSE", "WRONG"].includes(verdict) || !seen) return null;
-  return { verdict, seen: seen.slice(0, 160) };
+  const rec = a.recognizable === true || String(a.recognizable).toLowerCase() === "true" || String(a.recognizable).toUpperCase() === "YES";
+  const recNo = a.recognizable === false || String(a.recognizable).toLowerCase() === "false" || String(a.recognizable).toUpperCase() === "NO";
+  if (!["LITERAL", "FIGURATIVE", "DIFFERENT"].includes(raw) || !seen || !(rec || recNo)) return null;
+  const verdict = raw === "LITERAL" ? (rec ? "MATCH" : "UNRECOGNIZABLE") : raw;
+  return { verdict, seen: seen.slice(0, 160), literal: raw, recognizable: rec };
 }
 
 async function imageDataUrl(pngPath) {

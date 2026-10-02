@@ -1012,6 +1012,22 @@ function personFallback(b, ent) {
 // unverified cutout never renders.
 const CUTOUT_DIR = join(ROOT, "src", "skills", "remotion-render", "public", "cutouts");
 const CUTOUT_SPECS = readJsonSafe(join(ROOT, "scripts", "cutout-specs.json"))?.specs || [];
+// The curated PNG bank (owner's option, 2026-10-02): public/png-bank/<name>.png
+// (+ <name>.json metadata), supplied by a person — the FIRST source, ahead of
+// the live fetch. Looked up by concept name, then by the concept phrase's slug.
+const PNG_BANK = join(ROOT, "src", "skills", "remotion-render", "public", "png-bank");
+function bankCutout(name, concept) {
+  for (const key of [name, String(concept || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")]) {
+    const png = join(PNG_BANK, `${key}.png`);
+    if (!key || !existsSync(png)) continue;
+    const meta = readJsonSafe(join(PNG_BANK, `${key}.json`)) || {};
+    let w = meta.width, h = meta.height;
+    if (!(w && h)) { try { const b = readFileSync(png); if (b.toString("ascii", 12, 16) === "IHDR") { w = b.readUInt32BE(16); h = b.readUInt32BE(20); } } catch {} }
+    return { name, class: "cutout", asset: `png-bank/${key}.png`, w: w || 1, h: h || 1, source: "bank", file: `${key}.png` };
+  }
+  return null;
+}
+
 function conceptLibrary() {
   const index = readJsonSafe(join(CUTOUT_DIR, "index.json"))?.cutouts || [];
   const verified = readJsonSafe(join(CUTOUT_DIR, "verified.json")) || {};
@@ -1192,7 +1208,7 @@ async function resolveCanvas(channelId, planPath, plan) {
     const ALL = CUTOUT_SPECS.map((s) => s.name);
     const PEOPLE = new Set(CUTOUT_SPECS.filter((s) => s.category === "people").map((s) => s.name));
     const T0 = Date.now(), BUDGET_MS = Number(process.env.CUTOUT_LIVE_BUDGET_MS || 4 * 60000);
-    const stats = { live: 0, library: 0, symbol: 0, none: 0, rejected: [] };
+    const stats = { bank: 0, live: 0, library: 0, symbol: 0, none: 0, rejected: [] };
     // 1. Which beats, which concepts.
     const wanted = [];
     for (const [bi, b] of plan.beats.entries()) {
@@ -1223,7 +1239,10 @@ async function resolveCanvas(channelId, planPath, plan) {
       while (next < tasks.length) {
         const { w, name } = tasks[next++];
         const spec = CUTOUT_SPECS.find((s) => s.name === name) || {};
-        let v = null;
+        const concept = (spec.queries || [name.replace(/-/g, " ")])[0];
+        let v = bankCutout(name, concept);
+        if (v) { console.log(`[cutout] "${concept}": using bank file ${v.file}`); results.set(`${w.bi}:${name}`, v); continue; }
+        console.log(`[cutout] "${concept}": not in bank, fetching live`);
         if (Date.now() - T0 < BUDGET_MS) {
           const r = await fetchCutoutForBeat({ concept: (spec.queries || [name.replace(/-/g, " ")])[0], name, channel: channelId, beat_index: w.b.index, spec });
           if (r) { v = { name, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: "live", source_url: r.source_url }; }
@@ -1253,7 +1272,15 @@ async function resolveCanvas(channelId, planPath, plan) {
       c.concept_visuals = visuals;
       console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${visuals.map((v) => `${v.name} (${v.class === "symbol" ? "symbol" : v.source})`).join(", ")} — from the ${w.from}`);
     }
-    console.log(`[cutout-live] ch-${channelId}: ${stats.live} live, ${stats.library} from the library, ${stats.symbol} symbol(s), ${stats.none} concept beat(s) with no visual; ${((Date.now() - T0) / 1000).toFixed(0)} s`);
+    console.log(`[cutout-live] ch-${channelId}: ${stats.bank} from the bank, ${stats.live} live, ${stats.library} from the library, ${stats.symbol} symbol(s), ${stats.none} concept beat(s) with no visual; ${((Date.now() - T0) / 1000).toFixed(0)} s`);
+    // Final visual-first ratio (owner spec 2026-10-02): a TYPE beat that shows a
+    // named object (a concept cutout / symbol) counts as visual.
+    {
+      const content = plan.beats.slice(1, -1);
+      const vis = content.filter((b) => !(["TYPE-FULL", "TYPE-SPLIT"].includes(b.canvas.composition) && !b.canvas.photo) || (b.canvas.concept_visuals || []).length).length;
+      const share = content.length ? vis / content.length : 1;
+      console.log(`[visual-first] ch-${channelId} final: ${vis}/${content.length} content beats visual (${(share * 100).toFixed(0)}%, ${share >= 0.6 ? "passes" : "under the 60% target"})`);
+    }
   }
   // Fix 2: the animation of every element, on the final canvases (the beat's
   // tokens, dark / vertical / emphasis styling are settled): scripts/anim-plan.js.
