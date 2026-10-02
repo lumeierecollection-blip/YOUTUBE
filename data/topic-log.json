@@ -2419,9 +2419,14 @@
           "topic": "navigating-fda-qmsr-in-2026",
           "slug": "navigating-fda-qmsr-2026",
           "reserved_at": "2026-10-02T02:03:40.043Z"
+        },
+        {
+          "topic": "hitachi-fanuc-physical-ai-manufacturing",
+          "slug": "hitachi-fanuc-physical-ai-manufacturing",
+          "reserved_at": "2026-10-02T02:40:16.170Z"
         }
       ],
-      "last_generated": "2026-10-02T02:03:40.043Z"
+      "last_generated": "2026-10-02T02:40:16.170Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
