@@ -1,51 +1,39 @@
 #!/usr/bin/env node
 /**
- * verify-cutout-image.cjs — is this isolated PNG the object its name says?
+ * verify-cutout-image.cjs — is this isolated PNG literally the object its concept names?
  *
- *   verifyCutoutImage(pngPath, cutoutName, { sourceUrl })
- *     -> { verdict: "MATCH" | "CLOSE" | "WRONG" | "NONE", seen, provider, cached }
+ *   verifyCutoutImage(pngPath, concept)
+ *     -> { verdict: "MATCH" | "FIGURATIVE" | "DIFFERENT" | "UNRECOGNIZABLE" | "NONE",
+ *          literal, recognizable, seen, provider }
  *
- * Why: the geometric checks (scripts/cutout_lib.py: coverage, edges, one
- * object, real transparency) prove an image is ISOLATED, not that it is the
- * RIGHT object. A previous build shipped a wooden box as "coin-stack", a
- * postage stamp as "magnifying-glass" and an ornament as "key"; all three
- * passed isolation. This runs AFTER rembg, on the PNG that would render — a
- * coin stack in a market photo can isolate to a crop of a crate.
+ * Why: the geometric checks (scripts/cutout_lib.py) prove an image is
+ * ISOLATED, not that it is the RIGHT object. The old library shipped a wooden
+ * box as "coin-stack", a postage stamp as "magnifying-glass" and a sun dial as
+ * "calendar"; all passed isolation. This runs after rembg, on the PNG that
+ * would render.
  *
- * Rule: accepted only when verdict === "MATCH". CLOSE, WRONG, a malformed
- * answer and "no provider answered" (verdict NONE) all reject: an unverified
- * cutout is never saved.
+ * Rule (owner's spec 2026-10-02): accepted only when the model answers
+ * verdict === "LITERAL" AND recognizable === true (returned as "MATCH").
+ * FIGURATIVE, DIFFERENT, LITERAL-but-not-recognizable, a malformed answer and
+ * "no provider answered" (NONE) all reject. Nothing is cached: every PNG is
+ * verified every time it is about to be used.
  *
  * Providers, the same chain as verify-person-image.cjs: Groq
  * $GROQ_VISION_MODEL (qwen/qwen3.8-27b) -> Gemini gemini-3.5-flash-lite ->
  * Ollama $OLLAMA_VISION_MODEL (qwen2.5vl:3b). A provider that errors or
  * answers malformed JSON falls to the next.
  *
- * Cache: src/skills/remotion-render/public/cutouts/verified.json, keyed by
- * cutout name: { verified_at, source_url, provider, verdict, seen } for the
- * accepted image, and under `rejected` every rejected source URL with its
- * verdict. Same name + same source URL reuses the cached verdict.
- *
  * Where this stops: the verdict is a vision model's reading of one image,
  * not ground truth; a small model can be wrong in either direction. The
  * transparent ground is flattened onto white before sending (as JPEG, a
  * transparent PNG would otherwise arrive on black and hide dark objects).
  *
- * CLI: node scripts/verify-cutout-image.cjs --image coin-stack.png --name coin-stack [--url https://...] [--no-cache]
+ * CLI: node scripts/verify-cutout-image.cjs --image gavel.png --name gavel
  */
 "use strict";
-const { existsSync, mkdirSync, readFileSync, writeFileSync } = require("node:fs");
-const { join, dirname } = require("node:path");
+const { existsSync, readFileSync } = require("node:fs");
 
-const ROOT = join(__dirname, "..");
-const CACHE = process.env.CUTOUT_VERIFIED_PATH || join(ROOT, "src", "skills", "remotion-render", "public", "cutouts", "verified.json");
-
-function loadCache() { try { return JSON.parse(readFileSync(CACHE, "utf8")); } catch { return {}; } }
-function saveCache(c) { mkdirSync(dirname(CACHE), { recursive: true }); writeFileSync(CACHE, JSON.stringify(c, null, 2) + "\n"); }
-
-// The owner's stricter prompt (2026-10-02): LITERAL / FIGURATIVE / DIFFERENT
-// plus "recognizable without a label". A sun dial passed the older
-// MATCH / CLOSE / WRONG prompt as "calendar".
+// The owner's prompt, verbatim (2026-10-02, "FIX 3 — STRICT VERIFICATION").
 function promptFor(name) {
   const concept = String(name).replace(/-/g, " ");
   return `You are verifying an isolated object against a concept.
@@ -54,18 +42,19 @@ Concept: "${concept}"
 
 Look at the image (transparent background, single object).
 
-Answer:
+Answer three questions:
 
-1. What does this image show? (one short phrase)
-2. Is it literally the concept named, or a metaphor,
-   decoration, or a different object?
-   LITERAL — the exact object named
-   FIGURATIVE — related but not the literal object
-   DIFFERENT — unrelated
-3. Would a viewer recognize this as "${concept}" without
-   any label? YES or NO.
+1. What does this image literally show? Answer in 3–5 words.
+   Example: "wooden gavel on block" or "stack of copper coins".
+2. Is that object the exact thing named by the concept?
+   LITERAL — same object, same form. A gavel is a gavel.
+   FIGURATIVE — related but a substitute. A hammer for a
+   gavel. A sundial for a calendar.
+   DIFFERENT — unrelated.
+3. Would a viewer recognize this as "${concept}" if they saw
+   it alone with no label? YES or NO.
 
-Return JSON:
+Return JSON only:
 {
 "seen": "...",
 "verdict": "LITERAL" | "FIGURATIVE" | "DIFFERENT",
@@ -133,21 +122,8 @@ async function askProviders(messages) {
   return { provider: null, v: null, tried };
 }
 
-async function verifyCutoutImage(pngPath, name, { sourceUrl = null, useCache = true } = {}) {
-  const cache = loadCache();
-  const entry = cache[name] || {};
-  if (useCache && sourceUrl) {
-    if (entry.source_url === sourceUrl && entry.verdict) {
-      console.log(`[cutout] ${name}: cached ${entry.provider}, verdict=${entry.verdict}, saw "${entry.seen}"`);
-      return { verdict: entry.verdict, seen: entry.seen, provider: entry.provider, cached: true };
-    }
-    const rej = entry.rejected?.[sourceUrl];
-    if (rej) {
-      console.log(`[cutout] ${name}: cached ${rej.provider}, verdict=${rej.verdict}, saw "${rej.seen}"`);
-      return { verdict: rej.verdict, seen: rej.seen, provider: rej.provider, cached: true };
-    }
-  }
-  if (!existsSync(pngPath)) return { verdict: "NONE", seen: `no image at ${pngPath}`, provider: null, cached: false };
+async function verifyCutoutImage(pngPath, name) {
+  if (!existsSync(pngPath)) return { verdict: "NONE", seen: `no image at ${pngPath}`, provider: null };
   const messages = [{ role: "user", content: [
     { type: "text", text: promptFor(name) },
     { type: "image_url", image_url: { url: await imageDataUrl(pngPath) } },
@@ -155,18 +131,9 @@ async function verifyCutoutImage(pngPath, name, { sourceUrl = null, useCache = t
   const { provider, v, tried } = await askProviders(messages);
   if (!v) {
     console.log(`[cutout] ${name}: no vision provider answered — rejected (${tried.join(" | ")})`);
-    return { verdict: "NONE", seen: "no vision provider answered", provider: null, cached: false };
+    return { verdict: "NONE", seen: "no vision provider answered", provider: null };
   }
-  console.log(`[cutout] ${name}: ${provider}, verdict=${v.verdict}, saw "${v.seen}"`);
-  if (sourceUrl) {
-    const now = new Date().toISOString();
-    const next = { ...entry, rejected: { ...(entry.rejected || {}) } };
-    if (v.verdict === "MATCH") Object.assign(next, { verified_at: now, source_url: sourceUrl, provider, verdict: "MATCH", seen: v.seen });
-    else next.rejected[sourceUrl] = { verified_at: now, provider, verdict: v.verdict, seen: v.seen };
-    cache[name] = next;
-    saveCache(cache);
-  }
-  return { ...v, provider, cached: false };
+  return { ...v, provider };
 }
 
 module.exports = { verifyCutoutImage, normalize, promptFor };
@@ -174,7 +141,7 @@ module.exports = { verifyCutoutImage, normalize, promptFor };
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };
   require("dotenv/config");
-  verifyCutoutImage(arg("image"), arg("name"), { sourceUrl: arg("url"), useCache: !process.argv.includes("--no-cache") })
+  verifyCutoutImage(arg("image"), arg("name"))
     .then((r) => { console.log(JSON.stringify(r, null, 2)); process.exit(r.verdict === "MATCH" ? 0 : 1); })
     .catch((e) => { console.error(e); process.exit(2); });
 }

@@ -29,7 +29,7 @@ eq("verifier: LITERAL + recognizable is the only MATCH", vNorm({ seen: "a wall c
 eq("verifier: FIGURATIVE rejects (a sun dial for calendar)", vNorm({ seen: "a sun dial", verdict: "FIGURATIVE", recognizable: false }).verdict, "FIGURATIVE");
 eq("verifier: LITERAL but not recognizable rejects", vNorm({ seen: "a tiny padlock", verdict: "LITERAL", recognizable: "NO" }).verdict, "UNRECOGNIZABLE");
 eq("verifier: an old MATCH/WRONG answer is no answer", vNorm({ seen: "coins", verdict: "MATCH" }), null);
-eq("verifier: the prompt names the concept and asks LITERAL / recognizable", [vPrompt("coin-stack").includes('Concept: "coin stack"'), vPrompt("x").includes("LITERAL"), vPrompt("x").includes("without")], [true, true, true]);
+eq("verifier: the prompt names the concept and asks LITERAL / recognizable", [vPrompt("coin-stack").includes('Concept: "coin stack"'), vPrompt("x").includes("LITERAL"), vPrompt("x").includes("no label")], [true, true, true]);
 
 const run = (code) => spawnSync(PY, ["-c", code], { encoding: "utf8", cwd: ROOT });
 const probe = run("import numpy, PIL; print('ok')");
