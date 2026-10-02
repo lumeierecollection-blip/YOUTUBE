@@ -402,9 +402,14 @@
           "topic": "philadelphia-rental-fees",
           "slug": "philadelphia-rental-fees-2026",
           "reserved_at": "2026-10-02T02:01:28.388Z"
+        },
+        {
+          "topic": "nyc-rent-freeze-lawsuit",
+          "slug": "nyc-rent-freeze-lawsuit",
+          "reserved_at": "2026-10-02T02:39:59.655Z"
         }
       ],
-      "last_generated": "2026-10-02T02:01:28.388Z"
+      "last_generated": "2026-10-02T02:39:59.655Z"
     },
     "3": {
       "channel_name": "AI Tested",
