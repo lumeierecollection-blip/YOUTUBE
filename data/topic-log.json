@@ -512,9 +512,14 @@
           "topic": "Supreme Court Rulings Impacting Housing Providers in Maryland",
           "slug": "maryland-laws-impacting-housing-providers-20261002",
           "reserved_at": "2026-10-02T16:08:32.904Z"
+        },
+        {
+          "topic": "Ontario Cuts Rent Arrears Notice to 7 Days",
+          "slug": "ontario-rent-arrears-n4-notice-7-day-rule-2026",
+          "reserved_at": "2026-10-02T21:36:45.865Z"
         }
       ],
-      "last_generated": "2026-10-02T16:08:32.904Z"
+      "last_generated": "2026-10-02T21:36:45.865Z"
     },
     "3": {
       "channel_name": "AI Tested",
