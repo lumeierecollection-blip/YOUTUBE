@@ -77,6 +77,15 @@ and answer:
 
    If the object fails the compound-name test, answer WRONG.
 
+4. Right or absent — answer WRONG when:
+   - it is a decorative, ornamental, antique, novelty, toy, figurine,
+     mannequin or symbolic VERSION of the thing (a sun dial for
+     "calendar", wooden mannequins for "handshake")
+   - the named object is only a small part of the image and something
+     else dominates (a chain with a tiny padlock for "padlock")
+   - a viewer would need the name to know what it is
+   Answer MATCH only when anyone would name the object at a glance.
+
 Return JSON only:
 {
   "seen": "short phrase describing the object",

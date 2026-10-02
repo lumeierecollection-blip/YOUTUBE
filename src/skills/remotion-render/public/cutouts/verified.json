@@ -280,12 +280,19 @@
     "seen": "a courthouse building with a clock tower and columns"
   },
   "government-building": {
-    "rejected": {},
-    "verified_at": "2026-10-02T00:17:54.596Z",
+    "rejected": {
+      "https://pixabay.com/photos/house-building-architecture-modern-7783183/": {
+        "verified_at": "2026-10-02T08:39:05.224Z",
+        "provider": "human-review",
+        "verdict": "WRONG",
+        "seen": "a modern office block"
+      }
+    },
+    "verified_at": "2026-10-02T08:39:05.224Z",
     "source_url": "https://pixabay.com/photos/house-building-architecture-modern-7783183/",
-    "provider": "gemini",
-    "verdict": "MATCH",
-    "seen": "modern government building"
+    "provider": "human-review",
+    "verdict": "WRONG",
+    "seen": "a modern office block"
   },
   "bank-building": {
     "rejected": {
@@ -333,13 +340,19 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "a brick chimney"
+      },
+      "https://pixabay.com/photos/engineer-engineering-4941329/": {
+        "verified_at": "2026-10-02T08:39:05.224Z",
+        "provider": "human-review",
+        "verdict": "WRONG",
+        "seen": "an assembly-line interior, not a factory"
       }
     },
-    "verified_at": "2026-10-02T00:19:02.098Z",
+    "verified_at": "2026-10-02T08:39:05.224Z",
     "source_url": "https://pixabay.com/photos/engineer-engineering-4941329/",
-    "provider": "gemini",
-    "verdict": "MATCH",
-    "seen": "factory assembly line"
+    "provider": "human-review",
+    "verdict": "WRONG",
+    "seen": "an assembly-line interior, not a factory"
   },
   "office-tower": {
     "rejected": {},
@@ -350,12 +363,19 @@
     "seen": "a tall skyscraper"
   },
   "city-skyline": {
-    "rejected": {},
-    "verified_at": "2026-10-02T00:19:27.362Z",
+    "rejected": {
+      "https://pixabay.com/photos/germany-city-skyscrapers-frankfurt-7409782/": {
+        "verified_at": "2026-10-02T08:39:05.224Z",
+        "provider": "human-review",
+        "verdict": "WRONG",
+        "seen": "a single tower, not a skyline"
+      }
+    },
+    "verified_at": "2026-10-02T08:39:05.224Z",
     "source_url": "https://pixabay.com/photos/germany-city-skyscrapers-frankfurt-7409782/",
-    "provider": "gemini",
-    "verdict": "MATCH",
-    "seen": "a city skyline"
+    "provider": "human-review",
+    "verdict": "WRONG",
+    "seen": "a single tower, not a skyline"
   },
   "contract": {
     "rejected": {
@@ -628,12 +648,19 @@
     }
   },
   "handshake": {
-    "rejected": {},
-    "verified_at": "2026-10-02T00:24:41.903Z",
+    "rejected": {
+      "https://pixabay.com/photos/shake-hands-handshake-helping-hand-3147067/": {
+        "verified_at": "2026-10-02T08:39:05.224Z",
+        "provider": "human-review",
+        "verdict": "WRONG",
+        "seen": "two wooden artist mannequins, not a handshake"
+      }
+    },
+    "verified_at": "2026-10-02T08:39:05.224Z",
     "source_url": "https://pixabay.com/photos/shake-hands-handshake-helping-hand-3147067/",
-    "provider": "groq",
-    "verdict": "MATCH",
-    "seen": "two wooden mannequins shaking hands"
+    "provider": "human-review",
+    "verdict": "WRONG",
+    "seen": "two wooden artist mannequins, not a handshake"
   },
   "magnifying-glass": {
     "rejected": {
@@ -669,12 +696,19 @@
     "seen": "a magnifying glass"
   },
   "padlock": {
-    "rejected": {},
-    "verified_at": "2026-10-02T00:25:30.197Z",
+    "rejected": {
+      "https://pixabay.com/photos/padlock-costa-rica-locked-gate-7346959/": {
+        "verified_at": "2026-10-02T08:39:05.224Z",
+        "provider": "human-review",
+        "verdict": "WRONG",
+        "seen": "mostly a rusty chain; the padlock is a small part"
+      }
+    },
+    "verified_at": "2026-10-02T08:39:05.224Z",
     "source_url": "https://pixabay.com/photos/padlock-costa-rica-locked-gate-7346959/",
-    "provider": "groq",
-    "verdict": "MATCH",
-    "seen": "a rusty padlock and chain"
+    "provider": "human-review",
+    "verdict": "WRONG",
+    "seen": "mostly a rusty chain; the padlock is a small part"
   },
   "key": {
     "rejected": {
@@ -861,13 +895,19 @@
         "provider": "groq",
         "verdict": "WRONG",
         "seen": "mechanical clock movement"
+      },
+      "https://pixabay.com/photos/aztecs-mexican-calendar-sundial-sun-74016/": {
+        "verified_at": "2026-10-02T08:39:05.224Z",
+        "provider": "human-review",
+        "verdict": "WRONG",
+        "seen": "a decorative sun / astrological dial, not a calendar"
       }
     },
-    "verified_at": "2026-10-02T02:01:45.232Z",
+    "verified_at": "2026-10-02T08:39:05.224Z",
     "source_url": "https://pixabay.com/photos/aztecs-mexican-calendar-sundial-sun-74016/",
-    "provider": "gemini",
-    "verdict": "MATCH",
-    "seen": "an astrological calendar"
+    "provider": "human-review",
+    "verdict": "WRONG",
+    "seen": "a decorative sun / astrological dial, not a calendar"
   },
   "globe": {
     "rejected": {
