@@ -115,7 +115,10 @@ export const NUM_DESC = 0.2;
  */
 export const numberInk = (text, size) => {
   const p = numberParts(String(text ?? ""));
-  return Math.ceil(size * (p.isQuantity === false ? 0.94 : 0.82));
+  // A separator ("7382.85", "1,400") drops ~0.10 em below the baseline
+  // (CI run 36950257339 ch-48: its tail crossed y 1340 by 30 px at size 302).
+  const sep = /\d[.,]\d/.test(String(text ?? "")) ? 0.12 : 0;
+  return Math.ceil(size * ((p.isQuantity === false ? 0.94 : 0.82) + sep));
 };
 // Fraunces descenders (g j p q y , ;) reach ~1.07 em below a line's top, past
 // a 0.95 (headline) or 0.90 (emphasis) line box: a text block anchored to a
@@ -124,7 +127,7 @@ export const numberInk = (text, size) => {
 // emphasis word crossed y 1340; an offset on a line without descenders just
 // cost coverage).
 export const TEXT_DESC = 0.12;
-export const descOffset = (lastLine, size, lineHeight) => (/[gjpqy,;Q]/.test(String(lastLine || "")) ? Math.ceil(Math.max(0, 1.07 - lineHeight) * size) : 0);
+export const descOffset = (lastLine, size, lineHeight) => (/[gjpqy,;Q]/.test(String(lastLine || "")) ? Math.ceil(Math.max(0, 1.20 - lineHeight) * size) : 0);   // 1.07 -> 1.20: a "q" tail measured 0.25 em past a 0.95 box (CI run 36950257339 ch-44 "inequities")
 export const TOP = 130;          // row 0 top (150 -> 130: coverage headroom inside the zones, CI run 36944700437)
 export const BOTTOM = 1340;      // the body's bottom edge = the middle zone's bottom
 export const COMP = { x: 48, y: 100, w: 984, h: 1320 };
@@ -265,8 +268,10 @@ function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines =
   const h = f.height;
   const lines = f.lines.map((ln) => ln.map((i) => f.words[i].text).join(" "));
   // Bottom-anchored: the last line's descenders stay above `bottom` (TEXT_DESC).
-  const by = bottom != null ? bottom - h - descOffset(lines[lines.length - 1], f.size, ROLE_HEADLINE.lineHeight) : y;
-  return { ...box(anchorX(w, flip), by, w, h), size: f.size, lines, rows: f.lines, words: f.words, align, role: "headline", inBand: f.size >= ROLE_HEADLINE.sizeBand[0] };
+  const desc = bottom != null ? descOffset(lines[lines.length - 1], f.size, ROLE_HEADLINE.lineHeight) : 0;
+  const by = bottom != null ? bottom - h - desc : y;
+  // desc: how far the last line's descenders reach below the box (contentBounds counts it as content).
+  return { ...box(anchorX(w, flip), by, w, h), size: f.size, lines, rows: f.lines, words: f.words, align, role: "headline", inBand: f.size >= ROLE_HEADLINE.sizeBand[0], desc };
 }
 const rule = (flip, y = TOP, w = 96) => ({ ...box(anchorX(w, flip), y, w, 6), role: "rule", anchor: flip ? "right" : "left" });
 
@@ -378,7 +383,7 @@ export function canvasLayout(c) {
         const eh = Math.round(emph.size * ROLE_EMPHASIS.lineHeight);
         boxes.rule = rule(flip ? 0 : 1, TOP);
         if (text) boxes.headline = headlineBox(text, { width: 700, y: TOP + 40, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - TOP - 40, max: 120 });
-        boxes.emphasis = { ...box(anchorX(ew, flip ? 0 : 1), BOTTOM - eh - descOffset(shown, emph.size, ROLE_EMPHASIS.lineHeight), ew, eh), size: emph.size, text: shown, align: flip ? "left" : "right", role: "emphasis" };
+        boxes.emphasis = { ...box(anchorX(ew, flip ? 0 : 1), BOTTOM - eh - descOffset(shown, emph.size, ROLE_EMPHASIS.lineHeight), ew, eh), desc: descOffset(shown, emph.size, ROLE_EMPHASIS.lineHeight), size: emph.size, text: shown, align: flip ? "left" : "right", role: "emphasis" };
         hero = "emphasis";
       } else if (c?.vertical) {
         // One beat a video: the statement rotated 90 degrees along the left edge.
@@ -637,7 +642,7 @@ export function contentBounds(layout) {
   const all = flattenBoxes(layout.boxes).filter(([k, v]) => k !== "split" && v.role !== "shape").map(([, v]) => v);
   if (!all.length) return null;
   const x1 = Math.min(...all.map((b) => b.x)), y1 = Math.min(...all.map((b) => b.y));
-  const x2 = Math.max(...all.map((b) => b.x + b.w)), y2 = Math.max(...all.map((b) => b.y + b.h));
+  const x2 = Math.max(...all.map((b) => b.x + b.w)), y2 = Math.max(...all.map((b) => b.y + b.h + (b.desc || 0)));
   return { x: x1, y: y1, w: x2 - x1, h: y2 - y1 };
 }
 
