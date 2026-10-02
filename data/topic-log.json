@@ -240,9 +240,14 @@
           "topic": "The New Budgeting Strategy: The 40/40/20 Rule",
           "slug": "new-budgeting-strategy-40-40-20-rule-2026",
           "reserved_at": "2026-10-02T12:04:52.228Z"
+        },
+        {
+          "topic": "AI Budgeting Tools for 2026",
+          "slug": "ai-budgeting-tools-2026",
+          "reserved_at": "2026-10-02T23:00:02.640Z"
         }
       ],
-      "last_generated": "2026-10-02T12:04:52.228Z"
+      "last_generated": "2026-10-02T23:00:02.640Z"
     },
     "2": {
       "channel_name": "Legal Brief",
