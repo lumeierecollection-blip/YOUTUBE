@@ -382,9 +382,14 @@
           "topic": "supreme-court-rules-on-police-force-in-traffic-stops",
           "slug": "supreme-court-rules-on-police-force-in-traffic-stops-2026",
           "reserved_at": "2026-10-01T22:44:04.503Z"
+        },
+        {
+          "topic": "emergency-rent-caps-expansion",
+          "slug": "emergency-rent-caps-expansion-2026",
+          "reserved_at": "2026-10-02T00:55:22.926Z"
         }
       ],
-      "last_generated": "2026-10-01T22:44:04.503Z"
+      "last_generated": "2026-10-02T00:55:22.926Z"
     },
     "3": {
       "channel_name": "AI Tested",
