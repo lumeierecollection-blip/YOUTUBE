@@ -1465,9 +1465,14 @@
           "topic": "Ponzi scheme breakdowns",
           "slug": "oxustech-ponzi-collapses-withdrawals-disabled",
           "reserved_at": "2026-10-02T02:40:01.639Z"
+        },
+        {
+          "topic": "hidden-carbon-probe",
+          "slug": "hidden-carbon-probe-fraud-analysis-2026-10-01",
+          "reserved_at": "2026-10-02T07:39:59.261Z"
         }
       ],
-      "last_generated": "2026-10-02T07:06:00.659Z"
+      "last_generated": "2026-10-02T07:39:59.261Z"
     },
     "27": {
       "channel_name": "Climate Now",
