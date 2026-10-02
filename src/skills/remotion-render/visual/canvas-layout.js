@@ -89,7 +89,7 @@ export const R_EDGE = 1032;
  *                       statement
  *   bottom  y 1340-1920 the word caption (1450-1610) and nothing else
  * An element may cross into a neighbouring zone by < ZONE_TOL px (a border
- * case). TOP moved 180 -> 150 and BOTTOM 1400 -> 1340 so the header + body
+ * case). TOP moved 180 -> 130 and BOTTOM 1400 -> 1340 so the header + body
  * still span >= 60% of the frame height (canvas-coverage) inside the zones.
  */
 export const ZONES = Object.freeze({ top: [0, 620], middle: [620, 1340], bottom: [1340, 1920] });
@@ -102,15 +102,26 @@ export const HEADER_MAX_Y = 600; // the header's last pixel
 // "1938" crossed y 1340 into the caption's zone).
 export const NUM_DESC = 0.2;
 /**
- * A hero number's ink below its cap line, in px: the renderer sets the
- * baseline at box.y + 0.8 x size (full-canvas.jsx NumberHero), and old-style
- * 3 4 5 7 9 descend NUM_DESC x size below it; other figures stop at the
- * baseline (+2% for overshoot). A bottom-anchored number box is exactly this
- * tall, so its ink ends ON the zone's bottom edge — never across it, and
- * never so far above it that the beat's content stops short (canvas-coverage).
+ * A hero number's ink below its box top, in px, MEASURED on CI frames (run
+ * 36944700437 ch-1): the figures are lining (no digit descends — the old
+ * "3 4 5 7 9 descend" model was wrong and cost coverage). A quantity (it
+ * rolls) ends at 0.81 em ("70", size 518: ink to box.y + 421). A
+ * non-quantity — a year or identifier, which pops (SNAP_IN) and never rolls —
+ * renders 0.12 em LOWER ("2026", size 438: cap line at box.y + 0.20 em, ink
+ * to box.y + 0.92 em; "1938" in the QA render the same). The cause of that
+ * offset is not found in full-canvas.jsx NumberHero; it is reproduced here as
+ * measured so the ink ends ON the zone's edge, never across it and never so
+ * far above it that canvas-coverage fails.
  */
-export const numberInk = (text, size) => Math.ceil(size * (0.8 + (/[34579]/.test(String(text).replace(/[^0-9]/g, "")) ? NUM_DESC : 0.02)));
-export const TOP = 150;          // row 0 top
+export const numberInk = (text, size) => {
+  const p = numberParts(String(text ?? ""));
+  return Math.ceil(size * (p.isQuantity === false ? 0.94 : 0.82));
+};
+// Fraunces descenders (g p y) run ~0.1 em past a 0.95-line-height box: a
+// text block anchored to a zone's bottom edge sits this far above it
+// (CI run 36944700437: TYPE-FULL / TYPE-SPLIT statements crossed y 1340).
+export const TEXT_DESC = 0.12;
+export const TOP = 130;          // row 0 top (150 -> 130: coverage headroom inside the zones, CI run 36944700437)
 export const BOTTOM = 1340;      // the body's bottom edge = the middle zone's bottom
 export const COMP = { x: 48, y: 100, w: 984, h: 1320 };
 // The word caption (required on every beat) fills the grid's caption row. Its
@@ -249,7 +260,9 @@ function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines =
   const w = Math.min(width, Math.ceil(f.width) + 4);
   const h = f.height;
   const lines = f.lines.map((ln) => ln.map((i) => f.words[i].text).join(" "));
-  return { ...box(anchorX(w, flip), bottom != null ? bottom - h : y, w, h), size: f.size, lines, rows: f.lines, words: f.words, align, role: "headline", inBand: f.size >= ROLE_HEADLINE.sizeBand[0] };
+  // Bottom-anchored: the last line's descenders stay above `bottom` (TEXT_DESC).
+  const by = bottom != null ? bottom - h - Math.ceil(f.size * TEXT_DESC) : y;
+  return { ...box(anchorX(w, flip), by, w, h), size: f.size, lines, rows: f.lines, words: f.words, align, role: "headline", inBand: f.size >= ROLE_HEADLINE.sizeBand[0] };
 }
 const rule = (flip, y = TOP, w = 96) => ({ ...box(anchorX(w, flip), y, w, 6), role: "rule", anchor: flip ? "right" : "left" });
 
@@ -309,7 +322,7 @@ export function canvasLayout(c) {
       // The statement in two: the first half top, the second bottom, on opposite sides.
       const opp = flip ? 0 : 1;
       boxes.headline = headlineBox(split[0], { width: 640, y: TOP, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - TOP, max: 200 });
-      boxes.statement = headlineBox(split[1], { width: 760, bottom: BOTTOM, flip: opp, maxLines: 3, maxHeight: BOTTOM - BODY_TOP, max: 200 });
+      boxes.statement = headlineBox(split[1], { width: 760, bottom: BOTTOM, flip: opp, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200 });
       const kk = c?.lead_in || folio;
       if (kk) boxes.kicker = dataBox(kk, { width: 300, size: 34, maxLines: 1, y: TOP + 10, flip: opp });
       hero = "statement";
@@ -346,7 +359,7 @@ export function canvasLayout(c) {
         boxes.rule = rule(flip, TOP);
         boxes.number = { ...box(nx, TOP + 40, nw, nh), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
         if (label) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, y: boxes.number.y + nh + 28, flip });
-        boxes.headline = headlineBox(c.headline, { width: 900, bottom: BOTTOM, flip, maxLines: 3, maxHeight: BOTTOM - BODY_TOP, max: 200 });
+        boxes.headline = headlineBox(c.headline, { width: 900, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200 });
       }
       hero = "number";
     } else {
@@ -361,7 +374,7 @@ export function canvasLayout(c) {
         const eh = Math.round(emph.size * ROLE_EMPHASIS.lineHeight);
         boxes.rule = rule(flip ? 0 : 1, TOP);
         if (text) boxes.headline = headlineBox(text, { width: 700, y: TOP + 40, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - TOP - 40, max: 120 });
-        boxes.emphasis = { ...box(anchorX(ew, flip ? 0 : 1), BOTTOM - eh, ew, eh), size: emph.size, text: shown, align: flip ? "left" : "right", role: "emphasis" };
+        boxes.emphasis = { ...box(anchorX(ew, flip ? 0 : 1), BOTTOM - eh - Math.ceil(emph.size * TEXT_DESC), ew, eh), size: emph.size, text: shown, align: flip ? "left" : "right", role: "emphasis" };
         hero = "emphasis";
       } else if (c?.vertical) {
         // One beat a video: the statement rotated 90 degrees along the left edge.
@@ -397,13 +410,17 @@ export function canvasLayout(c) {
           hero = "cutout0";
         } else {
           // The statement is the body: the middle zone only (it used to rise to y 430, through the top zone).
-          boxes.statement = headlineBox(text, { width: 984, bottom: BOTTOM, flip, maxLines: 5, maxHeight: BOTTOM - BODY_TOP, max: 360 });
+          boxes.statement = headlineBox(text, { width: 984, bottom: BOTTOM, flip, maxLines: 5, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 360 });
           hero = "statement";
         }
       }
     }
   } else if (comp === "DATA-FULL") {
-    Object.assign(boxes, dataHeader(c, flip));
+    // PIE / GAUGE carry their own number + label: with a kicker that made 4
+    // text elements (kinetic-rules max 3 — CI run 36944700437 ch-44 beat 3),
+    // so the kicker (lead-in) is dropped when the figure has a label.
+    const ownLabel = (vt === "PIE" || vt === "GAUGE") && !!c?.data?.label;
+    Object.assign(boxes, dataHeader(ownLabel ? { ...c, lead_in: null } : c, flip));
     if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);
     // Charts start at y >= 460 with or without a header and reach the
     // composition's bottom edge.

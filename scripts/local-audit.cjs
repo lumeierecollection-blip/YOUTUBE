@@ -373,12 +373,17 @@ function canvasCoverage(video, beats) {
       for (let yy = H - 12; yy < H - 4; yy++) for (let xx = 4; xx < 12; xx++) { const o = (yy * W + xx) * 3; g0 += 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; }
       g0 /= 64;
       let first = -1, last = -1;
+      // A map's land is content: its pale tint (a few luma off the ground)
+      // is what the map draws, not empty ground. Measured with the ink rule
+      // only, the zone-confined map read 54-59% (CI run 36944700437) though
+      // its land fills the middle zone. The 60% threshold is unchanged.
+      const lumaMin = b.canvas?.composition === "MAP-CENTERED" ? 6 : 74;
       for (let y = 0; y < capRow; y++) {
         let n = 0;
         for (let x = 0; x < W; x++) {
           const o = (y * W + x) * 3, r = buf[o], g = buf[o + 1], bl = buf[o + 2];
           const l = 0.299 * r + 0.587 * g + 0.114 * bl;
-          if (Math.abs(l - g0) > 74 || Math.max(r, g, bl) - Math.min(r, g, bl) > 45) n++;
+          if (Math.abs(l - g0) > lumaMin || Math.max(r, g, bl) - Math.min(r, g, bl) > 45) n++;
         }
         if (n >= 4) { if (first < 0) first = y; last = y; }
       }

@@ -1151,7 +1151,14 @@ async function resolveCanvas(channelId, planPath, plan) {
       const c = b.canvas;
       if (c.composition !== "TYPE-FULL" || c.emphasis_beat || c.vertical || String(c.visual_type).toUpperCase() !== "TYPE") continue;
       const vc = validateConcepts(b.concepts, b.narration || "", CUTOUT_SPECS);
-      const { visuals, skipped } = visualsFor(vc.concepts, lib);
+      // A generic person cutout (a man in a suit, a worker) on a beat that
+      // NAMES a person would read as that person — the hard rule is a named
+      // person shown as themselves or not at all. People concepts are dropped
+      // on such beats.
+      const namesPerson = (b.named_entities || []).some((e) => e.type === "person");
+      const PEOPLE = new Set(CUTOUT_SPECS.filter((s) => s.category === "people").map((s) => s.name));
+      if (namesPerson && vc.concepts.some((n) => PEOPLE.has(n))) console.log(`[concepts] ch-${channelId} beat ${b.index}: names a person — generic people cutouts dropped (${vc.concepts.filter((n) => PEOPLE.has(n)).join(", ")})`);
+      const { visuals, skipped } = visualsFor(namesPerson ? vc.concepts.filter((n) => !PEOPLE.has(n)) : vc.concepts, lib);
       for (const s of skipped) console.log(`[concepts] ch-${channelId} beat ${b.index}: ${s}`);
       if (!visuals.length) continue;
       c.concept_visuals = visuals;
