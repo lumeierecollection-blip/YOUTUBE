@@ -43,8 +43,8 @@ query.
 - pixabay "contract isolated": rejected — the mask runs along the photo's right edge for 72% of it (> 40%): cut by the frame
 - pixabay "contract isolated": verify CLOSE — saw "two wooden mannequin figures shaking hands"
 - pixabay "contract isolated": rejected — the largest solid region is 40% of what is visible (< 80%): more than one object / a scene
-- pixabay "contract isolated": rejected — the object covers 3.7% of the photo (< 12%)
 - pixabay "contract isolated": rejected — the largest solid region is 65% of what is visible (< 80%): more than one object / a scene
+- pixabay "contract isolated": rejected — the object covers 5.0% of the photo (< 12%)
 - pixabay "contract": verify CLOSE — saw "a rolled parchment scroll"
 
 ## credit-card
@@ -73,7 +73,6 @@ query.
 
 - pixabay "dollar sign isolated": verify WRONG — saw "a fan of one-dollar bills"
 - pixabay "dollar sign isolated": verify WRONG — saw "one dollar bill"
-- pixabay "dollar sign isolated": rejected — the largest solid region is 74% of what is visible (< 80%): more than one object / a scene
 - pixabay "dollar sign isolated": verify WRONG — saw "a one dollar bill flag"
 
 ## downward-arrow
