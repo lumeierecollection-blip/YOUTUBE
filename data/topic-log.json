@@ -427,9 +427,14 @@
           "topic": "police-force-in-traffic-stops-case-law",
           "slug": "supreme-court-rules-on-police-force-in-traffic-stops-2026",
           "reserved_at": "2026-10-02T07:06:34.022Z"
+        },
+        {
+          "topic": "new-washington-dc-law-bans-landlords-from-imposing-dog-breed-restrictions",
+          "slug": "washington-dc-law-bans-dog-breeds",
+          "reserved_at": "2026-10-02T07:42:46.164Z"
         }
       ],
-      "last_generated": "2026-10-02T07:06:34.022Z"
+      "last_generated": "2026-10-02T07:42:46.164Z"
     },
     "3": {
       "channel_name": "AI Tested",
