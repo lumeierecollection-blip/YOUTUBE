@@ -2564,9 +2564,14 @@
           "topic": "food-safety-inspections-2026",
           "slug": "food-safety-inspections-2026-10-01-1234567890-092926-10",
           "reserved_at": "2026-10-02T09:57:25.385Z"
+        },
+        {
+          "topic": "better-together-carmakers-join-forces-to-optimize-quality-standards",
+          "slug": "better-together-carmakers-join-forces-2026-10-01-1234567890",
+          "reserved_at": "2026-10-02T10:30:27.967Z"
         }
       ],
-      "last_generated": "2026-10-02T09:57:25.385Z"
+      "last_generated": "2026-10-02T10:30:27.967Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
