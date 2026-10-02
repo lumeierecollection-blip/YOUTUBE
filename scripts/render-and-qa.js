@@ -28,8 +28,10 @@ import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { assignCanvasAnimations } from "./anim-plan.js";
 import { checkVisual, figureKey } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
-import { validateConcepts, visualsFor } from "../src/skills/remotion-render/visual/concept-visuals.js";
+import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
+import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
+const { fetchCutoutForBeat } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
 import {
@@ -1141,37 +1143,81 @@ async function resolveCanvas(channelId, planPath, plan) {
     const styled = styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
     console.log(`[canvas] style: dark beats ${JSON.stringify(styled.dark)}, emphasis beat ${styled.emphasis}, vertical beat ${styled.vertical}, biggest figure beat ${styled.accentBest}`);
   }
-  // Concept visuals (visual/concept-visuals.js): a plain TYPE-FULL statement
-  // beat shows what its sentence names — a verified cutout PNG or a drawn
-  // symbol — in the middle zone. Set before the animation pass, which lays
-  // the canvas out.
+  // Concept visuals (visual/concept-visuals.js): a text-only beat shows what
+  // its sentence names. Cutouts are fetched FOR THIS BEAT before the render
+  // (scripts/fetch-cutout-once.cjs: Pixabay -> rembg -> geometric checks ->
+  // content verification, MATCH only); a failed live fetch falls back to the
+  // verified library PNG of that name, then to type only. Symbols are drawn.
+  // Fetching never happens inside renderMedia: a slow network cannot time
+  // the render out. Budget: 4 minutes a channel, 3 fetches at a time (the
+  // fetcher's own token bucket keeps Pixabay <= 30 requests a minute).
   {
     const lib = conceptLibrary();
+    const ALL = CUTOUT_SPECS.map((s) => s.name);
+    const PEOPLE = new Set(CUTOUT_SPECS.filter((s) => s.category === "people").map((s) => s.name));
+    const T0 = Date.now(), BUDGET_MS = Number(process.env.CUTOUT_LIVE_BUDGET_MS || 4 * 60000);
+    const stats = { live: 0, library: 0, symbol: 0, none: 0, rejected: [] };
+    // 1. Which beats, which concepts.
+    const wanted = [];
     for (const [bi, b] of plan.beats.entries()) {
       const c = b.canvas;
-      // TYPE-SPLIT beats are text-only too (the frame reviewer rejected whole
-      // videos as TEMPLATE_MONOCULTURE, 66-100% headline-dominated — CI run
-      // 36953236514): one whose sentence names a concept becomes a TYPE-FULL
-      // concept beat — unless a neighbour is TYPE-FULL (canvas-type forbids a
-      // composition twice in a row).
-      const splitOk = c.composition === "TYPE-SPLIT" && ![plan.beats[bi - 1], plan.beats[bi + 1]].some((n) => n?.canvas?.composition === "TYPE-FULL");
-      if (!(c.composition === "TYPE-FULL" || splitOk) || c.emphasis_beat || c.vertical || String(c.visual_type).toUpperCase() !== "TYPE") continue;
+      // TYPE-SPLIT beats are text-only too (TEMPLATE_MONOCULTURE, CI run
+      // 36953236514); converted in step 3 only if a visual resolves.
+      if (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || String(c.visual_type).toUpperCase() !== "TYPE") continue;
       const vc = validateConcepts(b.concepts, b.narration || "", CUTOUT_SPECS);
-      // A generic person cutout (a man in a suit, a worker) on a beat that
-      // NAMES a person would read as that person — the hard rule is a named
-      // person shown as themselves or not at all. People concepts are dropped
-      // on such beats.
+      // A generic person cutout on a beat that NAMES a person would read as
+      // that person: people concepts are dropped there (the person stays on
+      // the Wikipedia path, entity-assets.cjs).
       const namesPerson = (b.named_entities || []).some((e) => e.type === "person");
-      const PEOPLE = new Set(CUTOUT_SPECS.filter((s) => s.category === "people").map((s) => s.name));
       if (namesPerson && vc.concepts.some((n) => PEOPLE.has(n))) console.log(`[concepts] ch-${channelId} beat ${b.index}: names a person — generic people cutouts dropped (${vc.concepts.filter((n) => PEOPLE.has(n)).join(", ")})`);
-      const { visuals, skipped } = visualsFor(namesPerson ? vc.concepts.filter((n) => !PEOPLE.has(n)) : vc.concepts, lib);
-      for (const s of skipped) console.log(`[concepts] ch-${channelId} beat ${b.index}: ${s}`);
-      if (!visuals.length) continue;
-      if (c.composition === "TYPE-SPLIT") { c.composition = "TYPE-FULL"; delete c.type_layout; console.log(`[concepts] ch-${channelId} beat ${b.index}: TYPE-SPLIT -> TYPE-FULL concept beat`); }
-      c.concept_visuals = visuals;
-      console.log(`[concepts] ch-${channelId} beat ${b.index}: ${visuals.map((v) => `${v.name} (${v.class})`).join(", ")} — from the ${vc.from}`);
+      const names = (namesPerson ? vc.concepts.filter((n) => !PEOPLE.has(n)) : vc.concepts).slice(0, 3);
+      if (names.length) wanted.push({ bi, b, names, from: vc.from });
     }
-    console.log(`[concepts] library: ${lib.length} verified cutout(s); ${plan.beats.filter((b) => b.canvas.concept_visuals).length} beat(s) carry concept visuals`);
+    // 2. Resolve: symbol drawn; cutout live -> library -> none; scene none.
+    const results = new Map();   // `${bi}:${name}` -> visual | null
+    const tasks = [];
+    for (const w of wanted) for (const name of w.names) {
+      const cls = classOf(name, ALL);
+      if (cls === "symbol") { results.set(`${w.bi}:${name}`, { name, class: "symbol", w: 1, h: 1 }); continue; }
+      if (cls !== "cutout") { console.log(`[cutout-live] ch-${channelId} beat ${w.b.index}: "${name}" is a scene (no scene-photo source), skipped`); continue; }
+      tasks.push({ w, name });
+    }
+    let next = 0;
+    const worker = async () => {
+      while (next < tasks.length) {
+        const { w, name } = tasks[next++];
+        const spec = CUTOUT_SPECS.find((s) => s.name === name) || {};
+        let v = null;
+        if (Date.now() - T0 < BUDGET_MS) {
+          const r = await fetchCutoutForBeat({ concept: (spec.queries || [name.replace(/-/g, " ")])[0], name, channel: channelId, beat_index: w.b.index, spec });
+          if (r) { v = { name, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: "live", source_url: r.source_url }; }
+        }
+        if (!v) {
+          const l = lib.find((x) => x.name === name);
+          if (l) { v = { name, class: "cutout", asset: l.file, w: l.width || 1, h: l.height || 1, source: "library" }; console.log(`[cutout-live] ch-${channelId} beat ${w.b.index}: falling back to library ${name}.png`); }
+          else console.log(`[cutout-live] ch-${channelId} beat ${w.b.index}: no cutout available for "${name}", TYPE only`);
+        }
+        results.set(`${w.bi}:${name}`, v);
+      }
+    };
+    await Promise.all([worker(), worker(), worker()]);
+    const resolved = [...results.values()].filter((v) => v && v.class === "cutout").length;
+    if (Date.now() - T0 >= BUDGET_MS) console.log(`[cutout-live] ch-${channelId}: ${(BUDGET_MS / 60000).toFixed(0)}-minute budget reached, using ${resolved}/${tasks.length} resolved cutouts`);
+    // 3. Attach, in beat order (the TYPE-SPLIT conversion sees its final neighbours).
+    for (const w of wanted) {
+      const visuals = w.names.map((n) => results.get(`${w.bi}:${n}`)).filter(Boolean);
+      for (const v of visuals) stats[v.class === "symbol" ? "symbol" : v.source]++;
+      if (!visuals.length) { stats.none++; continue; }
+      const c = w.b.canvas;
+      if (c.composition === "TYPE-SPLIT") {
+        if ([plan.beats[w.bi - 1], plan.beats[w.bi + 1]].some((n) => n?.canvas?.composition === "TYPE-FULL")) { stats.none++; continue; }
+        c.composition = "TYPE-FULL"; delete c.type_layout;
+        console.log(`[concepts] ch-${channelId} beat ${w.b.index}: TYPE-SPLIT -> TYPE-FULL concept beat`);
+      }
+      c.concept_visuals = visuals;
+      console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${visuals.map((v) => `${v.name} (${v.class === "symbol" ? "symbol" : v.source})`).join(", ")} — from the ${w.from}`);
+    }
+    console.log(`[cutout-live] ch-${channelId}: ${stats.live} live, ${stats.library} from the library, ${stats.symbol} symbol(s), ${stats.none} concept beat(s) with no visual; ${((Date.now() - T0) / 1000).toFixed(0)} s`);
   }
   // Fix 2: the animation of every element, on the final canvases (the beat's
   // tokens, dark / vertical / emphasis styling are settled): scripts/anim-plan.js.

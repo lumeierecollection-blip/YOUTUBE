@@ -837,6 +837,24 @@ jobs:
         if: steps.status.outputs.skip != 'true'
         run: pip install --quiet edge-tts
 
+      # On-demand cutouts (scripts/fetch-cutout-once.cjs): each beat's cutout
+      # is fetched, isolated (rembg u2net) and verified before the render.
+      - name: Cache rembg (pip + u2net model)
+        if: steps.status.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.u2net
+          key: rembg-render-${{ runner.os }}-v1
+
+      - name: Install rembg (live cutouts)
+        if: steps.status.outputs.skip != 'true'
+        run: |
+          pip install --quiet "rembg[cpu]" pillow numpy
+          python -c "from rembg import new_session; new_session('u2net'); print('rembg ready')" \
+            || echo "::warning::rembg unavailable — live cutouts fall back to the library"
+
       - name: Cache Remotion Chrome
         if: steps.status.outputs.skip != 'true'
         uses: actions/cache@v4
