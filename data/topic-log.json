@@ -2581,9 +2581,14 @@
           "topic": "AI's Impact on Communication in the Workplace in 2026",
           "slug": "ai-impact-on-communication-workplace-2026",
           "reserved_at": "2026-10-03T08:19:53.624Z"
+        },
+        {
+          "topic": "The 90-10 Rule in the Age of AI: Insights from Recent Studies",
+          "slug": "90-10-rule-age-of-ai-insights",
+          "reserved_at": "2026-10-03T08:50:28.878Z"
         }
       ],
-      "last_generated": "2026-10-03T08:19:53.624Z"
+      "last_generated": "2026-10-03T08:50:28.878Z"
     },
     "45": {
       "channel_name": "Lift",
