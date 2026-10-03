@@ -2648,9 +2648,14 @@
           "topic": "New Tool for AI-Generated 3D Models",
           "slug": "new-tool-ai-generated-3d-models",
           "reserved_at": "2026-10-03T15:39:31.500Z"
+        },
+        {
+          "topic": "POSCO Contract Tests a Robot on the Last Manual Gap",
+          "slug": "posco-robot-test-manual-gap-202",
+          "reserved_at": "2026-10-03T17:42:48.772Z"
         }
       ],
-      "last_generated": "2026-10-03T15:39:31.500Z"
+      "last_generated": "2026-10-03T17:42:48.773Z"
     },
     "49": {
       "channel_name": "Wander Budget",
