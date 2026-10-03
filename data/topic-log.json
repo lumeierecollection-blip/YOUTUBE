@@ -2543,9 +2543,14 @@
           "topic": "Inside CIPHER: The New VLA AI Framework for Autonomous Manufacturing",
           "slug": "inside-cipher-vla-ai-autonomous-manufacturing",
           "reserved_at": "2026-10-03T10:53:01.624Z"
+        },
+        {
+          "topic": "Hitachi-Fanuc-Physical-AI-Partnership-2027",
+          "slug": "hitachi-fanuc-physical-ai-partnership-2027",
+          "reserved_at": "2026-10-03T13:10:18.790Z"
         }
       ],
-      "last_generated": "2026-10-03T10:53:01.624Z"
+      "last_generated": "2026-10-03T13:10:18.790Z"
     },
     "49": {
       "channel_name": "Wander Budget",
