@@ -1183,9 +1183,14 @@
           "topic": "South Korea Proposes DMZ Border Line Resurveying After Mine Blast",
           "slug": "south-korea-dmz-border-line-resurveying-2026",
           "reserved_at": "2026-10-02T11:36:33.425Z"
+        },
+        {
+          "topic": "Russian Drones Breach Moldovan Airspace Across Four Districts",
+          "slug": "russian-drones-breach-moldovan-airspace-four-districts",
+          "reserved_at": "2026-10-03T10:50:22.911Z"
         }
       ],
-      "last_generated": "2026-10-02T11:36:33.425Z"
+      "last_generated": "2026-10-03T10:50:22.911Z"
     },
     "10": {
       "channel_name": "Double Cross",
