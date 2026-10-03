@@ -2864,9 +2864,14 @@
           "topic": "engel-integrated-production-cell",
           "slug": "engel-integrated-production-cell",
           "reserved_at": "2026-10-03T02:57:01.162Z"
+        },
+        {
+          "topic": "ANYbotics-shift-fleet-management",
+          "slug": "anybotics-shift-fleet-management-2026-10-01-as",
+          "reserved_at": "2026-10-03T08:18:09.037Z"
         }
       ],
-      "last_generated": "2026-10-03T02:57:01.162Z"
+      "last_generated": "2026-10-03T08:18:09.037Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
