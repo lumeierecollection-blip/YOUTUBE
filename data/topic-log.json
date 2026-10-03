@@ -280,9 +280,14 @@
           "topic": "The Impact of Rising Inflation on Household Budgeting",
           "slug": "inflation-budgeting-strategies-2026",
           "reserved_at": "2026-10-03T09:35:10.106Z"
+        },
+        {
+          "topic": "Rental Market Dynamics in 2026",
+          "slug": "rental-market-dynamics-2026",
+          "reserved_at": "2026-10-03T10:09:12.373Z"
         }
       ],
-      "last_generated": "2026-10-03T09:35:10.107Z"
+      "last_generated": "2026-10-03T10:09:12.373Z"
     },
     "2": {
       "channel_name": "Legal Brief",
