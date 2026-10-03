@@ -74,5 +74,15 @@
     "go_public_at": "2026-10-03T16:28:23.758Z",
     "privacy_status": "private",
     "cancelled": true
+  },
+  {
+    "video_id": "hhPJSzhUf4I",
+    "channel_id": "48",
+    "title": "The New Tool for AI-Generated 3D Models Nobody Talks About",
+    "uploaded_at": "2026-10-03T16:04:53.835Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-03T17:04:53.835Z",
+    "privacy_status": "private",
+    "cancelled": true
   }
 ]
