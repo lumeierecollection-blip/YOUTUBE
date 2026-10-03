@@ -3,7 +3,7 @@
 // numbers are not counters, a one-bar BAR is its figure; and the entity
 // resolver's acronym rule (scripts/entity-assets.cjs).
 import { createRequire } from "node:module";
-import { flowNodes, checkVisual, isIdentifierNumber, groundedOptions, VISUAL_TYPES, checkEntities } from "./gemini-visual-plan.js";
+import { flowNodes, checkVisual, isIdentifierNumber, groundedOptions, VISUAL_TYPES, checkEntities, buildPlanPromptParts } from "./gemini-visual-plan.js";
 const { expandName } = createRequire(import.meta.url)("./entity-assets.cjs");
 
 let bad = 0;
@@ -66,6 +66,17 @@ eq("groundedOptions offers PROCESS only for a stated flow", groundedOptions("Rat
     "Jerome Powell said the Miami Federal Courthouse found a padlock worth $347.");
   eq("checkEntities keeps building / object / number / person named in the sentence", ce.kept.map((e) => e.type + ":" + e.name), ["building:Miami Federal Courthouse", "object:padlock", "number:$347", "person:Jerome Powell"]);
   eq("checkEntities drops an object the sentence does not name and an unknown type", ce.dropped.length, 2);
+}
+
+// The planner prompt (owner's token spec 2026-10-03): under 4,500 tokens for a long script, the rules still in it.
+{
+  const sents = Array.from({ length: 12 }, (_, i) => ({ text: "The judge in Miami ruled that the forty year old federal law criminalizing voting by noncitizens violates the constitution, part " + i + ".", start: i * 4, end: i * 4 + 4 }));
+  const { staticPart, dynamicPart } = buildPlanPromptParts(sents, null, "2");
+  const est = Math.ceil((staticPart.length + dynamicPart.length) / 3.6);
+  eq("prompt for 12 sentences is under 4,500 tokens (est. 3.6 chars/token)", est < 4500, true);
+  const must = ["TWO-NUMBER RULE", "entity_anchor_word", "company", "institution", "scene_description", "60%", "EXACTLY 2-3", "never the same twice in a row", "Jerome Powell", "POP_LETTER (at most one beat)", "headline_zone", "typography_direction"];
+  eq("the prompt still carries every decision rule", must.filter((m) => !(staticPart + dynamicPart).includes(m)), []);
+  eq("the static part holds no sentence (it is cached across videos)", staticPart.includes("part 0."), false);
 }
 
 console.log(bad ? `${bad} FAILED` : "all pass");

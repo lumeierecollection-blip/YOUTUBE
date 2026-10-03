@@ -32,7 +32,7 @@ import {
 import {
   compactCapabilityDigest, compileScene, isMechanismBased, mechanismToCapability,
 } from "../src/skills/remotion-render/visual/capability-compiler.js";
-import { callGemini as callGeminiApi } from "../src/lib/gemini-client.js";
+import { callGemini as callGeminiApi, createCachedContent } from "../src/lib/gemini-client.js";
 import { forcedOllama, callOllamaOnly, callLLM, isProviderError } from "../src/lib/llm.js";
 import { createRequire as createRequireGroq } from "node:module";
 const { callGroq } = createRequireGroq(import.meta.url)("./groq-client.cjs");
@@ -497,497 +497,64 @@ export function checkVisual(b, sentence) {
 // output differs. Change this prompt toward that spec, not away from it.
 // (Pointed to from here, not from the prompt text: Gemini cannot open a
 // repo file, so a path inside the prompt would do nothing.)
-function buildPlanPrompt(sentences, corrections, channelId) {
+// The planner prompt, in two parts (owner's token spec 2026-10-03, part A):
+//   static   the rules, the compositions, the fields and ONE worked beat
+//            (prompts/scene-example.json, embedded: the model cannot open a
+//            file). Identical for every video, so Gemini caches it once per
+//            run (gemini-client.js createCachedContent) and bills it at ~25%.
+//   dynamic  this video's sentences and any review corrections.
+// It was ~8,800 tokens (9 sentences) with eight worked examples, an essay on
+// narrative typography, a 13-field "direction" block nothing on the canvas
+// path reads, and prohibitions the code enforces anyway (the resolver never
+// fetches a person from a stock site, the verifier takes MATCH only, the
+// layout fills the middle zone). Every rule the model needs to DECIDE is kept.
+const SCENE_EXAMPLE = (() => { try { return JSON.parse(readFileSync(join(ROOT, "prompts", "scene-example.json"), "utf-8")); } catch { return null; } })();
+export function buildPlanPromptParts(sentences, corrections, channelId) {
   // Same formula as plan-caps.cjs capLimits(): TYPOGRAPHY <= min(2, floor(0.4n)).
   const typoMax = Math.min(2, Math.max(1, Math.floor(sentences.length * 0.4)));
-  const niche = NICHE_DRAWINGS[String(channelId ?? "").replace(/^ch-?0*/i, "")];
-  const nicheBlock = niche
-    ? `- DRAWINGS OFTEN USEFUL ON THIS CHANNEL (from the LIBRARY). Each is ONLY
-  correct when the sentence's subject IS that object — this list is not a
-  menu of props for the topic: ${niche.map((n) => `"${n}"`).join(", ")}.`
+  const last = sentences.length - 1;
+  const example = SCENE_EXAMPLE
+    ? `EXAMPLE — sentence "${SCENE_EXAMPLE.sentence}" -> ${JSON.stringify(SCENE_EXAMPLE.beat)}`
     : "";
-  const sentenceList = sentences.map((s, i) =>
-    `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`
-  ).join("\n");
+  const staticPart = `You are the VISUAL DIRECTOR of a vertical (1080x1920, ~60 s) YouTube Short. Visualize what each sentence DOES — its object, the action, what changes, what a viewer with NO audio would understand — as one continuous visual argument, not separate scenes.
 
-  let correctionBlock = "";
+STYLE: full-frame editorial motion graphics on uniform white; a serif headline in sentence case (never all caps), oversized numerals, small sans labels; asymmetric layouts. Transitions, captions and camera are added by the system.
+
+SCENE AND COMPOSITION (one rule). "scene_description" says in plain English what the viewer sees: name the subject literally (the person, the place, the object the sentence names), its place on screen (top / center / bottom / full-frame), its scale (small label, hero number, full-bleed) and the mood. A number -> a large number display; a process -> the flow; only a purely abstract sentence -> kinetic typography. Then "visual_type" + "data" choose ONE composition (never the same twice in a row — prefer the specific to the generic):
+  TYPE (TYPE-FULL / TYPE-SPLIT) — a statement: the hook, a turn, the close.
+  COUNTER {"value","label"} (NUMBER-FULL) — one figure the sentence says.
+  BAR {"bars":[{"label","value"}]} / LINE {"points":[{"label","value"}]} — two or more figures it says. PIE / GAUGE {"percent","label"} — a percentage it says. (DATA-FULL)
+  PHOTO {"entity"} — a real, verified photo of a named person (PORTRAIT), place (SCENE-FULL) or building / company / institution (ARCHITECTURE). The entity must be in named_entities and named in the sentence; with no verified photo the system draws its name.
+  DOCUMENT {"name"} — a named law or case. MONEY {"object","value"} — a money object or amount; pick the object the sentence means: dollar bill (its denomination), stack of bills, banded cash bundle, single coin, stack of coins, wallet with cash, empty wallet, savings jar, piggy bank, cracked piggy bank, receipt, bank statement, credit card.
+  MAP {"place"} — a country or US state it names.
+  PROCESS {"nodes":[2-3 nodes of 1-3 words, every word from the sentence, cause -> effect order]} — only a stated cause/effect or sequence, not a list.
+  TIMELINE {} (2+ dated events) · COMPARE {} (two figures against each other) · LIST {} (3-5 items) — the system reads these from the sentence.
+Numbers exactly as the sentence says them; a number it does not say is rejected.
+
+CHOOSING (enforced: if fewer than 60% of the beats between the hook and the close are visual the plan is sent back, and a TYPE beat whose sentence grounds a visual is converted). For each content beat, in order: two comparable numbers -> a chart (rule below); one number -> COUNTER; a place -> MAP or PHOTO; a person / company / institution / building -> PHOTO; a physical object -> list it in "concepts"; a cause or sequence -> PROCESS; dated events -> TIMELINE; an enumeration -> LIST; a change -> LINE / BAR / COMPARE; only if none applies -> TYPE. Beat 0 is a strong hook, the last beat a clear close or payoff; when the script names anyone or anywhere, at least one beat is a PHOTO. A number is shown for what it MEANS: a chart only when the sentence is about quantity, comparison or trend, never as decoration.
+TWO-NUMBER RULE: a sentence with TWO DISTINCT comparable numbers and a comparison word (more, less, than, versus, higher, lower, grew, fell, rose, dropped, doubled, halved, increased, decreased, compared to — e.g. "rose from 3.8% to 4.3%", "10 million vs 22 million") is DATA-FULL: LINE for one thing over time, BAR for two categories, PIE for parts of a whole, GAUGE for a percentage change. Never TYPE or PHOTO. One number alone is a COUNTER, not this rule.
+
+ENTITIES. "named_entities": everything the sentence NAMES that the scene shows, written as in the sentence, full name, no bracketed acronym: [{"type": "person"|"company"|"institution"|"place"|"building"|"object"|"number", "name"}] — company = a business ("Engel", "Bosch", "Fisher Phillips"); institution = an agency, court, standards body, trade show or international body ("SEC", "Hannover Messe", "ISO"); object = a physical thing; number = a figure it states. "entity_anchor_word": the ONE word of the sentence naming the main entity ("Powell", "courthouse", "347") — its visual pops when it is spoken; null if none. "concepts": up to 3 physical objects the sentence names, the LITERAL object never a symbol for an idea ("Equipping officers with gloves" -> ["gloves"], not "shield"); a name from CONCEPTS or a 1-3 word noun phrase of the sentence's own words; never a person, never an idea. CONCEPTS: ${CONCEPT_NAMES.join(", ")}
+
+TEXT. "headline": 2-6 words FROM the sentence, never a full sentence, never a claim it does not make. "lead_in": 2-4 of the sentence's words, lowercase, or null. "emphasis_word": one headline word or null. "kind": "TYPE" only for beat 0${typoMax >= 2 ? ` and beat ${last}` : ""} (the hook${typoMax >= 2 ? " and the close" : ""}); every other beat "EDITORIAL". "typography_direction" only where text IS the beat (the hook, the close, a real turn): {"phrase": one line, 2-7 words, never the narration or a near-restatement, never a topic label like "The Problem", "moment": "hook"|"re_hook"|"key_fact"|"contradiction"|"question"|"statement"}; otherwise null. Typography is selective: at most ~1 in 3 beats text-forward.
+
+MOTION. "motion_tier": "micro"|"medium"|"major" — EXACTLY 2-3 "major" (the hook, the pivot, the close), most "medium". "camera_focus": null or 1-2 [{"at_percent": 0.05-0.9, "target": number|chart|headline|photo|left|right|top|bottom|node0|node1|node2|full}]. "headline_zone" / "chart_zone": "top" / "middle", never the same (a COUNTER may swap: number "top", headline "middle"); "caption_zone": "bottom". "persists_from": the previous beat's index when this beat carries its element on, else null; "match_cut_prev": true when it shares that element. "text_entrance": omit, or POP_SOFT (a quiet beat) | POP_HARD (beat 0 or the last only) | POP_LETTER (at most one beat) | POP_WORD_STACK (a 2-5 word TYPE statement). "visual_events": [{"type": growth|depletion|comparison|revelation|structure_break|accumulation|population|evidence|contrast|causation, "label", "magnitude"}] — at least 5 distinct types across the video, never the same event 3 times in a row; "capabilities": the event types used (+ "typographic_emphasis" on a TYPE beat); "objects": {"label_a","label_b"} for contrast, {"figure"} for evidence, {"cause","effect"} for causation, else {}.
+
+${example}
+
+Respond ONLY with JSON (no markdown): {"beats":[ one object per sentence, in order, shaped like the example ]}`;
+  let dynamicPart = `SCRIPT SENTENCES:\n${sentences.map((s, i) => `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`).join("\n")}`;
   if (corrections?.length) {
-    correctionBlock = `\n\nPREVIOUS REVIEW CORRECTIONS — apply these fixes:\n` +
-      corrections.map((c) => `  ${c.scene || c.beat}: ${c.problem} → Fix: ${c.fix || c.action}`).join("\n") +
-      `\n\nAdjust your plan to address every correction above.\n`;
+    dynamicPart += `\n\nPREVIOUS REVIEW CORRECTIONS — apply every fix:\n` +
+      corrections.map((c) => `  ${c.scene || c.beat}: ${c.problem} → Fix: ${c.fix || c.action}`).join("\n");
   }
+  void channelId;
+  return { staticPart, dynamicPart };
+}
 
-  const CAPABILITIES = compactCapabilityDigest();
-
-  return `You are the VISUAL DIRECTOR for a YouTube Shorts video (vertical 1080x1920, ~60s).
-
-THE FUNDAMENTAL RULE: Never visualize a sentence. Visualize what the sentence is DOING.
-The video is not a collection of scenes — it is one continuous visual argument.
-
-For each sentence, answer these questions BEFORE choosing visual events:
-- What is the IMPORTANT OBJECT in this sentence?
-- What ACTION happens to it?
-- What CHANGES?
-- What should the viewer UNDERSTAND without audio?
-- What can be SHOWN instead of told?
-- What should REMAIN from the previous beat?
-
-VISUAL HEADLINE RULES:
-- The on-screen text is NOT the transcript. It is ONE SHORT VISUAL THOUGHT (max 5-6 words).
-- Typography should behave like a designed object, not a document.
-- Numbers must have physical meaning — don't just float "22.4 WEEKS" alone.
-- Example: Transcript "Only forty-seven percent of Americans can handle a four-hundred-dollar emergency" → Visual headline: "47% CAN'T COVER $400"
-
-## VISUAL CAPABILITIES — what you compose from
-
-Instead of picking a mechanism, you describe VISUAL EVENTS. The system maps your events to buildable primitives.
-
-${CAPABILITIES}
-
-## THE STYLE — full-canvas editorial motion graphics (NO paper, NO cards)
-
-Every beat is designed for the WHOLE 1080x1920 frame on a uniform white
-ground (one solid white on every beat: no shadows, no grain, no tint, no dark
-beats; dark type on it). There is no container, no card, no page: the
-composition IS the frame, and it transforms from beat to beat (Financial
-Times x high-end documentary x contemporary magazine). Type is a serif
-headline (sentence case, never all caps), an oversized numeral and a small
-sans data label; layouts are ASYMMETRIC — nothing is centred; empty space
-is part of the composition.
-
-Each beat is ONE of thirteen compositions. The system draws it from your
-"visual_type" and "data". THE SAME COMPOSITION NEVER APPEARS TWICE IN A ROW:
-the system enforces it, replacing a repeat with what the sentence grounds —
-so pick the composition that fits THIS sentence, and prefer the specific one
-(a timeline, a comparison, a list) to the generic (a statement).
-
-  TYPE-FULL         the statement, huge, on one side. visual_type TYPE.
-                    Hooks, emphasis, turns, the close.
-                    "Nobody saw it coming."
-  TYPE-SPLIT        the statement in two halves, opposite corners. TYPE
-                    (the system alternates it with TYPE-FULL).
-  NUMBER-FULL       ONE hero number at 260-420 px with a small label.
-                    visual_type COUNTER.  "The fraud cost $105 million."
-  DATA-FULL         the chart IS the composition. BAR / PIE / LINE / GAUGE.
-                    "Needs take 50%, wants 30%, savings 20%."
-  SCENE-FULL        a REAL photograph fills the frame, a named person or a
-                    place. PHOTO.
-                    "David Einhorn shorted the stock."
-  ARCHITECTURE      a real photo of a building — PHOTO of an institution or
-                    address; the system detects that the picture shows one.
-                    "The Federal Reserve raised rates."
-  DOCUMENT          a real scan of a NAMED legal instrument or case, the
-                    headline as a highlighted callout. visual_type DOCUMENT.
-                    "The Dodd-Frank Act reshaped banking."
-  MONEY             a real photo of currency / coins / a receipt with the
-                    sentence's figure over it. visual_type MONEY.
-                    "They paid in cash." / "It cost $2 billion."
-  MAP-CENTERED      the map fills the frame, labelled at the region. MAP —
-                    a country or US state the sentence names.
-                    "In Iran, prices rose."
-  PROCESS-FULL      2-3 nodes with thick arrows. PROCESS — a stated cause ->
-                    effect or sequence. "Higher rates raise rent."
-  TIMELINE          2-4 dated events on a vertical line. TIMELINE — the
-                    sentence gives dates with what happened.
-                    "The law passed in 2019 and was repealed in 2024."
-  COMPARISON-SPLIT  the frame cut on a diagonal, value A / value B. COMPARE —
-                    "vs", "versus", "compared to", "than", "from X to Y".
-                    "Renters pay 42% of income versus 31% for owners."
-  LIST-BUILD        an enumeration, one item at a time as it is spoken.
-                    LIST — "X, Y, and Z" (3-5 short items).
-                    "The tiers are basic, standard, and premium."
-
-For LIST / TIMELINE / COMPARE / DOCUMENT / MONEY the system READS the data
-from the sentence (you set "data": {}): the beat is valid only if the
-sentence really states one, and only the sentence's own words are shown.
-
-Transitions between beats, the word caption at the bottom, grain, the
-vignette and the camera are added by the system.
-
-## HOW TO WRITE A BEAT
-
-  "kind": "EDITORIAL" | "TYPE"
-  "canvas_composition": one of the thirteen above (the system derives it
-                  from the CHECKED visual_type; yours is informational)
-  "lead_in":      2-4 words FROM THIS BEAT'S OWN SENTENCE, lowercase, shown
-                  small above the headline. Or null. (Enforced: a lead-in
-                  whose words are not in its sentence is dropped.)
-  "headline":     2-6 words, NEVER a full sentence. Its words come from the
-                  sentence, and it says only what the sentence says: never
-                  add a claim, promise or judgement it does not make
-                  ("GUARANTEED", "BEST", "FAILS") — a checker rejects that.
-  "emphasis_word": one word of the headline, or null — that word is set bold, grows on screen as it is spoken and takes the channel accent
-  "visual_type":  ONE of PHOTO | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | LIST | TIMELINE | COMPARE | DOCUMENT | MONEY | TYPE
-  "data":         by type (numbers EXACTLY as the sentence says them — a
-                  number the sentence does not say is rejected and the beat
-                  becomes TYPE):
-    PHOTO    {"entity": "David Einhorn"}  a person, place or organization
-             the sentence NAMES, exactly as it appears in "named_entities".
-             The system fetches a real, verified photo of THAT entity; if
-             none exists the beat is drawn as TYPE — never a stand-in.
-    COUNTER  {"value": "1.4 billion", "label": "brand value"}
-    BAR      {"bars": [{"label": "2019", "value": "3 million"}, {"label": "2024", "value": "1.4 billion"}]}
-    PIE      {"percent": 25, "label": "of global oil"}
-    LINE     {"points": [{"label": "2019", "value": "3 million"}, {"label": "2024", "value": "1.4 billion"}]}
-    GAUGE    {"percent": 88, "label": "feel financial stress"}
-    MAP      {"place": "Iran"}   a country or US state named in the sentence
-    PROCESS  {"nodes": ["higher rates", "rent", "savings"]}  2-3 nodes of
-             1-3 words each, every word FROM THE SENTENCE, in the order the
-             sentence gives the cause -> effect / sequence.
-    LIST     {}   the sentence enumerates 3-5 short items (read from it)
-    TIMELINE {}   the sentence gives 2+ dated events (read from it)
-    COMPARE  {}   the sentence sets two figures against each other
-    DOCUMENT {}   the sentence names a legal instrument / case; a real scan
-                  is fetched, else the beat is drawn as TYPE
-    MONEY    {}   the sentence names a money object or an amount; a real
-                  photo is fetched, else the beat is drawn as TYPE
-    TYPE     {} — full-frame typography only
-  "scene_description": REQUIRED. For every beat, write a scene_description.
-                  Describe what a viewer should see on screen for this
-                  specific sentence.
-
-                  Rules:
-
-                  · Name the subject literally. If the sentence mentions
-                    Jerome Powell, describe Jerome Powell. If it mentions the
-                    Miami courthouse, describe the Miami courthouse.
-                  · If the sentence names a place, describe the place.
-                  · If the sentence names a person, describe that person's
-                    portrait or their action.
-                  · If the sentence names an object, describe the object.
-                  · If the sentence describes a number, describe a large
-                    number display.
-                  · If the sentence describes a process, describe the flow.
-                  · If the sentence is purely abstract (no person, place,
-                    object, number, or process), describe it as kinetic
-                    typography.
-
-                  Be specific about the location on screen: top, center,
-                  bottom, full-frame. Be specific about scale: small label,
-                  hero number, full-bleed. Be specific about mood: editorial,
-                  clinical, dramatic.
-
-                  Do not describe what mechanism to use. Describe what the
-                  scene literally shows.
-
-                  e.g. "A portrait of Jerome Powell, the Federal Reserve
-                  chairman" · "A large number — $347 — filling most of the
-                  frame, small label 'average family savings'" · "A close-up
-                  photo of a metal padlock, isolated on white, centered".
-  "named_entities": everything the sentence NAMES that the scene shows, as
-                  written in the sentence, with its FULL name ("Tesla, Inc."
-                  not "Tesla", "Federal Reserve" not "the Fed" when the
-                  sentence says "Federal Reserve"; no bracketed acronym):
-                  [{"type": "person"|"place"|"building"|"organization"|"object"|"number", "name": "..."}]
-                  object = a physical thing it names; number = a figure it states.
-                  — [] when it names none. Never an entity it does not name.
-  "entity_anchor_word": the ONE word of the sentence that names the beat's
-                  main entity, exactly as written there — its visual pops
-                  when the narrator says it. "Jerome Powell said..." ->
-                  "Powell"; "The courthouse in Miami..." -> "courthouse";
-                  "saved $347" -> "347". null when the beat names none.
-  "motion_tier":  "micro" | "medium" | "major". Most beats "medium". EXACTLY
-                  2 or 3 beats in the video are "major": the hook (beat 0),
-                  the pivot (the turn in the argument), and/or the close.
-                  "micro" for a quiet beat that should hold still.
-  "camera_focus": optional, 1-2 events moving the camera THROUGH the
-                  information: [{"at_percent": 0.4, "target": "number"},
-                  {"at_percent": 0.75, "target": "full"}]. targets: number,
-                  chart, headline, photo, left, right, top, bottom, node0,
-                  node1, node2, full. Omit for a single slow push.
-  "headline_zone", "chart_zone", "caption_zone": REQUIRED. The frame is three
-                  stacked zones — "top" (y 0-620), "middle" (620-1340),
-                  "bottom" (1340-1920) — and each element lives in ONE zone.
-                  "caption_zone" is always "bottom" (the word caption lives
-                  there and nothing else may). A beat with a headline and a
-                  chart / map / number puts them in DIFFERENT zones: "top" +
-                  "middle" (the default), or for a COUNTER beat the number
-                  "top" and the headline "middle". Both in the same zone is a
-                  rejected plan. A beat with no chart: chart_zone "middle".
-  "persists_from": the index of the PREVIOUS beat when this beat continues
-                  its element (the same number, chart or photo carried on
-                  and transformed), else null.
-  "match_cut_prev": true when this beat shares its subject or number with
-                  the previous beat and that element should stay fixed in
-                  place across the cut, else false.
-  "concepts":     up to 3 PHYSICAL OBJECTS this beat's sentence NAMES, most
-                  important first — a name from CONCEPTS, or a 1-3 word noun
-                  phrase made of the sentence's own words ("solar panel",
-                  "shipping container", "oil tanker"); [] when it names none.
-                  Objects a camera can photograph — never an idea ("economy",
-                  "policy"), never a person.
-                  Never a concept the sentence does not say. The LITERAL
-                  object, never a symbol for the idea: "Equipping officers
-                  with gloves" -> ["gloves"], not "shield" or
-                  "warning-triangle". On a TYPE beat
-                  the renderer shows them as real isolated photographs (or a
-                  drawn symbol for an arrow / warning / checkmark).
-                  CONCEPTS: ${CONCEPT_NAMES.join(", ")}
-  "text_entrance": optional — how the statement's words appear. Every text
-                  entrance is a POP: the words appear in place and settle;
-                  nothing slides, drops, wipes, blurs or fades in. Omit for
-                  the default (each word pops, the emphasis word bigger; the
-                  hook and the close pop hard). Otherwise one of:
-                    POP_SOFT       a quiet beat
-                    POP_HARD       ONLY the hook (beat 0) or the close (last beat)
-                    POP_LETTER     letters pop one by one — AT MOST ONE beat a
-                                   video, a TYPE statement
-                    POP_WORD_STACK words stack upward, then settle into the
-                                   line — a TYPE statement of 2-5 words
-Worked example. Sentence: "Liquid Death went from three million dollars to
-a 1.4 billion dollar brand."
-  { "kind": "EDITORIAL", "canvas_composition": "DATA-FULL", "visual_type": "BAR",
-    "lead_in": "went from", "headline": "billion dollar brand", "emphasis_word": "billion",
-    "data": {"bars": [{"label": "before", "value": "three million"}, {"label": "now", "value": "1.4 billion"}]},
-    "named_entities": [{"type": "organization", "name": "Liquid Death"}],
-    "motion_tier": "medium", "camera_focus": [{"at_percent": 0.5, "target": "chart"}],
-    "headline_zone": "top", "chart_zone": "middle", "caption_zone": "bottom",
-    "persists_from": null, "match_cut_prev": false }
-
-PHOTO RULE (enforced in code): "entity" must be one of this beat's
-named_entities, and its name must appear in the sentence. Use PHOTO when
-the sentence is ABOUT a named person, place or organization (what they
-did, where it happened) — the viewer should SEE them. At least one beat
-should be a PHOTO when the script names anyone or anywhere. A number in
-the same sentence may still be better as COUNTER/BAR: choose what the
-sentence is about.
-
-PROCESS RULE (enforced in code): every node's words are in the sentence,
-and the sentence really describes a cause -> effect, a sequence or a flow
-("higher rates raise rent, and rent cuts savings"). Not for a list.
-
-Rules that are enforced, not advisory:
-- Choose the visual type that most directly shows what the sentence is
-  about: a number -> COUNTER, BAR, PIE, LINE or GAUGE; two figures set
-  against each other -> COMPARE; dated events -> TIMELINE; an enumeration ->
-  LIST; a named person, place or organization -> PHOTO (or MAP for a
-  country / US state); a named law, treaty or case -> DOCUMENT; an amount or
-  a money object -> MONEY; a cause/effect or
-  sequence -> PROCESS; an abstract claim with none of these -> TYPE.
-- BAR/LINE need two or more numbers the sentence says; PIE/GAUGE need a
-  percentage it says. Otherwise COUNTER (one number) or TYPE.
-- NEVER the same composition twice in a row (enforced: a repeat is replaced
-  with what the sentence grounds). Prefer the specific composition — a
-  timeline, comparison, list, map, process — to a statement.
-- VISUAL FIRST: this is motion graphics, not a typography reel. Of the
-  beats between the hook and the close, AT LEAST 60% are visual and at most
-  40% are TYPE; never two TYPE-FULL in a row. For every content beat (not
-  the hook, not the CTA), decide in this order:
-    · the sentence names a number?            -> COUNTER / BAR / PIE / LINE / GAUGE (DATA-FULL)
-    · the sentence names a place?             -> MAP (MAP-CENTERED)
-    · the sentence names a person?            -> PHOTO of that person (SCENE-FULL)
-    · the sentence names a physical object?   -> list it in "concepts" (shown as a
-                                                 real isolated photograph of it)
-    · it describes a process or a cause?      -> PROCESS (PROCESS-FULL)
-    · it describes a change?                  -> LINE / BAR / COMPARE (DATA-FULL)
-    · only if none of the above apply:        TYPE-FULL
-  TYPE-FULL is the last choice, not the first. (Enforced: a plan under 60%
-  visual is sent back once; a TYPE beat whose sentence grounds a visual is
-  converted to it.)
-- Headlines are written in sentence case ("Trucking entrepreneur
-  indicted"), never in capitals; the system sets the case from the sentence.
-- The "kind" TYPE, the kinetic hook/closer, is limited to ${typoMax >= 2 ? `beat 0 and beat ${sentences.length - 1}` : "beat 0"}; the system
-  turns any other TYPE beat into a typography-only EDITORIAL beat.
-- For a TYPE beat set "capabilities": ["typographic_emphasis"] and fill
-  "typography_direction" with the headline as its phrase.
-
-NARRATIVE TYPOGRAPHY — READ THIS BEFORE WRITING ANY TYPOGRAPHY BEAT.
-
-Typography is NARRATIVE EMPHASIS, NOT HEADLINE DESIGN. The narrator explains,
-the visual demonstrates, the typography EMPHASISES — the three layers must not
-repeat each other. A typography beat should make the viewer think "what is the
-narrator saying? — oh, I see what the visual is showing me."
-
-It must NEVER look like: a news headline, an article title, a presentation
-slide, a title card, a lower third, a subtitle/caption track, a paragraph, a
-thumbnail, or a section heading.
-
-HARD RULES (a plan that breaks these is rejected before rendering):
-- ONE LINE. Never two lines, never a headline + subheadline, never stacked
-  text, never a title + supporting sentence. If the phrase will not fit on one
-  line, WRITE A SHORTER PHRASE — do not expect the renderer to shrink it.
-- 2-7 WORDS. 8-9 is unusual. More than ${TYPO_HARD_MAX_WORDS} words is narration, not emphasis.
-- ONE THOUGHT. (Layouts are asymmetric; nothing is centred.)
-- NEVER the narration verbatim, and never a near-restatement of it. Typography
-  is not a transcript and not subtitles.
-- NO generic headline/topic labels: "The Problem", "The Solution", "The Hidden
-  Cost", "Why This Happens", "The Psychology Behind It", "Financial Mistakes",
-  "Consumer Behavior" — these are prohibited unless the phrase genuinely
-  functions as spoken narrative emphasis.
-- The phrase animates as ONE object. Do not ask for word-by-word/karaoke reveal.
-
-GOOD (narrative emphasis):   "Why does this keep happening?" · "You barely
-notice it." · "One purchase at a time." · "Do I need it?" · "$34 MILLION" ·
-"Need it — or want it?"
-BAD (headline/subtitle):     "The Hidden Psychological Cost Of Modern Consumer
-Behavior" · "THE SHOCKING TRUTH ABOUT WHY PEOPLE KEEP SPENDING" · "Most people
-don't realize how much money they're losing every month"
-
-TYPOGRAPHY IS SELECTIVE, NOT THE DEFAULT. The rhythm is:
-HOOK (one line) -> VISUAL STORYTELLING (no text) -> RE-HOOK (one line
-at a real turn in the narration) -> VISUAL CONSEQUENCE -> maybe a KEY FACT
-("$34 MILLION") -> back to visual storytelling.
-Do NOT put typography in every beat. TEXT -> TEXT -> TEXT -> TEXT is a failure.
-
-ANTI-LAZINESS: typography is NOT the fallback for a beat you did not look
-for a drawing for — search the LIBRARY for the sentence's subject first. But
-when no drawing depicts the subject, TYPOGRAPHY is the right answer and an
-unrelated drawing is the wrong one.
-
-THE GRAPH / NUMBER RULE (this is what makes videos feel generic — obey it):
-- A number appearing in a sentence is NOT a reason to reach for evidence. Ask
-  what the number MEANS and show that: "$1,400 drained per year" is money leaving a
-  wallet (depletion), "gas up 24.6%" is a pump price climbing (growth),
-  "50% vs 66%" is two things of different size (comparison).
-- Reach for a chart/bar/figure ONLY when the sentence is genuinely ABOUT quantitative
-  comparison, trend, or measurement AND no physical/spatial form communicates it better.
-- If removing the narration would leave only a floating number or a headline, the visual
-  is decorative — pick an object-first event instead.
-
-THE MUTED TEST: for every beat, if the viewer had no audio, would the visual still carry
-real information — an object, a change, a comparison, a consequence? If it would look
-identical under almost any other sentence, it is monoculture. Reject it and re-choose.
-
-DISTRIBUTION RULES (a plan that violates these will be rejected downstream):
-- Across the whole video, AT MOST ~1 in 3 beats may be TEXT-FORWARD (typographic_emphasis
-  + evidence combined). The majority MUST be object-first visual events.
-- typographic_emphasis is for the opening hook and the closing CTA — typically 2 beats total,
-  rarely more. Do not use it for ordinary statements; find what the statement SHOWS.
-- NEVER repeat the same visual event more than twice in a row, and do not alternate
-  headline/figure/headline/figure — that reads as one template on repeat.
-- Use AT LEAST 5 distinct visual events across the video, drawn mostly from the object-first
-  family. Consecutive beats should differ in VISUAL FORM, not just in event name.
-- The first beat MUST be a strong hook; the last beat a clear CTA or payoff.
-- Use carries_forward when an object continues (a sum shown, then consumed) so the visual
-  argument flows rather than resetting each beat.
-
-YOU ARE A DIRECTOR, NOT A TEMPLATE PICKER. For every beat you must write real
-direction — describe the visual EVENT, not "which template". The "direction"
-block below is the AUTHORITATIVE intent: after the video renders, you will be
-shown the actual frames and asked whether they executed exactly this direction,
-so make it specific and answerable. Lazy direction ("show a graph of the
-numbers", "display the text") is structurally invalid — fill every field
-concretely:
-- subject: what the composition primitives LITERALLY show on screen (e.g. "A gauge
-  showing 3.4%", "Two bars labelled Annual and Core", "A stack of 3 blocks") —
-  NOT a real-world scene description. The renderer draws abstract shapes, not
-  photographs.
-- environment: where this lives (dim archival desk; clean data void; a kitchen counter).
-- action_start / action_end: the visual STATE at the beat's start and at its end —
-  what physically changes across the ~4s (one claim form -> a towering stack).
-- camera: what the camera does (hold; slow push-in on the total; track back as the
-  stack grows; orbit).
-- motion: how things move and with what weight (claims land faster and heavier;
-  a number ticks up then slams; a bar cracks and shards fall).
-- typography: the ONLY text on screen and where (e.g. "$34 MILLION", upper third) —
-  never the sentence.
-- sound: the semantic accent this beat wants (paper impacts; a lock snap; silence).
-- consequence: what the viewer should FEEL/understand from the visual event.
-- muted_read: what a viewer with NO audio would understand from this beat alone.
-- why_visual: why THIS visual represents THIS narration and could not be swapped
-  onto any other sentence.
-- graph_justified: true ONLY if the beat is genuinely about quantitative
-  comparison/trend/measurement AND no physical form communicates it better;
-  otherwise false. If false, you may not choose evidence as a bar/graph.
-
-DO NOT pick a familiar event merely because it is easy to render. Direct the
-strongest visual event first; capabilities are only the closest EXECUTION mapping for
-the renderer, and the post-render review will check whether the render actually
-delivered your directed event.
-
-CRITICAL: The direction.subject MUST describe what the composition will
-literally show on screen — NOT a real-world scene that cannot be rendered.
-If the composition is {kind: "library_shape", name: "phone showing a budgeting
-app", label: "Monarch Money"}, direction.subject is "A phone showing a budgeting
-app labelled Monarch Money" — NOT "a person happily managing money at home".
-The renderer draws the LIBRARY drawing, not photographs; the review compares
-direction.subject against what actually renders.
-
-FOR EVERY BEAT THAT PUTS TEXT ON SCREEN (typographic_emphasis capability, or any beat whose
-direction.typography is not "none") you MUST fill "typography_direction":
-  phrase              the EXACT short phrase, one line, 2-7 words
-  why                 why this phrase matters to the narration
-  moment              one of: ${TYPO_MOMENTS.join(" | ")}
-  single_line         must be true
-  not_a_headline      must be true — confirm it is narrative emphasis, not a title/label
-  not_a_transcript    must be true — confirm it is not the narration restated
-  relation_to_visual  how the phrase relates to (and does NOT merely describe) the visual
-For beats with NO on-screen text, set "typography_direction": null.
-
-SCRIPT SENTENCES:
-${sentenceList}
-${correctionBlock}
-Respond ONLY with JSON (no markdown fences):
-{
-  "beats": [
-    {
-      "index": 0,
-      "visual_headline": "<SHORT on-screen text — NOT the transcript, max 5-6 words>",
-      "sentence_subject": "<the one concrete person/place/object/app the sentence is about, or null if the sentence names none (then this beat is TYPOGRAPHY)>",
-      "reason": "<what the sentence is DOING and why this visual shows it>",
-      "emphasis_words": ["<key words to highlight>"],
-      "visual_events": [
-        {
-          "type": "<growth|depletion|comparison|revelation|structure_break|accumulation|population|evidence|contrast|causation>",
-          "label": "<optional label for the event>",
-          "magnitude": "<optional number/value if applicable>"
-        }
-      ],
-      "capabilities": ["<list of capabilities used: growth, depletion, comparison, etc.>"],
-      "objects": {
-        "label_a": "<for contrast: before label>",
-        "label_b": "<for contrast: after label>",
-        "figure": "<for evidence: the number>",
-        "cause": "<for causation: cause label>",
-        "effect": "<for causation: effect label>"
-      },
-      "kind": "<EDITORIAL | TYPE>",
-      "lead_in": "<2-4 words from this beat's own sentence, lowercase, or null>",
-      "headline": "<2-4 words, never a full sentence>",
-      "emphasis_word": "<one headline word, or null>",
-      "canvas_composition": "<one of the thirteen compositions>",
-      "visual_type": "<PHOTO | COUNTER | BAR | PIE | LINE | GAUGE | MAP | PROCESS | LIST | TIMELINE | COMPARE | DOCUMENT | MONEY | TYPE>",
-      "data": { "<fields for the visual_type, see above>": "..." },
-      "scene_description": "<what a viewer sees on screen for this sentence, in plain English: subject named literally, location on screen, scale, mood>",
-      "named_entities": [{ "type": "<person | place | building | organization | object | number>", "name": "<as named in the sentence>" }],
-      "entity_anchor_word": "<the one sentence word naming the main entity, or null>",
-      "motion_tier": "<micro | medium | major>",
-      "camera_focus": [{ "at_percent": 0.4, "target": "<number | chart | headline | photo | left | right | top | bottom | node0 | node1 | node2 | full>" }],
-      "headline_zone": "<top | middle>",
-      "chart_zone": "<top | middle — different from headline_zone>",
-      "caption_zone": "bottom",
-      "persists_from": null,
-      "match_cut_prev": false,
-      "concepts": ["<0-3 CONCEPTS names the sentence names>"],
-      "text_entrance": "<POP_SOFT | POP_HARD | POP_LETTER | POP_WORD_STACK, or omit>",      "carries_forward": "<object/concept that persists into the next beat, or null>",
-      "emotional_weight": "<calm|building|sharp|heavy|urgent>",
-      "typography_direction": {
-        "phrase": "<exact one-line phrase, 2-7 words — or omit this whole object if the beat has no text>",
-        "why": "<why this phrase matters to the narration>",
-        "moment": "<hook|re_hook|key_fact|contradiction|question|statement>",
-        "single_line": true,
-        "not_a_headline": true,
-        "not_a_transcript": true,
-        "relation_to_visual": "<how it relates to the visual scene without describing it>"
-      },
-      "direction": {
-        "narrative_purpose": "<what this beat must accomplish in the argument>",
-        "subject": "<LITERALLY what the composition primitives show — not a real-world scene>",
-        "environment": "<where it lives>",
-        "action_start": "<visual state at beat start>",
-        "action_end": "<visual state at beat end>",
-        "camera": "<hold|push_in|pull_back|track|orbit|tilt — what it does>",
-        "motion": "<how things move and with what weight>",
-        "typography": "<the only on-screen text and its position, or 'none'>",
-        "sound": "<semantic sound accent, or 'silence'>",
-        "consequence": "<what the viewer should feel/understand>",
-        "muted_read": "<what a viewer with no audio understands from this beat>",
-        "why_visual": "<why this visual is specific to THIS narration>",
-        "graph_justified": false
-      }
-    }
-  ]
-}`;
+function buildPlanPrompt(sentences, corrections, channelId) {
+  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId);
+  return `${staticPart}\n\n${dynamicPart}`;
 }
 
 async function main() {
@@ -1032,6 +599,26 @@ async function main() {
 
   console.log(`Requesting visual plan for ${sentences.length} beats (${forcedOllama() ? "ollama only: FORCE_PLANNER=ollama" : "gemini, ollama if gemini cannot answer"})...`);
   const prompt = buildPlanPrompt(sentences, corrections, channelId);
+  // Context caching (owner's token spec 2026-10-03, A.1): the static part is uploaded once
+  // and referenced; each Gemini call then sends only this video's sentences.
+  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId);
+  const estTok = (t) => Math.ceil(String(t || "").length / 3.6);
+  let geminiCache = null;
+  if (!forcedOllama()) {
+    const cc = createCachedContent(staticPart);
+    if (cc.name) { geminiCache = cc; console.log(`[planner] ch-${channelId}: gemini context cache ${cc.name} (${cc.tokens ?? "?"} tokens, key ${cc.keyIndex + 1}, ttl 1 h)`); }
+    else console.log(`[planner] gemini caching unavailable, using full prompt (${cc.error})`);
+  }
+  console.log(`[planner] ch-${channelId}: prompt ~${estTok(prompt).toLocaleString("en-US")} tokens (static ~${estTok(staticPart).toLocaleString("en-US")}, dynamic ~${estTok(dynamicPart).toLocaleString("en-US")}; est. at 3.6 chars/token)`);
+  // A.5: after every planner call — the provider's own counts when it reports them.
+  const logTokens = (r, provider, promptText) => {
+    const u = r?._usage;
+    const pt = u?.prompt_tokens ?? estTok(promptText);
+    const cached = u?.prompt_tokens_details?.cached_tokens ?? (u?.cache_used ? estTok(staticPart) : 0);
+    const out = u?.completion_tokens ?? (r && !r.error ? estTok(JSON.stringify(r)) : 0);
+    console.log(`[planner] ch-${channelId}: ${provider} prompt ${Number(pt).toLocaleString("en-US")} tokens${u ? "" : " (est.)"} (cached: ${Number(cached).toLocaleString("en-US")}), response ${Number(out).toLocaleString("en-US")} tokens`);
+  };
+  const cacheFor = (extra = "") => (geminiCache ? { name: geminiCache.name, keyIndex: geminiCache.keyIndex, messages: [{ role: "user", content: dynamicPart + extra }] } : undefined);
   // Token budget scales with beat count so the JSON never truncates
   // mid-object (a 51-beat script once came back as "Unexpected end of JSON
   // input"). Each beat now carries the full director "direction" block
@@ -1057,13 +644,15 @@ async function main() {
   // There is no rule-based third link (scripts/local-visual-plan.cjs was
   // retired — data/ci-runs/blocked-planner-local-fallback.txt).
   const forced = forcedOllama();
-  const strictPrompt = prompt + "\n\nReturn ONLY one JSON object whose top-level key is \"beats\" (an array with exactly " + sentences.length + " entries, one per sentence, in order). No prose, no markdown fences, no other top-level keys.";
+  const strictSuffix = "\n\nReturn ONLY one JSON object whose top-level key is \"beats\" (an array with exactly " + sentences.length + " entries, one per sentence, in order). No prose, no markdown fences, no other top-level keys.";
+  const strictPrompt = prompt + strictSuffix;
   const okBeats = (r) => Array.isArray(r?.beats) && r.beats.length === sentences.length;
   let geminiResult = null, geminiFailure = null, planSource = "gemini";
   if (forced) {
     console.error("[planner] ollama (FORCE_PLANNER=ollama — Gemini not called)");
   } else {
-    geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2, tag: "planner" }));
+    geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2, tag: "planner", cache: cacheFor() }));
+    logTokens(geminiResult, "gemini", prompt);
     if (geminiResult?.source === "gemini" && geminiResult.error) {
       geminiFailure = geminiResult.error;
     } else if (!okBeats(geminiResult)) {
@@ -1071,7 +660,8 @@ async function main() {
       // "beats" key, or with a beat count that shifts every beat onto the
       // wrong line (run 36362576442 ch-26). One strict, uncached retry.
       console.error(`Gemini plan attempt 1 ${geminiResult?.beats ? `has ${geminiResult.beats.length} beats for ${sentences.length} sentences` : `had no 'beats' — got: ${describeShape(geminiResult)}`}. Retrying once uncached.`);
-      geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2, noCache: true, tag: "planner" }));
+      geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2, noCache: true, tag: "planner", cache: cacheFor(strictSuffix) }));
+      logTokens(geminiResult, "gemini (strict retry)", strictPrompt);
       if (geminiResult?.source === "gemini" && geminiResult.error) geminiFailure = geminiResult.error;
       else if (!okBeats(geminiResult)) geminiFailure = geminiResult?.beats ? `beat count ${geminiResult.beats.length} != ${sentences.length}` : "no_beats";
     }
@@ -1080,7 +670,11 @@ async function main() {
   if (!forced && geminiFailure) {
     console.error(`[planner] gemini: ${geminiFailure} → groq${geminiResult?.detail ? ` (${String(geminiResult.detail).slice(0, 120)})` : ""}`);
     const t0 = Date.now();
-    const g = normalizePlanResponse(await callGroq([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2 }));
+    // Groq's free tier counts prompt + max_tokens against ~8,000 tokens a minute: the answer
+    // budget is what is left (a 15,500-token request was refused as "too large", 413).
+    const groqMax = Math.max(1500, Math.min(maxTokens, 7900 - estTok(strictPrompt)));
+    const g = normalizePlanResponse(await callGroq([{ role: "user", content: strictPrompt }], { maxTokens: groqMax, temperature: 0.2 }));
+    logTokens(g, `groq (max_tokens ${groqMax})`, strictPrompt);
     if (okBeats(g)) {
       geminiResult = g; geminiFailure = null; planSource = "groq";
       console.log(`[planner] plan from groq (${process.env.GROQ_TEXT_MODEL || "openai/gpt-oss-120b"}, ${((Date.now() - t0) / 1000).toFixed(0)}s)`);
@@ -1101,6 +695,7 @@ async function main() {
       console.error(`[planner] ollama plan ${geminiResult?.beats ? `has ${geminiResult.beats.length} beats for ${sentences.length} sentences` : `had no 'beats' — got: ${describeShape(geminiResult)}`} — one strict retry`);
       geminiResult = normalizePlanResponse(await callOllamaOnly([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2, capKind: "plan" }, "planner"));
     }
+    logTokens(geminiResult, "ollama", strictPrompt);
     if (okBeats(geminiResult)) console.log(`[planner] plan from ollama (${process.env.OLLAMA_TEXT_MODEL || "qwen2.5:7b"}, ${((Date.now() - t0) / 1000).toFixed(0)}s)`);
     else console.error(`[planner] ollama gave no usable plan: ${describeShape(geminiResult)} — no further fallback`);
   }

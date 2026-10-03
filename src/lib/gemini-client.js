@@ -312,7 +312,17 @@ export async function callGemini(messages, opts = {}) {
   }
 
   const baseUrl = "https://generativelanguage.googleapis.com/v1beta/openai";
-  const body = JSON.stringify({ model, max_tokens: maxTokens, temperature, messages });
+  // opts.cache = { name, keyIndex, messages }: an explicit context cache (createCachedContent)
+  // holding the static prompt prefix. It belongs to the key (project) that created it: with
+  // that key only the dynamic messages are sent and the cache is referenced; any other key,
+  // or a cache the API refuses, gets the full messages.
+  let cacheOff = false;
+  const bodyFor = () => {
+    const useCache = !cacheOff && opts.cache?.name && opts.cache.keyIndex === keyIndex;
+    return { useCache, body: JSON.stringify(useCache
+      ? { model, max_tokens: maxTokens, temperature, messages: opts.cache.messages, extra_body: { google: { cached_content: opts.cache.name } } }
+      : { model, max_tokens: maxTokens, temperature, messages }) };
+  };
 
   // 429 / quota rotates through every configured key (each key has its own
   // quota); quota_exhausted is returned only after EVERY key returned it.
@@ -324,6 +334,7 @@ export async function callGemini(messages, opts = {}) {
   for (;;) {
     let kind = null, detail = "";
     tried.add(keyIndex);
+    const { useCache, body } = bodyFor();
     try {
       const res = execFileSync("curl", [
         "-sS", "--max-time", String(REQUEST_TIMEOUT_S),
@@ -368,6 +379,10 @@ export async function callGemini(messages, opts = {}) {
         } else {
           result = parsed.choices[0].message;
         }
+        // Token usage for the caller's log (prompt / cached / completion).
+        if (parsed.usage && result && typeof result === "object") {
+          Object.defineProperty(result, "_usage", { value: { ...parsed.usage, cache_used: !!useCache }, enumerable: false });
+        }
         // Write to cache on success
         if (ck && !result.error) {
           cacheSet(ck, result);
@@ -383,6 +398,11 @@ export async function callGemini(messages, opts = {}) {
       kind = classify(0, detail) || "unavailable";
     }
 
+    if (useCache && kind !== "quota_exhausted") {
+      console.error(`[gemini-client] cached request refused (${detail.slice(0, 160)}) — retrying with the full prompt`);
+      cacheOff = true;
+      continue;
+    }
     if (kind === "quota_exhausted") {
       const next = keys.findIndex((_, i) => !tried.has(i));
       if (next >= 0) {
@@ -401,6 +421,33 @@ export async function callGemini(messages, opts = {}) {
     }
     console.error(`[gemini-client] key ${keyIndex + 1} ${kind}: ${detail.slice(0, 200)}`);
     return fail(kind, detail);
+  }
+}
+
+// ── Explicit context caching (owner's token spec 2026-10-03, part A.1) ──
+/**
+ * Uploads a static prompt prefix to Gemini's cachedContents endpoint once and
+ * returns { name, keyIndex, tokens } — callGemini(messages, { cache: { name,
+ * keyIndex, messages: <dynamic part only> } }) then references it, and the
+ * cached tokens are billed at ~25%. The cache belongs to the current key's
+ * project (keyIndex). TTL 1 hour; re-created each run.
+ * Returns { error } when caching is unavailable (a free-tier key, a model
+ * without caching, a prefix under the model's minimum size): the caller sends
+ * the full prompt instead.
+ */
+export function createCachedContent(prefix, { model = "gemini-3.5-flash-lite", ttlSeconds = 3600 } = {}) {
+  if (String(process.env.FORCE_PLANNER || "").toLowerCase() === "ollama") return { error: "FORCE_PLANNER=ollama" };
+  try { if (!keys) keys = collectKeys(); } catch (e) { return { error: e.message }; }
+  const body = JSON.stringify({ model: `models/${model}`, contents: [{ role: "user", parts: [{ text: prefix }] }], ttl: `${ttlSeconds}s` });
+  try {
+    const res = execFileSync("curl", ["-sS", "--max-time", "60", "-H", "Content-Type: application/json", "-H", `x-goog-api-key: ${currentKey()}`, "-d", "@-",
+      "https://generativelanguage.googleapis.com/v1beta/cachedContents"], { input: body, encoding: "utf-8", timeout: 70000 });
+    let j = JSON.parse(res);
+    if (Array.isArray(j)) j = j[0] || {};
+    if (j.error || !j.name) return { error: `${j.error?.code || "?"}: ${String(j.error?.message || res).slice(0, 220)}` };
+    return { name: j.name, keyIndex, tokens: j.usageMetadata?.totalTokenCount ?? null };
+  } catch (e) {
+    return { error: String(e.message || e).slice(0, 220) };
   }
 }
 
