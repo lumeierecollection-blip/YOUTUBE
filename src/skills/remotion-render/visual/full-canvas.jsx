@@ -436,7 +436,10 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
         <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0, clipPath: chartClip }}>
           {bars.map((b, i) => {
             const st = stOf(i), t = tOf(i, st);
-            const y = ch.y + row * i + row * 0.36;
+            // The rows stand on the chart's floor: the last bar ends at ch.y + ch.h. At 0.36 the
+            // last row left 22% of a row empty under it — two bars stopped at y 1263 and the
+            // beat read canvas-coverage 58.8% (CI run 37086054975 ch-44 beat 3).
+            const y = ch.y + row * i + row * 0.58;
             const wFinal = (b.q.magnitude / max) * Wfull;
             const w = Math.max(6, wFinal * (st ? Math.min(st.grow, 1.1) : t));
             const bx = st && st.from === "center" ? ch.x + wFinal / 2 - w / 2 : ch.x;
