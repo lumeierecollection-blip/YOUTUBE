@@ -1625,9 +1625,14 @@
           "topic": "export-investment-scam",
           "slug": "export-investment-scam",
           "reserved_at": "2026-10-02T23:00:12.399Z"
+        },
+        {
+          "topic": "ex-ceo-subway-purchasing-co-op-bribery-scheme",
+          "slug": "ex-ceo-subway-purchasing-co-op-bribery-scheme-20261002",
+          "reserved_at": "2026-10-03T00:41:51.510Z"
         }
       ],
-      "last_generated": "2026-10-02T23:00:12.399Z"
+      "last_generated": "2026-10-03T00:41:51.510Z"
     },
     "27": {
       "channel_name": "Climate Now",
