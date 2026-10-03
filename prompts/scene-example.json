@@ -1,5 +1,5 @@
 {
-  "_comment": "One fully worked planner beat. scripts/gemini-visual-plan.js embeds this file in the planner prompt (the model cannot open files); every beat must match this shape. A named person renders as PORTRAIT (the owner's example said SCENE-FULL, which is now a place's full-bleed photo).",
+  "_comment": "One fully worked planner beat. scripts/gemini-visual-plan.js embeds this file in the planner prompt (the model cannot open files). Since 2026-10-03 the planner DESCRIBES the scene only — no visual_type, data, composition or zone: scripts/scene-translate.js turns scene_description into the composition and the gates check it.",
   "sentence": "Jerome Powell said rates will stay high.",
   "beat": {
     "index": 1,
@@ -7,21 +7,15 @@
     "lead_in": "rates will",
     "headline": "Rates stay high",
     "emphasis_word": "high",
-    "visual_type": "PHOTO",
-    "data": { "entity": "Jerome Powell" },
-    "scene_description": "A portrait of Jerome Powell, the Federal Reserve chairman, with a chart behind him showing rates rising.",
+    "scene_description": "A portrait of Jerome Powell, the Federal Reserve chairman, standing in the lower half of the frame; a slow push in across the beat. Above him, small caps: RATES WILL. The headline pops in word by word.",
     "named_entities": [
       { "type": "person", "name": "Jerome Powell" },
       { "type": "institution", "name": "Federal Reserve" }
     ],
     "entity_anchor_word": "Powell",
-    "canvas_composition": "PORTRAIT",
     "concepts": [],
     "motion_tier": "medium",
     "camera_focus": null,
-    "headline_zone": "top",
-    "chart_zone": "middle",
-    "caption_zone": "bottom",
     "persists_from": null,
     "match_cut_prev": false,
     "visual_events": [{ "type": "evidence", "label": "rates stay high" }],

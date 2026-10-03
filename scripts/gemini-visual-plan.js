@@ -44,6 +44,7 @@ const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRe
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { previewAnimations } from "./anim-plan.js";
 import { compositionFor, splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { translateScene } from "./scene-translate.js";
 import { trendOf, maxTypeBeats, varietyReport, beatsToConvert, isTypePlanned, fallbacksFor, assignEntranceStyles } from "./composition-variety.js";
 import { flowNodes, FLOW_WORDS, listItemsOf, timelineOf, compareOf, documentNameOf, moneyObjectOf, quantitiesOf, statedPercentsOf, knownPlacesOf } from "./canvas-grounding.js";
 
@@ -638,21 +639,7 @@ export function buildPlanPromptParts(sentences, corrections, channelId) {
 THE VISUAL LANGUAGE (everything you describe must fit it): editorial, minimalist, monochrome with one accent colour; full-frame compositions, no cards or panels; real photos for people, places, logos and objects when they exist, type and charts when they don't; slow, deliberate movement, nothing frantic — the style of Vox, Bloomberg and NYT explainers. A scene that would not appear in one of those videos is wrong. A serif headline in sentence case, oversized numerals, small sans labels. Transitions, captions, zones and camera are the system's.
 
 HOW TO DESCRIBE A BEAT. "scene_description": what a viewer should see for this sentence, in plain language, the way you would describe it to a designer — no mechanism names, no zones. Be specific about the primary element (a photo, a number, a chart, a logo, a scene) and NAME it if the sentence names it (person, place, company, object) so the system can fetch it; where it sits ("fills the frame", "upper third"); how it moves ("slow push in", "counts up", "draws left to right", "pops in"); what supports it (a small label, a reference line). A person -> their portrait and how it moves; a company -> its logo and how it enters; a number -> how it builds; an abstract sentence -> the metaphor or type treatment that makes it land. Example — "Mortgage rates hit 7.2% in October." -> "A big number, 7.2%, fills the centre of the frame, the percent sign smaller than the digits; below it in small caps, MORTGAGE RATES; behind it a thin line draws left to right, the rate's climb over the past year."
-Then, SEPARATELY, the system's translation of that scene — "visual_type" + "data", ONE composition (never the same twice in a row; prefer the specific to the generic):
-  TYPE (TYPE-FULL / TYPE-SPLIT) — a statement: the hook, a turn, the close.
-  COUNTER {"value","label"} (NUMBER-FULL) — one figure the sentence says.
-  BAR {"bars":[{"label","value"}]} / LINE {"points":[{"label","value"}]} — two or more figures it says. PIE / GAUGE {"percent","label"} — a percentage it says. (DATA-FULL)
-  PHOTO {"entity"} — a real, verified photo of a named person (PORTRAIT), place (SCENE-FULL) or building / company / institution (ARCHITECTURE). The entity must be in named_entities and named in the sentence; with no verified photo the system draws its name.
-  DOCUMENT {"name"} — a named law or case. MONEY {"object","value"} — a money object or amount; pick the object the sentence means: dollar bill (its denomination), stack of bills, banded cash bundle, single coin, stack of coins, wallet with cash, empty wallet, savings jar, piggy bank, cracked piggy bank, receipt, bank statement, credit card.
-  MAP {"place"} — a country or US state it names.
-  TREND {"direction":"up"|"down","label": its subject, 1-3 words from the sentence} (DATA-FULL) — a rise or fall it states with no figure: a line to one dot, no numbers.
-  PROCESS {"nodes":[2-3 nodes of 1-3 words, every word from the sentence, cause -> effect order]} — only a stated cause/effect or sequence, not a list.
-  TIMELINE {} (2+ dated events) · COMPARE {} (two figures against each other) · LIST {} (3-5 items) — the system reads these from the sentence.
-Numbers exactly as the sentence says them; a number it does not say is rejected.
-
-CHOOSING (enforced: if fewer than 60% of the beats between the hook and the close are visual the plan is sent back, and a TYPE beat whose sentence grounds a visual is converted). For each content beat, in order: two comparable numbers -> a chart (rule below); one number -> COUNTER; a place -> MAP or PHOTO; a person / company / institution / building -> PHOTO; a physical object -> list it in "concepts"; a cause or sequence -> PROCESS; dated events -> TIMELINE; an enumeration -> LIST; a change -> LINE / BAR / COMPARE; only if none applies -> TYPE. Beat 0 is a strong hook, the last beat a clear close or payoff; when the script names anyone or anywhere, at least one beat is a PHOTO. A number is shown for what it MEANS: a chart only when the sentence is about quantity, comparison or trend, never as decoration.
-TWO-NUMBER RULE: a sentence with TWO DISTINCT comparable numbers and a comparison word (more, less, than, versus, higher, lower, grew, fell, rose, dropped, doubled, halved, increased, decreased, compared to — e.g. "rose from 3.8% to 4.3%", "10 million vs 22 million") is DATA-FULL: LINE for one thing over time, BAR for two categories, PIE for parts of a whole, GAUGE for a percentage change. Never TYPE or PHOTO. One number alone is a COUNTER, not this rule.
-COMPOSITION VARIETY — HARD RULE (checked, and the plan is sent back): no two consecutive beats use the same composition, NEVER two TYPE beats in a row, and at most 3 of every 10 beats are TYPE (the hook and the CTA included). Every other beat shows a chart, a number, a photo, a logo, a map, an object ("concepts") or a process. A sentence with no number, name, place or object still must not make two TYPE beats in a row: a stated rise or fall -> TREND; a stated cause or sequence -> PROCESS; TYPE only for the hook, the CTA, or an abstract sentence between two visual beats. "entrance_style": "together" | "staggered" | "visual-first" — never the same on two consecutive beats.
+Do NOT choose a mechanism, a chart type, a composition or a zone — the system translates your scene_description into one (scripts/scene-translate.js) and enforces variety, the two-number rule (two compared figures are drawn as a chart) and the data rules in code. Describe only what the sentence supports: a number you describe is one the sentence says, exactly as it says it; a person, place, company or object you describe is one it names. A money beat: say which object (a $100 bill, a stack of bills, coins, a wallet). A sentence with nothing to show: say what type treatment or plain metaphor makes it land.
 
 ENTITIES. "named_entities": everything the sentence NAMES that the scene shows, written as in the sentence, full name, no bracketed acronym: [{"type": "person"|"company"|"institution"|"place"|"building"|"object"|"number", "name"}] — company = a business ("Engel", "Bosch", "Fisher Phillips"); institution = an agency, court, standards body, trade show or international body ("SEC", "Hannover Messe", "ISO"); object = a physical thing; number = a figure it states. "entity_anchor_word": the ONE word of the sentence naming the main entity ("Powell", "courthouse", "347") — its visual pops when it is spoken; null if none. "concepts": up to 3 physical objects the sentence names, the LITERAL object never a symbol for an idea ("Equipping officers with gloves" -> ["gloves"], not "shield"); a name from CONCEPTS or a 1-3 word noun phrase of the sentence's own words that names the object unambiguously out of context ("steel plates", not "plates"); never a person, never an idea. CONCEPTS: ${CONCEPT_NAMES.join(", ")}
 
@@ -824,6 +811,32 @@ async function main() {
     console.error(`Visual plan failed: ${geminiResult.beats.length} beats for ${sentences.length} sentences after the retry — not padding or trimming it`);
     process.exit(1);
   }
+  // ── SCENE -> COMPOSITION (owner's "blueprint" note, 2026-10-03) ──────────
+  // The model describes; it does not pick a mechanism or a zone. scripts/scene-translate.js
+  // turns each scene_description (and its sentence) into candidate compositions, most wanted
+  // first; the first that passes checkVisual is the beat's. Anything untranslatable is TYPE —
+  // the safety valve, logged. A visual_type the model wrote anyway is ignored (and logged).
+  const SCENE_TRANSLATE = true;
+  if (okBeats(geminiResult)) {
+    let typeFallbacks = 0;
+    for (const [i, b] of geminiResult.beats.entries()) {
+      const st = sentences[b.index ?? i]?.text || "";
+      const ents = Array.isArray(b.named_entities) ? b.named_entities : [];
+      const cands = translateScene({ sentence: st, scene: b.scene_description || "", entities: ents, headline: b.headline || "" });
+      let pick = null;
+      for (const c of cands) {
+        const v = checkVisual({ visual_type: c.visual_type, data: c.data || {}, named_entities: ents }, st);
+        if (!v.why && v.type === c.visual_type) { pick = { ...c, data: v.data }; break; }
+      }
+      if (!pick || pick.visual_type === "TYPE") typeFallbacks++;
+      pick = pick || { visual_type: "TYPE", data: null, why: "nothing translatable" };
+      const was = b.visual_type ? String(b.visual_type).toUpperCase() : null;
+      b.visual_type = pick.visual_type; b.data = pick.data;
+      console.log(`[translate] beat ${b.index ?? i}: "${String(b.scene_description || "").slice(0, 90)}" -> ${pick.visual_type}${pick.data ? ` ${JSON.stringify(pick.data).slice(0, 80)}` : ""} (${pick.why})${was && was !== pick.visual_type ? ` [the model wrote ${was}: ignored]` : ""}`);
+    }
+    console.log(`[translate] ${geminiResult.beats.length} scene(s) translated, ${typeFallbacks} to TYPE (the hook / close, an abstract line, or nothing the description named was in the sentence)`);
+  }
+
   // ── VISUAL-FIRST RATIO (owner's spec 2026-10-02) ──────────────────────
   // Content beats (not the hook, not the CTA): >= 60% visual. A beat is
   // visual when its visual_type is not TYPE, or when it names an object in
@@ -856,7 +869,10 @@ async function main() {
     const ratioOk = (x) => sentences.length < 4 || x.share >= 0.6;
     console.log(`[plan] beat ratio: ${rr.vis} visual / ${rr.type} type (${(rr.share * 100).toFixed(0)}% visual, ${ratioOk(rr) ? "passes" : "fails — re-asking once"})${tn.length ? `; two-number rule broken on beat(s) ${tn.map((x) => x.i).join(", ")} — re-asking once` : ""}`);
     console.log(`[plan] ch-${channelId}: TYPE-FULL count = ${vr.count}/${vr.n}${vr.excess ? `, exceeds max ${vr.max}` : ` (max ${vr.max})`}${vr.adjacent.length ? `, adjacent TYPE beats at ${vr.adjacent.map((i) => `${i - 1}-${i}`).join(", ")}` : ""}${vr.ok ? ", passes" : ", re-asking with variety constraint"}`);
-    if (!ratioOk(rr) || tn.length || !vr.ok) {
+    // The model no longer chooses compositions (SCENE_TRANSLATE), so it is not re-asked for them:
+    // the deterministic fallbacks below (variety, flow, repair, rotation) fix what is left.
+    if (SCENE_TRANSLATE && (!ratioOk(rr) || tn.length || !vr.ok)) console.log("[plan] re-ask skipped: compositions are translated from the scene descriptions; code fallbacks follow");
+    if (!SCENE_TRANSLATE && (!ratioOk(rr) || tn.length || !vr.ok)) {
       const why = [];
       if (!vr.ok) why.push(`COMPOSITION VARIETY: your plan has ${vr.count} TYPE beats of ${vr.n} (at most ${vr.max} allowed, the hook and the CTA included)${vr.adjacent.length ? ` and TYPE beats next to each other at beats ${vr.adjacent.map((i) => `${i - 1} and ${i}`).join("; ")}` : ""}. No two consecutive beats may be TYPE. Give every other content beat a visual its sentence states: a number -> COUNTER, two numbers -> a chart, a place -> MAP / PHOTO, a named person / company / institution -> PHOTO, a physical object -> "concepts", a cause or sequence -> PROCESS, a stated rise or fall -> TREND {"direction","label"}.`);
       if (!ratioOk(rr)) why.push(`your plan made only ${(rr.share * 100).toFixed(0)}% of the content beats visual. At least 60% of the beats between the hook and the close MUST be visual (COUNTER, BAR, PIE, LINE, GAUGE, MAP, PROCESS, TIMELINE, COMPARE, LIST, PHOTO — or a TYPE beat that lists a named physical object in "concepts"). Walk the decision order for every content beat: a number, a place, a person, an object, a process, a change — TYPE only when none applies. Only what each sentence actually states.`);

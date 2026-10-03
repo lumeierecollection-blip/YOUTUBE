@@ -74,7 +74,11 @@ eq("groundedOptions offers PROCESS only for a stated flow", groundedOptions("Rat
   const { staticPart, dynamicPart } = buildPlanPromptParts(sents, null, "2");
   const est = Math.ceil((staticPart.length + dynamicPart.length) / 3.6);
   eq("prompt for 12 sentences is under 4,500 tokens (est. 3.6 chars/token)", est < 4500, true);
-  const must = ["TWO-NUMBER RULE", "entity_anchor_word", "company", "institution", "scene_description", "60%", "EXACTLY 2-3", "never the same twice in a row", "Jerome Powell", "POP_LETTER (at most one beat)", "headline_zone", "typography_direction"];
+  // 2026-10-03 (the owner's "blueprint" note): the model DESCRIBES scenes; the two-number rule,
+// the visual ratio and composition variety moved out of the prompt into code
+// (scripts/scene-translate.js, scripts/composition-variety.js). The prompt keeps the identity
+// signal, the scene-description brief, the entities, the text and motion rules.
+const must = ["THE VISUAL LANGUAGE", "HOW TO DESCRIBE A BEAT", "Do NOT choose a mechanism", "two-number rule", "entity_anchor_word", "company", "institution", "scene_description", "EXACTLY 2-3", "Jerome Powell", "POP_LETTER (at most one beat)", "typography_direction"];
   eq("the prompt still carries every decision rule", must.filter((m) => !(staticPart + dynamicPart).includes(m)), []);
   eq("the static part holds no sentence (it is cached across videos)", staticPart.includes("part 0."), false);
 }
