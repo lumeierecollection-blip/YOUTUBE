@@ -275,9 +275,14 @@
           "topic": "the_new_budgeting_strategy_for_high_income_households",
           "slug": "new-budgeting-strategy-high-income-2026",
           "reserved_at": "2026-10-03T08:50:02.441Z"
+        },
+        {
+          "topic": "The Impact of Rising Inflation on Household Budgeting",
+          "slug": "inflation-budgeting-strategies-2026",
+          "reserved_at": "2026-10-03T09:35:10.106Z"
         }
       ],
-      "last_generated": "2026-10-03T08:50:02.441Z"
+      "last_generated": "2026-10-03T09:35:10.107Z"
     },
     "2": {
       "channel_name": "Legal Brief",
