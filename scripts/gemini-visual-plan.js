@@ -681,6 +681,11 @@ vignette and the camera are added by the system.
                   [{"type": "person"|"place"|"building"|"organization"|"object"|"number", "name": "..."}]
                   object = a physical thing it names; number = a figure it states.
                   — [] when it names none. Never an entity it does not name.
+  "entity_anchor_word": the ONE word of the sentence that names the beat's
+                  main entity, exactly as written there — its visual pops
+                  when the narrator says it. "Jerome Powell said..." ->
+                  "Powell"; "The courthouse in Miami..." -> "courthouse";
+                  "saved $347" -> "347". null when the beat names none.
   "motion_tier":  "micro" | "medium" | "major". Most beats "medium". EXACTLY
                   2 or 3 beats in the video are "major": the hook (beat 0),
                   the pivot (the turn in the argument), and/or the close.
@@ -945,6 +950,7 @@ Respond ONLY with JSON (no markdown fences):
       "data": { "<fields for the visual_type, see above>": "..." },
       "scene_description": "<what a viewer sees on screen for this sentence, in plain English: subject named literally, location on screen, scale, mood>",
       "named_entities": [{ "type": "<person | place | building | organization | object | number>", "name": "<as named in the sentence>" }],
+      "entity_anchor_word": "<the one sentence word naming the main entity, or null>",
       "motion_tier": "<micro | medium | major>",
       "camera_focus": [{ "at_percent": 0.4, "target": "<number | chart | headline | photo | left | right | top | bottom | node0 | node1 | node2 | full>" }],
       "headline_zone": "<top | middle>",
@@ -1703,6 +1709,13 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       // proper name it mentions is used only when the SENTENCE names it too.
       b.scene_description = typeof b.scene_description === "string" && b.scene_description.trim() ? b.scene_description.trim().slice(0, 600) : null;
       if (!b.scene_description) console.warn(`::warning::[plan] beat ${b.index}: no scene_description`);
+      // The word the entity visual pops on (render.js finds its spoken time). Kept only
+      // when it is a word OF THE SENTENCE; otherwise the renderer derives it from the entity.
+      {
+        const aw = String(b.entity_anchor_word || "").trim().replace(/^[^\p{L}\p{N}$]+|[^\p{L}\p{N}]+$/gu, "");
+        const words = sentenceText.toLowerCase().split(/[^\p{L}\p{N}$.']+/u).map((w) => w.replace(/^[$]|'s$|[.']+$/g, ""));
+        b.entity_anchor_word = aw && words.includes(aw.toLowerCase().replace(/^[$]|'s$/g, "")) ? aw : null;
+      }
       // A named object is a concept: the cutout path fetches it (Pixabay, verified).
       const objs = ce.kept.filter((e) => e.type === "object").map((e) => e.name.toLowerCase());
       if (objs.length) b.concepts = [...new Set([...objs, ...(Array.isArray(b.concepts) ? b.concepts : [])])];

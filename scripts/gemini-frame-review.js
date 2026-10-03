@@ -458,7 +458,10 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
   const beatParts = [];
   try {
     beats.forEach((b, i) => {
-      const mid = (b.start_sec ?? 0) + (b.duration_sec ?? 0) / 2;
+      // The midpoint — or, when the beat's entity visual pops on its word later than that
+      // (word-level sync, canvas.entity_pop), 0.4 s after it lands, inside the beat.
+      const popSec = Number.isFinite(b.canvas?.entity_pop?.frame) ? b.canvas.entity_pop.frame / 30 + 0.4 : 0;
+      const mid = (b.start_sec ?? 0) + Math.min(Math.max((b.duration_sec ?? 0) / 2, popSec), Math.max(0, (b.duration_sec ?? 0) - 0.1));
       const framePath = join(work, `beat-${String(i).padStart(2, "0")}.png`);
       extractFrameAtTime(videoPath, mid, framePath);
       const sentence = cues[i]?.text ?? "(no sentence)";

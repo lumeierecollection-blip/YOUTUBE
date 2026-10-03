@@ -925,6 +925,8 @@ function canvasContentFor(b, { photo = null } = {}) {
   if (b.type_layout === "split") c.type_layout = "split";
   // A named entity with no verified photo (resolve-scene.cjs): its name, large (canvas-layout.js).
   if (vt === "TYPE" && b.name_card?.name) c.name_card = b.name_card;
+  // The word the entity visual pops on (gemini-visual-plan.js; timed in render.js, visual/entity-sync.js).
+  if (b.entity_anchor_word) c.anchor_word = b.entity_anchor_word;
   c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: c.type_layout === "split" && !!splitHeadline(c.headline) });
   return c;
 }

@@ -46,6 +46,7 @@ import { sceneTextInventory } from "./visual/scene-text.js";
 import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
 import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
 import { canvasLayout, canvasManifest, normalizeCanvas } from "./visual/canvas-layout.js";
+import { scheduleEntityPop } from "./visual/entity-sync.js";
 import { GROUND } from "./visual/backgrounds.js";
 
 
@@ -542,6 +543,19 @@ async function main() {
         }
       });
       console.log(`[captions] ${spoken.length} timed words across ${beats.length} beats (${wordsPath})`);
+      // Word-level sync (owner's spec 2026-10-03, visual/entity-sync.js): the beat's entity
+      // visual (portrait / photo / hero cutout / hero number) pops on the word that names it,
+      // from these same word timings. Headline and caption keep their beat-relative timing.
+      // An anchor not found in the spoken words pops at the beat start (logged, never a failure).
+      beats.forEach((b, i) => {
+        const c = b.scene?.canvas;
+        if (!c) return;
+        const sync = scheduleEntityPop({ ...c, composition: canvasLayout(normalizeCanvas(c, i)).composition }, b.spoken, b.duration_frames);
+        if (!sync) return;
+        if (sync.missing) { console.log(`[sync] ch-${channelId} beat ${i}: anchor "${sync.missing}" not found in the spoken words, popping at beat start`); delete c.entity_pop; return; }
+        c.entity_pop = { frame: sync.frame, word: sync.word, from: sync.from, to: sync.to, kind: sync.kind };
+        console.log(`[sync] ch-${channelId} beat ${i}: entity "${sync.entity}" (${sync.kind}), anchor word "${sync.word}", spoken at ${(sync.from / FPS).toFixed(2)}s-${(sync.to / FPS).toFixed(2)}s, pop scheduled at ${(sync.frame / FPS).toFixed(2)}s (frame ${sync.frame})`);
+      });
     }
 
     let viSpec = null;

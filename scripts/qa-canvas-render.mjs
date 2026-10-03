@@ -93,6 +93,17 @@ const beats = beatsSpec.map((b, i) => {
     words: [],
   };
 });
+// Word-level sync, as render.js schedules it from the voiceover's word timings (here the
+// test plan's made-up timings): the entity visual pops on the word that names it.
+{
+  const { scheduleEntityPop } = await import("../src/skills/remotion-render/visual/entity-sync.js");
+  const { canvasLayout: lay, normalizeCanvas: norm } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
+  beats.forEach((b, i) => {
+    const c = b.scene.canvas;
+    const s = scheduleEntityPop({ ...c, composition: lay(norm(c, i)).composition }, b.spoken, b.duration_frames);
+    if (s && !s.missing) { c.entity_pop = { frame: s.frame, word: s.word, from: s.from, to: s.to, kind: s.kind }; console.log(`[sync] qa beat ${i}: "${s.word}" spoken at frame ${s.from}-${s.to}, pop at frame ${s.frame}`); }
+  });
+}
 // The real animation planner (visual/animation-plan.js), on the test plan's final canvases.
 const { assignCanvasAnimations } = await import("./anim-plan.js");
 assignCanvasAnimations(beats.map((b) => ({ canvas: b.scene.canvas })), { seed: arg("seed", "qa"), log: (m) => console.log(m) });

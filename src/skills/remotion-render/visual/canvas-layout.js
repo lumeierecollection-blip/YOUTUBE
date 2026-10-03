@@ -865,6 +865,8 @@ export function canvasManifest(raw, idx) {
     composition: L.composition, hero: L.hero, boxes: flat, content: contentBounds(L), zones: zoneReport(L).zones, motion_tier: c.motion_tier || "medium",
     camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
     photo: c.photo ? { asset: c.photo.asset, entity: c.photo.entity || null, kind: c.photo.kind || null, view: c.photo.view || null } : null,
+    // Word-level sync (render.js / entity-sync.js): the frame (beat-relative) the entity visual pops at, and its word.
+    entity_pop: c.entity_pop || null,
     // Where the accent is drawn: chart values / arrows, the hero number (unless the
     // sentence is neutral: number_accent === false), the latest date, the last list
     // index, the larger comparison value, the map's region, a document's callout band.

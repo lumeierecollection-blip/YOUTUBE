@@ -54,6 +54,8 @@
  * a donut ring, they cross-fade into it while moving).
  */
 import React from "react";
+import { POP, PHOTO_COMPS, popGroups } from "./pop-groups.js";
+export { POP, popGroups };
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, Easing } from "remotion";
 import { StudioBG } from "./studio-bg.jsx";
 import { KineticText } from "./kinetic.jsx";
@@ -633,17 +635,18 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       ) : null;
       return (
         <>
-          <Rule b={B.rule} t={m.build(0.3, m.s(0.2))} color="#FFFFFF" />
-          {B.kicker ? <DataLabel b={B.kicker} name="kicker" color="#FFFFFF" local={local} fps={fps} at={tl.labelAt + 0.3} shadow /> : null}
+          {/* th.photo is false until the photo has popped in (word-level sync): ink on white, then white on the photo. */}
+          <Rule b={B.rule} t={m.build(0.3, m.s(0.2))} color={th.photo ? "#FFFFFF" : th.ink} />
+          {B.kicker ? <DataLabel b={B.kicker} name="kicker" color={th.photo ? "#FFFFFF" : th.ink} local={local} fps={fps} at={tl.labelAt + 0.3} shadow={th.photo} /> : null}
           {band}
           {/* On the DOCUMENT callout every word sits on the accent band, so the
               accent word takes the band's ink too (it was drawn accent on
               accent — unreadable, QA render 2026-09-30). */}
           {/* Over a photo the accent word is the LIFTED accent: the channel navy on the Baku
               montage was unreadable (CI run 37082751699 ch-9 beat 4). */}
-          <Headline b={B.headline} color={comp === "DOCUMENT" ? onAccent(accent) : "#FFFFFF"} accent={comp === "DOCUMENT" ? onAccent(accent) : liftAccent(accent, 0.72)} local={local} fps={fps} m={m} idx={idx} at={0.3} shadow={comp !== "DOCUMENT"} />
-          {B.number && c.data?.value ? <NumberHero b={B.number} q={parseQuantity(c.data.value)} t={easeOut(clamp01((local - 0.5 * fps) / Math.max(1, dur * 0.6)))} local={local} fps={fps} at={0.5} color="#FFFFFF" m={m} hero={false} /> : null}
-          {c.photo.credit ? <div style={{ position: "absolute", left: L_EDGE, top: 1416, font: dataFont(20, 500), color: "rgba(255,255,255,0.72)", maxWidth: 700, textAlign: "left", ...popCss("POP_SOFT", local - 0.3 * fps, "0% 60%") }}>{c.photo.credit}</div> : null}
+          <Headline b={B.headline} color={comp === "DOCUMENT" ? onAccent(accent) : th.photo ? "#FFFFFF" : th.ink} accent={comp === "DOCUMENT" ? onAccent(accent) : th.photo ? liftAccent(accent, 0.72) : accent} local={local} fps={fps} m={m} idx={idx} at={0.3} shadow={comp !== "DOCUMENT" && th.photo} />
+          {B.number && c.data?.value ? <NumberHero b={B.number} q={parseQuantity(c.data.value)} t={easeOut(clamp01((local - 0.5 * fps) / Math.max(1, dur * 0.6)))} local={local} fps={fps} at={0.5} color={th.photo ? "#FFFFFF" : th.ink} m={m} hero={false} /> : null}
+          {c.photo.credit && th.photo ? <div style={{ position: "absolute", left: L_EDGE, top: 1416, font: dataFont(20, 500), color: "rgba(255,255,255,0.72)", maxWidth: 700, textAlign: "left", ...popCss("POP_SOFT", local - 0.3 * fps, "0% 60%") }}>{c.photo.credit}</div> : null}
         </>
       );
     }
@@ -930,7 +933,6 @@ const COMPONENTS = {
   "MAP-CENTERED": MapCentered, "LIST-BUILD": ListBuild, "TIMELINE": Timeline, "COMPARISON-SPLIT": ComparisonSplit,
 };
 
-const PHOTO_COMPS = ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"];
 
 /**
  * Zones (canvas-layout.js ZONES): the body — every element the camera moves,
@@ -984,12 +986,14 @@ export function keepBodyInZone(L, cam, zoom, zk, photoBeat) {
 // show: "all" | "body" | "header". bodyLocal / headerLocal are the beat's
 // local frame (PopGroups passes the settled frame — see the pop compositor): the incoming beat's
 // text pops only once the transition has landed.
-function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent, hero, show = "all", still = false }) {
+// photoShown: false while a full-bleed photo has not popped in yet (word-level sync): the
+// header is then drawn in ink on the white ground, and turns white as the photo lands.
+function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent, hero, show = "all", still = false, photoShown = true }) {
   const c = normalizeCanvas(beat.scene.canvas, idx);
   const dur = beat.duration_frames;
   const L = canvasLayout(c);
   const Comp = COMPONENTS[L.composition] || TypeFull;
-  const theme = themeFor(c, PHOTO_COMPS.includes(L.composition) && !!c.photo);
+  const theme = themeFor(c, PHOTO_COMPS.includes(L.composition) && !!c.photo && photoShown);
   if (c.dark && !c.photo) accent = liftAccent(accent);
   const zoom0 = (c.motion_tier || "medium") === "major" ? majorZoom(L) : null;
   const zk0 = zoom0 ? 1 + (zoom0.k - 1) * easeInOut(clamp01(bodyLocal / Math.max(1, dur))) : 1;
@@ -1032,7 +1036,6 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
 // incoming ones pop, so at the crossover (frame 4) the leaving group is at
 // ~40% and the arriving one at ~60%: the frame is never empty. Nothing moves
 // in space: no slide, wipe, mask, iris, flip, match cut or camera move.
-export const POP = Object.freeze({ IN: 6, OUT: 6, STAGGER: 8, START: 1, S0: 0.94, OVER: 1.04 });
 export function popInState(f) {
   if (f < 0) return { o: 0, s: POP.S0 };
   const o = clamp01(f / 5);
@@ -1042,31 +1045,6 @@ export function popInState(f) {
 export function popOutState(f) {
   if (f <= 0) return { o: 1, s: 1 };
   return { o: 1 - clamp01(f / 6.5), s: 1 - (1 - POP.S0) * clamp01(f / POP.OUT) };
-}
-// The bands the groups are clipped to (zones; the middle runs to the caption
-// row so a descender within ZONE_TOL is not cut).
-const BANDS = { top: [0, ZONES.top[1]], middle: [ZONES.middle[0], CAPTION.y - 10] };
-/** The element groups of a beat, in arrival order, with their pop pivots. */
-export function popGroups(c, L) {
-  const photo = !!c.photo && PHOTO_COMPS.includes(L.composition);
-  const groups = [];
-  if (photo) groups.push({ key: "photo", show: "body", clip: null, cx: 540, cy: 960 });
-  for (const [band, [y0, y1]] of Object.entries(BANDS)) {
-    const kb = flattenBoxes(L.boxes).filter(([k, b]) => b && b.w > 0 && b.h > 0 && k !== "photo" && b.role !== "shape" && b.y + b.h / 2 >= y0 && b.y + b.h / 2 < y1);
-    if (!kb.length) continue;
-    const bs = kb.map(([, b]) => b);
-    const x0 = Math.min(...bs.map((b) => b.x)), x1 = Math.max(...bs.map((b) => b.x + b.w));
-    const t0 = Math.min(...bs.map((b) => b.y)), t1 = Math.max(...bs.map((b) => b.y + b.h));
-    // A group of only furniture (a rule, a kicker, a folio) is minor: it pops
-    // AFTER the group holding the real element, or the frame is near-empty
-    // until the statement arrives (CI run 36985423031 ch-44: frames 6-8 of
-    // two boundaries held only a hairline rule).
-    const major = kb.some(([k, b]) => !/^(rule|kicker|folio|end|line)/.test(k) && b.role !== "rule" && b.role !== "data");
-    groups.push({ key: band, show: photo ? "header" : "all", clip: [y0, y1], cx: (x0 + x1) / 2, cy: (t0 + t1) / 2, major });
-  }
-  // Arrival order: the photo, then major groups (top before middle), then minor ones.
-  const order = [...groups.filter((g) => g.key === "photo"), ...groups.filter((g) => g.key !== "photo" && g.major), ...groups.filter((g) => g.key !== "photo" && !g.major)];
-  return order.map((g, i) => ({ ...g, at: i * POP.STAGGER }));
 }
 /** The frame a beat is drawn at: every element in, none leaving (word exits start at >= 70%). */
 // LIST-BUILD / TIMELINE add items as the narrator reaches them (up to 0.6 s before
@@ -1084,14 +1062,17 @@ function PopGroups({ beat, idx, fps, accent, state, live = null }) {
   // settles at the last (LIST-BUILD / TIMELINE): at the last frame the kicker's word exit
   // had already run and the frame lost it — canvas-coverage 59.3% (CI run 37082751699 ch-2).
   const headerSettled = settleFrame(beat.duration_frames, "");
-  return popGroups(c, L).map((g) => {
+  const groups = popGroups(c, L);
+  const pg = groups.find((g) => g.key === "photo");
+  const photoShown = !pg || state(pg).o >= 0.6;
+  return groups.map((g) => {
     const p = state(g);
     if (p.o <= 0.001) return null;
     const clip = g.clip ? `inset(${g.clip[0]}px 0 ${FRAME.h - g.clip[1]}px 0)` : "none";
     return (
       <div key={`${idx}-${g.key}`} style={{ position: "absolute", inset: 0, clipPath: clip, opacity: p.o }}>
         <div style={{ position: "absolute", inset: 0, transformOrigin: `${g.cx.toFixed(0)}px ${g.cy.toFixed(0)}px`, transform: `scale(${p.s.toFixed(4)})` }}>
-          <BeatCanvas beat={beat} idx={idx} bodyLocal={g.key === "photo" && live != null ? Math.max(0, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={headerSettled} fps={fps} accent={accent} hero={null} show={g.show} still />
+          <BeatCanvas beat={beat} idx={idx} bodyLocal={g.key === "photo" && live != null ? Math.max(0, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={headerSettled} fps={fps} accent={accent} hero={null} show={g.show} still photoShown={photoShown} />
         </div>
       </div>
     );
@@ -1154,7 +1135,9 @@ export function CanvasVideo({ plan }) {
   const cLayout = canvasLayout(c);
   const start = prev ? POP.START : 0;
   // White caption only once the photo group has popped in behind it.
-  const onPhoto = PHOTO_COMPS.includes(cLayout.composition) && !!c.photo && local >= start + 3;
+  // (the photo group may pop on its word — word-level sync — so its own arrival frame is used)
+  const photoAt = popGroups(c, cLayout).find((g) => g.key === "photo")?.at ?? 0;
+  const onPhoto = PHOTO_COMPS.includes(cLayout.composition) && !!c.photo && local >= start + photoAt + 3;
   return (
     <ShadowOn.Provider value={false}>
     {/* Uniform white on every beat (backgrounds.js); a full-bleed photo beat
