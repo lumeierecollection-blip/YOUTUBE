@@ -60,7 +60,7 @@ const wire = sec({
   const f = join(tmpdir(), "story-cli-test.json");
   writeFileSync(f, JSON.stringify(good));
   const r = spawnSync(process.execPath, ["scripts/validate-script-story.cjs", "7", f], { encoding: "utf8" });
-  eq("CLI without --blocked reads channel 7 and the five beats", [/[script] ch-7: beats read by section ids/.test(r.stdout), r.status], [true, 0]);
+  eq("CLI without --blocked reads channel 7 and the five beats", [r.stdout.includes("[script] ch-7: beats read by section ids"), r.status], [true, 0]);
 }
 console.log(bad ? `${bad} FAILED` : "all pass");
 process.exit(bad ? 1 : 0);
