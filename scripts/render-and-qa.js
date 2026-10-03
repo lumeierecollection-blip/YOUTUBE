@@ -1344,6 +1344,17 @@ async function resolveCanvas(channelId, planPath, plan) {
       const visuals = w.names.map((n) => results.get(`${w.bi}:${n}`)).filter(Boolean);
       for (const v of visuals) stats[v.class === "symbol" ? "symbol" : v.source]++;
       if (!visuals.length) { stats.none++; continue; }
+      // Never a hero next to a hero: three cutout beats in a row are "TYPE-FULL+HERO twice in a
+      // row" to canvas-type (CI run 37131085417 ch-2, rejected). The beat stays text here and the
+      // composition-variety pass below gives it a different composition.
+      {
+        const nb = [plan.beats[w.bi - 1], plan.beats[w.bi + 1]].filter(Boolean);
+        if (nb.some((x) => (x.canvas.concept_visuals || []).length)) {
+          console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${visuals.map((v) => v.name).join(", ")} not attached — a neighbouring beat already shows a hero object`);
+          stats.none++;
+          continue;
+        }
+      }
       const c = w.b.canvas;
       if (c.composition === "TYPE-SPLIT") {
         // A hero-cutout beat is not a plain statement: next to a TYPE-FULL it is
