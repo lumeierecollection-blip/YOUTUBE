@@ -184,9 +184,27 @@ async function logoPng(info, channel, beatIndex, name) {
   const m = await sharp(abs).metadata();
   return { asset: `cutouts-live/${channel}/${file}`, abs, w: m.width, h: m.height, svg };
 }
+// An all-caps company / institution name is often the name itself, not an abbreviation of
+// one: "POSCO", "DGIST" were refused as acronyms (CI run 37114977307 ch-48) and lost their
+// logos. Such a name (3+ letters) is looked up when Wikipedia has an article for it — not a
+// disambiguation page — whose description says it IS a company / institution. "AI" (2
+// letters; the article is "artificial intelligence") stays refused. The logo verifier still
+// decides what renders.
+async function brandName(type, name, ex) {
+  const bare = String(name || "").trim().replace(/^the\s+/i, "").replace(/\./g, "");
+  if (!/^[A-Z&]{3,6}$/.test(bare)) return ex;
+  const s = await wikiSummary(bare);
+  if (!s) return ex;
+  const text = `${s.description || ""} ${String(s.extract || "").split(/\.\s/)[0]}`;
+  const kinds = KIND_WORDS.filter(([k]) => k === "company" || k === "institution");
+  const hit = kinds.find(([, re]) => re.test(text));
+  if (!hit) return { refuse: `${ex.refuse}; Wikipedia's "${s.title}" is not described as a company or institution ("${String(s.description || "").slice(0, 60)}")` };
+  return { name: s.title, note: `"${bare}" is the ${hit[0]} Wikipedia calls "${s.title}" (${String(s.description || "").slice(0, 80)})` };
+}
 async function resolveOrgScene(tag, type, name, context, channel, beatIndex, scene) {
   const lines = [];
-  const ex = E.expandName("organization", name);
+  let ex = E.expandName("organization", name);
+  if (ex.refuse) ex = await brandName(type, name, ex);
   if (ex.refuse) { lines.push(ex.refuse, `not a resolvable name — no logo, no name card`); say(tag, lines); return { ok: false, kind: type, why: ex.refuse, refused: true }; }
   const q = ex.name;
   if (ex.note) lines.push(ex.note);
@@ -326,8 +344,8 @@ const KIND_WORDS = [
   // Not a bare "state": "Safety" is "the state of being protected" (CI run 37079127196 ch-48).
   ["place", /\b(city|town|country|(?:u\.s\.|us|federal|sovereign) state|province|region|county|capital|island|village|district|neighbou?rhood|municipality|territory|metropolitan|borough|port)\b/i],
   // part B: an institution (agency, court, standards body, trade fair, international body) before a company.
-  ["institution", /\b(agency|organi[sz]ation|institution|court|department|ministry|bureau|commission|council|party|university|regulator|regulatory|authority|federal reserve|central bank|banking system|union|association|fund|board|standards body|standards organization|trade fair|trade show|exhibition|forum)\b/i],
-  ["company", /\b(company|corporation|manufacturer|multinational|conglomerate|firm|brand|startup|bank|retailer|automaker|carmaker|maker of|developer of|provider of)\b/i],
+  ["institution", /\b(agency|organi[sz]ation|institution|institute|college|academy|court|department|ministry|bureau|commission|council|party|university|regulator|regulatory|authority|federal reserve|central bank|banking system|union|association|fund|board|standards body|standards organization|trade fair|trade show|exhibition|forum)\b/i],
+  ["company", /\b(company|corporation|manufacturer|multinational|conglomerate|firm|brand|startup|bank|retailer|automaker|carmaker|steelmaker|chipmaker|airline|insurer|exchange|maker of|developer of|provider of)\b/i],
 ];
 // The one-line Wikipedia description of a name ("Intergovernmental political forum"), or null.
 async function describe(name) {
