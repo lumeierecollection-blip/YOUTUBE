@@ -205,6 +205,14 @@ async function main() {
     process.exit(1);
   }
 
+  // Only the deprecated V1 workflow called this uploader; the live path is
+  // src/skills/youtube-publish/run.js. Same allow-list as there (audit 2026-10-03).
+  const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 48];
+  if (!PUBLISH_CHANNELS.includes(Number(String(opts.channel).replace(/^ch-?/i, "")))) {
+    console.error(`channel "${opts.channel}" is not a publish channel — uploads are allowed only to ${PUBLISH_CHANNELS.join(", ")}`);
+    process.exit(1);
+  }
+
   // Check env vars early
   if (!process.env.YT_CLIENT_ID || !process.env.YT_CLIENT_SECRET || !process.env.YT_REFRESH_TOKEN) {
     console.warn("WARNING: YouTube credentials not set (YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN). Skipping upload.");

@@ -943,8 +943,10 @@ jobs:
           retention-days: 7
 
       # ── Publish (private) ──────────────────────────────────────────────
+      # main only (audit 2026-10-03): a dispatch with --ref <other branch> renders but never
+      # reads the OAuth secrets or uploads. 135 v2 dispatches ran on a development branch.
       - name: Materialize OAuth credentials
-        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
+        if: github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
         env:
           CH01_CLIENT_ID:       ${{ secrets.CHANNEL_01_CLIENT_ID }}
           CH01_CLIENT_SECRET:   ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
@@ -983,15 +985,15 @@ jobs:
           "
 
       - name: Publish to YouTube (private)
-        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
+        if: github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
         run: node src/skills/youtube-publish/run.js "${{ matrix.channel_id }}"
 
       - name: Process publish queue
-        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
+        if: github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
         run: node src/skills/youtube-publish/run.js process-queue
 
       - name: Commit publish queue
-        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
+        if: github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -1031,7 +1033,8 @@ jobs:
   review-publish:
     if: >
       github.event_name == 'workflow_dispatch' &&
-      github.event.inputs.publish == 'true'
+      github.event.inputs.publish == 'true' &&
+      github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:

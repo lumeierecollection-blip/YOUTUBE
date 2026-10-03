@@ -12,9 +12,12 @@ cron, so deprecated workflows are moved here instead.
 - `review-publish.deprecated.yml` — the manual "render + publish one script privately"
   workflow (workflow_dispatch, and push on its own file). Deprecated 2026-10-03 with the
   owner's "single pipeline only" instruction: its job is `if: false` and it is disabled on
-  GitHub. Note: it was the manual publish path for videos a human approved out of
-  `data/renders/approved-review/`; with it disabled, those have no publish path until it is
-  restored.
+  GitHub; its push trigger was removed in the 2026-10-03 audit. The manual publish path for
+  `data/renders/approved-review/` videos is now the `review-publish` job in
+  `daily-pipeline-v2.yml` (workflow_dispatch with `publish=true`, main only, channels
+  1/2/9/26/44/48, private).
+- `daily-pipeline.deprecated.yml`'s cron line was removed and its `publish` job is
+  `if: false` (audit 2026-10-03).
 - `network-policy-check.yml` (diagnostic) exists only on the old branch
   `claude/png-sourcing-animations-captions-wgv6ty`; it is disabled on GitHub
   (`gh workflow disable`), so a push there no longer runs it.

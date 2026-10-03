@@ -636,7 +636,8 @@ jobs:
   # ============================================================
   publish:
     needs: render
-    if: always() && needs.render.result == 'success' && github.event.inputs.dry_run != 'true'
+    # DEPRECATED (audit 2026-10-03): never uploads, even if this file is ever moved back.
+    if: false
     runs-on: ubuntu-latest
     # contents: write so the publish queue (data/publish-queue/) can be
     # committed back — the queue must persist across runs for process-queue

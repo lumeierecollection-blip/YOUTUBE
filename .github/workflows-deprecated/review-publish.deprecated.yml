@@ -38,10 +38,9 @@ on:
         description: Script path (root-relative) to render + publish
         default: "data/research/1/debt-snowball-vs-debt-avalanche-shorts-script.json"
         required: true
-  push:
-    branches: ["**"]
-    paths:
-      - ".github/workflows/review-publish.yml"
+  # push trigger removed (audit 2026-10-03). It was: push to any branch touching
+  # .github/workflows/review-publish.yml. The manual publish path is now the
+  # review-publish job in daily-pipeline-v2.yml.
 
 jobs:
   render-and-publish-private:
