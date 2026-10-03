@@ -577,9 +577,14 @@
           "topic": "New California Law Prohibiting Employer Use of Surveillance Technology",
           "slug": "new-california-law-human-oversight-surveillance-technology",
           "reserved_at": "2026-10-03T06:54:27.115Z"
+        },
+        {
+          "topic": "u-s-district-court-rules-that-constitution-does-not-permit-congress-to-set-voter-qualficat",
+          "slug": "u-s-district-court-rules-voter-qualifications",
+          "reserved_at": "2026-10-03T08:20:15.985Z"
         }
       ],
-      "last_generated": "2026-10-03T06:54:27.115Z"
+      "last_generated": "2026-10-03T08:20:15.985Z"
     },
     "3": {
       "channel_name": "AI Tested",
