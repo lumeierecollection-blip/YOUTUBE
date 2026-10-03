@@ -1,3 +1,5 @@
+# DEPRECATED 2026-10-03 — disabled (if: false, moved to .github/workflows-deprecated/,
+# and `gh workflow disable`). Only .github/workflows/daily-pipeline-v2.yml runs.
 name: review-publish
 
 # Renders a channel's latest script in CI and uploads it to YouTube as
@@ -43,6 +45,9 @@ on:
 
 jobs:
   render-and-publish-private:
+    # DEPRECATED 2026-10-03 (owner: "single pipeline only"): never runs. Moved out of
+    # .github/workflows/ and disabled on GitHub; kept for reference.
+    if: false
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
