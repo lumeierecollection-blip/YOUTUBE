@@ -1228,9 +1228,14 @@
           "topic": "The Middle Corridor's Economic Rebound",
           "slug": "middle-corridor-economic-rebound",
           "reserved_at": "2026-10-03T14:28:36.708Z"
+        },
+        {
+          "topic": "The Red Sea Shipping Route: US-China Competition and Regional Security",
+          "slug": "red-sea-shipping-route-us-china-competition-security",
+          "reserved_at": "2026-10-03T14:55:15.527Z"
         }
       ],
-      "last_generated": "2026-10-03T14:28:36.708Z"
+      "last_generated": "2026-10-03T14:55:15.527Z"
     },
     "10": {
       "channel_name": "Double Cross",
