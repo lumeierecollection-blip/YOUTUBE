@@ -41,14 +41,11 @@ reveal lands, closing type) in the context JSON — follow those, not a
 generic structure.
 
 Target voiceover word counts (spoken text only):
-- `shorts`: 70–90 words (HARD CAP: 90 words). The narration voice speaks
-  slower than the WPM table suggests — measured at about 1.7 words per
-  second including the pause between sections — so 90 words is already
-  ~53s, and anything over ~100 words runs past the 60-second Short and
-  gets cut off mid-sentence. Pack maximum information density into fewer words: every
-  sentence must either hook, escalate, or pay off. Cut filler ruthlessly.
-  Every word fights for its place. If removing a sentence doesn't hurt the
-  argument, the sentence shouldn't be there.
+- `shorts`: 92–107 words — a BLOCKER gate (SCR-16), both ends. Measured on
+  2026-10-03 voiceovers the narrator speaks 1.8-2.5 words a second, so ~100
+  words is 40-55 seconds: room for the five beats (hook, setup, re-hook,
+  payoff, close) and inside the 58-second Short. Every sentence must hook,
+  escalate, re-hook, pay off or close — and the count stays inside the range.
 - `longform`: match the `script_template`'s section count — a 5-section
   longform lands about 700–950 words at the style's WPM.
 Count the voiceover words before finishing; if you're outside the range,
@@ -93,8 +90,9 @@ ideas — delete it and let the ideas collide.
 
 ## Section count
 
-- `shorts`: 3 sections. Three is the sweet spot — hook, escalation,
-  payoff. Every section earns its place in under 55 seconds.
+- `shorts`: 5 sections, ids `hook`, `setup`, `rehook`, `payoff`, `close`, in
+  that order (the narrative engine — prompts/write-script.md). The hook and
+  the close are one sentence each.
 - `longform`: 4–7 sections. Fewer than 4 rushes; more than 7 should split.
 
 ## Structural rules the renderer depends on

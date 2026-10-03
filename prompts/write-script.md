@@ -1,4 +1,4 @@
-# Stage C — Write Script
+# Stage C — Write Script (narrative engine)
 
 You are given JSON in the INPUT section of this message: the frozen research
 artifact, the channel's style/tone/format/`script_template`, and (for
@@ -6,108 +6,128 @@ motion-graphics channels) its `concepts` archetype allocation. Everything you
 need is in that section — you have no web access, no file access, and nothing
 to ask the user for.
 
+You are writing a YouTube Short. It will be read aloud by a narrator. It must
+sound like a person talking, not a news wire. **This is not a summary. It is a
+story with a hook, tension, a re-hook, and a payoff.** The viewer clicks away
+in the first 3 seconds unless you give them a reason to stay.
+
+**Every fact, name, number and date comes from the research and is about THIS
+video's subject.** The examples below show SHAPE only — they are not facts for
+this video. Never invent a figure, a name, a date or a consequence to make the
+story work: if the research cannot support a beat, tell the story the research
+DOES support. A research fact about a different story is never used.
+
 `seo_keywords` (may be empty): the terms trending in this channel's YouTube
 category this week. Where one honestly describes what the research says, use
-that word in the title and the hook — a keyword spine. Never add a claim to
-fit a keyword; a keyword is wording, not a source.
+that word in the title and the hook. A keyword is wording, never a source.
 
-Follow the style contract in your system prompt exactly — it covers
-grounding (cite only from the research you were given), pacing, hook
-construction, and the structural rules the renderer depends on
-(`text_overlay` shape, no colour values, and for motion-graphics channels the
-archetype table and the `anchor_token` verbatim rule).
+Follow the style contract in your system prompt — grounding, pacing and the
+structural rules the renderer depends on (`text_overlay` shape, no colour
+values).
 
-**Duration cap: ALL videos must be 30-45 seconds.** At 30 fps this means
-900-1350 frames.
+## Length — a hard gate
 
-**Voiceover word count: 76-93 words. This is a hard gate, not a guideline.**
-The gate converts your word count to a duration using the channel's
-words-per-minute target and the actual TTS delivery rate, then REJECTS the
-script if it falls outside 30-45 seconds. 76-93 is the range that is safe
-for every channel's voice, so staying inside it always passes; going under
-76 fails just as hard as going over 93. Aim for the middle (~85 words).
+**Voiceover word count: 92-107 words in total. This is a BLOCKER gate, not a
+guideline.** The gate converts words to seconds at the narrator's real pace and
+rejects anything outside 36-52 seconds; under 92 fails exactly like over 107.
+Aim for about 100 words.
 
-Do NOT write short to save render time. A script under 76 words is rejected
-and the whole channel produces nothing that day.
+## STRUCTURE — five beats, in this order, as five sections
+
+Write `sections` as exactly five objects with these ids, in this order:
+`hook`, `setup`, `rehook`, `payoff`, `close`. `hook` (the top-level field) is
+the HOOK sentence, word for word.
+
+1. **HOOK** (section `hook`, ONE sentence, ~12 words). A promise, a shock, a
+   contradiction, or stakes — never a setup, never a fact without a stake. The
+   first sentence IS the punch. One of:
+   - Contradiction: "Banks said the money was safe. It disappeared in 48 hours."
+     → as ONE sentence: "The money banks called safe disappeared in 48 hours."
+   - Stakes: "Buy a house this year and you'll pay $40,000 more than last year's buyer."
+   - Mystery: "The FBI found $3 million in a storage unit, and its owner was already dead."
+   - Specific shock: "One line in your mortgage contract costs $200 a month."
+   Never: "Here's what happened", "Let me tell you", "Have you ever wondered",
+   a person's name first, "According to", "The report".
+2. **SETUP** (section `setup`, 3 sentences, ~33 words). Just enough context for
+   the payoff to land. Each sentence adds one specific fact — a number, a name,
+   a place, an action — and starts with a DIFFERENT kind of subject. The LAST
+   setup sentence ends on a question the viewer now has (a literal question,
+   or a line that withholds the answer: "But the payoff isn't the rate. It's the timing.").
+3. **RE-HOOK** (section `rehook`, 1-2 sentences, ~15 words). The second hook,
+   right where the viewer might leave. It FLIPS the setup ("Except the bank
+   made one mistake.") or RAISES the stakes ("And the person who signed it
+   worked for the buyer."). It still names something specific. Never "But
+   wait, there's more", "Here's the thing", "What happened next".
+4. **PAYOFF** (section `payoff`, 3 sentences, ~35 words). Deliver the hook's
+   promise: (1) the reveal, (2) the consequence, (3) the specific number or
+   action. It names a person, place or organization AND a specific number.
+   No hedging: never "may", "could", "might", "possibly" — state the fact the
+   video was built to deliver.
+5. **CLOSE** (section `close`, ONE sentence, ~10 words). What the viewer does
+   with what they now know — a specific action, or the payoff's most concrete
+   detail. Never "stay informed", "follow for more", "thanks for watching",
+   "the future is uncertain". A close that states a fact still needs that fact
+   from the research.
+
+## RULES
+
+- **Every sentence earns the next.** Read it aloud; if it doesn't make you
+  want the next sentence, rewrite it. No summaries — a sentence that restates
+  what the viewer already knows is cut. The script only moves forward.
+- **Vary the subject.** A person's name may START at most ONE sentence in the
+  whole script, and never as a full name ("Jerome Powell raised…" is banned;
+  "Powell raised…" may open one sentence). Other sentences start with a
+  pronoun, an action, a place, a number, a time, a question or an object.
+- **Vary the structure.** No two consecutive sentences start with the same
+  word. Mix: subject-verb ("The Fed raised rates."), question ("Why now?"),
+  number first ("0.25% — that's the increase."), place first ("In Washington,
+  …"), time first ("On September 18, …"), action first ("Raising rates was the
+  only option.").
+- **Every sentence names something**: a person, place, organization, number,
+  date or physical object — on average 1.5 or more per sentence, and at least
+  two concrete nouns (a courthouse, a $100 bill, Powell, Miami) for every
+  abstract one (trend, strategy, impact, future).
+- **Sound like a person.** Contractions ("it's", "won't", "they're"). Average
+  12 to 18 words a sentence; NO sentence over 25 words. Active voice.
+- **Write figures in digits with their unit** ("$352 million", "34%", "10,000
+  robots") — the narrator reads them as words, and the video can only chart a
+  figure it can read.
+- **Shape a sentence so it can be SHOWN** when the research gives the shape: a
+  comparison with its keyword ("42% versus 31%", "from X to Y"), dated events
+  with their dates, a list with commas. This changes wording, never which facts
+  there are.
+
+## BANNED
+
+Banned OPENINGS (no sentence starts with): a person's full name, "According
+to", "Officials said", "The report states", "Data shows", "In a statement",
+"This trend", "Experts say", "Let's dive into", "Here's why".
+
+Banned PHRASES (anywhere): "This trend is expected to", "It's important to",
+"In today's world", "The key takeaway is", "Industry leaders are", "As we look
+ahead", "It remains to be seen", "Only time will tell", "At the end of the
+day", "Here's what nobody tells you", "Not gonna lie", "Let me be honest".
+
+## Check before you finish — rewrite until every line is true
+
+- The HOOK is one sentence and promises something specific (a number, a shock,
+  a contradiction or a stake).
+- The last SETUP sentence ends on a question the viewer now has.
+- The RE-HOOK flips the setup or raises the stakes.
+- The PAYOFF names a specific number and outcome, with no "may / could / might".
+- The CLOSE is one specific, actionable sentence.
+- 0 banned openings, 0 banned phrases, 0 sentences over 25 words, at most 1
+  sentence starting with a person's name, no two consecutive sentences
+  starting with the same word.
+- Every sentence names a person, place, organization, number, date or object
+  from the research about this subject.
+- 92-107 words in all.
+- `sources_used` has 2 or more URLs that appear in the research's
+  `key_facts` / `numbers`, and every one is used by something you wrote.
+- If you were given the motion-graphics beat schema: each `anchor_token` is
+  copied VERBATIM from its own section's voiceover, and every `data.series`
+  value is a real research `numbers[].value` (a PROGRESS beat needs >= 2).
 
 Write the full script now: `channel_id`, `topic_slug`, `format`, `hook`,
 `sections[]`, and `sources_used`. Return `structured_output` matching the
 provided JSON Schema exactly — nothing outside it.
-
-## Before you finish
-
-- **anchor_token MUST be a word or phrase that appears VERBATIM in that
-  section's voiceover text.** After writing each section's voiceover, pick
-  the anchor_token FROM the voiceover words you just wrote — do not invent
-  it. Example: if voiceover says "Housing costs consume thirty-four point
-  nine percent", valid anchors are "thirty-four point nine", "percent",
-  "Housing costs". Invalid: "modification", "essentials", "allocate" (if
-  those words don't appear in the voiceover). Write the voiceover FIRST,
-  then extract the anchor from it.
-- Every value in any beat's `data.series` is one of the research's real
-  `numbers[].value` entries (copied exactly, with its real unit) — never
-  invented, derived, or a binary 0/1 encoding of a contrast. If it isn't
-  in `numbers[]`, it must not be charted.
-- **PROGRESS beats need >=2 series points.** A PROGRESS beat with only 1
-  point is rejected. Use at least 2 real numbers from `numbers[]`.
-- Voiceover word count is inside the format range in the style contract.
-- For motion-graphics: primary archetypes 50% or more of beats, secondary
-  35% or less, excluded 0%.
-- `sources_used` has 2 or more URLs that actually appear in the research's
-  `key_facts`/`numbers`, and every one is used by something you wrote.
-- **Write figures in digits with their unit** in the voiceover ("$352
-  million", "34%", "10,000 robots", "6 levels") — the narrator's voice reads
-  them as words automatically, and the video can only chart a figure it can
-  read. (The anchor_token rule above still applies: an anchor copied from
-  such a sentence is copied as written, digits included.)
-- **EVERY sentence names something real and specific** — a person (full
-  name), a place, an organization, a number (amount, percentage, count,
-  date), a physical object, or a named actor doing a specific thing ("Powell
-  raised rates", not "rates went up"). Take every one of them from the
-  research (`key_facts`, `numbers`, `named_entities`). A sentence that would
-  name nothing is replaced by one that names something from the research, or
-  cut. **Never invent a name, a figure, a date or an object to meet this** —
-  a sentence the research cannot make specific is cut, not decorated.
-  Every named fact is about THIS video's subject: a research fact about a
-  different story (an unrelated conflict, company or place the search happened
-  to return) is never used, however specific it is.
-  The examples below show the SHAPE only; they are not facts for this video.
-  ALLOWED shape: "Jerome Powell raised rates by 0.25% on September 18." /
-  "The Miami federal courthouse ruled against the company." /
-  "The SEC charged the firm's founder with fraud."
-  FORBIDDEN: "Rates are going up." / "Companies are adopting AI." /
-  "This trend is expected to continue." / "Experts say it's complicated."
-  Each sentence is scored by the number of specifics it names (0, 1, 2+);
-  the script must average at least 1.5 and no sentence may score 0
-  (`scripts/validate-script.cjs`). Prefer concrete nouns (a courthouse, a
-  gavel, a warehouse, Powell, Miami) over abstract ones (trend, approach,
-  strategy, potential, future, impact) — at least two concrete for every
-  abstract one.
-- **Specific does NOT mean longer — or shorter.** The word count above rules
-  both ways: a vague sentence is REPLACED by a specific one of the same
-  length (another fact about this subject from the research), never joined by
-  an extra sentence and never just deleted below the minimum. Five or six
-  sentences of about 15 words each — 76-93 words in all.
-- **BANNED PHRASES — never use:** "This trend is expected to...", "Experts
-  say...", "It's important to...", "In today's world...", "Let's dive
-  into...", "Here's why...", "The key takeaway is...", "Industry leaders
-  are...", "Here's what nobody tells you", "Not gonna lie", "Let me be
-  honest". State the research fact itself instead.
-- **STRUCTURE (the Shorts 3-second hook, docs/SCRIPT-HOOK-FORMULAS.md):**
-  HOOK — the first sentence states the research's single most specific,
-  surprising fact and names a person, place or number; no greeting, no
-  setup. SETUP — two or three facts, each with a named entity. PAYOFF — the
-  insight, tied to one specific named example from the research. CTA — one
-  sentence that names the hook's subject again (so the Short loops) — never
-  a generic "follow for more".
-- **Shape a sentence so it can be SHOWN, when the research already gives
-  you the shape.** The video draws a comparison ("42% of income versus 31%
-  for owners"), a dated sequence ("the law passed in 2019 and was repealed
-  in 2024" — each date with what happened), and an enumeration ("basic,
-  standard, and premium") as their own compositions, and no two beats in a
-  row may look alike. So when `key_facts` / `numbers` contain two figures to
-  set against each other, dated events, or a list, state them that way — the
-  keyword ("versus", "than", "from X to Y"), the years with their events, the
-  items separated by commas — instead of burying them in one long clause.
-  This changes how a real fact is worded, never which facts there are: do
-  not add a comparison, a date or a list the research does not give you.

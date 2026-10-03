@@ -47,8 +47,20 @@ while (total() > maxWords) {
   // A sentence is removable unless it is the hook (first of section 0), the
   // payoff (last of the last section), or the only sentence of a section
   // that can't be dropped without going under MIN_SECTIONS.
+  // The narrative engine's five beats (prompts/write-script.md): never cut the hook, the
+  // close, the setup's last sentence (the viewer's question), the payoff's first (the
+  // reveal) or last (the number / action), or a beat's only sentence. Removable: a middle
+  // setup sentence, a middle payoff sentence, a second re-hook sentence.
+  const NARRATIVE = { setup: [0, -2], payoff: [1, -2], rehook: [1, -1] };
+  const narrative = ["hook", "setup", "rehook", "payoff", "close"].every((id) => sections.some((s) => s.id === id));
   const candidates = parts
     .map((ss, i) => {
+      if (narrative) {
+        const r = NARRATIVE[sections[i].id];
+        if (!r) return { i, removable: false, hi: -1, size: 0 };
+        const lo = r[0], hi = ss.length + r[1];
+        return { i, removable: ss.length > 1 && hi >= lo, hi, size: ss.reduce((m, x) => m + words(x), 0) };
+      }
       const lo = i === 0 ? 1 : 0;
       const hi = i === lastSec ? ss.length - 2 : ss.length - 1;
       const emptiesSection = ss.length === 1;

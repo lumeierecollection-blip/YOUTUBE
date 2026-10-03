@@ -27,10 +27,15 @@ const ROOT = join(__dirname, "..");
 export const WPM_TARGET = { "cinematic-documentary": 135, "motion-graphics": 155, minimal: 165 };
 // Midpoint of render.js's clamp ranges, used only to sanity-check pacing —
 // actual duration is decided later by the real voiceover audio length.
-const FORMAT_MIDPOINT_MINUTES = { shorts: 40 / 60, longform: (2 + 12) / 2 };
+const FORMAT_MIDPOINT_MINUTES = { shorts: 44 / 60, longform: (2 + 12) / 2 };
 // Duration cap: all videos target 30-50 seconds (wide window - model oscillates)
 // Render.js clamps final duration to the actual voiceover length anyway.
-export const DURATION_RANGE_SECONDS = { shorts: { min: 30, max: 45 }, longform: { min: 30, max: 45 } };
+// 2026-10-03, the narrative engine (prompts/write-script.md): five beats — hook, setup,
+// re-hook, payoff, close — need ~100 words. Shorts move from 30-45 s to 36-52 s at the
+// gate's effective rate, i.e. 92-107 words safe for every style (scripts/test-word-budget.mjs).
+// Measured the same day the narrator speaks 1.8-2.5 words/s, so ~100 words is 40-55 s of
+// real voiceover; the workflow still trims anything over 58 s (scripts/fit-short.js).
+export const DURATION_RANGE_SECONDS = { shorts: { min: 36, max: 52 }, longform: { min: 30, max: 45 } };
 
 /**
  * EdgeTTS speaks slower than the nominal WPM, so the nominal figure

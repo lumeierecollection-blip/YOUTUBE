@@ -130,6 +130,17 @@ function abstractNouns(sentence) {
   return [...norm(sentence).matchAll(ABSTRACT_RE)].map((m) => m[0].toLowerCase());
 }
 
+/**
+ * A short TURN line — the setup's closing question or a re-hook's flip ("But the payoff
+ * isn't the rate?", "That's the trap.") — is the narrative engine's hinge, not a claim: the
+ * owner's own examples name nothing in them. <= 8 words and a "?" or a flip word.
+ */
+const FLIP_WORDS = /\b(but|except|however|catch|trap|worse|twist|nobody|no one|until|why|how|what|instead|yet|turns out)\b/i;
+function isTurnLine(s) {
+  const n = String(s || "").split(/\s+/).filter(Boolean).length;
+  return n <= 8 && (/\?\s*["')]*$/.test(String(s).trim()) || FLIP_WORDS.test(String(s)));
+}
+
 /** The full report for a script object. */
 function validateScript(script, research = null) {
   const text = (script.sections || []).map((x) => x.voiceover || "").join(" ");
@@ -150,7 +161,7 @@ function validateScript(script, research = null) {
   const concrete = rows.reduce((a, r) => a + r.names.length + r.objects.length, 0);
   const abstract = rows.reduce((a, r) => a + r.abstract.length, 0);
   const ratio = abstract ? concrete / abstract : Infinity;
-  const zero = rows.filter((r) => r.score === 0);
+  const zero = rows.filter((r) => r.score === 0 && !isTurnLine(r.sentence));
   const specOk = !zero.length && avg >= 1.5 && !banned.length;
   const ratioOk = ratio >= 2;
   return { sentences: rows, avg, banned, zero, concrete, abstract, ratio, specOk, ratioOk, pass: specOk && ratioOk };
@@ -169,7 +180,7 @@ function feedbackLines(r) {
   return out;
 }
 
-module.exports = { validateScript, feedbackLines, sentences, specificsOf, abstractNouns, BANNED };
+module.exports = { validateScript, feedbackLines, sentences, specificsOf, abstractNouns, BANNED, isTurnLine };
 
 if (require.main === module) {
   const [ch, scriptPath, researchPath] = process.argv.slice(2);

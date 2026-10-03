@@ -461,27 +461,30 @@ jobs:
                 fi
               fi
               if [ "$GATE_OK" -eq 1 ]; then
-                # SPECIFICITY (scripts/validate-script.cjs): every sentence names a
-                # person / place / organization / number / object from the research,
-                # avg >= 1.5, no banned phrase, concrete:abstract >= 2. One re-ask
-                # with the failing sentences; a second failure is logged (and
-                # recorded in data/ci-runs/) and the script continues — this check
-                # never blocks the run (owner's spec 2026-10-03).
+                # STORY (scripts/validate-script-story.cjs): the narrative engine —
+                # hook / setup / re-hook / payoff / close (validate-script-narrative.cjs), the
+                # voice rules — banned openings, <= 25 words, at most one person-name start
+                # (validate-script-voice.cjs) — and specificity (validate-script.cjs). Any
+                # failure -> ONE re-ask with every failing beat / sentence marked; still failing ->
+                # logged to data/ci-runs/blocked-script-{narrative,voice,specificity}-<ch>.txt and
+                # the script continues. These checks never block a run (owner's spec 2026-10-03).
                 set +e
-                node scripts/validate-script.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" > /tmp/spec-out-$FORMAT.log 2>&1
+                if [ "$SPEC_REASKED" -eq 0 ] && [ "$ATTEMPT" -lt 5 ]; then
+                  node scripts/validate-script-story.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" > /tmp/spec-out-$FORMAT.log 2>&1
+                else
+                  node scripts/validate-script-story.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" --blocked data/ci-runs > /tmp/spec-out-$FORMAT.log 2>&1
+                fi
                 SPEC_EXIT=$?
                 set -e
                 cat /tmp/spec-out-$FORMAT.log
                 if [ "$SPEC_EXIT" -ne 0 ]; then
                   if [ "$SPEC_REASKED" -eq 0 ] && [ "$ATTEMPT" -lt 5 ]; then
                     SPEC_REASKED=1
-                    echo "[script] ch-$CH: specificity FAIL, re-asking once with the failing sentences"
+                    echo "[script] ch-$CH: story checks FAIL ($(grep -c '^  - ' /tmp/spec-out-$FORMAT.log) marked), re-asking once"
                     FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$(grep -E '^  - ' /tmp/spec-out-$FORMAT.log || true)" | grep -E '^  - ' | sort -u || true)
                     continue
                   fi
-                  echo "::warning::[script] ch-$CH: specificity still FAIL after the re-ask — continuing with this script (logged to data/ci-runs/blocked-script-specificity-$CH.txt)"
-                  mkdir -p data/ci-runs
-                  { echo "Script specificity FAIL twice in a row — ch-$CH, $SCRIPT_SLUG, run ${{ github.run_id }} ($(date -u +%FT%TZ))"; echo; cat /tmp/spec-out-$FORMAT.log; } > "data/ci-runs/blocked-script-specificity-$CH.txt"
+                  echo "::warning::[script] ch-$CH: story checks still FAIL after the re-ask — continuing with this script (logged to data/ci-runs/blocked-script-*-$CH.txt)"
                 fi
                 # LENGTH, measured on the real voiceover. render.js caps a
                 # Short at 60s, so a longer narration is cut off mid-word —
@@ -645,6 +648,8 @@ jobs:
             data/tts/${{ matrix.channel_id }}/
             data/thumbnails/${{ matrix.channel_id }}/
             data/ci-runs/blocked-script-specificity-${{ matrix.channel_id }}.txt
+            data/ci-runs/blocked-script-voice-${{ matrix.channel_id }}.txt
+            data/ci-runs/blocked-script-narrative-${{ matrix.channel_id }}.txt
           retention-days: 1
 
       # A reservation whose video never gets made is released, so a failed
