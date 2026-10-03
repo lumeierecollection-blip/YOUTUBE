@@ -742,9 +742,14 @@
           "topic": "California's New Employment Laws for 2027",
           "slug": "california-new-labor-laws-october-2026",
           "reserved_at": "2026-10-03T13:47:02.158Z"
+        },
+        {
+          "topic": "California's New AI and Employee Monitoring Legislation",
+          "slug": "california-new-laws-ai-employee-monitoring",
+          "reserved_at": "2026-10-03T14:26:04.346Z"
         }
       ],
-      "last_generated": "2026-10-03T13:47:02.159Z"
+      "last_generated": "2026-10-03T14:26:04.346Z"
     },
     "3": {
       "channel_name": "AI Tested",
