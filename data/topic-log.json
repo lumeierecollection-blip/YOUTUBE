@@ -2819,9 +2819,14 @@
           "topic": "AI-driven-factory-control",
           "slug": "ai-driven-factory-control-2026-10-02-1234567890-100226-10",
           "reserved_at": "2026-10-03T02:16:45.249Z"
+        },
+        {
+          "topic": "engel-integrated-production-cell",
+          "slug": "engel-integrated-production-cell",
+          "reserved_at": "2026-10-03T02:57:01.162Z"
         }
       ],
-      "last_generated": "2026-10-03T02:16:45.250Z"
+      "last_generated": "2026-10-03T02:57:01.162Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
