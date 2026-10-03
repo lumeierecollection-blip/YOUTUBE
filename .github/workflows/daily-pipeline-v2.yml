@@ -44,6 +44,14 @@ on:
         description: "'ollama' = answer EVERY model call with local Ollama; Gemini is never called (the fallback test)"
         type: string
         default: ""
+      publish:
+        description: "PUBLISH ONLY: upload the approved-review videos of run review_run_id (private) for `channels`; nothing is rendered"
+        type: boolean
+        default: false
+      review_run_id:
+        description: "With publish: the pipeline run whose approved-review videos to upload"
+        type: string
+        default: ""
 
 concurrency:
   group: daily-pipeline-${{ github.ref }}
@@ -71,6 +79,9 @@ jobs:
   # SETUP: channel matrix from config/priority-channels.json
   # ============================================================
   setup:
+    # A publish dispatch renders nothing: setup (and so prep) is skipped; render, preview and
+    # log-results check the same input.
+    if: github.event.inputs.publish != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
     outputs:
@@ -696,7 +707,7 @@ jobs:
     # (run 36367836941, ch-2 research) skipped every channel's render. A
     # channel whose own prep died still fails its render leg at "Check prep
     # status" (no artifact) — honestly, and only that channel.
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && github.event.inputs.publish != 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
     permissions:
@@ -998,6 +1009,147 @@ jobs:
           done
 
   # ============================================================
+  # REVIEW-PUBLISH (manual only): upload a past run's approved-review
+  # videos, PRIVATE, to the six publish channels. Never on cron — the
+  # schedule event has no inputs, so this `if` is false there. Replaces
+  # the deprecated review-publish workflow (.github/workflows-deprecated/).
+  #   gh workflow run daily-pipeline-v2.yml --ref main \
+  #     -f publish=true -f review_run_id=<run> -f channels=44
+  # ============================================================
+  review-publish:
+    if: >
+      github.event_name == 'workflow_dispatch' &&
+      github.event.inputs.publish == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - name: Check inputs (six publish channels only)
+        env:
+          REQUESTED: ${{ github.event.inputs.channels }}
+          REVIEW_RUN: ${{ github.event.inputs.review_run_id }}
+        run: |
+          node -e "
+            const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 48];
+            const ids = (process.env.REQUESTED || '').split(',').map(s => s.trim().replace(/^ch-?/i, '')).filter(Boolean).map(Number);
+            const bad = ids.filter(id => !PUBLISH_CHANNELS.includes(id));
+            if (!ids.length) { console.error('::error::no channels given'); process.exit(1); }
+            if (bad.length) { console.error('::error::not a publish channel: ' + bad.join(', ') + ' — uploads are allowed only to ' + PUBLISH_CHANNELS.join(', ')); process.exit(1); }
+            if (!/^[0-9]+$/.test(process.env.REVIEW_RUN || '')) { console.error('::error::review_run_id must be the numeric id of a pipeline run'); process.exit(1); }
+            console.log('Publishing approved-review videos of run ' + process.env.REVIEW_RUN + ' for channel(s) ' + ids.join(', ') + ' (private)');
+          "
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      # qa-queues-* holds approved/, approved-review/, rejected/ (artifact root data/renders/).
+      - name: Download the run's review queues
+        uses: actions/download-artifact@v4
+        with:
+          pattern: qa-queues-*-${{ github.event.inputs.review_run_id }}
+          path: data/renders/
+          merge-multiple: true
+          run-id: ${{ github.event.inputs.review_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # data/renders/<ch>/ (image credits, needed for CC-BY attribution in the description).
+      - name: Download the run's render folders
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          pattern: rendered-*-${{ github.event.inputs.review_run_id }}
+          path: .
+          merge-multiple: true
+          run-id: ${{ github.event.inputs.review_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # SEO metadata + thumbnails. prep-* artifacts are kept 1 day: after that this step finds
+      # nothing and run.js uploads with the channel's fallback title (it logs a WARNING).
+      - name: Download the run's prep folders (SEO, thumbnails)
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          pattern: prep-*-${{ github.event.inputs.review_run_id }}
+          path: data/
+          merge-multiple: true
+          run-id: ${{ github.event.inputs.review_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Materialize OAuth credentials
+        env:
+          REQUESTED: ${{ github.event.inputs.channels }}
+          CH01_CLIENT_ID:       ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CH01_CLIENT_SECRET:   ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CH01_REFRESH_TOKEN:   ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CH02_CLIENT_ID:       ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CH02_CLIENT_SECRET:   ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CH02_REFRESH_TOKEN:   ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+          CH09_CLIENT_ID:       ${{ secrets.CHANNEL_09_CLIENT_ID }}
+          CH09_CLIENT_SECRET:   ${{ secrets.CHANNEL_09_CLIENT_SECRET }}
+          CH09_REFRESH_TOKEN:   ${{ secrets.CHANNEL_09_REFRESH_TOKEN }}
+          CH26_CLIENT_ID:       ${{ secrets.CHANNEL_26_CLIENT_ID }}
+          CH26_CLIENT_SECRET:   ${{ secrets.CHANNEL_26_CLIENT_SECRET }}
+          CH26_REFRESH_TOKEN:   ${{ secrets.CHANNEL_26_REFRESH_TOKEN }}
+          CH44_CLIENT_ID:       ${{ secrets.CHANNEL_44_CLIENT_ID }}
+          CH44_CLIENT_SECRET:   ${{ secrets.CHANNEL_44_CLIENT_SECRET }}
+          CH44_REFRESH_TOKEN:   ${{ secrets.CHANNEL_44_REFRESH_TOKEN }}
+          CH48_CLIENT_ID:       ${{ secrets.CHANNEL_48_CLIENT_ID }}
+          CH48_CLIENT_SECRET:   ${{ secrets.CHANNEL_48_CLIENT_SECRET }}
+          CH48_REFRESH_TOKEN:   ${{ secrets.CHANNEL_48_REFRESH_TOKEN }}
+        run: |
+          mkdir -p config/creds
+          node -e "
+            const fs = require('fs');
+            for (const id of process.env.REQUESTED.split(',').map(s => s.trim().replace(/^ch-?/i, '')).filter(Boolean)) {
+              const p = String(Number(id)).padStart(2, '0');
+              const c = { client_id: process.env['CH' + p + '_CLIENT_ID'], client_secret: process.env['CH' + p + '_CLIENT_SECRET'], refresh_token: process.env['CH' + p + '_REFRESH_TOKEN'] };
+              if (!(c.client_id && c.client_secret && c.refresh_token)) { console.error('::error::No credentials configured for channel ' + p); process.exit(1); }
+              fs.writeFileSync('config/creds/ch-' + p + '.json', JSON.stringify(c, null, 2));
+              console.log('Credentials materialized for channel ' + p);
+            }
+          "
+
+      # run.js --review: approved-review/ only, marker must match the channel, refuses any
+      # channel outside 1/2/9/26/44/48, uploads privacyStatus "private", and queues the entry
+      # cancelled so process-queue never makes it public.
+      - name: Publish approved-review videos (private)
+        env:
+          REQUESTED: ${{ github.event.inputs.channels }}
+        run: |
+          ls -la data/renders/approved-review/ || { echo "::error::run ${{ github.event.inputs.review_run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1; }
+          FAIL=0
+          for CH in $(echo "$REQUESTED" | tr ',' ' '); do
+            CH=$(echo "$CH" | sed -E 's/^ch-?//I; s/^0+//')
+            node src/skills/youtube-publish/run.js "$CH" --review || FAIL=1
+          done
+          exit $FAIL
+
+      - name: Commit publish queue
+        if: always()
+        run: |
+          git config user.name  "lumeierecollection-blip"
+          git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          git add data/publish-queue
+          if git diff --cached --quiet; then echo "Publish queue unchanged."; exit 0; fi
+          git commit -m "publish-queue: review-publish of run ${{ github.event.inputs.review_run_id }} [run ${{ github.run_id }}]"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${{ github.ref_name }}"
+            git rebase "origin/${{ github.ref_name }}"
+            if git push origin "HEAD:${{ github.ref_name }}"; then break; fi
+            if [ "$attempt" -eq 5 ]; then echo "::error::Could not push the publish queue"; exit 1; fi
+            sleep $((attempt * 2))
+          done
+
+  # ============================================================
   # PREVIEW: per-channel 6s clip, 8 frames, contact sheets, one
   # master sheet — built on the runner, uploaded as one artifact.
   # Only rendered-* (MP4s + qa-counts.json) and qa-queues-* (queued
@@ -1005,7 +1157,7 @@ jobs:
   # ============================================================
   preview:
     needs: [render]
-    if: always()
+    if: always() && github.event.inputs.publish != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -1049,7 +1201,7 @@ jobs:
   # ============================================================
   log-results:
     needs: [setup, prep, render]
-    if: always()
+    if: always() && github.event.inputs.publish != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
     steps:

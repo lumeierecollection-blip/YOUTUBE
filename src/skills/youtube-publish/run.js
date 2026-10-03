@@ -15,6 +15,8 @@
  * Usage:
  *   node run.js <channel-id>                      # upload latest render
  *   node run.js <channel-id> --dry-run            # validate creds + metadata only
+ *   node run.js <channel-id> --review             # upload from approved-review/ (manual job; stays private)
+ * Uploads only to PUBLISH_CHANNELS (1, 2, 9, 26, 44, 48); any other channel is refused.
  *   node run.js <channel-id> <video.mp4>          # upload a specific render
  *   node run.js process-queue                     # flip due entries to public
  *   node run.js cancel <channel-id> <video-id>    # cancel a queued publish
@@ -32,6 +34,11 @@ const ROOT = join(__dirname, "..", "..", "..");
 
 const API = "https://www.googleapis.com/youtube/v3";
 const UPLOAD = "https://www.googleapis.com/upload/youtube/v3";
+
+// The only channels anything may upload to (owner, 2026-10-03), hardcoded here, not read from
+// config: every upload path (the daily render job, the manual review-publish job) goes
+// through this file, and a channel outside this list is refused before credentials are read.
+const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 48];
 
 const VIDEO_EXTENSIONS = [".mp4", ".webm", ".mov", ".mkv"];
 const THUMB_EXTENSIONS = [".jpg", ".jpeg", ".png"];
@@ -98,12 +105,16 @@ function loadSeoMetadata(channelId, scriptSlug) {
 // { channel, verdict: "approved" }. Only a video whose marker says approved
 // for THIS channel is publishable; approved-review/ and rejected/ never are,
 // and nothing is read from data/renders/<ch>/ any more.
-function findVideo(channelId, explicit) {
-  const rendersDir = join(ROOT, "data", "renders", "approved");
+// --review (the manual review-publish job only): data/renders/approved-review/, whose marker
+// must say "approved-review" for this channel — a video an AI check failed, the local audit
+// passed, and a human chose to publish by dispatching that job. rejected/ is never publishable.
+function findVideo(channelId, explicit, review = false) {
+  const verdict = review ? "approved-review" : "approved";
+  const rendersDir = join(ROOT, "data", "renders", verdict);
   if (!existsSync(rendersDir)) return null;
   const marker = (f) => { try { return JSON.parse(readFileSync(join(rendersDir, f.replace(/\.[^.]+$/, ".json")), "utf-8")); } catch { return null; } };
   const candidates = readdirSync(rendersDir).filter((f) => VIDEO_EXTENSIONS.includes(extname(f).toLowerCase()))
-    .filter((f) => { const m = marker(f); return m && m.verdict === "approved" && String(m.channel) === String(Number(channelId)); });
+    .filter((f) => { const m = marker(f); return m && m.verdict === verdict && String(m.channel) === String(Number(channelId)); });
   if (candidates.length === 0) return null;
   if (explicit) {
     const match = candidates.find((f) => f === explicit);
@@ -162,12 +173,16 @@ function writeQueue(channelId, entries) {
 // render.js writes <slug>-<format>-image-credits.json next to
 // <slug>-<format>-<timestamp>.mp4 (no timestamp on the credits file — it's
 // always the latest render's real attribution list, not one-per-render).
-function creditsPathFor(videoPath) {
-  const dir = dirname(videoPath);
+// Queued videos (approved/, approved-review/) are moved out of data/renders/<ch>/ by
+// render-and-qa.js queueVideo, but the credits file stays there — so that directory is
+// checked too, or a queued upload loses its CC-BY attribution.
+function creditsPathFor(videoPath, channelId) {
   const base = basename(videoPath, extname(videoPath));
   const m = base.match(/^(.+)-(shorts|longform)-\d{4}-\d{2}-\d{2}$/);
   if (!m) return null;
-  return join(dir, `${m[1]}-${m[2]}-image-credits.json`);
+  const name = `${m[1]}-${m[2]}-image-credits.json`;
+  const dirs = [dirname(videoPath), ...(channelId ? [join(ROOT, "data", "renders", String(channelId))] : [])];
+  return dirs.map((d) => join(d, name)).find((p) => existsSync(p)) || join(dirs[0], name);
 }
 
 // Some sourced photos (Wikimedia/Openverse CC-BY) are only licensed on the
@@ -178,8 +193,8 @@ function creditsPathFor(videoPath) {
 // scaffolding), so the video description is the only remaining place a
 // viewer can see it. A missing/malformed credits file must never block a
 // publish — it's additive metadata, not a gate.
-function appendImageCredits(description, videoPath) {
-  const creditsPath = creditsPathFor(videoPath);
+function appendImageCredits(description, videoPath, channelId) {
+  const creditsPath = creditsPathFor(videoPath, channelId);
   if (!creditsPath || !existsSync(creditsPath)) return description;
   try {
     const credits = JSON.parse(readFileSync(creditsPath, "utf-8"));
@@ -193,7 +208,7 @@ function appendImageCredits(description, videoPath) {
 async function buildMetadata(channel, videoPath, seo, topicHint) {
   const topic = topicHint || basename(videoPath, extname(videoPath)).replace(/[-_]+/g, " ");
   const title = seo?.title || `${topic} — ${channel.channel_name}`;
-  const description = appendImageCredits(seo?.description || channel.description || "", videoPath);
+  const description = appendImageCredits(seo?.description || channel.description || "", videoPath, channel.id);
   const tags = seo?.tags?.length ? seo.tags : channel.tags || [];
   return {
     snippet: { title, description, tags, categoryId: "22" },
@@ -244,7 +259,10 @@ async function setThumbnail(token, videoId, thumbPath) {
   return body.items?.[0]?.default?.url || null;
 }
 
-async function uploadChannel(channelId, explicitVideo, dryRun) {
+async function uploadChannel(channelId, explicitVideo, dryRun, review = false) {
+  if (!PUBLISH_CHANNELS.includes(Number(channelId))) {
+    throw new Error(`channel "${channelId}" is not a publish channel — uploads are allowed only to ${PUBLISH_CHANNELS.join(", ")}`);
+  }
   const channel = loadChannel(channelId);
 
   if (!hasCredentials(channel)) {
@@ -274,13 +292,19 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
   }
 
   const creds = loadCredentials(channel);
-  const videoPath = findVideo(channelId, explicitVideo);
+  const videoPath = findVideo(channelId, explicitVideo, review);
   if (!videoPath) {
     console.log(`\n[YOUTUBE-PUBLISH] Channel: ${channelId} (${channel.channel_name})`);
-    console.log(`  No renders found — skipping publish.`);
+    console.log(`  No ${review ? "approved-review " : ""}renders found — skipping publish.`);
     return;
   }
   const topicHint = basename(videoPath, extname(videoPath));
+  // The same render is never uploaded twice (a review-publish dispatched twice for one run).
+  const already = readQueue(channelId).find((e) => e.source_file === basename(videoPath));
+  if (already) {
+    console.log(`\n[YOUTUBE-PUBLISH] Channel: ${channelId} — ${basename(videoPath)} was already uploaded as ${already.video_id}; skipping.`);
+    return;
+  }
   const scriptSlug = topicSlugFromVideo(topicHint);
   const seo = loadSeoMetadata(channelId, scriptSlug);
   const thumb = channel.skip_thumbnail_upload ? null : findThumbnail(channelId, scriptSlug);
@@ -336,7 +360,9 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
   }
 
   const delayHours = channel.publish_delay_hours ?? 1;
-  const stayPrivate = channel.stay_private === true;
+  // A review upload stays private: it failed an AI check, and only the person who reviews it
+  // in YouTube Studio makes it public. process-queue never flips it (cancelled: true).
+  const stayPrivate = channel.stay_private === true || review;
   const goPublicAt = new Date(Date.now() + delayHours * 3600 * 1000).toISOString();
   const entry = {
     video_id: videoId,
@@ -348,6 +374,8 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
     go_public_at: goPublicAt,
     privacy_status: "private",
     cancelled: stayPrivate,
+    source_file: basename(videoPath),
+    source_queue: review ? "approved-review" : "approved",
   };
   const queue = readQueue(channelId);
   queue.push(entry);
@@ -355,7 +383,7 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
 
   console.log(`\n  Private link: https://youtu.be/${videoId}`);
   if (stayPrivate) {
-    console.log(`  STAYS PRIVATE: stay_private=true — this video will never auto-go-public.`);
+    console.log(`  STAYS PRIVATE: ${review ? "review upload" : "stay_private=true"} — this video will never auto-go-public.`);
   } else {
     console.log(`  Goes public: ${goPublicAt} (in ${delayHours} hour(s))`);
   }
@@ -439,9 +467,10 @@ function main() {
   }
 
   const dryRun = process.argv.includes("--dry-run");
+  const review = process.argv.includes("--review");
   const videoArg = process.argv.slice(2).find((a) => !a.startsWith("--") && a !== channelId);
 
-  uploadChannel(channelId, videoArg, dryRun)
+  uploadChannel(channelId, videoArg, dryRun, review)
     .catch((err) => {
       console.error(`\n[YOUTUBE-PUBLISH] ERROR: ${err.message}`);
       process.exit(1);
