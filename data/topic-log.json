@@ -1753,9 +1753,14 @@
           "topic": "Greg Lui AI Tech Smuggling",
           "slug": "greg-lui-ai-tech-smuggling",
           "reserved_at": "2026-10-03T18:18:42.428Z"
+        },
+        {
+          "topic": "Konstantinos Diamantis and the International Corruption Manhunt",
+          "slug": "konstantinos-diamantis-corruption-manhunt",
+          "reserved_at": "2026-10-03T21:20:27.710Z"
         }
       ],
-      "last_generated": "2026-10-03T21:16:22.847Z"
+      "last_generated": "2026-10-03T21:20:27.711Z"
     },
     "27": {
       "channel_name": "Trial Files",
