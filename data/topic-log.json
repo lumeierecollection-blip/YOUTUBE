@@ -572,9 +572,14 @@
           "topic": "Employer Guide for Workplace Laws Taking Effect in October 2026",
           "slug": "employer-guide-workplace-laws-20261001",
           "reserved_at": "2026-10-03T02:55:26.463Z"
+        },
+        {
+          "topic": "New California Law Prohibiting Employer Use of Surveillance Technology",
+          "slug": "new-california-law-human-oversight-surveillance-technology",
+          "reserved_at": "2026-10-03T06:54:27.115Z"
         }
       ],
-      "last_generated": "2026-10-03T06:14:37.301Z"
+      "last_generated": "2026-10-03T06:54:27.115Z"
     },
     "3": {
       "channel_name": "AI Tested",
