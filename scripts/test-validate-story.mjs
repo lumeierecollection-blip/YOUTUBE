@@ -50,5 +50,17 @@ const wire = sec({
   const n = N.validateNarrative({ sections: [{ id: "a", voiceover: "The FBI found $3 million in an Ohio storage unit. Its owner had died in 2019. Police in Akron traced the cash. Why was it there? Except the money wasn't his. It belonged to the Columbus bank he robbed in 1998. Check unclaimed property in Ohio today." }] }, RESEARCH);
   eq("positional fallback finds five beats", n.by, "position");
 }
+// The CLI the workflow calls, WITHOUT --blocked (CI run 37141128792: args[0] was dropped and an
+// empty script was validated).
+{
+  const { spawnSync } = await import("node:child_process");
+  const { writeFileSync } = await import("node:fs");
+  const { join } = await import("node:path");
+  const { tmpdir } = await import("node:os");
+  const f = join(tmpdir(), "story-cli-test.json");
+  writeFileSync(f, JSON.stringify(good));
+  const r = spawnSync(process.execPath, ["scripts/validate-script-story.cjs", "7", f], { encoding: "utf8" });
+  eq("CLI without --blocked reads channel 7 and the five beats", [/[script] ch-7: beats read by section ids/.test(r.stdout), r.status], [true, 0]);
+}
 console.log(bad ? `${bad} FAILED` : "all pass");
 process.exit(bad ? 1 : 0);

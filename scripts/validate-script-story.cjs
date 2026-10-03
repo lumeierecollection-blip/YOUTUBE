@@ -19,7 +19,9 @@ const N = require("./validate-script-narrative.cjs");
 const args = process.argv.slice(2);
 const bi = args.indexOf("--blocked");
 const blockedDir = bi >= 0 ? args[bi + 1] : null;
-const [ch, scriptPath, researchPath] = args.filter((a, i) => i !== bi && i !== bi + 1);
+// Without --blocked, bi is -1 and "i !== bi + 1" dropped args[0] (the channel): the first check
+// of CI run 37141128792 read the script path as the channel and validated an empty script.
+const [ch, scriptPath, researchPath] = bi < 0 ? args : args.filter((a, i) => i !== bi && i !== bi + 1);
 const script = JSON.parse(readFileSync(scriptPath, "utf8"));
 let research = null;
 try { if (researchPath) research = JSON.parse(readFileSync(researchPath, "utf8")); } catch {}
