@@ -405,6 +405,7 @@ jobs:
             fi
             FEEDBACK=""
             PASSED=0
+            SPEC_REASKED=0
             for ATTEMPT in 1 2 3 4 5; do
               echo "=== SCRIPT: $CH — $SCRIPT_SLUG (attempt $ATTEMPT/5) ==="
               PROMPT_FILE=prompts/write-script.md
@@ -433,6 +434,28 @@ jobs:
               jq '.structured_output' /tmp/script-raw-$FORMAT.json \
                 > "data/research/$CH/${SCRIPT_SLUG}-script.json"
               if node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then
+                # SPECIFICITY (scripts/validate-script.cjs): every sentence names a
+                # person / place / organization / number / object from the research,
+                # avg >= 1.5, no banned phrase, concrete:abstract >= 2. One re-ask
+                # with the failing sentences; a second failure is logged (and
+                # recorded in data/ci-runs/) and the script continues — this check
+                # never blocks the run (owner's spec 2026-10-03).
+                set +e
+                node scripts/validate-script.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" > /tmp/spec-out-$FORMAT.log 2>&1
+                SPEC_EXIT=$?
+                set -e
+                cat /tmp/spec-out-$FORMAT.log
+                if [ "$SPEC_EXIT" -ne 0 ]; then
+                  if [ "$SPEC_REASKED" -eq 0 ] && [ "$ATTEMPT" -lt 5 ]; then
+                    SPEC_REASKED=1
+                    echo "[script] ch-$CH: specificity FAIL, re-asking once with the failing sentences"
+                    FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$(grep -E '^  - ' /tmp/spec-out-$FORMAT.log || true)" | grep -E '^  - ' | sort -u || true)
+                    continue
+                  fi
+                  echo "::warning::[script] ch-$CH: specificity still FAIL after the re-ask — continuing with this script (logged to data/ci-runs/blocked-script-specificity-$CH.txt)"
+                  mkdir -p data/ci-runs
+                  { echo "Script specificity FAIL twice in a row — ch-$CH, $SCRIPT_SLUG, run ${{ github.run_id }} ($(date -u +%FT%TZ))"; echo; cat /tmp/spec-out-$FORMAT.log; } > "data/ci-runs/blocked-script-specificity-$CH.txt"
+                fi
                 # LENGTH, measured on the real voiceover. render.js caps a
                 # Short at 60s, so a longer narration is cut off mid-word —
                 # ch-48's 61.06s voiceover in run 35830826546. Word count
@@ -594,6 +617,7 @@ jobs:
             data/research/${{ matrix.channel_id }}/
             data/tts/${{ matrix.channel_id }}/
             data/thumbnails/${{ matrix.channel_id }}/
+            data/ci-runs/blocked-script-specificity-${{ matrix.channel_id }}.txt
           retention-days: 1
 
       # A reservation whose video never gets made is released, so a failed
