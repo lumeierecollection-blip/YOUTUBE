@@ -1430,6 +1430,21 @@ async function resolveCanvas(channelId, planPath, plan) {
     console.log(`[variety] ch-${channelId} final: TYPE-FULL ${after.count}/${after.n} (max ${after.max}), adjacent TYPE pairs ${after.adjacent.length}, max consecutive same composition ${maxRun}, distinct compositions ${distinct} (${keys.join(", ")})${after.ok ? "" : " — OVER the variety rule (logged; nothing else in these sentences is grounded)"}`);
     if (!after.ok) console.warn(`::warning::[variety] ch-${channelId}: ${after.count}/${after.n} TYPE beats after the fallbacks (max ${after.max})`);
   }
+  // "Georgia" is two regions: the map drew the COUNTRY for Hyundai's Metaplant in the US state
+  // (CI run 37126933290 ch-48 beat 1, beat check NO). It is the US state unless the script
+  // speaks of the Caucasus country (Tbilisi, Georgian, the Black Sea, Abkhazia, South Ossetia).
+  {
+    const all = plan.beats.map((b) => b.narration || "").join(" ");
+    const caucasus = /\b(Tbilisi|Georgian|Caucasus|Black Sea|Abkhazia|South Ossetia|Batumi)\b/.test(all);
+    for (const b of plan.beats) {
+      const c = b.canvas;
+      if (c?.composition !== "MAP-CENTERED" || !/^georgia$/i.test(String(c.data?.place || "").trim()) || caucasus) continue;
+      // "Georgia state" resolves to the US state (geo-regions alias); the map is still labelled "Georgia".
+      c.data = { ...c.data, place: "Georgia state", label: "Georgia" };
+      if (b.data) b.data = { ...b.data, place: "Georgia state", label: "Georgia" };
+      console.log(`[canvas] ch-${channelId} beat ${b.index}: MAP "Georgia" -> the US state (no Caucasus context in the script)`);
+    }
+  }
   // Two major TYPE-FULL statements in a row both get the "words" headline motion, and
   // canvas-type fails "headline motion twice in a row" (CI run 37108869325 ch-48 beats 6-7):
   // the earlier one (never the hook) is made medium; the close keeps its weight.
