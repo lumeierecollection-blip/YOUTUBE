@@ -625,7 +625,14 @@ export function canvasLayout(c) {
     // date shrinks to fit (it used to floor at 120 px and push the last label
     // past the composition's bottom).
     const LABEL_RESERVE = Math.ceil(2 * 38 * ROLE_DATA.lineHeight) + 14 + 10;
-    const size = Math.max(56, Math.min(260, Math.floor((rowH - LABEL_RESERVE) / ROLE_NUMBER.lineHeight)));
+    let size = Math.max(56, Math.min(260, Math.floor((rowH - LABEL_RESERVE) / ROLE_NUMBER.lineHeight)));
+    // Every date also fits BESIDE the line: "October 1, 2026" at the row's size ran through
+    // the line and its dot (CI run 37082751699 ch-2) — its width was capped, not fitted.
+    const sideW = (flip ? lineX - 60 - L_EDGE : R_EDGE - lineX - 60) - 8;
+    const fam = { family: "Fraunces", weight: ROLE_NUMBER.weight, tracking: ROLE_NUMBER.tracking };
+    // x1.12: measure() read "October 1, 2026" at 760 px where the browser drew ~827
+    // (Fraunces' optical sizing at display sizes), and right-aligned overflow spills right.
+    while (size > 56 && mk.some((m) => measure(String(m.date), size, fam) * 1.12 > sideW)) size -= 4;
     // Rows measured first, then spread: the first starts at the zone's top,
     // the last label ends on its bottom edge (top-anchored rows left the
     // bottom of the zone empty: canvas-coverage 58%, QA render 2026-10-02).

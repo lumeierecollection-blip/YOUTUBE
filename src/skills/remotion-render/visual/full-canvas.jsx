@@ -1075,6 +1075,10 @@ function PopGroups({ beat, idx, fps, accent, state, live = null }) {
   const c = normalizeCanvas(beat.scene.canvas, idx);
   const L = canvasLayout(c);
   const settled = settleFrame(beat.duration_frames, L.composition);
+  // The header (kicker, headline) settles at the ordinary 66% frame even when the body
+  // settles at the last (LIST-BUILD / TIMELINE): at the last frame the kicker's word exit
+  // had already run and the frame lost it — canvas-coverage 59.3% (CI run 37082751699 ch-2).
+  const headerSettled = settleFrame(beat.duration_frames, "");
   return popGroups(c, L).map((g) => {
     const p = state(g);
     if (p.o <= 0.001) return null;
@@ -1082,7 +1086,7 @@ function PopGroups({ beat, idx, fps, accent, state, live = null }) {
     return (
       <div key={`${idx}-${g.key}`} style={{ position: "absolute", inset: 0, clipPath: clip, opacity: p.o }}>
         <div style={{ position: "absolute", inset: 0, transformOrigin: `${g.cx.toFixed(0)}px ${g.cy.toFixed(0)}px`, transform: `scale(${p.s.toFixed(4)})` }}>
-          <BeatCanvas beat={beat} idx={idx} bodyLocal={g.key === "photo" && live != null ? Math.max(0, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={settled} fps={fps} accent={accent} hero={null} show={g.show} still />
+          <BeatCanvas beat={beat} idx={idx} bodyLocal={g.key === "photo" && live != null ? Math.max(0, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={headerSettled} fps={fps} accent={accent} hero={null} show={g.show} still />
         </div>
       </div>
     );
