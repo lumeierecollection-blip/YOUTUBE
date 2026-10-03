@@ -457,6 +457,9 @@ async function main() {
   }
 
   let lastError = null;
+  // The search stages' answer step goes to Gemini first (see the answer loop below).
+  let searchGemini = SEARCH_AGENTS.has(agent) && hasGeminiKey();
+  if (SEARCH_AGENTS.has(agent)) log(`[${taskLabel}] ch-${args["channel-id"] ?? "?"}: answer model ${searchGemini ? `gemini (${GEMINI_SCRIPT_MODEL}), ollama fallback` : `ollama (${models.join(", ")}) — no Gemini key`}`);
   for (const spec of models) {
     const model = spec.slice("ollama/".length);
     const messages = [];
@@ -552,7 +555,27 @@ async function main() {
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       let r;
-      try {
+      let usedSpec = spec;
+      // Search stages (discover, research) answer through Gemini first when a key is set:
+      // qwen2.5:3b proposed already-covered topics 3/3 times (ch-9 discovery) and wrote
+      // "S1: <url>" citations 4/4 times (ch-26 research) in CI run 37152783591, and its first
+      // discovery call timed out at 300 s. Same messages (the search results with their
+      // source ids), same checks below — duplicates, URL grounding, source domains — for
+      // whichever model answers. A Gemini error switches this process to Ollama.
+      if (searchGemini) {
+        const g = await callGemini([...messages, { role: "user", content: `Respond with the JSON object only (no prose, no markdown fence). It must validate against this JSON Schema:\n${JSON.stringify(schema)}` }],
+          { model: GEMINI_SCRIPT_MODEL, maxTokens: 8192, temperature: Math.min(0.9, 0.3 + 0.2 * (attempt - 1)), noCache: true, tag: `${taskLabel} ch-${args["channel-id"] ?? "?"}` });
+        if (g && g.source === "gemini" && g.error) {
+          searchGemini = false;
+          log(`[${taskLabel}] ch-${args["channel-id"] ?? "?"}: gemini unavailable, falling back to ollama (${g.error}: ${String(g.detail || "").slice(0, 160)})`);
+        } else {
+          const content = g && typeof g.content === "string" && Object.keys(g).length === 1 ? g.content : JSON.stringify(g);
+          r = { content, usage: { input: g?._usage?.prompt_tokens, output: g?._usage?.completion_tokens } };
+          usedSpec = `gemini/${GEMINI_SCRIPT_MODEL}`;
+          log(`[${taskLabel}] ch-${args["channel-id"] ?? "?"}: answer attempt ${attempt}/${maxRetries} by gemini (${GEMINI_SCRIPT_MODEL})`);
+        }
+      }
+      if (!r) try {
         // Retries raise the temperature: at 0.2 the same context gave byte-identical
         // rejected answers four times in a row (ch-48, run 35829223604).
         r = await chat(model, messages, schema, `${taskLabel}/answer attempt ${attempt}/${maxRetries}`, Math.min(0.9, 0.2 + 0.25 * (attempt - 1)),
@@ -566,7 +589,7 @@ async function main() {
         logTokenUsage({ model: spec, agent, task: taskLabel, channelId: args["channel-id"], videoId: args["video-id"], ok: false });
         continue;
       }
-      logTokenUsage({ model: spec, agent, task: taskLabel, channelId: args["channel-id"], videoId: args["video-id"], usage: r.usage, ok: true });
+      logTokenUsage({ model: usedSpec, agent, task: taskLabel, channelId: args["channel-id"], videoId: args["video-id"], usage: r.usage, ok: true });
       const data = extractJson(r.content);
       const problems = [];
       if (!data) {
@@ -629,7 +652,7 @@ async function main() {
         console.log(JSON.stringify({
           structured_output: data,
           total_cost_usd: 0,
-          model_used: spec,
+          model_used: usedSpec,
           websearch_calls: searches.length,
           search_queries: searches.map((s) => s.query),
           input_tokens: r.usage.input ?? null,
@@ -637,7 +660,7 @@ async function main() {
         }));
         return;
       }
-      lastError = `[${spec}] attempt ${attempt}/${maxRetries}: ${problems.join("; ")}`;
+      lastError = `[${usedSpec}] attempt ${attempt}/${maxRetries}: ${problems.join("; ")}`;
       log(lastError);
       messages.push({ role: "assistant", content: r.content });
       messages.push({ role: "user", content: `That response was rejected: ${problems.join("; ")}. Fix exactly those problems and return the full corrected JSON object.` });

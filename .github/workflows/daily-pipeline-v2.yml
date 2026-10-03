@@ -197,6 +197,12 @@ jobs:
         if: github.event.inputs.render_only != 'true'
         id: discover
         env:
+          # Answer step through Gemini first (scripts/ollama-agent.js searchGemini); Ollama is the fallback.
+          FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -344,6 +350,12 @@ jobs:
       - name: Research topic
         if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
         env:
+          # Answer step through Gemini first (scripts/ollama-agent.js searchGemini); Ollama is the fallback.
+          FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
