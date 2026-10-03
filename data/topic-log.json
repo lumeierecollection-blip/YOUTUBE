@@ -2724,9 +2724,14 @@
           "topic": "FDA GMP Violations",
           "slug": "fda-gmp-violations-fresenius-kabi-2026-10-02",
           "reserved_at": "2026-10-02T23:52:00.083Z"
+        },
+        {
+          "topic": "A3 final safety standard for industrial mobile robots",
+          "slug": "a3-final-safety-standard-industrial-mobile-robots",
+          "reserved_at": "2026-10-03T00:41:45.594Z"
         }
       ],
-      "last_generated": "2026-10-02T23:52:00.084Z"
+      "last_generated": "2026-10-03T00:41:45.594Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
