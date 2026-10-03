@@ -51,6 +51,6 @@
     "publish_delay_hours": 1,
     "go_public_at": "2026-09-20T11:34:18.070Z",
     "privacy_status": "private",
-    "cancelled": false
+    "cancelled": true
   }
 ]
