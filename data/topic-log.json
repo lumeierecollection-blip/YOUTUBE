@@ -1765,9 +1765,14 @@
           "topic": "David Rivera's 10-Year Sentence for Venezuela Lobbying",
           "slug": "davidrivera-10-years-prison",
           "reserved_at": "2026-10-03T08:17:14.497Z"
+        },
+        {
+          "topic": "Konstantinos Diamantis Corruption Case",
+          "slug": "konstantinos-diamantis-corruption",
+          "reserved_at": "2026-10-03T08:50:13.581Z"
         }
       ],
-      "last_generated": "2026-10-03T08:17:14.497Z"
+      "last_generated": "2026-10-03T08:50:13.581Z"
     },
     "27": {
       "channel_name": "Climate Now",
