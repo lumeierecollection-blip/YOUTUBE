@@ -26,6 +26,8 @@ import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layo
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { assignCanvasAnimations } from "./anim-plan.js";
+import { isTypeCanvas, varietyReport, beatsToConvert, fallbacksFor } from "./composition-variety.js";
+import { quantitiesOf } from "./canvas-grounding.js";
 import { checkVisual, figureKey, entityNamedInSentence, comparisonNumbers } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
@@ -938,6 +940,11 @@ function canvasContentFor(b, { photo = null } = {}) {
   if (vt === "TYPE" && b.name_card?.name) c.name_card = b.name_card;
   // A logo or a money object fetched for this beat: the hero cutout (canvas-layout.js TYPE-FULL).
   if (vt === "TYPE" && b.hero_cutout) c.concept_visuals = [b.hero_cutout];
+  // Composition variety's drawn-symbol fallback (scripts/composition-variety.js): the symbol for
+  // what the sentence states ("risk" -> warning triangle) is the beat's hero. A name card keeps its name.
+  else if (vt === "TYPE" && b.fallback_symbol && !b.name_card?.name) c.concept_visuals = [{ name: b.fallback_symbol, class: "symbol", w: 1, h: 1, fallback: true }];
+  // Entrance style (part C.4, assigned by the planner): together | staggered | visual-first.
+  if (b.entrance_style) c.entrance_style = b.entrance_style;
   // Source credit (part C): the domain of the beat's fetched image.
   const credit = sourceCredit(photo?.source_url || b.hero_cutout?.source_url);
   if (credit) c.source_credit = credit;
@@ -1363,6 +1370,60 @@ async function resolveCanvas(channelId, planPath, plan) {
         if (nums) console.log(`[two-number] ch-${channelId} beat ${b.index}: ${nums.join(" vs ")} -> ${b.canvas.composition} ${b.canvas.visual_type}${["BAR", "LINE", "PIE", "GAUGE"].includes(String(b.canvas.visual_type).toUpperCase()) ? " (chart, as the rule requires)" : " (NOT a chart)"}`);
       }
     }
+  }
+  // ── COMPOSITION VARIETY on the resolved canvases (owner's spec 2026-10-03, part B) ──
+  // The planner applied the rule to its plan; resolution can still turn a beat back into
+  // TYPE (a photo that did not verify, a dropped concept). Same rule, same fallbacks
+  // (scripts/composition-variety.js), the same gates (checkVisual), no composition twice in
+  // a row; a name card (an entity's name) is converted last. Never fails the run.
+  {
+    const narr = (b) => b.narration || "";
+    const keyOf = (c) => c.composition + ((c.concept_visuals || []).length ? "+HERO" : "") + (String(c.name_card?.sub || "").trim() ? "+NAME" : "");
+    const flags = () => plan.beats.map((b) => isTypeCanvas(b.canvas));
+    const before = varietyReport(flags());
+    let changed = 0;
+    if (!before.ok) {
+      for (const i of beatsToConvert(flags(), (k) => !!plan.beats[k].canvas.name_card)) {
+        const f = flags(), r = varietyReport(f);
+        if (r.ok) break;
+        if (!f[i] || (!f[i - 1] && !f[i + 1] && r.excess === 0)) continue;
+        const b = plan.beats[i], st = narr(b), was = keyOf(b.canvas);
+        const q = quantitiesOf(st)[0];
+        let done = null;
+        for (const cand of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
+          const nb = [plan.beats[i - 1], plan.beats[i + 1]].filter(Boolean).map((x) => keyOf(x.canvas));
+          if (cand.kind === "symbol") {
+            if (nb.includes("TYPE-FULL+HERO") || b.canvas.name_card) continue;
+            b.fallback_symbol = cand.symbol; b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
+            b.canvas = canvasContentFor(b, {});
+            done = `${was} -> ${keyOf(b.canvas)} (drawn symbol "${cand.symbol}": what the sentence states)`;
+            break;
+          }
+          const v = checkVisual({ visual_type: cand.visual_type, data: cand.data, named_entities: b.named_entities }, st);
+          if (v.why || v.type !== cand.visual_type) continue;
+          if (nb.includes(compositionFor(v.type, false))) continue;
+          const fk = figureKey(v);
+          if (fk && plan.beats.some((x, j) => j !== i && figureKey(checkVisual(x, narr(x))) === fk)) continue;
+          b.visual_type = v.type; b.data = v.data; delete b.type_layout; delete b.name_card;
+          b.canvas = canvasContentFor(b, {});
+          done = `${was} -> ${b.canvas.composition} ${v.type} ${JSON.stringify(v.data)}${cand.kind === "keynouns" ? " (last resort: two of the sentence's own key nouns)" : ""}`;
+          break;
+        }
+        if (done) changed++;
+        console.log(`[variety] ch-${channelId} beat ${b.index}: ${done || `${was} kept — no fallback fits its sentence`}`);
+      }
+      // Rebuilt canvases get their sentence case, variant and folio back (and the one emphasis beat is re-chosen).
+      if (changed) styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
+    }
+    const after = varietyReport(flags());
+    const keys = plan.beats.map((b) => keyOf(b.canvas));
+    let run = 1, maxRun = 1;
+    for (let i = 1; i < keys.length; i++) { run = keys[i] === keys[i - 1] ? run + 1 : 1; maxRun = Math.max(maxRun, run); }
+    const distinct = new Set(plan.beats.map((b) => b.canvas.composition)).size;
+    plan.variety = { type_full: after.count, beats: after.n, max_type: after.max, adjacent_type: after.adjacent.length, max_consecutive_same: maxRun, distinct_compositions: distinct, converted: changed,
+      entrance_styles: plan.beats.map((b) => b.canvas.entrance_style || null) };
+    console.log(`[variety] ch-${channelId} final: TYPE-FULL ${after.count}/${after.n} (max ${after.max}), adjacent TYPE pairs ${after.adjacent.length}, max consecutive same composition ${maxRun}, distinct compositions ${distinct} (${keys.join(", ")})${after.ok ? "" : " — OVER the variety rule (logged; nothing else in these sentences is grounded)"}`);
+    if (!after.ok) console.warn(`::warning::[variety] ch-${channelId}: ${after.count}/${after.n} TYPE beats after the fallbacks (max ${after.max})`);
   }
   // Two major TYPE-FULL statements in a row both get the "words" headline motion, and
   // canvas-type fails "headline motion twice in a row" (CI run 37108869325 ch-48 beats 6-7):

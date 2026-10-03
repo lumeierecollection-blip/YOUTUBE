@@ -44,6 +44,7 @@ const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRe
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { previewAnimations } from "./anim-plan.js";
 import { compositionFor, splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { trendOf, maxTypeBeats, varietyReport, beatsToConvert, isTypePlanned, fallbacksFor, assignEntranceStyles } from "./composition-variety.js";
 import { flowNodes, FLOW_WORDS, listItemsOf, timelineOf, compareOf, documentNameOf, moneyObjectOf, quantitiesOf, statedPercentsOf, knownPlacesOf } from "./canvas-grounding.js";
 
 const { enforceCaps, describe: describeMechanisms, TYPOGRAPHY } = createRequire(import.meta.url)("./plan-caps.cjs");
@@ -172,9 +173,9 @@ for (const [ch, names] of Object.entries(NICHE_DRAWINGS)) {
 // CLAUDE.md hard rule: nothing on screen that the source did not say. Every
 // number a chart draws must appear in the sentence; a map's place must be a
 // real region. Anything else becomes TYPE.
-export const VISUAL_TYPES = ["PHOTO", "COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP", "PROCESS", "LIST", "TIMELINE", "COMPARE", "DOCUMENT", "MONEY", "TYPE"];
+export const VISUAL_TYPES = ["PHOTO", "COUNTER", "BAR", "PIE", "LINE", "GAUGE", "TREND", "MAP", "PROCESS", "LIST", "TIMELINE", "COMPARE", "DOCUMENT", "MONEY", "TYPE"];
 const TYPE_CAPABILITY = { PHOTO: "revelation", COUNTER: "evidence", BAR: "comparison", PIE: "population", LINE: "growth", GAUGE: "accumulation", MAP: "contrast", PROCESS: "causation",
-  LIST: "evidence", TIMELINE: "growth", COMPARE: "comparison", DOCUMENT: "revelation", MONEY: "evidence" };
+  LIST: "evidence", TIMELINE: "growth", COMPARE: "comparison", DOCUMENT: "revelation", MONEY: "evidence", TREND: "growth" };
 
 // ── named entities: only what the sentence NAMES ─────────────────────
 // Each entity's name must appear in its sentence: every content word of the
@@ -269,6 +270,7 @@ export function groundedOptions(sentence) {
   if (nums.length >= 2) allowed.push("BAR", "LINE");
   if (places.size) allowed.push("MAP");
   if (FLOW_WORDS.test(text)) allowed.push("PROCESS");
+  if (trendOf(text)) allowed.push("TREND");
   if (listItemsOf(text)) allowed.push("LIST");
   if (timelineOf(text)) allowed.push("TIMELINE");
   if (compareOf(text)) allowed.push("COMPARE");
@@ -386,7 +388,7 @@ export function leadInFromSentence(lead, sentence) {
  * only one). The layout and local-audit zones-no-overlap enforce the zones
  * whatever the plan says, so a bad declaration cannot render overlapping.
  */
-const ZONE_CHART_TYPES = new Set(["COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP", "PROCESS", "LIST", "TIMELINE", "COMPARE"]);
+const ZONE_CHART_TYPES = new Set(["COUNTER", "BAR", "PIE", "LINE", "GAUGE", "TREND", "MAP", "PROCESS", "LIST", "TIMELINE", "COMPARE"]);
 export function checkZones(b) {
   const z = (v) => String(v || "").toLowerCase().trim();
   const hz = z(b.headline_zone), cz = z(b.chart_zone), kz = z(b.caption_zone);
@@ -405,6 +407,63 @@ export function checkZones(b) {
   }
   b.headline_zone = hz; b.chart_zone = cz; b.caption_zone = "bottom";
   return { ok: true, why: null };
+}
+
+/**
+ * Composition variety on a plan (owner's spec 2026-10-03, part B.3 / B.4; the rule and the
+ * fallbacks live in scripts/composition-variety.js). Converts TYPE beats that sit next to
+ * another TYPE beat, then the excess over maxTypeBeats(n), never the hook or the CTA.
+ * Each fallback passes checkVisual, does not repeat a neighbour's composition and does not
+ * repeat a figure another beat draws. A symbol fallback is recorded as b.fallback_symbol
+ * (render-and-qa draws it as the beat's hero). Logs every conversion; never throws.
+ */
+export function applyVarietyFallbacks(plan, sentences, channelId, stage = "plan") {
+  const beats = plan?.beats || [];
+  const sentOf = (b, i) => sentences?.[b.index]?.text || sentences?.[i]?.text || b.narration || "";
+  const eff = (i) => (beats[i].visual_type === undefined ? { type: "TYPE" } : checkVisual(beats[i], sentOf(beats[i], i)));
+  const isT = (i) => eff(i).type === "TYPE" && isTypePlanned({ ...beats[i], visual_type: "TYPE" });
+  const keyOf = (i) => {
+    const v = eff(i);
+    if (v.type === "TYPE") return beats[i].fallback_symbol || (Array.isArray(beats[i].concepts) && beats[i].concepts.length) ? "TYPE-FULL+HERO" : "TYPE";
+    return compositionFor(v.type, ["PHOTO", "DOCUMENT", "MONEY"].includes(v.type));
+  };
+  const flags = () => beats.map((_, i) => isT(i));
+  const before = varietyReport(flags());
+  if (before.ok) {
+    console.log(`[variety] ch-${channelId} (${stage}): TYPE ${before.count}/${before.n} (max ${before.max}), no two TYPE beats in a row — passes`);
+    return before;
+  }
+  for (const i of beatsToConvert(flags())) {
+    const f = flags(), r = varietyReport(f);
+    if (r.ok) break;
+    if (!f[i] || (!f[i - 1] && !f[i + 1] && r.excess === 0)) continue;
+    const b = beats[i], st = sentOf(b, i);
+    const q = quantitiesOf(st)[0];
+    let done = null;
+    for (const c of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
+      const neighbours = [i - 1, i + 1].filter((j) => j >= 0 && j < beats.length).map(keyOf);
+      if (c.kind === "symbol") {
+        if (neighbours.includes("TYPE-FULL+HERO")) continue;
+        b.fallback_symbol = c.symbol;
+        done = `drawn symbol "${c.symbol}" (what the sentence states)`;
+        break;
+      }
+      const v = checkVisual({ visual_type: c.visual_type, data: c.data, named_entities: b.named_entities }, st);
+      if (v.why || v.type !== c.visual_type) continue;
+      if (neighbours.includes(compositionFor(v.type, false))) continue;
+      const fk = figureKey(v);
+      if (fk && beats.some((x, j) => j !== i && figureKey(eff(j)) === fk)) continue;
+      b.visual_type = v.type; b.data = v.data; delete b.type_layout;
+      b.capabilities = [TYPE_CAPABILITY[v.type] || "causation"];
+      done = `${v.type} ${JSON.stringify(v.data)}${c.kind === "keynouns" ? " (last resort: two of the sentence's own key nouns)" : ""}`;
+      break;
+    }
+    console.log(`[variety] ch-${channelId} beat ${b.index ?? i}: TYPE -> ${done || "no fallback fits its sentence (kept TYPE)"}`);
+  }
+  const after = varietyReport(flags());
+  console.log(`[variety] ch-${channelId} (${stage}): TYPE ${before.count}/${before.n} -> ${after.count}/${after.n} (max ${after.max}), adjacent pairs ${after.adjacent.length}${after.ok ? " — passes" : " — still over the rule (logged; the run continues)"}`);
+  if (!after.ok) console.warn(`::warning::[variety] ch-${channelId} (${stage}): ${after.count}/${after.n} TYPE beats (max ${after.max})${after.adjacent.length ? `, TYPE next to TYPE at beats ${after.adjacent.map((x) => `${x - 1}-${x}`).join(", ")}` : ""}`);
+  return after;
 }
 
 export function checkVisual(b, sentence) {
@@ -432,8 +491,23 @@ export function checkVisual(b, sentence) {
     // 36504143080 ch-2 drew "rights -> civilians -> protected" and "police
     // encounters -> legal boundaries" for sentences with no flow in them, and
     // the beat check rightly called them abstract circles.
+    // The one exception (owner's spec 2026-10-03, part B.2): a beat that may not be TYPE
+    // (composition variety) and grounds nothing else is drawn as two of its sentence's own
+    // key nouns — scripts/composition-variety.js keyNouns(), the last resort, logged. Its
+    // nodes still have to be the sentence's words (checked above).
+    if (d.keynouns === true && nodes.length === 2) return { type: t, data: { nodes, keynouns: true } };
     if (!FLOW_WORDS.test(String(sentence || ""))) return bad("PROCESS: the sentence states no cause, result or sequence");
     return { type: t, data: { nodes } };
+  }
+  // TREND (part B.4): the sentence STATES a rise or a fall ("mortgage rates rose") with no
+  // figures to chart — a line rising / falling to one dot, labelled with the sentence's own
+  // subject. No numbers, no axis values: nothing the sentence does not say.
+  if (t === "TREND") {
+    const tr = trendOf(sentence);
+    if (!tr) return bad("TREND: the sentence states no rise or fall");
+    const label = String(d.label || tr.label).trim();
+    if (!leadInFromSentence(label, sentence) || label.split(/\s+/).length > 3) return bad(`TREND label "${label}" is not 1-3 words from the sentence`);
+    return { type: t, data: { direction: tr.direction, label } };
   }
   // The compositions read from the sentence itself (canvas-grounding.js): a
   // LIST / TIMELINE / COMPARE / DOCUMENT / MONEY beat is valid exactly when the
@@ -570,12 +644,14 @@ SCENE AND COMPOSITION (one rule). "scene_description" says in plain English what
   PHOTO {"entity"} — a real, verified photo of a named person (PORTRAIT), place (SCENE-FULL) or building / company / institution (ARCHITECTURE). The entity must be in named_entities and named in the sentence; with no verified photo the system draws its name.
   DOCUMENT {"name"} — a named law or case. MONEY {"object","value"} — a money object or amount; pick the object the sentence means: dollar bill (its denomination), stack of bills, banded cash bundle, single coin, stack of coins, wallet with cash, empty wallet, savings jar, piggy bank, cracked piggy bank, receipt, bank statement, credit card.
   MAP {"place"} — a country or US state it names.
+  TREND {"direction":"up"|"down","label": its subject, 1-3 words from the sentence} (DATA-FULL) — a rise or fall it states with no figure: a line to one dot, no numbers.
   PROCESS {"nodes":[2-3 nodes of 1-3 words, every word from the sentence, cause -> effect order]} — only a stated cause/effect or sequence, not a list.
   TIMELINE {} (2+ dated events) · COMPARE {} (two figures against each other) · LIST {} (3-5 items) — the system reads these from the sentence.
 Numbers exactly as the sentence says them; a number it does not say is rejected.
 
 CHOOSING (enforced: if fewer than 60% of the beats between the hook and the close are visual the plan is sent back, and a TYPE beat whose sentence grounds a visual is converted). For each content beat, in order: two comparable numbers -> a chart (rule below); one number -> COUNTER; a place -> MAP or PHOTO; a person / company / institution / building -> PHOTO; a physical object -> list it in "concepts"; a cause or sequence -> PROCESS; dated events -> TIMELINE; an enumeration -> LIST; a change -> LINE / BAR / COMPARE; only if none applies -> TYPE. Beat 0 is a strong hook, the last beat a clear close or payoff; when the script names anyone or anywhere, at least one beat is a PHOTO. A number is shown for what it MEANS: a chart only when the sentence is about quantity, comparison or trend, never as decoration.
 TWO-NUMBER RULE: a sentence with TWO DISTINCT comparable numbers and a comparison word (more, less, than, versus, higher, lower, grew, fell, rose, dropped, doubled, halved, increased, decreased, compared to — e.g. "rose from 3.8% to 4.3%", "10 million vs 22 million") is DATA-FULL: LINE for one thing over time, BAR for two categories, PIE for parts of a whole, GAUGE for a percentage change. Never TYPE or PHOTO. One number alone is a COUNTER, not this rule.
+COMPOSITION VARIETY — HARD RULE (checked, and the plan is sent back): no two consecutive beats use the same composition, NEVER two TYPE beats in a row, and at most 3 of every 10 beats are TYPE (the hook and the CTA included). Every other beat shows a chart, a number, a photo, a logo, a map, an object ("concepts") or a process. A sentence with no number, name, place or object still must not make two TYPE beats in a row: a stated rise or fall -> TREND; a stated cause or sequence -> PROCESS; TYPE only for the hook, the CTA, or an abstract sentence between two visual beats. "entrance_style": "together" | "staggered" | "visual-first" — never the same on two consecutive beats.
 
 ENTITIES. "named_entities": everything the sentence NAMES that the scene shows, written as in the sentence, full name, no bracketed acronym: [{"type": "person"|"company"|"institution"|"place"|"building"|"object"|"number", "name"}] — company = a business ("Engel", "Bosch", "Fisher Phillips"); institution = an agency, court, standards body, trade show or international body ("SEC", "Hannover Messe", "ISO"); object = a physical thing; number = a figure it states. "entity_anchor_word": the ONE word of the sentence naming the main entity ("Powell", "courthouse", "347") — its visual pops when it is spoken; null if none. "concepts": up to 3 physical objects the sentence names, the LITERAL object never a symbol for an idea ("Equipping officers with gloves" -> ["gloves"], not "shield"); a name from CONCEPTS or a 1-3 word noun phrase of the sentence's own words that names the object unambiguously out of context ("steel plates", not "plates"); never a person, never an idea. CONCEPTS: ${CONCEPT_NAMES.join(", ")}
 
@@ -768,13 +844,20 @@ async function main() {
       console.log(`[plan] beat ${x.i}: two-number comparison (${x.nums.join(" vs ")}) -> ${CHART_TYPES.includes(x.vt) ? `DATA-FULL ${x.vt}, as the rule requires` : `${x.vt}: violates the two-number rule`}`);
     }
   }
+  // COMPOSITION VARIETY (owner's spec 2026-10-03, part B.3): count the TYPE beats; more than
+  // maxTypeBeats(n) (3 of 10) or two adjacent -> the same one re-ask, with the constraint.
+  const variety = (r) => varietyReport((r?.beats || []).map(isTypePlanned));
+  const vbad = (v) => v.excess + v.adjacent.length;
   if (okBeats(geminiResult) && (sentences.length >= 4 || twoNumber(geminiResult).length)) {
     let rr = visualRatio(geminiResult);
     let tn = twoNumber(geminiResult);
+    let vr = variety(geminiResult);
     const ratioOk = (x) => sentences.length < 4 || x.share >= 0.6;
     console.log(`[plan] beat ratio: ${rr.vis} visual / ${rr.type} type (${(rr.share * 100).toFixed(0)}% visual, ${ratioOk(rr) ? "passes" : "fails — re-asking once"})${tn.length ? `; two-number rule broken on beat(s) ${tn.map((x) => x.i).join(", ")} — re-asking once` : ""}`);
-    if (!ratioOk(rr) || tn.length) {
+    console.log(`[plan] ch-${channelId}: TYPE-FULL count = ${vr.count}/${vr.n}${vr.excess ? `, exceeds max ${vr.max}` : ` (max ${vr.max})`}${vr.adjacent.length ? `, adjacent TYPE beats at ${vr.adjacent.map((i) => `${i - 1}-${i}`).join(", ")}` : ""}${vr.ok ? ", passes" : ", re-asking with variety constraint"}`);
+    if (!ratioOk(rr) || tn.length || !vr.ok) {
       const why = [];
+      if (!vr.ok) why.push(`COMPOSITION VARIETY: your plan has ${vr.count} TYPE beats of ${vr.n} (at most ${vr.max} allowed, the hook and the CTA included)${vr.adjacent.length ? ` and TYPE beats next to each other at beats ${vr.adjacent.map((i) => `${i - 1} and ${i}`).join("; ")}` : ""}. No two consecutive beats may be TYPE. Give every other content beat a visual its sentence states: a number -> COUNTER, two numbers -> a chart, a place -> MAP / PHOTO, a named person / company / institution -> PHOTO, a physical object -> "concepts", a cause or sequence -> PROCESS, a stated rise or fall -> TREND {"direction","label"}.`);
       if (!ratioOk(rr)) why.push(`your plan made only ${(rr.share * 100).toFixed(0)}% of the content beats visual. At least 60% of the beats between the hook and the close MUST be visual (COUNTER, BAR, PIE, LINE, GAUGE, MAP, PROCESS, TIMELINE, COMPARE, LIST, PHOTO — or a TYPE beat that lists a named physical object in "concepts"). Walk the decision order for every content beat: a number, a place, a person, an object, a process, a change — TYPE only when none applies. Only what each sentence actually states.`);
       if (tn.length) why.push(`TWO-NUMBER RULE: ${tn.map((x) => `beat ${x.i} compares ${x.nums.join(" and ")} but is ${x.vt}`).join("; ")}. Each of these beats must be a DATA-FULL chart — LINE (one thing over time), BAR (two categories), PIE (parts of a whole) or GAUGE (a percentage change) — with those numbers exactly as the sentence says them.`);
       const emph = prompt + `\n\nREJECTED: ${why.join("\n")}` + strictPrompt.slice(prompt.length);
@@ -782,13 +865,14 @@ async function main() {
         : planSource === "ollama" ? () => callOllamaOnly([{ role: "user", content: emph }], { maxTokens, temperature: 0.2, capKind: "plan" }, "planner")
         : () => callGeminiApi([{ role: "user", content: emph }], { maxTokens, temperature: 0.2, noCache: true, tag: "planner" });
       const again = normalizePlanResponse(await ask());
-      if (okBeats(again)) {
-        const r2 = visualRatio(again), t2 = twoNumber(again);
+      if (okBeats(again) && again.beats.length === sentences.length) {
+        const r2 = visualRatio(again), t2 = twoNumber(again), v2 = variety(again);
         console.log(`[plan] beat ratio after re-ask: ${r2.vis} visual / ${r2.type} type (${(r2.share * 100).toFixed(0)}% visual, ${ratioOk(r2) ? "passes" : "still under 60%"}); two-number violations ${tn.length} -> ${t2.length}`);
-        // The better plan: fewer two-number violations first, then the higher visual share.
-        if (t2.length < tn.length || (t2.length === tn.length && r2.share > rr.share)) { geminiResult = again; rr = r2; tn = t2; }
+        console.log(`[plan] ch-${channelId}: retry produced ${v2.count}/${v2.n} TYPE-FULL${v2.adjacent.length ? `, ${v2.adjacent.length} adjacent pair(s)` : ""}, ${v2.ok ? "accepted" : `still over the rule (max ${v2.max}) — continuing with the better plan; deterministic fallbacks follow`}`);
+        // The better plan: fewer two-number violations first, then fewer variety violations, then the higher visual share.
+        if (t2.length < tn.length || (t2.length === tn.length && (vbad(v2) < vbad(vr) || (vbad(v2) === vbad(vr) && r2.share > rr.share)))) { geminiResult = again; rr = r2; tn = t2; vr = v2; }
         if (tn.length) console.warn(`::warning::[plan] two-number rule still broken after the re-ask on beat(s) ${tn.map((x) => x.i).join(", ")}`);
-      } else console.error(`[plan] re-ask gave no usable plan — keeping the first (${(rr.share * 100).toFixed(0)}% visual)`);
+      } else console.error(`[plan] re-ask gave no usable plan — keeping the first (${(rr.share * 100).toFixed(0)}% visual, ${vr.count}/${vr.n} TYPE)`);
     }
   }
   const plan = geminiResult?.beats ? geminiResult : null;
@@ -971,6 +1055,7 @@ The check (it runs on your answer):
 - PHOTO {"entity": "..."}: a person, place or organization the sentence NAMES, written as in the sentence; add it to "named_entities" too.
 - LIST / TIMELINE / COMPARE / DOCUMENT / MONEY: {} — the system reads the data from the sentence; choose one only when "Allowed visual_type" lists it.
 - PROCESS {"nodes": ["...", "..."]}: 2-3 nodes of 1-3 words each, every word from the sentence (a cause -> effect or sequence).
+- TREND {"direction": "up"|"down", "label": "..."}: the sentence states a rise or a fall; label = its subject, 1-3 words from the sentence.
 - TYPE {}: when nothing above fits. TYPE is the honest answer for a sentence with no number, no percentage, no place and no physical object.
 
 ${lines}
@@ -1042,6 +1127,16 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
     }
   }
 
+  // ── COMPOSITION VARIETY, deterministically (owner's spec 2026-10-03, B.3 / B.4) ──
+  // After the one re-ask, the repair and FLOW -> PROCESS: a TYPE beat next to another TYPE
+  // beat, or over maxTypeBeats(n), gets the part-B.4 fallback its sentence supports
+  // (scripts/composition-variety.js: PROCESS for a stated flow, TREND for a stated rise /
+  // fall, COUNTER for a stated figure, the drawn symbol for a stated risk / approval /
+  // break / target / tracking / money, then two key nouns). Every candidate passes
+  // checkVisual and does not repeat its neighbours' composition. The hook and the CTA stay
+  // TYPE. A beat that nothing fits stays TYPE and is logged — the run is never failed.
+  applyVarietyFallbacks(plan, sentences, channelId, "plan");
+
   // ── NO REPEAT: never the same composition twice in a row ─────────────
   // (composition-rotation.js). A repeat is broken with what the SENTENCE
   // grounds — a timeline, a comparison, a list, a process, a map, a stated
@@ -1058,7 +1153,8 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
     const compOf = (i) => {
       const b = plan.beats[i], v = effective(i);
       const image = ["PHOTO", "DOCUMENT", "MONEY"].includes(v.type);
-      return compositionFor(v.type, image, { view: imageView.get(b.index) === "building" ? "building" : null, split: b.type_layout === "split" && !!splitHeadline(b.headline) });
+      // A fallback symbol is drawn as the beat's hero (render-and-qa attaches it): its own composition.
+      return compositionFor(v.type, image, { view: imageView.get(b.index) === "building" ? "building" : null, split: b.type_layout === "split" && !!splitHeadline(b.headline) }) + (v.type === "TYPE" && b.fallback_symbol ? "+HERO" : "");
     };
     const figureOthers = (i) => plan.beats.map((_, j) => (j === i ? null : figureKey(effective(j))));
     const rot = enforceRotation(plan.beats.length, {
@@ -1079,6 +1175,14 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       log: (m) => console.log(m),
     });
     if (rot.changes.length) console.log(`[plan] composition rotation: ${rot.changes.filter((c) => c.resolved).length} repeat(s) broken, ${rot.repeats.length} left (${plan.beats.map((_, i) => compOf(i)).join(", ")})`);
+  }
+  // The rotation can break a repeat with TYPE-SPLIT / TYPE-FULL: the variety rule is checked again.
+  applyVarietyFallbacks(plan, sentences, channelId, "plan, after rotation");
+  // Entrance style (part C.4): together | staggered | visual-first, never the same twice in a row.
+  {
+    const es = assignEntranceStyles(plan.beats.map((b) => b.entrance_style));
+    plan.beats.forEach((b, i) => { b.entrance_style = es[i]; });
+    console.log(`[plan] entrance styles: ${es.join(", ")}`);
   }
 
   // Fix 2: every element of every beat gets an animation (visual/animation-plan.js:
