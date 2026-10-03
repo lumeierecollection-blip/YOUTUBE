@@ -552,7 +552,7 @@ async function main() {
         if (!c) return;
         const sync = scheduleEntityPop({ ...c, composition: canvasLayout(normalizeCanvas(c, i)).composition }, b.spoken, b.duration_frames);
         if (!sync) return;
-        if (sync.missing) { console.log(`[sync] ch-${channelId} beat ${i}: anchor "${sync.missing}" not found in the spoken words, popping at beat start`); delete c.entity_pop; return; }
+        if (sync.missing) { console.log(`[sync] ch-${channelId} beat ${i}: anchor "${sync.missing}" not found in the spoken words, popping at beat start (spoken: ${b.spoken.map((w) => w.text).join(" ").slice(0, 160)})`); delete c.entity_pop; return; }
         c.entity_pop = { frame: sync.frame, word: sync.word, from: sync.from, to: sync.to, kind: sync.kind };
         console.log(`[sync] ch-${channelId} beat ${i}: entity "${sync.entity}" (${sync.kind}), anchor word "${sync.word}", spoken at ${(sync.from / FPS).toFixed(2)}s-${(sync.to / FPS).toFixed(2)}s, pop scheduled at ${(sync.frame / FPS).toFixed(2)}s (frame ${sync.frame})`);
       });

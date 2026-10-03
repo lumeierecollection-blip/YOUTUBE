@@ -117,7 +117,12 @@ export const numberInk = (text, size) => {
   const p = numberParts(String(text ?? ""));
   // A separator ("7382.85", "1,400") drops ~0.10 em below the baseline
   // (CI run 36950257339 ch-48: its tail crossed y 1340 by 30 px at size 302).
-  const sep = /\d[.,]/.test(String(text ?? "")) ? 0.12 : 0;   // also a trailing "2," (CI run 36953236514 ch-48)
+  // A COMMA only: a decimal POINT sits on the baseline with the lining figures — "3.5" at
+  // size 518 ended 70 px above its box (y 1270, not 1340), and the beat failed canvas-coverage
+  // at 58.4% (CI run 37102013192 ch-9; "$387.5", "$2.7 million" the same in 37086054975 /
+  // 37102013192 ch-26). The "7382.85" crossing that added "." was measured under the old
+  // camera push, as the 0.82 below was.
+  const sep = /\d,/.test(String(text ?? "")) ? 0.12 : 0;   // also a trailing "2," (CI run 36953236514 ch-48)
   // "%" (set at 0.8x on the baseline) drops its lower circle and slash ~0.1 em
   // below it (CI run 36976172356 ch-44 GAUGE "50%": crossed y 1340 by ~25 px).
   const pct = /%/.test(String(text ?? "")) && !sep ? 0.1 : 0;
