@@ -2779,9 +2779,14 @@
           "topic": "Hitachi and Fanuc form physical AI alliance to run factories",
           "slug": "hitachi-fanuc-physical-ai-factories-2027",
           "reserved_at": "2026-10-03T01:30:28.305Z"
+        },
+        {
+          "topic": "AI-driven-factory-control",
+          "slug": "ai-driven-factory-control-2026-10-02-1234567890-100226-10",
+          "reserved_at": "2026-10-03T02:16:45.249Z"
         }
       ],
-      "last_generated": "2026-10-03T01:30:28.305Z"
+      "last_generated": "2026-10-03T02:16:45.250Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
