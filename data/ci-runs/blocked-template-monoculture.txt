@@ -19,3 +19,14 @@ beats stay typography. 23/39 cutouts exist.
 Not done (would change the content model, needs the owner): giving every
 text beat a visual whether or not the sentence names one; or lowering the
 reviewer's monoculture threshold. Neither is a code defect.
+
+--- UPDATE 2026-10-03 (tokens/entities upgrade, iterations 1-5) ---
+Still the main reason videos go to approved-review instead of approved:
+  37110620556  ch-1, ch-48
+  37113140609  ch-2, ch-9, ch-26
+  37114977307  ch-1 60%, ch-44 83%, ch-48 66%
+  37119036921  ch-2 67%, ch-26 66%, ch-48 71% (ch-1 100% before its canvas-type reject)
+What changed in this pass: company/institution logos as hero cutouts, US-currency
+scans for money, countries/states to MAP. These add visuals only where the
+sentence names something. They did not move abstract scripts below the threshold.
+The owner-side options are the same as before.
