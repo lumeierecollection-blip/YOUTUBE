@@ -2698,11 +2698,6 @@
           "topic": "humanoid-robot-humanufacturing-2026",
           "slug": "humanoid-robot-humanufacturing-2026",
           "reserved_at": "2026-10-03T20:53:56.313Z"
-        },
-        {
-          "topic": "MIT InstructMesh: Repairing AI-Generated 3D Models for Direct Fabrication",
-          "slug": "mit-instructmesh-ai-3d-models-fabrication",
-          "reserved_at": "2026-10-03T21:27:26.723Z"
         }
       ],
       "last_generated": "2026-10-03T21:27:26.724Z"
