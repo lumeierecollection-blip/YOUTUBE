@@ -1713,9 +1713,14 @@
           "topic": "The $387M Bitget Hack and North Korean Ties",
           "slug": "bitget-hack-north-korea",
           "reserved_at": "2026-10-03T14:27:28.352Z"
+        },
+        {
+          "topic": "The $16M Fraud Scheme in the Smart Ring Ponzi Scheme",
+          "slug": "smart-ring-plea",
+          "reserved_at": "2026-10-03T15:42:59.010Z"
         }
       ],
-      "last_generated": "2026-10-03T14:27:28.352Z"
+      "last_generated": "2026-10-03T15:42:59.010Z"
     },
     "27": {
       "channel_name": "Trial Files",
