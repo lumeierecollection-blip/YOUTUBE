@@ -612,9 +612,14 @@
           "topic": "New California Law on AI in Hiring",
           "slug": "new-california-law-ai-hiring",
           "reserved_at": "2026-10-03T09:35:07.764Z"
+        },
+        {
+          "topic": "Maryland Bans Mandatory Employer Meetings",
+          "slug": "maryland-mandatory-meetings-banned-20261003",
+          "reserved_at": "2026-10-03T11:19:39.571Z"
         }
       ],
-      "last_generated": "2026-10-03T09:35:07.764Z"
+      "last_generated": "2026-10-03T11:19:39.571Z"
     },
     "3": {
       "channel_name": "AI Tested",
