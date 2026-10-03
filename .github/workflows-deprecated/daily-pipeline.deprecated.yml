@@ -9,9 +9,8 @@
 name: "[DEPRECATED] Daily Pipeline — V1"
 
 on:
-  schedule:
-    # Run at 6:00 AM UTC daily
-    - cron: "0 6 * * *"
+  # Schedule removed (2026-10-03): a deprecated workflow keeps no cron, even here outside
+  # .github/workflows where GitHub would not run it anyway. Was: cron "0 6 * * *".
   workflow_dispatch:
     inputs:
       dry_run:
