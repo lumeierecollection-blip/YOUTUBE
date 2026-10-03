@@ -46,7 +46,7 @@ const { join } = require("node:path");
 
 const ROOT = join(__dirname, "..");
 const PUBLIC = join(ROOT, "src", "skills", "remotion-render", "public");
-const DIR = { person: "people", place: "places", building: "buildings", organization: "orgs" };
+const DIR = { person: "people", place: "places", building: "buildings", organization: "orgs", company: "orgs", institution: "orgs" };
 const MANIFEST = join(PUBLIC, "entities", "manifest.json");
 const UA = "YOUTUBE-pipeline/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE; entity photos)";
 const WIKI = "https://en.wikipedia.org";
@@ -586,7 +586,7 @@ function qualifyEntity(ent, countries = []) {
   return { ent: null, note: `"${ent.name}" is a generic institution name and the script names ${cs.length ? `${cs.length} countries (${cs.join(", ")})` : "no country"} — not resolved (it would show some country's ${ent.name})` };
 }
 
-module.exports = { resolveEntity, resolveDocument, resolveMoney, personCandidates, entityCandidates, downloadTo, slug, PUBLIC, DIR, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
+module.exports = { resolveEntity, resolveDocument, resolveMoney, personCandidates, entityCandidates, downloadTo, slug, PUBLIC, DIR, fileInfo, tokens, getJson, fileNameOf, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
 
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };

@@ -494,7 +494,12 @@ export function canvasLayout(c) {
             // Upright: the longest ink side up to 700 inside 984 x 640; a wide object widens to 984 to reach MIN_H.
             let deg = 0, crop = false, a = Math.min(700 / Math.max(u0.w, u0.h), 640 / u0.h);
             if (u0.h * a < MIN_H) a = Math.min(MIN_H / u0.h, W / u0.w, 640 / u0.h);
-            if (u0.h * a < MIN_H - 1) {
+            // A logo or a bill / coin (owner's spec 2026-10-03, parts B and G) is never tilted or
+            // cropped: upright, whole, as large as fits (a logo within 900 x 560), standing on the
+            // middle zone's floor so a wide wordmark or bill still reaches it (canvas-coverage).
+            const flatHero = !!(v.logo || v.money);
+            if (flatHero) a = v.logo ? Math.min(900 / u0.w, 560 / u0.h) : Math.min(W / u0.w, 640 / u0.h);
+            if (!flatHero && u0.h * a < MIN_H - 1) {
               // Still under 470 px tall at full width: a door key was 378 px and
               // the beat's content stopped at 57.9% of the frame (CI run
               // 36999095271 ch-48 beat 2). A scene with a horizon (a skyline, a
@@ -509,7 +514,7 @@ export function canvasLayout(c) {
                 if (u.h * a >= MIN_H) break;
               }
             }
-            const e = ext(a, deg), ih = a / r, inkW = Math.min(W, e.w), cy = centreY(e.h);
+            const e = ext(a, deg), ih = a / r, inkW = Math.min(W, e.w), cy = flatHero ? Math.round(Math.max(980, 1330 - e.h / 2)) : centreY(e.h);
             const bx = Math.round(540 - inkW / 2), by = Math.round(cy - e.h / 2);
             const icx = 540 - (e.x0 + e.x1) / 2, icy = cy - (e.y0 + e.y1) / 2;   // the image's centre: its ink centred on (540, cy)
             boxes.cutout0 = { ...box(bx, by, Math.round(inkW), Math.round(e.h)), role: "concept", concept: v.name, class: v.class, asset: v.asset || null, primary: true, align: "center",
@@ -872,6 +877,8 @@ export function canvasManifest(raw, idx) {
     photo: c.photo ? { asset: c.photo.asset, entity: c.photo.entity || null, kind: c.photo.kind || null, view: c.photo.view || null } : null,
     // Word-level sync (render.js / entity-sync.js): the frame (beat-relative) the entity visual pops at, and its word.
     entity_pop: c.entity_pop || null,
+    // "Source: <domain>" drawn bottom-right on a fetched-image beat (part C).
+    source_credit: c.source_credit || null,
     // Where the accent is drawn: chart values / arrows, the hero number (unless the
     // sentence is neutral: number_accent === false), the latest date, the last list
     // index, the larger comparison value, the map's region, a document's callout band.

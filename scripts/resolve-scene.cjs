@@ -44,6 +44,7 @@ const { mkdirSync, renameSync, rmSync } = require("node:fs");
 const { join } = require("node:path");
 const E = require("./entity-assets.cjs");
 const { verifyPlaceImage } = require("./verify-place-image.cjs");
+const { verifyImage } = require("./verify-image.cjs");
 
 const UA = "YOUTUBE-pipeline/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE; scene resolver)";
 const runMemo = new Map();   // per process: `${type}:${name}` -> Promise<result>
@@ -141,13 +142,104 @@ async function resolvePlaceScene(tag, type, name, context) {
   return { ok: false, kind: type, why: "no verified photo" };
 }
 
+// ── company / institution (owner's spec 2026-10-03, part B) ──────────
+// Source order: the Wikipedia article's infobox logo, then its lead image ->
+// Wikimedia Commons "<name> logo" (seal / mark for a standards body) ->
+// Commons / the article's photos of its headquarters (a trade show: its hall
+// or floor) -> nothing: a name card. Never Pixabay for a named organization's
+// logo. A logo must be FREE on Commons (a non-free, fair-use logo hosted only
+// on English Wikipedia is not used). An SVG is converted to a 1024 px PNG with
+// its transparency (part F) and saved beside the live cutouts; every logo is
+// verified with the three questions (verify-image.cjs, logo: true) when
+// fetched AND when reused.
+const LOGO_WORDS = /\b(logo|logotype|wordmark|seal|emblem|insignia|mark|badge|crest)\b/i;
+async function infoboxLogo(title) {
+  const j = await E.getJson(`https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=wikitext&section=0&redirects=1&page=${encodeURIComponent(title)}`);
+  const w = j?.parse?.wikitext?.["*"] || "";
+  const m = w.match(/\|\s*(?:logo|image_logo|logo_image|seal|image_seal|logo_file)\s*=\s*(?:\[\[)?\s*(?:File:|Image:)?\s*([^|\]\n{}<]+?\.(?:svg|png|jpe?g|gif))/i);
+  return m ? m[1].trim() : null;
+}
+async function wikiSummary(name) {
+  try {
+    const r = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name.replace(/ /g, "_"))}?redirect=true`, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(15000) });
+    if (!r.ok) return null;
+    const s = await r.json();
+    return s.type === "disambiguation" ? null : s;
+  } catch { return null; }
+}
+// A Commons file -> a transparent PNG at public/cutouts-live/<channel>/<beat>-<slug>-logo.png.
+async function logoPng(info, channel, beatIndex, name) {
+  const dir = join(E.PUBLIC, "cutouts-live", String(channel));
+  mkdirSync(dir, { recursive: true });
+  const file = `${beatIndex}-${E.slug(name)}-logo.png`;
+  const abs = join(dir, file);
+  const svg = /svg/i.test(info.mime || "") || /\.svg$/i.test(info.title || "");
+  const res = await fetch(svg ? info.url : (info.thumb || info.url), { headers: { "user-agent": UA }, signal: AbortSignal.timeout(30000) });
+  if (!res.ok) throw new Error(`download HTTP ${res.status}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  const sharp = require("sharp");
+  // SVG: rasterised at a density that gives >= 1024 px across, transparent background kept.
+  const img = svg ? sharp(buf, { density: 300 }) : sharp(buf);
+  await img.resize({ width: 1024, height: 1024, fit: "inside", withoutEnlargement: !svg }).ensureAlpha().png().toFile(abs);
+  const m = await sharp(abs).metadata();
+  return { asset: `cutouts-live/${channel}/${file}`, abs, w: m.width, h: m.height, svg };
+}
+async function resolveOrgScene(tag, type, name, context, channel, beatIndex, scene) {
+  const lines = [];
+  const ex = E.expandName("organization", name);
+  if (ex.refuse) { lines.push(ex.refuse, `not a resolvable name — no logo, no name card`); say(tag, lines); return { ok: false, kind: type, why: ex.refuse, refused: true }; }
+  const q = ex.name;
+  if (ex.note) lines.push(ex.note);
+  const nt = E.tokens(q);
+  const logos = [], seenFiles = new Set();
+  const addLogo = (fileTitle, source) => { const t = fileTitle.startsWith("File:") ? fileTitle : `File:${fileTitle}`; if (!seenFiles.has(t)) { seenFiles.add(t); logos.push({ title: t, source }); } };
+  // 1. Wikipedia: the infobox logo, then the article's lead image (often the logo itself).
+  const s = await wikiSummary(q);
+  if (s) {
+    const lf = await infoboxLogo(s.title);
+    if (lf) addLogo(lf, "wikipedia infobox");
+    if (s.originalimage?.source) {
+      const lead = E.fileNameOf(s.originalimage.source);
+      if (LOGO_WORDS.test(lead.replace(/[_-]/g, " ")) || /\.(svg|png)$/i.test(lead)) addLogo(lead, "wikipedia lead image");
+    }
+    if (!logos.length) lines.push(`wikipedia "${s.title}", no logo in the infobox`);
+  } else lines.push(`wikipedia, no article for "${q}"`);
+  // 2. Commons: "<name> logo" (a standards body's seal / mark too).
+  for (const suffix of type === "institution" ? [" logo", " seal"] : [" logo"]) {
+    const cj = await E.getJson(`https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srnamespace=6&srlimit=10&srsearch=${encodeURIComponent(`"${q}"${suffix}`)}`);
+    for (const h of cj?.query?.search || []) {
+      const ft = E.tokens(h.title.replace(/^File:/, "").replace(/\.[a-z]+$/i, ""));
+      if (nt.every((t) => ft.includes(t)) && LOGO_WORDS.test(h.title.replace(/[_-]/g, " "))) addLogo(h.title, "wikimedia commons");
+    }
+  }
+  if (logos.length) lines.push(`${logos.length} logo candidate(s): ${logos.map((l) => l.source).join(", ")}`);
+  for (const [i, l] of logos.slice(0, 8).entries()) {
+    const info = await E.fileInfo(l.title);
+    if (!info) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: not on Wikimedia Commons (a non-free logo is not used)`); continue; }
+    if (/non-?free|fair use/i.test(info.license || "") || !info.license) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: licence "${info.license || "none"}" is not free`); continue; }
+    let png;
+    try { png = await logoPng(info, channel, beatIndex, q); } catch (e) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: ${e.message}`); continue; }
+    const v = await verifyImage(png.abs, { entity: q, type: `${type} logo`, scene, logo: true });
+    if (!v.accept) { lines.push(`logo ${i + 1} (${l.source}: ${info.title}${png.svg ? ", SVG -> PNG" : ""}) REJECTED (${v.reason}, saw "${v.seen}")`); rmSync(png.abs, { force: true }); continue; }
+    lines.push(`logo ${i + 1} (${l.source}: ${info.title}${png.svg ? ", SVG -> PNG" : ""}) verified (${v.reason})`, `rendering as cutout, middle zone`);
+    say(tag, lines);
+    return { ok: true, kind: type, logo: { name: q, asset: png.asset, abs: png.abs, w: png.w, h: png.h, source: l.source, source_url: info.descurl || info.url, license: info.license, seen: v.seen } };
+  }
+  // 3. A photo of its headquarters (a trade show: its hall / floor), as for a building.
+  const r = await resolvePlaceScene(`${tag} (photo)`, "organization", name, context);
+  if (r.ok) return { ...r, kind: type };
+  lines.push(`no verified logo or photo — rendering as name card`);
+  say(tag, lines);
+  return { ok: false, kind: type, why: "no verified logo or photo" };
+}
+
 /** Resolve one named entity of a beat. Memoized per run (the same entity in two beats is fetched and verified once). */
-async function resolveSceneEntity({ channel, beatIndex, entity, context = "" }) {
+async function resolveSceneEntity({ channel, beatIndex, entity, context = "", scene = null }) {
   // "Ontario Landlord and Tenant Board (LTB)": a bracketed acronym is not part of the name
   // any source files it under (CI run 37067332714 ch-2: every lookup missed).
   const type = String(entity?.type || "").toLowerCase(), name = String(entity?.name || "").replace(/\s*\([^)]*\)/g, "").trim();
   const tag = `ch-${channel} beat ${beatIndex}: entity ${type} "${name}"`;
-  if (!name || !["person", "place", "building", "organization"].includes(type)) return { ok: false, kind: type, why: "not a real-world entity type" };
+  if (!name || !["person", "place", "building", "organization", "company", "institution"].includes(type)) return { ok: false, kind: type, why: "not a real-world entity type" };
   // A date is not a place or an organization ("September 2026" typed as a place — CI run
   // 37079127196 ch-44): refused, no lookup, no name card.
   if (DATE_RE.test(name)) {
@@ -157,10 +249,18 @@ async function resolveSceneEntity({ channel, beatIndex, entity, context = "" }) 
   const key = `${type}:${name.toLowerCase()}`;
   if (runMemo.has(key)) {
     const r = await runMemo.get(key);
+    // A logo PNG is verified again before it is reused (part F.2).
+    if (r.ok && r.logo) {
+      const v = await verifyImage(r.logo.abs, { entity: r.logo.name, type: `${type} logo`, scene, logo: true });
+      console.log(`[resolve] ${tag}\n    → reuse of ${r.logo.asset} ${v.accept ? `ACCEPTED (${v.reason})` : `REJECTED (${v.reason}, saw "${v.seen}") — rendering as name card`}`);
+      return v.accept ? r : { ok: false, kind: type, why: `reused logo rejected: ${v.reason}` };
+    }
     console.log(`[resolve] ${tag}\n    → ${r.ok ? `already resolved and verified this run (${r.photo.asset})` : "already failed this run, rendering as TYPE with name only"}`);
     return r;
   }
-  const job = type === "person" ? resolvePersonScene(tag, name, context) : resolvePlaceScene(tag, type, name, context);
+  const job = type === "person" ? resolvePersonScene(tag, name, context)
+    : type === "company" || type === "institution" ? resolveOrgScene(tag, type, name, context, channel, beatIndex, scene)
+    : resolvePlaceScene(tag, type, name, context);
   runMemo.set(key, job);
   return job;
 }
@@ -171,7 +271,9 @@ const KIND_WORDS = [
   ["building", /\b(building|courthouse|tower|skyscraper|headquarters|stadium|cathedral|church|mosque|temple|museum|palace|bridge|station|airport|hotel|hospital|prison|castle|capitol|house|hall|arena|factory|plant|refinery|dam)\b/i],
   // Not a bare "state": "Safety" is "the state of being protected" (CI run 37079127196 ch-48).
   ["place", /\b(city|town|country|(?:u\.s\.|us|federal|sovereign) state|province|region|county|capital|island|village|district|neighbou?rhood|municipality|territory|metropolitan|borough|port)\b/i],
-  ["organization", /\b(company|corporation|agency|organi[sz]ation|bank|institution|court|department|ministry|bureau|commission|council|party|university|regulator|authority|federal reserve|central bank|banking|union|association|fund|board)\b/i],
+  // part B: an institution (agency, court, standards body, trade fair, international body) before a company.
+  ["institution", /\b(agency|organi[sz]ation|institution|court|department|ministry|bureau|commission|council|party|university|regulator|regulatory|authority|federal reserve|central bank|banking system|union|association|fund|board|standards body|standards organization|trade fair|trade show|exhibition|forum)\b/i],
+  ["company", /\b(company|corporation|manufacturer|multinational|conglomerate|firm|brand|startup|bank|retailer|automaker|carmaker|maker of|developer of|provider of)\b/i],
 ];
 // The one-line Wikipedia description of a name ("Intergovernmental political forum"), or null.
 async function describe(name) {

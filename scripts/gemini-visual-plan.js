@@ -208,15 +208,17 @@ export function figureKey(v) {
 // Entity types (owner's scene-resolver spec 2026-10-02): the real-world ones
 // are sourced from Wikipedia / Wikimedia, an object from Pixabay, a number is
 // drawn (scripts/resolve-scene.cjs).
-export const ENTITY_TYPES = ["person", "place", "building", "organization", "object", "number"];
+// part B (2026-10-03): company and institution; "organization" is still read (older plans) as an institution.
+export const ENTITY_TYPES = ["person", "company", "institution", "place", "building", "object", "number", "organization"];
 export function checkEntities(list, sentence) {
   const kept = [], dropped = [];
   for (const e of Array.isArray(list) ? list : []) {
     const type = String(e?.type || "").toLowerCase();
     const name = String(e?.name || "").trim();
     if (!name || !ENTITY_TYPES.includes(type)) { dropped.push(`${type || "?"} "${name}": no type/name`); continue; }
-    if (!entityNamedInSentence(name, sentence)) { dropped.push(`${type} "${name}": not named in the sentence`); continue; }
-    if (!kept.some((k) => k.name.toLowerCase() === name.toLowerCase())) kept.push({ type, name });
+    const t = type === "organization" ? "institution" : type;
+    if (!entityNamedInSentence(name, sentence)) { dropped.push(`${t} "${name}": not named in the sentence`); continue; }
+    if (!kept.some((k) => k.name.toLowerCase() === name.toLowerCase())) kept.push({ type: t, name });
   }
   return { kept, dropped };
 }
@@ -281,6 +283,28 @@ export function groundedOptions(sentence) {
 // "Phase 2": the number is a name. True when the value carries a letter
 // suffix ("357-A") or the sentence writes the number right after such a word.
 const ID_WORDS = /\b(article|articles|section|sections|sec\.?|rule|rules|chapter|clause|title|amendment|resolution|regulation|order|act|bill|case|docket|no\.?|number|#|part|schedule|phase|stage|level|tier|form|flight|route|highway|interstate|model|version|article\s+no\.?|paragraph|para|subsection|item|exhibit|appendix|annex|protocol)\s*$/i;
+// TWO-NUMBER RULE (owner's spec 2026-10-03, part D): a sentence with a comparison word and
+// TWO DISTINCT comparable numbers is a DATA-FULL chart. Returns those numbers, or null —
+// a single number is a COUNTER, not this rule. Not counted: a bare year ("in 2019"), an
+// identifier ("Section 230", "Form 1099"). Spelled numbers count ("ten to twenty-two").
+const COMPARE_WORDS = /\b(more|less|fewer|than|versus|vs\.?|higher|lower|grew|grow|grows|fell|fall|falls|rose|rise|rises|dropped|drop|drops|doubled|halved|increased|increase|increases|decreased|decrease|decreases|compared to|compared with|from)\b/i;
+export function comparisonNumbers(sentence) {
+  const text = String(sentence || "");
+  if (!COMPARE_WORDS.test(text)) return null;
+  const vals = [];
+  for (const m of text.matchAll(/\$?\d[\d,]*(?:\.\d+)?\s*(?:%|percent|million|billion|trillion|thousand|k\b)?/gi)) {
+    const raw = m[0].trim();
+    const n = Number(raw.replace(/[^\d.]/g, ""));
+    if (!Number.isFinite(n)) continue;
+    if (/^(19|20)\d{2}$/.test(raw) || isIdentifierNumber(raw, text)) continue;   // a year, an identifier
+    vals.push(raw.toLowerCase());
+  }
+  for (const w of wordNumbers(text)) vals.push(String(w));
+  const distinct = [...new Set(vals.map((v) => v.replace(/[\s,$]/g, "")))];
+  return distinct.length >= 2 ? distinct : null;
+}
+const CHART_TYPES = ["BAR", "LINE", "PIE", "GAUGE"];
+
 export function isIdentifierNumber(value, sentence) {
   const v = String(value || "").trim();
   if (/^\d+[-–]?[A-Za-z]{1,2}$/.test(v) && !/^\d+\s*(k|m|b|bn|mn|x)$/i.test(v)) return true;
@@ -386,7 +410,7 @@ export function checkVisual(b, sentence) {
     if (!entityNamedInSentence(ent, sentence)) return bad(`PHOTO entity "${ent}" is not named in the sentence`);
     const listed = (Array.isArray(b.named_entities) ? b.named_entities : []).find((e) => String(e?.name || "").trim().toLowerCase() === ent.toLowerCase());
     const type = String(listed?.type || d.entity_type || "").toLowerCase();
-    if (!["person", "place", "building", "organization"].includes(type)) return bad(`PHOTO entity "${ent}" has no type (person / place / building / organization) in named_entities`);
+    if (!["person", "place", "building", "organization", "company", "institution"].includes(type)) return bad(`PHOTO entity "${ent}" has no type (person / place / building / company / institution) in named_entities`);
     return { type: t, data: { entity: ent, entity_type: type } };
   }
   if (t === "PROCESS") {
@@ -716,19 +740,35 @@ async function main() {
     const vis = content.filter((b) => String(b.visual_type || "TYPE").toUpperCase() !== "TYPE" || (Array.isArray(b.concepts) && b.concepts.length)).length;
     return { vis, type: content.length - vis, share: content.length ? vis / content.length : 1 };
   };
-  if (okBeats(geminiResult) && sentences.length >= 4) {
+  // TWO-NUMBER RULE (part D.3): a beat whose sentence compares two distinct numbers must be a
+  // DATA-FULL chart (BAR / LINE / PIE / GAUGE). Violations join the same one re-ask.
+  const twoNumber = (r) => (r?.beats || []).map((b, i) => ({ i: b.index ?? i, nums: comparisonNumbers(sentences[b.index ?? i]?.text), vt: String(b.visual_type || "TYPE").toUpperCase() }))
+    .filter((x) => x.nums && !CHART_TYPES.includes(x.vt));
+  if (okBeats(geminiResult)) {
+    for (const x of (geminiResult.beats || []).map((b, i) => ({ i: b.index ?? i, nums: comparisonNumbers(sentences[b.index ?? i]?.text), vt: String(b.visual_type || "TYPE").toUpperCase() })).filter((x) => x.nums)) {
+      console.log(`[plan] beat ${x.i}: two-number comparison (${x.nums.join(" vs ")}) -> ${CHART_TYPES.includes(x.vt) ? `DATA-FULL ${x.vt}, as the rule requires` : `${x.vt}: violates the two-number rule`}`);
+    }
+  }
+  if (okBeats(geminiResult) && (sentences.length >= 4 || twoNumber(geminiResult).length)) {
     let rr = visualRatio(geminiResult);
-    console.log(`[plan] beat ratio: ${rr.vis} visual / ${rr.type} type (${(rr.share * 100).toFixed(0)}% visual, ${rr.share >= 0.6 ? "passes" : "fails — re-asking once"})`);
-    if (rr.share < 0.6) {
-      const emph = prompt + `\n\nREJECTED: your plan made only ${(rr.share * 100).toFixed(0)}% of the content beats visual. At least 60% of the beats between the hook and the close MUST be visual (COUNTER, BAR, PIE, LINE, GAUGE, MAP, PROCESS, TIMELINE, COMPARE, LIST, PHOTO — or a TYPE beat that lists a named physical object in "concepts"). Walk the decision order for every content beat: a number, a place, a person, an object, a process, a change — TYPE only when none applies. Only what each sentence actually states.` + strictPrompt.slice(prompt.length);
+    let tn = twoNumber(geminiResult);
+    const ratioOk = (x) => sentences.length < 4 || x.share >= 0.6;
+    console.log(`[plan] beat ratio: ${rr.vis} visual / ${rr.type} type (${(rr.share * 100).toFixed(0)}% visual, ${ratioOk(rr) ? "passes" : "fails — re-asking once"})${tn.length ? `; two-number rule broken on beat(s) ${tn.map((x) => x.i).join(", ")} — re-asking once` : ""}`);
+    if (!ratioOk(rr) || tn.length) {
+      const why = [];
+      if (!ratioOk(rr)) why.push(`your plan made only ${(rr.share * 100).toFixed(0)}% of the content beats visual. At least 60% of the beats between the hook and the close MUST be visual (COUNTER, BAR, PIE, LINE, GAUGE, MAP, PROCESS, TIMELINE, COMPARE, LIST, PHOTO — or a TYPE beat that lists a named physical object in "concepts"). Walk the decision order for every content beat: a number, a place, a person, an object, a process, a change — TYPE only when none applies. Only what each sentence actually states.`);
+      if (tn.length) why.push(`TWO-NUMBER RULE: ${tn.map((x) => `beat ${x.i} compares ${x.nums.join(" and ")} but is ${x.vt}`).join("; ")}. Each of these beats must be a DATA-FULL chart — LINE (one thing over time), BAR (two categories), PIE (parts of a whole) or GAUGE (a percentage change) — with those numbers exactly as the sentence says them.`);
+      const emph = prompt + `\n\nREJECTED: ${why.join("\n")}` + strictPrompt.slice(prompt.length);
       const ask = planSource === "groq" ? () => callGroq([{ role: "user", content: emph }], { maxTokens, temperature: 0.2 })
         : planSource === "ollama" ? () => callOllamaOnly([{ role: "user", content: emph }], { maxTokens, temperature: 0.2, capKind: "plan" }, "planner")
         : () => callGeminiApi([{ role: "user", content: emph }], { maxTokens, temperature: 0.2, noCache: true, tag: "planner" });
       const again = normalizePlanResponse(await ask());
       if (okBeats(again)) {
-        const r2 = visualRatio(again);
-        console.log(`[plan] beat ratio after re-ask: ${r2.vis} visual / ${r2.type} type (${(r2.share * 100).toFixed(0)}% visual, ${r2.share >= 0.6 ? "passes" : "still under 60%"})`);
-        if (r2.share > rr.share) { geminiResult = again; rr = r2; }
+        const r2 = visualRatio(again), t2 = twoNumber(again);
+        console.log(`[plan] beat ratio after re-ask: ${r2.vis} visual / ${r2.type} type (${(r2.share * 100).toFixed(0)}% visual, ${ratioOk(r2) ? "passes" : "still under 60%"}); two-number violations ${tn.length} -> ${t2.length}`);
+        // The better plan: fewer two-number violations first, then the higher visual share.
+        if (t2.length < tn.length || (t2.length === tn.length && r2.share > rr.share)) { geminiResult = again; rr = r2; tn = t2; }
+        if (tn.length) console.warn(`::warning::[plan] two-number rule still broken after the re-ask on beat(s) ${tn.map((x) => x.i).join(", ")}`);
       } else console.error(`[plan] re-ask gave no usable plan — keeping the first (${(rr.share * 100).toFixed(0)}% visual)`);
     }
   }
