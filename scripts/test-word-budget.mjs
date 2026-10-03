@@ -88,10 +88,26 @@ console.log("2. The prompt advertises a range, and it is the safe one");
   //
   // Ranges over 200 are longform section-word counts (e.g. 700–950), not a
   // shorts voiceover budget, so they are excluded rather than compared.
-  const ranges = [...text.matchAll(/(\d{2,3})\s*[-–—]\s*(\d{2,4})\s*words/g)]
-    .map((m) => [Number(m[1]), Number(m[2])])
-    .filter(([, hi]) => hi <= 200);
+  //
+  // Per-BEAT ranges (owner's 2026-10-03 targets "HOOK: 10–14 words", "(section `setup`, …,
+  // 30–40 words)") are not total budgets: a match on a line naming a beat is checked below
+  // as a per-beat range instead — its floors must sum within the total, its ceilings reach it.
+  const BEAT_LINE = /\b(HOOK|SETUP|RE-HOOK|PAYOFF|CLOSE)\b|section `/;
+  const lineOf = (i) => text.slice(text.lastIndexOf("\n", i) + 1, (text.indexOf("\n", i) + 1 || text.length + 1) - 1);
+  const all = [...text.matchAll(/(\d{1,3})\s*[-–—]\s*(\d{2,4})\s*words/g)]
+    .map((m) => ({ lo: Number(m[1]), hi: Number(m[2]), beat: BEAT_LINE.test(lineOf(m.index)) && !/total/i.test(lineOf(m.index)) }))
+    .filter(({ hi }) => hi <= 200);
+  const ranges = all.filter((r) => !r.beat).map((r) => [r.lo, r.hi]);
   ok(ranges.length > 0, "the prompt states a word range at all");
+  const beats = all.filter((r) => r.beat);
+  if (beats.length) {
+    // The table and the five beat headers state the same five ranges; count each once.
+    const per = [...new Map(beats.map((r) => [`${r.lo}-${r.hi}`, r])).values()];
+    const sumLo = per.reduce((n, r) => n + r.lo, 0), sumHi = per.reduce((n, r) => n + r.hi, 0);
+    console.log(`   per-beat ranges: ${per.map((r) => `${r.lo}-${r.hi}`).join(", ")} (sum ${sumLo}-${sumHi})`);
+    ok(sumLo <= safeHi, `per-beat floors sum to ${sumLo} <= the gate's ceiling ${safeHi}`);
+    ok(sumHi >= safeLo, `per-beat ceilings sum to ${sumHi} >= the gate's floor ${safeLo}`);
+  }
 
   for (const [lo, hi] of ranges) {
     ok(lo >= safeLo,
