@@ -2538,9 +2538,14 @@
           "topic": "How 3D-Printed 2-Ton Tooling Dies Speed Up Aerospace Composite Manufacturing",
           "slug": "3d-printed-2-ton-tooling-dies-aerospace-composites",
           "reserved_at": "2026-10-02T11:38:50.833Z"
+        },
+        {
+          "topic": "Inside CIPHER: The New VLA AI Framework for Autonomous Manufacturing",
+          "slug": "inside-cipher-vla-ai-autonomous-manufacturing",
+          "reserved_at": "2026-10-03T10:53:01.624Z"
         }
       ],
-      "last_generated": "2026-10-02T11:38:50.833Z"
+      "last_generated": "2026-10-03T10:53:01.624Z"
     },
     "49": {
       "channel_name": "Wander Budget",
