@@ -83,9 +83,11 @@ provided JSON Schema exactly — nothing outside it.
   gavel, a warehouse, Powell, Miami) over abstract ones (trend, approach,
   strategy, potential, future, impact) — at least two concrete for every
   abstract one.
-- **Specific does NOT mean longer.** The word count above still rules: a
-  vague sentence is REPLACED by a specific one of the same length, never
-  joined by an extra sentence. Five or six sentences of about 15 words each.
+- **Specific does NOT mean longer — or shorter.** The word count above rules
+  both ways: a vague sentence is REPLACED by a specific one of the same
+  length (another fact about this subject from the research), never joined by
+  an extra sentence and never just deleted below the minimum. Five or six
+  sentences of about 15 words each — 76-93 words in all.
 - **BANNED PHRASES — never use:** "This trend is expected to...", "Experts
   say...", "It's important to...", "In today's world...", "Let's dive
   into...", "Here's why...", "The key takeaway is...", "Industry leaders
