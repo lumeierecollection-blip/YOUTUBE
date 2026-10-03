@@ -35,6 +35,8 @@ eq("one number is not this rule", comparisonNumbers("Unemployment is 4.3%."), nu
 eq("years are not compared quantities", comparisonNumbers("It rose after the law passed in 2019 and changed in 2024."), null);
 eq("spelled numbers count", comparisonNumbers("It rose from ten to twenty-two percent."), ["10", "22"]);
 eq("a spelled year is not a compared number (CI run 37108869325 ch-44)", comparisonNumbers("Productivity will increase by 20% by twenty twenty-six."), null);
+eq("a date is not a comparison: 'July 1, 2027' (CI run 37113140609 ch-2)", comparisonNumbers("The law takes effect July 1, 2027, compared to the old rule."), null);
+eq("a day before the month is a date too, the percentages still compare", comparisonNumbers("On 3 March, 40% of firms versus 25% before."), ["40%", "25%"]);
 eq("no comparison word -> not this rule", comparisonNumbers("They hired 10 people and bought 22 machines."), null);
 
 // A bare concept gets the material its sentence gives it (CI run 37114977307 ch-48: "plates" fetched a fruit plate).

@@ -288,15 +288,21 @@ const ID_WORDS = /\b(article|articles|section|sections|sec\.?|rule|rules|chapter
 // a single number is a COUNTER, not this rule. Not counted: a bare year ("in 2019"), an
 // identifier ("Section 230", "Form 1099"). Spelled numbers count ("ten to twenty-two").
 const COMPARE_WORDS = /\b(more|less|fewer|than|versus|vs\.?|higher|lower|grew|grow|grows|fell|fall|falls|rose|rise|rises|dropped|drop|drops|doubled|halved|increased|increase|increases|decreased|decrease|decreases|compared to|compared with|from)\b/i;
+const MONTHS = "jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?";
+const MONTH_BEFORE = new RegExp(`\\b(?:${MONTHS})\\.?\\s*$`, "i");
+const MONTH_AFTER = new RegExp(`^(?:st|nd|rd|th)?\\s*(?:of\\s+)?(?:${MONTHS})\\b`, "i");
 export function comparisonNumbers(sentence) {
   const text = String(sentence || "");
   if (!COMPARE_WORDS.test(text)) return null;
   const vals = [];
   for (const m of text.matchAll(/\$?\d[\d,]*(?:\.\d+)?\s*(?:%|percent|million|billion|trillion|thousand|k\b)?/gi)) {
-    const raw = m[0].trim();
+    // "2027," (a list or date comma) is still the year 2027 (CI run 37113140609 ch-2: "July 1, 2027" was "1 vs 2027").
+    const raw = m[0].trim().replace(/,+$/, "");
     const n = Number(raw.replace(/[^\d.]/g, ""));
     if (!Number.isFinite(n)) continue;
     if (/^(19|20)\d{2}$/.test(raw) || isIdentifierNumber(raw, text)) continue;   // a year, an identifier
+    // A day of the month ("July 1", "1 July") is a date, not a compared quantity.
+    if (/^\d{1,2}$/.test(raw) && n >= 1 && n <= 31 && (MONTH_BEFORE.test(text.slice(0, m.index)) || MONTH_AFTER.test(text.slice(m.index + m[0].length)))) continue;
     vals.push(raw.toLowerCase());
   }
   // A spelled year ("by twenty twenty-six" -> 2026) is a date, not a compared quantity
