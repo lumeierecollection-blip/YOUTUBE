@@ -767,9 +767,14 @@
           "topic": "Maryland Bans Mandatory Employer Meetings",
           "slug": "maryland-bans-mandatory-meetings-2026",
           "reserved_at": "2026-10-03T17:42:55.561Z"
+        },
+        {
+          "topic": "New York Court Rules on Immigration-Related Employment Claims",
+          "slug": "new-york-court-rules-ice-employment-claims",
+          "reserved_at": "2026-10-03T18:24:33.970Z"
         }
       ],
-      "last_generated": "2026-10-03T17:42:55.561Z"
+      "last_generated": "2026-10-03T18:24:33.970Z"
     },
     "3": {
       "channel_name": "AI Tested",
