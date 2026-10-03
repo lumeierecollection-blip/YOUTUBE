@@ -129,12 +129,16 @@ export const numberInk = (text, size) => {
   // 59.2% (CI run 37108869325 ch-9). The 0.1 was measured under the old camera push, like the
   // separator reserve (a0b1763); 0.03 keeps a small allowance for the % sign's overshoot.
   const pct = /%/.test(String(text ?? "")) && !sep ? 0.03 : 0;
-  // 0.94 for EVERY figure: with the static camera (pop compositor) a
-  // quantity's ink also ends 0.94 em below its box top ("50", size 518:
-  // CI run 36985423031 ch-1 crossed y 1340 by ~50 px). The earlier 0.82 for
-  // quantities was measured while the camera push still lifted the body.
-  void p;
-  return Math.ceil(size * (0.94 + sep + pct));
+  // A QUANTITY's ink ends 0.81 em below its box top, MEASURED on the live-frame
+  // compositor's frames: "7515" size 518 -> ink rows 888-1270 for a box at y 853
+  // (0.805 em; CI run 37149091704 ch-2 beats 3 and 7, NUMBER-FULL coverage
+  // 58.9-59.2%), "3.5" 0.805 em (run 37102013192), "10%" ~0.80 em (run 37108869325).
+  // The 0.94 for every figure came from "50" crossing y 1340 in run 36985423031,
+  // before the compositor change; with it every quantity sat ~67 px above the
+  // zone's floor and NUMBER-FULL beats spanned < 60%. A year / identifier (not
+  // re-measured since) keeps 0.94. If a quantity crosses y 1340 again,
+  // zones-no-overlap rejects the render: the failure is loud, never silent.
+  return Math.ceil(size * ((p.isQuantity ? 0.81 : 0.94) + sep + pct));
 };
 // Fraunces descenders (g j p q y , ;) reach ~1.07 em below a line's top, past
 // a 0.95 (headline) or 0.90 (emphasis) line box: a text block anchored to a
