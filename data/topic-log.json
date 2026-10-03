@@ -2693,9 +2693,14 @@
           "topic": "POSCO Contract Tests a Robot on the Last Manual Gap",
           "slug": "posco-robot-test-manual-gap-202",
           "reserved_at": "2026-10-03T17:42:48.772Z"
+        },
+        {
+          "topic": "humanoid-robot-humanufacturing-2026",
+          "slug": "humanoid-robot-humanufacturing-2026",
+          "reserved_at": "2026-10-03T20:53:56.313Z"
         }
       ],
-      "last_generated": "2026-10-03T19:52:14.841Z"
+      "last_generated": "2026-10-03T20:53:56.313Z"
     },
     "49": {
       "channel_name": "Wander Budget",
