@@ -1429,6 +1429,31 @@ async function resolveCanvas(channelId, planPath, plan) {
       // Rebuilt canvases get their sentence case, variant and folio back (and the one emphasis beat is re-chosen).
       if (changed) styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
     }
+    // The SAME hero object on two beats in a row is still a repeat (C.3 allows two DIFFERENT
+    // objects in a row): CI run 37141128792 ch-26 drew the broken-chain symbol twice, rejected by
+    // canvas-type. The later beat gives its hero up for a composition its own sentence grounds
+    // (not a symbol), or for its statement — logged.
+    for (let i = 1; i < plan.beats.length; i++) {
+      const a = plan.beats[i - 1], b = plan.beats[i];
+      if (!(b.canvas.concept_visuals || []).length || keyOf(a.canvas) !== keyOf(b.canvas)) continue;
+      const st = narr(b), was = keyOf(b.canvas);
+      const q = quantitiesOf(st)[0];
+      let done = null;
+      for (const cand of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
+        if (cand.kind === "symbol") continue;
+        const v = checkVisual({ visual_type: cand.visual_type, data: cand.data, named_entities: b.named_entities }, st);
+        if (v.why || v.type !== cand.visual_type) continue;
+        if ([plan.beats[i - 1], plan.beats[i + 1]].filter(Boolean).some((y) => keyOf(y.canvas) === compositionFor(v.type, false))) continue;
+        b.visual_type = v.type; b.data = v.data;
+        done = `${v.type} ${JSON.stringify(v.data)}`;
+        break;
+      }
+      delete b.hero_cutout; delete b.fallback_symbol; delete b.type_layout;
+      if (!done) { b.visual_type = "TYPE"; b.data = null; done = "its statement"; }
+      b.canvas = canvasContentFor(b, {});
+      changed++;
+      console.log(`[variety] ch-${channelId} beat ${b.index}: ${was} repeats the beat before -> ${done}`);
+    }
     if (changed) styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
     const after = varietyReport(flags());
     const keys = plan.beats.map((b) => keyOf(b.canvas));

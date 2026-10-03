@@ -139,7 +139,10 @@ function useMotion(c, local, dur, fps) {
 function timeline(c, B, dur, fps) {
   const sec = (f) => (f * dur) / fps;
   const hasNum = !!B.number;
-  return { headlineAt: hasNum ? sec(0.5) : 0, numberAt: 0, labelAt: sec(0.4), splitAt: sec(0.3) };
+  // (A number beat's headline waited until 50% of the beat when every group was drawn settled;
+  // drawn live, the beat's top was empty for half its length — CI run 37141128792 ch-26.)
+  void hasNum;
+  return { headlineAt: 0, numberAt: 0, labelAt: sec(0.4), splitAt: sec(0.3) };
 }
 
 // ── the four roles ────────────────────────────────────────────────────
@@ -1167,6 +1170,11 @@ const settleFrame = (dur, comp) => Math.max(0, Math.min(dur - 1, ["LIST-BUILD", 
 
 // live: the beat's own frame — the full-bleed photo group is drawn at it (its 2% drift
 // runs across the beat); every other group is drawn settled.
+// The live build starts 12 frames in: a group pops in with its first words / bars / node
+// already landed. From frame 0 the beat's first frames were EMPTY while the outgoing beat had
+// faded and the first entrances had not landed yet (CI run 37141128792 ch-26: pop-transitions,
+// frames 6-10 empty on three beats).
+const LIVE_HEAD_START = 12;
 function PopGroups({ beat, idx, fps, accent, state, live = null }) {
   const c = normalizeCanvas(beat.scene.canvas, idx);
   const L = canvasLayout(c);
@@ -1191,7 +1199,7 @@ function PopGroups({ beat, idx, fps, accent, state, live = null }) {
               outlines its region. (Until today the compositor drew every group SETTLED.) Word
               exits are off (exitAt 9), so nothing leaves before the beat's pop-out. The
               outgoing beat is drawn at its last frame: complete. */}
-          <BeatCanvas beat={beat} idx={idx} bodyLocal={live != null ? Math.max(0, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={live != null ? Math.max(0, Math.min(beat.duration_frames - 1, live)) : headerSettled} fps={fps} accent={accent} hero={null} show={g.show} still photoShown={photoShown} />
+          <BeatCanvas beat={beat} idx={idx} bodyLocal={live != null ? Math.max(LIVE_HEAD_START, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={live != null ? Math.max(LIVE_HEAD_START, Math.min(beat.duration_frames - 1, live)) : headerSettled} fps={fps} accent={accent} hero={null} show={g.show} still photoShown={photoShown} />
         </div>
       </div>
     );

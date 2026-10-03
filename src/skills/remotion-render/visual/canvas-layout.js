@@ -316,7 +316,7 @@ const SUBJECT_W = 640;
  * that layout (bold words are wider), and the box carries `words` with their
  * measured x / y / width.
  */
-function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines = 4, maxHeight = Infinity, max = ROLE_HEADLINE.sizeBand[1], marks = MARKS, center = false, tier = true, hero = false } = {}) {
+function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines = 4, maxHeight = Infinity, max = ROLE_HEADLINE.sizeBand[1], marks = MARKS, center = false, tier = true, hero = false, minLines = 1 } = {}) {
   const TIER = BEAT_HERO ? HERO_HEADLINE : { min: HEADLINE_SIZE.min, max: BEAT_MAX };
   void hero;
   // center (part C.1): a TYPE-FULL statement, centred on the frame's axis.
@@ -329,6 +329,15 @@ function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines =
   // most) and the box says so — render.js logs it ('[layout] … hero headline shrunk').
   let shrunk = false;
   if (tier && lo > HEADLINE_SIZE.min && (f.lines.length > maxLines || f.height > maxHeight)) { f = fitWords(words, width, { maxLines, maxHeight, max: lo, min: HEADLINE_SIZE.min, align }); shrunk = BEAT_HERO; }
+  // A statement that is its zone's SUBJECT wraps to >= minLines lines: one 110 px line filled 12-13%
+  // of the middle zone (< 15%, CI run 37141128792 ch-9 / ch-48 / ch-26 TYPE-SPLIT). The column
+  // narrows (never below 280 px) until the text wraps; the size band is unchanged.
+  if (minLines > 1 && words.length >= minLines && f.lines.length < minLines) {
+    for (let w2 = Math.floor(f.width * 0.75); w2 >= 280; w2 = Math.floor(w2 * 0.85)) {
+      const g = fitWords(words, w2, { maxLines, maxHeight, max: hi, min: tier ? HEADLINE_SIZE.min : 88, align });
+      if (g.lines.length >= minLines && g.lines.length <= maxLines && g.height <= maxHeight) { f = g; break; }
+    }
+  }
   const ax = (w) => (center ? Math.round((FRAME.w - w) / 2) : anchorX(w, flip));
   if (!f.lines.length) return { ...box(ax(0), bottom != null ? bottom : y, 0, 0), size: f.size, lines: [], words: [], align, role: "headline", inBand: false };
   const w = Math.min(width, Math.ceil(f.width) + 4);
@@ -409,7 +418,7 @@ export function canvasLayout(c) {
       // The second half is the middle zone's subject: up to 360 px across the
       // full width. At 760 px / max 200 a short half ("the rule") filled 154 of
       // the zone's 720 rows (CI run 36995441688 ch-44 beat 7) — an empty middle.
-      boxes.statement = headlineBox(split[1], { width: BEAT_HERO ? 984 : SUBJECT_W, bottom: BOTTOM, flip: opp, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 360, hero: true });
+      boxes.statement = headlineBox(split[1], { minLines: 2, width: BEAT_HERO ? 984 : SUBJECT_W, bottom: BOTTOM, flip: opp, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 360, hero: true });
       const kk = c?.lead_in || folio;
       if (kk) boxes.kicker = dataBox(kk, { width: 300, size: 34, maxLines: 1, y: TOP + 10, flip: opp });
       hero = "statement";
@@ -448,7 +457,7 @@ export function canvasLayout(c) {
         if (label) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, y: boxes.number.y + nh + 28, flip });
         // The middle zone's subject until the number pops on its word: the hero tier (a 110 px
         // line filled 12% of the zone — CI run 37126933290 ch-44 beat 2, middle-zone-filled).
-        boxes.headline = headlineBox(c.headline, { width: BEAT_HERO ? 900 : SUBJECT_W, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200, hero: true });
+        boxes.headline = headlineBox(c.headline, { minLines: 2, width: BEAT_HERO ? 900 : SUBJECT_W, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200, hero: true });
       }
       hero = "number";
     } else {
@@ -596,7 +605,7 @@ export function canvasLayout(c) {
           // top: without it a one-zone beat spans ~37% of the frame and fails canvas-coverage.
           // Part D.2: a thin rule draws under the statement at 60% of the beat — the statement
           // sits 26 px up so the rule stays inside the middle zone.
-          boxes.statement = headlineBox(text, { width: BEAT_HERO ? 984 : SUBJECT_W, bottom: BOTTOM - 26, flip, maxLines: 5, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94) - 26, max: 360, center: true, hero: true });
+          boxes.statement = headlineBox(text, { minLines: 2, width: BEAT_HERO ? 984 : SUBJECT_W, bottom: BOTTOM - 26, flip, maxLines: 5, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94) - 26, max: 360, center: true, hero: true });
           if (boxes.statement.w) {
             const uw = Math.min(boxes.statement.w, 360);
             boxes.underline = { ...box(Math.round(540 - uw / 2), BOTTOM - 12, uw, 4), role: "rule", anchor: "center" };
