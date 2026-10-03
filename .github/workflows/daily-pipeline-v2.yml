@@ -340,10 +340,23 @@ jobs:
           ANGLE=$(jq -r '.angle' /tmp/channel-topic.json)
           echo "=== RESEARCH: $CH — $SLUG ==="
 
+          # Trending entities (scripts/trending-entities.cjs, task 3): the named
+          # people / places / organizations / numbers of this week's top trending
+          # titles, as research subjects. null when the trending feed is
+          # unavailable (no YOUTUBE_API_KEY) — research.md then still requires
+          # named facts.
+          TE=null
+          if [ -s "data/trending/$CH-entities.json" ]; then
+            TE=$(jq -c '{people, places, organizations, names, numbers}' "data/trending/$CH-entities.json" 2>/dev/null || echo null)
+            echo "[research] ch-$CH: trending entities fed to research: $TE"
+          else
+            echo "[research] ch-$CH: no trending entities (feed unavailable) — research prompt requires named facts"
+          fi
+
           set +e
           jq -n --arg t "$TOPIC" --arg a "$ANGLE" \
-                --arg s "$SLUG"  --arg c "$CH" \
-                '{topic:$t, angle:$a, slug:$s, channel_id:$c}' \
+                --arg s "$SLUG"  --arg c "$CH" --argjson te "$TE" \
+                '{topic:$t, angle:$a, slug:$s, channel_id:$c, trending_entities:$te}' \
             | node scripts/ollama-agent.js \
                 --prompt-file prompts/research.md \
                 --schema-file schemas/research.json \

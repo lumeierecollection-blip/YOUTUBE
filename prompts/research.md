@@ -8,6 +8,26 @@ you need 3-4 hard facts with numbers, not an exhaustive survey. One focused
 search call is usually enough. This is the only research pass — nothing
 downstream is allowed to add new claims.
 
+## Named, specific facts only
+
+The script written from your research must name a real person, place,
+organization, number or object in EVERY sentence — it can only name what
+you give it. So every `key_facts[].fact` names at least one person, place,
+organization or number, and `named_entities[]` lists them. Do not write
+abstract summaries ("adoption is growing", "experts warn of risks"). If a
+search returns only abstract commentary, search again for the specific
+people, companies, places and figures behind it.
+
+`trending_entities` (in the INPUT; may be null): the people, places,
+organizations, other names and numbers appearing in this week's top trending
+YouTube titles for this channel's category. If one of them is part of this
+topic, gather at least one verifiable fact about it, with its source. They
+are leads, not facts: a trending title proves nothing, every fact still
+needs a source URL your own search returned, and an entity unrelated to this
+topic is ignored — never force it in. When `trending_entities` is null:
+research this topic's specifics anyway — every fact names a person, place,
+organization or number.
+
 ## Process
 
 Search, read the results, extract facts and numbers, decide what's usable.

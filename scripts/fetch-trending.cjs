@@ -6,6 +6,7 @@
  *   node scripts/fetch-trending.cjs <channel-id> [--force]
  *     -> data/trending/<ch>.json           top 10 of the last 7 days by velocity
  *        data/trending/<ch>-keywords.json  words in >= 5 of all fetched titles
+ *        data/trending/<ch>-entities.json  named entities of the top 5 titles (scripts/trending-entities.cjs)
  *
  * Source: YouTube Data API v3 videos.list chart=mostPopular (1 quota unit a
  * call; 10,000 a day). VidIQ is NOT used: its API needs a paid Max plan and
@@ -54,7 +55,11 @@ async function main() {
     try {
       const prev = JSON.parse(readFileSync(file, "utf8"));
       const age = Date.now() - Date.parse(prev.fetched_at);
-      if (age < CACHE_MS) { log(`ch-${ch}: cached ${(age / 3600000).toFixed(1)} h ago (${prev.videos.length} videos), not refetched`); return; }
+      if (age < CACHE_MS) {
+        log(`ch-${ch}: cached ${(age / 3600000).toFixed(1)} h ago (${prev.videos.length} videos), not refetched`);
+        await require("./trending-entities.cjs").writeEntities(ch);
+        return;
+      }
     } catch { /* refetch */ }
   }
   const key = process.env.YOUTUBE_API_KEY;
@@ -88,6 +93,8 @@ async function main() {
   const kw = keywords(items.map((v) => v.snippet?.title || ""));
   writeFileSync(join(OUT, `${ch}-keywords.json`), JSON.stringify({ fetched_at: new Date().toISOString(), channel: ch, category, from_titles: items.length, min_titles: 5, keywords: kw }, null, 2) + "\n");
   log(`ch-${ch}: fetched ${items.length}, kept ${recent.length} (last 7 days), top ${top.length} by velocity; ${kw.length} hot term(s)`);
+  // Named entities of the top 5 titles -> data/trending/<ch>-entities.json, the research stage's subjects (task 3.1).
+  await require("./trending-entities.cjs").writeEntities(ch);
 }
 
 module.exports = { keywords };
