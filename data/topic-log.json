@@ -777,9 +777,14 @@
           "topic": "NY Court Rules on Labor Dispute Over Mandatory Arbitration Agreements",
           "slug": "new-york-court-rules-mandatory-arbitration-agreements",
           "reserved_at": "2026-10-03T19:52:01.315Z"
+        },
+        {
+          "topic": "ICE New Vehicle Stop Policy and Body Camera Rules for Officers",
+          "slug": "ice-vehicle-stop-policy-body-camera-rules",
+          "reserved_at": "2026-10-03T21:21:58.261Z"
         }
       ],
-      "last_generated": "2026-10-03T21:15:49.378Z"
+      "last_generated": "2026-10-03T21:21:58.262Z"
     },
     "3": {
       "channel_name": "AI Tested",
