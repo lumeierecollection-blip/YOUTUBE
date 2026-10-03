@@ -2271,9 +2271,14 @@
           "topic": "AI Negotiation Tactics in 2026",
           "slug": "ai-negotiation-tactics-2026",
           "reserved_at": "2026-10-03T15:39:16.870Z"
+        },
+        {
+          "topic": "The Rise of Virtual Negotiations in 2026",
+          "slug": "virtual-negotiations-2026",
+          "reserved_at": "2026-10-03T18:20:42.052Z"
         }
       ],
-      "last_generated": "2026-10-03T17:43:01.958Z"
+      "last_generated": "2026-10-03T18:20:42.052Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
