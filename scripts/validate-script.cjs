@@ -51,6 +51,10 @@ const CONCRETE = [
   "battery", "engine", "tire", "panel", "turbine", "reactor", "weapon", "gun", "missile", "tank", "uniform", "badge", "helmet", "glove",
   "container", "package", "box", "crate", "pallet", "shelf", "desk", "chair", "door", "lock", "vault", "safe", "wallet",
   "medicine", "pill", "vaccine", "syringe", "app", "website", "email", "text message", "photo", "video", "map", "chart",
+  // Owner's list, 2026-10-03 ("expand concrete nouns"): ch-48's setup question named a workshop
+  // and a giant and was read as naming nothing (CI run 37149091704).
+  "workshop", "giant", "factory floor", "industry", "sector", "market", "trade", "rule", "regulation", "standard",
+  "ruling", "verdict", "filing", "document", "machine", "tool", "part", "line",
 ];
 // Abstract nouns (task 4's examples first) — what an essay is made of, not what a camera sees.
 const ABSTRACT = [
@@ -60,7 +64,7 @@ const ABSTRACT = [
   "dynamics", "insight", "development", "progress", "situation", "issue", "benefit", "value", "quality", "stability",
   "freedom", "peace", "wellbeing", "well-being", "productivity", "leadership", "skill", "communication", "culture", "awareness",
   "knowledge", "understanding", "experience", "behavior", "behaviour", "habit", "decision", "uncertainty", "complexity",
-  "balance", "growth", "change", "shift", "power", "role", "level", "way", "thing", "world", "industry", "sector", "space", "era", "age",
+  "balance", "growth", "change", "shift", "power", "role", "level", "way", "thing", "world", "space", "era", "age",   // "industry", "sector" moved to CONCRETE (owner's list)
 ];
 const SPELLED = "zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|billion|trillion|half|double|triple|dozen";
 const MONTHS = "january|february|march|april|may|june|july|august|september|october|november|december";

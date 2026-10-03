@@ -60,7 +60,12 @@ function validateVoice(script, research = null) {
     const bp = BANNED_PHRASES.filter((p) => low.includes(p));
     for (const p of bp) fails.push(`banned phrase "${p}"`);
     const sp = specificsOf(s, { entities: ents });
-    if (sp.names.length + sp.numbers.length + sp.objects.length === 0 && !isTurnLine(s)) fails.push("names no person, place, organization, number or object");
+    // A question of <= 15 words is a narrative device (the setup must END on one —
+    // validate-script-narrative.cjs), not a wire sentence: ch-48's "Can a tiny workshop
+    // outperform a sprawling industrial giant?" (9 words) skipped the channel in CI run
+    // 37149091704 (owner's ruling 2026-10-03). Longer questions still must name something.
+    const question = /\?\s*["')]*$/.test(s.trim()) && wc <= 15;
+    if (sp.names.length + sp.numbers.length + sp.objects.length === 0 && !isTurnLine(s) && !question) fails.push("names no person, place, organization, number or object");
     if (/\b(was|were|is|are|been|being)\s+\w+(?:ed|en)\s+by\b/i.test(s)) fails.push("passive voice (… was done by …)");
     if (i > 0 && firstWord(s) && firstWord(s) === firstWord(sents[i - 1])) fails.push(`starts with the same word as the sentence before ("${firstWord(s)}")`);
     rows.push({ i: i + 1, sentence: s, words: wc, fails });

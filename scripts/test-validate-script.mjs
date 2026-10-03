@@ -43,7 +43,8 @@ eq("'Kagan disagreed' after 'Kagan' mid-script is a name", V.validateScript(scri
 {
   // Task 4: names a company, still abstract.
   const r = V.validateScript(script("Engel represents a significant trend in the industry, a shift in strategy and a new approach to innovation."), RESEARCH);
-  eq("Engel + trend/industry/shift/strategy/approach/innovation: ratio fails", [r.ratioOk, r.concrete, r.abstract], [false, 1, 6]);
+  // "industry" is CONCRETE since the owner's noun list (2026-10-03): 2 concrete, 5 abstract — still fails.
+  eq("Engel + trend/industry/shift/strategy/approach/innovation: ratio fails", [r.ratioOk, r.concrete, r.abstract], [false, 2, 5]);
 }
 
 console.log(bad ? `${bad} FAILED` : "all pass");
