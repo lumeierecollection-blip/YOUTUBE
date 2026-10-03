@@ -21,6 +21,9 @@ eq("no names in a typographic scene", R.properNames("Kinetic typography: the wor
 // An entity type the resolver does not fetch is refused without a network call.
 const r = await R.resolveSceneEntity({ channel: "t", beatIndex: 1, entity: { type: "object", name: "padlock" } });
 eq("an object is not resolved here (the cutout path fetches it)", [r.ok, r.why], [false, "not a real-world entity type"]);
+// A common noun typed as a building is not a named entity (CI run 37110620556 ch-2: "field office").
+const fo = await R.resolveSceneEntity({ channel: "t", beatIndex: 2, entity: { type: "building", name: "field office" } });
+eq("'field office' is not a proper name: not looked up, no name card", [fo.ok, fo.refused, fo.why], [false, true, "not a proper name"]);
 
 // An acronym with no unambiguous expansion ("AI", "ED" — CI run 37074911159) is refused before any lookup, flagged so no name card is made.
 const ai = await R.resolveSceneEntity({ channel: "t", beatIndex: 2, entity: { type: "organization", name: "AI" } });

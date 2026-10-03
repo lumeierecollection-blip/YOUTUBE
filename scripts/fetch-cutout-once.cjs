@@ -195,7 +195,16 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
       if (!res.ok) { log(`candidate ${n} REJECTED (download failed, HTTP ${res.status})`); rejected.other++; continue; }
       writeFileSync(raw, Buffer.from(await res.arrayBuffer()));
     } catch (e) { log(`candidate ${n} REJECTED (download failed, ${e.message})`); rejected.other++; continue; }
-    const rep = await runPy([join(ROOT, "scripts", "cutout_lib.py"), "isolate", raw, iso, ...flags]);
+    // A Wikipedia / Wikimedia bill or coin scan is already the object edge to edge: background
+    // removal has nothing to remove and refused 6 of 8 (CI run 37110620556 ch-1). Its margin is
+    // trimmed and the scan used as it is — still verified (three questions + FLAT) below.
+    let rep;
+    if (money && c.source !== "pixabay") {
+      try {
+        await require("sharp")(raw).trim({ threshold: 18 }).resize({ width: 1024, height: 1024, fit: "inside", withoutEnlargement: true }).ensureAlpha().png().toFile(iso);
+        rep = { ok: true };
+      } catch (e) { rep = { ok: false, why: `scan could not be read (${e.message})` }; }
+    } else rep = await runPy([join(ROOT, "scripts", "cutout_lib.py"), "isolate", raw, iso, ...flags]);
     rmSync(raw, { force: true });
     if (!rep.ok) { log(`candidate ${n} REJECTED (isolation: ${rep.why})`); rejected.isolation++; rmSync(iso, { force: true }); continue; }
     const v = await verify(iso, concept, scene);

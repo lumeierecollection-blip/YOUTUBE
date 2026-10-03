@@ -240,6 +240,13 @@ async function resolveSceneEntity({ channel, beatIndex, entity, context = "", sc
   const type = String(entity?.type || "").toLowerCase(), name = String(entity?.name || "").replace(/\s*\([^)]*\)/g, "").trim();
   const tag = `ch-${channel} beat ${beatIndex}: entity ${type} "${name}"`;
   if (!name || !["person", "place", "building", "organization", "company", "institution"].includes(type)) return { ok: false, kind: type, why: "not a real-world entity type" };
+  // A real-world entity is a PROPER name: "field office" (typed as a building by the planner)
+  // was resolved to a Taiwanese "MJIB Penghu County Field Office" and verified MATCH as "a
+  // field office" (CI run 37110620556 ch-2 beat 2) — a generic photo for a common noun.
+  if (!/\p{Lu}/u.test(name)) {
+    console.log(`[resolve] ${tag}\n    → "${name}" is not a proper name (no capital letter) — not looked up, no name card`);
+    return { ok: false, kind: type, why: "not a proper name", refused: true };
+  }
   // A date is not a place or an organization ("September 2026" typed as a place — CI run
   // 37079127196 ch-44): refused, no lookup, no name card.
   if (DATE_RE.test(name)) {
