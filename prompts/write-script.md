@@ -32,6 +32,11 @@ guideline.** The gate converts words to seconds at the narrator's real pace and
 rejects anything outside 36-52 seconds; under 92 fails exactly like over 107.
 Aim for about 100 words.
 
+**The budget per beat — count as you write:** HOOK ≤ 12 words · SETUP ≤ 35 ·
+RE-HOOK ≤ 15 · PAYOFF ≤ 35 · CLOSE ≤ 12. That is 9-10 sentences in all. A
+script of 150+ words is rejected; the five beats fit in 100 because each
+sentence carries ONE fact.
+
 ## STRUCTURE — five beats, in this order, as five sections
 
 Write `sections` as exactly five objects with these ids, in this order:

@@ -51,7 +51,9 @@ while (total() > maxWords) {
   // close, the setup's last sentence (the viewer's question), the payoff's first (the
   // reveal) or last (the number / action), or a beat's only sentence. Removable: a middle
   // setup sentence, a middle payoff sentence, a second re-hook sentence.
-  const NARRATIVE = { setup: [0, -2], payoff: [1, -2], rehook: [1, -1] };
+  // (The payoff's reveal may go too: CI run 37141128792 ch-44 could not get 196 words under
+  // 120 with it protected. The payoff keeps its last sentence — the number / action.)
+  const NARRATIVE = { setup: [0, -2], payoff: [0, -2], rehook: [1, -1] };
   const narrative = ["hook", "setup", "rehook", "payoff", "close"].every((id) => sections.some((s) => s.id === id));
   const candidates = parts
     .map((ss, i) => {
