@@ -2196,9 +2196,14 @@
           "topic": "The 2026 ESG Impact: How Corporate Sustainability Strategies Evolve",
           "slug": "esg-impact-2026",
           "reserved_at": "2026-10-03T13:13:32.145Z"
+        },
+        {
+          "topic": "Oil Deal Negotiation",
+          "slug": "oil-deal-negotiation-trump-russia-ukraine-war",
+          "reserved_at": "2026-10-03T13:46:22.925Z"
         }
       ],
-      "last_generated": "2026-10-03T13:13:32.145Z"
+      "last_generated": "2026-10-03T13:46:22.925Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
