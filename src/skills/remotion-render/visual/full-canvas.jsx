@@ -332,6 +332,8 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
         {[B.cutout0, B.cutout1, B.cutout2].filter(Boolean).map((v, i) => (
           <ConceptVisual key={i} b={v} local={local} fps={fps} at={tl.headlineAt + 0.45 + i * 0.12} accent={accent} dur={dur} />
         ))}
+        {/* A logo's company name types on below it (part D.2). */}
+        {B.label && B.cutout0?.logo ? <DataLabel b={B.label} name="label" color={th.ink} local={local} fps={fps} at={tl.headlineAt + 0.8} /> : null}
       </>
     );
   }
@@ -508,7 +510,12 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           {modern && cid === "BAR_COMPARE" ? (() => {
             const r = stOf(primary).ref;
             return <line x1={ch.x + (bars[primary].q.magnitude / max) * Wfull} y1={ch.y} x2={ch.x + (bars[primary].q.magnitude / max) * Wfull} y2={ch.y + ch.h * r} stroke={th.ink} strokeWidth={4} strokeDasharray="14 12" opacity={0.7} />;
-          })() : null}
+          })() : (() => {
+            // Part D.2: the reference line at the top value, drawn down the chart once the bars have landed.
+            const r = easeOut(clamp01((local - 0.55 * dur) / (0.12 * dur)));
+            const x = ch.x + Wfull;
+            return r > 0 ? <line x1={x} y1={ch.y} x2={x} y2={ch.y + ch.h * r} stroke={th.ink} strokeWidth={3} strokeDasharray="14 12" opacity={0.55} /> : null;
+          })()}
         </svg>
       );
     } else {
@@ -548,7 +555,11 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           {modern && cid === "BAR_COMPARE" ? (() => {
             const r = stOf(primary).ref;
             return <line x1={ch.x} y1={base - plotH} x2={ch.x + ch.w * r} y2={base - plotH} stroke={th.ink} strokeWidth={4} strokeDasharray="14 12" opacity={0.7} />;
-          })() : null}
+          })() : (() => {
+            // Part D.2 (DATA-FULL): a reference line draws across the chart at the top value once the bars have landed.
+            const r = easeOut(clamp01((local - 0.55 * dur) / (0.12 * dur)));
+            return r > 0 ? <line x1={ch.x} y1={base - plotH} x2={ch.x + ch.w * r} y2={base - plotH} stroke={th.ink} strokeWidth={3} strokeDasharray="14 12" opacity={0.55} /> : null;
+          })()}
         </svg>
       );
     }
@@ -628,6 +639,9 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
         <line x1={ch.x} y1={base} x2={ch.x + ch.w} y2={base} stroke={th.ink} strokeWidth={4} />
         {[0.33, 0.66].map((f) => <line key={f} x1={ch.x} y1={base - f * (ch.h - 260)} x2={ch.x + ch.w} y2={base - f * (ch.h - 260)} stroke={th.track} strokeWidth={2} />)}
         <path d={path} fill="none" stroke={accent} strokeWidth={14} strokeLinejoin="round" strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - drawT} />
+        {/* Part D.2: a reference line draws across at the last value once the line has arrived. */}
+        {pts.length ? (() => { const r = easeOut(clamp01((local - 0.6 * dur) / (0.12 * dur))), y = py(pts[pts.length - 1].q.magnitude);
+          return r > 0 ? <line x1={ch.x} y1={y} x2={ch.x + ch.w * r} y2={y} stroke={th.ink} strokeWidth={3} strokeDasharray="14 12" opacity={0.45} /> : null; })() : null}
         {pts.map((p, i) => {
           const ls = lsOf(i);
           const on = ls ? ls.dot : clamp01(t * (pts.length - 1) - i + 1);

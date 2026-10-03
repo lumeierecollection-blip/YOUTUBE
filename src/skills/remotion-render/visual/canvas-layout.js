@@ -573,9 +573,12 @@ export function canvasLayout(c) {
                 if (u.h * a >= MIN_H) break;
               }
             }
-            const e = ext(a, deg), ih = a / r, inkW = Math.min(W, e.w), cy = flatHero ? Math.round(Math.max(980, 1330 - e.h / 2)) : centreY(e.h);
+            const e = ext(a, deg), ih = a / r, inkW = Math.min(W, e.w), cy = flatHero ? Math.round(Math.max(980, (v.logo ? 1270 : 1330) - e.h / 2)) : centreY(e.h);
             const bx = Math.round(540 - inkW / 2), by = Math.round(cy - e.h / 2);
             const icx = 540 - (e.x0 + e.x1) / 2, icy = cy - (e.y0 + e.y1) / 2;   // the image's centre: its ink centred on (540, cy)
+            // Part D.2 (logo): the company's name types on BELOW the logo — the logo stands 60 px
+            // higher (floor 1270) and the name label sits under it, inside the middle zone.
+            if (v.logo && v.name) boxes.label = dataBox(v.name, { width: 900, size: 34, maxLines: 1, y: 1290, flip });
             boxes.cutout0 = { ...box(bx, by, Math.round(inkW), Math.round(e.h)), role: "concept", concept: v.name, class: v.class, asset: v.asset || null, primary: true, align: "center", logo: !!v.logo, money: !!v.money,
               // [x, y, w, h] — an array, so flattenBoxes does not read it as an element box
               img: [Math.round(icx - a / 2 - bx), Math.round(icy - ih / 2 - by), Math.round(a), Math.round(ih)], ...(deg ? { tilt: deg } : {}), ...(crop ? { crop } : {}) };

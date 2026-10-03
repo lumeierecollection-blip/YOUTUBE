@@ -23,7 +23,7 @@ export function motionsFor(raw, idx = 0) {
     case "TYPE-SPLIT":
       if (B.emphasis) { primary = "emphasis word pops (POP_EMPHASIS)"; secondary = "headline words pop one at a time"; break; }
       if (B.cutout0) {
-        if (hero?.logo) { primary = "logo pops in at 1.15x and settles"; secondary = "shadow turns 2deg; headline words pop"; }
+        if (hero?.logo) { primary = "logo pops in at 1.15x and settles"; secondary = "shadow turns 2deg; the company name types on below"; }
         else if (B.cutout0.class === "symbol") { primary = "symbol pops in on its floor"; secondary = "headline words pop one at a time"; }
         else { primary = B.cutout0.tilt ? "cutout pops in on its diagonal" : "cutout pushes in 2%"; secondary = "headline words pop one at a time"; }
         break;
@@ -40,7 +40,7 @@ export function motionsFor(raw, idx = 0) {
       break;
     case "DATA-FULL":
       primary = { BAR: "bars grow from the baseline", LINE: "line draws left to right", PIE: "arc sweeps to its share", GAUGE: "needle sweeps to its value", TREND: "trend line draws" }[vt] || null;
-      secondary = { BAR: "labels and figures pop as each bar lands", LINE: "points and figures pop as the line reaches them", PIE: "percentage counts up", GAUGE: "percentage counts up", TREND: "end dot and label pop" }[vt] || null;
+      secondary = { BAR: "labels and figures pop as each bar lands; a reference line draws at the top value", LINE: "points pop as the line reaches them; a reference line draws at the last value", PIE: "percentage counts up", GAUGE: "percentage counts up", TREND: "end dot and label pop" }[vt] || null;
       break;
     case "SCENE-FULL":
     case "ARCHITECTURE":
