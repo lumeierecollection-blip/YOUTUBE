@@ -1,7 +1,7 @@
 # Tokens, Entities, Verification — Final Report
 
 Date: 2026-10-03
-HEAD: see `git log -1` on `claude/visual-rebuild-from-5f91e75` (last CI-tested commit: f6f3850, run 37119036921)
+HEAD: 7ecfcdc (branch claude/visual-rebuild-from-5f91e75); last CI-tested commit f6f3850, run 37119036921
 Iterations: 5 (the per-channel cap) — **target NOT met: no run reached 4/6 approved**
 
 | Iteration | Run | Commit | Approved | approved-review | rejected | prep failed |
@@ -69,7 +69,7 @@ attempted for ch-1 and ch-48, both private-first).
     bar labels.
 - False positives:
   - ch-44 beats 1 and 5, "20% vs 2026" (a spelled year). Fixed in ce9631a.
-  - ch-2 beat 3, "1 vs 2027" ("July 1, 2027"). Fixed in the latest commit: a trailing
+  - ch-2 beat 3, "1 vs 2027" ("July 1, 2027"). Fixed in 6052710: a trailing
     comma is dropped, and a day of the month is skipped.
 
 ## PNG verification (three questions, 8 candidates)
@@ -92,7 +92,7 @@ attempted for ch-1 and ch-48, both private-first).
 
 | Ch | Approval | Entities | Credits | Comparisons | PNG pass |
 |---|---|---|---|---|---|
-| 1 | rejected — canvas-type "TYPE-FULL twice" (fixed after the run, c5e3d27) | 3 persons, no verified photo → name cards | 0 | 0 | — |
+| 1 | rejected — canvas-type "TYPE-FULL twice" (fixed after the run, a28dfc7) | 3 persons, no verified photo → name cards | 0 | 0 | — |
 | 2 | approved-review — TEMPLATE_MONOCULTURE 67% | Maryland → MAP | 1 (money cutout; frame not checked) | 0 | 1/1 |
 | 9 | approved-review — challenger rejected the plan twice | 4 orgs → name cards; Morocco → MAP | 0 | 0 | — |
 | 26 | approved-review — TEMPLATE_MONOCULTURE 66% | FDIC → logo (verified, then rotated away; see blockers) | 1 (verified on frame) | 0 | 1/1 |
@@ -108,8 +108,8 @@ attempted for ch-1 and ch-48, both private-first).
   outright. A bare concept also gets its sentence's material ("plates" → "steel plates").
   Neither path came up in it5: no portrait or ambiguous concept was resolved.
 - f6f3850: all-caps company/institution names (POSCO, DGIST) are looked up.
-- c5e3d27: the rotation keys a bare-name card the way the audit does (it5 ch-1).
-- Latest commit: "July 1, 2027" is not a two-number comparison.
+- a28dfc7: the rotation keys a bare-name card the way the audit does (it5 ch-1).
+- 6052710: "July 1, 2027" is not a two-number comparison.
 
 The last two commits came after the final run, and none of the it5-era fixes above
 has been exercised in CI.
