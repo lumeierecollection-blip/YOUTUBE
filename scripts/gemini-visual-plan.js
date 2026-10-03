@@ -1344,6 +1344,13 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       // proper name it mentions is used only when the SENTENCE names it too.
       b.scene_description = typeof b.scene_description === "string" && b.scene_description.trim() ? b.scene_description.trim().slice(0, 600) : null;
       if (!b.scene_description) console.warn(`::warning::[plan] beat ${b.index}: no scene_description`);
+      // Fields the compact prompt no longer asks for (part A) but older code still reads
+      // (visual-director.js applyDirective crashed on a missing visual_headline — CI run
+      // 37108869325 ch-1): derived here from what the model did write.
+      if (!b.visual_headline) b.visual_headline = b.headline || b.typography_direction?.phrase || "";
+      if (!b.reason) b.reason = b.scene_description || "";
+      if (!b.emotional_weight) b.emotional_weight = b.motion_tier === "major" ? "sharp" : "calm";
+      if (b.carries_forward === undefined) b.carries_forward = null;
       // The word the entity visual pops on (render.js finds its spoken time). Kept only
       // when it is a word OF THE SENTENCE; otherwise the renderer derives it from the entity.
       {

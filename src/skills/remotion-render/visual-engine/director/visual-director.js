@@ -538,7 +538,9 @@ function buildScene(text, index, totalBeats, prevScene) {
 /* ── Gemini directive → scene ─────────────────────────────────────── */
 
 function applyDirective(directive, originalText, index, totalBeats, prevScene) {
-  const headline = directive.visual_headline;
+  // visual_headline is derived by the planner now (compact prompt, 2026-10-03); a plan from any
+  // other path may lack it — it crashed .split() here (CI run 37108869325 ch-1).
+  const headline = String(directive.visual_headline || directive.headline || "");
   const mechanism = directive.mechanism;
   const material = detectMaterial(originalText);
   const subject = extractSubjectPhrase(originalText);
