@@ -52,6 +52,10 @@ on:
         description: "With publish: the pipeline run whose approved-review videos to upload"
         type: string
         default: ""
+      hold_public:
+        description: "Skip process-queue: nothing is flipped public by this run (uploads stay private)"
+        type: boolean
+        default: false
 
 concurrency:
   group: daily-pipeline-${{ github.ref }}
@@ -441,6 +445,7 @@ jobs:
             FEEDBACK=""
             PASSED=0
             SPEC_REASKED=0
+            CLAIM_REASKED=0
             for ATTEMPT in 1 2 3 4 5; do
               echo "=== SCRIPT: $CH — $SCRIPT_SLUG (attempt $ATTEMPT/5) ==="
               PROMPT_FILE=prompts/write-script.md
@@ -512,9 +517,37 @@ jobs:
                   if [ "$SPEC_EXIT" -eq 3 ]; then
                     echo "::warning::[script] ch-$CH: voice validation failed twice — channel skipped this run (data/ci-runs/blocked-voice-$CH.txt)"
                     echo "skip=true" >> "$GITHUB_OUTPUT"
+                    echo "skip_reason=voice-validation" >> "$GITHUB_OUTPUT"
                     exit 0
                   fi
                   echo "::warning::[script] ch-$CH: story checks still FAIL after the re-ask — continuing with this script (logged to data/ci-runs/blocked-script-*-$CH.txt)"
+                fi
+                # CLAIMS (scripts/validate-script-claims.cjs, owner's Fix 4): every sentence's
+                # (subject, verb, object) claims judged against THIS research by Gemini. An
+                # INVENTED claim -> ONE re-ask with the sentences marked; still INVENTED ->
+                # data/ci-runs/blocked-claims-<ch>.txt and the channel is SKIPPED (exit 2 with
+                # --blocked). PARTIAL is logged and accepted. Gemini failing twice -> exit 4,
+                # "claim check unavailable, proceeding without".
+                set +e
+                if [ "$CLAIM_REASKED" -eq 0 ] && [ "$ATTEMPT" -lt 5 ]; then
+                  node scripts/validate-script-claims.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" > /tmp/claims-out-$FORMAT.log 2>&1
+                else
+                  node scripts/validate-script-claims.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" --blocked data/ci-runs > /tmp/claims-out-$FORMAT.log 2>&1
+                fi
+                CLAIM_EXIT=$?
+                set -e
+                cat /tmp/claims-out-$FORMAT.log
+                if [ "$CLAIM_EXIT" -eq 2 ]; then
+                  if [ "$CLAIM_REASKED" -eq 0 ] && [ "$ATTEMPT" -lt 5 ]; then
+                    CLAIM_REASKED=1
+                    echo "[script] ch-$CH: INVENTED claims ($(grep -c '^  - CLAIM' /tmp/claims-out-$FORMAT.log)), re-asking once"
+                    FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$(grep -E '^  - CLAIM' /tmp/claims-out-$FORMAT.log || true)" | grep -E '^  - ' | sort -u || true)
+                    continue
+                  fi
+                  echo "::warning::[script] ch-$CH: invented claims after the re-ask — channel skipped this run (data/ci-runs/blocked-claims-$CH.txt)"
+                  echo "skip=true" >> "$GITHUB_OUTPUT"
+                  echo "skip_reason=claims" >> "$GITHUB_OUTPUT"
+                  exit 0
                 fi
                 # LENGTH, measured on the real voiceover. render.js caps a
                 # Short at 60s, so a longer narration is cut off mid-word —
@@ -663,7 +696,7 @@ jobs:
           if [ "${{ steps.reserve.outputs.skip }}" = "true" ]; then
             echo '{"skipped": true, "reason": "duplicate-topic"}' > "data/prep-status/$CH.json"
           elif [ "${{ steps.script.outputs.skip }}" = "true" ]; then
-            echo '{"skipped": true, "reason": "voice-validation"}' > "data/prep-status/$CH.json"
+            echo '{"skipped": true, "reason": "${{ steps.script.outputs.skip_reason || 'script-validation' }}"}' > "data/prep-status/$CH.json"
           else
             echo "{\"skipped\": false, \"prep\": \"${{ job.status }}\"}" > "data/prep-status/$CH.json"
           fi
@@ -681,6 +714,7 @@ jobs:
             data/thumbnails/${{ matrix.channel_id }}/
             data/ci-runs/blocked-script-specificity-${{ matrix.channel_id }}.txt
             data/ci-runs/blocked-voice-${{ matrix.channel_id }}.txt
+            data/ci-runs/blocked-claims-${{ matrix.channel_id }}.txt
             data/ci-runs/blocked-script-narrative-${{ matrix.channel_id }}.txt
           retention-days: 1
 
@@ -989,7 +1023,7 @@ jobs:
         run: node src/skills/youtube-publish/run.js "${{ matrix.channel_id }}"
 
       - name: Process publish queue
-        if: github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
+        if: github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true' && github.event.inputs.hold_public != 'true'
         run: node src/skills/youtube-publish/run.js process-queue
 
       - name: Commit publish queue
