@@ -245,9 +245,14 @@
           "topic": "AI Budgeting Tools for 2026",
           "slug": "ai-budgeting-tools-2026",
           "reserved_at": "2026-10-02T23:00:02.640Z"
+        },
+        {
+          "topic": "The Money Reset: Vivian Tu's Money Advice on Saving and Getting Ahead",
+          "slug": "money-reset-vivian-tu-saving-ahead",
+          "reserved_at": "2026-10-03T00:40:27.500Z"
         }
       ],
-      "last_generated": "2026-10-02T23:00:02.640Z"
+      "last_generated": "2026-10-03T00:40:27.500Z"
     },
     "2": {
       "channel_name": "Legal Brief",
