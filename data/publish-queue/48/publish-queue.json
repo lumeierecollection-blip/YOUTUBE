@@ -18,5 +18,15 @@
     "go_public_at": "2026-10-02T11:54:30.413Z",
     "privacy_status": "private",
     "cancelled": true
+  },
+  {
+    "video_id": "OXgzeVBUZNE",
+    "channel_id": "48",
+    "title": "Agentic AI frameworks for industrial automation lifecycle…",
+    "uploaded_at": "2026-10-03T09:50:31.675Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-03T10:50:31.675Z",
+    "privacy_status": "private",
+    "cancelled": true
   }
 ]
