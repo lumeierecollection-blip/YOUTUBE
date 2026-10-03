@@ -537,9 +537,14 @@
           "topic": "New York State's Civil Rights Safeguard Act 2026",
           "slug": "new-york-civil-rights-safeguard-act-2026",
           "reserved_at": "2026-10-02T23:01:59.650Z"
+        },
+        {
+          "topic": "New Washington DC Law Banning Dog Breed Restrictions",
+          "slug": "new-washington-dc-law-banning-dog-breeds",
+          "reserved_at": "2026-10-03T00:44:29.044Z"
         }
       ],
-      "last_generated": "2026-10-02T23:53:08.935Z"
+      "last_generated": "2026-10-03T00:44:29.044Z"
     },
     "3": {
       "channel_name": "AI Tested",
