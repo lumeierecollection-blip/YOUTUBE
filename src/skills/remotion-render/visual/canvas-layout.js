@@ -242,11 +242,16 @@ const anchorX = (w, flip) => Math.round(flip ? R_EDGE - w : L_EDGE);
  * The renderer (full-canvas.jsx) and the manifest both read this, so the report counts
  * what was drawn.
  */
-export const PAPER_OPACITY = 0.04;
+// 2026-10-03 (later spec, E.4): texture opacity 0.03 on every 3rd beat; every 5th beat a very
+// subtle vertical gradient (white to #F8F7F4 — luma ~247, above canvas-ground's 245 floor)
+// instead of the thin rule; every other beat pure white.
+export const PAPER_OPACITY = 0.03;
 export const BG_RULE = Object.freeze({ y: TOP - 40, h: 2, color: "#DADADF" });
+export const BG_GRADIENT = "linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 35%, #F8F7F4 100%)";
 export function backgroundOf(idx, composition = "") {
-  if (["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"].includes(composition)) return { paper: false, rule: false };
-  return { paper: (idx + 1) % 3 === 0, rule: (idx + 1) % 5 === 0 };
+  if (["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"].includes(composition)) return { paper: false, rule: false, gradient: false };
+  const gradient = (idx + 1) % 5 === 0;
+  return { paper: !gradient && (idx + 1) % 3 === 0, rule: false, gradient };
 }
 
 export function normalizeCanvas(c, idx = 0) {
@@ -294,8 +299,16 @@ let MARKS = [];
 // alone in the middle zone left it ~85% empty (QA render 2026-10-03), so the hero tier is the
 // statement's. Set per beat by canvasLayout; the plain-statement branch passes hero: true.
 // A name card's NAME is exempt (it is the entity, drawn like a hero number, not a headline).
-export const HERO_HEADLINE = Object.freeze({ min: 120, max: 160 });
+// Later spec the same day (E.2): ONE beat per video carries the hero headline (140 px —
+// canvas.hero_headline, the hook); every other headline is 80-110 px, varied beat by beat
+// (HEADLINE_STEPS by variant). A headline that is its zone's subject (a TYPE-FULL / TYPE-SPLIT
+// statement, the swapped counter's headline) is set in a narrower 640 px column off the hero
+// beat, so at <= 110 px it still wraps to fill the zone (middle-zone-filled >= 15%).
+export const HERO_HEADLINE = Object.freeze({ min: 120, max: 140 });
 export const HEADLINE_SIZE = Object.freeze({ min: 80, max: 110 });
+export const HEADLINE_STEPS = Object.freeze([110, 96, 104, 88]);
+let BEAT_HERO = false, BEAT_MAX = 110;
+const SUBJECT_W = 640;
 /**
  * A ROLE_HEADLINE block, left- or right-anchored; top at `y`, or bottom at
  * `bottom`. Kinetic: the text is a list of words, each with its own weight
@@ -304,7 +317,8 @@ export const HEADLINE_SIZE = Object.freeze({ min: 80, max: 110 });
  * measured x / y / width.
  */
 function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines = 4, maxHeight = Infinity, max = ROLE_HEADLINE.sizeBand[1], marks = MARKS, center = false, tier = true, hero = false } = {}) {
-  const TIER = hero ? HERO_HEADLINE : HEADLINE_SIZE;
+  const TIER = BEAT_HERO ? HERO_HEADLINE : { min: HEADLINE_SIZE.min, max: BEAT_MAX };
+  void hero;
   // center (part C.1): a TYPE-FULL statement, centred on the frame's axis.
   const align = center ? "center" : flip ? "right" : "left";
   const words = markWords(text, marks);
@@ -374,6 +388,8 @@ export function splitHeadline(text) {
  */
 export function canvasLayout(c) {
   MARKS = Array.isArray(c?.emphasis_words) ? c.emphasis_words : c?.emphasis_word ? [c.emphasis_word] : [];
+  BEAT_HERO = !!c?.hero_headline;
+  BEAT_MAX = HEADLINE_STEPS[((Number(c?.variant) || 0) % HEADLINE_STEPS.length + HEADLINE_STEPS.length) % HEADLINE_STEPS.length];
   const comp = c?.composition || compositionFor(c?.visual_type, !!c?.photo);
   const vt = String(c?.visual_type || "TYPE").toUpperCase();
   const flip = (Number(c?.variant) || 0) % 2 === 1 ? 1 : 0;
@@ -390,7 +406,7 @@ export function canvasLayout(c) {
       // The second half is the middle zone's subject: up to 360 px across the
       // full width. At 760 px / max 200 a short half ("the rule") filled 154 of
       // the zone's 720 rows (CI run 36995441688 ch-44 beat 7) — an empty middle.
-      boxes.statement = headlineBox(split[1], { width: 984, bottom: BOTTOM, flip: opp, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 360, hero: true });
+      boxes.statement = headlineBox(split[1], { width: BEAT_HERO ? 984 : SUBJECT_W, bottom: BOTTOM, flip: opp, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 360, hero: true });
       const kk = c?.lead_in || folio;
       if (kk) boxes.kicker = dataBox(kk, { width: 300, size: 34, maxLines: 1, y: TOP + 10, flip: opp });
       hero = "statement";
@@ -429,7 +445,7 @@ export function canvasLayout(c) {
         if (label) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, y: boxes.number.y + nh + 28, flip });
         // The middle zone's subject until the number pops on its word: the hero tier (a 110 px
         // line filled 12% of the zone — CI run 37126933290 ch-44 beat 2, middle-zone-filled).
-        boxes.headline = headlineBox(c.headline, { width: 900, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200, hero: true });
+        boxes.headline = headlineBox(c.headline, { width: BEAT_HERO ? 900 : SUBJECT_W, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200, hero: true });
       }
       hero = "number";
     } else {
@@ -557,7 +573,7 @@ export function canvasLayout(c) {
             const e = ext(a, deg), ih = a / r, inkW = Math.min(W, e.w), cy = flatHero ? Math.round(Math.max(980, 1330 - e.h / 2)) : centreY(e.h);
             const bx = Math.round(540 - inkW / 2), by = Math.round(cy - e.h / 2);
             const icx = 540 - (e.x0 + e.x1) / 2, icy = cy - (e.y0 + e.y1) / 2;   // the image's centre: its ink centred on (540, cy)
-            boxes.cutout0 = { ...box(bx, by, Math.round(inkW), Math.round(e.h)), role: "concept", concept: v.name, class: v.class, asset: v.asset || null, primary: true, align: "center",
+            boxes.cutout0 = { ...box(bx, by, Math.round(inkW), Math.round(e.h)), role: "concept", concept: v.name, class: v.class, asset: v.asset || null, primary: true, align: "center", logo: !!v.logo, money: !!v.money,
               // [x, y, w, h] — an array, so flattenBoxes does not read it as an element box
               img: [Math.round(icx - a / 2 - bx), Math.round(icy - ih / 2 - by), Math.round(a), Math.round(ih)], ...(deg ? { tilt: deg } : {}), ...(crop ? { crop } : {}) };
           } else {
@@ -572,7 +588,13 @@ export function canvasLayout(c) {
           // Part C.1 (owner's spec 2026-10-03): TYPE-FULL is the one centred composition — the
           // headline on the frame's axis, full width. The hairline rule (and folio) stays at the
           // top: without it a one-zone beat spans ~37% of the frame and fails canvas-coverage.
-          boxes.statement = headlineBox(text, { width: 984, bottom: BOTTOM, flip, maxLines: 5, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 360, center: true, hero: true });
+          // Part D.2: a thin rule draws under the statement at 60% of the beat — the statement
+          // sits 26 px up so the rule stays inside the middle zone.
+          boxes.statement = headlineBox(text, { width: BEAT_HERO ? 984 : SUBJECT_W, bottom: BOTTOM - 26, flip, maxLines: 5, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94) - 26, max: 360, center: true, hero: true });
+          if (boxes.statement.w) {
+            const uw = Math.min(boxes.statement.w, 360);
+            boxes.underline = { ...box(Math.round(540 - uw / 2), BOTTOM - 12, uw, 4), role: "rule", anchor: "center" };
+          }
           hero = "statement";
         }
       }

@@ -109,6 +109,8 @@ export function styleCanvases(canvases, narrations = []) {
     c.beat_index = i;
     c.beat_total = canvases.length;          // the folio ("03 / 08") on a beat with no lead-in
     c.variant = i;
+    // One hero headline per video (owner's spec 2026-10-03, E.2): the hook's, at 140 px.
+    c.hero_headline = i === 0;
   });
   const emphasis = assignEmphasis(canvases);
   // The rotated whole-line beat is retired (kinetic typography: no text animates as a block); assignVertical is kept and tested.
