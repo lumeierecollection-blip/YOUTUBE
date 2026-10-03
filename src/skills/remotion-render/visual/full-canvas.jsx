@@ -1146,6 +1146,13 @@ export function CanvasVideo({ plan }) {
       {prev && local <= POP.OUT ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} live={prev.duration_frames - 1} /> : null}
       <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} live={local} />
       <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} maxSize={cLayout.boxes.cutout0 ? 40 : 58} />
+      {/* Source credit (owner's spec 2026-10-03, part C): only on a beat that shows a fetched
+          image; bottom-right, 40 px in from the right and bottom edges, 20 px sans, #888,
+          fading in from frame 40 of the beat (after the pops have settled). */}
+      {c.source_credit ? (
+        <div style={{ position: "absolute", right: 40, bottom: 40, font: `500 20px ${SANS_STACK}`, color: "#888888", whiteSpace: "nowrap",
+          opacity: Math.max(0, Math.min(1, (local - 40) / 8)) }}>Source: {c.source_credit}</div>
+      ) : null}
     </StudioBG>
     </ShadowOn.Provider>
   );

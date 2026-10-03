@@ -26,7 +26,7 @@ import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layo
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { assignCanvasAnimations } from "./anim-plan.js";
-import { checkVisual, figureKey, entityNamedInSentence } from "./gemini-visual-plan.js";
+import { checkVisual, figureKey, entityNamedInSentence, comparisonNumbers } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
@@ -451,7 +451,8 @@ function measureGround(videoPath) {
   // Not a beat whose layout draws a full-frame shape: COMPARISON-SPLIT's diagonal
   // covers the top-right corner by design (CI run 37067332714 ch-2: beat 0 was one,
   // and its corner read #0E0E0E as "the ground").
-  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white" && b.canvas?.composition !== "COMPARISON-SPLIT" && !Object.values(b.canvas?.boxes || {}).some((v) => v?.role === "shape"));
+  // (nor one carrying a source credit: "Source: ..." sits in the bottom-right patch — part C)
+  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white" && !b.canvas?.source_credit && b.canvas?.composition !== "COMPARISON-SPLIT" && !Object.values(b.canvas?.boxes || {}).some((v) => v?.role === "shape"));
   if (!beat) { console.log("[verify] ground: every beat is a full-bleed photo — the white ground not measured"); return []; }
   const at = beat.start_sec + beat.duration_sec * 0.6;
   const framePath = videoPath.replace(/\.mp4$/, "-ground.png");
@@ -894,6 +895,16 @@ function movementFor(concept) {
 // is no paper). The composition follows from the CHECKED visual type
 // (canvas-layout.js compositionFor): a PHOTO that could not be
 // resolved is drawn as TYPE-FULL, never as a stand-in image.
+// "Source: <domain>" (owner's spec 2026-10-03, part C): the hostname of a fetched image's page,
+// with Wikipedia's language subdomain and Wikimedia's upload host folded to their sites.
+export function sourceCredit(url) {
+  let h;
+  try { h = new URL(String(url)).hostname.toLowerCase().replace(/^www\./, ""); } catch { return null; }
+  if (/(^|\.)wikipedia\.org$/.test(h)) return "wikipedia.org";
+  if (/wikimedia\.org$/.test(h)) return "commons.wikimedia.org";
+  return h;
+}
+
 function canvasContentFor(b, { photo = null } = {}) {
   let vt = String(b.visual_type || "TYPE").toUpperCase();
   if (((vt === "PHOTO" || vt === "DOCUMENT" || vt === "MONEY") && !photo)) vt = "TYPE";
@@ -925,6 +936,11 @@ function canvasContentFor(b, { photo = null } = {}) {
   if (b.type_layout === "split") c.type_layout = "split";
   // A named entity with no verified photo (resolve-scene.cjs): its name, large (canvas-layout.js).
   if (vt === "TYPE" && b.name_card?.name) c.name_card = b.name_card;
+  // A logo or a money object fetched for this beat: the hero cutout (canvas-layout.js TYPE-FULL).
+  if (vt === "TYPE" && b.hero_cutout) c.concept_visuals = [b.hero_cutout];
+  // Source credit (part C): the domain of the beat's fetched image.
+  const credit = sourceCredit(photo?.source_url || b.hero_cutout?.source_url);
+  if (credit) c.source_credit = credit;
   // The word the entity visual pops on (gemini-visual-plan.js; timed in render.js, visual/entity-sync.js).
   if (b.entity_anchor_word) c.anchor_word = b.entity_anchor_word;
   c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: c.type_layout === "split" && !!splitHeadline(c.headline) });
@@ -1033,7 +1049,7 @@ async function resolveCanvas(channelId, planPath, plan) {
   // source becomes a NAME CARD (its name large, the sentence's figure or key
   // phrase under it) — never a stand-in photo, never an empty middle zone.
   // The hook and the CTA stay typography. Objects go to the cutout path below.
-  const REAL = ["person", "building", "organization", "place"];   // within a beat: a person first
+  const REAL = ["person", "company", "institution", "building", "organization", "place"];   // within a beat: a person first
   const DRAWN = new Set(["COUNTER", "BAR", "PIE", "LINE", "GAUGE", "MAP", "PROCESS", "LIST", "TIMELINE", "COMPARE"]);
   const countries = plan.beats.flatMap((x) => (x.named_entities || []).filter((e) => e.type === "place").map((e) => e.name)).filter((n) => resolveRegionName(n));
   const keyPhraseOf = (b, name) => {
@@ -1046,8 +1062,27 @@ async function resolveCanvas(channelId, planPath, plan) {
     let photo = null;
     const vt = String(b.visual_type || "").toUpperCase();
     const edge = bi === 0 || bi === plan.beats.length - 1;
-    delete b.name_card;
-    if (vt === "DOCUMENT" || vt === "MONEY") {
+    delete b.name_card; delete b.hero_cutout;
+    if (vt === "MONEY") {
+      // Money (owner's spec 2026-10-03, part G): the object the sentence means (a bill of its
+      // denomination, a stack of bills, a coin, a piggy bank...) as a clean, verified cutout —
+      // a bill or coin from Wikipedia / Wikimedia first and checked FLAT (fetch-cutout-once.cjs),
+      // shown whole as the hero; not a full-bleed photo that crops it.
+      const obj = String(b.data?.object || "dollar bill").toLowerCase();
+      const value = b.data?.value || null;
+      const spec = CUTOUT_SPECS.find((x) => x.name === obj.replace(/\s+/g, "-")) || {};
+      const r = await fetchCutoutForBeat({ concept: obj, name: obj, channel: channelId, beat_index: b.index, spec, scene: b.scene_description || null });
+      b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
+      if (r) {
+        b.hero_cutout = { name: obj, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, money: true, ink: await inkOf(r.abs_path) };
+        if (value && !String(b.headline || "").includes(String(value).replace(/\s.*$/, ""))) b.lead_in = String(value);
+        fetchedNew++;
+        entities.resolved.push(`beat ${b.index}: money "${obj}" -> ${r.png_path} (${r.source}, ${r.license})`);
+      } else {
+        entities.fell_back.push(`beat ${b.index}: money "${obj}": no verified cutout`);
+        counts.entity_fallbacks++;
+      }
+    } else if (vt === "DOCUMENT") {
       // A real scan of the named instrument / a real photo of the money object;
       // none found -> the beat is TYPE (never a stand-in).
       const r = vt === "DOCUMENT" ? await resolveDocument({ name: b.data?.name }) : await resolveMoney({ query: b.data?.object });
@@ -1086,10 +1121,18 @@ async function resolveCanvas(channelId, planPath, plan) {
         // A generic institution name ("Supreme Court", "the central bank") names a
         // different building in every country (run 36504143080 ch-2): qualified with
         // the script's one country, or refused.
-        const q = e0.type === "organization" || e0.type === "building" ? qualifyEntity(e0, countries) : { ent: e0 };
+        const q = ["organization", "institution", "building"].includes(e0.type) ? qualifyEntity(e0, countries) : { ent: e0 };
         if (q.note) console.log(`[entity] ${q.note}`);
         if (!q.ent?.name) { entities.fell_back.push(`${e0.type} "${e0.name}": ${q.note}`); named.push(e0); continue; }
-        const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "" });
+        const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "", scene: b.scene_description || null });
+        if (r.ok && r.logo) {
+          // A company / institution logo (part B): the hero cutout of a TYPE-FULL beat.
+          b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
+          b.hero_cutout = { name: e0.name, class: "cutout", asset: r.logo.asset, w: r.logo.w, h: r.logo.h, logo: true, source: r.logo.source, source_url: r.logo.source_url, ink: await inkOf(r.logo.abs) };
+          fetchedNew++;
+          entities.resolved.push(`beat ${b.index}: ${e0.type} "${e0.name}" -> logo ${r.logo.asset} (${r.logo.source}, ${r.logo.license})`);
+          break;
+        }
         if (r.ok) {
           photo = { ...r.photo, entity: e0.name };
           fetchedNew++;   // a new file under public/: the bundle is rebuilt (run 36498049819)
@@ -1108,7 +1151,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       if (mv && !mv.why && mv.type === "MAP") {
         b.visual_type = "MAP"; b.data = mv.data; delete b.type_layout;
         console.log(`[resolve] ch-${channelId} beat ${b.index}: no verified photo of place "${region.name}" — rendering its map (MAP-CENTERED)`);
-      } else if (!photo && named.length) {
+      } else if (!photo && !b.hero_cutout && named.length) {
         b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
         b.name_card = { name: named[0].name.replace(/\s*\([^)]*\)/g, "").trim(), sub: keyPhraseOf(b, named[0].name) };
         counts.entity_fallbacks++;
@@ -1128,8 +1171,9 @@ async function resolveCanvas(channelId, planPath, plan) {
     const imageBeats = () => plan.beats.filter((b) => b.canvas.photo).length;
     const rot = enforceRotation(plan.beats.length, {
       // A name card is its own composition (as local-audit canvas-type keys it): never rotated into a split statement.
-      compositionOf: (i) => plan.beats[i].canvas.composition + (plan.beats[i].canvas.name_card ? "+NAME" : ""),
-      candidates: (i) => (plan.beats[i].canvas.photo && imageBeats() <= 1 ? [] : candidatesFor({ sentence: narr(plan.beats[i]), headline: plan.beats[i].canvas.headline || "" })),
+      compositionOf: (i) => plan.beats[i].canvas.composition + (plan.beats[i].canvas.name_card ? "+NAME" : "") + ((plan.beats[i].canvas.concept_visuals || []).length ? "+HERO" : ""),
+      // A two-number comparison drawn as a chart (part D) is never rotated away.
+      candidates: (i) => (plan.beats[i].canvas.photo && imageBeats() <= 1 ? [] : comparisonNumbers(narr(plan.beats[i])) && ["BAR", "LINE", "PIE", "GAUGE"].includes(String(plan.beats[i].visual_type).toUpperCase()) ? [] : candidatesFor({ sentence: narr(plan.beats[i]), headline: plan.beats[i].canvas.headline || "" })),
       accept: (i, alt) => {
         const b = plan.beats[i];
         const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, narr(b));
@@ -1214,7 +1258,8 @@ async function resolveCanvas(channelId, planPath, plan) {
       const c = b.canvas;
       // TYPE-SPLIT beats are text-only too (TEMPLATE_MONOCULTURE, CI run
       // 36953236514); converted in step 3 only if a visual resolves.
-      if (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || c.name_card || String(c.visual_type).toUpperCase() !== "TYPE") continue;
+      // (a logo or a money object already holds the hero cutout: part B / G)
+      if (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || c.name_card || (c.concept_visuals || []).length || String(c.visual_type).toUpperCase() !== "TYPE") continue;
       // The hook and the CTA stay TYPE (owner's spec 2026-10-02); a cutout on
       // the hook also blocked the next beat's (no TYPE-FULL twice in a row).
       if (bi === 0 || bi === plan.beats.length - 1) continue;
@@ -1231,7 +1276,9 @@ async function resolveCanvas(channelId, planPath, plan) {
       if (names.length) wanted.push({ bi, b, names, from: vc.from });
     }
     // 2. Resolve: symbol drawn; cutout bank (verified) -> live (verified) -> none; scene none.
-    const { verifyCutoutImage } = createRequireEntity(import.meta.url)("./verify-cutout-image.cjs");
+    // Three questions (verify-image.cjs, owner's spec 2026-10-03 part E): shows YES, LITERAL, CLEAN.
+    const { verifyImage } = createRequireEntity(import.meta.url)("./verify-image.cjs");
+    const { FLAT_MONEY } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
     const results = new Map();   // `${bi}:${name}` -> visual | null
     const tasks = [];
     for (const w of wanted) for (const name of w.names) {
@@ -1250,13 +1297,13 @@ async function resolveCanvas(channelId, planPath, plan) {
         let v = bankCutout(name, concept);
         if (v) {
           // A person supplied it, but it is verified like any fetched PNG.
-          const vr = await verifyCutoutImage(join(PUBLIC_DIR, v.asset), concept);
-          if (vr.verdict === "MATCH") { Object.assign(v, { verdict: vr.literal, seen: vr.seen, source_url: `png-bank/${v.file}` }); console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": bank file ${v.file} ACCEPTED (${vr.literal}, saw "${vr.seen}")`); results.set(`${w.bi}:${name}`, v); continue; }
-          console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": bank file ${v.file} REJECTED (${vr.literal || vr.verdict}${vr.literal === "LITERAL" ? ", not recognizable" : ""}, saw "${vr.seen}")`);
+          const vr = await verifyImage(join(PUBLIC_DIR, v.asset), { entity: concept, type: "object", scene: w.b.scene_description || null, money: FLAT_MONEY(concept) });
+          if (vr.accept) { Object.assign(v, { verdict: vr.kind, seen: vr.seen, source_url: `png-bank/${v.file}` }); console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": bank file ${v.file} ACCEPTED (${vr.reason}, saw "${vr.seen}")`); results.set(`${w.bi}:${name}`, v); continue; }
+          console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": bank file ${v.file} REJECTED (${vr.reason}, saw "${vr.seen}")`);
           v = null;
         } else console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": not in bank, fetching live`);
         if (Date.now() - T0 < BUDGET_MS) {
-          const r = await fetchCutoutForBeat({ concept, name, channel: channelId, beat_index: w.b.index, spec });
+          const r = await fetchCutoutForBeat({ concept, name, channel: channelId, beat_index: w.b.index, spec, scene: w.b.scene_description || null });
           if (r) { v = { name, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: "live", source_url: r.source_url, verdict: r.literal, seen: r.seen }; }
         } else console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": ${(BUDGET_MS / 60000).toFixed(0)}-minute budget spent, not fetched — beat renders without a cutout`);
         results.set(`${w.bi}:${name}`, v);
@@ -1283,6 +1330,8 @@ async function resolveCanvas(channelId, planPath, plan) {
         console.log(`[concepts] ch-${channelId} beat ${w.b.index}: TYPE-SPLIT -> TYPE-FULL concept beat`);
       }
       c.concept_visuals = visuals;
+      // Source credit (part C): the fetched cutout's page domain.
+      { const cr = sourceCredit(visuals.find((v) => v.class === "cutout")?.source_url); if (cr) c.source_credit = cr; }
       console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${visuals.map((v) => `${v.name} (${v.class === "symbol" ? "symbol" : v.source})`).join(", ")} — from the ${w.from}`);
       // Every rendered cutout: where it came from and what the verifier saw (owner's audit trail).
       for (const v of visuals.filter((x) => x.class === "cutout")) {
@@ -1298,6 +1347,11 @@ async function resolveCanvas(channelId, planPath, plan) {
       const vis = content.filter((b) => !(["TYPE-FULL", "TYPE-SPLIT"].includes(b.canvas.composition) && !b.canvas.photo) || (b.canvas.concept_visuals || []).length).length;
       const share = content.length ? vis / content.length : 1;
       console.log(`[visual-first] ch-${channelId} final: ${vis}/${content.length} content beats visual (${(share * 100).toFixed(0)}%, ${share >= 0.6 ? "passes" : "under the 60% target"})`);
+      // Two-number comparisons (part D) as drawn.
+      for (const b of plan.beats) {
+        const nums = comparisonNumbers(b.narration || "");
+        if (nums) console.log(`[two-number] ch-${channelId} beat ${b.index}: ${nums.join(" vs ")} -> ${b.canvas.composition} ${b.canvas.visual_type}${["BAR", "LINE", "PIE", "GAUGE"].includes(String(b.canvas.visual_type).toUpperCase()) ? " (chart, as the rule requires)" : " (NOT a chart)"}`);
+      }
     }
   }
   // Fix 2: the animation of every element, on the final canvases (the beat's
