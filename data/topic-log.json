@@ -1713,9 +1713,14 @@
           "topic": "The $16M Fraud Scheme in the Smart Ring Ponzi Scheme",
           "slug": "smart-ring-plea",
           "reserved_at": "2026-10-03T15:42:59.010Z"
+        },
+        {
+          "topic": "CBI Files Charge Sheet Against RCom, Others in ₹3,750 Crore LIC Fraud Case",
+          "slug": "cbi-files-charge-sheet-rcom-others-3750-crore-lic-fraud-case",
+          "reserved_at": "2026-10-03T17:40:12.928Z"
         }
       ],
-      "last_generated": "2026-10-03T15:42:59.010Z"
+      "last_generated": "2026-10-03T17:40:12.929Z"
     },
     "27": {
       "channel_name": "Trial Files",
