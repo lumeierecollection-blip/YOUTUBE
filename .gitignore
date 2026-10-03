@@ -41,19 +41,16 @@ src/skills/remotion-render/out/
 # deps (onnxruntime, scikit-image, numba), rebuilt per-machine, never
 # committed. See src/skills/asset-sourcing/SKILL.md's Setup section.
 .venv-rembg/
-
 # QA verification videos are throwaway evidence for this rebuild's report,
 # not pipeline output — the extracted frame PNGs next to them are the part
 # worth keeping (same convention as data/renders/**/*.mp4 above).
 qa/**/*.mp4
-
 # fetch-library.js's pre-treatment downloads — scratch input to treat.js,
 # not pipeline output. The treated copy under
 # src/skills/remotion-render/public/asset-library/ plus the manifest row in
 # data/asset-library/index.json are what actually matter downstream; the
 # raw originals would just bloat the repo with redundant multi-MB images.
 data/asset-library/raw/
-
 # Visual-storytelling render tests (qa-scripts/render-visual-tests.sh) stage
 # their inputs here. The fixtures themselves are versioned under
 # src/skills/remotion-render/qa-scripts/fixtures/; this is scratch staging,
@@ -67,23 +64,42 @@ data/audit/diag-frames/
 # Short single-beat clips from qa-scripts/render-clip.mjs — same per-run
 # output convention as the full renders above.
 data/renders/clips/
-
 # Per-beat frames from qa-scripts/mute-test.mjs — regenerated from any
 # render on demand, and one set per render adds ~4MB. The frames worth
 # keeping are copied up to qa/pass3/ by hand and committed there.
 qa/pass3/mute-test/
 github token.txt
 .artifact-download/
-
 # QA frame dumps from the mograph-critic loop: large, regenerable from
 # qa-scripts/inspect-anchors.mjs and qa-scripts/motion-metrics.mjs. The JSON
 # reports beside them ARE tracked - those are the evidence.
 qa/critic/**/*.png
 qa/critic/**/frames/
-
 # QA clip renders (regenerate with the qa-scripts / remocn-demo runners)
 data/renders/
 client id.txt
 dist/
 reference-video.mp4
 .aider*
+.cache/
+data/audit/
+logs/
+data/tts/
+data/research/1/*manifest*.json
+data/visual-plans/**/*.json
+
+# Backup-QA human queues (scripts/local-audit.cjs via render-and-qa.js).
+# Already covered by data/renders/ above; listed explicitly so the intent
+# survives if that broader rule is ever narrowed.
+data/renders/approved-review/
+data/renders/rejected/
+
+# Reference-video frame samples (regenerate: ffmpeg -i data/reference/style.mp4 -vf fps=2 data/reference/frames/f%04d.png)
+data/reference/frames/
+
+__pycache__/
+
+# Cutouts are fetched and verified per run (scripts/fetch-cutout-once.cjs); nothing is kept.
+# The old library (public/cutouts/, incl. verified.json) is deleted and must not come back.
+src/skills/remotion-render/public/cutouts-live/
+src/skills/remotion-render/public/cutouts/

@@ -28,9 +28,31 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, Easing } from "remotion";
 import {
   SAFE, SAFE_W, SAFE_H, CANVAS_W, CANVAS_H,
-  PRIMITIVES, layoutScene,
+  PRIMITIVES, layoutScene, MAP_DRAWINGS,
 } from "../visual/scene-primitives.js";
 import { fitSingleLine, TYPO_LINE_HEIGHT } from "../visual/narrative-typography.js";
+import { ICON_SET } from "../visual/icon-set.js";
+import { ObjectShape, knownObjects } from "../compositions/objects/index.jsx";
+import { LIBRARY_NAMES } from "../visual/library-names.js";
+import { Photo } from "../visual/primitives/photo.jsx";
+
+// The planner validates library_shape names against LIBRARY_NAMES, a list
+// generated from the registerObject() calls. If that list and the live
+// registry ever disagree, a validated plan could name a drawing that does
+// not exist (or miss one that does). Checked once, when this module loads,
+// and loud: this is the one-time log line for what the library exposes.
+{
+  const live = knownObjects();
+  const missing = LIBRARY_NAMES.filter((n) => !live.includes(n));
+  const extra = live.filter((n) => !LIBRARY_NAMES.includes(n));
+  if (missing.length || extra.length) {
+    throw new Error(
+      `library-names.js is out of step with the object registry — run visual/build-library-names.mjs. ` +
+      `missing from registry: [${missing.join(", ")}]; not in library-names.js: [${extra.join(", ")}]`
+    );
+  }
+  console.log(`[composed-scene] library_shape: ${live.length} drawings available`);
+}
 
 const clamp01 = (t) => Math.max(0, Math.min(1, t));
 const ease = (t) => Easing.bezier(0.22, 0.9, 0.3, 1)(clamp01(t));
@@ -319,6 +341,98 @@ function Silhouettes({ obj, rect, ed, m, accent }) {
   return <g opacity={m.enter} transform={`translate(0,${m.dy})`}>{items}</g>;
 }
 
+/**
+ * icon — a vendored Lucide pictogram (MOTION-GRAPHICS-MANUAL §A4), drawn
+ * from its own geometry so stroke and colour obey the manual:
+ *  - §A4.3: apparent stroke 6-12 px at 1080 wide, so the stroke-width
+ *    attribute is recomputed from the rendered size (target 10 px).
+ *  - §A4.5: text colour by default, accent only on the emphasis object.
+ * validateScene() rejects an unknown icon name before render; if one still
+ * arrives here it throws rather than drawing a substitute.
+ */
+function Icons({ obj, rect, ed, m, accent }) {
+  const els = ICON_SET[obj.icon];
+  if (!els) throw new Error(`No icon "${obj.icon}" in the vendored set`);
+  const n = Math.max(1, Math.min(3, obj.count || 1));
+  const cw = rect.w / n;
+  const size = Math.min(cw * 0.9, rect.h) * (m.scale === 1 ? 1 : m.scale);
+  const stroke = (10 * 24) / Math.max(1, size);   // §A4.3: 10 px apparent
+  const color = accent ? ed.accentText : ed.text;
+  const shedIdx = n - Math.round(m.shed * n);
+  const items = [];
+  for (let i = 0; i < n; i++) {
+    const x = rect.x + cw * i + (cw - size) / 2;
+    const y = rect.y + (rect.h - size) / 2;
+    const gone = i >= shedIdx;
+    items.push(
+      <g key={i} opacity={gone ? 0.25 : 1}
+        transform={`translate(${x},${y + (gone ? m.shed * 90 : 0)}) scale(${size / 24})`}
+        fill="none" stroke={gone ? ed.quiet : color} strokeWidth={stroke}
+        strokeLinecap="round" strokeLinejoin="round">
+        {els.map(([tag, attrs], k) => React.createElement(tag, { key: k, ...attrs }))}
+      </g>
+    );
+  }
+  return <g opacity={m.enter} transform={`translate(0,${m.dy})`}>{items}</g>;
+}
+
+/**
+ * library_shape — one drawing from the procedural object library
+ * (compositions/objects/*.jsx), drawn unchanged into the rect the layout
+ * assigned. The drawings keep their own stroke weights; only the palette is
+ * translated, from this renderer's contrast-validated roles to the
+ * library's (palette-roles.js vocabulary), using no colour that is not
+ * already in `ed`:
+ *   ground   = ed.bg            onGround = ed.text (validated against bg)
+ *   accent   = ed.accentText    (validated against bg)
+ *   paper/ink: a light ground uses bg as paper and text as ink (sheets read
+ *   by their outline, as on ch-01); a dark ground inverts that.
+ * An unknown name throws inside ObjectShape — no substitute drawing.
+ */
+function relLum(hex) {
+  const h = String(hex || "").replace("#", "");
+  if (h.length !== 6) return 1;
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255)
+    .map((c) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+// Blend two #rrggbb colours: t=0 -> a, t=1 -> b. Derives a shade from the
+// channel's own palette (ed.bg / ed.text); no new colour is introduced.
+function mixHex(a, b, t) {
+  const pa = String(a || "").replace("#", ""), pb = String(b || "").replace("#", "");
+  if (pa.length !== 6 || pb.length !== 6) return a;
+  const ch = (h, i) => parseInt(h.slice(i, i + 2), 16);
+  return "#" + [0, 2, 4].map((i) => Math.round(ch(pa, i) + (ch(pb, i) - ch(pa, i)) * t)
+    .toString(16).padStart(2, "0")).join("");
+}
+
+function LibraryShape({ obj, rect, ed, m, p, font }) {
+  const light = relLum(ed.bg) > 0.5;
+  // Paper drawings fill with `paper` and stroke with `ink` (1.5 px at
+  // ~0.3 opacity, drawn in the library). paper used to be ed.bg on light
+  // channels: a white page on a white ground, visible only as that faint
+  // stroke — the ch-1 ledger in run 36343146799 read as empty. paper is now
+  // the ground tinted toward the text colour (a low-opacity fill, on BOTH
+  // grounds), and ink is the text colour on both, so strokes and ruled
+  // lines contrast with the tinted page on white and on dark channels.
+  const colors = {
+    ground: ed.bg,
+    onGround: ed.text,
+    accent: ed.accentText,
+    paper: mixHex(ed.bg, ed.text, light ? 0.10 : 0.16),
+    ink: ed.text,
+  };
+  const s = m.scale === 1 ? 1 : m.scale;
+  const cx = rect.x + rect.w / 2, cy = rect.y + rect.h / 2;
+  return (
+    <g opacity={m.enter}
+      transform={`translate(0,${m.dy}) translate(${cx},${cy}) scale(${s}) translate(${-cx},${-cy})`}>
+      <ObjectShape name={obj.name} box={rect} colors={colors} p={Number.isFinite(p) ? p : 1}
+        params={{ label: obj.label, count: obj.count, font }} />
+    </g>
+  );
+}
+
 function Arrows({ obj, rect, ed, m }) {
   const n = Math.max(1, Math.min(8, obj.count || 1));
   const items = [];
@@ -352,13 +466,18 @@ function Rules({ obj, rect, ed, m }) {
 function Numeral({ obj, rect, ed, m, font, accent }) {
   const raw = String(obj.label == null ? "" : obj.label).trim();
   if (!raw) return null;
-  const fit = fitSingleLine(raw, rect.w * 1.2, rect.h);
+  // Top-right overlay (layoutScene COUNTER_OVERLAY): stays inside its slot
+  // and right-aligns to the 5% edge instead of overhanging it by 20%.
+  const overlay = !!rect.overlay;
+  const boxW = overlay ? rect.w : rect.w * 1.2;
+  const fit = fitSingleLine(raw, boxW, rect.h);
   return (
     <div style={{
       position: "absolute",
       left: rect.x, top: rect.y,
-      width: rect.w * 1.2, height: rect.h,
+      width: boxW, height: rect.h,
       display: "flex", alignItems: "center",
+      justifyContent: overlay ? "flex-end" : undefined,
       opacity: m.enter,
       color: accent ? ed.accentText : ed.text,
       font: `900 ${Math.max(fit.size, 64)}px ${font}, sans-serif`,
@@ -372,9 +491,16 @@ function Numeral({ obj, rect, ed, m, font, accent }) {
 const DRAW_SVG = {
   field: Field, block: Blocks, stack: Stack, bar: Bars, vessel: Vessel,
   document: Documents, grid: Grid, gauge: Gauges, silhouette: Silhouettes,
-  arrow: Arrows, rule: Rules,
+  arrow: Arrows, rule: Rules, icon: Icons, library_shape: LibraryShape,
 };
-const DRAW_HTML = { figure: Numeral, counter: Numeral };
+const DRAW_HTML = { figure: Numeral, counter: Numeral, photo: Photo };
+
+// What a composed beat may contain (docs/MOTION-GRAPHICS-SPEC.md; the real
+// asset pipeline): a real photo OR a library drawing, plus a number. The
+// asset resolver (render-and-qa.js) writes every VISUAL beat as one of
+// those; anything else reaching the renderer is a resolution bug, and it
+// throws rather than drawing an abstract primitive or plain text instead.
+const RENDERABLE = new Set(["photo", "library_shape", "counter", "figure"]);
 
 /* ── The scene ───────────────────────────────────────────────────────── */
 
@@ -386,8 +512,12 @@ const DRAW_HTML = { figure: Numeral, counter: Numeral };
  * floating in a void. `accent` marks the ONE object carrying the beat;
  * everything else is structure.
  */
-export function ComposedScene({ scene, p, ed, font }) {
+export function ComposedScene({ scene, p, ed, font, local = 0, fps = 30 }) {
   const objects = (scene && scene.objects) || [];
+  const stray = objects.filter((o) => o && !RENDERABLE.has(o.kind));
+  if (stray.length) {
+    throw new Error(`ComposedScene: unresolved object(s) ${stray.map((o) => o.kind).join(", ")} — a composed beat must be a photo or a library drawing (plus a counter); the asset resolver should have resolved it or failed the render`);
+  }
   const svgParts = [];
   const htmlParts = [];
 
@@ -402,7 +532,7 @@ export function ComposedScene({ scene, p, ed, font }) {
     const Html = DRAW_HTML[obj.kind];
 
     if (Svg) {
-      svgParts.push(<Svg key={`s${i}`} obj={obj} rect={rect} ed={ed} m={m} accent={accent} font={font} />);
+      svgParts.push(<Svg key={`s${i}`} obj={obj} rect={rect} ed={ed} m={m} p={p} accent={accent} font={font} />);
       if (m.strike > 0) {
         svgParts.push(
           <line key={`k${i}`} x1={rect.x} y1={rect.y + rect.h / 2}
@@ -412,11 +542,15 @@ export function ComposedScene({ scene, p, ed, font }) {
       }
     }
     if (Html) {
-      htmlParts.push(<Html key={`h${i}`} obj={obj} rect={rect} ed={ed} m={m} accent={accent} font={font} />);
+      htmlParts.push(<Html key={`h${i}`} obj={obj} rect={rect} ed={ed} m={m} accent={accent} font={font} p={p} local={local} fps={fps} />);
     }
     // Labels are HTML so they use the same text pipeline as narrative
     // typography (one line, fitted, validated colour).
-    if (PRIMITIVES[obj.kind]?.labelable && obj.label && !Html) {
+    // A map draws its own label on a leader line (maps.jsx); a second label
+    // under the slot would repeat it.
+    const drawsOwnLabel = obj.kind === "library_shape" && MAP_DRAWINGS.includes(obj.name);
+    // A photo's label is its caption bar, under the image.
+    if (PRIMITIVES[obj.kind]?.labelable && obj.label && (!Html || obj.kind === "photo") && !drawsOwnLabel) {
       htmlParts.push(<Label key={`l${i}`} text={obj.label} rect={rect} ed={ed} font={font} m={m} accent={accent} />);
     }
   });

@@ -1,0 +1,573 @@
+#!/usr/bin/env node
+/**
+ * ollama-agent.js — prep-stage model runner that talks to Ollama directly.
+ *
+ * Drop-in for scripts/opencode-agent.js on the prep stages (same flags,
+ * same single JSON line on stdout), without OpenCode in the loop.
+ *
+ * Why: through OpenCode, every request to qwen2.5:7b carried OpenCode's own
+ * system prompt and tool definitions — 6–7k tokens per call — and on a
+ * CPU-only runner (~30–40 tok/s prompt eval) a single Discover call ran past
+ * 5 minutes (runs 35800003908, 35803176381; data/ci-runs/blocked-prep-model.txt).
+ *
+ * Flow for an agent that may search (--agent pipeline-research):
+ *   1. Ask the model for up to --search-budget queries (tiny JSON output).
+ *   2. Run each query against Exa's hosted search (the same backend OpenCode's
+ *      websearch tool uses when OPENCODE_ENABLE_EXA=1).
+ *   3. Give the model the results and ask for the stage JSON, with Ollama's
+ *      schema-constrained output (`format: <JSON Schema>`).
+ * For an agent with no tools (--agent pipeline-script) only step 3 runs.
+ *
+ * Grounding — stricter than the OpenCode path, not looser: every
+ * `source_url` / `url` the model returns must be a URL that one of THIS
+ * run's searches actually returned. gate-research.js only checks that a
+ * source_url is well-formed (its own header says where that stops); this
+ * check closes that gap for this runner. A response citing any other URL is
+ * rejected and retried with the violation named.
+ *
+ * Every response is validated with ajv against --schema-file; a failure is
+ * fed back and retried up to --max-retries. Nothing is padded or defaulted.
+ */
+
+import { readFileSync, appendFileSync, mkdirSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import Ajv from "ajv";
+import { createRequire } from "node:module";
+
+const topicLog = createRequire(import.meta.url)("../src/utils/topic-log.cjs");
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = join(__dirname, "..");
+const OLLAMA_URL = (process.env.OLLAMA_URL || "http://127.0.0.1:11434").replace(/\/$/, "");
+const EXA_URL = process.env.EXA_MCP_URL || "https://mcp.exa.ai/mcp";
+const CALL_TIMEOUT_S = Number(process.env.PREP_CALL_TIMEOUT_S || process.env.OPENCODE_CALL_TIMEOUT_S) || 300;
+const NUM_CTX = Number(process.env.OLLAMA_CONTEXT_LENGTH) || 16384;
+const SEARCH_AGENTS = new Set(["pipeline-research"]);
+const SEARCH_TEXT_MAX = Number(process.env.SEARCH_TEXT_MAX) || 3000; // chars per query
+const SEARCH_RESULT_CHARS = Number(process.env.SEARCH_RESULT_CHARS) || 600; // chars per result
+
+// Exa's text is a sequence of result blocks, each starting "Title:". Keep
+// every block's header lines (Title/URL/date) and trim its body, so all
+// results — and all their URLs — survive the size cap.
+function capPerResult(text, perResult, total) {
+  let blocks = text.split(/\n(?=Title:)/);
+  if (blocks.length < 2) blocks = text.split(/\n(?=URL:)/);
+  if (blocks.length < 2) return text.slice(0, total); // unrecognised layout: overall cap only
+  const out = [];
+  let used = 0;
+  for (const b of blocks) {
+    const clipped = b.length > perResult ? `${b.slice(0, perResult)}…` : b;
+    if (used + clipped.length > total && out.length) break;
+    out.push(clipped);
+    used += clipped.length;
+  }
+  return out.join("\n");
+}
+
+function parseArgs(argv) {
+  const out = {};
+  for (let i = 0; i < argv.length; i++) {
+    if (!argv[i].startsWith("--")) continue;
+    const key = argv[i].slice(2);
+    const next = argv[i + 1];
+    if (next === undefined || next.startsWith("--")) out[key] = true;
+    else { out[key] = next; i++; }
+  }
+  return out;
+}
+
+function readStdin() {
+  try { return readFileSync(0, "utf-8"); } catch { return ""; }
+}
+
+function log(msg) { console.error(msg); }
+
+async function fetchWithTimeout(url, init, timeoutS) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutS * 1000);
+  try {
+    return await fetch(url, { ...init, signal: ctrl.signal });
+  } catch (e) {
+    if (e.name === "AbortError") throw new Error(`timed out after ${timeoutS}s: ${url}`);
+    throw e;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/* ── Ollama ───────────────────────────────────────────────────────── */
+
+async function chat(model, messages, format, label, temperature = 0.2, seed = undefined) {
+  const t0 = Date.now();
+  const res = await fetchWithTimeout(`${OLLAMA_URL}/api/chat`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      model, messages, format, stream: false,
+      options: { temperature, num_ctx: NUM_CTX, ...(seed !== undefined ? { seed } : {}) },
+    }),
+  }, CALL_TIMEOUT_S);
+  const body = await res.text();
+  if (!res.ok) throw new Error(`ollama ${res.status}: ${body.slice(0, 400)}`);
+  const j = JSON.parse(body);
+  const secs = ((Date.now() - t0) / 1000).toFixed(1);
+  log(`[${model}] ${label}: ${secs}s (prompt ${j.prompt_eval_count ?? "?"} tok, output ${j.eval_count ?? "?"} tok)`);
+  return { content: j.message?.content || "", usage: { input: j.prompt_eval_count, output: j.eval_count } };
+}
+
+/* ── Exa search (same hosted endpoint as OpenCode's websearch tool) ── */
+
+// Six prep jobs search at once. When Exa pushes back it answers fast (0.1s)
+// with a short non-result message whose links looked like "2 URLs" — ch-48
+// then had no real sources and the model invented URLs (run 35829223604).
+// A reply with no result entries is an error here, and it is retried.
+async function exaSearch(query, opts = {}) {
+  const waits = [0, 5000, 15000];
+  let last;
+  for (let i = 0; i < waits.length; i++) {
+    if (waits[i]) await new Promise((r) => setTimeout(r, waits[i]));
+    try { return await exaSearchOnce(query, opts); } catch (e) { last = e; log(`[exa] "${query}" attempt ${i + 1}/${waits.length}: ${e.message}`); }
+  }
+  throw last;
+}
+
+async function exaSearchOnce(query, { numResults = 4, contextMaxCharacters = 900 } = {}) {
+  const t0 = Date.now();
+  const res = await fetchWithTimeout(EXA_URL, {
+    method: "POST",
+    headers: { accept: "application/json, text/event-stream", "content-type": "application/json" },
+    body: JSON.stringify({
+      jsonrpc: "2.0", id: 1, method: "tools/call",
+      params: { name: "web_search_exa", arguments: { query, type: "fast", numResults, contextMaxCharacters } },
+    }),
+  }, 60);
+  const raw = await res.text();
+  if (!res.ok) throw new Error(`exa ${res.status}: ${raw.slice(0, 300)}`);
+  // Streamable-HTTP MCP answers either as JSON or as SSE "data:" lines.
+  const payloads = raw.trim().startsWith("{")
+    ? [raw]
+    : raw.split("\n").filter((l) => l.startsWith("data:")).map((l) => l.slice(5).trim());
+  let text = "";
+  let isError = false;
+  for (const p of payloads) {
+    try {
+      const j = JSON.parse(p);
+      if (j.error) throw new Error(`exa error: ${JSON.stringify(j.error).slice(0, 300)}`);
+      if (j.result?.isError) isError = true;
+      for (const c of j.result?.content || []) if (c.type === "text") text += c.text + "\n";
+    } catch (e) {
+      if (String(e.message).startsWith("exa error")) throw e;
+    }
+  }
+  if (!text.trim()) throw new Error(`exa returned no text for "${query}": ${raw.slice(0, 300)}`);
+  if (isError) throw new Error(`exa tool error: ${text.trim().slice(0, 300)}`);
+  // Only result entries count — each carries a "URL:" line. Anything else
+  // (a notice, a limit message) is not a search result.
+  if (!/^\s*URL:\s*\S+/im.test(text)) {
+    throw new Error(`exa reply has no result entries: ${text.trim().replace(/\s+/g, " ").slice(0, 300)}`);
+  }
+  // Exa's contextMaxCharacters did not bound the payload: run 35825042889's
+  // answer prompt reached 7,395 tokens and the first call timed out at 300s.
+  // Cap what the model reads; URLs are taken from the capped text, so the
+  // model can only cite what it was actually shown.
+  // Capped PER RESULT, not per query: slicing the whole payload kept only
+  // the first result (1 URL per search, run 35826622422).
+  text = capPerResult(text, SEARCH_RESULT_CHARS, SEARCH_TEXT_MAX);
+  // Citable URLs are the result entries' own URL lines — not links that
+  // happen to appear inside a page's text.
+  const urls = [...text.matchAll(/^\s*URL:\s*(\S+)/gim)].map((m) => normUrl(m[1]));
+  log(`[exa] "${query}" → ${urls.length} URL(s) in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
+  return { query, text: text.trim(), urls: [...new Set(urls)] };
+}
+
+function normUrl(u) {
+  return String(u).trim().replace(/[.,;]+$/, "").replace(/#.*$/, "").replace(/\/+$/, "");
+}
+
+// Identity of a URL for the grounding check: host lower-cased without a
+// leading "www.", scheme ignored, path + query kept. ch-48 cited
+// "humanoidsdaily.com/news/…" for the search's "www.humanoidsdaily.com/news/…"
+// — the same page — and was rejected 4x (run 35844131396).
+function urlKey(u) {
+  try {
+    const x = new URL(normUrl(u));
+    return `${x.hostname.toLowerCase().replace(/^www\./, "")}${x.pathname.replace(/\/+$/, "")}${x.search}`;
+  } catch {
+    return normUrl(u).toLowerCase();
+  }
+}
+
+// Replace every cited *url field with the exact URL the search returned
+// (so the research file stores what was actually searched), and collect
+// any that match no search result.
+// qwen2.5:3b writes BOTH forms it was offered, glued together: the real URL
+// with the source id appended ("https://www.nerdwallet.com/.../S1"), on all
+// 4 retries despite the corrective feedback (CI run 36323786443 ch-1; run
+// 36016703842 ch-44 -- data/ci-runs/blocked-research-citation-quality.txt).
+// Accepted ONLY when the two halves agree: the id must exist and the prefix
+// must be that same id's returned URL. "<url of S2>/S1", an unknown id, or a
+// prefix no search returned all still go to `bad` and are rejected, so this
+// cannot admit a URL that this run's searches did not return.
+// Also the query-string form "<url>?source_id=S1" / "&source_id:S7" (CI run
+// 36498049819 ch-2, 4/4 attempts) — same rule: the prefix must be that id's
+// own returned URL.
+function idSuffixedUrl(v, ids) {
+  // Any separator punctuation between the URL and the id, and around the id
+  // ("<url>|S2|" — CI run 36504143080 ch-48): the check below is what makes
+  // it safe, not the format.
+  const m = /^(.+?)(?:[?&]source_?id[=:]\s*|[\/#\s|,;:()\[\]-]*)\[?(S\d+)\]?[|\]\s.,;:)]*$/i.exec(v.trim());
+  if (!m) return null;
+  const url = ids.get(m[2].toUpperCase());
+  return url && urlKey(m[1]) === urlKey(url) ? url : null;
+}
+
+function canonicaliseCitedUrls(obj, byKey, bad, ids = new Map()) {
+  if (Array.isArray(obj)) { obj.forEach((v) => canonicaliseCitedUrls(v, byKey, bad, ids)); return; }
+  if (!obj || typeof obj !== "object") return;
+  for (const [k, v] of Object.entries(obj)) {
+    if (typeof v === "string" && /(^|_)url$/i.test(k)) {
+      const exact = ids.get(v.trim().replace(/^\[|\]$/g, "").toUpperCase()) || byKey.get(urlKey(v)) || idSuffixedUrl(v, ids);
+      if (exact) obj[k] = exact; else bad.push(v);
+    } else if (v && typeof v === "object") canonicaliseCitedUrls(v, byKey, bad, ids);
+  }
+}
+
+/* ── Output checks ────────────────────────────────────────────────── */
+
+function extractJson(text) {
+  const t = String(text).trim();
+  try { return JSON.parse(t); } catch {}
+  const fenced = [...t.matchAll(/```(?:json)?\s*([\s\S]*?)```/g)].map((m) => m[1]);
+  for (const f of fenced.reverse()) { try { return JSON.parse(f); } catch {} }
+  const a = t.indexOf("{"), b = t.lastIndexOf("}");
+  if (a >= 0 && b > a) { try { return JSON.parse(t.slice(a, b + 1)); } catch {} }
+  return null;
+}
+
+// Formatting-only normalisation: slugs to the schema's charset. No content
+// is invented — a slug too short after cleaning still fails validation.
+function normaliseSlugs(obj) {
+  if (!obj || typeof obj !== "object") return;
+  for (const [k, v] of Object.entries(obj)) {
+    if (typeof v === "string" && /(^|_)slug$/.test(k)) {
+      obj[k] = v.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60).replace(/-$/, "");
+    } else if (v && typeof v === "object") normaliseSlugs(v);
+  }
+}
+
+function citedUrls(obj, out = []) {
+  if (Array.isArray(obj)) { for (const v of obj) citedUrls(v, out); return out; }
+  if (!obj || typeof obj !== "object") return out;
+  for (const [k, v] of Object.entries(obj)) {
+    if (typeof v === "string" && /(^|_)url$/i.test(k)) out.push(v);
+    else if (v && typeof v === "object") citedUrls(v, out);
+  }
+  return out;
+}
+
+/**
+ * Queries for the stages whose input already says what to search for.
+ * Returns null for any other stage (the model plans those queries).
+ *   discover-topics: two of the channel's content pillars, rotated by day
+ *     so consecutive days search different pillars, each with the year.
+ *   research: the reserved topic, then the topic with its angle.
+ */
+function derivedQueries(taskLabel, inputText, budget) {
+  let input;
+  try { input = JSON.parse(inputText); } catch { return null; }
+  const year = new Date().getUTCFullYear();
+  if (taskLabel === "discover-topics") {
+    const ch = (input.channels || [])[0];
+    const pillars = ch?.content_pillars || [];
+    if (!pillars.length) return null;
+    const day = Math.floor(Date.now() / 86400000);
+    const picks = [];
+    for (let i = 0; i < Math.min(budget, pillars.length); i++) picks.push(pillars[(day + i) % pillars.length]);
+    // Month + year, not just year: "<pillar> 2026 news" kept returning the
+    // same established stories the channel had already covered, and ch-2
+    // exhausted four attempts on duplicates (run 35829223604).
+    const month = new Date().toLocaleString("en-US", { month: "long", timeZone: "UTC" });
+    return picks.map((p) => `${p} news ${month} ${year}`);
+  }
+  if (taskLabel === "research") {
+    if (!input.topic) return null;
+    const qs = [input.topic];
+    if (input.angle) qs.push(`${input.topic} ${input.angle}`.slice(0, 200));
+    return qs.slice(0, Math.max(1, budget));
+  }
+  return null;
+}
+
+function lengthReminders(schema, path = "", out = []) {
+  if (!schema || typeof schema !== "object") return out;
+  if (schema.type === "string" && (schema.minLength || schema.maxLength || schema.pattern)) {
+    const bits = [];
+    if (schema.minLength) bits.push(`at least ${schema.minLength} chars`);
+    if (schema.maxLength) bits.push(`at most ${schema.maxLength} chars`);
+    if (schema.pattern) bits.push(`must match ${schema.pattern}`);
+    out.push(`- ${path || "(root)"}: ${bits.join(", ")}`);
+  }
+  if (schema.type === "array" && (schema.minItems || schema.maxItems)) {
+    out.push(`- ${path}: ${schema.minItems ? `at least ${schema.minItems}` : ""}${schema.minItems && schema.maxItems ? ", " : ""}${schema.maxItems ? `at most ${schema.maxItems}` : ""} items`);
+  }
+  for (const [k, v] of Object.entries(schema.properties || {})) lengthReminders(v, path ? `${path}.${k}` : k, out);
+  if (schema.items) lengthReminders(schema.items, `${path}[]`, out);
+  return out;
+}
+
+function logTokenUsage(entry) {
+  try {
+    const dir = join(ROOT, "data", "token-usage");
+    mkdirSync(dir, { recursive: true });
+    appendFileSync(join(dir, "calls.jsonl"), JSON.stringify({ ts: new Date().toISOString(), runner: "ollama-agent", ...entry }) + "\n");
+  } catch {}
+}
+
+/* ── Main ─────────────────────────────────────────────────────────── */
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  const promptFile = args["prompt-file"];
+  const schemaFile = args["schema-file"];
+  const agent = args.agent || "";
+  const maxRetries = Math.max(1, Number(args["max-retries"]) || 3);
+  const searchBudget = Math.max(0, Number(args["search-budget"]) || 2);
+  const taskLabel = args["task-label"] || "task";
+  const minDomains = Number(args["min-source-domains"]) || 0;
+  const rejectDupFor = typeof args["reject-duplicates-for"] === "string" ? args["reject-duplicates-for"] : null;
+  const models = String(args.model || "").split(",").map((m) => m.trim()).filter(Boolean);
+  if (!promptFile || !schemaFile || !models.length) {
+    log("Usage: node scripts/ollama-agent.js --prompt-file <p> --schema-file <s> --model ollama/<name> [--agent pipeline-research|pipeline-script] [--search-budget N] [--append-system-prompt-file <p>] [--max-retries N]");
+    process.exit(2);
+  }
+  const nonOllama = models.filter((m) => !m.startsWith("ollama/"));
+  if (nonOllama.length) {
+    log(`ollama-agent only drives ollama/* models; got ${nonOllama.join(", ")}`);
+    process.exit(2);
+  }
+
+  const basePrompt = readFileSync(promptFile, "utf-8");
+  const system = args["append-system-prompt-file"] ? readFileSync(args["append-system-prompt-file"], "utf-8") : "";
+  const schema = JSON.parse(readFileSync(schemaFile, "utf-8"));
+  // --min-items path=N tightens one array's minItems for this call, in both
+  // the constrained-output schema and validation. Discovery uses it to
+  // require several candidates: asked in prose, qwen2.5:3b still returned
+  // one, and one duplicate candidate skipped the channel (run 35826622422).
+  if (typeof args["min-items"] === "string") {
+    const [path, n] = args["min-items"].split("=");
+    let node = schema;
+    for (const key of path.split(".")) node = node?.properties?.[key];
+    if (!node || node.type !== "array") {
+      log(`--min-items: ${path} is not an array in ${schemaFile}`);
+      process.exit(2);
+    }
+    node.minItems = Math.max(node.minItems || 0, Number(n));
+  }
+  const ajv = new Ajv({ allErrors: true, strict: false });
+  const validate = ajv.compile(schema);
+  const input = readStdin().trim();
+  const canSearch = SEARCH_AGENTS.has(agent) && searchBudget > 0;
+
+  const lengths = lengthReminders(schema);
+  const inputBlock = input ? `\n\n## INPUT\n\nThe input data for this run, in full:\n\n\`\`\`json\n${input}\n\`\`\`` : "";
+  const toolNote = canSearch
+    ? "\n\nNOTE ON TOOLS: you cannot browse. Web search is run FOR you: first you will be asked for search queries, then given the results. Use only facts and URLs from those results."
+    : "\n\nNOTE ON TOOLS: you have no tools and no web access in this stage. Work only from the INPUT above.";
+  const userPrompt = `${basePrompt}${inputBlock}${toolNote}`;
+
+  let lastError = null;
+  for (const spec of models) {
+    const model = spec.slice("ollama/".length);
+    const messages = [];
+    if (system) messages.push({ role: "system", content: system });
+    messages.push({ role: "user", content: userPrompt });
+
+    // 1–2. Search, when this agent may.
+    let searches = [];
+    let allowedUrls = null;
+    let sourceIds = new Map();
+    if (canSearch) {
+      // Discover and research build their queries from the input (channel
+      // pillars; reserved topic + angle). A model-planned query call cost
+      // 15–77s per stage on the runner and produced weak queries ("money
+      // trail animations recent" for a crypto-fraud channel, run
+      // 35825042889). Other stages still ask the model.
+      let queries = derivedQueries(taskLabel, input, searchBudget);
+      if (queries) {
+        log(`[${taskLabel}] queries from input: ${queries.map((q) => `"${q}"`).join(", ")}`);
+      } else {
+        const qSchema = { type: "object", required: ["queries"], properties: { queries: { type: "array", minItems: 1, maxItems: searchBudget, items: { type: "string", minLength: 3 } } } };
+        messages.push({ role: "user", content: `Before answering, list up to ${searchBudget} web search queries that will find current, specific, citable sources for this task. Respond ONLY with {"queries": [...]}.` });
+        try {
+          const r = await chat(model, messages, qSchema, `${taskLabel}/queries`);
+          queries = (extractJson(r.content)?.queries || []).slice(0, searchBudget);
+          messages.push({ role: "assistant", content: r.content });
+        } catch (e) {
+          lastError = `[${spec}] query planning failed: ${e.message}`;
+          log(lastError);
+          continue;
+        }
+      }
+      if (!queries.length) {
+        lastError = `[${spec}] model produced no search queries`;
+        log(lastError);
+        continue;
+      }
+      for (const q of queries) {
+        try { searches.push(await exaSearch(q)); } catch (e) { log(`[exa] "${q}" failed: ${e.message}`); }
+      }
+      if (!searches.length) {
+        lastError = `[${spec}] every web search failed — cannot ground this stage`;
+        log(lastError);
+        continue;
+      }
+      // Discovery: a result whose title is a topic this channel already
+      // covered is removed before the model reads it. qwen2.5:3b picked the
+      // same covered stories 4/4 attempts on ch-2 and ch-26 (CI runs
+      // 36995441688, 36999095271) even when told which ones were taken; it
+      // cannot choose a story it was never shown. The answer-side duplicate
+      // check below still runs.
+      if (rejectDupFor) {
+        let dropped = 0;
+        for (const s of searches) {
+          const blocks = s.text.split(/^(?=\s*Title:)/m);
+          const keep = blocks.filter((b) => {
+            const m = b.match(/^\s*Title:\s*(.+)$/m);
+            if (!m) return true;
+            const title = m[1].replace(/\s+[-|–—]\s+[^-|–—]{2,40}$/, "");   // " - Publisher" suffix
+            if (!topicLog.isDuplicate(rejectDupFor, title)) return true;
+            dropped++;
+            return false;
+          });
+          s.text = keep.join("").trim();
+          s.urls = [...new Set([...s.text.matchAll(/^\s*URL:\s*(\S+)/gim)].map((x) => normUrl(x[1])))];
+        }
+        if (dropped) log(`[discover] ${dropped} search result(s) dropped: already covered on channel ${rejectDupFor}`);
+        searches = searches.filter((s) => s.urls.length);
+        if (!searches.length) {
+          lastError = `[${spec}] every search result is a topic channel ${rejectDupFor} already covered`;
+          log(lastError);
+          continue;
+        }
+      }
+      allowedUrls =new Set(searches.flatMap((s) => s.urls));
+      // Every result URL gets a short source id (S1, S2, ...) and the model
+      // cites the id, which canonicaliseCitedUrls maps back to the exact URL.
+      // qwen2.5:3b could not copy long URLs: ch-26 extended a justice.gov
+      // URL with an invented "-20260921203418.991.html" suffix on all 4
+      // attempts, in two separate runs (35835281167, 35916464573).
+      sourceIds = new Map([...allowedUrls].map((u, i) => [`S${i + 1}`, u]));
+      const idOf = new Map([...sourceIds].map(([id, u]) => [u, id]));
+      const results = searches.map((s, i) => {
+        const text = s.text.replace(/^(\s*URL:\s*)(\S+)/gim, (m, pre, u) => (idOf.has(normUrl(u)) ? `${pre}${u}   [source id: ${idOf.get(normUrl(u))}]` : m));
+        return `### Search ${i + 1}: ${s.query}\n\n${text}`;
+      }).join("\n\n");
+      messages.push({ role: "user", content: `## SEARCH RESULTS\n\n${results}\n\nThese are the only sources available. In every *_url field write the source id of the result you used (for example "S2"), not the URL — the id is replaced with that result's exact URL.` });
+    }
+
+    // 3. Structured answer, validated, with feedback retries.
+    const answerInstruction = `Now produce the final answer: ONE JSON object that validates against the schema you are constrained to.${lengths.length ? `\nField limits:\n${lengths.join("\n")}` : ""}`;
+    messages.push({ role: "user", content: answerInstruction });
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      let r;
+      try {
+        // Retries raise the temperature: at 0.2 the same context gave byte-identical
+        // rejected answers four times in a row (ch-48, run 35829223604).
+        r = await chat(model, messages, schema, `${taskLabel}/answer attempt ${attempt}/${maxRetries}`, Math.min(0.9, 0.2 + 0.25 * (attempt - 1)),
+          // A fresh seed per retry: under schema-constrained output the same
+          // context produced byte-identical rejected answers even as the
+          // temperature rose (ch-44, 4x 610 tokens, run 35846219455).
+          attempt > 1 ? Math.floor(Math.random() * 2 ** 31) : undefined);
+      } catch (e) {
+        lastError = `[${spec}] attempt ${attempt}/${maxRetries}: ${e.message}`;
+        log(lastError);
+        logTokenUsage({ model: spec, agent, task: taskLabel, channelId: args["channel-id"], videoId: args["video-id"], ok: false });
+        continue;
+      }
+      logTokenUsage({ model: spec, agent, task: taskLabel, channelId: args["channel-id"], videoId: args["video-id"], usage: r.usage, ok: true });
+      const data = extractJson(r.content);
+      const problems = [];
+      if (!data) {
+        problems.push(`response was not valid JSON: ${r.content.slice(0, 300)}`);
+      } else {
+        normaliseSlugs(data);
+        if (!validate(data)) problems.push(`schema validation failed: ${ajv.errorsText(validate.errors)}`);
+        if (allowedUrls) {
+          const byKey = new Map([...allowedUrls].map((u) => [urlKey(u), u]));
+          const bad = [];
+          canonicaliseCitedUrls(data, byKey, bad, sourceIds);
+          if (bad.length) {
+            // Name the allowed URLs, in the log (to tell a model invention
+            // from an extraction mismatch — ch-26 in run 35835281167 was
+            // rejected 4x on a plausible justice.gov URL) and in the feedback,
+            // so the model can copy one exactly instead of reconstructing it.
+            const allowed = [...allowedUrls];
+            log(`[grounding] rejected: ${bad.slice(0, 5).join(" , ")}`);
+            log(`[grounding] allowed (${allowed.length}): ${allowed.join(" , ")}`);
+            // Several VALID ids crammed into one field ("S1, S2, S3, S6") is a
+            // different mistake from citing an unknown URL, and the generic
+            // message below told the model its real ids were URLs "no search
+            // returned" -- it repeated the same answer 4/4 (CI run
+            // 36328141701 ch-1). Still rejected (which of the four states
+            // the fact is not ours to guess); the feedback now says why.
+            const multi = bad.filter((v) => {
+              const parts = String(v).split(/[\s,;/&]+|\band\b/i).filter(Boolean);
+              return parts.length > 1 && parts.every((p) => sourceIds.has(p.replace(/^\[|\]$/g, "").toUpperCase()));
+            });
+            const unknown = bad.filter((v) => !multi.includes(v));
+            if (multi.length) problems.push(`each source_url holds exactly ONE source id, but you wrote several in one field: ${multi.slice(0, 3).map((v) => `"${v}"`).join(", ")}. Give that fact the single id of the source that states it, or split it into one key_fact per source`);
+            if (unknown.length) problems.push(`cites URL(s) that no search returned: ${unknown.slice(0, 5).join(", ")}. In *_url fields write ONLY one of these source ids: ${[...sourceIds.keys()].join(", ")}`);
+          }
+        }
+        // Discovery: at least one candidate must survive the same duplicate
+        // check Reserve applies (src/utils/topic-log.cjs), or the channel is
+        // skipped. Run 35827307256 skipped 4 of 6 channels with three
+        // duplicate candidates each; the model is now told which ones.
+        if (rejectDupFor && Array.isArray(data.topics)) {
+          const dups = data.topics.filter((t) => t?.topic && topicLog.isDuplicate(rejectDupFor, t.topic));
+          if (dups.length === data.topics.length) {
+            problems.push(`every candidate duplicates a topic this channel already covered: ${dups.map((t) => `"${t.topic}"`).join(", ")}. Choose different subjects from the search results, not rewordings of these or of recent_topics`);
+          }
+        }
+        // Same threshold as gate-research SCR-02, checked here so the model
+        // gets a retry with the reason instead of the stage failing later.
+        if (minDomains > 0) {
+          // Counted over key_facts[].source_url when present — exactly what
+          // gate-research SCR-02 counts. Counting every cited URL let ch-2
+          // pass here on a numbers[] domain and fail the gate (run 35840782030).
+          const domainSource = Array.isArray(data.key_facts) ? data.key_facts.map((f) => f?.source_url).filter(Boolean) : citedUrls(data);
+          const domains = new Set(domainSource.map((u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return null; } }).filter(Boolean));
+          if (domains.size < minDomains) {
+            const available = [...new Set([...(allowedUrls || [])].map((u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return null; } }).filter(Boolean))];
+            problems.push(`cites only ${domains.size} distinct source domain(s) (${[...domains].join(", ") || "none"}); at least ${minDomains} different sites are required. The search results came from: ${available.join(", ")} — take at least one key fact from a DIFFERENT site in that list, citing its URL exactly`);
+          }
+        }
+      }
+      if (!problems.length) {
+        console.log(JSON.stringify({
+          structured_output: data,
+          total_cost_usd: 0,
+          model_used: spec,
+          websearch_calls: searches.length,
+          search_queries: searches.map((s) => s.query),
+          input_tokens: r.usage.input ?? null,
+          output_tokens: r.usage.output ?? null,
+        }));
+        return;
+      }
+      lastError = `[${spec}] attempt ${attempt}/${maxRetries}: ${problems.join("; ")}`;
+      log(lastError);
+      messages.push({ role: "assistant", content: r.content });
+      messages.push({ role: "user", content: `That response was rejected: ${problems.join("; ")}. Fix exactly those problems and return the full corrected JSON object.` });
+    }
+  }
+  log(`All models failed. Last error: ${lastError}`);
+  process.exit(1);
+}
+
+main().catch((e) => {
+  log(`Fatal: ${e.stack || e.message}`);
+  process.exit(1);
+});

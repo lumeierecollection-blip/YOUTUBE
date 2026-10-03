@@ -40,6 +40,32 @@ const FONT_LIMIT = 60;
 // weight, not a new family.
 const EXTRA_FACES = [{ family: "Playfair Display", weight: 400, style: "italic" }];
 
+// The editorial type system (visual/typography.js): TWO families, both
+// variable so one file covers every weight the roles use. Fraunces carries
+// the headline / hero-number / emphasis roles (its optical-size axis, opsz
+// 9..144, is applied by the browser: font-optical-sizing: auto); Inter
+// carries the data role and captions. Fallback order if Fraunces cannot be
+// fetched: Instrument Serif, then Cormorant Garamond (typography.js).
+// Manifest key: "<min>..<max>" (+ "i" for italic).
+const VARIABLE_FACES = [
+  { family: "Fraunces", key: "400..700", style: "normal", file: "Fraunces-var.woff2", query: "Fraunces:opsz,wght@9..144,400..700" },
+  { family: "Fraunces", key: "400..700i", style: "italic", file: "Fraunces-var-italic.woff2", query: "Fraunces:ital,opsz,wght@1,9..144,400..700" },
+  { family: "Inter", key: "400..800", style: "normal", file: "Inter-var.woff2", query: "Inter:wght@400..800" },
+];
+
+async function getVariableUrl(query) {
+  const res = await fetch(`https://fonts.googleapis.com/css2?family=${query}&display=swap`, { headers: { "User-Agent": UA } });
+  if (!res.ok) throw new Error(`CSS request failed (${res.status})`);
+  const css = await res.text();
+  for (const block of css.split("@font-face")) {
+    const ur = block.match(/unicode-range:\s*([^;}]+)/);
+    if (ur && !ur[1].includes(LATIN_RANGE)) continue;
+    const m = block.match(/url\((https:\/\/[^)]+\.woff2)\)/);
+    if (m) return m[1];
+  }
+  return null;
+}
+
 // Latin block (unicode-range U+0000-00FF) is the LAST @font-face block per
 // weight in the Google Fonts CSS2 response; the first block is cyrillic-ext.
 // Selecting the first matching block shipped 0-digit subsets (audit-assets
@@ -171,16 +197,37 @@ async function main() {
     }
   }
 
+  for (const { family, key, style, file, query } of VARIABLE_FACES) {
+    manifest[family] = manifest[family] || {};
+    const dest = join(FONT_DIR, file);
+    if (!existsSync(dest)) {
+      try {
+        const url = await getVariableUrl(query);
+        if (!url) { console.log(`  ${family} ${key} ${style}: not available`); continue; }
+        await download(url, dest);
+        console.log(`  ok ${file}`);
+      } catch (err) { console.log(`  FAIL ${family} ${key}: ${err.message}`); continue; }
+    } else console.log(`  skip ${file}`);
+    manifest[family][key] = file;
+  }
+
   writeFileSync(join(__dirname, "fonts-manifest.json"), JSON.stringify(manifest, null, 2));
 
   let faces = "";
   const families = [];
   for (const font of Object.keys(manifest)) {
     families.push(font);
-    for (const weightKey of Object.keys(manifest[font])) {
+    // A variable face covers its family's weights: the static files of the
+    // same style are not declared (overlapping @font-face rules would leave
+    // the winner to declaration order).
+    const keys = Object.keys(manifest[font]);
+    const varStyles = new Set(keys.filter((k) => k.includes("..")).map((k) => (k.endsWith("i") ? "i" : "n")));
+    for (const weightKey of keys) {
+      if (!weightKey.includes("..") && varStyles.has(weightKey.endsWith("i") ? "i" : "n")) continue;
       const file = manifest[font][weightKey];
       const isItalic = weightKey.endsWith("i");
-      const weight = isItalic ? weightKey.slice(0, -1) : weightKey;
+      // "400..700" is a variable face: font-weight takes the range.
+      const weight = (isItalic ? weightKey.slice(0, -1) : weightKey).replace("..", " ");
       faces += `@font-face{font-family:"${font}";font-style:${isItalic ? "italic" : "normal"};font-weight:${weight};font-display:swap;src:url("\${staticFile(\"fonts/${file}\")}") format("woff2");}\n`;
     }
   }

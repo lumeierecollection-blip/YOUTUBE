@@ -77,6 +77,7 @@ never `L7` or `Â§3.1`.
 | `PLN` | the plan renderer — the pure function from a structured plan to pixels, and the aborts that stop it emitting a frame nobody can read | `src/skills/remotion-render/compositions/template-scene.jsx` + `visual/palette-roles.js` (per render — see §3.16) |
 | `OBJ` | the procedural object library — every noun a channel's `core_objects` names, and the box each drawing is bound to | `src/skills/remotion-render/qa-scripts/audit-object-bounds.mjs` (per change to a drawing — see §3.17) |
 | `MOT2` | the beat engine — visual intent, actor persistence, kinetic typography, and whether a video moves at all | `src/skills/remotion-render/visual-engine/qa/motion-checks.mjs` (per render — see §3.18) |
+| `CNV` | full-canvas composition — the frame-filling beat grammar that replaced the paper stage (2026-09-29), named-entity photos, spoken-form TTS | `scripts/local-audit.cjs --canvas-only` (per render) + `scripts/gemini-visual-plan.js` / `scripts/entity-assets.cjs` / `src/utils/tts-normalize.js` (per plan / per voiceover — see §3.19) |
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 
 ---
@@ -412,6 +413,18 @@ prose at render time (still the render-time behavior today â€” `SCR-05`
 constrains what the *script* is allowed to contain, it does not yet change
 what `mg-package.js` does with it; see `schemas/script.mg.json`'s header
 note on that gap).
+
+**3.10.3 - SCR-03/04/05/06/07/15 apply only where the render path reads
+`sections[].beats`.** Motion-graphics shorts render through DirectedShorts
+(`render.js` `getCompositionForStyle`, unless `USE_LEGACY_3D=true`), which
+builds its visuals from the SRT and the visual plan and never reads beats.
+Those scripts are written against `schemas/script.directed.json` (the MG
+schema with `beats` removed) and `gate-script.js` reports the six beat checks
+as not applicable for them. They still apply in full to motion-graphics
+longform and to the legacy 3D path. Grounding checks are unchanged for every
+script: SCR-08 and SCR-12..SCR-14. Decided 2026-09-23 after qwen2.5:3b spent
+the whole prep budget failing SCR-03/04 on beats this path would discard
+(run 35827307256, channels 44 and 48).
 
 **3.10.2 â€” SCR-01 and SCR-10 are honest approximations, not full
 implementations.** Read the check's Method column before trusting its
@@ -2995,6 +3008,84 @@ delete `SemanticScene` has NOT been carried out: it still renders every channel
 in production, and deleting it before the replacement ships would leave the
 daily cron with nothing to run.
 
+
+## 3.19 `CNV` — full-canvas composition (the paper stage removed, 2026-09-29)
+
+The owner replaced the paper stage (a small white page in the middle of the
+frame, the same three zones on every beat) with full-canvas editorial motion
+graphics: every beat is composed for the whole 1080x1920 frame as one of
+thirteen compositions — TYPE-FULL, TYPE-SPLIT, NUMBER-FULL, DATA-FULL,
+SCENE-FULL, ARCHITECTURE, DOCUMENT, MONEY, MAP-CENTERED, PROCESS-FULL,
+TIMELINE, COMPARISON-SPLIT, LIST-BUILD (`visual/canvas-layout.js`,
+`visual/full-canvas.jsx`). The paper-only checks in `local-audit.cjs`
+(`frames-fit-paper`, `shapes-clear-of-text`, `frames-match-reference`) are
+not run on a canvas video: the first two measure the paper's zones, and the
+third compares every frame with the WHITE-PAPER reference histogram, which a
+full-bleed photo beat fails by construction. They are replaced, not
+loosened: the same questions (does everything fit, is text clear, does the
+video look like the target style) are asked of the frame instead of the page.
+
+| ID | Check | Method | T | Sev | Stage |
+|---|---|---|---|---|---|
+| CNV-01 | `canvas-fit` — every element box the renderer placed (manifest `beats[].canvas.boxes`, from `canvasLayout()`) is inside the frame less 48 px (a full-bleed photo is the frame); no two text boxes overlap; nothing but a photo enters the caption band (y 1450-1610) | manifest geometry | 3 | BLOCKER | per render |
+| CNV-02 | `canvas-coverage` — each beat's rendered content (luma < 170 or chroma > 45, above the caption band) spans >= 60% of the frame height, at 55% / 90% of the beat | ffmpeg frames | 3 | BLOCKER | per render |
+| CNV-03 | `canvas-accent` — the channel accent (`channels.json colors.canvas_accent`) covers >= 0.2% of the frame in at least one beat | ffmpeg frames | 3 | MAJOR | per render |
+| CNV-04 | `motion-tiers` — every beat has a tier; 2-3 are `major` (1-3 under 4 beats); the planner caps / fills the count before render | manifest | 1 | MAJOR | per plan + per render |
+| CNV-05 | Named entities — a `named_entities` entry, and a PHOTO beat's entity, must be named in its own sentence (`entityNamedInSentence`); others are dropped / the beat becomes TYPE | plan gate | 1 | BLOCKER | per plan |
+| CNV-06 | Entity photos — a PHOTO is a free-licensed JPEG on Wikimedia Commons, >= 500 px short side, whose Wikipedia page title or Commons file name names the entity; charts / maps / logos / scans / people-shots (for places and organizations) are refused; after 3 attempts the beat is TYPE-FULL, never a generic stand-in (CLAUDE.md hard rule) | `scripts/entity-assets.cjs` | 2 | BLOCKER | per render |
+| CNV-07 | PROCESS nodes — 2-3 nodes, each 1-3 words from the sentence | plan gate | 1 | BLOCKER | per plan |
+| CNV-08 | Spoken-form TTS — every string sent to the engine goes through `speakable()` (no "slash", no raw `%` / `$` / `/` / `&`); the SRT cues keep the written text so the plan gates still read digits; 21 cases in `scripts/test-tts-normalize.mjs` | unit test + code path | 1 | MAJOR | per voiceover |
+| CNV-09 | No paper stage — `plan.paper` is refused by `DirectedScene` and by `render.js` (the paper modules are deleted, `DEL`-style: `paper-stage.jsx`, `paper-video.jsx`, `paper-caption.jsx`, `abstract-shape.jsx`, `shape-geometry.js`, `paper-text.js`, `branding-rail.jsx`) | code path | 1 | BLOCKER | per render |
+
+### 3.19.1 The typography rebuild (2026-09-29)
+
+The owner then replaced the type system — one grotesk at different sizes —
+with an editorial serif / sans system (`visual/typography.js`: Fraunces for
+headlines, hero numerals and the one emphasis word; Inter for data labels and
+the caption), an asymmetric 3x4 grid (`visual/canvas-layout.js`), per-role
+motion, a texture layer (paper grain, 80 px shadow, vignette, dark beats) and
+a thirteen-composition vocabulary with a no-repeat rule. The audit changes:
+
+| ID | Check | Method | T | Sev | Stage |
+|---|---|---|---|---|---|
+| CNV-10 | `canvas-type` — nothing centred (headline / statement / number / emphasis are left- or right-aligned and none sits on the frame's centre line); headlines are sentence case (never all-caps); >= 60% of beats show two type roles; **no composition twice in a row**; dark beats: >= 1 in a video of 4+ beats, <= 2, never consecutive | manifest (roles + alignment) | 3 | BLOCKER | per render |
+| CNV-11 | `canvas-texture` — the studio ground reads luma >= 200 on a light beat and < 60 on a dark one; paper grain present on every non-photo beat (luma sd of a ground patch >= 0.35 — measured: grain at 0.055 opacity reads ~1 on a lossless still, 0.5-0.8 after h264, flat ground ~0) | ffmpeg frames | 3 | MAJOR | per render |
+| CNV-11 | `canvas-ground` (replaces `canvas-texture`; uniform white since 2026-09-30 — the per-channel gradients, dark beats and shadow overlay were removed) — the ground reads uniform white (bottom-left patch luma >= 245) on every beat that is not a full-bleed photo, and no beat is dark | ffmpeg frames | 3 | MAJOR | per render |
+| CNV-15 | `kinetic-rules` (replaces `animation-rules` for text; pop family since 2026-09-30) — every word of a headline / statement / kicker / label has a POP entrance (`visual/kinetic.js` ENTRANCES: POP_STANDARD / POP_EMPHASIS / POP_SOFT / POP_HARD / POP_LETTER / POP_WORD_STACK — no slide, drop, mask sweep, blur or rotate entrance); kickers and labels pop soft; the emphasis word pops with POP_EMPHASIS unless the whole beat pops hard / by letter / as a stack; POP_HARD only on the hook (first beat) or CTA (last); POP_LETTER on at most one beat; at most three text elements a beat; a headline mixes weights (a bold word) and carries an accent / emphasis word; a number pops then rolls (`pop_roll`), a year, article or section number only pops (`pop`). Unit tests: `scripts/test-kinetic.mjs` | manifest (`canvas.kinetic`, `canvas.words`) | 1 | MAJOR | per render |
+| CNV-12 | No-repeat rule at plan time and again at resolve time (`scripts/composition-rotation.js`): a repeat is replaced by what the SENTENCE grounds (timeline, comparison, list, process, map, stated percentage, hero figure, TYPE-SPLIT); each alternative goes through the same `checkVisual`; a repeat nothing can break is logged (`[plan] beat N could not avoid repeating beat N-1 type`) and kept; the hook and the last real photo are never given up. 11 cases in `scripts/test-composition-rotation.mjs` | unit test + plan / resolve log | 1 | MAJOR | per plan + per render |
+| CNV-13 | LIST / TIMELINE / COMPARE / DOCUMENT / MONEY are valid only when the sentence states one (`scripts/canvas-grounding.js`); the on-screen data is the extractor's — a slice of the sentence — whatever the model wrote. DOCUMENT and MONEY also need a real fetched image (`entity-assets.cjs resolveDocument / resolveMoney`); none -> the beat is TYPE, never a stand-in. 30 cases in `scripts/test-canvas-grounding.mjs` and 33 in `scripts/test-plan-gates.mjs` | plan gate + unit tests | 1 | BLOCKER | per plan |
+| CNV-14 | Type system — two families only; roles, size bands, sentence-case rebuild from the narration, number slots (Fraunces has no `tnum`), measured advance widths (`scripts/gen-type-metrics.py`); 35 cases in `scripts/test-typography.mjs` | unit test | 1 | MAJOR | per change |
+| CNV-16 | Uniform white ground, measured (`scripts/render-and-qa.js` measureGround; replaces the bg_mode "white" beat-0 > 222 check) — on the first non-photo beat (manifest `canvas.ground` "white") at 60%: three 80x80 corner patches (top-left, top-right, bottom-right) each read `visual/backgrounds.js` GROUND within 4 per RGB channel and match each other within 2 — any tint, gradient, vignette or shadow fails. One frame, three corners | ffmpeg frame + render manifest | 3 | MAJOR | per render |
+| CNV-17 | Person-photo identity gate (`scripts/verify-person-image.cjs`, called by `scripts/entity-assets.cjs` resolvePerson) — every candidate photo of a named person (Wikipedia lead image first, then a Wikipedia search's lead image, then Commons portraits; never a stock API) goes to a vision model (Groq -> Gemini -> Ollama); used only if has_face AND identity MATCH AND framing PORTRAIT AND face >= 15% of the image AND no watermark / text overlay. UNSURE / NO_MATCH / SCENE / GROUP / no answer reject. No candidate passes -> the beat loses the photo (a quote -> TYPE with the name as attribution; an action -> a grounded DATA / PROCESS visual; else TYPE). Verdicts cached in `public/entities/verified.json` (same URL, 30 days). Identity is model recognition, not biometrics; the face share is a model estimate, not a detector. 16 cases in `scripts/test-verify-person.mjs` | vision model + resolver log | 1 | BLOCKER | per render |
+| CNV-18 | Wrong-person frame review (`scripts/gemini-frame-review.js --beat-check`) — a beat whose frame shows a person while the sentence names a specific person is NO with reason "wrong-person" when the face is clearly someone else, a child, or a scene where the person is not the subject. Any wrong-person beat fails the whole video (the one-NO tolerance does not apply) and `render-and-qa.js` rejects it outright (the local audit cannot move it to approved-review). Logged `[review] beat N: wrong-person photo for <name>` | rendered frame + vision model | 1 | BLOCKER | per render |
+
+Changed rules (the intent stays, the rule now matches the design):
+`frames-centered` (content at the frame's centre) runs for paper videos only —
+the grid leaves empty cells on purpose; the white-ground verify threshold is
+> 222 (was 240) because the 0.08 vignette darkens exactly the crop it
+measures; `canvas-coverage` reads content against the frame's own ground so a
+dark beat is not 100% "content" (CNV-02); `canvas-fit` exempts what bleeds by
+design (a full-bleed photo, the centred map, the diagonal split) and judges
+text overlap by type role, nested boxes included (CNV-01).
+
+Where these stop: CNV-10's "two roles" counts roles the layout placed, not
+legibility; the "sentence case" check reads the headline the layout drew, so a
+proper noun the narration writes in capitals is accepted. CNV-13's extractors
+are pattern readers: a list in a subordinate clause, "the spring of 2019", or a
+comparison with no keyword is not found — the beat stays typography, the safe
+direction (a miss costs variety, never truth). The DOCUMENT resolver does no
+OCR, so a DOCUMENT beat never claims to highlight a passage of the scan: its
+callout highlights the beat's own headline. The live Wikimedia lookups
+(documents, money, building detection) could not be reached from the
+development container; only their file-name filters are unit-tested.
+
+Where the first set stops: CNV-01 checks the renderer's OWN layout numbers (text
+widths are measured from the fonts' advance tables, kerning ignored, not from
+rendered glyphs); CNV-02
+counts any dark or saturated pixel as content, so it cannot tell a
+composition from stray ink — it proves the frame is used, not that it is
+used well; that judgement stays with the whole-video review, whose rubric
+now states the full-canvas grammar instead of sending the paper reference.
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 

@@ -49,6 +49,13 @@ function main() {
     format,
     script_template: channel.script_template || null,
     concepts: channel.concepts || null,
+    // The week's hot terms in the channel's YouTube category (scripts/
+    // fetch-trending.cjs: words in >= 5 of the 50 most-popular titles) — a
+    // keyword spine for titles / hooks, never a source of facts.
+    seo_keywords: (() => {
+      try { return JSON.parse(readFileSync(join(ROOT, "data", "trending", `${channelId}-keywords.json`), "utf-8")).keywords.slice(0, 12).map((k) => k.term); }
+      catch { return []; }
+    })(),
     research,
   };
 

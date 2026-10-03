@@ -1,0 +1,99 @@
+name: "Ollama: one server, cached models"
+description: >
+  Install Ollama, restore its model cache, start exactly ONE server on
+  127.0.0.1:11434, then pull and warm each model. GitHub Actions jobs run on
+  separate VMs, so one server cannot be shared by the whole workflow: every
+  job that calls a model runs this action once, and this is the only place
+  a server is started. install.sh also registers and starts a systemd
+  service on :11434; it is stopped first — the second `ollama serve` on the
+  same port is what died with "bind: address already in use" in earlier
+  prep jobs.
+inputs:
+  models:
+    description: "Space-separated model tags to pull and warm"
+    required: true
+  cache-key:
+    description: "actions/cache key for ~/.ollama/models — must name every model"
+    required: true
+  context-length:
+    description: "Server default context (requests may set their own num_ctx)"
+    required: false
+    default: "16384"
+  max-loaded:
+    description: "OLLAMA_MAX_LOADED_MODELS — 1 keeps a 16 GB runner clear for rendering"
+    required: false
+    default: "1"
+  unload-after-warm:
+    description: >
+      "true" = unload each model from RAM right after its warm-up check, so
+      it is only resident while a fallback call is using it. The render job
+      needs this: run 36478456863 kept qwen2.5:14b resident (~9-10 GB, 30 m
+      keep-alive) on the 15 GB runner, and ch1/9/44 lost the runner
+      ("received a shutdown signal", exit 143) the moment rembg started.
+    required: false
+    default: "false"
+  background:
+    description: >
+      "true" = start the server, then pull + check the models in the
+      BACKGROUND and return at once; later steps get OLLAMA_READY_FILE, and
+      scripts/ollama-client.cjs (and gate-visual-qa.js) wait for it before a
+      local call. The render job needs this: 17 GB of fallback models took
+      ~6 of its 20 minutes before anything rendered, and ch-9 / ch-44 were
+      cancelled at the cap (run 36500636962). Gemini and Groq answer first;
+      the local models are only the last tier.
+    required: false
+    default: "false"
+runs:
+  using: composite
+  steps:
+    - name: Cache Ollama models
+      uses: actions/cache@v4
+      with:
+        path: ~/.ollama/models
+        key: ${{ inputs.cache-key }}
+
+    - name: Install Ollama
+      shell: bash
+      run: command -v ollama >/dev/null 2>&1 || curl -fsSL https://ollama.com/install.sh | sh
+
+    - name: Start one Ollama server; pull and warm the models
+      shell: bash
+      env:
+        MODELS: ${{ inputs.models }}
+        CTX: ${{ inputs.context-length }}
+        MAX_LOADED: ${{ inputs.max-loaded }}
+        UNLOAD: ${{ inputs.unload-after-warm }}
+        BACKGROUND: ${{ inputs.background }}
+      run: |
+        sudo systemctl stop ollama 2>/dev/null || true
+        sudo systemctl disable ollama 2>/dev/null || true
+        sudo pkill -f "ollama serve" 2>/dev/null || true
+        mkdir -p "$HOME/.ollama/models"
+        OLLAMA_MODELS="$HOME/.ollama/models" OLLAMA_HOST=127.0.0.1:11434 \
+          OLLAMA_CONTEXT_LENGTH="$CTX" OLLAMA_MAX_LOADED_MODELS="$MAX_LOADED" OLLAMA_KEEP_ALIVE=30m \
+          nohup ollama serve > /tmp/ollama.log 2>&1 &
+        for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
+        rm -f /tmp/ollama-ready /tmp/ollama-failed
+        cat > /tmp/ollama-pull.sh <<'PULL'
+        set -u
+        for m in $MODELS; do
+          OLLAMA_HOST=127.0.0.1:11434 ollama pull "$m" || { echo "pull failed: $m" > /tmp/ollama-failed; exit 1; }
+          node scripts/ollama-client.cjs --check --model "$m" --timeout 120 \
+            || { echo "--- ollama.log ---"; tail -50 /tmp/ollama.log; echo "check failed: $m" > /tmp/ollama-failed; exit 1; }
+          if [ "$UNLOAD" = "true" ]; then
+            curl -sf http://127.0.0.1:11434/api/generate -d "{\"model\":\"$m\",\"keep_alive\":0}" >/dev/null && echo "unloaded $m after warm-up" || echo "::warning::could not unload $m"
+          fi
+        done
+        OLLAMA_HOST=127.0.0.1:11434 ollama ps || true
+        touch /tmp/ollama-ready
+        PULL
+        sed -i 's/^        //' /tmp/ollama-pull.sh
+        export MODELS UNLOAD
+        if [ "$BACKGROUND" = "true" ]; then
+          nohup bash /tmp/ollama-pull.sh > /tmp/ollama-pull.log 2>&1 &
+          echo "OLLAMA_READY_FILE=/tmp/ollama-ready" >> "$GITHUB_ENV"
+          echo "Ollama server up; models pulling in the background (/tmp/ollama-pull.log)"
+        else
+          bash /tmp/ollama-pull.sh || exit 1
+        fi
+        nproc; free -g | head -2; df -h / | tail -1

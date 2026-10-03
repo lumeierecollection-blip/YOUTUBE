@@ -1,3 +1,0 @@
-74: * HOLD (A4.1): the last visual event is the lowest surviving chip's final
-78: * shift completes frame 41 → hold begins 41 (C17 40/41). Single-chip beats:
-79: * hold begins tA+9 (the badge return). The tA+2 click is audio, not a

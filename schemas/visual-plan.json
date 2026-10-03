@@ -1,0 +1,155 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "visual-plan.json",
+  "title": "Visual Plan",
+  "description": "Output of the visual planning stage. Gemini (or OpenCode fallback) reads the script and SRT, then decides per-beat: what visual headline to show, what visual events to compose, and what direction the renderer must execute.",
+  "type": "object",
+  "required": ["beats"],
+  "additionalProperties": false,
+  "properties": {
+    "beats": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["index", "visual_headline", "reason", "visual_events", "capabilities", "composition", "direction"],
+        "additionalProperties": false,
+        "properties": {
+          "index": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Beat index, 0-based"
+          },
+          "visual_headline": {
+            "type": "string",
+            "maxLength": 60,
+            "description": "SHORT on-screen text — NOT the transcript, max 5-6 words"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 10,
+            "description": "What the sentence is DOING and why this visual shows it"
+          },
+          "emphasis_words": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Key words to highlight in the visual headline"
+          },
+          "visual_events": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["type"],
+              "additionalProperties": false,
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["growth", "depletion", "comparison", "revelation", "structure_break", "accumulation", "population", "evidence", "contrast", "causation"],
+                  "description": "The visual event type"
+                },
+                "label": {
+                  "type": "string",
+                  "description": "Optional label for the event"
+                },
+                "magnitude": {
+                  "type": "string",
+                  "description": "Optional number/value if applicable"
+                }
+              }
+            },
+            "description": "What happens visually (the EVENTS, not the template)"
+          },
+          "capabilities": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1,
+            "description": "Which capabilities are used (for validation)"
+          },
+          "objects": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "label_a": { "type": "string", "description": "For contrast: before label" },
+              "label_b": { "type": "string", "description": "For contrast: after label" },
+              "figure": { "type": "string", "description": "For evidence: the number" },
+              "cause": { "type": "string", "description": "For causation: cause label" },
+              "effect": { "type": "string", "description": "For causation: effect label" }
+            }
+          },
+          "composition": {
+            "type": "object",
+            "required": ["objects"],
+            "additionalProperties": false,
+            "properties": {
+              "objects": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": ["kind", "anchor", "motion"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": { "type": "string", "description": "Primitive type (field, block, card, gauge, bar, dot_grid, stack, etc.)" },
+                    "anchor": { "type": "string", "description": "Position anchor (center, left, right, top, bottom, etc.)" },
+                    "motion": { "type": "string", "description": "How the object moves (static, grow, shrink, slide_in, fade_in, etc.)" },
+                    "count": { "type": "integer", "minimum": 1, "description": "Number of this primitive (must be a real quantity from narration)" },
+                    "label": { "type": "string", "description": "Short label (only where needed)" },
+                    "emphasis": { "type": "boolean", "description": "true for the ONE object carrying the beat" }
+                  }
+                }
+              }
+            }
+          },
+          "carries_forward": {
+            "type": ["string", "null"],
+            "description": "Object/concept that persists into the next beat, or null"
+          },
+          "emotional_weight": {
+            "type": "string",
+            "enum": ["calm", "building", "sharp", "heavy", "urgent"],
+            "description": "Emotional tone of the beat"
+          },
+          "typography_direction": {
+            "type": ["object", "null"],
+            "description": "Typography direction for beats with on-screen text, null for beats without",
+            "properties": {
+              "phrase": { "type": "string", "description": "Exact one-line phrase, 2-7 words" },
+              "why": { "type": "string", "description": "Why this phrase matters to the narration" },
+              "moment": {
+                "type": "string",
+                "enum": ["hook", "re_hook", "key_fact", "contradiction", "question", "statement"],
+                "description": "When in the narrative this emphasis lands"
+              },
+              "single_line": { "type": "boolean", "const": true },
+              "not_a_headline": { "type": "boolean", "const": true },
+              "not_a_transcript": { "type": "boolean", "const": true },
+              "relation_to_visual": { "type": "string", "description": "How the phrase relates to (and does NOT merely describe) the visual" }
+            }
+          },
+          "direction": {
+            "type": "object",
+            "required": ["narrative_purpose", "subject", "environment", "action_start", "action_end", "camera", "motion", "typography", "sound", "consequence", "muted_read", "why_visual", "graph_justified"],
+            "additionalProperties": false,
+            "description": "Authoritative visual direction — the renderer must execute this exactly",
+            "properties": {
+              "narrative_purpose": { "type": "string", "description": "What this beat must accomplish in the argument" },
+              "subject": { "type": "string", "description": "LITERALLY what the composition primitives show — not a real-world scene" },
+              "environment": { "type": "string", "description": "Where it lives (dim archival desk; clean data void; etc.)" },
+              "action_start": { "type": "string", "description": "Visual state at beat start" },
+              "action_end": { "type": "string", "description": "Visual state at beat end" },
+              "camera": { "type": "string", "description": "What the camera does (hold; push_in; pull_back; track; orbit; tilt)" },
+              "motion": { "type": "string", "description": "How things move and with what weight" },
+              "typography": { "type": "string", "description": "The only on-screen text and where, or 'none'" },
+              "sound": { "type": "string", "description": "Semantic sound accent, or 'silence'" },
+              "consequence": { "type": "string", "description": "What the viewer should feel/understand" },
+              "muted_read": { "type": "string", "description": "What a viewer with NO audio understands from this beat alone" },
+              "why_visual": { "type": "string", "description": "Why this visual represents THIS narration" },
+              "graph_justified": { "type": "boolean", "description": "true ONLY if genuinely about quantitative comparison/trend" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

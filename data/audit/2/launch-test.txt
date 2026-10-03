@@ -1,6 +1,0 @@
-﻿START 2026-08-06T18:04:22.8163134+02:00
-VERSION: 151.0.7922.75
-DEVTOOLS_FAIL: The property 'Timeout' cannot be found on this object. Verify that the property exists and can be set.
-ERRFILE:
-LAUNCHER_EXITED: False
-END 2026-08-06T18:05:13.2557282+02:00

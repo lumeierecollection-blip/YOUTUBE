@@ -22,6 +22,11 @@ export function parseWikimediaResponse(json) {
       sourceApi: "wikimedia",
       sourceUrl: `https://commons.wikimedia.org/wiki/${encodeURIComponent(page.title || "")}`,
       downloadUrl: info.url,
+      // Commons renders every file (SVG maps, TIFF/PDF scans) to a raster
+      // thumbnail at the requested iiurlwidth. Recorded so a consumer that
+      // needs JPEG/PNG can use it instead of rejecting the file's format.
+      thumbUrl: info.thumburl || null,
+      mime: info.mime || null,
       title: page.title || "",
       // extmetadata is already requested, so ImageDescription costs nothing
       // extra and is the only real description Commons gives us.
@@ -41,10 +46,13 @@ export function parseWikimediaResponse(json) {
   return out;
 }
 
-export async function search(query, { count = 6 } = {}) {
+// Commons rate-limits thumbnails it has to GENERATE: a width outside its standard step list (…, 960, 1280,
+// 1920, 3840) is rendered on demand and answers 429 in bursts. Callers that need less than 4000 px pass a
+// standard width (the cutout builder asks for 1280).
+export async function search(query, { count = 6, thumbWidth = 4000 } = {}) {
   const url =
     `${ENDPOINT}?action=query&generator=search&gsrsearch=${encodeURIComponent(query)}&gsrnamespace=6` +
-    `&gsrlimit=${count}&prop=imageinfo&iiprop=url|size|extmetadata|mime&iiurlwidth=4000&format=json&origin=*`;
+    `&gsrlimit=${count}&prop=imageinfo&iiprop=url|size|extmetadata|mime&iiurlwidth=${thumbWidth}&format=json&origin=*`;
   const json = await fetchJson(url);
   return parseWikimediaResponse(json);
 }

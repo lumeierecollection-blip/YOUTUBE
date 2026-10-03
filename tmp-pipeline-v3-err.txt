@@ -1,0 +1,43 @@
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [gemini-client] Tokens used: 5858 (session total: 5858/50000)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [gemini-client] Cache MISS for f9f375c773ec... (hits: 0, misses: 1)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::narrative-typography: repaired 1 phrase(s)
+  beat 0: "3 MONTHS ISN'T ENOUGH" -> "3 MONTHS ISN'T ENOUGH"  (reads as a headline/topic label, not narrative emphasis)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::narrative-typography: 100% of beats carry on-screen text (max 40%) — typography should be selective, not the default
+::warning::beat 0 compilation: Scene coverage 23% is below minimum 35% — adding ground plane
+  beat 0: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 0: objects[1]: unknown primitive "container" — use one of: block, stack, bar, vessel, document, grid, gauge, figure, counter, silhouette, arrow, rule, field
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] WARN: 2 frame(s) failed audit — contrast violations logged but render kept (warn-only).
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 13684 (session total: 13684/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for b71f71d8ff86... (hits: 0, misses: 1)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 10272 (session total: 23956/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 165e1c0e1566... (hits: 0, misses: 2)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 11137 (session total: 35093/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for e744c3fe2049... (hits: 0, misses: 3)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [gemini-client] Cache HIT for f9f375c773ec...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::narrative-typography: repaired 1 phrase(s)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   beat 0: "3 MONTHS ISN'T ENOUGH" -> "3 MONTHS ISN'T ENOUGH"  (reads as a headline/topic label, not narrative emphasis)
+::warning::narrative-typography: 100% of beats carry on-screen text (max 40%) — typography should be selective, not the default
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::beat 0 compilation: Scene coverage 23% is below minimum 35% — adding ground plane
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   beat 0: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 0: objects[1]: unknown primitive "container" — use one of: block, stack, bar, vessel, document, grid, gauge, figure, counter, silhouette, arrow, rule, field
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] WARN: 2 frame(s) failed audit — contrast violations logged but render kept (warn-only).
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 12372 (session total: 12372/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for e45c39f04655... (hits: 0, misses: 1)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 10272 (session total: 22644/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for a6bb096b9b70... (hits: 0, misses: 2)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 11133 (session total: 33777/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 2fbdf530eb9e... (hits: 0, misses: 3)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [gemini-client] Cache HIT for f9f375c773ec...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::narrative-typography: repaired 1 phrase(s)
+  beat 0: "3 MONTHS ISN'T ENOUGH" -> "3 MONTHS ISN'T ENOUGH"  (reads as a headline/topic label, not narrative emphasis)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::narrative-typography: 100% of beats carry on-screen text (max 40%) — typography should be selective, not the default
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::beat 0 compilation: Scene coverage 23% is below minimum 35% — adding ground plane
+  beat 0: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 0: objects[1]: unknown primitive "container" — use one of: block, stack, bar, vessel, document, grid, gauge, figure, counter, silhouette, arrow, rule, field
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] WARN: 2 frame(s) failed audit — contrast violations logged but render kept (warn-only).
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 13685 (session total: 13685/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 043dca7fa212... (hits: 0, misses: 1)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 10271 (session total: 23956/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 84688418896c... (hits: 0, misses: 2)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 11116 (session total: 35072/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 50e4a05e6a48... (hits: 0, misses: 3)

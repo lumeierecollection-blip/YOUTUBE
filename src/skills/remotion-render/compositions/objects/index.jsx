@@ -6,6 +6,9 @@ import "./library.jsx";
 // The natural-world set: caves, creatures, chemistry, light and depth. Added
 // because the library had no cave and returned a legal document for one.
 import "./nature.jsx";
+// The map family: real Natural Earth borders, built on screen (maps.jsx).
+import "./maps.jsx";
+import { legacyMap } from "./maps.jsx";
 
 // Re-exported so every existing importer of ./objects/index.jsx keeps working.
 export { registerObject, hasObject, knownObjects, ObjectShape } from "./registry.js";
@@ -187,7 +190,14 @@ function territoryPath(x, y, w, h, seed) {
   return pts.map((pt, i) => `${i ? "L" : "M"}${pt[0].toFixed(1)},${pt[1].toFixed(1)}`).join(" ") + " Z";
 }
 
-registerObject("territory fill", ({ box, colors, p }) => {
+// territory fill / national border line: with a real region (a validated
+// label, through ComposedScene) they draw with the map engine. The seeded
+// polygon below is kept ONLY for the older template-scene path, which passes
+// no region; it is a placeholder, not geography (docs/MAP-AUDIT.md).
+registerObject("territory fill", (props) => {
+  const real = legacyMap("territory fill", props);
+  if (real) return real;
+  const { box, colors, p } = props;
   const { x, y, w, h } = box;
   const d = territoryPath(x, y, w, h, 7);
   return (
@@ -198,13 +208,23 @@ registerObject("territory fill", ({ box, colors, p }) => {
   );
 });
 
-registerObject("national border line", ({ box, colors, p }) => {
+registerObject("national border line", (props) => {
+  const real = legacyMap("national border line", props);
+  if (real) return real;
+  const { box, colors, p } = props;
   const { x, y, w, h } = box;
   // Was w*1.24, h*1.24 -- a border drawn a quarter larger than the box it was
   // given, which put ch-09 16px below the safe rect on a measured frame. The
   // box is the contract; a border reads as enclosing by sitting outside the
   // FILL, not outside its own bounds.
-  const d = territoryPath(x, y, w, h, 3);
+  //
+  // Was seed 3 here against seed 7 in "territory fill" above -- two DIFFERENT
+  // fabricated polygons, so a template compositing both (ch-09's
+  // core_objects does exactly that) drew a border that did not enclose its
+  // own fill. Same seed as the fill now: still a placeholder, but at least
+  // an internally consistent one. Found auditing this file for
+  // docs/MAP-AUDIT.md; not otherwise related to the map-engine rebuild.
+  const d = territoryPath(x, y, w, h, 7);
   // The border DRAWS itself, which is the one motion ch-09's references name
   // as carrying a real factual change.
   return (

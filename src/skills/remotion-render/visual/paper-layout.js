@@ -1,0 +1,78 @@
+/**
+ * Paper-style layout — every position MEASURED from the reference video
+ * (docs/REFERENCE-STYLE.md, data/reference/style.mp4 at 576x1024, scaled
+ * x1.875 to the 1080x1920 canvas). Pure .js so node-side audits can read it.
+ * The camera is static in the reference: none of these ever move.
+ */
+export const CANVAS = { w: 1080, h: 1920 };
+
+// Paper: size measured (x 148-428, 280x494 at 576x1024). Its y is NOT the
+// reference's: with the timeline device removed (owner's correction) the
+// paper is centred in the 9:16 canvas with equal top/bottom margins
+// ((1920 - 926) / 2 = 497).
+export const PAPER = { x: 278, y: 497, w: 524, h: 926 };
+// Branding rail "MY EDIT": x 114-138, y 293-444 — left of the paper,
+// rotated 90deg counter-clockwise (reads bottom to top). Vertically centred
+// on the (centred) paper: 497 + (926 - 284) / 2 = 818.
+export const RAIL = { x: 214, y: 818, w: 45, h: 284 };
+
+// THE FIT CONTRACT — every element drawn on the paper (cutout, headline,
+// caption, chart, map, abstract shape) has its rendered bounding box inside
+// this inner box, in PAPER coordinates. The owner's contract states a 60 px
+// margin on a 780 x 1320 paper; this paper is 524 x 926 (measured, and its
+// size is not to change), so the same proportion is used: 60 * 524/780 =
+// 40 px on every side. Checked on rendered frames by local-audit.cjs
+// frames-fit-paper (4 px tolerance).
+export const PAPER_MARGIN = 40;
+export const PAPER_INNER = { x: PAPER_MARGIN, y: PAPER_MARGIN, w: PAPER.w - 2 * PAPER_MARGIN, h: PAPER.h - 2 * PAPER_MARGIN };
+
+// THE ZONE MAP — every beat uses the same three zones of the inner box, in
+// PAPER coordinates, and nothing crosses between them:
+//   VISUAL    top 45%    (inner y 0-380)   the cutout, chart, map or counter,
+//                                          and the abstract shape (a corner of
+//                                          this zone only — shape-geometry.js)
+//   HEADLINE  middle 25% (inner y 380-591) the lead-in + headline block
+//   CAPTION   lower 30%  (inner y 591-846) the word-level caption
+// The owner's code block gave CAPTION h: 215, which does not add up to the
+// inner box (380 + 211 + 215 = 806, not 846); its prose ("the lower 30%",
+// "y from 591 to 846") gives 255, used here so the zones tile the inner box.
+// Checked on rendered frames by local-audit.cjs shapes-clear-of-text.
+export const ZONES = {
+  VISUAL: { x: 40, y: 40, w: 444, h: 380 },
+  HEADLINE: { x: 40, y: 420, w: 444, h: 211 },
+  CAPTION: { x: 40, y: 631, w: 444, h: 255 },
+};
+
+// Keep `bbox` inside `zone`: shrink it (aspect ratio kept) if it is larger
+// than the zone less `inset` on each side, then move it the least distance
+// that puts it inside. Returns the scale, the translation to apply AFTER the
+// scale about the bbox's own top-left, and the resulting box.
+export function clampToZone(bbox, zone, inset = 0) {
+  const maxW = zone.w - 2 * inset, maxH = zone.h - 2 * inset;
+  const scale = Math.min(1, maxW / Math.max(1e-6, bbox.w), maxH / Math.max(1e-6, bbox.h));
+  const w = bbox.w * scale, h = bbox.h * scale;
+  const x = Math.min(Math.max(bbox.x, zone.x + inset), zone.x + zone.w - inset - w);
+  const y = Math.min(Math.max(bbox.y, zone.y + inset), zone.y + zone.h - inset - h);
+  return { scale, dx: x - bbox.x, dy: y - bbox.y, box: { x, y, w, h } };
+}
+
+export function boxInside(box, zone, tol = 0) {
+  return box.x >= zone.x - tol && box.y >= zone.y - tol && box.x + box.w <= zone.x + zone.w + tol && box.y + box.h <= zone.y + zone.h + tol;
+}
+
+export const INK = "#0A0A0A";           // text / shapes
+export const INK_SOFT = "#9A9A9A";      // not-yet-typed words, light words
+export const PAPER_FILL = "#FFFFFF";
+export const PAPER_EDGE_SHADOW = "#A4A4A5";
+export const STUDIO_BG = "#FFFFFF";
+
+// Average reference beat ≈ 2.5 s (16 beats in 39.6 s).
+export const REFERENCE_BEAT_SEC = 2.5;
+
+// Deterministic small hash (FNV-1a) for per-beat choices.
+export function hash32(s) {
+  let h = 0x811c9dc5;
+  const str = String(s || "");
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+  return h >>> 0;
+}

@@ -28,6 +28,7 @@ import { buildStates } from "../visual/states.js";
 import { summarizeVisuals, summarizeSound } from "../visual/diagnostics.js";
 import { buildSoundtrack } from "../visual/sound-design.js";
 import { SFX_LIBRARY } from "../visual/sfx-library.js";
+import { generateSfxPalette } from "../visual/sfx-palette.js";
 
 export const MG_TAIL_FRAMES = 12; // held tail after the last beat (D3 headline/end)
 
@@ -831,6 +832,12 @@ export function buildMgPackage(srtText, opts = {}) {
   // section whoosh respected it; now every event does, and the suppressed
   // ones are counted rather than quietly dropped.
   let soundtrack = usedAuthoredBeats ? buildSoundtrack(beats, SFX_LIBRARY) : [];
+
+  // Add world.txt SFX palette events (whoosh/impact/tick/reveal/number-count)
+  // These fire based on beat archetype, not visual states.
+  const sfxPaletteEvents = usedAuthoredBeats ? generateSfxPalette(beats, { fps }) : [];
+  soundtrack = [...soundtrack, ...sfxPaletteEvents];
+
   let soundSuppressedBySilence = 0;
   if (silenceWindow) {
     const before = soundtrack.length;

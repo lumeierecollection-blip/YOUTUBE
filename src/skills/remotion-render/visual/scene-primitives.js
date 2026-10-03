@@ -46,18 +46,67 @@
  *              INVALID rather than merely discouraged.
  */
 
+import { isIcon } from "./icon-set.js";
+import { LIBRARY_NAMES, isLibraryName } from "./library-names.js";
+import { resolveRegion, resolveRoute } from "./geo-regions.js";
+
+/**
+ * library_shape names that draw a real map (compositions/objects/maps.jsx).
+ * Their `label` IS the region — validated here against the Natural Earth
+ * data, so a plan can never reach the renderer with a map of nowhere. The
+ * four legacy names are included because through ComposedScene they draw
+ * with the same engine; without a region they would fall back to the old
+ * placeholder polygon, which is exactly what docs/MAP-AUDIT.md rejected.
+ */
+export const MAP_ROUTE_DRAWINGS = ["map-route", "supply route"];
+export const MAP_DRAWINGS = [
+  "map-outline", "map-region-highlight", "map-markers", "map-label",
+  "state map", "territory fill", "national border line",
+  ...MAP_ROUTE_DRAWINGS,
+];
+
 /* ── Canvas and safe area (mirrors layout/slots.js) ──────────────────── */
 
 export const CANVAS_W = 1080;
 export const CANVAS_H = 1920;
 
 /**
- * The shorts safe rect. Asymmetric on purpose — YouTube's action buttons run
- * down the right edge, so content sits left of true centre.
+ * The composed-scene layout area: the 9:16 margin spec — 15% top, 15%
+ * bottom, 8% left, 8% right — so an 84% x 70% inner area (908 x 1344 on
+ * 1080 x 1920).
+ *
+ * Was {48, 888, 288, 1248} (840 x 960): a near-square box in the upper
+ * middle that left 672 px (35% of the frame height) empty below every
+ * composed scene — the "small square with big empty areas" every Gemini
+ * whole-video review of run 36331165614 complained about, and why
+ * local-audit.cjs's centre-content check found the frame centre empty.
+ *
+ * TRADEOFF, decided by the spec rather than here: the old right edge sat
+ * at 888 because YouTube Shorts' action buttons run down the right edge;
+ * 994 puts the right ~90 px of content under that column. Only the
+ * composed scene reads this rect — typography and mechanism scenes keep
+ * compositions/layout-constants.js's SAFE, unchanged.
  */
-export const SAFE = { left: 48, right: 888, top: 288, bottom: 1248 };
-export const SAFE_W = SAFE.right - SAFE.left;   // 840
-export const SAFE_H = SAFE.bottom - SAFE.top;   // 960
+export const SAFE = {
+  left: Math.round(CANVAS_W * 0.08),        // 86
+  right: Math.round(CANVAS_W * 0.92),       // 994
+  top: Math.round(CANVAS_H * 0.15),         // 288
+  bottom: Math.round(CANVAS_H * 0.85),      // 1632
+};
+export const SAFE_W = SAFE.right - SAFE.left;   // 908
+export const SAFE_H = SAFE.bottom - SAFE.top;   // 1344
+
+/**
+ * Counter overlay slot: top-right, 5% in from the right and top edges,
+ * 6% of the frame height tall. Used only when a counter/figure shares the
+ * scene with a drawing — a number that IS the beat keeps a full slot.
+ */
+export const COUNTER_OVERLAY = {
+  h: Math.round(CANVAS_H * 0.06),                       // 115
+  w: 300,
+  right: Math.round(CANVAS_W * 0.95),                   // 1026
+  top: Math.round(CANVAS_H * 0.05),                     // 96
+};
 
 /* ── Anchors ─────────────────────────────────────────────────────────── */
 
@@ -144,13 +193,51 @@ export const PRIMITIVES = {
               note: "a number that rolls up or down" },
   silhouette: { area: 0.150, countable: true, maxCount: 20, labelable: true,
               note: "a human/object outline; population, crowd, scale" },
+  // DEPRECATED: replaced by editorial primitives. Do not use in new plans.
+  // The owner reviewed the first icon render and rejected the direction:
+  // Lucide icons read as a UI kit, not editorial motion graphics. The
+  // drawing code and validation stay so cached plans that name an icon
+  // still render; `deprecated: true` keeps it out of vocabularyDigest(),
+  // so the planner is never offered it.
+  //
+  // Original rationale — the one primitive that depicts WHAT the sentence is about. Every other
+  // primitive is abstract geometry, and QA run 35933424177 rejected 11/11
+  // non-typography beats on ch-1 and ch-26 for exactly that ("abstract
+  // blocks and a city label rather than showing the grocery store"). The
+  // vendored Lucide set (public/icons, MOTION-GRAPHICS-MANUAL §A4) existed
+  // the whole time with nothing drawing it. `icon` names one of those files;
+  // an unknown name is an error, never a fallback (§A4.7). maxCount 3 is
+  // §A4.6's "maximum three on screen".
+  icon:     { area: 0.160, countable: true,  maxCount: 3,  labelable: true, deprecated: true,
+              note: "a pictogram of a real thing (truck, gavel, coins, factory...); set \"icon\" to a name from ICONS" },
   arrow:    { area: 0.040, countable: true,  maxCount: 8,  labelable: false,
               note: "directional connector between objects" },
   rule:     { area: 0.015, countable: true,  maxCount: 6,  labelable: false,
               note: "a dividing line; structure, not decoration" },
+  // An editorial drawing from the procedural object library
+  // (compositions/objects/*.jsx — a courthouse column, a territory fill, a
+  // money trail, a concept node). `name` must be one of LIBRARY_NAMES; an
+  // unknown name is a validation error listing the valid names, never a
+  // default drawing. Added because every other primitive is abstract
+  // geometry and the frame review rejected all of it as not depicting the
+  // sentence (QA run 35933424177); the library was already written to
+  // "draw the thing, not a labelled box" and ComposedScene could not reach it.
+  library_shape: { area: 0.200, countable: false, labelable: true,
+              note: "an editorial drawing of a real thing, place or process; set \"name\" to one of LIBRARY" },
   field:    { area: 0.450, countable: false, labelable: false,
               note: "a textured ground plane — depth so objects are not floating in void" },
+  // A real, fetched image (visual/primitives/photo.jsx). `asset` is a path
+  // under the Remotion public dir from public/asset-library/manifest.json.
+  // resolvedOnly: the planner never declares one (it describes a `concept`);
+  // the asset resolver in render-and-qa.js writes it, so it is kept out of
+  // vocabularyDigest() like a deprecated primitive.
+  photo:    { area: 0.600, countable: false, labelable: true, resolvedOnly: true,
+              note: "a real photograph / screenshot / document / chart from the asset library" },
 };
+
+export const PHOTO_VARIANTS = ["photo", "screenshot", "document", "chart"];
+export const PHOTO_MOVEMENTS = ["push", "drift-left", "drift-right", "reveal-left", "reveal-right"];
+const PHOTO_ASSET_RE = /^asset-library\/[A-Za-z0-9._\/-]+\.(jpe?g|png|webp)$/i;
 
 export function isPrimitive(kind) {
   return Object.prototype.hasOwnProperty.call(PRIMITIVES, kind);
@@ -165,7 +252,7 @@ export function isPrimitive(kind) {
 export const ASPECT = {
   block: 1.4, stack: 0.45, bar: 3.2, vessel: 0.55, document: 0.72,
   grid: 1.1, gauge: 1, figure: 2.6, counter: 2.2, silhouette: 0.45,
-  arrow: 1, rule: 12, field: 1.6,
+  arrow: 1, rule: 12, field: 1.6, icon: 1, library_shape: 1, photo: 0.75,
 };
 
 /**
@@ -228,12 +315,21 @@ export function primitiveNames() {
 export function layoutScene(objects) {
   const list = objects || [];
   const ground = list.filter((o) => o && o.kind === "field");
-  const placeable = list.filter((o) => o && o.kind !== "field" && PRIMITIVES[o.kind]);
+  const isNumber = (o) => o.kind === "counter" || o.kind === "figure";
+  const all = list.filter((o) => o && o.kind !== "field" && PRIMITIVES[o.kind]);
+  // A counter/figure that shares the scene with a drawing is an overlay in
+  // the top-right corner (COUNTER_OVERLAY); one that is the only thing in
+  // the scene IS the beat and keeps a full slot.
+  const hasDrawing = all.some((o) => !isNumber(o));
+  const overlays = hasDrawing ? all.filter(isNumber) : [];
+  const placeable = all.filter((o) => !overlays.includes(o));
 
   const n = placeable.length;
   // Arrangement: keep it coarse. More than 6 objects in one frame is
-  // clutter, and the validator warns about it separately.
-  const cols = n <= 1 ? 1 : n <= 2 ? 2 : n <= 4 ? 2 : 3;
+  // clutter, and the validator warns about it separately. PORTRAIT: the
+  // area is 908 x 1344, so two objects stack (1 col x 2 rows) instead of
+  // sitting side by side at ~49% width each, and 3-6 use 2 columns.
+  const cols = n <= 2 ? 1 : n <= 6 ? 2 : 3;
   const rows = Math.max(1, Math.ceil(n / cols));
   const pad = 18;
   const slotW = (SAFE_W - pad * (cols - 1)) / cols;
@@ -288,6 +384,11 @@ export function layoutScene(objects) {
     out.push({ obj: o, rect: { x, y, w, h }, slot: best.i });
   }
 
+  overlays.forEach((o, k) => {
+    const { w, h, right, top } = COUNTER_OVERLAY;
+    out.push({ obj: o, rect: { x: right - w, y: top + k * (h + 8), w, h, overlay: true }, slot: null });
+  });
+
   // Preserve declaration order for z-index.
   const order = new Map(list.map((o, i) => [o, i]));
   out.sort((a, b) => (order.get(a.obj) ?? 0) - (order.get(b.obj) ?? 0));
@@ -321,6 +422,12 @@ export const MAX_SCENE_COVERAGE = 0.92;
  * The damping is intentionally pessimistic: it is better to reject a scene
  * that would have been fine than to ship another empty one.
  */
+export function measuredCoverage(objects) {
+  const placed = layoutScene(objects || []).filter((r) => r.obj.kind !== "field" && !r.rect.overlay);
+  const area = placed.reduce((s, r) => s + r.rect.w * r.rect.h, 0);
+  return +Math.min(1, area / (SAFE_W * SAFE_H)).toFixed(3);
+}
+
 export function estimateCoverage(objects) {
   let sum = 0;
   for (const o of objects || []) {
@@ -365,11 +472,34 @@ export function estimateCoverage(objects) {
  * What stays an ERROR is anything that changes the intent: `count: 5` on a
  * non-countable means the model wanted five and would get one.
  */
+// The library names mostly use spaces ("earth globe") but five use hyphens
+// ("map-markers"), and Gemini writes whichever it likes: across CI runs
+// 36323786443 / 36325040366 / 36326675679, 8 of the 10 library_shape names
+// rejected as "not in the object library" were real names hyphenated
+// ("earth-globe", "court-document", "archival-map-sheet"). Each rejection
+// dropped the whole composition to its generic mechanism scene -- the
+// "abstract blocks" the beat check then failed. A name is rewritten only
+// when it equals exactly one library name after ignoring case and
+// -/_/space separators (no two library names collide under this); a
+// genuinely invented name ("structure_break") still fails validation.
+const canonicalLibraryName = (s) => s.toLowerCase().replace(/[-_\s]+/g, " ").trim();
+const LIBRARY_BY_CANONICAL = new Map(LIBRARY_NAMES.map((n) => [canonicalLibraryName(n), n]));
+
 export function normalizeScene(scene) {
   const objects = (scene && scene.objects) || [];
   const dropped = [];
   const cleaned = objects.map((o, i) => {
     if (!o || typeof o !== "object") return o;
+    // {kind:"library_shape", name:"field"}: the model put a PRIMITIVE kind in
+    // the drawing-name slot (CI run 36328141701 ch-9, 5 of 6 beats dropped).
+    // Unambiguous when the name is a primitive and not also a drawing; done
+    // first so the label/count rules below apply to the real kind.
+    if (o.kind === "library_shape" && typeof o.name === "string" && PRIMITIVES[o.name] &&
+        o.name !== "library_shape" && !isLibraryName(o.name)) {
+      const { name, ...rest } = o;
+      o = { ...rest, kind: name };
+      dropped.push(`objects[${i}]: library_shape name "${name}" is a primitive kind -> kind "${name}"`);
+    }
     const spec = PRIMITIVES[o.kind];
     if (!spec) return o;
     const out = { ...o };
@@ -381,9 +511,40 @@ export function normalizeScene(scene) {
       delete out.label;
       dropped.push(`objects[${i}]: dropped label on "${o.kind}" (draws no label)`);
     }
+    if (out.kind === "library_shape" && typeof out.name === "string" && !isLibraryName(out.name)) {
+      const canonical = LIBRARY_BY_CANONICAL.get(canonicalLibraryName(out.name));
+      if (canonical) {
+        dropped.push(`objects[${i}]: library_shape name "${out.name}" -> "${canonical}" (same name, different separators)`);
+        out.name = canonical;
+      }
+    }
     return out;
   });
-  return { scene: { ...scene, objects: cleaned }, dropped };
+  // ONE DRAWING PER BEAT (docs/MOTION-GRAPHICS-SPEC.md §2). The `field`
+  // ground plane is the grid panel behind every composed scene — dropped
+  // always. When the scene has a library drawing, it keeps exactly that
+  // drawing (the emphasis one, else the first) plus one counter/figure
+  // carrying a number; the bars/arrows/nodes paired with it are dropped. A
+  // scene with NO library drawing keeps its primitives (only the panel is
+  // dropped) — that is a planner miss the loop must see, not hide.
+  let objs = cleaned;
+  const fields = objs.filter((o) => o && o.kind === "field");
+  if (fields.length) {
+    objs = objs.filter((o) => !(o && o.kind === "field"));
+    dropped.push(`dropped ${fields.length} "field" ground plane(s) (one drawing per beat, no panel)`);
+  }
+  // A real photo outranks a drawing: a scene that has one keeps the photo.
+  const photos = objs.filter((o) => o && o.kind === "photo");
+  const libs = photos.length ? photos : objs.filter((o) => o && o.kind === "library_shape");
+  if (libs.length) {
+    const keep = libs.find((o) => o.emphasis) || libs[0];
+    const num = objs.find((o) => o && (o.kind === "counter" || o.kind === "figure") && /\d/.test(String(o.label ?? "")));
+    const kept = num ? [keep, num] : [keep];
+    const gone = objs.filter((o) => !kept.includes(o));
+    if (gone.length) dropped.push(`dropped ${gone.length} object(s) paired with "${keep.name || keep.asset}": ${gone.map((o) => (o && o.name) || (o && o.kind)).join(", ")} (one drawing per beat)`);
+    objs = kept;
+  }
+  return { scene: { ...scene, objects: objs }, dropped };
 }
 
 export function validateScene(rawScene) {
@@ -419,6 +580,8 @@ export function validateScene(rawScene) {
     if (o.count !== undefined) {
       if (!Number.isInteger(o.count) || o.count < 1) {
         errors.push(`${at}: count must be a positive integer`);
+      } else if (o.kind === "library_shape" && o.name === "map-markers") {
+        if (o.count > 30) errors.push(`${at}: map-markers count ${o.count} exceeds max 30`);
       } else if (!spec.countable) {
         // count:1 was already normalised away; anything above 1 is a real
         // mismatch between what was asked for and what would be drawn.
@@ -426,6 +589,28 @@ export function validateScene(rawScene) {
       } else if (o.count > spec.maxCount) {
         errors.push(`${at}: count ${o.count} exceeds max ${spec.maxCount} for "${o.kind}"`);
       }
+    }
+    if (o.kind === "photo") {
+      if (typeof o.asset !== "string" || !PHOTO_ASSET_RE.test(o.asset) || o.asset.split("/").includes("..")) {
+        errors.push(`${at}: photo "asset" must be an asset-library/… image path from the manifest (got ${JSON.stringify(o.asset)})`);
+      }
+      if (o.variant !== undefined && !PHOTO_VARIANTS.includes(o.variant)) {
+        errors.push(`${at}: photo variant "${o.variant}" — use one of: ${PHOTO_VARIANTS.join(", ")}`);
+      }
+      if (o.movement !== undefined && !PHOTO_MOVEMENTS.includes(o.movement)) {
+        errors.push(`${at}: photo movement "${o.movement}" — use one of: ${PHOTO_MOVEMENTS.join(", ")}`);
+      }
+    }
+    if (o.kind === "library_shape" && !isLibraryName(o.name)) {
+      errors.push(`${at}: library_shape name "${o.name}" is not in the object library — use one of: ${LIBRARY_NAMES.join(", ")}`);
+    }
+    if (o.kind === "library_shape" && MAP_ROUTE_DRAWINGS.includes(o.name) && !resolveRoute(o.label)) {
+      errors.push(`${at}: "${o.name}" label must be "<region> → <region>" with both ends real countries or US states (got "${o.label ?? ""}")`);
+    } else if (o.kind === "library_shape" && MAP_DRAWINGS.includes(o.name) && !MAP_ROUTE_DRAWINGS.includes(o.name) && !resolveRegion(o.label)) {
+      errors.push(`${at}: "${o.name}" label must be the region's name — a country or US state in the Natural Earth data, spelled as the narration says it (got "${o.label ?? ""}"); no border is invented for anything else`);
+    }
+    if (o.kind === "icon" && !isIcon(o.icon)) {
+      errors.push(`${at}: icon "${o.icon}" is not in the vendored set — use one of the ICONS names exactly`);
     }
     if (o.scale !== undefined && (typeof o.scale !== "number" || o.scale < 0.2 || o.scale > 2)) {
       errors.push(`${at}: scale must be a number between 0.2 and 2`);
@@ -438,7 +623,14 @@ export function validateScene(rawScene) {
     }
   });
 
-  const coverage = estimateCoverage(objects);
+  // Coverage is MEASURED from the layout layoutScene() actually produces
+  // (sum of each placed object's rect / the layout area; the field panel
+  // and the counter overlay excluded), not the old fixed-area estimate. The
+  // estimate gave a lone library drawing 18% (area 0.2) while the portrait
+  // layout draws it 908 x 908 = 68% of the area, so every one-drawing scene
+  // was rejected for "empty frame". The 35% floor itself is unchanged, and
+  // a genuinely small scene (one rule, one arrow) still fails it.
+  const coverage = measuredCoverage(objects);
   if (objects.length && coverage < MIN_SCENE_COVERAGE) {
     errors.push(
       `scene covers only ${(coverage * 100).toFixed(0)}% of the frame (minimum ${(MIN_SCENE_COVERAGE * 100).toFixed(0)}%) — ` +
@@ -456,7 +648,10 @@ export function validateScene(rawScene) {
     warnings.push("every object is labelled — labels should mark the few that need naming, not all of them");
   }
 
-  return { ok: errors.length === 0, errors, warnings, coverage };
+  // `scene` is the NORMALISED scene the checks above ran on; callers that
+  // render or persist the composition must use it, not their raw input,
+  // or a rewritten library name validates here and misses at render time.
+  return { ok: errors.length === 0, errors, warnings, coverage, scene };
 }
 
 /**
@@ -468,12 +663,23 @@ export function validateScene(rawScene) {
 export function vocabularyDigest() {
   const lines = ["PRIMITIVES (kind — what it is):"];
   for (const [kind, s] of Object.entries(PRIMITIVES)) {
+    if (s.deprecated || s.resolvedOnly) continue;
     const c = s.countable ? `, count 1-${s.maxCount}` : "";
     const l = s.labelable ? ", labelable" : "";
     lines.push(`  ${kind} — ${s.note}${c}${l}`);
   }
+  // Stated outright because the per-kind lines above only mark what IS
+  // countable, and the planner read silence as permission: CI runs
+  // 36323786443..36326675679 dropped 6 compositions for `count` on
+  // library_shape (2-8) or grid (4-6), each falling back to its generic
+  // mechanism scene. Generated from the same table the validator uses.
+  const countable = Object.entries(PRIMITIVES).filter(([, s]) => s.countable && !s.deprecated).map(([k]) => k);
+  lines.push("", `"count" is valid ONLY on: ${countable.join(", ")} (and library_shape "map-markers"). ` +
+    `On every other kind -- including library_shape and grid -- omit "count"; one is drawn. ` +
+    `To show several of something, use a countable kind with "count", beside a single library_shape if needed.`);
   lines.push("", `ANCHORS: ${Object.keys(ANCHORS).join(", ")}`);
   lines.push(`MOTIONS: ${MOTIONS.join(", ")}`);
+  lines.push("", `LIBRARY (for kind "library_shape", field "name", exact spelling): ${LIBRARY_NAMES.join(" | ")}`);
   lines.push("", `A scene must cover at least ${(MIN_SCENE_COVERAGE * 100).toFixed(0)}% of the frame.`);
   return lines.join("\n");
 }

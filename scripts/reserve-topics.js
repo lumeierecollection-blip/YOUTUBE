@@ -14,7 +14,7 @@
  * whole discovery step should fail loudly rather than commit a bad log.
  */
 
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
@@ -63,20 +63,28 @@ function main() {
   }
 
   // SCR-09 — slug not already used for that channel.
+  // Instead of failing, filter out duplicates and continue with remaining topics.
   const alreadyUsed = topics.filter((t) => topicLog.isDuplicate(t.channel_id, t.topic));
+  let filteredTopics = topics;
   if (alreadyUsed.length > 0) {
-    console.error("SCR-09 FAILED — the following topics are duplicates of a topic already used for that channel:");
+    console.warn("SCR-09 WARNING — filtering out duplicate topics (will continue with remaining):");
     for (const t of alreadyUsed) {
-      console.error(`  channel ${t.channel_id}: "${t.topic}" (slug "${t.slug}")`);
+      console.warn(`  channel ${t.channel_id}: "${t.topic}" (slug "${t.slug}")`);
     }
-    process.exit(1);
+    const duplicateSlugs = new Set(alreadyUsed.map((t) => t.slug));
+    filteredTopics = topics.filter((t) => !duplicateSlugs.has(t.slug));
+    if (filteredTopics.length === 0) {
+      console.error("SCR-09 FAILED — all topics are duplicates, nothing to reserve.");
+      process.exit(1);
+    }
+    console.warn(`Filtered ${alreadyUsed.length} duplicate(s), ${filteredTopics.length} topic(s) remaining.`);
   }
 
   // Reserve. One process, one set of writes, one commit — no concurrent
   // matrix jobs touching this file (that's what caused the original bug's
   // sibling risk; see CHECK-REGISTER SCR-11).
   let reserved = 0;
-  for (const t of topics) {
+  for (const t of filteredTopics) {
     const channel = channelsById.get(t.channel_id);
     const res = topicLog.reserveTopic(t.channel_id, t.topic, {
       channel_name: channel?.channel_name,
@@ -89,7 +97,14 @@ function main() {
     console.log(`channel ${t.channel_id}: reserved "${t.topic}" (slug "${t.slug}")`);
   }
 
-  console.log(`\nReserved ${reserved}/${topics.length} topics.`);
+  console.log(`\nReserved ${reserved}/${filteredTopics.length} topics.`);
+  if (alreadyUsed.length > 0) {
+    console.log(`(${alreadyUsed.length} duplicate(s) were filtered out.)`);
+    // Write filtered topics back so the matrix picks up only non-duplicate topics.
+    parsed.topics = filteredTopics;
+    writeFileSync(path, JSON.stringify(parsed, null, 2));
+    console.log(`Updated ${path} with filtered topics.`);
+  }
 }
 
 main();

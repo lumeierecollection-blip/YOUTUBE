@@ -463,3 +463,86 @@ export function buildSoundtrack(beats, library) {
   }
   return kept;
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   SEMANTIC SFX for DirectedShorts — a fixed trigger table, nothing else.
+
+   The Shorts played NO sound effects before this (DirectedScene rendered
+   the voiceover only; buildSoundtrack above feeds the legacy
+   MotionGraphics path). A sound fires ONLY on one of these events:
+
+   | trigger     | file              | dB  | when                                   |
+   |-------------|-------------------|-----|----------------------------------------|
+   | hook        | impact.mp3        | -10 | beat 0 enters                          |
+   | cta         | reveal.mp3        | -12 | last beat enters                       |
+   | count-final | number-count.mp3  | -16 | a composed counter/figure with a digit  |
+   |             |                   |     | is fully on screen (see NOTE)          |
+   | route-drawn | whoosh.mp3        | -14 | a map-route / supply route line        |
+   |             |                   |     | finishes drawing                       |
+   Any other beat: no SFX. Silence is correct.
+
+   Frames come from the renderer's own timing, not estimates:
+   - route: maps.jsx MapBuild draws the route over beat progress
+     0.24-0.38 (tRoute), so it finishes at p = 0.38.
+   - NOTE, count-final: composed-scene.jsx's Numeral does NOT roll a
+     number up; it draws the final value and fades it in over p 0-0.22
+     (motionState `enter`). So "reaches its final value" can only mean
+     "fully on screen", at p = 0.22. If a real count-up is ever added,
+     move this to its last frame.
+   (sub-drop.mp3 has no trigger in the table and no CC0 source was found —
+   data/ci-runs/blocked-fix5-sub-drop.txt.)
+   ══════════════════════════════════════════════════════════════════════ */
+
+export const SEMANTIC_SFX = {
+  hook:          { file: "impact.mp3",       db: -10 },
+  cta:           { file: "reveal.mp3",       db: -12 },
+  "count-final": { file: "number-count.mp3", db: -16 },
+  "route-drawn": { file: "whoosh.mp3",       db: -14 },
+};
+export const SEMANTIC_SFX_DIR = "sfx";           // under the Remotion public dir
+export const MAX_SFX_PER_VIDEO = 3;              // more than this = the beat mapping is wrong
+const P_NUMBER_ON_SCREEN = 0.22;
+const P_ROUTE_DRAWN = 0.38;
+const ROUTE_NAMES = ["map-route", "supply route"];
+
+const objectsOf = (beat) => beat?.scene?.composition?.objects || [];
+const isNumberObj = (o) => (o?.kind === "counter" || o?.kind === "figure") && /\d/.test(String(o?.label ?? ""));
+const isRouteObj = (o) => o?.kind === "library_shape" && ROUTE_NAMES.includes(o?.name);
+
+/**
+ * @param {Array} beats DirectedShorts beats ({start_frame, duration_frames, scene})
+ * @returns {{ events: Array<{trigger, file, db, atFrame, beat, reason}>, warnings: string[] }}
+ */
+export function semanticSfxEvents(beats) {
+  const list = beats || [];
+  const events = [];
+  const at = (b, p) => Math.round((b.start_frame || 0) + p * Math.max(1, b.duration_frames || 1));
+  const push = (trigger, b, i, atFrame, reason) =>
+    events.push({ trigger, ...SEMANTIC_SFX[trigger], atFrame, beat: i, reason });
+
+  list.forEach((b, i) => {
+    if (i === 0) push("hook", b, i, b.start_frame || 0, "hook");
+    else if (i === list.length - 1) push("cta", b, i, b.start_frame || 0, "cta");
+    const objs = objectsOf(b);
+    if (objs.some(isNumberObj)) push("count-final", b, i, at(b, P_NUMBER_ON_SCREEN), `number "${objs.find(isNumberObj).label}" on screen`);
+    if (objs.some(isRouteObj)) push("route-drawn", b, i, at(b, P_ROUTE_DRAWN), `route "${objs.find(isRouteObj).label ?? ""}" drawn`);
+  });
+
+  // Independent re-check of every event against its beat's content: a
+  // misfire is WARNED (visible in the CI log), not silently dropped.
+  const warnings = [];
+  for (const e of events) {
+    const b = list[e.beat];
+    const ok = e.trigger === "hook" ? e.beat === 0
+      : e.trigger === "cta" ? e.beat === list.length - 1 && list.length > 1
+      : e.trigger === "count-final" ? objectsOf(b).some(isNumberObj)
+      : e.trigger === "route-drawn" ? objectsOf(b).some(isRouteObj)
+      : false;
+    if (!ok) warnings.push(`[sfx] ${e.file} at beat ${e.beat} does not match its trigger "${e.trigger}"`);
+  }
+  if (events.length > MAX_SFX_PER_VIDEO) {
+    warnings.push(`[sfx] ${events.length} SFX in one video (max ${MAX_SFX_PER_VIDEO}) — the beat mapping is wrong`);
+  }
+  events.sort((a, b) => a.atFrame - b.atFrame);
+  return { events, warnings };
+}

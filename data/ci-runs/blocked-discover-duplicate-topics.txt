@@ -1,0 +1,30 @@
+BLOCKER (survived 5 iterations, 2026-10-02): topic discovery on the local
+3B model (ollama/qwen2.5:3b) proposes only topics the channel already
+covered; after 4 attempts "every candidate duplicates a topic this channel
+already covered" and prep fails (no video for the channel).
+
+Runs: 36947929123 ch-1; 36959124080 ch-2, ch-26, ch-48 (the topic logs
+filled up across today's six runs).
+Also seen: research citing a URL no search returned (36950257339 ch-9) and
+citing one domain where two are required (36947929123 ch-2) — both gates
+working as designed (CLAUDE.md grounding rule); not loosened.
+
+What would fix it (needs the owner): YOUTUBE_API_KEY (the trending feed —
+scripts/fetch-trending.cjs — gives discovery fresh, real topics to choose
+from; see blocked-trending-no-youtube-api-key.txt), or a stronger discovery
+model than qwen2.5:3b.
+
+--- UPDATE 2026-10-02 (iterations 6-7) ---
+be5e33b steers discovery to the channel's least-covered content pillar
+(focus_pillar). Prep went from 3/6 (run 36976172356) to 5/6 (run
+36979111190). ch-44 still failed in 36979111190: the model ignored its focus
+pillar ("productivity system animations") and re-proposed AI-negotiation
+topics. Still open; the same owner-side fixes apply.
+
+--- UPDATE 2026-10-03 (tokens/entities upgrade, iterations 3 and 5) ---
+ch-44 prep failed again in 37113140609 and 37119036921 (and ch-2, ch-9 in
+37114977307): qwen2.5:3b proposed only duplicates on all 4 attempts ("The 90-10
+Rule in the Age of AI", "The Impact of AI on Communication Skills in 2026", ...).
+Today's test iterations filled ch-44's topic log. The dedup gate was not loosened.
+Same owner-side fixes apply (YOUTUBE_API_KEY for trending, or a stronger
+discovery model).

@@ -286,7 +286,10 @@ export function compileScene(directive, text, index, totalBeats) {
   }
 
   // Step 3: If no events resolved, try direct object specification
-  if (allObjects.length === 0 && directive.objects) {
+  // directive.objects is an array of primitives here, but the per-mechanism
+  // branches below read it as a keyed object (label_a, cause, ...). Only
+  // iterate the array form — a keyed object crashed ch-2 with "not iterable".
+  if (allObjects.length === 0 && Array.isArray(directive.objects)) {
     for (const obj of directive.objects) {
       if (PRIMITIVES[obj.kind]) {
         allObjects.push({
@@ -323,6 +326,8 @@ export function compileScene(directive, text, index, totalBeats) {
 
   // Step 5: Validate the scene
   const validation = validateScene(scene);
+  // Render what was validated (normalised names/labels), not the raw input.
+  if (validation.scene?.objects) scene.objects = validation.scene.objects;
   if (!validation.ok) {
     errors.push(...validation.errors);
   }
@@ -331,13 +336,8 @@ export function compileScene(directive, text, index, totalBeats) {
   // Step 6: Ensure minimum coverage
   if (allObjects.length > 0 && validation.coverage < MIN_SCENE_COVERAGE) {
     warnings.push(
-      `Scene coverage ${(validation.coverage * 100).toFixed(0)}% is below minimum ${(MIN_SCENE_COVERAGE * 100).toFixed(0)}% — adding ground plane`
+      `Scene coverage ${(validation.coverage * 100).toFixed(0)}% is below minimum ${(MIN_SCENE_COVERAGE * 100).toFixed(0)}% — NOT adding a ground plane (one drawing per beat; the field panel is no longer drawn)`
     );
-    scene.objects.unshift({
-      kind: "field",
-      anchor: "center",
-      motion: "appear",
-    });
   }
 
   return { scene, warnings, errors };

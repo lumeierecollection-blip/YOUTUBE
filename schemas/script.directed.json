@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Derived from script.mg.json with sections[].beats removed: DirectedShorts (motion-graphics shorts) builds visuals from the SRT and the visual plan and never reads beats. See CHECK-REGISTER.md SCR-03/04/05/06/07/15 scope note.",
+  "type": "object",
+  "properties": {
+    "channel_id": {
+      "type": "string"
+    },
+    "topic_slug": {
+      "type": "string"
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "shorts",
+        "longform"
+      ]
+    },
+    "hook": {
+      "type": "string",
+      "minLength": 30,
+      "maxLength": 220
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "voiceover": {
+            "type": "string",
+            "minLength": 40
+          },
+          "b_roll": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "text_overlay": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "text": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "id",
+          "voiceover"
+        ]
+      }
+    },
+    "sources_used": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "channel_id",
+    "topic_slug",
+    "format",
+    "hook",
+    "sections",
+    "sources_used"
+  ],
+  "title": "DirectedShorts variant (no sections[].beats)"
+}

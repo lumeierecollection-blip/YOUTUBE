@@ -1,0 +1,21 @@
+BLOCKER (partial): no stock-photo API keys are configured.
+
+`gh secret list` (2026-09-27) has no PEXELS_API_KEY, UNSPLASH_ACCESS_KEY or
+PIXABAY_API_KEY. scripts/fetch-assets.cjs therefore skips those three
+sources on every concept (logged: "[fetch] pexels … → skip (PEXELS_API_KEY
+not set)") and fetches only from the keyless ones: Wikimedia Commons and
+Openverse.
+
+Effect: named people, places and things resolve well (live test: "Boeing
+787 Dreamliner" -> Wikimedia CC BY 4.0; "Puerta del Sol Madrid" ->
+Openverse CC BY 2.0). GENERIC stock concepts ("person using a budgeting
+app on a smartphone") mostly miss — that is exactly what Pexels, Unsplash
+and Pixabay are for — and fall back to the beat's library drawing.
+
+Human action to unblock (each is free):
+  1. Create keys: https://www.pexels.com/api/ , https://unsplash.com/developers ,
+     https://pixabay.com/api/docs/
+  2. gh secret set PEXELS_API_KEY / UNSPLASH_ACCESS_KEY / PIXABAY_API_KEY
+  3. They are already passed to the render step's env in
+     .github/workflows/daily-pipeline-v2.yml (secrets that are unset are
+     simply empty).

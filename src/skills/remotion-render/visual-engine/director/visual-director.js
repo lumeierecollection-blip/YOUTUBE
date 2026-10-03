@@ -538,7 +538,9 @@ function buildScene(text, index, totalBeats, prevScene) {
 /* ── Gemini directive → scene ─────────────────────────────────────── */
 
 function applyDirective(directive, originalText, index, totalBeats, prevScene) {
-  const headline = directive.visual_headline;
+  // visual_headline is derived by the planner now (compact prompt, 2026-10-03); a plan from any
+  // other path may lack it — it crashed .split() here (CI run 37108869325 ch-1).
+  const headline = String(directive.visual_headline || directive.headline || "");
   const mechanism = directive.mechanism;
   const material = detectMaterial(originalText);
   const subject = extractSubjectPhrase(originalText);
@@ -802,17 +804,21 @@ export function direct(cues, options) {
       const { scene: compiledScene, warnings: compileWarnings } = compileScene(
         directive, text, i, cues.length
       );
-      if (compiledScene) {
-        scene = randomizeScene(compiledScene, rng);
-      } else {
-        // Fallback to deterministic classifier if compilation fails
-        scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
-        if (compileWarnings.length) {
-          warnings.push(...compileWarnings.map(w => `beat ${i}: ${w}`));
-        }
+      if (!compiledScene) {
+        throw new Error(
+          `Beat ${i} has no mechanism: its capability directive did not compile` +
+          `${compileWarnings.length ? ` (${compileWarnings.join("; ")})` : ""}. Plan: ${JSON.stringify(directive)}`
+        );
       }
+      scene = randomizeScene(compiledScene, rng);
     } else {
-      scene = randomizeScene(buildScene(text, i, cues.length, prevScene), rng);
+      // No directive for this beat. There is no regex classifier to fall back
+      // to: TYPOGRAPHY or any other mechanism is only rendered when the plan
+      // sets it. The planners (scripts/*-visual-plan.*) must cover every cue.
+      throw new Error(
+        `Beat ${i} has no mechanism. Plan: ${JSON.stringify(directive ?? null)} ` +
+        `(${plan ? `plan has ${plan.length} beats for ${cues.length} cues` : "no visual plan loaded"})`
+      );
     }
 
     // COMPOSITION — what the viewer literally sees, when Gemini declared it.
@@ -828,10 +834,21 @@ export function direct(cues, options) {
     // unbuildable declaration must fall back to the old mechanism scene
     // rather than render nothing. Silently rendering nothing is how the
     // silent-video defect happened.
+    // Layers are built by the asset resolver (render-and-qa.js) from resolved
+    // real assets; they carry through untouched and take precedence over the
+    // composition in BeatBody.
+    if (directive && Array.isArray(directive.layers) && directive.layers.length) {
+      scene.layers = directive.layers;
+    }
+    // Full-canvas style: the beat's canvas content (built by the asset
+    // resolver) carries through untouched; CanvasVideo draws it.
+    if (directive && directive.canvas) {
+      scene.canvas = directive.canvas;
+    }
     if (directive && directive.composition) {
       const v = validateScene(directive.composition);
       if (v.ok) {
-        scene.composition = directive.composition;
+        scene.composition = v.scene || directive.composition;
         scene.compositionCoverage = v.coverage;
       } else {
         warnings.push(

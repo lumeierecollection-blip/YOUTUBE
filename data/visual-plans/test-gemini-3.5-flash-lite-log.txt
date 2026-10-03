@@ -1,0 +1,13 @@
+﻿SRT loaded: 9 sentences
+Requesting visual plan from Gemini for 9 beats in batches of 3...
+  Batch 1/3: sentences 0-2
+[gemini-plan] firing API call, prompt length = 15426
+node : [gemini-client] Tokens used: 7205 (session total: 7205/50000)
+At line:13 char:11
++ $output = node scripts/gemini-visual-plan.js --script $script --srt $ ...
++           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([gemini-client]...al: 7205/50000):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[gemini-client] Cache MISS for e86048cff3e3... (hits: 0, misses: 1)
+[gemini-plan] Batch 1 returned 1 beats, expected 3

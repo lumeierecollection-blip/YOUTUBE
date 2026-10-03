@@ -172,53 +172,8 @@ function isRateLimitError(errorText) {
   return /token_quota_exceeded|tokens per minute|rate.?limit|429|ContextOverflowError/i.test(errorText || "");
 }
 
-/**
- * A PER-DAY quota, as opposed to a per-minute window.
- *
- * isRateLimitError() waits 65s to clear a per-minute limit, which is right
- * for tokens-per-minute but pointless for a daily cap: the quota resets at
- * midnight Pacific, not in a minute. Run 35295839490 spent 65s twice per
- * stage per channel waiting out
- * "GenerateRequestsPerDayPerProjectPerModel-FreeTier, quotaValue 500" —
- * about 6 wasted minutes across three channels to arrive at the same
- * failure. Fail fast and say the real reason instead.
- */
-function isDailyQuotaError(errorText) {
-  return /PerDayPerProject|free_tier_requests|GenerateRequestsPerDay/i.test(errorText || "");
-}
-
-/**
- * A model that cannot be used AT ALL from here — not a transient fault.
- *
- * Every failover model configured in daily-pipeline-v2.yml
- * (opencode/mimo-v2.5-free, opencode/glm-5-free) returns
- * {"type":"FreeTierError","message":"OpenCode's free tier can only be used
- * from within OpenCode"} with statusCode 403 and isRetryable false. So the
- * redundancy the pipeline appears to have is fictitious: all three chains
- * are one live model plus a model that can never answer. Retrying it spends
- * two attempts and two waits to learn something permanent, so it is skipped
- * with an explicit warning that the chain has no real failover.
- */
-function isDeadModel(errorText) {
-  return /FreeTierError|can only be used from within OpenCode|"statusCode":\s*40[13]/i.test(errorText || "");
-}
-
-/**
- * A provider-side fault, as opposed to anything the model or the prompt did
- * wrong. These are transient and carry no information the model could act
- * on, so exhausting the model chain on them throws away a whole channel's
- * day for a reason that had nothing to do with the content.
- *
- * Real failures this covers: opencode/glm-5-free returned
- * `{"name":"UnknownError","data":{"message":"Unexpected server error"}}`
- * on both attempts in runs 35266860427 (channels 9 and 48) and 35290591724
- * (channel 26). In each case the primary had already spent its attempts on
- * a fixable schema error, the failover 500'd twice, and prep died with
- * "All models failed" — three separate channels lost to a dead failover
- * rather than to a bad script.
- */
-function isProviderFault(errorText) {
-  return /UnknownError|Unexpected server error|5\d\d\s|Internal Server Error|Bad Gateway|Service Unavailable|ECONNRESET|ETIMEDOUT|socket hang up/i.test(errorText || "");
+function isPaymentRequiredError(errorText) {
+  return /402|payment.?required|payment_required/i.test(errorText);
 }
 
 // Real failure: gpt-oss-120b produced otherwise-valid JSON but overshot a
@@ -272,25 +227,10 @@ function extractJson(text) {
     if (parsed) return parsed;
   }
 
-  // 2b. Incomplete fence — model started ```json but got truncated before closing ```.
-  // Try to salvage by finding the opening fence and parsing everything after it.
-  const incompleteFence = trimmed.match(/```(?:json)?\s*([\s\S]*?)$/);
-  if (incompleteFence && incompleteFence[1]) {
-    const content = incompleteFence[1].trim();
-    const parsed = tryParse(content);
-    if (parsed) return parsed;
-    // Try brace salvage on the incomplete fence content
-    const salvaged = salvageIncompleteJson(content);
-    if (salvaged) return salvaged;
-  }
-
   // 3. Widest brace span, then progressively earlier openings — handles
   // prose that happens to contain a "{" before the real object starts.
   const end = trimmed.lastIndexOf("}");
-  if (end === -1) {
-    // No closing brace — try to salvage truncated JSON
-    return salvageIncompleteJson(trimmed);
-  }
+  if (end === -1) return null;
   let start = trimmed.indexOf("{");
   while (start !== -1 && start < end) {
     const parsed = tryParse(trimmed.slice(start, end + 1));
@@ -300,24 +240,61 @@ function extractJson(text) {
   return null;
 }
 
-/**
- * Attempt to salvage truncated JSON by finding the last complete top-level
- * object. Works for models that generate valid JSON but run out of tokens
- * before finishing (e.g., incomplete arrays or nested objects).
- */
-function salvageIncompleteJson(text) {
-  const lastBrace = text.lastIndexOf("}");
-  if (lastBrace <= 0) return null;
-  
-  // Try progressively shorter substrings ending at each closing brace
-  for (let i = lastBrace; i >= 0; i--) {
-    if (text[i] === "}") {
-      const candidate = text.slice(0, i + 1);
-      const parsed = tryParse(candidate);
-      if (parsed) return parsed;
+function fixSlugs(obj) {
+  if (!obj || typeof obj !== "object") return;
+  if (Array.isArray(obj)) {
+    obj.forEach(fixSlugs);
+    return;
+  }
+  for (const [key, val] of Object.entries(obj)) {
+    if (key === "slug" && typeof val === "string") {
+      obj[key] = val
+        .toLowerCase()
+        .replace(/_/g, "-")
+        .replace(/[^a-z0-9-]/g, "")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "")
+        .slice(0, 60);
+      if (obj[key].length < 8) obj[key] = obj[key].padEnd(8, "x");
+    } else if (typeof val === "object" && val !== null) {
+      fixSlugs(val);
     }
   }
-  return null;
+}
+
+const KIND_MAP = {
+  person_name: "person", person: "person", people: "person", author: "person",
+  scientist: "person", researcher: "person", CEO: "person", president: "person",
+  place: "place", location: "place", country: "place", city: "place", region: "place",
+  site: "place", landmark: "place",
+  organization: "organization", company: "organization", institution: "organization",
+  org: "organization", agency: "organization", university: "organization",
+  object: "object", thing: "object", product: "object", device: "object",
+};
+
+function fixResearchData(obj) {
+  if (!obj || typeof obj !== "object") return;
+  if (Array.isArray(obj)) {
+    obj.forEach(fixResearchData);
+    return;
+  }
+  // Fix named_entities kind enum
+  if (obj.named_entities && Array.isArray(obj.named_entities)) {
+    for (const e of obj.named_entities) {
+      if (e && e.kind && !["person", "place", "organization", "object"].includes(e.kind)) {
+        e.kind = KIND_MAP[e.kind] || "object";
+      }
+    }
+  }
+  // key_facts is NOT padded. This used to push placeholder facts ("Additional
+  // research needed" / "pending verification") until there were 3, which let
+  // un-sourced filler pass the research quality bar — a direct violation of
+  // "no fact that didn't come from a fetched source". Too few facts now fails
+  // validation and the stage retries or fails, as it should.
+  // Recurse into nested objects
+  for (const val of Object.values(obj)) {
+    if (typeof val === "object" && val !== null) fixResearchData(val);
+  }
 }
 
 function runOnce({ model, agent, promptText }) {
@@ -331,15 +308,23 @@ function runOnce({ model, agent, promptText }) {
   args.push(promptText);
 
   const env = { ...process.env, OPENCODE_ENABLE_EXA: process.env.OPENCODE_ENABLE_EXA || "1" };
+  // Per-call ceiling. 15 min was the default, which on a CPU-only runner let
+  // one stuck call eat a whole job's budget with nothing logged.
+  const timeoutS = Number(process.env.OPENCODE_CALL_TIMEOUT_S) || 15 * 60;
+  const t0 = Date.now();
   const result = spawnSync("opencode", args, {
     encoding: "utf-8",
     env,
     maxBuffer: 64 * 1024 * 1024,
-    timeout: 15 * 60 * 1000,
+    timeout: timeoutS * 1000,
   });
+  const elapsedS = ((Date.now() - t0) / 1000).toFixed(1);
+  console.error(`[${model}] opencode run finished in ${elapsedS}s (exit ${result.status ?? result.error?.code ?? "?"}, prompt ${promptText.length} chars)`);
 
   if (result.error) {
-    return { ok: false, error: `spawn failed: ${result.error.message}` };
+    const why = result.error.code === "ETIMEDOUT" ? `timed out after ${timeoutS}s` : result.error.message;
+    const tail = [result.stderr, result.stdout].filter(Boolean).join(" | ").slice(-1500);
+    return { ok: false, error: `spawn failed: ${why}${tail ? ` — last output: ${tail}` : ""}` };
   }
   if (result.status !== 0) {
     // opencode reports API/provider errors as a {"type":"error",...} event
@@ -361,6 +346,10 @@ function runOnce({ model, agent, promptText }) {
   if (!parsed) {
     return { ok: false, error: `could not extract valid JSON from model output: ${text.slice(0, 500)}` };
   }
+  // Fix common slug issues from small models (uppercase, underscores, etc.)
+  fixSlugs(parsed);
+  // Fix common research schema issues
+  fixResearchData(parsed);
   return { ok: true, data: parsed, cost, usage, searches };
 }
 
@@ -411,7 +400,6 @@ const PROVIDER_ENV = {
   groq: ["GROQ_API_KEY"],
   mistral: ["MISTRAL_API_KEY"],
   cerebras: ["CEREBRAS_API_KEY"],
-  openrouter: ["OPENROUTER_API_KEY"],
 };
 
 /**
@@ -486,55 +474,6 @@ async function main() {
   const ajv = new Ajv({ allErrors: true, strict: false });
   const validate = ajv.compile(schema);
 
-  /**
-   * Turn ajv errors into something a model can actually act on.
-   *
-   * ajv.errorsText() renders an enum violation as
-   *   "data/sections/0/beats/0/visual/strategy must be equal to one of the
-   *    allowed values"
-   * which names neither the value that was wrong nor the values that are
-   * right. That message was being pasted straight into the corrective retry
-   * prompt, so the model was told it had failed and given no information to
-   * fix it — it re-guessed, burned both attempts, and the stage then failed
-   * over to a model that was returning provider 500s, killing prep outright.
-   * Channels 9 and 48 died this way on visual/strategy in runs 35266860427
-   * and 35290591724.
-   *
-   * Enum errors now carry the offending value and the full allowed list;
-   * every other error keeps ajv's wording plus the offending value.
-   */
-  function explainValidationErrors(errors, data) {
-    const at = (instancePath) => {
-      if (!instancePath) return data;
-      let node = data;
-      for (const seg of instancePath.split("/").slice(1)) {
-        if (node == null) return undefined;
-        node = node[/^\d+$/.test(seg) ? Number(seg) : seg.replace(/~1/g, "/").replace(/~0/g, "~")];
-      }
-      return node;
-    };
-    const show = (v) => {
-      if (v === undefined) return "undefined";
-      const s = typeof v === "string" ? JSON.stringify(v) : JSON.stringify(v);
-      return s && s.length > 80 ? s.slice(0, 77) + '..."' : s;
-    };
-    return (errors || []).map((e) => {
-      const where = e.instancePath || "(root)";
-      const got = show(at(e.instancePath));
-      if (e.keyword === "enum") {
-        const allowed = (e.params?.allowedValues || []).join(", ");
-        return `${where}: got ${got}, which is not allowed. Use EXACTLY one of: ${allowed}`;
-      }
-      if (e.keyword === "required") {
-        return `${where}: missing required property "${e.params?.missingProperty}"`;
-      }
-      if (e.keyword === "additionalProperties") {
-        return `${where}: unexpected property "${e.params?.additionalProperty}" — remove it`;
-      }
-      return `${where}: ${e.message} (got ${got})`;
-    }).join("; ");
-  }
-
   // The first live runs against Cerebras showed two real problems, both
   // token-budget related on a free tier that's tighter than expected:
   // (1) the model quoted entire fetched search-result blocks into its
@@ -571,56 +510,26 @@ Do your research and reasoning silently — do not quote, paste, or summarize se
     : "";
 
   let lastError = null;
-  // A provider fault is not a verdict on the content, so the chain gets one
-  // more full pass when every model died of infrastructure rather than of
-  // anything a different prompt would fix. Without this, a dead failover
-  // model took three channels' prep down in two runs (see isProviderFault).
-  let providerFaultSeen = false;
-  const chain = [...models, ...models];      // second pass is gated below
-  let announcedSecondPass = false;
-
-  for (let ci = 0; ci < chain.length; ci++) {
-    const model = chain[ci];
-    if (ci >= models.length) {
-      // Second pass runs the WHOLE chain again, and only when the first pass
-      // ended on infrastructure. A content error is not worth re-running:
-      // the same prompt would produce the same rejection.
-      if (!providerFaultSeen) break;
-      if (!announcedSecondPass) {
-        announcedSecondPass = true;
-        console.error("All models failed on provider faults — retrying the whole chain once (infrastructure, not content).");
-        await sleep(15000);
-      }
-    }
+  for (const model of models) {
     let promptText = `${basePrompt}${inputBlock}${schemaInstruction}`;
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       const result = runOnce({ model, agent, promptText });
       logTokenUsage({ model, agent, task: taskLabel, channelId, videoId, cost: result.cost, usage: result.usage, ok: result.ok });
       if (!result.ok) {
         lastError = `[${model}] attempt ${attempt}/${maxRetries}: ${result.error}`;
-        if (isProviderFault(result.error)) providerFaultSeen = true;
         console.error(lastError);
-
-        // A model that can never answer from here is not worth a second
-        // attempt or a wait. Say so loudly: if this is the failover, the
-        // chain has no real redundancy and the next failure is terminal.
-        if (isDeadModel(result.error)) {
-          console.error(`::warning::${model} is UNUSABLE from this environment (403 / free-tier restriction), not a transient fault — skipping it. This chain has no working failover.`);
-          break;
-        }
-
-        // A DAILY cap does not clear by waiting. Stop retrying it and name
-        // the real reason rather than sleeping 65s twice to rediscover it.
-        if (isDailyQuotaError(result.error)) {
-          console.error(`::warning::${model} has exhausted its PER-DAY quota (resets at midnight Pacific) — waiting will not help, skipping remaining attempts.`);
-          break;
-        }
-
         if (attempt < maxRetries) {
           // Cerebras rate limits appear to be account-wide (both models hit
           // the identical error at the same time), so this is a per-minute
           // window to wait out, not something a shorter pause or a
           // different model escapes. 65s to clear a 60s window with margin.
+          // Fail fast on billing errors — do not retry, do not fall through
+          if (isPaymentRequiredError(result.error)) {
+            console.error("CEREBRAS_BILLING_REQUIRED — top up at cloud.cerebras.ai before rendering.");
+            console.error("Preflight failed: " + result.error.slice(0, 200));
+            process.exit(1);
+          }
+
           const waitMs = isRateLimitError(result.error) ? 65000 : 3000;
           console.error(`Waiting ${waitMs / 1000}s before retrying...`);
           await sleep(waitMs);
@@ -629,13 +538,12 @@ Do your research and reasoning silently — do not quote, paste, or summarize se
       }
       const valid = validate(result.data);
       if (!valid) {
-        const detail = explainValidationErrors(validate.errors, result.data);
-        lastError = `[${model}] attempt ${attempt}/${maxRetries}: schema validation failed: ${detail}`;
+        lastError = `[${model}] attempt ${attempt}/${maxRetries}: schema validation failed: ${ajv.errorsText(validate.errors)}`;
         console.error(lastError);
         // Retry without re-searching: the model already has what it needs,
         // and a second research pass would spend quota re-fetching the same
         // ground just to fix a formatting/validation problem.
-        promptText = `${basePrompt}${inputBlock}${schemaInstruction}\n\nYour previous response failed schema validation with these errors: ${detail}. Fix ONLY those problems and respond again with the corrected JSON object. Do not run any new searches — reuse what you already found.`;
+        promptText = `${basePrompt}${inputBlock}${schemaInstruction}\n\nYour previous response failed schema validation with these errors: ${ajv.errorsText(validate.errors)}. Fix ONLY those problems and respond again with the corrected JSON object. Do not run any new searches — reuse what you already found.`;
         continue;
       }
       console.log(JSON.stringify({

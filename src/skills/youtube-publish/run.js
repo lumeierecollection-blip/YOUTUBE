@@ -93,11 +93,18 @@ function loadSeoMetadata(channelId, scriptSlug) {
   return JSON.parse(readFileSync(join(researchDir, files[files.length - 1]), "utf-8"));
 }
 
+// The approved queue (scripts/render-and-qa.js queueVideo, owner's rule
+// 2026-10-02): data/renders/approved/<stem>.mp4 + <stem>.json with
+// { channel, verdict: "approved" }. Only a video whose marker says approved
+// for THIS channel is publishable; approved-review/ and rejected/ never are,
+// and nothing is read from data/renders/<ch>/ any more.
 function findVideo(channelId, explicit) {
-  const rendersDir = join(ROOT, "data", "renders", channelId);
-  if (!existsSync(rendersDir)) throw new Error(`No renders directory for ${channelId}`);
-  const candidates = readdirSync(rendersDir).filter((f) => VIDEO_EXTENSIONS.includes(extname(f).toLowerCase()));
-  if (candidates.length === 0) throw new Error(`No video files in ${rendersDir}`);
+  const rendersDir = join(ROOT, "data", "renders", "approved");
+  if (!existsSync(rendersDir)) return null;
+  const marker = (f) => { try { return JSON.parse(readFileSync(join(rendersDir, f.replace(/\.[^.]+$/, ".json")), "utf-8")); } catch { return null; } };
+  const candidates = readdirSync(rendersDir).filter((f) => VIDEO_EXTENSIONS.includes(extname(f).toLowerCase()))
+    .filter((f) => { const m = marker(f); return m && m.verdict === "approved" && String(m.channel) === String(Number(channelId)); });
+  if (candidates.length === 0) return null;
   if (explicit) {
     const match = candidates.find((f) => f === explicit);
     if (!match) throw new Error(`Video "${explicit}" not found in ${rendersDir}`);
@@ -268,6 +275,11 @@ async function uploadChannel(channelId, explicitVideo, dryRun) {
 
   const creds = loadCredentials(channel);
   const videoPath = findVideo(channelId, explicitVideo);
+  if (!videoPath) {
+    console.log(`\n[YOUTUBE-PUBLISH] Channel: ${channelId} (${channel.channel_name})`);
+    console.log(`  No renders found — skipping publish.`);
+    return;
+  }
   const topicHint = basename(videoPath, extname(videoPath));
   const scriptSlug = topicSlugFromVideo(topicHint);
   const seo = loadSeoMetadata(channelId, scriptSlug);

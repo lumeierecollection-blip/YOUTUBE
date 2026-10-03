@@ -17,7 +17,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { existsSync, mkdirSync, readdirSync, writeFileSync, readFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, basename, join, resolve, extname } from 'node:path';
 
 const require = createRequire(import.meta.url);
@@ -38,11 +38,16 @@ function parseArgs(argv) {
     const a = argv[i];
     if (a === '--frames') args.frames = parseInt(argv[++i], 10) || 8;
     else if (a === '--out') args.out = argv[++i];
+    // render-and-qa.js has passed --manifest since 1267e15, but it was never
+    // parsed here: the manifest path fell through to the positional branch
+    // below and REPLACED args.video, so ffmpeg probed a .json and every QA
+    // review failed "could not read Duration" (CI run 36323786443, ch-9,
+    // all 3 attempts, after beat-check had passed 6/6).
     else if (a === '--manifest') args.manifest = argv[++i];
     else if (!a.startsWith('-')) args.video = a;
   }
   if (!args.video) {
-    console.error('Usage: node scripts/video-review.js <video.mp4> [--frames N] [--out DIR] [--manifest render-manifest.json]');
+    console.error('Usage: node scripts/video-review.js <video.mp4> [--frames N] [--out DIR]');
     process.exit(2);
   }
   if (!existsSync(args.video)) {
@@ -112,69 +117,36 @@ const outDir = args.out
   : join(dirname(video), '..', '_review', basename(video, extname(video)));
 mkdirSync(outDir, { recursive: true });
 
-const n = Math.max(1, Math.min(24, args.frames));
-const frames = [];
-
-/**
- * BEAT-SETTLED sampling times, when a render manifest is available.
- *
- * The inset below already avoids the video's own fade-in and tail for
- * exactly this reason — an endpoint frame is guaranteed low-opacity and
- * false-triggers the pixel audit. But it only avoids the VIDEO's fades, not
- * each BEAT's entrance, and evenly-spaced sampling lands inside one
- * regularly: ch44 measured a headline at 1.86:1 (glyph rgb(67,62,116)) and
- * ch48 at 1.71:1 (glyph rgb(53,53,53)), both of which are the accent
- * composited at roughly a third of full opacity mid-fade — not illegible
- * text, a frame caught mid-animation.
- *
- * Sampling at 82% through each beat measures the SETTLED composition: past
- * every entrance ramp in directed-scene.jsx (the latest starts at p=0.55
- * and completes by p≈0.83) and before the outgoing crossfade. Same frame
- * count, same 4.5:1 threshold — this changes WHEN the gate looks, not what
- * it demands, so a genuinely dim fill still fails.
- */
-function beatSettledTimes(manifestPath, count, durSec) {
-  let beats;
+// Beat-settled sample times from the render manifest (render.js's
+// beats[].start_sec / duration_sec, the same fields the beat check reads):
+// 60% into each chosen beat, past its entrance fade. n beats are picked
+// evenly across the video. Missing/unreadable manifest -> even spacing, as
+// before; that is logged, not silent.
+function beatSettledTimes(manifestPath, n) {
+  if (!manifestPath) return null;
   try {
-    const m = JSON.parse(readFileSync(manifestPath, 'utf-8'));
-    beats = (m.beats || []).filter((b) => typeof b.start_sec === 'number' && typeof b.duration_sec === 'number' && b.duration_sec > 0);
-  } catch { return null; }
-  if (!beats.length) return null;
-
-  // Spread the requested frames across beats; with more frames than beats,
-  // some beats get sampled more than once at different settle points.
-  const times = [];
-  for (let i = 0; i < count; i++) {
-    const b = beats[Math.min(beats.length - 1, Math.floor((i * beats.length) / count))];
-    const end = b.start_sec + b.duration_sec;
-    // 82% through, then held off both edges so a very short beat still lands
-    // inside its own settled span rather than on a boundary.
-    const pad = Math.min(0.3, b.duration_sec * 0.15);
-    const t = Math.min(Math.max(b.start_sec + b.duration_sec * 0.82, b.start_sec + pad), end - pad);
-    times.push(Math.max(0.1, Math.min(t, durSec - 0.2)));
+    const beats = JSON.parse(readFileSync(manifestPath, 'utf8')).beats || [];
+    if (!beats.length) throw new Error('manifest has no beats');
+    const count = Math.min(n, beats.length);
+    const times = [];
+    for (let i = 0; i < count; i++) {
+      const b = beats[count === 1 ? 0 : Math.round((i * (beats.length - 1)) / (count - 1))];
+      times.push((b.start_sec ?? 0) + (b.duration_sec ?? 0) * 0.6);
+    }
+    return times;
+  } catch (e) {
+    console.warn(`manifest ${manifestPath} unusable (${e.message}) — sampling evenly instead`);
+    return null;
   }
-  return times;
 }
 
-const settledTimes = args.manifest ? beatSettledTimes(args.manifest, n, meta.durSec) : null;
-if (args.manifest && !settledTimes) {
-  console.log('  (manifest unusable — falling back to evenly-spaced sampling)');
-} else if (settledTimes) {
-  console.log(`  sampling ${n} BEAT-SETTLED frames (82% through each beat)`);
-}
-// Sample within an inset window, never at t=0 or the final frame. The
-// composition fades in over its first ~3 frames and the last beat can be
-// mid-exit at the tail, so the extreme endpoints are guaranteed
-// low-opacity and would false-trigger the frameEmptiness pixel audit on
-// otherwise-fine videos. 0.4s ≈ past the 12-frame crossfade at 30fps.
-const inset = Math.min(0.4, meta.durSec * 0.05);
-const lo = inset;
-const hi = Math.max(lo, meta.durSec - inset);
-for (let i = 0; i < n; i++) {
-  const rawT = settledTimes
-    ? settledTimes[i]
-    : (n === 1 ? (lo + hi) / 2 : lo + ((hi - lo) * i) / (n - 1));
-  const t = Math.max(0.1, Math.min(rawT, meta.durSec - 0.2));
+const n = Math.max(1, Math.min(24, args.frames));
+const settled = beatSettledTimes(args.manifest, n);
+const sampleCount = settled ? settled.length : n;
+const frames = [];
+for (let i = 0; i < sampleCount; i++) {
+  const rawT = settled ? settled[i] : n === 1 ? 0 : (meta.durSec * i) / (n - 1);
+  const t = Math.max(0, Math.min(rawT, meta.durSec - 0.1));
   const name = `frame-${String(i).padStart(2, '0')}.png`;
   const path = join(outDir, name);
   const ok = extractFrame(ffmpeg, video, path, t);
@@ -184,12 +156,12 @@ for (let i = 0; i < n; i++) {
 
 const failed = frames.filter((f) => !f.ok);
 if (failed.length) {
-  console.error(`${failed.length}/${n} frames failed to extract — review is incomplete, treat as NOT reviewed.`);
+  console.error(`${failed.length}/${sampleCount} frames failed to extract — review is incomplete, treat as NOT reviewed.`);
   process.exit(1);
 }
 
 let contactSheet = null;
-if (n > 1) {
+if (sampleCount > 1) {
   contactSheet = buildContactSheet(ffmpeg, outDir, frames, meta.w, meta.h);
   if (contactSheet) console.log(`contact sheet: ${contactSheet}`);
 }
@@ -211,6 +183,6 @@ writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
 
 console.log(`\nvideo     : ${video}`);
 console.log(`duration  : ${meta.durSec.toFixed(2)}s  ${meta.w}x${meta.h} @ ${meta.fps}fps`);
-console.log(`frames    : ${n} (${outDir})`);
+console.log(`frames    : ${sampleCount} (${outDir})`);
 console.log(`manifest  : ${manifestPath}`);
 console.log(`\nNext step: actually LOOK at the frames (and contact sheet) before confirming anything.`);

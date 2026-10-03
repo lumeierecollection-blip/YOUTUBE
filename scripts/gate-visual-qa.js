@@ -185,14 +185,97 @@ function parsePlan(text) {
   };
 }
 
+// Local fallback (the same one every model call uses — src/lib/llm.js):
+// the section-7 vision checks go to a local Ollama VISION model when Gemini
+// cannot answer (quota_exhausted / unavailable / any error) or under
+// FORCE_PLANNER=ollama. Synchronous like the rest of this script: frames
+// are shrunk with ffmpeg (long side 512 px, JPEG) and posted with curl to
+// /api/generate, format "json", with the SAME prompt.
+function ollamaVision(framePaths, prompt) {
+  // Background model pull (see ollama-client.cjs waitForModels): wait for it,
+  // synchronously, like the rest of this script — at most 6 minutes.
+  const rf = process.env.OLLAMA_READY_FILE;
+  if (rf) {
+    const t0 = Date.now();
+    while (!existsSync(rf) && !existsSync(rf.replace(/ready$/, "failed")) && Date.now() - t0 < 360000) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 3000);
+    if (!existsSync(rf)) return { ran: false, why: `ollama models not ready (${existsSync(rf.replace(/ready$/, "failed")) ? "pull failed" : "still pulling after 360s"})` };
+  }
+  const url = (process.env.OLLAMA_URL || "http://127.0.0.1:11434").replace(/\/$/, "");
+  const model = process.env.OLLAMA_VISION_MODEL || "qwen2.5vl:3b";
+  const work = join(tmpdir(), `vqa-ollama-${process.pid}`);
+  mkdirSync(work, { recursive: true });
+  try {
+    const images = framePaths.slice(0, 6).map((pth, i) => {
+      const out = join(work, `f${i}.jpg`);
+      try {
+        execFileSync(FFMPEG, ["-y", "-hide_banner", "-loglevel", "error", "-i", pth,
+          "-vf", "scale=512:512:force_original_aspect_ratio=decrease", "-q:v", "4", out]);
+        return readFileSync(out).toString("base64");
+      } catch {
+        return readFileSync(pth).toString("base64");
+      }
+    });
+    const body = JSON.stringify({ model, prompt, images, format: "json", stream: false,
+      options: { temperature: 0, num_predict: 400, num_ctx: 8192 } });
+    const t0 = Date.now();
+    // Capped at 20% of the job budget (JOB_TIMEOUT_MIN), like every vision call.
+    const maxS = String(Math.round(Number(process.env.JOB_TIMEOUT_MIN || 75) * 60 * 0.2));
+    const res = execFileSync("curl", ["-sS", "--max-time", maxS, "-H", "Content-Type: application/json",
+      "-d", "@-", `${url}/api/generate`], { input: body, encoding: "utf-8", maxBuffer: 1 << 26 });
+    const r = JSON.parse(res);
+    console.error(`[ollama] ${model}: ${r.prompt_eval_count ?? "?"} prompt + ${r.eval_count ?? "?"} answer tokens, ${images.length} image(s), ${((Date.now() - t0) / 1000).toFixed(0)}s`);
+    return { ran: true, ...JSON.parse(String(r.response || "").trim()) };
+  } catch (e) {
+    return { ran: false, reason: `local vision model ${model} at ${url} failed: ${String(e.stderr || e.message).trim().slice(0, 200)}` };
+  } finally {
+    try { rmSync(work, { recursive: true, force: true }); } catch {}
+  }
+}
+
+// Second tier (Gemini → Groq → Ollama): Groq's vision model, synchronous
+// like the rest of this script, at most GROQ_MAX_IMAGES images (default 3,
+// qwen/qwen3.8-27b's limit) — the first frames; the rest are not seen. Any Groq failure falls
+// to the local Ollama vision model.
+function groqThenOllama(framePaths, prompt) {
+  const key = process.env.GROQ_API_KEY;
+  const model = process.env.GROQ_VISION_MODEL || "qwen/qwen3.8-27b";
+  const cap = Math.max(1, Number(process.env.GROQ_MAX_IMAGES || 3));
+  let why = "no_key";
+  if (key) {
+    const body = JSON.stringify({ model, temperature: 0, max_tokens: 400, response_format: { type: "json_object" },
+      messages: [{ role: "user", content: [{ type: "text", text: prompt },
+        ...framePaths.slice(0, cap).map((p) => ({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(p).toString("base64")}` } }))] }] });
+    try {
+      const res = execFileSync("curl", ["-sS", "--max-time", "120", "-H", "Content-Type: application/json",
+        "-H", `Authorization: Bearer ${key}`, "-d", "@-", "https://api.groq.com/openai/v1/chat/completions"],
+        { input: body, encoding: "utf-8", maxBuffer: 1 << 26 });
+      const pj = JSON.parse(res);
+      if (pj.error) {
+        const code = Number(pj.error.code) || 0;
+        why = /rate.?limit|quota|tokens per/i.test(pj.error.message || "") || code === 429 ? "quota_exhausted" : code >= 500 ? "unavailable" : "hard_error";
+      } else {
+        const raw = String(pj.choices?.[0]?.message?.content || "").trim().replace(/^```json/, "").replace(/^```/, "").replace(/```$/, "").trim();
+        console.error(`[groq] ${model}: vision-qa, ${Math.min(cap, framePaths.length)} image(s)`);
+        return { ran: true, ...JSON.parse(raw) };
+      }
+    } catch (e) {
+      why = "unavailable";
+    }
+  }
+  console.error(`[vision-qa] groq: ${why} → ollama`);
+  return ollamaVision(framePaths, prompt);
+}
+
 function visionCheck(frames, spec) {
   const base = process.env.VISION_API_BASE || "https://generativelanguage.googleapis.com/v1beta/openai";
   const key = process.env.VISION_API_KEY;
-  const model = process.env.VISION_MODEL;
-  if (!key || !model) {
+  // Downgraded to Flash-Lite per token audit — simple structured output doesn't need Pro/Flash
+  const model = process.env.VISION_MODEL || "gemini-2.5-flash-lite";
+  const forced = String(process.env.FORCE_PLANNER || "").toLowerCase() === "ollama";
+  if (!key && !process.env.GROQ_API_KEY && !process.env.OLLAMA_URL) {
     return {
       ran: false,
-      reason: "VISION_API_KEY / VISION_MODEL not set — 7.3 and 7.4 are UNVERIFIED. " +
+      reason: "neither VISION_API_KEY nor OLLAMA_URL set — 7.3 and 7.4 are UNVERIFIED. " +
         "An unrun check is not a passed check, so both are reported as failures.",
     };
   }
@@ -211,6 +294,14 @@ function visionCheck(frames, spec) {
     `${spec.core_objects.join(", ")}?\n` +
     `Report only what is visible. If the frames are abstract shapes and text, ` +
     `say so and answer false.`;
+  if (forced) {
+    console.error("[vision-qa] ollama (FORCE_PLANNER=ollama — Gemini and Groq not called)");
+    return ollamaVision(framePaths, prompt);
+  }
+  if (!key) {
+    console.error("[vision-qa] gemini: no_key → groq");
+    return groqThenOllama(framePaths, prompt);
+  }
   const imageContent = framePaths.slice(0, 6).map((p) => ({
     type: "image_url",
     image_url: { url: `data:image/png;base64,${readFileSync(p).toString("base64")}` },
@@ -234,11 +325,22 @@ function visionCheck(frames, spec) {
       "-d", "@-", `${base.replace(/\/$/, "")}/chat/completions`],
       { input: body, encoding: "utf-8" });
   } catch (e) {
-    return {
-      ran: false,
-      reason: `vision endpoint ${base} could not be reached: ${String(e.stderr || e.message).trim().slice(0, 200)}`,
-    };
+    console.error(`[vision-qa] gemini: unavailable → groq (${String(e.stderr || e.message).trim().slice(0, 120)})`);
+    return groqThenOllama(framePaths, prompt);
   }
+  // Gemini answered with an error (429 quota / 503 overload, sometimes
+  // wrapped in an array): no Gemini retry — the local model answers.
+  try {
+    let pj = JSON.parse(res);
+    if (Array.isArray(pj) && pj[0]?.error) pj = pj[0];
+    if (pj.error) {
+      const code = Number(pj.error.code) || 0;
+      const kind = code === 429 || /quota|RESOURCE_EXHAUSTED|rate.?limit/i.test(pj.error.message || "") ? "quota_exhausted"
+        : code >= 500 ? "unavailable" : "hard_error";
+      console.error(`[vision-qa] gemini: ${kind} → groq (${String(pj.error.message || "").slice(0, 120)})`);
+      return groqThenOllama(framePaths, prompt);
+    }
+  } catch {}
   let raw;
   try {
     raw = JSON.parse(res).choices[0].message.content.trim()

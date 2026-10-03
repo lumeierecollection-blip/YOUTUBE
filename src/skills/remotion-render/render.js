@@ -25,7 +25,7 @@
 
 import os from "os";
 import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync, readdirSync } from "fs";
-import { join, dirname, basename, extname } from "path";
+import { join, dirname, basename, extname, isAbsolute } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 import { createRequire } from "module";
@@ -43,6 +43,11 @@ import { narrationSections } from "../../utils/script-narration.js";
 // Replaces the old TYPE → VISUAL alternation with meaning-driven treatments.
 import { direct } from "./visual-engine/director/visual-director.js";
 import { sceneTextInventory } from "./visual/scene-text.js";
+import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
+import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
+import { canvasLayout, canvasManifest, normalizeCanvas } from "./visual/canvas-layout.js";
+import { scheduleEntityPop } from "./visual/entity-sync.js";
+import { GROUND } from "./visual/backgrounds.js";
 
 
 
@@ -320,7 +325,7 @@ async function renderVideo(componentId, outputPath, frames, props, scale) {
   } else {
     console.log(`[profile] bundling...`);
     const bundleStart = Date.now();
-    serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), onProgress: () => {} });
+    serveUrl = await bundle({ entryPoint: join(__dirname, "Root.jsx"), publicDir: join(__dirname, "public"), onProgress: () => {} });
     console.log(`[profile] bundle(): ${((Date.now() - bundleStart) / 1000).toFixed(1)}s`);
   }
 
@@ -494,7 +499,13 @@ async function main() {
     });
 
     let visualPlan = null;
-    const planPath = join(ROOT, "data", "visual-plans", channelId, basename(scriptPath, ".json") + "-visual-plan.json");
+    // VISUAL_PLAN_PATH (set by render-and-qa.js) is the plan to render: the
+    // asset-resolved plan, or a correction attempt's enforced plan. Without
+    // it this always read the canonical file, so every "enforced" correction
+    // attempt re-rendered the ORIGINAL plan unchanged.
+    const planPath = process.env.VISUAL_PLAN_PATH
+      ? (isAbsolute(process.env.VISUAL_PLAN_PATH) ? process.env.VISUAL_PLAN_PATH : join(ROOT, process.env.VISUAL_PLAN_PATH))
+      : join(ROOT, "data", "visual-plans", channelId, basename(scriptPath, ".json") + "-visual-plan.json");
     if (existsSync(planPath)) {
       try {
         visualPlan = JSON.parse(readFileSync(planPath, "utf-8"));
@@ -506,6 +517,47 @@ async function main() {
 
     const { beats, warnings, distribution } = direct(cues, { visualPlan });
 
+    // Paper style: word-level captions from the voiceover's REAL word
+    // timings (tts.js -> <base>-vo-words.json, Edge WordBoundary, same
+    // synthesis as the mp3 and this SRT). Each beat gets the words whose
+    // start falls inside it, in frames relative to the beat. No timings, or
+    // a beat with no words, fails the render — the captions are never
+    // modelled and never shown all at once.
+    if (beats.some((b) => b.scene?.canvas)) {
+      const wordsPath = ttsAudioPath.replace(/\.mp3$/, "-words.json");
+      let spoken = null;
+      try { spoken = JSON.parse(readFileSync(wordsPath, "utf-8")).words; } catch {}
+      if (!Array.isArray(spoken) || !spoken.length) {
+        console.error(`[captions] no word timings at ${wordsPath} — cannot build word-level captions, aborting.`);
+        process.exit(1);
+      }
+      beats.forEach((b, i) => {
+        const end = b.start_frame + b.duration_frames;
+        b.spoken = spoken
+          .map((w) => ({ text: w.text, from: Math.round(w.start * FPS) - b.start_frame, to: Math.round(w.end * FPS) - b.start_frame, abs: Math.round(w.start * FPS) }))
+          .filter((w) => w.abs >= (i === 0 ? -Infinity : b.start_frame) && (i === beats.length - 1 || w.abs < end))
+          .map(({ abs, ...w }) => ({ ...w, from: Math.max(0, w.from) }));
+        if (!b.spoken.length) {
+          console.error(`[captions] beat ${i} ("${String(b.original_text || "").slice(0, 60)}") has no timed words — failing the render.`);
+          process.exit(1);
+        }
+      });
+      console.log(`[captions] ${spoken.length} timed words across ${beats.length} beats (${wordsPath})`);
+      // Word-level sync (owner's spec 2026-10-03, visual/entity-sync.js): the beat's entity
+      // visual (portrait / photo / hero cutout / hero number) pops on the word that names it,
+      // from these same word timings. Headline and caption keep their beat-relative timing.
+      // An anchor not found in the spoken words pops at the beat start (logged, never a failure).
+      beats.forEach((b, i) => {
+        const c = b.scene?.canvas;
+        if (!c) return;
+        const sync = scheduleEntityPop({ ...c, composition: canvasLayout(normalizeCanvas(c, i)).composition }, b.spoken, b.duration_frames);
+        if (!sync) return;
+        if (sync.missing) { console.log(`[sync] ch-${channelId} beat ${i}: anchor "${sync.missing}" not found in the spoken words, popping at beat start (spoken: ${b.spoken.map((w) => w.text).join(" ").slice(0, 160)})`); delete c.entity_pop; return; }
+        c.entity_pop = { frame: sync.frame, word: sync.word, from: sync.from, to: sync.to, kind: sync.kind };
+        console.log(`[sync] ch-${channelId} beat ${i}: entity "${sync.entity}" (${sync.kind}), anchor word "${sync.word}", spoken at ${(sync.from / FPS).toFixed(2)}s-${(sync.to / FPS).toFixed(2)}s, pop scheduled at ${(sync.frame / FPS).toFixed(2)}s (frame ${sync.frame})`);
+      });
+    }
+
     let viSpec = null;
     try {
       const vi = JSON.parse(readFileSync(join(ROOT, "config", "visual-identity.json"), "utf-8")).channels || {};
@@ -514,6 +566,11 @@ async function main() {
 
     sentencePlan = {
       beats,
+      // The channel's configured ground. This was never passed, so
+      // editorialColors() always took the darkest palette colour and
+      // bg_mode "white" channels (1, 9, 44) rendered dark navy
+      // (docs/AI-DECISION-AUDIT.md).
+      bgMode: channel.bg_mode || "black",
       palette: viSpec
         ? { primary: viSpec.primary_palette, secondary: viSpec.secondary_palette }
         : { primary: ["#0F172A", "#1E293B", "#22C55E", "#FAFAFA"], secondary: ["#16A34A", "#94A3B8", "#F8FAFC"] },
@@ -521,6 +578,46 @@ async function main() {
         ? { primary: viSpec.typography_primary, secondary: viSpec.typography_secondary }
         : { primary: "DM Sans", secondary: "Noto Serif" },
     };
+
+    // Kalimba bed: one track per video from the rotation pool, chosen
+    // deterministically from channel + script filename (kalimba-pool.js).
+    // DirectedShorts played the voiceover only until this — no bed at all.
+    const kal = pickKalimbaTrack(channel.channel_id ?? channelId, basename(scriptPath));
+    sentencePlan.kalimba = kal.file;
+    // Full-canvas style (visual/full-canvas.jsx) when the resolved plan
+    // carries canvas content. The accent colour lives in channels.json
+    // (colors.canvas_accent — CLAUDE.md: colour never in a script); a channel
+    // without one renders its primary values in ink.
+    if (beats.some((b) => b.scene && b.scene.paper)) {
+      console.error("::error::[canvas] the resolved plan carries paper content — the paper stage was removed; re-resolve the plan");
+      process.exit(1);
+    }
+    if (beats.some((b) => b.scene && b.scene.canvas)) {
+      sentencePlan.canvas = true;
+      sentencePlan.accent = channel.colors?.canvas_accent || null;
+      // Uniform white on every beat of every channel (visual/backgrounds.js).
+      sentencePlan.ground = GROUND;
+      console.log(`[canvas] ground: uniform ${GROUND}`);
+      const comps = {};
+      beats.forEach((b, bi) => { const k = canvasLayout(normalizeCanvas(b.scene.canvas, bi)).composition; comps[k] = (comps[k] || 0) + 1; });
+      console.log(`[canvas] full-canvas style, accent ${sentencePlan.accent || "(none — ink)"}; ${Object.entries(comps).map(([k, v]) => `${k} ${v}`).join(", ")}`);
+    }
+    console.log(`[audio] ${kal.name} (from ${kal.count} tracks)`);
+
+    // SFX: only the semantic trigger table (sound-design.js). A trigger
+    // whose file is missing FAILS the render — it is never skipped.
+    const sfx = semanticSfxEvents(beats);
+    for (const e of sfx.events) {
+      const onDisk = join(__dirname, "public", SEMANTIC_SFX_DIR, e.file);
+      if (!existsSync(onDisk)) {
+        console.error(`::error::[sfx] ${e.file} (trigger ${e.trigger}, beat ${e.beat}) not found at ${onDisk} — refusing to render`);
+        process.exit(1);
+      }
+      console.log(`[sfx] ${e.file} at beat ${e.beat} (${e.reason}) frame ${e.atFrame}`);
+    }
+    for (const w of sfx.warnings) console.warn(`::warning::${w}`);
+    console.log(`[sfx] ${sfx.events.length} fired`);
+    sentencePlan.sfx = sfx.events;
 
     frames = beats.length ? beats[beats.length - 1].start_frame + beats[beats.length - 1].duration_frames : 300;
     const ceiling = (format === "shorts" ? SHORTS_CLAMP : LONGFORM_CLAMP)[1];
@@ -738,6 +835,9 @@ async function main() {
       width: 1080,
       height: 1920,
       renderScale: scale,
+      // Full-canvas: the channel accent the renderer drew with (local-audit canvas-accent).
+      accent: sentencePlan.accent || null,
+      ground: sentencePlan.ground || null,
       totalFrames: frames,
       durationSec: +(frames / fps).toFixed(2),
       generatedAt: new Date().toISOString(),
@@ -776,6 +876,13 @@ async function main() {
           start_sec: +((b.start_frame || 0) / fps).toFixed(2),
           duration_sec: +((b.duration_frames || 0) / fps).toFixed(2),
           mechanism,
+          // Full-canvas style: the visual type as drawn (a CUTOUT / PHOTO that
+          // could not be resolved is recorded as TYPE), its composition, and
+          // every element box from canvasLayout() — the renderer's own numbers,
+          // which the audit (local-audit.cjs canvas-fit / canvas-coverage)
+          // checks against the 1080x1920 frame.
+          visual_type: b.scene?.canvas?.visual_type || null,
+          canvas: b.scene?.canvas ? canvasManifest(b.scene.canvas, i) : null,
           renders_typography: rendersTypography,
           text: rendersTypography ? [b.text].filter((t) => t && String(t).trim()) : [],
           on_screen_text: onScreenText,
@@ -790,10 +897,14 @@ async function main() {
           // composed beat from one that fell back to a mechanism scene, and
           // coverage is the measurable form of the "floating text in a
           // void" defect that sixteen Gemini verdicts kept reporting.
+          paper: null,
+          layers: Array.isArray(scene.layers)
+            ? scene.layers.map((l) => ({ role: l.role, kind: l.kind, ...(l.asset ? { asset: l.asset } : {}), ...(l.name ? { name: l.name } : {}), ...(l.motion ? { motion: l.motion } : {}), ...(l.style ? { style: l.style } : {}) }))
+            : null,
           composed: !!scene.composition,
           composition: scene.composition
             ? (scene.composition.objects || []).map((o) => ({
-                kind: o.kind, count: o.count || 1,
+                kind: o.kind, count: o.count || 1, ...(o.kind === "icon" ? { icon: o.icon } : {}), ...(o.kind === "library_shape" ? { name: o.name } : {}),
                 anchor: o.anchor || "center", motion: o.motion || "appear",
                 emphasis: !!o.emphasis, labelled: !!(o.label && String(o.label).trim()),
               }))

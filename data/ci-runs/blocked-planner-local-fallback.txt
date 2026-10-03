@@ -1,0 +1,37 @@
+BLOCKER (item 8): the planner chain is Gemini -> Ollama only; the Ollama
+link is unavailable in CI, and the rule-based third link is not re-enabled.
+
+What is wired (scripts/gemini-visual-plan.js, 2026-09-28):
+  1. Gemini (gemini-3.5-flash-lite via src/lib/gemini-client.js — 3 keys
+     rotated on 429/5xx; one uncached retry; JSON repairs).
+  2. Ollama at OLLAMA_HOST (default http://127.0.0.1:11434), model
+     OLLAMA_PLAN_MODEL (default qwen2.5:7b). Reached when Gemini leaves no
+     beats (429, 503, timeout, malformed JSON after repair). Logged:
+       [planner] gemini failed: <reason>, falling to ollama
+       [planner] ollama failed: <reason> — no further fallback
+  FORCE_PLANNER=ollama skips Gemini to exercise link 2.
+
+Why link 2 does not work in CI today:
+  - The RENDER job (where planning runs) never starts an Ollama server;
+    only the PREP job does, with qwen2.5:3b.
+  - qwen2.5:7b on the 4-vCPU runner could not finish one Discover call in
+    the job budget (data/ci-runs/blocked-prep-model.txt); a full visual
+    plan (up to ~16k output tokens) is far larger.
+  - Verified locally: with no server the link returns
+    "unavailable at http://127.0.0.1:59999 (ECONNREFUSED)" and exits 1.
+  - So the FORCE_PLANNER=ollama CI test was NOT run: by construction it
+    would report "unavailable" and fail the render.
+
+Why there is no rule-based third link:
+  scripts/local-visual-plan.cjs was retired on purpose (render-and-qa.js,
+  QA run 35916464573: its placeholder "CAUSE/EFFECT" plans were rejected
+  6/6 by the frame review). It also emits no VISUAL/TYPE / concept /
+  fallback_drawing fields, so the asset resolver would refuse its plans.
+  Re-enabling it would be "a fallback that produces content".
+
+Human decision needed (one of):
+  a. Start Ollama in the render job with a model that fits the CPU budget
+     (qwen2.5:3b is cached in prep) — and accept its lower plan quality.
+  b. Point the chain at a hosted model instead (GROQ / MISTRAL /
+     OPENROUTER keys already exist in the repo secrets).
+  c. Accept Gemini-only planning with an honest failure on outage.

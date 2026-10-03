@@ -14,7 +14,7 @@
  * module is broken; the source modules are exercised by unit-testable pure
  * functions (parseXResponse) instead of live network calls.
  */
-const USER_AGENT = "youtube-automation-asset-sourcing/1.0 (offline library build; contact via repo)";
+const USER_AGENT = "youtube-automation-asset-sourcing/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE; offline library build)";
 
 export async function fetchJson(url, { headers = {}, timeoutMs = 15000 } = {}) {
   const ctrl = new AbortController();

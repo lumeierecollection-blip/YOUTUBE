@@ -1,0 +1,1339 @@
+
+=== ATTEMPT 1/3: automatic-savings-vs-willpower-script.json ===
+=== GEMINI PLAN: 1 — automatic-savings-vs-willpower-script.json ===
+[plan 1/automatic-savings-vs-willpower-script.json] Script parsed: 0 sentences (no SRT)
+
+=== ATTEMPT 1/3: debt-snowball-vs-debt-avalanche-shorts-script.json ===
+=== GEMINI PLAN: 1 — debt-snowball-vs-debt-avalanche-shorts-script.json ===
+[plan 1/debt-snowball-vs-debt-avalanche-shorts-script.json] SRT loaded: 18 sentences
+[plan 1/debt-snowball-vs-debt-avalanche-shorts-script.json] Requesting visual plan from Gemini for 18 beats...
+[plan 1/debt-snowball-vs-debt-avalanche-shorts-script.json]   OpenCode fallback: agent=pipeline-visual-plan, model=google/gemini-2.5-flash
+
+=== ATTEMPT 1/3: emergency-fund-bigger-than-you-think-2026-shorts-script.json ===
+=== GEMINI PLAN: 1 — emergency-fund-bigger-than-you-think-2026-shorts-script.json ===
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] SRT loaded: 9 sentences
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Requesting visual plan from Gemini for 9 beats...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   OpenCode fallback: agent=pipeline-visual-plan, model=google/gemini-2.5-flash
+=== RENDER: 1 — emergency-fund-bigger-than-you-think-2026-shorts-script.json (shorts) ===
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] B-roll: 0/4 sections have real imagery
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Directed SRT: C:\Users\user\YOUTUBE\data\tts\1\emergency-fund-bigger-than-you-think-2026-shorts-script-vo.srt
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Directed plan: 9 cues -> 9 beats, 1735f
+  treatments: TYPOGRAPHY:5 STRUCTURAL_BREAKDOWN:1 EVIDENCE_FIGURE:1 SURFACE_AND_BENEATH:1 STATE_CHANGE:1
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   [d0] STRUCTURAL_BREAKDOWN — "broken" — month emergency loses structural integrity
+  [d1] EVIDENCE_FIGURE — 22.4 is presented as evidence — shown as a figure within its material context
+  [d2] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  [d3] SURFACE_AND_BENEATH — "reveals" — the 45 percent is presented as official truth, then its inadequacy is exposed
+  [d4] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  [d5] STATE_CHANGE — "but" — showing what was expected vs what is actually true
+  [d6] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  [d7] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  [d8] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  9 warning(s): No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.; No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.; No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.; No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.; No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Image credits: 0 attribution(s) -> C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-image-credits.json
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Rendering: DirectedShorts (1735 frames)
+Output: C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[profile] bundling...
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] bundle(): 3.8s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] selectComposition(): 3.2s
+[2D] rendering without WebGL (no chromiumOptions.gl)
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 0/1735 frames (0.0%) 0.00 fps  elapsed=7.7s  ETA=?s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 35/1735 frames (2.0%) 2.74 fps  elapsed=12.8s  ETA=620s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 84/1735 frames (4.8%) 4.72 fps  elapsed=17.8s  ETA=350s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 133/1735 frames (7.7%) 5.81 fps  elapsed=22.9s  ETA=276s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 178/1735 frames (10.3%) 6.38 fps  elapsed=27.9s  ETA=244s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 231/1735 frames (13.3%) 7.01 fps  elapsed=33.0s  ETA=215s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 282/1735 frames (16.3%) 7.42 fps  elapsed=38.0s  ETA=196s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 334/1735 frames (19.3%) 7.75 fps  elapsed=43.1s  ETA=181s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 389/1735 frames (22.4%) 8.06 fps  elapsed=48.2s  ETA=167s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 443/1735 frames (25.5%) 8.31 fps  elapsed=53.3s  ETA=155s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 499/1735 frames (28.8%) 8.55 fps  elapsed=58.4s  ETA=145s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 557/1735 frames (32.1%) 8.78 fps  elapsed=63.4s  ETA=134s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 612/1735 frames (35.3%) 8.93 fps  elapsed=68.5s  ETA=126s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 667/1735 frames (38.4%) 9.07 fps  elapsed=73.6s  ETA=118s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 721/1735 frames (41.6%) 9.18 fps  elapsed=78.6s  ETA=111s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 775/1735 frames (44.7%) 9.27 fps  elapsed=83.6s  ETA=104s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 828/1735 frames (47.7%) 9.34 fps  elapsed=88.6s  ETA=97s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 883/1735 frames (50.9%) 9.42 fps  elapsed=93.7s  ETA=90s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 942/1735 frames (54.3%) 9.53 fps  elapsed=98.8s  ETA=83s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 995/1735 frames (57.3%) 9.58 fps  elapsed=103.9s  ETA=77s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1050/1735 frames (60.5%) 9.64 fps  elapsed=109.0s  ETA=71s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1105/1735 frames (63.7%) 9.69 fps  elapsed=114.1s  ETA=65s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1155/1735 frames (66.6%) 9.70 fps  elapsed=119.1s  ETA=60s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1200/1735 frames (69.2%) 9.67 fps  elapsed=124.1s  ETA=55s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1258/1735 frames (72.5%) 9.74 fps  elapsed=129.2s  ETA=49s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1311/1735 frames (75.6%) 9.76 fps  elapsed=134.3s  ETA=43s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1366/1735 frames (78.7%) 9.81 fps  elapsed=139.3s  ETA=38s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1418/1735 frames (81.7%) 9.82 fps  elapsed=144.4s  ETA=32s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1473/1735 frames (84.9%) 9.85 fps  elapsed=149.5s  ETA=27s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1524/1735 frames (87.8%) 9.86 fps  elapsed=154.5s  ETA=21s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1577/1735 frames (90.9%) 9.88 fps  elapsed=159.5s  ETA=16s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1631/1735 frames (94.0%) 9.91 fps  elapsed=164.6s  ETA=10s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1688/1735 frames (97.3%) 9.95 fps  elapsed=169.7s  ETA=5s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1734/1735 frames (99.9%) 9.97 fps  elapsed=173.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.96 fps  elapsed=174.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.85 fps  elapsed=176.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.82 fps  elapsed=176.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.79 fps  elapsed=177.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.76 fps  elapsed=177.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.73 fps  elapsed=178.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.70 fps  elapsed=178.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.68 fps  elapsed=179.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.65 fps  elapsed=179.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.62 fps  elapsed=180.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.59 fps  elapsed=180.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.57 fps  elapsed=181.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.54 fps  elapsed=181.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.51 fps  elapsed=182.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.48 fps  elapsed=182.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.46 fps  elapsed=183.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.43 fps  elapsed=184.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.41 fps  elapsed=184.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.38 fps  elapsed=185.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.35 fps  elapsed=185.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.33 fps  elapsed=186.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.30 fps  elapsed=186.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.28 fps  elapsed=187.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.25 fps  elapsed=187.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.22 fps  elapsed=188.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.20 fps  elapsed=188.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.17 fps  elapsed=189.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.15 fps  elapsed=189.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.12 fps  elapsed=190.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.10 fps  elapsed=190.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.08 fps  elapsed=191.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.05 fps  elapsed=191.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.03 fps  elapsed=192.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.00 fps  elapsed=192.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.98 fps  elapsed=193.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.95 fps  elapsed=193.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.93 fps  elapsed=194.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.91 fps  elapsed=194.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.88 fps  elapsed=195.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.86 fps  elapsed=195.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 8.84 fps  elapsed=196.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Rendered: C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4  (1735 frames in 196.3s, avg 8.84 fps)
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=0.000s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-00.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=6.431s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-01.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=12.862s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-02.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=19.293s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-03.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=25.724s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-04.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=32.156s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-05.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=38.587s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-06.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=45.018s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-07.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=51.449s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-08.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=57.780s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-09.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] contact sheet: C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\contact-sheet.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+video     : C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] duration  : 57.88s  1080x1920 @ 30fps
+frames    : 10 (C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20)
+manifest  : C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\manifest.json
+
+Next step: actually LOOK at the frames (and contact sheet) before confirming anything.
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-00.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] FAIL  frame-01.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=2.19:1
+     VIOLATION: headline contrast 2.19:1 < 4.5:1 (glyph rgb(73,79,96) on bg rgb(15,23,41))
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-02.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=4.96:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-03.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-04.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=6.90:1
+PASS  frame-05.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] FAIL  frame-06.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=4.23:1
+     VIOLATION: headline contrast 4.23:1 < 4.5:1 (glyph rgb(117,123,140) on bg rgb(15,23,41))
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-07.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-08.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-09.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+frame-audit: 8/10 frames passed. Report: C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\audit-report.json
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Visual Bible v3.0 loaded — 33 rules, 20 failure categories
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] SRT loaded: 9 cues
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Video duration: 57.88s
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Sampling 17 frames at beat points
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+═══ PHASE 1: SCENE-BY-SCENE REVIEW (BATCHED) ═══
+
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [1/17] t=0.5s — VO: "Your 3 month emergency fund is completely broken for 2026 jo..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [2/17] t=5.3s — VO: "Your 3 month emergency fund is completely broken for 2026 jo..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [3/17] t=10.1s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [4/17] t=15.0s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [5/17] t=17.5s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [6/17] t=19.8s — VO: "Dig deeper and the numbers get scary...."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [7/17] t=24.6s — VO: "United Way NCA survey data reveals that 45 percent of job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [8/17] t=28.6s — VO: "United Way NCA survey data reveals that 45 percent of job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [9/17] t=29.4s — VO: "Most people are living on the absolute edge...."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [10/17] t=32.2s — VO: "Most people are living on the absolute edge. The median dura..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [11/17] t=34.3s — VO: "The median duration of unemployment sits at 10.3 weeks, but ..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [12/17] t=39.1s — VO: "The median duration of unemployment sits at 10.3 weeks, but ..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [13/17] t=43.9s — VO: "That gap proves specialized workers face massive hidden dela..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [14/17] t=46.0s — VO: "That gap proves specialized workers face massive hidden dela..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [15/17] t=48.7s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [16/17] t=53.6s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [17/17] t=54.7s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/vision emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+section-7 QA — ch-01 — emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[qa/vision emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   ok      7.1
+  ok      7.2
+  ok      7.3
+  ok      7.4
+  REJECT  7.5
+  ok      7.6
+
+  7.5 / 7.6: no plan supplied, so neither could be checked. Section 7 requires both.
+
+VERDICT: REJECTED. Section 7: a human must be notified and there is no automatic retry.
+record: data/audit/visual-qa/ch-01-emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.json
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]     ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: undefined
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: undefined
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+
+═══ PHASE 2: WHOLE-VIDEO REVIEW ═══
+
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   Overall score: ?/10
+  Status: FAIL
+  Verdict: (none)
+  Strongest: Frame 3 — Clear numerical presentation of statistics with graphical bar support.
+  Weakest: Frame 7 — Unclear percentages paired with unrelated budget categories that fail to visually substantiate the primary statistic.
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+═══ GEMINI VISUAL DIRECTOR — FINAL VERDICT ═══
+  Bible: v3.0 (33 rules)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   Frames reviewed: 17
+  CRITICAL: 0  HIGH: 0  PASS: 2
+  Avg quality: N/A/10
+  Pass rate: 12%
+  Whole-video: FAIL (?/10)
+  Report: C:\Users\user\YOUTUBE\data\audit\gemini-review\1-emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20-2026-09-20.json
+
+  VERDICT: APPROVED — video meets Visual Bible standards.
+Gemini verdict (attempt 1): UNKNOWN
+Gemini says UNKNOWN — feeding corrections back for attempt 2
+
+=== ATTEMPT 2/3: emergency-fund-bigger-than-you-think-2026-shorts-script.json ===
+=== GEMINI PLAN: 1 — emergency-fund-bigger-than-you-think-2026-shorts-script.json ===
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] SRT loaded: 9 sentences
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Requesting visual plan from Gemini for 9 beats...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   OpenCode fallback: agent=pipeline-visual-plan, model=google/gemini-2.5-flash
+=== RENDER: 1 — emergency-fund-bigger-than-you-think-2026-shorts-script.json (shorts) ===
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] B-roll: 0/4 sections have real imagery
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Directed SRT: C:\Users\user\YOUTUBE\data\tts\1\emergency-fund-bigger-than-you-think-2026-shorts-script-vo.srt
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Directed plan: 9 cues -> 9 beats, 1735f
+  treatments: TYPOGRAPHY:5 STRUCTURAL_BREAKDOWN:1 EVIDENCE_FIGURE:1 SURFACE_AND_BENEATH:1 STATE_CHANGE:1
+  [d0] STRUCTURAL_BREAKDOWN — "broken" — month emergency loses structural integrity
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   [d1] EVIDENCE_FIGURE — 22.4 is presented as evidence — shown as a figure within its material context
+  [d2] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  [d3] SURFACE_AND_BENEATH — "reveals" — the 45 percent is presented as official truth, then its inadequacy is exposed
+  [d4] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  [d5] STATE_CHANGE — "but" — showing what was expected vs what is actually true
+  [d6] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  [d7] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  [d8] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  9 warning(s): No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.; No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.; No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.; No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.; No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Image credits: 0 attribution(s) -> C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-image-credits.json
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Rendering: DirectedShorts (1735 frames)
+Output: C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[profile] bundling...
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] bundle(): 3.0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] selectComposition(): 2.6s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [2D] rendering without WebGL (no chromiumOptions.gl)
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 0/1735 frames (0.0%) 0.00 fps  elapsed=6.7s  ETA=?s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 35/1735 frames (2.0%) 2.98 fps  elapsed=11.8s  ETA=571s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 91/1735 frames (5.2%) 5.42 fps  elapsed=16.8s  ETA=303s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 142/1735 frames (8.2%) 6.49 fps  elapsed=21.9s  ETA=245s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 186/1735 frames (10.7%) 6.92 fps  elapsed=26.9s  ETA=224s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 243/1735 frames (14.0%) 7.60 fps  elapsed=32.0s  ETA=196s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 300/1735 frames (17.3%) 8.09 fps  elapsed=37.1s  ETA=177s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 354/1735 frames (20.4%) 8.41 fps  elapsed=42.1s  ETA=164s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 408/1735 frames (23.5%) 8.67 fps  elapsed=47.1s  ETA=153s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 464/1735 frames (26.7%) 8.89 fps  elapsed=52.2s  ETA=143s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 519/1735 frames (29.9%) 9.07 fps  elapsed=57.2s  ETA=134s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 577/1735 frames (33.3%) 9.26 fps  elapsed=62.3s  ETA=125s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 632/1735 frames (36.4%) 9.38 fps  elapsed=67.4s  ETA=118s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 684/1735 frames (39.4%) 9.44 fps  elapsed=72.5s  ETA=111s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 737/1735 frames (42.5%) 9.51 fps  elapsed=77.5s  ETA=105s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 793/1735 frames (45.7%) 9.61 fps  elapsed=82.5s  ETA=98s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 848/1735 frames (48.9%) 9.69 fps  elapsed=87.5s  ETA=92s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 904/1735 frames (52.1%) 9.76 fps  elapsed=92.6s  ETA=85s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 961/1735 frames (55.4%) 9.84 fps  elapsed=97.6s  ETA=79s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1016/1735 frames (58.6%) 9.89 fps  elapsed=102.7s  ETA=73s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1071/1735 frames (61.7%) 9.94 fps  elapsed=107.8s  ETA=67s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1128/1735 frames (65.0%) 10.00 fps  elapsed=112.8s  ETA=61s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1184/1735 frames (68.2%) 10.04 fps  elapsed=117.9s  ETA=55s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1240/1735 frames (71.5%) 10.09 fps  elapsed=122.9s  ETA=49s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1299/1735 frames (74.9%) 10.15 fps  elapsed=128.0s  ETA=43s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1355/1735 frames (78.1%) 10.18 fps  elapsed=133.1s  ETA=37s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1410/1735 frames (81.3%) 10.21 fps  elapsed=138.1s  ETA=32s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1466/1735 frames (84.5%) 10.24 fps  elapsed=143.2s  ETA=26s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1522/1735 frames (87.7%) 10.27 fps  elapsed=148.3s  ETA=21s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1577/1735 frames (90.9%) 10.28 fps  elapsed=153.3s  ETA=15s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1632/1735 frames (94.1%) 10.30 fps  elapsed=158.4s  ETA=10s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1690/1735 frames (97.4%) 10.34 fps  elapsed=163.5s  ETA=4s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1734/1735 frames (99.9%) 10.36 fps  elapsed=167.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.35 fps  elapsed=167.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.23 fps  elapsed=169.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.20 fps  elapsed=170.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.16 fps  elapsed=170.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.13 fps  elapsed=171.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.10 fps  elapsed=171.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.07 fps  elapsed=172.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.04 fps  elapsed=172.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.01 fps  elapsed=173.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.98 fps  elapsed=173.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.95 fps  elapsed=174.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.92 fps  elapsed=174.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.90 fps  elapsed=175.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.87 fps  elapsed=175.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.84 fps  elapsed=176.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.81 fps  elapsed=176.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.78 fps  elapsed=177.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.75 fps  elapsed=177.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.72 fps  elapsed=178.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.70 fps  elapsed=178.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.67 fps  elapsed=179.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.64 fps  elapsed=180.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.61 fps  elapsed=180.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.59 fps  elapsed=181.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.56 fps  elapsed=181.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.53 fps  elapsed=182.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.50 fps  elapsed=182.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.48 fps  elapsed=183.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.45 fps  elapsed=183.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.42 fps  elapsed=184.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.40 fps  elapsed=184.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.37 fps  elapsed=185.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.35 fps  elapsed=185.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.32 fps  elapsed=186.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.29 fps  elapsed=186.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.27 fps  elapsed=187.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.24 fps  elapsed=187.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.22 fps  elapsed=188.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.19 fps  elapsed=188.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.17 fps  elapsed=189.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.14 fps  elapsed=189.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.14 fps  elapsed=189.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Rendered: C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4  (1735 frames in 189.9s, avg 9.14 fps)
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=0.000s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-00.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=6.431s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-01.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=12.862s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-02.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=19.293s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-03.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=25.724s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-04.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=32.156s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-05.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=38.587s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-06.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=45.018s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-07.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=51.449s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-08.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=57.780s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-09.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] contact sheet: C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\contact-sheet.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+video     : C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] duration  : 57.88s  1080x1920 @ 30fps
+frames    : 10 (C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20)
+manifest  : C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\manifest.json
+
+Next step: actually LOOK at the frames (and contact sheet) before confirming anything.
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-00.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] FAIL  frame-01.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=2.18:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]      VIOLATION: headline contrast 2.18:1 < 4.5:1 (glyph rgb(71,79,97) on bg rgb(15,23,41))
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-02.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=4.78:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-03.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-04.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=6.90:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-05.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] FAIL  frame-06.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=4.06:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]      VIOLATION: headline contrast 4.06:1 < 4.5:1 (glyph rgb(114,120,139) on bg rgb(15,23,41))
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-07.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-08.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-09.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+frame-audit: 8/10 frames passed. Report: C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\audit-report.json
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Visual Bible v3.0 loaded — 33 rules, 20 failure categories
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] SRT loaded: 9 cues
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Video duration: 57.88s
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Sampling 17 frames at beat points
+
+═══ PHASE 1: SCENE-BY-SCENE REVIEW (BATCHED) ═══
+
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [1/17] t=0.5s — VO: "Your 3 month emergency fund is completely broken for 2026 jo..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [2/17] t=5.3s — VO: "Your 3 month emergency fund is completely broken for 2026 jo..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [3/17] t=10.1s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [4/17] t=15.0s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [5/17] t=17.5s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [6/17] t=19.8s — VO: "Dig deeper and the numbers get scary...."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [7/17] t=24.6s — VO: "United Way NCA survey data reveals that 45 percent of job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [8/17] t=28.6s — VO: "United Way NCA survey data reveals that 45 percent of job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [9/17] t=29.4s — VO: "Most people are living on the absolute edge...."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [10/17] t=32.2s — VO: "Most people are living on the absolute edge. The median dura..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [11/17] t=34.3s — VO: "The median duration of unemployment sits at 10.3 weeks, but ..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [12/17] t=39.1s — VO: "The median duration of unemployment sits at 10.3 weeks, but ..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [13/17] t=43.9s — VO: "That gap proves specialized workers face massive hidden dela..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [14/17] t=46.0s — VO: "That gap proves specialized workers face massive hidden dela..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [15/17] t=48.7s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [16/17] t=53.6s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [17/17] t=54.7s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/vision emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+section-7 QA — ch-01 — emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[qa/vision emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   ok      7.1
+  ok      7.2
+  ok      7.3
+  ok      7.4
+  REJECT  7.5
+  ok      7.6
+
+  7.5 / 7.6: no plan supplied, so neither could be checked. Section 7 requires both.
+
+VERDICT: REJECTED. Section 7: a human must be notified and there is no automatic retry.
+record: data/audit/visual-qa/ch-01-emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.json
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]     ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: undefined
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: undefined
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+
+═══ PHASE 2: WHOLE-VIDEO REVIEW ═══
+
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   Overall score: ?/10
+  Status: FAIL
+  Verdict: The video fails the core continuity and caption rules, suffering from heavy text-heavy template monotony and lack of visual storytelling.
+  Weakest: Frame 15 — Entirely text-based sentence block without visual metaphor or creative layout, functioning purely as a caption track.
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+═══ GEMINI VISUAL DIRECTOR — FINAL VERDICT ═══
+  Bible: v3.0 (33 rules)
+  Frames reviewed: 17
+  CRITICAL: 0  HIGH: 0  PASS: 2
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   Avg quality: N/A/10
+  Pass rate: 12%
+  Whole-video: FAIL (?/10)
+  Report: C:\Users\user\YOUTUBE\data\audit\gemini-review\1-emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20-2026-09-20.json
+
+  VERDICT: APPROVED — video meets Visual Bible standards.
+Gemini verdict (attempt 2): The video fails the core continuity and caption rules, suffering from heavy text-heavy template monotony and lack of visual storytelling.
+Gemini says The video fails the core continuity and caption rules, suffering from heavy text-heavy template monotony and lack of visual storytelling. — feeding corrections back for attempt 3
+
+=== ATTEMPT 3/3: emergency-fund-bigger-than-you-think-2026-shorts-script.json ===
+=== GEMINI PLAN: 1 — emergency-fund-bigger-than-you-think-2026-shorts-script.json ===
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] SRT loaded: 9 sentences
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Requesting visual plan from Gemini for 9 beats...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   OpenCode fallback: agent=pipeline-visual-plan, model=google/gemini-2.5-flash
+=== RENDER: 1 — emergency-fund-bigger-than-you-think-2026-shorts-script.json (shorts) ===
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] B-roll: 0/4 sections have real imagery
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Directed SRT: C:\Users\user\YOUTUBE\data\tts\1\emergency-fund-bigger-than-you-think-2026-shorts-script-vo.srt
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Directed plan: 9 cues -> 9 beats, 1735f
+  treatments: TYPOGRAPHY:5 STRUCTURAL_BREAKDOWN:1 EVIDENCE_FIGURE:1 SURFACE_AND_BENEATH:1 STATE_CHANGE:1
+  [d0] STRUCTURAL_BREAKDOWN — "broken" — month emergency loses structural integrity
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   [d1] EVIDENCE_FIGURE — 22.4 is presented as evidence — shown as a figure within its material context
+  [d2] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  [d3] SURFACE_AND_BENEATH — "reveals" — the 45 percent is presented as official truth, then its inadequacy is exposed
+  [d4] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  [d5] STATE_CHANGE — "but" — showing what was expected vs what is actually true
+  [d6] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  [d7] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  [d8] TYPOGRAPHY — no physical mechanism detected — the sentence itself communicates the idea
+  9 warning(s): No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.; No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.; No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.; No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.; No visual plan loaded — using regex fallback. Run gemini-visual-plan.js first.
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Image credits: 0 attribution(s) -> C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-image-credits.json
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Rendering: DirectedShorts (1735 frames)
+Output: C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[profile] bundling...
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] bundle(): 2.8s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [profile] selectComposition(): 1.4s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [2D] rendering without WebGL (no chromiumOptions.gl)
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 0/1735 frames (0.0%) 0.00 fps  elapsed=4.9s  ETA=?s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 32/1735 frames (1.8%) 3.22 fps  elapsed=9.9s  ETA=529s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 83/1735 frames (4.8%) 5.53 fps  elapsed=15.0s  ETA=299s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 129/1735 frames (7.4%) 6.42 fps  elapsed=20.1s  ETA=250s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 174/1735 frames (10.0%) 6.90 fps  elapsed=25.2s  ETA=226s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 232/1735 frames (13.4%) 7.66 fps  elapsed=30.3s  ETA=196s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 287/1735 frames (16.5%) 8.14 fps  elapsed=35.3s  ETA=178s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 343/1735 frames (19.8%) 8.50 fps  elapsed=40.4s  ETA=164s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 398/1735 frames (22.9%) 8.77 fps  elapsed=45.4s  ETA=152s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 455/1735 frames (26.2%) 9.02 fps  elapsed=50.5s  ETA=142s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 514/1735 frames (29.6%) 9.26 fps  elapsed=55.5s  ETA=132s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 571/1735 frames (32.9%) 9.43 fps  elapsed=60.6s  ETA=123s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 628/1735 frames (36.2%) 9.57 fps  elapsed=65.7s  ETA=116s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 683/1735 frames (39.4%) 9.67 fps  elapsed=70.7s  ETA=109s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 739/1735 frames (42.6%) 9.76 fps  elapsed=75.7s  ETA=102s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 798/1735 frames (46.0%) 9.88 fps  elapsed=80.7s  ETA=95s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 852/1735 frames (49.1%) 9.92 fps  elapsed=85.9s  ETA=89s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 908/1735 frames (52.3%) 9.99 fps  elapsed=90.9s  ETA=83s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 964/1735 frames (55.6%) 10.05 fps  elapsed=96.0s  ETA=77s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1019/1735 frames (58.7%) 10.09 fps  elapsed=101.0s  ETA=71s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1072/1735 frames (61.8%) 10.10 fps  elapsed=106.1s  ETA=66s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1126/1735 frames (64.9%) 10.13 fps  elapsed=111.2s  ETA=60s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1177/1735 frames (67.8%) 10.13 fps  elapsed=116.2s  ETA=55s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1224/1735 frames (70.5%) 10.09 fps  elapsed=121.3s  ETA=51s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1278/1735 frames (73.7%) 10.12 fps  elapsed=126.3s  ETA=45s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1334/1735 frames (76.9%) 10.16 fps  elapsed=131.3s  ETA=39s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1385/1735 frames (79.8%) 10.16 fps  elapsed=136.4s  ETA=34s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1441/1735 frames (83.1%) 10.19 fps  elapsed=141.5s  ETA=29s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1497/1735 frames (86.3%) 10.21 fps  elapsed=146.6s  ETA=23s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1553/1735 frames (89.5%) 10.24 fps  elapsed=151.7s  ETA=18s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1610/1735 frames (92.8%) 10.27 fps  elapsed=156.7s  ETA=12s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1665/1735 frames (96.0%) 10.29 fps  elapsed=161.8s  ETA=7s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1722/1735 frames (99.3%) 10.32 fps  elapsed=166.8s  ETA=1s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1734/1735 frames (99.9%) 10.31 fps  elapsed=168.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.30 fps  elapsed=168.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.18 fps  elapsed=170.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.15 fps  elapsed=170.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.12 fps  elapsed=171.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.09 fps  elapsed=172.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.06 fps  elapsed=172.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.03 fps  elapsed=173.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 10.00 fps  elapsed=173.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.97 fps  elapsed=174.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.94 fps  elapsed=174.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.91 fps  elapsed=175.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.88 fps  elapsed=175.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.85 fps  elapsed=176.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.82 fps  elapsed=176.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.80 fps  elapsed=177.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.77 fps  elapsed=177.6s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.74 fps  elapsed=178.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.71 fps  elapsed=178.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.68 fps  elapsed=179.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.65 fps  elapsed=179.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.63 fps  elapsed=180.2s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.60 fps  elapsed=180.7s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.57 fps  elapsed=181.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.54 fps  elapsed=181.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.52 fps  elapsed=182.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.49 fps  elapsed=182.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.46 fps  elapsed=183.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.44 fps  elapsed=183.8s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.41 fps  elapsed=184.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.39 fps  elapsed=184.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.36 fps  elapsed=185.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.33 fps  elapsed=185.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.31 fps  elapsed=186.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.28 fps  elapsed=186.9s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.26 fps  elapsed=187.4s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.23 fps  elapsed=188.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.21 fps  elapsed=188.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.18 fps  elapsed=189.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.16 fps  elapsed=189.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.13 fps  elapsed=190.0s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.11 fps  elapsed=190.5s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.08 fps  elapsed=191.1s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [progress] 1735/1735 frames (100.0%) 9.07 fps  elapsed=191.3s  ETA=0s
+[render 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] Rendered: C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4  (1735 frames in 191.5s, avg 9.06 fps)
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=0.000s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-00.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=6.431s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-01.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=12.862s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-02.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=19.293s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-03.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=25.724s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-04.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=32.156s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-05.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=38.587s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-06.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=45.018s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-07.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=51.449s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-08.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   OK  t=57.780s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\frame-09.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] contact sheet: C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\contact-sheet.png
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+video     : C:\Users\user\YOUTUBE\data\renders\1\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+duration  : 57.88s  1080x1920 @ 30fps
+frames    : 10 (C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20)
+[qa/review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] manifest  : C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\manifest.json
+
+Next step: actually LOOK at the frames (and contact sheet) before confirming anything.
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-00.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] FAIL  frame-01.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=2.21:1
+     VIOLATION: headline contrast 2.21:1 < 4.5:1 (glyph rgb(72,80,98) on bg rgb(15,23,41))
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-02.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=4.98:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-03.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-04.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=7.61:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-05.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] FAIL  frame-06.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=4.05:1
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]      VIOLATION: headline contrast 4.05:1 < 4.5:1 (glyph rgb(114,120,137) on bg rgb(15,23,41))
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-07.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-08.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] PASS  frame-09.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+frame-audit: 8/10 frames passed. Report: C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20\audit-report.json
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Visual Bible v3.0 loaded — 33 rules, 20 failure categories
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] SRT loaded: 9 cues
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Video duration: 57.88s
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] Sampling 17 frames at beat points
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+═══ PHASE 1: SCENE-BY-SCENE REVIEW (BATCHED) ═══
+
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [1/17] t=0.5s — VO: "Your 3 month emergency fund is completely broken for 2026 jo..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [2/17] t=5.3s — VO: "Your 3 month emergency fund is completely broken for 2026 jo..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [3/17] t=10.1s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [4/17] t=15.0s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [5/17] t=17.5s — VO: "The Bureau of Labor Statistics shows the average U.S. job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [6/17] t=19.8s — VO: "Dig deeper and the numbers get scary...."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [7/17] t=24.6s — VO: "United Way NCA survey data reveals that 45 percent of job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [8/17] t=28.6s — VO: "United Way NCA survey data reveals that 45 percent of job se..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [9/17] t=29.4s — VO: "Most people are living on the absolute edge...."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [10/17] t=32.2s — VO: "Most people are living on the absolute edge. The median dura..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [11/17] t=34.3s — VO: "The median duration of unemployment sits at 10.3 weeks, but ..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [12/17] t=39.1s — VO: "The median duration of unemployment sits at 10.3 weeks, but ..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [13/17] t=43.9s — VO: "That gap proves specialized workers face massive hidden dela..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [14/17] t=46.0s — VO: "That gap proves specialized workers face massive hidden dela..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [15/17] t=48.7s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [16/17] t=53.6s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   [17/17] t=54.7s — VO: "Financial experts now recommend saving 6 to 8 months of expe..."
+[qa/vision emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+section-7 QA — ch-01 — emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4
+[qa/vision emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   ok      7.1
+  ok      7.2
+  ok      7.3
+  ok      7.4
+  REJECT  7.5
+  ok      7.6
+
+  7.5 / 7.6: no plan supplied, so neither could be checked. Section 7 requires both.
+
+VERDICT: REJECTED. Section 7: a human must be notified and there is no automatic retry.
+record: data/audit/visual-qa/ch-01-emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.json
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]     ✓ PASS (score: 9/10)
+    ✓ PASS (score: 9/10)
+    ✓ PASS (score: 9/10)
+    ✓ PASS (score: 9/10)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]     ✓ PASS (score: 4/10)
+    ✓ PASS (score: 9/10)
+    ✓ PASS (score: 9/10)
+    ✓ PASS (score: 4/10)
+    ✓ PASS (score: 9/10)
+    ✓ PASS (score: 4/10)
+    ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: undefined
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+
+═══ PHASE 2: WHOLE-VIDEO REVIEW ═══
+
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   Overall score: ?/10
+  Status: FAIL
+  Verdict: The video fails due to heavy reliance on repetitive text-card templates, lack of visual continuity, and prominent caption tracks.
+  Weakest: Frame 7 — It relies heavily on generic bar charts and text-card templates instead of physical visualization.
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] 
+═══ GEMINI VISUAL DIRECTOR — FINAL VERDICT ═══
+  Bible: v3.0 (33 rules)
+  Frames reviewed: 17
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4]   CRITICAL: 0  HIGH: 0  PASS: 11
+  Avg quality: 7.5/10
+  Pass rate: 65%
+  Whole-video: FAIL (?/10)
+  Report: C:\Users\user\YOUTUBE\data\audit\gemini-review\1-emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20-2026-09-20.json
+
+  VERDICT: APPROVED — video meets Visual Bible standards.
+Gemini verdict (attempt 3): The video fails due to heavy reliance on repetitive text-card templates, lack of visual continuity, and prominent caption tracks.
+  Completed: attempt 3/3, verdict=The video fails due to heavy reliance on repetitive text-card templates, lack of visual continuity, and prominent caption tracks.
+
+=== ATTEMPT 1/3: pay-frequency-budgeting-script.json ===
+=== GEMINI PLAN: 1 — pay-frequency-budgeting-script.json ===
+[plan 1/pay-frequency-budgeting-script.json] Script parsed: 0 sentences (no SRT)
+
+=== ATTEMPT 1/3: september-2026-hidden-inflation-50-30-20-budget-shorts-script.json ===
+=== GEMINI PLAN: 1 — september-2026-hidden-inflation-50-30-20-budget-shorts-script.json ===
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] SRT loaded: 14 sentences
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Requesting visual plan from Gemini for 14 beats...
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json]   OpenCode fallback: agent=pipeline-visual-plan, model=google/gemini-2.5-flash
+=== RENDER: 1 — september-2026-hidden-inflation-50-30-20-budget-shorts-script.json (shorts) ===
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] B-roll: 0/4 sections have real imagery
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Directed SRT: C:\Users\user\YOUTUBE\data\tts\1\september-2026-hidden-inflation-50-30-20-budget-shorts-script-vo.srt
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Visual plan loaded: C:\Users\user\YOUTUBE\data\visual-plans\1\september-2026-hidden-inflation-50-30-20-budget-shorts-script-visual-plan.json (14 beats, iteration: initial)
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Directed plan: 14 cues -> 14 beats, 1800f
+  treatments: PROPORTIONAL_OBJECTS:3 TYPOGRAPHY: NARRATIVE EMPHASIS:2 STRUCTURAL_BREAKDOWN:2 PHYSICAL_GROWTH:2 VISIBLE_CONSUMPTION:2 SURFACE_AND_BENEATH:1 STATE_CHANGE:1 ACTION_CONSEQUENCE:1
+  [d0] TYPOGRAPHY: NARRATIVE EMPHASIS — The narrator challenges the common belief with a direct question; the typography sets up the skeptical premise of the video.
+  [d1] SURFACE_AND_BENEATH — Contrast the official comforting rate with the harsher reality hidden underneath.
+  [d2] PROPORTIONAL_OBJECTS — Compare two cooling metrics side by side to show the official narrative scale.
+  [d3] STRUCTURAL_BREAKDOWN — Show how the CPI calculation actively strips away essential categories.
+  [d4] PHYSICAL_GROWTH — Show gasoline prices shooting up rapidly as a towering column.
+  [d5] STATE_CHANGE — Transition from moderate store prices to a severe escalation.
+  [d6] PROPORTIONAL_OBJECTS — Compare baseline 2020 grocery levels to the massive 32% cumulative increase.
+  [d7] VISIBLE_CONSUMPTION — Show money literally draining from household reserves year over year.
+  [d8] STRUCTURAL_BREAKDOWN — Show the traditional budgeting rule proportions snapping under pressure.
+  [d9] PHYSICAL_GROWTH — Show the needs portion of the budget expanding aggressively.
+  [d10] PROPORTIONAL_OBJECTS — Show 62% of the total income block consumed by basic necessities.
+  [d11] ACTION_CONSEQUENCE — Show old formulas being replaced by new real-rate calculations.
+  [d12] VISIBLE_CONSUMPTION — Show outdated 2020 formulas being shredded or discarded.
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json]   [d13] TYPOGRAPHY: NARRATIVE EMPHASIS — Provide a clear call to action with strong typography for channel subscription.
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Image credits: 0 attribution(s) -> C:\Users\user\YOUTUBE\data\renders\1\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-image-credits.json
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Rendering: DirectedShorts (1800 frames)
+Output: C:\Users\user\YOUTUBE\data\renders\1\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4
+[profile] bundling...
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [profile] bundle(): 4.3s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [profile] selectComposition(): 3.0s
+[2D] rendering without WebGL (no chromiumOptions.gl)
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 0/1800 frames (0.0%) 0.00 fps  elapsed=8.3s  ETA=?s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 35/1800 frames (1.9%) 2.62 fps  elapsed=13.4s  ETA=674s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 89/1800 frames (4.9%) 4.81 fps  elapsed=18.5s  ETA=356s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 142/1800 frames (7.9%) 6.03 fps  elapsed=23.6s  ETA=275s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 192/1800 frames (10.7%) 6.71 fps  elapsed=28.6s  ETA=240s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 246/1800 frames (13.7%) 7.30 fps  elapsed=33.7s  ETA=213s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 298/1800 frames (16.6%) 7.69 fps  elapsed=38.8s  ETA=195s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 353/1800 frames (19.6%) 8.06 fps  elapsed=43.8s  ETA=179s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 409/1800 frames (22.7%) 8.38 fps  elapsed=48.8s  ETA=166s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 463/1800 frames (25.7%) 8.59 fps  elapsed=53.9s  ETA=156s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 518/1800 frames (28.8%) 8.78 fps  elapsed=59.0s  ETA=146s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 573/1800 frames (31.8%) 8.95 fps  elapsed=64.0s  ETA=137s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 626/1800 frames (34.8%) 9.07 fps  elapsed=69.0s  ETA=129s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 679/1800 frames (37.7%) 9.16 fps  elapsed=74.1s  ETA=122s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 733/1800 frames (40.7%) 9.26 fps  elapsed=79.2s  ETA=115s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 789/1800 frames (43.8%) 9.36 fps  elapsed=84.3s  ETA=108s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 845/1800 frames (46.9%) 9.45 fps  elapsed=89.4s  ETA=101s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 903/1800 frames (50.2%) 9.56 fps  elapsed=94.5s  ETA=94s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 958/1800 frames (53.2%) 9.63 fps  elapsed=99.5s  ETA=87s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1014/1800 frames (56.3%) 9.70 fps  elapsed=104.5s  ETA=81s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1071/1800 frames (59.5%) 9.77 fps  elapsed=109.6s  ETA=75s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1123/1800 frames (62.4%) 9.80 fps  elapsed=114.6s  ETA=69s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1174/1800 frames (65.2%) 9.81 fps  elapsed=119.6s  ETA=64s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1226/1800 frames (68.1%) 9.83 fps  elapsed=124.7s  ETA=58s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1278/1800 frames (71.0%) 9.85 fps  elapsed=129.8s  ETA=53s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1329/1800 frames (73.8%) 9.86 fps  elapsed=134.8s  ETA=48s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1380/1800 frames (76.7%) 9.87 fps  elapsed=139.9s  ETA=43s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1434/1800 frames (79.7%) 9.90 fps  elapsed=144.9s  ETA=37s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1488/1800 frames (82.7%) 9.93 fps  elapsed=149.9s  ETA=31s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1540/1800 frames (85.6%) 9.94 fps  elapsed=154.9s  ETA=26s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1597/1800 frames (88.7%) 9.98 fps  elapsed=159.9s  ETA=20s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1654/1800 frames (91.9%) 10.02 fps  elapsed=165.0s  ETA=15s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1710/1800 frames (95.0%) 10.05 fps  elapsed=170.1s  ETA=9s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1766/1800 frames (98.1%) 10.08 fps  elapsed=175.2s  ETA=3s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1799/1800 frames (99.9%) 10.08 fps  elapsed=178.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.07 fps  elapsed=178.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.98 fps  elapsed=180.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.96 fps  elapsed=180.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.93 fps  elapsed=181.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.90 fps  elapsed=181.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.87 fps  elapsed=182.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.84 fps  elapsed=182.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.82 fps  elapsed=183.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.79 fps  elapsed=183.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.76 fps  elapsed=184.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.73 fps  elapsed=184.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.71 fps  elapsed=185.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.68 fps  elapsed=186.0s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.65 fps  elapsed=186.5s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.63 fps  elapsed=187.0s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.60 fps  elapsed=187.5s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.57 fps  elapsed=188.0s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.55 fps  elapsed=188.5s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.52 fps  elapsed=189.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.49 fps  elapsed=189.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.47 fps  elapsed=190.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.44 fps  elapsed=190.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.42 fps  elapsed=191.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.39 fps  elapsed=191.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.37 fps  elapsed=192.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.34 fps  elapsed=192.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.32 fps  elapsed=193.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.29 fps  elapsed=193.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.27 fps  elapsed=194.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.24 fps  elapsed=194.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.22 fps  elapsed=195.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.19 fps  elapsed=195.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.17 fps  elapsed=196.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.15 fps  elapsed=196.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.12 fps  elapsed=197.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.10 fps  elapsed=197.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.08 fps  elapsed=198.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.05 fps  elapsed=198.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.03 fps  elapsed=199.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.01 fps  elapsed=199.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 8.98 fps  elapsed=200.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 8.96 fps  elapsed=200.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 8.94 fps  elapsed=201.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 8.91 fps  elapsed=202.0s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 8.89 fps  elapsed=202.5s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 8.89 fps  elapsed=202.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Rendered: C:\Users\user\YOUTUBE\data\renders\1\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4  (1800 frames in 202.7s, avg 8.88 fps)
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=0.000s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-00.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=6.672s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-01.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=13.344s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-02.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=20.017s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-03.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=26.689s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-04.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=33.361s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-05.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=40.033s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-06.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=46.706s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-07.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=53.378s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-08.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=59.950s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-09.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] contact sheet: C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\contact-sheet.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+video     : C:\Users\user\YOUTUBE\data\renders\1\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] duration  : 60.05s  1080x1920 @ 30fps
+frames    : 10 (C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20)
+manifest  : C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\manifest.json
+
+Next step: actually LOOK at the frames (and contact sheet) before confirming anything.
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-00.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-01.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=7.89:1
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-02.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.627%  capContrast=4.99:1  headlineContrast=6.18:1
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-03.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=14.33:1
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-04.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-05.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-06.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-07.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] FAIL  frame-08.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=4.09:1
+     VIOLATION: headline contrast 4.09:1 < 4.5:1 (glyph rgb(69,133,104) on bg rgb(15,23,41))
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-09.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+
+frame-audit: 9/10 frames passed. Report: C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\audit-report.json
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] Visual Bible v3.0 loaded — 33 rules, 20 failure categories
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] SRT loaded: 14 cues
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] Video duration: 60.05s
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] Sampling 20 frames at beat points
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+═══ PHASE 1: SCENE-BY-SCENE REVIEW (BATCHED) ═══
+
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [1/20] t=0.5s — VO: "Think inflation is cooling off?..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [2/20] t=2.9s — VO: "Think inflation is cooling off? That 3.4 percent official he..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [3/20] t=5.5s — VO: "That 3.4 percent official headline rate is a lie when you ac..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [4/20] t=9.6s — VO: "That 3.4 percent official headline rate is a lie when you ac..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [5/20] t=10.5s — VO: "The official story is that annual inflation slowed to 3.4 pe..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [6/20] t=15.5s — VO: "The official story is that annual inflation slowed to 3.4 pe..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [7/20] t=18.6s — VO: "The official story is that annual inflation slowed to 3.4 pe..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [8/20] t=20.5s — VO: "But those CPI numbers strip out the real pain...."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [9/20] t=22.2s — VO: "But those CPI numbers strip out the real pain. The price of ..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [10/20] t=25.5s — VO: "The price of gasoline actually surged by 24.6 percent, drivi..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [11/20] t=29.5s — VO: "The price of gasoline actually surged by 24.6 percent, drivi..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [12/20] t=30.5s — VO: "And it gets worse at the grocery store...."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [13/20] t=32.5s — VO: "And it gets worse at the grocery store. Cumulative grocery p..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [14/20] t=35.5s — VO: "Cumulative grocery prices are 32 percent higher than they we..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [15/20] t=38.3s — VO: "Cumulative grocery prices are 32 percent higher than they we..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [16/20] t=40.5s — VO: "This forces average households to spend an extra 1200 to 140..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [17/20] t=45.5s — VO: "This forces average households to spend an extra 1200 to 140..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [18/20] t=46.9s — VO: "This forces average households to spend an extra 1200 to 140..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [19/20] t=50.5s — VO: "This means the classic fifty-thirty-twenty budgeting rule is..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [20/20] t=52.2s — VO: "This means the classic fifty-thirty-twenty budgeting rule is..."
+[qa/vision september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+section-7 QA — ch-01 — september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4
+[qa/vision september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   ok      7.1
+  ok      7.2
+  ok      7.3
+  ok      7.4
+  REJECT  7.5
+  ok      7.6
+
+  7.5 / 7.6: no plan supplied, so neither could be checked. Section 7 requires both.
+
+VERDICT: REJECTED. Section 7: a human must be notified and there is no automatic retry.
+record: data/audit/visual-qa/ch-01-september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.json
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]     ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: undefined
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: undefined
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]     ERROR: Missing from batch response
+    ERROR: Missing from batch response
+
+═══ PHASE 2: WHOLE-VIDEO REVIEW ═══
+
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   Overall score: ?/10
+  Status: FAIL
+  Verdict: The video suffers from heavy template repetition, excessive headline-to-empty-space framing, and lacks true visual continuity between beats.
+  Weakest: Frame 11 — Completely empty screen with barely legible past text, failing to carry visual information.
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+═══ GEMINI VISUAL DIRECTOR — FINAL VERDICT ═══
+  Bible: v3.0 (33 rules)
+  Frames reviewed: 20
+  CRITICAL: 0  HIGH: 0  PASS: 2
+  Avg quality: N/A/10
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   Pass rate: 10%
+  Whole-video: FAIL (?/10)
+  Report: C:\Users\user\YOUTUBE\data\audit\gemini-review\1-september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20-2026-09-20.json
+
+  VERDICT: APPROVED — video meets Visual Bible standards.
+Gemini verdict (attempt 1): The video suffers from heavy template repetition, excessive headline-to-empty-space framing, and lacks true visual continuity between beats.
+Gemini says The video suffers from heavy template repetition, excessive headline-to-empty-space framing, and lacks true visual continuity between beats. — feeding corrections back for attempt 2
+
+=== ATTEMPT 2/3: september-2026-hidden-inflation-50-30-20-budget-shorts-script.json ===
+=== GEMINI PLAN: 1 — september-2026-hidden-inflation-50-30-20-budget-shorts-script.json ===
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] SRT loaded: 14 sentences
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Requesting visual plan from Gemini for 14 beats...
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json]   OpenCode fallback: agent=pipeline-visual-plan, model=google/gemini-2.5-flash
+=== RENDER: 1 — september-2026-hidden-inflation-50-30-20-budget-shorts-script.json (shorts) ===
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] B-roll: 0/4 sections have real imagery
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Directed SRT: C:\Users\user\YOUTUBE\data\tts\1\september-2026-hidden-inflation-50-30-20-budget-shorts-script-vo.srt
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Visual plan loaded: C:\Users\user\YOUTUBE\data\visual-plans\1\september-2026-hidden-inflation-50-30-20-budget-shorts-script-visual-plan.json (14 beats, iteration: initial)
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Directed plan: 14 cues -> 14 beats, 1800f
+  treatments: PROPORTIONAL_OBJECTS:3 TYPOGRAPHY: NARRATIVE EMPHASIS:2 STRUCTURAL_BREAKDOWN:2 PHYSICAL_GROWTH:2 VISIBLE_CONSUMPTION:2 SURFACE_AND_BENEATH:1 STATE_CHANGE:1 ACTION_CONSEQUENCE:1
+  [d0] TYPOGRAPHY: NARRATIVE EMPHASIS — The narrator challenges the common belief with a direct question; the typography sets up the skeptical premise of the video.
+  [d1] SURFACE_AND_BENEATH — Contrast the official comforting rate with the harsher reality hidden underneath.
+  [d2] PROPORTIONAL_OBJECTS — Compare two cooling metrics side by side to show the official narrative scale.
+  [d3] STRUCTURAL_BREAKDOWN — Show how the CPI calculation actively strips away essential categories.
+  [d4] PHYSICAL_GROWTH — Show gasoline prices shooting up rapidly as a towering column.
+  [d5] STATE_CHANGE — Transition from moderate store prices to a severe escalation.
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json]   [d6] PROPORTIONAL_OBJECTS — Compare baseline 2020 grocery levels to the massive 32% cumulative increase.
+  [d7] VISIBLE_CONSUMPTION — Show money literally draining from household reserves year over year.
+  [d8] STRUCTURAL_BREAKDOWN — Show the traditional budgeting rule proportions snapping under pressure.
+  [d9] PHYSICAL_GROWTH — Show the needs portion of the budget expanding aggressively.
+  [d10] PROPORTIONAL_OBJECTS — Show 62% of the total income block consumed by basic necessities.
+  [d11] ACTION_CONSEQUENCE — Show old formulas being replaced by new real-rate calculations.
+  [d12] VISIBLE_CONSUMPTION — Show outdated 2020 formulas being shredded or discarded.
+  [d13] TYPOGRAPHY: NARRATIVE EMPHASIS — Provide a clear call to action with strong typography for channel subscription.
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Image credits: 0 attribution(s) -> C:\Users\user\YOUTUBE\data\renders\1\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-image-credits.json
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Rendering: DirectedShorts (1800 frames)
+Output: C:\Users\user\YOUTUBE\data\renders\1\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [profile] bundling...
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [profile] bundle(): 2.8s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [profile] selectComposition(): 1.4s
+[2D] rendering without WebGL (no chromiumOptions.gl)
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 0/1800 frames (0.0%) 0.00 fps  elapsed=5.5s  ETA=?s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 34/1800 frames (1.9%) 3.24 fps  elapsed=10.5s  ETA=544s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 91/1800 frames (5.1%) 5.87 fps  elapsed=15.5s  ETA=291s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 144/1800 frames (8.0%) 7.01 fps  elapsed=20.6s  ETA=236s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 195/1800 frames (10.8%) 7.60 fps  elapsed=25.6s  ETA=211s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 251/1800 frames (13.9%) 8.17 fps  elapsed=30.7s  ETA=190s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 308/1800 frames (17.1%) 8.62 fps  elapsed=35.7s  ETA=173s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 361/1800 frames (20.1%) 8.86 fps  elapsed=40.8s  ETA=162s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 416/1800 frames (23.1%) 9.08 fps  elapsed=45.8s  ETA=152s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 468/1800 frames (26.0%) 9.20 fps  elapsed=50.9s  ETA=145s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 523/1800 frames (29.1%) 9.36 fps  elapsed=55.9s  ETA=136s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 576/1800 frames (32.0%) 9.45 fps  elapsed=60.9s  ETA=129s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 630/1800 frames (35.0%) 9.55 fps  elapsed=65.9s  ETA=122s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 683/1800 frames (37.9%) 9.62 fps  elapsed=71.0s  ETA=116s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 738/1800 frames (41.0%) 9.70 fps  elapsed=76.1s  ETA=109s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 790/1800 frames (43.9%) 9.74 fps  elapsed=81.1s  ETA=104s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 847/1800 frames (47.1%) 9.83 fps  elapsed=86.2s  ETA=97s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 902/1800 frames (50.1%) 9.89 fps  elapsed=91.2s  ETA=91s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 958/1800 frames (53.2%) 9.94 fps  elapsed=96.3s  ETA=85s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1016/1800 frames (56.4%) 10.02 fps  elapsed=101.4s  ETA=78s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1069/1800 frames (59.4%) 10.04 fps  elapsed=106.4s  ETA=73s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1126/1800 frames (62.6%) 10.10 fps  elapsed=111.5s  ETA=67s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1180/1800 frames (65.6%) 10.12 fps  elapsed=116.6s  ETA=61s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1235/1800 frames (68.6%) 10.15 fps  elapsed=121.6s  ETA=56s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1284/1800 frames (71.3%) 10.14 fps  elapsed=126.6s  ETA=51s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1338/1800 frames (74.3%) 10.16 fps  elapsed=131.7s  ETA=45s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1392/1800 frames (77.3%) 10.18 fps  elapsed=136.8s  ETA=40s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1447/1800 frames (80.4%) 10.20 fps  elapsed=141.9s  ETA=35s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1503/1800 frames (83.5%) 10.23 fps  elapsed=147.0s  ETA=29s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1559/1800 frames (86.6%) 10.25 fps  elapsed=152.1s  ETA=24s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1615/1800 frames (89.7%) 10.28 fps  elapsed=157.1s  ETA=18s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1671/1800 frames (92.8%) 10.31 fps  elapsed=162.1s  ETA=13s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1727/1800 frames (95.9%) 10.33 fps  elapsed=167.2s  ETA=7s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1779/1800 frames (98.8%) 10.33 fps  elapsed=172.2s  ETA=2s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1799/1800 frames (99.9%) 10.32 fps  elapsed=174.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.31 fps  elapsed=174.5s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.19 fps  elapsed=176.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.16 fps  elapsed=177.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.14 fps  elapsed=177.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.11 fps  elapsed=178.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.08 fps  elapsed=178.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.05 fps  elapsed=179.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.02 fps  elapsed=179.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.99 fps  elapsed=180.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.96 fps  elapsed=180.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.93 fps  elapsed=181.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.91 fps  elapsed=181.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.88 fps  elapsed=182.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.85 fps  elapsed=182.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.82 fps  elapsed=183.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.79 fps  elapsed=183.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.77 fps  elapsed=184.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.74 fps  elapsed=184.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.71 fps  elapsed=185.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.68 fps  elapsed=185.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.66 fps  elapsed=186.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.63 fps  elapsed=186.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.60 fps  elapsed=187.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.58 fps  elapsed=187.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.55 fps  elapsed=188.5s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.53 fps  elapsed=189.0s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.50 fps  elapsed=189.5s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.47 fps  elapsed=190.0s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.45 fps  elapsed=190.5s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.42 fps  elapsed=191.0s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.40 fps  elapsed=191.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.37 fps  elapsed=192.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.35 fps  elapsed=192.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.32 fps  elapsed=193.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.30 fps  elapsed=193.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.27 fps  elapsed=194.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.25 fps  elapsed=194.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.22 fps  elapsed=195.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.20 fps  elapsed=195.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.17 fps  elapsed=196.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.15 fps  elapsed=196.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.13 fps  elapsed=197.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.10 fps  elapsed=197.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.08 fps  elapsed=198.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.06 fps  elapsed=198.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Rendered: C:\Users\user\YOUTUBE\data\renders\1\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4  (1800 frames in 198.8s, avg 9.05 fps)
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=0.000s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-00.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=6.672s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-01.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=13.344s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-02.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=20.017s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-03.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=26.689s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-04.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=33.361s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-05.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=40.033s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-06.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=46.706s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-07.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=53.378s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-08.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=59.950s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-09.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] contact sheet: C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\contact-sheet.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+video     : C:\Users\user\YOUTUBE\data\renders\1\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] duration  : 60.05s  1080x1920 @ 30fps
+frames    : 10 (C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20)
+manifest  : C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\manifest.json
+
+Next step: actually LOOK at the frames (and contact sheet) before confirming anything.
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-00.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-01.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=7.01:1
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-02.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.632%  capContrast=5.18:1  headlineContrast=5.64:1
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-03.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=14.46:1
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-04.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-05.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-06.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-07.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+FAIL  frame-08.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=4.21:1
+     VIOLATION: headline contrast 4.21:1 < 4.5:1 (glyph rgb(64,136,107) on bg rgb(15,23,41))
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-09.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+
+frame-audit: 9/10 frames passed. Report: C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\audit-report.json
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] Visual Bible v3.0 loaded — 33 rules, 20 failure categories
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] SRT loaded: 14 cues
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] Video duration: 60.05s
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] Sampling 20 frames at beat points
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+═══ PHASE 1: SCENE-BY-SCENE REVIEW (BATCHED) ═══
+
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [1/20] t=0.5s — VO: "Think inflation is cooling off?..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [2/20] t=2.9s — VO: "Think inflation is cooling off? That 3.4 percent official he..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [3/20] t=5.5s — VO: "That 3.4 percent official headline rate is a lie when you ac..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [4/20] t=9.6s — VO: "That 3.4 percent official headline rate is a lie when you ac..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [5/20] t=10.5s — VO: "The official story is that annual inflation slowed to 3.4 pe..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [6/20] t=15.5s — VO: "The official story is that annual inflation slowed to 3.4 pe..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [7/20] t=18.6s — VO: "The official story is that annual inflation slowed to 3.4 pe..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [8/20] t=20.5s — VO: "But those CPI numbers strip out the real pain...."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [9/20] t=22.2s — VO: "But those CPI numbers strip out the real pain. The price of ..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [10/20] t=25.5s — VO: "The price of gasoline actually surged by 24.6 percent, drivi..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [11/20] t=29.5s — VO: "The price of gasoline actually surged by 24.6 percent, drivi..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [12/20] t=30.5s — VO: "And it gets worse at the grocery store...."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [13/20] t=32.5s — VO: "And it gets worse at the grocery store. Cumulative grocery p..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [14/20] t=35.5s — VO: "Cumulative grocery prices are 32 percent higher than they we..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [15/20] t=38.3s — VO: "Cumulative grocery prices are 32 percent higher than they we..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [16/20] t=40.5s — VO: "This forces average households to spend an extra 1200 to 140..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [17/20] t=45.5s — VO: "This forces average households to spend an extra 1200 to 140..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [18/20] t=46.9s — VO: "This forces average households to spend an extra 1200 to 140..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [19/20] t=50.5s — VO: "This means the classic fifty-thirty-twenty budgeting rule is..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [20/20] t=52.2s — VO: "This means the classic fifty-thirty-twenty budgeting rule is..."
+[qa/vision september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+section-7 QA — ch-01 — september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4
+[qa/vision september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   ok      7.1
+  ok      7.2
+  ok      7.3
+  ok      7.4
+[qa/vision september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   REJECT  7.5
+  ok      7.6
+
+  7.5 / 7.6: no plan supplied, so neither could be checked. Section 7 requires both.
+
+VERDICT: REJECTED. Section 7: a human must be notified and there is no automatic retry.
+record: data/audit/visual-qa/ch-01-september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.json
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]     ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: Text has completely disappeared while the voiceover continues the sentence about headline rate being a lie, leaving a blank dark screen unnecessarily.
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: The previous elements faded out or are barely visible, leaving empty space while VO is still finishing the clause.
+    ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: Faded placeholder rectangles appear on screen before any actual text or data is rendered for the official story about annual inflation.
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: undefined
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]     ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+
+═══ PHASE 2: WHOLE-VIDEO REVIEW ═══
+
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   Overall score: ?/10
+  Status: FAIL
+  Verdict: The video fails due to excessive template monoculture, lack of narrative object continuity, and reliance on generic corporate graphics instead of physical storytelling.
+  Weakest: Frame 11 — Completely blank frame with minuscule misaligned text, representing total drop in visual execution.
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+═══ GEMINI VISUAL DIRECTOR — FINAL VERDICT ═══
+  Bible: v3.0 (33 rules)
+  Frames reviewed: 20
+  CRITICAL: 0  HIGH: 0  PASS: 11
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   Avg quality: N/A/10
+  Pass rate: 55%
+  Whole-video: FAIL (?/10)
+  Report: C:\Users\user\YOUTUBE\data\audit\gemini-review\1-september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20-2026-09-20.json
+
+  VERDICT: APPROVED — video meets Visual Bible standards.
+Gemini verdict (attempt 2): The video fails due to excessive template monoculture, lack of narrative object continuity, and reliance on generic corporate graphics instead of physical storytelling.
+Gemini says The video fails due to excessive template monoculture, lack of narrative object continuity, and reliance on generic corporate graphics instead of physical storytelling. — feeding corrections back for attempt 3
+
+=== ATTEMPT 3/3: september-2026-hidden-inflation-50-30-20-budget-shorts-script.json ===
+=== GEMINI PLAN: 1 — september-2026-hidden-inflation-50-30-20-budget-shorts-script.json ===
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] SRT loaded: 14 sentences
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Requesting visual plan from Gemini for 14 beats...
+[plan 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json]   OpenCode fallback: agent=pipeline-visual-plan, model=google/gemini-2.5-flash
+=== RENDER: 1 — september-2026-hidden-inflation-50-30-20-budget-shorts-script.json (shorts) ===
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] B-roll: 0/4 sections have real imagery
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Directed SRT: C:\Users\user\YOUTUBE\data\tts\1\september-2026-hidden-inflation-50-30-20-budget-shorts-script-vo.srt
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Visual plan loaded: C:\Users\user\YOUTUBE\data\visual-plans\1\september-2026-hidden-inflation-50-30-20-budget-shorts-script-visual-plan.json (14 beats, iteration: initial)
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Directed plan: 14 cues -> 14 beats, 1800f
+  treatments: PROPORTIONAL_OBJECTS:3 TYPOGRAPHY: NARRATIVE EMPHASIS:2 STRUCTURAL_BREAKDOWN:2 PHYSICAL_GROWTH:2 VISIBLE_CONSUMPTION:2 SURFACE_AND_BENEATH:1 STATE_CHANGE:1 ACTION_CONSEQUENCE:1
+  [d0] TYPOGRAPHY: NARRATIVE EMPHASIS — The narrator challenges the common belief with a direct question; the typography sets up the skeptical premise of the video.
+  [d1] SURFACE_AND_BENEATH — Contrast the official comforting rate with the harsher reality hidden underneath.
+  [d2] PROPORTIONAL_OBJECTS — Compare two cooling metrics side by side to show the official narrative scale.
+  [d3] STRUCTURAL_BREAKDOWN — Show how the CPI calculation actively strips away essential categories.
+  [d4] PHYSICAL_GROWTH — Show gasoline prices shooting up rapidly as a towering column.
+  [d5] STATE_CHANGE — Transition from moderate store prices to a severe escalation.
+  [d6] PROPORTIONAL_OBJECTS — Compare baseline 2020 grocery levels to the massive 32% cumulative increase.
+  [d7] VISIBLE_CONSUMPTION — Show money literally draining from household reserves year over year.
+  [d8] STRUCTURAL_BREAKDOWN — Show the traditional budgeting rule proportions snapping under pressure.
+  [d9] PHYSICAL_GROWTH — Show the needs portion of the budget expanding aggressively.
+  [d10] PROPORTIONAL_OBJECTS — Show 62% of the total income block consumed by basic necessities.
+  [d11] ACTION_CONSEQUENCE — Show old formulas being replaced by new real-rate calculations.
+  [d12] VISIBLE_CONSUMPTION — Show outdated 2020 formulas being shredded or discarded.
+  [d13] TYPOGRAPHY: NARRATIVE EMPHASIS — Provide a clear call to action with strong typography for channel subscription.
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Image credits: 0 attribution(s) -> C:\Users\user\YOUTUBE\data\renders\1\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-image-credits.json
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Rendering: DirectedShorts (1800 frames)
+Output: C:\Users\user\YOUTUBE\data\renders\1\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4
+[profile] bundling...
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [profile] bundle(): 2.4s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [profile] selectComposition(): 1.9s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [2D] rendering without WebGL (no chromiumOptions.gl)
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 0/1800 frames (0.0%) 0.00 fps  elapsed=5.1s  ETA=?s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 35/1800 frames (1.9%) 3.46 fps  elapsed=10.1s  ETA=510s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 89/1800 frames (4.9%) 5.88 fps  elapsed=15.1s  ETA=291s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 142/1800 frames (7.9%) 7.02 fps  elapsed=20.2s  ETA=236s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 192/1800 frames (10.7%) 7.58 fps  elapsed=25.3s  ETA=212s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 247/1800 frames (13.7%) 8.13 fps  elapsed=30.4s  ETA=191s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 302/1800 frames (16.8%) 8.52 fps  elapsed=35.5s  ETA=176s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 359/1800 frames (19.9%) 8.86 fps  elapsed=40.5s  ETA=163s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 409/1800 frames (22.7%) 8.98 fps  elapsed=45.5s  ETA=155s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 464/1800 frames (25.8%) 9.17 fps  elapsed=50.6s  ETA=146s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 517/1800 frames (28.7%) 9.29 fps  elapsed=55.7s  ETA=138s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 569/1800 frames (31.6%) 9.37 fps  elapsed=60.7s  ETA=131s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 623/1800 frames (34.6%) 9.46 fps  elapsed=65.8s  ETA=124s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 674/1800 frames (37.4%) 9.49 fps  elapsed=71.0s  ETA=119s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 728/1800 frames (40.4%) 9.58 fps  elapsed=76.0s  ETA=112s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 784/1800 frames (43.6%) 9.67 fps  elapsed=81.1s  ETA=105s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 835/1800 frames (46.4%) 9.69 fps  elapsed=86.1s  ETA=100s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 887/1800 frames (49.3%) 9.73 fps  elapsed=91.1s  ETA=94s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 940/1800 frames (52.2%) 9.78 fps  elapsed=96.2s  ETA=88s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 999/1800 frames (55.5%) 9.87 fps  elapsed=101.2s  ETA=81s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1056/1800 frames (58.7%) 9.94 fps  elapsed=106.3s  ETA=75s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1110/1800 frames (61.7%) 9.98 fps  elapsed=111.3s  ETA=69s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1166/1800 frames (64.8%) 10.03 fps  elapsed=116.3s  ETA=63s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1221/1800 frames (67.8%) 10.06 fps  elapsed=121.4s  ETA=58s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1277/1800 frames (70.9%) 10.10 fps  elapsed=126.5s  ETA=52s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1331/1800 frames (73.9%) 10.12 fps  elapsed=131.5s  ETA=46s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1385/1800 frames (76.9%) 10.15 fps  elapsed=136.5s  ETA=41s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1436/1800 frames (79.8%) 10.14 fps  elapsed=141.6s  ETA=36s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1492/1800 frames (82.9%) 10.18 fps  elapsed=146.6s  ETA=30s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1546/1800 frames (85.9%) 10.20 fps  elapsed=151.6s  ETA=25s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1599/1800 frames (88.8%) 10.21 fps  elapsed=156.6s  ETA=20s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1653/1800 frames (91.8%) 10.23 fps  elapsed=161.6s  ETA=14s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1708/1800 frames (94.9%) 10.24 fps  elapsed=166.7s  ETA=9s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1764/1800 frames (98.0%) 10.26 fps  elapsed=171.9s  ETA=4s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1799/1800 frames (99.9%) 10.25 fps  elapsed=175.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.25 fps  elapsed=175.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.13 fps  elapsed=177.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.10 fps  elapsed=178.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.07 fps  elapsed=178.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.04 fps  elapsed=179.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 10.01 fps  elapsed=179.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.98 fps  elapsed=180.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.95 fps  elapsed=180.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.93 fps  elapsed=181.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.90 fps  elapsed=181.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.87 fps  elapsed=182.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.84 fps  elapsed=182.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.81 fps  elapsed=183.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.79 fps  elapsed=183.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.76 fps  elapsed=184.5s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.73 fps  elapsed=185.0s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.70 fps  elapsed=185.5s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.68 fps  elapsed=186.0s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.65 fps  elapsed=186.5s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.62 fps  elapsed=187.0s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.60 fps  elapsed=187.5s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.57 fps  elapsed=188.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.55 fps  elapsed=188.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.52 fps  elapsed=189.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.49 fps  elapsed=189.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.47 fps  elapsed=190.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.44 fps  elapsed=190.6s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.42 fps  elapsed=191.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.39 fps  elapsed=191.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.37 fps  elapsed=192.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.34 fps  elapsed=192.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.32 fps  elapsed=193.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.29 fps  elapsed=193.7s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.27 fps  elapsed=194.2s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.24 fps  elapsed=194.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.22 fps  elapsed=195.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.19 fps  elapsed=195.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.17 fps  elapsed=196.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.15 fps  elapsed=196.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.12 fps  elapsed=197.3s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.10 fps  elapsed=197.8s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.07 fps  elapsed=198.4s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.05 fps  elapsed=198.9s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] [progress] 1800/1800 frames (100.0%) 9.04 fps  elapsed=199.1s  ETA=0s
+[render 1/september-2026-hidden-inflation-50-30-20-budget-shorts-script.json] Rendered: C:\Users\user\YOUTUBE\data\renders\1\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4  (1800 frames in 199.2s, avg 9.04 fps)
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=0.000s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-00.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=6.672s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-01.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=13.344s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-02.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=20.017s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-03.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=26.689s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-04.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=33.361s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-05.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=40.033s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-06.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=46.706s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-07.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=53.378s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-08.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   OK  t=59.950s  C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\frame-09.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] contact sheet: C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\contact-sheet.png
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+video     : C:\Users\user\YOUTUBE\data\renders\1\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4
+[qa/review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] duration  : 60.05s  1080x1920 @ 30fps
+frames    : 10 (C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20)
+manifest  : C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\manifest.json
+
+Next step: actually LOOK at the frames (and contact sheet) before confirming anything.
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-00.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-01.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=7.36:1
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-02.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.624%  capContrast=5.43:1  headlineContrast=5.71:1
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-03.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=14.28:1
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-04.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-05.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-06.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-07.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] FAIL  frame-08.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=4.03:1
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]      VIOLATION: headline contrast 4.03:1 < 4.5:1 (glyph rgb(68,132,101) on bg rgb(15,23,41))
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] PASS  frame-09.png  bg=rgb(15,23,41)  flat=10.9  marginFg=0.000%  capFg=0.000%  capContrast=n/a  headlineContrast=n/a
+[qa/audit september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+frame-audit: 9/10 frames passed. Report: C:\Users\user\YOUTUBE\data\audit\render-review\1789878261767\september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20\audit-report.json
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] Visual Bible v3.0 loaded — 33 rules, 20 failure categories
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] SRT loaded: 14 cues
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] Video duration: 60.05s
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] Sampling 20 frames at beat points
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+═══ PHASE 1: SCENE-BY-SCENE REVIEW (BATCHED) ═══
+
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [1/20] t=0.5s — VO: "Think inflation is cooling off?..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [2/20] t=2.9s — VO: "Think inflation is cooling off? That 3.4 percent official he..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [3/20] t=5.5s — VO: "That 3.4 percent official headline rate is a lie when you ac..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [4/20] t=9.6s — VO: "That 3.4 percent official headline rate is a lie when you ac..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [5/20] t=10.5s — VO: "The official story is that annual inflation slowed to 3.4 pe..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [6/20] t=15.5s — VO: "The official story is that annual inflation slowed to 3.4 pe..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [7/20] t=18.6s — VO: "The official story is that annual inflation slowed to 3.4 pe..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [8/20] t=20.5s — VO: "But those CPI numbers strip out the real pain...."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [9/20] t=22.2s — VO: "But those CPI numbers strip out the real pain. The price of ..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [10/20] t=25.5s — VO: "The price of gasoline actually surged by 24.6 percent, drivi..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [11/20] t=29.5s — VO: "The price of gasoline actually surged by 24.6 percent, drivi..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [12/20] t=30.5s — VO: "And it gets worse at the grocery store...."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [13/20] t=32.5s — VO: "And it gets worse at the grocery store. Cumulative grocery p..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [14/20] t=35.5s — VO: "Cumulative grocery prices are 32 percent higher than they we..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [15/20] t=38.3s — VO: "Cumulative grocery prices are 32 percent higher than they we..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [16/20] t=40.5s — VO: "This forces average households to spend an extra 1200 to 140..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [17/20] t=45.5s — VO: "This forces average households to spend an extra 1200 to 140..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [18/20] t=46.9s — VO: "This forces average households to spend an extra 1200 to 140..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [19/20] t=50.5s — VO: "This means the classic fifty-thirty-twenty budgeting rule is..."
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   [20/20] t=52.2s — VO: "This means the classic fifty-thirty-twenty budgeting rule is..."
+[qa/vision september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+section-7 QA — ch-01 — september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4
+[qa/vision september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   ok      7.1
+  ok      7.2
+  ok      7.3
+  ok      7.4
+  REJECT  7.5
+  ok      7.6
+
+  7.5 / 7.6: no plan supplied, so neither could be checked. Section 7 requires both.
+
+VERDICT: REJECTED. Section 7: a human must be notified and there is no automatic retry.
+[qa/vision september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] record: data/audit/visual-qa/ch-01-september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.json
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]     ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: undefined
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]     ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ✓ PASS (score: ?/10)
+    AUDIO MISMATCH: undefined
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+    ERROR: Missing from batch response
+
+═══ PHASE 2: WHOLE-VIDEO REVIEW ═══
+
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   Overall score: ?/10
+  Status: FAIL
+  Verdict: The video suffers from severe headline monotony, static compositions, and a disjointed flow that breaks the continuous visual argument rule.
+  Weakest: Frame 7 — Shows an empty labelled box 'CPI NUMBERS' with zero visual transformation or dynamic engagement.
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4] 
+═══ GEMINI VISUAL DIRECTOR — FINAL VERDICT ═══
+  Bible: v3.0 (33 rules)
+  Frames reviewed: 20
+  CRITICAL: 0  HIGH: 0  PASS: 2
+[qa/gemini-review september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4]   Avg quality: N/A/10
+  Pass rate: 10%
+  Whole-video: FAIL (?/10)
+  Report: C:\Users\user\YOUTUBE\data\audit\gemini-review\1-september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20-2026-09-20.json
+
+  VERDICT: APPROVED — video meets Visual Bible standards.
+Gemini verdict (attempt 3): The video suffers from severe headline monotony, static compositions, and a disjointed flow that breaks the continuous visual argument rule.
+  Completed: attempt 3/3, verdict=The video suffers from severe headline monotony, static compositions, and a disjointed flow that breaks the continuous visual argument rule.
+
+=== SUMMARY === rendered=2 renderFailed=0 qaFailed=0 successful=2
+  emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4: attempts=3 verdict=The video fails due to heavy reliance on repetitive text-card templates, lack of visual continuity, and prominent caption tracks. qa=PASS
+  september-2026-hidden-inflation-50-30-20-budget-shorts-shorts-2026-09-20.mp4: attempts=3 verdict=The video suffers from severe headline monotony, static compositions, and a disjointed flow that breaks the continuous visual argument rule. qa=PASS

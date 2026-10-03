@@ -1,0 +1,130 @@
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [gemini-client] Tokens used: 9807 (session total: 9807/50000)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [gemini-client] Cache MISS for e21c722ee4a2... (hits: 0, misses: 1)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::visual-ratio: 0% visual-only beats is below the 50% minimum - plan may be rejected
+  Auto-repair: stripping typography from 5 beat(s) to meet 50% minimum
+    beat 1: stripped typography
+    beat 4: stripped typography
+    beat 5: stripped typography
+    beat 6: stripped typography
+    beat 7: stripped typography
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::narrative-typography: repaired 3 phrase(s)
+  beat 0: "3 MONTHS ISN'T ENOUGH" -> "3 MONTHS ISN'T ENOUGH"  (reads as a headline/topic label, not narrative emphasis)
+  beat 3: "45% OUT OF CASH IN 30 DAYS" -> "45% OUT OF CASH IN 30 DAYS"  (reads as a headline/topic label, not narrative emphasis)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   beat 8: "UPGRADE YOUR BUFFER" -> "UPGRADE YOUR BUFFER"  (reads as a headline/topic label, not narrative emphasis)
+::warning::narrative-typography: 44% of beats carry on-screen text (max 40%) — typography should be selective, not the default
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::beat 0 compilation: Scene coverage 23% is below minimum 35% — adding ground plane
+::warning::beat 1 compilation: Scene coverage 13% is below minimum 35% — adding ground plane
+::warning::beat 2 compilation: Scene coverage 23% is below minimum 35% — adding ground plane
+::warning::beat 4 compilation: Scene coverage 5% is below minimum 35% — adding ground plane
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::beat 5 compilation: Scene coverage 13% is below minimum 35% — adding ground plane
+::warning::beat 6 compilation: objects[1]: dropped label on "arrow" (draws no label)
+::warning::beat 6 compilation: Scene coverage 9% is below minimum 35% — adding ground plane
+::warning::beat 7 compilation: accumulation requires block
+::warning::beat 7 compilation: accumulation requires stack
+::warning::beat 7 compilation: accumulation requires document
+::warning::beat 7 compilation: accumulation requires silhouette
+::warning::beat 6 composition: objects[2]: dropped label on "arrow" (draws no label)
+  beat 0: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 0: objects[1]: unknown primitive "container" — use one of: block, stack, bar, vessel, document, grid, gauge, figure, counter, silhouette, arrow, rule, field
+  beat 1: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 1: objects[1]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 1: objects[2]: unknown motion "growth" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 2: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 2: objects[1]: unknown primitive "surface" — use one of: block, stack, bar, vessel, document, grid, gauge, figure, counter, silhouette, arrow, rule, field
+  beat 3: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 3: objects[1]: unknown primitive "silhouettes" — use one of: block, stack, bar, vessel, document, grid, gauge, figure, counter, silhouette, arrow, rule, field
+  beat 3: objects[2]: unknown anchor "foreground" — use one of: center, top, bottom, left, right, top_left, top_right, bottom_left, bottom_right, upper_third, lower_third, full
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] WARN: 2 frame(s) failed audit — contrast violations logged but render kept (warn-only).
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 12385 (session total: 12385/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for ed98c9ad566c... (hits: 0, misses: 1)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 10270 (session total: 22655/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 9c9812a4feb2... (hits: 0, misses: 2)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 11137 (session total: 33792/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for d8ad0c696fc3... (hits: 0, misses: 3)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [gemini-client] Cache HIT for e21c722ee4a2...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::visual-ratio: 0% visual-only beats is below the 50% minimum - plan may be rejected
+  Auto-repair: stripping typography from 5 beat(s) to meet 50% minimum
+    beat 1: stripped typography
+    beat 4: stripped typography
+    beat 5: stripped typography
+    beat 6: stripped typography
+    beat 7: stripped typography
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::narrative-typography: repaired 3 phrase(s)
+  beat 0: "3 MONTHS ISN'T ENOUGH" -> "3 MONTHS ISN'T ENOUGH"  (reads as a headline/topic label, not narrative emphasis)
+  beat 3: "45% OUT OF CASH IN 30 DAYS" -> "45% OUT OF CASH IN 30 DAYS"  (reads as a headline/topic label, not narrative emphasis)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json]   beat 8: "UPGRADE YOUR BUFFER" -> "UPGRADE YOUR BUFFER"  (reads as a headline/topic label, not narrative emphasis)
+::warning::narrative-typography: 44% of beats carry on-screen text (max 40%) — typography should be selective, not the default
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::beat 0 compilation: Scene coverage 23% is below minimum 35% — adding ground plane
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::beat 1 compilation: Scene coverage 13% is below minimum 35% — adding ground plane
+::warning::beat 2 compilation: Scene coverage 23% is below minimum 35% — adding ground plane
+::warning::beat 4 compilation: Scene coverage 5% is below minimum 35% — adding ground plane
+::warning::beat 5 compilation: Scene coverage 13% is below minimum 35% — adding ground plane
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::beat 6 compilation: objects[1]: dropped label on "arrow" (draws no label)
+::warning::beat 6 compilation: Scene coverage 9% is below minimum 35% — adding ground plane
+::warning::beat 7 compilation: accumulation requires block
+::warning::beat 7 compilation: accumulation requires stack
+::warning::beat 7 compilation: accumulation requires document
+::warning::beat 7 compilation: accumulation requires silhouette
+::warning::beat 6 composition: objects[2]: dropped label on "arrow" (draws no label)
+  beat 0: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 0: objects[1]: unknown primitive "container" — use one of: block, stack, bar, vessel, document, grid, gauge, figure, counter, silhouette, arrow, rule, field
+  beat 1: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 1: objects[1]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 1: objects[2]: unknown motion "growth" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 2: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 2: objects[1]: unknown primitive "surface" — use one of: block, stack, bar, vessel, document, grid, gauge, figure, counter, silhouette, arrow, rule, field
+  beat 3: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 3: objects[1]: unknown primitive "silhouettes" — use one of: block, stack, bar, vessel, document, grid, gauge, figure, counter, silhouette, arrow, rule, field
+  beat 3: objects[2]: unknown anchor "foreground" — use one of: center, top, bottom, left, right, top_left, top_right, bottom_left, bottom_right, upper_third, lower_third, full
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] WARN: 2 frame(s) failed audit — contrast violations logged but render kept (warn-only).
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 11701 (session total: 11701/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] [key 1/1] no text in response: {"candidates":[{"content":{},"finishReason":"RECITATION","index":0,"finishMessage":"The generated content was filtered because it may contain material that resembles existing copyrighted works. Try re
+  Batch 1 failed: All 1 Gemini keys failed; last error: [key 1/1] no text in response: {"candidates":[{"content":{},"finishReason":"RECITATION","index":0,"finishMessage":"The generated content was filtered because it may contain material that resembles existing copyrighted works. Try re — retrying once
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 13684 (session total: 25385/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for fa08150621bd... (hits: 0, misses: 1)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 10271 (session total: 35656/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 509b9faa617a... (hits: 0, misses: 2)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 11126 (session total: 46782/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for f3a4f6f45b66... (hits: 0, misses: 3)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] [gemini-client] Cache HIT for e21c722ee4a2...
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::visual-ratio: 0% visual-only beats is below the 50% minimum - plan may be rejected
+  Auto-repair: stripping typography from 5 beat(s) to meet 50% minimum
+    beat 1: stripped typography
+    beat 4: stripped typography
+    beat 5: stripped typography
+    beat 6: stripped typography
+    beat 7: stripped typography
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::narrative-typography: repaired 3 phrase(s)
+  beat 0: "3 MONTHS ISN'T ENOUGH" -> "3 MONTHS ISN'T ENOUGH"  (reads as a headline/topic label, not narrative emphasis)
+  beat 3: "45% OUT OF CASH IN 30 DAYS" -> "45% OUT OF CASH IN 30 DAYS"  (reads as a headline/topic label, not narrative emphasis)
+  beat 8: "UPGRADE YOUR BUFFER" -> "UPGRADE YOUR BUFFER"  (reads as a headline/topic label, not narrative emphasis)
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::narrative-typography: 44% of beats carry on-screen text (max 40%) — typography should be selective, not the default
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::beat 0 compilation: Scene coverage 23% is below minimum 35% — adding ground plane
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::beat 1 compilation: Scene coverage 13% is below minimum 35% — adding ground plane
+::warning::beat 2 compilation: Scene coverage 23% is below minimum 35% — adding ground plane
+::warning::beat 4 compilation: Scene coverage 5% is below minimum 35% — adding ground plane
+::warning::beat 5 compilation: Scene coverage 13% is below minimum 35% — adding ground plane
+[plan 1/emergency-fund-bigger-than-you-think-2026-shorts-script.json] ::warning::beat 6 compilation: objects[1]: dropped label on "arrow" (draws no label)
+::warning::beat 6 compilation: Scene coverage 9% is below minimum 35% — adding ground plane
+::warning::beat 7 compilation: accumulation requires block
+::warning::beat 7 compilation: accumulation requires stack
+::warning::beat 7 compilation: accumulation requires document
+::warning::beat 7 compilation: accumulation requires silhouette
+::warning::beat 6 composition: objects[2]: dropped label on "arrow" (draws no label)
+  beat 0: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 0: objects[1]: unknown primitive "container" — use one of: block, stack, bar, vessel, document, grid, gauge, figure, counter, silhouette, arrow, rule, field
+  beat 1: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 1: objects[1]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 1: objects[2]: unknown motion "growth" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 2: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 2: objects[1]: unknown primitive "surface" — use one of: block, stack, bar, vessel, document, grid, gauge, figure, counter, silhouette, arrow, rule, field
+  beat 3: objects[0]: unknown motion "static" — use one of: appear, rise, grow, drain, fill, fall, strike, split, count, reveal, hold
+  beat 3: objects[1]: unknown primitive "silhouettes" — use one of: block, stack, bar, vessel, document, grid, gauge, figure, counter, silhouette, arrow, rule, field
+  beat 3: objects[2]: unknown anchor "foreground" — use one of: center, top, bottom, left, right, top_left, top_right, bottom_left, bottom_right, upper_third, lower_third, full
+[qa/audit emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] WARN: 2 frame(s) failed audit — contrast violations logged but render kept (warn-only).
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 13684 (session total: 13684/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for f85d9d83b270... (hits: 0, misses: 1)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 10270 (session total: 23954/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for d9aa5b3449cb... (hits: 0, misses: 2)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Tokens used: 11122 (session total: 35076/50000)
+[qa/gemini-review emergency-fund-bigger-than-you-think-2026-shorts-shorts-2026-09-20.mp4] [gemini-client] Cache MISS for 25d17d59cbb3... (hits: 0, misses: 3)
