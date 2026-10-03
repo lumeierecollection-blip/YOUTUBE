@@ -372,7 +372,7 @@
           "reserved_at": "2026-10-03T18:19:56.761Z"
         }
       ],
-      "last_generated": "2026-10-03T19:51:37.864Z"
+      "last_generated": "2026-10-03T20:55:53.046Z"
     },
     "2": {
       "channel_name": "Legal Brief",
@@ -779,7 +779,7 @@
           "reserved_at": "2026-10-03T19:52:01.315Z"
         }
       ],
-      "last_generated": "2026-10-03T19:52:01.315Z"
+      "last_generated": "2026-10-03T20:55:02.198Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -1755,7 +1755,7 @@
           "reserved_at": "2026-10-03T18:18:42.428Z"
         }
       ],
-      "last_generated": "2026-10-03T19:53:56.392Z"
+      "last_generated": "2026-10-03T20:54:27.298Z"
     },
     "27": {
       "channel_name": "Trial Files",
@@ -2286,14 +2286,9 @@
           "topic": "AI Negotiation Tactics in 2026",
           "slug": "ai-negotiation-tactics-2026",
           "reserved_at": "2026-10-03T15:39:16.870Z"
-        },
-        {
-          "topic": "The Rise of Virtual Negotiations in 2026",
-          "slug": "virtual-negotiations-2026",
-          "reserved_at": "2026-10-03T18:20:42.052Z"
         }
       ],
-      "last_generated": "2026-10-03T19:51:57.787Z"
+      "last_generated": "2026-10-03T20:53:18.423Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
@@ -2688,9 +2683,14 @@
           "topic": "POSCO Contract Tests a Robot on the Last Manual Gap",
           "slug": "posco-robot-test-manual-gap-202",
           "reserved_at": "2026-10-03T17:42:48.772Z"
+        },
+        {
+          "topic": "humanoid-robot-humanufacturing-2026",
+          "slug": "humanoid-robot-humanufacturing-2026",
+          "reserved_at": "2026-10-03T20:53:56.313Z"
         }
       ],
-      "last_generated": "2026-10-03T19:52:14.841Z"
+      "last_generated": "2026-10-03T20:53:56.313Z"
     },
     "49": {
       "channel_name": "Wander Budget",
