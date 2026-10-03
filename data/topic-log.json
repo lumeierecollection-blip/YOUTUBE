@@ -1660,9 +1660,14 @@
           "topic": "Crypto heist and fraud",
           "slug": "bitget-heist-chainalysis-20261001",
           "reserved_at": "2026-10-03T01:29:50.686Z"
+        },
+        {
+          "topic": "heist-operation-analysis",
+          "slug": "heist-operation-analysis-2026-10-01",
+          "reserved_at": "2026-10-03T02:16:38.295Z"
         }
       ],
-      "last_generated": "2026-10-03T01:29:50.686Z"
+      "last_generated": "2026-10-03T02:16:38.296Z"
     },
     "27": {
       "channel_name": "Climate Now",
