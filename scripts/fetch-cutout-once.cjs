@@ -106,6 +106,26 @@ async function verify(png, concept, scene) {
 }
 const why = (v) => (v.unavailable ? "verifier unavailable" : v.reason);
 
+// A bare concept is searched and verified out of context: "plates" in a steel-mill sentence
+// fetched a fruit plate (CI run 37114977307 ch-48 beat 3), and the reuse check rejected it.
+// The concept is qualified with the material the sentence/scene gives it: the word right
+// before it when that is a material ("copper wire"), else — only for nouns that mean a
+// different object in every trade (plates, sheets, bars, coils...) — the first material the
+// text names ("heavy plates" at "a steel mill" -> "steel plates"). It never invents a
+// material: no material word in the text, the concept is left as the planner wrote it.
+const MATERIAL = "steel|stainless|metal|iron|aluminium|aluminum|copper|brass|bronze|titanium|lead|zinc|tin|glass|wooden|wood|timber|plastic|concrete|paper|cardboard|gold|silver|rubber|leather|ceramic|stone|carbon|silicon|lithium";
+const AMBIGUOUS = /^(plates?|sheets?|bars?|coils?|rods?|chips?|blocks?|beams?|tubes?|pipes?|wires?|rolls?|panels?|cells?|cards?|slabs?|ingots?)$/i;
+function qualifyConcept(concept, text) {
+  const c = String(concept || "").trim();
+  if (!c || /\s/.test(c) || !text) return c;
+  const t = String(text).toLowerCase();
+  const before = t.match(new RegExp(`\\b(${MATERIAL})\\s+${c.toLowerCase()}\\b`));
+  if (before) return `${before[1]} ${c}`;
+  if (!AMBIGUOUS.test(c)) return c;
+  const any = t.match(new RegExp(`\\b(${MATERIAL})\\b`));
+  return any ? `${any[1]} ${c}` : c;
+}
+
 async function fetchCutoutForBeat({ concept, name = null, channel, beat_index, spec = {}, scene = null }) {
   const key = `${channel}:${slug(concept)}`;
   if (runCache.has(key)) {
@@ -234,7 +254,7 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
   return null;
 }
 
-module.exports = { fetchCutoutForBeat, pixabay, wordsOf, FLAT_MONEY, _resetRunCache: () => runCache.clear() };
+module.exports = { fetchCutoutForBeat, qualifyConcept, pixabay, wordsOf, FLAT_MONEY, _resetRunCache: () => runCache.clear() };
 
 if (require.main === module) {
   require("dotenv/config");

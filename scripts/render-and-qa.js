@@ -32,7 +32,7 @@ import { validateConcepts } from "../src/skills/remotion-render/visual/concept-v
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
 import { inkOf } from "./cutout-ink.mjs";
 const { resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
-const { fetchCutoutForBeat } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
+const { fetchCutoutForBeat, qualifyConcept } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
 const { resolveSceneEntity, sceneEntities } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
 const { verifyPlaceImage } = createRequireEntity(import.meta.url)("./verify-place-image.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
@@ -1129,7 +1129,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         const q = ["organization", "institution", "building"].includes(e0.type) ? qualifyEntity(e0, countries) : { ent: e0 };
         if (q.note) console.log(`[entity] ${q.note}`);
         if (!q.ent?.name) { entities.fell_back.push(`${e0.type} "${e0.name}": ${q.note}`); named.push(e0); continue; }
-        const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "", scene: b.scene_description || null });
+        const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "", scene: b.scene_description || null, sentence: b.narration || "" });
         if (r.ok && r.logo) {
           // A company / institution logo (part B): the hero cutout of a TYPE-FULL beat.
           b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
@@ -1298,7 +1298,9 @@ async function resolveCanvas(channelId, planPath, plan) {
       while (next < tasks.length) {
         const { w, name } = tasks[next++];
         const spec = CUTOUT_SPECS.find((s) => s.name === name) || {};
-        const concept = (spec.queries || [name.replace(/-/g, " ")])[0];
+        const raw = (spec.queries || [name.replace(/-/g, " ")])[0];
+        const concept = spec.queries ? raw : qualifyConcept(raw, `${w.b.narration || ""} ${w.b.scene_description || ""}`);
+        if (concept !== raw) console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${raw}" -> "${concept}" (the material the sentence gives it)`);
         let v = bankCutout(name, concept);
         if (v) {
           // A person supplied it, but it is verified like any fetched PNG.

@@ -233,8 +233,47 @@ async function resolveOrgScene(tag, type, name, context, channel, beatIndex, sce
   return { ok: false, kind: type, why: "no verified logo or photo" };
 }
 
+// ── is the Wikipedia subject the person the sentence talks about? ─────
+// A portrait verified MATCH for a NAME can still be the wrong person: "A twenty-two-year-old
+// man named David Rivera just pleaded guilty to a crypto heist" got the congressman David
+// Rivera's official portrait (CI run 37114977307 ch-26 beat 2, beat check "wrong-person").
+// The face verifier only knows the name; this compares the sentence with what Wikipedia says
+// the page is about. Only SAME keeps the portrait; DIFFERENT, UNSURE, a malformed answer or
+// no answer -> name card (fail closed: a name card is never the wrong face).
+const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+// "a man named X", "a 22-year-old called X": the script introduces the person by name, so
+// they are not someone a general reader already knows — not the namesake Wikipedia covers.
+const introducedByName = (name, sentence) =>
+  new RegExp(`\\b(?:named|called|identified as|who goes by)\\s+${escRe(name)}\\b`, "i").test(sentence);
+function samePersonPrompt(name, sentence, about) {
+  return `Sentence from a news script: "${sentence}"\n` +
+    `Wikipedia article "${about.title}": ${about.description || "(no description)"}. ${String(about.extract || "").slice(0, 500)}\n` +
+    `Is the ${name} in the sentence the same person the Wikipedia article is about, not a namesake? ` +
+    `Answer SAME, DIFFERENT, or UNSURE. Reply as JSON: {"verdict":"SAME|DIFFERENT|UNSURE","why":"<one short clause>"}`;
+}
+function normalizeSame(a) {
+  const v = String(a?.verdict || "").trim().toUpperCase();
+  return ["SAME", "DIFFERENT", "UNSURE"].includes(v) ? { verdict: v, why: String(a?.why || "").slice(0, 160) } : null;
+}
+const sameMemo = new Map();
+async function samePerson(name, sentence, r) {
+  if (!sentence) return { verdict: "SAME", why: "no sentence to compare" };
+  if (introducedByName(name, sentence)) return { verdict: "DIFFERENT", why: `the sentence introduces "${name}" by name (a private individual, not the Wikipedia subject)` };
+  const k = `${name}\u0000${sentence}`;
+  if (!sameMemo.has(k)) sameMemo.set(k, (async () => {
+    const s = await wikiSummary(r.page_title || name);
+    if (!s) return { verdict: "UNSURE", why: "no Wikipedia summary to compare against" };
+    const about = { title: s.title, description: s.description || r.description || "", extract: s.extract || "" };
+    const { askProviders } = require("./verify-cutout-image.cjs");
+    const a = await askProviders([{ role: "user", content: samePersonPrompt(name, sentence, about) }], normalizeSame);
+    return a.v ? { ...a.v, provider: a.provider, about: `${about.title}: ${about.description}` }
+      : { verdict: "UNSURE", why: `no provider answered (${a.tried.join("; ").slice(0, 160)})` };
+  })());
+  return sameMemo.get(k);
+}
+
 /** Resolve one named entity of a beat. Memoized per run (the same entity in two beats is fetched and verified once). */
-async function resolveSceneEntity({ channel, beatIndex, entity, context = "", scene = null }) {
+async function resolveSceneEntity({ channel, beatIndex, entity, context = "", scene = null, sentence = "" }) {
   // "Ontario Landlord and Tenant Board (LTB)": a bracketed acronym is not part of the name
   // any source files it under (CI run 37067332714 ch-2: every lookup missed).
   const type = String(entity?.type || "").toLowerCase(), name = String(entity?.name || "").replace(/\s*\([^)]*\)/g, "").trim();
@@ -265,8 +304,16 @@ async function resolveSceneEntity({ channel, beatIndex, entity, context = "", sc
     console.log(`[resolve] ${tag}\n    → ${r.ok ? `already resolved and verified this run (${r.photo.asset})` : "already failed this run, rendering as TYPE with name only"}`);
     return r;
   }
-  const job = type === "person" ? resolvePersonScene(tag, name, context)
-    : type === "company" || type === "institution" ? resolveOrgScene(tag, type, name, context, channel, beatIndex, scene)
+  if (type === "person") {
+    // The portrait is memoized per name; whether it is the sentence's person is per sentence.
+    if (!runMemo.has(key)) runMemo.set(key, resolvePersonScene(tag, name, context));
+    const r = await runMemo.get(key);
+    if (!r.ok) return r;
+    const same = await samePerson(name, sentence, r);
+    console.log(`[resolve] ${tag}\n    → same person as the sentence? ${same.verdict}${same.provider ? ` (${same.provider})` : ""}: ${same.why}${same.about ? ` [${same.about}]` : ""}${same.verdict === "SAME" ? "" : " — portrait dropped, rendering as name card"}`);
+    return same.verdict === "SAME" ? r : { ok: false, kind: "person", why: `namesake: ${same.why}` };
+  }
+  const job = type === "company" || type === "institution" ? resolveOrgScene(tag, type, name, context, channel, beatIndex, scene)
     : resolvePlaceScene(tag, type, name, context);
   runMemo.set(key, job);
   return job;
@@ -338,7 +385,7 @@ async function sceneEntities({ beat, sentence, entityNamedInSentence, log = cons
   return list;
 }
 
-module.exports = { resolveSceneEntity, sceneEntities, properNames, kindOf, _resetRunMemo: () => runMemo.clear() };
+module.exports = { resolveSceneEntity, sceneEntities, properNames, kindOf, introducedByName, samePersonPrompt, normalizeSame, _resetRunMemo: () => { runMemo.clear(); sameMemo.clear(); } };
 
 if (require.main === module) {
   require("dotenv/config");

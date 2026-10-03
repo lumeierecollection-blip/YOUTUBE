@@ -2,7 +2,7 @@
 import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 const { promptFor, normalizer, judge, isMoney } = require("./verify-image.cjs");
-const { FLAT_MONEY } = require("./fetch-cutout-once.cjs");
+const { FLAT_MONEY, qualifyConcept } = require("./fetch-cutout-once.cjs");
 const { comparisonNumbers } = await import("./gemini-visual-plan.js");
 let bad = 0;
 const eq = (name, got, want) => { const ok = JSON.stringify(got) === JSON.stringify(want); if (!ok) bad++; console.log(`${ok ? "ok  " : "FAIL"} ${name} -> ${JSON.stringify(got)}${ok ? "" : ` (want ${JSON.stringify(want)})`}`); };
@@ -36,6 +36,12 @@ eq("years are not compared quantities", comparisonNumbers("It rose after the law
 eq("spelled numbers count", comparisonNumbers("It rose from ten to twenty-two percent."), ["10", "22"]);
 eq("a spelled year is not a compared number (CI run 37108869325 ch-44)", comparisonNumbers("Productivity will increase by 20% by twenty twenty-six."), null);
 eq("no comparison word -> not this rule", comparisonNumbers("They hired 10 people and bought 22 machines."), null);
+
+// A bare concept gets the material its sentence gives it (CI run 37114977307 ch-48: "plates" fetched a fruit plate).
+eq("'heavy plates' at a steel mill -> steel plates", qualifyConcept("plates", "Robots now handle heavy plates at a steel mill."), "steel plates");
+eq("the material right before the concept", qualifyConcept("wire", "They stole copper wire."), "copper wire");
+eq("an unambiguous noun is not given the text's material", qualifyConcept("gloves", "Workers at the steel mill wear gloves."), "gloves");
+eq("no material in the text -> unchanged (never invented)", qualifyConcept("plates", "Stack the plates after dinner."), "plates");
 
 console.log(bad ? `${bad} FAILED` : "all pass");
 process.exit(bad ? 1 : 0);

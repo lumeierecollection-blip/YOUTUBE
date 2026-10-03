@@ -42,5 +42,14 @@ for (const d of ["September 2026", "2026", "Q3 2026", "October 1, 2026"]) {
   eq("'Safety' (the sentence's first word) is not added as an entity", [ents.length, logs.some((l) => /not a proper name/.test(l))], [0, true]);
 }
 
+// A person the sentence introduces by name is not the Wikipedia namesake (CI run 37114977307
+// ch-26: "a man named David Rivera" got the congressman's portrait).
+eq("'a man named David Rivera' is a private individual", R.introducedByName("David Rivera", "A twenty-two-year-old man named David Rivera just pleaded guilty to a crypto heist"), true);
+eq("'Jerome Powell said' is not introduced by name", R.introducedByName("Jerome Powell", "Jerome Powell said rates will hold."), false);
+eq("a name with regex characters does not throw", R.introducedByName("J. (Jay) Smith", "a man called J. (Jay) Smith"), true);
+eq("same-person prompt asks SAME/DIFFERENT/UNSURE", /Answer SAME, DIFFERENT, or UNSURE/.test(R.samePersonPrompt("X", "s", { title: "X", description: "d", extract: "e" })), true);
+eq("SAME is read", R.normalizeSame({ verdict: "same", why: "w" }).verdict, "SAME");
+eq("an unknown verdict is no answer (fails closed)", R.normalizeSame({ verdict: "YES" }), null);
+
 console.log(bad ? `${bad} FAILED` : "all pass");
 process.exit(bad ? 1 : 0);
