@@ -1070,10 +1070,11 @@ async function resolveCanvas(channelId, planPath, plan) {
     const h = String(b.headline || b.visual_headline || "").trim();
     return h && h.toLowerCase() !== String(name).toLowerCase() ? h : "";
   };
+  // Every channel resolves every beat the same way (no channel-specific skip exists).
+  console.log(`[resolve] starting PNG fetch for ch-${channelId}, ${plan.beats.length} beats to resolve`);
   for (const [bi, b] of plan.beats.entries()) {
     let photo = null;
     const vt = String(b.visual_type || "").toUpperCase();
-    const edge = bi === 0 || bi === plan.beats.length - 1;
     delete b.name_card; delete b.hero_cutout;
     if (vt === "MONEY") {
       // Money (owner's spec 2026-10-03, part G): the object the sentence means (a bill of its
@@ -1119,12 +1120,11 @@ async function resolveCanvas(channelId, planPath, plan) {
         console.log(`[entity] ${vt} "${b.data?.name || b.data?.object}" fell back to typography: ${r.why}${(r.attempts || []).length ? " — " + r.attempts.join(" | ") : ""}`);
         counts.entity_fallbacks++;
         // A named instrument with no verified scan: its name card (task 4.3).
-        if (vt === "DOCUMENT" && b.data?.name && !edge) { b.name_card = { name: b.data.name, sub: keyPhraseOf(b, b.data.name) }; b.visual_type = "TYPE"; b.data = null; }
+        if (vt === "DOCUMENT" && b.data?.name) { b.name_card = { name: b.data.name, sub: keyPhraseOf(b, b.data.name) }; b.visual_type = "TYPE"; b.data = null; }
       }
-    } else if (edge && vt === "PHOTO") {
-      console.log(`[resolve] ch-${channelId} beat ${b.index}: the ${bi === 0 ? "hook" : "CTA"} stays typography (owner's spec), entity not fetched`);
-      b.visual_type = "TYPE"; b.data = null;
-    } else if (!edge && !DRAWN.has(vt)) {
+    } else if (!DRAWN.has(vt)) {
+      // Every beat that names something gets its picture — the hook and the CTA too (owner's
+      // spec 2026-10-03, "PNGs on every beat"; this replaces "the hook stays typography").
       const ents = await sceneEntities({ beat: b, sentence: b.narration || "", entityNamedInSentence });
       const real = ents.filter((e) => REAL.includes(e.type))
         .sort((x, y) => (y.name === b.data?.entity) - (x.name === b.data?.entity) || REAL.indexOf(x.type) - REAL.indexOf(y.type));
@@ -1191,7 +1191,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       // lead_phrase box, which the layout draws only when the card has a sub-phrase. A bare-name
       // card next to a TYPE-FULL statement is "TYPE-FULL twice" to the audit (CI run
       // 37119036921 ch-1 beat 1, rejected), so it is keyed — and rotated — the same way here.
-      compositionOf: (i) => plan.beats[i].canvas.composition + (String(plan.beats[i].canvas.name_card?.sub || "").trim() ? "+NAME" : "") + ((plan.beats[i].canvas.concept_visuals || []).length ? "+HERO" : ""),
+      compositionOf: (i) => plan.beats[i].canvas.composition + (String(plan.beats[i].canvas.name_card?.sub || "").trim() ? "+NAME" : "") + ((plan.beats[i].canvas.concept_visuals || []).length ? `+HERO:${plan.beats[i].canvas.concept_visuals[0].name || ""}` : ""),
       // A two-number comparison drawn as a chart (part D) is never rotated away.
       candidates: (i) => (plan.beats[i].canvas.photo && imageBeats() <= 1 ? [] : comparisonNumbers(narr(plan.beats[i])) && ["BAR", "LINE", "PIE", "GAUGE"].includes(String(plan.beats[i].visual_type).toUpperCase()) ? [] : candidatesFor({ sentence: narr(plan.beats[i]), headline: plan.beats[i].canvas.headline || "" })),
       accept: (i, alt) => {
@@ -1280,9 +1280,8 @@ async function resolveCanvas(channelId, planPath, plan) {
       // 36953236514); converted in step 3 only if a visual resolves.
       // (a logo or a money object already holds the hero cutout: part B / G)
       if (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || c.name_card || (c.concept_visuals || []).length || String(c.visual_type).toUpperCase() !== "TYPE") continue;
-      // The hook and the CTA stay TYPE (owner's spec 2026-10-02); a cutout on
-      // the hook also blocked the next beat's (no TYPE-FULL twice in a row).
-      if (bi === 0 || bi === plan.beats.length - 1) continue;
+      // The hook and the CTA get their object too (owner's spec 2026-10-03, "PNGs on every
+      // beat" — this replaces "the hook and the CTA stay TYPE").
       const vc = validateConcepts(b.concepts, b.narration || "", CUTOUT_SPECS);
       // A generic person cutout on a beat that NAMES a person would read as
       // that person: people concepts are dropped there (the person stays on
@@ -1344,17 +1343,9 @@ async function resolveCanvas(channelId, planPath, plan) {
       const visuals = w.names.map((n) => results.get(`${w.bi}:${n}`)).filter(Boolean);
       for (const v of visuals) stats[v.class === "symbol" ? "symbol" : v.source]++;
       if (!visuals.length) { stats.none++; continue; }
-      // Never a hero next to a hero: three cutout beats in a row are "TYPE-FULL+HERO twice in a
-      // row" to canvas-type (CI run 37131085417 ch-2, rejected). The beat stays text here and the
-      // composition-variety pass below gives it a different composition.
-      {
-        const nb = [plan.beats[w.bi - 1], plan.beats[w.bi + 1]].filter(Boolean);
-        if (nb.some((x) => (x.canvas.concept_visuals || []).length)) {
-          console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${visuals.map((v) => v.name).join(", ")} not attached — a neighbouring beat already shows a hero object`);
-          stats.none++;
-          continue;
-        }
-      }
+      // Two cutout beats in a row both render (owner's spec 2026-10-03, C.3 — the earlier
+      // "never a hero next to a hero" guard is removed); canvas-type keys a hero beat by its
+      // object, so only the SAME object twice in a row is a repeat.
       const c = w.b.canvas;
       if (c.composition === "TYPE-SPLIT") {
         // A hero-cutout beat is not a plain statement: next to a TYPE-FULL it is
@@ -1394,7 +1385,8 @@ async function resolveCanvas(channelId, planPath, plan) {
   // a row; a name card (an entity's name) is converted last. Never fails the run.
   {
     const narr = (b) => b.narration || "";
-    const keyOf = (c) => c.composition + ((c.concept_visuals || []).length ? "+HERO" : "") + (String(c.name_card?.sub || "").trim() ? "+NAME" : "");
+    // A hero beat is keyed by its object (C.3): two different objects in a row are fine.
+    const keyOf = (c) => c.composition + ((c.concept_visuals || []).length ? `+HERO:${c.concept_visuals[0].name || ""}` : "") + (String(c.name_card?.sub || "").trim() ? "+NAME" : "");
     const flags = () => plan.beats.map((b) => isTypeCanvas(b.canvas));
     const before = varietyReport(flags());
     let changed = 0;
@@ -1409,7 +1401,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         for (const cand of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
           const nb = [plan.beats[i - 1], plan.beats[i + 1]].filter(Boolean).map((x) => keyOf(x.canvas));
           if (cand.kind === "symbol") {
-            if (nb.includes("TYPE-FULL+HERO") || b.canvas.name_card) continue;
+            if (nb.includes(`TYPE-FULL+HERO:${cand.symbol}`) || b.canvas.name_card) continue;
             b.fallback_symbol = cand.symbol; b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
             b.canvas = canvasContentFor(b, {});
             done = `${was} -> ${keyOf(b.canvas)} (drawn symbol "${cand.symbol}": what the sentence states)`;
@@ -1430,38 +1422,6 @@ async function resolveCanvas(channelId, planPath, plan) {
       }
       // Rebuilt canvases get their sentence case, variant and folio back (and the one emphasis beat is re-chosen).
       if (changed) styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
-    }
-    // Two heroes from DIFFERENT sources can still sit side by side — a banknote (money) and a
-    // company logo (CI run 37133611702 ch-26: "TYPE-FULL+HERO twice in a row", rejected; the
-    // rotation's TYPE-SPLIT cannot carry a hero). The weaker of the pair (a cutout or banknote
-    // before a logo or a photo) gives up its hero for a fallback composition its own sentence
-    // grounds (counter / process / trend / key nouns) that differs from both neighbours.
-    for (let i = 1; i < plan.beats.length; i++) {
-      const a = plan.beats[i - 1], b = plan.beats[i];
-      if (keyOf(a.canvas) !== keyOf(b.canvas) || !(b.canvas.concept_visuals || []).length) continue;
-      const rank = (x) => ((x.canvas.concept_visuals || [])[0]?.logo ? 2 : (x.canvas.concept_visuals || [])[0]?.money ? 0 : 1);
-      const order = rank(a) <= rank(b) ? [i - 1, i] : [i, i - 1];
-      let done = false;
-      for (const k of order) {
-        if (k === 0 || k === plan.beats.length - 1) continue;
-        const x = plan.beats[k], st = narr(x);
-        const q = quantitiesOf(st)[0];
-        for (const cand of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
-          if (cand.kind === "symbol") continue;
-          const v = checkVisual({ visual_type: cand.visual_type, data: cand.data, named_entities: x.named_entities }, st);
-          if (v.why || v.type !== cand.visual_type) continue;
-          const comp = compositionFor(v.type, false);
-          if ([plan.beats[k - 1], plan.beats[k + 1]].filter(Boolean).some((y) => keyOf(y.canvas) === comp)) continue;
-          const was = keyOf(x.canvas);
-          x.visual_type = v.type; x.data = v.data; delete x.hero_cutout; delete x.fallback_symbol; delete x.type_layout;
-          x.canvas = canvasContentFor(x, {});
-          console.log(`[variety] ch-${channelId} beat ${x.index}: ${was} next to ${was} -> ${x.canvas.composition} ${v.type} ${JSON.stringify(v.data)} (two heroes in a row)`);
-          done = true; changed++;
-          break;
-        }
-        if (done) break;
-      }
-      if (!done) console.warn(`::warning::[variety] ch-${channelId} beats ${i - 1}-${i}: two ${keyOf(b.canvas)} in a row and no fallback fits either sentence`);
     }
     if (changed) styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
     const after = varietyReport(flags());
@@ -1508,6 +1468,29 @@ async function resolveCanvas(channelId, planPath, plan) {
     if (run.relaxed.length) console.warn(`[anim] relaxed: ${run.relaxed.join("; ")}`);
     console.log(`[anim] ${Object.keys(run.used).length} distinct animations across ${plan.beats.length} beats`);
     plan.recent_animations = run.recent;
+  }
+  // Part C.1: what each beat SHOWS. A plain typography beat whose sentence names nothing is a
+  // script defect (the narrative engine requires every sentence to name something) — logged.
+  {
+    const kindOf = (c) => {
+      const h = (c.concept_visuals || [])[0];
+      if (h) return h.logo ? `logo (${h.name})` : h.money ? `money (${h.name})` : h.class === "symbol" ? `symbol (${h.name})` : `cutout (${h.name})`;
+      if (c.photo) return c.composition === "PORTRAIT" ? `portrait (${c.photo.entity})` : `photo (${c.photo.entity || c.composition})`;
+      if (c.name_card) return `name card (${c.name_card.name})`;
+      return { "NUMBER-FULL": "number", "DATA-FULL": "chart", "PROCESS-FULL": "process", "MAP-CENTERED": "map", "LIST-BUILD": "list", "TIMELINE": "timeline", "COMPARISON-SPLIT": "comparison" }[c.composition] || "typography (key phrase)";
+    };
+    let pngs = 0, none = 0;
+    for (const b of plan.beats) {
+      const k = kindOf(b.canvas);
+      if (/^(logo|money|cutout|portrait|photo)/.test(k)) pngs++;
+      console.log(`[visual] ch-${channelId} beat ${b.index}: ${k}`);
+      if (k.startsWith("typography")) {
+        const named = (b.named_entities || []).some((e) => e.type !== "number") || /\d/.test(b.narration || "");
+        if (!named) { none++; console.log(`[plan] ch-${channelId} beat ${b.index}: no concept identified, sentence: "${b.narration || ""}" — this sentence violates the script rules and should have been rewritten`); }
+      }
+    }
+    plan.visual_summary = { beats: plan.beats.length, pngs, no_concept: none };
+    console.log(`[visual] ch-${channelId}: ${pngs}/${plan.beats.length} beats show a fetched PNG; ${none} beat(s) with no concept`);
   }
   for (const b of plan.beats) {
     const k = b.canvas.composition;
