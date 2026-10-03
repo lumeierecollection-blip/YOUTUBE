@@ -68,6 +68,9 @@ provided JSON Schema exactly — nothing outside it.
   name nothing is replaced by one that names something from the research, or
   cut. **Never invent a name, a figure, a date or an object to meet this** —
   a sentence the research cannot make specific is cut, not decorated.
+  Every named fact is about THIS video's subject: a research fact about a
+  different story (an unrelated conflict, company or place the search happened
+  to return) is never used, however specific it is.
   The examples below show the SHAPE only; they are not facts for this video.
   ALLOWED shape: "Jerome Powell raised rates by 0.25% on September 18." /
   "The Miami federal courthouse ruled against the company." /

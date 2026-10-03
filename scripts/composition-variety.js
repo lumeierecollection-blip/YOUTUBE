@@ -112,10 +112,25 @@ export function symbolFor(sentence) {
 }
 
 // Verb forms and filler that are never a node's noun.
-const NOT_NOUN = /^(?:\w+(?:ed|ing)|means|makes|takes|gets|shows|says|said|changes|matters|needs|wants|keeps|helps|lets|puts|comes|goes|gives|everything|something|nothing|anything|everyone|someone|nobody)$/i;
+// Connectives are not nouns either (CI run 37129265971 ch-9 drew "HOWEVER -> EXPANSION").
+const NOT_NOUN = /^(?:\w+(?:ed|ing)|however|therefore|meanwhile|moreover|furthermore|although|though|despite|instead|nevertheless|otherwise|indeed|thus|hence|still|also|while|whereas|means|makes|takes|gets|shows|says|said|changes|matters|needs|wants|keeps|helps|lets|puts|comes|goes|gives|everything|something|nothing|anything|everyone|someone|nobody)$/i;
 /** Two of the sentence's content words — its first and last noun-like words (subject -> object) — the last-resort PROCESS. */
+// A run of capitalized words is ONE name ("Middle Corridor", not "Middle" — CI run 37129265971 ch-9).
 export function keyNouns(sentence) {
-  const ws = [...new Set(contentWords(sentence).map((w) => w.replace(/'s$/i, "")).filter((w) => !NOT_NOUN.test(w)))];
+  const s = String(sentence || "");
+  const items = [];
+  const toks = s.replace(/[^\p{L}\p{N}'\s-]/gu, " ").split(/\s+/).filter(Boolean).map((w) => w.replace(/['’](s|re|ve|ll|d|t)$/i, ""));
+  for (let i = 0; i < toks.length; i++) {
+    const w = toks[i];
+    if (/^\p{Lu}/u.test(w) && !STOP.has(w.toLowerCase()) && !NOT_NOUN.test(w)) {
+      const run = [w];
+      while (i + 1 < toks.length && /^\p{Lu}/u.test(toks[i + 1]) && run.length < 3) run.push(toks[++i]);
+      if (run.length > 1 || i > 0 || w.length >= 4) items.push(run.join(" "));
+      continue;
+    }
+    if (w.length >= 4 && !STOP.has(w.toLowerCase()) && !/^\d/.test(w) && !NOT_NOUN.test(w)) items.push(w);
+  }
+  const ws = [...new Set(items)];
   return ws.length >= 2 ? [ws[0], ws[ws.length - 1]] : null;
 }
 

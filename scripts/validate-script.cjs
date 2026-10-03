@@ -159,7 +159,7 @@ function validateScript(script, research = null) {
 /** The "  - " feedback lines the script stage appends to its re-ask prompt. */
 function feedbackLines(r) {
   const out = [];
-  for (const z of r.zero) out.push(`  - SPECIFICITY: "${z.sentence}" names nothing specific. Rewrite it to name a person, place, organization, number or physical object FROM THE RESEARCH (key_facts / numbers / named_entities), or cut it. Never invent a name or a figure.`);
+  for (const z of r.zero) out.push(`  - SPECIFICITY: "${z.sentence}" names nothing specific. Rewrite it to name a person, place, organization, number or physical object FROM THE RESEARCH (key_facts / numbers / named_entities) that is about THIS video's subject, or cut it. A research fact about a different story is never used to fill a sentence, and a name or figure is never invented.`);
   if (r.avg < 1.5) out.push(`  - SPECIFICITY: the script averages ${r.avg.toFixed(2)} named specifics per sentence; it must average at least 1.5. Put a second research name or figure into the weakest sentences.`);
   for (const b of r.banned) out.push(`  - BANNED PHRASE: "${b}" — remove it; state the research fact directly instead.`);
   if (!r.ratioOk) {
