@@ -50,6 +50,17 @@
     "uploaded_at": "2026-10-02T11:55:15.383Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-10-02T12:55:15.382Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-10-03T11:08:23.783Z"
+  },
+  {
+    "video_id": "b0gllKZ5cnE",
+    "channel_id": "48",
+    "title": "Inside CIPHER: The New VLA AI Framework for Autonomous…",
+    "uploaded_at": "2026-10-03T11:08:20.913Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-03T12:08:20.912Z",
     "privacy_status": "private",
     "cancelled": false
   }
