@@ -1431,6 +1431,39 @@ async function resolveCanvas(channelId, planPath, plan) {
       // Rebuilt canvases get their sentence case, variant and folio back (and the one emphasis beat is re-chosen).
       if (changed) styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
     }
+    // Two heroes from DIFFERENT sources can still sit side by side — a banknote (money) and a
+    // company logo (CI run 37133611702 ch-26: "TYPE-FULL+HERO twice in a row", rejected; the
+    // rotation's TYPE-SPLIT cannot carry a hero). The weaker of the pair (a cutout or banknote
+    // before a logo or a photo) gives up its hero for a fallback composition its own sentence
+    // grounds (counter / process / trend / key nouns) that differs from both neighbours.
+    for (let i = 1; i < plan.beats.length; i++) {
+      const a = plan.beats[i - 1], b = plan.beats[i];
+      if (keyOf(a.canvas) !== keyOf(b.canvas) || !(b.canvas.concept_visuals || []).length) continue;
+      const rank = (x) => ((x.canvas.concept_visuals || [])[0]?.logo ? 2 : (x.canvas.concept_visuals || [])[0]?.money ? 0 : 1);
+      const order = rank(a) <= rank(b) ? [i - 1, i] : [i, i - 1];
+      let done = false;
+      for (const k of order) {
+        if (k === 0 || k === plan.beats.length - 1) continue;
+        const x = plan.beats[k], st = narr(x);
+        const q = quantitiesOf(st)[0];
+        for (const cand of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
+          if (cand.kind === "symbol") continue;
+          const v = checkVisual({ visual_type: cand.visual_type, data: cand.data, named_entities: x.named_entities }, st);
+          if (v.why || v.type !== cand.visual_type) continue;
+          const comp = compositionFor(v.type, false);
+          if ([plan.beats[k - 1], plan.beats[k + 1]].filter(Boolean).some((y) => keyOf(y.canvas) === comp)) continue;
+          const was = keyOf(x.canvas);
+          x.visual_type = v.type; x.data = v.data; delete x.hero_cutout; delete x.fallback_symbol; delete x.type_layout;
+          x.canvas = canvasContentFor(x, {});
+          console.log(`[variety] ch-${channelId} beat ${x.index}: ${was} next to ${was} -> ${x.canvas.composition} ${v.type} ${JSON.stringify(v.data)} (two heroes in a row)`);
+          done = true; changed++;
+          break;
+        }
+        if (done) break;
+      }
+      if (!done) console.warn(`::warning::[variety] ch-${channelId} beats ${i - 1}-${i}: two ${keyOf(b.canvas)} in a row and no fallback fits either sentence`);
+    }
+    if (changed) styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
     const after = varietyReport(flags());
     const keys = plan.beats.map((b) => keyOf(b.canvas));
     let run = 1, maxRun = 1;
