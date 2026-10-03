@@ -49,7 +49,7 @@ const CONCRETE = [
   "steel", "oil", "gas", "gold", "silver", "copper", "lithium", "coal", "wheat", "rice", "corn", "coffee", "beef", "egg", "milk",
   "contract", "warrant", "subpoena", "indictment", "lawsuit", "ballot", "passport", "visa", "receipt", "invoice", "paycheck", "card",
   "battery", "engine", "tire", "panel", "turbine", "reactor", "weapon", "gun", "missile", "tank", "uniform", "badge", "helmet", "glove",
-  "container", "package", "box", "crate", "pallet", "shelf", "desk", "chair", "door", "key", "lock", "vault", "safe", "wallet",
+  "container", "package", "box", "crate", "pallet", "shelf", "desk", "chair", "door", "lock", "vault", "safe", "wallet",
   "medicine", "pill", "vaccine", "syringe", "app", "website", "email", "text message", "photo", "video", "map", "chart",
 ];
 // Abstract nouns (task 4's examples first) — what an essay is made of, not what a camera sees.
@@ -67,7 +67,8 @@ const MONTHS = "january|february|march|april|may|june|july|august|september|octo
 // A sentence-initial word that is never a name on its own.
 const STARTERS = new Set("a an the this that these those it its he she they we you i our your their his her my when while if but and or so yet because after before since as at in on for from with without by to of then now here there what why how who which where".split(" "));
 
-const nounRe = (list) => new RegExp(`\\b(?:${list.map((w) => w.replace(/[-]/g, "[- ]?").replace(/\s+/g, "\\s+")).join("|")})(?:s|es)?\\b`, "gi");
+// Plurals: -s / -es, and y -> -ies ("factory" -> "factories").
+const nounRe = (list) => new RegExp(`\\b(?:${list.map((w) => (w.endsWith("y") ? `${w.slice(0, -1)}(?:y|ie)` : w).replace(/[-]/g, "[- ]?").replace(/\s+/g, "\\s+")).join("|")})(?:s|es)?\\b`, "gi");
 const CONCRETE_RE = nounRe(CONCRETE), ABSTRACT_RE = nounRe(ABSTRACT);
 const norm = (s) => String(s || "").replace(/[‘’]/g, "'").replace(/[“”]/g, '"');
 
@@ -117,7 +118,7 @@ function specificsOf(sentence, ctx = {}) {
   // Numbers: digits (with currency / percent / scale), spelled numbers, dates.
   const numbers = [];
   for (const m of s.matchAll(new RegExp(`\\$?\\d[\\d,]*(?:\\.\\d+)?(?:\\s*%|\\s*(?:percent|k|m|bn|million|billion|trillion|thousand)\\b)?|\\b(?:${SPELLED})(?:[\\s-]+(?:${SPELLED}|and))*\\b|\\b(?:${MONTHS})\\b`, "gi"))) {
-    const v = m[0].trim();
+    const v = m[0].trim().replace(/[,.]+$/, "");
     if (/^(one|a)$/i.test(v)) continue;          // "one of the", "a" — not a figure
     numbers.push(v.toLowerCase());
   }

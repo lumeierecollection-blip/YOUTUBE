@@ -446,7 +446,21 @@ jobs:
               fi
               jq '.structured_output' /tmp/script-raw-$FORMAT.json \
                 > "data/research/$CH/${SCRIPT_SLUG}-script.json"
-              if node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then
+              # Too long for the gate (SCR-16 "CUT"): remove whole sentences
+              # (scripts/fit-short.js — deletion only, hook and payoff kept, every
+              # remaining fact exactly as written) and gate again, instead of
+              # spending a model attempt. Run 37125010644: ch-26 returned 121 words
+              # four times against a 106-word ceiling and the channel failed prep.
+              GATE_OK=0
+              if node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then GATE_OK=1;
+              elif grep -q "SCR-16:.*CUT at least" /tmp/gate-out-$FORMAT.log; then
+                CEIL=$(grep -oE 'needs [0-9]+-[0-9]+ words' /tmp/gate-out-$FORMAT.log | head -1 | grep -oE '[0-9]+' | tail -1)
+                if [ -n "$CEIL" ] && node scripts/fit-short.js "data/research/$CH/${SCRIPT_SLUG}-script.json" "$((CEIL - 3))"; then
+                  echo "[script] ch-$CH: trimmed to <= $((CEIL - 3)) words by removing whole sentences; gating again"
+                  if node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then GATE_OK=1; fi
+                fi
+              fi
+              if [ "$GATE_OK" -eq 1 ]; then
                 # SPECIFICITY (scripts/validate-script.cjs): every sentence names a
                 # person / place / organization / number / object from the research,
                 # avg >= 1.5, no banned phrase, concrete:abstract >= 2. One re-ask
