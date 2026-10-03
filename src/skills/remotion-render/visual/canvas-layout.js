@@ -390,7 +390,7 @@ export function canvasLayout(c) {
       // The second half is the middle zone's subject: up to 360 px across the
       // full width. At 760 px / max 200 a short half ("the rule") filled 154 of
       // the zone's 720 rows (CI run 36995441688 ch-44 beat 7) — an empty middle.
-      boxes.statement = headlineBox(split[1], { width: 984, bottom: BOTTOM, flip: opp, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 360 });
+      boxes.statement = headlineBox(split[1], { width: 984, bottom: BOTTOM, flip: opp, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 360, hero: true });
       const kk = c?.lead_in || folio;
       if (kk) boxes.kicker = dataBox(kk, { width: 300, size: 34, maxLines: 1, y: TOP + 10, flip: opp });
       hero = "statement";

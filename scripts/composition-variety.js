@@ -88,7 +88,8 @@ export const SYMBOL_RULES = [
 ];
 
 const STOP = new Set("a an the this that these those it its is are was were be been being has have had do does did will would can could should may might must of to in on at by for with from as into about over under after before than then and or but so yet not no nor if when while because which who whom whose what where why how all any each every some most more less much many few one two three four five six seven eight nine ten its their there here they them we you your our his her he she i me my just also only even still very really now new up down out off again".split(" "));
-const contentWords = (s) => String(s || "").replace(/[^\p{L}\p{N}'\s-]/gu, " ").split(/\s+/).filter((w) => w.length >= 4 && !STOP.has(w.toLowerCase()) && !/^\d/.test(w));
+// "That's" / "Let's" are stop words once the contraction is cut (run 37125010644 ch-44 drew "That -> deal").
+const contentWords = (s) => String(s || "").replace(/[^\p{L}\p{N}'\s-]/gu, " ").split(/\s+/).map((w) => w.replace(/['’](s|re|ve|ll|d|t)$/i, "")).filter((w) => w.length >= 4 && !STOP.has(w.toLowerCase()) && !/^\d/.test(w));
 
 /** The direction and subject of a stated rise / fall, or null. Subject: up to 2 content words before the verb (else after). */
 export function trendOf(sentence) {

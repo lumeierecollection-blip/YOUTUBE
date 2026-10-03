@@ -950,7 +950,12 @@ function canvasContentFor(b, { photo = null } = {}) {
   if (credit) c.source_credit = credit;
   // The word the entity visual pops on (gemini-visual-plan.js; timed in render.js, visual/entity-sync.js).
   if (b.entity_anchor_word) c.anchor_word = b.entity_anchor_word;
-  c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: c.type_layout === "split" && !!splitHeadline(c.headline) });
+  // A beat with a hero (cutout, logo, drawn symbol) is TYPE-FULL: the split layout has no hero
+  // slot, and a TYPE-SPLIT carrying a symbol drew none (CI run 37125010644 ch-48 beat 3:
+  // middle zone 12% filled, rejected).
+  const hasHero = (c.concept_visuals || []).length > 0;
+  if (hasHero) delete c.type_layout;
+  c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: !hasHero && c.type_layout === "split" && !!splitHeadline(c.headline) });
   return c;
 }
 

@@ -515,7 +515,12 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
     if (result && !Array.isArray(result.beats) && typeof result.content === "string") {
       const text = result.content.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
       const a = text.indexOf("{"), b = text.lastIndexOf("}");
-      try { if (a >= 0 && b > a) result = JSON.parse(text.slice(a, b + 1)); } catch {}
+      try { if (a >= 0 && b > a) result = JSON.parse(text.slice(a, b + 1)); } catch {
+        // A markdown bullet in front of a key (`- "reason": ...`) — CI run 37125010644 ch-44
+        // returned all 8 verdicts with one, and the render lost its beat check. The bullet is
+        // removed; nothing else is rewritten, and a still-broken answer stays a failure.
+        try { if (a >= 0 && b > a) result = JSON.parse(text.slice(a, b + 1).replace(/(^|\n)([ \t]*)-[ \t]+(?=")/g, "$1$2")); } catch {}
+      }
     }
     const verdicts = Array.isArray(result?.beats) ? result.beats : null;
     if (!verdicts || verdicts.length !== beats.length) {
