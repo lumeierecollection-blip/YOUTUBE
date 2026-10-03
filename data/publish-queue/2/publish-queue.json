@@ -105,6 +105,17 @@
     "uploaded_at": "2026-10-02T11:44:52.659Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-10-02T12:44:52.658Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-10-03T11:01:20.611Z"
+  },
+  {
+    "video_id": "XrYfQCWRskc",
+    "channel_id": "2",
+    "title": "Are License Plate Reader Database Searches a Fourth…",
+    "uploaded_at": "2026-10-03T11:01:19.265Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-03T12:01:19.264Z",
     "privacy_status": "private",
     "cancelled": false
   }
