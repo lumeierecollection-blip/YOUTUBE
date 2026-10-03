@@ -1036,9 +1036,14 @@
           "topic": "resource_geopolitics",
           "slug": "g7-global-energy-supply-deal-20261003",
           "reserved_at": "2026-10-03T02:16:51.394Z"
+        },
+        {
+          "topic": "border_conflict_explainers",
+          "slug": "ethiopia-eritrea-conflict-now-20261001-20261002-20261003-202",
+          "reserved_at": "2026-10-03T02:55:53.500Z"
         }
       ],
-      "last_generated": "2026-10-03T02:16:51.395Z"
+      "last_generated": "2026-10-03T02:55:53.501Z"
     },
     "10": {
       "channel_name": "Word Lab",
