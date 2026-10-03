@@ -636,7 +636,9 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           {/* On the DOCUMENT callout every word sits on the accent band, so the
               accent word takes the band's ink too (it was drawn accent on
               accent — unreadable, QA render 2026-09-30). */}
-          <Headline b={B.headline} color={comp === "DOCUMENT" ? onAccent(accent) : "#FFFFFF"} accent={comp === "DOCUMENT" ? onAccent(accent) : null} local={local} fps={fps} m={m} idx={idx} at={0.3} shadow={comp !== "DOCUMENT"} />
+          {/* Over a photo the accent word is the LIFTED accent: the channel navy on the Baku
+              montage was unreadable (CI run 37082751699 ch-9 beat 4). */}
+          <Headline b={B.headline} color={comp === "DOCUMENT" ? onAccent(accent) : "#FFFFFF"} accent={comp === "DOCUMENT" ? onAccent(accent) : liftAccent(accent, 0.72)} local={local} fps={fps} m={m} idx={idx} at={0.3} shadow={comp !== "DOCUMENT"} />
           {B.number && c.data?.value ? <NumberHero b={B.number} q={parseQuantity(c.data.value)} t={easeOut(clamp01((local - 0.5 * fps) / Math.max(1, dur * 0.6)))} local={local} fps={fps} at={0.5} color="#FFFFFF" m={m} hero={false} /> : null}
           {c.photo.credit ? <div style={{ position: "absolute", left: L_EDGE, top: 1416, font: dataFont(20, 500), color: "rgba(255,255,255,0.72)", maxWidth: 700, textAlign: "left", ...popCss("POP_SOFT", local - 0.3 * fps, "0% 60%") }}>{c.photo.credit}</div> : null}
         </>
