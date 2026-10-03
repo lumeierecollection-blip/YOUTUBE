@@ -597,9 +597,14 @@
           "topic": "ice-changes-course-again-traffic-stop-vehicle-pursuit-policies",
           "slug": "ice-changes-course-traffic-stop-policies",
           "reserved_at": "2026-10-03T08:50:07.708Z"
+        },
+        {
+          "topic": "New California Law on AI in Hiring",
+          "slug": "new-california-law-ai-hiring",
+          "reserved_at": "2026-10-03T09:35:07.764Z"
         }
       ],
-      "last_generated": "2026-10-03T08:50:07.708Z"
+      "last_generated": "2026-10-03T09:35:07.764Z"
     },
     "3": {
       "channel_name": "AI Tested",
