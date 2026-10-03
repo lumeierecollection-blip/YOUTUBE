@@ -475,6 +475,15 @@ export function checkVisual(b, sentence) {
     const n = m ? Number(m[0].replace(/,/g, "")) : NaN;
     const scaled = m ? /^\s*(thousand|million|billion|trillion|bn|mn|k|m|b)\b/i.test(vs.slice(m.index + m[0].length)) : false;
     if (n < 2 && !scaled && !vs.includes("%")) return bad(`COUNTER value "${d.value}" is a count of ${n}: a 0 -> ${n} roll shows no figure`);
+    // A day of the month is a date, not a quantity: "23" labelled "September" (the sentence
+    // said "on September 23") was drawn as a hero number (CI run 37113140609 ch-9).
+    {
+      const MONTH = "(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)";
+      if (m && !scaled && !vs.includes("%") && n >= 1 && n <= 31 && Number.isInteger(n)
+        && (new RegExp(`\\b${MONTH}\\.?\\s+${n}(?:st|nd|rd|th)?\\b|\\b${n}(?:st|nd|rd|th)?\\s+(?:of\\s+)?${MONTH}\\b`, "i").test(sentence) || new RegExp(`^${MONTH}$`, "i").test(String(d.label || "").trim()))) {
+        return bad(`COUNTER value "${d.value}" is a day of the month (a date), not a quantity`);
+      }
+    }
     // A year is a date, not a quantity. Rolling 0 -> 1938 showed "1009" and
     // "366" mid-roll and the review called them wrong figures (run
     // 36419295509 ch-2), so a year was refused. The renderer now SNAPS a year in

@@ -1118,6 +1118,11 @@ async function resolveCanvas(channelId, planPath, plan) {
         .sort((x, y) => (y.name === b.data?.entity) - (x.name === b.data?.entity) || REAL.indexOf(x.type) - REAL.indexOf(y.type));
       const named = [];   // real, resolvable names that found no verified photo: the name card's subject
       for (const e0 of real) {
+        // A country or US state is drawn as its MAP (below), not a photo: verified photos of
+        // "California" (a beach) and "North Korea" (a skyline) matched the place and nothing in
+        // the sentence (beat check NO, CI run 37113140609 ch-2 / ch-26). Cities, buildings and
+        // landmarks keep the photo path.
+        if (e0.type === "place" && resolveRegionName(e0.name)) continue;
         // A generic institution name ("Supreme Court", "the central bank") names a
         // different building in every country (run 36504143080 ch-2): qualified with
         // the script's one country, or refused.
