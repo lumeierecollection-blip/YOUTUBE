@@ -722,9 +722,14 @@
           "topic": "Tenant Privacy Rights Against Smart Locks and Biometric Entry",
           "slug": "tenant-privacy-rights-smart-locks-biometric-entry",
           "reserved_at": "2026-10-02T11:35:01.238Z"
+        },
+        {
+          "topic": "Are License Plate Reader Database Searches a Fourth Amendment Search?",
+          "slug": "flock-alpr-license-plate-search-fourth-amendment",
+          "reserved_at": "2026-10-03T10:49:03.750Z"
         }
       ],
-      "last_generated": "2026-10-02T11:35:01.238Z"
+      "last_generated": "2026-10-03T10:49:03.750Z"
     },
     "3": {
       "channel_name": "AI Tested",
