@@ -1683,9 +1683,14 @@
           "topic": "Museum Heists Turn Violent: Europol Report",
           "slug": "museum-heists-violent-europol-report",
           "reserved_at": "2026-10-03T13:47:21.404Z"
+        },
+        {
+          "topic": "The $387M Bitget Hack and North Korean Ties",
+          "slug": "bitget-hack-north-korea",
+          "reserved_at": "2026-10-03T14:27:28.352Z"
         }
       ],
-      "last_generated": "2026-10-03T13:47:21.405Z"
+      "last_generated": "2026-10-03T14:27:28.352Z"
     },
     "27": {
       "channel_name": "Trial Files",
