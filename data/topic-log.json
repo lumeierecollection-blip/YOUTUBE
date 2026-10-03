@@ -2628,9 +2628,14 @@
           "topic": "UBTECH CEO Tours Robot Factory, Says Monthly Output Could Reach 1,500 Units",
           "slug": "ubtech-factory-tour-1500-units",
           "reserved_at": "2026-10-03T14:57:04.673Z"
+        },
+        {
+          "topic": "New Tool for AI-Generated 3D Models",
+          "slug": "new-tool-ai-generated-3d-models",
+          "reserved_at": "2026-10-03T15:39:31.500Z"
         }
       ],
-      "last_generated": "2026-10-03T14:57:04.673Z"
+      "last_generated": "2026-10-03T15:39:31.500Z"
     },
     "49": {
       "channel_name": "Wander Budget",
