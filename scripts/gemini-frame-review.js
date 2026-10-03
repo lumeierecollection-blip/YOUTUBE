@@ -290,7 +290,20 @@ function compositionLabel(b) {
   const what = { COUNTER: "one big number (the sentence's figure — a data beat)", BAR: "bar chart", PIE: "donut chart", LINE: "line chart", GAUGE: "gauge", MAP: "map filling the frame",
     PROCESS: "process diagram", PHOTO: `photograph of ${c.photo?.entity || "a named entity"}`, CUTOUT: "photographed object", TYPE: "typography",
     LIST: "an enumeration built item by item", TIMELINE: "a timeline of dated events", COMPARE: "two figures on a diagonal split", DOCUMENT: `scan of ${c.photo?.entity || "a document"}`,
-    MONEY: "photograph of money" }[vt] || vt.toLowerCase();
+    MONEY: "photograph of money", TREND: "a trend line rising or falling to one point" }[vt] || vt.toLowerCase();
+  // A TYPE-FULL beat that carries a HERO is not typography: it was labelled "typography" and
+  // the reviewer counted a 640 px drawn symbol beat as headline-led (CI run 37129265971 ch-48,
+  // TEMPLATE_MONOCULTURE 60%). The label says what the frame actually draws; the reviewer
+  // still judges the frame itself. A name card stays typography (it is the entity's name).
+  const hero = (c.concept_visuals || [])[0];
+  if (vt === "TYPE" && hero) {
+    const heroWhat = hero.logo ? `the logo of ${hero.name || "a named organization"} as the hero visual`
+      : hero.money ? "a photographed banknote / coin as the hero visual"
+      : hero.class === "symbol" ? `a large drawn ${String(hero.name || "symbol").replace(/-/g, " ")} symbol as the hero visual`
+      : `a photographed ${hero.name || "object"} as the hero visual`;
+    return ` | beat: ${c.composition} with a hero object — ${heroWhat} (a visual beat)`;
+  }
+  if (vt === "TYPE" && c.name_card) return ` | beat: ${c.composition} — typography: the name of ${c.name_card.name}`;
   return ` | beat: ${c.composition} — ${what}`;
 }
 

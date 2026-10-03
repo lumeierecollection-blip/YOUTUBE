@@ -922,6 +922,9 @@ export function canvasManifest(raw, idx) {
     entity_pop: c.entity_pop || null,
     // "Source: <domain>" drawn bottom-right on a fetched-image beat (part C).
     source_credit: c.source_credit || null,
+    // The hero object and the name card, so the reviewers' frame labels say what is drawn.
+    concept_visuals: (c.concept_visuals || []).map((v) => ({ name: v.name || null, class: v.class || null, logo: !!v.logo, money: !!v.money })),
+    name_card: c.name_card?.name ? { name: c.name_card.name } : null,
     // Part C: the entrance style and the background variation this beat was drawn with.
     entrance_style: c.entrance_style || null,
     background: backgroundOf(idx, L.composition),
