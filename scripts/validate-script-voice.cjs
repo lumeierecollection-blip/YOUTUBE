@@ -43,6 +43,11 @@ function personStart(sentence, people) {
 function validateVoice(script, research = null) {
   const text = (script.sections || []).map((x) => x.voiceover || "").join(" ");
   const sents = sentences(text);
+  // The CLOSE beat's sentences are the viewer's action ("Report illegal tech smuggling to
+  // federal authorities.", "Adopt collective leadership across your team today.") — a
+  // narrative device like the setup's question; validate-script-narrative.cjs already requires
+  // the close to be a specific action or number (CI run 37154369091: ch-26 / ch-44 / ch-2 closes).
+  const closeSents = new Set(sentences((script.sections || []).find((x) => x.id === "close")?.voiceover || "").map((s) => s.trim()));
   const people = peopleOf(research);
   const ents = new Set((research?.named_entities || []).flatMap((e) => String(e?.name || "").split(/\s+/)).map((w) => w.toLowerCase()).filter(Boolean));
   const rows = [];
@@ -65,7 +70,7 @@ function validateVoice(script, research = null) {
     // outperform a sprawling industrial giant?" (9 words) skipped the channel in CI run
     // 37149091704 (owner's ruling 2026-10-03). Longer questions still must name something.
     const question = /\?\s*["')]*$/.test(s.trim()) && wc <= 15;
-    if (sp.names.length + sp.numbers.length + sp.objects.length === 0 && !isTurnLine(s) && !question) fails.push("names no person, place, organization, number or object");
+    if (sp.names.length + sp.numbers.length + sp.objects.length === 0 && !isTurnLine(s) && !question && !closeSents.has(s.trim())) fails.push("names no person, place, organization, number or object");
     if (/\b(was|were|is|are|been|being)\s+\w+(?:ed|en)\s+by\b/i.test(s)) fails.push("passive voice (… was done by …)");
     if (i > 0 && firstWord(s) && firstWord(s) === firstWord(sents[i - 1])) fails.push(`starts with the same word as the sentence before ("${firstWord(s)}")`);
     rows.push({ i: i + 1, sentence: s, words: wc, fails });

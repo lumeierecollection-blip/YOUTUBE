@@ -55,6 +55,15 @@ const CONCRETE = [
   // and a giant and was read as naming nothing (CI run 37149091704).
   "workshop", "giant", "factory floor", "industry", "sector", "market", "trade", "rule", "regulation", "standard",
   "ruling", "verdict", "filing", "document", "machine", "tool", "part", "line",
+  // People named by their ROLE are people (iteration 2, CI run 37154369091: "Officers cannot
+  // chase you…", "Federal prosecutors charged the technology firm owner…", "…financial barriers
+  // for builders" were read as naming nothing and skipped ch-2, ch-26, ch-48).
+  "officer", "police", "prosecutor", "investigator", "agent", "detective", "judge", "jury", "juror", "lawyer", "attorney",
+  "regulator", "inspector", "auditor", "researcher", "scientist", "engineer", "worker", "employee", "employer", "freelancer",
+  "builder", "contractor", "farmer", "driver", "pilot", "soldier", "nurse", "doctor", "patient", "student", "teacher",
+  "landlord", "tenant", "buyer", "seller", "investor", "shareholder", "borrower", "lender", "taxpayer", "voter", "customer",
+  "executive", "ceo", "founder", "owner", "manager", "conspirator", "co-conspirator", "smuggler", "broker", "trader", "victim",
+  "paperwork", "processor", "shipment", "cargo", "sensor",
 ];
 // Abstract nouns (task 4's examples first) — what an essay is made of, not what a camera sees.
 const ABSTRACT = [
