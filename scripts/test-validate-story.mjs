@@ -61,6 +61,22 @@ const wire = sec({
   writeFileSync(f, JSON.stringify(good));
   const r = spawnSync(process.execPath, ["scripts/validate-script-story.cjs", "7", f], { encoding: "utf8" });
   eq("CLI without --blocked reads channel 7 and the five beats", [r.stdout.includes("[script] ch-7: beats read by section ids"), r.status], [true, 0]);
+  // Voice is a hard gate (owner's ruling 2026-10-03): exit 3, and after the re-ask (--blocked)
+  // blocked-voice-<ch>.txt + the skip line. Narrative-only failures stay exit 2 / continue.
+  const { mkdtempSync, existsSync } = await import("node:fs");
+  const dir = mkdtempSync(join(tmpdir(), "story-blocked-"));
+  const wf = join(tmpdir(), "story-cli-wire.json");
+  writeFileSync(wf, JSON.stringify(wire));
+  const rf = join(tmpdir(), "story-cli-research.json");
+  writeFileSync(rf, JSON.stringify(RESEARCH));
+  const w1 = spawnSync(process.execPath, ["scripts/validate-script-story.cjs", "8", wf, rf], { encoding: "utf8" });
+  eq("voice failure, first ask: exit 3, no skip line", [w1.status, w1.stdout.includes("skipping this channel")], [3, false]);
+  const w2 = spawnSync(process.execPath, ["scripts/validate-script-story.cjs", "8", wf, rf, "--blocked", dir], { encoding: "utf8" });
+  eq("voice failure after the re-ask: exit 3, skip line, blocked-voice-8.txt", [w2.status, w2.stdout.includes("[script] ch-8: voice validation failed twice, skipping this channel this run"), existsSync(join(dir, "blocked-voice-8.txt")), existsSync(join(dir, "blocked-script-voice-8.txt"))], [3, true, true, false]);
+  const nf = join(tmpdir(), "story-cli-narr.json");
+  writeFileSync(nf, JSON.stringify(sec({ hook: "Buyers in Ohio paid $200 more a month in 2024.", setup: "Lenders in Columbus offer 5.9%.", rehook: "Refinancing in Ohio costs $4,000.", payoff: "The Federal Reserve put rates at 5.5% in 2024.", close: "Rates in Ohio rose 2% in 2024." })));
+  const n2 = spawnSync(process.execPath, ["scripts/validate-script-story.cjs", "9", nf, rf, "--blocked", dir], { encoding: "utf8" });
+  eq("narrative-only failure after the re-ask: exit 2, no skip", [n2.status, n2.stdout.includes("skipping this channel"), existsSync(join(dir, "blocked-voice-9.txt"))], [2, false, false]);
 }
 console.log(bad ? `${bad} FAILED` : "all pass");
 process.exit(bad ? 1 : 0);

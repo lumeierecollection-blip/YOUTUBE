@@ -6,9 +6,14 @@
  *   narrative    scripts/validate-script-narrative.cjs  (hook / setup / re-hook / payoff / close)
  *
  *   node scripts/validate-script-story.cjs <channel> <script.json> [research.json] [--blocked <dir>]
- *     exit 0 = all pass, 2 = any fail. Prints each validator's log and its "  - " feedback.
- *     --blocked <dir>: on failure, writes blocked-script-<narrative|voice|specificity>-<ch>.txt
- *     there (the run continues with the script — these checks never block a run).
+ *     exit 0 = all pass, 2 = narrative / specificity fail only, 3 = VOICE fail (with or without
+ *     others). Prints each validator's log and its "  - " feedback.
+ *     --blocked <dir> (the check after the re-ask): narrative / specificity failures write
+ *     blocked-script-<narrative|specificity>-<ch>.txt and the run continues with the script; a
+ *     voice failure writes blocked-voice-<ch>.txt and the CHANNEL IS SKIPPED this run (exit 3 —
+ *     the workflow stops that channel's prep, other channels go on). Owner's ruling 2026-10-03:
+ *     voice validation is a hard gate ("never accept" a repeated name-start); the narrative and
+ *     specificity checks stay "log and continue".
  */
 const { readFileSync, writeFileSync, mkdirSync } = require("node:fs");
 const { join } = require("node:path");
@@ -48,8 +53,12 @@ console.log(`[script] ch-${ch}: story checks — narrative ${n.pass ? "PASS" : "
 if (anyFail && blockedDir) {
   mkdirSync(blockedDir, { recursive: true });
   const text = (script.sections || []).map((x) => `[${x.id}] ${x.voiceover}`).join("\n");
-  for (const k of Object.keys(failed)) if (failed[k]) {
+  for (const k of Object.keys(failed)) if (failed[k] && k !== "voice") {
     writeFileSync(join(blockedDir, `blocked-script-${k}-${ch}.txt`), `Script ${k} FAIL after the re-ask — ch-${ch}, ${scriptPath} (${new Date().toISOString()}). The run continued with this script.\n\n${out[k].join("\n")}\n\nScript:\n${text}\n`);
   }
+  if (failed.voice) {
+    console.log(`[script] ch-${ch}: voice validation failed twice, skipping this channel this run`);
+    writeFileSync(join(blockedDir, `blocked-voice-${ch}.txt`), `Script voice FAIL after the re-ask — ch-${ch}, ${scriptPath} (${new Date().toISOString()}). The channel was SKIPPED this run (voice validation is a hard gate); nothing was rendered or uploaded.\n\n${out.voice.join("\n")}\n\nScript:\n${text}\n`);
+  }
 }
-process.exit(anyFail ? 2 : 0);
+process.exit(failed.voice ? 3 : anyFail ? 2 : 0);

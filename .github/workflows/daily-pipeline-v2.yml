@@ -400,6 +400,7 @@ jobs:
 
       # ── Stage C: script (gate-feedback retry) ──────────────────────────
       - name: Write script
+        id: script
         if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
         env:
           # The script is written by Gemini (scripts/ollama-agent.js geminiAnswer, the
@@ -486,9 +487,12 @@ jobs:
                 # hook / setup / re-hook / payoff / close (validate-script-narrative.cjs), the
                 # voice rules — banned openings, <= 25 words, at most one person-name start
                 # (validate-script-voice.cjs) — and specificity (validate-script.cjs). Any
-                # failure -> ONE re-ask with every failing beat / sentence marked; still failing ->
-                # logged to data/ci-runs/blocked-script-{narrative,voice,specificity}-<ch>.txt and
-                # the script continues. These checks never block a run (owner's spec 2026-10-03).
+                # failure -> ONE re-ask with every failing beat / sentence marked. Still failing:
+                #   narrative / specificity (exit 2) -> logged to
+                #     data/ci-runs/blocked-script-{narrative,specificity}-<ch>.txt, script continues;
+                #   VOICE (exit 3) -> a hard gate (owner's ruling 2026-10-03): logged to
+                #     data/ci-runs/blocked-voice-<ch>.txt and THIS CHANNEL IS SKIPPED this run —
+                #     skip=true, no TTS / render / upload; other channels are unaffected.
                 set +e
                 if [ "$SPEC_REASKED" -eq 0 ] && [ "$ATTEMPT" -lt 5 ]; then
                   node scripts/validate-script-story.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" > /tmp/spec-out-$FORMAT.log 2>&1
@@ -504,6 +508,11 @@ jobs:
                     echo "[script] ch-$CH: story checks FAIL ($(grep -c '^  - ' /tmp/spec-out-$FORMAT.log) marked), re-asking once"
                     FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$(grep -E '^  - ' /tmp/spec-out-$FORMAT.log || true)" | grep -E '^  - ' | sort -u || true)
                     continue
+                  fi
+                  if [ "$SPEC_EXIT" -eq 3 ]; then
+                    echo "::warning::[script] ch-$CH: voice validation failed twice — channel skipped this run (data/ci-runs/blocked-voice-$CH.txt)"
+                    echo "skip=true" >> "$GITHUB_OUTPUT"
+                    exit 0
                   fi
                   echo "::warning::[script] ch-$CH: story checks still FAIL after the re-ask — continuing with this script (logged to data/ci-runs/blocked-script-*-$CH.txt)"
                 fi
@@ -576,7 +585,7 @@ jobs:
 
       # ── Stage D: TTS voiceover ─────────────────────────────────────────
       - name: Generate TTS voiceover
-        if: steps.reserve.outputs.skip != 'true'
+        if: steps.reserve.outputs.skip != 'true' && steps.script.outputs.skip != 'true'
         run: |
           set -euo pipefail
           CH="${{ matrix.channel_id }}"
@@ -611,7 +620,7 @@ jobs:
 
       # ── Stage E: Thumbnail ─────────────────────────────────────────────
       - name: Generate thumbnail
-        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
+        if: steps.reserve.outputs.skip != 'true' && steps.script.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
@@ -625,7 +634,7 @@ jobs:
 
       # ── Stage F: SEO + metadata ────────────────────────────────────────
       - name: Generate SEO + metadata
-        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
+        if: steps.reserve.outputs.skip != 'true' && steps.script.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
@@ -653,6 +662,8 @@ jobs:
           mkdir -p data/prep-status
           if [ "${{ steps.reserve.outputs.skip }}" = "true" ]; then
             echo '{"skipped": true, "reason": "duplicate-topic"}' > "data/prep-status/$CH.json"
+          elif [ "${{ steps.script.outputs.skip }}" = "true" ]; then
+            echo '{"skipped": true, "reason": "voice-validation"}' > "data/prep-status/$CH.json"
           else
             echo "{\"skipped\": false, \"prep\": \"${{ job.status }}\"}" > "data/prep-status/$CH.json"
           fi
@@ -669,14 +680,15 @@ jobs:
             data/tts/${{ matrix.channel_id }}/
             data/thumbnails/${{ matrix.channel_id }}/
             data/ci-runs/blocked-script-specificity-${{ matrix.channel_id }}.txt
-            data/ci-runs/blocked-script-voice-${{ matrix.channel_id }}.txt
+            data/ci-runs/blocked-voice-${{ matrix.channel_id }}.txt
             data/ci-runs/blocked-script-narrative-${{ matrix.channel_id }}.txt
           retention-days: 1
 
       # A reservation whose video never gets made is released, so a failed
-      # or cancelled prep doesn't block that topic for 90 days.
+      # or cancelled prep — or a channel skipped by the voice gate — doesn't
+      # block that topic for 90 days.
       - name: Release topic reservation (prep failed)
-        if: (failure() || cancelled()) && steps.reserve.outputs.pushed == 'true'
+        if: (failure() || cancelled() || steps.script.outputs.skip == 'true') && steps.reserve.outputs.pushed == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
