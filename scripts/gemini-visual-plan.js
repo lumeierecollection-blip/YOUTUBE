@@ -1135,6 +1135,16 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
   // break / target / tracking / money, then two key nouns). Every candidate passes
   // checkVisual and does not repeat its neighbours' composition. The hook and the CTA stay
   // TYPE. A beat that nothing fits stays TYPE and is logged — the run is never failed.
+  // B.1: beat 0 (the hook) and the last beat (the CTA) are TYPE — unless the two-number rule
+  // makes the sentence a chart. Run 37125010644 ch-1 opened on a TREND and closed on a COUNTER.
+  for (const k of [...new Set([0, plan.beats.length - 1])]) {
+    const b = plan.beats[k];
+    const vt = String(b?.visual_type || "TYPE").toUpperCase();
+    if (!b || vt === "TYPE") continue;
+    if (comparisonNumbers(sentences[b.index]?.text) && CHART_TYPES.includes(vt)) continue;
+    console.log(`[plan] beat ${b.index}: ${vt} -> TYPE (the ${k === 0 ? "hook" : "CTA"} is TYPE — owner's spec 2026-10-03, B.1)`);
+    b.visual_type = "TYPE"; b.data = null; b.concepts = []; delete b.fallback_symbol;
+  }
   applyVarietyFallbacks(plan, sentences, channelId, "plan");
 
   // ── NO REPEAT: never the same composition twice in a row ─────────────

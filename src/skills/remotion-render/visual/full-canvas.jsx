@@ -560,7 +560,9 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     // does not say. The line draws on, then the dot and the label pop.
     const up = d.direction !== "down";
     const x0 = ch.x + 30, x1 = ch.x + ch.w - 70;
-    const yLo = ch.y + ch.h - 70, yHi = ch.y + 150;
+    // The baseline is INK on the chart box's floor (as LINE draws it): a light track line is not
+    // content to canvas-coverage, and the beat measured 59.5% (CI run 37125010644 ch-1 beat 0).
+    const yLo = ch.y + ch.h - 50, yHi = ch.y + 150, yBase = ch.y + ch.h - 6;
     const y0 = up ? yLo : yHi, y1 = up ? yHi : yLo;
     // An eased S-curve: flat at the start, committed at the end.
     const path = `M ${x0} ${y0} C ${x0 + (x1 - x0) * 0.45} ${y0}, ${x0 + (x1 - x0) * 0.55} ${y1}, ${x1} ${y1}`;
@@ -573,7 +575,7 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     const lx = x0, ly = y1 + 16;
     chart = (
       <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }}>
-        <line x1={ch.x} y1={yLo + 40} x2={ch.x + ch.w} y2={yLo + 40} stroke={th.track} strokeWidth={4} />
+        <line x1={ch.x} y1={yBase} x2={ch.x + ch.w} y2={yBase} stroke={th.ink} strokeWidth={4} />
         <path d={path} fill="none" stroke={accent} strokeWidth={16} strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - t} />
         <g opacity={dot} transform={`translate(${x1} ${y1}) scale(${(0.4 + 0.6 * Math.min(1, dot * 1.2)).toFixed(3)}) translate(${-x1} ${-y1})`}>
           <circle cx={x1} cy={y1} r={34} fill={accent} />
