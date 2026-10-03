@@ -2884,9 +2884,14 @@
           "topic": "ANYbotics-shift-fleet-management",
           "slug": "anybotics-shift-fleet-management-2026-10-01-as",
           "reserved_at": "2026-10-03T08:18:09.037Z"
+        },
+        {
+          "topic": "UBTECH's 1500 Robots Monthly Output",
+          "slug": "ubtech-1500-robots-monthly-output-2026-10-01-1234567890",
+          "reserved_at": "2026-10-03T08:46:36.438Z"
         }
       ],
-      "last_generated": "2026-10-03T08:18:09.037Z"
+      "last_generated": "2026-10-03T08:46:36.438Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
