@@ -51,7 +51,8 @@ export function assignEmphasis(canvases, maxW = 984) {
   for (let i = 1; i < canvases.length; i++) {
     const c = canvases[i];
     // A name card (a named entity with no verified photo) keeps its name: never the emphasis word.
-    if (c.composition !== "TYPE-FULL" || String(c.visual_type).toUpperCase() !== "TYPE" || c.vertical || c.name_card || !c.headline || !c.emphasis_word) continue;
+    // A beat with a hero (cutout, logo, money, drawn symbol) keeps it: the emphasis layout has no hero slot.
+    if (c.composition !== "TYPE-FULL" || String(c.visual_type).toUpperCase() !== "TYPE" || c.vertical || c.name_card || (c.concept_visuals || []).length || !c.headline || !c.emphasis_word) continue;
     const w = String(c.emphasis_word).replace(/[^\p{L}]/gu, "");
     if (!w || !new RegExp(`\\b${w}\\b`, "i").test(c.headline) || !fitEmphasis(w, maxW)) continue;
     c.emphasis_beat = true;

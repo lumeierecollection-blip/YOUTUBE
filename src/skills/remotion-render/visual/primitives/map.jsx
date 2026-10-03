@@ -123,7 +123,7 @@ export function CenteredMap({ data, bounds, local, dur, font, accent = INK, grou
       <g mask={`url(#${id}-mh)`}>
         <g mask={`url(#${id}-mv)`}>
           <ObjectShape name="map-region-highlight" box={bounds} colors={colors} p={p}
-            params={{ label: place, font, labelOutside: false, labelAtRegion: true, pad: 0.16, labelSize: 84, ctxStroke: 0.62, ctxWidth: 3, fillAlpha: 0.55, pFrames: Math.max(1, dur * 0.6) }} />
+            params={{ label: String(data.label || place), font, labelOutside: false, labelAtRegion: true, pad: 0.16, labelSize: 84, ctxStroke: 0.62, ctxWidth: 3, fillAlpha: 0.55, pFrames: Math.max(1, dur * 0.6) }} />
         </g>
       </g>
     </svg>

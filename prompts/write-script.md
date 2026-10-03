@@ -60,14 +60,46 @@ provided JSON Schema exactly — nothing outside it.
   them as words automatically, and the video can only chart a figure it can
   read. (The anchor_token rule above still applies: an anchor copied from
   such a sentence is copied as written, digits included.)
-- **The video must have something to SHOW.** At least half of the
-  voiceover sentences carry one of: a figure from `numbers[]`, a named
-  person / place / organization from the research, or an explicit cause ->
-  effect ("the hack drained ... which forced ..."). Sentences of pure
-  opinion or generic advice ("it is crucial to understand ...", "a
-  comprehensive guide for success") are at most a third of the script —
-  they can only be drawn as plain text. Never invent a figure or a name to
-  meet this: use what the research gives you.
+- **EVERY sentence names something real and specific** — a person (full
+  name), a place, an organization, a number (amount, percentage, count,
+  date), a physical object, or a named actor doing a specific thing ("Powell
+  raised rates", not "rates went up"). Take every one of them from the
+  research (`key_facts`, `numbers`, `named_entities`). A sentence that would
+  name nothing is replaced by one that names something from the research, or
+  cut. **Never invent a name, a figure, a date or an object to meet this** —
+  a sentence the research cannot make specific is cut, not decorated.
+  Every named fact is about THIS video's subject: a research fact about a
+  different story (an unrelated conflict, company or place the search happened
+  to return) is never used, however specific it is.
+  The examples below show the SHAPE only; they are not facts for this video.
+  ALLOWED shape: "Jerome Powell raised rates by 0.25% on September 18." /
+  "The Miami federal courthouse ruled against the company." /
+  "The SEC charged the firm's founder with fraud."
+  FORBIDDEN: "Rates are going up." / "Companies are adopting AI." /
+  "This trend is expected to continue." / "Experts say it's complicated."
+  Each sentence is scored by the number of specifics it names (0, 1, 2+);
+  the script must average at least 1.5 and no sentence may score 0
+  (`scripts/validate-script.cjs`). Prefer concrete nouns (a courthouse, a
+  gavel, a warehouse, Powell, Miami) over abstract ones (trend, approach,
+  strategy, potential, future, impact) — at least two concrete for every
+  abstract one.
+- **Specific does NOT mean longer — or shorter.** The word count above rules
+  both ways: a vague sentence is REPLACED by a specific one of the same
+  length (another fact about this subject from the research), never joined by
+  an extra sentence and never just deleted below the minimum. Five or six
+  sentences of about 15 words each — 76-93 words in all.
+- **BANNED PHRASES — never use:** "This trend is expected to...", "Experts
+  say...", "It's important to...", "In today's world...", "Let's dive
+  into...", "Here's why...", "The key takeaway is...", "Industry leaders
+  are...", "Here's what nobody tells you", "Not gonna lie", "Let me be
+  honest". State the research fact itself instead.
+- **STRUCTURE (the Shorts 3-second hook, docs/SCRIPT-HOOK-FORMULAS.md):**
+  HOOK — the first sentence states the research's single most specific,
+  surprising fact and names a person, place or number; no greeting, no
+  setup. SETUP — two or three facts, each with a named entity. PAYOFF — the
+  insight, tied to one specific named example from the research. CTA — one
+  sentence that names the hook's subject again (so the Short loops) — never
+  a generic "follow for more".
 - **Shape a sentence so it can be SHOWN, when the research already gives
   you the shape.** The video draws a comparison ("42% of income versus 31%
   for owners"), a dated sequence ("the law passed in 2019 and was repealed

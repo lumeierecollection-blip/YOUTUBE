@@ -245,6 +245,30 @@ async function resolveOrgScene(tag, type, name, context, channel, beatIndex, sce
   }
   // 3. A photo of its headquarters (a trade show: its hall / floor), as for a building.
   const r = await resolvePlaceScene(`${tag} (photo)`, "organization", name, context);
+  // The "photo" the verifier passed IS the organisation's logo / emblem / seal: Wikipedia's lead
+  // image for "Soran University" is its logo (a .jpg, so the file-name test above missed it),
+  // and it was drawn full-bleed as a building (CI run 37126933290 ch-44 beat 1; the review
+  // called it irrelevant stock imagery). It is shown as what it is — the logo hero, upright,
+  // with its source credit — never as a full-bleed building photo.
+  if (r.ok && /\b(logo|emblem|seal|crest|coat of arms|wordmark|insignia)\b/i.test(String(r.photo?.seen || ""))) {
+    // The same licence rule as every logo above: a non-free (fair-use) logo is not used.
+    if (/non-?free|fair use/i.test(r.photo.license || "") || !r.photo.license) {
+      lines.push(`the verified photo is the ${type}'s logo, but its licence "${r.photo.license || "none"}" is not free — rendering as name card`);
+      say(tag, lines);
+      return { ok: false, kind: type, why: "the only image is a non-free logo" };
+    }
+    try {
+      const sharp = require("sharp");
+      const dir = join(E.PUBLIC, "cutouts-live", String(channel));
+      mkdirSync(dir, { recursive: true });
+      const file = `${beatIndex}-${E.slug(q)}-logo.png`, abs = join(dir, file);
+      await sharp(join(E.PUBLIC, r.photo.asset)).trim({ threshold: 18 }).resize({ width: 1024, height: 1024, fit: "inside", withoutEnlargement: true }).ensureAlpha().png().toFile(abs);
+      const m = await sharp(abs).metadata();
+      lines.push(`the verified photo is the ${type}'s logo ("${r.photo.seen}") — rendering as the logo hero, not a full-bleed photo`);
+      say(tag, lines);
+      return { ok: true, kind: type, logo: { name: q, asset: `cutouts-live/${channel}/${file}`, abs, w: m.width, h: m.height, source: r.photo.source || "wikipedia", source_url: r.photo.source_url || null, license: r.photo.license || null, seen: r.photo.seen } };
+    } catch (e) { lines.push(`logo conversion failed (${e.message}) — rendering as name card`); say(tag, lines); return { ok: false, kind: type, why: "logo conversion failed" }; }
+  }
   if (r.ok) return { ...r, kind: type };
   lines.push(`no verified logo or photo — rendering as name card`);
   say(tag, lines);

@@ -61,7 +61,28 @@
     "uploaded_at": "2026-10-03T11:08:20.913Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-10-03T12:08:20.912Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "published_at": "2026-10-03T15:28:26.118Z"
+  },
+  {
+    "video_id": "lGN5v8JgNAQ",
+    "channel_id": "48",
+    "title": "UBTECH CEO Tours Robot Factory, Says Monthly Output Could…",
+    "uploaded_at": "2026-10-03T15:28:23.758Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-03T16:28:23.758Z",
     "privacy_status": "private",
-    "cancelled": false
+    "cancelled": true
+  },
+  {
+    "video_id": "hhPJSzhUf4I",
+    "channel_id": "48",
+    "title": "The New Tool for AI-Generated 3D Models Nobody Talks About",
+    "uploaded_at": "2026-10-03T16:04:53.835Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-03T17:04:53.835Z",
+    "privacy_status": "private",
+    "cancelled": true
   }
 ]

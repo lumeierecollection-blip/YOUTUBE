@@ -26,6 +26,8 @@ import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layo
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { assignCanvasAnimations } from "./anim-plan.js";
+import { isTypeCanvas, varietyReport, beatsToConvert, fallbacksFor } from "./composition-variety.js";
+import { quantitiesOf } from "./canvas-grounding.js";
 import { checkVisual, figureKey, entityNamedInSentence, comparisonNumbers } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
@@ -938,12 +940,22 @@ function canvasContentFor(b, { photo = null } = {}) {
   if (vt === "TYPE" && b.name_card?.name) c.name_card = b.name_card;
   // A logo or a money object fetched for this beat: the hero cutout (canvas-layout.js TYPE-FULL).
   if (vt === "TYPE" && b.hero_cutout) c.concept_visuals = [b.hero_cutout];
+  // Composition variety's drawn-symbol fallback (scripts/composition-variety.js): the symbol for
+  // what the sentence states ("risk" -> warning triangle) is the beat's hero. A name card keeps its name.
+  else if (vt === "TYPE" && b.fallback_symbol && !b.name_card?.name) c.concept_visuals = [{ name: b.fallback_symbol, class: "symbol", w: 1, h: 1, fallback: true }];
+  // Entrance style (part C.4, assigned by the planner): together | staggered | visual-first.
+  if (b.entrance_style) c.entrance_style = b.entrance_style;
   // Source credit (part C): the domain of the beat's fetched image.
   const credit = sourceCredit(photo?.source_url || b.hero_cutout?.source_url);
   if (credit) c.source_credit = credit;
   // The word the entity visual pops on (gemini-visual-plan.js; timed in render.js, visual/entity-sync.js).
   if (b.entity_anchor_word) c.anchor_word = b.entity_anchor_word;
-  c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: c.type_layout === "split" && !!splitHeadline(c.headline) });
+  // A beat with a hero (cutout, logo, drawn symbol) is TYPE-FULL: the split layout has no hero
+  // slot, and a TYPE-SPLIT carrying a symbol drew none (CI run 37125010644 ch-48 beat 3:
+  // middle zone 12% filled, rejected).
+  const hasHero = (c.concept_visuals || []).length > 0;
+  if (hasHero) delete c.type_layout;
+  c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: !hasHero && c.type_layout === "split" && !!splitHeadline(c.headline) });
   return c;
 }
 
@@ -1332,6 +1344,17 @@ async function resolveCanvas(channelId, planPath, plan) {
       const visuals = w.names.map((n) => results.get(`${w.bi}:${n}`)).filter(Boolean);
       for (const v of visuals) stats[v.class === "symbol" ? "symbol" : v.source]++;
       if (!visuals.length) { stats.none++; continue; }
+      // Never a hero next to a hero: three cutout beats in a row are "TYPE-FULL+HERO twice in a
+      // row" to canvas-type (CI run 37131085417 ch-2, rejected). The beat stays text here and the
+      // composition-variety pass below gives it a different composition.
+      {
+        const nb = [plan.beats[w.bi - 1], plan.beats[w.bi + 1]].filter(Boolean);
+        if (nb.some((x) => (x.canvas.concept_visuals || []).length)) {
+          console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${visuals.map((v) => v.name).join(", ")} not attached — a neighbouring beat already shows a hero object`);
+          stats.none++;
+          continue;
+        }
+      }
       const c = w.b.canvas;
       if (c.composition === "TYPE-SPLIT") {
         // A hero-cutout beat is not a plain statement: next to a TYPE-FULL it is
@@ -1362,6 +1385,108 @@ async function resolveCanvas(channelId, planPath, plan) {
         const nums = comparisonNumbers(b.narration || "");
         if (nums) console.log(`[two-number] ch-${channelId} beat ${b.index}: ${nums.join(" vs ")} -> ${b.canvas.composition} ${b.canvas.visual_type}${["BAR", "LINE", "PIE", "GAUGE"].includes(String(b.canvas.visual_type).toUpperCase()) ? " (chart, as the rule requires)" : " (NOT a chart)"}`);
       }
+    }
+  }
+  // ── COMPOSITION VARIETY on the resolved canvases (owner's spec 2026-10-03, part B) ──
+  // The planner applied the rule to its plan; resolution can still turn a beat back into
+  // TYPE (a photo that did not verify, a dropped concept). Same rule, same fallbacks
+  // (scripts/composition-variety.js), the same gates (checkVisual), no composition twice in
+  // a row; a name card (an entity's name) is converted last. Never fails the run.
+  {
+    const narr = (b) => b.narration || "";
+    const keyOf = (c) => c.composition + ((c.concept_visuals || []).length ? "+HERO" : "") + (String(c.name_card?.sub || "").trim() ? "+NAME" : "");
+    const flags = () => plan.beats.map((b) => isTypeCanvas(b.canvas));
+    const before = varietyReport(flags());
+    let changed = 0;
+    if (!before.ok) {
+      for (const i of beatsToConvert(flags(), (k) => !!plan.beats[k].canvas.name_card)) {
+        const f = flags(), r = varietyReport(f);
+        if (r.ok) break;
+        if (!f[i] || (!f[i - 1] && !f[i + 1] && r.excess === 0)) continue;
+        const b = plan.beats[i], st = narr(b), was = keyOf(b.canvas);
+        const q = quantitiesOf(st)[0];
+        let done = null;
+        for (const cand of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
+          const nb = [plan.beats[i - 1], plan.beats[i + 1]].filter(Boolean).map((x) => keyOf(x.canvas));
+          if (cand.kind === "symbol") {
+            if (nb.includes("TYPE-FULL+HERO") || b.canvas.name_card) continue;
+            b.fallback_symbol = cand.symbol; b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
+            b.canvas = canvasContentFor(b, {});
+            done = `${was} -> ${keyOf(b.canvas)} (drawn symbol "${cand.symbol}": what the sentence states)`;
+            break;
+          }
+          const v = checkVisual({ visual_type: cand.visual_type, data: cand.data, named_entities: b.named_entities }, st);
+          if (v.why || v.type !== cand.visual_type) continue;
+          if (nb.includes(compositionFor(v.type, false))) continue;
+          const fk = figureKey(v);
+          if (fk && plan.beats.some((x, j) => j !== i && figureKey(checkVisual(x, narr(x))) === fk)) continue;
+          b.visual_type = v.type; b.data = v.data; delete b.type_layout; delete b.name_card;
+          b.canvas = canvasContentFor(b, {});
+          done = `${was} -> ${b.canvas.composition} ${v.type} ${JSON.stringify(v.data)}${cand.kind === "keynouns" ? " (last resort: two of the sentence's own key nouns)" : ""}`;
+          break;
+        }
+        if (done) changed++;
+        console.log(`[variety] ch-${channelId} beat ${b.index}: ${done || `${was} kept — no fallback fits its sentence`}`);
+      }
+      // Rebuilt canvases get their sentence case, variant and folio back (and the one emphasis beat is re-chosen).
+      if (changed) styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
+    }
+    // Two heroes from DIFFERENT sources can still sit side by side — a banknote (money) and a
+    // company logo (CI run 37133611702 ch-26: "TYPE-FULL+HERO twice in a row", rejected; the
+    // rotation's TYPE-SPLIT cannot carry a hero). The weaker of the pair (a cutout or banknote
+    // before a logo or a photo) gives up its hero for a fallback composition its own sentence
+    // grounds (counter / process / trend / key nouns) that differs from both neighbours.
+    for (let i = 1; i < plan.beats.length; i++) {
+      const a = plan.beats[i - 1], b = plan.beats[i];
+      if (keyOf(a.canvas) !== keyOf(b.canvas) || !(b.canvas.concept_visuals || []).length) continue;
+      const rank = (x) => ((x.canvas.concept_visuals || [])[0]?.logo ? 2 : (x.canvas.concept_visuals || [])[0]?.money ? 0 : 1);
+      const order = rank(a) <= rank(b) ? [i - 1, i] : [i, i - 1];
+      let done = false;
+      for (const k of order) {
+        if (k === 0 || k === plan.beats.length - 1) continue;
+        const x = plan.beats[k], st = narr(x);
+        const q = quantitiesOf(st)[0];
+        for (const cand of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
+          if (cand.kind === "symbol") continue;
+          const v = checkVisual({ visual_type: cand.visual_type, data: cand.data, named_entities: x.named_entities }, st);
+          if (v.why || v.type !== cand.visual_type) continue;
+          const comp = compositionFor(v.type, false);
+          if ([plan.beats[k - 1], plan.beats[k + 1]].filter(Boolean).some((y) => keyOf(y.canvas) === comp)) continue;
+          const was = keyOf(x.canvas);
+          x.visual_type = v.type; x.data = v.data; delete x.hero_cutout; delete x.fallback_symbol; delete x.type_layout;
+          x.canvas = canvasContentFor(x, {});
+          console.log(`[variety] ch-${channelId} beat ${x.index}: ${was} next to ${was} -> ${x.canvas.composition} ${v.type} ${JSON.stringify(v.data)} (two heroes in a row)`);
+          done = true; changed++;
+          break;
+        }
+        if (done) break;
+      }
+      if (!done) console.warn(`::warning::[variety] ch-${channelId} beats ${i - 1}-${i}: two ${keyOf(b.canvas)} in a row and no fallback fits either sentence`);
+    }
+    if (changed) styleCanvases(plan.beats.map((b) => b.canvas), plan.beats.map((b) => b.narration || ""));
+    const after = varietyReport(flags());
+    const keys = plan.beats.map((b) => keyOf(b.canvas));
+    let run = 1, maxRun = 1;
+    for (let i = 1; i < keys.length; i++) { run = keys[i] === keys[i - 1] ? run + 1 : 1; maxRun = Math.max(maxRun, run); }
+    const distinct = new Set(plan.beats.map((b) => b.canvas.composition)).size;
+    plan.variety = { type_full: after.count, beats: after.n, max_type: after.max, adjacent_type: after.adjacent.length, max_consecutive_same: maxRun, distinct_compositions: distinct, converted: changed,
+      entrance_styles: plan.beats.map((b) => b.canvas.entrance_style || null) };
+    console.log(`[variety] ch-${channelId} final: TYPE-FULL ${after.count}/${after.n} (max ${after.max}), adjacent TYPE pairs ${after.adjacent.length}, max consecutive same composition ${maxRun}, distinct compositions ${distinct} (${keys.join(", ")})${after.ok ? "" : " — OVER the variety rule (logged; nothing else in these sentences is grounded)"}`);
+    if (!after.ok) console.warn(`::warning::[variety] ch-${channelId}: ${after.count}/${after.n} TYPE beats after the fallbacks (max ${after.max})`);
+  }
+  // "Georgia" is two regions: the map drew the COUNTRY for Hyundai's Metaplant in the US state
+  // (CI run 37126933290 ch-48 beat 1, beat check NO). It is the US state unless the script
+  // speaks of the Caucasus country (Tbilisi, Georgian, the Black Sea, Abkhazia, South Ossetia).
+  {
+    const all = plan.beats.map((b) => b.narration || "").join(" ");
+    const caucasus = /\b(Tbilisi|Georgian|Caucasus|Black Sea|Abkhazia|South Ossetia|Batumi)\b/.test(all);
+    for (const b of plan.beats) {
+      const c = b.canvas;
+      if (c?.composition !== "MAP-CENTERED" || !/^georgia$/i.test(String(c.data?.place || "").trim()) || caucasus) continue;
+      // "Georgia state" resolves to the US state (geo-regions alias); the map is still labelled "Georgia".
+      c.data = { ...c.data, place: "Georgia state", label: "Georgia" };
+      if (b.data) b.data = { ...b.data, place: "Georgia state", label: "Georgia" };
+      console.log(`[canvas] ch-${channelId} beat ${b.index}: MAP "Georgia" -> the US state (no Caucasus context in the script)`);
     }
   }
   // Two major TYPE-FULL statements in a row both get the "words" headline motion, and

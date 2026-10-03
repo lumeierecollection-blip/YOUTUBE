@@ -457,6 +457,9 @@ function canvasType(beats) {
       const r = v.role || null;
       if (r && r !== "rule") roles.add(r);
       if (TYPE_TEXT.includes(ROLE_OF(k))) {
+        // Part C.1 (owner's spec 2026-10-03): a TYPE-FULL statement is centred on the frame's
+        // axis by design; two centred beats in a row are refused below (part C.2).
+        if (v.align === "center" && c.composition === "TYPE-FULL" && k === "statement") continue;
         if (v.align === "center") bad.push(`beat ${i}: ${k} is centred`);
         else if (!v.align && !v.rotate) bad.push(`beat ${i}: ${k} has no alignment`);
         if (!v.rotate && Math.abs(v.x + v.w / 2 - 540) < 24 && v.w < 700) bad.push(`beat ${i}: ${k} sits on the frame's centre line`);
@@ -474,6 +477,9 @@ function canvasType(beats) {
     // A hero cutout and a name card (an entity's name over its figure) are their own compositions.
     const compKey = (x) => (x?.composition || "") + (x?.boxes?.cutout0 ? "+HERO" : "") + (x?.boxes?.lead_phrase ? "+NAME" : "");
     if (i > 0 && beats[i - 1].canvas && compKey(beats[i - 1].canvas) === compKey(c)) bad.push(`beat ${i}: ${compKey(c)} twice in a row`);
+    // Part C.2: never two centred headlines in a row.
+    const centred = (x) => Object.values(x?.boxes || {}).some((v) => v && v.align === "center" && v.role === "headline");
+    if (i > 0 && centred(c) && centred(beats[i - 1].canvas)) bad.push(`beat ${i}: a centred headline two beats in a row`);
     // Headline motion: one per beat, never the same two beats in a row, never a fade.
     const hm = c.headline_motion, pm = i > 0 ? beats[i - 1].canvas?.headline_motion : null;
     if (hm === "fade") bad.push(`beat ${i}: the headline fades (headlines never fade)`);

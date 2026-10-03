@@ -168,7 +168,9 @@ export const INK_ON_DARK = "#F2F0EB";
 export const SANS = "Inter";
 export { SERIF };
 
-const DATA_TYPES = ["BAR", "PIE", "LINE", "GAUGE"];
+// TREND (scripts/composition-variety.js, owner's spec 2026-10-03 B.4): a stated rise or fall
+// with no figures — drawn in the chart box as a line to one dot, no values.
+const DATA_TYPES = ["BAR", "PIE", "LINE", "GAUGE", "TREND"];
 
 /**
  * The composition a checked visual type is drawn as. `hasPhoto`: the image the
@@ -233,6 +235,20 @@ const anchorX = (w, flip) => Math.round(flip ? R_EDGE - w : L_EDGE);
  * headline motion rotates on. Renderer, manifest and audit all go through
  * this, so they see the same layout.
  */
+/**
+ * The beat's background variation (owner's spec 2026-10-03, part C.3) — subtle, on the
+ * white ground: every 3rd beat a faint paper texture (opacity 0.04), every 5th beat a thin
+ * horizontal rule above the headline zone. A full-bleed photo beat covers the ground: none.
+ * The renderer (full-canvas.jsx) and the manifest both read this, so the report counts
+ * what was drawn.
+ */
+export const PAPER_OPACITY = 0.04;
+export const BG_RULE = Object.freeze({ y: TOP - 40, h: 2, color: "#DADADF" });
+export function backgroundOf(idx, composition = "") {
+  if (["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"].includes(composition)) return { paper: false, rule: false };
+  return { paper: (idx + 1) % 3 === 0, rule: (idx + 1) % 5 === 0 };
+}
+
 export function normalizeCanvas(c, idx = 0) {
   // dark: always false — the ground is uniform white on every beat
   // (backgrounds.js); a plan resolved while dark beats existed must not draw
@@ -271,6 +287,15 @@ function dataBox(text, { width = 560, size = 40, maxLines = 2, x, y, flip = 0, b
 }
 // The planner's emphasis words for the canvas being laid out (set by canvasLayout).
 let MARKS = [];
+// Headline scale (owner's spec 2026-10-03, part C.2): the hero headline — a TYPE-FULL
+// statement, where the headline IS the beat (the hook, the CTA, at most 3 a video under the
+// variety rule) — is 120-160 px; every other headline (a header over a chart, photo, map,
+// number, process or cutout) is 80-110 px. Two sizes, never one for all. A 110 px statement
+// alone in the middle zone left it ~85% empty (QA render 2026-10-03), so the hero tier is the
+// statement's. Set per beat by canvasLayout; the plain-statement branch passes hero: true.
+// A name card's NAME is exempt (it is the entity, drawn like a hero number, not a headline).
+export const HERO_HEADLINE = Object.freeze({ min: 120, max: 160 });
+export const HEADLINE_SIZE = Object.freeze({ min: 80, max: 110 });
 /**
  * A ROLE_HEADLINE block, left- or right-anchored; top at `y`, or bottom at
  * `bottom`. Kinetic: the text is a list of words, each with its own weight
@@ -278,11 +303,17 @@ let MARKS = [];
  * that layout (bold words are wider), and the box carries `words` with their
  * measured x / y / width.
  */
-function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines = 4, maxHeight = Infinity, max = ROLE_HEADLINE.sizeBand[1], marks = MARKS } = {}) {
-  const align = flip ? "right" : "left";
+function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines = 4, maxHeight = Infinity, max = ROLE_HEADLINE.sizeBand[1], marks = MARKS, center = false, tier = true, hero = false } = {}) {
+  const TIER = hero ? HERO_HEADLINE : HEADLINE_SIZE;
+  // center (part C.1): a TYPE-FULL statement, centred on the frame's axis.
+  const align = center ? "center" : flip ? "right" : "left";
   const words = markWords(text, marks);
-  const f = fitWords(words, width, { maxLines, maxHeight, max, min: 88, align });
-  if (!f.lines.length) return { ...box(anchorX(0, flip), bottom != null ? bottom : y, 0, 0), size: f.size, lines: [], words: [], align, role: "headline", inBand: false };
+  const hi = tier ? Math.min(max, TIER.max) : max, lo = tier ? Math.min(hi, TIER.min) : 88;
+  let f = fitWords(words, width, { maxLines, maxHeight, max: hi, min: lo, align });
+  // The hero's 120 px floor never overflows its zone: a text that does not fit falls back to the 80 px floor.
+  if (tier && lo > HEADLINE_SIZE.min && (f.lines.length > maxLines || f.height > maxHeight)) f = fitWords(words, width, { maxLines, maxHeight, max: lo, min: HEADLINE_SIZE.min, align });
+  const ax = (w) => (center ? Math.round((FRAME.w - w) / 2) : anchorX(w, flip));
+  if (!f.lines.length) return { ...box(ax(0), bottom != null ? bottom : y, 0, 0), size: f.size, lines: [], words: [], align, role: "headline", inBand: false };
   const w = Math.min(width, Math.ceil(f.width) + 4);
   const h = f.height;
   const lines = f.lines.map((ln) => ln.map((i) => f.words[i].text).join(" "));
@@ -291,12 +322,12 @@ function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines =
   // The descender lift counts against maxHeight: a 3-line TYPE-SPLIT half at
   // 360 px rose to y 600, across the top/middle zone edge (CI run 37010325344
   // ch-2 beat 3). Refit smaller until text + lift fits.
-  if (bottom != null && Number.isFinite(maxHeight) && h + desc > maxHeight && f.size > 88) {
-    return headlineBox(text, { width, y, bottom, flip, maxLines, maxHeight, max: Math.min(max, f.size - 4), marks });
+  if (bottom != null && Number.isFinite(maxHeight) && h + desc > maxHeight && f.size > (tier ? HEADLINE_SIZE.min : 88)) {
+    return headlineBox(text, { width, y, bottom, flip, maxLines, maxHeight, max: Math.min(hi, f.size - 4), marks, center, tier, hero });
   }
   const by = bottom != null ? bottom - h - desc : y;
   // desc: how far the last line's descenders reach below the box (contentBounds counts it as content).
-  return { ...box(anchorX(w, flip), by, w, h), size: f.size, lines, rows: f.lines, words: f.words, align, role: "headline", inBand: f.size >= ROLE_HEADLINE.sizeBand[0], desc };
+  return { ...box(ax(w), by, w, h), size: f.size, lines, rows: f.lines, words: f.words, align, role: "headline", inBand: f.size >= ROLE_HEADLINE.sizeBand[0], desc };
 }
 const rule = (flip, y = TOP, w = 96) => ({ ...box(anchorX(w, flip), y, w, 6), role: "rule", anchor: flip ? "right" : "left" });
 
@@ -359,7 +390,7 @@ export function canvasLayout(c) {
       // The second half is the middle zone's subject: up to 360 px across the
       // full width. At 760 px / max 200 a short half ("the rule") filled 154 of
       // the zone's 720 rows (CI run 36995441688 ch-44 beat 7) — an empty middle.
-      boxes.statement = headlineBox(split[1], { width: 984, bottom: BOTTOM, flip: opp, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 360 });
+      boxes.statement = headlineBox(split[1], { width: 984, bottom: BOTTOM, flip: opp, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 360, hero: true });
       const kk = c?.lead_in || folio;
       if (kk) boxes.kicker = dataBox(kk, { width: 300, size: 34, maxLines: 1, y: TOP + 10, flip: opp });
       hero = "statement";
@@ -396,7 +427,9 @@ export function canvasLayout(c) {
         boxes.rule = rule(flip, TOP);
         boxes.number = { ...box(nx, TOP + 40, nw, nh), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
         if (label) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, y: boxes.number.y + nh + 28, flip });
-        boxes.headline = headlineBox(c.headline, { width: 900, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200 });
+        // The middle zone's subject until the number pops on its word: the hero tier (a 110 px
+        // line filled 12% of the zone — CI run 37126933290 ch-44 beat 2, middle-zone-filled).
+        boxes.headline = headlineBox(c.headline, { width: 900, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200, hero: true });
       }
       hero = "number";
     } else {
@@ -411,7 +444,11 @@ export function canvasLayout(c) {
         const eh = Math.round(emph.size * ROLE_EMPHASIS.lineHeight);
         boxes.rule = rule(flip ? 0 : 1, TOP);
         if (text) boxes.headline = headlineBox(text, { width: 700, y: TOP + 40, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - TOP - 40, max: 120 });
-        boxes.emphasis = { ...box(anchorX(ew, flip ? 0 : 1), BOTTOM - eh - descOffset(shown, emph.size, ROLE_EMPHASIS.lineHeight), ew, eh), desc: descOffset(shown, emph.size, ROLE_EMPHASIS.lineHeight), size: emph.size, text: shown, align: flip ? "left" : "right", role: "emphasis" };
+        // Anchored on the word's REAL descender: descOffset reserves 0.3 em, but Fraunces' "p"
+        // ends ~0.15 em under the baseline — the ink stopped at y 1275 and the beat spanned
+        // 59.5% (CI run 37126933290 ch-44 beat 4). 0.17 em keeps the ink inside the zone.
+        const eDesc = /[gjpqy]/.test(shown) ? Math.ceil(emph.size * 0.17) : 0;
+        boxes.emphasis = { ...box(anchorX(ew, flip ? 0 : 1), BOTTOM - eh - eDesc, ew, eh), desc: eDesc, size: emph.size, text: shown, align: flip ? "left" : "right", role: "emphasis" };
         hero = "emphasis";
       } else if (c?.vertical) {
         // One beat a video: the statement rotated 90 degrees along the left edge.
@@ -440,7 +477,7 @@ export function canvasLayout(c) {
           const sub = String(c.name_card.sub || "").trim();
           const subBox = sub ? dataBox(sub, { width: 900, size: 40, maxLines: 2, bottom: BOTTOM, flip }) : null;
           const floor = subBox ? subBox.y - 28 : BOTTOM;
-          boxes.statement = headlineBox(c.name_card.name, { width: 984, bottom: floor, flip, maxLines: 3, maxHeight: floor - BODY_TOP, max: 240 });
+          boxes.statement = headlineBox(c.name_card.name, { width: 984, bottom: floor, flip, maxLines: 3, maxHeight: floor - BODY_TOP, max: 240, tier: false });
           // "lead_" so the zone bookkeeping counts it as text (elementType ^lead).
           if (subBox) boxes.lead_phrase = { ...subBox, role: "data" };
           hero = "statement";
@@ -532,7 +569,10 @@ export function canvasLayout(c) {
           hero = "cutout0";
         } else {
           // The statement is the body: the middle zone only (it used to rise to y 430, through the top zone).
-          boxes.statement = headlineBox(text, { width: 984, bottom: BOTTOM, flip, maxLines: 5, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 360 });
+          // Part C.1 (owner's spec 2026-10-03): TYPE-FULL is the one centred composition — the
+          // headline on the frame's axis, full width. The hairline rule (and folio) stays at the
+          // top: without it a one-zone beat spans ~37% of the frame and fails canvas-coverage.
+          boxes.statement = headlineBox(text, { width: 984, bottom: BOTTOM, flip, maxLines: 5, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 360, center: true, hero: true });
           hero = "statement";
         }
       }
@@ -882,6 +922,14 @@ export function canvasManifest(raw, idx) {
     entity_pop: c.entity_pop || null,
     // "Source: <domain>" drawn bottom-right on a fetched-image beat (part C).
     source_credit: c.source_credit || null,
+    // The hero object and the name card, so the reviewers' frame labels say what is drawn.
+    concept_visuals: (c.concept_visuals || []).map((v) => ({ name: v.name || null, class: v.class || null, logo: !!v.logo, money: !!v.money })),
+    name_card: c.name_card?.name ? { name: c.name_card.name } : null,
+    // Part C: the entrance style and the background variation this beat was drawn with.
+    entrance_style: c.entrance_style || null,
+    background: backgroundOf(idx, L.composition),
+    headline_size: (L.boxes.headline || L.boxes.statement)?.size || null,
+    headline_align: (L.boxes.headline || L.boxes.statement)?.align || null,
     // Where the accent is drawn: chart values / arrows, the hero number (unless the
     // sentence is neutral: number_accent === false), the latest date, the last list
     // index, the larger comparison value, the map's region, a document's callout band.

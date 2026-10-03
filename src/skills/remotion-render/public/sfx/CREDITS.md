@@ -38,3 +38,19 @@ interface-kenney/, transitions/ …) is the OLDER library used by the
 legacy MotionGraphics path (still the longform fallback). It was kept, not
 deleted, because that path still references it. Note that `ambient/` holds
 two `mixkit-*` files; Mixkit's license is not CC0.
+
+## Part-D palette (2026-10-03)
+
+The full-canvas renderer's six roles (`visual/canvas-sfx.js`), reusing the files above
+where one already existed (no duplicates downloaded):
+
+| Role | File | Level | Source |
+|---|---|---|---|
+| pop | pop.mp3 (NEW) | -18 dB | `drop_001.ogg`, Kenney — Interface Sounds (src/audio/kenney_interface/, CC0 1.0). MP3 conversion only; 0.13 s. |
+| number-roll | number-roll.mp3 (NEW) | -16 dB | `tick_002.ogg`, Kenney — Interface Sounds (CC0 1.0), sequenced: 8 copies 50 ms apart, gain 1.0 -> 0.51, trimmed to 0.37 s. An edit of a sourced file (like impact.mp3's trim), not a synthesised sound. |
+| whoosh-soft | whoosh.mp3 | -22 dB | above (OpenGameArt swish-9, CC0) |
+| tick | number-count.mp3 | -20 dB | above (Kenney tick_004, CC0) |
+| chime | reveal.mp3 | -14 dB | above (Kenney confirmation_002, CC0) |
+| impact-low | impact.mp3 | -12 dB | above (Kenney impactSoft_heavy_000, CC0) |
+
+The brief named Kenney or Mixkit: Kenney (CC0) was used; Mixkit's licence is not CC0.

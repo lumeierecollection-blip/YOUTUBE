@@ -10,6 +10,23 @@
 import { flattenBoxes, ZONES, CAPTION } from "./canvas-layout.js";
 
 export const POP = Object.freeze({ IN: 6, OUT: 6, STAGGER: 8, START: 1, S0: 0.94, OVER: 1.04 });
+// Entrance styles (owner's spec 2026-10-03, part C.4; scripts/composition-variety.js assigns
+// one per beat, never the same twice in a row). Frames from the beat's start, per group:
+//   together      every group pops at 0 (all landed by frame 6)
+//   staggered     0, 12, 24 — headline 0-6, chart 12-18, label 24-30
+//   visual-first  the visual (photo / middle band) at 0, the text (top band) at 14
+// No style (an older plan): the original 8-frame stagger.
+export const ENTRANCE = Object.freeze({ STAGGERED: 12, TEXT_AFTER_VISUAL: 14 });
+function arrival(order, style) {
+  if (style === "together") return order.map((g) => ({ ...g, at: 0 }));
+  if (style === "visual-first") {
+    const vis = order.filter((g) => g.key !== "top"), text = order.filter((g) => g.key === "top");
+    if (!vis.length || !text.length) return order.map((g, i) => ({ ...g, at: i * POP.STAGGER }));
+    return [...vis.map((g, i) => ({ ...g, at: i * POP.STAGGER })), ...text.map((g, i) => ({ ...g, at: ENTRANCE.TEXT_AFTER_VISUAL + i * POP.STAGGER }))];
+  }
+  const step = style === "staggered" ? ENTRANCE.STAGGERED : POP.STAGGER;
+  return order.map((g, i) => ({ ...g, at: i * step }));
+}
 export const PHOTO_COMPS = ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"];
 // The bands the groups are clipped to (zones; the middle runs to the caption
 // row so a descender within ZONE_TOL is not cut).
@@ -41,10 +58,10 @@ export function popGroups(c, L) {
   // (the pop-transitions rule: no empty frame).
   const ek = entityGroupKey(c, L, groups);
   if (ek && c.entity_pop && Number.isFinite(c.entity_pop.frame) && order.some((g) => g.key !== ek && g.major)) {
-    const rest = order.filter((g) => g.key !== ek).map((g, i) => ({ ...g, at: i * POP.STAGGER }));
+    const rest = arrival(order.filter((g) => g.key !== ek), c.entrance_style);
     return [...rest, { ...order.find((g) => g.key === ek), at: Math.max(0, c.entity_pop.frame - POP.START), entity: true }];
   }
-  return order.map((g, i) => ({ ...g, at: i * POP.STAGGER }));
+  return arrival(order, c.entrance_style);
 }
 // The group that holds the beat's entity visual, or null.
 export function entityGroupKey(c, L, groups) {

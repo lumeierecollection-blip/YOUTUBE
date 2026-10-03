@@ -70,7 +70,7 @@ export function KineticText({
   return (
     <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h }}>
       {rows.map((row, li) => (
-        <div key={li} style={{ height: lh, lineHeight: `${lh}px`, whiteSpace: "nowrap", textAlign: right ? "right" : "left", fontFamily: font, fontSize: b.size, letterSpacing: tracking, fontOpticalSizing: "auto", textTransform: upper ? "uppercase" : "none" }}>
+        <div key={li} style={{ height: lh, lineHeight: `${lh}px`, whiteSpace: "nowrap", textAlign: b.align === "center" ? "center" : right ? "right" : "left", fontFamily: font, fontSize: b.size, letterSpacing: tracking, fontOpticalSizing: "auto", textTransform: upper ? "uppercase" : "none" }}>
           {row.map((w, k) => {
             const i = wi++;
             const f = local - sched.enter[i];
@@ -88,7 +88,7 @@ export function KineticText({
             if (stack && settle < 1) {
               const lastRow = (rows.length - 1) * lh;
               const fx0 = Number.isFinite(w.x) ? w.x : 0, fy0 = Number.isFinite(w.y) ? w.y : li * lh;
-              const toX = right ? (Number.isFinite(w.w) ? b.w - w.w : 0) : 0;
+              const toX = right ? (Number.isFinite(w.w) ? b.w - w.w : 0) : b.align === "center" ? (Number.isFinite(w.w) ? (b.w - w.w) / 2 : 0) : 0;
               sx = (toX - fx0) * (1 - settle);
               sy = (lastRow - i * lh - fy0) * (1 - settle);
             }
