@@ -1175,8 +1175,11 @@ async function resolveCanvas(channelId, planPath, plan) {
     const narr = (b) => b.narration || "";
     const imageBeats = () => plan.beats.filter((b) => b.canvas.photo).length;
     const rot = enforceRotation(plan.beats.length, {
-      // A name card is its own composition (as local-audit canvas-type keys it): never rotated into a split statement.
-      compositionOf: (i) => plan.beats[i].canvas.composition + (plan.beats[i].canvas.name_card ? "+NAME" : "") + ((plan.beats[i].canvas.concept_visuals || []).length ? "+HERO" : ""),
+      // A name card is its own composition exactly as local-audit canvas-type keys it: by the
+      // lead_phrase box, which the layout draws only when the card has a sub-phrase. A bare-name
+      // card next to a TYPE-FULL statement is "TYPE-FULL twice" to the audit (CI run
+      // 37119036921 ch-1 beat 1, rejected), so it is keyed — and rotated — the same way here.
+      compositionOf: (i) => plan.beats[i].canvas.composition + (String(plan.beats[i].canvas.name_card?.sub || "").trim() ? "+NAME" : "") + ((plan.beats[i].canvas.concept_visuals || []).length ? "+HERO" : ""),
       // A two-number comparison drawn as a chart (part D) is never rotated away.
       candidates: (i) => (plan.beats[i].canvas.photo && imageBeats() <= 1 ? [] : comparisonNumbers(narr(plan.beats[i])) && ["BAR", "LINE", "PIE", "GAUGE"].includes(String(plan.beats[i].visual_type).toUpperCase()) ? [] : candidatesFor({ sentence: narr(plan.beats[i]), headline: plan.beats[i].canvas.headline || "" })),
       accept: (i, alt) => {
