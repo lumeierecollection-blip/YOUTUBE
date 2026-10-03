@@ -65,11 +65,34 @@ export function entityAnchor(c) {
   return null;
 }
 
+// Spelled numbers: the voiceover says "two hundred" for "200+" (CI run 37100587452 ch-9 beat 3).
+const UNITS = Object.fromEntries(SMALL.map((w, i) => [w, i]));
+const TENS = { thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
+const SCALES = { hundred: 100, thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 };
+/** Each spoken word gets the value of the spelled number run STARTING at it ("two hundred" -> 200 on "two"). */
+function spelledValues(said) {
+  return said.map((_, i) => {
+    let total = 0, cur = 0, n = 0;
+    for (let k = i; k < said.length; k++) {
+      const parts = said[k].n ? String(said[k].text).toLowerCase().replace(/[^a-z-]/g, "").split("-").filter(Boolean) : [];
+      if (!parts.length || !parts.every((p) => p in UNITS || p in TENS || p in SCALES || p === "and")) break;
+      for (const p of parts) {
+        if (p in UNITS) cur += UNITS[p]; else if (p in TENS) cur += TENS[p];
+        else if (p === "hundred") cur = (cur || 1) * 100; else if (p in SCALES) { total += (cur || 1) * SCALES[p]; cur = 0; }
+      }
+      n++;
+    }
+    return n && !(n === 1 && said[i].n === "and") ? String(total + cur) : null;
+  });
+}
+
 /** The pop frame for the beat's entity visual, from the spoken words' timings. */
 export function scheduleEntityPop(c, spoken, dur) {
   const a = entityAnchor(c);
   if (!a) return null;
   const said = (Array.isArray(spoken) ? spoken : []).map((w) => ({ ...w, n: normWord(w.text), d: digitsOf(w.text) }));
+  const spelled = spelledValues(said);
+  said.forEach((w, i) => { if (!w.d && spelled[i]) w.d = spelled[i]; });
   let hit = null, word = null;
   for (const cand of a.words) {
     const m = cand.startsWith("#") ? said.find((w) => w.d === cand.slice(1)) : said.find((w) => w.n === cand);

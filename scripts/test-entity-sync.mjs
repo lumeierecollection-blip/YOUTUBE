@@ -35,6 +35,8 @@ eq("anchor not spoken -> missing (the renderer pops at the beat start)", schedul
 // Number and cutout.
 eq("a hero number matches its spoken digits", scheduleEntityPop({ composition: "NUMBER-FULL", data: { value: "$387.5 million" } }, words("Bitget lost $387.5 million in hours", 0, 10), 150).word, "$387.5");
 eq("a small number matches its spoken word", scheduleEntityPop({ composition: "NUMBER-FULL", data: { value: "7" } }, words("The trial lasted seven weeks", 0, 10), 150).word, "seven");
+eq("a spelled figure matches: '200+' on 'two hundred' (CI run 37100587452 ch-9)", scheduleEntityPop({ composition: "NUMBER-FULL", data: { value: "200+" } }, words("More than two hundred guests came", 0, 10), 150).word, "two");
+eq("'1.4 million' is not '14'", scheduleEntityPop({ composition: "NUMBER-FULL", data: { value: "14" } }, words("It reached one million people", 0, 10), 150).missing, "14");
 eq("a hero cutout pops on its noun", scheduleEntityPop({ composition: "TYPE-FULL", concept_visuals: [{ name: "door key", class: "cutout" }] }, words("Keep a spare key safe", 0, 10), 150).word, "key");
 eq("a plain statement has no entity", scheduleEntityPop({ composition: "TYPE-FULL", headline: "x" }, words("Anything at all"), 90), null);
 
