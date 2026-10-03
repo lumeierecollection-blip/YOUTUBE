@@ -2939,9 +2939,14 @@
           "topic": "Agentic AI frameworks for industrial automation lifecycle management",
           "slug": "agentic-ai-frameworks-industrial-automation-2026-10-02",
           "reserved_at": "2026-10-03T09:32:06.466Z"
+        },
+        {
+          "topic": "DGIST AI Robot in High-Risk Steel Mill",
+          "slug": "dgist-ai-robot-high-risk-steel-mill-2026-10-02-1234567890",
+          "reserved_at": "2026-10-03T10:04:47.689Z"
         }
       ],
-      "last_generated": "2026-10-03T09:32:06.466Z"
+      "last_generated": "2026-10-03T10:04:47.689Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
