@@ -299,7 +299,11 @@ export function comparisonNumbers(sentence) {
     if (/^(19|20)\d{2}$/.test(raw) || isIdentifierNumber(raw, text)) continue;   // a year, an identifier
     vals.push(raw.toLowerCase());
   }
-  for (const w of wordNumbers(text)) vals.push(String(w));
+  // A spelled year ("by twenty twenty-six" -> 2026) is a date, not a compared quantity
+  // (CI run 37108869325 ch-44: "20% vs 2026").
+  // "twenty twenty-six" is read by wordNumbers as 20 + 26: such a year is cut out first.
+  const noYears = text.replace(/\b(nineteen|twenty)[\s-]+(ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|oh)(?:[\s-]+(one|two|three|four|five|six|seven|eight|nine))?\b/gi, " ");
+  for (const w of wordNumbers(noYears)) if (!(w >= 1900 && w <= 2099)) vals.push(String(w));
   const distinct = [...new Set(vals.map((v) => v.replace(/[\s,$]/g, "")))];
   return distinct.length >= 2 ? distinct : null;
 }

@@ -125,7 +125,10 @@ export const numberInk = (text, size) => {
   const sep = /\d,/.test(String(text ?? "")) ? 0.12 : 0;   // also a trailing "2," (CI run 36953236514 ch-48)
   // "%" (set at 0.8x on the baseline) drops its lower circle and slash ~0.1 em
   // below it (CI run 36976172356 ch-44 GAUGE "50%": crossed y 1340 by ~25 px).
-  const pct = /%/.test(String(text ?? "")) && !sep ? 0.1 : 0;
+  // 0.03, was 0.1: "10%" ended ~73 px above its box and the beat failed canvas-coverage at
+  // 59.2% (CI run 37108869325 ch-9). The 0.1 was measured under the old camera push, like the
+  // separator reserve (a0b1763); 0.03 keeps a small allowance for the % sign's overshoot.
+  const pct = /%/.test(String(text ?? "")) && !sep ? 0.03 : 0;
   // 0.94 for EVERY figure: with the static camera (pop compositor) a
   // quantity's ink also ends 0.94 em below its box top ("50", size 518:
   // CI run 36985423031 ch-1 crossed y 1340 by ~50 px). The earlier 0.82 for

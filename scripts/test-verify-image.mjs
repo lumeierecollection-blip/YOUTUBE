@@ -34,6 +34,7 @@ eq("two numbers + a comparison word", comparisonNumbers("Unemployment rose from 
 eq("one number is not this rule", comparisonNumbers("Unemployment is 4.3%."), null);
 eq("years are not compared quantities", comparisonNumbers("It rose after the law passed in 2019 and changed in 2024."), null);
 eq("spelled numbers count", comparisonNumbers("It rose from ten to twenty-two percent."), ["10", "22"]);
+eq("a spelled year is not a compared number (CI run 37108869325 ch-44)", comparisonNumbers("Productivity will increase by 20% by twenty twenty-six."), null);
 eq("no comparison word -> not this rule", comparisonNumbers("They hired 10 people and bought 22 machines."), null);
 
 console.log(bad ? `${bad} FAILED` : "all pass");

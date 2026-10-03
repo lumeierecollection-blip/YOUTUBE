@@ -1354,6 +1354,18 @@ async function resolveCanvas(channelId, planPath, plan) {
       }
     }
   }
+  // Two major TYPE-FULL statements in a row both get the "words" headline motion, and
+  // canvas-type fails "headline motion twice in a row" (CI run 37108869325 ch-48 beats 6-7):
+  // the earlier one (never the hook) is made medium; the close keeps its weight.
+  for (let i = 1; i < plan.beats.length; i++) {
+    const a = plan.beats[i - 1].canvas, b = plan.beats[i].canvas;
+    if (a.composition === "TYPE-FULL" && b.composition === "TYPE-FULL" && a.motion_tier === "major" && b.motion_tier === "major") {
+      const k = i - 1 > 0 ? i - 1 : i;
+      if (k === plan.beats.length - 1 && k === i) continue;
+      plan.beats[k].canvas.motion_tier = "medium"; plan.beats[k].motion_tier = "medium";
+      console.log(`[canvas] beat ${plan.beats[k].index}: motion_tier major -> medium (two major TYPE-FULL statements in a row share one headline motion)`);
+    }
+  }
   // Fix 2: the animation of every element, on the final canvases (the beat's
   // tokens, dark / vertical / emphasis styling are settled): scripts/anim-plan.js.
   {
