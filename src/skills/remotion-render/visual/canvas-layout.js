@@ -325,7 +325,10 @@ function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines =
   const hi = tier ? Math.min(max, TIER.max) : max, lo = tier ? Math.min(hi, TIER.min) : 88;
   let f = fitWords(words, width, { maxLines, maxHeight, max: hi, min: lo, align });
   // The hero's 120 px floor never overflows its zone: a text that does not fit falls back to the 80 px floor.
-  if (tier && lo > HEADLINE_SIZE.min && (f.lines.length > maxLines || f.height > maxHeight)) f = fitWords(words, width, { maxLines, maxHeight, max: lo, min: HEADLINE_SIZE.min, align });
+  // The hero's floor never overflows its zone: a text that does not fit shrinks (to 80 px at
+  // most) and the box says so — render.js logs it ('[layout] … hero headline shrunk').
+  let shrunk = false;
+  if (tier && lo > HEADLINE_SIZE.min && (f.lines.length > maxLines || f.height > maxHeight)) { f = fitWords(words, width, { maxLines, maxHeight, max: lo, min: HEADLINE_SIZE.min, align }); shrunk = BEAT_HERO; }
   const ax = (w) => (center ? Math.round((FRAME.w - w) / 2) : anchorX(w, flip));
   if (!f.lines.length) return { ...box(ax(0), bottom != null ? bottom : y, 0, 0), size: f.size, lines: [], words: [], align, role: "headline", inBand: false };
   const w = Math.min(width, Math.ceil(f.width) + 4);
@@ -341,7 +344,7 @@ function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines =
   }
   const by = bottom != null ? bottom - h - desc : y;
   // desc: how far the last line's descenders reach below the box (contentBounds counts it as content).
-  return { ...box(ax(w), by, w, h), size: f.size, lines, rows: f.lines, words: f.words, align, role: "headline", inBand: f.size >= ROLE_HEADLINE.sizeBand[0], desc };
+  return { ...box(ax(w), by, w, h), size: f.size, lines, rows: f.lines, words: f.words, align, role: "headline", inBand: f.size >= ROLE_HEADLINE.sizeBand[0], desc, ...(shrunk ? { shrunk: true } : {}) };
 }
 const rule = (flip, y = TOP, w = 96) => ({ ...box(anchorX(w, flip), y, w, 6), role: "rule", anchor: flip ? "right" : "left" });
 

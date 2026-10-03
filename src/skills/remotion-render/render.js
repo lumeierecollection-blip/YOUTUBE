@@ -610,6 +610,7 @@ async function main() {
       // Part E: layout variety — consecutive same layouts, headline sizes, alignments.
       {
         const lf = beats.map((b, bi) => layoutFacts(b.scene.canvas, bi));
+        lf.forEach((x, bi) => { if (x.shrunk) console.log(`[layout] ch-${channel.id ?? channel.channel_id} beat ${bi}: hero headline shrunk to ${x.size} px to fit its zone`); });
         const sameLayout = lf.filter((x, i) => i > 0 && x.composition === lf[i - 1].composition).length;
         const sameAlign = lf.filter((x, i) => i > 0 && x.align && x.align === lf[i - 1].align).length;
         console.log(`[layout] ch-${channel.id ?? channel.channel_id}: ${lf.map((x) => x.composition).join(", ")} — consecutive same layout ${sameLayout}`);

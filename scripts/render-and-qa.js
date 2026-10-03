@@ -1120,7 +1120,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         console.log(`[entity] ${vt} "${b.data?.name || b.data?.object}" fell back to typography: ${r.why}${(r.attempts || []).length ? " — " + r.attempts.join(" | ") : ""}`);
         counts.entity_fallbacks++;
         // A named instrument with no verified scan: its name card (task 4.3).
-        if (vt === "DOCUMENT" && b.data?.name) { b.name_card = { name: b.data.name, sub: keyPhraseOf(b, b.data.name) }; b.visual_type = "TYPE"; b.data = null; }
+        if (vt === "DOCUMENT" && b.data?.name && bi !== 0 && bi !== plan.beats.length - 1) { b.name_card = { name: b.data.name, sub: keyPhraseOf(b, b.data.name) }; b.visual_type = "TYPE"; b.data = null; }
       }
     } else if (!DRAWN.has(vt)) {
       // Every beat that names something gets its picture — the hook and the CTA too (owner's
@@ -1170,9 +1170,15 @@ async function resolveCanvas(channelId, planPath, plan) {
         console.log(`[resolve] ch-${channelId} beat ${b.index}: no verified photo of place "${region.name}" — rendering its map (MAP-CENTERED)`);
       } else if (!photo && !b.hero_cutout && named.length) {
         b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
-        b.name_card = { name: named[0].name.replace(/\s*\([^)]*\)/g, "").trim(), sub: keyPhraseOf(b, named[0].name) };
         counts.entity_fallbacks++;
-        console.log(`[resolve] ch-${channelId} beat ${b.index}: no verified photo of ${named.map((e) => `${e.type} "${e.name}"`).join(", ")} — rendering as TYPE with the name only ("${b.name_card.name}"${b.name_card.sub ? ` / "${b.name_card.sub}"` : ""})`);
+        // The hook and the CTA are never fragile (owner's note 2026-10-03): with no verified
+        // picture they fall to the plain TYPE-FULL statement, not a name card.
+        if (bi === 0 || bi === plan.beats.length - 1) {
+          console.log(`[resolve] ch-${channelId} beat ${b.index}: no verified photo of ${named.map((e) => `${e.type} "${e.name}"`).join(", ")} — the ${bi === 0 ? "hook" : "CTA"} renders as its plain TYPE-FULL statement`);
+        } else {
+          b.name_card = { name: named[0].name.replace(/\s*\([^)]*\)/g, "").trim(), sub: keyPhraseOf(b, named[0].name) };
+          console.log(`[resolve] ch-${channelId} beat ${b.index}: no verified photo of ${named.map((e) => `${e.type} "${e.name}"`).join(", ")} — rendering as TYPE with the name only ("${b.name_card.name}"${b.name_card.sub ? ` / "${b.name_card.sub}"` : ""})`);
+        }
       }
     }
     b.canvas = canvasContentFor(b, { photo });

@@ -80,13 +80,17 @@ export function motionsFor(raw, idx = 0) {
       secondary = "labels pop";
       break;
     default:
-      break;
+      // A composition this table does not list (one added later): its build still plays and the
+      // micro motion always runs, so it is not reported as a static frame (owner's note
+      // 2026-10-03: the check catches frozen beats, it does not punish new types).
+      return { composition: L.composition, primary: null, secondary: null, micro, missing: [], unlisted: true };
   }
   return { composition: L.composition, primary, secondary, micro, missing: [!primary && "primary", !secondary && "secondary"].filter(Boolean) };
 }
 
 /** The log line for one beat. */
 export function motionLine(ch, i, m) {
+  if (m.unlisted) return `[motion] ch-${ch} beat ${i}: unlisted composition ${m.composition}, defaulting to PASS (micro=${m.micro})`;
   if (m.missing.length) return `[motion] ch-${ch} beat ${i}: MISSING ${m.missing.join(" + ")} motion (${m.composition}) — static frame`;
   return `[motion] ch-${ch} beat ${i}: primary=${m.primary}, secondary=${m.secondary}, micro=${m.micro}`;
 }
@@ -97,5 +101,5 @@ export function layoutFacts(raw, idx = 0) {
   const L = canvasLayout(c);
   const h = L.boxes.headline || L.boxes.statement || null;
   const hero = (c.concept_visuals || [])[0];
-  return { composition: L.composition + (hero ? `+HERO:${hero.name || ""}` : ""), size: h?.size || null, align: h?.align || null };
+  return { composition: L.composition + (hero ? `+HERO:${hero.name || ""}` : ""), size: h?.size || null, align: h?.align || null, hero: !!c.hero_headline, shrunk: !!h?.shrunk };
 }
