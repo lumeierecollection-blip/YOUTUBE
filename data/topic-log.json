@@ -552,9 +552,14 @@
           "topic": "ICE Changes Vehicle Stop Policy After Deadly Incidents",
           "slug": "ice-changes-vehicle-stop-policy",
           "reserved_at": "2026-10-03T01:32:37.533Z"
+        },
+        {
+          "topic": "New California Workplace Law Protecting Gig Workers",
+          "slug": "new-california-law-protecting-gig-workers",
+          "reserved_at": "2026-10-03T02:18:07.576Z"
         }
       ],
-      "last_generated": "2026-10-03T01:32:37.533Z"
+      "last_generated": "2026-10-03T02:18:07.576Z"
     },
     "3": {
       "channel_name": "AI Tested",
