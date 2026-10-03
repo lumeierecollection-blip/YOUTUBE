@@ -47,6 +47,8 @@ const { verifyPlaceImage } = require("./verify-place-image.cjs");
 
 const UA = "YOUTUBE-pipeline/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE; scene resolver)";
 const runMemo = new Map();   // per process: `${type}:${name}` -> Promise<result>
+// A month, a year, a quarter or a weekday — a date, never a place / building / organization.
+const DATE_RE = /^(?:(?:early|mid|late)[- ])?(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?|q[1-4]|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b[\s\d,]*$|^(?:19|20)\d{2}s?$/i;
 
 const say = (tag, lines) => console.log(`[resolve] ${tag}\n${lines.map((l) => `    → ${l}`).join("\n")}`);
 
@@ -140,6 +142,12 @@ async function resolveSceneEntity({ channel, beatIndex, entity, context = "" }) 
   const type = String(entity?.type || "").toLowerCase(), name = String(entity?.name || "").replace(/\s*\([^)]*\)/g, "").trim();
   const tag = `ch-${channel} beat ${beatIndex}: entity ${type} "${name}"`;
   if (!name || !["person", "place", "building", "organization"].includes(type)) return { ok: false, kind: type, why: "not a real-world entity type" };
+  // A date is not a place or an organization ("September 2026" typed as a place — CI run
+  // 37079127196 ch-44): refused, no lookup, no name card.
+  if (DATE_RE.test(name)) {
+    console.log(`[resolve] ${tag}\n    → a date, not a ${type} — no photo, no name card`);
+    return { ok: false, kind: type, why: "a date, not an entity", refused: true };
+  }
   const key = `${type}:${name.toLowerCase()}`;
   if (runMemo.has(key)) {
     const r = await runMemo.get(key);
@@ -155,7 +163,8 @@ async function resolveSceneEntity({ channel, beatIndex, entity, context = "" }) 
 const KIND_WORDS = [
   ["person", /\b(born|politician|economist|businessman|businesswoman|executive|chief executive|ceo|chair(man|woman|person)?|governor|president|prime minister|minister|secretary|senator|judge|justice|lawyer|attorney|journalist|actor|actress|singer|footballer|cricketer|player|writer|author|scientist|activist|banker|investor|entrepreneur|official|diplomat|general|commander)\b/i],
   ["building", /\b(building|courthouse|tower|skyscraper|headquarters|stadium|cathedral|church|mosque|temple|museum|palace|bridge|station|airport|hotel|hospital|prison|castle|capitol|house|hall|arena|factory|plant|refinery|dam)\b/i],
-  ["place", /\b(city|town|country|state|province|region|county|capital|island|village|district|neighbou?rhood|municipality|territory|metropolitan|borough|port)\b/i],
+  // Not a bare "state": "Safety" is "the state of being protected" (CI run 37079127196 ch-48).
+  ["place", /\b(city|town|country|(?:u\.s\.|us|federal|sovereign) state|province|region|county|capital|island|village|district|neighbou?rhood|municipality|territory|metropolitan|borough|port)\b/i],
   ["organization", /\b(company|corporation|agency|organi[sz]ation|bank|institution|court|department|ministry|bureau|commission|council|party|university|regulator|authority|federal reserve|central bank|banking|union|association|fund|board)\b/i],
 ];
 async function kindOf(name) {
@@ -192,6 +201,10 @@ async function sceneEntities({ beat, sentence, entityNamedInSentence, log = cons
     const low = n.toLowerCase();
     if (known.some((k) => k.includes(low) || low.includes(k))) continue;
     if (!entityNamedInSentence(n, sentence)) continue;
+    // A proper name: capitalized in the SENTENCE too, somewhere other than its first word
+    // ("Safety at risk" names nothing — CI run 37079127196 ch-48 made a "Safety" name card).
+    const at = String(sentence || "").indexOf(n);
+    if (at <= 0 || !/[A-Z]/.test(n[0])) { log(`[resolve] beat ${beat.index}: "${n}" (from scene_description) — not a proper name in the sentence, skipped`); continue; }
     const kind = await kindOf(n);
     if (!kind) { log(`[resolve] beat ${beat.index}: "${n}" (from scene_description) — Wikipedia does not say what it is, skipped`); continue; }
     list.push({ type: kind, name: n, from: "scene_description" });

@@ -26,5 +26,18 @@ eq("an object is not resolved here (the cutout path fetches it)", [r.ok, r.why],
 const ai = await R.resolveSceneEntity({ channel: "t", beatIndex: 2, entity: { type: "organization", name: "AI" } });
 eq("a bare acronym is refused (no photo, no name card)", [ai.ok, ai.refused], [false, true]);
 
+// A date typed as a place ("September 2026" — CI run 37079127196 ch-44) is refused: no lookup, no name card.
+for (const d of ["September 2026", "2026", "Q3 2026", "October 1, 2026"]) {
+  const r = await R.resolveSceneEntity({ channel: "t", beatIndex: 4, entity: { type: "place", name: d } });
+  eq(`a date is not a place: "${d}"`, [r.ok, r.refused], [false, true]);
+}
+// A name the scene_description adds must be a proper name in the sentence (not its first word).
+{
+  const logs = [];
+  const named = (n, s) => s.toLowerCase().includes(n.toLowerCase());
+  const ents = await R.sceneEntities({ beat: { index: 4, named_entities: [], scene_description: "The word Safety, large, over a red warning band." }, sentence: "Safety at risk across the plant.", entityNamedInSentence: named, log: (m) => logs.push(m) });
+  eq("'Safety' (the sentence's first word) is not added as an entity", [ents.length, logs.some((l) => /not a proper name/.test(l))], [0, true]);
+}
+
 console.log(bad ? `${bad} FAILED` : "all pass");
 process.exit(bad ? 1 : 0);
