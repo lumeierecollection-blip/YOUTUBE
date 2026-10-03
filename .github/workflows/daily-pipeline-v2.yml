@@ -391,6 +391,16 @@ jobs:
       - name: Write script
         if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
         env:
+          # The script is written by Gemini (scripts/ollama-agent.js geminiAnswer, the
+          # planner's src/lib/gemini-client.js): qwen2.5:3b copied the prompt's example and
+          # repeated sentences (docs/V2-NARRATIVE-SCRIPT-GREEN.md). OPENCODE_MODELS_REASONING
+          # (Ollama) is the fallback when Gemini cannot answer. force_planner=ollama skips Gemini.
+          SCRIPT_GEMINI_MODEL: gemini-3.5-flash-lite
+          FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}

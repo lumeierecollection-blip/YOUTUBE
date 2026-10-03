@@ -16,7 +16,8 @@
  *      websearch tool uses when OPENCODE_ENABLE_EXA=1).
  *   3. Give the model the results and ask for the stage JSON, with Ollama's
  *      schema-constrained output (`format: <JSON Schema>`).
- * For an agent with no tools (--agent pipeline-script) only step 3 runs.
+ * For an agent with no tools (--agent pipeline-script) only step 3 runs — and it
+ * goes to Gemini first when a Gemini key is set (geminiAnswer; Ollama is the fallback).
  *
  * Grounding — stricter than the OpenCode path, not looser: every
  * `source_url` / `url` the model returns must be a URL that one of THIS
@@ -34,6 +35,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import Ajv from "ajv";
 import { createRequire } from "node:module";
+import { callGemini } from "../src/lib/gemini-client.js";
 
 const topicLog = createRequire(import.meta.url)("../src/utils/topic-log.cjs");
 
@@ -46,6 +48,18 @@ const NUM_CTX = Number(process.env.OLLAMA_CONTEXT_LENGTH) || 16384;
 const SEARCH_AGENTS = new Set(["pipeline-research"]);
 const SEARCH_TEXT_MAX = Number(process.env.SEARCH_TEXT_MAX) || 3000; // chars per query
 const SEARCH_RESULT_CHARS = Number(process.env.SEARCH_RESULT_CHARS) || 600; // chars per result
+// The script stage (--agent pipeline-script) goes to Gemini first when a key is set, through
+// src/lib/gemini-client.js like the planner. qwen2.5:3b could not follow the narrative brief:
+// it copied the prompt's example re-hook verbatim into 3 of 6 scripts, repeated sentences
+// across beats and ignored the bans after a re-ask (CI runs 37141128792, 37143472688;
+// docs/V2-NARRATIVE-SCRIPT-GREEN.md). Ollama stays as the fallback: a Gemini error (429 on
+// every key, 503 after gemini-client's one retry, no key, FORCE_PLANNER=ollama) or an answer
+// that never validates falls through to the ollama models below. Research and discovery stay
+// on Ollama: their URL-grounding loop (Exa results -> source ids) lives in this file's Ollama
+// path only.
+const GEMINI_AGENTS = new Set(["pipeline-script"]);
+const GEMINI_SCRIPT_MODEL = process.env.SCRIPT_GEMINI_MODEL || "gemini-3.5-flash-lite";
+const hasGeminiKey = () => Boolean(process.env.GEMINI_API_KEY_1 || process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY);
 
 // Exa's text is a sequence of result blocks, each starting "Title:". Keep
 // every block's header lines (Title/URL/date) and trim its body, so all
@@ -324,6 +338,61 @@ function logTokenUsage(entry) {
   } catch {}
 }
 
+/* ── Gemini (script stage) ────────────────────────────────────────── */
+
+/**
+ * The script stage through Gemini. Same prompt, same ajv schema check and the same
+ * feedback retries as the Ollama path; Gemini's OpenAI-compatible endpoint has no
+ * schema-constrained output, so the schema goes into the instruction. Prints the stage's
+ * JSON line and returns true on success; returns false (and logs why) when the caller
+ * should fall back to Ollama. Not cached: a re-ask must get a fresh answer.
+ */
+async function geminiAnswer({ system, userPrompt, schema, validate, ajv, lengths, maxRetries, chLabel, agent, taskLabel, args }) {
+  const messages = [];
+  if (system) messages.push({ role: "system", content: system });
+  messages.push({ role: "user", content: userPrompt });
+  messages.push({ role: "user", content: `Now produce the final answer: ONE JSON object — no prose, no markdown fence — that validates against this JSON Schema:\n${JSON.stringify(schema)}${lengths.length ? `\nField limits:\n${lengths.join("\n")}` : ""}` });
+  log(`${chLabel}: using gemini (${GEMINI_SCRIPT_MODEL})`);
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    const t0 = Date.now();
+    const r = await callGemini(messages, { model: GEMINI_SCRIPT_MODEL, maxTokens: 8192, temperature: attempt === 1 ? 0.7 : 0.9, noCache: true, tag: `script ${taskLabel}` });
+    if (r && r.source === "gemini" && r.error) {
+      log(`${chLabel}: gemini unavailable, falling back to ollama (${r.error}: ${String(r.detail || "").slice(0, 160)})`);
+      logTokenUsage({ model: `gemini/${GEMINI_SCRIPT_MODEL}`, agent, task: taskLabel, channelId: args["channel-id"], videoId: args["video-id"], ok: false });
+      return false;
+    }
+    const usage = r?._usage || {};
+    logTokenUsage({ model: `gemini/${GEMINI_SCRIPT_MODEL}`, agent, task: taskLabel, channelId: args["channel-id"], videoId: args["video-id"], usage: { input: usage.prompt_tokens, output: usage.completion_tokens }, ok: true });
+    // gemini-client returns the parsed JSON, or { content } when the answer was not bare JSON.
+    const rawText = r && typeof r.content === "string" && Object.keys(r).length === 1 ? r.content : JSON.stringify(r);
+    const data = r && typeof r.content === "string" && Object.keys(r).length === 1 ? extractJson(r.content) : r;
+    log(`[gemini/${GEMINI_SCRIPT_MODEL}] ${taskLabel}/answer attempt ${attempt}/${maxRetries}: ${((Date.now() - t0) / 1000).toFixed(1)}s (prompt ${usage.prompt_tokens ?? "?"} tok, output ${usage.completion_tokens ?? "?"} tok)`);
+    const problems = [];
+    if (!data || typeof data !== "object") problems.push(`response was not valid JSON: ${String(rawText).slice(0, 300)}`);
+    else {
+      normaliseSlugs(data);
+      if (!validate(data)) problems.push(`schema validation failed: ${ajv.errorsText(validate.errors)}`);
+    }
+    if (!problems.length) {
+      console.log(JSON.stringify({
+        structured_output: data,
+        total_cost_usd: 0,
+        model_used: `gemini/${GEMINI_SCRIPT_MODEL}`,
+        websearch_calls: 0,
+        search_queries: [],
+        input_tokens: usage.prompt_tokens ?? null,
+        output_tokens: usage.completion_tokens ?? null,
+      }));
+      return true;
+    }
+    log(`${chLabel}: gemini attempt ${attempt}/${maxRetries} rejected: ${problems.join("; ").slice(0, 400)}`);
+    messages.push({ role: "assistant", content: String(rawText).slice(0, 12000) });
+    messages.push({ role: "user", content: `That response was rejected: ${problems.join("; ")}. Fix exactly those problems and return the full corrected JSON object.` });
+  }
+  log(`${chLabel}: gemini answers failed schema validation ${maxRetries}x, falling back to ollama`);
+  return false;
+}
+
 /* ── Main ─────────────────────────────────────────────────────────── */
 
 async function main() {
@@ -375,6 +444,17 @@ async function main() {
     ? "\n\nNOTE ON TOOLS: you cannot browse. Web search is run FOR you: first you will be asked for search queries, then given the results. Use only facts and URLs from those results."
     : "\n\nNOTE ON TOOLS: you have no tools and no web access in this stage. Work only from the INPUT above.";
   const userPrompt = `${basePrompt}${inputBlock}${toolNote}`;
+  const chLabel = `[script] ch-${args["channel-id"] ?? "?"}`;
+
+  if (GEMINI_AGENTS.has(agent)) {
+    if (hasGeminiKey()) {
+      const ok = await geminiAnswer({ system, userPrompt, schema, validate, ajv, lengths, maxRetries, chLabel, agent, taskLabel, args });
+      if (ok) return;
+    } else {
+      log(`${chLabel}: no Gemini key set, using ollama`);
+    }
+    log(`${chLabel}: using ollama (${models.join(", ")})`);
+  }
 
   let lastError = null;
   for (const spec of models) {
