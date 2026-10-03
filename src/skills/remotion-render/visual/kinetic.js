@@ -152,7 +152,7 @@ export function layoutWords(words, size, width, { align = "left", family = SERIF
   const blockW = Math.max(0, ...lines.map(lineW));
   const lh = size * lineHeight;
   lines.forEach((ln, li) => {
-    let x = align === "right" ? blockW - lineW(ln) : 0;
+    let x = align === "right" ? blockW - lineW(ln) : align === "center" ? (blockW - lineW(ln)) / 2 : 0;
     ln.forEach((i) => { ws[i].line = li; ws[i].x = x; ws[i].y = li * lh; x += ws[i].w + sp; });
   });
   return { lines, words: ws, width: blockW, height: lines.length * lh, space: sp, lineHeight: lh, size };

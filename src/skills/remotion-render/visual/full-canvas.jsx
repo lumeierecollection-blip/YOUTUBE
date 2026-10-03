@@ -70,8 +70,19 @@ import {
 import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
-  TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf,
+  TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf, backgroundOf, PAPER_OPACITY, BG_RULE,
 } from "./canvas-layout.js";
+
+// Paper texture (part C.3): fractal noise in grey at PAPER_OPACITY over the white ground —
+// a difference the eye registers, not a design change. Static: it does not crawl.
+function PaperTexture() {
+  return (
+    <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0, opacity: PAPER_OPACITY }}>
+      <filter id="paper-noise"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch" /><feColorMatrix type="saturate" values="0" /></filter>
+      <rect width={FRAME.w} height={FRAME.h} filter="url(#paper-noise)" />
+    </svg>
+  );
+}
 import {
   ROLE_HEADLINE, ROLE_NUMBER, ROLE_DATA, ROLE_EMPHASIS, SERIF, SANS_STACK, roleFont, roleTracking, numberSlots, measure,
   SUPERSCRIPT_SCALE, capHeightEm,
@@ -542,6 +553,35 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
         </g>
       </svg>
     );
+  } else if (vt === "TREND") {
+    // A stated rise or fall with no figures (scripts/composition-variety.js, owner's spec
+    // 2026-10-03 B.4): one smooth line across the chart box to a single accent dot, its
+    // label the sentence's own subject. No axis values, no numbers — nothing the sentence
+    // does not say. The line draws on, then the dot and the label pop.
+    const up = d.direction !== "down";
+    const x0 = ch.x + 30, x1 = ch.x + ch.w - 70;
+    const yLo = ch.y + ch.h - 70, yHi = ch.y + 150;
+    const y0 = up ? yLo : yHi, y1 = up ? yHi : yLo;
+    // An eased S-curve: flat at the start, committed at the end.
+    const path = `M ${x0} ${y0} C ${x0 + (x1 - x0) * 0.45} ${y0}, ${x0 + (x1 - x0) * 0.55} ${y1}, ${x1} ${y1}`;
+    const t = m.build(0.55, m.s(0.1));
+    const dot = clamp01((t - 0.85) / 0.15);
+    const label = String(d.label || "").toUpperCase();
+    // The label sits at the dot's height on the LEFT edge — the corner the curve never visits
+    // (a rising line is low on the left, a falling one high) — so the curve cannot cross it
+    // (QA renders 2026-10-03: beside the dot and above the start, the curve ran through it).
+    const lx = x0, ly = y1 + 16;
+    chart = (
+      <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }}>
+        <line x1={ch.x} y1={yLo + 40} x2={ch.x + ch.w} y2={yLo + 40} stroke={th.track} strokeWidth={4} />
+        <path d={path} fill="none" stroke={accent} strokeWidth={16} strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - t} />
+        <g opacity={dot} transform={`translate(${x1} ${y1}) scale(${(0.4 + 0.6 * Math.min(1, dot * 1.2)).toFixed(3)}) translate(${-x1} ${-y1})`}>
+          <circle cx={x1} cy={y1} r={34} fill={accent} />
+          <circle cx={x1} cy={y1} r={34} fill="none" stroke={th.ink} strokeWidth={6} />
+        </g>
+        {label ? <text x={lx} y={ly} textAnchor="start" style={{ font: dataFont(48, 700), letterSpacing: 0.6 }} fill={th.ink} opacity={clamp01(t * 3)}>{label}</text> : null}
+      </svg>
+    );
   } else if (vt === "LINE") {
     const pts = (d.points || []).map((p) => ({ ...p, q: parseQuantity(p.value) })).filter((p) => p.q);
     const max = Math.max(...pts.map((p) => p.q.magnitude)) || 1, min = Math.min(0, ...pts.map((p) => p.q.magnitude));
@@ -917,7 +957,8 @@ export function majorZoom(L) {
   if (L.composition === "TYPE-FULL" && h && h.w) {
     const right = h.align === "right";
     const oy = h.y + h.h > 1200 ? BOTTOM : h.y < 400 ? TOP : h.y + h.h / 2;
-    return { k: Math.min(1.15, (R_EDGE - L_EDGE) / h.w), ox: right ? R_EDGE : L_EDGE, oy };
+    // A centred statement (part C.1) zooms about the frame's axis.
+    return { k: Math.min(1.15, (R_EDGE - L_EDGE) / h.w), ox: h.align === "center" ? 540 : right ? R_EDGE : L_EDGE, oy };
   }
   // A chart / process spanning the safe width: 1.05 keeps a 24 px margin at the end of the zoom.
   return { k: 1.05, ox: 540, oy: 960 };
@@ -1143,6 +1184,12 @@ export function CanvasVideo({ plan }) {
     {/* Uniform white on every beat (backgrounds.js); a full-bleed photo beat
         covers it, the next beat shows it again. */}
     <StudioBG>
+      {/* Background variation (part C.3, canvas-layout.js backgroundOf): every 3rd beat the
+          paper texture, every 5th a thin rule above the headline zone. */}
+      {(() => { const bg = backgroundOf(i, cLayout.composition); return (<>
+        {bg.paper ? <PaperTexture /> : null}
+        {bg.rule ? <div style={{ position: "absolute", left: L_EDGE, top: BG_RULE.y, width: R_EDGE - L_EDGE, height: BG_RULE.h, backgroundColor: BG_RULE.color }} /> : null}
+      </>); })()}
       {prev && local <= POP.OUT ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} live={prev.duration_frames - 1} /> : null}
       <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} live={local} />
       <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} maxSize={cLayout.boxes.cutout0 ? 40 : 58} />

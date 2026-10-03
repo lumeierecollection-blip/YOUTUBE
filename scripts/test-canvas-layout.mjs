@@ -73,6 +73,12 @@ for (const variant of [0, 1]) for (const b of bodies) for (const { name, h } of 
   const TEXT_ROLES = ["headline", "number", "data", "emphasis"];
   const texts = flattenBoxes(L.boxes).filter(([k, v]) => TEXT_ROLES.includes(v.role) || TEXT.includes(k));
   for (const [k, v] of texts) {
+    // Part C.1 (owner's spec 2026-10-03): a TYPE-FULL statement is the one centred element —
+    // centred on the frame's axis, never anchored to a column. Everything else stays anchored.
+    if (v.align === "center" && L.composition === "TYPE-FULL" && k === "statement") {
+      if (v.w && Math.abs(v.x + v.w / 2 - 540) > 2) bad.push(`${k} is centred off the frame's axis (${v.x}..${v.x + v.w})`);
+      continue;
+    }
     if (v.align === "center") bad.push(`${k} is centred`);
     if (!v.align) bad.push(`${k} has no alignment`);
     if (v.rotate || /^(label|items\d+$|markers\d+_label|labelA|labelB)/.test(k)) continue;   // labels attach to their data
