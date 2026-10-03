@@ -542,9 +542,14 @@
           "topic": "New Washington DC Law Banning Dog Breed Restrictions",
           "slug": "new-washington-dc-law-banning-dog-breeds",
           "reserved_at": "2026-10-03T00:44:29.044Z"
+        },
+        {
+          "topic": "ICE Changes Vehicle Stop Policy After Deadly Incidents",
+          "slug": "ice-changes-vehicle-stop-policy",
+          "reserved_at": "2026-10-03T01:32:37.533Z"
         }
       ],
-      "last_generated": "2026-10-03T00:44:29.044Z"
+      "last_generated": "2026-10-03T01:32:37.533Z"
     },
     "3": {
       "channel_name": "AI Tested",
