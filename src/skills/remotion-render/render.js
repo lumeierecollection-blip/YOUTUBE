@@ -46,6 +46,7 @@ import { sceneTextInventory } from "./visual/scene-text.js";
 import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
 import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
 import { canvasSfxEvents } from "./visual/canvas-sfx.js";
+import { motionsFor, motionLine, layoutFacts } from "./visual/motion-plan.js";
 import { canvasLayout, canvasManifest, normalizeCanvas } from "./visual/canvas-layout.js";
 import { scheduleEntityPop } from "./visual/entity-sync.js";
 import { GROUND } from "./visual/backgrounds.js";
@@ -602,6 +603,18 @@ async function main() {
       const comps = {};
       beats.forEach((b, bi) => { const k = canvasLayout(normalizeCanvas(b.scene.canvas, bi)).composition; comps[k] = (comps[k] || 0) + 1; });
       console.log(`[canvas] full-canvas style, accent ${sentencePlan.accent || "(none — ink)"}; ${Object.entries(comps).map(([k, v]) => `${k} ${v}`).join(", ")}`);
+      // Part D: every beat's three motions (visual/motion-plan.js mirrors full-canvas.jsx).
+      let missingMotion = 0;
+      beats.forEach((b, bi) => { const m = motionsFor(b.scene.canvas, bi); if (m.missing.length) missingMotion++; console.log(motionLine(channel.id ?? channel.channel_id, bi, m)); });
+      console.log(`[motion] ${beats.length - missingMotion}/${beats.length} beats with primary + secondary + micro motion${missingMotion ? ` — ${missingMotion} MISSING` : ""}`);
+      // Part E: layout variety — consecutive same layouts, headline sizes, alignments.
+      {
+        const lf = beats.map((b, bi) => layoutFacts(b.scene.canvas, bi));
+        const sameLayout = lf.filter((x, i) => i > 0 && x.composition === lf[i - 1].composition).length;
+        const sameAlign = lf.filter((x, i) => i > 0 && x.align && x.align === lf[i - 1].align).length;
+        console.log(`[layout] ch-${channel.id ?? channel.channel_id}: ${lf.map((x) => x.composition).join(", ")} — consecutive same layout ${sameLayout}`);
+        console.log(`[layout] ch-${channel.id ?? channel.channel_id}: headline sizes ${lf.map((x) => x.size ?? "-").join("/")}, alignments ${lf.map((x) => x.align ?? "-").join("/")} — consecutive same alignment ${sameAlign}`);
+      }
     }
     console.log(`[audio] ${kal.name} (from ${kal.count} tracks)`);
 

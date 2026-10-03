@@ -70,14 +70,14 @@ import {
 import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
-  TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf, backgroundOf, PAPER_OPACITY, BG_RULE,
+  TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf, backgroundOf, PAPER_OPACITY, BG_RULE, BG_GRADIENT,
 } from "./canvas-layout.js";
 
 // Paper texture (part C.3): fractal noise in grey at PAPER_OPACITY over the white ground —
 // a difference the eye registers, not a design change. Static: it does not crawl.
-function PaperTexture() {
+function PaperTexture({ drift = 0 }) {
   return (
-    <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0, opacity: PAPER_OPACITY }}>
+    <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0, opacity: PAPER_OPACITY, transform: `translate(${drift.toFixed(3)}px, ${(drift * 0.6).toFixed(3)}px)` }}>
       <filter id="paper-noise"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch" /><feColorMatrix type="saturate" values="0" /></filter>
       <rect width={FRAME.w} height={FRAME.h} filter="url(#paper-noise)" />
     </svg>
@@ -161,7 +161,7 @@ function Headline({ b, color, local, fps, m, idx, at = 0, shadow = false, halo =
   const resolveBy = Math.min(0.8, startFrac + 0.4);
   // A header stays with its chart / list / photo until the cut; only a hero statement exits word by word.
   const box = (
-    <KineticText b={b} color={color} accent={accent || A?.accent || color} local={local} dur={dur} start={start} resolveBy={resolveBy} exitAt={hero ? Math.min(0.92, Math.max(0.7, resolveBy + 0.1)) : 9}
+    <KineticText b={b} color={color} accent={accent || A?.accent || color} local={local} dur={dur} start={start} resolveBy={resolveBy} exitAt={9}
       entrances={A?.kinetic?.entrances?.[role]} font={SERIF} lineHeight={b.size * ROLE_HEADLINE.lineHeight} tracking={roleTracking(ROLE_HEADLINE, b.size)}
       group="headline" edge={!!A?.kinetic?.edge} />
   );
@@ -182,7 +182,7 @@ function DataLabel({ b, color, local, fps, at = 0.5, shadow = false, name = null
   return (
     <div style={{ textShadow: shadow ? "0 3px 16px rgba(0,0,0,0.6)" : "none" }}>
       <KineticText b={{ ...b, x: b.x, w: b.w, h: b.h || b.size * ROLE_DATA.lineHeight * b.lines.length }} color={color} accent={accent || A?.accent || color} local={local} dur={dur} start={start}
-        resolveBy={Math.min(0.85, startFrac + 0.2)} exitAt={name ? Math.min(0.94, Math.max(0.7, startFrac + 0.3)) : 9} entrances={A?.kinetic?.entrances?.[role]} upper={!!b.upper}
+        resolveBy={Math.min(0.85, startFrac + 0.2)} exitAt={9} entrances={A?.kinetic?.entrances?.[role]} upper={!!b.upper}
         font={SANS_STACK} lineHeight={b.size * ROLE_DATA.lineHeight} tracking={roleTracking(ROLE_DATA, b.size)} baseWeight={b.weight || ROLE_DATA.weight} group="label" />
     </div>
   );
@@ -273,7 +273,7 @@ function Emphasis({ b, color, local, fps }) {
 const Rule = ({ b, t, color }) => {
   if (!b || t <= 0) return null;
   const w = b.w * t;
-  return <div style={{ position: "absolute", left: b.x + (b.anchor === "right" ? b.w - w : 0), top: b.y, width: w, height: b.h, backgroundColor: color }} />;
+  return <div style={{ position: "absolute", left: b.x + (b.anchor === "right" ? b.w - w : b.anchor === "center" ? (b.w - w) / 2 : 0), top: b.y, width: w, height: b.h, backgroundColor: color }} />;
 };
 
 // The header every composition with a compact top shares: the hairline rule,
@@ -308,7 +308,7 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     );
   }
   if (B.emphasis) return <Emphasis b={B.emphasis} color={th.ink} local={local} fps={fps} />;
-  if (B.portrait) return <Portrait b={B.portrait} local={local} fps={fps} at={tl.headlineAt + 0.3} />;
+  if (B.portrait) return <Portrait b={B.portrait} local={local} fps={fps} at={tl.headlineAt + 0.3} dur={dur} />;
   const st = B.statement;
   if (st.rotate) {
     // The one vertical beat of a video (retired: canvas-style.js never sets
@@ -330,7 +330,7 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       <>
         <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} major={major} hero accent={accent} />
         {[B.cutout0, B.cutout1, B.cutout2].filter(Boolean).map((v, i) => (
-          <ConceptVisual key={i} b={v} local={local} fps={fps} at={tl.headlineAt + 0.45 + i * 0.12} accent={accent} />
+          <ConceptVisual key={i} b={v} local={local} fps={fps} at={tl.headlineAt + 0.45 + i * 0.12} accent={accent} dur={dur} />
         ))}
       </>
     );
@@ -345,7 +345,17 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     );
   }
   // TYPE-SPLIT: the second half lands 0.5 s after the first (the header's headline).
-  return <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={B.headline ? tl.splitAt : tl.headlineAt} major={major} hero accent={accent} />;
+  // Part D.2 (TYPE-FULL): every word pops in one at a time (KineticText), the whole statement
+  // holds with a 0.5% breath, and a thin rule draws under it at 60% of the beat.
+  const breath = 1 + 0.005 * Math.sin((2 * Math.PI * local) / (2.4 * fps));
+  return (
+    <>
+      <div style={{ position: "absolute", inset: 0, transformOrigin: `${st.x + st.w / 2}px ${st.y + st.h / 2}px`, transform: `scale(${breath.toFixed(5)})` }}>
+        <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={B.headline ? tl.splitAt : tl.headlineAt} major={major} hero accent={accent} />
+      </div>
+      {B.underline ? <Rule b={B.underline} t={easeOut(clamp01((local - 0.6 * dur) / (0.12 * dur)))} color={accent} /> : null}
+    </>
+  );
 }
 
 /**
@@ -358,19 +368,31 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
 // A named person's verified portrait (canvas-layout.js PORTRAIT): the photo at
 // its own aspect in its box (not a circle, not a square), a soft drop shadow,
 // popping in place from the floor it stands on.
-function Portrait({ b, local, fps, at }) {
+function Portrait({ b, local, fps, at, dur = 150 }) {
   const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 100%");
+  // Part D.2: the portrait pushes in 2% across the beat (from the floor it stands on), and its
+  // soft shadow shifts 4 px.
+  const p = clamp01(local / Math.max(1, dur));
   return (
     <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...pop }}>
-      <Img src={staticFile(b.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", boxShadow: "0 14px 44px rgba(0,0,0,0.18)" }} />
+      <div style={{ position: "absolute", inset: 0, transformOrigin: "50% 100%", transform: `scale(${(1 + 0.02 * p).toFixed(4)})` }}>
+        <Img src={staticFile(b.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", boxShadow: `${(4 * p).toFixed(1)}px 14px 44px rgba(0,0,0,0.18)` }} />
+      </div>
     </div>
   );
 }
 
 // Where each drawn symbol's ink ends, as a fraction of its 100-unit viewBox (symbols/*.jsx geometry).
 const SYMBOL_INK_BOTTOM = { "warning-triangle": 0.90, checkmark: 0.89, "upward-arrow": 0.94, "downward-arrow": 0.94, radar: 0.96, "dollar-sign": 0.98, "broken-chain": 0.97, crosshair: 1 };
-function ConceptVisual({ b, local, fps, at, accent }) {
+function ConceptVisual({ b, local, fps, at, accent, dur = 150 }) {
   const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 100%");
+  // Part D.2. A logo pops in at 1.15x and settles over 8 frames; its soft shadow turns 2 deg
+  // across the beat. A cutout pushes in 2% across the beat. (Both stand on their floor.)
+  const p = clamp01(local / Math.max(1, dur));
+  const since = local - Math.round(at * fps);
+  const lift = b.logo ? 1 + 0.15 * (1 - easeOut(clamp01(since / 8))) : 1 + 0.02 * p;
+  const ang = ((90 + 2 * p) * Math.PI) / 180;
+  const shadow = b.logo ? `drop-shadow(${(6 * Math.cos(ang)).toFixed(2)}px ${(6 * Math.sin(ang)).toFixed(2)}px 18px rgba(0,0,0,0.16))` : "drop-shadow(2px 2px 20px rgba(0,0,0,0.15))";
   if (b.class === "cutout" && b.asset && b.img) {
     // The hero cutout (canvas-layout.js): the box is the ink's box; the image
     // rectangle (b.img, relative to it) may be larger — transparent margin —
@@ -379,7 +401,8 @@ function ConceptVisual({ b, local, fps, at, accent }) {
     return (
       <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, overflow: b.crop ? "hidden" : "visible", ...pop }}>
         <Img src={staticFile(b.asset)} style={{ position: "absolute", left: b.img[0], top: b.img[1], width: b.img[2], height: b.img[3], maxWidth: "none",
-          transform: b.tilt ? `rotate(${-b.tilt}deg)` : undefined, filter: "drop-shadow(2px 2px 20px rgba(0,0,0,0.15))" }} />
+          // A tilted object turns about its centre, as laid out (its ink box depends on it): no push.
+          transform: b.tilt ? `rotate(${-b.tilt}deg)` : `scale(${lift.toFixed(4)})`, transformOrigin: b.tilt ? "50% 50%" : "50% 100%", filter: shadow }} />
       </div>
     );
   }
@@ -694,13 +717,18 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
               montage was unreadable (CI run 37082751699 ch-9 beat 4). */}
           <Headline b={B.headline} color={comp === "DOCUMENT" ? onAccent(accent) : th.photo ? "#FFFFFF" : th.ink} accent={comp === "DOCUMENT" ? onAccent(accent) : th.photo ? liftAccent(accent, 0.72) : accent} local={local} fps={fps} m={m} idx={idx} at={0.3} shadow={comp !== "DOCUMENT" && th.photo} />
           {B.number && c.data?.value ? <NumberHero b={B.number} q={parseQuantity(c.data.value)} t={easeOut(clamp01((local - 0.5 * fps) / Math.max(1, dur * 0.6)))} local={local} fps={fps} at={0.5} color={th.photo ? "#FFFFFF" : th.ink} m={m} hero={false} /> : null}
+          {/* Part D.2: a small corner label — what the photo shows — pops at 20% of the beat. */}
+          {th.photo && (c.photo.entity || c.data?.entity) ? <div style={{ position: "absolute", left: L_EDGE, top: 56, font: dataFont(24, 700), letterSpacing: 1.2, color: "#FFFFFF",
+            textShadow: "0 2px 10px rgba(0,0,0,0.6)", textTransform: "uppercase", whiteSpace: "nowrap", ...popCss("POP_SOFT", local - Math.round(0.2 * dur), "0% 50%") }}>{String(c.photo.entity || c.data?.entity).slice(0, 40)}</div> : null}
           {c.photo.credit && th.photo ? <div style={{ position: "absolute", left: L_EDGE, top: 1416, font: dataFont(20, 500), color: "rgba(255,255,255,0.72)", maxWidth: 700, textAlign: "left", ...popCss("POP_SOFT", local - 0.3 * fps, "0% 60%") }}>{c.photo.credit}</div> : null}
         </>
       );
     }
     const veil = comp === "MONEY" ? "linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.30) 36%, rgba(0,0,0,0.22) 58%, rgba(0,0,0,0.80) 100%)"
       : comp === "DOCUMENT" ? "linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.05) 62%, rgba(0,0,0,0.70) 100%)"
-      : "rgba(0,0,0,0.35)";   // place / building (owner's spec 2026-10-02, task 3.1): a flat 0.35 overlay so the type reads
+      // place / building: the overlay eases from 0.45 to 0.35 across the beat (owner's spec
+      // 2026-10-03 D.2; it was a flat 0.35 — 2026-10-02 task 3.1).
+      : `rgba(0,0,0,${(0.45 - 0.10 * easeInOut(clamp01(local / Math.max(1, dur)))).toFixed(3)})`;
     return (
       <HeroEl name="photo" b={B.photo}>
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", }}>
@@ -740,7 +768,14 @@ function ProcessFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           const r1 = n.w / 2 + 18, r2 = nodes[i + 1].w / 2 + 44;
           const sx = x1 + Math.cos(ang) * r1, sy = y1 + Math.sin(ang) * r1, ex = x2 - Math.cos(ang) * r2, ey = y2 - Math.sin(ang) * r2;
           const t = arrowT(i);
-          return <line key={i} x1={sx} y1={sy} x2={lerp(sx, ex, t)} y2={lerp(sy, ey, t)} stroke={accent} strokeWidth={18} strokeLinecap="round" markerEnd={t > 0.05 ? "url(#pf-arrow)" : undefined} />;
+          // Part D.2: once the arrow has drawn, a small dot travels along it (one pass per 1.2 s).
+          const f = ((local / fps) / 1.2 + i * 0.37) % 1;
+          return (
+            <React.Fragment key={i}>
+              <line x1={sx} y1={sy} x2={lerp(sx, ex, t)} y2={lerp(sy, ey, t)} stroke={accent} strokeWidth={18} strokeLinecap="round" markerEnd={t > 0.05 ? "url(#pf-arrow)" : undefined} />
+              {t > 0.98 ? <circle cx={lerp(sx, ex, f)} cy={lerp(sy, ey, f)} r={11} fill={th.dark ? "#0E0E0E" : "#FFFFFF"} stroke={th.ink} strokeWidth={5} /> : null}
+            </React.Fragment>
+          );
         })}
         {nodes.map((n, i) => {
           const t = nodeT(i);
@@ -785,6 +820,21 @@ function MapCentered({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   return (
     <HeroEl name="map" b={B.map}>
       <CenteredMap data={c.data} bounds={B.map} local={local} dur={dur} font={SERIF_FAMILY_NAME} accent={accent} ground={tone} ink={th.ink} />
+      {/* Part D.2: a pin drops onto the region at 25% of the beat, with a 2-frame bounce. The
+          map is zoomed on the region, so its centre is the region; the pin sits above the
+          region's label (drawn at the region's centre). */}
+      {(() => {
+        const f = local - Math.round(0.25 * dur);
+        if (f < 0) return null;
+        const drop = f < 6 ? -60 * (1 - f / 6) : f < 8 ? -8 * Math.sin(((f - 6) / 2) * Math.PI) : 0;
+        const px = B.map.x + B.map.w / 2, py = B.map.y + B.map.h * 0.3 + drop;
+        return (
+          <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0, opacity: clamp01(f / 3) }}>
+            <path d={`M ${px} ${py} C ${px - 26} ${py - 34}, ${px - 26} ${py - 70}, ${px} ${py - 72} C ${px + 26} ${py - 70}, ${px + 26} ${py - 34}, ${px} ${py} Z`} fill={accent} stroke={th.ink} strokeWidth={4} />
+            <circle cx={px} cy={py - 50} r={9} fill={tone} />
+          </svg>
+        );
+      })()}
     </HeroEl>
   );
 }
@@ -1121,7 +1171,13 @@ function PopGroups({ beat, idx, fps, accent, state, live = null }) {
     return (
       <div key={`${idx}-${g.key}`} style={{ position: "absolute", inset: 0, clipPath: clip, opacity: p.o }}>
         <div style={{ position: "absolute", inset: 0, transformOrigin: `${g.cx.toFixed(0)}px ${g.cy.toFixed(0)}px`, transform: `scale(${p.s.toFixed(4)})` }}>
-          <BeatCanvas beat={beat} idx={idx} bodyLocal={g.key === "photo" && live != null ? Math.max(0, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={headerSettled} fps={fps} accent={accent} hero={null} show={g.show} still photoShown={photoShown} />
+          {/* Part D (owner's spec 2026-10-03, "motion on every beat"): every group is drawn at the
+              beat's LIVE frame, so its own build plays — words pop one by one, bars grow, the
+              line and the arrows draw, nodes pop in sequence, the number counts up, the map
+              outlines its region. (Until today the compositor drew every group SETTLED.) Word
+              exits are off (exitAt 9), so nothing leaves before the beat's pop-out. The
+              outgoing beat is drawn at its last frame: complete. */}
+          <BeatCanvas beat={beat} idx={idx} bodyLocal={live != null ? Math.max(0, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={live != null ? Math.max(0, Math.min(beat.duration_frames - 1, live)) : headerSettled} fps={fps} accent={accent} hero={null} show={g.show} still photoShown={photoShown} />
         </div>
       </div>
     );
@@ -1195,11 +1251,17 @@ export function CanvasVideo({ plan }) {
       {/* Background variation (part C.3, canvas-layout.js backgroundOf): every 3rd beat the
           paper texture, every 5th a thin rule above the headline zone. */}
       {(() => { const bg = backgroundOf(i, cLayout.composition); return (<>
-        {bg.paper ? <PaperTexture /> : null}
+        {bg.paper ? <PaperTexture drift={clamp01(local / Math.max(1, beat.duration_frames)) * 0.5} /> : null}
         {bg.rule ? <div style={{ position: "absolute", left: L_EDGE, top: BG_RULE.y, width: R_EDGE - L_EDGE, height: BG_RULE.h, backgroundColor: BG_RULE.color }} /> : null}
+        {bg.gradient ? <div style={{ position: "absolute", inset: 0, background: BG_GRADIENT }} /> : null}
       </>); })()}
       {prev && local <= POP.OUT ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} live={prev.duration_frames - 1} /> : null}
-      <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} live={local} />
+      {/* Micro motion (part D.1, every beat): the composition is never still — a 1 px drift
+          across the beat and a 0.3% breath (one cycle per 3 s), about the frame's centre. */}
+      <div style={{ position: "absolute", inset: 0, transformOrigin: "540px 960px",
+        transform: `translate(${(-0.5 + clamp01(local / Math.max(1, beat.duration_frames))).toFixed(3)}px, 0px) scale(${(1 + 0.003 * Math.sin((2 * Math.PI * local) / (3 * fps))).toFixed(5)})` }}>
+        <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} live={local} />
+      </div>
       <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} maxSize={cLayout.boxes.cutout0 ? 40 : 58} />
       {/* Source credit (owner's spec 2026-10-03, part C): only on a beat that shows a fetched
           image; bottom-right, 40 px in from the right and bottom edges, 20 px sans, #888,
