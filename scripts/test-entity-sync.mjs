@@ -37,6 +37,9 @@ eq("a hero number matches its spoken digits", scheduleEntityPop({ composition: "
 eq("a small number matches its spoken word", scheduleEntityPop({ composition: "NUMBER-FULL", data: { value: "7" } }, words("The trial lasted seven weeks", 0, 10), 150).word, "seven");
 eq("a spelled figure matches: '200+' on 'two hundred' (CI run 37100587452 ch-9)", scheduleEntityPop({ composition: "NUMBER-FULL", data: { value: "200+" } }, words("More than two hundred guests came", 0, 10), 150).word, "two");
 eq("a spelled decimal matches: '$2.7 million' on 'two point seven' (CI run 37102013192 ch-26)", scheduleEntityPop({ composition: "NUMBER-FULL", data: { value: "$2.7 million" } }, words("They raised two point seven million dollars", 0, 10), 150).word, "two");
+eq("'$50 million' matches spoken 'fifty million' (CI run 37104156298 ch-26)", scheduleEntityPop({ composition: "NUMBER-FULL", data: { value: "$50 million" } }, words("The fifty million dollars lobbying campaign", 0, 10), 150).word, "fifty");
+eq("'650,000' still matches 'six hundred fifty thousand'", scheduleEntityPop({ composition: "NUMBER-FULL", data: { value: "650,000" } }, words("Some six hundred fifty thousand people fled", 0, 10), 150).word, "six");
+eq("'$2.7 million' matches 'two point seven million'", scheduleEntityPop({ composition: "NUMBER-FULL", data: { value: "$2.7 million" } }, words("They raised two point seven million dollars", 0, 10), 150).word, "two");
 eq("'1.4 million' is not '14'", scheduleEntityPop({ composition: "NUMBER-FULL", data: { value: "14" } }, words("It reached one million people", 0, 10), 150).missing, "14");
 eq("a hero cutout pops on its noun", scheduleEntityPop({ composition: "TYPE-FULL", concept_visuals: [{ name: "door key", class: "cutout" }] }, words("Keep a spare key safe", 0, 10), 150).word, "key");
 eq("a plain statement has no entity", scheduleEntityPop({ composition: "TYPE-FULL", headline: "x" }, words("Anything at all"), 90), null);

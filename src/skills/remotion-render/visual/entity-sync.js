@@ -74,21 +74,25 @@ function spelledValues(said) {
   return said.map((_, i) => {
     // "two point seven" -> "2" + "7": the digits are compared without the decimal point
     // (digitsOf("$2.7 million") is "27"), so the decimals are appended as digits.
-    let total = 0, cur = 0, n = 0, dec = null;
+    // prefix: the figure before a big scale word — "fifty million" is written "$50 million"
+    // (digits "50"), "six hundred fifty thousand" is "650,000" (CI run 37104156298 ch-26).
+    let total = 0, cur = 0, n = 0, dec = null, prefix = null;
     for (let k = i; k < said.length; k++) {
       const parts = said[k].n ? String(said[k].text).toLowerCase().replace(/[^a-z-]/g, "").split("-").filter(Boolean) : [];
       if (!parts.length || !parts.every((p) => p in UNITS || p in TENS || p in SCALES || p === "and" || p === "point")) break;
       if (k === i && parts[0] === "point") break;
       for (const p of parts) {
         if (p === "point") { dec = ""; continue; }
-        if (dec !== null) { if (p in UNITS && UNITS[p] < 10) dec += String(UNITS[p]); continue; }
+        if (dec !== null) { if (p in UNITS && UNITS[p] < 10) dec += String(UNITS[p]); else if (p in SCALES && SCALES[p] >= 1e6 && prefix === null) prefix = `${total + cur}${dec}`; continue; }
+        if (p in SCALES && SCALES[p] >= 1e6 && prefix === null) prefix = String(total + cur);
         if (p in UNITS) cur += UNITS[p]; else if (p in TENS) cur += TENS[p];
         else if (p === "hundred") cur = (cur || 1) * 100; else if (p in SCALES) { total += (cur || 1) * SCALES[p]; cur = 0; }
       }
       n++;
     }
     if (!n || (n === 1 && said[i].n === "and")) return null;
-    return dec ? `${total + cur}${dec}` : String(total + cur);
+    const full = dec ? `${total + cur}${dec}` : String(total + cur);
+    return prefix && prefix !== full ? [full, prefix] : [full];
   });
 }
 
@@ -98,10 +102,10 @@ export function scheduleEntityPop(c, spoken, dur) {
   if (!a) return null;
   const said = (Array.isArray(spoken) ? spoken : []).map((w) => ({ ...w, n: normWord(w.text), d: digitsOf(w.text) }));
   const spelled = spelledValues(said);
-  said.forEach((w, i) => { if (!w.d && spelled[i]) w.d = spelled[i]; });
+  said.forEach((w, i) => { w.ds = [w.d, ...(spelled[i] || [])].filter(Boolean); });
   let hit = null, word = null;
   for (const cand of a.words) {
-    const m = cand.startsWith("#") ? said.find((w) => w.d === cand.slice(1)) : said.find((w) => w.n === cand);
+    const m = cand.startsWith("#") ? said.find((w) => w.ds.includes(cand.slice(1))) : said.find((w) => w.n === cand);
     if (m) { hit = m; word = cand.replace(/^#/, ""); break; }
   }
   if (!hit) return { kind: a.kind, entity: a.entity, missing: a.words[0].replace(/^#/, "") };
