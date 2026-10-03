@@ -458,8 +458,16 @@ jobs:
             PASSED=0
             SPEC_REASKED=0
             CLAIM_REASKED=0
+            SKIP_GEN=0
             for ATTEMPT in 1 2 3 4 5; do
               echo "=== SCRIPT: $CH — $SCRIPT_SLUG (attempt $ATTEMPT/5) ==="
+              if [ "$SKIP_GEN" -eq 1 ]; then
+              # The re-ask was a targeted repair (scripts/repair-sentences.mjs): the script
+              # file was rewritten in place — only the flagged sentences — so there is no new
+              # model call; every gate below runs again on the repaired script.
+              SKIP_GEN=0
+              echo "[script] ch-$CH: validating the repaired script"
+              else
               PROMPT_FILE=prompts/write-script.md
               if [ -n "$FEEDBACK" ]; then
                 cp prompts/write-script.md /tmp/write-script-feedback.md
@@ -485,6 +493,7 @@ jobs:
               fi
               jq '.structured_output' /tmp/script-raw-$FORMAT.json \
                 > "data/research/$CH/${SCRIPT_SLUG}-script.json"
+              fi
               # Too long for the gate (SCR-16 "CUT"): remove whole sentences
               # (scripts/fit-short.js — deletion only, hook and payoff kept, every
               # remaining fact exactly as written) and gate again, instead of
@@ -522,6 +531,14 @@ jobs:
                 if [ "$SPEC_EXIT" -ne 0 ]; then
                   if [ "$SPEC_REASKED" -eq 0 ] && [ "$ATTEMPT" -lt 5 ]; then
                     SPEC_REASKED=1
+                    # The one re-ask: repair only the flagged sentences in place (a full
+                    # regeneration fixed them and broke others — runs 37154369091, 37154668613).
+                    grep -E '^  - ' /tmp/spec-out-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true
+                    if node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt; then
+                      echo "[script] ch-$CH: story checks FAIL ($(grep -c '^  - ' /tmp/spec-out-$FORMAT.log) marked), repaired the flagged sentences (the one re-ask)"
+                      SKIP_GEN=1
+                      continue
+                    fi
                     echo "[script] ch-$CH: story checks FAIL ($(grep -c '^  - ' /tmp/spec-out-$FORMAT.log) marked), re-asking once"
                     FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$(grep -E '^  - ' /tmp/spec-out-$FORMAT.log || true)" | grep -E '^  - ' | sort -u || true)
                     continue
@@ -552,6 +569,12 @@ jobs:
                 if [ "$CLAIM_EXIT" -eq 2 ]; then
                   if [ "$CLAIM_REASKED" -eq 0 ] && [ "$ATTEMPT" -lt 5 ]; then
                     CLAIM_REASKED=1
+                    grep -E '^  - CLAIM' /tmp/claims-out-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true
+                    if node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt; then
+                      echo "[script] ch-$CH: INVENTED claims ($(grep -c '^  - CLAIM' /tmp/claims-out-$FORMAT.log)), repaired those sentences (the one re-ask)"
+                      SKIP_GEN=1
+                      continue
+                    fi
                     echo "[script] ch-$CH: INVENTED claims ($(grep -c '^  - CLAIM' /tmp/claims-out-$FORMAT.log)), re-asking once"
                     FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$(grep -E '^  - CLAIM' /tmp/claims-out-$FORMAT.log || true)" | grep -E '^  - ' | sort -u || true)
                     continue
