@@ -2613,9 +2613,14 @@
           "topic": "Boston Dynamics Atlas Humanoids for Automotive Manufacturing",
           "slug": "boston-dynamics-atlas-humanoids-automotive-manufacturing",
           "reserved_at": "2026-10-03T13:43:06.034Z"
+        },
+        {
+          "topic": "Vector, PEM Motion and FMC³ Robotics Plan Industrial Embodied AI Joint Venture",
+          "slug": "vector-pem-motion-fmc3-robotics-industrial-embodied-ai-joint",
+          "reserved_at": "2026-10-03T14:27:37.226Z"
         }
       ],
-      "last_generated": "2026-10-03T13:43:06.034Z"
+      "last_generated": "2026-10-03T14:27:37.226Z"
     },
     "49": {
       "channel_name": "Wander Budget",
