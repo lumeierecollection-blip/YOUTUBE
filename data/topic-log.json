@@ -2563,9 +2563,14 @@
           "topic": "Hitachi-Fanuc-Physical-AI-Partnership-2027",
           "slug": "hitachi-fanuc-physical-ai-partnership-2027",
           "reserved_at": "2026-10-03T13:10:18.790Z"
+        },
+        {
+          "topic": "Boston Dynamics Atlas Humanoids for Automotive Manufacturing",
+          "slug": "boston-dynamics-atlas-humanoids-automotive-manufacturing",
+          "reserved_at": "2026-10-03T13:43:06.034Z"
         }
       ],
-      "last_generated": "2026-10-03T13:10:18.790Z"
+      "last_generated": "2026-10-03T13:43:06.034Z"
     },
     "49": {
       "channel_name": "Wander Budget",
