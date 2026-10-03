@@ -752,9 +752,14 @@
           "topic": "California's New AI and Employee Monitoring Legislation",
           "slug": "california-new-laws-ai-employee-monitoring",
           "reserved_at": "2026-10-03T14:26:04.346Z"
+        },
+        {
+          "topic": "ICE Changes Vehicle Stop Policy After Deadly Incidents",
+          "slug": "ice-changes-course-again-vehicle-pursuit-policies",
+          "reserved_at": "2026-10-03T14:58:23.650Z"
         }
       ],
-      "last_generated": "2026-10-03T14:26:04.346Z"
+      "last_generated": "2026-10-03T14:58:23.650Z"
     },
     "3": {
       "channel_name": "AI Tested",
