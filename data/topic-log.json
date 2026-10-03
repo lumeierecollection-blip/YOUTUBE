@@ -592,9 +592,14 @@
           "topic": "u-s-district-court-rules-that-constitution-does-not-permit-congress-to-set-voter-qualficat",
           "slug": "u-s-district-court-rules-voter-qualifications",
           "reserved_at": "2026-10-03T08:20:15.985Z"
+        },
+        {
+          "topic": "ice-changes-course-again-traffic-stop-vehicle-pursuit-policies",
+          "slug": "ice-changes-course-traffic-stop-policies",
+          "reserved_at": "2026-10-03T08:50:07.708Z"
         }
       ],
-      "last_generated": "2026-10-03T08:20:15.985Z"
+      "last_generated": "2026-10-03T08:50:07.708Z"
     },
     "3": {
       "channel_name": "AI Tested",
