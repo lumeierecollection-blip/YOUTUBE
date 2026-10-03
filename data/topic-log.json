@@ -2979,9 +2979,14 @@
           "topic": "DGIST AI Robot in High-Risk Steel Mill",
           "slug": "dgist-ai-robot-high-risk-steel-mill-2026-10-02-1234567890",
           "reserved_at": "2026-10-03T10:04:47.689Z"
+        },
+        {
+          "topic": "Boston Dynamics Atlas Humanoid Training",
+          "slug": "boston-dynamics-atlas-training",
+          "reserved_at": "2026-10-03T11:21:58.093Z"
         }
       ],
-      "last_generated": "2026-10-03T10:04:47.689Z"
+      "last_generated": "2026-10-03T11:21:58.094Z"
     },
     "49": {
       "channel_name": "Cosmic Voxels",
