@@ -1640,9 +1640,14 @@
           "topic": "ex-ceo-subway-purchasing-co-op-bribery-scheme",
           "slug": "ex-ceo-subway-purchasing-co-op-bribery-scheme-20261002",
           "reserved_at": "2026-10-03T00:41:51.510Z"
+        },
+        {
+          "topic": "Crypto heist and fraud",
+          "slug": "bitget-heist-chainalysis-20261001",
+          "reserved_at": "2026-10-03T01:29:50.686Z"
         }
       ],
-      "last_generated": "2026-10-03T00:41:51.510Z"
+      "last_generated": "2026-10-03T01:29:50.686Z"
     },
     "27": {
       "channel_name": "Climate Now",
