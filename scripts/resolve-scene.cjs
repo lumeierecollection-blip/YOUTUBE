@@ -79,6 +79,12 @@ async function resolvePlaceScene(tag, type, name, context) {
   // ("AI", "ED" — CI run 37074911159): refused, and no name card is made of it.
   if (ex.refuse) { lines.push(ex.refuse, `not a resolvable name — no photo, no name card`); say(tag, lines); return { ok: false, kind: type, why: ex.refuse, refused: true }; }
   const q = ex.name;
+  // The verifier is told WHAT the entity is (its Wikipedia description): asked only "Does this
+  // image show G7?", it passed the headquarters of "G7 AGRI JAPAN CO., LTD." for the Group of
+  // Seven (CI run 37088913234 ch-9). A namesake is now a different thing: WRONG.
+  const desc = await describe(q);
+  const vq = desc ? `${q} (${desc})` : q;
+  if (desc) lines.push(`verifying as "${vq}"`);
   if (ex.note) lines.push(ex.note);
   const dir = E.DIR[type] || "orgs";
   const rel = `entities/${dir}/${E.slug(name)}.jpg`;
@@ -99,7 +105,7 @@ async function resolvePlaceScene(tag, type, name, context) {
   for (const [i, c] of candidates.entries()) {
     const bad = await E.downloadTo(c.info, tmp);
     if (bad) { lines.push(`candidate ${i + 1} (${c.source}) REJECTED: ${bad}`); continue; }
-    const v = await verifyPlaceImage(tmp, q);
+    const v = await verifyPlaceImage(tmp, vq);
     if (v.verdict === "MATCH") {
       lines.push(`candidate ${i + 1} (${c.source}: ${c.info.title}) verified MATCH (${v.seen})`);
       const artist = (c.info.artist || "").slice(0, 80);
@@ -121,7 +127,7 @@ async function resolvePlaceScene(tag, type, name, context) {
         if (!res.ok) { lines.push(`pixabay candidate ${i + 1} REJECTED: download HTTP ${res.status}`); continue; }
         await require("sharp")(Buffer.from(await res.arrayBuffer())).rotate().resize({ width: 1400, height: 2000, fit: "inside", withoutEnlargement: true }).jpeg({ quality: 88 }).toFile(tmp);
       } catch (e) { lines.push(`pixabay candidate ${i + 1} REJECTED: ${e.message}`); continue; }
-      const v = await verifyPlaceImage(tmp, q);
+      const v = await verifyPlaceImage(tmp, vq);
       if (v.verdict === "MATCH") {
         lines.push(`pixabay candidate ${i + 1} verified MATCH (${v.seen})`);
         return done("pixabay", null, v, { credit: `Photo: ${h.user ? `${h.user} / ` : ""}Pixabay`, source_url: h.pageURL, license: "Pixabay Content License" });
@@ -167,6 +173,15 @@ const KIND_WORDS = [
   ["place", /\b(city|town|country|(?:u\.s\.|us|federal|sovereign) state|province|region|county|capital|island|village|district|neighbou?rhood|municipality|territory|metropolitan|borough|port)\b/i],
   ["organization", /\b(company|corporation|agency|organi[sz]ation|bank|institution|court|department|ministry|bureau|commission|council|party|university|regulator|authority|federal reserve|central bank|banking|union|association|fund|board)\b/i],
 ];
+// The one-line Wikipedia description of a name ("Intergovernmental political forum"), or null.
+async function describe(name) {
+  try {
+    const r = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name.replace(/ /g, "_"))}?redirect=true`, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(15000) });
+    if (!r.ok) return null;
+    const s = await r.json();
+    return s.type === "disambiguation" ? null : (String(s.description || "").trim().slice(0, 120) || null);
+  } catch { return null; }
+}
 async function kindOf(name) {
   try {
     const r = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name.replace(/ /g, "_"))}?redirect=true`, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(15000) });
