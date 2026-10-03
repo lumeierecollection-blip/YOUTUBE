@@ -1790,9 +1790,14 @@
           "topic": "North Korean Hackers Operation",
           "slug": "northkoreanhackers-bitget",
           "reserved_at": "2026-10-03T09:34:17.492Z"
+        },
+        {
+          "topic": "David Rivera's $245 Million Crypto Heist",
+          "slug": "22-year-old-245m-crypto-heist-guilty-plea",
+          "reserved_at": "2026-10-03T10:07:25.814Z"
         }
       ],
-      "last_generated": "2026-10-03T09:34:17.492Z"
+      "last_generated": "2026-10-03T10:07:25.814Z"
     },
     "27": {
       "channel_name": "Climate Now",
