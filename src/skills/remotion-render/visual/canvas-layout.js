@@ -427,7 +427,9 @@ export function canvasLayout(c) {
         boxes.rule = rule(flip, TOP);
         boxes.number = { ...box(nx, TOP + 40, nw, nh), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
         if (label) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, y: boxes.number.y + nh + 28, flip });
-        boxes.headline = headlineBox(c.headline, { width: 900, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200 });
+        // The middle zone's subject until the number pops on its word: the hero tier (a 110 px
+        // line filled 12% of the zone — CI run 37126933290 ch-44 beat 2, middle-zone-filled).
+        boxes.headline = headlineBox(c.headline, { width: 900, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200, hero: true });
       }
       hero = "number";
     } else {
@@ -442,7 +444,11 @@ export function canvasLayout(c) {
         const eh = Math.round(emph.size * ROLE_EMPHASIS.lineHeight);
         boxes.rule = rule(flip ? 0 : 1, TOP);
         if (text) boxes.headline = headlineBox(text, { width: 700, y: TOP + 40, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - TOP - 40, max: 120 });
-        boxes.emphasis = { ...box(anchorX(ew, flip ? 0 : 1), BOTTOM - eh - descOffset(shown, emph.size, ROLE_EMPHASIS.lineHeight), ew, eh), desc: descOffset(shown, emph.size, ROLE_EMPHASIS.lineHeight), size: emph.size, text: shown, align: flip ? "left" : "right", role: "emphasis" };
+        // Anchored on the word's REAL descender: descOffset reserves 0.3 em, but Fraunces' "p"
+        // ends ~0.15 em under the baseline — the ink stopped at y 1275 and the beat spanned
+        // 59.5% (CI run 37126933290 ch-44 beat 4). 0.17 em keeps the ink inside the zone.
+        const eDesc = /[gjpqy]/.test(shown) ? Math.ceil(emph.size * 0.17) : 0;
+        boxes.emphasis = { ...box(anchorX(ew, flip ? 0 : 1), BOTTOM - eh - eDesc, ew, eh), desc: eDesc, size: emph.size, text: shown, align: flip ? "left" : "right", role: "emphasis" };
         hero = "emphasis";
       } else if (c?.vertical) {
         // One beat a video: the statement rotated 90 degrees along the left edge.

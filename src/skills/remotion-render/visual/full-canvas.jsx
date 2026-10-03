@@ -367,6 +367,8 @@ function Portrait({ b, local, fps, at }) {
   );
 }
 
+// Where each drawn symbol's ink ends, as a fraction of its 100-unit viewBox (symbols/*.jsx geometry).
+const SYMBOL_INK_BOTTOM = { "warning-triangle": 0.90, checkmark: 0.89, "upward-arrow": 0.94, "downward-arrow": 0.94, radar: 0.96, "dollar-sign": 0.98, "broken-chain": 0.97, crosshair: 1 };
 function ConceptVisual({ b, local, fps, at, accent }) {
   const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 100%");
   if (b.class === "cutout" && b.asset && b.img) {
@@ -391,8 +393,12 @@ function ConceptVisual({ b, local, fps, at, accent }) {
   }
   if (b.class === "symbol") {
     const s = Math.min(b.w, b.h);
+    // Each symbol's ink stops short of its 100-unit viewBox (warning triangle at 90): the
+    // symbol is lowered by that gap so its INK stands on the box floor, as a cutout's does.
+    // Without it a warning-triangle hero spanned 59.2% (CI run 37126933290 ch-26 beat 4).
+    const gap = s * (1 - (SYMBOL_INK_BOTTOM[b.concept] ?? 1));
     return (
-      <div style={{ position: "absolute", left: b.align === "center" ? b.x + (b.w - s) / 2 : b.x, top: b.align === "center" ? b.y + (b.h - s) / 2 : b.y + b.h - s, width: s, height: s, ...pop }}>
+      <div style={{ position: "absolute", left: b.align === "center" ? b.x + (b.w - s) / 2 : b.x, top: (b.align === "center" ? b.y + (b.h - s) / 2 : b.y + b.h - s) + gap, width: s, height: s, ...pop }}>
         <Symbol name={b.concept} size={s} color={accent} />
       </div>
     );
