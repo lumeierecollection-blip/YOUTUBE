@@ -307,6 +307,8 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       <>
         <NumberHero b={B.number} q={q} t={count} local={local} fps={fps} at={tl.numberAt} color={numColor} m={m} />
         {B.label ? <DataLabel b={B.label} name="label" color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
+        {/* No label: a hairline holds the middle zone's floor under the figure (canvas-layout.js NUMBER-FULL). */}
+        {B.floor_rule ? <Rule b={B.floor_rule} t={m.build(0.3, m.s(0.1))} color={th.ink} /> : null}
       </>
     );
   }
@@ -336,7 +338,7 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           <ConceptVisual key={i} b={v} local={local} fps={fps} at={tl.headlineAt + 0.45 + i * 0.12} accent={accent} dur={dur} />
         ))}
         {/* A logo's company name types on below it (part D.2). */}
-        {B.label && B.cutout0?.logo ? <DataLabel b={B.label} name="label" color={th.ink} local={local} fps={fps} at={tl.headlineAt + 0.8} /> : null}
+        {B.cutout_name && B.cutout0?.logo ? <DataLabel b={B.cutout_name} name="cutout_name" color={th.ink} local={local} fps={fps} at={tl.headlineAt + 0.8} /> : null}
       </>
     );
   }

@@ -129,16 +129,15 @@ export const numberInk = (text, size) => {
   // 59.2% (CI run 37108869325 ch-9). The 0.1 was measured under the old camera push, like the
   // separator reserve (a0b1763); 0.03 keeps a small allowance for the % sign's overshoot.
   const pct = /%/.test(String(text ?? "")) && !sep ? 0.03 : 0;
-  // A QUANTITY's ink ends 0.81 em below its box top, MEASURED on the live-frame
-  // compositor's frames: "7515" size 518 -> ink rows 888-1270 for a box at y 853
-  // (0.805 em; CI run 37149091704 ch-2 beats 3 and 7, NUMBER-FULL coverage
-  // 58.9-59.2%), "3.5" 0.805 em (run 37102013192), "10%" ~0.80 em (run 37108869325).
-  // The 0.94 for every figure came from "50" crossing y 1340 in run 36985423031,
-  // before the compositor change; with it every quantity sat ~67 px above the
-  // zone's floor and NUMBER-FULL beats spanned < 60%. A year / identifier (not
-  // re-measured since) keeps 0.94. If a quantity crosses y 1340 again,
-  // zones-no-overlap rejects the render: the failure is loud, never silent.
-  return Math.ceil(size * ((p.isQuantity ? 0.81 : 0.94) + sep + pct));
+  // 0.94 for EVERY figure — the WORST case, so the ink never crosses the edge it is
+  // anchored on. Measured depths vary per render between 0.805 em ("7515", CI run
+  // 37149091704 ch-2; "3.5", "10%" earlier) and 0.92 em ("30", "16", run 37152783591
+  // ch-48, which crossed y 1340 when quantities were anchored at 0.81 — reverted). The
+  // cause of the 0.12 em difference is not found in NumberHero. NUMBER-FULL's coverage no
+  // longer depends on it: the label (or a floor rule) holds the zone's floor, the figure
+  // stands above it.
+  void p;
+  return Math.ceil(size * (0.94 + sep + pct));
 };
 // Fraunces descenders (g j p q y , ;) reach ~1.07 em below a line's top, past
 // a 0.95 (headline) or 0.90 (emphasis) line box: a text block anchored to a
@@ -451,9 +450,22 @@ export function canvasLayout(c) {
         // the hero number at the middle zone's bottom, its label just above it
         if (c.headline) boxes.headline = headlineBox(c.headline, { width: 900, y: TOP, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - TOP, max: 200 });
         else boxes.rule = rule(flip, TOP);
+        // The middle zone's FLOOR is held by something whose ink is predictable — the label
+        // (caps Inter, bottom-anchored on y 1340), or with no label a hairline rule there — and
+        // the figure stands above it at its worst-case depth (numberInk, 0.94 em). The figure
+        // used to hold the floor itself, and its ink depth is not one number: "7515" ended at
+        // 0.805 em below its box top (CI run 37149091704 ch-2, coverage 58.9-59.2%), "30" / "16"
+        // at 0.92 em (run 37152783591 ch-48, crossed y 1340 once anchored at 0.81). Anchored
+        // for the deep case the shallow one left the beat under 60%; anchored for the shallow
+        // case the deep one crossed into the caption zone.
         const ink = numberInk(c.data.value, size);
-        boxes.number = { ...box(nx, BOTTOM - ink, nw, ink), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
-        if (label) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, x: flip ? undefined : nx, bottom: boxes.number.y - 28, flip });   // right-anchored when the number is (it ran off the frame: CI run 36947929123 ch-44)
+        if (label) {
+          boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, x: flip ? undefined : nx, bottom: BOTTOM, flip });   // right-anchored when the number is (it ran off the frame: CI run 36947929123 ch-44)
+          boxes.number = { ...box(nx, boxes.label.y - 28 - ink, nw, ink), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
+        } else {
+          boxes.floor_rule = rule(flip, BOTTOM - 6);
+          boxes.number = { ...box(nx, BOTTOM - 6 - 28 - ink, nw, ink), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
+        }
       } else {
         // the hero number in the top zone, its label under it; the headline at the middle zone's bottom
         boxes.rule = rule(flip, TOP);
@@ -591,7 +603,7 @@ export function canvasLayout(c) {
             const icx = 540 - (e.x0 + e.x1) / 2, icy = cy - (e.y0 + e.y1) / 2;   // the image's centre: its ink centred on (540, cy)
             // Part D.2 (logo): the company's name types on BELOW the logo — the logo stands 60 px
             // higher (floor 1270) and the name label sits under it, inside the middle zone.
-            if (v.logo && v.name) boxes.label = dataBox(v.name, { width: 900, size: 34, maxLines: 1, y: 1290, flip });
+            if (v.logo && v.name) boxes.cutout_name = dataBox(v.name, { width: 900, size: 34, maxLines: 1, y: 1290, flip });
             boxes.cutout0 = { ...box(bx, by, Math.round(inkW), Math.round(e.h)), role: "concept", concept: v.name, class: v.class, asset: v.asset || null, primary: true, align: "center", logo: !!v.logo, money: !!v.money,
               // [x, y, w, h] — an array, so flattenBoxes does not read it as an element box
               img: [Math.round(icx - a / 2 - bx), Math.round(icy - ih / 2 - by), Math.round(a), Math.round(ih)], ...(deg ? { tilt: deg } : {}), ...(crop ? { crop } : {}) };
