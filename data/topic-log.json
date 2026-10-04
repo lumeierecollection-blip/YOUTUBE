@@ -2713,9 +2713,14 @@
           "topic": "humanoid-robot-humanufacturing-2026",
           "slug": "humanoid-robot-humanufacturing-2026",
           "reserved_at": "2026-10-03T20:53:56.313Z"
+        },
+        {
+          "topic": "Korber and NVIDIA Team Up to Build Physics-Accurate Warehouse Digital Twins",
+          "slug": "korber-nvidia-warehouse-digital-twins-omniscience",
+          "reserved_at": "2026-10-04T11:32:54.428Z"
         }
       ],
-      "last_generated": "2026-10-03T21:27:26.724Z"
+      "last_generated": "2026-10-04T11:32:54.429Z"
     },
     "49": {
       "channel_name": "Wander Budget",
