@@ -782,9 +782,14 @@
           "topic": "NY Court Rules on Labor Dispute Over Mandatory Arbitration Agreements",
           "slug": "new-york-court-rules-mandatory-arbitration-agreements",
           "reserved_at": "2026-10-03T19:52:01.315Z"
+        },
+        {
+          "topic": "LAPD to Rewrite Pretext Stop Policy After Audit Finds Compliance Issues",
+          "slug": "lapd-pretext-stop-policy-audit-2026",
+          "reserved_at": "2026-10-04T11:32:18.044Z"
         }
       ],
-      "last_generated": "2026-10-03T21:27:13.198Z"
+      "last_generated": "2026-10-04T11:32:18.044Z"
     },
     "3": {
       "channel_name": "AI Tested",
