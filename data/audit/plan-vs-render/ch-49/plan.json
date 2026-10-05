@@ -1,0 +1,845 @@
+{
+  "channel": "ch-49",
+  "run": "37313431912",
+  "mp4": "C:/Users/user/AppData/Local/Temp/opencode/audit37313431912/queues/qa-queues-49-37313431912/approved/harvey-keitel-the-method-acting-scene-shorts-shorts-2026-10-05.mp4",
+  "video": "harvey-keitel-the-method-acting-scene-shorts-shorts-2026-10-05.mp4",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "beats": [
+    {
+      "index": 0,
+      "sentence": "Will Harvey Keitel survive New York's brutal scene in The Method?",
+      "scene_description": "A high-contrast black-and-white portrait of Harvey Keitel, filling the center of the frame; behind him, the phrase 'WILL HARVEY KEITEL' in a large serif font, sentence case. The portrait slowly pushes in across the beat, with a small sans label at the bottom: THE METHOD.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Harvey Keitel"
+        },
+        {
+          "type": "place",
+          "name": "New York"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Harvey Keitel",
+        "entity_type": "person"
+      },
+      "entity_anchor_word": "Keitel",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "film title and lead"
+        }
+      ],
+      "rendered": {
+        "visual_type": "PHOTO",
+        "composition": "PORTRAIT",
+        "boxes": [
+          "rule",
+          "headline",
+          "portrait"
+        ],
+        "name_card": null,
+        "photo": "entities/people/harvey-keitel.jpg",
+        "concept_visuals": [],
+        "start_sec": 0.1,
+        "duration_sec": 3.9,
+        "headline_size": 140,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 1.075,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-0-25.png",
+          "size": "810x1440",
+          "mean": 211.38,
+          "ink_fraction": 0.2119,
+          "ink_bbox": {
+            "x": 37,
+            "y": 96,
+            "w": 738,
+            "h": 1047
+          }
+        },
+        {
+          "at": 2.05,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-0-50.png",
+          "size": "810x1440",
+          "mean": 210.32,
+          "ink_fraction": 0.2168,
+          "ink_bbox": {
+            "x": 37,
+            "y": 99,
+            "w": 742,
+            "h": 1310
+          }
+        },
+        {
+          "at": 3.025,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-0-75.png",
+          "size": "810x1440",
+          "mean": 211.62,
+          "ink_fraction": 0.2112,
+          "ink_bbox": {
+            "x": 37,
+            "y": 98,
+            "w": 742,
+            "h": 1311
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "sentence": "Director Gaurav Bhardwaj captures cutthroat ambition in his debut feature film.",
+      "scene_description": "A black-and-white promotional still of Gaurav Bhardwaj, director, seated in a dimly lit New York studio, lower third; above him in small caps, DIRECTOR. The headline pops in softly over the upper frame.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Gaurav Bhardwaj"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PROCESS",
+      "data_planned": {
+        "nodes": [
+          "Director Gaurav Bhardwaj",
+          "film"
+        ],
+        "keynouns": true
+      },
+      "entity_anchor_word": "Bhardwaj",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "director profile"
+        }
+      ],
+      "rendered": {
+        "visual_type": "PROCESS",
+        "composition": "PROCESS-FULL",
+        "boxes": [
+          "kicker",
+          "headline",
+          "nodes0",
+          "nodes1"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 4,
+        "duration_sec": 5.5,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 5.375,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-1-25.png",
+          "size": "810x1440",
+          "mean": 248.19,
+          "ink_fraction": 0.0328,
+          "ink_bbox": {
+            "x": 151,
+            "y": 143,
+            "w": 627,
+            "h": 995
+          }
+        },
+        {
+          "at": 6.75,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-1-50.png",
+          "size": "810x1440",
+          "mean": 244.55,
+          "ink_fraction": 0.049,
+          "ink_bbox": {
+            "x": 34,
+            "y": 104,
+            "w": 742,
+            "h": 1094
+          }
+        },
+        {
+          "at": 8.125,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-1-75.png",
+          "size": "810x1440",
+          "mean": 246.77,
+          "ink_fraction": 0.0391,
+          "ink_bbox": {
+            "x": 32,
+            "y": 101,
+            "w": 747,
+            "h": 1028
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "sentence": "Travelin Bone Entertainment produced this gritty story alongside Imagination Infinite Motion Pictures.",
+      "scene_description": "The logos of Travelin Bone Entertainment and Imagination Infinite Motion Pictures placed side by side in the center of the frame on a dark monochrome background, with a slow zoom out. Above them, small sans text: CO-PRODUCTION.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "Travelin Bone Entertainment"
+        },
+        {
+          "type": "company",
+          "name": "Imagination Infinite Motion Pictures"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Travelin Bone Entertainment",
+        "entity_type": "company"
+      },
+      "entity_anchor_word": "Entertainment",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "studios partnered"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "lead_phrase"
+        ],
+        "name_card": {
+          "name": "Travelin Bone Entertainment"
+        },
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 9.5,
+        "duration_sec": 6.67,
+        "headline_size": 160,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 11.168,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-2-25.png",
+          "size": "810x1440",
+          "mean": 245.13,
+          "ink_fraction": 0.0459,
+          "ink_bbox": {
+            "x": 37,
+            "y": 98,
+            "w": 737,
+            "h": 1095
+          }
+        },
+        {
+          "at": 12.835,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-2-50.png",
+          "size": "810x1440",
+          "mean": 246.31,
+          "ink_fraction": 0.0409,
+          "ink_bbox": {
+            "x": 36,
+            "y": 96,
+            "w": 739,
+            "h": 1042
+          }
+        },
+        {
+          "at": 14.502,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-2-75.png",
+          "size": "810x1440",
+          "mean": 244.75,
+          "ink_fraction": 0.0477,
+          "ink_bbox": {
+            "x": 37,
+            "y": 99,
+            "w": 737,
+            "h": 1085
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "sentence": "What drives an acting teacher to extremes?",
+      "scene_description": "A minimalist black-and-white photo of an empty theater stage under a single spotlight, centered in the frame. A thin line draws across the bottom, with small caps: THE ACTING TEACHER.",
+      "named_entities": [],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "teacher extremes"
+        }
+      ],
+      "rendered": {
+        "visual_type": "PROCESS",
+        "composition": "PROCESS-FULL",
+        "boxes": [
+          "kicker",
+          "headline",
+          "nodes0",
+          "nodes1"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 16.17,
+        "duration_sec": 3.3,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 16.995,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-3-25.png",
+          "size": "810x1440",
+          "mean": 250.52,
+          "ink_fraction": 0.0221,
+          "ink_bbox": {
+            "x": 53,
+            "y": 143,
+            "w": 726,
+            "h": 995
+          }
+        },
+        {
+          "at": 17.82,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-3-50.png",
+          "size": "810x1440",
+          "mean": 248.09,
+          "ink_fraction": 0.0329,
+          "ink_bbox": {
+            "x": 33,
+            "y": 104,
+            "w": 744,
+            "h": 1080
+          }
+        },
+        {
+          "at": 18.645,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-3-75.png",
+          "size": "810x1440",
+          "mean": 247.39,
+          "ink_fraction": 0.0359,
+          "ink_bbox": {
+            "x": 34,
+            "y": 105,
+            "w": 742,
+            "h": 1093
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "sentence": "Travelin Bone Entertainment highlights just how steep the price of blind ambition gets.",
+      "scene_description": "A large oversized number, 1, fills the center of the frame in stark serif type; below it in small caps, THE PRICE OF BLIND AMBITION. Behind the number, a subtle vertical line draws downward, representing the steep cost.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "Travelin Bone Entertainment"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Travelin Bone Entertainment",
+        "entity_type": "company"
+      },
+      "entity_anchor_word": "Entertainment",
+      "visual_events": [
+        {
+          "type": "depletion",
+          "label": "price of blind ambition"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "lead_phrase"
+        ],
+        "name_card": {
+          "name": "Travelin Bone Entertainment"
+        },
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 19.47,
+        "duration_sec": 5.57,
+        "headline_size": 160,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": true
+        },
+        "entrance_style": "staggered",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 20.862,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-4-25.png",
+          "size": "810x1440",
+          "mean": 243.88,
+          "ink_fraction": 0.0436,
+          "ink_bbox": {
+            "x": 37,
+            "y": 97,
+            "w": 737,
+            "h": 1032
+          }
+        },
+        {
+          "at": 22.255,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-4-50.png",
+          "size": "810x1440",
+          "mean": 241.98,
+          "ink_fraction": 0.0527,
+          "ink_bbox": {
+            "x": 37,
+            "y": 98,
+            "w": 737,
+            "h": 1095
+          }
+        },
+        {
+          "at": 23.648,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-4-75.png",
+          "size": "810x1440",
+          "mean": 243.34,
+          "ink_fraction": 0.0466,
+          "ink_bbox": {
+            "x": 36,
+            "y": 97,
+            "w": 739,
+            "h": 1097
+          }
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "sentence": "The Method exposes 1 ruthless reality of New York theater training.",
+      "scene_description": "A large numeral 1 centered in the frame, flanked by small sans labels reading RUTHLESS REALITY and NEW YORK THEATER TRAINING. A slow push in across the beat.",
+      "named_entities": [
+        {
+          "type": "place",
+          "name": "New York"
+        },
+        {
+          "type": "number",
+          "name": "1"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "MAP",
+      "data_planned": {
+        "place": "New York"
+      },
+      "entity_anchor_word": "1",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "ruthless reality"
+        }
+      ],
+      "rendered": {
+        "visual_type": "MAP",
+        "composition": "MAP-CENTERED",
+        "boxes": [
+          "kicker",
+          "headline",
+          "map"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 25.03,
+        "duration_sec": 4.77,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 26.223,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-5-25.png",
+          "size": "810x1440",
+          "mean": 241.05,
+          "ink_fraction": 0.0954,
+          "ink_bbox": {
+            "x": 19,
+            "y": 142,
+            "w": 769,
+            "h": 996
+          }
+        },
+        {
+          "at": 27.415,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-5-50.png",
+          "size": "810x1440",
+          "mean": 239.77,
+          "ink_fraction": 0.1,
+          "ink_bbox": {
+            "x": 19,
+            "y": 105,
+            "w": 769,
+            "h": 1093
+          }
+        },
+        {
+          "at": 28.608,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-5-75.png",
+          "size": "810x1440",
+          "mean": 241.23,
+          "ink_fraction": 0.0941,
+          "ink_bbox": {
+            "x": 18,
+            "y": 101,
+            "w": 769,
+            "h": 1037
+          }
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "sentence": "Gaurav Bhardwaj captures raw ambition inside New York studios for audiences.",
+      "scene_description": "A black-and-white behind-the-scenes photograph of Gaurav Bhardwaj directing actors inside a New York studio, filling the upper half of the frame. Below it, small caps: NEW YORK STUDIOS.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Gaurav Bhardwaj"
+        },
+        {
+          "type": "place",
+          "name": "New York"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": "Bhardwaj",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "studio ambition"
+        }
+      ],
+      "rendered": {
+        "visual_type": "PROCESS",
+        "composition": "PROCESS-FULL",
+        "boxes": [
+          "kicker",
+          "headline",
+          "nodes0",
+          "nodes1"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 29.8,
+        "duration_sec": 5.67,
+        "headline_size": 104,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 31.218,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-6-25.png",
+          "size": "810x1440",
+          "mean": 247.95,
+          "ink_fraction": 0.034,
+          "ink_bbox": {
+            "x": 32,
+            "y": 143,
+            "w": 610,
+            "h": 995
+          }
+        },
+        {
+          "at": 32.635,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-6-50.png",
+          "size": "810x1440",
+          "mean": 244.36,
+          "ink_fraction": 0.0501,
+          "ink_bbox": {
+            "x": 33,
+            "y": 104,
+            "w": 744,
+            "h": 1094
+          }
+        },
+        {
+          "at": 34.053,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-6-75.png",
+          "size": "810x1440",
+          "mean": 246.26,
+          "ink_fraction": 0.0414,
+          "ink_bbox": {
+            "x": 32,
+            "y": 102,
+            "w": 746,
+            "h": 1027
+          }
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "sentence": "This feature by Imagination Infinite Motion Pictures exposes what 1 actor surrenders.",
+      "scene_description": "A large numeral 1 centered in the frame with the text 'ACTOR SURRENDERS' below it in small caps. Behind the number, the logo of Imagination Infinite Motion Pictures fades in slowly.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "Imagination Infinite Motion Pictures"
+        },
+        {
+          "type": "number",
+          "name": "1"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Imagination Infinite Motion Pictures",
+        "entity_type": "company"
+      },
+      "entity_anchor_word": "Imagination",
+      "visual_events": [
+        {
+          "type": "depletion",
+          "label": "actor surrender"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "lead_phrase"
+        ],
+        "name_card": {
+          "name": "Imagination Infinite Motion Pictures"
+        },
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 35.47,
+        "duration_sec": 6.07,
+        "headline_size": 164,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 36.987,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-7-25.png",
+          "size": "810x1440",
+          "mean": 244.09,
+          "ink_fraction": 0.0537,
+          "ink_bbox": {
+            "x": 36,
+            "y": 98,
+            "w": 740,
+            "h": 1040
+          }
+        },
+        {
+          "at": 38.505,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-7-50.png",
+          "size": "810x1440",
+          "mean": 245.07,
+          "ink_fraction": 0.0505,
+          "ink_bbox": {
+            "x": 36,
+            "y": 97,
+            "w": 740,
+            "h": 1042
+          }
+        },
+        {
+          "at": 40.023,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-7-75.png",
+          "size": "810x1440",
+          "mean": 243.22,
+          "ink_fraction": 0.0576,
+          "ink_bbox": {
+            "x": 36,
+            "y": 98,
+            "w": 740,
+            "h": 1100
+          }
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "sentence": "Watch the film to witness this masterclass in acting.",
+      "scene_description": "Solid black screen with a single line of centered serif text: 'MASTERCLASS IN ACTING' in sentence case, glowing softly in white. Below it in small caps, WATCH THE FILM. A very slow push in across the beat.",
+      "named_entities": [],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "masterclass close"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "headline",
+          "emphasis"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 41.53,
+        "duration_sec": 2.93,
+        "headline_size": 110,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 42.263,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-8-25.png",
+          "size": "810x1440",
+          "mean": 232.65,
+          "ink_fraction": 0.0913,
+          "ink_bbox": {
+            "x": 37,
+            "y": 96,
+            "w": 750,
+            "h": 1047
+          }
+        },
+        {
+          "at": 42.995,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-8-50.png",
+          "size": "810x1440",
+          "mean": 231.99,
+          "ink_fraction": 0.0942,
+          "ink_bbox": {
+            "x": 37,
+            "y": 98,
+            "w": 749,
+            "h": 1045
+          }
+        },
+        {
+          "at": 43.727,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-49\\beat-8-75.png",
+          "size": "810x1440",
+          "mean": 231.41,
+          "ink_fraction": 0.0974,
+          "ink_bbox": {
+            "x": 37,
+            "y": 100,
+            "w": 748,
+            "h": 1084
+          }
+        }
+      ]
+    }
+  ]
+}

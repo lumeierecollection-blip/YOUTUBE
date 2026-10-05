@@ -1,0 +1,135 @@
+{
+  "generated": "2026-10-05T13:42:29.555Z",
+  "model": "gemini-3.5-flash-lite",
+  "runs": [
+    "37313431912",
+    "37308547249"
+  ],
+  "channels": [
+    "ch-26",
+    "ch-44",
+    "ch-49",
+    "ch-9"
+  ],
+  "total_beats": 37,
+  "yes": 0,
+  "partial": 12,
+  "no": 25,
+  "errors": 0,
+  "timing_correct": 3,
+  "timing_incorrect": 34,
+  "common_missing": [
+    {
+      "element": "dark monochrome background",
+      "beats": 3
+    },
+    {
+      "element": "numeral 6,000,000 in oversized type",
+      "beats": 1
+    },
+    {
+      "element": "stark monochrome color scheme (purple is used)",
+      "beats": 1
+    },
+    {
+      "element": "thin accent line drawing underneath the headline across the beat",
+      "beats": 1
+    },
+    {
+      "element": "structured timeline chart in the lower half of the frame",
+      "beats": 1
+    },
+    {
+      "element": "timestamp 08:53 utc on october 4, 2026",
+      "beats": 1
+    },
+    {
+      "element": "institutional name sigintzero in small caps",
+      "beats": 1
+    },
+    {
+      "element": "3-of-7 safe text label",
+      "beats": 1
+    }
+  ],
+  "common_unexpected": [
+    {
+      "element": "white background",
+      "beats": 3
+    },
+    {
+      "element": "source attribution text at the bottom right ('source: commons.wikimedia.org')",
+      "beats": 3
+    },
+    {
+      "element": "map of india and surrounding region",
+      "beats": 2
+    },
+    {
+      "element": "two circular flowchart nodes containing 'attackers aused' and 'base network vault'",
+      "beats": 1
+    },
+    {
+      "element": "purple arrow connecting the two circular nodes",
+      "beats": 1
+    },
+    {
+      "element": "running subtitle text at the bottom ('six million dollars vanished from', 'after attackers', 'after attackers abused a single whitelist')",
+      "beats": 1
+    },
+    {
+      "element": "large number '3'",
+      "beats": 1
+    },
+    {
+      "element": "kinetic typography sentence ('safe executed a call', 'sigintzero reported that a...', etc.)",
+      "beats": 1
+    }
+  ],
+  "per_channel": [
+    {
+      "channel": "ch-26",
+      "run": "37313431912",
+      "video": "base-vault-whitelist-hack-6m-2026-shorts-shorts-2026-10-05.mp4",
+      "beats": 9,
+      "yes": 0,
+      "partial": 4,
+      "no": 5,
+      "timing_ok": 1,
+      "type_divergences": 0
+    },
+    {
+      "channel": "ch-44",
+      "run": "37308547249",
+      "video": "stop-managing-ai-agents-blind-pixel-agents-shorts-shorts-2026-10-05.mp4",
+      "beats": 9,
+      "yes": 0,
+      "partial": 2,
+      "no": 7,
+      "timing_ok": 0,
+      "type_divergences": 2
+    },
+    {
+      "channel": "ch-49",
+      "run": "37313431912",
+      "video": "harvey-keitel-the-method-acting-scene-shorts-shorts-2026-10-05.mp4",
+      "beats": 9,
+      "yes": 0,
+      "partial": 3,
+      "no": 6,
+      "timing_ok": 1,
+      "type_divergences": 5
+    },
+    {
+      "channel": "ch-9",
+      "run": "37313431912",
+      "video": "india-kalapani-territorial-map-dispute-nepal-shorts-shorts-2026-10-05.mp4",
+      "beats": 10,
+      "yes": 0,
+      "partial": 3,
+      "no": 7,
+      "timing_ok": 1,
+      "type_divergences": 4
+    }
+  ]
+}

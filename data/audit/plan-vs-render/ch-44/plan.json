@@ -1,0 +1,839 @@
+{
+  "channel": "ch-44",
+  "run": "37308547249",
+  "mp4": "C:/Users/user/AppData/Local/Temp/opencode/audit37308547249/queues/qa-queues-44-37308547249/approved/stop-managing-ai-agents-blind-pixel-agents-shorts-shorts-2026-10-05.mp4",
+  "video": "stop-managing-ai-agents-blind-pixel-agents-shorts-shorts-2026-10-05.mp4",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "beats": [
+    {
+      "index": 0,
+      "sentence": "Running three terminals blind makes coding with AI impossible.",
+      "scene_description": "A stark dark terminal window fills the frame, three empty command prompts blinking synchronously; oversized numeral 3 occupies the upper third, and a thin red warning line underlines the text.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "three"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": "three",
+      "visual_events": [
+        {
+          "type": "structure_break",
+          "label": "terminals blind"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "underline"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 0.1,
+        "duration_sec": 4.53,
+        "headline_size": 140,
+        "headline_align": "center",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 1.233,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-0-25.png",
+          "size": "810x1440",
+          "mean": 248.86,
+          "ink_fraction": 0.0326,
+          "ink_bbox": {
+            "x": 39,
+            "y": 96,
+            "w": 736,
+            "h": 1042
+          }
+        },
+        {
+          "at": 2.365,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-0-50.png",
+          "size": "810x1440",
+          "mean": 247.64,
+          "ink_fraction": 0.038,
+          "ink_bbox": {
+            "x": 38,
+            "y": 100,
+            "w": 735,
+            "h": 1093
+          }
+        },
+        {
+          "at": 3.498,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-0-75.png",
+          "size": "810x1440",
+          "mean": 249.17,
+          "ink_fraction": 0.0316,
+          "ink_bbox": {
+            "x": 36,
+            "y": 96,
+            "w": 739,
+            "h": 1047
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "sentence": "Developers juggle 3 Claude Code terminals simultaneously while workflows stall in silence.",
+      "scene_description": "Three distinct terminal windows stacked vertically side-by-side, each showing scrolling code lines at different speeds; a small sans label reads WORKFLOWS STALL below the stack.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "3"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "COUNTER",
+      "data_planned": {
+        "value": "3",
+        "label": "Claude Code terminals simultaneously"
+      },
+      "entity_anchor_word": "3",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "multiple terminals"
+        }
+      ],
+      "rendered": {
+        "visual_type": "COUNTER",
+        "composition": "NUMBER-FULL",
+        "boxes": [
+          "headline",
+          "label",
+          "number"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 4.63,
+        "duration_sec": 6.27,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "count-up"
+      },
+      "frames": [
+        {
+          "at": 6.197,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-1-25.png",
+          "size": "810x1440",
+          "mean": 246.22,
+          "ink_fraction": 0.0412,
+          "ink_bbox": {
+            "x": 189,
+            "y": 105,
+            "w": 599,
+            "h": 1079
+          }
+        },
+        {
+          "at": 7.765,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-1-50.png",
+          "size": "810x1440",
+          "mean": 245.83,
+          "ink_fraction": 0.0442,
+          "ink_bbox": {
+            "x": 244,
+            "y": 103,
+            "w": 545,
+            "h": 1040
+          }
+        },
+        {
+          "at": 9.332,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-1-75.png",
+          "size": "810x1440",
+          "mean": 244.26,
+          "ink_fraction": 0.0501,
+          "ink_bbox": {
+            "x": 156,
+            "y": 106,
+            "w": 633,
+            "h": 1078
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "sentence": "Bright Coding exposed this exact struggle on GitHub in October 2026.",
+      "scene_description": "A real screenshot of a GitHub issue page from Bright Coding, showing an issue thread opened in October 2026; a small sans label reads OCTOBER 2026 at the bottom.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "GitHub"
+        },
+        {
+          "type": "institution",
+          "name": "Bright Coding"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": "GitHub",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "github issue"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "cutout_name",
+          "cutout0"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [
+          "GitHub"
+        ],
+        "start_sec": 10.9,
+        "duration_sec": 5.57,
+        "headline_size": 104,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 12.293,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-2-25.png",
+          "size": "810x1440",
+          "mean": 250.82,
+          "ink_fraction": 0.0167,
+          "ink_bbox": {
+            "x": 37,
+            "y": 97,
+            "w": 737,
+            "h": 1030
+          }
+        },
+        {
+          "at": 13.685,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-2-50.png",
+          "size": "810x1440",
+          "mean": 232.16,
+          "ink_fraction": 0.0915,
+          "ink_bbox": {
+            "x": 37,
+            "y": 98,
+            "w": 742,
+            "h": 1311
+          }
+        },
+        {
+          "at": 15.078,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-2-75.png",
+          "size": "810x1440",
+          "mean": 233.42,
+          "ink_fraction": 0.0859,
+          "ink_bbox": {
+            "x": 36,
+            "y": 97,
+            "w": 743,
+            "h": 1312
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "sentence": "How do you track silent coding processes?",
+      "scene_description": "A minimalist line chart tracing an invisible upward trajectory against a deep monochrome grid, with a single bold question mark centered in the upper third.",
+      "named_entities": [],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "silent processes"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "cutout0"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [
+          "radar"
+        ],
+        "start_sec": 16.47,
+        "duration_sec": 3.2,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 17.27,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-3-25.png",
+          "size": "810x1440",
+          "mean": 246.42,
+          "ink_fraction": 0.0617,
+          "ink_bbox": {
+            "x": 34,
+            "y": 96,
+            "w": 740,
+            "h": 1031
+          }
+        },
+        {
+          "at": 18.07,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-3-50.png",
+          "size": "810x1440",
+          "mean": 245.94,
+          "ink_fraction": 0.0639,
+          "ink_bbox": {
+            "x": 36,
+            "y": 98,
+            "w": 737,
+            "h": 1029
+          }
+        },
+        {
+          "at": 18.87,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-3-75.png",
+          "size": "810x1440",
+          "mean": 245.95,
+          "ink_fraction": 0.0639,
+          "ink_bbox": {
+            "x": 37,
+            "y": 99,
+            "w": 736,
+            "h": 1028
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "sentence": "Pablo Delucca built an open-source fix called Pixel Agents, but tracking them remains tough.",
+      "scene_description": "A clean portrait photo of Pablo Delucca centered in the lower half of the frame, alongside a small open-source badge floating in the upper right.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Pablo Delucca"
+        },
+        {
+          "type": "object",
+          "name": "Pixel Agents"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Pablo Delucca",
+        "entity_type": "person"
+      },
+      "entity_anchor_word": "Pablo",
+      "visual_events": [
+        {
+          "type": "causation",
+          "label": "open source fix"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "lead_phrase"
+        ],
+        "name_card": {
+          "name": "Pablo Delucca"
+        },
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 19.67,
+        "duration_sec": 6.33,
+        "headline_size": 240,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": true
+        },
+        "entrance_style": "staggered",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 21.253,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-4-25.png",
+          "size": "810x1440",
+          "mean": 243.54,
+          "ink_fraction": 0.0503,
+          "ink_bbox": {
+            "x": 37,
+            "y": 98,
+            "w": 737,
+            "h": 1095
+          }
+        },
+        {
+          "at": 22.835,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-4-50.png",
+          "size": "810x1440",
+          "mean": 244.72,
+          "ink_fraction": 0.0452,
+          "ink_bbox": {
+            "x": 37,
+            "y": 97,
+            "w": 738,
+            "h": 1041
+          }
+        },
+        {
+          "at": 24.418,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-4-75.png",
+          "size": "810x1440",
+          "mean": 243.4,
+          "ink_fraction": 0.0511,
+          "ink_bbox": {
+            "x": 37,
+            "y": 98,
+            "w": 737,
+            "h": 1086
+          }
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "sentence": "Pixel Agents replaces opaque 1970s terminal emulators with a visual pixel-art office interface.",
+      "scene_description": "A high-contrast visual pixel-art grid filling the center frame, contrasting sharply against a stark 1970s monochrome terminal emulator wireframe pushed to the background.",
+      "named_entities": [
+        {
+          "type": "object",
+          "name": "Pixel Agents"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "COUNTER",
+      "data_planned": {
+        "value": "1970",
+        "label": "s terminal emulators with"
+      },
+      "entity_anchor_word": "Pixel",
+      "visual_events": [
+        {
+          "type": "contrast",
+          "label": "interface replacement"
+        }
+      ],
+      "rendered": {
+        "visual_type": "COUNTER",
+        "composition": "NUMBER-FULL",
+        "boxes": [
+          "headline",
+          "label",
+          "number"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 26,
+        "duration_sec": 7.4,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "count-up"
+      },
+      "frames": [
+        {
+          "at": 27.85,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-5-25.png",
+          "size": "810x1440",
+          "mean": 244.49,
+          "ink_fraction": 0.1003,
+          "ink_bbox": {
+            "x": 34,
+            "y": 106,
+            "w": 759,
+            "h": 1032
+          }
+        },
+        {
+          "at": 29.7,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-5-50.png",
+          "size": "810x1440",
+          "mean": 239.06,
+          "ink_fraction": 0.1085,
+          "ink_bbox": {
+            "x": 40,
+            "y": 102,
+            "w": 741,
+            "h": 1082
+          }
+        },
+        {
+          "at": 31.55,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-5-75.png",
+          "size": "810x1440",
+          "mean": 241,
+          "ink_fraction": 0.0986,
+          "ink_bbox": {
+            "x": 49,
+            "y": 107,
+            "w": 730,
+            "h": 1031
+          }
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "sentence": "You install the extension via VS Code and Open VSX using identifier pablodelucca.pixel-agents.",
+      "scene_description": "A real interface view of the VS Code extension marketplace, highlighting the search bar with identifier pablodelucca.pixel-agents typed inside.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "VS Code"
+        },
+        {
+          "type": "company",
+          "name": "Open VSX"
+        },
+        {
+          "type": "object",
+          "name": "pablodelucca.pixel-agents"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "DOCUMENT",
+      "data_planned": {
+        "name": "VS Code"
+      },
+      "entity_anchor_word": "identifier",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "extension install"
+        }
+      ],
+      "rendered": {
+        "visual_type": "DOCUMENT",
+        "composition": "DOCUMENT",
+        "boxes": [
+          "photo",
+          "rule",
+          "kicker",
+          "headline"
+        ],
+        "name_card": null,
+        "photo": "entities/documents/vs-code.jpg",
+        "concept_visuals": [],
+        "start_sec": 33.4,
+        "duration_sec": 7.4,
+        "headline_size": 104,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 35.25,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-6-25.png",
+          "size": "810x1440",
+          "mean": 117,
+          "ink_fraction": 0.9881,
+          "ink_bbox": {
+            "x": 0,
+            "y": 0,
+            "w": 810,
+            "h": 1440
+          }
+        },
+        {
+          "at": 37.1,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-6-50.png",
+          "size": "810x1440",
+          "mean": 28.4,
+          "ink_fraction": 0.9976,
+          "ink_bbox": {
+            "x": 0,
+            "y": 0,
+            "w": 810,
+            "h": 1440
+          }
+        },
+        {
+          "at": 38.95,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-6-75.png",
+          "size": "810x1440",
+          "mean": 31.24,
+          "ink_fraction": 0.9887,
+          "ink_bbox": {
+            "x": 1,
+            "y": 1,
+            "w": 809,
+            "h": 1438
+          }
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "sentence": "Every active agent now renders visibly inside your workspace.",
+      "scene_description": "A code workspace window with a small population of distinct pixel-art character sprites animating inside the sidebar area.",
+      "named_entities": [],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "population",
+          "label": "active agents"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "headline",
+          "emphasis"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 40.8,
+        "duration_sec": 4.57,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 41.942,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-7-25.png",
+          "size": "810x1440",
+          "mean": 239.9,
+          "ink_fraction": 0.0654,
+          "ink_bbox": {
+            "x": 33,
+            "y": 96,
+            "w": 743,
+            "h": 1042
+          }
+        },
+        {
+          "at": 43.085,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-7-50.png",
+          "size": "810x1440",
+          "mean": 239.04,
+          "ink_fraction": 0.0697,
+          "ink_bbox": {
+            "x": 35,
+            "y": 100,
+            "w": 740,
+            "h": 1098
+          }
+        },
+        {
+          "at": 44.227,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-7-75.png",
+          "size": "810x1440",
+          "mean": 240.55,
+          "ink_fraction": 0.063,
+          "ink_bbox": {
+            "x": 34,
+            "y": 96,
+            "w": 744,
+            "h": 1042
+          }
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "sentence": "Download Pixel Agents on GitHub today to manage your coding agents.",
+      "scene_description": "A clean minimalist monochrome split screen showing a repository download button on the left and a bold oversized number one representing complete control on the right.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "GitHub"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "GitHub",
+        "entity_type": "company"
+      },
+      "entity_anchor_word": "GitHub",
+      "visual_events": [
+        {
+          "type": "comparison",
+          "label": "download and manage"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "cutout_name",
+          "cutout0"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [
+          "GitHub"
+        ],
+        "start_sec": 45.37,
+        "duration_sec": 3.97,
+        "headline_size": 110,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 46.362,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-8-25.png",
+          "size": "810x1440",
+          "mean": 250.12,
+          "ink_fraction": 0.02,
+          "ink_bbox": {
+            "x": 34,
+            "y": 96,
+            "w": 741,
+            "h": 1026
+          }
+        },
+        {
+          "at": 47.355,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-8-50.png",
+          "size": "810x1440",
+          "mean": 231.83,
+          "ink_fraction": 0.0928,
+          "ink_bbox": {
+            "x": 36,
+            "y": 99,
+            "w": 743,
+            "h": 1310
+          }
+        },
+        {
+          "at": 48.347,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-44\\beat-8-75.png",
+          "size": "810x1440",
+          "mean": 231.24,
+          "ink_fraction": 0.0955,
+          "ink_bbox": {
+            "x": 35,
+            "y": 98,
+            "w": 744,
+            "h": 1311
+          }
+        }
+      ]
+    }
+  ]
+}

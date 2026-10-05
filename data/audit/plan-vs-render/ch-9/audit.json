@@ -1,0 +1,197 @@
+{
+  "channel": "ch-9",
+  "model": "gemini-3.5-flash-lite",
+  "results": [
+    {
+      "index": 0,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "dark monochrome background",
+        "detailed political map of the Himalayan region",
+        "thin accent-colored line tracing a disputed border",
+        "oversized numerals reading 2 in the lower right corner"
+      ],
+      "unexpected": [
+        "light/white background instead of dark",
+        "large serif title text 'One new political map' in the center",
+        "captions of the sentence words at the bottom ('One new political map just...', etc.)",
+        "progress bar and counter '01 / 10' at the top right",
+        "horizontal line underline elements"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered video shows kinetic typography captions and a clean white slide layout instead of the requested map visualization, completely missing the planned visual elements."
+    },
+    {
+      "index": 1,
+      "match": "NO",
+      "present": [
+        "date November 2 (though rendered as text 'on November two' rather than a small accent-coloured label)"
+      ],
+      "missing": [
+        "official seal of India's Ministry of Home Affairs",
+        "headquarters building of the India's Ministry of Home Affairs",
+        "crisp black and white photograph filling the centre of the frame"
+      ],
+      "unexpected": [
+        "map of India and surrounding region",
+        "location pin icon",
+        "animated subtitle text ('India published the update', etc.)"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan described a photograph of the Ministry of Home Affairs building and seal, but the rendered video shows a map graphic with animated text instead."
+    },
+    {
+      "index": 2,
+      "match": "NO",
+      "present": [
+        "Kalapani (as text/heading)"
+      ],
+      "missing": [
+        "Official government document filling the frame",
+        "Highlighted locations of Kalapani and Lipulekh",
+        "Circles in accent color",
+        "Arrow pointing them inside Indian territory"
+      ],
+      "unexpected": [
+        "Large minimalist typography layout",
+        "Subtitles showing the narration text ('Kalapani and Lipulekh landed directly inside Indian territory on the document')",
+        "Header text 'KALAPANI AND LIPULEKH INSIDE INDIAN TERRITORY'",
+        "Random small horizontal accent line at the top right"
+      ],
+      "timing_correct": false,
+      "timing_note": "The video shows kinetic typography displaying the spoken narration rather than showing a close-up of an official government document with circles and arrows as described in the scene plan."
+    },
+    {
+      "index": 3,
+      "match": "PARTIAL",
+      "present": [
+        "A street-level photograph of Kathmandu"
+      ],
+      "missing": [
+        "Crowds gathered outside government buildings",
+        "A slow push in toward the center of the frame",
+        "A single warning triangle icon pulsing in the accent color"
+      ],
+      "unexpected": [
+        "Text overlays ('Kathmandu reacted with immediate anger')",
+        "Image source attribution text ('Source: commons.wikimedia.org')",
+        "Historic temple architecture with pigeons and a cow instead of government buildings with crowds"
+      ],
+      "timing_correct": true,
+      "timing_note": "The text captions appear progressively in sync with the narration, though the core visual elements described in the scene plan (push-in, warning triangle icon, crowds outside government buildings) are entirely missing."
+    },
+    {
+      "index": 4,
+      "match": "PARTIAL",
+      "present": [
+        "A question about Nepal's border stance ('Will Nepal accept this unilateral border change?')",
+        "Typographic treatment"
+      ],
+      "missing": [
+        "Dark monochrome background",
+        "Centered stark typographic treatment on the screen",
+        "A single question mark rendered in the accent color"
+      ],
+      "unexpected": [
+        "Light background instead of dark monochrome",
+        "A graphic map of Nepal with a label and pin icon",
+        "Multiple lines of subtitle text appearing at the bottom and top of the screen",
+        "Large stylized title text at the top"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan described a stark, centered typographic screen with a single question mark, but the renderer produced a light-background map layout with multiple scrolling subtitle elements."
+    },
+    {
+      "index": 5,
+      "match": "PARTIAL",
+      "present": [
+        "A real photo of a Kathmandu public square (though it shows pigeons and temples rather than demonstrators holding signs)"
+      ],
+      "missing": [
+        "Demonstrators holding signs",
+        "A rising chart line indicating the rapid escalation of protests"
+      ],
+      "unexpected": [
+        "Animated text captions rendering the spoken words ('Government spokesperson Gokul Baskota...', 'Protests erupted across Kathmandu...')",
+        "A source attribution link at the bottom right ('Source: commons.wikimedia.org')",
+        "Temples, pigeons, and an animal in the photo instead of protesters"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan called for a photo with demonstrators and a rising chart line, but the rendered frames instead feature scrolling/animating kinetic typography and a completely different photo (temples and pigeons) that only appears late in the beat."
+    },
+    {
+      "index": 6,
+      "match": "NO",
+      "present": [
+        "A numeral 2 (part of the text 'split into 2 territories')"
+      ],
+      "missing": [
+        "An oversized numeral 2 dominating the center of the frame",
+        "Two distinct regional boundary lines splitting apart",
+        "A map of Jammu and Kashmir",
+        "Small caps reading FEDERAL UNION TERRITORIES below"
+      ],
+      "unexpected": [
+        "Circular diagrams containing text ('UNION TERRITORIES RIGHT', 'CONTROVERSY ERUPTED')",
+        "An arrow connecting the circles",
+        "Large running transcript text at the top and bottom of the frame (\"Jammu and Kashmir split into 2 territories\", etc.)"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual elements rendered have no relation to the spatial map and oversized numeral described in the plan; instead, it renders kinetic typography and flowcharts that do not match the scene description."
+    },
+    {
+      "index": 7,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "A line chart comparing the timeline of New Delhi's official announcements with the surge of street demonstrations in Kathmandu",
+        "Line drawing left to right across the screen",
+        "Monochrome screen with accent color"
+      ],
+      "unexpected": [
+        "Photo background of an ornate stone interior/hallway (likely a palace or temple with carved pillars and arches)",
+        "Animated captions displaying the spoken sentence ('Officials in New Delhi triggered regional protests across Kathmandu')",
+        "Stock photo attribution watermark ('Source: pixabay.com')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The entire concept of the visual plan (a line chart) was ignored in favor of stock photography and kinetic typography, so no chart timing exists."
+    },
+    {
+      "index": 8,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "A topographical relief map of the Himalayas filling the frame",
+        "A crosshair icon centered over the disputed mountain range",
+        "A subtle pulsing glow in the accent color"
+      ],
+      "unexpected": [
+        "Typography reading 'Sovereignty contested'",
+        "Typography reading 'Territorial sovereignty remains heavily contested in the Himalayas'",
+        "Large heading elements and varying font weights and sizes"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered video displays animated kinetic typography instead of the requested geographical relief map and crosshair icon."
+    },
+    {
+      "index": 9,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "stark typographic conclusion set against a solid dark background",
+        "oversized serif type reading 'Upcoming bilateral talks'",
+        "small scale icon underneath representing ongoing diplomatic negotiations"
+      ],
+      "unexpected": [
+        "light background instead of solid dark background",
+        "map of India and surrounding region",
+        "location pin icon on the map",
+        "text reading 'Bilateral talks will test the border', 'Will reject India's map', etc.",
+        "serif type reading 'India'"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan described a typographic conclusion screen, but the rendered frames show a map graphic with completely different text and visuals."
+    }
+  ]
+}

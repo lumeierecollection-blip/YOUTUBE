@@ -1,0 +1,177 @@
+{
+  "channel": "ch-26",
+  "model": "gemini-3.5-flash-lite",
+  "results": [
+    {
+      "index": 0,
+      "match": "PARTIAL",
+      "present": [
+        "A headline reading 'Six million vanished' (though styled differently as 'Six million' on top and 'vanished' below in purple)",
+        "BASE NETWORK VAULT label (presented inside a circular node)"
+      ],
+      "missing": [
+        "The numeral 6,000,000 in oversized type",
+        "Stark monochrome color scheme (purple is used)",
+        "A thin accent line drawing underneath the headline across the beat"
+      ],
+      "unexpected": [
+        "Two circular flowchart nodes containing 'ATTACKERS AUSED' and 'BASE NETWORK VAULT'",
+        "A purple arrow connecting the two circular nodes",
+        "Running subtitle text at the bottom ('Six million dollars vanished from', 'after attackers', 'after attackers abused a single whitelist')"
+      ],
+      "timing_correct": true,
+      "timing_note": "The subtitles sync progressively with the narration across the frames, though the visual content deviates significantly from the initial description."
+    },
+    {
+      "index": 1,
+      "match": "NO",
+      "present": [
+        "3-of-7 Safe (partially referenced through text elements)"
+      ],
+      "missing": [
+        "Structured timeline chart in the lower half of the frame",
+        "Timestamp 08:53 UTC on October 4, 2026",
+        "Institutional name SigIntZero in small caps",
+        "3-of-7 Safe text label",
+        "Slow push in on the timestamp"
+      ],
+      "unexpected": [
+        "Large number '3'",
+        "Kinetic typography sentence ('Safe executed a call', 'SigIntZero reported that a...', etc.)",
+        "Vertical layout / aspect ratio differences"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered video displays completely different visual elements (kinetic typography with a large '3') instead of the planned timeline chart and timestamp."
+    },
+    {
+      "index": 2,
+      "match": "PARTIAL",
+      "present": [
+        "The number 1,783",
+        "The source label PublicAML"
+      ],
+      "missing": [
+        "The label wstETH below the number in small caps",
+        "A downward-trending chart line illustrating an instant drop"
+      ],
+      "unexpected": [
+        "Large 'PublicAML' branding/text in the center of the frame",
+        "Narrated text captions appearing at the bottom ('PublicAML noted the vault lost', 'hundred eighty-three', etc.)"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan described a centered large number with wstETH and a chart line in the background, but the rendered frames show a kinetic typography setup displaying the spoken words and large brand name instead of the specified scene layout."
+    },
+    {
+      "index": 3,
+      "match": "PARTIAL",
+      "present": [
+        "Headline 'Approved contract drain funds'",
+        "Sentence text appearing progressively ('How did an approved contract...')"
+      ],
+      "missing": [
+        "Conceptual text-and-node layout showing an approved contract linking directly to a drained fund node",
+        "Question mark in the headline"
+      ],
+      "unexpected": [
+        "Large purple checkmark symbol in the center of the frame",
+        "Underline accent beneath the word 'drain' in the running sentence"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan called for a conceptual text-and-node layout, but instead, the renderer displayed a large checkmark and animated caption text matching the voiceover sentence word-by-word."
+    },
+    {
+      "index": 4,
+      "match": "NO",
+      "present": [
+        "The number '25' (appearing as oversized numerals)",
+        "The word 'minutes'"
+      ],
+      "missing": [
+        "A minimalist horizontal progress bar",
+        "MSB Intel in small caps"
+      ],
+      "unexpected": [
+        "Large serif headline text at the top reading 'Exploit took 25 minutes'",
+        "Kinetic caption text at the bottom displaying the narrator's script ('MSB Intel revealed the exploit took 25 minutes, but the worst part was yet...')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan described a minimalist progress bar and 'MSB Intel' branding, but the rendered frames completely ignore this plan, instead displaying kinetic typography of the script text and an oversized '25' with 'MINUTES'."
+    },
+    {
+      "index": 5,
+      "match": "NO",
+      "present": [
+        "1 wstETH"
+      ],
+      "missing": [
+        "A data transfer flow chart occupying the center of the frame",
+        "Visualization of a test transfer of 1 wstETH onto the Base blockchain network interface",
+        "A small label reading BASE NETWORK"
+      ],
+      "unexpected": [
+        "Text saying '1 wstETH probe'",
+        "Text saying 'TEST TRANSFER OF'",
+        "Progressive text revealing 'Attackers initiated the assault... transfer of one wstETH'",
+        "A thin horizontal line above the text and under 'probe'"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered frames completely deviate from the visual plan, showing text elements instead of the described data transfer flow chart and blockchain network interface."
+    },
+    {
+      "index": 6,
+      "match": "NO",
+      "present": [
+        "contract status (referred to via 'CONTRACT' label)"
+      ],
+      "missing": [
+        "security checklist diagram filling the frame",
+        "multiple items checked",
+        "highlighted row showing whitelisted contract status",
+        "red accent line striking through a warning icon"
+      ],
+      "unexpected": [
+        "two separate circular nodes labeled 'CONTRACT' and 'SECURITY CHECKPOINT'",
+        "purple arrow connecting the two nodes",
+        "animated subtitle text captions ('That initial probe bypassed checkpoint', 'because the contract was already whitelisted')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visuals rendered completely different elements (nodes and arrows) instead of a security checklist diagram with a highlighted row and red accent line."
+    },
+    {
+      "index": 7,
+      "match": "NO",
+      "present": [
+        "1,783 wstETH numeral in the upper center"
+      ],
+      "missing": [
+        "A large data accumulation chart",
+        "Chart draining fully across the frame",
+        "A revocation lock icon"
+      ],
+      "unexpected": [
+        "Kinetic typography showing the verbatim narrator sentence ('The entire one thousand seven hundred...', 'THE ENTIRE', 'drained', 'wstETH', 'wstETH drained seamlessly before anyone revoked')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The video renders kinetic typography of the spoken sentence instead of the requested visual plan featuring a data accumulation chart and a revocation lock icon."
+    },
+    {
+      "index": 8,
+      "match": "PARTIAL",
+      "present": [
+        "stark monochrome typography slide filling the frame",
+        "oversized numeral 7",
+        "serif headline 'Review all 7 signers immediately'"
+      ],
+      "missing": [
+        "small sans label at the base reading 'URGENT AUDIT'"
+      ],
+      "unexpected": [
+        "extra text appearing progressively at the bottom ('Review all', 'Review all seven Safe', etc.)",
+        "additional label text 'SAFE SIGNERS' / 'SAFE SIGNERS IMMEDIATELY' above the bottom text block",
+        "a completely different layout arrangement with text elements spread out instead of a single centered headline surrounding the numeral 7"
+      ],
+      "timing_correct": false,
+      "timing_note": "The layout and text content do not match the described visual plan at any point; elements like 'SAFE SIGNERS' and progressive sentence rendering were not specified in the description."
+    }
+  ]
+}

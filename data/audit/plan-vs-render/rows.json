@@ -1,0 +1,2457 @@
+[
+  {
+    "channel": "ch-26",
+    "index": 0,
+    "sentence": "Six million dollars vanished from a Base network vault after attackers abused a single whitelist permission.",
+    "planned_type": "PROCESS",
+    "planned_desc": "A large, bold serif headline reading 'Six million vanished' fills the center of the frame in stark monochrome, with the numeral 6,000,000 in oversized type; below it, a small sans label reads BASE NETWORK VAULT. A thin accent line draws underneath across the beat.",
+    "rendered_type": "PROCESS",
+    "rendered_composition": "PROCESS-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "A headline reading 'Six million vanished' (though styled differently as 'Six million' on top and 'vanished' below in purple)",
+      "BASE NETWORK VAULT label (presented inside a circular node)"
+    ],
+    "missing": [
+      "The numeral 6,000,000 in oversized type",
+      "Stark monochrome color scheme (purple is used)",
+      "A thin accent line drawing underneath the headline across the beat"
+    ],
+    "unexpected": [
+      "Two circular flowchart nodes containing 'ATTACKERS AUSED' and 'BASE NETWORK VAULT'",
+      "A purple arrow connecting the two circular nodes",
+      "Running subtitle text at the bottom ('Six million dollars vanished from', 'after attackers', 'after attackers abused a single whitelist')"
+    ],
+    "timing_correct": true,
+    "timing_note": "The subtitles sync progressively with the narration across the frames, though the visual content deviates significantly from the initial description.",
+    "frames": [
+      {
+        "at": 1.675,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-0-25.png",
+        "size": "810x1440",
+        "mean": 246.76,
+        "ink_fraction": 0.0385,
+        "ink_bbox": {
+          "x": 33,
+          "y": 107,
+          "w": 585,
+          "h": 1077
+        }
+      },
+      {
+        "at": 3.25,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-0-50.png",
+        "size": "810x1440",
+        "mean": 245.71,
+        "ink_fraction": 0.0431,
+        "ink_bbox": {
+          "x": 32,
+          "y": 106,
+          "w": 746,
+          "h": 1023
+        }
+      },
+      {
+        "at": 4.825,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-0-75.png",
+        "size": "810x1440",
+        "mean": 244.28,
+        "ink_fraction": 0.0494,
+        "ink_bbox": {
+          "x": 34,
+          "y": 108,
+          "w": 742,
+          "h": 1085
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-26",
+    "index": 1,
+    "sentence": "SigIntZero reported that a 3-of-7 Safe executed a call at 08:53 UTC on October 4, 2026.",
+    "planned_type": "COUNTER",
+    "planned_desc": "A structured timeline chart fills the lower half of the frame, showing 08:53 UTC on October 4, 2026; above it, the institutional name SigIntZero in small caps. A small text label indicates 3-of-7 Safe, with a slow push in on the timestamp.",
+    "rendered_type": "COUNTER",
+    "rendered_composition": "NUMBER-FULL",
+    "match": "NO",
+    "present": [
+      "3-of-7 Safe (partially referenced through text elements)"
+    ],
+    "missing": [
+      "Structured timeline chart in the lower half of the frame",
+      "Timestamp 08:53 UTC on October 4, 2026",
+      "Institutional name SigIntZero in small caps",
+      "3-of-7 Safe text label",
+      "Slow push in on the timestamp"
+    ],
+    "unexpected": [
+      "Large number '3'",
+      "Kinetic typography sentence ('Safe executed a call', 'SigIntZero reported that a...', etc.)",
+      "Vertical layout / aspect ratio differences"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered video displays completely different visual elements (kinetic typography with a large '3') instead of the planned timeline chart and timestamp.",
+    "frames": [
+      {
+        "at": 8.408,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-1-25.png",
+        "size": "810x1440",
+        "mean": 246.44,
+        "ink_fraction": 0.0376,
+        "ink_bbox": {
+          "x": 146,
+          "y": 105,
+          "w": 642,
+          "h": 1079
+        }
+      },
+      {
+        "at": 10.415,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-1-50.png",
+        "size": "810x1440",
+        "mean": 246.03,
+        "ink_fraction": 0.0394,
+        "ink_bbox": {
+          "x": 123,
+          "y": 103,
+          "w": 667,
+          "h": 1090
+        }
+      },
+      {
+        "at": 12.422,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-1-75.png",
+        "size": "810x1440",
+        "mean": 247.86,
+        "ink_fraction": 0.0313,
+        "ink_bbox": {
+          "x": 205,
+          "y": 103,
+          "w": 584,
+          "h": 1026
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-26",
+    "index": 2,
+    "sentence": "PublicAML noted the vault lost 1,783 wstETH instantly.",
+    "planned_type": "TYPE",
+    "planned_desc": "A large number, 1,783, fills the center of the frame with the label wstETH below it in small caps; behind it, a downward-trending chart line illustrates an instant drop, with the source label PublicAML in the upper corner.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "The number 1,783",
+      "The source label PublicAML"
+    ],
+    "missing": [
+      "The label wstETH below the number in small caps",
+      "A downward-trending chart line illustrating an instant drop"
+    ],
+    "unexpected": [
+      "Large 'PublicAML' branding/text in the center of the frame",
+      "Narrated text captions appearing at the bottom ('PublicAML noted the vault lost', 'hundred eighty-three', etc.)"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan described a centered large number with wstETH and a chart line in the background, but the rendered frames show a kinetic typography setup displaying the spoken words and large brand name instead of the specified scene layout.",
+    "frames": [
+      {
+        "at": 16.012,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-2-25.png",
+        "size": "810x1440",
+        "mean": 246.65,
+        "ink_fraction": 0.038,
+        "ink_bbox": {
+          "x": 36,
+          "y": 98,
+          "w": 738,
+          "h": 1100
+        }
+      },
+      {
+        "at": 17.595,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-2-50.png",
+        "size": "810x1440",
+        "mean": 247.34,
+        "ink_fraction": 0.0363,
+        "ink_bbox": {
+          "x": 37,
+          "y": 97,
+          "w": 738,
+          "h": 1042
+        }
+      },
+      {
+        "at": 19.178,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-2-75.png",
+        "size": "810x1440",
+        "mean": 246.54,
+        "ink_fraction": 0.0384,
+        "ink_bbox": {
+          "x": 37,
+          "y": 99,
+          "w": 737,
+          "h": 1039
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-26",
+    "index": 3,
+    "sentence": "How did an approved contract drain the funds without breaking core protocol logic?",
+    "planned_type": "TYPE",
+    "planned_desc": "A conceptual text-and-node layout fills the frame, showing an approved contract linking directly to a drained fund node. Above it, in small caps, the headline 'Approved contract drain' with a question mark.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "Headline 'Approved contract drain funds'",
+      "Sentence text appearing progressively ('How did an approved contract...')"
+    ],
+    "missing": [
+      "Conceptual text-and-node layout showing an approved contract linking directly to a drained fund node",
+      "Question mark in the headline"
+    ],
+    "unexpected": [
+      "Large purple checkmark symbol in the center of the frame",
+      "Underline accent beneath the word 'drain' in the running sentence"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan called for a conceptual text-and-node layout, but instead, the renderer displayed a large checkmark and animated caption text matching the voiceover sentence word-by-word.",
+    "frames": [
+      {
+        "at": 22.002,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-3-25.png",
+        "size": "810x1440",
+        "mean": 242.38,
+        "ink_fraction": 0.0654,
+        "ink_bbox": {
+          "x": 35,
+          "y": 97,
+          "w": 741,
+          "h": 1025
+        }
+      },
+      {
+        "at": 23.235,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-3-50.png",
+        "size": "810x1440",
+        "mean": 241.37,
+        "ink_fraction": 0.0701,
+        "ink_bbox": {
+          "x": 37,
+          "y": 99,
+          "w": 738,
+          "h": 1062
+        }
+      },
+      {
+        "at": 24.468,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-3-75.png",
+        "size": "810x1440",
+        "mean": 242.94,
+        "ink_fraction": 0.0634,
+        "ink_bbox": {
+          "x": 35,
+          "y": 96,
+          "w": 742,
+          "h": 1026
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-26",
+    "index": 4,
+    "sentence": "MSB Intel revealed the exploit took 25 minutes, but the worst part was yet to come.",
+    "planned_type": "COUNTER",
+    "planned_desc": "A minimalist horizontal progress bar fills the center of the frame, ticking up to 25 minutes; above it, MSB Intel appears in small caps, with the headline '25 minutes' in oversized numerals.",
+    "rendered_type": "COUNTER",
+    "rendered_composition": "NUMBER-FULL",
+    "match": "NO",
+    "present": [
+      "The number '25' (appearing as oversized numerals)",
+      "The word 'minutes'"
+    ],
+    "missing": [
+      "A minimalist horizontal progress bar",
+      "MSB Intel in small caps"
+    ],
+    "unexpected": [
+      "Large serif headline text at the top reading 'Exploit took 25 minutes'",
+      "Kinetic caption text at the bottom displaying the narrator's script ('MSB Intel revealed the exploit took 25 minutes, but the worst part was yet...')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan described a minimalist progress bar and 'MSB Intel' branding, but the rendered frames completely ignore this plan, instead displaying kinetic typography of the script text and an oversized '25' with 'MINUTES'.",
+    "frames": [
+      {
+        "at": 27.207,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-4-25.png",
+        "size": "810x1440",
+        "mean": 247.33,
+        "ink_fraction": 0.0221,
+        "ink_bbox": {
+          "x": 37,
+          "y": 105,
+          "w": 634,
+          "h": 1033
+        }
+      },
+      {
+        "at": 28.715,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-4-50.png",
+        "size": "810x1440",
+        "mean": 240.44,
+        "ink_fraction": 0.0608,
+        "ink_bbox": {
+          "x": 38,
+          "y": 104,
+          "w": 481,
+          "h": 1025
+        }
+      },
+      {
+        "at": 30.223,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-4-75.png",
+        "size": "810x1440",
+        "mean": 239.06,
+        "ink_fraction": 0.0671,
+        "ink_bbox": {
+          "x": 36,
+          "y": 106,
+          "w": 568,
+          "h": 1087
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-26",
+    "index": 5,
+    "sentence": "Attackers initiated the assault on Base with a test transfer of 1 wstETH.",
+    "planned_type": "TYPE",
+    "planned_desc": "A data transfer flow chart occupies the center of the frame, visualizing a test transfer of 1 wstETH onto the Base blockchain network interface; a small label reads BASE NETWORK.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [
+      "1 wstETH"
+    ],
+    "missing": [
+      "A data transfer flow chart occupying the center of the frame",
+      "Visualization of a test transfer of 1 wstETH onto the Base blockchain network interface",
+      "A small label reading BASE NETWORK"
+    ],
+    "unexpected": [
+      "Text saying '1 wstETH probe'",
+      "Text saying 'TEST TRANSFER OF'",
+      "Progressive text revealing 'Attackers initiated the assault... transfer of one wstETH'",
+      "A thin horizontal line above the text and under 'probe'"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered frames completely deviate from the visual plan, showing text elements instead of the described data transfer flow chart and blockchain network interface.",
+    "frames": [
+      {
+        "at": 33.188,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-5-25.png",
+        "size": "810x1440",
+        "mean": 250.8,
+        "ink_fraction": 0.0151,
+        "ink_bbox": {
+          "x": 35,
+          "y": 98,
+          "w": 660,
+          "h": 1031
+        }
+      },
+      {
+        "at": 34.645,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-5-50.png",
+        "size": "810x1440",
+        "mean": 251.68,
+        "ink_fraction": 0.0113,
+        "ink_bbox": {
+          "x": 36,
+          "y": 98,
+          "w": 509,
+          "h": 1031
+        }
+      },
+      {
+        "at": 36.102,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-5-75.png",
+        "size": "810x1440",
+        "mean": 250.75,
+        "ink_fraction": 0.0156,
+        "ink_bbox": {
+          "x": 36,
+          "y": 97,
+          "w": 657,
+          "h": 1032
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-26",
+    "index": 6,
+    "sentence": "That initial probe bypassed every security checkpoint because the contract was already whitelisted.",
+    "planned_type": "PROCESS",
+    "planned_desc": "A security checklist diagram fills the frame with multiple items checked, where a highlighted row shows the whitelisted contract status; a red accent line strikes through a warning icon.",
+    "rendered_type": "PROCESS",
+    "rendered_composition": "PROCESS-FULL",
+    "match": "NO",
+    "present": [
+      "contract status (referred to via 'CONTRACT' label)"
+    ],
+    "missing": [
+      "security checklist diagram filling the frame",
+      "multiple items checked",
+      "highlighted row showing whitelisted contract status",
+      "red accent line striking through a warning icon"
+    ],
+    "unexpected": [
+      "two separate circular nodes labeled 'CONTRACT' and 'SECURITY CHECKPOINT'",
+      "purple arrow connecting the two nodes",
+      "animated subtitle text captions ('That initial probe bypassed checkpoint', 'because the contract was already whitelisted')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visuals rendered completely different elements (nodes and arrows) instead of a security checklist diagram with a highlighted row and red accent line.",
+    "frames": [
+      {
+        "at": 39.013,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-6-25.png",
+        "size": "810x1440",
+        "mean": 248.2,
+        "ink_fraction": 0.0319,
+        "ink_bbox": {
+          "x": 32,
+          "y": 144,
+          "w": 585,
+          "h": 999
+        }
+      },
+      {
+        "at": 40.455,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-6-50.png",
+        "size": "810x1440",
+        "mean": 247.34,
+        "ink_fraction": 0.0359,
+        "ink_bbox": {
+          "x": 33,
+          "y": 104,
+          "w": 744,
+          "h": 1025
+        }
+      },
+      {
+        "at": 41.898,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-6-75.png",
+        "size": "810x1440",
+        "mean": 245.23,
+        "ink_fraction": 0.0452,
+        "ink_bbox": {
+          "x": 32,
+          "y": 102,
+          "w": 746,
+          "h": 1091
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-26",
+    "index": 7,
+    "sentence": "The entire 1,783 wstETH drained seamlessly before anyone revoked access.",
+    "planned_type": "TYPE",
+    "planned_desc": "A large data accumulation chart shows 1,783 wstETH draining fully across the frame before a revocation lock icon can activate; the numeral 1,783 dominates the upper center.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-SPLIT",
+    "match": "NO",
+    "present": [
+      "1,783 wstETH numeral in the upper center"
+    ],
+    "missing": [
+      "A large data accumulation chart",
+      "Chart draining fully across the frame",
+      "A revocation lock icon"
+    ],
+    "unexpected": [
+      "Kinetic typography showing the verbatim narrator sentence ('The entire one thousand seven hundred...', 'THE ENTIRE', 'drained', 'wstETH', 'wstETH drained seamlessly before anyone revoked')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The video renders kinetic typography of the spoken sentence instead of the requested visual plan featuring a data accumulation chart and a revocation lock icon.",
+    "frames": [
+      {
+        "at": 45.112,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-7-25.png",
+        "size": "810x1440",
+        "mean": 251.69,
+        "ink_fraction": 0.0153,
+        "ink_bbox": {
+          "x": 101,
+          "y": 105,
+          "w": 670,
+          "h": 1079
+        }
+      },
+      {
+        "at": 46.895,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-7-50.png",
+        "size": "810x1440",
+        "mean": 252.53,
+        "ink_fraction": 0.0124,
+        "ink_bbox": {
+          "x": 36,
+          "y": 102,
+          "w": 738,
+          "h": 1027
+        }
+      },
+      {
+        "at": 48.677,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-7-75.png",
+        "size": "810x1440",
+        "mean": 249.9,
+        "ink_fraction": 0.024,
+        "ink_bbox": {
+          "x": 37,
+          "y": 106,
+          "w": 735,
+          "h": 1087
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-26",
+    "index": 8,
+    "sentence": "Review all 7 Safe signers immediately.",
+    "planned_type": "COUNTER",
+    "planned_desc": "A stark monochrome typography slide fills the frame with the oversized numeral 7 at the center, surrounded by the serif headline 'Review all 7 signers immediately' in sentence case; a small sans label at the base reads URGENT AUDIT.",
+    "rendered_type": "COUNTER",
+    "rendered_composition": "NUMBER-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "stark monochrome typography slide filling the frame",
+      "oversized numeral 7",
+      "serif headline 'Review all 7 signers immediately'"
+    ],
+    "missing": [
+      "small sans label at the base reading 'URGENT AUDIT'"
+    ],
+    "unexpected": [
+      "extra text appearing progressively at the bottom ('Review all', 'Review all seven Safe', etc.)",
+      "additional label text 'SAFE SIGNERS' / 'SAFE SIGNERS IMMEDIATELY' above the bottom text block",
+      "a completely different layout arrangement with text elements spread out instead of a single centered headline surrounding the numeral 7"
+    ],
+    "timing_correct": false,
+    "timing_note": "The layout and text content do not match the described visual plan at any point; elements like 'SAFE SIGNERS' and progressive sentence rendering were not specified in the description.",
+    "frames": [
+      {
+        "at": 51.095,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-8-25.png",
+        "size": "810x1440",
+        "mean": 248.04,
+        "ink_fraction": 0.0246,
+        "ink_bbox": {
+          "x": 37,
+          "y": 102,
+          "w": 380,
+          "h": 1027
+        }
+      },
+      {
+        "at": 51.72,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-8-50.png",
+        "size": "810x1440",
+        "mean": 246.34,
+        "ink_fraction": 0.034,
+        "ink_bbox": {
+          "x": 37,
+          "y": 105,
+          "w": 625,
+          "h": 1024
+        }
+      },
+      {
+        "at": 52.345,
+        "path": "data\\audit\\plan-vs-render\\ch-26\\beat-8-75.png",
+        "size": "810x1440",
+        "mean": 244.8,
+        "ink_fraction": 0.0411,
+        "ink_bbox": {
+          "x": 38,
+          "y": 107,
+          "w": 630,
+          "h": 1086
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 0,
+    "sentence": "Running three terminals blind makes coding with AI impossible.",
+    "planned_type": "TYPE",
+    "planned_desc": "A stark dark terminal window fills the frame, three empty command prompts blinking synchronously; oversized numeral 3 occupies the upper third, and a thin red warning line underlines the text.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "stark dark terminal window",
+      "three empty command prompts blinking synchronously",
+      "oversized numeral 3 occupying the upper third",
+      "thin red warning line underlining the text"
+    ],
+    "unexpected": [
+      "white background",
+      "serif and sans-serif headline text reading 'Coding with AI impossible'",
+      "subtitle text displaying portions of the sentence ('Running three terminals...')",
+      "counter '01 / 09' in the top right corner",
+      "small horizontal black line icon above the counter",
+      "gold underline beneath the headline in the 75% frame"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual content is completely unrelated to the scene description provided in the plan.",
+    "frames": [
+      {
+        "at": 1.233,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-0-25.png",
+        "size": "810x1440",
+        "mean": 248.86,
+        "ink_fraction": 0.0326,
+        "ink_bbox": {
+          "x": 39,
+          "y": 96,
+          "w": 736,
+          "h": 1042
+        }
+      },
+      {
+        "at": 2.365,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-0-50.png",
+        "size": "810x1440",
+        "mean": 247.64,
+        "ink_fraction": 0.038,
+        "ink_bbox": {
+          "x": 38,
+          "y": 100,
+          "w": 735,
+          "h": 1093
+        }
+      },
+      {
+        "at": 3.498,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-0-75.png",
+        "size": "810x1440",
+        "mean": 249.17,
+        "ink_fraction": 0.0316,
+        "ink_bbox": {
+          "x": 36,
+          "y": 96,
+          "w": 739,
+          "h": 1047
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 1,
+    "sentence": "Developers juggle 3 Claude Code terminals simultaneously while workflows stall in silence.",
+    "planned_type": "COUNTER",
+    "planned_desc": "Three distinct terminal windows stacked vertically side-by-side, each showing scrolling code lines at different speeds; a small sans label reads WORKFLOWS STALL below the stack.",
+    "rendered_type": "COUNTER",
+    "rendered_composition": "NUMBER-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "Three distinct terminal windows stacked vertically side-by-side",
+      "Scrolling code lines at different speeds",
+      "Small sans label reading WORKFLOWS STALL below the stack"
+    ],
+    "unexpected": [
+      "Large typography ('Terminals juggle simultaneously', large number '3')",
+      "Kinetic text animation displaying the narration transcript"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered video shows kinetic typography of the script instead of the described terminal windows and code blocks.",
+    "frames": [
+      {
+        "at": 6.197,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-1-25.png",
+        "size": "810x1440",
+        "mean": 246.22,
+        "ink_fraction": 0.0412,
+        "ink_bbox": {
+          "x": 189,
+          "y": 105,
+          "w": 599,
+          "h": 1079
+        }
+      },
+      {
+        "at": 7.765,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-1-50.png",
+        "size": "810x1440",
+        "mean": 245.83,
+        "ink_fraction": 0.0442,
+        "ink_bbox": {
+          "x": 244,
+          "y": 103,
+          "w": 545,
+          "h": 1040
+        }
+      },
+      {
+        "at": 9.332,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-1-75.png",
+        "size": "810x1440",
+        "mean": 244.26,
+        "ink_fraction": 0.0501,
+        "ink_bbox": {
+          "x": 156,
+          "y": 106,
+          "w": 633,
+          "h": 1078
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 2,
+    "sentence": "Bright Coding exposed this exact struggle on GitHub in October 2026.",
+    "planned_type": "TYPE",
+    "planned_desc": "A real screenshot of a GitHub issue page from Bright Coding, showing an issue thread opened in October 2026; a small sans label reads OCTOBER 2026 at the bottom.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "A real screenshot of a GitHub issue page from Bright Coding",
+      "An issue thread opened in October 2026",
+      "A small sans label reading OCTOBER 2026 at the bottom"
+    ],
+    "unexpected": [
+      "Large heading 'GitHub struggle exposed'",
+      "GitHub octocat logo graphic in the center",
+      "Subtitle text 'Bright Coding exposed this exact struggle on GitHub' with animated highlighting/underlining",
+      "Source attribution text at the bottom right ('Source: commons.wikimedia.org')",
+      "Top right label 'EXPOSED ON'"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visuals rendered are completely different graphics and text elements rather than the requested GitHub issue page screenshot and October 2026 label.",
+    "frames": [
+      {
+        "at": 12.293,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-2-25.png",
+        "size": "810x1440",
+        "mean": 250.82,
+        "ink_fraction": 0.0167,
+        "ink_bbox": {
+          "x": 37,
+          "y": 97,
+          "w": 737,
+          "h": 1030
+        }
+      },
+      {
+        "at": 13.685,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-2-50.png",
+        "size": "810x1440",
+        "mean": 232.16,
+        "ink_fraction": 0.0915,
+        "ink_bbox": {
+          "x": 37,
+          "y": 98,
+          "w": 742,
+          "h": 1311
+        }
+      },
+      {
+        "at": 15.078,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-2-75.png",
+        "size": "810x1440",
+        "mean": 233.42,
+        "ink_fraction": 0.0859,
+        "ink_bbox": {
+          "x": 36,
+          "y": 97,
+          "w": 743,
+          "h": 1312
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 3,
+    "sentence": "How do you track silent coding processes?",
+    "planned_type": "TYPE",
+    "planned_desc": "A minimalist line chart tracing an invisible upward trajectory against a deep monochrome grid, with a single bold question mark centered in the upper third.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "minimalist line chart",
+      "invisible upward trajectory",
+      "deep monochrome grid",
+      "single bold question mark centered in the upper third"
+    ],
+    "unexpected": [
+      "light background instead of deep monochrome",
+      "radar/sonar graphic element in the center",
+      "large heading text 'Tracking silent processes'",
+      "caption text at the bottom 'How do you track silent coding processes'",
+      "slide/page numbering '04 / 09' in the top left"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual elements rendered bear no resemblance to the scene description provided in the visual plan.",
+    "frames": [
+      {
+        "at": 17.27,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-3-25.png",
+        "size": "810x1440",
+        "mean": 246.42,
+        "ink_fraction": 0.0617,
+        "ink_bbox": {
+          "x": 34,
+          "y": 96,
+          "w": 740,
+          "h": 1031
+        }
+      },
+      {
+        "at": 18.07,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-3-50.png",
+        "size": "810x1440",
+        "mean": 245.94,
+        "ink_fraction": 0.0639,
+        "ink_bbox": {
+          "x": 36,
+          "y": 98,
+          "w": 737,
+          "h": 1029
+        }
+      },
+      {
+        "at": 18.87,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-3-75.png",
+        "size": "810x1440",
+        "mean": 245.95,
+        "ink_fraction": 0.0639,
+        "ink_bbox": {
+          "x": 37,
+          "y": 99,
+          "w": 736,
+          "h": 1028
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 4,
+    "sentence": "Pablo Delucca built an open-source fix called Pixel Agents, but tracking them remains tough.",
+    "planned_type": "PHOTO",
+    "planned_desc": "A clean portrait photo of Pablo Delucca centered in the lower half of the frame, alongside a small open-source badge floating in the upper right.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "A clean portrait photo of Pablo Delucca centered in the lower half of the frame",
+      "A small open-source badge floating in the upper right"
+    ],
+    "unexpected": [
+      "Large typography reading 'Pablo Delucca'",
+      "Subtitle text reading 'PIXEL AGENTS FIX'",
+      "Animated caption text appearing incrementally ('Pablo Delucca built an open-source', 'Agents', 'Agents but tracking them remains')",
+      "A small graphic line element in the upper right"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered video displays animated text captions corresponding to the voiceover instead of showing the requested portrait photo and open-source badge.",
+    "frames": [
+      {
+        "at": 21.253,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-4-25.png",
+        "size": "810x1440",
+        "mean": 243.54,
+        "ink_fraction": 0.0503,
+        "ink_bbox": {
+          "x": 37,
+          "y": 98,
+          "w": 737,
+          "h": 1095
+        }
+      },
+      {
+        "at": 22.835,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-4-50.png",
+        "size": "810x1440",
+        "mean": 244.72,
+        "ink_fraction": 0.0452,
+        "ink_bbox": {
+          "x": 37,
+          "y": 97,
+          "w": 738,
+          "h": 1041
+        }
+      },
+      {
+        "at": 24.418,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-4-75.png",
+        "size": "810x1440",
+        "mean": 243.4,
+        "ink_fraction": 0.0511,
+        "ink_bbox": {
+          "x": 37,
+          "y": 98,
+          "w": 737,
+          "h": 1086
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 5,
+    "sentence": "Pixel Agents replaces opaque 1970s terminal emulators with a visual pixel-art office interface.",
+    "planned_type": "COUNTER",
+    "planned_desc": "A high-contrast visual pixel-art grid filling the center frame, contrasting sharply against a stark 1970s monochrome terminal emulator wireframe pushed to the background.",
+    "rendered_type": "COUNTER",
+    "rendered_composition": "NUMBER-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "High-contrast visual pixel-art grid filling the center frame",
+      "Stark 1970s monochrome terminal emulator wireframe pushed to the background"
+    ],
+    "unexpected": [
+      "Large gold number '1970'",
+      "Large text at the top reading 'Pixel art office interface'",
+      "Subtitles displaying portions of the sentence ('Pixel Agents replaces opaque', '1970s terminal emulators', etc.)",
+      "Plain white background with standard typography"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered frames display kinetic typography and captions instead of the described visual pixel-art grid and terminal wireframe.",
+    "frames": [
+      {
+        "at": 27.85,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-5-25.png",
+        "size": "810x1440",
+        "mean": 244.49,
+        "ink_fraction": 0.1003,
+        "ink_bbox": {
+          "x": 34,
+          "y": 106,
+          "w": 759,
+          "h": 1032
+        }
+      },
+      {
+        "at": 29.7,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-5-50.png",
+        "size": "810x1440",
+        "mean": 239.06,
+        "ink_fraction": 0.1085,
+        "ink_bbox": {
+          "x": 40,
+          "y": 102,
+          "w": 741,
+          "h": 1082
+        }
+      },
+      {
+        "at": 31.55,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-5-75.png",
+        "size": "810x1440",
+        "mean": 241,
+        "ink_fraction": 0.0986,
+        "ink_bbox": {
+          "x": 49,
+          "y": 107,
+          "w": 730,
+          "h": 1031
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 6,
+    "sentence": "You install the extension via VS Code and Open VSX using identifier pablodelucca.pixel-agents.",
+    "planned_type": "DOCUMENT",
+    "planned_desc": "A real interface view of the VS Code extension marketplace, highlighting the search bar with identifier pablodelucca.pixel-agents typed inside.",
+    "rendered_type": "DOCUMENT",
+    "rendered_composition": "DOCUMENT",
+    "match": "PARTIAL",
+    "present": [
+      "VS Code interface view (getting started / sidebar elements visible)"
+    ],
+    "missing": [
+      "Extension marketplace view",
+      "Search bar highlighted",
+      "Identifier pablodelucca.pixel-agents typed inside the search bar"
+    ],
+    "unexpected": [
+      "Large overlapping subtitle/caption text overlaying the screen (\"Extension installation identifier\", narrator text subtitles)",
+      "Recommended and Walkthroughs cards from VS Code startup screen",
+      "Source attribution watermark at the bottom right"
+    ],
+    "timing_correct": false,
+    "timing_note": "Instead of showing the extension marketplace and search bar with the requested identifier as described in the visual plan, the video shows a generic VS Code startup/welcome interface with large caption overlays showing narrator subtitles.",
+    "frames": [
+      {
+        "at": 35.25,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-6-25.png",
+        "size": "810x1440",
+        "mean": 117,
+        "ink_fraction": 0.9881,
+        "ink_bbox": {
+          "x": 0,
+          "y": 0,
+          "w": 810,
+          "h": 1440
+        }
+      },
+      {
+        "at": 37.1,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-6-50.png",
+        "size": "810x1440",
+        "mean": 28.4,
+        "ink_fraction": 0.9976,
+        "ink_bbox": {
+          "x": 0,
+          "y": 0,
+          "w": 810,
+          "h": 1440
+        }
+      },
+      {
+        "at": 38.95,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-6-75.png",
+        "size": "810x1440",
+        "mean": 31.24,
+        "ink_fraction": 0.9887,
+        "ink_bbox": {
+          "x": 1,
+          "y": 1,
+          "w": 809,
+          "h": 1438
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 7,
+    "sentence": "Every active agent now renders visibly inside your workspace.",
+    "planned_type": "TYPE",
+    "planned_desc": "A code workspace window with a small population of distinct pixel-art character sprites animating inside the sidebar area.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "A code workspace window",
+      "A small population of distinct pixel-art character sprites",
+      "Sprites animating inside the sidebar area"
+    ],
+    "unexpected": [
+      "White background",
+      "Large typographic word 'Visibly' in the center",
+      "Smaller text at the top reading 'Agents rendered visibly'",
+      "Kinetic typography text elements animating at the bottom ('Every active agent now...', 'renders visibly', 'workspace')",
+      "A horizontal line icon in the top left"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered visuals completely mismatch the planned description (showing text typography instead of a code workspace with pixel-art sprites), so timing cannot be evaluated as correct.",
+    "frames": [
+      {
+        "at": 41.942,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-7-25.png",
+        "size": "810x1440",
+        "mean": 239.9,
+        "ink_fraction": 0.0654,
+        "ink_bbox": {
+          "x": 33,
+          "y": 96,
+          "w": 743,
+          "h": 1042
+        }
+      },
+      {
+        "at": 43.085,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-7-50.png",
+        "size": "810x1440",
+        "mean": 239.04,
+        "ink_fraction": 0.0697,
+        "ink_bbox": {
+          "x": 35,
+          "y": 100,
+          "w": 740,
+          "h": 1098
+        }
+      },
+      {
+        "at": 44.227,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-7-75.png",
+        "size": "810x1440",
+        "mean": 240.55,
+        "ink_fraction": 0.063,
+        "ink_bbox": {
+          "x": 34,
+          "y": 96,
+          "w": 744,
+          "h": 1042
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 8,
+    "sentence": "Download Pixel Agents on GitHub today to manage your coding agents.",
+    "planned_type": "PHOTO",
+    "planned_desc": "A clean minimalist monochrome split screen showing a repository download button on the left and a bold oversized number one representing complete control on the right.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "Clean minimalist monochrome style",
+      "Repository download button/icon (GitHub logo)"
+    ],
+    "missing": [
+      "Split screen layout",
+      "Bold oversized number one representing complete control"
+    ],
+    "unexpected": [
+      "Large typography heading reading 'Manage coding Agents today' with gold coloring on 'Manage'",
+      "Page indicator / step counter '09 / 09' in the top right",
+      "Source attribution text at the bottom right ('Source: commons.wikimedia.org')",
+      "Body text captions appearing progressively ('Download Pixel Agents on GitHub today to manage your')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered frames show a completely different layout (text overlay instead of the described split-screen with an oversized number one) and progressive text rendering that corresponds to the narration, but fails to match the visual plan described.",
+    "frames": [
+      {
+        "at": 46.362,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-8-25.png",
+        "size": "810x1440",
+        "mean": 250.12,
+        "ink_fraction": 0.02,
+        "ink_bbox": {
+          "x": 34,
+          "y": 96,
+          "w": 741,
+          "h": 1026
+        }
+      },
+      {
+        "at": 47.355,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-8-50.png",
+        "size": "810x1440",
+        "mean": 231.83,
+        "ink_fraction": 0.0928,
+        "ink_bbox": {
+          "x": 36,
+          "y": 99,
+          "w": 743,
+          "h": 1310
+        }
+      },
+      {
+        "at": 48.347,
+        "path": "data\\audit\\plan-vs-render\\ch-44\\beat-8-75.png",
+        "size": "810x1440",
+        "mean": 231.24,
+        "ink_fraction": 0.0955,
+        "ink_bbox": {
+          "x": 35,
+          "y": 98,
+          "w": 744,
+          "h": 1311
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 0,
+    "sentence": "Will Harvey Keitel survive New York's brutal scene in The Method?",
+    "planned_type": "PHOTO",
+    "planned_desc": "A high-contrast black-and-white portrait of Harvey Keitel, filling the center of the frame; behind him, the phrase 'WILL HARVEY KEITEL' in a large serif font, sentence case. The portrait slowly pushes in across the beat, with a small sans label at the bottom: THE METHOD.",
+    "rendered_type": "PHOTO",
+    "rendered_composition": "PORTRAIT",
+    "match": "NO",
+    "present": [
+      "A portrait of Harvey Keitel"
+    ],
+    "missing": [
+      "A high-contrast black-and-white portrait of Harvey Keitel (the rendered portrait is full color)",
+      "The phrase 'WILL HARVEY KEITEL' in a large serif font behind the portrait",
+      "A small sans label at the bottom reading 'THE METHOD'"
+    ],
+    "unexpected": [
+      "A large serif header at the top reading 'Harvey Keitel' (with 'Harvey' in green)",
+      "A horizontal line/accent at the top right",
+      "The caption text appearing dynamically at the bottom ('Will Harvey Keitel survive New York's brutal scene in The Method')",
+      "Source attribution text at the bottom right ('Source: commons.wikimedia.org')",
+      "Drop shadow under the portrait"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual elements rendered do not correspond to the described visual plan at all; instead, it is rendering a kinetic typography caption sequence below a stock photo and header.",
+    "frames": [
+      {
+        "at": 1.075,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-0-25.png",
+        "size": "810x1440",
+        "mean": 211.38,
+        "ink_fraction": 0.2119,
+        "ink_bbox": {
+          "x": 37,
+          "y": 96,
+          "w": 738,
+          "h": 1047
+        }
+      },
+      {
+        "at": 2.05,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-0-50.png",
+        "size": "810x1440",
+        "mean": 210.32,
+        "ink_fraction": 0.2168,
+        "ink_bbox": {
+          "x": 37,
+          "y": 99,
+          "w": 742,
+          "h": 1310
+        }
+      },
+      {
+        "at": 3.025,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-0-75.png",
+        "size": "810x1440",
+        "mean": 211.62,
+        "ink_fraction": 0.2112,
+        "ink_bbox": {
+          "x": 37,
+          "y": 98,
+          "w": 742,
+          "h": 1311
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 1,
+    "sentence": "Director Gaurav Bhardwaj captures cutthroat ambition in his debut feature film.",
+    "planned_type": "PROCESS",
+    "planned_desc": "A black-and-white promotional still of Gaurav Bhardwaj, director, seated in a dimly lit New York studio, lower third; above him in small caps, DIRECTOR. The headline pops in softly over the upper frame.",
+    "rendered_type": "PROCESS",
+    "rendered_composition": "PROCESS-FULL",
+    "match": "NO",
+    "present": [
+      "DIRECTOR text",
+      "Gaurav Bhardwaj text",
+      "headline in upper frame ('Cutthroat ambition captured')"
+    ],
+    "missing": [
+      "black-and-white promotional still of Gaurav Bhardwaj seated in a dimly lit New York studio",
+      "lower third placement"
+    ],
+    "unexpected": [
+      "white background instead of a photo/studio setting",
+      "green and black circular diagram nodes with an arrow pointing from DIRECTOR GAURAV BHARDWAJ to FILM",
+      "random floating text elements and varying subtitles ('Director Gaurav Bhardwaj', 'captures cutthroat ambition', 'in his debut feature')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual elements completely failed to render the described video plan, showing random abstract diagrams and text instead of the requested promotional still and lower third.",
+    "frames": [
+      {
+        "at": 5.375,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-1-25.png",
+        "size": "810x1440",
+        "mean": 248.19,
+        "ink_fraction": 0.0328,
+        "ink_bbox": {
+          "x": 151,
+          "y": 143,
+          "w": 627,
+          "h": 995
+        }
+      },
+      {
+        "at": 6.75,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-1-50.png",
+        "size": "810x1440",
+        "mean": 244.55,
+        "ink_fraction": 0.049,
+        "ink_bbox": {
+          "x": 34,
+          "y": 104,
+          "w": 742,
+          "h": 1094
+        }
+      },
+      {
+        "at": 8.125,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-1-75.png",
+        "size": "810x1440",
+        "mean": 246.77,
+        "ink_fraction": 0.0391,
+        "ink_bbox": {
+          "x": 32,
+          "y": 101,
+          "w": 747,
+          "h": 1028
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 2,
+    "sentence": "Travelin Bone Entertainment produced this gritty story alongside Imagination Infinite Motion Pictures.",
+    "planned_type": "PHOTO",
+    "planned_desc": "The logos of Travelin Bone Entertainment and Imagination Infinite Motion Pictures placed side by side in the center of the frame on a dark monochrome background, with a slow zoom out. Above them, small sans text: CO-PRODUCTION.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "Travelin Bone Entertainment logo"
+    ],
+    "missing": [
+      "Imagination Infinite Motion Pictures logo (missing in full form, only partial text appears)",
+      "placed side by side in the center of the frame",
+      "dark monochrome background",
+      "slow zoom out",
+      "small sans text: CO-PRODUCTION"
+    ],
+    "unexpected": [
+      "White background instead of dark monochrome",
+      "Animated subtitle text displaying the sentence word by word ('Travelin Bone Entertainment produced this gritty story alongside Imagination Infinite Motion...')",
+      "Green color on 'Entertainment'",
+      "The text layout is completely different (logos/text stacked or acting as captions rather than the main centered visual)"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered frames show a kinetic text subtitle overlay rather than the requested side-by-side logo lockup with a 'CO-PRODUCTION' header on a dark background.",
+    "frames": [
+      {
+        "at": 11.168,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-2-25.png",
+        "size": "810x1440",
+        "mean": 245.13,
+        "ink_fraction": 0.0459,
+        "ink_bbox": {
+          "x": 37,
+          "y": 98,
+          "w": 737,
+          "h": 1095
+        }
+      },
+      {
+        "at": 12.835,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-2-50.png",
+        "size": "810x1440",
+        "mean": 246.31,
+        "ink_fraction": 0.0409,
+        "ink_bbox": {
+          "x": 36,
+          "y": 96,
+          "w": 739,
+          "h": 1042
+        }
+      },
+      {
+        "at": 14.502,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-2-75.png",
+        "size": "810x1440",
+        "mean": 244.75,
+        "ink_fraction": 0.0477,
+        "ink_bbox": {
+          "x": 37,
+          "y": 99,
+          "w": 737,
+          "h": 1085
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 3,
+    "sentence": "What drives an acting teacher to extremes?",
+    "planned_type": "TYPE",
+    "planned_desc": "A minimalist black-and-white photo of an empty theater stage under a single spotlight, centered in the frame. A thin line draws across the bottom, with small caps: THE ACTING TEACHER.",
+    "rendered_type": "PROCESS",
+    "rendered_composition": "PROCESS-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "minimalist black-and-white photo of an empty theater stage",
+      "single spotlight centered in the frame",
+      "thin line drawing across the bottom",
+      "small caps text 'THE ACTING TEACHER'"
+    ],
+    "unexpected": [
+      "white background",
+      "green header text 'Extremes of acting' and 'DRIVES AN'",
+      "circles containing 'DRIVES' and 'EXTREMES'",
+      "green arrow connecting the circles",
+      "caption text at the bottom ('What drives an acting teacher to extremes')",
+      "underlined text on 'extremes'"
+    ],
+    "timing_correct": false,
+    "timing_note": "The entire visual content rendered has no relation to the requested empty theater stage and spotlight, so timing cannot be evaluated against the visual plan.",
+    "frames": [
+      {
+        "at": 16.995,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-3-25.png",
+        "size": "810x1440",
+        "mean": 250.52,
+        "ink_fraction": 0.0221,
+        "ink_bbox": {
+          "x": 53,
+          "y": 143,
+          "w": 726,
+          "h": 995
+        }
+      },
+      {
+        "at": 17.82,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-3-50.png",
+        "size": "810x1440",
+        "mean": 248.09,
+        "ink_fraction": 0.0329,
+        "ink_bbox": {
+          "x": 33,
+          "y": 104,
+          "w": 744,
+          "h": 1080
+        }
+      },
+      {
+        "at": 18.645,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-3-75.png",
+        "size": "810x1440",
+        "mean": 247.39,
+        "ink_fraction": 0.0359,
+        "ink_bbox": {
+          "x": 34,
+          "y": 105,
+          "w": 742,
+          "h": 1093
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 4,
+    "sentence": "Travelin Bone Entertainment highlights just how steep the price of blind ambition gets.",
+    "planned_type": "PHOTO",
+    "planned_desc": "A large oversized number, 1, fills the center of the frame in stark serif type; below it in small caps, THE PRICE OF BLIND AMBITION. Behind the number, a subtle vertical line draws downward, representing the steep cost.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [
+      "small caps text related to the price of ambition (though modified as 'STEEP PRICE OF AMBITION')"
+    ],
+    "missing": [
+      "A large oversized number '1' filling the center of the frame in stark serif type",
+      "THE PRICE OF BLIND AMBITION in small caps below the number",
+      "A subtle vertical line drawing downward behind the number"
+    ],
+    "unexpected": [
+      "The text 'Travelin Bone Entertainment' displayed multiple times in different styles and fonts (large serif black and green, and smaller sans-serif/serif at the bottom)",
+      "Narrative subtitle text appearing at the bottom ('Travelin Bone Entertainment highlights just how steep...')",
+      "A horizontal line and text at the top right ('HIGHLIGHTS JUST')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visuals rendered do not match the planned beat at all; instead of rendering the oversized number '1' and the vertical line, it is rendering a completely different layout featuring the narrator's voiceover text and company name.",
+    "frames": [
+      {
+        "at": 20.862,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-4-25.png",
+        "size": "810x1440",
+        "mean": 243.88,
+        "ink_fraction": 0.0436,
+        "ink_bbox": {
+          "x": 37,
+          "y": 97,
+          "w": 737,
+          "h": 1032
+        }
+      },
+      {
+        "at": 22.255,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-4-50.png",
+        "size": "810x1440",
+        "mean": 241.98,
+        "ink_fraction": 0.0527,
+        "ink_bbox": {
+          "x": 37,
+          "y": 98,
+          "w": 737,
+          "h": 1095
+        }
+      },
+      {
+        "at": 23.648,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-4-75.png",
+        "size": "810x1440",
+        "mean": 243.34,
+        "ink_fraction": 0.0466,
+        "ink_bbox": {
+          "x": 36,
+          "y": 97,
+          "w": 739,
+          "h": 1097
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 5,
+    "sentence": "The Method exposes 1 ruthless reality of New York theater training.",
+    "planned_type": "MAP",
+    "planned_desc": "A large numeral 1 centered in the frame, flanked by small sans labels reading RUTHLESS REALITY and NEW YORK THEATER TRAINING. A slow push in across the beat.",
+    "rendered_type": "MAP",
+    "rendered_composition": "MAP-CENTERED",
+    "match": "PARTIAL",
+    "present": [
+      "A numeral 1 (though part of the text string '1 ruthless reality' at the top rather than solely centered as a large standalone numeral)",
+      "The phrase 'ruthless reality' (part of the top text string)"
+    ],
+    "missing": [
+      "A large numeral 1 centered distinctly in the frame",
+      "A small sans label reading NEW YORK THEATER TRAINING (only 'theater training' appears later at the bottom, and 'New York' appears on a map)"
+    ],
+    "unexpected": [
+      "A map graphic of New York state with the text 'New York' across it and a map pin icon",
+      "Subtitles at the bottom showing the narration text ('The Method exposes one...', etc.)",
+      "Top-right text reading 'EXPOSES 1'",
+      "A slow push-in or visual layout entirely centered around a New York map rather than a simple centered numeral 1 with side labels"
+    ],
+    "timing_correct": true,
+    "timing_note": "The elements animate progressively in sync with the narration over the course of the beat, though the visual content deviates significantly from the planned description.",
+    "frames": [
+      {
+        "at": 26.223,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-5-25.png",
+        "size": "810x1440",
+        "mean": 241.05,
+        "ink_fraction": 0.0954,
+        "ink_bbox": {
+          "x": 19,
+          "y": 142,
+          "w": 769,
+          "h": 996
+        }
+      },
+      {
+        "at": 27.415,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-5-50.png",
+        "size": "810x1440",
+        "mean": 239.77,
+        "ink_fraction": 0.1,
+        "ink_bbox": {
+          "x": 19,
+          "y": 105,
+          "w": 769,
+          "h": 1093
+        }
+      },
+      {
+        "at": 28.608,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-5-75.png",
+        "size": "810x1440",
+        "mean": 241.23,
+        "ink_fraction": 0.0941,
+        "ink_bbox": {
+          "x": 18,
+          "y": 101,
+          "w": 769,
+          "h": 1037
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 6,
+    "sentence": "Gaurav Bhardwaj captures raw ambition inside New York studios for audiences.",
+    "planned_type": "TYPE",
+    "planned_desc": "A black-and-white behind-the-scenes photograph of Gaurav Bhardwaj directing actors inside a New York studio, filling the upper half of the frame. Below it, small caps: NEW YORK STUDIOS.",
+    "rendered_type": "PROCESS",
+    "rendered_composition": "PROCESS-FULL",
+    "match": "NO",
+    "present": [
+      "Text referencing Gaurav Bhardwaj"
+    ],
+    "missing": [
+      "A black-and-white behind-the-scenes photograph of Gaurav Bhardwaj directing actors inside a New York studio filling the upper half of the frame",
+      "Small caps text saying 'NEW YORK STUDIOS' below the photograph"
+    ],
+    "unexpected": [
+      "White background instead of photo",
+      "Large typography ('Raw ambition inside studios', 'CAPTURES RAW')",
+      "Circular diagram nodes ('GAURAV BHARDWAY', 'AUDIENCES') connected by a green arrow",
+      "Subtitles at the bottom showing different parts of the sentence"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual elements rendered are completely different from the described visual plan (showing abstract diagrammatic elements and subtitles instead of a behind-the-scenes photo).",
+    "frames": [
+      {
+        "at": 31.218,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-6-25.png",
+        "size": "810x1440",
+        "mean": 247.95,
+        "ink_fraction": 0.034,
+        "ink_bbox": {
+          "x": 32,
+          "y": 143,
+          "w": 610,
+          "h": 995
+        }
+      },
+      {
+        "at": 32.635,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-6-50.png",
+        "size": "810x1440",
+        "mean": 244.36,
+        "ink_fraction": 0.0501,
+        "ink_bbox": {
+          "x": 33,
+          "y": 104,
+          "w": 744,
+          "h": 1094
+        }
+      },
+      {
+        "at": 34.053,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-6-75.png",
+        "size": "810x1440",
+        "mean": 246.26,
+        "ink_fraction": 0.0414,
+        "ink_bbox": {
+          "x": 32,
+          "y": 102,
+          "w": 746,
+          "h": 1027
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 7,
+    "sentence": "This feature by Imagination Infinite Motion Pictures exposes what 1 actor surrenders.",
+    "planned_type": "PHOTO",
+    "planned_desc": "A large numeral 1 centered in the frame with the text 'ACTOR SURRENDERS' below it in small caps. Behind the number, the logo of Imagination Infinite Motion Pictures fades in slowly.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "A numeral 1 (though not large and centered, it is present in the lower right area)",
+      "The text 'ACTOR SURRENDERS' (present as part of the unfolding sentence 'exposes what one actor surrenders')",
+      "The logo of Imagination Infinite Motion Pictures behind the number"
+    ],
+    "missing": [
+      "A large numeral 1 centered in the frame",
+      "The text 'ACTOR SURRENDERS' positioned directly below the numeral 1 in small caps"
+    ],
+    "unexpected": [
+      "A horizontal line at the top left of the frame",
+      "Animated unfolding sentence text ('This feature by Imagination exposes what one actor surrenders') appearing at the bottom instead of just the described elements",
+      "Different positioning of the numeral 1 (bottom right instead of large and centered)"
+    ],
+    "timing_correct": false,
+    "timing_note": "The elements are animating progressively as a full sentence ('This feature by Imagination exposes what one actor surrenders'), whereas the scene description only specified a large centered numeral 1 with 'ACTOR SURRENDERS' below it and the logo behind it.",
+    "frames": [
+      {
+        "at": 36.987,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-7-25.png",
+        "size": "810x1440",
+        "mean": 244.09,
+        "ink_fraction": 0.0537,
+        "ink_bbox": {
+          "x": 36,
+          "y": 98,
+          "w": 740,
+          "h": 1040
+        }
+      },
+      {
+        "at": 38.505,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-7-50.png",
+        "size": "810x1440",
+        "mean": 245.07,
+        "ink_fraction": 0.0505,
+        "ink_bbox": {
+          "x": 36,
+          "y": 97,
+          "w": 740,
+          "h": 1042
+        }
+      },
+      {
+        "at": 40.023,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-7-75.png",
+        "size": "810x1440",
+        "mean": 243.22,
+        "ink_fraction": 0.0576,
+        "ink_bbox": {
+          "x": 36,
+          "y": 98,
+          "w": 740,
+          "h": 1100
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 8,
+    "sentence": "Watch the film to witness this masterclass in acting.",
+    "planned_type": "TYPE",
+    "planned_desc": "Solid black screen with a single line of centered serif text: 'MASTERCLASS IN ACTING' in sentence case, glowing softly in white. Below it in small caps, WATCH THE FILM. A very slow push in across the beat.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [
+      "The phrase 'Watch the film'"
+    ],
+    "missing": [
+      "Solid black screen",
+      "Centered serif text reading 'MASTERCLASS IN ACTING' in sentence case",
+      "White glowing text",
+      "Small caps for 'WATCH THE FILM'",
+      "Very slow push in across the beat"
+    ],
+    "unexpected": [
+      "White background instead of black",
+      "Green colored text at the top ('Watch the film')",
+      "Massive black serif text in the center reading 'Film'",
+      "Black lowercase text at the bottom growing progressively across frames ('Watch the film', 'Watch the film to witness this', 'Watch the film to witness this masterclass')",
+      "Black underline on the word 'film' at the bottom",
+      "A small horizontal black line at the top right"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered video displays an entirely different visual execution with progressive text reveal on a white background instead of the requested black screen with glowing text and slow push in.",
+    "frames": [
+      {
+        "at": 42.263,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-8-25.png",
+        "size": "810x1440",
+        "mean": 232.65,
+        "ink_fraction": 0.0913,
+        "ink_bbox": {
+          "x": 37,
+          "y": 96,
+          "w": 750,
+          "h": 1047
+        }
+      },
+      {
+        "at": 42.995,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-8-50.png",
+        "size": "810x1440",
+        "mean": 231.99,
+        "ink_fraction": 0.0942,
+        "ink_bbox": {
+          "x": 37,
+          "y": 98,
+          "w": 749,
+          "h": 1045
+        }
+      },
+      {
+        "at": 43.727,
+        "path": "data\\audit\\plan-vs-render\\ch-49\\beat-8-75.png",
+        "size": "810x1440",
+        "mean": 231.41,
+        "ink_fraction": 0.0974,
+        "ink_bbox": {
+          "x": 37,
+          "y": 100,
+          "w": 748,
+          "h": 1084
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-9",
+    "index": 0,
+    "sentence": "One new political map just redrew a disputed mountain border between two nuclear neighbors.",
+    "planned_type": "TYPE",
+    "planned_desc": "A dark monochrome background where a detailed political map of the Himalayan region slowly fades into view, a thin accent-colored line tracing a disputed border between two territories, with oversized numerals reading 2 in the lower right corner.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "dark monochrome background",
+      "detailed political map of the Himalayan region",
+      "thin accent-colored line tracing a disputed border",
+      "oversized numerals reading 2 in the lower right corner"
+    ],
+    "unexpected": [
+      "light/white background instead of dark",
+      "large serif title text 'One new political map' in the center",
+      "captions of the sentence words at the bottom ('One new political map just...', etc.)",
+      "progress bar and counter '01 / 10' at the top right",
+      "horizontal line underline elements"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered video shows kinetic typography captions and a clean white slide layout instead of the requested map visualization, completely missing the planned visual elements.",
+    "frames": [
+      {
+        "at": 1.525,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-0-25.png",
+        "size": "810x1440",
+        "mean": 248.97,
+        "ink_fraction": 0.0279,
+        "ink_bbox": {
+          "x": 38,
+          "y": 97,
+          "w": 736,
+          "h": 1046
+        }
+      },
+      {
+        "at": 2.95,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-0-50.png",
+        "size": "810x1440",
+        "mean": 247.2,
+        "ink_fraction": 0.0358,
+        "ink_bbox": {
+          "x": 38,
+          "y": 98,
+          "w": 736,
+          "h": 1095
+        }
+      },
+      {
+        "at": 4.375,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-0-75.png",
+        "size": "810x1440",
+        "mean": 248.41,
+        "ink_fraction": 0.0317,
+        "ink_bbox": {
+          "x": 38,
+          "y": 97,
+          "w": 737,
+          "h": 1097
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-9",
+    "index": 1,
+    "sentence": "India's Ministry of Home Affairs published the update on November 2.",
+    "planned_type": "PHOTO",
+    "planned_desc": "The official seal and headquarters building of the India's Ministry of Home Affairs fills the centre of the frame in a crisp black and white photograph, with the date November 2 appearing in a small accent-coloured label below.",
+    "rendered_type": "MAP",
+    "rendered_composition": "MAP-CENTERED",
+    "match": "NO",
+    "present": [
+      "date November 2 (though rendered as text 'on November two' rather than a small accent-coloured label)"
+    ],
+    "missing": [
+      "official seal of India's Ministry of Home Affairs",
+      "headquarters building of the India's Ministry of Home Affairs",
+      "crisp black and white photograph filling the centre of the frame"
+    ],
+    "unexpected": [
+      "map of India and surrounding region",
+      "location pin icon",
+      "animated subtitle text ('India published the update', etc.)"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan described a photograph of the Ministry of Home Affairs building and seal, but the rendered video shows a map graphic with animated text instead.",
+    "frames": [
+      {
+        "at": 6.942,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-1-25.png",
+        "size": "810x1440",
+        "mean": 241.89,
+        "ink_fraction": 0.0765,
+        "ink_bbox": {
+          "x": 17,
+          "y": 142,
+          "w": 771,
+          "h": 996
+        }
+      },
+      {
+        "at": 8.085,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-1-50.png",
+        "size": "810x1440",
+        "mean": 240.1,
+        "ink_fraction": 0.084,
+        "ink_bbox": {
+          "x": 19,
+          "y": 105,
+          "w": 765,
+          "h": 1088
+        }
+      },
+      {
+        "at": 9.227,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-1-75.png",
+        "size": "810x1440",
+        "mean": 241.7,
+        "ink_fraction": 0.0769,
+        "ink_bbox": {
+          "x": 18,
+          "y": 101,
+          "w": 768,
+          "h": 1028
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-9",
+    "index": 2,
+    "sentence": "Kalapani and Lipulekh landed directly inside Indian territory on the document.",
+    "planned_type": "TYPE",
+    "planned_desc": "A close-up of an official government document fills the frame, with two highlighted locations, Kalapani and Lipulekh, circled in the accent colour as an arrow points them squarely inside Indian territory.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [
+      "Kalapani (as text/heading)"
+    ],
+    "missing": [
+      "Official government document filling the frame",
+      "Highlighted locations of Kalapani and Lipulekh",
+      "Circles in accent color",
+      "Arrow pointing them inside Indian territory"
+    ],
+    "unexpected": [
+      "Large minimalist typography layout",
+      "Subtitles showing the narration text ('Kalapani and Lipulekh landed directly inside Indian territory on the document')",
+      "Header text 'KALAPANI AND LIPULEKH INSIDE INDIAN TERRITORY'",
+      "Random small horizontal accent line at the top right"
+    ],
+    "timing_correct": false,
+    "timing_note": "The video shows kinetic typography displaying the spoken narration rather than showing a close-up of an official government document with circles and arrows as described in the scene plan.",
+    "frames": [
+      {
+        "at": 11.702,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-2-25.png",
+        "size": "810x1440",
+        "mean": 244.82,
+        "ink_fraction": 0.046,
+        "ink_bbox": {
+          "x": 37,
+          "y": 97,
+          "w": 737,
+          "h": 1041
+        }
+      },
+      {
+        "at": 13.035,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-2-50.png",
+        "size": "810x1440",
+        "mean": 243.01,
+        "ink_fraction": 0.0536,
+        "ink_bbox": {
+          "x": 37,
+          "y": 99,
+          "w": 737,
+          "h": 1094
+        }
+      },
+      {
+        "at": 14.367,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-2-75.png",
+        "size": "810x1440",
+        "mean": 244.3,
+        "ink_fraction": 0.0478,
+        "ink_bbox": {
+          "x": 36,
+          "y": 96,
+          "w": 739,
+          "h": 1047
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-9",
+    "index": 3,
+    "sentence": "Kathmandu reacted with immediate anger.",
+    "planned_type": "PHOTO",
+    "planned_desc": "A street-level photograph of Kathmandu, showing crowds gathered outside government buildings, with a slow push in toward the center of the frame where a single warning triangle icon pulses in the accent color.",
+    "rendered_type": "PHOTO",
+    "rendered_composition": "SCENE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "A street-level photograph of Kathmandu"
+    ],
+    "missing": [
+      "Crowds gathered outside government buildings",
+      "A slow push in toward the center of the frame",
+      "A single warning triangle icon pulsing in the accent color"
+    ],
+    "unexpected": [
+      "Text overlays ('Kathmandu reacted with immediate anger')",
+      "Image source attribution text ('Source: commons.wikimedia.org')",
+      "Historic temple architecture with pigeons and a cow instead of government buildings with crowds"
+    ],
+    "timing_correct": true,
+    "timing_note": "The text captions appear progressively in sync with the narration, though the core visual elements described in the scene plan (push-in, warning triangle icon, crowds outside government buildings) are entirely missing.",
+    "frames": [
+      {
+        "at": 16.5,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-3-25.png",
+        "size": "810x1440",
+        "mean": 72.45,
+        "ink_fraction": 0.9956,
+        "ink_bbox": {
+          "x": 0,
+          "y": 0,
+          "w": 810,
+          "h": 1440
+        }
+      },
+      {
+        "at": 17.3,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-3-50.png",
+        "size": "810x1440",
+        "mean": 79.09,
+        "ink_fraction": 0.9913,
+        "ink_bbox": {
+          "x": 0,
+          "y": 1,
+          "w": 810,
+          "h": 1439
+        }
+      },
+      {
+        "at": 18.1,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-3-75.png",
+        "size": "810x1440",
+        "mean": 85.7,
+        "ink_fraction": 0.9846,
+        "ink_bbox": {
+          "x": 1,
+          "y": 2,
+          "w": 808,
+          "h": 1436
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-9",
+    "index": 4,
+    "sentence": "Will Nepal accept this unilateral border change?",
+    "planned_type": "MAP",
+    "planned_desc": "A stark typographic treatment centred on the screen asking a question about Nepal's border stance, set against a dark monochrome background with a single question mark rendered in the accent color.",
+    "rendered_type": "MAP",
+    "rendered_composition": "MAP-CENTERED",
+    "match": "PARTIAL",
+    "present": [
+      "A question about Nepal's border stance ('Will Nepal accept this unilateral border change?')",
+      "Typographic treatment"
+    ],
+    "missing": [
+      "Dark monochrome background",
+      "Centered stark typographic treatment on the screen",
+      "A single question mark rendered in the accent color"
+    ],
+    "unexpected": [
+      "Light background instead of dark monochrome",
+      "A graphic map of Nepal with a label and pin icon",
+      "Multiple lines of subtitle text appearing at the bottom and top of the screen",
+      "Large stylized title text at the top"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan described a stark, centered typographic screen with a single question mark, but the renderer produced a light-background map layout with multiple scrolling subtitle elements.",
+    "frames": [
+      {
+        "at": 19.832,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-4-25.png",
+        "size": "810x1440",
+        "mean": 234.91,
+        "ink_fraction": 0.1024,
+        "ink_bbox": {
+          "x": 35,
+          "y": 144,
+          "w": 755,
+          "h": 999
+        }
+      },
+      {
+        "at": 20.765,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-4-50.png",
+        "size": "810x1440",
+        "mean": 233.85,
+        "ink_fraction": 0.1071,
+        "ink_bbox": {
+          "x": 37,
+          "y": 105,
+          "w": 751,
+          "h": 1079
+        }
+      },
+      {
+        "at": 21.697,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-4-75.png",
+        "size": "810x1440",
+        "mean": 232.86,
+        "ink_fraction": 0.1118,
+        "ink_bbox": {
+          "x": 37,
+          "y": 103,
+          "w": 751,
+          "h": 1090
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-9",
+    "index": 5,
+    "sentence": "Government spokesperson Gokul Baskota rejected it, but protests quickly erupted across Kathmandu.",
+    "planned_type": "PHOTO",
+    "planned_desc": "A real photo of demonstrators holding signs in a Kathmandu public square fills the lower half of the frame, while above them a rising chart line indicates the rapid escalation of protests across the city.",
+    "rendered_type": "PHOTO",
+    "rendered_composition": "SCENE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "A real photo of a Kathmandu public square (though it shows pigeons and temples rather than demonstrators holding signs)"
+    ],
+    "missing": [
+      "Demonstrators holding signs",
+      "A rising chart line indicating the rapid escalation of protests"
+    ],
+    "unexpected": [
+      "Animated text captions rendering the spoken words ('Government spokesperson Gokul Baskota...', 'Protests erupted across Kathmandu...')",
+      "A source attribution link at the bottom right ('Source: commons.wikimedia.org')",
+      "Temples, pigeons, and an animal in the photo instead of protesters"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan called for a photo with demonstrators and a rising chart line, but the rendered frames instead feature scrolling/animating kinetic typography and a completely different photo (temples and pigeons) that only appears late in the beat.",
+    "frames": [
+      {
+        "at": 24.23,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-5-25.png",
+        "size": "810x1440",
+        "mean": 249.25,
+        "ink_fraction": 0.0279,
+        "ink_bbox": {
+          "x": 82,
+          "y": 98,
+          "w": 697,
+          "h": 1311
+        }
+      },
+      {
+        "at": 25.83,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-5-50.png",
+        "size": "810x1440",
+        "mean": 250.46,
+        "ink_fraction": 0.0217,
+        "ink_bbox": {
+          "x": 127,
+          "y": 97,
+          "w": 652,
+          "h": 1312
+        }
+      },
+      {
+        "at": 27.43,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-5-75.png",
+        "size": "810x1440",
+        "mean": 85.51,
+        "ink_fraction": 0.9867,
+        "ink_bbox": {
+          "x": 1,
+          "y": 1,
+          "w": 809,
+          "h": 1438
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-9",
+    "index": 6,
+    "sentence": "Jammu and Kashmir split into exactly 2 federal union territories right before the controversy erupted.",
+    "planned_type": "PROCESS",
+    "planned_desc": "An oversized numeral 2 dominates the center of the frame, flanked by two distinct regional boundary lines splitting apart on a map of Jammu and Kashmir, with small caps reading FEDERAL UNION TERRITORIES below.",
+    "rendered_type": "PROCESS",
+    "rendered_composition": "PROCESS-FULL",
+    "match": "NO",
+    "present": [
+      "A numeral 2 (part of the text 'split into 2 territories')"
+    ],
+    "missing": [
+      "An oversized numeral 2 dominating the center of the frame",
+      "Two distinct regional boundary lines splitting apart",
+      "A map of Jammu and Kashmir",
+      "Small caps reading FEDERAL UNION TERRITORIES below"
+    ],
+    "unexpected": [
+      "Circular diagrams containing text ('UNION TERRITORIES RIGHT', 'CONTROVERSY ERUPTED')",
+      "An arrow connecting the circles",
+      "Large running transcript text at the top and bottom of the frame (\"Jammu and Kashmir split into 2 territories\", etc.)"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual elements rendered have no relation to the spatial map and oversized numeral described in the plan; instead, it renders kinetic typography and flowcharts that do not match the scene description.",
+    "frames": [
+      {
+        "at": 30.672,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-6-25.png",
+        "size": "810x1440",
+        "mean": 245.67,
+        "ink_fraction": 0.0425,
+        "ink_bbox": {
+          "x": 33,
+          "y": 143,
+          "w": 637,
+          "h": 1050
+        }
+      },
+      {
+        "at": 32.315,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-6-50.png",
+        "size": "810x1440",
+        "mean": 245.03,
+        "ink_fraction": 0.0454,
+        "ink_bbox": {
+          "x": 32,
+          "y": 102,
+          "w": 746,
+          "h": 1027
+        }
+      },
+      {
+        "at": 33.958,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-6-75.png",
+        "size": "810x1440",
+        "mean": 243.52,
+        "ink_fraction": 0.0521,
+        "ink_bbox": {
+          "x": 34,
+          "y": 104,
+          "w": 742,
+          "h": 1089
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-9",
+    "index": 7,
+    "sentence": "Officials in New Delhi triggered regional protests across Kathmandu.",
+    "planned_type": "TYPE",
+    "planned_desc": "A line chart comparing the timeline of New Delhi's official announcements with the surge of street demonstrations in Kathmandu, drawing left to right across the monochrome screen in the accent color.",
+    "rendered_type": "PHOTO",
+    "rendered_composition": "SCENE-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "A line chart comparing the timeline of New Delhi's official announcements with the surge of street demonstrations in Kathmandu",
+      "Line drawing left to right across the screen",
+      "Monochrome screen with accent color"
+    ],
+    "unexpected": [
+      "Photo background of an ornate stone interior/hallway (likely a palace or temple with carved pillars and arches)",
+      "Animated captions displaying the spoken sentence ('Officials in New Delhi triggered regional protests across Kathmandu')",
+      "Stock photo attribution watermark ('Source: pixabay.com')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The entire concept of the visual plan (a line chart) was ignored in favor of stock photography and kinetic typography, so no chart timing exists.",
+    "frames": [
+      {
+        "at": 36.75,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-7-25.png",
+        "size": "810x1440",
+        "mean": 51.76,
+        "ink_fraction": 0.995,
+        "ink_bbox": {
+          "x": 0,
+          "y": 0,
+          "w": 810,
+          "h": 1440
+        }
+      },
+      {
+        "at": 37.9,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-7-50.png",
+        "size": "810x1440",
+        "mean": 58.27,
+        "ink_fraction": 0.9827,
+        "ink_bbox": {
+          "x": 1,
+          "y": 2,
+          "w": 808,
+          "h": 1436
+        }
+      },
+      {
+        "at": 39.05,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-7-75.png",
+        "size": "810x1440",
+        "mean": 59.89,
+        "ink_fraction": 0.9957,
+        "ink_bbox": {
+          "x": 0,
+          "y": 0,
+          "w": 810,
+          "h": 1440
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-9",
+    "index": 8,
+    "sentence": "Territorial sovereignty remains heavily contested in the Himalayas.",
+    "planned_type": "PHOTO",
+    "planned_desc": "A topographical relief map of the Himalayas fills the frame, with a crosshair icon centered over the disputed mountain range and a subtle pulsing glow in the accent color.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-SPLIT",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "A topographical relief map of the Himalayas filling the frame",
+      "A crosshair icon centered over the disputed mountain range",
+      "A subtle pulsing glow in the accent color"
+    ],
+    "unexpected": [
+      "Typography reading 'Sovereignty contested'",
+      "Typography reading 'Territorial sovereignty remains heavily contested in the Himalayas'",
+      "Large heading elements and varying font weights and sizes"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered video displays animated kinetic typography instead of the requested geographical relief map and crosshair icon.",
+    "frames": [
+      {
+        "at": 41.35,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-8-25.png",
+        "size": "810x1440",
+        "mean": 250.24,
+        "ink_fraction": 0.0179,
+        "ink_bbox": {
+          "x": 37,
+          "y": 107,
+          "w": 472,
+          "h": 1031
+        }
+      },
+      {
+        "at": 42.5,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-8-50.png",
+        "size": "810x1440",
+        "mean": 246.33,
+        "ink_fraction": 0.0365,
+        "ink_bbox": {
+          "x": 37,
+          "y": 110,
+          "w": 736,
+          "h": 1088
+        }
+      },
+      {
+        "at": 43.65,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-8-75.png",
+        "size": "810x1440",
+        "mean": 248.33,
+        "ink_fraction": 0.0277,
+        "ink_bbox": {
+          "x": 36,
+          "y": 105,
+          "w": 740,
+          "h": 1033
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-9",
+    "index": 9,
+    "sentence": "Nepal's Ministry of Foreign Affairs will reject India's map during upcoming bilateral talks.",
+    "planned_type": "PHOTO",
+    "planned_desc": "A stark typographic conclusion set against a solid dark background with oversized serif type reading 'Upcoming bilateral talks', accompanied by a small scale icon underneath representing ongoing diplomatic negotiations.",
+    "rendered_type": "MAP",
+    "rendered_composition": "MAP-CENTERED",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "stark typographic conclusion set against a solid dark background",
+      "oversized serif type reading 'Upcoming bilateral talks'",
+      "small scale icon underneath representing ongoing diplomatic negotiations"
+    ],
+    "unexpected": [
+      "light background instead of solid dark background",
+      "map of India and surrounding region",
+      "location pin icon on the map",
+      "text reading 'Bilateral talks will test the border', 'Will reject India's map', etc.",
+      "serif type reading 'India'"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan described a typographic conclusion screen, but the rendered frames show a map graphic with completely different text and visuals.",
+    "frames": [
+      {
+        "at": 46.05,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-9-25.png",
+        "size": "810x1440",
+        "mean": 238.39,
+        "ink_fraction": 0.0792,
+        "ink_bbox": {
+          "x": 17,
+          "y": 142,
+          "w": 773,
+          "h": 996
+        }
+      },
+      {
+        "at": 47.3,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-9-50.png",
+        "size": "810x1440",
+        "mean": 239.53,
+        "ink_fraction": 0.0744,
+        "ink_bbox": {
+          "x": 20,
+          "y": 104,
+          "w": 765,
+          "h": 1026
+        }
+      },
+      {
+        "at": 48.55,
+        "path": "data\\audit\\plan-vs-render\\ch-9\\beat-9-75.png",
+        "size": "810x1440",
+        "mean": 237.82,
+        "ink_fraction": 0.082,
+        "ink_bbox": {
+          "x": 18,
+          "y": 100,
+          "w": 769,
+          "h": 1038
+        }
+      }
+    ]
+  }
+]

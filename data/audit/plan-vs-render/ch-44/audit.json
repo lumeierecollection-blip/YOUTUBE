@@ -1,0 +1,174 @@
+{
+  "channel": "ch-44",
+  "model": "gemini-3.5-flash-lite",
+  "results": [
+    {
+      "index": 0,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "stark dark terminal window",
+        "three empty command prompts blinking synchronously",
+        "oversized numeral 3 occupying the upper third",
+        "thin red warning line underlining the text"
+      ],
+      "unexpected": [
+        "white background",
+        "serif and sans-serif headline text reading 'Coding with AI impossible'",
+        "subtitle text displaying portions of the sentence ('Running three terminals...')",
+        "counter '01 / 09' in the top right corner",
+        "small horizontal black line icon above the counter",
+        "gold underline beneath the headline in the 75% frame"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual content is completely unrelated to the scene description provided in the plan."
+    },
+    {
+      "index": 1,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "Three distinct terminal windows stacked vertically side-by-side",
+        "Scrolling code lines at different speeds",
+        "Small sans label reading WORKFLOWS STALL below the stack"
+      ],
+      "unexpected": [
+        "Large typography ('Terminals juggle simultaneously', large number '3')",
+        "Kinetic text animation displaying the narration transcript"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered video shows kinetic typography of the script instead of the described terminal windows and code blocks."
+    },
+    {
+      "index": 2,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "A real screenshot of a GitHub issue page from Bright Coding",
+        "An issue thread opened in October 2026",
+        "A small sans label reading OCTOBER 2026 at the bottom"
+      ],
+      "unexpected": [
+        "Large heading 'GitHub struggle exposed'",
+        "GitHub octocat logo graphic in the center",
+        "Subtitle text 'Bright Coding exposed this exact struggle on GitHub' with animated highlighting/underlining",
+        "Source attribution text at the bottom right ('Source: commons.wikimedia.org')",
+        "Top right label 'EXPOSED ON'"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visuals rendered are completely different graphics and text elements rather than the requested GitHub issue page screenshot and October 2026 label."
+    },
+    {
+      "index": 3,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "minimalist line chart",
+        "invisible upward trajectory",
+        "deep monochrome grid",
+        "single bold question mark centered in the upper third"
+      ],
+      "unexpected": [
+        "light background instead of deep monochrome",
+        "radar/sonar graphic element in the center",
+        "large heading text 'Tracking silent processes'",
+        "caption text at the bottom 'How do you track silent coding processes'",
+        "slide/page numbering '04 / 09' in the top left"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual elements rendered bear no resemblance to the scene description provided in the visual plan."
+    },
+    {
+      "index": 4,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "A clean portrait photo of Pablo Delucca centered in the lower half of the frame",
+        "A small open-source badge floating in the upper right"
+      ],
+      "unexpected": [
+        "Large typography reading 'Pablo Delucca'",
+        "Subtitle text reading 'PIXEL AGENTS FIX'",
+        "Animated caption text appearing incrementally ('Pablo Delucca built an open-source', 'Agents', 'Agents but tracking them remains')",
+        "A small graphic line element in the upper right"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered video displays animated text captions corresponding to the voiceover instead of showing the requested portrait photo and open-source badge."
+    },
+    {
+      "index": 5,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "High-contrast visual pixel-art grid filling the center frame",
+        "Stark 1970s monochrome terminal emulator wireframe pushed to the background"
+      ],
+      "unexpected": [
+        "Large gold number '1970'",
+        "Large text at the top reading 'Pixel art office interface'",
+        "Subtitles displaying portions of the sentence ('Pixel Agents replaces opaque', '1970s terminal emulators', etc.)",
+        "Plain white background with standard typography"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered frames display kinetic typography and captions instead of the described visual pixel-art grid and terminal wireframe."
+    },
+    {
+      "index": 6,
+      "match": "PARTIAL",
+      "present": [
+        "VS Code interface view (getting started / sidebar elements visible)"
+      ],
+      "missing": [
+        "Extension marketplace view",
+        "Search bar highlighted",
+        "Identifier pablodelucca.pixel-agents typed inside the search bar"
+      ],
+      "unexpected": [
+        "Large overlapping subtitle/caption text overlaying the screen (\"Extension installation identifier\", narrator text subtitles)",
+        "Recommended and Walkthroughs cards from VS Code startup screen",
+        "Source attribution watermark at the bottom right"
+      ],
+      "timing_correct": false,
+      "timing_note": "Instead of showing the extension marketplace and search bar with the requested identifier as described in the visual plan, the video shows a generic VS Code startup/welcome interface with large caption overlays showing narrator subtitles."
+    },
+    {
+      "index": 7,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "A code workspace window",
+        "A small population of distinct pixel-art character sprites",
+        "Sprites animating inside the sidebar area"
+      ],
+      "unexpected": [
+        "White background",
+        "Large typographic word 'Visibly' in the center",
+        "Smaller text at the top reading 'Agents rendered visibly'",
+        "Kinetic typography text elements animating at the bottom ('Every active agent now...', 'renders visibly', 'workspace')",
+        "A horizontal line icon in the top left"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered visuals completely mismatch the planned description (showing text typography instead of a code workspace with pixel-art sprites), so timing cannot be evaluated as correct."
+    },
+    {
+      "index": 8,
+      "match": "PARTIAL",
+      "present": [
+        "Clean minimalist monochrome style",
+        "Repository download button/icon (GitHub logo)"
+      ],
+      "missing": [
+        "Split screen layout",
+        "Bold oversized number one representing complete control"
+      ],
+      "unexpected": [
+        "Large typography heading reading 'Manage coding Agents today' with gold coloring on 'Manage'",
+        "Page indicator / step counter '09 / 09' in the top right",
+        "Source attribution text at the bottom right ('Source: commons.wikimedia.org')",
+        "Body text captions appearing progressively ('Download Pixel Agents on GitHub today to manage your')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered frames show a completely different layout (text overlay instead of the described split-screen with an oversized number one) and progressive text rendering that corresponds to the narration, but fails to match the visual plan described."
+    }
+  ]
+}

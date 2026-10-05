@@ -1,0 +1,855 @@
+{
+  "channel": "ch-26",
+  "run": "37313431912",
+  "mp4": "C:/Users/user/AppData/Local/Temp/opencode/audit37313431912/queues/qa-queues-26-37313431912/rejected/base-vault-whitelist-hack-6m-2026-shorts-shorts-2026-10-05.mp4",
+  "video": "base-vault-whitelist-hack-6m-2026-shorts-shorts-2026-10-05.mp4",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "beats": [
+    {
+      "index": 0,
+      "sentence": "Six million dollars vanished from a Base network vault after attackers abused a single whitelist permission.",
+      "scene_description": "A large, bold serif headline reading 'Six million vanished' fills the center of the frame in stark monochrome, with the numeral 6,000,000 in oversized type; below it, a small sans label reads BASE NETWORK VAULT. A thin accent line draws underneath across the beat.",
+      "named_entities": [
+        {
+          "type": "object",
+          "name": "Base network vault"
+        },
+        {
+          "type": "number",
+          "name": "Six million dollars"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PROCESS",
+      "data_planned": {
+        "nodes": [
+          "attackers abused",
+          "Base network vault"
+        ]
+      },
+      "entity_anchor_word": "million",
+      "visual_events": [
+        {
+          "type": "depletion",
+          "label": "vault funds vanished",
+          "magnitude": 6000000
+        }
+      ],
+      "rendered": {
+        "visual_type": "PROCESS",
+        "composition": "PROCESS-FULL",
+        "boxes": [
+          "headline",
+          "nodes0",
+          "nodes1"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 0.1,
+        "duration_sec": 6.3,
+        "headline_size": 140,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 1.675,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-0-25.png",
+          "size": "810x1440",
+          "mean": 246.76,
+          "ink_fraction": 0.0385,
+          "ink_bbox": {
+            "x": 33,
+            "y": 107,
+            "w": 585,
+            "h": 1077
+          }
+        },
+        {
+          "at": 3.25,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-0-50.png",
+          "size": "810x1440",
+          "mean": 245.71,
+          "ink_fraction": 0.0431,
+          "ink_bbox": {
+            "x": 32,
+            "y": 106,
+            "w": 746,
+            "h": 1023
+          }
+        },
+        {
+          "at": 4.825,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-0-75.png",
+          "size": "810x1440",
+          "mean": 244.28,
+          "ink_fraction": 0.0494,
+          "ink_bbox": {
+            "x": 34,
+            "y": 108,
+            "w": 742,
+            "h": 1085
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "sentence": "SigIntZero reported that a 3-of-7 Safe executed a call at 08:53 UTC on October 4, 2026.",
+      "scene_description": "A structured timeline chart fills the lower half of the frame, showing 08:53 UTC on October 4, 2026; above it, the institutional name SigIntZero in small caps. A small text label indicates 3-of-7 Safe, with a slow push in on the timestamp.",
+      "named_entities": [
+        {
+          "type": "institution",
+          "name": "SigIntZero"
+        },
+        {
+          "type": "object",
+          "name": "Safe"
+        },
+        {
+          "type": "number",
+          "name": "3-of-7"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "COUNTER",
+      "data_planned": {
+        "value": "3",
+        "label": "of-7 Safe executed a"
+      },
+      "entity_anchor_word": "SigIntZero",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "3-of-7 Safe execution"
+        }
+      ],
+      "rendered": {
+        "visual_type": "COUNTER",
+        "composition": "NUMBER-FULL",
+        "boxes": [
+          "headline",
+          "label",
+          "number"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 6.4,
+        "duration_sec": 8.03,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "count-up"
+      },
+      "frames": [
+        {
+          "at": 8.408,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-1-25.png",
+          "size": "810x1440",
+          "mean": 246.44,
+          "ink_fraction": 0.0376,
+          "ink_bbox": {
+            "x": 146,
+            "y": 105,
+            "w": 642,
+            "h": 1079
+          }
+        },
+        {
+          "at": 10.415,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-1-50.png",
+          "size": "810x1440",
+          "mean": 246.03,
+          "ink_fraction": 0.0394,
+          "ink_bbox": {
+            "x": 123,
+            "y": 103,
+            "w": 667,
+            "h": 1090
+          }
+        },
+        {
+          "at": 12.422,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-1-75.png",
+          "size": "810x1440",
+          "mean": 247.86,
+          "ink_fraction": 0.0313,
+          "ink_bbox": {
+            "x": 205,
+            "y": 103,
+            "w": 584,
+            "h": 1026
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "sentence": "PublicAML noted the vault lost 1,783 wstETH instantly.",
+      "scene_description": "A large number, 1,783, fills the center of the frame with the label wstETH below it in small caps; behind it, a downward-trending chart line illustrates an instant drop, with the source label PublicAML in the upper corner.",
+      "named_entities": [
+        {
+          "type": "institution",
+          "name": "PublicAML"
+        },
+        {
+          "type": "number",
+          "name": "1,783"
+        },
+        {
+          "type": "object",
+          "name": "wstETH"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": "PublicAML",
+      "visual_events": [
+        {
+          "type": "depletion",
+          "label": "1,783 wstETH lost",
+          "magnitude": 1783
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "lead_phrase"
+        ],
+        "name_card": {
+          "name": "PublicAML"
+        },
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 14.43,
+        "duration_sec": 6.33,
+        "headline_size": 208,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 16.012,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-2-25.png",
+          "size": "810x1440",
+          "mean": 246.65,
+          "ink_fraction": 0.038,
+          "ink_bbox": {
+            "x": 36,
+            "y": 98,
+            "w": 738,
+            "h": 1100
+          }
+        },
+        {
+          "at": 17.595,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-2-50.png",
+          "size": "810x1440",
+          "mean": 247.34,
+          "ink_fraction": 0.0363,
+          "ink_bbox": {
+            "x": 37,
+            "y": 97,
+            "w": 738,
+            "h": 1042
+          }
+        },
+        {
+          "at": 19.178,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-2-75.png",
+          "size": "810x1440",
+          "mean": 246.54,
+          "ink_fraction": 0.0384,
+          "ink_bbox": {
+            "x": 37,
+            "y": 99,
+            "w": 737,
+            "h": 1039
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "sentence": "How did an approved contract drain the funds without breaking core protocol logic?",
+      "scene_description": "A conceptual text-and-node layout fills the frame, showing an approved contract linking directly to a drained fund node. Above it, in small caps, the headline 'Approved contract drain' with a question mark.",
+      "named_entities": [],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "contract drains funds"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "cutout0"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [
+          "checkmark"
+        ],
+        "start_sec": 20.77,
+        "duration_sec": 4.93,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 22.002,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-3-25.png",
+          "size": "810x1440",
+          "mean": 242.38,
+          "ink_fraction": 0.0654,
+          "ink_bbox": {
+            "x": 35,
+            "y": 97,
+            "w": 741,
+            "h": 1025
+          }
+        },
+        {
+          "at": 23.235,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-3-50.png",
+          "size": "810x1440",
+          "mean": 241.37,
+          "ink_fraction": 0.0701,
+          "ink_bbox": {
+            "x": 37,
+            "y": 99,
+            "w": 738,
+            "h": 1062
+          }
+        },
+        {
+          "at": 24.468,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-3-75.png",
+          "size": "810x1440",
+          "mean": 242.94,
+          "ink_fraction": 0.0634,
+          "ink_bbox": {
+            "x": 35,
+            "y": 96,
+            "w": 742,
+            "h": 1026
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "sentence": "MSB Intel revealed the exploit took 25 minutes, but the worst part was yet to come.",
+      "scene_description": "A minimalist horizontal progress bar fills the center of the frame, ticking up to 25 minutes; above it, MSB Intel appears in small caps, with the headline '25 minutes' in oversized numerals.",
+      "named_entities": [
+        {
+          "type": "institution",
+          "name": "MSB Intel"
+        },
+        {
+          "type": "number",
+          "name": "25"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "COUNTER",
+      "data_planned": {
+        "value": "25",
+        "label": "minutes"
+      },
+      "entity_anchor_word": "Intel",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "exploit duration 25 minutes"
+        }
+      ],
+      "rendered": {
+        "visual_type": "COUNTER",
+        "composition": "NUMBER-FULL",
+        "boxes": [
+          "headline",
+          "label",
+          "number"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 25.7,
+        "duration_sec": 6.03,
+        "headline_size": 110,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": true
+        },
+        "entrance_style": "staggered",
+        "animation_family": "count-up"
+      },
+      "frames": [
+        {
+          "at": 27.207,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-4-25.png",
+          "size": "810x1440",
+          "mean": 247.33,
+          "ink_fraction": 0.0221,
+          "ink_bbox": {
+            "x": 37,
+            "y": 105,
+            "w": 634,
+            "h": 1033
+          }
+        },
+        {
+          "at": 28.715,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-4-50.png",
+          "size": "810x1440",
+          "mean": 240.44,
+          "ink_fraction": 0.0608,
+          "ink_bbox": {
+            "x": 38,
+            "y": 104,
+            "w": 481,
+            "h": 1025
+          }
+        },
+        {
+          "at": 30.223,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-4-75.png",
+          "size": "810x1440",
+          "mean": 239.06,
+          "ink_fraction": 0.0671,
+          "ink_bbox": {
+            "x": 36,
+            "y": 106,
+            "w": 568,
+            "h": 1087
+          }
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "sentence": "Attackers initiated the assault on Base with a test transfer of 1 wstETH.",
+      "scene_description": "A data transfer flow chart occupies the center of the frame, visualizing a test transfer of 1 wstETH onto the Base blockchain network interface; a small label reads BASE NETWORK.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "1"
+        },
+        {
+          "type": "object",
+          "name": "wstETH"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": "Base",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "test transfer 1 wstETH"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "underline"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 31.73,
+        "duration_sec": 5.83,
+        "headline_size": 96,
+        "headline_align": "center",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 33.188,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-5-25.png",
+          "size": "810x1440",
+          "mean": 250.8,
+          "ink_fraction": 0.0151,
+          "ink_bbox": {
+            "x": 35,
+            "y": 98,
+            "w": 660,
+            "h": 1031
+          }
+        },
+        {
+          "at": 34.645,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-5-50.png",
+          "size": "810x1440",
+          "mean": 251.68,
+          "ink_fraction": 0.0113,
+          "ink_bbox": {
+            "x": 36,
+            "y": 98,
+            "w": 509,
+            "h": 1031
+          }
+        },
+        {
+          "at": 36.102,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-5-75.png",
+          "size": "810x1440",
+          "mean": 250.75,
+          "ink_fraction": 0.0156,
+          "ink_bbox": {
+            "x": 36,
+            "y": 97,
+            "w": 657,
+            "h": 1032
+          }
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "sentence": "That initial probe bypassed every security checkpoint because the contract was already whitelisted.",
+      "scene_description": "A security checklist diagram fills the frame with multiple items checked, where a highlighted row shows the whitelisted contract status; a red accent line strikes through a warning icon.",
+      "named_entities": [],
+      "composition_planned": null,
+      "visual_type_planned": "PROCESS",
+      "data_planned": {
+        "nodes": [
+          "contract",
+          "security checkpoint"
+        ]
+      },
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "structure_break",
+          "label": "bypassed security checkpoint"
+        }
+      ],
+      "rendered": {
+        "visual_type": "PROCESS",
+        "composition": "PROCESS-FULL",
+        "boxes": [
+          "kicker",
+          "headline",
+          "nodes0",
+          "nodes1"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 37.57,
+        "duration_sec": 5.77,
+        "headline_size": 104,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 39.013,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-6-25.png",
+          "size": "810x1440",
+          "mean": 248.2,
+          "ink_fraction": 0.0319,
+          "ink_bbox": {
+            "x": 32,
+            "y": 144,
+            "w": 585,
+            "h": 999
+          }
+        },
+        {
+          "at": 40.455,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-6-50.png",
+          "size": "810x1440",
+          "mean": 247.34,
+          "ink_fraction": 0.0359,
+          "ink_bbox": {
+            "x": 33,
+            "y": 104,
+            "w": 744,
+            "h": 1025
+          }
+        },
+        {
+          "at": 41.898,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-6-75.png",
+          "size": "810x1440",
+          "mean": 245.23,
+          "ink_fraction": 0.0452,
+          "ink_bbox": {
+            "x": 32,
+            "y": 102,
+            "w": 746,
+            "h": 1091
+          }
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "sentence": "The entire 1,783 wstETH drained seamlessly before anyone revoked access.",
+      "scene_description": "A large data accumulation chart shows 1,783 wstETH draining fully across the frame before a revocation lock icon can activate; the numeral 1,783 dominates the upper center.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "1,783"
+        },
+        {
+          "type": "object",
+          "name": "wstETH"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": "drained",
+      "visual_events": [
+        {
+          "type": "depletion",
+          "label": "entire 1,783 wstETH drained",
+          "magnitude": 1783
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-SPLIT",
+        "boxes": [
+          "headline",
+          "statement",
+          "kicker"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 43.33,
+        "duration_sec": 7.13,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 45.112,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-7-25.png",
+          "size": "810x1440",
+          "mean": 251.69,
+          "ink_fraction": 0.0153,
+          "ink_bbox": {
+            "x": 101,
+            "y": 105,
+            "w": 670,
+            "h": 1079
+          }
+        },
+        {
+          "at": 46.895,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-7-50.png",
+          "size": "810x1440",
+          "mean": 252.53,
+          "ink_fraction": 0.0124,
+          "ink_bbox": {
+            "x": 36,
+            "y": 102,
+            "w": 738,
+            "h": 1027
+          }
+        },
+        {
+          "at": 48.677,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-7-75.png",
+          "size": "810x1440",
+          "mean": 249.9,
+          "ink_fraction": 0.024,
+          "ink_bbox": {
+            "x": 37,
+            "y": 106,
+            "w": 735,
+            "h": 1087
+          }
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "sentence": "Review all 7 Safe signers immediately.",
+      "scene_description": "A stark monochrome typography slide fills the frame with the oversized numeral 7 at the center, surrounded by the serif headline 'Review all 7 signers immediately' in sentence case; a small sans label at the base reads URGENT AUDIT.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "7"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "COUNTER",
+      "data_planned": {
+        "value": "7",
+        "label": "Safe signers immediately"
+      },
+      "entity_anchor_word": "signers",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "review all 7 Safe signers"
+        }
+      ],
+      "rendered": {
+        "visual_type": "COUNTER",
+        "composition": "NUMBER-FULL",
+        "boxes": [
+          "headline",
+          "label",
+          "number"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 50.47,
+        "duration_sec": 2.5,
+        "headline_size": 110,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "count-up"
+      },
+      "frames": [
+        {
+          "at": 51.095,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-8-25.png",
+          "size": "810x1440",
+          "mean": 248.04,
+          "ink_fraction": 0.0246,
+          "ink_bbox": {
+            "x": 37,
+            "y": 102,
+            "w": 380,
+            "h": 1027
+          }
+        },
+        {
+          "at": 51.72,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-8-50.png",
+          "size": "810x1440",
+          "mean": 246.34,
+          "ink_fraction": 0.034,
+          "ink_bbox": {
+            "x": 37,
+            "y": 105,
+            "w": 625,
+            "h": 1024
+          }
+        },
+        {
+          "at": 52.345,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-26\\beat-8-75.png",
+          "size": "810x1440",
+          "mean": 244.8,
+          "ink_fraction": 0.0411,
+          "ink_bbox": {
+            "x": 38,
+            "y": 107,
+            "w": 630,
+            "h": 1086
+          }
+        }
+      ]
+    }
+  ]
+}

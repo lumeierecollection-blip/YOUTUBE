@@ -1,0 +1,192 @@
+{
+  "channel": "ch-49",
+  "model": "gemini-3.5-flash-lite",
+  "results": [
+    {
+      "index": 0,
+      "match": "NO",
+      "present": [
+        "A portrait of Harvey Keitel"
+      ],
+      "missing": [
+        "A high-contrast black-and-white portrait of Harvey Keitel (the rendered portrait is full color)",
+        "The phrase 'WILL HARVEY KEITEL' in a large serif font behind the portrait",
+        "A small sans label at the bottom reading 'THE METHOD'"
+      ],
+      "unexpected": [
+        "A large serif header at the top reading 'Harvey Keitel' (with 'Harvey' in green)",
+        "A horizontal line/accent at the top right",
+        "The caption text appearing dynamically at the bottom ('Will Harvey Keitel survive New York's brutal scene in The Method')",
+        "Source attribution text at the bottom right ('Source: commons.wikimedia.org')",
+        "Drop shadow under the portrait"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual elements rendered do not correspond to the described visual plan at all; instead, it is rendering a kinetic typography caption sequence below a stock photo and header."
+    },
+    {
+      "index": 1,
+      "match": "NO",
+      "present": [
+        "DIRECTOR text",
+        "Gaurav Bhardwaj text",
+        "headline in upper frame ('Cutthroat ambition captured')"
+      ],
+      "missing": [
+        "black-and-white promotional still of Gaurav Bhardwaj seated in a dimly lit New York studio",
+        "lower third placement"
+      ],
+      "unexpected": [
+        "white background instead of a photo/studio setting",
+        "green and black circular diagram nodes with an arrow pointing from DIRECTOR GAURAV BHARDWAJ to FILM",
+        "random floating text elements and varying subtitles ('Director Gaurav Bhardwaj', 'captures cutthroat ambition', 'in his debut feature')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual elements completely failed to render the described video plan, showing random abstract diagrams and text instead of the requested promotional still and lower third."
+    },
+    {
+      "index": 2,
+      "match": "PARTIAL",
+      "present": [
+        "Travelin Bone Entertainment logo"
+      ],
+      "missing": [
+        "Imagination Infinite Motion Pictures logo (missing in full form, only partial text appears)",
+        "placed side by side in the center of the frame",
+        "dark monochrome background",
+        "slow zoom out",
+        "small sans text: CO-PRODUCTION"
+      ],
+      "unexpected": [
+        "White background instead of dark monochrome",
+        "Animated subtitle text displaying the sentence word by word ('Travelin Bone Entertainment produced this gritty story alongside Imagination Infinite Motion...')",
+        "Green color on 'Entertainment'",
+        "The text layout is completely different (logos/text stacked or acting as captions rather than the main centered visual)"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered frames show a kinetic text subtitle overlay rather than the requested side-by-side logo lockup with a 'CO-PRODUCTION' header on a dark background."
+    },
+    {
+      "index": 3,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "minimalist black-and-white photo of an empty theater stage",
+        "single spotlight centered in the frame",
+        "thin line drawing across the bottom",
+        "small caps text 'THE ACTING TEACHER'"
+      ],
+      "unexpected": [
+        "white background",
+        "green header text 'Extremes of acting' and 'DRIVES AN'",
+        "circles containing 'DRIVES' and 'EXTREMES'",
+        "green arrow connecting the circles",
+        "caption text at the bottom ('What drives an acting teacher to extremes')",
+        "underlined text on 'extremes'"
+      ],
+      "timing_correct": false,
+      "timing_note": "The entire visual content rendered has no relation to the requested empty theater stage and spotlight, so timing cannot be evaluated against the visual plan."
+    },
+    {
+      "index": 4,
+      "match": "NO",
+      "present": [
+        "small caps text related to the price of ambition (though modified as 'STEEP PRICE OF AMBITION')"
+      ],
+      "missing": [
+        "A large oversized number '1' filling the center of the frame in stark serif type",
+        "THE PRICE OF BLIND AMBITION in small caps below the number",
+        "A subtle vertical line drawing downward behind the number"
+      ],
+      "unexpected": [
+        "The text 'Travelin Bone Entertainment' displayed multiple times in different styles and fonts (large serif black and green, and smaller sans-serif/serif at the bottom)",
+        "Narrative subtitle text appearing at the bottom ('Travelin Bone Entertainment highlights just how steep...')",
+        "A horizontal line and text at the top right ('HIGHLIGHTS JUST')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visuals rendered do not match the planned beat at all; instead of rendering the oversized number '1' and the vertical line, it is rendering a completely different layout featuring the narrator's voiceover text and company name."
+    },
+    {
+      "index": 5,
+      "match": "PARTIAL",
+      "present": [
+        "A numeral 1 (though part of the text string '1 ruthless reality' at the top rather than solely centered as a large standalone numeral)",
+        "The phrase 'ruthless reality' (part of the top text string)"
+      ],
+      "missing": [
+        "A large numeral 1 centered distinctly in the frame",
+        "A small sans label reading NEW YORK THEATER TRAINING (only 'theater training' appears later at the bottom, and 'New York' appears on a map)"
+      ],
+      "unexpected": [
+        "A map graphic of New York state with the text 'New York' across it and a map pin icon",
+        "Subtitles at the bottom showing the narration text ('The Method exposes one...', etc.)",
+        "Top-right text reading 'EXPOSES 1'",
+        "A slow push-in or visual layout entirely centered around a New York map rather than a simple centered numeral 1 with side labels"
+      ],
+      "timing_correct": true,
+      "timing_note": "The elements animate progressively in sync with the narration over the course of the beat, though the visual content deviates significantly from the planned description."
+    },
+    {
+      "index": 6,
+      "match": "NO",
+      "present": [
+        "Text referencing Gaurav Bhardwaj"
+      ],
+      "missing": [
+        "A black-and-white behind-the-scenes photograph of Gaurav Bhardwaj directing actors inside a New York studio filling the upper half of the frame",
+        "Small caps text saying 'NEW YORK STUDIOS' below the photograph"
+      ],
+      "unexpected": [
+        "White background instead of photo",
+        "Large typography ('Raw ambition inside studios', 'CAPTURES RAW')",
+        "Circular diagram nodes ('GAURAV BHARDWAY', 'AUDIENCES') connected by a green arrow",
+        "Subtitles at the bottom showing different parts of the sentence"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual elements rendered are completely different from the described visual plan (showing abstract diagrammatic elements and subtitles instead of a behind-the-scenes photo)."
+    },
+    {
+      "index": 7,
+      "match": "PARTIAL",
+      "present": [
+        "A numeral 1 (though not large and centered, it is present in the lower right area)",
+        "The text 'ACTOR SURRENDERS' (present as part of the unfolding sentence 'exposes what one actor surrenders')",
+        "The logo of Imagination Infinite Motion Pictures behind the number"
+      ],
+      "missing": [
+        "A large numeral 1 centered in the frame",
+        "The text 'ACTOR SURRENDERS' positioned directly below the numeral 1 in small caps"
+      ],
+      "unexpected": [
+        "A horizontal line at the top left of the frame",
+        "Animated unfolding sentence text ('This feature by Imagination exposes what one actor surrenders') appearing at the bottom instead of just the described elements",
+        "Different positioning of the numeral 1 (bottom right instead of large and centered)"
+      ],
+      "timing_correct": false,
+      "timing_note": "The elements are animating progressively as a full sentence ('This feature by Imagination exposes what one actor surrenders'), whereas the scene description only specified a large centered numeral 1 with 'ACTOR SURRENDERS' below it and the logo behind it."
+    },
+    {
+      "index": 8,
+      "match": "NO",
+      "present": [
+        "The phrase 'Watch the film'"
+      ],
+      "missing": [
+        "Solid black screen",
+        "Centered serif text reading 'MASTERCLASS IN ACTING' in sentence case",
+        "White glowing text",
+        "Small caps for 'WATCH THE FILM'",
+        "Very slow push in across the beat"
+      ],
+      "unexpected": [
+        "White background instead of black",
+        "Green colored text at the top ('Watch the film')",
+        "Massive black serif text in the center reading 'Film'",
+        "Black lowercase text at the bottom growing progressively across frames ('Watch the film', 'Watch the film to witness this', 'Watch the film to witness this masterclass')",
+        "Black underline on the word 'film' at the bottom",
+        "A small horizontal black line at the top right"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered video displays an entirely different visual execution with progressive text reveal on a white background instead of the requested black screen with glowing text and slow push in."
+    }
+  ]
+}

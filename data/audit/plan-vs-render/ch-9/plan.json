@@ -1,0 +1,951 @@
+{
+  "channel": "ch-9",
+  "run": "37313431912",
+  "mp4": "C:/Users/user/AppData/Local/Temp/opencode/audit37313431912/queues/qa-queues-9-37313431912/rejected/india-kalapani-territorial-map-dispute-nepal-shorts-shorts-2026-10-05.mp4",
+  "video": "india-kalapani-territorial-map-dispute-nepal-shorts-shorts-2026-10-05.mp4",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "beats": [
+    {
+      "index": 0,
+      "sentence": "One new political map just redrew a disputed mountain border between two nuclear neighbors.",
+      "scene_description": "A dark monochrome background where a detailed political map of the Himalayan region slowly fades into view, a thin accent-colored line tracing a disputed border between two territories, with oversized numerals reading 2 in the lower right corner.",
+      "named_entities": [],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": "map",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "new map redrew border",
+          "magnitude": 0.8
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "underline"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 0.1,
+        "duration_sec": 5.7,
+        "headline_size": 140,
+        "headline_align": "center",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 1.525,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-0-25.png",
+          "size": "810x1440",
+          "mean": 248.97,
+          "ink_fraction": 0.0279,
+          "ink_bbox": {
+            "x": 38,
+            "y": 97,
+            "w": 736,
+            "h": 1046
+          }
+        },
+        {
+          "at": 2.95,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-0-50.png",
+          "size": "810x1440",
+          "mean": 247.2,
+          "ink_fraction": 0.0358,
+          "ink_bbox": {
+            "x": 38,
+            "y": 98,
+            "w": 736,
+            "h": 1095
+          }
+        },
+        {
+          "at": 4.375,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-0-75.png",
+          "size": "810x1440",
+          "mean": 248.41,
+          "ink_fraction": 0.0317,
+          "ink_bbox": {
+            "x": 38,
+            "y": 97,
+            "w": 737,
+            "h": 1097
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "sentence": "India's Ministry of Home Affairs published the update on November 2.",
+      "scene_description": "The official seal and headquarters building of the India's Ministry of Home Affairs fills the centre of the frame in a crisp black and white photograph, with the date November 2 appearing in a small accent-coloured label below.",
+      "named_entities": [
+        {
+          "type": "institution",
+          "name": "India's Ministry of Home Affairs"
+        },
+        {
+          "type": "place",
+          "name": "India"
+        },
+        {
+          "type": "number",
+          "name": "November 2"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "India's Ministry of Home Affairs",
+        "entity_type": "institution"
+      },
+      "entity_anchor_word": "Ministry",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "update published"
+        }
+      ],
+      "rendered": {
+        "visual_type": "MAP",
+        "composition": "MAP-CENTERED",
+        "boxes": [
+          "kicker",
+          "headline",
+          "map"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 5.8,
+        "duration_sec": 4.57,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 6.942,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-1-25.png",
+          "size": "810x1440",
+          "mean": 241.89,
+          "ink_fraction": 0.0765,
+          "ink_bbox": {
+            "x": 17,
+            "y": 142,
+            "w": 771,
+            "h": 996
+          }
+        },
+        {
+          "at": 8.085,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-1-50.png",
+          "size": "810x1440",
+          "mean": 240.1,
+          "ink_fraction": 0.084,
+          "ink_bbox": {
+            "x": 19,
+            "y": 105,
+            "w": 765,
+            "h": 1088
+          }
+        },
+        {
+          "at": 9.227,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-1-75.png",
+          "size": "810x1440",
+          "mean": 241.7,
+          "ink_fraction": 0.0769,
+          "ink_bbox": {
+            "x": 18,
+            "y": 101,
+            "w": 768,
+            "h": 1028
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "sentence": "Kalapani and Lipulekh landed directly inside Indian territory on the document.",
+      "scene_description": "A close-up of an official government document fills the frame, with two highlighted locations, Kalapani and Lipulekh, circled in the accent colour as an arrow points them squarely inside Indian territory.",
+      "named_entities": [
+        {
+          "type": "place",
+          "name": "Kalapani"
+        },
+        {
+          "type": "place",
+          "name": "Lipulekh"
+        },
+        {
+          "type": "place",
+          "name": "Indian territory"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": "Kalapani",
+      "visual_events": [
+        {
+          "type": "causation",
+          "label": "landed inside territory"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "lead_phrase"
+        ],
+        "name_card": {
+          "name": "Kalapani"
+        },
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 10.37,
+        "duration_sec": 5.33,
+        "headline_size": 240,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 11.702,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-2-25.png",
+          "size": "810x1440",
+          "mean": 244.82,
+          "ink_fraction": 0.046,
+          "ink_bbox": {
+            "x": 37,
+            "y": 97,
+            "w": 737,
+            "h": 1041
+          }
+        },
+        {
+          "at": 13.035,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-2-50.png",
+          "size": "810x1440",
+          "mean": 243.01,
+          "ink_fraction": 0.0536,
+          "ink_bbox": {
+            "x": 37,
+            "y": 99,
+            "w": 737,
+            "h": 1094
+          }
+        },
+        {
+          "at": 14.367,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-2-75.png",
+          "size": "810x1440",
+          "mean": 244.3,
+          "ink_fraction": 0.0478,
+          "ink_bbox": {
+            "x": 36,
+            "y": 96,
+            "w": 739,
+            "h": 1047
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "sentence": "Kathmandu reacted with immediate anger.",
+      "scene_description": "A street-level photograph of Kathmandu, showing crowds gathered outside government buildings, with a slow push in toward the center of the frame where a single warning triangle icon pulses in the accent color.",
+      "named_entities": [
+        {
+          "type": "place",
+          "name": "Kathmandu"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Kathmandu",
+        "entity_type": "place"
+      },
+      "entity_anchor_word": "Kathmandu",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "immediate anger"
+        }
+      ],
+      "rendered": {
+        "visual_type": "PHOTO",
+        "composition": "SCENE-FULL",
+        "boxes": [
+          "photo",
+          "rule",
+          "kicker",
+          "headline"
+        ],
+        "name_card": null,
+        "photo": "entities/places/kathmandu.jpg",
+        "concept_visuals": [],
+        "start_sec": 15.7,
+        "duration_sec": 3.2,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 16.5,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-3-25.png",
+          "size": "810x1440",
+          "mean": 72.45,
+          "ink_fraction": 0.9956,
+          "ink_bbox": {
+            "x": 0,
+            "y": 0,
+            "w": 810,
+            "h": 1440
+          }
+        },
+        {
+          "at": 17.3,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-3-50.png",
+          "size": "810x1440",
+          "mean": 79.09,
+          "ink_fraction": 0.9913,
+          "ink_bbox": {
+            "x": 0,
+            "y": 1,
+            "w": 810,
+            "h": 1439
+          }
+        },
+        {
+          "at": 18.1,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-3-75.png",
+          "size": "810x1440",
+          "mean": 85.7,
+          "ink_fraction": 0.9846,
+          "ink_bbox": {
+            "x": 1,
+            "y": 2,
+            "w": 808,
+            "h": 1436
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "sentence": "Will Nepal accept this unilateral border change?",
+      "scene_description": "A stark typographic treatment centred on the screen asking a question about Nepal's border stance, set against a dark monochrome background with a single question mark rendered in the accent color.",
+      "named_entities": [
+        {
+          "type": "place",
+          "name": "Nepal"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "MAP",
+      "data_planned": {
+        "place": "Nepal"
+      },
+      "entity_anchor_word": "Nepal",
+      "visual_events": [
+        {
+          "type": "comparison",
+          "label": "accept or reject"
+        }
+      ],
+      "rendered": {
+        "visual_type": "MAP",
+        "composition": "MAP-CENTERED",
+        "boxes": [
+          "kicker",
+          "headline",
+          "map"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 18.9,
+        "duration_sec": 3.73,
+        "headline_size": 110,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": true
+        },
+        "entrance_style": "staggered",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 19.832,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-4-25.png",
+          "size": "810x1440",
+          "mean": 234.91,
+          "ink_fraction": 0.1024,
+          "ink_bbox": {
+            "x": 35,
+            "y": 144,
+            "w": 755,
+            "h": 999
+          }
+        },
+        {
+          "at": 20.765,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-4-50.png",
+          "size": "810x1440",
+          "mean": 233.85,
+          "ink_fraction": 0.1071,
+          "ink_bbox": {
+            "x": 37,
+            "y": 105,
+            "w": 751,
+            "h": 1079
+          }
+        },
+        {
+          "at": 21.697,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-4-75.png",
+          "size": "810x1440",
+          "mean": 232.86,
+          "ink_fraction": 0.1118,
+          "ink_bbox": {
+            "x": 37,
+            "y": 103,
+            "w": 751,
+            "h": 1090
+          }
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "sentence": "Government spokesperson Gokul Baskota rejected it, but protests quickly erupted across Kathmandu.",
+      "scene_description": "A real photo of demonstrators holding signs in a Kathmandu public square fills the lower half of the frame, while above them a rising chart line indicates the rapid escalation of protests across the city.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Gokul Baskota"
+        },
+        {
+          "type": "place",
+          "name": "Kathmandu"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Gokul Baskota",
+        "entity_type": "person"
+      },
+      "entity_anchor_word": "Baskota",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "protests erupted"
+        }
+      ],
+      "rendered": {
+        "visual_type": "PHOTO",
+        "composition": "SCENE-FULL",
+        "boxes": [
+          "photo",
+          "rule",
+          "kicker",
+          "headline"
+        ],
+        "name_card": null,
+        "photo": "entities/places/kathmandu.jpg",
+        "concept_visuals": [],
+        "start_sec": 22.63,
+        "duration_sec": 6.4,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 24.23,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-5-25.png",
+          "size": "810x1440",
+          "mean": 249.25,
+          "ink_fraction": 0.0279,
+          "ink_bbox": {
+            "x": 82,
+            "y": 98,
+            "w": 697,
+            "h": 1311
+          }
+        },
+        {
+          "at": 25.83,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-5-50.png",
+          "size": "810x1440",
+          "mean": 250.46,
+          "ink_fraction": 0.0217,
+          "ink_bbox": {
+            "x": 127,
+            "y": 97,
+            "w": 652,
+            "h": 1312
+          }
+        },
+        {
+          "at": 27.43,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-5-75.png",
+          "size": "810x1440",
+          "mean": 85.51,
+          "ink_fraction": 0.9867,
+          "ink_bbox": {
+            "x": 1,
+            "y": 1,
+            "w": 809,
+            "h": 1438
+          }
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "sentence": "Jammu and Kashmir split into exactly 2 federal union territories right before the controversy erupted.",
+      "scene_description": "An oversized numeral 2 dominates the center of the frame, flanked by two distinct regional boundary lines splitting apart on a map of Jammu and Kashmir, with small caps reading FEDERAL UNION TERRITORIES below.",
+      "named_entities": [
+        {
+          "type": "place",
+          "name": "Jammu and Kashmir"
+        },
+        {
+          "type": "number",
+          "name": "2"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PROCESS",
+      "data_planned": {
+        "nodes": [
+          "union territories right",
+          "controversy erupted"
+        ]
+      },
+      "entity_anchor_word": "2",
+      "visual_events": [
+        {
+          "type": "structure_break",
+          "label": "split into 2 territories",
+          "magnitude": 2
+        }
+      ],
+      "rendered": {
+        "visual_type": "PROCESS",
+        "composition": "PROCESS-FULL",
+        "boxes": [
+          "kicker",
+          "headline",
+          "nodes0",
+          "nodes1"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 29.03,
+        "duration_sec": 6.57,
+        "headline_size": 104,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 30.672,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-6-25.png",
+          "size": "810x1440",
+          "mean": 245.67,
+          "ink_fraction": 0.0425,
+          "ink_bbox": {
+            "x": 33,
+            "y": 143,
+            "w": 637,
+            "h": 1050
+          }
+        },
+        {
+          "at": 32.315,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-6-50.png",
+          "size": "810x1440",
+          "mean": 245.03,
+          "ink_fraction": 0.0454,
+          "ink_bbox": {
+            "x": 32,
+            "y": 102,
+            "w": 746,
+            "h": 1027
+          }
+        },
+        {
+          "at": 33.958,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-6-75.png",
+          "size": "810x1440",
+          "mean": 243.52,
+          "ink_fraction": 0.0521,
+          "ink_bbox": {
+            "x": 34,
+            "y": 104,
+            "w": 742,
+            "h": 1089
+          }
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "sentence": "Officials in New Delhi triggered regional protests across Kathmandu.",
+      "scene_description": "A line chart comparing the timeline of New Delhi's official announcements with the surge of street demonstrations in Kathmandu, drawing left to right across the monochrome screen in the accent color.",
+      "named_entities": [
+        {
+          "type": "place",
+          "name": "New Delhi"
+        },
+        {
+          "type": "place",
+          "name": "Kathmandu"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": "New",
+      "visual_events": [
+        {
+          "type": "causation",
+          "label": "officials triggered protests"
+        }
+      ],
+      "rendered": {
+        "visual_type": "PHOTO",
+        "composition": "SCENE-FULL",
+        "boxes": [
+          "photo",
+          "rule",
+          "kicker",
+          "headline"
+        ],
+        "name_card": null,
+        "photo": "entities/places/new-delhi.jpg",
+        "concept_visuals": [],
+        "start_sec": 35.6,
+        "duration_sec": 4.6,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 36.75,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-7-25.png",
+          "size": "810x1440",
+          "mean": 51.76,
+          "ink_fraction": 0.995,
+          "ink_bbox": {
+            "x": 0,
+            "y": 0,
+            "w": 810,
+            "h": 1440
+          }
+        },
+        {
+          "at": 37.9,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-7-50.png",
+          "size": "810x1440",
+          "mean": 58.27,
+          "ink_fraction": 0.9827,
+          "ink_bbox": {
+            "x": 1,
+            "y": 2,
+            "w": 808,
+            "h": 1436
+          }
+        },
+        {
+          "at": 39.05,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-7-75.png",
+          "size": "810x1440",
+          "mean": 59.89,
+          "ink_fraction": 0.9957,
+          "ink_bbox": {
+            "x": 0,
+            "y": 0,
+            "w": 810,
+            "h": 1440
+          }
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "sentence": "Territorial sovereignty remains heavily contested in the Himalayas.",
+      "scene_description": "A topographical relief map of the Himalayas fills the frame, with a crosshair icon centered over the disputed mountain range and a subtle pulsing glow in the accent color.",
+      "named_entities": [
+        {
+          "type": "place",
+          "name": "Himalayas"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Himalayas",
+        "entity_type": "place"
+      },
+      "entity_anchor_word": "Himalayas",
+      "visual_events": [
+        {
+          "type": "comparison",
+          "label": "contested territory"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-SPLIT",
+        "boxes": [
+          "headline",
+          "statement",
+          "kicker"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 40.2,
+        "duration_sec": 4.6,
+        "headline_size": 110,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 41.35,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-8-25.png",
+          "size": "810x1440",
+          "mean": 250.24,
+          "ink_fraction": 0.0179,
+          "ink_bbox": {
+            "x": 37,
+            "y": 107,
+            "w": 472,
+            "h": 1031
+          }
+        },
+        {
+          "at": 42.5,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-8-50.png",
+          "size": "810x1440",
+          "mean": 246.33,
+          "ink_fraction": 0.0365,
+          "ink_bbox": {
+            "x": 37,
+            "y": 110,
+            "w": 736,
+            "h": 1088
+          }
+        },
+        {
+          "at": 43.65,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-8-75.png",
+          "size": "810x1440",
+          "mean": 248.33,
+          "ink_fraction": 0.0277,
+          "ink_bbox": {
+            "x": 36,
+            "y": 105,
+            "w": 740,
+            "h": 1033
+          }
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "sentence": "Nepal's Ministry of Foreign Affairs will reject India's map during upcoming bilateral talks.",
+      "scene_description": "A stark typographic conclusion set against a solid dark background with oversized serif type reading 'Upcoming bilateral talks', accompanied by a small scale icon underneath representing ongoing diplomatic negotiations.",
+      "named_entities": [
+        {
+          "type": "institution",
+          "name": "Nepal's Ministry of Foreign Affairs"
+        },
+        {
+          "type": "place",
+          "name": "India"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Nepal's Ministry of Foreign Affairs",
+        "entity_type": "institution"
+      },
+      "entity_anchor_word": "Ministry",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "upcoming bilateral talks",
+          "magnitude": 1
+        }
+      ],
+      "rendered": {
+        "visual_type": "MAP",
+        "composition": "MAP-CENTERED",
+        "boxes": [
+          "kicker",
+          "headline",
+          "map"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 44.8,
+        "duration_sec": 5,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": true
+        },
+        "entrance_style": "together",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 46.05,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-9-25.png",
+          "size": "810x1440",
+          "mean": 238.39,
+          "ink_fraction": 0.0792,
+          "ink_bbox": {
+            "x": 17,
+            "y": 142,
+            "w": 773,
+            "h": 996
+          }
+        },
+        {
+          "at": 47.3,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-9-50.png",
+          "size": "810x1440",
+          "mean": 239.53,
+          "ink_fraction": 0.0744,
+          "ink_bbox": {
+            "x": 20,
+            "y": 104,
+            "w": 765,
+            "h": 1026
+          }
+        },
+        {
+          "at": 48.55,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\ch-9\\beat-9-75.png",
+          "size": "810x1440",
+          "mean": 237.82,
+          "ink_fraction": 0.082,
+          "ink_bbox": {
+            "x": 18,
+            "y": 100,
+            "w": 769,
+            "h": 1038
+          }
+        }
+      ]
+    }
+  ]
+}
