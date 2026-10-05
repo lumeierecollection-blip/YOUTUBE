@@ -1,0 +1,844 @@
+{
+  "channel": "ch-1",
+  "run": "37323030454",
+  "mp4": "C:/Users/user/AppData/Local/Temp/opencode/audit37323030454/queues-1/approved-review/pay-down-debt-or-save-expert-guidance-2026-shorts-shorts-2026-10-05.mp4",
+  "video": "pay-down-debt-or-save-expert-guidance-2026-shorts-shorts-2026-10-05.mp4",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "beats": [
+    {
+      "index": 0,
+      "sentence": "Over 40% of borrowers rush to clear debt, but is that extra cash missing the bigger picture?",
+      "scene_description": "A giant numeral 40% fills the centre of the frame, the percent sign smaller than the digits; below it in small caps, OVER 40% OF BORROWERS; behind it a thin line draws left to right, representing the rush to clear debt.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "40%"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "rush to clear debt",
+          "magnitude": "0.4"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "underline"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 0.1,
+        "duration_sec": 6.5,
+        "headline_size": 140,
+        "headline_align": "center",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 1.725,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-0-25.png",
+          "size": "810x1440",
+          "mean": 249.8,
+          "ink_fraction": 0.0244,
+          "ink_bbox": {
+            "x": 38,
+            "y": 98,
+            "w": 736,
+            "h": 1086
+          }
+        },
+        {
+          "at": 3.35,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-0-50.png",
+          "size": "810x1440",
+          "mean": 251.3,
+          "ink_fraction": 0.0178,
+          "ink_bbox": {
+            "x": 39,
+            "y": 97,
+            "w": 736,
+            "h": 1033
+          }
+        },
+        {
+          "at": 4.975,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-0-75.png",
+          "size": "810x1440",
+          "mean": 249.16,
+          "ink_fraction": 0.0278,
+          "ink_bbox": {
+            "x": 38,
+            "y": 99,
+            "w": 736,
+            "h": 1094
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "sentence": "Freedom Debt Relief surveyed people carrying over $10,000 in unsecured balances.",
+      "scene_description": "The logo of Freedom Debt Relief centered in the upper half of the frame; below it, a coin stack of ten coins building one by one up to represent the ten thousand dollars in unsecured balances.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "Freedom Debt Relief"
+        },
+        {
+          "type": "number",
+          "name": "10,000"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "COUNTER",
+      "data_planned": {
+        "value": "$10,000",
+        "label": "unsecured balances"
+      },
+      "entity_anchor_word": "Relief",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "unsecured balances",
+          "magnitude": "10000"
+        }
+      ],
+      "rendered": {
+        "visual_type": "COUNTER",
+        "composition": "NUMBER-FULL",
+        "boxes": [
+          "headline",
+          "label",
+          "number"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 6.6,
+        "duration_sec": 6.17,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "count-up"
+      },
+      "frames": [
+        {
+          "at": 8.143,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-1-25.png",
+          "size": "810x1440",
+          "mean": 249.96,
+          "ink_fraction": 0.0236,
+          "ink_bbox": {
+            "x": 54,
+            "y": 105,
+            "w": 722,
+            "h": 1088
+          }
+        },
+        {
+          "at": 9.685,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-1-50.png",
+          "size": "810x1440",
+          "mean": 243.75,
+          "ink_fraction": 0.0675,
+          "ink_bbox": {
+            "x": 43,
+            "y": 102,
+            "w": 735,
+            "h": 1027
+          }
+        },
+        {
+          "at": 11.227,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-1-75.png",
+          "size": "810x1440",
+          "mean": 242.11,
+          "ink_fraction": 0.0748,
+          "ink_bbox": {
+            "x": 46,
+            "y": 104,
+            "w": 731,
+            "h": 1080
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "sentence": "Over 40% of borrowers immediately throw every spare dollar at their lenders.",
+      "scene_description": "A single dollar bill fills the centre of the frame, flanked by small labels reading OVER 40% OF BORROWERS; a slow push in highlights the bill as it moves toward the bottom right.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "40%"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "MONEY",
+      "data_planned": {
+        "object": "United States dollar banknotes",
+        "value": null
+      },
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "growth",
+          "label": "spare dollar",
+          "magnitude": "0.4"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "cutout0"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [
+          "united states dollar banknotes"
+        ],
+        "start_sec": 12.77,
+        "duration_sec": 5.43,
+        "headline_size": 104,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 14.127,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-2-25.png",
+          "size": "810x1440",
+          "mean": 250.7,
+          "ink_fraction": 0.0162,
+          "ink_bbox": {
+            "x": 37,
+            "y": 97,
+            "w": 737,
+            "h": 1025
+          }
+        },
+        {
+          "at": 15.485,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-2-50.png",
+          "size": "810x1440",
+          "mean": 249.82,
+          "ink_fraction": 0.021,
+          "ink_bbox": {
+            "x": 37,
+            "y": 99,
+            "w": 742,
+            "h": 1310
+          }
+        },
+        {
+          "at": 16.843,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-2-75.png",
+          "size": "810x1440",
+          "mean": 235.27,
+          "ink_fraction": 0.1071,
+          "ink_bbox": {
+            "x": 38,
+            "y": 96,
+            "w": 741,
+            "h": 1313
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "sentence": "Can a 2026 study leave your emergency fund completely empty?",
+      "scene_description": "A wallet lies open in the centre of the frame, completely empty of bills, with a small label beneath reading 2026 STUDY; a warning triangle icon pops in beside it.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "2026"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "depletion",
+          "label": "emergency fund empty",
+          "magnitude": "1.0"
+        }
+      ],
+      "rendered": {
+        "visual_type": "MAP",
+        "composition": "MAP-CENTERED",
+        "boxes": [
+          "kicker",
+          "headline",
+          "map"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 18.2,
+        "duration_sec": 4.83,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 19.407,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-3-25.png",
+          "size": "810x1440",
+          "mean": 239.76,
+          "ink_fraction": 0.1364,
+          "ink_bbox": {
+            "x": 24,
+            "y": 142,
+            "w": 761,
+            "h": 996
+          }
+        },
+        {
+          "at": 20.615,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-3-50.png",
+          "size": "810x1440",
+          "mean": 237.79,
+          "ink_fraction": 0.144,
+          "ink_bbox": {
+            "x": 24,
+            "y": 105,
+            "w": 760,
+            "h": 1088
+          }
+        },
+        {
+          "at": 21.822,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-3-75.png",
+          "size": "810x1440",
+          "mean": 239.09,
+          "ink_fraction": 0.139,
+          "ink_bbox": {
+            "x": 24,
+            "y": 101,
+            "w": 761,
+            "h": 1042
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "sentence": "However, Bone Fide Wealth founder Douglas Boneparth warns that speed costs security.",
+      "scene_description": "A portrait of Douglas Boneparth, founder of Bone Fide Wealth, sits in the upper half of the frame; a slow push in across the beat while a shield icon rests quietly below him.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Douglas Boneparth"
+        },
+        {
+          "type": "company",
+          "name": "Bone Fide Wealth"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Douglas Boneparth",
+        "entity_type": "person"
+      },
+      "entity_anchor_word": "Boneparth",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "speed costs security"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "lead_phrase"
+        ],
+        "name_card": {
+          "name": "Douglas Boneparth"
+        },
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 23.03,
+        "duration_sec": 6.03,
+        "headline_size": 220,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": true
+        },
+        "entrance_style": "staggered",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 24.538,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-4-25.png",
+          "size": "810x1440",
+          "mean": 241.7,
+          "ink_fraction": 0.0563,
+          "ink_bbox": {
+            "x": 37,
+            "y": 98,
+            "w": 737,
+            "h": 1031
+          }
+        },
+        {
+          "at": 26.045,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-4-50.png",
+          "size": "810x1440",
+          "mean": 239.56,
+          "ink_fraction": 0.0664,
+          "ink_bbox": {
+            "x": 36,
+            "y": 98,
+            "w": 738,
+            "h": 1095
+          }
+        },
+        {
+          "at": 27.553,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-4-75.png",
+          "size": "810x1440",
+          "mean": 241.16,
+          "ink_fraction": 0.0596,
+          "ink_bbox": {
+            "x": 36,
+            "y": 98,
+            "w": 738,
+            "h": 1101
+          }
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "sentence": "Money.com revealed that 40% of people must balance savings with debt.",
+      "scene_description": "The logo of Money.com sits in the upper third of the frame; below it, a large 40% figure stands next to a coin stack, showing the balance between savings and debt.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "Money.com"
+        },
+        {
+          "type": "number",
+          "name": "40%"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PIE",
+      "data_planned": {
+        "percent": 40,
+        "label": "people must balance savings with debt"
+      },
+      "entity_anchor_word": "Money.com",
+      "visual_events": [
+        {
+          "type": "comparison",
+          "label": "savings vs debt",
+          "magnitude": "0.4"
+        }
+      ],
+      "rendered": {
+        "visual_type": "PIE",
+        "composition": "DATA-FULL",
+        "boxes": [
+          "headline",
+          "chart",
+          "number",
+          "label"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 29.07,
+        "duration_sec": 5.33,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "count-up"
+      },
+      "frames": [
+        {
+          "at": 30.402,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-5-25.png",
+          "size": "810x1440",
+          "mean": 236.48,
+          "ink_fraction": 0.1193,
+          "ink_bbox": {
+            "x": 36,
+            "y": 104,
+            "w": 743,
+            "h": 1039
+          }
+        },
+        {
+          "at": 31.735,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-5-50.png",
+          "size": "810x1440",
+          "mean": 234.38,
+          "ink_fraction": 0.1284,
+          "ink_bbox": {
+            "x": 37,
+            "y": 104,
+            "w": 741,
+            "h": 1089
+          }
+        },
+        {
+          "at": 33.068,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-5-75.png",
+          "size": "810x1440",
+          "mean": 235.53,
+          "ink_fraction": 0.124,
+          "ink_bbox": {
+            "x": 35,
+            "y": 103,
+            "w": 745,
+            "h": 1035
+          }
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "sentence": "Smart planners divide extra funds instead of sending everything to lenders.",
+      "scene_description": "A bank statement fills the frame, with an upward arrow splitting from a single line into two separate paths to show extra funds being divided.",
+      "named_entities": [],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "causation",
+          "label": "divide extra funds"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "headline",
+          "emphasis"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 34.4,
+        "duration_sec": 5.2,
+        "headline_size": 104,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 35.7,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-6-25.png",
+          "size": "810x1440",
+          "mean": 239.33,
+          "ink_fraction": 0.0682,
+          "ink_bbox": {
+            "x": 36,
+            "y": 97,
+            "w": 740,
+            "h": 1041
+          }
+        },
+        {
+          "at": 37,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-6-50.png",
+          "size": "810x1440",
+          "mean": 238.24,
+          "ink_fraction": 0.0725,
+          "ink_bbox": {
+            "x": 36,
+            "y": 99,
+            "w": 739,
+            "h": 1099
+          }
+        },
+        {
+          "at": 38.3,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-6-75.png",
+          "size": "810x1440",
+          "mean": 239.49,
+          "ink_fraction": 0.0666,
+          "ink_bbox": {
+            "x": 37,
+            "y": 96,
+            "w": 740,
+            "h": 1042
+          }
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "sentence": "Building savings protects you from unexpected 2026 financial shocks.",
+      "scene_description": "A calendar showing the year 2026 sits in the centre of the frame, with a shield icon sliding smoothly over it to represent protection from financial shocks.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "2026"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "COUNTER",
+      "data_planned": {
+        "value": "2026",
+        "label": "financial shocks"
+      },
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "financial shocks"
+        }
+      ],
+      "rendered": {
+        "visual_type": "COUNTER",
+        "composition": "NUMBER-FULL",
+        "boxes": [
+          "headline",
+          "label",
+          "number"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 39.6,
+        "duration_sec": 5.47,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "count-up"
+      },
+      "frames": [
+        {
+          "at": 40.968,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-7-25.png",
+          "size": "810x1440",
+          "mean": 234.13,
+          "ink_fraction": 0.0895,
+          "ink_bbox": {
+            "x": 47,
+            "y": 103,
+            "w": 732,
+            "h": 1036
+          }
+        },
+        {
+          "at": 42.335,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-7-50.png",
+          "size": "810x1440",
+          "mean": 232.2,
+          "ink_fraction": 0.0978,
+          "ink_bbox": {
+            "x": 51,
+            "y": 105,
+            "w": 727,
+            "h": 1088
+          }
+        },
+        {
+          "at": 43.703,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-7-75.png",
+          "size": "810x1440",
+          "mean": 233.52,
+          "ink_fraction": 0.0919,
+          "ink_bbox": {
+            "x": 45,
+            "y": 103,
+            "w": 735,
+            "h": 1035
+          }
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "sentence": "Split your 40% extra cash between savings and debt today.",
+      "scene_description": "A giant 40% figure occupies the centre of the frame, flanked by a dollar bill on the left and a coin stack on the right; below in small caps, SPLIT YOUR EXTRA CASH.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "40%"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "MONEY",
+      "data_planned": {
+        "object": "banknotes cash",
+        "value": null
+      },
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "structure_break",
+          "label": "split extra cash"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "cutout0"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [
+          "banknotes cash"
+        ],
+        "start_sec": 45.07,
+        "duration_sec": 3.8,
+        "headline_size": 110,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 46.02,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-8-25.png",
+          "size": "810x1440",
+          "mean": 251.05,
+          "ink_fraction": 0.0145,
+          "ink_bbox": {
+            "x": 37,
+            "y": 96,
+            "w": 738,
+            "h": 1026
+          }
+        },
+        {
+          "at": 46.97,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-8-50.png",
+          "size": "810x1440",
+          "mean": 235.55,
+          "ink_fraction": 0.1121,
+          "ink_bbox": {
+            "x": 37,
+            "y": 99,
+            "w": 742,
+            "h": 1310
+          }
+        },
+        {
+          "at": 47.92,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-8-75.png",
+          "size": "810x1440",
+          "mean": 234.78,
+          "ink_fraction": 0.116,
+          "ink_bbox": {
+            "x": 37,
+            "y": 98,
+            "w": 742,
+            "h": 1311
+          }
+        }
+      ]
+    }
+  ]
+}

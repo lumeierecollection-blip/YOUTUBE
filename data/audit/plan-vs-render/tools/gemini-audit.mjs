@@ -15,7 +15,9 @@ const BASE = "https://generativelanguage.googleapis.com/v1beta/openai";
 const MODEL = "gemini-3.5-flash-lite";
 
 const channel = process.argv[2];
-const dir = join("data/audit/plan-vs-render", channel);
+// Same override as extract-frames.mjs: PLAN_VS_RENDER_OUT points a fresh audit at a new
+// directory so the committed baseline evidence is never overwritten.
+const dir = join(process.env.PLAN_VS_RENDER_OUT || "data/audit/plan-vs-render", channel);
 const plan = JSON.parse(readFileSync(join(dir, "plan.json"), "utf8"));
 
 const b64 = (p) => readFileSync(p).toString("base64");

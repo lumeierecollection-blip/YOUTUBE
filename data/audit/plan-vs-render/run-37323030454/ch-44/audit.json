@@ -1,0 +1,144 @@
+{
+  "channel": "ch-44",
+  "model": "gemini-3.5-flash-lite",
+  "results": [
+    {
+      "index": 0,
+      "match": "PARTIAL",
+      "present": [
+        "The text 'Productivity dashboards destroy focus' in an oversized serif font in the center of the frame"
+      ],
+      "missing": [
+        "A cluttered wall of overlapping data charts and windows filling the center of the frame, representing active inputs"
+      ],
+      "unexpected": [
+        "Plain white background instead of a cluttered data wall",
+        "Caption text at the bottom displaying the voiceover sentence progressively ('Traditional productivity dashboards', 'by loading', 'by loading your screen with too many active')",
+        "Progress indicator / page number '01 / 08' at the top right",
+        "A horizontal line/bar element at the top right"
+      ],
+      "timing_correct": true,
+      "timing_note": "The voiceover subtitle text animates word-by-word progressively matching the narration timeline (25%, 50%, 75% progression points show advancing text)."
+    },
+    {
+      "index": 1,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "Logo of Minimalistic Labz in the upper third of the frame",
+        "Brain outline diagram in the center",
+        "High cognitive load / pulsing fatigue indication on the brain diagram"
+      ],
+      "unexpected": [
+        "Large header text 'Overview screens cause cognitive fatigue'",
+        "Flowchart circles with 'OVERVIEW SCREENS' and 'COGNITIVE FATIGUE' connected by an arrow",
+        "Caption text at the bottom that types out parts of the sentence ('Minimalistic Labz argued in', 'overview', 'overview screens cause severe cognitive')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visuals rendered show a completely different concept (flowchart/diagram with text bubbles about overview screens and cognitive fatigue) rather than the requested Minimalistic Labz logo and brain outline diagram."
+    },
+    {
+      "index": 2,
+      "match": "PARTIAL",
+      "present": [
+        "Project number 3325"
+      ],
+      "missing": [
+        "Clean, minimalist document card",
+        "Small lock icon slowly scaling up to signify restriction"
+      ],
+      "unexpected": [
+        "Animated subtitle text displaying the sentence: 'Taskade launched project 3325 to restrict users to a single locked task'",
+        "Header text 'Restrict users to single task'"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered video displays scrolling subtitle text matching the narration sentence word-by-word instead of the requested visual scene (document card with a scaling lock icon)."
+    },
+    {
+      "index": 3,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "A large question mark rendered in a clean serif typeface in the center of the frame",
+        "Two diverging path lines that branch outward to represent divided attention"
+      ],
+      "unexpected": [
+        "A map graphic (specifically of Canada) with a location pin",
+        "On-screen subtitle text at the top and bottom ('Can your brain handle constant multitasking?')",
+        "The word 'Can' placed over the map graphic"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered video shows a map and subtitles instead of the described question mark and diverging paths."
+    },
+    {
+      "index": 4,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "shield icon",
+        "cross-out line",
+        "cloud symbol"
+      ],
+      "unexpected": [
+        "large text 'Eliminated cloud tracking offline'",
+        "large year '2024'",
+        "captions displaying the narration text ('Yet tanghoong completely eliminated...', 'releasing FocusFlow', 'as an offline system')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan described a shield icon with a cross-out line over a cloud, but the rendered frames show completely unrelated typography and captions."
+    },
+    {
+      "index": 5,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "sleek circular countdown timer in the center of the frame",
+        "small glowing particle animation representing Gemini AI integration by Dash10107"
+      ],
+      "unexpected": [
+        "Gemini AI logo and text",
+        "Text 'Gemini AI powers pomodoro timers'",
+        "Text 'Dash10107 integrated Gemini AI in twenty twenty-five'",
+        "Text 'INTEGRATED IN 2025'",
+        "Source attribution text at the bottom right"
+      ],
+      "timing_correct": false,
+      "timing_note": "The entire scene content does not match the visual plan at all, showing static/animated typography and brand logos instead of a circular countdown timer and glowing particles."
+    },
+    {
+      "index": 6,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "smooth horizontal progress bar",
+        "Kanban column layout on the left",
+        "Pomodoro timer on the right"
+      ],
+      "unexpected": [
+        "circular nodes with text 'FOCUSFLOW' and 'WORK'",
+        "diagonal golden arrow connecting the circles",
+        "kinetic typography displaying the sentence text in parts at the top and bottom"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visuals rendered (circles and arrows) do not match the specified Kanban layout, Pomodoro timer, or horizontal progress bar at any point in the beat."
+    },
+    {
+      "index": 7,
+      "match": "PARTIAL",
+      "present": [
+        "The GitHub logo centered in the frame",
+        "The bold serif statement 'Download FocusFlow from GitHub right now'"
+      ],
+      "missing": [],
+      "unexpected": [
+        "Top header text 'Download FocusFlow from GitHub' in serif font",
+        "Section/page indicator '08 / 08'",
+        "Label 'GITHUB' at the bottom right of the logo",
+        "Attribution 'Source: commons.wikimedia.org' at the bottom right",
+        "A progress line/bar at the top left"
+      ],
+      "timing_correct": true,
+      "timing_note": "The text types on progressively alongside the narration across the frames."
+    }
+  ]
+}

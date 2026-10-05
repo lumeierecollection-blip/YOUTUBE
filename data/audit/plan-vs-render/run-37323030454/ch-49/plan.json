@@ -1,0 +1,974 @@
+{
+  "channel": "ch-49",
+  "run": "37323030454",
+  "mp4": "C:/Users/user/AppData/Local/Temp/opencode/audit37323030454/queues-49/approved/october-2026-movie-release-lineup-preview-shorts-shorts-2026-10-05.mp4",
+  "video": "october-2026-movie-release-lineup-preview-shorts-shorts-2026-10-05.mp4",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "beats": [
+    {
+      "index": 0,
+      "sentence": "October 2026 brings an absurd wave of major new releases.",
+      "scene_description": "Oversized numerals 2026 fill the centre of the frame, slowly scaling down while the headline 'absurd wave' types out line by line in serif capitals; below it in a small sans label, OCTOBER 2026.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "2026"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "COUNTER",
+      "data_planned": {
+        "value": "2026",
+        "label": "brings an absurd wave"
+      },
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "wave of new releases",
+          "magnitude": 0.9
+        }
+      ],
+      "rendered": {
+        "visual_type": "COUNTER",
+        "composition": "NUMBER-FULL",
+        "boxes": [
+          "headline",
+          "label",
+          "number"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 0.1,
+        "duration_sec": 4.97,
+        "headline_size": 140,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "count-up"
+      },
+      "frames": [
+        {
+          "at": 1.343,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-0-25.png",
+          "size": "810x1440",
+          "mean": 239.16,
+          "ink_fraction": 0.0963,
+          "ink_bbox": {
+            "x": 37,
+            "y": 107,
+            "w": 739,
+            "h": 1031
+          }
+        },
+        {
+          "at": 2.585,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-0-50.png",
+          "size": "810x1440",
+          "mean": 237.34,
+          "ink_fraction": 0.104,
+          "ink_bbox": {
+            "x": 38,
+            "y": 108,
+            "w": 731,
+            "h": 1090
+          }
+        },
+        {
+          "at": 3.828,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-0-75.png",
+          "size": "810x1440",
+          "mean": 238.67,
+          "ink_fraction": 0.0989,
+          "ink_bbox": {
+            "x": 37,
+            "y": 106,
+            "w": 742,
+            "h": 1032
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "sentence": "StreamCal reports that 257 new releases hit streaming and theaters in October 2026.",
+      "scene_description": "The number 257 in oversized serif digits fills the upper half of the frame, counting up from zero across the beat; below it, the StreamCal logo sits alongside a small sans label reading NEW RELEASES IN OCTOBER.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "StreamCal"
+        },
+        {
+          "type": "number",
+          "name": "257"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": "257",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "257 new releases",
+          "magnitude": 0.8
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "lead_phrase"
+        ],
+        "name_card": {
+          "name": "StreamCal"
+        },
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 5.07,
+        "duration_sec": 7.33,
+        "headline_size": 220,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 6.902,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-1-25.png",
+          "size": "810x1440",
+          "mean": 248.68,
+          "ink_fraction": 0.0371,
+          "ink_bbox": {
+            "x": 36,
+            "y": 99,
+            "w": 737,
+            "h": 1085
+          }
+        },
+        {
+          "at": 8.735,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-1-50.png",
+          "size": "810x1440",
+          "mean": 248.88,
+          "ink_fraction": 0.0364,
+          "ink_bbox": {
+            "x": 35,
+            "y": 96,
+            "w": 742,
+            "h": 1042
+          }
+        },
+        {
+          "at": 10.568,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-1-75.png",
+          "size": "810x1440",
+          "mean": 247.28,
+          "ink_fraction": 0.0432,
+          "ink_bbox": {
+            "x": 37,
+            "y": 99,
+            "w": 736,
+            "h": 1094
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "sentence": "Total Cinema notes that 57 films open in U.S. theaters during this window.",
+      "scene_description": "The number 57 appears in the centre of the frame in bold serif type, flanked by a small chart comparing theater releases to streaming totals; below it in small caps, U.S. THEATERS.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "Total Cinema"
+        },
+        {
+          "type": "place",
+          "name": "U.S."
+        },
+        {
+          "type": "number",
+          "name": "57"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "COUNTER",
+      "data_planned": {
+        "value": "57",
+        "label": "films open U"
+      },
+      "entity_anchor_word": "57",
+      "visual_events": [
+        {
+          "type": "comparison",
+          "label": "theater releases",
+          "magnitude": 0.5
+        }
+      ],
+      "rendered": {
+        "visual_type": "COUNTER",
+        "composition": "NUMBER-FULL",
+        "boxes": [
+          "headline",
+          "label",
+          "number"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 12.4,
+        "duration_sec": 5.5,
+        "headline_size": 104,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "count-up"
+      },
+      "frames": [
+        {
+          "at": 13.775,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-2-25.png",
+          "size": "810x1440",
+          "mean": 242.2,
+          "ink_fraction": 0.0513,
+          "ink_bbox": {
+            "x": 36,
+            "y": 105,
+            "w": 507,
+            "h": 1088
+          }
+        },
+        {
+          "at": 15.15,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-2-50.png",
+          "size": "810x1440",
+          "mean": 241.15,
+          "ink_fraction": 0.0562,
+          "ink_bbox": {
+            "x": 36,
+            "y": 104,
+            "w": 521,
+            "h": 1089
+          }
+        },
+        {
+          "at": 16.525,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-2-75.png",
+          "size": "810x1440",
+          "mean": 242.54,
+          "ink_fraction": 0.05,
+          "ink_bbox": {
+            "x": 36,
+            "y": 104,
+            "w": 419,
+            "h": 1034
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "sentence": "Distributors like Lionsgate and Kino Lorber drive this massive slate.",
+      "scene_description": "The official logos of Lionsgate and Kino Lorber appear side by side in the centre of the frame on clean white cards, with a slow push in toward Lionsgate; below them, a small label reads DISTRIBUTORS.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "Lionsgate"
+        },
+        {
+          "type": "company",
+          "name": "Kino Lorber"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Lionsgate",
+        "entity_type": "company"
+      },
+      "entity_anchor_word": "Lionsgate",
+      "visual_events": [
+        {
+          "type": "population",
+          "label": "massive slate",
+          "magnitude": 0.7
+        }
+      ],
+      "rendered": {
+        "visual_type": "PROCESS",
+        "composition": "PROCESS-FULL",
+        "boxes": [
+          "kicker",
+          "headline",
+          "nodes0",
+          "nodes1"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 17.9,
+        "duration_sec": 4.8,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 19.1,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-3-25.png",
+          "size": "810x1440",
+          "mean": 248.98,
+          "ink_fraction": 0.029,
+          "ink_bbox": {
+            "x": 140,
+            "y": 142,
+            "w": 638,
+            "h": 1001
+          }
+        },
+        {
+          "at": 20.3,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-3-50.png",
+          "size": "810x1440",
+          "mean": 245.43,
+          "ink_fraction": 0.045,
+          "ink_bbox": {
+            "x": 34,
+            "y": 105,
+            "w": 745,
+            "h": 1304
+          }
+        },
+        {
+          "at": 21.5,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-3-75.png",
+          "size": "810x1440",
+          "mean": 247.51,
+          "ink_fraction": 0.036,
+          "ink_bbox": {
+            "x": 31,
+            "y": 101,
+            "w": 748,
+            "h": 1308
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "sentence": "Which titles dominate screens?",
+      "scene_description": "A large question mark rendered in clean serif type sits in the center of the frame, accompanied by a small label below reading SCREEN DOMINANCE.",
+      "named_entities": [],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "which titles dominate",
+          "magnitude": 0.6
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "underline"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 22.7,
+        "duration_sec": 2.77,
+        "headline_size": 110,
+        "headline_align": "center",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": true
+        },
+        "entrance_style": "staggered",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 23.392,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-4-25.png",
+          "size": "810x1440",
+          "mean": 247.77,
+          "ink_fraction": 0.0216,
+          "ink_bbox": {
+            "x": 37,
+            "y": 96,
+            "w": 738,
+            "h": 1033
+          }
+        },
+        {
+          "at": 24.085,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-4-50.png",
+          "size": "810x1440",
+          "mean": 246.65,
+          "ink_fraction": 0.0266,
+          "ink_bbox": {
+            "x": 37,
+            "y": 97,
+            "w": 738,
+            "h": 1087
+          }
+        },
+        {
+          "at": 24.777,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-4-75.png",
+          "size": "810x1440",
+          "mean": 246.48,
+          "ink_fraction": 0.0277,
+          "ink_bbox": {
+            "x": 37,
+            "y": 99,
+            "w": 736,
+            "h": 1085
+          }
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "sentence": "Netflix and Prime Video match that theatrical push with massive streaming slates.",
+      "scene_description": "The logos for Netflix and Prime Video sit side by side in the upper half of the frame, while a vertical bar chart below builds upward to represent their streaming slates.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "Netflix"
+        },
+        {
+          "type": "company",
+          "name": "Prime Video"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Netflix",
+        "entity_type": "company"
+      },
+      "entity_anchor_word": "Netflix",
+      "visual_events": [
+        {
+          "type": "growth",
+          "label": "streaming slate growth",
+          "magnitude": 0.8
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "cutout_name",
+          "cutout0"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [
+          "Netflix"
+        ],
+        "start_sec": 25.47,
+        "duration_sec": 5.4,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 26.82,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-5-25.png",
+          "size": "810x1440",
+          "mean": 243.64,
+          "ink_fraction": 0.0627,
+          "ink_bbox": {
+            "x": 35,
+            "y": 97,
+            "w": 739,
+            "h": 1019
+          }
+        },
+        {
+          "at": 28.17,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-5-50.png",
+          "size": "810x1440",
+          "mean": 242.69,
+          "ink_fraction": 0.0679,
+          "ink_bbox": {
+            "x": 36,
+            "y": 98,
+            "w": 743,
+            "h": 1311
+          }
+        },
+        {
+          "at": 29.52,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-5-75.png",
+          "size": "810x1440",
+          "mean": 243.89,
+          "ink_fraction": 0.0626,
+          "ink_bbox": {
+            "x": 35,
+            "y": 96,
+            "w": 744,
+            "h": 1313
+          }
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "sentence": "Netflix and Prime Video debut major titles alongside Renegade Immortal: Battle of the Immortal Slayer.",
+      "scene_description": "The official title card for Renegade Immortal: Battle of the Immortal Slayer sits centrally in the frame, accompanied by the Netflix and Prime Video logos in the top corners; a slow push in toward the title.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "Netflix"
+        },
+        {
+          "type": "company",
+          "name": "Prime Video"
+        },
+        {
+          "type": "object",
+          "name": "Renegade Immortal: Battle of the Immortal Slayer"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Netflix",
+        "entity_type": "company"
+      },
+      "entity_anchor_word": "Immortal",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "major title debut",
+          "magnitude": 0.9
+        }
+      ],
+      "rendered": {
+        "visual_type": "PROCESS",
+        "composition": "PROCESS-FULL",
+        "boxes": [
+          "kicker",
+          "headline",
+          "nodes0",
+          "nodes1"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 30.87,
+        "duration_sec": 7.13,
+        "headline_size": 104,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 32.653,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-6-25.png",
+          "size": "810x1440",
+          "mean": 248.3,
+          "ink_fraction": 0.0324,
+          "ink_bbox": {
+            "x": 34,
+            "y": 144,
+            "w": 641,
+            "h": 985
+          }
+        },
+        {
+          "at": 34.435,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-6-50.png",
+          "size": "810x1440",
+          "mean": 246.77,
+          "ink_fraction": 0.0393,
+          "ink_bbox": {
+            "x": 31,
+            "y": 102,
+            "w": 748,
+            "h": 1036
+          }
+        },
+        {
+          "at": 36.218,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-6-75.png",
+          "size": "810x1440",
+          "mean": 244.76,
+          "ink_fraction": 0.0481,
+          "ink_bbox": {
+            "x": 34,
+            "y": 104,
+            "w": 742,
+            "h": 1094
+          }
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "sentence": "Metacritic highlights a sequel to The Social Network alongside a Laika animated feature.",
+      "scene_description": "The Metacritic logo anchors the top left of the frame, while below it two distinct visual cards represent a sequel to The Social Network and a Laika animated feature.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "Metacritic"
+        },
+        {
+          "type": "company",
+          "name": "Laika"
+        },
+        {
+          "type": "object",
+          "name": "The Social Network"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "Metacritic",
+        "entity_type": "company"
+      },
+      "entity_anchor_word": "Metacritic",
+      "visual_events": [
+        {
+          "type": "structure_break",
+          "label": "sequel and animation highlights",
+          "magnitude": 0.7
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "cutout_name",
+          "cutout0"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [
+          "Metacritic"
+        ],
+        "start_sec": 38,
+        "duration_sec": 5.73,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 39.432,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-7-25.png",
+          "size": "810x1440",
+          "mean": 248.14,
+          "ink_fraction": 0.0559,
+          "ink_bbox": {
+            "x": 35,
+            "y": 97,
+            "w": 740,
+            "h": 1030
+          }
+        },
+        {
+          "at": 40.865,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-7-50.png",
+          "size": "810x1440",
+          "mean": 246.97,
+          "ink_fraction": 0.0622,
+          "ink_bbox": {
+            "x": 36,
+            "y": 98,
+            "w": 743,
+            "h": 1311
+          }
+        },
+        {
+          "at": 42.297,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-7-75.png",
+          "size": "810x1440",
+          "mean": 246.45,
+          "ink_fraction": 0.065,
+          "ink_bbox": {
+            "x": 35,
+            "y": 97,
+            "w": 744,
+            "h": 1312
+          }
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "sentence": "Fifty-seven films open in U.S. theaters alone.",
+      "scene_description": "The numeral 57 is rendered in oversized serif digits in the centre of the frame, with a reference line drawing across below it and a small label reading U.S. THEATERS ALONE.",
+      "named_entities": [
+        {
+          "type": "place",
+          "name": "U.S."
+        },
+        {
+          "type": "number",
+          "name": "Fifty-seven"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "MAP",
+      "data_planned": {
+        "place": "U.S"
+      },
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "theatrical release count",
+          "magnitude": 0.8
+        }
+      ],
+      "rendered": {
+        "visual_type": "MAP",
+        "composition": "MAP-CENTERED",
+        "boxes": [
+          "kicker",
+          "headline",
+          "map"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 43.73,
+        "duration_sec": 3.77,
+        "headline_size": 110,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 44.672,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-8-25.png",
+          "size": "810x1440",
+          "mean": 240.13,
+          "ink_fraction": 0.1252,
+          "ink_bbox": {
+            "x": 32,
+            "y": 144,
+            "w": 755,
+            "h": 999
+          }
+        },
+        {
+          "at": 45.615,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-8-50.png",
+          "size": "810x1440",
+          "mean": 239.33,
+          "ink_fraction": 0.1272,
+          "ink_bbox": {
+            "x": 35,
+            "y": 105,
+            "w": 750,
+            "h": 1038
+          }
+        },
+        {
+          "at": 46.557,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-8-75.png",
+          "size": "810x1440",
+          "mean": 238.44,
+          "ink_fraction": 0.1315,
+          "ink_bbox": {
+            "x": 36,
+            "y": 104,
+            "w": 749,
+            "h": 1080
+          }
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "sentence": "Check out the full release schedule on StreamCal before buying tickets.",
+      "scene_description": "The StreamCal logo sits in the center of the frame, oversized and bold, with the headline 'full release schedule' stacked below in serif capitals and a small label reading BUY TICKETS.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "StreamCal"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "StreamCal",
+        "entity_type": "company"
+      },
+      "entity_anchor_word": "StreamCal",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "full release schedule",
+          "magnitude": 1
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "underline"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 47.5,
+        "duration_sec": 3.57,
+        "headline_size": 96,
+        "headline_align": "center",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": true
+        },
+        "entrance_style": "together",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 48.392,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-9-25.png",
+          "size": "810x1440",
+          "mean": 247.75,
+          "ink_fraction": 0.0235,
+          "ink_bbox": {
+            "x": 34,
+            "y": 96,
+            "w": 661,
+            "h": 1033
+          }
+        },
+        {
+          "at": 49.285,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-9-50.png",
+          "size": "810x1440",
+          "mean": 245.94,
+          "ink_fraction": 0.0298,
+          "ink_bbox": {
+            "x": 36,
+            "y": 98,
+            "w": 660,
+            "h": 1100
+          }
+        },
+        {
+          "at": 50.178,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-9-75.png",
+          "size": "810x1440",
+          "mean": 248.03,
+          "ink_fraction": 0.0214,
+          "ink_bbox": {
+            "x": 37,
+            "y": 99,
+            "w": 537,
+            "h": 1040
+          }
+        }
+      ]
+    }
+  ]
+}

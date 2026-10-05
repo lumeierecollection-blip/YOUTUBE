@@ -1,0 +1,122 @@
+{
+  "generated": "2026-10-05T14:41:14.938Z",
+  "model": "gemini-3.5-flash-lite",
+  "runs": [
+    "37323030454"
+  ],
+  "channels": [
+    "ch-1",
+    "ch-44",
+    "ch-49"
+  ],
+  "total_beats": 27,
+  "yes": 0,
+  "partial": 15,
+  "no": 12,
+  "errors": 0,
+  "timing_correct": 6,
+  "timing_incorrect": 21,
+  "common_missing": [
+    {
+      "element": "prime video logo",
+      "beats": 2
+    },
+    {
+      "element": "giant numeral 40% filling the centre of the frame with the percent sign smaller than the digits",
+      "beats": 1
+    },
+    {
+      "element": "below it in small caps, over 40% of borrowers",
+      "beats": 1
+    },
+    {
+      "element": "coin stack of ten coins building one by one up to represent the ten thousand dollars in unsecured balances",
+      "beats": 1
+    },
+    {
+      "element": "single dollar bill filling the centre of the frame",
+      "beats": 1
+    },
+    {
+      "element": "small labels flanking the bill reading over 40% of borrowers",
+      "beats": 1
+    },
+    {
+      "element": "slow push in highlighting the bill as it moves toward the bottom right",
+      "beats": 1
+    },
+    {
+      "element": "wallet lying open in the centre of the frame",
+      "beats": 1
+    }
+  ],
+  "common_unexpected": [
+    {
+      "element": "large serif text reading 'rush to clear debt' in black and green",
+      "beats": 1
+    },
+    {
+      "element": "subtitles appearing progressively reading 'over forty percent of borrowers is that extra cash missing the bigger'",
+      "beats": 1
+    },
+    {
+      "element": "page indicator '01 / 09' in the top right corner",
+      "beats": 1
+    },
+    {
+      "element": "green underline beneath the word 'debt'",
+      "beats": 1
+    },
+    {
+      "element": "large green text displaying '$10,000'",
+      "beats": 1
+    },
+    {
+      "element": "smaller black text displaying 'unsecured balances'",
+      "beats": 1
+    },
+    {
+      "element": "kinetic typography at the bottom showing the narrator's sentence incrementally ('freedom debt relief surveyed people', 'thousand', 'thousand dollars in unsecured balances')",
+      "beats": 1
+    },
+    {
+      "element": "large typography at the top reading 'spare dollar at lenders' (with 'lenders' in green)",
+      "beats": 1
+    }
+  ],
+  "per_channel": [
+    {
+      "channel": "ch-1",
+      "run": "37323030454",
+      "video": "pay-down-debt-or-save-expert-guidance-2026-shorts-shorts-2026-10-05.mp4",
+      "beats": 9,
+      "yes": 0,
+      "partial": 4,
+      "no": 5,
+      "timing_ok": 0,
+      "type_divergences": 4
+    },
+    {
+      "channel": "ch-44",
+      "run": "37323030454",
+      "video": "focusflow-dashboard-minimalist-workspaces-flow-shorts-shorts-2026-10-05.mp4",
+      "beats": 8,
+      "yes": 0,
+      "partial": 3,
+      "no": 5,
+      "timing_ok": 2,
+      "type_divergences": 1
+    },
+    {
+      "channel": "ch-49",
+      "run": "37323030454",
+      "video": "october-2026-movie-release-lineup-preview-shorts-shorts-2026-10-05.mp4",
+      "beats": 10,
+      "yes": 0,
+      "partial": 8,
+      "no": 2,
+      "timing_ok": 4,
+      "type_divergences": 5
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "channel": "ch-1",
+  "model": "gemini-3.5-flash-lite",
+  "results": [
+    {
+      "index": 0,
+      "match": "NO",
+      "present": [
+        "A thin line drawing left to right"
+      ],
+      "missing": [
+        "A giant numeral 40% filling the centre of the frame with the percent sign smaller than the digits",
+        "Below it in small caps, OVER 40% OF BORROWERS"
+      ],
+      "unexpected": [
+        "Large serif text reading 'Rush to clear debt' in black and green",
+        "Subtitles appearing progressively reading 'Over forty percent of borrowers is that extra cash missing the bigger'",
+        "Page indicator '01 / 09' in the top right corner",
+        "Green underline beneath the word 'debt'"
+      ],
+      "timing_correct": false,
+      "timing_note": "The entire visual plan (the 40% numeral and caption) was replaced with completely different text and layout elements ('Rush to clear debt'), so the timing and content do not match the visual plan at all."
+    },
+    {
+      "index": 1,
+      "match": "PARTIAL",
+      "present": [
+        "The logo of Freedom Debt Relief centered in the upper half of the frame"
+      ],
+      "missing": [
+        "A coin stack of ten coins building one by one up to represent the ten thousand dollars in unsecured balances"
+      ],
+      "unexpected": [
+        "Large green text displaying '$10,000'",
+        "Smaller black text displaying 'UNSECURED BALANCES'",
+        "Kinetic typography at the bottom showing the narrator's sentence incrementally ('Freedom Debt Relief surveyed people', 'thousand', 'thousand dollars in unsecured balances')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan called for a coin stack representing $10,000, but the renderer instead displayed large numbers ($10,000) and kinetic typography tracking the voiceover."
+    },
+    {
+      "index": 2,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "A single dollar bill filling the centre of the frame",
+        "Small labels flanking the bill reading OVER 40% OF BORROWERS",
+        "A slow push in highlighting the bill as it moves toward the bottom right"
+      ],
+      "unexpected": [
+        "Large typography at the top reading 'Spare dollar at lenders' (with 'lenders' in green)",
+        "Subtitles at the bottom tracking the narrator's sentence word-by-word ('Over forty percent of borrowers immediately throw every...')",
+        "Source attribution in the bottom right ('Source: wikipedia.org')",
+        "A small horizontal line element at the top right"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual elements rendered (kinetic typography and subtitles) completely mismatch the planned visual description of a dollar bill with flanking labels."
+    },
+    {
+      "index": 3,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "A wallet lying open in the centre of the frame",
+        "Wallet completely empty of bills",
+        "A small label beneath reading 2026 STUDY",
+        "A warning triangle icon popping in beside it"
+      ],
+      "unexpected": [
+        "A map of Canada with a location pin icon",
+        "Large heading text 'Emergency fund completely empty' at the top",
+        "Subtitle caption text at the bottom matching the voiceover ('Can a twenty twenty-six...')",
+        "Small category header 'EMERGENCY FUND'"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered visual sequence depicts a map of Canada and text captions rather than the wallet, empty bills, 2026 study label, and warning triangle described in the visual plan."
+    },
+    {
+      "index": 4,
+      "match": "NO",
+      "present": [
+        "Douglas Boneparth's name/text representation"
+      ],
+      "missing": [
+        "A portrait of Douglas Boneparth",
+        "A shield icon resting quietly below him"
+      ],
+      "unexpected": [
+        "Large stylized typography saying 'Douglas Boneparth'",
+        "Text saying 'SPEED COSTS SECURITY'",
+        "Subtitles/narrative text progressively revealing the sentence 'However Bone Fide Wealth founder Douglas Boneparth warns that speed costs security'"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan called for a portrait and a shield icon, but the rendered frames instead show typography-based kinetic text animation without any portrait or shield icon."
+    },
+    {
+      "index": 5,
+      "match": "PARTIAL",
+      "present": [
+        "Logo of Money.com (at top as 'Balance savings with debt' / Money.com mentioned in lower text)",
+        "40% figure"
+      ],
+      "missing": [
+        "Coin stack"
+      ],
+      "unexpected": [
+        "Donut chart / progress ring",
+        "Additional text blocks ('PEOPLE MUST BALANCE SAVINGS WITH DEBT')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan described a coin stack and balance representation, but the renderer used a donut chart instead, and the layout does not align with the narrative progression described."
+    },
+    {
+      "index": 6,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "Bank statement filling the frame",
+        "Upward arrow splitting from a single line into two separate paths",
+        "Visual representation of extra funds being divided"
+      ],
+      "unexpected": [
+        "Large heading text 'Divide extra funds' and 'Funds'",
+        "Subtitle text animating the sentence 'Smart planners divide extra funds instead of sending everything to lenders'",
+        "Minimalist line graphic in the top right corner",
+        "Plain white background"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered frames display typography and a kinetic text sequence instead of the described bank statement and splitting arrow visual plan."
+    },
+    {
+      "index": 7,
+      "match": "PARTIAL",
+      "present": [
+        "2026",
+        "financial shocks (represented in text)"
+      ],
+      "missing": [
+        "calendar showing the year 2026",
+        "shield icon sliding smoothly over the calendar"
+      ],
+      "unexpected": [
+        "Large typography stating 'Protect from financial shocks' at the top",
+        "Animated caption subtitles appearing at the bottom corresponding to the voiceover ('Building savings protects you from unexpected twenty-six financial shocks')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan called for a calendar and a shield icon representing protection from financial shocks, but instead, the frames display large typography numbers ('2026') and text subtitles. There is no calendar or shield icon present at any point in the rendered frames."
+    },
+    {
+      "index": 8,
+      "match": "PARTIAL",
+      "present": [
+        "A giant 40% figure occupies the centre of the frame (as part of the title text 'Split 40% extra cash')",
+        "A dollar bill (though placed horizontally across the middle rather than flanking the figure on the left)"
+      ],
+      "missing": [
+        "A coin stack on the right",
+        "Below in small caps: SPLIT YOUR EXTRA CASH"
+      ],
+      "unexpected": [
+        "Large header text 'Split 40% extra cash' at the top",
+        "Progress indicator '09 / 09' in the top right",
+        "Source attribution 'Source: wikipedia.org' in the bottom right",
+        "Animated caption text at the bottom ('Split your forty percent extra cash between savings')",
+        "Horizontal line at the top right"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered frames show an animated text sequence building up ('Split your forty percent extra cash between savings') rather than the single layout requested in the visual plan ('SPLIT YOUR EXTRA CASH'). Furthermore, the coin stack and side-flanking layout described are entirely absent across all frames."
+    }
+  ]
+}

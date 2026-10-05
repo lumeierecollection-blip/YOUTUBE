@@ -1,0 +1,196 @@
+{
+  "channel": "ch-49",
+  "model": "gemini-3.5-flash-lite",
+  "results": [
+    {
+      "index": 0,
+      "match": "PARTIAL",
+      "present": [
+        "Oversized numerals 2026 in the centre of the frame",
+        "Headline text relating to 'absurd wave'"
+      ],
+      "missing": [
+        "Numerals scaling down",
+        "Headline rendered in serif capitals (it appears in sans-serif uppercase)",
+        "Small sans label 'OCTOBER 2026' below the headline"
+      ],
+      "unexpected": [
+        "Persistent header text at the top ('October 2026 releases' in serif/sans mix)",
+        "Subtitles/captions at the bottom ('October twenty twenty-six...')"
+      ],
+      "timing_correct": true,
+      "timing_note": "The typing animation progresses naturally across the frames in sync with the narration, though the styling and layout details deviated from the plan."
+    },
+    {
+      "index": 1,
+      "match": "PARTIAL",
+      "present": [
+        "StreamCal logo",
+        "the number 257 (though positioned in the lower-right rather than filling the upper half)"
+      ],
+      "missing": [
+        "oversized serif digits filling the upper half of the frame counting up from zero",
+        "small sans label reading NEW RELEASES IN OCTOBER"
+      ],
+      "unexpected": [
+        "Animated captions at the bottom showing the voiceover text (\"StreamCal reports that two hundred...\", \"releases hit streaming\", etc.)",
+        "Small sans label at the top left reading \"STREAMCAL REPORTS\" with a line above it"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual layout completely misinterprets the spatial arrangement described in the scene plan: the oversized counting number 257 is placed tiny in the bottom-right instead of filling the upper half of the frame, and the upper half of the frame is left completely empty except for captions/labels that were not requested."
+    },
+    {
+      "index": 2,
+      "match": "PARTIAL",
+      "present": [
+        "The number 57 in the center of the frame in bold serif type",
+        "U.S. theaters text (partially rendered as 'FILMS OPEN U' in small caps below the 57)"
+      ],
+      "missing": [
+        "Small chart comparing theater releases to streaming totals",
+        "Complete 'U.S. THEATERS' text (it is cut off as 'FILMS OPEN U')"
+      ],
+      "unexpected": [
+        "Large heading at the top reading '57 films open' with the word 'films' in green",
+        "Transcript/caption text at the bottom ('Total Cinema notes that fifty-seven...') animating word-by-word"
+      ],
+      "timing_correct": true,
+      "timing_note": "The captioning text at the bottom appears to sync up with the progression of the narration across the frames."
+    },
+    {
+      "index": 3,
+      "match": "PARTIAL",
+      "present": [
+        "Lionsgate and Kino Lorber text/logos",
+        "Clean white background/cards",
+        "Small label reading 'DISTRIBUTORS' (appearing at the top)"
+      ],
+      "missing": [
+        "Official logos appearing side by side in the centre of the frame on separate cards",
+        "A slow push in toward Lionsgate",
+        "The label 'DISTRIBUTORS' placed below them"
+      ],
+      "unexpected": [
+        "Circles containing text 'KINO LORBER' and 'MASSIVE SLATE'",
+        "A green arrow pointing between the circles",
+        "Subtitles at the bottom tracking the narrator's speech ('Distributors like Lionsgate...', 'and Kino Lorber drive', etc.)",
+        "Source attribution text at the bottom right ('Source: commons.wikimedia.org')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual elements (circles, arrows, and subtitle text generation) do not match the described slow push-in toward Lionsgate or the centered side-by-side card layout."
+    },
+    {
+      "index": 4,
+      "match": "NO",
+      "present": [],
+      "missing": [
+        "A large question mark rendered in clean serif type in the center of the frame",
+        "A small label below reading SCREEN DOMINANCE"
+      ],
+      "unexpected": [
+        "Centered serif text reading 'Which titles dominate screens?' with 'dominate' in green",
+        "Bottom-left sans-serif text reading 'Which titles dominate screens' with an underline under 'dominate'",
+        "Top-right page numbering counter ('05 / 10')"
+      ],
+      "timing_correct": false,
+      "timing_note": "The rendered video displays completely different content (titles and subtitle text instead of a large question mark and a 'SCREEN DOMINANCE' label)."
+    },
+    {
+      "index": 5,
+      "match": "NO",
+      "present": [
+        "Netflix logo (though placed differently than described and missing Prime Video logo)"
+      ],
+      "missing": [
+        "Prime Video logo",
+        "Logos sitting side by side in the upper half",
+        "Vertical bar chart below building upward"
+      ],
+      "unexpected": [
+        "Text 'Massive streaming slates'",
+        "Subtitles/captions showing the narration text ('Netflix and Prime Video', etc.)",
+        "Source attribution in the bottom right corner"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan described logos and a bar chart, but the rendered frames show text captions and a standalone Netflix logo with completely different layout and content."
+    },
+    {
+      "index": 6,
+      "match": "PARTIAL",
+      "present": [
+        "Renegade Immortal: Battle of the Immortal Slayer title card",
+        "Netflix logo (as a circle containing text)"
+      ],
+      "missing": [
+        "Prime Video logo",
+        "Logos positioned in the top corners",
+        "Slow push in toward the title"
+      ],
+      "unexpected": [
+        "Circular node diagram with 'NETFLIX' and 'IMMORTAL SLAYER' text connected by a green arrow",
+        "Floating text at the bottom containing captions or fragments of the sentence"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual elements and layout do not match the simple scene description of a centered title card with corner logos and a push-in."
+    },
+    {
+      "index": 7,
+      "match": "PARTIAL",
+      "present": [
+        "The Metacritic logo",
+        "A reference to a sequel to The Social Network",
+        "A reference to a Laika animated feature"
+      ],
+      "missing": [
+        "The Metacritic logo positioned at the top left of the frame (it is in the center/bottom-right)",
+        "Two distinct visual cards representing the sequel and the Laika feature (instead, plain text captions are used)"
+      ],
+      "unexpected": [
+        "Large headline text 'A Laika animated feature' at the top",
+        "Large caption text at the bottom ('Metacritic highlights a sequel to The Social Network alongside a Laika animated feature' typed out progressively)",
+        "Source attribution at the bottom right ('Source: commons.wikimedia.org')",
+        "A small horizontal line above 'METACRITIC HIGHLIGHTS'"
+      ],
+      "timing_correct": true,
+      "timing_note": "The text types on progressively in sync with the narration across the frames, which is standard behavior."
+    },
+    {
+      "index": 8,
+      "match": "PARTIAL",
+      "present": [
+        "A small label reading U.S. THEATERS ALONE (rendered progressively as caption text)",
+        "A reference line drawing across below text"
+      ],
+      "missing": [
+        "The numeral 57 rendered in oversized serif digits in the center of the frame"
+      ],
+      "unexpected": [
+        "Large heading text reading 'Fifty-seven films open'",
+        "A map of the United States shaded in green",
+        "A map pin icon on the U.S.",
+        "The text 'U.S' centered over the map",
+        "Animated captions typing out the sentence incrementally"
+      ],
+      "timing_correct": false,
+      "timing_note": "The visual plan described showing the number 57 with a reference line, but the renderer completely replaced this concept with a map of the U.S. and animated text corresponding to the full sentence."
+    },
+    {
+      "index": 9,
+      "match": "PARTIAL",
+      "present": [
+        "StreamCal logo",
+        "Headline 'full release schedule' stacked below in serif capitals",
+        "Small label reading BUY TICKETS (though it appears as 'before buying' / 'CHECK OUT' during progress)"
+      ],
+      "missing": [
+        "The final static layout showing all elements together as described"
+      ],
+      "unexpected": [
+        "Animated progression text at the bottom ('Check out the full release schedule on StreamCal' typing/appearing sequentially)",
+        "Small text 'CHECK OUT' appearing in the top left corner"
+      ],
+      "timing_correct": true,
+      "timing_note": "The frames show the text animating in progressively across the beat to match the narration 'Check out the full release schedule on StreamCal before buying tickets'."
+    }
+  ]
+}

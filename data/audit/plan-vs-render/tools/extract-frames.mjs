@@ -8,10 +8,13 @@ import { join } from "node:path";
 import { execFileSync } from "node:child_process";
 import sharp from "sharp";
 
-const AUDIT = "data/audit/plan-vs-render";
+const AUDIT = process.env.PLAN_VS_RENDER_OUT || "data/audit/plan-vs-render";
 
 // channel -> { plan, manifest, mp4, run }
-export const INPUTS = {
+// The baseline below is the audited run 37323031912/37308547249. For a FRESH audit of a
+// newer run, set PLAN_VS_RENDER_INPUTS to a JSON file with the same shape and
+// PLAN_VS_RENDER_OUT to a new directory, so the baseline evidence is never overwritten.
+const BASELINE_INPUTS = {
   "ch-26": {
     run: "37313431912",
     plan: "C:/Users/user/AppData/Local/Temp/opencode/audit37313431912/rendered/rendered-26-37313431912/data/visual-plans/26/base-vault-whitelist-hack-6m-2026-shorts-script-visual-plan.json",
@@ -37,6 +40,10 @@ export const INPUTS = {
     mp4: "C:/Users/user/AppData/Local/Temp/opencode/audit37308547249/queues/qa-queues-44-37308547249/approved/stop-managing-ai-agents-blind-pixel-agents-shorts-shorts-2026-10-05.mp4",
   },
 };
+
+export const INPUTS = process.env.PLAN_VS_RENDER_INPUTS
+  ? JSON.parse(readFileSync(process.env.PLAN_VS_RENDER_INPUTS, "utf8"))
+  : BASELINE_INPUTS;
 
 function frameAt(mp4, sec, out) {
   try {

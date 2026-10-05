@@ -1,0 +1,751 @@
+{
+  "channel": "ch-44",
+  "run": "37323030454",
+  "mp4": "C:/Users/user/AppData/Local/Temp/opencode/audit37323030454/queues-44/approved-review/focusflow-dashboard-minimalist-workspaces-flow-shorts-shorts-2026-10-05.mp4",
+  "video": "focusflow-dashboard-minimalist-workspaces-flow-shorts-shorts-2026-10-05.mp4",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "beats": [
+    {
+      "index": 0,
+      "sentence": "Traditional productivity dashboards destroy your focus by loading your screen with too many active inputs.",
+      "scene_description": "A cluttered wall of overlapping data charts and windows fills the center of the frame, representing active inputs; the text 'Productivity dashboards destroy focus' appears in an oversized serif font, commanding attention as the hook of the video.",
+      "named_entities": [],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "causation",
+          "label": "dashboards destroy focus",
+          "magnitude": "high"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "underline"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 0.1,
+        "duration_sec": 6.8,
+        "headline_size": 140,
+        "headline_align": "center",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 1.8,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-0-25.png",
+          "size": "810x1440",
+          "mean": 246.28,
+          "ink_fraction": 0.0441,
+          "ink_bbox": {
+            "x": 37,
+            "y": 98,
+            "w": 737,
+            "h": 1086
+          }
+        },
+        {
+          "at": 3.5,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-0-50.png",
+          "size": "810x1440",
+          "mean": 247.47,
+          "ink_fraction": 0.039,
+          "ink_bbox": {
+            "x": 38,
+            "y": 96,
+            "w": 737,
+            "h": 1042
+          }
+        },
+        {
+          "at": 5.2,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-0-75.png",
+          "size": "810x1440",
+          "mean": 245.61,
+          "ink_fraction": 0.0476,
+          "ink_bbox": {
+            "x": 36,
+            "y": 99,
+            "w": 737,
+            "h": 1094
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "sentence": "Minimalistic Labz argued in 2026 that overview screens cause severe cognitive fatigue.",
+      "scene_description": "The logo of Minimalistic Labz appears in the upper third of the frame, followed by a brain outline diagram in the center showing high cognitive load, quietly pulsing to emphasize fatigue.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "Minimalistic Labz"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PROCESS",
+      "data_planned": {
+        "nodes": [
+          "overview screens",
+          "cognitive fatigue"
+        ]
+      },
+      "entity_anchor_word": "Labz",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "cognitive fatigue"
+        }
+      ],
+      "rendered": {
+        "visual_type": "PROCESS",
+        "composition": "PROCESS-FULL",
+        "boxes": [
+          "kicker",
+          "headline",
+          "nodes0",
+          "nodes1"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 6.9,
+        "duration_sec": 6.67,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 8.568,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-1-25.png",
+          "size": "810x1440",
+          "mean": 247.7,
+          "ink_fraction": 0.0359,
+          "ink_bbox": {
+            "x": 115,
+            "y": 146,
+            "w": 661,
+            "h": 992
+          }
+        },
+        {
+          "at": 10.235,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-1-50.png",
+          "size": "810x1440",
+          "mean": 246.37,
+          "ink_fraction": 0.0417,
+          "ink_bbox": {
+            "x": 31,
+            "y": 102,
+            "w": 748,
+            "h": 1027
+          }
+        },
+        {
+          "at": 11.902,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-1-75.png",
+          "size": "810x1440",
+          "mean": 244.73,
+          "ink_fraction": 0.0491,
+          "ink_bbox": {
+            "x": 35,
+            "y": 104,
+            "w": 741,
+            "h": 1089
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "sentence": "Taskade launched project 3325 to restrict users to a single locked task.",
+      "scene_description": "A clean, minimalist document card representing project 3325 fills the center of the frame, accompanied by a small lock icon that slowly scales up to signify restriction.",
+      "named_entities": [
+        {
+          "type": "object",
+          "name": "project 3325"
+        },
+        {
+          "type": "company",
+          "name": "Taskade"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "COUNTER",
+      "data_planned": {
+        "value": "3325",
+        "label": "project"
+      },
+      "entity_anchor_word": "Taskade",
+      "visual_events": [
+        {
+          "type": "structure_break",
+          "label": "single locked task",
+          "magnitude": "medium"
+        }
+      ],
+      "rendered": {
+        "visual_type": "COUNTER",
+        "composition": "NUMBER-FULL",
+        "boxes": [
+          "headline",
+          "label",
+          "number"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 13.57,
+        "duration_sec": 6.9,
+        "headline_size": 104,
+        "headline_align": "left",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "count-up"
+      },
+      "frames": [
+        {
+          "at": 15.295,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-2-25.png",
+          "size": "810x1440",
+          "mean": 242.06,
+          "ink_fraction": 0.0887,
+          "ink_bbox": {
+            "x": 36,
+            "y": 110,
+            "w": 736,
+            "h": 1074
+          }
+        },
+        {
+          "at": 17.02,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-2-50.png",
+          "size": "810x1440",
+          "mean": 242.77,
+          "ink_fraction": 0.0863,
+          "ink_bbox": {
+            "x": 36,
+            "y": 106,
+            "w": 742,
+            "h": 1032
+          }
+        },
+        {
+          "at": 18.745,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-2-75.png",
+          "size": "810x1440",
+          "mean": 241.22,
+          "ink_fraction": 0.0931,
+          "ink_bbox": {
+            "x": 36,
+            "y": 111,
+            "w": 734,
+            "h": 1082
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "sentence": "Can your brain handle constant multitasking?",
+      "scene_description": "A large question mark rendered in a clean serif typeface sits in the center of the frame, flanked by two diverging path lines that branch outward to represent divided attention.",
+      "named_entities": [],
+      "composition_planned": null,
+      "visual_type_planned": "MAP",
+      "data_planned": {
+        "place": "Can"
+      },
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "contrast",
+          "label": "multitasking vs focus",
+          "magnitude": "medium"
+        }
+      ],
+      "rendered": {
+        "visual_type": "MAP",
+        "composition": "MAP-CENTERED",
+        "boxes": [
+          "headline",
+          "map"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 20.47,
+        "duration_sec": 3.23,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 21.277,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-3-25.png",
+          "size": "810x1440",
+          "mean": 242.82,
+          "ink_fraction": 0.1304,
+          "ink_bbox": {
+            "x": 23,
+            "y": 101,
+            "w": 765,
+            "h": 1037
+          }
+        },
+        {
+          "at": 22.085,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-3-50.png",
+          "size": "810x1440",
+          "mean": 240.74,
+          "ink_fraction": 0.1421,
+          "ink_bbox": {
+            "x": 23,
+            "y": 103,
+            "w": 762,
+            "h": 1095
+          }
+        },
+        {
+          "at": 22.892,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-3-75.png",
+          "size": "810x1440",
+          "mean": 240.77,
+          "ink_fraction": 0.1416,
+          "ink_bbox": {
+            "x": 24,
+            "y": 105,
+            "w": 760,
+            "h": 1093
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "sentence": "Yet tanghoong completely eliminated cloud tracking by releasing FocusFlow as an offline system in 2024.",
+      "scene_description": "A shield icon sits in the center of the frame with a cross-out line over a cloud symbol, representing the complete removal of cloud tracking by tanghoong.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "tanghoong"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "COUNTER",
+      "data_planned": {
+        "value": "2024",
+        "label": "as an offline system"
+      },
+      "entity_anchor_word": "tanghoong",
+      "visual_events": [
+        {
+          "type": "depletion",
+          "label": "cloud tracking eliminated",
+          "magnitude": "high"
+        }
+      ],
+      "rendered": {
+        "visual_type": "COUNTER",
+        "composition": "NUMBER-FULL",
+        "boxes": [
+          "headline",
+          "label",
+          "number"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 23.7,
+        "duration_sec": 7.6,
+        "headline_size": 110,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": true
+        },
+        "entrance_style": "staggered",
+        "animation_family": "count-up"
+      },
+      "frames": [
+        {
+          "at": 25.6,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-4-25.png",
+          "size": "810x1440",
+          "mean": 231.18,
+          "ink_fraction": 0.0934,
+          "ink_bbox": {
+            "x": 36,
+            "y": 107,
+            "w": 735,
+            "h": 1077
+          }
+        },
+        {
+          "at": 27.5,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-4-50.png",
+          "size": "810x1440",
+          "mean": 231.02,
+          "ink_fraction": 0.0941,
+          "ink_bbox": {
+            "x": 36,
+            "y": 104,
+            "w": 743,
+            "h": 1034
+          }
+        },
+        {
+          "at": 29.4,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-4-75.png",
+          "size": "810x1440",
+          "mean": 229.75,
+          "ink_fraction": 0.0999,
+          "ink_bbox": {
+            "x": 36,
+            "y": 106,
+            "w": 736,
+            "h": 1092
+          }
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "sentence": "Dash10107 integrated Gemini AI in 2025 to power pomodoro timers and daily oracle sessions.",
+      "scene_description": "A sleek circular countdown timer fills the center of the frame, with a small glowing particle animation representing Gemini AI integration by Dash10107.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "Dash10107"
+        },
+        {
+          "type": "company",
+          "name": "Gemini"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "TYPE",
+      "data_planned": null,
+      "entity_anchor_word": "Gemini",
+      "visual_events": [
+        {
+          "type": "growth",
+          "label": "AI power integration",
+          "magnitude": "medium"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "cutout_name",
+          "cutout0"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [
+          "Gemini"
+        ],
+        "start_sec": 31.3,
+        "duration_sec": 9.17,
+        "headline_size": 96,
+        "headline_align": "right",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "visual-first",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 33.593,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-5-25.png",
+          "size": "810x1440",
+          "mean": 250.42,
+          "ink_fraction": 0.0189,
+          "ink_bbox": {
+            "x": 37,
+            "y": 100,
+            "w": 742,
+            "h": 1309
+          }
+        },
+        {
+          "at": 35.885,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-5-50.png",
+          "size": "810x1440",
+          "mean": 243.39,
+          "ink_fraction": 0.0514,
+          "ink_bbox": {
+            "x": 36,
+            "y": 98,
+            "w": 743,
+            "h": 1311
+          }
+        },
+        {
+          "at": 38.178,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-5-75.png",
+          "size": "810x1440",
+          "mean": 244.59,
+          "ink_fraction": 0.0457,
+          "ink_bbox": {
+            "x": 35,
+            "y": 96,
+            "w": 744,
+            "h": 1313
+          }
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "sentence": "FocusFlow combines Kanban and Pomodoro features to remove cognitive friction during deep work.",
+      "scene_description": "A smooth horizontal progress bar bridges a Kanban column layout on the left and a Pomodoro timer on the right, showing a seamless workflow transition.",
+      "named_entities": [],
+      "composition_planned": null,
+      "visual_type_planned": "PROCESS",
+      "data_planned": {
+        "nodes": [
+          "FocusFlow",
+          "work"
+        ],
+        "keynouns": true
+      },
+      "entity_anchor_word": null,
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "Kanban and Pomodoro combined",
+          "magnitude": "medium"
+        }
+      ],
+      "rendered": {
+        "visual_type": "PROCESS",
+        "composition": "PROCESS-FULL",
+        "boxes": [
+          "kicker",
+          "headline",
+          "nodes0",
+          "nodes1"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [],
+        "start_sec": 40.47,
+        "duration_sec": 6.4,
+        "headline_size": 104,
+        "headline_align": "left",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "together",
+        "animation_family": "pop-in"
+      },
+      "frames": [
+        {
+          "at": 42.07,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-6-25.png",
+          "size": "810x1440",
+          "mean": 248,
+          "ink_fraction": 0.0344,
+          "ink_bbox": {
+            "x": 33,
+            "y": 147,
+            "w": 626,
+            "h": 982
+          }
+        },
+        {
+          "at": 43.67,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-6-50.png",
+          "size": "810x1440",
+          "mean": 247.26,
+          "ink_fraction": 0.0378,
+          "ink_bbox": {
+            "x": 32,
+            "y": 103,
+            "w": 746,
+            "h": 1026
+          }
+        },
+        {
+          "at": 45.27,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-6-75.png",
+          "size": "810x1440",
+          "mean": 245.8,
+          "ink_fraction": 0.0441,
+          "ink_bbox": {
+            "x": 34,
+            "y": 103,
+            "w": 742,
+            "h": 1090
+          }
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "sentence": "Download FocusFlow from GitHub right now to secure your workflow.",
+      "scene_description": "The GitHub logo sits centered in the frame above the bold serif statement 'Download FocusFlow from GitHub right now', directing immediate viewer action.",
+      "named_entities": [
+        {
+          "type": "company",
+          "name": "GitHub"
+        },
+        {
+          "type": "object",
+          "name": "FocusFlow"
+        }
+      ],
+      "composition_planned": null,
+      "visual_type_planned": "PHOTO",
+      "data_planned": {
+        "entity": "GitHub",
+        "entity_type": "company"
+      },
+      "entity_anchor_word": "GitHub",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "download FocusFlow",
+          "magnitude": "high"
+        }
+      ],
+      "rendered": {
+        "visual_type": "TYPE",
+        "composition": "TYPE-FULL",
+        "boxes": [
+          "rule",
+          "kicker",
+          "statement",
+          "cutout_name",
+          "cutout0"
+        ],
+        "name_card": null,
+        "photo": null,
+        "concept_visuals": [
+          "GitHub"
+        ],
+        "start_sec": 46.87,
+        "duration_sec": 3.67,
+        "headline_size": 88,
+        "headline_align": "right",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "entrance_style": "staggered",
+        "animation_family": "slide-in"
+      },
+      "frames": [
+        {
+          "at": 47.787,
+          "frac": 0.25,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-7-25.png",
+          "size": "810x1440",
+          "mean": 251.69,
+          "ink_fraction": 0.0168,
+          "ink_bbox": {
+            "x": 34,
+            "y": 96,
+            "w": 744,
+            "h": 1020
+          }
+        },
+        {
+          "at": 48.705,
+          "frac": 0.5,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-7-50.png",
+          "size": "810x1440",
+          "mean": 233.3,
+          "ink_fraction": 0.0897,
+          "ink_bbox": {
+            "x": 36,
+            "y": 99,
+            "w": 743,
+            "h": 1310
+          }
+        },
+        {
+          "at": 49.622,
+          "frac": 0.75,
+          "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-7-75.png",
+          "size": "810x1440",
+          "mean": 232.88,
+          "ink_fraction": 0.0916,
+          "ink_bbox": {
+            "x": 36,
+            "y": 99,
+            "w": 743,
+            "h": 1310
+          }
+        }
+      ]
+    }
+  ]
+}

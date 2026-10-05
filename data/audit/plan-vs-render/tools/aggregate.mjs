@@ -5,7 +5,7 @@
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
-const ROOT = "data/audit/plan-vs-render";
+const ROOT = process.env.PLAN_VS_RENDER_OUT || "data/audit/plan-vs-render";
 const channels = readdirSync(ROOT, { withFileTypes: true })
   .filter((d) => d.isDirectory() && d.name !== "tools")
   .map((d) => d.name).sort();

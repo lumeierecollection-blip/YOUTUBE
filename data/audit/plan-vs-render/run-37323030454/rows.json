@@ -1,0 +1,1764 @@
+[
+  {
+    "channel": "ch-1",
+    "index": 0,
+    "sentence": "Over 40% of borrowers rush to clear debt, but is that extra cash missing the bigger picture?",
+    "planned_type": "TYPE",
+    "planned_desc": "A giant numeral 40% fills the centre of the frame, the percent sign smaller than the digits; below it in small caps, OVER 40% OF BORROWERS; behind it a thin line draws left to right, representing the rush to clear debt.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [
+      "A thin line drawing left to right"
+    ],
+    "missing": [
+      "A giant numeral 40% filling the centre of the frame with the percent sign smaller than the digits",
+      "Below it in small caps, OVER 40% OF BORROWERS"
+    ],
+    "unexpected": [
+      "Large serif text reading 'Rush to clear debt' in black and green",
+      "Subtitles appearing progressively reading 'Over forty percent of borrowers is that extra cash missing the bigger'",
+      "Page indicator '01 / 09' in the top right corner",
+      "Green underline beneath the word 'debt'"
+    ],
+    "timing_correct": false,
+    "timing_note": "The entire visual plan (the 40% numeral and caption) was replaced with completely different text and layout elements ('Rush to clear debt'), so the timing and content do not match the visual plan at all.",
+    "frames": [
+      {
+        "at": 1.725,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-0-25.png",
+        "size": "810x1440",
+        "mean": 249.8,
+        "ink_fraction": 0.0244,
+        "ink_bbox": {
+          "x": 38,
+          "y": 98,
+          "w": 736,
+          "h": 1086
+        }
+      },
+      {
+        "at": 3.35,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-0-50.png",
+        "size": "810x1440",
+        "mean": 251.3,
+        "ink_fraction": 0.0178,
+        "ink_bbox": {
+          "x": 39,
+          "y": 97,
+          "w": 736,
+          "h": 1033
+        }
+      },
+      {
+        "at": 4.975,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-0-75.png",
+        "size": "810x1440",
+        "mean": 249.16,
+        "ink_fraction": 0.0278,
+        "ink_bbox": {
+          "x": 38,
+          "y": 99,
+          "w": 736,
+          "h": 1094
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-1",
+    "index": 1,
+    "sentence": "Freedom Debt Relief surveyed people carrying over $10,000 in unsecured balances.",
+    "planned_type": "COUNTER",
+    "planned_desc": "The logo of Freedom Debt Relief centered in the upper half of the frame; below it, a coin stack of ten coins building one by one up to represent the ten thousand dollars in unsecured balances.",
+    "rendered_type": "COUNTER",
+    "rendered_composition": "NUMBER-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "The logo of Freedom Debt Relief centered in the upper half of the frame"
+    ],
+    "missing": [
+      "A coin stack of ten coins building one by one up to represent the ten thousand dollars in unsecured balances"
+    ],
+    "unexpected": [
+      "Large green text displaying '$10,000'",
+      "Smaller black text displaying 'UNSECURED BALANCES'",
+      "Kinetic typography at the bottom showing the narrator's sentence incrementally ('Freedom Debt Relief surveyed people', 'thousand', 'thousand dollars in unsecured balances')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan called for a coin stack representing $10,000, but the renderer instead displayed large numbers ($10,000) and kinetic typography tracking the voiceover.",
+    "frames": [
+      {
+        "at": 8.143,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-1-25.png",
+        "size": "810x1440",
+        "mean": 249.96,
+        "ink_fraction": 0.0236,
+        "ink_bbox": {
+          "x": 54,
+          "y": 105,
+          "w": 722,
+          "h": 1088
+        }
+      },
+      {
+        "at": 9.685,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-1-50.png",
+        "size": "810x1440",
+        "mean": 243.75,
+        "ink_fraction": 0.0675,
+        "ink_bbox": {
+          "x": 43,
+          "y": 102,
+          "w": 735,
+          "h": 1027
+        }
+      },
+      {
+        "at": 11.227,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-1-75.png",
+        "size": "810x1440",
+        "mean": 242.11,
+        "ink_fraction": 0.0748,
+        "ink_bbox": {
+          "x": 46,
+          "y": 104,
+          "w": 731,
+          "h": 1080
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-1",
+    "index": 2,
+    "sentence": "Over 40% of borrowers immediately throw every spare dollar at their lenders.",
+    "planned_type": "MONEY",
+    "planned_desc": "A single dollar bill fills the centre of the frame, flanked by small labels reading OVER 40% OF BORROWERS; a slow push in highlights the bill as it moves toward the bottom right.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "A single dollar bill filling the centre of the frame",
+      "Small labels flanking the bill reading OVER 40% OF BORROWERS",
+      "A slow push in highlighting the bill as it moves toward the bottom right"
+    ],
+    "unexpected": [
+      "Large typography at the top reading 'Spare dollar at lenders' (with 'lenders' in green)",
+      "Subtitles at the bottom tracking the narrator's sentence word-by-word ('Over forty percent of borrowers immediately throw every...')",
+      "Source attribution in the bottom right ('Source: wikipedia.org')",
+      "A small horizontal line element at the top right"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual elements rendered (kinetic typography and subtitles) completely mismatch the planned visual description of a dollar bill with flanking labels.",
+    "frames": [
+      {
+        "at": 14.127,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-2-25.png",
+        "size": "810x1440",
+        "mean": 250.7,
+        "ink_fraction": 0.0162,
+        "ink_bbox": {
+          "x": 37,
+          "y": 97,
+          "w": 737,
+          "h": 1025
+        }
+      },
+      {
+        "at": 15.485,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-2-50.png",
+        "size": "810x1440",
+        "mean": 249.82,
+        "ink_fraction": 0.021,
+        "ink_bbox": {
+          "x": 37,
+          "y": 99,
+          "w": 742,
+          "h": 1310
+        }
+      },
+      {
+        "at": 16.843,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-2-75.png",
+        "size": "810x1440",
+        "mean": 235.27,
+        "ink_fraction": 0.1071,
+        "ink_bbox": {
+          "x": 38,
+          "y": 96,
+          "w": 741,
+          "h": 1313
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-1",
+    "index": 3,
+    "sentence": "Can a 2026 study leave your emergency fund completely empty?",
+    "planned_type": "TYPE",
+    "planned_desc": "A wallet lies open in the centre of the frame, completely empty of bills, with a small label beneath reading 2026 STUDY; a warning triangle icon pops in beside it.",
+    "rendered_type": "MAP",
+    "rendered_composition": "MAP-CENTERED",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "A wallet lying open in the centre of the frame",
+      "Wallet completely empty of bills",
+      "A small label beneath reading 2026 STUDY",
+      "A warning triangle icon popping in beside it"
+    ],
+    "unexpected": [
+      "A map of Canada with a location pin icon",
+      "Large heading text 'Emergency fund completely empty' at the top",
+      "Subtitle caption text at the bottom matching the voiceover ('Can a twenty twenty-six...')",
+      "Small category header 'EMERGENCY FUND'"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered visual sequence depicts a map of Canada and text captions rather than the wallet, empty bills, 2026 study label, and warning triangle described in the visual plan.",
+    "frames": [
+      {
+        "at": 19.407,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-3-25.png",
+        "size": "810x1440",
+        "mean": 239.76,
+        "ink_fraction": 0.1364,
+        "ink_bbox": {
+          "x": 24,
+          "y": 142,
+          "w": 761,
+          "h": 996
+        }
+      },
+      {
+        "at": 20.615,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-3-50.png",
+        "size": "810x1440",
+        "mean": 237.79,
+        "ink_fraction": 0.144,
+        "ink_bbox": {
+          "x": 24,
+          "y": 105,
+          "w": 760,
+          "h": 1088
+        }
+      },
+      {
+        "at": 21.822,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-3-75.png",
+        "size": "810x1440",
+        "mean": 239.09,
+        "ink_fraction": 0.139,
+        "ink_bbox": {
+          "x": 24,
+          "y": 101,
+          "w": 761,
+          "h": 1042
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-1",
+    "index": 4,
+    "sentence": "However, Bone Fide Wealth founder Douglas Boneparth warns that speed costs security.",
+    "planned_type": "PHOTO",
+    "planned_desc": "A portrait of Douglas Boneparth, founder of Bone Fide Wealth, sits in the upper half of the frame; a slow push in across the beat while a shield icon rests quietly below him.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [
+      "Douglas Boneparth's name/text representation"
+    ],
+    "missing": [
+      "A portrait of Douglas Boneparth",
+      "A shield icon resting quietly below him"
+    ],
+    "unexpected": [
+      "Large stylized typography saying 'Douglas Boneparth'",
+      "Text saying 'SPEED COSTS SECURITY'",
+      "Subtitles/narrative text progressively revealing the sentence 'However Bone Fide Wealth founder Douglas Boneparth warns that speed costs security'"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan called for a portrait and a shield icon, but the rendered frames instead show typography-based kinetic text animation without any portrait or shield icon.",
+    "frames": [
+      {
+        "at": 24.538,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-4-25.png",
+        "size": "810x1440",
+        "mean": 241.7,
+        "ink_fraction": 0.0563,
+        "ink_bbox": {
+          "x": 37,
+          "y": 98,
+          "w": 737,
+          "h": 1031
+        }
+      },
+      {
+        "at": 26.045,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-4-50.png",
+        "size": "810x1440",
+        "mean": 239.56,
+        "ink_fraction": 0.0664,
+        "ink_bbox": {
+          "x": 36,
+          "y": 98,
+          "w": 738,
+          "h": 1095
+        }
+      },
+      {
+        "at": 27.553,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-4-75.png",
+        "size": "810x1440",
+        "mean": 241.16,
+        "ink_fraction": 0.0596,
+        "ink_bbox": {
+          "x": 36,
+          "y": 98,
+          "w": 738,
+          "h": 1101
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-1",
+    "index": 5,
+    "sentence": "Money.com revealed that 40% of people must balance savings with debt.",
+    "planned_type": "PIE",
+    "planned_desc": "The logo of Money.com sits in the upper third of the frame; below it, a large 40% figure stands next to a coin stack, showing the balance between savings and debt.",
+    "rendered_type": "PIE",
+    "rendered_composition": "DATA-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "Logo of Money.com (at top as 'Balance savings with debt' / Money.com mentioned in lower text)",
+      "40% figure"
+    ],
+    "missing": [
+      "Coin stack"
+    ],
+    "unexpected": [
+      "Donut chart / progress ring",
+      "Additional text blocks ('PEOPLE MUST BALANCE SAVINGS WITH DEBT')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan described a coin stack and balance representation, but the renderer used a donut chart instead, and the layout does not align with the narrative progression described.",
+    "frames": [
+      {
+        "at": 30.402,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-5-25.png",
+        "size": "810x1440",
+        "mean": 236.48,
+        "ink_fraction": 0.1193,
+        "ink_bbox": {
+          "x": 36,
+          "y": 104,
+          "w": 743,
+          "h": 1039
+        }
+      },
+      {
+        "at": 31.735,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-5-50.png",
+        "size": "810x1440",
+        "mean": 234.38,
+        "ink_fraction": 0.1284,
+        "ink_bbox": {
+          "x": 37,
+          "y": 104,
+          "w": 741,
+          "h": 1089
+        }
+      },
+      {
+        "at": 33.068,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-5-75.png",
+        "size": "810x1440",
+        "mean": 235.53,
+        "ink_fraction": 0.124,
+        "ink_bbox": {
+          "x": 35,
+          "y": 103,
+          "w": 745,
+          "h": 1035
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-1",
+    "index": 6,
+    "sentence": "Smart planners divide extra funds instead of sending everything to lenders.",
+    "planned_type": "TYPE",
+    "planned_desc": "A bank statement fills the frame, with an upward arrow splitting from a single line into two separate paths to show extra funds being divided.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "Bank statement filling the frame",
+      "Upward arrow splitting from a single line into two separate paths",
+      "Visual representation of extra funds being divided"
+    ],
+    "unexpected": [
+      "Large heading text 'Divide extra funds' and 'Funds'",
+      "Subtitle text animating the sentence 'Smart planners divide extra funds instead of sending everything to lenders'",
+      "Minimalist line graphic in the top right corner",
+      "Plain white background"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered frames display typography and a kinetic text sequence instead of the described bank statement and splitting arrow visual plan.",
+    "frames": [
+      {
+        "at": 35.7,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-6-25.png",
+        "size": "810x1440",
+        "mean": 239.33,
+        "ink_fraction": 0.0682,
+        "ink_bbox": {
+          "x": 36,
+          "y": 97,
+          "w": 740,
+          "h": 1041
+        }
+      },
+      {
+        "at": 37,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-6-50.png",
+        "size": "810x1440",
+        "mean": 238.24,
+        "ink_fraction": 0.0725,
+        "ink_bbox": {
+          "x": 36,
+          "y": 99,
+          "w": 739,
+          "h": 1099
+        }
+      },
+      {
+        "at": 38.3,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-6-75.png",
+        "size": "810x1440",
+        "mean": 239.49,
+        "ink_fraction": 0.0666,
+        "ink_bbox": {
+          "x": 37,
+          "y": 96,
+          "w": 740,
+          "h": 1042
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-1",
+    "index": 7,
+    "sentence": "Building savings protects you from unexpected 2026 financial shocks.",
+    "planned_type": "COUNTER",
+    "planned_desc": "A calendar showing the year 2026 sits in the centre of the frame, with a shield icon sliding smoothly over it to represent protection from financial shocks.",
+    "rendered_type": "COUNTER",
+    "rendered_composition": "NUMBER-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "2026",
+      "financial shocks (represented in text)"
+    ],
+    "missing": [
+      "calendar showing the year 2026",
+      "shield icon sliding smoothly over the calendar"
+    ],
+    "unexpected": [
+      "Large typography stating 'Protect from financial shocks' at the top",
+      "Animated caption subtitles appearing at the bottom corresponding to the voiceover ('Building savings protects you from unexpected twenty-six financial shocks')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan called for a calendar and a shield icon representing protection from financial shocks, but instead, the frames display large typography numbers ('2026') and text subtitles. There is no calendar or shield icon present at any point in the rendered frames.",
+    "frames": [
+      {
+        "at": 40.968,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-7-25.png",
+        "size": "810x1440",
+        "mean": 234.13,
+        "ink_fraction": 0.0895,
+        "ink_bbox": {
+          "x": 47,
+          "y": 103,
+          "w": 732,
+          "h": 1036
+        }
+      },
+      {
+        "at": 42.335,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-7-50.png",
+        "size": "810x1440",
+        "mean": 232.2,
+        "ink_fraction": 0.0978,
+        "ink_bbox": {
+          "x": 51,
+          "y": 105,
+          "w": 727,
+          "h": 1088
+        }
+      },
+      {
+        "at": 43.703,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-7-75.png",
+        "size": "810x1440",
+        "mean": 233.52,
+        "ink_fraction": 0.0919,
+        "ink_bbox": {
+          "x": 45,
+          "y": 103,
+          "w": 735,
+          "h": 1035
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-1",
+    "index": 8,
+    "sentence": "Split your 40% extra cash between savings and debt today.",
+    "planned_type": "MONEY",
+    "planned_desc": "A giant 40% figure occupies the centre of the frame, flanked by a dollar bill on the left and a coin stack on the right; below in small caps, SPLIT YOUR EXTRA CASH.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "A giant 40% figure occupies the centre of the frame (as part of the title text 'Split 40% extra cash')",
+      "A dollar bill (though placed horizontally across the middle rather than flanking the figure on the left)"
+    ],
+    "missing": [
+      "A coin stack on the right",
+      "Below in small caps: SPLIT YOUR EXTRA CASH"
+    ],
+    "unexpected": [
+      "Large header text 'Split 40% extra cash' at the top",
+      "Progress indicator '09 / 09' in the top right",
+      "Source attribution 'Source: wikipedia.org' in the bottom right",
+      "Animated caption text at the bottom ('Split your forty percent extra cash between savings')",
+      "Horizontal line at the top right"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered frames show an animated text sequence building up ('Split your forty percent extra cash between savings') rather than the single layout requested in the visual plan ('SPLIT YOUR EXTRA CASH'). Furthermore, the coin stack and side-flanking layout described are entirely absent across all frames.",
+    "frames": [
+      {
+        "at": 46.02,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-8-25.png",
+        "size": "810x1440",
+        "mean": 251.05,
+        "ink_fraction": 0.0145,
+        "ink_bbox": {
+          "x": 37,
+          "y": 96,
+          "w": 738,
+          "h": 1026
+        }
+      },
+      {
+        "at": 46.97,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-8-50.png",
+        "size": "810x1440",
+        "mean": 235.55,
+        "ink_fraction": 0.1121,
+        "ink_bbox": {
+          "x": 37,
+          "y": 99,
+          "w": 742,
+          "h": 1310
+        }
+      },
+      {
+        "at": 47.92,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-1\\beat-8-75.png",
+        "size": "810x1440",
+        "mean": 234.78,
+        "ink_fraction": 0.116,
+        "ink_bbox": {
+          "x": 37,
+          "y": 98,
+          "w": 742,
+          "h": 1311
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 0,
+    "sentence": "Traditional productivity dashboards destroy your focus by loading your screen with too many active inputs.",
+    "planned_type": "TYPE",
+    "planned_desc": "A cluttered wall of overlapping data charts and windows fills the center of the frame, representing active inputs; the text 'Productivity dashboards destroy focus' appears in an oversized serif font, commanding attention as the hook of the video.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "The text 'Productivity dashboards destroy focus' in an oversized serif font in the center of the frame"
+    ],
+    "missing": [
+      "A cluttered wall of overlapping data charts and windows filling the center of the frame, representing active inputs"
+    ],
+    "unexpected": [
+      "Plain white background instead of a cluttered data wall",
+      "Caption text at the bottom displaying the voiceover sentence progressively ('Traditional productivity dashboards', 'by loading', 'by loading your screen with too many active')",
+      "Progress indicator / page number '01 / 08' at the top right",
+      "A horizontal line/bar element at the top right"
+    ],
+    "timing_correct": true,
+    "timing_note": "The voiceover subtitle text animates word-by-word progressively matching the narration timeline (25%, 50%, 75% progression points show advancing text).",
+    "frames": [
+      {
+        "at": 1.8,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-0-25.png",
+        "size": "810x1440",
+        "mean": 246.28,
+        "ink_fraction": 0.0441,
+        "ink_bbox": {
+          "x": 37,
+          "y": 98,
+          "w": 737,
+          "h": 1086
+        }
+      },
+      {
+        "at": 3.5,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-0-50.png",
+        "size": "810x1440",
+        "mean": 247.47,
+        "ink_fraction": 0.039,
+        "ink_bbox": {
+          "x": 38,
+          "y": 96,
+          "w": 737,
+          "h": 1042
+        }
+      },
+      {
+        "at": 5.2,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-0-75.png",
+        "size": "810x1440",
+        "mean": 245.61,
+        "ink_fraction": 0.0476,
+        "ink_bbox": {
+          "x": 36,
+          "y": 99,
+          "w": 737,
+          "h": 1094
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 1,
+    "sentence": "Minimalistic Labz argued in 2026 that overview screens cause severe cognitive fatigue.",
+    "planned_type": "PROCESS",
+    "planned_desc": "The logo of Minimalistic Labz appears in the upper third of the frame, followed by a brain outline diagram in the center showing high cognitive load, quietly pulsing to emphasize fatigue.",
+    "rendered_type": "PROCESS",
+    "rendered_composition": "PROCESS-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "Logo of Minimalistic Labz in the upper third of the frame",
+      "Brain outline diagram in the center",
+      "High cognitive load / pulsing fatigue indication on the brain diagram"
+    ],
+    "unexpected": [
+      "Large header text 'Overview screens cause cognitive fatigue'",
+      "Flowchart circles with 'OVERVIEW SCREENS' and 'COGNITIVE FATIGUE' connected by an arrow",
+      "Caption text at the bottom that types out parts of the sentence ('Minimalistic Labz argued in', 'overview', 'overview screens cause severe cognitive')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visuals rendered show a completely different concept (flowchart/diagram with text bubbles about overview screens and cognitive fatigue) rather than the requested Minimalistic Labz logo and brain outline diagram.",
+    "frames": [
+      {
+        "at": 8.568,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-1-25.png",
+        "size": "810x1440",
+        "mean": 247.7,
+        "ink_fraction": 0.0359,
+        "ink_bbox": {
+          "x": 115,
+          "y": 146,
+          "w": 661,
+          "h": 992
+        }
+      },
+      {
+        "at": 10.235,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-1-50.png",
+        "size": "810x1440",
+        "mean": 246.37,
+        "ink_fraction": 0.0417,
+        "ink_bbox": {
+          "x": 31,
+          "y": 102,
+          "w": 748,
+          "h": 1027
+        }
+      },
+      {
+        "at": 11.902,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-1-75.png",
+        "size": "810x1440",
+        "mean": 244.73,
+        "ink_fraction": 0.0491,
+        "ink_bbox": {
+          "x": 35,
+          "y": 104,
+          "w": 741,
+          "h": 1089
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 2,
+    "sentence": "Taskade launched project 3325 to restrict users to a single locked task.",
+    "planned_type": "COUNTER",
+    "planned_desc": "A clean, minimalist document card representing project 3325 fills the center of the frame, accompanied by a small lock icon that slowly scales up to signify restriction.",
+    "rendered_type": "COUNTER",
+    "rendered_composition": "NUMBER-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "Project number 3325"
+    ],
+    "missing": [
+      "Clean, minimalist document card",
+      "Small lock icon slowly scaling up to signify restriction"
+    ],
+    "unexpected": [
+      "Animated subtitle text displaying the sentence: 'Taskade launched project 3325 to restrict users to a single locked task'",
+      "Header text 'Restrict users to single task'"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered video displays scrolling subtitle text matching the narration sentence word-by-word instead of the requested visual scene (document card with a scaling lock icon).",
+    "frames": [
+      {
+        "at": 15.295,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-2-25.png",
+        "size": "810x1440",
+        "mean": 242.06,
+        "ink_fraction": 0.0887,
+        "ink_bbox": {
+          "x": 36,
+          "y": 110,
+          "w": 736,
+          "h": 1074
+        }
+      },
+      {
+        "at": 17.02,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-2-50.png",
+        "size": "810x1440",
+        "mean": 242.77,
+        "ink_fraction": 0.0863,
+        "ink_bbox": {
+          "x": 36,
+          "y": 106,
+          "w": 742,
+          "h": 1032
+        }
+      },
+      {
+        "at": 18.745,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-2-75.png",
+        "size": "810x1440",
+        "mean": 241.22,
+        "ink_fraction": 0.0931,
+        "ink_bbox": {
+          "x": 36,
+          "y": 111,
+          "w": 734,
+          "h": 1082
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 3,
+    "sentence": "Can your brain handle constant multitasking?",
+    "planned_type": "MAP",
+    "planned_desc": "A large question mark rendered in a clean serif typeface sits in the center of the frame, flanked by two diverging path lines that branch outward to represent divided attention.",
+    "rendered_type": "MAP",
+    "rendered_composition": "MAP-CENTERED",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "A large question mark rendered in a clean serif typeface in the center of the frame",
+      "Two diverging path lines that branch outward to represent divided attention"
+    ],
+    "unexpected": [
+      "A map graphic (specifically of Canada) with a location pin",
+      "On-screen subtitle text at the top and bottom ('Can your brain handle constant multitasking?')",
+      "The word 'Can' placed over the map graphic"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered video shows a map and subtitles instead of the described question mark and diverging paths.",
+    "frames": [
+      {
+        "at": 21.277,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-3-25.png",
+        "size": "810x1440",
+        "mean": 242.82,
+        "ink_fraction": 0.1304,
+        "ink_bbox": {
+          "x": 23,
+          "y": 101,
+          "w": 765,
+          "h": 1037
+        }
+      },
+      {
+        "at": 22.085,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-3-50.png",
+        "size": "810x1440",
+        "mean": 240.74,
+        "ink_fraction": 0.1421,
+        "ink_bbox": {
+          "x": 23,
+          "y": 103,
+          "w": 762,
+          "h": 1095
+        }
+      },
+      {
+        "at": 22.892,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-3-75.png",
+        "size": "810x1440",
+        "mean": 240.77,
+        "ink_fraction": 0.1416,
+        "ink_bbox": {
+          "x": 24,
+          "y": 105,
+          "w": 760,
+          "h": 1093
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 4,
+    "sentence": "Yet tanghoong completely eliminated cloud tracking by releasing FocusFlow as an offline system in 2024.",
+    "planned_type": "COUNTER",
+    "planned_desc": "A shield icon sits in the center of the frame with a cross-out line over a cloud symbol, representing the complete removal of cloud tracking by tanghoong.",
+    "rendered_type": "COUNTER",
+    "rendered_composition": "NUMBER-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "shield icon",
+      "cross-out line",
+      "cloud symbol"
+    ],
+    "unexpected": [
+      "large text 'Eliminated cloud tracking offline'",
+      "large year '2024'",
+      "captions displaying the narration text ('Yet tanghoong completely eliminated...', 'releasing FocusFlow', 'as an offline system')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan described a shield icon with a cross-out line over a cloud, but the rendered frames show completely unrelated typography and captions.",
+    "frames": [
+      {
+        "at": 25.6,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-4-25.png",
+        "size": "810x1440",
+        "mean": 231.18,
+        "ink_fraction": 0.0934,
+        "ink_bbox": {
+          "x": 36,
+          "y": 107,
+          "w": 735,
+          "h": 1077
+        }
+      },
+      {
+        "at": 27.5,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-4-50.png",
+        "size": "810x1440",
+        "mean": 231.02,
+        "ink_fraction": 0.0941,
+        "ink_bbox": {
+          "x": 36,
+          "y": 104,
+          "w": 743,
+          "h": 1034
+        }
+      },
+      {
+        "at": 29.4,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-4-75.png",
+        "size": "810x1440",
+        "mean": 229.75,
+        "ink_fraction": 0.0999,
+        "ink_bbox": {
+          "x": 36,
+          "y": 106,
+          "w": 736,
+          "h": 1092
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 5,
+    "sentence": "Dash10107 integrated Gemini AI in 2025 to power pomodoro timers and daily oracle sessions.",
+    "planned_type": "TYPE",
+    "planned_desc": "A sleek circular countdown timer fills the center of the frame, with a small glowing particle animation representing Gemini AI integration by Dash10107.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "sleek circular countdown timer in the center of the frame",
+      "small glowing particle animation representing Gemini AI integration by Dash10107"
+    ],
+    "unexpected": [
+      "Gemini AI logo and text",
+      "Text 'Gemini AI powers pomodoro timers'",
+      "Text 'Dash10107 integrated Gemini AI in twenty twenty-five'",
+      "Text 'INTEGRATED IN 2025'",
+      "Source attribution text at the bottom right"
+    ],
+    "timing_correct": false,
+    "timing_note": "The entire scene content does not match the visual plan at all, showing static/animated typography and brand logos instead of a circular countdown timer and glowing particles.",
+    "frames": [
+      {
+        "at": 33.593,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-5-25.png",
+        "size": "810x1440",
+        "mean": 250.42,
+        "ink_fraction": 0.0189,
+        "ink_bbox": {
+          "x": 37,
+          "y": 100,
+          "w": 742,
+          "h": 1309
+        }
+      },
+      {
+        "at": 35.885,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-5-50.png",
+        "size": "810x1440",
+        "mean": 243.39,
+        "ink_fraction": 0.0514,
+        "ink_bbox": {
+          "x": 36,
+          "y": 98,
+          "w": 743,
+          "h": 1311
+        }
+      },
+      {
+        "at": 38.178,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-5-75.png",
+        "size": "810x1440",
+        "mean": 244.59,
+        "ink_fraction": 0.0457,
+        "ink_bbox": {
+          "x": 35,
+          "y": 96,
+          "w": 744,
+          "h": 1313
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 6,
+    "sentence": "FocusFlow combines Kanban and Pomodoro features to remove cognitive friction during deep work.",
+    "planned_type": "PROCESS",
+    "planned_desc": "A smooth horizontal progress bar bridges a Kanban column layout on the left and a Pomodoro timer on the right, showing a seamless workflow transition.",
+    "rendered_type": "PROCESS",
+    "rendered_composition": "PROCESS-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "smooth horizontal progress bar",
+      "Kanban column layout on the left",
+      "Pomodoro timer on the right"
+    ],
+    "unexpected": [
+      "circular nodes with text 'FOCUSFLOW' and 'WORK'",
+      "diagonal golden arrow connecting the circles",
+      "kinetic typography displaying the sentence text in parts at the top and bottom"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visuals rendered (circles and arrows) do not match the specified Kanban layout, Pomodoro timer, or horizontal progress bar at any point in the beat.",
+    "frames": [
+      {
+        "at": 42.07,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-6-25.png",
+        "size": "810x1440",
+        "mean": 248,
+        "ink_fraction": 0.0344,
+        "ink_bbox": {
+          "x": 33,
+          "y": 147,
+          "w": 626,
+          "h": 982
+        }
+      },
+      {
+        "at": 43.67,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-6-50.png",
+        "size": "810x1440",
+        "mean": 247.26,
+        "ink_fraction": 0.0378,
+        "ink_bbox": {
+          "x": 32,
+          "y": 103,
+          "w": 746,
+          "h": 1026
+        }
+      },
+      {
+        "at": 45.27,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-6-75.png",
+        "size": "810x1440",
+        "mean": 245.8,
+        "ink_fraction": 0.0441,
+        "ink_bbox": {
+          "x": 34,
+          "y": 103,
+          "w": 742,
+          "h": 1090
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-44",
+    "index": 7,
+    "sentence": "Download FocusFlow from GitHub right now to secure your workflow.",
+    "planned_type": "PHOTO",
+    "planned_desc": "The GitHub logo sits centered in the frame above the bold serif statement 'Download FocusFlow from GitHub right now', directing immediate viewer action.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "The GitHub logo centered in the frame",
+      "The bold serif statement 'Download FocusFlow from GitHub right now'"
+    ],
+    "missing": [],
+    "unexpected": [
+      "Top header text 'Download FocusFlow from GitHub' in serif font",
+      "Section/page indicator '08 / 08'",
+      "Label 'GITHUB' at the bottom right of the logo",
+      "Attribution 'Source: commons.wikimedia.org' at the bottom right",
+      "A progress line/bar at the top left"
+    ],
+    "timing_correct": true,
+    "timing_note": "The text types on progressively alongside the narration across the frames.",
+    "frames": [
+      {
+        "at": 47.787,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-7-25.png",
+        "size": "810x1440",
+        "mean": 251.69,
+        "ink_fraction": 0.0168,
+        "ink_bbox": {
+          "x": 34,
+          "y": 96,
+          "w": 744,
+          "h": 1020
+        }
+      },
+      {
+        "at": 48.705,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-7-50.png",
+        "size": "810x1440",
+        "mean": 233.3,
+        "ink_fraction": 0.0897,
+        "ink_bbox": {
+          "x": 36,
+          "y": 99,
+          "w": 743,
+          "h": 1310
+        }
+      },
+      {
+        "at": 49.622,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-44\\beat-7-75.png",
+        "size": "810x1440",
+        "mean": 232.88,
+        "ink_fraction": 0.0916,
+        "ink_bbox": {
+          "x": 36,
+          "y": 99,
+          "w": 743,
+          "h": 1310
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 0,
+    "sentence": "October 2026 brings an absurd wave of major new releases.",
+    "planned_type": "COUNTER",
+    "planned_desc": "Oversized numerals 2026 fill the centre of the frame, slowly scaling down while the headline 'absurd wave' types out line by line in serif capitals; below it in a small sans label, OCTOBER 2026.",
+    "rendered_type": "COUNTER",
+    "rendered_composition": "NUMBER-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "Oversized numerals 2026 in the centre of the frame",
+      "Headline text relating to 'absurd wave'"
+    ],
+    "missing": [
+      "Numerals scaling down",
+      "Headline rendered in serif capitals (it appears in sans-serif uppercase)",
+      "Small sans label 'OCTOBER 2026' below the headline"
+    ],
+    "unexpected": [
+      "Persistent header text at the top ('October 2026 releases' in serif/sans mix)",
+      "Subtitles/captions at the bottom ('October twenty twenty-six...')"
+    ],
+    "timing_correct": true,
+    "timing_note": "The typing animation progresses naturally across the frames in sync with the narration, though the styling and layout details deviated from the plan.",
+    "frames": [
+      {
+        "at": 1.343,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-0-25.png",
+        "size": "810x1440",
+        "mean": 239.16,
+        "ink_fraction": 0.0963,
+        "ink_bbox": {
+          "x": 37,
+          "y": 107,
+          "w": 739,
+          "h": 1031
+        }
+      },
+      {
+        "at": 2.585,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-0-50.png",
+        "size": "810x1440",
+        "mean": 237.34,
+        "ink_fraction": 0.104,
+        "ink_bbox": {
+          "x": 38,
+          "y": 108,
+          "w": 731,
+          "h": 1090
+        }
+      },
+      {
+        "at": 3.828,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-0-75.png",
+        "size": "810x1440",
+        "mean": 238.67,
+        "ink_fraction": 0.0989,
+        "ink_bbox": {
+          "x": 37,
+          "y": 106,
+          "w": 742,
+          "h": 1032
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 1,
+    "sentence": "StreamCal reports that 257 new releases hit streaming and theaters in October 2026.",
+    "planned_type": "TYPE",
+    "planned_desc": "The number 257 in oversized serif digits fills the upper half of the frame, counting up from zero across the beat; below it, the StreamCal logo sits alongside a small sans label reading NEW RELEASES IN OCTOBER.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "StreamCal logo",
+      "the number 257 (though positioned in the lower-right rather than filling the upper half)"
+    ],
+    "missing": [
+      "oversized serif digits filling the upper half of the frame counting up from zero",
+      "small sans label reading NEW RELEASES IN OCTOBER"
+    ],
+    "unexpected": [
+      "Animated captions at the bottom showing the voiceover text (\"StreamCal reports that two hundred...\", \"releases hit streaming\", etc.)",
+      "Small sans label at the top left reading \"STREAMCAL REPORTS\" with a line above it"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual layout completely misinterprets the spatial arrangement described in the scene plan: the oversized counting number 257 is placed tiny in the bottom-right instead of filling the upper half of the frame, and the upper half of the frame is left completely empty except for captions/labels that were not requested.",
+    "frames": [
+      {
+        "at": 6.902,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-1-25.png",
+        "size": "810x1440",
+        "mean": 248.68,
+        "ink_fraction": 0.0371,
+        "ink_bbox": {
+          "x": 36,
+          "y": 99,
+          "w": 737,
+          "h": 1085
+        }
+      },
+      {
+        "at": 8.735,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-1-50.png",
+        "size": "810x1440",
+        "mean": 248.88,
+        "ink_fraction": 0.0364,
+        "ink_bbox": {
+          "x": 35,
+          "y": 96,
+          "w": 742,
+          "h": 1042
+        }
+      },
+      {
+        "at": 10.568,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-1-75.png",
+        "size": "810x1440",
+        "mean": 247.28,
+        "ink_fraction": 0.0432,
+        "ink_bbox": {
+          "x": 37,
+          "y": 99,
+          "w": 736,
+          "h": 1094
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 2,
+    "sentence": "Total Cinema notes that 57 films open in U.S. theaters during this window.",
+    "planned_type": "COUNTER",
+    "planned_desc": "The number 57 appears in the centre of the frame in bold serif type, flanked by a small chart comparing theater releases to streaming totals; below it in small caps, U.S. THEATERS.",
+    "rendered_type": "COUNTER",
+    "rendered_composition": "NUMBER-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "The number 57 in the center of the frame in bold serif type",
+      "U.S. theaters text (partially rendered as 'FILMS OPEN U' in small caps below the 57)"
+    ],
+    "missing": [
+      "Small chart comparing theater releases to streaming totals",
+      "Complete 'U.S. THEATERS' text (it is cut off as 'FILMS OPEN U')"
+    ],
+    "unexpected": [
+      "Large heading at the top reading '57 films open' with the word 'films' in green",
+      "Transcript/caption text at the bottom ('Total Cinema notes that fifty-seven...') animating word-by-word"
+    ],
+    "timing_correct": true,
+    "timing_note": "The captioning text at the bottom appears to sync up with the progression of the narration across the frames.",
+    "frames": [
+      {
+        "at": 13.775,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-2-25.png",
+        "size": "810x1440",
+        "mean": 242.2,
+        "ink_fraction": 0.0513,
+        "ink_bbox": {
+          "x": 36,
+          "y": 105,
+          "w": 507,
+          "h": 1088
+        }
+      },
+      {
+        "at": 15.15,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-2-50.png",
+        "size": "810x1440",
+        "mean": 241.15,
+        "ink_fraction": 0.0562,
+        "ink_bbox": {
+          "x": 36,
+          "y": 104,
+          "w": 521,
+          "h": 1089
+        }
+      },
+      {
+        "at": 16.525,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-2-75.png",
+        "size": "810x1440",
+        "mean": 242.54,
+        "ink_fraction": 0.05,
+        "ink_bbox": {
+          "x": 36,
+          "y": 104,
+          "w": 419,
+          "h": 1034
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 3,
+    "sentence": "Distributors like Lionsgate and Kino Lorber drive this massive slate.",
+    "planned_type": "PHOTO",
+    "planned_desc": "The official logos of Lionsgate and Kino Lorber appear side by side in the centre of the frame on clean white cards, with a slow push in toward Lionsgate; below them, a small label reads DISTRIBUTORS.",
+    "rendered_type": "PROCESS",
+    "rendered_composition": "PROCESS-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "Lionsgate and Kino Lorber text/logos",
+      "Clean white background/cards",
+      "Small label reading 'DISTRIBUTORS' (appearing at the top)"
+    ],
+    "missing": [
+      "Official logos appearing side by side in the centre of the frame on separate cards",
+      "A slow push in toward Lionsgate",
+      "The label 'DISTRIBUTORS' placed below them"
+    ],
+    "unexpected": [
+      "Circles containing text 'KINO LORBER' and 'MASSIVE SLATE'",
+      "A green arrow pointing between the circles",
+      "Subtitles at the bottom tracking the narrator's speech ('Distributors like Lionsgate...', 'and Kino Lorber drive', etc.)",
+      "Source attribution text at the bottom right ('Source: commons.wikimedia.org')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual elements (circles, arrows, and subtitle text generation) do not match the described slow push-in toward Lionsgate or the centered side-by-side card layout.",
+    "frames": [
+      {
+        "at": 19.1,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-3-25.png",
+        "size": "810x1440",
+        "mean": 248.98,
+        "ink_fraction": 0.029,
+        "ink_bbox": {
+          "x": 140,
+          "y": 142,
+          "w": 638,
+          "h": 1001
+        }
+      },
+      {
+        "at": 20.3,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-3-50.png",
+        "size": "810x1440",
+        "mean": 245.43,
+        "ink_fraction": 0.045,
+        "ink_bbox": {
+          "x": 34,
+          "y": 105,
+          "w": 745,
+          "h": 1304
+        }
+      },
+      {
+        "at": 21.5,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-3-75.png",
+        "size": "810x1440",
+        "mean": 247.51,
+        "ink_fraction": 0.036,
+        "ink_bbox": {
+          "x": 31,
+          "y": 101,
+          "w": 748,
+          "h": 1308
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 4,
+    "sentence": "Which titles dominate screens?",
+    "planned_type": "TYPE",
+    "planned_desc": "A large question mark rendered in clean serif type sits in the center of the frame, accompanied by a small label below reading SCREEN DOMINANCE.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [],
+    "missing": [
+      "A large question mark rendered in clean serif type in the center of the frame",
+      "A small label below reading SCREEN DOMINANCE"
+    ],
+    "unexpected": [
+      "Centered serif text reading 'Which titles dominate screens?' with 'dominate' in green",
+      "Bottom-left sans-serif text reading 'Which titles dominate screens' with an underline under 'dominate'",
+      "Top-right page numbering counter ('05 / 10')"
+    ],
+    "timing_correct": false,
+    "timing_note": "The rendered video displays completely different content (titles and subtitle text instead of a large question mark and a 'SCREEN DOMINANCE' label).",
+    "frames": [
+      {
+        "at": 23.392,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-4-25.png",
+        "size": "810x1440",
+        "mean": 247.77,
+        "ink_fraction": 0.0216,
+        "ink_bbox": {
+          "x": 37,
+          "y": 96,
+          "w": 738,
+          "h": 1033
+        }
+      },
+      {
+        "at": 24.085,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-4-50.png",
+        "size": "810x1440",
+        "mean": 246.65,
+        "ink_fraction": 0.0266,
+        "ink_bbox": {
+          "x": 37,
+          "y": 97,
+          "w": 738,
+          "h": 1087
+        }
+      },
+      {
+        "at": 24.777,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-4-75.png",
+        "size": "810x1440",
+        "mean": 246.48,
+        "ink_fraction": 0.0277,
+        "ink_bbox": {
+          "x": 37,
+          "y": 99,
+          "w": 736,
+          "h": 1085
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 5,
+    "sentence": "Netflix and Prime Video match that theatrical push with massive streaming slates.",
+    "planned_type": "PHOTO",
+    "planned_desc": "The logos for Netflix and Prime Video sit side by side in the upper half of the frame, while a vertical bar chart below builds upward to represent their streaming slates.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "NO",
+    "present": [
+      "Netflix logo (though placed differently than described and missing Prime Video logo)"
+    ],
+    "missing": [
+      "Prime Video logo",
+      "Logos sitting side by side in the upper half",
+      "Vertical bar chart below building upward"
+    ],
+    "unexpected": [
+      "Text 'Massive streaming slates'",
+      "Subtitles/captions showing the narration text ('Netflix and Prime Video', etc.)",
+      "Source attribution in the bottom right corner"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan described logos and a bar chart, but the rendered frames show text captions and a standalone Netflix logo with completely different layout and content.",
+    "frames": [
+      {
+        "at": 26.82,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-5-25.png",
+        "size": "810x1440",
+        "mean": 243.64,
+        "ink_fraction": 0.0627,
+        "ink_bbox": {
+          "x": 35,
+          "y": 97,
+          "w": 739,
+          "h": 1019
+        }
+      },
+      {
+        "at": 28.17,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-5-50.png",
+        "size": "810x1440",
+        "mean": 242.69,
+        "ink_fraction": 0.0679,
+        "ink_bbox": {
+          "x": 36,
+          "y": 98,
+          "w": 743,
+          "h": 1311
+        }
+      },
+      {
+        "at": 29.52,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-5-75.png",
+        "size": "810x1440",
+        "mean": 243.89,
+        "ink_fraction": 0.0626,
+        "ink_bbox": {
+          "x": 35,
+          "y": 96,
+          "w": 744,
+          "h": 1313
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 6,
+    "sentence": "Netflix and Prime Video debut major titles alongside Renegade Immortal: Battle of the Immortal Slayer.",
+    "planned_type": "PHOTO",
+    "planned_desc": "The official title card for Renegade Immortal: Battle of the Immortal Slayer sits centrally in the frame, accompanied by the Netflix and Prime Video logos in the top corners; a slow push in toward the title.",
+    "rendered_type": "PROCESS",
+    "rendered_composition": "PROCESS-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "Renegade Immortal: Battle of the Immortal Slayer title card",
+      "Netflix logo (as a circle containing text)"
+    ],
+    "missing": [
+      "Prime Video logo",
+      "Logos positioned in the top corners",
+      "Slow push in toward the title"
+    ],
+    "unexpected": [
+      "Circular node diagram with 'NETFLIX' and 'IMMORTAL SLAYER' text connected by a green arrow",
+      "Floating text at the bottom containing captions or fragments of the sentence"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual elements and layout do not match the simple scene description of a centered title card with corner logos and a push-in.",
+    "frames": [
+      {
+        "at": 32.653,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-6-25.png",
+        "size": "810x1440",
+        "mean": 248.3,
+        "ink_fraction": 0.0324,
+        "ink_bbox": {
+          "x": 34,
+          "y": 144,
+          "w": 641,
+          "h": 985
+        }
+      },
+      {
+        "at": 34.435,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-6-50.png",
+        "size": "810x1440",
+        "mean": 246.77,
+        "ink_fraction": 0.0393,
+        "ink_bbox": {
+          "x": 31,
+          "y": 102,
+          "w": 748,
+          "h": 1036
+        }
+      },
+      {
+        "at": 36.218,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-6-75.png",
+        "size": "810x1440",
+        "mean": 244.76,
+        "ink_fraction": 0.0481,
+        "ink_bbox": {
+          "x": 34,
+          "y": 104,
+          "w": 742,
+          "h": 1094
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 7,
+    "sentence": "Metacritic highlights a sequel to The Social Network alongside a Laika animated feature.",
+    "planned_type": "PHOTO",
+    "planned_desc": "The Metacritic logo anchors the top left of the frame, while below it two distinct visual cards represent a sequel to The Social Network and a Laika animated feature.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "The Metacritic logo",
+      "A reference to a sequel to The Social Network",
+      "A reference to a Laika animated feature"
+    ],
+    "missing": [
+      "The Metacritic logo positioned at the top left of the frame (it is in the center/bottom-right)",
+      "Two distinct visual cards representing the sequel and the Laika feature (instead, plain text captions are used)"
+    ],
+    "unexpected": [
+      "Large headline text 'A Laika animated feature' at the top",
+      "Large caption text at the bottom ('Metacritic highlights a sequel to The Social Network alongside a Laika animated feature' typed out progressively)",
+      "Source attribution at the bottom right ('Source: commons.wikimedia.org')",
+      "A small horizontal line above 'METACRITIC HIGHLIGHTS'"
+    ],
+    "timing_correct": true,
+    "timing_note": "The text types on progressively in sync with the narration across the frames, which is standard behavior.",
+    "frames": [
+      {
+        "at": 39.432,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-7-25.png",
+        "size": "810x1440",
+        "mean": 248.14,
+        "ink_fraction": 0.0559,
+        "ink_bbox": {
+          "x": 35,
+          "y": 97,
+          "w": 740,
+          "h": 1030
+        }
+      },
+      {
+        "at": 40.865,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-7-50.png",
+        "size": "810x1440",
+        "mean": 246.97,
+        "ink_fraction": 0.0622,
+        "ink_bbox": {
+          "x": 36,
+          "y": 98,
+          "w": 743,
+          "h": 1311
+        }
+      },
+      {
+        "at": 42.297,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-7-75.png",
+        "size": "810x1440",
+        "mean": 246.45,
+        "ink_fraction": 0.065,
+        "ink_bbox": {
+          "x": 35,
+          "y": 97,
+          "w": 744,
+          "h": 1312
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 8,
+    "sentence": "Fifty-seven films open in U.S. theaters alone.",
+    "planned_type": "MAP",
+    "planned_desc": "The numeral 57 is rendered in oversized serif digits in the centre of the frame, with a reference line drawing across below it and a small label reading U.S. THEATERS ALONE.",
+    "rendered_type": "MAP",
+    "rendered_composition": "MAP-CENTERED",
+    "match": "PARTIAL",
+    "present": [
+      "A small label reading U.S. THEATERS ALONE (rendered progressively as caption text)",
+      "A reference line drawing across below text"
+    ],
+    "missing": [
+      "The numeral 57 rendered in oversized serif digits in the center of the frame"
+    ],
+    "unexpected": [
+      "Large heading text reading 'Fifty-seven films open'",
+      "A map of the United States shaded in green",
+      "A map pin icon on the U.S.",
+      "The text 'U.S' centered over the map",
+      "Animated captions typing out the sentence incrementally"
+    ],
+    "timing_correct": false,
+    "timing_note": "The visual plan described showing the number 57 with a reference line, but the renderer completely replaced this concept with a map of the U.S. and animated text corresponding to the full sentence.",
+    "frames": [
+      {
+        "at": 44.672,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-8-25.png",
+        "size": "810x1440",
+        "mean": 240.13,
+        "ink_fraction": 0.1252,
+        "ink_bbox": {
+          "x": 32,
+          "y": 144,
+          "w": 755,
+          "h": 999
+        }
+      },
+      {
+        "at": 45.615,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-8-50.png",
+        "size": "810x1440",
+        "mean": 239.33,
+        "ink_fraction": 0.1272,
+        "ink_bbox": {
+          "x": 35,
+          "y": 105,
+          "w": 750,
+          "h": 1038
+        }
+      },
+      {
+        "at": 46.557,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-8-75.png",
+        "size": "810x1440",
+        "mean": 238.44,
+        "ink_fraction": 0.1315,
+        "ink_bbox": {
+          "x": 36,
+          "y": 104,
+          "w": 749,
+          "h": 1080
+        }
+      }
+    ]
+  },
+  {
+    "channel": "ch-49",
+    "index": 9,
+    "sentence": "Check out the full release schedule on StreamCal before buying tickets.",
+    "planned_type": "PHOTO",
+    "planned_desc": "The StreamCal logo sits in the center of the frame, oversized and bold, with the headline 'full release schedule' stacked below in serif capitals and a small label reading BUY TICKETS.",
+    "rendered_type": "TYPE",
+    "rendered_composition": "TYPE-FULL",
+    "match": "PARTIAL",
+    "present": [
+      "StreamCal logo",
+      "Headline 'full release schedule' stacked below in serif capitals",
+      "Small label reading BUY TICKETS (though it appears as 'before buying' / 'CHECK OUT' during progress)"
+    ],
+    "missing": [
+      "The final static layout showing all elements together as described"
+    ],
+    "unexpected": [
+      "Animated progression text at the bottom ('Check out the full release schedule on StreamCal' typing/appearing sequentially)",
+      "Small text 'CHECK OUT' appearing in the top left corner"
+    ],
+    "timing_correct": true,
+    "timing_note": "The frames show the text animating in progressively across the beat to match the narration 'Check out the full release schedule on StreamCal before buying tickets'.",
+    "frames": [
+      {
+        "at": 48.392,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-9-25.png",
+        "size": "810x1440",
+        "mean": 247.75,
+        "ink_fraction": 0.0235,
+        "ink_bbox": {
+          "x": 34,
+          "y": 96,
+          "w": 661,
+          "h": 1033
+        }
+      },
+      {
+        "at": 49.285,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-9-50.png",
+        "size": "810x1440",
+        "mean": 245.94,
+        "ink_fraction": 0.0298,
+        "ink_bbox": {
+          "x": 36,
+          "y": 98,
+          "w": 660,
+          "h": 1100
+        }
+      },
+      {
+        "at": 50.178,
+        "path": "data\\audit\\plan-vs-render\\run-37323030454\\ch-49\\beat-9-75.png",
+        "size": "810x1440",
+        "mean": 248.03,
+        "ink_fraction": 0.0214,
+        "ink_bbox": {
+          "x": 37,
+          "y": 99,
+          "w": 537,
+          "h": 1040
+        }
+      }
+    ]
+  }
+]
