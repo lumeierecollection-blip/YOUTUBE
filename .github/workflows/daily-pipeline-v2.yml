@@ -31,7 +31,7 @@ on:
       channels:
         description: "Comma-separated channel IDs — must be priority channels"
         type: string
-        default: "1,2,9,26,44,48"
+        default: "1,2,9,26,44,49"
       render_only:
         description: "DEBUG: skip discover/research/script; render the channel's latest committed script (never publishes)"
         type: boolean
@@ -1032,9 +1032,7 @@ jobs:
           CH44_CLIENT_ID:       ${{ secrets.CHANNEL_44_CLIENT_ID }}
           CH44_CLIENT_SECRET:   ${{ secrets.CHANNEL_44_CLIENT_SECRET }}
           CH44_REFRESH_TOKEN:   ${{ secrets.CHANNEL_44_REFRESH_TOKEN }}
-          CH48_CLIENT_ID:       ${{ secrets.CHANNEL_48_CLIENT_ID }}
-          CH48_CLIENT_SECRET:   ${{ secrets.CHANNEL_48_CLIENT_SECRET }}
-          CH48_REFRESH_TOKEN:   ${{ secrets.CHANNEL_48_REFRESH_TOKEN }}
+          
         run: |
           mkdir -p config/creds
           P=$(printf '%02d' "${{ matrix.channel_id }}")
@@ -1116,7 +1114,7 @@ jobs:
           REVIEW_RUN: ${{ github.event.inputs.review_run_id }}
         run: |
           node -e "
-            const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 48];
+            const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 49];
             const ids = (process.env.REQUESTED || '').split(',').map(s => s.trim().replace(/^ch-?/i, '')).filter(Boolean).map(Number);
             const bad = ids.filter(id => !PUBLISH_CHANNELS.includes(id));
             if (!ids.length) { console.error('::error::no channels given'); process.exit(1); }
@@ -1186,9 +1184,7 @@ jobs:
           CH44_CLIENT_ID:       ${{ secrets.CHANNEL_44_CLIENT_ID }}
           CH44_CLIENT_SECRET:   ${{ secrets.CHANNEL_44_CLIENT_SECRET }}
           CH44_REFRESH_TOKEN:   ${{ secrets.CHANNEL_44_REFRESH_TOKEN }}
-          CH48_CLIENT_ID:       ${{ secrets.CHANNEL_48_CLIENT_ID }}
-          CH48_CLIENT_SECRET:   ${{ secrets.CHANNEL_48_CLIENT_SECRET }}
-          CH48_REFRESH_TOKEN:   ${{ secrets.CHANNEL_48_REFRESH_TOKEN }}
+          
         run: |
           mkdir -p config/creds
           node -e "
