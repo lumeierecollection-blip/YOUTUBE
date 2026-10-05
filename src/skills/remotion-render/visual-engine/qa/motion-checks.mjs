@@ -51,10 +51,19 @@ import { decodePNG } from "../../decode-png.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "..", "..", "..", "..");
-const FFMPEG = existsSync(join(ROOT, "node_modules", "ffmpeg-static", "ffmpeg"))
-  ? join(ROOT, "node_modules", "ffmpeg-static", "ffmpeg")
-  : join(ROOT, "src/skills/remotion-render/node_modules/@remotion/compositor-linux-x64-gnu/ffmpeg");
-const FFPROBE = join(ROOT, "src/skills/remotion-render/node_modules/@remotion/compositor-linux-x64-gnu/ffprobe");
+// FFMPEG had an existsSync fallback; FFPROBE was a hardcoded linux path with no check and
+// no .exe, so the pair could disagree — the same defect class as gemini-frame-review.js,
+// gate-visual-qa.js and local-visual-auditor.js. Both now search one candidate list.
+const binExt = process.platform === "win32" ? ".exe" : "";
+const compositorPkg = process.platform === "win32" ? "compositor-win32-x64-msvc" : "compositor-linux-x64-gnu";
+const BIN_CANDIDATES = (name) => [
+  join(ROOT, "node_modules", "ffmpeg-static", name + binExt),
+  join(ROOT, "node_modules", "@remotion", compositorPkg, name + binExt),
+  join(ROOT, "src/skills/remotion-render/node_modules/@remotion", compositorPkg, name + binExt),
+  join(ROOT, "src/skills/remotion-render/node_modules/@remotion/compositor-linux-x64-gnu", name),
+];
+const FFMPEG = BIN_CANDIDATES("ffmpeg").find((p) => existsSync(p)) || "ffmpeg";
+const FFPROBE = BIN_CANDIDATES("ffprobe").find((p) => existsSync(p)) || "ffprobe";
 
 const FPS = 30;
 /** Every 10th frame: a third of a second, fine enough to catch a 2s hold. */

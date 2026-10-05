@@ -63,8 +63,21 @@ const OUT_DIR = join(RENDER_DIR, "public", "sfx", "interface-kenney");
 const BASE = "https://raw.githubusercontent.com/Calinou/kenney-interface-sounds/master/addons/kenney_interface_sounds";
 const LICENSE_URL = "https://raw.githubusercontent.com/Calinou/kenney-interface-sounds/master/LICENSE.txt";
 
-const FFMPEG = join(RENDER_DIR, "node_modules", "@remotion", "compositor-linux-x64-gnu", "ffmpeg");
-const FFPROBE = join(RENDER_DIR, "node_modules", "@remotion", "compositor-linux-x64-gnu", "ffprobe");
+// Both binaries were hardcoded to compositor-linux-x64-gnu with no .exe suffix and no
+// existence check, so neither could resolve off Linux. Same defect class as
+// gemini-frame-review.js / gate-visual-qa.js / local-visual-auditor.js: a path inferred
+// rather than searched. Candidates are searched in order; ffmpeg-static first, then the
+// platform compositor, then the render skill's own copy.
+const binExt = process.platform === "win32" ? ".exe" : "";
+const compositorPkg = process.platform === "win32" ? "compositor-win32-x64-msvc" : "compositor-linux-x64-gnu";
+const BIN_CANDIDATES = (name) => [
+  join(ROOT, "node_modules", "ffmpeg-static", name + binExt),
+  join(RENDER_DIR, "node_modules", "@remotion", compositorPkg, name + binExt),
+  join(ROOT, "node_modules", "@remotion", compositorPkg, name + binExt),
+  join(RENDER_DIR, "node_modules", "@remotion", compositorPkg, name),
+];
+const FFMPEG = BIN_CANDIDATES("ffmpeg").find((p) => existsSync(p)) || "ffmpeg";
+const FFPROBE = BIN_CANDIDATES("ffprobe").find((p) => existsSync(p)) || "ffprobe";
 
 /**
  * ROLE -> the files that serve it. Roles are the vocabulary the sound

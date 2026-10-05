@@ -32,7 +32,19 @@ const channels = [...(config.channels || config)];
 channels.push({ id: "fixture", channel_id: "ch-fixture", channel_name: "ch-fixture", style: "motion-graphics",
   font: "Inter", colors: { primary: "#0F172A", secondary: "#1E293B", accent: "#22C55E", bg: "#0A1020" } });
 
-const FFMPEG = join(ROOT, "node_modules", "ffmpeg-static", "ffmpeg");
+// Searched rather than inferred: this was a single hardcoded path — the linux compositor
+// package with no .exe suffix in two cases — so it could not resolve on any other
+// platform, and nothing checked it existed. Same defect class as gemini-frame-review.js,
+// gate-visual-qa.js, local-visual-auditor.js and motion-checks.mjs. Ordered: ffmpeg-static,
+// the platform compositor, then the render skill's own copy.
+const binExt = process.platform === "win32" ? ".exe" : "";
+const compositorPkg = process.platform === "win32" ? "compositor-win32-x64-msvc" : "compositor-linux-x64-gnu";
+const FFMPEG = [
+  join(ROOT, "node_modules", "ffmpeg-static", "ffmpeg" + binExt),
+  join(ROOT, "node_modules", "@remotion", compositorPkg, "ffmpeg" + binExt),
+  join(RENDER_DIR, "node_modules", "@remotion", compositorPkg, "ffmpeg" + binExt),
+  join(RENDER_DIR, "node_modules", "@remotion", "compositor-linux-x64-gnu", "ffmpeg"),
+].find((p) => existsSync(p)) || "ffmpeg";
 
 /** The composition statically imports ./vo.mp3, so one must always be staged. */
 function stageAudio(slug, seconds) {

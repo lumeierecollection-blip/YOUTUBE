@@ -70,7 +70,12 @@ const compositorPkg = process.platform === "win32"
 const binExt = process.platform === "win32" ? ".exe" : "";
 const FFMPEG_MIN = join(ROOT, "src", "skills", "remotion-render", "node_modules",
   compositorPkg, `ffmpeg${binExt}`);
-const FFPROBE = join(dirname(FFMPEG_MIN), `ffprobe${binExt}`);
+const FFPROBE_CANDIDATES = [
+  join(ROOT, "node_modules", "ffmpeg-static", `ffprobe${binExt}`),
+  join(ROOT, "node_modules", compositorPkg, `ffprobe${binExt}`),
+  join(dirname(FFMPEG_MIN), `ffprobe${binExt}`),
+];
+const FFPROBE = FFPROBE_CANDIDATES.find((p) => existsSync(p)) || FFPROBE_CANDIDATES[0];
 const ffmpegStatic = join(ROOT, "node_modules", "ffmpeg-static", `ffmpeg${binExt}`);
 const FFMPEG = existsSync(ffmpegStatic) ? ffmpegStatic : FFMPEG_MIN;
 

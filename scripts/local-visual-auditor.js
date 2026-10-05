@@ -91,7 +91,15 @@ const binExt = process.platform === "win32" ? ".exe" : "";
 const FFMPEG_MIN = join(ROOT, "src", "skills", "remotion-render", "node_modules", compositorPkg, `ffmpeg${binExt}`);
 const ffmpegStatic = join(ROOT, "node_modules", "ffmpeg-static", `ffmpeg${binExt}`);
 const FFMPEG = existsSync(ffmpegStatic) ? ffmpegStatic : FFMPEG_MIN;
-const FFPROBE = join(dirname(FFMPEG_MIN), `ffprobe${binExt}`);
+// FFPROBE searched the same candidates as FFMPEG. It used to be derived from FFMPEG_MIN —
+// the FALLBACK — with no existence check, so where the compositor is hoisted to the root
+// node_modules FFMPEG resolved and FFPROBE pointed at a file that is not there.
+const FFPROBE_CANDIDATES = [
+  join(ROOT, "node_modules", "ffmpeg-static", `ffprobe${binExt}`),
+  join(ROOT, "node_modules", compositorPkg, `ffprobe${binExt}`),
+  join(dirname(FFMPEG_MIN), `ffprobe${binExt}`),
+];
+const FFPROBE = FFPROBE_CANDIDATES.find((p) => existsSync(p)) || FFPROBE_CANDIDATES[0];
 
 // Safe area for shorts (mirrors src/skills/remotion-render/layout/slots.js).
 const SAFE = { top: 288, bottom: 1248, left: 48, right: 888, W: 1080, H: 1920 };

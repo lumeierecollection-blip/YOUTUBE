@@ -43,7 +43,20 @@ import { execFileSync } from "node:child_process";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const RENDER_DIR = join(__dirname, "..");
-const FFMPEG = join(RENDER_DIR, "node_modules", "@remotion", "compositor-linux-x64-gnu", "ffmpeg");
+const ROOT = join(RENDER_DIR, "..", "..", "..");
+// Searched rather than inferred: this was a single hardcoded path � the linux compositor
+// package with no .exe suffix in two cases � so it could not resolve on any other
+// platform, and nothing checked it existed. Same defect class as gemini-frame-review.js,
+// gate-visual-qa.js, local-visual-auditor.js and motion-checks.mjs. Ordered: ffmpeg-static,
+// the platform compositor, then the render skill's own copy.
+const binExt = process.platform === "win32" ? ".exe" : "";
+const compositorPkg = process.platform === "win32" ? "compositor-win32-x64-msvc" : "compositor-linux-x64-gnu";
+const FFMPEG = [
+  join(ROOT, "node_modules", "ffmpeg-static", "ffmpeg" + binExt),
+  join(ROOT, "node_modules", "@remotion", compositorPkg, "ffmpeg" + binExt),
+  join(RENDER_DIR, "node_modules", "@remotion", compositorPkg, "ffmpeg" + binExt),
+  join(RENDER_DIR, "node_modules", "@remotion", "compositor-linux-x64-gnu", "ffmpeg"),
+].find((p) => existsSync(p)) || "ffmpeg";
 
 const SR = 44100;
 const WIN_MS = 100;
