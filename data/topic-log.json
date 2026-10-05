@@ -2748,9 +2748,14 @@
           "topic": "Decoding the Digital Nerve Center: The ATL Terminal S Logistics Map",
           "slug": "atl-terminal-s-supply-chain-map",
           "reserved_at": "2026-10-05T09:15:22.609Z"
+        },
+        {
+          "topic": "How AI Evolves Smarter Rules for Untangling the World's Container Ports",
+          "slug": "ai-rules-untangling-container-ports-2026",
+          "reserved_at": "2026-10-05T09:32:46.530Z"
         }
       ],
-      "last_generated": "2026-10-05T09:15:22.609Z"
+      "last_generated": "2026-10-05T09:32:46.530Z"
     },
     "49": {
       "channel_name": "Wander Budget",
