@@ -647,8 +647,6 @@ TEXT. "headline": 2-6 words FROM the sentence, never a full sentence, never a cl
 
 MOTION. "motion_tier": "micro"|"medium"|"major" — EXACTLY 2-3 "major" (the hook, the pivot, the close), most "medium". "camera_focus": null or 1-2 [{"at_percent": 0.05-0.9, "target": number|chart|headline|photo|left|right|top|bottom|node0|node1|node2|full}]. "persists_from": the previous beat's index when this beat carries its element on, else null; "match_cut_prev": true when it shares that element. "text_entrance": omit, or POP_SOFT (a quiet beat) | POP_HARD (beat 0 or the last only) | POP_LETTER (at most one beat) | POP_WORD_STACK (a 2-5 word TYPE statement). "visual_events": [{"type": growth|depletion|comparison|revelation|structure_break|accumulation|population|evidence|contrast|causation, "label", "magnitude"}] — at least 5 distinct types across the video, never the same event 3 times in a row; "capabilities": the event types used (+ "typographic_emphasis" on a TYPE beat); "objects": {"label_a","label_b"} for contrast, {"figure"} for evidence, {"cause","effect"} for causation, else {}.
 
-Do not request a silhouette or a document unless the sentence names a specific person or a specific document. Silhouette = a named person; document = a named legal instrument, filing, or paper. If the sentence does not name either, do not include them.
-
 ${example}
 
 Respond ONLY with JSON (no markdown): {"beats":[ one object per sentence, in order, shaped like the example ]}`;

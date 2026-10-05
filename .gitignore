@@ -103,3 +103,10 @@ __pycache__/
 # The old library (public/cutouts/, incl. verified.json) is deleted and must not come back.
 src/skills/remotion-render/public/cutouts-live/
 src/skills/remotion-render/public/cutouts/
+
+# local QA artifacts — never commit
+Research -*.zip
+Research -*/
+data/reference-audio/
+data/reference-frames/
+dbg-*.cjs

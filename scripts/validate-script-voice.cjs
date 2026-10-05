@@ -49,16 +49,17 @@ function validateVoice(script, research = null) {
   // narrative device like the setup's question; validate-script-narrative.cjs already requires
   // the close to be a specific action or number (CI run 37154369091: ch-26 / ch-44 / ch-2 closes).
   // Directed scripts (schemas/script.directed.json) number their sections sec_1..sec_N with
-  // no id "close", so this exemption NEVER fired for them (ch-2's "Know your rights, and keep
-  // your data secure." was failed as naming nothing — CI run 37297352662). Fall back to
-  // POSITION, the same convention validate-script-narrative.cjs uses: the last sentence of
-  // the last section is the close.
+  // no id "close", so the id lookup alone never matched them and ch-2's closing
+  // "Know your rights, and keep your data secure." was failed as naming nothing
+  // (CI run 37297352662). Fix: use the section literally named "close" when there is
+  // one, and otherwise the script's FINAL sentence (the positional close that
+  // validate-script-narrative.cjs uses). Only the final sentence — never every
+  // sentence of the last section, which for a single-section script is the whole
+  // script and would exempt all of it.
   const secs = script.sections || [];
-  const lastSec = secs[secs.length - 1];
-  const closeSentList = sentences((secs.find((x) => x.id === "close") || lastSec)?.voiceover || "");
-  const closeSents = new Set(closeSentList.map((s) => s.trim()));
-  // Position fallback: the very last sentence of the script is the close.
-  if (sents.length) closeSents.add(sents[sents.length - 1].trim());
+  const namedClose = secs.find((x) => x.id === "close");
+  const closeSents = new Set(sentences((namedClose || {}).voiceover || "").map((s) => s.trim()));
+  if (!namedClose && sents.length) closeSents.add(sents[sents.length - 1].trim());
   const people = peopleOf(research);
   const ents = new Set((research?.named_entities || []).flatMap((e) => String(e?.name || "").split(/\s+/)).map((w) => w.toLowerCase()).filter(Boolean));
   const rows = [];

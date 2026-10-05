@@ -33,7 +33,14 @@ const wire = sec({
 {
   const v = V.validateVoice(wire, RESEARCH);
   eq("wire voice: 4 sentences start with Powell (max 1)", v.nameStarts, 4);
-  eq("wire voice: full-name starts are failures", v.rows.filter((r) => r.fails.some((f) => /full name/.test(f))).length, 3);
+  // Since 2026-10-05 a full-name opener is a SCRIPT count, not a per-sentence
+  // failure: one attribution is allowed, two or more fail the script. This
+  // fixture opens 3 sentences with "Jerome Powell", so the script must fail.
+  eq("wire voice: repeated full-name openers fail the script", v.scriptFails.some((f) => /full name \(max 1\)/.test(f)), true);
+  eq("wire voice: no single full-name opener fails on its own", (() => {
+    const one = V.validateVoice(sec({ a: "Jan Sigmund announced the freeze from Schindellegi, Switzerland." }), { named_entities: [{ name: "Jan Sigmund", kind: "person" }, { name: "Schindellegi", kind: "place" }] });
+    return one.scriptFails.filter((f) => /full name/.test(f)).length;
+  })(), 0);
   const n = N.validateNarrative(wire, RESEARCH);
   eq("wire: hook fails (person's name first), setup no question, rehook no flip, payoff hedged, close banned", Object.fromEntries(Object.entries(n.checks).map(([k, x]) => [k, x.ok])), { hook: false, setup: false, rehook: false, payoff: false, close: false });
   eq("wire: payoff names the hedge", n.checks.payoff.why.some((w) => /hedged \("may"\)/.test(w)), true);
