@@ -24,6 +24,9 @@ import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 import { narrationSections } from "./script-narration.js";
 import { speakable } from "./tts-normalize.js";
+import { synthesize as synthesizeElevenLabs } from "./tts-elevenlabs.js";
+import { synthesize as synthesizeMai } from "./tts-mai.js";
+import { verifyTts } from "./tts-verify.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -123,6 +126,21 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   writeFileSync(displayPath, fullText);
   writeFileSync(join(outputDir, `${topic}-vo-spoken.txt`), spokenText);
 
+  // Task 4.1 — natural voiceover provider chain: ElevenLabs → MAI-Voice →
+  // edge-tts. A provider that is not configured (no API key) returns null and
+  // the next is tried, so the pipeline always produces audio.
+  let natural = null;
+  try { natural = await synthesizeElevenLabs(spokenText, { voice, outDir: outputDir, topic, model: settings.elevenlabs_model }); } catch (e) { console.error(`ElevenLabs failed: ${e.message}`); }
+  if (!natural) {
+    try { natural = await synthesizeMai(spokenText, { voice, outDir: outputDir, topic, region: settings.mai_region, model: settings.mai_model }); } catch (e) { console.error(`MAI-Voice failed: ${e.message}`); }
+  }
+  if (natural) {
+    console.log(`TTS audio saved (${natural.provider}): ${natural.mp3Path}`);
+    const v = verifyTts({ mp3Path: natural.mp3Path, srtPath: natural.srtPath, spokenText, channel: settings.channel || "?", topic });
+    if (!v.ok && v.reason === "monotone") console.warn(`[tts] ch-${settings.channel || "?"}: monotone reading — consider a different voice or edge-tts prosody post-processing`);
+    return natural.mp3Path;
+  }
+
   try {
 
     // One synthesis (src/utils/tts_words.py, the edge_tts Python API) writes
@@ -161,6 +179,8 @@ stderr: ${stderr}`);
     console.log(`TTS subtitles saved: ${srtPath}`);
     console.log(`TTS word timings saved: ${wordsPath}`);
     console.log(`Delivery: voice=${voice} rate=${rate} pitch=${pitch}`);
+    // Task 4.3 — prosody/timing verification even on the edge-tts path.
+    verifyTts({ mp3Path: audioPath, srtPath, spokenText, channel: settings.channel || "?", topic });
     return audioPath;
   } catch (err) {
     // Clean up temp files on error too
@@ -257,6 +277,7 @@ async function main() {
         rate: channel.tts_rate,
         pitch: channel.tts_pitch,
         python: channel.tts_python,
+        channel: channelId,
       });
     } catch (err) {
       console.error(`TTS failed: ${err.message}`);

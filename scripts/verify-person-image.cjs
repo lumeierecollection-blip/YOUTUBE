@@ -185,6 +185,9 @@ async function verifyPersonImage(imagePath, personName, { sourceUrl = null, useC
   }
   const why = rejectReason(v);
   console.log(`[verify] ${personName}: ${provider}, verdict=${v.identity}, framing=${v.framing}, face=${v.face_fraction == null ? "?" : `${(v.face_fraction * 100).toFixed(0)}%`}${v.text_overlay ? ", text overlay" : ""}${why ? ` -> reject (${why})` : " -> MATCH"}`);
+  // Task 3.3 — [person] rejection logging in the spec format.
+  if (why) console.log(`[person] ${personName}: rejected (${why}, framing=${v.framing}, identity=${v.identity})`);
+  else console.log(`[person] ${personName}: accepted (MATCH, framing=${v.framing}, face=${v.face_fraction == null ? "?" : `${(v.face_fraction * 100).toFixed(0)}%`})`);
   if (sourceUrl) {
     const now = new Date().toISOString();
     const next = { ...entry, rejected: { ...(entry.rejected || {}) } };

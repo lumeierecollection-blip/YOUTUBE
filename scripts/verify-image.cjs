@@ -31,6 +31,27 @@ const { existsSync } = require("node:fs");
 const { askProviders, imageDataUrl } = require("./verify-cutout-image.cjs");
 
 function promptFor({ scene, entity, type, logo = false, money = false }) {
+  // Task 2.2 — a company/institution logo is verified with the owner's exact
+  // three-answer identity prompt, not the generic image rubric.
+  if (logo) {
+    return `You are verifying a company logo.
+
+Company: "${entity}"
+
+Look at the image. Answer:
+
+1. What company or brand does this logo represent?
+2. Is it the logo of "${entity}" specifically?
+   MATCH — this is the logo of the named company
+   SIMILAR — this is the logo of a different company with a similar name
+   DIFFERENT — this is not a logo, or is a different company entirely
+
+Return JSON only:
+{
+  "recognized": "...",
+  "verdict": "MATCH" | "SIMILAR" | "DIFFERENT"
+}`;
+  }
   return `You are verifying an image against what the sentence needs.
 
 What the beat needs: "${String(scene || `${entity}`).slice(0, 400)}"
@@ -69,9 +90,16 @@ Return JSON only:
 }
 
 const up = (v) => String(v || "").toUpperCase().trim();
-function normalizer(money) {
+function normalizer(money, logo = false) {
   return (a) => {
     if (!a || typeof a !== "object" || a.error) return null;
+    // Logo identity verdict (Task 2.2): accept MATCH only.
+    if (logo) {
+      const verdict = up(a.verdict);
+      const recognized = String(a.recognized || "").trim().slice(0, 160);
+      if (!["MATCH", "SIMILAR", "DIFFERENT"].includes(verdict) || !recognized) return null;
+      return { shows: "YES", kind: "LITERAL", quality: "CLEAN", seen: recognized, verdict, recognized };
+    }
     const shows = up(a.shows), kind = up(a.kind), quality = up(a.quality), flat = money ? up(a.flat) : null;
     const seen = String(a.seen || "").trim().slice(0, 160);
     if (!["YES", "CLOSE", "NO"].includes(shows) || !["LITERAL", "FIGURATIVE", "META"].includes(kind) || !["CLEAN", "DIRTY"].includes(quality) || !seen) return null;
@@ -80,7 +108,11 @@ function normalizer(money) {
   };
 }
 /** The owner's rule (E.2, G.3): YES and LITERAL and CLEAN (and FLAT for money). */
-function judge(v, money) {
+function judge(v, money, logo = false) {
+  if (logo) {
+    const accept = v.verdict === "MATCH";
+    return { accept, reason: accept ? "MATCH" : `${v.verdict} (saw "${v.recognized}")` };
+  }
   const why = [];
   if (v.shows !== "YES") why.push(`shows=${v.shows}`);
   if (v.kind !== "LITERAL") why.push(`kind=${v.kind}`);
@@ -91,16 +123,17 @@ function judge(v, money) {
 
 async function verifyImage(png, opts = {}) {
   const money = !!opts.money;
+  const logo = !!opts.logo;
   if (!existsSync(png)) return { accept: false, reason: `no image at ${png}`, seen: "" };
   const messages = [{ role: "user", content: [
     { type: "text", text: promptFor({ ...opts, type: opts.type || "object" }) },
     { type: "image_url", image_url: { url: await imageDataUrl(png) } },
   ] }];
-  const norm = normalizer(money);
+  const norm = normalizer(money, logo);
   let r = await askProviders(messages, norm);
   for (let k = 0; k < 2 && !r.v; k++) { await new Promise((res) => setTimeout(res, 15000)); r = await askProviders(messages, norm); }
   if (!r.v) return { accept: false, reason: "no vision provider answered", seen: "", provider: null, unavailable: true };
-  return { ...r.v, ...judge(r.v, money), provider: r.provider };
+  return { ...r.v, ...judge(r.v, money, logo), provider: r.provider };
 }
 
 /** A money object (G): bills, coins, cash — gets the flatness question. */

@@ -237,9 +237,28 @@ async function resolveOrgScene(tag, type, name, context, channel, beatIndex, sce
     if (/non-?free|fair use/i.test(info.license || "") || !info.license) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: licence "${info.license || "none"}" is not free`); continue; }
     let png;
     try { png = await logoPng(info, channel, beatIndex, q); } catch (e) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: ${e.message}`); continue; }
+    // Task 6.1 — every fetched image passes through rembg so the render never
+    // shows a white box behind the logo. A failed quality gate rejects the
+    // candidate and tries the next.
+    {
+      const { removeBackground } = require("./rembg-process.cjs");
+      const rembgOut = png.abs.replace(/\.png$/i, "-rembg.png");
+      const rb = await removeBackground(png.abs, rembgOut);
+      if (!rb.ok) {
+        lines.push(`logo ${i + 1} (${l.source}) REJECTED: rembg ${rb.reason}`);
+        rmSync(png.abs, { force: true }); rmSync(rembgOut, { force: true }); continue;
+      }
+      try { require("node:fs").renameSync(rembgOut, png.abs); } catch { png.abs = rembgOut; }
+    }
     const v = await verifyImage(png.abs, { entity: q, type: `${type} logo`, scene, logo: true });
-    if (!v.accept) { lines.push(`logo ${i + 1} (${l.source}: ${info.title}${png.svg ? ", SVG -> PNG" : ""}) REJECTED (${v.reason}, saw "${v.seen}")`); rmSync(png.abs, { force: true }); continue; }
+    if (!v.accept) {
+      lines.push(`logo ${i + 1} (${l.source}: ${info.title}${png.svg ? ", SVG -> PNG" : ""}) REJECTED (${v.reason}, saw "${v.seen}")`);
+      console.log(`[logo] ch-${channel} beat ${beatIndex} "${q}": candidate ${i + 1} rejected (${v.reason}, saw "${v.seen}")`);
+      rmSync(png.abs, { force: true });
+      continue;
+    }
     lines.push(`logo ${i + 1} (${l.source}: ${info.title}${png.svg ? ", SVG -> PNG" : ""}) verified (${v.reason})`, `rendering as cutout, middle zone`);
+    console.log(`[logo] ch-${channel} beat ${beatIndex} "${q}": candidate ${i + 1} accepted (${v.reason}, saw "${v.seen}")`);
     say(tag, lines);
     return { ok: true, kind: type, logo: { name: q, asset: png.asset, abs: png.abs, w: png.w, h: png.h, source: l.source, source_url: info.descurl || info.url, license: info.license, seen: v.seen } };
   }

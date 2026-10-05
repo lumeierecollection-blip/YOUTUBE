@@ -170,3 +170,25 @@ export function assignEntranceStyles(planned = []) {
   return out;
 }
 export const ENTRANCE_STYLES = STYLES;
+
+/**
+ * Animation families (Task 5.4): pop-in, slide-in, draw-in, count-up. Each beat
+ * uses a different family; never the same family on two consecutive beats. A
+ * beat showing a number counts up; a chart draws in; otherwise pop-in /
+ * slide-in alternate. Exported so the render manifest can report the variety.
+ */
+const ANIM_FAMILIES = ["pop-in", "slide-in", "draw-in", "count-up"];
+export function assignAnimationFamilies(beats = []) {
+  const out = [];
+  beats.forEach((b, i) => {
+    const vt = String(b?.visual_type || "TYPE").toUpperCase();
+    let fam;
+    if (vt === "COUNTER" || vt === "GAUGE" || vt === "PIE") fam = "count-up";
+    else if (["BAR", "LINE", "TREND"].includes(vt)) fam = "draw-in";
+    else fam = i % 2 === 0 ? "pop-in" : "slide-in";
+    if (i > 0 && fam === out[i - 1]) fam = ANIM_FAMILIES[(ANIM_FAMILIES.indexOf(fam) + 1) % ANIM_FAMILIES.length];
+    out.push(fam);
+  });
+  return out;
+}
+export const ANIMATION_FAMILIES = ANIM_FAMILIES;

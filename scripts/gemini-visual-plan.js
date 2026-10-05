@@ -45,7 +45,7 @@ import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { previewAnimations } from "./anim-plan.js";
 import { compositionFor, splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { translateScene } from "./scene-translate.js";
-import { trendOf, maxTypeBeats, varietyReport, beatsToConvert, isTypePlanned, fallbacksFor, assignEntranceStyles } from "./composition-variety.js";
+import { trendOf, maxTypeBeats, varietyReport, beatsToConvert, isTypePlanned, fallbacksFor, assignEntranceStyles, assignAnimationFamilies } from "./composition-variety.js";
 import { flowNodes, FLOW_WORDS, listItemsOf, timelineOf, compareOf, documentNameOf, moneyObjectOf, quantitiesOf, statedPercentsOf, knownPlacesOf } from "./canvas-grounding.js";
 
 const { enforceCaps, describe: describeMechanisms, TYPOGRAPHY } = createRequire(import.meta.url)("./plan-caps.cjs");
@@ -1202,6 +1202,13 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
     const es = assignEntranceStyles(plan.beats.map((b) => b.entrance_style));
     plan.beats.forEach((b, i) => { b.entrance_style = es[i]; });
     console.log(`[plan] entrance styles: ${es.join(", ")}`);
+  }
+  // Animation families (Task 5.4): pop-in / slide-in / draw-in / count-up, never
+  // the same family on two consecutive beats.
+  {
+    const af = assignAnimationFamilies(plan.beats);
+    plan.beats.forEach((b, i) => { b.animation_family = af[i]; });
+    console.log(`[plan] animation families: ${af.join(", ")}`);
   }
 
   // Fix 2: every element of every beat gets an animation (visual/animation-plan.js:
