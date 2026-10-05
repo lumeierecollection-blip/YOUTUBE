@@ -1848,9 +1848,14 @@
           "topic": "CFTC Targets Mosaic Exchange Limited in Alleged Crypto Fraud",
           "slug": "cftc-targets-mosaic-exchange-crypto-fraud",
           "reserved_at": "2026-10-05T11:20:37.188Z"
+        },
+        {
+          "topic": "Azazel's Ransomware Betrayal: How a Russian Affiliate Double-Crossed His Gang",
+          "slug": "azazel-ransomware-affiliate-double-cross-betrayal",
+          "reserved_at": "2026-10-05T11:48:51.171Z"
         }
       ],
-      "last_generated": "2026-10-05T11:20:37.189Z"
+      "last_generated": "2026-10-05T11:48:51.171Z"
     },
     "27": {
       "channel_name": "Trial Files",
