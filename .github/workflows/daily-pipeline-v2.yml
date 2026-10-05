@@ -791,7 +791,12 @@ jobs:
     # status" (no artifact) — honestly, and only that channel.
     if: ${{ !cancelled() && github.event.inputs.publish != 'true' }}
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
+    # 20 min was not enough once six renders competed for runners alongside the Ollama model
+    # pulls: run 37380168306 SIGTERMed ch-9, ch-44 and ch-49 at 22:16/22:17/22:18 - all three
+    # at the job timeout, ~20 min after the 22:05 start - and exit 143 is indistinguishable
+    # from a crash in the log. The fast render finished (ch-2, rejected on canvas checks); the
+    # slow ones were killed. Raised to 45, still overridable per dispatch via timeout_minutes.
+    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '45') }}
     permissions:
       contents: write
     strategy:
@@ -1011,6 +1016,33 @@ jobs:
             data/renders/qa-counts.json
             src/skills/remotion-render/public/asset-library/manifest.json
           retention-days: 7
+
+      # No-render must not pass (run 37380168306, ch-1).
+      # ch-1's render job reported SUCCESS while rendering nothing. Its prep leg had
+      # legitimately skipped the channel - the claims gate rejected the script
+      # ("INVENTED claims after the re-ask ... nothing was rendered or uploaded",
+      # prep-status/1.json = {"skipped": true, "reason": "claims"}) - and every render
+      # step is gated on `skip != 'true'`, so all of them skipped and the job passed
+      # vacuously. Same fail-loud principle as REVIEW_FAILED and PROVIDER_UNAVAILABLE: an
+      # outcome that produced no video is not a pass.
+      #
+      # This softens nothing. It only refuses to report a vacuous success, and it reports
+      # the two reasons separately so a legitimate content rejection stays
+      # distinguishable from a render that completed and silently produced nothing - the
+      # first is a content decision, the second is a defect.
+      - name: Assert a video was rendered
+        if: always()
+        run: |
+          MP4S=$(find data/renders -name '*.mp4' -type f 2>/dev/null | wc -l | tr -d ' ')
+          if [ "${{ steps.status.outputs.skip }}" = "true" ]; then
+            echo "::error::NO RENDER - the prep leg skipped this channel (reason recorded in prep-status/*.json). Nothing was rendered or uploaded."
+            exit 1
+          fi
+          if [ "$MP4S" -eq 0 ]; then
+            echo "::error::NO RENDER - Render + QA ran but produced no MP4 under data/renders."
+            exit 1
+          fi
+          echo "rendered $MP4S file(s) under data/renders"
 
       # ── Publish (private) ──────────────────────────────────────────────
       # main only (audit 2026-10-03): a dispatch with --ref <other branch> renders but never
