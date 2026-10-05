@@ -53,6 +53,56 @@ const DATE_RE = /^(?:(?:early|mid|late)[- ])?(?:jan(?:uary)?|feb(?:ruary)?|mar(?
 
 const say = (tag, lines) => console.log(`[resolve] ${tag}\n${lines.map((l) => `    → ${l}`).join("\n")}`);
 
+// ── accumulation fallbacks (Task 2, Change A) ───────────────────────────
+// capability-manifest.js declares accumulation.requires = [block, stack,
+// document, silhouette], so a beat whose capability list is "accumulation" asks
+// for assets nothing in the public sources will ever have. Two beats in a row
+// (ch-2 beat 9, ch-44 beat 5) logged "accumulation requires silhouette/stack"
+// and had nothing to draw. These are the bundled stand-ins, so the beat renders
+// something honest instead of falling back to a bare TYPE card:
+//   silhouette -> public/silhouettes/generic.png  (a plain black figure)
+//   document   -> public/documents/generic.png   (a plain page)
+//   stack      -> NOT fetched: the caller draws a horizontal bar chart from the
+//                 sentence's own numbers (see stackToBarChart), because a pile of
+//                 invented rectangles would assert a quantity the narration never
+//                 states.
+const FALLBACK_ASSETS = Object.freeze({
+  silhouette: "silhouettes/generic.png",
+  document: "documents/generic.png",
+  block: "documents/generic.png",
+});
+
+/** The bundled stand-in for `kind`, or null when there is none (stack). */
+async function fallbackAsset(kind, channel, beatIndex) {
+  const rel = FALLBACK_ASSETS[String(kind || "").toLowerCase()];
+  if (!rel) return null;
+  const abs = join(E.PUBLIC, rel);
+  if (!require("node:fs").existsSync(abs)) {
+    console.log(`[resolve] fallback ${kind}: bundled asset missing at ${rel}`);
+    return null;
+  }
+  const { w, h } = await sizeOf(abs);
+  console.log(`[resolve] ch-${channel} beat ${beatIndex}: fallback ${kind} -> ${rel} (${w}x${h}), no verified source image`);
+  return { ok: true, kind: "fallback", fallback: kind, photo: { asset: rel, entity: kind, kind: "fallback", view: "cutout", w, h, source: "bundled", source_url: null, license: "CC0 (drawn in-repo)" } };
+}
+
+/**
+ * A `stack` is not fetched. The accumulation claim is arithmetic — many small
+ * amounts becoming one total — so the honest drawing is a bar chart of the
+ * sentence's own figures. Returns a BAR visual_type when the sentence grounds
+ * two or more numbers, else null.
+ */
+function stackToBarChart(sentence) {
+  const { quantitiesOf } = require("./canvas-grounding.js");
+  const qs = quantitiesOf(String(sentence || "")).slice(0, 4);
+  if (qs.length < 2) return null;
+  const bars = qs.map((q) => ({
+    label: String(q.label || "").replace(/[$\d.,%]+/g, " ").replace(/\s+/g, " ").trim().split(" ").slice(0, 3).join(" ") || "item",
+    value: String(q.value),
+  }));
+  return { visual_type: "BAR", data: { bars } };
+}
+
 async function sizeOf(abs) {
   try { const m = await require("sharp")(abs).metadata(); return { w: m.width || null, h: m.height || null }; } catch { return { w: null, h: null }; }
 }
@@ -339,6 +389,23 @@ async function resolveSceneEntity({ channel, beatIndex, entity, context = "", sc
   // any source files it under (CI run 37067332714 ch-2: every lookup missed).
   const type = String(entity?.type || "").toLowerCase(), name = String(entity?.name || "").replace(/\s*\([^)]*\)/g, "").trim();
   const tag = `ch-${channel} beat ${beatIndex}: entity ${type} "${name}"`;
+  // Task 2 Change A: an asset-kind request (silhouette / document / block / stack)
+  // is not a real-world entity — there is nothing to look it up. It is answered
+  // from the bundled stand-ins, or, for a stack, converted to a bar chart.
+  const kind = String(entity?.type || entity?.kind || "").toLowerCase();
+  if (["silhouette", "document", "block", "stack"].includes(kind)) {
+    if (kind === "stack") {
+      const bar = stackToBarChart(sentence);
+      if (bar) {
+        console.log(`[resolve] ch-${channel} beat ${beatIndex}: stack not fetched — converted to a horizontal bar chart of the sentence's own numbers ${JSON.stringify(bar.data.bars)}`);
+        return { ok: false, kind: "stack", why: "stack drawn as a bar chart of the sentence's numbers", converted: bar };
+      }
+      console.log(`[resolve] ch-${channel} beat ${beatIndex}: stack not fetched and the sentence names fewer than two figures — no image`);
+      return { ok: false, kind: "stack", why: "no figures to chart" };
+    }
+    const fb = await fallbackAsset(kind, channel, beatIndex);
+    return fb || { ok: false, kind, why: `no bundled fallback for ${kind}` };
+  }
   if (!name || !["person", "place", "building", "organization", "company", "institution"].includes(type)) return { ok: false, kind: type, why: "not a real-world entity type" };
   // A real-world entity is a PROPER name: "field office" (typed as a building by the planner)
   // was resolved to a Taiwanese "MJIB Penghu County Field Office" and verified MATCH as "a
@@ -446,7 +513,7 @@ async function sceneEntities({ beat, sentence, entityNamedInSentence, log = cons
   return list;
 }
 
-module.exports = { resolveSceneEntity, sceneEntities, properNames, kindOf, introducedByName, samePersonPrompt, normalizeSame, _resetRunMemo: () => { runMemo.clear(); sameMemo.clear(); } };
+module.exports = { resolveSceneEntity, sceneEntities, properNames, kindOf, introducedByName, samePersonPrompt, normalizeSame, fallbackAsset, stackToBarChart, FALLBACK_ASSETS, _resetRunMemo: () => { runMemo.clear(); sameMemo.clear(); } };
 
 if (require.main === module) {
   require("dotenv/config");
