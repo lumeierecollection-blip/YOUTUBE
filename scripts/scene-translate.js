@@ -41,7 +41,12 @@ const CUES = [
   ["LINE", /\b(line (?:chart|graph|draws|climbs|rises|falls)|draws left to right|over (?:the past|time)|curve)\b/i],
   ["GAUGE", /\b(gauge|dial|meter|needle)\b/i],
   ["PIE", /\b(donut|doughnut|pie|slice|share of the circle)\b/i],
-  ["COUNTER", /\b(big number|large number|number (?:fills|counts|builds|rolls|ticks)|counts? up|figure fills|the number)\b/i],
+  // "numeral" was missing, so "A giant numeral 40% fills the centre" matched nothing here and
+  // the beat lost to LINE on a later, supporting clause ("behind it a thin line draws left to
+  // right"), landing on TYPE with no number anywhere (run 37323030454, ch-1 beat 0). Cue
+  // priority is by position in the description, so the primary element only wins if it
+  // matches something. A beat whose description opens by naming a figure is a COUNTER beat.
+  ["COUNTER", /\b(big number|large number|giant number|huge number|numeral|number (?:fills|counts|builds|rolls|ticks)|counts? up|figure fills|the number)\b/i],
   ["PHOTO", /\b(photo(?:graph)?|promotional still|press still|film still|production still|skyline|street|building|facade|aerial|courthouse|headquarters|factory floor|full-bleed)\b/i],
   ["TYPE", /\b(kinetic type|typograph(?:y|ic)|serif type|sans type|words? (?:pop|stack|slam)|type treatment|the phrase|statement)\b/i],
   // A name card is a TYPE-FULL composition in this renderer (canvas-layout.js draws

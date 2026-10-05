@@ -56,7 +56,6 @@ Return JSON only:
 
 What the beat needs: "${String(scene || `${entity}`).slice(0, 400)}"
 The specific subject: "${entity}" (type: ${type})
-${logo ? `\nThe subject is the official LOGO of ${entity}: the logo artwork itself, as the organization uses it, counts as LITERAL and YES; another organization's logo, a photo of a sign, or a generic symbol does not.\n` : ""}
 Look at the image and answer:
 
 1. Does this image show the subject named?

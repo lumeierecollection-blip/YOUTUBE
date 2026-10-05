@@ -10,7 +10,21 @@ const eq = (name, got, want) => { const ok = JSON.stringify(got) === JSON.string
 // E.1: the owner's prompt, with the subject, its type and the scene filled in.
 const p = promptFor({ scene: "A close-up photo of a metal padlock", entity: "padlock", type: "object" });
 eq("prompt carries the three questions and the scene", [p.includes("1. Does this image show the subject named?"), p.includes("2. Is the image literal or figurative?"), p.includes("3. Is the image clean?"), p.includes("A close-up photo of a metal padlock")], [true, true, true, true]);
-eq("money adds the flatness question; a logo the logo line", [promptFor({ entity: "dollar bill", type: "object", money: true }).includes("FLAT — centered"), promptFor({ entity: "Bosch", type: "company logo", logo: true }).includes("official LOGO of Bosch")], [true, true]);
+// Asserts the money flatness question and the REAL logo contract.
+// This used to assert `includes("official LOGO of Bosch")`, which is unreachable: `logo`
+// returns a dedicated recognition prompt at verify-image.cjs:36 (Task 2.2), so the general
+// path's logo clause never ran. The test had been pinning dead code, which is why it failed
+// on an improvement rather than on a defect. The now-dead clause was removed.
+{
+  const moneyPrompt = promptFor({ entity: "dollar bill", type: "object", money: true });
+  const logoPrompt = promptFor({ entity: "Bosch", type: "company logo", logo: true });
+  eq("money adds the flatness question; a logo gets the identity prompt",
+    [moneyPrompt.includes("FLAT \u2014 centered"),
+     /"flat":\s*"FLAT"/.test(moneyPrompt),
+     logoPrompt.includes('Is it the logo of "Bosch" specifically?'),
+     logoPrompt.includes("MATCH") && logoPrompt.includes("SIMILAR") && logoPrompt.includes("DIFFERENT")],
+    [true, true, true, true]);
+}
 
 // E.2: YES and LITERAL and CLEAN — nothing else passes.
 const n = normalizer(false), nm = normalizer(true);
