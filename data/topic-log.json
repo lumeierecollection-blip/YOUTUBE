@@ -797,9 +797,14 @@
           "topic": "ICE New Vehicle Stop Guidance and Body Cam Mandates for Officers",
           "slug": "ice-vehicle-stop-guidance-body-cams-2026",
           "reserved_at": "2026-10-05T09:15:25.443Z"
+        },
+        {
+          "topic": "Maryland Publishes 2027 Tenants’ Bill of Rights With New October Rules",
+          "slug": "maryland-2027-tenants-bill-of-rights-october-rules",
+          "reserved_at": "2026-10-05T09:33:17.443Z"
         }
       ],
-      "last_generated": "2026-10-05T09:15:25.443Z"
+      "last_generated": "2026-10-05T09:33:17.443Z"
     },
     "3": {
       "channel_name": "AI Tested",
