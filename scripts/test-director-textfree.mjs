@@ -9,9 +9,11 @@
  * kept measuring 4 of 6, because clearing the phrase put the transcript
  * back on screen. A directive the render undoes is not enforcement.
  *
- * The fallback is still correct for an UNDIRECTED beat, and that is
- * asserted too — removing it entirely would leave keyword-planned beats
- * with no text at all.
+ * The condensed fallback is GONE, and that is asserted too (section 2):
+ * ecbce78 removed it once the planners covered every cue, so an
+ * unplanned beat now throws rather than quietly acquiring text. A
+ * directive the render undoes is not enforcement, and neither is a
+ * fallback that undoes a missing plan.
  *
  *   node scripts/test-director-textfree.mjs
  */
@@ -46,13 +48,29 @@ console.log("\n1. A directed beat with a cleared phrase draws nothing");
   ok(beats.filter((b) => textOf(b)).length === 1, "exactly 1 of 4 beats carries text");
 }
 
-console.log("2. An UNDIRECTED beat still gets the condensed fallback");
+console.log("2. An UNDIRECTED beat with no plan THROWS — there is no fallback");
 {
-  // No visualPlan at all: the deterministic classifier chose the scene, and
-  // a condensed phrase is the best text available.
-  const { beats } = direct(cues, { seed: 1 });
-  ok(textOf(beats[0]).length > 0, "an undirected beat still draws text");
-  ok(textOf(beats[0]) !== NARRATION, "...condensed, not the raw sentence (Bible TYP-04)");
+  // This used to assert the opposite: that an undirected beat still got a condensed
+  // phrase. ecbce78 ("no fallbacks", 2026-09-23) removed that fallback deliberately, on the
+  // grounds that the planners must now cover every cue — so the fallback was dead weight
+  // that could only ever mask an unplanned beat. The header note claiming "the fallback is
+  // still correct for an UNDIRECTED beat" is what this test used to assert, and it had been
+  // failing (by throwing) ever since.
+  //
+  // Asserting the inverse is strictly stronger than the old assertion: the old one only
+  // proved a fallback existed, this proves none can. A silent fallback is the failure mode
+  // every other section of this file exists to prevent, so its absence is worth pinning.
+  let threw = null;
+  try {
+    direct(cues, { seed: 1 });
+  } catch (e) {
+    threw = e;
+  }
+  ok(threw !== null, "direct() with no visualPlan throws instead of inventing a mechanism");
+  ok(threw && /has no mechanism/.test(String(threw.message)),
+    `the error says why (got ${threw ? JSON.stringify(String(threw.message).slice(0, 90)) : "no error"})`);
+  ok(threw && /no visual plan loaded/.test(String(threw.message)),
+    "...and names the missing input, so the operator can tell it from a planner defect");
 }
 
 console.log("3. Enforcement math holds end to end");

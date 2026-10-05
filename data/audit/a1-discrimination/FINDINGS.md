@@ -376,3 +376,62 @@ provider (accepted: gemini, groq)`, exit 4.
 
 This gates the VISUAL review only; Ollama stays available to text-only callers. `qwen2.5vl:3b`
 on a CPU runner is what was measured, not its text model.
+## Attribution targets — fixes to charge against 0/27 when it is re-measured
+
+0/27 is the number this work started from and nothing has re-measured it yet. Run 37355596876
+could not: Exa's free MCP rate limit was exhausted, every web search failed, and the pipeline
+correctly refused to ground ("every web search failed — cannot ground this stage"), so 0 topics
+were discovered and 0 channels reached render. **There is currently no evidence any of this
+work moved 0/27.** Keep the attribution below so the next run can be read against it.
+
+Ordered roughly by expected contribution. Only (1) is a layout defect; everything else is
+verifier/QA or planning, and must not be credited with a layout fix.
+
+**(1) COUNTER_OVERLAY rendered outside the safe rect — a LAYOUT bug, predates all of this.**
+`scene-primitives.js:104` positioned the counter/figure overlay against the full canvas
+(`CANVAS_H*0.05` = 96, `CANVAS_W*0.95` = 1026). Commit `674b27c` (2026-09-27, "primary drawing
+fills 9:16 frame per margin spec") moved `SAFE` inward to top 288 / right 994 and did not move
+the overlay. `layoutScene:387-390` places a counter/figure by this constant rather than by the
+slot grid, so **every beat with a number/figure beside a drawing since 2026-09-27 rendered
+192px above `SAFE.top` and 32px past `SAFE.right`** — the band where Shorts draws the channel
+name, title and action chrome. Fixing the bounds then exposed a second latent bug (the overlay
+reserved no slot space; it had only avoided overlap by being outside `SAFE`), also fixed.
+
+This is the most likely single contributor from this list. `common_missing` is full of
+placement clauses — "giant numeral 40% **filling the centre of the frame**", "single dollar bill
+**filling the centre of the frame**", "wallet lying open **in the centre of the frame**", "small
+labels **flanking** the bill" — and a COUNTER-cued beat drawn at y=96 instead of centre fails
+every one of them as NO/PARTIAL, never YES. Timing caps the attributable share at 6 beats.
+
+**(2) Scene description is now decisive** (`scene-translate.js`). Verified on a
+duration-asserted 4-beat fixture with the provider pinned: fallback 1/10, designed 9/10, delta
++8, and the model now writes "empty **fallback** screens" for the bare clip.
+
+**(3) COUNTER cue gained `numeral`/`giant number`/`huge number`.** "A giant numeral 40% fills
+the centre" previously matched nothing and lost to LINE on a later supporting clause, landing
+on TYPE with no number anywhere (run 37323030454, ch-1 beat 0).
+
+**(4) Shield clauses removed** (`:330` ground mandate, its test-12 twin, clause #3's
+"do not call it empty", EDT-02/EDT-03 bounded). Scoring-neutral on a clean fixture set; changes
+only what gets reported.
+
+**(5) Fail-closed verdicts** (`REVIEW_FAILED` exit 1, `PROVIDER_UNAVAILABLE` exit 4, Ollama
+removed from the approve path). **Expect this to make runs fail more often, not less** — it
+blocks videos that were previously approved unviewed. Do not read a lower approval count as a
+regression without checking which verdict produced it.
+
+### Two methodology notes, because both cost real time here
+
+- **A diagnostic that does not share the code it diagnoses will lie in the author's
+  direction.** My own `cue-hits.mjs` hardcoded a pattern map for `cuesOf` that included
+  `numeral`, which the real `CUES` regex did not — so it reported COUNTER coverage that did not
+  exist, and I nearly "fixed" a COUNTER bug that was already fixed while a real one (the missing
+  `numeral`) went unfixed for two rounds. Same shape as the verifier prompt quoting its own
+  removed clause: a copy of the thing under test drifts from the thing under test.
+- **A guard that has never fired is not a guard.** `test-assertion-separators.mjs` passed on the
+  real tree three times while being unable to detect anything: it inspected only the first
+  string literal per line (missing nested `.includes("FLAT — centered")`), then used a regex
+  that demanded whitespace before the character preceding the dash, which never matches a real
+  case. It also could not see an untracked planted file because the scanner is `git ls-files`
+  based. It is only trusted now because it has been shown to FAIL against a planted copy of the
+  pre-fix assertion.
