@@ -857,9 +857,14 @@
           "topic": "Maryland Publishes 2027 Tenants’ Bill of Rights With New Rules",
           "slug": "maryland-2027-tenants-bill-of-rights-rules",
           "reserved_at": "2026-10-05T19:25:58.390Z"
+        },
+        {
+          "topic": "AvalonBay Sued Over Alleged $40M Rent-Stabilized Overcharge",
+          "slug": "avalonbay-40m-rent-overcharge-lawsuit-2026",
+          "reserved_at": "2026-10-05T22:09:46.031Z"
         }
       ],
-      "last_generated": "2026-10-05T19:25:58.391Z"
+      "last_generated": "2026-10-05T22:09:46.031Z"
     },
     "3": {
       "channel_name": "AI Tested",
