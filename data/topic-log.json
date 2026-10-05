@@ -1858,9 +1858,14 @@
           "topic": "Azazel's Ransomware Betrayal: How a Russian Affiliate Double-Crossed His Gang",
           "slug": "azazel-ransomware-affiliate-double-cross-betrayal",
           "reserved_at": "2026-10-05T11:48:51.171Z"
+        },
+        {
+          "topic": "Crypto Heist Operation Analysis 2026",
+          "slug": "crypto-heist-analysis-2026",
+          "reserved_at": "2026-10-05T12:27:00.966Z"
         }
       ],
-      "last_generated": "2026-10-05T11:48:51.171Z"
+      "last_generated": "2026-10-05T12:27:00.966Z"
     },
     "27": {
       "channel_name": "Trial Files",
