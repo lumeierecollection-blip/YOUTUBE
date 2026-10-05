@@ -4,6 +4,24 @@ Run 2026-10-05, against the fixes committed in `a0eb378` + the provenance work i
 change. Question: the QA gate fails a run on visual variety while the verifier praises
 "uniform white ground". One of them is inverted. Which?
 
+> **ARCHIVAL NOTICE — read before citing any number in this file.**
+>
+> Every verifier reading taken **through the `:330` ground mandate** is superseded and must
+> not be cited. That includes: "verifier blind on variety", the "2/10 tie" between frames A
+> and B, and the "10/10 for B'" — all three were measured through a clause that was found to
+> suppress real defect findings. The ground-neutralised re-run re-establishes the signal
+> (9 vs 1 on a ground-matched pair), and production no longer carries the clause, so the
+> post-removal readings below are the current ones.
+>
+> The **QA gate** results are NOT affected. `local-audit.cjs` never reads `:330` — it is
+> deterministic and has its own `canvas-ground` check. Its "blind on variety" verdict stands
+> as written.
+>
+> **Calibrate forward, never backward.** Provenance was only recorded from `88064dd` onward,
+> so no historical pipeline run records which provider answered. Any A2 threshold calibrated
+> against pre-`88064dd` runs is calibrated against unknown providers. Thresholds must come
+> from runs that carry a provider record.
+
 ## Method
 
 Frozen fixtures in `fixtures/` (sha256 per frame in `fixtures/fixtures.json`; a changed
@@ -158,3 +176,42 @@ measurement rather than assumption.
 property of composed frames. The multi-beat set keeps every element inside its own band
 (headline y 210-430, numeral y 560-900, label y 1010, rule y 1128), so that check no longer
 carries known noise. It is not in the A2 axis list for that reason.
+## Sweep: every clause that forbids reporting something
+
+`:330` and the caption clause were found independently, which means they are not a pair of
+one-offs. Every suppression-shaped clause in the reviewer prompt was located and classified.
+A **shield** hides a real failure class; a **legitimate suppression** is a noise floor.
+
+| # | clause | location | class | why |
+|---|---|---|---|---|
+| 1 | ground mandate "one solid white on every beat - no shadows, tint or dark beats" | STYLE block | **SHIELD** | proven: suppressed "template repetition" + "text collision" findings; B scored 2/10 while actually fine |
+| 2 | "(Not noise in this style: the plain uniform white ground...)" | PAPER_RUBRIC test 12 | **SHIELD** | second layer of #1; exempts a flat ground from the decoration test, which is the variety signal |
+| 3 | "do not call a beat 'empty', 'unbalanced' or 'off-centre' because its middle is clear" | STYLE block | **SHIELD** | protects the exact signature `middle-zone-filled` detects. The model rubric and the deterministic fallback detector are in direct opposition on one signal |
+| 4 | caption band "not a defect, not duplication and not a fragment: never list it in slop_indicators, repetition_issues, decoration_issues or corrections" | PAPER_RUBRIC test 2 + STYLE block | **SHIELD** | a frame whose only content is the caption band cannot be reported as repetition - i.e. the fallback frame is undefendable |
+| 5 | "A small section folio ('03 / 08') and a hairline rule are page furniture, not defects" | STYLE block | **SHIELD** | narrow, but same shape as #4 |
+| 6 | "the dark gradient that keeps white type readable over a full-frame photo" | PAPER_RUBRIC test 12 | LEGITIMATE | a scrim over a photo is a technique, not noise. Kept |
+| 7 | "judge whether the composition spans the frame (elements anchored to opposite regions)" | STYLE block | LEGITIMATE | redirects from "is it centred" to "does it span", a better question. Kept |
+
+**Five shields, two legitimate.** #1 and #2 are removed from production (they protected the
+same thing in two layers; removing one alone would have left the shield half-up). #3, #4 and
+#5 are reported here and NOT changed � #3 is the highest-value next edit, because until it
+goes, the model is forbidden from describing the condition the deterministic fallback
+detector exists to catch.
+
+### Post-removal confirmation
+
+Re-ran the ground-matched pair with the shield gone from production text:
+
+| clip | before (`:330` live) | after (shield removed) |
+|---|---|---|
+| clip-fallback | 1/10 FAIL, 100% monoculture | **1/10 FAIL, 100% monoculture** |
+| clip-designed | 9/10 PASS, 25% | **9/10 PASS, 25%** |
+
+Scoring is unchanged on a clean fixture set - the removal costs nothing and only changes what
+gets reported. The fallback verdict text sharpened: it now reads "only blank white screens
+with page numbers" where the mandate previously made that sound like spec compliance.
+
+Also answers the clause-local question: on the FIXED fixture set, `:330` live and `:330`
+removed both gave 9 and 1. The 9 -> 4 drop was therefore caused entirely by real defects
+waiting to be reported, not by the fixture being unusual. The shield's effect is
+clause-local.

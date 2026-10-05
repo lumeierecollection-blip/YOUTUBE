@@ -1,0 +1,8 @@
+file 'C:/Users/user/YOUTUBE/data/audit/a1-discrimination/fixtures-multibeat/clip-fallback-beat-0.png'
+duration 2
+file 'C:/Users/user/YOUTUBE/data/audit/a1-discrimination/fixtures-multibeat/clip-fallback-beat-1.png'
+duration 2
+file 'C:/Users/user/YOUTUBE/data/audit/a1-discrimination/fixtures-multibeat/clip-fallback-beat-2.png'
+duration 2
+file 'C:/Users/user/YOUTUBE/data/audit/a1-discrimination/fixtures-multibeat/clip-fallback-beat-3.png'
+duration 2
