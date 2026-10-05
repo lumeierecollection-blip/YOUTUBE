@@ -63,37 +63,98 @@ The extension earns its place: B' scores 10/10 against A's 2/10. So the verifier
 dominated by ground compliance, not variety. A varied ground costs the entire 8-point
 margin on its own.
 
-## Verdict per component
+## Verdict per component — CORRECTED, see A1b
 
-- **QA gate: BLIND on variety.** No variety axis exists. It is a 17-check compliance
-  gate; A and B' tie at 8/17. It cannot express "designed beats fallback" at all. Its
-  fallback detection is real but incidental (`middle-zone-filled`), and silent.
-- **Verifier: CORRECT on composition, INVERTED on ground.** Not blind. Strongly
-  discriminating (2 vs 10), along an axis that answers a different question than the one
-  the QA gate is asking. Its own rationale cites style compliance, never variety.
+**The verdict below was wrong and is superseded by A1b. Kept so the correction is
+auditable.** It read the n=1 B row (2/10) as "the verifier is inverted on ground". A1b
+shows the 2/10 was produced by `:330`, not by the model's judgement — with the ground
+mandate removed the same frame scores 9/10.
 
-So neither component is inverted in the simple sense. They are answering two different
-questions, and only one of them (the verifier) is looking at the frame at all.
+- ~~**QA gate: BLIND on variety.**~~ **CONFIRMED.** 17 compliance checks, no variety axis.
+- ~~**Verifier: CORRECT on composition, INVERTED on ground.**~~ **WRONG.** The verifier is
+  correct. `:330` is the inverted component.
+
+## A1b — ground-neutralised, and multi-beat
+
+The n=1 set could not settle it: `headline_test.percent` can only be 0 or 100 at n=1, and
+a single-beat clip gives one reading of one artifact. Two changes:
+
+**`FRAME_REVIEW_NEUTRALIZE_GROUND=1`** (test-only, `gemini-frame-review.js`) strips the two
+clauses that make the white ground a rule — the `:330` mandate and PAPER_RUBRIC test 12's
+exemption that keeps a plain ground out of the decoration list. Never set in the pipeline.
+
+**A 4-beat pair with ground held constant** (`fixtures-multibeat/`), the comparison A and B'
+only approximated:
+
+- `clip-fallback` — 4 beats, every beat caption-only on a white ground
+- `clip-designed` — the same 4 sentences, same white ground, same caption layer, each beat
+  also carrying the element its sentence describes (numeral, bars, type statement)
+
+| clip | original rubric | ground-neutralised | headline_test |
+|---|---|---|---|
+| clip-fallback (4x caption-only) | **1/10 FAIL** | 1/10 FAIL | 4/4 = 100% monoculture |
+| clip-designed (4 beats composed) | **9/10 PASS** | 9/10 PASS | 1/4 = 25% PASS |
+
+**An 8-point separation with the ground identical on both clips, and it survives
+neutralising the ground mandate.** So the verifier's designed-vs-fallback signal is real
+and is not a proxy for ground compliance. `headline_test` is also a working fallback
+detector at n=4 — the n=1 degeneracy is gone.
+
+### What `:330` actually does — it is a shield, not just a bias
+
+On the n=1 set, neutralising the ground mandate moved **B from 2/10 to 9/10** — the frame
+was fine all along and the mandate was the only complaint.
+
+On the first 4-beat `clip-designed` build, neutralising it moved the clip **9/10 -> 4/10**
+with the reasons "excessive template repetition" and "a severe text collision bug in the
+final frame". Both were **real defects in the fixture**: beat 3 drew "Three months" twice
+(once as a small header, once as the 96px statement) and the statement overprinted the
+footnote "held in cash, untouched". Fixed — TYPE-FULL beats now draw the statement only,
+placed clear of the footnote — and the clip scores 9/10 in *both* modes.
+
+That is the important result. `:330` was suppressing findings the model would otherwise
+have reported. It does not merely bias the score; it covers real defects.
+
+### Corrected verdict
+
+- **QA gate: BLIND on variety.** Unchanged. A and clip-designed tie on aggregate check
+  count; it has no way to express "designed beats fallback".
+- **Verifier: CORRECT.** Separates designed from fallback by 8 points with ground held
+  constant, survives ground neutralisation, and catches real layout defects when the
+  mandate is off.
+- **The inverted component is the hardcoded `:330` ground mandate** — a rule pasted over a
+  model judgement that was right. It is also redundant: `canvas-ground` already enforces
+  white deterministically at luma >= 245 and held 27/27 on run 37323030454 (PC2).
+
+## What this implies for delegation — reversed
+
+My earlier conclusion was that "the variety decision fails its own eligibility test". **That
+is falsified.** The verifier passes A1's discrimination test. The correct reading is the
+opposite of "delegate more": **delete a hardcoded clause and let the existing model signal
+through**, with `canvas-ground` as the deterministic floor underneath. That is exactly the
+A4 position — deterministic veto, model scores the qualitative axes — arrived at by
+measurement rather than assumption.
 
 ## Caveats — stated, not buried
 
-1. **Groq and Ollama were not exercised.** `GROQ_API_KEY` and `OLLAMA_URL` are CI-secrets
-   only; locally just `GEMINI_API_KEY` is set. This is Gemini-only. The verdict that
-   actually failed run 37323030454 was written by **Groq** (Gemini was quota_exhausted),
-   so **the component under investigation has still not been tested.** `FORCE_PROVIDER`
-   was added to `src/lib/llm.js` for exactly this and is ready; it needs a Groq key.
-2. **One beat per fixture.** `headline_test.percent` can only be 0 or 100 at n=1, so the
-   `TEMPLATE_MONOCULTURE` REJECTED on B is partly a single-sample artifact. The reliable
-   signals are `overall_score` and `status`. A multi-beat fixture set is needed before
-   any verdict is treated as final.
-3. B and B' are synthetic. B is synthetic by necessity — `canvas-ground` makes a varied
-   ground unproducible, and all 27 real beats in run 37323030454 measured uniform white
-   (cross-beat SD 2.91 luma levels).
+1. **Groq and Ollama are still untested.** `GROQ_API_KEY` is a repo secret wired at
+   `daily-pipeline-v2.yml:933`, but it is unreadable locally, so every number here is
+   **Gemini only**. `FORCE_PROVIDER` is committed and the CI leg is the unblock.
+2. **Who answered run 37323030454 is not recoverable.** `llm.js` prints
+   `gemini: quota_exhausted -> groq` *before* calling Groq — it announces the hop, not the
+   answer. An earlier note in this file claimed Groq wrote the failing verdict; that was an
+   inference from a hop-announcement line and it is not supported. Four Gemini keys, a Groq
+   key, and an Ollama vision timeout were all live in that run. Provenance is recorded from
+   this change forward (`reviewProvider`, `reviewProviderChain`) and that run is
+   retrospectively unresolvable.
+3. **A/B/B' rows are n=1.** Only the `clip-fallback` / `clip-designed` rows are n=4. The
+   B row in particular should not be cited alone.
+4. B is synthetic by necessity — `canvas-ground` makes a varied ground unproducible and all
+   27 real beats measured uniform white.
 
-## What this implies for delegation
+## Also fixed here
 
-Neither component currently owns the variety decision. The gate has no such axis; the
-verifier's answer to it is a ground-compliance rule inherited from `gemini-frame-review.js:330`.
-Delegating variety to either one, before A2 defines it operationally, would formalise a
-question nobody is asking. This is the predicted outcome from the audit append, now
-measured: the variety decision fails its own eligibility test.
+`zones-no-overlap` failed on the n=1 B/B' fixtures and that was fixture construction, not a
+property of composed frames. The multi-beat set keeps every element inside its own band
+(headline y 210-430, numeral y 560-900, label y 1010, rule y 1128), so that check no longer
+carries known noise. It is not in the A2 axis list for that reason.

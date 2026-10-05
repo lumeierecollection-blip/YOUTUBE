@@ -1,0 +1,65 @@
+{
+  "video": "clip-designed.mp4",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "duration_sec": 8,
+  "beats": [
+    {
+      "index": 0,
+      "start_sec": 0,
+      "duration_sec": 2,
+      "visual_type": "COUNTER",
+      "canvas": {
+        "composition": "NUMBER-FULL",
+        "dark": false,
+        "boxes": {},
+        "name_card": null,
+        "headline": "40%",
+        "label": "PAY DOWN DEBT FIRST"
+      }
+    },
+    {
+      "index": 1,
+      "start_sec": 2,
+      "duration_sec": 2,
+      "visual_type": "COUNTER",
+      "canvas": {
+        "composition": "NUMBER-FULL",
+        "dark": false,
+        "boxes": {},
+        "name_card": null,
+        "headline": "1.6x",
+        "label": "THE REAL COST OF A DOLLAR"
+      }
+    },
+    {
+      "index": 2,
+      "start_sec": 4,
+      "duration_sec": 2,
+      "visual_type": "BAR",
+      "canvas": {
+        "composition": "BAR",
+        "dark": false,
+        "boxes": {},
+        "name_card": null,
+        "headline": "50/30/20",
+        "label": "THE ALLOCATION RULE"
+      }
+    },
+    {
+      "index": 3,
+      "start_sec": 6,
+      "duration_sec": 2,
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "TYPE-FULL",
+        "dark": false,
+        "boxes": {},
+        "name_card": null,
+        "headline": "Three months",
+        "label": "THE BUFFER"
+      }
+    }
+  ]
+}

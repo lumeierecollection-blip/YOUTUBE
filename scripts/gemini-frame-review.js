@@ -281,6 +281,32 @@ const PAPER_RUBRIC = [
   ["12. DECORATION: Any meaningless visual noise? Random dots, grids, particles, gradients without purpose?",
     "12. DECORATION: Any meaningless visual noise — particles, clutter, gradients without purpose? (Not noise in this style: the plain uniform white ground, and the dark gradient that keeps white type readable over a full-frame photo.)"],
 ];
+
+// A1b — TEST ONLY. FRAME_REVIEW_NEUTRALIZE_GROUND=1 strips the two clauses that make
+// "uniform white ground" a rule rather than an observation, so a discrimination run can
+// tell a designed frame from a fallback frame WITHOUT the style mandate doing the work.
+// It answers one question: is the verifier's separation of a composed frame from a
+// caption-only frame a judgement about composition, or just compliance with :330?
+//
+// NEVER set this in the pipeline. It is not a rubric improvement — it is a probe that
+// removes the rubric so the measurement underneath it becomes visible. A real run with
+// it set would be judging frames against a spec the renderer does not implement.
+const NEUTRALIZE_GROUND = process.env.FRAME_REVIEW_NEUTRALIZE_GROUND === "1";
+const GROUND_CLAUSES = [
+  // :330 — the style block's ground mandate
+  [/Every beat is composed for the WHOLE 1080x1920 frame on a uniform white ground \(one solid white on every beat[^)]*\)/,
+    "Every beat is composed for the WHOLE 1080x1920 frame. [A1b TEST PROBE: the ground colour mandate is removed for this run — do not treat a dark or tinted ground as a defect, and do not reward a white ground.]"],
+  // PAPER_RUBRIC test 12 — the pre-clearance that keeps the white ground out of slop
+  [/\(Not noise in this style: the plain uniform white ground, and the dark gradient that keeps white type readable over a full-frame photo\.\)/,
+    "[A1b TEST PROBE: the exemption that keeps a plain ground out of the decoration list is removed for this run. Judge ground flatness on its own merits.]"],
+];
+function neutralizeGroundClauses(text) {
+  if (!NEUTRALIZE_GROUND) return text;
+  let out = text;
+  for (const [from, to] of GROUND_CLAUSES) out = out.replace(from, to);
+  return out;
+}
+
 function paperRubric(prompt) {
   let out = prompt;
   for (const [from, to] of PAPER_RUBRIC) {
@@ -337,6 +363,12 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
   const refFrames = [];
   content.push({ type: "text", text: "\n=== THE STYLE — full-canvas editorial motion graphics with an editorial serif/sans type system (Financial Times x high-end documentary x contemporary magazine). Every beat is composed for the WHOLE 1080x1920 frame on a uniform white ground (one solid white on every beat — no shadows, tint or dark beats — with dark type on it; a full-bleed photo covers it for its own beat). All text pops into place (a quick scale-up and settle); a word mid-pop may be slightly small or translucent in a sampled frame. There is NO paper, NO card, NO container. Each beat is ONE of: TYPE-FULL / TYPE-SPLIT (a serif statement, sentence case, anchored to one side or split across opposite corners), NUMBER-FULL (ONE oversized serif numeral 260-420 px with a small uppercase sans label), DATA-FULL (bars / donut / line / gauge as the composition), SCENE-FULL / ARCHITECTURE / DOCUMENT / MONEY (a real photograph or scan edge to edge, type over it), MAP-CENTERED (the map fills the frame, labelled at the region), PROCESS-FULL (2-3 nodes, thick arrows), TIMELINE (dated events on a vertical line), COMPARISON-SPLIT (the frame cut on a diagonal, value A / value B), LIST-BUILD (items appearing one by one). Type has three roles: a serif headline (never all-caps), an oversized serif numeral, a small uppercase sans data label. LAYOUTS ARE ASYMMETRIC ON A GRID AND EMPTY SPACE IS INTENTIONAL: do not call a beat 'empty', 'unbalanced' or 'off-centre' because its middle is clear or its text sits to one side; judge whether the composition spans the frame (elements anchored to opposite regions) and whether the type roles and the picture support the line. The channel's accent colour marks only the primary value / the arrow / the number that matters. Beats transform into each other (slides, match cuts, a persisted element). The word-by-word caption of the narration near the bottom is REQUIRED on every beat by the channel owner: do not count it as caption duplication, subtitles, redundancy or slop, and do not lower any score for it. A small section folio ('03 / 08') and a hairline rule are page furniture, not defects. Judge each frame's CONTENT against its voiceover line. Reject a frame if a photo shown is not literally about what its sentence names: a generic stock image standing in for a named person, place or organization is a CRITICAL defect (a MONEY beat's picture of currency and a DOCUMENT beat's scan illustrate the literal object the sentence names, not a named entity). A card, a paper page or a framed panel is a HIGH defect; so is a composition shrunk into a small area with no element reaching the frame's regions. Two beats of the same composition kind in a row is a defect. In the headline test, a TYPE-FULL / TYPE-SPLIT typography beat is headline-led by design; a beat labelled as a big number, chart, gauge, map, process, timeline, list, comparison, photograph, document or money is a VISUAL beat, not a headline beat; the video is headline-dominated only when most beats are typography with no chart, number, photo, object or process. Score overall_score on how well the video realises this style AND how well each frame matches its line. ===" });
   content.push({ type: "text", text: "\n=== FRAMES UNDER REVIEW ===" });
+  // A1b: strip the ground mandate from the assembled rubric before `head` is taken, so
+  // the Groq batch split carries the neutralized text too.
+  if (NEUTRALIZE_GROUND) {
+    console.log("[review] A1b TEST PROBE: ground mandate neutralized — this run judges composition, not ground compliance");
+    for (const part of content) if (part.type === "text" && typeof part.text === "string") part.text = neutralizeGroundClauses(part.text);
+  }
   const head = content.slice(0, 2);            // rubric + reference note (text)
   const framePartsList = [];
   for (const idx of unique) {

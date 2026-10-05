@@ -1,0 +1,72 @@
+{
+  "frozen": "2026-10-05T16:44:50.252Z",
+  "size": "1080x1920",
+  "beats": 4,
+  "ground": "#FFFFFF",
+  "colors": {
+    "primary": "#0F172A",
+    "secondary": "#1E293B",
+    "accent": "#22C55E",
+    "canvas_accent": "#1B7A4D",
+    "muted": "#94A3B8",
+    "mutedLight": "#475569",
+    "rule": "#E2E8F0"
+  },
+  "channel": "1 (config/channels.json)",
+  "clips": {
+    "clip-fallback": {
+      "label": "4 beats, every beat caption-only on a uniform white ground",
+      "video": "data/audit/a1-discrimination/work-multibeat/clip-fallback.mp4",
+      "duration_sec": 8,
+      "frames": [
+        {
+          "beat": 0,
+          "png": "data/audit/a1-discrimination/fixtures-multibeat/clip-fallback-beat-0.png",
+          "sha256": "31be6f3b8d80bec203c102b8268641bef0a3d139566f7616accc252dd33db12d"
+        },
+        {
+          "beat": 1,
+          "png": "data/audit/a1-discrimination/fixtures-multibeat/clip-fallback-beat-1.png",
+          "sha256": "cc726d2a358b9947627ef2cc18a7ede443fa3cbf247fa99a16429d22cd8634a8"
+        },
+        {
+          "beat": 2,
+          "png": "data/audit/a1-discrimination/fixtures-multibeat/clip-fallback-beat-2.png",
+          "sha256": "b59ebb15c2bbbb80adb21a6267daafd0c206376406649232be27f97fb43c8319"
+        },
+        {
+          "beat": 3,
+          "png": "data/audit/a1-discrimination/fixtures-multibeat/clip-fallback-beat-3.png",
+          "sha256": "67336926997a82e45a4f7ffa8feb3cdec4d3659077bd9079a27f385b00c2c1f8"
+        }
+      ]
+    },
+    "clip-designed": {
+      "label": "the same 4 sentences and the same ground, each beat composed",
+      "video": "data/audit/a1-discrimination/work-multibeat/clip-designed.mp4",
+      "duration_sec": 8,
+      "frames": [
+        {
+          "beat": 0,
+          "png": "data/audit/a1-discrimination/fixtures-multibeat/clip-designed-beat-0.png",
+          "sha256": "38ea5164afccc9263a241938f0e2534f4f60db9a9091f9ab19f0d2791c92194d"
+        },
+        {
+          "beat": 1,
+          "png": "data/audit/a1-discrimination/fixtures-multibeat/clip-designed-beat-1.png",
+          "sha256": "2d0eb0de2944398d41a1e22d1cd5261a5e0a7ecea7ce8901e9fade922c610f3d"
+        },
+        {
+          "beat": 2,
+          "png": "data/audit/a1-discrimination/fixtures-multibeat/clip-designed-beat-2.png",
+          "sha256": "76b717e5913bb8d3882ee9427a6c929387601e06ed4ebf44e5b78831be02ab5e"
+        },
+        {
+          "beat": 3,
+          "png": "data/audit/a1-discrimination/fixtures-multibeat/clip-designed-beat-3.png",
+          "sha256": "a1f4d1e9fb0391cfbbff1b8bbadf41e6086a274557aa9672dbc7e178438e65ac"
+        }
+      ]
+    }
+  }
+}

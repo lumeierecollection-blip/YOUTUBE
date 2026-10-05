@@ -1,0 +1,142 @@
+name: a1-discrimination
+
+# A1/A1b: does the verifier tell a designed frame from a fallback frame, and does the
+# answer hold across providers?
+#
+# This runs in CI because two of the three providers in the chain (Groq, Ollama) are
+# repo secrets and cannot be exercised from a workstation. That is not a convenience:
+# the verifier's answer is provider-dependent by construction — src/lib/llm.js fails
+# over silently — so a reading from one machine's key is a reading about that provider
+# only, and the component that produced run 37323030454's failing verdict has never been
+# identified (see data/audit/a1-discrimination/FINDINGS.md caveat 2).
+#
+# It produces a verdict table, never a gate. Nothing here blocks a pipeline run; a
+# failure means the discrimination test could not be completed.
+on:
+  workflow_dispatch:
+    inputs:
+      neutralize_ground:
+        description: "run each fixture twice, with and without the :330 ground mandate"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  discrimination:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      # The second and third tiers of the chain. Both are secrets, which is why this
+      # cannot run locally.
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      # Ollama last. Its vision model is a 3b on a CPU runner and times out at 240s,
+      # so it is opt-in per provider below rather than part of the default matrix.
+      OLLAMA_URL: http://127.0.0.1:11434
+      OLLAMA_TEXT_MODEL: qwen2.5:7b
+      OLLAMA_VISION_MODEL: qwen2.5vl:3b
+      GROQ_TEXT_MODEL: openai/gpt-oss-120b
+      GROQ_VISION_MODEL: qwen/qwen3.8-27b
+      GROQ_MAX_IMAGES: 3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Ensure ffmpeg/ffprobe
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y ffmpeg >/dev/null
+          ffmpeg -version | head -1
+          ffprobe -version | head -1
+
+      - name: Ollama (vision model, for the ollama provider leg)
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 2; done
+          ollama pull qwen2.5:7b
+          ollama pull qwen2.5vl:3b
+
+      - name: Build fixtures
+        run: |
+          node data/audit/a1-discrimination/build-fixtures.mjs
+          node data/audit/a1-discrimination/build-fixtures-multibeat.mjs
+
+      - name: Deterministic QA gate on every fixture
+        # No model involved: this is the component A1 must judge blind/inverted/correct
+        # on its own. Runs first so its verdict is recorded even if a provider leg dies.
+        run: |
+          ffmpeg -f lavfi -i anullsrc=r=24000:cl=mono -t 2 -y data/audit/a1-discrimination/work/silence.wav
+          for f in A B Bprime; do
+            node scripts/local-audit.cjs \
+              --video "data/audit/a1-discrimination/work/frame-$f.mp4" \
+              --manifest "data/audit/a1-discrimination/work/frame-$f-manifest.json" \
+              --plan "data/audit/a1-discrimination/work/frame-$f-script.json" \
+              --srt "data/audit/a1-discrimination/work/frame-$f.srt" \
+              --audio data/audit/a1-discrimination/work/silence.wav \
+              --out "data/audit/a1-discrimination/work/frame-$f-audit.json" || true
+          done
+          node data/audit/a1-discrimination/gate-diff.mjs
+
+      - name: Verifier, per provider
+        # FORCE_PROVIDER pins one provider with no silent failover, so "this model said
+        # NO" can never be confused with "this model was skipped" — the misattribution
+        # that hid the original verdict. A pinned call that fails reports its own error.
+        run: |
+          mkdir -p data/audit/a1-discrimination/results
+          run_one () {
+            local provider="$1" clip="$2" mode="$3"
+            local dir="data/audit/a1-discrimination/work-multibeat"
+            if [ "$mode" = "neutralized" ]; then export FRAME_REVIEW_NEUTRALIZE_GROUND=1; else unset FRAME_REVIEW_NEUTRALIZE_GROUND; fi
+            echo "::group::$provider / $clip / $mode"
+            FORCE_PROVIDER="$provider" node scripts/gemini-frame-review.js \
+              --video "$dir/$clip.mp4" \
+              --script "$dir/$clip-script.json" \
+              --srt "$dir/$clip.srt" \
+              --channel 1 2>&1 | tee "data/audit/a1-discrimination/results/$provider-$clip-$mode.log" || true
+            echo "::endgroup::"
+          }
+          for provider in gemini groq; do
+            for clip in clip-fallback clip-designed; do
+              run_one "$provider" "$clip" original
+              if [ "${{ inputs.neutralize_ground }}" = "true" ]; then
+                run_one "$provider" "$clip" neutralized
+              fi
+            done
+          done
+
+      - name: Ollama leg (vision model is slow on a CPU runner; allowed to time out)
+        continue-on-error: true
+        run: |
+          dir=data/audit/a1-discrimination/work-multibeat
+          for clip in clip-fallback clip-designed; do
+            echo "::group::ollama / $clip"
+            FORCE_PROVIDER=ollama node scripts/gemini-frame-review.js \
+              --video "$dir/$clip.mp4" --script "$dir/$clip-script.json" \
+              --srt "$dir/$clip.srt" --channel 1 2>&1 \
+              | tee "data/audit/a1-discrimination/results/ollama-$clip.log" || true
+            echo "::endgroup::"
+          done
+
+      - name: Summarise
+        run: node data/audit/a1-discrimination/summarise.mjs
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a1-discrimination-results
+          path: |
+            data/audit/a1-discrimination/results/
+            data/audit/a1-discrimination/work-multibeat/*-manifest.json
+            data/audit/a1-discrimination/work/frame-*-audit.json
+            data/audit/gemini-review/
+          retention-days: 30

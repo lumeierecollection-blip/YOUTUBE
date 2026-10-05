@@ -1,0 +1,22 @@
+{
+  "channel": "1",
+  "title": "A1 multibeat clip-fallback",
+  "beats": [
+    {
+      "index": 0,
+      "narration": "Over forty percent of borrowers clear high-interest debt first."
+    },
+    {
+      "index": 1,
+      "narration": "A single dollar often costs more than the face value suggests."
+    },
+    {
+      "index": 2,
+      "narration": "Balanced portfolios hold cash, bonds and equity in fixed shares."
+    },
+    {
+      "index": 3,
+      "narration": "Builders who plan ahead keep a reserve of three months of costs."
+    }
+  ]
+}
