@@ -1863,9 +1863,14 @@
           "topic": "Crypto Heist Operation Analysis 2026",
           "slug": "crypto-heist-analysis-2026",
           "reserved_at": "2026-10-05T12:27:00.966Z"
+        },
+        {
+          "topic": "The $6M Base Vault Hack and Permission List Exploits",
+          "slug": "base-vault-whitelist-hack-6m-2026",
+          "reserved_at": "2026-10-05T13:01:53.867Z"
         }
       ],
-      "last_generated": "2026-10-05T12:27:00.966Z"
+      "last_generated": "2026-10-05T13:01:53.867Z"
     },
     "27": {
       "channel_name": "Trial Files",
