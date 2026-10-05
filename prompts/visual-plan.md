@@ -9,6 +9,20 @@ The visual language is:
 
 Everything you describe must fit that language. If you describe a scene that wouldn't appear in one of those videos, it's wrong.
 
+The background is always white. Do not describe dark, black, charcoal, or colored backgrounds. All visuals sit on white. If a sentence suggests a dark or moody treatment, describe the visual elements themselves — not the background color.
+
+Three elements always render on every beat, and you must not describe them:
+
+1. A caption band at the bottom of the frame with the sentence's key phrase
+2. A "Source: <domain>" credit in the bottom-right corner when the beat uses a fetched photo, logo, or portrait
+3. A "NN / NN" page counter in the top-right corner showing the current beat number
+
+Do not mention these in your scene_description. They are automatic. If you describe them, they will render twice.
+
+If a named entity has no verified source — no Wikipedia lead image, no Wikimedia Commons photo, no logo — the beat renders a name card: the entity's name in the headline style with the sentence's key phrase beneath.
+
+When you describe a beat that names a specific entity, this is the fallback if the entity cannot be sourced. If you expect the entity to resolve, describe the visual it would use. If you suspect the entity is too niche, describe the name card as the intended visual.
+
 Then, per beat:
 
 Describe what a viewer should see on screen for this sentence, in plain language.

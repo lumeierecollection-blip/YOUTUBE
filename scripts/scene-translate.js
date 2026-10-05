@@ -33,15 +33,23 @@ const CUES = [
   ["DOCUMENT", /\b(document|filing|court papers|the (?:bill|act|law) text|page of|scan of)\b/i],
   ["TIMELINE", /\b(timeline|dates? (?:line|run) (?:up|down)|year by year)\b/i],
   ["LIST", /\b(list|items? (?:appear|stack)|one by one|checklist)\b/i],
-  ["COMPARE", /\b(side by side|versus|vs\.?|split (?:screen|frame)|two halves|against each other)\b/i],
+  // "VS Code" is a product name, not a comparison. Without this guard the beat about
+  // the VS Code extension marketplace was forced to COMPARE (audit 2026-10-05, ch-44 b6).
+  ["COMPARE", /\b(side by side|versus|vs\.?(?!\s?code\b)|split (?:screen|frame)|two halves|against each other)\b/i],
   ["PROCESS", /\b(arrows?|flow(?:s|chart)?|chain|leads? to|nodes?|cause and effect|step by step|diagram|node[s]? (?:connected|linked))\b/i],
   ["BAR", /\b(bars?|bar chart|columns? (?:grow|rise))\b/i],
   ["LINE", /\b(line (?:chart|graph|draws|climbs|rises|falls)|draws left to right|over (?:the past|time)|curve)\b/i],
   ["GAUGE", /\b(gauge|dial|meter|needle)\b/i],
   ["PIE", /\b(donut|doughnut|pie|slice|share of the circle)\b/i],
   ["COUNTER", /\b(big number|large number|number (?:fills|counts|builds|rolls|ticks)|counts? up|figure fills|the number)\b/i],
-  ["PHOTO", /\b(photo(?:graph)?|skyline|street|building|facade|aerial|courthouse|headquarters|factory floor|full-bleed)\b/i],
-  ["TYPE", /\b(kinetic type|typography|words? (?:pop|stack|slam)|type treatment|the phrase|statement)\b/i],
+  ["PHOTO", /\b(photo(?:graph)?|promotional still|press still|film still|production still|skyline|street|building|facade|aerial|courthouse|headquarters|factory floor|full-bleed)\b/i],
+  ["TYPE", /\b(kinetic type|typograph(?:y|ic)|serif type|sans type|words? (?:pop|stack|slam)|type treatment|the phrase|statement)\b/i],
+  // A name card is a TYPE-FULL composition in this renderer (canvas-layout.js draws
+  // c.name_card inside the TYPE-FULL branch), so it resolves to TYPE — but naming it
+  // here makes it a DECISIVE cue: the planner is told to describe the name card as the
+  // intended visual when an entity is too niche to source (plan-vs-render audit
+  // 2026-10-05, Fix 3), and that description must not be overridden by a heuristic.
+  ["NAME_CARD", /\bname card\b/i],
 ];
 
 const clean = (s) => String(s || "").replace(/[$\d.,%]+/g, " ").replace(/\b(a|an|the|of|and|to|in|on|for|per|is|are|was|were|from)\b/gi, " ").replace(/\s+/g, " ").trim().split(" ").slice(0, 3).join(" ");
@@ -196,12 +204,49 @@ export function translateScene({ sentence = "", scene = "", entities = [], headl
       case "COUNTER": if (qs[0]) add("COUNTER", { value: qs[0].value, label: clean(qs[0].label) || null }, "description: number"); break;
       case "PHOTO": for (const e of ents(["place", "building", "company", "institution", "organization", "person"])) add("PHOTO", { entity: e.name }, "description: photo"); break;
       case "TYPE": add("TYPE", null, "description: type"); break;
+      case "NAME_CARD": add("TYPE", null, "description: name card"); break;
       default: break;
     }
   };
-  // 1. what the description asks for (TYPE only after everything visual it also names)
   const cues = cuesOf(scene);
-  for (const c of cues.filter((x) => x !== "TYPE")) want(c);
+  const elements = elementsOf(scene);
+  const where = POSITION_PHRASE(position);
+  const when = timing.phrase;
+  const tag = channel ? `ch-${channel} ` : "";
+  const beatTag = beatIndex != null ? `beat ${beatIndex}: ` : "";
+  const logTranslate = () => {
+    const prims = out.filter((o) => o.visual_type !== "TYPE").map((o) => o.visual_type);
+    if (prims.length) console.log(`[translate] ${tag}${beatTag}${elements.join(" + ") || "scene"} → ${prims.join(" + ")}, ${where}, ${when}`);
+    else console.log(`[translate] unrecognized scene description, falling back to TYPE-FULL${beatIndex != null ? ` (beat ${beatIndex})` : ""}`);
+  };
+
+  // THE DESCRIPTION DECIDES (owner, 2026-10-05 — plan-vs-render audit Fix 4).
+  // The planner wrote scene_description; the heuristics below are a guess about what
+  // the SENTENCE means, and the audit showed that guess overrode the plan on 11 of 37
+  // beats — a place name anywhere in the sentence forced MAP-CENTERED, a number forced
+  // a chart, and beats that asked for a photograph or a document were drawn as a map.
+  // So: if the description names ANY specific element type, that type is the plan and
+  // the heuristics do not run at all. A description that cannot be grounded (a line
+  // chart for a sentence with one figure) falls through to TYPE, which the planner
+  // gates on — it is never silently replaced by a chart or map nobody asked for.
+  if (cues.length) {
+    for (const c of cues) want(c);
+    add("TYPE", null, "description did not name a buildable element");
+    // Log the override that was avoided: what a heuristic would have forced instead.
+    const chosen = out.find((o) => o.visual_type !== "TYPE") || out[0];
+    const heuristic = candidatesFor({ sentence, headline }).find((c) => c.visual_type !== "TYPE");
+    if (heuristic && chosen && heuristic.visual_type !== chosen.visual_type) {
+      console.log(`[translate] ${tag}${beatTag}description "${String(scene).slice(0, 60)}" → kept as ${chosen.visual_type} (a sentence heuristic would have forced ${heuristic.visual_type}${knownPlacesOf(sentence).length ? " by place name" : ""})`);
+    }
+    logTranslate();
+    return out;
+  }
+
+  // The description names no specific type: apply the sentence heuristics (the
+  // directive's step 2). NOTE: the saved plan's own `visual_type` is NOT a planner
+  // declaration — gemini-visual-plan.js writes this function's pick back into
+  // b.visual_type, and Gemini is never asked for one — so feeding it back in here
+  // would re-impose the previous translator's choice and reproduce the divergence.
   // 2. the two-number rule: two comparable figures + a comparison word is a chart
   if (/\b(more|less|than|versus|vs|higher|lower|grew|fell|rose|dropped|doubled|halved|increased|decreased|compared|from)\b/i.test(sentence) && qs.length >= 2) {
     if (descLine) want("LINE");
@@ -214,20 +259,8 @@ export function translateScene({ sentence = "", scene = "", entities = [], headl
   // 4. the named entities as photos
   for (const e of [...ents(["person"]), ...ents(["company", "institution", "organization"]), ...ents(["place", "building"])]) add("PHOTO", { entity: e.name }, "named entity");
   // 5. type
-  if (cues.includes("TYPE")) add("TYPE", null, "description: type");
   add("TYPE", null, "nothing else fits");
 
-  // Log the translation in the spec format.
-  const elements = elementsOf(scene);
-  const primitives = out.filter((o) => o.visual_type !== "TYPE").map((o) => o.visual_type);
-  const where = POSITION_PHRASE(position);
-  const when = timing.phrase;
-  const tag = channel ? `ch-${channel} ` : "";
-  const beat = beatIndex != null ? `beat ${beatIndex}: ` : "";
-  if (primitives.length) {
-    console.log(`[translate] ${tag}${beat}${elements.join(" + ") || "scene"} → ${primitives.join(" + ")}, ${where}, ${when}`);
-  } else {
-    console.log(`[translate] unrecognized scene description, falling back to TYPE-FULL${beatIndex != null ? ` (beat ${beatIndex})` : ""}`);
-  }
+  logTranslate();
   return out;
 }
