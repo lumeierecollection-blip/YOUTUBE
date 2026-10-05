@@ -817,9 +817,14 @@
           "topic": "Maryland Publishes 2027 Tenants Bill of Rights Taking Effect October",
           "slug": "maryland-2027-tenants-bill-of-rights-october",
           "reserved_at": "2026-10-05T11:13:50.784Z"
+        },
+        {
+          "topic": "ice-vehicle-stops-guidance-2026",
+          "slug": "ice-vehicle-stops-guidance-2026",
+          "reserved_at": "2026-10-05T11:27:53.372Z"
         }
       ],
-      "last_generated": "2026-10-05T11:13:50.784Z"
+      "last_generated": "2026-10-05T11:27:53.372Z"
     },
     "3": {
       "channel_name": "AI Tested",
