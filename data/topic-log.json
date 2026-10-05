@@ -857,9 +857,14 @@
           "topic": "AvalonBay Sued Over Alleged $40M Rent-Stabilized Overcharge",
           "slug": "avalonbay-40m-rent-overcharge-lawsuit-2026",
           "reserved_at": "2026-10-05T22:09:46.031Z"
+        },
+        {
+          "topic": "LAPD Revises Pretext Stop Policy After IG Compliance Audit",
+          "slug": "lapd-pretext-stop-policy-audit-october-2026",
+          "reserved_at": "2026-10-05T23:02:20.929Z"
         }
       ],
-      "last_generated": "2026-10-05T22:09:46.031Z"
+      "last_generated": "2026-10-05T23:02:20.929Z"
     },
     "3": {
       "channel_name": "AI Tested",
