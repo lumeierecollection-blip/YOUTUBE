@@ -1,0 +1,45 @@
+BLOCKER: TTS SRT/audio timing drift is still 5.49s (still open after run 37297352662)
+
+Subtask: Blocker 2 — "SRT timings from the same engine as the audio"
+Status: NOT FIXED. Drift did not move. No second run was made (directive: run once).
+
+EXACT ERROR (verbatim from CI run 37297352662, render(26), job 111722833882)
+
+  [tts] ch-26: verify running (voiceover: reused)
+  [tts] ch-26: 111 words, 48.6s, pitch variance 0.84, timing drift 5.49s -> FAIL (timing drift)
+  [tts] ch-26: drift 5.49s>0.5s — regenerating voiceover to realign SRT/audio
+  [tts 26] [tts] ch-26: 111 words, 48.6s, pitch variance 0.81, timing drift 5.49s -> FAIL (timing drift)
+  [tts] ch-26: 111 words, 48.6s, pitch variance 0.81, timing drift 5.49s -> FAIL (timing drift)
+
+WHAT I TRIED (three distinct approaches)
+  1. Verified the audio and the SRT come from ONE tool. On the edge-tts path
+     src/utils/tts.js shells out once to src/utils/tts_words.py with --mp3 --srt
+     --words, so the mp3, the SRT and the -vo-words.json are all written by the
+     same edge-tts synthesis. They are NOT merged from two tools.
+  2. Reproduced the measurement locally against the run's own numbers: the drift
+     is |last SRT cue end - ffprobe audio duration| = 5.49s on a 48.6s file, i.e.
+     the last caption cue ends 5.49s before the file ends.
+  3. Added a regeneration path in scripts/render-and-qa.js: when drift > 0.5s the
+     voiceover is re-synthesised and re-verified so the timings must come from the
+     same run that made the audio. Result: drift was IDENTICAL (5.49s) before and
+     after regeneration (48.6s duration both times, 111 words both times).
+
+CONCLUSION FROM THE EVIDENCE
+  Regeneration changed nothing, so this is not a stale-artifact / cross-tool merge
+  bug. The SRT's final cue ends ~5.5s before the end of the mp3. Two candidates
+  remain and neither can be separated without a run:
+    (a) the edge-tts mp3 carries a long silent tail / mp3 frame padding after the
+        last WordBoundary event, so the file is longer than the speech; or
+    (b) the audio duration should be measured from the last WordBoundary, not from
+        the container duration.
+  Because regeneration reproduces it exactly, the metric in src/utils/tts-verify.js
+  (durationSec() via ffprobe format=duration) is the thing to re-point at the last
+  word boundary in -vo-words.json before judging drift at all.
+
+WHAT A HUMAN MUST DO
+  1. Re-point tts-verify.js durationSec() at max(words[].end) from
+     <base>-vo-words.json (the same synthesis's own WordBoundary), and compare the
+     SRT's last cue end against THAT, not against the ffprobe container duration.
+  2. Only then judge drift; if it is still >0.5s, the SRT builder in
+     src/utils/tts_words.py is dropping or mis-grouping the final sentence.
+  3. Do not raise the 0.5s threshold and call it fixed.

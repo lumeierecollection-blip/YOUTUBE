@@ -1,0 +1,61 @@
+BLOCKER: prep voice-validation gate rejects 4 of 6 channels (still open after run 37297352662)
+
+Subtask: 3.1 / 3.2 — "resolve voice and claims rejections per channel"
+Status: NOT FIXED. Exact evidence below. No second run was made (directive: run once).
+
+Channels skipped in prep with skip_reason=voice-validation:
+  ch-2  (job 111721688759)
+  ch-9  (job 111721688704)
+  ch-44 (job 111721688730)
+  ch-48 (job 111721688841)
+All four logged: "Channel N skipped in prep (voice-validation) — nothing to render".
+ch-26 now passes prep and renders (see blocked-tts-drift.txt for its separate issue).
+
+EXACT FAILING SENTENCES AND RULES (verbatim from the run logs)
+
+ch-44 — rule: "starts with the same word as the sentence before"
+  [script] ch-44: sentence 6 "Clever operates as Denmark's largest co-led organization."
+    FAIL: starts with the same word as the sentence before ("clever")
+  Assessment: FALSE POSITIVE. "Clever" is the company's proper name (Clever, the
+  Danish IT company named by the research). Sentence 5 and sentence 6 both open
+  with the entity name because the entity is the subject. Rewriting to avoid the
+  name would drop the entity the narration is about. Recommended fix: exempt the
+  rule when the repeated first word is a proper noun present in the research's
+  named_entities.
+
+ch-9 — rule: "names no person, place, organization, number or object"
+  [script] ch-9: sentence 8 "The resulting demarcation directly impacts regional stability."
+    FAIL: names no person, place, organization, number or object
+  Assessment: BORDERLINE. 9 words, an abstract transitional sentence. The
+  continuation exemption added in this session (validate-script-voice.cjs: a
+  sentence of <= 12 words is exempt when the immediately preceding sentence named
+  something) did NOT fire, which means the preceding sentence also carried no
+  detected entity. Either the exemption needs to look back further than one
+  sentence, or the script stage must keep a concrete noun in transitions.
+
+ch-48 — rule: "starts with a person's full name"
+  [script] ch-48: sentence 2 "Jan Sigmund announced these supply chain updates from
+    Schindellegi, Switzerland on October 2, 2026."
+    FAIL: starts with a person's full name ("Jan Sigmund")
+  Assessment: FALSE POSITIVE. The sentence names a person AND a place (Schindellegi,
+  Switzerland) AND a date (October 2, 2026). The rule exists to catch wire-lead
+  repetition (the same name opening consecutive sentences); applied to a single
+  sentence-2 attribution that carries its own place and date, it rejects legitimate
+  reporting prose. Recommended fix: exempt when the sentence is not adjacent to
+  another sentence opening with the same person's name, or when it also names a
+  place/organization/date.
+
+ch-2 — no validator output line was recoverable from the run log. The prep job
+  (111721688759) is masked (its gate writes to /tmp/spec-out-$FORMAT.log inside a
+  heredoc), so the exact failing sentence for ch-2 could not be read. ch-2 was
+  previously reported as skip_reason=claims; in this run it is voice-validation.
+  A human must open the ch-2 prep job log and read the first
+  "[script] ch-2: sentence N ... FAIL:" line to identify the rule.
+
+WHAT A HUMAN MUST DO
+  1. Apply the two narrow exemptions above to scripts/validate-script-voice.cjs
+     (proper-noun repeated opener; single attribution sentence that names a
+     place/date). Do not delete either rule.
+  2. Read ch-2's exact failing sentence from prep job 111721688759 before
+     changing anything for that channel.
+  3. Re-run the pipeline.
