@@ -832,9 +832,14 @@
           "topic": "LAPD Revises Pretext Stop Policy Following Inspector General Audit",
           "slug": "lapd-pretext-stop-policy-audit-2026",
           "reserved_at": "2026-10-05T11:47:51.275Z"
+        },
+        {
+          "topic": "Philadelphia Council Considers Banning Tenant Junk Fees",
+          "slug": "philadelphia-tenant-junk-fees-council-legislation",
+          "reserved_at": "2026-10-05T14:15:34.249Z"
         }
       ],
-      "last_generated": "2026-10-05T13:02:05.850Z"
+      "last_generated": "2026-10-05T14:15:34.250Z"
     },
     "3": {
       "channel_name": "AI Tested",
