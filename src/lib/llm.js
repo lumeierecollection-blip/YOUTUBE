@@ -27,6 +27,25 @@ export function forcedOllama() {
   return String(process.env.FORCE_PLANNER || "").toLowerCase() === "ollama";
 }
 
+/**
+ * FORCE_PROVIDER=gemini|groq|ollama addresses ONE provider and fails rather than
+ * failing over. Unset (the default) is the normal chain, unchanged.
+ *
+ * This exists for the A1 discrimination test, which has to know which model
+ * produced a judgement before it can compare judgements across models. It is also
+ * the only way to exercise the Groq path on a machine whose Gemini key still has
+ * quota — the quota_exhausted → groq transition hides it otherwise.
+ *
+ * A pinned call that fails returns the provider's own error object with
+ * `pinned: true`; it does NOT silently fall through, because a test that cannot
+ * tell "this model said NO" from "this model was skipped" is the exact blind spot
+ * this pin exists to close.
+ */
+export function forcedProvider() {
+  const p = String(process.env.FORCE_PROVIDER || "").toLowerCase();
+  return ["gemini", "groq", "ollama"].includes(p) ? p : null;
+}
+
 // A model can answer: a Gemini key, or a configured local Ollama server.
 export function llmConfigured() {
   const gemini = !!(process.env.GEMINI_API_KEY_1 || process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY);
@@ -76,10 +95,21 @@ async function callGroqBatched(opts, tag) {
 }
 
 export async function callGroqThenOllama(messages, opts = {}, tag = "llm") {
+  return (await groqThenOllamaWithProvenance(messages, opts, tag)).value;
+}
+
+// Same chain, but it reports WHICH provider answered. On success the clients
+// return the bare parsed JSON — `source` is set only on FAILURE
+// (gemini-client.js:230, groq-client.cjs:41) — so before this, nothing
+// downstream could tell a Gemini answer from a Groq one. That is how a Groq
+// verdict was logged as "Gemini verdict" (run 37323030454:
+// gemini: quota_exhausted → groq), and it means a persisted model judgement
+// could carry another model's name.
+async function groqThenOllamaWithProvenance(messages, opts, tag) {
   const g = opts.groqBatch ? await callGroqBatched(opts, tag) : await groq.callGroq(messages, opts);
-  if (!isProviderError(g)) return g;
+  if (!isProviderError(g)) return { value: g, provider: "groq" };
   console.error(`[${tag}] groq: ${g.error} → ollama${g.detail ? ` (${String(g.detail).slice(0, 120)})` : ""}`);
-  return callOllamaOnly(messages, opts, tag);
+  return { value: await callOllamaOnly(messages, opts, tag), provider: "ollama" };
 }
 
 export async function callLLM(messages, opts = {}, tag = "llm") {
@@ -91,4 +121,45 @@ export async function callLLM(messages, opts = {}, tag = "llm") {
   if (!(r && r.source === "gemini" && r.error)) return r;
   console.error(`[${tag}] gemini: ${r.error} → groq${r.detail ? ` (${String(r.detail).slice(0, 120)})` : ""}`);
   return callGroqThenOllama(messages, opts, tag);
+}
+
+/**
+ * callLLM + the name of the provider that actually answered.
+ * Returns { value, provider, error, chain } where `chain` is every provider
+ * tried, in order, so a caller can record "gemini quota_exhausted -> groq"
+ * rather than a bare answer with an unearned label.
+ *
+ * Use this wherever a model's judgement is persisted or acted on. A caller
+ * using callLLM cannot know who answered, and mislabelling that is how the
+ * frame review's Groq verdict was logged as a Gemini one (run 37323030454).
+ */
+export async function callLLMWithProvenance(messages, opts = {}, tag = "llm") {
+  const pin = forcedProvider();
+  if (pin === "ollama") {
+    console.error(`[${tag}] ollama (FORCE_PROVIDER=ollama — pinned, no failover)`);
+    const value = await callOllamaOnly(messages, opts, tag);
+    return { value, provider: "ollama", error: isProviderError(value) ? value.error : null, chain: ["ollama"], pinned: true };
+  }
+  if (pin === "groq") {
+    console.error(`[${tag}] groq (FORCE_PROVIDER=groq — pinned, no failover)`);
+    const g = opts.groqBatch ? await callGroqBatched(opts, tag) : await groq.callGroq(messages, opts);
+    return { value: g, provider: "groq", error: isProviderError(g) ? g.error : null, chain: ["groq"], pinned: true };
+  }
+  if (pin === "gemini") {
+    console.error(`[${tag}] gemini (FORCE_PROVIDER=gemini — pinned, no failover)`);
+    const r = await callGemini(messages, { ...opts, tag });
+    return { value: r, provider: "gemini", error: isProviderError(r) ? r.error : null, chain: ["gemini"], pinned: true };
+  }
+  if (forcedOllama()) {
+    console.error(`[${tag}] ollama (FORCE_PLANNER=ollama — Gemini and Groq not called)`);
+    const value = await callOllamaOnly(messages, opts, tag);
+    return { value, provider: "ollama", error: isProviderError(value) ? value.error : null, chain: ["ollama"] };
+  }
+  const r = await callGemini(messages, { ...opts, tag });
+  if (!(r && r.source === "gemini" && r.error)) {
+    return { value: r, provider: "gemini", error: null, chain: ["gemini"] };
+  }
+  console.error(`[${tag}] gemini: ${r.error} → groq${r.detail ? ` (${String(r.detail).slice(0, 120)})` : ""}`);
+  const { value, provider } = await groqThenOllamaWithProvenance(messages, opts, tag);
+  return { value, provider, error: isProviderError(value) ? value.error : null, chain: ["gemini", provider] };
 }

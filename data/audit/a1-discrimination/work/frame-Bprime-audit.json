@@ -1,0 +1,91 @@
+{
+  "video": "frame-Bprime.mp4",
+  "pass": false,
+  "checks": [
+    {
+      "id": "frames-nonempty",
+      "pass": true,
+      "detail": "1/1 beat frames > 15 KB"
+    },
+    {
+      "id": "canvas-fit",
+      "pass": true,
+      "detail": "1 beat(s): every element inside the safe area, no text overlap, caption band clear"
+    },
+    {
+      "id": "canvas-coverage",
+      "pass": false,
+      "detail": "beat 0 (NUMBER-FULL): content spans 58.4% of the frame height (< 60%)"
+    },
+    {
+      "id": "canvas-accent",
+      "pass": false,
+      "detail": "the manifest names no accent colour (channels.json colors.canvas_accent)"
+    },
+    {
+      "id": "canvas-type",
+      "pass": false,
+      "detail": "only 0/1 beats show two type roles (need 60%)"
+    },
+    {
+      "id": "canvas-ground",
+      "pass": true,
+      "detail": "the ground reads uniform white on every non-photo beat"
+    },
+    {
+      "id": "zones-no-overlap",
+      "pass": false,
+      "detail": "beat 0 (NUMBER-FULL) at 30%: ink crosses the zone edge at y 620 in 54 columns (> 8 px each side); beat 0 (NUMBER-FULL) at 62%: ink crosses the zone edge at y 620 in 54 columns (> 8 px each side); beat 0 (NUMBER-FULL) at 90%: ink crosses the zone edge at y 620 in 54 columns (> 8 px each side)"
+    },
+    {
+      "id": "middle-zone-filled",
+      "pass": true,
+      "detail": "every non-photo beat fills its middle zone"
+    },
+    {
+      "id": "pop-transitions",
+      "pass": true,
+      "detail": "no empty frame across any beat boundary"
+    },
+    {
+      "id": "kinetic-rules",
+      "pass": false,
+      "detail": "beat 0: no kinetic plan recorded"
+    },
+    {
+      "id": "motion-tiers",
+      "pass": false,
+      "detail": "beat 0: no motion tier; 0 major-motion beat(s) (need 1-3)"
+    },
+    {
+      "id": "beat-durations",
+      "pass": true,
+      "detail": "every beat within ±0.1s of its cue"
+    },
+    {
+      "id": "library-names",
+      "pass": true,
+      "detail": "every library_shape name is registered"
+    },
+    {
+      "id": "beat-sentence-mechanism",
+      "pass": false,
+      "detail": "beat 0: no mechanism"
+    },
+    {
+      "id": "typography-count",
+      "pass": false,
+      "detail": "0 TYPOGRAPHY beats"
+    },
+    {
+      "id": "mechanism-share",
+      "pass": false,
+      "detail": "NONE 1/1 (100%)"
+    },
+    {
+      "id": "av-duration",
+      "pass": true,
+      "detail": "video 2.00s, audio 2.00s"
+    }
+  ]
+}

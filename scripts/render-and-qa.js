@@ -799,11 +799,14 @@ async function backupAudit({ stage, reason, videoPath, planPath, srtPath, audio,
 }
 
 // Frame review PASS = gemini-frame-review.js's own "VERDICT: APPROVED".
-// That script prints its verdict but never saves it (the report has no
-// pipelineVerdict, so this loop logged UNKNOWN), so the same rule is
-// re-applied here to the fields it DOES save: no CRITICAL frame, no
-// template monoculture, HIGH issues <= 30% of frames, and no whole-video
-// FAIL of CRITICAL/HIGH severity. No report at all = could not run.
+// As of 2026-10-05 that script PERSISTS the verdict (pipelineVerdict /
+// pipelineReason), so the branch below is the normal path and the re-derivation
+// after it is only reached for a report written before that change — or by a
+// caller that never ran it. It used to be the only path: the script printed its
+// verdict but never saved it, so this loop logged UNKNOWN and silently
+// substituted looser thresholds (no CRITICAL, no monoculture, HIGH <= 30%,
+// whole-video not FAIL at CRITICAL/HIGH) for the model's own call.
+// A report with no pipelineVerdict is NOT evidence of a pass.
 function frameReviewVerdict(geminiReport) {
   const report = geminiReport ? readJsonSafe(geminiReport) : null;
   if (!report) return { pass: false, error: true, reason: "Gemini frame review produced no report" };

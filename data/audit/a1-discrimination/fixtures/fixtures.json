@@ -1,0 +1,37 @@
+{
+  "frozen": "2026-10-05T16:21:55.071Z",
+  "size": "1080x1920",
+  "source": "synthetic — see header for why B cannot come from this pipeline",
+  "colors": {
+    "primary": "#0F172A",
+    "secondary": "#1E293B",
+    "accent": "#22C55E",
+    "bg": "#0A1020",
+    "canvas_accent": "#1B7A4D",
+    "muted": "#94A3B8",
+    "mutedLight": "#475569",
+    "ruleDark": "#1E293B",
+    "ruleLight": "#E2E8F0"
+  },
+  "channel": "1 (config/channels.json)",
+  "frames": {
+    "frame-A-fallback-white-caption-only.png": {
+      "sha256": "98566c051c3d4424b52d2b64fd761b60297ead9156c54e2931524b358305f6ec",
+      "bytes": 39339,
+      "size": "1080x1920",
+      "ink_fraction": 0.0085
+    },
+    "frame-B-varied-ground-composed.png": {
+      "sha256": "812e35ffb48033e7b8bcde441cfb3572b30328dc9f3ff7c41e530b534ea2fada",
+      "bytes": 123878,
+      "size": "1080x1920",
+      "ink_fraction": 0.9681
+    },
+    "frame-Bprime-white-ground-composed.png": {
+      "sha256": "10847e6d5a6896ef405617ec5fd9a2cee8b6411e86b563796584bbb34af22010",
+      "bytes": 90684,
+      "size": "1080x1920",
+      "ink_fraction": 0.0425
+    }
+  }
+}

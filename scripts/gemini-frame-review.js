@@ -22,7 +22,7 @@ import { execFileSync } from "node:child_process";
 // Every model call goes through src/lib/llm.js: Gemini first, local Ollama
 // (a vision model — these calls carry frames) when Gemini cannot answer,
 // or Ollama only under FORCE_PLANNER=ollama. Transitions are logged.
-import { callLLM, isProviderError, llmConfigured, GROQ_MAX_IMAGES } from "../src/lib/llm.js";
+import { callLLM, callLLMWithProvenance, isProviderError, llmConfigured, GROQ_MAX_IMAGES } from "../src/lib/llm.js";
 import { tmpdir } from "node:os";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -34,8 +34,16 @@ const binExt = process.platform === "win32" ? ".exe" : "";
 const FFMPEG_MIN = join(ROOT, "src", "skills", "remotion-render", "node_modules",
   compositorPkg, `ffmpeg${binExt}`);
 const ffmpegStatic = join(ROOT, "node_modules", "ffmpeg-static", `ffmpeg${binExt}`);
-const FFMPEG = existsSync(ffmpegStatic) ? ffmpegStatic : FFMPEG_MIN;
-const FFPROBE = join(dirname(FFMPEG_MIN), `ffprobe${binExt}`);
+// Binary resolution, in order: ffmpeg-static, the hoisted root compositor, the render
+// skill's own copy. FFMPEG and FFPROBE used to disagree — FFMPEG had a one-candidate
+// fallback, FFPROBE was derived from that fallback with no check at all — so in an
+// install where the compositor is hoisted to the root node_modules, one of them
+// resolved and the other pointed at a file that does not exist, and getVideoDuration
+// threw before a single frame was reviewed. Both now search the same list.
+const FFMPEG_CANDIDATES = [ffmpegStatic, join(ROOT, "node_modules", compositorPkg, `ffmpeg${binExt}`), FFMPEG_MIN];
+const FFMPEG = FFMPEG_CANDIDATES.find((p) => existsSync(p)) || FFMPEG_CANDIDATES[0];
+const FFPROBE_CANDIDATES = FFMPEG_CANDIDATES.map((p) => join(dirname(p), `ffprobe${binExt}`));
+const FFPROBE = FFPROBE_CANDIDATES.find((p) => existsSync(p)) || FFPROBE_CANDIDATES[0];
 
 function arg(name, fallback = null) {
   const i = process.argv.indexOf(`--${name}`);
@@ -385,7 +393,17 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
     },
   } : undefined;
 
-  return callLLM([{ role: "user", content }], { maxTokens: 1600, groqBatch }, "reviewer");
+  // Provenance matters here more than anywhere else in the pipeline: this call's
+  // answer becomes the video's verdict, and on a quota-exhausted Gemini account it
+  // is Groq that actually writes it (run 37323030454). callLLM cannot tell the two
+  // apart, so the caller used to log Groq's text under a Gemini label.
+  const { value, provider, chain } = await callLLMWithProvenance([{ role: "user", content }], { maxTokens: 1600, groqBatch }, "reviewer");
+  if (value && typeof value === "object") {
+    value.provider = provider;
+    value.provider_chain = chain;
+  }
+  console.log(`[reviewer] whole-video answer came from ${provider} (chain: ${chain.join(" → ")})`);
+  return value;
 }
 
 function categorizeResult(result, bible) {
@@ -766,6 +784,53 @@ async function main() {
       ? (sceneResults.reduce((s, r) => s + (r.quality_score || 0), 0) / sceneResults.filter((r) => r.quality_score).length).toFixed(1)
       : "N/A";
 
+    // The verdict is computed HERE, before the record is written, and persisted with it.
+    // It used to be computed after writeFileSync and only ever printed, so the report
+    // on disk had no verdict at all — render-and-qa.js:801-806 re-derived one from
+    // looser fields and logged "Gemini verdict: UNKNOWN", and backupAudit then let
+    // the deterministic audit overrule the model's own FAIL into approved-review.
+    // A judgement that is not written down cannot be audited, replayed, or overruled
+    // on purpose. Where each threshold came from is noted per branch.
+    const monoculture = wholeResult.headline_test?.monoculture;
+    const verdict = criticalCount > 0 || monoculture
+      ? {
+          verdict: "REJECTED",
+          reason: monoculture
+            ? `TEMPLATE_MONOCULTURE — ${wholeResult.headline_test.percent}% headline-dominated beats`
+            : `${criticalCount} CRITICAL failure(s)`,
+          rule: "any CRITICAL frame, or a headline monoculture",
+          blocking: true,
+          exit: fixMode ? 0 : 1,
+        }
+      : highCount > Math.floor(beatTimes.length * 0.3)
+        ? {
+            verdict: "NEEDS IMPROVEMENT",
+            reason: `${highCount} HIGH issues across ${beatTimes.length} frames`,
+            rule: `HIGH issues > 30% of frames (${highCount} > ${Math.floor(beatTimes.length * 0.3)})`,
+            blocking: !fixMode,
+            exit: fixMode ? 0 : 1,
+          }
+        : wholeResult.status === "FAIL" && (wholeResult.severity === "CRITICAL" || wholeResult.severity === "HIGH")
+          ? {
+              verdict: "NEEDS IMPROVEMENT",
+              reason: `whole-video review flagged ${wholeResult.severity} issues`,
+              rule: "whole-video status FAIL at severity CRITICAL/HIGH",
+              blocking: !fixMode,
+              exit: fixMode ? 0 : 1,
+            }
+          : {
+              verdict: "APPROVED",
+              reason: "video meets Visual Bible standards",
+              rule: "no CRITICAL, HIGH <= 30% of frames, whole-video not FAIL at CRITICAL/HIGH",
+              blocking: false,
+              exit: 0,
+            };
+
+    // pipelineVerdict / pipelineReason are STRINGS on purpose: render-and-qa.js:810
+    // already reads `report.pipelineVerdict === "APPROVED"` and had been falling
+    // through to its own re-derivation precisely because this field never existed.
+    // Writing an object here would have compared an object to a string and failed
+    // every review. The full breakdown is kept alongside, not instead.
     const record = {
       generatedAt: new Date().toISOString(),
       bibleVersion: bible.version,
@@ -773,6 +838,15 @@ async function main() {
       channel: channelId,
       duration: duration.toFixed(2),
       totalFrames: beatTimes.length,
+      // Who actually answered. `reviewProvider` is the one that produced this verdict;
+      // `reviewProviderChain` is every provider tried. Absent on a record written before
+      // this field existed — treat that as "unknown", never as "gemini".
+      reviewProvider: wholeResult.provider || null,
+      reviewProviderChain: wholeResult.provider_chain || null,
+      pipelineVerdict: verdict.verdict,
+      pipelineReason: verdict.reason,
+      verdictRule: verdict.rule,
+      verdictBlocking: verdict.blocking,
       summary: {
         critical: criticalCount,
         high: highCount,
@@ -805,35 +879,25 @@ async function main() {
     writeFileSync(outFile, JSON.stringify(record, null, 2) + "\n");
 
     // ── Final verdict ──
-    console.log(`\n═══ GEMINI VISUAL DIRECTOR — FINAL VERDICT ═══`);
+    // Printed from the persisted record, not recomputed, so what is logged is exactly
+    // what was written. The banner keeps the old wording; the provider line below it is
+    // what makes the judgement attributable.
+    console.log(`\n═══ VISUAL REVIEW — FINAL VERDICT ═══`);
     console.log(`  Bible: v${bible.version} (${Object.keys(bible.rules).length} rules)`);
     console.log(`  Frames reviewed: ${beatTimes.length}`);
     console.log(`  CRITICAL: ${criticalCount}  HIGH: ${highCount}  PASS: ${passCount}`);
     console.log(`  Avg quality: ${avgScore}/10`);
     console.log(`  Pass rate: ${record.summary.passRate}`);
     console.log(`  Whole-video: ${wholeResult.status || "ERROR"} (${wholeResult.overall_score || "?"}/10)`);
+    console.log(`  Answered by: ${record.reviewProvider || "unknown"}${record.reviewProviderChain ? ` (chain: ${record.reviewProviderChain.join(" → ")})` : ""}`);
     console.log(`  Report: ${outFile}`);
 
-    const monoculture = wholeResult.headline_test?.monoculture;
-
-    if (criticalCount > 0 || monoculture) {
-      const reason = monoculture
-        ? `TEMPLATE_MONOCULTURE — ${wholeResult.headline_test.percent}% headline-dominated beats`
-        : `${criticalCount} CRITICAL failure(s)`;
-      console.log(`\n  VERDICT: REJECTED — ${reason} require re-render.`);
-      if (fixMode) {
-        console.log(`  Corrections written to report. Pipeline should apply and re-render.`);
-      }
-      process.exit(1);
-    } else if (highCount > Math.floor(beatTimes.length * 0.3)) {
-      console.log(`\n  VERDICT: NEEDS IMPROVEMENT — ${highCount} HIGH issues across ${beatTimes.length} frames.`);
-      if (!fixMode) process.exit(1);
-    } else if (wholeResult.status === "FAIL" && (wholeResult.severity === "CRITICAL" || wholeResult.severity === "HIGH")) {
-      console.log(`\n  VERDICT: NEEDS IMPROVEMENT — whole-video review flagged ${wholeResult.severity} issues.`);
-      if (!fixMode) process.exit(1);
-    } else {
-      console.log(`\n  VERDICT: APPROVED — video meets Visual Bible standards.`);
+    console.log(`\n  VERDICT: ${verdict.verdict} — ${verdict.reason}`);
+    console.log(`  (rule: ${verdict.rule})`);
+    if (verdict.verdict === "REJECTED" && fixMode) {
+      console.log(`  Corrections written to report. Pipeline should apply and re-render.`);
     }
+    if (verdict.blocking) process.exit(1);
   } finally {
     rmSync(work, { recursive: true, force: true });
   }
