@@ -1646,7 +1646,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
   let verification = null;
   if (existsSync(audioForBundle)) {
     console.log(`[tts] ch-${channelId}: verify running (voiceover: ${voiceoverProvenance})`);
-    verification = verifyTts({ mp3Path: audioForBundle, srtPath: srtPath2, spokenText, channel: channelId, topic: basename(scriptPath, ".json") });
+    verification = verifyTts({ mp3Path: audioForBundle, srtPath: srtPath2, wordsPath: wordsFile, spokenText, channel: channelId, topic: basename(scriptPath, ".json") });
   }
   // Blocker 2: if the reused artifact's SRT is misaligned with the audio
   // (drift > 0.5s), regenerate that voiceover fresh so the SRT word timings
@@ -1659,7 +1659,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     if (t.code === 0 && existsSync(wordsFile)) {
       spokenText = "";
       try { const w = JSON.parse(readFileSync(wordsFile, "utf-8")); const arr = Array.isArray(w) ? w : w.words || []; spokenText = arr.map((x) => x.word || x.text || "").join(" ").trim(); } catch { spokenText = ""; }
-      verification = verifyTts({ mp3Path: audioForBundle, srtPath: srtPath2, spokenText, channel: channelId, topic: basename(scriptPath, ".json") });
+      verification = verifyTts({ mp3Path: audioForBundle, srtPath: srtPath2, wordsPath: wordsFile, spokenText, channel: channelId, topic: basename(scriptPath, ".json") });
     }
   }
   if (existsSync(audioForBundle)) {

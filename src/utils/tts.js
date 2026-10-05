@@ -136,7 +136,7 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   }
   if (natural) {
     console.log(`TTS audio saved (${natural.provider}): ${natural.mp3Path}`);
-    const v = verifyTts({ mp3Path: natural.mp3Path, srtPath: natural.srtPath, spokenText, channel: settings.channel || "?", topic });
+    const v = verifyTts({ mp3Path: natural.mp3Path, srtPath: natural.srtPath, wordsPath: natural.wordsPath, spokenText, channel: settings.channel || "?", topic });
     if (!v.ok && v.reason === "monotone") console.warn(`[tts] ch-${settings.channel || "?"}: monotone reading — consider a different voice or edge-tts prosody post-processing`);
     return natural.mp3Path;
   }
@@ -180,7 +180,7 @@ stderr: ${stderr}`);
     console.log(`TTS word timings saved: ${wordsPath}`);
     console.log(`Delivery: voice=${voice} rate=${rate} pitch=${pitch}`);
     // Task 4.3 — prosody/timing verification even on the edge-tts path.
-    verifyTts({ mp3Path: audioPath, srtPath, spokenText, channel: settings.channel || "?", topic });
+    verifyTts({ mp3Path: audioPath, srtPath, wordsPath, spokenText, channel: settings.channel || "?", topic });
     return audioPath;
   } catch (err) {
     // Clean up temp files on error too

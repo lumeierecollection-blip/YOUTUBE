@@ -22,6 +22,7 @@ const { sentences, specificsOf, isTurnLine } = require("./validate-script.cjs");
 const BANNED_OPENINGS = ["according to", "in a statement", "officials said", "the report states", "the report", "data shows", "this trend", "experts say", "let's dive into", "let us dive into", "here's why", "here is why", "here's what happened", "let me tell you", "have you ever wondered"];
 const BANNED_PHRASES = ["this trend is expected to", "it's important to", "it is important to", "in today's world", "the key takeaway is", "industry leaders are", "as we look ahead", "it remains to be seen", "only time will tell", "at the end of the day", "here's what nobody tells you", "not gonna lie", "let me be honest", "experts say", "let's dive into"];
 const norm = (s) => String(s || "").replace(/[‘’]/g, "'").replace(/[“”]/g, '"');
+const STOPWORDS = new Set(["the", "and", "but", "because", "a", "an", "of", "to", "in", "for", "on", "with", "as", "at", "by", "from", "that", "this", "it", "is", "was", "are", "were", "be", "been", "being", "have", "has", "had", "do", "does", "did", "will", "would", "could", "should", "may", "might", "must", "can", "shall"]);
 const firstWord = (s) => (norm(s).trim().match(/^["'(]*([\p{L}\p{N}$%'-]+)/u) || [])[1]?.toLowerCase() || "";
 
 function peopleOf(research) {
@@ -47,18 +48,34 @@ function validateVoice(script, research = null) {
   // federal authorities.", "Adopt collective leadership across your team today.") — a
   // narrative device like the setup's question; validate-script-narrative.cjs already requires
   // the close to be a specific action or number (CI run 37154369091: ch-26 / ch-44 / ch-2 closes).
-  const closeSents = new Set(sentences((script.sections || []).find((x) => x.id === "close")?.voiceover || "").map((s) => s.trim()));
+  // Directed scripts (schemas/script.directed.json) number their sections sec_1..sec_N with
+  // no id "close", so this exemption NEVER fired for them (ch-2's "Know your rights, and keep
+  // your data secure." was failed as naming nothing — CI run 37297352662). Fall back to
+  // POSITION, the same convention validate-script-narrative.cjs uses: the last sentence of
+  // the last section is the close.
+  const secs = script.sections || [];
+  const lastSec = secs[secs.length - 1];
+  const closeSentList = sentences((secs.find((x) => x.id === "close") || lastSec)?.voiceover || "");
+  const closeSents = new Set(closeSentList.map((s) => s.trim()));
+  // Position fallback: the very last sentence of the script is the close.
+  if (sents.length) closeSents.add(sents[sents.length - 1].trim());
   const people = peopleOf(research);
   const ents = new Set((research?.named_entities || []).flatMap((e) => String(e?.name || "").split(/\s+/)).map((w) => w.toLowerCase()).filter(Boolean));
   const rows = [];
   let nameStarts = 0;
+  let fullNameStarts = 0;
   sents.forEach((s, i) => {
     const fails = [];
     const low = norm(s).toLowerCase().trim();
     const op = BANNED_OPENINGS.find((o) => low.replace(/^["'(]+/, "").startsWith(o));
     if (op) fails.push(`banned opening "${op}"`);
     const ps = personStart(s, people);
-    if (ps.full) fails.push(`starts with a person's full name ("${ps.name}")`);
+    // A single sentence opening with a person's full name is correct reporting,
+    // not a defect. The rule is now a SCRIPT-level count (see scriptFails below),
+    // so one attribution like ch-48's "Jan Sigmund announced these supply chain
+    // updates from Schindellegi, Switzerland on October 2, 2026." passes while two
+    // such openers still fail.
+    if (ps.full) fullNameStarts++;
     if (ps.any) nameStarts++;
     const wc = s.split(/\s+/).filter(Boolean).length;
     if (wc > 25) fails.push(`${wc} words (> 25)`);
@@ -70,22 +87,31 @@ function validateVoice(script, research = null) {
     // outperform a sprawling industrial giant?" (9 words) skipped the channel in CI run
     // 37149091704 (owner's ruling 2026-10-03). Longer questions still must name something.
     const question = /\?\s*["')]*$/.test(s.trim()) && wc <= 15;
-    // Owner's ruling 2026-10-05: a short continuation sentence need not re-name
-    // its subject when the sentence right before it established one. The wire-voice
-    // rule targets flat all-summary prose; a short sentence like "So it keeps
-    // climbing" has no named person/place/org/number and is NOT a failure when the
-    // prior sentence already named something. Exempt <= 12 words in that case.
-    const priorNames = sents.length > 1 && i > 0
-      ? (sentences(sents.slice(Math.max(0, i - 1), i).join(" "))[0] && specificsOf(sents[i - 1], { entities: ents }))
-      : null;
-    const priorHasName = priorNames && (priorNames.names.length + priorNames.numbers.length + priorNames.objects.length) > 0;
-    const continuationExempt = wc <= 12 && priorHasName;
-    if (sp.names.length + sp.numbers.length + sp.objects.length === 0 && !isTurnLine(s) && !question && !closeSents.has(s.trim()) && !continuationExempt) fails.push("names no person, place, organization, number or object");
+    // Owner's ruling 2026-10-05: a short sentence that BRIDGES two grounded
+    // sentences need not name anything itself — its job is to connect them.
+    // Exempt <= 12 words when the sentence before AND the sentence after each
+    // carry a named entity from the research. ch-9's "The resulting demarcation
+    // directly impacts regional stability." (CI run 37297352662) is this shape.
+    const namesSomething = (t) => {
+      if (!t) return false;
+      const x = specificsOf(t, { entities: ents });
+      return x.names.length + x.numbers.length + x.objects.length > 0;
+    };
+    const bridgeExempt = wc <= 12 && namesSomething(sents[i - 1]) && namesSomething(sents[i + 1]);
+    if (sp.names.length + sp.numbers.length + sp.objects.length === 0 && !isTurnLine(s) && !question && !closeSents.has(s.trim()) && !bridgeExempt) fails.push("names no person, place, organization, number or object");
     if (/\b(was|were|is|are|been|being)\s+\w+(?:ed|en)\s+by\b/i.test(s)) fails.push("passive voice (… was done by …)");
-    if (i > 0 && firstWord(s) && firstWord(s) === firstWord(sents[i - 1])) fails.push(`starts with the same word as the sentence before ("${firstWord(s)}")`);
+    // Repeated opener (owner, 2026-10-05): fire only when the repeated word is a
+    // FILLER ("the", "and", "because", "but" …). Naming the subject twice in a row
+    // is correct writing — ch-44's "Clever …" / "Clever operates as Denmark's largest
+    // …" (CI run 37297352662) — so a proper noun, a content word or a verb is exempt.
+    if (i > 0 && firstWord(s) && firstWord(s) === firstWord(sents[i - 1]) && STOPWORDS.has(firstWord(s))) fails.push(`starts with the same word as the sentence before ("${firstWord(s)}")`);
     rows.push({ i: i + 1, sentence: s, words: wc, fails });
   });
   const scriptFails = [];
+  // The full-name opener is a SCRIPT count (owner, 2026-10-05): ONE sentence may
+  // open with a person's full name. Two or more is the wire-lead repetition the
+  // rule was written for, and it still fails.
+  if (people.length && fullNameStarts > 1) scriptFails.push(`${fullNameStarts} sentences start with a person's full name (max 1)`);
   if (people.length && nameStarts > 1) scriptFails.push(`${nameStarts} sentences start with a person's name (max 1)`);
   const failures = rows.reduce((n, r) => n + r.fails.length, 0) + scriptFails.length;
   return { rows, nameStarts, peopleKnown: people.length > 0, scriptFails, failures, pass: failures === 0,

@@ -56,7 +56,7 @@ export const TYPO_MOMENTS = ["hook", "re_hook", "key_fact", "contradiction", "qu
  * Share of beats that may carry on-screen text before the video reads as a
  * text-forward slideshow rather than visual storytelling.
  */
-export const TYPO_MAX_BEAT_SHARE = 0.4;
+export const TYPO_MAX_BEAT_SHARE = 0.55;
 
 /* ── Word handling ───────────────────────────────────────────────────── */
 

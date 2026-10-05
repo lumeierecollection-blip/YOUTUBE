@@ -278,7 +278,7 @@ export function compileScene(directive, text, index, totalBeats) {
 
   // Step 2: Resolve visual events to objects
   const allObjects = [];
-  const events = directive.visual_events || [];
+  const events = (directive.visual_events || []).filter((e) => e.type !== "typographic_emphasis");
   for (const event of events) {
     const { objects, warnings: eventWarnings } = resolveVisualEvent(event, text);
     allObjects.push(...objects);

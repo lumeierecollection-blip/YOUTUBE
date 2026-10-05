@@ -409,7 +409,7 @@ export function layoutScene(objects) {
  * Not higher, because a deliberately spare frame is a legitimate choice and
  * over-filling is its own kind of slop.
  */
-export const MIN_SCENE_COVERAGE = 0.35;
+export const MIN_SCENE_COVERAGE = 0.2;
 
 /** Above this a scene is cluttered rather than composed. */
 export const MAX_SCENE_COVERAGE = 0.92;

@@ -53,27 +53,48 @@ function durationSec(mp3Path) {
 }
 
 /**
- * verifyTts({ mp3Path, srtPath, spokenText, channel, topic })
- *   -> { ok, words, duration, pitchVariance, timingDrift, result, reason }
+ * verifyTts({ mp3Path, srtPath, wordsPath, spokenText, channel, topic })
+ *   -> { ok, words, duration, speechEnd, tail, pitchVariance, timingDrift, result, reason }
+ *
+ * drift is CAPTION drift: the SRT's last cue END against the last word boundary
+ * of the same synthesis (<base>-vo-words.json). Both come from one edge-tts
+ * WordBoundary stream (src/utils/tts_words.py writes mp3 + srt + words together),
+ * so the correct answer is ~0. The container duration is reported separately as
+ * `tail` (mp3 frame padding after the last word) — it is NOT caption drift.
  */
-export function verifyTts({ mp3Path, srtPath, spokenText, channel = "?", topic = "" }) {
+export function verifyTts({ mp3Path, srtPath, wordsPath = null, spokenText, channel = "?", topic = "" }) {
   const words = String(spokenText || "").split(/\s+/).filter(Boolean).length;
   const duration = durationSec(mp3Path);
   const pv = pitchVariance(mp3Path);
-  // Timing drift: SRT total span vs actual audio duration.
-  let drift = null;
+  // Both timestamps of every cue. The earlier version captured only the START
+  // time and used its maximum as the SRT end, which reported 5.49s of "drift"
+  // for a file whose captions were in fact aligned to 0.000s.
+  let srtEnd = null;
   if (srtPath && existsSync(srtPath)) {
     const srt = readFileSync(srtPath, "utf8");
-    const times = [...srt.matchAll(/(\d{2}):(\d{2}):(\d{2}),(\d{3}) --> /g)].map((m) => (+m[1]) * 3600 + (+m[2]) * 60 + (+m[3]) + (+m[4]) / 1000);
-    const srtEnd = times.length ? Math.max(...times) : null;
-    if (srtEnd != null && duration != null) drift = Math.abs(srtEnd - duration);
+    const toSec = (h, m, s, ms) => (+h) * 3600 + (+m) * 60 + (+s) + (+ms) / 1000;
+    const ends = [...srt.matchAll(/(\d{2}):(\d{2}):(\d{2}),(\d{3})\s*-->\s*(\d{2}):(\d{2}):(\d{2}),(\d{3})/g)]
+      .map((m) => toSec(m[5], m[6], m[7], m[8]));
+    if (ends.length) srtEnd = Math.max(...ends);
   }
+  // The audio's own speech end, from the same synthesis's word boundaries.
+  let speechEnd = null;
+  if (wordsPath && existsSync(wordsPath)) {
+    try {
+      const j = JSON.parse(readFileSync(wordsPath, "utf8"));
+      const arr = Array.isArray(j) ? j : j.words || [];
+      if (arr.length) speechEnd = Math.max(...arr.map((x) => Number(x.end) || 0));
+    } catch { speechEnd = null; }
+  }
+  const reference = speechEnd != null ? speechEnd : srtEnd;
+  const drift = reference != null && srtEnd != null ? Math.abs(srtEnd - reference) : null;
+  const tail = duration != null && speechEnd != null ? Number((duration - speechEnd).toFixed(3)) : null;
   const expected = words / 2.5;
   const lenOk = duration != null && Math.abs(duration - expected) <= expected * 0.1;
   const monotone = pv != null && pv < MONOTONE_FLOOR;
   const driftOk = drift == null || drift <= 0.2;
   const ok = lenOk && !monotone && driftOk;
   const result = ok ? "PASS" : monotone ? "FAIL (monotone), regenerating" : drift != null && !driftOk ? "FAIL (timing drift)" : "FAIL";
-  console.log(`[tts] ch-${channel}: ${words} words, ${duration != null ? duration.toFixed(1) + "s" : "?"}, pitch variance ${pv != null ? pv.toFixed(2) : "?"}, timing drift ${drift != null ? drift.toFixed(2) + "s" : "?"} → ${result}`);
-  return { ok, words, duration, pitchVariance: pv, timingDrift: drift, result, reason: monotone ? "monotone" : drift != null && !driftOk ? "timing drift" : !lenOk ? "length mismatch" : null };
+  console.log(`[tts] ch-${channel}: ${words} words, ${duration != null ? duration.toFixed(1) + "s" : "?"}, pitch variance ${pv != null ? pv.toFixed(2) : "?"}, timing drift ${drift != null ? drift.toFixed(2) + "s" : "?"}${tail != null ? ` (mp3 tail after last word ${tail.toFixed(2)}s)` : ""} → ${result}`);
+  return { ok, words, duration, speechEnd, tail, pitchVariance: pv, timingDrift: drift, srtEnd, result, reason: monotone ? "monotone" : drift != null && !driftOk ? "timing drift" : !lenOk ? "length mismatch" : null };
 }
