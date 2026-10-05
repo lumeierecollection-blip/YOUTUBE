@@ -2795,8 +2795,14 @@
     "49": {
       "channel_name": "Picture House",
       "niche": "Movies, Cinematic Universes (Release Calendars, Box Office)",
-      "used_topics": [],
-      "last_generated": "2026-10-05T10:47:08.526Z"
+      "used_topics": [
+        {
+          "topic": "Avengers: Secret Wars Production Timeline and Delay Reports",
+          "slug": "avengers-secret-wars-production-delay",
+          "reserved_at": "2026-10-05T11:14:32.714Z"
+        }
+      ],
+      "last_generated": "2026-10-05T11:14:32.714Z"
     },
     "50": {
       "channel_name": "Gadget Kitchen",
