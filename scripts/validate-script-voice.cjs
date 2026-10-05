@@ -70,7 +70,17 @@ function validateVoice(script, research = null) {
     // outperform a sprawling industrial giant?" (9 words) skipped the channel in CI run
     // 37149091704 (owner's ruling 2026-10-03). Longer questions still must name something.
     const question = /\?\s*["')]*$/.test(s.trim()) && wc <= 15;
-    if (sp.names.length + sp.numbers.length + sp.objects.length === 0 && !isTurnLine(s) && !question && !closeSents.has(s.trim())) fails.push("names no person, place, organization, number or object");
+    // Owner's ruling 2026-10-05: a short continuation sentence need not re-name
+    // its subject when the sentence right before it established one. The wire-voice
+    // rule targets flat all-summary prose; a short sentence like "So it keeps
+    // climbing" has no named person/place/org/number and is NOT a failure when the
+    // prior sentence already named something. Exempt <= 12 words in that case.
+    const priorNames = sents.length > 1 && i > 0
+      ? (sentences(sents.slice(Math.max(0, i - 1), i).join(" "))[0] && specificsOf(sents[i - 1], { entities: ents }))
+      : null;
+    const priorHasName = priorNames && (priorNames.names.length + priorNames.numbers.length + priorNames.objects.length) > 0;
+    const continuationExempt = wc <= 12 && priorHasName;
+    if (sp.names.length + sp.numbers.length + sp.objects.length === 0 && !isTurnLine(s) && !question && !closeSents.has(s.trim()) && !continuationExempt) fails.push("names no person, place, organization, number or object");
     if (/\b(was|were|is|are|been|being)\s+\w+(?:ed|en)\s+by\b/i.test(s)) fails.push("passive voice (… was done by …)");
     if (i > 0 && firstWord(s) && firstWord(s) === firstWord(sents[i - 1])) fails.push(`starts with the same word as the sentence before ("${firstWord(s)}")`);
     rows.push({ i: i + 1, sentence: s, words: wc, fails });

@@ -20,24 +20,29 @@ const { execSync } = require("node:child_process");
 const { existsSync } = require("node:fs");
 const path = require("node:path");
 
-/** Run rembg on the input. Returns null on success, the error message otherwise. */
+/**
+ * Run rembg on the input. Two things this version fixes (Blocker 1):
+ *   1. Uses the rembg Python MODULE directly (no reliance on a `rembg` CLI
+ *      being on PATH, no `python -m rembg` which lacks a __main__, no broken
+ *      Windows-Scripts fallback that did not exist on the CI runner).
+ *   2. A 600 s timeout, because on a cold runner the first call must
+ *      download the u2net model before it can produce output.
+ * Returns null on success, the error message otherwise.
+ */
 function runRembg(inputAbs, outputAbs) {
-  const candidates = [
-    `rembg i "${inputAbs}" "${outputAbs}"`,
-    `python -m rembg i "${inputAbs}" "${outputAbs}"`,
-    `"${require("os").homedir()}\\AppData\\Roaming\\Python\\Python314\\Scripts\\rembg.exe" i "${inputAbs}" "${outputAbs}"`,
-  ];
+  const pythonCmd = `python -c "import sys, pathlib; from rembg import remove; pathlib.Path(sys.argv[2]).write_bytes(remove(pathlib.Path(sys.argv[1]).read_bytes()))" "${inputAbs}" "${outputAbs}"`;
+  const candidates = [pythonCmd];
   let lastErr = null;
   for (const cmd of candidates) {
     try {
-      execSync(cmd, { stdio: "pipe", timeout: 180000 });
-      if (existsSync(outputAbs)) return null;
+      execSync(cmd, { stdio: "pipe", timeout: 600000 });
+      if (existsSync(outputAbs) && require("fs").statSync(outputAbs).size > 0) return null;
       lastErr = `${cmd.split(" ")[0]} produced no output`;
     } catch (e) {
-      lastErr = `${cmd.split(" ")[0]} failed: ${String(e.message || e).slice(0, 120)}`;
+      lastErr = `${cmd.split(" ")[0]} failed: ${String(e.message || e).slice(0, 200)}`;
     }
   }
-  return `rembg failed (all invocations): ${lastErr}`;
+  return `rembg failed: ${lastErr}`;
 }
 
 /**

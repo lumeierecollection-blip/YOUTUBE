@@ -31,7 +31,7 @@ on:
       channels:
         description: "Comma-separated channel IDs — must be priority channels"
         type: string
-        default: "1,2,9,26,44,48"
+        default: "1,2,9,26,44,49"
       render_only:
         description: "DEBUG: skip discover/research/script; render the channel's latest committed script (never publishes)"
         type: boolean
@@ -586,7 +586,7 @@ jobs:
                 fi
                 # LENGTH, measured on the real voiceover. render.js caps a
                 # Short at 60s, so a longer narration is cut off mid-word —
-                # ch-48's 61.06s voiceover in run 35830826546. Word count
+                # a since-cut channel's 61.06s voiceover in run 35830826546. Word count
                 # doesn't predict it (131 words ran 32.8s, 87 words 50.6s),
                 # so the audio is generated here and its SRT end is checked.
                 if [ "$FORMAT" = "shorts" ]; then
@@ -595,7 +595,7 @@ jobs:
                   # Up to 3 measure → trim rounds. Trimming only DELETES whole
                   # sentences (scripts/fit-short.js — hook and payoff kept);
                   # qwen2.5:3b never converged on a length when asked to
-                  # rewrite (ch-48 70/66/64/90s, ch-9 68/60/75s).
+                  # rewrite (ch-9 68/60/75s; one cut channel 70/66/64/90s).
                   for FIT in 1 2 3; do
                     TTS_DONE=0
                     for tts_try in 1 2 3; do
@@ -892,6 +892,7 @@ jobs:
         run: |
           pip install "rembg[cpu]" pillow numpy
           python -c "from rembg import remove; print('rembg ok')"
+          python -c "from rembg import new_session; new_session('u2net'); print('u2net model cached')"
 
       - name: Cache Remotion Chrome
         if: steps.status.outputs.skip != 'true'
@@ -1031,9 +1032,6 @@ jobs:
           CH44_CLIENT_ID:       ${{ secrets.CHANNEL_44_CLIENT_ID }}
           CH44_CLIENT_SECRET:   ${{ secrets.CHANNEL_44_CLIENT_SECRET }}
           CH44_REFRESH_TOKEN:   ${{ secrets.CHANNEL_44_REFRESH_TOKEN }}
-          CH48_CLIENT_ID:       ${{ secrets.CHANNEL_48_CLIENT_ID }}
-          CH48_CLIENT_SECRET:   ${{ secrets.CHANNEL_48_CLIENT_SECRET }}
-          CH48_REFRESH_TOKEN:   ${{ secrets.CHANNEL_48_REFRESH_TOKEN }}
         run: |
           mkdir -p config/creds
           P=$(printf '%02d' "${{ matrix.channel_id }}")
@@ -1115,7 +1113,7 @@ jobs:
           REVIEW_RUN: ${{ github.event.inputs.review_run_id }}
         run: |
           node -e "
-            const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 48];
+            const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 49];
             const ids = (process.env.REQUESTED || '').split(',').map(s => s.trim().replace(/^ch-?/i, '')).filter(Boolean).map(Number);
             const bad = ids.filter(id => !PUBLISH_CHANNELS.includes(id));
             if (!ids.length) { console.error('::error::no channels given'); process.exit(1); }
@@ -1185,9 +1183,6 @@ jobs:
           CH44_CLIENT_ID:       ${{ secrets.CHANNEL_44_CLIENT_ID }}
           CH44_CLIENT_SECRET:   ${{ secrets.CHANNEL_44_CLIENT_SECRET }}
           CH44_REFRESH_TOKEN:   ${{ secrets.CHANNEL_44_REFRESH_TOKEN }}
-          CH48_CLIENT_ID:       ${{ secrets.CHANNEL_48_CLIENT_ID }}
-          CH48_CLIENT_SECRET:   ${{ secrets.CHANNEL_48_CLIENT_SECRET }}
-          CH48_REFRESH_TOKEN:   ${{ secrets.CHANNEL_48_REFRESH_TOKEN }}
         run: |
           mkdir -p config/creds
           node -e "
@@ -1202,7 +1197,7 @@ jobs:
           "
 
       # run.js --review: approved-review/ only, marker must match the channel, refuses any
-      # channel outside 1/2/9/26/44/48, uploads privacyStatus "private", and queues the entry
+      # channel outside 1/2/9/26/44/49, uploads privacyStatus "private", and queues the entry
       # cancelled so process-queue never makes it public.
       - name: Publish approved-review videos (private)
         env:

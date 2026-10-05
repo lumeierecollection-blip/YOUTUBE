@@ -1635,17 +1635,32 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
   }
   // Task 4.3 — TTS prosody/timing verification. MUST run on every render,
   // whether the voiceover was just generated or reused (Fix 2).
+  const srtPath2 = audioForBundle.replace(/\.mp3$/, ".srt");
+  let spokenText = "";
+  try {
+    const w = JSON.parse(readFileSync(wordsFile, "utf-8"));
+    const arr = Array.isArray(w) ? w : w.words || [];
+    // edge-tts words use "text"; elevenlabs/max estimated timings use "word".
+    spokenText = arr.map((x) => x.word || x.text || "").join(" ").trim();
+  } catch { spokenText = ""; }
+  let verification = null;
   if (existsSync(audioForBundle)) {
     console.log(`[tts] ch-${channelId}: verify running (voiceover: ${voiceoverProvenance})`);
-    const srtPath = audioForBundle.replace(/\.mp3$/, ".srt");
-    let spokenText = "";
-    try {
-      const w = JSON.parse(readFileSync(wordsFile, "utf-8"));
-      const arr = Array.isArray(w) ? w : w.words || [];
-      // edge-tts words use "text"; elevenlabs/max estimated timings use "word".
-      spokenText = arr.map((x) => x.word || x.text || "").join(" ").trim();
-    } catch { spokenText = ""; }
-    verifyTts({ mp3Path: audioForBundle, srtPath, spokenText, channel: channelId, topic: basename(scriptPath, ".json") });
+    verification = verifyTts({ mp3Path: audioForBundle, srtPath: srtPath2, spokenText, channel: channelId, topic: basename(scriptPath, ".json") });
+  }
+  // Blocker 2: if the reused artifact's SRT is misaligned with the audio
+  // (drift > 0.5s), regenerate that voiceover fresh so the SRT word timings
+  // are produced by the SAME engine run that produced the MP3 — they can
+  // never be merged from two different tools.
+  if (verification && Number(verification.timingDrift) > 0.5 && voiceoverProvenance !== "regenerated") {
+    console.log(`[tts] ch-${channelId}: drift ${Number(verification.timingDrift).toFixed(2)}s>0.5s — regenerating voiceover to realign SRT/audio`);
+    const t = await runChild("node", [join(ROOT, "src", "utils", "tts.js"), String(channelId), relative(ROOT, scriptPath)], { label: `tts ${channelId}` });
+    voiceoverProvenance = "regenerated";
+    if (t.code === 0 && existsSync(wordsFile)) {
+      spokenText = "";
+      try { const w = JSON.parse(readFileSync(wordsFile, "utf-8")); const arr = Array.isArray(w) ? w : w.words || []; spokenText = arr.map((x) => x.word || x.text || "").join(" ").trim(); } catch { spokenText = ""; }
+      verification = verifyTts({ mp3Path: audioForBundle, srtPath: srtPath2, spokenText, channel: channelId, topic: basename(scriptPath, ".json") });
+    }
   }
   if (existsSync(audioForBundle)) {
     const voTarget = join(ROOT, "src", "skills", "remotion-render", "vo.mp3");
