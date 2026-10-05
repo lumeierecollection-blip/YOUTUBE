@@ -1773,9 +1773,14 @@
           "topic": "The $31.5M Fundsz Crypto and Precious Metals Fraud Verdict",
           "slug": "fundsz-31-5m-crypto-fraud-verdict",
           "reserved_at": "2026-10-04T11:31:48.678Z"
+        },
+        {
+          "topic": "The $387 Million Bitget Hack and North Korean Tracking via AI",
+          "slug": "bitget-387m-hack-north-korea-ai-tracking",
+          "reserved_at": "2026-10-05T07:57:24.358Z"
         }
       ],
-      "last_generated": "2026-10-04T11:31:48.678Z"
+      "last_generated": "2026-10-05T07:57:24.359Z"
     },
     "27": {
       "channel_name": "Trial Files",
