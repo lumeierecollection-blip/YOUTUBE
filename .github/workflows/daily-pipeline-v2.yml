@@ -543,11 +543,12 @@ jobs:
                     FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$(grep -E '^  - ' /tmp/spec-out-$FORMAT.log || true)" | grep -E '^  - ' | sort -u || true)
                     continue
                   fi
+                  # VOICE IS A WARNING, NOT A GATE (owner, 2026-10-05). validate-script-story.cjs
+                  # no longer returns 3 — it logs "[voice] ch-N: N warnings, continuing" and the
+                  # channel carries on. This branch is kept only so an unexpected 3 can never
+                  # silently skip a channel: it logs and falls THROUGH instead of skipping.
                   if [ "$SPEC_EXIT" -eq 3 ]; then
-                    echo "::warning::[script] ch-$CH: voice validation failed twice — channel skipped this run (data/ci-runs/blocked-voice-$CH.txt)"
-                    echo "skip=true" >> "$GITHUB_OUTPUT"
-                    echo "skip_reason=voice-validation" >> "$GITHUB_OUTPUT"
-                    exit 0
+                    echo "::warning::[script] ch-$CH: unexpected voice exit 3 — treating as a warning, continuing (data/ci-runs/blocked-voice-$CH.txt)"
                   fi
                   echo "::warning::[script] ch-$CH: story checks still FAIL after the re-ask — continuing with this script (logged to data/ci-runs/blocked-script-*-$CH.txt)"
                 fi

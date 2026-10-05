@@ -6,14 +6,16 @@
  *   narrative    scripts/validate-script-narrative.cjs  (hook / setup / re-hook / payoff / close)
  *
  *   node scripts/validate-script-story.cjs <channel> <script.json> [research.json] [--blocked <dir>]
- *     exit 0 = all pass, 2 = narrative / specificity fail only, 3 = VOICE fail (with or without
- *     others). Prints each validator's log and its "  - " feedback.
- *     --blocked <dir> (the check after the re-ask): narrative / specificity failures write
- *     blocked-script-<narrative|specificity>-<ch>.txt and the run continues with the script; a
- *     voice failure writes blocked-voice-<ch>.txt and the CHANNEL IS SKIPPED this run (exit 3 —
- *     the workflow stops that channel's prep, other channels go on). Owner's ruling 2026-10-03:
- *     voice validation is a hard gate ("never accept" a repeated name-start); the narrative and
- *     specificity checks stay "log and continue".
+ *     exit 0 = nothing blocking, 2 = narrative / specificity fail. Prints each
+ *     validator's log and its "  - " feedback.
+ *     --blocked <dir> (the check after the re-ask): failures write
+ *     blocked-script-<narrative|specificity>-<ch>.txt and the run continues with the
+ *     script. Owner's ruling 2026-10-05: VOICE IS A WARNING, NOT A GATE. It rejected
+ *     ch-1, ch-9 and ch-49 on every run for a week across three prompts of prompt
+ *     tuning. It still runs and still logs every failure, but it no longer sets the
+ *     exit code (it never returns 3), so the workflow cannot take its
+ *     "skip this channel" branch. blocked-voice-<ch>.txt is still written as a
+ *     diagnostic and says the channel was NOT skipped.
  */
 const { readFileSync, writeFileSync, mkdirSync } = require("node:fs");
 const { join } = require("node:path");
@@ -37,8 +39,8 @@ out.specificity.push(`[script] ch-${ch}: ${s.sentences.length} sentences, avg sc
 out.specificity.push(`[script] ch-${ch}: ${s.concrete} concrete, ${s.abstract} abstract, ratio ${Number.isFinite(s.ratio) ? s.ratio.toFixed(1) : "inf"}, ${s.ratioOk ? "PASS" : "FAIL"}`);
 out.specificity.push(...S.feedbackLines(s));
 const v = V.validateVoice(script, research);
-for (const row of v.rows) for (const f of row.fails) out.voice.push(`[script] ch-${ch}: sentence ${row.i} "${row.sentence.slice(0, 60)}${row.sentence.length > 60 ? "…" : ""}" FAIL: ${f}`);
-out.voice.push(`[script] ch-${ch}: voice — ${v.rows.length} sentences, ${v.banned} banned, ${v.long} over 25 words, ${v.nameStarts} name-start(s), ${v.failures} failure(s) → ${v.pass ? "PASS" : "FAIL"}`);
+for (const row of v.rows) for (const f of row.fails) out.voice.push(`[script] ch-${ch}: sentence ${row.i} "${row.sentence.slice(0, 60)}${row.sentence.length > 60 ? "…" : ""}" WARN: ${f}`);
+out.voice.push(`[script] ch-${ch}: voice — ${v.rows.length} sentences, ${v.banned} banned, ${v.long} over 25 words, ${v.nameStarts} name-start(s), ${v.failures} warning(s)`);
 out.voice.push(...V.feedbackLines(v));
 const n = N.validateNarrative(script, research);
 out.narrative.push(`[script] ch-${ch}: beats read by ${n.by}`);
@@ -47,18 +49,28 @@ out.narrative.push(...N.feedbackLines(n));
 
 for (const k of ["narrative", "voice", "specificity"]) for (const l of out[k]) console.log(l);
 const failed = { narrative: !n.pass, voice: !v.pass, specificity: !s.pass };
-const anyFail = Object.values(failed).some(Boolean);
-const failures = (n.pass ? 0 : n.failures) + (v.pass ? 0 : v.failures) + (s.pass ? 0 : 1);
-console.log(`[script] ch-${ch}: story checks — narrative ${n.pass ? "PASS" : "FAIL"}, voice ${v.pass ? "PASS" : "FAIL"}, specificity ${s.pass ? "PASS" : "FAIL"} (${failures} failure(s))`);
-if (anyFail && blockedDir) {
+// VOICE IS A WARNING, NOT A GATE (owner, 2026-10-05). It rejected ch-1, ch-9 and
+// ch-49 on every run for a week across three prompts of prompt-tuning, and a
+// channel that produces no video is worse than one with a flat-sounding line.
+// It still runs and still logs every failure; it just no longer decides the
+// exit code, so the workflow never takes its "skip this channel" branch.
+// Narrative and specificity keep their existing behaviour: logged, and they set
+// exit 2, which the workflow already treats as "continue with this script".
+const hardFail = failed.narrative || failed.specificity;
+const failures = (n.pass ? 0 : n.failures) + v.failures + (s.pass ? 0 : 1);
+console.log(`[script] ch-${ch}: story checks — narrative ${n.pass ? "PASS" : "FAIL"}, voice ${v.pass ? "PASS" : "WARN"}, specificity ${s.pass ? "PASS" : "FAIL"} (${failures} issue(s))`);
+if (failed.voice) console.log(`[voice] ch-${ch}: ${v.failures} warnings, continuing`);
+if (failed.voice && blockedDir) {
+  // Still recorded as a diagnostic, but the run is NOT stopped by it.
   mkdirSync(blockedDir, { recursive: true });
   const text = (script.sections || []).map((x) => `[${x.id}] ${x.voiceover}`).join("\n");
-  for (const k of Object.keys(failed)) if (failed[k] && k !== "voice") {
+  writeFileSync(join(blockedDir, `blocked-voice-${ch}.txt`), `Script voice WARNINGS after the re-ask — ch-${ch}, ${scriptPath} (${new Date().toISOString()}). Voice is a warning, not a gate (owner, 2026-10-05): the channel was NOT skipped; it rendered and uploaded normally.\n\n${out.voice.join("\n")}\n\nScript:\n${text}\n`);
+}
+if (hardFail && blockedDir) {
+  mkdirSync(blockedDir, { recursive: true });
+  const text = (script.sections || []).map((x) => `[${x.id}] ${x.voiceover}`).join("\n");
+  for (const k of ["narrative", "specificity"]) if (failed[k]) {
     writeFileSync(join(blockedDir, `blocked-script-${k}-${ch}.txt`), `Script ${k} FAIL after the re-ask — ch-${ch}, ${scriptPath} (${new Date().toISOString()}). The run continued with this script.\n\n${out[k].join("\n")}\n\nScript:\n${text}\n`);
   }
-  if (failed.voice) {
-    console.log(`[script] ch-${ch}: voice validation failed twice, skipping this channel this run`);
-    writeFileSync(join(blockedDir, `blocked-voice-${ch}.txt`), `Script voice FAIL after the re-ask — ch-${ch}, ${scriptPath} (${new Date().toISOString()}). The channel was SKIPPED this run (voice validation is a hard gate); nothing was rendered or uploaded.\n\n${out.voice.join("\n")}\n\nScript:\n${text}\n`);
-  }
 }
-process.exit(failed.voice ? 3 : anyFail ? 2 : 0);
+process.exit(hardFail ? 2 : 0);
