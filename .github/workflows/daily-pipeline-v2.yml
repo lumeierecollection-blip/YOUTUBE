@@ -887,12 +887,11 @@ jobs:
             ~/.u2net
           key: rembg-render-${{ runner.os }}-v1
 
-      - name: Install rembg (live cutouts)
+      - name: Install rembg
         if: steps.status.outputs.skip != 'true'
         run: |
-          pip install --quiet "rembg[cpu]" pillow numpy
-          python -c "from rembg import new_session; new_session('u2net'); print('rembg ready')" \
-            || echo "::warning::rembg unavailable — beats render without a cutout"
+          pip install "rembg[cpu]" pillow numpy
+          python -c "from rembg import remove; print('rembg ok')"
 
       - name: Cache Remotion Chrome
         if: steps.status.outputs.skip != 'true'

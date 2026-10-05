@@ -39,6 +39,7 @@ const { resolveSceneEntity, sceneEntities } = createRequireEntity(import.meta.ur
 const { verifyPlaceImage } = createRequireEntity(import.meta.url)("./verify-place-image.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
+import { verifyTts } from "../src/utils/tts-verify.js";
 import {
   deriveAdjustments, applyAdjustments, verifyAdjustments,
   isKnownDirective, describeDirective,
@@ -1622,13 +1623,27 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
   // re-synthesized — mp3, SRT and words together — before planning, so the
   // plan is built on the SRT the words belong to. Never modelled timings.
   const wordsFile = audioForBundle.replace(/\.mp3$/, "-words.json");
+  let voiceoverProvenance = "reused";
   if (existsSync(audioForBundle) && !existsSync(wordsFile)) {
     console.log(`[captions] no word timings for ${basename(audioForBundle)} — regenerating the voiceover with word boundaries`);
+    voiceoverProvenance = "regenerated";
     const t = await runChild("node", [join(ROOT, "src", "utils", "tts.js"), String(channelId), relative(ROOT, scriptPath)], { label: `tts ${channelId}` });
     if (t.code !== 0 || !existsSync(wordsFile)) {
       console.error(`::error::[captions] ${basename(scriptPath)}: no word timings (tts.js exited ${t.code}) — not rendering`);
       return { skipped: false, ok: false };
     }
+  }
+  // Task 4.3 — TTS prosody/timing verification. MUST run on every render,
+  // whether the voiceover was just generated or reused (Fix 2).
+  if (existsSync(audioForBundle)) {
+    console.log(`[tts] ch-${channelId}: verify running (voiceover: ${voiceoverProvenance})`);
+    const srtPath = audioForBundle.replace(/\.mp3$/, ".srt");
+    let spokenText = "";
+    try {
+      const w = JSON.parse(readFileSync(wordsFile, "utf-8"));
+      spokenText = (Array.isArray(w) ? w : w.words || []).map((x) => x.word).join(" ");
+    } catch { spokenText = ""; }
+    verifyTts({ mp3Path: audioForBundle, srtPath, spokenText, channel: channelId, topic: basename(scriptPath, ".json") });
   }
   if (existsSync(audioForBundle)) {
     const voTarget = join(ROOT, "src", "skills", "remotion-render", "vo.mp3");
