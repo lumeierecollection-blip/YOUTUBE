@@ -1313,9 +1313,14 @@
           "topic": "Yemen Government Launches Major Offensive to Seize Territory from Houthis",
           "slug": "yemeni-government-military-offensive-against-houthis-2026",
           "reserved_at": "2026-10-05T09:32:53.865Z"
+        },
+        {
+          "topic": "Georgia Secures New Border Delimitation Talks With Armenia and Azerbaijan",
+          "slug": "georgia-border-delimitation-armenia-azerbaijan-2026",
+          "reserved_at": "2026-10-05T10:47:18.028Z"
         }
       ],
-      "last_generated": "2026-10-05T10:35:23.819Z"
+      "last_generated": "2026-10-05T10:47:18.028Z"
     },
     "10": {
       "channel_name": "Double Cross",
