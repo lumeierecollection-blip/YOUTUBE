@@ -55,9 +55,15 @@ Per A4: **the deterministic layer owns the veto, the model owns the qualitative 
 ## Open gate
 
 **Groq has not answered.** `GROQ_API_KEY` is a repo secret (`daily-pipeline-v2.yml:933`) and
-unreadable locally, so every verifier number in `FINDINGS.md` is Gemini-only. The CI leg
+unreadable locally, so every local verifier number in `FINDINGS.md` is Gemini-only. The CI leg
 (`.github/workflows/a1-discrimination.yml`) runs each fixture per provider per rubric mode
-with `FORCE_PROVIDER` pinned.
+with `FORCE_PROVIDER` pinned. In run `37344388859` **Groq returned no verdict at all** —
+`quota_exhausted` on `qwen/qwen3.8-27b`, plus `ERROR: Missing from batch response` on the
+batched path. The gate is open because Groq is unmeasured, not because it failed.
+
+**Ollama is measured and blind.** 1/10 on fallback vs 2/10 on designed — it fails both clips.
+It is the third tier with a 3b vision model on a CPU runner. It must not carry V5. This is a
+provider-selection finding and does not move the axes.
 
 Three outcomes, and what each implies:
 
@@ -71,6 +77,20 @@ Also unresolved and feeding V1: clause #3 of the sweep — the model is currentl
 from calling a beat "empty" because its middle is clear. Until that is removed, V1 and V5
 disagree by construction on exactly the frames V1 exists to catch. Recommend removing it
 next.
+
+## Precondition discovered while running the gate
+
+A2 cannot be enforced until this is closed, and it was found by the CI leg rather than by
+the spec: the whole-video review **failed open**. An errored review (quota, unreachable
+provider, unparseable answer) has no `status`, failed the `status === "FAIL"` guard, and
+produced `APPROVED — video meets Visual Bible standards`. Four Groq runs in run `37344388859`
+did exactly that.
+
+Fixed in `REVIEW_FAILED`: blocking, exit 1, machine-readable, and deliberately not
+`REJECTED` — an indeterminate review is not evidence of a bad video, so `backupAudit`'s
+deterministic audit decides. This is V5's own failure mode (a model score that did not
+happen read as a passing score) and it is exactly what the delegation plan's "fallback path
+must emit a machine-readable failure, not a plausible frame" forbids.
 
 ## Calibration
 

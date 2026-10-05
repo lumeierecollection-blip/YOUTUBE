@@ -130,14 +130,28 @@ for (const [name, clip] of Object.entries(CLIPS)) {
     frames.push({ beat: b.i, png: p, sha256: createHash("sha256").update(png).digest("hex") });
   }
   // 4 beats x 2s, concatenated into one clip with a constant frame rate.
-  // ffmpeg's concat demuxer resolves `file '...'` relative to the LIST FILE's directory,
-  // not the cwd — a repo-relative path in the list resolves against work-multibeat/ and
-  // fails. Absolute paths, forward-slashed for the concat parser.
+  // ffmpeg's concat demuxer applies a `duration` only to the frames FOLLOWING the entry it
+  // is declared on, so the last entry's duration is dropped: the clip came out 6.03s
+  // instead of 8.00s on CI's apt ffmpeg (8.00s on the local 9.0 build), which cost the
+  // reviewer its 4th beat — 3 frames sampled instead of 4, so CI silently measured a
+  // different fixture. Repeating the final file overshoots to 10s. `-t` pins it exactly on
+  // every build, and the assertion below is the guard: a short clip degrades the
+  // measurement instead of failing loudly.
   const listFile = `${work}/${name}-frames.txt`;
-  writeFileSync(listFile, frames.map((f) => `file '${resolve(f.png).replace(/\\/g, "/")}'\nduration 2`).join("\n") + "\n");
+  const abs = (f) => resolve(f).replace(/\\/g, "/");
+  const expected = BEATS.length * 2;
+  writeFileSync(listFile, frames.map((f) => `file '${abs(f.png)}'\nduration 2`).join("\n") + "\n");
+
   const video = `${work}/${name}.mp4`;
   execFileSync("ffmpeg", ["-f", "concat", "-safe", "0", "-i", listFile,
+    "-t", String(expected),
     "-vf", "fps=30,scale=1080:1920,format=yuv420p", "-c:v", "libx264", "-preset", "veryfast", "-y", video], { stdio: "pipe" });
+
+  const actual = Number(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", video], { encoding: "utf-8" }).trim());
+  if (Math.abs(actual - expected) > 0.2) {
+    throw new Error(`${name}: clip is ${actual.toFixed(2)}s, expected ${expected}s. The reviewer's frame sampling is derived from SRT cues inside the clip, so a short clip measures a DIFFERENT fixture rather than failing.`);
+  }
+  console.log(`  ${name}: ${actual.toFixed(2)}s (expected ${expected}s)`);
 
   // SRT: one cue per beat, so computeBeatTimes samples one frame per beat at 65%.
   writeFileSync(`${work}/${name}.srt`, BEATS.map((b, k) =>

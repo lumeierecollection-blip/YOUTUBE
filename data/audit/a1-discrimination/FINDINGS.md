@@ -215,3 +215,51 @@ Also answers the clause-local question: on the FIXED fixture set, `:330` live an
 removed both gave 9 and 1. The 9 -> 4 drop was therefore caused entirely by real defects
 waiting to be reported, not by the fixture being unusual. The shield's effect is
 clause-local.
+## CI leg (run 37344388859) — Groq could not answer, and a live fail-open was found
+
+Every provider call was attributed, so PC1 is validated end to end in CI: `Answered by:
+gemini (chain: gemini)`, `groq (chain: groq)`, `ollama (chain: ollama)`.
+
+### The fail-open (fixed, verified)
+
+All four Groq runs printed:
+
+```
+Whole-video review ERROR: quota_exhausted
+VERDICT: APPROVED - video meets Visual Bible standards.
+```
+
+The guard was `wholeResult.status === "FAIL" && severity in (CRITICAL, HIGH)`. A whole-video
+result that ERRORED has no `status`, fails that guard, and fell through to APPROVED. **A
+video nobody reviewed was approved with the reason "video meets Visual Bible standards."**
+This is the same silent-fallback class as the hidden verdict, still live in the code that
+change had just touched.
+
+Now `REVIEW_FAILED`, blocking, exit 1, and deliberately not `REJECTED` — nobody has evidence
+the video is bad, so the honest answer is INDETERMINATE and `backupAudit`'s deterministic
+local audit decides. Reproduced locally against the same condition (a pinned provider with
+no key): `Whole-video review ERROR: no_key` -> `VERDICT: REVIEW_FAILED`, exit 1. Same rule
+`render-and-qa.js` already states for itself: a review that did not run is NOT a pass.
+
+### Fixture was not portable (fixed)
+
+CI built a **6.03s** clip, not 8.00s, so the reviewer sampled **3 frames instead of 4** and
+never saw the 4th beat. ffmpeg's concat demuxer drops the last entry's duration, and the
+local 9.0 build did not reproduce it. CI was therefore measuring a different fixture and
+reporting it as a 4-beat result. Fixed by pinning `-t` and **asserting the duration** — the
+first attempt at the assertion caught a 10s clip from the repeat-the-last-file idiom, which
+is the point of having it. A short clip degrades a measurement silently; it must fail.
+
+### Provider readings (3 of 4 beats for gemini/ollama, see above; re-run pending on 4)
+
+| provider | outcome |
+|---|---|
+| gemini | separates cleanly, 1/10 vs 9/10 |
+| groq | **no verdict** — `quota_exhausted` on `qwen/qwen3.8-27b`; `ERROR: Missing from batch response` on the batched path. Gate still open |
+| ollama | answered, but **blind**: 1/10 fallback vs 2/10 designed (+1). Fails both |
+
+Ollama being blind is a provider-selection finding, not a spec change: it is the third tier
+and its vision model is a 3b on a CPU runner. It should not carry V5.
+
+**The Groq gate remains open.** Its quota was exhausted for the whole window. `FORCE_PROVIDER`
+and the CI leg are in place; what is missing is a Groq account with vision quota.

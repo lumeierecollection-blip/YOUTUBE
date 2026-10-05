@@ -829,7 +829,34 @@ async function main() {
     // A judgement that is not written down cannot be audited, replayed, or overruled
     // on purpose. Where each threshold came from is noted per branch.
     const monoculture = wholeResult.headline_test?.monoculture;
-    const verdict = criticalCount > 0 || monoculture
+    // Fail CLOSED on a review that did not run. The guard below is
+    // `status === "FAIL" && severity in (CRITICAL, HIGH)`, so a whole-video result that
+    // ERRORED — quota exhausted, provider unreachable, unparseable answer, every frame
+    // review errored — has no `status` at all, fails that guard, and fell straight
+    // through to APPROVED with the reason "video meets Visual Bible standards".
+    // Caured live in CI run 37344388859: all four Groq runs printed
+    // "Whole-video review ERROR: quota_exhausted" and then "VERDICT: APPROVED".
+    //
+    // A review that did not happen is not a pass. This is deliberately NOT "REJECTED" —
+    // nobody has any evidence the video is bad — it is INDETERMINATE, and it blocks so
+    // the stage is treated as failed and backupAudit's deterministic local audit decides.
+    // Same rule render-and-qa.js already states for itself: "a review that did not run is
+    // NOT a pass".
+    const wholeReviewed = !wholeResult.error && !!wholeResult.status;
+    const framesReviewed = sceneResults.filter((r) => r.tier !== "ERROR" && r.quality_score != null).length;
+    const reviewFailed = !wholeReviewed || framesReviewed === 0;
+
+    const verdict = reviewFailed
+      ? {
+          verdict: "REVIEW_FAILED",
+          reason: !wholeReviewed
+            ? `whole-video review did not run: ${wholeResult.error || "no status returned"}`
+            : `no frame review returned a verdict (${framesReviewed} of ${beatTimes.length} frames reviewed)`,
+          rule: "a review that did not run is never a pass",
+          blocking: true,
+          exit: 1,
+        }
+      : criticalCount > 0 || monoculture
       ? {
           verdict: "REJECTED",
           reason: monoculture
