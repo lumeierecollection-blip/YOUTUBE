@@ -54,24 +54,34 @@ Per A4: **the deterministic layer owns the veto, the model owns the qualitative 
 
 ## Open gate
 
-**Groq has not answered.** `GROQ_API_KEY` is a repo secret (`daily-pipeline-v2.yml:933`) and
-unreadable locally, so every local verifier number in `FINDINGS.md` is Gemini-only. The CI leg
-(`.github/workflows/a1-discrimination.yml`) runs each fixture per provider per rubric mode
-with `FORCE_PROVIDER` pinned. In run `37344388859` **Groq returned no verdict at all** —
-`quota_exhausted` on `qwen/qwen3.8-27b`, plus `ERROR: Missing from batch response` on the
-batched path. The gate is open because Groq is unmeasured, not because it failed.
+**Groq remains UNMEASURED.** Two CI windows (`37344388859`, `37349640976`) both returned
+`quota_exhausted` for Groq, and Gemini was exhausted in the second. `GROQ_API_KEY` is a repo
+secret (`daily-pipeline-v2.yml:933`) and unreadable locally, so every local verifier number in
+`FINDINGS.md` is Gemini-only. The gate is open because Groq is unmeasured, not because it
+failed.
 
-**Ollama is measured and blind.** 1/10 on fallback vs 2/10 on designed — it fails both clips.
-It is the third tier with a 3b vision model on a CPU runner. It must not carry V5. This is a
-provider-selection finding and does not move the axes.
+**Ollama is measured, blind, and confidently wrong.** 2/10 on both clips (delta 0). It also
+reported `4/4 headline-dominated (100%) — TEMPLATE_MONOCULTURE` for `clip-designed`, which
+Gemini measures at `1/4 (25%)` — it fabricated the exact signal V2 depends on. Ollama must
+carry neither V2 nor V5. This is the strongest argument in the whole exercise for keeping V1,
+V3 and V4 deterministic and veto-only: a model that is wrong *confidently and specifically* is
+more dangerous than one that is vague, and only a floor it cannot lower contains that.
 
-Three outcomes, and what each implies:
+Measured on the corrected 4-beat fixture (run `37349640976`):
+
+| provider | fallback | designed | delta | eligibility |
+|---|---|---|---|---|
+| gemini | 1/10 | 9/10 | **+8** | PASS |
+| groq | — | — | — | UNMEASURED (quota) |
+| ollama | 2/10 | 2/10 | 0 | FAIL — blind, and wrong about monoculture |
+
+Three outcomes remain possible for Groq, and what each implies:
 
 | Groq result | Implication for A2 |
 |---|---|
 | Separates designed from fallback (≥ +5 points) | A2 confirmed provider-independent. V5 is safe to score on either model. |
-| Blind on composition (both clips score alike) | V5 is dropped for Groq. A2 becomes Gemini-primary with Groq excluded from V5, and the provider-selection question moves to Phase 4. |
-| Prefers the fallback clip | A2's V5 is withdrawn entirely and V1–V4 carry the decision alone. That is a materially different architecture and is the reason the gate is open. |
+| Blind on composition (both clips score alike) | V5 dropped for Groq. A2 becomes Gemini-primary with Groq excluded from V5, and provider selection moves to Phase 4. |
+| Prefers the fallback clip | V5 withdrawn entirely; V1–V4 carry the decision alone. A materially different architecture, and the reason the gate is open. |
 
 Also unresolved and feeding V1: clause #3 of the sweep — the model is currently forbidden
 from calling a beat "empty" because its middle is clear. Until that is removed, V1 and V5

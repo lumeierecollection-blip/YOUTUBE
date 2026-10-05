@@ -263,3 +263,46 @@ and its vision model is a 3b on a CPU runner. It should not carry V5.
 
 **The Groq gate remains open.** Its quota was exhausted for the whole window. `FORCE_PROVIDER`
 and the CI leg are in place; what is missing is a Groq account with vision quota.
+## CI re-run (37349640976) — fail-closed validated, Groq still unmeasured
+
+Fixture fixed first: `Sampling 4 frames at beat points` on both clips, so the readings below
+are on the 4-beat fixture. The duration assertion is what forced that — see `9030d15`.
+
+### The fail-open fix works in production
+
+Four runs — two Gemini, two Groq — returned an unusable review and all four now print:
+
+```
+Whole-video review ERROR: quota_exhausted
+VERDICT: REVIEW_FAILED - whole-video review did not run: quota_exhausted
+```
+
+Before `ae3519a` those same four printed `APPROVED - video meets Visual Bible standards`.
+This is the fix validated under the exact conditions that exposed it.
+
+**Operational consequence, stated plainly:** with both Gemini and Groq quota-exhausted, the
+verifier now blocks videos it previously approved. That is the correct direction — fail
+loudly rather than approve blind — but it means runs will start failing on model
+unavailability. This is the same consequence flagged when the `pipelineVerdict` branch was
+activated, now concrete and measured. It is a conscious trade: an unviewable video is not a
+passable video.
+
+### Provider readings on the 4-beat fixture
+
+| provider | fallback | designed | delta | verdict on A1 eligibility |
+|---|---|---|---|---|
+| gemini | 1/10 | 9/10 | **+8** | **PASS** — separates cleanly |
+| groq | — | — | — | **UNMEASURED** — `quota_exhausted` in both CI windows |
+| ollama | 2/10 | 2/10 | **0** | **FAIL** — blind |
+
+**Ollama is not merely blind, it is wrong in a specific, checkable way.** It reported
+`4/4 headline-dominated (100%) — TEMPLATE_MONOCULTURE` for `clip-designed`, which Gemini
+measures at `1/4 (25%)`. It scored the well-composed clip as a template monoculture and
+rejected it. On top of a zero delta it fabricates the specific signal V2 depends on. It must
+not carry V5 or V2, and the fact that it produces confident, specific, wrong values — rather
+than refusing — is the argument for keeping the deterministic axes able to veto a model
+regardless of how confidently it speaks.
+
+**The Groq gate is still open.** Two CI windows, both `quota_exhausted`. `FORCE_PROVIDER`
+and the CI leg are ready; what is missing is Groq vision quota. Until it answers, A2 cannot
+be finalised and the claim "the verifier has real signal" rests on Gemini alone.
