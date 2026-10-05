@@ -1,0 +1,21 @@
+{
+  "video": "fallback.mp4",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "duration_sec": 2,
+  "beats": [
+    {
+      "index": 0,
+      "start_sec": 0,
+      "duration_sec": 2,
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "TYPE-FULL",
+        "dark": false,
+        "boxes": {},
+        "name_card": null
+      }
+    }
+  ]
+}

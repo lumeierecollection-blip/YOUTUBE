@@ -306,3 +306,73 @@ regardless of how confidently it speaks.
 **The Groq gate is still open.** Two CI windows, both `quota_exhausted`. `FORCE_PROVIDER`
 and the CI leg are ready; what is missing is Groq vision quota. Until it answers, A2 cannot
 be finalised and the claim "the verifier has real signal" rests on Gemini alone.
+## Clause #3 removed, and the finding now gets through (verified)
+
+Sweep clause #3 ("do not call a beat 'empty', 'unbalanced' or 'off-centre' because its middle
+is clear or its text sits to one side") protected verbatim the condition `middle-zone-filled`
+measures, so a frame whose only ink was the caption band could not be reported as a fallback
+in words. Removed.
+
+**Partner check, as asked.** One such clause in the reviewer, but TWO in
+`config/visual-bible.json` granting the same licence unbounded: EDT-02 ("must not be afraid of
+an empty frame — one object sitting still for 1.5s can be better than five animations") and
+EDT-03 ("not every frame should contain maximum information... breathing room is intentional").
+Both are legitimate pacing rules and neither was removed; each gained an explicit BOUNDARY
+saying the permission stops at a bare frame and that an empty middle zone FAILS the rule
+rather than satisfying it. Removing clause #3 alone would have left the shield half-up, which
+is the mistake the ground pair already taught.
+
+The bible was patched at TEXT level, not by parse-and-reserialise: the first attempt
+reformatted every compact array in the file (63 insertions / 29 deletions of unrelated churn to
+change two sentences). The patch asserts the result parses and that each description is
+exactly original + boundary, so correctness does not depend on the file staying as formatted.
+The diff is now 2 lines.
+
+**Verified behaviourally.** With the clause gone and the fixture assertion green, the model
+now writes:
+
+> all frames are empty **fallback** screens containing only captions and white space
+
+`fallback` is the word the deleted clause prevented it from applying.
+
+`scripts/test-fallback-detector.mjs` is the guard: a caption-only beat FAILS
+`middle-zone-filled` while still passing `canvas-ground` (the two checks are independent), a
+composed beat passes both, and the ground and emptiness shield clauses are asserted absent from
+prompt and bible. It states in its header what it does not cover — that the MODEL reports a
+bare frame — because that needs a live call.
+
+Two mistakes made and caught while doing this, both recorded in code:
+- the first STYLE replacement quoted the deleted prohibition inside a sentence saying it was
+  removed. A model pattern-matches phrasing, not framing, so that is a way of reinstalling it.
+  The prompt now states only the boundary; the history is in a comment.
+- an earlier attempt put that comment INSIDE the template literal, so it was being sent to the
+  model as prompt text. Caught by the test asserting the prompt contains neither "unbalanced"
+  nor "off-centre".
+
+## Verified readings (duration assertion green)
+
+8.00s, "Sampling 4 frames at beat points", provider pinned to gemini:
+
+| clip | overall | status | headline_test |
+|---|---|---|---|
+| clip-fallback | **1/10** | FAIL | 4/4 = 100% monoculture |
+| clip-designed | **9/10** | PASS | 1/4 = 25% |
+| delta | **+8** | | |
+
+The earlier 100%/25% and 9/10 figures quoted before this point may have come from the 3-beat
+clip; these supersede them and are marked verified. Test sweep unchanged: the same 6
+pre-existing failures, bible still 42 rules.
+
+## Ollama removed from the approve path
+
+`VERDICT_PROVIDERS = {gemini, groq}` in `gemini-frame-review.js`. An answer from any other
+provider is **discarded**, not converted into a rejection, and reported as
+`PROVIDER_UNAVAILABLE` with exit code 4 (0/1/2/3 were taken). REVIEW_FAILED keeps exit 1.
+Both block. The split is legibility for the operator, not a softening.
+
+Verified: with `FORCE_PROVIDER=ollama` the run returns
+`PROVIDER_UNAVAILABLE — ollama answered the visual review but is not an accepted verdict
+provider (accepted: gemini, groq)`, exit 4.
+
+This gates the VISUAL review only; Ollama stays available to text-only callers. `qwen2.5vl:3b`
+on a CPU runner is what was measured, not its text model.

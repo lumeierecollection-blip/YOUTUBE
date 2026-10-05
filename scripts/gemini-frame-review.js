@@ -306,6 +306,32 @@ function neutralizeGroundClauses(text) {
   return out;
 }
 
+/**
+ * Providers whose answer may stand as a VISUAL verdict.
+ *
+ * Ollama is excluded, on evidence rather than taste. In CI run 37349640976 it scored both
+ * fixtures 2/10 — a zero delta on a pair Gemini separates by 8 points — and, worse, it
+ * reported `4/4 headline-dominated (100%) TEMPLATE_MONOCULTURE` for the well-composed clip
+ * that Gemini measures at `1/4 (25%)`. It does not merely score badly: it fabricates the
+ * specific signal the variety axes are built on, confidently and specifically.
+ *
+ * That is worse than no provider at all. An unavailable verifier produces REVIEW_FAILED and
+ * an operator sees a gap. A wrong verifier produces a sourced-looking verdict, and the whole
+ * failure mode this audit exists to end is a plausible frame passing as a designed one. The
+ * same principle as the fail-closed fix below, one layer up.
+ *
+ * This gates the VISUAL review only. Ollama remains available for text-only callers; its
+ * text model is not what was measured here, and `qwen2.5vl:3b` on a CPU runner is.
+ *
+ * Ollama's reading is DISCARDED, not converted into a rejection — an untrusted answer is not
+ * evidence the video is bad. Veto-only would have meant letting it reject on fabricated
+ * grounds, which is the failure mode, not a mitigation of it.
+ */
+const VERDICT_PROVIDERS = new Set(["gemini", "groq"]);
+
+/** 0/1/2/3 were already in use (0 ok, 1 verdict blocks, 2 usage, 3 beat-check could not run). */
+const EXIT_PROVIDER_UNAVAILABLE = 4;
+
 function paperRubric(prompt) {
   let out = prompt;
   for (const [from, to] of PAPER_RUBRIC) {
@@ -360,7 +386,14 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
   // against the owner's full-canvas spec, stated here in text. There is no
   // reference_match any more (render-and-qa.js frameReviewVerdict).
   const refFrames = [];
-  content.push({ type: "text", text: "\n=== THE STYLE — full-canvas editorial motion graphics with an editorial serif/sans type system (Financial Times x high-end documentary x contemporary magazine). Every beat is composed for the WHOLE 1080x1920 frame. The house ground is uniform white, which is the intended look — but it is NOT an exemption: a ground that reads flat, tinted or inconsistent with the rest of the beat is a finding, report it like any other. Ground compliance is also enforced deterministically downstream (local-audit.cjs canvas-ground, luma >= 245 on every non-full-bleed beat, no dark beats), so you are not the only check on it and you gain nothing by overlooking it. All text pops into place (a quick scale-up and settle); a word mid-pop may be slightly small or translucent in a sampled frame. There is NO paper, NO card, NO container. Each beat is ONE of: TYPE-FULL / TYPE-SPLIT (a serif statement, sentence case, anchored to one side or split across opposite corners), NUMBER-FULL (ONE oversized serif numeral 260-420 px with a small uppercase sans label), DATA-FULL (bars / donut / line / gauge as the composition), SCENE-FULL / ARCHITECTURE / DOCUMENT / MONEY (a real photograph or scan edge to edge, type over it), MAP-CENTERED (the map fills the frame, labelled at the region), PROCESS-FULL (2-3 nodes, thick arrows), TIMELINE (dated events on a vertical line), COMPARISON-SPLIT (the frame cut on a diagonal, value A / value B), LIST-BUILD (items appearing one by one). Type has three roles: a serif headline (never all-caps), an oversized serif numeral, a small uppercase sans data label. LAYOUTS ARE ASYMMETRIC ON A GRID AND EMPTY SPACE IS INTENTIONAL: do not call a beat 'empty', 'unbalanced' or 'off-centre' because its middle is clear or its text sits to one side; judge whether the composition spans the frame (elements anchored to opposite regions) and whether the type roles and the picture support the line. The channel's accent colour marks only the primary value / the arrow / the number that matters. Beats transform into each other (slides, match cuts, a persisted element). The word-by-word caption of the narration near the bottom is REQUIRED on every beat by the channel owner: do not count it as caption duplication, subtitles, redundancy or slop, and do not lower any score for it. A small section folio ('03 / 08') and a hairline rule are page furniture, not defects. Judge each frame's CONTENT against its voiceover line. Reject a frame if a photo shown is not literally about what its sentence names: a generic stock image standing in for a named person, place or organization is a CRITICAL defect (a MONEY beat's picture of currency and a DOCUMENT beat's scan illustrate the literal object the sentence names, not a named entity). A card, a paper page or a framed panel is a HIGH defect; so is a composition shrunk into a small area with no element reaching the frame's regions. Two beats of the same composition kind in a row is a defect. In the headline test, a TYPE-FULL / TYPE-SPLIT typography beat is headline-led by design; a beat labelled as a big number, chart, gauge, map, process, timeline, list, comparison, photograph, document or money is a VISUAL beat, not a headline beat; the video is headline-dominated only when most beats are typography with no chart, number, photo, object or process. Score overall_score on how well the video realises this style AND how well each frame matches its line. ===" });
+  // The STYLE block below replaced a clause that read, in effect, "do not call a beat
+  // empty, unbalanced or off-centre because its middle is clear or its text sits to one
+  // side". It is deliberately NOT restated inside the prompt: a model pattern-matches the
+  // phrasing, not the framing, so quoting the prohibition inside a sentence that says it was
+  // removed is a way of reinstalling it. (An earlier attempt did exactly that — the comment
+  // landed INSIDE the template literal and was being sent to the model as prompt text. The
+  // prompt now states only the boundary; the history lives here, in code.)
+  content.push({ type: "text", text: "\n=== THE STYLE — full-canvas editorial motion graphics with an editorial serif/sans type system (Financial Times x high-end documentary x contemporary magazine). Every beat is composed for the WHOLE 1080x1920 frame. The house ground is uniform white, which is the intended look — but it is NOT an exemption: a ground that reads flat, tinted or inconsistent with the rest of the beat is a finding, report it like any other. Ground compliance is also enforced deterministically downstream (local-audit.cjs canvas-ground, luma >= 245 on every non-full-bleed beat, no dark beats), so you are not the only check on it and you gain nothing by overlooking it. All text pops into place (a quick scale-up and settle); a word mid-pop may be slightly small or translucent in a sampled frame. There is NO paper, NO card, NO container. Each beat is ONE of: TYPE-FULL / TYPE-SPLIT (a serif statement, sentence case, anchored to one side or split across opposite corners), NUMBER-FULL (ONE oversized serif numeral 260-420 px with a small uppercase sans label), DATA-FULL (bars / donut / line / gauge as the composition), SCENE-FULL / ARCHITECTURE / DOCUMENT / MONEY (a real photograph or scan edge to edge, type over it), MAP-CENTERED (the map fills the frame, labelled at the region), PROCESS-FULL (2-3 nodes, thick arrows), TIMELINE (dated events on a vertical line), COMPARISON-SPLIT (the frame cut on a diagonal, value A / value B), LIST-BUILD (items appearing one by one). Type has three roles: a serif headline (never all-caps), an oversized serif numeral, a small uppercase sans data label. LAYOUTS ARE ASYMMETRIC ON A GRID AND NEGATIVE SPACE IS INTENTIONAL: judge whether the composition spans the frame (elements anchored to opposite regions) and whether the type roles and the picture support the line. ASYMMETRY IS NOT EMPTINESS. 'Intentional negative space' means the space AROUND a composed element, never the absence of one. A beat that carries no element for its sentence, however clean and intentional it looks, is a fallback frame: report it as one under HEADLINE TEST and headline_test. The channel's accent colour marks only the primary value / the arrow / the number that matters. Beats transform into each other (slides, match cuts, a persisted element). The word-by-word caption of the narration near the bottom is REQUIRED on every beat by the channel owner: do not count it as caption duplication, subtitles, redundancy or slop, and do not lower any score for it. A small section folio ('03 / 08') and a hairline rule are page furniture, not defects. Judge each frame's CONTENT against its voiceover line. Reject a frame if a photo shown is not literally about what its sentence names: a generic stock image standing in for a named person, place or organization is a CRITICAL defect (a MONEY beat's picture of currency and a DOCUMENT beat's scan illustrate the literal object the sentence names, not a named entity). A card, a paper page or a framed panel is a HIGH defect; so is a composition shrunk into a small area with no element reaching the frame's regions. Two beats of the same composition kind in a row is a defect. In the headline test, a TYPE-FULL / TYPE-SPLIT typography beat is headline-led by design; a beat labelled as a big number, chart, gauge, map, process, timeline, list, comparison, photograph, document or money is a VISUAL beat, not a headline beat; the video is headline-dominated only when most beats are typography with no chart, number, photo, object or process. Score overall_score on how well the video realises this style AND how well each frame matches its line. ===" });
   content.push({ type: "text", text: "\n=== FRAMES UNDER REVIEW ===" });
   // A1b: strip the ground mandate from the assembled rubric before `head` is taken, so
   // the Groq batch split carries the neutralized text too. No-ops now that production
@@ -842,11 +875,27 @@ async function main() {
     // the stage is treated as failed and backupAudit's deterministic local audit decides.
     // Same rule render-and-qa.js already states for itself: "a review that did not run is
     // NOT a pass".
+    //
+    // PROVIDER UNAVAILABLE is split out from REVIEW_FAILED because the two call for
+    // different operator responses and a run's log should say which one happened. It gets
+    // its own exit code (4; 0/1/2/3 were already in use) so a scheduler can retry on one and
+    // not the other. REVIEW_FAILED stays blocking either way — this is legibility, not a
+    // softening, and an unavailable verifier must never become an approving one.
     const wholeReviewed = !wholeResult.error && !!wholeResult.status;
     const framesReviewed = sceneResults.filter((r) => r.tier !== "ERROR" && r.quality_score != null).length;
     const reviewFailed = !wholeReviewed || framesReviewed === 0;
+    const answeringProvider = wholeResult.provider || sceneResults.find((r) => r.provider)?.provider || null;
+    const providerNotTrusted = !!answeringProvider && !VERDICT_PROVIDERS.has(answeringProvider);
 
-    const verdict = reviewFailed
+    const verdict = providerNotTrusted
+      ? {
+          verdict: "PROVIDER_UNAVAILABLE",
+          reason: `${answeringProvider} answered the visual review but is not an accepted verdict provider (accepted: ${[...VERDICT_PROVIDERS].join(", ")}). Its reading is discarded, not counted as a pass or a fail.`,
+          rule: "only an accepted provider may produce a visual verdict; an untrusted answer is discarded, never approved",
+          blocking: true,
+          exit: EXIT_PROVIDER_UNAVAILABLE,
+        }
+      : reviewFailed
       ? {
           verdict: "REVIEW_FAILED",
           reason: !wholeReviewed
@@ -961,7 +1010,7 @@ async function main() {
     if (verdict.verdict === "REJECTED" && fixMode) {
       console.log(`  Corrections written to report. Pipeline should apply and re-render.`);
     }
-    if (verdict.blocking) process.exit(1);
+    if (verdict.blocking) process.exit(verdict.exit ?? 1);
   } finally {
     rmSync(work, { recursive: true, force: true });
   }

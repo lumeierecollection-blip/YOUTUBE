@@ -220,7 +220,7 @@
       "name": "beat-rhythm",
       "category": "EDITORIAL_PACING",
       "severity": "HIGH",
-      "description": "A beat is not 'sentence → animation → sentence → animation.' Beat design: AUDIO EVENT → SEMANTIC EVENT → VISUAL EVENT → MOTION → HOLD → TRANSFORMATION → NEXT EVENT. The engine must not be afraid of an empty frame — one object sitting still for 1.5s while narration explains can be better than five animations.",
+      "description": "A beat is not 'sentence → animation → sentence → animation.' Beat design: AUDIO EVENT → SEMANTIC EVENT → VISUAL EVENT → MOTION → HOLD → TRANSFORMATION → NEXT EVENT. The engine must not be afraid of an empty frame — one object sitting still for 1.5s while narration explains can be better than five animations. BOUNDARY: 'not afraid of an empty frame' permits a SPARSE frame, never a BARE one. A beat carrying no element for its sentence is a fallback, not restraint, and is reported as one.",
       "pass": "Scene rhythm varies: quiet frames, reveals, dense frames, holds, cuts.",
       "fail": "Mechanical alternation: text, icon, text, graph, text, icon."
     },
@@ -228,7 +228,7 @@
       "name": "visual-density",
       "category": "VISUAL_DENSITY",
       "severity": "MEDIUM",
-      "description": "Not every frame should contain maximum information. Use quiet frame → reveal → dense frame → hold → cut. Visual breathing room is intentional.",
+      "description": "Not every frame should contain maximum information. Use quiet frame → reveal → dense frame → hold → cut. Visual breathing room is intentional. BOUNDARY: 'breathing room' means lower density than the frame before it, not no content. A beat whose middle zone is empty while its caption band carries the sentence (local-audit.cjs middle-zone-filled, < 15% filled) FAILS this rule rather than satisfying it.",
       "pass": "Density varies appropriately — quiet moments exist alongside information-dense moments.",
       "fail": "Every frame maximum density, or every frame empty."
     },
