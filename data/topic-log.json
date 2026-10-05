@@ -2773,10 +2773,16 @@
       "last_generated": "2026-10-05T10:35:12.662Z"
     },
     "49": {
-      "channel_name": "Wander Budget",
-      "niche": "Budget Adventure Travel",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Picture House",
+      "niche": "Movies, Cinematic Universes (Release Calendars, Box Office)",
+      "used_topics": [
+        {
+          "topic": "Anne Hathaway Reflects on Finding Unapologetic Power in The Odyssey",
+          "slug": "anne-hathaway-the-odyssey-profile-2026",
+          "reserved_at": "2026-10-05T10:47:08.525Z"
+        }
+      ],
+      "last_generated": "2026-10-05T10:47:08.526Z"
     },
     "50": {
       "channel_name": "Gadget Kitchen",
