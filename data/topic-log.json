@@ -827,9 +827,14 @@
           "topic": "LAPD Revises Pretext Stop Policy Following Inspector General Audit",
           "slug": "lapd-pretext-stop-policy-audit-2026",
           "reserved_at": "2026-10-05T11:47:51.275Z"
+        },
+        {
+          "topic": "California's New Emergency Rent Caps for Long-Term Leases",
+          "slug": "california-emergency-rent-caps-long-term-leases",
+          "reserved_at": "2026-10-05T12:22:14.755Z"
         }
       ],
-      "last_generated": "2026-10-05T11:47:51.275Z"
+      "last_generated": "2026-10-05T12:22:14.755Z"
     },
     "3": {
       "channel_name": "AI Tested",
