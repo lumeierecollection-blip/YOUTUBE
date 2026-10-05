@@ -161,7 +161,23 @@ section("6. The vocabulary is internally consistent");
   // The prompt digest must be generated, never hand-maintained — three
   // conflicting word budgets in three files is what hand-maintenance costs.
   const digest = vocabularyDigest();
-  for (const kind of primitiveNames()) ok(digest.includes(kind), `digest advertises ${kind}`);
+  // The contract is two-sided and both halves matter. vocabularyDigest() skips
+  // `deprecated` and `resolvedOnly` primitives so the planner is never offered a kind it
+  // cannot use, so asserting that EVERY name in primitiveNames() appears was asserting the
+  // opposite of the intended behaviour. It passed only because `photo` happens to occur as a
+  // substring elsewhere in the digest.
+// Match the digest's LISTING line, not a bare substring, and match the separator
+    // DASH-AGNOSTICALLY. The digest writes `  <kind> — <note>` with U+2014; asserting a
+    // literal " - " is exactly the brittleness that made test-verify-image fail on a prompt
+    // reword. The other reason for line matching: "photo" occurs in the text of other
+    // entries even though `photo` itself is resolvedOnly and correctly not listed.
+    const listed = (k) => new RegExp(`^\\s*${k}\\s*[\\u2010-\\u2015-]\\s`, "m").test(digest);
+    for (const kind of primitiveNames()) {
+      const spec = PRIMITIVES[kind];
+      const live = !spec.deprecated && !spec.resolvedOnly;
+      ok(listed(kind) === live,
+        live ? `digest advertises ${kind}` : `digest omits ${kind} (deprecated=${!!spec.deprecated} resolvedOnly=${!!spec.resolvedOnly})`);
+    }
   for (const m of MOTIONS) ok(digest.includes(m), `digest advertises motion ${m}`);
   ok(digest.includes(String((MIN_SCENE_COVERAGE * 100).toFixed(0))), "digest states the coverage floor");
 }
@@ -187,11 +203,18 @@ section("7. Harmless redundancy is a WARNING, never a rejection");
     ok(r.warnings.length > 0, `${name} still reports what was dropped`);
   }
 
-  // Normalisation must actually remove the field, not just tolerate it.
-  const { scene: norm, dropped } = normalizeScene({ objects: [{ kind: "field", count: 1, label: "x" }] });
-  ok(norm.objects[0].count === undefined, "redundant count is stripped");
-  ok(norm.objects[0].label === undefined, "undrawable label is stripped");
-  ok(dropped.length === 2, "both drops are reported");
+// Normalisation must remove the field, not just tolerate it.
+    // It used to assert the field SURVIVED with its `count` and `label` stripped. Since
+    // 0e0307b ("one drawing per beat — drop the field panel and paired primitives") the
+    // field ground plane is dropped outright, so scene.objects comes back empty and
+    // `norm.objects[0]` was undefined — the assertion crashed rather than reporting. It now
+    // asserts what normalisation actually has to guarantee: no field survives, and the drop
+    // is reported rather than silent.
+    const { scene: norm, dropped } = normalizeScene({ objects: [{ kind: "field", count: 1, label: "x" }] });
+    ok(!norm.objects.some((o) => o && o.kind === "field"), "the field ground plane is removed entirely");
+    ok(norm.objects.every((o) => !o || o.count === undefined), "no redundant count survives");
+    ok(norm.objects.every((o) => !o || o.label === undefined), "no undrawable label survives");
+    ok(dropped.length >= 2, "the drops are reported");
   // The input must not be mutated — the planner keeps its own copy.
   const input = { objects: [{ kind: "field", count: 1 }] };
   normalizeScene(input);

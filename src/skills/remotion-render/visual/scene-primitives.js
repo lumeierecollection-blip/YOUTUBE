@@ -97,15 +97,25 @@ export const SAFE_W = SAFE.right - SAFE.left;   // 908
 export const SAFE_H = SAFE.bottom - SAFE.top;   // 1344
 
 /**
- * Counter overlay slot: top-right, 5% in from the right and top edges,
- * 6% of the frame height tall. Used only when a counter/figure shares the
- * scene with a drawing — a number that IS the beat keeps a full slot.
+ * Counter overlay slot: top-right of the SAFE rect, 6% of the safe height tall. Used only
+ * when a counter/figure shares the scene with a drawing — a number that IS the beat keeps a
+ * full slot.
+ *
+ * Anchored to the SAFE rect, not the canvas. It used to be CANVAS-relative
+ * (CANVAS_H*0.05 / CANVAS_W*0.95 = 96 / 1026), and 674b27c moved SAFE inward for the
+ * margin spec without moving this with it — so every counter/figure sharing a beat with a
+ * drawing was parked at y 96..211 and x up to 1026, i.e. 192px ABOVE SAFE.top (288) and 32px
+ * past SAFE.right (994), which is exactly where Shorts puts the channel name and UI chrome.
+ * test-scene-primitives caught it and has been failing ever since.
+ *
+ * composed-scene.jsx still right-aligns to this rect's edge, so the "top-right overlay"
+ * intent is unchanged — it just lands inside the area the platform does not cover.
  */
 export const COUNTER_OVERLAY = {
-  h: Math.round(CANVAS_H * 0.06),                       // 115
+  h: 115,
   w: 300,
-  right: Math.round(CANVAS_W * 0.95),                   // 1026
-  top: Math.round(CANVAS_H * 0.05),                     // 96
+  right: SAFE.right,
+  top: SAFE.top,
 };
 
 /* ── Anchors ─────────────────────────────────────────────────────────── */
@@ -325,6 +335,17 @@ export function layoutScene(objects) {
   const placeable = all.filter((o) => !overlays.includes(o));
 
   const n = placeable.length;
+  // An overlay badge is positioned independently of the slot grid, so the grid must
+  // reserve room for it or the two overlap. It used not to: parked outside the safe rect
+  // (top y=96) it sat clear of every slot, which is why the no-overlap assertion passed
+  // while the safe-bounds assertion failed. Fixing the bounds without this reintroduced
+  // "placed objects 0 and 2 do not overlap". So when an overlay exists the grid starts
+  // below the badge band. The badge is 300x115 in the top-right; the whole band is
+  // reserved rather than just its right third, because a 1-column grid spans the full
+  // width and trimming one column would leave an unusable sliver.
+  const overlayBand = overlays.length ? COUNTER_OVERLAY.h + 8 : 0;
+  const gridTop = SAFE.top + overlayBand;
+  const gridH = SAFE_H - overlayBand;
   // Arrangement: keep it coarse. More than 6 objects in one frame is
   // clutter, and the validator warns about it separately. PORTRAIT: the
   // area is 908 x 1344, so two objects stack (1 col x 2 rows) instead of
@@ -333,7 +354,7 @@ export function layoutScene(objects) {
   const rows = Math.max(1, Math.ceil(n / cols));
   const pad = 18;
   const slotW = (SAFE_W - pad * (cols - 1)) / cols;
-  const slotH = (SAFE_H - pad * (rows - 1)) / rows;
+  const slotH = (gridH - pad * (rows - 1)) / rows;
 
   // Rank slots by distance to each object's anchor, then assign greedily so
   // a requested anchor is honoured when it can be.
@@ -343,10 +364,10 @@ export function layoutScene(objects) {
       slots.push({
         i: slots.length,
         x: SAFE.left + c * (slotW + pad),
-        y: SAFE.top + r * (slotH + pad),
+        y: gridTop + r * (slotH + pad),
         w: slotW, h: slotH,
         cx: SAFE.left + c * (slotW + pad) + slotW / 2,
-        cy: SAFE.top + r * (slotH + pad) + slotH / 2,
+        cy: gridTop + r * (slotH + pad) + slotH / 2,
         taken: false,
       });
     }
