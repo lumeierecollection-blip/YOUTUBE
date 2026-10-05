@@ -827,9 +827,14 @@
           "topic": "LAPD Revises Pretext Stop Policy Following Inspector General Audit",
           "slug": "lapd-pretext-stop-policy-audit-2026",
           "reserved_at": "2026-10-05T11:47:51.275Z"
+        },
+        {
+          "topic": "California Governor Signs Bill Expanding Emergency Rent Caps to Long-Term Leases",
+          "slug": "california-governor-signs-emergency-rent-caps-bill",
+          "reserved_at": "2026-10-05T13:02:05.850Z"
         }
       ],
-      "last_generated": "2026-10-05T12:22:14.755Z"
+      "last_generated": "2026-10-05T13:02:05.850Z"
     },
     "3": {
       "channel_name": "AI Tested",
