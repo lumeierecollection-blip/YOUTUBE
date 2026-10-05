@@ -130,22 +130,27 @@ for (const [name, clip] of Object.entries(CLIPS)) {
     frames.push({ beat: b.i, png: p, sha256: createHash("sha256").update(png).digest("hex") });
   }
   // 4 beats x 2s, concatenated into one clip with a constant frame rate.
-  // ffmpeg's concat demuxer applies a `duration` only to the frames FOLLOWING the entry it
-  // is declared on, so the last entry's duration is dropped: the clip came out 6.03s
-  // instead of 8.00s on CI's apt ffmpeg (8.00s on the local 9.0 build), which cost the
-  // reviewer its 4th beat — 3 frames sampled instead of 4, so CI silently measured a
-  // different fixture. Repeating the final file overshoots to 10s. `-t` pins it exactly on
-  // every build, and the assertion below is the guard: a short clip degrades the
-  // measurement instead of failing loudly.
-  const listFile = `${work}/${name}-frames.txt`;
-  const abs = (f) => resolve(f).replace(/\\/g, "/");
+  // Clip length must be EXACTLY BEATS.length * 2s, and it must be exact on every ffmpeg
+  // build. The concat DEMUXER's `duration` directive is not: it applies to the preceding
+  // file, and whether the final entry's duration is honoured is version-dependent. Local
+  // ffmpeg 9.0 produced 8.00s; CI's apt ffmpeg produced 6.03s, so the reviewer sampled 3
+  // frames instead of 4 and CI reported a 4-beat result from a 3-beat fixture. Repeating
+  // the last file gave 10s locally. `-t` cannot fix it either — it truncates, it does not
+  // extend, so it left CI at 6.03s.
+  //
+  // The concat FILTER is used instead: each still is its own `-loop 1 -t 2` input, so every
+  // input's duration is explicit and no demuxer duration semantics are involved. The
+  // assertion below is kept regardless — it is what caught the 6.03s clip instead of
+  // letting CI report a degraded measurement as a real one.
   const expected = BEATS.length * 2;
-  writeFileSync(listFile, frames.map((f) => `file '${abs(f.png)}'\nduration 2`).join("\n") + "\n");
-
   const video = `${work}/${name}.mp4`;
-  execFileSync("ffmpeg", ["-f", "concat", "-safe", "0", "-i", listFile,
-    "-t", String(expected),
-    "-vf", "fps=30,scale=1080:1920,format=yuv420p", "-c:v", "libx264", "-preset", "veryfast", "-y", video], { stdio: "pipe" });
+  const args = ["-y"];
+  for (const f of frames) args.push("-loop", "1", "-t", "2", "-i", f.png);
+  args.push("-filter_complex",
+    `${frames.map((_, i) => `[${i}:v]scale=1080:1920,setsar=1,fps=30[v${i}]`).join(";")};` +
+    `${frames.map((_, i) => `[v${i}]`).join("")}concat=n=${frames.length}:v=1:a=0[out]`,
+    "-map", "[out]", "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p", video);
+  execFileSync("ffmpeg", args, { stdio: "pipe" });
 
   const actual = Number(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", video], { encoding: "utf-8" }).trim());
   if (Math.abs(actual - expected) > 0.2) {
