@@ -1938,9 +1938,14 @@
           "topic": "ZachXBT Poses as Client to Track Lazarus Group Launderers",
           "slug": "zachxbt-lazarus-group-crypto-launderers",
           "reserved_at": "2026-10-05T22:09:24.956Z"
+        },
+        {
+          "topic": "AMLC Reveals Billions in Suspicious Duterte-Carpio Transactions",
+          "slug": "amlc-duterte-carpio-money-trail-investigation",
+          "reserved_at": "2026-10-05T23:03:13.510Z"
         }
       ],
-      "last_generated": "2026-10-05T22:09:24.956Z"
+      "last_generated": "2026-10-05T23:03:13.510Z"
     },
     "27": {
       "channel_name": "Trial Files",
