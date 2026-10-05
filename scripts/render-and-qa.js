@@ -1641,7 +1641,9 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     let spokenText = "";
     try {
       const w = JSON.parse(readFileSync(wordsFile, "utf-8"));
-      spokenText = (Array.isArray(w) ? w : w.words || []).map((x) => x.word).join(" ");
+      const arr = Array.isArray(w) ? w : w.words || [];
+      // edge-tts words use "text"; elevenlabs/max estimated timings use "word".
+      spokenText = arr.map((x) => x.word || x.text || "").join(" ").trim();
     } catch { spokenText = ""; }
     verifyTts({ mp3Path: audioForBundle, srtPath, spokenText, channel: channelId, topic: basename(scriptPath, ".json") });
   }
