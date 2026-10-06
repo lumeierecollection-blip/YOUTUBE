@@ -29,11 +29,101 @@ const ROOT = join(__dirname, "..");
 const OUT = join(ROOT, "data", "trending");
 const CACHE_MS = 12 * 3600 * 1000;
 const WEEK_MS = 7 * 24 * 3600 * 1000;
-// Channel -> YouTube video category (owner's mapping, 2026-10-02).
-const CATEGORY = { 1: 27, 2: 25, 9: 25, 26: 25, 44: 27, 48: 28 };
+// Bare channel id (the form daily-pipeline-v2.yml:116 produces by stripping
+// "ch-" and leading zeros) -> YouTube video category. Owner's mapping.
+//   5  ch-05 Broadsheet  "Newspaper & Print Media History"  -> 25 News & Politics
+//   6  ch-06 Archive Room "Archival Footage & Lost Media"  -> 27 Education
+//   8  ch-08 Ledger      "How Institutions Accumulated"     -> 25 News & Politics
+//   10 ch-10 Margin Note "Ideas & Concept Explainers"      -> 27 Education
+// 48 is NOT dead: channels.json has no row with id=48, but it does have
+// channel_id "ch-48" (Cold Case DNA), and this map is keyed by bare id.
+const CATEGORY = { 1: 27, 2: 25, 5: 25, 6: 27, 8: 25, 9: 25, 10: 27, 26: 25, 44: 27, 48: 28 };
 const STOP = new Set("the a an and or but of to in on for with at by from is are was were be been this that these those it its as into about how why what when who your you my our we they he she his her their not no new vs after over more most just all can will has have had do does did i me".split(" "));
 
 const log = (m) => console.log(`[trending] ${m}`);
+
+const bareId = (channelId) => String(channelId).replace(/^ch-0*/, "");
+
+function loadChannels(cfgPath = join(ROOT, "config", "channels.json")) {
+  try { return JSON.parse(readFileSync(cfgPath, "utf-8")).channels || []; }
+  catch { return []; }
+}
+
+// CATEGORY is keyed by the bare id the workflow passes (daily-pipeline-v2.yml:116
+// strips "ch-" and leading zeros). That transform is only injective if no two
+// rows share a channel_id -- and today nine bare ids do collide (bare 26, 30,
+// 31, 35, 39, 44, 46, 47, 49 all name two different channels each). Those are
+// PRE-EXISTING and include live built channels, so a bare collision cannot
+// hard-fail the run. What must fail loud is the case this map depends on: a
+// CATEGORY key that two channels both claim. That one is a silent
+// wrong-category-by-accident waiting to happen, so it exits non-zero.
+// Bare ids where channels.json genuinely has two rows with the SAME channel_id.
+// Nine of these exist today and three name live built channels (26, 44, 49).
+// They are a pre-existing data defect, not something this map introduced, and
+// every run so far has resolved them by first-match. Hard-failing on them would
+// break daily production for channels that are currently shipping, so they are
+// baselined and warned. Any NEW collision exits non-zero: that is the case
+// where a wrong category would be handed out silently from here on.
+const KNOWN_COLLISIONS = new Set(["26", "30", "31", "35", "39", "44", "46", "47", "49"]);
+
+function assertNoKeyCollision(channels, keys = Object.keys(CATEGORY), known = KNOWN_COLLISIONS) {
+  const owners = new Map();
+  for (const r of channels) {
+    const b = bareId(r.channel_id);
+    if (!keys.includes(b)) continue;
+    if (owners.has(b)) {
+      const a = owners.get(b);
+      if (known.has(b)) {
+        console.warn(`[trending] WARNING: CATEGORY key ${b} is claimed by two channels (${a.channel_id} "${a.channel_name}", ${r.channel_id} "${r.channel_name}"). Pre-existing duplicate channel_id in channels.json; resolving by first match as every prior run has. Fix the data to clear this.`);
+        continue;
+      }
+      console.error(`[trending] FATAL: CATEGORY key ${b} is claimed by two channels: ${a.channel_id} (${a.channel_name}) and ${r.channel_id} (${r.channel_name}). Refusing to guess which category it meant.`);
+      process.exit(3);
+    }
+    owners.set(b, r);
+  }
+}
+
+// Which channel row does this bare id name? Independent of CATEGORY, so the
+// niche filter still works for a channel that is mapped nowhere.
+function findChannel(bare, channels) {
+  return channels.find((r) => bareId(r.channel_id) === String(bare)) || null;
+}
+
+// Reject candidates with no lexical overlap with the channel's own niche terms.
+// The category filter alone is too broad: YouTube's mostPopular for 25 returns
+// whatever is popular in News & Politics, which put a video about music-vibe
+// coding tools on a newspaper-history channel. Keyword overlap only, no
+// embeddings. If nothing survives, keep the closest category candidate rather
+// than failing -- an off-niche signal still beats no signal at all.
+const NICHE_STOP = new Set("the a an and or but of to in on for with at by from is are was were be been this that these those it its as into about how why what when who your you my our we they he she his her their not no new vs after over more most just all can will has have had do does did i me & vs".split(" "));
+const nicheTerms = (niche, pillars) =>
+  [...new Set(`${niche || ""} ${(pillars || []).join(" ")}`.toLowerCase()
+    .replace(/[^a-z\s]/g, " ").split(/\s+/).map((w) => w.trim()).filter((w) => w.length >= 4 && !NICHE_STOP.has(w)))];
+
+function nicheMatch(video, terms) {
+  if (!terms.length) return true; // no niche on the channel -> filter skipped, as before
+  const hay = `${video.title} ${(video.tags || []).join(" ")} ${video.channelTitle || ""}`.toLowerCase();
+  return terms.some((t) => hay.includes(t));
+}
+
+// The seam main() actually calls: rank by velocity, drop the _pub scratch key,
+// then niche-filter, then take the top 10. Exported and tested directly so the
+// filter's WIRING is covered, not just its helper.
+function rankAndFilter(recent, chCfg, limit = 10) {
+  const ranked = [...recent].sort((a, b) => b.velocity - a.velocity).map(({ _pub, ...v }) => v);
+  const terms = nicheTerms(chCfg?.niche, chCfg?.content_pillars);
+  const { kept, dropped, fallback } = applyNicheFilter(ranked, terms);
+  return { top: kept.slice(0, limit), dropped, fallback };
+}
+
+function applyNicheFilter(top, terms) {
+  if (!terms.length) return { kept: top, dropped: 0, fallback: false };
+  const kept = top.filter((v) => nicheMatch(v, terms));
+  if (kept.length) return { kept, dropped: top.length - kept.length, fallback: false };
+  log("no_niche_match — keeping the closest category candidate (filter found nothing)");
+  return { kept: top.slice(0, 1), dropped: top.length - 1, fallback: true };
+}
 
 function keywords(titles, min = 5) {
   const counts = new Map();
@@ -48,6 +138,9 @@ async function main() {
   const ch = String(process.argv[2] || "").trim();
   const force = process.argv.includes("--force");
   if (!ch) { console.error("Usage: node scripts/fetch-trending.cjs <channel-id> [--force]"); process.exit(2); }
+  const channels = loadChannels();
+  assertNoKeyCollision(channels);
+  const chCfg = findChannel(ch, channels);
   const category = CATEGORY[Number(ch)];
   if (!category) { log(`ch-${ch}: no category mapping, skipped (unseeded discovery)`); return; }
   const file = join(OUT, `${ch}.json`);
@@ -87,9 +180,9 @@ async function main() {
     return { id: v.id, title: v.snippet?.title || "", tags: (v.snippet?.tags || []).slice(0, 15), viewCount: views,
       publishedAt: v.snippet?.publishedAt, channelTitle: v.snippet?.channelTitle || "", velocity: Math.round(views / days), _pub: pub };
   }).filter((v) => Number.isFinite(v._pub) && now - v._pub <= WEEK_MS);
-  const top = recent.sort((a, b) => b.velocity - a.velocity).slice(0, 10).map(({ _pub, ...v }) => v);
+  const top = rankAndFilter(recent, chCfg);
   mkdirSync(OUT, { recursive: true });
-  writeFileSync(file, JSON.stringify({ fetched_at: new Date().toISOString(), channel: ch, category, source: "youtube-data-api-v3", videos: top }, null, 2) + "\n");
+  writeFileSync(file, JSON.stringify({ fetched_at: new Date().toISOString(), channel: ch, category, source: "youtube-data-api-v3", niche_filter: { terms: nicheTerms(chCfg?.niche, chCfg?.content_pillars).length, dropped, fallback }, videos: top }, null, 2) + "\n");
   const kw = keywords(items.map((v) => v.snippet?.title || ""));
   writeFileSync(join(OUT, `${ch}-keywords.json`), JSON.stringify({ fetched_at: new Date().toISOString(), channel: ch, category, from_titles: items.length, min_titles: 5, keywords: kw }, null, 2) + "\n");
   log(`ch-${ch}: fetched ${items.length}, kept ${recent.length} (last 7 days), top ${top.length} by velocity; ${kw.length} hot term(s)`);
@@ -97,5 +190,5 @@ async function main() {
   await require("./trending-entities.cjs").writeEntities(ch);
 }
 
-module.exports = { keywords };
+module.exports = { keywords, CATEGORY, bareId, loadChannels, findChannel, assertNoKeyCollision, nicheTerms, nicheMatch, applyNicheFilter, rankAndFilter };
 if (require.main === module) main().catch((e) => { log(`unexpected error (${e.message}), falling back to unseeded research`); process.exit(0); });
