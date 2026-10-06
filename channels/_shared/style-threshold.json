@@ -1,0 +1,34 @@
+{
+  "threshold": 0.4569791218227832,
+  "frame_count": 142,
+  "pair_count": 10011,
+  "percentile": 0.1,
+  "references": [
+    "ref-01",
+    "ref-02",
+    "ref-03"
+  ],
+  "model": "Xenova/clip-vit-base-patch32",
+  "escalation_ratio": 0.4,
+  "generated_at": "2026-10-06T18:08:23.462Z",
+  "per_reference": [
+    {
+      "reference_id": "ref-01",
+      "frame_count": 78,
+      "extraction_fps": 1,
+      "duration_sec": 79.39
+    },
+    {
+      "reference_id": "ref-02",
+      "frame_count": 32,
+      "extraction_fps": 8,
+      "duration_sec": 5
+    },
+    {
+      "reference_id": "ref-03",
+      "frame_count": 32,
+      "extraction_fps": 2,
+      "duration_sec": 16.834
+    }
+  ]
+}
