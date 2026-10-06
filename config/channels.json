@@ -2864,11 +2864,11 @@
       "youtube_credentials_path": "config/creds/ch-44.json",
       "description": "The history of newspapers and print, told in front-page collage. Layouts, editorial decisions, and the stories that ran.",
       "content_pillars": [
-        "newspaper history",
-        "print layout design",
-        "editorial history",
-        "masthead and headline craft",
-        "press history"
+        "corporate fraud investigations",
+        "financial crime cases",
+        "press investigations",
+        "courtroom evidence breakdowns",
+        "criminal trials explained"
       ],
       "tags": [
         "newspaper",
@@ -2910,11 +2910,11 @@
       "youtube_credentials_path": "config/creds/ch-44.json",
       "description": "Archival footage and lost media, reconstructed from what survived. Monochrome, letterboxed, slow push-ins.",
       "content_pillars": [
-        "lost film and broadcasts",
-        "archival footage restoration",
-        "lost media archaeology",
-        "forgotten recordings",
-        "pre-digital formats"
+        "historical disappearances",
+        "unsolved cases from decades past",
+        "recovered evidence",
+        "forensic re-examination",
+        "missing persons cases"
       ],
       "tags": [
         "archive",
@@ -2956,11 +2956,11 @@
       "youtube_credentials_path": "config/creds/ch-44.json",
       "description": "Stepped timelines of how institutions, funds and companies accumulated. Year by year, on the record.",
       "content_pillars": [
-        "institutional timeline breakdowns",
-        "fund and accumulation histories",
-        "corporate formation stories",
-        "year-by-year ledgers",
-        "archival record walkthroughs"
+        "central banking history",
+        "institutional formation",
+        "financial crises of the past",
+        "corporate collapse timelines",
+        "bank failures explained"
       ],
       "tags": [
         "timeline",
@@ -3002,11 +3002,11 @@
       "youtube_credentials_path": "config/creds/ch-44.json",
       "description": "One idea per video, explained quietly. Marginal notes on how things actually work, in light editorial typography.",
       "content_pillars": [
-        "concept explainers",
-        "how things actually work",
-        "philosophy of everyday systems",
-        "origin of ideas",
-        "quiet analysis"
+        "how ideas work explained",
+        "philosophical concepts",
+        "intellectual movements",
+        "definition breakdowns",
+        "the history of an idea"
       ],
       "tags": [
         "concepts",
