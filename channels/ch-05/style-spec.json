@@ -1,0 +1,23 @@
+{
+  "editing_style_name": "newspaper-collage",
+  "reference_video": "research/4_5917850534521349135.mp4",
+  "primary_palette": ["#BABDB6", "#9A9A9B", "#2B2B2B", "#F0F0F0"],
+  "secondary_palette": ["#D0D0D0", "#707070", "#3A3A3A"],
+  "typography_primary": "Noto Serif",
+  "typography_secondary": "Inter",
+  "environment_type": "newsprint",
+  "core_objects": [
+    "clipped photograph",
+    "newsprint column",
+    "masthead rule",
+    "pull quote",
+    "column gutter"
+  ],
+  "camera_language": ["static", "push-in", "pan-right"],
+  "transition_language": ["column-wipe", "cutout-reveal", "page-turn", "dramatic-cut"],
+  "framing_default": "full-frame",
+  "text_placement": "center-left",
+  "use_of_negative_space": "medium",
+  "motion_curve": "ease-out",
+  "style_reference_document": "docs/STYLE-REF-BROADSHEET.md"
+}

@@ -1,0 +1,23 @@
+{
+  "editing_style_name": "stepped-timeline",
+  "reference_video": "research/4_5917850534521349257.mp4",
+  "primary_palette": ["#382D28", "#101010", "#8C5A3C", "#E8E0D8"],
+  "secondary_palette": ["#241C18", "#6B4A38", "#B8AFA8"],
+  "typography_primary": "Noto Serif",
+  "typography_secondary": "JetBrains Mono",
+  "environment_type": "dark-workspace",
+  "core_objects": [
+    "year marker",
+    "progress rail",
+    "terminal line",
+    "verdict label",
+    "stepped card"
+  ],
+  "camera_language": ["static", "push-in", "rack-left"],
+  "transition_language": ["timeline-wipe", "glitch-cut", "year-slam", "era-fade"],
+  "framing_default": "full-frame",
+  "text_placement": "center",
+  "use_of_negative_space": "low",
+  "motion_curve": "ease-in-out",
+  "style_reference_document": "docs/STYLE-REF-LEDGER.md"
+}

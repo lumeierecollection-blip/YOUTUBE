@@ -1,0 +1,23 @@
+{
+  "editing_style_name": "archival-montage",
+  "reference_video": "research/4_5917850534521349255.mp4",
+  "primary_palette": ["#595A5B", "#303030", "#707070", "#D8D8D8"],
+  "secondary_palette": ["#505050", "#909090", "#202020"],
+  "typography_primary": "Noto Serif",
+  "typography_secondary": "Inter",
+  "environment_type": "archive-room",
+  "core_objects": [
+    "archival photograph",
+    "film-grain plate",
+    "letterbox matte",
+    "era caption",
+    "film reel mark"
+  ],
+  "camera_language": ["slow-push-in", "static", "drift-left"],
+  "transition_language": ["dissolve-era", "archive-reel", "impact-sting", "dramatic-cut"],
+  "framing_default": "full-frame",
+  "text_placement": "lower-third",
+  "use_of_negative_space": "high",
+  "motion_curve": "linear",
+  "style_reference_document": "docs/STYLE-REF-ARCHIVE-ROOM.md"
+}

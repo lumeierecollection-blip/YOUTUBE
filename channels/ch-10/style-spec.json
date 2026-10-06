@@ -1,0 +1,23 @@
+{
+  "editing_style_name": "editorial-serif-light",
+  "reference_video": "research/4_5917850534521349264.mp4",
+  "primary_palette": ["#D4D4D4", "#F0F0F0", "#1A1A1A", "#707070"],
+  "secondary_palette": ["#B8B8B8", "#3A3A3A", "#E8E8E8"],
+  "typography_primary": "Noto Serif",
+  "typography_secondary": "Inter",
+  "environment_type": "quiet-studio",
+  "core_objects": [
+    "art photograph",
+    "margin rule",
+    "definition line",
+    "margin note",
+    "plate caption"
+  ],
+  "camera_language": ["static", "drift-right"],
+  "transition_language": ["page-turn", "fade-gentle", "cutout-reveal"],
+  "framing_default": "medium",
+  "text_placement": "left-margin",
+  "use_of_negative_space": "high",
+  "motion_curve": "ease-out",
+  "style_reference_document": "docs/STYLE-REF-MARGIN-NOTE.md"
+}
