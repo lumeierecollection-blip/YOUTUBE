@@ -1,74 +1,71 @@
-# Channel expansion handoff — fleet run
+# Channel expansion handoff — fleet run logs read
 
-## §3.0 answered the question it was built to answer
+## §1 — fleet run 37540546857, all ten channels, ten different outcomes
 
-Fleet run `37540546857`, `channels=1,2,5,6,8,9,10,26,44,49`, one matrix.
+There is **no shared gate**. The fleet failed in five distinct ways:
 
-**The BUILD GATE PASSED for all ten.** `setup` succeeded, and all ten `prep`
-jobs succeeded. That is the outcome §3.0 was testing: the pipeline accepts the
-whole registered fleet. The ch-5/6/8/10 rejections that blocked the previous
-attempt are gone since `cf16b9d`, and nothing in the matrix path objects to
-four new channels.
+| channel | exit | failure | class |
+|---|---|---|---|
+| **ch-1** | **143** | SIGTERM, killed. No render output at all. | **infra** |
+| **ch-8** | **143** | SIGTERM, killed. | **infra** |
+| ch-2 | 1 | `Visual planning failed (gemini, then ollama) — no plan, no render.` | **planner, whole chain exhausted** |
+| ch-26 | 1 | same | **planner, whole chain exhausted** |
+| ch-44 | 1 | `challenger rejected the plan twice` | plan rejected |
+| ch-9 | 1 | `challenger rejected the plan twice` | plan rejected |
+| ch-10 | 1 | `canvas checks FAILED` — children-learn-language-word-structure | Layer 1 |
+| ch-5 | 1 | `canvas checks FAILED` — google-flow-music-vibe-coding-tools | Layer 1 |
+| ch-49 | 1 | `canvas checks FAILED` — josh-hartnett-verity-middle-age | Layer 1 |
+| ch-6 | 1 | `beat check FAILED` — us-india-trade-deal-impasse | beat check |
 
-Render results at the time of writing (run still in progress; logs are not
-readable until it completes):
+Every failure is at step `Render + QA`.
 
-| channel | render |
-|---|---|
-| ch-1 | failure |
-| ch-5 | failure |
-| ch-6 | failure |
-| ch-8 | failure |
-| ch-9 | failure |
-| ch-10 | failure |
-| ch-2, ch-26, ch-44, ch-49 | still running |
+## §2 — ch-1 is fleet size, not a channel defect
 
-**ch-1 failed too.** That is the most important line in this table: a built
-channel with shipped videos failed in the same run as the four new ones. The
-fleet is not four new channels hitting a new wall — it is the whole fleet
-failing together, which points at something shared (a gate, a quota wall, a
-shared dependency) rather than at the new channels' specs.
+ch-1 emits **no render output whatsoever** and exits 143 (SIGTERM). It ships
+videos daily and passed every earlier run. Ten concurrent Remotion renders plus
+an Ollama model per runner is beyond the runner's capacity, and two of the ten
+were killed outright. This is §2c: an infrastructure change, out of scope for a
+diagnostic push.
 
-Do not read the four new channels' failures as their own problem until ch-1's
-failure reason is read and compared.
+So ch-1's failure explains nothing about the new channels — and the four new
+channels' Layer 1 failures are **not** explained by anything shared either:
+ch-5, ch-10, ch-49 all fail `canvas checks FAILED`, ch-6 fails the beat check,
+and the two `challenger rejected` failures are on built channels that render
+fine individually.
 
-## §1 landed
+## The finding that outranks all of it
 
-`6da8809` — `middle-zone-filled` is advisory: it still measures and reports the
-fill value, now carrying `advisory: true, pass: true`, with
-`[ADVISORY - not gating]` appended when it fires. `frames-nonempty` and
-`pop-transitions` stay hard, as do `canvas-fit`, `canvas-coverage`,
-`canvas-accent`, `canvas-type`, `canvas-ground`, `zones-no-overlap`,
-`motion-tiers`, `kinetic-rules`. Suite 192/192.
+**ch-2 and ch-26 both report `Visual planning failed (gemini, then ollama) — no
+plan, no render.`** That is the entire chain exhausted: the Gemini director and
+then the local Ollama fallback both failed to produce a plan. Everything else in
+this table is downstream of a render; this is upstream of it and means two built
+channels produced no video at all.
 
-**The fleet run was dispatched BEFORE this landed**, so ch-5's result in it
-reflects the old gating. ch-5 must be re-run to see whether the advisory
-change lets it reach Layer 3.
+This is now the highest-value read available, and it was not in scope. The log
+shows `ollama/qwen2.5:3b` in the chain, so the fallback engaged and still
+produced nothing. Whether that is quota, a schema rejection, or the fleet's
+parallel load starving the local model is unread — ch-2's log is 310 KB and the
+relevant lines were not isolated before context ran out.
 
-## Pending, in order
+## Next, in order
 
-1. **Read `37540546857` logs** once complete — especially ch-1's. Then compare
-   ch-5/6/8/10 against it. This is the single highest-value read available.
-2. **Re-run ch-10** (`eval_loop_mode=off`, then `dry`, then `live` if dry says
-   retry). ch-10 has no known unresolved failure after `436d321` fixed
-   `canvas_accent`, so it is the cheapest test of "does a new channel work end
-   to end".
-3. **Re-run ch-05** after the advisory change. Report whether Layer 3 accepts or
-   flags the sparse TYPE-SPLIT beats. That answer settles whether the density
-   check was wrong for this style or the render is.
-4. **ch-06 / ch-08 TYPE-fallback** — undiagnosed. The beat-check failures name
-   TYPE beats whose description "did not name a buildable element". `core_objects`
-   was ruled out as the cause (`SPEC-AUDIT.md`): ch-01 resolves 0/6 against the
-   object registry and renders fine. Look at what the director's strategy map
-   does with a channel it does not recognise.
+1. **Read ch-2's and ch-26's planner failure** from run 37540546857. Whole-chain
+   planner exhaustion on two built channels is a bigger wall than anything the
+   new channels are hitting.
+2. **Do not run the fleet again.** Two of ten were SIGTERMed on runner capacity.
+   Single channel or at most two per dispatch.
+3. **Re-run ch-10 individually** (`off` → `dry` → `live`). Its only prior failure
+   was `canvas_accent`, fixed in 436d321. Cheapest end-to-end test.
+4. **Re-run ch-05 individually** after the advisory demotion (6da8809). Its
+   fleet result is pre-demotion and says nothing.
+5. **Note the topic churn**: every channel drew a different topic this run
+   (ch-5 got `google-flow-music-vibe-coding-tools`, ch-10 got
+   `children-learn-language-word-structure`). A "newspaper history" channel and a
+   "video editing tools" topic is a topic-selection mismatch, separate from the
+   render failures and probably worth its own look.
 
 ## Still open
 
 - Layer 2 and Layer 3 have never run in CI on any channel.
-- The eval loop's beat-index resolver gap: Gemini returns MM:SS, not
-  `beat_index`; `resolveRevisions` requires an integer. Unfixed, untested.
+- The beat-index resolver gap, unfixed.
 - `config/channels.json` mojibake, unfixed by instruction.
-- Dispatch one channel at a time, or use a single fleet matrix — never parallel
-  dispatches. The concurrency group serialises them.
-- Do not merge `RUN-NOTES.md` / `SPEC-AUDIT.md` into `EXPANSION-METHOD.md` in the
-  same push as a run; deferred to housekeeping.
