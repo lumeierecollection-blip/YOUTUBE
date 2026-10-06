@@ -417,7 +417,7 @@
           "reserved_at": "2026-10-05T23:02:34.172Z"
         }
       ],
-      "last_generated": "2026-10-05T23:02:34.172Z"
+      "last_generated": "2026-10-06T12:26:11.989Z"
     },
     "2": {
       "channel_name": "Legal Brief",
@@ -872,9 +872,14 @@
           "topic": "California's Revamped No Robo Bosses Act Restricts AI Discipline",
           "slug": "california-no-robo-bosses-act-ai-discipline",
           "reserved_at": "2026-10-06T00:04:14.942Z"
+        },
+        {
+          "topic": "Ohio's Stop and Identify Law Adds Traffic Stop Fines",
+          "slug": "ohios-stop-and-identify-law-adds-traffic-stop-fines",
+          "reserved_at": "2026-10-06T12:26:37.854Z"
         }
       ],
-      "last_generated": "2026-10-06T00:04:14.942Z"
+      "last_generated": "2026-10-06T12:26:37.855Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -1403,9 +1408,14 @@
           "topic": "Seoul Concludes North Korea Responsible for DMZ Landmine Explosions",
           "slug": "south-korea-dmz-landmine-explosions-investigation",
           "reserved_at": "2026-10-05T23:03:06.814Z"
+        },
+        {
+          "topic": "China Accuses Philippines of Bajo de Masinloc Airspace Intrusion",
+          "slug": "china-philippines-bajo-de-masinloc-airspace-dispute",
+          "reserved_at": "2026-10-06T12:26:39.899Z"
         }
       ],
-      "last_generated": "2026-10-05T23:03:06.814Z"
+      "last_generated": "2026-10-06T12:26:39.899Z"
     },
     "10": {
       "channel_name": "Double Cross",
@@ -1948,9 +1958,14 @@
           "topic": "AMLC Reveals Billions in Suspicious Duterte-Carpio Transactions",
           "slug": "amlc-duterte-carpio-money-trail-investigation",
           "reserved_at": "2026-10-05T23:03:13.510Z"
+        },
+        {
+          "topic": "Former US Congressman David Rivera Sentenced to 10 Years for Venezuelan Lobbying",
+          "slug": "david-rivera-10-year-venezuelan-lobbying-sentence",
+          "reserved_at": "2026-10-06T12:26:02.402Z"
         }
       ],
-      "last_generated": "2026-10-05T23:03:13.510Z"
+      "last_generated": "2026-10-06T12:26:02.403Z"
     },
     "27": {
       "channel_name": "Trial Files",
@@ -2516,9 +2531,14 @@
           "topic": "Backlog Time-Lapse: Why Static Task Boards Miss Team Burnout",
           "slug": "backlog-time-lapse-static-task-boards-burnout",
           "reserved_at": "2026-10-05T23:03:27.257Z"
+        },
+        {
+          "topic": "TaskCanvas and Visualizing Backlog Workflows in October 2026",
+          "slug": "taskcanvas-visualizing-backlog-workflows-2026",
+          "reserved_at": "2026-10-06T12:26:41.837Z"
         }
       ],
-      "last_generated": "2026-10-05T23:03:27.257Z"
+      "last_generated": "2026-10-06T12:26:41.837Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
@@ -2970,9 +2990,14 @@
           "topic": "Chris Rock Discusses Directing and Starring in New Film Misty Green",
           "slug": "chris-rock-directing-starring-misty-green",
           "reserved_at": "2026-10-05T23:03:31.670Z"
+        },
+        {
+          "topic": "Theja Rio Details Angh Oscar Journey and Global Strategy",
+          "slug": "theja-rio-angh-oscar-journey-global-strategy",
+          "reserved_at": "2026-10-06T12:26:21.991Z"
         }
       ],
-      "last_generated": "2026-10-05T23:03:31.670Z"
+      "last_generated": "2026-10-06T12:26:21.992Z"
     },
     "50": {
       "channel_name": "Gadget Kitchen",
