@@ -1408,9 +1408,14 @@
           "topic": "Seoul Concludes North Korea Responsible for DMZ Landmine Explosions",
           "slug": "south-korea-dmz-landmine-explosions-investigation",
           "reserved_at": "2026-10-05T23:03:06.814Z"
+        },
+        {
+          "topic": "China Accuses Philippines of Bajo de Masinloc Airspace Intrusion",
+          "slug": "china-philippines-bajo-de-masinloc-airspace-dispute",
+          "reserved_at": "2026-10-06T12:26:39.899Z"
         }
       ],
-      "last_generated": "2026-10-05T23:03:06.814Z"
+      "last_generated": "2026-10-06T12:26:39.899Z"
     },
     "10": {
       "channel_name": "Double Cross",
