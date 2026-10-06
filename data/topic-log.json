@@ -998,8 +998,14 @@
     "5": {
       "channel_name": "Harmony",
       "niche": "Music Theory & Composition",
-      "used_topics": [],
-      "last_generated": "2026-10-06T23:49:08.659Z"
+      "used_topics": [
+        {
+          "topic": "Bristol Spinout Turns Moth-Wing Science Into Acoustic Material",
+          "slug": "moth-wing-acoustic-material",
+          "reserved_at": "2026-10-06T23:56:41.689Z"
+        }
+      ],
+      "last_generated": "2026-10-06T23:56:41.689Z"
     },
     "6": {
       "channel_name": "The War Room",
