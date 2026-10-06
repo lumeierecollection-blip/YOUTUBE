@@ -79,6 +79,8 @@ never `L7` or `Â§3.1`.
 | `MOT2` | the beat engine — visual intent, actor persistence, kinetic typography, and whether a video moves at all | `src/skills/remotion-render/visual-engine/qa/motion-checks.mjs` (per render — see §3.18) |
 | `CNV` | full-canvas composition — the frame-filling beat grammar that replaced the paper stage (2026-09-29), named-entity photos, spoken-form TTS | `scripts/local-audit.cjs --canvas-only` (per render) + `scripts/gemini-visual-plan.js` / `scripts/entity-assets.cjs` / `src/utils/tts-normalize.js` (per plan / per voiceover — see §3.19) |
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
+| `L2` | style advisory — CLIP similarity to the shared motion-graphics reference family. ADVISORY ONLY, non-gating: reports a number, never escalates or retries, because CLIP-SIM cannot separate a blank frame from this family (a blank frame scores 0.68-0.81 against a 0.4570 floor) | `scripts/eval-layer2-style.js` (per render — advisory input to `L3`) |
+| `L3` | Gemini full-video judge — whole-video upload, four axis scores, locally-computed weighted aggregate, weak beats with timestamps. Scores; the retry loop decides | `scripts/eval-layer3-judge.js` + `src/lib/gemini-files.js` (per render) |
 
 ---
 
