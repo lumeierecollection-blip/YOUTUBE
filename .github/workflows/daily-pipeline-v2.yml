@@ -60,8 +60,11 @@ on:
         description: 'Eval loop mode: off (default), dry (decide and record), live (act)'
         required: false
         default: 'off'
-        type: choice
-        options: [off, dry, live]
+        # type: string, not choice: GitHub's dispatch API rejected the default
+        # ('off') against the allowed-values list even with options declared, so the
+        # dropdown never dispatched. evalLoopMode() throws on any value outside
+        # off/dry/live and is unit-tested for exactly that, so validation lives there.
+        type: string
 
 concurrency:
   group: daily-pipeline-${{ github.ref }}
