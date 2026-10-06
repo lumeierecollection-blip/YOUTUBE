@@ -2848,6 +2848,186 @@
           "IMAGE_BEAT"
         ]
       }
+    },
+    {
+      "id": 5,
+      "niche": "Newspaper & Print Media History",
+      "style": "motion-graphics",
+      "bg_mode": "white",
+      "asset_treatment": "bw",
+      "channel_name": "Broadsheet",
+      "handle": "@broadsheet",
+      "tts_voice": "en-GB-RyanNeural",
+      "font": "Noto Serif",
+      "google_account": "UNASSIGNED-5",
+      "channel_id": "ch-05",
+      "youtube_credentials_path": "config/creds/ch-44.json",
+      "description": "The history of newspapers and print, told in front-page collage. Layouts, editorial decisions, and the stories that ran.",
+      "content_pillars": [
+        "newspaper history",
+        "print layout design",
+        "editorial history",
+        "masthead and headline craft",
+        "press history"
+      ],
+      "tags": [
+        "newspaper",
+        "print media",
+        "typography",
+        "journalism",
+        "editorial design"
+      ],
+      "colors": {
+        "primary": "#BABDB6",
+        "secondary": "#D0D0D0",
+        "accent": "#2B2B2B",
+        "bg": "#F0F0F0"
+      },
+      "target_audience": "Design and history enthusiasts 18-55",
+      "tone": "investigative-narrative",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Photosyn unique visual approach"
+      },
+      "paused": true,
+      "built": false,
+      "style_spec_path": "channels/ch-05/style-spec.json",
+      "editing_style_name": "newspaper-collage"
+    },
+    {
+      "id": 6,
+      "niche": "Archival Footage & Lost Media",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "asset_treatment": "bw",
+      "channel_name": "Archive Room",
+      "handle": "@archiveroom",
+      "tts_voice": "en-GB-RyanNeural",
+      "font": "Noto Serif",
+      "google_account": "UNASSIGNED-6",
+      "channel_id": "ch-06",
+      "youtube_credentials_path": "config/creds/ch-44.json",
+      "description": "Archival footage and lost media, reconstructed from what survived. Monochrome, letterboxed, slow push-ins.",
+      "content_pillars": [
+        "lost film and broadcasts",
+        "archival footage restoration",
+        "lost media archaeology",
+        "forgotten recordings",
+        "pre-digital formats"
+      ],
+      "tags": [
+        "archive",
+        "lost media",
+        "lost film",
+        "archival footage",
+        "restoration"
+      ],
+      "colors": {
+        "primary": "#595A5B",
+        "secondary": "#505050",
+        "accent": "#D8D8D8",
+        "bg": "#303030"
+      },
+      "target_audience": "Film and history enthusiasts 18-55",
+      "tone": "reverent-melancholic",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Photosyn unique visual approach"
+      },
+      "paused": true,
+      "built": false,
+      "style_spec_path": "channels/ch-06/style-spec.json",
+      "editing_style_name": "archival-montage"
+    },
+    {
+      "id": 8,
+      "niche": "How Institutions Accumulated",
+      "style": "motion-graphics",
+      "bg_mode": "black",
+      "asset_treatment": "color",
+      "channel_name": "Ledger",
+      "handle": "@ledger",
+      "tts_voice": "en-US-AndrewNeural",
+      "font": "Noto Serif",
+      "google_account": "UNASSIGNED-8",
+      "channel_id": "ch-08",
+      "youtube_credentials_path": "config/creds/ch-44.json",
+      "description": "Stepped timelines of how institutions, funds and companies accumulated. Year by year, on the record.",
+      "content_pillars": [
+        "institutional timeline breakdowns",
+        "fund and accumulation histories",
+        "corporate formation stories",
+        "year-by-year ledgers",
+        "archival record walkthroughs"
+      ],
+      "tags": [
+        "timeline",
+        "institutions",
+        "accumulation",
+        "corporate history",
+        "records"
+      ],
+      "colors": {
+        "primary": "#382D28",
+        "secondary": "#241C18",
+        "accent": "#8C5A3C",
+        "bg": "#101010"
+      },
+      "target_audience": "Business and history enthusiasts 20-55",
+      "tone": "measured-authoritative",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Photosyn unique visual approach"
+      },
+      "paused": true,
+      "built": false,
+      "style_spec_path": "channels/ch-08/style-spec.json",
+      "editing_style_name": "stepped-timeline"
+    },
+    {
+      "id": 10,
+      "niche": "Ideas & Concept Explainers",
+      "style": "minimal",
+      "bg_mode": "white",
+      "asset_treatment": "color",
+      "channel_name": "Margin Note",
+      "handle": "@marginnote",
+      "tts_voice": "en-US-JennyNeural",
+      "font": "Noto Serif",
+      "google_account": "UNASSIGNED-10",
+      "channel_id": "ch-10",
+      "youtube_credentials_path": "config/creds/ch-44.json",
+      "description": "One idea per video, explained quietly. Marginal notes on how things actually work, in light editorial typography.",
+      "content_pillars": [
+        "concept explainers",
+        "how things actually work",
+        "philosophy of everyday systems",
+        "origin of ideas",
+        "quiet analysis"
+      ],
+      "tags": [
+        "concepts",
+        "explainer",
+        "ideas",
+        "how things work",
+        "philosophy"
+      ],
+      "colors": {
+        "primary": "#D4D4D4",
+        "secondary": "#B8B8B8",
+        "accent": "#1A1A1A",
+        "bg": "#F0F0F0"
+      },
+      "target_audience": "Curious general readers 20-50",
+      "tone": "quiet-considered",
+      "estimated_rpm": "5-10",
+      "visual_identity": {
+        "philosophy": "Photosyn unique visual approach"
+      },
+      "paused": true,
+      "built": false,
+      "style_spec_path": "channels/ch-10/style-spec.json",
+      "editing_style_name": "editorial-serif-light"
     }
   ]
 }
