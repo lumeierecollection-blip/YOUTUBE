@@ -872,9 +872,14 @@
           "topic": "California's Revamped No Robo Bosses Act Restricts AI Discipline",
           "slug": "california-no-robo-bosses-act-ai-discipline",
           "reserved_at": "2026-10-06T00:04:14.942Z"
+        },
+        {
+          "topic": "Ohio's Stop and Identify Law Adds Traffic Stop Fines",
+          "slug": "ohios-stop-and-identify-law-adds-traffic-stop-fines",
+          "reserved_at": "2026-10-06T12:26:37.854Z"
         }
       ],
-      "last_generated": "2026-10-06T00:04:14.942Z"
+      "last_generated": "2026-10-06T12:26:37.855Z"
     },
     "3": {
       "channel_name": "AI Tested",
