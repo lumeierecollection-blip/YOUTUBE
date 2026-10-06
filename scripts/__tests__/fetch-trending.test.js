@@ -13,6 +13,59 @@ describe("fetch-trending CATEGORY map", () => {
     }
   });
 
+  it("every new channel's content_pillars overlap its CURRENT niche", () => {
+    // Widening the niche on 2026-10-07 left the pillars on the old media-history
+    // subjects, and the niche filter matches niche + pillars together - so stale
+    // pillars kept feeding the old subject. This fails if either drifts alone.
+    const ids = ["ch-05", "ch-06", "ch-08", "ch-10"];
+    const channels = T.loadChannels();
+    for (const id of ids) {
+      const row = T.findChannel(T.bareId(id), channels);
+      const nicheTerms = new Set(T.nicheTerms(row.niche, []));
+      assert.ok(nicheTerms.size > 0, `${id} niche yields no terms`);
+      const pillarTerms = new Set(T.nicheTerms("", row.content_pillars));
+      const overlap = [...pillarTerms].filter((t) => nicheTerms.has(t));
+      assert.ok(
+        overlap.length > 0,
+        `${id} (${row.niche}) has no pillar term overlapping its niche. pillars=${JSON.stringify(row.content_pillars)}`,
+      );
+    }
+  });
+
+  it("pillars do not still describe the pre-widening subject", () => {
+    // The specific regression the widening was meant to remove.
+    const stale = {
+      // "press" alone is NOT stale: "press investigations" is the new subject.
+      // Only the media-history compounds are.
+      "ch-05": ["newspaper", "print layout", "press history", "masthead", "typesetting", "editorial history"],
+      "ch-06": ["broadcast", "archival footage", "lost media", "pre-digital"],
+      "ch-08": ["accumulation"],
+      "ch-10": [],
+    };
+    const channels = T.loadChannels();
+    for (const [id, words] of Object.entries(stale)) {
+      const row = T.findChannel(T.bareId(id), channels);
+      const hay = (row.content_pillars || []).join(" ").toLowerCase();
+      for (const w of words) {
+        assert.ok(!hay.includes(w), `${id} pillar still says "${w}": ${hay}`);
+      }
+    }
+  });
+
+  it("every pillar is title-shaped, not prose", () => {
+    const channels = T.loadChannels();
+    for (const id of ["ch-05", "ch-06", "ch-08", "ch-10"]) {
+      const row = T.findChannel(T.bareId(id), channels);
+      for (const p of row.content_pillars || []) {
+        // Two-word phrases are fine - "press investigations" is title-shaped.
+        // The bar is that a pillar is a noun phrase, not a sentence.
+        assert.ok(typeof p === "string" && p.length >= 12, `${id} pillar too short: "${p}"`);
+        assert.ok(p.split(" ").length >= 2, `${id} pillar is not keyword-shaped: "${p}"`);
+        assert.ok(p === p.toLowerCase(), `${id} pillar should be lower-case: "${p}"`);
+      }
+    }
+  });
+
   it("CATEGORY matches each new channel's CURRENT niche, not the pre-widening one", () => {
     // The niches were widened on 2026-10-07. If someone edits a niche without
     // re-checking the category, this is what catches the drift.
