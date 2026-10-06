@@ -1,71 +1,88 @@
-# Channel expansion handoff — fleet run logs read
+# Handoff — ch-2 / ch-26 planner diagnosis (fleet 37540546857)
 
-## §1 — fleet run 37540546857, all ten channels, ten different outcomes
+## The "planner failed" summary is wrong, or there is a second attempt
 
-There is **no shared gate**. The fleet failed in five distinct ways:
+Both channels log a healthy first pass:
 
-| channel | exit | failure | class |
-|---|---|---|---|
-| **ch-1** | **143** | SIGTERM, killed. No render output at all. | **infra** |
-| **ch-8** | **143** | SIGTERM, killed. | **infra** |
-| ch-2 | 1 | `Visual planning failed (gemini, then ollama) — no plan, no render.` | **planner, whole chain exhausted** |
-| ch-26 | 1 | same | **planner, whole chain exhausted** |
-| ch-44 | 1 | `challenger rejected the plan twice` | plan rejected |
-| ch-9 | 1 | `challenger rejected the plan twice` | plan rejected |
-| ch-10 | 1 | `canvas checks FAILED` — children-learn-language-word-structure | Layer 1 |
-| ch-5 | 1 | `canvas checks FAILED` — google-flow-music-vibe-coding-tools | Layer 1 |
-| ch-49 | 1 | `canvas checks FAILED` — josh-hartnett-verity-middle-age | Layer 1 |
-| ch-6 | 1 | `beat check FAILED` — us-india-trade-deal-impasse | beat check |
+```
+[planner] gemini caching unavailable, using full prompt
+[planner] ch-2: prompt ~2,575 tokens (static ~2,319, dyn ...)
+[gemini] key 1 project: unknown (every probed API is ...)
+[gemini] key 2 project: unknown (every probed API is ...)
+[gemini] key 3 project: 662788814396
+[gemini-client] Tokens used: 3839
+[gemini-client] Cache MISS for d58f4011823a
+[planner] gemini key 1/3 answered
+Gemini plan attempt 1 ha[s ...]
+[planner] ch-2: gemini p[lan ...]
+[gemini-client] Tokens u[sed ...]
+[translate] description ...
+[translate] beat 0: "A b..."
+[translate] description ...
+[translate] logo + numbe[r ...]
+[translate] beat 1: "The..."
+[translate] photo -> PH[OTO ...]
+[translate] beat 2: "The..."
+[translate] logo + type ...
+[translate] beat 3: "The..."
+```
 
-Every failure is at step `Render + QA`.
+ch-26 is identical in shape (`key 1/3 answered`, `Tokens used: 3903`, same
+`key 1/2 project: unknown` pattern).
 
-## §2 — ch-1 is fleet size, not a channel defect
+**So Gemini answered and the plan was being translated beat by beat.** The
+workflow's summary line — `Visual planning failed (gemini, then ollama) — no
+plan, no render` — does not describe that. Two readings, not yet discriminated:
 
-ch-1 emits **no render output whatsoever** and exits 143 (SIGTERM). It ships
-videos daily and passed every earlier run. Ten concurrent Remotion renders plus
-an Ollama model per runner is beyond the runner's capacity, and two of the ten
-were killed outright. This is §2c: an infrastructure change, out of scope for a
-diagnostic push.
+1. there is a **second attempt** that failed after attempt 1 succeeded on paper
+   (the log says "attempt 1", so a retry exists), and the summary reports the
+   final state; or
+2. the summary is emitted by a branch that fires on something other than "no
+   plan", and the real failure is later in the step.
 
-So ch-1's failure explains nothing about the new channels — and the four new
-channels' Layer 1 failures are **not** explained by anything shared either:
-ch-5, ch-10, ch-49 all fail `canvas checks FAILED`, ch-6 fails the beat check,
-and the two `challenger rejected` failures are on built channels that render
-fine individually.
+**Not isolated before context ran out.** ch-2's log is 2285 lines; the window
+after `[translate] beat 3` was not read. That is the next read.
 
-## The finding that outranks all of it
+## What the log does establish
 
-**ch-2 and ch-26 both report `Visual planning failed (gemini, then ollama) — no
-plan, no render.`** That is the entire chain exhausted: the Gemini director and
-then the local Ollama fallback both failed to produce a plan. Everything else in
-this table is downstream of a render; this is upstream of it and means two built
-channels produced no video at all.
+- **Not quota.** No `429`, no `RESOURCE_EXHAUSTED`, no `quota_exhausted`. All
+  three keys were probed and key 3 answered.
+- **Not starvation at the first attempt.** Ollama does not appear in this
+  window at all; Gemini answered first.
+- **Keys 1 and 2 are dead:** `project: unknown (every probed API is ena...)` on
+  both channels, on every run. Only `GEMINI_API_KEY_3` (project 662788814396)
+  works. The pipeline is running on **one** working key, not three. That is a
+  real capacity finding even though it did not cause this failure.
+- **`OPENCODE_MODELS: "ollama/qwen2.5:3b"`** is set workflow-wide, so the
+  opencode-run stages use Ollama; the visual planner uses the Gemini key path
+  directly (`SCRIPT_GEMINI_MODEL`). Two different providers, one env block.
+- **`[planner] gemini caching unavailable, using full prompt`** on both — the
+  cachedContents path is not working in CI, so every plan pays full prompt cost.
 
-This is now the highest-value read available, and it was not in scope. The log
-shows `ollama/qwen2.5:3b` in the chain, so the fallback engaged and still
-produced nothing. Whether that is quota, a schema rejection, or the fleet's
-parallel load starving the local model is unread — ch-2's log is 310 KB and the
-relevant lines were not isolated before context ran out.
+## Topic mismatch — `fetch-trending.cjs`
 
-## Next, in order
+One paragraph, as it actually reads. `scripts/fetch-trending.cjs` holds a
+hardcoded map `CATEGORY = { 1: 27, 2: 25, 9: 25, 26: 25, 44: 27, 48: 28 }` —
+channel id to YouTube **video category** id, and only those six ids are mapped.
+It calls `videos?part=snippet,statistics&chart=mostPopular&videoCategoryId=...`,
+filters to the last 7 days, ranks by velocity, and writes
+`data/trending/<ch>.json`. It **does not filter by channel niche** and does not
+read the channel's `niche` field at all; the only per-channel input is that one
+integer. YouTube's `mostPopular` for a broad category like 28 (Science &
+Technology) returns whatever is popular there, so a Broadsheet channel can be
+handed a video about music-vibe coding tools. `data/trends/` and
+`data/trending/` are then read by the discover stage, which is where a topic
+that does not fit the style becomes a beat plan that does not fit the style.
 
-1. **Read ch-2's and ch-26's planner failure** from run 37540546857. Whole-chain
-   planner exhaustion on two built channels is a bigger wall than anything the
-   new channels are hitting.
-2. **Do not run the fleet again.** Two of ten were SIGTERMed on runner capacity.
-   Single channel or at most two per dispatch.
-3. **Re-run ch-10 individually** (`off` → `dry` → `live`). Its only prior failure
-   was `canvas_accent`, fixed in 436d321. Cheapest end-to-end test.
-4. **Re-run ch-05 individually** after the advisory demotion (6da8809). Its
-   fleet result is pre-demotion and says nothing.
-5. **Note the topic churn**: every channel drew a different topic this run
-   (ch-5 got `google-flow-music-vibe-coding-tools`, ch-10 got
-   `children-learn-language-word-structure`). A "newspaper history" channel and a
-   "video editing tools" topic is a topic-selection mismatch, separate from the
-   render failures and probably worth its own look.
+**ch-05, ch-06, ch-08 and ch-10 are not in that map at all**, so
+`fetch-trending.cjs` skips them ("no category mapping, skipped (unseeded
+discovery)") and their topics come from the unseeded fallback — which is why
+their topics are less channel-shaped than the six mapped channels'.
 
-## Still open
+## Next push, stated not executed
 
-- Layer 2 and Layer 3 have never run in CI on any channel.
-- The beat-index resolver gap, unfixed.
-- `config/channels.json` mojibake, unfixed by instruction.
+Read the window after `[translate] beat 3` in ch-2's log to settle attempt-1
+succeeded-then-retried versus a mislabelled summary. Then fix topic selection
+for the four new channels — add them to `CATEGORY` with category ids that match
+their niches — and re-run ch-05 and ch-10 individually. Do not run the fleet:
+ch-1 and ch-8 were SIGTERMed on runner capacity.
