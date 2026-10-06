@@ -41,6 +41,7 @@ import { mkdirSync, writeFileSync, appendFileSync, readFileSync, existsSync } fr
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { uploadVideo as realUpload, pollUntilActive as realPoll, deleteFile as realDelete, apiKey } from "../src/lib/gemini-files.js";
+import { ADDRESSABLE_ELEMENTS } from "./beat-element-remediation.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const HOST = "generativelanguage.googleapis.com";
@@ -86,11 +87,12 @@ export const RESPONSE_SCHEMA = Object.freeze({
       type: "array",
       items: {
         type: "object",
-        required: ["timestamp", "axis", "element", "reason"],
+        required: ["timestamp", "axis", "element", "finding"],
         properties: {
           timestamp: { type: "string" },
           axis: { type: "string" },
           element: { type: "string" },
+          finding: { type: "string" },
           reason: { type: "string" },
         },
       },
@@ -129,6 +131,8 @@ If the video is not motion graphics at all, say so and score Style Coherence 0.
 Channel: ${channelId}
 Channel style spec: ${spec}
 Style advisory: ${advisory}
+Available element fields for weak_beats[].element: ${ADDRESSABLE_ELEMENTS.join(", ")}
+If a finding does not correspond to one of these fields, use "other" for element and describe the observation in "finding".
 Video: (attached above)`;
 }
 
@@ -150,7 +154,7 @@ export function validateResponse(parsed) {
   }
   if (!Array.isArray(parsed.weak_beats)) throw new Error(`judge response has no weak_beats array: ${JSON.stringify(parsed).slice(0, 200)}`);
   for (const b of parsed.weak_beats) {
-    for (const k of ["timestamp", "axis", "element", "reason"]) {
+    for (const k of ["timestamp", "axis", "element", "finding"]) {
       if (typeof b?.[k] !== "string" || !b[k].trim()) throw new Error(`weak_beats entry missing "${k}": ${JSON.stringify(b).slice(0, 200)}`);
     }
   }

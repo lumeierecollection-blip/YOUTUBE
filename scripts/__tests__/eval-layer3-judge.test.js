@@ -17,7 +17,7 @@ import {
 
 const GOOD = {
   axes: { engagement: 8, prompt_intent: 7, composition: 9, style_coherence: 6 },
-  weak_beats: [{ timestamp: "00:12", axis: "composition", element: "headline", reason: "low contrast" }],
+  weak_beats: [{ timestamp: "00:12", axis: "composition", element: "headline", finding: "headline is low contrast against the ground", reason: "low contrast" }],
 };
 const noop = async () => ({ name: "files/x", uri: "u", mimeType: "video/mp4", sizeBytes: 1 });
 const pollOk = async () => ({ state: "ACTIVE", uri: "https://u/x" });
@@ -44,6 +44,8 @@ describe("prompt", () => {
   it("has the four labelled blocks in order", () => {
     const p = buildPrompt({ channelId: 2, styleSpec: { niche: "x" }, layer2Advisory: 0.61 });
     for (const b of ["[ROLE]", "[OBJECTIVE]", "[CONSTRAINTS]", "[INPUT]"]) assert.ok(p.includes(b), `missing ${b}`);
+    assert.match(p, /Available element fields for weak_beats\[\]\.element: visual_type, kind, headline/, "the vocabulary must be offered by name");
+    assert.match(p, /use \"other\" for element and describe the observation in \"finding\"/);
     assert.ok(p.indexOf("[ROLE]") < p.indexOf("[OBJECTIVE]"));
     assert.ok(p.indexOf("[OBJECTIVE]") < p.indexOf("[CONSTRAINTS]"));
     assert.ok(p.indexOf("[CONSTRAINTS]") < p.indexOf("[INPUT]"));
@@ -75,7 +77,7 @@ describe("schema", () => {
   it("requires all four axes and each weak beat field", () => {
     assert.deepEqual(RESPONSE_SCHEMA.required, ["axes", "weak_beats"]);
     assert.deepEqual(RESPONSE_SCHEMA.properties.axes.required, ["engagement", "prompt_intent", "composition", "style_coherence"]);
-    assert.deepEqual(RESPONSE_SCHEMA.properties.weak_beats.items.required, ["timestamp", "axis", "element", "reason"]);
+    assert.deepEqual(RESPONSE_SCHEMA.properties.weak_beats.items.required, ["timestamp", "axis", "element", "finding"]);
   });
 });
 
@@ -118,6 +120,7 @@ describe("validateResponse", () => {
   });
   it("fails loud on an incomplete weak beat", () => {
     assert.throws(() => validateResponse({ axes: GOOD.axes, weak_beats: [{ timestamp: "00:01" }] }), /missing "axis"/);
+    assert.throws(() => validateResponse({ axes: GOOD.axes, weak_beats: [{ timestamp: "00:01", axis: "composition", element: "headline" }] }), /missing "finding"/);
   });
 });
 

@@ -10,6 +10,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import {
   runEvalLoop, resolveRevisions, applyPartialPatch, beatsUnchanged,
+  mapFinding, FINDING_FIELD_MAP,
   ACCEPT_THRESHOLD, RETRY_CAP,
 } from "../eval-retry-loop.js";
 
@@ -250,5 +251,82 @@ describe("loop: refuses an unusable aggregate", () => {
       layer1: passL1, layer2: advisory, layer3: async () => ({ axes: {}, weak_beats: [] }),
       revise: async () => ({}), renderBeats: noopRender,
     }), /no usable aggregate_local/);
+  });
+});
+describe("free-text finding -> pipeline field", () => {
+  it("maps the real ch-02 finding to ground", () => {
+    assert.equal(mapFinding("The background is bright white instead of the required dark theme.").field, "ground");
+    assert.equal(mapFinding("The video uses a minimalist aesthetic with high white space, conflicting with the dark, moody legal aesthetic").field, "ground");
+  });
+  it("maps title/typography to headline", () => {
+    assert.equal(mapFinding("the title competes with the caption").field, "headline");
+  });
+  it("returns null when nothing matches", () => {
+    assert.equal(mapFinding("something is off"), null);
+  });
+  it("refuses to guess when two rules disagree", () => {
+    const m = mapFinding("the background colour clashes with the chart");
+    assert.ok(m.ambiguous && m.ambiguous.length > 1, "ambiguity must be reported, not resolved");
+  });
+  it("is a short table, not a parser", () => {
+    assert.ok(FINDING_FIELD_MAP.length <= 10, `table has ${FINDING_FIELD_MAP.length} rules`);
+  });
+});
+
+describe("routing: other -> mapped, ambiguous, direct", () => {
+  const beats = () => [
+    { index: 0, ground: "white", headline: "A", data: { value: 1 }, visual_type: "TYPE" },
+  ];
+  it("routes a mapped other to a revision and keeps the finding text", () => {
+    const { revisions, unresolved } = resolveRevisions([{ beat_index: 0, element: "other", finding: "background is bright white" }], beats());
+    assert.equal(unresolved.length, 0);
+    assert.equal(revisions[0].element, "ground");
+    assert.equal(revisions[0].via, "keyword-map");
+    assert.match(revisions[0].finding, /bright white/);
+  });
+  it("routes a direct field name unchanged", () => {
+    const { revisions } = resolveRevisions([{ beat_index: 0, element: "headline", finding: "x" }], beats());
+    assert.equal(revisions[0].element, "headline");
+    assert.equal(revisions[0].via, null);
+  });
+  it("leaves an unmappable finding unresolved but PRESERVES the text", () => {
+    const { revisions, unresolved } = resolveRevisions([{ beat_index: 0, element: "other", finding: "something is off" }], beats());
+    assert.equal(revisions.length, 0);
+    assert.equal(unresolved.length, 1);
+    assert.equal(unresolved[0].finding, "something is off", "the observation must survive to provenance");
+  });
+  it("leaves an ambiguous finding unresolved", () => {
+    const { revisions, unresolved } = resolveRevisions([{ beat_index: 0, element: "other", finding: "the background colour clashes with the chart" }], beats());
+    assert.equal(revisions.length, 0);
+    assert.match(unresolved[0].why, /more than one field/);
+  });
+});
+
+describe("ch-02 self-repair, end to end on the loop", () => {
+  it("spends a retry on the white-ground finding instead of routing to human review", async () => {
+    const rendered = [];
+    const r = await runEvalLoop({
+      plan: { beats: [{ index: 0, ground: "white", headline: "A" }, { index: 1, ground: "white", headline: "B" }] },
+      runId: "ch02", channel: 2,
+      layer1: async () => ({ pass: true, failures: [] }),
+      layer2: async () => ({ advisory_score: 0.61 }),
+      layer3: async ({ attempt }) => attempt === 0
+        ? { axes: {}, aggregate_local: 4.7, weak_beats: [
+            { beat_index: 0, element: "other", finding: "The background is bright white instead of the required dark theme." },
+            { beat_index: 1, element: "other", finding: "minimalist aesthetic with high white space, conflicting with the dark legal aesthetic" },
+          ] }
+        : { axes: {}, aggregate_local: 9, weak_beats: [] },
+      revise: async (revisions, { plan: p }) => {
+        const next = structuredClone(p);
+        for (const r2 of revisions) next.beats[r2.beat_index].ground = "dark";
+        return { planPatch: next, changedBeats: revisions.map((x) => x.beat_index) };
+      },
+      renderBeats: async (idx) => rendered.push(...idx),
+    });
+    assert.equal(r.accepted, true);
+    assert.equal(r.retries, 1, "the finding now costs a retry instead of nothing");
+    assert.deepEqual(rendered.sort(), [0, 1]);
+    assert.equal(r.plan.beats[0].ground, "dark");
+    assert.equal(r.plan.beats[1].ground, "dark");
   });
 });

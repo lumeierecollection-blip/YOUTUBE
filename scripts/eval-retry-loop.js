@@ -46,12 +46,60 @@ export const ACCEPT_THRESHOLD = 7.0;
 export const RETRY_CAP = 3;
 
 /**
- * The element vocabulary a partial re-render may address.
+ * Free-text finding -> pipeline field.
  *
- * Sourced from renderedAs() in render-and-qa.js — the fields a beat actually
- * renders from — rather than from Layer 3's own vocabulary. Layer 3 names what
- * looks wrong ("color palette", "visual style"), which is frequently NOT a
- * field: those become unresolved, deliberately.
+ * Gemini reports in its own vocabulary. On the one real defect Layer 3 has found
+ * (ch-02's white ground against a dark legal spec) it said "color palette" and
+ * "visual style" — neither is a field, so both were unresolved and the loop was
+ * inert on the only defect it has evidence for.
+ *
+ * So an `element: "other"` finding gets ONE keyword pass over this table. Rules
+ * are deliberately few and each names the field it produces, because a long
+ * table stops being a mapping and becomes a parser that will confidently
+ * mis-route. A rule only fires when its keywords are present; a finding that
+ * matches nothing, or matches two rules pointing at DIFFERENT fields, stays
+ * unresolved. Ambiguity resolves to human review, never to a guess.
+ *
+ * ground is the field that matters most here: it is a real beat field, read by
+ * renderedAs() through `canvas`, and it is what a white-versus-dark complaint is
+ * actually about.
+ */
+export const FINDING_FIELD_MAP = Object.freeze([
+  { field: "ground", keywords: ["background", "backdrop", "ground", "palette", "colour", "color", "white space", "whitespace", "aesthetic"] },
+  { field: "headline", keywords: ["headline", "title", "heading", "typography hierarchy"] },
+  { field: "lead_in", keywords: ["lead-in", "lead in", "kicker", "subhead", "sub-head"] },
+  { field: "composition", keywords: ["composition", "layout", "balance", "spacing", "alignment"] },
+  { field: "visual_type", keywords: ["chart", "graph", "map", "counter", "number", "diagram", "visual type"] },
+  { field: "data", keywords: ["data", "figure", "value", "statistic", "number is wrong", "incorrect figure"] },
+  { field: "motion_tier", keywords: ["motion", "timing", "pacing", "animation", "stutter"] },
+]);
+
+/**
+ * Map one free-text finding to a field, or null.
+ * Returns { field, via } on a confident single match, { ambiguous: [...] } when
+ * two rules disagree, and null when nothing matches.
+ */
+export function mapFinding(finding) {
+  const text = String(finding || "").toLowerCase();
+  if (!text.trim()) return null;
+  const hits = [];
+  for (const rule of FINDING_FIELD_MAP) {
+    if (rule.keywords.some((k) => text.includes(k))) hits.push(rule.field);
+  }
+  const distinct = [...new Set(hits)];
+  if (distinct.length === 0) return null;
+  if (distinct.length > 1) return { ambiguous: distinct };
+  return { field: distinct[0] };
+}
+
+/**
+ * Resolve Layer 3 weak beats into revisions.
+ *
+ * Direct field names route straight through. `element: "other"` gets one
+ * keyword pass over FINDING_FIELD_MAP; a confident match routes to a retry, an
+ * ambiguous or empty one stays unresolved — but the free-text `finding` is
+ * always preserved, so a human reading provenance sees the observation even
+ * when the loop cannot act on it.
  */
 export function resolveRevisions(weakBeats, beats) {
   const revisions = [];
@@ -59,19 +107,33 @@ export function resolveRevisions(weakBeats, beats) {
   for (const wb of weakBeats || []) {
     const beatIndex = Number.isInteger(wb.beat_index) ? wb.beat_index : null;
     const element = String(wb.element || "").trim();
-    if (!ADDRESSABLE_ELEMENTS.includes(element)) {
-      unresolved.push({ ...wb, why: `element "${element || "(empty)"}" is not a field a beat renders from` });
-      continue;
-    }
+    const finding = wb.finding || wb.reason || "";
+    const base = { beat_index: beatIndex, axis: wb.axis || null, finding, reason: wb.reason || null };
+
     if (beatIndex === null || beatIndex < 0 || !beats || beats[beatIndex] === undefined) {
-      unresolved.push({ ...wb, why: `beat_index ${wb.beat_index} does not identify a beat in the plan` });
+      unresolved.push({ ...wb, finding, why: `beat_index ${wb.beat_index} does not identify a beat in the plan` });
       continue;
     }
-    if (!(element in beats[beatIndex])) {
-      unresolved.push({ ...wb, why: `beat ${beatIndex} has no "${element}" field to revise` });
+
+    let target = element;
+    let via = null;
+    if (!ADDRESSABLE_ELEMENTS.includes(element)) {
+      const m = mapFinding(finding);
+      if (m?.field) { target = m.field; via = "keyword-map"; }
+      else if (m?.ambiguous) {
+        unresolved.push({ ...base, why: `finding matches more than one field (${m.ambiguous.join(", ")}) — not guessed` });
+        continue;
+      } else {
+        unresolved.push({ ...base, why: `element "${element || "(empty)"}" is not a field a beat renders from, and no keyword mapped the finding` });
+        continue;
+      }
+    }
+
+    if (!(target in beats[beatIndex])) {
+      unresolved.push({ ...base, element: target, why: `beat ${beatIndex} has no "${target}" field to revise` });
       continue;
     }
-    revisions.push({ beat_index: beatIndex, element, current: beats[beatIndex][element], axis: wb.axis || null, reason: wb.reason || null });
+    revisions.push({ ...base, element: target, via, current: beats[beatIndex][target] });
   }
   return { revisions, unresolved };
 }

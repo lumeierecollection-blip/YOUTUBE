@@ -73,6 +73,7 @@ export const ADDRESSABLE_ELEMENTS = [
   "headline",
   "lead_in",
   "data",
+  "ground",
   "composition",
   "motion_tier",
   "camera_focus",
