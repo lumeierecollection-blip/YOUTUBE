@@ -56,6 +56,12 @@ on:
         description: "Skip process-queue: nothing is flipped public by this run (uploads stay private)"
         type: boolean
         default: false
+      eval_loop_mode:
+        description: 'Eval loop mode: off (default), dry (decide and record), live (act)'
+        required: false
+        default: 'off'
+        type: choice
+        options: [off, dry, live]
 
 concurrency:
   group: daily-pipeline-${{ github.ref }}
@@ -63,6 +69,9 @@ concurrency:
 
 env:
   NODE_VERSION: "22"
+  # Eval loop mode. Default off; the schedule trigger leaves inputs empty, which
+  # evalLoopMode() reads as "off", so cron never enters the loop.
+  EVAL_LOOP_MODE: ${{ inputs.eval_loop_mode }}
   PYTHON_VERSION: "3.11"
   OLLAMA_MODEL: "qwen2.5:3b"
   OLLAMA_URL: "http://127.0.0.1:11434"
