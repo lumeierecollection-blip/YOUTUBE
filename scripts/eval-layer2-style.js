@@ -53,7 +53,7 @@ import { join } from "node:path";
 export const MODEL = "Xenova/clip-vit-base-patch32";
 export const MIN_FRAMES = 30;
 export const PERCENTILE = 0.10;
-/** Spec §1.3: more than this fraction of frames below the floor fails the layer. */
+/** The escalation ratio Layer 2 USED to gate at. Retained only so the demotion is legible. */
 export const ESCALATION_RATIO = 0.40;
 
 /**
@@ -195,27 +195,65 @@ export function deriveThreshold(embeddings, percentile = PERCENTILE) {
 }
 
 /**
- * Score candidate frames against the shared reference set.
+ * Score candidate frames against the shared reference set, and return NUMBERS.
+ *
+ * There is deliberately no pass/fail here. Layer 2 was demoted to a
+ * non-blocking style advisory after measurement showed CLIP-SIM cannot do the
+ * job it was originally given: a solid white frame scores 0.6783 against 12
+ * reference frames and 0.8089 against 40, against a floor of 0.4570, so it
+ * passed the gate by a wide margin, and no reachable percentile changed that.
+ * The blank/fallback/wrong-media cases this layer was meant to catch are caught
+ * deterministically and for free by local-audit.cjs (frames-nonempty,
+ * middle-zone-filled, canvas-ground, popTransitions).
+ *
+ * So this reports how far a render sits from the motion-graphics reference
+ * family and hands the number to Layer 3, which decides whether it is good.
+ * It never gates, never escalates, never triggers a retry.
  *
  * Per frame: max similarity across all reference frames — a frame is judged
- * against its nearest neighbour in the family, not penalised by the family's
- * average. The layer fails only when MORE THAN ESCALATION_RATIO of frames are
- * below the floor: Layer 2 is a coarse filter and a few sub-floor frames are
- * not a failure (spec §1.3).
+ * against its nearest neighbour in the family, not penalised by its average.
  */
 export function scoreCandidate(candidateEmbeddings, referenceEmbeddings, threshold, timestamps = []) {
   const sims = candidateEmbeddings.map((e) => Math.max(...referenceEmbeddings.map((r) => cosine(e, r))));
   const below = sims.map((s, i) => ({ i, similarity: s, timestamp: timestamps[i] ?? null }))
     .filter((x) => x.similarity < threshold);
-  const ratio = candidateEmbeddings.length ? below.length / candidateEmbeddings.length : 0;
   return {
-    pass: ratio <= ESCALATION_RATIO,
-    ratio_below_floor: ratio,
+    ratio_below_floor: candidateEmbeddings.length ? below.length / candidateEmbeddings.length : 0,
+    below_floor_count: below.length,
     below_floor: below,
     frame_count: candidateEmbeddings.length,
     similarities: sims,
     threshold,
   };
+}
+
+/**
+ * The advisory: one number per render — mean max-similarity to the reference
+ * family — plus the counts that produced it. Numbers only, never a verdict.
+ *
+ * Returns { advisory_score, frame_count, below_floor_count, timestamps_below_floor }.
+ */
+export function scoreStyle(candidateEmbeddings, referenceEmbeddings, threshold, timestamps = []) {
+  const s = scoreCandidate(candidateEmbeddings, referenceEmbeddings, threshold, timestamps);
+  const advisory_score = s.similarities.length
+    ? s.similarities.reduce((a, b) => a + b, 0) / s.similarities.length
+    : 0;
+  return {
+    advisory_score,
+    frame_count: s.frame_count,
+    below_floor_count: s.below_floor_count,
+    timestamps_below_floor: s.below_floor.map((b) => b.timestamp).filter((t) => t !== null),
+  };
+}
+
+/**
+ * scoreStyle(renderPath) — extract, embed, score. The one-call form Layer 3
+ * consumes. Loading embeddings is separated so tests can pass vectors directly.
+ */
+export async function scoreStyleFile(renderPath, { framesDir, references, threshold, timestamps } = {}) {
+  const { files, timestamps: ts } = extractFrames(renderPath, framesDir || `data/audit/l2-candidate/${Date.now()}`);
+  const embs = await embedFiles(files);
+  return { ...scoreStyle(embs, references, threshold, timestamps || ts), renderPath, files };
 }
 
 export function formatTimestamp(sec) {
@@ -263,7 +301,7 @@ async function main() {
     percentile: derived.percentile,
     references: perRef.map((p) => p.reference_id),
     model: MODEL,
-    escalation_ratio: ESCALATION_RATIO,
+    note: "advisory only - this threshold no longer gates, escalates or retries",
     generated_at: new Date().toISOString(),
     per_reference: perRef,
   };
