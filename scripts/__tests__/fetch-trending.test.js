@@ -7,9 +7,19 @@ const T = require("../fetch-trending.cjs");
 
 describe("fetch-trending CATEGORY map", () => {
   it("maps the four new channels so they stop falling through to unseeded discovery", () => {
-    for (const [bare, expected] of [[5, 25], [6, 27], [8, 25], [10, 27]]) {
+    for (const [bare, expected] of [[5, 25], [6, 24], [8, 27], [10, 27]]) {
       assert.ok(T.CATEGORY[bare], `bare id ${bare} must be mapped or the channel is unseeded`);
       assert.equal(T.CATEGORY[bare], expected);
+    }
+  });
+
+  it("CATEGORY matches each new channel's CURRENT niche, not the pre-widening one", () => {
+    // The niches were widened on 2026-10-07. If someone edits a niche without
+    // re-checking the category, this is what catches the drift.
+    const expected = { "ch-05": 25, "ch-06": 24, "ch-08": 27, "ch-10": 27 };
+    for (const [channel_id, cat] of Object.entries(expected)) {
+      const row = T.findChannel(T.bareId(channel_id), T.loadChannels());
+      assert.equal(T.CATEGORY[T.bareId(channel_id)], cat, `${channel_id} ("${row.niche}")`);
     }
   });
 

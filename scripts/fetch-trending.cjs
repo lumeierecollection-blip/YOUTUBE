@@ -31,13 +31,18 @@ const CACHE_MS = 12 * 3600 * 1000;
 const WEEK_MS = 7 * 24 * 3600 * 1000;
 // Bare channel id (the form daily-pipeline-v2.yml:116 produces by stripping
 // "ch-" and leading zeros) -> YouTube video category. Owner's mapping.
-//   5  ch-05 Broadsheet  "Newspaper & Print Media History"  -> 25 News & Politics
-//   6  ch-06 Archive Room "Archival Footage & Lost Media"  -> 27 Education
-//   8  ch-08 Ledger      "How Institutions Accumulated"     -> 25 News & Politics
-//   10 ch-10 Margin Note "Ideas & Concept Explainers"      -> 27 Education
+//   5  ch-05 Broadsheet   "True Crime & Investigative Journalism"  -> 25 News & Politics
+//   6  ch-06 Archive Room "Cold Cases & Unsolved Mysteries"        -> 24 Entertainment
+//   8  ch-08 Ledger       "Financial History & Institutional Collapse" -> 27 Education
+//   10 ch-10 Margin Note  "Concept Explainers & Intellectual History"   -> 27 Education
+// 6 moved 27 -> 24 and 8 moved 25 -> 27 when the niches widened on
+// 2026-10-07. Cold cases are a documentary/entertainment genre, not schooling;
+// Ledger's pillars are timeline and formation ("institutional timeline
+// breakdowns", "corporate formation stories"), which is history, even though
+// "institutional collapse" reads current-affairs.
 // 48 is NOT dead: channels.json has no row with id=48, but it does have
 // channel_id "ch-48" (Cold Case DNA), and this map is keyed by bare id.
-const CATEGORY = { 1: 27, 2: 25, 5: 25, 6: 27, 8: 25, 9: 25, 10: 27, 26: 25, 44: 27, 48: 28 };
+const CATEGORY = { 1: 27, 2: 25, 5: 25, 6: 24, 8: 27, 9: 25, 10: 27, 26: 25, 44: 27, 48: 28 };
 const STOP = new Set("the a an and or but of to in on for with at by from is are was were be been this that these those it its as into about how why what when who your you my our we they he she his her their not no new vs after over more most just all can will has have had do does did i me".split(" "));
 
 const log = (m) => console.log(`[trending] ${m}`);
