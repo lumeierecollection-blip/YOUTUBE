@@ -1948,9 +1948,14 @@
           "topic": "AMLC Reveals Billions in Suspicious Duterte-Carpio Transactions",
           "slug": "amlc-duterte-carpio-money-trail-investigation",
           "reserved_at": "2026-10-05T23:03:13.510Z"
+        },
+        {
+          "topic": "Former US Congressman David Rivera Sentenced to 10 Years for Venezuelan Lobbying",
+          "slug": "david-rivera-10-year-venezuelan-lobbying-sentence",
+          "reserved_at": "2026-10-06T12:26:02.402Z"
         }
       ],
-      "last_generated": "2026-10-05T23:03:13.510Z"
+      "last_generated": "2026-10-06T12:26:02.403Z"
     },
     "27": {
       "channel_name": "Trial Files",
