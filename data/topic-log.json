@@ -867,9 +867,14 @@
           "topic": "LAPD Revises Pretext Stop Policy After IG Compliance Audit",
           "slug": "lapd-pretext-stop-policy-audit-october-2026",
           "reserved_at": "2026-10-05T23:02:20.929Z"
+        },
+        {
+          "topic": "California's Revamped No Robo Bosses Act Restricts AI Discipline",
+          "slug": "california-no-robo-bosses-act-ai-discipline",
+          "reserved_at": "2026-10-06T00:04:14.942Z"
         }
       ],
-      "last_generated": "2026-10-05T23:02:20.929Z"
+      "last_generated": "2026-10-06T00:04:14.942Z"
     },
     "3": {
       "channel_name": "AI Tested",
