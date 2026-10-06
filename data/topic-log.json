@@ -998,13 +998,7 @@
     "5": {
       "channel_name": "Harmony",
       "niche": "Music Theory & Composition",
-      "used_topics": [
-        {
-          "topic": "Google Flow Music and Vibe Coding Custom Production Plugins",
-          "slug": "google-flow-music-vibe-coding-plugins",
-          "reserved_at": "2026-10-06T23:49:08.659Z"
-        }
-      ],
+      "used_topics": [],
       "last_generated": "2026-10-06T23:49:08.659Z"
     },
     "6": {
