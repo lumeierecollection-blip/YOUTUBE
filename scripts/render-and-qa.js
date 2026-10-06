@@ -57,6 +57,8 @@ const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 const GEMINI_PLAN_JS = join(__dirname, "gemini-visual-plan.js");
 const CHALLENGER_JS = join(__dirname, "gemini-visual-challenger.js");
 const ELEMENT_REMEDIATION_JS = join(__dirname, "beat-element-remediation.js");
+const { runEvalLoop, loopEnabled, evalLoopMode, writeLoopAudit } = await import("./eval-retry-loop.js");
+const { judge } = await import("./eval-layer3-judge.js");
 
 async function challengePlan(channelId, planPath, srtPath, tag) {
   const out = planPath.replace(/\.json$/, `-challenge${tag}.json`);
@@ -1975,6 +1977,64 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // unchanged: returned with qaGatePass false and removed by main().
     const fr = frameReviewVerdict(geminiReport);
     console.log(`[frame-review] attempt ${attempt}: ${fr.pass ? "PASS" : fr.error ? "ERROR" : "FAIL"} — ${fr.reason}`);
+
+    // ── Three-layer eval loop (EVAL_LOOP_MODE, default off) ────────────────
+    // Runs after the frame review and BEFORE its accept/reject branch, so it
+    // sees a video that already passed the objective pixel gate.
+    //
+    // off is the default and skips everything: below this block nothing changes.
+    // dry reaches a decision and records what it would do, touching no pixels.
+    // live acts.
+    //
+    // It does NOT route. Its decision is logged to data/audit/eval-loop/ and
+    // nothing here branches on it. The challenger-rejection path and the
+    // backup-audit routing below are deliberately untouched: making this loop
+    // able to hold a video back is a separate decision, and a loop that can
+    // re-render AND withhold in its first production push is two new risks at
+    // once. Nothing it decides can ship, block, or delete anything yet.
+    let evalLoopResult = null;
+    if (loopEnabled()) {
+      const mode = evalLoopMode();
+      const t0 = Date.now();
+      const wouldRerender = [];
+      try {
+        evalLoopResult = await runEvalLoop({
+          plan: plan,
+          runId: `${basename(scriptPath, extname(scriptPath))}-a${attempt}`,
+          channel: channelId,
+          layer1: async () => ({ pass: qa.gatePass, failures: [] }),
+          layer2: async () => ({ advisory_score: null, note: "advisory not wired at this call site yet" }),
+          layer3: async ({ layer2Advisory }) => judge(result.outputPath, { channelId, layer2Advisory: layer2Advisory?.advisory_score ?? null }),
+          revise: async () => ({ planPatch: null }),
+          renderBeats: async (indices, meta) => {
+            if (mode === "dry") { wouldRerender.push(...indices); return; }
+            throw new Error(`partial re-render of beats ${indices.join(",")} (${meta.reason}) is not expressible at this call site — a full re-render is not permitted`);
+          },
+          onEvent: (type, d) => console.log(`[eval-loop:${mode}] ${type} ${JSON.stringify(d)}`),
+        });
+      } catch (e) {
+        // The loop is an addition; it must never be able to fail a render that
+        // already passed the pixel gate.
+        console.error(`[eval-loop:${mode}] could not run: ${e.message}`);
+        evalLoopResult = { accepted: false, humanReview: true, error: e.message };
+      }
+      const decision = evalLoopResult?.accepted ? "accept" : evalLoopResult?.humanReview ? "human_review" : "retry";
+      const auditPath = writeLoopAudit({
+        channel: channelId,
+        runId: `${basename(scriptPath, extname(scriptPath))}-a${attempt}`,
+        mode,
+        decision,
+        retries_spent: evalLoopResult?.retries ?? 0,
+        weak_beats: evalLoopResult?.events?.filter((e) => e.type === "layer3-fail") ?? [],
+        would_rerender: wouldRerender,
+        rendered: [],
+        unresolved: evalLoopResult?.unresolved ?? [],
+        why: evalLoopResult?.why ?? evalLoopResult?.error ?? null,
+        duration_ms: Date.now() - t0,
+      });
+      console.log(`[eval-loop:${mode}] ${decision} — retries=${evalLoopResult?.retries ?? 0} audit=${auditPath}`);
+    }
+
     if (fr.pass || !qa.gatePass) {
       if (fr.pass || attempt === MAX_CORRECTION_LOOPS || fr.error) {
         // A failed pixel gate (or a failed / unrun review) used to return

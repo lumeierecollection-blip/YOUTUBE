@@ -46,6 +46,51 @@ export const ACCEPT_THRESHOLD = 7.0;
 export const RETRY_CAP = 3;
 
 /**
+ * EVAL_LOOP_MODE: off (default) | dry | live.
+ *
+ * `off` is the daily-cron default and must leave the pipeline byte-identical to
+ * before this loop existed. `dry` runs the loop to a decision and records what
+ * it WOULD do without touching the video. `live` acts.
+ *
+ * Reading the env var rather than a config field on purpose: turning a
+ * decision-maker loose in production should be a one-word change at the call
+ * site, and greppable in the workflow file.
+ */
+export const EVAL_LOOP_MODES = Object.freeze(["off", "dry", "live"]);
+
+export function evalLoopMode(env = process.env) {
+  const raw = String(env.EVAL_LOOP_MODE ?? "").trim().toLowerCase();
+  if (raw === "") return "off";
+  if (!EVAL_LOOP_MODES.includes(raw)) {
+    throw new Error(`EVAL_LOOP_MODE="${env.EVAL_LOOP_MODE}" is not one of ${EVAL_LOOP_MODES.join(", ")}. Refusing to guess.`);
+  }
+  return raw;
+}
+
+export function loopEnabled(env = process.env) {
+  return evalLoopMode(env) !== "off";
+}
+
+/**
+ * Audit record for the loop's decision. Separate from the Layer 3 provenance in
+ * data/audit/layer3/: that file records what the JUDGE saw, this records what
+ * the LOOP decided to do about it.
+ *
+ * In dry mode `would_rerender` is populated and `rendered` stays empty — the
+ * difference between the two is the whole point of the mode.
+ */
+export function writeLoopAudit({ channel, runId, mode, decision, weak_beats = [], retries_spent = 0, would_rerender = [], rendered = [], duration_ms, why = null, unresolved = [] }, { root = ROOT } = {}) {
+  const dir = join(root, "data", "audit", "eval-loop", String(channel));
+  mkdirSync(dir, { recursive: true });
+  const path = join(dir, `${runId}.jsonl`);
+  appendFileSync(path, JSON.stringify({
+    ts: new Date().toISOString(), mode, decision, channel: String(channel), run_id: runId,
+    retries_spent, would_rerender, rendered, weak_beats, unresolved, why, duration_ms,
+  }) + "\n");
+  return path;
+}
+
+/**
  * Free-text finding -> pipeline field.
  *
  * Gemini reports in its own vocabulary. On the one real defect Layer 3 has found
