@@ -2851,7 +2851,7 @@
     },
     {
       "id": 5,
-      "niche": "Newspaper & Print Media History",
+      "niche": "True Crime & Investigative Journalism",
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "bw",
@@ -2897,7 +2897,7 @@
     },
     {
       "id": 6,
-      "niche": "Archival Footage & Lost Media",
+      "niche": "Cold Cases & Unsolved Mysteries",
       "style": "cinematic-documentary",
       "bg_mode": "black",
       "asset_treatment": "bw",
@@ -2943,7 +2943,7 @@
     },
     {
       "id": 8,
-      "niche": "How Institutions Accumulated",
+      "niche": "Financial History & Institutional Collapse",
       "style": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "color",
@@ -2989,7 +2989,7 @@
     },
     {
       "id": 10,
-      "niche": "Ideas & Concept Explainers",
+      "niche": "Concept Explainers & Intellectual History",
       "style": "minimal",
       "bg_mode": "white",
       "asset_treatment": "color",
