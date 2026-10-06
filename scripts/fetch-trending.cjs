@@ -119,7 +119,7 @@ function rankAndFilter(recent, chCfg, limit = 10) {
   const ranked = [...recent].sort((a, b) => b.velocity - a.velocity).map(({ _pub, ...v }) => v);
   const terms = nicheTerms(chCfg?.niche, chCfg?.content_pillars);
   const { kept, dropped, fallback } = applyNicheFilter(ranked, terms);
-  return { top: kept.slice(0, limit), dropped, fallback };
+  return { top: kept.slice(0, limit), dropped, fallback, terms };
 }
 
 function applyNicheFilter(top, terms) {
@@ -185,9 +185,9 @@ async function main() {
     return { id: v.id, title: v.snippet?.title || "", tags: (v.snippet?.tags || []).slice(0, 15), viewCount: views,
       publishedAt: v.snippet?.publishedAt, channelTitle: v.snippet?.channelTitle || "", velocity: Math.round(views / days), _pub: pub };
   }).filter((v) => Number.isFinite(v._pub) && now - v._pub <= WEEK_MS);
-  const top = rankAndFilter(recent, chCfg);
+  const { top, dropped, fallback, terms: nTerms } = rankAndFilter(recent, chCfg);
   mkdirSync(OUT, { recursive: true });
-  writeFileSync(file, JSON.stringify({ fetched_at: new Date().toISOString(), channel: ch, category, source: "youtube-data-api-v3", niche_filter: { terms: nicheTerms(chCfg?.niche, chCfg?.content_pillars).length, dropped, fallback }, videos: top }, null, 2) + "\n");
+  writeFileSync(file, JSON.stringify({ fetched_at: new Date().toISOString(), channel: ch, category, source: "youtube-data-api-v3", niche_filter: { terms: nTerms.length, dropped, fallback }, videos: top }, null, 2) + "\n");
   const kw = keywords(items.map((v) => v.snippet?.title || ""));
   writeFileSync(join(OUT, `${ch}-keywords.json`), JSON.stringify({ fetched_at: new Date().toISOString(), channel: ch, category, from_titles: items.length, min_titles: 5, keywords: kw }, null, 2) + "\n");
   log(`ch-${ch}: fetched ${items.length}, kept ${recent.length} (last 7 days), top ${top.length} by velocity; ${kw.length} hot term(s)`);
@@ -195,5 +195,5 @@ async function main() {
   await require("./trending-entities.cjs").writeEntities(ch);
 }
 
-module.exports = { keywords, CATEGORY, bareId, loadChannels, findChannel, assertNoKeyCollision, nicheTerms, nicheMatch, applyNicheFilter, rankAndFilter };
+module.exports = { keywords, CATEGORY, bareId, loadChannels, findChannel, assertNoKeyCollision, nicheTerms, nicheMatch, applyNicheFilter, rankAndFilter, main };
 if (require.main === module) main().catch((e) => { log(`unexpected error (${e.message}), falling back to unseeded research`); process.exit(0); });
