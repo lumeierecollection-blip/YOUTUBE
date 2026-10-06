@@ -56,6 +56,7 @@ const VISUAL_QA_JS = join(__dirname, "gate-visual-qa.js");
 const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 const GEMINI_PLAN_JS = join(__dirname, "gemini-visual-plan.js");
 const CHALLENGER_JS = join(__dirname, "gemini-visual-challenger.js");
+const ELEMENT_REMEDIATION_JS = join(__dirname, "beat-element-remediation.js");
 
 async function challengePlan(channelId, planPath, srtPath, tag) {
   const out = planPath.replace(/\.json$/, `-challenge${tag}.json`);
@@ -63,6 +64,33 @@ async function challengePlan(channelId, planPath, srtPath, tag) {
     CHALLENGER_JS, "--plan", planPath, "--srt", srtPath, "--channel", String(channelId), "--out", out,
   ], { label: `challenger ${channelId}` });
   return { code, review: readJsonSafe(out) };
+}
+
+/**
+ * One decision per blocking beat: which FIELD is wrong and what it should say
+ * instead (scripts/beat-element-remediation.js). Decision only — the re-planner
+ * still rewrites the whole plan and the renderer still re-renders the whole
+ * video, which is why the next line keeps asking geminiPlan() for a full plan.
+ *
+ * Returns { corrections, source }. `source` is "element" only when the layer
+ * actually produced something; the caller falls back to the generic per-beat
+ * correction otherwise, so a provider that cannot answer costs specificity
+ * rather than costing the re-plan.
+ */
+async function elementCorrections(planPath, reviewPath, srtPath) {
+  const out = planPath.replace(/\.json$/, "-element-corrections.json");
+  const { code } = await runChild("node", [
+    ELEMENT_REMEDIATION_JS, "--plan", planPath, "--review", reviewPath, "--srt", srtPath, "--out", out,
+  ], { label: "element-corrections" });
+  const doc = readJsonSafe(out);
+  const corrections = Array.isArray(doc?.corrections) ? doc.corrections : [];
+  if (!corrections.length) {
+    console.warn(`[element] no element-level correction (exit ${code}) — falling back to the generic per-beat correction`);
+    return { corrections: [], source: "none" };
+  }
+  console.log(`[element] ${corrections.length} element correction(s) from ${(doc.unresolved || []).length} unresolved`);
+  for (const c of corrections) console.log(`   beat ${c.beat} ${c.element}: ${c.fix}`);
+  return { corrections, source: "element" };
 }
 const LOCAL_AUDITOR_JS = join(__dirname, "local-visual-auditor.js");
 // 3 attempts: initial + 2 corrections. Was 2 (initial + ONE correction),
@@ -1720,12 +1748,22 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       const firstPlan = readJsonSafe(planPath), firstReview = challenge.review;
       const blocking = (challenge.review?.beats || []).filter((b) => b.verdict === "MISMATCH" || b.verdict === "CONTRADICTION");
       const corrFile = planPath.replace(/\.json$/, "-challenger-corrections.json");
-      writeFileSync(corrFile, JSON.stringify({ corrections: blocking.map((b) => ({
+      // Per-element first: which field of the beat is actually wrong. The
+      // generic sentence below is the floor, not the target — it gave every
+      // rejected beat the same instruction, so the planner had no way to tell a
+      // wrong visual_type from a wrong headline.
+      const element = await elementCorrections(
+        planPath,
+        planPath.replace(/\.json$/, "-challenge.json"),
+        srtPath,
+      );
+      const corrections = element.corrections.length ? element.corrections : blocking.map((b) => ({
         beat: b.beat_index,
         problem: `${b.verdict}: ${b.reason} (sentence: "${b.sentence}")`,
         fix: "re-plan this beat so its subject, change and on-screen text show exactly what the sentence says — no claim the sentence does not make",
-      })) }, null, 2) + "\n");
-      console.log(`[challenger] ${blocking.length} blocking beat(s) — re-planning once with them as corrections`);
+      }));
+      writeFileSync(corrFile, JSON.stringify({ corrections }, null, 2) + "\n");
+      console.log(`[challenger] ${blocking.length} blocking beat(s) — re-planning once with ${corrections.length} correction(s) (${element.source})`);
       planPath = await geminiPlan(channelId, scriptPath, corrFile);
       const replanned = planPath ? readJsonSafe(planPath) : null;
       if (!replanned?.beats?.length) {
