@@ -1267,6 +1267,23 @@ export function CanvasVideo({ plan }) {
   // (the photo group may pop on its word — word-level sync — so its own arrival frame is used)
   const photoAt = popGroups(c, cLayout).find((g) => g.key === "photo")?.at ?? 0;
   const onPhoto = PHOTO_COMPS.includes(cLayout.composition) && !!c.photo && local >= start + photoAt + 3;
+  // The outgoing beat must stay mounted until the incoming one actually has something on
+  // screen. It used to be unmounted on a fixed count (`local <= POP.OUT`, 6 frames), which
+  // can only honour "the frame is never empty" if the incoming beat's FIRST group always
+  // lands inside those 6 frames. It does not: arrival is content-dependent, and
+  // entrance_style "visual-first" on a TYPE beat schedules the top band — the headline,
+  // i.e. the sentence's own statement — at `at: ENTRANCE.TEXT_AFTER_VISUAL` (14). Measured
+  // on run 37380168306 ch-2 (avalonbay beat 5, TYPE-FULL + visual-first): ink rows above
+  // the caption fell 360 -> 319 -> 0 for seven frames (f6-f12) and only returned at f14, so
+  // pop-transitions rejected the video. The same class is recorded at pop-groups.js:45-48
+  // from run 36985423031 ch-44.
+  //
+  // So the gate is the incoming beat's own opacity, not a frame budget. The outgoing beat
+  // keeps rendering its LAST frame (live={prev.duration_frames - 1}), so holding it is a
+  // complete, static frame - not a frozen or half-drawn one - and it releases as soon as the
+  // incoming group is visible.
+  const inGroups = popGroups(c, cLayout);
+  const incomingHasInk = inGroups.some((g) => popInState(local - start - g.at).o > 0.001);
   return (
     <ShadowOn.Provider value={false}>
     {/* Uniform white on every beat (backgrounds.js); a full-bleed photo beat
@@ -1279,7 +1296,7 @@ export function CanvasVideo({ plan }) {
         {bg.rule ? <div style={{ position: "absolute", left: L_EDGE, top: BG_RULE.y, width: R_EDGE - L_EDGE, height: BG_RULE.h, backgroundColor: BG_RULE.color }} /> : null}
         {bg.gradient ? <div style={{ position: "absolute", inset: 0, background: BG_GRADIENT }} /> : null}
       </>); })()}
-      {prev && local <= POP.OUT ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} live={prev.duration_frames - 1} /> : null}
+      {prev && (local <= POP.OUT || !incomingHasInk) ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} live={prev.duration_frames - 1} /> : null}
       {/* Micro motion (part D.1, every beat): the composition is never still — a 1 px drift
           across the beat and a 0.3% breath (one cycle per 3 s), about the frame's centre. */}
       <div style={{ position: "absolute", inset: 0, transformOrigin: "540px 960px",
