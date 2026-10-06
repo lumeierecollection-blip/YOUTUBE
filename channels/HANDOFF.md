@@ -1,95 +1,74 @@
-# Channel expansion handoff — 2026-10-06 (final)
+# Channel expansion handoff — fleet run
 
-## All four channels render. All four fail a deterministic gate.
+## §3.0 answered the question it was built to answer
 
-| channel | rendered | failed at | detail |
-|---|---|---|---|
-| ch-05 Broadsheet | yes, 9 beats | **Layer 1 `middle-zone-filled`** | beats 3 & 5 (TYPE-SPLIT) at 13% / 14% vs the 15% floor |
-| ch-06 Archive Room | yes | **beat check** (frame↔sentence) | TYPE beats report "description did not name a buildable element" |
-| ch-07→ch-08 Ledger | yes | **beat check** (frame↔sentence) | same pattern: TYPE beats, beats 2–5 all unbuildable |
-| ch-10 Margin Note | yes, 8 beats | **Layer 1 `canvas-accent`** | "the manifest names no accent colour (channels.json `colors.canvas_accent`)" |
+Fleet run `37540546857`, `channels=1,2,5,6,8,9,10,26,44,49`, one matrix.
 
-Registration → approval → render works for all four. **No channel has reached
-Layer 2 or Layer 3**, so the eval loop still has never run in CI. ch-06 and ch-08
-needed sequential dispatching; the earlier SIGTERM and cancellation were the
-concurrency group, not the channels.
+**The BUILD GATE PASSED for all ten.** `setup` succeeded, and all ten `prep`
+jobs succeeded. That is the outcome §3.0 was testing: the pipeline accepts the
+whole registered fleet. The ch-5/6/8/10 rejections that blocked the previous
+attempt are gone since `cf16b9d`, and nothing in the matrix path objects to
+four new channels.
 
-## Two diagnoses, both measured
+Render results at the time of writing (run still in progress; logs are not
+readable until it completes):
 
-### 1. `middle-zone-filled` is CORRECT — do not tune it
+| channel | render |
+|---|---|
+| ch-1 | failure |
+| ch-5 | failure |
+| ch-6 | failure |
+| ch-8 | failure |
+| ch-9 | failure |
+| ch-10 | failure |
+| ch-2, ch-26, ch-44, ch-49 | still running |
 
-Measured with `local-audit.cjs:653`'s exact arithmetic (W=270 H=480, rows
-y=155..335, a row counts at ≥3 of 270 px with luma < 235, best of the 62% and 90%
-sample points):
+**ch-1 failed too.** That is the most important line in this table: a built
+channel with shipped videos failed in the same run as the four new ones. The
+fleet is not four new channels hitting a new wall — it is the whole fleet
+failing together, which points at something shared (a gate, a quota wall, a
+shared dependency) rather than at the new channels' specs.
 
-| group | frames | mean | p10 | below 15% |
-|---|---|---|---|---|
-| ch-05 Broadsheet (3 refs) | 27 | 99.3% | 100.0% | 0/27 |
-| ch-10 Margin Note | 8 | 94.9% | 80.0% | 0/8 |
-| ch-06 Archive Room | 9 | 100.0% | 100.0% | 0/9 |
-| ch-08 Ledger | 9 | 100.0% | 100.0% | 0/9 |
-| ch-02 Legal Brief (control) | 9 | 73.9% | 33.3% | 0/9 |
+Do not read the four new channels' failures as their own problem until ch-1's
+failure reason is read and compared.
 
-53 of 53 reference frames clear the floor, and the built-channel control clears it
-with the least margin — which is why 15% is defensible. The planned per-channel
-`middle_zone_floor` **must not be implemented**: it would lower the bar for
-styles that do not need lowering and hide a real defect. ch-05's render at
-13–14% is genuinely wrong; the reference is 95–100% filled.
+## §1 landed
 
-Likely cause, not yet confirmed: ch-05's spec carries no middle-zone guidance
-and its `core_objects` are collage nouns (masthead rule, column gutter) that the
-director may be drawing as rules and type only, leaving the middle third bare.
+`6da8809` — `middle-zone-filled` is advisory: it still measures and reports the
+fill value, now carrying `advisory: true, pass: true`, with
+`[ADVISORY - not gating]` appended when it fires. `frames-nonempty` and
+`pop-transitions` stay hard, as do `canvas-fit`, `canvas-coverage`,
+`canvas-accent`, `canvas-type`, `canvas-ground`, `zones-no-overlap`,
+`motion-tiers`, `kinetic-rules`. Suite 192/192.
 
-### 2. `canvas_accent` is missing from all four new channels — actionable now
+**The fleet run was dispatched BEFORE this landed**, so ch-5's result in it
+reflects the old gating. ch-5 must be re-run to see whether the advisory
+change lets it reach Layer 3.
 
-`canvas_accent` exists on 3 of the 6 built channels (ch-01, ch-02, ch-09 — all
-full-canvas). All four new entries omit it, so ch-10 fails `canvas-accent`
-outright. The palette-consistent values already exist as each channel's
-`colors.accent`:
+## Pending, in order
 
-| channel | `colors.accent` | proposed `canvas_accent` |
-|---|---|---|
-| ch-05 | `#2B2B2B` | `#2B2B2B` |
-| ch-06 | `#D8D8D8` | `#D8D8D8` |
-| ch-08 | `#8C5A3C` | `#8C5A3C` |
-| ch-10 | `#1A1A1A` | `#1A1A1A` |
+1. **Read `37540546857` logs** once complete — especially ch-1's. Then compare
+   ch-5/6/8/10 against it. This is the single highest-value read available.
+2. **Re-run ch-10** (`eval_loop_mode=off`, then `dry`, then `live` if dry says
+   retry). ch-10 has no known unresolved failure after `436d321` fixed
+   `canvas_accent`, so it is the cheapest test of "does a new channel work end
+   to end".
+3. **Re-run ch-05** after the advisory change. Report whether Layer 3 accepts or
+   flags the sparse TYPE-SPLIT beats. That answer settles whether the density
+   check was wrong for this style or the render is.
+4. **ch-06 / ch-08 TYPE-fallback** — undiagnosed. The beat-check failures name
+   TYPE beats whose description "did not name a buildable element". `core_objects`
+   was ruled out as the cause (`SPEC-AUDIT.md`): ch-01 resolves 0/6 against the
+   object registry and renders fine. Look at what the director's strategy map
+   does with a channel it does not recognise.
 
-NOT APPLIED, deliberately. `config/channels.json` cannot be round-tripped (it
-stores mojibake — an em dash as the six escape characters `\u00e2\u20ac\u201d` —
-so `JSON.parse` → `JSON.stringify` rewrites seven existing lines), and four
-byte-splice attempts failed before one succeeded. A fifth splice should not be
-attempted without budget to verify it. The byte-splice recipe that worked is in
-`EXPANSION-METHOD.md` §6.
+## Still open
 
-### 3. ch-06 and ch-08 share a second failure — beat check
-
-Both fail the frame↔sentence beat check with the same signature: **TYPE beats
-whose description "did not name a buildable element"** — ch-08 beats 2, 3, 4 and
-5; ch-06 beats 1, 2 and 5. The director fell back to TYPE and then could not
-build what it wrote. This is the same class as the ch-02 finding: a fallback that
-reads as a pass. Both channels' specs list `core_objects` as collage nouns
-(clipped photograph, year marker, terminal line) rather than buildable primitives,
-so the director has nothing to compose with and degrades to prose.
-
-## Next actions
-
-1. Add `canvas_accent` to the four new channels via byte splice (values above).
-2. Compare a ch-05 TYPE-SPLIT beat against its reference frame at the same
-   timestamp, before changing the spec or the check.
-3. Give ch-06 and ch-08 `core_objects` that map to buildable primitives, or
-   accept that archival/timeline styles need compositions the director cannot yet
-   produce.
-4. Layer 2 / Layer 3 first CI execution — still owed on whichever channel clears
-   Layer 1 first.
-
-## Known gaps carried forward
-
-- Layer 2 and Layer 3 have never run in CI, on any channel.
-- The eval loop's beat-index resolver gap is unfixed: Gemini returns MM:SS, not
-  `beat_index`, and `resolveRevisions` requires an integer. Hit on the local ch-2
-  dry run; untested in production.
+- Layer 2 and Layer 3 have never run in CI on any channel.
+- The eval loop's beat-index resolver gap: Gemini returns MM:SS, not
+  `beat_index`; `resolveRevisions` requires an integer. Unfixed, untested.
 - `config/channels.json` mojibake, unfixed by instruction.
-- `type: choice` workflow inputs do not dispatch; `type: string` is used and
-  `evalLoopMode()` validates instead.
-- Dispatch expansion channels **one at a time** — the concurrency group
-  serialises runs.
+- Dispatch one channel at a time, or use a single fleet matrix — never parallel
+  dispatches. The concurrency group serialises them.
+- Do not merge `RUN-NOTES.md` / `SPEC-AUDIT.md` into `EXPANSION-METHOD.md` in the
+  same push as a run; deferred to housekeeping.
