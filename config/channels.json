@@ -2881,6 +2881,7 @@
         "primary": "#BABDB6",
         "secondary": "#D0D0D0",
         "accent": "#2B2B2B",
+        "canvas_accent": "#2B2B2B",
         "bg": "#F0F0F0"
       },
       "target_audience": "Design and history enthusiasts 18-55",
@@ -2926,6 +2927,7 @@
         "primary": "#595A5B",
         "secondary": "#505050",
         "accent": "#D8D8D8",
+        "canvas_accent": "#D8D8D8",
         "bg": "#303030"
       },
       "target_audience": "Film and history enthusiasts 18-55",
@@ -2971,6 +2973,7 @@
         "primary": "#382D28",
         "secondary": "#241C18",
         "accent": "#8C5A3C",
+        "canvas_accent": "#8C5A3C",
         "bg": "#101010"
       },
       "target_audience": "Business and history enthusiasts 20-55",
@@ -3016,6 +3019,7 @@
         "primary": "#D4D4D4",
         "secondary": "#B8B8B8",
         "accent": "#1A1A1A",
+        "canvas_accent": "#1A1A1A",
         "bg": "#F0F0F0"
       },
       "target_audience": "Curious general readers 20-50",
