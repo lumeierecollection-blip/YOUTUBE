@@ -2531,9 +2531,14 @@
           "topic": "Backlog Time-Lapse: Why Static Task Boards Miss Team Burnout",
           "slug": "backlog-time-lapse-static-task-boards-burnout",
           "reserved_at": "2026-10-05T23:03:27.257Z"
+        },
+        {
+          "topic": "TaskCanvas and Visualizing Backlog Workflows in October 2026",
+          "slug": "taskcanvas-visualizing-backlog-workflows-2026",
+          "reserved_at": "2026-10-06T12:26:41.837Z"
         }
       ],
-      "last_generated": "2026-10-05T23:03:27.257Z"
+      "last_generated": "2026-10-06T12:26:41.837Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
