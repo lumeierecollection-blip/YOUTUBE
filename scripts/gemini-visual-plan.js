@@ -47,6 +47,7 @@ import { compositionFor, splitHeadline } from "../src/skills/remotion-render/vis
 import { translateScene } from "./scene-translate.js";
 import { wantedTypes, COMPOSITIONS } from "./composition-vocab.js";
 import { applyMotionTiers, normalizeGrounds, compositionsUsed } from "./planner-decisions.js";
+import { loadStyleReference, styleReferenceBlock } from "./channel-style-reference.js";
 import { trendOf, maxTypeBeats, varietyReport, beatsToConvert, isTypePlanned, fallbacksFor, assignEntranceStyles, assignAnimationFamilies } from "./composition-variety.js";
 import { flowNodes, FLOW_WORDS, listItemsOf, timelineOf, compareOf, documentNameOf, moneyObjectOf, quantitiesOf, statedPercentsOf, knownPlacesOf } from "./canvas-grounding.js";
 
@@ -629,7 +630,7 @@ export function checkVisual(b, sentence) {
 // fetches a person from a stock site, the verifier takes MATCH only, the
 // layout fills the middle zone). Every rule the model needs to DECIDE is kept.
 const SCENE_EXAMPLE = (() => { try { return JSON.parse(readFileSync(join(ROOT, "prompts", "scene-example.json"), "utf-8")); } catch { return null; } })();
-export function buildPlanPromptParts(sentences, corrections, channelId) {
+export function buildPlanPromptParts(sentences, corrections, channelId, styleRef = null) {
   // Same formula as plan-caps.cjs capLimits(): TYPOGRAPHY <= min(2, floor(0.4n)).
   const example = SCENE_EXAMPLE
     ? `EXAMPLE — sentence "${SCENE_EXAMPLE.sentence}" -> ${JSON.stringify(SCENE_EXAMPLE.beat)}`
@@ -664,7 +665,7 @@ MOTION. "motion_tier": "micro"|"medium"|"major" — yours to set on every beat; 
 ${example}
 
 Respond ONLY with JSON (no markdown): {"beats":[ one object per sentence, in order, shaped like the example ]}`;
-  let dynamicPart = `SCRIPT SENTENCES:\n${sentences.map((s, i) => `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`).join("\n")}`;
+  let dynamicPart = `${styleReferenceBlock(styleRef)}SCRIPT SENTENCES:\n${sentences.map((s, i) => `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`).join("\n")}`;
   if (corrections?.length) {
     dynamicPart += `\n\nPREVIOUS REVIEW CORRECTIONS — apply every fix:\n` +
       corrections.map((c) => `  ${c.scene || c.beat}: ${c.problem} → Fix: ${c.fix || c.action}`).join("\n");
@@ -672,8 +673,8 @@ Respond ONLY with JSON (no markdown): {"beats":[ one object per sentence, in ord
   return { staticPart, dynamicPart };
 }
 
-function buildPlanPrompt(sentences, corrections, channelId) {
-  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId);
+function buildPlanPrompt(sentences, corrections, channelId, styleRef = null) {
+  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId, styleRef);
   return `${staticPart}\n\n${dynamicPart}`;
 }
 
@@ -718,10 +719,15 @@ async function main() {
   }
 
   console.log(`Requesting visual plan for ${sentences.length} beats (${forcedOllama() ? "ollama only: FORCE_PLANNER=ollama" : "gemini, ollama if gemini cannot answer"})...`);
-  const prompt = buildPlanPrompt(sentences, corrections, channelId);
+  // The channel's style spec goes in as REFERENCE (planner-decisions.js). A channel without one is not an
+  // error: it is logged and the planner works from the sentences alone.
+  const style = loadStyleReference(channelId);
+  if (style.ref) console.log(`[planner] ch-${channelId}: style spec ${style.path} loaded as reference (${style.fields} field(s))`);
+  else console.log(`[planner] ch-${channelId}: style_spec_missing — ${style.why}; continuing without it`);
+  const prompt = buildPlanPrompt(sentences, corrections, channelId, style.ref);
   // Context caching (owner's token spec 2026-10-03, A.1): the static part is uploaded once
   // and referenced; each Gemini call then sends only this video's sentences.
-  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId);
+  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId, style.ref);
   const estTok = (t) => Math.ceil(String(t || "").length / 3.6);
   let geminiCache = null;
   if (!forcedOllama()) {
@@ -1597,6 +1603,7 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
     plannerDecisions: { grounds: groundCounts, types: decided, compositionMappings, compositions_used: compUsed },
   };
   // Which style spec (if any) the planner was given as reference.
+  result.plannerDecisions.styleSpec = style.ref ? style.path : null;
 
   // Track capability usage instead of mechanism distribution
   for (const b of plan.beats) {
