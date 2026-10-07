@@ -28,7 +28,13 @@ const MP4 = existsSync(LOCAL_MP4) ? LOCAL_MP4 : (() => {
   spawnSync("ffmpeg", ["-loglevel", "error", "-y", "-f", "lavfi", "-i", "color=c=white:s=320x568:r=30:d=1", "-pix_fmt", "yuv420p", "-c:v", "libx264", out]);
   return out;
 })();
-const PNG = "data/audit/l2-blank.png";
+// Same for the PNG: gitignored locally, generated when absent (CI tests run 37703894179).
+const LOCAL_PNG = "data/audit/l2-blank.png";
+const PNG = existsSync(LOCAL_PNG) ? LOCAL_PNG : (() => {
+  const out = join(mkdtempSync(join(tmpdir(), "gemini-files-")), "blank.png");
+  spawnSync("ffmpeg", ["-loglevel", "error", "-y", "-f", "lavfi", "-i", "color=c=white:s=64x64", "-frames:v", "1", out]);
+  return out;
+})();
 const hasKey = !!(process.env.GEMINI_API_KEY_1 || process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY);
 
 describe("keys", () => {
