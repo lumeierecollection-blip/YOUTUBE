@@ -17,6 +17,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const require = createRequire(import.meta.url);
 const topicLog = require(join(ROOT, "src", "utils", "topic-log.cjs"));
+const channelLookup = require(join(ROOT, "scripts", "lib", "channel-lookup.cjs"));
 
 const NINETY_DAYS_MS = 90 * 24 * 60 * 60 * 1000;
 
@@ -29,8 +30,17 @@ function main() {
   const channels = data.channels || data;
   const cutoff = Date.now() - NINETY_DAYS_MS;
 
-  const out = channels
-    .filter((c) => !channelOverride || String(c.id) === String(channelOverride))
+  // Resolve the dispatch key to EXACTLY ONE channel. This used to be
+  //   .filter((c) => String(c.id) === String(channelOverride))
+  // which matched BOTH ch-05 Broadsheet and ch-26 Harmony for key 5 (both have
+  // id=5), and the agent downstream silently took channels[0] - so ch-05 was
+  // handed Harmony's music-theory context and produced a music topic on runs
+  // 37548436088 and 37549155059. resolveChannel throws instead of guessing.
+  const selected = channelOverride
+    ? [channelLookup.resolveChannel(channelOverride, channels)]
+    : channels;
+
+  const out = selected
     .map((c) => {
       const used = topicLog.usedTopics(String(c.id));
       const recent = used
