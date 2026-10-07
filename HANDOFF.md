@@ -80,7 +80,14 @@ advisory only, never gating. HF cache step added to the v2 workflow.
 `advisory_score 0.6229`, 55 frames, 4 below the 0.4570 floor (at 20.9 s, 21.9 s,
 22.9 s, 53.7 s), `style_match: matched`, 0 clone frames, best candidate-vs-reference
 similarity 0.870 against a measured reference ceiling of 0.837 (config ceiling
-0.9). **It has not yet run inside CI** — see §6.
+0.9). **It has now run in CI** (runs `37691779624`, `37694022496`) — see §6.
+
+**The eval loop runs before Layer 1's early-return (`f65f4ec`).**
+`scripts/eval-loop-callsite.js` (`recordEvalLoop`) is called after the canvas checks
+are measured and before their `return backupAudit(...)`. `runEvalLoop` takes
+`recordOnLayer1Fail`: on a Layer 1 failure it runs Layers 2 and 3 once, records them,
+retries nothing. Layer 1 still gates; the decision is data. The JSONL carries
+`layer1_result`, `layer2`, `layer3`. Dry and live are identical on a Layer 1 failure.
 
 **Planner: Gemini decides (`332e96c`, `e062fe0`).** The four mandates are now
 defaults, not rules: per-beat `ground` (hex / white / transparent / description;
@@ -179,7 +186,17 @@ these commits touch (re-run 2026-10-07).
 `canvas-accent` PASSED (`accent #2B2B2B in beat 7`). Cause not traced; do not
 close it on one run.
 
-**BUG-2 is now the blocker for everything downstream — see §6.**
+**BUG-2 (`pop-transitions`) — FIXED for the ch-05 beat-5 class (`62683d7`).** Not the
+`f766ae5` class: that gate is intact. In a TYPE-FULL beat with a concept visual and
+`entrance_style: "visual-first"`, `ConceptVisual` delayed itself a further 0.45 s inside
+a group the compositor already counted as "in" at frame 2; the outgoing beat had faded
+to 0 by frame 6.5. Rendered before/after (qa-canvas-render.mjs, same beat shape, ink
+rows above the caption row, threshold 12): before f7-f14 = 0, after f0-f16 all >= 105.
+Confirmed in CI: run `37694022496` passed `pop-transitions` (16/17). One beat shape,
+one run — other shapes are unproven.
+
+**NEW BLOCKER — `zones-no-overlap` fails on every beat with a declared dark ground.**
+See §6 and §7.20.
 
 **BUG-1 — `canvas-accent`: config present, manifest empty. OPEN.**
 `config/channels.json:2884` has `"canvas_accent": "#2B2B2B"` for ch-05.
@@ -233,35 +250,82 @@ unretracted but unsupported.**
 
 ---
 
-## 6. Layer 2 / Layer 3 — first CI dispatch (2026-10-07)
+## 6. Layer 2 / Layer 3 — first CI numbers (2026-10-07)
 
-Run `37687564970`: ch-05, `eval_loop_mode=dry`, `dry_run=true`, commit `ea3689a`.
-**Layers 2 and 3 did not run, and could not have.** The eval block
-(`render-and-qa.js` ~line 2002) sits *after* the canvas checks (~line 1879), which
-`return backupAudit(...)` on failure. The render passed 15/17 local-audit checks
-and failed two, so the video went to `rejected/` before the eval loop was reached:
+**Run `37694022496`** — merged `main` (`fbd12ae`), ch-05, `eval_loop_mode=dry`,
+`dry_run=true`. Topic: `former-cop-fires-states-first-salvo-in-aka-murder-case`.
+Layer 1: **FAIL (16/17)** — `zones-no-overlap` only; `pop-transitions` passed.
+The eval-loop record, verbatim:
 
-- `pop-transitions` — beat 5 (TYPE-FULL, ground `#F0F0F0`) is blank at boundary
-  frames 6-10 (verified in frames: beat 4's content is gone by +0.2 s and the
-  ground is empty until ~+0.43 s). **The same message appeared on `main` this
-  morning** (run `37619905834`, ch-26 beats 5 and 8) and on ch-05 in
-  `37550901882`. It is a pre-existing renderer defect, not caused by this branch.
-- `zones-no-overlap` — beat 2 (PORTRAIT) ink crosses the 620/1340 zone edges in
-  200-285 columns at 62% and 90%. Not seen in the earlier ch-05 run; whether the
-  branch's `canvas-layout.js` / `local-audit.cjs` changes contributed is
-  **unchecked**.
+```
+{"ts":"2026-10-07T22:17:34.716Z","mode":"dry","decision":"human_review","channel":"5","run_id":"former-cop-fires-states-first-salvo-in-aka-murder-case-shorts-script-a1","layer1_result":{"pass":false,"failures":[{"check":"zones-no-overlap"}]},"layer2":{"advisory_score":0.5662885991585376,"frame_count":47,"below_floor_count":0,"timestamps_below_floor":[],"style_match":"matched","clone_frames":0,"note":null},"layer3":{"aggregate_local":6.9,"axes":{"engagement":6.5,"prompt_intent":7,"composition":6.8,"style_coherence":7.2}},"retries_spent":0,"would_rerender":[],"rendered":[],"weak_beats":[],"unresolved":[],"why":"layer 1 failed (zones-no-overlap); layers 2 and 3 recorded, not acted on","duration_ms":34519}
+```
 
-Consequence: in CI, any render that fails Layer 1 never gets a Layer 2/3 number,
-and Layer 1 currently fails on most renders (fleet run `37540546857`, `37619905834`).
-So `advisory_score` / `aggregate_local` / `style_match` have never been recorded in
-CI for any channel. No `data/audit/eval-loop/` or layer3 JSONL exists for this run.
-The first live (`eval_loop_mode=live`) dispatch was **not** made: it would hit the
-same Layer 1 wall, and `live` cannot apply revisions anyway (§6 below).
+Layer 3: model `gemini-3.5-flash`, 17.7 s, `weak_beats: []`, `aggregate_gemini: null`.
+`aggregate_local 6.9` is below the 7.0 accept line, so **with Layer 1 passing this would
+still be `human_review` (`nothing-revisable`)**: Layer 3 named no beat, so there is
+nothing to retry. That is not the beat-index resolver gap (nothing was named to
+resolve); the resolver remains unobserved. Live was therefore not dispatched.
 
-Run `37681011877` (same commit) stalled in `Ensure ffmpeg/ffprobe` for ~2h40m and
-was cancelled; `37674538629` (on `06ddcdb`, 5 channels) was cancelled with
-ch-1/10/44 failing in Render + QA and the preview job failing in `Build preview
-bundle` — reasons not read.
+**Baseline run `37691779624`** (commit `f65f4ec`, before the renderer fix, ch-05, a
+different topic — `florida-lab-executive-convicted-medicare-fraud`): Layer 1 FAIL
+(`zones-no-overlap`), `advisory_score 0.6123`, 51 frames, 4 below the floor,
+`style_match matched`, 0 clone frames, `aggregate_local 6.48`. Its JSONL was runner
+state and is lost (axes unrecoverable) — `fbd12ae` now logs the record and uploads
+`data/audit/{eval-loop,layer3}` as the `eval-audit-*` artifact. **The two runs are
+different videos** (each dispatch picks a new topic), so 6.48 -> 6.9 and 0.6123 ->
+0.5663 are not a before/after of the renderer fix. There is no same-video baseline.
+
+**Why `zones-no-overlap` fails (read from `local-audit.cjs:593-625` and the manifest,
+not assumed):** the pixel part defines ink as luma < 235 or chroma > 30 "on the white
+ground". Beats 3 and 7 of run `37694022496` have a Gemini-declared ground `#0E0E10`
+(`dark: true`); on a dark ground every pixel is "ink", so all ~540 columns "cross"
+both zone edges. The failing beats are exactly the dark-ground beats. In
+`37687564970` the failing beat was a PORTRAIT on `#F0F0F0` (a different, unexplained
+failure, 223/285 columns). Fixing this means measuring ink relative to the beat's own
+ground (byte-identical on white) — a Layer 1 change, **not made**: the push forbade
+touching Layer 1, and it is a judgement about what a declared dark ground should be
+allowed to do. `pop-transitions` uses the same absolute `< 235` and passes a dark beat
+trivially (§7.18).
+
+Earlier runs, unchanged: `37681011877` stalled 2h40m in `Ensure ffmpeg/ffprobe` and
+was cancelled (not investigated); `37674538629` (on `06ddcdb`) was cancelled with
+ch-1/10/44 failing in Render + QA, reasons not read.
+
+### Style comparison (ch-05 vs its three references)
+
+Candidate: the 48 s 9:16 render of run `37694022496`; references
+`4_5917850534521349135.mp4`, `...251.mp4`, `...262.mp4` (16:9, 60-79 s). Eight
+evenly spaced frames from each. **Not assessed: motion / arrival pattern** — contact
+sheets cannot show it and no frame-difference measurement was made; from the code the
+candidate's text arrives by in-place scale pops (0.94 -> 1.04 -> 1.00, words popped one
+by one), nothing slides.
+
+- **Ground.** Candidate: a full-bleed photo beat, near-white beats (some faintly warm,
+  a slight off-white gradient low in two beats), and one `#0E0E10` near-black beat
+  (beats 3 and 7 are declared dark). References: textured, off-white newsprint with
+  grain and vignette (251, 262), a navy world map and a cream/yellow paper grid (135).
+  Gemini chose grounds per beat; the one dark beat has no counterpart in the 251/262
+  references. None of the references has a flat pure-white ground.
+- **Palette.** Candidate: black ink on white, one dusty mauve-grey word colour in a
+  headline, white caption text on the photo. References: warm paper greys, a plum /
+  maroon wash over greyscale photos (262), yellow and pink highlighter bars (135, 251),
+  navy and teal (135). Shared: restrained, mostly monochrome; not shared: the
+  highlighter yellow and the plum tint do not appear in the candidate.
+- **Typography.** Candidate: a high-contrast didone serif headline (bold + light
+  mix), sentence case, oversized single-word / numeral heroes ("Rulings", "9", "7"),
+  small sans captions with an underlined emphasis word. References: serif newspaper
+  headlines (251 "Photorealistic", "UNDERDOGS" in a condensed sans), typewriter body
+  text, small black label bars with white sans (262), highlighter on key phrases.
+  Serif-led and newspaper-adjacent in both; the references' textured body copy and
+  highlighter marks are absent.
+- **Composition / content.** Candidate: flat vector diagrams (circles + arrow), big
+  numerals, one real photograph full-bleed. References: photos inside black frames on
+  newsprint (262), layered paper and halftone (251), template-demo screens (135).
+- **Copy check.** Not a copy: Layer 2 `clone_frames 0`, best candidate-to-reference
+  similarity 0.8415 against a reference ceiling of 0.9; the content, aspect ratio,
+  subject and every frame differ. Layer 2 `style_match: matched` — CLIP-level
+  similarity, advisory.
 
 ## 6b. Known issues, unproven
 
@@ -386,10 +450,9 @@ files are permanently in history (`159ac9f`) and downloadable; history rewrite
 would be `git filter-repo` + force-push, disruptive and incomplete once forked.
 Owner confirmed after being told the repo is public.
 
-**7.15 — The eval loop is unreachable behind Layer 1.** Wiring Layer 2 and
-dispatching `dry` is not enough: the loop only runs for renders that already passed
-`canvas-checks`, `beat-check` and the pixel gate. See §6. A "Layer 2 is wired" claim
-means the call site exists, not that any CI run has produced a number.
+**7.15 — (resolved by `f65f4ec`) The eval loop used to be unreachable behind Layer 1.**
+It now runs before the canvas-check early-return. It still sits after silence-detect and
+`verifyRender`, which return earlier, so a render rejected by those records nothing.
 
 **7.16 — The manifest's `ground` field says `"white"` on beats that are not
 white.** `manifest.beats[i].canvas.ground` is `"white"` for every beat of the ch-05
@@ -414,6 +477,33 @@ TYPE-SPLIT, PROCESS-FULL, TYPE-FULL x2, TYPE-SPLIT, SCENE-FULL. Plan repair and
 rotation rewrite the plan after the counter is logged. The >60%-of-beats templating
 signal needs many runs; one run says nothing.
 
+**7.20 — Gemini deciding the ground and Layer 1 contradict each other.** The planner may
+declare any ground; `zones-no-overlap` (and `pop-transitions`, §7.18) measure ink as
+`luma < 235` on an assumed white ground. A declared dark ground therefore fails
+`zones-no-overlap` on 100% of such beats, regardless of the layout. `canvas-ground`
+exempts declared grounds (§7.17); these two do not. Until one of them changes, "Gemini
+decides the ground" and "Layer 1 gates" cannot both hold for dark beats.
+
+**7.21 — The `f766ae5` hold cannot show anything after frame 6.5.** The held outgoing
+beat is drawn with `popOutState(local)`, which is 0 for `local > 6.5`
+(`full-canvas.jsx` PopGroups returns null at opacity <= 0.001). The commit message says
+the held beat "keeps rendering its LAST frame"; its content is that frame, but invisible.
+Latent: `popGroups()` always schedules a first group at <= frame 1, so the hold never
+needed to show more. Not changed.
+
+**7.22 — Every dispatch picks a new topic.** Run-to-run score deltas compare different
+videos. For a same-video before/after, re-render a committed script
+(`render_only: true`) instead of dispatching discovery.
+
+**7.23 — A merged `main` now carries a workflow that uploads audit state.** The
+`eval-audit-*` artifact (14-day retention) holds `data/audit/{eval-loop,layer3}`; the
+public repo's artifacts are downloadable by anyone with read access.
+
+**7.24 — Six tests fail on a checkout without gitignored fixtures** (`channels/_shared/ref-frames/`,
+a `data/audit/a1-ci/...mp4`): five in `eval-layer2-style.test.js`, one in
+`gemini-files.test.js`. 314 of 320 pass. Environmental, not this branch; regenerate the
+frames with ffmpeg from `research/motion-graphics-ref/`.
+
 ---
 
 ## 8. In-flight work
@@ -433,22 +523,20 @@ Local diagnostic scripts committed this session and referenced by BUG-2:
 
 ## 9. What the next push should be
 
-1. **Fix BUG-2 (`pop-transitions`, 5-frame blank at the start of a TYPE-FULL beat).**
-   It blocks Layer 2 and Layer 3 in CI for every channel; nothing downstream can
-   be measured until a render clears Layer 1. Run `scripts/measure-boundary.mjs`
-   and `scripts/probe-arrival.mjs` on the rejected ch-05 frames. The decision this
-   needs from the owner: fix the renderer (hold the outgoing beat / earlier word
-   pop), or move the eval loop ahead of the Layer 1 early-return so Layer 2/3 are
-   recorded for rejected renders too. Do not loosen the check.
-2. **Check `zones-no-overlap` on PORTRAIT beats** (200-285 columns crossing the
-   620/1340 edges). Compare against `main`; decide whether this branch's
-   `canvas-layout.js` change contributed.
-3. **Re-dispatch ch-05 `dry`, then `live`, once a render clears Layer 1.** Record
-   `advisory_score`, `below_floor_count`, Layer 3 axes, `aggregate_local`,
-   `style_match`. Then fix the Layer 3 beat-index resolver if the gap shows.
-4. **OAuth for ch-05/06/08/10** (names in §11) — the owner's task.
-5. **Read ch-2's log after `[translate] beat 3` in `37540546857`.** BUG-3.
-6. **Why `Ensure ffmpeg/ffprobe` stalled 2h40m in `37681011877`** (apt-get hang?).
+1. **Decide what a declared dark ground may do to Layer 1 (§7.20).** Either make
+   `zones-no-overlap` (and `pop-transitions`) measure ink against the beat's own
+   `ground_color` — byte-identical on white — or constrain the planner's grounds. This is
+   the only thing between ch-05 and a Layer-1-passing render in the runs so far.
+2. **Re-dispatch ch-05 once a render clears Layer 1** and read the `eval-audit-*`
+   artifact. Then `live`, only if Layer 3 names beats; this run's `weak_beats: []` means
+   live has nothing to act on. Layer 3's accept line (7.0) vs the observed 6.5-6.9 is
+   the next real question: is 7.0 reachable, or mis-set?
+3. **Look at `zones-no-overlap` on PORTRAIT beats** (`37687564970`, beat 2, `#F0F0F0`) —
+   a different failure from the dark-ground one, still unexplained.
+4. **Fix the Layer 3 beat-index resolver** only after a live run shows the gap.
+5. **OAuth for ch-05/06/08/10/49** (names in §11) — the owner's task.
+6. **Read ch-2's log after `[translate] beat 3` in `37540546857`** (BUG-3), and why
+   `Ensure ffmpeg/ffprobe` stalled 2h40m in `37681011877`.
 
 Do not run the fleet. ch-1 and ch-8 were SIGTERMed on runner capacity in
 `37540546857`; single channel, or two at most.
