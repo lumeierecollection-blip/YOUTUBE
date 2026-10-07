@@ -1,101 +1,78 @@
-# Handoff — the topic bug was NEVER the trending category
+# Handoff — ch-05 renders. The lookup bug was the whole story.
 
-## What actually happened on 37549155059
+## The topic is verbatim true crime
+
+Run `37550901882`, after `fc80532`:
 
 ```
-[research] ch-5: trending topics loaded (4)
-[research] ch-5: focus pillar "rhythm patterns" (0 recent topic(s) touch it)
-[research] ch-5: trending topics loaded (4)
-[research] ch-5: focus pillar "financial crime cases" (0 recent topic(s) touch it)
-[discover-topics] ch-?: answer model gemini (gemini-3.5-flash-lite), ollama fallback
-[discover-topics] queries from input: "acoustics news October 2026",
-                   "music psychology news October 2026", "composition techniques..."
+[main 7e7714f] topic: ch-5 doj-fraud-division-corporate-enforcement-directive-2026
+Discovered 3 candidate topic(s)
+[research] ch-5: focus pillar "press investigations" (0 recent topic(s) touch it)
 ```
 
-**Two different focus pillars, both labelled `ch-5`.** One is `rhythm patterns`
-(Harmony, music theory). One is `financial crime cases` (Broadsheet, the real
-ch-05). And the discover queries are about **acoustics and music psychology** -
-Harmony's niche, not Broadsheet's.
+For comparison, the two runs before the lookup fix, same channel, same dispatch
+key `5`:
 
-## Root cause
+| run | topic | what it actually was |
+|---|---|---|
+| 37540546857 (fleet) | `google-flow-music-vibe-coding-tools` | ch-26 **Harmony's** music niche |
+| 37548436088 | `google-flow-music-vibe-coding-plugins` | same |
+| 37549155059 | `moth-wing-acoustic-material` | same |
+| **37550901882** | **`doj-fraud-division-corporate-enforcement-directive-2026`** | **ch-05 Broadsheet, true crime** |
 
-`scripts/build-discovery-context.js:33`:
+Three music topics in a row, then a DOJ fraud-enforcement topic. The focus pillar
+went from `"rhythm patterns"` to `"press investigations"`.
 
-```js
-.filter((c) => !channelOverride || String(c.id) === String(channelOverride))
+## And it RENDERED
+
+```
+rendered 1 file(s) under data/renders
+[queue] ch-5: doj-fraud-division-corporate-enforcement-directive-2026-shorts-shorts-2026-10-07.mp4
+[local-audit] PASS beat-sentence-mechanism - every beat has a sentence and a mechanism
+[local-audit] PASS typography-count - 2 TYPOGRAPHY beat(s)
+[local-audit] PASS mechanism-share - max share 33%
+[local-audit] PASS av-duration - video 52.93s, audio 53.71s
+[local-audit] VERDICT: FAIL (15/17 checks)
+[backup-qa] canvas-checks failed (failed: canvas-accent, pop-transitions) -> local audit FAIL -> rejected
 ```
 
-It resolves the channel by **`c.id`** - the ambiguous namespace - and does NOT
-break on the first match. For override `5` that matches TWO rows:
+52.9 s of video and audio. **15 of 17 Layer 1 checks pass.** Two fail:
+`canvas-accent` and `pop-transitions`. Rejected to
+`data/renders/rejected/`. Layer 3 was never reached (eval_loop_mode=off), so no
+style judgement exists yet.
 
-    id=5 -> ch-05 Broadsheet  (True Crime & Investigative Journalism)
-    id=5 -> ch-26 Harmony     (Music Theory & Composition)
+`middle-zone-filled` did not appear in the failing list, so the density advisory
+is not what is blocking.
 
-Both survive into `out`, which is why `trending topics loaded (4)` and a focus
-pillar print TWICE.
+## What the last several pushes actually were
 
-Then `scripts/ollama-agent.js:295`:
-
-```js
-const ch = (input.channels || [])[0];
-```
-
-It silently takes **`[0]`** - whichever row JSON order put first - and builds the
-entire discovery context from that. That was Harmony. Hence acoustics queries,
-hence `moth-wing-acoustic-material`.
-
-Line 45 compounds it: both rows read `data/trending/${c.id}.json`, i.e. the SAME
-`5.json`, so the true-crime feed my fix produced was loaded into the music
-channel's context and then ignored.
-
-Line 462 logs `ch-?` because `--channel-id` is never passed to the agent, so the
-label is empty. Cosmetic, but it is why the log gave no clue which channel it
-thought it was.
-
-## This retro-explains the fleet run
-
-Run 37540546857 gave ch-05 the topic `google-flow-music-vibe-coding-tools`. That
-is a **music** topic. Broadsheet is newspaper-history; Harmony is music theory.
-ch-05 has been receiving the music channel's topics this entire time.
-
-So the whole topic-mismatch investigation - the missing CATEGORY entries, the
-niche filter, the pillar widening - was chasing a symptom. The trending work
-was worth doing (the filter demonstrably works: 44 -> 4, true-crime titles kept)
-but it was never the cause. `google-flow-music-vibe-coding-tools` and
-`moth-wing-acoustic-material` are both Harmony's niche arriving through a
-duplicate-`id` lookup.
-
-## The same bug class, unfixed, in the path I already touched
-
-`fetch-trending.cjs` got a collision guard in 07ddeb0. That guard protects
-`fetch-trending.cjs` only. `build-discovery-context.js` does its own lookup, in
-the same run, with the same ambiguity, and has no guard at all.
-
-## Not fixed here - this is a decision, not a one-liner
-
-Same fork as the CATEGORY migration, and the user already chose Option A there
-(resolve by `channel_id`, guard loudly). Applying it here means deciding whether
-`build-discovery-context.js` resolves by bare `channel_id` - which would change
-what ch-26/ch-30/ch-31/ch-35/ch-39/ch-44/ch-46/ch-47/ch-49 receive - or fixing
-the duplicate `id` values first. Not a one-line change and not authorised in
-this push.
-
-## Also confirmed this run
-
-- `discover-topics` does NOT fail on ollama. The ollama hypothesis is **refuted**.
-  It answers via `gemini-3.5-flash-lite` with ollama as fallback. What failed was
-  upstream: the context it was given described the wrong channel.
-- `PREP_CALL_TIMEOUT_S: 300`, `OLLAMA_MODEL: qwen2.5:3b`, `OLLAMA_URL:
-  http://127.0.0.1:11434`, all set. No timeout or load error in the log.
-- Five key secrets are present (`GEMINI_API_KEY`, `_1`, `_2`, `_3`,
-  `GOOGLE_GENERATIVE_AI_API_KEY`) - all four numbered ones resolve, so the
-  "dead keys 1 and 2" claim needs re-checking against what `project: unknown`
-  actually meant. Not resolved here.
+Niche widening, CATEGORY mapping, pillar alignment and the niche filter were all
+real and all correct - and all second-order. ch-05 was never failing on topic fit.
+It was being handed ch-26 Harmony's discovery context and asked to make a video
+about music, then judged against a newspaper-collage style spec. The filter work
+(44 candidates to 4, true-crime titles kept) is good code that was cleaning a
+feed nobody was reading.
 
 ## Next push
 
-Fix the channel lookup in `build-discovery-context.js` so a dispatched bare id
-resolves to exactly one channel, using the same `channel_id` convention and the
-same fail-loud collision guard already shipped in `fetch-trending.cjs`. Then
-re-dispatch ch-05 and check the topic is true crime. That is one push and it
-tests the widening for the first time. Do not run the fleet.
+Two canvas checks, both visual and both on a video that now exists:
+`canvas-accent` and `pop-transitions`. That is ordinary style work on a real
+render, not a data bug. Clear those two and ch-05 should reach Layer 3.
+
+Then re-dispatch ch-06 the same way - key 6 resolves to ch-06 Archive Room /
+Cold Cases under the same fix, and it has never rendered once.
+
+Do not run the fleet. ch-1 and ch-8 were SIGTERMed on runner capacity in
+37540546857.
+
+## Also still open
+
+- `ch-48` throws `channel_ambiguous`: its `id` is not 48, so it has never
+  resolved. Not in `config/priority-channels.json`, so nothing dispatches it.
+- ch-2/ch-26 "Visual planning failed (gemini, then ollama) - no plan, no render"
+  despite attempt 1 answering. Window after `[translate] beat 3` still unread.
+  Note ch-26 is Fraud Files and its dispatch key is unaffected by `fc80532`.
+- The "dead Gemini keys 1 and 2" claim still needs checking against what
+  `project: unknown` meant - all five key secrets are present in the env.
+- beat-index resolver gap; mojibake; the nine duplicate channel_ids, now failing
+  loud instead of silently.
