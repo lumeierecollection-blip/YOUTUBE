@@ -10,13 +10,24 @@
  */
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { statSync } from "node:fs";
+import { statSync, existsSync, mkdtempSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import {
   assertMp4, fileResource, geminiKeys, apiKey, MAX_FILE_BYTES,
   uploadVideo, pollUntilActive, deleteFile,
 } from "../../src/lib/gemini-files.js";
 
-const MP4 = "data/audit/a1-ci/c2q/approved-review/california-no-robo-bosses-act-ai-discipline-shorts-shorts-2026-10-06.mp4";
+// A real render when this workstation has one (data/audit is gitignored); otherwise — CI, a fresh
+// checkout — a 1 s H.264 MP4 made here with ffmpeg. Either is a real MP4 with an `ftyp` box, which
+// is all assertMp4 is asked to recognise.
+const LOCAL_MP4 = "data/audit/a1-ci/c2q/approved-review/california-no-robo-bosses-act-ai-discipline-shorts-shorts-2026-10-06.mp4";
+const MP4 = existsSync(LOCAL_MP4) ? LOCAL_MP4 : (() => {
+  const out = join(mkdtempSync(join(tmpdir(), "gemini-files-")), "fixture.mp4");
+  spawnSync("ffmpeg", ["-loglevel", "error", "-y", "-f", "lavfi", "-i", "color=c=white:s=320x568:r=30:d=1", "-pix_fmt", "yuv420p", "-c:v", "libx264", out]);
+  return out;
+})();
 const PNG = "data/audit/l2-blank.png";
 const hasKey = !!(process.env.GEMINI_API_KEY_1 || process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY);
 
