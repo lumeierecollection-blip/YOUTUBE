@@ -1013,9 +1013,14 @@
           "topic": "DOJ Fraud Division's New Corporate Enforcement Directive",
           "slug": "doj-fraud-division-corporate-enforcement-directive-2026",
           "reserved_at": "2026-10-07T00:15:49.212Z"
+        },
+        {
+          "topic": "Murdaugh Retrial Discovery Dispute Intensifies Over Cellphone Data",
+          "slug": "murdaugh-retrial-discovery-dispute-cellphone-data",
+          "reserved_at": "2026-10-07T12:22:17.739Z"
         }
       ],
-      "last_generated": "2026-10-07T00:15:49.212Z"
+      "last_generated": "2026-10-07T12:22:17.739Z"
     },
     "6": {
       "channel_name": "Nash",
