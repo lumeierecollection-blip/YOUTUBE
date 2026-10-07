@@ -334,8 +334,15 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     return (
       <>
         <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} major={major} hero accent={accent} />
+        {/* The visual's own delay is 0.45 s behind the headline (headline-then-visual). Under
+            "visual-first" the visual is the group that lands FIRST (pop-groups.js: visual at 0, the
+            headline's group at 14), so that delay stacks on top of the group's: ch-05 beat 5 (CI run
+            37687564970) drew nothing between the outgoing beat's fade (gone at frame 6) and the
+            visual's own pop at frame ~14 — the group was "in" at frame 2, so the hold in CanvasVideo
+            (incomingHasInk reads group opacity) had already released. Under visual-first the visual
+            lands with its group. */}
         {[B.cutout0, B.cutout1, B.cutout2].filter(Boolean).map((v, i) => (
-          <ConceptVisual key={i} b={v} local={local} fps={fps} at={tl.headlineAt + 0.45 + i * 0.12} accent={accent} dur={dur} />
+          <ConceptVisual key={i} b={v} local={local} fps={fps} at={(c.entrance_style === "visual-first" ? 0 : tl.headlineAt + 0.45) + i * 0.12} accent={accent} dur={dur} />
         ))}
         {/* A logo's company name types on below it (part D.2). */}
         {B.cutout_name && B.cutout0?.logo ? <DataLabel b={B.cutout_name} name="cutout_name" color={th.ink} local={local} fps={fps} at={tl.headlineAt + 0.8} /> : null}
