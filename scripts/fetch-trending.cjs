@@ -47,52 +47,22 @@ const STOP = new Set("the a an and or but of to in on for with at by from is are
 
 const log = (m) => console.log(`[trending] ${m}`);
 
-const bareId = (channelId) => String(channelId).replace(/^ch-0*/, "");
+const { resolveChannel, normalizeChannelId } = require("./lib/channel-lookup.cjs");
+const bareId = normalizeChannelId;
 
 function loadChannels(cfgPath = join(ROOT, "config", "channels.json")) {
   try { return JSON.parse(readFileSync(cfgPath, "utf-8")).channels || []; }
   catch { return []; }
 }
 
-// CATEGORY is keyed by the bare id the workflow passes (daily-pipeline-v2.yml:116
-// strips "ch-" and leading zeros). That transform is only injective if no two
-// rows share a channel_id -- and today nine bare ids do collide (bare 26, 30,
-// 31, 35, 39, 44, 46, 47, 49 all name two different channels each). Those are
-// PRE-EXISTING and include live built channels, so a bare collision cannot
-// hard-fail the run. What must fail loud is the case this map depends on: a
-// CATEGORY key that two channels both claim. That one is a silent
-// wrong-category-by-accident waiting to happen, so it exits non-zero.
-// Bare ids where channels.json genuinely has two rows with the SAME channel_id.
-// Nine of these exist today and three name live built channels (26, 44, 49).
-// They are a pre-existing data defect, not something this map introduced, and
-// every run so far has resolved them by first-match. Hard-failing on them would
-// break daily production for channels that are currently shipping, so they are
-// baselined and warned. Any NEW collision exits non-zero: that is the case
-// where a wrong category would be handed out silently from here on.
-const KNOWN_COLLISIONS = new Set(["26", "30", "31", "35", "39", "44", "46", "47", "49"]);
-
-function assertNoKeyCollision(channels, keys = Object.keys(CATEGORY), known = KNOWN_COLLISIONS) {
-  const owners = new Map();
-  for (const r of channels) {
-    const b = bareId(r.channel_id);
-    if (!keys.includes(b)) continue;
-    if (owners.has(b)) {
-      const a = owners.get(b);
-      if (known.has(b)) {
-        console.warn(`[trending] WARNING: CATEGORY key ${b} is claimed by two channels (${a.channel_id} "${a.channel_name}", ${r.channel_id} "${r.channel_name}"). Pre-existing duplicate channel_id in channels.json; resolving by first match as every prior run has. Fix the data to clear this.`);
-        continue;
-      }
-      console.error(`[trending] FATAL: CATEGORY key ${b} is claimed by two channels: ${a.channel_id} (${a.channel_name}) and ${r.channel_id} (${r.channel_name}). Refusing to guess which category it meant.`);
-      process.exit(3);
-    }
-    owners.set(b, r);
-  }
-}
-
-// Which channel row does this bare id name? Independent of CATEGORY, so the
-// niche filter still works for a channel that is mapped nowhere.
+// Channel resolution is scripts/lib/channel-lookup.cjs -- the one implementation. A
+// dispatch key names a row only when BOTH id namespaces in channels.json agree with
+// it; a key with no such row (ch-48, ch-50) is ambiguous and is skipped here, never
+// guessed. This file used to carry its own KNOWN_COLLISIONS copy of that guard and a
+// first-match findChannel, which resolved key 26 to Harmony and key 44 to Photosyn.
 function findChannel(bare, channels) {
-  return channels.find((r) => bareId(r.channel_id) === String(bare)) || null;
+  try { return resolveChannel(bare, channels); }
+  catch (e) { log(`ch-${bare}: ${e.message}`); return null; }
 }
 
 // Reject candidates with no lexical overlap with the channel's own niche terms.
@@ -144,7 +114,6 @@ async function main() {
   const force = process.argv.includes("--force");
   if (!ch) { console.error("Usage: node scripts/fetch-trending.cjs <channel-id> [--force]"); process.exit(2); }
   const channels = loadChannels();
-  assertNoKeyCollision(channels);
   const chCfg = findChannel(ch, channels);
   const category = CATEGORY[Number(ch)];
   if (!category) { log(`ch-${ch}: no category mapping, skipped (unseeded discovery)`); return; }
@@ -195,5 +164,5 @@ async function main() {
   await require("./trending-entities.cjs").writeEntities(ch);
 }
 
-module.exports = { keywords, CATEGORY, bareId, loadChannels, findChannel, assertNoKeyCollision, nicheTerms, nicheMatch, applyNicheFilter, rankAndFilter, main };
+module.exports = { keywords, CATEGORY, bareId, loadChannels, findChannel, nicheTerms, nicheMatch, applyNicheFilter, rankAndFilter, main };
 if (require.main === module) main().catch((e) => { log(`unexpected error (${e.message}), falling back to unseeded research`); process.exit(0); });

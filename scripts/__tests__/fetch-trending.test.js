@@ -98,71 +98,29 @@ describe("fetch-trending CATEGORY map", () => {
     assert.equal(found.channel_name, "Broadsheet");
   });
 
-  it("real config: every CATEGORY key resolves, and any collision is a baselined one", () => {
+  it("resolves through the shared channel-lookup, so the three duplicated built channels are not mistaken for their namesakes", () => {
+    // Harmony (id 5), Photosyn (id 14) and Stellar (id 19) reuse ch-26 / ch-44 / ch-49 as
+    // their channel_id. A first-match lookup on channel_id handed key 26 Harmony's niche.
     const channels = T.loadChannels();
-    const owners = new Map();
-    const collisions = [];
-    for (const r of channels) {
-      const b = T.bareId(r.channel_id);
-      if (!Object.keys(T.CATEGORY).includes(b)) continue;
-      if (owners.has(b)) collisions.push(b);
-      else owners.set(b, r);
-    }
-    // 26 and 44 are duplicate channel_ids in channels.json AND are CATEGORY keys
-    // naming live built channels. They are warned, not fatal - see KNOWN_COLLISIONS.
-    assert.deepEqual([...new Set(collisions)].sort(), ["26", "44"]);
-    // The four new channels must resolve unambiguously.
-    for (const bare of ["5", "6", "8", "10"]) {
-      assert.equal(owners.get(bare).channel_name, { 5: "Broadsheet", 6: "Archive Room", 8: "Ledger", 10: "Margin Note" }[bare]);
-    }
+    assert.equal(T.findChannel("26", channels).channel_name, "Fraud Files");
+    assert.equal(T.findChannel("44", channels).channel_name, "Skill Stack");
+    assert.equal(T.findChannel("49", channels).channel_name, "Picture House");
   });
 
-  it("real config: does not exit non-zero", () => {
-    const realExit = process.exit;
-    let fired = null;
-    process.exit = (c) => { fired = c; throw new Error("__exit__"); };
-    const realWarn = console.warn;
-    console.warn = () => {};
-    try { T.assertNoKeyCollision(T.loadChannels()); } catch { /* ignore */ } finally { process.exit = realExit; console.warn = realWarn; }
-    assert.equal(fired, null, "the shipped config must not hard-fail the trending fetch");
-  });
-});
-
-describe("fetch-trending collision guard", () => {
-  it("fires when two channels claim the same CATEGORY key", () => {
-    const fixture = [
-      { channel_id: "ch-5", channel_name: "Legacy", niche: "old" },
-      { channel_id: "ch-05", channel_name: "Broadsheet", niche: "new" },
-    ];
-    // process.exit is stubbed so the assertion is observable rather than fatal.
-    const realExit = process.exit;
-    let code = null;
-    const realErr = console.error;
-    let msg = "";
-    process.exit = (c) => { code = c; throw new Error("__exit__"); };
-    console.error = (m) => { msg += String(m); };
-    try {
-      T.assertNoKeyCollision(fixture, ["5"]);
-      assert.fail("guard should have exited");
-    } catch (e) {
-      if (e.message !== "__exit__") throw e;
-    } finally {
-      process.exit = realExit;
-      console.error = realErr;
-    }
-    assert.equal(code, 3);
-    assert.match(msg, /claimed by two channels/);
-    assert.match(msg, /ch-5/);
-    assert.match(msg, /ch-05/);
+  it("niche terms for key 26 describe fraud, not Harmony's music theory", () => {
+    const row = T.findChannel("26", T.loadChannels());
+    const terms = T.nicheTerms(row.niche, row.content_pillars);
+    assert.ok(!terms.includes("music"), `terms: ${terms.join(",")}`);
   });
 
-  it("does not fire on a clean fixture", () => {
-    const fixture = [{ channel_id: "ch-05", channel_name: "Broadsheet" }];
-    const realExit = process.exit;
-    let fired = false;
-    process.exit = () => { fired = true; throw new Error("__exit__"); };
-    try { T.assertNoKeyCollision(fixture, ["5"]); } catch { /* ignore */ } finally { process.exit = realExit; }
-    assert.equal(fired, false);
+  it("an ambiguous key (no row whose id and channel_id agree) is skipped, never guessed", () => {
+    const realLog = console.log;
+    console.log = () => {};
+    try { assert.equal(T.findChannel("48", T.loadChannels()), null); } finally { console.log = realLog; }
+  });
+
+  it("no longer carries its own collision guard", () => {
+    assert.equal(T.assertNoKeyCollision, undefined);
   });
 });
 
