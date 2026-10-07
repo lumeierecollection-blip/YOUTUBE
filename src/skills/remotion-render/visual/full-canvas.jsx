@@ -365,7 +365,12 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   return (
     <>
       <div style={{ position: "absolute", inset: 0, transformOrigin: `${st.x + st.w / 2}px ${st.y + st.h / 2}px`, transform: `scale(${breath.toFixed(5)})` }}>
-        <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={B.headline ? tl.splitAt : tl.headlineAt} major={major} hero accent={accent} />
+        {/* TYPE-SPLIT's second half waits tl.splitAt (30% of the beat) so it lands after the header's
+            headline. Under "visual-first" that order is reversed by the groups (pop-groups.js: this,
+            the middle band, at 0; the header at 14), so the wait stacked on top: ch-05 run 37700319999
+            beat 5 was empty at frames 7-15 (outgoing beat gone, header not yet in, this half due at ~38).
+            Under visual-first it lands with its group, as the concept visual does. */}
+        <Headline b={st} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={B.headline && c.entrance_style !== "visual-first" ? tl.splitAt : tl.headlineAt} major={major} hero accent={accent} />
       </div>
       {B.underline ? <Rule b={B.underline} t={easeOut(clamp01((local - 0.6 * dur) / (0.12 * dur)))} color={accent} /> : null}
     </>

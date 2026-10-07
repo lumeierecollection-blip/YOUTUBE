@@ -25,6 +25,9 @@ describe("concept visual under visual-first", () => {
   it("keeps the headline-then-visual delay for every other entrance style", () => {
     assert.match(src, /: tl\.headlineAt \+ 0\.45\)/);
   });
+  it("TYPE-SPLIT's second half does not wait tl.splitAt under visual-first (ch-05 run 37700319999 beat 5)", () => {
+    assert.match(src, /at=\{B\.headline && c\.entrance_style !== "visual-first" \? tl\.splitAt : tl\.headlineAt\}/);
+  });
   it("still has the incoming-ink hold (f766ae5) and the 6-frame OUT fade untouched", () => {
     assert.match(src, /const holdingPrev = !!prev && \(local <= POP\.OUT \|\| !incomingHasInk\);/);
   });
