@@ -488,7 +488,10 @@ function measureGround(videoPath) {
   // covers the top-right corner by design (CI run 37067332714 ch-2: beat 0 was one,
   // and its corner read #0E0E0E as "the ground").
   // (nor one carrying a source credit: "Source: ..." sits in the bottom-right patch — part C)
-  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white" && !b.canvas?.ground_color && !b.canvas?.source_credit && b.canvas?.composition !== "COMPARISON-SPLIT" && !Object.values(b.canvas?.boxes || {}).some((v) => v?.role === "shape"));
+  // (nor one drawn with the background variation — canvas-layout.js backgroundOf: every 5th beat a
+  // soft gradient, every 3rd the paper texture. That white is textured by design; measuring it as
+  // "the uniform ground" failed CI run 37702067252 ch-5 beat 4: bottom-right #F8F6F3, the gradient.)
+  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white" && !b.canvas?.ground_color && !b.canvas?.source_credit && !b.canvas?.background?.gradient && !b.canvas?.background?.paper && b.canvas?.composition !== "COMPARISON-SPLIT" && !Object.values(b.canvas?.boxes || {}).some((v) => v?.role === "shape"));
   if (!beat) { console.log("[verify] ground: every beat is a full-bleed photo or declares its own ground — the default white ground not measured (local-audit canvas-ground checks declared grounds)"); return []; }
   const at = beat.start_sec + beat.duration_sec * 0.6;
   const framePath = videoPath.replace(/\.mp4$/, "-ground.png");
