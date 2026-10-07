@@ -919,6 +919,18 @@ jobs:
           path: ~/.cache/remotion
           key: remotion-chrome-${{ runner.os }}
 
+      # Layer 2 (scripts/eval-layer2-wire.js): CLIP weights (Xenova/clip-vit-base-patch32, ~350 MB).
+      # The wire points @xenova/transformers' cacheDir at ~/.cache/huggingface/transformers-js, so
+      # this path is where the weights actually land (the library's own default is
+      # node_modules/@xenova/transformers/.cache, which this cache would not cover).
+      - name: Cache HuggingFace models
+        if: steps.status.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-${{ runner.os }}-clip-vit-base-patch32
+          restore-keys: hf-${{ runner.os }}-
+
       # The local models behind every model call (src/lib/llm.js): Gemini
       # first, Ollama when Gemini cannot answer — or Ollama only with
       # force_planner=ollama. qwen2.5:7b answers the text calls (planner,

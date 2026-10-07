@@ -102,7 +102,7 @@ export const RESPONSE_SCHEMA = Object.freeze({
   },
 });
 
-export function buildPrompt({ channelId, styleSpec, layer2Advisory }) {
+export function buildPrompt({ channelId, styleSpec, layer2Advisory, styleMatch }) {
   const advisory = layer2Advisory === null || layer2Advisory === undefined
     ? "not computed"
     : `${Number(layer2Advisory).toFixed(3)} (mean similarity to the motion-graphics reference family; advisory only, not a gate)`;
@@ -131,7 +131,8 @@ If the video is not motion graphics at all, say so and score Style Coherence 0.
 [INPUT]
 Channel: ${channelId}
 Channel style spec: ${spec}
-Style advisory: ${advisory}
+Style advisory: ${advisory}${styleMatch ? `
+Style match against the reference family: ${styleMatch} (matched = inside the family's own range; clone_suspected = closer to one reference than the references are to each other; off_style = under the family floor; advisory only)` : ""}
 Available element fields for weak_beats[].element: ${ADDRESSABLE_ELEMENTS.join(", ")}
 If a finding does not correspond to one of these fields, use "other" for element and describe the observation in "finding".
 Video: (attached above)`;
@@ -207,14 +208,14 @@ function loadStyleSpec(channelId) {
  * Dependencies are injectable so every failure path is testable offline.
  */
 export async function judge(renderPath, {
-  channelId, styleSpec, layer2Advisory,
+  channelId, styleSpec, layer2Advisory, styleMatch,
   upload = realUpload, poll = realPoll, del = realDelete,
   http = httpsJson, env = process.env, model = MODEL, modelFallback = MODEL_FALLBACK,
   runId = String(Date.now()), provenance = true,
 } = {}) {
   const started = Date.now();
   const style = styleSpec === undefined ? loadStyleSpec(channelId) : styleSpec;
-  const prompt = buildPrompt({ channelId, styleSpec: style, layer2Advisory });
+  const prompt = buildPrompt({ channelId, styleSpec: style, layer2Advisory, styleMatch });
 
   const file = await upload(renderPath);
   let usedModel = model, aggregateGemini = null, axes = null, weakBeats = null, raw = null, provenancePath = null;
@@ -287,6 +288,7 @@ export async function judge(renderPath, {
         aggregate_gemini: aggregateGemini,
         weak_beats: weakBeats,
         layer2_advisory: layer2Advisory ?? null,
+        style_match: styleMatch ?? null,
         raw_response: text,
         duration_ms: Date.now() - started,
       }) + "\n");

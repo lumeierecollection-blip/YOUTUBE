@@ -61,6 +61,7 @@ const CHALLENGER_JS = join(__dirname, "gemini-visual-challenger.js");
 const ELEMENT_REMEDIATION_JS = join(__dirname, "beat-element-remediation.js");
 const { runEvalLoop, loopEnabled, evalLoopMode, writeLoopAudit } = await import("./eval-retry-loop.js");
 const { judge } = await import("./eval-layer3-judge.js");
+const { layer2Advisory } = await import("./eval-layer2-wire.js");
 
 async function challengePlan(channelId, planPath, srtPath, tag) {
   const out = planPath.replace(/\.json$/, `-challenge${tag}.json`);
@@ -2008,8 +2009,20 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
           runId: `${basename(scriptPath, extname(scriptPath))}-a${attempt}`,
           channel: channelId,
           layer1: async () => ({ pass: qa.gatePass, failures: [] }),
-          layer2: async () => ({ advisory_score: null, note: "advisory not wired at this call site yet" }),
-          layer3: async ({ layer2Advisory }) => judge(result.outputPath, { channelId, layer2Advisory: layer2Advisory?.advisory_score ?? null }),
+          // Layer 2 (eval-layer2-wire.js): CLIP similarity of the render's frames to the shared
+          // motion-graphics references, plus the clone-suspicion verdict. Advisory: a Layer 2 that
+          // cannot run (model download, ffmpeg) reports why and the loop carries on without a number.
+          layer2: async () => {
+            try {
+              const l2 = await layer2Advisory(result.outputPath);
+              console.log(`[layer2] advisory_score ${l2.advisory_score.toFixed(4)} (floor ${l2.threshold.toFixed(4)}), ${l2.frame_count} frames, ${l2.below_floor_count} below the floor, style_match ${l2.style_match} (clone frames ${l2.clone_frames}, reference ceiling ${l2.reference_ceiling.toFixed(4)}, best ${l2.candidate_max?.toFixed(4)}; references ${l2.reference_source})`);
+              return l2;
+            } catch (e) {
+              console.error(`[layer2] could not run: ${e.message}`);
+              return { advisory_score: null, style_match: null, note: `layer 2 could not run: ${e.message}` };
+            }
+          },
+          layer3: async ({ layer2Advisory: l2 }) => judge(result.outputPath, { channelId, layer2Advisory: l2?.advisory_score ?? null, styleMatch: l2?.style_match ?? null }),
           revise: async () => ({ planPatch: null }),
           renderBeats: async (indices, meta) => {
             if (mode === "dry") { wouldRerender.push(...indices); return; }
