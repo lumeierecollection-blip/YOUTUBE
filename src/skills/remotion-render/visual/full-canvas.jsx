@@ -1292,8 +1292,18 @@ export function CanvasVideo({ plan }) {
   const inGroups = popGroups(c, cLayout);
   const incomingHasInk = inGroups.some((g) => popInState(local - start - g.at).o > 0.001);
   const holdingPrev = !!prev && (local <= POP.OUT || !incomingHasInk);
-  const shown = holdingPrev ? normalizeCanvas(prev.scene.canvas, i - 1) : c;
-  const shownGround = shown.ground_color || null;
+  // The ground changes WITH the pop, not after it. It used to be the outgoing beat's until the hold
+  // released (frame ~7) and the incoming beat's from then on: across a dark -> white boundary the
+  // incoming beat's black type popped in on a still-dark ground (invisible, frames 3-6 of ch-05
+  // run 37694022496 beat 8, "Rulings") and the ground then flipped to white in one frame. Now the
+  // incoming ground is laid over the outgoing one at the incoming beat's own pop opacity, so the
+  // ground reaches the incoming colour as the incoming type reaches full opacity, and the outgoing
+  // type (fading out over the same frames) is never left on a colour it cannot be read on for long.
+  const prevCanvas = prev ? normalizeCanvas(prev.scene.canvas, i - 1) : null;
+  const inProgress = holdingPrev ? Math.max(0, ...inGroups.map((g) => popInState(local - start - g.at).o)) : 1;
+  const shown = holdingPrev && inProgress < 0.5 ? prevCanvas : c;
+  const groundBase = holdingPrev ? (prevCanvas.ground_color || GROUND) : null;
+  const groundTop = c.ground_color || (holdingPrev ? GROUND : null);
   return (
     <ShadowOn.Provider value={false}>
     {/* Uniform white on every beat (backgrounds.js); a full-bleed photo beat
@@ -1304,7 +1314,8 @@ export function CanvasVideo({ plan }) {
       {/* A beat's own ground (the planner's `ground`, canvas ground_color) is painted here while that
           beat is the one on screen; with none declared the StudioBG white shows, as before. While the
           outgoing beat is held, its ground is the one painted so its ink never sits on the wrong colour. */}
-      {shownGround ? <div style={{ position: "absolute", inset: 0, backgroundColor: shownGround }} /> : null}
+      {groundBase ? <div style={{ position: "absolute", inset: 0, backgroundColor: groundBase }} /> : null}
+      {groundTop ? <div style={{ position: "absolute", inset: 0, backgroundColor: groundTop, opacity: inProgress }} /> : null}
       {(() => { const bg = backgroundOf(i, cLayout.composition, !!c.ground_color); return (<>
         {bg.paper ? <PaperTexture drift={clamp01(local / Math.max(1, beat.duration_frames)) * 0.5} /> : null}
         {bg.rule ? <div style={{ position: "absolute", left: L_EDGE, top: BG_RULE.y, width: R_EDGE - L_EDGE, height: BG_RULE.h, backgroundColor: BG_RULE.color }} /> : null}
