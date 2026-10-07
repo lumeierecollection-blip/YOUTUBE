@@ -70,19 +70,30 @@ judgement was handed to Layer 3).
 `0.4570` in `channels/_shared/style-threshold.json`, calibrated on 142 frames.
 Advisory only. Blank frames pass.
 
-**NOT WIRED.** `scripts/render-and-qa.js:2006` passes a hardcoded stub to the
-eval loop:
-```js
-layer2: async () => ({ advisory_score: null, note: "advisory not wired at this call site yet" }),
-```
-It never calls `eval-layer2-style.js`. No workflow file references Layer 2. The
-module's real API (`scoreStyleFile`, `embedFiles`, `scoreStyle`) is fully
-implemented and unit-tested but has no caller in the pipeline.
+**WIRED (branch `work/gemini-decides-2026-10-07`, `ea3689a`).** The stub is gone;
+`render-and-qa.js` calls `layer2Advisory()` from `scripts/eval-layer2-wire.js`
+(a wrapper over `scoreStyleFile`, which is unchanged) and returns
+`{advisory_score, frame_count, below_floor_count, timestamps_below_floor,
+style_match, ...}`. `style_match` is `matched | clone_suspected | off_style`,
+advisory only, never gating. HF cache step added to the v2 workflow.
+**First real number (local, on the CI-rendered ch-05 MP4 of run `37687564970`):**
+`advisory_score 0.6229`, 55 frames, 4 below the 0.4570 floor (at 20.9 s, 21.9 s,
+22.9 s, 53.7 s), `style_match: matched`, 0 clone frames, best candidate-vs-reference
+similarity 0.870 against a measured reference ceiling of 0.837 (config ceiling
+0.9). **It has not yet run inside CI** — see §6.
 
-**Layer 2 therefore cannot run in CI regardless of the reference videos.**
-`159ac9f` fixed the *file* blocker only; wiring is a separate, undone piece of
-work. Its first CI execution has not happened and cannot happen until the stub
-is replaced.
+**Planner: Gemini decides (`332e96c`, `e062fe0`).** The four mandates are now
+defaults, not rules: per-beat `ground` (hex / white / transparent / description;
+absent = white), beat type (beat 0 / last beat default to TYPE only when Gemini
+didn't pick), major-beat count (old 2-3 logic only when Gemini marks none), and
+composition (unknown names are logged `composition_unknown`, mapped to the nearest,
+never failed; a `compositions_used` counter is logged per plan). The planner reads
+`channels/<channel_id>/style-spec.json` as reference (`style_spec_missing` is
+logged, not fatal). **Confirmed live in CI for ch-05:** the planner log shows
+`style spec channels/ch-05/style-spec.json loaded as reference (16 field(s))`,
+beat 0 was NUMBER-FULL (not forced TYPE), and Gemini chose grounds
+`#F0F0F0 / white / #F0F0F0 / #2B2B2B / white / #F0F0F0 / white / #2B2B2B / white`
+across the 9 beats — measured in the rendered frames (240, 255, 43 on the ground).
 
 **Second gate, independent of the stub:** the whole block is wrapped in
 `if (loopEnabled())` (`render-and-qa.js:1995`), and `loopEnabled()` is
@@ -156,6 +167,20 @@ video. Do not describe the render as good or bad — nobody has looked.
 
 ## 5. What's broken — open bugs
 
+**Fixed on `work/gemini-decides-2026-10-07` (not merged):** channel-resolution
+sweep to `channel-lookup` (`232ecb6`, guarded by `channel-sweep.test.js`);
+duplicate guard removed from `fetch-trending.cjs` (`4a57356`, §7.1 closed);
+trending categories remapped and ch-49 added (`fc6aca4`); `youtube-publish`
+reads `config/priority-channels.json` and refuses a channel whose credentials
+path names another channel (`06ddcdb`, `11fb794`). 105/105 on the six test files
+these commits touch (re-run 2026-10-07).
+
+**BUG-1 status: no longer reproduces.** In run `37687564970` ch-05's
+`canvas-accent` PASSED (`accent #2B2B2B in beat 7`). Cause not traced; do not
+close it on one run.
+
+**BUG-2 is now the blocker for everything downstream — see §6.**
+
 **BUG-1 — `canvas-accent`: config present, manifest empty. OPEN.**
 `config/channels.json:2884` has `"canvas_accent": "#2B2B2B"` for ch-05.
 `local-audit.cjs:408` fails with `the manifest names no accent colour
@@ -208,7 +233,37 @@ unretracted but unsupported.**
 
 ---
 
-## 6. Known issues, unproven
+## 6. Layer 2 / Layer 3 — first CI dispatch (2026-10-07)
+
+Run `37687564970`: ch-05, `eval_loop_mode=dry`, `dry_run=true`, commit `ea3689a`.
+**Layers 2 and 3 did not run, and could not have.** The eval block
+(`render-and-qa.js` ~line 2002) sits *after* the canvas checks (~line 1879), which
+`return backupAudit(...)` on failure. The render passed 15/17 local-audit checks
+and failed two, so the video went to `rejected/` before the eval loop was reached:
+
+- `pop-transitions` — beat 5 (TYPE-FULL, ground `#F0F0F0`) is blank at boundary
+  frames 6-10 (verified in frames: beat 4's content is gone by +0.2 s and the
+  ground is empty until ~+0.43 s). **The same message appeared on `main` this
+  morning** (run `37619905834`, ch-26 beats 5 and 8) and on ch-05 in
+  `37550901882`. It is a pre-existing renderer defect, not caused by this branch.
+- `zones-no-overlap` — beat 2 (PORTRAIT) ink crosses the 620/1340 zone edges in
+  200-285 columns at 62% and 90%. Not seen in the earlier ch-05 run; whether the
+  branch's `canvas-layout.js` / `local-audit.cjs` changes contributed is
+  **unchecked**.
+
+Consequence: in CI, any render that fails Layer 1 never gets a Layer 2/3 number,
+and Layer 1 currently fails on most renders (fleet run `37540546857`, `37619905834`).
+So `advisory_score` / `aggregate_local` / `style_match` have never been recorded in
+CI for any channel. No `data/audit/eval-loop/` or layer3 JSONL exists for this run.
+The first live (`eval_loop_mode=live`) dispatch was **not** made: it would hit the
+same Layer 1 wall, and `live` cannot apply revisions anyway (§6 below).
+
+Run `37681011877` (same commit) stalled in `Ensure ffmpeg/ffprobe` for ~2h40m and
+was cancelled; `37674538629` (on `06ddcdb`, 5 channels) was cancelled with
+ch-1/10/44 failing in Render + QA and the preview job failing in `Build preview
+bundle` — reasons not read.
+
+## 6b. Known issues, unproven
 
 - Layer 2 and Layer 3 have **never run in CI**. Layer 2's reason is now known and
   is not the one assumed: it is **not wired** (`render-and-qa.js:2006` is a stub
@@ -331,6 +386,34 @@ files are permanently in history (`159ac9f`) and downloadable; history rewrite
 would be `git filter-repo` + force-push, disruptive and incomplete once forked.
 Owner confirmed after being told the repo is public.
 
+**7.15 — The eval loop is unreachable behind Layer 1.** Wiring Layer 2 and
+dispatching `dry` is not enough: the loop only runs for renders that already passed
+`canvas-checks`, `beat-check` and the pixel gate. See §6. A "Layer 2 is wired" claim
+means the call site exists, not that any CI run has produced a number.
+
+**7.16 — The manifest's `ground` field says `"white"` on beats that are not
+white.** `manifest.beats[i].canvas.ground` is `"white"` for every beat of the ch-05
+render, while `ground_color` carries the real colour (`#2B2B2B` on beats 3 and 7,
+`#F0F0F0` on 0/2/5) and `dark: true` is set. Anything reading `.ground` to learn the
+colour gets the wrong answer; read `ground_color`.
+
+**7.17 — `canvas-ground` passes on declared grounds by design.** It reports "reads
+uniform white on every non-photo beat" while beats 3 and 7 are `#2B2B2B`: declared
+grounds are exempt from the white measurement. A green `canvas-ground` no longer
+means the video is white.
+
+**7.18 — `pop-transitions` measures "ink" as luminance < 235.** On a dark ground
+every pixel is "ink", so the check passes trivially on `#2B2B2B` beats; on a
+`#F0F0F0` ground (luminance 240) only real content counts. Untested whether a dark
+beat can pass while genuinely empty.
+
+**7.19 — The `[plan]` log reports `compositions_used` for planned types, not
+rendered ones.** ch-05: `NUMBER-FULL 2, PORTRAIT 3, DOCUMENT 2, TYPE-FULL 1,
+TYPE-SPLIT 1` planned; rendered manifest was NUMBER-FULL, PROCESS-FULL, PORTRAIT,
+TYPE-SPLIT, PROCESS-FULL, TYPE-FULL x2, TYPE-SPLIT, SCENE-FULL. Plan repair and
+rotation rewrite the plan after the counter is logged. The >60%-of-beats templating
+signal needs many runs; one run says nothing.
+
 ---
 
 ## 8. In-flight work
@@ -350,20 +433,22 @@ Local diagnostic scripts committed this session and referenced by BUG-2:
 
 ## 9. What the next push should be
 
-1. **Trace `canvas_accent` from `config/channels.json` into the render
-   manifest.** BUG-1. It is a config/propagation bug, not a check-tuning
-   question, and it is the nearest thing to Layer 3 for ch-05.
-2. **Decide whether `#2B2B2B` is the right accent for a white-collage
-   channel.** Independent of BUG-1; clearing the check with a wrong value
-   produces a video with no visible accent.
-3. **Run `scripts/measure-boundary.mjs` and `scripts/probe-arrival.mjs` against
-   ch-05's rejected frames, and compare with ch-02's `37380168306`.** BUG-2.
-   Do not assume it is the `f766ae5` class; the 5-frame span argues against it.
-4. **Read ch-2's log after `[translate] beat 3` in `37540546857`.** BUG-3. Two
-   built channels are losing videos to a summary line that contradicts its own
-   evidence.
-5. **Delete the duplicated guard in `fetch-trending.cjs` now that
-   `channel-lookup.cjs` exists.** §7.1.
+1. **Fix BUG-2 (`pop-transitions`, 5-frame blank at the start of a TYPE-FULL beat).**
+   It blocks Layer 2 and Layer 3 in CI for every channel; nothing downstream can
+   be measured until a render clears Layer 1. Run `scripts/measure-boundary.mjs`
+   and `scripts/probe-arrival.mjs` on the rejected ch-05 frames. The decision this
+   needs from the owner: fix the renderer (hold the outgoing beat / earlier word
+   pop), or move the eval loop ahead of the Layer 1 early-return so Layer 2/3 are
+   recorded for rejected renders too. Do not loosen the check.
+2. **Check `zones-no-overlap` on PORTRAIT beats** (200-285 columns crossing the
+   620/1340 edges). Compare against `main`; decide whether this branch's
+   `canvas-layout.js` change contributed.
+3. **Re-dispatch ch-05 `dry`, then `live`, once a render clears Layer 1.** Record
+   `advisory_score`, `below_floor_count`, Layer 3 axes, `aggregate_local`,
+   `style_match`. Then fix the Layer 3 beat-index resolver if the gap shows.
+4. **OAuth for ch-05/06/08/10** (names in §11) — the owner's task.
+5. **Read ch-2's log after `[translate] beat 3` in `37540546857`.** BUG-3.
+6. **Why `Ensure ffmpeg/ffprobe` stalled 2h40m in `37681011877`** (apt-get hang?).
 
 Do not run the fleet. ch-1 and ch-8 were SIGTERMed on runner capacity in
 `37540546857`; single channel, or two at most.
@@ -444,6 +529,27 @@ appears in any tracked `.js`/`.json`/`.yml`/`.md`.
 --add safe.directory <path>` (the workflow does this itself), and confirm
 `YOUTUBE_API_KEY` is present or the pipeline silently falls back to unseeded
 discovery — a failure that looks like a topic problem and is not one.
+
+**YouTube upload credentials (named, not fixed).** `youtube-publish` reads
+`config/creds/ch-NN.json`, which the workflow's "Materialize OAuth credentials" step
+builds from three secrets per channel: `CHANNEL_NN_CLIENT_ID`,
+`CHANNEL_NN_CLIENT_SECRET`, `CHANNEL_NN_REFRESH_TOKEN` (zero-padded NN). Checked
+with `gh secret list` on 2026-10-07:
+
+| channel | secrets | status |
+|---|---|---|
+| ch-01, 02, 09, 26, 44 | `CHANNEL_{01,02,09,26,44}_{CLIENT_ID,CLIENT_SECRET,REFRESH_TOKEN}` | exist, and mapped in the workflow |
+| ch-49 | `CHANNEL_49_*` | **missing**, not mapped in the workflow |
+| ch-05 | `CHANNEL_05_CLIENT_ID`, `CHANNEL_05_CLIENT_SECRET`, `CHANNEL_05_REFRESH_TOKEN` | **missing**, not mapped |
+| ch-06 | `CHANNEL_06_*` (same three) | **missing**, not mapped |
+| ch-08 | `CHANNEL_08_*` (same three) | **missing**, not mapped |
+| ch-10 | `CHANNEL_10_*` (same three) | **missing**, not mapped |
+
+Secrets also exist for ch-03, 04, 07 and 48 (not approved to publish). Even after
+the secrets are added, the two `env:` blocks of the "Materialize OAuth credentials"
+steps in `daily-pipeline-v2.yml` (~lines 1077 and 1229) list only 01/02/09/26/44
+and need `CH05_*`, `CH06_*`, `CH08_*`, `CH10_*`, `CH49_*` lines — a one-time
+workflow edit, not done here. Publishing is also gated to `refs/heads/main`.
 
 Keys 1 and 2 of `GEMINI_API_KEY_*`: see BUG-5. Do not report them as dead
 until `gemini-client.js` has been read.
