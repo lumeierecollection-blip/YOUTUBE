@@ -1,0 +1,61 @@
+name: tests
+
+# The full node:test suite (scripts/__tests__/*.test.js) on every push and on demand.
+# Before this file existed nothing in CI ran the suite: "tests green" was only ever a
+# claim about one workstation. This is the authority now.
+#
+# Read-only: no secrets, no publish, nothing written back. Tests that need a gitignored
+# local fixture skip themselves with a stated reason (see each file) — they do not pass
+# silently and they are not deleted.
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  node-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --no-fund
+
+      - name: Ensure ffmpeg/ffprobe
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+          ffmpeg -version | head -1
+
+      # Layer 2's CLIP weights (Xenova/clip-vit-base-patch32), ~350 MB.
+      - name: Cache HuggingFace models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-${{ runner.os }}-clip-vit-base-patch32
+          restore-keys: hf-${{ runner.os }}-
+
+      - name: node --test scripts/__tests__
+        run: node --test --test-reporter=spec scripts/__tests__/*.test.js
