@@ -1018,10 +1018,16 @@
       "last_generated": "2026-10-07T00:15:49.212Z"
     },
     "6": {
-      "channel_name": "The War Room",
-      "niche": "Military History & Strategy",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Nash",
+      "niche": "Game Theory & Strategy",
+      "used_topics": [
+        {
+          "topic": "Italian Prosecutors Reopen Garlasco Case to Probe Forensic Failures",
+          "slug": "italian-prosecutors-reopen-garlasco-case-forensics",
+          "reserved_at": "2026-10-07T12:22:04.630Z"
+        }
+      ],
+      "last_generated": "2026-10-07T12:22:04.630Z"
     },
     "7": {
       "channel_name": "Dead Companies",
