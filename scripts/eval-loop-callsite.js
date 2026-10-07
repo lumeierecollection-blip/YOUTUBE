@@ -71,7 +71,7 @@ export async function recordEvalLoop({ plan, scriptPath, attempt, channelId, out
   }
   const decision = result?.accepted ? "accept" : result?.humanReview ? "human_review" : "retry";
   const l2 = result?.layer2 ?? result?.layer2_advisory ?? null;
-  const auditPath = writeLoopAudit({
+  const record = {
     channel: channelId, runId, mode, decision,
     retries_spent: result?.retries ?? 0,
     weak_beats: result?.events?.filter((e) => e.type === "layer3-fail") ?? [],
@@ -86,7 +86,9 @@ export async function recordEvalLoop({ plan, scriptPath, attempt, channelId, out
       style_match: l2.style_match ?? null, clone_frames: l2.clone_frames ?? null, note: l2.note ?? null,
     } : null,
     layer3: result?.layer3 ?? (Number.isFinite(result?.aggregate_local) ? { aggregate_local: result.aggregate_local, axes: result.axes ?? null } : null),
-  }, root ? { root } : undefined);
+  };
+  const auditPath = writeLoopAudit(record, root ? { root } : undefined);
+  log(`[eval-loop-record] ${JSON.stringify(record)}`);
   log(`[eval-loop:${mode}] ${decision} (layer1 ${layer1Pass ? "pass" : "FAIL: " + failures.map((f) => f.check).join(",")}) — retries=${result?.retries ?? 0} audit=${auditPath}`);
   return { decision, auditPath, result, mode };
 }
