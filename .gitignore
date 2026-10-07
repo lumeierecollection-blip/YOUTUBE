@@ -114,3 +114,7 @@ dbg-*.cjs
 # Layer 2 reference frames: regenerable from research/motion-graphics-ref/*.mp4 by
 # scripts/eval-layer2-style.js. 6.2 MB of derived PNG that no one needs in history.
 channels/_shared/ref-frames/
+
+# YouTube trending feed (regenerate: node scripts/fetch-trending.cjs <ch> --force, needs
+# YOUTUBE_API_KEY; 12h cache per channel). Same convention as data/renders/ above.
+data/trending/
