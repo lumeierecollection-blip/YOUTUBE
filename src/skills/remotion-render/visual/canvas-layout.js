@@ -856,7 +856,87 @@ export function canvasLayout(c) {
     }
     hero = "nodes";
   }
-  return { composition: comp, boxes, hero, flip };
+  // The plan's own layout, when the planner gave one (applyPlanLayout below): the composition
+  // above computed every element — its size, its text fit, its lines — and the plan now says
+  // WHERE each named element goes. Without a plan layout this is the old table, unchanged.
+  const layout = c?.layout ? applyPlanLayout(boxes, c.layout, { hero }) : null;
+  return { composition: comp, boxes, hero, flip, layout };
+}
+
+/**
+ * Plan-controlled placement (the planner's per-beat `layout`).
+ *
+ * The composition table above used to be the only thing that decided where an element sat: every
+ * PROCESS-FULL beat on every channel put its nodes at the same two cells, every NUMBER-FULL its
+ * number at y 781. The plan can now say where. Its `layout` is
+ *
+ *   { cols, rows,                                 the beat's OWN grid over the content area
+ *     slots: [{ id, col, row, col_span, row_span,  a cell span on that grid
+ *               align, v_align }                  left|center|right, top|center|bottom
+ *            | { id, x, y, w, h }] }              or a rectangle in 1080x1920 px
+ *
+ * `id` names an element the composition drew: headline, kicker, statement, number, label,
+ * lead_phrase, emphasis, chart, map, nodes, items, markers, portrait, cutout0..2, numberA/B,
+ * labelA/B — or "hero" / "visual" for the composition's hero element. An element the plan does
+ * not name keeps the table's position; an id the beat does not have is reported, not guessed.
+ *
+ * Where it stops, on purpose: the plan moves elements, it does not resize them. Each element's
+ * size comes from its content (a headline fitted to its words, a number to its digits), so a
+ * move cannot crop a word or misstate a figure. The only clamp is the frame itself — an element
+ * is kept inside the 48 px safe edge and above the caption band (CAPTION_TOP), which renders on
+ * every beat. Overlaps and zone crossings are not prevented here: Layer 1 (local-audit.cjs
+ * canvas-fit, zones-no-overlap) judges what the plan asked for.
+ */
+export const LAYOUT_AREA = Object.freeze({ x0: 48, x1: 1032, y0: 130, y1: 1400 });
+const CAPTION_TOP = 1440;
+const LAYOUT_ALIASES = { visual: "hero", body: "hero", title: "headline", text: "statement", figure: "number", graph: "chart", diagram: "nodes", list: "items", timeline: "markers", image: "portrait", photo: "portrait", cutout: "cutout0", icon: "cutout0", symbol: "cutout0" };
+// Parts that travel with an element (TIMELINE's spine moves with its markers).
+const LAYOUT_GROUPS = { markers: ["markers", "line"] };
+function translateBox(v, dx, dy) {
+  if (Array.isArray(v)) { v.forEach((el) => translateBox(el, dx, dy)); return; }
+  if (!v || typeof v !== "object") return;
+  if (isBox(v)) { v.x = Math.round(v.x + dx); v.y = Math.round(v.y + dy); if (Number.isFinite(v.baseline)) v.baseline = Math.round(v.baseline + dy); }
+  for (const [k, sv] of Object.entries(v)) if (sv && typeof sv === "object" && k !== "parts" && k !== "lines") translateBox(sv, dx, dy);
+}
+function unionOf(list) {
+  const bs = list.flatMap((v) => flattenBoxes({ v }).map(([, b]) => b));
+  if (!bs.length) return null;
+  const x = Math.min(...bs.map((b) => b.x)), y = Math.min(...bs.map((b) => b.y));
+  return { x, y, w: Math.max(...bs.map((b) => b.x + b.w)) - x, h: Math.max(...bs.map((b) => b.y + b.h)) - y };
+}
+const int = (v, lo, hi, d) => { const n = Math.round(Number(v)); return Number.isFinite(n) ? Math.max(lo, Math.min(hi, n)) : d; };
+export function slotRect(layout, slot) {
+  const A = LAYOUT_AREA;
+  if (["x", "y", "w", "h"].every((k) => Number.isFinite(Number(slot?.[k])))) return { x: Number(slot.x), y: Number(slot.y), w: Math.max(1, Number(slot.w)), h: Math.max(1, Number(slot.h)) };
+  const cols = int(layout?.cols, 1, 12, 1), rows = int(layout?.rows, 1, 12, 1);
+  const col = int(slot?.col, 0, cols - 1, 0), row = int(slot?.row, 0, rows - 1, 0);
+  const cs = int(slot?.col_span, 1, cols - col, 1), rs = int(slot?.row_span, 1, rows - row, 1);
+  const cw = (A.x1 - A.x0) / cols, rh = (A.y1 - A.y0) / rows;
+  return { x: A.x0 + col * cw, y: A.y0 + row * rh, w: cs * cw, h: rs * rh };
+}
+export function applyPlanLayout(boxes, layout, { hero = null } = {}) {
+  const placed = [], unknown = [];
+  for (const slot of Array.isArray(layout?.slots) ? layout.slots : []) {
+    let id = String(slot?.id || "").trim();
+    id = LAYOUT_ALIASES[id.toLowerCase()] || id;
+    if (id === "hero") id = hero || "";
+    if (id === "headline" && !boxes.headline && boxes.statement) id = "statement";
+    if (id === "statement" && !boxes.statement && boxes.headline) id = "headline";
+    const keys = (LAYOUT_GROUPS[id] || [id]).filter((k) => boxes[k] && k !== "bottom" && k !== "split" && k !== "photo");
+    if (!keys.length) { unknown.push(String(slot?.id)); continue; }
+    const E = unionOf(keys.map((k) => boxes[k]));
+    if (!E) { unknown.push(String(slot?.id)); continue; }
+    const R = slotRect(layout, slot);
+    const align = slot?.align || boxes[keys[0]]?.align || "left", va = slot?.v_align || "top";
+    let x = align === "right" ? R.x + R.w - E.w : align === "center" ? R.x + (R.w - E.w) / 2 : R.x;
+    let y = va === "bottom" ? R.y + R.h - E.h : va === "center" ? R.y + (R.h - E.h) / 2 : R.y;
+    x = Math.max(SAFE.x, Math.min(FRAME.w - SAFE.x - E.w, x));
+    y = Math.max(SAFE.y, Math.min(CAPTION_TOP - E.h, y));
+    const dx = x - E.x, dy = y - E.y;
+    if (dx || dy) for (const k of keys) translateBox(boxes[k], dx, dy);
+    placed.push({ id: keys.join("+"), x: Math.round(x), y: Math.round(y), w: Math.round(E.w), h: Math.round(E.h) });
+  }
+  return { cols: layout?.cols ?? null, rows: layout?.rows ?? null, placed, unknown };
 }
 
 const isBox = (v) => v && typeof v === "object" && "x" in v && "y" in v && "w" in v && "h" in v;
@@ -994,6 +1074,8 @@ export function canvasManifest(raw, idx) {
     accent_used: ["DATA-FULL", "PROCESS-FULL", "TIMELINE", "LIST-BUILD", "COMPARISON-SPLIT", "MAP-CENTERED", "DOCUMENT"].includes(L.composition)
       || ((L.composition === "NUMBER-FULL" || L.composition === "MONEY") && c.number_accent !== false && !!L.boxes.number),
     variant: c.variant, flip: L.flip, dark: !!c.dark,
+    // The planner's own layout and what it moved (applyPlanLayout); null = the composition table.
+    plan_layout: L.layout || null,
     // What is behind the beat: the ground (white unless the beat declared another — then
     // `ground_color` is its hex, null for the default), or a full-bleed photo covering it.
     // `ground` keeps its old meaning ("a ground is visible": "white" | "photo") so every reader

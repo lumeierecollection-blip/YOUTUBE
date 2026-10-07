@@ -985,6 +985,12 @@ function canvasContentFor(b, { photo = null } = {}) {
   else if (vt === "TYPE" && b.fallback_symbol && !b.name_card?.name) c.concept_visuals = [{ name: b.fallback_symbol, class: "symbol", w: 1, h: 1, fallback: true }];
   // Entrance style (part C.4, assigned by the planner): together | staggered | visual-first.
   if (b.entrance_style) c.entrance_style = b.entrance_style;
+  // The planner's own layout (canvas-layout.js applyPlanLayout): where each element of this beat
+  // goes, on a grid the planner chose. Passed through as written — the layout code reads it.
+  if (b.layout && typeof b.layout === "object" && Array.isArray(b.layout.slots) && b.layout.slots.length) {
+    c.layout = { cols: b.layout.cols ?? null, rows: b.layout.rows ?? null, slots: b.layout.slots.slice(0, 16) };
+    console.log(`[layout] beat ${b.index ?? "?"}: plan layout ${c.layout.cols ?? "-"}x${c.layout.rows ?? "-"} — ${c.layout.slots.map((sl) => sl.id).join(", ")}`);
+  }
   // Source credit (part C): the domain of the beat's fetched image.
   const credit = sourceCredit(photo?.source_url || b.hero_cutout?.source_url);
   if (credit) c.source_credit = credit;
