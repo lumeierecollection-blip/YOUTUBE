@@ -33,6 +33,7 @@ import {
   compactCapabilityDigest, compileScene, isMechanismBased, mechanismToCapability,
 } from "../src/skills/remotion-render/visual/capability-compiler.js";
 import { callGemini as callGeminiApi, createCachedContent } from "../src/lib/gemini-client.js";
+import { referenceFramesFor, imageParts, withReferenceImages } from "./reference-frames.js";
 import { forcedOllama, callOllamaOnly, callLLM, isProviderError } from "../src/lib/llm.js";
 import { createRequire as createRequireGroq } from "node:module";
 const { callGroq } = createRequireGroq(import.meta.url)("./groq-client.cjs");
@@ -726,6 +727,13 @@ async function main() {
   const style = loadStyleReference(channelId);
   if (style.ref) console.log(`[planner] ch-${channelId}: style spec ${style.path} loaded as reference (${style.fields} field(s))`);
   else console.log(`[planner] ch-${channelId}: style_spec_missing — ${style.why}; continuing without it`);
+  // The channel's reference frames go to Gemini as images with the prompt (scripts/reference-frames.js):
+  // the planner sees what the reference looks like, not only the spec's words about it. Context, not
+  // a gate — Layer 2 still scores the render (and its clone check) afterwards.
+  const refFrames = referenceFramesFor(channelId);
+  const refParts = refFrames.files.length ? imageParts(refFrames.files) : [];
+  if (refParts.length) console.log(`[planner] ch-${channelId}: reference frames attached to the planner call: ${refParts.length} from ${refFrames.source} (${refFrames.files.map((f) => f.split(/[\\/]/).slice(-3).join("/")).join(", ")})`);
+  else console.log(`[planner] ch-${channelId}: reference_frames_missing — ${refFrames.why}; planning without them`);
   const prompt = buildPlanPrompt(sentences, corrections, channelId, style.ref);
   // Context caching (owner's token spec 2026-10-03, A.1): the static part is uploaded once
   // and referenced; each Gemini call then sends only this video's sentences.
@@ -746,7 +754,7 @@ async function main() {
     const out = u?.completion_tokens ?? (r && !r.error ? estTok(JSON.stringify(r)) : 0);
     console.log(`[planner] ch-${channelId}: ${provider} prompt ${Number(pt).toLocaleString("en-US")} tokens${u ? "" : " (est.)"} (cached: ${Number(cached).toLocaleString("en-US")}), response ${Number(out).toLocaleString("en-US")} tokens`);
   };
-  const cacheFor = (extra = "") => (geminiCache ? { name: geminiCache.name, keyIndex: geminiCache.keyIndex, messages: [{ role: "user", content: dynamicPart + extra }] } : undefined);
+  const cacheFor = (extra = "") => (geminiCache ? { name: geminiCache.name, keyIndex: geminiCache.keyIndex, messages: [{ role: "user", content: withReferenceImages(dynamicPart + extra, refParts) }] } : undefined);
   // Token budget scales with beat count so the JSON never truncates
   // mid-object (a 51-beat script once came back as "Unexpected end of JSON
   // input"). Each beat now carries the full director "direction" block
@@ -779,7 +787,7 @@ async function main() {
   if (forced) {
     console.error("[planner] ollama (FORCE_PLANNER=ollama — Gemini not called)");
   } else {
-    geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2, tag: "planner", cache: cacheFor() }));
+    geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: withReferenceImages(prompt, refParts) }], { maxTokens, temperature: 0.2, tag: "planner", cache: cacheFor() }));
     logTokens(geminiResult, "gemini", prompt);
     if (geminiResult?.source === "gemini" && geminiResult.error) {
       geminiFailure = geminiResult.error;
@@ -788,7 +796,7 @@ async function main() {
       // "beats" key, or with a beat count that shifts every beat onto the
       // wrong line (run 36362576442 ch-26). One strict, uncached retry.
       console.error(`Gemini plan attempt 1 ${geminiResult?.beats ? `has ${geminiResult.beats.length} beats for ${sentences.length} sentences` : `had no 'beats' — got: ${describeShape(geminiResult)}`}. Retrying once uncached.`);
-      geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2, noCache: true, tag: "planner", cache: cacheFor(strictSuffix) }));
+      geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: withReferenceImages(strictPrompt, refParts) }], { maxTokens, temperature: 0.2, noCache: true, tag: "planner", cache: cacheFor(strictSuffix) }));
       logTokens(geminiResult, "gemini (strict retry)", strictPrompt);
       if (geminiResult?.source === "gemini" && geminiResult.error) geminiFailure = geminiResult.error;
       else if (!okBeats(geminiResult)) geminiFailure = geminiResult?.beats ? `beat count ${geminiResult.beats.length} != ${sentences.length}` : "no_beats";
