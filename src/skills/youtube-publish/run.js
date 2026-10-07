@@ -16,14 +16,14 @@
  *   node run.js <channel-id>                      # upload latest render
  *   node run.js <channel-id> --dry-run            # validate creds + metadata only
  *   node run.js <channel-id> --review             # upload from approved-review/ (manual job; stays private)
- * Uploads only to PUBLISH_CHANNELS (1, 2, 9, 26, 44, 48); any other channel is refused.
+ * Uploads only to the channels in config/priority-channels.json; any other channel is refused.
  *   node run.js <channel-id> <video.mp4>          # upload a specific render
  *   node run.js process-queue                     # flip due entries to public
  *   node run.js cancel <channel-id> <video-id>    # cancel a queued publish
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from "fs";
-import { resolveChannel } from "../../../scripts/lib/channel-lookup.mjs";
+import { resolveChannel, normalizeChannelId } from "../../../scripts/lib/channel-lookup.mjs";
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { getAccessToken, loadCredentials, hasCredentials } from "../../utils/youtube-auth.js";
@@ -36,10 +36,21 @@ const ROOT = join(__dirname, "..", "..", "..");
 const API = "https://www.googleapis.com/youtube/v3";
 const UPLOAD = "https://www.googleapis.com/upload/youtube/v3";
 
-// The only channels anything may upload to (owner, 2026-10-03), hardcoded here, not read from
-// config: every upload path (the daily render job, the manual review-publish job) goes
-// through this file, and a channel outside this list is refused before credentials are read.
-const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 48];
+// The only channels anything may upload to. Every upload path (the daily render job, the
+// manual review-publish job) goes through this file, and a channel outside the list is
+// refused before credentials are read.
+const PRIORITY_PATH = join(ROOT, "config", "priority-channels.json");
+// config/priority-channels.json is the one list of approved channels (the workflow's
+// setup job reads the same file). It used to be hardcoded here as [1, 2, 9, 26, 44, 48],
+// which refused ch-05/06/08/10/49 and allowed ch-48, a channel nothing dispatches.
+// Fail closed: an unreadable or empty file approves nothing, and the error says so.
+function publishChannels() {
+  let list;
+  try { list = JSON.parse(readFileSync(PRIORITY_PATH, "utf-8")).channels; }
+  catch (e) { throw new Error(`cannot read the approved-channel list ${PRIORITY_PATH}: ${e.message}`); }
+  if (!Array.isArray(list) || !list.length) throw new Error(`${PRIORITY_PATH} lists no channels — refusing every upload`);
+  return list.map((c) => normalizeChannelId(c));
+}
 
 const VIDEO_EXTENSIONS = [".mp4", ".webm", ".mov", ".mkv"];
 const THUMB_EXTENSIONS = [".jpg", ".jpeg", ".png"];
@@ -261,8 +272,9 @@ async function setThumbnail(token, videoId, thumbPath) {
 }
 
 async function uploadChannel(channelId, explicitVideo, dryRun, review = false) {
-  if (!PUBLISH_CHANNELS.includes(Number(channelId))) {
-    throw new Error(`channel "${channelId}" is not a publish channel — uploads are allowed only to ${PUBLISH_CHANNELS.join(", ")}`);
+  const approved = publishChannels();
+  if (!approved.includes(normalizeChannelId(channelId))) {
+    throw new Error(`channel "${channelId}" is not a publish channel — uploads are allowed only to ${approved.join(", ")} (config/priority-channels.json)`);
   }
   const channel = loadChannel(channelId);
 

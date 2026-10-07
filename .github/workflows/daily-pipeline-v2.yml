@@ -1153,13 +1153,15 @@ jobs:
       actions: read
       contents: write
     steps:
-      - name: Check inputs (six publish channels only)
+      - uses: actions/checkout@v4
+
+      - name: Check inputs (approved channels only)
         env:
           REQUESTED: ${{ github.event.inputs.channels }}
           REVIEW_RUN: ${{ github.event.inputs.review_run_id }}
         run: |
           node -e "
-            const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 49];
+            const PUBLISH_CHANNELS = require('./config/priority-channels.json').channels.map(Number);
             const ids = (process.env.REQUESTED || '').split(',').map(s => s.trim().replace(/^ch-?/i, '')).filter(Boolean).map(Number);
             const bad = ids.filter(id => !PUBLISH_CHANNELS.includes(id));
             if (!ids.length) { console.error('::error::no channels given'); process.exit(1); }
@@ -1167,8 +1169,6 @@ jobs:
             if (!/^[0-9]+$/.test(process.env.REVIEW_RUN || '')) { console.error('::error::review_run_id must be the numeric id of a pipeline run'); process.exit(1); }
             console.log('Publishing approved-review videos of run ' + process.env.REVIEW_RUN + ' for channel(s) ' + ids.join(', ') + ' (private)');
           "
-
-      - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
