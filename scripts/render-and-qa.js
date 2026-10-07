@@ -59,7 +59,7 @@ const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 const GEMINI_PLAN_JS = join(__dirname, "gemini-visual-plan.js");
 const CHALLENGER_JS = join(__dirname, "gemini-visual-challenger.js");
 const ELEMENT_REMEDIATION_JS = join(__dirname, "beat-element-remediation.js");
-const { runEvalLoop, loopEnabled, evalLoopMode, writeLoopAudit } = await import("./eval-retry-loop.js");
+const { recordEvalLoop } = await import("./eval-loop-callsite.js");
 const { judge } = await import("./eval-layer3-judge.js");
 const { layer2Advisory } = await import("./eval-layer2-wire.js");
 
@@ -1876,15 +1876,36 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // Deterministic. A failing check fails the render; the video goes to the
     // backup audit, which runs the same checks and rejects it.
     const manifestPath = result.outputPath.replace(/\.mp4$/, "-manifest.json");
+    let canvasFailure = null;
     if ((readJsonSafe(manifestPath)?.beats || []).some((b) => b.canvas)) {
       const fit = await runChild("node", [LOCAL_AUDIT_CJS, "--canvas-only", "--video", result.outputPath, "--manifest", manifestPath],
         { label: `canvas-checks ${channelId}/${basename(scriptPath)}` });
       if (fit.code !== 0) {
-        console.error(`::error::canvas checks ${fit.code === 1 ? "FAILED" : "could not run"} for ${basename(result.outputPath)}`);
         const failedIds = [...String(fit.stdout || "").matchAll(/\[canvas\] FAIL (\S+)/g)].map((m) => m[1]);
-        return backupAudit({ ...backupArgs, stage: "canvas-checks", check: failedIds.join(",") || null,
-          reason: fit.code === 1 ? `failed: ${failedIds.join(", ") || "see the canvas-checks log"}` : "canvas checks could not run" });
+        canvasFailure = { code: fit.code, failedIds };
       }
+    }
+
+    // ── Three-layer eval loop (EVAL_LOOP_MODE, default off) ────────────────
+    // Runs HERE — after Layer 1 (the canvas checks) has been measured and BEFORE its
+    // early-return below — so Layers 2 and 3 are recorded on every render, pass or fail.
+    // It used to sit after the frame review, which a Layer 1 failure never reached, so
+    // no channel ever produced a Layer 2/3 number in CI.
+    //
+    // off is the default and skips everything. dry records what it would do; live acts.
+    // It does NOT route: Layer 1 still gates (the return below is unchanged), and the loop's
+    // decision is data in data/audit/eval-loop/ — `layer1_result` says whether Layer 1 passed.
+    // Nothing it decides can ship, block, or delete anything. See eval-loop-callsite.js.
+    await recordEvalLoop({
+      plan, scriptPath, attempt, channelId, outputPath: result.outputPath,
+      layer1Failures: canvasFailure ? (canvasFailure.failedIds.length ? canvasFailure.failedIds : ["canvas-checks"]) : null,
+      layer2Advisory, judge,
+    });
+
+    if (canvasFailure) {
+      console.error(`::error::canvas checks ${canvasFailure.code === 1 ? "FAILED" : "could not run"} for ${basename(result.outputPath)}`);
+      return backupAudit({ ...backupArgs, stage: "canvas-checks", check: canvasFailure.failedIds.join(",") || null,
+        reason: canvasFailure.code === 1 ? `failed: ${canvasFailure.failedIds.join(", ") || "see the canvas-checks log"}` : "canvas checks could not run" });
     }
 
     if (challengerFailure) {
@@ -1983,75 +2004,6 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // unchanged: returned with qaGatePass false and removed by main().
     const fr = frameReviewVerdict(geminiReport);
     console.log(`[frame-review] attempt ${attempt}: ${fr.pass ? "PASS" : fr.error ? "ERROR" : "FAIL"} — ${fr.reason}`);
-
-    // ── Three-layer eval loop (EVAL_LOOP_MODE, default off) ────────────────
-    // Runs after the frame review and BEFORE its accept/reject branch, so it
-    // sees a video that already passed the objective pixel gate.
-    //
-    // off is the default and skips everything: below this block nothing changes.
-    // dry reaches a decision and records what it would do, touching no pixels.
-    // live acts.
-    //
-    // It does NOT route. Its decision is logged to data/audit/eval-loop/ and
-    // nothing here branches on it. The challenger-rejection path and the
-    // backup-audit routing below are deliberately untouched: making this loop
-    // able to hold a video back is a separate decision, and a loop that can
-    // re-render AND withhold in its first production push is two new risks at
-    // once. Nothing it decides can ship, block, or delete anything yet.
-    let evalLoopResult = null;
-    if (loopEnabled()) {
-      const mode = evalLoopMode();
-      const t0 = Date.now();
-      const wouldRerender = [];
-      try {
-        evalLoopResult = await runEvalLoop({
-          plan: plan,
-          runId: `${basename(scriptPath, extname(scriptPath))}-a${attempt}`,
-          channel: channelId,
-          layer1: async () => ({ pass: qa.gatePass, failures: [] }),
-          // Layer 2 (eval-layer2-wire.js): CLIP similarity of the render's frames to the shared
-          // motion-graphics references, plus the clone-suspicion verdict. Advisory: a Layer 2 that
-          // cannot run (model download, ffmpeg) reports why and the loop carries on without a number.
-          layer2: async () => {
-            try {
-              const l2 = await layer2Advisory(result.outputPath);
-              console.log(`[layer2] advisory_score ${l2.advisory_score.toFixed(4)} (floor ${l2.threshold.toFixed(4)}), ${l2.frame_count} frames, ${l2.below_floor_count} below the floor, style_match ${l2.style_match} (clone frames ${l2.clone_frames}, reference ceiling ${l2.reference_ceiling.toFixed(4)}, best ${l2.candidate_max?.toFixed(4)}; references ${l2.reference_source})`);
-              return l2;
-            } catch (e) {
-              console.error(`[layer2] could not run: ${e.message}`);
-              return { advisory_score: null, style_match: null, note: `layer 2 could not run: ${e.message}` };
-            }
-          },
-          layer3: async ({ layer2Advisory: l2 }) => judge(result.outputPath, { channelId, layer2Advisory: l2?.advisory_score ?? null, styleMatch: l2?.style_match ?? null }),
-          revise: async () => ({ planPatch: null }),
-          renderBeats: async (indices, meta) => {
-            if (mode === "dry") { wouldRerender.push(...indices); return; }
-            throw new Error(`partial re-render of beats ${indices.join(",")} (${meta.reason}) is not expressible at this call site — a full re-render is not permitted`);
-          },
-          onEvent: (type, d) => console.log(`[eval-loop:${mode}] ${type} ${JSON.stringify(d)}`),
-        });
-      } catch (e) {
-        // The loop is an addition; it must never be able to fail a render that
-        // already passed the pixel gate.
-        console.error(`[eval-loop:${mode}] could not run: ${e.message}`);
-        evalLoopResult = { accepted: false, humanReview: true, error: e.message };
-      }
-      const decision = evalLoopResult?.accepted ? "accept" : evalLoopResult?.humanReview ? "human_review" : "retry";
-      const auditPath = writeLoopAudit({
-        channel: channelId,
-        runId: `${basename(scriptPath, extname(scriptPath))}-a${attempt}`,
-        mode,
-        decision,
-        retries_spent: evalLoopResult?.retries ?? 0,
-        weak_beats: evalLoopResult?.events?.filter((e) => e.type === "layer3-fail") ?? [],
-        would_rerender: wouldRerender,
-        rendered: [],
-        unresolved: evalLoopResult?.unresolved ?? [],
-        why: evalLoopResult?.why ?? evalLoopResult?.error ?? null,
-        duration_ms: Date.now() - t0,
-      });
-      console.log(`[eval-loop:${mode}] ${decision} — retries=${evalLoopResult?.retries ?? 0} audit=${auditPath}`);
-    }
 
     if (fr.pass || !qa.gatePass) {
       if (fr.pass || attempt === MAX_CORRECTION_LOOPS || fr.error) {

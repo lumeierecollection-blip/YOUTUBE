@@ -12,11 +12,13 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const v = (...xs) => normalize(Float32Array.from(xs));
 
 describe("Layer 2 is wired at the render call site", () => {
-  const src = readFileSync(join(ROOT, "scripts", "render-and-qa.js"), "utf8");
+  const src = readFileSync(join(ROOT, "scripts", "eval-loop-callsite.js"), "utf8");
+  const rq = readFileSync(join(ROOT, "scripts", "render-and-qa.js"), "utf8");
   it("the stub is gone and the real call is in its place", () => {
-    assert.doesNotMatch(src, /advisory not wired at this call site yet/);
-    assert.match(src, /import\("\.\/eval-layer2-wire\.js"\)/);
-    assert.match(src, /await layer2Advisory\(result\.outputPath\)/);
+    assert.doesNotMatch(src + rq, /advisory not wired at this call site yet/);
+    assert.match(rq, /import\("\.\/eval-layer2-wire\.js"\)/);
+    assert.match(src, /await layer2Advisory\(outputPath\)/);
+    assert.match(rq, /recordEvalLoop\(\{[\s\S]*?layer2Advisory, judge/);
   });
   it("Layer 3 receives the advisory score and the style match", () => {
     assert.match(src, /styleMatch: l2\?\.style_match \?\? null/);

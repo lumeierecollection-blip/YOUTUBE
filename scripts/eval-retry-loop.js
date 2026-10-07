@@ -79,12 +79,13 @@ export function loopEnabled(env = process.env) {
  * In dry mode `would_rerender` is populated and `rendered` stays empty — the
  * difference between the two is the whole point of the mode.
  */
-export function writeLoopAudit({ channel, runId, mode, decision, weak_beats = [], retries_spent = 0, would_rerender = [], rendered = [], duration_ms, why = null, unresolved = [] }, { root = ROOT } = {}) {
+export function writeLoopAudit({ channel, runId, mode, decision, weak_beats = [], retries_spent = 0, would_rerender = [], rendered = [], duration_ms, why = null, unresolved = [], layer1_result = null, layer2 = null, layer3 = null }, { root = ROOT } = {}) {
   const dir = join(root, "data", "audit", "eval-loop", String(channel));
   mkdirSync(dir, { recursive: true });
   const path = join(dir, `${runId}.jsonl`);
   appendFileSync(path, JSON.stringify({
     ts: new Date().toISOString(), mode, decision, channel: String(channel), run_id: runId,
+    layer1_result, layer2, layer3,
     retries_spent, would_rerender, rendered, weak_beats, unresolved, why, duration_ms,
   }) + "\n");
   return path;
@@ -235,6 +236,7 @@ export async function runEvalLoop({
   layer1, layer2, layer3, revise, renderBeats,
   acceptThreshold = ACCEPT_THRESHOLD, retryCap = RETRY_CAP,
   onEvent = () => {},
+  recordOnLayer1Fail = false,
 } = {}) {
   const counter = { retries: 0 };
   const unresolved = [];
@@ -250,6 +252,36 @@ export async function runEvalLoop({
     if (!l1.pass) {
       const failed = l1.failures || [];
       emit("layer1-fail", { attempt, failures: failed.length });
+      if (recordOnLayer1Fail) {
+        // Record-only: Layer 1 has already decided (the caller rejects the video). Layers 2 and 3
+        // still run ONCE so the judgement is on record, and nothing is retried or re-rendered.
+        // Neither layer can fail this path — a layer that throws is recorded as not having run.
+        const layer1_result = { pass: false, failures: failed };
+        let l2 = {};
+        try { l2 = (await layer2({ plan: current, attempt })) || {}; } catch (e) { l2 = { advisory_score: null, note: `layer 2 could not run: ${e.message}` }; }
+        emit("layer2-advisory", { attempt, advisory_score: l2.advisory_score ?? null });
+        let judged = null, l3Error = null;
+        try { judged = await layer3({ plan: current, layer2Advisory: l2, attempt }); } catch (e) { l3Error = e.message; }
+        const agg = Number(judged?.aggregate_local);
+        if (Number.isFinite(agg)) {
+          provenance.push(writeProvenance(runId, attempt, {
+            ts: new Date().toISOString(), channel, attempt, aggregate_local: agg,
+            axes: judged.axes || null, weak_beats: judged.weak_beats || [],
+            layer2_advisory: l2.advisory_score ?? null, layer1_result,
+          }));
+          emit("layer3-recorded", { attempt, aggregate_local: agg });
+        } else {
+          emit("layer3-not-recorded", { attempt, why: l3Error || "no usable aggregate_local" });
+        }
+        const ids = failed.map((f) => f.check).filter(Boolean).join(", ") || "see the canvas-checks log";
+        return {
+          accepted: false, humanReview: true, layer1Failed: true, retries: 0,
+          why: `layer 1 failed (${ids}); layers 2 and 3 recorded, not acted on`,
+          layer1_result, layer2: l2, layer3: Number.isFinite(agg) ? { aggregate_local: agg, axes: judged.axes || null } : { error: l3Error || "no usable aggregate_local" },
+          aggregate_local: Number.isFinite(agg) ? agg : undefined, axes: judged?.axes,
+          events, unresolved, provenance, plan: current, layer2_advisory: l2,
+        };
+      }
       const indices = [...new Set(failed.map((f) => f.beat).filter((b) => Number.isInteger(b)))];
       await renderBeats(indices, { reason: "layer1", attempt });
       if (++counter.retries > retryCap) {
@@ -267,7 +299,7 @@ export async function runEvalLoop({
     provenance.push(writeProvenance(runId, attempt, {
       ts: new Date().toISOString(), channel, attempt, aggregate_local: aggregate,
       axes: judged.axes || null, weak_beats: judged.weak_beats || [],
-      layer2_advisory: layer2Advisory.advisory_score ?? null,
+      layer2_advisory: layer2Advisory.advisory_score ?? null, layer1_result: { pass: true, failures: [] },
     }));
 
     if (aggregate >= acceptThreshold) {

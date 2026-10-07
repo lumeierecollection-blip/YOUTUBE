@@ -110,26 +110,31 @@ describe("branch structure is untouched", () => {
     assert.match(src, /return backupAudit\(/);
   });
   it("the loop is guarded and cannot reach the accept branch", () => {
-    assert.match(src, /if \(loopEnabled\(\)\) \{/, "the block must be mode-guarded");
+    const site = readFileSync("scripts/eval-loop-callsite.js", "utf8");
+    assert.match(site, /if \(!loopEnabled\(env\)\) return null;/, "the call site must be mode-guarded");
     // The loop's result must not appear in any condition that decides shipping.
     assert.doesNotMatch(src, /if \(evalLoopResult/);
     assert.doesNotMatch(src, /evalLoopResult\.(accepted|humanReview)\s*\?/);
+    assert.doesNotMatch(src, /(if|while)\s*\(\s*!?\s*\(?await recordEvalLoop/, "recordEvalLoop's return must not gate anything");
   });
   it("MAX_CORRECTION_LOOPS and the frame-review gate are untouched", () => {
     assert.match(src, /const MAX_CORRECTION_LOOPS = 3;/);
     assert.match(src, /if \(fr\.pass \|\| !qa\.gatePass\) \{/);
   });
-  it("the loop is placed after frameReviewVerdict and before that branch", () => {
-    const iReview = src.indexOf("const fr = frameReviewVerdict(geminiReport);");
-    const iLoop = src.indexOf("if (loopEnabled()) {");
-    const iBranch = src.indexOf("if (fr.pass || !qa.gatePass) {");
-    assert.ok(iReview > -1 && iLoop > iReview && iBranch > iLoop, "order must be review -> loop -> accept branch");
+  it("the loop runs after the canvas checks are measured and BEFORE their early-return", () => {
+    const iFit = src.indexOf("canvasFailure = { code: fit.code, failedIds };");
+    const iLoop = src.indexOf("await recordEvalLoop({");
+    const iReturn = src.indexOf("if (canvasFailure) {");
+    assert.ok(iFit > -1 && iLoop > iFit && iReturn > iLoop, "order must be canvas checks -> eval loop -> Layer 1 early-return");
+  });
+  it("Layer 1 still gates: the canvas-check failure still returns backupAudit", () => {
+    assert.match(src, /if \(canvasFailure\) \{[\s\S]{0,400}return backupAudit\(\{ \.\.\.backupArgs, stage: "canvas-checks"/);
   });
 });
 
 describe("a loop failure cannot fail a render that passed the pixel gate", () => {
   it("the call site catches, and the module's own throw paths are all caught", () => {
-    const src = readFileSync("scripts/render-and-qa.js", "utf8");
+    const src = readFileSync("scripts/eval-loop-callsite.js", "utf8");
     assert.match(src, /catch \(e\) \{\s*\n\s*\/\/ The loop is an addition; it must never be able to fail a render/, "the block must be wrapped in try/catch");
     assert.match(src, /eval-loop:\$\{mode\}\] could not run:/);
   });
