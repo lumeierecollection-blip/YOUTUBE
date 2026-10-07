@@ -68,7 +68,10 @@ judgement was handed to Layer 3).
 
 **Layer 2 — CLIP style advisory** (`scripts/eval-layer2-style.js`). Threshold
 `0.4570` in `channels/_shared/style-threshold.json`, calibrated on 142 frames.
-Advisory only. Blank frames pass. **Has never run in CI on any channel.**
+Advisory only. Blank frames pass. **Has never run in CI** — until `159ac9f`, which
+committed the three reference videos it requires. No CI dispatch has exercised it
+yet, so "would now resolve its refs" is verified only by clean-worktree checkout,
+not by a run.
 
 **Layer 3 — Gemini full-video judge** (`scripts/eval-layer3-judge.js`, uploads
 via `src/lib/gemini-files.js`). Axes: engagement, prompt-intent, composition,
@@ -189,7 +192,8 @@ unretracted but unsupported.**
 ## 6. Known issues, unproven
 
 - Layer 2 and Layer 3 have **never run in CI**. Both are locally tested only.
-  Nothing in this handoff about them is production evidence.
+  Nothing in this handoff about them is production evidence. `159ac9f` removed
+  Layer 2's *file* blocker; its first real CI execution has still not happened.
 - `EVAL_LOOP_MODE=live` **cannot apply revisions** — no partial renderer exists.
   `renderBeats` throws.
 - `gemini caching unavailable, using full prompt` on every logged run.
@@ -341,15 +345,35 @@ Do not run the fleet. ch-1 and ch-8 were SIGTERMed on runner capacity in
 
 | path | what | regenerable |
 |---|---|---|
-| `Research/*.mp4` | reference videos for style specs | **NO — irreplaceable.** ~10 untracked MP4s at repo root. Download from source URLs before wiping a machine. |
-| `channels/_shared/ref-frames/` | extracted frames from reference videos | yes, ffmpeg from the above |
+| `channels/_shared/ref-frames/` | extracted frames from the 3 Layer 2 refs | yes — ffmpeg from `research/motion-graphics-ref/` |
 | `data/audit/` | all session diagnostics and probes | no — gitignored by design, contains the only record of the boundary experiments |
 | `data/trending/` | ch-05 YouTube trending feed | yes, `node scripts/fetch-trending.cjs 5 --force` |
 | `data/renders/` | rendered videos including `rejected/` | yes, re-dispatch the channel |
 | `.cache/` | CLIP embeddings | yes |
 
-`Research/*.mp4` is the only irreplaceable item. `data/audit/` is not
-regenerable but is not source either — it is the paper trail for BUG-2.
+`Research/*.mp4` is **committed as of `159ac9f`** — see the note below. Nothing irreplaceable
+remains outside git.
+
+**Reference video storage (changed in `159ac9f`).** Method A, direct commit — no LFS,
+no Release assets. Measured before committing: largest file 23.0 MB, total 136.4 MB,
+`.git` was 408.6 MB, no `.gitattributes` existed. No threshold was crossed.
+
+18 MP4s now tracked under lowercase `research/`:
+- `research/motion-graphics-ref/ref-01.mp4` (7,650,146 B), `ref-02.mp4` (459,033 B),
+  `ref-03.mp4` (1,397,631 B) — **these three are what Layer 2 reads**, hardcoded at
+  `scripts/eval-layer2-style.js:271-274`. They were untracked, so Layer 2 exited 3
+  with `::error::no reference videos in research/motion-graphics-ref/` and could
+  never run in CI. This set is what the `0.4570` threshold was calibrated against.
+- 15 source research videos (`4_*.mp4`, `VID_*.mp4`, 127.3 MB) — what
+  `research/channel-map.md` analysed. **Layer 2 does not read these.**
+
+Case note: `Research/` and `research/` are one directory on Windows. Git stores it
+lowercase, which is exactly what `eval-layer2-style.js` hardcodes, so CI resolves it
+with no workflow change.
+
+**This repo is PUBLIC** (`gh repo view` → `isPrivate=false`). Those 18 third-party
+video files are permanently published and cannot be removed from history in any way
+that survives a fork. The owner was informed and confirmed.
 
 ---
 
