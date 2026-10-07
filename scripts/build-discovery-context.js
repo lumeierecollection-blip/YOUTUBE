@@ -52,7 +52,14 @@ function main() {
       // discover prompt, never a source of facts. Absent -> unseeded.
       let trending = [];
       try {
-        const t = JSON.parse(readFileSync(join(ROOT, "data", "trending", `${c.id}.json`), "utf-8"));
+        // Key on the normalised dispatch key, NOT c.id. fetch-trending.cjs
+        // writes data/trending/<dispatch key>.json, and for the nine legacy
+        // rows whose id and channel_id disagree, c.id and the dispatch key are
+        // different numbers. resolveChannel guarantees they agree for the row
+        // it returns, but normalising here makes that explicit rather than
+        // incidental.
+        const trendKey = channelLookup.normalizeChannelId(c.id);
+        const t = JSON.parse(readFileSync(join(ROOT, "data", "trending", `${trendKey}.json`), "utf-8"));
         trending = (t.videos || []).slice(0, 5).map((v) => ({ title: v.title, tags: (v.tags || []).slice(0, 8), views: v.viewCount, velocity_per_day: v.velocity }));
       } catch { /* no trending feed for this channel */ }
       if (channelOverride) console.error(trending.length ? `[research] ch-${c.id}: trending topics loaded (${trending.length})` : `[research] ch-${c.id}: no trending feed, unseeded discovery`);
