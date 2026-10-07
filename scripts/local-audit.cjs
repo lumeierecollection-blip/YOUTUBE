@@ -331,6 +331,45 @@ function rgbFrame(video, t, w, h) {
     "-frames:v", "1", "-vf", `scale=${w}:${h},format=rgb24`, "-f", "rawvideo", "-"], { maxBuffer: 1 << 27 });
   return r.status === 0 && r.stdout && r.stdout.length === w * h * 3 ? r.stdout : null;
 }
+/**
+ * What is "ink" on THIS frame's ground.
+ *
+ * zones-no-overlap, pop-transitions and middle-zone-filled all said ink = luma < 235: the house
+ * white ground, which every beat had until the planner could declare its own (a dark #0E0E10
+ * beat reads as ink in every pixel, so every column "crossed" a zone edge and an EMPTY dark frame
+ * counted as full). The ground is read from the frame's own empty bottom-left corner, below the
+ * caption band — the same patch canvas-coverage reads — so a transition frame (the held outgoing
+ * beat on one ground, the incoming on another) is judged against the ground it is actually drawn
+ * on, not the beat's.
+ *
+ * Where the ground reads as paper (luma >= 235) the original rule is returned UNCHANGED, so every
+ * white-ground and near-white (#F0F0F0) result is byte-identical. Only a ground the old rule would
+ * itself have called ink (dark, mid) gets the relative rule: ink is what differs from the ground
+ * by more than `delta` luma (and, for the colour part, by more than 30 chroma).
+ */
+const PAPER_LUMA = 235;
+function frameGround(buf, W, H) {
+  const x0 = Math.max(1, Math.floor(W * 0.01)), x1 = Math.max(x0 + 2, Math.floor(W * 0.025));
+  const y0 = Math.min(H - 3, Math.floor(H * 0.985)), y1 = Math.max(y0 + 2, Math.floor(H * 0.996));
+  let l = 0, c = 0, n = 0;
+  for (let y = y0; y < y1 && y < H; y++) for (let x = x0; x < x1 && x < W; x++) {
+    const o = (y * W + x) * 3, r = buf[o], g = buf[o + 1], b = buf[o + 2];
+    l += 0.299 * r + 0.587 * g + 0.114 * b; c += Math.max(r, g, b) - Math.min(r, g, b); n++;
+  }
+  return n ? { l: l / n, c: c / n } : { l: 255, c: 0 };
+}
+/** (r,g,b) -> boolean, luma AND chroma (zones-no-overlap). */
+function inkFnColour(buf, W, H) {
+  const g = frameGround(buf, W, H);
+  if (g.l >= PAPER_LUMA) return (r, gg, b) => 0.299 * r + 0.587 * gg + 0.114 * b < 235 || Math.max(r, gg, b) - Math.min(r, gg, b) > 30;
+  return (r, gg, b) => Math.abs(0.299 * r + 0.587 * gg + 0.114 * b - g.l) > 20 || Math.abs(Math.max(r, gg, b) - Math.min(r, gg, b) - g.c) > 30;
+}
+/** luma -> boolean (pop-transitions, middle-zone-filled); `paperMax` is the old absolute threshold, `delta` the relative one. */
+function inkFnLuma(buf, W, H, paperMax = 235, delta = 20) {
+  const g = frameGround(buf, W, H);
+  if (g.l >= PAPER_LUMA) return (l) => l < paperMax;
+  return (l) => Math.abs(l - g.l) > delta;
+}
 function canvasFit(beats) {
   const bad = [];
   const inter = (a, b) => a.x < b.x + b.w - 2 && b.x < a.x + a.w - 2 && a.y < b.y + b.h - 2 && b.y < a.y + a.h - 2;
@@ -581,7 +620,8 @@ async function kineticRules(beats) {
  *   1. the renderer's own boxes (manifest beats[].canvas.boxes) through the
  *      same zoneReport() the layout tests use;
  *   2. the RENDERED frames, at 30 / 62 / 90% of each non-photo beat: no ink
- *      (luma < 235 or chroma > 30 on the white ground) runs continuously
+ *      (luma < 235 or chroma > 30 on a paper-white ground; on a dark / mid ground, a luma
+ *      or chroma difference from the frame's own ground — see inkFnColour) runs continuously
  *      across a zone edge further than ZONE_TOL (8 px) on either side — what
  *      the camera or an animation carries across the line, which the boxes
  *      cannot show. A run in >= 3 columns fails.
@@ -606,7 +646,8 @@ async function zonesNoOverlap(video, beats) {
       const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share;
       const buf = rgbFrame(video, t, W, H);
       if (!buf) continue;
-      const ink = (x, y) => { const o = (y * W + x) * 3, r = buf[o], g = buf[o + 1], bl = buf[o + 2]; return 0.299 * r + 0.587 * g + 0.114 * bl < 235 || Math.max(r, g, bl) - Math.min(r, g, bl) > 30; };
+      const isInk = inkFnColour(buf, W, H);
+      const ink = (x, y) => { const o = (y * W + x) * 3; return isInk(buf[o], buf[o + 1], buf[o + 2]); };
       for (const e of edges) {
         const y0 = Math.floor((e - ZONE_TOL - 1) * sc), y1 = Math.ceil((e + ZONE_TOL + 1) * sc);
         let cols = 0;
@@ -641,10 +682,11 @@ function popTransitions(video, m) {
     for (let f = 0; f <= 10; f++) {
       const buf = rgbFrame(video, (b.start_sec ?? 0) + f / fps, W, H);
       if (!buf) continue;
+      const isInk = inkFnLuma(buf, W, H);
       let rows = 0;
       for (let y = 0; y < capRow; y++) {
         let n = 0;
-        for (let x = 0; x < W; x++) { const o = (y * W + x) * 3; if (0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2] < 235) n++; }
+        for (let x = 0; x < W; x++) { const o = (y * W + x) * 3; if (isInk(0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2])) n++; }
         if (n >= 3) rows++;
       }
       if (rows < 12) empty.push(f);
@@ -671,10 +713,11 @@ function middleZoneFilled(video, beats) {
     for (const share of [0.62, 0.9]) {
       const buf = rgbFrame(video, (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share, W, H);
       if (!buf) continue;
+      const isInk = inkFnLuma(buf, W, H, map ? 249 : 235, map ? 6 : 20);
       let rows = 0;
       for (let y = y0; y < y1; y++) {
         let n = 0;
-        for (let x = 0; x < W; x++) { const o = (y * W + x) * 3; const l = 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; if (l < (map ? 249 : 235)) n++; }
+        for (let x = 0; x < W; x++) { const o = (y * W + x) * 3; const l = 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; if (isInk(l)) n++; }
         if (n >= 3) rows++;
       }
       best = Math.max(best, rows / (y1 - y0));
