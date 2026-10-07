@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
+import { resolveChannel } from "../../../scripts/lib/channel-lookup.mjs";
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
@@ -41,8 +42,7 @@ function loadChannelsConfig() {
 }
 
 function findChannel(channels, channelId) {
-  const numId = parseInt(channelId, 10);
-  const ch = channels.find(c => c.id === numId || c.channel_id === channelId);
+  const ch = resolveChannel(channelId, channels);
   if (!ch) {
     console.error(`Channel "${channelId}" not found in channels.json`);
     process.exit(1);

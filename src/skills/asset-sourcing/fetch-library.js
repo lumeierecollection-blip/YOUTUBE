@@ -22,6 +22,7 @@
  * every daily render.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, rmSync } from "node:fs";
+import { resolveChannel } from "../../../scripts/lib/channel-lookup.mjs";
 import { join, dirname, extname } from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
@@ -66,7 +67,7 @@ function saveManifest(manifest) {
 
 function loadChannel(channelId) {
   const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-  const channel = (data.channels || []).find((c) => c.channel_id === channelId || String(c.id) === channelId);
+  const channel = resolveChannel(channelId, data.channels || []);
   if (!channel) throw new Error(`channel not found: ${channelId}`);
   return channel;
 }

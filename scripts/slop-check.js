@@ -18,6 +18,7 @@
  * (when imported as a module via runSlopCheck()).
  */
 import { spawn } from "node:child_process";
+import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { readFileSync, existsSync, mkdirSync, appendFileSync } from "node:fs";
 import { join, dirname, basename, extname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -44,8 +45,7 @@ const LOG_PATH = join(ROOT, "data", "audit", "slop-check.log");
 function loadChannel(channelId) {
   const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
   const channels = data.channels || data;
-  const numId = parseInt(channelId, 10);
-  const channel = channels.find((c) => c.id === numId || c.channel_id === channelId);
+  const channel = resolveChannel(channelId, channels);
   if (!channel) throw new Error(`Channel "${channelId}" not found`);
   return channel;
 }

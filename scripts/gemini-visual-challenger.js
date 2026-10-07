@@ -13,6 +13,7 @@
  *   node scripts/gemini-visual-challenger.js --intent <path> --script <path> --channel <id> --out <review.json>
  */
 import "dotenv/config";
+import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -160,7 +161,7 @@ async function planMode() {
   let niche = "general";
   try {
     const cfg = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-    niche = (cfg.channels || cfg).find((c) => String(c.id) === String(channelId))?.niche || niche;
+    niche = resolveChannel(channelId, cfg.channels || cfg)?.niche || niche;
   } catch {}
 
   const lines = beats.map((b, i) => `[${i}] SENTENCE: "${sentences[i] ?? "(no sentence)"}"\n    PLAN: ${describeBeat(b)}`).join("\n");
@@ -265,7 +266,7 @@ async function main() {
   if (channelId) {
     try {
       const config = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-      channelConfig = config.channels.find(c => String(c.id) === String(channelId));
+      channelConfig = resolveChannel(channelId, config.channels);
     } catch {}
   }
 

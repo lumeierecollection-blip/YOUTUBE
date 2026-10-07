@@ -8,6 +8,7 @@
  */
 
 import { readFileSync, existsSync } from "fs";
+import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -27,7 +28,7 @@ function main() {
 
   const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
   const channels = data.channels || data;
-  const channel = channels.find((c) => String(c.id) === String(channelId) || c.channel_id === channelId);
+  const channel = resolveChannel(channelId, channels);
   if (!channel) {
     console.error(`Channel "${channelId}" not found`);
     process.exit(1);

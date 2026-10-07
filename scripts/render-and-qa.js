@@ -16,6 +16,7 @@
  *   node scripts/render-and-qa.js --dry-run [--channel <id>] [--script <path>]
  */
 import "dotenv/config";
+import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { spawn, spawnSync, execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync, statSync } from "node:fs";
 import { join, dirname, basename, extname, relative, resolve } from "node:path";
@@ -904,7 +905,7 @@ function layersFor(b, base) {
 function channelTopic(channelId) {
   try {
     const cfg = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-    const ch = (cfg.channels || cfg).find((c) => String(c.id ?? c.channel_id).replace(/^ch-?0*/i, "") === String(channelId).replace(/^ch-?0*/i, ""));
+    const ch = resolveChannel(channelId, cfg.channels || cfg);
     return ch?.niche || null;
   } catch { return null; }
 }

@@ -9,6 +9,7 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "fs";
+import { resolveChannel } from "../../scripts/lib/channel-lookup.mjs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -34,8 +35,7 @@ function loadChannel(channelId) {
     readFileSync(join(ROOT, "config", "channels.json"), "utf-8")
   );
   const channels = data.channels || data;
-  const numId = parseInt(channelId, 10);
-  return channels.find((c) => c.id === numId || c.channel_id === channelId);
+  return resolveChannel(channelId, channels);
 }
 
 function getExistingResearch(channelId) {

@@ -23,6 +23,7 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from "fs";
+import { resolveChannel } from "../../../scripts/lib/channel-lookup.mjs";
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { getAccessToken, loadCredentials, hasCredentials } from "../../utils/youtube-auth.js";
@@ -45,7 +46,7 @@ const THUMB_EXTENSIONS = [".jpg", ".jpeg", ".png"];
 
 function loadChannel(channelId) {
   const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-  const channel = (data.channels || data).find((c) => String(c.id) === channelId || c.channel_id === channelId);
+  const channel = resolveChannel(channelId, data.channels || data);
   if (!channel) throw new Error(`Channel "${channelId}" not found`);
   return channel;
 }

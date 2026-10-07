@@ -53,6 +53,7 @@
  *        <out-dir> [--from=0] [--to=600] [--scale=0.4] [--every=2]
  */
 import { mkdirSync, readFileSync, writeFileSync, readdirSync, rmSync } from "node:fs";
+import { resolveChannel } from "../../../../scripts/lib/channel-lookup.mjs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { bundle } from "@remotion/bundler";
@@ -88,9 +89,7 @@ const SCALE = parseFloat(flags.scale ?? "0.4");
 const EVERY = parseInt(flags.every ?? "2", 10);
 
 const channels = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-const channel = (channels.channels || channels).find(
-  (c) => String(c.id) === String(channelId) || c.channel_id === channelId
-);
+const channel = resolveChannel(channelId, channels.channels || channels);
 if (!channel) throw new Error(`channel ${channelId} not found`);
 
 const script = JSON.parse(readFileSync(scriptPath, "utf-8"));

@@ -24,6 +24,7 @@
  */
 
 import os from "os";
+import { resolveChannel } from "../../../scripts/lib/channel-lookup.mjs";
 import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname, basename, extname, isAbsolute } from "path";
 import { fileURLToPath } from "url";
@@ -110,8 +111,7 @@ function loadChannel(channelId) {
   const channelsPath = join(ROOT, "config", "channels.json");
   const data = JSON.parse(readFileSync(channelsPath, "utf-8"));
   const channels = data.channels || data;
-  const numId = parseInt(channelId, 10);
-  const channel = channels.find((c) => c.id === numId || c.channel_id === channelId);
+  const channel = resolveChannel(channelId, channels);
   if (!channel) throw new Error(`Channel "${channelId}" not found`);
   return channel;
 }

@@ -9,6 +9,7 @@
  * Usage: node scripts/visual-beat-grouper.js --srt FILE [--channel ID] [--out FILE]
  */
 import { readFileSync, writeFileSync } from 'node:fs';
+import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -153,7 +154,7 @@ function main() {
   if (channelId) {
     try {
       const config = JSON.parse(readFileSync(join(ROOT, 'config', 'channels.json'), 'utf-8'));
-      const ch = config.channels.find(c => String(c.id) === String(channelId));
+      const ch = resolveChannel(channelId, config.channels);
       if (ch && ch.style && STYLE_TIMING[ch.style]) timing = STYLE_TIMING[ch.style];
     } catch {}
   }

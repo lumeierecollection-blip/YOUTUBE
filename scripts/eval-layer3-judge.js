@@ -37,6 +37,7 @@
  * drive every failure path without a network call or a real upload.
  */
 import { createRequire } from "node:module";
+import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { mkdirSync, writeFileSync, appendFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -195,7 +196,7 @@ function loadStyleSpec(channelId) {
   if (!existsSync(p)) return null;
   try {
     const cfg = JSON.parse(readFileSync(p, "utf8"));
-    const ch = (cfg.channels || cfg).find((c) => String(c.id) === String(channelId) || c.channel_id === String(channelId));
+    const ch = resolveChannel(channelId, cfg.channels || cfg);
     if (!ch) return null;
     return { channel_id: ch.channel_id, channel_name: ch.channel_name, niche: ch.niche, style: ch.style, bg_mode: ch.bg_mode, font: ch.font, colors: ch.colors, visual_spec: ch.visual_spec, content_pillars: ch.content_pillars };
   } catch { return null; }

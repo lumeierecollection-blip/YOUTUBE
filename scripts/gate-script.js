@@ -10,6 +10,7 @@
  */
 
 import { readFileSync, existsSync } from "fs";
+import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { join, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -62,7 +63,7 @@ const HEX_COLOR = /#[0-9a-fA-F]{3}\b|#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{8}\b/g;
 function loadChannel(channelId) {
   const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
   const channels = data.channels || data;
-  return channels.find((c) => String(c.id) === String(channelId) || c.channel_id === channelId);
+  return resolveChannel(channelId, channels);
 }
 
 function wordCount(text) {
