@@ -68,10 +68,29 @@ judgement was handed to Layer 3).
 
 **Layer 2 — CLIP style advisory** (`scripts/eval-layer2-style.js`). Threshold
 `0.4570` in `channels/_shared/style-threshold.json`, calibrated on 142 frames.
-Advisory only. Blank frames pass. **Has never run in CI** — until `159ac9f`, which
-committed the three reference videos it requires. No CI dispatch has exercised it
-yet, so "would now resolve its refs" is verified only by clean-worktree checkout,
-not by a run.
+Advisory only. Blank frames pass.
+
+**NOT WIRED.** `scripts/render-and-qa.js:2006` passes a hardcoded stub to the
+eval loop:
+```js
+layer2: async () => ({ advisory_score: null, note: "advisory not wired at this call site yet" }),
+```
+It never calls `eval-layer2-style.js`. No workflow file references Layer 2. The
+module's real API (`scoreStyleFile`, `embedFiles`, `scoreStyle`) is fully
+implemented and unit-tested but has no caller in the pipeline.
+
+**Layer 2 therefore cannot run in CI regardless of the reference videos.**
+`159ac9f` fixed the *file* blocker only; wiring is a separate, undone piece of
+work. Its first CI execution has not happened and cannot happen until the stub
+is replaced.
+
+**Second gate, independent of the stub:** the whole block is wrapped in
+`if (loopEnabled())` (`render-and-qa.js:1995`), and `loopEnabled()` is
+`evalLoopMode(env) !== "off"` (`eval-retry-loop.js:70-72`). With
+`EVAL_LOOP_MODE=off` — the cron default and what every diagnostic dispatch has
+used — `runEvalLoop` never executes, so the Layer 2 stub and the Layer 3 judge
+are both skipped. Dispatching with `off` cannot produce an advisory score even
+after the stub is fixed.
 
 **Layer 3 — Gemini full-video judge** (`scripts/eval-layer3-judge.js`, uploads
 via `src/lib/gemini-files.js`). Axes: engagement, prompt-intent, composition,
@@ -191,9 +210,12 @@ unretracted but unsupported.**
 
 ## 6. Known issues, unproven
 
-- Layer 2 and Layer 3 have **never run in CI**. Both are locally tested only.
-  Nothing in this handoff about them is production evidence. `159ac9f` removed
-  Layer 2's *file* blocker; its first real CI execution has still not happened.
+- Layer 2 and Layer 3 have **never run in CI**. Layer 2's reason is now known and
+  is not the one assumed: it is **not wired** (`render-and-qa.js:2006` is a stub
+  returning `advisory_score: null`), and separately `EVAL_LOOP_MODE=off` skips
+  the whole eval block. Neither is a file problem, so `159ac9f` changed nothing
+  about either. Layer 3 is wired (`judge(...)`) but likewise never runs, because
+  it lives inside the same `loopEnabled()` gate.
 - `EVAL_LOOP_MODE=live` **cannot apply revisions** — no partial renderer exists.
   `renderBeats` throws.
 - `gemini caching unavailable, using full prompt` on every logged run.
@@ -276,7 +298,38 @@ grep before trusting them.
 **7.10 — "It works" meaning "it was never tried."** The four new channels have
 produced exactly one video between them, ever. Layer 2, Layer 3 and
 `EVAL_LOOP_MODE=dry`/`live` have never run on any channel in CI. No channel has
-ever reached a publish.
+ever reached a publish. (See 7.11 and 7.12 for why the last two of those are
+structural, not just untried.)
+
+**7.11 — Layer 2 looks implemented and is not.** `eval-layer2-style.js` is a
+complete, unit-tested module exporting `scoreStyleFile`, `embedFiles`,
+`scoreStyle`, a calibrated threshold, and a CLI. Its docstring, its tests, its
+committed reference videos, and this document all read as "Layer 2 exists." It
+has no caller. `render-and-qa.js:2006` hands the eval loop a literal
+`{ advisory_score: null, note: "advisory not wired at this call site yet" }`.
+Presence of a module, a threshold file, reference videos and passing tests is
+not evidence of a call site. Grep for the import, not the file.
+
+**7.12 — `EVAL_LOOP_MODE=off` skips Layer 2 *and* Layer 3 entirely.** Both are
+arguments inside `runEvalLoop`, and `render-and-qa.js:1995` wraps the call in
+`if (loopEnabled())` where `loopEnabled()` is `evalLoopMode(env) !== "off"`
+(`eval-retry-loop.js:70-72`). `off` is the cron default and the value used by
+every diagnostic dispatch in this session's history. **Any claim that "Layer 2/3
+would run if only the config were right" is false until a dispatch uses
+`dry` or `live`.**
+
+**7.13 — No cache for `~/.cache/huggingface` in CI.** Layer 2's CLIP weights
+(`Xenova/clip-vit-base-patch32`, `eval-layer2-style.js:53`) cache to
+`~/.cache/huggingface/hub`. The workflow caches `node_modules`, `~/.cache/pip`,
+`~/.cache/remotion`, ollama models and `data/trending` — **not** the HF path.
+`@xenova/transformers` downloads on first use by default, so it would work but
+re-download ~350 MB every run. Add a cache step whenever Layer 2 is wired;
+until then it is dead config.
+
+**7.14 — `Research/*.mp4` is committed in a PUBLIC repo.** 18 third-party video
+files are permanently in history (`159ac9f`) and downloadable; history rewrite
+would be `git filter-repo` + force-push, disruptive and incomplete once forked.
+Owner confirmed after being told the repo is public.
 
 ---
 
