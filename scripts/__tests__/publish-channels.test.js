@@ -15,11 +15,22 @@ function dry(channel) {
   return { out: `${r.stdout}\n${r.stderr}`, code: r.status };
 }
 const REFUSED = /is not a publish channel/;
+const WRONG_CREDS = /belong to another channel/;
+// channels.json points these four at config/creds/ch-44.json (ch-44's own file).
+const MISPOINTED = new Set(["5", "6", "8", "10"]);
 
 describe("youtube-publish approves exactly config/priority-channels.json", () => {
   for (const ch of priority) {
     it(`ch ${ch} is not refused by the allowlist`, () => {
       assert.doesNotMatch(dry(ch).out, REFUSED);
+    });
+  }
+
+  for (const ch of priority) {
+    it(`ch ${ch}: ${MISPOINTED.has(ch) ? "refused, its credentials path names ch-44's file" : "its credentials path is its own"}`, () => {
+      const out = dry(ch).out;
+      if (MISPOINTED.has(ch)) assert.match(out, WRONG_CREDS);
+      else assert.doesNotMatch(out, WRONG_CREDS);
     });
   }
 

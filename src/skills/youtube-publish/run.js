@@ -278,6 +278,15 @@ async function uploadChannel(channelId, explicitVideo, dryRun, review = false) {
   }
   const channel = loadChannel(channelId);
 
+  // A channel's own credentials live at config/creds/<channel_id>.json. config/channels.json had
+  // ch-05, ch-06, ch-08 and ch-10 pointing at config/creds/ch-44.json (copied from ch-44's row): with the
+  // approved list now read from config, that would upload their videos to ch-44's YouTube channel.
+  // Refuse before any credential is read. (This checks the PATH; it does not touch a credential.)
+  const own = `config/creds/${channel.channel_id}.json`;
+  if (channel.youtube_credentials_path && channel.youtube_credentials_path.split("\\").join("/") !== own) {
+    throw new Error(`channel "${channel.channel_id}" points at credentials ${channel.youtube_credentials_path}, which belong to another channel; its own file is ${own}. Fix youtube_credentials_path in config/channels.json — refusing to upload.`);
+  }
+
   if (!hasCredentials(channel)) {
     const credPath = channel.youtube_credentials_path || `config/creds/${channel.channel_id}.json`;
     console.log(`\n[YOUTUBE-PUBLISH] Channel: ${channelId} (${channel.channel_name})`);
