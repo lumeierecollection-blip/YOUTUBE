@@ -1456,10 +1456,16 @@
       "last_generated": "2026-10-07T12:20:40.561Z"
     },
     "10": {
-      "channel_name": "Double Cross",
-      "niche": "Betrayal/Revenge Stories",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Word Lab",
+      "niche": "Linguistics & Language",
+      "used_topics": [
+        {
+          "topic": "Consciousness and Locke: The 1694 Origin of a Term",
+          "slug": "consciousness-locke-1694-origin",
+          "reserved_at": "2026-10-07T12:23:32.874Z"
+        }
+      ],
+      "last_generated": "2026-10-07T12:23:32.874Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
