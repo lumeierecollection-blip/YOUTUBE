@@ -1,13 +1,14 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
+import { readFileSync } from "node:fs";
 
 const require = createRequire(import.meta.url);
 const T = require("../fetch-trending.cjs");
 
 describe("fetch-trending CATEGORY map", () => {
   it("maps the four new channels so they stop falling through to unseeded discovery", () => {
-    for (const [bare, expected] of [[5, 25], [6, 24], [8, 27], [10, 27]]) {
+    for (const [bare, expected] of [[5, 25], [6, 24], [8, 25], [10, 28]]) {
       assert.ok(T.CATEGORY[bare], `bare id ${bare} must be mapped or the channel is unseeded`);
       assert.equal(T.CATEGORY[bare], expected);
     }
@@ -69,7 +70,7 @@ describe("fetch-trending CATEGORY map", () => {
   it("CATEGORY matches each new channel's CURRENT niche, not the pre-widening one", () => {
     // The niches were widened on 2026-10-07. If someone edits a niche without
     // re-checking the category, this is what catches the drift.
-    const expected = { "ch-05": 25, "ch-06": 24, "ch-08": 27, "ch-10": 27 };
+    const expected = { "ch-05": 25, "ch-06": 24, "ch-08": 25, "ch-10": 28 };
     for (const [channel_id, cat] of Object.entries(expected)) {
       const row = T.findChannel(T.bareId(channel_id), T.loadChannels());
       assert.equal(T.CATEGORY[T.bareId(channel_id)], cat, `${channel_id} ("${row.niche}")`);
@@ -77,11 +78,26 @@ describe("fetch-trending CATEGORY map", () => {
   });
 
   it("keeps the six built channels on their existing categories", () => {
-    assert.equal(T.CATEGORY[1], 27);
+    assert.equal(T.CATEGORY[1], 26);
     assert.equal(T.CATEGORY[2], 25);
     assert.equal(T.CATEGORY[9], 25);
     assert.equal(T.CATEGORY[26], 25);
-    assert.equal(T.CATEGORY[44], 27);
+    assert.equal(T.CATEGORY[44], 26);
+  });
+
+  it("maps ch-49, which had no entry and so never got a trending feed", () => {
+    assert.equal(T.CATEGORY[49], 1);
+  });
+
+  it("maps every priority channel", () => {
+    const priority = JSON.parse(readFileSync(new URL("../../config/priority-channels.json", import.meta.url), "utf8")).channels;
+    for (const c of priority) assert.ok(T.CATEGORY[c], `priority channel ${c} has no trending category`);
+  });
+
+  it("never maps to 27: YouTube answers chart=mostPopular&videoCategoryId=27 with HTTP 404", () => {
+    // Runs 37540546857 and 37619905834: ch-01, ch-08, ch-10 and ch-44 logged
+    // "api unavailable (HTTP 404 notFound)" and fell back to unseeded discovery.
+    for (const [bare, cat] of Object.entries(T.CATEGORY)) assert.notEqual(cat, 27, `bare id ${bare} is on the 404 category`);
   });
 
   it("strips ch- and leading zeros the way the workflow does", () => {

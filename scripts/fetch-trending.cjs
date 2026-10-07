@@ -29,20 +29,27 @@ const ROOT = join(__dirname, "..");
 const OUT = join(ROOT, "data", "trending");
 const CACHE_MS = 12 * 3600 * 1000;
 const WEEK_MS = 7 * 24 * 3600 * 1000;
-// Bare channel id (the form daily-pipeline-v2.yml:116 produces by stripping
-// "ch-" and leading zeros) -> YouTube video category. Owner's mapping.
-//   5  ch-05 Broadsheet   "True Crime & Investigative Journalism"  -> 25 News & Politics
-//   6  ch-06 Archive Room "Cold Cases & Unsolved Mysteries"        -> 24 Entertainment
-//   8  ch-08 Ledger       "Financial History & Institutional Collapse" -> 27 Education
-//   10 ch-10 Margin Note  "Concept Explainers & Intellectual History"   -> 27 Education
-// 6 moved 27 -> 24 and 8 moved 25 -> 27 when the niches widened on
-// 2026-10-07. Cold cases are a documentary/entertainment genre, not schooling;
-// Ledger's pillars are timeline and formation ("institutional timeline
-// breakdowns", "corporate formation stories"), which is history, even though
-// "institutional collapse" reads current-affairs.
-// 48 is NOT dead: channels.json has no row with id=48, but it does have
-// channel_id "ch-48" (Cold Case DNA), and this map is keyed by bare id.
-const CATEGORY = { 1: 27, 2: 25, 5: 25, 6: 24, 8: 27, 9: 25, 10: 27, 26: 25, 44: 27, 48: 28 };
+// Bare channel id (the form daily-pipeline-v2.yml's setup job produces by stripping
+// "ch-" and leading zeros) -> YouTube video category for chart=mostPopular.
+//
+// Category 27 (Education) is NOT a chart YouTube serves: every call answered
+// HTTP 404 notFound (ch-01, 08, 10, 44 in runs 37540546857 and 37619905834), so those
+// four channels ran unseeded. Categories 24 and 25 answer (ch-06; ch-02, 05, 09, 26).
+// The substitutes below were chosen by niche; the probe results are recorded in
+// HANDOFF.md section 6.
+//   1  ch-01 Money Mind      Personal Finance (Budgeting for Beginners)  -> 26 Howto & Style
+//   2  ch-02 Legal Brief     Legal Education (Know Your Rights)          -> 25 News & Politics
+//   5  ch-05 Broadsheet      True Crime & Investigative Journalism       -> 25 News & Politics
+//   6  ch-06 Archive Room    Cold Cases & Unsolved Mysteries             -> 24 Entertainment
+//   8  ch-08 Ledger          Financial History & Institutional Collapse  -> 25 News & Politics
+//   9  ch-09 Border Lines    Geopolitical Explainers                     -> 25 News & Politics
+//  10  ch-10 Margin Note     Concept Explainers & Intellectual History   -> 28 Science & Technology
+//  26  ch-26 Fraud Files     Financial Crimes & Heists                   -> 25 News & Politics
+//  44  ch-44 Skill Stack     Professional Skill Development              -> 26 Howto & Style
+//  49  ch-49 Picture House   Movies, Cinematic Universes, Box Office     ->  1 Film & Animation
+// 48 (ch-48 Fit) has no row whose id and channel_id agree, so resolveChannel rejects it
+// and it is skipped; it is not dispatched.
+const CATEGORY = { 1: 26, 2: 25, 5: 25, 6: 24, 8: 25, 9: 25, 10: 28, 26: 25, 44: 26, 48: 28, 49: 1 };
 const STOP = new Set("the a an and or but of to in on for with at by from is are was were be been this that these those it its as into about how why what when who your you my our we they he she his her their not no new vs after over more most just all can will has have had do does did i me".split(" "));
 
 const log = (m) => console.log(`[trending] ${m}`);
