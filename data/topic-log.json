@@ -1082,10 +1082,16 @@
       "last_generated": "2026-09-14T08:38:07.107Z"
     },
     "8": {
-      "channel_name": "Mind Decoded",
-      "niche": "Psychology (Why We Do What We Do)",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Synapse",
+      "niche": "Cognitive Science & Mind",
+      "used_topics": [
+        {
+          "topic": "The Collapse of Nano Banc and the 2026 U.S. Regional Banking Crisis",
+          "slug": "nano-banc-collapse-2026-regional-banking-crisis",
+          "reserved_at": "2026-10-07T12:22:11.592Z"
+        }
+      ],
+      "last_generated": "2026-10-07T12:22:11.593Z"
     },
     "9": {
       "channel_name": "Border Lines",
