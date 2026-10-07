@@ -24,6 +24,7 @@ import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { createRequire as createRequireEntity } from "node:module";
 import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { resolveGround } from "../src/skills/remotion-render/visual/backgrounds.js";
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { assignCanvasAnimations } from "./anim-plan.js";
@@ -486,8 +487,8 @@ function measureGround(videoPath) {
   // covers the top-right corner by design (CI run 37067332714 ch-2: beat 0 was one,
   // and its corner read #0E0E0E as "the ground").
   // (nor one carrying a source credit: "Source: ..." sits in the bottom-right patch — part C)
-  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white" && !b.canvas?.source_credit && b.canvas?.composition !== "COMPARISON-SPLIT" && !Object.values(b.canvas?.boxes || {}).some((v) => v?.role === "shape"));
-  if (!beat) { console.log("[verify] ground: every beat is a full-bleed photo — the white ground not measured"); return []; }
+  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white" && !b.canvas?.ground_color && !b.canvas?.source_credit && b.canvas?.composition !== "COMPARISON-SPLIT" && !Object.values(b.canvas?.boxes || {}).some((v) => v?.role === "shape"));
+  if (!beat) { console.log("[verify] ground: every beat is a full-bleed photo or declares its own ground — the default white ground not measured (local-audit canvas-ground checks declared grounds)"); return []; }
   const at = beat.start_sec + beat.duration_sec * 0.6;
   const framePath = videoPath.replace(/\.mp4$/, "-ground.png");
   try {
@@ -969,6 +970,9 @@ function canvasContentFor(b, { photo = null } = {}) {
     headline_zone: b.headline_zone === "middle" && b.chart_zone === "top" && vt === "COUNTER" ? "middle" : "top",
     chart_zone: b.headline_zone === "middle" && b.chart_zone === "top" && vt === "COUNTER" ? "top" : "middle",
     caption_zone: "bottom",
+    // The beat's own ground, as the planner chose it (backgrounds.js resolveGround): a hex, or
+    // null for the default white — a beat that said nothing is drawn exactly as before.
+    ground_color: resolveGround(b.ground).hex,
   };
   if (b.type_layout === "split") c.type_layout = "split";
   // A named entity with no verified photo (resolve-scene.cjs): its name, large (canvas-layout.js).

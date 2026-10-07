@@ -171,7 +171,7 @@ const POSITION_PHRASE = (p) => {
  * New: each candidate carries `position` and `timing` parsed from the description, and every
  * translation is logged in the specified format.
  */
-export function translateScene({ sentence = "", scene = "", entities = [], headline = "", words = [], beatStart = 0, beatEnd = 0, channel = "", beatIndex = null } = {}) {
+export function translateScene({ sentence = "", scene = "", entities = [], headline = "", words = [], beatStart = 0, beatEnd = 0, channel = "", beatIndex = null, preferTypes = [] } = {}) {
   const out = [];
   const seen = new Set();
   const position = positionOf(scene);
@@ -213,6 +213,12 @@ export function translateScene({ sentence = "", scene = "", entities = [], headl
       default: break;
     }
   };
+  // The planner NAMED this beat's type (visual_type / canvas_composition): the candidates for what
+  // it named come first, built by the same grounding as every other candidate (a COUNTER still
+  // needs a figure the sentence states). The caller's gate decides whether they hold; when they
+  // do not, the description / sentence candidates below are what the beat falls back to.
+  const FOR_TYPE = { TREND: "LINE", PORTRAIT: "PORTRAIT" };
+  for (const t of preferTypes) want(FOR_TYPE[t] || t);
   const cues = cuesOf(scene);
   const elements = elementsOf(scene);
   const where = POSITION_PHRASE(position);

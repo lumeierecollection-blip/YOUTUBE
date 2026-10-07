@@ -834,7 +834,7 @@ function MapCentered({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const th = useTheme();
   const B = L.boxes, tl = timeline(c, B, dur, fps);
   // The header floats over the map's linework: a ground-coloured halo lifts it off.
-  const tone = th.dark ? DARK_BG : GROUND;
+  const tone = th.ground || (th.dark ? DARK_BG : GROUND);
   if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} halo={tone} />;
   return (
     <HeroEl name="map" b={B.map}>
@@ -1042,8 +1042,8 @@ export function majorZoom(L) {
 }
 
 const themeFor = (c, onPhoto) => (onPhoto ? { ink: "#FFFFFF", soft: "rgba(255,255,255,0.7)", mid: "#A7A7AD", track: "rgba(255,255,255,0.25)", dark: true, photo: true }
-  : c.dark ? { ink: "#F2F0EB", soft: "#9A9A9F", mid: "#6E6E73", track: "#2B2B2E", dark: true, photo: false }
-  : { ink: INK, soft: INK_SOFT, mid: MID, track: LIGHT, dark: false, photo: false });
+  : c.dark ? { ink: "#F2F0EB", soft: "#9A9A9F", mid: "#6E6E73", track: "#2B2B2E", dark: true, photo: false, ground: c.ground_color || DARK_BG }
+  : { ink: INK, soft: INK_SOFT, mid: MID, track: LIGHT, dark: false, photo: false, ground: c.ground_color || GROUND });
 
 const COMPONENTS = {
   "TYPE-FULL": TypeFull, "TYPE-SPLIT": TypeFull, "NUMBER-FULL": TypeFull, "PORTRAIT": TypeFull, "DATA-FULL": DataFull, "PROCESS-FULL": ProcessFull,
@@ -1284,6 +1284,9 @@ export function CanvasVideo({ plan }) {
   // incoming group is visible.
   const inGroups = popGroups(c, cLayout);
   const incomingHasInk = inGroups.some((g) => popInState(local - start - g.at).o > 0.001);
+  const holdingPrev = !!prev && (local <= POP.OUT || !incomingHasInk);
+  const shown = holdingPrev ? normalizeCanvas(prev.scene.canvas, i - 1) : c;
+  const shownGround = shown.ground_color || null;
   return (
     <ShadowOn.Provider value={false}>
     {/* Uniform white on every beat (backgrounds.js); a full-bleed photo beat
@@ -1291,19 +1294,23 @@ export function CanvasVideo({ plan }) {
     <StudioBG>
       {/* Background variation (part C.3, canvas-layout.js backgroundOf): every 3rd beat the
           paper texture, every 5th a thin rule above the headline zone. */}
-      {(() => { const bg = backgroundOf(i, cLayout.composition); return (<>
+      {/* A beat's own ground (the planner's `ground`, canvas ground_color) is painted here while that
+          beat is the one on screen; with none declared the StudioBG white shows, as before. While the
+          outgoing beat is held, its ground is the one painted so its ink never sits on the wrong colour. */}
+      {shownGround ? <div style={{ position: "absolute", inset: 0, backgroundColor: shownGround }} /> : null}
+      {(() => { const bg = backgroundOf(i, cLayout.composition, !!c.ground_color); return (<>
         {bg.paper ? <PaperTexture drift={clamp01(local / Math.max(1, beat.duration_frames)) * 0.5} /> : null}
         {bg.rule ? <div style={{ position: "absolute", left: L_EDGE, top: BG_RULE.y, width: R_EDGE - L_EDGE, height: BG_RULE.h, backgroundColor: BG_RULE.color }} /> : null}
         {bg.gradient ? <div style={{ position: "absolute", inset: 0, background: BG_GRADIENT }} /> : null}
       </>); })()}
-      {prev && (local <= POP.OUT || !incomingHasInk) ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} live={prev.duration_frames - 1} /> : null}
+      {holdingPrev ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} live={prev.duration_frames - 1} /> : null}
       {/* Micro motion (part D.1, every beat): the composition is never still — a 1 px drift
           across the beat and a 0.3% breath (one cycle per 3 s), about the frame's centre. */}
       <div style={{ position: "absolute", inset: 0, transformOrigin: "540px 960px",
         transform: `translate(${(-0.5 + clamp01(local / Math.max(1, beat.duration_frames))).toFixed(3)}px, 0px) scale(${(1 + 0.003 * Math.sin((2 * Math.PI * local) / (3 * fps))).toFixed(5)})` }}>
         <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} live={local} />
       </div>
-      <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} maxSize={cLayout.boxes.cutout0 ? 40 : 58} />
+      <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!shown.dark && !onPhoto} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} maxSize={cLayout.boxes.cutout0 ? 40 : 58} />
       {/* Source credit (owner's spec 2026-10-03, part C): only on a beat that shows a fetched
           image; bottom-right, 40 px in from the right and bottom edges, 20 px sans, #888,
           fading in from frame 40 of the beat (after the pops have settled). */}

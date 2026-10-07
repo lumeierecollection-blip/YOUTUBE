@@ -23,7 +23,7 @@
  *   library-names     every library_shape name in the plan is in the
  *                     object library registry
  *   beat-sentence-mechanism  every beat has an SRT sentence and a mechanism
- *   typography-count  TYPOGRAPHY beats: 1 or 2
+ *   typography-count  TYPOGRAPHY beats: at most 2 (zero is allowed: the planner chooses every beat's type)
  *   mechanism-share   no effective mechanism over 40% of beats (effective =
  *                     TYPOGRAPHY, or CAPABILITY:<first capability> — the same
  *                     key the planner's mechanismDistribution uses)
@@ -60,7 +60,7 @@
  *                     90% of the beat, the larger counted
  *   canvas-accent     the channel accent (manifest.accent) covers >= 0.2% of
  *                     the frame in at least one beat (RGB distance < 40)
- *   motion-tiers      every beat has a tier; 2-3 beats are "major" (1-3 when
+ *   motion-tiers      every beat has a tier; how many are "major" is the planner's call (was 2-3, 1-3 when
  *                     the video has fewer than 4 beats)
  *   canvas-type       the typography rebuild's rules on the manifest boxes:
  *                     nothing centred, sentence-case headlines, two type roles
@@ -427,9 +427,10 @@ function motionTiers(beats) {
   const bad = [];
   const tiers = beats.map((b) => b.canvas?.motion_tier);
   tiers.forEach((t, i) => { if (!["micro", "medium", "major"].includes(t)) bad.push(`beat ${i}: no motion tier`); });
+  // How many beats are "major" is the planner's decision (zero through all); the old 2-3 rule is
+  // applied at plan time only when the planner marked none (gemini-visual-plan.js), so what is
+  // checked here is that every beat HAS a tier.
   const major = tiers.filter((t) => t === "major").length;
-  const lo = beats.length >= 4 ? 2 : 1;
-  if (major < lo || major > 3) bad.push(`${major} major-motion beat(s) (need ${lo}-3)`);
   return { bad, major, medium: tiers.filter((t) => t === "medium").length };
 }
 // ── typography rebuild checks ─────────────────────────────────────────
@@ -491,22 +492,32 @@ function canvasType(beats) {
   if (roleSets.length && two / roleSets.length < 0.6) bad.push(`only ${two}/${roleSets.length} beats show two type roles (need 60%)`);
   return { bad, two, n: roleSets.length };
 }
-// canvas-ground: the ground is uniform white (visual/backgrounds.js) on every beat that is not a
-// full-bleed photo: a bottom-left patch below the caption band, where nothing but the ground lives,
-// reads luma >= 245. No beat may be dark.
+// canvas-ground: every beat that is not a full-bleed photo is drawn on the ground it declared.
+// A beat that declared none (manifest canvas.ground_color null) has the house white
+// (visual/backgrounds.js GROUND): a bottom-left patch below the caption band, where nothing but the
+// ground lives, reads luma >= 245. A beat that declared a ground (the planner's `ground`, a hex in
+// canvas.ground_color) must read that colour there, within 14 per RGB channel (h264 rounding). The
+// check no longer decides WHICH ground a beat should have — the plan does — only that the render
+// drew the one it declared.
 function canvasGround(video, beats) {
   const bad = [];
   const W = 540, H = 960;
-  beats.forEach((b, i) => { if (b.canvas?.dark) bad.push(`beat ${i}: dark ground (the ground is uniform white)`); });
   beats.forEach((b, i) => {
     if (fullBleed(b.canvas)) return;
     const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * 0.7;
     const buf = rgbFrame(video, t, W, H);
     if (!buf) return;
-    let sum = 0, n = 0;
-    for (let y = H - 70; y < H - 30; y++) for (let x = 24; x < 64; x++) { const o = (y * W + x) * 3; sum += 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; n++; }
-    const mean = sum / n;
-    if (mean < 245) bad.push(`beat ${i}: the white ground reads luma ${mean.toFixed(0)} (< 245)`);
+    let r = 0, g = 0, bl = 0, n = 0;
+    for (let y = H - 70; y < H - 30; y++) for (let x = 24; x < 64; x++) { const o = (y * W + x) * 3; r += buf[o]; g += buf[o + 1]; bl += buf[o + 2]; n++; }
+    const mean = [r / n, g / n, bl / n];
+    const declared = b.canvas?.ground_color;
+    if (!declared) {
+      const luma = 0.299 * mean[0] + 0.587 * mean[1] + 0.114 * mean[2];
+      if (luma < 245) bad.push(`beat ${i}: the white ground reads luma ${luma.toFixed(0)} (< 245)`);
+      return;
+    }
+    const want = [1, 3, 5].map((k) => parseInt(declared.slice(k, k + 2), 16));
+    if (mean.some((v, k) => Math.abs(v - want[k]) > 14)) bad.push(`beat ${i}: the declared ground ${declared} reads rgb(${mean.map((v) => Math.round(v)).join(",")})`);
   });
   return { bad };
 }
@@ -858,7 +869,7 @@ async function main() {
     return `CAPABILITY:${caps[0] || "?"}`;
   });
   const typo = effective.filter((m) => m === "TYPOGRAPHY").length;
-  add("typography-count", typo >= 1 && typo <= 2 ? [] : [`${typo} TYPOGRAPHY beats`], `${typo} TYPOGRAPHY beat(s)`);
+  add("typography-count", typo <= 2 ? [] : [`${typo} TYPOGRAPHY beats`], `${typo} TYPOGRAPHY beat(s)`);
 
   const counts = {};
   for (const m of effective) counts[m] = (counts[m] || 0) + 1;

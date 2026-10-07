@@ -65,6 +65,7 @@
  * checks the rendered pixels.
  */
 import { markWords, fitWords, fitNumberBleed } from "./kinetic.js";
+import { resolveGround } from "./backgrounds.js";
 import {
   ROLE_HEADLINE, ROLE_NUMBER, ROLE_DATA, ROLE_EMPHASIS, SERIF, SANS_STACK, HEADLINE_FLOOR,
   fitHeadline, fitNumber, numberParts, numberSlots, measure, fitEmphasis, capHeightEm,
@@ -251,17 +252,21 @@ const anchorX = (w, flip) => Math.round(flip ? R_EDGE - w : L_EDGE);
 export const PAPER_OPACITY = 0.03;
 export const BG_RULE = Object.freeze({ y: TOP - 40, h: 2, color: "#DADADF" });
 export const BG_GRADIENT = "linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 35%, #F8F7F4 100%)";
-export function backgroundOf(idx, composition = "") {
-  if (["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"].includes(composition)) return { paper: false, rule: false, gradient: false };
+export function backgroundOf(idx, composition = "", customGround = false) {
+  // A full-bleed photo covers the ground; a beat that declared its own ground is drawn on that
+  // colour as it is — the white-only paper texture / gradient variation does not apply to it.
+  if (customGround || ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"].includes(composition)) return { paper: false, rule: false, gradient: false };
   const gradient = (idx + 1) % 5 === 0;
   return { paper: !gradient && (idx + 1) % 3 === 0, rule: false, gradient };
 }
 
 export function normalizeCanvas(c, idx = 0) {
-  // dark: always false — the ground is uniform white on every beat
-  // (backgrounds.js); a plan resolved while dark beats existed must not draw
-  // light ink on white.
-  return { ...c, beat_index: Number.isInteger(c?.beat_index) ? c.beat_index : idx, variant: Number.isInteger(c?.variant) ? c.variant : idx, dark: false };
+  // The ground is the beat's own: `ground_color` is a hex the planner chose (resolveGround), or
+  // absent for the default white. `dark` follows from it — light ink on a dark ground — and is
+  // never set any other way, so a plan resolved while the old retired dark beats existed
+  // (c.dark with no ground_color) still cannot draw light ink on white.
+  const g = resolveGround(c?.ground_color);
+  return { ...c, beat_index: Number.isInteger(c?.beat_index) ? c.beat_index : idx, variant: Number.isInteger(c?.variant) ? c.variant : idx, ground_color: g.hex, dark: g.dark };
 }
 
 // The cells a box touches: "c<col>r<row>" for every cell it overlaps by
@@ -980,7 +985,7 @@ export function canvasManifest(raw, idx) {
     name_card: c.name_card?.name ? { name: c.name_card.name } : null,
     // Part C: the entrance style and the background variation this beat was drawn with.
     entrance_style: c.entrance_style || null,
-    background: backgroundOf(idx, L.composition),
+    background: backgroundOf(idx, L.composition, !!c.ground_color),
     headline_size: (L.boxes.headline || L.boxes.statement)?.size || null,
     headline_align: (L.boxes.headline || L.boxes.statement)?.align || null,
     // Where the accent is drawn: chart values / arrows, the hero number (unless the
@@ -988,10 +993,13 @@ export function canvasManifest(raw, idx) {
     // index, the larger comparison value, the map's region, a document's callout band.
     accent_used: ["DATA-FULL", "PROCESS-FULL", "TIMELINE", "LIST-BUILD", "COMPARISON-SPLIT", "MAP-CENTERED", "DOCUMENT"].includes(L.composition)
       || ((L.composition === "NUMBER-FULL" || L.composition === "MONEY") && c.number_accent !== false && !!L.boxes.number),
-    variant: c.variant, flip: L.flip, dark: false,
-    // What is behind the beat: the uniform white ground (backgrounds.js), or
-    // a full-bleed photo covering it for this beat.
+    variant: c.variant, flip: L.flip, dark: !!c.dark,
+    // What is behind the beat: the ground (white unless the beat declared another — then
+    // `ground_color` is its hex, null for the default), or a full-bleed photo covering it.
+    // `ground` keeps its old meaning ("a ground is visible": "white" | "photo") so every reader
+    // that classifies photo beats is unchanged.
     ground: c.photo && L.composition !== "PORTRAIT" ? "photo" : "white",
+    ground_color: c.ground_color || null,
     headline_text: shown("headline") || shown("statement") || null, emphasis_text: shown("emphasis"),
     // The headline's entrance: the words fly in on a major TYPE-FULL statement,
     // otherwise mask-reveal / slide-land / crop-open rotating on the beat index.

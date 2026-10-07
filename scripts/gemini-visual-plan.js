@@ -45,6 +45,8 @@ import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { previewAnimations } from "./anim-plan.js";
 import { compositionFor, splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { translateScene } from "./scene-translate.js";
+import { wantedTypes, COMPOSITIONS } from "./composition-vocab.js";
+import { applyMotionTiers, normalizeGrounds, compositionsUsed } from "./planner-decisions.js";
 import { trendOf, maxTypeBeats, varietyReport, beatsToConvert, isTypePlanned, fallbacksFor, assignEntranceStyles, assignAnimationFamilies } from "./composition-variety.js";
 import { flowNodes, FLOW_WORDS, listItemsOf, timelineOf, compareOf, documentNameOf, moneyObjectOf, quantitiesOf, statedPercentsOf, knownPlacesOf } from "./canvas-grounding.js";
 
@@ -629,8 +631,6 @@ export function checkVisual(b, sentence) {
 const SCENE_EXAMPLE = (() => { try { return JSON.parse(readFileSync(join(ROOT, "prompts", "scene-example.json"), "utf-8")); } catch { return null; } })();
 export function buildPlanPromptParts(sentences, corrections, channelId) {
   // Same formula as plan-caps.cjs capLimits(): TYPOGRAPHY <= min(2, floor(0.4n)).
-  const typoMax = Math.min(2, Math.max(1, Math.floor(sentences.length * 0.4)));
-  const last = sentences.length - 1;
   const example = SCENE_EXAMPLE
     ? `EXAMPLE — sentence "${SCENE_EXAMPLE.sentence}" -> ${JSON.stringify(SCENE_EXAMPLE.beat)}`
     : "";
@@ -638,7 +638,7 @@ export function buildPlanPromptParts(sentences, corrections, channelId) {
 
 THE VISUAL LANGUAGE (everything you describe must fit it): editorial, minimalist, monochrome with one accent colour; full-frame compositions, no cards or panels; real photos for people, places, logos and objects when they exist, type and charts when they don't; slow, deliberate movement, nothing frantic — the style of Vox, Bloomberg and NYT explainers. A scene that would not appear in one of those videos is wrong. A serif headline in sentence case, oversized numerals, small sans labels. Transitions, captions, zones and camera are the system's.
 
-THE GROUND IS ALWAYS WHITE. Do not describe dark, black, charcoal, or colored backgrounds. All visuals sit on white. If a sentence suggests a dark or moody treatment, describe the visual elements themselves - not the background color. A beat that asks for a dark ground diverges from the render on every frame (plan-vs-render audit 2026-10-05: 11 of 37 beats asked for dark, 0 of 37 matched).
+GROUND. "ground": what ground does THIS beat need? Leave it out (or write "white") for the house ground, white. Otherwise answer a hex ("#0E0E10"), "transparent" (the house ground shows through; an MP4 has no alpha) or a short colour description ("deep navy", "warm cream"). Type and charts switch to light ink on a dark ground by themselves. The ground is yours to choose for every beat.
 
 THREE ELEMENTS ALWAYS RENDER ON EVERY BEAT, AND YOU MUST NOT DESCRIBE THEM:
 1. A caption band at the bottom of the frame with the sentence's key phrase
@@ -649,15 +649,17 @@ Do not mention these in your scene_description. They are automatic. If you descr
 NAME CARD FALLBACK. If a named entity has no verified source - no Wikipedia lead image, no Wikimedia Commons photo, no logo - the beat renders a name card: the entity's name in the headline style with the sentence's key phrase beneath. When you describe a beat that names a specific entity, this is the fallback if the entity cannot be sourced. If you expect the entity to resolve, describe the visual it would use. If you suspect the entity is too niche, describe the name card as the intended visual.
 
 HOW TO DESCRIBE A BEAT. "scene_description": what a viewer should see for this sentence, in plain language, the way you would describe it to a designer — no mechanism names, no zones. Be specific about the primary element (a photo, a number, a chart, a logo, a scene) and NAME it if the sentence names it (person, place, company, object) so the system can fetch it; where it sits ("fills the frame", "upper third"); how it moves ("slow push in", "counts up", "draws left to right", "pops in"); what supports it (a small label, a reference line). A person -> their portrait and how it moves; a company -> its logo and how it enters; a number -> how it builds; an abstract sentence -> the metaphor or type treatment that makes it land. Example — "Mortgage rates hit 7.2% in October." -> "A big number, 7.2%, fills the centre of the frame, the percent sign smaller than the digits; below it in small caps, MORTGAGE RATES; behind it a thin line draws left to right, the rate's climb over the past year."
-Do NOT choose a mechanism, a chart type, a composition or a zone — the system translates your scene_description into one (scripts/scene-translate.js) and enforces variety, the two-number rule (two compared figures are drawn as a chart) and the data rules in code. Describe only what the sentence supports: a number you describe is one the sentence says, exactly as it says it; a person, place, company or object you describe is one it names. A money beat: say which object (a $100 bill, a stack of bills, coins, a wallet). A sentence with nothing to show: say what type treatment or plain metaphor makes it land.
+The beat's type and composition are yours to choose (TYPE AND COMPOSITION below); the system checks what you choose against the sentence (scripts/scene-translate.js) and enforces variety, the two-number rule (two compared figures are drawn as a chart) and the data rules in code. Describe only what the sentence supports: a number you describe is one the sentence says, exactly as it says it; a person, place, company or object you describe is one it names. A money beat: say which object (a $100 bill, a stack of bills, coins, a wallet). A sentence with nothing to show: say what type treatment or plain metaphor makes it land.
+
+TYPE AND COMPOSITION. "visual_type" is YOUR choice for every beat, the hook and the close included: one of PHOTO, COUNTER, BAR, PIE, LINE, GAUGE, TREND, MAP, PROCESS, LIST, TIMELINE, COMPARE, DOCUMENT, MONEY, TYPE. "canvas_composition" (optional) names how it is laid out: ${COMPOSITIONS.join(", ")}; a name outside this list is accepted and mapped to the nearest one. What you choose is checked against the sentence: a number you chart, a place you map, a person or document you show must be in the sentence, exactly as it says it. Where a choice cannot be grounded the system falls back to what the sentence does ground, never to an invented figure. If you name neither, the system reads your scene_description.
 
 ENTITIES. "named_entities": everything the sentence NAMES that the scene shows, written as in the sentence, full name, no bracketed acronym: [{"type": "person"|"company"|"institution"|"place"|"building"|"object"|"number", "name"}] — company = a business ("Engel", "Bosch", "Fisher Phillips"); institution = an agency, court, standards body, trade show or international body ("SEC", "Hannover Messe", "ISO"); object = a physical thing; number = a figure it states. "entity_anchor_word": the ONE word of the sentence naming the main entity ("Powell", "courthouse", "347") — its visual pops when it is spoken; null if none. "concepts": up to 3 physical objects the sentence names, the LITERAL object never a symbol for an idea ("Equipping officers with gloves" -> ["gloves"], not "shield"); a name from CONCEPTS or a 1-3 word noun phrase of the sentence's own words that names the object unambiguously out of context ("steel plates", not "plates"); never a person, never an idea. CONCEPTS: ${CONCEPT_NAMES.join(", ")}
 
 ASSET KINDS - ask for one ONLY when the sentence earns it. "Request a silhouette only if the sentence names a person. Request a document only if the sentence names a document, contract, filing, ruling, or law. Request a stack only if the sentence names multiple discrete items. Never request these by default." A silhouette with no person in the sentence is an invented human; a document with no document in it is an invented filing. If the sentence supports none of them, describe the accumulation with the numbers it states instead.
 
-TEXT. "headline": 2-6 words FROM the sentence, never a full sentence, never a claim it does not make. "lead_in": 2-4 of the sentence's words, lowercase, or null. "emphasis_word": one headline word or null. "kind": "TYPE" only for beat 0${typoMax >= 2 ? ` and beat ${last}` : ""} (the hook${typoMax >= 2 ? " and the close" : ""}); every other beat "EDITORIAL". "typography_direction" only where text IS the beat (the hook, the close, a real turn): {"phrase": one line, 2-7 words, never the narration or a near-restatement, never a topic label like "The Problem", "moment": "hook"|"re_hook"|"key_fact"|"contradiction"|"question"|"statement"}; otherwise null. Typography is selective: at most ~1 in 3 beats text-forward.
+TEXT. "headline": 2-6 words FROM the sentence, never a full sentence, never a claim it does not make. "lead_in": 2-4 of the sentence's words, lowercase, or null. "emphasis_word": one headline word or null. "kind": "TYPE" where the beat is typography, "EDITORIAL" otherwise, your choice for every beat. "typography_direction" only where text IS the beat (the hook, the close, a real turn): {"phrase": one line, 2-7 words, never the narration or a near-restatement, never a topic label like "The Problem", "moment": "hook"|"re_hook"|"key_fact"|"contradiction"|"question"|"statement"}; otherwise null. Typography is selective: at most ~1 in 3 beats text-forward.
 
-MOTION. "motion_tier": "micro"|"medium"|"major" — EXACTLY 2-3 "major" (the hook, the pivot, the close), most "medium". "camera_focus": null or 1-2 [{"at_percent": 0.05-0.9, "target": number|chart|headline|photo|left|right|top|bottom|node0|node1|node2|full}]. "persists_from": the previous beat's index when this beat carries its element on, else null; "match_cut_prev": true when it shares that element. "text_entrance": omit, or POP_SOFT (a quiet beat) | POP_HARD (beat 0 or the last only) | POP_LETTER (at most one beat) | POP_WORD_STACK (a 2-5 word TYPE statement). "visual_events": [{"type": growth|depletion|comparison|revelation|structure_break|accumulation|population|evidence|contrast|causation, "label", "magnitude"}] — at least 5 distinct types across the video, never the same event 3 times in a row; "capabilities": the event types used (+ "typographic_emphasis" on a TYPE beat); "objects": {"label_a","label_b"} for contrast, {"figure"} for evidence, {"cause","effect"} for causation, else {}.
+MOTION. "motion_tier": "micro"|"medium"|"major" — yours to set on every beat; mark as many beats "major" as the narration earns. "camera_focus": null or 1-2 [{"at_percent": 0.05-0.9, "target": number|chart|headline|photo|left|right|top|bottom|node0|node1|node2|full}]. "persists_from": the previous beat's index when this beat carries its element on, else null; "match_cut_prev": true when it shares that element. "text_entrance": omit, or POP_SOFT (a quiet beat) | POP_HARD (beat 0 or the last only) | POP_LETTER (at most one beat) | POP_WORD_STACK (a 2-5 word TYPE statement). "visual_events": [{"type": growth|depletion|comparison|revelation|structure_break|accumulation|population|evidence|contrast|causation, "label", "magnitude"}] — at least 5 distinct types across the video, never the same event 3 times in a row; "capabilities": the event types used (+ "typographic_emphasis" on a TYPE beat); "objects": {"label_a","label_b"} for contrast, {"figure"} for evidence, {"cause","effect"} for causation, else {}.
 
 ${example}
 
@@ -667,7 +669,6 @@ Respond ONLY with JSON (no markdown): {"beats":[ one object per sentence, in ord
     dynamicPart += `\n\nPREVIOUS REVIEW CORRECTIONS — apply every fix:\n` +
       corrections.map((c) => `  ${c.scene || c.beat}: ${c.problem} → Fix: ${c.fix || c.action}`).join("\n");
   }
-  void channelId;
   return { staticPart, dynamicPart };
 }
 
@@ -829,24 +830,46 @@ async function main() {
   // first; the first that passes checkVisual is the beat's. Anything untranslatable is TYPE —
   // the safety valve, logged. A visual_type the model wrote anyway is ignored (and logged).
   const SCENE_TRANSLATE = true;
+  const compositionMappings = [];
+  const decided = { declared: 0, kept: 0, ungrounded: 0, defaultedType: 0 };
   if (okBeats(geminiResult)) {
     let typeFallbacks = 0;
+    const lastBeat = geminiResult.beats.length - 1;
     for (const [i, b] of geminiResult.beats.entries()) {
       const st = sentences[b.index ?? i]?.text || "";
       const ents = Array.isArray(b.named_entities) ? b.named_entities : [];
-      const cands = translateScene({ sentence: st, scene: b.scene_description || "", entities: ents, headline: b.headline || "" });
-      let pick = null;
+      // What the planner NAMED for this beat (visual_type / canvas_composition), read before this loop
+      // writes the checked type back over b.visual_type.
+      const want = wantedTypes({ visual_type: b.visual_type, canvas_composition: b.canvas_composition });
+      for (const u of want.unknown) {
+        compositionMappings.push({ beat: b.index ?? i, ...u });
+        console.log(`[plan] beat ${b.index ?? i}: composition_unknown — the planner wrote ${u.field} ${JSON.stringify(u.wrote)}; ${u.mappedTo ? `using the nearest, ${u.mappedTo}` : "nothing near, ignored"}`);
+      }
+      // The hook and the close have no type forced on them. Only when the planner named nothing for
+      // one of them is TYPE the default (it was the old behaviour for those two beats).
+      let prefer = want.types;
+      if (!want.declared && (i === 0 || i === lastBeat)) { prefer = ["TYPE"]; decided.defaultedType++; }
+      if (want.declared) decided.declared++;
+      const cands = translateScene({ sentence: st, scene: b.scene_description || "", entities: ents, headline: b.headline || "", preferTypes: prefer });
+      let pick = null, declaredWhy = null;
       for (const c of cands) {
         const v = checkVisual({ visual_type: c.visual_type, data: c.data || {}, named_entities: ents }, st);
-        if (!v.why && v.type === c.visual_type) { pick = { ...c, data: v.data }; break; }
+        const ok = !v.why && v.type === c.visual_type;
+        if (!ok && want.declared && !declaredWhy && prefer.includes(c.visual_type)) declaredWhy = v.why || `gate changed it to ${v.type}`;
+        if (ok) { pick = { ...c, data: v.data }; break; }
+      }
+      if (want.declared) {
+        if (pick && prefer.includes(pick.visual_type)) decided.kept++;
+        else { decided.ungrounded++; console.log(`[plan] beat ${b.index ?? i}: the planner chose ${prefer.join("/")} — ${declaredWhy || "the sentence grounds none of it"}; using ${pick ? pick.visual_type : "TYPE"}`); }
       }
       if (!pick || pick.visual_type === "TYPE") typeFallbacks++;
       pick = pick || { visual_type: "TYPE", data: null, why: "nothing translatable" };
       const was = b.visual_type ? String(b.visual_type).toUpperCase() : null;
       b.visual_type = pick.visual_type; b.data = pick.data;
-      console.log(`[translate] beat ${b.index ?? i}: "${String(b.scene_description || "").slice(0, 90)}" -> ${pick.visual_type}${pick.data ? ` ${JSON.stringify(pick.data).slice(0, 80)}` : ""} (${pick.why})${was && was !== pick.visual_type ? ` [the model wrote ${was}: ignored]` : ""}`);
+      if (pick.visual_type === "TYPE" && want.split) b.type_layout = "split";
+      console.log(`[translate] beat ${b.index ?? i}: "${String(b.scene_description || "").slice(0, 90)}" -> ${pick.visual_type}${pick.data ? ` ${JSON.stringify(pick.data).slice(0, 80)}` : ""} (${pick.why})${want.declared ? " [planner chose]" : ""}${was && was !== pick.visual_type && !want.declared ? ` [the model wrote ${was}: ignored]` : ""}`);
     }
-    console.log(`[translate] ${geminiResult.beats.length} scene(s) translated, ${typeFallbacks} to TYPE (the hook / close, an abstract line, or nothing the description named was in the sentence)`);
+    console.log(`[translate] ${geminiResult.beats.length} scene(s) translated, ${typeFallbacks} to TYPE; the planner named a type on ${decided.declared}/${geminiResult.beats.length} beats (kept ${decided.kept}, not grounded ${decided.ungrounded}, TYPE by default on ${decided.defaultedType} hook/close beat(s))`);
   }
 
   // ── VISUAL-FIRST RATIO (owner's spec 2026-10-02) ──────────────────────
@@ -1401,7 +1424,10 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
   }
   let capped;
   try {
-    capped = enforceCaps(effective);
+    // The planner chooses every beat's type, the hook's included, and a video may have no typography beat:
+    // the hook is no longer forced to TYPOGRAPHY and zero TYPOGRAPHY beats is allowed. The ceiling of 2
+    // TYPOGRAPHY beats and the 40% share per mechanism are unchanged.
+    capped = enforceCaps(effective, { hookTypography: false, minTypography: 0 });
   } catch (e) {
     console.error(`Plan rejected: ${e.message}`);
     process.exit(1);
@@ -1541,25 +1567,16 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       for (const why of vc.dropped) console.warn(`::warning::[plan] beat ${b.index}: concept ${why} — dropped`);
       b.concepts = vc.concepts;
     }
-    const lo = n >= 4 ? 2 : 1;
-    let majors = plan.beats.map((b, i) => (b.motion_tier === "major" ? i : -1)).filter((i) => i >= 0);
-    const keep = new Set([0, n - 1]);
-    while (majors.length > 3) {
-      const drop = [...majors].reverse().find((i) => !keep.has(i)) ?? majors[majors.length - 1];
-      plan.beats[drop].motion_tier = "medium";
-      console.log(`[plan] beat ${drop}: motion_tier major -> medium (at most 3 major beats)`);
-      majors = majors.filter((i) => i !== drop);
-    }
-    for (const i of [0, n - 1, Math.floor(n / 2)]) {
-      if (majors.length >= lo) break;
-      if (i >= 0 && i < n && plan.beats[i].motion_tier !== "major") {
-        plan.beats[i].motion_tier = "major"; majors.push(i);
-        console.log(`[plan] beat ${i}: motion_tier -> major (a video has ${lo}-3 major beats)`);
-      }
-    }
-    console.log(`[plan] motion tiers: ${plan.beats.map((b) => ({ micro: "·", medium: "m", major: "M" })[b.motion_tier]).join("")} (${majors.length} major); entities: ${plan.beats.reduce((a, b) => a + b.named_entities.length, 0)}; camera focus on ${plan.beats.filter((b) => b.camera_focus).length} beat(s)`);
+    const tiers = applyMotionTiers(plan.beats, (m) => console.log(m));
+    const majors = tiers.majors;
+    console.log(`[plan] motion tiers: ${plan.beats.map((b) => ({ micro: "·", medium: "m", major: "M" })[b.motion_tier]).join("")} (${majors.length} major${tiers.defaulted ? ", defaulted: the planner marked none" : ", the planner's own"}); entities: ${plan.beats.reduce((a, b) => a + b.named_entities.length, 0)}; camera focus on ${plan.beats.filter((b) => b.camera_focus).length} beat(s)`);
   }
 
+  const groundCounts = normalizeGrounds(plan.beats, (m) => console.log(m));
+  console.log(`[plan] grounds: ${Object.entries(groundCounts).map(([k, v]) => `${k} x${v}`).join(", ")}`);
+  const typeOf = (b) => String(b.visual_type || "TYPE").toUpperCase();
+  const compUsed = compositionsUsed(plan.beats.map((b) => (b.canvas_composition ? (wantedTypes({ canvas_composition: b.canvas_composition }).composition || typeOf(b)) : typeOf(b))));
+  console.log(`[plan] compositions_used (planned types) ${JSON.stringify(compUsed.counts)}${compUsed.templated ? ` templating_signal: ${compUsed.top} fills ${Math.round(compUsed.topShare * 100)}% of the beats (report only, nothing corrected)` : ""}`);
   const result = {
     generatedAt: new Date().toISOString(),
     channel: channelId,
@@ -1574,7 +1591,12 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
     capabilityDistribution: {},
     mechanismDistribution: describeMechanisms(capped.mechanisms),
     compositionsDropped: dropped,
+    // What the planner decided, for the audit: its grounds, its type choices and how they fared, the
+    // composition names it wrote that the renderer does not draw (and what they were mapped to), and
+    // how the planned types are spread (a share over 60% in one is a templating signal, only reported).
+    plannerDecisions: { grounds: groundCounts, types: decided, compositionMappings, compositions_used: compUsed },
   };
+  // Which style spec (if any) the planner was given as reference.
 
   // Track capability usage instead of mechanism distribution
   for (const b of plan.beats) {

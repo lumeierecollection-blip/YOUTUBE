@@ -78,7 +78,7 @@ eq("groundedOptions offers PROCESS only for a stated flow", groundedOptions("Rat
 // the visual ratio and composition variety moved out of the prompt into code
 // (scripts/scene-translate.js, scripts/composition-variety.js). The prompt keeps the identity
 // signal, the scene-description brief, the entities, the text and motion rules.
-const must = ["THE VISUAL LANGUAGE", "HOW TO DESCRIBE A BEAT", "Do NOT choose a mechanism", "two-number rule", "entity_anchor_word", "company", "institution", "scene_description", "EXACTLY 2-3", "Jerome Powell", "POP_LETTER (at most one beat)", "typography_direction"];
+const must = ["THE VISUAL LANGUAGE", "HOW TO DESCRIBE A BEAT", "TYPE AND COMPOSITION", "two-number rule", "entity_anchor_word", "company", "institution", "scene_description", "what ground does THIS beat need", "Jerome Powell", "POP_LETTER (at most one beat)", "typography_direction"];
   eq("the prompt still carries every decision rule", must.filter((m) => !(staticPart + dynamicPart).includes(m)), []);
   eq("the static part holds no sentence (it is cached across videos)", staticPart.includes("part 0."), false);
 }
