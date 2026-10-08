@@ -26,3 +26,7 @@ it("the LAYOUT section asks for a layout on every beat (40% of beats had none: C
   assert.match(staticPart, /Give EVERY beat a layout/);
   assert.doesNotMatch(staticPart, /leaving "layout" out keeps the default arrangement for the whole beat/);
 });
+it("the slot format offers 'center' only for a visual, not for text (run 37746025773: 6/9 beats centred text)", () => {
+  const { staticPart } = buildPlanPromptParts(sentences, null, "5");
+  assert.match(staticPart, /"align": "left"\|"right" for text/);
+});
