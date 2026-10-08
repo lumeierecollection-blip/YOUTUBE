@@ -119,7 +119,7 @@ async function resolvePersonScene(tag, name, context) {
   const { w, h } = await sizeOf(join(E.PUBLIC, r.asset));
   lines.push(`${r.source || "wikipedia"}${r.cached ? " (cached, re-verified)" : ""}, image found (${r.file_title || r.asset})`, `verified MATCH${r.verified_by ? ` (${r.verified_by})` : ""}`, `rendering as portrait, middle zone`);
   say(tag, lines);
-  return { ok: true, kind: "person", photo: { asset: r.asset, entity: name, kind: "person", view: "person", w, h, credit: r.credit, source: r.source || "wikipedia", source_url: r.source_url, license: r.license } };
+  return { ok: true, kind: "person", photo: { asset: r.asset, entity: name, kind: "person", view: "person", w, h, credit: r.credit, source: r.source || "wikipedia", source_url: r.source_url, license: r.license, verified_as: r.page_title ? `${r.page_title}${r.description ? ` (${r.description})` : ""}` : null } };
 }
 
 // ── place / building / organization ───────────────────────────────────
@@ -146,7 +146,7 @@ async function resolvePlaceScene(tag, type, name, context) {
     renameSync(tmp, join(E.PUBLIC, rel));
     lines.push(`rendering as ${type === "place" ? "SCENE-FULL" : "ARCHITECTURE"}, full-bleed`);
     say(tag, lines);
-    return sizeOf(join(E.PUBLIC, rel)).then(({ w, h }) => ({ ok: true, kind: type, photo: { asset: rel, entity: name, kind: type, view, w, h, source: src, seen: v.seen, ...extra } }));
+    return sizeOf(join(E.PUBLIC, rel)).then(({ w, h }) => ({ ok: true, kind: type, photo: { asset: rel, entity: name, kind: type, view, w, h, source: src, seen: v.seen, verified_as: vq, ...extra } }));
   };
   // 1-3: Wikipedia summary, Wikipedia search / page photos, Wikimedia Commons.
   const { candidates, tried } = await E.entityCandidates(type, q, context);

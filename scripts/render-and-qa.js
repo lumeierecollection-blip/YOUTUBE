@@ -37,7 +37,9 @@ import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js
 import { inkOf } from "./cutout-ink.mjs";
 const { resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 const { fetchCutoutForBeat, qualifyConcept } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
-const { resolveSceneEntity, sceneEntities } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
+const { resolveSceneEntity, sceneEntities, fallbackAsset } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
+const { askProviders: askVisualProviders } = createRequireEntity(import.meta.url)("./verify-cutout-image.cjs");
+import { chooseBeatVisual } from "./beat-visual.js";
 const { verifyPlaceImage } = createRequireEntity(import.meta.url)("./verify-place-image.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
@@ -1193,6 +1195,9 @@ async function resolveCanvas(channelId, planPath, plan) {
       const real = ents.filter((e) => REAL.includes(e.type))
         .sort((x, y) => (y.name === b.data?.entity) - (x.name === b.data?.entity) || REAL.indexOf(x.type) - REAL.indexOf(y.type));
       const named = [];   // real, resolvable names that found no verified photo: the name card's subject
+      // Every verified candidate this beat's entities produce; the beat's ONE visual is then chosen
+      // from them against the line (beat-visual.js) — not the first one a verifier passed.
+      const found = [];
       for (const e0 of real) {
         // A country or US state is drawn as its MAP (below), not a photo: verified photos of
         // "California" (a beach) and "North Korea" (a skyline) matched the place and nothing in
@@ -1206,24 +1211,48 @@ async function resolveCanvas(channelId, planPath, plan) {
         if (q.note) console.log(`[entity] ${q.note}`);
         if (!q.ent?.name) { entities.fell_back.push(`${e0.type} "${e0.name}": ${q.note}`); named.push(e0); continue; }
         const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "", scene: b.scene_description || null, sentence: b.narration || "" });
-        if (r.ok && r.logo) {
-          // A company / institution logo (part B): the hero cutout of a TYPE-FULL beat.
-          b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
-          b.hero_cutout = { name: e0.name, class: "cutout", asset: r.logo.asset, w: r.logo.w, h: r.logo.h, logo: true, source: r.logo.source, source_url: r.logo.source_url, ink: await inkOf(r.logo.abs) };
-          fetchedNew++;
-          entities.resolved.push(`beat ${b.index}: ${e0.type} "${e0.name}" -> logo ${r.logo.asset} (${r.logo.source}, ${r.logo.license})`);
-          break;
-        }
-        if (r.ok) {
-          photo = { ...r.photo, entity: e0.name };
-          fetchedNew++;   // a new file under public/: the bundle is rebuilt (run 36498049819)
-          entities.resolved.push(`beat ${b.index}: ${e0.type} "${e0.name}" -> ${photo.asset} (${photo.source}, ${photo.license || "?"})`);
-          b.visual_type = "PHOTO"; b.data = { entity: e0.name, entity_type: e0.type };
-          break;
-        }
+        if (r.ok && (r.logo || r.photo)) { found.push({ id: r.logo ? r.logo.asset : r.photo.asset, e0, r }); continue; }
         entities.fell_back.push(`beat ${b.index}: ${e0.type} "${e0.name}": ${r.why}`);
         // A refused acronym ("AI", "ED") is not a name: no name card is made of it.
         if (!r.refused) named.push(e0);
+      }
+      if (found.length) {
+        const regionAvail = real.find((e) => e.type === "place" && resolveRegionName(e.name));
+        const assets = found.map(({ id, e0, r }) => {
+          const a = r.logo || r.photo;
+          return { id, entity: e0.name, entity_type: e0.type, kind: r.logo ? "logo" : (r.photo.kind || e0.type), caption: r.logo ? `logo / mark of "${r.logo.name}"` : (r.photo.verified_as || e0.name), seen_in_image: a.seen || null, source: a.source || null, source_url: a.source_url || null };
+        });
+        const choice = await chooseBeatVisual({
+          line: b.narration || "", entities: real.map((e) => ({ type: e.type, name: e.name })), assets,
+          styleSpec: (() => { try { return loadStyleReference(channelId).ref || null; } catch { return null; } })(), slot: b.layout || null, mapAvailable: !!regionAvail,
+          ask: async (prompt) => { const a = await askVisualProviders([{ role: "user", content: prompt }], (x) => (x && typeof x === "object" && "visual" in x ? x : null)); return a.v || { error: `no provider answered (${(a.tried || []).join("; ").slice(0, 160)})` }; },
+        });
+        console.log(`[visual-choice] ch-${channelId} beat ${b.index}: ${choice.source} ${choice.visual}${choice.valid ? "" : " (fallback)"} — ${choice.reason}${choice.skipped.length ? ` | skipped: ${choice.skipped.map((s) => `${s.asset} (${s.why})`).join("; ")}` : ""}${choice.missing ? ` | missing: ${choice.missing}` : ""}`);
+        for (const s of choice.skipped) entities.fell_back.push(`beat ${b.index}: ${s.asset} skipped — ${s.why}`);
+        const pick = choice.asset ? found.find((f) => f.id === String(choice.asset.id)) : null;
+        if (pick && pick.r.logo) {
+          // A company / institution logo (part B): the hero cutout of a TYPE-FULL beat.
+          b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
+          b.hero_cutout = { name: pick.e0.name, class: "cutout", asset: pick.r.logo.asset, w: pick.r.logo.w, h: pick.r.logo.h, logo: true, source: pick.r.logo.source, source_url: pick.r.logo.source_url, ink: await inkOf(pick.r.logo.abs) };
+          fetchedNew++;
+          entities.resolved.push(`beat ${b.index}: ${pick.e0.type} "${pick.e0.name}" -> logo ${pick.r.logo.asset} (${choice.source})`);
+        } else if (pick) {
+          photo = { ...pick.r.photo, entity: pick.e0.name };
+          fetchedNew++;   // a new file under public/: the bundle is rebuilt (run 36498049819)
+          entities.resolved.push(`beat ${b.index}: ${pick.e0.type} "${pick.e0.name}" -> ${photo.asset} (${choice.source}, ${photo.source}, ${photo.license || "?"})`);
+          b.visual_type = "PHOTO"; b.data = { entity: pick.e0.name, entity_type: pick.e0.type };
+        } else if (choice.visual === "silhouette" || choice.visual === "document") {
+          // The bundled non-identifying treatment / document surface (resolve-scene.cjs FALLBACK_ASSETS).
+          const fb = await fallbackAsset(choice.visual, channelId, b.index);
+          if (fb?.ok) { photo = { ...fb.photo, entity: found[0].e0.name }; b.visual_type = "PHOTO"; b.data = { entity: found[0].e0.name, entity_type: found[0].e0.type }; }
+          else named.push(...found.map((f) => f.e0));
+        } else if (choice.visual.startsWith("symbol:")) {
+          b.visual_type = "TYPE"; b.data = null; delete b.type_layout; b.fallback_symbol = choice.visual.slice(7);
+        } else if (choice.visual !== "map") {
+          // type_card (or an answer that could not be validated): the found entities become the name
+          // card's subject — the honest typographic placeholder, never the unverified photo.
+          named.push(...found.map((f) => f.e0));
+        }
       }
       // A country / US state with no verified photo is still shown as ITSELF: the drawn
       // map (MAP-CENTERED, the region's real outline) — not a name card, never a stand-in.
