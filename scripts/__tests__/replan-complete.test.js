@@ -16,3 +16,8 @@ it("the corrections pass asks for complete beats, layout included", () => {
 it("a first plan has no corrections block", () => {
   assert.doesNotMatch(buildPlanPromptParts(sentences, null, "5").dynamicPart, /PREVIOUS REVIEW CORRECTIONS/);
 });
+it("the LAYOUT section states Layer 1's zone rule the way the audit applies it (header kind vs visual kind)", () => {
+  const { staticPart } = buildPlanPromptParts(sentences, null, "5");
+  assert.match(staticPart, /the two regions never hold two kinds of element/);
+  assert.match(staticPart, /falls back to the default arrangement/);
+});
