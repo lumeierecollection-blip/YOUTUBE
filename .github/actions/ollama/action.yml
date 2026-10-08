@@ -32,6 +32,16 @@ inputs:
       ("received a shutdown signal", exit 143) the moment rembg started.
     required: false
     default: "false"
+  warm:
+    description: >
+      "false" = pull only; never load a model into RAM to check it. The render
+      job needs this: run 37776924101 lost 4 of 10 render runners ("received a
+      shutdown signal", exit 143) 1.5-5 min after this action began warming
+      qwen2.5:7b / qwen2.5vl:3b / qwen2.5:14b in the background while Chrome
+      rendered and rembg cut out images on the 15 GB runner. A model is then
+      loaded only if a fallback call actually reaches Ollama.
+    required: false
+    default: "true"
   background:
     description: >
       "true" = start the server, then pull + check the models in the
@@ -64,6 +74,7 @@ runs:
         MAX_LOADED: ${{ inputs.max-loaded }}
         UNLOAD: ${{ inputs.unload-after-warm }}
         BACKGROUND: ${{ inputs.background }}
+        WARM: ${{ inputs.warm }}
       run: |
         sudo systemctl stop ollama 2>/dev/null || true
         sudo systemctl disable ollama 2>/dev/null || true
@@ -78,6 +89,7 @@ runs:
         set -u
         for m in $MODELS; do
           OLLAMA_HOST=127.0.0.1:11434 ollama pull "$m" || { echo "pull failed: $m" > /tmp/ollama-failed; exit 1; }
+          if [ "$WARM" = "false" ]; then echo "pulled $m (not warmed — warm=false)"; continue; fi
           node scripts/ollama-client.cjs --check --model "$m" --timeout 120 \
             || { echo "--- ollama.log ---"; tail -50 /tmp/ollama.log; echo "check failed: $m" > /tmp/ollama-failed; exit 1; }
           if [ "$UNLOAD" = "true" ]; then
@@ -88,7 +100,7 @@ runs:
         touch /tmp/ollama-ready
         PULL
         sed -i 's/^        //' /tmp/ollama-pull.sh
-        export MODELS UNLOAD
+        export MODELS UNLOAD WARM
         if [ "$BACKGROUND" = "true" ]; then
           nohup bash /tmp/ollama-pull.sh > /tmp/ollama-pull.log 2>&1 &
           echo "OLLAMA_READY_FILE=/tmp/ollama-ready" >> "$GITHUB_ENV"
