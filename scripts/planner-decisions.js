@@ -66,3 +66,23 @@ export function compositionsUsed(compositions, limit = 0.6) {
   const [top, topN] = entries[0] || [null, 0];
   return { counts, n, top, topShare: n ? topN / n : 0, templated: n > 0 && topN / n > limit };
 }
+
+/**
+ * After the challenger's re-plan: a beat the challenger did NOT block that came back without a
+ * layout gets the layout the planner itself gave it in the first plan. The re-plan answers the
+ * corrections and drops optional fields it was not asked about (CI runs 37705693390, 37713312537,
+ * 37718157561: first plan 9/9 and 10/10 layouts, re-plan 0) — this keeps the planner's own earlier
+ * decision; it invents nothing. A blocked beat is left as re-planned. Returns the carried indices.
+ */
+export function carryPlannerLayouts(firstPlan, replanned, blocked = []) {
+  const skip = new Set(blocked.map(Number));
+  const carried = [];
+  (replanned?.beats || []).forEach((b, i) => {
+    const prev = firstPlan?.beats?.[i];
+    const idx = Number.isInteger(b?.index) ? b.index : i;
+    if (skip.has(idx) || b?.layout || !prev?.layout || !Array.isArray(prev.layout.slots) || !prev.layout.slots.length) return;
+    b.layout = structuredClone(prev.layout);
+    carried.push(idx);
+  });
+  return carried;
+}

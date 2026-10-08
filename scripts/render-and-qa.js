@@ -60,6 +60,7 @@ const GEMINI_PLAN_JS = join(__dirname, "gemini-visual-plan.js");
 const CHALLENGER_JS = join(__dirname, "gemini-visual-challenger.js");
 const ELEMENT_REMEDIATION_JS = join(__dirname, "beat-element-remediation.js");
 const { recordEvalLoop } = await import("./eval-loop-callsite.js");
+const { carryPlannerLayouts } = await import("./planner-decisions.js");
 const { judge } = await import("./eval-layer3-judge.js");
 const { layer2Advisory } = await import("./eval-layer2-wire.js");
 
@@ -1795,6 +1796,12 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       if (!replanned?.beats?.length) {
         console.error(`::error::re-plan after challenger rejection produced no plan`);
         return { skipped: false, ok: false };
+      }
+      // The planner's own layouts for the beats the challenger did not block (planner-decisions.js).
+      const carried = carryPlannerLayouts(firstPlan, replanned, blocking.map((x) => x.beat_index));
+      if (carried.length) {
+        writeFileSync(planPath, JSON.stringify(replanned, null, 2) + "\n");
+        console.log(`[layout] re-plan dropped the planner's layout on unblocked beat(s) ${carried.join(", ")} — the planner's first-plan layout carried over`);
       }
       challenge = await challengePlan(channelId, planPath, srtPath, "-2");
       // A second rejection is usually a DIFFERENT beat: the re-plan fixed the
