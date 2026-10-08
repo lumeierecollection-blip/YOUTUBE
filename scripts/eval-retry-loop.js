@@ -295,6 +295,9 @@ export async function runEvalLoop({
 
     const judged = await layer3({ plan: current, layer2Advisory, attempt });
     const aggregate = Number(judged?.aggregate_local);
+    // What the judge said, carried on every return below so the audit record has the axes and
+    // the beats it named (the nothing-revisable return used to drop the axes: CI run 37703727115).
+    const l3 = { aggregate_local: aggregate, axes: judged?.axes || null, weak_beats: judged?.weak_beats || [] };
     if (!Number.isFinite(aggregate)) throw new Error(`layer3 returned no usable aggregate_local: ${JSON.stringify(judged).slice(0, 200)}`);
     provenance.push(writeProvenance(runId, attempt, {
       ts: new Date().toISOString(), channel, attempt, aggregate_local: aggregate,
@@ -304,7 +307,7 @@ export async function runEvalLoop({
 
     if (aggregate >= acceptThreshold) {
       emit("accept", { attempt, aggregate_local: aggregate });
-      return { accepted: true, humanReview: false, retries: counter.retries, aggregate_local: aggregate, axes: judged.axes, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory };
+      return { accepted: true, humanReview: false, retries: counter.retries, aggregate_local: aggregate, axes: judged.axes, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory, layer3: l3 };
     }
 
     const { revisions, unresolved: unres } = resolveRevisions(judged.weak_beats, current.beats);
@@ -314,10 +317,10 @@ export async function runEvalLoop({
     // Unresolved elements attempted nothing, so they must not spend a retry.
     if (!revisions.length) {
       emit("nothing-revisable", { attempt });
-      return { accepted: false, humanReview: true, why: `aggregate ${aggregate.toFixed(2)} below ${acceptThreshold} but no weak beat named a revisable element`, retries: counter.retries, aggregate_local: aggregate, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory };
+      return { accepted: false, humanReview: true, why: `aggregate ${aggregate.toFixed(2)} below ${acceptThreshold} but no weak beat named a revisable element`, retries: counter.retries, aggregate_local: aggregate, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory, layer3: l3 };
     }
     if (counter.retries + 1 > retryCap) {
-      return { accepted: false, humanReview: true, why: `retry cap ${retryCap} reached at aggregate ${aggregate.toFixed(2)}`, retries: counter.retries, aggregate_local: aggregate, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory };
+      return { accepted: false, humanReview: true, why: `retry cap ${retryCap} reached at aggregate ${aggregate.toFixed(2)}`, retries: counter.retries, aggregate_local: aggregate, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory, layer3: l3 };
     }
 
     // The planner returns a PARTIAL patch: the full plan with only the named
@@ -325,7 +328,7 @@ export async function runEvalLoop({
     // was not asked about.
     const patch = await revise(revisions, { plan: current, attempt });
     if (!patch?.planPatch) {
-      return { accepted: false, humanReview: true, why: "planner returned no partial plan patch; a full re-render is not permitted", retries: counter.retries, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory };
+      return { accepted: false, humanReview: true, why: "planner returned no partial plan patch; a full re-render is not permitted", retries: counter.retries, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory, layer3: l3 };
     }
     current = patch.planPatch;
     const changedBeats = [...new Set((patch.changedBeats || revisions.map((r) => r.beat_index)))];

@@ -94,3 +94,20 @@ describe("eval loop when Layer 1 passes, and when off", () => {
     assert.equal(calls.l2 + calls.l3, 0);
   });
 });
+
+describe("Layer 3's axes and named beats reach the record on every judged path", () => {
+  it("a Layer 1 pass judged below 7 with nothing named (CI run 37703727115) keeps its axes", async () => {
+    const r = await recordEvalLoop({ ...base(), layer1Failures: null, judge: async () => ({ aggregate_local: 6.59, axes: { engagement: 6.2, prompt_intent: 6.8, composition: 6.5, style_coherence: 6.8 }, weak_beats: [] }) });
+    const rec = lastLine(r.auditPath);
+    assert.equal(rec.layer1_result.pass, true);
+    assert.equal(rec.decision, "human_review");
+    assert.deepEqual(rec.layer3.axes, { engagement: 6.2, prompt_intent: 6.8, composition: 6.5, style_coherence: 6.8 });
+    assert.deepEqual(rec.layer3.weak_beats, []);
+  });
+  it("an accepted render keeps its axes", async () => {
+    const r = await recordEvalLoop({ ...base(), layer1Failures: null, judge: async () => ({ aggregate_local: 7.4, axes: { engagement: 7 }, weak_beats: [] }) });
+    const rec = lastLine(r.auditPath);
+    assert.equal(rec.decision, "accept");
+    assert.deepEqual(rec.layer3.axes, { engagement: 7 });
+  });
+});
