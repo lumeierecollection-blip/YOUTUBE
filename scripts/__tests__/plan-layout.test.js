@@ -12,7 +12,7 @@
  */
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { canvasLayout, normalizeCanvas, flattenBoxes, LAYOUT_AREA, slotRect, canvasManifest } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+import { canvasLayout, normalizeCanvas, flattenBoxes, LAYOUT_AREA, slotRect, canvasManifest, layoutViolations } from "../../src/skills/remotion-render/visual/canvas-layout.js";
 
 const base = { visual_type: "PROCESS", composition: "PROCESS-FULL", data: { nodes: ["higher rates", "rent", "savings"] }, headline: "The chain", motion_tier: "medium" };
 const L = (layout, extra = {}) => canvasLayout(normalizeCanvas({ ...base, ...extra, ...(layout ? { layout } : {}) }, 0));
@@ -26,8 +26,8 @@ describe("plan.layout controls placement", () => {
   });
 
   it("cols:2 and cols:4 put the same element in different places", () => {
-    const two = L({ cols: 2, rows: 3, slots: [{ id: "headline", col: 1, row: 1 }] });
-    const four = L({ cols: 4, rows: 3, slots: [{ id: "headline", col: 1, row: 1 }] });
+    const two = L({ cols: 2, rows: 4, slots: [{ id: "headline", col: 1, row: 0 }] });
+    const four = L({ cols: 4, rows: 4, slots: [{ id: "headline", col: 1, row: 0 }] });
     const h2 = two.boxes.headline, h4 = four.boxes.headline;
     assert.notEqual(h2.x, h4.x, "a 2-column grid and a 4-column grid must place column 1 differently");
     assert.equal(h2.x, Math.round(LAYOUT_AREA.x0 + (LAYOUT_AREA.x1 - LAYOUT_AREA.x0) / 2));
@@ -37,10 +37,9 @@ describe("plan.layout controls placement", () => {
 
   it("moves the headline where the plan says, and the table position no longer holds", () => {
     const table = L(null).boxes.headline;
-    const moved = L({ cols: 3, rows: 4, slots: [{ id: "headline", col: 2, row: 3, align: "right", v_align: "bottom" }] }).boxes.headline;
+    const moved = L({ cols: 3, rows: 4, slots: [{ id: "headline", col: 2, row: 0, align: "right" }] }).boxes.headline;
     assert.notDeepEqual([moved.x, moved.y], [table.x, table.y]);
     assert.equal(moved.x + moved.w, LAYOUT_AREA.x1, "right-aligned to the slot's right edge");
-    assert.equal(moved.y + moved.h, LAYOUT_AREA.y1, "bottom-aligned to the slot's bottom edge");
   });
 
   it("moves, never resizes: every element keeps the size its content needs", () => {
@@ -126,13 +125,13 @@ describe("a slot is a region (CI run 37708554035)", () => {
     assert.deepEqual(pos(lay), pos(L(null)));
   });
   it("the same slot with an explicit alignment does anchor the element", () => {
-    const lay = L({ cols: 1, rows: 1, slots: [{ id: "headline", col: 0, row: 0, align: "right", v_align: "bottom" }] });
+    const lay = L({ cols: 1, rows: 1, slots: [{ id: "headline", col: 0, row: 0, align: "right" }] });
     assert.notDeepEqual(pos(lay), pos(L(null)));
   });
   it("an unaligned element is moved only as far as it takes to sit inside a smaller slot", () => {
     const table = L(null).boxes.headline;
-    const lay = L({ cols: 2, rows: 4, slots: [{ id: "headline", col: 1, row: 3 }] });
-    const R = slotRect({ cols: 2, rows: 4 }, { col: 1, row: 3 });
+    const lay = L({ cols: 2, rows: 4, slots: [{ id: "headline", col: 1, row: 0 }] });
+    const R = slotRect({ cols: 2, rows: 4 }, { col: 1, row: 0 });
     assert.ok(lay.boxes.headline.x >= Math.floor(R.x) && lay.boxes.headline.y >= Math.floor(R.y) - 1, JSON.stringify(lay.boxes.headline));
     assert.notDeepEqual([lay.boxes.headline.x, lay.boxes.headline.y], [table.x, table.y]);
   });
@@ -142,4 +141,26 @@ it("nothing placed — the restacked kicker and rule included — goes above the
   const tf = { visual_type: "TYPE", composition: "TYPE-FULL", headline: "Ballistics tie the gun", lead_in: "the state says", motion_tier: "medium" };
   const lay = canvasLayout(normalizeCanvas({ ...tf, layout: { cols: 2, rows: 3, slots: [{ id: "headline", col: 0, row: 0, v_align: "top" }] } }, 0));
   for (const [k, b] of flattenBoxes(lay.boxes)) assert.ok(b.y >= LAYOUT_AREA.y0, `${k} at y ${b.y}`);
+});
+
+describe("a planned layout that breaks a Layer 1 rule the default keeps is not used for that beat", () => {
+  it("a headline dropped into the nodes' zone: the default is used, and why is recorded", () => {
+    const lay = L({ cols: 3, rows: 4, slots: [{ id: "headline", col: 2, row: 3, align: "right", v_align: "bottom" }] });
+    assert.equal(lay.layout.used, false);
+    assert.ok(lay.layout.rejected.some((r) => /^zones: middle zone holds chart \+ headline/.test(r)), lay.layout.rejected.join(" | "));
+    assert.deepEqual(pos(lay), pos(L(null)), "the beat is drawn exactly as the default");
+  });
+  it("a layout that squeezes the beat under 60% of the height is not used", () => {
+    const lay = L({ cols: 2, rows: 3, slots: [{ id: "headline", col: 1, row: 1 }] });
+    assert.equal(lay.layout.used, false);
+    assert.ok(lay.layout.rejected.some((r) => /^span:/.test(r)));
+  });
+  it("a legal layout is used", () => {
+    const lay = L({ cols: 4, rows: 4, slots: [{ id: "headline", col: 1, row: 0 }] });
+    assert.equal(lay.layout.used, true);
+    assert.deepEqual(lay.layout.rejected, []);
+  });
+  it("layoutViolations finds nothing in the table's own PROCESS-FULL layout", () => {
+    assert.deepEqual(layoutViolations(L(null)), []);
+  });
 });

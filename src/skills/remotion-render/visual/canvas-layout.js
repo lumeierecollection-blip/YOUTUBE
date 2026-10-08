@@ -406,7 +406,59 @@ export function splitHeadline(text) {
  * Returns { composition, boxes: {name: {x,y,w,h,...}}, hero } — hero is the
  * element a camera push or a match cut targets.
  */
+/**
+ * The beat's layout: the plan's own when it gives one and it is legal, the composition table's
+ * otherwise.
+ *
+ * A planned layout is checked BEFORE render against the geometry Layer 1 audits after it
+ * (layoutViolations: zones, overlapping text, text on the centre line, the 60% height span). A
+ * layout that breaks a rule the table's own layout for this beat does not break is not used for
+ * that beat — the table is — and why is recorded (plan_layout.rejected, logged by render-and-qa).
+ * This is the grounding gate's pattern applied to layout: the planner decides, a choice that cannot
+ * pass falls back, and every legal choice is the planner's. (CI runs 37707115528, 37708554035,
+ * 37715658530: planner layouts rendered and failed canvas-coverage / zones / canvas-fit — the video
+ * was lost, not just the beat.)
+ */
 export function canvasLayout(c) {
+  const table = tableLayout(c);
+  if (!c?.layout) return { ...table, layout: null };
+  const planned = tableLayout(c);
+  const applied = applyPlanLayout(planned.boxes, c.layout, { hero: planned.hero });
+  const base = new Set(layoutViolations(table).map((v) => v.rule));
+  const added = layoutViolations(planned).filter((v) => !base.has(v.rule));
+  if (added.length) return { ...table, layout: { ...applied, used: false, rejected: added.map((v) => `${v.rule}: ${v.detail}`) } };
+  return { ...planned, layout: { ...applied, used: true, rejected: [] } };
+}
+
+const TEXT_ROLES_L1 = new Set(["headline", "number", "data", "emphasis"]);
+const TEXT_KEYS_L1 = ["kicker", "headline", "statement", "number", "label", "emphasis"];
+const COVER_MIN_L1 = 0.6;
+/**
+ * The geometric rules Layer 1 (local-audit.cjs) audits, read from the boxes: zoneReport (one zone
+ * per element, one element type per zone), canvas-fit's text overlap, canvas-type's centre line
+ * (|centre - 540| < 24 px on a box under 700 px wide), canvas-coverage's 60% span. Boxes, not
+ * pixels: the audit's pixel checks remain the authority; this only keeps a planned layout from
+ * walking into a rule the table already keeps.
+ */
+export function layoutViolations(L) {
+  const out = [];
+  const z = zoneReport(L);
+  if (!z.ok) out.push({ rule: "zones", detail: [...z.spans, ...z.clashes].join("; ") });
+  const flat = flattenBoxes(L.boxes || {}).filter(([, b]) => b && b.w > 0 && b.h > 0);
+  const texts = flat.filter(([k, b]) => TEXT_ROLES_L1.has(b.role) || TEXT_KEYS_L1.includes(k.replace(/\d+$/, "")));
+  for (let i = 0; i < texts.length; i++) for (let j = i + 1; j < texts.length; j++) {
+    const [ka, a] = texts[i], [kb, b] = texts[j];
+    if (a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) out.push({ rule: "overlap", detail: `${ka} and ${kb}` });
+  }
+  for (const [k, b] of flat) {
+    if (["headline", "statement", "number", "emphasis"].includes(k) && !b.rotate && Math.abs(b.x + b.w / 2 - 540) < 24 && b.w < 700) out.push({ rule: "centred", detail: `${k} on the centre line` });
+  }
+  const cb = L.boxes?.photo ? null : contentBounds(L);
+  if (cb && cb.h / 1920 < COVER_MIN_L1) out.push({ rule: "span", detail: `content spans ${(cb.h / 19.2).toFixed(1)}% of the height` });
+  return out;
+}
+
+function tableLayout(c) {
   MARKS = Array.isArray(c?.emphasis_words) ? c.emphasis_words : c?.emphasis_word ? [c.emphasis_word] : [];
   BEAT_HERO = !!c?.hero_headline;
   BEAT_MAX = HEADLINE_STEPS[((Number(c?.variant) || 0) % HEADLINE_STEPS.length + HEADLINE_STEPS.length) % HEADLINE_STEPS.length];
@@ -859,8 +911,7 @@ export function canvasLayout(c) {
   // The plan's own layout, when the planner gave one (applyPlanLayout below): the composition
   // above computed every element — its size, its text fit, its lines — and the plan now says
   // WHERE each named element goes. Without a plan layout this is the old table, unchanged.
-  const layout = c?.layout ? applyPlanLayout(boxes, c.layout, { hero }) : null;
-  return { composition: comp, boxes, hero, flip, layout };
+  return { composition: comp, boxes, hero, flip };
 }
 
 /**
@@ -968,8 +1019,11 @@ export function applyPlanLayout(boxes, layout, { hero = null } = {}) {
     const edge = ZONES.top[1], top = y - headH, bot = y + E.h;
     if (top < edge - ZONE_TOL && bot > edge + ZONE_TOL) {
       const intoMiddle = bot - edge >= edge - top;
-      if (intoMiddle && edge + headH + E.h <= CONTENT_BOTTOM) { y = edge + headH; adjusted.push(`${id}: straddled y ${edge} -> middle zone`); }
-      else if (!intoMiddle && LAYOUT_AREA.y0 + headH + E.h <= edge) { y = edge - E.h; adjusted.push(`${id}: straddled y ${edge} -> top zone`); }
+      const fitsMiddle = edge + headH + E.h <= CONTENT_BOTTOM, fitsTop = LAYOUT_AREA.y0 + headH + E.h <= edge;
+      // The zone holding most of it first; the other when that one is too small (CI run 37715658530:
+      // a 487 px number mostly in the top zone, which it does not fit, was left straddling).
+      if ((intoMiddle || !fitsTop) && fitsMiddle) { y = edge + headH; adjusted.push(`${id}: straddled y ${edge} -> middle zone`); }
+      else if (fitsTop) { y = edge - E.h; adjusted.push(`${id}: straddled y ${edge} -> top zone`); }
       else adjusted.push(`${id}: straddles y ${edge} and fits neither zone — left as planned`);
     }
     const dx = x - E.x, dy = y - E.y;

@@ -23,7 +23,7 @@ import { join, dirname, basename, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { createRequire as createRequireEntity } from "node:module";
-import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { compositionFor, canvasLayout as layoutOfCanvas, normalizeCanvas as normalizeForLayout } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { resolveGround } from "../src/skills/remotion-render/visual/backgrounds.js";
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
@@ -1005,6 +1005,15 @@ function canvasContentFor(b, { photo = null } = {}) {
   const hasHero = (c.concept_visuals || []).length > 0;
   if (hasHero) delete c.type_layout;
   c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: !hasHero && c.type_layout === "split" && !!splitHeadline(c.headline) });
+  // What became of the planner's layout for this beat (canvas-layout.js canvasLayout): used, or not
+  // used because it breaks a Layer 1 rule the default arrangement keeps.
+  if (c.layout) {
+    try {
+      const L = layoutOfCanvas(normalizeForLayout(c, b.index ?? 0));
+      if (L.layout?.used) console.log(`[layout] beat ${b.index ?? "?"}: plan layout USED${L.layout.adjusted?.length ? ` (adjusted: ${L.layout.adjusted.join("; ")})` : ""}`);
+      else console.log(`[layout] beat ${b.index ?? "?"}: plan layout NOT used, default arrangement — ${(L.layout?.rejected || []).join("; ")}`);
+    } catch (e) { console.log(`[layout] beat ${b.index ?? "?"}: could not evaluate the plan layout (${e.message})`); }
+  }
   return c;
 }
 
