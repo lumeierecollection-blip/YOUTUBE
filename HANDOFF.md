@@ -236,6 +236,24 @@ Open, for the owner:
 - pop-transitions on dark beats with a word-synced photo (ch-5 beat 9 on 37818249392) — 7.21 / 7.27.
 - Prep `claims` gate skipped ch-2, ch-8, ch-10 on some topics — the hard rule working.
 
+### 3e. Production push 2026-10-08 night — place gate, merge, template
+
+- MERGED to main (6abe590): runner-kill fix, Google-first chain, wrong-place fixes, pre-ship place gate
+  (scripts/place-gate.js in queueVideo; fixtures + tests from the two real wrong-place videos).
+- On the branch only (NOT merged, c2ba6e6..943dd89): chrome is planner data (label / pull_phrase),
+  live caption + auto-kicker + folio removed, Layer 1 template-window + no-photo-repeat (hard),
+  canvas-type's "two type roles on 60% of beats" clause RETIRED (it required the chassis), quota now
+  falls through every Gemini model before leaving Google (gemini-google-first.test.js, Linux CI).
+- Board 37837731824 (2bb8948): template-window PASS on every rendered channel, place gate ran on every
+  queued video, 0 runner kills, 0/9 green. Holds: frame review TEMPLATE_MONOCULTURE 44-55% (ch-2, 8,
+  26, 49) — the type share comes from beats Gemini planned as visuals falling to TYPE (entity not
+  verified, figure already drawn, NUMBER-FULL twice -> rotation), and logo heroes labelled "TYPE-FULL"
+  to the reviewer (fixed 943dd89); claims gate (ch-9, 10); research single-domain (ch-5); challenger
+  (ch-44 wrong researcher name, ch-1 implied causation); zones-no-overlap PORTRAIT (ch-49).
+- NEXT BUILD: a render-time type budget decided by Gemini — after resolution, when type-led beats
+  exceed a third, re-ask Gemini for those beats with the grounded options still open (stated number,
+  map, list, timeline, stated flow; nothing used elsewhere in the video), gates unchanged.
+
 ## 4. What works
 
 | channel | renders | last verdict | Layer 1 | L2 | L3 |
