@@ -137,6 +137,38 @@ two providers in one env block.
 
 ---
 
+### 3b. Overnight 2026-10-08 — layout, references, overrides (commits `23f0917`..`aa512e7`)
+
+**Layout is the planner's (`cbe8a04`, `1d023ca`, `5a1fa6c`, `7bc6b55`).** `canvasLayout()` no longer
+places elements only from the per-composition table. The table (now `tableLayout()`) still computes
+every element — its size, its text fit — and the beat's `layout` from the planner says WHERE:
+`{cols, rows, slots:[{id, col, row, col_span, row_span, align, v_align} | {id,x,y,w,h}]}` on the
+planner's own grid over x 48-1032, y 130-1340. A slot is a region (no alignment = keep the default
+spot, moved only into the slot). The header furniture (kicker, rule) restacks above the text it
+introduces; a figure's label, a statement's lead phrase / underline, a timeline's spine move with
+their element. A planned layout is checked BEFORE render against Layer 1's geometry
+(`layoutViolations`: zones, text overlap, centre line, 60% span); one that breaks a rule the table's
+layout keeps is not used for that beat — the table is — and `plan_layout.rejected` / the log line
+`[layout] beat N: plan layout NOT used ... — <rule>` says why. Legal layouts are drawn as planned
+(`[layout] beat N: plan layout USED`). After the challenger's re-plan, unblocked beats that lost
+their layout get the planner's own first-plan layout back (`197999f`).
+
+**Reference frames reach the planner (`0855587`).** Every Gemini planner call carries 4 frames of
+the channel's reference video as image parts (`scripts/reference-frames.js`; committed under
+`channels/<id>/reference-frames/` for ch-05/06/08/10 from each spec's `reference_video`, and
+`channels/_shared/reference-frames/` from `research/motion-graphics-ref/` for the rest), with "Use
+them to understand the visual language … Do not copy them." Groq / Ollama fallbacks get text only.
+
+**Planner overrides removed (`d39da91`).** Composition rotation, the TYPE cap / no-two-TYPE rule,
+entrance styles and animation families no longer rewrite what the planner chose; they fill only
+beats it left open (`planner_chose_type`). The grounding gate (a choice the sentence does not
+ground is replaced) is unchanged — CLAUDE.md hard rule.
+
+**Tests run on CI (`23f0917`, `e6fc025`).** `.github/workflows/tests.yml` runs every push:
+`node --test scripts/__tests__/*.test.js` and the standalone `scripts/test-*.mjs`, five excluded by
+name with the reason (test-composed-opacity needs a browser render; four stale tests whose
+assertions were already false at `f649da2`, the queued stale tests not to be touched).
+
 ## 4. What works
 
 | channel | renders | last verdict | Layer 1 | L2 | L3 |
@@ -249,6 +281,33 @@ All five key secrets are present in the workflow env, which contradicts the
 unretracted but unsupported.**
 
 ---
+
+## 6a. CI state at the end of the overnight run (2026-10-08)
+
+**Tests:** run `37723569488` on `aa512e7` — 376/376 node:test, standalone scripts all PASS, 5 SKIP
+(named in tests.yml). Green on every push since `0855587`.
+
+**First ch-05 render past every gate:** run `37703727115` (`994be17`, before planner layouts were
+emitted) — Layer 1 17/17, frame review APPROVED, queued `approved/`. Layer 2 0.579, clone_frames 0;
+Layer 3 6.59 (engagement 6.2, prompt_intent 6.8, composition 6.5, style_coherence 6.8), weak_beats [].
+
+**Planner layouts in a Layer-1-passing render:** run `37723570093` (`aa512e7`) attempt 1 — 10/10
+beats carried a planner layout; beats 1, 2, 3, 7, 8 USED, the rest fell back (span 16-47%,
+headline in the visual's zone); `layer1_result.pass: true`; frame review then REJECTED it
+(TEMPLATE_MONOCULTURE 50% headline-dominated). Attempt 2: 8/10 USED; Layer 1 failed only
+pop-transitions on beat 2 (see 7.27). Layer 2 0.62-0.64, clone_frames 0, style_match matched;
+Layer 3 5.19 / 5.65. Reference frames log, every run since `0855587`:
+`[planner] ch-5: reference frames attached to the planner call: 4 from research/4_5917850534521349135.mp4 (ch-05/reference-frames/frame-01.jpg, …)`.
+
+**Two renders differ, same composition:** MAP-CENTERED, default (run `37700319999` beat 1):
+`kicker@511,130 headline@172,183 860x182`; planner layout (run `37723570093` beat 1):
+`kicker@795,130 headline@321,187 711x182` (plan_layout.placed headline+kicker). The difference is
+real but modest: the planner's legal layouts so far re-anchor the header more than they rearrange
+the body.
+
+**Live:** not dispatched. Every Layer-1-passing run's Layer 3 either named no weak beat or named
+beats with `beat_index` undefined (unresolved) — the beat-index resolver gap is now OBSERVED (runs
+`37705693390`, `37718157561`, `37723570093`); fixing it was out of scope tonight by instruction.
 
 ## 6. Layer 2 / Layer 3 — first CI numbers (2026-10-07)
 
@@ -504,6 +563,33 @@ a `data/audit/a1-ci/...mp4`): five in `eval-layer2-style.test.js`, one in
 `gemini-files.test.js`. 314 of 320 pass. Environmental, not this branch; regenerate the
 frames with ffmpeg from `research/motion-graphics-ref/`.
 
+**7.25 — Gemini's layouts are mostly illegal by Layer 1's rules.** Across runs `37707115528` …
+`37723570093` the planner's layouts most often broke the 60% span or put the headline in the
+visual's zone. They now fall back per beat (logged) instead of losing the video, but "the planner
+decides the layout" is true only for the beats whose layout is legal — about half in the last run.
+
+**7.26 — The planner copies its examples.** With the worked example's 2x3 layout it used 2x3 on
+7-10 of 10 beats; earlier 1x2 / 1x1 everywhere. Logged as `layouts templating_signal` (report
+only). Not enforced — enforcing variety would be a new mandate.
+
+**7.27 — A declared dark ground + a word-synced photo leaves a near-empty stretch.** Run
+`37723570093` beat 2 (SCENE-FULL, ground #0E0E10, photo synced to frame 113): frames 6-14 show only
+a ghosted first word (the dark theme's track colour on #0E0E10). The ground-aware pop-transitions
+calls it empty, correctly. Fixing it means changing hard-coded theme colours (SCR-13 territory) or
+the word-sync rule — left for a decision.
+
+**7.28 — Layer 3 penalises the planner's dark grounds.** Its style_coherence findings cite "the
+channel spec requires a light/white background" (runs `37705693390`, `37718157561`). The planner
+picks grounds; the judge reads the spec as a rule. Two Geminis disagree; nothing reconciles them.
+
+**7.29 — Two Render + QA steps were SIGTERMed (exit 143) mid-run** (`37713312537`, `37722686373`),
+both ~2 min into asset resolution of the same topic, no error of their own, no concurrent run.
+Cause not found (memory pressure from Chrome + a 14b Ollama model is a guess, unverified).
+
+**7.30 — The daily cron runs this code.** Everything above is on `main`; the 06:00 UTC schedule runs
+the approved channels with publishing on (private first). No live eval loop is involved (cron
+default `EVAL_LOOP_MODE=off`).
+
 ---
 
 ## 8. In-flight work
@@ -522,6 +608,16 @@ Local diagnostic scripts committed this session and referenced by BUG-2:
 ---
 
 ## 9. What the next push should be
+
+**Overnight 2026-10-08 — read first:**
+1. Fix the Layer 3 beat-index resolver — now observed in three runs (6a). Live cannot act until it does.
+2. Decide 7.27 (dark ground + late photo): theme track colour on dark grounds, or the word-sync rule.
+3. Decide 7.28: is the spec's background a rule (then the planner should get it as one) or reference
+   (then the judge should not score against it)?
+4. Planner layout legality (7.25) and copying (7.26): consider giving the planner each element's
+   measured size, so its slots can respect the 60% span; keep enforcement out.
+5. The SIGTERMs (7.29).
+
 
 1. **Decide what a declared dark ground may do to Layer 1 (§7.20).** Either make
    `zones-no-overlap` (and `pop-transitions`) measure ink against the beat's own
