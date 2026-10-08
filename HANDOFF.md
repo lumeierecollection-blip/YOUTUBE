@@ -698,6 +698,22 @@ hard rule (verified photos for named places) is held only by the later gates her
 **7.39 — A placed element's descenders.** `2b549a7`: the bottom limit now counts the table's `desc`
 (37764608991: an emphasis word's 60 px of descenders crossed y 1340).
 
+**7.37a — CAUSE FOUND (2026-10-08, scheduled run 37776924101): runner shutdowns.** Four of ten
+production renders (ch-1, 6, 8, 49) died with exit 143 and GitHub's own annotation "The runner has
+received a shutdown signal. This can happen when the runner service is stopped, or a manually started
+runner is canceled." The hosted runner VM was shut down under the job — not this repo's code (nothing
+here sends SIGTERM). The earlier single-channel kills had the same exit code and timing. Unresolved:
+WHY the hosted runners are being shut down (resource exhaustion on the VM is the likely reading, with
+Chrome + Ollama + asset processing; not verified). In this run it cost 4/10 channels.
+
+**7.40 — The beat-visual resolver in production (run 37776924101, `3d42aac`).** Decisions logged as
+"[visual-choice]": ch-9 beat 4 skipped "entities/places/ankara.jpg (wrong place)" for a line about the
+African coast -> type card; ch-2 beat 6 used a document surface for a co-sponsored bill (one sponsor's
+photo only); correct portraits and logos kept (DeWine, Erdogan, Earhart, Port Louis, SEC, Springer
+Nature, ScienceDirect, Fast Company, Marvel). No render failed because of it; the failures were Layer 1
+(ch-2 pop-transitions, ch-9 zones), beat-check (ch-10, ch-44), challenger (ch-26) and the runner
+shutdowns above.
+
 **7.37 — Render + QA steps are SIGTERMed during asset resolution.** Five times: four on the ch-5
 "former CIA official … gold bars" script (37713312537, 37722686373, 37751617230, 37755289095) and once
 on ch-26 (37756444486, a Ponzi topic) — so not topic-specific, though the same ch-5 script also
