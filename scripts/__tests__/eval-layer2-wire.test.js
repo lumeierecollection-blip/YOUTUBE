@@ -17,7 +17,7 @@ describe("Layer 2 is wired at the render call site", () => {
   it("the stub is gone and the real call is in its place", () => {
     assert.doesNotMatch(src + rq, /advisory not wired at this call site yet/);
     assert.match(rq, /import\("\.\/eval-layer2-wire\.js"\)/);
-    assert.match(src, /await layer2Advisory\(outputPath\)/);
+    assert.match(src, /await layer2Advisory\(cur\.outputPath\)/); // the render being judged now (the original, or a live revision)
     assert.match(rq, /recordEvalLoop\(\{[\s\S]*?layer2Advisory, judge/);
   });
   it("Layer 3 receives the advisory score and the style match", () => {

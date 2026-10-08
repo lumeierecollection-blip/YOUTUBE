@@ -60,6 +60,8 @@ const GEMINI_PLAN_JS = join(__dirname, "gemini-visual-plan.js");
 const CHALLENGER_JS = join(__dirname, "gemini-visual-challenger.js");
 const ELEMENT_REMEDIATION_JS = join(__dirname, "beat-element-remediation.js");
 const { recordEvalLoop } = await import("./eval-loop-callsite.js");
+const { callGemini: callGeminiForRevise } = await import("../src/lib/gemini-client.js");
+const { loadStyleReference } = await import("./channel-style-reference.js");
 const { carryPlannerLayouts } = await import("./planner-decisions.js");
 const { judge } = await import("./eval-layer3-judge.js");
 const { layer2Advisory } = await import("./eval-layer2-wire.js");
@@ -1905,9 +1907,13 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // backup audit, which runs the same checks and rejects it.
     const manifestPath = result.outputPath.replace(/\.mp4$/, "-manifest.json");
     let canvasFailure = null;
+    // Each beat's rendered ink span, as canvas-coverage measured it ("[audit] ch-N beat i coverage: x").
+    const inkSpansOf = (out) => Object.fromEntries([...String(out || "").matchAll(/\[audit\] ch-\S+ beat (\d+) coverage: ([0-9.]+)/g)].map((m) => [Number(m[1]), Number(m[2])]));
+    let canvasInk = null;
     if ((readJsonSafe(manifestPath)?.beats || []).some((b) => b.canvas)) {
       const fit = await runChild("node", [LOCAL_AUDIT_CJS, "--canvas-only", "--video", result.outputPath, "--manifest", manifestPath],
         { label: `canvas-checks ${channelId}/${basename(scriptPath)}` });
+      canvasInk = inkSpansOf(fit.stdout);
       if (fit.code !== 0) {
         const failedIds = [...String(fit.stdout || "").matchAll(/\[canvas\] FAIL (\S+)/g)].map((m) => m[1]);
         canvasFailure = { code: fit.code, failedIds };
@@ -1921,13 +1927,34 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // no channel ever produced a Layer 2/3 number in CI.
     //
     // off is the default and skips everything. dry records what it would do; live acts.
-    // It does NOT route: Layer 1 still gates (the return below is unchanged), and the loop's
-    // decision is data in data/audit/eval-loop/ — `layer1_result` says whether Layer 1 passed.
-    // Nothing it decides can ship, block, or delete anything. See eval-loop-callsite.js.
+    // Layer 1 still gates (the return below is unchanged); the loop's decision is in
+    // data/audit/eval-loop/. In LIVE mode only, a Layer-1-passing video judged below the band may be
+    // revised in place (see below and eval-loop-callsite.js); otherwise nothing it decides ships,
+    // blocks or deletes anything.
+    // Live: a Layer-1-passing video judged below the band may get a layout patch for at most two
+    // flagged beats (eval-revise.js), re-rendered from the patched plan and re-checked; it replaces
+    // the original only if it passes Layer 1 and is not judged lower. Same output path either way.
+    const judgeRow = (() => { try { return resolveChannel(channelId); } catch { return null; } })();
     await recordEvalLoop({
-      plan, scriptPath, attempt, channelId, outputPath: result.outputPath,
+      plan: readJsonSafe(planPath) || plan, scriptPath, attempt, channelId, outputPath: result.outputPath,
       layer1Failures: canvasFailure ? (canvasFailure.failedIds.length ? canvasFailure.failedIds : ["canvas-checks"]) : null,
       layer2Advisory, judge,
+      inkSpans: canvasInk,
+      styleSpec: loadStyleReference(channelId).ref || null,
+      judgeSpec: judgeRow ? { bg_mode: judgeRow.bg_mode ?? null, colors: judgeRow.colors ?? null } : null,
+      callModel: async (prompt) => callGeminiForRevise([{ role: "user", content: prompt }], { maxTokens: 4000, temperature: 0, noCache: true, tag: "revise" }),
+      rerender: async (patched, { attempt: a }) => {
+        const p = planPath.replace(/\.json$/, `-revised-a${attempt}-${a}.json`);
+        writeFileSync(p, JSON.stringify(patched, null, 2) + "\n");
+        const r = await renderOne(channelId, scriptPath, format, p);
+        if (!r.ok) throw new Error(`re-render of the patched plan failed (${basename(p)})`);
+        return { outputPath: r.outputPath, planPath: p };
+      },
+      canvasCheck: async (mp4) => {
+        const fit = await runChild("node", [LOCAL_AUDIT_CJS, "--canvas-only", "--video", mp4, "--manifest", mp4.replace(/\.mp4$/, "-manifest.json")], { label: `canvas-checks (revised) ${channelId}/${basename(scriptPath)}` });
+        const failedIds = [...String(fit.stdout || "").matchAll(/\[canvas\] FAIL (\S+)/g)].map((m) => m[1]);
+        return { failures: fit.code === 0 ? [] : (failedIds.length ? failedIds : ["canvas-checks"]), inkSpans: inkSpansOf(fit.stdout) };
+      },
     });
 
     if (canvasFailure) {
