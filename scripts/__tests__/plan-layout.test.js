@@ -166,7 +166,7 @@ describe("a planned layout that breaks a Layer 1 rule the default keeps is not u
   it("a layout that squeezes the beat under 60% of the height keeps its horizontal placement and as much of its vertical as is legal", () => {
     const lay = L({ cols: 2, rows: 3, slots: [{ id: "headline", col: 1, row: 1 }] });
     assert.equal(lay.boxes.headline.x, 540, "the planner's column");
-    assert.ok(lay.layout.y_blend > 0 && lay.layout.y_blend < 1, JSON.stringify(lay.layout));
+    assert.ok(lay.layout.axes === "x" || (lay.layout.y_blend > 0 && lay.layout.y_blend < 1), JSON.stringify(lay.layout));
     assert.ok(lay.layout.rejected.some((r) => /^span:/.test(r)));
     assert.ok(layoutViolations(lay).length === 0);
   });

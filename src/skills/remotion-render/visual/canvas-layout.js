@@ -424,6 +424,11 @@ export function canvasLayout(c) {
   if (!c?.layout) return { ...table, layout: null };
   const base = new Set(layoutViolations(table).map((v) => v.rule));
   const tablePos = new Map(flattenBoxes(table.boxes).map(([k, b]) => [k, `${b.x},${b.y}`]));
+  // Boxes overstate ink (line height, padding), so a planned layout keeps within 1 point of the default's
+  // own box span while that is under 66%. CI run 37743696701 beat 1: box span 60.3% passed the 60% box
+  // rule; the rendered pixels spanned 58.9% and canvas-coverage failed the video (default: 63.0%).
+  const spanOf = (L) => (L.boxes?.photo ? null : (contentBounds(L)?.h ?? 0) / 1920);
+  const tSpan = spanOf(table);
   // The planner's layout on both axes; if that breaks a Layer 1 rule the table keeps, its horizontal
   // placement alone (the table's vertical kept), then its vertical alone — before the whole beat goes
   // to the table. Most fallbacks were vertical (CI run 37723570093: a headline centred or dropped into
@@ -433,6 +438,8 @@ export function canvasLayout(c) {
     const L = tableLayout(c);
     const applied = applyPlanLayout(L.boxes, c.layout, { hero: L.hero, axes, yBlend });
     const added = layoutViolations(L).filter((v) => !base.has(v.rule));
+    const ps = spanOf(L);
+    if (tSpan !== null && ps !== null && ps < Math.min(tSpan, 0.66) - 0.01) added.push({ rule: "span-margin", detail: `content spans ${(ps * 100).toFixed(1)}% of the height by its boxes, the default ${(tSpan * 100).toFixed(1)}% — kept within 1 point of the default` });
     const moved = flattenBoxes(L.boxes).filter(([k, b]) => tablePos.get(k) !== `${b.x},${b.y}`).map(([k]) => k);
     return { L, applied, added, moved };
   };
