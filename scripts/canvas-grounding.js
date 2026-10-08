@@ -197,7 +197,10 @@ const MONEY_OBJECTS = [
   [/\b(?:cheques?|checks?)\b(?!\s+(?:the|on|whether|that))/i, "cheque"],
   [/\b(?:coins?)\b/i, "coins"],
   [/\b(?:banknotes?|dollar bills?|bills)\b/i, "banknotes"],
-  [/\b(?:cash|currency)\b/i, "banknotes cash"],
+  // "currency" is not a physical object, and the photo search answers it with today's dollar:
+  // CI run 37837731824 ch-8 drew a modern US banknote for "protecting the [1920s Czechoslovak]
+  // currency" (frame review: AUDIO MISMATCH). Only "cash" grounds banknotes.
+  [/\bcash\b/i, "banknotes cash"],
   // An AMOUNT in a currency ("seven million dollars", "$7", "€40") is not a
   // physical money object: it no longer grounds a banknote photo (a figure
   // draws it). Beat-check calls a banknote for an amount a topic-level stock

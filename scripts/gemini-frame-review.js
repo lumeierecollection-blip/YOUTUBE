@@ -366,7 +366,10 @@ function compositionLabelBase(b) {
       : hero.money ? "a photographed banknote / coin as the hero visual"
       : hero.class === "symbol" ? `a large drawn ${String(hero.name || "symbol").replace(/-/g, " ")} symbol as the hero visual`
       : `a photographed ${hero.name || "object"} as the hero visual`;
-    return ` | beat: ${c.composition} with a hero object — ${heroWhat} (a visual beat)`;
+    // The composition NAME is left out: "TYPE-FULL with a hero object" was counted as a TYPE-FULL
+    // beat ("Excessive use of TYPE-FULL beats (4/9 frames)", CI run 37837731824 ch-49, where two of
+    // the four were verified Universal Pictures / Blumhouse logos). The reviewer still sees the frame.
+    return ` | beat: a visual beat — ${heroWhat}`;
   }
   if (vt === "TYPE" && c.name_card) return ` | beat: ${c.composition} — typography: the name of ${c.name_card.name}`;
   return ` | beat: ${c.composition} — ${what}`;
