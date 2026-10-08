@@ -169,6 +169,37 @@ ground is replaced) is unchanged — CLAUDE.md hard rule.
 name with the reason (test-composed-opacity needs a browser render; four stale tests whose
 assertions were already false at `f649da2`, the queued stale tests not to be touched).
 
+### 3c. Layout fallback rate and the beat-index resolver (2026-10-08, `aaf4b84`..`bfa240e`)
+
+**Who draws a beat — measured, per beat.** render-and-qa logs one line per beat:
+`[layout] beat N: SOURCE plan | plan(vertical K%) | plan-x | plan-y | plan-noop | table — moved … | adjusted … | rejected …`.
+`plan-noop` (a layout that moved nothing) and `table` are both "the table drew it".
+
+**Diagnosis (43 beat-plans, runs 37718157561 / 37722686373 / 37723570093):** no layout sent 17, span < 60%
+13 (4 with a zone clash), centred 1, "used" 12 — and replaying 37723570093's real canvases showed
+most "used" layouts moved nothing: 9 of 10 slots named a visual the RENDERED beat did not have (the
+planner names the visual it planned; the grounding gate / scene translation drew another).
+
+**Fixes (each with a mutation, each replayed on real CI canvases in `scripts/fixtures/layout-replay/`):**
+- a slot naming a visual the beat lacks places the beat's own visual (`hero`) — `aaf4b84`;
+- per-axis fallback: horizontal-only, vertical-only before the table — `aaf4b84`;
+- the planner's horizontal placement with its vertical move eased toward the default in 10% steps,
+  the nearest legal position (`y_blend`) — `3bc6a26`;
+- box span kept within 1 point of the default's (boxes overstate ink; 37743696701 beat 1 passed the
+  box rule at 60.3%, rendered 58.9%) — `a30b42d`;
+- a placed element goes no lower than the table puts it, or 1316 (a cutout's shadow crossed y 1340
+  in 37746025773) — `bfa240e`;
+- prompt: a layout on every beat, `hero` for an unsure visual (`aaf4b84`); `center` offered only for a
+  visual, not text (37746025773 centred text on 6/9 beats) (`bfa240e`).
+
+**Beat-index resolver (`67f6a8a`).** `eval-layer3-judge.js` `resolveBeatIndices`: Layer 3's MM:SS ->
+the manifest beat containing it (whole-second resolution, nearest-overlap at the edges);
+malformed / out of range -> unresolved, never guessed; overlapping beats -> the earlier, marked
+ambiguous. On CI (37741112569): `[layer3] weak beat 00:16 -> beat 3`, `revisions: 1, unresolved: 0`.
+The loop now stops at the NEXT gap: `revise()` at the call site returns no plan patch and a re-render
+is not permitted there — "planner returned no partial plan patch; a full re-render is not
+permitted". Live cannot act until that is built (7.33).
+
 ## 4. What works
 
 | channel | renders | last verdict | Layer 1 | L2 | L3 |
@@ -281,6 +312,23 @@ All five key secrets are present in the workflow env, which contradicts the
 unretracted but unsupported.**
 
 ---
+
+## 6c. CI state, 2026-10-08 (second overnight)
+
+**Tests:** green on every push; last `37751614497` on `bfa240e` (397 node:test + standalone).
+
+**Layout source per beat on CI (from the render manifest's plan_layout):**
+- `37739128920` (`aaf4b84`): plan 5, plan-x 3, table 2 (beats 0, 4 NUMBER-FULL) — 20%; APPROVED.
+- `37741112569` (`3bc6a26`): final render plan 10/10 (3 with vertical eased 10-40%) — 0% table;
+  attempt 1 1/10 (a no-op). Frame review APPROVED; Layer 3 6.98; resolver: weak beat 00:16 -> beat 3.
+- `37743696701` (`3bc6a26`, live): 9/9 plan — 0% table; Layer 3 7.9 (axes 8 / 9 / 7 / 8); Layer 1
+  failed canvas-coverage 58.9% on one beat -> `a30b42d`.
+- `37746025773` (`a30b42d`, live): 4/9 table (the planner centred text on 6 beats) -> `bfa240e`.
+- `37751617230`, `37755289095` (`bfa240e`, live): SIGTERM before render (7.29, topic-specific).
+- `37756444486` (`bfa240e`, ch-5 + ch-26, dry): **ch-5 final render 8/9 from the plan (plan 3, plan-x 3, plan(vertical 10% / 80%) 2), 1 plan-noop — 11% table.** Layer 1 pass; Layer 3 7.19 (engagement 7, prompt_intent 7.2, composition 7, style_coherence 7.5); loop decision `accept` — the first CI accept; frame review APPROVED, queued approved/; Layer 2 0.600, clone_frames 0. ch-26 SIGTERMed in asset resolution (7.37).
+
+Replays of the four CI runs' real canvases on `bfa240e`: table-drawn <= 1/10 each
+(`layout-replay.test.js`).
 
 ## 6a. CI state at the end of the overnight run (2026-10-08)
 
@@ -599,6 +647,45 @@ Cause not found (memory pressure from Chrome + a 14b Ollama model is a guess, un
 the approved channels with publishing on (private first). No live eval loop is involved (cron
 default `EVAL_LOOP_MODE=off`).
 
+**7.31 — "plan" includes partial vertical moves.** `plan(vertical K%)` keeps only K% of the planner's
+vertical move (K = 10-90). On 37741112569 three beats kept 10-40%. The planner's horizontal
+placement is whole; its vertical intent is honoured only as far as Layer 1 allows.
+
+**7.32 — The planner still uses two grids.** 37741112569: 2x3 / 1x3 on 10/10 beats (attempt 1),
+1x3 / 2x3 / 1x4 (attempt 2). Report-only signal; not enforced.
+
+**7.33 — Live cannot act yet, for a new reason.** Indices resolve (`67f6a8a`); the call site's
+`revise()` returns `{planPatch: null}` and `renderBeats` refuses a re-render
+(`scripts/eval-loop-callsite.js`). Making live act means (a) a planner call that patches the named
+fields of the named beats and (b) re-rendering and re-gating the video — which changes what ships,
+the "separate decision" recorded at the call site. Not built.
+
+**7.34 — Layer 3 reads `config/channels.json`, not the style spec.** `loadStyleSpec()` sends
+`bg_mode: "white"` and `colors.bg: "#F0F0F0"` — fields of the older minimal / cinematic renderers —
+and the judge scores the planner's dark grounds against them ("the channel's light canvas
+specification"). `channels/ch-05/style-spec.json` names no ground at all (environment
+"newsprint", palette greys incl. #2B2B2B). Reported, not changed.
+
+**7.35 — Layer 3, table vs planner layouts (ch-05, 2026-10-07/08).** Table-drawn renders: 6.9, 6.77,
+6.59, 6.40, 6.00, 5.40 (mean 6.34). Planner-layout renders before tonight's fixes: 5.95, 5.08,
+5.46, 5.19, 5.65 (mean 5.47). After: 6.52 (37739128920), 6.59 / 6.98 (37741112569), 7.9
+(37743696701), 5.5 (37746025773). Confounded by grounds: the two all-dark table runs scored 6.00 and
+5.40. Drops were in composition and style_coherence. Different topics each run — not a controlled
+comparison.
+
+**7.36 — Dark ground + word-synced photo ghosting (37723570093 beat 2):** timing, not a missing
+element or an opacity bug — the photo is synced to its word at frame 113, the header's unspoken words
+are drawn in the dark theme's track colour (#2B2B2E on #0E0E10), so frames 6-14 are near-empty.
+Fixing it means a theme colour (SCR-13) or the word-sync rule. Not changed.
+
+**7.37 — Render + QA steps are SIGTERMed during asset resolution.** Five times: four on the ch-5
+"former CIA official … gold bars" script (37713312537, 37722686373, 37751617230, 37755289095) and once
+on ch-26 (37756444486, a Ponzi topic) — so not topic-specific, though the same ch-5 script also
+completed twice (37705693390, 37756444486). Exit 143, one to two minutes into "[resolve] starting PNG
+fetch"; no runner-shutdown annotation, no timeout message, nothing in the repo sends SIGTERM, not
+137. Leading guess (unverified): memory pressure during asset resolution (image fetch / rembg cutout
+while Ollama is resident). Instrument memory in that step to confirm.
+
 ---
 
 ## 8. In-flight work
@@ -617,6 +704,14 @@ Local diagnostic scripts committed this session and referenced by BUG-2:
 ---
 
 ## 9. What the next push should be
+
+**Second overnight, 2026-10-08 — read first:**
+1. Make live act (7.33): a partial plan patch for the named fields of the named beats, and a decision
+   on whether the loop may re-render and replace the video it judged.
+2. The SIGTERMs in asset resolution (7.37): log `free -m` / process RSS in that step.
+3. Decide 7.34: should Layer 3 judge against the style spec (the planner's reference) or channels.json?
+4. Planner layout vertical intent (7.31) and grids (7.32): give the planner each element's measured size.
+
 
 **Overnight 2026-10-08 — read first:**
 1. Fix the Layer 3 beat-index resolver — now observed in three runs (6a). Live cannot act until it does.
