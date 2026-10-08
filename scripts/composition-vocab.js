@@ -39,6 +39,9 @@ const SYNONYMS = Object.freeze({
   "MAP": "MAP-CENTERED", "PROCESS": "PROCESS-FULL", "FLOW": "PROCESS-FULL", "DIAGRAM": "PROCESS-FULL", "FLOWCHART": "PROCESS-FULL",
   "COMPARISON": "COMPARISON-SPLIT", "COMPARE": "COMPARISON-SPLIT", "VERSUS": "COMPARISON-SPLIT", "VS": "COMPARISON-SPLIT", "SPLIT-SCREEN": "COMPARISON-SPLIT",
   "LIST": "LIST-BUILD", "BULLETS": "LIST-BUILD", "ENUMERATION": "LIST-BUILD", "CHECKLIST": "LIST-BUILD",
+  // A SHOT name written here (canvas-layout.js SHOTS — the shot is its own field): the content it frames.
+  "SCENE-LOW": "SCENE-FULL", "PHOTO-BAND": "SCENE-FULL", "PHOTO-EDGE": "SCENE-FULL", "PHOTO-CARD": "SCENE-FULL", "PHOTO-INSET": "SCENE-FULL", "PHOTO-STRIP": "SCENE-FULL",
+  "HERO-STACK": "TYPE-FULL", "HERO-LOW": "TYPE-FULL", "HERO-SCATTER": "TYPE-FULL", "HERO-OVER": "TYPE-FULL",
 });
 
 const canon = (s) => String(s ?? "").trim().toUpperCase().replace(/[\s_/]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");

@@ -156,7 +156,67 @@ export const COMP = { x: 48, y: 100, w: 984, h: 1320 };
 // left-aligned, or 64..944 right-aligned (CAPTION_R).
 export const CAPTION = { x: 48, y: 1450, w: 880, h: 160 };
 export const CAPTION_R = { x: 64, y: 1450, w: 880, h: 160 };
-export const COMPOSITIONS = ["TYPE-FULL", "TYPE-SPLIT", "NUMBER-FULL", "DATA-FULL", "SCENE-FULL", "ARCHITECTURE", "PORTRAIT", "DOCUMENT", "MONEY", "MAP-CENTERED", "PROCESS-FULL", "TIMELINE", "COMPARISON-SPLIT", "LIST-BUILD"];
+export const COMPOSITIONS = ["TYPE-FULL", "TYPE-SPLIT", "NUMBER-FULL", "DATA-FULL", "SCENE-FULL", "ARCHITECTURE", "PORTRAIT", "DOCUMENT", "MONEY", "MAP-CENTERED", "PROCESS-FULL", "TIMELINE", "COMPARISON-SPLIT", "LIST-BUILD",
+  "SCENE-LOW", "PHOTO-BAND", "PHOTO-EDGE", "PHOTO-CARD", "PHOTO-INSET", "PHOTO-STRIP", "HERO-LOW", "HERO-SCATTER", "HERO-OVER"];
+
+// ── SHOTS: the reference's shot grammar (docs/REFERENCE-SHOT-GRAMMAR.md) ─────────────────
+// The compositions above used to be one per CONTENT kind (a photo is SCENE-FULL, a person
+// PORTRAIT, a cutout TYPE-FULL): the content decided the frame, so a video had a handful of frame
+// divisions whatever the planner wanted. A shot is how the frame is divided around that content,
+// taken from the reference (research/motion-graphics-ref/ref-01..03). Gemini names one per beat
+// (`shot`); shotComposition() draws it when the beat's content is something that shot frames, and
+// otherwise the content's own composition stands (logged by the caller). Code decides legality only.
+//   a photo:  SCENE-FULL (headline top, full bleed) | SCENE-LOW | PHOTO-BAND | PHOTO-EDGE |
+//             PHOTO-CARD | PHOTO-INSET | PHOTO-STRIP | PORTRAIT (a person: the photo standing)
+//   an object (cutout, logo, symbol): HERO-STACK (TYPE-FULL with its hero) | HERO-LOW | HERO-SCATTER | HERO-OVER
+// Figures (number, chart, map, process, list, timeline, comparison) and plain statements keep the
+// composition their content draws: a shot does not reframe a chart.
+export const FULL_PHOTO_COMPS = ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "SCENE-LOW"];
+export const FRAMED_PHOTO_COMPS = ["PHOTO-BAND", "PHOTO-EDGE", "PHOTO-CARD", "PHOTO-INSET", "PHOTO-STRIP"];
+export const HERO_COMPS = ["HERO-LOW", "HERO-SCATTER", "HERO-OVER"];
+/**
+ * Where a composition puts its words: "top" (text drawn in the top band — a label to the template
+ * rule, scripts/template-check.js labelsDrawn) or "low" (the top band holds only a picture / rule).
+ * The planner is told this so it can keep the words moving (no device on three beats in a row).
+ */
+export const TEXT_AT = Object.freeze({
+  "PHOTO-BAND": "low", "SCENE-LOW": "low", "HERO-OVER": "low", "TYPE-FULL": "low", "DOCUMENT": "low", "MONEY": "low",
+  "PHOTO-EDGE": "top", "PHOTO-CARD": "top", "PHOTO-INSET": "top", "PHOTO-STRIP": "top", "SCENE-FULL": "top", "ARCHITECTURE": "top", "PORTRAIT": "top",
+  "HERO-STACK": "top", "HERO-LOW": "top", "HERO-SCATTER": "top",
+});
+export const SHOT_COMPOSITIONS = [...FRAMED_PHOTO_COMPS, "SCENE-LOW", ...HERO_COMPS];
+export const PHOTO_SHOTS = ["SCENE-FULL", "SCENE-LOW", ...FRAMED_PHOTO_COMPS, "PORTRAIT"];
+export const HERO_SHOTS = ["HERO-STACK", ...HERO_COMPS];
+// FIGURE / STATEMENT: the content's own frame (a chart, a number, a map; a plain statement), named
+// so every beat carries a shot the planner chose.
+export const SHOTS = [...PHOTO_SHOTS, ...HERO_SHOTS, "FIGURE", "STATEMENT"];
+/** A shot name as the planner wrote it, or null ("photo band" / "photo_band" -> PHOTO-BAND). */
+export function shotName(s) {
+  const n = String(s || "").trim().toUpperCase().replace(/[\s_]+/g, "-");
+  return SHOTS.includes(n) ? n : null;
+}
+/**
+ * The composition a beat is drawn as: `shot` when the content is something it frames, else `base`.
+ *   -> { composition, shot, used: bool, why }
+ * A MONEY beat keeps its own frame (its figure is drawn over the photo); a person (PORTRAIT) or a
+ * document may take any photo shot; a TYPE-FULL beat with a hero object any hero shot.
+ */
+export function shotComposition(base, shot, c = {}) {
+  const s = shotName(shot);
+  if (!s) return { composition: base, shot: null, used: false, why: shot ? `"${shot}" is not a shot` : "no shot" };
+  if (s === "FIGURE" || s === "STATEMENT") return { composition: base, shot: s, used: true, why: null };
+  const photoBase = !!c.photo && ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "PORTRAIT"].includes(base);
+  const heroBase = base === "TYPE-FULL" && Array.isArray(c.concept_visuals) && c.concept_visuals.length > 0;
+  if (PHOTO_SHOTS.includes(s)) {
+    if (!photoBase) return { composition: base, shot: s, used: false, why: `${s} frames a photo; this beat draws ${base}${c.photo ? " (its own frame)" : ""}` };
+    // SCENE-FULL keeps a building's facade tilt and a document's callout: the content's own full-bleed frame.
+    if (s === "SCENE-FULL") return { composition: base === "PORTRAIT" ? "SCENE-FULL" : base, shot: s, used: true, why: null };
+    if (s === "PORTRAIT") return { composition: "PORTRAIT", shot: s, used: true, why: null };
+    return { composition: s, shot: s, used: true, why: null };
+  }
+  if (!heroBase) return { composition: base, shot: s, used: false, why: `${s} frames an object (cutout, logo, symbol); this beat draws ${base}` };
+  return { composition: s === "HERO-STACK" ? "TYPE-FULL" : s, shot: s, used: true, why: null };
+}
 export const TRANSITION_SEC = 0.5;
 export const CONTENT_TOP = TOP;
 
@@ -255,7 +315,7 @@ export const BG_GRADIENT = "linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 35%, #F8
 export function backgroundOf(idx, composition = "", customGround = false) {
   // A full-bleed photo covers the ground; a beat that declared its own ground is drawn on that
   // colour as it is — the white-only paper texture / gradient variation does not apply to it.
-  if (customGround || ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"].includes(composition)) return { paper: false, rule: false, gradient: false };
+  if (customGround || FULL_PHOTO_COMPS.includes(composition)) return { paper: false, rule: false, gradient: false };
   const gradient = (idx + 1) % 5 === 0;
   return { paper: !gradient && (idx + 1) % 3 === 0, rule: false, gradient };
 }
@@ -446,7 +506,7 @@ function finalizeChrome(L, c) {
     const without = { ...L, boxes: Object.fromEntries(Object.entries(boxes).filter(([k]) => k !== "rule" && k !== "kicker")) };
     // A full-bleed photo is the whole frame; anything else must span 62% without the rule (the
     // table's own box margin over Layer 1's 60%, test-canvas-layout.mjs 61%).
-    const fullBleed = !!boxes.photo && ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"].includes(L.composition);
+    const fullBleed = !!boxes.photo && FULL_PHOTO_COMPS.includes(L.composition);
     if (fullBleed || (contentBounds(without)?.h ?? 0) / 1920 >= 0.62) delete boxes.rule;
   }
   if (!label && !boxes.kicker?.subject) delete boxes.kicker;
@@ -483,6 +543,9 @@ export function canvasLayout(c) {
 function layoutCore(c) {
   const table = tableLayout(c);
   if (!c?.layout) return { ...table, layout: null };
+  // A shot IS the beat's arrangement (the planner chose it): its grid layout would move the shot's
+  // photo / object out of the frame division it names. Recorded as not used, with the reason.
+  if (SHOT_COMPOSITIONS.includes(table.composition)) return { ...table, layout: { used: false, axes: null, moved: [], rejected: [`shot: ${table.composition} is the beat's arrangement`] } };
   const base = new Set(layoutViolations(table).map((v) => v.rule));
   const tablePos = new Map(flattenBoxes(table.boxes).map(([k, b]) => [k, `${b.x},${b.y}`]));
   // Boxes overstate ink (line height, padding), so a planned layout keeps within 1 point of the default's
@@ -551,6 +614,145 @@ export function layoutViolations(L) {
   return out;
 }
 
+/**
+ * The ink's extent of a cutout drawn `a` px wide and rotated `deg` (rising to the right) about its
+ * centre, from its ink outline (v.ink.pts, scripts/cutout-ink.mjs; the PNG's corners without one).
+ */
+export function inkExtent(v, a, deg) {
+  const r = Math.max(0.2, Math.min(5, (v.w || 1) / (v.h || 1)));
+  const pts = Array.isArray(v.ink?.pts) && v.ink.pts.length ? v.ink.pts : [[0, 0], [1, 0], [0, 1], [1, 1]];
+  const t = (deg * Math.PI) / 180, co = Math.cos(t), si = Math.sin(t), ih = a / r;
+  let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+  for (const [fx, fy] of pts) {
+    const px = (fx - 0.5) * a, py = (fy - 0.5) * ih, X = px * co + py * si, Y = -px * si + py * co;
+    x0 = Math.min(x0, X); x1 = Math.max(x1, X); y0 = Math.min(y0, Y); y1 = Math.max(y1, Y);
+  }
+  return { x0, x1, y0, y1, w: x1 - x0, h: y1 - y0 };
+}
+
+/**
+ * One hero object placed by its INK (the box is the ink's box, `img` the image rectangle relative
+ * to it, as the TYPE-FULL hero is): as large as fits maxW x maxH at `deg`, its ink standing on
+ * `floor`, against `side` ("left" | "right" | "center") of [x0, x1]. A logo, a bill or a drawn
+ * symbol is never tilted (owner's spec 2026-10-03, parts B and G; symbols draw upright).
+ */
+function placeHero(v, { maxW, maxH, deg = 0, floor, x0 = L_EDGE + 12, x1 = R_EDGE - 12, side = "center" }) {
+  const upright = !!(v.logo || v.money) || v.class !== "cutout" || !v.asset;
+  const d = upright ? 0 : deg;
+  const r = Math.max(0.2, Math.min(5, (v.w || 1) / (v.h || 1)));
+  const u = inkExtent(v, 1, d);
+  const a = Math.min(maxW / u.w, maxH / u.h, (x1 - x0) / u.w);
+  const e = inkExtent(v, a, d), ih = a / r;
+  const bw = Math.round(e.w), bh = Math.round(e.h);
+  const bx = side === "left" ? x0 : side === "right" ? x1 - bw : Math.round((x0 + x1 - bw) / 2);
+  const by = Math.round(floor - bh);
+  const icx = bx + bw / 2 - (e.x0 + e.x1) / 2, icy = by + bh / 2 - (e.y0 + e.y1) / 2;
+  return { ...box(bx, by, bw, bh), role: "concept", concept: v.name, class: v.class, asset: v.asset || null, align: side, logo: !!v.logo, money: !!v.money,
+    ...(v.asset && v.class === "cutout" ? { img: [Math.round(icx - a / 2 - bx), Math.round(icy - ih / 2 - by), Math.round(a), Math.round(ih)] } : {}), ...(d ? { tilt: d } : {}) };
+}
+
+/**
+ * The shot compositions (SHOT_COMPOSITIONS), laid out. Each keeps Layer 1's geometry by
+ * construction — one element type per zone, nothing across y 620 / 1340 but a full-bleed photo,
+ * text never centred, content spanning >= 60% of the height — because a shot that breaks a gate is
+ * a wrong render, not a reason to loosen the gate. The photo is the `photo` box (the one element
+ * allowed to bleed off the frame, canvas-fit); `frame` names how it is drawn (full-canvas.jsx).
+ */
+function shotLayout(c, comp, flip) {
+  const boxes = {};
+  const text = String(c.headline || c.photo?.entity || "");
+  const kick = c.lead_in ? String(c.lead_in) : null;
+  // The header in the top band: an optional label, then the headline, on the `flip` side.
+  const header = (width = 900, max = 150) => {
+    if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 34, maxLines: 1, y: TOP + 6, flip });
+    const y = kick ? boxes.kicker.y + boxes.kicker.h + 22 : TOP + 6;
+    boxes.headline = headlineBox(text, { width, y, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - y, max });
+  };
+  // A photo's own proportions inside maxW x maxH (a person or a document is portrait-shaped).
+  const fitPhoto = (maxW, maxH) => {
+    const r = Math.max(0.4, Math.min(2.5, (Number(c.photo?.w) || 3) / (Number(c.photo?.h) || 4)));
+    let w = maxW, h = Math.round(w / r);
+    if (h > maxH) { h = maxH; w = Math.round(h * r); }
+    return [w, h];
+  };
+  const person = c.photo?.view === "person" || c.photo?.kind === "person";
+  const focus = person ? "50% 22%" : c.photo?.view === "document" ? "50% 0%" : "50% 40%";
+  let hero = "photo";
+  if (comp === "PHOTO-BAND") {
+    // Shot 2: the photo bleeds off the top and both sides through the top band; the words below.
+    boxes.photo = { ...box(0, 0, FRAME.w, 604), frame: "band", focus };
+    if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 34, maxLines: 1, y: BODY_TOP + 20, flip });
+    const top = kick ? boxes.kicker.y + boxes.kicker.h + 24 : BODY_TOP + 20;
+    boxes.headline = headlineBox(text, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - top, max: 170 });
+    hero = "headline";
+  } else if (comp === "PHOTO-EDGE") {
+    // Shots 5 / 25: the photo cropped by the frame edge opposite the headline's side.
+    header(900, 150);
+    const w = 700;
+    boxes.photo = { ...box(flip ? 0 : FRAME.w - w, BODY_TOP - 6, w, 690), frame: "edge", side: flip ? "left" : "right", focus };
+  } else if (comp === "PHOTO-CARD") {
+    // Shots 4 / 19: a matted card with a soft shadow, centred, standing on the middle band's floor.
+    header(984, 150);
+    const [w, h] = fitPhoto(760, 660);
+    boxes.photo = { ...box(Math.round((FRAME.w - w) / 2), 1312 - h, w, h), frame: "card", focus };
+  } else if (comp === "PHOTO-INSET") {
+    // Shot 18: a smaller rounded card with a hard offset shadow, on the side away from the headline.
+    header(860, 140);
+    const [w, h] = fitPhoto(560, 640);
+    boxes.photo = { ...box(flip ? L_EDGE : R_EDGE - w - 14, 1300 - h, w, h), frame: "inset", focus };
+  } else if (comp === "PHOTO-STRIP") {
+    // Shot 17: a torn-paper strip across the middle band showing the photo; accent bars on its edges.
+    header(984, 150);
+    boxes.photo = { ...box(0, 800, FRAME.w, 524), frame: "strip", focus, seed: Number(c.beat_index) || 0 };
+  } else if (comp === "SCENE-LOW") {
+    // Shots 11 / 16: full bleed, the words low in the middle band over a darkened foot.
+    boxes.photo = { ...box(0, 0, FRAME.w, FRAME.h), frame: "full", focus };
+    // A label rides just above the words, so the top band stays the photo's (a "low" shot, TEXT_AT).
+    const kb = kick ? dataBox(kick, { width: 700, size: 34, maxLines: 1, y: 0, flip }) : null;
+    boxes.headline = headlineBox(text, { width: 920, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - BODY_TOP - (kb ? kb.h + 22 : 0), max: 180 });
+    if (kb) boxes.kicker = { ...kb, y: boxes.headline.y - 22 - kb.h };
+    hero = "photo";
+  }
+  return { composition: comp, boxes, hero, flip };
+}
+
+/** HERO-LOW / HERO-SCATTER: the TYPE-FULL hero beat, its object re-placed. */
+function heroShotLayout(c, comp, flip) {
+  const base = tableLayout({ ...c, composition: "TYPE-FULL", emphasis_beat: false, vertical: false });
+  const cv = (c.concept_visuals || []).filter(Boolean);
+  if (!base.boxes.cutout0 || !cv.length) return { ...base, composition: comp };
+  const boxes = { ...base.boxes };
+  delete boxes.cutout0; delete boxes.cutout1; delete boxes.cutout2; delete boxes.cutout_name;
+  const text = String(c.headline || "");
+  // The object's side is away from the headline's.
+  const away = flip ? "left" : "right", near = flip ? "right" : "left";
+  if (comp === "HERO-OVER") {
+    // Shot 1, its lower words (ref-01 0:04): the object in the top band, the words under it in the
+    // middle band — the top band holds no text.
+    delete boxes.rule; delete boxes.kicker; delete boxes.statement;
+    if (c.lead_in) boxes.kicker = dataBox(String(c.lead_in), { width: 700, size: 34, maxLines: 1, y: BODY_TOP + 20, flip });
+    const top = boxes.kicker ? boxes.kicker.y + boxes.kicker.h + 22 : BODY_TOP + 20;
+    boxes.statement = headlineBox(text, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - top, max: 170 });
+    boxes.cutout0 = { ...placeHero(cv[0], { maxW: 940, maxH: 440, floor: 596, side: "center" }), primary: true };
+  } else if (comp === "HERO-LOW") {
+    // Shot 8: a short line high up, air, then the object large on the middle band's floor.
+    const y = boxes.kicker ? boxes.kicker.y + boxes.kicker.h + 22 : TOP + 6;
+    boxes.statement = headlineBox(text, { width: 760, y, flip, maxLines: 2, maxHeight: Math.min(300, HEADER_MAX_Y - y), max: 104 });
+    boxes.cutout0 = { ...placeHero(cv[0], { maxW: 940, maxH: 680, floor: 1326, side: away }), primary: true };
+  } else {
+    // Shot 13: the objects off-centre at opposing angles; a second object smaller, high on the other side.
+    const tilt = flip ? 9 : -9;
+    boxes.cutout0 = { ...placeHero(cv[0], { maxW: cv[1] ? 560 : 640, maxH: 600, deg: tilt, floor: 1326, side: away }), primary: true };
+    if (cv[1]) {
+      const second = placeHero(cv[1], { maxW: 400, maxH: 360, deg: -tilt, floor: BODY_TOP + 380, side: near });
+      // Kept only where it stays clear of the first object's box.
+      const a = boxes.cutout0, b = second;
+      if (!(a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) && b.y >= BODY_TOP) boxes.cutout1 = second;
+    }
+  }
+  return { composition: comp, boxes, hero: "cutout0", flip };
+}
+
 function tableLayout(c) {
   MARKS = Array.isArray(c?.emphasis_words) ? c.emphasis_words : c?.emphasis_word ? [c.emphasis_word] : [];
   BEAT_HERO = !!c?.hero_headline;
@@ -558,6 +760,13 @@ function tableLayout(c) {
   const comp = c?.composition || compositionFor(c?.visual_type, !!c?.photo);
   const vt = String(c?.visual_type || "TYPE").toUpperCase();
   const flip = (Number(c?.variant) || 0) % 2 === 1 ? 1 : 0;
+  // A shot composition draws only the content it frames (shotComposition); without it the
+  // content's own composition stands — never an empty frame.
+  if (FRAMED_PHOTO_COMPS.includes(comp) || comp === "SCENE-LOW") {
+    if (c?.photo) return shotLayout(c, comp, flip);
+    return tableLayout({ ...c, composition: compositionFor(c?.visual_type, false) });
+  }
+  if (HERO_COMPS.includes(comp)) return heroShotLayout(c, comp, flip);
   const boxes = {};
   let hero = null;
 
@@ -711,17 +920,7 @@ function tableLayout(c) {
             // the image rectangle relative to it.
             // 12 px inside each margin: the 20 px drop shadow ran 4 px past R_EDGE on a full-width cutout.
             const v = cv[0], r = ar(v), W = R_EDGE - L_EDGE - 24;
-            const pts = Array.isArray(v.ink?.pts) && v.ink.pts.length ? v.ink.pts : [[0, 0], [1, 0], [0, 1], [1, 1]];
-            // The ink's extent, the image `a` px wide, rotated `deg` (rising to the right) about its centre.
-            const ext = (a, deg) => {
-              const t = (deg * Math.PI) / 180, co = Math.cos(t), si = Math.sin(t), ih = a / r;
-              let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
-              for (const [fx, fy] of pts) {
-                const px = (fx - 0.5) * a, py = (fy - 0.5) * ih, X = px * co + py * si, Y = -px * si + py * co;
-                x0 = Math.min(x0, X); x1 = Math.max(x1, X); y0 = Math.min(y0, Y); y1 = Math.max(y1, Y);
-              }
-              return { x0, x1, y0, y1, w: x1 - x0, h: y1 - y0 };
-            };
+            const ext = (a, deg) => inkExtent(v, a, deg);
             // 470 px of ink centred at most at y 1060 reaches y 1295; canvas-coverage needs ~1272.
             const MIN_H = 470;
             const u0 = ext(1, 0);
@@ -1332,7 +1531,11 @@ export function canvasManifest(raw, idx) {
     // `ground_color` is its hex, null for the default), or a full-bleed photo covering it.
     // `ground` keeps its old meaning ("a ground is visible": "white" | "photo") so every reader
     // that classifies photo beats is unchanged.
-    ground: c.photo && L.composition !== "PORTRAIT" ? "photo" : "white",
+    // A shot's partial photo (PHOTO-BAND / -EDGE / -CARD / -INSET / -STRIP) leaves the ground showing:
+    // "white", so canvas-ground and the pixel zone checks still run on it (local-audit.cjs fullBleed).
+    ground: c.photo && FULL_PHOTO_COMPS.includes(L.composition) ? "photo" : "white",
+    // The shot the planner named and whether it is the one drawn (shotComposition).
+    shot: c.shot || null,
     ground_color: c.ground_color || null,
     headline_text: shown("headline") || shown("statement") || null, emphasis_text: shown("emphasis"),
     // The headline's entrance: the words fly in on a major TYPE-FULL statement,

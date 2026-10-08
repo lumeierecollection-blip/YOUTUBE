@@ -44,7 +44,7 @@ import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequire(import.meta.url)("./entity-assets.cjs");
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { previewAnimations } from "./anim-plan.js";
-import { compositionFor, splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { compositionFor, splitHeadline, shotName, TEXT_AT } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { translateScene } from "./scene-translate.js";
 import { wantedTypes, COMPOSITIONS } from "./composition-vocab.js";
 import { applyMotionTiers, normalizeGrounds, compositionsUsed } from "./planner-decisions.js";
@@ -641,11 +641,17 @@ export function buildPlanPromptParts(sentences, corrections, channelId, styleRef
     : "";
   const staticPart = `You are the VISUAL DIRECTOR of a vertical (1080x1920, ~60 s) YouTube Short. Visualize what each sentence DOES — its object, the action, what changes, what a viewer with NO audio would understand — as one continuous visual argument, not separate scenes.
 
-THE VISUAL LANGUAGE (everything you describe must fit it): editorial, minimalist, monochrome with one accent colour; full-frame compositions, no cards or panels; real photos for people, places, logos and objects when they exist, type and charts when they don't; slow, deliberate movement, nothing frantic — the style of Vox, Bloomberg and NYT explainers. A scene that would not appear in one of those videos is wrong. A serif headline in sentence case, oversized numerals, small sans labels. Transitions, captions, zones and camera are the system's.
+THE VISUAL LANGUAGE is the channel's REFERENCE VIDEO (frames attached when available; the style reference below): an editorial collage that changes its shot every beat (SHOT). Real photos for people, places, logos and objects when they exist, type and charts when they don't. A serif headline in sentence case, oversized numerals, small sans labels; the channel's ink and one accent.
 
 GROUND. "ground": what ground does THIS beat need? Leave it out (or write "white") for the house ground, white. Otherwise answer a hex ("#0E0E10"), "transparent" (the house ground shows through; an MP4 has no alpha) or a short colour description ("deep navy", "warm cream"). Type and charts switch to light ink on a dark ground by themselves. The ground is yours to choose for every beat.
 
-LAYOUT. "layout": how should THIS beat be laid out — where does each element sit? It is yours to decide per beat, from what the beat says; nothing is preset. Answer {"cols": <your grid's columns>, "rows": <its rows>, "slots": [{"id": <element>, "col": <0-based>, "row": <0-based>, "col_span": n, "row_span": n, "align": "left"|"right" for text (headline, statement, kicker, number), "left"|"center"|"right" for a visual, "v_align": "top"|"center"|"bottom"}]}. The grid is yours (any cols/rows) and spans the content area, x 48-1032, y 130-1340 of the 1080x1920 frame; a slot may instead give {"id", "x", "y", "w", "h"} in pixels. Element ids: "headline", "kicker", "number", "label", "chart", "map", "nodes", "items", "markers", "portrait", "cutout0", or "hero" for the beat's main visual. Give EVERY beat a layout — it is how this beat's arrangement becomes yours rather than the system default (a beat without one is drawn in the default arrangement). Place at least the headline and the beat's visual; elements you do not name keep the default. If you are unsure which visual the beat will end up drawing (a figure you planned may be drawn as a statement or a photo), name it "hero": it places whatever visual the beat draws. Elements keep the size their content needs (a headline is fitted to its words, a number to its digits): the layout says WHERE, not how big. Below y 1340 belongs to the caption, on every beat. The finished frame is audited, and a frame that fails is rejected — so know the rules: no two elements overlap; each element sits wholly in the top region (y 0-620) or the middle region (620-1340), never across y 620; the two regions never hold two kinds of element — the headline / statement / kicker are one kind, the visual (number with its label, chart, map, nodes, items, portrait, cutout) the other — so a layout that puts the headline in the same region as the visual is rejected and the beat falls back to the default arrangement; the beat's content must reach from near its top (y ~130-200) to well into the middle region (y ~1200-1340) to span 60% of the height; text (headline, statement, number) is never centred on the frame's vertical centre line, so align it "left" or "right". An element's kicker and its label travel with it. The beat's elements together must span at least 60% of the frame's height. A slot is a region: give "align" / "v_align" to anchor the element in it; without them the element keeps its default spot, moved only as far as it takes to sit inside the slot — so a slot covering the whole grid with no alignment changes nothing. The example's layout belongs to that example beat — decide each of yours from what its sentence needs; do not repeat one arrangement across beats. Arrangements differ in kind, for instance: a figure alone low on one side {"cols": 1, "rows": 4, "slots": [{"id": "number", "row": 2, "row_span": 2, "align": "left", "v_align": "bottom"}]}; a headline and its chart side by side on a 4-column grid {"cols": 4, "rows": 2, "slots": [{"id": "headline", "col": 0, "col_span": 2, "row": 0}, {"id": "chart", "col": 1, "col_span": 3, "row": 1}]}.
+SHOT. "shot": how THIS beat's frame is divided, from the reference's grammar — yours on EVERY beat. [top] / [low] = its words sit in the top band, or low under a picture.
+PHOTO beats: "SCENE-FULL" fills the frame [top]; "SCENE-LOW" fills it, words low [low]; "PHOTO-BAND" bleeds off the top third, words below [low]; "PHOTO-EDGE" cropped by the far frame edge [top]; "PHOTO-CARD" in a heavy dark frame [top]; "PHOTO-INSET" a small rounded card, block shadow [top]; "PHOTO-STRIP" seen through a torn strip [top]; "PORTRAIT" standing, unframed [top].
+OBJECT beats (a cutout, logo, money object or symbol): "HERO-STACK" centred under the words [top]; "HERO-LOW" large and low, off to one side [top]; "HERO-SCATTER" off-centre at opposing angles [top]; "HERO-OVER" above the words [low].
+"FIGURE": a chart, number, map, process, list, timeline or comparison in its own frame [top]. "STATEMENT": words only [low].
+Checked on the render: never the same shot on two beats in a row; never the words in the TOP band on three beats in a row; a shot that does not fit what the beat shows is not drawn.
+
+LAYOUT. "layout": how should THIS beat be laid out — where does each element sit? It is yours to decide per beat, from what the beat says; nothing is preset. Answer {"cols": <your grid's columns>, "rows": <its rows>, "slots": [{"id": <element>, "col": <0-based>, "row": <0-based>, "col_span": n, "row_span": n, "align": "left"|"right" for text (headline, statement, kicker, number), "left"|"center"|"right" for a visual, "v_align": "top"|"center"|"bottom"}]}. The grid is yours (any cols/rows) and spans the content area, x 48-1032, y 130-1340 of the 1080x1920 frame; a slot may instead give {"id", "x", "y", "w", "h"} in pixels. Element ids: "headline", "kicker", "number", "label", "chart", "map", "nodes", "items", "markers", "portrait", "cutout0", or "hero" for the beat's main visual. Give every FIGURE and STATEMENT beat a layout (without one the default arrangement is drawn); on a photo or object shot the SHOT is the arrangement and no layout is used. Place at least the headline and the beat's visual; elements you do not name keep the default. If you are unsure which visual the beat will end up drawing (a figure you planned may be drawn as a statement or a photo), name it "hero": it places whatever visual the beat draws. Elements keep the size their content needs (a headline is fitted to its words, a number to its digits): the layout says WHERE, not how big. Below y 1340 belongs to the caption, on every beat. The finished frame is audited, and a frame that fails is rejected — so know the rules: no two elements overlap; each element sits wholly in the top region (y 0-620) or the middle region (620-1340), never across y 620; the two regions never hold two kinds of element — the headline / statement / kicker are one kind, the visual (number with its label, chart, map, nodes, items, portrait, cutout) the other — so a layout that puts the headline in the same region as the visual is rejected and the beat falls back to the default arrangement; the beat's content must reach from near its top (y ~130-200) to well into the middle region (y ~1200-1340) to span 60% of the height; text (headline, statement, number) is never centred on the frame's vertical centre line, so align it "left" or "right". An element's kicker and its label travel with it. A slot is a region: give "align" / "v_align" to anchor the element in it; without them the element keeps its default spot, moved only as far as it takes to sit inside the slot — so a slot covering the whole grid with no alignment changes nothing. Decide each layout from what its sentence needs; do not repeat one arrangement across beats. Arrangements differ in kind, for instance: a figure alone low on one side {"cols": 1, "rows": 4, "slots": [{"id": "number", "row": 2, "row_span": 2, "align": "left", "v_align": "bottom"}]}; a headline and its chart side by side on a 4-column grid {"cols": 4, "rows": 2, "slots": [{"id": "headline", "col": 0, "col_span": 2, "row": 0}, {"id": "chart", "col": 1, "col_span": 3, "row": 1}]}.
 
 ONE ELEMENT RENDERS AUTOMATICALLY AND YOU MUST NOT DESCRIBE IT: a small "Source: <domain>" credit in the bottom-right corner when the beat uses a fetched photo, logo or portrait. Nothing else is automatic — there is NO running caption, NO page counter and NO corner label unless you ask for one (CHROME, under TEXT).
 
@@ -660,7 +666,7 @@ ENTITIES. "named_entities": everything the sentence NAMES that the scene shows, 
 
 ASSET KINDS - ask for one ONLY when the sentence earns it. "Request a silhouette only if the sentence names a person. Request a document only if the sentence names a document, contract, filing, ruling, or law. Request a stack only if the sentence names multiple discrete items. Never request these by default." A silhouette with no person in the sentence is an invented human; a document with no document in it is an invented filing. If the sentence supports none of them, describe the accumulation with the numbers it states instead.
 
-TEXT. "headline": 2-6 words FROM the sentence, never a full sentence, never a claim it does not make. "lead_in": null (retired: use "label"). CHROME — yours per beat, and ABSENT on most beats: "label": null, or {"text": a dateline or an attribution taken from the script ("October 8", "Reuters", "Luzerne County Court"), "position": "top-left"|"top-right"|"beside-headline"|"bottom-left"} — only when the beat needs a dateline or an attribution, never as decoration. "pull_phrase": null, or {"text": 2-6 words copied verbatim from the sentence, a phrase worth pulling out, "position": "top"|"middle"|"bottom", "case": "as-written"|"upper", "tone": "ink"|"accent"} — only when there is a phrase worth pulling; there is no running caption. THE TEMPLATE RULE (checked on the render, hard): across ANY three consecutive beats, at most ONE of {a label, a pull phrase, a typography-led beat} may appear on two or more of them. Vary the chassis on purpose: some beats headline only, some image-dominant with no chrome at all, some full-bleed; never the same label + headline + phrase stack beat after beat. "emphasis_word": one headline word or null. "kind": "TYPE" where the beat is typography, "EDITORIAL" otherwise, your choice for every beat. "typography_direction" only where text IS the beat (the hook, the close, a real turn): {"phrase": one line, 2-7 words, never the narration or a near-restatement, never a topic label like "The Problem", "moment": "hook"|"re_hook"|"key_fact"|"contradiction"|"question"|"statement"}; otherwise null. Typography is selective: at most ~1 in 3 beats text-forward.
+TEXT. "headline": 2-6 words FROM the sentence, never a full sentence, never a claim it does not make. "lead_in": null (retired: use "label"). CHROME — yours per beat, and ABSENT on most beats: "label": null, or {"text": a dateline or an attribution taken from the script ("October 8", "Reuters", "Luzerne County Court"), "position": "top-left"|"top-right"|"beside-headline"|"bottom-left"} — only when the beat needs a dateline or an attribution, never as decoration. "pull_phrase": null, or {"text": 2-6 words copied verbatim from the sentence, a phrase worth pulling out, "position": "top"|"middle"|"bottom", "case": "as-written"|"upper", "tone": "ink"|"accent"} — only when there is a phrase worth pulling; there is no running caption. THE TEMPLATE RULE (checked on the render, hard): NO device on three beats in a row — a label (ANY words in the top band count), a pull phrase, a typography-led beat — and in any three consecutive beats at most ONE of them on two. Alternate [top] and [low] shots. "emphasis_word": one headline word or null. "kind": "TYPE" where the beat is typography, "EDITORIAL" otherwise, your choice for every beat. "typography_direction" only where text IS the beat (the hook, the close, a real turn): {"phrase": one line, 2-7 words, never the narration or a near-restatement, never a topic label like "The Problem", "moment": "hook"|"re_hook"|"key_fact"|"contradiction"|"question"|"statement"}; otherwise null. Typography is selective: at most ~1 in 3 beats text-forward.
 
 MOTION. "entrance_style": "together"|"staggered"|"visual-first" — how this beat's elements arrive (all at once; one after another; the visual first, then the text), yours per beat; omit it and the system picks. "animation_family": "pop-in"|"slide-in"|"draw-in"|"count-up", yours per beat; omit it and the system picks. "motion_tier": "micro"|"medium"|"major" — yours to set on every beat; mark as many beats "major" as the narration earns. "camera_focus": null or 1-2 [{"at_percent": 0.05-0.9, "target": number|chart|headline|photo|left|right|top|bottom|node0|node1|node2|full}]. "persists_from": the previous beat's index when this beat carries its element on, else null; "match_cut_prev": true when it shares that element. "text_entrance": omit, or POP_SOFT (a quiet beat) | POP_HARD (beat 0 or the last only) | POP_LETTER (at most one beat) | POP_WORD_STACK (a 2-5 word TYPE statement). "visual_events": [{"type": growth|depletion|comparison|revelation|structure_break|accumulation|population|evidence|contrast|causation, "label", "magnitude"}] — at least 5 distinct types across the video, never the same event 3 times in a row; "capabilities": the event types used (+ "typographic_emphasis" on a TYPE beat); "objects": {"label_a","label_b"} for contrast, {"figure"} for evidence, {"cause","effect"} for causation, else {}.
 
@@ -671,7 +677,7 @@ Respond ONLY with JSON (no markdown): {"beats":[ one object per sentence, in ord
   if (corrections?.length) {
     // A re-plan answered the corrections and dropped the optional fields it was not asked about
     // (CI runs 37705693390 and 37713312537: the plan carried 9/9 and 10/10 layouts, the re-plan 0).
-    dynamicPart += `\n\nPREVIOUS REVIEW CORRECTIONS — apply every fix, and return every beat complete, with every field the format above asks for (its layout, ground and entrance_style included), not only the fields a correction names:\n` +
+    dynamicPart += `\n\nPREVIOUS REVIEW CORRECTIONS — apply every fix, and return every beat complete, with every field the format above asks for (its shot, layout, ground and entrance_style included), not only the fields a correction names:\n` +
       corrections.map((c) => `  ${c.scene || c.beat}: ${c.problem} → Fix: ${c.fix || c.action}`).join("\n");
   }
   return { staticPart, dynamicPart };
@@ -1582,6 +1588,12 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       const te = String(b.text_entrance || "").toUpperCase().trim();
       b.text_entrance = ["POP_STANDARD", "POP_SOFT", "POP_EMPHASIS", "POP_HARD", "POP_LETTER", "POP_WORD_STACK"].includes(te) ? te : null;
       checkZones(b);
+      // The shot (SHOT in the prompt): a name from the reference's grammar, or none.
+      if (b.shot != null) {
+        const sn = shotName(b.shot);
+        if (!sn) console.warn(`::warning::[plan] beat ${b.index}: shot "${b.shot}" is not a shot — none recorded`);
+        b.shot = sn;
+      } else b.shot = null;
       // Concepts (visual/concept-visuals.js): only names the sentence names;
       // an ungrounded proposal is dropped, an empty list falls back to the
       // sentence's own concept words.
@@ -1592,6 +1604,48 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
     const tiers = applyMotionTiers(plan.beats, (m) => console.log(m));
     const majors = tiers.majors;
     console.log(`[plan] motion tiers: ${plan.beats.map((b) => ({ micro: "·", medium: "m", major: "M" })[b.motion_tier]).join("")} (${majors.length} major${tiers.defaulted ? ", defaulted: the planner marked none" : ", the planner's own"}); entities: ${plan.beats.reduce((a, b) => a + b.named_entities.length, 0)}; camera focus on ${plan.beats.filter((b) => b.camera_focus).length} beat(s)`);
+  }
+
+  // ── SHOTS: the sequence's legality, sent back ONCE (docs/REFERENCE-SHOT-GRAMMAR.md) ──────────
+  // The planner chooses every beat's shot. Code only checks the two rules the render enforces on the
+  // sequence — never the same shot twice in a row; never the words in the top band three beats in a
+  // row (template-window, scripts/template-check.js) — and a beat with no shot. A plan that breaks one
+  // goes back to the model with the exact problems; its answer is checked the same way. Nothing is
+  // reassigned by code: a problem the answer leaves is logged and the render's gates judge the frames.
+  {
+    const textAt = (b) => (b.shot === "STATEMENT" ? "low" : !b.shot || b.shot === "FIGURE" ? "top" : TEXT_AT[b.shot] || "top");
+    const problems = () => {
+      const out = [];
+      plan.beats.forEach((b, i) => {
+        if (!b.shot) out.push({ i, why: "no shot" });
+        else if (i > 0 && b.shot === plan.beats[i - 1].shot && !["FIGURE", "STATEMENT"].includes(b.shot)) out.push({ i, why: `${b.shot} twice in a row (beat ${plan.beats[i - 1].index})` });
+        if (i >= 2 && [0, 1, 2].every((k) => textAt(plan.beats[i - k]) === "top")) out.push({ i, why: `words in the top band three beats in a row (beats ${plan.beats[i - 2].index}-${b.index})` });
+      });
+      return out;
+    };
+    const before = problems();
+    console.log(`[shots] ${plan.beats.map((b) => b.shot || "-").join(" ")}${before.length ? ` — ${before.length} problem(s): ${before.map((p) => `beat ${plan.beats[p.i].index} ${p.why}`).join("; ")}` : " — legal"}`);
+    if (before.length && planSource !== "ollama" && !forcedOllama()) {
+      const lines = plan.beats.map((b, i) => `[${b.index}] "${(sentences[b.index]?.text || sentences[i]?.text || "").slice(0, 160)}" — shows: ${String(b.visual_type || "TYPE").toUpperCase()}; your shot: ${b.shot || "none"}${before.filter((p) => p.i === i).map((p) => ` — PROBLEM: ${p.why}`).join("")}`).join("\n");
+      const ask = `You chose a SHOT for each beat of a vertical video. A code check found problems with the sequence. Return a shot for EVERY beat, keeping the ones that are fine.
+
+Shots — PHOTO beats: SCENE-FULL [top], SCENE-LOW [low], PHOTO-BAND [low], PHOTO-EDGE [top], PHOTO-CARD [top], PHOTO-INSET [top], PHOTO-STRIP [top], PORTRAIT [top]. OBJECT beats (a cutout, logo, money object or symbol): HERO-STACK [top], HERO-LOW [top], HERO-SCATTER [top], HERO-OVER [low]. Charts / numbers / maps / processes / lists / timelines / comparisons: FIGURE [top]. Words only: STATEMENT [low].
+Rules: never the same shot on two beats in a row; never [top] on three beats in a row; the shot fits what the beat shows.
+
+${lines}
+
+Respond ONLY with JSON: {"beats":[{"index":<n>,"shot":"<name>"}]} — one entry per beat.`;
+      const ans = await callLLM([{ role: "user", content: ask }], { maxTokens: 1200, temperature: 0 }, "plan-shots");
+      const got = isProviderError(ans) ? [] : (Array.isArray(ans?.beats) ? ans.beats : []);
+      let changed = 0;
+      for (const a of got) {
+        const b = plan.beats.find((x) => x.index === Number(a?.index));
+        const sn = shotName(a?.shot);
+        if (b && sn && sn !== b.shot) { b.shot = sn; changed++; }
+      }
+      const after = problems();
+      console.log(`[shots] re-asked: ${changed} shot(s) changed by the planner${isProviderError(ans) ? ` (model: ${ans.error})` : ""} -> ${plan.beats.map((b) => b.shot || "-").join(" ")}${after.length ? ` — ${after.length} problem(s) left: ${after.map((p) => `beat ${plan.beats[p.i].index} ${p.why}`).join("; ")}` : " — legal"}`);
+    }
   }
 
   const groundCounts = normalizeGrounds(plan.beats, (m) => console.log(m));

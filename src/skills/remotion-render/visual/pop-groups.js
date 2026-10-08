@@ -7,7 +7,7 @@
  * (visual/entity-sync.js, scheduled in render.js) the group holding the entity visual pops
  * on its word instead.
  */
-import { flattenBoxes, ZONES, CAPTION } from "./canvas-layout.js";
+import { flattenBoxes, ZONES, CAPTION, FULL_PHOTO_COMPS } from "./canvas-layout.js";
 
 export const POP = Object.freeze({ IN: 6, OUT: 6, STAGGER: 8, START: 1, S0: 0.94, OVER: 1.04 });
 // Entrance styles (owner's spec 2026-10-03, part C.4; scripts/composition-variety.js assigns
@@ -27,7 +27,9 @@ function arrival(order, style) {
   const step = style === "staggered" ? ENTRANCE.STAGGERED : POP.STAGGER;
   return order.map((g, i) => ({ ...g, at: i * step }));
 }
-export const PHOTO_COMPS = ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"];
+// The full-bleed photo compositions: the photo is the ground and pops as its own group. A shot's
+// framed photo (PHOTO-BAND / -EDGE / -CARD / -INSET / -STRIP) is an element of the band it sits in.
+export const PHOTO_COMPS = FULL_PHOTO_COMPS;
 // The bands the groups are clipped to (zones; the middle runs to the caption
 // row so a descender within ZONE_TOL is not cut).
 const BANDS = { top: [0, ZONES.top[1]], middle: [ZONES.middle[0], CAPTION.y - 10] };
@@ -37,7 +39,7 @@ export function popGroups(c, L) {
   const groups = [];
   if (photo) groups.push({ key: "photo", show: "body", clip: null, cx: 540, cy: 960 });
   for (const [band, [y0, y1]] of Object.entries(BANDS)) {
-    const kb = flattenBoxes(L.boxes).filter(([k, b]) => b && b.w > 0 && b.h > 0 && k !== "photo" && b.role !== "shape" && b.y + b.h / 2 >= y0 && b.y + b.h / 2 < y1);
+    const kb = flattenBoxes(L.boxes).filter(([k, b]) => b && b.w > 0 && b.h > 0 && (k !== "photo" || !photo) && b.role !== "shape" && b.y + b.h / 2 >= y0 && b.y + b.h / 2 < y1);
     if (!kb.length) continue;
     const bs = kb.map(([, b]) => b);
     const x0 = Math.min(...bs.map((b) => b.x)), x1 = Math.max(...bs.map((b) => b.x + b.w));
@@ -67,8 +69,8 @@ export function popGroups(c, L) {
 export function entityGroupKey(c, L, groups) {
   const kind = c.entity_pop?.kind;
   if (!kind) return null;
-  if (kind === "photo") return groups.some((g) => g.key === "photo") ? "photo" : null;
-  const box = kind === "portrait" ? L.boxes.portrait : kind === "cutout" ? L.boxes.cutout0 : kind === "number" ? L.boxes.number : null;
+  if (kind === "photo" && groups.some((g) => g.key === "photo")) return "photo";
+  const box = kind === "photo" ? L.boxes.photo : kind === "portrait" ? L.boxes.portrait : kind === "cutout" ? L.boxes.cutout0 : kind === "number" ? L.boxes.number : null;
   if (!box) return null;
   const cy = box.y + box.h / 2;
   const band = Object.entries(BANDS).find(([, [y0, y1]]) => cy >= y0 && cy < y1)?.[0];

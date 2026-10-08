@@ -55,6 +55,24 @@ export function motionsFor(raw, idx = 0) {
       primary = "photo pushes in 2%";
       secondary = "headline words pop";
       break;
+    case "SCENE-LOW":
+      primary = "photo pushes in 2%";
+      secondary = "headline words pop low over a darkened foot";
+      break;
+    case "PHOTO-BAND":
+    case "PHOTO-EDGE":
+    case "PHOTO-CARD":
+    case "PHOTO-INSET":
+    case "PHOTO-STRIP":
+      primary = "framed photo pops in place, then pushes in 2%";
+      secondary = "headline words pop";
+      break;
+    case "HERO-LOW":
+    case "HERO-SCATTER":
+    case "HERO-OVER":
+      primary = "object pops in from its floor";
+      secondary = "words pop in one at a time";
+      break;
     case "PORTRAIT":
       primary = "portrait pushes in 2%";
       secondary = "name types on; shadow shifts 4px";

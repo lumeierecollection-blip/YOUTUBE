@@ -23,7 +23,7 @@ import { join, dirname, basename, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { createRequire as createRequireEntity } from "node:module";
-import { compositionFor, canvasLayout as layoutOfCanvas, canvasManifest, normalizeCanvas as normalizeForLayout } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { compositionFor, canvasLayout as layoutOfCanvas, canvasManifest, normalizeCanvas as normalizeForLayout, shotComposition, layoutViolations, SHOT_COMPOSITIONS } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { resolveGround } from "../src/skills/remotion-render/visual/backgrounds.js";
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
@@ -984,6 +984,31 @@ export function sourceCredit(url) {
   return h;
 }
 
+/**
+ * THE SHOT (docs/REFERENCE-SHOT-GRAMMAR.md): the planner's frame division for this beat, drawn when
+ * the content is something it frames (canvas-layout.js shotComposition). Legality only: a shot whose
+ * layout would break a Layer 1 rule the content's own composition keeps is not drawn — the content's
+ * composition is, and the log says which rule. Code never picks a different shot. Run again once a
+ * concept cutout is attached (attachConceptVisuals): only then is a HERO shot's object known.
+ */
+export function applyShot(c, b, log = console.log) {
+  if (!b?.shot) return c;
+  const base = compositionFor(c.visual_type, !!c.photo, { view: c.photo?.view, split: !(c.concept_visuals || []).length && c.type_layout === "split" && !!splitHeadline(c.headline) });
+  const own = SHOT_COMPOSITIONS.includes(c.composition) || c.composition === "SCENE-FULL" || c.composition === "PORTRAIT" ? base : c.composition;
+  const sc = shotComposition(own, b.shot, c);
+  c.shot = sc.shot || String(b.shot);
+  const tag = `[shot] beat ${b.index ?? "?"}: ${c.shot}`;
+  if (!sc.used) { c.composition = own; log(`${tag} NOT drawn — ${sc.why}`); return c; }
+  if (sc.composition === own) { c.composition = own; log(`${tag} drawn`); return c; }
+  const norm = (x) => normalizeForLayout({ ...c, composition: x, layout: null }, b.index ?? 0);
+  const had = new Set(layoutViolations(layoutOfCanvas(norm(own))).map((v) => v.rule));
+  const added = layoutViolations(layoutOfCanvas(norm(sc.composition))).filter((v) => !had.has(v.rule));
+  if (added.length) { c.composition = own; log(`${tag} NOT drawn — ${added.map((v) => `${v.rule}: ${v.detail}`).join("; ")}; ${own} instead`); return c; }
+  c.composition = sc.composition;
+  log(`${tag} drawn (${own} content)`);
+  return c;
+}
+
 function canvasContentFor(b, { photo = null } = {}) {
   let vt = String(b.visual_type || "TYPE").toUpperCase();
   if (((vt === "PHOTO" || vt === "DOCUMENT" || vt === "MONEY") && !photo)) vt = "TYPE";
@@ -1045,6 +1070,7 @@ function canvasContentFor(b, { photo = null } = {}) {
   const hasHero = (c.concept_visuals || []).length > 0;
   if (hasHero) delete c.type_layout;
   c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: !hasHero && c.type_layout === "split" && !!splitHeadline(c.headline) });
+  applyShot(c, b);
   // What became of the planner's layout for this beat (canvas-layout.js canvasLayout): used, or not
   // used because it breaks a Layer 1 rule the default arrangement keeps.
   if (c.layout) {
@@ -1174,6 +1200,8 @@ export function attachConceptVisuals({ wanted, results, used, stats, channelId }
       console.log(`[concepts] ch-${channelId} beat ${w.b.index}: TYPE-SPLIT -> TYPE-FULL concept beat`);
     }
     c.concept_visuals = visuals;
+    // The object is known now: the planner's HERO shot can be drawn (applyShot).
+    applyShot(c, w.b);
     // Source credit (part C): the fetched cutout's page domain.
     { const cr = sourceCredit(visuals.find((v) => v.class === "cutout")?.source_url); if (cr) c.source_credit = cr; }
     console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${visuals.map((v) => `${v.name} (${v.class === "symbol" ? "symbol" : v.source})`).join(", ")} — from the ${w.from}`);

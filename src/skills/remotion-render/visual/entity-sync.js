@@ -27,7 +27,8 @@
  */
 export const POP_IN = 6;
 
-const PHOTO_COMPS = ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "PORTRAIT"];
+// Every composition that draws the beat's photo — full bleed, standing, or framed by a shot.
+const PHOTO_COMPS = ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "PORTRAIT", "SCENE-LOW", "PHOTO-BAND", "PHOTO-EDGE", "PHOTO-CARD", "PHOTO-INSET", "PHOTO-STRIP"];
 const SMALL = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
   "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
 
@@ -55,7 +56,7 @@ export function entityAnchor(c) {
     return pick(comp === "PORTRAIT" ? "portrait" : "photo", entity, wordsOf(entity));
   }
   const cut = (c.concept_visuals || []).find((v) => v && v.class === "cutout");
-  if (cut && ["TYPE-FULL", "TYPE-SPLIT"].includes(comp)) return pick("cutout", cut.name, wordsOf(String(cut.name).replace(/-/g, " ")));
+  if (cut && ["TYPE-FULL", "TYPE-SPLIT", "HERO-LOW", "HERO-SCATTER"].includes(comp)) return pick("cutout", cut.name, wordsOf(String(cut.name).replace(/-/g, " ")));
   if (comp === "NUMBER-FULL" && c.data?.value && digitsOf(c.data.value)) {
     const d = digitsOf(c.data.value);
     const words = [`#${d}`];

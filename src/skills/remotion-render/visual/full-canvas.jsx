@@ -71,6 +71,7 @@ import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
   TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf, backgroundOf, PAPER_OPACITY, BG_RULE, BG_GRADIENT,
+  FRAMED_PHOTO_COMPS, HERO_COMPS,
 } from "./canvas-layout.js";
 
 // Paper texture (part C.3): fractal noise in grey at PAPER_OPACITY over the white ground —
@@ -756,6 +757,8 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       );
     }
     const veil = comp === "MONEY" ? "linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.30) 36%, rgba(0,0,0,0.22) 58%, rgba(0,0,0,0.80) 100%)"
+      // SCENE-LOW (shots 11 / 16): the words sit low in the middle band, over a darkened foot.
+      : comp === "SCENE-LOW" ? "linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.30) 52%, rgba(0,0,0,0.78) 74%, rgba(0,0,0,0.66) 100%)"
       : comp === "DOCUMENT" ? "linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.05) 62%, rgba(0,0,0,0.70) 100%)"
       // place / building: the overlay eases from 0.45 to 0.35 across the beat (owner's spec
       // 2026-10-03 D.2; it was a flat 0.35 — 2026-10-02 task 3.1).
@@ -764,7 +767,7 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       <HeroEl name="photo" b={B.photo}>
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", }}>
           <Img src={staticFile(c.photo.asset)} style={{ width: "100%", height: "100%", objectFit: "cover",
-            objectPosition: c.photo.position || (comp === "DOCUMENT" ? "50% 0%" : comp === "ARCHITECTURE" ? "50% 50%" : "50% 30%"),
+            objectPosition: c.photo.position || B.photo?.focus || (comp === "DOCUMENT" ? "50% 0%" : comp === "ARCHITECTURE" ? "50% 50%" : "50% 30%"),
             transform: `translateY(${ty.toFixed(2)}%) scale(${scale.toFixed(4)})`, filter: comp === "DOCUMENT" ? "none" : "saturate(0.92) contrast(1.05)" }} />
           <div style={{ position: "absolute", inset: 0, background: veil }} />
         </div>
@@ -773,6 +776,77 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   }
   // No image resolved (compositionFor sends such a beat to TYPE-FULL, so this is a safety net): the header alone.
   return part === "header" ? <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} /> : null;
+}
+
+// ── SHOT FRAMES (docs/REFERENCE-SHOT-GRAMMAR.md) ──────────────────────
+// A shot's photo drawn in its box (canvas-layout.js shotLayout), on the beat's own ground, with the
+// header in ink. `frame` is the treatment the reference uses:
+//   band   bleeds off the top and both sides (shot 2)
+//   edge   cropped by one frame edge; an accent bar holds its foot (shots 5 / 25)
+//   card   a heavy dark mat with a soft shadow (shots 4 / 19)
+//   inset  rounded, with a solid block shadow down and away (shot 18)
+//   strip  a torn-paper band across the middle, accent bars on its edges (shot 17)
+// Each frame puts solid ink at the photo's lowest edge (mat, block shadow, bar), so the beat's span
+// does not depend on how bright the photo happens to be there (canvas-coverage measures ink).
+// The photo pushes in 2% across the beat; nothing else moves (the camera is still on these shots).
+function tornEdge(seed, n = 18, amp = 1.4) {
+  // A deterministic jagged edge: percentages along the width, small depths (the reference's torn paper).
+  let x = seed * 9301 + 49297;
+  const rnd = () => { x = (x * 9301 + 49297) % 233280; return x / 233280; };
+  return Array.from({ length: n + 1 }, (_, i) => [(i / n) * 100, rnd() * amp]);
+}
+function PhotoFrame({ c, L, local, dur, fps, accent, idx, part = "body" }) {
+  const m = useMotion(c, local, dur, fps);
+  const th = useTheme();
+  const B = L.boxes, tl = timeline(c, B, dur, fps);
+  if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
+  const b = B.photo;
+  if (!b || !c.photo?.asset) return null;
+  const p = clamp01(local / Math.max(1, dur));
+  const img = (extra = {}) => (
+    <Img src={staticFile(c.photo.asset)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: c.photo.position || b.focus || "50% 40%",
+      transformOrigin: "50% 40%", transform: `scale(${(1 + 0.02 * p).toFixed(4)})`, filter: "saturate(0.92) contrast(1.05)", ...extra }} />
+  );
+  const bar = (x, y, w, h) => <div style={{ position: "absolute", left: x, top: y, width: w, height: h, backgroundColor: accent }} />;
+  const f = b.frame;
+  if (f === "card") {
+    const mat = 14;
+    return (
+      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, backgroundColor: "#151515", boxShadow: "0 8px 22px rgba(0,0,0,0.16)" }}>
+        <div style={{ position: "absolute", left: mat, top: mat, right: mat, bottom: mat, overflow: "hidden" }}>{img()}</div>
+      </div>
+    );
+  }
+  if (f === "inset") {
+    const off = 14, r = 22;
+    return (
+      <>
+        <div style={{ position: "absolute", left: b.x + off, top: b.y + off, width: b.w, height: b.h, borderRadius: r, backgroundColor: th.dark ? "#F2F0EB" : INK }} />
+        <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, borderRadius: r, overflow: "hidden", backgroundColor: LIGHT }}>{img()}</div>
+      </>
+    );
+  }
+  if (f === "strip") {
+    const top = tornEdge((Number(b.seed) || idx) + 3), bot = tornEdge((Number(b.seed) || idx) + 11);
+    const clip = `polygon(${[...top.map(([x, d]) => `${x}% ${d}%`), ...bot.reverse().map(([x, d]) => `${x}% ${100 - d}%`)].join(", ")})`;
+    return (
+      <>
+        <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, clipPath: clip, overflow: "hidden" }}>{img()}</div>
+        {bar(L_EDGE, b.y - 6, 380, 14)}
+        {bar(R_EDGE - 380, b.y + b.h - 14, 380, 14)}
+      </>
+    );
+  }
+  if (f === "edge") {
+    return (
+      <>
+        <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h - 12, overflow: "hidden" }}>{img()}</div>
+        {bar(b.side === "left" ? b.x : b.x + 40, b.y + b.h - 12, b.w - 40, 12)}
+      </>
+    );
+  }
+  // band: bleeds off the top and both sides.
+  return <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, overflow: "hidden" }}>{img()}</div>;
 }
 
 // ── PROCESS-FULL ──────────────────────────────────────────────────────
@@ -1039,7 +1113,7 @@ export function cameraAt(c, L, local, dur, fps) {
 // hero still fits the safe width: 1.15 for a narrow statement, less for a chart
 // that already spans the frame.
 export function majorZoom(L) {
-  if (["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "MAP-CENTERED", "COMPARISON-SPLIT"].includes(L.composition)) return null;
+  if (["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "SCENE-LOW", "MAP-CENTERED", "COMPARISON-SPLIT", ...FRAMED_PHOTO_COMPS, ...HERO_COMPS].includes(L.composition)) return null;
   const h = L.boxes[L.hero] || null;
   const st = L.boxes.statement;
   if (st && st.rotate) return null;
@@ -1059,7 +1133,9 @@ const themeFor = (c, onPhoto) => (onPhoto ? { ink: "#FFFFFF", soft: "rgba(255,25
 
 const COMPONENTS = {
   "TYPE-FULL": TypeFull, "TYPE-SPLIT": TypeFull, "NUMBER-FULL": TypeFull, "PORTRAIT": TypeFull, "DATA-FULL": DataFull, "PROCESS-FULL": ProcessFull,
-  "SCENE-FULL": SceneFull, "ARCHITECTURE": SceneFull, "DOCUMENT": SceneFull, "MONEY": SceneFull,
+  "SCENE-FULL": SceneFull, "ARCHITECTURE": SceneFull, "DOCUMENT": SceneFull, "MONEY": SceneFull, "SCENE-LOW": SceneFull,
+  "PHOTO-BAND": PhotoFrame, "PHOTO-EDGE": PhotoFrame, "PHOTO-CARD": PhotoFrame, "PHOTO-INSET": PhotoFrame, "PHOTO-STRIP": PhotoFrame,
+  "HERO-LOW": TypeFull, "HERO-SCATTER": TypeFull,
   "MAP-CENTERED": MapCentered, "LIST-BUILD": ListBuild, "TIMELINE": Timeline, "COMPARISON-SPLIT": ComparisonSplit,
 };
 
@@ -1130,7 +1206,10 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   // Zones: the camera and the major zoom move only as far as keeps the body inside its zone.
   const fitted = keepBodyInZone(L, cameraAt(c, L, bodyLocal, dur, fps), zoom0, zk0, !!c.photo && PHOTO_COMPS.includes(L.composition));
   // still: the pop-up compositor (PopGroups) — the camera is static, no push, no zoom.
-  const cam = still ? { s: 1, x: 0, y: 0 } : fitted.cam, zoom = zoom0, zk = still ? 1 : fitted.zk;
+  // A shot's framed photo is not a zoned element the camera clamp can see (elementType: photo), so a
+  // push could carry it across a zone edge: the camera is still on those shots, as in the reference.
+  const shotStill = still || FRAMED_PHOTO_COMPS.includes(L.composition);
+  const cam = shotStill ? { s: 1, x: 0, y: 0 } : fitted.cam, zoom = zoom0, zk = shotStill ? 1 : fitted.zk;
   return (
     <Theme.Provider value={theme}>
       <Anim.Provider value={{ ...(c.anim || {}), dur, accent, kinetic: c.kinetic || null, beat: idx }}>

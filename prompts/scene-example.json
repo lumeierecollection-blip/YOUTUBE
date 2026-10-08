@@ -1,37 +1,17 @@
 {
-  "_comment": "One fully worked planner beat. scripts/gemini-visual-plan.js embeds this file in the planner prompt (the model cannot open files). The planner describes the scene AND names the beat's type, composition, ground and layout (visual_type, canvas_composition, ground, layout); scripts/scene-translate.js builds the candidates for what it named and the grounding gate checks them against the sentence. A field left out falls back: no visual_type -> the description decides; no ground -> the house white; no layout -> the composition's default arrangement. The layout here is THIS beat's own; each beat's comes from its own content.",
+  "_comment": "One fully worked planner beat. scripts/gemini-visual-plan.js embeds this file in the planner prompt (the model cannot open files). The planner describes the scene AND names the beat's type, composition, shot and ground (visual_type, canvas_composition, shot, ground); scripts/scene-translate.js builds the candidates for what it named and the grounding gate checks them against the sentence. The shot is THIS beat's frame division from the reference's grammar (docs/REFERENCE-SHOT-GRAMMAR.md) — on a photo or object shot the shot is the arrangement, so no layout is given; a FIGURE or STATEMENT beat may add a layout. A field left out falls back: no visual_type -> the description decides; no ground -> the house white.",
   "sentence": "Jerome Powell said rates will stay high.",
   "beat": {
     "index": 1,
     "kind": "EDITORIAL",
     "visual_type": "PHOTO",
     "canvas_composition": "PORTRAIT",
+    "shot": "PHOTO-CARD",
     "ground": "white",
-    "layout": {
-      "cols": 2,
-      "rows": 3,
-      "slots": [
-        {
-          "id": "headline",
-          "col": 0,
-          "row": 0,
-          "col_span": 2,
-          "align": "right"
-        },
-        {
-          "id": "portrait",
-          "col": 0,
-          "row": 1,
-          "row_span": 2,
-          "align": "left",
-          "v_align": "bottom"
-        }
-      ]
-    },
     "lead_in": null,
     "headline": "Rates stay high",
     "emphasis_word": "high",
-    "scene_description": "A portrait of Jerome Powell, the Federal Reserve chairman, standing in the lower half of the frame; a slow push in across the beat. The headline pops in word by word.",
+    "scene_description": "A portrait of Jerome Powell, the Federal Reserve chairman, as a card in a heavy dark frame standing in the lower half of the frame; a slow push in across the beat. The headline pops in word by word above it.",
     "named_entities": [
       {
         "type": "person",

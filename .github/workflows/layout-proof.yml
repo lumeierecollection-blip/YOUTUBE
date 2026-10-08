@@ -15,6 +15,7 @@ on:
       - "src/skills/remotion-render/visual/full-canvas.jsx"
       - "scripts/layout-proof.mjs"
       - "scripts/fixtures/layout-proof/**"
+      - "scripts/fixtures/shot-proof/**"
       - ".github/workflows/layout-proof.yml"
 
 permissions:
@@ -76,5 +77,72 @@ jobs:
           path: |
             out/a/beat-20-90.png
             out/b/beat-20-90.png
+          if-no-files-found: ignore
+          retention-days: 14
+
+  # The reference shot grammar (docs/REFERENCE-SHOT-GRAMMAR.md), drawn: every shot composition in one
+  # fixture video through the real renderer, then Layer 1 (local-audit.cjs --canvas-only) on its
+  # pixels — the same gate a channel's render answers — and a contact sheet of the frames.
+  render-shots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+
+      - name: Ensure ffmpeg/ffprobe
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+
+      - name: Render every shot
+        env:
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: node scripts/qa-canvas-render.mjs --out out/shots --only-extra --extra-beats scripts/fixtures/shot-proof/beats.json --moments 0.62 --video --accent "#C2410C"
+
+      - name: Contact sheet (one frame per shot, 62% into each beat)
+        if: always()
+        run: |
+          ls out/shots/beat-*-62.png | sort -V > /tmp/list.txt
+          n=$(wc -l < /tmp/list.txt)
+          args=""; for f in $(cat /tmp/list.txt); do args="$args -i $f"; done
+          ffmpeg -loglevel error -y $args -filter_complex "hstack=inputs=$n,scale=iw/2:-1" out/shots/contact-sheet.png
+
+      - name: Layer 1 on the rendered pixels
+        run: node scripts/local-audit.cjs --canvas-only --video out/shots/canvas-test.mp4 --manifest out/shots/canvas-test-manifest.json
+
+      - name: Upload the frames
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shot-proof-${{ github.run_id }}
+          path: |
+            out/shots/*.png
+            out/shots/canvas-test.mp4
+            out/shots/canvas-test-manifest.json
           if-no-files-found: ignore
           retention-days: 14

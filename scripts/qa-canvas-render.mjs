@@ -76,6 +76,9 @@ const beatsSpec = [
   // whose concept_visuals point at a PNG fetched by scripts/fetch-cutout-once.cjs (there is no library).
   ...(arg("extra-beats") ? JSON.parse(readFileSync(arg("extra-beats"), "utf8")) : []),
 ];
+// --only-extra: the video is the --extra-beats alone (the shot proof renders only its own beats,
+// so Layer 1's rotation and template rules are judged on that sequence).
+if (process.argv.includes("--only-extra") && arg("extra-beats")) beatsSpec.splice(0, beatsSpec.length - JSON.parse(readFileSync(arg("extra-beats"), "utf8")).length);
 // Cutout ink outlines, as render-and-qa.js attaches them.
 const { inkOf } = await import("./cutout-ink.mjs");
 for (const b of beatsSpec) for (const v of b.c.concept_visuals || []) if (v.class === "cutout" && v.asset && !v.ink) v.ink = await inkOf(join(RR, "public", v.asset));
