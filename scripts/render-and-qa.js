@@ -1286,6 +1286,8 @@ async function resolveCanvas(channelId, planPath, plan) {
     const narr = (b) => b.narration || "";
     const imageBeats = () => plan.beats.filter((b) => b.canvas.photo).length;
     const rot = enforceRotation(plan.beats.length, {
+      // The planner's own grounded choice is not rotated away (as in gemini-visual-plan.js).
+      locked: (i) => !!plan.beats[i]?.planner_chose_type,
       // A name card is its own composition exactly as local-audit canvas-type keys it: by the
       // lead_phrase box, which the layout draws only when the card has a sub-phrase. A bare-name
       // card next to a TYPE-FULL statement is "TYPE-FULL twice" to the audit (CI run
@@ -1328,6 +1330,10 @@ async function resolveCanvas(channelId, planPath, plan) {
       const b = plan.beats[i];
       // A name card stays a name card (owner's spec 2026-10-02, task 4.3: the entity's name and figure, not a chart).
       if (!isType(b) || b.canvas.name_card) continue;
+      // Gemini decides: a TYPE beat the planner chose (and the grounding gate passed) is not
+      // rewritten here. CI run 37795613343 ch-1 beat 3: the planner chose TYPE, this pass
+      // converted it to a MAP of the UAE off the word "Are", and beat-check failed the video.
+      if (b.planner_chose_type) continue;
       for (const alt of candidatesFor({ sentence: narr(b), headline: b.canvas.headline || "" })) {
         if (["TYPE-FULL", "TYPE-SPLIT"].includes(alt.composition)) continue;
         const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, narr(b));

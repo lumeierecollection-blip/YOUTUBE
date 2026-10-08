@@ -156,9 +156,17 @@ export const GEO_REGIONS = ${JSON.stringify(regions)};
 
 export const GEO_ALIASES = ${JSON.stringify(aliases)};
 
-/** Region id for a place name, or null. Exact alias match, case-insensitive. */
+/**
+ * Region id for a place name, or null. Exact alias match, case-insensitive —
+ * except a code of 3 letters or fewer, which must be written in capitals
+ * (USA, UK, DRC). The aliases carry every ISO-3 code, so case-insensitively
+ * "Are" was the UAE, "Can" Canada, "Per" Peru: CI run 37795613343 ch-1 drew a
+ * UAE map for "Are you leaving zero emergency cash behind?".
+ */
 export function resolveRegion(name) {
-  const k = String(name || "").toLowerCase().replace(/^the\\s+/, "").replace(/[.]/g, "").replace(/\\s+/g, " ").trim();
+  const raw = String(name || "").replace(/^the\\s+/i, "").replace(/[.]/g, "").replace(/\\s+/g, " ").trim();
+  if (raw.length <= 3 && raw !== raw.toUpperCase()) return null;
+  const k = raw.toLowerCase();
   return GEO_ALIASES[k] || null;
 }
 

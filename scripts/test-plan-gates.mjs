@@ -50,7 +50,7 @@ eq("COMPARE: vs", checkVisual({ visual_type: "COMPARE", data: {} }, "Renters pay
 eq("COMPARE: one figure -> TYPE", checkVisual({ visual_type: "COMPARE", data: {} }, "Rents rose 12% last year.").type, "TYPE");
 eq("DOCUMENT: names an instrument", checkVisual({ visual_type: "DOCUMENT", data: {} }, "The Dodd-Frank Act reshaped banking.").data?.name, "Dodd-Frank Act");
 eq("DOCUMENT: no name -> TYPE", checkVisual({ visual_type: "DOCUMENT", data: {} }, "The judge issued an order.").type, "TYPE");
-eq("MONEY: the object and the figure", checkVisual({ visual_type: "MONEY", data: {} }, "The fraud cost investors $105 million.").data, { object: "United States dollar banknotes", value: "$105 million" });
+eq("MONEY: the object and the figure", checkVisual({ visual_type: "MONEY", data: {} }, "Investors handed over $105 million in cash.").data, { object: "banknotes cash", value: "$105 million" });
 eq("MONEY: no money object -> TYPE", checkVisual({ visual_type: "MONEY", data: {} }, "Rates rose sharply.").type, "TYPE");
 eq("COUNTER: a year is a hero number now (it snaps in)", checkVisual({ visual_type: "COUNTER", data: { value: "1938", label: "the year" } }, "The law passed in 1938.").type, "COUNTER");
 eq("COUNTER: an identifier is still refused", checkVisual({ visual_type: "COUNTER", data: { value: "10" } }, "Article 10 of the treaty was invoked.").type, "TYPE");
