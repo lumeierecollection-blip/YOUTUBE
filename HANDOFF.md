@@ -200,6 +200,42 @@ The loop now stops at the NEXT gap: `revise()` at the call site returns no plan 
 is not permitted there — "planner returned no partial plan patch; a full re-render is not
 permitted". Live cannot act until that is built (7.33).
 
+### 3d. Board runs 2026-10-08 evening — branch `fix/ollama-and-gemini-fallback` (NOT merged)
+
+Four dry-run board dispatches on the branch (publish is gated to main): 37795613343 (`9077ac2`),
+37803694366 (`315e009`), 37810883817 (`5477743`), 37818249392 (`f6a7dca`). **First green video:
+ch-5 on 37810883817** — `judge-dismisses-murder-robbery-charges-mid-trial`, Layer 1 17/17, beat-check
+9/9, Layer 3 accept, frame review APPROVED, queued approved/; frames inspected by hand (Wikipedia
+photos of Wilkes-Barre and the Luzerne County Courthouse, verified MATCH). Its image-credits.json is
+empty although it uses two Wikimedia photos — attribution not recorded (open).
+
+Fixed on the branch, each by mechanism:
+- Runner shutdowns (7.37a): the Ollama model cache never restored, so each render job pulled ~17 GB
+  and WARMED qwen2.5:7b / vl:3b / 14b in RAM beside Chrome + rembg. `warm: "false"`, 14b dropped
+  (`9077ac2`). 0 runner shutdowns in 37 render jobs across the four runs (4/10 in 37776924101).
+- Gemini: 503 tries sibling models; timeout/503 rotates untried keys first (`9077ac2`, `f83895a`).
+  Beat-check maxTokens 2048 -> 6144 (gemini-3.5-flash truncated the verdict JSON).
+- Wrong maps: ISO-3 aliases matched case-insensitively ("Are" = UAE on ch-1, "Can" = Canada on ch-9) —
+  short codes need capitals (`315e009`); bare "Washington" drew Washington STATE on ch-9 and the video
+  reached approved/ (beat-check said YES, frame review noted it and approved) — washington/georgia
+  bare now resolve to nothing (`f6a7dca`). The gates did not stop a wrong place; the alias table did.
+- visual-first no longer rewrites a planner-chosen beat; MONEY needs a physical money word, not an
+  amount (`315e009`). Render-time rotation stays the canvas-type backstop (`5477743` reverted a lock
+  that made ch-5/ch-49 fail Layer 1).
+- composition-variety fallback 5 (two key nouns + arrow) OFF (`2f3afb5`): 12/12 seen failed beat-check.
+
+Open, for the owner:
+- After fallback 5 went off, frame review's TEMPLATE_MONOCULTURE (Gemini) holds most videos
+  (ch-1/9/26/44/49 at 55-75% headline-dominated) — while Layer 3 accepts the same renders (ch-8 8.8
+  twice, ch-9, ch-49 x3). Two Geminis disagree; fix is upstream (planner/script grounding more visual
+  beats), not a code fallback.
+- ch-6 (`cinematic-documentary`) and ch-10 (`minimal`) route to legacy compositions
+  (render.js getCompositionForStyle) that never draw the Gemini canvas plan; ch-6 renders at 0.35 fps
+  (swangle) vs 13-16 fps and hits the job cap. Switching them to the full-canvas engine changes the
+  channel's registered identity — owner decision.
+- pop-transitions on dark beats with a word-synced photo (ch-5 beat 9 on 37818249392) — 7.21 / 7.27.
+- Prep `claims` gate skipped ch-2, ch-8, ch-10 on some topics — the hard rule working.
+
 ## 4. What works
 
 | channel | renders | last verdict | Layer 1 | L2 | L3 |

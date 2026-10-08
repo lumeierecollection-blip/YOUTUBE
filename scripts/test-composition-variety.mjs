@@ -27,10 +27,16 @@ eq("approval -> checkmark", V.symbolFor("The board approved the merger."), "chec
 eq("no stated meaning -> null", V.symbolFor("The meeting is on Tuesday."), null);
 eq("key nouns: first and last noun-like content words", V.keyNouns("Leadership now means listening to customers."), ["Leadership", "customers"]);
 {
+  // The key-nouns last resort is off by default (CI runs 37803694366 / 37810883817: every
+  // one beat-check looked at failed); COMPOSITION_KEYNOUNS=on restores it.
   const f = V.fallbacksFor("Higher rates lead to fewer home sales, a risk for builders.");
-  eq("fallback order: process, trend, symbol, keynouns", f.map((x) => x.kind), ["process", "trend", "symbol", "keynouns"]);
+  eq("fallback order: process, trend, symbol (key nouns off)", f.map((x) => x.kind), ["process", "trend", "symbol"]);
+  eq("a pure abstraction gets no fallback by default (stays TYPE)", V.fallbacksFor("Strong leadership changes company culture.").map((x) => x.kind), []);
+  process.env.COMPOSITION_KEYNOUNS = "on";
+  eq("fallback order with key nouns on: process, trend, symbol, keynouns", V.fallbacksFor("Higher rates lead to fewer home sales, a risk for builders.").map((x) => x.kind), ["process", "trend", "symbol", "keynouns"]);
+  eq("key nouns on: a pure abstraction gets only the last resort", V.fallbacksFor("Strong leadership changes company culture.").map((x) => x.kind), ["keynouns"]);
+  delete process.env.COMPOSITION_KEYNOUNS;
 }
-eq("a pure abstraction gets only the last resort", V.fallbacksFor("Strong leadership changes company culture.").map((x) => x.kind), ["keynouns"]);
 eq("one noun-like word: no fallback at all (the beat stays TYPE, logged)", V.fallbacksFor("This changes everything about leadership.").map((x) => x.kind), []);
 
 // C.4: the planner's entrance styles stand as written; only a beat it left open is filled, and a

@@ -42,10 +42,11 @@ eq("no name", documentNameOf("The judge issued an order on Friday."), null);
 eq("a bare Act is not a name", documentNameOf("The Act was passed."), null);
 
 // MONEY
-eq("dollars", moneyObjectOf("The fraud cost investors $105 million."), "United States dollar banknotes");
+// An amount is not a physical money object (CI run 37795613343: banknote cutouts for amounts failed beat-check).
+eq("dollars", moneyObjectOf("The fraud cost investors $105 million."), null);
 eq("a receipt", moneyObjectOf("She kept the receipt for the purchase."), "receipt");
 eq("cash", moneyObjectOf("They paid in cash."), "banknotes cash");
-eq("euros", moneyObjectOf("The fund holds 3 billion euros."), "euro banknotes");
+eq("euros", moneyObjectOf("The fund holds 3 billion euros."), null);
 eq("no money object", moneyObjectOf("Rates rose sharply this year."), null);
 
 console.log(bad ? `${bad} FAILED` : "all pass");

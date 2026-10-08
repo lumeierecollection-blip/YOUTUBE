@@ -149,8 +149,17 @@ export function fallbacksFor(sentence, { number = null } = {}) {
   if (number) out.push({ kind: "counter", visual_type: "COUNTER", data: number });
   const sym = symbolFor(s);
   if (sym) out.push({ kind: "symbol", symbol: sym });
-  const kn = keyNouns(s);
-  if (kn) out.push({ kind: "keynouns", visual_type: "PROCESS", data: { nodes: kn, keynouns: true } });
+  // Fallback 5 (two key nouns joined by an arrow) is OFF. Every one beat-check looked at on
+  // CI runs 37803694366 / 37810883817 failed it ("PART -> FULLY", "DEPARTMENT -> OCTOBER",
+  // "EXACTLY -> CONTROL", "INVESTOR -> VANISH" ...: 12 beats on ch-2/8/26), and those beats
+  // were what held ch-8's Layer-3-accepted (8.8) renders. An arrow the sentence does not
+  // state is a wrong visual authored by code; a TYPE beat is the honest fallback (owner's
+  // 2026-10-08 run brief: "never let a fallback quietly become the author", "never wrong").
+  // keyNouns() stays exported; set COMPOSITION_KEYNOUNS=on to restore the fallback.
+  if (process.env.COMPOSITION_KEYNOUNS === "on") {
+    const kn = keyNouns(s);
+    if (kn) out.push({ kind: "keynouns", visual_type: "PROCESS", data: { nodes: kn, keynouns: true } });
+  }
   return out;
 }
 

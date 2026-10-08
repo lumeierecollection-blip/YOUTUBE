@@ -1,0 +1,113 @@
+{
+ "source": "CI run 37810883817 ch-5 approved video (manifest + beat-check sentences); place_check SAME added as samePlace records it",
+ "beats": [
+  {
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "visual_type": null,
+    "sentence": "A judge just threw out a first-degree murder case in the middle of trial.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "SCENE-FULL",
+    "visual_type": "PHOTO",
+    "sentence": "Jary Javier Fortuna faced serious charges including conspiracy and robbery in Wilkes-Barre.",
+    "photo": {
+     "asset": "entities/places/wilkes-barre.jpg",
+     "entity": "Wilkes-Barre",
+     "kind": "place",
+     "view": "scene",
+     "place_check": {
+      "verdict": "SAME",
+      "why": "fixture"
+     }
+    }
+   }
+  },
+  {
+   "canvas": {
+    "composition": "TYPE-SPLIT",
+    "visual_type": null,
+    "sentence": "Jary Javier Fortuna faced those charges in Luzerne County on Thursday in Wilkes-Barre.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "visual_type": null,
+    "sentence": "Why did the court suddenly collapse on the third day of testimony?",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "SCENE-FULL",
+    "visual_type": "PHOTO",
+    "sentence": "Jary Javier Fortuna's defense team filed a motion exposing the lack of evidence in Wilkes-Barre.",
+    "photo": {
+     "asset": "documents/generic.png",
+     "entity": "Wilkes-Barre",
+     "kind": "fallback",
+     "view": "cutout",
+     "place_check": {
+      "verdict": "SAME",
+      "why": "fixture"
+     }
+    }
+   }
+  },
+  {
+   "canvas": {
+    "composition": "PROCESS-FULL",
+    "visual_type": null,
+    "sentence": "Luzerne County officials were forced to drop all charges against Fortuna immediately.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "ARCHITECTURE",
+    "visual_type": "PHOTO",
+    "sentence": "Luzerne County courts realized the state's case against Jary Javier Fortuna was completely empty.",
+    "photo": {
+     "asset": "entities/orgs/luzerne-county.jpg",
+     "entity": "Luzerne County",
+     "kind": "organization",
+     "view": "building",
+     "place_check": {
+      "verdict": "SAME",
+      "why": "fixture"
+     }
+    }
+   }
+  },
+  {
+   "canvas": {
+    "composition": "NUMBER-FULL",
+    "visual_type": null,
+    "sentence": "That decision ended the trial after only 3 days of testimony.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "ARCHITECTURE",
+    "visual_type": "PHOTO",
+    "sentence": "Luzerne County dismissed all charges against Jary Javier Fortuna after 3 days.",
+    "photo": {
+     "asset": "entities/orgs/luzerne-county.jpg",
+     "entity": "Luzerne County",
+     "kind": "organization",
+     "view": "building",
+     "place_check": {
+      "verdict": "SAME",
+      "why": "fixture"
+     }
+    }
+   }
+  }
+ ]
+}

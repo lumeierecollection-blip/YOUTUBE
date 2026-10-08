@@ -940,11 +940,17 @@ jobs:
         if: steps.status.outputs.skip != 'true'
         uses: ./.github/actions/ollama
         with:
-          # + qwen2.5:14b for the challenger only (planner 7b, vision 3b).
-          models: "qwen2.5:7b qwen2.5vl:3b qwen2.5:14b"
-          cache-key: ollama-${{ runner.os }}-qwen2.5-7b+qwen2.5vl-3b+qwen2.5-14b
+          # qwen2.5:14b was dropped from this job (2026-10-08): warming it
+          # (~9-12 GB with a 16k context) beside Chrome + rembg on the 15 GB
+          # runner is what lost 4 of 10 render runners in run 37776924101
+          # ("received a shutdown signal", exit 143, 1.5-5 min into the job).
+          # The challenger's local tier is qwen2.5:7b (OLLAMA_CHALLENGER_MODEL).
+          models: "qwen2.5:7b qwen2.5vl:3b"
+          cache-key: ollama-${{ runner.os }}-qwen2.5-7b+qwen2.5vl-3b
           # Nothing stays resident: the render and Chromium need the RAM.
           unload-after-warm: "true"
+          # Pull only; a model is loaded only when a fallback call reaches it.
+          warm: "false"
           # Pull in the background: the job renders while 17 GB download
           # (the local models are the LAST tier — Gemini, then Groq, first).
           background: "true"
@@ -957,7 +963,7 @@ jobs:
           # routes EVERY model call to Ollama; Gemini is never called.
           OLLAMA_TEXT_MODEL: qwen2.5:7b
           OLLAMA_VISION_MODEL: qwen2.5vl:3b
-          OLLAMA_CHALLENGER_MODEL: qwen2.5:14b
+          OLLAMA_CHALLENGER_MODEL: qwen2.5:7b
           # Second tier of the chain (Gemini → Groq → Ollama): scripts/groq-client.cjs.
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           # The models this account's key can call (GET /openai/v1/models);

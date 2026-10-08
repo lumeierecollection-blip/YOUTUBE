@@ -1219,7 +1219,12 @@ export function canvasManifest(raw, idx) {
   return {
     composition: L.composition, hero: L.hero, boxes: flat, content: contentBounds(L), zones: zoneReport(L).zones, motion_tier: c.motion_tier || "medium",
     camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
-    photo: c.photo ? { asset: c.photo.asset, entity: c.photo.entity || null, kind: c.photo.kind || null, view: c.photo.view || null } : null,
+    // Provenance (verified_as = the Wikipedia title + description it was verified against,
+    // place_check = the same-place verdict) is what the pre-ship place gate reads.
+    photo: c.photo ? { asset: c.photo.asset, entity: c.photo.entity || null, kind: c.photo.kind || null, view: c.photo.view || null,
+      verified_as: c.photo.verified_as || null, seen: c.photo.seen || null, source_url: c.photo.source_url || null, place_check: c.photo.place_check || null } : null,
+    // What the beat drew and the sentence it was drawn for (scripts/place-gate.js).
+    visual_type: c.visual_type || null, data: c.data || null, sentence: c.sentence || null,
     // Word-level sync (render.js / entity-sync.js): the frame (beat-relative) the entity visual pops at, and its word.
     entity_pop: c.entity_pop || null,
     // "Source: <domain>" drawn bottom-right on a fetched-image beat (part C).

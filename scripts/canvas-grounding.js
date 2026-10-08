@@ -198,10 +198,11 @@ const MONEY_OBJECTS = [
   [/\b(?:coins?)\b/i, "coins"],
   [/\b(?:banknotes?|dollar bills?|bills)\b/i, "banknotes"],
   [/\b(?:cash|currency)\b/i, "banknotes cash"],
-  [/\b(?:dollars?|USD)\b|\$\s?\d/i, "United States dollar banknotes"],
-  [/\b(?:euros?|EUR)\b|€\s?\d/i, "euro banknotes"],
-  [/\b(?:pounds? sterling|GBP)\b|£\s?\d/i, "pound sterling banknotes"],
-  [/\b(?:rupees?|INR)\b|₹\s?\d/i, "Indian rupee banknotes"],
+  // An AMOUNT in a currency ("seven million dollars", "$7", "€40") is not a
+  // physical money object: it no longer grounds a banknote photo (a figure
+  // draws it). Beat-check calls a banknote for an amount a topic-level stock
+  // object — CI run 37795613343: ch-49 beats 4 and 6 ("seven million dollars"
+  // box office) and ch-1 beat 6 ("every dollar of debt") all failed on it.
 ];
 /** The literal money object a sentence names, as a photo query, or null. */
 export function moneyObjectOf(sentence) {

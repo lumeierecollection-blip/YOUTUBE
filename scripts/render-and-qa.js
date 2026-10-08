@@ -35,6 +35,7 @@ import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layou
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
 import { inkOf } from "./cutout-ink.mjs";
+import { placeGate } from "./place-gate.js";
 const { resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 const { fetchCutoutForBeat, qualifyConcept } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
 const { resolveSceneEntity, sceneEntities, fallbackAsset } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
@@ -790,6 +791,21 @@ const QUEUE_DIRS = { approved: APPROVED_DIR, "approved-review": APPROVED_REVIEW_
  */
 async function queueVideo({ verdict, videoPath, channelId, stage = null, check = null, reason = "", extra = {} }) {
   if (!videoPath || !existsSync(videoPath)) return null;
+  // PRE-SHIP PLACE GATE (scripts/place-gate.js). Every route into approved/ or approved-review/
+  // (both can be uploaded) passes through here: a depicted place not confirmed against the
+  // script — or a render with no manifest to confirm it from — goes to rejected/, whatever any
+  // model gate said. CI run 37810883817 ch-9 reached approved/ with a Washington STATE map.
+  if (verdict === "approved" || verdict === "approved-review") {
+    const mp = videoPath.replace(/\.mp4$/, "-manifest.json");
+    const pg = existsSync(mp) ? placeGate(readJsonSafe(mp) || {}) : { pass: false, failures: [{ beat: null, rule: "M0", why: "no render manifest to confirm places against" }], checked: 0 };
+    console.log(`[place-gate] ch-${channelId}: ${pg.pass ? "PASS" : "FAIL"} — ${pg.checked} place beat(s) checked${pg.failures.length ? `; ${pg.failures.map((f) => `beat ${f.beat} ${f.rule}: ${f.why}`).join("; ")}` : ""}`);
+    if (!pg.pass) {
+      console.error(`::error::place gate FAILED for ${basename(videoPath)} — ${pg.failures.map((f) => `beat ${f.beat}: ${f.why}`).join("; ")}`);
+      extra = { ...extra, place_gate: pg, would_have_been: verdict };
+      reason = `place gate: ${pg.failures.map((f) => `beat ${f.beat} ${f.rule} ${f.why}`).join("; ")}`;
+      verdict = "rejected"; stage = "place-gate"; check = pg.failures.map((f) => f.rule).join(",");
+    }
+  }
   const dest = QUEUE_DIRS[verdict];
   const stem = basename(videoPath, ".mp4");
   const pd = await probeDuration(videoPath).catch(() => null);
@@ -958,6 +974,9 @@ function canvasContentFor(b, { photo = null } = {}) {
   const c = {
     visual_type: vt,
     data: vt === "TYPE" ? null : b.data || null,
+    // The beat's spoken sentence travels with the canvas into the render manifest: the
+    // pre-ship place gate (scripts/place-gate.js) confirms every depicted place against it.
+    sentence: b.narration || "",
     lead_in: b.lead_in || null,
     // An empty headline left a TYPE-FULL beat blank (run 36504143080 ch-44
     // beat 6, 1% of the frame): the planner's own on-screen phrase fills it.
@@ -1210,7 +1229,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         const q = ["organization", "institution", "building"].includes(e0.type) ? qualifyEntity(e0, countries) : { ent: e0 };
         if (q.note) console.log(`[entity] ${q.note}`);
         if (!q.ent?.name) { entities.fell_back.push(`${e0.type} "${e0.name}": ${q.note}`); named.push(e0); continue; }
-        const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "", scene: b.scene_description || null, sentence: b.narration || "" });
+        const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "", scene: b.scene_description || null, sentence: b.narration || "", script: plan.beats.map((x) => x.narration || "").join(" ") });
         if (r.ok && (r.logo || r.photo)) { found.push({ id: r.logo ? r.logo.asset : r.photo.asset, e0, r }); continue; }
         entities.fell_back.push(`beat ${b.index}: ${e0.type} "${e0.name}": ${r.why}`);
         // A refused acronym ("AI", "ED") is not a name: no name card is made of it.
@@ -1286,6 +1305,9 @@ async function resolveCanvas(channelId, planPath, plan) {
     const narr = (b) => b.narration || "";
     const imageBeats = () => plan.beats.filter((b) => b.canvas.photo).length;
     const rot = enforceRotation(plan.beats.length, {
+      // NOT locked on planner_chose_type: this pass is the legality backstop for Layer 1's
+      // canvas-type (no composition twice in a row). Locking it (315e009) left ch-5 MAP-CENTERED
+      // and ch-49 NUMBER-FULL twice in a row and both failed Layer 1 (CI run 37803694366).
       // A name card is its own composition exactly as local-audit canvas-type keys it: by the
       // lead_phrase box, which the layout draws only when the card has a sub-phrase. A bare-name
       // card next to a TYPE-FULL statement is "TYPE-FULL twice" to the audit (CI run
@@ -1328,6 +1350,10 @@ async function resolveCanvas(channelId, planPath, plan) {
       const b = plan.beats[i];
       // A name card stays a name card (owner's spec 2026-10-02, task 4.3: the entity's name and figure, not a chart).
       if (!isType(b) || b.canvas.name_card) continue;
+      // Gemini decides: a TYPE beat the planner chose (and the grounding gate passed) is not
+      // rewritten here. CI run 37795613343 ch-1 beat 3: the planner chose TYPE, this pass
+      // converted it to a MAP of the UAE off the word "Are", and beat-check failed the video.
+      if (b.planner_chose_type) continue;
       for (const alt of candidatesFor({ sentence: narr(b), headline: b.canvas.headline || "" })) {
         if (["TYPE-FULL", "TYPE-SPLIT"].includes(alt.composition)) continue;
         const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, narr(b));

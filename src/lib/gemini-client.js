@@ -227,7 +227,14 @@ function classify(statusCode, msg) {
   if (UNAVAILABLE_RE.test(msg || "")) return "unavailable";
   return null;
 }
-const fail = (error, detail) => ({ source: "gemini", error, detail: String(detail || "").slice(0, 300) });
+// Gemini models tried, in order, when the requested one answers 503 after its
+// retry. GEMINI_SIBLING_MODELS overrides (comma-separated; empty = none). Both
+// defaults are models this account already calls (Layer 3 judge + fallback).
+function siblingModels(model) {
+  const raw = process.env.GEMINI_SIBLING_MODELS ?? "gemini-3.1-flash-lite-preview,gemini-3.5-flash";
+  return raw.split(",").map((s) => s.trim()).filter((m) => m && m !== model);
+}
+const fail = (error, detail) =>({ source: "gemini", error, detail: String(detail || "").slice(0, 300) });
 
 /**
  * Make a chat completion call to Gemini via OpenAI-compatible endpoint.
@@ -418,6 +425,32 @@ export async function callGemini(messages, opts = {}) {
       console.error(`[gemini-client] key ${keyIndex + 1} unavailable (${detail.slice(0, 160)}) — one retry in 5 s`);
       await sleep(5000);
       continue;
+    }
+    // A 503 "high demand" is per MODEL, not per key: run 37776924101 ch-5 lost
+    // its plan to it (retry also 503 -> Groq JSON error -> Ollama 7b timed out
+    // on 4 CPUs), so the planner never ran on Gemini at all. Before leaving
+    // Gemini, try the sibling Gemini models (each gets its own one retry) —
+    // the decision stays Gemini's; the non-Gemini chain is only reached when
+    // every Gemini model is down.
+    // A timeout / 503 on one key's project is not every project's: try each key not yet
+    // tried (one attempt each) before the sibling models. CI run 37803694366 ch-1 beat-check:
+    // key 1 was spent (429), key 2 timed out (90 s, 0 bytes) on every model, and key 3 — a
+    // separate project, the one that had answered all day — was never tried.
+    if (kind === "unavailable") {
+      const next = keys.findIndex((_, i) => !tried.has(i));
+      if (next >= 0) {
+        console.error(`[gemini-client] key ${keyIndex + 1} unavailable — trying key ${next + 1}`);
+        keyIndex = next;
+        continue;
+      }
+    }
+    if (kind === "unavailable" && !opts._noModelFallback) {
+      for (const next of siblingModels(model)) {
+        console.error(`[gemini-client] ${model} unavailable after its retry — trying ${next}`);
+        const r = await callGemini(messages, { ...opts, cache: undefined, model: next, _noModelFallback: true });
+        if (!(r && r.source === "gemini" && r.error === "unavailable")) return r;
+        detail = r.detail;
+      }
     }
     console.error(`[gemini-client] key ${keyIndex + 1} ${kind}: ${detail.slice(0, 200)}`);
     return fail(kind, detail);

@@ -608,7 +608,10 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
     // fallback replaces the old Gemini transport retry. Both failing is
     // "could not run" (exit 3). A NO verdict is never retried: that is the
     // check working, not an outage.
-    let result = await callLLM([{ role: "user", content }], { maxTokens: 2048, temperature: 0, noCache: true, groqBatch }, "beat-check");
+    // maxTokens 6144, not 2048: gemini-3.5-flash (a sibling the client falls to on a 503)
+    // spends reasoning tokens from the same budget, and CI run 37803694366 ch-26 used exactly
+    // 2048 completion tokens and returned the 9-beat verdict cut off mid-JSON ("could not run").
+    let result = await callLLM([{ role: "user", content }], { maxTokens: 6144, temperature: 0, noCache: true, groqBatch }, "beat-check");
     if (isProviderError(result)) {
       console.error(`::error::beat check unavailable: ${result.source} ${result.error}${result.detail ? ` (${String(result.detail).slice(0, 160)})` : ""}`);
       process.exit(3);
