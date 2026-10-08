@@ -957,16 +957,19 @@ export function applyPlanLayout(boxes, layout, { hero = null } = {}) {
     const align = slot?.align || null, va = slot?.v_align || null;
     let x = align === "right" ? R.x + R.w - E.w : align === "center" ? R.x + (R.w - E.w) / 2 : align === "left" ? R.x : inside(E.x, R.x, E.w, R.w);
     let y = va === "bottom" ? R.y + R.h - E.h : va === "center" ? R.y + (R.h - E.h) / 2 : va === "top" ? R.y : inside(E.y, R.y, E.h, R.h);
-    // The frame: the safe edge, the header room above, the caption's zone below.
+    // The frame: the safe edge at the sides; above, the content area's top (y 130 — the table never
+    // draws above it, and the render's ground check samples the corners: CI run 37714244283, a
+    // restacked rule near y 50 read #F7F7F7 in the top-left patch), header included; below, the
+    // caption's zone.
     x = Math.max(SAFE.x, Math.min(FRAME.w - SAFE.x - E.w, x));
-    y = Math.max(SAFE.y + headH, Math.min(CONTENT_BOTTOM - E.h, y));
+    y = Math.max(LAYOUT_AREA.y0 + headH, Math.min(CONTENT_BOTTOM - E.h, y));
     // One zone per element (ZONES, owner's rule 2026-10-02): a group that would straddle the top /
     // middle edge is moved wholly into the zone holding most of it, when it fits there. Logged.
     const edge = ZONES.top[1], top = y - headH, bot = y + E.h;
     if (top < edge - ZONE_TOL && bot > edge + ZONE_TOL) {
       const intoMiddle = bot - edge >= edge - top;
       if (intoMiddle && edge + headH + E.h <= CONTENT_BOTTOM) { y = edge + headH; adjusted.push(`${id}: straddled y ${edge} -> middle zone`); }
-      else if (!intoMiddle && SAFE.y + headH + E.h <= edge) { y = edge - E.h; adjusted.push(`${id}: straddled y ${edge} -> top zone`); }
+      else if (!intoMiddle && LAYOUT_AREA.y0 + headH + E.h <= edge) { y = edge - E.h; adjusted.push(`${id}: straddled y ${edge} -> top zone`); }
       else adjusted.push(`${id}: straddles y ${edge} and fits neither zone — left as planned`);
     }
     const dx = x - E.x, dy = y - E.y;

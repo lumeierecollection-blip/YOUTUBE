@@ -137,3 +137,9 @@ describe("a slot is a region (CI run 37708554035)", () => {
     assert.notDeepEqual([lay.boxes.headline.x, lay.boxes.headline.y], [table.x, table.y]);
   });
 });
+
+it("nothing placed — the restacked kicker and rule included — goes above the content area's top (CI run 37714244283)", () => {
+  const tf = { visual_type: "TYPE", composition: "TYPE-FULL", headline: "Ballistics tie the gun", lead_in: "the state says", motion_tier: "medium" };
+  const lay = canvasLayout(normalizeCanvas({ ...tf, layout: { cols: 2, rows: 3, slots: [{ id: "headline", col: 0, row: 0, v_align: "top" }] } }, 0));
+  for (const [k, b] of flattenBoxes(lay.boxes)) assert.ok(b.y >= LAYOUT_AREA.y0, `${k} at y ${b.y}`);
+});
