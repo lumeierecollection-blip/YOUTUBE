@@ -305,6 +305,15 @@ Layer 3 5.19 / 5.65. Reference frames log, every run since `0855587`:
 real but modest: the planner's legal layouts so far re-anchor the header more than they rearrange
 the body.
 
+**Two layout plans, two rendered arrangements — controlled proof on CI:** workflow
+`layout-proof.yml`, run `37736259802` (`f0a8cca`). One NUMBER-FULL beat, ch-05 accent, rendered
+twice by the real renderer with two fixed planner layouts (`scripts/fixtures/layout-proof/`):
+A (2x3, headline right, figure bottom-left) placed `headline@291,130, number+label@48,781`;
+B (4x3, headline left, figure bottom-right) placed `headline@48,130, number+label@750,781`. Rendered
+pixels: middle-zone ink centroid x 0.165 (A) vs 0.814 (B); top-zone 0.566 vs 0.336. The job fails
+if either layout falls back or the arrangements match. Tests green on the same commit: run
+`37736259805`.
+
 **Live:** not dispatched. Every Layer-1-passing run's Layer 3 either named no weak beat or named
 beats with `beat_index` undefined (unresolved) — the beat-index resolver gap is now OBSERVED (runs
 `37705693390`, `37718157561`, `37723570093`); fixing it was out of scope tonight by instruction.
