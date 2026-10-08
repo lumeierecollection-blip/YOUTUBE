@@ -654,7 +654,19 @@ placement is whole; its vertical intent is honoured only as far as Layer 1 allow
 **7.32 — The planner still uses two grids.** 37741112569: 2x3 / 1x3 on 10/10 beats (attempt 1),
 1x3 / 2x3 / 1x4 (attempt 2). Report-only signal; not enforced.
 
-**7.33 — Live cannot act yet, for a new reason.** Indices resolve (`67f6a8a`); the call site's
+**7.33 — (resolved by `4c53802`) Live revise is built.** `scripts/eval-revise.js` asks Gemini with
+the owner's revise prompt (verbatim) and the facts of each flagged beat; every gate is re-checked in
+code (no revision at >= 7.0 after a Layer 1 pass; flagged beats only, max 2; layout field only;
+a visible consequence in words; drawable as given; moves something; the planner's side kept). Live
+backs up the original, renders the patched plan, re-runs Layer 1, judges again, and keeps the
+revision only if it passes Layer 1 and is not judged lower — else restores the original. On CI:
+`37762984901` Layer 3 7.0 -> accept, no revision; `37764608991` Layer 1 failed -> record only;
+`37766249863` Layer 3 6.30, weak beat 00:26 -> beat 5, the reviser returned an EMPTY patch ("Gate 2:
+incorrect geographical stock imagery (Alexandria Egypt vs Virginia) … a content re-plan issue") ->
+`ship_as_rendered`. A non-empty patch has been exercised only by the tests (fakes), not yet on CI.
+The earlier text follows for history.
+
+**7.33a — (superseded) Live cannot act yet, for a new reason.** Indices resolve (`67f6a8a`); the call site's
 `revise()` returns `{planPatch: null}` and `renderBeats` refuses a re-render
 (`scripts/eval-loop-callsite.js`). Making live act means (a) a planner call that patches the named
 fields of the named beats and (b) re-rendering and re-gating the video — which changes what ships,
@@ -677,6 +689,14 @@ comparison.
 element or an opacity bug — the photo is synced to its word at frame 113, the header's unspoken words
 are drawn in the dark theme's track colour (#2B2B2E on #0E0E10), so frames 6-14 are near-empty.
 Fixing it means a theme colour (SCR-13) or the word-sync rule. Not changed.
+
+**7.38 — A wrong-place photo passed into a render.** CI run 37766249863 beat 5: Layer 3 and the
+reviser both identified an Alexandria, Egypt image for Alexandria, Virginia; beat-check then failed
+the video (approved-review, not uploaded). The place-photo verification accepted it — the CLAUDE.md
+hard rule (verified photos for named places) is held only by the later gates here. Not investigated.
+
+**7.39 — A placed element's descenders.** `2b549a7`: the bottom limit now counts the table's `desc`
+(37764608991: an emphasis word's 60 px of descenders crossed y 1340).
 
 **7.37 — Render + QA steps are SIGTERMed during asset resolution.** Five times: four on the ch-5
 "former CIA official … gold bars" script (37713312537, 37722686373, 37751617230, 37755289095) and once
