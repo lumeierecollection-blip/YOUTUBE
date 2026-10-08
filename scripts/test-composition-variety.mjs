@@ -33,11 +33,18 @@ eq("key nouns: first and last noun-like content words", V.keyNouns("Leadership n
 eq("a pure abstraction gets only the last resort", V.fallbacksFor("Strong leadership changes company culture.").map((x) => x.kind), ["keynouns"]);
 eq("one noun-like word: no fallback at all (the beat stays TYPE, logged)", V.fallbacksFor("This changes everything about leadership.").map((x) => x.kind), []);
 
-// C.4: entrance styles never repeat on consecutive beats.
+// C.4: the planner's entrance styles stand as written; only a beat it left open is filled, and a
+// filled beat differs from its neighbour. (Before: the planner's "together, together" was rewritten.)
 {
   const s = V.assignEntranceStyles(["together", "together", "bogus", "staggered", "staggered"]);
-  eq("entrance styles", s, ["together", "staggered", "visual-first", "staggered", "visual-first"]);
-  eq("no two consecutive the same", s.every((x, i) => i === 0 || x !== s[i - 1]), true);
+  eq("entrance styles: the planner's kept, the open one filled", s, ["together", "together", "visual-first", "staggered", "staggered"]);
+  const f = V.assignEntranceStyles([null, null, null, null]);
+  eq("left open: none repeats its neighbour", f.every((x, i) => i === 0 || x !== f[i - 1]), true);
+}
+// Task 5.4: the planner's animation family stands; an open beat is filled.
+{
+  const a = V.assignAnimationFamilies([{ visual_type: "TYPE", animation_family: "slide-in" }, { visual_type: "TYPE", animation_family: "slide-in" }, { visual_type: "COUNTER" }]);
+  eq("animation families: the planner's kept", a, ["slide-in", "slide-in", "count-up"]);
 }
 
 console.log(bad ? `${bad} FAILED` : "all pass");

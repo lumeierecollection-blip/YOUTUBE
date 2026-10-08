@@ -163,7 +163,10 @@ const STYLES = ["together", "staggered", "visual-first"];
 export function assignEntranceStyles(planned = []) {
   const out = [];
   planned.forEach((p, i) => {
-    let s = STYLES.includes(p) ? p : STYLES[i % 3];
+    // The planner's own style stands as written, repeat or not; only a beat it left open is filled,
+    // with one that differs from its neighbour.
+    if (STYLES.includes(p)) { out.push(p); return; }
+    let s = STYLES[i % 3];
     if (i > 0 && s === out[i - 1]) s = STYLES[(STYLES.indexOf(s) + 1) % 3];
     out.push(s);
   });
@@ -181,6 +184,8 @@ const ANIM_FAMILIES = ["pop-in", "slide-in", "draw-in", "count-up"];
 export function assignAnimationFamilies(beats = []) {
   const out = [];
   beats.forEach((b, i) => {
+    // The planner's own family stands; only a beat it left open gets the default below.
+    if (ANIM_FAMILIES.includes(b?.animation_family)) { out.push(b.animation_family); return; }
     const vt = String(b?.visual_type || "TYPE").toUpperCase();
     let fam;
     if (vt === "COUNTER" || vt === "GAUGE" || vt === "PIE") fam = "count-up";

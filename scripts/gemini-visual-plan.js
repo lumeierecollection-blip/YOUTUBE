@@ -443,6 +443,9 @@ export function applyVarietyFallbacks(plan, sentences, channelId, stage = "plan"
     if (r.ok) break;
     if (!f[i] || (!f[i - 1] && !f[i + 1] && r.excess === 0)) continue;
     const b = beats[i], st = sentOf(b, i);
+    // The planner chose this beat's type (and the sentence grounds it): its choice stands. The TYPE
+    // cap and the no-two-TYPE rule only fill beats the planner left undecided.
+    if (b.planner_chose_type) { console.log(`[variety] ch-${channelId} beat ${b.index ?? i}: TYPE kept — the planner chose it`); continue; }
     const q = quantitiesOf(st)[0];
     let done = null;
     for (const c of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
@@ -663,7 +666,7 @@ ASSET KINDS - ask for one ONLY when the sentence earns it. "Request a silhouette
 
 TEXT. "headline": 2-6 words FROM the sentence, never a full sentence, never a claim it does not make. "lead_in": 2-4 of the sentence's words, lowercase, or null. "emphasis_word": one headline word or null. "kind": "TYPE" where the beat is typography, "EDITORIAL" otherwise, your choice for every beat. "typography_direction" only where text IS the beat (the hook, the close, a real turn): {"phrase": one line, 2-7 words, never the narration or a near-restatement, never a topic label like "The Problem", "moment": "hook"|"re_hook"|"key_fact"|"contradiction"|"question"|"statement"}; otherwise null. Typography is selective: at most ~1 in 3 beats text-forward.
 
-MOTION. "motion_tier": "micro"|"medium"|"major" — yours to set on every beat; mark as many beats "major" as the narration earns. "camera_focus": null or 1-2 [{"at_percent": 0.05-0.9, "target": number|chart|headline|photo|left|right|top|bottom|node0|node1|node2|full}]. "persists_from": the previous beat's index when this beat carries its element on, else null; "match_cut_prev": true when it shares that element. "text_entrance": omit, or POP_SOFT (a quiet beat) | POP_HARD (beat 0 or the last only) | POP_LETTER (at most one beat) | POP_WORD_STACK (a 2-5 word TYPE statement). "visual_events": [{"type": growth|depletion|comparison|revelation|structure_break|accumulation|population|evidence|contrast|causation, "label", "magnitude"}] — at least 5 distinct types across the video, never the same event 3 times in a row; "capabilities": the event types used (+ "typographic_emphasis" on a TYPE beat); "objects": {"label_a","label_b"} for contrast, {"figure"} for evidence, {"cause","effect"} for causation, else {}.
+MOTION. "entrance_style": "together"|"staggered"|"visual-first" — how this beat's elements arrive (all at once; one after another; the visual first, then the text), yours per beat; omit it and the system picks. "animation_family": "pop-in"|"slide-in"|"draw-in"|"count-up", yours per beat; omit it and the system picks. "motion_tier": "micro"|"medium"|"major" — yours to set on every beat; mark as many beats "major" as the narration earns. "camera_focus": null or 1-2 [{"at_percent": 0.05-0.9, "target": number|chart|headline|photo|left|right|top|bottom|node0|node1|node2|full}]. "persists_from": the previous beat's index when this beat carries its element on, else null; "match_cut_prev": true when it shares that element. "text_entrance": omit, or POP_SOFT (a quiet beat) | POP_HARD (beat 0 or the last only) | POP_LETTER (at most one beat) | POP_WORD_STACK (a 2-5 word TYPE statement). "visual_events": [{"type": growth|depletion|comparison|revelation|structure_break|accumulation|population|evidence|contrast|causation, "label", "magnitude"}] — at least 5 distinct types across the video, never the same event 3 times in a row; "capabilities": the event types used (+ "typographic_emphasis" on a TYPE beat); "objects": {"label_a","label_b"} for contrast, {"figure"} for evidence, {"cause","effect"} for causation, else {}.
 
 ${example}
 
@@ -875,7 +878,8 @@ async function main() {
         if (ok) { pick = { ...c, data: v.data }; break; }
       }
       if (want.declared) {
-        if (pick && prefer.includes(pick.visual_type)) decided.kept++;
+        // The planner's own, grounded choice: the variety and rotation passes below do not override it.
+        if (pick && prefer.includes(pick.visual_type)) { decided.kept++; b.planner_chose_type = true; }
         else { decided.ungrounded++; console.log(`[plan] beat ${b.index ?? i}: the planner chose ${prefer.join("/")} — ${declaredWhy || "the sentence grounds none of it"}; using ${pick ? pick.visual_type : "TYPE"}`); }
       }
       if (!pick || pick.visual_type === "TYPE") typeFallbacks++;
@@ -1229,6 +1233,9 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
     const figureOthers = (i) => plan.beats.map((_, j) => (j === i ? null : figureKey(effective(j))));
     const rot = enforceRotation(plan.beats.length, {
       compositionOf: compOf,
+      // A beat whose type the planner chose is not rotated away from it; a repeat of two such
+      // beats is the planner's decision and is kept (logged).
+      locked: (i) => !!plan.beats[i]?.planner_chose_type,
       candidates: (i) => candidatesFor({ sentence: sentOf(plan.beats[i], i), headline: plan.beats[i].headline || "" }),
       accept: (i, alt) => {
         const b = plan.beats[i];
@@ -1248,14 +1255,15 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
   }
   // The rotation can break a repeat with TYPE-SPLIT / TYPE-FULL: the variety rule is checked again.
   applyVarietyFallbacks(plan, sentences, channelId, "plan, after rotation");
-  // Entrance style (part C.4): together | staggered | visual-first, never the same twice in a row.
+  // Entrance style (part C.4): together | staggered | visual-first. The planner's choice stands;
+  // a beat it left open gets one that differs from its neighbour.
   {
     const es = assignEntranceStyles(plan.beats.map((b) => b.entrance_style));
     plan.beats.forEach((b, i) => { b.entrance_style = es[i]; });
     console.log(`[plan] entrance styles: ${es.join(", ")}`);
   }
-  // Animation families (Task 5.4): pop-in / slide-in / draw-in / count-up, never
-  // the same family on two consecutive beats.
+  // Animation families (Task 5.4): pop-in / slide-in / draw-in / count-up. The planner's choice
+  // stands; a beat it left open gets one that differs from its neighbour.
   {
     const af = assignAnimationFamilies(plan.beats);
     plan.beats.forEach((b, i) => { b.animation_family = af[i]; });
