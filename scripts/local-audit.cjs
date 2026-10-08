@@ -385,7 +385,11 @@ function canvasFit(beats) {
       if (v.x < SAFE_INSET - 0.5 || v.y < SAFE_INSET - 0.5 || v.x + v.w > 1080 - SAFE_INSET + 0.5 + (v.bleed || 0) || v.y + v.h > 1920 - SAFE_INSET + 0.5) {
         bad.push(`beat ${i}: ${k} box (${v.x},${v.y},${v.x + v.w},${v.y + v.h}) leaves the frame's safe area`);
       }
-      if (v.y + v.h > CAPTION_Y0 + 0.5 && v.y < CAPTION_Y1) bad.push(`beat ${i}: ${k} box (y ${v.y}-${v.y + v.h}) enters the caption band`);
+      // The band belongs to the caption-class line: since 2026-10-08 that is the planner's pull
+      // phrase placed "bottom" (the live caption is gone). It still answers the safe area above and
+      // the text-overlap rule below; everything else stays out of the band.
+      const bandOwner = k === "pull" && b.canvas?.chrome?.pull_phrase?.position === "bottom";
+      if (!bandOwner && v.y + v.h > CAPTION_Y0 + 0.5 && v.y < CAPTION_Y1) bad.push(`beat ${i}: ${k} box (y ${v.y}-${v.y + v.h}) enters the caption band`);
     }
     // Text overlap, by type role (so a list item, a timeline label or a split
     // value counts as well as the classic headline / number boxes).
@@ -527,8 +531,13 @@ function canvasType(beats) {
     if (hm === "fade") bad.push(`beat ${i}: the headline fades (headlines never fade)`);
     if (hm && pm && hm === pm) bad.push(`beat ${i}: headline motion "${hm}" twice in a row`);
   });
+  // RETIRED 2026-10-08 (owner, "kill the template"): "at least two type roles on >= 60% of beats"
+  // was met by drawing a kicker beside the headline on most beats — it REQUIRED the label +
+  // headline chassis the owner ordered removed ("some beats headline-only ... variation is
+  // required"). CI run 37832958615 ch-9 failed it at 4/9 with no chrome at all. The same axis is
+  // now gated the other way by template-window (no two devices repeating in any three beats).
+  // The count is still reported.
   const two = roleSets.filter((n) => n >= 2).length;
-  if (roleSets.length && two / roleSets.length < 0.6) bad.push(`only ${two}/${roleSets.length} beats show two type roles (need 60%)`);
   return { bad, two, n: roleSets.length };
 }
 // canvas-ground: every beat that is not a full-bleed photo is drawn on the ground it declared.

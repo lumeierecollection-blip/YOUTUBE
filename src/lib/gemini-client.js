@@ -417,8 +417,11 @@ export async function callGemini(messages, opts = {}) {
         keyIndex = next;
         continue;
       }
-      console.error(`[gemini] all keys exhausted, falling to ollama`);
-      return fail(kind, detail);
+      // Free-tier quota is per MODEL: every key spent on this model is not every key spent on the
+      // siblings (CI run 37832958615 ch-44 research fell to Ollama 3b with three models untried).
+      // Google first: the sibling models below run before any non-Google provider.
+      if (opts._noModelFallback) return fail(kind, detail);
+      console.error(`[gemini] all keys exhausted on ${model} — trying the sibling Gemini models`);
     }
     if (kind === "unavailable" && !unavailableRetried) {
       unavailableRetried = true;
@@ -444,13 +447,14 @@ export async function callGemini(messages, opts = {}) {
         continue;
       }
     }
-    if (kind === "unavailable" && !opts._noModelFallback) {
+    if ((kind === "unavailable" || kind === "quota_exhausted") && !opts._noModelFallback) {
       for (const next of siblingModels(model)) {
-        console.error(`[gemini-client] ${model} unavailable after its retry — trying ${next}`);
+        console.error(`[gemini-client] ${model} ${kind} on every key — trying ${next}`);
         const r = await callGemini(messages, { ...opts, cache: undefined, model: next, _noModelFallback: true });
-        if (!(r && r.source === "gemini" && r.error === "unavailable")) return r;
-        detail = r.detail;
+        if (!(r && r.source === "gemini" && (r.error === "unavailable" || r.error === "quota_exhausted"))) return r;
+        detail = r.detail; kind = r.error;
       }
+      console.error(`[gemini] every Gemini model on every key: ${kind} — leaving Google`);
     }
     console.error(`[gemini-client] key ${keyIndex + 1} ${kind}: ${detail.slice(0, 200)}`);
     return fail(kind, detail);

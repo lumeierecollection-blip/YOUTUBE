@@ -1681,6 +1681,9 @@ async function resolveCanvas(channelId, planPath, plan) {
     });
     for (const d of enf.dropped) console.log(`[chrome] beat ${plan.beats[d.beat].index}: ${d.device} removed — it would repeat a second device inside a three-beat window`);
     console.log(`[chrome] ch-${channelId}: labels ${plan.beats.filter((b) => b.canvas.label).length}, pull phrases ${plan.beats.filter((b) => b.canvas.pull_phrase).length}, type-led ${items.filter((x) => x.typeLed).length} of ${plan.beats.length}; ${enf.dropped.length} removed by the window rule`);
+    // The label is a kicker the animation pass above never saw: entrances are assigned again so
+    // every drawn kicker pops (Layer 1 kinetic-rules, CI run 37832958615: "kicker has 4 words but 0 entrances").
+    assignCanvasAnimations(plan.beats, { seed: channelId, log: () => {} });
   }
   for (const b of plan.beats) {
     const k = b.canvas.composition;
