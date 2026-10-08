@@ -58,3 +58,9 @@ it("run 37746025773: a placed cutout stays clear of y 1340 the way the table kee
   const T = canvasLayout(normalizeCanvas({ ...fx4.canvases[0], layout: undefined }, 0));
   assert.ok(L.boxes.cutout0.y + L.boxes.cutout0.h <= Math.max(T.boxes.cutout0.y + T.boxes.cutout0.h, 1316), `cutout bottom ${L.boxes.cutout0.y + L.boxes.cutout0.h}`);
 });
+it("run 37764608991: a placed emphasis word keeps its descenders above y 1340 (they crossed the zone edge)", () => {
+  const fx5 = JSON.parse(readFileSync("scripts/fixtures/layout-replay/run-37764608991.json", "utf8"));
+  const L = canvasLayout(normalizeCanvas(fx5.canvases[8], 8));
+  const e = L.boxes.emphasis;
+  assert.ok(e.y + e.h + (e.desc || 0) <= 1340, `emphasis ink ends at ${e.y + e.h + (e.desc || 0)}`);
+});

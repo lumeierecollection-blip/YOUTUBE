@@ -995,7 +995,10 @@ function unionOf(list) {
   const bs = list.flatMap((v) => flattenBoxes({ v }).map(([, b]) => b));
   if (!bs.length) return null;
   const x = Math.min(...bs.map((b) => b.x)), y = Math.min(...bs.map((b) => b.y));
-  return { x, y, w: Math.max(...bs.map((b) => b.x + b.w)) - x, h: Math.max(...bs.map((b) => b.y + b.h)) - y };
+  const h = Math.max(...bs.map((b) => b.y + b.h)) - y;
+  // Ink below the box: Fraunces descenders (the table's `desc`), which the box height leaves out.
+  const desc = Math.max(0, Math.max(...bs.map((b) => b.y + b.h + (b.desc || 0))) - (y + h));
+  return { x, y, w: Math.max(...bs.map((b) => b.x + b.w)) - x, h, desc };
 }
 const int = (v, lo, hi, d) => { const n = Math.round(Number(v)); return Number.isFinite(n) ? Math.max(lo, Math.min(hi, n)) : d; };
 export function slotRect(layout, slot) {
@@ -1061,8 +1064,11 @@ export function applyPlanLayout(boxes, layout, { hero = null, axes = "xy", yBlen
     // 23 px clear of y 1340 for its drop shadow; a plan that bottom-aligned the same cutout to 1340
     // put the shadow across the zone edge (CI run 37746025773, zones-no-overlap). So a placed element
     // goes no lower than the table puts it, or than 24 px above the edge, whichever is lower.
-    const bottomLimit = Math.min(CONTENT_BOTTOM, Math.max(E.y + E.h, CONTENT_BOTTOM - 24));
-    y = Math.max(LAYOUT_AREA.y0 + headH, Math.min(bottomLimit - E.h, y));
+    // The descenders count: CI run 37764608991 put an emphasis word's box bottom at 1316, and its
+    // 60 px of descenders crossed y 1340; the table ends box + descenders at 1340 exactly.
+    const inkH = E.h + (E.desc || 0);
+    const bottomLimit = Math.min(CONTENT_BOTTOM, Math.max(E.y + inkH, CONTENT_BOTTOM - 24));
+    y = Math.max(LAYOUT_AREA.y0 + headH, Math.min(bottomLimit - inkH, y));
     // One axis only (canvasLayout's partial fallback): the other axis keeps the table's position.
     if (axes === "x") y = E.y;
     if (axes === "y") x = E.x;

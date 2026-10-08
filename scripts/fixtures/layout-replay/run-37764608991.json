@@ -1,0 +1,723 @@
+{
+ "source": "CI run 37764608991 (live); zones-no-overlap failed beat 8: an emphasis word placed with its box bottom at 1316 — its descenders crossed y 1340",
+ "canvases": [
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "Fourteen years",
+   "headline": "14 years unmasked",
+   "emphasis_word": "14",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": [
+    {
+     "at_percent": 0.1,
+     "target": "number"
+    }
+   ],
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "number",
+     "name": "Fourteen years"
+    }
+   ],
+   "text_entrance": "POP_HARD",
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#F0F0F0",
+   "entrance_style": "together",
+   "layout": {
+    "cols": 1,
+    "rows": 4,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "number",
+      "col": 0,
+      "row": 2,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "Fourteen",
+   "composition": "TYPE-FULL",
+   "beat_index": 0,
+   "beat_total": 9,
+   "variant": 0,
+   "hero_headline": true,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": true,
+    "style": "POP_HARD",
+    "entrances": {
+     "statement": [
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "COUNTER",
+   "data": {
+    "value": "19",
+    "label": "Faith Hedgepeth"
+   },
+   "lead_in": "Faith Hedgepeth",
+   "headline": "Faith Hedgepeth",
+   "emphasis_word": "Faith",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": 0,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "person",
+     "name": "Faith Hedgepeth"
+    },
+    {
+     "type": "place",
+     "name": "Chapel Hill"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#2B2B2B",
+   "entrance_style": "staggered",
+   "layout": {
+    "cols": 2,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "col_span": 2,
+      "align": "left"
+     },
+     {
+      "id": "portrait",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "Faith",
+   "composition": "NUMBER-FULL",
+   "beat_index": 1,
+   "beat_total": 9,
+   "variant": 1,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "number_accent": false,
+   "anim": {
+    "number": "ROLL_DIGIT"
+   },
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_STANDARD",
+      "POP_EMPHASIS"
+     ],
+     "label": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": "pop_roll"
+   }
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "Miguel Salguero-Olivares",
+   "headline": "Miguel Salguero-Olivares",
+   "emphasis_word": "Miguel",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "person",
+     "name": "Miguel Salguero-Olivares"
+    },
+    {
+     "type": "number",
+     "name": "33"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#F0F0F0",
+   "concept_visuals": [
+    {
+     "name": "warning-triangle",
+     "class": "symbol",
+     "w": 1,
+     "h": 1,
+     "fallback": true
+    }
+   ],
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 2,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "col_span": 2,
+      "align": "right"
+     },
+     {
+      "id": "portrait",
+      "col": 1,
+      "row": 1,
+      "row_span": 2,
+      "align": "right",
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "Miguel",
+   "composition": "TYPE-FULL",
+   "beat_index": 2,
+   "beat_total": 9,
+   "variant": 2,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_STANDARD",
+      "POP_EMPHASIS"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "PROCESS",
+   "data": {
+    "nodes": [
+     "decade",
+     "cold case"
+    ]
+   },
+   "lead_in": "How did",
+   "headline": "Cracking a cold case",
+   "emphasis_word": "cold",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#2B2B2B",
+   "entrance_style": "together",
+   "layout": {
+    "cols": 1,
+    "rows": 2,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "center"
+     }
+    ]
+   },
+   "composition": "PROCESS-FULL",
+   "beat_index": 3,
+   "beat_total": 9,
+   "variant": 3,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "Genetic genealogy",
+   "headline": "DNA linked in 2021",
+   "emphasis_word": "2021",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "person",
+     "name": "Salguero-Olivares"
+    },
+    {
+     "type": "number",
+     "name": "2021"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#F0F0F0",
+   "name_card": {
+    "name": "Salguero-Olivares",
+    "sub": "2021"
+   },
+   "entrance_style": "staggered",
+   "layout": {
+    "cols": 2,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "col_span": 2,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "genealogy",
+   "composition": "TYPE-FULL",
+   "beat_index": 4,
+   "beat_total": 9,
+   "variant": 4,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_EMPHASIS"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "COUNTER",
+   "data": {
+    "value": "2021",
+    "label": "evidence directly to Salguero-Olivares"
+   },
+   "lead_in": "Advanced genetic",
+   "headline": "Physical evidence matched",
+   "emphasis_word": "matched",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": 4,
+   "match_cut_prev": true,
+   "named_entities": [
+    {
+     "type": "person",
+     "name": "Salguero-Olivares"
+    },
+    {
+     "type": "number",
+     "name": "2021"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#2B2B2B",
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 3,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "col_span": 3,
+      "align": "left"
+     },
+     {
+      "id": "nodes",
+      "col": 0,
+      "row": 1,
+      "col_span": 3,
+      "row_span": 2,
+      "align": "center",
+      "v_align": "center"
+     }
+    ]
+   },
+   "anchor_word": "evidence",
+   "composition": "NUMBER-FULL",
+   "beat_index": 5,
+   "beat_total": 9,
+   "variant": 5,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "number_accent": true,
+   "anim": {
+    "number": "SNAP_IN"
+   },
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ],
+     "label": [
+      "POP_SOFT",
+      "POP_SOFT",
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": "pop"
+   }
+  },
+  {
+   "visual_type": "PROCESS",
+   "data": {
+    "nodes": [
+     "Durham County",
+     "statements"
+    ],
+    "keynouns": true
+   },
+   "lead_in": "Durham County",
+   "headline": "October 2026 opening statements",
+   "emphasis_word": "Durham",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "place",
+     "name": "Durham County"
+    },
+    {
+     "type": "number",
+     "name": "October 2026"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#F0F0F0",
+   "entrance_style": "together",
+   "layout": {
+    "cols": 1,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "center",
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "Durham",
+   "composition": "PROCESS-FULL",
+   "beat_index": 6,
+   "beat_total": 9,
+   "variant": 6,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_EMPHASIS"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "COUNTER",
+   "data": {
+    "value": "14",
+    "label": "fourteen years"
+   },
+   "lead_in": "Science provided",
+   "headline": "14 years of answers",
+   "emphasis_word": "fourteen",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": [
+    {
+     "at_percent": 0.5,
+     "target": "number"
+    }
+   ],
+   "persists_from": null,
+   "match_cut_prev": true,
+   "named_entities": [
+    {
+     "type": "number",
+     "name": "fourteen"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#2B2B2B",
+   "entrance_style": "staggered",
+   "layout": {
+    "cols": 1,
+    "rows": 4,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "number",
+      "col": 0,
+      "row": 2,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "fourteen",
+   "composition": "NUMBER-FULL",
+   "beat_index": 7,
+   "beat_total": 9,
+   "variant": 7,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "number_accent": false,
+   "anim": {
+    "number": "ROLL_DIGIT"
+   },
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_EMPHASIS"
+     ],
+     "label": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": "pop_roll"
+   }
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "Angela Garcia-Lamarca",
+   "headline": "Angela Garcia-Lamarca",
+   "emphasis_word": "Angela",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "person",
+     "name": "Angela Garcia-Lamarca"
+    },
+    {
+     "type": "place",
+     "name": "Durham County"
+    },
+    {
+     "type": "number",
+     "name": "October 2026"
+    }
+   ],
+   "text_entrance": "POP_SOFT",
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#F0F0F0",
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 2,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "col_span": 2,
+      "align": "left"
+     },
+     {
+      "id": "portrait",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "Angela",
+   "composition": "TYPE-FULL",
+   "beat_index": 8,
+   "beat_total": 9,
+   "variant": 8,
+   "hero_headline": false,
+   "emphasis_beat": true,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": true,
+    "style": "POP_SOFT",
+    "entrances": {
+     "headline": [
+      "POP_SOFT",
+      "POP_EMPHASIS"
+     ]
+    },
+    "number": null
+   }
+  }
+ ]
+}
