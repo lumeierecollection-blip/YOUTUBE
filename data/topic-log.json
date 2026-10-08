@@ -1486,16 +1486,21 @@
       "last_generated": "2026-10-08T12:34:08.866Z"
     },
     "10": {
-      "channel_name": "Word Lab",
-      "niche": "Linguistics & Language",
+      "channel_name": "Margin Note",
+      "niche": "Concept Explainers & Intellectual History",
       "used_topics": [
         {
           "topic": "Consciousness and Locke: The 1694 Origin of a Term",
           "slug": "consciousness-locke-1694-origin",
           "reserved_at": "2026-10-07T12:23:32.874Z"
+        },
+        {
+          "topic": "Why the Circular Economy Became Sustainability's Most Powerful Buzzword",
+          "slug": "circular-economy-sustainability-buzzword",
+          "reserved_at": "2026-10-08T12:37:51.118Z"
         }
       ],
-      "last_generated": "2026-10-07T12:23:32.874Z"
+      "last_generated": "2026-10-08T12:37:51.118Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
