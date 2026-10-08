@@ -716,7 +716,8 @@ function shotLayout(c, comp, flip) {
   return { composition: comp, boxes, hero, flip };
 }
 
-/** HERO-LOW / HERO-SCATTER: the TYPE-FULL hero beat, its object re-placed. */
+const HERO_FLOOR = 1296;
+/** HERO-LOW / HERO-SCATTER / HERO-OVER: the TYPE-FULL hero beat, its object re-placed. */
 function heroShotLayout(c, comp, flip) {
   const base = tableLayout({ ...c, composition: "TYPE-FULL", emphasis_beat: false, vertical: false });
   const cv = (c.concept_visuals || []).filter(Boolean);
@@ -733,16 +734,19 @@ function heroShotLayout(c, comp, flip) {
     if (c.lead_in) boxes.kicker = dataBox(String(c.lead_in), { width: 700, size: 34, maxLines: 1, y: BODY_TOP + 20, flip });
     const top = boxes.kicker ? boxes.kicker.y + boxes.kicker.h + 22 : BODY_TOP + 20;
     boxes.statement = headlineBox(text, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - top, max: 170 });
-    boxes.cutout0 = { ...placeHero(cv[0], { maxW: 940, maxH: 440, floor: 596, side: "center" }), primary: true };
+    // Its ink stands 34 px above the band's edge: the drop shadow (20 px blur) reads as ink at y 620.
+    boxes.cutout0 = { ...placeHero(cv[0], { maxW: 940, maxH: 430, floor: 586, side: "center" }), primary: true };
   } else if (comp === "HERO-LOW") {
     // Shot 8: a short line high up, air, then the object large on the middle band's floor.
     const y = boxes.kicker ? boxes.kicker.y + boxes.kicker.h + 22 : TOP + 6;
     boxes.statement = headlineBox(text, { width: 760, y, flip, maxLines: 2, maxHeight: Math.min(300, HEADER_MAX_Y - y), max: 104 });
-    boxes.cutout0 = { ...placeHero(cv[0], { maxW: 940, maxH: 680, floor: 1326, side: away }), primary: true };
+    // The ink stands on y 1296, as the TYPE-FULL hero's does: its drop shadow (20 px blur) reads as ink
+    // and crossed y 1340 from a 1326 floor (shot-proof run 37859081660, zones-no-overlap, 143 columns).
+    boxes.cutout0 = { ...placeHero(cv[0], { maxW: 940, maxH: 650, floor: HERO_FLOOR, side: away }), primary: true };
   } else {
     // Shot 13: the objects off-centre at opposing angles; a second object smaller, high on the other side.
     const tilt = flip ? 9 : -9;
-    boxes.cutout0 = { ...placeHero(cv[0], { maxW: cv[1] ? 560 : 640, maxH: 600, deg: tilt, floor: 1326, side: away }), primary: true };
+    boxes.cutout0 = { ...placeHero(cv[0], { maxW: cv[1] ? 560 : 640, maxH: 600, deg: tilt, floor: HERO_FLOOR, side: away }), primary: true };
     if (cv[1]) {
       const second = placeHero(cv[1], { maxW: 400, maxH: 360, deg: -tilt, floor: BODY_TOP + 380, side: near });
       // Kept only where it stays clear of the first object's box.

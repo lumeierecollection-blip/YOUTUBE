@@ -122,12 +122,12 @@ jobs:
       - name: Render every shot
         env:
           REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-        run: node scripts/qa-canvas-render.mjs --out out/shots --only-extra --extra-beats scripts/fixtures/shot-proof/beats.json --moments 0.62 --video --accent "#C2410C"
+        run: node scripts/qa-canvas-render.mjs --out out/shots --only-extra --extra-beats scripts/fixtures/shot-proof/beats.json --moments 0.9 --video --accent "#C2410C"
 
-      - name: Contact sheet (one frame per shot, 62% into each beat)
+      - name: Contact sheet (one frame per shot, 90% into each beat — after a word-synced picture lands)
         if: always()
         run: |
-          ls out/shots/beat-*-62.png | sort -V > /tmp/list.txt
+          ls out/shots/beat-*-90.png | sort -V > /tmp/list.txt
           n=$(wc -l < /tmp/list.txt)
           args=""; for f in $(cat /tmp/list.txt); do args="$args -i $f"; done
           ffmpeg -loglevel error -y $args -filter_complex "hstack=inputs=$n,scale=iw/2:-1" out/shots/contact-sheet.png

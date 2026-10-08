@@ -343,7 +343,10 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
             (incomingHasInk reads group opacity) had already released. Under visual-first the visual
             lands with its group. */}
         {[B.cutout0, B.cutout1, B.cutout2].filter(Boolean).map((v, i) => (
-          <ConceptVisual key={i} b={v} local={local} fps={fps} at={(c.entrance_style === "visual-first" ? 0 : tl.headlineAt + 0.45) + i * 0.12} accent={accent} dur={dur} />
+          // HERO-OVER: the object sits ABOVE its words and is alone in its band — waiting 0.45 s
+          // behind the words left that band empty across the boundary (shot-proof run 37859081660,
+          // pop-transitions frames 7-9). The object lands first there.
+          <ConceptVisual key={i} b={v} local={local} fps={fps} at={(c.entrance_style === "visual-first" || L.composition === "HERO-OVER" ? 0 : tl.headlineAt + 0.45) + i * 0.12} accent={accent} dur={dur} />
         ))}
         {/* A logo's company name types on below it (part D.2). */}
         {B.cutout_name && B.cutout0?.logo ? <DataLabel b={B.cutout_name} name="cutout_name" color={th.ink} local={local} fps={fps} at={tl.headlineAt + 0.8} /> : null}
