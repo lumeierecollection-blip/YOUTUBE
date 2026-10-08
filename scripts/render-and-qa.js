@@ -1286,8 +1286,9 @@ async function resolveCanvas(channelId, planPath, plan) {
     const narr = (b) => b.narration || "";
     const imageBeats = () => plan.beats.filter((b) => b.canvas.photo).length;
     const rot = enforceRotation(plan.beats.length, {
-      // The planner's own grounded choice is not rotated away (as in gemini-visual-plan.js).
-      locked: (i) => !!plan.beats[i]?.planner_chose_type,
+      // NOT locked on planner_chose_type: this pass is the legality backstop for Layer 1's
+      // canvas-type (no composition twice in a row). Locking it (315e009) left ch-5 MAP-CENTERED
+      // and ch-49 NUMBER-FULL twice in a row and both failed Layer 1 (CI run 37803694366).
       // A name card is its own composition exactly as local-audit canvas-type keys it: by the
       // lead_phrase box, which the layout draws only when the card has a sub-phrase. A bare-name
       // card next to a TYPE-FULL statement is "TYPE-FULL twice" to the audit (CI run
