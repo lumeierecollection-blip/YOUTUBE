@@ -1,0 +1,80 @@
+name: layout-proof
+
+# Renders ONE beat twice through the real renderer (scripts/qa-canvas-render.mjs -> Remotion ->
+# full-canvas.jsx) with two different planner layouts (scripts/fixtures/layout-proof/{a,b}.json),
+# then scripts/layout-proof.mjs fails the job unless the two renders put the elements in two
+# different arrangements. The proof that the plan, not the composition table, decides the layout —
+# made with fixed inputs so it does not depend on what Gemini chooses on a given run.
+#
+# Read-only: no secrets, no publish. The stills are uploaded as an artifact.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "src/skills/remotion-render/visual/canvas-layout.js"
+      - "src/skills/remotion-render/visual/full-canvas.jsx"
+      - "scripts/layout-proof.mjs"
+      - "scripts/fixtures/layout-proof/**"
+      - ".github/workflows/layout-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  render-two-layouts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+
+      - name: Ensure ffmpeg/ffprobe
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+
+      - name: Render the beat with layout A and with layout B
+        env:
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          node scripts/qa-canvas-render.mjs --out out/a --beats 20 --moments 0.9 --accent "#2B2B2B" --extra-beats scripts/fixtures/layout-proof/a.json
+          node scripts/qa-canvas-render.mjs --out out/b --beats 20 --moments 0.9 --accent "#2B2B2B" --extra-beats scripts/fixtures/layout-proof/b.json
+          ls -la out/a out/b
+
+      - name: Compare the two renders
+        run: node scripts/layout-proof.mjs out/a/beat-20-90.png out/b/beat-20-90.png
+
+      - name: Upload the stills
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: layout-proof-${{ github.run_id }}
+          path: |
+            out/a/beat-20-90.png
+            out/b/beat-20-90.png
+          if-no-files-found: ignore
+          retention-days: 14
