@@ -21,3 +21,8 @@ it("the LAYOUT section states Layer 1's zone rule the way the audit applies it (
   assert.match(staticPart, /the two regions never hold two kinds of element/);
   assert.match(staticPart, /falls back to the default arrangement/);
 });
+it("the LAYOUT section asks for a layout on every beat (40% of beats had none: CI runs 37718157561 and 37722686373)", () => {
+  const { staticPart } = buildPlanPromptParts(sentences, null, "5");
+  assert.match(staticPart, /Give EVERY beat a layout/);
+  assert.doesNotMatch(staticPart, /leaving "layout" out keeps the default arrangement for the whole beat/);
+});
