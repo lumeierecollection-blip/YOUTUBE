@@ -2027,9 +2027,14 @@
           "topic": "Former CIA Official Pleads Guilty to Stealing $40M in Gold Bars",
           "slug": "former-cia-official-stealing-40m-gold-bars-guilty",
           "reserved_at": "2026-10-07T12:19:20.986Z"
+        },
+        {
+          "topic": "The SEC Alleges Cryptoaiml and TSAI Pro Used WhatsApp for $15M Fraud",
+          "slug": "cryptoaiml-tsai-pro-whatsapp-ai-fraud-sec",
+          "reserved_at": "2026-10-08T12:35:08.774Z"
         }
       ],
-      "last_generated": "2026-10-07T12:19:20.986Z"
+      "last_generated": "2026-10-08T12:35:08.774Z"
     },
     "27": {
       "channel_name": "Trial Files",
