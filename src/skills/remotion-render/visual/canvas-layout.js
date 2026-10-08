@@ -429,9 +429,9 @@ export function canvasLayout(c) {
   // to the table. Most fallbacks were vertical (CI run 37723570093: a headline centred or dropped into
   // row 1 broke the 60% span or put two kinds in one zone) while the planner's sides and columns were
   // legal; throwing both away drew the table where the planner's arrangement could have stood.
-  const attempt = (axes) => {
+  const attempt = (axes, yBlend = 1) => {
     const L = tableLayout(c);
-    const applied = applyPlanLayout(L.boxes, c.layout, { hero: L.hero, axes });
+    const applied = applyPlanLayout(L.boxes, c.layout, { hero: L.hero, axes, yBlend });
     const added = layoutViolations(L).filter((v) => !base.has(v.rule));
     const moved = flattenBoxes(L.boxes).filter(([k, b]) => tablePos.get(k) !== `${b.x},${b.y}`).map(([k]) => k);
     return { L, applied, added, moved };
@@ -439,6 +439,15 @@ export function canvasLayout(c) {
   const full = attempt("xy");
   if (!full.added.length) return { ...full.L, layout: { ...full.applied, used: true, axes: "xy", moved: full.moved, rejected: [] } };
   const rejected = full.added.map((v) => `${v.rule}: ${v.detail}`);
+  // The planner's horizontal placement, and its vertical placement moved toward the default only as
+  // far as the rules need — the nearest legal position to what it asked for (y_blend = the share of
+  // the planned vertical move kept). CI run 37739128920: two NUMBER-FULL beats went wholly to the
+  // table because the planned vertical missed the 60% span by 2.3% (beat 0) or dropped the headline
+  // into the number's zone (beat 4), while their horizontal placement was the planner's.
+  for (let k = 9; k >= 1; k--) {
+    const part = attempt("xy", k / 10);
+    if (!part.added.length && part.moved.length) return { ...part.L, layout: { ...part.applied, used: true, axes: "xy", y_blend: k / 10, moved: part.moved, rejected } };
+  }
   for (const axes of ["x", "y"]) {
     const part = attempt(axes);
     if (!part.added.length && part.moved.length) return { ...part.L, layout: { ...part.applied, used: true, axes, moved: part.moved, rejected } };
@@ -1007,7 +1016,7 @@ const canon = (id, boxes, hero) => {
   if (!boxes[k] && (VISUAL_IDS.has(raw.toLowerCase()) || VISUAL_IDS.has(k)) && hero) k = hero;
   return k;
 };
-export function applyPlanLayout(boxes, layout, { hero = null, axes = "xy" } = {}) {
+export function applyPlanLayout(boxes, layout, { hero = null, axes = "xy", yBlend = 1 } = {}) {
   const placed = [], unknown = [], adjusted = [];
   const slots = Array.isArray(layout?.slots) ? layout.slots : [];
   const usable = (k) => !!boxes[k] && k !== "bottom" && k !== "split" && k !== "photo";
@@ -1045,6 +1054,7 @@ export function applyPlanLayout(boxes, layout, { hero = null, axes = "xy" } = {}
     // One axis only (canvasLayout's partial fallback): the other axis keeps the table's position.
     if (axes === "x") y = E.y;
     if (axes === "y") x = E.x;
+    if (yBlend < 1) y = Math.round(E.y + (y - E.y) * yBlend);
     // One zone per element (ZONES, owner's rule 2026-10-02): a group that would straddle the top /
     // middle edge is moved wholly into the zone holding most of it, when it fits there. Logged.
     const edge = ZONES.top[1], top = y - headH, bot = y + E.h;

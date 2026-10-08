@@ -1,0 +1,771 @@
+{
+ "source": "CI run 37739128920 attempt 1, data/visual-plans/5/*-resolved.json (the canvases the renderer drew)",
+ "canvases": [
+  {
+   "visual_type": "COUNTER",
+   "data": {
+    "value": "4.8 million",
+    "label": "dollars straight into"
+   },
+   "lead_in": "Eighty-six",
+   "headline": "Fraudulent bank accounts",
+   "emphasis_word": "accounts",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "number",
+     "name": "Eighty-six"
+    },
+    {
+     "type": "number",
+     "name": "4.8 million dollars"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "together",
+   "layout": {
+    "cols": 2,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "col_span": 2,
+      "align": "left"
+     },
+     {
+      "id": "number",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "center"
+     }
+    ]
+   },
+   "anchor_word": "accounts",
+   "composition": "NUMBER-FULL",
+   "beat_index": 0,
+   "beat_total": 10,
+   "variant": 0,
+   "hero_headline": true,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "number_accent": true,
+   "anim": {
+    "number": "ROLL_DIGIT"
+   },
+   "kinetic": {
+    "seed": "5",
+    "edge": true,
+    "style": "POP_HARD",
+    "entrances": {
+     "headline": [
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD"
+     ],
+     "label": [
+      "POP_SOFT",
+      "POP_SOFT",
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": "pop_roll"
+   }
+  },
+  {
+   "visual_type": "MAP",
+   "data": {
+    "place": "Florida"
+   },
+   "lead_in": "Gerardo Aquino",
+   "headline": "TD Bank branch",
+   "emphasis_word": "Aquino",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": 0,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "person",
+     "name": "Gerardo Aquino"
+    },
+    {
+     "type": "company",
+     "name": "TD Bank"
+    },
+    {
+     "type": "place",
+     "name": "Hollywood, Florida"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "staggered",
+   "layout": {
+    "cols": 2,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "col_span": 2,
+      "align": "left"
+     },
+     {
+      "id": "portrait",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "Aquino",
+   "composition": "MAP-CENTERED",
+   "beat_index": 1,
+   "beat_total": 10,
+   "variant": 1,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_EMPHASIS"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "Accepted bribes",
+   "headline": "Bribes for opening accounts",
+   "emphasis_word": "bribes",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "micro",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "person",
+     "name": "Gerardo Aquino"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#0E0E10",
+   "name_card": {
+    "name": "Gerardo Aquino",
+    "sub": "Bribes for opening accounts"
+   },
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 1,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left"
+     }
+    ]
+   },
+   "anchor_word": "bribes",
+   "composition": "TYPE-FULL",
+   "beat_index": 2,
+   "beat_total": 10,
+   "variant": 2,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_EMPHASIS",
+      "POP_STANDARD"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "MAP",
+   "data": {
+    "place": "New Jersey"
+   },
+   "lead_in": "New Jersey",
+   "headline": "Federal court documents",
+   "emphasis_word": "documents",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "institution",
+     "name": "New Jersey federal court"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "together",
+   "layout": {
+    "cols": 2,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "col_span": 2,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "center"
+     }
+    ]
+   },
+   "anchor_word": "documents",
+   "composition": "MAP-CENTERED",
+   "beat_index": 3,
+   "beat_total": 10,
+   "variant": 3,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_EMPHASIS"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "COUNTER",
+   "data": {
+    "value": "86",
+    "label": "fake profiles"
+   },
+   "lead_in": "Which bank employee",
+   "headline": "Eighty-six fake profiles",
+   "emphasis_word": "ignores",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "micro",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "number",
+     "name": "eighty-six"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "type_layout": "split",
+   "entrance_style": "staggered",
+   "layout": {
+    "cols": 1,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left"
+     }
+    ]
+   },
+   "anchor_word": "ignores",
+   "composition": "NUMBER-FULL",
+   "beat_index": 4,
+   "beat_total": 10,
+   "variant": 4,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "number_accent": false,
+   "anim": {
+    "number": "ROLL_DIGIT"
+   },
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ],
+     "label": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": "pop_roll"
+   }
+  },
+  {
+   "visual_type": "PROCESS",
+   "data": {
+    "nodes": [
+     "Drug Enforcement Administration",
+     "March sentencing"
+    ]
+   },
+   "lead_in": "The catch",
+   "headline": "Drug Enforcement Administration",
+   "emphasis_word": "uncovered",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "institution",
+     "name": "Drug Enforcement Administration"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#0E0E10",
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 2,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "col_span": 2,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "Administration",
+   "composition": "PROCESS-FULL",
+   "beat_index": 5,
+   "beat_total": 10,
+   "variant": 5,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_EMPHASIS"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "MAP",
+   "data": {
+    "place": "United States"
+   },
+   "lead_in": "Department of Justice",
+   "headline": "Guilty plea confirmed",
+   "emphasis_word": "prosecutors",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "institution",
+     "name": "United States Department of Justice"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "together",
+   "layout": {
+    "cols": 2,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "col_span": 2,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "prosecutors",
+   "composition": "MAP-CENTERED",
+   "beat_index": 6,
+   "beat_total": 10,
+   "variant": 6,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_EMPHASIS"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "Gerardo Aquino",
+   "headline": "4.8 million dollars",
+   "emphasis_word": "millions",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "person",
+     "name": "Gerardo Aquino"
+    },
+    {
+     "type": "number",
+     "name": "4.8 million dollars"
+    },
+    {
+     "type": "place",
+     "name": "Colombia"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "staggered",
+   "layout": {
+    "cols": 2,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "col_span": 2,
+      "align": "left"
+     },
+     {
+      "id": "number",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "center"
+     }
+    ]
+   },
+   "anchor_word": "Aquino",
+   "composition": "TYPE-FULL",
+   "beat_index": 7,
+   "beat_total": 10,
+   "variant": 7,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "concept_visuals": [
+    {
+     "name": "dollar-sign",
+     "class": "symbol",
+     "w": 1,
+     "h": 1
+    }
+   ],
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_STANDARD",
+      "POP_EMPHASIS",
+      "POP_STANDARD"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "MAP",
+   "data": {
+    "place": "New Jersey"
+   },
+   "lead_in": "Federal judges",
+   "headline": "New Jersey jurisdiction",
+   "emphasis_word": "judges",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "place",
+     "name": "New Jersey"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#0E0E10",
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 2,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "col_span": 2,
+      "align": "left"
+     },
+     {
+      "id": "map",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left",
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "judges",
+   "composition": "MAP-CENTERED",
+   "beat_index": 8,
+   "beat_total": 10,
+   "variant": 8,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_EMPHASIS"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "Gerardo Aquino",
+   "headline": "Sentencing in March",
+   "emphasis_word": "March",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "person",
+     "name": "Gerardo Aquino"
+    },
+    {
+     "type": "number",
+     "name": "March"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "together",
+   "layout": {
+    "cols": 1,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "left"
+     }
+    ]
+   },
+   "anchor_word": "Aquino",
+   "composition": "TYPE-FULL",
+   "beat_index": 9,
+   "beat_total": 10,
+   "variant": 9,
+   "hero_headline": false,
+   "emphasis_beat": true,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": true,
+    "style": "POP_HARD",
+    "entrances": {
+     "headline": [
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD"
+     ]
+    },
+    "number": null
+   }
+  }
+ ]
+}

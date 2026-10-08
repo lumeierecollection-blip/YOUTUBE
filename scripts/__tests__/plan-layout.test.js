@@ -115,7 +115,8 @@ describe("what belongs to an element goes with it (CI run 37707115528)", () => {
     const num = { visual_type: "COUNTER", composition: "NUMBER-FULL", data: { value: "600", label: "pounds of gold" }, headline: "Gold bars", motion_tier: "medium" };
     const m = canvasLayout(normalizeCanvas({ ...num, layout: { slots: [{ id: "number", x: 48, y: 521, w: 600, h: 600 }] } }, 0));
     assert.equal(zonesOfBox(m.boxes.number).length, 1, `number y ${m.boxes.number.y}-${m.boxes.number.y + m.boxes.number.h}`);
-    assert.ok(m.layout.adjusted.some((a) => /straddled y 620/.test(a)));
+    // Either moved wholly into one zone (logged) or eased toward the default until legal (y_blend).
+    assert.ok(m.layout.adjusted.some((a) => /straddled y 620/.test(a)) || m.layout.y_blend < 1, JSON.stringify(m.layout));
   });
   it("nothing placed enters the caption's zone (y >= 1340)", () => {
     const map = { visual_type: "MAP", composition: "MAP-CENTERED", data: { place: "Florida" }, headline: "Across Florida", motion_tier: "medium" };
@@ -162,9 +163,10 @@ describe("a planned layout that breaks a Layer 1 rule the default keeps is not u
     assert.equal(lay.layout.used, false);
     assert.deepEqual(pos(lay), pos(L(null)));
   });
-  it("a layout that squeezes the beat under 60% of the height keeps only its horizontal placement", () => {
+  it("a layout that squeezes the beat under 60% of the height keeps its horizontal placement and as much of its vertical as is legal", () => {
     const lay = L({ cols: 2, rows: 3, slots: [{ id: "headline", col: 1, row: 1 }] });
-    assert.equal(lay.layout.axes, "x");
+    assert.equal(lay.boxes.headline.x, 540, "the planner's column");
+    assert.ok(lay.layout.y_blend > 0 && lay.layout.y_blend < 1, JSON.stringify(lay.layout));
     assert.ok(lay.layout.rejected.some((r) => /^span:/.test(r)));
     assert.ok(layoutViolations(lay).length === 0);
   });

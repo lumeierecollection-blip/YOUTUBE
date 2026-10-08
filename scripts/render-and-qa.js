@@ -1013,7 +1013,7 @@ function canvasContentFor(b, { photo = null } = {}) {
       const L = layoutOfCanvas(normalizeForLayout(c, b.index ?? 0));
       // One line per beat, machine-countable: SOURCE plan | plan-x | plan-y | plan-noop | table.
       const lo = L.layout || {};
-      const src = !lo.used ? "table" : !lo.moved?.length ? "plan-noop" : lo.axes === "xy" ? "plan" : `plan-${lo.axes}`;
+      const src = !lo.used ? "table" : !lo.moved?.length ? "plan-noop" : lo.axes === "xy" ? (lo.y_blend ? `plan(vertical ${Math.round(lo.y_blend * 100)}%)` : "plan") : `plan-${lo.axes}`;
       const extra = [lo.moved?.length ? `moved ${lo.moved.join(",")}` : "", lo.adjusted?.length ? `adjusted ${lo.adjusted.join("; ")}` : "", lo.unknown?.length ? `unknown ids ${lo.unknown.join(",")}` : "", lo.rejected?.length ? `rejected ${lo.rejected.join("; ")}` : ""].filter(Boolean).join(" | ");
       console.log(`[layout] beat ${b.index ?? "?"}: SOURCE ${src}${extra ? ` — ${extra}` : ""}`);
     } catch (e) { console.log(`[layout] beat ${b.index ?? "?"}: could not evaluate the plan layout (${e.message})`); }
