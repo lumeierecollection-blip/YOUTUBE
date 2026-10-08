@@ -1,5 +1,5 @@
 {
-  "_comment": "One fully worked planner beat. scripts/gemini-visual-plan.js embeds this file in the planner prompt (the model cannot open files). The planner describes the scene AND names the beat's type, composition and ground (visual_type, canvas_composition, ground); scripts/scene-translate.js builds the candidates for what it named and the grounding gate checks them against the sentence. A field left out falls back: no visual_type -> the description decides; no ground -> the house white.",
+  "_comment": "One fully worked planner beat. scripts/gemini-visual-plan.js embeds this file in the planner prompt (the model cannot open files). The planner describes the scene AND names the beat's type, composition, ground and layout (visual_type, canvas_composition, ground, layout); scripts/scene-translate.js builds the candidates for what it named and the grounding gate checks them against the sentence. A field left out falls back: no visual_type -> the description decides; no ground -> the house white; no layout -> the composition's default arrangement. The layout here is THIS beat's own; each beat's comes from its own content.",
   "sentence": "Jerome Powell said rates will stay high.",
   "beat": {
     "index": 1,
@@ -7,6 +7,7 @@
     "visual_type": "PHOTO",
     "canvas_composition": "PORTRAIT",
     "ground": "white",
+    "layout": { "cols": 2, "rows": 3, "slots": [{ "id": "headline", "col": 0, "row": 0, "col_span": 2, "align": "right" }, { "id": "portrait", "col": 0, "row": 1, "row_span": 2, "align": "left", "v_align": "bottom" }] },
     "lead_in": "rates will",
     "headline": "Rates stay high",
     "emphasis_word": "high",
