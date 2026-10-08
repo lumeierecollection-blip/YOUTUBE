@@ -203,6 +203,48 @@ function loadStyleSpec(channelId) {
   } catch { return null; }
 }
 
+/** "MM:SS", "M:SS", "H:MM:SS" (optional fractional seconds) -> seconds, or null when malformed. */
+export function parseTimestamp(ts) {
+  const m = /^\s*(?:(\d+):)?(\d{1,2}):(\d{2}(?:\.\d+)?)\s*$/.exec(String(ts ?? ""));
+  if (!m) return null;
+  const sec = Number(m[3]);
+  if (sec >= 60) return null;
+  return Number(m[1] || 0) * 3600 + Number(m[2]) * 60 + sec;
+}
+
+/**
+ * Layer 3 names weak beats by TIMESTAMP; the retry loop needs a beat_index (resolveRevisions bails on
+ * an undefined one — CI runs 37705693390, 37718157561, 37723570093: every named weak beat was
+ * "beat_index undefined does not identify a beat in the plan", so live could not act).
+ *
+ * Each entry is resolved against the render manifest's beats [start_sec, start_sec + duration_sec):
+ *   - the beat containing the timestamp;
+ *   - otherwise, since MM:SS is whole seconds, the beat overlapping most of [t, t + 1) — "00:00"
+ *     on a video whose beat 0 starts at 0.10 s is beat 0, read at the timestamp's own resolution;
+ *   - malformed -> unresolved "timestamp_malformed"; past the last beat or before the first by
+ *     more than that second -> unresolved "timestamp_out_of_range". Never guessed.
+ *   - two beats containing it (beats overlap — MOT-22 says they cannot) -> the earlier, marked
+ *     "timestamp_ambiguous".
+ * An entry that already has an integer beat_index is left alone.
+ */
+export function resolveBeatIndices(weakBeats, manifest) {
+  const spans = (manifest?.beats || []).map((b, i) => ({ index: Number.isInteger(b.index) ? b.index : i, s: Number(b.start_sec), e: Number(b.start_sec) + Number(b.duration_sec) }))
+    .filter((b) => Number.isFinite(b.s) && Number.isFinite(b.e) && b.e > b.s);
+  return (weakBeats || []).map((wb) => {
+    if (Number.isInteger(wb?.beat_index)) return wb;
+    const t = parseTimestamp(wb?.timestamp);
+    if (t === null) return { ...wb, unresolved: "timestamp_malformed" };
+    if (!spans.length) return { ...wb, unresolved: "timestamp_out_of_range" };
+    const hits = spans.filter((b) => t >= b.s && t < b.e);
+    if (hits.length === 1) return { ...wb, beat_index: hits[0].index };
+    if (hits.length > 1) return { ...wb, beat_index: hits.sort((a, b) => a.s - b.s)[0].index, unresolved: "timestamp_ambiguous" };
+    const overlap = (b) => Math.max(0, Math.min(b.e, t + 1) - Math.max(b.s, t));
+    const best = spans.map((b) => ({ b, o: overlap(b) })).filter((x) => x.o > 0).sort((a, b) => b.o - a.o)[0];
+    if (best) return { ...wb, beat_index: best.b.index };
+    return { ...wb, unresolved: "timestamp_out_of_range" };
+  });
+}
+
 /**
  * Judge one rendered video. Numbers only.
  * Dependencies are injectable so every failure path is testable offline.
@@ -211,7 +253,7 @@ export async function judge(renderPath, {
   channelId, styleSpec, layer2Advisory, styleMatch,
   upload = realUpload, poll = realPoll, del = realDelete,
   http = httpsJson, env = process.env, model = MODEL, modelFallback = MODEL_FALLBACK,
-  runId = String(Date.now()), provenance = true,
+  runId = String(Date.now()), provenance = true, manifest,
 } = {}) {
   const started = Date.now();
   const style = styleSpec === undefined ? loadStyleSpec(channelId) : styleSpec;
@@ -264,7 +306,13 @@ export async function judge(renderPath, {
 
     const validated = validateResponse(parsed);
     axes = validated.axes;
-    weakBeats = validated.weak_beats;
+    // Timestamps -> beat indices, from the render's own manifest (or one passed in).
+    const mf = manifest !== undefined ? manifest : (() => { try { return JSON.parse(readFileSync(String(renderPath).replace(/\.mp4$/, "-manifest.json"), "utf8")); } catch { return null; } })();
+    weakBeats = resolveBeatIndices(validated.weak_beats, mf);
+    for (const wb of weakBeats) {
+      if (wb.unresolved) console.error(`[layer3] weak beat ${wb.timestamp} [${wb.axis}] unresolved: ${wb.unresolved}${Number.isInteger(wb.beat_index) ? ` (beat ${wb.beat_index})` : ""}`);
+      else console.log(`[layer3] weak beat ${wb.timestamp} -> beat ${wb.beat_index} [${wb.axis}] ${wb.element}`);
+    }
     raw = parsed;
     if (typeof parsed.aggregate === "number") aggregateGemini = parsed.aggregate;
     const local = aggregate(axes);
