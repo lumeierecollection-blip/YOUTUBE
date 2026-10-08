@@ -59,3 +59,27 @@ jobs:
 
       - name: node --test scripts/__tests__
         run: node --test --test-reporter=spec scripts/__tests__/*.test.js
+
+      # The standalone test scripts (scripts/test-*.mjs): each exits non-zero on a failure.
+      # Excluded, by name, with the reason — not deleted, not edited:
+      #   test-composed-opacity.mjs     renders through Remotion + a headless browser it downloads;
+      #                                 not a unit test (the render path is exercised by the pipeline)
+      #   test-scene-text.mjs, test-narrative-typography.mjs, test-capabilities.mjs,
+      #   test-fallback-detector.mjs    stale: they assert things that were already false at f649da2,
+      #                                 before this work — checked from git, not by running the old
+      #                                 tree: none of the four files changed since; the planner-prompt
+      #                                 strings narrative-typography looks for ("NARRATIVE EMPHASIS",
+      #                                 "ONE LINE", fitSingleLine) are absent at f649da2; and
+      #                                 middle-zone-filled was already advisory there (6da8809), which
+      #                                 is what fallback-detector expects to fail. They are the queued
+      #                                 stale tests the owner has said not to touch.
+      - name: standalone scripts/test-*.mjs
+        run: |
+          EXCLUDE="test-composed-opacity.mjs test-scene-text.mjs test-narrative-typography.mjs test-capabilities.mjs test-fallback-detector.mjs"
+          fail=0
+          for f in scripts/test-*.mjs; do
+            n=$(basename "$f")
+            case " $EXCLUDE " in *" $n "*) echo "SKIP $n (see the comment above)"; continue;; esac
+            if timeout 300 node "$f" > /tmp/out.txt 2>&1; then echo "PASS $n"; else echo "FAIL $n"; tail -30 /tmp/out.txt; fail=1; fi
+          done
+          exit $fail
