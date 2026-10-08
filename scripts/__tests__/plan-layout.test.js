@@ -81,7 +81,41 @@ describe("plan.layout controls placement", () => {
   });
 
   it("slotRect: a cell span on the plan's grid, or a pixel rectangle", () => {
-    assert.deepEqual(slotRect({ cols: 2, rows: 2 }, { col: 1, row: 1 }), { x: 540, y: 765, w: 492, h: 635 });
+    assert.deepEqual(slotRect({ cols: 2, rows: 2 }, { col: 1, row: 1 }), { x: 540, y: 735, w: 492, h: 605 });
     assert.deepEqual(slotRect({}, { x: 10, y: 20, w: 30, h: 40 }), { x: 10, y: 20, w: 30, h: 40 });
+  });
+});
+
+// The shapes that failed Layer 1 in CI run 37707115528 (the first run whose rendered plan carried
+// the planner's own layouts), rebuilt on the real canvasLayout.
+const inter = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
+const zonesOfBox = (b) => [["top", 0, 620], ["middle", 620, 1340], ["bottom", 1340, 1920]].filter(([, y0, y1]) => b.y + b.h > y0 + 8 && b.y < y1 - 8).map(([n]) => n);
+
+describe("what belongs to an element goes with it (CI run 37707115528)", () => {
+  const typeFull = { visual_type: "TYPE", composition: "TYPE-FULL", headline: "Guilty to wire fraud", lead_in: "former officer", motion_tier: "medium" };
+  it("a TYPE-FULL statement moved to the top keeps its kicker directly above it, not overlapping", () => {
+    const lay = canvasLayout(normalizeCanvas({ ...typeFull, layout: { cols: 1, rows: 2, slots: [{ id: "headline", col: 0, row: 0 }] } }, 1));
+    const st = lay.boxes.statement, k = lay.boxes.kicker;
+    assert.ok(st && k, "the fixture has a statement and a kicker");
+    assert.ok(!inter(st, k), `kicker ${JSON.stringify(k)} overlaps statement ${JSON.stringify(st)}`);
+    assert.ok(k.y + k.h <= st.y, "the kicker sits above the statement");
+  });
+  it("a figure's label moves with the figure", () => {
+    const num = { visual_type: "COUNTER", composition: "NUMBER-FULL", data: { value: "$200 million", label: "vanished" }, headline: "Where it went", motion_tier: "medium" };
+    const t = canvasLayout(normalizeCanvas(num, 2)), m = canvasLayout(normalizeCanvas({ ...num, layout: { cols: 2, rows: 2, slots: [{ id: "number", col: 0, row: 1 }] } }, 2));
+    assert.ok(t.boxes.label && m.boxes.label);
+    assert.deepEqual([m.boxes.label.x - m.boxes.number.x, m.boxes.label.y - m.boxes.number.y], [t.boxes.label.x - t.boxes.number.x, t.boxes.label.y - t.boxes.number.y]);
+    assert.ok(!inter(m.boxes.label, m.boxes.number));
+  });
+  it("a number placed across the top / middle edge is moved wholly into one zone, and the move is logged", () => {
+    const num = { visual_type: "COUNTER", composition: "NUMBER-FULL", data: { value: "600", label: "pounds of gold" }, headline: "Gold bars", motion_tier: "medium" };
+    const m = canvasLayout(normalizeCanvas({ ...num, layout: { slots: [{ id: "number", x: 48, y: 521, w: 600, h: 600 }] } }, 0));
+    assert.equal(zonesOfBox(m.boxes.number).length, 1, `number y ${m.boxes.number.y}-${m.boxes.number.y + m.boxes.number.h}`);
+    assert.ok(m.layout.adjusted.some((a) => /straddled y 620/.test(a)));
+  });
+  it("nothing placed enters the caption's zone (y >= 1340)", () => {
+    const map = { visual_type: "MAP", composition: "MAP-CENTERED", data: { place: "Florida" }, headline: "Across Florida", motion_tier: "medium" };
+    const m = canvasLayout(normalizeCanvas({ ...map, layout: { cols: 1, rows: 2, slots: [{ id: "map", col: 0, row: 1, v_align: "bottom" }] } }, 2));
+    for (const [k, b] of flattenBoxes(m.boxes)) if (k !== "photo") assert.ok(b.y + b.h <= 1340 + 8, `${k} ends at ${b.y + b.h}`);
   });
 });

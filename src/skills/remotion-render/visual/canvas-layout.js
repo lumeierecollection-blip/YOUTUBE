@@ -883,15 +883,25 @@ export function canvasLayout(c) {
  * Where it stops, on purpose: the plan moves elements, it does not resize them. Each element's
  * size comes from its content (a headline fitted to its words, a number to its digits), so a
  * move cannot crop a word or misstate a figure. The only clamp is the frame itself — an element
- * is kept inside the 48 px safe edge and above the caption band (CAPTION_TOP), which renders on
- * every beat. Overlaps and zone crossings are not prevented here: Layer 1 (local-audit.cjs
+ * is kept inside the 48 px safe edge and above the caption's zone (y 1340), which renders on
+ * every beat; a group that would straddle the top / middle zone edge is moved wholly into the zone
+ * holding most of it (logged in plan_layout.adjusted). The header furniture (kicker, rule) and a
+ * figure's label travel with the element they belong to. Overlaps and zone crossings are not prevented here: Layer 1 (local-audit.cjs
  * canvas-fit, zones-no-overlap) judges what the plan asked for.
  */
-export const LAYOUT_AREA = Object.freeze({ x0: 48, x1: 1032, y0: 130, y1: 1400 });
-const CAPTION_TOP = 1440;
+export const LAYOUT_AREA = Object.freeze({ x0: 48, x1: 1032, y0: 130, y1: 1340 });
+// The bottom zone (ZONES.bottom, y >= 1340) is the caption's on every beat: a placed element ends above it.
+const CONTENT_BOTTOM = 1340;
 const LAYOUT_ALIASES = { visual: "hero", body: "hero", title: "headline", text: "statement", figure: "number", graph: "chart", diagram: "nodes", list: "items", timeline: "markers", image: "portrait", photo: "portrait", cutout: "cutout0", icon: "cutout0", symbol: "cutout0" };
-// Parts that travel with an element (TIMELINE's spine moves with its markers).
-const LAYOUT_GROUPS = { markers: ["markers", "line"] };
+// What belongs to an element and goes where it goes (unless the plan placed it separately):
+//   STACK_ABOVE  the header furniture — the kicker, then the hairline rule — is restacked directly
+//                above the text it introduces (CI run 37707115528: the plan moved the headline and
+//                left the kicker where the table had put it; canvas-fit failed on 5 beats).
+//   MOVE_WITH    parts that keep their position relative to the element (a figure's label, a
+//                statement's lead phrase and underline, a timeline's spine).
+const STACK_ABOVE = { headline: ["kicker", "rule"], statement: ["kicker", "rule"] };
+const MOVE_WITH = { number: ["label", "floor_rule"], statement: ["lead_phrase", "underline"], headline: ["lead_phrase"], numberA: ["labelA"], numberB: ["labelB"], cutout0: ["cutout1", "cutout2", "cutout_name"], markers: ["line"] };
+const HEADER_GAP = 20;
 function translateBox(v, dx, dy) {
   if (Array.isArray(v)) { v.forEach((el) => translateBox(el, dx, dy)); return; }
   if (!v || typeof v !== "object") return;
@@ -914,29 +924,61 @@ export function slotRect(layout, slot) {
   const cw = (A.x1 - A.x0) / cols, rh = (A.y1 - A.y0) / rows;
   return { x: A.x0 + col * cw, y: A.y0 + row * rh, w: cs * cw, h: rs * rh };
 }
+const canon = (id, boxes, hero) => {
+  let k = String(id || "").trim();
+  k = LAYOUT_ALIASES[k.toLowerCase()] || k;
+  if (k === "hero") k = hero || "";
+  if (k === "headline" && !boxes.headline && boxes.statement) k = "statement";
+  if (k === "statement" && !boxes.statement && boxes.headline) k = "headline";
+  return k;
+};
 export function applyPlanLayout(boxes, layout, { hero = null } = {}) {
-  const placed = [], unknown = [];
-  for (const slot of Array.isArray(layout?.slots) ? layout.slots : []) {
-    let id = String(slot?.id || "").trim();
-    id = LAYOUT_ALIASES[id.toLowerCase()] || id;
-    if (id === "hero") id = hero || "";
-    if (id === "headline" && !boxes.headline && boxes.statement) id = "statement";
-    if (id === "statement" && !boxes.statement && boxes.headline) id = "headline";
-    const keys = (LAYOUT_GROUPS[id] || [id]).filter((k) => boxes[k] && k !== "bottom" && k !== "split" && k !== "photo");
-    if (!keys.length) { unknown.push(String(slot?.id)); continue; }
+  const placed = [], unknown = [], adjusted = [];
+  const slots = Array.isArray(layout?.slots) ? layout.slots : [];
+  const usable = (k) => !!boxes[k] && k !== "bottom" && k !== "split" && k !== "photo";
+  // Elements the plan names itself never ride along with another element.
+  const explicit = new Set(slots.map((sl) => canon(sl?.id, boxes, hero)).filter(usable));
+  const moved = new Set();
+  for (const slot of slots) {
+    const id = canon(slot?.id, boxes, hero);
+    if (!usable(id) || moved.has(id)) { unknown.push(String(slot?.id)); continue; }
+    const keys = [id, ...(MOVE_WITH[id] || []).filter((k) => usable(k) && !explicit.has(k) && !moved.has(k))];
+    const header = (STACK_ABOVE[id] || []).filter((k) => usable(k) && !explicit.has(k) && !moved.has(k));
     const E = unionOf(keys.map((k) => boxes[k]));
     if (!E) { unknown.push(String(slot?.id)); continue; }
+    const headH = header.reduce((t, k) => t + boxes[k].h + HEADER_GAP, 0);
     const R = slotRect(layout, slot);
-    const align = slot?.align || boxes[keys[0]]?.align || "left", va = slot?.v_align || "top";
+    const align = slot?.align || boxes[id]?.align || "left", va = slot?.v_align || "top";
     let x = align === "right" ? R.x + R.w - E.w : align === "center" ? R.x + (R.w - E.w) / 2 : R.x;
     let y = va === "bottom" ? R.y + R.h - E.h : va === "center" ? R.y + (R.h - E.h) / 2 : R.y;
+    // The frame: the safe edge, the header room above, the caption's zone below.
     x = Math.max(SAFE.x, Math.min(FRAME.w - SAFE.x - E.w, x));
-    y = Math.max(SAFE.y, Math.min(CAPTION_TOP - E.h, y));
+    y = Math.max(SAFE.y + headH, Math.min(CONTENT_BOTTOM - E.h, y));
+    // One zone per element (ZONES, owner's rule 2026-10-02): a group that would straddle the top /
+    // middle edge is moved wholly into the zone holding most of it, when it fits there. Logged.
+    const edge = ZONES.top[1], top = y - headH, bot = y + E.h;
+    if (top < edge - ZONE_TOL && bot > edge + ZONE_TOL) {
+      const intoMiddle = bot - edge >= edge - top;
+      if (intoMiddle && edge + headH + E.h <= CONTENT_BOTTOM) { y = edge + headH; adjusted.push(`${id}: straddled y ${edge} -> middle zone`); }
+      else if (!intoMiddle && SAFE.y + headH + E.h <= edge) { y = edge - E.h; adjusted.push(`${id}: straddled y ${edge} -> top zone`); }
+      else adjusted.push(`${id}: straddles y ${edge} and fits neither zone — left as planned`);
+    }
     const dx = x - E.x, dy = y - E.y;
     if (dx || dy) for (const k of keys) translateBox(boxes[k], dx, dy);
-    placed.push({ id: keys.join("+"), x: Math.round(x), y: Math.round(y), w: Math.round(E.w), h: Math.round(E.h) });
+    // The header furniture, restacked directly above its text: the kicker, then the rule above it.
+    let cursor = boxes[id].y;
+    const side = align === "right" || boxes[id].align === "right" ? "right" : "left";
+    for (const k of header) {
+      const f = boxes[k];
+      const fx = side === "right" ? boxes[id].x + boxes[id].w - f.w : boxes[id].x;
+      const fy = cursor - HEADER_GAP - f.h;
+      translateBox(f, fx - f.x, fy - f.y);
+      cursor = fy;
+    }
+    keys.concat(header).forEach((k) => moved.add(k));
+    placed.push({ id: [...keys, ...header].join("+"), x: Math.round(x), y: Math.round(y), w: Math.round(E.w), h: Math.round(E.h) });
   }
-  return { cols: layout?.cols ?? null, rows: layout?.rows ?? null, placed, unknown };
+  return { cols: layout?.cols ?? null, rows: layout?.rows ?? null, placed, unknown, adjusted };
 }
 
 const isBox = (v) => v && typeof v === "object" && "x" in v && "y" in v && "w" in v && "h" in v;
