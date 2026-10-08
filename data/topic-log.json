@@ -1016,8 +1016,8 @@
       "last_generated": "2026-09-14T08:34:20.028Z"
     },
     "5": {
-      "channel_name": "Harmony",
-      "niche": "Music Theory & Composition",
+      "channel_name": "Broadsheet",
+      "niche": "True Crime & Investigative Journalism",
       "used_topics": [
         {
           "topic": "DOJ Fraud Division's New Corporate Enforcement Directive",
@@ -1028,9 +1028,14 @@
           "topic": "Murdaugh Retrial Discovery Dispute Intensifies Over Cellphone Data",
           "slug": "murdaugh-retrial-discovery-dispute-cellphone-data",
           "reserved_at": "2026-10-07T12:22:17.739Z"
+        },
+        {
+          "topic": "Former CIA Official Pleads Guilty to Stealing $40M in Gold Bars",
+          "slug": "former-cia-official-pleads-guilty-gold-bars",
+          "reserved_at": "2026-10-08T12:37:47.640Z"
         }
       ],
-      "last_generated": "2026-10-07T12:22:17.739Z"
+      "last_generated": "2026-10-08T12:37:47.641Z"
     },
     "6": {
       "channel_name": "Archive Room",
