@@ -673,7 +673,9 @@ ${example}
 Respond ONLY with JSON (no markdown): {"beats":[ one object per sentence, in order, shaped like the example ]}`;
   let dynamicPart = `${styleReferenceBlock(styleRef)}SCRIPT SENTENCES:\n${sentences.map((s, i) => `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`).join("\n")}`;
   if (corrections?.length) {
-    dynamicPart += `\n\nPREVIOUS REVIEW CORRECTIONS — apply every fix:\n` +
+    // A re-plan answered the corrections and dropped the optional fields it was not asked about
+    // (CI runs 37705693390 and 37713312537: the plan carried 9/9 and 10/10 layouts, the re-plan 0).
+    dynamicPart += `\n\nPREVIOUS REVIEW CORRECTIONS — apply every fix, and return every beat complete, with every field the format above asks for (its layout, ground and entrance_style included), not only the fields a correction names:\n` +
       corrections.map((c) => `  ${c.scene || c.beat}: ${c.problem} → Fix: ${c.fix || c.action}`).join("\n");
   }
   return { staticPart, dynamicPart };
