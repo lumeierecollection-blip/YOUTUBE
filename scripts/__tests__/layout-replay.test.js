@@ -1,0 +1,35 @@
+/**
+ * Replay: the planner's REAL layouts from CI run 37723570093 (attempt 2, the canvases the renderer
+ * drew — scripts/fixtures/layout-replay/) through canvasLayout. Counts, per beat, who decided the
+ * placement: the plan (both axes / one axis) or the table (no layout used, or a layout that moved
+ * nothing).
+ *
+ * Before the visual-id mapping and the per-axis fallback, 6 of these 10 beats were drawn by the
+ * table (2 rejected outright, 4 "used" layouts whose slots named a visual the beat did not have and
+ * so moved nothing). After: 2 of 10.
+ *
+ * MUTATIONS (run, recorded in the commit): removing the visual-id mapping, or the per-axis fallback,
+ * each raises the table count above the bound and turns this red. Restored byte-identical.
+ */
+import { it } from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { canvasLayout, normalizeCanvas } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+
+const fx = JSON.parse(readFileSync("scripts/fixtures/layout-replay/run-37723570093.json", "utf8"));
+const sourceOf = (lo) => (!lo?.used ? "table" : !lo.moved?.length ? "plan-noop" : lo.axes === "xy" ? "plan" : `plan-${lo.axes}`);
+const sources = fx.canvases.map((c, i) => sourceOf(canvasLayout(normalizeCanvas(c, i)).layout));
+
+it("the table draws at most 2 of the 10 replayed beats", () => {
+  const table = sources.filter((s) => s === "table" || s === "plan-noop").length;
+  assert.ok(table <= 2, `table-drawn ${table}/10: ${sources.join(", ")}`);
+});
+it("every replayed beat that used the plan is legal by Layer 1's geometry", async () => {
+  const { layoutViolations } = await import("../../src/skills/remotion-render/visual/canvas-layout.js");
+  fx.canvases.forEach((c, i) => {
+    const L = canvasLayout(normalizeCanvas(c, i));
+    const T = canvasLayout(normalizeCanvas({ ...c, layout: undefined }, i));
+    const base = new Set(layoutViolations(T).map((v) => v.rule));
+    assert.deepEqual(layoutViolations(L).filter((v) => !base.has(v.rule)), [], `beat ${i}`);
+  });
+});

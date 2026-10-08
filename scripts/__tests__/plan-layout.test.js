@@ -66,10 +66,15 @@ describe("plan.layout controls placement", () => {
     for (const n of m.boxes.nodes) { assert.ok(n.x >= 48 && n.x + n.w <= 1032, `x ${n.x}`); assert.ok(n.y + n.h <= 1440, `y ${n.y}`); }
   });
 
-  it("reports an id the beat does not have, and moves nothing for it", () => {
-    const m = L({ cols: 2, rows: 2, slots: [{ id: "number", col: 1, row: 1 }] });
-    assert.deepEqual(m.layout.unknown, ["number"]);
+  it("reports an id that names nothing the beat could have, and moves nothing for it", () => {
+    const m = L({ cols: 2, rows: 2, slots: [{ id: "label", col: 1, row: 1 }] });
+    assert.deepEqual(m.layout.unknown, ["label"]);
     assert.deepEqual(pos(m), pos(L(null)));
+  });
+  it("a slot naming a visual the beat does not have places the beat's own visual (CI run 37723570093)", () => {
+    const m = L({ cols: 1, rows: 2, slots: [{ id: "number", col: 0, row: 1, align: "left" }] });
+    assert.ok(m.layout.adjusted.includes("number -> nodes"), m.layout.adjusted.join(" | "));
+    assert.deepEqual(m.layout.unknown, []);
   });
 
   it("records what it placed in the render manifest", () => {
@@ -144,16 +149,24 @@ it("nothing placed — the restacked kicker and rule included — goes above the
 });
 
 describe("a planned layout that breaks a Layer 1 rule the default keeps is not used for that beat", () => {
-  it("a headline dropped into the nodes' zone: the default is used, and why is recorded", () => {
+  it("a headline dropped into the nodes' zone: the planner's side is kept, its vertical is not, and why is recorded", () => {
     const lay = L({ cols: 3, rows: 4, slots: [{ id: "headline", col: 2, row: 3, align: "right", v_align: "bottom" }] });
-    assert.equal(lay.layout.used, false);
+    assert.equal(lay.layout.used, true);
+    assert.equal(lay.layout.axes, "x");
     assert.ok(lay.layout.rejected.some((r) => /^zones: middle zone holds chart \+ headline/.test(r)), lay.layout.rejected.join(" | "));
-    assert.deepEqual(pos(lay), pos(L(null)), "the beat is drawn exactly as the default");
+    assert.equal(lay.boxes.headline.y, L(null).boxes.headline.y, "the table's vertical");
+    assert.equal(lay.boxes.headline.x + lay.boxes.headline.w, LAYOUT_AREA.x1, "the planner's side");
   });
-  it("a layout that squeezes the beat under 60% of the height is not used", () => {
-    const lay = L({ cols: 2, rows: 3, slots: [{ id: "headline", col: 1, row: 1 }] });
+  it("when neither axis alone is legal, the whole beat is the default", () => {
+    const lay = L({ cols: 1, rows: 1, slots: [{ id: "headline", col: 0, row: 0, align: "center", v_align: "center" }] });
     assert.equal(lay.layout.used, false);
+    assert.deepEqual(pos(lay), pos(L(null)));
+  });
+  it("a layout that squeezes the beat under 60% of the height keeps only its horizontal placement", () => {
+    const lay = L({ cols: 2, rows: 3, slots: [{ id: "headline", col: 1, row: 1 }] });
+    assert.equal(lay.layout.axes, "x");
     assert.ok(lay.layout.rejected.some((r) => /^span:/.test(r)));
+    assert.ok(layoutViolations(lay).length === 0);
   });
   it("a legal layout is used", () => {
     const lay = L({ cols: 4, rows: 4, slots: [{ id: "headline", col: 1, row: 0 }] });

@@ -1011,8 +1011,11 @@ function canvasContentFor(b, { photo = null } = {}) {
   if (c.layout) {
     try {
       const L = layoutOfCanvas(normalizeForLayout(c, b.index ?? 0));
-      if (L.layout?.used) console.log(`[layout] beat ${b.index ?? "?"}: plan layout USED${L.layout.adjusted?.length ? ` (adjusted: ${L.layout.adjusted.join("; ")})` : ""}`);
-      else console.log(`[layout] beat ${b.index ?? "?"}: plan layout NOT used, default arrangement — ${(L.layout?.rejected || []).join("; ")}`);
+      // One line per beat, machine-countable: SOURCE plan | plan-x | plan-y | plan-noop | table.
+      const lo = L.layout || {};
+      const src = !lo.used ? "table" : !lo.moved?.length ? "plan-noop" : lo.axes === "xy" ? "plan" : `plan-${lo.axes}`;
+      const extra = [lo.moved?.length ? `moved ${lo.moved.join(",")}` : "", lo.adjusted?.length ? `adjusted ${lo.adjusted.join("; ")}` : "", lo.unknown?.length ? `unknown ids ${lo.unknown.join(",")}` : "", lo.rejected?.length ? `rejected ${lo.rejected.join("; ")}` : ""].filter(Boolean).join(" | ");
+      console.log(`[layout] beat ${b.index ?? "?"}: SOURCE ${src}${extra ? ` — ${extra}` : ""}`);
     } catch (e) { console.log(`[layout] beat ${b.index ?? "?"}: could not evaluate the plan layout (${e.message})`); }
   }
   return c;

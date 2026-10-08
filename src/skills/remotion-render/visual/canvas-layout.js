@@ -422,12 +422,28 @@ export function splitHeadline(text) {
 export function canvasLayout(c) {
   const table = tableLayout(c);
   if (!c?.layout) return { ...table, layout: null };
-  const planned = tableLayout(c);
-  const applied = applyPlanLayout(planned.boxes, c.layout, { hero: planned.hero });
   const base = new Set(layoutViolations(table).map((v) => v.rule));
-  const added = layoutViolations(planned).filter((v) => !base.has(v.rule));
-  if (added.length) return { ...table, layout: { ...applied, used: false, rejected: added.map((v) => `${v.rule}: ${v.detail}`) } };
-  return { ...planned, layout: { ...applied, used: true, rejected: [] } };
+  const tablePos = new Map(flattenBoxes(table.boxes).map(([k, b]) => [k, `${b.x},${b.y}`]));
+  // The planner's layout on both axes; if that breaks a Layer 1 rule the table keeps, its horizontal
+  // placement alone (the table's vertical kept), then its vertical alone — before the whole beat goes
+  // to the table. Most fallbacks were vertical (CI run 37723570093: a headline centred or dropped into
+  // row 1 broke the 60% span or put two kinds in one zone) while the planner's sides and columns were
+  // legal; throwing both away drew the table where the planner's arrangement could have stood.
+  const attempt = (axes) => {
+    const L = tableLayout(c);
+    const applied = applyPlanLayout(L.boxes, c.layout, { hero: L.hero, axes });
+    const added = layoutViolations(L).filter((v) => !base.has(v.rule));
+    const moved = flattenBoxes(L.boxes).filter(([k, b]) => tablePos.get(k) !== `${b.x},${b.y}`).map(([k]) => k);
+    return { L, applied, added, moved };
+  };
+  const full = attempt("xy");
+  if (!full.added.length) return { ...full.L, layout: { ...full.applied, used: true, axes: "xy", moved: full.moved, rejected: [] } };
+  const rejected = full.added.map((v) => `${v.rule}: ${v.detail}`);
+  for (const axes of ["x", "y"]) {
+    const part = attempt(axes);
+    if (!part.added.length && part.moved.length) return { ...part.L, layout: { ...part.applied, used: true, axes, moved: part.moved, rejected } };
+  }
+  return { ...table, layout: { ...full.applied, used: false, axes: null, moved: [], rejected } };
 }
 
 const TEXT_ROLES_L1 = new Set(["headline", "number", "data", "emphasis"]);
@@ -975,15 +991,23 @@ export function slotRect(layout, slot) {
   const cw = (A.x1 - A.x0) / cols, rh = (A.y1 - A.y0) / rows;
   return { x: A.x0 + col * cw, y: A.y0 + row * rh, w: cs * cw, h: rs * rh };
 }
+// Names for "the beat's visual". The planner names the visual it PLANNED (a number, a map, a chart);
+// the grounding gate and the scene translation may draw a different one (a statement, a photo, a
+// cutout). A slot naming a visual the beat does not have places the visual the beat does have — the
+// composition's hero. (CI run 37723570093 attempt 2: 9 of 10 beats named a visual the rendered beat
+// lacked — "number" on a statement beat, "map" on a photo beat, "nodes" on a cutout beat — and those
+// slots silently placed nothing.)
+const VISUAL_IDS = new Set(["number", "chart", "map", "nodes", "items", "markers", "portrait", "cutout0", "hero", "visual", "body", "figure", "graph", "diagram", "list", "timeline", "image", "photo", "cutout", "icon", "symbol"]);
 const canon = (id, boxes, hero) => {
-  let k = String(id || "").trim();
-  k = LAYOUT_ALIASES[k.toLowerCase()] || k;
+  const raw = String(id || "").trim();
+  let k = LAYOUT_ALIASES[raw.toLowerCase()] || raw;
   if (k === "hero") k = hero || "";
   if (k === "headline" && !boxes.headline && boxes.statement) k = "statement";
   if (k === "statement" && !boxes.statement && boxes.headline) k = "headline";
+  if (!boxes[k] && (VISUAL_IDS.has(raw.toLowerCase()) || VISUAL_IDS.has(k)) && hero) k = hero;
   return k;
 };
-export function applyPlanLayout(boxes, layout, { hero = null } = {}) {
+export function applyPlanLayout(boxes, layout, { hero = null, axes = "xy" } = {}) {
   const placed = [], unknown = [], adjusted = [];
   const slots = Array.isArray(layout?.slots) ? layout.slots : [];
   const usable = (k) => !!boxes[k] && k !== "bottom" && k !== "split" && k !== "photo";
@@ -993,6 +1017,7 @@ export function applyPlanLayout(boxes, layout, { hero = null } = {}) {
   for (const slot of slots) {
     const id = canon(slot?.id, boxes, hero);
     if (!usable(id) || moved.has(id)) { unknown.push(String(slot?.id)); continue; }
+    if (id !== String(slot?.id || "").trim() && !LAYOUT_ALIASES[String(slot?.id || "").trim().toLowerCase()]) adjusted.push(`${slot.id} -> ${id}`);
     const keys = [id, ...(MOVE_WITH[id] || []).filter((k) => usable(k) && !explicit.has(k) && !moved.has(k))];
     const header = (STACK_ABOVE[id] || []).filter((k) => usable(k) && !explicit.has(k) && !moved.has(k));
     const E = unionOf(keys.map((k) => boxes[k]));
@@ -1012,12 +1037,18 @@ export function applyPlanLayout(boxes, layout, { hero = null } = {}) {
     // draws above it, and the render's ground check samples the corners: CI run 37714244283, a
     // restacked rule near y 50 read #F7F7F7 in the top-left patch), header included; below, the
     // caption's zone.
-    x = Math.max(SAFE.x, Math.min(FRAME.w - SAFE.x - E.w, x));
+    // An element wider than the safe width is drawn edge to edge by design (a map, a full-width
+    // chart): it keeps its own x — clamping it to the 48 px edge pushed a 1080 px map off the right
+    // of the frame (replay of CI run 37723570093 beat 1).
+    x = E.w > FRAME.w - 2 * SAFE.x ? E.x : Math.max(SAFE.x, Math.min(FRAME.w - SAFE.x - E.w, x));
     y = Math.max(LAYOUT_AREA.y0 + headH, Math.min(CONTENT_BOTTOM - E.h, y));
+    // One axis only (canvasLayout's partial fallback): the other axis keeps the table's position.
+    if (axes === "x") y = E.y;
+    if (axes === "y") x = E.x;
     // One zone per element (ZONES, owner's rule 2026-10-02): a group that would straddle the top /
     // middle edge is moved wholly into the zone holding most of it, when it fits there. Logged.
     const edge = ZONES.top[1], top = y - headH, bot = y + E.h;
-    if (top < edge - ZONE_TOL && bot > edge + ZONE_TOL) {
+    if (axes !== "x" && top < edge - ZONE_TOL && bot > edge + ZONE_TOL) {
       const intoMiddle = bot - edge >= edge - top;
       const fitsMiddle = edge + headH + E.h <= CONTENT_BOTTOM, fitsTop = LAYOUT_AREA.y0 + headH + E.h <= edge;
       // The zone holding most of it first; the other when that one is too small (CI run 37715658530:
@@ -1033,8 +1064,8 @@ export function applyPlanLayout(boxes, layout, { hero = null } = {}) {
     const side = (align || boxes[id].align) === "right" ? "right" : "left";
     for (const k of header) {
       const f = boxes[k];
-      const fx = side === "right" ? boxes[id].x + boxes[id].w - f.w : boxes[id].x;
-      const fy = cursor - HEADER_GAP - f.h;
+      const fx = axes === "y" ? f.x : side === "right" ? boxes[id].x + boxes[id].w - f.w : boxes[id].x;
+      const fy = axes === "x" ? f.y : cursor - HEADER_GAP - f.h;
       translateBox(f, fx - f.x, fy - f.y);
       cursor = fy;
     }
