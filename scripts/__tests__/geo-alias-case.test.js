@@ -22,6 +22,14 @@ test("codes written in capitals and full names still resolve", () => {
   assert.equal(resolveRegion("The Netherlands"), "country:NLD");
 });
 
+test("a bare name that is two places resolves to neither", () => {
+  // CI run 37810883817 ch-9: "Moscow and Washington ..." drew Washington state.
+  assert.equal(resolveRegion("Washington"), null);
+  assert.equal(resolveRegion("Georgia"), null);
+  assert.equal(resolveRegion("Washington state"), "us:WA");
+  assert.deepEqual(knownPlacesOf("Moscow and Washington are planning a return of energy trade."), []);
+});
+
 test("a sentence-initial question word grounds no map", () => {
   assert.deepEqual(knownPlacesOf("Are you leaving zero emergency cash behind?"), []);
   assert.deepEqual(knownPlacesOf("Can Turkey and Somalia build a spaceport?"), ["Turkey", "Somalia"]);
