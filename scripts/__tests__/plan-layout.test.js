@@ -119,3 +119,21 @@ describe("what belongs to an element goes with it (CI run 37707115528)", () => {
     for (const [k, b] of flattenBoxes(m.boxes)) if (k !== "photo") assert.ok(b.y + b.h <= 1340 + 8, `${k} ends at ${b.y + b.h}`);
   });
 });
+
+describe("a slot is a region (CI run 37708554035)", () => {
+  it("a 1x1 grid with one unaligned slot — the whole content area — moves nothing", () => {
+    const lay = L({ cols: 1, rows: 1, slots: [{ id: "nodes", col: 0, row: 0 }] });
+    assert.deepEqual(pos(lay), pos(L(null)));
+  });
+  it("the same slot with an explicit alignment does anchor the element", () => {
+    const lay = L({ cols: 1, rows: 1, slots: [{ id: "headline", col: 0, row: 0, align: "right", v_align: "bottom" }] });
+    assert.notDeepEqual(pos(lay), pos(L(null)));
+  });
+  it("an unaligned element is moved only as far as it takes to sit inside a smaller slot", () => {
+    const table = L(null).boxes.headline;
+    const lay = L({ cols: 2, rows: 4, slots: [{ id: "headline", col: 1, row: 3 }] });
+    const R = slotRect({ cols: 2, rows: 4 }, { col: 1, row: 3 });
+    assert.ok(lay.boxes.headline.x >= Math.floor(R.x) && lay.boxes.headline.y >= Math.floor(R.y) - 1, JSON.stringify(lay.boxes.headline));
+    assert.notDeepEqual([lay.boxes.headline.x, lay.boxes.headline.y], [table.x, table.y]);
+  });
+});

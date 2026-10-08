@@ -948,9 +948,15 @@ export function applyPlanLayout(boxes, layout, { hero = null } = {}) {
     if (!E) { unknown.push(String(slot?.id)); continue; }
     const headH = header.reduce((t, k) => t + boxes[k].h + HEADER_GAP, 0);
     const R = slotRect(layout, slot);
-    const align = slot?.align || boxes[id]?.align || "left", va = slot?.v_align || "top";
-    let x = align === "right" ? R.x + R.w - E.w : align === "center" ? R.x + (R.w - E.w) / 2 : R.x;
-    let y = va === "bottom" ? R.y + R.h - E.h : va === "center" ? R.y + (R.h - E.h) / 2 : R.y;
+    // A slot is a REGION. With an explicit align / v_align the element is anchored in it that way;
+    // without one it keeps its own position, moved only as far as it takes to sit inside the slot.
+    // (CI run 37708554035: the planner answered a 1x1 grid with one slot on every beat — the whole
+    // content area — and anchoring to the slot's top-left corner by default piled every beat's
+    // element at the top: canvas-coverage 35-55%, headline onto number.)
+    const inside = (p, lo, size, span) => Math.max(lo, Math.min(lo + Math.max(0, span - size), p));
+    const align = slot?.align || null, va = slot?.v_align || null;
+    let x = align === "right" ? R.x + R.w - E.w : align === "center" ? R.x + (R.w - E.w) / 2 : align === "left" ? R.x : inside(E.x, R.x, E.w, R.w);
+    let y = va === "bottom" ? R.y + R.h - E.h : va === "center" ? R.y + (R.h - E.h) / 2 : va === "top" ? R.y : inside(E.y, R.y, E.h, R.h);
     // The frame: the safe edge, the header room above, the caption's zone below.
     x = Math.max(SAFE.x, Math.min(FRAME.w - SAFE.x - E.w, x));
     y = Math.max(SAFE.y + headH, Math.min(CONTENT_BOTTOM - E.h, y));
@@ -967,7 +973,7 @@ export function applyPlanLayout(boxes, layout, { hero = null } = {}) {
     if (dx || dy) for (const k of keys) translateBox(boxes[k], dx, dy);
     // The header furniture, restacked directly above its text: the kicker, then the rule above it.
     let cursor = boxes[id].y;
-    const side = align === "right" || boxes[id].align === "right" ? "right" : "left";
+    const side = (align || boxes[id].align) === "right" ? "right" : "left";
     for (const k of header) {
       const f = boxes[k];
       const fx = side === "right" ? boxes[id].x + boxes[id].w - f.w : boxes[id].x;
