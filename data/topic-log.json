@@ -1102,16 +1102,21 @@
       "last_generated": "2026-09-14T08:38:07.107Z"
     },
     "8": {
-      "channel_name": "Synapse",
-      "niche": "Cognitive Science & Mind",
+      "channel_name": "Ledger",
+      "niche": "Financial History & Institutional Collapse",
       "used_topics": [
         {
           "topic": "The Collapse of Nano Banc and the 2026 U.S. Regional Banking Crisis",
           "slug": "nano-banc-collapse-2026-regional-banking-crisis",
           "reserved_at": "2026-10-07T12:22:11.592Z"
+        },
+        {
+          "topic": "Africa Launches Its Own Credit Rating Agency in October 2026",
+          "slug": "africa-launches-credit-rating-agency-2026",
+          "reserved_at": "2026-10-08T12:36:33.224Z"
         }
       ],
-      "last_generated": "2026-10-07T12:22:11.593Z"
+      "last_generated": "2026-10-08T12:36:33.224Z"
     },
     "9": {
       "channel_name": "Border Lines",
