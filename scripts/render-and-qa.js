@@ -23,7 +23,7 @@ import { join, dirname, basename, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { createRequire as createRequireEntity } from "node:module";
-import { compositionFor, canvasLayout as layoutOfCanvas, normalizeCanvas as normalizeForLayout } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { compositionFor, canvasLayout as layoutOfCanvas, canvasManifest, normalizeCanvas as normalizeForLayout } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { resolveGround } from "../src/skills/remotion-render/visual/backgrounds.js";
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
@@ -36,12 +36,13 @@ import { validateConcepts } from "../src/skills/remotion-render/visual/concept-v
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
 import { inkOf } from "./cutout-ink.mjs";
 import { placeGate } from "./place-gate.js";
-import { enforceChrome, templateCheck } from "./template-check.js";
+import { enforceChrome, templateCheck, labelCount } from "./template-check.js";
 const { resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 const { fetchCutoutForBeat, qualifyConcept } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
 const { resolveSceneEntity, sceneEntities, fallbackAsset } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
 const { askProviders: askVisualProviders } = createRequireEntity(import.meta.url)("./verify-cutout-image.cjs");
 import { chooseBeatVisual } from "./beat-visual.js";
+import { createUsedImages } from "./lib/used-images.js";
 const { verifyPlaceImage } = createRequireEntity(import.meta.url)("./verify-place-image.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
@@ -566,10 +567,10 @@ async function qaOne(runId, rendered, planPath) {
     await runChild("node", [LOCAL_AUDITOR_JS, ...laArgs], { label: `qa/local-audit ${basename(outputPath)}` });
     localAudit = readJsonSafe(outputPath.replace(/\.mp4$/, "-local-audit.json"));
   }
-  // Gemini runs ONLY when the local auditor cannot clear the video on its own
-  // (risk not LOW, or specific uncertain beats). If the local report is
-  // missing (auditor errored), fall back to running Gemini so we never ship a
-  // video that nothing semantically reviewed.
+  // geminiNeeded (risk not LOW, or uncertain beats, or no local report) now
+  // decides only the advisory vision QA below. The FRAME REVIEW runs on every
+  // video (frameReviewRuns): it is the gate, and a LOW-risk local verdict
+  // skipping it is how an unreviewed template-monoculture video could ship.
   const geminiNeeded = !localAudit || localAudit.gemini_required !== false;
 
   let visionQaPromise;
@@ -583,7 +584,7 @@ async function qaOne(runId, rendered, planPath) {
   let geminiReviewPromise;
   // The frame review runs with Gemini OR the local Ollama vision model.
   const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.VISION_API_KEY;
-  if (audit.code === 0 && geminiNeeded && (geminiKey || process.env.OLLAMA_URL)) {
+  if (frameReviewRuns({ auditOk: audit.code === 0, provider: !!(geminiKey || process.env.OLLAMA_URL) })) {
     const srtPath = join(dirname(audio), basename(audio, extname(audio)) + ".srt");
     const srtArg = existsSync(srtPath) ? srtPath : "";
     const reviewArgs = ["--video", outputPath, "--script", scriptPath, "--channel", String(channelId), "--fix"];
@@ -594,8 +595,6 @@ async function qaOne(runId, rendered, planPath) {
     geminiReviewPromise = runChild("node", [GEMINI_REVIEW_JS, ...reviewArgs], {
       label: `qa/gemini-review ${basename(outputPath)}`,
     });
-  } else if (audit.code === 0 && !geminiNeeded) {
-    console.log(`[qa] local auditor cleared ${basename(outputPath)} (risk ${localAudit.risk?.level}) — skipping Gemini review`);
   }
 
   const slopCheckPromise = runChild("node", [SLOP_CHECK_JS, outputPath, channelId, scriptPath, audio], {
@@ -865,11 +864,27 @@ async function backupAudit({ stage, reason, videoPath, planPath, srtPath, audio,
 // substituted looser thresholds (no CRITICAL, no monoculture, HIGH <= 30%,
 // whole-video not FAIL at CRITICAL/HIGH) for the model's own call.
 // A report with no pipelineVerdict is NOT evidence of a pass.
-function frameReviewVerdict(geminiReport) {
+//
+// FRAME REVIEW IS THE GATE (owner, 2026-10-09). frameReviewHold: a TEMPLATE_MONOCULTURE verdict
+// is a hold — backupAudit's forceReject, the same lever a wrong-person photo uses — so the local
+// audit cannot overrule it into approved-review/. The manifest template-window check (Layer 1,
+// scripts/template-check.js) is a SECONDARY signal: its PASS is not proof the template is gone.
+export function frameReviewHold(fr) {
+  return fr?.monoculture ? { forceReject: true, check: "TEMPLATE_MONOCULTURE" } : {};
+}
+// frameReviewRuns: the review runs on every video that passed the pixel audit and has a provider.
+// It used to also need the local auditor's gemini_required — a LOW-risk local verdict skipped it.
+export function frameReviewRuns({ auditOk, provider }) {
+  return !!(auditOk && provider);
+}
+export function frameReviewVerdict(geminiReport) {
   const report = geminiReport ? readJsonSafe(geminiReport) : null;
   if (!report) return { pass: false, error: true, reason: "Gemini frame review produced no report" };
   if (report.pipelineVerdict) {
-    return { pass: report.pipelineVerdict === "APPROVED", reason: `${report.pipelineVerdict} — ${report.pipelineReason || ""}` };
+    // monoculture only on the review's own REJECTED: a PROVIDER_UNAVAILABLE report may still carry
+    // an untrusted provider's headline_test (Ollama fabricated 100% monoculture — gemini-frame-review.js).
+    const monoculture = report.pipelineVerdict === "REJECTED" && !!report.wholeVideoResult?.headline_test?.monoculture;
+    return { pass: report.pipelineVerdict === "APPROVED", reason: `${report.pipelineVerdict} — ${report.pipelineReason || ""}`, ...(monoculture ? { monoculture } : {}) };
   }
   // A whole-video review that did not produce a result (status ERROR or
   // missing) is a review that did not run — NOT a pass. Run 36370967090
@@ -891,7 +906,7 @@ function frameReviewVerdict(geminiReport) {
   // monoculture headline test applies again, as it did before the paper.
   // CRITICAL frames, HIGH-issue share and a failing whole-video severity
   // reject exactly as before.
-  if (whole.headline_test?.monoculture) return { pass: false, reason: `REJECTED — TEMPLATE_MONOCULTURE ${whole.headline_test.percent ?? "?"}% headline-dominated` };
+  if (whole.headline_test?.monoculture) return { pass: false, monoculture: true, reason: `REJECTED — TEMPLATE_MONOCULTURE ${whole.headline_test.percent ?? "?"}% headline-dominated` };
   if (high > Math.floor(frames * 0.3)) return { pass: false, reason: `NEEDS_IMPROVEMENT — ${high} HIGH issues across ${frames} frames` };
   if (whole.status === "FAIL" && (whole.severity === "CRITICAL" || whole.severity === "HIGH")) {
     return { pass: false, reason: `NEEDS_IMPROVEMENT — whole-video FAIL (${whole.severity})${score}` };
@@ -1134,6 +1149,42 @@ function bankCutout(name, concept) {
   return null;
 }
 
+/**
+ * Concept visuals, step 3 of resolveCanvas: each wanted beat gets the resolved visuals of its
+ * concept names, in beat order — minus every image an earlier beat already shows. `used` is
+ * resolveCanvas's one usedImages (scripts/lib/used-images.js), already holding the photos, logos,
+ * money and document images the earlier paths attached; each cutout kept here is added to it.
+ * It used to be a separate set keyed by asset path only, seeded after the fact, so a live cutout
+ * (cutouts-live/<ch>/<beat>-<concept>.png: a new path per beat) of one picture passed on every beat.
+ */
+export function attachConceptVisuals({ wanted, results, used, stats, channelId }) {
+  for (const w of wanted) {
+    // No image twice in one video (owner, 2026-10-08): a cutout an earlier beat shows is dropped here.
+    const visuals = used.keep(w.names.map((n) => results.get(`${w.bi}:${n}`)).filter(Boolean), `beat ${w.b.index} cutout`);
+    for (const v of visuals) stats[v.class === "symbol" ? "symbol" : v.source]++;
+    if (!visuals.length) { stats.none++; continue; }
+    // Two cutout beats in a row both render (owner's spec 2026-10-03, C.3 — the earlier
+    // "never a hero next to a hero" guard is removed); canvas-type keys a hero beat by its
+    // object, so only the SAME object twice in a row is a repeat.
+    const c = w.b.canvas;
+    if (c.composition === "TYPE-SPLIT") {
+      // A hero-cutout beat is not a plain statement: next to a TYPE-FULL it is
+      // not "TYPE-FULL twice" (local-audit canvas-type keys it as +HERO).
+      c.composition = "TYPE-FULL"; delete c.type_layout;
+      console.log(`[concepts] ch-${channelId} beat ${w.b.index}: TYPE-SPLIT -> TYPE-FULL concept beat`);
+    }
+    c.concept_visuals = visuals;
+    // Source credit (part C): the fetched cutout's page domain.
+    { const cr = sourceCredit(visuals.find((v) => v.class === "cutout")?.source_url); if (cr) c.source_credit = cr; }
+    console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${visuals.map((v) => `${v.name} (${v.class === "symbol" ? "symbol" : v.source})`).join(", ")} — from the ${w.from}`);
+    // Every rendered cutout: where it came from and what the verifier saw (owner's audit trail).
+    for (const v of visuals.filter((x) => x.class === "cutout")) {
+      console.log(`[cutout] ch-${channelId} beat ${w.b.index}: "${v.name}" from ${v.source === "live" ? "pixabay" : v.source}, verdict=${v.verdict}, seen="${v.seen}"`);
+      console.log(`[cutout] ch-${channelId} beat ${w.b.index}: source=${v.source_url || "?"}`);
+    }
+  }
+}
+
 async function resolveCanvas(channelId, planPath, plan) {
   let fetchedNew = 0;
   const counts = { by_comp: {}, photos: 0, entity_fallbacks: 0 };
@@ -1161,8 +1212,12 @@ async function resolveCanvas(channelId, planPath, plan) {
   // NO PHOTO REPEATS WITHIN A VIDEO (owner, 2026-10-08; CI run 37810883817 ch-5 drew the same
   // courthouse on beats 6 and 8). An image a previous beat shows is not a candidate again: the
   // beat falls down the ladder. Layer 1 no-photo-repeat checks the rendered manifest.
-  const usedImages = new Set();
-  const reused = (asset, what) => { if (asset && usedImages.has(asset)) { console.log(`[no-repeat] ch-${channelId}: ${what} ${asset} already shown on an earlier beat — not used again`); return true; } return false; };
+  // ONE set for every path that attaches a visual — entity photo, logo, money cutout, document
+  // scan, the bundled fallback, concept cutouts (bank and live) — keyed by asset AND source
+  // (scripts/lib/used-images.js: a live cutout's path is beat-numbered, so the same picture on
+  // three beats was three different paths and passed a path-only filter three times).
+  const usedImages = createUsedImages((m) => console.log(m.replace("[no-repeat] ", `[no-repeat] ch-${channelId}: `)));
+  const reused = (v, what) => usedImages.reused(v, what);
   for (const [bi, b] of plan.beats.entries()) {
     let photo = null;
     const vt = String(b.visual_type || "").toUpperCase();
@@ -1176,7 +1231,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       const value = b.data?.value || null;
       const spec = CUTOUT_SPECS.find((x) => x.name === obj.replace(/\s+/g, "-")) || {};
       let r = await fetchCutoutForBeat({ concept: obj, name: obj, channel: channelId, beat_index: b.index, spec, scene: b.scene_description || null });
-      if (r && reused(r.png_path, `beat ${b.index} money cutout`)) r = null;
+      if (r && reused({ asset: r.png_path, source_url: r.source_url }, `beat ${b.index} money cutout`)) r = null;
       b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
       if (r) {
         b.hero_cutout = { name: obj, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, money: true, ink: await inkOf(r.abs_path) };
@@ -1194,7 +1249,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       // Every fetched photo is verified before use (owner's spec 2026-10-02, task 2.4). The
       // document lookup matched "HOME Act" to a photo of people announcing a DIFFERENT act
       // (CI run 37031119023 ch-2 beat 4); a file name is not what the image shows.
-      if (r.ok && reused(r.asset, `beat ${b.index} document`)) { r.ok = false; r.why = "already shown on an earlier beat"; r.attempts = []; }
+      if (r.ok && reused({ asset: r.asset, source_url: r.source_url }, `beat ${b.index} document`)) { r.ok = false; r.why = "already shown on an earlier beat"; r.attempts = []; }
       if (r.ok) {
         const what = vt === "DOCUMENT" ? `the document "${b.data?.name}" (a scan or photograph of its pages)` : `${b.data?.object} (a photograph of it)`;
         const v = await verifyPlaceImage(join(PUBLIC_DIR, r.asset), what);
@@ -1243,7 +1298,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         // A refused acronym ("AI", "ED") is not a name: no name card is made of it.
         if (!r.refused) named.push(e0);
       }
-      for (let k = found.length - 1; k >= 0; k--) if (reused(found[k].id, `beat ${b.index} ${found[k].e0.type} "${found[k].e0.name}"`)) { entities.fell_back.push(`beat ${b.index}: ${found[k].e0.name}: image already shown on an earlier beat`); named.push(found[k].e0); found.splice(k, 1); }
+      for (let k = found.length - 1; k >= 0; k--) if (reused({ asset: found[k].id, source_url: (found[k].r.logo || found[k].r.photo).source_url }, `beat ${b.index} ${found[k].e0.type} "${found[k].e0.name}"`)) { entities.fell_back.push(`beat ${b.index}: ${found[k].e0.name}: image already shown on an earlier beat`); named.push(found[k].e0); found.splice(k, 1); }
       if (found.length) {
         const regionAvail = real.find((e) => e.type === "place" && resolveRegionName(e.name));
         const assets = found.map(({ id, e0, r }) => {
@@ -1271,7 +1326,9 @@ async function resolveCanvas(channelId, planPath, plan) {
           b.visual_type = "PHOTO"; b.data = { entity: pick.e0.name, entity_type: pick.e0.type };
         } else if (choice.visual === "silhouette" || choice.visual === "document") {
           // The bundled non-identifying treatment / document surface (resolve-scene.cjs FALLBACK_ASSETS).
-          const fb = await fallbackAsset(choice.visual, channelId, b.index);
+          let fb = await fallbackAsset(choice.visual, channelId, b.index);
+          // The bundled surface is one file: on a second beat it is the same image again.
+          if (fb?.ok && reused(fb.photo, `beat ${b.index} ${choice.visual} fallback`)) fb = null;
           if (fb?.ok) { photo = { ...fb.photo, entity: found[0].e0.name }; b.visual_type = "PHOTO"; b.data = { entity: found[0].e0.name, entity_type: found[0].e0.type }; }
           else named.push(...found.map((f) => f.e0));
         } else if (choice.visual.startsWith("symbol:")) {
@@ -1303,8 +1360,8 @@ async function resolveCanvas(channelId, planPath, plan) {
       }
     }
     b.canvas = canvasContentFor(b, { photo });
-    if (photo?.asset) usedImages.add(photo.asset);
-    if (b.hero_cutout?.asset) usedImages.add(b.hero_cutout.asset);
+    usedImages.add(photo);
+    usedImages.add(b.hero_cutout);
     if (photo) b.asset = { id: photo.asset, source: photo.source || "wikimedia", source_url: photo.source_url, license: photo.license, attribution: photo.credit };
   }
   // NO REPEAT, again, on what actually resolved (a real photo of a building is
@@ -1474,37 +1531,9 @@ async function resolveCanvas(channelId, planPath, plan) {
     }
     const resolved =[...results.values()].filter((v) => v && v.class === "cutout").length;
     if (Date.now() - T0 >= BUDGET_MS) console.log(`[cutout-live] ch-${channelId}: ${(BUDGET_MS / 60000).toFixed(0)}-minute budget reached, using ${resolved}/${tasks.length} resolved cutouts`);
-    // 3. Attach, in beat order (the TYPE-SPLIT conversion sees its final neighbours).
-    const usedCutouts = new Set(plan.beats.flatMap((x) => [x.canvas?.photo?.asset, x.hero_cutout?.asset]).filter(Boolean));
-    for (const w of wanted) {
-      // No image twice in one video (owner, 2026-10-08): a cutout an earlier beat shows is dropped here.
-      const visuals = w.names.map((n) => results.get(`${w.bi}:${n}`)).filter(Boolean).filter((v) => {
-        if (v.class !== "cutout" || !v.asset) return true;
-        if (usedCutouts.has(v.asset)) { console.log(`[no-repeat] ch-${channelId} beat ${w.b.index}: cutout ${v.asset} already shown on an earlier beat — not used again`); return false; }
-        usedCutouts.add(v.asset); return true;
-      });
-      for (const v of visuals) stats[v.class === "symbol" ? "symbol" : v.source]++;
-      if (!visuals.length) { stats.none++; continue; }
-      // Two cutout beats in a row both render (owner's spec 2026-10-03, C.3 — the earlier
-      // "never a hero next to a hero" guard is removed); canvas-type keys a hero beat by its
-      // object, so only the SAME object twice in a row is a repeat.
-      const c = w.b.canvas;
-      if (c.composition === "TYPE-SPLIT") {
-        // A hero-cutout beat is not a plain statement: next to a TYPE-FULL it is
-        // not "TYPE-FULL twice" (local-audit canvas-type keys it as +HERO).
-        c.composition = "TYPE-FULL"; delete c.type_layout;
-        console.log(`[concepts] ch-${channelId} beat ${w.b.index}: TYPE-SPLIT -> TYPE-FULL concept beat`);
-      }
-      c.concept_visuals = visuals;
-      // Source credit (part C): the fetched cutout's page domain.
-      { const cr = sourceCredit(visuals.find((v) => v.class === "cutout")?.source_url); if (cr) c.source_credit = cr; }
-      console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${visuals.map((v) => `${v.name} (${v.class === "symbol" ? "symbol" : v.source})`).join(", ")} — from the ${w.from}`);
-      // Every rendered cutout: where it came from and what the verifier saw (owner's audit trail).
-      for (const v of visuals.filter((x) => x.class === "cutout")) {
-        console.log(`[cutout] ch-${channelId} beat ${w.b.index}: "${v.name}" from ${v.source === "live" ? "pixabay" : v.source}, verdict=${v.verdict}, seen="${v.seen}"`);
-        console.log(`[cutout] ch-${channelId} beat ${w.b.index}: source=${v.source_url || "?"}`);
-      }
-    }
+    // 3. Attach, in beat order (the TYPE-SPLIT conversion sees its final neighbours), against the
+    // SAME usedImages every other path fills (attachConceptVisuals).
+    attachConceptVisuals({ wanted, results, used: usedImages, stats, channelId });
     console.log(`[cutout-live] ch-${channelId}: ${stats.bank} from the bank, ${stats.live} live, ${stats.symbol} symbol(s), ${stats.none} concept beat(s) with no visual; ${((Date.now() - T0) / 1000).toFixed(0)} s`);
     // Final visual-first ratio (owner spec 2026-10-02): a TYPE beat that shows a
     // named object (a concept cutout / symbol) counts as visual.
@@ -1679,8 +1708,13 @@ async function resolveCanvas(channelId, planPath, plan) {
       b.canvas.label = enf.keep[i].label ? items[i].label : null;
       b.canvas.pull_phrase = enf.keep[i].phrase ? items[i].pull : null;
     });
-    for (const d of enf.dropped) console.log(`[chrome] beat ${plan.beats[d.beat].index}: ${d.device} removed — it would repeat a second device inside a three-beat window`);
-    console.log(`[chrome] ch-${channelId}: labels ${plan.beats.filter((b) => b.canvas.label).length}, pull phrases ${plan.beats.filter((b) => b.canvas.pull_phrase).length}, type-led ${items.filter((x) => x.typeLed).length} of ${plan.beats.length}; ${enf.dropped.length} removed by the window rule`);
+    for (const d of enf.dropped) console.log(`[chrome] beat ${plan.beats[d.beat].index}: ${d.device} removed — it would break the window rule (a second device repeating, or one device on three beats in a row)`);
+    for (const u of enf.unfixable) console.log(`[chrome] ch-${channelId}: beats ${u.start}-${u.start + 2} are type-led three in a row — removing chrome cannot fix it; Layer 1 template-window will fail this render`);
+    // "labels" = beats that DRAW text at the top of the frame (template-check.js labelsDrawn on the
+    // same record render.js writes into the manifest), not the planner's label: counting only the
+    // planner's label reported "0-4 labels" on videos with a top-left headline on nearly every beat.
+    const drawnLabels = labelCount({ beats: plan.beats.map((b, i) => ({ canvas: canvasManifest(b.canvas, i) })) });
+    console.log(`[chrome] ch-${channelId}: labels drawn ${drawnLabels} (planner labels ${plan.beats.filter((b) => b.canvas.label).length}), pull phrases ${plan.beats.filter((b) => b.canvas.pull_phrase).length}, type-led ${items.filter((x) => x.typeLed).length} of ${plan.beats.length}; ${enf.dropped.length} removed by the window rule`);
     // The label is a kicker the animation pass above never saw: entrances are assigned again so
     // every drawn kicker pops (Layer 1 kinetic-rules, CI run 37832958615: "kicker has 4 words but 0 entrances").
     assignCanvasAnimations(plan.beats, { seed: channelId, log: () => {} });
@@ -2102,14 +2136,10 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // Wait for all background QA tasks to finish before checking Gemini verdict
     await Promise.all([qa.slopCheckPromise, qa.visionQaPromise, qa.geminiReviewPromise].filter(Boolean));
 
-    // Step 4: verdict. If the local auditor cleared the video (LOW risk, no
-    // uncertain beats), Gemini was not run — that IS the approval; ship it
-    // without spending a correction attempt.
-    if (qa.geminiNeeded === false && qa.gatePass) {
-      const lvl = qa.localAudit?.risk?.level || "LOW";
-      console.log(`Local auditor cleared (risk ${lvl}) — approved without Gemini.`);
-      return { skipped: false, ok: true, outputPath: result.outputPath, attempt, geminiVerdict: `LOCAL_AUDIT_${lvl}`, qaGatePass: qa.gatePass };
-    }
+    // Step 4: verdict. FRAME REVIEW IS THE GATE (owner, 2026-10-09). A local auditor that rated
+    // the video LOW risk used to skip the review and ship it ("approved without Gemini") — so a
+    // template-monoculture video the reviewer would have rejected shipped unreviewed. It ships
+    // only on the frame review's own APPROVED now (frameReviewRuns: the review is never skipped).
 
     const geminiReport = findGeminiReviewReport(channelId, scriptPath);
     let pipelineVerdict = "UNKNOWN";
@@ -2157,16 +2187,19 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // unchanged: returned with qaGatePass false and removed by main().
     const fr = frameReviewVerdict(geminiReport);
     console.log(`[frame-review] attempt ${attempt}: ${fr.pass ? "PASS" : fr.error ? "ERROR" : "FAIL"} — ${fr.reason}`);
+    // TEMPLATE_MONOCULTURE holds the video: it goes to rejected/, never approved-review/, whatever
+    // the local audit (and its manifest template-window check) says — see frameReviewHold.
+    const hold = frameReviewHold(fr);
 
     if (fr.pass || !qa.gatePass) {
       if (fr.pass || attempt === MAX_CORRECTION_LOOPS || fr.error) {
         // A failed pixel gate (or a failed / unrun review) used to return
         // qaGatePass false and be DELETED by main(); it is queued now.
-        if (!(qa.gatePass && fr.pass)) return backupAudit({ ...backupArgs, stage: qa.gatePass ? "frame-review" : "frame-audit", reason: qa.gatePass ? fr.reason : "the frame audit (pixel gate) failed" });
+        if (!(qa.gatePass && fr.pass)) return backupAudit({ ...backupArgs, ...hold, stage: qa.gatePass ? "frame-review" : "frame-audit", reason: qa.gatePass ? fr.reason : "the frame audit (pixel gate) failed" });
         return { skipped: false, ok: true, outputPath: result.outputPath, attempt, geminiVerdict, qaGatePass: true };
       }
     } else if (fr.error || attempt === MAX_CORRECTION_LOOPS) {
-      return backupAudit({ ...backupArgs, stage: "frame-review", reason: fr.reason });
+      return backupAudit({ ...backupArgs, ...hold, stage: "frame-review", reason: fr.reason });
     }
 
     // Not approved — feed corrections back and re-render.
@@ -2216,7 +2249,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       console.log(`Frame review ${fr.reason} but produced no actionable corrections — not spending another attempt.`);
       // Used to ship as ok:true. The review did not pass, so it is a
       // frame-review failure like any other: backup audit + human queue.
-      return backupAudit({ ...backupArgs, stage: "frame-review", reason: `${fr.reason} (no actionable corrections)` });
+      return backupAudit({ ...backupArgs, ...hold, stage: "frame-review", reason: `${fr.reason} (no actionable corrections)` });
     }
 
     // TIME BUDGET. The render job has an 18-minute timeout; run 36397373831
@@ -2233,7 +2266,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     const nextMs = postPlanMs + (enforced.appliedCount ? 0 : planReadyAt - attemptStartedAt);
     if (Date.now() - PROCESS_T0 + nextMs > RENDER_QA_BUDGET_MS) {
       console.log(`[budget] attempt ${attempt + 1} would take ~${(nextMs / 60000).toFixed(1)} min at ${((Date.now() - PROCESS_T0) / 60000).toFixed(1)} min in; that passes the ${(RENDER_QA_BUDGET_MS / 60000).toFixed(0)}-min budget — no further attempt`);
-      return backupAudit({ ...backupArgs, stage: "frame-review", reason: `${fr.reason} (time budget: no further attempt)` });
+      return backupAudit({ ...backupArgs, ...hold, stage: "frame-review", reason: `${fr.reason} (time budget: no further attempt)` });
     }
     // When directives were enforced, the NEXT attempt renders the edited
     // plan directly instead of asking Gemini for a fresh one — the changes

@@ -1284,6 +1284,13 @@ export function canvasManifest(raw, idx) {
   // camera and the zone clamps never treat it as a body element); the audit still sees its box.
   if (L.pull) flat.pull = meta(L.pull);
   const shown = (k) => (L.boxes[k]?.lines ? L.boxes[k].lines.join(" ") : L.boxes[k]?.text || null);
+  // Every text box DRAWN at the top of the frame (its top edge in the top zone), whatever the
+  // layout calls it — kicker, headline, statement, chart label, a comparison's subject. That is
+  // what a viewer reads as a corner label. The record used to be the planner's kicker only, so a
+  // headline pinned top-left on 7 of 9 beats counted as 0 labels (board 37837731824 ch-26).
+  // scripts/template-check.js labelsDrawn measures the same thing from the manifest's boxes.
+  const topText = [...Object.entries(L.boxes).filter(([, b]) => b?.lines?.length && b.y < ZONES.top[1]).map(([k]) => k), ...(L.pull && L.pull.y < ZONES.top[1] ? ["pull"] : [])];
+  const plannerLabel = L.boxes.kicker && !L.boxes.kicker.subject;
   return {
     composition: L.composition, hero: L.hero, boxes: flat, content: contentBounds(L), zones: zoneReport(L).zones, motion_tier: c.motion_tier || "medium",
     camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
@@ -1293,7 +1300,9 @@ export function canvasManifest(raw, idx) {
       verified_as: c.photo.verified_as || null, seen: c.photo.seen || null, source_url: c.photo.source_url || null, place_check: c.photo.place_check || null } : null,
     // The chrome actually drawn (scripts/template-check.js reads these three devices).
     chrome: {
-      label: L.boxes.kicker && !L.boxes.kicker.subject ? { text: (L.boxes.kicker.lines || []).join(" ") || null, position: c.label?.position || "top-left" } : null,
+      label: plannerLabel || topText.length ? {
+        text: plannerLabel ? (L.boxes.kicker.lines || []).join(" ") || null : topText[0] === "pull" ? L.pull.lines.join(" ") : (L.boxes[topText[0]].lines || []).join(" ") || null,
+        position: plannerLabel ? c.label?.position || "top-left" : "top", drawn: topText, planner: !!plannerLabel } : null,
       pull_phrase: L.pull ? { text: L.pull.lines.join(" "), position: L.pull.position, tone: L.pull.tone } : null,
       type_led: ["TYPE-FULL", "TYPE-SPLIT"].includes(L.composition) && !c.photo && !(c.concept_visuals || []).length && !c.hero_cutout,
     },

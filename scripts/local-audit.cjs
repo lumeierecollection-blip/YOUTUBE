@@ -772,11 +772,13 @@ async function canvasChecks(video, m) {
   out.push({ id: "motion-tiers", pass: !mt.bad.length, detail: mt.bad.length ? mt.bad.join("; ") : `${mt.major} major, ${mt.medium} medium, all beats micro` });
   // template-window (owner's definition of "no template", 2026-10-08 — scripts/template-check.js):
   // across any three consecutive beats, at most ONE of {corner label, pull phrase, type-led
-  // layout} repeats. HARD. Not loosened to pass a render.
-  const { templateCheck } = await import("./template-check.js");
+  // layout} repeats, AND no device is on three beats in a row (2026-10-09). The label is what is
+  // DRAWN at the top of the frame (template-check.js labelsDrawn). HARD. Not loosened to pass a render.
+  // A SECONDARY signal only: frame review's TEMPLATE_MONOCULTURE holds a video whatever this says.
+  const { templateCheck, labelCount } = await import("./template-check.js");
   const tw = templateCheck(m);
-  out.push({ id: "template-window", pass: tw.pass, detail: tw.error ? tw.error : tw.pass ? `${tw.beats} beat(s): no two devices repeat inside any three-beat window`
-    : tw.windows.slice(0, 6).map((w) => `beats ${w.start}-${w.start + 2}: ${w.repeating.join(" + ")} repeat`).join("; ") });
+  out.push({ id: "template-window", pass: tw.pass, detail: tw.error ? tw.error : tw.pass ? `${tw.beats} beat(s), ${labelCount(m)} draw a label: no two devices repeat inside any three-beat window, no device on three beats in a row`
+    : tw.windows.slice(0, 6).map((w) => `beats ${w.start}-${w.start + 2}: ${w.run.length ? `${w.run.join(" + ")} on three beats in a row` : `${w.repeating.join(" + ")} repeat`}`).join("; ") });
   // no-photo-repeat (owner, 2026-10-08): one photo, at most one beat per video.
   const seen = new Map(), rep = [];
   beats.forEach((b, i) => {
