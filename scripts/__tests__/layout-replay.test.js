@@ -52,3 +52,9 @@ it("run 37743696701: no planned layout leaves a beat more than 1 point below the
   const src3 = fx3.canvases.map((c, i) => sourceOf(canvasLayout(normalizeCanvas(c, i)).layout));
   assert.ok(src3.filter((s) => s === "table" || s === "plan-noop").length <= 1, src3.join(", "));
 });
+it("run 37746025773: a placed cutout stays clear of y 1340 the way the table keeps it (its shadow crossed the edge)", () => {
+  const fx4 = JSON.parse(readFileSync("scripts/fixtures/layout-replay/run-37746025773.json", "utf8"));
+  const L = canvasLayout(normalizeCanvas(fx4.canvases[0], 0));
+  const T = canvasLayout(normalizeCanvas({ ...fx4.canvases[0], layout: undefined }, 0));
+  assert.ok(L.boxes.cutout0.y + L.boxes.cutout0.h <= Math.max(T.boxes.cutout0.y + T.boxes.cutout0.h, 1316), `cutout bottom ${L.boxes.cutout0.y + L.boxes.cutout0.h}`);
+});
