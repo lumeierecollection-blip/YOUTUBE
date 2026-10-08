@@ -1,0 +1,119 @@
+{
+ "source": "CI run 37766249863 ch-5 (resolved plan): Alexandria, Egypt photo for a US federal-court story",
+ "beats": [
+  {
+   "canvas": {
+    "composition": "NUMBER-FULL",
+    "visual_type": "COUNTER",
+    "data": {
+     "value": "600",
+     "label": "pounds gold bars"
+    },
+    "sentence": "Federal agents found 600 pounds of gold bars hidden inside a former CIA officer's home.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "visual_type": "TYPE",
+    "data": null,
+    "sentence": "David Rush orchestrated a staggering $200 million scam using fake government contracts.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "MAP-CENTERED",
+    "visual_type": "MAP",
+    "data": {
+     "place": "Florida"
+    },
+    "sentence": "Florida real estate absorbed millions in luxury purchases from the scheme.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "visual_type": "TYPE",
+    "data": null,
+    "sentence": "How did David Rush pull off a top-secret deception?",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "NUMBER-FULL",
+    "visual_type": "COUNTER",
+    "data": {
+     "value": "49",
+     "label": "year-old"
+    },
+    "sentence": "Federal agents caught the 49-year-old before he could hide all the loot.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "SCENE-FULL",
+    "visual_type": "PHOTO",
+    "data": {
+     "entity": "Alexandria",
+     "entity_type": "place"
+    },
+    "sentence": "Alexandria federal court recorded his guilty plea to wire fraud charges.",
+    "photo": {
+     "asset": "entities/places/alexandria.jpg",
+     "entity": "Alexandria",
+     "kind": "place",
+     "view": "scene",
+     "verified_as": null,
+     "seen": "aerial view of alexandria coastline egypt",
+     "place_check": null
+    }
+   }
+  },
+  {
+   "canvas": {
+    "composition": "NUMBER-FULL",
+    "visual_type": "COUNTER",
+    "data": {
+     "value": "$40 million",
+     "label": "gold bars funded"
+    },
+    "sentence": "Over $40 million in gold bars funded his sprawling criminal empire.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "visual_type": "TYPE",
+    "data": null,
+    "sentence": "Authorities seized the 600 pounds of gold bars from his home.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "SCENE-FULL",
+    "visual_type": "PHOTO",
+    "data": {
+     "entity": "Alexandria",
+     "entity_type": "place"
+    },
+    "sentence": "David Rush pleaded guilty in Alexandria.",
+    "photo": {
+     "asset": "entities/places/alexandria.jpg",
+     "entity": "Alexandria",
+     "kind": "place",
+     "view": "scene",
+     "verified_as": null,
+     "seen": "aerial view of alexandria coastline egypt",
+     "place_check": null
+    }
+   }
+  }
+ ]
+}

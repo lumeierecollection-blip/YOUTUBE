@@ -130,7 +130,17 @@ async function imageDataUrl(imagePath) {
 
 async function askProviders(messages) {
   const tried = [];
-  // 1. Groq (vision model).
+  // Google first (owner's 2026-10-08 brief): Gemini across every key, then every sibling
+  // model (src/lib/gemini-client.js), before any other provider. This was Groq first.
+  // 1. Gemini flash-lite (maxTokens 1024: a sibling reasoning model spends from the same budget).
+  try {
+    const { callGemini } = await import("../src/lib/gemini-client.js");
+    const g = await callGemini(messages, { model: "gemini-3.5-flash-lite", maxTokens: 1024, temperature: 0, noCache: true, tag: "verify" });
+    const v = normalize(g);
+    if (v) return { provider: "gemini", v, tried };
+    tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
+  } catch (e) { tried.push(`gemini: ${e.message}`); }
+  // 2. Groq (vision model).
   try {
     const groq = require("./groq-client.cjs");
     const g = await groq.callGroq(messages, { maxTokens: 300, temperature: 0 });
@@ -138,14 +148,6 @@ async function askProviders(messages) {
     if (v) return { provider: "groq", v, tried };
     tried.push(`groq: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
   } catch (e) { tried.push(`groq: ${e.message}`); }
-  // 2. Gemini flash-lite.
-  try {
-    const { callGemini } = await import("../src/lib/gemini-client.js");
-    const g = await callGemini(messages, { model: "gemini-3.5-flash-lite", maxTokens: 300, temperature: 0, noCache: true, tag: "verify" });
-    const v = normalize(g);
-    if (v) return { provider: "gemini", v, tried };
-    tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
-  } catch (e) { tried.push(`gemini: ${e.message}`); }
   // 3. Ollama (local vision model).
   try {
     const ollama = require("./ollama-client.cjs");

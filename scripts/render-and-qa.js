@@ -35,6 +35,7 @@ import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layou
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
 import { inkOf } from "./cutout-ink.mjs";
+import { placeGate } from "./place-gate.js";
 const { resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 const { fetchCutoutForBeat, qualifyConcept } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
 const { resolveSceneEntity, sceneEntities, fallbackAsset } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
@@ -790,6 +791,21 @@ const QUEUE_DIRS = { approved: APPROVED_DIR, "approved-review": APPROVED_REVIEW_
  */
 async function queueVideo({ verdict, videoPath, channelId, stage = null, check = null, reason = "", extra = {} }) {
   if (!videoPath || !existsSync(videoPath)) return null;
+  // PRE-SHIP PLACE GATE (scripts/place-gate.js). Every route into approved/ or approved-review/
+  // (both can be uploaded) passes through here: a depicted place not confirmed against the
+  // script — or a render with no manifest to confirm it from — goes to rejected/, whatever any
+  // model gate said. CI run 37810883817 ch-9 reached approved/ with a Washington STATE map.
+  if (verdict === "approved" || verdict === "approved-review") {
+    const mp = videoPath.replace(/\.mp4$/, "-manifest.json");
+    const pg = existsSync(mp) ? placeGate(readJsonSafe(mp) || {}) : { pass: false, failures: [{ beat: null, rule: "M0", why: "no render manifest to confirm places against" }], checked: 0 };
+    console.log(`[place-gate] ch-${channelId}: ${pg.pass ? "PASS" : "FAIL"} — ${pg.checked} place beat(s) checked${pg.failures.length ? `; ${pg.failures.map((f) => `beat ${f.beat} ${f.rule}: ${f.why}`).join("; ")}` : ""}`);
+    if (!pg.pass) {
+      console.error(`::error::place gate FAILED for ${basename(videoPath)} — ${pg.failures.map((f) => `beat ${f.beat}: ${f.why}`).join("; ")}`);
+      extra = { ...extra, place_gate: pg, would_have_been: verdict };
+      reason = `place gate: ${pg.failures.map((f) => `beat ${f.beat} ${f.rule} ${f.why}`).join("; ")}`;
+      verdict = "rejected"; stage = "place-gate"; check = pg.failures.map((f) => f.rule).join(",");
+    }
+  }
   const dest = QUEUE_DIRS[verdict];
   const stem = basename(videoPath, ".mp4");
   const pd = await probeDuration(videoPath).catch(() => null);
@@ -958,6 +974,9 @@ function canvasContentFor(b, { photo = null } = {}) {
   const c = {
     visual_type: vt,
     data: vt === "TYPE" ? null : b.data || null,
+    // The beat's spoken sentence travels with the canvas into the render manifest: the
+    // pre-ship place gate (scripts/place-gate.js) confirms every depicted place against it.
+    sentence: b.narration || "",
     lead_in: b.lead_in || null,
     // An empty headline left a TYPE-FULL beat blank (run 36504143080 ch-44
     // beat 6, 1% of the frame): the planner's own on-screen phrase fills it.
@@ -1210,7 +1229,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         const q = ["organization", "institution", "building"].includes(e0.type) ? qualifyEntity(e0, countries) : { ent: e0 };
         if (q.note) console.log(`[entity] ${q.note}`);
         if (!q.ent?.name) { entities.fell_back.push(`${e0.type} "${e0.name}": ${q.note}`); named.push(e0); continue; }
-        const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "", scene: b.scene_description || null, sentence: b.narration || "" });
+        const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "", scene: b.scene_description || null, sentence: b.narration || "", script: plan.beats.map((x) => x.narration || "").join(" ") });
         if (r.ok && (r.logo || r.photo)) { found.push({ id: r.logo ? r.logo.asset : r.photo.asset, e0, r }); continue; }
         entities.fell_back.push(`beat ${b.index}: ${e0.type} "${e0.name}": ${r.why}`);
         // A refused acronym ("AI", "ED") is not a name: no name card is made of it.

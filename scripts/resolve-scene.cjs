@@ -383,8 +383,49 @@ async function samePerson(name, sentence, r) {
   return sameMemo.get(k);
 }
 
+// ── is the photographed place the place the SCRIPT talks about? ───────
+// The place verifier checks the image against the Wikipedia article it was found under; nothing
+// checked that article against the script. CI run 37766249863 ch-26 beat 5 drew Alexandria,
+// EGYPT for Alexandria, Virginia (Layer 3 and the reviser saw it; every gate passed it). Same
+// shape as samePerson: the sentence AND the script's other place words vs what Wikipedia says
+// the page is. Only SAME keeps the photo; DIFFERENT / UNSURE / no answer -> no photo (the beat
+// falls down the ladder). The verdict rides on the photo (place_check) for the pre-ship gate.
+function samePlacePrompt(name, sentence, script, about) {
+  return `Sentence from a news script: "${sentence}"\n` +
+    `The whole script, for where it is set: "${String(script || "").slice(0, 1500)}"\n` +
+    `Wikipedia article "${about.title}": ${about.description || "(no description)"}. ${String(about.extract || "").slice(0, 500)}\n` +
+    `Is "${name}" in the sentence the same real-world place (same city / region / country the script is about) as the Wikipedia article — not a namesake somewhere else? ` +
+    `Answer SAME, DIFFERENT, or UNSURE. Reply as JSON: {"verdict":"SAME|DIFFERENT|UNSURE","why":"<one short clause>"}`;
+}
+const samePlaceMemo = new Map();
+async function samePlace(name, sentence, script, r) {
+  const k = `${name}\u0000${sentence}\u0000${String(script || "").slice(0, 300)}`;
+  if (!samePlaceMemo.has(k)) samePlaceMemo.set(k, (async () => {
+    const title = String(r.photo?.verified_as || "").replace(/\s*\(.*\)\s*$/, "") || name;
+    const s = await wikiSummary(title);
+    if (!s) return { verdict: "UNSURE", why: "no Wikipedia summary to compare against" };
+    const about = { title: s.title, description: s.description || "", extract: s.extract || "" };
+    const { askProviders } = require("./verify-cutout-image.cjs");
+    const a = await askProviders([{ role: "user", content: samePlacePrompt(name, sentence, script, about) }], normalizeSame);
+    return a.v ? { ...a.v, provider: a.provider, about: `${about.title}: ${about.description}` }
+      : { verdict: "UNSURE", why: `no provider answered (${a.tried.join("; ").slice(0, 160)})` };
+  })());
+  return samePlaceMemo.get(k);
+}
+
 /** Resolve one named entity of a beat. Memoized per run (the same entity in two beats is fetched and verified once). */
-async function resolveSceneEntity({ channel, beatIndex, entity, context = "", scene = null, sentence = "" }) {
+async function resolveSceneEntity(args) {
+  const r = await resolveSceneEntityRaw(args);
+  // Every PHOTO of a place / building / organisation's building is checked against the script
+  // (a logo is the organisation's own mark, not a place; a person has samePerson).
+  if (!r?.ok || !r.photo || r.logo || String(args.entity?.type || "").toLowerCase() === "person") return r;
+  const name = String(args.entity?.name || "").replace(/\s*\([^)]*\)/g, "").trim();
+  const same = await samePlace(name, args.sentence || "", args.script || "", r);
+  console.log(`[resolve] ch-${args.channel} beat ${args.beatIndex}: same place as the script? ${same.verdict}${same.provider ? ` (${same.provider})` : ""}: ${same.why}${same.about ? ` [${same.about}]` : ""}${same.verdict === "SAME" ? "" : " — photo dropped, the beat falls down the ladder"}`);
+  if (same.verdict !== "SAME") return { ok: false, kind: r.kind, why: `not confirmed as the script's place: ${same.verdict} — ${same.why}` };
+  return { ...r, photo: { ...r.photo, place_check: { verdict: same.verdict, why: same.why, about: same.about || null } } };
+}
+async function resolveSceneEntityRaw({ channel, beatIndex, entity, context = "", scene = null, sentence = "" }) {
   // "Ontario Landlord and Tenant Board (LTB)": a bracketed acronym is not part of the name
   // any source files it under (CI run 37067332714 ch-2: every lookup missed).
   const type = String(entity?.type || "").toLowerCase(), name = String(entity?.name || "").replace(/\s*\([^)]*\)/g, "").trim();

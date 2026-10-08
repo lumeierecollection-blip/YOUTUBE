@@ -89,7 +89,17 @@ async function imageDataUrl(pngPath) {
 // `norm`: the answer parser (verify-place-image.cjs passes its own).
 async function askProviders(messages, norm = normalize) {
   const tried = [];
-  // 1. Groq (vision model). Its free tier rate-limits per minute and says how
+  // Google first (owner's 2026-10-08 brief): Gemini across every key, then every sibling
+  // model (src/lib/gemini-client.js), before any other provider. This was Groq first.
+  // 1. Gemini flash-lite (maxTokens 1024: a sibling reasoning model spends from the same budget).
+  try {
+    const { callGemini } = await import("../src/lib/gemini-client.js");
+    const g = await callGemini(messages, { model: "gemini-3.5-flash-lite", maxTokens: 1024, temperature: 0, noCache: true, tag: "verify-cutout" });
+    const v = norm(g);
+    if (v) return { provider: "gemini", v, tried };
+    tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
+  } catch (e) { tried.push(`gemini: ${e.message}`); }
+  // 2. Groq (vision model). Its free tier rate-limits per minute and says how
   // long to wait ("try again in 16.9s"): wait that out (<= 30 s, twice) rather
   // than reject — run 36944700437 lost 72 verifications to these 429s.
   try {
@@ -104,14 +114,6 @@ async function askProviders(messages, norm = normalize) {
       break;
     }
   } catch (e) { tried.push(`groq: ${e.message}`); }
-  // 2. Gemini flash-lite.
-  try {
-    const { callGemini } = await import("../src/lib/gemini-client.js");
-    const g = await callGemini(messages, { model: "gemini-3.5-flash-lite", maxTokens: 200, temperature: 0, noCache: true, tag: "verify-cutout" });
-    const v = norm(g);
-    if (v) return { provider: "gemini", v, tried };
-    tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
-  } catch (e) { tried.push(`gemini: ${e.message}`); }
   // 3. Ollama (local vision model).
   try {
     const ollama = require("./ollama-client.cjs");

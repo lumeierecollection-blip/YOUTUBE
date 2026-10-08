@@ -1,0 +1,130 @@
+{
+ "source": "CI run 37810883817 ch-9 (resolved plan): Washington STATE map for Moscow and Washington",
+ "beats": [
+  {
+   "canvas": {
+    "composition": "PORTRAIT",
+    "visual_type": "PHOTO",
+    "data": {
+     "entity": "Jared Kushner",
+     "entity_type": "person"
+    },
+    "sentence": "Trump's envoy Jared Kushner held secret talks in Moscow to restart the Nord Stream pipeline.",
+    "photo": {
+     "asset": "entities/people/jared-kushner.jpg",
+     "entity": "Jared Kushner",
+     "kind": "person",
+     "view": "person",
+     "verified_as": "File:Jared Kushner June 2019.jpg",
+     "seen": null,
+     "place_check": null
+    }
+   }
+  },
+  {
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "visual_type": "TYPE",
+    "data": null,
+    "sentence": "American investors could soon acquire a stake in the infrastructure.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "PORTRAIT",
+    "visual_type": "PHOTO",
+    "data": {
+     "entity": "Kirill Dmitriev",
+     "entity_type": "person"
+    },
+    "sentence": "Meetings took place across New York and Russia involving presidential adviser Kirill Dmitriev.",
+    "photo": {
+     "asset": "entities/people/kirill-dmitriev.jpg",
+     "entity": "Kirill Dmitriev",
+     "kind": "person",
+     "view": "person",
+     "verified_as": "Kirill Dmitriev (Russian businessman (born 1975))",
+     "seen": null,
+     "place_check": null
+    }
+   }
+  },
+  {
+   "canvas": {
+    "composition": "MAP-CENTERED",
+    "visual_type": "MAP",
+    "data": {
+     "place": "Germany"
+    },
+    "sentence": "Germany once relied entirely on this energy corridor before the Ukraine invasion.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "visual_type": "TYPE",
+    "data": null,
+    "sentence": "Who benefits from reviving the blocked gas lines?",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "visual_type": "TYPE",
+    "data": null,
+    "sentence": "Reuters broke the explosive details on October 8, raising the geopolitical stakes.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "NUMBER-FULL",
+    "visual_type": "COUNTER",
+    "data": {
+     "value": "5",
+     "label": "confidential sources confirmed"
+    },
+    "sentence": "5 confidential sources confirmed the explosive discussions.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "MAP-CENTERED",
+    "visual_type": "MAP",
+    "data": {
+     "place": "Washington"
+    },
+    "sentence": "Moscow and Washington are actively planning a return of energy trade.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "PROCESS-FULL",
+    "visual_type": "PROCESS",
+    "data": {
+     "nodes": [
+      "secret",
+      "investments"
+     ],
+     "keynouns": true
+    },
+    "sentence": "These secret energy talks connect Washington and Moscow directly through infrastructure investments.",
+    "photo": null
+   }
+  },
+  {
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "visual_type": "TYPE",
+    "data": null,
+    "sentence": "Watch investors evaluate stakes in the pipelines.",
+    "photo": null
+   }
+  }
+ ]
+}
