@@ -432,6 +432,18 @@ export async function callGemini(messages, opts = {}) {
     // Gemini, try the sibling Gemini models (each gets its own one retry) —
     // the decision stays Gemini's; the non-Gemini chain is only reached when
     // every Gemini model is down.
+    // A timeout / 503 on one key's project is not every project's: try each key not yet
+    // tried (one attempt each) before the sibling models. CI run 37803694366 ch-1 beat-check:
+    // key 1 was spent (429), key 2 timed out (90 s, 0 bytes) on every model, and key 3 — a
+    // separate project, the one that had answered all day — was never tried.
+    if (kind === "unavailable") {
+      const next = keys.findIndex((_, i) => !tried.has(i));
+      if (next >= 0) {
+        console.error(`[gemini-client] key ${keyIndex + 1} unavailable — trying key ${next + 1}`);
+        keyIndex = next;
+        continue;
+      }
+    }
     if (kind === "unavailable" && !opts._noModelFallback) {
       for (const next of siblingModels(model)) {
         console.error(`[gemini-client] ${model} unavailable after its retry — trying ${next}`);
