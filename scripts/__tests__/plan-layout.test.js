@@ -96,7 +96,7 @@ const inter = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h &&
 const zonesOfBox = (b) => [["top", 0, 620], ["middle", 620, 1340], ["bottom", 1340, 1920]].filter(([, y0, y1]) => b.y + b.h > y0 + 8 && b.y < y1 - 8).map(([n]) => n);
 
 describe("what belongs to an element goes with it (CI run 37707115528)", () => {
-  const typeFull = { visual_type: "TYPE", composition: "TYPE-FULL", headline: "Guilty to wire fraud", lead_in: "former officer", motion_tier: "medium" };
+  const typeFull = { visual_type: "TYPE", composition: "TYPE-FULL", headline: "Guilty to wire fraud", label: { text: "former officer", position: "top-left" }, motion_tier: "medium" };
   it("a TYPE-FULL statement moved to the top keeps its kicker directly above it, not overlapping", () => {
     const lay = canvasLayout(normalizeCanvas({ ...typeFull, layout: { cols: 1, rows: 2, slots: [{ id: "headline", col: 0, row: 0 }] } }, 1));
     const st = lay.boxes.statement, k = lay.boxes.kicker;
@@ -144,7 +144,7 @@ describe("a slot is a region (CI run 37708554035)", () => {
 });
 
 it("nothing placed — the restacked kicker and rule included — goes above the content area's top (CI run 37714244283)", () => {
-  const tf = { visual_type: "TYPE", composition: "TYPE-FULL", headline: "Ballistics tie the gun", lead_in: "the state says", motion_tier: "medium" };
+  const tf = { visual_type: "TYPE", composition: "TYPE-FULL", headline: "Ballistics tie the gun", label: { text: "the state says", position: "top-left" }, motion_tier: "medium" };
   const lay = canvasLayout(normalizeCanvas({ ...tf, layout: { cols: 2, rows: 3, slots: [{ id: "headline", col: 0, row: 0, v_align: "top" }] } }, 0));
   for (const [k, b] of flattenBoxes(lay.boxes)) assert.ok(b.y >= LAYOUT_AREA.y0, `${k} at y ${b.y}`);
 });

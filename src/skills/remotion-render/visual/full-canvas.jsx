@@ -1261,6 +1261,18 @@ function CanvasCaption({ words, local, fps, emphasis, onPhoto, dark, align, blen
   );
 }
 
+// The planner's pull phrase (canvas-layout.js finalizeChrome): one static phrase, popped in once.
+// Tone "accent" = the channel accent from channels.json (never a colour written in a plan).
+function PullPhrase({ pull, local, accent, light, onPhoto }) {
+  const color = pull.tone === "accent" ? accent : light ? "#FFFFFF" : INK;
+  return (
+    <div style={{ position: "absolute", left: pull.x, top: pull.y, width: pull.w, textAlign: pull.align, font: `700 ${pull.size}px ${SANS_STACK}`,
+      lineHeight: 1.18, color, textShadow: onPhoto ? "0 3px 18px rgba(0,0,0,0.7)" : "none", ...popCss("POP_SOFT", local - 6) }}>
+      {pull.lines.map((l, i) => <div key={i}>{l}</div>)}
+    </div>
+  );
+}
+
 // ── the whole video ───────────────────────────────────────────────────
 export function CanvasVideo({ plan }) {
   const frame = useCurrentFrame();
@@ -1333,7 +1345,9 @@ export function CanvasVideo({ plan }) {
         transform: `translate(${(-0.5 + clamp01(local / Math.max(1, beat.duration_frames))).toFixed(3)}px, 0px) scale(${(1 + 0.003 * Math.sin((2 * Math.PI * local) / (3 * fps))).toFixed(5)})` }}>
         <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} live={local} />
       </div>
-      <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!shown.dark && !onPhoto} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} maxSize={cLayout.boxes.cutout0 ? 40 : 58} />
+      {/* The live word caption on every beat was the bottom-phrase device (owner, 2026-10-08):
+          only the planner's pull phrase is drawn, where it put it, when it asked for one. */}
+      {cLayout.pull ? <PullPhrase pull={cLayout.pull} local={local - start} accent={accent} light={onPhoto || (!!shown.dark && !onPhoto)} onPhoto={onPhoto} /> : null}
       {/* Source credit (owner's spec 2026-10-03, part C): only on a beat that shows a fetched
           image; bottom-right, 40 px in from the right and bottom edges, 20 px sans, #888,
           fading in from frame 40 of the beat (after the pops have settled). */}

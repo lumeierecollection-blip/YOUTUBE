@@ -761,6 +761,20 @@ async function canvasChecks(video, m) {
   const kr = await kineticRules(beats);
   out.push({ id: "kinetic-rules", pass: !kr.bad.length, detail: kr.bad.length ? kr.bad.slice(0, 8).join("; ") : `every word pops in place (${Object.entries(kr.used).map(([e, n]) => `${e}x${n}`).join(" ")}), no slide / drop / sweep / blur entrance, <=3 text elements a beat; number modes ${kr.modes.join("/") || "none"}` });
   out.push({ id: "motion-tiers", pass: !mt.bad.length, detail: mt.bad.length ? mt.bad.join("; ") : `${mt.major} major, ${mt.medium} medium, all beats micro` });
+  // template-window (owner's definition of "no template", 2026-10-08 — scripts/template-check.js):
+  // across any three consecutive beats, at most ONE of {corner label, pull phrase, type-led
+  // layout} repeats. HARD. Not loosened to pass a render.
+  const { templateCheck } = await import("./template-check.js");
+  const tw = templateCheck(m);
+  out.push({ id: "template-window", pass: tw.pass, detail: tw.error ? tw.error : tw.pass ? `${tw.beats} beat(s): no two devices repeat inside any three-beat window`
+    : tw.windows.slice(0, 6).map((w) => `beats ${w.start}-${w.start + 2}: ${w.repeating.join(" + ")} repeat`).join("; ") });
+  // no-photo-repeat (owner, 2026-10-08): one photo, at most one beat per video.
+  const seen = new Map(), rep = [];
+  beats.forEach((b, i) => {
+    const imgs = [b.canvas?.photo?.asset, ...(b.canvas?.concept_visuals || []).filter((v) => v.class === "cutout").map((v) => v.asset)].filter(Boolean);
+    for (const a of new Set(imgs)) { if (seen.has(a)) rep.push(`${a} on beats ${seen.get(a)} and ${i}`); else seen.set(a, i); }
+  });
+  out.push({ id: "no-photo-repeat", pass: !rep.length, detail: rep.length ? rep.join("; ") : "no photo or cutout appears on two beats" });
   return out;
 }
 

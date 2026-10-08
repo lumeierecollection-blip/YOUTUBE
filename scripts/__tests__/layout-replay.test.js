@@ -18,8 +18,12 @@ import { readFileSync } from "node:fs";
 import { canvasLayout, normalizeCanvas } from "../../src/skills/remotion-render/visual/canvas-layout.js";
 
 const fx = JSON.parse(readFileSync("scripts/fixtures/layout-replay/run-37723570093.json", "utf8"));
+// These canvases come from runs that drew a kicker (lead_in) on every beat; the planner's layouts were made
+// for those elements. Since 2026-10-08 a kicker is drawn only for a planner label, so each replayed lead_in is
+// replayed as that label — the same elements, the same layout mechanics under test.
+const asLabel = (c) => (c.lead_in ? { ...c, label: { text: c.lead_in, position: "top-left" } } : c);
 const sourceOf = (lo) => (!lo?.used ? "table" : !lo.moved?.length ? "plan-noop" : lo.axes === "xy" ? "plan" : `plan-${lo.axes}`);
-const sources = fx.canvases.map((c, i) => sourceOf(canvasLayout(normalizeCanvas(c, i)).layout));
+const sources = fx.canvases.map((c, i) => sourceOf(canvasLayout(normalizeCanvas(asLabel(c), i)).layout));
 
 it("the table draws at most 1 of the 10 replayed beats (run 37723570093)", () => {
   const table = sources.filter((s) => s === "table" || s === "plan-noop").length;
@@ -27,14 +31,14 @@ it("the table draws at most 1 of the 10 replayed beats (run 37723570093)", () =>
 });
 it("run 37739128920 (the table drew beats 0 and 4, both NUMBER-FULL): the table draws at most 1", () => {
   const fx2 = JSON.parse(readFileSync("scripts/fixtures/layout-replay/run-37739128920.json", "utf8"));
-  const src2 = fx2.canvases.map((c, i) => sourceOf(canvasLayout(normalizeCanvas(c, i)).layout));
+  const src2 = fx2.canvases.map((c, i) => sourceOf(canvasLayout(normalizeCanvas(asLabel(c), i)).layout));
   const table = src2.filter((s) => s === "table" || s === "plan-noop").length;
   assert.ok(table <= 1, src2.join(", "));
 });
 it("every replayed beat that used the plan is legal by Layer 1's geometry", async () => {
   const { layoutViolations } = await import("../../src/skills/remotion-render/visual/canvas-layout.js");
   fx.canvases.forEach((c, i) => {
-    const L = canvasLayout(normalizeCanvas(c, i));
+    const L = canvasLayout(normalizeCanvas(asLabel(c), i));
     const T = canvasLayout(normalizeCanvas({ ...c, layout: undefined }, i));
     const base = new Set(layoutViolations(T).map((v) => v.rule));
     assert.deepEqual(layoutViolations(L).filter((v) => !base.has(v.rule)), [], `beat ${i}`);
@@ -44,12 +48,12 @@ it("run 37743696701: no planned layout leaves a beat more than 1 point below the
   const { contentBounds } = await import("../../src/skills/remotion-render/visual/canvas-layout.js");
   const fx3 = JSON.parse(readFileSync("scripts/fixtures/layout-replay/run-37743696701.json", "utf8"));
   fx3.canvases.forEach((c, i) => {
-    const P = canvasLayout(normalizeCanvas(c, i)), T = canvasLayout(normalizeCanvas({ ...c, layout: undefined }, i));
+    const P = canvasLayout(normalizeCanvas(asLabel(c), i)), T = canvasLayout(normalizeCanvas({ ...c, layout: undefined }, i));
     if (T.boxes.photo) return;
     const ps = contentBounds(P).h / 1920, ts = contentBounds(T).h / 1920;
     assert.ok(ps >= Math.min(ts, 0.66) - 0.01 - 1e-9, `beat ${i}: planned ${ps.toFixed(3)} vs default ${ts.toFixed(3)}`);
   });
-  const src3 = fx3.canvases.map((c, i) => sourceOf(canvasLayout(normalizeCanvas(c, i)).layout));
+  const src3 = fx3.canvases.map((c, i) => sourceOf(canvasLayout(normalizeCanvas(asLabel(c), i)).layout));
   assert.ok(src3.filter((s) => s === "table" || s === "plan-noop").length <= 1, src3.join(", "));
 });
 it("run 37746025773: a placed cutout stays clear of y 1340 the way the table keeps it (its shadow crossed the edge)", () => {

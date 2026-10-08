@@ -383,7 +383,9 @@ function dataHeader(c, flip, { maxSize = 168, maxHeight = 300 } = {}) {
 
 const pad2 = (n) => String(n).padStart(2, "0");
 /** Section folio ("03 / 08"): page furniture, not a claim — the second type role on a beat that has no lead-in. */
-export const folioOf = (c) => (Number.isInteger(c?.beat_total) && c.beat_total > 0 ? `${pad2((c.beat_index ?? 0) + 1)} / ${pad2(c.beat_total)}` : null);
+// OFF (owner, 2026-10-08 "kill the template"): a folio on every beat is a repeating device. Only a
+// canvas that explicitly asks for one (folio: true) gets it.
+export const folioOf = (c) => (c?.folio === true && Number.isInteger(c?.beat_total) && c.beat_total > 0 ? `${pad2((c.beat_index ?? 0) + 1)} / ${pad2(c.beat_total)}` : null);
 
 /** Split a headline into two halves at the most natural break near its middle (>= 2 words), or null. */
 export function splitHeadline(text) {
@@ -419,7 +421,66 @@ export function splitHeadline(text) {
  * 37715658530: planner layouts rendered and failed canvas-coverage / zones / canvas-fit — the video
  * was lost, not just the beat.)
  */
+// ── CHROME (owner, 2026-10-08 "kill the template") ─────────────────────
+// The corner label (kicker + hairline rule), the bottom phrase (the live word caption) and the
+// label + headline + phrase chassis were drawn on nearly every beat — the device a viewer could
+// name. Chrome is now the PLANNER's, per beat, and absent unless it asks:
+//   label:       { text, position: "top-left" | "top-right" | "beside-headline" | "bottom-left" } —
+//                a dateline or an attribution; null = no label, no rule.
+//   pull_phrase: { text, position: "top" | "middle" | "bottom", case: "as-written" | "upper",
+//                tone: "ink" | "accent" } — a phrase worth pulling; null = none (no live caption).
+// Code only removes chrome that breaks the three-beat window rule (scripts/template-check.js);
+// it never adds any.
+export const LABEL_POSITIONS = ["top-left", "top-right", "beside-headline", "bottom-left"];
+export const PULL_POSITIONS = ["top", "middle", "bottom"];
+const chromeIn = (c) => ({ ...c, lead_in: c?.label?.text ? String(c.label.text) : null });
+function finalizeChrome(L, c) {
+  const boxes = { ...L.boxes };
+  delete boxes.folio;
+  const label = c?.label?.text ? c.label : null;
+  // The hairline rule is kept only where Layer 1's canvas-coverage needs it: a statement alone
+  // spans ~12% of the frame, and the rule at the top is what carries a type-led beat to the 60%
+  // span (test-canvas-layout.mjs "TYPE-FULL [no header]"). Without a label it goes from every
+  // beat whose content spans 60% without it — photo, chart, map, number beats.
+  if (boxes.rule && !label) {
+    const without = { ...L, boxes: Object.fromEntries(Object.entries(boxes).filter(([k]) => k !== "rule" && k !== "kicker")) };
+    // A full-bleed photo is the whole frame; anything else must span 62% without the rule (the
+    // table's own box margin over Layer 1's 60%, test-canvas-layout.mjs 61%).
+    const fullBleed = !!boxes.photo && ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"].includes(L.composition);
+    if (fullBleed || (contentBounds(without)?.h ?? 0) / 1920 >= 0.62) delete boxes.rule;
+  }
+  if (!label && !boxes.kicker?.subject) delete boxes.kicker;
+  else if (label && boxes.kicker) {
+    const k = boxes.kicker, pos = LABEL_POSITIONS.includes(label.position) ? label.position : "top-left";
+    const head = boxes.headline || boxes.statement;
+    if (pos === "top-right") boxes.kicker = { ...k, x: 1032 - k.w, align: "right" };
+    else if (pos === "top-left") boxes.kicker = { ...k, x: 48, align: "left" };
+    else if (pos === "bottom-left") boxes.kicker = { ...k, x: 48, y: 1368, align: "left" };
+    else if (pos === "beside-headline" && head && head.x + head.w + 32 + k.w <= 1032 && head.y + k.h <= HEADER_MAX_Y) boxes.kicker = { ...k, x: head.x + head.w + 32, y: head.y + 8, align: "left" };
+  }
+  let pull = null;
+  const pp = c?.pull_phrase?.text ? c.pull_phrase : null;
+  if (pp) {
+    const text = pp.case === "upper" ? String(pp.text).toUpperCase() : String(pp.text);
+    const f = fitText(text, 880, { max: 58, min: 34, maxLines: 2, lineH: 1.18, weight: 700 });
+    const w = Math.min(880, Math.max(...f.lines.map((l) => textWidth(l, f.size, false, 700)))) + 2, h = f.lines.length * f.size * 1.18;
+    const head = boxes.headline || boxes.statement;
+    const middleFree = !flattenBoxes(boxes).some(([k, b]) => elementType(k, b) && zonesOf(b).includes("middle"));
+    let pos = PULL_POSITIONS.includes(pp.position) ? pp.position : "bottom";
+    let y = CAPTION.y;
+    if (pos === "top") { y = head ? head.y + head.h + 28 : TOP + 40; if (y + h > HEADER_MAX_Y) pos = "bottom"; }
+    if (pos === "middle") { if (middleFree) y = 900; else pos = "bottom"; }
+    if (pos === "bottom") y = CAPTION.y;
+    const x = L.flip && pos !== "middle" ? 1032 - w : 48;
+    pull = { x, y, w, h, size: f.size, lines: f.lines, position: pos, tone: pp.tone === "accent" ? "accent" : "ink", align: x > 48 ? "right" : "left", role: "data" };
+  }
+  return { ...L, boxes, pull };
+}
+
 export function canvasLayout(c) {
+  return finalizeChrome(layoutCore(chromeIn(c)), c);
+}
+function layoutCore(c) {
   const table = tableLayout(c);
   if (!c?.layout) return { ...table, layout: null };
   const base = new Set(layoutViolations(table).map((v) => v.rule));
@@ -869,7 +930,7 @@ function tableLayout(c) {
     boxes.numberB = { ...box(R_EDGE - Math.ceil(sb.width), BOTTOM - inkB, Math.ceil(sb.width), inkB), size: sz, parts: pb, align: "right", role: "number", side: "b" };
     if (cmp.a?.label) boxes.labelA = dataBox(cmp.a.label, { width: Math.max(160, wa), size: 36, maxLines: 3, x: L_EDGE, y: boxes.numberA.y + nh + 24, flip: 0 });
     if (cmp.b?.label) boxes.labelB = dataBox(cmp.b.label, { width: Math.max(160, wb), size: 36, maxLines: 3, bottom: boxes.numberB.y - 20, flip: 1 });
-    if (cmp.subject) boxes.kicker = dataBox(cmp.subject, { width: 480, size: 34, maxLines: 1, y: TOP + (boxes.headline ? boxes.headline.h + 24 : 0), flip: 0 });
+    if (cmp.subject) boxes.kicker = { ...dataBox(cmp.subject, { width: 480, size: 34, maxLines: 1, y: TOP + (boxes.headline ? boxes.headline.h + 24 : 0), flip: 0 }), subject: true };   // the comparison's subject: chart data, not chrome
     hero = "numberA";
   } else if (comp === "PORTRAIT" && c?.photo) {
     // A named person's VERIFIED portrait (owner's scene-resolver spec
@@ -894,7 +955,9 @@ function tableLayout(c) {
       boxes.photo = box(0, 0, FRAME.w, FRAME.h);
       // The label over the picture: the entity / document named in the
       // sentence; a MONEY beat has none (its picture is an object, not a name).
-      const kicker = comp !== "MONEY" && c.photo.entity ? String(c.photo.entity) : null;
+      // The entity's name as a kicker on every photo beat was the corner-label device: only the
+      // planner's label (chromeIn -> lead_in) is drawn now.
+      const kicker = comp !== "MONEY" && c.lead_in ? String(c.lead_in) : null;
       boxes.rule = rule(flip, TOP);
       if (kicker) boxes.kicker = dataBox(kicker, { width: 700, size: 36, maxLines: 1, y: TOP + 26, flip });
       // MONEY: the sentence's figure, large, over the photograph.
@@ -1143,7 +1206,9 @@ export function contentBounds(layout) {
 export function elementType(key, b) {
   const k = String(key);
   if (/^(photo|split)$/.test(k) || b?.role === "shape" || b?.role === "rule" || /^(rule|end|line)$/.test(k) || /_(rule|dot)$/.test(k)) return null;
-  if (/^(kicker|headline|statement|emphasis|folio|lead)/.test(k)) return "headline";
+  // The planner's pull phrase / label in the bottom zone is caption-class text; above it, headline-class.
+  if (k === "pull" || k === "kicker") return b && b.y >= ZONES.bottom[0] - ZONE_TOL ? "caption" : "headline";
+  if (/^(headline|statement|emphasis|folio|lead)/.test(k)) return "headline";
   if (k === "number" || k === "label") return "number";
   return "chart";
 }
@@ -1215,6 +1280,9 @@ export function canvasManifest(raw, idx) {
   const flat = {};
   const meta = (n) => ({ x: n.x, y: n.y, w: n.w, h: n.h, role: n.role || null, align: n.align || null, rotate: n.rotate || null, size: n.size || null, bleed: n.bleed || 0, parts: n.parts ? { isQuantity: !!n.parts.isQuantity, text: n.parts.text } : undefined });
   for (const [k, v] of flattenBoxes(L.boxes)) flat[k] = meta(v);
+  // The pull phrase is drawn by full-canvas.jsx PullPhrase, outside L.boxes (so the pop bands, the
+  // camera and the zone clamps never treat it as a body element); the audit still sees its box.
+  if (L.pull) flat.pull = meta(L.pull);
   const shown = (k) => (L.boxes[k]?.lines ? L.boxes[k].lines.join(" ") : L.boxes[k]?.text || null);
   return {
     composition: L.composition, hero: L.hero, boxes: flat, content: contentBounds(L), zones: zoneReport(L).zones, motion_tier: c.motion_tier || "medium",
@@ -1223,6 +1291,12 @@ export function canvasManifest(raw, idx) {
     // place_check = the same-place verdict) is what the pre-ship place gate reads.
     photo: c.photo ? { asset: c.photo.asset, entity: c.photo.entity || null, kind: c.photo.kind || null, view: c.photo.view || null,
       verified_as: c.photo.verified_as || null, seen: c.photo.seen || null, source_url: c.photo.source_url || null, place_check: c.photo.place_check || null } : null,
+    // The chrome actually drawn (scripts/template-check.js reads these three devices).
+    chrome: {
+      label: L.boxes.kicker && !L.boxes.kicker.subject ? { text: (L.boxes.kicker.lines || []).join(" ") || null, position: c.label?.position || "top-left" } : null,
+      pull_phrase: L.pull ? { text: L.pull.lines.join(" "), position: L.pull.position, tone: L.pull.tone } : null,
+      type_led: ["TYPE-FULL", "TYPE-SPLIT"].includes(L.composition) && !c.photo && !(c.concept_visuals || []).length && !c.hero_cutout,
+    },
     // What the beat drew and the sentence it was drawn for (scripts/place-gate.js).
     visual_type: c.visual_type || null, data: c.data || null, sentence: c.sentence || null,
     // Word-level sync (render.js / entity-sync.js): the frame (beat-relative) the entity visual pops at, and its word.
@@ -1230,7 +1304,7 @@ export function canvasManifest(raw, idx) {
     // "Source: <domain>" drawn bottom-right on a fetched-image beat (part C).
     source_credit: c.source_credit || null,
     // The hero object and the name card, so the reviewers' frame labels say what is drawn.
-    concept_visuals: (c.concept_visuals || []).map((v) => ({ name: v.name || null, class: v.class || null, logo: !!v.logo, money: !!v.money })),
+    concept_visuals: (c.concept_visuals || []).map((v) => ({ name: v.name || null, class: v.class || null, logo: !!v.logo, money: !!v.money, asset: v.asset || null })),
     name_card: c.name_card?.name ? { name: c.name_card.name } : null,
     // Part C: the entrance style and the background variation this beat was drawn with.
     entrance_style: c.entrance_style || null,

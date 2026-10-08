@@ -7,14 +7,40 @@
     "visual_type": "PHOTO",
     "canvas_composition": "PORTRAIT",
     "ground": "white",
-    "layout": { "cols": 2, "rows": 3, "slots": [{ "id": "headline", "col": 0, "row": 0, "col_span": 2, "align": "right" }, { "id": "portrait", "col": 0, "row": 1, "row_span": 2, "align": "left", "v_align": "bottom" }] },
-    "lead_in": "rates will",
+    "layout": {
+      "cols": 2,
+      "rows": 3,
+      "slots": [
+        {
+          "id": "headline",
+          "col": 0,
+          "row": 0,
+          "col_span": 2,
+          "align": "right"
+        },
+        {
+          "id": "portrait",
+          "col": 0,
+          "row": 1,
+          "row_span": 2,
+          "align": "left",
+          "v_align": "bottom"
+        }
+      ]
+    },
+    "lead_in": null,
     "headline": "Rates stay high",
     "emphasis_word": "high",
-    "scene_description": "A portrait of Jerome Powell, the Federal Reserve chairman, standing in the lower half of the frame; a slow push in across the beat. Above him, small caps: RATES WILL. The headline pops in word by word.",
+    "scene_description": "A portrait of Jerome Powell, the Federal Reserve chairman, standing in the lower half of the frame; a slow push in across the beat. The headline pops in word by word.",
     "named_entities": [
-      { "type": "person", "name": "Jerome Powell" },
-      { "type": "institution", "name": "Federal Reserve" }
+      {
+        "type": "person",
+        "name": "Jerome Powell"
+      },
+      {
+        "type": "institution",
+        "name": "Federal Reserve"
+      }
     ],
     "entity_anchor_word": "Powell",
     "concepts": [],
@@ -22,9 +48,20 @@
     "camera_focus": null,
     "persists_from": null,
     "match_cut_prev": false,
-    "visual_events": [{ "type": "evidence", "label": "rates stay high" }],
-    "capabilities": ["evidence"],
-    "objects": { "figure": null },
-    "typography_direction": null
+    "visual_events": [
+      {
+        "type": "evidence",
+        "label": "rates stay high"
+      }
+    ],
+    "capabilities": [
+      "evidence"
+    ],
+    "objects": {
+      "figure": null
+    },
+    "typography_direction": null,
+    "label": null,
+    "pull_phrase": null
   }
 }

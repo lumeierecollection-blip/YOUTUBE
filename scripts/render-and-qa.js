@@ -36,6 +36,7 @@ import { validateConcepts } from "../src/skills/remotion-render/visual/concept-v
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
 import { inkOf } from "./cutout-ink.mjs";
 import { placeGate } from "./place-gate.js";
+import { enforceChrome, templateCheck } from "./template-check.js";
 const { resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 const { fetchCutoutForBeat, qualifyConcept } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
 const { resolveSceneEntity, sceneEntities, fallbackAsset } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
@@ -1157,6 +1158,11 @@ async function resolveCanvas(channelId, planPath, plan) {
   };
   // Every channel resolves every beat the same way (no channel-specific skip exists).
   console.log(`[resolve] starting PNG fetch for ch-${channelId}, ${plan.beats.length} beats to resolve`);
+  // NO PHOTO REPEATS WITHIN A VIDEO (owner, 2026-10-08; CI run 37810883817 ch-5 drew the same
+  // courthouse on beats 6 and 8). An image a previous beat shows is not a candidate again: the
+  // beat falls down the ladder. Layer 1 no-photo-repeat checks the rendered manifest.
+  const usedImages = new Set();
+  const reused = (asset, what) => { if (asset && usedImages.has(asset)) { console.log(`[no-repeat] ch-${channelId}: ${what} ${asset} already shown on an earlier beat — not used again`); return true; } return false; };
   for (const [bi, b] of plan.beats.entries()) {
     let photo = null;
     const vt = String(b.visual_type || "").toUpperCase();
@@ -1169,7 +1175,8 @@ async function resolveCanvas(channelId, planPath, plan) {
       const obj = String(b.data?.object || "dollar bill").toLowerCase();
       const value = b.data?.value || null;
       const spec = CUTOUT_SPECS.find((x) => x.name === obj.replace(/\s+/g, "-")) || {};
-      const r = await fetchCutoutForBeat({ concept: obj, name: obj, channel: channelId, beat_index: b.index, spec, scene: b.scene_description || null });
+      let r = await fetchCutoutForBeat({ concept: obj, name: obj, channel: channelId, beat_index: b.index, spec, scene: b.scene_description || null });
+      if (r && reused(r.png_path, `beat ${b.index} money cutout`)) r = null;
       b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
       if (r) {
         b.hero_cutout = { name: obj, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, money: true, ink: await inkOf(r.abs_path) };
@@ -1187,6 +1194,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       // Every fetched photo is verified before use (owner's spec 2026-10-02, task 2.4). The
       // document lookup matched "HOME Act" to a photo of people announcing a DIFFERENT act
       // (CI run 37031119023 ch-2 beat 4); a file name is not what the image shows.
+      if (r.ok && reused(r.asset, `beat ${b.index} document`)) { r.ok = false; r.why = "already shown on an earlier beat"; r.attempts = []; }
       if (r.ok) {
         const what = vt === "DOCUMENT" ? `the document "${b.data?.name}" (a scan or photograph of its pages)` : `${b.data?.object} (a photograph of it)`;
         const v = await verifyPlaceImage(join(PUBLIC_DIR, r.asset), what);
@@ -1235,6 +1243,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         // A refused acronym ("AI", "ED") is not a name: no name card is made of it.
         if (!r.refused) named.push(e0);
       }
+      for (let k = found.length - 1; k >= 0; k--) if (reused(found[k].id, `beat ${b.index} ${found[k].e0.type} "${found[k].e0.name}"`)) { entities.fell_back.push(`beat ${b.index}: ${found[k].e0.name}: image already shown on an earlier beat`); named.push(found[k].e0); found.splice(k, 1); }
       if (found.length) {
         const regionAvail = real.find((e) => e.type === "place" && resolveRegionName(e.name));
         const assets = found.map(({ id, e0, r }) => {
@@ -1294,6 +1303,8 @@ async function resolveCanvas(channelId, planPath, plan) {
       }
     }
     b.canvas = canvasContentFor(b, { photo });
+    if (photo?.asset) usedImages.add(photo.asset);
+    if (b.hero_cutout?.asset) usedImages.add(b.hero_cutout.asset);
     if (photo) b.asset = { id: photo.asset, source: photo.source || "wikimedia", source_url: photo.source_url, license: photo.license, attribution: photo.credit };
   }
   // NO REPEAT, again, on what actually resolved (a real photo of a building is
@@ -1464,8 +1475,14 @@ async function resolveCanvas(channelId, planPath, plan) {
     const resolved =[...results.values()].filter((v) => v && v.class === "cutout").length;
     if (Date.now() - T0 >= BUDGET_MS) console.log(`[cutout-live] ch-${channelId}: ${(BUDGET_MS / 60000).toFixed(0)}-minute budget reached, using ${resolved}/${tasks.length} resolved cutouts`);
     // 3. Attach, in beat order (the TYPE-SPLIT conversion sees its final neighbours).
+    const usedCutouts = new Set(plan.beats.flatMap((x) => [x.canvas?.photo?.asset, x.hero_cutout?.asset]).filter(Boolean));
     for (const w of wanted) {
-      const visuals = w.names.map((n) => results.get(`${w.bi}:${n}`)).filter(Boolean);
+      // No image twice in one video (owner, 2026-10-08): a cutout an earlier beat shows is dropped here.
+      const visuals = w.names.map((n) => results.get(`${w.bi}:${n}`)).filter(Boolean).filter((v) => {
+        if (v.class !== "cutout" || !v.asset) return true;
+        if (usedCutouts.has(v.asset)) { console.log(`[no-repeat] ch-${channelId} beat ${w.b.index}: cutout ${v.asset} already shown on an earlier beat — not used again`); return false; }
+        usedCutouts.add(v.asset); return true;
+      });
       for (const v of visuals) stats[v.class === "symbol" ? "symbol" : v.source]++;
       if (!visuals.length) { stats.none++; continue; }
       // Two cutout beats in a row both render (owner's spec 2026-10-03, C.3 — the earlier
@@ -1641,6 +1658,29 @@ async function resolveCanvas(channelId, planPath, plan) {
     }
     plan.visual_summary = { beats: plan.beats.length, pngs, no_concept: none };
     console.log(`[visual] ch-${channelId}: ${pngs}/${plan.beats.length} beats show a fetched PNG; ${none} beat(s) with no concept`);
+  }
+  // CHROME (owner, 2026-10-08 "kill the template"): the planner's label / pull phrase, grounded,
+  // then the three-beat window rule (scripts/template-check.js) enforced by REMOVAL only.
+  {
+    const words = (s) => String(s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").split(/\s+/).filter(Boolean);
+    const scriptWords = new Set(plan.beats.flatMap((b) => words(b.narration)));
+    const flat = (s) => words(s).join(" ");
+    const items = plan.beats.map((b, i) => {
+      let label = b.label && typeof b.label === "object" && String(b.label.text || "").trim() ? b.label : null;
+      if (label && !words(label.text).every((w) => scriptWords.has(w))) { console.log(`[chrome] beat ${b.index}: label "${label.text}" is not from the script — dropped`); label = null; }
+      let pull = b.pull_phrase && typeof b.pull_phrase === "object" && String(b.pull_phrase.text || "").trim() ? b.pull_phrase : null;
+      if (pull && !(` ${flat(b.narration)} `).includes(` ${flat(pull.text)} `)) { console.log(`[chrome] beat ${b.index}: pull phrase "${pull.text}" is not verbatim from its sentence — dropped`); pull = null; }
+      const L = layoutOfCanvas(normalizeForLayout({ ...b.canvas, label: null, pull_phrase: null }, i));
+      const typeLed = ["TYPE-FULL", "TYPE-SPLIT"].includes(L.composition) && !b.canvas.photo && !(b.canvas.concept_visuals || []).length && !b.canvas.hero_cutout;
+      return { label, pull, typeLed };
+    });
+    const enf = enforceChrome(items.map((x) => ({ label: !!x.label, phrase: !!x.pull, typeLed: x.typeLed })));
+    plan.beats.forEach((b, i) => {
+      b.canvas.label = enf.keep[i].label ? items[i].label : null;
+      b.canvas.pull_phrase = enf.keep[i].phrase ? items[i].pull : null;
+    });
+    for (const d of enf.dropped) console.log(`[chrome] beat ${plan.beats[d.beat].index}: ${d.device} removed — it would repeat a second device inside a three-beat window`);
+    console.log(`[chrome] ch-${channelId}: labels ${plan.beats.filter((b) => b.canvas.label).length}, pull phrases ${plan.beats.filter((b) => b.canvas.pull_phrase).length}, type-led ${items.filter((x) => x.typeLed).length} of ${plan.beats.length}; ${enf.dropped.length} removed by the window rule`);
   }
   for (const b of plan.beats) {
     const k = b.canvas.composition;
