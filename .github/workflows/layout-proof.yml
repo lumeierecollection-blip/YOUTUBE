@@ -16,6 +16,9 @@ on:
       - "scripts/layout-proof.mjs"
       - "scripts/fixtures/layout-proof/**"
       - "scripts/fixtures/shot-proof/**"
+      - "scripts/sfx-sync-proof.mjs"
+      - "src/skills/remotion-render/visual/canvas-sfx.js"
+      - "scripts/sfx-cc0.mjs"
       - ".github/workflows/layout-proof.yml"
 
 permissions:
@@ -119,10 +122,32 @@ jobs:
         with:
           chrome-version: stable
 
+      # The SFX the real renderer would play for these beats (CC0 recordings, scripts/sfx-cc0.mjs; judged by
+      # Gemini when the keys are available — the verdicts are read when present), mixed into the proof video so
+      # scripts/sfx-sync-proof.mjs can measure the audio against the frames.
+      - name: Cache CC0 SFX
+        uses: actions/cache@v4
+        with:
+          path: src/skills/remotion-render/public/sfx/cc0
+          key: sfx-cc0-v1
+
+      - name: Fetch the CC0 SFX
+        run: node scripts/sfx-cc0.mjs fetch
+
+      # Layer 1 sfx-rules answers only for files Gemini judged recorded; verdicts are reused for the same file.
+      - name: Judge the SFX (recorded or robotic)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+        run: node scripts/sfx-cc0.mjs judge
+
       - name: Render every shot
         env:
           REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-        run: node scripts/qa-canvas-render.mjs --out out/shots --only-extra --extra-beats scripts/fixtures/shot-proof/beats.json --moments 0.9 --video --accent "#C2410C"
+        run: node scripts/qa-canvas-render.mjs --out out/shots --only-extra --extra-beats scripts/fixtures/shot-proof/beats.json --moments 0.9 --video --sfx --accent "#C2410C"
 
       - name: Contact sheet (one frame per shot, 90% into each beat — after a word-synced picture lands)
         if: always()
@@ -134,6 +159,11 @@ jobs:
 
       - name: Layer 1 on the rendered pixels
         run: node scripts/local-audit.cjs --canvas-only --video out/shots/canvas-test.mp4 --manifest out/shots/canvas-test-manifest.json
+
+      # "Verify SFX align to their word or beat within ±100 ms": the audio track of the rendered MP4 (no voiceover,
+      # no bed — only SFX) is decoded and the loudest sample near every event is compared with the event's frame.
+      - name: SFX land on their events (±100 ms, measured on the render's audio)
+        run: node scripts/sfx-sync-proof.mjs --video out/shots/canvas-test.mp4 --manifest out/shots/canvas-test-manifest.json
 
       - name: Upload the frames
         if: always()

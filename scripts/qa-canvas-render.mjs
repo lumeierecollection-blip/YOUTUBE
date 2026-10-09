@@ -113,6 +113,18 @@ assignCanvasAnimations(beats.map((b) => ({ canvas: b.scene.canvas })), { seed: a
 // The uniform white ground (visual/backgrounds.js), as render.js sets it.
 const { GROUND } = await import("../src/skills/remotion-render/visual/backgrounds.js");
 const plan = { canvas: true, accent, ground: GROUND, beats, palette: { primary: ["#0F172A", "#1E293B", "#22C55E", "#FAFAFA"], secondary: [] }, fonts: { primary: "Inter", secondary: "Inter" } };
+// --sfx: the plan carries the SFX the real renderer would play for these beats (visual/canvas-sfx.js, each file
+// landed by its measured peak), so the mp4's audio can be measured against the frames (scripts/sfx-sync-proof.mjs).
+// Needs the CC0 files fetched first (node scripts/sfx-cc0.mjs fetch).
+if (process.argv.includes("--sfx")) {
+  const { canvasSfxEvents, SFX_PALETTE } = await import("../src/skills/remotion-render/visual/canvas-sfx.js");
+  const { peakFrames, recordedFiles } = await import("./sfx-cc0.mjs");
+  const judged = recordedFiles();
+  const recorded = judged.size ? judged : new Set(Object.values(SFX_PALETTE).map((s) => s.file));
+  const r = canvasSfxEvents(beats, { peaks: peakFrames(FPS), recorded });
+  plan.sfx = r.events;
+  console.log(`[sfx] ${r.events.length} event(s) in the test plan${judged.size ? "" : " (no verdicts on disk: every palette file allowed for this timing proof)"}`);
+}
 writeFileSync(join(out, "plan.json"), JSON.stringify(plan, null, 2));
 
 console.log("bundling...");
@@ -142,7 +154,8 @@ if (process.argv.includes("--video")) {
   console.log(`video: ${join(out, "canvas-test.mp4")}`);
   // The same canvas fields render.js records, so local-audit.cjs --canvas-only can run on it.
   const { canvasManifest } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
-  const manifest = { video: "canvas-test.mp4", fps: FPS, width: 1080, height: 1920, accent, ground: plan.ground, beats: beats.map((b, i) => ({
+  const manifest = { video: "canvas-test.mp4", fps: FPS, width: 1080, height: 1920, accent, ground: plan.ground,
+    ...(plan.sfx ? { sfx: plan.sfx.map((e) => ({ role: e.role, file: e.file, db: e.db, at_frame: e.atFrame, event_frame: e.eventFrame, peak_frames: e.peakFrames, beat: e.beat, reason: e.reason })) } : {}), beats: beats.map((b, i) => ({
     index: i, start_sec: b.start_frame / FPS, duration_sec: b.duration_frames / FPS, visual_type: b.scene.canvas.visual_type,
     canvas: canvasManifest(b.scene.canvas, i) })) };
   writeFileSync(join(out, "canvas-test-manifest.json"), JSON.stringify(manifest, null, 2));
