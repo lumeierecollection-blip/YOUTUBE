@@ -500,7 +500,13 @@ function measureGround(videoPath) {
   // (nor one drawn with the background variation — canvas-layout.js backgroundOf: every 5th beat a
   // soft gradient, every 3rd the paper texture. That white is textured by design; measuring it as
   // "the uniform ground" failed CI run 37702067252 ch-5 beat 4: bottom-right #F8F6F3, the gradient.)
-  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white" && !b.canvas?.ground_color && !b.canvas?.source_credit && !b.canvas?.background?.gradient && !b.canvas?.background?.paper && b.canvas?.composition !== "COMPARISON-SPLIT" && !Object.values(b.canvas?.boxes || {}).some((v) => v?.role === "shape"));
+  // (nor one whose drawn boxes cover a sampled corner: a shot that bleeds off the frame's top — a
+  // PHOTO-BAND's photo, a MAP-BAND's map — tinted the corner it covers by design and was read as an
+  // uneven ground, board 37898353222 ch-9 beat 0 "top-left #FBFBFB". The ground is measured on a beat
+  // where it shows at all three corners; the uniformity standard itself is unchanged.)
+  const CORNERS = [[0, 0, 80, 80], [1000, 0, 1080, 80], [1000, 1840, 1080, 1920]];
+  const coversCorner = (bt) => Object.values(bt.canvas?.boxes || {}).some((v) => v && typeof v.x === "number" && v.w > 0 && v.h > 0 && CORNERS.some(([x0, y0, x1, y1]) => v.x < x1 && v.x + v.w > x0 && v.y < y1 && v.y + v.h > y0));
+  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white" && !b.canvas?.ground_color && !b.canvas?.source_credit && !b.canvas?.background?.gradient && !b.canvas?.background?.paper && b.canvas?.composition !== "COMPARISON-SPLIT" && !Object.values(b.canvas?.boxes || {}).some((v) => v?.role === "shape") && !coversCorner(b));
   if (!beat) { console.log("[verify] ground: every beat is a full-bleed photo or declares its own ground — the default white ground not measured (local-audit canvas-ground checks declared grounds)"); return []; }
   const at = beat.start_sec + beat.duration_sec * 0.6;
   const framePath = videoPath.replace(/\.mp4$/, "-ground.png");
