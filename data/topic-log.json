@@ -2112,9 +2112,14 @@
           "topic": "Kishu Inu Creator Charged in Chicago Over Alleged $9 Million Rug Pull",
           "slug": "kishu-inu-9m-rug-pull-charges",
           "reserved_at": "2026-10-09T12:19:37.328Z"
+        },
+        {
+          "topic": "crypto-fraud-investigations-2026",
+          "slug": "ledger-probe-87m-crypto-fraud-2026",
+          "reserved_at": "2026-10-09T21:57:00.331Z"
         }
       ],
-      "last_generated": "2026-10-09T12:19:37.328Z"
+      "last_generated": "2026-10-09T21:57:00.332Z"
     },
     "27": {
       "channel_name": "Trial Files",
