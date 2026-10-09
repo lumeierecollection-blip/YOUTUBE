@@ -884,8 +884,8 @@ function MarkPlate({ side, name, item, style, accent, th, hair }) {
     const small = Math.max(16, Math.min(34, Math.floor((side * 0.9) / Math.max(4, label.length * 0.62))));
     return (
       <div style={box}>
-        <div style={{ position: "absolute", left: 0, right: 0, top: 0, height: "72%", display: "flex", alignItems: "center", justifyContent: "center", font: `800 ${Math.round(side * (initials.length > 3 ? 0.27 : initials.length > 2 ? 0.33 : 0.42))}px ${SERIF}`, letterSpacing: -2, color: th.ink }}>{initials}</div>
-        <div style={{ position: "absolute", left: 0, right: 0, top: "70%", textAlign: "center", font: `700 ${small}px ${SANS_STACK}`, letterSpacing: 2, color: th.ink, whiteSpace: "nowrap" }}>{label.toUpperCase()}</div>
+        <div style={{ position: "absolute", left: 0, right: 0, top: 0, height: initials === label.toUpperCase() ? "calc(100% - 8px)" : "72%", display: "flex", alignItems: "center", justifyContent: "center", font: `800 ${Math.round(side * (initials.length > 3 ? 0.27 : initials.length > 2 ? 0.33 : 0.42))}px ${SERIF}`, letterSpacing: -2, color: th.ink }}>{initials}</div>
+        {initials !== label.toUpperCase() ? <div style={{ position: "absolute", left: 0, right: 0, top: "70%", textAlign: "center", font: `700 ${small}px ${SANS_STACK}`, letterSpacing: 2, color: th.ink, whiteSpace: "nowrap" }}>{label.toUpperCase()}</div> : null}
         {bar}
       </div>
     );
