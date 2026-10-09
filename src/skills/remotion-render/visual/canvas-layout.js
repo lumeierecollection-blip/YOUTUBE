@@ -548,6 +548,15 @@ function finalizeChrome(L, c) {
     else if (pos === "top-left") boxes.kicker = { ...k, x: 48, align: "left" };
     else if (pos === "bottom-left") boxes.kicker = { ...k, x: 48, y: 1368, align: "left" };
     else if (pos === "beside-headline" && head && head.x + head.w + 32 + k.w <= 1032 && head.y + k.h <= HEADER_MAX_Y) boxes.kicker = { ...k, x: head.x + head.w + 32, y: head.y + 8, align: "left" };
+    // A label that lands ON the headline (board 37925838913 ch-6 beat 2: "HAMILTON COUNTY" top-left over a
+    // TYPE-SPLIT's top-left "Highway", canvas-fit) goes under the headline, else to the other top corner.
+    const hit = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
+    if (head && head.w && boxes.kicker && hit(boxes.kicker, head)) {
+      const kk = boxes.kicker, below = head.y + head.h + (head.desc || 0) + 18;
+      const right = { ...kk, x: 1032 - kk.w, align: "right" }, left = { ...kk, x: 48, align: "left" };
+      if (below + kk.h <= HEADER_MAX_Y) boxes.kicker = { ...kk, y: below };
+      else if (!hit(kk.align === "left" ? right : left, head)) boxes.kicker = kk.align === "left" ? right : left;
+    }
   }
   let pull = null;
   const pp = c?.pull_phrase?.text ? c.pull_phrase : null;
