@@ -704,8 +704,10 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   // The graph's camera: the whole figure (chart, its number, its label) grows from 1/(1+CAMERA.graph) to its
   // laid-out size about its floor on the frame's axis — inside its band at every frame.
   const gk = 1 / (1 + CAMERA.graph) + (1 - 1 / (1 + CAMERA.graph)) * camP(local, dur);
+  // About the chart's own floor: the middle band's floor, or — a chart in the TOP band (its headline low) — its bottom edge.
+  const pivotY = ch && ch.y + ch.h <= 640 ? ch.y + ch.h : BOTTOM;
   return (
-    <div style={{ position: "absolute", inset: 0, transformOrigin: `540px ${BOTTOM}px`, transform: `scale(${gk.toFixed(4)})` }}>
+    <div style={{ position: "absolute", inset: 0, transformOrigin: `540px ${pivotY}px`, transform: `scale(${gk.toFixed(4)})` }}>
       <HeroEl name="chart" b={ch}>{chart}</HeroEl>
       {B.number && (vt === "PIE" || vt === "GAUGE") ? <NumberHero b={B.number} q={parseQuantity(`${d.percent}%`)} t={count} local={local} fps={fps} at={tl.numberAt} color={th.ink} m={m} hero={false} /> : null}
       {B.label ? <DataLabel b={B.label} name="label" color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}

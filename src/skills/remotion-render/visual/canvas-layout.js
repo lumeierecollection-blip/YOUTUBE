@@ -1111,6 +1111,22 @@ function tableLayout(c) {
     // text elements (kinetic-rules max 3 — CI run 36944700437 ch-44 beat 3),
     // so the kicker (lead-in) is dropped when the figure has a label.
     const ownLabel = (vt === "PIE" || vt === "GAUGE") && !!c?.data?.label;
+    // FIGURE-LOW for a chart (render-time shot, Gemini's pick; the number's and the map's counterpart): the chart
+    // fills the TOP band and its headline stands low in the middle band, so no words sit in the top band —
+    // the other half of a shot sequence that three chart beats in a row could not be arranged without.
+    const chartTop = !!c?.headline && c.headline_zone === "middle" && c.chart_zone === "top" && ["BAR", "LINE", "TREND"].includes(vt);
+    if (chartTop) {
+      const cTop = TOP + 44, W2 = R_EDGE - L_EDGE;
+      boxes.rule = rule(flip, TOP);
+      if (vt === "BAR") {
+        const bars = c?.data?.bars || [];
+        const longLabel = bars.some((b) => String(b.label || "").length > 12);
+        boxes.chart = bars.length >= 4 || longLabel ? { ...box(L_EDGE, cTop, W2, HEADER_MAX_Y - cTop), orient: "h" } : { ...box(L_EDGE, cTop, W2, HEADER_MAX_Y - cTop), orient: "v", baseline: HEADER_MAX_Y - 45 };
+      } else boxes.chart = box(L_EDGE, cTop, W2, HEADER_MAX_Y - cTop);
+      boxes.headline = headlineBox(c.headline, { minLines: 2, width: BEAT_HERO ? 900 : SUBJECT_W, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200, hero: true });
+      hero = "chart";
+      return { composition: comp, boxes, hero, flip };
+    }
     Object.assign(boxes, dataHeader(ownLabel ? { ...c, lead_in: null } : c, flip));
     if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);
     // Charts start at y >= 460 with or without a header and reach the

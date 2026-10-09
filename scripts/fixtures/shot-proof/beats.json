@@ -251,5 +251,42 @@
    "sentence": "Test fixture definition: the term over a double rule, then this sentence set as body text under it.",
    "motion_tier": "medium"
   }
+ },
+ {
+  "text": "Needs take fifty percent and wants take thirty.",
+  "c": {
+   "visual_type": "BAR",
+   "composition": "DATA-FULL",
+   "shot": "FIGURE-LOW",
+   "headline_zone": "middle",
+   "chart_zone": "top",
+   "data": { "bars": [ { "label": "needs", "value": "50%" }, { "label": "wants", "value": "30%" } ] },
+   "headline": "Where the money goes (fixture)",
+   "motion_tier": "medium"
+  }
+ },
+ {
+  "text": "Test fixture figure: a number on its own.",
+  "c": {
+   "visual_type": "COUNTER",
+   "composition": "NUMBER-FULL",
+   "shot": "FIGURE",
+   "data": { "value": "$105M", "label": "lost by investors" },
+   "headline": "Investor losses (fixture)",
+   "motion_tier": "medium"
+  }
+ },
+ {
+  "text": "Rates went from two to four point five percent.",
+  "c": {
+   "visual_type": "LINE",
+   "composition": "DATA-FULL",
+   "shot": "FIGURE-LOW",
+   "headline_zone": "middle",
+   "chart_zone": "top",
+   "data": { "points": [ { "label": "2022", "value": "2%" }, { "label": "2024", "value": "3.5%" }, { "label": "2026", "value": "4.5%" } ] },
+   "headline": "The rate climb (fixture)",
+   "motion_tier": "medium"
+  }
  }
 ]

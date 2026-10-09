@@ -58,13 +58,13 @@ export async function estimateMotion(a, b, { minMove = 0.04 } = {}) {
 
 /**
  * A chart's own axis: the longest straight horizontal run of ink (against the ground, either polarity) in the
- * middle band of a 540x960 copy of the frame, in pixels. A chart that grows about its floor widens its axis by
+ * chart bands (y 120-1340) of a 540x960 copy of the frame, in pixels. A chart that grows about its floor widens its axis by
  * the same factor, while its line, dot and bars are still animating (which defeats estimateMotion). null when
  * the chart draws no axis (a donut / gauge).
  */
 export async function axisWidth(file) {
   const { data } = await sharp(file).greyscale().resize(540, 960, { fit: "fill" }).raw().toBuffer({ resolveWithObject: true });
-  const y0 = 310, y1 = 670;
+  const y0 = 60, y1 = 670;   // the middle band and, for a chart in the top band, the top one
   const lum = []; for (let y = y0; y < y1; y += 7) for (let x = 0; x < 540; x += 7) lum.push(data[y * 540 + x]);
   lum.sort((a, b) => a - b);
   const ground = lum[lum.length >> 1], dark = ground > 128;
