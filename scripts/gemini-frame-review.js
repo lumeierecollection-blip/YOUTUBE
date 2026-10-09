@@ -681,7 +681,13 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
  * whether the PICTURE itself was magnified or shifted between them — ignoring text, captions and anything
  * that only popped in. A picture that is identical, or a chart whose bars merely grew, is NO.
  *
- * Exit 0 = at most max(1, 25%) of the camera beats are NO. Exit 1 = more (listed). Exit 3 = could not run.
+ * Gemini's eye alone was wrong on CI run 37919459134 ch-2: a photo that measures 1.09x between the two
+ * frames was called "unchanged", and so was a chart whose axis widened 1.09x. So each beat is ALSO measured on
+ * the pixels (scripts/lib/frame-motion.mjs: the best scale+shift taking frame A to B for a photo; the
+ * widening of the chart's own axis for a graph). A beat has a real camera move when the pixels measure it OR
+ * Gemini sees it; it is a fake pan only when neither does.
+ *
+ * Exit 0 = at most max(1, 25%) of the camera beats are fake pans. Exit 1 = more (listed). Exit 3 = could not run.
  */
 async function cameraCheck() {
   const videoPath = arg("video"), manifestPath = arg("manifest"), outPath = arg("out");
@@ -694,15 +700,19 @@ async function cameraCheck() {
   mkdirSync(work, { recursive: true });
   const content = [{ type: "text", text: `You are checking the CAMERA of a finished vertical video. For each beat below you get two frames, A then B, taken from the SAME beat about a second and a half apart. The beat shows a photograph or a chart; a real camera move means the PICTURE ITSELF is larger (pushed in) or shifted sideways, up or down in B compared with A, by roughly 8% or more.
 IGNORE all text: headlines, labels, numbers, captions and anything that merely appeared or changed its value between the frames. Judge only the photograph, or (for a chart) the chart as a whole — its baseline, its axis, the spacing of its labels: are they larger or displaced in B?
+Method: pick ONE fixed landmark in the picture (a building edge, a lamp post, the horizon; for a chart its baseline) and compare its size and position in A and in B. A push-in makes every landmark larger and moves the ones away from the centre outward.
 Answer NO when the picture is the same size and in the same place in both frames (only text popped in), or when a chart only had its bars grow taller with the chart itself unchanged in size and position.
 Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"moved":"YES"|"NO","change":"<what moved: e.g. photo zoomed in about 9%, chart larger and its baseline lower, nothing>"}]} — exactly one entry per beat listed, with the beat_index given.` }];
+  const pairs = new Map();
   try {
     for (const { b, i } of cam) {
       const d = b.duration_sec ?? 0, t0 = b.start_sec ?? 0;
-      const ta = t0 + Math.max(0.15, d * 0.2), tb = t0 + Math.max(0.5, Math.min(d - 0.05, d * 0.85));
+      // Early (after the 6-frame pop-in) and late (before the next beat's pop-out): the move is eased over the first 90%.
+      const ta = t0 + Math.max(0.35, d * 0.1), tb = t0 + Math.max(0.6, Math.min(d - 0.3, d * 0.92));
       const fa = join(work, `b${i}-a.png`), fb = join(work, `b${i}-b.png`);
       extractFrameAtTime(videoPath, ta, fa); extractFrameAtTime(videoPath, tb, fb);
       content.push({ type: "text", text: `Beat ${i} (${b.canvas.camera.subject}): frame A at ${ta.toFixed(2)}s, then frame B at ${tb.toFixed(2)}s` });
+      pairs.set(i, { fa, fb, subject: b.canvas.camera.subject });
       for (const f of [fa, fb]) content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(f).toString("base64")}` } });
     }
     console.log(`[camera-check] ${cam.length} beat(s) with a declared camera move — asking the model`);
@@ -715,8 +725,26 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"moved":"YES"|"NO","change":
     }
     const verdicts = Array.isArray(result?.beats) ? result.beats : null;
     if (!verdicts || verdicts.length !== cam.length) { console.error(`::error::camera check returned ${verdicts ? verdicts.length : "no"} verdict(s) for ${cam.length} beats: ${JSON.stringify(result).slice(0, 300)}`); process.exit(3); }
-    for (const v of verdicts) console.log(`[camera-check] beat ${v.beat_index}: ${v.moved} — ${v.change}`);
-    const failing = verdicts.filter((v) => String(v.moved).toUpperCase() !== "YES");
+    // The pixels.
+    const { estimateMotion, axisWidth } = await import("./lib/frame-motion.mjs");
+    const measured = new Map();
+    for (const [i, p] of pairs) {
+      try {
+        if (p.subject === "graph") {
+          const [wa, wb] = [await axisWidth(p.fa), await axisWidth(p.fb)];
+          if (wa && wb) { measured.set(i, { moved: wb / wa >= 1.05 || wa / wb >= 1.05, what: `axis ${wa}px -> ${wb}px (x${(wb / wa).toFixed(3)})` }); continue; }
+        }
+        const m = await estimateMotion(p.fa, p.fb);
+        measured.set(i, { moved: m.moved, what: `scale ${m.scale}, shift ${m.shift.join(",")}, error ${m.identity_mse} -> ${m.best_mse}` });
+      } catch (e) { measured.set(i, { moved: false, what: `not measured (${e.message})` }); }
+    }
+    for (const v of verdicts) {
+      const px = measured.get(Number(v.beat_index));
+      v.pixels = px || null;
+      v.real = String(v.moved).toUpperCase() === "YES" || !!px?.moved;
+      console.log(`[camera-check] beat ${v.beat_index}: gemini ${v.moved} (${v.change}); pixels ${px ? (px.moved ? "MOVED" : "still") + " — " + px.what : "n/a"} -> ${v.real ? "REAL" : "FAKE"}`);
+    }
+    const failing = verdicts.filter((v) => !v.real);
     if (outPath) writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, beats: verdicts, failing: failing.map((v) => v.beat_index) }, null, 2) + "\n");
     const allowed = Math.max(1, Math.floor(cam.length * 0.25));
     if (failing.length > allowed) { console.error(`::error::camera check failed: ${failing.length}/${cam.length} photo/graph beats show no real camera move (beats ${failing.map((v) => v.beat_index).join(", ")})`); process.exit(1); }

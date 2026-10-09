@@ -94,6 +94,16 @@ allows at most one words-only card in any three sentences, so a script of
 abstractions cannot be arranged at all. Write so each sentence has a thing to
 show:
 
+- **What the renderer can draw from a sentence** — name these where the research
+  gives them, in the sentence that needs the picture:
+  a figure with its unit ("$352 million", "34%") → a number or chart (two figures
+  → bars); a stated rise or fall with its subject ("fell", "doubled", "tumbled")
+  → a trend line; a place by name → its map; a named person, company, court or
+  building → a real photo or logo; a physical object (banknotes, a tanker, a gold
+  bar) → the object; a cause and its effect in one sentence → a flow diagram; a
+  risk, threat, crime, approval or tracking word → a drawn symbol; dated events →
+  a timeline; three or more things in a comma list → a list. A sentence that
+  names none of these is a words-only card.
 - **One idea per sentence, one drawable thing per idea** — a person, a place,
   an object, a figure with its unit, a dated event. Never two ideas to save
   words; never an idea with nothing to point at.
@@ -113,6 +123,13 @@ show:
 - **Close on the loop or the act.** Either the CLOSE echoes the HOOK's own key
   noun or number (the last frame can feed the first for a rewatch), or it names
   the one specific action. Both must still come from the research.
+- **Drama is made of the research's own facts, never added to them.** Board run
+  37919459134 ch-9 lost the video to the claims gate for "vanished from global
+  radar" and "Washington pulled the plug" — vivid verbs the research never
+  states. Where the research says "17 vessels were sanctioned", the sentence says
+  that, with its number; a sharper-sounding verb the research does not contain is
+  an invented claim and the channel is skipped. Escalate by choosing the
+  biggest, nearest fact the research DOES state, in the order that builds.
 - A sentence that is only a judgement ("That changes everything", "It matters")
   is words-only. Allowed at most once in three sentences, and only when the
   research gives no object for it — never invent an object to avoid it.
