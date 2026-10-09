@@ -1110,6 +1110,29 @@ export function shotSequenceProblems(choice, indices = choice.map((_, i) => i)) 
   choice.forEach((o, i) => { if (i > 0 && o.key === choice[i - 1].key) out.push({ i, why: `beats ${indices[i - 1]} and ${indices[i]} are the same composition (${o.key})` }); });
   return out;
 }
+/**
+ * Up to `max` complete shot sequences that pass shotSequenceProblems, each beat's shot taken from its
+ * own menu, searched nearest-first to `near` (the planner's picks): depth-first, options in the order
+ * "the pick, then the rest", pruning a prefix as soon as a window ending in it breaks a rule.
+ */
+export function legalSequences(menus, indices, near = [], max = 8, budget = 40000) {
+  const out = [], acc = [];
+  let nodes = 0;
+  const go = (i) => {
+    if (out.length >= max || nodes > budget) return;
+    if (i === menus.length) { out.push(acc.slice()); return; }
+    const opts = [...menus[i]].sort((a, b) => (b.sig === near[i]?.sig) - (a.sig === near[i]?.sig));
+    for (const o of opts) {
+      nodes++;
+      acc.push(o);
+      if (!shotSequenceProblems(acc, indices).some((p) => p.i === i)) go(i + 1);
+      acc.pop();
+      if (out.length >= max || nodes > budget) return;
+    }
+  };
+  go(0);
+  return out;
+}
 const describeBeat = (c) => {
   const h = (c.concept_visuals || [])[0];
   if (c.photo) return `a photo of ${c.photo.entity || "the named subject"}`;
@@ -1147,15 +1170,43 @@ ${lines}
 ${probs.length ? `\nYour current choice ${show(choice)} breaks: ${probs.map((p) => p.why).join("; ")}. Fix those beats; keep the rest.\n` : ""}
 Respond ONLY with JSON: {"beats":[{"index":<n>,"shot":"<one of that beat's options>"}]} — one entry per beat.`;
   let choice = current, asked = 0;
-  for (let round = 0; round < 2; round++) {
-    const ans = await ask(promptFor(choice, problems));
-    asked++;
-    if (isProviderError(ans) || !Array.isArray(ans?.beats)) { console.log(`[shots-final] ch-${channelId}: no answer (${isProviderError(ans) ? ans.error : "no beats in the answer"}) — the beats stay as resolved`); break; }
+  // Round 1: Gemini picks per beat.
+  const ans = await ask(promptFor(choice, problems));
+  asked++;
+  if (isProviderError(ans) || !Array.isArray(ans?.beats)) {
+    console.log(`[shots-final] ch-${channelId}: no answer (${isProviderError(ans) ? ans.error : "no beats in the answer"}) — the beats stay as resolved`);
+  } else {
     const id = (v) => String(v || "").trim().toUpperCase().replace(/[\s_]+/g, "-");
     choice = plan.beats.map((b, i) => { const a = id(ans.beats.find((x) => Number(x?.index) === b.index)?.shot); return menus[i].find((o) => id(o.shot) === a) || choice[i]; });
     problems = shotSequenceProblems(choice, idx);
     console.log(`[shots-final] ch-${channelId}: Gemini chose ${show(choice)}${problems.length ? ` — still: ${problems.map((p) => p.why).join("; ")}` : " — legal"}`);
-    if (!problems.length) break;
+    // Round 2, only when its picks still break a rule: the per-beat picks are a constraint puzzle the
+    // model kept missing (board 37866941228: ch-26, ch-44 had legal sequences it never found). Code
+    // lists the complete sequences that ARE legal — built only from each beat's own drawable options,
+    // closest to Gemini's picks first — and Gemini chooses one. None legal: the content cannot be
+    // arranged (logged); the beats stay as Gemini picked and the gates judge the render.
+    if (problems.length) {
+      const seqs = legalSequences(menus, idx, choice);
+      if (!seqs.length) console.log(`[shots-final] ch-${channelId}: no legal sequence exists in these beats' options — the content (too many words-only / words-at-the-top beats) cannot be arranged`);
+      else {
+        const list = seqs.map((s, k) => `${k + 1}) ${s.map((o, i) => `[${idx[i]}] ${o.shot}`).join(", ")}`).join("\n");
+        const pick = await ask(`You are the visual director of a vertical video (the channel's reference look: an editorial collage that changes its shot every beat). Your shot choice ${show(choice)} breaks: ${problems.map((p) => p.why).join("; ")}.
+Each sequence below is LEGAL (checked) and uses only shots each beat can draw. Choose the one that shows the beats best.
+
+${lines}
+
+${list}
+
+Respond ONLY with JSON: {"sequence": <number>}`);
+        asked++;
+        const n = Number(pick?.sequence);
+        if (!isProviderError(pick) && Number.isInteger(n) && seqs[n - 1]) {
+          choice = seqs[n - 1];
+          problems = shotSequenceProblems(choice, idx);
+          console.log(`[shots-final] ch-${channelId}: Gemini chose legal sequence ${n}/${seqs.length}: ${show(choice)}`);
+        } else console.log(`[shots-final] ch-${channelId}: no valid sequence number (${isProviderError(pick) ? pick.error : JSON.stringify(pick).slice(0, 80)}) — the beats stay as Gemini picked`);
+      }
+    }
   }
   plan.beats.forEach((b, i) => {
     if (choice[i] === current[i]) return;

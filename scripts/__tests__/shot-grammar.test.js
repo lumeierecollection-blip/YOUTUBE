@@ -228,3 +228,14 @@ test("FIGURE-LOW puts no words in the top band — the number alone up there; HE
   const h = { visual_type: "TYPE", headline: "Gold hits a record", concept_visuals: [CUT], composition: "HERO-OVER" };
   assert.ok(canvasLayout(normalizeCanvas(h, 0)).boxes.rule, "the rule stays (keep)");
 });
+test("chooseShots round 2: when the per-beat picks still break a rule, Gemini chooses among complete LEGAL sequences", async () => {
+  const p = resolvedPlan();
+  p.beats[1].canvas.shot = "PHOTO-CARD"; p.beats[1].canvas.shot_drawn = false;
+  const bad = { beats: [{ index: 0, shot: "FIGURE" }, { index: 1, shot: "PHOTO-CARD" }, { index: 2, shot: "STATEMENT-SPLIT" }, { index: 3, shot: "FIGURE" }, { index: 4, shot: "STATEMENT" }] };
+  const prompts = [];
+  const r = await chooseShots(p, "t", async (prompt) => { prompts.push(prompt); return prompts.length === 1 ? bad : { sequence: 1 }; });
+  assert.equal(r.asked, 2);
+  assert.match(prompts[1], /Each sequence below is LEGAL/);
+  assert.deepEqual(r.problems, []);
+  assert.deepEqual(shotSequenceProblems(r.choice), []);
+});
