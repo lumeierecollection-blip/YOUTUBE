@@ -67,6 +67,16 @@ export function motionsFor(raw, idx = 0) {
       primary = "framed photo pops in place, then pushes in 2%";
       secondary = "headline words pop";
       break;
+    case "TYPE-TITLE":
+    case "TYPE-CHAPTER":
+    case "TYPE-DEFINITION":
+      primary = "words pop in one at a time";
+      secondary = "the accent bar / double rule draws in; body text pops soft";
+      break;
+    case "NUMBER-STAT":
+      primary = "number counts up";
+      secondary = "label pops after";
+      break;
     case "HERO-LOW":
     case "HERO-SCATTER":
     case "HERO-OVER":

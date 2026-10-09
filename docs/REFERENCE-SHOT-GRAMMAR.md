@@ -111,3 +111,25 @@ beat's content is something that shot frames. Code checks legality; it does not 
   set of items to tile and one verified image per beat; a decorative field would be invented content.
 - **Text inside the object (9).** Needs the screen's geometry inside a photo; nothing measures it.
 - **End card (21), the landscape-only arrangements (23, 24, 28-30).** No logo asset / no 9:16 analogue.
+
+## Text-only cards (2026-10-09)
+
+A beat with no picture had one frame (`TYPE-FULL`, a statement low on one side). The reference frames
+its type four ways, and those four are built — each its own composition, not the same frame with other
+words:
+
+| Composition (shot) | The reference | Frame division | Varies |
+|---|---|---|---|
+| `TYPE-TITLE` (`TITLE`) | `ref-03` 0:02-0:10: "MONEY", "ENDLESSLY", "FEW EVER SPEEK", "SLIPS AWAY" set huge and heavy | hairline rule top; two lines very large (to 260 px) in the upper middle band; the planner's label (if any) letterspaced under them; a heavy accent bar on the band's floor | scale very large, stroke heavy, accent on the bar, side |
+| `TYPE-CHAPTER` (`CHAPTER`) | `ref-01` 0:14 "It made me wonder", 1:04 "even when things are ba_"; `ref-03` 0:15 "they own it." | hairline rule top; the frame empty; one small line (to 96 px) at the middle band's floor, the label letterspaced above it | scale small, negative space maximal, side |
+| `TYPE-DEFINITION` (`DEFINITION`) | `ref-01` 0:20-0:26, the page: "'Puck'" / TYPOGRAPHICAL ART / its paragraph | hairline rule top; the words as the term in the upper middle band; a double accent rule; the beat's own sentence as body text | dense, double thin stroke, accent on the rules, side |
+| `NUMBER-STAT` (`STAT`) | `ref-02` "You're Making / 1 MILLION / dollar"; `ref-01` "1881", "Then, in 1998" | the figure alone filling the middle band over its label (the supporting line); the planner's label (if any) letterspaced in the top band | the figure is the visual; accent on the figure |
+
+Not built, because the shared reference does not use them: the list of three rules, the pull quote, the
+background numeral, the two-panel split (`LIST-BUILD`, `TIMELINE`, `COMPARISON-SPLIT` already exist for
+content that states a list, dates, or two figures).
+
+Constraints kept, not loosened: the title's words stay sentence case (Layer 1 `canvas-type` fails an
+all-caps headline; the caps live in the letterspaced strapline). Every words-only card is type-led to
+`template-window` (owner, 2026-10-09: keep strict) — three words-only beats in a row still fail however
+different they look; the cards break the sameness, a picture or a figure breaks the run.

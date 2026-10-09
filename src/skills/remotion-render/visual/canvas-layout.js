@@ -157,7 +157,8 @@ export const COMP = { x: 48, y: 100, w: 984, h: 1320 };
 export const CAPTION = { x: 48, y: 1450, w: 880, h: 160 };
 export const CAPTION_R = { x: 64, y: 1450, w: 880, h: 160 };
 export const COMPOSITIONS = ["TYPE-FULL", "TYPE-SPLIT", "NUMBER-FULL", "DATA-FULL", "SCENE-FULL", "ARCHITECTURE", "PORTRAIT", "DOCUMENT", "MONEY", "MAP-CENTERED", "PROCESS-FULL", "TIMELINE", "COMPARISON-SPLIT", "LIST-BUILD",
-  "SCENE-LOW", "PHOTO-BAND", "PHOTO-EDGE", "PHOTO-CARD", "PHOTO-INSET", "PHOTO-STRIP", "HERO-LOW", "HERO-SCATTER", "HERO-OVER"];
+  "SCENE-LOW", "PHOTO-BAND", "PHOTO-EDGE", "PHOTO-CARD", "PHOTO-INSET", "PHOTO-STRIP", "HERO-LOW", "HERO-SCATTER", "HERO-OVER",
+  "TYPE-TITLE", "TYPE-CHAPTER", "TYPE-DEFINITION", "NUMBER-STAT"];
 
 // ── SHOTS: the reference's shot grammar (docs/REFERENCE-SHOT-GRAMMAR.md) ─────────────────
 // The compositions above used to be one per CONTENT kind (a photo is SCENE-FULL, a person
@@ -183,13 +184,20 @@ export const TEXT_AT = Object.freeze({
   "PHOTO-BAND": "low", "SCENE-LOW": "low", "HERO-OVER": "low", "TYPE-FULL": "low", "DOCUMENT": "low", "MONEY": "low",
   "PHOTO-EDGE": "top", "PHOTO-CARD": "top", "PHOTO-INSET": "top", "PHOTO-STRIP": "top", "SCENE-FULL": "top", "ARCHITECTURE": "top", "PORTRAIT": "top",
   "HERO-STACK": "top", "HERO-LOW": "top", "HERO-SCATTER": "top",
+  "TITLE": "low", "CHAPTER": "low", "DEFINITION": "low", "STAT": "low",
 });
-export const SHOT_COMPOSITIONS = [...FRAMED_PHOTO_COMPS, "SCENE-LOW", ...HERO_COMPS];
+// WORDS-ONLY cards (docs/REFERENCE-SHOT-GRAMMAR.md "Text-only cards"): a statement with no picture,
+// framed four ways the reference frames its type. Each is type-led to the template rule — a run of
+// three words-only beats still fails, however different they look (owner, 2026-10-09: keep strict).
+export const TYPE_CARD_COMPS = ["TYPE-TITLE", "TYPE-CHAPTER", "TYPE-DEFINITION"];
+export const TYPE_LED_COMPS = ["TYPE-FULL", "TYPE-SPLIT", ...TYPE_CARD_COMPS];
+export const SHOT_COMPOSITIONS = [...FRAMED_PHOTO_COMPS, "SCENE-LOW", ...HERO_COMPS, ...TYPE_CARD_COMPS, "NUMBER-STAT"];
 export const PHOTO_SHOTS = ["SCENE-FULL", "SCENE-LOW", ...FRAMED_PHOTO_COMPS, "PORTRAIT"];
 export const HERO_SHOTS = ["HERO-STACK", ...HERO_COMPS];
 // FIGURE / STATEMENT: the content's own frame (a chart, a number, a map; a plain statement), named
 // so every beat carries a shot the planner chose.
-export const SHOTS = [...PHOTO_SHOTS, ...HERO_SHOTS, "FIGURE", "STATEMENT"];
+export const CARD_SHOTS = ["TITLE", "CHAPTER", "DEFINITION"];
+export const SHOTS = [...PHOTO_SHOTS, ...HERO_SHOTS, "FIGURE", "STATEMENT", ...CARD_SHOTS, "STAT"];
 // Offered at render time, once the content is known (scripts/render-and-qa.js chooseShots):
 // STATEMENT-SPLIT — a statement in two halves, top and low (TYPE-SPLIT); FIGURE-LOW — a number in the
 // top band, its headline low in the middle band (NUMBER-FULL with the zones swapped).
@@ -209,6 +217,15 @@ export function shotComposition(base, shot, c = {}) {
   const s = shotName(shot);
   if (!s) return { composition: base, shot: null, used: false, why: shot ? `"${shot}" is not a shot` : "no shot" };
   if (s === "FIGURE" || s === "STATEMENT" || CONTENT_SHOTS.includes(s)) return { composition: base, shot: s, used: true, why: null };
+  // Words-only cards frame a plain statement (no photo, object, name card); STAT a number with its label.
+  if (CARD_SHOTS.includes(s)) {
+    const plain = ["TYPE-FULL", "TYPE-SPLIT"].includes(base) && !c.photo && !(c.concept_visuals || []).length && !c.name_card?.name && !!String(c.headline || "").trim();
+    return plain ? { composition: `TYPE-${s}`, shot: s, used: true, why: null } : { composition: base, shot: s, used: false, why: `${s} frames a words-only statement; this beat draws ${base}${c.name_card?.name ? " (a name card)" : ""}` };
+  }
+  if (s === "STAT") {
+    const ok = base === "NUMBER-FULL" && String(c.visual_type || "").toUpperCase() === "COUNTER" && !!c.data?.value && !!String(c.data?.label || "").trim();
+    return ok ? { composition: "NUMBER-STAT", shot: s, used: true, why: null } : { composition: base, shot: s, used: false, why: `STAT frames a stated number with its label; this beat draws ${base}` };
+  }
   const photoBase = !!c.photo && ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "PORTRAIT"].includes(base);
   const heroBase = base === "TYPE-FULL" && Array.isArray(c.concept_visuals) && c.concept_visuals.length > 0;
   if (PHOTO_SHOTS.includes(s)) {
@@ -724,6 +741,67 @@ function shotLayout(c, comp, flip) {
   return { composition: comp, boxes, hero, flip };
 }
 
+/**
+ * WORDS-ONLY CARDS (TYPE_CARD_COMPS), the reference's type frames (docs/REFERENCE-SHOT-GRAMMAR.md):
+ *   TYPE-TITLE       ref-03 0:02-0:10 ("MONEY", "ENDLESSLY", "FEW EVER SPEEK"): the words very large and
+ *                    heavy, two lines, in the upper middle band; the planner's label (if any) as a
+ *                    letterspaced strapline under them; a heavy accent bar on the band's floor.
+ *   TYPE-CHAPTER     ref-01 0:14 "It made me wonder", ref-03 0:15 "they own it.": one SMALL line low on
+ *                    one side, the frame otherwise empty; the label (if any) letterspaced above it.
+ *   TYPE-DEFINITION  ref-01 0:20-0:26 (the page: "'Puck'" / TYPOGRAPHICAL ART / its paragraph): the words
+ *                    as the term, a double rule, the beat's own sentence set as body text under it.
+ * Every card keeps the hairline rule at the frame's top (keep: the span holds on pixels) and its words
+ * in the middle band — none of them puts words in the top band. What varies beat to beat: the type
+ * scale (very large / small / medium + body), the stroke (heavy bar / none / double hairline), the
+ * negative space (dense / empty / packed), the accent (on the bar / on the label / on the rules), and
+ * the side (`flip`). Nothing is added that the beat does not say: the strapline is the planner's label
+ * or nothing, the body is the sentence itself.
+ */
+function typeCardLayout(c, comp, flip) {
+  const boxes = {};
+  const text = String(c.headline || "");
+  const kick = c.lead_in ? String(c.lead_in) : null;
+  boxes.rule = { ...rule(flip, TOP), keep: true };
+  if (comp === "TYPE-TITLE") {
+    boxes.statement = headlineBox(text, { width: 984, y: BODY_TOP + 30, flip, maxLines: 2, maxHeight: 560, max: 260, tier: false });
+    if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 30, maxLines: 1, y: boxes.statement.y + boxes.statement.h + (boxes.statement.desc || 0) + 28, flip });
+    // The heavy accent bar on the middle band's floor (stroke: thick).
+    boxes.bar = { ...box(anchorX(420, flip), BOTTOM - 30, 420, 18), role: "rule", anchor: flip ? "right" : "left", accent: true };
+  } else if (comp === "TYPE-CHAPTER") {
+    const kb = kick ? dataBox(kick, { width: 600, size: 28, maxLines: 1, y: 0, flip }) : null;
+    boxes.statement = headlineBox(text, { width: 760, bottom: BOTTOM - 12, flip, maxLines: 2, maxHeight: 260, max: 96, tier: false });
+    if (kb) boxes.kicker = { ...kb, y: boxes.statement.y - 26 - kb.h };
+  } else {
+    // TYPE-DEFINITION: the term, the double rule, the sentence as body text.
+    boxes.statement = headlineBox(text, { width: 940, y: BODY_TOP + 20, flip, maxLines: 2, maxHeight: 300, max: 150, tier: false });
+    const ry = boxes.statement.y + boxes.statement.h + (boxes.statement.desc || 0) + 26;
+    boxes.rule_a = { ...box(L_EDGE, ry, R_EDGE - L_EDGE, 3), role: "rule", accent: true };
+    boxes.rule_b = { ...box(L_EDGE, ry + 10, R_EDGE - L_EDGE, 3), role: "rule", accent: true };
+    const sentence = String(c.sentence || "").trim();
+    const room = BOTTOM - 12 - (ry + 40);
+    const f = fitText(sentence, 940, { max: 46, min: 32, maxLines: 7, maxHeight: room, lineH: 1.32, weight: 400 });
+    const w = Math.min(940, Math.max(0, ...f.lines.map((l) => textWidth(l, f.size, false, 400)))) + 2;
+    const h = Math.round(f.lines.length * f.size * 1.32);
+    // "lead_" so the zone bookkeeping counts it as text, as the name card's key phrase is.
+    if (f.lines.length && h <= room) boxes.lead_body = { ...box(anchorX(w, flip), BOTTOM - 12 - h, w, h), size: f.size, lines: f.lines, align: flip ? "right" : "left", role: "data", body: true };
+  }
+  return { composition: comp, boxes, hero: "statement", flip };
+}
+
+/**
+ * NUMBER-STAT (ref-02 "You're Making / 1 MILLION / dollar", ref-01 "1881", "Then, in 1998"): the figure is
+ * the visual — the number layout with no headline, the figure filling the middle band over its label
+ * (the supporting line), the planner's label (if any) letterspaced in the top band.
+ */
+function statCardLayout(c, flip) {
+  const base = tableLayout({ ...c, composition: "NUMBER-FULL", headline: null, headline_zone: "top", chart_zone: "middle" });
+  const boxes = { ...base.boxes };
+  delete boxes.headline;
+  boxes.rule = { ...rule(flip, TOP), keep: true };
+  if (c.lead_in) boxes.kicker = dataBox(String(c.lead_in), { width: 700, size: 30, maxLines: 1, y: TOP + 30, flip });
+  return { composition: "NUMBER-STAT", boxes, hero: "number", flip };
+}
+
 const HERO_FLOOR = 1296;
 /** HERO-LOW / HERO-SCATTER / HERO-OVER: the TYPE-FULL hero beat, its object re-placed. */
 function heroShotLayout(c, comp, flip) {
@@ -783,6 +861,8 @@ function tableLayout(c) {
     return tableLayout({ ...c, composition: compositionFor(c?.visual_type, false) });
   }
   if (HERO_COMPS.includes(comp)) return heroShotLayout(c, comp, flip);
+  if (TYPE_CARD_COMPS.includes(comp)) return typeCardLayout(c, comp, flip);
+  if (comp === "NUMBER-STAT") return statCardLayout(c, flip);
   const boxes = {};
   let hero = null;
 
@@ -1531,7 +1611,7 @@ export function canvasManifest(raw, idx) {
         text: plannerLabel ? (L.boxes.kicker.lines || []).join(" ") || null : topText[0] === "pull" ? L.pull.lines.join(" ") : (L.boxes[topText[0]].lines || []).join(" ") || null,
         position: plannerLabel ? c.label?.position || "top-left" : "top", drawn: topText, planner: !!plannerLabel } : null,
       pull_phrase: L.pull ? { text: L.pull.lines.join(" "), position: L.pull.position, tone: L.pull.tone } : null,
-      type_led: ["TYPE-FULL", "TYPE-SPLIT"].includes(L.composition) && !c.photo && !(c.concept_visuals || []).length && !c.hero_cutout,
+      type_led: TYPE_LED_COMPS.includes(L.composition) && !c.photo && !(c.concept_visuals || []).length && !c.hero_cutout,
     },
     // What the beat drew and the sentence it was drawn for (scripts/place-gate.js).
     visual_type: c.visual_type || null, data: c.data || null, sentence: c.sentence || null,

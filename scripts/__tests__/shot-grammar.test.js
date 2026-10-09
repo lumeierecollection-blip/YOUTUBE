@@ -255,3 +255,41 @@ test("a number beat whose sentence names an object is offered that object as an 
   const twin = { ...obj, canvas: { ...obj.canvas } };
   assert.ok(shotSequenceProblems([obj, menu.find((o) => o.shot === "FIGURE"), twin]).some((p) => /same image/.test(p.why)));
 });
+// ── Words-only cards and the stat card (the reference's type frames) ──────────────────────────
+test("the words-only cards and the stat card: legal on both sides, with or without a label, any headline; words never in the top band", () => {
+  for (const shot of ["TITLE", "CHAPTER", "DEFINITION"]) for (const variant of [0, 1]) for (const lead_in of [null, "October 8"]) for (const headline of HEADS) {
+    const c = { visual_type: "TYPE", headline, sentence: "The court ruled the search unconstitutional on Tuesday after a long appeal by the defence.", lead_in, variant };
+    const sc = shotComposition("TYPE-FULL", shot, c);
+    assert.equal(sc.composition, `TYPE-${shot}`);
+    const L = canvasLayout(normalizeCanvas({ ...c, composition: sc.composition }, 0));
+    assert.deepEqual(layoutViolations(L), [], `${shot} v${variant} label=${lead_in} "${headline}"`);
+    const m = canvasManifest({ ...c, composition: sc.composition }, 0);
+    assert.equal(labelsDrawn(m).length, 0, `${shot}: no words in the top band`);
+    assert.equal(m.chrome.type_led, true, `${shot} is type-led to the template rule (kept strict)`);
+  }
+  for (const variant of [0, 1]) {
+    const c = { visual_type: "COUNTER", data: { value: "$105M", label: "lost by investors" }, headline: "Investor losses", variant };
+    const sc = shotComposition("NUMBER-FULL", "STAT", c);
+    assert.equal(sc.composition, "NUMBER-STAT");
+    const L = canvasLayout(normalizeCanvas({ ...c, composition: sc.composition }, 0));
+    assert.deepEqual(layoutViolations(L), []);
+    assert.ok(L.boxes.number && L.boxes.label && !L.boxes.headline);
+    assert.equal(canvasManifest({ ...c, composition: sc.composition }, 0).chrome.type_led, false);
+  }
+});
+
+test("the four cards are different frames, not the same frame with other words", () => {
+  const c = { visual_type: "TYPE", headline: "The search was unconstitutional", sentence: "The court ruled the search unconstitutional on Tuesday." };
+  const shape = (comp) => { const L = canvasLayout(normalizeCanvas({ ...c, composition: comp }, 0)); return JSON.stringify({ keys: Object.keys(L.boxes).sort(), y: L.boxes.statement?.y, size: L.boxes.statement?.size }); };
+  const shapes = ["TYPE-FULL", "TYPE-TITLE", "TYPE-CHAPTER", "TYPE-DEFINITION"].map(shape);
+  assert.equal(new Set(shapes).size, 4, shapes.join("\n"));
+  // Scale: the title very large, the chapter mark small.
+  const size = (comp) => canvasLayout(normalizeCanvas({ ...c, composition: comp }, 0)).boxes.statement.size;
+  assert.ok(size("TYPE-TITLE") >= 2 * size("TYPE-CHAPTER"), `${size("TYPE-TITLE")} vs ${size("TYPE-CHAPTER")}`);
+});
+
+test("a card shot frames only a plain statement; STAT only a number with its label", () => {
+  assert.equal(shotComposition("TYPE-FULL", "TITLE", { visual_type: "TYPE", headline: "x y", name_card: { name: "Jane Doe" } }).used, false);
+  assert.equal(shotComposition("DATA-FULL", "DEFINITION", { visual_type: "BAR", headline: "x" }).used, false);
+  assert.equal(shotComposition("NUMBER-FULL", "STAT", { visual_type: "COUNTER", data: { value: "7" }, headline: "x" }).used, false);
+});

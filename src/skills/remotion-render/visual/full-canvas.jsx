@@ -71,7 +71,7 @@ import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
   TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf, backgroundOf, PAPER_OPACITY, BG_RULE, BG_GRADIENT,
-  FRAMED_PHOTO_COMPS, HERO_COMPS,
+  FRAMED_PHOTO_COMPS, HERO_COMPS, TYPE_CARD_COMPS,
 } from "./canvas-layout.js";
 
 // Paper texture (part C.3): fractal noise in grey at PAPER_OPACITY over the white ground —
@@ -781,6 +781,35 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   return part === "header" ? <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} /> : null;
 }
 
+// ── WORDS-ONLY CARDS (canvas-layout.js typeCardLayout) ────────────────
+// TYPE-TITLE / TYPE-CHAPTER / TYPE-DEFINITION: the words (Headline, word by word, as every statement),
+// the label in the header, and each card's own furniture in the accent — the title's heavy bar, the
+// definition's double rule — drawing in as the words land; the definition's body text pops soft after.
+function BodyText({ b, color, local, fps, at }) {
+  const pop = popCss("POP_SOFT", local - Math.round(at * fps), b.align === "right" ? "100% 0%" : "0% 0%");
+  return (
+    <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, font: dataFont(b.size, 400), lineHeight: 1.32, color, textAlign: b.align, ...pop }}>
+      {b.lines.map((l, i) => <div key={i} style={{ whiteSpace: "nowrap" }}>{l}</div>)}
+    </div>
+  );
+}
+function TypeCard({ c, L, local, dur, fps, accent, idx, part = "body" }) {
+  const m = useMotion(c, local, dur, fps);
+  const th = useTheme();
+  const B = L.boxes, tl = timeline(c, B, dur, fps);
+  if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} />;
+  const draw = m.build(0.3, m.s(0.25));
+  return (
+    <>
+      {B.statement ? <Headline b={B.statement} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt} major={m.tier === "major"} hero accent={accent} /> : null}
+      {B.bar ? <Rule b={B.bar} t={draw} color={accent} /> : null}
+      {B.rule_a ? <Rule b={B.rule_a} t={draw} color={accent} /> : null}
+      {B.rule_b ? <Rule b={B.rule_b} t={m.build(0.3, m.s(0.35))} color={accent} /> : null}
+      {B.lead_body ? <BodyText b={B.lead_body} color={th.ink} local={local} fps={fps} at={tl.headlineAt + 0.5} /> : null}
+    </>
+  );
+}
+
 // ── SHOT FRAMES (docs/REFERENCE-SHOT-GRAMMAR.md) ──────────────────────
 // A shot's photo drawn in its box (canvas-layout.js shotLayout), on the beat's own ground, with the
 // header in ink. `frame` is the treatment the reference uses:
@@ -1116,7 +1145,7 @@ export function cameraAt(c, L, local, dur, fps) {
 // hero still fits the safe width: 1.15 for a narrow statement, less for a chart
 // that already spans the frame.
 export function majorZoom(L) {
-  if (["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "SCENE-LOW", "MAP-CENTERED", "COMPARISON-SPLIT", ...FRAMED_PHOTO_COMPS, ...HERO_COMPS].includes(L.composition)) return null;
+  if (["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "SCENE-LOW", "MAP-CENTERED", "COMPARISON-SPLIT", ...FRAMED_PHOTO_COMPS, ...HERO_COMPS, ...TYPE_CARD_COMPS, "NUMBER-STAT"].includes(L.composition)) return null;
   const h = L.boxes[L.hero] || null;
   const st = L.boxes.statement;
   if (st && st.rotate) return null;
@@ -1138,7 +1167,8 @@ const COMPONENTS = {
   "TYPE-FULL": TypeFull, "TYPE-SPLIT": TypeFull, "NUMBER-FULL": TypeFull, "PORTRAIT": TypeFull, "DATA-FULL": DataFull, "PROCESS-FULL": ProcessFull,
   "SCENE-FULL": SceneFull, "ARCHITECTURE": SceneFull, "DOCUMENT": SceneFull, "MONEY": SceneFull, "SCENE-LOW": SceneFull,
   "PHOTO-BAND": PhotoFrame, "PHOTO-EDGE": PhotoFrame, "PHOTO-CARD": PhotoFrame, "PHOTO-INSET": PhotoFrame, "PHOTO-STRIP": PhotoFrame,
-  "HERO-LOW": TypeFull, "HERO-SCATTER": TypeFull,
+  "HERO-LOW": TypeFull, "HERO-SCATTER": TypeFull, "HERO-OVER": TypeFull,
+  "TYPE-TITLE": TypeCard, "TYPE-CHAPTER": TypeCard, "TYPE-DEFINITION": TypeCard, "NUMBER-STAT": TypeFull,
   "MAP-CENTERED": MapCentered, "LIST-BUILD": ListBuild, "TIMELINE": Timeline, "COMPARISON-SPLIT": ComparisonSplit,
 };
 
