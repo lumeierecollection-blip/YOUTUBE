@@ -105,7 +105,11 @@ const lerp = (a, b, t) => a + (b - a) * t;
 // runs from there to the end of the beat, so the viewer sees all of it (board 37925838913 ch-8 beat 6: the photo
 // landed at ~60% of its beat, and a camera that had been running since frame 0 was mostly spent when it did).
 // Compositions that carry their own motion across the beat (a photo pushes, a graph grows, a map outlines, entity art lives).
-export const AMBIENT = Object.freeze({ from: 0.97 });
+// The ambient push runs at a CONSTANT speed (2%/s, at most 10% over the beat), not as a fixed share of the beat: a 7 s beat that only
+// settled 3% moved 0.4%/s — under what a viewer (or the pace check) sees (board 37967524047: TYPE-FULL static 3.5 s, TYPE-CHAPTER 3.25 s).
+export const AMBIENT = Object.freeze({ rate: 0.02, max: 0.10 });
+/** The push's scale at beat-local frame `local` of `dur`: it starts smaller and arrives at 1 as the beat ends (always inside its zone). */
+export const ambientScale = (local, dur, fps) => { const s = Math.max(1, dur / fps), rate = Math.min(AMBIENT.rate, AMBIENT.max / s); return 1 - rate * Math.max(0, s - local / fps); };
 const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "PORTRAIT", "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
 const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
 export const cameraStart = (c) => (Number.isFinite(c?.entity_pop?.frame) && c.photo ? Math.max(0, c.entity_pop.frame) : 0);
@@ -866,7 +870,8 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 50%");
   const live = clamp01((local - at * fps) / Math.max(1, dur * 0.9));
   const glyph = onAccent(accent);
-  const breathe = 1 + 0.04 * live;   // a slow linear push-in across the beat (the photos' camera, smaller): constant motion, nothing springy, never smaller than its box
+  const push = 1 + Math.min(0.08, 0.02 * (local / fps));   // a constant-speed push-in (2%/s, at most 8%): constant motion, nothing springy, never smaller than its box
+  const breathe = push;
   let art = null;
   // FLAT (owner, 2026-10-09: "they shouldn't look playful"): the reference's drawn parts are hairline-ruled and typographic —
   // sharp corners, ink plus the channel's one accent, no shadow, an ease-in-out settle with no overshoot.
@@ -921,7 +926,7 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
             <line x1="0" y1="430" x2="600" y2="430" stroke={th.ink} strokeWidth={hair} />
           </g>
           <line x1="0" y1="430" x2={600 * rule} y2="430" stroke={accent} strokeWidth="8" />
-          <g transform={`translate(300 300) scale(${(1 + 0.05 * live).toFixed(4)}) translate(-300 -300)`}>
+          <g transform={`translate(300 300) scale(${push.toFixed(4)}) translate(-300 -300)`}>
           {sub ? <text x="300" y="120" textAnchor="middle" fill={th.ink} style={{ font: `700 54px ${SANS_STACK}`, letterSpacing: 10 }} {...flatSvg(local - Math.round((at + 0.2) * fps), 300, 100)}>{sub.toUpperCase()}</text> : null}
           <text x="300" y="370" textAnchor="middle" fill={th.ink} style={{ font: `800 ${big.length > 2 ? 190 : 250}px ${SERIF}` }} {...flatSvg(f0 - 3, 300, 300)}>{big}</text>
           </g>
@@ -1403,7 +1408,7 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   // own (words, numbers, objects, lists, diagrams) settles into place — it grows from 97% to 100% of its size about the
   // body's floor across the beat, so it is inside its zone at every frame and something is always moving. A photo, a graph,
   // a map and an entity card already move; the header (rule, kicker, headline) stays pinned.
-  const amb = AMBIENT_SKIP.includes(L.composition) ? 1 : AMBIENT.from + (1 - AMBIENT.from) * clamp01(bodyLocal / Math.max(1, dur * 0.9));
+  const amb = AMBIENT_SKIP.includes(L.composition) ? 1 : ambientScale(bodyLocal, dur, fps);
   return (
     <Theme.Provider value={theme}>
       <Anim.Provider value={{ ...(c.anim || {}), dur, accent, kinetic: c.kinetic || null, beat: idx, spoken: beat.spoken || null }}>
