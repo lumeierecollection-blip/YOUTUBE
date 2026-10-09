@@ -71,7 +71,7 @@ import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
   TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf, backgroundOf, PAPER_OPACITY, BG_RULE, BG_GRADIENT,
-  FRAMED_PHOTO_COMPS, HERO_COMPS, TYPE_CARD_COMPS,
+  FRAMED_PHOTO_COMPS, HERO_COMPS, TYPE_CARD_COMPS, CAMERA,
 } from "./canvas-layout.js";
 
 // Paper texture (part C.3): fractal noise in grey at PAPER_OPACITY over the white ground —
@@ -93,6 +93,12 @@ const clamp01 = (v) => Math.max(0, Math.min(1, Number.isFinite(v) ? v : 1));
 const easeOut = Easing.bezier(0.16, 1, 0.3, 1);
 const easeInOut = Easing.bezier(0.65, 0, 0.35, 1);
 const lerp = (a, b, t) => a + (b - a) * t;
+// CAMERA (owner, 2026-10-09: "real camera moves of 8% or more" on photos and graphs). A photo pushes
+// in 1.00 -> 1.10 across the beat (its frame crops it, so the push never shows an edge). A graph is
+// laid out at its full size and STARTS 10% smaller, growing to it about its floor: it is inside its
+// band at every frame, and the move is 1 / 0.909 = 10%. Both ease over the first 90% of the beat.
+// Everything else holds still (the pop compositor draws nothing else in space).
+const camP = (local, dur) => easeInOut(clamp01(local / Math.max(1, dur * CAMERA.endAt)));
 const Hero = React.createContext(null);
 // The colours a beat's text and chart furniture are drawn in. A dark beat
 // (texture layer) swaps them; a photo beat draws white on the picture.
@@ -691,12 +697,15 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       </svg>
     );
   }
+  // The graph's camera: the whole figure (chart, its number, its label) grows from 1/(1+CAMERA.graph) to its
+  // laid-out size about its floor on the frame's axis — inside its band at every frame.
+  const gk = 1 / (1 + CAMERA.graph) + (1 - 1 / (1 + CAMERA.graph)) * camP(local, dur);
   return (
-    <>
+    <div style={{ position: "absolute", inset: 0, transformOrigin: `540px ${BOTTOM}px`, transform: `scale(${gk.toFixed(4)})` }}>
       <HeroEl name="chart" b={ch}>{chart}</HeroEl>
       {B.number && (vt === "PIE" || vt === "GAUGE") ? <NumberHero b={B.number} q={parseQuantity(`${d.percent}%`)} t={count} local={local} fps={fps} at={tl.numberAt} color={th.ink} m={m} hero={false} /> : null}
       {B.label ? <DataLabel b={B.label} name="label" color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
-    </>
+    </div>
   );
 }
 
@@ -716,14 +725,14 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const B = L.boxes, tl = timeline(c, B, dur, fps);
   if (c.photo) {
     const comp = L.composition;
-    // Owner's spec 2026-10-02 (task 3.1): the photo drifts 2% across the beat.
-    const push = 0.02;
-    const p01 = clamp01(local / Math.max(1, dur));
+    // Owner's spec 2026-10-09: the photo pushes in CAMERA.photo (10%) across the beat, about an
+    // off-centre point that alternates by beat, so it is a push AND a drift sideways.
+    const p01 = camP(local, dur);
     // SCENE-FULL: a slow push. ARCHITECTURE: a tilt up the facade (the frame
     // is scaled 1.28 and travels from the base to the top over the beat).
     // DOCUMENT: a slow scroll down the page. MONEY: a slow push.
-    const scale = comp === "DOCUMENT" ? 1.06 : 1 + push * p01;
-    const ty = comp === "DOCUMENT" ? lerp(0, -2.5, p01) : 0;
+    const scale = 1 + CAMERA.photo * p01;
+    const ty = comp === "DOCUMENT" ? lerp(0, -4, p01) : 0;
     // (The major beat's circle reveal is gone: a mask is not a pop — owner's spec 2026-10-02.)
     if (part === "header") {
       const hb = B.headline;
@@ -771,6 +780,7 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", }}>
           <Img src={staticFile(c.photo.asset)} style={{ width: "100%", height: "100%", objectFit: "cover",
             objectPosition: c.photo.position || B.photo?.focus || (comp === "DOCUMENT" ? "50% 0%" : comp === "ARCHITECTURE" ? "50% 50%" : "50% 30%"),
+            transformOrigin: comp === "DOCUMENT" ? "50% 0%" : `${idx % 2 ? 35 : 65}% 40%`,
             transform: `translateY(${ty.toFixed(2)}%) scale(${scale.toFixed(4)})`, filter: comp === "DOCUMENT" ? "none" : "saturate(0.92) contrast(1.05)" }} />
           <div style={{ position: "absolute", inset: 0, background: veil }} />
         </div>
@@ -820,7 +830,8 @@ function TypeCard({ c, L, local, dur, fps, accent, idx, part = "body" }) {
 //   strip  a torn-paper band across the middle, accent bars on its edges (shot 17)
 // Each frame puts solid ink at the photo's lowest edge (mat, block shadow, bar), so the beat's span
 // does not depend on how bright the photo happens to be there (canvas-coverage measures ink).
-// The photo pushes in 2% across the beat; nothing else moves (the camera is still on these shots).
+// The photo pushes in CAMERA.photo (10%) across the beat, about a point that alternates by beat, inside its frame (overflow hidden);
+// nothing else moves.
 function tornEdge(seed, n = 18, amp = 1.4) {
   // A deterministic jagged edge: percentages along the width, small depths (the reference's torn paper).
   let x = seed * 9301 + 49297;
@@ -837,7 +848,7 @@ function PhotoFrame({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const p = clamp01(local / Math.max(1, dur));
   const img = (extra = {}) => (
     <Img src={staticFile(c.photo.asset)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: c.photo.position || b.focus || "50% 40%",
-      transformOrigin: "50% 40%", transform: `scale(${(1 + 0.02 * p).toFixed(4)})`, filter: "saturate(0.92) contrast(1.05)", ...extra }} />
+      transformOrigin: `${idx % 2 ? 30 : 70}% 40%`, transform: `scale(${(1 + CAMERA.photo * camP(local, dur)).toFixed(4)})`, filter: "saturate(0.92) contrast(1.05)", ...extra }} />
   );
   const bar = (x, y, w, h) => <div style={{ position: "absolute", left: x, top: y, width: w, height: h, backgroundColor: accent }} />;
   const f = b.frame;

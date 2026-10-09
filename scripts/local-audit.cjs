@@ -788,6 +788,20 @@ async function canvasChecks(video, m) {
     for (const a of new Set(imgs)) { if (seen.has(a)) rep.push(`${a} on beats ${seen.get(a)} and ${i}`); else seen.set(a, i); }
   });
   out.push({ id: "no-photo-repeat", pass: !rep.length, detail: rep.length ? rep.join("; ") : "no photo or cutout appears on two beats" });
+  // camera-moves (owner, 2026-10-09: "real camera moves of 8% or more", photos and graphs only): every
+  // beat that shows a photo (full-bleed or framed) or a graph (DATA-FULL) declares a move >= 8%
+  // (visual/canvas-layout.js CAMERA). DECLARED here; what the pixels did is judged by Gemini's
+  // fake-pan check (gemini-frame-review.js --camera-check), which compares two frames of one beat.
+  const camBad = [];
+  beats.forEach((b, i) => {
+    const c = b.canvas;
+    if (!c) return;
+    // (PORTRAIT is a standing cut-out of a person, not a camera subject: it keeps its small push.)
+    const PHOTO_COMPS = ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "SCENE-LOW", "PHOTO-BAND", "PHOTO-EDGE", "PHOTO-CARD", "PHOTO-INSET", "PHOTO-STRIP"];
+    const subject = c.composition === "DATA-FULL" ? "graph" : c.photo?.asset && PHOTO_COMPS.includes(c.composition) ? "photo" : null;
+    if (subject && !(c.camera && c.camera.subject === subject && c.camera.move >= 0.08)) camBad.push(`beat ${i}: a ${subject} beat declares no camera move of 8% or more`);
+  });
+  out.push({ id: "camera-moves", pass: !camBad.length, detail: camBad.length ? camBad.join("; ") : `every photo and graph beat declares a camera move of 8% or more (${beats.filter((b) => b.canvas?.camera).length} beat(s))` });
   // sfx-rules (owner, 2026-10-09): every SFX that plays was judged a real recording by Gemini
   // (scripts/sfx-cc0.mjs judge), its peak lands within 100 ms of its visible event, no sound twice in
   // a row, no sound on three beats in a row. HARD — a robotic sound fails the video; fix the sound.

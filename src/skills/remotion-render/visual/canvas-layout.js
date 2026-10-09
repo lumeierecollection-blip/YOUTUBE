@@ -806,6 +806,10 @@ function statCardLayout(c, flip) {
   return { composition: "NUMBER-STAT", boxes, hero: "number", flip };
 }
 
+// CAMERA (owner, 2026-10-09: "real camera moves of 8% or more", photos and graphs only; full-canvas.jsx).
+// A photo pushes in `photo` (1.00 -> 1.10); a graph grows from 1/(1+graph) to its laid-out size about its
+// floor. `endAt`: the move eases over the first 90% of the beat. The manifest declares each beat's move.
+export const CAMERA = Object.freeze({ photo: 0.10, graph: 0.10, endAt: 0.9, min: 0.08 });
 const HERO_FLOOR = 1296;
 /** HERO-LOW / HERO-SCATTER / HERO-OVER: the TYPE-FULL hero beat, its object re-placed. */
 function heroShotLayout(c, comp, flip) {
@@ -1604,6 +1608,8 @@ export function canvasManifest(raw, idx) {
   const plannerLabel = L.boxes.kicker && !L.boxes.kicker.subject;
   return {
     composition: L.composition, hero: L.hero, boxes: flat, content: contentBounds(L), zones: zoneReport(L).zones, motion_tier: c.motion_tier || "medium",
+    camera: c.photo && (FULL_PHOTO_COMPS.includes(L.composition) || FRAMED_PHOTO_COMPS.includes(L.composition)) ? { subject: "photo", move: CAMERA.photo }
+      : L.composition === "DATA-FULL" ? { subject: "graph", move: CAMERA.graph } : null,
     camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
     // Provenance (verified_as = the Wikipedia title + description it was verified against,
     // place_check = the same-place verdict) is what the pre-ship place gate reads.

@@ -2406,6 +2406,23 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       return backupAudit({ ...backupArgs, stage: "beat-check", reason: bc?.failing ? `${why}: beats ${bc.failing.join(", ")}` : why });
     }
 
+    // Step 2b''': FAKE-PAN CHECK (owner, 2026-10-09). Every photo and graph beat declares a camera move of
+    // 8% or more; Gemini compares two frames of the same beat and says whether the PICTURE moved.
+    // More than max(1, 25%) of those beats without a real move holds the video; a check that cannot
+    // run does too (nothing defaults to a pass).
+    const cameraCheck = await runChild("node", [
+      GEMINI_REVIEW_JS, "--camera-check",
+      "--video", result.outputPath,
+      "--manifest", result.outputPath.replace(/\.mp4$/, "-manifest.json"),
+      "--out", result.outputPath.replace(/\.mp4$/, "-camera-check.json"),
+    ], { label: `camera-check ${channelId}/${basename(scriptPath)}` });
+    if (cameraCheck.code !== 0) {
+      const why = cameraCheck.code === 1 ? "FAILED — photos/graphs show no real camera move" : "could not run";
+      console.error(`::error::camera check ${why} for ${basename(result.outputPath)}`);
+      const cc = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-camera-check.json"));
+      return backupAudit({ ...backupArgs, stage: "camera-check", reason: cc?.failing?.length ? `${why}: beats ${cc.failing.join(", ")}` : why });
+    }
+
     // Step 2c: Skip QA when --skip-qa is set (local dev without ffmpeg)
     if (skipQA) {
       console.log(`--skip-qa: skipping QA for ${basename(result.outputPath)}`);

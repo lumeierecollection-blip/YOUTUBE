@@ -671,8 +671,65 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
   }
 }
 
+/* ── Fake-pan check ──────────────────────────────────────────────────
+ *
+ *   node scripts/gemini-frame-review.js --camera-check --video <mp4> --manifest <render-manifest.json> [--out <json>]
+ *
+ * Owner, 2026-10-09: a photo or a graph MOVES by 8% or more across its beat (canvas-layout.js CAMERA).
+ * The manifest DECLARES the move (Layer 1 camera-moves); this looks at the pixels. For every beat that
+ * declares one, two frames of that beat (20% and 85% of the way through) go to Gemini, which answers
+ * whether the PICTURE itself was magnified or shifted between them — ignoring text, captions and anything
+ * that only popped in. A picture that is identical, or a chart whose bars merely grew, is NO.
+ *
+ * Exit 0 = at most max(1, 25%) of the camera beats are NO. Exit 1 = more (listed). Exit 3 = could not run.
+ */
+async function cameraCheck() {
+  const videoPath = arg("video"), manifestPath = arg("manifest"), outPath = arg("out");
+  if (!videoPath || !manifestPath) { console.error("Usage: gemini-frame-review.js --camera-check --video <mp4> --manifest <manifest.json> [--out <json>]"); process.exit(2); }
+  if (!llmConfigured()) { console.error("::error::camera check cannot run: no Gemini key and no Ollama server configured"); process.exit(3); }
+  const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+  const cam = (manifest.beats || []).map((b, i) => ({ b, i })).filter(({ b }) => b.canvas?.camera);
+  if (!cam.length) { console.log("[camera-check] no photo or graph beat — nothing to check"); if (outPath) writeFileSync(outPath, JSON.stringify({ beats: [], failing: [] }) + "\n"); process.exit(0); }
+  const work = join(tmpdir(), `camera-check-${Date.now()}`);
+  mkdirSync(work, { recursive: true });
+  const content = [{ type: "text", text: `You are checking the CAMERA of a finished vertical video. For each beat below you get two frames, A then B, taken from the SAME beat about a second and a half apart. The beat shows a photograph or a chart; a real camera move means the PICTURE ITSELF is larger (pushed in) or shifted sideways, up or down in B compared with A, by roughly 8% or more.
+IGNORE all text: headlines, labels, numbers, captions and anything that merely appeared or changed its value between the frames. Judge only the photograph, or (for a chart) the chart as a whole — its baseline, its axis, the spacing of its labels: are they larger or displaced in B?
+Answer NO when the picture is the same size and in the same place in both frames (only text popped in), or when a chart only had its bars grow taller with the chart itself unchanged in size and position.
+Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"moved":"YES"|"NO","change":"<what moved: e.g. photo zoomed in about 9%, chart larger and its baseline lower, nothing>"}]} — exactly one entry per beat listed, with the beat_index given.` }];
+  try {
+    for (const { b, i } of cam) {
+      const d = b.duration_sec ?? 0, t0 = b.start_sec ?? 0;
+      const ta = t0 + Math.max(0.15, d * 0.2), tb = t0 + Math.max(0.5, Math.min(d - 0.05, d * 0.85));
+      const fa = join(work, `b${i}-a.png`), fb = join(work, `b${i}-b.png`);
+      extractFrameAtTime(videoPath, ta, fa); extractFrameAtTime(videoPath, tb, fb);
+      content.push({ type: "text", text: `Beat ${i} (${b.canvas.camera.subject}): frame A at ${ta.toFixed(2)}s, then frame B at ${tb.toFixed(2)}s` });
+      for (const f of [fa, fb]) content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(f).toString("base64")}` } });
+    }
+    console.log(`[camera-check] ${cam.length} beat(s) with a declared camera move — asking the model`);
+    let result = await callLLM([{ role: "user", content }], { maxTokens: 6144, temperature: 0, noCache: true }, "camera-check");
+    if (isProviderError(result)) { console.error(`::error::camera check unavailable: ${result.source} ${result.error}`); process.exit(3); }
+    if (result && !Array.isArray(result.beats) && typeof result.content === "string") {
+      const text = result.content.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
+      const a = text.indexOf("{"), z = text.lastIndexOf("}");
+      try { if (a >= 0 && z > a) result = JSON.parse(text.slice(a, z + 1)); } catch {}
+    }
+    const verdicts = Array.isArray(result?.beats) ? result.beats : null;
+    if (!verdicts || verdicts.length !== cam.length) { console.error(`::error::camera check returned ${verdicts ? verdicts.length : "no"} verdict(s) for ${cam.length} beats: ${JSON.stringify(result).slice(0, 300)}`); process.exit(3); }
+    for (const v of verdicts) console.log(`[camera-check] beat ${v.beat_index}: ${v.moved} — ${v.change}`);
+    const failing = verdicts.filter((v) => String(v.moved).toUpperCase() !== "YES");
+    if (outPath) writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, beats: verdicts, failing: failing.map((v) => v.beat_index) }, null, 2) + "\n");
+    const allowed = Math.max(1, Math.floor(cam.length * 0.25));
+    if (failing.length > allowed) { console.error(`::error::camera check failed: ${failing.length}/${cam.length} photo/graph beats show no real camera move (beats ${failing.map((v) => v.beat_index).join(", ")})`); process.exit(1); }
+    console.log(`[camera-check] PASS: ${cam.length - failing.length}/${cam.length} beats show a real camera move`);
+    process.exit(0);
+  } finally {
+    rmSync(work, { recursive: true, force: true });
+  }
+}
+
 async function main() {
   if (process.argv.includes("--beat-check")) return beatCheck();
+  if (process.argv.includes("--camera-check")) return cameraCheck();
   const videoPath = arg("video");
   const scriptPath = arg("script");
   const srtPath = arg("srt");
