@@ -56,14 +56,23 @@ function shadowShare(buf, W, H, box, groundL) {
 }
 
 /**
- * How many of the four corners of `box` (buffer px) are inked: walking 0..3 px in along each corner's diagonal (the element settles
- * a pixel or two inside its laid-out box), does a pixel differ from the ground? A corner rounded by 16 px or more at 1080 shows the ground
- * all the way (4 = sharp).
+ * How many of the four corners of an OUTLINED element are sharp. The element settles or pushes in a few pixels either side of its laid-out
+ * `box` (buffer px), so each corner is found, not assumed: walk its diagonal from 14 px outside the box to 6 px inside and take the first
+ * pixel that differs from the ground — the outline's outermost point there. A sharp corner is where the outline's two edges MEET: the
+ * outline is still inked 6 px along both edges from that point. A corner rounded by ~16 px or more at 1080 has already turned away by then
+ * (4 = all sharp).
  */
 function cornersSharp(buf, W, H, box, groundL) {
-  const x0 = Math.max(0, Math.round(box.x) + 1), x1 = Math.min(W - 1, Math.round(box.x + box.w) - 2), y0 = Math.max(0, Math.round(box.y) + 1), y1 = Math.min(H - 1, Math.round(box.y + box.h) - 2);
-  const differs = (x, y) => { const o = (y * W + x) * 3, r = buf[o], g = buf[o + 1], b = buf[o + 2]; return Math.abs(0.299 * r + 0.587 * g + 0.114 * b - groundL) > 25 || Math.max(r, g, b) - Math.min(r, g, b) > 30; };
-  return [[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].filter(([x, y, sx, sy]) => [0, 1, 2, 3].some((k) => differs(Math.min(W - 1, Math.max(0, x + k * sx)), Math.min(H - 1, Math.max(0, y + k * sy))))).length;
+  const x0 = Math.round(box.x), x1 = Math.round(box.x + box.w) - 1, y0 = Math.round(box.y), y1 = Math.round(box.y + box.h) - 1;
+  const inb = (x, y) => x >= 0 && y >= 0 && x < W && y < H;
+  const differs = (x, y) => { if (!inb(x, y)) return false; const o = (y * W + x) * 3, r = buf[o], g = buf[o + 1], b = buf[o + 2]; return Math.abs(0.299 * r + 0.587 * g + 0.114 * b - groundL) > 25 || Math.max(r, g, b) - Math.min(r, g, b) > 30; };
+  return [[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].filter(([x, y, sx, sy]) => {
+    for (let k = -14; k <= 6; k++) {
+      const px = x + k * sx, py = y + k * sy;
+      if (differs(px, py)) return differs(px + 6 * sx, py) && differs(px, py + 6 * sy);
+    }
+    return false;
+  }).length;
 }
 
 module.exports = { offPalette, shadowShare, cornersSharp, hueOf, hueGap, hexRgb, CHROMA, HUE_TOL, OFF_SHARE_MAX };

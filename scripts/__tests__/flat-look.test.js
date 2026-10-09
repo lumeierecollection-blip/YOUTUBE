@@ -41,18 +41,22 @@ test("shadow: a soft halo beside the box is found, a hairline-bounded box has no
   assert.ok(shadowShare(shadowed, W, H, { x: 20, y: 20, w: 40, h: 40 }, 255) > 0.25);
 });
 
-test("corners: a square box is sharp (4), a large-radius box is not", () => {
-  const sq = frame(); rect(sq, 20, 20, 50, 50, [11, 11, 12]);
-  assert.equal(cornersSharp(sq, W, H, { x: 20, y: 20, w: 50, h: 50 }, 255), 4);
-  const rounded = frame(); rect(rounded, 20, 20, 50, 50, [11, 11, 12]);
-  const r = 14;   // knock the corners off with a radius
-  for (const [cx, cy] of [[20, 20], [70 - r, 20], [20, 70 - r], [70 - r, 70 - r]]) {
-    for (let y = 0; y < r; y++) for (let x = 0; x < r; x++) {
-      const ox = cx === 20 ? r - x : x + 1, oy = cy === 20 ? r - y : y + 1;
-      if (ox * ox + oy * oy > r * r) rounded.set([255, 255, 255], ((cy + y) * W + (cx + x)) * 3);
-    }
+// An outlined box (a 1.5 px ink border) with corner radius r, drawn from a signed-distance field; `grow` pushes it out of its laid-out box.
+const outlined = (x, y, w, h, r, grow = 0) => {
+  const f = frame(), cx = x + w / 2, cy = y + h / 2, hw = w / 2 + grow, hh = h / 2 + grow;
+  for (let py = 0; py < H; py++) for (let px = 0; px < W; px++) {
+    const qx = Math.abs(px + 0.5 - cx) - (hw - r), qy = Math.abs(py + 0.5 - cy) - (hh - r);
+    const sd = Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r;
+    if (sd <= 0 && sd > -1.8) f.set([11, 11, 12], (py * W + px) * 3);
   }
-  assert.ok(cornersSharp(rounded, W, H, { x: 20, y: 20, w: 50, h: 50 }, 255) < 4);
+  return f;
+};
+test("corners: an outlined square box is sharp (4) however far it has pushed out; a large-radius box is not", () => {
+  const box = { x: 20, y: 20, w: 50, h: 50 };
+  assert.equal(cornersSharp(outlined(20, 20, 50, 50, 0), W, H, box, 255), 4);
+  assert.equal(cornersSharp(outlined(20, 20, 50, 50, 0, 5), W, H, box, 255), 4);
+  assert.ok(cornersSharp(outlined(20, 20, 50, 50, 14), W, H, box, 255) < 4);
+  assert.ok(cornersSharp(outlined(20, 20, 50, 50, 14, 5), W, H, box, 255) < 4);
 });
 
 const steps = Array.from({ length: 101 }, (_, k) => k / 100);
