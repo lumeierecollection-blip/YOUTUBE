@@ -849,6 +849,15 @@ async function canvasChecks(video, m) {
   // frames-nonempty and pop-transitions, which stay hard.
   const mz = middleZoneFilled(video, beats);
   out.push({ id: "middle-zone-filled", pass: true, advisory: true, detail: (mz.bad.length ? mz.bad.join("; ") : "every non-photo beat fills its middle zone") + (mz.bad.length ? " [ADVISORY - not gating]" : "") });
+  // pace (owner, 2026-10-09: "a beat with no movement for more than 1.0 second is a failed beat"): sampled every 0.25 s on the
+  // rendered frames (the caption band cut off), the longest run of near-identical frames inside a beat is <= 1.0 s. HARD.
+  {
+    const { paceOf, MAX_STATIC_S } = await import(require("node:url").pathToFileURL(join(__dirname, "pace-check.mjs")).href);
+    const pace = paceOf(video, m);
+    pace.beats.forEach((b) => console.log(`[pace] beat ${b.index}: ${b.duration_s} s, longest static ${b.longest_s.toFixed(2)} s, mean change ${b.mean_change} — ${b.status}`));
+    console.log(`[pace] longest static stretch ${pace.longest_s.toFixed(2)} s; average beat ${pace.avg_beat_s} s`);
+    out.push({ id: "pace", pass: !pace.fail.length, detail: pace.fail.length ? pace.fail.map((b) => `beat ${b.index}: ${b.longest_s.toFixed(2)} s with nothing moving (max ${MAX_STATIC_S} s)`).join("; ") : `no beat static for more than ${MAX_STATIC_S} s (longest ${pace.longest_s.toFixed(2)} s; average beat ${pace.avg_beat_s} s)` });
+  }
   const vcon = await visualContrast(video, beats, m.fps || 30);
   vcon.rows.forEach((r) => console.log(`[contrast] ${r}`));
   out.push({ id: "visual-contrast", pass: !vcon.bad.length, detail: vcon.bad.length ? vcon.bad.join("; ") : vcon.rows.length ? `${vcon.rows.length} flag / card visual(s), each bounded all the way round against its ground` : "no flag or framed-photo visual to judge" });

@@ -73,7 +73,7 @@ import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
   TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf, backgroundOf, PAPER_OPACITY, BG_RULE, BG_GRADIENT,
-  FRAMED_PHOTO_COMPS, HERO_COMPS, TYPE_CARD_COMPS, CAMERA, readableAccent,
+  FRAMED_PHOTO_COMPS, FULL_PHOTO_COMPS, HERO_COMPS, TYPE_CARD_COMPS, CAMERA, readableAccent,
 } from "./canvas-layout.js";
 
 // Paper texture (part C.3): fractal noise in grey at PAPER_OPACITY over the white ground —
@@ -103,6 +103,9 @@ const lerp = (a, b, t) => a + (b - a) * t;
 // `start`: the frame the picture itself appears (a photo that pops on its spoken word, canvas.entity_pop) — the move
 // runs from there to the end of the beat, so the viewer sees all of it (board 37925838913 ch-8 beat 6: the photo
 // landed at ~60% of its beat, and a camera that had been running since frame 0 was mostly spent when it did).
+// Compositions that carry their own motion across the beat (a photo pushes, a graph grows, a map outlines, entity art lives).
+export const AMBIENT = Object.freeze({ from: 0.97 });
+const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "PORTRAIT", "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
 const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
 export const cameraStart = (c) => (Number.isFinite(c?.entity_pop?.frame) && c.photo ? Math.max(0, c.entity_pop.frame) : 0);
 const Hero = React.createContext(null);
@@ -1374,6 +1377,11 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   // push could carry it across a zone edge: the camera is still on those shots, as in the reference.
   const shotStill = still || FRAMED_PHOTO_COMPS.includes(L.composition);
   const cam = shotStill ? { s: 1, x: 0, y: 0 } : fitted.cam, zoom = zoom0, zk = shotStill ? 1 : fitted.zk;
+  // AMBIENT (owner, 2026-10-09: "the screen must never be static inside a beat"): a beat whose picture has no motion of its
+  // own (words, numbers, objects, lists, diagrams) settles into place — it grows from 97% to 100% of its size about the
+  // body's floor across the beat, so it is inside its zone at every frame and something is always moving. A photo, a graph,
+  // a map and an entity card already move; the header (rule, kicker, headline) stays pinned.
+  const amb = AMBIENT_SKIP.includes(L.composition) ? 1 : AMBIENT.from + (1 - AMBIENT.from) * clamp01(bodyLocal / Math.max(1, dur * 0.9));
   return (
     <Theme.Provider value={theme}>
       <Anim.Provider value={{ ...(c.anim || {}), dur, accent, kinetic: c.kinetic || null, beat: idx }}>
@@ -1382,7 +1390,7 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
             rule, kicker and headline — stays pinned, so a push or a major zoom
             never crops it. */}
         {show === "header" ? null : (
-          <div style={{ position: "absolute", inset: 0, transformOrigin: "540px 960px", transform: `translate(${cam.x.toFixed(1)}px, ${cam.y.toFixed(1)}px) scale(${cam.s.toFixed(4)})` }}>
+          <div style={{ position: "absolute", inset: 0, transformOrigin: `540px ${amb !== 1 ? BOTTOM : 960}px`, transform: `translate(${cam.x.toFixed(1)}px, ${cam.y.toFixed(1)}px) scale(${(cam.s * amb).toFixed(4)})` }}>
             <div style={{ position: "absolute", inset: 0, transformOrigin: `${zoom ? zoom.ox : 540}px ${zoom ? zoom.oy : 960}px`,
               transform: `scale(${zk.toFixed(4)})` }}>
               <Comp c={c} L={L} idx={idx} local={bodyLocal} dur={dur} fps={fps} accent={accent} spoken={beat.spoken} part="body" />
