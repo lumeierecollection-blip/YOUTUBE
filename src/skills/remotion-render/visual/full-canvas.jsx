@@ -889,13 +889,16 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     const person = a.kind === "plate-person", org = a.kind === "plate-organization";
     const line = { fill: "none", stroke: th.ink, strokeWidth: hair, vectorEffect: "non-scaling-stroke" };
     const iconSize = Math.round(b.w * 0.56);
+    // style "mono": the initials set large in the serif (the same plate twice in a row is drawn this way the second time).
+    const mono = a.style === "mono" && (person || org);
+    const initials = (() => { const w = String(a.name || "").replace(/[^\p{L}\p{N}\s&-]/gu, "").split(/[\s-]+/).filter(Boolean); return w.length === 1 && w[0].length <= 5 ? w[0].toUpperCase() : w.slice(0, 3).map((x) => x[0]).join("").toUpperCase(); })();
     art = (
       <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...flat }}>
         <div style={{ position: "absolute", inset: 0, transform: `scale(${breathe.toFixed(4)})`, transformOrigin: "50% 50%" }}>
           <svg viewBox="0 0 100 100" width={b.w} height={b.h} style={{ display: "block" }}>
             <rect x="1" y="1" width="98" height="98" {...line} />
             <rect x="1" y="91" width="98" height="8" fill={accent} />
-            {person ? (
+            {mono ? null : person ? (
               <>
                 <circle cx="50" cy="36" r="14" {...line} />
                 <path d="M22 84 C24 64 36 56 50 56 C64 56 76 64 78 84" {...line} />
@@ -907,7 +910,8 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
               </>
             )}
           </svg>
-          {org ? <div style={{ position: "absolute", left: (b.w - iconSize) / 2, top: Math.round(b.h * 0.14) }}><LucideIcon name="building-2" size={iconSize} color={th.ink} stroke={+((3 * 24) / iconSize).toFixed(2)} /></div> : null}
+          {mono ? <div style={{ position: "absolute", left: 0, top: 0, width: b.w, height: Math.round(b.h * 0.9), display: "flex", alignItems: "center", justifyContent: "center", font: `800 ${Math.round(b.w * (initials.length > 3 ? 0.3 : initials.length > 2 ? 0.36 : 0.46))}px ${SERIF}`, letterSpacing: -2, color: th.ink }}>{initials}</div> : null}
+          {org && !mono ? <div style={{ position: "absolute", left: (b.w - iconSize) / 2, top: Math.round(b.h * 0.14) }}><LucideIcon name="building-2" size={iconSize} color={th.ink} stroke={+((3 * 24) / iconSize).toFixed(2)} /></div> : null}
         </div>
       </div>
     );

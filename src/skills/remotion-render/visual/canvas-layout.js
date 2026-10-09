@@ -1698,7 +1698,7 @@ export function canvasManifest(raw, idx) {
     camera: c.photo && (FULL_PHOTO_COMPS.includes(L.composition) || FRAMED_PHOTO_COMPS.includes(L.composition)) ? { subject: "photo", move: CAMERA.photo, from_frame: Number.isFinite(c.entity_pop?.frame) ? Math.max(0, c.entity_pop.frame) : 0 }
       : L.composition === "DATA-FULL" ? { subject: "graph", move: CAMERA.graph } : null,
     // What the beat NAMES and what it drew for it (scripts/entity-coverage.js reads both).
-    art: c.art ? { kind: c.art.kind, name: c.art.name || null, names: Array.isArray(c.art.names) ? c.art.names : null, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || null, asset: c.art.asset || null } : null,
+    art: c.art ? { kind: c.art.kind, name: c.art.name || null, names: Array.isArray(c.art.names) ? c.art.names : null, style: c.art.style || null, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || null, asset: c.art.asset || null } : null,
     entities: Array.isArray(c.named_entities) ? c.named_entities.filter((e) => e && e.name).map((e) => ({ type: e.type, name: e.name })) : [],
     camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
     // Provenance (verified_as = the Wikipedia title + description it was verified against,

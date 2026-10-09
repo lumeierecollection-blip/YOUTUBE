@@ -404,5 +404,19 @@
       "headline": "Across three networks",
       "motion_tier": "medium"
     }
+  },
+  {
+    "text": "NASA took over the mission.",
+    "c": {
+      "visual_type": "TYPE",
+      "composition": "ENTITY-ART",
+      "art": {
+        "kind": "plate-organization",
+        "name": "NASA",
+        "style": "mono"
+      },
+      "headline": "NASA took over",
+      "motion_tier": "medium"
+    }
   }
 ]

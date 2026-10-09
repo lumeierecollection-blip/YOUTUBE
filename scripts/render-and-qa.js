@@ -1133,7 +1133,7 @@ export function shotMenu(canvas, b, ctx = {}) {
 function measuredShot(c, b, shot) {
   const m = canvasManifest(c, b.index ?? 0);
   const d = devicesOf({ canvas: m });
-  const key = m.composition + (m.boxes?.cutout0 ? `+HERO:${(m.concept_visuals || [])[0]?.name || ""}` : "") + (m.boxes?.lead_phrase ? "+NAME" : "") + (m.art ? `:${m.art.kind}` : "");
+  const key = m.composition + (m.boxes?.cutout0 ? `+HERO:${(m.concept_visuals || [])[0]?.name || ""}` : "") + (m.boxes?.lead_phrase ? "+NAME" : "") + (m.art ? `:${m.art.kind}${m.art.style ? `/${m.art.style}` : ""}` : "");
   const words = d.label ? "top" : "low";
   // The frame's identity: two options with the same signature draw the same frame.
   const sig = `${key}|${words}|${c.headline_zone || ""}|${c.map_band ? "band" : ""}|${c.emphasis_beat ? "emph" : ""}`;
@@ -1307,6 +1307,9 @@ export async function entityLadder(plan, channelId, log = console.log) {
       b.canvas = canvasContentFor(b, {}); done.figure++;
       log(`[ladder] ch-${channelId} beat ${b.index}: states ${d.figure.value} -> a stat card`);
     } else if (d.art) {
+      // The same plate twice in a row is a repeat the canvas-type gate refuses: the second is drawn as a monogram (initials), the third as the icon again.
+      const prev = plan.beats.find((x) => x.index === b.index - 1)?.art || plan.beats.find((x) => x.index === b.index - 1)?.canvas?.art;
+      if (prev && prev.kind === d.art.kind && (d.art.kind === "plate-organization" || d.art.kind === "plate-person")) d.art.style = prev.style === "mono" ? "icon" : "mono";
       reset(b, d.replaces); b.art = d.art;
       b.canvas = canvasContentFor(b, {}); done.art++;
       log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.art.kind.replace("plate-", "")} "${d.art.name}" -> ${d.art.kind}${d.replaces ? " (replaces a visual that carried none of it)" : ""}`);

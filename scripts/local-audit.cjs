@@ -523,7 +523,7 @@ function canvasType(beats) {
     // A hero cutout and a name card (an entity's name over its figure) are their own compositions.
     // A hero beat is keyed by its OBJECT (owner's spec 2026-10-03, C.3: two cutout beats in a
     // row both render) — only the same object twice in a row is a repeat.
-    const compKey = (x) => (x?.composition || "") + (x?.boxes?.cutout0 ? `+HERO:${x?.concept_visuals?.[0]?.name || ""}` : "") + (x?.boxes?.lead_phrase ? "+NAME" : "") + (x?.art ? `:${x.art.kind}` : "");
+    const compKey = (x) => (x?.composition || "") + (x?.boxes?.cutout0 ? `+HERO:${x?.concept_visuals?.[0]?.name || ""}` : "") + (x?.boxes?.lead_phrase ? "+NAME" : "") + (x?.art ? `:${x.art.kind}${x.art.style ? `/${x.art.style}` : ""}` : "");
     if (i > 0 && beats[i - 1].canvas && compKey(beats[i - 1].canvas) === compKey(c)) bad.push(`beat ${i}: ${compKey(c)} twice in a row`);
     // Part C.2: never two centred headlines in a row.
     const centred = (x) => Object.values(x?.boxes || {}).some((v) => v && v.align === "center" && v.role === "headline");
