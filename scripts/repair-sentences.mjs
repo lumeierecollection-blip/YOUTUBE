@@ -66,10 +66,13 @@ const prompt = [
   "",
   `You may replace only sentences ${[...allowed].sort((a, b) => a - b).join(", ")}.`,
   "Rules for every replacement: it names a specific person, place, organization, number, date or physical object FROM THE RESEARCH; it never starts with a person's full name (a surname alone may open at most one sentence in the whole script); 12-18 words, never over 25; active voice, contractions; no hedging (may / could / might); it keeps its beat's job (the setup's last sentence ends on a question; the re-hook flips or raises the stakes; the payoff states a specific number; the close is one specific action). Keep roughly the same length so the script stays 92-107 words.",
+  // CI run 37931078077 ch-6: the repair satisfied "states a specific number" with "1 powerful program", "using 42 years of
+  // clues" and "1 major victory" — inventions the claims gate then skipped the channel for.
+  "A number in a replacement is one THE RESEARCH STATES, with its own unit and meaning. Never write \"1\" / \"one\" as filler, never attach a figure to a thing the research does not measure, and never add a figure to meet a quota: where the research gives this sentence no number, it names a person, place, organization, date or object instead. A flip or a raised stake is a fact the research states, never a rhetorical turn (\"Except it is only half the story\") the research does not say.",
   'Return JSON only: {"replacements": [{"n": <sentence number>, "text": "<the new sentence>"}]}',
 ].join("\n");
 
-const g = await callGemini([{ role: "user", content: prompt }], { model: MODEL, maxTokens: 4096, temperature: 0.4, noCache: true, tag: "repair" });
+const g = await callGemini([{ role: "user", content: prompt }], { model: MODEL, maxTokens: 4096, temperature: 0.2, noCache: true, tag: "repair" });
 if (g && g.source === "gemini" && g.error) { console.log(`${tag}: repair — gemini unavailable (${g.error})`); process.exit(1); }
 let data = g;
 if (g && typeof g.content === "string" && Object.keys(g).length === 1) {
