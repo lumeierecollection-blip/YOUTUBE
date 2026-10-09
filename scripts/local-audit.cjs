@@ -528,6 +528,9 @@ function canvasType(beats) {
     // Part C.2: never two centred headlines in a row.
     const centred = (x) => Object.values(x?.boxes || {}).some((v) => v && v.align === "center" && v.role === "headline");
     if (i > 0 && centred(c) && centred(beats[i - 1].canvas)) bad.push(`beat ${i}: a centred headline two beats in a row`);
+    // Owner, 2026-10-09: no two consecutive beats share an alignment (left / right / centre of the headline).
+    const al = c.headline_align, pal = i > 0 ? beats[i - 1].canvas?.headline_align : null;
+    if (al && pal && al === pal) bad.push(`beat ${i}: its words are ${al}-aligned like beat ${i - 1}'s`);
     // Headline motion: one per beat, never the same two beats in a row, never a fade.
     const hm = c.headline_motion, pm = i > 0 ? beats[i - 1].canvas?.headline_motion : null;
     if (hm === "fade") bad.push(`beat ${i}: the headline fades (headlines never fade)`);
