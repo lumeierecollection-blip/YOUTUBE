@@ -53,8 +53,9 @@ async function fetchAll() {
     const buf = readFileSync(out);
     const sha256 = createHash("sha256").update(buf).digest("hex");
     const w = wavPeak(buf);
-    credits.push({ ...s, sha256, ...w });
-    console.log(`[sfx] ${s.file}: ${w.duration_ms} ms, loudest sample at ${w.peak_ms} ms (${w.peak_dbfs} dBFS)`);
+    const t = tonality(buf);
+    credits.push({ ...s, sha256, ...w, tonality: t });
+    console.log(`[sfx] ${s.file}: ${w.duration_ms} ms, loudest sample at ${w.peak_ms} ms (${w.peak_dbfs} dBFS); spectral flatness ${t.flatness}, top-3-bin power ${(t.top3_power_share * 100).toFixed(1)}%`);
   }
   // CC0 asks for no attribution; the provenance is recorded anyway.
   writeFileSync(join(CC0_DIR, "CREDITS.json"), JSON.stringify({ fetched_at: new Date().toISOString(), credits }, null, 2) + "\n");
@@ -82,6 +83,33 @@ export function wavPeak(buf) {
   let peak = 0, at = 0;
   for (let i = 0; i < n; i++) for (let c = 0; c < fmt.ch; c++) { const v = Math.abs(read(data.start + i * frame + c * bps)); if (v > peak) { peak = v; at = i; } }
   return { duration_ms: Math.round((n / fmt.rate) * 1000), peak_ms: Math.round((at / fmt.rate) * 1000), peak_dbfs: peak > 0 ? Math.round(20 * Math.log10(peak) * 10) / 10 : -Infinity, rate: fmt.rate, channels: fmt.ch, bits: fmt.bits };
+}
+
+/**
+ * A measurement that does not depend on any model: how tonal the sound is. Spectral flatness (geometric / arithmetic
+ * mean of the power spectrum around the loudest sample; ~0 for a pure tone, toward 1 for noise) and the share of the
+ * power in the three strongest bins (a sine puts nearly all of it there). Reported beside Gemini's verdict —
+ * evidence, not a second gate.
+ */
+export function tonality(buf) {
+  const { samples, rate } = wavSamples(buf);
+  const N = 4096;
+  let at = 0, pk = 0; for (let i = 0; i < samples.length; i++) if (Math.abs(samples[i]) > pk) { pk = Math.abs(samples[i]); at = i; }
+  const start = Math.max(0, Math.min(samples.length - N, at - N / 2));
+  const re = new Float64Array(N), im = new Float64Array(N);
+  for (let i = 0; i < N; i++) { const v = samples[start + i] ?? 0; re[i] = v * (0.5 - 0.5 * Math.cos((2 * Math.PI * i) / (N - 1))); }
+  for (let i = 1, j = 0; i < N; i++) { let bit = N >> 1; for (; j & bit; bit >>= 1) j ^= bit; j ^= bit; if (i < j) { [re[i], re[j]] = [re[j], re[i]]; } }
+  for (let len = 2; len <= N; len <<= 1) {
+    const ang = (-2 * Math.PI) / len;
+    for (let i = 0; i < N; i += len) for (let k = 0; k < len / 2; k++) {
+      const wr = Math.cos(ang * k), wi = Math.sin(ang * k), a = i + k, b = i + k + len / 2;
+      const tr = re[b] * wr - im[b] * wi, ti = re[b] * wi + im[b] * wr;
+      re[b] = re[a] - tr; im[b] = im[a] - ti; re[a] += tr; im[a] += ti;
+    }
+  }
+  const pow = []; for (let i = 1; i < N / 2; i++) pow.push(re[i] * re[i] + im[i] * im[i] + 1e-18);
+  const sum = pow.reduce((a, b) => a + b, 0), geo = Math.exp(pow.reduce((a, b) => a + Math.log(b), 0) / pow.length), top3 = [...pow].sort((a, b) => b - a).slice(0, 3).reduce((a, b) => a + b, 0);
+  return { flatness: +(geo / (sum / pow.length)).toExponential(2), top3_power_share: +(top3 / sum).toFixed(3), rate };
 }
 
 /** { "cc0/<file>": frames from the start to the loudest sample } from CREDITS.json (empty if not fetched). */
@@ -218,6 +246,8 @@ async function selftest() {
   for (const [file, wave] of Object.entries(controls)) {
     writeFileSync(join(CC0_DIR, file), synthWav(wave));
     const v = await judgeOne(file, call);
+    const t = tonality(readFileSync(join(CC0_DIR, file)));
+    console.log(`[sfx-selftest] ${file}: spectral flatness ${t.flatness}, top-3-bin power ${(t.top3_power_share * 100).toFixed(1)}%`);
     const ok = v.verdict === "robotic";
     if (!ok) bad++;
     console.log(`[sfx-selftest] ${file}: ${v.verdict.toUpperCase()} (want ROBOTIC) — ${v.why}`);
