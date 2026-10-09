@@ -606,6 +606,11 @@ function layoutCore(c) {
     const L = tableLayout(c);
     const applied = applyPlanLayout(L.boxes, c.layout, { hero: L.hero, axes, yBlend });
     const added = layoutViolations(L).filter((v) => !base.has(v.rule));
+    // The visual is the hero of the beat and sits in the central portion of the frame (owner, 2026-10-09: "centering means the
+    // visual, not the text"): a planned layout that parks the hero figure / object / chart in the top third is refused — the table
+    // keeps it on the middle band. (Boards 37967524047 / 37973067720: a logo and a number planned into row 0, their words low.)
+    const hb = L.hero && ["number", "cutout0", "chart", "art", "map", "nodes", "items", "markers", "photo"].includes(L.hero) ? L.boxes[L.hero] : null;
+    if (hb && isBox(hb) && hb.y + hb.h / 2 < ZONES.top[1] + 20) added.push({ rule: "visual-top", detail: `the planned ${L.hero} is centred at y ${Math.round(hb.y + hb.h / 2)}, in the top third — the visual belongs on the middle band` });
     const ps = spanOf(L);
     if (tSpan !== null && ps !== null && ps < Math.min(tSpan, 0.66) - 0.01) added.push({ rule: "span-margin", detail: `content spans ${(ps * 100).toFixed(1)}% of the height by its boxes, the default ${(tSpan * 100).toFixed(1)}% — kept within 1 point of the default` });
     const moved = flattenBoxes(L.boxes).filter(([k, b]) => tablePos.get(k) !== `${b.x},${b.y}`).map(([k]) => k);
@@ -957,6 +962,9 @@ function tableLayout(c) {
       hero = "statement";
     } else if (vt === "COUNTER" && c?.data?.value) {
       const parts = numberParts(c.data.value);
+      // A headline that only repeats the figure ("86" under "$86") is one number twice: dropped (owner, 2026-10-09: no entity repeated as text).
+      const alnum = (x) => String(x || "").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+      const hl = alnum(c.headline) && alnum(c.headline).replace(/(million|billion|thousand|percent|dollars?|usd|k|m|b)$/g, "") === alnum(c.data.value).replace(/(million|billion|thousand|percent|dollars?|usd|k|m|b)$/g, "") ? "" : c.headline;
       // Kinetic scale: as large as the frame allows. The digits are never
       // cropped (a cropped digit misstates the figure); the trailing unit
       // ("%", "M", "B") may run off the frame edge by up to half its width.
@@ -967,7 +975,7 @@ function tableLayout(c) {
       // Zones (the planner's headline_zone / chart_zone): the number in the
       // middle zone under a top headline, or — headline_zone "middle" — the
       // number in the top zone over a middle headline. `variant` only mirrors.
-      const swap = !!c.headline && c.headline_zone === "middle" && c.chart_zone === "top";
+      const swap = !!hl && c.headline_zone === "middle" && c.chart_zone === "top";
       // swap (FIGURE-LOW): the number in the upper part of the MIDDLE band (y 650-1110), its headline under
       // it — never stranded in the top third (owner, 2026-10-09).
       const roomH = swap ? LOW_VISUAL.h - 10 - (c.number_label_off ? 0 : LABEL_BLOCK) : BOTTOM - BODY_TOP - LABEL_BLOCK;
@@ -980,7 +988,7 @@ function tableLayout(c) {
       if (!swap) {
         // headline in the top zone (or a hairline rule when there is none),
         // the hero number at the middle zone's bottom, its label just above it
-        if (c.headline) boxes.headline = headlineBox(c.headline, { width: 900, y: TOP, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - TOP, max: 200 });
+        if (hl) boxes.headline = headlineBox(hl, { width: 900, y: TOP, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - TOP, max: 200 });
         else boxes.rule = rule(flip, TOP);
         // The middle zone's FLOOR is held by something whose ink is predictable — the label
         // (caps Inter, bottom-anchored on y 1340), or with no label a hairline rule there — and
@@ -1006,7 +1014,7 @@ function tableLayout(c) {
         // ~880), no words in the top band — its small caption label is left out.
         if (label && !c.number_label_off) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, y: boxes.number.y + nh + 28, flip });
         // Its headline under the number in the same band.
-        boxes.headline = headlineBox(c.headline, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - (boxes.label ? boxes.label.y + boxes.label.h + 16 : boxes.number.y + boxes.number.h + 24), max: 170 });
+        boxes.headline = headlineBox(hl, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - (boxes.label ? boxes.label.y + boxes.label.h + 16 : boxes.number.y + boxes.number.h + 24), max: 170 });
       }
       hero = "number";
     } else {

@@ -35,7 +35,11 @@ export function yieldsTo(b, g) {
   if (kinds.every((k) => k === "cutout" || k === "symbol" || k === "visual")) return true;
   const vt = String(c.visual_type || b.visual_type || "").toUpperCase();
   if (vt === "TREND" || (vt === "LIST" && c.composition === "LIST-BUILD")) return true;
-  if (g.primary?.type === "span" && kinds.every((k) => k === "figure")) return true;
+  // a bare stat card whose only figure is the number of a span the sentence states ("30" of "30 years") carries nothing of whatever
+  // else is named (board 37973067720: France / "30 years"; "The Fund Guide" / "90-day").
+  const spans = (g.ents || []).filter((e) => e.type === "span");
+  const fig = String(c.data?.value ?? "").replace(/[^\d.]/g, "");
+  if (kinds.every((k) => k === "figure") && spans.length && fig && spans.some((s) => String(s.name).replace(/[^\d.]/g, "").startsWith(fig))) return true;
   return false;
 }
 

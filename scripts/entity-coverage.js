@@ -104,7 +104,8 @@ export function coverageOf(c, e) {
     if (e.type === "place") {
       if (d.kind === "flag" && e.region && d.region === e.region) return hit(d, "flag");
       if (d.kind === "map" && e.region && d.region === e.region) return hit(d, "highlighted");
-      if ((d.kind === "map" || d.kind === "photo") && !e.region && sameName(d.name, e.name)) return hit(d);
+      if ((d.kind === "map" || d.kind === "photo" || d.kind === "plate-place") && !e.region && sameName(d.name, e.name)) return hit(d);
+      if (d.kind === "plate-place" && e.region && sameName(d.name, e.name)) return hit(d, "its name in type");
       if (d.kind === "photo" && e.region && sameName(d.name, e.name)) return hit(d);
     } else if (e.type === "person") {
       if ((d.kind === "portrait" || d.kind === "photo" || d.kind === "plate-person") && sameName(d.name, e.name)) return hit(d);

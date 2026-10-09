@@ -107,10 +107,10 @@ const lerp = (a, b, t) => a + (b - a) * t;
 // Compositions that carry their own motion across the beat (a photo pushes, a graph grows, a map outlines, entity art lives).
 // The ambient push runs at a CONSTANT speed (2%/s, at most 10% over the beat), not as a fixed share of the beat: a 7 s beat that only
 // settled 3% moved 0.4%/s — under what a viewer (or the pace check) sees (board 37967524047: TYPE-FULL static 3.5 s, TYPE-CHAPTER 3.25 s).
-export const AMBIENT = Object.freeze({ rate: 0.02, max: 0.10 });
+export const AMBIENT = Object.freeze({ rate: 0.03, max: 0.12 });
 /** The push's scale at beat-local frame `local` of `dur`: it starts smaller and arrives at 1 as the beat ends (always inside its zone). */
 export const ambientScale = (local, dur, fps) => { const s = Math.max(1, dur / fps), rate = Math.min(AMBIENT.rate, AMBIENT.max / s); return 1 - rate * Math.max(0, s - local / fps); };
-const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "PORTRAIT", "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
+const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
 const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
 export const cameraStart = (c) => (Number.isFinite(c?.entity_pop?.frame) && c.photo ? Math.max(0, c.entity_pop.frame) : 0);
 const Hero = React.createContext(null);
@@ -911,7 +911,7 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 50%");
   const live = clamp01((local - at * fps) / Math.max(1, dur * 0.9));
   const glyph = onAccent(accent);
-  const push = 1 + Math.min(0.08, 0.02 * (local / fps));   // a constant-speed push-in (2%/s, at most 8%): constant motion, nothing springy, never smaller than its box
+  const push = 1 + Math.min(0.10, 0.03 * (local / fps));   // a constant-speed push-in (3%/s, at most 10%): constant motion, nothing springy, never smaller than its box
   const breathe = push;
   let art = null;
   // FLAT (owner, 2026-10-09: "they shouldn't look playful"): the reference's drawn parts are hairline-ruled and typographic —
@@ -963,8 +963,8 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           </g>
           <line x1="0" y1="430" x2={600 * rule} y2="430" stroke={accent} strokeWidth="8" />
           <g transform={`translate(300 300) scale(${push.toFixed(4)}) translate(-300 -300)`}>
-          {sub ? <text x="300" y="120" textAnchor="middle" fill={th.ink} style={{ font: `700 54px ${SANS_STACK}`, letterSpacing: 10 }} {...flatSvg(local - Math.round((at + 0.2) * fps), 300, 100)}>{sub.toUpperCase()}</text> : null}
-          <text x="300" y="370" textAnchor="middle" fill={th.ink} style={{ font: `800 ${big.length > 2 ? 190 : 250}px ${SERIF}` }} {...flatSvg(f0 - 3, 300, 300)}>{big}</text>
+          {sub ? <text x="300" y={a.style === "alt" ? 400 : 120} textAnchor="middle" fill={th.ink} style={{ font: `700 54px ${SANS_STACK}`, letterSpacing: 10 }} {...flatSvg(local - Math.round((at + 0.2) * fps), 300, a.style === "alt" ? 380 : 100)}>{sub.toUpperCase()}</text> : null}
+          <text x="300" y={a.style === "alt" ? 300 : 370} textAnchor="middle" fill={th.ink} style={{ font: `800 ${big.length > 2 ? 190 : 250}px ${SERIF}` }} {...flatSvg(f0 - 3, 300, 300)}>{big}</text>
           </g>
         </svg>
       </div>
@@ -1151,6 +1151,7 @@ function MapCentered({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   if (part === "header") return <HeaderBlock B={B} th={th} local={local} fps={fps} m={m} idx={idx} tl={tl} halo={tone} />;
   return (
     <HeroEl name="map" b={B.map}>
+      <div style={{ position: "absolute", inset: 0, transformOrigin: `${B.map.x + B.map.w / 2}px ${B.map.y + B.map.h / 2}px`, transform: `scale(${(1 + Math.min(0.12, 0.03 * (local / fps))).toFixed(4)})` }}>
       <CenteredMap data={c.data} bounds={B.map} local={local} dur={dur} font={SERIF_FAMILY_NAME} accent={accent} ground={tone} ink={th.ink} />
       {/* Part D.2: a pin settles onto the region at 25% of the beat (ease-in-out, no bounce). The
           map is zoomed on the region, so its centre is the region; the pin sits above the
@@ -1167,6 +1168,7 @@ function MapCentered({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           </svg>
         );
       })()}
+      </div>
     </HeroEl>
   );
 }
