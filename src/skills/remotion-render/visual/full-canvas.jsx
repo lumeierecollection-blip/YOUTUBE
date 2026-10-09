@@ -406,8 +406,10 @@ function Portrait({ b, local, fps, at, dur = 150 }) {
   // Part D.2: the portrait pushes in 2% across the beat (from the floor it stands on), and its
   // soft shadow shifts 4 px.
   const p = clamp01(local / Math.max(1, dur));
+  // clipPath: the soft shadow may spread sideways and up but never below the floor the portrait stands on —
+  // it read as ink across y 1340 in 227 columns of a wide portrait (board 37937708124 ch-2 beat 4).
   return (
-    <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...pop }}>
+    <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, clipPath: "inset(-120px -120px 0 -120px)", ...pop }}>
       <div style={{ position: "absolute", inset: 0, transformOrigin: "50% 100%", transform: `scale(${(1 + 0.02 * p).toFixed(4)})` }}>
         <Img src={staticFile(b.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", boxShadow: `${(4 * p).toFixed(1)}px 14px 44px rgba(0,0,0,0.18)` }} />
       </div>
