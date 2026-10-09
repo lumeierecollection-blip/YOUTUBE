@@ -361,6 +361,16 @@
     }
   },
   {
+    "text": "The investigator kept the file open for years and refused to let the trail go cold even when the department told her to stop.",
+    "seconds": 7,
+    "c": {
+      "visual_type": "TYPE",
+      "motion_tier": "medium",
+      "composition": "TYPE-CHAPTER",
+      "headline": "Refused to let it go cold"
+    }
+  },
+  {
     "text": "It took 57 years to name her.",
     "c": {
       "visual_type": "TYPE",
@@ -375,6 +385,20 @@
     }
   },
   {
+    "text": "This massive supply chain exploit has already cost victims eighty six million dollars across more than four thousand wallets worldwide.",
+    "seconds": 7,
+    "c": {
+      "visual_type": "COUNTER",
+      "motion_tier": "medium",
+      "composition": "NUMBER-FULL",
+      "data": {
+        "value": "$86 million",
+        "label": "stolen"
+      },
+      "headline": "Eighty six million"
+    }
+  },
+  {
     "text": "The FBI joined the case.",
     "c": {
       "visual_type": "TYPE",
@@ -385,6 +409,16 @@
       },
       "headline": "The FBI",
       "motion_tier": "medium"
+    }
+  },
+  {
+    "text": "What changed after that ruling was not the law itself but the way every officer in the county was trained to apply it afterwards.",
+    "seconds": 7,
+    "c": {
+      "visual_type": "TYPE",
+      "motion_tier": "medium",
+      "composition": "TYPE-SPLIT",
+      "headline": "Not the law but the training"
     }
   },
   {
@@ -406,54 +440,6 @@
     }
   },
   {
-    "text": "NASA took over the mission.",
-    "c": {
-      "visual_type": "TYPE",
-      "composition": "ENTITY-ART",
-      "art": {
-        "kind": "plate-organization",
-        "name": "NASA",
-        "style": "mono"
-      },
-      "headline": "NASA took over",
-      "motion_tier": "medium"
-    }
-  },
-  {
-    "text": "The investigator kept the file open for years and refused to let the trail go cold even when the department told her to stop.",
-    "seconds": 7,
-    "c": {
-      "visual_type": "TYPE",
-      "motion_tier": "medium",
-      "composition": "TYPE-CHAPTER",
-      "headline": "Refused to let it go cold"
-    }
-  },
-  {
-    "text": "This massive supply chain exploit has already cost victims eighty six million dollars across more than four thousand wallets worldwide.",
-    "seconds": 7,
-    "c": {
-      "visual_type": "COUNTER",
-      "motion_tier": "medium",
-      "composition": "NUMBER-FULL",
-      "data": {
-        "value": "$86 million",
-        "label": "stolen"
-      },
-      "headline": "Eighty six million"
-    }
-  },
-  {
-    "text": "What changed after that ruling was not the law itself but the way every officer in the county was trained to apply it afterwards.",
-    "seconds": 7,
-    "c": {
-      "visual_type": "TYPE",
-      "motion_tier": "medium",
-      "composition": "TYPE-SPLIT",
-      "headline": "Not the law but the training"
-    }
-  },
-  {
     "text": "The analyst traced the missing funds through three separate exchanges before the final transfer was frozen by the court order.",
     "seconds": 7,
     "c": {
@@ -469,6 +455,20 @@
         "lead": "The trail"
       },
       "headline": "The trail"
+    }
+  },
+  {
+    "text": "NASA took over the mission.",
+    "c": {
+      "visual_type": "TYPE",
+      "composition": "ENTITY-ART",
+      "art": {
+        "kind": "plate-organization",
+        "name": "NASA",
+        "style": "mono"
+      },
+      "headline": "NASA took over",
+      "motion_tier": "medium"
     }
   }
 ]
