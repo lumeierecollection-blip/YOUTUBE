@@ -96,20 +96,72 @@ export function creditFor(file) {
   return s ? { title: s.title, author: s.author, source: s.source, license: s.license, url: s.url } : null;
 }
 
-/** One file's verdict: { verdict: "recorded" | "robotic" | "unjudged", why, provider }. */
-export async function judgeOne(file, call) {
-  const b64 = readFileSync(join(CC0_DIR, file)).toString("base64");
-  const prompt = `Listen to this sound effect. ${ROBOTIC}\nAnswer ONLY with JSON: {"verdict": "recorded" | "robotic", "why": "<one sentence: what you hear>"}`;
-  const ans = await call([{ role: "user", content: [{ type: "text", text: prompt }, { type: "input_audio", input_audio: { data: b64, format: "wav" } }] }]);
+/** A WAV (any PCM depth or float, any channel count) as mono samples in -1..1 + its rate. */
+export function wavSamples(buf) {
+  let fmt = null, data = null;
+  for (let o = 12; o + 8 <= buf.length;) {
+    const id = buf.toString("ascii", o, o + 4), size = buf.readUInt32LE(o + 4);
+    if (id === "fmt ") fmt = { tag: buf.readUInt16LE(o + 8), ch: buf.readUInt16LE(o + 10), rate: buf.readUInt32LE(o + 12), bits: buf.readUInt16LE(o + 22), sub: size >= 40 ? buf.readUInt16LE(o + 32) : 0 };
+    if (id === "data") data = { start: o + 8, size: Math.min(size, buf.length - o - 8) };
+    o += 8 + size + (size & 1);
+  }
+  if (!fmt || !data) throw new Error("WAV without fmt/data chunk");
+  const bps = fmt.bits / 8, frame = bps * fmt.ch, n = Math.floor(data.size / frame);
+  const float = fmt.tag === 3 || (fmt.tag === 0xfffe && fmt.sub === 3);
+  const read = (off) => float ? buf.readFloatLE(off) : bps === 2 ? buf.readInt16LE(off) / 32768 : bps === 3 ? buf.readIntLE(off, 3) / 8388608 : bps === 4 ? buf.readInt32LE(off) / 2147483648 : (buf.readUInt8(off) - 128) / 128;
+  const out = new Float32Array(n);
+  for (let i = 0; i < n; i++) { let v = 0; for (let c = 0; c < fmt.ch; c++) v += read(data.start + i * frame + c * bps); out[i] = v / fmt.ch; }
+  return { samples: out, rate: fmt.rate };
+}
+/** A 16-bit mono WAV from samples in -1..1. */
+export function wavFromSamples(samples, rate) {
+  const n = samples.length, b = Buffer.alloc(44 + n * 2);
+  b.write("RIFF", 0); b.writeUInt32LE(36 + n * 2, 4); b.write("WAVE", 8); b.write("fmt ", 12); b.writeUInt32LE(16, 16);
+  b.writeUInt16LE(1, 20); b.writeUInt16LE(1, 22); b.writeUInt32LE(rate, 24); b.writeUInt32LE(rate * 2, 28); b.writeUInt16LE(2, 32); b.writeUInt16LE(16, 34);
+  b.write("data", 36); b.writeUInt32LE(n * 2, 40);
+  for (let i = 0; i < n; i++) b.writeInt16LE(Math.round(Math.max(-1, Math.min(1, samples[i])) * 32767), 44 + i * 2);
+  return b;
+}
+/** The sound three times with half a second of silence between: a 150 ms click gives a listener little to go on. */
+export function padded(buf) {
+  const { samples, rate } = wavSamples(buf), gap = Math.round(rate * 0.5);
+  const out = new Float32Array(samples.length * 3 + gap * 4);
+  for (let k = 0; k < 3; k++) out.set(samples, gap + k * (samples.length + gap));
+  return wavFromSamples(out, rate);
+}
+
+export const JUDGE_VERSION = 2;
+const NO_HEARING = /no (audio|sound)|not (detected|audible)|cannot (hear|detect)|can't (hear|detect)|silen|nothing (to|was)|unable to/i;
+const QUESTION = `${ROBOTIC}\nAnswer ONLY with JSON: {"verdict": "recorded" | "robotic", "why": "<one sentence: what you hear>"}`;
+const DESCRIBE = `Listen carefully, then decide. ${ROBOTIC}\nFirst name the physical event or instrument you hear and whether its pitch is steady or varying, whether it has noise, a decay and a room around it. Answer ONLY with JSON: {"heard": "<what you hear>", "steady_pure_pitch": true | false, "verdict": "recorded" | "robotic", "why": "<one sentence>"}`;
+
+/** One vote: { verdict: "recorded" | "robotic" | "unjudged", why }. Hearing nothing is unjudged, never robotic. */
+async function vote(buf, prompt, call) {
+  const ans = await call([{ role: "user", content: [{ type: "text", text: prompt }, { type: "input_audio", input_audio: { data: buf.toString("base64"), format: "wav" } }] }]);
   // callGemini returns the parsed JSON when the reply is JSON, else { content }; read both.
   const text = typeof ans?.content === "string" ? ans.content : "";
   const v = String(ans?.verdict || (text.match(/"verdict"\s*:\s*"(recorded|robotic)"/i) || [])[1] || "").toLowerCase();
   const why = String(ans?.why || (text.match(/"why"\s*:\s*"([^"]*)"/) || [])[1] || "").slice(0, 200);
-  if (v === "recorded" || v === "robotic") return { verdict: v, why, provider: "gemini" };
-  const seen = ans?.error ? `${ans.error} ${String(ans.detail || "")}` : `no verdict in: ${JSON.stringify(ans).slice(0, 240)}`;
-  return { verdict: "unjudged", why: seen.slice(0, 300), provider: null };
+  if ((v === "recorded" || v === "robotic") && !NO_HEARING.test(why)) return { verdict: v, why };
+  const seen = NO_HEARING.test(why) ? `heard nothing: ${why}` : ans?.error ? `${ans.error} ${String(ans.detail || "")}` : `no verdict in: ${JSON.stringify(ans).slice(0, 200)}`;
+  return { verdict: "unjudged", why: seen.slice(0, 260) };
 }
 
+/**
+ * One file's verdict: three listens — the file as it is, the file three times over with silence between, and a
+ * describe-first question — and the majority of the conclusive ones decides. (CI run 37924535060: one listen at
+ * temperature 0 called a real 154 ms whoosh and a real DSLR shutter "a pure synthesized sine wave", and the same
+ * files "recorded" a run earlier — a single listen to a short click is not reliable.) Fewer than two conclusive
+ * votes, or a tie, is "unjudged" and the file does not play.
+ */
+export async function judgeOne(file, call) {
+  const raw = readFileSync(join(CC0_DIR, file));
+  const votes = [await vote(raw, QUESTION, call), await vote(padded(raw), QUESTION, call), await vote(raw, DESCRIBE, call)];
+  const rec = votes.filter((v) => v.verdict === "recorded").length, rob = votes.filter((v) => v.verdict === "robotic").length;
+  const verdict = rec + rob < 2 || rec === rob ? "unjudged" : rec > rob ? "recorded" : "robotic";
+  const pick = votes.find((v) => v.verdict === verdict) || votes[0];
+  return { verdict, why: `${pick.why} [votes: ${votes.map((v) => v.verdict).join("/")}]`.slice(0, 300), votes, provider: verdict === "unjudged" ? null : "gemini" };
+}
 async function judgeAll() {
   // Google first: callGemini rotates every key, then the sibling models, before it gives up. Only
   // Gemini hears audio here — no other provider's answer may stand in (an unjudged file does not play).
@@ -125,12 +177,12 @@ async function judgeAll() {
     // part of what exhausted the keys on board 37919459134).
     const sha256 = createHash("sha256").update(readFileSync(join(CC0_DIR, s.file))).digest("hex");
     const prior = before[s.file];
-    if (prior && prior.sha256 === sha256 && (prior.verdict === "recorded" || prior.verdict === "robotic")) {
+    if (prior && prior.sha256 === sha256 && prior.judge_version === JUDGE_VERSION && (prior.verdict === "recorded" || prior.verdict === "robotic")) {
       verdicts[s.file] = prior;
       console.log(`[sfx-judge] ${s.file}: ${prior.verdict.toUpperCase()} (judged earlier, same file) — ${prior.why}`);
       continue;
     }
-    verdicts[s.file] = { ...(await judgeOne(s.file, call)), sha256 };
+    verdicts[s.file] = { ...(await judgeOne(s.file, call)), sha256, judge_version: JUDGE_VERSION };
     console.log(`[sfx-judge] ${s.file}: ${verdicts[s.file].verdict.toUpperCase()} — ${verdicts[s.file].why}`);
   }
   writeFileSync(VERDICTS, JSON.stringify({ judged_at: new Date().toISOString(), definition: ROBOTIC, verdicts }, null, 2) + "\n");

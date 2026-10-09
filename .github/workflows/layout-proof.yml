@@ -129,7 +129,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: src/skills/remotion-render/public/sfx/cc0
-          key: sfx-cc0-v1
+          key: sfx-cc0-v2
 
       - name: Fetch the CC0 SFX
         run: node scripts/sfx-cc0.mjs fetch

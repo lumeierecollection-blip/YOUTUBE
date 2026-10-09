@@ -966,7 +966,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: src/skills/remotion-render/public/sfx/cc0
-          key: sfx-cc0-v1   # bump when SFX_SOURCES changes; verdicts inside are keyed by each file's sha256
+          key: sfx-cc0-v2   # bump when SFX_SOURCES changes; verdicts inside are keyed by each file's sha256
 
       - name: Fetch CC0 SFX
         if: steps.status.outputs.skip != 'true'
