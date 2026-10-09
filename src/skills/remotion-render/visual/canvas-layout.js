@@ -405,13 +405,14 @@ const SUBJECT_W = 640;
  * that layout (bold words are wider), and the box carries `words` with their
  * measured x / y / width.
  */
-function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines = 4, maxHeight = Infinity, max = ROLE_HEADLINE.sizeBand[1], marks = MARKS, center = false, tier = true, hero = false, minLines = 1 } = {}) {
+function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines = 4, maxHeight = Infinity, max = ROLE_HEADLINE.sizeBand[1], marks = MARKS, center = false, tier = true, hero = false, minLines = 1, min = null } = {}) {
   const TIER = BEAT_HERO ? HERO_HEADLINE : { min: HEADLINE_SIZE.min, max: BEAT_MAX };
   void hero;
   // center (part C.1): a TYPE-FULL statement, centred on the frame's axis.
   const align = center ? "center" : flip ? "right" : "left";
   const words = markWords(text, marks);
-  const hi = tier ? Math.min(max, TIER.max) : max, lo = tier ? Math.min(hi, TIER.min) : 88;
+  // `min` (untiered only): a deliberately SMALL line — the chapter mark (TYPE-CHAPTER) — below the 88 px floor.
+  const hi = tier ? Math.min(max, TIER.max) : max, lo = tier ? Math.min(hi, TIER.min) : Math.min(hi, min ?? 88);
   let f = fitWords(words, width, { maxLines, maxHeight, max: hi, min: lo, align });
   // The hero's 120 px floor never overflows its zone: a text that does not fit falls back to the 80 px floor.
   // The hero's floor never overflows its zone: a text that does not fit shrinks (to 80 px at
@@ -437,8 +438,8 @@ function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines =
   // The descender lift counts against maxHeight: a 3-line TYPE-SPLIT half at
   // 360 px rose to y 600, across the top/middle zone edge (CI run 37010325344
   // ch-2 beat 3). Refit smaller until text + lift fits.
-  if (bottom != null && Number.isFinite(maxHeight) && h + desc > maxHeight && f.size > (tier ? HEADLINE_SIZE.min : 88)) {
-    return headlineBox(text, { width, y, bottom, flip, maxLines, maxHeight, max: Math.min(hi, f.size - 4), marks, center, tier, hero });
+  if (bottom != null && Number.isFinite(maxHeight) && h + desc > maxHeight && f.size > (tier ? HEADLINE_SIZE.min : (min ?? 88))) {
+    return headlineBox(text, { width, y, bottom, flip, maxLines, maxHeight, max: Math.min(hi, f.size - 4), marks, center, tier, hero, min });
   }
   const by = bottom != null ? bottom - h - desc : y;
   // desc: how far the last line's descenders reach below the box (contentBounds counts it as content).
@@ -769,7 +770,7 @@ function typeCardLayout(c, comp, flip) {
     boxes.bar = { ...box(anchorX(420, flip), BOTTOM - 30, 420, 18), role: "rule", anchor: flip ? "right" : "left", accent: true };
   } else if (comp === "TYPE-CHAPTER") {
     const kb = kick ? dataBox(kick, { width: 600, size: 28, maxLines: 1, y: 0, flip }) : null;
-    boxes.statement = headlineBox(text, { width: 760, bottom: BOTTOM - 12, flip, maxLines: 2, maxHeight: 260, max: 96, tier: false });
+    boxes.statement = headlineBox(text, { width: 760, bottom: BOTTOM - 12, flip, maxLines: 2, maxHeight: 200, max: 68, min: 48, tier: false });
     if (kb) boxes.kicker = { ...kb, y: boxes.statement.y - 26 - kb.h };
   } else {
     // TYPE-DEFINITION: the term, the double rule, the sentence as body text.
