@@ -126,6 +126,42 @@ async function judgeAll() {
   console.log(`[sfx-judge] ${ok}/${SFX_SOURCES.length} recorded; only those may play`);
 }
 
+/** A 16-bit mono PCM WAV of `wave(t)` (-1..1), `sec` long — the negative controls for selftest. */
+export function synthWav(wave, sec = 0.4, rate = 44100) {
+  const n = Math.floor(sec * rate), b = Buffer.alloc(44 + n * 2);
+  b.write("RIFF", 0); b.writeUInt32LE(36 + n * 2, 4); b.write("WAVE", 8); b.write("fmt ", 12); b.writeUInt32LE(16, 16);
+  b.writeUInt16LE(1, 20); b.writeUInt16LE(1, 22); b.writeUInt32LE(rate, 24); b.writeUInt32LE(rate * 2, 28); b.writeUInt16LE(2, 32); b.writeUInt16LE(16, 34);
+  b.write("data", 36); b.writeUInt32LE(n * 2, 40);
+  for (let i = 0; i < n; i++) b.writeInt16LE(Math.round(Math.max(-1, Math.min(1, wave(i / rate))) * 0.6 * 32767), 44 + i * 2);
+  return b;
+}
+
+/**
+ * THE JUDGE CAN FAIL: three obviously synthesized sounds (a sine, a square wave, a sawtooth sweep) go
+ * through the same question and must come back "robotic". If the judge calls any of them recorded it is not
+ * listening, and the job fails.
+ */
+async function selftest() {
+  const { callGemini } = await import("../src/lib/gemini-client.js");
+  const call = (messages) => callGemini(messages, { model: "gemini-3.5-flash", maxTokens: 2000, temperature: 0, noCache: true, tag: "sfx-judge" });
+  const controls = {
+    "control-sine.wav": (t) => Math.sin(2 * Math.PI * 440 * t),
+    "control-square.wav": (t) => (Math.sin(2 * Math.PI * 330 * t) >= 0 ? 1 : -1),
+    "control-saw-sweep.wav": (t) => 2 * ((220 + 400 * t) * t % 1) - 1,
+  };
+  mkdirSync(CC0_DIR, { recursive: true });
+  let bad = 0;
+  for (const [file, wave] of Object.entries(controls)) {
+    writeFileSync(join(CC0_DIR, file), synthWav(wave));
+    const v = await judgeOne(file, call);
+    const ok = v.verdict === "robotic";
+    if (!ok) bad++;
+    console.log(`[sfx-selftest] ${file}: ${v.verdict.toUpperCase()} (want ROBOTIC) — ${v.why}`);
+  }
+  if (bad) throw new Error(`the judge called ${bad} synthesized control(s) anything but robotic — it is not a gate`);
+  console.log("[sfx-selftest] the judge rejects all three synthesized controls");
+}
+
 /** The files allowed to play ("cc0/<file>", as canvas-sfx.js names them): judged "recorded". */
 export function recordedFiles() {
   try { const v = JSON.parse(readFileSync(VERDICTS, "utf8")).verdicts || {}; return new Set(Object.entries(v).filter(([, x]) => x.verdict === "recorded").map(([f]) => `cc0/${f}`)); } catch { return new Set(); }
@@ -133,6 +169,6 @@ export function recordedFiles() {
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const cmd = process.argv[2];
-  (cmd === "fetch" ? fetchAll() : cmd === "judge" ? judgeAll() : Promise.reject(new Error("usage: sfx-cc0.mjs fetch|judge")))
+  (cmd === "fetch" ? fetchAll() : cmd === "judge" ? judgeAll() : cmd === "selftest" ? selftest() : Promise.reject(new Error("usage: sfx-cc0.mjs fetch|judge|selftest")))
     .catch((e) => { console.error(`::error::[sfx] ${e.message}`); process.exit(1); });
 }
