@@ -1110,7 +1110,9 @@ function measuredShot(c, b, shot) {
   const words = d.label ? "top" : "low";
   // The frame's identity: two options with the same signature draw the same frame.
   const sig = `${key}|${words}|${c.headline_zone || ""}|${c.map_band ? "band" : ""}|${c.emphasis_beat ? "emph" : ""}`;
-  return { shot, composition: m.composition, key, words, phrase: !!d.phrase, typeLed: !!d.typeLed, sig, canvas: c };
+  // `centred`: the headline/statement sits on the frame's axis (TYPE-FULL, the three type cards) — Layer 1
+  // canvas-type refuses two centred headlines in a row, so the sequence must not offer them.
+  return { shot, composition: m.composition, key, words, phrase: !!d.phrase, typeLed: !!d.typeLed, centred: m.headline_align === "center", sig, canvas: c };
 }
 /** The sequence's problems, as Layer 1 judges them (template-window; canvas-type's no-repeat). */
 export function shotSequenceProblems(choice, indices = choice.map((_, i) => i)) {
@@ -1121,6 +1123,9 @@ export function shotSequenceProblems(choice, indices = choice.map((_, i) => i)) 
     out.push({ i: w.start + 2, why: w.run.length ? `${w.run.map((d) => name[d]).join(" + ")} on three beats in a row (${span})` : `${w.repeating.map((d) => name[d]).join(" and ")} both repeat inside ${span}` });
   }
   choice.forEach((o, i) => { if (i > 0 && o.key === choice[i - 1].key) out.push({ i, why: `beats ${indices[i - 1]} and ${indices[i]} are the same composition (${o.key})` }); });
+  // No two consecutive beats share an alignment: the others alternate left/right by beat index, so the
+  // only way to repeat one is a centred headline on two beats in a row (canvas-type, part C.2).
+  choice.forEach((o, i) => { if (i > 0 && o.centred && choice[i - 1].centred && indices[i] - indices[i - 1] === 1) out.push({ i, why: `beats ${indices[i - 1]} and ${indices[i]} both centre their words` }); });
   // No image on two beats (Layer 1 no-photo-repeat; keyed by asset AND source — scripts/lib/used-images.js).
   const seenImg = new Map();
   choice.forEach((o, i) => {

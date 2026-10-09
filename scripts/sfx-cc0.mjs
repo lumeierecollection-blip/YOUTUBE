@@ -101,16 +101,20 @@ export async function judgeOne(file, call) {
   const b64 = readFileSync(join(CC0_DIR, file)).toString("base64");
   const prompt = `Listen to this sound effect. ${ROBOTIC}\nAnswer ONLY with JSON: {"verdict": "recorded" | "robotic", "why": "<one sentence: what you hear>"}`;
   const ans = await call([{ role: "user", content: [{ type: "text", text: prompt }, { type: "input_audio", input_audio: { data: b64, format: "wav" } }] }]);
-  const v = String(ans?.verdict || "").toLowerCase();
-  if (v === "recorded" || v === "robotic") return { verdict: v, why: String(ans.why || "").slice(0, 200), provider: "gemini" };
-  return { verdict: "unjudged", why: ans?.error ? `${ans.error} ${String(ans.detail || "").slice(0, 120)}` : "no verdict in the answer", provider: null };
+  // callGemini returns the parsed JSON when the reply is JSON, else { content }; read both.
+  const text = typeof ans?.content === "string" ? ans.content : "";
+  const v = String(ans?.verdict || (text.match(/"verdict"\s*:\s*"(recorded|robotic)"/i) || [])[1] || "").toLowerCase();
+  const why = String(ans?.why || (text.match(/"why"\s*:\s*"([^"]*)"/) || [])[1] || "").slice(0, 200);
+  if (v === "recorded" || v === "robotic") return { verdict: v, why, provider: "gemini" };
+  const seen = ans?.error ? `${ans.error} ${String(ans.detail || "")}` : `no verdict in: ${JSON.stringify(ans).slice(0, 240)}`;
+  return { verdict: "unjudged", why: seen.slice(0, 300), provider: null };
 }
 
 async function judgeAll() {
   // Google first: callGemini rotates every key, then the sibling models, before it gives up. Only
   // Gemini hears audio here — no other provider's answer may stand in (an unjudged file does not play).
   const { callGemini } = await import("../src/lib/gemini-client.js");
-  const call = (messages) => callGemini(messages, { model: "gemini-3.5-flash", maxTokens: 400, temperature: 0, noCache: true, tag: "sfx-judge" });
+  const call = (messages) => callGemini(messages, { model: "gemini-3.5-flash", maxTokens: 2000, temperature: 0, noCache: true, tag: "sfx-judge" });
   const verdicts = {};
   for (const s of SFX_SOURCES) {
     if (!existsSync(join(CC0_DIR, s.file))) { verdicts[s.file] = { verdict: "unjudged", why: "not fetched" }; continue; }

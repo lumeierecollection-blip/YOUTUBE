@@ -503,7 +503,9 @@ function canvasType(beats) {
       if (TYPE_TEXT.includes(ROLE_OF(k))) {
         // Part C.1 (owner's spec 2026-10-03): a TYPE-FULL statement is centred on the frame's
         // axis by design; two centred beats in a row are refused below (part C.2).
-        if (v.align === "center" && c.composition === "TYPE-FULL" && k === "statement") continue;
+        // The words-only cards (TYPE-TITLE / -CHAPTER / -DEFINITION) are centred too (owner, 2026-10-09:
+        // "Extend C.1 to the cards"); the same C.2 below refuses two centred beats in a row.
+        if (v.align === "center" && k === "statement" && ["TYPE-FULL", "TYPE-TITLE", "TYPE-CHAPTER", "TYPE-DEFINITION"].includes(c.composition)) continue;
         if (v.align === "center") bad.push(`beat ${i}: ${k} is centred`);
         else if (!v.align && !v.rotate) bad.push(`beat ${i}: ${k} has no alignment`);
         if (!v.rotate && Math.abs(v.x + v.w / 2 - 540) < 24 && v.w < 700) bad.push(`beat ${i}: ${k} sits on the frame's centre line`);

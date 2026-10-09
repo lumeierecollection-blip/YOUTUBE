@@ -371,13 +371,13 @@ export function splitNumber(value) {
 
 // ── boxes for the four kinds of text ──────────────────────────────────
 /** A ROLE_DATA label: uppercase Inter, `size` px, wrapped into `maxLines` lines of `width`. */
-function dataBox(text, { width = 560, size = 40, maxLines = 2, x, y, flip = 0, bottom = null, weight = 600 } = {}) {
+function dataBox(text, { width = 560, size = 40, maxLines = 2, x, y, flip = 0, bottom = null, weight = 600, center = false } = {}) {
   const t = String(text || "").toUpperCase();
   const f = fitText(t, width, { max: size, min: ROLE_DATA.sizeBand[0], maxLines, lineH: ROLE_DATA.lineHeight, weight });
   const w = Math.min(width, Math.max(...f.lines.map((l) => textWidth(l, f.size, false, weight)))) + 2;
   const h = f.lines.length * f.size * ROLE_DATA.lineHeight;
-  const bx = x ?? anchorX(w, flip);
-  return { ...box(bx, bottom != null ? bottom - h : y, w, h), size: f.size, lines: f.lines, align: flip ? "right" : "left", role: "data", upper: true, weight };
+  const bx = x ?? (center ? Math.round((FRAME.w - w) / 2) : anchorX(w, flip));
+  return { ...box(bx, bottom != null ? bottom - h : y, w, h), size: f.size, lines: f.lines, align: center ? "center" : flip ? "right" : "left", role: "data", upper: true, weight };
 }
 // The planner's emphasis words for the canvas being laid out (set by canvasLayout).
 let MARKS = [];
@@ -629,7 +629,10 @@ export function layoutViolations(L) {
     if (a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) out.push({ rule: "overlap", detail: `${ka} and ${kb}` });
   }
   for (const [k, b] of flat) {
-    if (["headline", "statement", "number", "emphasis"].includes(k) && !b.rotate && Math.abs(b.x + b.w / 2 - 540) < 24 && b.w < 700) out.push({ rule: "centred", detail: `${k} on the centre line` });
+    // A statement set centred on purpose — TYPE-FULL and the words-only cards (C.1, extended to the
+    // cards 2026-10-09) — is on the centre line by design; Layer 1 canvas-type refuses two in a row.
+    const byDesign = k === "statement" && b.align === "center" && (L.composition === "TYPE-FULL" || TYPE_CARD_COMPS.includes(L.composition));
+    if (["headline", "statement", "number", "emphasis"].includes(k) && !b.rotate && !byDesign && Math.abs(b.x + b.w / 2 - 540) < 24 && b.w < 700) out.push({ rule: "centred", detail: `${k} on the centre line` });
   }
   const cb = L.boxes?.photo ? null : contentBounds(L);
   if (cb && cb.h / 1920 < COVER_MIN_L1) out.push({ rule: "span", detail: `content spans ${(cb.h / 19.2).toFixed(1)}% of the height` });
@@ -764,17 +767,17 @@ function typeCardLayout(c, comp, flip) {
   const kick = c.lead_in ? String(c.lead_in) : null;
   boxes.rule = { ...rule(flip, TOP), keep: true };
   if (comp === "TYPE-TITLE") {
-    boxes.statement = headlineBox(text, { width: 984, y: BODY_TOP + 30, flip, maxLines: 2, maxHeight: 560, max: 260, tier: false });
-    if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 30, maxLines: 1, y: boxes.statement.y + boxes.statement.h + (boxes.statement.desc || 0) + 28, flip });
+    boxes.statement = headlineBox(text, { width: 984, y: BODY_TOP + 30, flip, maxLines: 2, maxHeight: 560, max: 260, tier: false, center: true });
+    if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 30, maxLines: 1, y: boxes.statement.y + boxes.statement.h + (boxes.statement.desc || 0) + 28, center: true });
     // The heavy accent bar on the middle band's floor (stroke: thick).
-    boxes.bar = { ...box(anchorX(420, flip), BOTTOM - 30, 420, 18), role: "rule", anchor: flip ? "right" : "left", accent: true };
+    boxes.bar = { ...box(Math.round((FRAME.w - 420) / 2), BOTTOM - 30, 420, 18), role: "rule", anchor: "center", accent: true };
   } else if (comp === "TYPE-CHAPTER") {
-    const kb = kick ? dataBox(kick, { width: 600, size: 28, maxLines: 1, y: 0, flip }) : null;
-    boxes.statement = headlineBox(text, { width: 760, bottom: BOTTOM - 12, flip, maxLines: 2, maxHeight: 200, max: 68, min: 48, tier: false });
+    const kb = kick ? dataBox(kick, { width: 600, size: 28, maxLines: 1, y: 0, center: true }) : null;
+    boxes.statement = headlineBox(text, { width: 760, bottom: BOTTOM - 12, flip, maxLines: 2, maxHeight: 200, max: 68, min: 48, tier: false, center: true });
     if (kb) boxes.kicker = { ...kb, y: boxes.statement.y - 26 - kb.h };
   } else {
     // TYPE-DEFINITION: the term, the double rule, the sentence as body text.
-    boxes.statement = headlineBox(text, { width: 940, y: BODY_TOP + 20, flip, maxLines: 2, maxHeight: 300, max: 150, tier: false });
+    boxes.statement = headlineBox(text, { width: 940, y: BODY_TOP + 20, flip, maxLines: 2, maxHeight: 300, max: 150, tier: false, center: true });
     const ry = boxes.statement.y + boxes.statement.h + (boxes.statement.desc || 0) + 26;
     boxes.rule_a = { ...box(L_EDGE, ry, R_EDGE - L_EDGE, 3), role: "rule", accent: true };
     boxes.rule_b = { ...box(L_EDGE, ry + 10, R_EDGE - L_EDGE, 3), role: "rule", accent: true };
@@ -784,7 +787,7 @@ function typeCardLayout(c, comp, flip) {
     const w = Math.min(940, Math.max(0, ...f.lines.map((l) => textWidth(l, f.size, false, 400)))) + 2;
     const h = Math.round(f.lines.length * f.size * 1.32);
     // "lead_" so the zone bookkeeping counts it as text, as the name card's key phrase is.
-    if (f.lines.length && h <= room) boxes.lead_body = { ...box(anchorX(w, flip), BOTTOM - 12 - h, w, h), size: f.size, lines: f.lines, align: flip ? "right" : "left", role: "data", body: true };
+    if (f.lines.length && h <= room) boxes.lead_body = { ...box(Math.round((FRAME.w - w) / 2), BOTTOM - 12 - h, w, h), size: f.size, lines: f.lines, align: "center", role: "data", body: true };
   }
   return { composition: comp, boxes, hero: "statement", flip };
 }
