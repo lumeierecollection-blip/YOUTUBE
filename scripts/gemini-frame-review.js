@@ -708,7 +708,9 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"moved":"YES"|"NO","change":
     for (const { b, i } of cam) {
       const d = b.duration_sec ?? 0, t0 = b.start_sec ?? 0;
       // Early (after the 6-frame pop-in) and late (before the next beat's pop-out): the move is eased over the first 90%.
-      const ta = t0 + Math.max(0.35, d * 0.1), tb = t0 + Math.max(0.6, Math.min(d - 0.3, d * 0.92));
+      const from = (b.canvas.camera.from_frame || 0) / 30;   // the picture appears (its spoken word); the move runs from there
+      const tb = t0 + Math.max(from + 0.5, Math.min(d - 0.3, d * 0.92));
+      const ta = t0 + Math.min(Math.max(0.35, d * 0.1, from + 0.3), tb - t0 - 0.4);
       const fa = join(work, `b${i}-a.png`), fb = join(work, `b${i}-b.png`);
       extractFrameAtTime(videoPath, ta, fa); extractFrameAtTime(videoPath, tb, fb);
       content.push({ type: "text", text: `Beat ${i} (${b.canvas.camera.subject}): frame A at ${ta.toFixed(2)}s, then frame B at ${tb.toFixed(2)}s` });

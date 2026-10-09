@@ -98,7 +98,11 @@ const lerp = (a, b, t) => a + (b - a) * t;
 // laid out at its full size and STARTS 10% smaller, growing to it about its floor: it is inside its
 // band at every frame, and the move is 1 / 0.909 = 10%. Both ease over the first 90% of the beat.
 // Everything else holds still (the pop compositor draws nothing else in space).
-const camP = (local, dur) => easeInOut(clamp01(local / Math.max(1, dur * CAMERA.endAt)));
+// `start`: the frame the picture itself appears (a photo that pops on its spoken word, canvas.entity_pop) — the move
+// runs from there to the end of the beat, so the viewer sees all of it (board 37925838913 ch-8 beat 6: the photo
+// landed at ~60% of its beat, and a camera that had been running since frame 0 was mostly spent when it did).
+const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
+export const cameraStart = (c) => (Number.isFinite(c?.entity_pop?.frame) && c.photo ? Math.max(0, c.entity_pop.frame) : 0);
 const Hero = React.createContext(null);
 // The colours a beat's text and chart furniture are drawn in. A dark beat
 // (texture layer) swaps them; a photo beat draws white on the picture.
@@ -727,7 +731,7 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     const comp = L.composition;
     // Owner's spec 2026-10-09: the photo pushes in CAMERA.photo (10%) across the beat, about an
     // off-centre point that alternates by beat, so it is a push AND a drift sideways.
-    const p01 = camP(local, dur);
+    const p01 = camP(local, dur, cameraStart(c));
     // SCENE-FULL: a slow push. ARCHITECTURE: a tilt up the facade (the frame
     // is scaled 1.28 and travels from the base to the top over the beat).
     // DOCUMENT: a slow scroll down the page. MONEY: a slow push.
@@ -848,7 +852,7 @@ function PhotoFrame({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const p = clamp01(local / Math.max(1, dur));
   const img = (extra = {}) => (
     <Img src={staticFile(c.photo.asset)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: c.photo.position || b.focus || "50% 40%",
-      transformOrigin: `${idx % 2 ? 30 : 70}% 40%`, transform: `scale(${(1 + CAMERA.photo * camP(local, dur)).toFixed(4)})`, filter: "saturate(0.92) contrast(1.05)", ...extra }} />
+      transformOrigin: `${idx % 2 ? 30 : 70}% 40%`, transform: `scale(${(1 + CAMERA.photo * camP(local, dur, cameraStart(c))).toFixed(4)})`, filter: "saturate(0.92) contrast(1.05)", ...extra }} />
   );
   const bar = (x, y, w, h) => <div style={{ position: "absolute", left: x, top: y, width: w, height: h, backgroundColor: accent }} />;
   const f = b.frame;

@@ -19,7 +19,10 @@ test("the camera moves 8% or more (the owner's floor), on photos and on graphs",
 test("every photo composition and every graph declares its move in the manifest; nothing else does", () => {
   for (const comp of [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS]) {
     const m = canvasManifest({ visual_type: "PHOTO", composition: comp, headline: "Ohio holds the vote", photo }, 1);
-    assert.deepEqual(m.camera, { subject: "photo", move: CAMERA.photo }, comp);
+    assert.deepEqual(m.camera, { subject: "photo", move: CAMERA.photo, from_frame: 0 }, comp);
+    // A photo that pops on its spoken word starts its move there.
+    const late = canvasManifest({ visual_type: "PHOTO", composition: comp, headline: "Ohio holds the vote", photo, entity_pop: { frame: 40 } }, 1);
+    assert.equal(late.camera.from_frame, 40, comp);
   }
   const bar = canvasManifest({ visual_type: "BAR", composition: "DATA-FULL", headline: "Sales doubled", data: { bars: [{ label: "a", value: "10" }, { label: "b", value: "30" }] } }, 1);
   assert.deepEqual(bar.camera, { subject: "graph", move: CAMERA.graph });

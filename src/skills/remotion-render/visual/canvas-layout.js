@@ -1629,7 +1629,7 @@ export function canvasManifest(raw, idx) {
   const plannerLabel = L.boxes.kicker && !L.boxes.kicker.subject;
   return {
     composition: L.composition, hero: L.hero, boxes: flat, content: contentBounds(L), zones: zoneReport(L).zones, motion_tier: c.motion_tier || "medium",
-    camera: c.photo && (FULL_PHOTO_COMPS.includes(L.composition) || FRAMED_PHOTO_COMPS.includes(L.composition)) ? { subject: "photo", move: CAMERA.photo }
+    camera: c.photo && (FULL_PHOTO_COMPS.includes(L.composition) || FRAMED_PHOTO_COMPS.includes(L.composition)) ? { subject: "photo", move: CAMERA.photo, from_frame: Number.isFinite(c.entity_pop?.frame) ? Math.max(0, c.entity_pop.frame) : 0 }
       : L.composition === "DATA-FULL" ? { subject: "graph", move: CAMERA.graph } : null,
     camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
     // Provenance (verified_as = the Wikipedia title + description it was verified against,
