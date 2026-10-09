@@ -20,8 +20,9 @@
 name: Daily Pipeline — Optimized v2
 
 on:
-  schedule:
-    - cron: "0 6 * * *"
+  # schedule: HELD 2026-10-09 — no board has produced an approved video yet; re-enabled only when most channels are green.
+  # schedule:
+  #   - cron: "0 6 * * *"
   workflow_dispatch:
     inputs:
       dry_run:
