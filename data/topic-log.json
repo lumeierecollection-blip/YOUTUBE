@@ -902,9 +902,14 @@
           "topic": "New Ohio Law Requires Drivers to Give Name to Police at Traffic Stops",
           "slug": "ohio-law-requires-drivers-name-traffic-stops",
           "reserved_at": "2026-10-08T12:34:19.324Z"
+        },
+        {
+          "topic": "Oklahoma Federal Court Finds Warrantless ALPR Search Violated the Fourth Amendment",
+          "slug": "oklahoma-federal-court-alpr-fourth-amendment-2026",
+          "reserved_at": "2026-10-09T21:40:54.201Z"
         }
       ],
-      "last_generated": "2026-10-09T12:18:36.365Z"
+      "last_generated": "2026-10-09T21:40:54.201Z"
     },
     "3": {
       "channel_name": "AI Tested",
