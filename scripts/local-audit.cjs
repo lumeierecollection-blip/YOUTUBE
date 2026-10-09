@@ -523,7 +523,7 @@ function canvasType(beats) {
     // A hero cutout and a name card (an entity's name over its figure) are their own compositions.
     // A hero beat is keyed by its OBJECT (owner's spec 2026-10-03, C.3: two cutout beats in a
     // row both render) — only the same object twice in a row is a repeat.
-    const compKey = (x) => (x?.composition || "") + (x?.boxes?.cutout0 ? `+HERO:${x?.concept_visuals?.[0]?.name || ""}` : "") + (x?.boxes?.lead_phrase ? "+NAME" : "");
+    const compKey = (x) => (x?.composition || "") + (x?.boxes?.cutout0 ? `+HERO:${x?.concept_visuals?.[0]?.name || ""}` : "") + (x?.boxes?.lead_phrase ? "+NAME" : "") + (x?.art ? `:${x.art.kind}` : "");
     if (i > 0 && beats[i - 1].canvas && compKey(beats[i - 1].canvas) === compKey(c)) bad.push(`beat ${i}: ${compKey(c)} twice in a row`);
     // Part C.2: never two centred headlines in a row.
     const centred = (x) => Object.values(x?.boxes || {}).some((v) => v && v.align === "center" && v.role === "headline");
@@ -854,6 +854,16 @@ async function canvasChecks(video, m) {
     if (subject && !(c.camera && c.camera.subject === subject && c.camera.move >= 0.08)) camBad.push(`beat ${i}: a ${subject} beat declares no camera move of 8% or more`);
   });
   out.push({ id: "camera-moves", pass: !camBad.length, detail: camBad.length ? camBad.join("; ") : `every photo and graph beat declares a camera move of 8% or more (${beats.filter((b) => b.canvas?.camera).length} beat(s))` });
+  // entity-coverage (owner, 2026-10-09: "nothing spoken goes unrepresented"; scripts/entity-coverage.js): every beat whose
+  // sentence names an entity (a place, a person, an organisation, a date, a span of time, a figure) draws something that
+  // answers one of them — its flag or map with it highlighted, a portrait or plate, a logo, a date card, a time track, the
+  // figure. A beat that names an entity and is words only FAILS, and the failing entity is logged. HARD.
+  {
+    const { checkEntityCoverage } = await import(require("node:url").pathToFileURL(join(__dirname, "entity-coverage.js")).href);
+    const ec = checkEntityCoverage(beats.map((b) => ({ index: b.index, sentence: b.canvas?.sentence || "", named_entities: b.canvas?.entities || [], canvas: b.canvas })));
+    ec.rows.forEach((r) => console.log(`[entities] beat ${r.beat}: ${r.entities.length ? `${r.entities.join(" | ")} -> ${r.covered ? `OK by ${r.by}` : "NOT COVERED"}` : r.note}`));
+    out.push({ id: "entity-coverage", pass: !ec.failures.length, detail: ec.failures.length ? ec.failures.map((f) => `beat ${f.beat}: ${f.entities.join(", ")} — ${f.why}`).slice(0, 8).join("; ") : `${ec.rows.filter((r) => r.covered).length} beat(s) draw the entity they name; ${ec.wordsOnlyBeats} words-only beat(s) name nothing` });
+  }
   // sfx-rules (owner, 2026-10-09): every SFX that plays was judged a real recording by Gemini
   // (scripts/sfx-cc0.mjs judge), its peak lands within 100 ms of its visible event, no sound twice in
   // a row, no sound on three beats in a row. HARD — a robotic sound fails the video; fix the sound.

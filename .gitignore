@@ -120,3 +120,5 @@ channels/_shared/ref-frames/
 data/trending/
 # CC0 SFX: fetched on the runner by scripts/sfx-cc0.mjs (cached), never committed.
 src/skills/remotion-render/public/sfx/cc0/
+# National / state flags fetched at run time by scripts/fetch-flag.mjs (flagcdn.com), never committed.
+src/skills/remotion-render/public/flags/

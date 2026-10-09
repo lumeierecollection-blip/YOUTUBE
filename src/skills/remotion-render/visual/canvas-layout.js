@@ -158,7 +158,10 @@ export const CAPTION = { x: 48, y: 1450, w: 880, h: 160 };
 export const CAPTION_R = { x: 64, y: 1450, w: 880, h: 160 };
 export const COMPOSITIONS = ["TYPE-FULL", "TYPE-SPLIT", "NUMBER-FULL", "DATA-FULL", "SCENE-FULL", "ARCHITECTURE", "PORTRAIT", "DOCUMENT", "MONEY", "MAP-CENTERED", "PROCESS-FULL", "TIMELINE", "COMPARISON-SPLIT", "LIST-BUILD",
   "SCENE-LOW", "PHOTO-BAND", "PHOTO-EDGE", "PHOTO-CARD", "PHOTO-INSET", "PHOTO-STRIP", "HERO-LOW", "HERO-SCATTER", "HERO-OVER",
-  "TYPE-TITLE", "TYPE-CHAPTER", "TYPE-DEFINITION", "NUMBER-STAT"];
+  "TYPE-TITLE", "TYPE-CHAPTER", "TYPE-DEFINITION", "NUMBER-STAT", "ENTITY-ART"];
+// ENTITY-ART (owner, 2026-10-09: "nothing spoken goes unrepresented"): the visual of an entity the sentence names when no
+// photo, logo or figure answers it — a flag, a person / organisation / place plate, a date card, a span of time.
+export const ENTITY_ART_COMP = "ENTITY-ART";
 
 // ── SHOTS: the reference's shot grammar (docs/REFERENCE-SHOT-GRAMMAR.md) ─────────────────
 // The compositions above used to be one per CONTENT kind (a photo is SCENE-FULL, a person
@@ -184,14 +187,14 @@ export const TEXT_AT = Object.freeze({
   "PHOTO-BAND": "low", "SCENE-LOW": "low", "HERO-OVER": "low", "TYPE-FULL": "low", "DOCUMENT": "low", "MONEY": "low",
   "PHOTO-EDGE": "top", "PHOTO-CARD": "top", "PHOTO-INSET": "top", "PHOTO-STRIP": "top", "SCENE-FULL": "top", "ARCHITECTURE": "top", "PORTRAIT": "top",
   "HERO-STACK": "top", "HERO-LOW": "top", "HERO-SCATTER": "top",
-  "TITLE": "low", "CHAPTER": "low", "DEFINITION": "low", "STAT": "low",
+  "TITLE": "low", "CHAPTER": "low", "DEFINITION": "low", "STAT": "low", "ENTITY-ART": "low",
 });
 // WORDS-ONLY cards (docs/REFERENCE-SHOT-GRAMMAR.md "Text-only cards"): a statement with no picture,
 // framed four ways the reference frames its type. Each is type-led to the template rule — a run of
 // three words-only beats still fails, however different they look (owner, 2026-10-09: keep strict).
 export const TYPE_CARD_COMPS = ["TYPE-TITLE", "TYPE-CHAPTER", "TYPE-DEFINITION"];
 export const TYPE_LED_COMPS = ["TYPE-FULL", "TYPE-SPLIT", ...TYPE_CARD_COMPS];
-export const SHOT_COMPOSITIONS = [...FRAMED_PHOTO_COMPS, "SCENE-LOW", ...HERO_COMPS, ...TYPE_CARD_COMPS, "NUMBER-STAT"];
+export const SHOT_COMPOSITIONS = [...FRAMED_PHOTO_COMPS, "SCENE-LOW", ...HERO_COMPS, ...TYPE_CARD_COMPS, "NUMBER-STAT", "ENTITY-ART"];
 export const PHOTO_SHOTS = ["SCENE-FULL", "SCENE-LOW", ...FRAMED_PHOTO_COMPS, "PORTRAIT"];
 export const HERO_SHOTS = ["HERO-STACK", ...HERO_COMPS];
 // FIGURE / STATEMENT: the content's own frame (a chart, a number, a map; a plain statement), named
@@ -201,7 +204,7 @@ export const SHOTS = [...PHOTO_SHOTS, ...HERO_SHOTS, "FIGURE", "STATEMENT", ...C
 // Offered at render time, once the content is known (scripts/render-and-qa.js chooseShots):
 // STATEMENT-SPLIT — a statement in two halves, top and low (TYPE-SPLIT); FIGURE-LOW — a number in the
 // top band, its headline low in the middle band (NUMBER-FULL with the zones swapped).
-export const CONTENT_SHOTS = ["STATEMENT-SPLIT", "FIGURE-LOW", "MAP-BAND"];
+export const CONTENT_SHOTS = ["STATEMENT-SPLIT", "FIGURE-LOW", "MAP-BAND", "FLAG"];
 /** A shot name as the planner wrote it, or null ("photo band" / "photo_band" -> PHOTO-BAND). */
 export function shotName(s) {
   const n = String(s || "").trim().toUpperCase().replace(/[\s_]+/g, "-");
@@ -886,6 +889,29 @@ function heroShotLayout(c, comp, flip) {
   return { composition: comp, boxes, hero: "cutout0", flip };
 }
 
+/**
+ * ENTITY-ART: the art (a flag, a plate, a calendar page, a time track) CENTRED in the frame's middle band, its caption
+ * under it — the visual is the hero of the beat (owner, 2026-10-09). The hairline rule holds the top (span >= 60%).
+ *   flag                  the flag, 3:2, ink-bordered so a white field never vanishes into a white ground
+ *   plate-person          a plate with a non-identifying silhouette (a person with no verified portrait)
+ *   plate-organization    a plate with a building (an organisation with no logo)
+ *   plate-place           a plate with a pin (a place with no photo and no map)
+ *   date                  a calendar page showing the date the sentence states
+ *   span                  a track with its ends, filled across the beat: the span of time the sentence states
+ */
+const ART_SIZES = { flag: [660, 440], "plate-person": [440, 440], "plate-organization": [440, 440], "plate-place": [440, 440], date: [600, 470], span: [920, 330] };
+function entityArtLayout(c, flip) {
+  const a = c.art || {}, kind = ART_SIZES[a.kind] ? a.kind : "plate-place";
+  const [w0, h0] = ART_SIZES[kind];
+  const w = w0, h = kind === "flag" && a.aspect ? Math.round(w0 / Math.max(1.2, Math.min(2.2, a.aspect))) : h0;
+  const y = LOW_VISUAL.top + 60;
+  const boxes = { rule: { ...rule(flip, TOP), keep: true } };
+  boxes.art = { ...box(Math.round((FRAME.w - w) / 2), y, w, h), role: "concept", kind, align: "center" };
+  const caption = String(c.headline || a.name || "").trim();
+  if (caption) boxes.statement = headlineBox(caption, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 2, maxHeight: BOTTOM - 12 - (y + h + 24), max: 120, min: 52, tier: false });   // left / right by beat (the art is centred; the caption alternates sides)
+  return { composition: "ENTITY-ART", boxes, hero: "art", flip };
+}
+
 function tableLayout(c) {
   MARKS = Array.isArray(c?.emphasis_words) ? c.emphasis_words : c?.emphasis_word ? [c.emphasis_word] : [];
   BEAT_HERO = !!c?.hero_headline;
@@ -900,6 +926,7 @@ function tableLayout(c) {
     return tableLayout({ ...c, composition: compositionFor(c?.visual_type, false) });
   }
   if (HERO_COMPS.includes(comp)) return heroShotLayout(c, comp, flip);
+  if (comp === "ENTITY-ART") return entityArtLayout(c, flip);
   if (TYPE_CARD_COMPS.includes(comp)) return typeCardLayout(c, comp, flip);
   if (comp === "NUMBER-STAT") return statCardLayout(c, flip);
   const boxes = {};
@@ -1666,6 +1693,9 @@ export function canvasManifest(raw, idx) {
     composition: L.composition, hero: L.hero, boxes: flat, content: contentBounds(L), zones: zoneReport(L).zones, motion_tier: c.motion_tier || "medium",
     camera: c.photo && (FULL_PHOTO_COMPS.includes(L.composition) || FRAMED_PHOTO_COMPS.includes(L.composition)) ? { subject: "photo", move: CAMERA.photo, from_frame: Number.isFinite(c.entity_pop?.frame) ? Math.max(0, c.entity_pop.frame) : 0 }
       : L.composition === "DATA-FULL" ? { subject: "graph", move: CAMERA.graph } : null,
+    // What the beat NAMES and what it drew for it (scripts/entity-coverage.js reads both).
+    art: c.art ? { kind: c.art.kind, name: c.art.name || null, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || null, asset: c.art.asset || null } : null,
+    entities: Array.isArray(c.named_entities) ? c.named_entities.filter((e) => e && e.name).map((e) => ({ type: e.type, name: e.name })) : [],
     camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
     // Provenance (verified_as = the Wikipedia title + description it was verified against,
     // place_check = the same-place verdict) is what the pre-ship place gate reads.

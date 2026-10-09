@@ -288,5 +288,55 @@
    "headline": "The rate climb (fixture)",
    "motion_tier": "medium"
   }
+ },
+ {
+  "text": "France votes on the budget this week.",
+  "c": {
+   "visual_type": "TYPE",
+   "composition": "ENTITY-ART",
+   "art": { "kind": "flag", "name": "France", "region": "country:FRA", "code": "fr" },
+   "headline": "France votes",
+   "motion_tier": "medium"
+  }
+ },
+ {
+  "text": "Betty Jo Norris was identified after decades.",
+  "c": {
+   "visual_type": "TYPE",
+   "composition": "ENTITY-ART",
+   "art": { "kind": "plate-person", "name": "Betty Jo Norris" },
+   "headline": "Betty Jo Norris",
+   "motion_tier": "medium"
+  }
+ },
+ {
+  "text": "On August 24, 2026 the operation began.",
+  "c": {
+   "visual_type": "TYPE",
+   "composition": "ENTITY-ART",
+   "art": { "kind": "date", "name": "August 24, 2026", "text": "August 24, 2026" },
+   "headline": "The operation began",
+   "motion_tier": "medium"
+  }
+ },
+ {
+  "text": "It took 57 years to name her.",
+  "c": {
+   "visual_type": "TYPE",
+   "composition": "ENTITY-ART",
+   "art": { "kind": "span", "name": "57 years", "text": "57 years" },
+   "headline": "To name her",
+   "motion_tier": "medium"
+  }
+ },
+ {
+  "text": "The FBI joined the case.",
+  "c": {
+   "visual_type": "TYPE",
+   "composition": "ENTITY-ART",
+   "art": { "kind": "plate-organization", "name": "FBI" },
+   "headline": "The FBI",
+   "motion_tier": "medium"
+  }
  }
 ]

@@ -1001,6 +1001,15 @@ export function sourceCredit(url) {
 const FIGURE_COMPS = ["NUMBER-FULL", "DATA-FULL", "PROCESS-FULL", "MAP-CENTERED", "LIST-BUILD", "TIMELINE", "COMPARISON-SPLIT"];
 export function applyShot(c, b, log = console.log) {
   if (!b?.shot) return { drawn: false, why: "no shot" };
+  if (String(b.shot).toUpperCase() === "FLAG") {
+    // FLAG: a country's or state's flag, centred, in place of its map (the beat names the region; the flag is of THAT region).
+    const f = c.flag_option;
+    if (c.composition !== "MAP-CENTERED" || !f?.asset) { c.shot_drawn = false; log(`[shot] beat ${b.index ?? "?"}: FLAG NOT drawn — no flag asset for this beat`); return { drawn: false, why: "no flag asset" }; }
+    c.composition = "ENTITY-ART"; c.art = { kind: "flag", name: f.name, region: f.region, asset: f.asset, aspect: f.aspect, credit: f.credit, source_url: f.source_url, license: f.license };
+    c.photo = null; c.shot = "FLAG"; c.shot_drawn = true; log(`[shot] beat ${b.index ?? "?"}: FLAG drawn`);
+    return { drawn: true, why: null };
+  }
+  if (c.art) { c.shot_drawn = false; return { drawn: false, why: "this beat draws its entity's art" }; }
   const want = shotName(b.shot) || String(b.shot);
   const tag = `[shot] beat ${b.index ?? "?"}: ${want}`;
   const vt = String(c.visual_type || "TYPE").toUpperCase();
@@ -1124,7 +1133,7 @@ export function shotMenu(canvas, b, ctx = {}) {
 function measuredShot(c, b, shot) {
   const m = canvasManifest(c, b.index ?? 0);
   const d = devicesOf({ canvas: m });
-  const key = m.composition + (m.boxes?.cutout0 ? `+HERO:${(m.concept_visuals || [])[0]?.name || ""}` : "") + (m.boxes?.lead_phrase ? "+NAME" : "");
+  const key = m.composition + (m.boxes?.cutout0 ? `+HERO:${(m.concept_visuals || [])[0]?.name || ""}` : "") + (m.boxes?.lead_phrase ? "+NAME" : "") + (m.art ? `:${m.art.kind}` : "");
   const words = d.label ? "top" : "low";
   // The frame's identity: two options with the same signature draw the same frame.
   const sig = `${key}|${words}|${c.headline_zone || ""}|${c.map_band ? "band" : ""}|${c.emphasis_beat ? "emph" : ""}`;
@@ -1207,7 +1216,7 @@ export async function chooseShots(plan, channelId, ask = (prompt) => callLLM([{ 
   if (!problems.length && !undrawn.length) return { choice: current, problems, asked: 0 };
   const lines = plan.beats.map((b, i) => `[${b.index}] "${String(b.narration || "").slice(0, 140)}" — shows ${describeBeat(b.canvas)}; now: ${current[i].shot}[${current[i].words}]; options: ${menus[i].filter((o) => !o.nochrome).map((o) => `${o.shot} [${o.words}${o.typeLed ? ", words-only" : ""}]`).join(", ")}`).join("\n");
   const promptFor = (choice, probs) => `You are the visual director of a vertical video. Its look is the channel's reference: an editorial collage that changes its shot every beat. The content of every beat is now fixed; choose each beat's SHOT from ITS options (each is drawable and legal on its own; [top] = its words sit in the top band, [low] = under a picture or low).
-Shots: SCENE-FULL photo fills the frame; SCENE-LOW photo fills it, words low; PHOTO-BAND photo bleeds off the top third; PHOTO-EDGE photo cropped by the far edge; PHOTO-CARD photo in a heavy dark frame; PHOTO-INSET small rounded card; PHOTO-STRIP photo through a torn strip; PORTRAIT photo standing; HERO-STACK object centred under the words; HERO-LOW object large and low; HERO-SCATTER objects at angles; HERO-OVER object above the words; FIGURE a chart/number/map in its own frame; FIGURE-LOW the number alone high (its small label left out) or a bar / line / trend chart across the top band, its headline under it; MAP-BAND the map across the top band, its headline under it; STATEMENT words alone, low; STATEMENT-SPLIT words in two halves, top and low; TITLE the words very large and heavy over an accent bar; CHAPTER one small line in an empty frame; DEFINITION the words over a double rule, the sentence set as text; STAT a stated number alone, filling the frame over its label. An option "SHOT:symbol" is that object shot with the drawn symbol for what the sentence states; "FIGURE:TYPE" draws a words-only beat as that figure (a process, a trend, a number...), which its own sentence states.
+Shots: SCENE-FULL photo fills the frame; SCENE-LOW photo fills it, words low; PHOTO-BAND a photo band across the centre, words under it; PHOTO-EDGE photo cropped by the far edge; PHOTO-CARD photo in a heavy dark frame; PHOTO-INSET small rounded card; PHOTO-STRIP photo through a torn strip; PORTRAIT photo standing; HERO-STACK object centred under the words; HERO-LOW object large and low; HERO-SCATTER objects at angles; HERO-OVER the object centred, its words under it; FIGURE a chart/number/map in its own frame; FIGURE-LOW the number alone (its small label left out) or a bar / line / trend chart centred, its headline under it; MAP-BAND the map as a band across the centre, its headline under it; FLAG a country's or state's flag centred, in place of its map; STATEMENT words alone, low; STATEMENT-SPLIT words in two halves, top and low; TITLE the words very large and heavy over an accent bar; CHAPTER one small line in an empty frame; DEFINITION the words over a double rule, the sentence set as text; STAT a stated number alone, filling the frame over its label. An option "SHOT:symbol" is that object shot with the drawn symbol for what the sentence states; "FIGURE:TYPE" draws a words-only beat as that figure (a process, a trend, a number...), which its own sentence states.
 Rules, checked on the render: never the same composition on two beats in a row; never [top] on three beats in a row; never a words-only beat on three in a row, nor [top] twice AND words-only twice inside any three beats. Prefer the shot that shows the beat's content best.
 
 ${lines}
@@ -1266,6 +1275,59 @@ Respond ONLY with JSON: {"sequence": <number>}`);
   });
   plan.shots_final = { shots: choice.map((o) => o.shot), problems: problems.map((p) => p.why) };
   return { choice, problems, asked };
+}
+
+/**
+ * THE ENTITY LADDER (owner, 2026-10-09: "nothing spoken goes unrepresented"; scripts/entity-ladder.js). A beat that names an
+ * entity and draws none of it — words, a name card, a symbol alone — gets the visual that answers it: a map with the
+ * region highlighted, a plate (person / organisation / place), a date card, a span of time, a stat card. A beat that
+ * already draws something of substance is left to the gate. Then a flag is OFFERED beside every country / state map
+ * (the FLAG shot — Gemini picks it in chooseShots). Code fills the gap; it does not replace what the planner drew.
+ */
+export async function entityLadder(plan, channelId, log = console.log) {
+  const { ladderFor } = await import("./entity-ladder.js");
+  const { fetchFlag } = await import("./fetch-flag.mjs");
+  const { flagCodeOf } = await import("../src/skills/remotion-render/visual/flags.js");
+  const done = { map: 0, art: 0, figure: 0, flags: 0 };
+  const reset = (b) => { for (const k of ["type_layout", "name_card", "hero_cutout", "fallback_symbol", "art"]) delete b[k]; };
+  for (const b of plan.beats) {
+    const d = ladderFor(b);
+    if (!d) continue;
+    const keep = { visual_type: b.visual_type, data: b.data, art: b.art, name_card: b.name_card, hero_cutout: b.hero_cutout, fallback_symbol: b.fallback_symbol, type_layout: b.type_layout, canvas: b.canvas };
+    if (d.map) {
+      const v = checkVisual({ visual_type: "MAP", data: { place: d.map }, named_entities: b.named_entities }, b.narration || "");
+      if (v.why) { log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.map}; a map is refused (${v.why}) — a plate instead`); reset(b); b.art = { kind: "plate-place", name: d.map }; b.canvas = canvasContentFor(b, {}); done.art++; continue; }
+      reset(b); b.visual_type = "MAP"; b.data = { place: d.map };
+      b.canvas = canvasContentFor(b, {}); done.map++;
+      log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.map} -> a map with it highlighted`);
+    } else if (d.figure) {
+      const v = checkVisual({ visual_type: "COUNTER", data: { value: d.figure.value, label: d.figure.label }, named_entities: b.named_entities }, b.narration || "");
+      if (v.why) { log(`[ladder] ch-${channelId} beat ${b.index}: states ${d.figure.value}; a stat card is refused (${v.why})`); continue; }
+      reset(b); b.visual_type = v.type || "COUNTER"; b.data = v.data || { value: d.figure.value, label: d.figure.label };
+      b.canvas = canvasContentFor(b, {}); done.figure++;
+      log(`[ladder] ch-${channelId} beat ${b.index}: states ${d.figure.value} -> a stat card`);
+    } else if (d.art) {
+      reset(b); b.art = d.art;
+      b.canvas = canvasContentFor(b, {}); done.art++;
+      log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.art.kind.replace("plate-", "")} "${d.art.name}" -> ${d.art.kind}`);
+    }
+    if (!b.canvas) Object.assign(b, keep);
+  }
+  for (const b of plan.beats) {
+    const c = b.canvas;
+    if (!c || c.composition !== "MAP-CENTERED" || !c.data?.place) continue;
+    const region = resolveRegionName(c.data.place);
+    const code = flagCodeOf(region);
+    if (!code) continue;
+    const f = await fetchFlag(code);
+    if (!f.ok) { log(`[ladder] ch-${channelId} beat ${b.index}: no flag for ${c.data.place} (${f.why})`); continue; }
+    let aspect = 1.5;
+    try { const png = readFileSync(join(PUBLIC_DIR, f.asset)); aspect = png.readUInt32BE(16) / Math.max(1, png.readUInt32BE(20)); } catch {}
+    b.flag_option = { asset: f.asset, region, name: c.data.place, aspect, source_url: f.source_url, license: f.license, credit: f.credit };
+    c.flag_option = b.flag_option; done.flags++;
+  }
+  log(`[ladder] ch-${channelId}: ${done.map} map(s), ${done.art} art frame(s), ${done.figure} stat card(s) added for entities the sentences name; ${done.flags} flag(s) offered`);
+  return done;
 }
 
 function canvasContentFor(b, { photo = null } = {}) {
@@ -1329,7 +1391,11 @@ function canvasContentFor(b, { photo = null } = {}) {
   const hasHero = (c.concept_visuals || []).length > 0;
   if (hasHero) delete c.type_layout;
   c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: !hasHero && c.type_layout === "split" && !!splitHeadline(c.headline) });
+  // A flag is offered beside a country / state map (FLAG shot, chooseShots): the asset and its region travel with the canvas.
+  if (b.flag_option) c.flag_option = b.flag_option;
   applyShot(c, b);
+  // The art of a named entity the beat had no picture of (scripts/entity-ladder.js): a date, a span, a plate, a flag.
+  if (b.art) { c.art = b.art; c.composition = "ENTITY-ART"; c.photo = null; c.concept_visuals = []; delete c.type_layout; delete c.name_card; }
   // What became of the planner's layout for this beat (canvas-layout.js canvasLayout): used, or not
   // used because it breaks a Layer 1 rule the default arrangement keeps.
   if (c.layout) {
@@ -1985,6 +2051,8 @@ async function resolveCanvas(channelId, planPath, plan) {
     plan.visual_summary = { beats: plan.beats.length, pngs, no_concept: none };
     console.log(`[visual] ch-${channelId}: ${pngs}/${plan.beats.length} beats show a fetched PNG; ${none} beat(s) with no concept`);
   }
+  // Every entity a sentence names is drawn (entityLadder): before the chrome pass, which reads what each beat draws.
+  await entityLadder(plan, channelId);
   // CHROME (owner, 2026-10-08 "kill the template"): the planner's label / pull phrase, grounded,
   // then the three-beat window rule (scripts/template-check.js) enforced by REMOVAL only.
   {

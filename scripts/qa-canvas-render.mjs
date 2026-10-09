@@ -83,12 +83,23 @@ if (process.argv.includes("--only-extra") && arg("extra-beats")) beatsSpec.splic
 const { inkOf } = await import("./cutout-ink.mjs");
 for (const b of beatsSpec) for (const v of b.c.concept_visuals || []) if (v.class === "cutout" && v.asset && !v.ink) v.ink = await inkOf(join(RR, "public", v.asset));
 const { compositionFor } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
+// ENTITY-ART flags: the file is fetched the way the pipeline fetches it (scripts/fetch-flag.mjs).
+{
+  const { fetchFlag } = await import("./fetch-flag.mjs");
+  for (const b of beatsSpec) if (b.c.art?.kind === "flag" && b.c.art.code && !b.c.art.asset) {
+    const f = await fetchFlag(b.c.art.code);
+    if (!f.ok) throw new Error(`flag ${b.c.art.code}: ${f.why}`);
+    const png = readFileSync(join(RR, "public", f.asset));
+    Object.assign(b.c.art, { asset: f.asset, aspect: png.readUInt32BE(16) / png.readUInt32BE(20) });
+  }
+}
 const beats = beatsSpec.map((b, i) => {
   const words = b.text.split(" ");
   const per = (D - 20) / words.length;
   const c = { ...b.c };
   c.composition = c.composition || compositionFor(c.visual_type, !!c.photo, { view: c.photo?.view });
   c.beat_total = beatsSpec.length;
+  c.sentence = c.sentence || b.text;   // the manifest carries the sentence (entity-coverage reads it)
   return {
     beat_id: `t${i}`, start_frame: i * D, duration_frames: D, text: b.text, original_text: b.text,
     scene: { mechanism: "TYPOGRAPHY", canvas: c },

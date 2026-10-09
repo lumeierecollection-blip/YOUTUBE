@@ -58,6 +58,8 @@ import { POP, PHOTO_COMPS, popGroups } from "./pop-groups.js";
 export { POP, popGroups };
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, Easing } from "remotion";
 import { StudioBG } from "./studio-bg.jsx";
+import { ICON_SET } from "./icon-set.js";
+import { dateParts } from "./date-parts.js";
 import { KineticText } from "./kinetic.jsx";
 import { countProgress, numberPop, numberRoll, digitRoll, popState, NUMBER_POP_FRAMES } from "./kinetic.js";
 import { GROUND } from "./backgrounds.js";
@@ -828,6 +830,113 @@ function TypeCard({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   );
 }
 
+// ── ENTITY-ART (canvas-layout.js entityArtLayout) ──────────────────────
+// What a sentence NAMES, drawn when no photo / logo / figure answers it (owner, 2026-10-09). The art is centred in
+// the middle band and ALIVE across the beat — a flag pushes in, a track fills, a plate breathes — and the caption's words
+// pop on under it. Nothing here is a photograph of a person: a person with no verified portrait is a plate with a
+// silhouette (never a stand-in face), an organisation with no logo a plate with a building.
+function LucideIcon({ name, size, color, stroke = 2, style }) {
+  const parts = ICON_SET[name];
+  if (!parts) return null;
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round" style={{ display: "block", ...style }}>
+      {parts.map(([tag, at], i) => React.createElement(tag, { key: i, ...at }))}
+    </svg>
+  );
+}
+function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
+  const m = useMotion(c, local, dur, fps);
+  const th = useTheme();
+  const B = L.boxes, tl = timeline(c, B, dur, fps);
+  if (part === "header") return <Rule b={B.rule} t={m.build(0.3, m.s(0.1))} color={th.ink} />;
+  const a = c.art || {}, b = B.art;
+  const at = tl.headlineAt;
+  const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 50%");
+  const live = clamp01((local - at * fps) / Math.max(1, dur * 0.9));
+  const glyph = onAccent(accent);
+  const breathe = 1 + 0.025 * Math.sin((local / fps) * 2.6);
+  let art = null;
+  if (b && a.kind === "flag" && a.asset) {
+    art = (
+      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...pop }}>
+        <div style={{ position: "absolute", inset: 0, boxSizing: "border-box", border: `6px solid ${th.ink}`, boxShadow: th.dark ? "none" : "0 14px 34px rgba(0,0,0,0.20)", overflow: "hidden" }}>
+          <Img src={staticFile(a.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", transformOrigin: "50% 50%", transform: `scale(${(1 + CAMERA.photo * easeInOut(live)).toFixed(4)})` }} />
+        </div>
+      </div>
+    );
+  } else if (b && String(a.kind).startsWith("plate-")) {
+    const person = a.kind === "plate-person", org = a.kind === "plate-organization";
+    art = (
+      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...pop }}>
+        <div style={{ position: "absolute", inset: 0, transform: `scale(${breathe.toFixed(4)})`, transformOrigin: "50% 50%" }}>
+          {org ? (
+            <>
+              <div style={{ position: "absolute", inset: 0, borderRadius: 64, backgroundColor: accent }} />
+              <div style={{ position: "absolute", left: "20%", top: "20%" }}><LucideIcon name="building-2" size={Math.round(b.w * 0.6)} color={glyph} stroke={1.6} /></div>
+            </>
+          ) : (
+            <svg viewBox="0 0 100 100" width={b.w} height={b.h} style={{ display: "block" }}>
+              <circle cx="50" cy="50" r="48" fill={accent} />
+              {person ? (
+                <>
+                  <circle cx="50" cy="38" r="15" fill={glyph} />
+                  <path d="M22 80 C24 62 36 56 50 56 C64 56 76 62 78 80 A46 46 0 0 1 22 80 Z" fill={glyph} />
+                </>
+              ) : (
+                <path fillRule="evenodd" fill={glyph} d="M50 20 C38 20 29 29 29 41 C29 56 50 80 50 80 C50 80 71 56 71 41 C71 29 62 20 50 20 Z M50 34 a7.5 7.5 0 1 0 0.01 0 Z" />
+              )}
+            </svg>
+          )}
+        </div>
+      </div>
+    );
+  } else if (b && a.kind === "date") {
+    const d = dateParts(a.text || a.name);
+    const big = d.day || d.year || "";
+    const sub = d.day ? [d.month, d.year].filter(Boolean).join(" ") : d.month || "";
+    art = (
+      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h }}>
+        <svg viewBox="0 0 600 470" width={b.w} height={b.h} style={{ display: "block", overflow: "visible" }}>
+          <g {...popSvg("POP_STANDARD", local - Math.round(at * fps), 300, 235)}>
+            <rect x="8" y="44" width="584" height="418" rx="26" fill="none" stroke={th.ink} strokeWidth="8" />
+            <path d="M8 70 a26 26 0 0 1 26 -26 H566 a26 26 0 0 1 26 26 V170 H8 Z" fill={accent} />
+            <rect x="140" y="6" width="24" height="76" rx="12" fill={th.ink} />
+            <rect x="436" y="6" width="24" height="76" rx="12" fill={th.ink} />
+          </g>
+          {sub ? <text x="300" y="138" textAnchor="middle" fill={glyph} style={{ font: `700 66px ${SANS_STACK}`, letterSpacing: 6 }} {...popSvg("POP_SOFT", local - Math.round((at + 0.25) * fps), 300, 120)}>{sub}</text> : null}
+          <text x="300" y="396" textAnchor="middle" fill={th.ink} style={{ font: `800 ${big.length > 2 ? 190 : 250}px ${SERIF}` }} {...popSvg("NUMBER", local - Math.round((at + 0.1) * fps), 300, 320)}>{big}</text>
+        </svg>
+      </div>
+    );
+  } else if (b && a.kind === "span") {
+    const t = easeOut(clamp01((local - (at + 0.15) * fps) / Math.max(1, dur * 0.55)));
+    const label = String(a.name || a.text || "").toUpperCase();
+    art = (
+      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h }}>
+        <svg viewBox="0 0 920 330" width={b.w} height={b.h} style={{ display: "block", overflow: "visible" }}>
+          <text x="30" y="150" fill={th.ink} style={{ font: `800 ${label.length > 9 ? 120 : 150}px ${SERIF}` }} {...popSvg("NUMBER", local - Math.round(at * fps), 30, 100)}>{label}</text>
+          <line x1="30" y1="250" x2="890" y2="250" stroke={th.track} strokeWidth="30" strokeLinecap="round" />
+          <line x1="30" y1="250" x2={30 + 860 * t} y2="250" stroke={accent} strokeWidth="30" strokeLinecap="round" />
+          <line x1="30" y1="200" x2="30" y2="300" stroke={th.ink} strokeWidth="8" strokeLinecap="round" />
+          <line x1="890" y1="200" x2="890" y2="300" stroke={th.ink} strokeWidth="8" strokeLinecap="round" />
+          {Array.isArray(a.ends) && a.ends.length === 2 ? (
+            <>
+              <text x="30" y="326" fill={th.ink} style={{ font: `700 40px ${SANS_STACK}` }}>{a.ends[0]}</text>
+              <text x="890" y="326" textAnchor="end" fill={th.ink} style={{ font: `700 40px ${SANS_STACK}` }}>{a.ends[1]}</text>
+            </>
+          ) : null}
+        </svg>
+      </div>
+    );
+  }
+  return (
+    <>
+      {art}
+      {B.statement ? <Headline b={B.statement} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt + 0.35} major={m.tier === "major"} hero accent={accent} /> : null}
+    </>
+  );
+}
+
 // ── SHOT FRAMES (docs/REFERENCE-SHOT-GRAMMAR.md) ──────────────────────
 // A shot's photo drawn in its box (canvas-layout.js shotLayout), on the beat's own ground, with the
 // header in ink. `frame` is the treatment the reference uses:
@@ -1187,7 +1296,7 @@ const COMPONENTS = {
   "SCENE-FULL": SceneFull, "ARCHITECTURE": SceneFull, "DOCUMENT": SceneFull, "MONEY": SceneFull, "SCENE-LOW": SceneFull,
   "PHOTO-BAND": PhotoFrame, "PHOTO-EDGE": PhotoFrame, "PHOTO-CARD": PhotoFrame, "PHOTO-INSET": PhotoFrame, "PHOTO-STRIP": PhotoFrame,
   "HERO-LOW": TypeFull, "HERO-SCATTER": TypeFull, "HERO-OVER": TypeFull,
-  "TYPE-TITLE": TypeCard, "TYPE-CHAPTER": TypeCard, "TYPE-DEFINITION": TypeCard, "NUMBER-STAT": TypeFull,
+  "TYPE-TITLE": TypeCard, "TYPE-CHAPTER": TypeCard, "TYPE-DEFINITION": TypeCard, "NUMBER-STAT": TypeFull, "ENTITY-ART": EntityArt,
   "MAP-CENTERED": MapCentered, "LIST-BUILD": ListBuild, "TIMELINE": Timeline, "COMPARISON-SPLIT": ComparisonSplit,
 };
 

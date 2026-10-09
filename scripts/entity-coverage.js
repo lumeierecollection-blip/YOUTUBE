@@ -25,7 +25,7 @@ import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.
 const MONTH = "(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept?|Oct|Nov|Dec)";
 const DATE_RE = new RegExp(`\\b(?:${MONTH}\\.?\\s+(?:\\d{1,2}(?:st|nd|rd|th)?,?\\s+)?(?:1[89]|20)\\d{2}|${MONTH}\\.?\\s+\\d{1,2}(?:st|nd|rd|th)?\\b|(?:1[89]|20)\\d{2})\\b`, "g");
 const SPELLED = "one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|fifteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|a few|several|many";
-const SPAN_RE = new RegExp(`\\b(\\d[\\d,]*(?:\\.\\d+)?|${SPELLED})[-\\s]+(years?|months?|weeks?|days?|hours?|minutes?|decades?|centuries)(?:[-\\s]+old)?\\b`, "gi");
+const SPAN_RE = new RegExp(`\\b(\\d[\\d,]*(?:\\.\\d+)?|${SPELLED})[-\\s]+(years?|months?|weeks?|days?|hours?|minutes?|decades?|centuries)\\b(?![-\\s]+old\\b)`, "gi");
 const FROM_TO_RE = new RegExp(`\\b(?:from|between)\\s+((?:1[89]|20)\\d{2})\\s+(?:to|and|until|through|[-\\u2013])\\s+((?:1[89]|20)\\d{2})\\b`, "i");
 
 const ORG = new Set(["organization", "company", "institution", "building", "outlet", "agency"]);
@@ -62,7 +62,12 @@ export function entitiesOf({ sentence = "", named_entities = [] } = {}) {
   for (const q of quantitiesOf(text)) {
     const i = text.indexOf(q.value);
     if (i < 0 || inSpan(i) || dateAt.some(([a, b]) => i >= a && i < b)) continue;
-    push({ type: "number", name: q.value.trim() });
+    const v = q.value.trim();
+    // A figure the sentence STATES, not a count word or an identifier: "J-1 visa", "1 powerful program", "Directive 26-12".
+    if (/[A-Za-z]-$/.test(text.slice(Math.max(0, i - 2), i)) || /^\d{1,2}-\d/.test(text.slice(i))) continue;
+    if (/^[\d,.]+[-\s]*(?:year|month|week|day|hour|minute)s?\b/i.test(text.slice(i))) continue;   // an age or a duration modifier is a span, not a figure
+    if (!/[$€£%]|percent|thousand|million|billion|trillion|\b[kKmMbB]\b/i.test(v) && Number(v.replace(/[^\d.]/g, "")) < 10) continue;
+    push({ type: "number", name: v });
   }
   return out;
 }
@@ -80,9 +85,10 @@ export function drawnOf(c) {
   if (!c) return out;
   if (c.photo) out.push({ kind: c.photo.kind === "person" || c.photo.view === "person" ? "portrait" : "photo", name: c.photo.entity, region: c.photo.region || null });
   for (const v of c.concept_visuals || []) out.push({ kind: v.logo ? "logo" : v.class === "symbol" ? "symbol" : v.class === "cutout" ? "cutout" : v.class || "visual", name: v.name });
-  if (c.flag) out.push({ kind: "flag", name: c.flag.name, region: c.flag.region });
-  if (c.plate) out.push({ kind: `plate-${c.plate.kind}`, name: c.plate.name });
-  if (c.span) out.push({ kind: "span", name: c.span.label, ends: c.span.ends || null });
+  if (c.art) {
+    const k = c.art.kind;
+    out.push({ kind: k === "flag" ? "flag" : k === "span" ? "span" : k === "date" ? "figure" : k, name: c.art.name, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || c.art.name });
+  }
   if (c.composition === "MAP-CENTERED" && c.data?.place) out.push({ kind: "map", name: c.data.place, region: resolveRegion(c.data.place) });
   if (["NUMBER-FULL", "NUMBER-STAT"].includes(c.composition) && c.data?.value) out.push({ kind: "figure", name: String(c.data.value), text: `${c.data.value} ${c.data.label || ""}` });
   if (c.composition === "DATA-FULL" || c.composition === "COMPARISON-SPLIT" || c.composition === "TIMELINE" || c.composition === "LIST-BUILD" || c.composition === "PROCESS-FULL") out.push({ kind: "chart", name: c.visual_type, data: flatData(c.data) });
