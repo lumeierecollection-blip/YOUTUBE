@@ -244,3 +244,14 @@ test("chooseShots round 2: when the per-beat picks still break a rule, Gemini ch
   assert.deepEqual(r.problems, []);
   assert.deepEqual(shotSequenceProblems(r.choice), []);
 });
+test("a number beat whose sentence names an object is offered that object as an object shot; one image on two beats breaks the sequence", () => {
+  const cash = { name: "cash", class: "cutout", asset: "cutouts-live/1/2-cash.png", w: 800, h: 520, source_url: "https://pixabay.com/photos/cash-123/" };
+  const b = mk(2, "Keep 500 dollars in cash.", { visual_type: "COUNTER", composition: "NUMBER-FULL", data: { value: "500", label: "dollars cash" } });
+  b.alt_visuals = [cash];
+  const menu = shotMenu(b.canvas, b, { plan: { beats: [b] } });
+  const obj = menu.find((o) => o.shot === "HERO-LOW:cash");
+  assert.ok(obj, menu.map((o) => o.shot).join(", "));
+  assert.equal(obj.canvas.headline, "500 dollars cash");
+  const twin = { ...obj, canvas: { ...obj.canvas } };
+  assert.ok(shotSequenceProblems([obj, menu.find((o) => o.shot === "FIGURE"), twin]).some((p) => /same image/.test(p.why)));
+});

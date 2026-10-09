@@ -43,7 +43,7 @@ const { fetchCutoutForBeat, qualifyConcept } = createRequireEntity(import.meta.u
 const { resolveSceneEntity, sceneEntities, fallbackAsset } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
 const { askProviders: askVisualProviders } = createRequireEntity(import.meta.url)("./verify-cutout-image.cjs");
 import { chooseBeatVisual } from "./beat-visual.js";
-import { createUsedImages } from "./lib/used-images.js";
+import { createUsedImages, imageKeys } from "./lib/used-images.js";
 const { verifyPlaceImage } = createRequireEntity(import.meta.url)("./verify-place-image.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
@@ -1068,6 +1068,13 @@ export function shotMenu(canvas, b, ctx = {}) {
     const withSym = { ...JSON.parse(JSON.stringify(canvas)), concept_visuals: [{ name: sym, class: "symbol", w: 1, h: 1, fallback: true }], composition: "TYPE-FULL", emphasis_beat: false };
     for (const s of HERO_SHOTS) add(withSym, s, { id: `${s}:${sym}`, symbol: sym });
   }
+  // A number beat whose sentence names an object (alt_visuals, fetched and verified in the concept
+  // step): offered as an object shot — the number and its label as the words, the object as the hero.
+  if (canvas.composition === "NUMBER-FULL" && Array.isArray(b.alt_visuals) && b.alt_visuals.length) {
+    const words = [canvas.data?.value, canvas.data?.label].filter(Boolean).join(" ") || canvas.headline;
+    const withObj = { ...JSON.parse(JSON.stringify(canvas)), visual_type: "TYPE", data: null, composition: "TYPE-FULL", headline: words, concept_visuals: b.alt_visuals, emphasis_beat: false, headline_zone: "top", chart_zone: "middle" };
+    for (const s of HERO_SHOTS) add(withObj, s, { id: `${s}:${b.alt_visuals[0].name}`, object: { visual: b.alt_visuals[0], headline: words } });
+  }
   // A words-only beat may also be drawn as the figure its OWN sentence states — a flow, a trend, a
   // stated number, a list, a timeline, a comparison — through the same gates the visual-first pass
   // uses (candidatesFor + checkVisual; a figure another beat already draws is not offered). A map
@@ -1108,6 +1115,14 @@ export function shotSequenceProblems(choice, indices = choice.map((_, i) => i)) 
     out.push({ i: w.start + 2, why: w.run.length ? `${w.run.map((d) => name[d]).join(" + ")} on three beats in a row (${span})` : `${w.repeating.map((d) => name[d]).join(" and ")} both repeat inside ${span}` });
   }
   choice.forEach((o, i) => { if (i > 0 && o.key === choice[i - 1].key) out.push({ i, why: `beats ${indices[i - 1]} and ${indices[i]} are the same composition (${o.key})` }); });
+  // No image on two beats (Layer 1 no-photo-repeat; keyed by asset AND source — scripts/lib/used-images.js).
+  const seenImg = new Map();
+  choice.forEach((o, i) => {
+    const c = o.canvas || {};
+    for (const k of new Set([c.photo, ...(c.concept_visuals || []).filter((v) => v?.class === "cutout")].filter(Boolean).flatMap((v) => imageKeys(v)))) {
+      if (seenImg.has(k) && seenImg.get(k) !== i) out.push({ i, why: `beats ${indices[seenImg.get(k)]} and ${indices[i]} show the same image` }); else seenImg.set(k, i);
+    }
+  });
   return out;
 }
 /**
@@ -1215,6 +1230,8 @@ Respond ONLY with JSON: {"sequence": <number>}`);
     b.shot = choice[i].plain || choice[i].shot;
     // A symbol taken: recorded where canvasContentFor rebuilds a TYPE beat's hero from (fallback_symbol).
     if (choice[i].symbol) b.fallback_symbol = choice[i].symbol;
+    // An object taken (a number beat shown with its object): the beat is the object and its words now.
+    if (choice[i].object) { b.visual_type = "TYPE"; b.data = null; b.hero_cutout = choice[i].object.visual; b.headline = choice[i].object.headline; delete b.type_layout; }
     // A figure taken: the beat's content is that figure now (it was gated as the visual-first pass gates).
     if (choice[i].figure) { b.visual_type = choice[i].figure.visual_type; b.data = choice[i].figure.data; delete b.type_layout; }
   });
@@ -1713,7 +1730,11 @@ async function resolveCanvas(channelId, planPath, plan) {
       // TYPE-SPLIT beats are text-only too (TEMPLATE_MONOCULTURE, CI run
       // 36953236514); converted in step 3 only if a visual resolves.
       // (a logo or a money object already holds the hero cutout: part B / G)
-      if (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || c.name_card || (c.concept_visuals || []).length || String(c.visual_type).toUpperCase() !== "TYPE") continue;
+      // A NUMBER beat whose sentence names a physical object ("$500 in cash"): its object is fetched
+      // too, but only OFFERED — to Gemini at render time as an object shot (chooseShots), the
+      // reference's number-with-its-object (ref-02 "1 MILLION dollar" among the money). Not attached.
+      const altOnly = c.composition === "NUMBER-FULL" && String(c.visual_type).toUpperCase() === "COUNTER" && !!c.data?.value;
+      if (!altOnly && (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || c.name_card || (c.concept_visuals || []).length || String(c.visual_type).toUpperCase() !== "TYPE")) continue;
       // The hook and the CTA get their object too (owner's spec 2026-10-03, "PNGs on every
       // beat" — this replaces "the hook and the CTA stay TYPE").
       const vc = validateConcepts(b.concepts, b.narration || "", CUTOUT_SPECS);
@@ -1726,7 +1747,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       const isPeople = (n) => PEOPLE.has(n) || PEOPLE_WORDS.test(n);
       if (namesPerson && vc.concepts.some(isPeople)) console.log(`[concepts] ch-${channelId} beat ${b.index}: names a person — generic people cutouts dropped (${vc.concepts.filter(isPeople).join(", ")})`);
       const names = (namesPerson ? vc.concepts.filter((n) => !isPeople(n)) : vc.concepts).slice(0, 3);
-      if (names.length) wanted.push({ bi, b, names, from: vc.from });
+      if (names.length) wanted.push({ bi, b, names, from: vc.from, altOnly });
     }
     // 2. Resolve: symbol drawn; cutout bank (verified) -> live (verified) -> none; scene none.
     // Three questions (verify-image.cjs, owner's spec 2026-10-03 part E): shows YES, LITERAL, CLEAN.
@@ -1774,7 +1795,13 @@ async function resolveCanvas(channelId, planPath, plan) {
     if (Date.now() - T0 >= BUDGET_MS) console.log(`[cutout-live] ch-${channelId}: ${(BUDGET_MS / 60000).toFixed(0)}-minute budget reached, using ${resolved}/${tasks.length} resolved cutouts`);
     // 3. Attach, in beat order (the TYPE-SPLIT conversion sees its final neighbours), against the
     // SAME usedImages every other path fills (attachConceptVisuals).
-    attachConceptVisuals({ wanted, results, used: usedImages, stats, channelId });
+    attachConceptVisuals({ wanted: wanted.filter((w) => !w.altOnly), results, used: usedImages, stats, channelId });
+    // The number beats' objects: kept on the beat as alternatives (alt_visuals) for chooseShots — only
+    // verified cutouts, and only ones no beat already shows (checked, not recorded: an offer is not a use).
+    for (const w of wanted.filter((x) => x.altOnly)) {
+      const alts = w.names.map((n) => results.get(`${w.bi}:${n}`)).filter((v) => v && v.class === "cutout" && v.asset && !imageKeys(v).some((k) => usedImages.has(k)));
+      if (alts.length) { w.b.alt_visuals = alts.slice(0, 1); console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${alts[0].name} offered beside its number (not attached)`); }
+    }
     console.log(`[cutout-live] ch-${channelId}: ${stats.bank} from the bank, ${stats.live} live, ${stats.symbol} symbol(s), ${stats.none} concept beat(s) with no visual; ${((Date.now() - T0) / 1000).toFixed(0)} s`);
     // Final visual-first ratio (owner spec 2026-10-02): a TYPE beat that shows a
     // named object (a concept cutout / symbol) counts as visual.
