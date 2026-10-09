@@ -1458,7 +1458,9 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   // About the body's floor when it fills the frame (it then stays inside its zone and keeps its span); about its own centre when it is a
   // small line — a line standing on the floor barely moves about the floor (board 37983616641: TYPE-CHAPTER static 3 s). Either way the
   // shrink stays inside the content's own box.
-  const cbd = contentBounds(L), ambOriginY = cbd && cbd.h < 700 ? Math.round(cbd.y + cbd.h / 2) : BOTTOM;
+  // A statement standing on the floor (TYPE-SPLIT's second half, a TYPE-FULL hero) moves about ITS centre: about the floor it barely moves.
+  const cbd = contentBounds(L), hb = L.hero && L.boxes[L.hero];
+  const ambOriginY = String(L.composition).startsWith("TYPE") && hb && hb.h < 700 ? Math.round(hb.y + hb.h / 2) : cbd && cbd.h < 700 ? Math.round(cbd.y + cbd.h / 2) : BOTTOM;
   return (
     <Theme.Provider value={theme}>
       <Anim.Provider value={{ ...(c.anim || {}), dur, accent, kinetic: c.kinetic || null, beat: idx, spoken: beat.spoken || null }}>
