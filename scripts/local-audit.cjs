@@ -725,6 +725,40 @@ async function visualCentred(video, beats, m_fps = 30) {
 }
 
 /**
+ * visual-contrast (owner, 2026-10-09: "no large element of the visual may share the ground's luminance, so it disappears.
+ * A flag with a white field on a white ground fails — the white stripe vanishes and the flag reads as loose bars"), on the
+ * RENDERED frame (after the picture pops): a rectangular visual — a flag, a framed photo card — must be BOUNDED all the way
+ * round: at least 92% of the ring of pixels just inside its box differ from the ground (by luma > 25 or chroma > 30). A flag
+ * drawn with its ink border passes however white its fields are; one drawn without fails. A cut-out or logo that vanishes
+ * is caught by visual-centred (its box is not inked) and, before render, by scripts/ground-legal.mjs.
+ */
+async function visualContrast(video, beats, fps = 30) {
+  const bad = [], rows = [];
+  const W = 540, H = 960, sc = H / 1920;
+  beats.forEach((b, i) => {
+    const c = b.canvas;
+    const box = c?.composition === "ENTITY-ART" && c.art?.kind === "flag" ? c.boxes?.art : ["PHOTO-CARD", "PHOTO-INSET"].includes(c?.composition) ? c.boxes?.photo : null;
+    if (!box || !(box.w > 0)) return;
+    const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / fps + 0.4 : 0.9;
+    const t = (b.start_sec ?? 0) + Math.min(Math.max((b.duration_sec ?? 0) * 0.62, popSec), Math.max(0, (b.duration_sec ?? 0) - 0.1));
+    const buf = rgbFrame(video, t, W, H);
+    if (!buf) return;
+    const g = frameGround(buf, W, H);
+    const px = (x, y) => { const o = (y * W + x) * 3; return [buf[o], buf[o + 1], buf[o + 2]]; };
+    const differs = (x, y) => { const [r, gg, bl] = px(x, y); const l = 0.299 * r + 0.587 * gg + 0.114 * bl; return Math.abs(l - g.l) > 25 || Math.max(r, gg, bl) - Math.min(r, gg, bl) > 30; };
+    const x0 = Math.max(0, Math.round(box.x * sc) + 3), x1 = Math.min(W - 1, Math.round((box.x + box.w) * sc) - 4), y0 = Math.max(0, Math.round(box.y * sc) + 3), y1 = Math.min(H - 1, Math.round((box.y + box.h) * sc) - 4);
+    let n = 0, d = 0;
+    const ring = (x, y) => { n++; if (differs(x, y)) d++; };
+    for (let x = x0; x <= x1; x++) { ring(x, y0); ring(x, y1); }
+    for (let y = y0; y <= y1; y++) { ring(x0, y); ring(x1, y); }
+    const share = n ? d / n : 1;
+    rows.push(`beat ${i} (${c.composition}${c.art ? ` ${c.art.kind}` : ""}): ${(share * 100).toFixed(0)}% of its outline differs from the ground`);
+    if (share < 0.92) bad.push(`beat ${i} (${c.composition}${c.art ? ` ${c.art.kind} "${c.art.name}"` : ""}): only ${(share * 100).toFixed(0)}% of its outline is distinguishable from the ground — part of it vanishes into it`);
+  });
+  return { bad, rows };
+}
+
+/**
  * pop-transitions (owner's spec 2026-10-02): across every beat boundary the
  * composition replaces itself in place — no frame of the 10-frame window may
  * be empty (the old "cut" left blank frames between beats). Every frame from
@@ -815,6 +849,9 @@ async function canvasChecks(video, m) {
   // frames-nonempty and pop-transitions, which stay hard.
   const mz = middleZoneFilled(video, beats);
   out.push({ id: "middle-zone-filled", pass: true, advisory: true, detail: (mz.bad.length ? mz.bad.join("; ") : "every non-photo beat fills its middle zone") + (mz.bad.length ? " [ADVISORY - not gating]" : "") });
+  const vcon = await visualContrast(video, beats, m.fps || 30);
+  vcon.rows.forEach((r) => console.log(`[contrast] ${r}`));
+  out.push({ id: "visual-contrast", pass: !vcon.bad.length, detail: vcon.bad.length ? vcon.bad.join("; ") : vcon.rows.length ? `${vcon.rows.length} flag / card visual(s), each bounded all the way round against its ground` : "no flag or framed-photo visual to judge" });
   const vc = await visualCentred(video, beats, m.fps || 30);
   vc.rows.forEach((r) => console.log(`[centred] ${r}`));
   out.push({ id: "visual-centred", pass: !vc.bad.length, detail: vc.bad.length ? vc.bad.join("; ") : `${vc.rows.length} visual(s) on the frame, none with its mass in the top third` });
