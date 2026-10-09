@@ -130,3 +130,10 @@ test("the caption never repeats the entity the plate carries; a logo item covers
   assert.equal(coverageOf(logo, { type: "organization", name: "NASA" }).by.startsWith("logo"), true);
   assert.equal(coverageOf(logo, { type: "organization", name: "FBI" }).by.startsWith("plate-organization"), true);
 });
+
+test("a process diagram and a bare stat card yield to the person / organisation / place the sentence names (boards 37973067720 / 37978510400)", () => {
+  const proc = ladderFor(beat("The Supreme Court ruled in Oklahoma.", { visual_type: "PROCESS", composition: "PROCESS-FULL", data: { steps: ["Court", "Ruling"] } }, [{ type: "organization", name: "Supreme Court" }]));
+  assert.equal(proc.art.kind, "plate-organization"); assert.equal(proc.replaces, true);
+  const stat = ladderFor(beat("Disney+ added 40 million subscribers.", { visual_type: "COUNTER", composition: "NUMBER-FULL", data: { value: "40 million", label: "subscribers" } }, [{ type: "company", name: "Disney+" }]));
+  assert.equal(stat.art.name, "Disney+");
+});

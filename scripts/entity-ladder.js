@@ -35,6 +35,10 @@ export function yieldsTo(b, g) {
   if (kinds.every((k) => k === "cutout" || k === "symbol" || k === "visual")) return true;
   const vt = String(c.visual_type || b.visual_type || "").toUpperCase();
   if (vt === "TREND" || (vt === "LIST" && c.composition === "LIST-BUILD")) return true;
+  // A process diagram of named steps shows none of the entity it names; the entity comes first ("process / relation -> diagram only if stated").
+  if (c.composition === "PROCESS-FULL") return true;
+  // A bare stat card yields to a person / organisation / place the sentence names: that is what the sentence is about (RANK in entity-coverage.js).
+  if (kinds.every((k) => k === "figure") && ["person", "organization", "place"].includes(g.primary?.type)) return true;
   // a bare stat card whose only figure is the number of a span the sentence states ("30" of "30 years") carries nothing of whatever
   // else is named (board 37973067720: France / "30 years"; "The Fund Guide" / "90-day").
   const spans = (g.ents || []).filter((e) => e.type === "span");

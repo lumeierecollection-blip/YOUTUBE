@@ -1311,7 +1311,7 @@ export async function entityLadder(plan, channelId, log = console.log) {
       const prev = plan.beats.find((x) => x.index === b.index - 1)?.art || plan.beats.find((x) => x.index === b.index - 1)?.canvas?.art;
       if (prev && prev.kind === d.art.kind) {
         if (["plate-organization", "plate-person", "plate-place"].includes(d.art.kind)) d.art.style = prev.style === "mono" ? "icon" : "mono";
-        else if (d.art.kind === "date") d.art.style = prev.style === "alt" ? "base" : "alt";
+        else if (d.art.kind === "date" || d.art.kind === "span") d.art.style = prev.style === "alt" ? "base" : "alt";
       }
       // An organisation's plate carries its REAL mark when a free, verified one exists (resolve-scene.cjs: Wikipedia infobox / Commons, licence
       // checked, vision-verified); otherwise its NAME set in type. Never a stock icon (owner, 2026-10-09).
