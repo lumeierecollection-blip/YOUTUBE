@@ -1548,9 +1548,14 @@
           "topic": "Foucault's Unpublished 1978 Text The Hermaphrodites and the Centenary Debate",
           "slug": "foucault-hermaphrodites-1978-centenary",
           "reserved_at": "2026-10-09T12:23:33.115Z"
+        },
+        {
+          "topic": "How Do AI Chatbots Reason Like Humans?",
+          "slug": "how-do-ai-chatbots-reason-like-humans",
+          "reserved_at": "2026-10-09T21:50:01.464Z"
         }
       ],
-      "last_generated": "2026-10-09T12:23:33.115Z"
+      "last_generated": "2026-10-09T21:50:01.464Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
