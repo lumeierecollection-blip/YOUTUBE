@@ -193,3 +193,22 @@ test("chooseShots: a legal sequence whose planned shots all drew is not re-asked
   assert.deepEqual(shotSequenceProblems(r.choice), []);
   assert.equal(asked, 0);
 });
+
+test("MAP-BAND: the map across the top band, its headline low — legal, and [low] by the template measure", () => {
+  for (const variant of [0, 1]) for (const lead_in of [null, "Tuesday"]) {
+    const c = normalizeCanvas({ visual_type: "MAP", composition: "MAP-CENTERED", data: { place: "Iran" }, headline: "Iran closes the strait", map_band: true, variant, lead_in }, 0);
+    const L = canvasLayout(c);
+    assert.deepEqual(layoutViolations(L), [], `v${variant} label=${lead_in}`);
+    assert.equal(L.boxes.map.y, 0);
+    assert.equal(labelsDrawn(canvasManifest(c, 0)).length, 0, "no words in the top band");
+  }
+});
+
+test("chooseShots names each beat's current frame as its menu does (board 37862697531: undrawn planned names were echoed back and matched nothing)", async () => {
+  const p = resolvedPlan();
+  p.beats[1].canvas.shot = "PHOTO-CARD"; p.beats[1].canvas.shot_drawn = false;   // drawn as SCENE-FULL
+  const prompts = [];
+  await chooseShots(p, "t", async (prompt) => { prompts.push(prompt); return { error: "stub" }; });
+  assert.match(prompts[0], /\[1\][^\n]*now: SCENE-FULL\[/);
+  assert.match(prompts[0], /\[0\][^\n]*options: [^\n]*MAP-BAND \[low\]/);
+});

@@ -2898,7 +2898,7 @@
     {
       "id": 6,
       "niche": "Cold Cases & Unsolved Mysteries",
-      "style": "cinematic-documentary",
+      "style": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "bw",
       "channel_name": "Archive Room",
@@ -2990,7 +2990,7 @@
     {
       "id": 10,
       "niche": "Concept Explainers & Intellectual History",
-      "style": "minimal",
+      "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "color",
       "channel_name": "Margin Note",

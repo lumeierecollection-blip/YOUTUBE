@@ -193,7 +193,7 @@ export const SHOTS = [...PHOTO_SHOTS, ...HERO_SHOTS, "FIGURE", "STATEMENT"];
 // Offered at render time, once the content is known (scripts/render-and-qa.js chooseShots):
 // STATEMENT-SPLIT — a statement in two halves, top and low (TYPE-SPLIT); FIGURE-LOW — a number in the
 // top band, its headline low in the middle band (NUMBER-FULL with the zones swapped).
-export const CONTENT_SHOTS = ["STATEMENT-SPLIT", "FIGURE-LOW"];
+export const CONTENT_SHOTS = ["STATEMENT-SPLIT", "FIGURE-LOW", "MAP-BAND"];
 /** A shot name as the planner wrote it, or null ("photo band" / "photo_band" -> PHOTO-BAND). */
 export function shotName(s) {
   const n = String(s || "").trim().toUpperCase().replace(/[\s_]+/g, "-");
@@ -1052,12 +1052,22 @@ function tableLayout(c) {
     // The map fills the frame above the caption row (it bleeds like a photo:
     // its edges feather into the studio), zoomed on the region; the engine
     // labels the region itself. The header floats over it.
+    if (c?.map_band && c?.headline) {
+      // MAP-BAND (render-time shot, the PHOTO-BAND of a map): the map fills the top band edge to
+      // edge, the headline sits low in the middle band under it — the words are not at the top.
+      boxes.map = box(0, 0, FRAME.w, 604);
+      const kb = c.lead_in ? dataBox(String(c.lead_in), { width: 700, size: 34, maxLines: 1, y: 0, flip }) : null;
+      boxes.headline = headlineBox(c.headline, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - BODY_TOP - (kb ? kb.h + 22 : 0), max: 170 });
+      if (kb) boxes.kicker = { ...kb, y: boxes.headline.y - 22 - kb.h };
+      hero = "map";
+    } else {
     Object.assign(boxes, dataHeader(c, flip));
     if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);
     // Zones: the map is the middle zone (its edges still feather), not the
     // whole frame behind the header — its linework crossed the headline.
     boxes.map = box(0, BODY_TOP, FRAME.w, BOTTOM - BODY_TOP);
     hero = "map";
+    }
   } else if (comp === "LIST-BUILD") {
     Object.assign(boxes, dataHeader(c, flip));
     if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);

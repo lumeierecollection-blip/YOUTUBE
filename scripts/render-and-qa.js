@@ -1019,6 +1019,13 @@ export function applyShot(c, b, log = console.log) {
     c.headline_zone = want === "FIGURE-LOW" ? "middle" : "top"; c.chart_zone = want === "FIGURE-LOW" ? "top" : "middle";
     return yes();
   }
+  // MAP-BAND: the map across the top band, its headline low (canvas-layout.js MAP-CENTERED map_band).
+  if (want === "MAP-BAND" || (want === "FIGURE" && c.composition === "MAP-CENTERED")) {
+    if (c.composition !== "MAP-CENTERED") return no("it frames a map");
+    if (want === "MAP-BAND" && !c.headline) return no("the map has no headline to put under it");
+    c.map_band = want === "MAP-BAND";
+    return yes();
+  }
   const base = compositionFor(c.visual_type, !!c.photo, { view: c.photo?.view, split: !(c.concept_visuals || []).length && c.type_layout === "split" && !!splitHeadline(c.headline) });
   const own = SHOT_COMPOSITIONS.includes(c.composition) || c.composition === "SCENE-FULL" || c.composition === "PORTRAIT" ? base : c.composition;
   const sc = shotComposition(own, want, c);
@@ -1044,15 +1051,14 @@ export function shotMenu(canvas, b) {
     const c2 = JSON.parse(JSON.stringify(base));
     if (!applyShot(c2, { index: b.index, shot: s }, () => {}).drawn) return;
     const o = { ...measuredShot(c2, b, extra.id || s), plain: s, ...extra };
-    const sig = `${o.key}|${o.words}|${c2.headline_zone}`;
-    if (seen.has(sig)) return;
-    seen.add(sig);
+    if (seen.has(o.sig)) return;
+    seen.add(o.sig);
     out.push(o);
   };
   for (const s of [...SHOTS, ...CONTENT_SHOTS]) add(canvas, s);
   // The beat's own frame as it resolved (a name card, an emphasis statement...) is always an option —
   // under its shot's name when one draws the same frame, else as AS-RESOLVED.
-  { const o = { ...measuredShot(JSON.parse(JSON.stringify(canvas)), b, "AS-RESOLVED"), plain: canvas.shot || null, asIs: true }; if (!seen.has(`${o.key}|${o.words}|${canvas.headline_zone}`)) { seen.add(`${o.key}|${o.words}|${canvas.headline_zone}`); out.push(o); } }
+  { const o = { ...measuredShot(JSON.parse(JSON.stringify(canvas)), b, "AS-RESOLVED"), plain: canvas.shot || null, asIs: true }; if (!seen.has(o.sig)) { seen.add(o.sig); out.push(o); } }
   // A words-only beat may show the drawn symbol for what its sentence STATES (composition-variety.js
   // symbolFor — the owner's grounded fallback: "risk" -> a warning triangle); offered as an object
   // shot, the planner's to take or leave. Nothing the sentence does not state is offered.
@@ -1068,7 +1074,10 @@ function measuredShot(c, b, shot) {
   const m = canvasManifest(c, b.index ?? 0);
   const d = devicesOf({ canvas: m });
   const key = m.composition + (m.boxes?.cutout0 ? `+HERO:${(m.concept_visuals || [])[0]?.name || ""}` : "") + (m.boxes?.lead_phrase ? "+NAME" : "");
-  return { shot, composition: m.composition, key, words: d.label ? "top" : "low", phrase: !!d.phrase, typeLed: !!d.typeLed, canvas: c };
+  const words = d.label ? "top" : "low";
+  // The frame's identity: two options with the same signature draw the same frame.
+  const sig = `${key}|${words}|${c.headline_zone || ""}|${c.map_band ? "band" : ""}|${c.emphasis_beat ? "emph" : ""}`;
+  return { shot, composition: m.composition, key, words, phrase: !!d.phrase, typeLed: !!d.typeLed, sig, canvas: c };
 }
 /** The sequence's problems, as Layer 1 judges them (template-window; canvas-type's no-repeat). */
 export function shotSequenceProblems(choice, indices = choice.map((_, i) => i)) {
@@ -1100,7 +1109,10 @@ const describeBeat = (c) => {
 export async function chooseShots(plan, channelId, ask = (prompt) => callLLM([{ role: "user", content: prompt }], { maxTokens: 1200, temperature: 0 }, "shots-final")) {
   const idx = plan.beats.map((b) => b.index);
   const menus = plan.beats.map((b) => shotMenu(b.canvas, b));
-  const current = plan.beats.map((b) => measuredShot(b.canvas, b, b.canvas.shot || "-"));
+  // Each beat as it resolved, named the way its menu names that same frame (board 37862697531: the
+  // planned-but-undrawn shot's name was shown as "now", Gemini repeated it, it matched no option,
+  // and every beat stayed as it was).
+  const current = plan.beats.map((b, i) => { const o = measuredShot(b.canvas, b, "AS-RESOLVED"); return { ...o, shot: menus[i].find((m) => m.sig === o.sig)?.shot || "AS-RESOLVED" }; });
   const undrawn = plan.beats.filter((b) => b.canvas.shot && b.canvas.shot_drawn === false).map((b) => b.index);
   const show = (ch) => ch.map((o) => `${o.shot}[${o.words}]`).join(" ");
   let problems = shotSequenceProblems(current, idx);
@@ -1108,7 +1120,7 @@ export async function chooseShots(plan, channelId, ask = (prompt) => callLLM([{ 
   if (!problems.length && !undrawn.length) return { choice: current, problems, asked: 0 };
   const lines = plan.beats.map((b, i) => `[${b.index}] "${String(b.narration || "").slice(0, 140)}" — shows ${describeBeat(b.canvas)}; now: ${current[i].shot}[${current[i].words}]; options: ${menus[i].map((o) => `${o.shot} [${o.words}${o.typeLed ? ", words-only" : ""}]`).join(", ")}`).join("\n");
   const promptFor = (choice, probs) => `You are the visual director of a vertical video. Its look is the channel's reference: an editorial collage that changes its shot every beat. The content of every beat is now fixed; choose each beat's SHOT from ITS options (each is drawable and legal on its own; [top] = its words sit in the top band, [low] = under a picture or low).
-Shots: SCENE-FULL photo fills the frame; SCENE-LOW photo fills it, words low; PHOTO-BAND photo bleeds off the top third; PHOTO-EDGE photo cropped by the far edge; PHOTO-CARD photo in a heavy dark frame; PHOTO-INSET small rounded card; PHOTO-STRIP photo through a torn strip; PORTRAIT photo standing; HERO-STACK object centred under the words; HERO-LOW object large and low; HERO-SCATTER objects at angles; HERO-OVER object above the words; FIGURE a chart/number/map in its own frame; FIGURE-LOW a number high, its headline under it; STATEMENT words alone, low; STATEMENT-SPLIT words in two halves, top and low. An option "SHOT:symbol" is that object shot with the drawn symbol for what the sentence states.
+Shots: SCENE-FULL photo fills the frame; SCENE-LOW photo fills it, words low; PHOTO-BAND photo bleeds off the top third; PHOTO-EDGE photo cropped by the far edge; PHOTO-CARD photo in a heavy dark frame; PHOTO-INSET small rounded card; PHOTO-STRIP photo through a torn strip; PORTRAIT photo standing; HERO-STACK object centred under the words; HERO-LOW object large and low; HERO-SCATTER objects at angles; HERO-OVER object above the words; FIGURE a chart/number/map in its own frame; FIGURE-LOW a number high, its headline under it; MAP-BAND the map across the top band, its headline under it; STATEMENT words alone, low; STATEMENT-SPLIT words in two halves, top and low. An option "SHOT:symbol" is that object shot with the drawn symbol for what the sentence states.
 Rules, checked on the render: never the same composition on two beats in a row; never [top] on three beats in a row; never a words-only beat on three in a row, nor [top] twice AND words-only twice inside any three beats. Prefer the shot that shows the beat's content best.
 
 ${lines}

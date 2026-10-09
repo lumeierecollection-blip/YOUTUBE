@@ -1,181 +1,195 @@
 [
- {
-  "text": "Test fixture photo of a cave entrance.",
-  "c": {
-   "visual_type": "PHOTO",
-   "composition": "PHOTO-BAND",
-   "shot": "PHOTO-BAND",
-   "photo": {
-    "asset": "b-roll/ch-fixture/cave-entrance.jpg",
-    "entity": "Cave entrance",
-    "kind": "place",
-    "view": "place",
-    "w": 1920,
-    "h": 1275,
-    "credit": "Repo test fixture photo"
-   },
-   "headline": "The cave opens here (fixture)",
-   "motion_tier": "medium"
-  }
- },
- {
-  "text": "Test fixture cutout of a piggy bank.",
-  "c": {
-   "visual_type": "TYPE",
-   "composition": "HERO-LOW",
-   "shot": "HERO-LOW",
-   "concept_visuals": [
     {
-     "name": "piggy-bank",
-     "class": "cutout",
-     "asset": "asset-library/ch-01/piggy-bank-savings-all-of-our-savings-to-the-homeland-0.png",
-     "w": 2281,
-     "h": 2448
-    }
-   ],
-   "headline": "Savings sit low (fixture)",
-   "motion_tier": "medium"
-  }
- },
- {
-  "text": "Test fixture photo in a framed card.",
-  "c": {
-   "visual_type": "PHOTO",
-   "composition": "PHOTO-CARD",
-   "shot": "PHOTO-CARD",
-   "photo": {
-    "asset": "b-roll/ch-fixture/tunnel-crawl.jpg",
-    "entity": "Tunnel crawl",
-    "kind": "place",
-    "view": "place",
-    "w": 576,
-    "h": 768,
-    "credit": "Repo test fixture photo"
-   },
-   "headline": "A framed card (fixture)",
-   "motion_tier": "medium"
-  }
- },
- {
-  "text": "Test fixture cutout above the words.",
-  "c": {
-   "visual_type": "TYPE",
-   "composition": "HERO-OVER",
-   "shot": "HERO-OVER",
-   "concept_visuals": [
+        "text":  "Test fixture photo of a cave entrance.",
+        "c":  {
+                  "visual_type":  "PHOTO",
+                  "composition":  "PHOTO-BAND",
+                  "shot":  "PHOTO-BAND",
+                  "photo":  {
+                                "asset":  "b-roll/ch-fixture/cave-entrance.jpg",
+                                "entity":  "Cave entrance",
+                                "kind":  "place",
+                                "view":  "place",
+                                "w":  1920,
+                                "h":  1275,
+                                "credit":  "Repo test fixture photo"
+                            },
+                  "headline":  "The cave opens here (fixture)",
+                  "motion_tier":  "medium"
+              }
+    },
     {
-     "name": "cave-spider",
-     "class": "cutout",
-     "asset": "asset-library/ch-fixture/cave-spider-cutout.png",
-     "w": 742,
-     "h": 665
-    }
-   ],
-   "headline": "The object sits above its words (fixture)",
-   "motion_tier": "medium"
-  }
- },
- {
-  "text": "Test fixture photo cropped by the frame edge.",
-  "c": {
-   "visual_type": "PHOTO",
-   "composition": "PHOTO-EDGE",
-   "shot": "PHOTO-EDGE",
-   "photo": {
-    "asset": "b-roll/ch-fixture/black-smoker.jpg",
-    "entity": "Black smoker",
-    "kind": "place",
-    "view": "place",
-    "w": 1920,
-    "h": 1440,
-    "credit": "Repo test fixture photo"
-   },
-   "headline": "Cropped by the edge (fixture)",
-   "motion_tier": "medium"
-  }
- },
- {
-  "text": "Test fixture photo as a small offset card.",
-  "c": {
-   "visual_type": "PHOTO",
-   "composition": "PHOTO-INSET",
-   "shot": "PHOTO-INSET",
-   "photo": {
-    "asset": "b-roll/ch-fixture/springtail-macro.jpg",
-    "entity": "Springtail",
-    "kind": "place",
-    "view": "place",
-    "w": 1920,
-    "h": 1920,
-    "credit": "Repo test fixture photo"
-   },
-   "headline": "A small offset card (fixture)",
-   "motion_tier": "medium"
-  }
- },
- {
-  "text": "Test fixture photo with the words low.",
-  "c": {
-   "visual_type": "PHOTO",
-   "composition": "SCENE-LOW",
-   "shot": "SCENE-LOW",
-   "photo": {
-    "asset": "b-roll/ch-fixture/water-scorpion.jpg",
-    "entity": "Water scorpion",
-    "kind": "place",
-    "view": "place",
-    "w": 911,
-    "h": 907,
-    "credit": "Repo test fixture photo"
-   },
-   "headline": "The words sit low (fixture)",
-   "motion_tier": "medium"
-  }
- },
- {
-  "text": "Test fixture symbol off centre.",
-  "c": {
-   "visual_type": "TYPE",
-   "composition": "HERO-SCATTER",
-   "shot": "HERO-SCATTER",
-   "concept_visuals": [
+        "text":  "Test fixture cutout of a piggy bank.",
+        "c":  {
+                  "visual_type":  "TYPE",
+                  "composition":  "HERO-LOW",
+                  "shot":  "HERO-LOW",
+                  "concept_visuals":  [
+                                          {
+                                              "name":  "piggy-bank",
+                                              "class":  "cutout",
+                                              "asset":  "asset-library/ch-01/piggy-bank-savings-all-of-our-savings-to-the-homeland-0.png",
+                                              "w":  2281,
+                                              "h":  2448
+                                          }
+                                      ],
+                  "headline":  "Savings sit low (fixture)",
+                  "motion_tier":  "medium"
+              }
+    },
     {
-     "name": "warning-triangle",
-     "class": "symbol",
-     "w": 1,
-     "h": 1
+        "text":  "Test fixture photo in a framed card.",
+        "c":  {
+                  "visual_type":  "PHOTO",
+                  "composition":  "PHOTO-CARD",
+                  "shot":  "PHOTO-CARD",
+                  "photo":  {
+                                "asset":  "b-roll/ch-fixture/tunnel-crawl.jpg",
+                                "entity":  "Tunnel crawl",
+                                "kind":  "place",
+                                "view":  "place",
+                                "w":  576,
+                                "h":  768,
+                                "credit":  "Repo test fixture photo"
+                            },
+                  "headline":  "A framed card (fixture)",
+                  "motion_tier":  "medium"
+              }
+    },
+    {
+        "text":  "Test fixture cutout above the words.",
+        "c":  {
+                  "visual_type":  "TYPE",
+                  "composition":  "HERO-OVER",
+                  "shot":  "HERO-OVER",
+                  "concept_visuals":  [
+                                          {
+                                              "name":  "cave-spider",
+                                              "class":  "cutout",
+                                              "asset":  "asset-library/ch-fixture/cave-spider-cutout.png",
+                                              "w":  742,
+                                              "h":  665
+                                          }
+                                      ],
+                  "headline":  "The object sits above its words (fixture)",
+                  "motion_tier":  "medium"
+              }
+    },
+    {
+        "text":  "Test fixture photo cropped by the frame edge.",
+        "c":  {
+                  "visual_type":  "PHOTO",
+                  "composition":  "PHOTO-EDGE",
+                  "shot":  "PHOTO-EDGE",
+                  "photo":  {
+                                "asset":  "b-roll/ch-fixture/black-smoker.jpg",
+                                "entity":  "Black smoker",
+                                "kind":  "place",
+                                "view":  "place",
+                                "w":  1920,
+                                "h":  1440,
+                                "credit":  "Repo test fixture photo"
+                            },
+                  "headline":  "Cropped by the edge (fixture)",
+                  "motion_tier":  "medium"
+              }
+    },
+    {
+        "text":  "Test fixture photo as a small offset card.",
+        "c":  {
+                  "visual_type":  "PHOTO",
+                  "composition":  "PHOTO-INSET",
+                  "shot":  "PHOTO-INSET",
+                  "photo":  {
+                                "asset":  "b-roll/ch-fixture/springtail-macro.jpg",
+                                "entity":  "Springtail",
+                                "kind":  "place",
+                                "view":  "place",
+                                "w":  1920,
+                                "h":  1920,
+                                "credit":  "Repo test fixture photo"
+                            },
+                  "headline":  "A small offset card (fixture)",
+                  "motion_tier":  "medium"
+              }
+    },
+    {
+        "text":  "Test fixture photo with the words low.",
+        "c":  {
+                  "visual_type":  "PHOTO",
+                  "composition":  "SCENE-LOW",
+                  "shot":  "SCENE-LOW",
+                  "photo":  {
+                                "asset":  "b-roll/ch-fixture/water-scorpion.jpg",
+                                "entity":  "Water scorpion",
+                                "kind":  "place",
+                                "view":  "place",
+                                "w":  911,
+                                "h":  907,
+                                "credit":  "Repo test fixture photo"
+                            },
+                  "headline":  "The words sit low (fixture)",
+                  "motion_tier":  "medium"
+              }
+    },
+    {
+        "text":  "Test fixture symbol off centre.",
+        "c":  {
+                  "visual_type":  "TYPE",
+                  "composition":  "HERO-SCATTER",
+                  "shot":  "HERO-SCATTER",
+                  "concept_visuals":  [
+                                          {
+                                              "name":  "warning-triangle",
+                                              "class":  "symbol",
+                                              "w":  1,
+                                              "h":  1
+                                          }
+                                      ],
+                  "headline":  "A symbol off centre (fixture)",
+                  "motion_tier":  "medium"
+              }
+    },
+    {
+        "text":  "Test fixture photo in a torn strip.",
+        "c":  {
+                  "visual_type":  "PHOTO",
+                  "composition":  "PHOTO-STRIP",
+                  "shot":  "PHOTO-STRIP",
+                  "photo":  {
+                                "asset":  "b-roll/ch-fixture/calcium-formations.jpg",
+                                "entity":  "Calcium formations",
+                                "kind":  "place",
+                                "view":  "place",
+                                "w":  1920,
+                                "h":  1080,
+                                "credit":  "Repo test fixture photo"
+                            },
+                  "headline":  "A torn strip (fixture)",
+                  "motion_tier":  "medium"
+              }
+    },
+    {
+        "text":  "Test fixture statement, words only.",
+        "c":  {
+                  "visual_type":  "TYPE",
+                  "composition":  "TYPE-FULL",
+                  "headline":  "Words alone close the run (fixture)",
+                  "motion_tier":  "medium"
+              }
+    },
+    {
+        "text":  "Test fixture map across the top band.",
+        "c":  {
+                  "visual_type":  "MAP",
+                  "composition":  "MAP-CENTERED",
+                  "map_band":  true,
+                  "shot":  "MAP-BAND",
+                  "data":  {
+                               "place":  "Iran"
+                           },
+                  "headline":  "The map sits above its words (fixture)",
+                  "motion_tier":  "medium"
+              }
     }
-   ],
-   "headline": "A symbol off centre (fixture)",
-   "motion_tier": "medium"
-  }
- },
- {
-  "text": "Test fixture photo in a torn strip.",
-  "c": {
-   "visual_type": "PHOTO",
-   "composition": "PHOTO-STRIP",
-   "shot": "PHOTO-STRIP",
-   "photo": {
-    "asset": "b-roll/ch-fixture/calcium-formations.jpg",
-    "entity": "Calcium formations",
-    "kind": "place",
-    "view": "place",
-    "w": 1920,
-    "h": 1080,
-    "credit": "Repo test fixture photo"
-   },
-   "headline": "A torn strip (fixture)",
-   "motion_tier": "medium"
-  }
- },
- {
-  "text": "Test fixture statement, words only.",
-  "c": {
-   "visual_type": "TYPE",
-   "composition": "TYPE-FULL",
-   "headline": "Words alone close the run (fixture)",
-   "motion_tier": "medium"
-  }
- }
 ]
