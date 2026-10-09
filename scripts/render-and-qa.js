@@ -1998,6 +1998,9 @@ async function resolveCanvas(channelId, planPath, plan) {
     // every drawn kicker pops (Layer 1 kinetic-rules, CI run 37832958615: "kicker has 4 words but 0 entrances").
     assignCanvasAnimations(plan.beats, { seed: channelId, log: () => {} });
   }
+  // A hero object (logo, cut-out) must be legible on the ground the planner gave its beat: ch-2's dark
+  // green Flock logo was drawn on #101010 (board 37901614633). Code enforces legality, Gemini chose the rest.
+  try { const { legaliseGrounds } = await import("./ground-legal.mjs"); await legaliseGrounds(plan.beats, PUBLIC_DIR, { join, existsSync }, (m) => console.log(`ch-${channelId} ${m}`)); } catch (e) { console.log(`[ground] ch-${channelId}: legibility check could not run — ${e.message}`); }
   // The shots, chosen by Gemini on the content as it resolved (chooseShots).
   await chooseShots(plan, channelId);
   assignCanvasAnimations(plan.beats, { seed: channelId, log: () => {} });

@@ -371,8 +371,17 @@ export function splitNumber(value) {
 
 // ── boxes for the four kinds of text ──────────────────────────────────
 /** A ROLE_DATA label: uppercase Inter, `size` px, wrapped into `maxLines` lines of `width`. */
+// A label never ends on a function word: "VESSELS TO DISMANTLE THE" (ch-9 beat 5, board 37901614633) was a
+// sentence fragment cut one word late. The trailing article / preposition / conjunction is dropped from
+// what is DRAWN (nothing is added, no fact changes); a single word is left as it is.
+const DANGLING = new Set(["the", "a", "an", "of", "to", "and", "or", "but", "in", "on", "for", "with", "by", "at", "from", "that", "which", "as", "into", "than", "is", "are", "was", "were", "its", "their", "his", "her", "our", "your", "this", "these", "those", "has", "have", "had", "will", "would", "be", "been"]);
+export function trimDangling(text) {
+  const words = String(text || "").trim().split(/\s+/).filter(Boolean);
+  while (words.length > 1 && DANGLING.has(words[words.length - 1].toLowerCase().replace(/[^a-z']/g, ""))) words.pop();
+  return words.join(" ");
+}
 function dataBox(text, { width = 560, size = 40, maxLines = 2, x, y, flip = 0, bottom = null, weight = 600, center = false } = {}) {
-  const t = String(text || "").toUpperCase();
+  const t = trimDangling(text).toUpperCase();
   const f = fitText(t, width, { max: size, min: ROLE_DATA.sizeBand[0], maxLines, lineH: ROLE_DATA.lineHeight, weight });
   const w = Math.min(width, Math.max(...f.lines.map((l) => textWidth(l, f.size, false, weight)))) + 2;
   const h = f.lines.length * f.size * ROLE_DATA.lineHeight;
@@ -811,6 +820,9 @@ function statCardLayout(c, flip) {
 // floor. `endAt`: the move eases over the first 90% of the beat. The manifest declares each beat's move.
 export const CAMERA = Object.freeze({ photo: 0.10, graph: 0.10, endAt: 0.9, min: 0.08 });
 const HERO_FLOOR = 1296;
+// A bill / coin stands on y 1310, not 1330: its 20 px drop shadow reads as ink and crossed the middle band's edge at
+// y 1340 in 466 columns (board 37901614633 ch-1 beat 5, zones-no-overlap). 1310 keeps the beat's span above 60%.
+const MONEY_FLOOR = 1310;
 /** HERO-LOW / HERO-SCATTER / HERO-OVER: the TYPE-FULL hero beat, its object re-placed. */
 function heroShotLayout(c, comp, flip) {
   const base = tableLayout({ ...c, composition: "TYPE-FULL", emphasis_beat: false, vertical: false });
@@ -1053,7 +1065,7 @@ function tableLayout(c) {
                 if (u.h * a >= MIN_H) break;
               }
             }
-            const e = ext(a, deg), ih = a / r, inkW = Math.min(W, e.w), cy = flatHero ? Math.round(Math.max(980, (v.logo ? 1270 : 1330) - e.h / 2)) : centreY(e.h);
+            const e = ext(a, deg), ih = a / r, inkW = Math.min(W, e.w), cy = flatHero ? Math.round(Math.max(980, (v.logo ? 1270 : MONEY_FLOOR) - e.h / 2)) : centreY(e.h);
             const bx = Math.round(540 - inkW / 2), by = Math.round(cy - e.h / 2);
             const icx = 540 - (e.x0 + e.x1) / 2, icy = cy - (e.y0 + e.y1) / 2;   // the image's centre: its ink centred on (540, cy)
             // Part D.2 (logo): the company's name types on BELOW the logo — the logo stands 60 px
@@ -1675,6 +1687,29 @@ export function canvasManifest(raw, idx) {
  * there; this keeps the hue and lifts the lightness to `minL`. Derived from
  * the configured colour (channels.json colors.canvas_accent), not a new one.
  */
+/**
+ * The accent as it is DRAWN on a ground: the channel's own hue, moved in lightness only as far as it takes to
+ * reach `min` (3:1, WCAG large text) against that ground — lighter on a dark ground, darker on a light one.
+ * A beat's accent word can then never be dark-on-dark or pale-on-white (owner, 2026-10-09). An accent that
+ * already reads is returned unchanged; nothing but lightness moves.
+ */
+export function readableAccent(accent, groundHex, min = 3) {
+  const rgb = (h) => { const m = /^#?([0-9a-f]{6})$/i.exec(String(h || "")); if (!m) return null; const n = parseInt(m[1], 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
+  const lum = (c) => { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); };
+  const a = rgb(accent), g = rgb(groundHex || "#FFFFFF");
+  if (!a || !g) return accent;
+  const cr = (c) => { const x = lum(c), y = lum(g); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+  if (cr(a) >= min) return accent;
+  const toHsl = ([r, gg, b]) => { r /= 255; gg /= 255; b /= 255; const mx = Math.max(r, gg, b), mn = Math.min(r, gg, b), d = mx - mn; let h = 0, s = 0; const l = (mx + mn) / 2; if (d) { s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); h = mx === r ? (gg - b) / d + (gg < b ? 6 : 0) : mx === gg ? (b - r) / d + 2 : (r - gg) / d + 4; h /= 6; } return [h, s, l]; };
+  const fromHsl = ([h, s, l]) => { const q = l < 0.5 ? l * (1 + s) : l + s - l * s, p = 2 * l - q; const f = (t) => { t = (t + 1) % 1; return t < 1 / 6 ? p + (q - p) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? p + (q - p) * (2 / 3 - t) * 6 : p; }; return [f(h + 1 / 3), f(h), f(h - 1 / 3)].map((v) => Math.round(v * 255)); };
+  const [h, s, l0] = toHsl(a);
+  const up = lum(g) < 0.18;   // a dark ground wants a lighter accent
+  for (let l = l0; up ? l <= 0.97 : l >= 0.03; l += up ? 0.02 : -0.02) {
+    const c = fromHsl([h, s, l]);
+    if (cr(c) >= min) return `#${c.map((v) => v.toString(16).padStart(2, "0")).join("")}`;
+  }
+  return up ? "#F2F0EB" : "#111111";
+}
 export function liftAccent(hex, minL = 0.6) {
   const m = /^#?([0-9a-f]{6})$/i.exec(String(hex || ""));
   if (!m) return hex;

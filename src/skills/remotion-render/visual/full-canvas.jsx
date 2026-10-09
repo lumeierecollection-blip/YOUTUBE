@@ -71,7 +71,7 @@ import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
   TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf, backgroundOf, PAPER_OPACITY, BG_RULE, BG_GRADIENT,
-  FRAMED_PHOTO_COMPS, HERO_COMPS, TYPE_CARD_COMPS, CAMERA,
+  FRAMED_PHOTO_COMPS, HERO_COMPS, TYPE_CARD_COMPS, CAMERA, readableAccent,
 } from "./canvas-layout.js";
 
 // Paper texture (part C.3): fractal noise in grey at PAPER_OPACITY over the white ground —
@@ -574,8 +574,8 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
                 </g>
                 <text x={cx} y={vy + (t >= 1 ? m.jitter(i) : 0)} textAnchor="middle" style={{ font: dataFont(vs, 800), letterSpacing: -vs * 0.03 }} fill={th.ink}
                   {...popSvg("NUMBER", g0, cx, vy - vs * 0.35)}>{rollQuantity(b.q, t)}</text>
-                <text x={cx} y={base + 50} textAnchor="middle" style={{ font: dataFont(Math.max(24, ls)), letterSpacing: 0.4 }} fill={th.ink}
-                  {...popSvg("POP_SOFT", g0, cx, base + 50 - ls * 0.35)}>{String(b.label).toUpperCase()}</text>
+                <text x={cx} y={base + 34} textAnchor="middle" style={{ font: dataFont(Math.max(24, ls)), letterSpacing: 0.4 }} fill={th.ink}
+                  {...popSvg("POP_SOFT", g0, cx, base + 34 - ls * 0.35)}>{String(b.label).toUpperCase()}</text>
               </React.Fragment>
             );
           })}
@@ -1244,7 +1244,10 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   const L = canvasLayout(c);
   const Comp = COMPONENTS[L.composition] || TypeFull;
   const theme = themeFor(c, PHOTO_COMPS.includes(L.composition) && !!c.photo && photoShown);
+  // The accent word is drawn at 3:1 or better against THIS beat's ground (canvas-layout.js readableAccent): lighter
+  // on a dark ground, darker on a light one, the channel's hue kept. (It was a fixed lift on dark beats only.)
   if (c.dark && !c.photo) accent = liftAccent(accent);
+  if (!c.photo) accent = readableAccent(accent, c.ground_color || GROUND);
   const zoom0 = (c.motion_tier || "medium") === "major" ? majorZoom(L) : null;
   const zk0 = zoom0 ? 1 + (zoom0.k - 1) * easeInOut(clamp01(bodyLocal / Math.max(1, dur))) : 1;
   // Zones: the camera and the major zoom move only as far as keeps the body inside its zone.
