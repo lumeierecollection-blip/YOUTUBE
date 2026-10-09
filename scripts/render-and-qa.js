@@ -1286,6 +1286,7 @@ Respond ONLY with JSON: {"sequence": <number>}`);
  */
 export async function entityLadder(plan, channelId, log = console.log) {
   const { ladderFor } = await import("./entity-ladder.js");
+  const { sameName } = await import("./entity-coverage.js");
   const { fetchFlag } = await import("./fetch-flag.mjs");
   const { flagCodeOf } = await import("../src/skills/remotion-render/visual/flags.js");
   const done = { map: 0, art: 0, figure: 0, flags: 0 };
@@ -1321,7 +1322,10 @@ export async function entityLadder(plan, channelId, log = console.log) {
         for (const nm of names) {
           let it = null;
           try {
-            const r = await resolveSceneEntity({ channel: String(channelId), beatIndex: String(b.index), entity: { type: "company", name: nm }, context: b.narration || "" });
+            // An agency / institution (NASA, the FBI) is looked up as one — its seal or insignia is searched too; a company / outlet as a company.
+            const t0 = String((b.named_entities || []).find((e) => e && sameName(e.name, nm))?.type || "");
+            const rtype = /institution|agency|government|court|department|bureau/i.test(t0) ? "institution" : "company";
+            const r = await resolveSceneEntity({ channel: String(channelId), beatIndex: String(b.index), entity: { type: rtype, name: nm }, context: b.narration || "" });
             if (r?.ok && r.logo?.asset) it = { name: nm, asset: r.logo.asset, source_url: r.logo.source_url || null, license: r.logo.license || null };
           } catch (e) { log(`[ladder] ch-${channelId} beat ${b.index}: mark for "${nm}" failed (${String(e.message).slice(0, 80)}) — its name in type`); }
           d.art.items.push(it);

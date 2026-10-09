@@ -873,8 +873,9 @@ function MarkPlate({ side, name, item, style, accent, th, hair }) {
   const box = { position: "absolute", left: 0, top: 0, width: side, height: side, boxSizing: "border-box", border: `${hair}px solid ${th.ink}`, overflow: "hidden" };
   const bar = <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 8, backgroundColor: accent }} />;
   if (item?.asset) {
+    // A mark keeps its own colours: on a dark ground it sits on a paper plate so a dark logo never vanishes into the ground.
     return (
-      <div style={box}>
+      <div style={{ ...box, backgroundColor: th.dark ? "#F2F0EB" : "transparent" }}>
         <Img src={staticFile(item.asset)} style={{ position: "absolute", left: "12%", top: "9%", width: "76%", height: "74%", objectFit: "contain" }} />
         {bar}
       </div>
