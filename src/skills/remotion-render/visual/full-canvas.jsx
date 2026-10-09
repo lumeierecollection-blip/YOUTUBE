@@ -72,7 +72,7 @@ import {
 } from "./animations.js";
 import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
-  canvasLayout, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
+  canvasLayout, contentBounds, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
   TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf, backgroundOf, PAPER_OPACITY, BG_RULE, BG_GRADIENT,
   FRAMED_PHOTO_COMPS, FULL_PHOTO_COMPS, HERO_COMPS, TYPE_CARD_COMPS, CAMERA, readableAccent,
 } from "./canvas-layout.js";
@@ -107,7 +107,7 @@ const lerp = (a, b, t) => a + (b - a) * t;
 // Compositions that carry their own motion across the beat (a photo pushes, a graph grows, a map outlines, entity art lives).
 // The ambient push runs at a CONSTANT speed (2%/s, at most 10% over the beat), not as a fixed share of the beat: a 7 s beat that only
 // settled 3% moved 0.4%/s — under what a viewer (or the pace check) sees (board 37967524047: TYPE-FULL static 3.5 s, TYPE-CHAPTER 3.25 s).
-export const AMBIENT = Object.freeze({ amp: 0.04, period: 3 });
+export const AMBIENT = Object.freeze({ amp: 0.07, period: 2.6 });
 /** The push's scale at beat-local frame `local` of `dur`: it starts smaller and arrives at 1 as the beat ends (always inside its zone). */
 // A capped push stops once it hits its cap (board 37978510400: plates and numbers static 2.5-3.5 s in the last half of a 7 s beat). The ambient is
 // a slow continuous ease-in-out sweep instead — in and out over `period` seconds, never beyond its range — so a beat of any length keeps moving.
@@ -1455,6 +1455,10 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   // body's floor across the beat, so it is inside its zone at every frame and something is always moving. A photo, a graph,
   // a map and an entity card already move; the header (rule, kicker, headline) stays pinned.
   const amb = AMBIENT_SKIP.includes(L.composition) ? 1 : ambientScale(bodyLocal, dur, fps);
+  // About the body's floor when it fills the frame (it then stays inside its zone and keeps its span); about its own centre when it is a
+  // small line — a line standing on the floor barely moves about the floor (board 37983616641: TYPE-CHAPTER static 3 s). Either way the
+  // shrink stays inside the content's own box.
+  const cbd = contentBounds(L), ambOriginY = cbd && cbd.h < 700 ? Math.round(cbd.y + cbd.h / 2) : BOTTOM;
   return (
     <Theme.Provider value={theme}>
       <Anim.Provider value={{ ...(c.anim || {}), dur, accent, kinetic: c.kinetic || null, beat: idx, spoken: beat.spoken || null }}>
@@ -1463,7 +1467,7 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
             rule, kicker and headline — stays pinned, so a push or a major zoom
             never crops it. */}
         {show === "header" ? null : (
-          <div style={{ position: "absolute", inset: 0, transformOrigin: `540px ${amb !== 1 ? BOTTOM : 960}px`, transform: `translate(${cam.x.toFixed(1)}px, ${cam.y.toFixed(1)}px) scale(${(cam.s * amb).toFixed(4)})` }}>
+          <div style={{ position: "absolute", inset: 0, transformOrigin: `540px ${amb !== 1 ? ambOriginY : 960}px`, transform: `translate(${cam.x.toFixed(1)}px, ${cam.y.toFixed(1)}px) scale(${(cam.s * amb).toFixed(4)})` }}>
             <div style={{ position: "absolute", inset: 0, transformOrigin: `${zoom ? zoom.ox : 540}px ${zoom ? zoom.oy : 960}px`,
               transform: `scale(${zk.toFixed(4)})` }}>
               <Comp c={c} L={L} idx={idx} local={bodyLocal} dur={dur} fps={fps} accent={accent} spoken={beat.spoken} part="body" />
