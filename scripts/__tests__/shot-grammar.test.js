@@ -64,12 +64,17 @@ test("applyShot draws the planner's shot, and only falls back on a Layer 1 rule 
   const c1 = { visual_type: "PHOTO", headline: "Chastain signs", photo: photo("place", 1600, 1000), composition: "SCENE-FULL" };
   assert.equal(applyShot(c1, { index: 3, shot: "PHOTO-INSET" }, (m) => log.push(m)).drawn, true);
   assert.equal(c1.composition, "PHOTO-INSET");
-  // A wide logo cannot fill the top band of HERO-OVER (span under 60%): its own frame is drawn, and the reason is logged.
+  // A wide logo in HERO-OVER: its kept hairline rule holds the frame's top, so the shot is legal and drawn
+  // (dbce131; before it the span fell under 60% and the beat fell back).
   const logo = { name: "Blumhouse", class: "cutout", asset: "l.png", w: 900, h: 300, logo: true };
   const c2 = { visual_type: "TYPE", headline: "Blumhouse wins", concept_visuals: [logo], composition: "TYPE-FULL" };
-  assert.equal(applyShot(c2, { index: 4, shot: "HERO-OVER" }, (m) => log.push(m)).drawn, false);
-  assert.equal(c2.composition, "TYPE-FULL");
-  assert.match(log.at(-1), /HERO-OVER NOT drawn — span/);
+  assert.equal(applyShot(c2, { index: 4, shot: "HERO-OVER" }, (m) => log.push(m)).drawn, true);
+  assert.equal(c2.composition, "HERO-OVER");
+  // A shot that does not frame the content is not drawn, the content's own frame stands, and the reason is logged.
+  const c4 = { visual_type: "BAR", data: { bars: [] }, headline: "Where it goes", composition: "DATA-FULL" };
+  assert.equal(applyShot(c4, { index: 6, shot: "PHOTO-CARD" }, (m) => log.push(m)).drawn, false);
+  assert.equal(c4.composition, "DATA-FULL");
+  assert.match(log.at(-1), /PHOTO-CARD NOT drawn — PHOTO-CARD frames a photo/);
   // Re-applied once the object is known (attachConceptVisuals), the same canvas takes its HERO shot.
   const c3 = { visual_type: "TYPE", headline: "Gold hits a record", composition: "TYPE-FULL" };
   applyShot(c3, { index: 5, shot: "HERO-SCATTER" }, () => {});
