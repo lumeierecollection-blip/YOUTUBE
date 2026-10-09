@@ -60,7 +60,8 @@ import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, Easing 
 import { StudioBG } from "./studio-bg.jsx";
 import { ICON_SET } from "./icon-set.js";
 import { dateParts } from "./date-parts.js";
-import { KineticText } from "./kinetic.jsx";
+import { KineticText, rowsOf } from "./kinetic.jsx";
+import { wordPops } from "./word-sync.js";
 import { countProgress, numberPop, numberRoll, digitRoll, popState, NUMBER_POP_FRAMES } from "./kinetic.js";
 import { GROUND } from "./backgrounds.js";
 import { parseQuantity, rollQuantity } from "./primitives/quantity.js";
@@ -182,7 +183,7 @@ function Headline({ b, color, local, fps, m, idx, at = 0, shadow = false, halo =
   const box = (
     <KineticText b={b} color={color} accent={accent || A?.accent || color} local={local} dur={dur} start={start} resolveBy={resolveBy} exitAt={9}
       entrances={A?.kinetic?.entrances?.[role]} font={SERIF} lineHeight={b.size * ROLE_HEADLINE.lineHeight} tracking={roleTracking(ROLE_HEADLINE, b.size)}
-      group="headline" edge={!!A?.kinetic?.edge} />
+      group="headline" edge={!!A?.kinetic?.edge} wordAt={wordPops(rowsOf(b).flat().map((w) => w.text), A?.spoken, dur)} />
   );
   return hero ? <HeroEl name="statement" b={b}>{box}</HeroEl> : box;
 }
@@ -1386,7 +1387,7 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   const amb = AMBIENT_SKIP.includes(L.composition) ? 1 : AMBIENT.from + (1 - AMBIENT.from) * clamp01(bodyLocal / Math.max(1, dur * 0.9));
   return (
     <Theme.Provider value={theme}>
-      <Anim.Provider value={{ ...(c.anim || {}), dur, accent, kinetic: c.kinetic || null, beat: idx }}>
+      <Anim.Provider value={{ ...(c.anim || {}), dur, accent, kinetic: c.kinetic || null, beat: idx, spoken: beat.spoken || null }}>
       <Hero.Provider value={hero}>
         {/* The camera moves through the information (the body); the header —
             rule, kicker and headline — stays pinned, so a push or a major zoom

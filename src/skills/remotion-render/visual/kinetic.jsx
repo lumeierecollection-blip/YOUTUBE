@@ -41,7 +41,7 @@ export function rowsOf(b, baseWeight = 500) {
  */
 export function KineticText({
   b, color, accent, local, dur, entrances, start = 0, resolveBy = 0.4, exitAt = 0.7, font, lineHeight, tracking = 0,
-  upper = false, baseWeight = 500, group = "headline", edge = false,
+  upper = false, baseWeight = 500, group = "headline", edge = false, wordAt = null,
 }) {
   const rows = rowsOf(b, baseWeight);
   const flat = rows.flat();
@@ -53,6 +53,8 @@ export function KineticText({
   const letterBeat = ent.every((e) => e === "POP_LETTER");
   const stack = ent.every((e) => e === "POP_WORD_STACK");
   const sched = wordSchedule(n, dur, { start, resolveBy, exitAt, entrance: Math.max(...ent.map((e) => entranceFrames(e))) });
+  // wordAt (visual/word-sync.js): each word pops on the frame the narrator SAYS it, not on an even stagger.
+  if (Array.isArray(wordAt) && wordAt.length === n) wordAt.forEach((f, i) => { sched.enter[i] = Math.max(start, f); });
   // POP_LETTER: the letters run on as one chain across the phrase, 30 ms
   // apart (a word starts one letter-gap after the previous word's last letter).
   if (letterBeat) {
