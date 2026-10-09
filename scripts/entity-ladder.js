@@ -43,7 +43,11 @@ export function yieldsTo(b, g) {
   // else is named (board 37973067720: France / "30 years"; "The Fund Guide" / "90-day").
   const spans = (g.ents || []).filter((e) => e.type === "span");
   const fig = String(c.data?.value ?? "").replace(/[^\d.]/g, "");
-  if (kinds.every((k) => k === "figure") && spans.length && fig && spans.some((s) => String(s.name).replace(/[^\d.]/g, "").startsWith(fig))) return true;
+  const WORDNUM = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, fifteen: 15, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
+  const numOf = (name) => { const w = String(name).toLowerCase().split(/[-\s]+/)[0]; return String(WORDNUM[w] ?? String(name).replace(/[^\d.]/g, "")); };
+  if (kinds.every((k) => k === "figure") && spans.length && fig && spans.some((s) => numOf(s.name).startsWith(fig))) return true;
+  // a spelled span ("ninety-day") whose stat card shows no figure of its own
+  if (kinds.every((k) => k === "figure") && spans.length && !fig) return true;
   return false;
 }
 
