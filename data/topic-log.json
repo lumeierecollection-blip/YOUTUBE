@@ -1038,9 +1038,14 @@
           "topic": "Former CIA Official Pleads Guilty to Stealing $40M in Gold Bars",
           "slug": "former-cia-official-pleads-guilty-gold-bars",
           "reserved_at": "2026-10-08T12:37:47.640Z"
+        },
+        {
+          "topic": "Former TD Bank Employee Pleads Guilty to Laundering 4.8 Million",
+          "slug": "former-td-bank-employee-guilty-laundering-4-million",
+          "reserved_at": "2026-10-09T12:20:24.682Z"
         }
       ],
-      "last_generated": "2026-10-08T12:37:47.641Z"
+      "last_generated": "2026-10-09T12:20:24.682Z"
     },
     "6": {
       "channel_name": "Archive Room",
