@@ -757,9 +757,72 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"moved":"YES"|"NO","change":
   }
 }
 
+/* ── Entity check on the rendered frames ─────────────────────────────
+ *
+ *   node scripts/gemini-frame-review.js --entity-check --video <mp4> --manifest <render-manifest.json> [--out <json>]
+ *
+ * Owner, 2026-10-09: "Never report a manifest check as proof while the contact sheet shows otherwise." scripts/entity-coverage.js
+ * answers from the manifest (what the beat says it drew); this asks Gemini of the PIXELS: one frame per beat that names an
+ * entity (after its picture pops), the entities listed, and the question "is it shown — its flag, its map with it highlighted, its
+ * portrait or logo, a plate with its name, its date card, its time scale, its figure — or only written?". A flag of the wrong
+ * country, a generic map, a name in type alone are NO.
+ *
+ * Exit 0 = at most max(1, 20%) of those beats are NO. Exit 1 = more (listed). Exit 3 = could not run.
+ */
+async function entityCheck() {
+  const videoPath = arg("video"), manifestPath = arg("manifest"), outPath = arg("out");
+  if (!videoPath || !manifestPath) { console.error("Usage: gemini-frame-review.js --entity-check --video <mp4> --manifest <manifest.json> [--out <json>]"); process.exit(2); }
+  if (!llmConfigured()) { console.error("::error::entity check cannot run: no Gemini key and no Ollama server configured"); process.exit(3); }
+  const { entitiesOf, primaryOf } = await import("./entity-coverage.js");
+  const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+  const jobs = (manifest.beats || []).map((b, i) => {
+    const c = b.canvas || {};
+    const ents = entitiesOf({ sentence: c.sentence || "", named_entities: c.entities || [] });
+    return ents.length ? { b, i, ents, primary: primaryOf(ents, c.photo?.entity || c.data?.entity || null), sentence: c.sentence || "" } : null;
+  }).filter(Boolean);
+  if (!jobs.length) { console.log("[entity-check] no beat names an entity — nothing to check"); if (outPath) writeFileSync(outPath, JSON.stringify({ beats: [], failing: [] }) + "\n"); process.exit(0); }
+  const work = join(tmpdir(), `entity-check-${Date.now()}`);
+  mkdirSync(work, { recursive: true });
+  const content = [{ type: "text", text: `You are checking a finished vertical video, beat by beat. For each beat you get its narration sentence, the ENTITIES the sentence names, and ONE frame from the beat.
+Question for every beat: is an entity the sentence names SHOWN in the frame — drawn, not just written? Shown means: a flag of THAT country; a map with THAT place highlighted; a photograph or portrait of THAT person or place; THAT organisation's logo, building or a plate that carries its name over a drawn symbol; a calendar page or date card with THAT date; a time scale for THAT span; a chart or number card that draws THAT figure.
+Answer NO when the entity is only written as words in the headline, when the picture is of a different entity (another country's flag, a generic Europe map for France, a stock photo that is not it), or when the frame is words alone. The word caption at the bottom is on every beat by design: ignore it, and ignore the headline when judging whether the picture shows the entity.
+Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"entity_shown":"YES"|"NO","shown":"<what picture the frame has>","missing":"<the entity that is not shown, or empty>"}]} — exactly one entry per beat listed, with the beat_index given.` }];
+  try {
+    for (const { b, i, ents, primary, sentence } of jobs) {
+      const d = b.duration_sec ?? 0, t0 = b.start_sec ?? 0;
+      const popSec = Number.isFinite(b.canvas?.entity_pop?.frame) ? b.canvas.entity_pop.frame / 30 + 0.4 : 0;
+      const t = t0 + Math.min(Math.max(d * 0.62, popSec), Math.max(0, d - 0.1));
+      const fp = join(work, `b${i}.png`);
+      extractFrameAtTime(videoPath, t, fp);
+      content.push({ type: "text", text: `Beat ${i}. Sentence: "${sentence}". Entities named: ${ents.map((e) => `${e.type} "${e.name}"`).join("; ")}. The sentence is mainly about: ${primary ? `${primary.type} "${primary.name}"` : "(unclear)"}.` });
+      content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(fp).toString("base64")}` } });
+    }
+    console.log(`[entity-check] ${jobs.length} beat(s) name an entity — asking the model`);
+    let result = await callLLM([{ role: "user", content }], { maxTokens: 6144, temperature: 0, noCache: true }, "entity-check");
+    if (isProviderError(result)) { console.error(`::error::entity check unavailable: ${result.source} ${result.error}`); process.exit(3); }
+    if (result && !Array.isArray(result.beats) && typeof result.content === "string") {
+      const text = result.content.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
+      const a = text.indexOf("{"), z = text.lastIndexOf("}");
+      try { if (a >= 0 && z > a) result = JSON.parse(text.slice(a, z + 1)); } catch {}
+    }
+    const verdicts = Array.isArray(result?.beats) ? result.beats : null;
+    if (!verdicts || verdicts.length !== jobs.length) { console.error(`::error::entity check returned ${verdicts ? verdicts.length : "no"} verdict(s) for ${jobs.length} beats: ${JSON.stringify(result).slice(0, 300)}`); process.exit(3); }
+    for (const v of verdicts) console.log(`[entity-check] beat ${v.beat_index}: ${v.entity_shown} — shows: ${v.shown}${v.missing ? ` — missing: ${v.missing}` : ""}`);
+    const failing = verdicts.filter((v) => String(v.entity_shown).toUpperCase() !== "YES");
+    if (outPath) writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, beats: verdicts, failing: failing.map((v) => v.beat_index) }, null, 2) + "\n");
+    const allowed = Math.max(1, Math.floor(jobs.length * 0.2));
+    if (failing.length > allowed) { console.error(`::error::entity check failed: ${failing.length}/${jobs.length} beats name an entity their frame does not show (beats ${failing.map((v) => v.beat_index).join(", ")})`); process.exit(1); }
+    console.log(`[entity-check] PASS: ${jobs.length - failing.length}/${jobs.length} beats show an entity they name`);
+    process.exit(0);
+  } finally {
+    rmSync(work, { recursive: true, force: true });
+  }
+}
+
 async function main() {
   if (process.argv.includes("--beat-check")) return beatCheck();
   if (process.argv.includes("--camera-check")) return cameraCheck();
+  if (process.argv.includes("--entity-check")) return entityCheck();
   const videoPath = arg("video");
   const scriptPath = arg("script");
   const srtPath = arg("srt");

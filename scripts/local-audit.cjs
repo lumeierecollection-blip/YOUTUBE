@@ -717,8 +717,8 @@ async function visualCentred(video, beats, m_fps = 30) {
     if (share < 0.03) bad.push(`beat ${i} (${c.composition}): the ${key} is not on the frame (${(share * 100).toFixed(1)}% of its box differs from the ground)`);
     else if (cy < 640) bad.push(`beat ${i} (${c.composition}): the ${key}'s mass sits at y ${Math.round(cy)} — in the top third, not near the centre (y 960)`);
     // Left- or right-PINNED by accident: a visual whose mass sits in the outer fifth of the frame, where no composition
-    // chose an offset (an edge-cropped photo, an inset card and a scatter are offset on purpose).
-    else if (cx && (cx < 216 || cx > 864) && !["PHOTO-EDGE", "PHOTO-INSET", "HERO-SCATTER", "PHOTO-STRIP"].includes(c.composition)) bad.push(`beat ${i} (${c.composition}): the ${key}'s mass sits at x ${Math.round(cx)} — pinned to a side of the frame (centre x 540)`);
+    // chose an offset (an edge-cropped photo, an inset card and a scatter are offset on purpose; a hero NUMBER is typography\n    // anchored left / right by the alternating-alignment rule — its vertical centre is still judged).
+    else if (cx && (cx < 216 || cx > 864) && key !== "number" && !["PHOTO-EDGE", "PHOTO-INSET", "HERO-SCATTER", "PHOTO-STRIP"].includes(c.composition)) bad.push(`beat ${i} (${c.composition}): the ${key}'s mass sits at x ${Math.round(cx)} — pinned to a side of the frame (centre x 540)`);
     else if (cy > 1500) bad.push(`beat ${i} (${c.composition}): the ${key}'s mass sits at y ${Math.round(cy)} — below the middle of the frame`);
   });
   return { bad, rows };

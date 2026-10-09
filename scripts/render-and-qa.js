@@ -2512,6 +2512,22 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       return backupAudit({ ...backupArgs, stage: "camera-check", reason: cc?.failing?.length ? `${why}: beats ${cc.failing.join(", ")}` : why });
     }
 
+    // Step 2b'''': ENTITY CHECK on the rendered frames (owner, 2026-10-09: "nothing spoken goes unrepresented"; the manifest check is
+    // Layer 1 entity-coverage). More than max(1, 20%) of the beats that name an entity whose frame does not show it holds the video; a
+    // check that cannot run does too.
+    const entityCheck = await runChild("node", [
+      GEMINI_REVIEW_JS, "--entity-check",
+      "--video", result.outputPath,
+      "--manifest", result.outputPath.replace(/\.mp4$/, "-manifest.json"),
+      "--out", result.outputPath.replace(/\.mp4$/, "-entity-check.json"),
+    ], { label: `entity-check ${channelId}/${basename(scriptPath)}` });
+    if (entityCheck.code !== 0) {
+      const why = entityCheck.code === 1 ? "FAILED — a beat names an entity its frame does not show" : "could not run";
+      console.error(`::error::entity check ${why} for ${basename(result.outputPath)}`);
+      const ec = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-entity-check.json"));
+      return backupAudit({ ...backupArgs, stage: "entity-check", reason: ec?.failing?.length ? `${why}: beats ${ec.failing.join(", ")}` : why });
+    }
+
     // Step 2c: Skip QA when --skip-qa is set (local dev without ffmpeg)
     if (skipQA) {
       console.log(`--skip-qa: skipping QA for ${basename(result.outputPath)}`);
