@@ -920,6 +920,7 @@ async function canvasChecks(video, m) {
     const { paceOf, MAX_STATIC_S } = await import(require("node:url").pathToFileURL(join(__dirname, "pace-check.mjs")).href);
     const pace = paceOf(video, m);
     pace.beats.forEach((b) => console.log(`[pace] beat ${b.index}: ${b.duration_s} s, longest static ${b.longest_s.toFixed(2)} s, mean change ${b.mean_change} — ${b.status}`));
+    pace.beats.filter((b) => b.status !== "ok").forEach((b) => console.log(`[pace-series] beat ${b.index} (time:changed-pixels/mean): ${b.series.join(" ")}`));
     console.log(`[pace] longest static stretch ${pace.longest_s.toFixed(2)} s; average beat ${pace.avg_beat_s} s`);
     out.push({ id: "pace", pass: !pace.fail.length, detail: pace.fail.length ? pace.fail.map((b) => `beat ${b.index}: ${b.longest_s.toFixed(2)} s with nothing moving (max ${MAX_STATIC_S} s)`).join("; ") : `no beat static for more than ${MAX_STATIC_S} s (longest ${pace.longest_s.toFixed(2)} s; average beat ${pace.avg_beat_s} s)` });
   }

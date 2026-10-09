@@ -16,8 +16,8 @@ function dry(channel) {
 }
 const REFUSED = /is not a publish channel/;
 const WRONG_CREDS = /belong to another channel/;
-// channels.json points these four at config/creds/ch-44.json (ch-44's own file).
-const MISPOINTED = new Set(["5", "6", "8", "10"]);
+// Fixed 2026-10-09: ch-05/06/08/10 pointed at config/creds/ch-44.json (ch-44's own file); each now has its own path, so none is mispointed.
+const MISPOINTED = new Set([]);
 
 describe("youtube-publish approves exactly config/priority-channels.json", () => {
   for (const ch of priority) {

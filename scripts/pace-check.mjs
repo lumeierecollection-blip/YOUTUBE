@@ -37,10 +37,10 @@ export function paceOf(video, manifest) {
     const t0 = b.start_sec ?? 0, t1 = t0 + (b.duration_sec ?? 0);
     const i0 = Math.ceil(t0 / SAMPLE_S) + 1, i1 = Math.min(fr.length - 1, Math.floor((t1 - 0.2) / SAMPLE_S));   // skip the boundary's pop; stay clear of the next beat's
     let run = 0, longest = 0;
-    const ds = [];
-    for (let i = i0; i <= i1; i++) { const d = diff(fr[i - 1], fr[i]); ds.push(d.mean); run = d.changed < STATIC_PIXELS && d.mean < STATIC_MEAN ? run + 1 : 0; longest = Math.max(longest, run); }
+    const ds = [], series = [];
+    for (let i = i0; i <= i1; i++) { const d = diff(fr[i - 1], fr[i]); ds.push(d.mean); series.push(`${(i * SAMPLE_S).toFixed(2)}:${d.changed}/${d.mean.toFixed(2)}`); run = d.changed < STATIC_PIXELS && d.mean < STATIC_MEAN ? run + 1 : 0; longest = Math.max(longest, run); }
     const longest_s = longest * SAMPLE_S;
-    return { index: b.index ?? k, duration_s: +(b.duration_sec ?? 0).toFixed(2), longest_s, mean_change: ds.length ? +(ds.reduce((a, c) => a + c, 0) / ds.length).toFixed(2) : null, status: longest_s > MAX_STATIC_S ? "STATIC" : "ok" };
+    return { index: b.index ?? k, duration_s: +(b.duration_sec ?? 0).toFixed(2), longest_s, mean_change: ds.length ? +(ds.reduce((a, c) => a + c, 0) / ds.length).toFixed(2) : null, status: longest_s > MAX_STATIC_S ? "STATIC" : "ok", series };
   });
   const durs = beats.map((b) => b.duration_sec || 0);
   return { beats: out, longest_s: Math.max(0, ...out.map((o) => o.longest_s)), avg_beat_s: durs.length ? +(durs.reduce((a, c) => a + c, 0) / durs.length).toFixed(2) : null, fail: out.filter((o) => o.status === "STATIC") };
