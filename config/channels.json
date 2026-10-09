@@ -2861,7 +2861,9 @@
       "font": "Noto Serif",
       "google_account": "UNASSIGNED-5",
       "channel_id": "ch-05",
-      "youtube_credentials_path": "config/creds/ch-44.json",
+      "youtube_credentials_path": "config/creds/ch-05.json",
+      "creds_secret_prefix": "CHANNEL_05",
+      "stay_private": true,
       "description": "The history of newspapers and print, told in front-page collage. Layouts, editorial decisions, and the stories that ran.",
       "content_pillars": [
         "corporate fraud investigations",
@@ -2907,7 +2909,9 @@
       "font": "Noto Serif",
       "google_account": "UNASSIGNED-6",
       "channel_id": "ch-06",
-      "youtube_credentials_path": "config/creds/ch-44.json",
+      "youtube_credentials_path": "config/creds/ch-06.json",
+      "creds_secret_prefix": "CHANNEL_06",
+      "stay_private": true,
       "description": "Archival footage and lost media, reconstructed from what survived. Monochrome, letterboxed, slow push-ins.",
       "content_pillars": [
         "historical disappearances",
@@ -2953,7 +2957,9 @@
       "font": "Noto Serif",
       "google_account": "UNASSIGNED-8",
       "channel_id": "ch-08",
-      "youtube_credentials_path": "config/creds/ch-44.json",
+      "youtube_credentials_path": "config/creds/ch-08.json",
+      "creds_secret_prefix": "CHANNEL_08",
+      "stay_private": true,
       "description": "Stepped timelines of how institutions, funds and companies accumulated. Year by year, on the record.",
       "content_pillars": [
         "central banking history",
@@ -2999,7 +3005,9 @@
       "font": "Noto Serif",
       "google_account": "UNASSIGNED-10",
       "channel_id": "ch-10",
-      "youtube_credentials_path": "config/creds/ch-44.json",
+      "youtube_credentials_path": "config/creds/ch-10.json",
+      "creds_secret_prefix": "CHANNEL_10",
+      "stay_private": true,
       "description": "One idea per video, explained quietly. Marginal notes on how things actually work, in light editorial typography.",
       "content_pillars": [
         "how ideas work explained",

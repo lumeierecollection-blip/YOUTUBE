@@ -1137,6 +1137,21 @@ jobs:
           CH44_CLIENT_ID:       ${{ secrets.CHANNEL_44_CLIENT_ID }}
           CH44_CLIENT_SECRET:   ${{ secrets.CHANNEL_44_CLIENT_SECRET }}
           CH44_REFRESH_TOKEN:   ${{ secrets.CHANNEL_44_REFRESH_TOKEN }}
+          CH05_CLIENT_ID:       ${{ secrets.CHANNEL_05_CLIENT_ID }}
+          CH05_CLIENT_SECRET:   ${{ secrets.CHANNEL_05_CLIENT_SECRET }}
+          CH05_REFRESH_TOKEN:   ${{ secrets.CHANNEL_05_REFRESH_TOKEN }}
+          CH06_CLIENT_ID:       ${{ secrets.CHANNEL_06_CLIENT_ID }}
+          CH06_CLIENT_SECRET:   ${{ secrets.CHANNEL_06_CLIENT_SECRET }}
+          CH06_REFRESH_TOKEN:   ${{ secrets.CHANNEL_06_REFRESH_TOKEN }}
+          CH08_CLIENT_ID:       ${{ secrets.CHANNEL_08_CLIENT_ID }}
+          CH08_CLIENT_SECRET:   ${{ secrets.CHANNEL_08_CLIENT_SECRET }}
+          CH08_REFRESH_TOKEN:   ${{ secrets.CHANNEL_08_REFRESH_TOKEN }}
+          CH10_CLIENT_ID:       ${{ secrets.CHANNEL_10_CLIENT_ID }}
+          CH10_CLIENT_SECRET:   ${{ secrets.CHANNEL_10_CLIENT_SECRET }}
+          CH10_REFRESH_TOKEN:   ${{ secrets.CHANNEL_10_REFRESH_TOKEN }}
+          CH49_CLIENT_ID:       ${{ secrets.CHANNEL_49_CLIENT_ID }}
+          CH49_CLIENT_SECRET:   ${{ secrets.CHANNEL_49_CLIENT_SECRET }}
+          CH49_REFRESH_TOKEN:   ${{ secrets.CHANNEL_49_REFRESH_TOKEN }}
           
         run: |
           mkdir -p config/creds
@@ -1289,6 +1304,21 @@ jobs:
           CH44_CLIENT_ID:       ${{ secrets.CHANNEL_44_CLIENT_ID }}
           CH44_CLIENT_SECRET:   ${{ secrets.CHANNEL_44_CLIENT_SECRET }}
           CH44_REFRESH_TOKEN:   ${{ secrets.CHANNEL_44_REFRESH_TOKEN }}
+          CH05_CLIENT_ID:       ${{ secrets.CHANNEL_05_CLIENT_ID }}
+          CH05_CLIENT_SECRET:   ${{ secrets.CHANNEL_05_CLIENT_SECRET }}
+          CH05_REFRESH_TOKEN:   ${{ secrets.CHANNEL_05_REFRESH_TOKEN }}
+          CH06_CLIENT_ID:       ${{ secrets.CHANNEL_06_CLIENT_ID }}
+          CH06_CLIENT_SECRET:   ${{ secrets.CHANNEL_06_CLIENT_SECRET }}
+          CH06_REFRESH_TOKEN:   ${{ secrets.CHANNEL_06_REFRESH_TOKEN }}
+          CH08_CLIENT_ID:       ${{ secrets.CHANNEL_08_CLIENT_ID }}
+          CH08_CLIENT_SECRET:   ${{ secrets.CHANNEL_08_CLIENT_SECRET }}
+          CH08_REFRESH_TOKEN:   ${{ secrets.CHANNEL_08_REFRESH_TOKEN }}
+          CH10_CLIENT_ID:       ${{ secrets.CHANNEL_10_CLIENT_ID }}
+          CH10_CLIENT_SECRET:   ${{ secrets.CHANNEL_10_CLIENT_SECRET }}
+          CH10_REFRESH_TOKEN:   ${{ secrets.CHANNEL_10_REFRESH_TOKEN }}
+          CH49_CLIENT_ID:       ${{ secrets.CHANNEL_49_CLIENT_ID }}
+          CH49_CLIENT_SECRET:   ${{ secrets.CHANNEL_49_CLIENT_SECRET }}
+          CH49_REFRESH_TOKEN:   ${{ secrets.CHANNEL_49_REFRESH_TOKEN }}
           
         run: |
           mkdir -p config/creds
