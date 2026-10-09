@@ -73,7 +73,12 @@ the HOOK sentence, word for word.
    place, person or object ("Where did the $91 million go?", never "Where did it
    all go?"): a nameless question is a words-only card, and the re-hook right
    after it would be a second one in a row.
-3. **RE-HOOK** (section `rehook`, 1-2 sentences, 10–18 words). The second hook,
+3. **RE-HOOK** (section `rehook`, 1-2 sentences, 10–18 words). Its flip or raised
+   stake is a FACT THE RESEARCH STATES (a limit, an exception, a larger number, a
+   contradiction between sources) — "Except generating charts is only half the
+   release" was an invented flip and the claims gate skipped the channel. If the
+   research states no flip, raise the stakes with the next-biggest fact it does
+   state. The second hook,
    right where the viewer might leave. It FLIPS the setup ("Except the bank
    made one mistake.") or RAISES the stakes ("And the person who signed it
    worked for the buyer."). It still names something specific. Never "But
