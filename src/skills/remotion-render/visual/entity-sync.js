@@ -97,7 +97,8 @@ function spelledValues(said) {
   });
 }
 
-/** The pop frame for the beat's entity visual, from the spoken words' timings. */
+export const MAX_POP_FRAME = 30;
+/** The pop frame for the beat's entity visual, from the spoken words' timings (never later than MAX_POP_FRAME). */
 export function scheduleEntityPop(c, spoken, dur) {
   const a = entityAnchor(c);
   if (!a) return null;
@@ -113,5 +114,9 @@ export function scheduleEntityPop(c, spoken, dur) {
   const late = dur - hit.from < 15;                                     // the word is in the beat's last 0.5 s
   let frame = hit.from - POP_IN - (late ? 8 : 0);
   frame = Math.max(0, Math.min(frame, dur - 15));
+  // The screen is never static (owner, 2026-10-09: "something happening about every half second"): a visual named late in a long sentence used to
+  // leave the first 2-3 s of the beat with nothing but its header (board 37983616641: NUMBER-FULL static 3-4 s). It now lands within MAX_POP_FRAME
+  // (1 s) of the beat's start — the word still pops it earlier when it is spoken earlier; it is never shown LATER than 1 s in.
+  frame = Math.min(frame, MAX_POP_FRAME);
   return { kind: a.kind, entity: a.entity, word: hit.text, anchor: word, from: hit.from, to: hit.to, frame };
 }

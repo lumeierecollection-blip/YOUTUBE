@@ -174,7 +174,8 @@ function timeline(c, B, dur, fps) {
   // (A number beat's headline waited until 50% of the beat when every group was drawn settled;
   // drawn live, the beat's top was empty for half its length — CI run 37141128792 ch-26.)
   void hasNum;
-  return { headlineAt: 0, numberAt: 0, labelAt: sec(0.4), splitAt: sec(0.3) };
+  // Shares of the beat, capped in seconds: on a 7 s beat 40% / 30% left the first 2-3 s with only the header on screen (the pace gate).
+  return { headlineAt: 0, numberAt: 0, labelAt: Math.min(sec(0.4), 1.2), splitAt: Math.min(sec(0.3), 0.8) };
 }
 
 // ── the four roles ────────────────────────────────────────────────────

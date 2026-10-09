@@ -1,5 +1,5 @@
 // node scripts/test-entity-sync.mjs — word-level sync for entity visuals (src/skills/remotion-render/visual/entity-sync.js).
-import { entityAnchor, scheduleEntityPop, normWord, digitsOf, POP_IN } from "../src/skills/remotion-render/visual/entity-sync.js";
+import { entityAnchor, scheduleEntityPop, normWord, digitsOf, POP_IN, MAX_POP_FRAME } from "../src/skills/remotion-render/visual/entity-sync.js";
 import { popGroups } from "../src/skills/remotion-render/visual/pop-groups.js";
 import { canvasLayout } from "../src/skills/remotion-render/visual/canvas-layout.js";
 
@@ -27,7 +27,7 @@ eq("an anchor at frame 0 pops at frame 0 (never negative)", scheduleEntityPop(mi
 
 // A word at the very end of the beat pops 8 frames earlier, and never past dur - 15.
 const late = scheduleEntityPop(miami, [{ text: "Then", from: 0, to: 80 }, { text: "Miami.", from: 110, to: 119 }], 120);
-eq("a word in the last 0.5 s pops 8 frames earlier, within the beat", [late.frame, late.frame <= 120 - 15], [Math.min(110 - POP_IN - 8, 105), true]);
+eq("a word in the last 0.5 s pops 8 frames earlier, within the beat — and never later than MAX_POP_FRAME (the screen is never static)", [late.frame, late.frame <= 120 - 15], [Math.min(110 - POP_IN - 8, 105, MAX_POP_FRAME), true]);
 
 // Not found: reported, never a failure.
 eq("anchor not spoken -> missing (the renderer pops at the beat start)", scheduleEntityPop(aliyev, words("The president spoke today"), 120).missing, "aliyev");
