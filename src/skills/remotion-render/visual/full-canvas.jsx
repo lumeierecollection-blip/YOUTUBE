@@ -920,6 +920,8 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           <text x="30" y="150" fill={th.ink} style={{ font: `800 ${label.length > 9 ? 120 : 150}px ${SERIF}` }} {...popSvg("NUMBER", local - Math.round(at * fps), 30, 100)}>{label}</text>
           <line x1="30" y1="250" x2="890" y2="250" stroke={th.track} strokeWidth="30" strokeLinecap="round" />
           <line x1="30" y1="250" x2={30 + 860 * t} y2="250" stroke={accent} strokeWidth="30" strokeLinecap="round" />
+          {/* Once filled, a light band keeps travelling along the track: the span stays alive to the end of the beat. */}
+          {t >= 0.98 ? (() => { const ph = ((local / fps) / 1.3) % 1, x1 = 30 + 740 * ph; return <line x1={x1} y1="250" x2={x1 + 120} y2="250" stroke="#FFFFFF" strokeOpacity="0.42" strokeWidth="30" strokeLinecap="round" />; })() : null}
           <line x1="30" y1="200" x2="30" y2="300" stroke={th.ink} strokeWidth="8" strokeLinecap="round" />
           <line x1="890" y1="200" x2="890" y2="300" stroke={th.ink} strokeWidth="8" strokeLinecap="round" />
           {Array.isArray(a.ends) && a.ends.length === 2 ? (

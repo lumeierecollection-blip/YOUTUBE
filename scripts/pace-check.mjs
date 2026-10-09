@@ -16,7 +16,10 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
-export const SAMPLE_S = 0.25, MAX_STATIC_S = 1.0, STATIC = 0.45, W = 135, H = 240, CAPTION_ROW = Math.floor((1450 / 1920) * H);
+// An interval is STATIC when fewer than STATIC_PIXELS of the 135x240 grey pixels (above the caption band) change by more
+// than PIX_DELTA luma. (A sparse beat — one small line in an empty frame — changes few pixels even when it moves, so the
+// measure is the COUNT of visibly changed pixels, not the mean change; codec noise on flat ground stays under PIX_DELTA.)
+export const SAMPLE_S = 0.25, MAX_STATIC_S = 1.0, PIX_DELTA = 16, STATIC_PIXELS = 90, STATIC_MEAN = 0.4, W = 135, H = 240, CAPTION_ROW = Math.floor((1450 / 1920) * H);
 
 function frames(video) {
   const r = spawnSync("ffmpeg", ["-v", "error", "-i", video, "-vf", `fps=${1 / SAMPLE_S},scale=${W}:${H},format=gray`, "-f", "rawvideo", "-"], { maxBuffer: 1 << 28 });
@@ -24,7 +27,8 @@ function frames(video) {
   const n = Math.floor(r.stdout.length / (W * H));
   return Array.from({ length: n }, (_, i) => r.stdout.subarray(i * W * H, (i + 1) * W * H));
 }
-const diff = (a, b) => { let s = 0; const end = CAPTION_ROW * W; for (let i = 0; i < end; i++) s += Math.abs(a[i] - b[i]); return s / end; };
+/** { mean, changed } between two frames: the mean absolute change and the number of pixels that changed visibly. */
+const diff = (a, b) => { let s = 0, n = 0; const end = CAPTION_ROW * W; for (let i = 0; i < end; i++) { const d = Math.abs(a[i] - b[i]); s += d; if (d > PIX_DELTA) n++; } return { mean: s / end, changed: n }; };
 
 export function paceOf(video, manifest) {
   const fr = frames(video);
@@ -34,7 +38,7 @@ export function paceOf(video, manifest) {
     const i0 = Math.ceil(t0 / SAMPLE_S) + 1, i1 = Math.min(fr.length - 1, Math.floor((t1 - 0.2) / SAMPLE_S));   // skip the boundary's pop; stay clear of the next beat's
     let run = 0, longest = 0;
     const ds = [];
-    for (let i = i0; i <= i1; i++) { const d = diff(fr[i - 1], fr[i]); ds.push(d); run = d < STATIC ? run + 1 : 0; longest = Math.max(longest, run); }
+    for (let i = i0; i <= i1; i++) { const d = diff(fr[i - 1], fr[i]); ds.push(d.mean); run = d.changed < STATIC_PIXELS && d.mean < STATIC_MEAN ? run + 1 : 0; longest = Math.max(longest, run); }
     const longest_s = longest * SAMPLE_S;
     return { index: b.index ?? k, duration_s: +(b.duration_sec ?? 0).toFixed(2), longest_s, mean_change: ds.length ? +(ds.reduce((a, c) => a + c, 0) / ds.length).toFixed(2) : null, status: longest_s > MAX_STATIC_S ? "STATIC" : "ok" };
   });

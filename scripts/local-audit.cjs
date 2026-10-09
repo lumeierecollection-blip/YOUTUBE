@@ -737,7 +737,7 @@ async function visualContrast(video, beats, fps = 30) {
   const W = 540, H = 960, sc = H / 1920;
   beats.forEach((b, i) => {
     const c = b.canvas;
-    const box = c?.composition === "ENTITY-ART" && c.art?.kind === "flag" ? c.boxes?.art : ["PHOTO-CARD", "PHOTO-INSET"].includes(c?.composition) ? c.boxes?.photo : null;
+    const box = c?.composition === "ENTITY-ART" && c.art?.kind === "flag" ? c.boxes?.art : ["PHOTO-CARD"].includes(c?.composition) ? c.boxes?.photo : null;
     if (!box || !(box.w > 0)) return;
     const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / fps + 0.4 : 0.9;
     const t = (b.start_sec ?? 0) + Math.min(Math.max((b.duration_sec ?? 0) * 0.62, popSec), Math.max(0, (b.duration_sec ?? 0) - 0.1));
@@ -746,7 +746,8 @@ async function visualContrast(video, beats, fps = 30) {
     const g = frameGround(buf, W, H);
     const px = (x, y) => { const o = (y * W + x) * 3; return [buf[o], buf[o + 1], buf[o + 2]]; };
     const differs = (x, y) => { const [r, gg, bl] = px(x, y); const l = 0.299 * r + 0.587 * gg + 0.114 * bl; return Math.abs(l - g.l) > 25 || Math.max(r, gg, bl) - Math.min(r, gg, bl) > 30; };
-    const x0 = Math.max(0, Math.round(box.x * sc) + 3), x1 = Math.min(W - 1, Math.round((box.x + box.w) * sc) - 4), y0 = Math.max(0, Math.round(box.y * sc) + 3), y1 = Math.min(H - 1, Math.round((box.y + box.h) * sc) - 4);
+    // 1 px inside the box: a flag's 6 px ink border (3 px at this scale) is what bounds it.
+    const x0 = Math.max(0, Math.round(box.x * sc) + 1), x1 = Math.min(W - 1, Math.round((box.x + box.w) * sc) - 2), y0 = Math.max(0, Math.round(box.y * sc) + 1), y1 = Math.min(H - 1, Math.round((box.y + box.h) * sc) - 2);
     let n = 0, d = 0;
     const ring = (x, y) => { n++; if (differs(x, y)) d++; };
     for (let x = x0; x <= x1; x++) { ring(x, y0); ring(x, y1); }
