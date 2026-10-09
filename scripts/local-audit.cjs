@@ -760,6 +760,32 @@ async function visualContrast(video, beats, fps = 30) {
 }
 
 /**
+ * entity-marks (owner, 2026-10-09: "an organisation is its ACTUAL logo, or its name set in type; never a stock document / box icon"): every
+ * ENTITY-ART beat for an organisation, person or place draws, per named entity, its real mark (an asset with its licence recorded) or its
+ * name set in type (the plate draws the name itself); no icon, no repeated mark within the beat, and the caption never repeats the name the
+ * plate carries. Manifest-level: the frames are judged by gemini-frame-review.js --look-check / --entity-check.
+ */
+function entityMarks(beats) {
+  const bad = [], rows = [];
+  beats.forEach((b, i) => {
+    const c = b.canvas, a = c?.art;
+    if (!a || !(String(a.kind).startsWith("plate-") || a.kind === "plates")) return;
+    const names = a.kind === "plates" ? a.names || [] : [a.name];
+    const label = `beat ${i} (${a.kind} ${names.join(", ")})`;
+    const marks = names.map((n, k) => (a.items?.[k]?.asset ? `logo ${a.items[k].asset}` : "name in type"));
+    rows.push(`${label}: ${marks.join(" | ")}`);
+    if (a.icon || a.glyph) bad.push(`${label}: draws an icon (${a.icon || a.glyph}) for a named entity`);
+    const assets = (a.items || []).filter((it) => it?.asset).map((it) => it.asset);
+    if (new Set(assets).size < assets.length) bad.push(`${label}: the same mark is drawn twice in the beat`);
+    a.items?.forEach((it, k) => { if (it?.asset && !it.license) bad.push(`${label}: the mark for "${names[k]}" has no recorded licence`); });
+    const cap = String(c.boxes?.statement?.text || (c.words?.statement || []).map((w) => w.t).join(" ") || "");
+    const nz = (x) => ` ${String(x || "").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim()} `;
+    for (const n of names) if (n && nz(cap).includes(nz(n))) bad.push(`${label}: the caption "${cap}" repeats the name the plate already carries`);
+  });
+  return { bad, rows };
+}
+
+/**
  * flat-look (owner, 2026-10-09: "they shouldn't look playful — actually that motion graphic"): on the rendered frame of every beat that
  * draws a chart, timeline, diagram, date card, time scale, plate or flag — the reference palette only (ink, neutrals and the channel's
  * ONE accent), sharp corners on a boxed element, no drop shadow. scripts/lib/flat-look.cjs has the measures and where they stop;
@@ -897,6 +923,9 @@ async function canvasChecks(video, m) {
   const vcon = await visualContrast(video, beats, m.fps || 30);
   vcon.rows.forEach((r) => console.log(`[contrast] ${r}`));
   out.push({ id: "visual-contrast", pass: !vcon.bad.length, detail: vcon.bad.length ? vcon.bad.join("; ") : vcon.rows.length ? `${vcon.rows.length} flag / card visual(s), each bounded all the way round against its ground` : "no flag or framed-photo visual to judge" });
+  const em = entityMarks(beats);
+  em.rows.forEach((r) => console.log(`[marks] ${r}`));
+  out.push({ id: "entity-marks", pass: !em.bad.length, detail: em.bad.length ? em.bad.join("; ") : em.rows.length ? `${em.rows.length} entity plate beat(s): each entity is its real mark or its name in type, none repeated` : "no entity plate to judge" });
   const fl = await flatLook(video, beats, m.accent, m.fps || 30);
   fl.rows.forEach((r) => console.log(`[flat-look] ${r}`));
   out.push({ id: "flat-look", pass: !fl.bad.length, detail: fl.bad.length ? fl.bad.join("; ") : fl.rows.length ? `${fl.rows.length} chart / date / scale / plate / diagram beat(s): reference palette only, no shadow, sharp corners` : "no chart, date, scale, plate or diagram beat to judge" });

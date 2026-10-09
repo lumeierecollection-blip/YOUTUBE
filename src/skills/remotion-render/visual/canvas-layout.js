@@ -65,6 +65,7 @@
  * checks the rendered pixels.
  */
 import { markWords, fitWords, fitNumberBleed } from "./kinetic.js";
+import { stripEntityNames } from "./strip-names.js";
 import { resolveGround } from "./backgrounds.js";
 import {
   ROLE_HEADLINE, ROLE_NUMBER, ROLE_DATA, ROLE_EMPHASIS, SERIF, SANS_STACK, HEADLINE_FLOOR,
@@ -911,7 +912,11 @@ function entityArtLayout(c, flip) {
   const y = LOW_VISUAL.top + 60;
   const boxes = { rule: { ...rule(flip, TOP), keep: true } };
   boxes.art = { ...box(Math.round((FRAME.w - w) / 2), y, w, h), role: "concept", kind, align: "center" };
-  const caption = String(c.headline || a.name || "").trim();
+  // The plate carries the entity's name (its mark, or its name in type): the caption never says it again ("NASA" in the plate and "NASA took
+  // over" under it is one name twice). What is left of the headline stays; less than two words and there is no caption.
+  const caption = stripEntityNames(String(c.headline || "").trim(), a.kind === "plates" ? a.names : ["plate-organization", "plate-person", "plate-place"].includes(a.kind) ? [a.name] : []);
+  // No caption left: a short hairline closes the frame at the body's floor (the reference's rules), so the plate is not left floating.
+  if (!caption) boxes.rule_end = { ...rule(!flip, BOTTOM - 6), keep: true };
   if (caption) boxes.statement = headlineBox(caption, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 2, maxHeight: BOTTOM - 12 - (y + h + 24), max: 120, min: 52, tier: false });   // left / right by beat (the art is centred; the caption alternates sides)
   return { composition: "ENTITY-ART", boxes, hero: "art", flip };
 }
@@ -1698,7 +1703,7 @@ export function canvasManifest(raw, idx) {
     camera: c.photo && (FULL_PHOTO_COMPS.includes(L.composition) || FRAMED_PHOTO_COMPS.includes(L.composition)) ? { subject: "photo", move: CAMERA.photo, from_frame: Number.isFinite(c.entity_pop?.frame) ? Math.max(0, c.entity_pop.frame) : 0 }
       : L.composition === "DATA-FULL" ? { subject: "graph", move: CAMERA.graph } : null,
     // What the beat NAMES and what it drew for it (scripts/entity-coverage.js reads both).
-    art: c.art ? { kind: c.art.kind, name: c.art.name || null, names: Array.isArray(c.art.names) ? c.art.names : null, style: c.art.style || null, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || null, asset: c.art.asset || null } : null,
+    art: c.art ? { kind: c.art.kind, name: c.art.name || null, names: Array.isArray(c.art.names) ? c.art.names : null, style: c.art.style || null, items: Array.isArray(c.art.items) ? c.art.items.map((it) => (it ? { name: it.name || null, asset: it.asset || null, source_url: it.source_url || null, license: it.license || null } : null)) : null, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || null, asset: c.art.asset || null } : null,
     entities: Array.isArray(c.named_entities) ? c.named_entities.filter((e) => e && e.name).map((e) => ({ type: e.type, name: e.name })) : [],
     camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
     // Provenance (verified_as = the Wikipedia title + description it was verified against,

@@ -111,7 +111,7 @@ const SRC = readFileSync(new URL("../../src/skills/remotion-render/visual/full-c
 const section = (from, to) => { const a = SRC.indexOf(from), b = SRC.indexOf(to, a + 1); assert.ok(a >= 0 && b > a, `section ${from}`); return SRC.slice(a, b); };
 const COMPONENTS = {
   DataFull: section("function DataFull(", "// ── SCENE-FULL"),
-  EntityArt: section("function EntityArt(", "// ── SHOT FRAMES"),
+  EntityArt: section("function MarkPlate(", "// ── SHOT FRAMES"),
   ProcessFull: section("function ProcessFull(", "// ── MAP-CENTERED"),
   MapCentered: section("function MapCentered(", "function appearTimes("),
   Timeline: section("function Timeline(", "// ── COMPARISON-SPLIT"),
@@ -130,4 +130,10 @@ for (const [name, code] of Object.entries(COMPONENTS)) {
 
 test("the date card is typographic, not a wall calendar", () => {
   assert.ok(!/binder|calendar/i.test(COMPONENTS.EntityArt.replace(/\/\/.*$/gm, "").replace(/not a wall calendar/g, "")), "a calendar drawn");
+});
+
+test("an entity is its real mark or its name in type — no stock icon stands in for it (owner, 2026-10-09)", () => {
+  const code = COMPONENTS.EntityArt.replace(new RegExp("//.*$", "gm"), "");
+  assert.ok(!/LucideIcon|building-2|<circle cx="50" cy="36"|M50 16 C38 16/.test(code), "an icon drawn for a named entity");
+  assert.ok(code.includes("item?.asset") && /<MarkPlate/.test(code), "the plate draws the entity's mark or its name");
 });

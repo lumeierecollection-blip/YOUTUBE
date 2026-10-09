@@ -855,9 +855,50 @@ function LucideIcon({ name, size, color, stroke = 2, style }) {
   const parts = ICON_SET[name];
   if (!parts) return null;
   return (
-    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round" style={{ display: "block", ...style }}>
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth={stroke} strokeLinecap="butt" strokeLinejoin="miter" style={{ display: "block", ...style }}>
       {parts.map(([tag, at], i) => React.createElement(tag, { key: i, ...at }))}
     </svg>
+  );
+}
+/**
+ * A plate for a named entity: its real mark inside a hairline box, or — when no free, verified mark exists — its NAME set in the serif
+ * (style "mono": its initials large with the name small under them). Sharp corners, ink and the one accent. No stock icon, ever.
+ */
+function MarkPlate({ side, name, item, style, accent, th, hair }) {
+  const label = String(name || "").trim();
+  const box = { position: "absolute", left: 0, top: 0, width: side, height: side, boxSizing: "border-box", border: `${hair}px solid ${th.ink}`, overflow: "hidden" };
+  const bar = <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 8, backgroundColor: accent }} />;
+  if (item?.asset) {
+    return (
+      <div style={box}>
+        <Img src={staticFile(item.asset)} style={{ position: "absolute", left: "12%", top: "9%", width: "76%", height: "74%", objectFit: "contain" }} />
+        {bar}
+      </div>
+    );
+  }
+  const words = label.split(/\s+/).filter(Boolean);
+  const cut = Math.ceil(words.length / 2);
+  const lines = words.length <= 2 ? (words.length ? words : [label]) : [words.slice(0, cut).join(" "), words.slice(cut).join(" ")];
+  if (style === "mono") {
+    const initials = words.length === 1 && words[0].length <= 5 ? words[0].toUpperCase() : words.slice(0, 3).map((x) => x[0]).join("").toUpperCase();
+    const small = Math.max(16, Math.min(34, Math.floor((side * 0.9) / Math.max(4, label.length * 0.62))));
+    return (
+      <div style={box}>
+        <div style={{ position: "absolute", left: 0, right: 0, top: 0, height: "72%", display: "flex", alignItems: "center", justifyContent: "center", font: `800 ${Math.round(side * (initials.length > 3 ? 0.27 : initials.length > 2 ? 0.33 : 0.42))}px ${SERIF}`, letterSpacing: -2, color: th.ink }}>{initials}</div>
+        <div style={{ position: "absolute", left: 0, right: 0, top: "70%", textAlign: "center", font: `700 ${small}px ${SANS_STACK}`, letterSpacing: 2, color: th.ink, whiteSpace: "nowrap" }}>{label.toUpperCase()}</div>
+        {bar}
+      </div>
+    );
+  }
+  const longest = Math.max(1, ...lines.map((l) => l.length));
+  const size = Math.max(22, Math.min(side * 0.3, (side * 0.82) / (longest * 0.6)));
+  return (
+    <div style={box}>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 8, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", font: `800 ${Math.round(size)}px ${SERIF}`, lineHeight: 1.05, letterSpacing: -1, color: th.ink }}>
+        {lines.map((l, i) => <span key={i}>{l}</span>)}
+      </div>
+      {bar}
+    </div>
   );
 }
 function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
@@ -885,53 +926,22 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
         </div>
       </div>
     );
-  } else if (b && String(a.kind).startsWith("plate-")) {
-    const person = a.kind === "plate-person", org = a.kind === "plate-organization";
-    const line = { fill: "none", stroke: th.ink, strokeWidth: hair, vectorEffect: "non-scaling-stroke" };
-    const iconSize = Math.round(b.w * 0.56);
-    // style "mono": the initials set large in the serif (the same plate twice in a row is drawn this way the second time).
-    const mono = a.style === "mono" && (person || org);
-    const initials = (() => { const w = String(a.name || "").replace(/[^\p{L}\p{N}\s&-]/gu, "").split(/[\s-]+/).filter(Boolean); return w.length === 1 && w[0].length <= 5 ? w[0].toUpperCase() : w.slice(0, 3).map((x) => x[0]).join("").toUpperCase(); })();
-    art = (
-      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...flat }}>
-        <div style={{ position: "absolute", inset: 0, transform: `scale(${breathe.toFixed(4)})`, transformOrigin: "50% 50%" }}>
-          <svg viewBox="0 0 100 100" width={b.w} height={b.h} style={{ display: "block" }}>
-            <rect x="1" y="1" width="98" height="98" {...line} />
-            <rect x="1" y="91" width="98" height="8" fill={accent} />
-            {mono ? null : person ? (
-              <>
-                <circle cx="50" cy="36" r="14" {...line} />
-                <path d="M22 84 C24 64 36 56 50 56 C64 56 76 64 78 84" {...line} />
-              </>
-            ) : org ? null : (
-              <>
-                <path d="M50 16 C38 16 29 25 29 37 C29 52 50 76 50 76 C50 76 71 52 71 37 C71 25 62 16 50 16 Z" {...line} />
-                <circle cx="50" cy="37" r="7" {...line} />
-              </>
-            )}
-          </svg>
-          {mono ? <div style={{ position: "absolute", left: 0, top: 0, width: b.w, height: Math.round(b.h * 0.9), display: "flex", alignItems: "center", justifyContent: "center", font: `800 ${Math.round(b.w * (initials.length > 3 ? 0.3 : initials.length > 2 ? 0.36 : 0.46))}px ${SERIF}`, letterSpacing: -2, color: th.ink }}>{initials}</div> : null}
-          {org && !mono ? <div style={{ position: "absolute", left: (b.w - iconSize) / 2, top: Math.round(b.h * 0.14) }}><LucideIcon name="building-2" size={iconSize} color={th.ink} stroke={+((3 * 24) / iconSize).toFixed(2)} /></div> : null}
-        </div>
-      </div>
-    );
-  } else if (b && a.kind === "plates" && Array.isArray(a.names) && a.names.length) {
-    // A row of labelled plates, one per organisation the sentence names: each pops in turn (flat), the row pushes in as one.
-    const names = a.names.slice(0, 4), n = names.length, gap = n === 1 ? 0 : 32;
-    const side = Math.min(b.h - 90, Math.floor((b.w - gap * (n - 1)) / n));
+  } else if (b && (String(a.kind).startsWith("plate-") || a.kind === "plates")) {
+    // The entity's REAL mark (a verified, freely-licensed logo) or its NAME set in type — never a stock icon standing in for it
+    // (owner, 2026-10-09: "a typographic treatment is honest; a generic icon is not"). A row of plates when several are named together.
+    const names = a.kind === "plates" ? (a.names || []).slice(0, 4) : [a.name];
+    const items = names.map((_, i) => (Array.isArray(a.items) ? a.items[i] : null) || null);
+    const n = names.length, gap = n === 1 ? 0 : 32, labelled = items.some((it) => it?.asset);
+    const side = Math.max(120, Math.min(b.h - (labelled ? 70 : 0), Math.floor((b.w - gap * (n - 1)) / n)));
     const rowW = n * side + (n - 1) * gap, x0 = (b.w - rowW) / 2;
     art = (
       <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, transform: `scale(${push.toFixed(4)})`, transformOrigin: "50% 50%" }}>
         {names.map((nm, i) => {
-          const label = String(nm).toUpperCase(), fs = Math.max(26, Math.min(44, Math.floor((side * 1.7) / Math.max(4, label.length))));
-          const iconSize = Math.round(side * 0.56);
+          const it = items[i], label = String(nm).toUpperCase(), fs = Math.max(24, Math.min(40, Math.floor((side * 1.7) / Math.max(4, label.length))));
           return (
             <div key={i} style={{ position: "absolute", left: x0 + i * (side + gap), top: 0, width: side, height: b.h, ...flatCss(local - Math.round((at + i * 0.18) * fps)) }}>
-              <div style={{ position: "absolute", left: 0, top: 0, width: side, height: side, boxSizing: "border-box", border: `${hair}px solid ${th.ink}` }}>
-                <div style={{ position: "absolute", left: (side - iconSize) / 2 - hair, top: Math.round(side * 0.12) }}><LucideIcon name="building-2" size={iconSize} color={th.ink} stroke={+((3 * 24) / iconSize).toFixed(2)} /></div>
-                <div style={{ position: "absolute", left: -hair, right: -hair, bottom: -hair, height: 8, backgroundColor: accent }} />
-              </div>
-              <div style={{ position: "absolute", left: -20, right: -20, top: side + 18, textAlign: "center", font: `700 ${fs}px ${SANS_STACK}`, letterSpacing: 2, color: th.ink, whiteSpace: "nowrap" }}>{label}</div>
+              <MarkPlate side={side} name={nm} item={it} style={a.style} accent={accent} th={th} hair={hair} />
+              {it?.asset ? <div style={{ position: "absolute", left: -20, right: -20, top: side + 16, textAlign: "center", font: `700 ${fs}px ${SANS_STACK}`, letterSpacing: 2, color: th.ink, whiteSpace: "nowrap" }}>{label}</div> : null}
             </div>
           );
         })}
@@ -988,6 +998,7 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   return (
     <>
       {art}
+      {B.rule_end ? <Rule b={B.rule_end} t={m.build(0.3, m.s(0.2))} color={th.ink} /> : null}
       {B.statement ? <Headline b={B.statement} color={th.ink} local={local} fps={fps} m={m} idx={idx} at={tl.headlineAt + 0.35} major={m.tier === "major"} hero accent={accent} /> : null}
     </>
   );

@@ -1310,6 +1310,21 @@ export async function entityLadder(plan, channelId, log = console.log) {
       // The same plate twice in a row is a repeat the canvas-type gate refuses: the second is drawn as a monogram (initials), the third as the icon again.
       const prev = plan.beats.find((x) => x.index === b.index - 1)?.art || plan.beats.find((x) => x.index === b.index - 1)?.canvas?.art;
       if (prev && prev.kind === d.art.kind && (d.art.kind === "plate-organization" || d.art.kind === "plate-person")) d.art.style = prev.style === "mono" ? "icon" : "mono";
+      // An organisation's plate carries its REAL mark when a free, verified one exists (resolve-scene.cjs: Wikipedia infobox / Commons, licence
+      // checked, vision-verified); otherwise its NAME set in type. Never a stock icon (owner, 2026-10-09).
+      if (d.art.kind === "plate-organization" || d.art.kind === "plates") {
+        const names = d.art.kind === "plates" ? d.art.names : [d.art.name];
+        d.art.items = [];
+        for (const nm of names) {
+          let it = null;
+          try {
+            const r = await resolveSceneEntity({ channel: String(channelId), beatIndex: String(b.index), entity: { type: "company", name: nm }, context: b.narration || "" });
+            if (r?.ok && r.logo?.asset) it = { name: nm, asset: r.logo.asset, source_url: r.logo.source_url || null, license: r.logo.license || null };
+          } catch (e) { log(`[ladder] ch-${channelId} beat ${b.index}: mark for "${nm}" failed (${String(e.message).slice(0, 80)}) — its name in type`); }
+          d.art.items.push(it);
+          log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" -> ${it ? `its logo (${it.license || "free"})` : "its name in type (no free verified mark)"}`);
+        }
+      }
       reset(b, d.replaces); b.art = d.art;
       b.canvas = canvasContentFor(b, {}); done.art++;
       log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.art.kind.replace("plate-", "")} "${d.art.name}" -> ${d.art.kind}${d.replaces ? " (replaces a visual that carried none of it)" : ""}`);

@@ -7,6 +7,7 @@ import { ladderFor, gapOf } from "../entity-ladder.js";
 import { canvasLayout, canvasManifest, layoutViolations, normalizeCanvas } from "../../src/skills/remotion-render/visual/canvas-layout.js";
 import { flagCodeOf } from "../../src/skills/remotion-render/visual/flags.js";
 import { labelsDrawn } from "../template-check.js";
+import { stripEntityNames } from "../../src/skills/remotion-render/visual/strip-names.js";
 import { dateParts } from "../../src/skills/remotion-render/visual/date-parts.js";
 
 const typo = { visual_type: "TYPE", composition: "TYPE-FULL", headline: "x" };
@@ -115,4 +116,17 @@ test("a visual that carries nothing of the entity yields to it (board 3796752404
   assert.equal(span.art.kind, "span"); assert.equal(span.replaces, true);
   // data with figures, a photo, a map and a portrait are still left alone for the gate
   assert.equal(ladderFor(beat("Runway grew 40% in 2024.", { visual_type: "BAR", composition: "DATA-FULL", data: { bars: [{ label: "Runway", value: "40%" }] } }, [{ type: "company", name: "Runway" }])), null);
+});
+
+test("the caption never repeats the entity the plate carries; a logo item covers its organisation like a typeset plate", () => {
+  assert.equal(stripEntityNames("NASA took over the mission", ["NASA"]), "took over the mission");
+  assert.equal(stripEntityNames("The FBI", ["FBI"]), "");
+  assert.equal(stripEntityNames("NASA took over", ["NASA"]), "", "fewer than three words left: no caption");
+  assert.equal(stripEntityNames("Across three networks", ["Bitcoin", "Ethereum", "TRON"]), "Across three networks");
+  assert.equal(stripEntityNames("Bitcoin, Ethereum and TRON lose value", ["Bitcoin", "Ethereum", "TRON"]), "lose value".split(" ").length >= 3 ? "lose value" : "");
+  const m = canvasManifest({ visual_type: "TYPE", composition: "ENTITY-ART", art: { kind: "plate-organization", name: "NASA" }, headline: "NASA took over the mission" }, 0);
+  assert.deepEqual(m.words.statement.map((w) => w.t).join(" "), "took over the mission");
+  const logo = { composition: "ENTITY-ART", art: { kind: "plates", names: ["NASA", "FBI"], items: [{ name: "NASA", asset: "cutouts-live/1/nasa.png", license: "Public domain" }, null] } };
+  assert.equal(coverageOf(logo, { type: "organization", name: "NASA" }).by.startsWith("logo"), true);
+  assert.equal(coverageOf(logo, { type: "organization", name: "FBI" }).by.startsWith("plate-organization"), true);
 });
