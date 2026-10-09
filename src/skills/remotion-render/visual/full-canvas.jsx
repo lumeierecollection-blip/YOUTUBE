@@ -866,7 +866,7 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 50%");
   const live = clamp01((local - at * fps) / Math.max(1, dur * 0.9));
   const glyph = onAccent(accent);
-  const breathe = 1 + 0.025 * Math.sin((local / fps) * 2.6);
+  const breathe = 0.97 + 0.03 * easeInOut(live);   // a plate settles once (ease-in-out), it does not oscillate
   let art = null;
   // FLAT (owner, 2026-10-09: "they shouldn't look playful"): the reference's drawn parts are hairline-ruled and typographic —
   // sharp corners, ink plus the channel's one accent, no shadow, an ease-in-out settle with no overshoot.

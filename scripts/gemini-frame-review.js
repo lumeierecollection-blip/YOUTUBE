@@ -819,10 +819,83 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"entity_shown":"YES"|"NO","s
   }
 }
 
+/* ── Look check on the rendered frames ───────────────────────────────
+ *
+ *   node scripts/gemini-frame-review.js --look-check --video <mp4> --manifest <render-manifest.json> [--channel <id>] [--out <json>] [--sheet-dir <dir>]
+ *
+ * Owner, 2026-10-09: "they shouldn't look playful — actually that motion graphic." The pixel measures (scripts/lib/flat-look.cjs, Layer 1
+ * `flat-look`) judge palette, corners and shadows; this asks Gemini the whole-picture question the measures cannot: do the drawn components
+ * (chart, date card, time scale, plate, diagram) belong to the REFERENCE's visual family — flat, thin-ruled, typographic — or do they read
+ * as a chart library's playful defaults (rounded, thick, saturated, shadowed, bouncy-looking)? The reference frames are the channel's own
+ * (scripts/reference-frames.js). For each judged beat a side-by-side PNG (reference frame | rendered beat) is written to --sheet-dir.
+ *
+ * Exit 0 = at most max(1, 20%) of the judged beats are PLAYFUL / not the same family. Exit 1 = more (listed). Exit 3 = could not run.
+ */
+async function lookCheck() {
+  const videoPath = arg("video"), manifestPath = arg("manifest"), outPath = arg("out"), sheetDir = arg("sheet-dir"), channelId = arg("channel");
+  if (!videoPath || !manifestPath) { console.error("Usage: gemini-frame-review.js --look-check --video <mp4> --manifest <manifest.json> [--channel <id>] [--out <json>] [--sheet-dir <dir>]"); process.exit(2); }
+  if (!llmConfigured()) { console.error("::error::look check cannot run: no Gemini key and no Ollama server configured"); process.exit(3); }
+  const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+  const COMPS = new Set(["ENTITY-ART", "DATA-FULL", "TIMELINE", "PROCESS-FULL"]);
+  const jobs = (manifest.beats || []).map((b, i) => ({ b, i })).filter(({ b }) => COMPS.has(b.canvas?.composition) && !(b.canvas?.composition === "ENTITY-ART" && b.canvas?.art?.kind === "flag"));
+  if (!jobs.length) { console.log("[look-check] no chart / date / scale / plate / diagram beat — nothing to check"); if (outPath) writeFileSync(outPath, JSON.stringify({ beats: [], failing: [] }) + "\n"); process.exit(0); }
+  const { referenceFramesFor, imageParts } = await import("./reference-frames.js");
+  const ref = referenceFramesFor(channelId || "");
+  if (!ref.files.length) { console.error(`::error::look check cannot run: no reference frames (${ref.why})`); process.exit(3); }
+  const work = join(tmpdir(), `look-check-${Date.now()}`);
+  mkdirSync(work, { recursive: true });
+  if (sheetDir) mkdirSync(sheetDir, { recursive: true });
+  const content = [{ type: "text", text: `You are checking the DRAWN COMPONENTS of a finished vertical video against its REFERENCE. The first ${ref.files.length} images are frames of the reference: the look every component must belong to — flat, sharp-cornered or barely rounded, thin even rules and strokes, a restrained palette (ink, neutrals and ONE accent), no shadows, typographic dates and scales, nothing springy.
+Then, for each beat listed, you get ONE rendered frame containing a chart, graph, timeline, date card, time scale, diagram or plate. For each, answer:
+- family: YES if it could sit in the reference's visual language; NO if it reads as a different family.
+- playful: YES if ANY of these is true — rounded corners or pill shapes, thick heavy strokes or rings, saturated or candy colours (more than the one accent), drop shadows or glow, cartoon / filled icons, a wall-calendar grid, chart-library default styling; otherwise NO.
+The word caption at the bottom and the headline type are on every beat by design: judge the drawn component, not those.
+Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"family":"YES"|"NO","playful":"YES"|"NO","issues":"<what is off, or empty>"}]} — exactly one entry per beat listed, with the beat_index given.` }, ...imageParts(ref.files)];
+  try {
+    const sheets = [];
+    for (const { b, i } of jobs) {
+      const d = b.duration_sec ?? 0, t0 = b.start_sec ?? 0, c = b.canvas || {};
+      const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / 30 + 0.4 : 0.9;
+      const t = t0 + Math.min(Math.max(d * 0.62, popSec), Math.max(0, d - 0.1));
+      const fp = join(work, `b${i}.png`);
+      extractFrameAtTime(videoPath, t, fp);
+      content.push({ type: "text", text: `Beat ${i}: ${c.composition}${c.art ? ` (${c.art.kind})` : ""}${c.visual_type ? ` ${c.visual_type}` : ""}.` });
+      content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(fp).toString("base64")}` } });
+      if (sheetDir) {
+        const sp = join(sheetDir, `look-beat-${i}.png`);
+        try {
+          execFileSync(FFMPEG, ["-hide_banner", "-loglevel", "error", "-y", "-i", ref.files[i % ref.files.length], "-i", fp, "-filter_complex", "[0:v]scale=-2:960[a];[1:v]scale=-2:960[b];[a][b]hstack", "-frames:v", "1", sp]);
+          sheets.push(sp);
+        } catch (e) { console.error(`[look-check] side-by-side for beat ${i} failed: ${String(e.message).slice(0, 120)}`); }
+      }
+    }
+    console.log(`[look-check] ${jobs.length} component beat(s) against ${ref.files.length} reference frame(s) from ${ref.source} — asking the model`);
+    let result = await callLLM([{ role: "user", content }], { maxTokens: 6144, temperature: 0, noCache: true }, "look-check");
+    if (isProviderError(result)) { console.error(`::error::look check unavailable: ${result.source} ${result.error}`); process.exit(3); }
+    if (result && !Array.isArray(result.beats) && typeof result.content === "string") {
+      const text = result.content.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
+      const a = text.indexOf("{"), z = text.lastIndexOf("}");
+      try { if (a >= 0 && z > a) result = JSON.parse(text.slice(a, z + 1)); } catch {}
+    }
+    const verdicts = Array.isArray(result?.beats) ? result.beats : null;
+    if (!verdicts || verdicts.length !== jobs.length) { console.error(`::error::look check returned ${verdicts ? verdicts.length : "no"} verdict(s) for ${jobs.length} beats: ${JSON.stringify(result).slice(0, 300)}`); process.exit(3); }
+    for (const v of verdicts) console.log(`[look-check] beat ${v.beat_index}: family ${v.family}, playful ${v.playful}${v.issues ? ` — ${v.issues}` : ""}`);
+    const failing = verdicts.filter((v) => String(v.family).toUpperCase() !== "YES" || String(v.playful).toUpperCase() === "YES");
+    if (outPath) writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, reference: ref.source, beats: verdicts, failing: failing.map((v) => v.beat_index), sheets }, null, 2) + "\n");
+    const allowed = Math.max(1, Math.floor(jobs.length * 0.2));
+    if (failing.length > allowed) { console.error(`::error::look check failed: ${failing.length}/${jobs.length} component beats are not the reference's family or look playful (beats ${failing.map((v) => v.beat_index).join(", ")})`); process.exit(1); }
+    console.log(`[look-check] PASS: ${jobs.length - failing.length}/${jobs.length} component beats match the reference's look${failing.length ? ` (flagged: ${failing.map((v) => v.beat_index).join(", ")})` : ""}`);
+    process.exit(0);
+  } finally {
+    rmSync(work, { recursive: true, force: true });
+  }
+}
+
 async function main() {
   if (process.argv.includes("--beat-check")) return beatCheck();
   if (process.argv.includes("--camera-check")) return cameraCheck();
   if (process.argv.includes("--entity-check")) return entityCheck();
+  if (process.argv.includes("--look-check")) return lookCheck();
   const videoPath = arg("video");
   const scriptPath = arg("script");
   const srtPath = arg("srt");

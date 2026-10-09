@@ -2528,6 +2528,25 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       return backupAudit({ ...backupArgs, stage: "entity-check", reason: ec?.failing?.length ? `${why}: beats ${ec.failing.join(", ")}` : why });
     }
 
+    // Step 2b''''': LOOK CHECK on the rendered frames (owner, 2026-10-09: "they shouldn't look playful — actually that motion graphic"). The
+    // pixel measures are Layer 1 flat-look; this asks whether each drawn component (chart, date card, scale, plate, diagram) belongs to the
+    // channel's reference. More than max(1, 20%) playful / off-family component beats holds the video; a check that cannot run does too.
+    // A side-by-side (reference frame | rendered beat) PNG per beat is written next to the video.
+    const lookCheck = await runChild("node", [
+      GEMINI_REVIEW_JS, "--look-check",
+      "--video", result.outputPath,
+      "--manifest", result.outputPath.replace(/.mp4$/, "-manifest.json"),
+      "--channel", String(channelId),
+      "--out", result.outputPath.replace(/.mp4$/, "-look-check.json"),
+      "--sheet-dir", result.outputPath.replace(/.mp4$/, "-look"),
+    ], { label: `look-check ${channelId}/${basename(scriptPath)}` });
+    if (lookCheck.code !== 0) {
+      const why = lookCheck.code === 1 ? "FAILED — a drawn component looks playful / is not the reference's family" : "could not run";
+      console.error(`::error::look check ${why} for ${basename(result.outputPath)}`);
+      const lc = readJsonSafe(result.outputPath.replace(/.mp4$/, "-look-check.json"));
+      return backupAudit({ ...backupArgs, stage: "look-check", reason: lc?.failing?.length ? `${why}: beats ${lc.failing.join(", ")}` : why });
+    }
+
     // Step 2c: Skip QA when --skip-qa is set (local dev without ffmpeg)
     if (skipQA) {
       console.log(`--skip-qa: skipping QA for ${basename(result.outputPath)}`);

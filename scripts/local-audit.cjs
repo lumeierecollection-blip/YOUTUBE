@@ -760,6 +760,41 @@ async function visualContrast(video, beats, fps = 30) {
 }
 
 /**
+ * flat-look (owner, 2026-10-09: "they shouldn't look playful — actually that motion graphic"): on the rendered frame of every beat that
+ * draws a chart, timeline, diagram, date card, time scale, plate or flag — the reference palette only (ink, neutrals and the channel's
+ * ONE accent), sharp corners on a boxed element, no drop shadow. scripts/lib/flat-look.cjs has the measures and where they stop;
+ * motion (no spring / bounce / overshoot) is asserted by scripts/__tests__/flat-look.test.js on the animation states and the source.
+ */
+async function flatLook(video, beats, accent, fps = 30) {
+  const { offPalette, shadowShare, cornersSharp, OFF_SHARE_MAX } = require("./lib/flat-look.cjs");
+  const COMPS = new Set(["ENTITY-ART", "DATA-FULL", "TIMELINE", "PROCESS-FULL"]);
+  const bad = [], rows = [];
+  const W = 540, H = 960, sc = H / 1920;
+  beats.forEach((b, i) => {
+    const c = b.canvas;
+    if (!c || !COMPS.has(c.composition)) return;
+    const art = c.composition === "ENTITY-ART" ? c.art : null;
+    const box = art && c.boxes?.art ? { x: c.boxes.art.x * sc, y: c.boxes.art.y * sc, w: c.boxes.art.w * sc, h: c.boxes.art.h * sc } : null;
+    const boxed = !!box && (art.kind === "flag" || String(art.kind).startsWith("plate-"));
+    const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / fps + 0.4 : 0.9;
+    const t = (b.start_sec ?? 0) + Math.min(Math.max((b.duration_sec ?? 0) * 0.62, popSec), Math.max(0, (b.duration_sec ?? 0) - 0.1));
+    const buf = rgbFrame(video, t, W, H);
+    if (!buf) return;
+    const g = frameGround(buf, W, H);
+    const name = `beat ${i} (${c.composition}${art ? ` ${art.kind}` : ""})`;
+    // A flag is a real flag: its own colours are the entity's, judged by visual-contrast; everything else drawn is judged for palette.
+    const pal = offPalette(buf, W, H, accent, { y1: Math.floor((CAPTION_Y0 / 1920) * H), skip: art?.kind === "flag" && box ? [box] : [] });
+    const sh = boxed ? shadowShare(buf, W, H, box, g.l) : 0;
+    const corners = boxed ? cornersSharp(buf, W, H, box, g.l) : 4;
+    rows.push(`${name}: off-accent colour ${(pal.share * 100).toFixed(2)}%${boxed ? `, shadow strip ${(sh * 100).toFixed(0)}%, sharp corners ${corners}/4` : ""}`);
+    if (pal.share > OFF_SHARE_MAX) bad.push(`${name}: ${(pal.share * 100).toFixed(2)}% of the frame is a colour that is neither ink, neutral nor the accent ${accent} (max ${(OFF_SHARE_MAX * 100).toFixed(1)}%) — a palette the reference does not use`);
+    if (sh > 0.25) bad.push(`${name}: a soft shadow halo along its edge (${(sh * 100).toFixed(0)}% of the strip) — the reference's components are flat`);
+    if (corners < 4) bad.push(`${name}: ${4 - corners} corner(s) are rounded off — the reference's components have sharp corners`);
+  });
+  return { bad, rows };
+}
+
+/**
  * pop-transitions (owner's spec 2026-10-02): across every beat boundary the
  * composition replaces itself in place — no frame of the 10-frame window may
  * be empty (the old "cut" left blank frames between beats). Every frame from
@@ -862,6 +897,9 @@ async function canvasChecks(video, m) {
   const vcon = await visualContrast(video, beats, m.fps || 30);
   vcon.rows.forEach((r) => console.log(`[contrast] ${r}`));
   out.push({ id: "visual-contrast", pass: !vcon.bad.length, detail: vcon.bad.length ? vcon.bad.join("; ") : vcon.rows.length ? `${vcon.rows.length} flag / card visual(s), each bounded all the way round against its ground` : "no flag or framed-photo visual to judge" });
+  const fl = await flatLook(video, beats, m.accent, m.fps || 30);
+  fl.rows.forEach((r) => console.log(`[flat-look] ${r}`));
+  out.push({ id: "flat-look", pass: !fl.bad.length, detail: fl.bad.length ? fl.bad.join("; ") : fl.rows.length ? `${fl.rows.length} chart / date / scale / plate / diagram beat(s): reference palette only, no shadow, sharp corners` : "no chart, date, scale, plate or diagram beat to judge" });
   const vc = await visualCentred(video, beats, m.fps || 30);
   vc.rows.forEach((r) => console.log(`[centred] ${r}`));
   out.push({ id: "visual-centred", pass: !vc.bad.length, detail: vc.bad.length ? vc.bad.join("; ") : `${vc.rows.length} visual(s) on the frame, none with its mass in the top third` });
