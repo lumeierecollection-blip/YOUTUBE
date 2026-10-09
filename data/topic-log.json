@@ -2705,9 +2705,14 @@
           "topic": "Claude Motion and Live Dashboards: Anthropic's October 2026 Productivity Shift",
           "slug": "claude-motion-live-dashboards-october-2026",
           "reserved_at": "2026-10-09T12:18:00.357Z"
+        },
+        {
+          "topic": "The Push-Pull Leadership Trap 2026",
+          "slug": "push-pull-leadership-trap-inspiring-teams-2026",
+          "reserved_at": "2026-10-09T22:00:45.867Z"
         }
       ],
-      "last_generated": "2026-10-09T12:18:00.357Z"
+      "last_generated": "2026-10-09T22:00:45.867Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
