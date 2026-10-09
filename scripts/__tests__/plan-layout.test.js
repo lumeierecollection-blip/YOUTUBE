@@ -150,12 +150,10 @@ it("nothing placed — the restacked kicker and rule included — goes above the
 });
 
 describe("a planned layout that breaks a Layer 1 rule the default keeps is not used for that beat", () => {
-  it("a headline dropped into the nodes' zone: the planner's side is kept, its vertical is not, and why is recorded", () => {
+  it("a headline dropped into the nodes' zone is LEGAL now: text may sit with the visual (owner, 2026-10-09); its side and its vertical are the planner's", () => {
     const lay = L({ cols: 3, rows: 4, slots: [{ id: "headline", col: 2, row: 3, align: "right", v_align: "bottom" }] });
     assert.equal(lay.layout.used, true);
-    assert.equal(lay.layout.axes, "x");
-    assert.ok(lay.layout.rejected.some((r) => /^zones: middle zone holds chart \+ headline/.test(r)), lay.layout.rejected.join(" | "));
-    assert.equal(lay.boxes.headline.y, L(null).boxes.headline.y, "the table's vertical");
+    assert.ok(!(lay.layout.rejected || []).some((r) => /^zones:/.test(r)), (lay.layout.rejected || []).join(" | "));
     assert.equal(lay.boxes.headline.x + lay.boxes.headline.w, LAYOUT_AREA.x1, "the planner's side");
   });
   it("when neither axis alone is legal, the whole beat is the default", () => {

@@ -14,11 +14,13 @@ const DATA = {
 };
 const chart = (vt, extra = {}) => ({ visual_type: vt, composition: "DATA-FULL", data: DATA[vt], headline: "Surveillance keeps expanding everywhere now", ...extra });
 
-test("a chart drawn FIGURE-LOW fills the top band and its headline sits in the middle band, legally", () => {
+test("a chart drawn FIGURE-LOW is centred in the upper middle band with its headline under it, legally", () => {
   for (const vt of ["BAR", "LINE", "TREND"]) for (const variant of [0, 1]) {
     const L = canvasLayout(normalizeCanvas(chart(vt, { headline_zone: "middle", chart_zone: "top", variant }), variant));
     assert.deepEqual(layoutViolations(L), [], `${vt} v${variant}`);
-    assert.ok(L.boxes.chart.y + L.boxes.chart.h <= ZONES.top[1], `${vt}: the chart stays above y ${ZONES.top[1]}`);
+    const cy = L.boxes.chart.y + L.boxes.chart.h / 2;
+    assert.ok(Math.abs(cy - 960) <= 100, `${vt}: the chart is near the frame's centre (y ${cy}), not stranded in the top third`);
+    assert.ok(L.boxes.headline.y >= L.boxes.chart.y + L.boxes.chart.h, `${vt}: the headline is under the chart`);
     assert.ok(L.boxes.headline.y >= ZONES.middle[0], `${vt}: the headline is in the middle band`);
     const m = canvasManifest(chart(vt, { headline_zone: "middle", chart_zone: "top", variant }), variant);
     assert.deepEqual(labelsDrawn(m), [], `${vt}: no words in the top band`);

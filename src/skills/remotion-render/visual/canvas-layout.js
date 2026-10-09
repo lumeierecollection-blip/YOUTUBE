@@ -726,10 +726,14 @@ function shotLayout(c, comp, flip) {
   const focus = person ? "50% 22%" : c.photo?.view === "document" ? "50% 0%" : "50% 40%";
   let hero = "photo";
   if (comp === "PHOTO-BAND") {
-    // Shot 2: the photo bleeds off the top and both sides through the top band; the words below.
-    boxes.photo = { ...box(0, 0, FRAME.w, 604), frame: "band", focus };
-    if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 34, maxLines: 1, y: BODY_TOP + 20, flip });
-    const top = kick ? boxes.kicker.y + boxes.kicker.h + 24 : BODY_TOP + 20;
+    // Shot 2: the photo is a band across the CENTRE of the frame (owner, 2026-10-09: the visual is the hero,
+    // never stranded in the top third) — it bleeds off both sides, y 640-1110, centred on y 875; the words
+    // stand under it in the same middle band (zoneReport lets text and a visual share a zone).
+    // The hairline rule holds the frame's top so the beat's content spans >= 60% of the height (canvas-coverage).
+    boxes.rule = { ...rule(flip, TOP), keep: true };
+    boxes.photo = { ...box(0, LOW_VISUAL.top, FRAME.w, LOW_VISUAL.h), frame: "band", focus };
+    if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 34, maxLines: 1, y: LOW_VISUAL.top + LOW_VISUAL.h + 20, flip });
+    const top = kick ? boxes.kicker.y + boxes.kicker.h + 24 : LOW_VISUAL.top + LOW_VISUAL.h + 20;
     boxes.headline = headlineBox(text, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - top, max: 170 });
     hero = "headline";
   } else if (comp === "PHOTO-EDGE") {
@@ -828,6 +832,10 @@ function statCardLayout(c, flip) {
 // A photo pushes in `photo` (1.00 -> 1.10); a graph grows from 1/(1+graph) to its laid-out size about its
 // floor. `endAt`: the move eases over the first 90% of the beat. The manifest declares each beat's move.
 export const CAMERA = Object.freeze({ photo: 0.10, graph: 0.10, endAt: 0.9, min: 0.08 });
+// The visual of a "words low" arrangement (owner, 2026-10-09: "the visual is the hero of the beat ... not a strip at
+// the top"): a band across the upper MIDDLE band — y 640-1110, centred on 875 — with its words under it in the same
+// band. zoneReport lets a visual and text share a zone; text-on-text overlap and the safe area are unchanged.
+export const LOW_VISUAL = Object.freeze({ top: 640, h: 470 });
 const HERO_FLOOR = 1296;
 // A bill / coin stands on y 1310, not 1330: its 20 px drop shadow reads as ink and crossed the middle band's edge at
 // y 1340 in 466 columns (board 37901614633 ch-1 beat 5, zones-no-overlap). 1310 keeps the beat's span above 60%.
@@ -850,11 +858,13 @@ function heroShotLayout(c, comp, flip) {
     // object's ink started low and the beat's pixels spanned 59.0% (board 37866941228 ch-2 beat 8).
     // keep: the object's ink extent is not its box — finalizeChrome must not drop it.
     boxes.rule = { ...rule(flip, TOP), keep: true };
-    if (c.lead_in) boxes.kicker = dataBox(String(c.lead_in), { width: 700, size: 34, maxLines: 1, y: BODY_TOP + 20, flip });
-    const top = boxes.kicker ? boxes.kicker.y + boxes.kicker.h + 22 : BODY_TOP + 20;
+    // The object is the hero, centred in the frame's upper middle (y ~660-1100), its words under it (owner, 2026-10-09).
+    const under = LOW_VISUAL.top + LOW_VISUAL.h + 20;
+    if (c.lead_in) boxes.kicker = dataBox(String(c.lead_in), { width: 700, size: 34, maxLines: 1, y: under, flip });
+    const top = boxes.kicker ? boxes.kicker.y + boxes.kicker.h + 22 : under;
     boxes.statement = headlineBox(text, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - top, max: 170 });
-    // Its ink stands 34 px above the band's edge: the drop shadow (20 px blur) reads as ink at y 620.
-    boxes.cutout0 = { ...placeHero(cv[0], { maxW: 940, maxH: 430, floor: 586, side: "center" }), primary: true };
+    // Its ink stands 34 px above the band's floor: the drop shadow (20 px blur) must not reach the words under it.
+    boxes.cutout0 = { ...placeHero(cv[0], { maxW: 940, maxH: 440, floor: LOW_VISUAL.top + LOW_VISUAL.h - 10, side: "center" }), primary: true };
   } else if (comp === "HERO-LOW") {
     // Shot 8: a short line high up, air, then the object large on the middle band's floor.
     const y = boxes.kicker ? boxes.kicker.y + boxes.kicker.h + 22 : TOP + 6;
@@ -922,7 +932,9 @@ function tableLayout(c) {
       // middle zone under a top headline, or — headline_zone "middle" — the
       // number in the top zone over a middle headline. `variant` only mirrors.
       const swap = !!c.headline && c.headline_zone === "middle" && c.chart_zone === "top";
-      const roomH = swap ? HEADER_MAX_Y - (TOP + 40) - LABEL_BLOCK : BOTTOM - BODY_TOP - LABEL_BLOCK;
+      // swap (FIGURE-LOW): the number in the upper part of the MIDDLE band (y 650-1110), its headline under
+      // it — never stranded in the top third (owner, 2026-10-09).
+      const roomH = swap ? LOW_VISUAL.h - 10 - (c.number_label_off ? 0 : LABEL_BLOCK) : BOTTOM - BODY_TOP - LABEL_BLOCK;
       const fit = fitNumberBleed((s) => numberSlots(parts, s), R_EDGE - L_EDGE, { max: Math.min(1100, Math.floor(roomH / (ROLE_NUMBER.lineHeight + NUM_DESC))), min: 96 });
       const size = fit.size;
       const nw = Math.ceil(fit.width);
@@ -953,13 +965,12 @@ function tableLayout(c) {
       } else {
         // the hero number in the top zone, its label under it; the headline at the middle zone's bottom
         boxes.rule = rule(flip, TOP);
-        boxes.number = { ...box(nx, TOP + 40, nw, nh), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
-        // FIGURE-LOW (render-time shot, Gemini's pick): the number alone in the top band, so no words
-        // sit there — its small caption label is left out (the zones keep it beside the number).
+        boxes.number = { ...box(nx, LOW_VISUAL.top + 10, nw, nh), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
+        // FIGURE-LOW (render-time shot, Gemini's pick): the number alone in the upper middle band (centred on
+        // ~880), no words in the top band — its small caption label is left out.
         if (label && !c.number_label_off) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, y: boxes.number.y + nh + 28, flip });
-        // The middle zone's subject until the number pops on its word: the hero tier (a 110 px
-        // line filled 12% of the zone — CI run 37126933290 ch-44 beat 2, middle-zone-filled).
-        boxes.headline = headlineBox(c.headline, { minLines: 2, width: BEAT_HERO ? 900 : SUBJECT_W, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200, hero: true });
+        // Its headline under the number in the same band.
+        boxes.headline = headlineBox(c.headline, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - (boxes.label ? boxes.label.y + boxes.label.h + 16 : boxes.number.y + boxes.number.h + 24), max: 170 });
       }
       hero = "number";
     } else {
@@ -1116,14 +1127,16 @@ function tableLayout(c) {
     // the other half of a shot sequence that three chart beats in a row could not be arranged without.
     const chartTop = !!c?.headline && c.headline_zone === "middle" && c.chart_zone === "top" && ["BAR", "LINE", "TREND"].includes(vt);
     if (chartTop) {
-      const cTop = TOP + 44, W2 = R_EDGE - L_EDGE;
+      // The chart in the upper part of the MIDDLE band (y 640-1110, centred on 875), its headline under it —
+      // not stranded in the top third (owner, 2026-10-09).
+      const cTop = LOW_VISUAL.top, cBot = LOW_VISUAL.top + LOW_VISUAL.h, W2 = R_EDGE - L_EDGE;
       boxes.rule = rule(flip, TOP);
       if (vt === "BAR") {
         const bars = c?.data?.bars || [];
         const longLabel = bars.some((b) => String(b.label || "").length > 12);
-        boxes.chart = bars.length >= 4 || longLabel ? { ...box(L_EDGE, cTop, W2, HEADER_MAX_Y - cTop), orient: "h" } : { ...box(L_EDGE, cTop, W2, HEADER_MAX_Y - cTop), orient: "v", baseline: HEADER_MAX_Y - 45 };
-      } else boxes.chart = box(L_EDGE, cTop, W2, HEADER_MAX_Y - cTop);
-      boxes.headline = headlineBox(c.headline, { minLines: 2, width: BEAT_HERO ? 900 : SUBJECT_W, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200, hero: true });
+        boxes.chart = bars.length >= 4 || longLabel ? { ...box(L_EDGE, cTop, W2, cBot - cTop), orient: "h" } : { ...box(L_EDGE, cTop, W2, cBot - cTop), orient: "v", baseline: cBot - 45 };
+      } else boxes.chart = box(L_EDGE, cTop, W2, cBot - cTop);
+      boxes.headline = headlineBox(c.headline, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - (cBot + 20), max: 170 });
       hero = "chart";
       return { composition: comp, boxes, hero, flip };
     }
@@ -1184,11 +1197,13 @@ function tableLayout(c) {
     // its edges feather into the studio), zoomed on the region; the engine
     // labels the region itself. The header floats over it.
     if (c?.map_band && c?.headline) {
-      // MAP-BAND (render-time shot, the PHOTO-BAND of a map): the map fills the top band edge to
-      // edge, the headline sits low in the middle band under it — the words are not at the top.
-      boxes.map = box(0, 0, FRAME.w, 604);
+      // MAP-BAND (render-time shot, the PHOTO-BAND of a map): the map is a band across the CENTRE of the
+      // frame (y 640-1110, edge to edge), the headline under it in the same middle band — the words are not
+      // at the top and the map is not stranded there either (owner, 2026-10-09).
+      boxes.rule = { ...rule(flip, TOP), keep: true };   // holds the top: the span is >= 60% (canvas-coverage)
+      boxes.map = box(0, LOW_VISUAL.top, FRAME.w, LOW_VISUAL.h);
       const kb = c.lead_in ? dataBox(String(c.lead_in), { width: 700, size: 34, maxLines: 1, y: 0, flip }) : null;
-      boxes.headline = headlineBox(c.headline, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - BODY_TOP - (kb ? kb.h + 22 : 0), max: 170 });
+      boxes.headline = headlineBox(c.headline, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - (LOW_VISUAL.top + LOW_VISUAL.h + 20) - (kb ? kb.h + 22 : 0), max: 170 });
       if (kb) boxes.kicker = { ...kb, y: boxes.headline.y - 22 - kb.h };
       hero = "map";
     } else {
@@ -1586,7 +1601,11 @@ export function zoneReport(layout) {
     if (z.length > 1) spans.push(`${k} (y ${b.y}-${b.y + b.h}) spans ${z.join("+")}`);
     for (const n of z) occ[n].add(valueOfChart && t === "number" ? "chart" : t);
   }
-  const clashes = Object.entries(occ).filter(([, s]) => s.size > 1).map(([n, s]) => `${n} zone holds ${[...s].sort().join(" + ")}`);
+  // Words may sit with the visual — under it, over it, beside it — in one zone (owner, 2026-10-09: "text sits with
+  // the visual ... the zone rule that keeps visual and text strictly apart is what forced the visual to the top").
+  // What stays: no element across a zone edge (`spans`), the bottom zone is the caption's alone, and text-on-text
+  // overlap (layoutViolations "overlap") and the safe area (canvas-fit) are untouched.
+  const clashes = Object.entries(occ).filter(([n, s]) => n === "bottom" && s.size > 1).map(([n, s]) => `${n} zone holds ${[...s].sort().join(" + ")}`);
   const zones = Object.fromEntries(Object.entries(occ).map(([n, s]) => [n, [...s]]));
   return { ok: !spans.length && !clashes.length, spans, clashes, zones };
 }

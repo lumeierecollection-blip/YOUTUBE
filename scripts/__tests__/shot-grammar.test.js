@@ -5,7 +5,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   canvasLayout, canvasManifest, layoutViolations, normalizeCanvas, shotComposition, shotName,
-  SHOTS, SHOT_COMPOSITIONS, FRAMED_PHOTO_COMPS, TEXT_AT,
+  SHOTS, SHOT_COMPOSITIONS, FRAMED_PHOTO_COMPS, TEXT_AT, LOW_VISUAL,
 } from "../../src/skills/remotion-render/visual/canvas-layout.js";
 import { popGroups } from "../../src/skills/remotion-render/visual/pop-groups.js";
 import { labelsDrawn } from "../template-check.js";
@@ -199,12 +199,13 @@ test("chooseShots: a legal sequence whose planned shots all drew is not re-asked
   assert.equal(asked, 0);
 });
 
-test("MAP-BAND: the map across the top band, its headline low — legal, and [low] by the template measure", () => {
+test("MAP-BAND: the map a band across the CENTRE of the frame, its headline under it — legal, and [low] by the template measure", () => {
   for (const variant of [0, 1]) for (const lead_in of [null, "Tuesday"]) {
     const c = normalizeCanvas({ visual_type: "MAP", composition: "MAP-CENTERED", data: { place: "Iran" }, headline: "Iran closes the strait", map_band: true, variant, lead_in }, 0);
     const L = canvasLayout(c);
     assert.deepEqual(layoutViolations(L), [], `v${variant} label=${lead_in}`);
-    assert.equal(L.boxes.map.y, 0);
+    assert.equal(L.boxes.map.y, LOW_VISUAL.top);
+    assert.ok(Math.abs(L.boxes.map.y + L.boxes.map.h / 2 - 960) <= 100, "the map's centre is near the frame's centre, not in the top third");
     assert.equal(labelsDrawn(canvasManifest(c, 0)).length, 0, "no words in the top band");
   }
 });

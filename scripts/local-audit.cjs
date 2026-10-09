@@ -679,6 +679,47 @@ async function zonesNoOverlap(video, beats) {
 }
 
 /**
+ * visual-centred (owner, 2026-10-09: "the visual is the hero of the beat ... near the frame's vertical center, not in
+ * the top third"): on the RENDERED frame at 62% of every beat, the mass of the visual — the pixels of its box that differ
+ * from the ground, text boxes masked out — has its centroid between y 640 and y 1500 (not in the top third), and the
+ * visual is actually there (>= 3% of its box is not ground). A beat whose visual is in the top third with empty space
+ * below fails. Full-bleed photos are the whole frame and are not judged.
+ */
+async function visualCentred(video, beats) {
+  const bad = [], rows = [];
+  const W = 540, H = 960, sc = H / 1920;
+  const VISUALS = ["portrait", "cutout0", "chart", "map", "number", "photo"];
+  beats.forEach((b, i) => {
+    const c = b.canvas;
+    if (!c?.boxes || fullBleed(c)) return;
+    const key = VISUALS.find((k) => c.boxes[k] && c.boxes[k].w > 0 && c.boxes[k].h > 0 && !(k === "number" && c.composition === "NUMBER-STAT" && false));
+    if (!key) return;
+    const vb = c.boxes[key];
+    const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * 0.62;
+    const buf = rgbFrame(video, t, W, H);
+    if (!buf) return;
+    const g = frameGround(buf, W, H);
+    const lumaAt = (x, y) => { const o = (y * W + x) * 3; return 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; };
+    const textBoxes = Object.entries(c.boxes).filter(([k, v]) => v && v.w > 0 && /^(headline|statement|kicker|label|emphasis|lead|pull)/.test(k) && k !== key).map(([, v]) => v);
+    const masked = (x, y) => textBoxes.some((v) => x >= v.x * sc - 2 && x <= (v.x + v.w) * sc + 2 && y >= v.y * sc - 2 && y <= (v.y + v.h + (v.desc || 0)) * sc + 2);
+    const x0 = Math.max(0, Math.floor(vb.x * sc)), x1 = Math.min(W - 1, Math.ceil((vb.x + vb.w) * sc)), y0 = Math.max(0, Math.floor(vb.y * sc)), y1 = Math.min(H - 1, Math.ceil((vb.y + vb.h) * sc));
+    let n = 0, sy = 0, area = 0;
+    for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
+      if (masked(x, y)) continue;
+      area++;
+      if (Math.abs(lumaAt(x, y) - g.l) > 22) { n++; sy += y; }
+    }
+    if (!area) return;
+    const cy = n ? sy / n / sc : null, share = n / area;
+    rows.push(`beat ${i} (${c.composition}) ${key}: centroid y ${cy ? Math.round(cy) : "-"}, ${(share * 100).toFixed(0)}% of its box inked`);
+    if (share < 0.03) bad.push(`beat ${i} (${c.composition}): the ${key} is not on the frame (${(share * 100).toFixed(1)}% of its box differs from the ground)`);
+    else if (cy < 640) bad.push(`beat ${i} (${c.composition}): the ${key}'s mass sits at y ${Math.round(cy)} — in the top third, not near the centre (y 960)`);
+    else if (cy > 1500) bad.push(`beat ${i} (${c.composition}): the ${key}'s mass sits at y ${Math.round(cy)} — below the middle of the frame`);
+  });
+  return { bad, rows };
+}
+
+/**
  * pop-transitions (owner's spec 2026-10-02): across every beat boundary the
  * composition replaces itself in place — no frame of the 10-frame window may
  * be empty (the old "cut" left blank frames between beats). Every frame from
@@ -769,6 +810,9 @@ async function canvasChecks(video, m) {
   // frames-nonempty and pop-transitions, which stay hard.
   const mz = middleZoneFilled(video, beats);
   out.push({ id: "middle-zone-filled", pass: true, advisory: true, detail: (mz.bad.length ? mz.bad.join("; ") : "every non-photo beat fills its middle zone") + (mz.bad.length ? " [ADVISORY - not gating]" : "") });
+  const vc = await visualCentred(video, beats);
+  vc.rows.forEach((r) => console.log(`[centred] ${r}`));
+  out.push({ id: "visual-centred", pass: !vc.bad.length, detail: vc.bad.length ? vc.bad.join("; ") : `${vc.rows.length} visual(s) on the frame, none with its mass in the top third` });
   const pt = popTransitions(video, m);
   out.push({ id: "pop-transitions", pass: !pt.bad.length, detail: pt.bad.length ? pt.bad.slice(0, 6).join("; ") : "no empty frame across any beat boundary" });
   const mt = motionTiers(beats);
