@@ -144,11 +144,17 @@ export function canvasSfxEvents(beats = [], opts = {}) {
     // Removing one can make two equal sounds adjacent; drop the later of each such pair.
     out = out.filter((e, i, a) => { if (i > 0 && a[i - 1].role === e.role) { why(e, "same sound as the one before (after the cap)"); return false; } return true; });
   }
-  const events = out.map((e) => {
+  // A file whose loudest sample comes later than its event is frames into the video must START before frame 0 to land
+  // on it — impossible. CI board 37937708124 ch-5: a shutter (peak 243 ms in) for a photo arriving at frame 8 started at
+  // frame 0 and peaked 133 ms late, and Layer 1 sfx-rules rightly failed the video. Such a sound is left out, not
+  // played out of sync: silence is a sound.
+  const events = [];
+  for (const e of out) {
     const spec = SFX_PALETTE[e.role];
     const peakFrames = Math.max(0, Math.round(peaks[spec.file] || 0));
-    return { trigger: e.role, role: e.role, ...spec, atFrame: Math.max(0, e.eventFrame - peakFrames), eventFrame: e.eventFrame, peakFrames, beat: e.beat, reason: e.reason };
-  });
+    if (e.eventFrame - peakFrames < 0 && -(e.eventFrame - peakFrames) > (ALIGN_MS / 1000) * 30) { why(e, `its peak is ${peakFrames} frames into ${spec.file}, so it would have to start before the video does — left out`); continue; }
+    events.push({ trigger: e.role, role: e.role, ...spec, atFrame: Math.max(0, e.eventFrame - peakFrames), eventFrame: e.eventFrame, peakFrames, beat: e.beat, reason: e.reason });
+  }
   return { events, dropped };
 }
 

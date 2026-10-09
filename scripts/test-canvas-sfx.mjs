@@ -65,6 +65,16 @@ eq("unjudged / robotic files never play", only.events.every((e) => e.file === "c
 eq("...and their drops are reported", only.dropped.some((d) => /not judged "recorded"/.test(d)), true);
 eq("no judged file -> no SFX at all", canvasSfxEvents(beats, { recorded: new Set() }).events.length, 0);
 
+// A sound whose peak comes later than its event is frames into the video cannot land on it: left out, never played late
+// (CI board 37937708124 ch-5: a shutter for a photo at frame 8, peak 243 ms in, started at 0 and peaked 133 ms late).
+{
+  const photoBeats = [beat(0, { visual_type: "PHOTO", composition: "SCENE-FULL", photo: { asset: "e/p.jpg", entity: "X", view: "place", kind: "place", w: 1600, h: 1000 } }), beat(1, T)];
+  const early = canvasSfxEvents(photoBeats, { peaks: { ...peaks, "cc0/shutter.wav": 20 }, recorded: new Set(Object.values(SFX_PALETTE).map((s) => s.file)) });
+  eq("an early photo shutter that cannot reach its peak in time is left out", early.events.some((e) => e.trigger === "shutter"), false);
+  eq("...and says why", early.dropped.some((d) => /before the video does/.test(d)), true);
+  eq("every event kept still lands within 100 ms", early.events.every((e) => Math.abs(e.atFrame + e.peakFrames - e.eventFrame) <= 3), true);
+}
+
 // Layer 1 sfx-rules on manifest entries.
 const m = (role, file, at, ev, peak, b) => ({ role, file, at_frame: at, event_frame: ev, peak_frames: peak, beat: b });
 const rec = new Set(Object.values(SFX_PALETTE).map((s) => s.file));
