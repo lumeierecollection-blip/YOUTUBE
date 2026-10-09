@@ -420,6 +420,16 @@
     }
   },
   {
+    "text": "The investigator kept the file open for years and refused to let the trail go cold even when the department told her to stop.",
+    "seconds": 7,
+    "c": {
+      "visual_type": "TYPE",
+      "motion_tier": "medium",
+      "composition": "TYPE-CHAPTER",
+      "headline": "Refused to let it go cold"
+    }
+  },
+  {
     "text": "This massive supply chain exploit has already cost victims eighty six million dollars across more than four thousand wallets worldwide.",
     "seconds": 7,
     "c": {
@@ -434,13 +444,13 @@
     }
   },
   {
-    "text": "The investigator kept the file open for years and refused to let the trail go cold even when the department told her to stop.",
+    "text": "What changed after that ruling was not the law itself but the way every officer in the county was trained to apply it afterwards.",
     "seconds": 7,
     "c": {
       "visual_type": "TYPE",
       "motion_tier": "medium",
-      "composition": "TYPE-CHAPTER",
-      "headline": "Refused to let it go cold"
+      "composition": "TYPE-SPLIT",
+      "headline": "Not the law but the training"
     }
   },
   {
@@ -459,16 +469,6 @@
         "lead": "The trail"
       },
       "headline": "The trail"
-    }
-  },
-  {
-    "text": "What changed after that ruling was not the law itself but the way every officer in the county was trained to apply it afterwards.",
-    "seconds": 7,
-    "c": {
-      "visual_type": "TYPE",
-      "motion_tier": "medium",
-      "composition": "TYPE-SPLIT",
-      "headline": "Not the law but the training"
     }
   }
 ]
