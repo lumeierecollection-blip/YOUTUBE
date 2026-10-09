@@ -1060,9 +1060,14 @@
           "topic": "Amelia Earhart Investigators Begin Expedition to Study Mysterious Object in Pacific",
           "slug": "amelia-earhart-pacific-object-expedition",
           "reserved_at": "2026-10-08T12:36:21.634Z"
+        },
+        {
+          "topic": "French Investigators Recover Two Stolen Renoir Masterpieces",
+          "slug": "french-investigators-recover-stolen-renoir-paintings",
+          "reserved_at": "2026-10-09T12:21:10.743Z"
         }
       ],
-      "last_generated": "2026-10-08T12:36:21.634Z"
+      "last_generated": "2026-10-09T12:21:10.743Z"
     },
     "7": {
       "channel_name": "Dead Companies",
