@@ -1,0 +1,50 @@
+name: sfx-proof
+
+# Proves the SFX source on CI, with no local keys: fetches the five CC0 recordings
+# (scripts/sfx-cc0.mjs fetch), lets Gemini listen to each (judge: real recording or robotic tone),
+# and uploads verdicts.json + CREDITS.json. Fails the job if the judge could not hear a file
+# ("unjudged") — that would mean the video plays no SFX — but a "robotic" verdict is reported, not
+# failed: the file is simply not played (the owner's rule: a robotic sound is fixed or dropped, the
+# gate is not loosened).
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/sfx-cc0.mjs"
+      - ".github/workflows/sfx-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  sfx:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Fetch CC0 SFX
+        run: node scripts/sfx-cc0.mjs fetch
+      - name: Judge (Gemini listens)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+        run: node scripts/sfx-cc0.mjs judge
+      - name: Verdicts
+        if: always()
+        run: |
+          cat src/skills/remotion-render/public/sfx/cc0/CREDITS.json | head -80 || true
+          cat src/skills/remotion-render/public/sfx/cc0/verdicts.json || true
+          if grep -q '"unjudged"' src/skills/remotion-render/public/sfx/cc0/verdicts.json; then echo "::error::a file was not judged"; exit 1; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sfx-cc0
+          path: |
+            src/skills/remotion-render/public/sfx/cc0/CREDITS.json
+            src/skills/remotion-render/public/sfx/cc0/verdicts.json
