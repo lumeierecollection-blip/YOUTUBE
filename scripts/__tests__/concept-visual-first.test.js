@@ -20,7 +20,8 @@ const src = readFileSync("src/skills/remotion-render/visual/full-canvas.jsx", "u
 
 describe("concept visual under visual-first", () => {
   it("does not stack its own 0.45 s delay on the group's arrival", () => {
-    assert.match(src, /at=\{\(c\.entrance_style === "visual-first" \? 0 : tl\.headlineAt \+ 0\.45\) \+ i \* 0\.12\}/);
+    // 2026-10-09: HERO-OVER (its object above its words, alone in its band) lands first too.
+    assert.match(src, /at=\{\(c\.entrance_style === "visual-first"( \|\| L\.composition === "HERO-OVER")? \? 0 : tl\.headlineAt \+ 0\.45\) \+ i \* 0\.12\}/);
   });
   it("keeps the headline-then-visual delay for every other entrance style", () => {
     assert.match(src, /: tl\.headlineAt \+ 0\.45\)/);

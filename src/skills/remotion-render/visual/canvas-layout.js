@@ -190,10 +190,14 @@ export const HERO_SHOTS = ["HERO-STACK", ...HERO_COMPS];
 // FIGURE / STATEMENT: the content's own frame (a chart, a number, a map; a plain statement), named
 // so every beat carries a shot the planner chose.
 export const SHOTS = [...PHOTO_SHOTS, ...HERO_SHOTS, "FIGURE", "STATEMENT"];
+// Offered at render time, once the content is known (scripts/render-and-qa.js chooseShots):
+// STATEMENT-SPLIT — a statement in two halves, top and low (TYPE-SPLIT); FIGURE-LOW — a number in the
+// top band, its headline low in the middle band (NUMBER-FULL with the zones swapped).
+export const CONTENT_SHOTS = ["STATEMENT-SPLIT", "FIGURE-LOW"];
 /** A shot name as the planner wrote it, or null ("photo band" / "photo_band" -> PHOTO-BAND). */
 export function shotName(s) {
   const n = String(s || "").trim().toUpperCase().replace(/[\s_]+/g, "-");
-  return SHOTS.includes(n) ? n : null;
+  return SHOTS.includes(n) || CONTENT_SHOTS.includes(n) ? n : null;
 }
 /**
  * The composition a beat is drawn as: `shot` when the content is something it frames, else `base`.
@@ -204,7 +208,7 @@ export function shotName(s) {
 export function shotComposition(base, shot, c = {}) {
   const s = shotName(shot);
   if (!s) return { composition: base, shot: null, used: false, why: shot ? `"${shot}" is not a shot` : "no shot" };
-  if (s === "FIGURE" || s === "STATEMENT") return { composition: base, shot: s, used: true, why: null };
+  if (s === "FIGURE" || s === "STATEMENT" || CONTENT_SHOTS.includes(s)) return { composition: base, shot: s, used: true, why: null };
   const photoBase = !!c.photo && ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "PORTRAIT"].includes(base);
   const heroBase = base === "TYPE-FULL" && Array.isArray(c.concept_visuals) && c.concept_visuals.length > 0;
   if (PHOTO_SHOTS.includes(s)) {
@@ -664,8 +668,12 @@ function shotLayout(c, comp, flip) {
   const kick = c.lead_in ? String(c.lead_in) : null;
   // The header in the top band: an optional label, then the headline, on the `flip` side.
   const header = (width = 900, max = 150) => {
-    if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 34, maxLines: 1, y: TOP + 6, flip });
-    const y = kick ? boxes.kicker.y + boxes.kicker.h + 22 : TOP + 6;
+    // The hairline rule holds the frame's top, as on the content compositions: a one-line headline's
+    // ink starts well under its box (board 37859862716 ch-2 PHOTO-CARD: 58.6% coverage without it).
+    // finalizeChrome drops it wherever the content spans 62% without it.
+    boxes.rule = rule(flip, TOP);
+    if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 34, maxLines: 1, y: TOP + 30, flip });
+    const y = kick ? boxes.kicker.y + boxes.kicker.h + 22 : TOP + 38;
     boxes.headline = headlineBox(text, { width, y, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - y, max });
   };
   // A photo's own proportions inside maxW x maxH (a person or a document is portrait-shaped).

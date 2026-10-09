@@ -988,6 +988,15 @@ async function main() {
         b.capabilities = converted.capabilities;
       }
     }
+    // A beat that named its capabilities but returned no visual_events (board 37859862716: ch-8 and
+    // ch-44 beat 1, "Beat 1 has no mechanism" in the renderer's director — the whole video lost). The
+    // events are the planner's own declared types, one each; nothing is added that it did not name.
+    if ((!Array.isArray(b.visual_events) || !b.visual_events.length) && Array.isArray(b.capabilities) && b.capabilities.length) {
+      b.visual_events = b.capabilities.filter((t) => typeof t === "string" && t !== "typographic_emphasis").map((type) => ({ type, label: String(b.headline || b.visual_headline || "").slice(0, 60), magnitude: "medium" }));
+      // Typography only: an empty list — compileScene builds the beat from its capabilities, as it
+      // did at plan time (the director needs the field present, not events in it).
+      console.warn(`::warning::[plan] beat ${b.index}: no visual_events — taken from its own capabilities (${b.visual_events.map((e) => e.type).join(", ") || "typography only: none"})`);
+    }
 
     // Compile the directive into a validated scene
     const { scene, warnings, errors } = compileScene(

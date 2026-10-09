@@ -23,12 +23,12 @@ import { join, dirname, basename, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { createRequire as createRequireEntity } from "node:module";
-import { compositionFor, canvasLayout as layoutOfCanvas, canvasManifest, normalizeCanvas as normalizeForLayout, shotComposition, layoutViolations, SHOT_COMPOSITIONS } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { compositionFor, canvasLayout as layoutOfCanvas, canvasManifest, normalizeCanvas as normalizeForLayout, shotComposition, layoutViolations, SHOT_COMPOSITIONS, SHOTS, CONTENT_SHOTS, HERO_SHOTS, shotName } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { resolveGround } from "../src/skills/remotion-render/visual/backgrounds.js";
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { assignCanvasAnimations } from "./anim-plan.js";
-import { isTypeCanvas, varietyReport, beatsToConvert, fallbacksFor } from "./composition-variety.js";
+import { isTypeCanvas, varietyReport, beatsToConvert, fallbacksFor, symbolFor } from "./composition-variety.js";
 import { quantitiesOf } from "./canvas-grounding.js";
 import { checkVisual, figureKey, entityNamedInSentence, comparisonNumbers } from "./gemini-visual-plan.js";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
@@ -36,7 +36,8 @@ import { validateConcepts } from "../src/skills/remotion-render/visual/concept-v
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
 import { inkOf } from "./cutout-ink.mjs";
 import { placeGate } from "./place-gate.js";
-import { enforceChrome, templateCheck, labelCount } from "./template-check.js";
+import { enforceChrome, templateCheck, labelCount, devicesOf } from "./template-check.js";
+import { callLLM, isProviderError } from "../src/lib/llm.js";
 const { resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 const { fetchCutoutForBeat, qualifyConcept } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
 const { resolveSceneEntity, sceneEntities, fallbackAsset } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
@@ -991,22 +992,149 @@ export function sourceCredit(url) {
  * composition is, and the log says which rule. Code never picks a different shot. Run again once a
  * concept cutout is attached (attachConceptVisuals): only then is a HERO shot's object known.
  */
+const FIGURE_COMPS = ["NUMBER-FULL", "DATA-FULL", "PROCESS-FULL", "MAP-CENTERED", "LIST-BUILD", "TIMELINE", "COMPARISON-SPLIT"];
 export function applyShot(c, b, log = console.log) {
-  if (!b?.shot) return c;
+  if (!b?.shot) return { drawn: false, why: "no shot" };
+  const want = shotName(b.shot) || String(b.shot);
+  const tag = `[shot] beat ${b.index ?? "?"}: ${want}`;
+  const vt = String(c.visual_type || "TYPE").toUpperCase();
+  const plainType = vt === "TYPE" && !(c.concept_visuals || []).length && !c.name_card?.name && !c.photo;
+  const no = (why) => { c.shot_drawn = false; log(`${tag} NOT drawn — ${why}`); return { drawn: false, why }; };
+  const yes = (extra = "") => { c.shot = want; c.shot_drawn = true; log(`${tag} drawn${extra}`); return { drawn: true, why: null }; };
+  // Content variants (render time, the content known): a plain statement drawn whole, low, or in two
+  // halves; a number with its headline above it, or under it. The planner's emphasis / split / zone
+  // choices are these shots now — a variant it did not choose is turned off, never added by code.
+  if (want === "STATEMENT") {
+    if (!plainType) return no("STATEMENT frames words only; this beat shows a picture or a figure");
+    c.emphasis_beat = false; c.vertical = false; delete c.type_layout; c.composition = "TYPE-FULL"; return yes();
+  }
+  if (want === "FIGURE" && !FIGURE_COMPS.includes(c.composition)) return no(`FIGURE frames a chart, number, map, process, list, timeline or comparison; this beat draws ${c.composition}`);
+  if (want === "STATEMENT-SPLIT") {
+    if (!plainType || !splitHeadline(c.headline)) return no(plainType ? "the headline does not split in two" : "it splits a plain statement");
+    c.emphasis_beat = false; c.vertical = false; c.type_layout = "split"; c.composition = "TYPE-SPLIT"; return yes();
+  }
+  if (want === "FIGURE-LOW" || (want === "FIGURE" && vt === "COUNTER")) {
+    if (vt !== "COUNTER" || c.composition !== "NUMBER-FULL") return want === "FIGURE" ? yes() : no("it frames a number");
+    if (want === "FIGURE-LOW" && !c.headline) return no("the number has no headline to put under it");
+    c.headline_zone = want === "FIGURE-LOW" ? "middle" : "top"; c.chart_zone = want === "FIGURE-LOW" ? "top" : "middle";
+    return yes();
+  }
   const base = compositionFor(c.visual_type, !!c.photo, { view: c.photo?.view, split: !(c.concept_visuals || []).length && c.type_layout === "split" && !!splitHeadline(c.headline) });
   const own = SHOT_COMPOSITIONS.includes(c.composition) || c.composition === "SCENE-FULL" || c.composition === "PORTRAIT" ? base : c.composition;
-  const sc = shotComposition(own, b.shot, c);
-  c.shot = sc.shot || String(b.shot);
-  const tag = `[shot] beat ${b.index ?? "?"}: ${c.shot}`;
-  if (!sc.used) { c.composition = own; log(`${tag} NOT drawn — ${sc.why}`); return c; }
-  if (sc.composition === own) { c.composition = own; log(`${tag} drawn`); return c; }
+  const sc = shotComposition(own, want, c);
+  if (!sc.used) { c.composition = own; c.shot = want; return no(sc.why); }
+  if (sc.composition === own) { c.composition = own; return yes(); }
   const norm = (x) => normalizeForLayout({ ...c, composition: x, layout: null }, b.index ?? 0);
   const had = new Set(layoutViolations(layoutOfCanvas(norm(own))).map((v) => v.rule));
   const added = layoutViolations(layoutOfCanvas(norm(sc.composition))).filter((v) => !had.has(v.rule));
-  if (added.length) { c.composition = own; log(`${tag} NOT drawn — ${added.map((v) => `${v.rule}: ${v.detail}`).join("; ")}; ${own} instead`); return c; }
+  if (added.length) { c.composition = own; c.shot = want; return no(`${added.map((v) => `${v.rule}: ${v.detail}`).join("; ")}; ${own} instead`); }
   c.composition = sc.composition;
-  log(`${tag} drawn (${own} content)`);
-  return c;
+  return yes(` (${own} content)`);
+}
+
+/**
+ * The shots a RESOLVED beat can draw: every shot applied to a copy of its canvas and measured the way
+ * Layer 1 will measure the render — its composition key (canvas-type: no repeat), and its template
+ * devices (template-window: words in the top band, a pull phrase, a words-only beat). Shots that draw
+ * the same frame are listed once.
+ */
+export function shotMenu(canvas, b) {
+  const out = [], seen = new Set();
+  const add = (base, s, extra = {}) => {
+    const c2 = JSON.parse(JSON.stringify(base));
+    if (!applyShot(c2, { index: b.index, shot: s }, () => {}).drawn) return;
+    const o = { ...measuredShot(c2, b, extra.id || s), plain: s, ...extra };
+    const sig = `${o.key}|${o.words}|${c2.headline_zone}`;
+    if (seen.has(sig)) return;
+    seen.add(sig);
+    out.push(o);
+  };
+  for (const s of [...SHOTS, ...CONTENT_SHOTS]) add(canvas, s);
+  // The beat's own frame as it resolved (a name card, an emphasis statement...) is always an option —
+  // under its shot's name when one draws the same frame, else as AS-RESOLVED.
+  { const o = { ...measuredShot(JSON.parse(JSON.stringify(canvas)), b, "AS-RESOLVED"), plain: canvas.shot || null, asIs: true }; if (!seen.has(`${o.key}|${o.words}|${canvas.headline_zone}`)) { seen.add(`${o.key}|${o.words}|${canvas.headline_zone}`); out.push(o); } }
+  // A words-only beat may show the drawn symbol for what its sentence STATES (composition-variety.js
+  // symbolFor — the owner's grounded fallback: "risk" -> a warning triangle); offered as an object
+  // shot, the planner's to take or leave. Nothing the sentence does not state is offered.
+  const plainType = String(canvas.visual_type || "TYPE").toUpperCase() === "TYPE" && !(canvas.concept_visuals || []).length && !canvas.name_card?.name && !canvas.photo;
+  const sym = plainType ? symbolFor(b.narration || canvas.sentence || "") : null;
+  if (sym) {
+    const withSym = { ...JSON.parse(JSON.stringify(canvas)), concept_visuals: [{ name: sym, class: "symbol", w: 1, h: 1, fallback: true }], composition: "TYPE-FULL", emphasis_beat: false };
+    for (const s of HERO_SHOTS) add(withSym, s, { id: `${s}:${sym}`, symbol: sym });
+  }
+  return out;
+}
+function measuredShot(c, b, shot) {
+  const m = canvasManifest(c, b.index ?? 0);
+  const d = devicesOf({ canvas: m });
+  const key = m.composition + (m.boxes?.cutout0 ? `+HERO:${(m.concept_visuals || [])[0]?.name || ""}` : "") + (m.boxes?.lead_phrase ? "+NAME" : "");
+  return { shot, composition: m.composition, key, words: d.label ? "top" : "low", phrase: !!d.phrase, typeLed: !!d.typeLed, canvas: c };
+}
+/** The sequence's problems, as Layer 1 judges them (template-window; canvas-type's no-repeat). */
+export function shotSequenceProblems(choice, indices = choice.map((_, i) => i)) {
+  const out = [];
+  const name = { label: "words in the top band", phrase: "a pull phrase", typeLed: "a words-only beat" };
+  for (const w of templateCheck(choice.map((o) => ({ label: o.words === "top", phrase: o.phrase, typeLed: o.typeLed }))).windows) {
+    const span = `beats ${indices[w.start]}-${indices[w.start + 2]}`;
+    out.push({ i: w.start + 2, why: w.run.length ? `${w.run.map((d) => name[d]).join(" + ")} on three beats in a row (${span})` : `${w.repeating.map((d) => name[d]).join(" and ")} both repeat inside ${span}` });
+  }
+  choice.forEach((o, i) => { if (i > 0 && o.key === choice[i - 1].key) out.push({ i, why: `beats ${indices[i - 1]} and ${indices[i]} are the same composition (${o.key})` }); });
+  return out;
+}
+const describeBeat = (c) => {
+  const h = (c.concept_visuals || [])[0];
+  if (c.photo) return `a photo of ${c.photo.entity || "the named subject"}`;
+  if (h) return h.class === "symbol" ? `a drawn ${String(h.name).replace(/-/g, " ")} symbol` : `${h.logo ? "the logo of" : h.money ? "money:" : "an object:"} ${h.name}`;
+  if (c.name_card?.name) return `the name ${c.name_card.name}`;
+  return { "NUMBER-FULL": "a number", "DATA-FULL": "a chart", "PROCESS-FULL": "a process", "MAP-CENTERED": "a map", "LIST-BUILD": "a list", "TIMELINE": "a timeline", "COMPARISON-SPLIT": "a comparison" }[c.composition] || "words only";
+};
+/**
+ * THE SHOTS, CHOSEN ON THE RESOLVED CONTENT (render time). The planner chose each beat's shot before
+ * the content existed; resolution then changes it (a photo that does not verify, a country drawn as
+ * its map, a figure already drawn elsewhere) and a planned shot stops fitting. Board 37859862716:
+ * ch-1, 2, 5, 9 all lost to template-window with the plan's sequence "legal" — the beats had changed
+ * under it. So Gemini chooses again here, from each beat's menu of what it CAN draw, measured as
+ * Layer 1 measures it; its answer is checked against the same rules and goes back once with the
+ * problems. Code chooses nothing: no answer -> the beats stay as they are and the gates judge them.
+ */
+export async function chooseShots(plan, channelId, ask = (prompt) => callLLM([{ role: "user", content: prompt }], { maxTokens: 1200, temperature: 0 }, "shots-final")) {
+  const idx = plan.beats.map((b) => b.index);
+  const menus = plan.beats.map((b) => shotMenu(b.canvas, b));
+  const current = plan.beats.map((b) => measuredShot(b.canvas, b, b.canvas.shot || "-"));
+  const undrawn = plan.beats.filter((b) => b.canvas.shot && b.canvas.shot_drawn === false).map((b) => b.index);
+  const show = (ch) => ch.map((o) => `${o.shot}[${o.words}]`).join(" ");
+  let problems = shotSequenceProblems(current, idx);
+  console.log(`[shots-final] ch-${channelId}: as resolved ${show(current)}${problems.length ? ` — ${problems.map((p) => p.why).join("; ")}` : " — legal"}${undrawn.length ? `; planned shot not drawable on beat(s) ${undrawn.join(", ")}` : ""}`);
+  if (!problems.length && !undrawn.length) return { choice: current, problems, asked: 0 };
+  const lines = plan.beats.map((b, i) => `[${b.index}] "${String(b.narration || "").slice(0, 140)}" — shows ${describeBeat(b.canvas)}; now: ${current[i].shot}[${current[i].words}]; options: ${menus[i].map((o) => `${o.shot} [${o.words}${o.typeLed ? ", words-only" : ""}]`).join(", ")}`).join("\n");
+  const promptFor = (choice, probs) => `You are the visual director of a vertical video. Its look is the channel's reference: an editorial collage that changes its shot every beat. The content of every beat is now fixed; choose each beat's SHOT from ITS options (each is drawable and legal on its own; [top] = its words sit in the top band, [low] = under a picture or low).
+Shots: SCENE-FULL photo fills the frame; SCENE-LOW photo fills it, words low; PHOTO-BAND photo bleeds off the top third; PHOTO-EDGE photo cropped by the far edge; PHOTO-CARD photo in a heavy dark frame; PHOTO-INSET small rounded card; PHOTO-STRIP photo through a torn strip; PORTRAIT photo standing; HERO-STACK object centred under the words; HERO-LOW object large and low; HERO-SCATTER objects at angles; HERO-OVER object above the words; FIGURE a chart/number/map in its own frame; FIGURE-LOW a number high, its headline under it; STATEMENT words alone, low; STATEMENT-SPLIT words in two halves, top and low. An option "SHOT:symbol" is that object shot with the drawn symbol for what the sentence states.
+Rules, checked on the render: never the same composition on two beats in a row; never [top] on three beats in a row; never a words-only beat on three in a row, nor [top] twice AND words-only twice inside any three beats. Prefer the shot that shows the beat's content best.
+
+${lines}
+${probs.length ? `\nYour current choice ${show(choice)} breaks: ${probs.map((p) => p.why).join("; ")}. Fix those beats; keep the rest.\n` : ""}
+Respond ONLY with JSON: {"beats":[{"index":<n>,"shot":"<one of that beat's options>"}]} — one entry per beat.`;
+  let choice = current, asked = 0;
+  for (let round = 0; round < 2; round++) {
+    const ans = await ask(promptFor(choice, problems));
+    asked++;
+    if (isProviderError(ans) || !Array.isArray(ans?.beats)) { console.log(`[shots-final] ch-${channelId}: no answer (${isProviderError(ans) ? ans.error : "no beats in the answer"}) — the beats stay as resolved`); break; }
+    const id = (v) => String(v || "").trim().toUpperCase().replace(/[\s_]+/g, "-");
+    choice = plan.beats.map((b, i) => { const a = id(ans.beats.find((x) => Number(x?.index) === b.index)?.shot); return menus[i].find((o) => id(o.shot) === a) || choice[i]; });
+    problems = shotSequenceProblems(choice, idx);
+    console.log(`[shots-final] ch-${channelId}: Gemini chose ${show(choice)}${problems.length ? ` — still: ${problems.map((p) => p.why).join("; ")}` : " — legal"}`);
+    if (!problems.length) break;
+  }
+  plan.beats.forEach((b, i) => {
+    if (choice[i] === current[i]) return;
+    b.canvas = choice[i].canvas;
+    if (choice[i].asIs) return;
+    b.shot = choice[i].plain || choice[i].shot;
+    // A symbol taken: recorded where canvasContentFor rebuilds a TYPE beat's hero from (fallback_symbol).
+    if (choice[i].symbol) b.fallback_symbol = choice[i].symbol;
+  });
+  plan.shots_final = { shots: choice.map((o) => o.shot), problems: problems.map((p) => p.why) };
+  return { choice, problems, asked };
 }
 
 function canvasContentFor(b, { photo = null } = {}) {
@@ -1747,6 +1875,9 @@ async function resolveCanvas(channelId, planPath, plan) {
     // every drawn kicker pops (Layer 1 kinetic-rules, CI run 37832958615: "kicker has 4 words but 0 entrances").
     assignCanvasAnimations(plan.beats, { seed: channelId, log: () => {} });
   }
+  // The shots, chosen by Gemini on the content as it resolved (chooseShots).
+  await chooseShots(plan, channelId);
+  assignCanvasAnimations(plan.beats, { seed: channelId, log: () => {} });
   for (const b of plan.beats) {
     const k = b.canvas.composition;
     counts.by_comp[k] = (counts.by_comp[k] || 0) + 1;

@@ -61,11 +61,13 @@ test("a shot frames only its content: no photo shot on a chart, no object shot w
 
 test("applyShot draws the planner's shot, and only falls back on a Layer 1 rule — never to another shot", () => {
   const log = [];
-  const c1 = applyShot({ visual_type: "PHOTO", headline: "Chastain signs", photo: photo("place", 1600, 1000), composition: "SCENE-FULL" }, { index: 3, shot: "PHOTO-INSET" }, (m) => log.push(m));
+  const c1 = { visual_type: "PHOTO", headline: "Chastain signs", photo: photo("place", 1600, 1000), composition: "SCENE-FULL" };
+  assert.equal(applyShot(c1, { index: 3, shot: "PHOTO-INSET" }, (m) => log.push(m)).drawn, true);
   assert.equal(c1.composition, "PHOTO-INSET");
   // A wide logo cannot fill the top band of HERO-OVER (span under 60%): its own frame is drawn, and the reason is logged.
   const logo = { name: "Blumhouse", class: "cutout", asset: "l.png", w: 900, h: 300, logo: true };
-  const c2 = applyShot({ visual_type: "TYPE", headline: "Blumhouse wins", concept_visuals: [logo], composition: "TYPE-FULL" }, { index: 4, shot: "HERO-OVER" }, (m) => log.push(m));
+  const c2 = { visual_type: "TYPE", headline: "Blumhouse wins", concept_visuals: [logo], composition: "TYPE-FULL" };
+  assert.equal(applyShot(c2, { index: 4, shot: "HERO-OVER" }, (m) => log.push(m)).drawn, false);
   assert.equal(c2.composition, "TYPE-FULL");
   assert.match(log.at(-1), /HERO-OVER NOT drawn — span/);
   // Re-applied once the object is known (attachConceptVisuals), the same canvas takes its HERO shot.
@@ -122,4 +124,72 @@ test("the planner prompt offers every shot, per beat, with where its words sit �
   assert.match(staticPart, /never the words in the TOP band on three beats in a row/);
   assert.doesNotMatch(staticPart, /no cards or panels/);
   assert.doesNotMatch(staticPart, /Vox, Bloomberg and NYT/);
+});
+
+// ── Render-time choice (render-and-qa.js chooseShots): Gemini picks from what each RESOLVED beat can
+// draw; code measures and checks. Board 37859862716: the plan-time sequence was "legal" and four
+// channels still lost to template-window, because resolution changed the beats under it.
+import { shotMenu, chooseShots, shotSequenceProblems } from "../render-and-qa.js";
+
+const PLACE = { asset: "entities/places/x.jpg", entity: "Strait of Hormuz", kind: "place", view: "place", w: 1600, h: 1000 };
+const mk = (index, narration, c) => ({ index, narration, canvas: { visual_type: "TYPE", headline: narration.split(" ").slice(0, 4).join(" "), sentence: narration, ...c } });
+const resolvedPlan = () => ({ beats: [
+  mk(0, "Iran threatened the strait on Monday.", { visual_type: "MAP", composition: "MAP-CENTERED", data: { place: "Iran" } }),
+  mk(1, "Tankers crossed the Strait of Hormuz.", { visual_type: "PHOTO", composition: "SCENE-FULL", photo: PLACE, headline: "Tankers crossed the strait" }),
+  mk(2, "The risk is rising for every shipper.", { composition: "TYPE-FULL" }),
+  mk(3, "Ships slowed in the Gulf.", { visual_type: "MAP", composition: "MAP-CENTERED", data: { place: "Qatar" } }),
+  mk(4, "Insurers answered quickly.", { composition: "TYPE-FULL" }),
+] });
+
+test("a resolved beat's menu: only what it can draw, its own frame always, a symbol only when the sentence states one", () => {
+  const p = resolvedPlan();
+  const ids = (i) => shotMenu(p.beats[i].canvas, p.beats[i]).map((o) => o.shot);
+  assert.ok(ids(0).includes("FIGURE")); assert.ok(ids(2).length >= 2);
+  assert.ok(!ids(0).some((s) => s.startsWith("PHOTO-")), "no photo shot on a map");
+  assert.ok(["PHOTO-CARD", "PHOTO-STRIP", "SCENE-LOW", "PHOTO-BAND"].every((s) => ids(1).includes(s)));
+  assert.ok(!ids(2).includes("FIGURE"), "FIGURE frames a figure, not words");
+  assert.ok(ids(2).includes("STATEMENT"));
+  assert.ok(ids(2).includes("HERO-LOW:warning-triangle"), "'risk' is stated: its symbol is offered");
+  assert.ok(!ids(4).some((s) => s.includes(":")), "no symbol the sentence does not state");
+});
+
+test("chooseShots: an illegal resolved sequence goes to Gemini; a legal answer is drawn as given", async () => {
+  const p = resolvedPlan();
+  // As resolved: MAP[top], photo SCENE-FULL[top], plain statement..., MAP[top]...
+  p.beats[1].canvas.shot = "PHOTO-CARD"; p.beats[1].canvas.shot_drawn = false;   // a planned shot that did not fit
+  const prompts = [];
+  const answer = { beats: [{ index: 0, shot: "FIGURE" }, { index: 1, shot: "SCENE-LOW" }, { index: 2, shot: "HERO-LOW:warning-triangle" }, { index: 3, shot: "FIGURE" }, { index: 4, shot: "STATEMENT" }] };
+  const r = await chooseShots(p, "t", async (prompt) => { prompts.push(prompt); return answer; });
+  assert.equal(r.asked, 1);
+  assert.deepEqual(r.problems, []);
+  assert.equal(p.beats[1].canvas.composition, "SCENE-LOW");
+  assert.equal(p.beats[2].canvas.composition, "HERO-LOW");
+  assert.equal(p.beats[2].fallback_symbol, "warning-triangle");
+  assert.match(prompts[0], /options: .*SCENE-LOW \[low\]/);
+});
+
+test("chooseShots: an answer that still breaks a rule goes back ONCE with the problems; no answer leaves the beats as resolved", async () => {
+  const p = resolvedPlan();
+  p.beats[1].canvas.shot = "PHOTO-CARD"; p.beats[1].canvas.shot_drawn = false;
+  const bad = { beats: [{ index: 0, shot: "FIGURE" }, { index: 1, shot: "PHOTO-CARD" }, { index: 2, shot: "STATEMENT-SPLIT" }, { index: 3, shot: "FIGURE" }, { index: 4, shot: "STATEMENT" }] };
+  const prompts = [];
+  const r = await chooseShots(p, "t", async (prompt) => { prompts.push(prompt); return bad; });
+  assert.equal(r.asked, 2);
+  assert.match(prompts[1], /breaks: .*three beats in a row/);
+  assert.ok(r.problems.length > 0, "the problem stays on record; the render's gates judge it");
+  const q = resolvedPlan();
+  q.beats[1].canvas.shot = "PHOTO-CARD"; q.beats[1].canvas.shot_drawn = false;
+  const before = JSON.stringify(q.beats.map((b) => b.canvas.composition));
+  await chooseShots(q, "t", async () => ({ error: "quota_exhausted" }));
+  assert.equal(JSON.stringify(q.beats.map((b) => b.canvas.composition)), before);
+});
+
+test("chooseShots: a legal sequence whose planned shots all drew is not re-asked", async () => {
+  const p = resolvedPlan();
+  p.beats[1].canvas.composition = "SCENE-LOW";
+  p.beats[2].canvas = { ...p.beats[2].canvas, concept_visuals: [{ name: "warning-triangle", class: "symbol", w: 1, h: 1 }], composition: "HERO-OVER" };
+  let asked = 0;
+  const r = await chooseShots(p, "t", async () => { asked++; return { beats: [] }; });
+  assert.deepEqual(shotSequenceProblems(r.choice), []);
+  assert.equal(asked, 0);
 });
