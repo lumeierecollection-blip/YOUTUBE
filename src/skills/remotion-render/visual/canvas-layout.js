@@ -871,7 +871,7 @@ function heroShotLayout(c, comp, flip) {
     boxes.statement = headlineBox(text, { width: 760, y, flip, maxLines: 2, maxHeight: Math.min(300, HEADER_MAX_Y - y), max: 104 });
     // The ink stands on y 1296, as the TYPE-FULL hero's does: its drop shadow (20 px blur) reads as ink
     // and crossed y 1340 from a 1326 floor (shot-proof run 37859081660, zones-no-overlap, 143 columns).
-    boxes.cutout0 = { ...placeHero(cv[0], { maxW: 940, maxH: 650, floor: HERO_FLOOR, side: away }), primary: true };
+    boxes.cutout0 = { ...placeHero(cv[0], { maxW: 940, maxH: 650, floor: HERO_FLOOR, side: "center" }), primary: true };   // centred (owner, 2026-10-09: the visual is the hero)
   } else {
     // Shot 13: the objects off-centre at opposing angles; a second object smaller, high on the other side.
     const tilt = flip ? 9 : -9;

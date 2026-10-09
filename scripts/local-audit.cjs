@@ -685,7 +685,7 @@ async function zonesNoOverlap(video, beats) {
  * visual is actually there (>= 3% of its box is not ground). A beat whose visual is in the top third with empty space
  * below fails. Full-bleed photos are the whole frame and are not judged.
  */
-async function visualCentred(video, beats) {
+async function visualCentred(video, beats, m_fps = 30) {
   const bad = [], rows = [];
   const W = 540, H = 960, sc = H / 1920;
   const VISUALS = ["portrait", "cutout0", "chart", "map", "number", "photo"];
@@ -695,25 +695,30 @@ async function visualCentred(video, beats) {
     const key = VISUALS.find((k) => c.boxes[k] && c.boxes[k].w > 0 && c.boxes[k].h > 0 && !(k === "number" && c.composition === "NUMBER-STAT" && false));
     if (!key) return;
     const vb = c.boxes[key];
-    const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * 0.62;
+    // 62% of the beat — or 0.4 s after its picture pops on the word that names it (canvas.entity_pop), if later.
+    const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / (m_fps || 30) + 0.4 : 0;
+    const t = (b.start_sec ?? 0) + Math.min(Math.max((b.duration_sec ?? 0) * 0.62, popSec), Math.max(0, (b.duration_sec ?? 0) - 0.1));
     const buf = rgbFrame(video, t, W, H);
     if (!buf) return;
     const g = frameGround(buf, W, H);
-    const lumaAt = (x, y) => { const o = (y * W + x) * 3; return 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; };
+    const lumaAt =(x, y) => { const o = (y * W + x) * 3; return 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; };
     const textBoxes = Object.entries(c.boxes).filter(([k, v]) => v && v.w > 0 && /^(headline|statement|kicker|label|emphasis|lead|pull)/.test(k) && k !== key).map(([, v]) => v);
     const masked = (x, y) => textBoxes.some((v) => x >= v.x * sc - 2 && x <= (v.x + v.w) * sc + 2 && y >= v.y * sc - 2 && y <= (v.y + v.h + (v.desc || 0)) * sc + 2);
     const x0 = Math.max(0, Math.floor(vb.x * sc)), x1 = Math.min(W - 1, Math.ceil((vb.x + vb.w) * sc)), y0 = Math.max(0, Math.floor(vb.y * sc)), y1 = Math.min(H - 1, Math.ceil((vb.y + vb.h) * sc));
-    let n = 0, sy = 0, area = 0;
+    let n = 0, sy = 0, sx = 0, area = 0;
     for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
       if (masked(x, y)) continue;
       area++;
-      if (Math.abs(lumaAt(x, y) - g.l) > 22) { n++; sy += y; }
+      if (Math.abs(lumaAt(x, y) - g.l) > 22) { n++; sy += y; sx += x; }
     }
     if (!area) return;
-    const cy = n ? sy / n / sc : null, share = n / area;
-    rows.push(`beat ${i} (${c.composition}) ${key}: centroid y ${cy ? Math.round(cy) : "-"}, ${(share * 100).toFixed(0)}% of its box inked`);
+    const cy = n ? sy / n / sc : null, cx = n ? sx / n / sc : null, share = n / area;
+    rows.push(`beat ${i} (${c.composition}) ${key}: centroid (${cx ? Math.round(cx) : "-"}, ${cy ? Math.round(cy) : "-"}), ${(share * 100).toFixed(0)}% of its box inked`);
     if (share < 0.03) bad.push(`beat ${i} (${c.composition}): the ${key} is not on the frame (${(share * 100).toFixed(1)}% of its box differs from the ground)`);
     else if (cy < 640) bad.push(`beat ${i} (${c.composition}): the ${key}'s mass sits at y ${Math.round(cy)} — in the top third, not near the centre (y 960)`);
+    // Left- or right-PINNED by accident: a visual whose mass sits in the outer fifth of the frame, where no composition
+    // chose an offset (an edge-cropped photo, an inset card and a scatter are offset on purpose).
+    else if (cx && (cx < 216 || cx > 864) && !["PHOTO-EDGE", "PHOTO-INSET", "HERO-SCATTER", "PHOTO-STRIP"].includes(c.composition)) bad.push(`beat ${i} (${c.composition}): the ${key}'s mass sits at x ${Math.round(cx)} — pinned to a side of the frame (centre x 540)`);
     else if (cy > 1500) bad.push(`beat ${i} (${c.composition}): the ${key}'s mass sits at y ${Math.round(cy)} — below the middle of the frame`);
   });
   return { bad, rows };
@@ -810,7 +815,7 @@ async function canvasChecks(video, m) {
   // frames-nonempty and pop-transitions, which stay hard.
   const mz = middleZoneFilled(video, beats);
   out.push({ id: "middle-zone-filled", pass: true, advisory: true, detail: (mz.bad.length ? mz.bad.join("; ") : "every non-photo beat fills its middle zone") + (mz.bad.length ? " [ADVISORY - not gating]" : "") });
-  const vc = await visualCentred(video, beats);
+  const vc = await visualCentred(video, beats, m.fps || 30);
   vc.rows.forEach((r) => console.log(`[centred] ${r}`));
   out.push({ id: "visual-centred", pass: !vc.bad.length, detail: vc.bad.length ? vc.bad.join("; ") : `${vc.rows.length} visual(s) on the frame, none with its mass in the top third` });
   const pt = popTransitions(video, m);
