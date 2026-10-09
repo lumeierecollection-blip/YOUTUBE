@@ -58,12 +58,16 @@ export function popGroups(c, L) {
   // number — pops at the frame its word is spoken; the others keep their order from the
   // beat's start (headline first). Not when nothing else would be on screen meanwhile
   // (the pop-transitions rule: no empty frame).
+  // A LIST-BUILD / TIMELINE body adds its items as the narrator reaches them, so at the beat's first frames its band
+  // draws NOTHING: "visual-first" (the band first, the headline 14 frames later) left the frame empty across the
+  // boundary — pop-transitions, ch-44 board 37919459134 frames 7-10. Their headline lands first.
+  const style = ["LIST-BUILD", "TIMELINE"].includes(L.composition) && c.entrance_style === "visual-first" ? null : c.entrance_style;
   const ek = entityGroupKey(c, L, groups);
   if (ek && c.entity_pop && Number.isFinite(c.entity_pop.frame) && order.some((g) => g.key !== ek && g.major)) {
-    const rest = arrival(order.filter((g) => g.key !== ek), c.entrance_style);
+    const rest = arrival(order.filter((g) => g.key !== ek), style);
     return [...rest, { ...order.find((g) => g.key === ek), at: Math.max(0, c.entity_pop.frame - POP.START), entity: true }];
   }
-  return arrival(order, c.entrance_style);
+  return arrival(order, style);
 }
 // The group that holds the beat's entity visual, or null.
 export function entityGroupKey(c, L, groups) {

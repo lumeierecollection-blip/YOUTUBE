@@ -69,7 +69,10 @@ the HOOK sentence, word for word.
    the payoff to land. Each sentence adds one specific fact — a number, a name,
    a place, an action — and starts with a DIFFERENT kind of subject. The LAST
    setup sentence ends on a question the viewer now has (a literal question,
-   or a line that withholds the answer).
+   or a line that withholds the answer) — and the question NAMES its figure,
+   place, person or object ("Where did the $91 million go?", never "Where did it
+   all go?"): a nameless question is a words-only card, and the re-hook right
+   after it would be a second one in a row.
 3. **RE-HOOK** (section `rehook`, 1-2 sentences, 10–18 words). The second hook,
    right where the viewer might leave. It FLIPS the setup ("Except the bank
    made one mistake.") or RAISES the stakes ("And the person who signed it

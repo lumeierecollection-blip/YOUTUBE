@@ -116,9 +116,21 @@ async function judgeAll() {
   const { callGemini } = await import("../src/lib/gemini-client.js");
   const call = (messages) => callGemini(messages, { model: "gemini-3.5-flash", maxTokens: 2000, temperature: 0, noCache: true, tag: "sfx-judge" });
   const verdicts = {};
+  let before = {};
+  try { before = JSON.parse(readFileSync(VERDICTS, "utf8")).verdicts || {}; } catch { /* first run */ }
   for (const s of SFX_SOURCES) {
     if (!existsSync(join(CC0_DIR, s.file))) { verdicts[s.file] = { verdict: "unjudged", why: "not fetched" }; continue; }
-    verdicts[s.file] = await judgeOne(s.file, call);
+    // A verdict belongs to the file's CONTENT (sha256): the runner cache keeps verdicts.json with the files,
+    // so a file Gemini already judged is not sent again (ten parallel render jobs x five audio calls were
+    // part of what exhausted the keys on board 37919459134).
+    const sha256 = createHash("sha256").update(readFileSync(join(CC0_DIR, s.file))).digest("hex");
+    const prior = before[s.file];
+    if (prior && prior.sha256 === sha256 && (prior.verdict === "recorded" || prior.verdict === "robotic")) {
+      verdicts[s.file] = prior;
+      console.log(`[sfx-judge] ${s.file}: ${prior.verdict.toUpperCase()} (judged earlier, same file) — ${prior.why}`);
+      continue;
+    }
+    verdicts[s.file] = { ...(await judgeOne(s.file, call)), sha256 };
     console.log(`[sfx-judge] ${s.file}: ${verdicts[s.file].verdict.toUpperCase()} — ${verdicts[s.file].why}`);
   }
   writeFileSync(VERDICTS, JSON.stringify({ judged_at: new Date().toISOString(), definition: ROBOTIC, verdicts }, null, 2) + "\n");

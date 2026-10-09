@@ -105,6 +105,9 @@ function specificsOf(sentence, ctx = {}) {
   const toks = s.split(/\s+/);
   let run = [], runStart = -1;
   const flush = () => {
+    // A joiner that trails the run is not part of the name: "Except the" (a sentence opener + "the") is not a
+    // two-word name, which made "Except the international bonds never existed." count as naming something.
+    while (run.length > 1 && /^(of|the|and|de|del|da|von|van|for|on)$/.test(run[run.length - 1])) run.pop();
     if (!run.length) return;
     const text = run.join(" ").replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g, "");
     const first = runStart === 0;
@@ -175,14 +178,20 @@ function validateScript(script, research = null) {
   const abstract = rows.reduce((a, r) => a + r.abstract.length, 0);
   const ratio = abstract ? concrete / abstract : Infinity;
   const zero = rows.filter((r) => r.score === 0 && !isTurnLine(r.sentence));
-  const specOk = !zero.length && avg >= 1.5 && !banned.length;
+  // Owner, 2026-10-09: "at most one words-only beat in three". A sentence is a beat, and a turn line (the setup's
+  // closing question, the re-hook's flip) is exempt from SPECIFICITY above but still draws as a words-only card, so
+  // the question and the flip right after it were two of three. Any sentence that names nothing while one of the
+  // two sentences before it also names nothing is marked, turn lines included (the later one is re-asked).
+  const bare = rows.filter((r, i) => r.score === 0 && !zero.includes(r) && ((i > 0 && rows[i - 1].score === 0) || (i > 1 && rows[i - 2].score === 0)));
+  const specOk = !zero.length && !bare.length && avg >= 1.5 && !banned.length;
   const ratioOk = ratio >= 2;
-  return { sentences: rows, avg, banned, zero, concrete, abstract, ratio, specOk, ratioOk, pass: specOk && ratioOk };
+  return { sentences: rows, avg, banned, zero, bare, concrete, abstract, ratio, specOk, ratioOk, pass: specOk && ratioOk };
 }
 
 /** The "  - " feedback lines the script stage appends to its re-ask prompt. */
 function feedbackLines(r) {
   const out = [];
+  for (const z of r.bare || []) out.push(`  - SPECIFICITY: "${z.sentence}" names nothing, and so does a sentence right before it — each sentence is one picture and at most one in three may be words only. Make this one name a figure, place, person, organization or object FROM THE RESEARCH (a closing question names its figure: "Where did the $91 million go?", not "Where did it all go?"), or cut it. Nothing is invented.`);
   for (const z of r.zero) out.push(`  - SPECIFICITY: "${z.sentence}" names nothing specific. Rewrite it to name a person, place, organization, number or physical object FROM THE RESEARCH (key_facts / numbers / named_entities) that is about THIS video's subject, or cut it. A research fact about a different story is never used to fill a sentence, and a name or figure is never invented.`);
   if (r.avg < 1.5) out.push(`  - SPECIFICITY: the script averages ${r.avg.toFixed(2)} named specifics per sentence; it must average at least 1.5. Put a second research name or figure into the weakest sentences.`);
   for (const b of r.banned) out.push(`  - BANNED PHRASE: "${b}" — remove it; state the research fact directly instead.`);

@@ -813,7 +813,9 @@ jobs:
       contents: write
     strategy:
       matrix: ${{ fromJson(needs.setup.outputs.matrix) }}
-      max-parallel: 6
+      # 4, not 6 (2026-10-09): ten channels at once exhausted all three Gemini keys on board 37919459134 (two channels
+      # lost their visual plan to 429s). Fewer concurrent renders, fewer simultaneous requests.
+      max-parallel: 4
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
@@ -964,7 +966,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: src/skills/remotion-render/public/sfx/cc0
-          key: sfx-cc0-${{ hashFiles('scripts/sfx-cc0.mjs') }}
+          key: sfx-cc0-v1   # bump when SFX_SOURCES changes; verdicts inside are keyed by each file's sha256
 
       - name: Fetch CC0 SFX
         if: steps.status.outputs.skip != 'true'
