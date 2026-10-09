@@ -86,6 +86,37 @@ the HOOK sentence, word for word.
    "the future is uncertain". A close that states a fact still needs that fact
    from the research.
 
+## SHOW IT — every sentence is one picture (short-video-scripter rules, carried in)
+
+The renderer draws one picture per sentence from what the sentence NAMES. A
+sentence that names nothing drawable becomes a words-only card; the renderer
+allows at most one words-only card in any three sentences, so a script of
+abstractions cannot be arranged at all. Write so each sentence has a thing to
+show:
+
+- **One idea per sentence, one drawable thing per idea** — a person, a place,
+  an object, a figure with its unit, a dated event. Never two ideas to save
+  words; never an idea with nothing to point at.
+- **The hook survives muted autoplay.** Its first words are what is on screen
+  in the first two seconds, so it names the concrete thing (the number, the
+  place, the object) — not a feeling about it.
+- **Confirm the hook before anything else (the 2-5 s beat most drafts skip).**
+  The FIRST setup sentence is proof the hook's promise is real: the document,
+  the amount, the place, the date — the thing that can be shown. Not
+  background.
+- **Escalate: each sentence is bigger or closer than the last** — a larger
+  figure, a nearer place, a more specific person, a worse or better
+  consequence. If a sentence could swap places with the one before it, it is
+  not escalating; cut or reorder it. Escalate with the research's facts only.
+- **Pay off in steps, one idea per step** (reveal, consequence, number), each
+  step a different drawable thing.
+- **Close on the loop or the act.** Either the CLOSE echoes the HOOK's own key
+  noun or number (the last frame can feed the first for a rewatch), or it names
+  the one specific action. Both must still come from the research.
+- A sentence that is only a judgement ("That changes everything", "It matters")
+  is words-only. Allowed at most once in three sentences, and only when the
+  research gives no object for it — never invent an object to avoid it.
+
 ## RULES
 
 - **Every sentence earns the next.** Read it aloud; if it doesn't make you
@@ -132,7 +163,11 @@ day", "Here's what nobody tells you", "Not gonna lie", "Let me be honest".
 - The last SETUP sentence ends on a question the viewer now has.
 - The RE-HOOK flips the setup or raises the stakes.
 - The PAYOFF names a specific number and outcome, with no "may / could / might".
-- The CLOSE is one specific, actionable sentence.
+- The CLOSE is one specific, actionable sentence, or echoes the hook's own
+  key noun or number.
+- The first SETUP sentence proves the hook with something that can be shown.
+- No two sentences swap places without loss (each is bigger or closer than the
+  one before); at most one sentence in three names nothing drawable.
 - 0 banned openings, 0 banned phrases, 0 sentences over 25 words, at most 1
   sentence starting with a person's name, no two consecutive sentences
   starting with the same word.

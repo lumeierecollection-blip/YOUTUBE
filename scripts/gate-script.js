@@ -70,6 +70,22 @@ function wordCount(text) {
   return String(text || "").split(/\s+/).filter(Boolean).length;
 }
 
+/**
+ * Sentences of the voiceover that name no figure / date / proper noun, and the longest run of
+ * them in a row. Exported for scripts/test-script-shows.mjs.
+ */
+export function wordsOnlyShare(sections = []) {
+  const sentences = sections
+    .flatMap((s) => String(s.voiceover || "").split(/(?<=[.!?])\s+/))
+    .map((t) => t.trim()).filter(Boolean);
+  const names = (t) => /\d/.test(t) || /(?:^|\s)(?!I\b)[A-Z][A-Za-z]+/.test(t.replace(/^\W*\S+\s*/, " ")) ||
+    /\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/.test(t);
+  const flags = sentences.map((t) => !names(t));
+  let run = 0, best = 0;
+  for (const f of flags) { run = f ? run + 1 : 0; best = Math.max(best, run); }
+  return { sentences, bare: sentences.filter((_, i) => flags[i]), run: best };
+}
+
 function main() {
   const args = process.argv.slice(2).filter((a) => a !== "--strict");
   const [channelId, scriptSlug, researchSlugArg] = args;
@@ -256,6 +272,18 @@ function main() {
       `This channel needs ${minWords}-${maxWords} words of voiceover (at ${targetWpm} wpm): ${delta}. ` +
       `Count the words in every section's voiceover and hit that range — shorter is NOT safer, under ${minWords} fails exactly like over ${maxWords}.`
     );
+  }
+
+  // SCR-17 (soft) — beats have something to show (short-video-scripter rules, 2026-10-09).
+  // Heuristic: a sentence "names something drawable" if it holds a figure, a date, or a proper
+  // noun after its first word. A real object noun ("a courthouse") is invisible to this, so it
+  // can only WARN; the renderer's shot legality (at most one words-only beat in three) is the
+  // judge of what can actually be drawn.
+  {
+    const { sentences, bare, run } = wordsOnlyShare(sections);
+    if (sentences.length >= 6 && (bare.length / sentences.length > 1 / 3 || run >= 3)) {
+      majors.push(`SCR-17: ${bare.length}/${sentences.length} sentences name no figure, date or proper noun (longest run ${run}) — the renderer allows at most one words-only beat in three: "${bare.slice(0, 3).join('" / "').slice(0, 220)}"`);
+    }
   }
 
   // SCR-12 — text_overlay is an object or null, never a bare string.
