@@ -786,6 +786,16 @@ async function canvasChecks(video, m) {
     for (const a of new Set(imgs)) { if (seen.has(a)) rep.push(`${a} on beats ${seen.get(a)} and ${i}`); else seen.set(a, i); }
   });
   out.push({ id: "no-photo-repeat", pass: !rep.length, detail: rep.length ? rep.join("; ") : "no photo or cutout appears on two beats" });
+  // sfx-rules (owner, 2026-10-09): every SFX that plays was judged a real recording by Gemini
+  // (scripts/sfx-cc0.mjs judge), its peak lands within 100 ms of its visible event, no sound twice in
+  // a row, no sound on three beats in a row. HARD — a robotic sound fails the video; fix the sound.
+  const sfxPlayed = m.sfx || [];
+  if (sfxPlayed.length) {
+    const { sfxRuleProblems } = await import("../src/skills/remotion-render/visual/canvas-sfx.js");
+    const { recordedFiles } = await import("./sfx-cc0.mjs");
+    const sr = sfxRuleProblems(sfxPlayed, { fps: m.fps || 30, recorded: recordedFiles() });
+    out.push({ id: "sfx-rules", pass: !sr.length, detail: sr.length ? sr.slice(0, 6).join("; ") : `${sfxPlayed.length} SFX, all judged recorded, each within 100 ms of its event, ${beats.length - new Set(sfxPlayed.map((e) => e.beat)).size}/${beats.length} beats silent` });
+  }
   return out;
 }
 

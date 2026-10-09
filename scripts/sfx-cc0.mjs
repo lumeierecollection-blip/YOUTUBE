@@ -1,0 +1,134 @@
+#!/usr/bin/env node
+/**
+ * sfx-cc0.mjs — the SFX palette: RECORDED sounds, CC0, fetched with no API key.
+ *
+ * Source: Remotion's SFX library (https://www.remotion.dev/docs/sfx). Every file there names the
+ * recording it came from (Freesound / kenney.nl) and its licence, Creative Commons 0; the contributor
+ * guide (https://www.remotion.dev/docs/contributing/sfx) requires CC0 and WAV. Checked 2026-10-09,
+ * per file, on each file's own docs page (quoted in SFX_SOURCES). Not used:
+ *   - sfx-elements (tryelements.dev): "CC0" in a subtitle, but no author or origin for any sound —
+ *     provenance unknown, so not taken (CLAUDE.md: no sound that did not come from an actual source).
+ *   - Freesound's API: its free tier is non-commercial. (A Freesound recording reached through
+ *     Remotion's CDN is that recording under its own CC0 licence.)
+ *
+ *   node scripts/sfx-cc0.mjs fetch   download each missing file into public/sfx/cc0/ (the runner's
+ *                                    cache keeps them across runs) and write CREDITS.json there
+ *   node scripts/sfx-cc0.mjs judge   THE GATE: Gemini listens to every file and answers whether it is a
+ *                                    real recording or a robotic tone (defined below) -> verdicts.json.
+ *                                    Only "recorded" files may play (render.js); a video that plays any
+ *                                    other fails Layer 1 sfx-recorded (local-audit.cjs).
+ */
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+export const CC0_DIR = join(ROOT, "src", "skills", "remotion-render", "public", "sfx", "cc0");
+export const VERDICTS = join(CC0_DIR, "verdicts.json");
+
+/** Every sound the palette may play. `file` is what canvas-sfx.js names (sfx/cc0/<file>). */
+export const SFX_SOURCES = Object.freeze([
+  { file: "whoosh.wav", url: "https://remotion.media/whoosh.wav", title: "Woosh", author: "1bob", source: "https://freesound.org/s/831936/", license: "CC0 1.0", page: "https://www.remotion.dev/docs/sfx/whoosh", seconds: 0.154 },
+  { file: "whip.wav", url: "https://remotion.media/whip.wav", title: "SWSH_Badminton Racquet_Recording_01_JW Audio", author: "JW_Audio", source: "https://freesound.org/s/838766/", license: "CC0 1.0", page: "https://www.remotion.dev/docs/sfx/whip", seconds: 0.173 },
+  { file: "draw-knife.wav", url: "https://remotion.media/page-turn.wav", title: "Draw Knife 1 (served by Remotion as 'page-turn')", author: "Kenney", source: "https://kenney.nl", license: "CC0 1.0", page: "https://www.remotion.dev/docs/sfx/page-turn", seconds: 0.4 },
+  { file: "shutter.wav", url: "https://remotion.media/shutter-modern.wav", title: "DSLR Shutter fast 006.wav", author: "ristooooo1", source: "https://freesound.org/s/539136/", license: "CC0 1.0", page: "https://www.remotion.dev/docs/sfx/shutter-modern", seconds: 0.489 },
+  { file: "switch.wav", url: "https://remotion.media/switch.wav", title: "UI Audio - Switch 35", author: "Kenney", source: "https://kenney.nl", license: "CC0 1.0", page: "https://www.remotion.dev/docs/sfx/ui-switch", seconds: 0.33 },
+]);
+
+/** The definition the judge answers to (the owner's, 2026-10-09). */
+export const ROBOTIC = "ROBOTIC means any of: a pure sine, square, triangle or sawtooth tone; formant-less synthesis (an oscillator, not a physical event); audible text-to-speech artifacts; a loop click or a hard digital edge at the start or end. RECORDED means a microphone captured a physical event (air moving, an object, a mechanism), with the natural noise, decay and room that come with it.";
+
+async function fetchAll() {
+  mkdirSync(CC0_DIR, { recursive: true });
+  const credits = [];
+  for (const s of SFX_SOURCES) {
+    const out = join(CC0_DIR, s.file);
+    if (!existsSync(out)) {
+      const res = await fetch(s.url, { signal: AbortSignal.timeout(30000) });
+      if (!res.ok) throw new Error(`${s.url}: HTTP ${res.status}`);
+      writeFileSync(out, Buffer.from(await res.arrayBuffer()));
+      console.log(`[sfx] fetched ${s.url} -> sfx/cc0/${s.file}`);
+    } else console.log(`[sfx] cached sfx/cc0/${s.file}`);
+    const buf = readFileSync(out);
+    const sha256 = createHash("sha256").update(buf).digest("hex");
+    const w = wavPeak(buf);
+    credits.push({ ...s, sha256, ...w });
+    console.log(`[sfx] ${s.file}: ${w.duration_ms} ms, loudest sample at ${w.peak_ms} ms (${w.peak_dbfs} dBFS)`);
+  }
+  // CC0 asks for no attribution; the provenance is recorded anyway.
+  writeFileSync(join(CC0_DIR, "CREDITS.json"), JSON.stringify({ fetched_at: new Date().toISOString(), credits }, null, 2) + "\n");
+  console.log(`[sfx] ${credits.length} CC0 file(s) ready; credits: sfx/cc0/CREDITS.json`);
+}
+
+/**
+ * A PCM / float WAV's length and the time of its loudest sample — the moment a sound "hits", which
+ * canvas-sfx.js lands on the visible event (a whoosh peaks mid-file, a shutter at its first click).
+ */
+export function wavPeak(buf) {
+  if (buf.toString("ascii", 0, 4) !== "RIFF" || buf.toString("ascii", 8, 12) !== "WAVE") throw new Error("not a RIFF/WAVE file");
+  let fmt = null, data = null;
+  for (let o = 12; o + 8 <= buf.length;) {
+    const id = buf.toString("ascii", o, o + 4), size = buf.readUInt32LE(o + 4);
+    if (id === "fmt ") fmt = { tag: buf.readUInt16LE(o + 8), ch: buf.readUInt16LE(o + 10), rate: buf.readUInt32LE(o + 12), bits: buf.readUInt16LE(o + 22), sub: size >= 40 ? buf.readUInt16LE(o + 32) : 0 };
+    if (id === "data") data = { start: o + 8, size: Math.min(size, buf.length - o - 8) };
+    o += 8 + size + (size & 1);
+  }
+  if (!fmt || !data) throw new Error("WAV without fmt/data chunk");
+  const bps = fmt.bits / 8, frame = bps * fmt.ch, n = Math.floor(data.size / frame);
+  const float = fmt.tag === 3 || (fmt.tag === 0xfffe && fmt.sub === 3); // WAVE_FORMAT_IEEE_FLOAT, plain or extensible
+  const read = (off) => float ? buf.readFloatLE(off)
+    : bps === 2 ? buf.readInt16LE(off) / 32768 : bps === 3 ? buf.readIntLE(off, 3) / 8388608 : bps === 4 ? buf.readInt32LE(off) / 2147483648 : (buf.readUInt8(off) - 128) / 128;
+  let peak = 0, at = 0;
+  for (let i = 0; i < n; i++) for (let c = 0; c < fmt.ch; c++) { const v = Math.abs(read(data.start + i * frame + c * bps)); if (v > peak) { peak = v; at = i; } }
+  return { duration_ms: Math.round((n / fmt.rate) * 1000), peak_ms: Math.round((at / fmt.rate) * 1000), peak_dbfs: peak > 0 ? Math.round(20 * Math.log10(peak) * 10) / 10 : -Infinity, rate: fmt.rate, channels: fmt.ch, bits: fmt.bits };
+}
+
+/** { "cc0/<file>": frames from the start to the loudest sample } from CREDITS.json (empty if not fetched). */
+export function peakFrames(fps = 30) {
+  try { return Object.fromEntries(JSON.parse(readFileSync(join(CC0_DIR, "CREDITS.json"), "utf8")).credits.map((c) => [`cc0/${c.file}`, Math.round((c.peak_ms / 1000) * fps)])); } catch { return {}; }
+}
+
+/** The credit line for a played file ("cc0/<file>"): source URL, author, licence, the URL it came from. */
+export function creditFor(file) {
+  const f = String(file || "").replace(/^cc0\//, "");
+  const s = SFX_SOURCES.find((x) => x.file === f);
+  return s ? { title: s.title, author: s.author, source: s.source, license: s.license, url: s.url } : null;
+}
+
+/** One file's verdict: { verdict: "recorded" | "robotic" | "unjudged", why, provider }. */
+export async function judgeOne(file, call) {
+  const b64 = readFileSync(join(CC0_DIR, file)).toString("base64");
+  const prompt = `Listen to this sound effect. ${ROBOTIC}\nAnswer ONLY with JSON: {"verdict": "recorded" | "robotic", "why": "<one sentence: what you hear>"}`;
+  const ans = await call([{ role: "user", content: [{ type: "text", text: prompt }, { type: "input_audio", input_audio: { data: b64, format: "wav" } }] }]);
+  const v = String(ans?.verdict || "").toLowerCase();
+  if (v === "recorded" || v === "robotic") return { verdict: v, why: String(ans.why || "").slice(0, 200), provider: "gemini" };
+  return { verdict: "unjudged", why: ans?.error ? `${ans.error} ${String(ans.detail || "").slice(0, 120)}` : "no verdict in the answer", provider: null };
+}
+
+async function judgeAll() {
+  // Google first: callGemini rotates every key, then the sibling models, before it gives up. Only
+  // Gemini hears audio here — no other provider's answer may stand in (an unjudged file does not play).
+  const { callGemini } = await import("../src/lib/gemini-client.js");
+  const call = (messages) => callGemini(messages, { model: "gemini-3.5-flash", maxTokens: 400, temperature: 0, noCache: true, tag: "sfx-judge" });
+  const verdicts = {};
+  for (const s of SFX_SOURCES) {
+    if (!existsSync(join(CC0_DIR, s.file))) { verdicts[s.file] = { verdict: "unjudged", why: "not fetched" }; continue; }
+    verdicts[s.file] = await judgeOne(s.file, call);
+    console.log(`[sfx-judge] ${s.file}: ${verdicts[s.file].verdict.toUpperCase()} — ${verdicts[s.file].why}`);
+  }
+  writeFileSync(VERDICTS, JSON.stringify({ judged_at: new Date().toISOString(), definition: ROBOTIC, verdicts }, null, 2) + "\n");
+  const ok = Object.values(verdicts).filter((v) => v.verdict === "recorded").length;
+  console.log(`[sfx-judge] ${ok}/${SFX_SOURCES.length} recorded; only those may play`);
+}
+
+/** The files allowed to play ("cc0/<file>", as canvas-sfx.js names them): judged "recorded". */
+export function recordedFiles() {
+  try { const v = JSON.parse(readFileSync(VERDICTS, "utf8")).verdicts || {}; return new Set(Object.entries(v).filter(([, x]) => x.verdict === "recorded").map(([f]) => `cc0/${f}`)); } catch { return new Set(); }
+}
+
+if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+  const cmd = process.argv[2];
+  (cmd === "fetch" ? fetchAll() : cmd === "judge" ? judgeAll() : Promise.reject(new Error("usage: sfx-cc0.mjs fetch|judge")))
+    .catch((e) => { console.error(`::error::[sfx] ${e.message}`); process.exit(1); });
+}

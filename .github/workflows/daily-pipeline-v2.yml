@@ -955,6 +955,33 @@ jobs:
           # (the local models are the LAST tier — Gemini, then Groq, first).
           background: "true"
 
+      # SFX (scripts/sfx-cc0.mjs): five CC0 recordings from Remotion's library, no API key. Fetched
+      # once and kept in the runner cache; every run re-judges them (Gemini listens: recorded or
+      # robotic) and only "recorded" files play. A failed fetch or judge means a video with no SFX,
+      # never a failed render and never an unjudged sound.
+      - name: Cache CC0 SFX
+        if: steps.status.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: src/skills/remotion-render/public/sfx/cc0
+          key: sfx-cc0-${{ hashFiles('scripts/sfx-cc0.mjs') }}
+
+      - name: Fetch CC0 SFX
+        if: steps.status.outputs.skip != 'true'
+        continue-on-error: true
+        run: node scripts/sfx-cc0.mjs fetch
+
+      - name: Judge SFX (recorded or robotic)
+        if: steps.status.outputs.skip != 'true'
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+        run: node scripts/sfx-cc0.mjs judge
+
       - name: Render + QA
         if: steps.status.outputs.skip != 'true'
         env:

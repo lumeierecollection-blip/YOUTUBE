@@ -104,7 +104,7 @@ __pycache__/
 src/skills/remotion-render/public/cutouts-live/
 src/skills/remotion-render/public/cutouts/
 
-# local QA artifacts — never commit
+# local QA artifacts ï¿½ never commit
 Research -*.zip
 Research -*/
 data/reference-audio/
@@ -118,3 +118,5 @@ channels/_shared/ref-frames/
 # YouTube trending feed (regenerate: node scripts/fetch-trending.cjs <ch> --force, needs
 # YOUTUBE_API_KEY; 12h cache per channel). Same convention as data/renders/ above.
 data/trending/
+# CC0 SFX: fetched on the runner by scripts/sfx-cc0.mjs (cached), never committed.
+src/skills/remotion-render/public/sfx/cc0/

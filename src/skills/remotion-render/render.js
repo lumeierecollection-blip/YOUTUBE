@@ -47,6 +47,7 @@ import { sceneTextInventory } from "./visual/scene-text.js";
 import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
 import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
 import { canvasSfxEvents } from "./visual/canvas-sfx.js";
+import { recordedFiles, peakFrames, creditFor } from "../../../scripts/sfx-cc0.mjs";
 import { motionsFor, motionLine, layoutFacts } from "./visual/motion-plan.js";
 import { canvasLayout, canvasManifest, normalizeCanvas } from "./visual/canvas-layout.js";
 import { scheduleEntityPop } from "./visual/entity-sync.js";
@@ -623,7 +624,14 @@ async function main() {
     // six roles, <= 6 per video, visible events only, charts silent). Other plans: the older
     // semantic table (sound-design.js). A file that is missing is logged and that SFX
     // skipped — the render never fails over a sound (owner's spec 2026-10-03, D.4).
-    const sfx = sentencePlan.canvas ? (() => { const r = canvasSfxEvents(beats); return { events: r.events, warnings: r.dropped.map((d) => `[sfx] dropped: ${d}`) }; })() : semanticSfxEvents(beats);
+    // A full-canvas plan plays only the CC0 recordings Gemini judged "recorded" (scripts/sfx-cc0.mjs
+    // fetch + judge run before this step on CI), each landed by its measured peak.
+    const sfx = sentencePlan.canvas ? (() => {
+      const recorded = recordedFiles();
+      if (!recorded.size) console.warn("::warning::[sfx] no judged-recorded SFX (sfx/cc0/verdicts.json missing or empty) — this video plays no SFX");
+      const r = canvasSfxEvents(beats, { peaks: peakFrames(30), recorded });
+      return { events: r.events, warnings: r.dropped.map((d) => `[sfx] dropped: ${d}`) };
+    })() : semanticSfxEvents(beats);
     const playable = [];
     for (const e of sfx.events) {
       const onDisk = join(__dirname, "public", SEMANTIC_SFX_DIR, e.file);
@@ -631,11 +639,11 @@ async function main() {
         console.warn(`::warning::[sfx] ${e.file} (${e.trigger}, beat ${e.beat}) not found at ${onDisk} — skipped`);
         continue;
       }
-      console.log(`[sfx] ${e.trigger} ${e.file} ${e.db} dB at beat ${e.beat} frame ${e.atFrame} (${e.reason})`);
+      console.log(`[sfx] ${e.trigger} ${e.file} ${e.db} dB at beat ${e.beat} frame ${e.atFrame}${e.eventFrame !== undefined ? ` (peak +${e.peakFrames}f on event frame ${e.eventFrame})` : ""} (${e.reason})`);
       playable.push(e);
     }
     for (const w of sfx.warnings) console.log(w);
-    console.log(`[sfx] ${playable.length} fired (max 6)`);
+    console.log(`[sfx] ${playable.length} fired (max 6), ${beats.length - new Set(playable.map((e) => e.beat)).size}/${beats.length} beats silent`);
     sentencePlan.sfx = playable;
 
     frames = beats.length ? beats[beats.length - 1].start_frame + beats[beats.length - 1].duration_frames : 300;
@@ -858,7 +866,7 @@ async function main() {
       accent: sentencePlan.accent || null,
       ground: sentencePlan.ground || null,
       // Part D: every SFX that plays — role, file, level, frame, beat, why.
-      sfx: (sentencePlan.sfx || []).map((e) => ({ role: e.trigger || e.role, file: e.file, db: e.db, at_frame: e.atFrame, beat: e.beat, reason: e.reason })),
+      sfx: (sentencePlan.sfx || []).map((e) => ({ role: e.trigger || e.role, file: e.file, db: e.db, at_frame: e.atFrame, event_frame: e.eventFrame, peak_frames: e.peakFrames, beat: e.beat, reason: e.reason, credit: creditFor(e.file) })),
       totalFrames: frames,
       durationSec: +(frames / fps).toFixed(2),
       generatedAt: new Date().toISOString(),
