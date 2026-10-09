@@ -212,3 +212,10 @@ test("chooseShots names each beat's current frame as its menu does (board 378626
   assert.match(prompts[0], /\[1\][^\n]*now: SCENE-FULL\[/);
   assert.match(prompts[0], /\[0\][^\n]*options: [^\n]*MAP-BAND \[low\]/);
 });
+
+test("a words-only beat is offered the figure its own sentence states (FIGURE:<TYPE>), and nothing when it states none", () => {
+  const plan = { beats: [mk(0, "Rates rose to 7 percent this year.", { composition: "TYPE-FULL" }), mk(1, "Insurers answered quickly.", { composition: "TYPE-FULL" })] };
+  const ids = (i) => shotMenu(plan.beats[i].canvas, plan.beats[i], { plan }).map((o) => o.shot);
+  assert.ok(ids(0).some((s) => /^FIGURE(-LOW)?:/.test(s)), `a stated figure is offered: ${ids(0).join(", ")}`);
+  assert.ok(!ids(1).some((s) => s.includes(":")), `nothing the sentence does not state: ${ids(1).join(", ")}`);
+});

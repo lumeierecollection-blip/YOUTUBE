@@ -1045,7 +1045,7 @@ export function applyShot(c, b, log = console.log) {
  * devices (template-window: words in the top band, a pull phrase, a words-only beat). Shots that draw
  * the same frame are listed once.
  */
-export function shotMenu(canvas, b) {
+export function shotMenu(canvas, b, ctx = {}) {
   const out = [], seen = new Set();
   const add = (base, s, extra = {}) => {
     const c2 = JSON.parse(JSON.stringify(base));
@@ -1067,6 +1067,26 @@ export function shotMenu(canvas, b) {
   if (sym) {
     const withSym = { ...JSON.parse(JSON.stringify(canvas)), concept_visuals: [{ name: sym, class: "symbol", w: 1, h: 1, fallback: true }], composition: "TYPE-FULL", emphasis_beat: false };
     for (const s of HERO_SHOTS) add(withSym, s, { id: `${s}:${sym}`, symbol: sym });
+  }
+  // A words-only beat may also be drawn as the figure its OWN sentence states — a flow, a trend, a
+  // stated number, a list, a timeline, a comparison — through the same gates the visual-first pass
+  // uses (candidatesFor + checkVisual; a figure another beat already draws is not offered). A map
+  // only for a place the sentence names as an entity (CI run 37795613343: "Are" read as the UAE).
+  // Offered to Gemini as "FIGURE:<TYPE>"; it may keep the statement.
+  if (plainType && ctx.plan) {
+    const narr = b.narration || canvas.sentence || "";
+    const offered = new Set();
+    for (const alt of candidatesFor({ sentence: narr, headline: canvas.headline || "" })) {
+      if (["TYPE-FULL", "TYPE-SPLIT"].includes(alt.composition)) continue;
+      const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, narr);
+      if (v.why || v.type !== alt.visual_type || offered.has(v.type)) continue;
+      if (v.type === "MAP" && !(b.named_entities || []).some((e) => e?.type === "place" && String(e.name).toLowerCase() === String(v.data?.place || "").toLowerCase())) continue;
+      const fk = figureKey(v);
+      if (fk && ctx.plan.beats.some((x) => x !== b && figureKey(checkVisual(x, x.narration || "")) === fk)) continue;
+      offered.add(v.type);
+      const c3 = canvasContentFor({ ...b, visual_type: v.type, data: v.data, shot: null, layout: null, type_layout: undefined, name_card: undefined, hero_cutout: undefined, fallback_symbol: undefined }, {});
+      for (const s of ["FIGURE", "FIGURE-LOW", "MAP-BAND"]) add(c3, s, { id: `${s}:${v.type}`, figure: { visual_type: v.type, data: v.data } });
+    }
   }
   return out;
 }
@@ -1108,7 +1128,7 @@ const describeBeat = (c) => {
  */
 export async function chooseShots(plan, channelId, ask = (prompt) => callLLM([{ role: "user", content: prompt }], { maxTokens: 1200, temperature: 0 }, "shots-final")) {
   const idx = plan.beats.map((b) => b.index);
-  const menus = plan.beats.map((b) => shotMenu(b.canvas, b));
+  const menus = plan.beats.map((b) => shotMenu(b.canvas, b, { plan }));
   // Each beat as it resolved, named the way its menu names that same frame (board 37862697531: the
   // planned-but-undrawn shot's name was shown as "now", Gemini repeated it, it matched no option,
   // and every beat stayed as it was).
@@ -1120,7 +1140,7 @@ export async function chooseShots(plan, channelId, ask = (prompt) => callLLM([{ 
   if (!problems.length && !undrawn.length) return { choice: current, problems, asked: 0 };
   const lines = plan.beats.map((b, i) => `[${b.index}] "${String(b.narration || "").slice(0, 140)}" — shows ${describeBeat(b.canvas)}; now: ${current[i].shot}[${current[i].words}]; options: ${menus[i].map((o) => `${o.shot} [${o.words}${o.typeLed ? ", words-only" : ""}]`).join(", ")}`).join("\n");
   const promptFor = (choice, probs) => `You are the visual director of a vertical video. Its look is the channel's reference: an editorial collage that changes its shot every beat. The content of every beat is now fixed; choose each beat's SHOT from ITS options (each is drawable and legal on its own; [top] = its words sit in the top band, [low] = under a picture or low).
-Shots: SCENE-FULL photo fills the frame; SCENE-LOW photo fills it, words low; PHOTO-BAND photo bleeds off the top third; PHOTO-EDGE photo cropped by the far edge; PHOTO-CARD photo in a heavy dark frame; PHOTO-INSET small rounded card; PHOTO-STRIP photo through a torn strip; PORTRAIT photo standing; HERO-STACK object centred under the words; HERO-LOW object large and low; HERO-SCATTER objects at angles; HERO-OVER object above the words; FIGURE a chart/number/map in its own frame; FIGURE-LOW a number high, its headline under it; MAP-BAND the map across the top band, its headline under it; STATEMENT words alone, low; STATEMENT-SPLIT words in two halves, top and low. An option "SHOT:symbol" is that object shot with the drawn symbol for what the sentence states.
+Shots: SCENE-FULL photo fills the frame; SCENE-LOW photo fills it, words low; PHOTO-BAND photo bleeds off the top third; PHOTO-EDGE photo cropped by the far edge; PHOTO-CARD photo in a heavy dark frame; PHOTO-INSET small rounded card; PHOTO-STRIP photo through a torn strip; PORTRAIT photo standing; HERO-STACK object centred under the words; HERO-LOW object large and low; HERO-SCATTER objects at angles; HERO-OVER object above the words; FIGURE a chart/number/map in its own frame; FIGURE-LOW a number high, its headline under it; MAP-BAND the map across the top band, its headline under it; STATEMENT words alone, low; STATEMENT-SPLIT words in two halves, top and low. An option "SHOT:symbol" is that object shot with the drawn symbol for what the sentence states; "FIGURE:TYPE" draws a words-only beat as that figure (a process, a trend, a number...), which its own sentence states.
 Rules, checked on the render: never the same composition on two beats in a row; never [top] on three beats in a row; never a words-only beat on three in a row, nor [top] twice AND words-only twice inside any three beats. Prefer the shot that shows the beat's content best.
 
 ${lines}
@@ -1144,6 +1164,8 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"shot":"<one of that beat's optio
     b.shot = choice[i].plain || choice[i].shot;
     // A symbol taken: recorded where canvasContentFor rebuilds a TYPE beat's hero from (fallback_symbol).
     if (choice[i].symbol) b.fallback_symbol = choice[i].symbol;
+    // A figure taken: the beat's content is that figure now (it was gated as the visual-first pass gates).
+    if (choice[i].figure) { b.visual_type = choice[i].figure.visual_type; b.data = choice[i].figure.data; delete b.type_layout; }
   });
   plan.shots_final = { shots: choice.map((o) => o.shot), problems: problems.map((p) => p.why) };
   return { choice, problems, asked };
