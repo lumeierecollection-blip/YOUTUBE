@@ -219,3 +219,12 @@ test("a words-only beat is offered the figure its own sentence states (FIGURE:<T
   assert.ok(ids(0).some((s) => /^FIGURE(-LOW)?:/.test(s)), `a stated figure is offered: ${ids(0).join(", ")}`);
   assert.ok(!ids(1).some((s) => s.includes(":")), `nothing the sentence does not state: ${ids(1).join(", ")}`);
 });
+test("FIGURE-LOW puts no words in the top band — the number alone up there; HERO-OVER keeps its rule", () => {
+  const c = { visual_type: "COUNTER", composition: "NUMBER-FULL", data: { value: "$105M", label: "lost by investors" }, headline: "Investor losses mount" };
+  assert.equal(applyShot(c, { index: 0, shot: "FIGURE-LOW" }, () => {}).drawn, true);
+  const m = canvasManifest(c, 0);
+  assert.deepEqual(labelsDrawn(m), [], `top text: ${labelsDrawn(m)}`);
+  assert.deepEqual(layoutViolations(canvasLayout(normalizeCanvas(c, 0))), []);
+  const h = { visual_type: "TYPE", headline: "Gold hits a record", concept_visuals: [CUT], composition: "HERO-OVER" };
+  assert.ok(canvasLayout(normalizeCanvas(h, 0)).boxes.rule, "the rule stays (keep)");
+});

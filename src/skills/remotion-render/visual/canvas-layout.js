@@ -511,7 +511,7 @@ function finalizeChrome(L, c) {
     // A full-bleed photo is the whole frame; anything else must span 62% without the rule (the
     // table's own box margin over Layer 1's 60%, test-canvas-layout.mjs 61%).
     const fullBleed = !!boxes.photo && FULL_PHOTO_COMPS.includes(L.composition);
-    if (fullBleed || (contentBounds(without)?.h ?? 0) / 1920 >= 0.62) delete boxes.rule;
+    if (!boxes.rule.keep && (fullBleed || (contentBounds(without)?.h ?? 0) / 1920 >= 0.62)) delete boxes.rule;
   }
   if (!label && !boxes.kicker?.subject) delete boxes.kicker;
   else if (label && boxes.kicker) {
@@ -671,7 +671,7 @@ function shotLayout(c, comp, flip) {
     // The hairline rule holds the frame's top, as on the content compositions: a one-line headline's
     // ink starts well under its box (board 37859862716 ch-2 PHOTO-CARD: 58.6% coverage without it).
     // finalizeChrome drops it wherever the content spans 62% without it.
-    boxes.rule = rule(flip, TOP);
+    boxes.rule = { ...rule(flip, TOP), keep: true };
     if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 34, maxLines: 1, y: TOP + 30, flip });
     const y = kick ? boxes.kicker.y + boxes.kicker.h + 22 : TOP + 38;
     boxes.headline = headlineBox(text, { width, y, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - y, max });
@@ -738,7 +738,11 @@ function heroShotLayout(c, comp, flip) {
   if (comp === "HERO-OVER") {
     // Shot 1, its lower words (ref-01 0:04): the object in the top band, the words under it in the
     // middle band — the top band holds no text.
-    delete boxes.rule; delete boxes.kicker; delete boxes.statement;
+    delete boxes.kicker; delete boxes.statement;
+    // The hairline rule holds the frame's top (not text — the top band still has no words): a wide
+    // object's ink started low and the beat's pixels spanned 59.0% (board 37866941228 ch-2 beat 8).
+    // keep: the object's ink extent is not its box — finalizeChrome must not drop it.
+    boxes.rule = { ...rule(flip, TOP), keep: true };
     if (c.lead_in) boxes.kicker = dataBox(String(c.lead_in), { width: 700, size: 34, maxLines: 1, y: BODY_TOP + 20, flip });
     const top = boxes.kicker ? boxes.kicker.y + boxes.kicker.h + 22 : BODY_TOP + 20;
     boxes.statement = headlineBox(text, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - top, max: 170 });
@@ -841,7 +845,9 @@ function tableLayout(c) {
         // the hero number in the top zone, its label under it; the headline at the middle zone's bottom
         boxes.rule = rule(flip, TOP);
         boxes.number = { ...box(nx, TOP + 40, nw, nh), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
-        if (label) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, y: boxes.number.y + nh + 28, flip });
+        // FIGURE-LOW (render-time shot, Gemini's pick): the number alone in the top band, so no words
+        // sit there — its small caption label is left out (the zones keep it beside the number).
+        if (label && !c.number_label_off) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, y: boxes.number.y + nh + 28, flip });
         // The middle zone's subject until the number pops on its word: the hero tier (a 110 px
         // line filled 12% of the zone — CI run 37126933290 ch-44 beat 2, middle-zone-filled).
         boxes.headline = headlineBox(c.headline, { minLines: 2, width: BEAT_HERO ? 900 : SUBJECT_W, bottom: BOTTOM, flip, maxLines: 3, maxHeight: Math.floor((BOTTOM - BODY_TOP) * 0.94), max: 200, hero: true });

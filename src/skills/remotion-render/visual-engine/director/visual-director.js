@@ -799,8 +799,12 @@ export function direct(cues, options) {
     if (directive && directive.mechanism) {
       scene = applyDirective(directive, text, i, cues.length, prevScene);
       scene = randomizeScene(scene, rng);
-    } else if (directive && directive.visual_events) {
-      // CAPABILITY-BASED DIRECTIVE: compile into a scene
+    } else if (directive && (directive.visual_events || (Array.isArray(directive.capabilities) && directive.capabilities.length) || directive.compiledScene)) {
+      // CAPABILITY-BASED DIRECTIVE: compile into a scene. A beat that carries the planner's own
+      // capabilities or its compiled scene is a PLANNED beat even when the model left out
+      // visual_events (board 37866941228: ch-9, ch-10, ch-49 lost whole videos to "Beat N has no
+      // mechanism" on such beats). compileScene builds from the capabilities when there are no events;
+      // a beat with none of the three still throws below — nothing is classified by code.
       const { scene: compiledScene, warnings: compileWarnings } = compileScene(
         directive, text, i, cues.length
       );
