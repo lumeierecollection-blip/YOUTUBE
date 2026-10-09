@@ -138,6 +138,14 @@ function popSvg(style, f, cx, cy) {
   return { opacity: p.o, transform: `translate(${cx.toFixed(1)} ${(cy + p.dy).toFixed(1)}) scale(${p.s.toFixed(4)}) translate(${(-cx).toFixed(1)} ${(-cy).toFixed(1)})` };
 }
 
+/**
+ * FLAT entrance for drawn art (flag, plate, date card, time scale): an ease-in-out settle 0.97 -> 1 with a fade over 6 frames — no
+ * overshoot, no bounce, no rise (owner, 2026-10-09: components must not look playful). Text keeps the kinetic POP family.
+ */
+const flatState = (f, frames = 6) => { const e = f < 0 ? 0 : easeInOut(clamp01(f / frames)); return { o: e, s: 0.97 + 0.03 * e }; };
+function flatCss(f, origin = "50% 50%") { const p = flatState(f); return { opacity: p.o, transform: `scale(${p.s.toFixed(4)})`, transformOrigin: origin }; }
+function flatSvg(f, cx, cy) { const p = flatState(f); return { opacity: p.o, transform: `translate(${cx.toFixed(1)} ${cy.toFixed(1)}) scale(${p.s.toFixed(4)}) translate(${(-cx).toFixed(1)} ${(-cy).toFixed(1)})` }; }
+
 // ── motion helpers ────────────────────────────────────────────────────
 function useMotion(c, local, dur, fps) {
   const tier = c.motion_tier || "medium";
@@ -605,7 +613,7 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   } else if (vt === "PIE") {
     const pct = Number(d.percent) || 0;
     const st = pieState(cid || "PIE_SWEEP", tb, count);
-    const { r, cx, cy } = ch, sw = 110, rr = r - sw / 2;
+    const { r, cx, cy } = ch, sw = 40, rr = r - sw / 2;
     const C = 2 * Math.PI * rr;
     const mid = (-90 + (360 * pct) / 200) * (Math.PI / 180);
     chart = (
@@ -619,7 +627,7 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   } else if (vt === "GAUGE") {
     const pct = Number(d.percent) || 0;
     const st = pieState(cid || "PIE_SWEEP", tb, count);
-    const r = ch.r, cx = 540, cy = ch.cy, sw = 96, rr = r - sw / 2;
+    const r = ch.r, cx = 540, cy = ch.cy, sw = 36, rr = r - sw / 2;
     const arc = (p) => { const a = Math.PI * (1 - p); return [cx + rr * Math.cos(a), cy - rr * Math.sin(a)]; };
     const [ex, ey] = arc(clamp01((pct / 100) * st.arc));
     chart = (
@@ -627,8 +635,8 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
         <g transform={`translate(0 ${st.dy.toFixed(1)}) translate(${cx} ${cy}) scale(${st.ringScale.toFixed(4)}) translate(${-cx} ${-cy})`}>
           <path d={`M ${cx - rr} ${cy} A ${rr} ${rr} 0 0 1 ${cx + rr} ${cy}`} fill="none" stroke={th.mid} strokeWidth={sw} />
           <path d={`M ${cx - rr} ${cy} A ${rr} ${rr} 0 0 1 ${ex.toFixed(2)} ${ey.toFixed(2)}`} fill="none" stroke={accent} strokeWidth={sw} />
-          <line x1={cx} y1={cy} x2={ex} y2={ey} stroke={th.ink} strokeWidth={10} strokeLinecap="round" />
-          <circle cx={cx} cy={cy} r={22} fill={th.ink} />
+          <line x1={cx} y1={cy} x2={ex} y2={ey} stroke={th.ink} strokeWidth={4} />
+          <circle cx={cx} cy={cy} r={10} fill={th.ink} />
         </g>
       </svg>
     );
@@ -655,10 +663,10 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     chart = (
       <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }}>
         <line x1={ch.x} y1={yBase} x2={ch.x + ch.w} y2={yBase} stroke={th.ink} strokeWidth={4} />
-        <path d={path} fill="none" stroke={accent} strokeWidth={16} strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - t} />
+        <path d={path} fill="none" stroke={accent} strokeWidth={5} pathLength={1} strokeDasharray={1} strokeDashoffset={1 - t} />
         <g opacity={dot} transform={`translate(${x1} ${y1}) scale(${(0.4 + 0.6 * Math.min(1, dot * 1.2)).toFixed(3)}) translate(${-x1} ${-y1})`}>
-          <circle cx={x1} cy={y1} r={34} fill={accent} />
-          <circle cx={x1} cy={y1} r={34} fill="none" stroke={th.ink} strokeWidth={6} />
+          <circle cx={x1} cy={y1} r={13} fill={accent} />
+          <circle cx={x1} cy={y1} r={13} fill="none" stroke={th.ink} strokeWidth={3} />
         </g>
         {label ? <text x={lx} y={ly} textAnchor="start" style={{ font: dataFont(48, 700), letterSpacing: 0.6 }} fill={th.ink} opacity={clamp01(t * 3)}>{label}</text> : null}
       </svg>
@@ -677,7 +685,7 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0 }}>
         <line x1={ch.x} y1={base} x2={ch.x + ch.w} y2={base} stroke={th.ink} strokeWidth={4} />
         {[0.33, 0.66].map((f) => <line key={f} x1={ch.x} y1={base - f * (ch.h - 260)} x2={ch.x + ch.w} y2={base - f * (ch.h - 260)} stroke={th.track} strokeWidth={2} />)}
-        <path d={path} fill="none" stroke={accent} strokeWidth={14} strokeLinejoin="round" strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - drawT} />
+        <path d={path} fill="none" stroke={accent} strokeWidth={5} pathLength={1} strokeDasharray={1} strokeDashoffset={1 - drawT} />
         {/* Part D.2: a reference line draws across at the last value once the line has arrived. */}
         {pts.length ? (() => { const r = easeOut(clamp01((local - 0.6 * dur) / (0.12 * dur))), y = py(pts[pts.length - 1].q.magnitude);
           return r > 0 ? <line x1={ch.x} y1={y} x2={ch.x + ch.w * r} y2={y} stroke={th.ink} strokeWidth={3} strokeDasharray="14 12" opacity={0.45} /> : null; })() : null}
@@ -699,7 +707,7 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           return (
             <React.Fragment key={i}>
               <g opacity={clamp01(on)} transform={ls ? `translate(0 ${dy.toFixed(1)}) translate(${px(i)} ${py(p.q.magnitude)}) scale(${(0.4 + 0.6 * Math.min(on, 1.3)).toFixed(3)}) translate(${-px(i)} ${-py(p.q.magnitude)})` : undefined}>
-                <circle cx={px(i)} cy={py(p.q.magnitude)} r={20} fill={i === pts.length - 1 ? accent : th.ink} />
+                <circle cx={px(i)} cy={py(p.q.magnitude)} r={10} fill={i === pts.length - 1 ? accent : th.ink} />
               </g>
               <text x={px(i)} y={vy} textAnchor="middle" style={{ font: dataFont(72, 800), letterSpacing: -2 }} fill={th.ink} {...popSvg("NUMBER", r0, px(i), vy - 25)}>{rollQuantity(p.q, 1)}</text>
               <text x={px(i)} y={base + 60} textAnchor="middle" style={{ font: dataFont(36), letterSpacing: 0.4 }} fill={th.ink} {...popSvg("POP_SOFT", r0, px(i), base + 47)}>{String(p.label).toUpperCase()}</text>
@@ -860,71 +868,80 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const glyph = onAccent(accent);
   const breathe = 1 + 0.025 * Math.sin((local / fps) * 2.6);
   let art = null;
+  // FLAT (owner, 2026-10-09: "they shouldn't look playful"): the reference's drawn parts are hairline-ruled and typographic —
+  // sharp corners, ink plus the channel's one accent, no shadow, an ease-in-out settle with no overshoot.
+  const flat = flatCss(local - Math.round(at * fps));
+  const hair = 3;
   if (b && a.kind === "flag" && a.asset) {
     art = (
-      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...pop }}>
-        <div style={{ position: "absolute", inset: 0, boxSizing: "border-box", border: `6px solid ${th.ink}`, boxShadow: th.dark ? "none" : "0 14px 34px rgba(0,0,0,0.20)", overflow: "hidden" }}>
+      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...flat }}>
+        <div style={{ position: "absolute", inset: 0, boxSizing: "border-box", border: `${hair}px solid ${th.ink}`, overflow: "hidden" }}>
           <Img src={staticFile(a.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", transformOrigin: "50% 50%", transform: `scale(${(1 + CAMERA.photo * easeInOut(live)).toFixed(4)})` }} />
         </div>
       </div>
     );
   } else if (b && String(a.kind).startsWith("plate-")) {
     const person = a.kind === "plate-person", org = a.kind === "plate-organization";
+    const line = { fill: "none", stroke: th.ink, strokeWidth: hair, vectorEffect: "non-scaling-stroke" };
+    const iconSize = Math.round(b.w * 0.56);
     art = (
-      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...pop }}>
+      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...flat }}>
         <div style={{ position: "absolute", inset: 0, transform: `scale(${breathe.toFixed(4)})`, transformOrigin: "50% 50%" }}>
-          {org ? (
-            <>
-              <div style={{ position: "absolute", inset: 0, borderRadius: 64, backgroundColor: accent }} />
-              <div style={{ position: "absolute", left: "20%", top: "20%" }}><LucideIcon name="building-2" size={Math.round(b.w * 0.6)} color={glyph} stroke={1.6} /></div>
-            </>
-          ) : (
-            <svg viewBox="0 0 100 100" width={b.w} height={b.h} style={{ display: "block" }}>
-              <circle cx="50" cy="50" r="48" fill={accent} />
-              {person ? (
-                <>
-                  <circle cx="50" cy="38" r="15" fill={glyph} />
-                  <path d="M22 80 C24 62 36 56 50 56 C64 56 76 62 78 80 A46 46 0 0 1 22 80 Z" fill={glyph} />
-                </>
-              ) : (
-                <path fillRule="evenodd" fill={glyph} d="M50 20 C38 20 29 29 29 41 C29 56 50 80 50 80 C50 80 71 56 71 41 C71 29 62 20 50 20 Z M50 34 a7.5 7.5 0 1 0 0.01 0 Z" />
-              )}
-            </svg>
-          )}
+          <svg viewBox="0 0 100 100" width={b.w} height={b.h} style={{ display: "block" }}>
+            <rect x="1" y="1" width="98" height="98" {...line} />
+            <rect x="1" y="91" width="98" height="8" fill={accent} />
+            {person ? (
+              <>
+                <circle cx="50" cy="36" r="14" {...line} />
+                <path d="M22 84 C24 64 36 56 50 56 C64 56 76 64 78 84" {...line} />
+              </>
+            ) : org ? null : (
+              <>
+                <path d="M50 16 C38 16 29 25 29 37 C29 52 50 76 50 76 C50 76 71 52 71 37 C71 25 62 16 50 16 Z" {...line} />
+                <circle cx="50" cy="37" r="7" {...line} />
+              </>
+            )}
+          </svg>
+          {org ? <div style={{ position: "absolute", left: (b.w - iconSize) / 2, top: Math.round(b.h * 0.14) }}><LucideIcon name="building-2" size={iconSize} color={th.ink} stroke={+((3 * 24) / iconSize).toFixed(2)} /></div> : null}
         </div>
       </div>
     );
   } else if (b && a.kind === "date") {
+    // A typographic date card, not a wall calendar: a hairline above, the month letterspaced, the day (or year) set large, the
+    // accent rule drawn along the hairline below.
     const d = dateParts(a.text || a.name);
     const big = d.day || d.year || "";
     const sub = d.day ? [d.month, d.year].filter(Boolean).join(" ") : d.month || "";
+    const f0 = local - Math.round(at * fps), rule = easeInOut(clamp01((local - Math.round((at + 0.1) * fps)) / Math.max(1, dur * 0.4)));
     art = (
       <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h }}>
         <svg viewBox="0 0 600 470" width={b.w} height={b.h} style={{ display: "block", overflow: "visible" }}>
-          <g {...popSvg("POP_STANDARD", local - Math.round(at * fps), 300, 235)}>
-            <rect x="8" y="44" width="584" height="418" rx="26" fill="none" stroke={th.ink} strokeWidth="8" />
-            <path d="M8 70 a26 26 0 0 1 26 -26 H566 a26 26 0 0 1 26 26 V170 H8 Z" fill={accent} />
-            <rect x="140" y="6" width="24" height="76" rx="12" fill={th.ink} />
-            <rect x="436" y="6" width="24" height="76" rx="12" fill={th.ink} />
+          <g {...flatSvg(f0, 300, 235)}>
+            <line x1="0" y1="40" x2="600" y2="40" stroke={th.ink} strokeWidth={hair} />
+            <line x1="0" y1="430" x2="600" y2="430" stroke={th.ink} strokeWidth={hair} />
           </g>
-          {sub ? <text x="300" y="138" textAnchor="middle" fill={glyph} style={{ font: `700 66px ${SANS_STACK}`, letterSpacing: 6 }} {...popSvg("POP_SOFT", local - Math.round((at + 0.25) * fps), 300, 120)}>{sub}</text> : null}
-          <text x="300" y="396" textAnchor="middle" fill={th.ink} style={{ font: `800 ${big.length > 2 ? 190 : 250}px ${SERIF}` }} {...popSvg("NUMBER", local - Math.round((at + 0.1) * fps), 300, 320)}>{big}</text>
+          <line x1="0" y1="430" x2={600 * rule} y2="430" stroke={accent} strokeWidth="8" />
+          {sub ? <text x="300" y="120" textAnchor="middle" fill={th.ink} style={{ font: `700 54px ${SANS_STACK}`, letterSpacing: 10 }} {...flatSvg(local - Math.round((at + 0.2) * fps), 300, 100)}>{sub.toUpperCase()}</text> : null}
+          <text x="300" y="370" textAnchor="middle" fill={th.ink} style={{ font: `800 ${big.length > 2 ? 190 : 250}px ${SERIF}` }} {...flatSvg(f0 - 3, 300, 300)}>{big}</text>
         </svg>
       </div>
     );
   } else if (b && a.kind === "span") {
-    const t = easeOut(clamp01((local - (at + 0.15) * fps) / Math.max(1, dur * 0.55)));
+    // A time scale: a hairline with tick marks, an accent fill drawn along it, then one marker sweeping its length.
+    const t = easeInOut(clamp01((local - (at + 0.15) * fps) / Math.max(1, dur * 0.55)));
     const label = String(a.name || a.text || "").toUpperCase();
+    const head = 30 + 860 * t;
     art = (
       <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h }}>
         <svg viewBox="0 0 920 330" width={b.w} height={b.h} style={{ display: "block", overflow: "visible" }}>
-          <text x="30" y="150" fill={th.ink} style={{ font: `800 ${label.length > 9 ? 120 : 150}px ${SERIF}` }} {...popSvg("NUMBER", local - Math.round(at * fps), 30, 100)}>{label}</text>
-          <line x1="30" y1="250" x2="890" y2="250" stroke={th.track} strokeWidth="30" strokeLinecap="round" />
-          <line x1="30" y1="250" x2={30 + 860 * t} y2="250" stroke={accent} strokeWidth="30" strokeLinecap="round" />
-          {/* Once filled, a light band keeps travelling along the track: the span stays alive to the end of the beat. */}
-          {t >= 0.98 ? (() => { const ph = ((local / fps) / 1.3) % 1, x1 = 30 + 740 * ph; return <line x1={x1} y1="250" x2={x1 + 120} y2="250" stroke="#FFFFFF" strokeOpacity="0.42" strokeWidth="30" strokeLinecap="round" />; })() : null}
-          <line x1="30" y1="200" x2="30" y2="300" stroke={th.ink} strokeWidth="8" strokeLinecap="round" />
-          <line x1="890" y1="200" x2="890" y2="300" stroke={th.ink} strokeWidth="8" strokeLinecap="round" />
+          <text x="30" y="150" fill={th.ink} style={{ font: `800 ${label.length > 9 ? 120 : 150}px ${SERIF}` }} {...flatSvg(local - Math.round(at * fps), 30, 100)}>{label}</text>
+          <line x1="30" y1="250" x2="890" y2="250" stroke={th.ink} strokeWidth={hair} />
+          <line x1="30" y1="250" x2={head} y2="250" stroke={accent} strokeWidth="10" />
+          {Array.from({ length: 9 }, (_, k) => 30 + (860 * (k + 1)) / 10).map((x, k) => (head >= x - 1 ? <line key={k} x1={x} y1="236" x2={x} y2="264" stroke={th.ink} strokeWidth={hair} /> : null))}
+          <line x1="30" y1="200" x2="30" y2="300" stroke={th.ink} strokeWidth={hair} />
+          <line x1="890" y1="200" x2="890" y2="300" stroke={th.ink} strokeWidth={hair} />
+          {/* Once filled, one marker keeps travelling along the scale: it stays alive to the end of the beat. */}
+          {t >= 0.98 ? (() => { const ph = ((local / fps) / 1.6) % 1, x1 = 30 + 860 * (ph < 0.5 ? ph * 2 : 2 - ph * 2); return <line x1={x1} y1="214" x2={x1} y2="286" stroke={th.ink} strokeWidth="6" />; })() : null}
           {Array.isArray(a.ends) && a.ends.length === 2 ? (
             <>
               <text x="30" y="326" fill={th.ink} style={{ font: `700 40px ${SANS_STACK}` }}>{a.ends[0]}</text>
@@ -1043,8 +1060,8 @@ function ProcessFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           const f = ((local / fps) / 1.2 + i * 0.37) % 1;
           return (
             <React.Fragment key={i}>
-              <line x1={sx} y1={sy} x2={lerp(sx, ex, t)} y2={lerp(sy, ey, t)} stroke={accent} strokeWidth={18} strokeLinecap="round" markerEnd={t > 0.05 ? "url(#pf-arrow)" : undefined} />
-              {t > 0.98 ? <circle cx={lerp(sx, ex, f)} cy={lerp(sy, ey, f)} r={11} fill={th.dark ? "#0E0E0E" : "#FFFFFF"} stroke={th.ink} strokeWidth={5} /> : null}
+              <line x1={sx} y1={sy} x2={lerp(sx, ex, t)} y2={lerp(sy, ey, t)} stroke={accent} strokeWidth={6} markerEnd={t > 0.05 ? "url(#pf-arrow)" : undefined} />
+              {t > 0.98 ? <circle cx={lerp(sx, ex, f)} cy={lerp(sy, ey, f)} r={8} fill={th.dark ? "#0E0E0E" : "#FFFFFF"} stroke={th.ink} strokeWidth={3} /> : null}
             </React.Fragment>
           );
         })}
@@ -1057,7 +1074,7 @@ function ProcessFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           const ink = th.dark ? "242,240,235" : "11,11,12";
           return (
             <g key={i} opacity={t} transform={`translate(${cx} ${cy}) scale(${(lerp(0.7, 1, t) * m.breathe).toFixed(4)}) translate(${-cx} ${-cy})`}>
-              <circle cx={cx} cy={cy} r={n.w / 2} fill={mid ? `rgba(${ink},${fill.toFixed(3)})` : nodeFill} stroke={th.ink} strokeWidth={8} />
+              <rect x={cx - n.w / 2} y={cy - n.w / 2} width={n.w} height={n.w} fill={mid ? `rgba(${ink},${fill.toFixed(3)})` : nodeFill} stroke={th.ink} strokeWidth={4} />
             </g>
           );
         })}
@@ -1091,13 +1108,13 @@ function MapCentered({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   return (
     <HeroEl name="map" b={B.map}>
       <CenteredMap data={c.data} bounds={B.map} local={local} dur={dur} font={SERIF_FAMILY_NAME} accent={accent} ground={tone} ink={th.ink} />
-      {/* Part D.2: a pin drops onto the region at 25% of the beat, with a 2-frame bounce. The
+      {/* Part D.2: a pin settles onto the region at 25% of the beat (ease-in-out, no bounce). The
           map is zoomed on the region, so its centre is the region; the pin sits above the
           region's label (drawn at the region's centre). */}
       {(() => {
         const f = local - Math.round(0.25 * dur);
         if (f < 0) return null;
-        const drop = f < 6 ? -60 * (1 - f / 6) : f < 8 ? -8 * Math.sin(((f - 6) / 2) * Math.PI) : 0;
+        const drop = f < 8 ? -40 * (1 - easeInOut(f / 8)) : 0;
         const px = B.map.x + B.map.w / 2, py = B.map.y + B.map.h * 0.3 + drop;
         return (
           <svg width={FRAME.w} height={FRAME.h} style={{ position: "absolute", inset: 0, opacity: clamp01(f / 3) }}>
@@ -1180,7 +1197,7 @@ function Timeline({ c, L, local, dur, fps, accent, idx, spoken, part = "body" })
         const newest = i === mk.length - 1;
         return (
           <React.Fragment key={i}>
-            <div style={{ position: "absolute", left: mm.dot.x, top: mm.dot.y, width: mm.dot.w, height: mm.dot.h, borderRadius: "50%", backgroundColor: newest ? accent : th.ink, transform: `scale(${pop.toFixed(3)})` }} />
+            <div style={{ position: "absolute", left: mm.dot.x, top: mm.dot.y, width: mm.dot.w, height: mm.dot.h, backgroundColor: newest ? accent : th.ink, transform: `scale(${pop.toFixed(3)})` }} />
             <div style={{ position: "absolute", left: mm.date.x, top: mm.date.y, width: mm.date.w, height: mm.date.h, textAlign: mm.date.align, whiteSpace: "nowrap",
               font: roleFont(ROLE_NUMBER, mm.date.size), lineHeight: `${mm.date.h}px`, letterSpacing: roleTracking(ROLE_NUMBER, mm.date.size), color: newest ? accent : th.ink,
               fontOpticalSizing: "auto", ...popCss("POP_STANDARD", t, mm.date.align === "right" ? "right center" : "left center") }}>{mm.date.text}</div>

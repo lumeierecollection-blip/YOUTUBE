@@ -53,7 +53,7 @@ ok("COUNT_DOWN never passes below the figure", [0, 0.3, 0.6, 1].every((c) => cou
 eq("ROLL_DIGIT rests on its digit", rollOffset(1, 0, 7), 0);
 ok("ROLL_DIGIT's right-most digit lands first", rollOffset(0.5, 0, 5) < rollOffset(0.5, 3, 5));
 for (const id of ["FLIP_CARD", "SNAP_IN", "SCALE_IMPACT"]) { const e = numberState(id, 1); ok(`${id}: the figure ends unscaled, unturned`, e.s === 1 && e.rotX === 0 && e.o === 1 && e.dy === 0); }
-ok("SCALE_IMPACT starts big", numberState("SCALE_IMPACT", 0.05).s > 1.5);
+ok("SCALE_IMPACT starts big (flat: 1.5x, lands once, no ringing)", numberState("SCALE_IMPACT", 0.05).s > 1.3 && numberState("SCALE_IMPACT", 0.6).s === 1);
 ok("easings: bounce, back and elastic end on 1", [bounceOut(1), backOut(1), elasticOut(1)].every((v) => Math.abs(v - 1) < 1e-9));
 
 // The planner rules.

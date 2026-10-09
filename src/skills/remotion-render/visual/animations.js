@@ -218,15 +218,15 @@ export function barState(id, t, i, n, { primary = 0, sec = 0 } = {}) {
   t = clamp01(t);
   const base = { grow: 1, dy: 0, from: "base", pulse: 1, ref: 0, o: 1 };
   switch (id) {
-    case "BAR_DROP": { const p = clamp01((t - i * 0.12) / 0.5); return { ...base, grow: 1, dy: -1500 * (1 - bounceOut(p)), o: clamp01(p * 6) }; }
+    case "BAR_DROP": { const p = clamp01((t - i * 0.12) / 0.5); return { ...base, grow: 1, dy: -240 * (1 - easeInOut(p)), o: clamp01(p * 6) }; }   // flat: a short ease-in-out settle, no fall, no bounce
     case "BAR_SPLIT": { const p = clamp01((t - i * 0.08) / 0.6); return { ...base, grow: easeOut(p), from: "center", o: clamp01(p * 8) }; }
-    case "BAR_STACK": { const p = clamp01((t - i * 0.28) / 0.4); return { ...base, grow: backOut(p), dy: 60 * (1 - easeOut(p)), o: clamp01(p * 5) }; }
+    case "BAR_STACK": { const p = clamp01((t - i * 0.28) / 0.4); return { ...base, grow: easeOut(p), dy: 60 * (1 - easeOut(p)), o: clamp01(p * 5) }; }
     case "BAR_PULSE": {
       const p = easeOut(clamp01((t - i * 0.05) / 0.6));
       const landed = t >= 0.95 ? 1 : 0;
-      return { ...base, grow: p, pulse: landed ? 1 + (i === primary ? 0.06 : 0.025) * (0.5 + 0.5 * Math.sin(sec * 5 - i * 0.7)) : 1 };
+      return { ...base, grow: p, pulse: 1 };   // flat: no landed-bar pulse (the beat's ambient settle keeps the frame alive)
     }
-    case "BAR_WAVE": { const p = clamp01((t - i * 0.09) / 0.7); return { ...base, grow: easeOut(p) + 0.09 * Math.sin(p * Math.PI * 3) * (1 - p), o: clamp01(p * 8) }; }   // grows, then rings: a soft decaying overshoot (peak ~1.08)
+    case "BAR_WAVE": { const p = clamp01((t - i * 0.09) / 0.7); return { ...base, grow: easeOut(p), o: clamp01(p * 8) }; }   // flat: grows once, ease-out, no ringing
     case "BAR_COMPARE": {
       // The tallest first; a reference line runs across from its top; the others grow to (and under) it.
       if (i === primary) return { ...base, grow: easeOut(clamp01(t / 0.35)), ref: easeInOut(clamp01((t - 0.35) / 0.2)) };
@@ -249,9 +249,9 @@ export function pieState(id, t, c) {
   t = clamp01(t);
   const base = { arc: c, ringScale: 1, rot: 0, dy: 0, explode: 0, o: 1 };
   switch (id) {
-    case "PIE_POP": return { ...base, arc: easeOut(clamp01((t - 0.3) / 0.3)), ringScale: lerp(0.4, 1, backOut(clamp01(t / 0.5))), o: clamp01(t * 8), explode: 18 * Math.sin(Math.PI * clamp01((t - 0.6) / 0.4)) };
+    case "PIE_POP": return { ...base, arc: easeOut(clamp01((t - 0.3) / 0.3)), ringScale: lerp(0.9, 1, easeInOut(clamp01(t / 0.5))), o: clamp01(t * 8), explode: 0 };   // flat: no overshoot, the arc is not pushed out
     case "PIE_ROTATE": return { ...base, arc: easeInOut(clamp01(t / 0.9)), rot: -200 * (1 - easeOut(clamp01(t / 0.9))), o: clamp01(t * 6) };
-    case "PIE_FROM_TOP": return { ...base, arc: easeOut(clamp01((t - 0.45) / 0.5)), dy: -1000 * (1 - bounceOut(clamp01(t / 0.5))), o: clamp01(t * 6) };
+    case "PIE_FROM_TOP": return { ...base, arc: easeOut(clamp01((t - 0.45) / 0.5)), dy: -160 * (1 - easeInOut(clamp01(t / 0.5))), o: clamp01(t * 6) };
     default: return base;       // PIE_SWEEP: the arc is the number's count
   }
 }
@@ -264,8 +264,8 @@ export function pieState(id, t, c) {
 export function lineState(id, t, i, n) {
   t = clamp01(t);
   switch (id) {
-    case "LINE_DROP": { const p = clamp01((t - i * 0.16) / 0.3); return { draw: easeInOut(clamp01((t - 0.5) / 0.45)), dot: clamp01(p * 6), dropY: -700 * (1 - bounceOut(p)) }; }
-    case "LINE_DOT_FIRST": { const p = clamp01((t - i * 0.12) / 0.2); return { draw: easeInOut(clamp01((t - 0.5) / 0.5)), dot: backOut(p), dropY: 0 }; }
+    case "LINE_DROP": { const p = clamp01((t - i * 0.16) / 0.3); return { draw: easeInOut(clamp01((t - 0.5) / 0.45)), dot: clamp01(p * 6), dropY: -120 * (1 - easeInOut(p)) }; }
+    case "LINE_DOT_FIRST": { const p = clamp01((t - i * 0.12) / 0.2); return { draw: easeInOut(clamp01((t - 0.5) / 0.5)), dot: easeOut(p), dropY: 0 }; }
     default: { const draw = easeOut(t); return { draw, dot: clamp01(draw * (n - 1) - i + 1), dropY: 0 }; }        // LINE_DRAW
   }
 }
@@ -289,13 +289,13 @@ export function numberState(id, p) {
   const rest = { o: 1, s: 1, rotX: 0, dx: 0, dy: 0, blur: 0 };
   if (p >= 1) return rest;
   switch (id) {
-    case "FLIP_CARD": { const e = backOut(p); return { ...rest, o: clamp01(p * 5), rotX: -90 * (1 - e) }; }
+    case "FLIP_CARD": { const e = easeOut(p); return { ...rest, o: clamp01(p * 5), rotX: -90 * (1 - e) }; }
     case "SNAP_IN": return { ...rest, o: easeOut(p), s: lerp(0.92, 1, easeOut(p)) };
     case "SCALE_IMPACT": {
       // Slams down from 2.4x, hits at p = 0.35, rings for the rest.
       const hit = clamp01(p / 0.35), after = clamp01((p - 0.35) / 0.65);
-      const s = p < 0.35 ? lerp(2.4, 1, easeIn(hit)) : 1 + 0.06 * Math.sin(after * Math.PI * 3) * (1 - after);
-      return { ...rest, o: clamp01(p * 10), s, blur: p < 0.35 ? 8 * (1 - hit) : 0, dy: p >= 0.35 ? 8 * Math.sin(after * Math.PI * 4) * (1 - after) : 0 };
+      const s = p < 0.35 ? lerp(1.5, 1, easeIn(hit)) : 1;   // flat: lands once, no ringing
+      return { ...rest, o: clamp01(p * 10), s, blur: p < 0.35 ? 8 * (1 - hit) : 0, dy: 0 };
     }
     default: return rest;
   }
