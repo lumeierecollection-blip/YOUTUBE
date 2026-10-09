@@ -813,9 +813,9 @@ jobs:
       contents: write
     strategy:
       matrix: ${{ fromJson(needs.setup.outputs.matrix) }}
-      # 4, not 6 (2026-10-09): ten channels at once exhausted all three Gemini keys on board 37919459134 (two channels
-      # lost their visual plan to 429s). Fewer concurrent renders, fewer simultaneous requests.
-      max-parallel: 4
+      # 6 (2026-10-09): 4 made a ten-channel board an hour; the quota burn it was set against was mostly the SFX judge,
+      # whose verdicts are cached per file now.
+      max-parallel: 6
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
