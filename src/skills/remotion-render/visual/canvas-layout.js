@@ -901,7 +901,7 @@ function heroShotLayout(c, comp, flip) {
  *   plates                a row of 2-4 labelled organisation plates: the organisations the sentence names together
  */
 // plates: 2-4 organisations the sentence names together, a row of labelled plates (the reference's "row of labelled cutouts", shot 24).
-export const PLATES_SIZES = { 1: [440, 440], 2: [760, 400], 3: [960, 360], 4: [960, 320] };
+export const PLATES_SIZES = { 1: [440, 440], 2: [800, 500], 3: [960, 440], 4: [960, 350] };
 export const platesCount = (a) => Math.max(1, Math.min(4, Array.isArray(a?.names) ? a.names.length : 1));
 const ART_SIZES = { plates: [960, 360], flag: [660, 440], "plate-person": [440, 440], "plate-organization": [440, 440], "plate-place": [440, 440], date: [600, 470], span: [920, 330] };
 function entityArtLayout(c, flip) {
