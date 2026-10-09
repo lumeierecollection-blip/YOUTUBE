@@ -1101,7 +1101,19 @@ export function shotMenu(canvas, b, ctx = {}) {
       for (const s of ["FIGURE", "FIGURE-LOW", "MAP-BAND"]) add(c3, s, { id: `${s}:${v.type}`, figure: { visual_type: v.type, data: v.data } });
     }
   }
-  return out;
+  // The planner's label and pull phrase are chrome the code may REMOVE (never add): board 37919459134 ch-26 beat 5, a
+  // photo whose every shot read "words in the top band" only because its planner label sat top-right, so no
+  // sequence existed. Each option whose devices change without the chrome gets a twin without it; the twin is
+  // not offered to Gemini and is used only when a legal sequence needs it (legalSequences).
+  const twins = [];
+  for (const o of out) {
+    const cc = o.canvas;
+    if (!cc.label && !cc.pull_phrase) continue;
+    const c2 = JSON.parse(JSON.stringify(cc)); c2.label = null; c2.pull_phrase = null;
+    const t = { ...measuredShot(c2, b, o.shot), plain: o.plain, symbol: o.symbol, object: o.object, figure: o.figure, asIs: o.asIs, nochrome: true };
+    if (t.words !== o.words || t.phrase !== o.phrase) { t.sig = `${o.sig}|nochrome`; twins.push(t); }
+  }
+  return [...out, ...twins];
 }
 function measuredShot(c, b, shot) {
   const m = canvasManifest(c, b.index ?? 0);
@@ -1183,11 +1195,11 @@ export async function chooseShots(plan, channelId, ask = (prompt) => callLLM([{ 
   // and every beat stayed as it was).
   const current = plan.beats.map((b, i) => { const o = measuredShot(b.canvas, b, "AS-RESOLVED"); return { ...o, shot: menus[i].find((m) => m.sig === o.sig)?.shot || "AS-RESOLVED" }; });
   const undrawn = plan.beats.filter((b) => b.canvas.shot && b.canvas.shot_drawn === false).map((b) => b.index);
-  const show = (ch) => ch.map((o) => `${o.shot}[${o.words}]`).join(" ");
+  const show = (ch) => ch.map((o) => `${o.shot}[${o.words}]${o.nochrome ? "(label dropped)" : ""}`).join(" ");
   let problems = shotSequenceProblems(current, idx);
   console.log(`[shots-final] ch-${channelId}: as resolved ${show(current)}${problems.length ? ` — ${problems.map((p) => p.why).join("; ")}` : " — legal"}${undrawn.length ? `; planned shot not drawable on beat(s) ${undrawn.join(", ")}` : ""}`);
   if (!problems.length && !undrawn.length) return { choice: current, problems, asked: 0 };
-  const lines = plan.beats.map((b, i) => `[${b.index}] "${String(b.narration || "").slice(0, 140)}" — shows ${describeBeat(b.canvas)}; now: ${current[i].shot}[${current[i].words}]; options: ${menus[i].map((o) => `${o.shot} [${o.words}${o.typeLed ? ", words-only" : ""}]`).join(", ")}`).join("\n");
+  const lines = plan.beats.map((b, i) => `[${b.index}] "${String(b.narration || "").slice(0, 140)}" — shows ${describeBeat(b.canvas)}; now: ${current[i].shot}[${current[i].words}]; options: ${menus[i].filter((o) => !o.nochrome).map((o) => `${o.shot} [${o.words}${o.typeLed ? ", words-only" : ""}]`).join(", ")}`).join("\n");
   const promptFor = (choice, probs) => `You are the visual director of a vertical video. Its look is the channel's reference: an editorial collage that changes its shot every beat. The content of every beat is now fixed; choose each beat's SHOT from ITS options (each is drawable and legal on its own; [top] = its words sit in the top band, [low] = under a picture or low).
 Shots: SCENE-FULL photo fills the frame; SCENE-LOW photo fills it, words low; PHOTO-BAND photo bleeds off the top third; PHOTO-EDGE photo cropped by the far edge; PHOTO-CARD photo in a heavy dark frame; PHOTO-INSET small rounded card; PHOTO-STRIP photo through a torn strip; PORTRAIT photo standing; HERO-STACK object centred under the words; HERO-LOW object large and low; HERO-SCATTER objects at angles; HERO-OVER object above the words; FIGURE a chart/number/map in its own frame; FIGURE-LOW the number alone high (its small label left out), its headline under it; MAP-BAND the map across the top band, its headline under it; STATEMENT words alone, low; STATEMENT-SPLIT words in two halves, top and low; TITLE the words very large and heavy over an accent bar; CHAPTER one small line in an empty frame; DEFINITION the words over a double rule, the sentence set as text; STAT a stated number alone, filling the frame over its label. An option "SHOT:symbol" is that object shot with the drawn symbol for what the sentence states; "FIGURE:TYPE" draws a words-only beat as that figure (a process, a trend, a number...), which its own sentence states.
 Rules, checked on the render: never the same composition on two beats in a row; never [top] on three beats in a row; never a words-only beat on three in a row, nor [top] twice AND words-only twice inside any three beats. Prefer the shot that shows the beat's content best.
@@ -1215,7 +1227,7 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"shot":"<one of that beat's optio
       const seqs = legalSequences(menus, idx, choice);
       if (!seqs.length) console.log(`[shots-final] ch-${channelId}: no legal sequence exists in these beats' options — the content (too many words-only / words-at-the-top beats) cannot be arranged`);
       else {
-        const list = seqs.map((s, k) => `${k + 1}) ${s.map((o, i) => `[${idx[i]}] ${o.shot}`).join(", ")}`).join("\n");
+        const list = seqs.map((s, k) => `${k + 1}) ${s.map((o, i) => `[${idx[i]}] ${o.shot}${o.nochrome ? " (its label left out)" : ""}`).join(", ")}`).join("\n");
         const pick = await ask(`You are the visual director of a vertical video (the channel's reference look: an editorial collage that changes its shot every beat). Your shot choice ${show(choice)} breaks: ${problems.map((p) => p.why).join("; ")}.
 Each sequence below is LEGAL (checked) and uses only shots each beat can draw. Choose the one that shows the beats best.
 
