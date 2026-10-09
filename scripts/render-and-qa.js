@@ -1289,7 +1289,7 @@ export async function entityLadder(plan, channelId, log = console.log) {
   const { fetchFlag } = await import("./fetch-flag.mjs");
   const { flagCodeOf } = await import("../src/skills/remotion-render/visual/flags.js");
   const done = { map: 0, art: 0, figure: 0, flags: 0 };
-  const reset = (b) => { for (const k of ["type_layout", "name_card", "hero_cutout", "fallback_symbol", "art"]) delete b[k]; };
+  const reset = (b, replaces = false) => { for (const k of ["type_layout", "name_card", "hero_cutout", "fallback_symbol", "art"]) delete b[k]; if (replaces) { b.visual_type = "TYPE"; b.data = null; b.concept_visuals = []; } };
   for (const b of plan.beats) {
     const d = ladderFor(b);
     if (!d) continue;
@@ -1307,9 +1307,9 @@ export async function entityLadder(plan, channelId, log = console.log) {
       b.canvas = canvasContentFor(b, {}); done.figure++;
       log(`[ladder] ch-${channelId} beat ${b.index}: states ${d.figure.value} -> a stat card`);
     } else if (d.art) {
-      reset(b); b.art = d.art;
+      reset(b, d.replaces); b.art = d.art;
       b.canvas = canvasContentFor(b, {}); done.art++;
-      log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.art.kind.replace("plate-", "")} "${d.art.name}" -> ${d.art.kind}`);
+      log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.art.kind.replace("plate-", "")} "${d.art.name}" -> ${d.art.kind}${d.replaces ? " (replaces a visual that carried none of it)" : ""}`);
     }
     if (!b.canvas) Object.assign(b, keep);
   }

@@ -22,6 +22,23 @@ const SUBSTANCE = new Set(["portrait", "photo", "logo", "cutout", "map", "flag",
 /** Does the beat draw something of substance (anything but words, a name card or a drawn symbol)? */
 export const hasSubstance = (c) => drawnOf(c).some((d) => SUBSTANCE.has(d.kind));
 
+/**
+ * Visuals that carry no data of their own and so yield to the entity the sentence names (the board 37967524047 left these failing the
+ * gate): a cutout that is only decoration, a direction-only TREND (no figures), a LIST whose items are just the names, a stat card whose
+ * only figure is the span of time the sentence states (a time scale draws it, with the figure as its label).
+ * A chart with real figures, a photo, a map or a portrait is NOT yielded: it is shown and the gate reports the gap.
+ */
+export function yieldsTo(b, g) {
+  const c = b.canvas || {}, drawn = drawnOf(c);
+  const kinds = drawn.map((d) => d.kind);
+  if (!kinds.length) return true;
+  if (kinds.every((k) => k === "cutout" || k === "symbol" || k === "visual")) return true;
+  const vt = String(c.visual_type || b.visual_type || "").toUpperCase();
+  if (vt === "TREND" || (vt === "LIST" && c.composition === "LIST-BUILD")) return true;
+  if (g.primary?.type === "span" && kinds.every((k) => k === "figure")) return true;
+  return false;
+}
+
 /** { ents, uncovered, primary } for a plan beat ({ narration, named_entities, canvas }). */
 export function gapOf(b) {
   const c = b.canvas || {};
@@ -35,16 +52,22 @@ export function gapOf(b) {
 /** The directive for one beat, or null: { map } | { figure } | { art } (applied by render-and-qa.js entityLadder). */
 export function ladderFor(b) {
   const g = gapOf(b);
-  if (g.covered || !g.primary || hasSubstance(b.canvas)) return null;
+  if (g.covered || !g.primary) return null;
+  const replaces = hasSubstance(b.canvas);
+  if (replaces && !yieldsTo(b, g)) return null;
   const e = g.primary;
   const sentence = b.narration || b.canvas?.sentence || "";
   switch (e.type) {
     case "place":
-      return e.region ? { map: e.name, region: e.region, flag: flagCodeOf(e.region) } : { art: { kind: "plate-place", name: e.name } };
-    case "person": return { art: { kind: "plate-person", name: e.name } };
-    case "organization": return { art: { kind: "plate-organization", name: e.name } };
-    case "date": return { art: { kind: "date", name: e.name, text: e.name } };
-    case "span": return { art: { kind: "span", name: e.name, text: e.name, ends: e.ends || null } };
+      return e.region ? { map: e.name, region: e.region, flag: flagCodeOf(e.region), replaces } : { art: { kind: "plate-place", name: e.name }, replaces };
+    case "person": return { art: { kind: "plate-person", name: e.name }, replaces };
+    case "organization": {
+      // Several organisations named together: a row of labelled plates (up to four), not one of them standing for the rest.
+      const orgs = g.ents.filter((x) => x.type === "organization").map((x) => x.name).slice(0, 4);
+      return orgs.length >= 2 ? { art: { kind: "plates", name: orgs.join(", "), names: orgs }, replaces } : { art: { kind: "plate-organization", name: e.name }, replaces };
+    }
+    case "date": return { art: { kind: "date", name: e.name, text: e.name }, replaces };
+    case "span": return { art: { kind: "span", name: e.name, text: e.name, ends: e.ends || null }, replaces };
     case "number": {
       const q = quantitiesOf(sentence).find((x) => x.value.trim() === e.name);
       return q ? { figure: { value: q.value.trim(), label: q.label || null } } : null;

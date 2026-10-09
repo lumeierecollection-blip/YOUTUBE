@@ -911,6 +911,28 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
         </div>
       </div>
     );
+  } else if (b && a.kind === "plates" && Array.isArray(a.names) && a.names.length) {
+    // A row of labelled plates, one per organisation the sentence names: each pops in turn (flat), the row pushes in as one.
+    const names = a.names.slice(0, 4), n = names.length, gap = n === 1 ? 0 : 32;
+    const side = Math.min(b.h - 90, Math.floor((b.w - gap * (n - 1)) / n));
+    const rowW = n * side + (n - 1) * gap, x0 = (b.w - rowW) / 2;
+    art = (
+      <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, transform: `scale(${push.toFixed(4)})`, transformOrigin: "50% 50%" }}>
+        {names.map((nm, i) => {
+          const label = String(nm).toUpperCase(), fs = Math.max(26, Math.min(44, Math.floor((side * 1.7) / Math.max(4, label.length))));
+          const iconSize = Math.round(side * 0.56);
+          return (
+            <div key={i} style={{ position: "absolute", left: x0 + i * (side + gap), top: 0, width: side, height: b.h, ...flatCss(local - Math.round((at + i * 0.18) * fps)) }}>
+              <div style={{ position: "absolute", left: 0, top: 0, width: side, height: side, boxSizing: "border-box", border: `${hair}px solid ${th.ink}` }}>
+                <div style={{ position: "absolute", left: (side - iconSize) / 2 - hair, top: Math.round(side * 0.12) }}><LucideIcon name="building-2" size={iconSize} color={th.ink} stroke={+((3 * 24) / iconSize).toFixed(2)} /></div>
+                <div style={{ position: "absolute", left: -hair, right: -hair, bottom: -hair, height: 8, backgroundColor: accent }} />
+              </div>
+              <div style={{ position: "absolute", left: -20, right: -20, top: side + 18, textAlign: "center", font: `700 ${fs}px ${SANS_STACK}`, letterSpacing: 2, color: th.ink, whiteSpace: "nowrap" }}>{label}</div>
+            </div>
+          );
+        })}
+      </div>
+    );
   } else if (b && a.kind === "date") {
     // A typographic date card, not a wall calendar: a hairline above, the month letterspaced, the day (or year) set large, the
     // accent rule drawn along the hairline below.

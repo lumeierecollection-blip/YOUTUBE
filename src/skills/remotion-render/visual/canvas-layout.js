@@ -898,11 +898,15 @@ function heroShotLayout(c, comp, flip) {
  *   plate-place           a plate with a pin (a place with no photo and no map)
  *   date                  a calendar page showing the date the sentence states
  *   span                  a track with its ends, filled across the beat: the span of time the sentence states
+ *   plates                a row of 2-4 labelled organisation plates: the organisations the sentence names together
  */
-const ART_SIZES = { flag: [660, 440], "plate-person": [440, 440], "plate-organization": [440, 440], "plate-place": [440, 440], date: [600, 470], span: [920, 330] };
+// plates: 2-4 organisations the sentence names together, a row of labelled plates (the reference's "row of labelled cutouts", shot 24).
+export const PLATES_SIZES = { 1: [440, 440], 2: [760, 400], 3: [960, 360], 4: [960, 320] };
+export const platesCount = (a) => Math.max(1, Math.min(4, Array.isArray(a?.names) ? a.names.length : 1));
+const ART_SIZES = { plates: [960, 360], flag: [660, 440], "plate-person": [440, 440], "plate-organization": [440, 440], "plate-place": [440, 440], date: [600, 470], span: [920, 330] };
 function entityArtLayout(c, flip) {
   const a = c.art || {}, kind = ART_SIZES[a.kind] ? a.kind : "plate-place";
-  const [w0, h0] = ART_SIZES[kind];
+  const [w0, h0] = kind === "plates" ? PLATES_SIZES[platesCount(a)] : ART_SIZES[kind];
   const w = w0, h = kind === "flag" && a.aspect ? Math.round(w0 / Math.max(1.2, Math.min(2.2, a.aspect))) : h0;
   const y = LOW_VISUAL.top + 60;
   const boxes = { rule: { ...rule(flip, TOP), keep: true } };
@@ -1694,7 +1698,7 @@ export function canvasManifest(raw, idx) {
     camera: c.photo && (FULL_PHOTO_COMPS.includes(L.composition) || FRAMED_PHOTO_COMPS.includes(L.composition)) ? { subject: "photo", move: CAMERA.photo, from_frame: Number.isFinite(c.entity_pop?.frame) ? Math.max(0, c.entity_pop.frame) : 0 }
       : L.composition === "DATA-FULL" ? { subject: "graph", move: CAMERA.graph } : null,
     // What the beat NAMES and what it drew for it (scripts/entity-coverage.js reads both).
-    art: c.art ? { kind: c.art.kind, name: c.art.name || null, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || null, asset: c.art.asset || null } : null,
+    art: c.art ? { kind: c.art.kind, name: c.art.name || null, names: Array.isArray(c.art.names) ? c.art.names : null, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || null, asset: c.art.asset || null } : null,
     entities: Array.isArray(c.named_entities) ? c.named_entities.filter((e) => e && e.name).map((e) => ({ type: e.type, name: e.name })) : [],
     camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
     // Provenance (verified_as = the Wikipedia title + description it was verified against,
