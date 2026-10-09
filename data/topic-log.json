@@ -2635,9 +2635,14 @@
           "topic": "The Conversation Recession: Why Business Leaders Are Failing at Dialogue",
           "slug": "conversation-recession-business-leaders-dialogue",
           "reserved_at": "2026-10-08T12:35:14.531Z"
+        },
+        {
+          "topic": "Claude Motion and Live Dashboards: Anthropic's October 2026 Productivity Shift",
+          "slug": "claude-motion-live-dashboards-october-2026",
+          "reserved_at": "2026-10-09T12:18:00.357Z"
         }
       ],
-      "last_generated": "2026-10-08T12:35:14.531Z"
+      "last_generated": "2026-10-09T12:18:00.357Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
