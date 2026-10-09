@@ -93,15 +93,19 @@ const { compositionFor } = await import("../src/skills/remotion-render/visual/ca
     Object.assign(b.c.art, { asset: f.asset, aspect: png.readUInt32BE(16) / png.readUInt32BE(20) });
   }
 }
+// A beat may set `seconds` (a real beat runs 5-7 s: the pace gate failed on long beats the 3 s fixture never exercised — board 37983616641).
+let cursor = 0;
 const beats = beatsSpec.map((b, i) => {
   const words = b.text.split(" ");
-  const per = (D - 20) / words.length;
+  const dur = b.seconds ? Math.round(b.seconds * FPS) : D, start = cursor;
+  cursor += dur;
+  const per = (dur - 20) / words.length;
   const c = { ...b.c };
   c.composition = c.composition || compositionFor(c.visual_type, !!c.photo, { view: c.photo?.view });
   c.beat_total = beatsSpec.length;
   c.sentence = c.sentence || b.text;   // the manifest carries the sentence (entity-coverage reads it)
   return {
-    beat_id: `t${i}`, start_frame: i * D, duration_frames: D, text: b.text, original_text: b.text,
+    beat_id: `t${i}`, start_frame: start, duration_frames: dur, text: b.text, original_text: b.text,
     scene: { mechanism: "TYPOGRAPHY", canvas: c },
     spoken: words.map((w, k) => ({ text: w, from: Math.round(6 + k * per), to: Math.round(6 + (k + 1) * per) })),
     words: [],
@@ -149,7 +153,7 @@ for (let k = 0; k < 3 && !puppeteerInstance; k++) {
 }
 if (!puppeteerInstance) throw new Error("could not launch the headless browser (3 attempts)");
 const composition = await selectComposition({ serveUrl, id: "DirectedShorts", inputProps: props, browserExecutable, puppeteerInstance });
-composition.durationInFrames = beats.length * D;
+composition.durationInFrames = cursor;
 const shots = [];
 // --beats 8,9 renders only those beats; --moments 0.05,0.1 chooses the moments (fractions of a beat).
 const only = arg("beats") ? arg("beats").split(",").map(Number) : null;

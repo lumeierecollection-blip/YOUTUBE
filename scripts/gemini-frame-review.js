@@ -877,7 +877,9 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"family":"YES"|"NO","playful
       const a = text.indexOf("{"), z = text.lastIndexOf("}");
       try { if (a >= 0 && z > a) result = JSON.parse(text.slice(a, z + 1)); } catch {}
     }
-    const verdicts = Array.isArray(result?.beats) ? result.beats : null;
+    // Matched by beat_index: an extra or reordered entry is ignored; a missing one is a check that could not run.
+    const byIdx = new Map((Array.isArray(result?.beats) ? result.beats : []).map((v) => [Number(v.beat_index), v]));
+    const verdicts = jobs.every(({ i }) => byIdx.has(i)) ? jobs.map(({ i }) => byIdx.get(i)) : null;
     if (!verdicts || verdicts.length !== jobs.length) { console.error(`::error::look check returned ${verdicts ? verdicts.length : "no"} verdict(s) for ${jobs.length} beats: ${JSON.stringify(result).slice(0, 300)}`); process.exit(3); }
     for (const v of verdicts) console.log(`[look-check] beat ${v.beat_index}: family ${v.family}, playful ${v.playful}${v.issues ? ` — ${v.issues}` : ""}`);
     const failing = verdicts.filter((v) => String(v.family).toUpperCase() !== "YES" || String(v.playful).toUpperCase() === "YES");

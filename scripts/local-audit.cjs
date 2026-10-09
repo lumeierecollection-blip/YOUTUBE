@@ -812,7 +812,7 @@ async function flatLook(video, beats, accent, fps = 30) {
     const g = frameGround(buf, W, H);
     const name = `beat ${i} (${c.composition}${art ? ` ${art.kind}` : ""})`;
     // A flag is a real flag: its own colours are the entity's, judged by visual-contrast; everything else drawn is judged for palette.
-    const pal = offPalette(buf, W, H, accent, { y1: Math.floor((CAPTION_Y0 / 1920) * H), skip: art?.kind === "flag" && box ? [box] : [] });
+    const pal = offPalette(buf, W, H, accent, { y1: Math.floor((CAPTION_Y0 / 1920) * H), skip: box && (art?.kind === "flag" || (Array.isArray(art?.items) && art.items.some((it) => it && it.asset))) ? [{ x: Math.floor(box.x), y: Math.floor(box.y), w: Math.ceil(box.w) + 1, h: Math.ceil(box.h) + 1 }] : [] });
     const sh = boxed ? shadowShare(buf, W, H, box, g.l) : 0;
     const corners = boxed ? cornersSharp(buf, W, H, box, g.l) : 4;
     rows.push(`${name}: off-accent colour ${(pal.share * 100).toFixed(2)}%${boxed ? `, shadow strip ${(sh * 100).toFixed(0)}%, sharp corners ${corners}/4` : ""}`);
