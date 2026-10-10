@@ -977,9 +977,14 @@
           "topic": "San Francisco Supervisor Introduces New Legislation to Curb Nuisance Evictions",
           "slug": "sf-supervisor-legislation-curb-nuisance-evictions",
           "reserved_at": "2026-10-10T10:14:40.907Z"
+        },
+        {
+          "topic": "East Lansing Approves New Police De-Escalation and Use-of-Force Policy",
+          "slug": "east-lansing-police-deescalation-policy-2026",
+          "reserved_at": "2026-10-10T11:18:20.143Z"
         }
       ],
-      "last_generated": "2026-10-10T10:14:40.908Z"
+      "last_generated": "2026-10-10T11:18:20.143Z"
     },
     "3": {
       "channel_name": "AI Tested",
