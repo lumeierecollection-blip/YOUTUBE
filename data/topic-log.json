@@ -457,7 +457,7 @@
           "reserved_at": "2026-10-10T03:28:10.905Z"
         }
       ],
-      "last_generated": "2026-10-10T07:17:18.219Z"
+      "last_generated": "2026-10-10T07:26:15.593Z"
     },
     "2": {
       "channel_name": "Legal Brief",
@@ -957,9 +957,14 @@
           "topic": "New ICE Guidance Bans High-Speed Car Chases and Restricts Traffic Stops",
           "slug": "ice-traffic-stops-pursuit-guidance-2026",
           "reserved_at": "2026-10-10T07:17:29.636Z"
+        },
+        {
+          "topic": "Connecticut Housing Advocates Push Back Against Alternative Security Deposits",
+          "slug": "connecticut-housing-advocates-alternative-security-deposits",
+          "reserved_at": "2026-10-10T07:26:36.047Z"
         }
       ],
-      "last_generated": "2026-10-10T07:17:29.637Z"
+      "last_generated": "2026-10-10T07:26:36.047Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -1120,7 +1125,7 @@
           "reserved_at": "2026-10-10T07:17:42.661Z"
         }
       ],
-      "last_generated": "2026-10-10T07:17:42.661Z"
+      "last_generated": "2026-10-10T07:26:53.629Z"
     },
     "6": {
       "channel_name": "Archive Room",
@@ -1160,9 +1165,14 @@
           "topic": "Victoria Police Issue Fresh Appeal 40 Years After Albert Pisani Disappearance",
           "slug": "victoria-police-appeal-40-years-albert-pisani",
           "reserved_at": "2026-10-10T07:17:38.059Z"
+        },
+        {
+          "topic": "Coroner Approves Exhumation for Second Post-Mortem in Teoh Beng Hock Case",
+          "slug": "teoh-beng-hock-second-post-mortem-exhumation",
+          "reserved_at": "2026-10-10T07:26:24.051Z"
         }
       ],
-      "last_generated": "2026-10-10T07:17:38.059Z"
+      "last_generated": "2026-10-10T07:26:24.051Z"
     },
     "7": {
       "channel_name": "Dead Companies",
@@ -1259,9 +1269,14 @@
           "topic": "True Food Kitchen Chapter 11 Filing and Restructuring Timeline",
           "slug": "true-food-kitchen-chapter-11-restructuring-timeline",
           "reserved_at": "2026-10-10T07:17:10.823Z"
+        },
+        {
+          "topic": "The Collapse of Activewear Brand Stax and Its $22.8M Cash Shortfall",
+          "slug": "stax-activewear-collapse-cash-shortfall-2026",
+          "reserved_at": "2026-10-10T07:26:20.741Z"
         }
       ],
-      "last_generated": "2026-10-10T07:17:10.824Z"
+      "last_generated": "2026-10-10T07:26:20.741Z"
     },
     "9": {
       "channel_name": "Border Lines",
@@ -1646,9 +1661,14 @@
           "topic": "Africa's Critical Minerals Race Intensifies Amid US-China Competition",
           "slug": "africa-critical-minerals-race-us-china-2026",
           "reserved_at": "2026-10-10T07:17:15.784Z"
+        },
+        {
+          "topic": "The Sea Lion Project and the Renewed UK-Argentina Falklands Dispute",
+          "slug": "sea-lion-project-uk-argentina-falklands-dispute",
+          "reserved_at": "2026-10-10T07:26:29.047Z"
         }
       ],
-      "last_generated": "2026-10-10T07:17:15.784Z"
+      "last_generated": "2026-10-10T07:26:29.048Z"
     },
     "10": {
       "channel_name": "Margin Note",
@@ -1683,9 +1703,14 @@
           "topic": "Super Intelligence: The History and Misuse of a Technical Term",
           "slug": "super-intelligence-history-misuse",
           "reserved_at": "2026-10-10T01:20:48.937Z"
+        },
+        {
+          "topic": "Confucian Philosophy and the New Approach to Taming AI Personalities",
+          "slug": "confucian-philosophy-taming-ai-personalities",
+          "reserved_at": "2026-10-10T07:29:52.145Z"
         }
       ],
-      "last_generated": "2026-10-10T03:38:48.602Z"
+      "last_generated": "2026-10-10T07:29:52.145Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
@@ -2264,7 +2289,7 @@
           "reserved_at": "2026-10-10T01:55:32.724Z"
         }
       ],
-      "last_generated": "2026-10-10T03:40:37.867Z"
+      "last_generated": "2026-10-10T07:29:58.702Z"
     },
     "27": {
       "channel_name": "Trial Files",
@@ -2872,7 +2897,7 @@
           "reserved_at": "2026-10-10T01:55:35.017Z"
         }
       ],
-      "last_generated": "2026-10-10T01:55:35.017Z"
+      "last_generated": "2026-10-10T07:30:28.563Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
@@ -3359,9 +3384,14 @@
           "topic": "Ben Affleck Discusses Radically Reworking Animals and AI Usage",
           "slug": "ben-affleck-animals-ai-filmmaking",
           "reserved_at": "2026-10-10T01:55:46.070Z"
+        },
+        {
+          "topic": "Marvel Confirms VisionQuest Release Date and New Specials for Oct 2026",
+          "slug": "marvel-confirms-visionquest-release-date-and-specials",
+          "reserved_at": "2026-10-10T07:31:28.049Z"
         }
       ],
-      "last_generated": "2026-10-10T03:45:29.830Z"
+      "last_generated": "2026-10-10T07:31:28.050Z"
     },
     "50": {
       "channel_name": "Gadget Kitchen",
