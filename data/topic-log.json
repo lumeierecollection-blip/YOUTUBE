@@ -1578,9 +1578,14 @@
           "topic": "How Do AI Chatbots Reason Like Humans?",
           "slug": "how-do-ai-chatbots-reason-like-humans",
           "reserved_at": "2026-10-09T21:50:01.464Z"
+        },
+        {
+          "topic": "Philowashing: When Silicon Valley Hires Philosophers for Corporate Legitimacy",
+          "slug": "philowashing-silicon-valley-philosophy-legitimacy",
+          "reserved_at": "2026-10-10T00:50:29.872Z"
         }
       ],
-      "last_generated": "2026-10-09T21:50:01.464Z"
+      "last_generated": "2026-10-10T00:50:29.872Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
