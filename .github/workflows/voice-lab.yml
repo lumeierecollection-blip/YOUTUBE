@@ -9,7 +9,7 @@ on:
         type: string
         default: ""
       set:
-        description: "lab (production-style script x voice x direction) | lab2 (the missing controls + per-sentence + the real board texts) | corpus (the real board texts only)"
+        description: "lab (production-style script x voice x direction) | lab2 (the missing controls + per-sentence + the real board texts) | corpus (the real board texts only) | stability (same audio judged 3x; same request synthesised 4x)"
         type: string
         default: "lab2"
       corpus_run:

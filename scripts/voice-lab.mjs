@@ -73,7 +73,7 @@ if (set === "lab2") {
     V("current-sulafat-sentence", "Sulafat", CURRENT, "sentence"), V("notes-kore-sentence", "Kore", NOTES, "sentence"),
   ]);
 }
-if (set === "corpus" || set === "lab2" || set === "all") {
+if (set === "corpus" || set === "lab2" || set === "stability" || set === "all") {
   // Every *-vo-spoken.txt under the downloaded prep artifacts: data/tts/<channel>/<topic>-vo-spoken.txt (+ the production mp3 / srt beside it).
   const found = [];
   const walk = (d) => { if (!existsSync(d)) return; for (const n of readdirSync(d)) { const p = join(d, n); if (statSync(p).isDirectory()) walk(p); else if (/-vo-spoken\.txt$/.test(n)) found.push(p); } };
@@ -86,6 +86,15 @@ if (set === "corpus" || set === "lab2" || set === "all") {
     edge = (channels.channels || []).find((c) => String(c.id) === String(Number(ch)))?.tts_voice || edge;
     const g = geminiVoiceFor(edge);
     const base = f.replace(/-vo-spoken\.txt$/, "");
+    if (set === "stability") {
+      // Lab 2 showed the SAME text, voice and direction scoring 4.6-9 take to take, and the same mp3 scoring differently from the board's own judging.
+      // Two things can move: the judge (same audio, judged 3x) and the synthesis (same request, 4 takes, each judged once).
+      add(`ch${ch}`, f, [
+        V(`ch${ch}-existing-judge`, g.voice, "", "existing", { mp3: `${base}-vo.mp3`, srt: `${base}-vo.srt`, repeat: 3 }),
+        ...[1, 2, 3, 4].map((n) => V(`ch${ch}-prod-take${n}`, g.voice, g.style)),
+      ], { channel: ch });
+      continue;
+    }
     add(`ch${ch}`, f, [
       V(`ch${ch}-existing`, g.voice, "", "existing", { mp3: `${base}-vo.mp3`, srt: `${base}-vo.srt` }),
       V(`ch${ch}-prod-${g.voice.toLowerCase()}`, g.voice, g.style),
@@ -110,19 +119,24 @@ for (const job of jobs) {
       if (tts.status !== 0) { console.log(`TTS failed: ${(tts.stderr || "").trim().split("\n").slice(-2).join(" | ").slice(0, 300)}`); rows.push({ ...v, textId: job.textId, features: job.features, ok: false, why: "tts failed" }); continue; }
     }
     const dur = Number((spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", mp3], { encoding: "utf8" }).stdout || "0").trim()) || null;
-    const j = spawnSync("node", [join(ROOT, "scripts", "narration-judge.mjs"), "--audio", mp3, "--srt", srt, "--out", f("narration.json")], { encoding: "utf8", env: process.env, timeout: 400000 });
-    if (!existsSync(f("narration.json"))) { console.log(`judge could not run (exit ${j.status}): ${(j.stderr || "").trim().slice(-200)}`); rows.push({ ...v, textId: job.textId, features: job.features, ok: false, why: "judge could not run", seconds: dur }); continue; }
-    const sentences = JSON.parse(readFileSync(f("narration.json"), "utf8")).sentences || [];
-    const scores = sentences.map((s) => Number(s.score));
-    const mean = scores.reduce((a, b) => a + b, 0) / Math.max(1, scores.length);
-    const row = { ...v, textId: job.textId, features: job.features, ok: true, seconds: dur, mean: +mean.toFixed(2), min: Math.min(...scores), passing: scores.filter((x) => x >= 7).length, of: scores.length, scores, why: sentences.map((s) => s.why).filter(Boolean).slice(0, 2) };
-    rows.push(row);
-    console.log(`${v.name}: mean ${row.mean}, min ${row.min}, ${row.passing}/${row.of} at 7+ [${scores.join(" ")}] (${dur ? dur.toFixed(1) + " s" : "?"})`);
+    for (let rep = 1; rep <= (v.repeat || 1); rep++) {
+      const nj = f(`narration${rep > 1 ? "-" + rep : ""}.json`);
+      const j = spawnSync("node", [join(ROOT, "scripts", "narration-judge.mjs"), "--audio", mp3, "--srt", srt, "--out", nj], { encoding: "utf8", env: process.env, timeout: 400000 });
+      if (!existsSync(nj)) { console.log(`judge could not run (exit ${j.status}): ${(j.stderr || "").trim().slice(-200)}`); rows.push({ ...v, textId: job.textId, features: job.features, ok: false, why: "judge could not run", seconds: dur }); continue; }
+      const parsed = JSON.parse(readFileSync(nj, "utf8"));
+      const sentences = parsed.sentences || [];
+      const scores = sentences.map((s) => Number(s.score));
+      const mean = scores.reduce((a, b) => a + b, 0) / Math.max(1, scores.length);
+      const name = v.repeat ? `${v.name}#${rep}` : v.name;
+      const row = { ...v, name, judge: parsed.model, textId: job.textId, features: job.features, ok: true, seconds: dur, mean: +mean.toFixed(2), min: Math.min(...scores), passing: scores.filter((x) => x >= 7).length, of: scores.length, scores, gate: (parsed.failing || []).length ? `FAIL(${parsed.failing.length})` : "pass", why: sentences.map((s) => s.why).filter(Boolean).slice(0, 2) };
+      rows.push(row);
+      console.log(`${name}: mean ${row.mean}, min ${row.min}, ${row.passing}/${row.of} at 7+ [${scores.join(" ")}] (${dur ? dur.toFixed(1) + " s" : "?"}, judge ${parsed.model})`);
+    }
   }
 }
 
 rows.sort((a, b) => a.textId.localeCompare(b.textId) || (b.mean ?? -1) - (a.mean ?? -1));
-const cells = ["| text | variant | voice | mode | mean | per sentence | at 7+ |", "|---|---|---|---|---|---|---|", ...rows.map((r) => `| ${r.textId} | ${r.name} | ${r.voice} | ${r.mode} | ${r.ok ? r.mean : "—"} | ${r.ok ? r.scores.join(" ") : r.why} | ${r.ok ? `${r.passing}/${r.of}` : "—"} |`)].join("\n");
+const cells = ["| text | variant | voice | mode | judge | mean | per sentence | at 7+ | gate |", "|---|---|---|---|---|---|---|---|---|", ...rows.map((r) => `| ${r.textId} | ${r.name} | ${r.voice} | ${r.mode} | ${r.judge || "—"} | ${r.ok ? r.mean : "—"} | ${r.ok ? r.scores.join(" ") : r.why} | ${r.ok ? `${r.passing}/${r.of}` : "—"} | ${r.gate || "—"} |`)].join("\n");
 const byText = new Map(); for (const r of rows) if (!byText.has(r.textId)) byText.set(r.textId, r.features);
 const feat = ["| text | words | sentences | words/sentence | sd | digits | questions | commas/sentence | dashes | contrast words | best mean | production-setting mean |", "|---|---|---|---|---|---|---|---|---|---|---|---|",
   ...[...byText].map(([id, ft]) => { const rs = rows.filter((r) => r.textId === id && r.ok); const best = rs.length ? Math.max(...rs.map((r) => r.mean)) : "—";
