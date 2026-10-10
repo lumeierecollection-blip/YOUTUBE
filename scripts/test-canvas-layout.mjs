@@ -75,6 +75,7 @@ for (const variant of [0, 1]) for (const b of bodies) for (const { name, h } of 
   for (const [k, v] of texts) {
     // THE TEXT GRID (owner, 2026-10-10): the words — headline / statement, and the label stacked over them — are centred on the
     // frame's axis, and the primary block stands on the grid line. (Replaces "no centred text, anchored to a column edge".)
+    if (TEXT_GRID.on && (k === "number" || k === "label") && /^NUMBER-/.test(L.composition)) { if (v.align === "center" && v.w && Math.abs(v.x + v.w / 2 - 540) > 2 && v.x > 48) bad.push(`${k} is centred off the axis`); continue; }   // the figure is the visual, centred
     if (TEXT_GRID.on && ["headline", "statement", "kicker", "lead_phrase"].includes(k)) {
       if (v.w && Math.abs(v.x + v.w / 2 - 540) > 2) bad.push(`${k} is not centred on the frame's axis (${v.x}..${v.x + v.w})`);
       if (k !== "kicker" && k === (L.boxes.statement ? "statement" : "headline") && Math.abs(v.y + v.h + (v.desc || 0) - TEXT_GRID.base) > TEXT_GRID.tolerance) bad.push(`${k} ends at y ${v.y + v.h}, off the grid line ${TEXT_GRID.base}`);

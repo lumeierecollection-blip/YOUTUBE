@@ -1067,7 +1067,9 @@ function tableLayout(c) {
       const size = fit.size;
       const nw = Math.ceil(fit.width);
       const nh = Math.round(size * ROLE_NUMBER.lineHeight);
-      const nx = Math.max(L_EDGE, anchorX(nw, flip));
+      // The text grid: the figure is the visual, centred on the frame's axis (a figure wider than the frame keeps its left margin and bleeds).
+      const nx = TEXT_GRID.on ? Math.max(L_EDGE, Math.round((FRAME.w - nw) / 2)) : Math.max(L_EDGE, anchorX(nw, flip));
+      const nAlign = TEXT_GRID.on ? "center" : flip ? "right" : "left";
       const bleed = Math.max(0, nx + nw - R_EDGE);      // wider than the frame: digits start at the left margin, the unit bleeds off the right
       if (!swap) {
         // headline in the top zone (or a hairline rule when there is none),
@@ -1084,19 +1086,19 @@ function tableLayout(c) {
         // case the deep one crossed into the caption zone.
         const ink = numberInk(c.data.value, size);
         if (label) {
-          boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, x: flip ? undefined : nx, bottom: BOTTOM, flip });   // right-anchored when the number is (it ran off the frame: CI run 36947929123 ch-44)
-          boxes.number = { ...box(nx, boxes.label.y - 28 - ink, nw, ink), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
+          boxes.label = TEXT_GRID.on ? dataBox(label, { width: 620, size: 40, maxLines: 2, bottom: BOTTOM, center: true }) : dataBox(label, { width: 620, size: 40, maxLines: 2, x: flip ? undefined : nx, bottom: BOTTOM, flip });   // right-anchored when the number is (it ran off the frame: CI run 36947929123 ch-44)
+          boxes.number = { ...box(nx, boxes.label.y - 28 - ink, nw, ink), size, parts, align: nAlign, role: "number", flip, bleed };
         } else {
           boxes.floor_rule = rule(flip, BOTTOM - 6);
-          boxes.number = { ...box(nx, BOTTOM - 6 - 28 - ink, nw, ink), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
+          boxes.number = { ...box(nx, BOTTOM - 6 - 28 - ink, nw, ink), size, parts, align: nAlign, role: "number", flip, bleed };
         }
       } else {
         // the hero number in the top zone, its label under it; the headline at the middle zone's bottom
         boxes.rule = rule(flip, TOP);
-        boxes.number = { ...box(nx, LOW_VISUAL.top + 10, nw, nh), size, parts, align: flip ? "right" : "left", role: "number", flip, bleed };
+        boxes.number = { ...box(nx, LOW_VISUAL.top + 10, nw, nh), size, parts, align: nAlign, role: "number", flip, bleed };
         // FIGURE-LOW (render-time shot, Gemini's pick): the number alone in the upper middle band (centred on
         // ~880), no words in the top band — its small caption label is left out.
-        if (label && !c.number_label_off) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, y: boxes.number.y + nh + 28, flip });
+        if (label && !c.number_label_off) boxes.label = dataBox(label, { width: 620, size: 40, maxLines: 2, y: boxes.number.y + nh + 28, flip, center: TEXT_GRID.on });
         // Its headline under the number in the same band.
         boxes.headline = headlineBox(hl, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - (boxes.label ? boxes.label.y + boxes.label.h + 16 : boxes.number.y + boxes.number.h + 24), max: 170 });
       }

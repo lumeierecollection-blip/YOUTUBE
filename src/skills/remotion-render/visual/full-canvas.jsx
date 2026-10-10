@@ -294,7 +294,7 @@ function NumberHero({ b, q, t, local, fps, at, color, m, hero = true, settled = 
       transform: `translateY(${Math.min(0, osc).toFixed(2)}px) scale(${(pop.s * m.breathe).toFixed(4)})`,
       // From the BOTTOM edge: the pop (1.3 -> 1.0) and the breathe grow the
       // figure upward, never below a box that sits on a zone's edge.
-      transformOrigin: b.align === "right" ? "right bottom" : "left bottom" }}>
+      transformOrigin: b.align === "right" ? "right bottom" : b.align === "center" ? "center bottom" : "left bottom" }}>
       {glyphs}
     </div>
   );
